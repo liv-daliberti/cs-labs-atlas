@@ -1,0 +1,20 @@
+{
+ "departmentPattern": "comput|informati(?:c|k|que)|(?:^|[^a-z])eecs(?:[^a-z]|$)|electrical\\s*(?:&|and)\\s*computer|data\\s*science|artificial\\s*intelligence|robotic|software|machine\\s*learning|language\\s*technolog|human[\\s\\-‐-―]*computer|information\\s*(?:science|technolog|system)|school\\s*of\\s*information|cyber|intelligent\\s*systems|计算机|软件|人工智能|컴퓨터",
+ "field": "computer_and_information_sciences",
+ "flags": "i",
+ "hiddenReasons": {
+  "no_lab_papers": "PI lab without lab papers",
+  "no_papers": "CS unit without papers",
+  "replaced_by_pi_labs": "inventory unit of a school whose CS departments are shown as PI labs"
+ },
+ "reasons": [
+  "field",
+  "department",
+  "field_and_department",
+  "cs_department_pi_lab"
+ ],
+ "rule": "A lab is in the CS atlas when its field is computer_and_information_sciences or its recorded department matches departmentPattern (case-insensitive), or it is a PI lab of the CS departments view (csScopeReason cs_department_pi_lab, marked by the build). In the CS view a lab is grouped under its computing department labels; a lab with none keeps its recorded departments.",
+ "schema": 1,
+ "shown": "The atlas shows, at a school of the CS departments view, that school's PI labs with at least one lab paper (atlas/data/cs-hierarchy; its inventory units are hidden as replaced_by_pi_labs), and at every other university the in-scope CS units with at least one linked paper in any publication view (others hidden as no_papers). Hidden records stay on disk.",
+ "source": "scripts/cs_scope.py"
+}

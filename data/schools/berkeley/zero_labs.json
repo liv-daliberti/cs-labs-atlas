@@ -1,0 +1,71 @@
+{
+ "note": "Labs with zero lab papers (hidden on the site) or zero students, with the funnel diagnosis and the reviewed verdict (tools/zero_paper_ledger.py).",
+ "zero_papers": [
+  {
+   "school": "berkeley",
+   "pi": "Brian A. Barsky",
+   "departments": [
+    "EECS"
+   ],
+   "rank": "emeritus",
+   "title": "Professor Emeritus, Professor in the Graduate School",
+   "diagnosis": "no_output_found",
+   "verdict": "zero_is_right",
+   "reason": "Advises 86 EECS M.S. reports and 9 undergraduates (EECS tech reports name him advisor) but authored no 2016-2026 work: OpenAlex author A5046623635 has 0 works in 2016-2026 and DBLP has none.",
+   "evidence": [
+    "https://api.openalex.org/works?filter=author.id:A5046623635,publication_year:2016-2026"
+   ],
+   "funnel": {
+    "dblpTitles": 0,
+    "dblpDois": 0,
+    "verifiedWorks": 0
+   },
+   "outside_appointment_by_year": {},
+   "periods": [],
+   "listing_years": [
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+   ],
+   "students": 99,
+   "pi_id": "berkeley:brian-a-barsky"
+  }
+ ],
+ "zero_students": [
+  {
+   "school": "berkeley",
+   "pi": "Zachary Pardos",
+   "departments": [
+    "School of Education"
+   ],
+   "lab_papers": 97,
+   "pi_id": "berkeley:zachary-pardos"
+  },
+  {
+   "school": "berkeley",
+   "pi": "Manxi Wu",
+   "departments": [
+    "Civil and Environmental Engineering"
+   ],
+   "lab_papers": 18,
+   "pi_id": "berkeley:manxi-wu"
+  },
+  {
+   "school": "berkeley",
+   "pi": "Ian Holmes",
+   "departments": [
+    "Bioengineering"
+   ],
+   "lab_papers": 30,
+   "pi_id": "berkeley:ian-holmes"
+  }
+ ]
+}

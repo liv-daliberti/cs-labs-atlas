@@ -1,0 +1,71 @@
+{
+ "note": "Labs with zero lab papers (hidden on the site) or zero students, with the funnel diagnosis and the reviewed verdict (tools/zero_paper_ledger.py).",
+ "zero_papers": [
+  {
+   "school": "cmu",
+   "pi": "William L Scherlis",
+   "departments": [
+    "S3D"
+   ],
+   "rank": "ladder",
+   "title": "Professor",
+   "diagnosis": "identity_unanchored",
+   "verdict": "zero_is_right",
+   "reason": "DBLP has two 2016-2026 works: a 2019 arXiv preprint and IEEE S&P Magazine 2022 \"Formal Methods at Scale\", whose byline lists DARPA (he directed DARPA I2O), not CMU.",
+   "evidence": [
+    "https://api.openalex.org/works/doi:10.1109/MSEC.2022.3158842"
+   ],
+   "funnel": {
+    "name_hits": 3,
+    "school_affiliated": 1,
+    "dblpTitles": 2,
+    "dblpDois": 2,
+    "verifiedWorks": 0
+   },
+   "outside_appointment_by_year": {},
+   "periods": [],
+   "listing_years": [
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+   ],
+   "students": 5,
+   "pi_id": "cmu:william-l-scherlis"
+  },
+  {
+   "school": "cmu",
+   "pi": "Randi Williams",
+   "departments": [
+    "HCII"
+   ],
+   "rank": "research",
+   "title": "Assistant Research Professor",
+   "diagnosis": "no_school_affiliation",
+   "verdict": "zero_is_right",
+   "reason": "Assistant Research Professor first listed 2026 (HCII); her 26 name hits list MIT (her PhD), none CMU yet.",
+   "evidence": null,
+   "funnel": {
+    "name_hits": 26,
+    "dblpTitles": 21,
+    "dblpDois": 22,
+    "verifiedWorks": 0
+   },
+   "outside_appointment_by_year": {},
+   "periods": [],
+   "listing_years": [
+    2026
+   ],
+   "students": 1,
+   "pi_id": "cmu:randi-williams"
+  }
+ ],
+ "zero_students": []
+}

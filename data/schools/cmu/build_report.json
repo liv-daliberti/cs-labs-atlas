@@ -1,0 +1,142 @@
+{
+ "school": "cmu",
+ "builtAt": "2026-10-27T16:38:59.594486Z",
+ "counts": {
+  "census_rows_merged_by_nickname": 3,
+  "pis_excluded_by_review": 17,
+  "pis": 458,
+  "pis_without_person": 129,
+  "labs_reused": 53,
+  "labs_new": 405,
+  "student_names_cleaned": 48,
+  "student_records_merged": 455,
+  "student_ids_unified_across_labs": 91,
+  "pis_with_students": 458,
+  "students": 7667,
+  "lab_student_pairs": 9388,
+  "dblp_ids_dropped_name_mismatch": 1,
+  "pis_with_dblp_list": 417,
+  "pis_with_own_publication_list": 0,
+  "pis_with_lab_publication_page": 201,
+  "sweep_name_hits": 32703,
+  "surname_only_hits_by_anchored_id": 194,
+  "pi_work_list_hits": 21040,
+  "hit_without_school_affiliation": 21462,
+  "outside_appointment": 548,
+  "hit_without_identity": 552,
+  "dblp_recovered_lab_papers": 712,
+  "dblp_recovered_outside_appointment": 1,
+  "edition_records_merged": 887,
+  "lab_papers": 30062,
+  "lab_papers_in_collection": 25658,
+  "lab_papers_new": 4404,
+  "lab_papers_by_period": 9305,
+  "lab_papers_by_listing": 20757,
+  "identity:dblp_person_page_doi": 9413,
+  "identity:advisee_anchored_author_id": 54,
+  "identity:dblp_verified_collection_work": 6260,
+  "identity:reviewed_openalex_author_id": 6252,
+  "identity:anchored_author_id": 4177,
+  "identity:dblp_person_page_title": 1010,
+  "identity:advisee_coauthor": 2076,
+  "identity:lab_publication_page": 62,
+  "identity:pi_orcid": 54,
+  "identity:dblp_person_page": 704,
+  "student_paper_links": 27481,
+  "labs_with_student_papers": 445,
+  "student_link:collection_person_link": 13680,
+  "student_link:byline_name_with_school_affiliation": 10790,
+  "student_link:advisee_name_on_lab_paper_byline": 3011,
+  "pis_with_lab_papers": 456,
+  "pis_complete_chain": 445
+ },
+ "excluded": [
+  {
+   "pi": "Luis von Ahn",
+   "why": "Researched: not a PI at the school in 2016-2026 (gap-evidence.json): Associate Professor in the May-2016 CSD directory, 'Consulting Professor' from 2017 on (Duolingo CEO). The last thesis he (co-)chaired is Brendan Meeder's CMU-CS-15-106 (2015, outside the window); no "
+  },
+  {
+   "pi": "Joern Dengjel",
+   "why": "Not a faculty appointment at the school in 2016–2026 (hierarchy/home-departments.json): EXTERNAL: not a CMU appointment. CBD lists him under 'Past Visiting Faculty'; CBD 'is not currently hosting faculty'."
+  },
+  {
+   "pi": "Farzaneh Derakhshan",
+   "why": "Illinois Institute of Technology faculty; CSD lists her department as Illinois Tech. Co-chairing one CMU thesis is not a CMU faculty lab (gap-evidence.json)."
+  },
+  {
+   "pi": "Steven Dow",
+   "why": "Not a faculty appointment at the school in 2016–2026 (hierarchy/home-departments.json): LEFT CMU: core HCII assistant professor 2011-2015 (an SCS department, so not merely affiliated). Since 2016 at UC San Diego, 'Associate Professor of Cognitive Science' per https://css.ucsd.edu/people/profiles/sdow.html (sha256 548f48c7236eb695). Evidence is a "
+  },
+  {
+   "pi": "Angel Jordan",
+   "why": "Researched: not a PI at the school in 2016-2026 (gap-evidence.json): PIPELINE ERROR: Angel Jordan (b. 1930, former provost) was University Professor Emeritus before the window (RI 2016 listing). His 2019 and 2023 'listings' and the 'Electronic Marketplaces Lab' lab bas"
+  },
+  {
+   "pi": "Aisling Kelliher",
+   "why": "Not a faculty appointment at the school in 2016–2026 (hierarchy/home-departments.json): LEFT CMU: joined the School of Design (College of Fine Arts) in 2012, with an HCII adjunct role; moved to Virginia Tech CS in 2015 (sha256 de135806e7403f46); now 'Associate Professor of Cinematic Arts' at USC (sha256 9e7212dd0e1d1263)."
+  },
+  {
+   "pi": "Jionghao Lin",
+   "why": "Not a faculty appointment at the school in 2016–2026 (hierarchy/home-departments.json): EXTERNAL: not a CMU appointment; a former HCII postdoc. The quote is from his personal Google Sites homepage. The institutional HCII page says only 'Dr. Jionghao Lin is an Assistant Professor at the University of Hong Kong' (sha256 a1d6291c968cbc3d)."
+  },
+  {
+   "pi": "Valentina Nisi",
+   "why": "Not a faculty appointment at the school in 2016–2026 (hierarchy/home-departments.json): EXTERNAL: not a CMU appointment (CMU Portugal affiliate). The page does not name her department within IST."
+  },
+  {
+   "pi": "Nuno Nunes",
+   "why": "Not a faculty appointment at the school in 2016–2026 (hierarchy/home-departments.json): EXTERNAL: not a CMU appointment (CMU Portugal affiliate). The page does not name his department within IST."
+  },
+  {
+   "pi": "Matt Ruffalo",
+   "why": "Researched: not a PI at the school in 2016-2026 (gap-evidence.json): Research staff: CBD postdoc under Ziv Bar-Joseph (2017-2019 postdoc listings), Systems Scientist from 2020. His CBD profile lists one lab member, a staff Research Programmer; no student or postdoc adv"
+  },
+  {
+   "pi": "Nikol Elisabet Rummel",
+   "why": "Not a faculty appointment at the school in 2016–2026 (hierarchy/home-departments.json): EXTERNAL: not a CMU appointment. Her HCII page lists her only as 'Affiliated Faculty' (sha256 01fcfe38f88ed082). Bochum shows her as 'Univ.-Prof. on leave 2022-2027, CAIS Research Professor'."
+  },
+  {
+   "pi": "Dana Scott",
+   "why": "Researched: not a PI at the school in 2016-2026 (gap-evidence.json): Emeritus before the window (listed 'Professor Emeritus' in the May-2016 CSD directory; 'University Professor Emeritus' today). His own Ph.D.-students page ends with #41 Jesse Hughes (2001) and was las"
+  },
+  {
+   "pi": "Shreya Shankar",
+   "why": "Researched: not a PI at the school in 2016-2026 (gap-evidence.json): Incoming hire: her homepage says 'In 2027, I will join Carnegie Mellon University as an Assistant Professor'; her CV dates column gives 'Jul. 2027–' (tenure-track) and 'Jul. 2026–27' (Visiting Assista"
+  },
+  {
+   "pi": "Adrien Treuille",
+   "why": "Researched: not a PI at the school in 2016-2026 (gap-evidence.json): Former assistant professor (CSD/RI; 2015 CSD profile still 'Assistant Professor'); by April 2016 listed only as RI 'Principal Project Scientist' with a Seattle (206) phone - he had left for industry ("
+  },
+  {
+   "pi": "Steven Xia",
+   "why": "Researched: not a PI at the school in 2016-2026 (gap-evidence.json): Incoming hire who has not started: his own homepage (fetched 2026-10-21) still reads 'final year Computer Science PhD student at UIUC advised by Lingming Zhang', his ASE 2026 profile gives UIUC, and t"
+  },
+  {
+   "pi": "Natasa Miskov-Zivanov",
+   "why": "Researched: not a PI at the school in 2016-2026 (gap-evidence.json): Not a CMU faculty PI in 2016-2026: her lab (Miskov-Zivanov Lab, nmzlab.pitt.edu) is at the University of Pittsburgh, where she is Associate Professor; her ORCID lists only University of Pittsburgh emp"
+  },
+  {
+   "pi": "Charles Kemp",
+   "why": "Researched: not a PI at the school in 2016-2026 (gap-evidence.json): Associate Professor of Psychology (MLD affiliated faculty) until July 2018, then University of Melbourne. No stated student, postdoc or advisee at CMU in 2016-2018 was found: his CMU homepage (Wayback"
+  }
+ ],
+ "pisWithoutPapers": [
+  "Randi Williams",
+  "William L Scherlis"
+ ],
+ "pisWithoutStudents": [],
+ "censusNicknameMerges": [
+  [
+   "Matt Fredrikson",
+   "Matthew Fredrikson"
+  ],
+  [
+   "Ken Holstein",
+   "Kenneth J Holstein"
+  ],
+  [
+   "Jeff Ichnowski",
+   "Jeffrey Ichnowski"
+  ]
+ ]
+}

@@ -1,0 +1,521 @@
+from dhelp import M, PUB, WB
+
+D = {}
+
+# ---------------------------------------------------------------- Christian Kästner
+CK = "http://www.cs.cmu.edu/~ckaestne/"
+CK17 = WB + "20170119120122id_/http://www.cs.cmu.edu/~ckaestne/"
+CK20 = WB + "20200125181841id_/http://www.cs.cmu.edu:80/~ckaestne/"
+CK23 = WB + "20230129165519id_/https://www.cs.cmu.edu/~ckaestne/"
+D["Christian Kästner"] = dict(
+    lab_site=CK,
+    people_page=CK,
+    people_pages=[CK, CK17, CK20, CK23],
+    members=[
+        M('Yining Hong', 'phd', [2024, None], CK, q='Yining Hong (PhD student since 2024)'),
+        M('Hao He', 'phd', [2023, None], CK, q='Hao He (PhD student since 2023, coadvised with Bogdan Vasilescu)'),
+        M('Chenyang Yang', 'phd', [2021, None], CK, q='Chenyang Yang (PhD student since 2021, coadvised with Sherry Tongshuang Wu)'),
+        M('Niruthiha Selvanayagam', 'visitor', [2026, 2026], CK, q='Niruthiha Selvanayagam (visiting scholar 2026)'),
+        M('Courtney Miller', 'phd', [2021, 2026], CK, q='Courtney Miller (PhD 2021-2026, coadvised with Bogdan Vasilescu, now Assistant Professor at George Washington University)'),
+        M('Nadia Nahar', 'phd', [2020, 2026], CK, q='Nadia Nahar (PhD 2020-2026, now Senior Research Scientist at Microsoft)'),
+        M('Chu-Pan Wong', 'phd', [2014, 2021], CK, q='Chu-Pan Wong (PhD 2014-2021, now at Meta)'),
+        M('Shurui Zhou', 'phd', [2014, 2020], CK, q='Shurui Zhou (PhD 2014-2020, now Assistant Professor at University of Toronto)'),
+        M('Miguel Velez', 'phd', [2016, 2021], CK, q='Miguel Velez (PhD 2016-2021, now at Google)'),
+        M('Jens Meinicke', 'visitor', [2014, 2020], CK, q='Jens Meinicke (visiting scholar, 2014, 2016-2020, now at Google)'),
+        M('Pooyan Jamshidi', 'postdoc', [2016, 2018], CK, q='Pooyan Jamshidi (postdoc 2016-2018, now Associate Professor at University of South Carolina)'),
+        M('Gabriel Ferreira', 'phd', [2014, 2020], CK, q='Gabriel Ferreira (PhD student 2014-2020)'),
+        M('Yuan Lirong', 'phd', [2023, 2026], CK, q='Yuan Lirong (PhD student 2023-2026, coadvised with Rohan Padhye)'),
+        M('Waqar Ahmad', 'masters', [2016, 2016], CK, q='Waqar Ahmad (graduated MSc, 2016)'),
+        M('Yanxin (Cindy) Chen', 'undergraduate', [2023, 2023], CK, q='Yanxin (Cindy) Chen (undergraduate student, 2023-24)'),
+        M('Weigen Chen', 'masters', [2023, 2023], CK, q='Weigen Chen (M.S. student, 2023)'),
+        M('Yuan (Cindy) Jiang', 'masters', [2021, 2021], CK, q='Yuan (Cindy) Jiang (M.S. student, 2021)'),
+        M('Kattiana Constantino', 'visitor', [2018, 2019], CK, q='Kattiana Constantino (visiting scholar 2018-2019)'),
+        M('Eduardo Figueiredo', 'visitor', [2017, 2018], CK, q='Eduardo Figueiredo (visiting scholar, 2017-2018)'),
+        M('Larissa Rocha Soares', 'visitor', [2017, 2018], CK, q='Larissa Rocha Soares (visiting scholar, 2017-2018)'),
+        M('Ștefan Stănciulescu', 'visitor', [2016, 2017], CK, q='Ștefan Stănciulescu (visiting scholar, 2016-2017, now researcher at ABB)'),
+        M('Jean Melo', 'visitor', [2016, 2017], CK, q='Jean Melo (visiting scholar, 2016-2017, now at Configit)'),
+        M('Stefan Mühlbauer', 'phd', [2016, 2016], CK, q='Stefan Mühlbauer (visiting scholar, 2016, now PhD student at University of Weimar)'),
+        M('Prasad Kawthekar', 'visitor', [2016, 2016], CK, q='Prasad Kawthekar (visiting scholar, 2016, now graduate student at Stanford)'),
+        M('Erica Okeh', 'undergraduate', [2025, 2025], CK, q='Erica Okeh (REU student, 2025)'),
+        M('Jason Huang Alexander', 'undergraduate', [2025, 2025], CK, q='Jason Huang Alexander (REU student, 2025)'),
+        M('Aarya Doshi', 'undergraduate', [2025, 2025], CK, q='Aarya Doshi (REU student, 2025)'),
+        M('Abhishek Satpathy', 'undergraduate', [2025, 2025], CK, q='Abhishek Satpathy (REU student, 2025)'),
+        M('Haoqin Yang', 'undergraduate', [2024, 2024], CK, q='Haoqin Yang (REU student, 2024)'),
+        M('Jacob Tjaden', 'undergraduate', [2024, 2024], CK, q='Jacob Tjaden (REU student, 2024)'),
+        M('Maria Belen B. Saavedra Rios', 'undergraduate', [2024, 2024], CK, q='Maria Belen B. Saavedra Rios (REU student, 2024)'),
+        M('Noah Elazar', 'undergraduate', [2024, 2024], CK, q='Noah Elazar (REU student, 2024)'),
+        M('Aiden Edward Amaya', 'undergraduate', [2024, 2024], CK, q='Aiden Edward Amaya (REU student, 2024)'),
+        M('Joshua Delrosa', 'undergraduate', [2024, 2024], CK, q='Joshua Delrosa (REU student, 2024)'),
+        M('Katrina Wilson', 'undergraduate', [2023, 2023], CK, q='Katrina Wilson (REU student, 2023)'),
+        M('Rachel Suarez', 'undergraduate', [2023, 2023], CK, q='Rachel Suarez (REU student, 2023)'),
+        M('Oreofeoluwapo (Oreofe) Solarin', 'undergraduate', [2023, 2023], CK, q='Oreofeoluwapo (Oreofe) Solarin (REU student, 2023)'),
+        M('Jinmei (Jenny) Rowlett', 'undergraduate', [2023, 2023], CK, q='Jinmei (Jenny) Rowlett (REU student, 2023)'),
+        M('Wanqin Ma', 'undergraduate', [2023, 2023], CK, q='Wanqin Ma (REU student, 2023)'),
+        M('Yining Hong', 'undergraduate', [2023, 2023], CK, q='Yining Hong (REU student, 2023, now PhD student at CMU)'),
+        M('Nicholas Gomez', 'undergraduate', [2023, 2023], CK, q='Nicholas Gomez (REU student, 2023)'),
+        M('Audrey (Lina) Boughton', 'undergraduate', [2023, 2023], CK, q='Audrey (Lina) Boughton (REU student, 2023)'),
+        M('Haesue Baik', 'undergraduate', [2023, 2023], CK, q='Haesue Baik (REU student, 2023)'),
+        M('Janhvi Somaiya', 'undergraduate', [2022, 2022], CK, q='Janhvi Somaiya (REU student, 2022)'),
+        M('Emily Nguyen', 'undergraduate', [2022, 2022], CK, q='Emily Nguyen (REU student, 2022)'),
+        M('Kavan Mehrizi', 'undergraduate', [2022, 2022], CK, q='Kavan Mehrizi (REU student, 2022)'),
+        M('Brandon Halliburton', 'undergraduate', [2022, 2022], CK, q='Brandon Halliburton (REU student, 2022)'),
+        M('Jack Arteaga', 'undergraduate', [2022, 2022], CK, q='Jack Arteaga (REU student, 2022)'),
+        M('Justin Ventura', 'undergraduate', [2021, 2021], CK, q='Justin Ventura (REU student, 2021)'),
+        M('Kimberly Truong', 'undergraduate', [2021, 2021], CK, q='Kimberly Truong (REU student, 2021; now PhD student at CMU)'),
+        M('Paul Smith', 'undergraduate', [2021, 2021], CK, q='Paul Smith (REU student, 2021)'),
+        M('Theresa Lim', 'undergraduate', [2021, 2021], CK, q='Theresa Lim (REU student, 2021)'),
+        M('Philip Gray', 'undergraduate', [2021, 2021], CK, q='Philip Gray (REU student, 2021)'),
+        M('Austin Coursey', 'undergraduate', [2021, 2021], CK, q='Austin Coursey (REU student, 2021; now PhD student at Vanderbilt University)'),
+        M('Sophia Cohen', 'undergraduate', [2020, 2020], CK, q='Sophia Cohen (REU student, 2020)'),
+        M('Isabel Gan', 'undergraduate', [2020, 2020], CK, q='Isabel Gan (REU student, 2020)'),
+        M('Helen Dong', 'undergraduate', [2020, 2020], CK, q='Helen Dong (REU student, 2020)'),
+        M('Hannah Hartnett', 'undergraduate', [2020, 2020], CK, q='Hannah Hartnett (REU student, 2020)'),
+        M('Priscila Santiesteban', 'undergraduate', [2020, 2020], CK, q='Priscila Santiesteban (REU student, 2020; now PhD student at UMich)'),
+        M('Mehal Kashyap', 'undergraduate', [2020, 2020], CK, q='Mehal Kashyap (REU student, 2020)'),
+        M('Mark Chen', 'undergraduate', [2020, 2020], CK, q='Mark Chen (REU student, 2020)'),
+        M('Madison Janes', 'undergraduate', [2020, 2020], CK, q='Madison Janes (REU student, 2020)'),
+        M('Jerry Lu', 'undergraduate', [2020, 2020], CK, q='Jerry Lu (REU student, 2020)'),
+        M('Sydney Covitz', 'undergraduate', [2019, 2019], CK, q='Sydney Covitz (REU student, 2019)'),
+        M('Naveen Raman', 'undergraduate', [2019, 2019], CK, q='Naveen Raman (REU student, 2019)'),
+        M('Cassandra Overney', 'undergraduate', [2019, 2019], CK, q='Cassandra Overney (REU student, 2019, now PhD student at MIT)'),
+        M('Annika Esau', 'undergraduate', [2019, 2019], CK, q='Annika Esau (REU student, 2019)'),
+        M('Sophie Rosas-Smith', 'undergraduate', [2018, 2018], CK, q='Sophie Rosas-Smith (REU student, 2018)'),
+        M('Nga Huynh', 'undergraduate', [2018, 2018], CK, q='Nga Huynh (REU student, 2018)'),
+        M('Kalil Garrett', 'undergraduate', [2018, 2018], CK, q='Kalil Garrett (REU student, 2018)'),
+        M('Leo Chen', 'undergraduate', [2018, 2018], CK, q='Leo Chen (REU student, 2018, now PhD student at CMU)'),
+        M('Luyao Ren', 'undergraduate', [2018, 2018], CK, q='Luyao Ren (REU student, 2018)'),
+        M('Hannah Reiling', 'undergraduate', [2017, 2017], CK, q='Hannah Reiling (REU student, 2017)'),
+        M('Changming Xu', 'undergraduate', [2017, 2017], CK, q='Changming Xu (REU student, 2017)'),
+        M('Lukas Lazarek', 'undergraduate', [2017, 2017], CK, q='Lukas Lazarek (REU student, 2017, now PhD student at Northwestern)'),
+        M('Asher Trockman', 'undergraduate', [2017, 2017], CK, q='Asher Trockman (REU student, 2017, now PhD student at CMU)'),
+        M('Xia Xiao', 'undergraduate', [2016, 2016], CK, q='Xia Xiao (REU student, 2016)'),
+        M('Kyle McDonell', 'undergraduate', [2016, 2016], CK, q='Kyle McDonell (REU student, 2016)'),
+        M("Serena Chen", "undergraduate", [2018, 2018], CK20, q="Serena Chen (REU student, 2018, now PhD student at CMU)",
+          note="appears as Leo Chen in later captures (same REU slot, 2018)"),
+    ],
+    pubs=[],
+    notes="Team section is on the homepage (team.html 404). Live page lists current, graduated, visitors and ~60 REU students; 2017/2020/2023 Wayback captures read for alumni (every captured person is also on the live page except Serena Chen). Visitors/REU before 2016 (Medeiros 2014, Goyal 2015, Win 2015) skipped; 2017 'external collaborations/coadvising' (Nguyen, Lillack, Hunsen, Leßenich) are non-CMU and skipped. publications.html parses poorly (titles come out as abstract sentences, 276 entries, only 8 in window) so no PUB page added.",
+    blocked=[],
+)
+
+# ---------------------------------------------------------------- Geoff Kaufman
+GK = "https://hcii.cmu.edu/people/geoff-kaufman"
+GK17 = WB + "20171109120433id_/https://www.hcii.cmu.edu/people/geoff-kaufman"
+GK20 = WB + "20200120055432id_/http://www.hcii.cmu.edu:80/people/geoff-kaufman"
+GK23 = WB + "20230124133827id_/https://www.hcii.cmu.edu/people/geoff-kaufman"
+D["Geoff Kaufman"] = dict(
+    lab_site=None,
+    people_page=GK,
+    people_pages=[GK, GK17, GK20, GK23],
+    members=[
+        M("Adinawa Adjagbodjou", "phd", None, GK, near="Advisees"),
+        M("Kimi Wenzel", "phd", None, GK, near="Advisees"),
+        M("Lisa Egede", "phd", None, GK, near="Advisees"),
+        M("Kaycee F. Stiemke", "phd", None, GK, near="Advisees"),
+        M("Alexandra To", "phd", None, GK17, near="Advisees"),
+        M("Joselyn McDonald", "phd", None, GK17, near="Advisees"),
+        M("Fannie Liu", "phd", None, GK17, near="Advisees"),
+        M("Joseph Seering", "member", None, GK17, near="Advisees", note="role not stated on the profile"),
+        M("Anna Kasunic", "phd", None, GK20, near="Advisees"),
+        M("Erica Cruz", "phd", None, GK23, near="Advisees"),
+        M("Pranav Khadpe", "phd", None, GK23, near="Advisees"),
+    ],
+    pubs=[],
+    notes="No independent lab website found (geoffkaufman.com is an unrelated musician; www.cs.cmu.edu/~gfk 404; WebSearch found none). Only the HCII profile lists four current advisees; the HCII PhD-student page does not name advisors. Advisee lists from the 2017-11, 2020-01 and 2023-01 Wayback captures of the profile add the earlier advisees (roles inferred as phd except Joseph Seering, role not stated).",
+    blocked=[],
+)
+
+# ---------------------------------------------------------------- Alonzo J Kelly
+RIK = "https://www.ri.cmu.edu/ri-faculty/alonzo-kelly/"
+D["Alonzo J Kelly"] = dict(
+    lab_site="http://www.cs.cmu.edu/~alonzo/",
+    people_page=RIK,
+    people_pages=[RIK],
+    members=[],
+    pubs=[PUB("http://www.cs.cmu.edu/~alonzo/pubs/pubs.html", mode="auto")],
+    notes="Homepage has no people page. RI profile lists 'past phd students' (Eckart, Howard, Pivtoraiko, Seegmiller, Tallavajhula) and 'past masters students' (Anderson, Bartley, Desiano, Green, Lamb, Nagy, Rogers-Marcovitz, Steck) with no dates, and no capture shows them as current in 2016+, so none recorded (Eckart, Tallavajhula are already held). Publications page parses correctly (115 titles) but none are in 2016-2026 or missing.",
+    blocked=[],
+)
+
+# ---------------------------------------------------------------- Aniket D Kittur
+AK = "https://hcii.cmu.edu/people/aniket-kittur"
+AK20 = WB + "20200120054912id_/http://www.hcii.cmu.edu:80/people/aniket-kittur"
+AK23 = WB + "20230129055627id_/https://www.hcii.cmu.edu/people/aniket-kittur"
+D["Aniket D Kittur"] = dict(
+    lab_site="https://kittur.org/",
+    people_page=AK,
+    people_pages=[AK, AK20, AK23],
+    members=[
+        M("Yaqing Yang", "phd", None, AK, near="Advisees"),
+        M("Nathan Hahn", "member", None, AK20, near="Advisees"),
+        M("Hyeonsu Kang", "member", None, AK20, near="Advisees"),
+        M("Andrew Kuznetsov", "member", None, AK20, near="Advisees"),
+        M("Xieyang (Michael) Liu", "member", None, AK20, near="Advisees"),
+        M("Felicia Ng", "member", None, AK20, near="Advisees"),
+        M("Jeffrey Rzeszotarski", "member", None, AK23, near="Advisees"),
+    ],
+    pubs=[],
+    notes="kittur.org is a personal/marketing page with no group or people section; supercharging-innovation.github.io has no team list. HCII profile lists one current advisee. Advisee lists from the 2020-01 and 2023-01 Wayback captures of the HCII profile add earlier advisees (role not stated, recorded as member). The profile's lab link (www.ka.cs.cmu.edu, Center for Knowledge Acceleration) no longer resolves (SSL error).",
+    blocked=[],
+)
+
+# ---------------------------------------------------------------- Ken Koedinger
+KO = "https://hcii.cmu.edu/people/ken-koedinger"
+KO17 = WB + "20170101212247id_/http://www.hcii.cmu.edu/people/ken-koedinger"
+KO20 = WB + "20200110202459id_/http://www.hcii.cmu.edu:80/people/ken-koedinger"
+KO23 = WB + "20230331202719id_/https://www.hcii.cmu.edu/people/ken-koedinger"
+D["Ken Koedinger"] = dict(
+    lab_site="http://learnlab.org",
+    people_page=KO,
+    people_pages=[KO, KO17, KO20, KO23],
+    members=[
+        M("Qianou (Christina) Ma", "phd", None, KO, near="Advisees"),
+        M("I-Sheng (Eason) Chen", "phd", None, KO, near="Advisees"),
+        M("Julia Conti", "phd", None, KO, near="Advisees"),
+        M("Judith (Odili) Uchidiuno", "member", None, KO17, near="Advisees"),
+        M("Nicholas Diana", "member", None, KO17, near="Advisees"),
+        M("Steven Dang", "member", None, KO17, near="Advisees"),
+        M("Christopher MacLellan", "member", None, KO17, near="Advisees"),
+        M("Kelly Rivers", "member", None, KO17, near="Advisees"),
+        M("Xu Wang", "member", None, KO20, near="Advisees"),
+        M("Daniel (Danny) Weitekamp", "member", None, KO20, near="Advisees"),
+        M("Napol Rachatasumrit", "member", None, KO23, near="Advisees"),
+        M("Nesra Yannier", "member", None, KO23, near="Advisees"),
+        M("Eliane Wiese", "member", None, KO23, near="Advisees"),
+        M("Danielle Thomas", "member", None, KO23, near="Advisees"),
+        M("Conrad Borchers", "member", None, KO23, near="Advisees"),
+    ],
+    pubs=[],
+    notes="HCII profile lists three current advisees; the 2017/2020/2023 Wayback captures of the profile add earlier advisees (role not stated, recorded as member; some are staff scientists or faculty collaborators, e.g. Yannier, Thomas, MacLellan). The old lab site (pact.cs.cmu.edu) no longer resolves.",
+    blocked=["pact.cs.cmu.edu (connection error)"],
+)
+
+# ---------------------------------------------------------------- Pravesh Kothari
+PK = "https://www.cs.princeton.edu/~kothari/"
+D["Pravesh Kothari"] = dict(
+    lab_site=PK,
+    people_page=PK,
+    people_pages=[PK],
+    members=[
+        M("Alperen Ergür", "postdoc", [2019, 2020], PK, q="Former Postdocs: Alperen Ergür (Fall 2019-20"),
+        M("Mitali Bafna", "postdoc", [2022, 2023], PK, q="Mitali Bafna (Fall 2022-23"),
+        M("Max Hopkins", "postdoc", [2024, 2025], PK, q="Max Hopkins (Fall 24-25)"),
+        M("Ainesh Bakshi", "phd", [None, 2022], PK, q="Former PhD Students: Ainesh Bakshi (co-advised with David Woodruff, graduated 2022"),
+        M("Tim Hsieh", "phd", None, PK, q="Tim Hsieh ( now postdoc at MIT Math )"),
+        M("Peter Manohar", "phd", None, PK, q="Peter Manohar (winner of the 2023 Cylab Presidential Fellowship"),
+        M("Xinyu Wu", "phd", None, PK, q="Xinyu Wu (winner of the MSR Ada Lovelace Fellowship"),
+        M("Jeff Xu", "phd", None, PK, q="Jeff Xu (winner of the 2022 Cylab Presidential Fellowship"),
+        M("Shuchen Li", "undergraduate", None, PK, q="Undergraduates: Shuchen Li"),
+        M("Prashanti Anderson", "undergraduate", None, PK, q="Prashanti Anderson ( Alan J Perlis Award"),
+        M("Misha Ivkov", "undergraduate", None, PK, q="Misha Ivkov (winner of the Mark Stehlik SCS Alumni Undergraduate Impact Scholarship"),
+        M("Zachary Sussman", "undergraduate", None, PK, q="Zachary Sussman (winner of the Alan Newell Award"),
+    ],
+    pubs=[PUB("https://www.cs.princeton.edu/~kothari/papers.html", mode="auto")],
+    notes="Kothari moved to Princeton; his Princeton homepage Advising section lists CMU-era postdocs, PhD students (Bakshi, Hsieh, Manohar, Wu, Xu) and SCS undergraduates. The 'Current PhD Students' there (Tudose, Basu, M. Li, A. Lin, Tang) are Princeton students (Math/AM/OR) and are not recorded. Max Hopkins (Fall 24-25) dates may include Princeton time. CSD profile has no student list.",
+    blocked=[],
+)
+
+# ---------------------------------------------------------------- Carl Kingsford
+KG = "https://kingsfordlab.cbd.cmu.edu/people-list.html"
+KGP = "https://kingsfordlab.cbd.cmu.edu/people.html"
+KG17 = WB + "20171205115539id_/http://www.cs.cmu.edu:80/~ckingsf/group.html"
+D["Carl Kingsford"] = dict(
+    lab_site="https://kingsfordlab.cbd.cmu.edu/",
+    people_page=KG,
+    people_pages=[KG, KGP, KG17],
+    members=[
+        M('Guillaume Marçais', 'staff', None, KG, q='Current Group Members Dr. Guillaume Marçais, Senior Systems Scientist'),
+        M('Shiyi (Zoe) Du', 'phd', None, KG, q='Shiyi (Zoe) Du, CPCB Ph.D. student'),
+        M('Jiayi Li', 'phd', None, KG, q='Jiayi Li, CPCB Ph.D. student'),
+        M('Gün Kaynar', 'phd', None, KG, q='Gün Kaynar, CPCB Ph.D. student'),
+        M('Xander Song', 'phd', None, KG, q='Xander Song, CPCB Ph.D. student'),
+        M('Yuxin Lu', 'phd', None, KG, q='Yuxin Lu, CPCB Ph.D. student'),
+        M('Ahhyun Lee', 'phd', None, KG, q='Ahhyun Lee, CPCB Ph.D. student'),
+        M('Shane Elder', 'phd', [None, 2026], KG, q='Former Ph.D. Students Dr. Shane Elder, CPCB Ph.D in Computational Biology (2026)'),
+        M('Haotian Teng', 'phd', [None, 2024], KG, q='Dr. Haotian Teng, CPCB Ph.D. in Computational Biology (2024)'),
+        M('Yihang Shen', 'phd', [None, 2024], KG, q='Dr. Yihang Shen, Ph.D. in Computational Biology (2024)'),
+        M('Minh Hoang', 'phd', [None, 2023], KG, q='Dr. Minh Hoang, Ph.D. in Computer Science (2023)'),
+        M('Yutong Qiu', 'phd', [None, 2023], KG, q='Dr. Yutong Qiu, Ph.D. in Computational Biology (2023)'),
+        M('Laura Tung', 'phd', [None, 2022], KG, q='Dr. Laura Tung, Ph.D. in Computational Biology (2022)'),
+        M('Hongyu Zheng', 'phd', [None, 2022], KG, q='Dr. Hongyu Zheng, Ph.D. in Computational Biology (2022)'),
+        M('Cong Ma', 'phd', [None, 2020], KG, q='Dr. Cong Ma, Ph.D. in Computational Biology (2020)'),
+        M('Natalie Sauerwald', 'phd', [None, 2020], KG, q='Dr. Natalie Sauerwald, Ph.D. in Computational Biology (2020)'),
+        M('Prashant Pandey', 'postdoc', None, KG, q='Former Postdocs Dr. Prashant Pandey, Postdoc.'),
+        M('Dan DeBlasio', 'postdoc', None, KG, q='Dr. Dan DeBlasio, Lane Fellow.'),
+        M('Heewook Lee', 'postdoc', [None, 2019], KG, q='Dr. Heewook Lee, Lane Fellow. Assistant Professor at ASU (2019)'),
+        M('Mingfu Shao', 'postdoc', [None, 2018], KG, q='Dr. Mingfu Shao, Lane Fellow (2018)'),
+        M("Zhaoyi (Zoey) You", "masters", [None, 2026], KGP, q='Zhaoyi (Zoey) You successfully defended her MS thesis'),
+        M('Zhiwen Yan', 'masters', [None, 2024], KG, q='Zhiwen Yan, MSCB student, research assistant at Arc Institute (2024)'),
+        M('Yuqi Huang', 'masters', [None, 2024], KG, q='Yuqi Huang, MSCB student, Fred Hutch Cancer Center (2024)'),
+        M('Yinjie Gao', 'masters', [None, 2019], KG, q='Yinjie Gao, MS student (2019)'),
+        M('Raymond Song', 'masters', [None, 2019], KG, q='Raymond Song, MS student (2019)'),
+        M('Han Xie', 'staff', [None, 2019], KG, q='Han Xie, Research Assistant, now a Ph.D. student at Emory (2019)'),
+        M('Kwanho Kim', 'masters', [None, 2019], KG, q='Kwanho Kim, MS student, now at the Broad (2019)'),
+        M('Daniel Bork', 'masters', [None, 2020], KG, q='Daniel Bork, MS student (2020)'),
+        M("Hao Wang", "phd", None, KG17, q="Current: Guillaume Marçais, Project Scientist Heewook Lee, Lane Fellow Mingfu Shao, Lane Fellow Hao Wang, CPCB Ph.D. student",
+          note="listed as current on the 2017-12 capture of the old group page (that page itself says last updated 2012)"),
+        M("Brad Solomon", "phd", None, KG17, q="Brad Solomon, CPCB Ph.D. student",
+          note="listed as current on the 2017-12 capture of the old group page (page itself says last updated 2012)"),
+    ],
+    pubs=[],
+    notes="Group site moved to kingsfordlab.cbd.cmu.edu (old www.cs.cmu.edu/~ckingsf/group.html is a page last updated 2012, same content in 2017 and 2020 captures). people-list.html gives current members and dated/undated former members; undated former students (Hongyi Xin, Emre Sefer, Geet Duggal, Darya Filippova and Maryland-era Patro/Navlakha/Lapizco-Encinas), Qian Wan (MS 2015) and undated MS students (Hong-Sheng Lai, Shijie Tang, Mohsen Ferdosi, Litian Liang, Yitian Ma, Nox Yu, Gwen Ge, Shawn Baker, Tim Wall) are not recorded without dates. papers.html entries carry no parseable years (362 no-year), so no PUB page.",
+    blocked=[],
+)
+
+# ---------------------------------------------------------------- Zico Kolter
+ZK = "https://zicokolter.com/group/"
+ZK17 = WB + "20170125062707id_/http://zicokolter.com:80/group/"
+ZK20 = WB + "20200120180108id_/http://zicokolter.com:80/group/"
+ZK23 = WB + "20230329030626id_/https://zicokolter.com/group/"
+D["Zico Kolter"] = dict(
+    lab_site="https://zicokolter.com/",
+    people_page=ZK,
+    people_pages=[ZK, ZK17, ZK20, ZK23],
+    members=[
+        M('Victor Akinwande', 'member', None, ZK, near='Current Members', note='listed as current member on live page (2026)'),
+        M('Christina Baek', 'member', None, ZK, near='Current Members', note='listed as current member on live page (2026)'),
+        M('Anna Bair', 'member', None, ZK, near='Current Members', note='listed as current member on live page (2026)'),
+        M('Jeremy Cohen', 'member', None, ZK, near='Current Members', note='listed as current member on live page (2026)'),
+        M('Zhili Feng', 'member', None, ZK, near='Current Members', note='listed as current member on live page (2026)'),
+        M('Marc Finzi', 'postdoc', None, ZK, near='Current Members', note='listed as current member on live page (2026)'),
+        M('Zhengyang Geng', 'member', None, ZK, near='Current Members', note='listed as current member on live page (2026)'),
+        M('Sachin Goyal', 'member', None, ZK, near='Current Members', note='listed as current member on live page (2026)'),
+        M('Swaminathan Gurumurthy', 'member', None, ZK, near='Current Members', note='listed as current member on live page (2026)'),
+        M('Kelly He', 'member', None, ZK, near='Current Members', note='listed as current member on live page (2026)'),
+        M('Yiding Jiang', 'member', None, ZK, near='Current Members', note='listed as current member on live page (2026)'),
+        M('Eungyeup Kim', 'member', None, ZK, near='Current Members', note='listed as current member on live page (2026)'),
+        M('Kevin Li', 'member', None, ZK, near='Current Members', note='listed as current member on live page (2026)'),
+        M('Pratyush Maini', 'member', None, ZK, near='Current Members', note='listed as current member on live page (2026)'),
+        M('Dylan Sam', 'member', None, ZK, near='Current Members', note='listed as current member on live page (2026)'),
+        M('Yash Savani', 'member', None, ZK, near='Current Members', note='listed as current member on live page (2026)'),
+        M('Samuel Sokota', 'member', None, ZK, near='Current Members', note='listed as current member on live page (2026)'),
+        M('Mingjie Sun', 'member', None, ZK, near='Current Members', note='listed as current member on live page (2026)'),
+        M('Ashwini Pokle', 'member', None, ZK, near='Current Members', note='listed as current member on live page (2026)'),
+        M('Avi Schwarzschild', 'postdoc', None, ZK, near='Current Members', note='listed as current member on live page (2026)'),
+        M('Asher Trockman', 'member', None, ZK, near='Current Members', note='listed as current member on live page (2026)'),
+        M('Josh Williams', 'member', None, ZK, near='Current Members', note='listed as current member on live page (2026)'),
+        M('Runtian Zhai', 'member', None, ZK, near='Current Members', note='listed as current member on live page (2026)'),
+        M('Andy Zou', 'member', None, ZK, near='Current Members', note='listed as current member on live page (2026)'),
+        M('Alnur Ali', 'member', None, ZK17, near='Current Members', note='listed as current member in 2017-01 capture'),
+        M('Brandon Amos', 'member', None, ZK17, near='Current Members', note='listed as current member in 2017-01 capture'),
+        M('Jonathan Dinu', 'member', None, ZK17, near='Current Members', note='listed as current member in 2017-01 capture'),
+        M('Priya Donti', 'member', None, ZK17, near='Current Members', note='listed as current member in 2017-01 capture'),
+        M('Po-wei Wang', 'member', None, ZK17, near='Current Members', note='listed as current member in 2017-01 capture'),
+        M('Eric Wong', 'member', None, ZK17, near='Current Members', note='listed as current member in 2017-01 capture'),
+        M('Xiao Zhang', 'member', None, ZK17, near='Current Members', note='listed as current member in 2017-01 capture'),
+        M('Shaojie Bai', 'member', None, ZK20, near='Current Members', note='listed as current member in 2020-01 capture'),
+        M('Rizal Fathony', 'postdoc', None, ZK20, near='Current Members', note='listed as current member in 2020-01 capture'),
+        M('Saurabh Garg', 'member', None, ZK20, near='Current Members', note='listed as current member in 2020-01 capture'),
+        M('Chun Kai Ling', 'member', None, ZK20, near='Current Members', note='listed as current member in 2020-01 capture'),
+        M('Gaurav Manek', 'member', None, ZK20, near='Current Members', note='listed as current member in 2020-01 capture'),
+        M('Vaishnavh Nagarajan', 'member', None, ZK20, near='Current Members', note='listed as current member in 2020-01 capture'),
+        M('Filipe de Avila Belbute-Peres', 'member', None, ZK20, near='Current Members', note='listed as current member in 2020-01 capture'),
+        M('Leslie Rice', 'member', None, ZK20, near='Current Members', note='listed as current member in 2020-01 capture'),
+        M('Mel Roderick', 'member', None, ZK20, near='Current Members', note='listed as current member in 2020-01 capture'),
+        M('Ezra Winston', 'member', None, ZK20, near='Current Members', note='listed as current member in 2020-01 capture'),
+        M('Huan Zhang', 'postdoc', None, ZK23, near='Current Members', note='listed as current member in 2023-03 capture'),
+    ],
+    pubs=[PUB("https://zicokolter.com/publications/", mode="auto")],
+    notes="Group page lists members without roles or years (only postdocs marked). Roles recorded as 'member' except marked postdocs; each person was seen as current on the live page or in the 2017/2020/2023 captures, which is the in-window evidence (the live 'Past Members' are all captured as current in 2017 or 2020 or 2023). Matt Wytock (already 'Past' in the 2017 capture) not recorded.",
+    blocked=[],
+)
+
+# ---------------------------------------------------------------- Seyoung Kim
+SK = "https://seyoungkimlab.github.io/"
+SK17 = WB + "20170204111133id_/http://www.cs.cmu.edu:80/~sssykim/"
+SK20 = WB + "20200121065049id_/http://www.cs.cmu.edu:80/~sssykim/"
+SK23 = WB + "20230313171305id_/http://www.cs.cmu.edu/~sssykim/"
+D["Seyoung Kim"] = dict(
+    lab_site=SK,
+    people_page=SK,
+    people_pages=[SK, SK17, SK20, SK23],
+    members=[
+        M("Jun Ho Yoon", "phd", [None, 2024], SK, q="Jun Ho Yoon (Ph.D., CBD, CMU, 2024)"),
+        M("Calvin McCarter", "phd", [None, 2019], SK, q="Calvin McCarter (Ph.D., MLD, CMU, 2019)"),
+        M("Jing Xiang", "phd", [None, 2017], SK, q="Jing Xiang (Ph.D., MLD, CMU, 2017)"),
+        M("Aman Gupta", "masters", None, SK17, q="Aman Gupta (LTI, MS)"),
+        M("Gibum Kim", "phd", None, SK20, q="Students: Gibum Kim (CBD)"),
+        M("Abhinav Adduri", "phd", None, SK23, q="Students: Jun Ho Yoon (CBD) Abhinav Adduri (CBD)"),
+        M("Daniel Jeong", "phd", None, SK23, q="Abhinav Adduri (CBD) Daniel Jeong (CBD)"),
+    ],
+    pubs=[PUB("https://seyoungkimlab.github.io/publication.html", mode="auto")],
+    notes="Kim moved to University of Pittsburgh (Epidemiology); the live page is the Pitt-era site (current doctoral student Richard Xu is not recorded as a CMU member). Students at CMU from 2017/2020/2023 captures of www.cs.cmu.edu/~sssykim/. Lingxue Zhang (M.S. 2013) is out of window.",
+    blocked=[],
+)
+
+# ---------------------------------------------------------------- Kris M Kitani
+KK = "https://kriskitani.github.io/"
+KK17 = WB + "20170127213753id_/http://www.cs.cmu.edu:80/~kkitani/"
+KK20m = WB + "20200118084157id_/http://www.cs.cmu.edu:80/~kkitani/members/"
+KK22m = WB + "20220202054824id_/http://www.cs.cmu.edu/~kkitani/members/"
+KK20m = WB + "20200118084157id_/http://www.cs.cmu.edu:80/~kkitani/members/"
+KK22m = WB + "20220202054824id_/http://www.cs.cmu.edu/~kkitani/members/"
+KK20 = WB + "20200122145402id_/http://www.cs.cmu.edu:80/~kkitani/"
+D["Kris M Kitani"] = dict(
+    lab_site=KK,
+    people_page=KK,
+    people_pages=[KK, KK17, KK20m, KK22m, "https://www.cs.cmu.edu/~NavCog/members.html"],
+    members=[
+        M("Navyata Sanghvi", "phd", None, KK, q="Current Members: Navyata Sanghvi (RI PhD)"),
+        M("Jyun-Ting Song", "phd", None, KK, q="Jyun-Ting Song (RI PhD)"),
+        M("Yuan Li", "phd", None, KK, q="Yuan Li (RI PhD)"),
+        M("Shirley Ma", "postdoc", None, KK, q="Shirley Ma (RI PD)"),
+        M("Nicolas Ugrinovic", "postdoc", None, KK, q="Nicolas Ugrinovic (RI PD)"),
+        M("David Whitewholf", "staff", None, KK, q="David Whitewholf (RI PS)"),
+        M("Takaaki Shiratori", "staff", None, KK, q="Takaaki Shiratori (RI PS)"),
+        # 2017 capture, "Current Students and Staff"
+        M("Nicholas Rhinehart", "phd", None, KK17, near="Current Students and Staff"),
+        M("Cole Gleason", "phd", None, KK17, near="Current Students and Staff", note="HCII PhD with Jeff Bigham"),
+        M("Dragan Ahmetovic", "postdoc", None, KK17, near="Current Students and Staff", note="postdoc with Chieko Asakawa"),
+        M("Hernisa Kacorri", "postdoc", None, KK17, near="Current Students and Staff", note="postdoc with Chieko Asakawa"),
+        M("Joao Guerreiro", "postdoc", None, KK17, near="Current Students and Staff", note="postdoc with Chieko Asakawa"),
+        M("Dong-hyun Yoo", "postdoc", None, KK17, near="Current Students and Staff"),
+        M("Tatsuya Ishihara", "staff", None, KK17, near="Current Students and Staff", note="Research Engineer"),
+        M("Ryo Yonetani", "visitor", None, KK17, near="Current Students and Staff", note="Visiting Professor"),
+        M("Wataru Yamazaki", "visitor", None, KK17, near="Current Students and Staff", note="Visiting Grad Student"),
+        M("Xiaofang Wang", "masters", None, KK17, near="Current Students and Staff"),
+        M("Yubo 'Claire' Zhang", "masters", None, KK17, near="Current Students and Staff"),
+        M("Mohit Sharma", "masters", None, KK17, near="Current Students and Staff"),
+        M("Arjun Sharma", "masters", None, KK17, near="Current Students and Staff"),
+        M("Tanmay Shankar", "masters", None, KK17, near="Current Students and Staff"),
+        M("Xinshuo Weng", "masters", None, KK17, near="Current Students and Staff"),
+        M("Shangxuan Wu", "masters", None, KK17, near="Current Students and Staff"),
+        M("Anubhav Ashok", "masters", None, KK17, near="Current Students and Staff"),
+        M("Yifan 'Jim' Xing", "masters", None, KK17, near="Current Students and Staff"),
+        # 2017 capture alumni of 2016
+        M("Rohit Girdhar", "masters", [None, 2016], KK17, near="Lab Alumni"),
+        M("Wei-Chiu Ma", "masters", [None, 2016], KK17, near="Lab Alumni"),
+        M("Haoqi Fan", "masters", [None, 2016], KK17, near="Lab Alumni"),
+        M("Yu Zhang", "masters", [None, 2016], KK17, near="Lab Alumni"),
+        M("Syed Zahir Bokhari", "masters", [None, 2016], KK17, near="Lab Alumni"),
+        M("Yu Fang (Judy) Chang", "masters", [None, 2016], KK17, near="Lab Alumni"),
+        M("Jonathan Shen", "masters", [None, 2016], KK17, near="Lab Alumni"),
+        M("Noranart Vesdapunt", "masters", [None, 2016], KK17, near="Lab Alumni"),
+        # 2020 / 2022 members pages
+        M('Ben Newman', 'phd', None, KK20m, q='Ben Newman (PhD RI with H.Admoni)'),
+        M('Yan Xu', 'phd', None, KK20m, q='Yan Xu (PhD ECE)'),
+        M('Ye Yuan', 'phd', None, KK20m, q='Ye Yuan (PhD RI)'),
+        M('Rawal Khirodkar', 'phd', None, KK20m, q='Rawal Khirodkar (PhD RI)'),
+        M('Xi (Sandy) Sun', 'masters', None, KK20m, q='Xi (Sandy) Sun (MSR’19)'),
+        M('Harsh Agarwal', 'masters', None, KK20m, q='Harsh Agarwal (MSR’20)'),
+        M('Scott Sun', 'masters', None, KK20m, q='Scott Sun (MSR,20)'),
+        M('Wen-Hsuan Chu', 'masters', None, KK20m, q='Wen-Hsuan Chu (MSR’20)'),
+        M('Shengcao Cao', 'masters', None, KK20m, q='Shengcao Cao (MSR’21)'),
+        M('Yunze Man', 'masters', None, KK20m, q='Yunze Man (MSR’21)'),
+        M('Zhengyi Luo', 'masters', None, KK20m, q='Zhengyi Luo (MSR’21)'),
+        M('Dennis Melamed', 'masters', None, KK20m, q='Dennis Melamed (MSR’21)'),
+        M('Chunhui Liu', 'masters', None, KK20m, q='Chunhui Liu (MSCV’19)'),
+        M('Yongxin Wang', 'masters', None, KK20m, q='Yongxin Wang (MSCV’19)'),
+        M('Jingxuan Hou', 'masters', None, KK20m, q='Jingxuan Hou (MSCV’19)'),
+        M('Wuming Zhang', 'masters', None, KK20m, q='Wuming Zhang (MSCV’19)'),
+        M('Daisuke Sato', 'staff', None, KK20m, q='Daisuke Sato (RI Project Scientist with C.Asakawa)'),
+        M('Ryo Hachiuma', 'visitor', None, KK20m, q='Ryo Hachiuma (RI Visiting Student/Keio PhD)'),
+        M('Jack Li', 'staff', None, KK20m, q='Jack Li (RI Research Associate)'),
+        M('Mariko Isogawa', 'visitor', None, KK20m, q='Mariko Isogawa (RI Visiting Researcher/NTT)'),
+        M('Alireza Golestaneh', 'postdoc', None, KK20m, q='Alireza Golestaneh (RI Postdoc)'),
+        M('Sean Crane', 'staff', None, KK20m, q='Sean Crane (RI Research Associate)'),
+        M('Shinnosuke Usami', 'visitor', None, KK20m, q='Shinnosuke Usami (RI Visiting Researcher/SONY)'),
+        M('Donghyun Hwang', 'visitor', None, KK20m, q='Donghyun Hwang (RI Visiting Student/Tokyo Tech MS)'),
+        M('Peter Spalthoff', 'visitor', None, KK20m, q='Peter Spalthoff (RI Visiting Student/Tokyo Tech MS)'),
+        M('Shun Iwase', 'visitor', None, KK20m, q='Shun Iwase (RI Visiting Student/Tokyo Tech MS)'),
+        M('Vivek Roy', 'staff', None, KK20m, q='Vivek Roy (RI Research Associate)'),
+        M('Yoshikatsu Nakajima', 'visitor', [2018, 2018], KK20m, q='Yoshikatsu Nakajima (2018-19 RI Visiting Student/Keio)'),
+        M('Akiyoshi Kurobe', 'visitor', [2019, 2019], KK20m, q='Akiyoshi Kurobe (2019 RI Visiting Student/Keio)'),
+        M('Donghyun Yoo', 'staff', [2016, 2016], KK20m, q='Donghyun Yoo (2016-19 RI Project Scientist - Seegrid)'),
+        M('Fred Huang', 'masters', None, KK20m, q='Fred Huang (MSCS)'),
+        M('Yifei Huang', 'visitor', [2019, 2019], KK20m, q='Yifei Huang (RI Visiting Researcher ‘19/U Tokyo)'),
+        M('Rie Kamikubo', 'visitor', [2019, 2019], KK20m, q='Rie Kamikubo (RI Visiting Researcher ‘19)'),
+        M('Huixu Dong', 'postdoc', [2019, 2019], KK20m, q='Huixu Dong (RI Postdoc’19 with C.Asakawa)'),
+        M('Saki Asakawa', 'staff', [2019, 2019], KK20m, q='Saki Asakawa (RI Research Associate’19 - NYU)'),
+        M('Byeongkeun Kang', 'postdoc', [2019, 2019], KK20m, q='Byeongkeun Kang (RI Postdoc’19)'),
+        M('Tanya Marwah', 'masters', [None, 2019], KK20m, q='Tanya Marwah (MSR’19 - CMU MLD PhD)'),
+        M('Aashi Manglik', 'masters', [None, 2019], KK20m, q='Aashi Manglik (MSR’19)'),
+        M('Varun Rao', 'masters', [None, 2019], KK20m, q='Varun Rao (MSECE’19 w/ D.Yoo)'),
+        M('Yang Zhang', 'masters', [None, 2019], KK20m, q='Yang Zhang (MRSD’19 w/ D. Yoo)'),
+        M('Maki Sugimoto', 'visitor', [2018, 2018], KK20m, q='Maki Sugimoto (2018-19 Visiting Researcher/Keio Univ)'),
+        M('Alexander Plopski', 'visitor', [2018, 2018], KK20m, q='Alexander Plopski (2018-19 Visiting Researcher/NAIST)'),
+        M('Jiaqi Guan', 'other', [2018, 2018], KK20m, q='Jiaqi Guan (2018-19 RI Intern - UIUC PhD)'),
+        M('Xiang Xu', 'member', [2018, 2018], KK20m, q='Xiang Xu (ECE’18 - Baidu - SFU)'),
+        M('Kai Yu', 'masters', [None, 2018], KK20m, q='Kai Yu (MSCV’18 - Zoox)'),
+        M('Zhongxu Wang', 'masters', [None, 2018], KK20m, q='Zhongxu Wang (MSCV’18)'),
+        M('Qiqi Xiao', 'masters', [None, 2018], KK20m, q='Qiqi Xiao (MSCV’18 - Google)'),
+        M('Yi Jiang', 'masters', [None, 2018], KK20m, q='Yi Jiang (MSCV’18 - Google)'),
+        M('Gaurav Mittal', 'masters', [None, 2018], KK20m, q='Gaurav Mittal (MSCV’18 - MSR)'),
+        M('Shashank Tripathi', 'masters', [None, 2018], KK20m, q='Shashank Tripathi (MSCV’18 - Amazon)'),
+        M('Keita Higuchi', 'visitor', [2018, 2018], KK20m, q='Keita Higuchi (‘18 RI Visitor/University of Tokyo)'),
+        M('Seita Kayukawa', 'visitor', [2018, 2018], KK20m, q='Seita Kayukawa (‘18 RI Visitor/Waseda Univ)'),
+        M('Eshed Ohn-Bar', 'postdoc', [2018, 2018], KK20m, q='Eshed Ohn-Bar (‘18 RI Postdoc)'),
+        M('Sima Behpour', 'visitor', [2018, 2018], KK20m, q='Sima Behpour (‘18 RI Visitor/UIC)'),
+        M('Teerapat Rojanaarpa', 'visitor', [2018, 2018], KK20m, q='Teerapat Rojanaarpa (‘18 RI Visiting Researcher/DENSO)'),
+        M('Chris Song', 'masters', [None, 2018], KK20m, q='Chris Song (MRSD’18)'),
+        M('Divya Kulkarni', 'masters', [None, 2018], KK20m, q='Divya Kulkarni (MRSD’18 - BlueRiver)'),
+        M('Jennifer Isaza', 'masters', [None, 2019], KK20m, q='Jennifer Isaza (MRSD’19)'),
+        M('Andrew Wong', 'masters', [None, 2018], KK20m, q='Andrew Wong (MRSD’18 - RE2)'),
+        M('Yanda Huang', 'masters', [None, 2018], KK20m, q='Yanda Huang (MRSD’18 - Aurora)'),
+        M('Uran Oh', 'postdoc', [2018, 2018], KK20m, q='Uran Oh (RI Postdoc 18 - Ewha Womans Univ. Assistant Prof.)'),
+        M('Pengju (Jimmy) Jin', 'masters', [None, 2017], KK20m, q='Pengju (Jimmy) Jin (MSCS’17 - Aurora)'),
+        M('Ryozo Yamashita', 'visitor', [2017, 2017], KK20m, q='Ryozo Yamashita (‘17 RI Visiting Researcher)'),
+        M('Yifan (Jim) Xing', 'masters', [None, 2017], KK20m, q='Yifan (Jim) Xing (MSCV’17 - Amazon)'),
+        M('Heng Yu', 'other', [2017, 2017], KK20m, q='Heng Yu (RI Intern’17 / Tsinghua)'),
+        M('Rajat Singh', 'other', [2017, 2017], KK20m, q='Rajat Singh (RI Intern’17 - Siemens USA)'),
+        M('Xinlei Pan', 'other', [2017, 2017], KK20m, q='Xinlei Pan (RI Intern’17 / UC Berkeley)'),
+        M('Vincent Liu', 'undergraduate', [2017, 2017], KK20m, q='Vincent Liu (ECE:BS’17 - Samsung)'),
+        M('Timothy Brooks', 'undergraduate', [2017, 2017], KK20m, q='Timothy Brooks (PHIL:BA’17 Google Comp Photo)'),
+        M('Yubo ‘Claire’ Zhang', 'masters', [None, 2016], KK20m, q='Yubo ‘Claire’ Zhang (MS-CIV’16 - CMU MSR)'),
+        M('Jinkun Cao', 'phd', None, KK22m, near="PhD:"),
+        M('Erica Weng', 'phd', None, KK22m, near="PhD:"),
+        M('Jenny Nan', 'phd', None, KK22m, near="PhD:"),
+        M('Qichen Fu', 'masters', None, KK22m, q='Qichen Fu (MSR’22)'),
+        M('Yuda Song', 'masters', None, KK22m, q='Yuda Song (MSML’21)'),
+        M('Jingxiang Lin', 'masters', None, KK22m, q='Jingxiang Lin (MSCV’21)'),
+        M('Andy Wei', 'masters', None, KK22m, q='Andy Wei (MSCV’21)'),
+        M('Jinhyung (David) Park', 'undergraduate', None, KK22m, near="Undergraduates:"),
+        M('Xingyu Liu', 'postdoc', None, KK22m, q='Xingyu Liu (RI Postdoc)'),
+        M('Dazhi Cheng', 'masters', [None, 2020], KK22m, q='Dazhi Cheng (MSCS’20 - Pony.AI)'),
+        M('Han Deng', 'masters', [None, 2020], KK22m, q='Han Deng (MSCV’20 - Waymo)'),
+        M('Haoshuo Huang', 'masters', [None, 2020], KK22m, q='Haoshuo Huang (MSCV’20 - Google)'),
+        M('Yi-Chun Chen', 'masters', [None, 2020], KK22m, q='Yi-Chun Chen (RA’20 - MSCV)'),
+        M('Xindi Wu', 'masters', [None, 2020], KK22m, q='Xindi Wu (RA’20 - MSCV)'),
+        M('Erwin Wu', 'visitor', None, KK22m, q='Erwin Wu (RI Visiting Student/Tokyo Tech MS)'),
+    ],
+    pubs=[],
+    notes="Live lab page is kriskitani.github.io; older site www.cs.cmu.edu/~kkitani/ (2017 capture read; 2020 capture only has a link to a members/ page). Live 'Recent Alumni' (undated: Jinhyung (David) Park, Jenny Nan, Erica Weng, Rohan Choudhury, Shun Iwase, Jinkun Cao, Zhengyi Luo, Ben Newman) dated via the 2020 and 2022 captures of the old members/ page. Lab Alumni of MSRI'14/'15 in the 2017 capture (Saran, Huang, Ma, Lee) are out of window. NavCog (Cognitive Assistance Lab) members page is a joint Asakawa/Kitani list without dates so not used; its publication page only has venue anchors. Google Scholar (the lab publications link) is off limits.",
+    blocked=["scholar.google.com"],
+)
+
+# ---------------------------------------------------------------- Robert E Kraut
+RK = "https://kraut.hciresearch.info/people/"
+RK25 = WB + "20250326204231id_/https://kraut.hciresearch.info/people/"
+D["Robert E Kraut"] = dict(
+    lab_site="https://kraut.hciresearch.info/",
+    people_page=RK,
+    people_pages=[RK, RK25],
+    members=[],
+    pubs=[PUB("https://kraut.hciresearch.info/articles/", mode="auto")],
+    notes="The People page is a lifetime alumni list (32 former PhD students/postdocs with current employers, plus ~30 collaborators, copyright 2003-2020) with no years or roles; the 2025-03 capture is identical. No dated evidence puts any listed person at CMU in 2016-2026, so none are recorded (Laura Dabbish, Aniket Kittur, Haiyi Zhu, Meryl Ye and Yi-Chia Wang are CMU people but their Kraut-advising dates are not stated). The older www.cs.cmu.edu/~kraut/ site has Wayback captures only through 2011. HCII profile has no advisee list (emeritus).",
+    blocked=[],
+)
+
+# ---------------------------------------------------------------- Taylor Berg-Kirkpatrick
+TB = "https://icebergnlp.github.io/people.html"
+TB20 = WB + "20200204015105id_/http://cseweb.ucsd.edu:80/~tberg/"
+D["Taylor Berg-Kirkpatrick"] = dict(
+    lab_site="https://icebergnlp.github.io/",
+    people_page=TB,
+    people_pages=[TB, TB20],
+    members=[
+        M("Volkan Cirik", "phd", None, TB20, near="Graduate Students", note="on the 2020-02 UCSD homepage capture; co-advised by LP Morency; CMU-era student (CMU co-advisor or MLT)"),
+        M("Kartik Goyal", "phd", None, TB20, near="Graduate Students", note="on the 2020-02 UCSD homepage capture; co-advised by Chris Dyer; CMU-era student (CMU co-advisor or MLT)"),
+        M("Junxian He", "phd", None, TB20, near="Graduate Students", note="on the 2020-02 UCSD homepage capture; CMU-era student (CMU co-advisor or MLT)"),
+        M("Harsh Jhamtani", "masters", None, TB20, near="Graduate Students", note="on the 2020-02 UCSD homepage capture; MLT program; CMU-era student (CMU co-advisor or MLT)"),
+        M("Keith Maki", "phd", None, TB20, near="Graduate Students", note="on the 2020-02 UCSD homepage capture; co-advised by Carolyn Rose; CMU-era student (CMU co-advisor or MLT)"),
+        M("Maria Ryskina", "phd", None, TB20, near="Graduate Students", note="on the 2020-02 UCSD homepage capture; CMU-era student (CMU co-advisor or MLT)"),
+        M("Daniel Spokoyny", "phd", None, TB20, near="Graduate Students", note="on the 2020-02 UCSD homepage capture; co-advised by William Cohen; CMU-era student (CMU co-advisor or MLT)"),
+        M("Akshay Srivatsan", "phd", None, TB20, near="Graduate Students", note="on the 2020-02 UCSD homepage capture; CMU-era student (CMU co-advisor or MLT)"),
+        M("John Wieting", "phd", None, TB20, near="Graduate Students", note="on the 2020-02 UCSD homepage capture; co-advised by Graham Neubig; CMU-era student (CMU co-advisor or MLT)"),
+        M("Zichao Yang", "phd", None, TB20, near="Graduate Students", note="on the 2020-02 UCSD homepage capture; co-advised by Eric Xing; CMU-era student (CMU co-advisor or MLT)"),
+    ],
+    pubs=[PUB("https://icebergnlp.github.io/publications.html", mode="block")],
+    notes="Berg-Kirkpatrick was at CMU LTI 2016-2020 and is now at UCSD; the group site (icebergnlp.github.io) is the UCSD-era site and its People page lists current UCSD students and past members without naming the institution, so none are recorded from it (past members with dates in the CMU years, e.g. Zichao Yang PhD 2018, Wieting 2020, are covered by the 2020 homepage list). The CMU-era students come from the 2020-02 capture of cseweb.ucsd.edu/~tberg, whose graduate students are co-advised by CMU faculty (Morency, Dyer, Rose, Cohen, Neubig, Xing). www.cs.cmu.edu/~tberg 404s and has no Wayback captures; LTI faculty listing has no student list. Publications page lists lab papers 2016-2026 (including UCSD-era); affiliation is left to the other tool. Berkeley-era page (2014-2016 captures) not used.",
+    blocked=["cseweb.ucsd.edu and taylorb.ucsd.edu live (connection timeout)"],
+)
