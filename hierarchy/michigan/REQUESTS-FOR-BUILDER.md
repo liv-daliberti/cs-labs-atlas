@@ -14,9 +14,9 @@ stage 7, and 3 matters for stages 2 and 6.
    - The case: Michael Cafarella. "Before coming to MIT he was a professor of Computer Science and Engineering at the
      University of Michigan from 2009 to 2020." CSE kept listing him as *adjunct* in 2021–2026.
    - `listings_after_move()` should already set those listings aside, since it looks for `end_moved` in the evidence
-     kind. Please confirm in the Michigan build.
+     kind. **Confirmed 2026-10-29 21:40 UTC:** the Michigan build reports `listing_years_after_move: 6`. Nothing to do.
 3. **`chain_audit.py` coverage: `pending_*` decisions are not decisions.**
-   - `hierarchy/michigan/cs-related-review.json` has 22 `pending_openalex` decisions: ECE faculty whose computing work
+   - `hierarchy/michigan/cs-related-review.json` has 18 `pending_openalex` decisions: ECE faculty whose computing work
      can be decided only with the OpenAlex sweep. The audit counts any decision as "decided", so coverage shows 0 open.
    - Ask: treat a decision whose value starts with `pending` as open. `tools/stage_gate.py michigan 2` already does.
 4. **Defense evidence carries a second quote.**

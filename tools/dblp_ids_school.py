@@ -6,6 +6,8 @@ candidates  every dump person record (<www key="homepages/...">) one of whose na
 decision    homepage_url        exactly one candidate whose <url>s include the homepage the PI's department listing links
             school_affiliation  exactly one candidate whose affiliation note matches the charter's affiliation regex or
                                 one of whose URLs is on a school web domain (a disambiguated record names the school)
+            school_coauthors    (a second round) the one candidate with >= 5 2016-2026 records co-written with the school's
+                                already-decided PIs, when no other candidate has any
             unique_name         the only candidate (no homonym record carries the name) and it is not a disambiguation
                                 profile (the builder's R-PAP-05; a PI who moved away keeps the new institution in DBLP)
             unique_exact_name   exactly one candidate carries one of the PI's full names exactly, it has no DBLP homonym
@@ -92,16 +94,20 @@ def main(key):
             for nm in c['names']:
                 owner[nm].add(c['pid'])
     cnt = collections.Counter()
+    coauth = collections.defaultdict(collections.Counter)  # candidate pid -> co-author name string -> 2016-2026 records
     for typ, k, body in records():
         if typ in ('www', 'data'):
             continue
-        hit = {u for _, a in AUTH.findall(body) for u in owner.get(text(a), ())}
+        names_ = [text(a) for _, a in AUTH.findall(body)]
+        hit = {u for a in names_ for u in owner.get(a, ())}
         if not hit:
             continue
         y = YEAR.search(body)
         if y and lo <= int(y.group(1)) <= hi:
             for u in hit:
                 cnt[u] += 1
+                for a in names_:
+                    coauth[u][a] += 1
     for cs in cands.values():
         for c in cs:
             c['n_window'] = cnt[c['pid']]
@@ -133,6 +139,25 @@ def main(key):
                                   (f'{len(sch)} candidates name the school' if sch else f'{len(cs)} candidates, none names the school'),
                                   candidate_pids=[c['pid'] for c in cs][:8], candidates_max_window=max([c['n_window'] for c in cs] or [0]))
         n[out[x['name']]['basis']] += 1
+    # co-authorship round (learned 2026-10-29): among several namesake records, the one that shares 2016-2026 records
+    # with the school's already-decided PIs (their DBLP name strings) at least 5 times, while no other candidate does
+    # at all, is the PI's ('Wei Hu' at Michigan co-writes with Michigan colleagues; the other 'Wei Hu' records do not)
+    colleague = {nm for v in out.values() if v.get('pid') for nm in v.get('names') or []}
+    for x in pis:
+        v = out[x['name']]
+        if v.get('pid'):
+            continue
+        cs = cands.get(x['name'], [])
+        own = set(v.get('names') or [])
+        score = {c['pid']: sum(n_ for a, n_ in coauth[c['pid']].items() if a in colleague and a not in c['names']) for c in cs}
+        best = [c for c in cs if score[c['pid']] >= 5 and not c['disambiguation']]
+        if len(best) == 1 and all(score[c['pid']] == 0 for c in cs if c is not best[0]):
+            c = best[0]
+            mates = [a for a, n_ in coauth[c['pid']].most_common() if a in colleague and a not in c['names']][:5]
+            out[x['name']] = dict(pid=c['pid'], basis='school_coauthors', url=c['pid'], dump=P.DBLP_DUMP_FILE, sha256=c['sha256'],
+                                  quote=c['names'][0], coauthors=mates, coauthored_records=score[c['pid']], orcid=c['orcid'], names=c['names'],
+                                  candidates=len(cs), n_window=c['n_window'])
+            n['none'] -= 1; n['school_coauthors'] += 1
     (P.HIERARCHY / key / 'dblp-ids.json').write_text(json.dumps(out, indent=1, ensure_ascii=False))
     print(json.dumps(dict(pis=len(pis), secs=round(time.time() - t0), **n)))
 

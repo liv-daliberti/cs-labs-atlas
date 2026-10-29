@@ -36,3 +36,19 @@ covers most of them.
 ```
 - **R-PAP-03 (stale listings after a move).** Every extracted end year must be checked against the listings. Cafarella
   is listed until 2020, which is consistent.
+
+## Update, 2026-10-29 21:40 UTC
+- **Fetch finished.** 263 Wayback captures and 42 live pages. 51 homepage URLs have no capture.
+- **Extraction:** 8 periods and 240 holds. The holds are 134 PIs whose pages state no appointment year and 106 with no
+  page (the 37 additions have no homepage in their unit listing).
+- **Two rules learned:**
+  - A closed range followed by later professor-rank listings is a rank step, not a departure. Viswanath Nagarajan's
+    "2014-2020: Assistant Professor" kept no end.
+  - A closing statement that says the PI moved becomes `faculty_end_moved` evidence. Michael Cafarella: MIT from 2020.
+    The builder then set his 6 adjunct listing years 2021–2026 aside as `listingsAfterMove` (R-PAP-03 confirmed in the
+    Michigan build).
+- **Gate:** `stage_gate.py` still shows 6 open: Peter M. Chen, Ziyou Song, Christopher Brooks, Lionel Robert, Xi
+  Jessie Yang, Yan Chen.
+  - Each has a gap year in the listings. For the four from other units, the gap is in the Wayback captures of their
+    unit listing: the UMSI 2024 capture is a shell, and the 2021–2025 UMSI pages are paginated.
+  - No page states their appointment years. They need a reviewed period, or listing captures for the gap years.

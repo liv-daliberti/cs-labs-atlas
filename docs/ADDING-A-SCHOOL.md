@@ -129,6 +129,9 @@ The protocol is config-driven. A school is a charter, `schools/<key>.toml`, and 
 - **Learned from Michigan (2026-10-29):**
   - `faculty_periods.candidates()` matches case-sensitively, so pass the school pattern as `(?i:...)`.
   - Homepage fetching shares the Wayback lock with every other capture (6 s per request), so start it as soon as the census exists: 248 PIs take about 3 hours.
+  - A closed range followed by later professor-rank listings is a rank step, not a departure ('2014-2020: Assistant Professor').
+  - A closing statement that says the PI moved is written as `faculty_end_moved` evidence, which the builder's R-PAP-03 uses to set stale listings aside. At Michigan, Cafarella's 6 adjunct years after his move to MIT were set aside.
+  - Wayback starts refusing connections when several fetchers run at once, even under the shared 6 s lock. Run one fetching stage at a time.
 - **Gate:** every PI has a period, or a listing for each year that has papers. Before stage 7 there are no papers yet, so check that each PI's listing years are contiguous from the first listed year to the last.
 
 ## Stage 5: identity
@@ -148,6 +151,8 @@ The protocol is config-driven. A school is a charter, `schools/<key>.toml`, and 
   - With the affiliation note and the strict unique-name rule alone, 27% of PIs got no DBLP id (45 of 164 in the first run). With the listing's homepage URL, the exact-name rule and the relaxed unique-name rule, 9% got none (19 of 211), before any OpenAlex review.
   - A unique record must not be rejected for naming another institution: a PI who moved away has only the new one in DBLP.
   - An exact-name record must not win over a busier middle-initial record ('Vijay Subramanian' / 'Vijay G. Subramanian').
+  - A co-authorship round decides more namesakes: among several namesake records, take the one that shares 5 or more window records with the school's already-decided PIs, when no other candidate shares any (`school_coauthors`). At 3, false matches came in.
+  - The PI's own homepage often links DBLP and ORCID (`tools/homepage_links_school.py`).
   - The remaining PIs have common names and need the OpenAlex review.
   - Listing names can differ from DBLP names ("Satinder Singh Baveja" is DBLP's "Satinder Singh"; "Jag Jagadish" is "H. V. Jagadish"). Record such aliases in `census-overrides.json`.
 
@@ -159,6 +164,17 @@ Use sources in this order of preference:
 4. Program-level listings ("Doctoral (Program)", "Reader"), only when the student co-wrote a lab paper.
 
 OpenAlex co-authorship is never on its own evidence of advising.
+
+**Learned from Michigan (2026-10-29):**
+- **Lab pages.** `tools/labpage_students_school.py links|extract <key>` turns the PIs' homepages, and the people pages
+  they link, into the builder's `labpage-evidence.json` with `lpdom.member_candidates`. Quotes run from the heading to the
+  name. Faculty names, alumni without a year and pre-window entries are dropped.
+- **Precision.** About 4,000 of 4,500 raw candidates are not names. A homepage can list students from the PI's previous
+  school. Mark the rows `auto: true` for the accuracy sample.
+- **Defense announcements.** On the EECS sites an announcement names the adviser only as "Faculty Host" (about 1 in 6
+  captures). The defenses index pages name no chair.
+- **Program directories without advisers** (the CSE PhD directory) help only after stage 7, through the
+  co-authorship rule.
 
 - **Do:** record each relation with role, years and `url + sha256 + quote`.
 - **Gate:** the `students` and `one_person` checks are 100% or explained.
@@ -199,9 +215,10 @@ OpenAlex co-authorship is never on its own evidence of advising.
 - `tools/atlas_paths.py` (`SCHOOL_IDS`) and its generated `paths.sh` (`CS_ATLAS_SCHOOLS`), and through them `hierarchy/rebuild.sh`, `tools/make_release.py` and `tools/build_regression.py`.
 - `tools/oa_sweep.py`, `tools/cs_related_candidates.py`, `tools/dblp_dump_persons.py`, `tools/listed_not_in_census.py`, `tools/student_audit.py`, `tools/zero_paper_ledger.py`, `tools/link_sweep.py` and `tools/school_profiles.py`.
 - `listings/scripts/wb.py` and `listings/scripts/plan_fetch.py`.
-- The stage tools added for protocol v2: `school_web.py`, `school_hosts.py`, `dblp_affiliated.py`, `listing_formats.py`, `listing_rows.py`, `census_build.py`, `cs_related_school.py`, `dblp_ids_school.py`, `home_departments_school.py`, `periods_school.py` and `stage_gate.py`.
+- The stage tools added for protocol v2: `school_web.py`, `school_hosts.py`, `dblp_affiliated.py`, `listing_formats.py`, `listing_rows.py`, `census_build.py`, `cs_related_school.py`, `dblp_ids_school.py`, `homepage_links_school.py`, `home_departments_school.py`, `periods_school.py`, `labpage_students_school.py` and `stage_gate.py`.
+- Builder changes a protocol school needs while another agent owns the builder go to `hierarchy/<key>/REQUESTS-FOR-BUILDER.md`.
 
-**Prepared, not applied:** `tools/wire_charters.py` makes these read the charters. Run it once the builder agent's work on them is committed. It was tested on a copy: the six released schools' tables come out identical.
+**Applied 2026-10-29** (commit `65b50eb`, by the coordinator after release 2026-10-29.3): `tools/wire_charters.py` made these read the charters. The six released schools' tables are unchanged.
 - `tools/pi_hierarchy.py`: `DBLP`, `INST`, `AFF`, `SCHOOL_LOOSE`, `OWN_UNITS` and the EPFL foreign-title exception. `pi_fulltext_affiliation.py`, `dblp_recover.py`, `labpage_recover.py` and `link_diagnosis.py` follow, because they import these from it.
 - `tools/chain_audit.py`: `SCHOOLS`.
 - `tools/export_release.py`: `ORDER`.

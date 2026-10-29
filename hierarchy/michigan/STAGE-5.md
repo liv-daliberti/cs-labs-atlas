@@ -52,3 +52,23 @@ Dong, Q. Vera Liao, Majdi Radaideh.
 - **Name aliases for the builder** in `census-overrides.json` (shared, reviewed): for example "Satinder Singh Baveja" is
   DBLP's "Satinder Singh", and "Chad Jenkins" is "Odest Chadwicke Jenkins". Write them after the builder agent's
   release.
+
+## Update, 2026-10-29 21:40 UTC: identity review without the sweep
+- **Co-authorship round.** `tools/dblp_ids_school.py` gained a second round, `school_coauthors`. Among several namesake
+  DBLP records, it takes the one that shares 5 or more 2016–2026 records with Michigan PIs already decided, when no
+  other candidate shares any.
+  - The threshold is 5. At 3, borderline cases came in: Joshua Welch, whose only shared co-author was David Blaauw.
+  - Decided this way (9): Raj Nadakuditi (13 records, with Fessler, Norris, Michielssen), Marios Papaefthymiou, Vijay
+    Subramanian (12, with Teneketzis, Schoenebeck, M. Liu), Robert Gregg, Vineet Kamat, Jiasi Chen, Krisztián Flautner,
+    Todd Hollon and Gokul Ravi.
+- **Homepage links.** `tools/homepage_links_school.py michigan` reads the stored homepages for DBLP and ORCID links. It
+  added Stella Yu and Ke Wu (`pi_homepage_link`) and 4 ORCIDs.
+  - One conflict, recorded and not applied: J. Alex Halderman's homepage links `pid/79/7583`, while the dump decision
+    is `pid/h/JAlexHalderman`.
+- **Regenerated:** `tools/dblp_dump_persons.py` (3,694 persons, 269,857 records, Michigan included).
+- **Census PIs (214) by basis:** homepage_url 65, school_affiliation 60, unique_exact_name 34, unique_name 33,
+  school_coauthors 9, pi_homepage_link 2, none 11.
+- **Gate:** **not passed, 11 open.** Long Nguyen, Zeeshan H. Syed, Joshua Welch, Jie Liu, Wei Hu, Lin Ma, Jeong Joon
+  Park, Alexander Rodríguez, Hao-Wen (Herman) Dong, Q. Vera Liao and Majdi Radaideh need the OpenAlex author review.
+  The sweep starts after 00:10 UTC.
+

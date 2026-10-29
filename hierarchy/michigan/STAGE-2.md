@@ -1,6 +1,6 @@
 # Michigan, stage 2: faculty census
 
-Date: 2026-10-29. Gate: **not passed. 22 documented open items wait on the OpenAlex sweep**, which runs after the
+Date: 2026-10-29. Gate: **not passed. 18 documented open items wait on the OpenAlex sweep**, which runs after the
 00:00 UTC credit reset. Everything else is decided. These numbers are after the stage-5 DBLP ids were folded back in.
 
 ## What was done
@@ -32,8 +32,8 @@ Date: 2026-10-29. Gate: **not passed. 22 documented open items wait on the OpenA
   - The decisions are in `hierarchy/michigan/missing-pi-review.json`.
 
 ## Counts
-- **Census.** 454 persons; 211 PIs (191 `ladder_faculty`, 20 `courtesy_faculty`).
-  - By department: CSE 158 PIs and 81 not; ECE 77 PIs and 167 not.
+- **Census.** 454 persons; 214 PIs (195 `ladder_faculty`, 19 `courtesy_faculty`).
+  - By department: CSE 158 PIs; ECE 80 PIs.
   - Not PI, by reason: lecturer 57, research 50, emeritus 30, courtesy without a home professor rank 29, adjunct 19,
     visiting 6, plus the CS-related decisions below.
 - **Additions.** 37 accepted CS-related faculty of other units, in `census/michigan-additions.json`: UMSI 17, Robotics
@@ -42,7 +42,7 @@ Date: 2026-10-29. Gate: **not passed. 22 documented open items wait on the OpenA
 
   | source | accepted | faculty_not_computing | pending_openalex | not_faculty_listed | research_or_other_rank | census_alias |
   |---|---|---|---|---|---|---|
-  | ECE ladder faculty | 54 | 27 | **22** | – | – | – |
+  | ECE ladder faculty | 58 | 27 | **18** | – | – | – |
   | DBLP persons naming Michigan | 37 | – | – | 409 | 2 | 2 |
 
   15 DBLP records duplicated a name already decided.
@@ -51,16 +51,15 @@ Date: 2026-10-29. Gate: **not passed. 22 documented open items wait on the OpenA
 - **Chain-audit `coverage`:** 609 items; 78 pass, 531 decided, **0 open**.
   - It was run in-process with a wired copy of the builder. `tools/wire_charters.py` was applied to a copy in
     `hierarchy/michigan/tmp/wiretest`; the builder's own files were not edited.
-- **Stricter check:** `tools/stage_gate.py michigan 2` counts `pending_openalex` as open, so this gate **fails with 22
+- **Stricter check:** `tools/stage_gate.py michigan 2` counts `pending_openalex` as open, so this gate **fails with 18
   open items**.
 
 ## Exceptions with reasons
-1. **22 ECE ladder faculty are `pending_openalex`.**
+1. **18 ECE ladder faculty are `pending_openalex`.**
    - Their names have DBLP namesakes, and none of the records names Michigan, links the listed homepage, or is the
      unique exact-name record.
    - They are: Cynthia Finelli, L. Jay Guo, Mohammed N. Islam, Hun-Seok Kim, Pei-Cheng Ku, Somin Lee, Johanna Mathieu,
-     Rajesh Rao Nadakuditi, Becky Peterson, Jasprit Singh, Vijay Subramanian, Zhengya Zhang, Robert Gregg, Zheshen
-     Zhang, Jiasi Chen, Jun Gao, Souvik Biswas, Minji Kim, Sushil Varma, Joyce Yan-Ran Wang, Matthew Willsey and Kevin
+     Becky Peterson, Jasprit Singh, Zhengya Zhang, Zheshen Zhang, Jun Gao, Souvik Biswas, Minji Kim, Sushil Varma, Joyce Yan-Ran Wang, Matthew Willsey and Kevin
      Zhou.
    - The decision needs the OpenAlex sweep: the DBLP-indexed share of each person's Michigan works, as for Stanford EE.
    - A missing Michigan note in DBLP is not evidence that a person has no computing output. Deciding them negatively
@@ -89,3 +88,14 @@ $PY tools/cs_related_school.py review michigan && $PY tools/census_build.py mich
 - It also rewrites the shared `hierarchy/cs-venues.json` from the five default schools' sweeps on every run (about 1M
   works). Run it only when no builder is running. This is debt too: the venue step should be split out and the per-school
   candidate pass made streaming-only.
+
+## Update, 2026-10-29 21:40 UTC
+- **Four fewer pending.** The stage-5 co-authorship round decided the DBLP records of Raj Nadakuditi, Vijay Subramanian,
+  Robert Gregg and Jiasi Chen. Their records share 5 or more 2016–2026 records with already-decided Michigan PIs. All
+  four are now accepted. 18 remain `pending_openalex`.
+- **Provisional, pending the owner.** These parts of the census rest on defaults the owner has not confirmed:
+  - The 19 `courtesy_faculty` PIs: the rule "a courtesy appointment counts".
+  - Every acceptance: the computing-share test, which needs the sweep. The ambiguous ones are listed above.
+  - Every Michigan Medicine authorship: the related-id rule. This matters from stage 7.
+  - Every capture of a challenged umich.edu host: read only from existing Wayback captures; no live requests are made
+    to challenged hosts.

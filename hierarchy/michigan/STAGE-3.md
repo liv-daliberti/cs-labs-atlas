@@ -50,3 +50,13 @@ the OpenAlex share test.
   quote. Not researched yet.
 - **Emeriti.** 14 emeriti are PIs because they held a ladder title inside the window. Their periods (stage 4) must
   close their lab paper range.
+
+## Update, 2026-10-29 21:40 UTC
+- **Builder wired.** The builder now reads the charters (`tools/wire_charters.py`, applied by the coordinator in
+  `65b50eb`). I ran `tools/pi_hierarchy.py michigan` itself, for Michigan only.
+  - Result: 251 PIs, 0 without a person, 233 with a DBLP list from the regenerated `hierarchy/dblp-dump-persons.json.gz`.
+  - Chain checks, in-process: `pi` 251/251, `coverage` 0 open.
+- **Shared home departments written.** `tools/home_departments_school.py michigan --write-shared` added 251 Michigan
+  rows to `hierarchy/home-departments.json`. It keeps the file's own layout (indent 2), and only Michigan rows change.
+- **Gate:** passed. It stays **provisional** on the courtesy-PI rule (19 PIs) and on the CS-related acceptances
+  (owner decisions pending).
