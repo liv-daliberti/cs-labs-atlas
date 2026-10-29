@@ -1,0 +1,66 @@
+# Whitelist: everything is ignored, then code, docs and the reviewed inputs are admitted. Data never enters git:
+# packages, sweeps, captures, logs, PDFs, sqlite, .gz and model files live on disk and in the dated releases
+# (/n/fs/resemble/cs-atlas/releases/<id>/), not here.
+*
+!*/
+!.gitignore
+
+# code and docs
+!*.py
+!*.sh
+!*.slurm
+!*.md
+!*.mjs
+!*.toml
+!*.cfg
+!tests/**
+!docs/**
+
+# hand-written lists and agent briefs (the only .txt files that are code or docs)
+!hierarchy/gap-tools-cmu/batch*.txt
+!hierarchy/labpage-tools-cmu/worker_brief.txt
+!hierarchy/labpage-tools-princeton-mit/agent-brief.txt
+
+# REVIEWED INPUTS: small hand-curated decisions the builder reads (each < 5 MB; see docs/REVIEWED-INPUTS.md)
+!hierarchy/census-overrides.json
+!hierarchy/home-departments.json
+!hierarchy/zero-paper-labs.json
+!hierarchy/zero-paper-review.json
+!hierarchy/chain-reasons.json
+!hierarchy/student-corrections.json
+!hierarchy/student-identity-review.json
+!hierarchy/cs-venues.json
+!hierarchy/*/missing-pi-review.json
+!hierarchy/*/few-students-evidence.json
+!hierarchy/*/cs-related-review.json
+!hierarchy/*/gap-evidence.json
+!hierarchy/stanford/tobagi-review.json
+!hierarchy/nicknames/*.csv
+!census/*-additions.json
+!periods/*-faculty-periods.json
+
+# generated documents (they go into each release instead)
+/hierarchy/CHAIN-AUDIT.md
+/hierarchy/BUILD-REGRESSION.md
+/paths.sh
+
+# data directories: never traversed
+logs/
+raw/
+backups/
+__pycache__/
+.pytest_cache/
+/captures/
+/ai-writing/**/data/
+/ai-writing/detector/
+/ai-writing/detector_v2/models/
+/ai-writing/figlab/mini/
+/hierarchy/labpage-tools-cmu/state/
+/hierarchy/thesis-tools/out/
+/hierarchy/labpage-tools-epfl-berkeley/work/
+/hierarchy/labpage-tools-epfl-berkeley/discover/
+/hierarchy/labpage-tools-epfl-berkeley/local/
+/hierarchy/period-tools/proposals/
+/hierarchy/cmu/labpage-parts/
+/fulltext-push/local-reuse/ident/
+/fulltext-push/local-reuse/lists/

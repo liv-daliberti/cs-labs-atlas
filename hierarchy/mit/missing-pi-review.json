@@ -1,0 +1,2274 @@
+{
+ "reviewed": "2026-10-22",
+ "rule": "a PI is a faculty member of a computing department (Princeton CS; CMU's seven SCS departments; MIT EECS, CS+AI side; EPFL IC; Berkeley EECS, CS division) with stated PhD advising in 2016-2026 or a lab they head. Centres, initiatives and multi-PI groups are not labs. EPFL MERs count when they head their own lab or are stated PhD thesis directors.",
+ "captures": "hierarchy/missing-pi-captures.sqlite (fetched or copied pages; quotes are exact substrings of the stored text, whitespace collapsed)",
+ "tools": "hierarchy/missing-pi-tools/{mpcap.py,build_review.py}",
+ "decisions": [
+  {
+   "name": "John Tsitsiklis",
+   "decision": "qualifies",
+   "added_to": "census/mit-additions.json",
+   "summary": "EECS faculty [AI+D] listed every year 2016-2026; stated PhD advising in the window: co-adviser of the EECS Ph.D. theses of Kimon Drakopoulos (2016) and Martín Zubeldía Suárez (2019). The census had is_pi False only because its DSpace snapshot found none of his theses. His LIDS directorship is a multi-PI lab, so his own lab is a new \"John Tsitsiklis group\". The listings cover every year, so no reviewed period is needed.",
+   "evidence": [
+    {
+     "handle": "1721.1/105663",
+     "student": "Kimon Drakopoulos",
+     "year": 2016,
+     "url": "https://dspace.mit.edu/server/api/core/items/fb617a5f-584f-42e0-aca6-f5c7e5048da9",
+     "sha256": "4d6e3562bdf984e1483444a7aa417a82bbbba00b7314f991fc067213dd3cfe56",
+     "quote_advisor": "\"dc.contributor.advisor\" : [ { \"value\" : \"Asuman Ozdaglar and John N. Tsitsiklis.\"",
+     "quote_degree": "Thesis: Ph. D., Massachusetts Institute of Technology, Department of Electrical Engineering and Computer Science, 2016."
+    },
+    {
+     "handle": "1721.1/124124",
+     "student": "Martín Zubeldía Suárez",
+     "year": 2019,
+     "url": "https://dspace.mit.edu/server/api/core/items/8a7b0ddb-a230-44b5-805e-f245a8818bd9",
+     "sha256": "64002a2b91442262819e98217661ad27d4320dbba293b9fe917d556692a74269",
+     "quote_advisor": "\"dc.contributor.advisor\" : [ { \"value\" : \"David Gamarnik and John N. Tsitsiklis.\"",
+     "quote_degree": "Thesis: Ph. D., Massachusetts Institute of Technology, Department of Electrical Engineering and Computer Science, 2019"
+    }
+   ]
+  },
+  {
+   "name": "Matei Zaharia",
+   "aliases": [
+    "Matei A. Zaharia"
+   ],
+   "decision": "does_not_qualify",
+   "reason": "no_phd_advising_and_no_own_lab_in_window",
+   "summary": "An MIT EECS assistant professor only until 2016 (listed 2016-01, gone by 2017-05; Stanford from 2016). His MIT advising in the window is five 2016 M.Eng. theses; no MIT Ph.D. thesis 2016-2026 names him, and no capture shows a lab he headed at MIT. Master's-only advising does not make a PI. (He is now Berkeley EECS faculty, which is the Berkeley census's concern, not MIT's.)",
+   "thesis_harvest": {
+    "theses": 5,
+    "years": "2016",
+    "roles": "masters (M.Eng.) only",
+    "source": "hierarchy/thesis-harvest-report.json (non_pi_advisers); records in hierarchy/<school>/thesis-captures.sqlite"
+   },
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160104094659id_/http://www.eecs.mit.edu/people/faculty-advisors",
+     "sha256": "1db54e06dcfbbbf9e13f0a1fe57d134f61ec37314ca8a64e870a3257861acca8",
+     "quote": "Matei Zaharia Douglas Ross (1954) Career Development Professor of Software Technology",
+     "observed": "2016-01-04",
+     "kind": "dept_listing:EECS",
+     "capture_copied_from": "claude-mit-20261020/raw/pages_people.sqlite"
+    },
+    {
+     "url": "https://web.archive.org/web/20170507163814id_/http://www.eecs.mit.edu/people/faculty-advisors",
+     "sha256": "0c3abc54f36d067cc7d80e7be88753794b5eea4b0f418702cd8ae8dd0f868a8e",
+     "absent": "Zaharia",
+     "observed": "2017-05-07",
+     "kind": "dept_listing:EECS",
+     "note": "not on the EECS faculty list by 2017-05-07"
+    },
+    {
+     "url": "https://dspace.mit.edu/server/api/core/items/93dba851-bc4c-469d-baf5-68f68c90f859",
+     "sha256": "57b79b4a102248cc2bfecfcc5d08e98b64ba52c5f56c35ccf316a5f53945f2f6",
+     "quote": "\"dc.contributor.advisor\" : [ { \"value\" : \"Matei Zaharia.\"",
+     "observed": "2026-10-22",
+     "kind": "dspace_thesis"
+    },
+    {
+     "url": "https://dspace.mit.edu/server/api/core/items/93dba851-bc4c-469d-baf5-68f68c90f859",
+     "sha256": "57b79b4a102248cc2bfecfcc5d08e98b64ba52c5f56c35ccf316a5f53945f2f6",
+     "quote": "Thesis: M. Eng., Massachusetts Institute of Technology, Department of Electrical Engineering and Computer Science, 2016.",
+     "observed": "2026-10-22",
+     "kind": "dspace_thesis"
+    },
+    {
+     "url": "https://en.wikipedia.org/wiki/Matei_Zaharia",
+     "sha256": "f5492dfcaf573fc561e2224f755b92d8ea6f9563d5ec99fa47d6d2353eccc104",
+     "quote": "He joined the faculty of MIT in 2015, and then became an assistant professor of computer science at Stanford University in 2016.",
+     "observed": "2026-10-22",
+     "kind": "encyclopedia",
+     "note": "secondary source; consistent with the listings"
+    }
+   ]
+  },
+  {
+   "name": "Iddo Drori",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "teaching_only",
+   "summary": "every department listing 2016-2026 names this person only with a teaching title (Lecturer, Instructor, Teaching, of the Practice): teaching faculty, not a PI. Titles listed: Lecturer, [AI&D and CS]; listing years 2021-2022.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20211021165900id_/https://www.eecs.mit.edu/role/lecturers/",
+     "sha256": "adbdcfc6954b2cbbf7f96ff003bb6db8e0d51afefcd6aadf89124595095ce883",
+     "quote": "Iddo Drori Lecturer, [AI&D and CS]"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Yonina Eldar",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Visiting Professor; listing years 2022-2022.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20220416104408id_/https://www.eecs.mit.edu/role/faculty/",
+     "sha256": "ea290670e5281fb704e5b133b275b7afa14df6369001373cdb2a1504b2c09c91",
+     "quote": "Yonina Eldar Visiting Professor"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Kyle Keane",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "teaching_only",
+   "summary": "every department listing 2016-2026 names this person only with a teaching title (Lecturer, Instructor, Teaching, of the Practice): teaching faculty, not a PI. Titles listed: Lecturer, [CS]; listing years 2023-2024.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20230328024840id_/https://www.eecs.mit.edu/role/lecturers/",
+     "sha256": "39b16addfce19635da9e248fbbdd138bacab8f947cc6eb102491c1f92a04d451",
+     "quote": "Kyle Keane Lecturer, [CS]"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Mildred Dresselhaus",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor of Electrical Engineering and Physics Emerita, Institute Pro; listing years 2016-2016.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "Mildred Dresselhaus Professor of Electrical Engineering and Physics Emerita, Institute Professor"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Haonan Chen",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Visiting Scientist (Researchers); listing years 2026-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20260917151324id_/https://www.csail.mit.edu/api-proxy/angular-solr?_api_proxy_uri=people&q=*%3A*&rows=216&start=0&fq%5B%5D=ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Researchers%22%20OR%20ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Core%2FDual%22%20OR%20ss_name%3A%22Associates%22%20OR%20ss_name%3A%22Emeritus%22",
+     "sha256": "13f3b4e313cd4e4e3ba7bc0747214b5a0ed91653196f0d3ccbe5eb8cbfd2a3cb",
+     "quote": "Haonan Chen Visiting Scientist (Researchers)"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Shivam Nadimpalli",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "teaching_only",
+   "summary": "every department listing 2016-2026 names this person only with a teaching title (Lecturer, Instructor, Teaching, of the Practice): teaching faculty, not a PI. Titles listed: Instructor (Researchers); listing years 2026-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20260917151324id_/https://www.csail.mit.edu/api-proxy/angular-solr?_api_proxy_uri=people&q=*%3A*&rows=216&start=0&fq%5B%5D=ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Researchers%22%20OR%20ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Core%2FDual%22%20OR%20ss_name%3A%22Associates%22%20OR%20ss_name%3A%22Emeritus%22",
+     "sha256": "13f3b4e313cd4e4e3ba7bc0747214b5a0ed91653196f0d3ccbe5eb8cbfd2a3cb",
+     "quote": "Shivam Nadimpalli Instructor (Researchers)"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Ronald Parker",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor of EECS and Nuclear Science and Engineering (Emeritus); listing years 2019-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20191023190718id_/https://www.eecs.mit.edu/people/faculty-advisors",
+     "sha256": "1ada3548864e40bf78b7ab7c14beb737dafec244d1728adf047c7cf93b300270",
+     "quote": "Ronald Parker Professor of EECS and Nuclear Science and Engineering (Emeritus)"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Thomas F Weiss",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor of Electrical and Bioengineering (Emeritus); listing years 2026-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20260419213921id_/https://www.eecs.mit.edu/role/emeritus/",
+     "sha256": "1960c4b133089b9fb51937cc43a38909c61dbca1314e869f0aed41e7bd942a58",
+     "quote": "Thomas F Weiss Professor of Electrical and Bioengineering (Emeritus)"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Thomas F. Weiss",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor of Electrical and Bioengineering, Emeritus; listing years 2016-2019.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "Thomas F. Weiss Professor of Electrical and Bioengineering, Emeritus"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Travis Gibson",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Visiting Scientist (Researchers); listing years 2026-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20260917151324id_/https://www.csail.mit.edu/api-proxy/angular-solr?_api_proxy_uri=people&q=*%3A*&rows=216&start=0&fq%5B%5D=ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Researchers%22%20OR%20ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Core%2FDual%22%20OR%20ss_name%3A%22Associates%22%20OR%20ss_name%3A%22Emeritus%22",
+     "sha256": "13f3b4e313cd4e4e3ba7bc0747214b5a0ed91653196f0d3ccbe5eb8cbfd2a3cb",
+     "quote": "Travis Gibson Visiting Scientist (Researchers)"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Christopher Tanner",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "teaching_only",
+   "summary": "every department listing 2016-2026 names this person only with a teaching title (Lecturer, Instructor, Teaching, of the Practice): teaching faculty, not a PI. Titles listed: Lecturer, [AI+D]; Lecturer; listing years 2022-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20221003100948id_/https://www.eecs.mit.edu/role/lecturers/",
+     "sha256": "b9aecdffecafc0d59c578af531947a083bd7efe543af45fa0217affdbb795597",
+     "quote": "Christopher Tanner Lecturer"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Ahmad Bahai",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "teaching_only",
+   "summary": "every department listing 2016-2026 names this person only with a teaching title (Lecturer, Instructor, Teaching, of the Practice): teaching faculty, not a PI. Titles listed: Professor of the Practice, [EE]; listing years 2023-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20230408143314id_/https://www.eecs.mit.edu/role/faculty/",
+     "sha256": "539908f922e63e3e304eb23cbfc006dba073f6401319bec138c0a4c4693e24ad",
+     "quote": "Ahmad Bahai Professor of the Practice, [EE]"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Clifton Fonstad",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Vitesse Professor of EE (Emeritus); Professor Emeritus; Vitesse Professor of Electrical Engineering Emeritus; listing years 2016-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "Clifton Fonstad Professor Emeritus"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Whitman Richards",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor Emeritus; listing years 2016-2016.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160329035244id_/https://www.csail.mit.edu/csaildirectoryoutput/pi",
+     "sha256": "fff89ef44e7be3a76704647b2ffb25610f0f8e9be3f6dca17bb971ad0d702a52",
+     "quote": "Whitman Richards Professor Emeritus"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Tushar Krishna",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Visiting Associate Professor; listing years 2023-2024.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20230930034910id_/https://www.eecs.mit.edu/role/faculty/",
+     "sha256": "a4cf8fa434add9f414bbd03312108234f0522ff47de15c923e2c6585570b27d2",
+     "quote": "Tushar Krishna Visiting Associate Professor"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "David Forney",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "adjunct_or_courtesy_only",
+   "summary": "every department listing 2016-2026 names this person only as Adjunct: an outside appointment, not a PI lab at the school. Titles listed: Adjunct Professor of Electrical Engineering; Adjunct Professor of EE (Emeritus); listing years 2016-2021.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "David Forney Adjunct Professor of Electrical Engineering"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "G. David Forney",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Adjunct Professor of EE (Emeritus); listing years 2021-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20211029050844id_/https://www.eecs.mit.edu/role/emeritus/",
+     "sha256": "4c37ac0740e553b382f537da9cd99b2cec5618a0c54393ebbc8acfb3b50271f1",
+     "quote": "G. David Forney Adjunct Professor of EE (Emeritus)"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Campbell Searle",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor of EECS (Emeritus); listing years 2019-2019.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20191023190718id_/https://www.eecs.mit.edu/people/faculty-advisors",
+     "sha256": "1ada3548864e40bf78b7ab7c14beb737dafec244d1728adf047c7cf93b300270",
+     "quote": "Campbell Searle Professor of EECS (Emeritus)"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Cody Murphey",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "teaching_only",
+   "summary": "every department listing 2016-2026 names this person only with a teaching title (Lecturer, Instructor, Teaching, of the Practice): teaching faculty, not a PI. Titles listed: Lecturer and Digital Learning Lead, Artificial Intelligence and Decisi; listing years 2025-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20251109132935id_/https://www.eecs.mit.edu/role/lecturers/",
+     "sha256": "fe2094ce992432d92b324766ea4603836d7cd9ebc2d105c8efbe0b82b6f99555",
+     "quote": "Cody Murphey Lecturer and Digital Learning Lead, Artificial Intelligence and Decision Making (AI+D) MicroMasters Program"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Jehangir Amjad",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "teaching_only",
+   "summary": "every department listing 2016-2026 names this person only with a teaching title (Lecturer, Instructor, Teaching, of the Practice): teaching faculty, not a PI. Titles listed: Lecturer; listing years 2021-2022.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20211021165900id_/https://www.eecs.mit.edu/role/lecturers/",
+     "sha256": "adbdcfc6954b2cbbf7f96ff003bb6db8e0d51afefcd6aadf89124595095ce883",
+     "quote": "Jehangir Amjad Lecturer"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Lawrence Frishkopf",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor of EECS (Emeritus); listing years 2019-2021.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20191023190718id_/https://www.eecs.mit.edu/people/faculty-advisors",
+     "sha256": "1ada3548864e40bf78b7ab7c14beb737dafec244d1728adf047c7cf93b300270",
+     "quote": "Lawrence Frishkopf Professor of EECS (Emeritus)"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Mauricio Karchmer",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "teaching_only",
+   "summary": "every department listing 2016-2026 names this person only with a teaching title (Lecturer, Instructor, Teaching, of the Practice): teaching faculty, not a PI. Titles listed: Lecturer, [CS]; listing years 2021-2023.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20211021165900id_/https://www.eecs.mit.edu/role/lecturers/",
+     "sha256": "adbdcfc6954b2cbbf7f96ff003bb6db8e0d51afefcd6aadf89124595095ce883",
+     "quote": "Mauricio Karchmer Lecturer, [CS]"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Paul Gray",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor of Electrical Engineering; MIT President Emeritus; MIT President Emeritus; Professor of Electrical Engineering; listing years 2016-2017.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "Paul Gray Professor of Electrical Engineering; MIT President Emeritus"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Robert Gallager",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor of EE (Emeritus); Professor of Electrical Engineering, Emeritus; listing years 2016-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "Robert Gallager Professor of Electrical Engineering, Emeritus"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Sam Gunn",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "teaching_only",
+   "summary": "every department listing 2016-2026 names this person only with a teaching title (Lecturer, Instructor, Teaching, of the Practice): teaching faculty, not a PI. Titles listed: Instructor (Researchers); listing years 2026-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20260917151324id_/https://www.csail.mit.edu/api-proxy/angular-solr?_api_proxy_uri=people&q=*%3A*&rows=216&start=0&fq%5B%5D=ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Researchers%22%20OR%20ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Core%2FDual%22%20OR%20ss_name%3A%22Associates%22%20OR%20ss_name%3A%22Emeritus%22",
+     "sha256": "13f3b4e313cd4e4e3ba7bc0747214b5a0ed91653196f0d3ccbe5eb8cbfd2a3cb",
+     "quote": "Sam Gunn Instructor (Researchers)"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Stephen Senturia",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor of EECS (Emeritus); listing years 2019-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20191023190718id_/https://www.eecs.mit.edu/people/faculty-advisors",
+     "sha256": "1ada3548864e40bf78b7ab7c14beb737dafec244d1728adf047c7cf93b300270",
+     "quote": "Stephen Senturia Professor of EECS (Emeritus)"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Valencia Joyner Koomson",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Visiting Associate Professor; listing years 2021-2022.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20210407102132id_/https://www.eecs.mit.edu/people/faculty-advisors",
+     "sha256": "9a2f9493781699c2fff0b76e1f1a31a513158d80d26e7d9797faad8b5e2cfb1d",
+     "quote": "Valencia Joyner Koomson Visiting Associate Professor"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "William Peake",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor of Electrical and Bioengineering, Emeritus; listing years 2016-2017.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "William Peake Professor of Electrical and Bioengineering, Emeritus"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Tomás Palacios",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Wide-bandgap and 2D-material electronic devices (MTL director): device physics, not computing.",
+   "computing_area": "GaN / 2D-material electronic devices",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "Tomás Palacios Associate Professor of Electrical Engineering",
+     "observed": "2016-03-26"
+    },
+    {
+     "url": "https://api.openalex.org/authors?search=Tomas Palacios&per-page=8&select=id,display_name,works_count,last_known_institutions,topics,affiliations&filter=affiliations.institution.id:I63966007",
+     "sha256": "067d8616da4a30caedac03f6d9d78bb861d115945d8cb7253ef6c2aa8b12e9fa",
+     "quote": "\"https://openalex.org/A5024027903\", \"display_name\": \"Tom\\u00e1s Palacios\", \"works_count\": 652, \"last_known_institutions\": [{\"id\": \"https://openalex.org/I63966007\", \"ror\": \"https://ror.org/042nb2s44\", \"display_name\": \"Massachusetts Institute of Technology\", \"country_code\": \"US\", \"type\": \"education\", \"lineage\": [\"https://openalex.org/I63966007\"]}], \"topics\": [{\"id\": \"https://openalex.org/T10099\", \"display_name\": \"GaN-based semiconductor devices and materials\"",
+     "observed": "2026-10-28",
+     "note": "OpenAlex https://openalex.org/A5024027903 Tomás Palacios; top topics: ['GaN-based semiconductor devices and materials', 'Silicon Carbide Semiconductor Technologies', 'Advancements in Semiconductor Devices and Circuit Design']"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Karl Berggren",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Nanofabrication and superconducting nanowire devices/detectors (OpenAlex topics: quantum information, superconducting devices, nanofabrication); device physics with computing applications a minority (borderline).",
+   "computing_area": "nanofabrication / superconducting nanowire devices",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "Karl Berggren Professor of Electrical Engineering",
+     "observed": "2016-03-26"
+    },
+    {
+     "url": "https://api.openalex.org/authors?search=Karl Berggren&per-page=8&select=id,display_name,works_count,last_known_institutions,topics,affiliations&filter=affiliations.institution.id:I63966007",
+     "sha256": "11ccada2a72519e14b7dc93d88136298b99cf3d29409634dd3796a21cba920bd",
+     "quote": "\"https://openalex.org/A5001962263\", \"display_name\": \"Karl K. Berggren\", \"works_count\": 568, \"last_known_institutions\": [{\"id\": \"https://openalex.org/I63966007\", \"ror\": \"https://ror.org/042nb2s44\", \"display_name\": \"Massachusetts Institute of Technology\", \"country_code\": \"US\", \"type\": \"education\", \"lineage\": [\"https://openalex.org/I63966007\"]}], \"topics\": [{\"id\": \"https://openalex.org/T10020\", \"display_name\": \"Quantum Information and Cryptography\"",
+     "observed": "2026-10-28",
+     "note": "OpenAlex https://openalex.org/A5001962263 Karl K. Berggren; top topics: ['Quantum Information and Cryptography', 'Superconducting and THz Device Technology', 'Nanofabrication and Lithography Techniques']"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Jongyoon Han",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Biological and medical devices, nanofluidics: bioengineering, not computing.",
+   "computing_area": "bioMEMS / bioseparation",
+   "home_department": "EECS / Biological Engineering",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "Jongyoon Han Professor of Electrical Engineering and Biological Engineering",
+     "observed": "2016-03-26"
+    },
+    {
+     "url": "https://www.eecs.mit.edu/people/jongyoon-han/",
+     "sha256": "09831bb98838f13fbe004c2fd4902eeaf09cd4991e80fc36749cda3fe3cbac1c",
+     "quote": "Research Areas Biological and Medical Devices and Systems Electronic, Magnetic, Optical and Quantum Materials and Devices Energy Nanoscale Materials, Devices, and Systems",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Eric Alm",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Microbial ecology and microbiome biology; CSAIL associate member: biology, not computing.",
+   "computing_area": "microbiome / computational biology",
+   "home_department": "Biological Engineering (CSAIL associate)",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20260917151324id_/https://www.csail.mit.edu/api-proxy/angular-solr?_api_proxy_uri=people&q=*%3A*&rows=216&start=0&fq%5B%5D=ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Researchers%22%20OR%20ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Core%2FDual%22%20OR%20ss_name%3A%22Associates%22%20OR%20ss_name%3A%22Emeritus%22",
+     "sha256": "13f3b4e313cd4e4e3ba7bc0747214b5a0ed91653196f0d3ccbe5eb8cbfd2a3cb",
+     "quote": "\"ss_name\":\"Associates\", \"ss_field_title\":\"Professor\", \"ss_title\":\"Eric Alm\"",
+     "observed": "2026-09-17"
+    },
+    {
+     "url": "https://api.openalex.org/authors?search=Eric J. Alm&per-page=8&select=id,display_name,works_count,last_known_institutions,topics,affiliations&filter=affiliations.institution.id:I63966007",
+     "sha256": "8780fb93fb5434ff62227ebc2e1780e41db83cfb235a86575446cdf60cd5f7a0",
+     "quote": "\"display_name\": \"Gut microbiota and health\"",
+     "observed": "2026-10-28",
+     "note": "OpenAlex https://openalex.org/A5091119492 Eric J. Alm; top topics: ['Gut microbiota and health', 'Genomics and Phylogenetic Studies', 'Microbial Community Ecology and Physiology']"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Vladimir Bulovic",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Same person as \"Vladimir Bulović\". Organic/nanostructured optoelectronics, energy, photonics: materials/devices, not computing.",
+   "computing_area": "organic and nanostructured optoelectronics",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "Vladimir Bulovic Fariborz Maseeh (1990) Professor in Emerging Technology",
+     "observed": "2016-03-26"
+    },
+    {
+     "url": "https://www.eecs.mit.edu/people/vladimir-bulovi%c4%87/",
+     "sha256": "b5e3f882a0ce48c0a021dbc9c668491719defedf960a9d049529d1b779afb509",
+     "quote": "Research Areas Energy Nanoscale Materials, Devices, and Systems Optics + Photonics",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Vladimir Bulović",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Organic/nanostructured optoelectronics and photovoltaics (MIT.nano director): materials/devices, not computing.",
+   "computing_area": "organic and nanostructured optoelectronics",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20220416104408id_/https://www.eecs.mit.edu/role/faculty/",
+     "sha256": "ea290670e5281fb704e5b133b275b7afa14df6369001373cdb2a1504b2c09c91",
+     "quote": "Vladimir Bulović Director, MIT.nano; Fariborz Maseeh (1990) Professor of Emerging Technology, [EE]",
+     "observed": "2022-04-16"
+    },
+    {
+     "url": "https://www.eecs.mit.edu/people/vladimir-bulovi%c4%87/",
+     "sha256": "b5e3f882a0ce48c0a021dbc9c668491719defedf960a9d049529d1b779afb509",
+     "quote": "Research Areas Energy Nanoscale Materials, Devices, and Systems Optics + Photonics",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Alan Grodzinsky",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Cartilage/tissue electromechanics and biology: bioengineering, not computing.",
+   "computing_area": "tissue biomechanics",
+   "home_department": "Biological Engineering / EECS / ME",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "Alan Grodzinsky Professor of Electrical, Mechanical and Biological Engineering; Director, Center for Biomedical Engineering",
+     "observed": "2016-03-26"
+    },
+    {
+     "url": "https://api.openalex.org/authors?search=Alan J. Grodzinsky&per-page=8&select=id,display_name,works_count,last_known_institutions,topics,affiliations&filter=affiliations.institution.id:I63966007",
+     "sha256": "40e2f31139ca189475853ed78a0980b5817a6cc074216502b1656d3aace737dc",
+     "quote": "\"https://openalex.org/A5003974495\", \"display_name\": \"Alan Jay Grodzinsky\", \"works_count\": 551, \"last_known_institutions\": [{\"id\": \"https://openalex.org/I63966007\", \"ror\": \"https://ror.org/042nb2s44\", \"display_name\": \"Massachusetts Institute of Technology\", \"country_code\": \"US\", \"type\": \"education\", \"lineage\": [\"https://openalex.org/I63966007\"]}], \"topics\": [{\"id\": \"https://openalex.org/T10105\", \"display_name\": \"Osteoarthritis Treatment and Mechanisms\"",
+     "observed": "2026-10-28",
+     "note": "OpenAlex https://openalex.org/A5003974495 Alan Jay Grodzinsky; top topics: ['Osteoarthritis Treatment and Mechanisms', 'Proteoglycans and glycosaminoglycans research', 'Cellular Mechanics and Interactions']"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Jennifer L.M. Rupp",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Solid-state ionics and ceramic materials (DMSE with joint EECS appointment; left for TU Munich): materials science, not computing (borderline: ionic memristive devices).",
+   "computing_area": "solid-state ionics / ceramics",
+   "home_department": "Materials Science and Engineering",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20180411134542id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "dde287df2a1de8de15f94e692f3b2887932dbf1a621fc982d740b0de99b9dca6",
+     "quote": "Jennifer L.M. Rupp Thomas Lord Assistant Professor of MSE; joint appointment in EECS",
+     "observed": "2018-04-11"
+    },
+    {
+     "url": "https://api.openalex.org/authors?search=Jennifer L. M. Rupp&per-page=8&select=id,display_name,works_count,last_known_institutions,topics,affiliations&filter=affiliations.institution.id:I63966007",
+     "sha256": "8f546b04f187e450a84a938896aba2cdf05b8066e333115034661e979db0e570",
+     "quote": "\"display_name\": \"Advancements in Solid Oxide Fuel Cells\"",
+     "observed": "2026-10-28",
+     "note": "OpenAlex https://openalex.org/A5037550650 Jennifer L. M. Rupp; top topics: ['Advancements in Solid Oxide Fuel Cells', 'Advanced Battery Materials and Technologies', 'Advancements in Battery Materials']"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Michael Watts",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Silicon photonics and optical phased arrays: photonics, not computing.",
+   "computing_area": "silicon photonics",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "Michael Watts KDD Career Development Professor in Communications and Technology",
+     "observed": "2016-03-26"
+    },
+    {
+     "url": "https://api.openalex.org/authors?search=Michael R. Watts&per-page=8&select=id,display_name,works_count,last_known_institutions,topics,affiliations&filter=affiliations.institution.id:I63966007",
+     "sha256": "60f8d263f1e1f8d20128d03b9a9a36988e743c7f18628baebf706daf8c96200e",
+     "quote": "\"https://openalex.org/A5112361057\", \"display_name\": \"Michael Robert Watts\", \"works_count\": 331, \"last_known_institutions\": [{\"id\": \"https://openalex.org/I4210166580\", \"ror\": \"https://ror.org/05m97qg65\", \"display_name\": \"Analog Photonics (United States)\", \"country_code\": \"US\", \"type\": \"company\", \"lineage\": [\"https://openalex.org/I4210166580\"]}], \"topics\": [{\"id\": \"https://openalex.org/T10299\", \"display_name\": \"Photonic and Optical Devices\"",
+     "observed": "2026-10-28",
+     "note": "OpenAlex https://openalex.org/A5112361057 Michael Robert Watts; top topics: ['Photonic and Optical Devices', 'Semiconductor Lasers and Optical Devices', 'Advanced MEMS and NEMS Technologies']"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Jelena Notaros",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Integrated silicon photonics (optical phased arrays, photonics for trapped ions, biophotonics); the research-area list includes quantum computing among many, but the work is photonics devices (borderline).",
+   "computing_area": "integrated photonics",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20201006054302id_/https://www.eecs.mit.edu/people/faculty-advisors",
+     "sha256": "9aaee2e6f6a0c1b48d7b824af57f245c6d069742630787fb13343bafd97d5f9f",
+     "quote": "Jelena Notaros Assistant Professor of EECS",
+     "observed": "2020-10-06"
+    },
+    {
+     "url": "https://www.eecs.mit.edu/people/jelena-notaros/",
+     "sha256": "e08a262e7cea57cdebfcde549065ab799d105d24236f3fcd3d78b6b08eb1218c",
+     "quote": "Research Areas Biological and Medical Devices and Systems Communications Systems Electronic, Magnetic, Optical and Quantum Materials and Devices Integrated Circuits and Systems Nanoscale Materials, Devices, and Systems Optics + Photonics Quantum Computing, Communication, and Sensing",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Qing Hu",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Terahertz quantum-cascade lasers and devices: device physics, not computing.",
+   "computing_area": "terahertz lasers and devices",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "Qing Hu Distinguished Professor of Electrical Engineering and Computer Science",
+     "observed": "2016-03-26"
+    },
+    {
+     "url": "https://www.eecs.mit.edu/people/qing-hu/",
+     "sha256": "2eed8054d0bdb110acf1674b538134cc92eef2fb2512f4eec325bd6f31552bd1",
+     "quote": "Research Areas Electronic, Magnetic, Optical and Quantum Materials and Devices Nanoscale Materials, Devices, and Systems",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Akintunde Akinwande",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Electronic materials and nanoscale devices: device physics, not computing.",
+   "computing_area": "nanoelectronic / vacuum devices",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "Akintunde Akinwande Professor of Electrical Engineering",
+     "observed": "2016-03-26"
+    },
+    {
+     "url": "https://www.eecs.mit.edu/people/akintunde-akinwande/",
+     "sha256": "f55359eaaa2d3a3e5538c2a219631855cac501e2da558cb810bac3dea7b91a4c",
+     "quote": "Research Areas Electronic, Magnetic, Optical and Quantum Materials and Devices Nanoscale Materials, Devices, and Systems",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Luqiao Liu",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Spintronics and magnetic thin films (OpenAlex topics are magnetism/condensed-matter): device physics, not computing (borderline: spin-based memory).",
+   "computing_area": "spintronics / magnetic materials",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "Luqiao Liu Assistant Professor",
+     "observed": "2016-03-26"
+    },
+    {
+     "url": "https://www.eecs.mit.edu/people/luqiao-liu/",
+     "sha256": "b6ce4ab588956680ee6995513b2f5c685e02fcf54e11d9fac113fbdcf8a46936",
+     "quote": "Research Areas Electronic, Magnetic, Optical and Quantum Materials and Devices Nanoscale Materials, Devices, and Systems",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Vikash Mansinghka",
+   "aliases": [],
+   "decision": "qualifies",
+   "reason": "qualifies",
+   "summary": "Probabilistic programming and probabilistic AI (OpenAlex topics Bayesian modeling, MCMC, programming languages): computing. He is a Principal Research Scientist rather than professor, but he is the sole thesis supervisor of record for MIT PhDs (Cusumano-Towner 2020, Saad 2022), the same basis as the census's research_scientist_pi rank.",
+   "computing_area": "probabilistic programming / Bayesian inference",
+   "home_department": "Brain and Cognitive Sciences (CSAIL core)",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20220817075852id_/https://www.csail.mit.edu/api-proxy/angular-solr?_api_proxy_uri=people&q=*%3A*&rows=216&start=0&fq=ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Core%2FDual%22%20OR%20ss_name%3A%22Associates%22%20OR%20ss_name%3A%22Emeritus%22",
+     "sha256": "9fc78c6f7e68a8861c8aba3855eb4b6f1e1f9ab44262516c0ae99264e7c20804",
+     "quote": "\"ss_name\":\"Core/Dual\", \"ss_field_title\":\"Principal Research Scientist\", \"ss_title\":\"Vikash Mansinghka\"",
+     "observed": "2022-08-17"
+    },
+    {
+     "url": "https://api.openalex.org/authors?search=Vikash Mansinghka&per-page=8&select=id,display_name,works_count,last_known_institutions,topics,affiliations&filter=affiliations.institution.id:I63966007",
+     "sha256": "fbc12a378474add999d301544f4ece7c33b21b43ee40f6cb122dc7f84b072777",
+     "quote": "\"https://openalex.org/A5068340465\", \"display_name\": \"Vikash K. Mansinghka\", \"works_count\": 173, \"last_known_institutions\": [{\"id\": \"https://openalex.org/I63966007\", \"ror\": \"https://ror.org/042nb2s44\", \"display_name\": \"Massachusetts Institute of Technology\", \"country_code\": \"US\", \"type\": \"education\", \"lineage\": [\"https://openalex.org/I63966007\"]}], \"topics\": [{\"id\": \"https://openalex.org/T11303\", \"display_name\": \"Bayesian Modeling and Causal Inference\"",
+     "observed": "2026-10-28",
+     "note": "OpenAlex https://openalex.org/A5068340465 Vikash K. Mansinghka; top topics: ['Bayesian Modeling and Causal Inference', 'Markov Chains and Monte Carlo Methods', 'Gaussian Processes and Bayesian Inference']"
+    },
+    {
+     "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.contributor.advisor%3A%28mansinghka+AND+%28vikash%29%29&dsoType=ITEM&size=100&page=0&f.dateIssued=%5B2016+TO+2026%5D%2Cequals&sort=dc.date.issued%2CASC",
+     "sha256": "c55df6f660930480440fa4b9fe4ccba20a29bef64b9ae7afbb19a7983d030c0b",
+     "quote": "Vikash K. Mansinghka.\", \"language\" : \"en_US\", \"authority\" : null, \"confidence\" : -1, \"place\" : 0 } ], \"dc.contributor.author\" : [ { \"value\" : \"Cusumano-Towner, Marco Francis.",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Laura Lewis",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Neuroimaging of brain dynamics during sleep/arousal: neuroscience, computing incidental.",
+   "computing_area": "neuroimaging / sleep neuroscience",
+   "home_department": "IMES / EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20230408143314id_/https://www.eecs.mit.edu/role/faculty/",
+     "sha256": "539908f922e63e3e304eb23cbfc006dba073f6401319bec138c0a4c4693e24ad",
+     "quote": "Laura Lewis Athinoula A. Martinos Associate Professor of IMES and EECS, [EE]",
+     "observed": "2023-04-08"
+    },
+    {
+     "url": "https://www.eecs.mit.edu/people/laura-lewis/",
+     "sha256": "76715c9bb5055c9452f027f4abb2cfb6f50db281f0abc6d9cd0181f211638aee",
+     "quote": "Research Areas AI for Healthcare and Life Sciences Biological and Medical Devices and Systems Signal Processing",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Dimitri Antoniadis",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Electronic materials and nanoscale transistors: device physics, not computing.",
+   "computing_area": "semiconductor devices",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "Dimitri Antoniadis Ray and Maria Stata Professor of Electrical Engineering and Computer Science",
+     "observed": "2016-03-26"
+    },
+    {
+     "url": "https://www.eecs.mit.edu/people/dimitri-antoniadis/",
+     "sha256": "6436915dcbf781658932b2d24976d25f742ed03484c3d0cf17546a591f2707d0",
+     "quote": "Research Areas Electronic, Magnetic, Optical and Quantum Materials and Devices Nanoscale Materials, Devices, and Systems",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Marc A Baldo",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Organic electronics, excitonics and solar/OLED materials (OpenAlex topics organic LEDs/photovoltaics): device physics, not computing.",
+   "computing_area": "organic electronics / excitonics",
+   "home_department": "EECS (RLE director)",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20220416104408id_/https://www.eecs.mit.edu/role/faculty/",
+     "sha256": "ea290670e5281fb704e5b133b275b7afa14df6369001373cdb2a1504b2c09c91",
+     "quote": "Marc A Baldo Director, RLE; Dugald C. Jackson Professor in EE, [EE]",
+     "observed": "2022-04-16"
+    },
+    {
+     "url": "https://www.eecs.mit.edu/people/marc-baldo/",
+     "sha256": "f301b9e13c13bf9396ea22c9f14cc524ec3cd55e55b341534b86864d40d439cb",
+     "quote": "Research Areas Electronic, Magnetic, Optical and Quantum Materials and Devices Energy",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Marc A. Baldo",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Same person as \"Marc A Baldo\". Organic electronics and excitonics: not computing.",
+   "computing_area": "organic electronics / excitonics",
+   "home_department": "EECS (RLE director)",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "Marc A. Baldo Professor of Electrical Engineering",
+     "observed": "2016-03-26"
+    },
+    {
+     "url": "https://www.eecs.mit.edu/people/marc-baldo/",
+     "sha256": "f301b9e13c13bf9396ea22c9f14cc524ec3cd55e55b341534b86864d40d439cb",
+     "quote": "Research Areas Electronic, Magnetic, Optical and Quantum Materials and Devices Energy",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Hae-Seung (Harry) Lee",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "already_in_census",
+   "summary": "Already in the MIT census as \"Hae-Seung Lee\" (mit-additions.json; also in pis.json).",
+   "computing_area": null,
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20200417042143id_/https://www.eecs.mit.edu/people/faculty-advisors",
+     "sha256": "7439077de8bf34edc16362e7c0e5777e7e71ba55b6841e80d05b1ba718169ea8",
+     "quote": "Hae-Seung (Harry) Lee Director, MTL; Advanced Television and Signal Processing (ATSP) Professor of EE",
+     "observed": "2020-04-17"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Sixian You",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Biomedical nonlinear optical imaging and lasers: biophotonics, not computing (borderline: imaging methods).",
+   "computing_area": "biomedical optical imaging",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20211006043856id_/https://www.eecs.mit.edu/people/faculty-advisors",
+     "sha256": "c90ee7874c3b755af42ae2a2f336a894dd32a9dcf416ddcce8c85035e55f7d1e",
+     "quote": "Sixian You Alfred Henry (1929) & Jean Morrison Hayes Assistant Professor",
+     "observed": "2021-10-06"
+    },
+    {
+     "url": "https://www.eecs.mit.edu/people/sixian-you/",
+     "sha256": "2f623dbb3c2347cb9fa0939d18df6d462cd2bc3639ce61a24999b351bc2cba5b",
+     "quote": "Research Areas Biological and Medical Devices and Systems Electronic, Magnetic, Optical and Quantum Materials and Devices Optics + Photonics",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Joel Voldman",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Biological/medical microsystems and microfluidics: bioengineering, not computing.",
+   "computing_area": "bioMEMS / microfluidics",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "Joel Voldman Professor of Electrical Engineering; Co-director, Medical Electronic Device Realization Center (MEDRC)",
+     "observed": "2016-03-26"
+    },
+    {
+     "url": "https://www.eecs.mit.edu/people/joel-voldman/",
+     "sha256": "b36d848d342987ffd2abf30a14850ef448a49e7b0c2b11c6356863ee68f8556f",
+     "quote": "Research Areas Biological and Medical Devices and Systems Electronic, Magnetic, Optical and Quantum Materials and Devices Information Science and Systems Nanoscale Materials, Devices, and Systems",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Kevin O’Brien",
+   "aliases": [],
+   "decision": "qualifies",
+   "reason": "qualifies",
+   "summary": "Superconducting quantum circuits and quantum-limited amplifiers for quantum computing (OpenAlex topics: quantum information, superconducting devices, quantum computing architecture): quantum-computer hardware. PI: sole thesis advisor of record for MIT PhDs Kaidong Peng (2023) and Yufeng Ye (2024). Same person as \"Kevin P. O’Brien\" (listing name variant).",
+   "computing_area": "superconducting quantum computing hardware",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20220416104408id_/https://www.eecs.mit.edu/role/faculty/",
+     "sha256": "ea290670e5281fb704e5b133b275b7afa14df6369001373cdb2a1504b2c09c91",
+     "quote": "Kevin O’Brien Emanuel E. Landsman (1958) Career Development Professor, Assistant Professor, [EE]",
+     "observed": "2022-04-16"
+    },
+    {
+     "url": "https://api.openalex.org/authors?search=Kevin O'Brien&per-page=8&select=id,display_name,works_count,last_known_institutions,topics,affiliations&filter=affiliations.institution.id:I63966007",
+     "sha256": "bc309306b29e29295250f005d573664d3e732ef8255c617e00a6752d41038f59",
+     "quote": "\"https://openalex.org/A5021031647\", \"display_name\": \"Kevin P. O\\u2019Brien\", \"works_count\": 82, \"last_known_institutions\": [{\"id\": \"https://openalex.org/I63966007\", \"ror\": \"https://ror.org/042nb2s44\", \"display_name\": \"Massachusetts Institute of Technology\", \"country_code\": \"US\", \"type\": \"education\", \"lineage\": [\"https://openalex.org/I63966007\"]}], \"topics\": [{\"id\": \"https://openalex.org/T10020\", \"display_name\": \"Quantum Information and Cryptography\"",
+     "observed": "2026-10-28",
+     "note": "OpenAlex https://openalex.org/A5021031647 Kevin P. O’Brien; top topics: ['Quantum Information and Cryptography', 'Superconducting and THz Device Technology', 'Quantum Computing Algorithms and Architecture']"
+    },
+    {
+     "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.contributor.advisor%3A%28o%27brien+AND+%28kevin%29%29&dsoType=ITEM&size=100&page=0&f.dateIssued=%5B2016+TO+2026%5D%2Cequals&sort=dc.date.issued%2CASC",
+     "sha256": "f3e8a5815e904a308c99ae9292b356dc114353410b6fa20bef93641c6c59b669",
+     "quote": "O'Brien, Kevin P.\", \"language\" : null, \"authority\" : null, \"confidence\" : -1, \"place\" : 0 } ], \"dc.contributor.author\" : [ { \"value\" : \"Peng, Kaidong",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Sanjoy Mitter",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "already_in_census",
+   "summary": "Already in the MIT census as \"Sanjoy Mitter\" (mit-additions.json; also in pis.json).",
+   "computing_area": null,
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "Sanjoy Mitter Professor of Electrical Engineering and Engineering Systems",
+     "observed": "2016-03-26"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Arthur Baggeroer",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Ocean acoustics and sonar array signal processing: acoustics, computing incidental (borderline: signal processing).",
+   "computing_area": "ocean acoustics / array processing",
+   "home_department": "Mechanical/Ocean Engineering / EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "Arthur Baggeroer Professor of Mechanical, Ocean, and Electrical Engineering",
+     "observed": "2016-03-26"
+    },
+    {
+     "url": "https://api.openalex.org/authors?search=Arthur B. Baggeroer&per-page=8&select=id,display_name,works_count,last_known_institutions,topics,affiliations&filter=affiliations.institution.id:I63966007",
+     "sha256": "e3cd32e494841df67008be322d0ca5fae7481ce5721ff8fa1014a06907003536",
+     "quote": "\"https://openalex.org/A5039040352\", \"display_name\": \"Arthur Bernard Baggeroer\", \"works_count\": 317, \"last_known_institutions\": [{\"id\": \"https://openalex.org/I63966007\", \"ror\": \"https://ror.org/042nb2s44\", \"display_name\": \"Massachusetts Institute of Technology\", \"country_code\": \"US\", \"type\": \"education\", \"lineage\": [\"https://openalex.org/I63966007\"]}], \"topics\": [{\"id\": \"https://openalex.org/T11698\", \"display_name\": \"Underwater Acoustics Research\"",
+     "observed": "2026-10-28",
+     "note": "OpenAlex https://openalex.org/A5039040352 Arthur Bernard Baggeroer; top topics: ['Underwater Acoustics Research', 'Underwater Vehicles and Communication Systems', 'Direction-of-Arrival Estimation Techniques']"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Jack Wisdom",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Celestial mechanics and planetary dynamics (OpenAlex topics astro/planetary); his CSAIL listing reflects computational-physics work with Sussman, but the object is planetary science (borderline: symplectic-integrator methods).",
+   "computing_area": "planetary dynamics",
+   "home_department": "EAPS (CSAIL PI listing 2016-2017)",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160329035244id_/https://www.csail.mit.edu/csaildirectoryoutput/pi",
+     "sha256": "fff89ef44e7be3a76704647b2ffb25610f0f8e9be3f6dca17bb971ad0d702a52",
+     "quote": "\"label\":\"Jack Wisdom\", \"name\":\"Wisdom Jack\", \"email\":\"wisdom@csail.mit.edu\", \"phone\":\"+1 (617) 253-7730\", \"url\":\"/user/651\", \"position\":\"Professor\"",
+     "observed": "2016-03-29"
+    },
+    {
+     "url": "https://api.openalex.org/authors?search=Jack Wisdom&per-page=8&select=id,display_name,works_count,last_known_institutions,topics,affiliations&filter=affiliations.institution.id:I63966007",
+     "sha256": "7ecbba21848e7bac0416b8c17ff169b3141c49d0e1f2897cbb0a69a8ebda816e",
+     "quote": "\"https://openalex.org/A5048892543\", \"display_name\": \"Jack Wisdom\", \"works_count\": 145, \"last_known_institutions\": [{\"id\": \"https://openalex.org/I63966007\", \"ror\": \"https://ror.org/042nb2s44\", \"display_name\": \"Massachusetts Institute of Technology\", \"country_code\": \"US\", \"type\": \"education\", \"lineage\": [\"https://openalex.org/I63966007\"]}], \"topics\": [{\"id\": \"https://openalex.org/T10325\", \"display_name\": \"Astro and Planetary Science\"",
+     "observed": "2026-10-28",
+     "note": "OpenAlex https://openalex.org/A5048892543 Jack Wisdom; top topics: ['Astro and Planetary Science', 'Stellar, planetary, and galactic studies', 'Spacecraft Dynamics and Control']"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Kevin O'Brien",
+   "aliases": [],
+   "decision": "qualifies",
+   "reason": "qualifies",
+   "summary": "Superconducting quantum circuits and quantum-limited amplifiers for quantum computing (OpenAlex topics: quantum information, superconducting devices, quantum computing architecture): quantum-computer hardware. PI: sole thesis advisor of record for MIT PhDs Kaidong Peng (2023) and Yufeng Ye (2024). Same person as \"Kevin P. O’Brien\" (listing name variant).",
+   "computing_area": "superconducting quantum computing hardware",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20180917064531id_/http://www.eecs.mit.edu/people/faculty-advisors",
+     "sha256": "22f5459fa7907396b8e980b044f444f781595b50b06e09b6ae25435230b010c2",
+     "quote": "Kevin O'Brien Assistant Professor of EECS",
+     "observed": "2018-09-17"
+    },
+    {
+     "url": "https://api.openalex.org/authors?search=Kevin O'Brien&per-page=8&select=id,display_name,works_count,last_known_institutions,topics,affiliations&filter=affiliations.institution.id:I63966007",
+     "sha256": "bc309306b29e29295250f005d573664d3e732ef8255c617e00a6752d41038f59",
+     "quote": "\"https://openalex.org/A5021031647\", \"display_name\": \"Kevin P. O\\u2019Brien\", \"works_count\": 82, \"last_known_institutions\": [{\"id\": \"https://openalex.org/I63966007\", \"ror\": \"https://ror.org/042nb2s44\", \"display_name\": \"Massachusetts Institute of Technology\", \"country_code\": \"US\", \"type\": \"education\", \"lineage\": [\"https://openalex.org/I63966007\"]}], \"topics\": [{\"id\": \"https://openalex.org/T10020\", \"display_name\": \"Quantum Information and Cryptography\"",
+     "observed": "2026-10-28",
+     "note": "OpenAlex https://openalex.org/A5021031647 Kevin P. O’Brien; top topics: ['Quantum Information and Cryptography', 'Superconducting and THz Device Technology', 'Quantum Computing Algorithms and Architecture']"
+    },
+    {
+     "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.contributor.advisor%3A%28o%27brien+AND+%28kevin%29%29&dsoType=ITEM&size=100&page=0&f.dateIssued=%5B2016+TO+2026%5D%2Cequals&sort=dc.date.issued%2CASC",
+     "sha256": "f3e8a5815e904a308c99ae9292b356dc114353410b6fa20bef93641c6c59b669",
+     "quote": "O'Brien, Kevin P.\", \"language\" : null, \"authority\" : null, \"confidence\" : -1, \"place\" : 0 } ], \"dc.contributor.author\" : [ { \"value\" : \"Peng, Kaidong",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Kevin P. O'Brien",
+   "aliases": [],
+   "decision": "qualifies",
+   "reason": "qualifies",
+   "summary": "Superconducting quantum circuits and quantum-limited amplifiers for quantum computing (OpenAlex topics: quantum information, superconducting devices, quantum computing architecture): quantum-computer hardware. PI: sole thesis advisor of record for MIT PhDs Kaidong Peng (2023) and Yufeng Ye (2024). Same person as \"Kevin P. O’Brien\" (listing name variant).",
+   "computing_area": "superconducting quantum computing hardware",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20190410175456id_/https://www.eecs.mit.edu/people/faculty-advisors",
+     "sha256": "787d491f0bc03657587fb10f7a64f824a32168f0a72d26fde0fe8bd2182528d1",
+     "quote": "Kevin P. O'Brien Assistant Professor of EECS",
+     "observed": "2019-04-10"
+    },
+    {
+     "url": "https://api.openalex.org/authors?search=Kevin O'Brien&per-page=8&select=id,display_name,works_count,last_known_institutions,topics,affiliations&filter=affiliations.institution.id:I63966007",
+     "sha256": "bc309306b29e29295250f005d573664d3e732ef8255c617e00a6752d41038f59",
+     "quote": "\"https://openalex.org/A5021031647\", \"display_name\": \"Kevin P. O\\u2019Brien\", \"works_count\": 82, \"last_known_institutions\": [{\"id\": \"https://openalex.org/I63966007\", \"ror\": \"https://ror.org/042nb2s44\", \"display_name\": \"Massachusetts Institute of Technology\", \"country_code\": \"US\", \"type\": \"education\", \"lineage\": [\"https://openalex.org/I63966007\"]}], \"topics\": [{\"id\": \"https://openalex.org/T10020\", \"display_name\": \"Quantum Information and Cryptography\"",
+     "observed": "2026-10-28",
+     "note": "OpenAlex https://openalex.org/A5021031647 Kevin P. O’Brien; top topics: ['Quantum Information and Cryptography', 'Superconducting and THz Device Technology', 'Quantum Computing Algorithms and Architecture']"
+    },
+    {
+     "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.contributor.advisor%3A%28o%27brien+AND+%28kevin%29%29&dsoType=ITEM&size=100&page=0&f.dateIssued=%5B2016+TO+2026%5D%2Cequals&sort=dc.date.issued%2CASC",
+     "sha256": "f3e8a5815e904a308c99ae9292b356dc114353410b6fa20bef93641c6c59b669",
+     "quote": "O'Brien, Kevin P.\", \"language\" : null, \"authority\" : null, \"confidence\" : -1, \"place\" : 0 } ], \"dc.contributor.author\" : [ { \"value\" : \"Peng, Kaidong",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Martha Gray",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Biological and medical devices/imaging (cartilage MRI): bioengineering, not computing.",
+   "computing_area": "biomedical engineering / imaging",
+   "home_department": "IMES / EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20170507163814id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "0c3abc54f36d067cc7d80e7be88753794b5eea4b0f418702cd8ae8dd0f868a8e",
+     "quote": "Martha Gray J.W. Kieckhefer Professor of Health Sciences and Technology; Professor of Electrical Engineering and Computer Science",
+     "observed": "2017-05-07"
+    },
+    {
+     "url": "https://www.eecs.mit.edu/people/martha-gray/",
+     "sha256": "72ed41010c0628dfd7c4c61fd3a977175ba98ba0ddb7e509626b79351a29f4f6",
+     "quote": "Research Areas Biological and Medical Devices and Systems Electronic, Magnetic, Optical and Quantum Materials and Devices",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Mehmet Fatih Yanik",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "High-throughput neuro/bioengineering; listed 2016 only (moved to ETH Zurich): bioengineering, not computing.",
+   "computing_area": "neurotechnology / bioengineering",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "Mehmet Fatih Yanik Associate Professor of Electrical Engineering",
+     "observed": "2016-03-26"
+    },
+    {
+     "url": "https://api.openalex.org/authors?search=Mehmet Fatih Yanik&per-page=8&select=id,display_name,works_count,last_known_institutions,topics,affiliations&filter=affiliations.institution.id:I63966007",
+     "sha256": "dcd83bbaacedc6eacde9be0f096d245133073e5471b55b57c3fa9b0da960f822",
+     "quote": "\"display_name\": \"Neuroscience and Neural Engineering\"",
+     "observed": "2026-10-28",
+     "note": "OpenAlex https://openalex.org/A5032212627 Mehmet Fatih Yanik; top topics: ['Neuroscience and Neural Engineering', 'Zebrafish Biomedical Research Applications', 'Advanced Fluorescence Microscopy Techniques']"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Leslie Kolodziejski",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Electronic/optical materials growth and photonics: materials, not computing.",
+   "computing_area": "compound semiconductor materials / photonics",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "Leslie Kolodziejski Professor of Electrical Engineering; Graduate Officer",
+     "observed": "2016-03-26"
+    },
+    {
+     "url": "https://www.eecs.mit.edu/people/leslie-kolodziejski/",
+     "sha256": "fd58b956ac51d55f656ed263a5b7613325a0ecfbbfc886182011b6b73c42022a",
+     "quote": "Research Areas Electronic, Magnetic, Optical and Quantum Materials and Devices Energy Nanoscale Materials, Devices, and Systems Optics + Photonics",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Cynthia Rudin",
+   "aliases": [],
+   "decision": "qualifies",
+   "reason": "qualifies",
+   "summary": "Interpretable machine learning: computing. Listed as a CSAIL PI (Associate Professor) in 2016; DSpace shows her as sole thesis advisor of MIT PhDs Tong Wang (2016) and Berk Ustun (2017). She moved to Duke in 2016, so her MIT PI period is the start of the window only; the 2017-2019 MIT PhDs listing her as advisor completed after her move.",
+   "computing_area": "interpretable machine learning",
+   "home_department": "Sloan School of Management (CSAIL PI listing)",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160329035244id_/https://www.csail.mit.edu/csaildirectoryoutput/pi",
+     "sha256": "fff89ef44e7be3a76704647b2ffb25610f0f8e9be3f6dca17bb971ad0d702a52",
+     "quote": "\"label\":\"Cynthia Rudin\", \"name\":\"Rudin Cynthia\", \"email\":\"rudin@mit.edu\", \"phone\":\"+1 (617) 258-7579\", \"url\":\"/user/3770\", \"position\":\"Associate Professor\"",
+     "observed": "2016-03-29"
+    },
+    {
+     "url": "https://api.openalex.org/authors?search=Cynthia Rudin&per-page=8&select=id,display_name,works_count,last_known_institutions,topics,affiliations&filter=affiliations.institution.id:I63966007",
+     "sha256": "d190b957c405d48d1823b18d1c4e73b401806f8bc73d759989c0043dd78a3758",
+     "quote": "\"https://openalex.org/A5040468715\", \"display_name\": \"Cynthia D Rudin\", \"works_count\": 486, \"last_known_institutions\": [{\"id\": \"https://openalex.org/I170897317\", \"ror\": \"https://ror.org/00py81415\", \"display_name\": \"Duke University\", \"country_code\": \"US\", \"type\": \"education\", \"lineage\": [\"https://openalex.org/I170897317\"]}], \"topics\": [{\"id\": \"https://openalex.org/T12026\", \"display_name\": \"Explainable Artificial Intelligence (XAI)\"",
+     "observed": "2026-10-28",
+     "note": "OpenAlex https://openalex.org/A5040468715 Cynthia D Rudin; top topics: ['Explainable Artificial Intelligence (XAI)', 'Machine Learning and Data Classification', 'Data Mining Algorithms and Applications']"
+    },
+    {
+     "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.contributor.advisor%3A%28rudin+AND+%28cynthia%29%29&dsoType=ITEM&size=100&page=0&f.dateIssued=%5B2016+TO+2026%5D%2Cequals&sort=dc.date.issued%2CASC",
+     "sha256": "dffd1734fc9736b307ce848092ea4b0f7b2c761d4106189b9364f416aab308a6",
+     "quote": "Cynthia Rudin.\", \"language\" : \"en_US\", \"authority\" : null, \"confidence\" : -1, \"place\" : 0 } ], \"dc.contributor.author\" : [ { \"value\" : \"Wang, Tong, Ph. D. Massachusetts Institute of Technology",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Franz Kaertner",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Ultrafast lasers and attosecond science (listed 2016 only; DESY/Hamburg): optics, not computing.",
+   "computing_area": "ultrafast optics",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "Franz Kaertner Professor of Electrical Engineering",
+     "observed": "2016-03-26"
+    },
+    {
+     "url": "https://api.openalex.org/authors?search=Franz X. Kärtner&per-page=8&select=id,display_name,works_count,last_known_institutions,topics,affiliations&filter=affiliations.institution.id:I63966007",
+     "sha256": "362bfaff45bc0edb69de564ad53a5432d97a7f0a5c601446fb9b7336efe217a5",
+     "quote": "\"display_name\": \"Laser-Matter Interactions and Applications\"",
+     "observed": "2026-10-28",
+     "note": "OpenAlex https://openalex.org/A5075315016 Franz X. Käertner; top topics: ['Laser-Matter Interactions and Applications', 'Advanced Fiber Laser Technologies', 'Photonic Crystal and Fiber Optics']"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Judy Hoyt",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Strained-Si/SiGe device materials and processing: device physics, not computing.",
+   "computing_area": "silicon device materials",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "Judy Hoyt Professor of Electrical Engineering; Director, Microsystems Technology Laboratories",
+     "observed": "2016-03-26"
+    },
+    {
+     "url": "https://api.openalex.org/authors?search=Judy L. Hoyt&per-page=8&select=id,display_name,works_count,last_known_institutions,topics,affiliations&filter=affiliations.institution.id:I63966007",
+     "sha256": "1618c8881dd7fa20f55eff24e80ab9d25293054787c1f0f31baba50a88e415af",
+     "quote": "\"https://openalex.org/A5109040722\", \"display_name\": \"Judy L. Hoyt\", \"works_count\": 243, \"last_known_institutions\": null, \"topics\": [{\"id\": \"https://openalex.org/T10472\", \"display_name\": \"Semiconductor materials and devices\"",
+     "observed": "2026-10-28",
+     "note": "OpenAlex https://openalex.org/A5109040722 Judy L. Hoyt; top topics: ['Semiconductor materials and devices', 'Advancements in Semiconductor Devices and Circuit Design', 'Semiconductor materials and interfaces']"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Martin A. Schmidt",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Same person as \"Martin Schmidt\". MEMS and microfabrication; MIT Provost then RPI president: not computing.",
+   "computing_area": "MEMS",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "Martin A. Schmidt Professor of Electrical Engineering",
+     "observed": "2016-03-26"
+    },
+    {
+     "url": "https://www.eecs.mit.edu/people/martin-schmidt/",
+     "sha256": "426a4771e47be17a24624f94448ebc14ad5d17bc8e6546cbcbdd17b8f6f613bb",
+     "quote": "Research Areas Electronic, Magnetic, Optical and Quantum Materials and Devices Nanoscale Materials, Devices, and Systems",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Martin Schmidt",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "MEMS and microfabrication: not computing.",
+   "computing_area": "MEMS",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20220416104408id_/https://www.eecs.mit.edu/role/faculty/",
+     "sha256": "ea290670e5281fb704e5b133b275b7afa14df6369001373cdb2a1504b2c09c91",
+     "quote": "Martin Schmidt Ray and Maria Stata Professor of EECS, [EE]",
+     "observed": "2022-04-16"
+    },
+    {
+     "url": "https://www.eecs.mit.edu/people/martin-schmidt/",
+     "sha256": "426a4771e47be17a24624f94448ebc14ad5d17bc8e6546cbcbdd17b8f6f613bb",
+     "quote": "Research Areas Electronic, Magnetic, Optical and Quantum Materials and Devices Nanoscale Materials, Devices, and Systems",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "James Fujimoto",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Biomedical optical imaging (OCT) and ultrafast optics: biophotonics, not computing (borderline: imaging).",
+   "computing_area": "optical coherence tomography",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "James Fujimoto Elihu Thomson Professor in Electrical Engineering",
+     "observed": "2016-03-26"
+    },
+    {
+     "url": "https://www.eecs.mit.edu/people/james-fujimoto/",
+     "sha256": "88120fb89234195ce80f037064c65fffb9d2388c2fb6179f1dd7e07cf388d91f",
+     "quote": "Research Areas Biological and Medical Devices and Systems Electronic, Magnetic, Optical and Quantum Materials and Devices Optics + Photonics",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Timothy Lu",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Synthetic biology (biological circuits, phage engineering): biology, not computing (borderline: \"biological computing\" framing).",
+   "computing_area": "synthetic biology",
+   "home_department": "EECS / Biological Engineering",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "Timothy Lu Associate Professor of Electrical Engineering",
+     "observed": "2016-03-26"
+    },
+    {
+     "url": "https://api.openalex.org/authors?search=Timothy K. Lu&per-page=8&select=id,display_name,works_count,last_known_institutions,topics,affiliations&filter=affiliations.institution.id:I63966007",
+     "sha256": "7176e72913555149b1a93920b73c058fde4f106687546e8342240a1b7143d663",
+     "quote": "\"display_name\": \"CRISPR and Genetic Engineering\"",
+     "observed": "2026-10-28",
+     "note": "OpenAlex https://openalex.org/A5023856282 Timothy K. Lu; top topics: ['CRISPR and Genetic Engineering', 'Gene Regulatory Network Analysis', 'Microbial Metabolic Engineering and Bioproduction']"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "David Perreault",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Power electronics and energy: not computing.",
+   "computing_area": "power electronics",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "David Perreault Professor of Electrical Engineering",
+     "observed": "2016-03-26"
+    },
+    {
+     "url": "https://www.eecs.mit.edu/people/david-perreault/",
+     "sha256": "c7dd87d2a687f92fb55eade8d39ce5cae894e091b920366b91e7753dd92be213",
+     "quote": "Research Areas Electronic, Magnetic, Optical and Quantum Materials and Devices Energy Integrated Circuits and Systems",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Jeffrey Lang",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Electromechanics, MEMS and energy conversion: not computing.",
+   "computing_area": "electromechanics / MEMS",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "Jeffrey Lang Vitesse Professor of Electrical Engineering",
+     "observed": "2016-03-26"
+    },
+    {
+     "url": "https://www.eecs.mit.edu/people/jeffrey-lang/",
+     "sha256": "5eb8053a500f8570bd48202edf4852fb266b90ae26b8d028e0fb21844fcdfcf4",
+     "quote": "Research Areas Electronic, Magnetic, Optical and Quantum Materials and Devices Energy Integrated Circuits and Systems Nanoscale Materials, Devices, and Systems",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Irwin Jungreis",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listed only in the 2026 CSAIL directory under \"Researchers\" as a Research Scientist: research staff within another PI's group, not faculty and not a PI (no group of their own found in the listing).",
+   "computing_area": null,
+   "home_department": "CSAIL",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20260917151324id_/https://www.csail.mit.edu/api-proxy/angular-solr?_api_proxy_uri=people&q=*%3A*&rows=216&start=0&fq%5B%5D=ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Researchers%22%20OR%20ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Core%2FDual%22%20OR%20ss_name%3A%22Associates%22%20OR%20ss_name%3A%22Emeritus%22",
+     "sha256": "13f3b4e313cd4e4e3ba7bc0747214b5a0ed91653196f0d3ccbe5eb8cbfd2a3cb",
+     "quote": "\"ss_name\":\"Researchers\", \"ss_field_title\":\"Research Scientist\", \"ss_title\":\"Irwin Jungreis\"",
+     "observed": "2026-09-17"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Li-Lun Ho",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listed only in the 2026 CSAIL directory under \"Researchers\" as a Research Scientist: research staff within another PI's group, not faculty and not a PI (no group of their own found in the listing).",
+   "computing_area": null,
+   "home_department": "CSAIL",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20260917151324id_/https://www.csail.mit.edu/api-proxy/angular-solr?_api_proxy_uri=people&q=*%3A*&rows=216&start=0&fq%5B%5D=ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Researchers%22%20OR%20ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Core%2FDual%22%20OR%20ss_name%3A%22Associates%22%20OR%20ss_name%3A%22Emeritus%22",
+     "sha256": "13f3b4e313cd4e4e3ba7bc0747214b5a0ed91653196f0d3ccbe5eb8cbfd2a3cb",
+     "quote": "\"ss_name\":\"Researchers\", \"ss_field_title\":\"Research Scientist\", \"ss_csail_room_map\":\"http://default/sites/default/files/resources/maps/5D/D516.gif\", \"ss_field_room\":\"32-D516\", \"ss_title\":\"Li-Lun Ho\"",
+     "observed": "2026-09-17"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Terry Orlando",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Superconducting electronics/devices and nanoscale materials; once a superconducting-qubit pioneer, but his in-window profile lists only materials/devices areas: device physics (borderline).",
+   "computing_area": "superconducting devices",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "Terry Orlando Professor of Electrical Engineering",
+     "observed": "2016-03-26"
+    },
+    {
+     "url": "https://www.eecs.mit.edu/people/terry-orlando/",
+     "sha256": "fde665ab36b247397c4f655c50d0a3c9243f9c1ecdf745f66315c86947202cd5",
+     "quote": "Research Areas Electronic, Magnetic, Optical and Quantum Materials and Devices Nanoscale Materials, Devices, and Systems",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Farnaz Niroui",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Nanoscale materials and devices (molecular-scale fabrication, nanomechanics): device physics, not computing (borderline: neuromorphic device news item).",
+   "computing_area": "nanofabrication / nanoelectromechanics",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20190410175456id_/https://www.eecs.mit.edu/people/faculty-advisors",
+     "sha256": "787d491f0bc03657587fb10f7a64f824a32168f0a72d26fde0fe8bd2182528d1",
+     "quote": "Farnaz Niroui Assistant Professor of EECS",
+     "observed": "2019-04-10"
+    },
+    {
+     "url": "https://www.eecs.mit.edu/people/farnaz-niroui/",
+     "sha256": "95f815bc501ba8295fb14d460d2fae2022d5661700958598dcf47fa457d855e3",
+     "quote": "Research Areas Electronic, Magnetic, Optical and Quantum Materials and Devices Energy Nanoscale Materials, Devices, and Systems",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "John Kassakian",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Power electronics: not computing.",
+   "computing_area": "power electronics",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "John Kassakian Professor of Electrical Engineering",
+     "observed": "2016-03-26"
+    },
+    {
+     "url": "https://www.eecs.mit.edu/people/john-kassakian/",
+     "sha256": "34657f972354cc0dd007ef1f83a4f6ec3c1b1a985b96e767733d01023ba4450a",
+     "quote": "Research Areas Integrated Circuits and Systems",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Peter Hagelstein",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Electronic/optical materials physics (x-ray lasers, condensed-matter nuclear science): not computing.",
+   "computing_area": "applied physics",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "Peter Hagelstein Associate Professor of Electrical Engineering",
+     "observed": "2016-03-26"
+    },
+    {
+     "url": "https://www.eecs.mit.edu/people/peter-hagelstein/",
+     "sha256": "888b728211423b5dbdd437cf714c74aca232d7ca5525a9b0cfd51810682745e0",
+     "quote": "Research Areas Electronic, Magnetic, Optical and Quantum Materials and Devices",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Joseph DelPreto",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listed only in the 2026 CSAIL directory under \"Researchers\" as a Research Scientist: research staff within another PI's group, not faculty and not a PI (no group of their own found in the listing).",
+   "computing_area": null,
+   "home_department": "CSAIL",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20260917151324id_/https://www.csail.mit.edu/api-proxy/angular-solr?_api_proxy_uri=people&q=*%3A*&rows=216&start=0&fq%5B%5D=ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Researchers%22%20OR%20ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Core%2FDual%22%20OR%20ss_name%3A%22Associates%22%20OR%20ss_name%3A%22Emeritus%22",
+     "sha256": "13f3b4e313cd4e4e3ba7bc0747214b5a0ed91653196f0d3ccbe5eb8cbfd2a3cb",
+     "quote": "\"ss_name\":\"Researchers\", \"ss_field_title\":\"Research Scientist\", \"ss_uri\":\"public://images/people/card/headshot5_0.jpg\", \"ss_title\":\"Joseph DelPreto\"",
+     "observed": "2026-09-17"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Erich Ippen",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Ultrafast optics and photonics: not computing.",
+   "computing_area": "ultrafast optics",
+   "home_department": "EECS / Physics",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "Erich Ippen Elihu Thomson Professor of Electrical Engineering and Physics",
+     "observed": "2016-03-26"
+    },
+    {
+     "url": "https://api.openalex.org/authors?search=Erich P. Ippen&per-page=8&select=id,display_name,works_count,last_known_institutions,topics,affiliations&filter=affiliations.institution.id:I63966007",
+     "sha256": "74c18cba96e76ed1eb0fb822263b8b5d28e3625d04b898e2124911d7e50e3dab",
+     "quote": "\"https://openalex.org/A5108092822\", \"display_name\": \"Erich P. Ippen\", \"works_count\": 771, \"last_known_institutions\": [{\"id\": \"https://openalex.org/I63966007\", \"ror\": \"https://ror.org/042nb2s44\", \"display_name\": \"Massachusetts Institute of Technology\", \"country_code\": \"US\", \"type\": \"education\", \"lineage\": [\"https://openalex.org/I63966007\"]}], \"topics\": [{\"id\": \"https://openalex.org/T10566\", \"display_name\": \"Laser-Matter Interactions and Applications\"",
+     "observed": "2026-10-28",
+     "note": "OpenAlex https://openalex.org/A5108092822 Erich P. Ippen; top topics: ['Laser-Matter Interactions and Applications', 'Advanced Fiber Laser Technologies', 'Semiconductor Lasers and Optical Devices']"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Kevin P. O’Brien",
+   "aliases": [],
+   "decision": "qualifies",
+   "reason": "qualifies",
+   "summary": "Superconducting quantum circuits and quantum-limited amplifiers for quantum computing (OpenAlex topics: quantum information, superconducting devices, quantum computing architecture): quantum-computer hardware. PI: sole thesis advisor of record for MIT PhDs Kaidong Peng (2023) and Yufeng Ye (2024). ",
+   "computing_area": "superconducting quantum computing hardware",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20230930034910id_/https://www.eecs.mit.edu/role/faculty/",
+     "sha256": "a4cf8fa434add9f414bbd03312108234f0522ff47de15c923e2c6585570b27d2",
+     "quote": "Kevin P. O’Brien Associate Professor, [EE]",
+     "observed": "2023-09-30"
+    },
+    {
+     "url": "https://api.openalex.org/authors?search=Kevin O'Brien&per-page=8&select=id,display_name,works_count,last_known_institutions,topics,affiliations&filter=affiliations.institution.id:I63966007",
+     "sha256": "bc309306b29e29295250f005d573664d3e732ef8255c617e00a6752d41038f59",
+     "quote": "\"https://openalex.org/A5021031647\", \"display_name\": \"Kevin P. O\\u2019Brien\", \"works_count\": 82, \"last_known_institutions\": [{\"id\": \"https://openalex.org/I63966007\", \"ror\": \"https://ror.org/042nb2s44\", \"display_name\": \"Massachusetts Institute of Technology\", \"country_code\": \"US\", \"type\": \"education\", \"lineage\": [\"https://openalex.org/I63966007\"]}], \"topics\": [{\"id\": \"https://openalex.org/T10020\", \"display_name\": \"Quantum Information and Cryptography\"",
+     "observed": "2026-10-28",
+     "note": "OpenAlex https://openalex.org/A5021031647 Kevin P. O’Brien; top topics: ['Quantum Information and Cryptography', 'Superconducting and THz Device Technology', 'Quantum Computing Algorithms and Architecture']"
+    },
+    {
+     "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.contributor.advisor%3A%28o%27brien+AND+%28kevin%29%29&dsoType=ITEM&size=100&page=0&f.dateIssued=%5B2016+TO+2026%5D%2Cequals&sort=dc.date.issued%2CASC",
+     "sha256": "f3e8a5815e904a308c99ae9292b356dc114353410b6fa20bef93641c6c59b669",
+     "quote": "O'Brien, Kevin P.\", \"language\" : null, \"authority\" : null, \"confidence\" : -1, \"place\" : 0 } ], \"dc.contributor.author\" : [ { \"value\" : \"Peng, Kaidong",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Tianlong Chen",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listed only in the 2026 CSAIL directory under \"Researchers\" as a Research Scientist: research staff within another PI's group, not faculty and not a PI (no group of their own found in the listing).",
+   "computing_area": null,
+   "home_department": "CSAIL",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20260917151324id_/https://www.csail.mit.edu/api-proxy/angular-solr?_api_proxy_uri=people&q=*%3A*&rows=216&start=0&fq%5B%5D=ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Researchers%22%20OR%20ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Core%2FDual%22%20OR%20ss_name%3A%22Associates%22%20OR%20ss_name%3A%22Emeritus%22",
+     "sha256": "13f3b4e313cd4e4e3ba7bc0747214b5a0ed91653196f0d3ccbe5eb8cbfd2a3cb",
+     "quote": "\"ss_name\":\"Researchers\", \"ss_field_title\":\"Research Scientist\", \"ss_title\":\"Tianlong Chen\"",
+     "observed": "2026-09-17"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Kyriakitsa Galani",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listed only in the 2026 CSAIL directory under \"Researchers\" as a Research Scientist: research staff within another PI's group, not faculty and not a PI (no group of their own found in the listing).",
+   "computing_area": null,
+   "home_department": "CSAIL",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20260917151324id_/https://www.csail.mit.edu/api-proxy/angular-solr?_api_proxy_uri=people&q=*%3A*&rows=216&start=0&fq%5B%5D=ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Researchers%22%20OR%20ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Core%2FDual%22%20OR%20ss_name%3A%22Associates%22%20OR%20ss_name%3A%22Emeritus%22",
+     "sha256": "13f3b4e313cd4e4e3ba7bc0747214b5a0ed91653196f0d3ccbe5eb8cbfd2a3cb",
+     "quote": "\"ss_name\":\"Researchers\", \"ss_field_title\":\"Research Scientist\", \"ss_title\":\"Kyriakitsa Galani\"",
+     "observed": "2026-09-17"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Zunpeng Liu",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listed only in the 2026 CSAIL directory under \"Researchers\" as a Research Scientist: research staff within another PI's group, not faculty and not a PI (no group of their own found in the listing).",
+   "computing_area": null,
+   "home_department": "CSAIL",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20260917151324id_/https://www.csail.mit.edu/api-proxy/angular-solr?_api_proxy_uri=people&q=*%3A*&rows=216&start=0&fq%5B%5D=ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Researchers%22%20OR%20ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Core%2FDual%22%20OR%20ss_name%3A%22Associates%22%20OR%20ss_name%3A%22Emeritus%22",
+     "sha256": "13f3b4e313cd4e4e3ba7bc0747214b5a0ed91653196f0d3ccbe5eb8cbfd2a3cb",
+     "quote": "\"ss_name\":\"Researchers\", \"ss_field_title\":\"Research Scientist 1\", \"ss_title\":\"Zunpeng Liu\"",
+     "observed": "2026-09-17"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Abigail Bodner",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Physical oceanography (submesoscale turbulence) using ML parameterizations for climate models: ML is a tool in a physical science, so not computing (borderline).",
+   "computing_area": "ocean turbulence / climate modeling",
+   "home_department": "EAPS / EECS (shared)",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20241007135128id_/https://www.eecs.mit.edu/role/faculty/",
+     "sha256": "197595898333e387b9d0d57fc677cfcaa2737166e2e0254186326f582c0940de",
+     "quote": "Abigail Bodner Assistant Professor [EE] Shared position: Earth, Atmospheric and Planetary Sciences (EAPS) and EECS",
+     "observed": "2024-10-07"
+    },
+    {
+     "url": "https://api.openalex.org/authors?search=Abigail Bodner&per-page=8&select=id,display_name,works_count,last_known_institutions,topics,affiliations&filter=affiliations.institution.id:I63966007",
+     "sha256": "89cbaaed6c093a7aa0252def7e3c364185036e45ee396a22278969c518f7c24d",
+     "quote": "\"display_name\": \"Oceanographic and Atmospheric Processes\"",
+     "observed": "2026-10-28",
+     "note": "OpenAlex https://openalex.org/A5069562981 Abigail S. Bodner; top topics: ['Oceanographic and Atmospheric Processes', 'Meteorological Phenomena and Simulations', 'Fluid Dynamics and Turbulent Flows']"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Ericmoore Jossou",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Radiation effects in nuclear materials; his EECS page tags AI+ML, which he uses as a tool on materials problems: materials science, not computing (borderline).",
+   "computing_area": "nuclear materials",
+   "home_department": "Nuclear Science and Engineering / EECS (shared)",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20230930034910id_/https://www.eecs.mit.edu/role/faculty/",
+     "sha256": "a4cf8fa434add9f414bbd03312108234f0522ff47de15c923e2c6585570b27d2",
+     "quote": "Ericmoore Jossou Assistant Professor, [EE] (shared position, Nuclear Science and Engineering and EECS)",
+     "observed": "2023-09-30"
+    },
+    {
+     "url": "https://www.eecs.mit.edu/people/ericmoore-jossou/",
+     "sha256": "89f3d609d3cda1d3ea0a10e5ef5a0a721df3c2ff8b21693aef444e555880a5ee",
+     "quote": "Research Areas Artificial Intelligence + Machine Learning",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Louis Braida",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Auditory perception, hearing aids and speech communication: sensory science, computing incidental (borderline: speech signal processing).",
+   "computing_area": "hearing / speech communication",
+   "home_department": "EECS (RLE)",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "Louis Braida Henry Ellis Warren (1894) Professor",
+     "observed": "2016-03-26"
+    },
+    {
+     "url": "https://api.openalex.org/authors?search=Louis D. Braida&per-page=8&select=id,display_name,works_count,last_known_institutions,topics,affiliations&filter=affiliations.institution.id:I63966007",
+     "sha256": "868f038d90dc44be68a2b7203d94f97e3456e97d398127d902ee8836d8b23074",
+     "quote": "\"https://openalex.org/A5091684815\", \"display_name\": \"Louis D. Braida\", \"works_count\": 227, \"last_known_institutions\": null, \"topics\": [{\"id\": \"https://openalex.org/T10283\", \"display_name\": \"Hearing Loss and Rehabilitation\"",
+     "observed": "2026-10-28",
+     "note": "OpenAlex https://openalex.org/A5091684815 Louis D. Braida; top topics: ['Hearing Loss and Rehabilitation', 'Speech and Audio Processing', 'Phonetics and Phonology Research']"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Emanuele Del Sozzo",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listed only in the 2026 CSAIL directory under \"Researchers\" as a Research Scientist: research staff within another PI's group, not faculty and not a PI (no group of their own found in the listing).",
+   "computing_area": null,
+   "home_department": "CSAIL",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20260917151324id_/https://www.csail.mit.edu/api-proxy/angular-solr?_api_proxy_uri=people&q=*%3A*&rows=216&start=0&fq%5B%5D=ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Researchers%22%20OR%20ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Core%2FDual%22%20OR%20ss_name%3A%22Associates%22%20OR%20ss_name%3A%22Emeritus%22",
+     "sha256": "13f3b4e313cd4e4e3ba7bc0747214b5a0ed91653196f0d3ccbe5eb8cbfd2a3cb",
+     "quote": "\"ss_name\":\"Researchers\", \"ss_field_title\":\"Research Scientist\", \"ss_uri\":\"public://images/people/card/1732070273159.jpeg\", \"ss_field_room\":\"32-386G\", \"ss_title\":\"Emanuele Del Sozzo\"",
+     "observed": "2026-09-17"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Henry Smith",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Nanolithography and nanofabrication: not computing.",
+   "computing_area": "nanofabrication / lithography",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "Henry Smith Professor of Electrical Engineering",
+     "observed": "2016-03-26"
+    },
+    {
+     "url": "https://api.openalex.org/authors?search=Henry I. Smith&per-page=8&select=id,display_name,works_count,last_known_institutions,topics,affiliations&filter=affiliations.institution.id:I63966007",
+     "sha256": "b6e2db74010609a3ebeeac7dea4d63312dad08be583bc86a742be9151bd93515",
+     "quote": "\"display_name\": \"Advancements in Photolithography Techniques\"",
+     "observed": "2026-10-28",
+     "note": "OpenAlex https://openalex.org/A5103005688 Henry I. Smith; top topics: ['Advancements in Photolithography Techniques', 'Nanofabrication and Lithography Techniques', 'Advanced X-ray Imaging Techniques']"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Siddharth Ancha",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listed only in the 2026 CSAIL directory under \"Researchers\" as a Research Scientist: research staff within another PI's group, not faculty and not a PI (no group of their own found in the listing).",
+   "computing_area": null,
+   "home_department": "CSAIL",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20260917151324id_/https://www.csail.mit.edu/api-proxy/angular-solr?_api_proxy_uri=people&q=*%3A*&rows=216&start=0&fq%5B%5D=ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Researchers%22%20OR%20ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Core%2FDual%22%20OR%20ss_name%3A%22Associates%22%20OR%20ss_name%3A%22Emeritus%22",
+     "sha256": "13f3b4e313cd4e4e3ba7bc0747214b5a0ed91653196f0d3ccbe5eb8cbfd2a3cb",
+     "quote": "\"ss_name\":\"Researchers\", \"ss_field_title\":\"Research Scientist\", \"ss_uri\":\"public://images/people/card/siddharth_ancha_865_811.png\", \"ss_field_room\":\"45-633C\", \"ss_title\":\"Siddharth Ancha\"",
+     "observed": "2026-09-17"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Emmanuel Lujan",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listed only in the 2026 CSAIL directory under \"Researchers\" as a Research Scientist: research staff within another PI's group, not faculty and not a PI (no group of their own found in the listing).",
+   "computing_area": null,
+   "home_department": "CSAIL",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20260917151324id_/https://www.csail.mit.edu/api-proxy/angular-solr?_api_proxy_uri=people&q=*%3A*&rows=216&start=0&fq%5B%5D=ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Researchers%22%20OR%20ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Core%2FDual%22%20OR%20ss_name%3A%22Associates%22%20OR%20ss_name%3A%22Emeritus%22",
+     "sha256": "13f3b4e313cd4e4e3ba7bc0747214b5a0ed91653196f0d3ccbe5eb8cbfd2a3cb",
+     "quote": "\"ss_name\":\"Researchers\", \"ss_field_title\":\"Research Scientist \", \"ss_title\":\"Emmanuel Lujan\"",
+     "observed": "2026-09-17"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Sue Felshin",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listed only in the 2026 CSAIL directory under \"Researchers\" as a Research Scientist: research staff within another PI's group, not faculty and not a PI (no group of their own found in the listing).",
+   "computing_area": null,
+   "home_department": "CSAIL",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20260917151324id_/https://www.csail.mit.edu/api-proxy/angular-solr?_api_proxy_uri=people&q=*%3A*&rows=216&start=0&fq%5B%5D=ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Researchers%22%20OR%20ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Core%2FDual%22%20OR%20ss_name%3A%22Associates%22%20OR%20ss_name%3A%22Emeritus%22",
+     "sha256": "13f3b4e313cd4e4e3ba7bc0747214b5a0ed91653196f0d3ccbe5eb8cbfd2a3cb",
+     "quote": "\"ss_name\":\"Researchers\", \"ss_field_title\":\"Research Scientist\", \"ss_csail_room_map\":\"http://default/sites/default/files/resources/maps/4G/G432.gif\", \"ss_field_phone\":\"253-2965\", \"ss_field_room\":\"32-G432\", \"ss_title\":\"Sue Felshin\"",
+     "observed": "2026-09-17"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Cardinal Warde",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Optics and electro-optical materials/devices: not computing.",
+   "computing_area": "optics",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "Cardinal Warde Professor of Electrical Engineering",
+     "observed": "2016-03-26"
+    },
+    {
+     "url": "https://www.eecs.mit.edu/people/cardinal-warde/",
+     "sha256": "3cbd1764ab9562079cd46dc9e18565003bbc16c59025bad3a619513a2826b9f9",
+     "quote": "Research Areas Electronic, Magnetic, Optical and Quantum Materials and Devices",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Jeff Perkins",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listed only in the 2026 CSAIL directory under \"Researchers\" as a Research Scientist: research staff within another PI's group, not faculty and not a PI (no group of their own found in the listing).",
+   "computing_area": null,
+   "home_department": "CSAIL",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20260917151324id_/https://www.csail.mit.edu/api-proxy/angular-solr?_api_proxy_uri=people&q=*%3A*&rows=216&start=0&fq%5B%5D=ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Researchers%22%20OR%20ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Core%2FDual%22%20OR%20ss_name%3A%22Associates%22%20OR%20ss_name%3A%22Emeritus%22",
+     "sha256": "13f3b4e313cd4e4e3ba7bc0747214b5a0ed91653196f0d3ccbe5eb8cbfd2a3cb",
+     "quote": "\"ss_name\":\"Researchers\", \"ss_field_title\":\"Research Scientist\", \"ss_csail_room_map\":\"http://default/sites/default/files/resources/maps/7G/G722.gif\", \"ss_field_phone\":\"253-8365\", \"ss_field_room\":\"32-G722\", \"ss_title\":\"Jeff Perkins\"",
+     "observed": "2026-09-17"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "L. Rafael Reif",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Microelectronics materials and 3D IC integration; MIT President 2012-2022: device technology, not computing; administrator in-window.",
+   "computing_area": "3D integration / microelectronics",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "L. Rafael Reif Professor of Electrical Engineering",
+     "observed": "2016-03-26"
+    },
+    {
+     "url": "https://www.eecs.mit.edu/people/l-rafael-reif/",
+     "sha256": "af2c2041db6af478f639d0f42c0b5ffa7dd08827661c1edfc3a6f46d5e804115",
+     "quote": "Research Areas Electronic, Magnetic, Optical and Quantum Materials and Devices Integrated Circuits and Systems",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Gary Borchardt",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listed only in the 2026 CSAIL directory under \"Researchers\" as a Research Scientist: research staff within another PI's group, not faculty and not a PI (no group of their own found in the listing).",
+   "computing_area": null,
+   "home_department": "CSAIL",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20260917151324id_/https://www.csail.mit.edu/api-proxy/angular-solr?_api_proxy_uri=people&q=*%3A*&rows=216&start=0&fq%5B%5D=ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Researchers%22%20OR%20ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Core%2FDual%22%20OR%20ss_name%3A%22Associates%22%20OR%20ss_name%3A%22Emeritus%22",
+     "sha256": "13f3b4e313cd4e4e3ba7bc0747214b5a0ed91653196f0d3ccbe5eb8cbfd2a3cb",
+     "quote": "\"ss_name\":\"Researchers\", \"ss_field_title\":\"Research Scientist\", \"ss_field_phone\":\"253-5867\", \"ss_title\":\"Gary Borchardt\"",
+     "observed": "2026-09-17"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Joel Schindall",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Ultracapacitor energy storage and electronics design: not computing.",
+   "computing_area": "power / energy storage",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "Joel Schindall Bernard M. Gordon Professor of the Practice",
+     "observed": "2016-03-26"
+    },
+    {
+     "url": "https://api.openalex.org/authors?search=Joel E. Schindall&per-page=8&select=id,display_name,works_count,last_known_institutions,topics,affiliations&filter=affiliations.institution.id:I63966007",
+     "sha256": "7fa97495ed015a5e8c964171e3d8426f64f53f50c4aeb9cdd90dd0a5c81cf842",
+     "quote": "\"display_name\": \"Engineering Education and Pedagogy\"",
+     "observed": "2026-10-28",
+     "note": "OpenAlex https://openalex.org/A5028874529 Joel E. Schindall; top topics: ['Engineering Education and Pedagogy', 'Engineering Education and Curriculum Development', 'Higher Education and Employability']"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Paul Keel",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listed only in the 2026 CSAIL directory under \"Researchers\" as a Research Scientist: research staff within another PI's group, not faculty and not a PI (no group of their own found in the listing).",
+   "computing_area": null,
+   "home_department": "CSAIL",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20260917151324id_/https://www.csail.mit.edu/api-proxy/angular-solr?_api_proxy_uri=people&q=*%3A*&rows=216&start=0&fq%5B%5D=ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Researchers%22%20OR%20ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Core%2FDual%22%20OR%20ss_name%3A%22Associates%22%20OR%20ss_name%3A%22Emeritus%22",
+     "sha256": "13f3b4e313cd4e4e3ba7bc0747214b5a0ed91653196f0d3ccbe5eb8cbfd2a3cb",
+     "quote": "\"ss_name\":\"Researchers\", \"ss_field_title\":\"Research Scientist\", \"ss_field_phone\":\"252-1866\", \"ss_title\":\"Paul Keel\"",
+     "observed": "2026-09-17"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Bernard M. Gordon",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: a named-chair fragment (\"Bernard M. Gordon Professor in Medical Engineering\") from another person's title, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20201006054302id_/https://www.eecs.mit.edu/people/faculty-advisors",
+     "sha256": "9aaee2e6f6a0c1b48d7b824af57f245c6d069742630787fb13343bafd97d5f9f",
+     "quote": "Bernard M. Gordon Professor in Medical Engineering",
+     "observed": "2020-10-06"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Clarence J. Lebel",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: a named-chair fragment (\"Clarence J. Lebel Professor of EE\") from another person's title, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20201006054302id_/https://www.eecs.mit.edu/people/faculty-advisors",
+     "sha256": "9aaee2e6f6a0c1b48d7b824af57f245c6d069742630787fb13343bafd97d5f9f",
+     "quote": "Clarence J. Lebel Professor of EE",
+     "observed": "2020-10-06"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Danial Lashkari",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listed only in the 2026 CSAIL directory under \"Researchers\" as a Research Scientist: research staff within another PI's group, not faculty and not a PI (no group of their own found in the listing).",
+   "computing_area": null,
+   "home_department": "CSAIL",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20260917151324id_/https://www.csail.mit.edu/api-proxy/angular-solr?_api_proxy_uri=people&q=*%3A*&rows=216&start=0&fq%5B%5D=ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Researchers%22%20OR%20ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Core%2FDual%22%20OR%20ss_name%3A%22Associates%22%20OR%20ss_name%3A%22Emeritus%22",
+     "sha256": "13f3b4e313cd4e4e3ba7bc0747214b5a0ed91653196f0d3ccbe5eb8cbfd2a3cb",
+     "quote": "\"ss_name\":\"Researchers\", \"ss_field_title\":\"Research Scientist\", \"ss_field_room\":\"32-386H\", \"ss_title\":\"Danial Lashkari\"",
+     "observed": "2026-09-17"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Dugald C. Jackson",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: a named-chair fragment (\"Dugald C. Jackson Professor ...\") from another person's title, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20191023190718id_/https://www.eecs.mit.edu/people/faculty-advisors",
+     "sha256": "1ada3548864e40bf78b7ab7c14beb737dafec244d1728adf047c7cf93b300270",
+     "quote": "Dugald C. Jackson Professor of EE (Emeritus)",
+     "observed": "2019-10-23"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "EECS Masterworks",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: a page link followed by a job advertisement, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20200417042143id_/https://www.eecs.mit.edu/people/faculty-advisors",
+     "sha256": "7439077de8bf34edc16362e7c0e5777e7e71ba55b6841e80d05b1ba718169ea8",
+     "quote": "EECS Masterworks Junior Faculty Position, Institute for Medical Engineering and Science (IMES)",
+     "observed": "2020-04-17"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "EECS Rooms",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: a navigation link followed by \"Faculty positions in MIT EECS\", not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "EECS Rooms Faculty positions in MIT EECS",
+     "observed": "2016-03-26"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Gerald Wilson",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Electric power and energy systems: not computing.",
+   "computing_area": "electric power / energy",
+   "home_department": "EECS / ME",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "Gerald Wilson Professor of Electrical and Mechanical Engineering, Emeritus",
+     "observed": "2016-03-26"
+    },
+    {
+     "url": "https://api.openalex.org/authors?search=Gerald L. Wilson&per-page=8&select=id,display_name,works_count,last_known_institutions,topics,affiliations&filter=affiliations.institution.id:I63966007",
+     "sha256": "7d60ab0cfaded50272127ff2cd26c8730a74a5d373fd72b576021bb5bca64034",
+     "quote": "\"https://openalex.org/A5110563007\", \"display_name\": \"Gerald L. Wilson\", \"works_count\": 32, \"last_known_institutions\": null, \"topics\": [{\"id\": \"https://openalex.org/T10278\", \"display_name\": \"Electric Motor Design and Analysis\"",
+     "observed": "2026-10-28",
+     "note": "OpenAlex https://openalex.org/A5110563007 Gerald L. Wilson; top topics: ['Electric Motor Design and Analysis', 'Power System Optimization and Stability', 'Vacuum and Plasma Arcs']"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Markus Zahn",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Electromagnetic field theory, dielectrics and ferrofluids: not computing.",
+   "computing_area": "electromagnetics / dielectrics",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "Markus Zahn Thomas and Gerd Perkins Professor of Electrical Engineering",
+     "observed": "2016-03-26"
+    },
+    {
+     "url": "https://api.openalex.org/authors?search=Markus Zahn&per-page=8&select=id,display_name,works_count,last_known_institutions,topics,affiliations&filter=affiliations.institution.id:I63966007",
+     "sha256": "16f10747b4c5ac9b4892a54b78d071669d9d75626b817ec47da70a3e71235e1a",
+     "quote": "\"https://openalex.org/A5113666851\", \"display_name\": \"Markus Zahn\", \"works_count\": 326, \"last_known_institutions\": [{\"id\": \"https://openalex.org/I179225836\", \"ror\": \"https://ror.org/03p14d497\", \"display_name\": \"University of Augsburg\", \"country_code\": \"DE\", \"type\": \"education\", \"lineage\": [\"https://openalex.org/I179225836\"]}], \"topics\": [{\"id\": \"https://openalex.org/T10511\", \"display_name\": \"High voltage insulation and dielectric phenomena\"",
+     "observed": "2026-10-28",
+     "note": "OpenAlex https://openalex.org/A5113666851 Markus Zahn; top topics: ['High voltage insulation and dielectric phenomena', 'Electrical and Electromagnetic Research', 'Power Transformer Diagnostics and Insulation']"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Sam Coday",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Power electronics and energy (listed 2023-2026): not computing.",
+   "computing_area": "power electronics",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20230930034910id_/https://www.eecs.mit.edu/role/faculty/",
+     "sha256": "a4cf8fa434add9f414bbd03312108234f0522ff47de15c923e2c6585570b27d2",
+     "quote": "Sam Coday Emanuel E. Landsman (1958) Career Development Professor, Assistant Professor [EE]",
+     "observed": "2023-09-30"
+    },
+    {
+     "url": "https://www.eecs.mit.edu/people/sam-coday/",
+     "sha256": "21416efb3386aab7c3a80107d16fc86cb12e3c4ad00ab72a0bdcbeccbb6ed9c3",
+     "quote": "Research Areas Electronic, Magnetic, Optical and Quantum Materials and Devices Energy",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Student Groups",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: navigation menu text (\"Student Groups Faculty & Advisors\"), not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160326173633id_/http://www.eecs.mit.edu:80/people/faculty-advisors",
+     "sha256": "53cd78af4a1a7cdda75d242f3a0ccc3c4fae8fa6c76fd34792c741255ca18e4f",
+     "quote": "Student Groups Faculty & Advisors",
+     "observed": "2016-03-26"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Timothy Kaler",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listed only in the 2026 CSAIL directory under \"Researchers\" as a Research Scientist: research staff within another PI's group, not faculty and not a PI (no group of their own found in the listing).",
+   "computing_area": null,
+   "home_department": "CSAIL",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20260917151324id_/https://www.csail.mit.edu/api-proxy/angular-solr?_api_proxy_uri=people&q=*%3A*&rows=216&start=0&fq%5B%5D=ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Researchers%22%20OR%20ss_name%3A%22Principal%20Investigators%22%20OR%20ss_name%3A%22Core%2FDual%22%20OR%20ss_name%3A%22Associates%22%20OR%20ss_name%3A%22Emeritus%22",
+     "sha256": "13f3b4e313cd4e4e3ba7bc0747214b5a0ed91653196f0d3ccbe5eb8cbfd2a3cb",
+     "quote": "\"ss_name\":\"Researchers\", \"ss_field_title\":\"Research Scientist\", \"ss_csail_room_map\":\"http://default/sites/default/files/resources/maps/7G/G766.gif\", \"ss_field_room\":\"32-G766\", \"ss_title\":\"Timothy Kaler\"",
+     "observed": "2026-09-17"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Vannevar Bush",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: a named-chair fragment (\"Vannevar Bush Professor of EECS\") from another person's title, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20201006054302id_/https://www.eecs.mit.edu/people/faculty-advisors",
+     "sha256": "9aaee2e6f6a0c1b48d7b824af57f245c6d069742630787fb13343bafd97d5f9f",
+     "quote": "Vannevar Bush Professor of EECS",
+     "observed": "2020-10-06"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  }
+ ]
+}

@@ -1,0 +1,1829 @@
+{
+ "reviewed": "2026-10-22",
+ "rule": "a PI is a faculty member of a computing department (Princeton CS; CMU's seven SCS departments; MIT EECS, CS+AI side; EPFL IC; Berkeley EECS, CS division) with stated PhD advising in 2016-2026 or a lab they head. Centres, initiatives and multi-PI groups are not labs. EPFL MERs count when they head their own lab or are stated PhD thesis directors.",
+ "captures": "hierarchy/missing-pi-captures.sqlite (fetched or copied pages; quotes are exact substrings of the stored text, whitespace collapsed)",
+ "tools": "hierarchy/missing-pi-tools/{mpcap.py,build_review.py}",
+ "decisions": [
+  {
+   "name": "Fernando De La Torre Frade",
+   "decision": "alias_added",
+   "added_to": "hierarchy/census-overrides.json (cmu aliases)",
+   "summary": "Already a PI (RI, Human Sensing Lab), but bylines, DBLP and CMU theses write \"Fernando De la Torre\": the name rule needs a form ending in \"torre\", and \"De La Torre Frade\" yields only forms ending in \"frade\". DBLP pid d/FernandoDelaTorre is named \"Fernando De la Torre\" on 150 cached records 2016-2026 (claude-cmu-20261017/raw/dblp_pubs.json.gz).",
+   "evidence": [
+    {
+     "url": "http://reports-archive.adm.cs.cmu.edu/anon/2024/abstracts/24-105.html",
+     "sha256": "5837e67eb8bee75bd76bd3437db937126aae9e8bf40d230ce7d52fe6a2c1cbd7",
+     "quote": "Thesis Committee: Fernando De la Torre (Chair)",
+     "observed": "2026-10-22",
+     "kind": "cmu_tech_report",
+     "capture_copied_from": "hierarchy/cmu/thesis-captures.sqlite"
+    },
+    {
+     "url": "http://reports-archive.adm.cs.cmu.edu/anon/2026/abstracts/26-122.html",
+     "sha256": "629d40994a36d666daf244aed2715883ffa7aaae67377266cf73c1a6ec9ff562",
+     "quote": "Thesis Committee: Fernando De la Torre (Chair)",
+     "observed": "2026-10-22",
+     "kind": "cmu_tech_report",
+     "capture_copied_from": "hierarchy/cmu/thesis-captures.sqlite"
+    }
+   ]
+  },
+  {
+   "name": "Len Bass",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "adjunct_or_courtesy_only",
+   "summary": "every department listing 2016-2026 names this person only as Adjunct: an outside appointment, not a PI lab at the school. Titles listed: Faculty | Adjunct Faculty | Software and Societal Systems Department; listing years 2025-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20250826001715id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "2003cd4c45b34af51f4eede08530b55675acb0fc614230419ed39ff644783d03",
+     "quote": "Len Bass Faculty | Adjunct Faculty | Software and Societal Systems Department"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Amit KR Mandal",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Faculty | Visiting Faculty | Software and Societal Systems Department; listing years 2026-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20260210063230id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "59160cf0e0ad587f5d3c54673df5b283e843ba3d0daf61d99fb5f58a7e18c2d6",
+     "quote": "Amit KR Mandal Faculty | Visiting Faculty | Software and Societal Systems Department"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Anirban Ghosh",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Faculty | Visiting Faculty | Software and Societal Systems Department; listing years 2026-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20260210063230id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "59160cf0e0ad587f5d3c54673df5b283e843ba3d0daf61d99fb5f58a7e18c2d6",
+     "quote": "Anirban Ghosh Faculty | Visiting Faculty | Software and Societal Systems Department"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Arie Stavchansky",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "teaching_only",
+   "summary": "every department listing 2016-2026 names this person only with a teaching title (Lecturer, Instructor, Teaching, of the Practice): teaching faculty, not a PI. Titles listed: Adjunct Instructor; listing years 2024-2024.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20240412165230id_/https://hcii.cmu.edu/people/adjunct-faculty",
+     "sha256": "aa1299d62c50ae3437614b492194e31c216c051a70bdc1880799e3acbc85bd9f",
+     "quote": "Arie Stavchansky Adjunct Instructor"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Ashu Abdul",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Faculty | Visiting Faculty | Software and Societal Systems Department; listing years 2025-2025.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20250826001715id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "2003cd4c45b34af51f4eede08530b55675acb0fc614230419ed39ff644783d03",
+     "quote": "Ashu Abdul Faculty | Visiting Faculty | Software and Societal Systems Department"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Ben Tsai",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "teaching_only",
+   "summary": "every department listing 2016-2026 names this person only with a teaching title (Lecturer, Instructor, Teaching, of the Practice): teaching faculty, not a PI. Titles listed: MHCI Adjunct Instructor; listing years 2024-2024.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20240412165230id_/https://hcii.cmu.edu/people/adjunct-faculty",
+     "sha256": "aa1299d62c50ae3437614b492194e31c216c051a70bdc1880799e3acbc85bd9f",
+     "quote": "Ben Tsai MHCI Adjunct Instructor"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Bhargavi Patel",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "teaching_only",
+   "summary": "every department listing 2016-2026 names this person only with a teaching title (Lecturer, Instructor, Teaching, of the Practice): teaching faculty, not a PI. Titles listed: FIRST Robotics Program Instructor, RI; listing years 2016-2016.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160410060750id_/http://ri.cmu.edu/ri_people.html?fcode=5&menu_id=255&distype=detail&dis_type=detail&list_type=current&selected_letter=AZ",
+     "sha256": "8857a151c5374a5602e0770beafd3b6481c9325da8207dc3adc07f45e24f0838",
+     "quote": "Bhargavi Patel FIRST Robotics Program Instructor, RI"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Divya Balathay",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Faculty | Visiting Faculty | Software and Societal Systems Department; listing years 2025-2025.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20250826001715id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "2003cd4c45b34af51f4eede08530b55675acb0fc614230419ed39ff644783d03",
+     "quote": "Divya Balathay Faculty | Visiting Faculty | Software and Societal Systems Department"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Gangi Reddy Salla",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Faculty | Visiting Faculty | Software and Societal Systems Department; listing years 2026-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20260210063230id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "59160cf0e0ad587f5d3c54673df5b283e843ba3d0daf61d99fb5f58a7e18c2d6",
+     "quote": "Gangi Reddy Salla Faculty | Visiting Faculty | Software and Societal Systems Department"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Hemalatha Rajendran",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Faculty | Visiting Faculty | Software and Societal Systems Department; listing years 2025-2025.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20250826001715id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "2003cd4c45b34af51f4eede08530b55675acb0fc614230419ed39ff644783d03",
+     "quote": "Hemalatha Rajendran Faculty | Visiting Faculty | Software and Societal Systems Department"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Josh Uyheng",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "adjunct_or_courtesy_only",
+   "summary": "every department listing 2016-2026 names this person only as Adjunct: an outside appointment, not a PI lab at the school. Titles listed: Faculty | Adjunct Faculty | Software and Societal Systems Department; listing years 2025-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20250826001715id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "2003cd4c45b34af51f4eede08530b55675acb0fc614230419ed39ff644783d03",
+     "quote": "Josh Uyheng Faculty | Adjunct Faculty | Software and Societal Systems Department"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Manikandan Vazhora Malayil",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Faculty | Visiting Faculty | Software and Societal Systems Department; listing years 2026-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20260210063230id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "59160cf0e0ad587f5d3c54673df5b283e843ba3d0daf61d99fb5f58a7e18c2d6",
+     "quote": "Manikandan Vazhora Malayil Faculty | Visiting Faculty | Software and Societal Systems Department"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Nabor Mendonca",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Visiting Professor; listing years 2017-2018.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20171015095202id_/http://www.isri.cmu.edu:80/people/other-faculty.html",
+     "sha256": "1f1ae9762c435db0a7650645dae317c27ae6f9c0ddb6a534cff5c40a6b345856",
+     "quote": "Nabor Mendonca Visiting Professor"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Naveen Kumar Mahamkali",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Faculty | Visiting Faculty | Software and Societal Systems Department; listing years 2025-2025.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20250826001715id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "2003cd4c45b34af51f4eede08530b55675acb0fc614230419ed39ff644783d03",
+     "quote": "Naveen Kumar Mahamkali Faculty | Visiting Faculty | Software and Societal Systems Department"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Rostislav Rybalov",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "teaching_only",
+   "summary": "every department listing 2016-2026 names this person only with a teaching title (Lecturer, Instructor, Teaching, of the Practice): teaching faculty, not a PI. Titles listed: Adjunct Instructor; listing years 2024-2024.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20240412165230id_/https://hcii.cmu.edu/people/adjunct-faculty",
+     "sha256": "aa1299d62c50ae3437614b492194e31c216c051a70bdc1880799e3acbc85bd9f",
+     "quote": "Rostislav Rybalov Adjunct Instructor"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Sarah Preum",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Faculty | Visiting Faculty | Human-Computer Interaction Institute; listing years 2025-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20250826001715id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "2003cd4c45b34af51f4eede08530b55675acb0fc614230419ed39ff644783d03",
+     "quote": "Sarah Preum Faculty | Visiting Faculty | Human-Computer Interaction Institute"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Sumalatha Saleti",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Faculty | Visiting Faculty | Software and Societal Systems Department; listing years 2025-2025.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20250826001715id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "2003cd4c45b34af51f4eede08530b55675acb0fc614230419ed39ff644783d03",
+     "quote": "Sumalatha Saleti Faculty | Visiting Faculty | Software and Societal Systems Department"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Sunil Kalla Chinnadurai",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Faculty | Visiting Faculty | Software and Societal Systems Department; listing years 2025-2025.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20250826001715id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "2003cd4c45b34af51f4eede08530b55675acb0fc614230419ed39ff644783d03",
+     "quote": "Sunil Kalla Chinnadurai Faculty | Visiting Faculty | Software and Societal Systems Department"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Zeki Nacakci",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Faculty | Visiting Faculty | Computer Science Department; listing years 2025-2025.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20250826001715id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "2003cd4c45b34af51f4eede08530b55675acb0fc614230419ed39ff644783d03",
+     "quote": "Zeki Nacakci Faculty | Visiting Faculty | Computer Science Department"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Charles Kemp",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "already_in_census",
+   "summary": "Already in the CMU census as \"Charles Kemp\" (cmu-additions.json).",
+   "computing_area": null,
+   "home_department": "MLD",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160407184146id_/http://www.ml.cmu.edu:80/people/affiliated-faculty.html",
+     "sha256": "55a658af905f5543eadcf508a9731cc81a235b90da88de5fdd5b626a0b77326b",
+     "quote": "Charles Kemp Assistant Professor",
+     "observed": "2016-04-07"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Estevam Hruschka",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listed on the MLD adjunct-faculty page with his home appointment at the Federal University of Sao Carlos: not CMU faculty/PI.",
+   "computing_area": "NLP / machine learning",
+   "home_department": "Machine Learning (adjunct)",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160413093215id_/http://www.ml.cmu.edu:80/people/adjunct-faculty.html",
+     "sha256": "04bebf3669d3c8e1a99ef4ec25e0f7a07d1cf46328f97adccc0d443871dca722",
+     "quote": "Estevam Hruschka Associate Professor, Computer Science Department, Federal University of Sao Carlos",
+     "observed": "2016-04-13"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Dr. Bruce J. Nelson",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: a named-chair fragment, Mor Harchol-Balter's chair title (\"Dr. Bruce J. Nelson Professor of Computer Science\"), not a separate person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20240224031654id_/https://csd.cmu.edu/people/faculty",
+     "sha256": "5e7d73d641fb50d5de823b37c500c2716e1196507b6090a75eac0974f75ada3c",
+     "quote": "Dr. Bruce J. Nelson Professor of Computer Science",
+     "observed": "2024-02-24"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Kayhan Batmanghelich",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listed on the MLD adjunct page as Assistant Professor at the University of Pittsburgh: wrong school, adjunct at CMU.",
+   "computing_area": "medical-imaging machine learning",
+   "home_department": "Machine Learning (adjunct)",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20170429190114id_/http://ml.cmu.edu:80/people/adjunct-faculty.html",
+     "sha256": "0ba14488cabbbdc428304500ac6034512b0b75f1e85746868c736a4455cbe886",
+     "quote": "Kayhan Batmanghelich Assistant Professor, Department of Biomedical Informatics and Intelligent Systems, University of Pittsburgh",
+     "observed": "2017-04-29"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Mahboobeh Mehrvarz",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listed in the SCS directory as a Post Doctoral Fellow/Associate (affiliation \"Faculty\" is the directory category): a postdoc, not faculty or PI.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20250826001715id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "2003cd4c45b34af51f4eede08530b55675acb0fc614230419ed39ff644783d03",
+     "quote": "\"n\":\"Mahboobeh Mehrvarz\",\"aff\":\"Faculty\",\"titl\":[\"Post Doctoral Fellow\"],\"off\":\"Nsh 2612\",\"em\":\"mmehrvar@andrew.cmu.edu\",\"dept\":[\"Human-Computer Interaction Institute\"]",
+     "observed": "2025-08-26"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Qianru Lyu",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listed in the SCS directory as a Post Doctoral Fellow/Associate (affiliation \"Faculty\" is the directory category): a postdoc, not faculty or PI.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20250826001715id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "2003cd4c45b34af51f4eede08530b55675acb0fc614230419ed39ff644783d03",
+     "quote": "\"n\":\"Qianru Lyu\",\"aff\":\"Faculty\",\"titl\":[\"Post Doctoral Fellow\"],\"off\":\"NSH 2602C\",\"em\":\"qlyu@andrew.cmu.edu\",\"dept\":[\"Human-Computer Interaction Institute\"]",
+     "observed": "2025-08-26"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Alex Robey",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listed in the SCS directory as a Post Doctoral Fellow/Associate (affiliation \"Faculty\" is the directory category): a postdoc, not faculty or PI.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20250826001715id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "2003cd4c45b34af51f4eede08530b55675acb0fc614230419ed39ff644783d03",
+     "quote": "\"n\":\"Alex Robey\",\"aff\":\"Faculty\",\"titl\":[\"Post Doctoral Fellow\"],\"off\":\"Ghc 8114\",\"em\":\"arobey@andrew.cmu.edu\",\"ph\":\"203-807-2033\",\"dept\":[\"Machine Learning Department\"]",
+     "observed": "2025-08-26"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Joseph Earl Reeves",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listed in the SCS directory as a Post Doctoral Fellow/Associate (affiliation \"Faculty\" is the directory category): a postdoc, not faculty or PI.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20260210063230id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "59160cf0e0ad587f5d3c54673df5b283e843ba3d0daf61d99fb5f58a7e18c2d6",
+     "quote": "\"n\":\"Joseph Earl Reeves\",\"aff\":\"Faculty\",\"titl\":[\"Post Doctoral Fellow\"],\"off\":\"Ghc 9114\",\"em\":\"jereeves@cmu.edu\",\"ph\":\"559-907-6745\",\"dept\":[\"Computer Science Department\"]",
+     "observed": "2026-02-10"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Bo-Hao Su",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_pi",
+   "summary": "Listed 2025-2026 only as \"Special Faculty - Contingent\" in the Language Technologies Institute, a temporary/visiting research appointment, not a PI.",
+   "computing_area": null,
+   "home_department": "Language Technologies Institute",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20250826001715id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "2003cd4c45b34af51f4eede08530b55675acb0fc614230419ed39ff644783d03",
+     "quote": "\"n\":\"Bo-Hao Su\",\"aff\":\"Faculty\",\"titl\":[\"Special Faculty - Contingent\"],\"em\":\"bohaos@andrew.cmu.edu\",\"dept\":[\"Language Technologies Institute\"]",
+     "observed": "2025-08-26"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Clement Yat Fung",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listed in the SCS directory as a Post Doctoral Fellow/Associate (affiliation \"Faculty\" is the directory category): a postdoc, not faculty or PI.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20260210063230id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "59160cf0e0ad587f5d3c54673df5b283e843ba3d0daf61d99fb5f58a7e18c2d6",
+     "quote": "\"n\":\"Clement Yat Fung\",\"aff\":\"Faculty\",\"titl\":[\"Post Doctoral Associate\"],\"off\":\"Cic\",\"em\":\"clementf@andrew.cmu.edu\",\"dept\":[\"Software and Societal Systems Department\"]",
+     "observed": "2026-02-10"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Scott Leo Renshaw",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listed in the SCS directory as a Post Doctoral Fellow/Associate (affiliation \"Faculty\" is the directory category): a postdoc, not faculty or PI.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20250826001715id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "2003cd4c45b34af51f4eede08530b55675acb0fc614230419ed39ff644783d03",
+     "quote": "\"n\":\"Scott Leo Renshaw\",\"aff\":\"Faculty\",\"titl\":[\"Post Doctoral Associate\"],\"off\":\"Tcsh\",\"em\":\"srenshaw@cmu.edu\",\"ph\":\"401-391-2894\",\"dept\":[\"Software and Societal Systems Department\"]",
+     "observed": "2025-08-26"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Shomir Wilson",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listed 2016 as Project Scientist supervised by Norman Sadeh: research staff, not faculty.",
+   "computing_area": "privacy / NLP",
+   "home_department": "Institute for Software Research",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160329132705id_/http://isri.cmu.edu:80/people/other-faculty.html",
+     "sha256": "e5c4d591ffeb1031f56553c0c1aba9040a2ed04ee2caaf425561c25ce6ba6471",
+     "quote": "Shomir Wilson Project Scientist",
+     "observed": "2016-03-29"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Sijia Xiao",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listed in the SCS directory as a Post Doctoral Fellow/Associate (affiliation \"Faculty\" is the directory category): a postdoc, not faculty or PI.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20250826001715id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "2003cd4c45b34af51f4eede08530b55675acb0fc614230419ed39ff644783d03",
+     "quote": "\"n\":\"Sijia Xiao\",\"aff\":\"Faculty\",\"titl\":[\"Post Doctoral Fellow\"],\"off\":\"Nsh 2602C\",\"em\":\"xiaosijia@cmu.edu\",\"dept\":[\"Human-Computer Interaction Institute\"]",
+     "observed": "2025-08-26"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Ji Hoon Kim",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_pi",
+   "summary": "Listed 2025-2026 only as \"Special Faculty - Contingent\" in the Language Technologies Institute, a temporary/visiting research appointment, not a PI.",
+   "computing_area": null,
+   "home_department": "Language Technologies Institute",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20250826001715id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "2003cd4c45b34af51f4eede08530b55675acb0fc614230419ed39ff644783d03",
+     "quote": "\"n\":\"Ji Hoon Kim\",\"aff\":\"Faculty\",\"titl\":[\"Special Faculty - Contingent\"],\"em\":\"jihoonk3@andrew.cmu.edu\",\"dept\":[\"Language Technologies Institute\"]",
+     "observed": "2025-08-26"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Abinay Reddy Naini",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_pi",
+   "summary": "Listed 2025-2026 only as \"Special Faculty - Contingent\" in the Language Technologies Institute, a temporary/visiting research appointment, not a PI.",
+   "computing_area": null,
+   "home_department": "Language Technologies Institute",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20250826001715id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "2003cd4c45b34af51f4eede08530b55675acb0fc614230419ed39ff644783d03",
+     "quote": "\"n\":\"Abinay Reddy Naini\",\"aff\":\"Faculty\",\"titl\":[\"Special Faculty - Contingent\"],\"em\":\"anaini@andrew.cmu.edu\",\"dept\":[\"Language Technologies Institute\"]",
+     "observed": "2025-08-26"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Chan-Jan Hsu",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_pi",
+   "summary": "Listed 2025-2026 only as \"Special Faculty - Contingent\" in the Language Technologies Institute, a temporary/visiting research appointment, not a PI.",
+   "computing_area": null,
+   "home_department": "Language Technologies Institute",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20250826001715id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "2003cd4c45b34af51f4eede08530b55675acb0fc614230419ed39ff644783d03",
+     "quote": "\"n\":\"Chan-Jan Hsu\",\"aff\":\"Faculty\",\"titl\":[\"Special Faculty - Contingent\"],\"em\":\"chanjanh@andrew.cmu.edu\",\"dept\":[\"Language Technologies Institute\"]",
+     "observed": "2025-08-26"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Henry Chai",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_pi",
+   "summary": "Assistant Teaching Professor: teaching-track, not a PI.",
+   "computing_area": "machine learning education",
+   "home_department": "Machine Learning",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20220930092156id_/https://www.ml.cmu.edu/people/core-faculty.html",
+     "sha256": "4cb08c8f6291052058072947ab022c5bf626ba58dfa389ba07a3830eccfb2bf2",
+     "quote": "Henry Chai Assistant Teaching Professor, Machine Learning, School of Computer Science",
+     "observed": "2022-09-30"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Vikram Mohanty",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listed in the SCS directory as a Post Doctoral Fellow/Associate (affiliation \"Faculty\" is the directory category): a postdoc, not faculty or PI.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20250826001715id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "2003cd4c45b34af51f4eede08530b55675acb0fc614230419ed39ff644783d03",
+     "quote": "\"n\":\"Vikram Mohanty\",\"aff\":\"Faculty\",\"titl\":[\"Post Doctoral Fellow\"],\"off\":\"4609WINT\",\"em\":\"vikrammohanty@cmu.edu\",\"dept\":[\"Human-Computer Interaction Institute\"]",
+     "observed": "2025-08-26"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Alexander Polok",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_pi",
+   "summary": "Listed 2025-2026 only as \"Special Faculty - Contingent\" in the Language Technologies Institute, a temporary/visiting research appointment, not a PI.",
+   "computing_area": null,
+   "home_department": "Language Technologies Institute",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20260210063230id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "59160cf0e0ad587f5d3c54673df5b283e843ba3d0daf61d99fb5f58a7e18c2d6",
+     "quote": "\"n\":\"Alexander Polok\",\"aff\":\"Faculty\",\"titl\":[\"Special Faculty - Contingent\"],\"em\":\"apolok@andrew.cmu.edu\",\"dept\":[\"Language Technologies Institute\"]",
+     "observed": "2026-02-10"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Carlos Guestrin",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listed 2016-2017 on the MLD adjunct page as Professor at the University of Washington (left CMU in 2012): not CMU faculty in-window.",
+   "computing_area": "machine learning",
+   "home_department": "Machine Learning (adjunct)",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160413093215id_/http://www.ml.cmu.edu:80/people/adjunct-faculty.html",
+     "sha256": "04bebf3669d3c8e1a99ef4ec25e0f7a07d1cf46328f97adccc0d443871dca722",
+     "quote": "Carlos Guestrin Professor of Computer Science & Engineering, University of Washington",
+     "observed": "2016-04-13"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Jose Gonzalez-Mora",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Directory title is a commercialization specialist at NREC (staff role), not faculty.",
+   "computing_area": null,
+   "home_department": "National Robotics Engineering Center",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20261017184921id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "98f4ff9e6d88d80f6b29efea8e5a09919ca046c9d3d79d0414d4e7fffcb408d3",
+     "quote": "\"n\":\"Jose Gonzalez-Mora\",\"aff\":\"Faculty\",\"titl\":[\"Principal Commercialization Specialist\"],\"off\":\"NREC 278\",\"em\":\"jgmora@andrew.cmu.edu\",\"ph\":\"412-681-6900\",\"dept\":[\"National Robotics Engineering Center\"]",
+     "observed": "2026-10-17"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Ashok Kumar",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Directory title is Director of Digital Government, Executive Education: an administrative role, not a research faculty PI.",
+   "computing_area": null,
+   "home_department": "Software and Societal Systems",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20250826001715id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "2003cd4c45b34af51f4eede08530b55675acb0fc614230419ed39ff644783d03",
+     "quote": "\"n\":\"Ashok Kumar\",\"aff\":\"Faculty\",\"titl\":[\"Director of Digital Government, Executive Education\"],\"off\":\"Tcsh 415\",\"em\":\"ashokks@cmu.edu\",\"dept\":[\"Software and Societal Systems Department\"]",
+     "observed": "2025-08-26"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Baolong Bi",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_pi",
+   "summary": "Listed 2025-2026 only as \"Special Faculty - Contingent\" in the Language Technologies Institute, a temporary/visiting research appointment, not a PI.",
+   "computing_area": null,
+   "home_department": "Language Technologies Institute",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20250826001715id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "2003cd4c45b34af51f4eede08530b55675acb0fc614230419ed39ff644783d03",
+     "quote": "\"n\":\"Baolong Bi\",\"aff\":\"Faculty\",\"titl\":[\"Special Faculty - Contingent\"],\"em\":\"baolongb@andrew.cmu.edu\",\"dept\":[\"Language Technologies Institute\"]",
+     "observed": "2025-08-26"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Christopher Randolph Baker",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Directory title is a commercialization specialist at NREC (staff role), not faculty.",
+   "computing_area": null,
+   "home_department": "National Robotics Engineering Center",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20261017184921id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "98f4ff9e6d88d80f6b29efea8e5a09919ca046c9d3d79d0414d4e7fffcb408d3",
+     "quote": "\"n\":\"Christopher Randolph Baker\",\"aff\":\"Faculty\",\"titl\":[\"Senior Commercialization Specialist\"],\"off\":\"NREC 256\",\"em\":\"tallbaker@cmu.edu\",\"ph\":\"412-681-6900\",\"dept\":[\"National Robotics Engineering Center\"]",
+     "observed": "2026-10-17"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Dirk Kalp",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listed with affiliation \"Sponsored\" in the SCS Dean's Office (a sponsored directory account), not faculty.",
+   "computing_area": null,
+   "home_department": "SCS Dean's Office",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20261017184921id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "98f4ff9e6d88d80f6b29efea8e5a09919ca046c9d3d79d0414d4e7fffcb408d3",
+     "quote": "\"n\":\"Dirk Kalp\",\"aff\":\"Sponsored\",\"em\":\"kalp@cs.cmu.edu\",\"dept\":[\"SCS Dean's Office\"]",
+     "observed": "2026-10-17"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Eduardo Diniz",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Directory title is Science and Education Director of the Pitt-CMU MR center: a center staff role, not a PI appointment.",
+   "computing_area": null,
+   "home_department": "Psychology; Pitt-CMU MR center",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20261017184921id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "98f4ff9e6d88d80f6b29efea8e5a09919ca046c9d3d79d0414d4e7fffcb408d3",
+     "quote": "\"n\":\"Eduardo Diniz\",\"aff\":\"Faculty\",\"titl\":[\"Science and Education Director\"],\"off\":\"Mi\",\"em\":\"eduardodiniz@cmu.edu\",\"dept\":[\"Psychology\",\"Pitt - Cmu Mr Center\"]",
+     "observed": "2026-10-17"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "James Dougherty",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listed with affiliation \"Sponsored\" in the SCS Dean's Office (a sponsored directory account), not faculty.",
+   "computing_area": null,
+   "home_department": "SCS Dean's Office",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20261017184921id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "98f4ff9e6d88d80f6b29efea8e5a09919ca046c9d3d79d0414d4e7fffcb408d3",
+     "quote": "\"n\":\"James Dougherty\",\"aff\":\"Sponsored\",\"em\":\"jamesdou@andrew.cmu.edu\",\"dept\":[\"SCS Dean's Office\"]",
+     "observed": "2026-10-17"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Joseph Traub",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: a named-chair fragment, Srinivasan Seshan's chair title (\"Joseph Traub Professor of Computer Science; Department Head\"); Traub himself died in 2015, not a separate person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20240803141029id_/https://www.csd.cs.cmu.edu/people/faculty?page=2",
+     "sha256": "d84d4b4e4314fe806f0ae0651caa677ad6c8eeff1ede4cb7e81d5a2dd89e04df",
+     "quote": "Joseph Traub Professor of Computer Science; Department Head, Computer Science Department",
+     "observed": "2024-08-03"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Manuel Rosso-Llopart",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "already_in_census",
+   "summary": "Already in the CMU census as \"Mel Rosso-Llopart\" (cmu-faculty.json).",
+   "computing_area": null,
+   "home_department": "S3D",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160329135952id_/http://www.isri.cmu.edu:80/people/core-faculty.html",
+     "sha256": "1402752d870d0eed3ec57133497b8ed32ab2813955cf207dc8dbb515470cab06",
+     "quote": "Manuel Rosso-Llopart Director of Distance Education; Associate Teaching Professor, MSE",
+     "observed": "2016-03-29"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Pat Virtue",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "already_in_census",
+   "summary": "Already in the CMU census as \"Patrick Virtue\" (cmu-faculty.json).",
+   "computing_area": null,
+   "home_department": "CSD/MLD",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20190523192623id_/https://www.ml.cmu.edu/people/core-faculty.html",
+     "sha256": "206dc354b8dc2860bbef250868f0a71b79ac3766b24053d4e84f58848eb46abb",
+     "quote": "Pat Virtue Assistant Teaching Professor, School of Computer Science",
+     "observed": "2019-05-23"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Songwen Zhao",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_pi",
+   "summary": "Listed 2025-2026 only as \"Special Faculty - Contingent\" in the Language Technologies Institute, a temporary/visiting research appointment, not a PI.",
+   "computing_area": null,
+   "home_department": "Language Technologies Institute",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20250826001715id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "2003cd4c45b34af51f4eede08530b55675acb0fc614230419ed39ff644783d03",
+     "quote": "\"n\":\"Songwen Zhao\",\"aff\":\"Faculty\",\"titl\":[\"Special Faculty - Contingent\"],\"em\":\"songwenz@andrew.cmu.edu\",\"dept\":[\"Language Technologies Institute\"]",
+     "observed": "2025-08-26"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Xun Gong",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_pi",
+   "summary": "Listed 2025-2026 only as \"Special Faculty - Contingent\" in the Language Technologies Institute, a temporary/visiting research appointment, not a PI.",
+   "computing_area": null,
+   "home_department": "Language Technologies Institute",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20260210063230id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "59160cf0e0ad587f5d3c54673df5b283e843ba3d0daf61d99fb5f58a7e18c2d6",
+     "quote": "\"n\":\"Xun Gong\",\"aff\":\"Faculty\",\"titl\":[\"Special Faculty - Contingent\"],\"em\":\"xungong@cmu.edu\",\"dept\":[\"Language Technologies Institute\"]",
+     "observed": "2026-02-10"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "All CSD",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: page navigation/heading text, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160512112516id_/http://www.csd.cs.cmu.edu:80/directory/faculty",
+     "sha256": "eef847178be645a9ae8263712fdf50ec8da905de89d62fed50ee45ef62a30dd1",
+     "quote": "All CSD Faculty",
+     "observed": "2016-05-12"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "All Current People",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: page navigation/heading text, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160410101111id_/http://ri.cmu.edu/ri_people.html?fcode=1&menu_id=251&distype=detail&dis_type=detail&list_type=current&selected_letter=AZ",
+     "sha256": "182912269cccd46969fec6ae19806e62df29a5af7b478a7b4c88944b25484649",
+     "quote": "All Current People Faculty",
+     "observed": "2016-04-10"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "All RI People",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: page navigation/heading text, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20180926101650id_/http://ri.cmu.edu/people/faculty/",
+     "sha256": "b7564ba5b26e533970bdf0bcf34e6a672fe3d8e8c31c749df2bbc6781f8f3d4e",
+     "quote": "All RI People Faculty",
+     "observed": "2018-09-26"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Best Paper Awards",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: page navigation/heading text, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20170929092303id_/http://www.ml.cmu.edu:80/people/core-faculty.html",
+     "sha256": "5d80ce88949c1c9973b973cbf96bf5474db9359bb55918a13813c9bcf4b54c66",
+     "quote": "Best Paper Awards Faculty Awards",
+     "observed": "2017-09-29"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Business Office",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: page navigation/heading text, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160329135952id_/http://www.isri.cmu.edu:80/people/core-faculty.html",
+     "sha256": "1402752d870d0eed3ec57133497b8ed32ab2813955cf207dc8dbb515470cab06",
+     "quote": "Business Office | Institute for Software Research | > People > Core Faculty",
+     "observed": "2016-03-29"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Cadence Design Systems",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: a named-chair fragment, Maria-Florina Balcan's chair title (\"Cadence Design Systems Professor\"), not a separate person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20240925124730id_/https://csd.cmu.edu/people/faculty",
+     "sha256": "f7effe7d4bd7b384e2c722f4f9ca869dd72869005f1e90c1c3de7b8640f47392",
+     "quote": "Cadence Design Systems Professor",
+     "observed": "2024-09-25"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Careers Overview",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: page navigation/heading text, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160410101111id_/http://ri.cmu.edu/ri_people.html?fcode=1&menu_id=251&distype=detail&dis_type=detail&list_type=current&selected_letter=AZ",
+     "sha256": "182912269cccd46969fec6ae19806e62df29a5af7b478a7b4c88944b25484649",
+     "quote": "Careers Overview Faculty Positions",
+     "observed": "2016-04-10"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Congratulations CBD",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: page navigation/heading text, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20200504151210id_/http://www.cbd.cmu.edu:80/directory/faculty/",
+     "sha256": "76569a1e691df839df8d35e87ddc89eb7494eec09dfea144d8a4b472f2b9bebf",
+     "quote": "Congratulations CBD Faculty Member @jmuiuc on your accomplishment!🎉 http://t.co/ULzDOmnfjR",
+     "observed": "2020-05-04"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Course Profiles",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: page navigation/heading text, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20180316213044id_/http://www.cbd.cmu.edu:80/directory/faculty/voting-faculty/",
+     "sha256": "e10847b009ad8c15dfdcb130c743e41bb39825543b4170d356f50edaed2742b1",
+     "quote": "Course Profiles 02-201/601 Programming for Scientists",
+     "observed": "2018-03-16"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Current Students",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: page navigation/heading text, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160512112516id_/http://www.csd.cs.cmu.edu:80/directory/faculty",
+     "sha256": "eef847178be645a9ae8263712fdf50ec8da905de89d62fed50ee45ef62a30dd1",
+     "quote": "Current Students Faculty",
+     "observed": "2016-05-12"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Dahee Yang",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_pi",
+   "summary": "Listed 2025-2026 only as \"Special Faculty - Contingent\" in the Language Technologies Institute, a temporary/visiting research appointment, not a PI.",
+   "computing_area": null,
+   "home_department": "Language Technologies Institute",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20260210063230id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "59160cf0e0ad587f5d3c54673df5b283e843ba3d0daf61d99fb5f58a7e18c2d6",
+     "quote": "\"n\":\"Dahee Yang\",\"aff\":\"Faculty\",\"titl\":[\"Special Faculty - Contingent\"],\"em\":\"daheey@andrew.cmu.edu\",\"dept\":[\"Language Technologies Institute\"]",
+     "observed": "2026-02-10"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Doctoral Resources",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: page navigation/heading text, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20250401071245id_/https://csd.cmu.edu/people/faculty",
+     "sha256": "55664636b7b7b641a8493b56e9f07fc8c12c9bfdb44509d54e13d6acfb4e8333",
+     "quote": "Doctoral Resources Faculty Resources",
+     "observed": "2025-04-01"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Dr. Frederick A. Schwertz",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: a named-chair fragment, Veronica Hinman's chair title (\"Dr. Frederick A. Schwertz Distinguished Professor Life Sciences\"), not a separate person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20240616112559id_/https://cbd.cmu.edu/people/voting-faculty.html",
+     "sha256": "c6b2a4287e3a53f71475de0c44fd9134fb9f13f568b5a27a8f820cdc9f252421",
+     "quote": "Dr. Frederick A. Schwertz Distinguished Professor Life Sciences",
+     "observed": "2024-06-16"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Emily Price",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listed with affiliation \"Sponsored\" in the SCS Dean's Office (a sponsored directory account), not faculty.",
+   "computing_area": null,
+   "home_department": "SCS Dean's Office",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20261017184921id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "98f4ff9e6d88d80f6b29efea8e5a09919ca046c9d3d79d0414d4e7fffcb408d3",
+     "quote": "\"n\":\"Emily Price\",\"aff\":\"Sponsored\",\"em\":\"emilyprice@cmu.edu\",\"dept\":[\"SCS Dean's Office\"]",
+     "observed": "2026-10-17"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Eric P.",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "already_in_census",
+   "summary": "Listing parse truncated the name; Already in the CMU census as \"Eric Xing\" (cmu-faculty.json).",
+   "computing_area": null,
+   "home_department": "CBD/CSD/LTI/MLD",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160512112516id_/http://www.csd.cs.cmu.edu:80/directory/faculty",
+     "sha256": "eef847178be645a9ae8263712fdf50ec8da905de89d62fed50ee45ef62a30dd1",
+     "quote": "Eric P. Professor",
+     "observed": "2016-05-12"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Eun Sun (Terry) Lee",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "already_in_census",
+   "summary": "Already in the CMU census as \"Terry E Lee\" (cmu-faculty.json). Name match \"Eun Sun (Terry) Lee\" -> \"Terry E Lee\" is by nickname and teaching rank; confirm.",
+   "computing_area": null,
+   "home_department": "S3D",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160329135952id_/http://www.isri.cmu.edu:80/people/core-faculty.html",
+     "sha256": "1402752d870d0eed3ec57133497b8ed32ab2813955cf207dc8dbb515470cab06",
+     "quote": "Eun Sun (Terry) Lee Assistant Teaching Professor",
+     "observed": "2016-03-29"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Former RI Members",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: page navigation/heading text, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160410101111id_/http://ri.cmu.edu/ri_people.html?fcode=1&menu_id=251&distype=detail&dis_type=detail&list_type=current&selected_letter=AZ",
+     "sha256": "182912269cccd46969fec6ae19806e62df29a5af7b478a7b4c88944b25484649",
+     "quote": "Former RI Members Faculty",
+     "observed": "2016-04-10"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Franky Spektor",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listed in the SCS directory as a Post Doctoral Fellow/Associate (affiliation \"Faculty\" is the directory category): a postdoc, not faculty or PI.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20260210063230id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "59160cf0e0ad587f5d3c54673df5b283e843ba3d0daf61d99fb5f58a7e18c2d6",
+     "quote": "\"n\":\"Franky Spektor\",\"aff\":\"Faculty\",\"titl\":[\"Post Doctoral Fellow\"],\"off\":\"Nsh 3602\",\"em\":\"fspektor@andrew.cmu.edu\",\"dept\":[\"Human-Computer Interaction Institute\"]",
+     "observed": "2026-02-10"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Full List",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: page navigation/heading text, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160512112516id_/http://www.csd.cs.cmu.edu:80/directory/faculty",
+     "sha256": "eef847178be645a9ae8263712fdf50ec8da905de89d62fed50ee45ef62a30dd1",
+     "quote": "Full List Faculty",
+     "observed": "2016-05-12"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Gabriel Jacob Goldman",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Directory title is a commercialization specialist at NREC (staff role), not faculty.",
+   "computing_area": null,
+   "home_department": "National Robotics Engineering Center",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20261017184921id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "98f4ff9e6d88d80f6b29efea8e5a09919ca046c9d3d79d0414d4e7fffcb408d3",
+     "quote": "\"n\":\"Gabriel Jacob Goldman\",\"aff\":\"Faculty\",\"titl\":[\"Senior Commercialization Specialist\"],\"off\":\"NREC 279\",\"em\":\"ggoldman@andrew.cmu.edu\",\"dept\":[\"National Robotics Engineering Center\"]",
+     "observed": "2026-10-17"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "J. Zico",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "already_in_census",
+   "summary": "Listing parse truncated the name; Already in the CMU census as \"Zico Kolter\" (cmu-faculty.json).",
+   "computing_area": null,
+   "home_department": "CSD/MLD/RI/S3D",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160512112516id_/http://www.csd.cs.cmu.edu:80/directory/faculty",
+     "sha256": "eef847178be645a9ae8263712fdf50ec8da905de89d62fed50ee45ef62a30dd1",
+     "quote": "J. Zico Assistant Professor; Courtesy Faculty Member",
+     "observed": "2016-05-12"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "James Skees",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listed with affiliation \"Sponsored\" in the SCS Dean's Office (a sponsored directory account), not faculty.",
+   "computing_area": null,
+   "home_department": "SCS Dean's Office",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20250826001715id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "2003cd4c45b34af51f4eede08530b55675acb0fc614230419ed39ff644783d03",
+     "quote": "\"n\":\"James Skees\",\"aff\":\"Sponsored\",\"em\":\"skees@cs.cmu.edu\",\"dept\":[\"SCS Dean's Office\"]",
+     "observed": "2025-08-26"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Javier Camara Moreno",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "already_in_census",
+   "summary": "Already in the CMU census as \"Javier Camara\" (cmu-faculty.json).",
+   "computing_area": null,
+   "home_department": "S3D",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160329135952id_/http://www.isri.cmu.edu:80/people/core-faculty.html",
+     "sha256": "1402752d870d0eed3ec57133497b8ed32ab2813955cf207dc8dbb515470cab06",
+     "quote": "Javier Camara Moreno Systems Scientist",
+     "observed": "2016-03-29"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Kevin McDade",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_pi",
+   "summary": "Listed on the CBD adjunct-faculty page as Associate Teaching Professor at Penn State Shenango: teaching, other institution.",
+   "computing_area": "computational biology education",
+   "home_department": "Computational Biology (adjunct)",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20210423005644id_/http://cbd.cmu.edu/people/adjunct-faculty.html",
+     "sha256": "5d137eba0bed161af5b7266129d2cfed3bf961f0e5243e58c16f13d8b807de8f",
+     "quote": "Kevin McDade Associate Teaching Professor",
+     "observed": "2021-04-23"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Kouhei Kiyoyama",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_pi",
+   "summary": "Listed 2025-2026 only as \"Special Faculty - Contingent\" in the Language Technologies Institute, a temporary/visiting research appointment, not a PI.",
+   "computing_area": null,
+   "home_department": "Language Technologies Institute",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20250826001715id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "2003cd4c45b34af51f4eede08530b55675acb0fc614230419ed39ff644783d03",
+     "quote": "\"n\":\"Kouhei Kiyoyama\",\"aff\":\"Faculty\",\"titl\":[\"Special Faculty - Contingent\"],\"em\":\"kkiyoyam@andrew.cmu.edu\",\"dept\":[\"Language Technologies Institute\"]",
+     "observed": "2025-08-26"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "LTI Core",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: page navigation/heading text, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20241003162012id_/https://lti.cmu.edu/people/faculty/index.html",
+     "sha256": "7af8c5ab597184f1a5f6c5d2ec41f86702190a889dc6767e0490fe7676a54652",
+     "quote": "LTI Core Faculty",
+     "observed": "2024-10-03"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Learn More About Our",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: page navigation/heading text, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20161008172114id_/http://www.cbd.cmu.edu:80/directory/faculty/",
+     "sha256": "711ac2d728a0299099e83c7c6c09baa9427713b05c6cd0488f206f458a6676e5",
+     "quote": "Learn More About Our Faculty!",
+     "observed": "2016-10-08"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Luz Maria Martinez Lucas",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_pi",
+   "summary": "Listed 2025-2026 only as \"Special Faculty - Contingent\" in the Language Technologies Institute, a temporary/visiting research appointment, not a PI.",
+   "computing_area": null,
+   "home_department": "Language Technologies Institute",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20250826001715id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "2003cd4c45b34af51f4eede08530b55675acb0fc614230419ed39ff644783d03",
+     "quote": "\"n\":\"Luz Maria Martinez Lucas\",\"aff\":\"Faculty\",\"titl\":[\"Special Faculty - Contingent\"],\"em\":\"luzmarim@andrew.cmu.edu\",\"dept\":[\"Language Technologies Institute\"]",
+     "observed": "2025-08-26"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "MHCI Capstone Projects",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: page navigation/heading text, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20240423012420id_/https://hcii.cmu.edu/people/faculty",
+     "sha256": "87287d7ce3647ca857a4ad1f1d30105f71a2e09853605ec515902b2c7bedd58b",
+     "quote": "MHCI Capstone Projects Affiliated Faculty Projects",
+     "observed": "2024-04-23"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Manuela M.",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "already_in_census",
+   "summary": "Listing parse truncated the name; Already in the CMU census as \"Manuela Veloso\" (cmu-faculty.json).",
+   "computing_area": null,
+   "home_department": "CSD/MLD/RI",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160512112516id_/http://www.csd.cs.cmu.edu:80/directory/faculty",
+     "sha256": "eef847178be645a9ae8263712fdf50ec8da905de89d62fed50ee45ef62a30dd1",
+     "quote": "Manuela M. Herbert A. Simon University Professor Of Computer Science; Courtesy Faculty Member, Robotics Institute",
+     "observed": "2016-05-12"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Mirriam Banda",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listed in the SCS directory as a Post Doctoral Fellow/Associate (affiliation \"Faculty\" is the directory category): a postdoc, not faculty or PI.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20260210063230id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "59160cf0e0ad587f5d3c54673df5b283e843ba3d0daf61d99fb5f58a7e18c2d6",
+     "quote": "\"n\":\"Mirriam Banda\",\"aff\":\"Faculty\",\"titl\":[\"Post Doctoral Fellow\"],\"off\":\"NSH 4615\",\"em\":\"mbanda@andrew.cmu.edu\",\"dept\":[\"Human-Computer Interaction Institute\"]",
+     "observed": "2026-02-10"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Osbel Lopez-Francisco",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_pi",
+   "summary": "Listed 2025-2026 only as \"Special Faculty - Contingent\" in the Language Technologies Institute, a temporary/visiting research appointment, not a PI.",
+   "computing_area": null,
+   "home_department": "Language Technologies Institute",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20250826001715id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "2003cd4c45b34af51f4eede08530b55675acb0fc614230419ed39ff644783d03",
+     "quote": "\"n\":\"Osbel Lopez-Francisco\",\"aff\":\"Faculty\",\"titl\":[\"Special Faculty - Contingent\"],\"em\":\"olopezfr@andrew.cmu.edu\",\"dept\":[\"Language Technologies Institute\"]",
+     "observed": "2025-08-26"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Past Postdoctoral Fellows",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: page navigation/heading text, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20180316213044id_/http://www.cbd.cmu.edu:80/directory/faculty/voting-faculty/",
+     "sha256": "e10847b009ad8c15dfdcb130c743e41bb39825543b4170d356f50edaed2742b1",
+     "quote": "Past Postdoctoral Fellows Special Faculty",
+     "observed": "2018-03-16"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Patricia Rote",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listed with affiliation \"Sponsored\" in the SCS Dean's Office (a sponsored directory account), not faculty.",
+   "computing_area": null,
+   "home_department": "SCS Dean's Office",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20261017184921id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "98f4ff9e6d88d80f6b29efea8e5a09919ca046c9d3d79d0414d4e7fffcb408d3",
+     "quote": "\"n\":\"Patricia Rote\",\"aff\":\"Sponsored\",\"em\":\"prote@andrew.cmu.edu\",\"dept\":[\"SCS Dean's Office\"]",
+     "observed": "2026-10-17"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Ph.D. Defense Checklist",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: page navigation/heading text, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20251025021703id_/https://lti.cmu.edu/people/faculty/index.html",
+     "sha256": "905a88df2e289636cab8897e0b7f5292e7732beb7c4d18951252b90d01971c66",
+     "quote": "Ph.D. Defense Checklist LTI Faculty Intranet",
+     "observed": "2025-10-25"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Philip L Lehman",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_pi",
+   "summary": "Directory title is Associate Dean for Strategic Initiatives: administrative, no lab or advising.",
+   "computing_area": null,
+   "home_department": "SCS Dean's Office",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20261017184921id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "98f4ff9e6d88d80f6b29efea8e5a09919ca046c9d3d79d0414d4e7fffcb408d3",
+     "quote": "\"n\":\"Philip L Lehman\",\"aff\":\"Faculty\",\"titl\":[\"Associate Dean for Strategic Initiatives\"],\"off\":\"Ghc 6029\",\"em\":\"Philip.Lehman@cs.cmu.edu\",\"ph\":\"412-268-9962\",\"dept\":[\"SCS Dean's Office\"]",
+     "observed": "2026-10-17"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Postdoctoral Fellows",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: page navigation/heading text, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20170426080729id_/http://www.cbd.cmu.edu:80/directory/faculty/voting-faculty/",
+     "sha256": "bff4bd0cefc591808f60234f5182b362f827f8b0783da25c8554f85da6cdacda",
+     "quote": "Postdoctoral Fellows Special Faculty",
+     "observed": "2017-04-26"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Robotics Funds",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: page navigation/heading text, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160410101111id_/http://ri.cmu.edu/ri_people.html?fcode=1&menu_id=251&distype=detail&dis_type=detail&list_type=current&selected_letter=AZ",
+     "sha256": "182912269cccd46969fec6ae19806e62df29a5af7b478a7b4c88944b25484649",
+     "quote": "Robotics Funds home > People > Faculty",
+     "observed": "2016-04-10"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Roy Weil",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listed with affiliation \"Sponsored\" in the SCS Dean's Office (a sponsored directory account), not faculty.",
+   "computing_area": null,
+   "home_department": "SCS Dean's Office",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20261017184921id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "98f4ff9e6d88d80f6b29efea8e5a09919ca046c9d3d79d0414d4e7fffcb408d3",
+     "quote": "\"n\":\"Roy Weil\",\"aff\":\"Sponsored\",\"em\":\"rweil@andrew.cmu.edu\",\"dept\":[\"SCS Dean's Office\"]",
+     "observed": "2026-10-17"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Seyi Olojo",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_pi",
+   "summary": "Listed 2025-2026 only as \"Special Faculty - Contingent\" in the Language Technologies Institute, a temporary/visiting research appointment, not a PI.",
+   "computing_area": null,
+   "home_department": "Language Technologies Institute",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20260210063230id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "59160cf0e0ad587f5d3c54673df5b283e843ba3d0daf61d99fb5f58a7e18c2d6",
+     "quote": "\"n\":\"Seyi Olojo\",\"aff\":\"Faculty\",\"titl\":[\"Special Faculty - Contingent\"],\"em\":\"solojo@andrew.cmu.edu\",\"dept\":[\"Language Technologies Institute\"]",
+     "observed": "2026-02-10"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Shandong Wu",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listed on the MLD adjunct page as Assistant Professor of Radiology at the University of Pittsburgh: wrong school, adjunct at CMU.",
+   "computing_area": "medical-imaging AI",
+   "home_department": "Machine Learning (adjunct)",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20171006104153id_/http://www.ml.cmu.edu:80/people/adjunct-faculty.html",
+     "sha256": "64f19e4ef59db0eb58d57164d630f8c4e3e4fb14ec1bd097088db217b5f28cf0",
+     "quote": "Shandong Wu Assistant Professor of Radiology, Biomedical Informatics, and Bioengineering, University of Pittsburgh",
+     "observed": "2017-10-06"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Student Resources",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: page navigation/heading text, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20230921224630id_/https://csd.cmu.edu/people/faculty",
+     "sha256": "e2efca139da655e9f76ed81da66f47edc2510d57c6345336ffe02d0faef7ad1f",
+     "quote": "Student Resources Faculty Resources",
+     "observed": "2023-09-21"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Susan Hernishin",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listed with affiliation \"Sponsored\" in the SCS Dean's Office (a sponsored directory account), not faculty.",
+   "computing_area": null,
+   "home_department": "SCS Dean's Office",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20261017184921id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "98f4ff9e6d88d80f6b29efea8e5a09919ca046c9d3d79d0414d4e7fffcb408d3",
+     "quote": "\"n\":\"Susan Hernishin\",\"aff\":\"Sponsored\",\"em\":\"shernish@andrew.cmu.edu\",\"dept\":[\"SCS Dean's Office\"]",
+     "observed": "2026-10-17"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Thomas Keating",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listed with affiliation \"Sponsored\" in the SCS Dean's Office (a sponsored directory account), not faculty.",
+   "computing_area": null,
+   "home_department": "SCS Dean's Office",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20261017184921id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "98f4ff9e6d88d80f6b29efea8e5a09919ca046c9d3d79d0414d4e7fffcb408d3",
+     "quote": "\"n\":\"Thomas Keating\",\"aff\":\"Sponsored\",\"em\":\"tk1w@andrew.cmu.edu\",\"dept\":[\"SCS DEAN'S OFFICE\"]",
+     "observed": "2026-10-17"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Tze Hong Ti",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_pi",
+   "summary": "Listed 2025-2026 only as \"Special Faculty - Contingent\" in the Language Technologies Institute, a temporary/visiting research appointment, not a PI.",
+   "computing_area": null,
+   "home_department": "Language Technologies Institute",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20250826001715id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "2003cd4c45b34af51f4eede08530b55675acb0fc614230419ed39ff644783d03",
+     "quote": "\"n\":\"Tze Hong Ti\",\"aff\":\"Faculty\",\"titl\":[\"Special Faculty - Contingent\"],\"em\":\"tti@andrew.cmu.edu\",\"dept\":[\"Language Technologies Institute\"]",
+     "observed": "2025-08-26"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "U.a. And Helen Whitaker",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: a named-chair fragment, Takeo Kanade's chair title (\"U.A. and Helen Whitaker University Professor\"), not a separate person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160512112516id_/http://www.csd.cs.cmu.edu:80/directory/faculty",
+     "sha256": "eef847178be645a9ae8263712fdf50ec8da905de89d62fed50ee45ef62a30dd1",
+     "quote": "U.a. And Helen Whitaker University Professor",
+     "observed": "2016-05-12"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Visit LTI",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: page navigation/heading text, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20241003162012id_/https://lti.cmu.edu/people/faculty/index.html",
+     "sha256": "7af8c5ab597184f1a5f6c5d2ec41f86702190a889dc6767e0490fe7676a54652",
+     "quote": "Visit LTI LTI Faculty Intranet",
+     "observed": "2024-10-03"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Wesley Chew Jia Jun",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_pi",
+   "summary": "Listed 2025-2026 only as \"Special Faculty - Contingent\" in the Language Technologies Institute, a temporary/visiting research appointment, not a PI.",
+   "computing_area": null,
+   "home_department": "Language Technologies Institute",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20250826001715id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "2003cd4c45b34af51f4eede08530b55675acb0fc614230419ed39ff644783d03",
+     "quote": "\"n\":\"Wesley Chew Jia Jun\",\"aff\":\"Faculty\",\"titl\":[\"Special Faculty - Contingent\"],\"em\":\"wchewjia@andrew.cmu.edu\",\"dept\":[\"Language Technologies Institute\"]",
+     "observed": "2025-08-26"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Zeliha Dilsun",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "already_in_census",
+   "summary": "Already in the CMU census as \"Zeliha Dilsun Kaynar\" (cmu-faculty.json).",
+   "computing_area": null,
+   "home_department": "CSD",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160512112516id_/http://www.csd.cs.cmu.edu:80/directory/faculty",
+     "sha256": "eef847178be645a9ae8263712fdf50ec8da905de89d62fed50ee45ef62a30dd1",
+     "quote": "Zeliha Dilsun Assistant Teaching Professor",
+     "observed": "2016-05-12"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "ew Bagnell",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "already_in_census",
+   "summary": "Listing parse truncated the name; Already in the CMU census as \"J. Andrew (Drew) Bagnell\" (cmu-faculty.json).",
+   "computing_area": null,
+   "home_department": "MLD/RI",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160407184146id_/http://www.ml.cmu.edu:80/people/affiliated-faculty.html",
+     "sha256": "55a658af905f5543eadcf508a9731cc81a235b90da88de5fdd5b626a0b77326b",
+     "quote": "ew Bagnell Associate Professor",
+     "observed": "2016-04-07"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "ew Davidson",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "already_in_census",
+   "summary": "Listing parse truncated the name; Already in the CMU census as \"drew davidson\" (cmu-faculty.json).",
+   "computing_area": null,
+   "home_department": "HCII",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20251001131342id_/https://hcii.cmu.edu/people/affiliated-faculty",
+     "sha256": "98980eed3491a4d8c87055a57b250487dc0ba3eddd812d3b4ee4e29bb3e66100",
+     "quote": "ew Davidson Teaching Professor, Entertainment Technology Center (ETC)",
+     "observed": "2025-10-01"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Frederike Dumbgen",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_pi",
+   "summary": "Listed 2025 as Courtesy Faculty in the Robotics Institute; courtesy appointments are not PIs (primary appointment is elsewhere).",
+   "computing_area": "robotics / state estimation",
+   "home_department": "Robotics Institute",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20250826001715id_/https://www.cs.cmu.edu/directory/api/v1/all.json",
+     "sha256": "2003cd4c45b34af51f4eede08530b55675acb0fc614230419ed39ff644783d03",
+     "quote": "\"n\":\"Frederike Dumbgen\",\"aff\":\"Faculty\",\"titl\":[\"Courtesy Faculty\"],\"em\":\"fduembgen@cmu.edu\",\"dept\":[\"Robotics Institute\"]",
+     "observed": "2025-08-26"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  }
+ ]
+}

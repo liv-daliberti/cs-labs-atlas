@@ -1,0 +1,1296 @@
+{
+ "reviewed": "2026-10-22",
+ "rule": "a PI is a faculty member of a computing department (Princeton CS; CMU's seven SCS departments; MIT EECS, CS+AI side; EPFL IC; Berkeley EECS, CS division) with stated PhD advising in 2016-2026 or a lab they head. Centres, initiatives and multi-PI groups are not labs. EPFL MERs count when they head their own lab or are stated PhD thesis directors.",
+ "captures": "hierarchy/missing-pi-captures.sqlite (fetched or copied pages; quotes are exact substrings of the stored text, whitespace collapsed)",
+ "tools": "hierarchy/missing-pi-tools/{mpcap.py,build_review.py}",
+ "decisions": [
+  {
+   "name": "Pearl Pu",
+   "aliases": [
+    "Pearl Pu Faltings"
+   ],
+   "decision": "qualifies",
+   "added_to": "census/epfl-additions.json; period in hierarchy/census-overrides.json",
+   "summary": "IC Senior Scientist (MER) listed 2016-2026 who heads her own lab (\"Head of the HCI Group\", unit GR-PU) and is a stated thesis director (EDIC list 2020-2024; sole director of five PhDs 2016-2023). Appointment ended in 2026 (off the live IC list, \"Invited guest\" on her profile); reviewed period 1999 (lower bound) to 2026.",
+   "evidence": [
+    {
+     "url": "https://www.epfl.ch/labs/gr-pu/members/",
+     "sha256": "0d1ade80973e81ce9af575dbf12812c0b0f3873a297a28c25d78ab77cc6e3009",
+     "quote": "Members Head of the HCI Group Pearl Pu",
+     "observed": "2026-10-22",
+     "kind": "lab_page"
+    },
+    {
+     "url": "https://people.epfl.ch/pearl.pu?lang=en",
+     "sha256": "56b05bf895a4eb3221f31f09b2039143b651cc03380b5f028a6e4cef6e98027c",
+     "quote": "Past EPFL PhD Students Li Chen (2008) , Yu Chen (2015) , Rong Hu (2012) , Frank Paul Janecek (2004) , Nicolas Jones (2010) , Denis Lalanne (1999) , Georgios Melissargos (2000) , Valentina Sintsova (2016) , Ekaterina Svikhnushina (2023) , Kalpani Anuradha Welivita (2023) , Yubo Xie (2022) , Onur Yürüten (2017) , Jiyong Zhang (2008)",
+     "observed": "2026-10-22",
+     "kind": "faculty_profile"
+    },
+    {
+     "url": "https://web.archive.org/web/20201125024227id_/https://www.epfl.ch/education/phd/edic-computer-and-communication-sciences/edic-computer-and-communication-sciences/edic-thesis-directors/",
+     "sha256": "4716ea9d634d2b9b1a8a78bfe5c56553a19e509c3dbdf91406b818ea40f681b4",
+     "quote": "Pearl Pu Senior Scientist [email protected]",
+     "observed": "2020-11-25",
+     "kind": "edic_thesis_directors",
+     "capture_copied_from": "claude-epfl-20261019/raw/pages_ic_people.sqlite"
+    }
+   ]
+  },
+  {
+   "name": "Mathieu Salzmann",
+   "decision": "qualifies",
+   "added_to": "census/epfl-additions.json; period in hierarchy/census-overrides.json",
+   "summary": "IC Senior Scientist (MER) from 2023, Adjunct Professor by 2026-10, and a stated PhD thesis director (EDIC list from 2023-12; ten current PhD students and one directed PhD on his profile). Faculty only from 2023, so the reviewed period starts 2023; his 2021-2022 co-directed theses predate the appointment.",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20231218080116id_/https://www.epfl.ch/education/phd/edic-computer-and-communication-sciences/edic-computer-and-communication-sciences/edic-thesis-directors/",
+     "sha256": "a6ba8bcfedfed018f79b6f5519ddfeeae662258c4ddff991c14d6dbc3dd18707",
+     "quote": "Mathieu Salzmann Senior Scientist [email protected]",
+     "observed": "2023-12-18",
+     "kind": "edic_thesis_directors",
+     "capture_copied_from": "claude-epfl-20261019/raw/pages_ic_people.sqlite"
+    },
+    {
+     "url": "https://people.epfl.ch/mathieu.salzmann?lang=en",
+     "sha256": "282bc558977cf6b3649eaa967721c51bf8a5e9221e80207e5940c15012dda0a4",
+     "quote": "Teaching & PhD PhD Students Pierre Victor Ancey , Yann Bouquet , Saqib Javed , Shuangqi Li , Liying Lu , Malo Lucas Perez , Megh Shukla , Haoqi Wang , Zhuoqian Yang , Tianzong Zhang Past EPFL PhD Students Chen Zhao (2025)"
+    }
+   ]
+  },
+  {
+   "name": "Mirjana Stojilovic",
+   "decision": "does_not_qualify",
+   "reason": "not_faculty_of_a_computing_department",
+   "summary": "A Scientist and Lecturer in Babak Falsafi's PARSA lab, not an IC faculty member: no IC faculty list 2016-2026 and no EDIC thesis-director list 2020-2026 names her, and her profile gives her position as \"Scientist\". She co-directed three PhD theses with Falsafi (2023, 2024, 2026); co-direction by a scientist does not make a faculty PI. She is not in census/epfl-faculty.json at all (the brief listed her as an MER with is_pi False).",
+   "thesis_harvest": {
+    "theses": 3,
+    "years": "2023-2026",
+    "roles": "phd, co-director with Babak Falsafi",
+    "source": "hierarchy/thesis-harvest-report.json (non_pi_advisers); records in hierarchy/<school>/thesis-captures.sqlite"
+   },
+   "evidence": [
+    {
+     "url": "https://people.epfl.ch/mirjana.stojilovic?lang=en",
+     "sha256": "ab09cdc02816d8509fd8c9259ee5f0fb3b81f9f7fca2688f9422bf4520e4f26e",
+     "quote": "Mirjana Stojilovic Elle - She/her",
+     "observed": "2026-10-22",
+     "kind": "faculty_profile"
+    },
+    {
+     "url": "https://people.epfl.ch/mirjana.stojilovic?lang=en",
+     "sha256": "ab09cdc02816d8509fd8c9259ee5f0fb3b81f9f7fca2688f9422bf4520e4f26e",
+     "quote": "Scientist , Parallel Systems Architecture Laboratory EPFL IC IINFCOM PARSA",
+     "observed": "2026-10-22",
+     "kind": "faculty_profile"
+    },
+    {
+     "url": "https://web.archive.org/web/20160108114526id_/http://ic.epfl.ch:80/professors",
+     "sha256": "86a781642cac3650303681a4625a315072a95a81dccfec446a7026017f23531b",
+     "absent": "Stojilovi",
+     "observed": "2016-01-08",
+     "kind": "dept_listing:IC"
+    },
+    {
+     "url": "https://web.archive.org/web/20161218083132id_/http://ic.epfl.ch:80/professors",
+     "sha256": "aed4d05b26ebad7863ba4db4e975b9c33ca5f980bb7f58706097eadec5d07e39",
+     "absent": "Stojilovi",
+     "observed": "2016-12-18",
+     "kind": "dept_listing:IC"
+    },
+    {
+     "url": "https://web.archive.org/web/20170712013324id_/http://ic.epfl.ch:80/professors",
+     "sha256": "b71bc7a67e5780079a335612a04572dc5b315127f065f86bd3ba5de8779ff0fc",
+     "absent": "Stojilovi",
+     "observed": "2017-07-12",
+     "kind": "dept_listing:IC"
+    },
+    {
+     "url": "https://web.archive.org/web/20190306215613id_/https://ic.epfl.ch/professors",
+     "sha256": "d1b8590c54b315a932301bbdb963a9f1883f0275e59488d0dc88eb786a6d79f8",
+     "absent": "Stojilovi",
+     "observed": "2019-03-06",
+     "kind": "dept_listing:IC"
+    },
+    {
+     "url": "https://web.archive.org/web/20191114030959id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "c7ecf0aef06b23eac80cb058d2375769664449bcddf454b6e2f44e1fc68105d5",
+     "absent": "Stojilovi",
+     "observed": "2019-11-14",
+     "kind": "dept_listing:IC"
+    },
+    {
+     "url": "https://web.archive.org/web/20201125100852id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "f2307f2dca68f7245686cd97b34c2a33439ed4346e04abecd931ce32c764a3b5",
+     "absent": "Stojilovi",
+     "observed": "2020-11-25",
+     "kind": "dept_listing:IC"
+    },
+    {
+     "url": "https://web.archive.org/web/20211227213652id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "bb495238c870a49d04c814908855e7e3617ee402d6cf3c22748fe2c3e4852d98",
+     "absent": "Stojilovi",
+     "observed": "2021-12-27",
+     "kind": "dept_listing:IC"
+    },
+    {
+     "url": "https://web.archive.org/web/20221210042229id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "704b74bb38b62262ea326d3913d8f67abdb17b6de246df031d42da88a9c6d575",
+     "absent": "Stojilovi",
+     "observed": "2022-12-10",
+     "kind": "dept_listing:IC"
+    },
+    {
+     "url": "https://web.archive.org/web/20231205010540id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "c538966d8055e1349f6065f7b0142772ce4d311e71d4b78ee0a8b3efddb0da1a",
+     "absent": "Stojilovi",
+     "observed": "2023-12-05",
+     "kind": "dept_listing:IC"
+    },
+    {
+     "url": "https://web.archive.org/web/20241204182720id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "dc6e33e5baa89b738e25dd40518ff1084ca04127011e8626efd3d057e0cf5a63",
+     "absent": "Stojilovi",
+     "observed": "2024-12-04",
+     "kind": "dept_listing:IC"
+    },
+    {
+     "url": "https://web.archive.org/web/20251207064126id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "3657380752b43b8bef6317541ef5bd5484f434f71f609e6bd05ced5250a39f0e",
+     "absent": "Stojilovi",
+     "observed": "2025-12-07",
+     "kind": "dept_listing:IC"
+    },
+    {
+     "url": "https://web.archive.org/web/20260418062144id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "1931cc9cd3ff448446fc6241d1960b0a5f67c86332e364adeb4ce2e41cce695b",
+     "absent": "Stojilovi",
+     "observed": "2026-04-18",
+     "kind": "dept_listing:IC"
+    },
+    {
+     "url": "https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "77385f3a5a981fd540842c96600cf4f75ad685923578c865ba0003a34e24771c",
+     "absent": "Stojilovi",
+     "observed": "2026-10-22",
+     "kind": "dept_listing:IC"
+    },
+    {
+     "url": "https://web.archive.org/web/20201125024227id_/https://www.epfl.ch/education/phd/edic-computer-and-communication-sciences/edic-computer-and-communication-sciences/edic-thesis-directors/",
+     "sha256": "4716ea9d634d2b9b1a8a78bfe5c56553a19e509c3dbdf91406b818ea40f681b4",
+     "absent": "Stojilovi",
+     "observed": "2020-11-25",
+     "kind": "edic_thesis_directors"
+    },
+    {
+     "url": "https://web.archive.org/web/20211201051044id_/https://www.epfl.ch/education/phd/edic-computer-and-communication-sciences/edic-computer-and-communication-sciences/edic-thesis-directors/",
+     "sha256": "dc3d09bc4ea19873b5125886914316c3c76edb7b08049679122dcd093992b021",
+     "absent": "Stojilovi",
+     "observed": "2021-12-01",
+     "kind": "edic_thesis_directors"
+    },
+    {
+     "url": "https://web.archive.org/web/20221205105214id_/https://www.epfl.ch/education/phd/edic-computer-and-communication-sciences/edic-computer-and-communication-sciences/edic-thesis-directors/",
+     "sha256": "770c874b906dff868de7685cad9a17e1a864a03a5152aa72f39a5e93dbfa9ec4",
+     "absent": "Stojilovi",
+     "observed": "2022-12-05",
+     "kind": "edic_thesis_directors"
+    },
+    {
+     "url": "https://web.archive.org/web/20231218080116id_/https://www.epfl.ch/education/phd/edic-computer-and-communication-sciences/edic-computer-and-communication-sciences/edic-thesis-directors/",
+     "sha256": "a6ba8bcfedfed018f79b6f5519ddfeeae662258c4ddff991c14d6dbc3dd18707",
+     "absent": "Stojilovi",
+     "observed": "2023-12-18",
+     "kind": "edic_thesis_directors"
+    },
+    {
+     "url": "https://web.archive.org/web/20240917182018id_/https://www.epfl.ch/education/phd/edic-computer-and-communication-sciences/edic-computer-and-communication-sciences/edic-thesis-directors/",
+     "sha256": "a842077105f1ea32df9d6eb29399c69f19882e2e9dba8e73ec1d2f4d565244c9",
+     "absent": "Stojilovi",
+     "observed": "2024-09-17",
+     "kind": "edic_thesis_directors"
+    },
+    {
+     "url": "https://web.archive.org/web/20251110101515id_/https://www.epfl.ch/education/phd/edic-computer-and-communication-sciences/edic-computer-and-communication-sciences/edic-thesis-directors/",
+     "sha256": "fde046fb5a678fd6d539f685d7658f9777f93671b80945a4c60ba6e26f935ef0",
+     "absent": "Stojilovi",
+     "observed": "2025-11-10",
+     "kind": "edic_thesis_directors"
+    },
+    {
+     "url": "https://web.archive.org/web/20260608080550id_/https://www.epfl.ch/education/phd/edic-computer-and-communication-sciences/edic-computer-and-communication-sciences/edic-thesis-directors/",
+     "sha256": "9f2c5b25c8eb17973e1ee70b05a7b00ce35f549b8d0e9de256aae26737d45eee",
+     "absent": "Stojilovi",
+     "observed": "2026-06-08",
+     "kind": "edic_thesis_directors"
+    },
+    {
+     "url": "https://www.epfl.ch/education/phd/edic-computer-and-communication-sciences/edic-computer-and-communication-sciences/edic-thesis-directors/",
+     "sha256": "25eb42e99e1d871c51f36dec7b8a1d659d02cfcdeaccc536e531abeb36f2fb9c",
+     "absent": "Stojilovi",
+     "observed": "2026-10-19",
+     "kind": "edic_thesis_directors"
+    }
+   ]
+  },
+  {
+   "name": "Bertrand Roland Schneider",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Visiting Professor; listing years 2023-2023.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20231205010540id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "c538966d8055e1349f6065f7b0142772ce4d311e71d4b78ee0a8b3efddb0da1a",
+     "quote": "Bertrand Roland Schneider Visiting Professor"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Bruno Sauvalle",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Visiting Professor; listing years 2023-2024.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20231205010540id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "c538966d8055e1349f6065f7b0142772ce4d311e71d4b78ee0a8b3efddb0da1a",
+     "quote": "Bruno Sauvalle Visiting Professor"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Arturo Azcorra Salona",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Visiting Professor; listing years 2026-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20260418062144id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "1931cc9cd3ff448446fc6241d1960b0a5f67c86332e364adeb4ce2e41cce695b",
+     "quote": "Arturo Azcorra Salona Visiting Professor"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Elena Grigorescu",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Visiting Professor; listing years 2019-2019.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20190922203341id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "7e366d235c44817b572c16378ea65fd34b54162425ee3b2de77811f97c4eb72b",
+     "quote": "Elena Grigorescu Visiting Professor"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Farshad Khun Jush",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Visiting Professor; listing years 2023-2023.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20231205010540id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "c538966d8055e1349f6065f7b0142772ce4d311e71d4b78ee0a8b3efddb0da1a",
+     "quote": "Farshad Khun Jush Visiting Professor"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Nathan Foster",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Visiting Professor; listing years 2023-2024.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20231205010540id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "c538966d8055e1349f6065f7b0142772ce4d311e71d4b78ee0a8b3efddb0da1a",
+     "quote": "Nathan Foster Visiting Professor"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Petr Kuznetsov",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Visiting Professor; listing years 2024-2024.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20240415143009id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "19725cb49f8e8fe6c73eb20a4cd675e9603ce3978c564df8fc251758772c0390",
+     "quote": "Petr Kuznetsov Visiting Professor"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Ramtin Pedarsani",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Visiting Professor; listing years 2023-2024.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20231205010540id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "c538966d8055e1349f6065f7b0142772ce4d311e71d4b78ee0a8b3efddb0da1a",
+     "quote": "Ramtin Pedarsani Visiting Professor"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "SNSF Ambizione",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: CDH Visiting Professor Program; listing years 2022-2023.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20221002233506id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "a054b408f89caa51a67f1d6d7c2a61cd4e6603e55e16a05abcf374b838cb7205",
+     "quote": "SNSF Ambizione CDH Visiting Professor Program"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Sriram Vishwanath",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Visiting Professor; listing years 2023-2024.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20231205010540id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "c538966d8055e1349f6065f7b0142772ce4d311e71d4b78ee0a8b3efddb0da1a",
+     "quote": "Sriram Vishwanath Visiting Professor"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Temporary Employees",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Visiting Professors and Academic Guests; listing years 2019-2019.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20190922203341id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "7e366d235c44817b572c16378ea65fd34b54162425ee3b2de77811f97c4eb72b",
+     "quote": "Temporary Employees Visiting Professors and Academic Guests"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Trevor Erik Carlson",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Visiting Professor; listing years 2025-2025.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20251008054903id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "6a0e4722d1375b171f3bfdf9f7b6890ad0f439e34f2604e3cd53725d5fcdd0ab",
+     "quote": "Trevor Erik Carlson Visiting Professor"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Wayne Burleson",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Visiting Professor; listing years 2023-2023.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20231205010540id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "c538966d8055e1349f6065f7b0142772ce4d311e71d4b78ee0a8b3efddb0da1a",
+     "quote": "Wayne Burleson Visiting Professor"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Bertarelli Fellowships",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"Bertarelli Fellowships\" is a site navigation-menu item (followed by \"Our professors\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20190922203341id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "7e366d235c44817b572c16378ea65fd34b54162425ee3b2de77811f97c4eb72b",
+     "quote": "Bertarelli Fellowships Our professors",
+     "observed": "2019-09-22"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "BioE Education",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"BioE Education\" is a site navigation-menu item (followed by \"Open Faculty Positions\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20190922203341id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "7e366d235c44817b572c16378ea65fd34b54162425ee3b2de77811f97c4eb72b",
+     "quote": "BioE Education Open Faculty Positions",
+     "observed": "2019-09-22"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Commission Status Women",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"Commission Status Women\" is a site navigation-menu item (followed by \"Faculty\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20190922203341id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "7e366d235c44817b572c16378ea65fd34b54162425ee3b2de77811f97c4eb72b",
+     "quote": "Commission Status Women Faculty",
+     "observed": "2019-09-22"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Direction Board",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"Direction Board\" is a site navigation-menu item (followed by \"Dean’s Office\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20190922203341id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "7e366d235c44817b572c16378ea65fd34b54162425ee3b2de77811f97c4eb72b",
+     "quote": "Direction Board Dean’s Office",
+     "observed": "2019-09-22"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "EDAM PhD Student Representatives",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"EDAM PhD Student Representatives\" is a site navigation-menu item (followed by \"EDAM Jury Presidents\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20210405015351id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "c21060a3c02763485524224a154092a6d343083003c0b16dcfa27122295d5858",
+     "quote": "EDAM PhD Student Representatives EDAM Jury Presidents",
+     "observed": "2021-04-05"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "EDAR PhD Student Representatives",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"EDAR PhD Student Representatives\" is a site navigation-menu item (followed by \"EDAR Jury Presidents\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20210405015351id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "c21060a3c02763485524224a154092a6d343083003c0b16dcfa27122295d5858",
+     "quote": "EDAR PhD Student Representatives EDAR Jury Presidents",
+     "observed": "2021-04-05"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "EDBB PhD Student Representatives",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"EDBB PhD Student Representatives\" is a site navigation-menu item (followed by \"EDBB Jury Presidents\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20210405015351id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "c21060a3c02763485524224a154092a6d343083003c0b16dcfa27122295d5858",
+     "quote": "EDBB PhD Student Representatives EDBB Jury Presidents",
+     "observed": "2021-04-05"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "EDCB PhD Student Representatives",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"EDCB PhD Student Representatives\" is a site navigation-menu item (followed by \"EDCB Jury Presidents\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20210405015351id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "c21060a3c02763485524224a154092a6d343083003c0b16dcfa27122295d5858",
+     "quote": "EDCB PhD Student Representatives EDCB Jury Presidents",
+     "observed": "2021-04-05"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "EDCE PhD Student Representatives",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"EDCE PhD Student Representatives\" is a site navigation-menu item (followed by \"EDCE Jury Presidents\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20210405015351id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "c21060a3c02763485524224a154092a6d343083003c0b16dcfa27122295d5858",
+     "quote": "EDCE PhD Student Representatives EDCE Jury Presidents",
+     "observed": "2021-04-05"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "EDCH PhD Student Representatives",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"EDCH PhD Student Representatives\" is a site navigation-menu item (followed by \"EDCH Jury Presidents\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20210405015351id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "c21060a3c02763485524224a154092a6d343083003c0b16dcfa27122295d5858",
+     "quote": "EDCH PhD Student Representatives EDCH Jury Presidents",
+     "observed": "2021-04-05"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "EDCH PhD Students",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"EDCH PhD Students\" is a site navigation-menu item (followed by \"EDCH Jury Presidents\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20221002233506id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "a054b408f89caa51a67f1d6d7c2a61cd4e6603e55e16a05abcf374b838cb7205",
+     "quote": "EDCH PhD Students EDCH Jury Presidents",
+     "observed": "2022-10-02"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "EDDH PhD Student Representatives",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"EDDH PhD Student Representatives\" is a site navigation-menu item (followed by \"EDDH Jury Presidents\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20210405015351id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "c21060a3c02763485524224a154092a6d343083003c0b16dcfa27122295d5858",
+     "quote": "EDDH PhD Student Representatives EDDH Jury Presidents",
+     "observed": "2021-04-05"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "EDEE PhD Student Representatives",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"EDEE PhD Student Representatives\" is a site navigation-menu item (followed by \"EDEE Jury Presidents\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20210405015351id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "c21060a3c02763485524224a154092a6d343083003c0b16dcfa27122295d5858",
+     "quote": "EDEE PhD Student Representatives EDEE Jury Presidents",
+     "observed": "2021-04-05"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "EDEY PhD Student Representatives",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"EDEY PhD Student Representatives\" is a site navigation-menu item (followed by \"EDEY Jury Presidents\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20210405015351id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "c21060a3c02763485524224a154092a6d343083003c0b16dcfa27122295d5858",
+     "quote": "EDEY PhD Student Representatives EDEY Jury Presidents",
+     "observed": "2021-04-05"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "EDFI PhD Student Representatives",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"EDFI PhD Student Representatives\" is a site navigation-menu item (followed by \"EDFI Jury Presidents\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20210405015351id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "c21060a3c02763485524224a154092a6d343083003c0b16dcfa27122295d5858",
+     "quote": "EDFI PhD Student Representatives EDFI Jury Presidents",
+     "observed": "2021-04-05"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "EDIC Thesis Directors",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"EDIC Thesis Directors\" is a site navigation-menu item (followed by \"EDIC Jury Presidents\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20210405015351id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "c21060a3c02763485524224a154092a6d343083003c0b16dcfa27122295d5858",
+     "quote": "EDIC Thesis Directors EDIC Jury Presidents",
+     "observed": "2021-04-05"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "EDMA PhD Student Representatives",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"EDMA PhD Student Representatives\" is a site navigation-menu item (followed by \"EDMA Jury Presidents\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20210405015351id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "c21060a3c02763485524224a154092a6d343083003c0b16dcfa27122295d5858",
+     "quote": "EDMA PhD Student Representatives EDMA Jury Presidents",
+     "observed": "2021-04-05"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "EDME PhD Students",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"EDME PhD Students\" is a site navigation-menu item (followed by \"EDME Jury Presidents\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20210405015351id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "c21060a3c02763485524224a154092a6d343083003c0b16dcfa27122295d5858",
+     "quote": "EDME PhD Students EDME Jury Presidents",
+     "observed": "2021-04-05"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "EDMI PhD Student Representatives",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"EDMI PhD Student Representatives\" is a site navigation-menu item (followed by \"EDMI Jury Presidents\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20210405015351id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "c21060a3c02763485524224a154092a6d343083003c0b16dcfa27122295d5858",
+     "quote": "EDMI PhD Student Representatives EDMI Jury Presidents",
+     "observed": "2021-04-05"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "EDMI Rules",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"EDMI Rules\" is a site navigation-menu item (followed by \"EDMI Thesis Jury Presidents\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20190922203341id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "7e366d235c44817b572c16378ea65fd34b54162425ee3b2de77811f97c4eb72b",
+     "quote": "EDMI Rules EDMI Thesis Jury Presidents",
+     "observed": "2019-09-22"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "EDMS PhD Student Representatives",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"EDMS PhD Student Representatives\" is a site navigation-menu item (followed by \"EDMS Jury Presidents\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20210405015351id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "c21060a3c02763485524224a154092a6d343083003c0b16dcfa27122295d5858",
+     "quote": "EDMS PhD Student Representatives EDMS Jury Presidents",
+     "observed": "2021-04-05"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "EDMT PhD Student Representatives",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"EDMT PhD Student Representatives\" is a site navigation-menu item (followed by \"EDMT Jury Presidents\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20210405015351id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "c21060a3c02763485524224a154092a6d343083003c0b16dcfa27122295d5858",
+     "quote": "EDMT PhD Student Representatives EDMT Jury Presidents",
+     "observed": "2021-04-05"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "EDNE PhD Students Representatives",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"EDNE PhD Students Representatives\" is a site navigation-menu item (followed by \"EDNE Jury Presidents\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20210405015351id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "c21060a3c02763485524224a154092a6d343083003c0b16dcfa27122295d5858",
+     "quote": "EDNE PhD Students Representatives EDNE Jury Presidents",
+     "observed": "2021-04-05"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "EDPO PhD Student Representatives",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"EDPO PhD Student Representatives\" is a site navigation-menu item (followed by \"EDPO Jury Presidents\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20210405015351id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "c21060a3c02763485524224a154092a6d343083003c0b16dcfa27122295d5858",
+     "quote": "EDPO PhD Student Representatives EDPO Jury Presidents",
+     "observed": "2021-04-05"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "EDRS PhD Student Representatives",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"EDRS PhD Student Representatives\" is a site navigation-menu item (followed by \"EDRS Jury Presidents\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20210405015351id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "c21060a3c02763485524224a154092a6d343083003c0b16dcfa27122295d5858",
+     "quote": "EDRS PhD Student Representatives EDRS Jury Presidents",
+     "observed": "2021-04-05"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "ERC Starting Grant",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"ERC Starting Grant\" is a site navigation-menu item (followed by \"SNSF Professorial Fellowship\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20221002233506id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "a054b408f89caa51a67f1d6d7c2a61cd4e6603e55e16a05abcf374b838cb7205",
+     "quote": "ERC Starting Grant SNSF Professorial Fellowship",
+     "observed": "2022-10-02"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "ERC Starting Grants",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"ERC Starting Grants\" is a site navigation-menu item (followed by \"SNSF Eccellenza Professorial Fellowships\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20210405015351id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "c21060a3c02763485524224a154092a6d343083003c0b16dcfa27122295d5858",
+     "quote": "ERC Starting Grants SNSF Eccellenza Professorial Fellowships",
+     "observed": "2021-04-05"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Erna Hamburger Prize Laureates",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"Erna Hamburger Prize Laureates\" is a site navigation-menu item (followed by \"EPFL Women Professors\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20221002233506id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "a054b408f89caa51a67f1d6d7c2a61cd4e6603e55e16a05abcf374b838cb7205",
+     "quote": "Erna Hamburger Prize Laureates EPFL Women Professors",
+     "observed": "2022-10-02"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Health Insurance",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"Health Insurance\" is a site navigation-menu item (followed by \"Pension fund (professors)\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20190922203341id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "7e366d235c44817b572c16378ea65fd34b54162425ee3b2de77811f97c4eb72b",
+     "quote": "Health Insurance Pension fund (professors)",
+     "observed": "2019-09-22"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "IC School",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"IC School\" is a site navigation-menu item (followed by \"Dean's Office\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20170502121531id_/http://ic.epfl.ch:80/professors",
+     "sha256": "b4f4b5d58ece81f2579242b7652438e12b2b02fc8c989dcf396c72faca55c2ef",
+     "quote": "IC School Dean's Office",
+     "observed": "2017-05-02"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Implicit Bias Awareness",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"Implicit Bias Awareness\" is a site navigation-menu item (followed by \"Faculty recruitment\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20220313162227id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "05c0e6bd380340dd7337981a5b78e7d4cf527d60fd27b003700ca410e5af5ede",
+     "quote": "Implicit Bias Awareness Faculty recruitment",
+     "observed": "2022-03-13"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Interactive Gender Monitoring",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"Interactive Gender Monitoring\" is a site navigation-menu item (followed by \"Women Professors & MER\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20190922203341id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "7e366d235c44817b572c16378ea65fd34b54162425ee3b2de77811f97c4eb72b",
+     "quote": "Interactive Gender Monitoring Women Professors & MER",
+     "observed": "2019-09-22"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "International Affairs",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"International Affairs\" is a site navigation-menu item (followed by \"Faculty Affairs\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20190922203341id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "7e366d235c44817b572c16378ea65fd34b54162425ee3b2de77811f97c4eb72b",
+     "quote": "International Affairs Faculty Affairs",
+     "observed": "2019-09-22"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Latest Activities",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"Latest Activities\" is a site navigation-menu item (followed by \"Our Professors’ profiles\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20230320120549id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "4686952b623f270477fce96308e5b2627069971234bd511d6b610f8392d4cca0",
+     "quote": "Latest Activities Our Professors’ profiles",
+     "observed": "2023-03-20"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Leaving EPFL",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"Leaving EPFL\" is a site navigation-menu item (followed by \"Faculty Affairs\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20190922203341id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "7e366d235c44817b572c16378ea65fd34b54162425ee3b2de77811f97c4eb72b",
+     "quote": "Leaving EPFL Faculty Affairs",
+     "observed": "2019-09-22"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "NYUAD Quantum Hackathon",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"NYUAD Quantum Hackathon\" is a site navigation-menu item (followed by \"Joint Faculty Position in Computer & Communication Sciences and Basic \") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20230320120549id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "4686952b623f270477fce96308e5b2627069971234bd511d6b610f8392d4cca0",
+     "quote": "NYUAD Quantum Hackathon Joint Faculty Position in Computer & Communication Sciences and Basic Sciences",
+     "observed": "2023-03-20"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Organizational Chart",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"Organizational Chart\" is a site navigation-menu item (followed by \"Faculty\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20190922203341id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "7e366d235c44817b572c16378ea65fd34b54162425ee3b2de77811f97c4eb72b",
+     "quote": "Organizational Chart Faculty",
+     "observed": "2019-09-22"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Postdoctoral Researchers",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"Postdoctoral Researchers\" is a site navigation-menu item (followed by \"Former Faculty\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20190922203341id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "7e366d235c44817b572c16378ea65fd34b54162425ee3b2de77811f97c4eb72b",
+     "quote": "Postdoctoral Researchers Former Faculty",
+     "observed": "2019-09-22"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "SB Direction",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"SB Direction\" is a site navigation-menu item (followed by \"Dean’s office\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20190922203341id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "7e366d235c44817b572c16378ea65fd34b54162425ee3b2de77811f97c4eb72b",
+     "quote": "SB Direction Dean’s office",
+     "observed": "2019-09-22"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "SHS Prize",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"SHS Prize\" is a site navigation-menu item (followed by \"List of SHS lecturers\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20190922203341id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "7e366d235c44817b572c16378ea65fd34b54162425ee3b2de77811f97c4eb72b",
+     "quote": "SHS Prize List of SHS lecturers",
+     "observed": "2019-09-22"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "SNF Eccellenza Professorial Fellowships",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"SNF Eccellenza Professorial Fellowships\" is a site navigation-menu item (followed by \"Back: SNF Eccellenza Professorial Fellowships\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20210405015351id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "c21060a3c02763485524224a154092a6d343083003c0b16dcfa27122295d5858",
+     "quote": "SNF Eccellenza Professorial Fellowships Back: SNF Eccellenza Professorial Fellowships",
+     "observed": "2021-04-05"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "SNF Professorships",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"SNF Professorships\" is a site navigation-menu item (followed by \"Back: SNF Professorships\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20190922203341id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "7e366d235c44817b572c16378ea65fd34b54162425ee3b2de77811f97c4eb72b",
+     "quote": "SNF Professorships Back: SNF Professorships",
+     "observed": "2019-09-22"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "SNSF Eccellenza Professorial Fellowships (Chemistry)",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"SNSF Eccellenza Professorial Fellowships (Chemistry)\" is a site navigation-menu item (followed by \"SNSF Eccellenza Professorial Fellowships (Mathematics)\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20210405015351id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "c21060a3c02763485524224a154092a6d343083003c0b16dcfa27122295d5858",
+     "quote": "SNSF Eccellenza Professorial Fellowships (Chemistry) SNSF Eccellenza Professorial Fellowships (Mathematics)",
+     "observed": "2021-04-05"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "SNSF Eccellenza Professorial Fellowships (Mathematics)",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"SNSF Eccellenza Professorial Fellowships (Mathematics)\" is a site navigation-menu item (followed by \"SNSF Eccellenza Professorial Fellowships (Physics)\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20210405015351id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "c21060a3c02763485524224a154092a6d343083003c0b16dcfa27122295d5858",
+     "quote": "SNSF Eccellenza Professorial Fellowships (Mathematics) SNSF Eccellenza Professorial Fellowships (Physics)",
+     "observed": "2021-04-05"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "SNSF Starting Grant",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"SNSF Starting Grant\" is a site navigation-menu item (followed by \"SNSF Professorial Fellowship\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20230320120549id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "4686952b623f270477fce96308e5b2627069971234bd511d6b610f8392d4cca0",
+     "quote": "SNSF Starting Grant SNSF Professorial Fellowship",
+     "observed": "2023-03-20"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "SNSF Starting Grants",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"SNSF Starting Grants\" is a site navigation-menu item (followed by \"SNSF Eccellenza Professorial Fellowships\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20220313162227id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "05c0e6bd380340dd7337981a5b78e7d4cf527d60fd27b003700ca410e5af5ede",
+     "quote": "SNSF Starting Grants SNSF Eccellenza Professorial Fellowships",
+     "observed": "2022-03-13"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Scale-Up Day",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"Scale-Up Day\" is a site navigation-menu item (followed by \"Meet the Professors\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20200926102906id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "4af38d5827c990ef493c40c465bde325f5be2c057adc86f3be0f97049b4f1f1e",
+     "quote": "Scale-Up Day Meet the Professors",
+     "observed": "2020-09-26"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Time Machine Europe",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: \"Time Machine Europe\" is a site navigation-menu item (followed by \"Our professors\") on an EPFL menu captured with the IC faculty-members page, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20200926102906id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "4af38d5827c990ef493c40c465bde325f5be2c057adc86f3be0f97049b4f1f1e",
+     "quote": "Time Machine Europe Our professors",
+     "observed": "2020-09-26"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  }
+ ]
+}

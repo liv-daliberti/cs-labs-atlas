@@ -1,0 +1,408 @@
+{
+ "reviewed": "2026-10-22",
+ "rule": "a PI is a faculty member of a computing department (Princeton CS; CMU's seven SCS departments; MIT EECS, CS+AI side; EPFL IC; Berkeley EECS, CS division) with stated PhD advising in 2016-2026 or a lab they head. Centres, initiatives and multi-PI groups are not labs. EPFL MERs count when they head their own lab or are stated PhD thesis directors.",
+ "captures": "hierarchy/missing-pi-captures.sqlite (fetched or copied pages; quotes are exact substrings of the stored text, whitespace collapsed)",
+ "tools": "hierarchy/missing-pi-tools/{mpcap.py,build_review.py}",
+ "decisions": [
+  {
+   "name": "Jaswinder Pal Singh",
+   "aliases": [
+    "Jaswinder Singh",
+    "J. P. Singh"
+   ],
+   "decision": "does_not_qualify",
+   "reason": "no_phd_advising_and_no_own_lab_in_window",
+   "summary": "A CS professor throughout 2016-2026, but with no stated PhD advising in the window and no lab he heads. Not in pis.json because tools/princeton_census.py takes the 91 own-lab PIs of the lab-by-lab records plus faculty with a named PhD adviser field in 2016-2026 (ADDED), and he is in neither: his last PhD alumnus on the CS roster graduated in 2014 (Adrian Soviani); no graduate-student roster row 2016-2026 names him adviser; DataSpace has no 2016-2026 dissertation he advised (his 15 CS theses 2016-2023 are senior theses). His one leadership role is co-director of DeCenter, a centre that Matt Weinberg directs, which is a collective, not his lab. A 2026 postdoc (Aviv Yaish) is co-hosted with Weinberg; postdoc hosting is not PhD advising.",
+   "thesis_harvest": {
+    "theses": 15,
+    "years": "2016-2023",
+    "roles": "undergraduate (senior theses) only; 0 of 4,056 DataSpace PhD dissertation records 2016-2026 name him",
+    "source": "hierarchy/thesis-harvest-report.json (non_pi_advisers); records in hierarchy/<school>/thesis-captures.sqlite"
+   },
+   "roster_check": {
+    "source": "claude-princeton-20261015/cs-people/rosters.json: 2,540 graduate-student rows and 6,347 graduate-alumni rows read from the CS rosters 2016-2026 (Wayback and live)",
+    "grad_student_rows_naming_him": 0,
+    "grad_alumni_with_degree_2016_or_later": 0,
+    "latest_phd_alumnus": "Adrian Soviani, PhD 2014"
+   },
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160406151830id_/https://www.cs.princeton.edu/people/faculty",
+     "sha256": "c3e75acaffc01b4615519f1746c473727e81f58077261091b46dc3f712844078",
+     "quote": "Jaswinder Singh Professor Ph.D., Stanford University, 1993",
+     "observed": "2016-04-06",
+     "kind": "dept_listing:Computer Science",
+     "capture_copied_from": "claude-princeton-listings-20261022/captures/listings.sqlite"
+    },
+    {
+     "url": "https://web.archive.org/web/20251212150501id_/https://www.cs.princeton.edu/people/faculty",
+     "sha256": "f73abfd3c32f06410a66c87a810b43848139bc7a3f8cb05892d508d92134d2d8",
+     "quote": "Jaswinder Pal Singh Professor of Computer Science, Technology, and Societal Change",
+     "observed": "2025-12-12",
+     "kind": "dept_listing:Computer Science",
+     "capture_copied_from": "claude-princeton-listings-20261022/captures/listings.sqlite"
+    },
+    {
+     "url": "https://www.cs.princeton.edu/people/gradalumni?page=21",
+     "sha256": "044eeaed8a7076db2afd406bc88768842b12f3fcd1ebcb1bb2edf62cf9ba5ec6",
+     "quote": "Adrian Soviani Adviser(s): Jaswinder Pal Singh Degree: PhD, 2014",
+     "observed": "2026-10-22",
+     "kind": "grad_alumni_roster",
+     "note": "his latest PhD alumnus"
+    },
+    {
+     "url": "https://www.cs.princeton.edu/people/profile/jps",
+     "sha256": "f04d6fd0f0cea61a5971defb7fa3b0087678c20ed22b847d7aa521712ccca3b8",
+     "quote": "He is a co-director of the Princeton Center for the Decentralization of Power Through Blockchain Technology (DeCenter)",
+     "observed": "2026-10-22",
+     "kind": "faculty_profile"
+    },
+    {
+     "url": "https://decenter.princeton.edu/steering-committee/",
+     "sha256": "5adbeff45145015a20fceac1cf593d545c14db1bde3a858d1821bcbc4dfed907",
+     "quote": "Matt Weinberg Associate Professor of Computer Science and Director of the DeCenter",
+     "observed": "2026-10-22",
+     "kind": "centre_page",
+     "note": "DeCenter is a centre with its own director: a collective, not a lab"
+    },
+    {
+     "url": "https://decenter.princeton.edu/steering-committee/",
+     "sha256": "5adbeff45145015a20fceac1cf593d545c14db1bde3a858d1821bcbc4dfed907",
+     "quote": "Jaswinder Pal Singh Professor of Computer Science, Technology and Societal Change",
+     "observed": "2026-10-22",
+     "kind": "centre_page"
+    }
+   ]
+  },
+  {
+   "name": "David Dobkin",
+   "decision": "does_not_qualify",
+   "reason": "no_phd_advising_and_no_own_lab_in_window",
+   "summary": "CS professor until 2022 (Phillip Y. Goldman '86 Professor), emeritus from fall 2022. No stated PhD advising in 2016-2026: his last PhD alumnus graduated in 2001 (Alejo Hausner); no graduate-student roster row 2016-2026 names him adviser; DataSpace has no 2016-2026 dissertation he advised (his 5 CS theses 2016-2018 are senior theses). In window PhD defences he appears on committees, not as adviser (e.g. examiner at Ohad Fried's FPO, 2017). The Graphics Group lists him with three other faculty (a multi-PI group, not his lab). Not in pis.json for the same reason as Singh.",
+   "thesis_harvest": {
+    "theses": 5,
+    "years": "2016-2018",
+    "roles": "undergraduate (senior theses) only; 0 of 4,056 DataSpace PhD dissertation records 2016-2026 name him",
+    "source": "hierarchy/thesis-harvest-report.json (non_pi_advisers); records in hierarchy/<school>/thesis-captures.sqlite"
+   },
+   "roster_check": {
+    "source": "claude-princeton-20261015/cs-people/rosters.json: 2,540 graduate-student rows and 6,347 graduate-alumni rows read from the CS rosters 2016-2026 (Wayback and live)",
+    "grad_student_rows_naming_him": 0,
+    "grad_alumni_with_degree_2016_or_later": 0,
+    "latest_phd_alumnus": "Alejo Hausner, PhD 2001"
+   },
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20220321143320id_/https://www.cs.princeton.edu/people/faculty",
+     "sha256": "eaad7d123fca4bb008b1ff8e68f6d4e685e36ba1cec19600ca5f2aa010d09071",
+     "quote": "David Dobkin Phillip Y. Goldman '86 Professor Ph.D., Harvard University, 1973",
+     "observed": "2022-03-21",
+     "kind": "dept_listing:Computer Science",
+     "capture_copied_from": "claude-princeton-listings-20261022/captures/listings.sqlite"
+    },
+    {
+     "url": "https://web.archive.org/web/20220916042410id_/https://www.cs.princeton.edu/people/faculty",
+     "sha256": "40d6354bcfb6e106a6308a0894b917c694827829beed4ae9bbd4e122adcaafe3",
+     "absent": "Dobkin",
+     "observed": "2022-09-16",
+     "kind": "dept_listing:Computer Science",
+     "note": "off the faculty list by 2022-09-16"
+    },
+    {
+     "url": "https://web.archive.org/web/20220917162136id_/https://www.cs.princeton.edu/people/faculty?type=emeritus",
+     "sha256": "a591ead4ec1b1b34fee42ec07378f39bf21253b0dae4923ba1141dec4d59da6b",
+     "quote": "David Dobkin Phillip Y. Goldman '86 Professor, Emeritus",
+     "observed": "2022-09-17",
+     "kind": "dept_listing:Computer Science (emeritus)",
+     "capture_copied_from": "claude-princeton-listings-20261022/captures/listings.sqlite"
+    },
+    {
+     "url": "https://www.cs.princeton.edu/people/profile/dpd",
+     "sha256": "ee7bdb950371471c11af3a1aacd5f774f4cdff48d179ca27faa5f990cf03551c",
+     "quote": "David Dobkin Phillip Y. Goldman '86 Professor, Emeritus",
+     "observed": "2026-10-22",
+     "kind": "faculty_profile"
+    },
+    {
+     "url": "https://www.cs.princeton.edu/people/gradalumni?page=31",
+     "sha256": "c34748faed62b6fafeb5d2c0daae2f92f35e31a29c2bfb88c136daf1bbe1b7c6",
+     "quote": "Alejo Hausner Adviser(s): David Dobkin Degree: PhD, 2001",
+     "observed": "2026-10-22",
+     "kind": "grad_alumni_roster",
+     "note": "his latest PhD alumnus"
+    },
+    {
+     "url": "https://lists.cs.princeton.edu/hyperkitty/list/talks@lists.cs.princeton.edu/thread/3HPYKS7ENMPH5G5HJWZS65RWGWGGPHI7/",
+     "sha256": "8c5c0ced582bc9e9a0406da72afb4d815bc44f40a65161837e1f96613e0044bb",
+     "quote": "Adam Finkelstein (adviser); readers: Tom Funkhouser and Eli Shechtman (Adobe); examiners: Szymon Rusinkiewicz and David Dobkin.",
+     "observed": "2026-10-22",
+     "kind": "fpo_announcement",
+     "note": "Ohad Fried FPO, May 2017"
+    },
+    {
+     "url": "https://gfx.cs.princeton.edu/gfx-people.php",
+     "sha256": "423fd9c93f0e49e501008db22a5f7aba407942db477686c70ebc693aa24f3362",
+     "quote": "Faculty David Dobkin Adam Finkelstein Felix Heide Szymon Rusinkiewicz",
+     "observed": "2026-10-22",
+     "kind": "group_page",
+     "note": "multi-PI group"
+    }
+   ]
+  },
+  {
+   "name": "Kenneth Steiglitz",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Eugene Higgins Professor, Emeritus; Eugene Higgins Professor Emeritus; listing years 2016-2025.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20251212150501id_/https://www.cs.princeton.edu/people/faculty",
+     "sha256": "f73abfd3c32f06410a66c87a810b43848139bc7a3f8cb05892d508d92134d2d8",
+     "quote": "Kenneth Steiglitz Eugene Higgins Professor, Emeritus"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Iasonas Petras",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "teaching_only",
+   "summary": "every department listing 2016-2026 names this person only with a teaching title (Lecturer, Instructor, Teaching, of the Practice): teaching faculty, not a PI. Titles listed: Lecturer; listing years 2025-2025.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20251212150501id_/https://www.cs.princeton.edu/people/faculty",
+     "sha256": "f73abfd3c32f06410a66c87a810b43848139bc7a3f8cb05892d508d92134d2d8",
+     "quote": "Iasonas Petras Lecturer"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Maryam Hedayati",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "teaching_only",
+   "summary": "every department listing 2016-2026 names this person only with a teaching title (Lecturer, Instructor, Teaching, of the Practice): teaching faculty, not a PI. Titles listed: Lecturer; listing years 2025-2025.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20251212150501id_/https://www.cs.princeton.edu/people/faculty",
+     "sha256": "f73abfd3c32f06410a66c87a810b43848139bc7a3f8cb05892d508d92134d2d8",
+     "quote": "Maryam Hedayati Lecturer"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Andrew Yao",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor Emeritus; listing years 2016-2024.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160531112403id_/http://www.cs.princeton.edu/people/faculty?type=emeritus",
+     "sha256": "146be87c73e81bb9a6289a079f52670410af659ad22f9fd99ef5216e8e73988e",
+     "quote": "Andrew Yao Professor Emeritus"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Corey Sanders",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Visiting Lecturer; listing years 2025-2025.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20250214081751id_/https://www.cs.princeton.edu/people/faculty?type=associated",
+     "sha256": "b17e2be6a35c2ed61de2b5eda5cbc9f9efe886a3c8ec95616ea80a36984798e4",
+     "quote": "Corey Sanders Visiting Lecturer"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Donna Gabai",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "teaching_only",
+   "summary": "every department listing 2016-2026 names this person only with a teaching title (Lecturer, Instructor, Teaching, of the Practice): teaching faculty, not a PI. Titles listed: Lecturer; listing years 2025-2025.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20251212150501id_/https://www.cs.princeton.edu/people/faculty",
+     "sha256": "f73abfd3c32f06410a66c87a810b43848139bc7a3f8cb05892d508d92134d2d8",
+     "quote": "Donna Gabai Lecturer"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Douglas Clark",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor Emeritus; listing years 2016-2024.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160531112403id_/http://www.cs.princeton.edu/people/faculty?type=emeritus",
+     "sha256": "146be87c73e81bb9a6289a079f52670410af659ad22f9fd99ef5216e8e73988e",
+     "quote": "Douglas Clark Professor Emeritus"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Kevin Negy",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "teaching_only",
+   "summary": "every department listing 2016-2026 names this person only with a teaching title (Lecturer, Instructor, Teaching, of the Practice): teaching faculty, not a PI. Titles listed: Lecturer; listing years 2025-2025.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20251212150501id_/https://www.cs.princeton.edu/people/faculty",
+     "sha256": "f73abfd3c32f06410a66c87a810b43848139bc7a3f8cb05892d508d92134d2d8",
+     "quote": "Kevin Negy Lecturer"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Richard Lipton",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor Emeritus; listing years 2016-2024.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160531112403id_/http://www.cs.princeton.edu/people/faculty?type=emeritus",
+     "sha256": "146be87c73e81bb9a6289a079f52670410af659ad22f9fd99ef5216e8e73988e",
+     "quote": "Richard Lipton Professor Emeritus"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Machine Learning",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_pi",
+   "summary": "Listing parse error: \"Machine Learning\" is the research-area tag of the previous row; the person is Victoria Dean, listed as Lecturer (teaching-only) in Princeton CS in the 2025 capture. Teaching appointment, so not a PI (OpenAlex shows her at Olin College 2024-2025, Princeton from 2026).",
+   "computing_area": "machine learning / CS education",
+   "home_department": "Computer Science",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20251212150501id_/https://www.cs.princeton.edu/people/faculty",
+     "sha256": "f73abfd3c32f06410a66c87a810b43848139bc7a3f8cb05892d508d92134d2d8",
+     "quote": "Victoria Dean Lecturer Research Areas Machine Learning",
+     "observed": "2025-12-12"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Printer Friendly",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: page chrome (\"Printer Friendly\", followed by the \"Faculty Type\" filter), not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160531120308id_/http://www.cs.princeton.edu/people/faculty?type=associated",
+     "sha256": "be3fe55097e336ec8c168c65544338035fc6f58f7fcf36c1f3a70b3b162e2d38",
+     "quote": "Home People Faculty Printer Friendly Faculty Type <All> Faculty",
+     "observed": "2016-05-31"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Toggle People",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: the navigation menu toggle (\"Toggle People ... Faculty\"), not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20251212150501id_/https://www.cs.princeton.edu/people/faculty",
+     "sha256": "f73abfd3c32f06410a66c87a810b43848139bc7a3f8cb05892d508d92134d2d8",
+     "quote": "People Toggle People Chevron Up menu#showSubmenu\"> Plus menu#hideSubmenu\"> Minus Faculty",
+     "observed": "2025-12-12"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "John Storey",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Professor in Genomics (Lewis-Sigler), associated (not primary) in CS. His lab is a statistical genomics lab (population/quantitative genomics, statistical theory); computation is a tool, not the object, so not a computing area under the owner rule (borderline: CS lists him under Computational Biology; he does head a lab).",
+   "computing_area": "statistical genomics",
+   "home_department": "Lewis-Sigler Institute for Integrative Genomics",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20251212150501id_/https://www.cs.princeton.edu/people/faculty",
+     "sha256": "f73abfd3c32f06410a66c87a810b43848139bc7a3f8cb05892d508d92134d2d8",
+     "quote": "John Storey Associated Faculty Research Areas Computational Biology",
+     "observed": "2025-12-12"
+    },
+    {
+     "url": "https://jdstorey.org/",
+     "sha256": "cfe66aac2f21b5dc8d300b68930d0658b5c820ee658827b75d602b8aa57bc47e",
+     "quote": "John D. Storey is the William R. Harman ’63 and Mary-Love Harman Professor in Genomics, primarly appointed in the Lewis-Sigler Institute for Integrative Genomics at Princeton University",
+     "observed": "2026-10-28"
+    },
+    {
+     "url": "http://www.storeylab.org/",
+     "sha256": "0c4499e51f0abd9a6c855e06443b6daf9acc1855d79df79b3213da1c307e2e35",
+     "quote": "The Storey Lab for Statistical Genomics is based in the Lewis-Sigler Institute for Integrative Genomics at Princeton University . We spend our time doing a mix of the following: population genomics quantitative genomics statistical theory and methods analysis of complex data sets open-source data science software development",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Sneha Goenka",
+   "aliases": [],
+   "decision": "qualifies",
+   "reason": "qualifies",
+   "summary": "Assistant Professor of ECE (associated in CS) whose research is computer systems architecture (specialized hardware-software systems for genomics); computing is the object. PI basis is weak but stated: her site recruits postdocs/PhD students to \"my lab\" and refers to \"my group's work\"; no named advisee found yet (OpenAlex shows Princeton affiliation from 2026).",
+   "computing_area": "computer architecture / hardware acceleration for genomics",
+   "home_department": "Electrical and Computer Engineering",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20251212150501id_/https://www.cs.princeton.edu/people/faculty",
+     "sha256": "f73abfd3c32f06410a66c87a810b43848139bc7a3f8cb05892d508d92134d2d8",
+     "quote": "Sneha Goenka Associated Faculty Research Areas Computational Biology Computer Architecture",
+     "observed": "2025-12-12"
+    },
+    {
+     "url": "https://www.snehagoenka.com/",
+     "sha256": "903f90685b51ccdeaf36572db2dfec22ad17422c7f487615049cd9f321857b01",
+     "quote": "I am an Assistant Professor at Princeton University in the Electrical and Computer Engineering Department and an associated faculty in the Computer Science Department , the Princeton Institute for Computational Science and Engineering (PICSciE) and the Princeton Precision Health Initiative (PPH) . I am actively looking for postdocs, graduate and undergraduate students to join my lab!",
+     "observed": "2026-10-28"
+    },
+    {
+     "url": "https://www.snehagoenka.com/",
+     "sha256": "903f90685b51ccdeaf36572db2dfec22ad17422c7f487615049cd9f321857b01",
+     "quote": "My research interests span computer systems architecture and computational genomics. I am interested in developing systems and methods for accelerated and more efficient genomic pipelines aimed towards clinical and research applications.",
+     "observed": "2026-10-28"
+    },
+    {
+     "url": "https://www.snehagoenka.com/apply",
+     "sha256": "9008c144be35157e7309493b170ab0d57cb187d24875e101bdafe762c56e4bf6",
+     "quote": "For PhD students at Princeton - You may email me directly. Please outline your research interests, explain how they align with my group’s work",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  }
+ ]
+}

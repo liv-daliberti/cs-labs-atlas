@@ -1,0 +1,215 @@
+{
+ "princeton": {
+  "Abhishek Bhattacharjee": {
+   "verdict": "zero_is_right",
+   "reason": "Reviewed appointment starts 2026-07-01; his one Princeton-identified paper predates it. No Princeton-affiliated work since he joined yet."
+  },
+  "Robert Schapire": {
+   "verdict": "zero_is_right",
+   "reason": "Listed only as (Visiting) Lecturer 2018-2021 while at Microsoft Research NYC; of 46 name hits in 2016-2026 only one (2016) lists Princeton, before the listings."
+  },
+  "Andrea LaPaugh": {
+   "verdict": "zero_is_right",
+   "reason": "Teaching-focused professor (undergraduate representative) until retirement; no 2016-2026 works in OpenAlex or DBLP under her names."
+  }
+ },
+ "cmu": {
+  "William L Scherlis": {
+   "verdict": "zero_is_right",
+   "reason": "DBLP has two 2016-2026 works: a 2019 arXiv preprint and IEEE S&P Magazine 2022 \"Formal Methods at Scale\", whose byline lists DARPA (he directed DARPA I2O), not CMU.",
+   "evidence": [
+    "https://api.openalex.org/works/doi:10.1109/MSEC.2022.3158842"
+   ]
+  },
+  "Randi Williams": {
+   "verdict": "zero_is_right",
+   "reason": "Assistant Research Professor first listed 2026 (HCII); her 26 name hits list MIT (her PhD), none CMU yet."
+  },
+  "Maggie Henderson": {
+   "verdict": "fix",
+   "reason": "26 CMU-affiliated, identity-anchored papers all fail the appointment check: no period and no dated listing (Psychology / Neuroscience Institute faculty with an MLD affiliation). Needs a reviewed start date."
+  }
+ },
+ "epfl": {
+  "Amin Shokrollahi": {
+   "verdict": "zero_is_right",
+   "reason": "All six verified 2016-2025 works (ISSCC, VLSI, JSSC, CICC, MWSCAS) are Kandou Bus industry papers whose bylines do not list EPFL."
+  },
+  "Jean-Dominique Decotignie": {
+   "verdict": "zero_is_right",
+   "reason": "DBLP has 12 works 2016-2019 (WSN/MAC with C. Rojas, L. Bergamini); OpenAlex bylines list CSEM Neuchâtel, not EPFL.",
+   "evidence": [
+    "https://api.openalex.org/works/doi:10.1109/WiMOB.2018.8589096",
+    "https://api.openalex.org/works/doi:10.1145/3273905.3273919"
+   ]
+  },
+  "Dimitris Kiritsis": {
+   "verdict": "fix",
+   "reason": "132 EPFL-affiliated identified papers fail only because the reviewed period has an end (2023) and no start; needs the start (on EPFL faculty since before 2016)."
+  }
+ },
+ "mit": {
+  "Christopher Terman": {
+   "verdict": "zero_is_right",
+   "reason": "Senior Lecturer (teaching; emeritus later); no 2016-2026 works in DBLP or under his OpenAlex id with MIT."
+  },
+  "Michael Sipser": {
+   "verdict": "zero_is_right",
+   "reason": "No DBLP records 2016-2026; the 7 OpenAlex name hits do not list MIT (textbook editions and namesakes)."
+  }
+ },
+ "berkeley": {
+  "Brian A. Barsky": {
+   "verdict": "zero_is_right",
+   "reason": "Advises 86 EECS M.S. reports and 9 undergraduates (EECS tech reports name him advisor) but authored no 2016-2026 work: OpenAlex author A5046623635 has 0 works in 2016-2026 and DBLP has none.",
+   "evidence": [
+    "https://api.openalex.org/works?filter=author.id:A5046623635,publication_year:2016-2026"
+   ]
+  },
+  "Per-Olof Persson": {
+   "verdict": "fix",
+   "reason": "CS-related addition (2026-10-26 review) with only a 2026 listing and no reviewed period (Wayback was down that day); every earlier paper fails the appointment check. Needs the appointment period."
+  },
+  "Alice Agogino": {
+   "verdict": "fix",
+   "reason": "CS-related addition (2026-10-26 review) with only a 2026 listing and no reviewed period (Wayback was down that day); every earlier paper fails the appointment check. Needs the appointment period."
+  },
+  "Philip Kaminsky": {
+   "verdict": "fix",
+   "reason": "CS-related addition (2026-10-26 review) with only a 2026 listing and no reviewed period (Wayback was down that day); every earlier paper fails the appointment check. Needs the appointment period."
+  },
+  "Maggi Kelly": {
+   "verdict": "fix",
+   "reason": "CS-related addition (2026-10-26 review) with only a 2026 listing and no reviewed period (Wayback was down that day); every earlier paper fails the appointment check. Needs the appointment period."
+  },
+  "Terry Regier": {
+   "verdict": "fix",
+   "reason": "CS-related addition (2026-10-26 review) with only a 2026 listing and no reviewed period (Wayback was down that day); every earlier paper fails the appointment check. Needs the appointment period."
+  },
+  "Ian Holmes": {
+   "verdict": "fix",
+   "reason": "CS-related addition (2026-10-26 review) with only a 2026 listing and no reviewed period (Wayback was down that day); every earlier paper fails the appointment check. Needs the appointment period."
+  },
+  "Ming Gu": {
+   "verdict": "fix",
+   "reason": "CS-related addition (2026-10-26 review) with only a 2026 listing and no reviewed period (Wayback was down that day); every earlier paper fails the appointment check. Needs the appointment period."
+  },
+  "Jenna Burrell": {
+   "verdict": "fix",
+   "reason": "CS-related addition (2026-10-26 review) with only a 2026 listing and no reviewed period (Wayback was down that day); every earlier paper fails the appointment check. Needs the appointment period."
+  }
+ },
+ "stanford": {
+  "Azalia Mirhoseini": {
+   "verdict": "fix",
+   "reason": "the appointment begins 2023 (first dated listing / profile); the Stanford OpenAlex sweep reaches 2023-08 only (keyless budget, hierarchy/run_stanford_sweep.sh resumes it); re-check after claude-stanford-20261027/tools/rebuild_after_sweep.sh"
+  },
+  "Shuran Song": {
+   "verdict": "fix",
+   "reason": "the appointment begins 2023 (listed) / 2024 (first dated listing / profile); the Stanford OpenAlex sweep reaches 2023-08 only (keyless budget, hierarchy/run_stanford_sweep.sh resumes it); re-check after claude-stanford-20261027/tools/rebuild_after_sweep.sh"
+  },
+  "Emily Alsentzer": {
+   "verdict": "fix",
+   "reason": "the appointment begins 2025 (first dated listing / profile); the Stanford OpenAlex sweep reaches 2023-08 only (keyless budget, hierarchy/run_stanford_sweep.sh resumes it); re-check after claude-stanford-20261027/tools/rebuild_after_sweep.sh"
+  },
+  "Yejin Choi": {
+   "verdict": "fix",
+   "reason": "the appointment begins 2025-2026 (first dated listing / profile); the Stanford OpenAlex sweep reaches 2023-08 only (keyless budget, hierarchy/run_stanford_sweep.sh resumes it); re-check after claude-stanford-20261027/tools/rebuild_after_sweep.sh"
+  },
+  "Emma Dauterman": {
+   "verdict": "fix",
+   "reason": "the appointment begins 2026 (first dated listing / profile); the Stanford OpenAlex sweep reaches 2023-08 only (keyless budget, hierarchy/run_stanford_sweep.sh resumes it); re-check after claude-stanford-20261027/tools/rebuild_after_sweep.sh"
+  },
+  "Mark Zhandry": {
+   "verdict": "fix",
+   "reason": "the appointment begins 2026 (first dated listing / profile); the Stanford OpenAlex sweep reaches 2023-08 only (keyless budget, hierarchy/run_stanford_sweep.sh resumes it); re-check after claude-stanford-20261027/tools/rebuild_after_sweep.sh"
+  },
+  "Renyuan Xu": {
+   "verdict": "fix",
+   "reason": "the appointment begins 2025 (first dated listing / profile); the Stanford OpenAlex sweep reaches 2023-08 only (keyless budget, hierarchy/run_stanford_sweep.sh resumes it); re-check after claude-stanford-20261027/tools/rebuild_after_sweep.sh"
+  },
+  "Jason Alan Fries": {
+   "verdict": "fix",
+   "reason": "the appointment begins 2026 (only the live profile is dated professor-rank evidence; earlier Stanford papers are from his research-staff years) (first dated listing / profile); the Stanford OpenAlex sweep reaches 2023-08 only (keyless budget, hierarchy/run_stanford_sweep.sh resumes it); re-check after claude-stanford-20261027/tools/rebuild_after_sweep.sh"
+  },
+  "Alexander Ioannidis": {
+   "verdict": "fix",
+   "reason": "the appointment begins 2026 (only the live profile is dated professor-rank evidence) (first dated listing / profile); the Stanford OpenAlex sweep reaches 2023-08 only (keyless budget, hierarchy/run_stanford_sweep.sh resumes it); re-check after claude-stanford-20261027/tools/rebuild_after_sweep.sh"
+  },
+  "Fouad A. Tobagi": {
+   "verdict": "zero_is_right",
+   "reason": "Not emeritus: Stanford Profiles still lists 'Professor of Electrical Engineering' (live 2026-10-28; 'and, by courtesy, of Computer Science' in 2016, dropped by 2019) with 2026-27 courses. But he is not a PI in 2016-2026: in all 43 distinct Wayback captures of his profile (2015-2026) and the live page there is no Doctoral Dissertation Advisor/Co-Advisor (AC) or Postdoctoral Faculty Sponsor entry; the only roles are Doctoral (Program) (program advising: Sid Assawaworrarit 2019-2021, Nandita Bhaskhar 2019-2023), Master's Program Advisor, and Doctoral Dissertation Reader (AC) Jasmin Falconer (2025-2026). The piBasis quote 'Doctoral (Program) Nandita Bhaskhar' is program advising, not dissertation advising (her dissertation advisor in students.json is Daniel Rubin). OpenAlex A5031990068 (212 works, Stanford) has no work 2011-2017 or 2019-2026; the single 2016-2026 hit is a 2018 guest Editorial for an Annals of Telecommunications special issue, not research output. Zero lab papers is right; the lab should be dropped from the census for the window.",
+   "evidence": [
+    "https://profiles.stanford.edu/fouad-tobagi",
+    "https://web.archive.org/web/20160312110517id_/https://profiles.stanford.edu/fouad-tobagi",
+    "https://web.archive.org/web/20191014140744id_/https://profiles.stanford.edu/fouad-tobagi",
+    "https://web.archive.org/web/20230330093400id_/https://profiles.stanford.edu/fouad-tobagi",
+    "https://web.archive.org/web/20250420174548id_/https://profiles.stanford.edu/fouad-tobagi",
+    "https://api.openalex.org/works?filter=author.id:A5031990068&group_by=publication_year",
+    "https://api.openalex.org/works?filter=author.id:A5031990068,from_publication_date:2016-01-01&per-page=100&select=id,display_name,publication_year,type,authorships,primary_location",
+    "https://link.springer.com/article/10.1007/s12243-018-0651-6"
+   ],
+   "evidence_detail": [
+    {
+     "url": "https://profiles.stanford.edu/fouad-tobagi",
+     "sha256": "35ce54d623967815b6326ade60e7c166c8d014c9118e707ca201e4ba9c096be4",
+     "quote": "Fouad Tobagi Professor of Electrical Engineering ... Academic Appointments Professor, Electrical Engineering ... 2026-27 Courses Internet Switching and Routing Protocols EE 384A (Win) Introduction to Computer Networks EE 284 (Aut)",
+     "observed": "2026-10-28"
+    },
+    {
+     "url": "https://profiles.stanford.edu/fouad-tobagi",
+     "sha256": "35ce54d623967815b6326ade60e7c166c8d014c9118e707ca201e4ba9c096be4",
+     "quote": "Stanford Advisees Doctoral Dissertation Reader (AC) Jasmin Falconer Master's Program Advisor Annie Peng, Yongjiang Wu, Nika Zahedi",
+     "observed": "2026-10-28"
+    },
+    {
+     "url": "https://web.archive.org/web/20160312110517id_/https://profiles.stanford.edu/fouad-tobagi",
+     "sha256": "99805520160e19f3eb5f60a458d8d4d8704ef27b6e7b05b0cddc9bb1d2c4910c",
+     "quote": "Fouad Tobagi Professor of Electrical Engineering and, by courtesy, of Computer Science",
+     "observed": "20160312"
+    },
+    {
+     "url": "https://web.archive.org/web/20191014140744id_/https://profiles.stanford.edu/fouad-tobagi",
+     "sha256": "2181aa0cbe68e7e5378b5a6021e3075b1daeb8ad1095e2ca68b8d27f3c811019",
+     "quote": "Stanford Advisees Master's Program Advisor Rob Jones, Saelig Khattar, Ryan Stocking Doctoral (Program) Sid Assawaworrarit, Nandita Bhaskhar",
+     "observed": "20191014"
+    },
+    {
+     "url": "https://web.archive.org/web/20230330093400id_/https://profiles.stanford.edu/fouad-tobagi",
+     "sha256": "be8103ac5661b70bdb2d5665196fb8367b16ddacf9b2a387a8dd6f9d2d480452",
+     "quote": "Stanford Advisees Master's Program Advisor Audrey Lee, Alex Lin Doctoral (Program) Nandita Bhaskhar",
+     "observed": "20230330"
+    },
+    {
+     "url": "https://web.archive.org/web/20250420174548id_/https://profiles.stanford.edu/fouad-tobagi",
+     "sha256": "f76d1f1b8423efc1bab582d9d385024a7650c5d4f8478e7a8294e11518517df6",
+     "quote": "Stanford Advisees Doctoral Dissertation Reader (AC) Jasmin Falconer Master's Program Advisor Sylvia Chin, Longling Geng, Fan Nie, Haoming Zou",
+     "observed": "20250420"
+    },
+    {
+     "url": "https://api.openalex.org/works?filter=author.id:A5031990068&group_by=publication_year",
+     "sha256": "8c1e48cf0257b6415aac8873a3fe626caef880c1a50808b42adf64398004fd9a",
+     "quote": "group_by publication_year: ... 2009: 2, 2010: 2, 2018: 1 (no other year >= 2011)",
+     "observed": "2026-10-28"
+    },
+    {
+     "url": "https://api.openalex.org/works?filter=author.id:A5031990068,from_publication_date:2016-01-01&per-page=100&select=id,display_name,publication_year,type,authorships,primary_location",
+     "sha256": "c4db10e056730276e3253916825a0d72e2b99074c6fd3f491b5f4907b80637b2",
+     "quote": "count 1: 2018 'Cloud edge computing in the IoT' (Annals of Telecommunications), Ilhem Fajjari, Fouad A. Tobagi, Yutaka Takahashi; Tobagi institution Stanford University",
+     "observed": "2026-10-28"
+    },
+    {
+     "url": "https://link.springer.com/article/10.1007/s12243-018-0651-6",
+     "sha256": "3deee3c062b59296679eadf4ca0838fb8fbd688ca0f5cf3fda81bc34775e7c21",
+     "quote": "Cloud edge computing in the IoT Editorial Published: 03 August 2018 ... The focus of this special issue is on the Internet of Things (IoT)",
+     "observed": "2026-10-28"
+    }
+   ],
+   "reviewed": "2026-10-28",
+   "previous": {
+    "verdict": "fix",
+    "reason": "listed 2016 and 2023-2026 only (EE listing captures 2017-2022 are partial pages); one 2018 Stanford work under his name; needs a reviewed period or confirmation that zero is right"
+   }
+  }
+ }
+}

@@ -1,0 +1,4041 @@
+{
+ "reviewed": "2026-10-26",
+ "scope": "owner decision 2026-10-22: all faculty in any department who work on CS-related topics / publish in CS venues, if they are PIs",
+ "rule": "faculty = a Berkeley professor rank 2016-2026 in any department (incl. in residence; adjuncts only when they advise PhDs; teaching professors without PhD advising, lecturers, researchers, postdocs and students do not count); PI = stated PhD advising 2016-2026 or a lab they head alone",
+ "input": "hierarchy/berkeley/cs-related-candidates.json",
+ "captures": "hierarchy/berkeley/cs-related-captures.sqlite (quotes are exact substrings of the stored text, whitespace collapsed)",
+ "tools": "hierarchy/berkeley/cs-related-tools/{mpcap.py,accepted.py,others.py,build.py,apply.py}",
+ "caveat": "web.archive.org refused connections from this host on 2026-10-26; past-year evidence comes only from Wayback captures already stored by earlier sweeps (EECS lists) and live pages",
+ "counts": {
+  "accepted": 77,
+  "faculty_no_pi_evidence": 22,
+  "not_faculty": 123,
+  "unresolved": 9
+ },
+ "decisions": [
+  {
+   "index": 0,
+   "author": "https://openalex.org/A5064077634",
+   "name": "Masayoshi Tomizuka",
+   "decision": "accepted",
+   "reason": "Distinguished Professor of Mechanical Engineering, Mechanical Engineering; PI: stated PhD advising",
+   "census_name": "Masayoshi Tomizuka",
+   "home_department": "Mechanical Engineering",
+   "evidence": [
+    {
+     "url": "https://me.berkeley.edu/people/masayoshi-tomizuka/",
+     "sha256": "b8191e82f076c5231d5f2d68ddb18142f68861f7e9d89db8a31a18ba3a78a688",
+     "quote": "Masayoshi Tomizuka Cheryl and John Neerhout, Jr. Distinguished Professor Distinguished Professor of Mechanical Engineering"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2016.html",
+     "sha256": "cbd43f0139b0e030a34929c25cf1247d92ecec0e8405f9e5a2329657df16006c",
+     "quote": "Robert Matthew [advisor: Masayoshi Tomizuka and Ruzena Bajcsy]"
+    }
+   ]
+  },
+  {
+   "index": 1,
+   "author": "https://openalex.org/A5033006662",
+   "name": "Michael W. Mahoney",
+   "decision": "accepted",
+   "reason": "Adjunct Professor, Statistics; PI: stated PhD advising",
+   "census_name": "Michael Mahoney",
+   "home_department": "Statistics",
+   "evidence": [
+    {
+     "url": "https://statistics.berkeley.edu/people/faculty",
+     "sha256": "7d6a612712d0cd44a44f5b7b402cf431d4c46317c0ccd46ad66a0b9ddee9d8fd",
+     "quote": "Michael Mahoney Adjunct Professor"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2023.html",
+     "sha256": "3a29aa62cf4727623f6caab380f0b36a9376a6a9cc34031feee3cef4341b24e9",
+     "quote": "Geoffrey Negiar [advisor: Laurent El Ghaoui and Michael William Mahoney]"
+    }
+   ]
+  },
+  {
+   "index": 2,
+   "author": "https://openalex.org/A5025067440",
+   "name": "Francesco Borrelli",
+   "decision": "accepted",
+   "reason": "Professor of Mechanical Engineering, Mechanical Engineering; PI: stated PhD advising",
+   "census_name": "Francesco Borrelli",
+   "home_department": "Mechanical Engineering",
+   "evidence": [
+    {
+     "url": "https://me.berkeley.edu/people/francesco-borrelli/",
+     "sha256": "6dc58bdf3a01cedd9fed91540269734e8f2139fdd04f7f15622f0cefe760d62b",
+     "quote": "Francesco Borrelli Professor of Mechanical Engineering"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2021.html",
+     "sha256": "2caad3d53341a2642c668a46fae9acb1cad9a99f2c59b2170f4a3ff84229c30c",
+     "quote": "Vijay Govindarajan [advisor: Trevor Darrell and Francesco Borrelli]"
+    }
+   ]
+  },
+  {
+   "index": 3,
+   "author": "https://openalex.org/A5042580848",
+   "name": "Javad Lavaei",
+   "decision": "accepted",
+   "reason": "Associate Professor, Industrial Engineering and Operations Research; PI: stated PhD advising",
+   "census_name": "Javad Lavaei",
+   "home_department": "Industrial Engineering and Operations Research",
+   "evidence": [
+    {
+     "url": "https://ieor.berkeley.edu/people/faculty/",
+     "sha256": "e1173fad40ee5eb086458a8b7df16d113a7021075dffa795dd33aff36a8d1321",
+     "quote": "Javad Lavaei Associate Professor"
+    },
+    {
+     "url": "https://lavaei.ieor.berkeley.edu/",
+     "sha256": "6fa062276f07b80b647ca7a3d6f7a9dfd199ed3456493c37046df1aeb4dcd6a7",
+     "quote": "Baturalp Yalcin defended his PhD dissertation."
+    }
+   ]
+  },
+  {
+   "index": 4,
+   "author": "https://openalex.org/A5025743742",
+   "name": "Murat Arcak",
+   "decision": "accepted",
+   "reason": "Professor, EECS (EE division); PI: stated PhD advising",
+   "census_name": "Murat Arcak",
+   "home_department": "EECS (EE division)",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Murat Arcak Professor"
+    },
+    {
+     "url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "Murat Arcak Professor"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2026.html",
+     "sha256": "bdeee6237d34452f112c46a1c2785c807c887b9773d52cd122b672e1f62d2b21",
+     "quote": "Neelay Junnarkar [advisor: Murat Arcak]"
+    }
+   ]
+  },
+  {
+   "index": 5,
+   "author": "https://openalex.org/A5041784384",
+   "name": "Borivoje Nikolic",
+   "decision": "accepted",
+   "reason": "Professor, EECS (EE division); PI: stated PhD advising",
+   "census_name": "Borivoje Nikolic",
+   "home_department": "EECS (EE division)",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Borivoje Nikolic Professor"
+    },
+    {
+     "url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "Borivoje Nikolic Professor"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2026.html",
+     "sha256": "bdeee6237d34452f112c46a1c2785c807c887b9773d52cd122b672e1f62d2b21",
+     "quote": "Bob Zhou [advisor: Borivoje Nikolic]"
+    }
+   ]
+  },
+  {
+   "index": 6,
+   "author": "https://openalex.org/A5088660554",
+   "name": "Alberto Sangiovanni-Vincentelli",
+   "decision": "accepted",
+   "reason": "Professor, EECS (EE division); PI: stated PhD advising",
+   "census_name": "Alberto Sangiovanni-Vincentelli",
+   "home_department": "EECS (EE division)",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Alberto L. Sangiovanni-Vincentelli Professor"
+    },
+    {
+     "url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "Alberto L. Sangiovanni-Vincentelli Professor"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2026.html",
+     "sha256": "bdeee6237d34452f112c46a1c2785c807c887b9773d52cd122b672e1f62d2b21",
+     "quote": "Tung-Wei Lin [advisor: Alberto L. Sangiovanni-Vincentelli]"
+    }
+   ]
+  },
+  {
+   "index": 7,
+   "author": "https://openalex.org/A5029873060",
+   "name": "Scott Moura",
+   "decision": "accepted",
+   "reason": "Professor, Civil and Environmental Engineering; PI: heads Energy, Controls, & Applications Lab (eCAL)",
+   "census_name": "Scott Moura",
+   "home_department": "Civil and Environmental Engineering",
+   "evidence": [
+    {
+     "url": "https://ce.berkeley.edu/people/faculty",
+     "sha256": "6f0dbaf6665d0157ef201ff94b4775764803e8e9fcc3fffd2291f9f9f3e3050b",
+     "quote": "Scott Moura Professor"
+    },
+    {
+     "url": "https://ce.berkeley.edu/people/faculty/moura",
+     "sha256": "7a1ea53b25fce56d897b4148605ff20957eda71563f9f1efd8b2fc28a28ab41a",
+     "quote": "Scott Moura is a Professor in Civil & Environmental Engineering , Director of the Energy, Controls, & Applications Lab (eCAL)"
+    }
+   ]
+  },
+  {
+   "index": 8,
+   "author": "https://openalex.org/A5090657067",
+   "name": "Leon O. Chua",
+   "decision": "faculty_no_pi_evidence",
+   "reason": "EE Professor Emeritus throughout the window (EECS emeriti lists 2016-2026); no EECS PhD dissertation 2016-2026 names him adviser and no lab of his own was found.",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160503011704id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/emeritus.shtml",
+     "sha256": "4eb71662959a0be4935840fc0aa19e60e9f91ab7653603331d4f72d0b9a4c890",
+     "quote": "Leon O. Chua Professor Emeritus",
+     "observed": "2016-05-03"
+    },
+    {
+     "url": "https://web.archive.org/web/20260212103425id_/https://www2.eecs.berkeley.edu/Faculty/Lists/emeritus.html",
+     "sha256": "8b06389c17c0e88a1b4e05eaaf6a746090a52c683c8f854fddfac5c72ecd3eb5",
+     "quote": "Leon O. Chua Professor Emeritus",
+     "observed": "2026-02-12"
+    }
+   ]
+  },
+  {
+   "index": 9,
+   "author": "https://openalex.org/A5012457625",
+   "name": "Zuo-Jun Max Shen",
+   "decision": "accepted",
+   "reason": "Professor Emeritus, Industrial Engineering and Operations Research; PI: stated PhD advising",
+   "census_name": "Zuo-Jun Max Shen",
+   "home_department": "Industrial Engineering and Operations Research",
+   "evidence": [
+    {
+     "url": "https://ieor.berkeley.edu/people/faculty/",
+     "sha256": "e1173fad40ee5eb086458a8b7df16d113a7021075dffa795dd33aff36a8d1321",
+     "quote": "Max Shen Professor Emeritus"
+    },
+    {
+     "url": "https://shen.ieor.berkeley.edu/",
+     "sha256": "1a5b6b0597990c048e47926453422631aec349448f3855c0a4ebfbc42d886217",
+     "quote": "Zuo-Jun (Max) Shen Professor Emeritus Department of Industrial Engineering and Operations Research Department of Civil and Environmental Engineering"
+    },
+    {
+     "url": "https://shen.ieor.berkeley.edu/",
+     "sha256": "1a5b6b0597990c048e47926453422631aec349448f3855c0a4ebfbc42d886217",
+     "quote": "Junyu Cao (2020, Assistant Professor, McCombs School of Business, The University of Texas at Austin)"
+    }
+   ]
+  },
+  {
+   "index": 10,
+   "author": "https://openalex.org/A5072786751",
+   "name": "Somayeh Sojoudi",
+   "decision": "accepted",
+   "reason": "Associate Professor in Residence, EECS (EE division); PI: stated PhD advising; period 2017 to present",
+   "census_name": "Somayeh Sojoudi",
+   "home_department": "EECS (EE division)",
+   "evidence": [
+    {
+     "url": "https://me.berkeley.edu/people/somayeh-sojoudi/",
+     "sha256": "a446581a28c3eaa412c8d327f32997d41236e0b4a356d2f6e3d18f1eec8a94a4",
+     "quote": "Somayeh Sojoudi Associate Professor-In-Residence of Mechanical Engineering Associate Professor-In-Residence of EECS"
+    },
+    {
+     "url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "Somayeh Sojoudi Assistant Professor in Residence"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2025.html",
+     "sha256": "3d7b12cff6dc1b6676f7c4d45370a1bcb145f94f7164f6179fb5118712eecaf0",
+     "quote": "Samuel Pfrommer [advisor: Somayeh Sojoudi]"
+    }
+   ]
+  },
+  {
+   "index": 11,
+   "author": "https://openalex.org/A5054075105",
+   "name": "Koushil Sreenath",
+   "decision": "accepted",
+   "reason": "Professor of Mechanical Engineering, Mechanical Engineering; PI: stated PhD advising; period 2017 to present",
+   "census_name": "Koushil Sreenath",
+   "home_department": "Mechanical Engineering",
+   "evidence": [
+    {
+     "url": "https://me.berkeley.edu/people/koushil-sreenath/",
+     "sha256": "7c03085149c238778232d3ee7d6461b9340b314a714599ecb2d1dbed4bebc7e1",
+     "quote": "Koushil Sreenath Professor of Mechanical Engineering"
+    },
+    {
+     "url": "https://hybrid-robotics.berkeley.edu/people/",
+     "sha256": "1fdfa6333782a5646e97e7e43581a61da06b3929987d75e8e3a81221921b5fa6",
+     "quote": "Qiayuan Liao Ph.D. Candidate, ME Legged Robotics (2023-)"
+    }
+   ]
+  },
+  {
+   "index": 12,
+   "author": "https://openalex.org/A5062722286",
+   "name": "S. Shankar Sastry",
+   "decision": "accepted",
+   "reason": "Professor, EECS (EE division); PI: stated PhD advising",
+   "census_name": "S. Shankar Sastry",
+   "home_department": "EECS (EE division)",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "S. Shankar Sastry Professor, Dean"
+    },
+    {
+     "url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "S. Shankar Sastry Professor"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2025.html",
+     "sha256": "3d7b12cff6dc1b6676f7c4d45370a1bcb145f94f7164f6179fb5118712eecaf0",
+     "quote": "Chinmay Maheshwari [advisor: S. Shankar Sastry]"
+    }
+   ]
+  },
+  {
+   "index": 13,
+   "author": "https://openalex.org/A5021273980",
+   "name": "Zachary A. Pardos",
+   "decision": "accepted",
+   "reason": "Professor, School of Education; PI: heads Computational Approaches to Human Learning (CAHL) research lab",
+   "census_name": "Zachary Pardos",
+   "home_department": "School of Education",
+   "evidence": [
+    {
+     "url": "https://bse.berkeley.edu/faculty",
+     "sha256": "6f5c7e73a5a3d1f915d2e8d4c2a24fc637ac5e0d7e08c65bd73fe564abb1ab96",
+     "quote": "Zachary A. Pardos Professor"
+    },
+    {
+     "url": "https://bse.berkeley.edu/zachary-pardos",
+     "sha256": "a2c204110ef108bb313fa98e234deaf679bd88ac0cac5bb33eef91fdbc51b862",
+     "quote": "At Cal, he directs the Computational Approaches to Human Learning research lab"
+    }
+   ]
+  },
+  {
+   "index": 14,
+   "author": "https://openalex.org/A5057967687",
+   "name": "Dan Garcia",
+   "decision": "not_faculty",
+   "reason": "Teaching professor (EECS teaching-faculty list) without PhD advising: teaching professors do not count; already in the census as a non-PI (rank teaching). Same person as candidate 125.",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160315000000id_/http://www.eecs.berkeley.edu/Faculty/Lists/CS/list.shtml",
+     "sha256": "3bcb9eecfa0045450f9cb9a83c4f2071e17c10abb3d94c461aea0162f24f5b9c",
+     "quote": "Dan Garcia Teaching Professor",
+     "observed": "2016-03-15"
+    },
+    {
+     "url": "https://web.archive.org/web/20260211213854id_/https://www2.eecs.berkeley.edu/Faculty/Lists/teaching.html",
+     "sha256": "7e2a44636c6d8773de296d7f9d70aba37619fe67bc7c0ae29097ef86488e964d",
+     "quote": "Dan Garcia Teaching Professor",
+     "observed": "2026-02-11"
+    }
+   ]
+  },
+  {
+   "index": 15,
+   "author": "https://openalex.org/A5088933304",
+   "name": "Jan M. Rabaey",
+   "decision": "accepted",
+   "reason": "Professor Emeritus, EECS (EE division); PI: stated PhD advising",
+   "census_name": "Jan M. Rabaey",
+   "home_department": "EECS (EE division)",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Jan M. Rabaey Professor"
+    },
+    {
+     "url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "Jan M. Rabaey Professor"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2024.html",
+     "sha256": "997022bf081272f06b4536bb7990112b61db156a31ebd11831235e8493e57d8d",
+     "quote": "Youbin Kim [advisor: Jan M. Rabaey]"
+    }
+   ]
+  },
+  {
+   "index": 16,
+   "author": "https://openalex.org/A5039764227",
+   "name": "Ali M. Niknejad",
+   "decision": "accepted",
+   "reason": "Professor, EECS (EE division); PI: stated PhD advising",
+   "census_name": "Ali Niknejad",
+   "home_department": "EECS (EE division)",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Ali Niknejad Professor"
+    },
+    {
+     "url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "Ali Niknejad Professor"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2025.html",
+     "sha256": "3d7b12cff6dc1b6676f7c4d45370a1bcb145f94f7164f6179fb5118712eecaf0",
+     "quote": "Jongbeom Baek [advisor: Ali Niknejad]"
+    }
+   ]
+  },
+  {
+   "index": 17,
+   "author": "https://openalex.org/A5110450560",
+   "name": "Alan Mishchenko",
+   "decision": "not_faculty",
+   "reason": "Research scientist in EECS (logic synthesis group), not a professor: Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5110450560",
+     "sha256": "7bba26a82d0432364c8a56115e23d37c9c0c1c76d7eacb0412aaae86e8cb1f32",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2025,2024,2023,2022,2021,2020,2019,2018,2017,2016,2015,2014,2013,2012,2011,2010,2009,2008,2007,2006,2005,2003]"
+    }
+   ]
+  },
+  {
+   "index": 18,
+   "author": "https://openalex.org/A5088293566",
+   "name": "Shao-Lun Huang",
+   "decision": "not_faculty",
+   "reason": "Faculty of the Tsinghua-Berkeley Shenzhen Institute (Tsinghua University), not of UC Berkeley; the TBSI affiliation string carries the Berkeley lineage.",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5088293566",
+     "sha256": "21fb0392e32c42a6dedabc15256e1c575f7c5b9e1d187cbec7ae162cbcbc2787",
+     "quote": "\"display_name\":\"Tsinghua\\u2013Berkeley Shenzhen Institute\",\"country_code\":\"CN\",\"type\":\"facility\",\"lineage\":[\"https://openalex.org/I4210114105\",\"https://openalex.org/I95457486\",\"https://openalex.org/I99065089\"]},\"years\":[2026,2024,2023,2022,2021,2020,2019,2018,2017]"
+    }
+   ]
+  },
+  {
+   "index": 19,
+   "author": "https://openalex.org/A5101770873",
+   "name": "Wei Zhan",
+   "decision": "not_faculty",
+   "reason": "Researcher / postdoc in the Mechanical Systems Control Lab (Tomizuka); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5101770873",
+     "sha256": "2a785cec5e87f36d90c4e331047c7c219edd675b786beef5d564a4c2dc05da8f",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2026,2025,2024,2023,2022,2021,2020,2019,2018,2017]"
+    }
+   ]
+  },
+  {
+   "index": 20,
+   "author": "https://openalex.org/A5090187471",
+   "name": "Narges Norouzi",
+   "decision": "not_faculty",
+   "reason": "Teaching professor (EECS teaching-faculty list) without PhD advising: teaching professors do not count; already in the census as a non-PI. Same person as candidate 202.",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20230320232425id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "9d270d05521fa80cfff0d5c05ce26219b9a500acc9af568a021052b4a7f1531e",
+     "quote": "Narges Norouzi Assistant Teaching Professor",
+     "observed": "2023-03-20"
+    },
+    {
+     "url": "https://web.archive.org/web/20260211213854id_/https://www2.eecs.berkeley.edu/Faculty/Lists/teaching.html",
+     "sha256": "7e2a44636c6d8773de296d7f9d70aba37619fe67bc7c0ae29097ef86488e964d",
+     "quote": "Narges Norouzi Associate Teaching Professor",
+     "observed": "2026-02-11"
+    }
+   ]
+  },
+  {
+   "index": 21,
+   "author": "https://openalex.org/A5101555401",
+   "name": "Ali Mesbah",
+   "decision": "accepted",
+   "reason": "Associate Professor of Chemical and Biomolecular Engineering, Chemical and Biomolecular Engineering; PI: heads Mesbah Lab",
+   "census_name": "Ali Mesbah",
+   "home_department": "Chemical and Biomolecular Engineering",
+   "evidence": [
+    {
+     "url": "https://chemistry.berkeley.edu/faculty/cbe",
+     "sha256": "83816eda0341c2f68942854d4f968381b1d4d050b1f99b847c1c885b06a4a83c",
+     "quote": "Ali Mesbah Associate Professor of Chemical and Biomolecular Engineering"
+    },
+    {
+     "url": "https://chemistry.berkeley.edu/people/ali-mesbah",
+     "sha256": "fe7e733b8fd19fdb0623a55f0f1b86a9db439f2a15a035dbdfb77f36662a404f",
+     "quote": "Ali Mesbah Contact mesbah@berkeley.edu (510) 642-7998 316 Gilman Hall Mesbah Lab"
+    }
+   ]
+  },
+  {
+   "index": 22,
+   "author": "https://openalex.org/A5014661259",
+   "name": "Ching-Yao Chan",
+   "decision": "not_faculty",
+   "reason": "Research engineer / program leader at California PATH (ITS), not a professor; Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5014661259",
+     "sha256": "a949302cd0fd279a4927d753edcf84857887195bfbc3fefd8ca4870e5b13afa4",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2024,2023,2022,2021,2020,2019,2018,2017,2016,2015,2014,2013,2012,2011,2010,2009,2008,2007,2006,2005,2004,2003,2002,2001,2000,1999,1998,1997,1996,1987]"
+    }
+   ]
+  },
+  {
+   "index": 23,
+   "author": "https://openalex.org/A5062841020",
+   "name": "Yi Ma",
+   "decision": "accepted",
+   "reason": "Professor in Residence (Visiting Professor since January 2025), EECS (EE division); PI: stated PhD advising; period 2018-01 to 2024-12",
+   "census_name": "Yi Ma",
+   "home_department": "EECS (EE division)",
+   "evidence": [
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/yima.html",
+     "sha256": "4cde5265c2ccec0c910176c48c29e4807fed035e4cd61c4a1b364810582289e9",
+     "quote": "He joins the faculty of EECS of UC Berkeley in 2018."
+    },
+    {
+     "url": "https://web.archive.org/web/20190919131344id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "c5157397c0672a4647168e735d64b0d2733705c2cc495a290a82af36776f6cbd",
+     "quote": "Yi Ma Professor in Residence"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2020.html",
+     "sha256": "dfe243f75ecbdd7d2a0c27699d84e21556212bad306cffd3a738e63025fe1a01",
+     "quote": "Yichao Zhou [advisor: Yi Ma]"
+    }
+   ]
+  },
+  {
+   "index": 24,
+   "author": "https://openalex.org/A5109961264",
+   "name": "Elad Alon",
+   "decision": "accepted",
+   "reason": "Adjunct Professor, EECS (EE division); PI: stated PhD advising",
+   "census_name": "Elad Alon",
+   "home_department": "EECS (EE division)",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Elad Alon Associate Professor"
+    },
+    {
+     "url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "Elad Alon Professor"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2021.html",
+     "sha256": "2caad3d53341a2642c668a46fae9acb1cad9a99f2c59b2170f4a3ff84229c30c",
+     "quote": "Zhongkai Wang [advisor: Elad Alon]"
+    }
+   ]
+  },
+  {
+   "index": 25,
+   "author": "https://openalex.org/A5107195431",
+   "name": "Lin Lin",
+   "decision": "accepted",
+   "reason": "Professor, Mathematics; PI: stated PhD advising",
+   "census_name": "Lin Lin",
+   "home_department": "Mathematics",
+   "evidence": [
+    {
+     "url": "https://math.berkeley.edu/people/faculty",
+     "sha256": "4610a69d0854660588158b6db7e96dfccd40464471f7052ec5cdeaa85b7aa737",
+     "quote": "Lin Lin (林霖) Professor Applied Mathematics"
+    },
+    {
+     "url": "https://math.berkeley.edu/people/past-department-members/past-phd-students?page=6",
+     "sha256": "682263060be41d697f6a3b850c9e2018121f4c347b7464cd1e8bedb4d377adf6",
+     "quote": "Yu Tong; Lin Lin 2022 PhD Thesis"
+    }
+   ]
+  },
+  {
+   "index": 26,
+   "author": "https://openalex.org/A5002874750",
+   "name": "Zeyu Zheng",
+   "decision": "faculty_no_pi_evidence",
+   "reason": "IEOR Associate Professor (live IEOR list); no stated PhD advising or own lab on any captured page (IEOR profile, homepage).",
+   "evidence": [
+    {
+     "url": "https://ieor.berkeley.edu/people/faculty/",
+     "sha256": "e1173fad40ee5eb086458a8b7df16d113a7021075dffa795dd33aff36a8d1321",
+     "quote": "Zeyu Zheng Associate Professor"
+    }
+   ]
+  },
+  {
+   "index": 27,
+   "author": "https://openalex.org/A5023927229",
+   "name": "Kameshwar Poolla",
+   "decision": "accepted",
+   "reason": "Distinguished Professor of Mechanical Engineering, Mechanical Engineering; PI: stated PhD advising",
+   "census_name": "Kameshwar Poolla",
+   "home_department": "Mechanical Engineering",
+   "evidence": [
+    {
+     "url": "https://me.berkeley.edu/people/kameshwar-poolla/",
+     "sha256": "7c60c09d7a168b0f1c2c0e487659256cf2cf7e5046ea03f719bf6328e8888425",
+     "quote": "Kameshwar Poolla Cadence Design Systems Distinguished Professor Distinguished Professor of Mechanical Engineering"
+    },
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Kameshwar Poolla Professor"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2023.html",
+     "sha256": "3a29aa62cf4727623f6caab380f0b36a9376a6a9cc34031feee3cef4341b24e9",
+     "quote": "Akhil Shetty [advisor: Kameshwar Poolla]"
+    }
+   ]
+  },
+  {
+   "index": 28,
+   "author": "https://openalex.org/A5014893911",
+   "name": "Anil Aswani",
+   "decision": "accepted",
+   "reason": "Associate Professor, Industrial Engineering and Operations Research; PI: stated PhD advising",
+   "census_name": "Anil Aswani",
+   "home_department": "Industrial Engineering and Operations Research",
+   "evidence": [
+    {
+     "url": "https://ieor.berkeley.edu/people/faculty/",
+     "sha256": "e1173fad40ee5eb086458a8b7df16d113a7021075dffa795dd33aff36a8d1321",
+     "quote": "Anil Aswani Associate Professor"
+    },
+    {
+     "url": "https://aswani.ieor.berkeley.edu/",
+     "sha256": "55b22a2c0a22d1b8b71f074ef7ca62c21b021ca068c8eae7a96aa9ed4bef880e",
+     "quote": "Edward Dowling PhD expected 2029 Co-advised by Shmuel Oren"
+    }
+   ]
+  },
+  {
+   "index": 29,
+   "author": "https://openalex.org/A5001520779",
+   "name": "Pasin Manurangsi",
+   "decision": "not_faculty",
+   "reason": "EECS PhD student (dissertation 2019), then Google.",
+   "evidence": [
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2019.html",
+     "sha256": "877b4a2af6b0d52618979f4ba17f506c9632504022696fb9e209348f569e8ced",
+     "quote": "Pasin Manurangsi [advisor: Luca Trevisan and Prasad Raghavendra]"
+    }
+   ]
+  },
+  {
+   "index": 30,
+   "author": "https://openalex.org/A5072771619",
+   "name": "Yuxun Zhou",
+   "decision": "not_faculty",
+   "reason": "EECS PhD student (dissertation 2017).",
+   "evidence": [
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2017.html",
+     "sha256": "fdba4e2740217585b5c660b423d952ee7bacedfff79bc8b5101e06e2f715b981",
+     "quote": "Yuxun Zhou [advisor: Costas J. Spanos]"
+    }
+   ]
+  },
+  {
+   "index": 31,
+   "author": "https://openalex.org/A5013689450",
+   "name": "Venkat Anantharam",
+   "decision": "accepted",
+   "reason": "Professor, EECS (EE division); PI: stated PhD advising",
+   "census_name": "Venkat Anantharam",
+   "home_department": "EECS (EE division)",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Venkat Anantharam Professor"
+    },
+    {
+     "url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "Venkat Anantharam Professor"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2026.html",
+     "sha256": "bdeee6237d34452f112c46a1c2785c807c887b9773d52cd122b672e1f62d2b21",
+     "quote": "Devon Ding [advisor: Venkat Anantharam]"
+    }
+   ]
+  },
+  {
+   "index": 32,
+   "author": "https://openalex.org/A5085640376",
+   "name": "Dorit S. Hochbaum",
+   "decision": "accepted",
+   "reason": "Distinguished Professor, Industrial Engineering and Operations Research; PI: stated PhD advising",
+   "census_name": "Dorit S. Hochbaum",
+   "home_department": "Industrial Engineering and Operations Research",
+   "evidence": [
+    {
+     "url": "https://ieor.berkeley.edu/people/faculty/",
+     "sha256": "e1173fad40ee5eb086458a8b7df16d113a7021075dffa795dd33aff36a8d1321",
+     "quote": "Dorit Hochbaum Distinguished Professor"
+    },
+    {
+     "url": "https://hochbaum.ieor.berkeley.edu/html/present_phds.html",
+     "sha256": "f5713c6bb6aa8505756731aee341ee0e981be606c8feb7dead0342e066ae3ac9",
+     "quote": "Jonathan Bodine PhD student"
+    }
+   ]
+  },
+  {
+   "index": 33,
+   "author": "https://openalex.org/A5025438151",
+   "name": "Vladimir Stojanovic",
+   "decision": "accepted",
+   "reason": "Adjunct Professor, EECS (EE division); PI: stated PhD advising",
+   "census_name": "Vladimir Stojanovic",
+   "home_department": "EECS (EE division)",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Vladimir Stojanovic Associate Professor"
+    },
+    {
+     "url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "Vladimir Stojanovic Associate Professor"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2024.html",
+     "sha256": "997022bf081272f06b4536bb7990112b61db156a31ebd11831235e8493e57d8d",
+     "quote": "Erik Anderson [advisor: Vladimir Stojanovic]"
+    }
+   ]
+  },
+  {
+   "index": 34,
+   "author": "https://openalex.org/A5072434311",
+   "name": "Yinliang Xu",
+   "decision": "not_faculty",
+   "reason": "Tsinghua Shenzhen (TBSI) faculty, not UC Berkeley.",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5072434311",
+     "sha256": "d46724e223422f1d85c20f0df8c492db09d9579e1277cf960c328a7c83c1ac97",
+     "quote": "\"display_name\":\"Tsinghua\\u2013Berkeley Shenzhen Institute\",\"country_code\":\"CN\",\"type\":\"facility\",\"lineage\":[\"https://openalex.org/I4210114105\",\"https://openalex.org/I95457486\",\"https://openalex.org/I99065089\"]},\"years\":[2025,2024,2023,2022,2021,2020,2019,2018,2017]"
+    }
+   ]
+  },
+  {
+   "index": 35,
+   "author": "https://openalex.org/A5038228706",
+   "name": "Ercan Engin Kuruoglu",
+   "decision": "not_faculty",
+   "reason": "Tsinghua-Berkeley Shenzhen Institute faculty (and CNR Pisa), not UC Berkeley.",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5038228706",
+     "sha256": "f67367e0927a1ce1252e63b1ed51c7b129b0724fc71db7c01cd9978f265ced75",
+     "quote": "\"display_name\":\"Tsinghua\\u2013Berkeley Shenzhen Institute\",\"country_code\":\"CN\",\"type\":\"facility\",\"lineage\":[\"https://openalex.org/I4210114105\",\"https://openalex.org/I95457486\",\"https://openalex.org/I99065089\"]},\"years\":[2026,2025,2024,2023,2022,2021,2020]"
+    }
+   ]
+  },
+  {
+   "index": 36,
+   "author": "https://openalex.org/A5019424497",
+   "name": "Marten Lohstroh",
+   "decision": "not_faculty",
+   "reason": "EECS PhD student (dissertation 2020), then a researcher in Edward Lee's group.",
+   "evidence": [
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2020.html",
+     "sha256": "dfe243f75ecbdd7d2a0c27699d84e21556212bad306cffd3a738e63025fe1a01",
+     "quote": "Marten Lohstroh [advisor: Edward A. Lee]"
+    }
+   ]
+  },
+  {
+   "index": 37,
+   "author": "https://openalex.org/A5000020874",
+   "name": "Serge Egelman",
+   "decision": "not_faculty",
+   "reason": "ICSI research director who co-advises EECS PhDs (2024-2025) but holds no Berkeley professorship: Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2024.html",
+     "sha256": "997022bf081272f06b4536bb7990112b61db156a31ebd11831235e8493e57d8d",
+     "quote": "Nikita Samarin [advisor: David A. Wagner and Serge Egelman]"
+    }
+   ]
+  },
+  {
+   "index": 38,
+   "author": "https://openalex.org/A5087667477",
+   "name": "Liting Sun",
+   "decision": "not_faculty",
+   "reason": "ME PhD student / postdoc (Tomizuka lab) 2015-2022, then Beihang University; Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5087667477",
+     "sha256": "398ff2b81450dc85343f45251e3959679ada1f5f85d46941df40588200d89f34",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2022,2021,2020,2019,2018,2017,2016,2015]"
+    }
+   ]
+  },
+  {
+   "index": 39,
+   "author": "https://openalex.org/A5051149140",
+   "name": "Sicheng Zhao",
+   "decision": "not_faculty",
+   "reason": "Postdoc (2018-2021); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5051149140",
+     "sha256": "437e8d2d821fb21a00ecb15be0e6fb193771cca2ada8bce7633067f18ac57205",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2021,2020,2019,2018]"
+    }
+   ]
+  },
+  {
+   "index": 40,
+   "author": "https://openalex.org/A5055069190",
+   "name": "Gireeja Ranade",
+   "decision": "not_faculty",
+   "reason": "EE-division teaching professor (Associate Teaching Professor) without PhD advising: teaching professors do not count.",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160918163438id_/https://www2.eecs.berkeley.edu/Faculty/Lists/new.html",
+     "sha256": "88c3f3be2811b3a1e981568daa6f5f67bb70eb86b6f74667a1aec2de87a62dc1",
+     "quote": "Gireeja Ranade Assistant Teaching Professor",
+     "observed": "2016-09-18"
+    },
+    {
+     "url": "https://web.archive.org/web/20260211213854id_/https://www2.eecs.berkeley.edu/Faculty/Lists/teaching.html",
+     "sha256": "7e2a44636c6d8773de296d7f9d70aba37619fe67bc7c0ae29097ef86488e964d",
+     "quote": "Gireeja Ranade Associate Teaching Professor",
+     "observed": "2026-02-11"
+    }
+   ]
+  },
+  {
+   "index": 41,
+   "author": "https://openalex.org/A5037747070",
+   "name": "Anna Rohrbach",
+   "decision": "not_faculty",
+   "reason": "Postdoc / research scientist (2016-2024), now TU Darmstadt; Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5037747070",
+     "sha256": "262e6ee0f6124fc15c9d0409e92164cf9984420d50727047af11f73ada341f41",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2024,2023,2022,2021,2020,2019,2018,2017,2016]"
+    }
+   ]
+  },
+  {
+   "index": 42,
+   "author": "https://openalex.org/A5002745879",
+   "name": "Roberto Horowitz",
+   "decision": "accepted",
+   "reason": "Distinguished Professor of Mechanical Engineering, Mechanical Engineering; PI: stated PhD advising",
+   "census_name": "Roberto Horowitz",
+   "home_department": "Mechanical Engineering",
+   "evidence": [
+    {
+     "url": "https://me.berkeley.edu/people/roberto-horowitz/",
+     "sha256": "8e47e546edf916021e0453df218dd7375372d584b31219194e9602bb8178f5fc",
+     "quote": "Roberto Horowitz Distinguished Professor of Mechanical Engineering"
+    },
+    {
+     "url": "https://sites.google.com/berkeley.edu/prof-roberto-horowitz/people",
+     "sha256": "eaf84cb2719bc8bbf45d86482a27d33feb96749a6ad9bade415d97a3f97687d3",
+     "quote": "Students who completed their Ph.D. under my supervision Nikhil Potu Surya Prakash (2024)"
+    }
+   ]
+  },
+  {
+   "index": 43,
+   "author": "https://openalex.org/A5059985425",
+   "name": "Thomas A. Courtade",
+   "decision": "accepted",
+   "reason": "Professor, EECS (EE division); PI: stated PhD advising",
+   "census_name": "Thomas Courtade",
+   "home_department": "EECS (EE division)",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Thomas Courtade Assistant Professor"
+    },
+    {
+     "url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "Thomas Courtade Assistant Professor"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2026.html",
+     "sha256": "bdeee6237d34452f112c46a1c2785c807c887b9773d52cd122b672e1f62d2b21",
+     "quote": "Syomantak Chaudhuri [advisor: Thomas Courtade]"
+    }
+   ]
+  },
+  {
+   "index": 44,
+   "author": "https://openalex.org/A5088007042",
+   "name": "Han Zou",
+   "decision": "not_faculty",
+   "reason": "Postdoc / visiting researcher; Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5088007042",
+     "sha256": "f5b3bc04271062fbc1788dadd9b9bca33b8af6e7471ffb60440b94f8b597c807",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2022,2021,2020,2019,2018,2017,2014]"
+    }
+   ]
+  },
+  {
+   "index": 45,
+   "author": "https://openalex.org/A5084510549",
+   "name": "Wenbo Ding",
+   "decision": "not_faculty",
+   "reason": "Tsinghua-Berkeley Shenzhen Institute faculty, not UC Berkeley.",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5084510549",
+     "sha256": "46122650f1d67e84bd23b520ca44d0c141fca0b9b4f0a59e2b2c682d937dd502",
+     "quote": "\"display_name\":\"Tsinghua\\u2013Berkeley Shenzhen Institute\",\"country_code\":\"CN\",\"type\":\"facility\",\"lineage\":[\"https://openalex.org/I4210114105\",\"https://openalex.org/I95457486\",\"https://openalex.org/I99065089\"]},\"years\":[2026,2025,2024,2023,2022,2021,2020]"
+    }
+   ]
+  },
+  {
+   "index": 46,
+   "author": "https://openalex.org/A5005587345",
+   "name": "Jeffrey Ichnowski",
+   "decision": "not_faculty",
+   "reason": "Postdoc / research scientist in the AUTOLAB, now CMU faculty; Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5005587345",
+     "sha256": "4484455d6c5656ee001ef1bb1cb48ffc948220ab753db1505f01d0e9760c624e",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2024,2023,2022,2021,2020,2019,1999,1998]"
+    }
+   ]
+  },
+  {
+   "index": 47,
+   "author": "https://openalex.org/A5043261089",
+   "name": "Rhonda Righter",
+   "decision": "faculty_no_pi_evidence",
+   "reason": "IEOR Professor (since 2003); no stated PhD advising or own lab on any captured page (IEOR profile, homepage, experience page).",
+   "evidence": [
+    {
+     "url": "https://rrighter.ieor.berkeley.edu/about/academic-and-professional-experience/",
+     "sha256": "bad3788e27834b27bbfe2eb9a7734b844d9439b38f7cacfc6d72d66a772436ed",
+     "quote": "Full Professor, UC Berkeley, since 2003."
+    }
+   ]
+  },
+  {
+   "index": 48,
+   "author": "https://openalex.org/A5083914796",
+   "name": "Chenfeng Xu",
+   "decision": "not_faculty",
+   "reason": "Graduate student (2020-2025); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5083914796",
+     "sha256": "1a5bb515d83364ee950cbd4da93588d5f29ecd1ade0aba7f980575192e0ba7cf",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2025,2024,2023,2022,2021,2020]"
+    }
+   ]
+  },
+  {
+   "index": 49,
+   "author": "https://openalex.org/A5009955932",
+   "name": "Rikky Muller",
+   "decision": "accepted",
+   "reason": "Professor, EECS (EE division); PI: stated PhD advising",
+   "census_name": "Rikky Muller",
+   "home_department": "EECS (EE division)",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Rikky Muller Assistant Professor"
+    },
+    {
+     "url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "Rikky Muller Assistant Professor"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2025.html",
+     "sha256": "3d7b12cff6dc1b6676f7c4d45370a1bcb145f94f7164f6179fb5118712eecaf0",
+     "quote": "Aviral Pandey [advisor: Rikky Muller]"
+    }
+   ]
+  },
+  {
+   "index": 50,
+   "author": "https://openalex.org/A5100351850",
+   "name": "Lin Zhang",
+   "decision": "not_faculty",
+   "reason": "Tsinghua (TBSI) faculty, not UC Berkeley.",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5100351850",
+     "sha256": "fd5b3cce246edf4150f3272d3a50f9122e0780a3f043add00664ed3ad0205b79",
+     "quote": "\"display_name\":\"Tsinghua\\u2013Berkeley Shenzhen Institute\",\"country_code\":\"CN\",\"type\":\"facility\",\"lineage\":[\"https://openalex.org/I4210114105\",\"https://openalex.org/I95457486\",\"https://openalex.org/I99065089\"]},\"years\":[2022,2021,2020,2019,2018,2017,2016]"
+    }
+   ]
+  },
+  {
+   "index": 51,
+   "author": "https://openalex.org/A5100363146",
+   "name": "Xiao-Ping Zhang",
+   "decision": "not_faculty",
+   "reason": "Tsinghua Shenzhen faculty, not UC Berkeley (stray Berkeley lineage).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5100363146",
+     "sha256": "c0d176361f2724c04b922c322f7b40f232abf93f43dd9ac29d770fe619b6da26",
+     "quote": "\"display_name\":\"Tsinghua University\",\"country_code\":\"CN\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I99065089\"]},\"years\":[2026,2025,2024,2023,2022,2019,2017,2016,2015,2014,2013,2011,2009,2008,2007,2006,2005,1996]"
+    }
+   ]
+  },
+  {
+   "index": 52,
+   "author": "https://openalex.org/A5040150415",
+   "name": "Pravin Varaiya",
+   "decision": "faculty_no_pi_evidence",
+   "reason": "EE Professor Emeritus (EECS emeriti lists 2016-2022); no EECS PhD dissertation 2016-2026 names him adviser (one 2017 MS report only) and no lab of his own.",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Pravin Varaiya Professor Emeritus, Professor in the Graduate School",
+     "observed": "2016-03-27"
+    },
+    {
+     "url": "https://web.archive.org/web/20220412054425id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "f9073f81438c5f1164c8b73d1dc5f516e7ce16f9309f787804f1894a08a227e1",
+     "quote": "Pravin Varaiya Professor Emeritus, Professor in the Graduate School",
+     "observed": "2022-04-12"
+    }
+   ]
+  },
+  {
+   "index": 53,
+   "author": "https://openalex.org/A5021360260",
+   "name": "Hannah S. Stuart",
+   "decision": "accepted",
+   "reason": "Associate Professor of Mechanical Engineering, Mechanical Engineering; PI: stated PhD advising; period 2018 to present",
+   "census_name": "Hannah Stuart",
+   "home_department": "Mechanical Engineering",
+   "evidence": [
+    {
+     "url": "https://me.berkeley.edu/people/hannah-stuart/",
+     "sha256": "4eb00491096b6e2de39aa5df9380f053e9cb05ffeb901bcd7fbd22d40ea33677",
+     "quote": "Hannah Stuart Associate Professor of Mechanical Engineering"
+    },
+    {
+     "url": "https://edg.berkeley.edu/",
+     "sha256": "0400a958dc127f4115bdc4a201f14b4057cda99390966227a15acf0a51cf5f13",
+     "quote": "Erin Chang and Wilson Torres graduate with PhD!"
+    }
+   ]
+  },
+  {
+   "index": 54,
+   "author": "https://openalex.org/A5008034417",
+   "name": "Avideh Zakhor",
+   "decision": "accepted",
+   "reason": "Professor Emerita, EECS (EE division); PI: stated PhD advising",
+   "census_name": "Avideh Zakhor",
+   "home_department": "EECS (EE division)",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Avideh Zakhor Professor"
+    },
+    {
+     "url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "Avideh Zakhor Professor"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2024.html",
+     "sha256": "997022bf081272f06b4536bb7990112b61db156a31ebd11831235e8493e57d8d",
+     "quote": "Lucas Jaffe [advisor: Avideh Zakhor]"
+    }
+   ]
+  },
+  {
+   "index": 55,
+   "author": "https://openalex.org/A5088813725",
+   "name": "Wesley H. Holliday",
+   "decision": "accepted",
+   "reason": "Professor of Philosophy, Philosophy; PI: stated PhD advising",
+   "census_name": "Wesley Holliday",
+   "home_department": "Philosophy",
+   "evidence": [
+    {
+     "url": "https://philosophy.berkeley.edu/people/faculty",
+     "sha256": "a3700a1727c0ab51398004e033aa77b64cf0c0c48efa1c54ce7485ed835d7aac",
+     "quote": "Wesley H. Holliday Professor of Philosophy"
+    },
+    {
+     "url": "https://sites.google.com/site/wesholliday/students",
+     "sha256": "31ad0add951d60b135fc90ac89d03fd32500041a6adc75b1b283f6c9e0c758c1",
+     "quote": "Ahmee Christensen - 2025 PhD in Logic and the Methodology of Science, UC Berkeley."
+    }
+   ]
+  },
+  {
+   "index": 56,
+   "author": "https://openalex.org/A5073886799",
+   "name": "Ronald S. Fearing",
+   "decision": "accepted",
+   "reason": "Professor Emeritus, Professor in the Graduate School, EECS (EE division); PI: stated PhD advising",
+   "census_name": "Ronald S. Fearing",
+   "home_department": "EECS (EE division)",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Ronald S. Fearing Professor"
+    },
+    {
+     "url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "Ronald S. Fearing Professor"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2020.html",
+     "sha256": "dfe243f75ecbdd7d2a0c27699d84e21556212bad306cffd3a738e63025fe1a01",
+     "quote": "Justin Yim [advisor: Ronald S. Fearing]"
+    }
+   ]
+  },
+  {
+   "index": 57,
+   "author": "https://openalex.org/A5009591368",
+   "name": "Mark W. Mueller",
+   "decision": "accepted",
+   "reason": "Associate Professor of Mechanical Engineering, Mechanical Engineering; PI: stated PhD advising; period 2016-08 to present",
+   "census_name": "Mark Mueller",
+   "home_department": "Mechanical Engineering",
+   "evidence": [
+    {
+     "url": "https://me.berkeley.edu/people/mark-mueller/",
+     "sha256": "5b14ed3431019eee340fa4ea4697d3151ac4f571759ad05ca870c2ff5170abdb",
+     "quote": "Mark W. Mueller Associate Professor of Mechanical Engineering"
+    },
+    {
+     "url": "https://hiperlab.berkeley.edu/members/",
+     "sha256": "835eff585b44250183ca0ef0b2498feedfe27da698e6bfa13f6d22ec8eeb73b1",
+     "quote": "Principal Investigator: Mark W. Mueller , contact: mwm@berkeley.edu Graduate students (alphabetically): Carlo Bosio"
+    }
+   ]
+  },
+  {
+   "index": 58,
+   "author": "https://openalex.org/A5111562753",
+   "name": "Pamela Samuelson",
+   "decision": "faculty_no_pi_evidence",
+   "reason": "Berkeley Law professor; co-directs the Berkeley Center for Law & Technology (a centre); no stated PhD advising or own lab captured.",
+   "evidence": [
+    {
+     "url": "https://www.law.berkeley.edu/our-faculty/faculty-profiles/pamela-samuelson/",
+     "sha256": "a219d76303602224a77a03153b3063a35404fd171d21d7959b2f16fa82ede83f",
+     "quote": "Pamela Samuelson"
+    }
+   ]
+  },
+  {
+   "index": 59,
+   "author": "https://openalex.org/A5005431772",
+   "name": "Chelsea Finn",
+   "decision": "not_faculty",
+   "reason": "EECS PhD student (dissertation 2018), then Stanford faculty.",
+   "evidence": [
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2018.html",
+     "sha256": "8260bfcbfbf38bb1e0e0139acf48bec908dd92a2f092601030236c22900f6f90",
+     "quote": "Chelsea Finn [advisor: Pieter Abbeel and Sergey Levine]"
+    }
+   ]
+  },
+  {
+   "index": 60,
+   "author": "https://openalex.org/A5070196637",
+   "name": "Philip B. Stark",
+   "decision": "faculty_no_pi_evidence",
+   "reason": "Statistics Distinguished Professor of the Graduate School (live list); no stated PhD advising or own lab on any captured page (homepage, profile; the Statistics PhD-alumni list does not show advisers).",
+   "evidence": [
+    {
+     "url": "https://statistics.berkeley.edu/people/faculty",
+     "sha256": "7d6a612712d0cd44a44f5b7b402cf431d4c46317c0ccd46ad66a0b9ddee9d8fd",
+     "quote": "Philip B. Stark Distinguished Professor of the Graduate School"
+    }
+   ]
+  },
+  {
+   "index": 61,
+   "author": "https://openalex.org/A5039854529",
+   "name": "Michel M. Maharbiz",
+   "decision": "accepted",
+   "reason": "Adjunct Professor, EECS (EE division); PI: stated PhD advising",
+   "census_name": "Michel Maharbiz",
+   "home_department": "EECS (EE division)",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Michel Maharbiz Associate Professor"
+    },
+    {
+     "url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "Michel Maharbiz Professor"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2022.html",
+     "sha256": "559e317059ae7ca6b6a5d9802ea8f854c87033f0d134d4554ad07e773985aa6a",
+     "quote": "Jordan Edmunds [advisor: Michel Maharbiz]"
+    }
+   ]
+  },
+  {
+   "index": 62,
+   "author": "https://openalex.org/A5021239979",
+   "name": "Wei Zhan",
+   "decision": "not_faculty",
+   "reason": "A different Wei Zhan (name-merged OpenAlex profile across Texas A&M, Tsinghua and others), not Berkeley faculty; Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5021239979",
+     "sha256": "3d7965248b7f9751175d8f3fb226595ad0805658d8f34163d74be70c318063eb",
+     "quote": "\"display_name\":\"Tsinghua University\",\"country_code\":\"CN\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I99065089\"]},\"years\":[2026,2024,2017,2016,2011]"
+    }
+   ]
+  },
+  {
+   "index": 63,
+   "author": "https://openalex.org/A5080042319",
+   "name": "Stavros Tripakis",
+   "decision": "accepted",
+   "reason": "Adjunct Associate Professor, EECS (EE division); PI: stated PhD advising; period 2016 to 2017",
+   "census_name": "Stavros Tripakis",
+   "home_department": "EECS (EE division)",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Stavros Tripakis Adjunct Associate Professor"
+    },
+    {
+     "url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "Stavros Tripakis Adjunct Associate Professor"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2016.html",
+     "sha256": "cbd43f0139b0e030a34929c25cf1247d92ecec0e8405f9e5a2329657df16006c",
+     "quote": "Christopher Shaver [advisor: Edward A. Lee and Stavros Tripakis]"
+    }
+   ]
+  },
+  {
+   "index": 64,
+   "author": "https://openalex.org/A5085674806",
+   "name": "Xin Guo",
+   "decision": "accepted",
+   "reason": "Professor, Industrial Engineering and Operations Research; PI: stated PhD advising",
+   "census_name": "Xin Guo",
+   "home_department": "Industrial Engineering and Operations Research",
+   "evidence": [
+    {
+     "url": "https://ieor.berkeley.edu/people/xin-guo/",
+     "sha256": "89bbbdca1f9e200de186d35c0f8e3e7596d767dc14c75b6a5cd2280f8e32fca7",
+     "quote": "Xin Guo Professor Industrial Engineering and Operations Research"
+    },
+    {
+     "url": "https://xinguo.ieor.berkeley.edu/people",
+     "sha256": "c473208c7c453db5da23bd87e473616911a749452edd6db3be84ac3eced79947",
+     "quote": "Anran Hu (IEOR, UC Berkeley, 2022, Postdoc at Oxford U; Assistant Professor at Columbia U)"
+    }
+   ]
+  },
+  {
+   "index": 65,
+   "author": "https://openalex.org/A5086692496",
+   "name": "Marcia C. Linn",
+   "decision": "faculty_no_pi_evidence",
+   "reason": "School of Education Distinguished Professor (live list); her WISE research site was unreachable (TLS error) and no captured page states PhD advising or a lab she alone heads.",
+   "evidence": [
+    {
+     "url": "https://bse.berkeley.edu/faculty",
+     "sha256": "6f5c7e73a5a3d1f915d2e8d4c2a24fc637ac5e0d7e08c65bd73fe564abb1ab96",
+     "quote": "Marcia C. Linn Distinguished Professor"
+    }
+   ]
+  },
+  {
+   "index": 66,
+   "author": "https://openalex.org/A5066926540",
+   "name": "Duncan S. Callaway",
+   "decision": "accepted",
+   "reason": "ERG Chair, Professor, Energy and Resources Group; PI: stated PhD advising",
+   "census_name": "Duncan Callaway",
+   "home_department": "Energy and Resources Group",
+   "evidence": [
+    {
+     "url": "https://erg.berkeley.edu/people/duncan-callaway/",
+     "sha256": "62cf72555c0dd916ce6f33c691203fcae214d1195c599086d5ad10f1b150075a",
+     "quote": "Duncan Callaway Job title: ERG Chair, Professor"
+    },
+    {
+     "url": "https://web.archive.org/web/20220412054425id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "f9073f81438c5f1164c8b73d1dc5f516e7ce16f9309f787804f1894a08a227e1",
+     "quote": "Duncan Callaway Below the Line, Associate Professor"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2026.html",
+     "sha256": "bdeee6237d34452f112c46a1c2785c807c887b9773d52cd122b672e1f62d2b21",
+     "quote": "Sunash Sharma [advisor: Claire Tomlin and Duncan Callaway]"
+    }
+   ]
+  },
+  {
+   "index": 67,
+   "author": "https://openalex.org/A5008007328",
+   "name": "Alper Atamtürk",
+   "decision": "accepted",
+   "reason": "Professor, Industrial Engineering and Operations Research; PI: heads Berkeley Computational Optimization Lab (BCOL)",
+   "census_name": "Alper Atamtürk",
+   "home_department": "Industrial Engineering and Operations Research",
+   "evidence": [
+    {
+     "url": "https://ieor.berkeley.edu/people/faculty/",
+     "sha256": "e1173fad40ee5eb086458a8b7df16d113a7021075dffa795dd33aff36a8d1321",
+     "quote": "Alper Atamturk Professor"
+    },
+    {
+     "url": "http://bcol.ieor.berkeley.edu/",
+     "sha256": "e1f33024c2f4a967da581495226bdb210afb4df42d2872581dab134af3d29c53",
+     "quote": "Directing Faculty Alper Atamturk Current Students"
+    }
+   ]
+  },
+  {
+   "index": 68,
+   "author": "https://openalex.org/A5026428321",
+   "name": "Nick Merrill",
+   "decision": "not_faculty",
+   "reason": "Researcher at the Center for Long-Term Cybersecurity, not a professor; Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5026428321",
+     "sha256": "f865b8b3b7a58dd2b8c824eaed26be5e9c1f54f00422594f2f55f71dfd17be72",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2026,2025,2024,2023,2022,2021,2020,2019,2018,2017,2016,2015]"
+    }
+   ]
+  },
+  {
+   "index": 69,
+   "author": "https://openalex.org/A5101977008",
+   "name": "Xinyun Chen",
+   "decision": "not_faculty",
+   "reason": "EECS PhD student (dissertation 2022).",
+   "evidence": [
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2022.html",
+     "sha256": "559e317059ae7ca6b6a5d9802ea8f854c87033f0d134d4554ad07e773985aa6a",
+     "quote": "Xinyun Chen [advisor: Dawn Song]"
+    }
+   ]
+  },
+  {
+   "index": 70,
+   "author": "https://openalex.org/A5006761546",
+   "name": "Aldo Pacchiano",
+   "decision": "not_faculty",
+   "reason": "EECS PhD student (dissertation 2021).",
+   "evidence": [
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2021.html",
+     "sha256": "2caad3d53341a2642c668a46fae9acb1cad9a99f2c59b2170f4a3ff84229c30c",
+     "quote": "Aldo Pacchiano [advisor: Michael Jordan and Peter Bartlett]"
+    }
+   ]
+  },
+  {
+   "index": 71,
+   "author": "https://openalex.org/A5103894843",
+   "name": "Amir Gholami",
+   "decision": "not_faculty",
+   "reason": "Research scientist in Michael Mahoney's group (ICSI/BAIR), not a professor; Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://www.stat.berkeley.edu/~mmahoney/",
+     "sha256": "f541f0b65e35094995043847b2f4430dfe76d2c0fd555ab822e89ed19afb966f",
+     "quote": "and it has several nice quotes by Amir Gholami (who did the work, along with Aditi Krishnapriyan)"
+    }
+   ]
+  },
+  {
+   "index": 72,
+   "author": "https://openalex.org/A5111672074",
+   "name": "Marta C. González",
+   "decision": "accepted",
+   "reason": "Professor, Civil and Environmental Engineering; PI: heads Human Mobility and Networks Lab (HuMNet Lab)",
+   "census_name": "Marta C. González",
+   "home_department": "Civil and Environmental Engineering",
+   "evidence": [
+    {
+     "url": "https://ce.berkeley.edu/people/faculty",
+     "sha256": "6f0dbaf6665d0157ef201ff94b4775764803e8e9fcc3fffd2291f9f9f3e3050b",
+     "quote": "Marta Gonzalez Professor"
+    },
+    {
+     "url": "https://humnetlab.berkeley.edu/",
+     "sha256": "bbde5261ecccea9a1465085a8c4abaa13d29ba928fc1224cd0e220b632a218ce",
+     "quote": "Marta C. González, Director"
+    }
+   ]
+  },
+  {
+   "index": 73,
+   "author": "https://openalex.org/A5083232991",
+   "name": "J. Karl Hedrick",
+   "decision": "unresolved",
+   "reason": "ME professor (J. Karl Hedrick, PATH) whose ME profile URL 404s; his status in 2016-2020 could not be checked: Wayback refused connections from this host on 2026-10-26, so past department lists could not be checked.",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5083232991",
+     "sha256": "3812db35795b9725aa266da84cc084d2ed0153d9f6075198b0252f2010ae054d",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2020,2019,2018,2017,2016,2015,2014,2013,2012,2011,2010,2009,2008,2007,2006,2005,2004,2003,2002,2001,2000,1999,1998,1997,1996,1995,1994,1993,1992,1991,1990,1989,1988]"
+    }
+   ]
+  },
+  {
+   "index": 74,
+   "author": "https://openalex.org/A5032674291",
+   "name": "Bruno A. Olshausen",
+   "decision": "accepted",
+   "reason": "Professor, Herbert Wertheim School of Optometry & Vision Science; PI: stated PhD advising",
+   "census_name": "Bruno Olshausen",
+   "home_department": "Herbert Wertheim School of Optometry & Vision Science",
+   "evidence": [
+    {
+     "url": "https://neuroscience.berkeley.edu/faculty/",
+     "sha256": "476ba4d0f20262dbecfe7a916276ebe55e444104b915fc7384eb3f4b8544d9db",
+     "quote": "Bruno Olshausen Optometry, Neuroscience"
+    },
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Bruno Olshausen Below the Line, Professor"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2023.html",
+     "sha256": "3a29aa62cf4727623f6caab380f0b36a9376a6a9cc34031feee3cef4341b24e9",
+     "quote": "Jasmine Collins [advisor: Jitendra Malik and Bruno Olshausen]"
+    }
+   ]
+  },
+  {
+   "index": 75,
+   "author": "https://openalex.org/A5060914065",
+   "name": "Maria Laura Delle Monache",
+   "decision": "faculty_no_pi_evidence",
+   "reason": "CEE Clare & Hsieh Wen Shen Distinguished Professor (live list; joined during the window); no stated PhD advising or own lab on the captured CEE profile.",
+   "evidence": [
+    {
+     "url": "https://ce.berkeley.edu/people/faculty",
+     "sha256": "6f0dbaf6665d0157ef201ff94b4775764803e8e9fcc3fffd2291f9f9f3e3050b",
+     "quote": "Maria Laura Delle Monache Clare & Hsieh Wen Shen Distinguished Professor in Civil & Environmental Engineering"
+    }
+   ]
+  },
+  {
+   "index": 76,
+   "author": "https://openalex.org/A5050167359",
+   "name": "Abbas Rahimi",
+   "decision": "not_faculty",
+   "reason": "Postdoc (2016-2020); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5050167359",
+     "sha256": "d95d02e57cb0bd88bd4722a1d66dbc35ce5750cb2e0303c515b12647487b177c",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2020,2019,2018,2017,2016]"
+    }
+   ]
+  },
+  {
+   "index": 77,
+   "author": "https://openalex.org/A5100611490",
+   "name": "Lijie Chen",
+   "decision": "faculty_no_pi_evidence",
+   "reason": "EECS (CS division) Assistant Professor since 2025, already in the census; the earlier gap research (gap-evidence.json) found no stated advisee and no own lab; nothing new captured.",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20241113124209id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "257a8ce3111f7298099476ad7253e0cc69b743e6ff49e3b20252e0ff25ba7c67",
+     "quote": "Lijie Chen Assistant Professor",
+     "observed": "2024-11-13"
+    },
+    {
+     "url": "https://web.archive.org/web/20260311194209id_/https://www2.eecs.berkeley.edu/Faculty/Lists/CS/faculty.html",
+     "sha256": "f2fe9b7b6fdb01dc1fc196a79129826effa23f0db5b1c275bcacc28c41c6c1d6",
+     "quote": "Lijie Chen Assistant Professor",
+     "observed": "2026-03-11"
+    }
+   ]
+  },
+  {
+   "index": 78,
+   "author": "https://openalex.org/A5037154191",
+   "name": "Max Simchowitz",
+   "decision": "not_faculty",
+   "reason": "EECS PhD student (dissertation 2021).",
+   "evidence": [
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2021.html",
+     "sha256": "2caad3d53341a2642c668a46fae9acb1cad9a99f2c59b2170f4a3ff84229c30c",
+     "quote": "Max Simchowitz [advisor: Michael Jordan and Benjamin Recht]"
+    }
+   ]
+  },
+  {
+   "index": 79,
+   "author": "https://openalex.org/A5062267932",
+   "name": "Negar Mehr",
+   "decision": "accepted",
+   "reason": "Assistant Professor of Mechanical Engineering, Mechanical Engineering; PI: stated PhD advising; period 2024-01 to present",
+   "census_name": "Negar Mehr",
+   "home_department": "Mechanical Engineering",
+   "evidence": [
+    {
+     "url": "https://me.berkeley.edu/people/negar-mehr/",
+     "sha256": "9f016f03be6b56337f272c2abc24677b2e83ee0340a4df0ca6d2f63e40450277",
+     "quote": "Negar Mehr Assistant Professor of Mechanical Engineering"
+    },
+    {
+     "url": "https://iconlab.negarmehr.com/",
+     "sha256": "e1ca002441d30991044c67d25dc7273bf26f72b856b2c424dd74518abf7b2159",
+     "quote": "Our PhD student, Hongrui Zhao, successfully defended his dissertation and graduated with his PhD."
+    }
+   ]
+  },
+  {
+   "index": 80,
+   "author": "https://openalex.org/A5114377934",
+   "name": "Yang Li",
+   "decision": "not_faculty",
+   "reason": "A name-merged OpenAlex profile (Yang Li), not Berkeley faculty; OpenAlex lists no Berkeley affiliation; Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5114377934",
+     "sha256": "592cdf3f0283a1f9a00991576952225a819747aa6b7be4d26312bb74c7012a0f",
+     "quote": "\"display_name\":\"Chinese University of Hong Kong\""
+    }
+   ]
+  },
+  {
+   "index": 81,
+   "author": "https://openalex.org/A5108743840",
+   "name": "Wai Kin Victor Chan",
+   "decision": "not_faculty",
+   "reason": "Tsinghua-Berkeley Shenzhen Institute faculty, not UC Berkeley.",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5108743840",
+     "sha256": "9829754b70a0f95b373beb7efb58c5d68ec9a3629b292607e24125564122da08",
+     "quote": "\"display_name\":\"Tsinghua\\u2013Berkeley Shenzhen Institute\",\"country_code\":\"CN\",\"type\":\"facility\",\"lineage\":[\"https://openalex.org/I4210114105\",\"https://openalex.org/I95457486\",\"https://openalex.org/I99065089\"]},\"years\":[2024,2023,2022,2021,2020,2019,2018,2017]"
+    }
+   ]
+  },
+  {
+   "index": 82,
+   "author": "https://openalex.org/A5102493293",
+   "name": "Aviral Kumar",
+   "decision": "not_faculty",
+   "reason": "EECS PhD student (dissertation 2023).",
+   "evidence": [
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2023.html",
+     "sha256": "3a29aa62cf4727623f6caab380f0b36a9376a6a9cc34031feee3cef4341b24e9",
+     "quote": "Aviral Kumar [advisor: Sergey Levine]"
+    }
+   ]
+  },
+  {
+   "index": 83,
+   "author": "https://openalex.org/A5102915910",
+   "name": "Zhewei Yao",
+   "decision": "not_faculty",
+   "reason": "Berkeley PhD student (Mathematics thesis 2021, advisers Mahoney and Gu).",
+   "evidence": [
+    {
+     "url": "https://math.berkeley.edu/people/past-department-members/past-phd-students?page=8",
+     "sha256": "55afea691ac502e821fff1c19898cbf5e948f3615ec1e9d1f9110aea7355edef",
+     "quote": "Zhewei Yao; Michael Mahoney; Ming Gu 2021 PhD Thesis"
+    }
+   ]
+  },
+  {
+   "index": 84,
+   "author": "https://openalex.org/A5028220417",
+   "name": "Joshua Brakensiek",
+   "decision": "not_faculty",
+   "reason": "Postdoc (2022-2026); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5028220417",
+     "sha256": "64c784e2e1f1b4ed3e36811cfcc585730b510491bc839b162fd5dbf1ea89baf5",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2026,2025,2024,2023,2022]"
+    }
+   ]
+  },
+  {
+   "index": 85,
+   "author": "https://openalex.org/A5050276927",
+   "name": "Daniela M. Ushizima",
+   "decision": "not_faculty",
+   "reason": "Staff scientist at Lawrence Berkeley National Laboratory, not a Berkeley professor; Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5050276927",
+     "sha256": "03d8703428b00f1f8f3125efd993db3c71a28bd3c1f22dd4512c84991e3b5275",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2026,2025,2024,2023,2022,2021,2020,2019,2018,2017,2016,2015,2014]"
+    }
+   ]
+  },
+  {
+   "index": 86,
+   "author": "https://openalex.org/A5102006533",
+   "name": "Akshayaram Srinivasan",
+   "decision": "not_faculty",
+   "reason": "EECS PhD student (dissertation 2020).",
+   "evidence": [
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2020.html",
+     "sha256": "dfe243f75ecbdd7d2a0c27699d84e21556212bad306cffd3a738e63025fe1a01",
+     "quote": "Akshayaram Srinivasan [advisor: Sanjam Garg]"
+    }
+   ]
+  },
+  {
+   "index": 87,
+   "author": "https://openalex.org/A5085896415",
+   "name": "Friedrich T. Sommer",
+   "decision": "not_faculty",
+   "reason": "Adjunct Professor (Helen Wills Neuroscience Institute) heading the Sommer Lab at the Redwood Center, but no PhD advising was captured: adjuncts count only when they advise PhDs.",
+   "evidence": [
+    {
+     "url": "https://redwood.berkeley.edu/people/fritz-sommer/",
+     "sha256": "e06dc1a576186512bd4dcf56045f402de4a5eba5046f88690add463edebbcbd1",
+     "quote": "Adjunct Professor Helen Wills Neuroscience Institute Sommer Lab"
+    }
+   ]
+  },
+  {
+   "index": 88,
+   "author": "https://openalex.org/A5078165161",
+   "name": "Xiangyu Yue",
+   "decision": "not_faculty",
+   "reason": "EECS PhD student (dissertation 2022).",
+   "evidence": [
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2022.html",
+     "sha256": "559e317059ae7ca6b6a5d9802ea8f854c87033f0d134d4554ad07e773985aa6a",
+     "quote": "Xiangyu Yue [advisor: Alberto L. Sangiovanni-Vincentelli]"
+    }
+   ]
+  },
+  {
+   "index": 89,
+   "author": "https://openalex.org/A5033571780",
+   "name": "Kimin Lee",
+   "decision": "not_faculty",
+   "reason": "Postdoc (2019-2022); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5033571780",
+     "sha256": "94ff3cc6d4a657a0077a6ee41bdb535c3e3da9a48e8df4662dcb78ec53149a39",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2022,2021,2020,2019]"
+    }
+   ]
+  },
+  {
+   "index": 90,
+   "author": "https://openalex.org/A5022382771",
+   "name": "Mingyu Ding",
+   "decision": "not_faculty",
+   "reason": "Postdoc (2023-2026); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5022382771",
+     "sha256": "a7f259531cdcea2d3cfed240cbccff29d5b66c01f572d7fcda25aef031f39549",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2026,2025,2024,2023]"
+    }
+   ]
+  },
+  {
+   "index": 91,
+   "author": "https://openalex.org/A5100719415",
+   "name": "Chunlei Liu",
+   "decision": "accepted",
+   "reason": "Professor, EECS (EE division); PI: stated PhD advising",
+   "census_name": "Chunlei Liu",
+   "home_department": "EECS (EE division)",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Chunlei Liu Associate Professor"
+    },
+    {
+     "url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "Chunlei Liu Associate Professor"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2025.html",
+     "sha256": "3d7b12cff6dc1b6676f7c4d45370a1bcb145f94f7164f6179fb5118712eecaf0",
+     "quote": "Shafeeq Ibraheem [advisor: Chunlei Liu]"
+    }
+   ]
+  },
+  {
+   "index": 92,
+   "author": "https://openalex.org/A5020400986",
+   "name": "Dan Hendrycks",
+   "decision": "not_faculty",
+   "reason": "EECS PhD student (2018-2024); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5020400986",
+     "sha256": "9a5208db0b23511909510f2c8a577ff7d062c04aa0593adca826ad7eafb22a8d",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2025,2023,2022,2021,2020,2019,2018]"
+    }
+   ]
+  },
+  {
+   "index": 93,
+   "author": "https://openalex.org/A5100725244",
+   "name": "Min Ye",
+   "decision": "not_faculty",
+   "reason": "Information-theory researcher (Princeton, now IonQ) with a stray Berkeley affiliation; OpenAlex lists no Berkeley affiliation; Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5100725244",
+     "sha256": "84f69acca09cc1316e6d751c0290319f89ce972145d75daf8dad3ab4122ff2db",
+     "quote": "\"display_name\":\"IonQ (United States)\""
+    }
+   ]
+  },
+  {
+   "index": 94,
+   "author": "https://openalex.org/A5013030532",
+   "name": "Shanghang Zhang",
+   "decision": "not_faculty",
+   "reason": "Postdoc (2019-2022); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5013030532",
+     "sha256": "3f2978c1866e8eb2b9d115046e297e811be553f5ac4ca3a2817cfca568afc115",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2022,2021,2020,2019]"
+    }
+   ]
+  },
+  {
+   "index": 95,
+   "author": "https://openalex.org/A5055909322",
+   "name": "Rajan Udwani",
+   "decision": "accepted",
+   "reason": "Assistant Professor, Industrial Engineering and Operations Research; PI: stated PhD advising",
+   "census_name": "Rajan Udwani",
+   "home_department": "Industrial Engineering and Operations Research",
+   "evidence": [
+    {
+     "url": "https://ieor.berkeley.edu/people/faculty/",
+     "sha256": "e1173fad40ee5eb086458a8b7df16d113a7021075dffa795dd33aff36a8d1321",
+     "quote": "Rajan Udwani Assistant Professor"
+    },
+    {
+     "url": "https://rudwani.ieor.berkeley.edu/students-teaching/",
+     "sha256": "bce8dcf25b47b8b68c0ad3267b6275381aced85398c53bcc84f50ebfca7746fb",
+     "quote": "Shruti Penumatsa (PhD, 2023 – Present)"
+    }
+   ]
+  },
+  {
+   "index": 96,
+   "author": "https://openalex.org/A5053190499",
+   "name": "Andrei Vladimirescu",
+   "decision": "not_faculty",
+   "reason": "Lecturer / visiting researcher in EECS, not a professor; Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5053190499",
+     "sha256": "04fb4e05ec214041623aeba53b8b1173cbaed762928dd16959b66ba4224569ff",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2026,2023,2022,2021,2020,2019,2018,2017,2016,2015,2012,2010,2008,2007,2006,2005,2004,2003,2002,1978]"
+    }
+   ]
+  },
+  {
+   "index": 97,
+   "author": "https://openalex.org/A5062323483",
+   "name": "Gerald Friedland",
+   "decision": "not_faculty",
+   "reason": "EECS Lecturer, then Adjunct Assistant Professor (2017-2024 lists; already in the census as a non-PI); his nine EECS theses are MS reports (no PhD dissertation names him), and adjuncts count only when they advise PhDs.",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160315000000id_/http://www.eecs.berkeley.edu/Faculty/Lists/CS/list.shtml",
+     "sha256": "3bcb9eecfa0045450f9cb9a83c4f2071e17c10abb3d94c461aea0162f24f5b9c",
+     "quote": "Gerald Friedland Lecturer",
+     "observed": "2016-03-15"
+    },
+    {
+     "url": "https://web.archive.org/web/20240420231904id_/https://www2.eecs.berkeley.edu/Faculty/Lists/CS/faculty.html",
+     "sha256": "5ca4362a170be9de4af0c54b017bf47e184935f66217f19d2d455cc3f8d11c1a",
+     "quote": "Gerald Friedland Adjunct Assistant Professor",
+     "observed": "2024-04-20"
+    }
+   ]
+  },
+  {
+   "index": 98,
+   "author": "https://openalex.org/A5034186652",
+   "name": "Coye Cheshire",
+   "decision": "accepted",
+   "reason": "Professor, School of Information; PI: stated PhD advising",
+   "census_name": "Coye Cheshire",
+   "home_department": "School of Information",
+   "evidence": [
+    {
+     "url": "https://www.ischool.berkeley.edu/people/faculty",
+     "sha256": "04c8c4c29cdc8efeb75b114290281afef405947485c154c8a0dc0cd64ca57576",
+     "quote": "Coye Cheshire Professor"
+    },
+    {
+     "url": "https://www.ischool.berkeley.edu/programs/phd/dissertations",
+     "sha256": "4a6dfba70075f212cfa955d71a76c39e35542ed083794eb6a196fa133019484f",
+     "quote": "Sijia Xiao . Empowering Online Harm Survivors to Addressing Harm with a Restorative Justice Approach . Ph.D. dissertation. Advisors: Niloufar Salehi and Coye Cheshire."
+    }
+   ]
+  },
+  {
+   "index": 99,
+   "author": "https://openalex.org/A5068922218",
+   "name": "Gopala K. Anumanchipalli",
+   "decision": "accepted",
+   "reason": "Associate Professor, EECS (EE division); PI: stated PhD advising; period 2021 to present",
+   "census_name": "Gopala Anumanchipalli",
+   "home_department": "EECS (EE division)",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20200919124609id_/https://www2.eecs.berkeley.edu/Faculty/Lists/new.html",
+     "sha256": "f6e78530da40a5bbb3da0c7db17e36b3e261dfced3360fb89e641cb134ffdbd4",
+     "quote": "Gopala Krishna Anumanchipalli Assistant Professor"
+    },
+    {
+     "url": "https://web.archive.org/web/20210225022620id_/https://www2.eecs.berkeley.edu/Faculty/Lists/new.html",
+     "sha256": "9afbcd40da8ee85cea9cbb0c692db3d17554b0e49af2c4f152d7853e0a08657c",
+     "quote": "Gopala Krishna Anumanchipalli Assistant Professor"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2025.html",
+     "sha256": "3d7b12cff6dc1b6676f7c4d45370a1bcb145f94f7164f6179fb5118712eecaf0",
+     "quote": "Kaylo Littlejohn [advisor: Gopala Krishna Anumanchipalli]"
+    }
+   ]
+  },
+  {
+   "index": 100,
+   "author": "https://openalex.org/A5052051114",
+   "name": "Lining Yao",
+   "decision": "accepted",
+   "reason": "Associate Professor of Mechanical Engineering, Mechanical Engineering; PI: heads Morphing Matter Lab; period 2024-01 to present",
+   "census_name": "Lining Yao",
+   "home_department": "Mechanical Engineering",
+   "evidence": [
+    {
+     "url": "https://me.berkeley.edu/people/lining-yao/",
+     "sha256": "9e6ff9efc35ffc487b531adf25cd2ed78be66ce7c8c899ab1b6442a4aca6228d",
+     "quote": "Lining Yao Associate Professor of Mechanical Engineering"
+    },
+    {
+     "url": "https://morphingmatter.org/",
+     "sha256": "3e1d93159156ace363a5f9b7548ea5d2660162a540b6a89537979a4e396a1c5d",
+     "quote": "Directed by Prof. Lining Yao at UC Berkeley"
+    }
+   ]
+  },
+  {
+   "index": 101,
+   "author": "https://openalex.org/A5050903113",
+   "name": "Per-Olof Persson",
+   "decision": "accepted",
+   "reason": "Professor, Mathematics; PI: stated PhD advising",
+   "census_name": "Per-Olof Persson",
+   "home_department": "Mathematics",
+   "evidence": [
+    {
+     "url": "https://math.berkeley.edu/people/faculty",
+     "sha256": "4610a69d0854660588158b6db7e96dfccd40464471f7052ec5cdeaa85b7aa737",
+     "quote": "Per-Olof Persson Professor Applied Mathematics"
+    },
+    {
+     "url": "https://math.berkeley.edu/people/past-department-members/past-phd-students?page=5",
+     "sha256": "ec4bb41fdde81c92add69082b20a8f2c80f1a1eb4f05419342b52b1ae1e306f3",
+     "quote": "Michael Franco; Per-Olof Persson 2022 PhD Thesis"
+    }
+   ]
+  },
+  {
+   "index": 102,
+   "author": "https://openalex.org/A5039161616",
+   "name": "Lu Fang",
+   "decision": "not_faculty",
+   "reason": "Tsinghua University faculty, not UC Berkeley.",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5039161616",
+     "sha256": "eb0a76d7f9c9720d99a4b1acc2923cdaf4903c87be3adc856658348a091a458b",
+     "quote": "\"display_name\":\"Tsinghua University\",\"country_code\":\"CN\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I99065089\"]},\"years\":[2026,2025,2024,2023,2022,2021,2020,2019,2018,2017]"
+    }
+   ]
+  },
+  {
+   "index": 103,
+   "author": "https://openalex.org/A5065925392",
+   "name": "Denis Kleyko",
+   "decision": "not_faculty",
+   "reason": "Postdoc at the Redwood Center (2020-2023); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5065925392",
+     "sha256": "86368c922ca395cae35a159ca61af69f5b81c959a2304fd25224f1f91d6fe3c1",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2023,2022,2021,2020]"
+    }
+   ]
+  },
+  {
+   "index": 104,
+   "author": "https://openalex.org/A5101484129",
+   "name": "Ming Jin",
+   "decision": "not_faculty",
+   "reason": "EECS PhD student (dissertation 2017).",
+   "evidence": [
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2017.html",
+     "sha256": "fdba4e2740217585b5c660b423d952ee7bacedfff79bc8b5101e06e2f715b981",
+     "quote": "Ming Jin [advisor: Costas J. Spanos]"
+    }
+   ]
+  },
+  {
+   "index": 105,
+   "author": "https://openalex.org/A5023224451",
+   "name": "Xiao-Yun Lu",
+   "decision": "not_faculty",
+   "reason": "Research engineer at California PATH, not a professor; Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5023224451",
+     "sha256": "0420ba8a9d40de8aca0dd83911b5b2bb186a12ead886fc95c3afda71ba242409",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2025,2024,2023,2022,2021,2020,2019,2018,2017,2016,2015,2014,2012,2011,2010,2009,2008,2007,2005,2004,2003,2002,2000]"
+    }
+   ]
+  },
+  {
+   "index": 106,
+   "author": "https://openalex.org/A5040319820",
+   "name": "Kristofer E. Bouchard",
+   "decision": "not_faculty",
+   "reason": "Staff scientist at Lawrence Berkeley National Laboratory (Redwood Center affiliate), not a professor; Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5040319820",
+     "sha256": "6a327fb88877639a87acc86ff006d7453bc1b4300e396247761637699512ce9a",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2026,2025,2024,2023,2022,2021,2020,2019,2018,2017,2016,2014,2013]"
+    }
+   ]
+  },
+  {
+   "index": 107,
+   "author": "https://openalex.org/A5064568178",
+   "name": "Robert Brayton",
+   "decision": "accepted",
+   "reason": "Professor Emeritus, EECS (EE division); PI: stated PhD advising; period 2016 to 2024",
+   "census_name": "Robert Brayton",
+   "home_department": "EECS (EE division)",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Robert K. Brayton Professor Emeritus, Professor in the Graduate School"
+    },
+    {
+     "url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "Robert K. Brayton Professor Emeritus"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2017.html",
+     "sha256": "fdba4e2740217585b5c660b423d952ee7bacedfff79bc8b5101e06e2f715b981",
+     "quote": "Yen-Sheng Ho [advisor: Robert K. Brayton]"
+    }
+   ]
+  },
+  {
+   "index": 108,
+   "author": "https://openalex.org/A5091637951",
+   "name": "Luyi Yang",
+   "decision": "faculty_no_pi_evidence",
+   "reason": "Haas Associate Professor (Operations & IT Management); no stated PhD advising or own lab on the captured Haas profile.",
+   "evidence": [
+    {
+     "url": "https://haas.berkeley.edu/faculty/?letter=Y&action=faculty-search",
+     "sha256": "8a0234641afdc52635320cc8b27771d1efe9bfa27cc986d1bdbd0913e815fc6a",
+     "quote": "Luyi Yang"
+    }
+   ]
+  },
+  {
+   "index": 109,
+   "author": "https://openalex.org/A5053833625",
+   "name": "Wai Kin Victor Chan",
+   "decision": "not_faculty",
+   "reason": "Second OpenAlex id of Wai Kin Victor Chan (candidate 81): TBSI faculty, not UC Berkeley.",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5053833625",
+     "sha256": "1ae242243d1d53395ddc8fc03810efef0acdfeb493eac37e35cb2023406f8a73",
+     "quote": "\"display_name\":\"Tsinghua\\u2013Berkeley Shenzhen Institute\",\"country_code\":\"CN\",\"type\":\"facility\",\"lineage\":[\"https://openalex.org/I4210114105\",\"https://openalex.org/I95457486\",\"https://openalex.org/I99065089\"]},\"years\":[2026,2025,2024,2023,2022,2021,2020]"
+    }
+   ]
+  },
+  {
+   "index": 110,
+   "author": "https://openalex.org/A5084453468",
+   "name": "Alexandra von Meier",
+   "decision": "accepted",
+   "reason": "Adjunct Professor, Retired, EECS (EE division); PI: stated PhD advising",
+   "census_name": "Alexandra von Meier",
+   "home_department": "EECS (EE division)",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Alexandra von Meier Adjunct Professor"
+    },
+    {
+     "url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "Alexandra von Meier Adjunct Professor"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2022.html",
+     "sha256": "559e317059ae7ca6b6a5d9802ea8f854c87033f0d134d4554ad07e773985aa6a",
+     "quote": "Jaimie Swartz [advisor: Seth R. Sanders and Alexandra von Meier]"
+    }
+   ]
+  },
+  {
+   "index": 111,
+   "author": "https://openalex.org/A5032857095",
+   "name": "Shmuel Oren",
+   "decision": "accepted",
+   "reason": "Professor of the Graduate School, Industrial Engineering and Operations Research; PI: stated PhD advising",
+   "census_name": "Shmuel Oren",
+   "home_department": "Industrial Engineering and Operations Research",
+   "evidence": [
+    {
+     "url": "https://ieor.berkeley.edu/people/faculty/",
+     "sha256": "e1173fad40ee5eb086458a8b7df16d113a7021075dffa795dd33aff36a8d1321",
+     "quote": "Shmuel Oren Professor of the Graduate School"
+    },
+    {
+     "url": "https://oren.ieor.berkeley.edu/students.htm",
+     "sha256": "aa16f14231c939dff7828df635785ab5f00c0a9b89e450879d91f386dee7ba1a",
+     "quote": "Tomas Valencia Zuluaga , “Optimization of electricity systems under uncertainty ”, 2024"
+    }
+   ]
+  },
+  {
+   "index": 112,
+   "author": "https://openalex.org/A5108365897",
+   "name": "Alice M. Agogino",
+   "decision": "accepted",
+   "reason": "Roscoe and Elizabeth Hughes Professor of Mechanical Engineering, Mechanical Engineering; PI: heads BEST Lab",
+   "census_name": "Alice Agogino",
+   "home_department": "Mechanical Engineering",
+   "evidence": [
+    {
+     "url": "https://best.berkeley.edu/best-people/",
+     "sha256": "47e9f65a8898f7112c12ab602751718d1a1be29f200b95796d31b19df5d59acf",
+     "quote": "Faculty Alice Agogino, Roscoe and Elizabeth Hughes Professor of Mechanical Engineering, UC Berkeley"
+    },
+    {
+     "url": "https://best.berkeley.edu/best-people/",
+     "sha256": "47e9f65a8898f7112c12ab602751718d1a1be29f200b95796d31b19df5d59acf",
+     "quote": "Agogino C.V. Faculty Alice Agogino, Roscoe and Elizabeth Hughes Professor of Mechanical Engineering, UC Berkeley"
+    }
+   ]
+  },
+  {
+   "index": 113,
+   "author": "https://openalex.org/A5054622320",
+   "name": "Joshua Blumenstock",
+   "decision": "accepted",
+   "reason": "Professor, School of Information; PI: stated PhD advising",
+   "census_name": "Joshua Blumenstock",
+   "home_department": "School of Information",
+   "evidence": [
+    {
+     "url": "https://www.ischool.berkeley.edu/people/faculty",
+     "sha256": "04c8c4c29cdc8efeb75b114290281afef405947485c154c8a0dc0cd64ca57576",
+     "quote": "Joshua Blumenstock Professor"
+    },
+    {
+     "url": "https://www.ischool.berkeley.edu/programs/phd/dissertations",
+     "sha256": "4a6dfba70075f212cfa955d71a76c39e35542ed083794eb6a196fa133019484f",
+     "quote": "Emily Aiken. Targeting Social Protection Programs with Machine Learning and Digital Data. Ph.D. Dissertation. Advisor: Joshua E. Blumenstock."
+    }
+   ]
+  },
+  {
+   "index": 114,
+   "author": "https://openalex.org/A5048767056",
+   "name": "John Chuang",
+   "decision": "accepted",
+   "reason": "Professor, School of Information; PI: stated PhD advising",
+   "census_name": "John Chuang",
+   "home_department": "School of Information",
+   "evidence": [
+    {
+     "url": "https://www.ischool.berkeley.edu/people/faculty?role=122&page=1",
+     "sha256": "ec30579070384d4f9d3eb0474592a32432db532882feadfb442c11d39ff0dd77",
+     "quote": "John Chuang Professor"
+    },
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "John Chuang Below the Line, Professor"
+    },
+    {
+     "url": "https://www.ischool.berkeley.edu/programs/phd/dissertations",
+     "sha256": "4a6dfba70075f212cfa955d71a76c39e35542ed083794eb6a196fa133019484f",
+     "quote": "Jeremy Gordon. Embodying the Future: Modeling Visually Guided Planning as Prospective Mental Simulation. Ph.D. dissertation. Advisors: John Chuang, Coye Cheshire, Steven Piantadosi, Giovanni Pezzulo."
+    }
+   ]
+  },
+  {
+   "index": 115,
+   "author": "https://openalex.org/A5100653787",
+   "name": "Yi Zhang",
+   "decision": "not_faculty",
+   "reason": "A name-merged OpenAlex profile (Yi Zhang), not Berkeley faculty; Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5100653787",
+     "sha256": "8eb7eeb80888aaf8726c18f4748d597ff6cdfdf662e509e0be655617056eb626",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2021]"
+    }
+   ]
+  },
+  {
+   "index": 116,
+   "author": "https://openalex.org/A5080978340",
+   "name": "Therese Peffer",
+   "decision": "not_faculty",
+   "reason": "Researcher at the California Institute for Energy and Environment, not a professor; Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5080978340",
+     "sha256": "e8dbe3b1d43907023ff3d609078a159448de3f907baa9a2001a6f600e8469a06",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2026,2025,2024,2023,2022,2021,2020,2019,2018,2017,2015,2012,2011,2003]"
+    }
+   ]
+  },
+  {
+   "index": 117,
+   "author": "https://openalex.org/A5026745688",
+   "name": "Midhun Mohan",
+   "decision": "not_faculty",
+   "reason": "Researcher (geography / remote sensing), not a professor; Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5026745688",
+     "sha256": "45c71a01a5e7911fd664f3f11dfae783cee7dffc7508dbb2480e0d4fc108378b",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2026,2025,2024,2023,2022,2021,2020]"
+    }
+   ]
+  },
+  {
+   "index": 118,
+   "author": "https://openalex.org/A5025002766",
+   "name": "Pentti Kanerva",
+   "decision": "not_faculty",
+   "reason": "Researcher at the Redwood Center, not a professor; Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5025002766",
+     "sha256": "78791c52a03444fa85a04e691a7db1e903138eb66e72bbf18b9bcf7036f918c6",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2026,2024,2023,2022,2021,2019,2018,2017,2016,2015,2014,2013,2012]"
+    }
+   ]
+  },
+  {
+   "index": 119,
+   "author": "https://openalex.org/A5060426024",
+   "name": "Kimiko Ryokai",
+   "decision": "faculty_no_pi_evidence",
+   "reason": "I School Associate Professor (live list); no I School dissertation 2016-2025 names her adviser and no own lab was captured.",
+   "evidence": [
+    {
+     "url": "https://www.ischool.berkeley.edu/people/faculty?role=122&page=3",
+     "sha256": "90e7a07d258e39f3e7c304d7c4b07836ba77028156d9af5b425f075722e72971",
+     "quote": "Kimiko Ryokai Associate Professor"
+    }
+   ]
+  },
+  {
+   "index": 120,
+   "author": "https://openalex.org/A5068585796",
+   "name": "Dor Abrahamson",
+   "decision": "accepted",
+   "reason": "Professor, School of Education; PI: heads Embodied Design Research Laboratory (EDRL)",
+   "census_name": "Dor Abrahamson",
+   "home_department": "School of Education",
+   "evidence": [
+    {
+     "url": "https://bse.berkeley.edu/faculty",
+     "sha256": "6f5c7e73a5a3d1f915d2e8d4c2a24fc637ac5e0d7e08c65bd73fe564abb1ab96",
+     "quote": "Dor Abrahamson Professor"
+    },
+    {
+     "url": "http://edrl.berkeley.edu/",
+     "sha256": "9fffa95c2fcd46b53cadbaead2c79b04a5d79d98a145dbe09ae968eead67d951",
+     "quote": "Embodied Design Research Laboratory Toggle navigation People Everyone Director – Dor Abrahamson"
+    }
+   ]
+  },
+  {
+   "index": 121,
+   "author": "https://openalex.org/A5076844884",
+   "name": "Andrew Packard",
+   "decision": "unresolved",
+   "reason": "ME professor (Andrew Packard) whose ME profile URL 404s and who is not on any captured live list; Wayback refused connections from this host on 2026-10-26, so past department lists could not be checked.",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5076844884",
+     "sha256": "1e03c2037bc49854a77b1571b660434344bf967a7daed96a141210c8c3e6f428",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2021,2020,2019,2018,2017,2016,2015,2014,2013,2012,2011,2010,2009,2008,2007,2006,2005,2004,2003,2002,2001,2000,1999,1998,1997,1996,1995,1994,1993,1990,1987]"
+    }
+   ]
+  },
+  {
+   "index": 122,
+   "author": "https://openalex.org/A5104260047",
+   "name": "David M. Chan",
+   "decision": "not_faculty",
+   "reason": "EECS PhD student (dissertation 2024).",
+   "evidence": [
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2024.html",
+     "sha256": "997022bf081272f06b4536bb7990112b61db156a31ebd11831235e8493e57d8d",
+     "quote": "David Chan [advisor: John F. Canny]"
+    }
+   ]
+  },
+  {
+   "index": 123,
+   "author": "https://openalex.org/A5037393859",
+   "name": "Lisa Yan",
+   "decision": "not_faculty",
+   "reason": "Teaching professor (EECS teaching-faculty list) without PhD advising: teaching professors do not count; already in the census as a non-PI.",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20210918020234id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "e516491d7ebc6686425aea6986677e3800d02ea547fc8f49b4fffb5cc36fc926",
+     "quote": "Lisa Yan Assistant Teaching Professor",
+     "observed": "2021-09-18"
+    },
+    {
+     "url": "https://web.archive.org/web/20260211213854id_/https://www2.eecs.berkeley.edu/Faculty/Lists/teaching.html",
+     "sha256": "7e2a44636c6d8773de296d7f9d70aba37619fe67bc7c0ae29097ef86488e964d",
+     "quote": "Lisa Yan Assistant Teaching Professor",
+     "observed": "2026-02-11"
+    }
+   ]
+  },
+  {
+   "index": 124,
+   "author": "https://openalex.org/A5020527873",
+   "name": "Paul Grigas",
+   "decision": "accepted",
+   "reason": "Associate Professor, Industrial Engineering and Operations Research; PI: stated PhD advising",
+   "census_name": "Paul Grigas",
+   "home_department": "Industrial Engineering and Operations Research",
+   "evidence": [
+    {
+     "url": "https://ieor.berkeley.edu/people/faculty/",
+     "sha256": "e1173fad40ee5eb086458a8b7df16d113a7021075dffa795dd33aff36a8d1321",
+     "quote": "Paul Grigas Associate Professor"
+    },
+    {
+     "url": "https://grigas.ieor.berkeley.edu/group/",
+     "sha256": "eaa05f738813cdc096aeac5b68c429d7532f903cdd5ffe32330e910ac57762fd",
+     "quote": "Heyuan Liu , Ph.D. 2022, now at Two Sigma Investments."
+    }
+   ]
+  },
+  {
+   "index": 125,
+   "author": "https://openalex.org/A5112517582",
+   "name": "Daniel D. Garcia",
+   "decision": "not_faculty",
+   "reason": "Teaching professor (EECS teaching-faculty list) without PhD advising: teaching professors do not count; second OpenAlex id of Dan Garcia (candidate 14).",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160315000000id_/http://www.eecs.berkeley.edu/Faculty/Lists/CS/list.shtml",
+     "sha256": "3bcb9eecfa0045450f9cb9a83c4f2071e17c10abb3d94c461aea0162f24f5b9c",
+     "quote": "Dan Garcia Teaching Professor",
+     "observed": "2016-03-15"
+    },
+    {
+     "url": "https://web.archive.org/web/20260211213854id_/https://www2.eecs.berkeley.edu/Faculty/Lists/teaching.html",
+     "sha256": "7e2a44636c6d8773de296d7f9d70aba37619fe67bc7c0ae29097ef86488e964d",
+     "quote": "Dan Garcia Teaching Professor",
+     "observed": "2026-02-11"
+    }
+   ]
+  },
+  {
+   "index": 126,
+   "author": "https://openalex.org/A5092897580",
+   "name": "Gopala Anumanchipalli",
+   "decision": "accepted",
+   "reason": "Associate Professor, EECS (EE division); PI: stated PhD advising; one census row with candidate 99; period 2021 to present",
+   "census_name": "Gopala Anumanchipalli",
+   "home_department": "EECS (EE division)",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20200919124609id_/https://www2.eecs.berkeley.edu/Faculty/Lists/new.html",
+     "sha256": "f6e78530da40a5bbb3da0c7db17e36b3e261dfced3360fb89e641cb134ffdbd4",
+     "quote": "Gopala Krishna Anumanchipalli Assistant Professor"
+    },
+    {
+     "url": "https://web.archive.org/web/20210225022620id_/https://www2.eecs.berkeley.edu/Faculty/Lists/new.html",
+     "sha256": "9afbcd40da8ee85cea9cbb0c692db3d17554b0e49af2c4f152d7853e0a08657c",
+     "quote": "Gopala Krishna Anumanchipalli Assistant Professor"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2025.html",
+     "sha256": "3d7b12cff6dc1b6676f7c4d45370a1bcb145f94f7164f6179fb5118712eecaf0",
+     "quote": "Kaylo Littlejohn [advisor: Gopala Krishna Anumanchipalli]"
+    }
+   ]
+  },
+  {
+   "index": 127,
+   "author": "https://openalex.org/A5045646606",
+   "name": "Shawn C. Shadden",
+   "decision": "accepted",
+   "reason": "Professor of Mechanical Engineering, Mechanical Engineering; PI: heads Shadden Lab",
+   "census_name": "Shawn C. Shadden",
+   "home_department": "Mechanical Engineering",
+   "evidence": [
+    {
+     "url": "https://me.berkeley.edu/people/shawn-shadden/",
+     "sha256": "a636354b044f86bc571bd5dd1c70d74a1a0bb27ecb5f0b55cdda499bac8f4118",
+     "quote": "Shawn Shadden Professor of Mechanical Engineering"
+    },
+    {
+     "url": "https://shaddenlab.berkeley.edu/people.html",
+     "sha256": "2cd3b6fa3772d9e2206e89d449102a98cc89e1a2025efc84b46a1831c527b6c3",
+     "quote": "Principal Investigator Shawn Shadden Associate Professor Mechanical Engineering UC Berkeley"
+    }
+   ]
+  },
+  {
+   "index": 128,
+   "author": "https://openalex.org/A5067690491",
+   "name": "Deirdre K. Mulligan",
+   "decision": "accepted",
+   "reason": "Professor, School of Information; PI: stated PhD advising",
+   "census_name": "Deirdre Mulligan",
+   "home_department": "School of Information",
+   "evidence": [
+    {
+     "url": "https://www.ischool.berkeley.edu/people/faculty?role=122&page=3",
+     "sha256": "90e7a07d258e39f3e7c304d7c4b07836ba77028156d9af5b425f075722e72971",
+     "quote": "Deirdre Mulligan Professor"
+    },
+    {
+     "url": "https://www.ischool.berkeley.edu/programs/phd/dissertations",
+     "sha256": "4a6dfba70075f212cfa955d71a76c39e35542ed083794eb6a196fa133019484f",
+     "quote": "Nick Doty. Enacting Privacy in Internet Standards . Ph.D. dissertation. Advisor: Deirdre K. Mulligan."
+    }
+   ]
+  },
+  {
+   "index": 129,
+   "author": "https://openalex.org/A5033772009",
+   "name": "Antonio Montalbán",
+   "decision": "accepted",
+   "reason": "Professor, Mathematics; PI: stated PhD advising",
+   "census_name": "Antonio Montalbán",
+   "home_department": "Mathematics",
+   "evidence": [
+    {
+     "url": "https://math.berkeley.edu/people/faculty",
+     "sha256": "4610a69d0854660588158b6db7e96dfccd40464471f7052ec5cdeaa85b7aa737",
+     "quote": "Antonio Montalbán Professor Mathematical Logic"
+    },
+    {
+     "url": "https://math.berkeley.edu/people/past-department-members/past-phd-students?page=9",
+     "sha256": "6eb7157455af0b85d14881835566da313ee954d05c8d23eaa1bda19a2805598e",
+     "quote": "James Walsh; Antonio Montalbán 2020 PhD Thesis"
+    }
+   ]
+  },
+  {
+   "index": 130,
+   "author": "https://openalex.org/A5101626204",
+   "name": "Yong Jiang",
+   "decision": "not_faculty",
+   "reason": "A name-merged OpenAlex profile (Yong Jiang), not Berkeley faculty; OpenAlex lists no Berkeley affiliation; Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5101626204",
+     "sha256": "ff1b4a3039e0a8c424ca9f1a1a36a2901881fcab30a9dc9add881c669af70c4e",
+     "quote": "\"display_name\":\"Southwest University of Science and Technology\""
+    }
+   ]
+  },
+  {
+   "index": 131,
+   "author": "https://openalex.org/A5090898601",
+   "name": "Gašper Beguš",
+   "decision": "faculty_no_pi_evidence",
+   "reason": "Linguistics Associate Professor (live list); his homepage names the Berkeley Biological and Artificial Language Lab but does not say he directs it, and no PhD advising was captured.",
+   "evidence": [
+    {
+     "url": "https://lx.berkeley.edu/people/faculty",
+     "sha256": "a58e2bbeeea1a06445c291f9d57f9cfee80cfc56e13d0a0e3d472782313e7185",
+     "quote": "Gašper Beguš Associate Professor of Linguistics"
+    }
+   ]
+  },
+  {
+   "index": 132,
+   "author": "https://openalex.org/A5024864142",
+   "name": "Jose M. Carmena",
+   "decision": "accepted",
+   "reason": "Adjunct Professor, EECS (EE division); PI: stated PhD advising; period 2016 to 2024",
+   "census_name": "Jose M. Carmena",
+   "home_department": "EECS (EE division)",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Jose M. Carmena Professor"
+    },
+    {
+     "url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "Jose M. Carmena Professor"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2017.html",
+     "sha256": "fdba4e2740217585b5c660b423d952ee7bacedfff79bc8b5101e06e2f715b981",
+     "quote": "Vivek Athalye [advisor: Jose M. Carmena]"
+    }
+   ]
+  },
+  {
+   "index": 133,
+   "author": "https://openalex.org/A5059413402",
+   "name": "Libby Gerard",
+   "decision": "not_faculty",
+   "reason": "Associate Adjunct Research Professor (School of Education) and WISE research director; no PhD advising captured, and adjuncts count only when they advise PhDs.",
+   "evidence": [
+    {
+     "url": "https://bse.berkeley.edu/libby-gerard",
+     "sha256": "186171776d51b275e0912c161adaab8475916f02b73b9523e0e7ffc8ee21bb05",
+     "quote": "Libby Gerard, Ed.D., is an Associate Adjunct Research Professor"
+    }
+   ]
+  },
+  {
+   "index": 134,
+   "author": "https://openalex.org/A5071945509",
+   "name": "J. Miguel Villas-Boas",
+   "decision": "faculty_no_pi_evidence",
+   "reason": "Haas Professor (Marketing); no stated PhD advising or own lab on the captured Haas profile.",
+   "evidence": [
+    {
+     "url": "https://haas.berkeley.edu/faculty/?letter=V&action=faculty-search",
+     "sha256": "e39af09ccaa0a07e3dd6cd4b8ee707921d7ebe8393b58a689a88a4feb8f0eb5a",
+     "quote": "J. Miguel Villas-Boas"
+    }
+   ]
+  },
+  {
+   "index": 135,
+   "author": "https://openalex.org/A5010467794",
+   "name": "Philip Kaminsky",
+   "decision": "accepted",
+   "reason": "Professor Emeritus, Industrial Engineering and Operations Research; PI: stated PhD advising",
+   "census_name": "Philip Kaminsky",
+   "home_department": "Industrial Engineering and Operations Research",
+   "evidence": [
+    {
+     "url": "https://ieor.berkeley.edu/people/faculty/",
+     "sha256": "e1173fad40ee5eb086458a8b7df16d113a7021075dffa795dd33aff36a8d1321",
+     "quote": "Philip M. Kaminsky Professor Emeritus"
+    },
+    {
+     "url": "http://kaminsky.ieor.berkeley.edu/",
+     "sha256": "ee612aca91153e12f30803ccb54e91a70d247cae8f8239aa6e6fb9f1a256e322",
+     "quote": "Arman Jabbari. PhD expected 2019."
+    }
+   ]
+  },
+  {
+   "index": 136,
+   "author": "https://openalex.org/A5047569435",
+   "name": "Michael Buckland",
+   "decision": "faculty_no_pi_evidence",
+   "reason": "I School Professor Emeritus throughout the window; no I School dissertation 2016-2025 names him and no lab.",
+   "evidence": [
+    {
+     "url": "https://www.ischool.berkeley.edu/people/faculty",
+     "sha256": "04c8c4c29cdc8efeb75b114290281afef405947485c154c8a0dc0cd64ca57576",
+     "quote": "Michael Buckland Professor Emeritus"
+    }
+   ]
+  },
+  {
+   "index": 137,
+   "author": "https://openalex.org/A5103113924",
+   "name": "Nikhil Srivastava",
+   "decision": "accepted",
+   "reason": "Associate Professor, Mathematics; PI: stated PhD advising",
+   "census_name": "Nikhil Srivastava",
+   "home_department": "Mathematics",
+   "evidence": [
+    {
+     "url": "https://math.berkeley.edu/people/faculty",
+     "sha256": "4610a69d0854660588158b6db7e96dfccd40464471f7052ec5cdeaa85b7aa737",
+     "quote": "Nikhil Srivastava Associate Professor"
+    },
+    {
+     "url": "https://math.berkeley.edu/people/past-department-members/past-phd-students",
+     "sha256": "3c7dac4065e8d13eed2f14fe030bd145733ab26eb945f90330c0312d14316cd0",
+     "quote": "Zachary Stier ; Nikhil Srivastava 2026 PhD Thesis"
+    }
+   ]
+  },
+  {
+   "index": 138,
+   "author": "https://openalex.org/A5110611660",
+   "name": "Barna Saha",
+   "decision": "faculty_no_pi_evidence",
+   "reason": "Former Berkeley (IEOR) tenured associate professor during the window, now at UC San Diego; no Berkeley PhD advising or Berkeley lab was captured. Her Berkeley dates were not captured (Wayback unreachable).",
+   "evidence": [
+    {
+     "url": "https://barnasaha.net/",
+     "sha256": "25615aeb632ced0103641413dce6453280472b70b21d406326b6fd1a10679b2f",
+     "quote": "Previously, I was a tenured Associate Professor at the University of California Berkeley"
+    }
+   ]
+  },
+  {
+   "index": 139,
+   "author": "https://openalex.org/A5019661690",
+   "name": "Anastasios N. Angelopoulos",
+   "decision": "not_faculty",
+   "reason": "EECS PhD student (dissertation 2024).",
+   "evidence": [
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2024.html",
+     "sha256": "997022bf081272f06b4536bb7990112b61db156a31ebd11831235e8493e57d8d",
+     "quote": "Anastasios Angelopoulos [advisor: Jitendra Malik and Michael Jordan]"
+    }
+   ]
+  },
+  {
+   "index": 140,
+   "author": "https://openalex.org/A5029751790",
+   "name": "Sam Gunn",
+   "decision": "not_faculty",
+   "reason": "Graduate student (2023-2026); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5029751790",
+     "sha256": "9d2e7fca6231013e13b86fe43e28ff954983f9ce8e18934f3940a439ee558252",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2026,2025,2024,2023]"
+    }
+   ]
+  },
+  {
+   "index": 141,
+   "author": "https://openalex.org/A5049611380",
+   "name": "Bernhard E. Boser",
+   "decision": "accepted",
+   "reason": "Professor Emeritus, EECS (EE division); PI: stated PhD advising",
+   "census_name": "Bernhard Boser",
+   "home_department": "EECS (EE division)",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Bernhard Boser Professor"
+    },
+    {
+     "url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "Bernhard Boser Professor"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2019.html",
+     "sha256": "877b4a2af6b0d52618979f4ba17f506c9632504022696fb9e209348f569e8ced",
+     "quote": "Efthymios Papageorgiou [advisor: Bernhard Boser]"
+    }
+   ]
+  },
+  {
+   "index": 142,
+   "author": "https://openalex.org/A5076327478",
+   "name": "Maggi Kelly",
+   "decision": "accepted",
+   "reason": "Specialist in Cooperative Extension, Professor in Residence, Environmental Science, Policy, and Management; PI: stated PhD advising",
+   "census_name": "Maggi Kelly",
+   "home_department": "Environmental Science, Policy, and Management",
+   "evidence": [
+    {
+     "url": "https://ourenvironment.berkeley.edu/people/maggi-kelly",
+     "sha256": "9dd5d7923608c0c43eb48759983886efe558d4a60e09308b08eed46189502efa",
+     "quote": "Maggi Kelly Title: Specialist in Cooperative Extension, Professor in Residence"
+    },
+    {
+     "url": "https://ourenvironment.berkeley.edu/people/maggi-kelly",
+     "sha256": "9dd5d7923608c0c43eb48759983886efe558d4a60e09308b08eed46189502efa",
+     "quote": "Supervisor and mentor of 18 Ph.D. students as major advisor and 8 post-docs"
+    }
+   ]
+  },
+  {
+   "index": 143,
+   "author": "https://openalex.org/A5107790029",
+   "name": "Allen Y. Yang",
+   "decision": "not_faculty",
+   "reason": "EECS Visiting Lecturer and research scientist (EECS visiting lists), not a professor.",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20191014115330id_/https://www2.eecs.berkeley.edu/Faculty/Lists/CS/visiting.html",
+     "sha256": "af05b8881008958de7cacd9fd49e3ecd1df90268ffac2ec1722e8aa3ba74e2e2",
+     "quote": "Allen Yang Visiting Lecturer",
+     "observed": "2019-10-14"
+    },
+    {
+     "url": "https://web.archive.org/web/20260212105358id_/https://www2.eecs.berkeley.edu/Faculty/Lists/CS/visiting.html",
+     "sha256": "b2dd01c54a99da4c58eb63a94686b98186b49ae02900de176c8bd5f1c540b614",
+     "quote": "Allen Yang Visiting Lecturer",
+     "observed": "2026-02-12"
+    }
+   ]
+  },
+  {
+   "index": 144,
+   "author": "https://openalex.org/A5086269144",
+   "name": "Mark Velednitsky",
+   "decision": "not_faculty",
+   "reason": "Graduate student (IEOR); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5086269144",
+     "sha256": "ed993a789bd76513eb24aee620c9249418d673b01be802b826beea23213e2b31",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2021,2020,2019,2018,2017,2016]"
+    }
+   ]
+  },
+  {
+   "index": 145,
+   "author": "https://openalex.org/A5057902584",
+   "name": "Jun-Chau Chien",
+   "decision": "accepted",
+   "reason": "Assistant Professor, EECS (EE division); PI: stated PhD advising; period 2022 to present",
+   "census_name": "Jun-Chau Chien",
+   "home_department": "EECS (EE division)",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20221205172143id_/https://www2.eecs.berkeley.edu/Faculty/Lists/new.html",
+     "sha256": "8496041f9c2842fb9458d7c402bc34166814ef55ecc2d822a772267190b3c4f8",
+     "quote": "Jun-Chau Chien Assistant Professor"
+    },
+    {
+     "url": "https://web.archive.org/web/20230320232425id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "9d270d05521fa80cfff0d5c05ce26219b9a500acc9af568a021052b4a7f1531e",
+     "quote": "Jun-Chau Chien Assistant Professor"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2025.html",
+     "sha256": "3d7b12cff6dc1b6676f7c4d45370a1bcb145f94f7164f6179fb5118712eecaf0",
+     "quote": "Antroy Roy Chowdhury [advisor: Vladimir Stojanovic and Jun-Chau Chien]"
+    }
+   ]
+  },
+  {
+   "index": 146,
+   "author": "https://openalex.org/A5007232092",
+   "name": "Alexander Keimer",
+   "decision": "not_faculty",
+   "reason": "Postdoc (2017-2024); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5007232092",
+     "sha256": "920afbc73aafae14c7256d7e5756631abc0737f34b8dd6f3cb9f62a05c3b7b42",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2024,2023,2022,2021,2020,2019,2018,2017]"
+    }
+   ]
+  },
+  {
+   "index": 147,
+   "author": "https://openalex.org/A5038055821",
+   "name": "Nitin Kohli",
+   "decision": "not_faculty",
+   "reason": "PhD student / postdoc (I School, CLTC); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5038055821",
+     "sha256": "54005041ebd03735806a3a7ce63e7489031f6286bcce1cc6cad8171c93dddcac",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2026,2025,2024,2023,2019,2018]"
+    }
+   ]
+  },
+  {
+   "index": 148,
+   "author": "https://openalex.org/A5103061454",
+   "name": "Manxi Wu",
+   "decision": "accepted",
+   "reason": "Assistant Professor, Civil and Environmental Engineering; PI: stated PhD advising; period 2024 to present",
+   "census_name": "Manxi Wu",
+   "home_department": "Civil and Environmental Engineering",
+   "evidence": [
+    {
+     "url": "https://ce.berkeley.edu/people/faculty",
+     "sha256": "6f0dbaf6665d0157ef201ff94b4775764803e8e9fcc3fffd2291f9f9f3e3050b",
+     "quote": "Manxi Wu Assistant Professor"
+    },
+    {
+     "url": "https://sites.google.com/view/manxi-wu/home",
+     "sha256": "03e42fab46dc95d26465d8e12b14257b4219af915866a82f1eb387d80cfa7b0a",
+     "quote": "Advisees : Kaiqi Jiang (UC Berkeley Transportation, PhD student)"
+    }
+   ]
+  },
+  {
+   "index": 149,
+   "author": "https://openalex.org/A5088590161",
+   "name": "Terry Regier",
+   "decision": "accepted",
+   "reason": "Professor of Linguistics and Cognitive Science, Linguistics; PI: heads Language and Cognition Lab",
+   "census_name": "Terry Regier",
+   "home_department": "Linguistics",
+   "evidence": [
+    {
+     "url": "https://lx.berkeley.edu/people/faculty",
+     "sha256": "a58e2bbeeea1a06445c291f9d57f9cfee80cfc56e13d0a0e3d472782313e7185",
+     "quote": "Terry Regier Professor of Linguistics and Cognitive Science"
+    },
+    {
+     "url": "https://terry-regier.github.io/lclab/people.html",
+     "sha256": "20af91721e92704761730831a0cec820aa27ff7ca29b150b26f2618c0a86d583",
+     "quote": "Faculty Terry Regier [ website ] Students Elise Kim Graduate student, Linguistics"
+    }
+   ]
+  },
+  {
+   "index": 150,
+   "author": "https://openalex.org/A5005779176",
+   "name": "James Zou",
+   "decision": "not_faculty",
+   "reason": "Stanford faculty with a stray Berkeley affiliation; OpenAlex lists no Berkeley affiliation; Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5005779176",
+     "sha256": "48ec4628e5db3c6833d641201e801cc505e0b50b88dc2431f1d7bafdd4e82d47",
+     "quote": "\"display_name\":\"Stanford University\""
+    }
+   ]
+  },
+  {
+   "index": 151,
+   "author": "https://openalex.org/A5032319697",
+   "name": "Prashant Nalini Vasudevan",
+   "decision": "not_faculty",
+   "reason": "Postdoc (2019-2021); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5032319697",
+     "sha256": "a1230ab0c3c43dd9ad73da85a2840b01320e507b3053c1e066d22d632910f5ae",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2021,2020,2019]"
+    }
+   ]
+  },
+  {
+   "index": 152,
+   "author": "https://openalex.org/A5100375307",
+   "name": "Li Xiao",
+   "decision": "not_faculty",
+   "reason": "A name-merged OpenAlex profile (Li Xiao), not Berkeley faculty; OpenAlex lists no Berkeley affiliation; Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5100375307",
+     "sha256": "c0fe38f72e0e02150ada3702c1d3185f869c7dcd5c94df4cde03493c3aa24d56",
+     "quote": "\"display_name\":\"University of Macau\""
+    }
+   ]
+  },
+  {
+   "index": 153,
+   "author": "https://openalex.org/A5087597197",
+   "name": "Kewen Wu",
+   "decision": "not_faculty",
+   "reason": "EECS PhD student (dissertation 2025).",
+   "evidence": [
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2025.html",
+     "sha256": "3d7b12cff6dc1b6676f7c4d45370a1bcb145f94f7164f6179fb5118712eecaf0",
+     "quote": "Kewen Wu [advisor: Avishay Tal]"
+    }
+   ]
+  },
+  {
+   "index": 154,
+   "author": "https://openalex.org/A5083461583",
+   "name": "Manolis Zampetakis",
+   "decision": "not_faculty",
+   "reason": "Postdoc (2021-2023); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5083461583",
+     "sha256": "15d61c5752b3c30dd96fb9b2d21f838fc16876e5eeb550f37a6c78e23c4ab908",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2023,2022,2021]"
+    }
+   ]
+  },
+  {
+   "index": 155,
+   "author": "https://openalex.org/A5066997569",
+   "name": "Roei Herzig",
+   "decision": "not_faculty",
+   "reason": "Postdoc (2023-2026); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5066997569",
+     "sha256": "28e4d97b1e27d55eb7c975fed147676a2f80a637627702070692bb89ddfda918",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2026,2025,2024,2023]"
+    }
+   ]
+  },
+  {
+   "index": 156,
+   "author": "https://openalex.org/A5006243281",
+   "name": "Robert J. Full",
+   "decision": "accepted",
+   "reason": "Professor of the Graduate School, Integrative Biology; PI: heads Poly-PEDAL Lab",
+   "census_name": "Robert Full",
+   "home_department": "Integrative Biology",
+   "evidence": [
+    {
+     "url": "https://ib.berkeley.edu/people/faculty",
+     "sha256": "4525593eadebd47b3eb3653e60479bc928347b5bc4c9983ba068b365e747193f",
+     "quote": "Robert J. Full Professor of the Graduate School"
+    },
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Robert Full Professor"
+    },
+    {
+     "url": "https://polypedal.berkeley.edu/?page_id=108",
+     "sha256": "9ffaf317f0e84c334d5b17ce3c991f6ef51d1107bc0a8c5061e3d5003535c8be",
+     "quote": "Director Professor Robert J. Full Graduate Students"
+    }
+   ]
+  },
+  {
+   "index": 157,
+   "author": "https://openalex.org/A5054625887",
+   "name": "Ian Holmes",
+   "decision": "accepted",
+   "reason": "Professor, Bioengineering; PI: heads Holmes Lab",
+   "census_name": "Ian Holmes",
+   "home_department": "Bioengineering",
+   "evidence": [
+    {
+     "url": "https://bioeng.berkeley.edu/people/ian-holmes",
+     "sha256": "0c5f7e90d5c8f839e6ccb1b7d52e762324af87a6922551726aedf4603734b158",
+     "quote": "2020-present Professor, Department of Bioengineering, University of California, Berkeley"
+    },
+    {
+     "url": "https://bioeng.berkeley.edu/people/ian-holmes",
+     "sha256": "0c5f7e90d5c8f839e6ccb1b7d52e762324af87a6922551726aedf4603734b158",
+     "quote": "The Holmes Lab brings techniques from machine learning"
+    }
+   ]
+  },
+  {
+   "index": 158,
+   "author": "https://openalex.org/A5109525515",
+   "name": "Mohammad Hajiabadi",
+   "decision": "not_faculty",
+   "reason": "Postdoc (2017-2020); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5109525515",
+     "sha256": "7a5aeadbc02df6ddd9aaa2dd7ba0ad88f76d6718dc7ac622fb16b763aac697f1",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2020,2019,2018,2017]"
+    }
+   ]
+  },
+  {
+   "index": 159,
+   "author": "https://openalex.org/A5072056838",
+   "name": "Nicholas Spooner",
+   "decision": "not_faculty",
+   "reason": "EECS PhD student (dissertation 2020).",
+   "evidence": [
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2020.html",
+     "sha256": "dfe243f75ecbdd7d2a0c27699d84e21556212bad306cffd3a738e63025fe1a01",
+     "quote": "Nicholas Spooner [advisor: Alessandro Chiesa]"
+    }
+   ]
+  },
+  {
+   "index": 160,
+   "author": "https://openalex.org/A5067668836",
+   "name": "Carmine-Emanuele Cella",
+   "decision": "faculty_no_pi_evidence",
+   "reason": "Music Associate Professor (Composition and Music Technology); he co-directs CNMAT, a centre, and no PhD advising or own lab was captured.",
+   "evidence": [
+    {
+     "url": "https://music.berkeley.edu/people/carmine-emanuele-cella",
+     "sha256": "cc64a520348d661f71076f575d9293d32db8ec37cd521dc8cce9118f876f39f9",
+     "quote": "Carmine-Emanuele Cella Associate Professor, Composition and Music Technology"
+    }
+   ]
+  },
+  {
+   "index": 161,
+   "author": "https://openalex.org/A5088409866",
+   "name": "Girish Pahwa",
+   "decision": "not_faculty",
+   "reason": "Postdoc / researcher in the BSIM group (2020-2025); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5088409866",
+     "sha256": "f620e6588342027c5639134d93b4cd7c5b815ef434a4694c72f36fad33f3be8e",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2025,2024,2023,2022,2021,2020]"
+    }
+   ]
+  },
+  {
+   "index": 162,
+   "author": "https://openalex.org/A5053034151",
+   "name": "George Obaido",
+   "decision": "not_faculty",
+   "reason": "Postdoc / visiting researcher; Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5053034151",
+     "sha256": "6fa6027258c0612c00aa6ba8f8c704e56548f4406b2f22f1d1e366d9702f1015",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2026,2025,2024,2023,2022]"
+    }
+   ]
+  },
+  {
+   "index": 163,
+   "author": "https://openalex.org/A5100692035",
+   "name": "Mingyuan Wang",
+   "decision": "not_faculty",
+   "reason": "Postdoc (2022-2024); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5100692035",
+     "sha256": "1c6c760abc8f3e220a1977d6623f22d511f68b224697e9ab234ee19ddac48878",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2024,2023,2022]"
+    }
+   ]
+  },
+  {
+   "index": 164,
+   "author": "https://openalex.org/A5073887573",
+   "name": "Noureddine El Karoui",
+   "decision": "unresolved",
+   "reason": "Statistics professor during part of the window (OpenAlex: Berkeley until 2022, also Criteo); not on the live Statistics list and Wayback refused connections from this host on 2026-10-26, so past department lists could not be checked.",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5073887573",
+     "sha256": "f02690cdfa298e9762313700faeeaa7f45989cefc60cf208031d4d70b54b6a36",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2022,2021,2020,2019,2018,2017,2016,2015,2014,2013,2012,2011,2010,2009,2008,2007,2006,2005]"
+    }
+   ]
+  },
+  {
+   "index": 165,
+   "author": "https://openalex.org/A5115694931",
+   "name": "Xiaohao Wang",
+   "decision": "not_faculty",
+   "reason": "Tsinghua (TBSI) faculty, not UC Berkeley.",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5115694931",
+     "sha256": "b51247b888caa3798d8597e61331ec0908d0edf5178260ac9df696477c50f64c",
+     "quote": "\"display_name\":\"Tsinghua\\u2013Berkeley Shenzhen Institute\",\"country_code\":\"CN\",\"type\":\"facility\",\"lineage\":[\"https://openalex.org/I4210114105\",\"https://openalex.org/I95457486\",\"https://openalex.org/I99065089\"]},\"years\":[2024,2023,2022,2021,2020,2019,2018,2017,2016]"
+    }
+   ]
+  },
+  {
+   "index": 166,
+   "author": "https://openalex.org/A5008772435",
+   "name": "Drew Paulin",
+   "decision": "not_faculty",
+   "reason": "Researcher / lecturer, not a professor; Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5008772435",
+     "sha256": "aa37c8e4c782f5c3bdfec18fbc7c61c16e4e2a15e81eb0aa96b8ffc108fb13b8",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2021,2018,2017,2016]"
+    }
+   ]
+  },
+  {
+   "index": 167,
+   "author": "https://openalex.org/A5067636168",
+   "name": "Pierluigi Nuzzo",
+   "decision": "faculty_no_pi_evidence",
+   "reason": "EE-division Associate Professor since 2024 (EECS lists 2024-2026, previously USC); no EECS PhD dissertation names him (one 2026 MS report) and no Berkeley lab was captured.",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20241113124209id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "257a8ce3111f7298099476ad7253e0cc69b743e6ff49e3b20252e0ff25ba7c67",
+     "quote": "Pierluigi Nuzzo Associate Professor",
+     "observed": "2024-11-13"
+    },
+    {
+     "url": "https://web.archive.org/web/20260415033254id_/https://www2.eecs.berkeley.edu/Faculty/Lists/new.html",
+     "sha256": "d0e1dede81650993cd847bf472f8761916e76a90d3f758d8c9f90800f241c0a7",
+     "quote": "Pierluigi Nuzzo Associate Professor",
+     "observed": "2026-04-15"
+    }
+   ]
+  },
+  {
+   "index": 168,
+   "author": "https://openalex.org/A5019886241",
+   "name": "Michelle Hoda Wilkerson",
+   "decision": "accepted",
+   "reason": "Associate Professor, School of Education; PI: heads Computing, Reasoning, and Expression (CoRE) Lab",
+   "census_name": "Michelle Hoda Wilkerson",
+   "home_department": "School of Education",
+   "evidence": [
+    {
+     "url": "https://bse.berkeley.edu/faculty",
+     "sha256": "6f5c7e73a5a3d1f915d2e8d4c2a24fc637ac5e0d7e08c65bd73fe564abb1ab96",
+     "quote": "Michelle Hoda Wilkerson Associate Professor"
+    },
+    {
+     "url": "https://michellehoda.github.io/",
+     "sha256": "ddc98dce8462784e94c59e6a9df3b64206f81c384807388f3beaf173609648bc",
+     "quote": "where I direct the Computing, Reasoning, and Expression (CoRE) Lab at UC Berkeley"
+    }
+   ]
+  },
+  {
+   "index": 169,
+   "author": "https://openalex.org/A5103226688",
+   "name": "Ming Gu",
+   "decision": "accepted",
+   "reason": "Professor, Mathematics; PI: stated PhD advising",
+   "census_name": "Ming Gu",
+   "home_department": "Mathematics",
+   "evidence": [
+    {
+     "url": "https://math.berkeley.edu/people/faculty",
+     "sha256": "4610a69d0854660588158b6db7e96dfccd40464471f7052ec5cdeaa85b7aa737",
+     "quote": "Ming Gu Professor Applied Mathematics"
+    },
+    {
+     "url": "https://math.berkeley.edu/people/past-department-members/past-phd-students?page=4",
+     "sha256": "d961d4809c1194ace42c3fc0f3843780a8ef694e62ab89f39590bbdd84854cea",
+     "quote": "Jiaming Wang; Ming Gu 2023 PhD Thesis"
+    }
+   ]
+  },
+  {
+   "index": 170,
+   "author": "https://openalex.org/A5108734495",
+   "name": "Pierre Simon",
+   "decision": "unresolved",
+   "reason": "Mathematics (logic) faculty member per OpenAlex (Berkeley 2016-2026) but not on the captured live Mathematics faculty list; no PhD thesis lists him as adviser on the captured Mathematics past-PhD pages; Wayback refused connections from this host on 2026-10-26, so past department lists could not be checked.",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5108734495",
+     "sha256": "0fe8156ce325c16dfcf56a019f29bb24c45c42340482aaa60d671ef1d694488c",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2026,2025,2024,2023,2022,2021,2020,2019,2018,2016]"
+    }
+   ]
+  },
+  {
+   "index": 171,
+   "author": "https://openalex.org/A5013677737",
+   "name": "Lauren Mock",
+   "decision": "not_faculty",
+   "reason": "Student / course staff (CS education papers); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5013677737",
+     "sha256": "685d8c599977e200c04181cdd61c10637bd195dcdfb41df57a07fd75ea15ae34",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2026,2024,2023,2022,2021,2020,2018,2015]"
+    }
+   ]
+  },
+  {
+   "index": 172,
+   "author": "https://openalex.org/A5016095713",
+   "name": "Xinlei Chen",
+   "decision": "not_faculty",
+   "reason": "TBSI / Tsinghua researcher, not UC Berkeley faculty.",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5016095713",
+     "sha256": "263bdf57604a08a7c0c01f82f981c94a7e3418c76e1dae6d957108bef0eed72c",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2019]"
+    }
+   ]
+  },
+  {
+   "index": 173,
+   "author": "https://openalex.org/A5103077529",
+   "name": "Fred Zhang",
+   "decision": "not_faculty",
+   "reason": "EECS PhD student (dissertation 2024).",
+   "evidence": [
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2024.html",
+     "sha256": "997022bf081272f06b4536bb7990112b61db156a31ebd11831235e8493e57d8d",
+     "quote": "Fred Zhang [advisor: Jelani Nelson]"
+    }
+   ]
+  },
+  {
+   "index": 174,
+   "author": "https://openalex.org/A5076708141",
+   "name": "Ryan J. Tibshirani",
+   "decision": "accepted",
+   "reason": "Professor and Chair, Statistics; PI: stated PhD advising; period 2022 to present",
+   "census_name": "Ryan Tibshirani",
+   "home_department": "Statistics",
+   "evidence": [
+    {
+     "url": "https://statistics.berkeley.edu/people/faculty",
+     "sha256": "7d6a612712d0cd44a44f5b7b402cf431d4c46317c0ccd46ad66a0b9ddee9d8fd",
+     "quote": "Ryan Tibshirani Professor and Chair"
+    },
+    {
+     "url": "https://www.stat.berkeley.edu/~ryantibs/group.html",
+     "sha256": "fe27cd51d66c2d62dc2d3b9384d1836046a13cb0a33f1d10f37ddb68e549426b",
+     "quote": "Jeremy Goldwasser , Statistics Ph.D., UC Berkeley, 2026"
+    }
+   ]
+  },
+  {
+   "index": 175,
+   "author": "https://openalex.org/A5101626462",
+   "name": "Xinghui Li",
+   "decision": "not_faculty",
+   "reason": "Tsinghua Shenzhen (TBSI) faculty, not UC Berkeley.",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5101626462",
+     "sha256": "8b3c983f8aadb6675312b9d1bff87445cea8155cfd7d72cfae1482d7c837c788",
+     "quote": "\"display_name\":\"Tsinghua\\u2013Berkeley Shenzhen Institute\",\"country_code\":\"CN\",\"type\":\"facility\",\"lineage\":[\"https://openalex.org/I4210114105\",\"https://openalex.org/I95457486\",\"https://openalex.org/I99065089\"]},\"years\":[2026,2025,2024,2023,2022,2021]"
+    }
+   ]
+  },
+  {
+   "index": 176,
+   "author": "https://openalex.org/A5100438237",
+   "name": "Ziqi Wang",
+   "decision": "faculty_no_pi_evidence",
+   "reason": "CEE Assistant Professor (live list); no stated PhD advising or own lab on the captured CEE profile.",
+   "evidence": [
+    {
+     "url": "https://ce.berkeley.edu/people/faculty",
+     "sha256": "6f0dbaf6665d0157ef201ff94b4775764803e8e9fcc3fffd2291f9f9f3e3050b",
+     "quote": "Ziqi Wang Assistant Professor"
+    }
+   ]
+  },
+  {
+   "index": 177,
+   "author": "https://openalex.org/A5031565603",
+   "name": "Wei Zhan",
+   "decision": "not_faculty",
+   "reason": "Researcher (Wei Zhan, robotics), not a professor; Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5031565603",
+     "sha256": "03d7a03ff0e19884a7de457b2cde25cf7abdd16d75866cb25ef5c978847bbff3",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2026,2025,2024,2022]"
+    }
+   ]
+  },
+  {
+   "index": 178,
+   "author": "https://openalex.org/A5071419221",
+   "name": "Nikita Zhivotovskiy",
+   "decision": "faculty_no_pi_evidence",
+   "reason": "Statistics Assistant Professor (live list); his homepage capture was empty and no PhD advising or own lab was captured.",
+   "evidence": [
+    {
+     "url": "https://statistics.berkeley.edu/people/faculty",
+     "sha256": "7d6a612712d0cd44a44f5b7b402cf431d4c46317c0ccd46ad66a0b9ddee9d8fd",
+     "quote": "Nikita Zhivotovskiy Assistant Professor"
+    }
+   ]
+  },
+  {
+   "index": 179,
+   "author": "https://openalex.org/A5101859450",
+   "name": "Shreya Bhandari",
+   "decision": "not_faculty",
+   "reason": "Student (2023-2025); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5101859450",
+     "sha256": "07753ace5394f5d4543493a4ee16381ba230a77f4481f4b9c18fe17378ea1747",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2025,2024,2023]"
+    }
+   ]
+  },
+  {
+   "index": 180,
+   "author": "https://openalex.org/A5010313016",
+   "name": "Terry A. Taylor",
+   "decision": "faculty_no_pi_evidence",
+   "reason": "Haas Professor (Operations & IT Management); no stated PhD advising or own lab on the captured Haas profile.",
+   "evidence": [
+    {
+     "url": "https://haas.berkeley.edu/faculty/?letter=T&action=faculty-search",
+     "sha256": "361c9689f755974393081bd18f340f010da443f70bca8c9894fe46871ef05ab4",
+     "quote": "Terry Taylor"
+    }
+   ]
+  },
+  {
+   "index": 181,
+   "author": "https://openalex.org/A5052150259",
+   "name": "Tania Lombrozo",
+   "decision": "unresolved",
+   "reason": "Psychology professor until 2018 (now Princeton): her Berkeley years and lab could not be captured (Princeton page bot-challenged, Wayback refused connections from this host on 2026-10-26, so past department lists could not be checked).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5052150259",
+     "sha256": "508e622d5c06f1a1b663048a9da66f0bb15d86a7049f51ee520f8715396f8ff5",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2022,2019,2018,2017,2016,2015,2014,2013,2012,2011,2010,2009,2008,2007,2006]"
+    }
+   ]
+  },
+  {
+   "index": 182,
+   "author": "https://openalex.org/A5081583404",
+   "name": "Tselil Schramm",
+   "decision": "not_faculty",
+   "reason": "EECS PhD student (dissertation 2017).",
+   "evidence": [
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2017.html",
+     "sha256": "fdba4e2740217585b5c660b423d952ee7bacedfff79bc8b5101e06e2f715b981",
+     "quote": "Tselil Schramm [advisor: Satish Rao and Prasad Raghavendra]"
+    }
+   ]
+  },
+  {
+   "index": 183,
+   "author": "https://openalex.org/A5108258212",
+   "name": "Ashok Deshpande",
+   "decision": "not_faculty",
+   "reason": "Visiting scholar (BISC / fuzzy logic), not a professor; Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5108258212",
+     "sha256": "4305dee2e75d7f0d11347acc0b43fb5b4a19587659d2961a8622b70f38dece01",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2023,2021,2020,2019,2018,2017,2016,2015,2014,2013,2012,2011,2010]"
+    }
+   ]
+  },
+  {
+   "index": 184,
+   "author": "https://openalex.org/A5052389485",
+   "name": "Paul Laskowski",
+   "decision": "not_faculty",
+   "reason": "I School Associate Adjunct Professor (MIDS teaching); no PhD advising captured, and adjuncts count only when they advise PhDs.",
+   "evidence": [
+    {
+     "url": "https://www.ischool.berkeley.edu/people/faculty?role=122&page=2",
+     "sha256": "54414f0eeefb48663fbd5cbfba6f987d0ea1b5d6f05b157ada51874361f31d80",
+     "quote": "Paul Laskowski Associate Adjunct Professor"
+    }
+   ]
+  },
+  {
+   "index": 185,
+   "author": "https://openalex.org/A5066588555",
+   "name": "Kyle Lo",
+   "decision": "not_faculty",
+   "reason": "Researcher at the Allen Institute for AI with a stray Berkeley affiliation (former student); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5066588555",
+     "sha256": "81dee9442ab2f8f5d090ba64fd008d8b23a5d362f5afab035e9bdc1d0f78b58e",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2025,2024,2023,2020]"
+    }
+   ]
+  },
+  {
+   "index": 186,
+   "author": "https://openalex.org/A5045114235",
+   "name": "David X. Wu",
+   "decision": "not_faculty",
+   "reason": "EECS PhD student (dissertation 2026).",
+   "evidence": [
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2026.html",
+     "sha256": "bdeee6237d34452f112c46a1c2785c807c887b9773d52cd122b672e1f62d2b21",
+     "quote": "David Wu [advisor: Anant Sahai and Prasad Raghavendra]"
+    }
+   ]
+  },
+  {
+   "index": 187,
+   "author": "https://openalex.org/A5060940190",
+   "name": "Jenna Burrell",
+   "decision": "accepted",
+   "reason": "Adjunct Professor, School of Information; PI: stated PhD advising",
+   "census_name": "Jenna Burrell",
+   "home_department": "School of Information",
+   "evidence": [
+    {
+     "url": "https://www.ischool.berkeley.edu/people/faculty",
+     "sha256": "04c8c4c29cdc8efeb75b114290281afef405947485c154c8a0dc0cd64ca57576",
+     "quote": "Jenna Burrell Adjunct Professor"
+    },
+    {
+     "url": "https://www.ischool.berkeley.edu/programs/phd/dissertations",
+     "sha256": "4a6dfba70075f212cfa955d71a76c39e35542ed083794eb6a196fa133019484f",
+     "quote": "Elizabeth Resor. Scoring Space: How Real Estate Platform Users Make Sense of Place, Platforms, and Metrics. PhD Dissertation. Advisors: AnnaLee Saxenian, Jenna Burrell, Paul Duguid, Abigail de Kosnik."
+    }
+   ]
+  },
+  {
+   "index": 188,
+   "author": "https://openalex.org/A5027998764",
+   "name": "Qinglai Guo",
+   "decision": "not_faculty",
+   "reason": "Tsinghua University faculty, not UC Berkeley.",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5027998764",
+     "sha256": "4b2f61f25386f1fbf47d3a675fe17b7e4f94c969457467c437eec844991a1f70",
+     "quote": "\"display_name\":\"Tsinghua University\",\"country_code\":\"CN\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I99065089\"]},\"years\":[2026,2025,2024,2023,2022,2021,2020,2019,2018,2017,2016,2015,2014,2013,2012,2011,2010,2009,2008,2006]"
+    }
+   ]
+  },
+  {
+   "index": 189,
+   "author": "https://openalex.org/A5059637238",
+   "name": "David Rempel",
+   "decision": "unresolved",
+   "reason": "UCSF / Berkeley Bioengineering ergonomics professor; not on any captured live list and the BioE list URL 404s; Wayback refused connections from this host on 2026-10-26, so past department lists could not be checked.",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5059637238",
+     "sha256": "e05c81de4e154d2f9f19d3caf410bcbcaef5afbbf54f6d3886f47aa937c97d0c",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2025,2024,2023,2022,2021,2020,2019,2018,2017,2016,2015,2014,2013,2012,2011,2010,2009,2008,2007,2006,2005,2004,2003,2002,2001,2000,1999,1997,1995]"
+    }
+   ]
+  },
+  {
+   "index": 190,
+   "author": "https://openalex.org/A5012729267",
+   "name": "Bo Zhao",
+   "decision": "not_faculty",
+   "reason": "A name-merged OpenAlex profile (Bo Zhao), not Berkeley faculty; Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5012729267",
+     "sha256": "c269bfab4b49d0291668e43a3b3dd382abf86715b5a4afdfc39d24c733e7f748",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2018,2017,2016]"
+    }
+   ]
+  },
+  {
+   "index": 191,
+   "author": "https://openalex.org/A5109213996",
+   "name": "Dana S. Scott",
+   "decision": "not_faculty",
+   "reason": "Emeritus professor of CMU listed by Berkeley Mathematics as a visitor.",
+   "evidence": [
+    {
+     "url": "https://math.berkeley.edu/people/faculty",
+     "sha256": "4610a69d0854660588158b6db7e96dfccd40464471f7052ec5cdeaa85b7aa737",
+     "quote": "Dana Scott Visitor Mathematical Logic"
+    }
+   ]
+  },
+  {
+   "index": 192,
+   "author": "https://openalex.org/A5070917137",
+   "name": "Riley Murray",
+   "decision": "not_faculty",
+   "reason": "Student / postdoc (randomized linear algebra, RandBLAS) in Michael Mahoney's group; Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://www.stat.berkeley.edu/~mmahoney/",
+     "sha256": "f541f0b65e35094995043847b2f4430dfe76d2c0fd555ab822e89ed19afb966f",
+     "quote": "Riley Murray has released RandBLAS 1.0."
+    }
+   ]
+  },
+  {
+   "index": 193,
+   "author": "https://openalex.org/A5036761416",
+   "name": "Haiyan Huang",
+   "decision": "faculty_no_pi_evidence",
+   "reason": "Statistics Professor (live list); her homepage states no PhD students and no own lab was captured (the Statistics PhD-alumni list does not show advisers).",
+   "evidence": [
+    {
+     "url": "https://statistics.berkeley.edu/people/faculty",
+     "sha256": "7d6a612712d0cd44a44f5b7b402cf431d4c46317c0ccd46ad66a0b9ddee9d8fd",
+     "quote": "Haiyan Huang Professor"
+    }
+   ]
+  },
+  {
+   "index": 194,
+   "author": "https://openalex.org/A5091120947",
+   "name": "Nuo Xu",
+   "decision": "not_faculty",
+   "reason": "Researcher (device modelling), not a professor; Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5091120947",
+     "sha256": "273cfeda62e8a02ad05961eeedbd950be3ab016b4a85eda1be442e0e0952ef66",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2023,2022,2021,2020,2019,2018,2017,2015,2014,2013,2012,2011,2010,2009]"
+    }
+   ]
+  },
+  {
+   "index": 195,
+   "author": "https://openalex.org/A5045935240",
+   "name": "Xiaohui Zou",
+   "decision": "not_faculty",
+   "reason": "A name-merged OpenAlex profile (Xiaohui Zou), not Berkeley faculty; Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5045935240",
+     "sha256": "82b4dd47dd003919a3f4dbeed5317bbee6e53046381bb243be18ec9b7df88c0a",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2021,2019,2017]"
+    }
+   ]
+  },
+  {
+   "index": 196,
+   "author": "https://openalex.org/A5091794009",
+   "name": "Qiuyi Zhang",
+   "decision": "not_faculty",
+   "reason": "Graduate student (2018-2021); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5091794009",
+     "sha256": "0c41dd359ff9ca45a6e6d0615f7c8584e446c19ca950d4656c2ed22587bd7a30",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2021,2019,2018]"
+    }
+   ]
+  },
+  {
+   "index": 197,
+   "author": "https://openalex.org/A5100339293",
+   "name": "Wenwu Zhu",
+   "decision": "not_faculty",
+   "reason": "Tsinghua University faculty, not UC Berkeley.",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5100339293",
+     "sha256": "bf76780ce495067ef61f2429c38a7dc1685da87204a65107b17fad1780e4a7ff",
+     "quote": "\"display_name\":\"Tsinghua University\",\"country_code\":\"CN\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I99065089\"]},\"years\":[2026,2025,2024,2023,2022,2021,2020,2019,2018,2017,2016,2015,2014,2013,2012]"
+    }
+   ]
+  },
+  {
+   "index": 198,
+   "author": "https://openalex.org/A5042729763",
+   "name": "Jianguo Zhou",
+   "decision": "not_faculty",
+   "reason": "Tsinghua (TBSI) researcher, not UC Berkeley faculty; Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5042729763",
+     "sha256": "87c78628276bd1f93910027719142092cf66fc71667b53dcf349135f39204980",
+     "quote": "\"display_name\":\"Tsinghua\\u2013Berkeley Shenzhen Institute\",\"country_code\":\"CN\",\"type\":\"facility\",\"lineage\":[\"https://openalex.org/I4210114105\",\"https://openalex.org/I95457486\",\"https://openalex.org/I99065089\"]},\"years\":[2023,2022,2021,2020,2019]"
+    }
+   ]
+  },
+  {
+   "index": 199,
+   "author": "https://openalex.org/A5100390236",
+   "name": "Siqi Liu",
+   "decision": "not_faculty",
+   "reason": "EECS PhD student (dissertation 2023).",
+   "evidence": [
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2023.html",
+     "sha256": "3a29aa62cf4727623f6caab380f0b36a9376a6a9cc34031feee3cef4341b24e9",
+     "quote": "Siqi Liu [advisor: Alessandro Chiesa]"
+    }
+   ]
+  },
+  {
+   "index": 200,
+   "author": "https://openalex.org/A5064061424",
+   "name": "Alexander Wei",
+   "decision": "not_faculty",
+   "reason": "EECS PhD student (dissertation 2023).",
+   "evidence": [
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2023.html",
+     "sha256": "3a29aa62cf4727623f6caab380f0b36a9376a6a9cc34031feee3cef4341b24e9",
+     "quote": "Alexander Wei [advisor: Michael Jordan, Jacob Steinhardt and Nika Haghtalab]"
+    }
+   ]
+  },
+  {
+   "index": 201,
+   "author": "https://openalex.org/A5003581663",
+   "name": "Tom Lenaerts",
+   "decision": "not_faculty",
+   "reason": "Professor at Université Libre de Bruxelles / VUB with a Berkeley visiting affiliation; Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5003581663",
+     "sha256": "54a426afad57636b0c92bb05a065dcb48444743422d40d5472a68af8b0e78b91",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2026,2025,2024,2023,2022,2021]"
+    }
+   ]
+  },
+  {
+   "index": 202,
+   "author": "https://openalex.org/A5082852383",
+   "name": "Narges Norouzi",
+   "decision": "not_faculty",
+   "reason": "Teaching professor (EECS teaching-faculty list) without PhD advising: teaching professors do not count; second OpenAlex id of Narges Norouzi (candidate 20).",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20230320232425id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "9d270d05521fa80cfff0d5c05ce26219b9a500acc9af568a021052b4a7f1531e",
+     "quote": "Narges Norouzi Assistant Teaching Professor",
+     "observed": "2023-03-20"
+    },
+    {
+     "url": "https://web.archive.org/web/20260211213854id_/https://www2.eecs.berkeley.edu/Faculty/Lists/teaching.html",
+     "sha256": "7e2a44636c6d8773de296d7f9d70aba37619fe67bc7c0ae29097ef86488e964d",
+     "quote": "Narges Norouzi Associate Teaching Professor",
+     "observed": "2026-02-11"
+    }
+   ]
+  },
+  {
+   "index": 203,
+   "author": "https://openalex.org/A5102886340",
+   "name": "Kunhe Yang",
+   "decision": "not_faculty",
+   "reason": "EECS PhD student (dissertation 2026).",
+   "evidence": [
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2026.html",
+     "sha256": "bdeee6237d34452f112c46a1c2785c807c887b9773d52cd122b672e1f62d2b21",
+     "quote": "Kunhe Yang [advisor: Nika Haghtalab]"
+    }
+   ]
+  },
+  {
+   "index": 204,
+   "author": "https://openalex.org/A5003277405",
+   "name": "Angelos Pelecanos",
+   "decision": "not_faculty",
+   "reason": "Graduate student (2023-2026); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5003277405",
+     "sha256": "4cde98ea0495cf4a246e20cf50397704809753efa8b4732eb3d49a3d980fec82",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2026,2025,2024,2023]"
+    }
+   ]
+  },
+  {
+   "index": 205,
+   "author": "https://openalex.org/A5051101769",
+   "name": "Yossi Gandelsman",
+   "decision": "not_faculty",
+   "reason": "EECS PhD student (dissertation 2025).",
+   "evidence": [
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2025.html",
+     "sha256": "3d7b12cff6dc1b6676f7c4d45370a1bcb145f94f7164f6179fb5118712eecaf0",
+     "quote": "Yossi Gandelsman [advisor: Alexei (Alyosha) Efros]"
+    }
+   ]
+  },
+  {
+   "index": 206,
+   "author": "https://openalex.org/A5026000840",
+   "name": "Mihir Singhal",
+   "decision": "not_faculty",
+   "reason": "Graduate student (2024-2026); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5026000840",
+     "sha256": "6aa505aa286d451b8801ed757a6b2cd4c538c7c5937173e167d4fe806e09acc7",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2026,2025,2024]"
+    }
+   ]
+  },
+  {
+   "index": 207,
+   "author": "https://openalex.org/A5026992212",
+   "name": "Nicholas Weaver",
+   "decision": "not_faculty",
+   "reason": "EECS Lecturer / Visiting Lecturer (EECS teaching lists 2017-2023) and ICSI researcher, not a professor.",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20170503202039id_/https://www2.eecs.berkeley.edu/Faculty/Lists/visiting.html",
+     "sha256": "da981949ebac6dd21b09509011af7c78a3797fb7295ca9163d16fb2b7ab3b546",
+     "quote": "Nicholas Weaver Visiting Lecturer",
+     "observed": "2017-05-03"
+    },
+    {
+     "url": "https://web.archive.org/web/20230320232425id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "9d270d05521fa80cfff0d5c05ce26219b9a500acc9af568a021052b4a7f1531e",
+     "quote": "Nicholas Weaver Lecturer",
+     "observed": "2023-03-20"
+    }
+   ]
+  },
+  {
+   "index": 208,
+   "author": "https://openalex.org/A5045633935",
+   "name": "Jon Wilkening",
+   "decision": "accepted",
+   "reason": "Professor, Mathematics; PI: stated PhD advising",
+   "census_name": "Jon Wilkening",
+   "home_department": "Mathematics",
+   "evidence": [
+    {
+     "url": "https://math.berkeley.edu/people/faculty",
+     "sha256": "4610a69d0854660588158b6db7e96dfccd40464471f7052ec5cdeaa85b7aa737",
+     "quote": "Jon Wilkening Professor Applied Mathematics"
+    },
+    {
+     "url": "https://math.berkeley.edu/people/past-department-members/past-phd-students?page=7",
+     "sha256": "3a354e922cf0b478f257050026d3267f446b798476bc3818e04f1f39b2d7a2bd",
+     "quote": "Rockford Foster; Jon Wilkening 2021 PhD Thesis"
+    }
+   ]
+  },
+  {
+   "index": 209,
+   "author": "https://openalex.org/A5028643684",
+   "name": "Sara McMains",
+   "decision": "faculty_no_pi_evidence",
+   "reason": "ME Professor (live ME profile); no stated PhD advising or own lab on the captured profile.",
+   "evidence": [
+    {
+     "url": "https://me.berkeley.edu/people/sara-mcmains/",
+     "sha256": "254d631be4ac76dc26c301719c0eafc91a0a91466f8b7514bcaf4c93d4da7046",
+     "quote": "Sara McMains Professor of Mechanical Engineering"
+    }
+   ]
+  },
+  {
+   "index": 210,
+   "author": "https://openalex.org/A5039075819",
+   "name": "Emmanuel Tsukerman",
+   "decision": "not_faculty",
+   "reason": "Graduate student (2016-2020); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5039075819",
+     "sha256": "93b183d687d7fde8d20d94517a2748ed12c58492fccf5c39e4de9d8c69ad3a71",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2020,2017,2016,2015,2014,2013]"
+    }
+   ]
+  },
+  {
+   "index": 211,
+   "author": "https://openalex.org/A5031274513",
+   "name": "Michael R. DeWeese",
+   "decision": "accepted",
+   "reason": "Professor, Physics; PI: heads DeWeese Lab",
+   "census_name": "Michael DeWeese",
+   "home_department": "Physics",
+   "evidence": [
+    {
+     "url": "https://neuroscience.berkeley.edu/faculty/",
+     "sha256": "476ba4d0f20262dbecfe7a916276ebe55e444104b915fc7384eb3f4b8544d9db",
+     "quote": "Michael DeWeese Neuroscience, Physics"
+    },
+    {
+     "url": "https://deweeselab.com/people",
+     "sha256": "ed530a84a19dc15730ffc0d9bb045d96b74c28a4cbee47696c6bdb83464f5b6f",
+     "quote": "Principal Investigator Mike DeWeese Graduate Students Sam D'Ambrosia"
+    }
+   ]
+  },
+  {
+   "index": 212,
+   "author": "https://openalex.org/A5100448767",
+   "name": "Wei-Bin Zhang",
+   "decision": "not_faculty",
+   "reason": "Research engineer at California PATH, not a professor; Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5100448767",
+     "sha256": "44d0b22020bb5fc617d760a5f813d18195f2a0a85873729e9d5145bfd48efe02",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2023,2021,2020,2018,2017,2016,2015,2014,2013,2012,2011,2010,2009,2007,2006,2005,2003,2000,1999,1993,1991]"
+    }
+   ]
+  },
+  {
+   "index": 213,
+   "author": "https://openalex.org/A5101733972",
+   "name": "Qifei Wang",
+   "decision": "not_faculty",
+   "reason": "Postdoc (2016-2020); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5101733972",
+     "sha256": "fab2231e03b7b543fc01ab020ebf599f50743dba31b993168506b1b606a57bff",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2020,2019,2018,2017,2016,2015,2014]"
+    }
+   ]
+  },
+  {
+   "index": 214,
+   "author": "https://openalex.org/A5042767100",
+   "name": "Mekhail Anwar",
+   "decision": "accepted",
+   "reason": "Adjunct Professor, EECS (EE division); PI: stated PhD advising; period 2021 to present",
+   "census_name": "Mekhail Anwar",
+   "home_department": "EECS (EE division)",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20211025095942id_/https://www2.eecs.berkeley.edu/Faculty/Lists/new.html",
+     "sha256": "62baa0b259fe2d815f5ce4658569d2dac572f42a04251f3e2339beb259a6a387",
+     "quote": "Mekhail Anwar Below The Line Associate Professor"
+    },
+    {
+     "url": "https://web.archive.org/web/20220412054425id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "f9073f81438c5f1164c8b73d1dc5f516e7ce16f9309f787804f1894a08a227e1",
+     "quote": "Mekhail Anwar Below The Line Associate Professor"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2026.html",
+     "sha256": "bdeee6237d34452f112c46a1c2785c807c887b9773d52cd122b672e1f62d2b21",
+     "quote": "Micah Roschelle [advisor: Ali Niknejad and Mekhail Anwar]"
+    }
+   ]
+  },
+  {
+   "index": 215,
+   "author": "https://openalex.org/A5059065220",
+   "name": "Michael Lindsey",
+   "decision": "accepted",
+   "reason": "Assistant Professor, Mathematics; PI: stated PhD advising; period 2024 to present",
+   "census_name": "Michael Lindsey",
+   "home_department": "Mathematics",
+   "evidence": [
+    {
+     "url": "https://math.berkeley.edu/people/faculty",
+     "sha256": "4610a69d0854660588158b6db7e96dfccd40464471f7052ec5cdeaa85b7aa737",
+     "quote": "Michael J. Lindsey Assistant Professor Applied Mathematics"
+    },
+    {
+     "url": "https://math.berkeley.edu/people/past-department-members/past-phd-students",
+     "sha256": "3c7dac4065e8d13eed2f14fe030bd145733ab26eb945f90330c0312d14316cd0",
+     "quote": "Lewis Pan ; Per-Olof Persson ; Michael Lindsey 2026 PhD Thesis"
+    }
+   ]
+  },
+  {
+   "index": 216,
+   "author": "https://openalex.org/A5114047203",
+   "name": "Amir Gholami",
+   "decision": "not_faculty",
+   "reason": "Second OpenAlex id of Amir Gholami (candidate 71): research scientist, not a professor.",
+   "evidence": [
+    {
+     "url": "https://www.stat.berkeley.edu/~mmahoney/",
+     "sha256": "f541f0b65e35094995043847b2f4430dfe76d2c0fd555ab822e89ed19afb966f",
+     "quote": "and it has several nice quotes by Amir Gholami (who did the work, along with Aditi Krishnapriyan)"
+    }
+   ]
+  },
+  {
+   "index": 217,
+   "author": "https://openalex.org/A5085479654",
+   "name": "Reza Gheissari",
+   "decision": "not_faculty",
+   "reason": "Postdoc (Miller fellow, 2019-2023); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5085479654",
+     "sha256": "0a1e4d2b82fe15d07048fcaab39a6e062d9950b79499240e3c54727918d85b62",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2023,2022,2021,2020,2019]"
+    }
+   ]
+  },
+  {
+   "index": 218,
+   "author": "https://openalex.org/A5085738478",
+   "name": "Xu Rao",
+   "decision": "not_faculty",
+   "reason": "Graduate student (IEOR, 2019-2021); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5085738478",
+     "sha256": "eea50939b9decf8b6264dba4fd844333200128046c4a4f2e7a9f1680a0d552bc",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2021,2020,2019]"
+    }
+   ]
+  },
+  {
+   "index": 219,
+   "author": "https://openalex.org/A5055716781",
+   "name": "Zhian Kuang",
+   "decision": "not_faculty",
+   "reason": "A stray Berkeley affiliation (fuzzy systems), not Berkeley faculty; Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5055716781",
+     "sha256": "a0ffe4e345ba9b14485fb385eebb697b32d7c170b3379b90d1964aff60887840",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2022,2021,2020]"
+    }
+   ]
+  },
+  {
+   "index": 220,
+   "author": "https://openalex.org/A5055773518",
+   "name": "Bhaskar Roberts",
+   "decision": "not_faculty",
+   "reason": "EECS PhD student (dissertation 2026).",
+   "evidence": [
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2026.html",
+     "sha256": "bdeee6237d34452f112c46a1c2785c807c887b9773d52cd122b672e1f62d2b21",
+     "quote": "Bhaskar Roberts [advisor: Umesh Vazirani and Sanjam Garg]"
+    }
+   ]
+  },
+  {
+   "index": 221,
+   "author": "https://openalex.org/A5051005226",
+   "name": "Scott Emmons",
+   "decision": "not_faculty",
+   "reason": "EECS PhD student (dissertation 2025).",
+   "evidence": [
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2025.html",
+     "sha256": "3d7b12cff6dc1b6676f7c4d45370a1bcb145f94f7164f6179fb5118712eecaf0",
+     "quote": "Scott Emmons [advisor: Stuart J. Russell]"
+    }
+   ]
+  },
+  {
+   "index": 222,
+   "author": "https://openalex.org/A5100445961",
+   "name": "Tingyu Zhu",
+   "decision": "not_faculty",
+   "reason": "IEOR graduate student (simulation papers with Zeyu Zheng); Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5100445961",
+     "sha256": "fc4c44debbc7df5ab668541428450914920aec6829d1fa436d38a06226848709",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2026,2024,2023]"
+    }
+   ]
+  },
+  {
+   "index": 223,
+   "author": "https://openalex.org/A5020583189",
+   "name": "Ewin Tang",
+   "decision": "not_faculty",
+   "reason": "Postdoc (Miller fellow) 2023-2026; not named by any EECS faculty or new-faculty list through 2026-10.",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5020583189",
+     "sha256": "8c944df3fcdd802e50bd973c63224061431ac0272c035b5e48bb3abf562ff09b",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2026,2025,2024,2023]"
+    }
+   ]
+  },
+  {
+   "index": 224,
+   "author": "https://openalex.org/A5020332447",
+   "name": "Philipp Strack",
+   "decision": "unresolved",
+   "reason": "Economics faculty until about 2021 (now Yale); Wayback refused connections from this host on 2026-10-26, so past department lists could not be checked, so his Berkeley appointment and advising could not be checked.",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5020332447",
+     "sha256": "2482ed975ccfed5b466e83f28e677de5737dd2befcd0d57122d84ec26bfcfac0",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2021,2018,2017,2016,2015,2014,2012]"
+    }
+   ]
+  },
+  {
+   "index": 225,
+   "author": "https://openalex.org/A5112428919",
+   "name": "Alexander Kurzhanskiy",
+   "decision": "not_faculty",
+   "reason": "Research engineer at California PATH, not a professor; Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5112428919",
+     "sha256": "97b014efb651991f7d0568f6baba0cab96b28cd01d2c4ffac0851a92fba8f331",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2021,2020,2019,2018,2016,2015,2014]"
+    }
+   ]
+  },
+  {
+   "index": 226,
+   "author": "https://openalex.org/A5112718494",
+   "name": "George Leitmann",
+   "decision": "unresolved",
+   "reason": "ME Professor Emeritus (George Leitmann); not on any captured live list; Wayback refused connections from this host on 2026-10-26, so past department lists could not be checked.",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5112718494",
+     "sha256": "31bbc8d03d56d67ae786411724c65130297db1e9d9bbd5a39c943cddfd865cd6",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2026,2024,2022,2020,2019,2017,2016,2015,2014,2012,2011,2010,2009,2008,2007,2006,2005,2004,2003,2002,2001,2000,1999,1998,1997,1996,1995,1994,1993,1992,1991,1990,1989,1988,1987,1986,1985,1984,1983,1982,1981,1980,1979,1978,1977,1976,1975,1974,1973,1972,1971,1970,1969,1968,1967,1966,1965,1964,1963,1962,1961,1960,1959,1958]"
+    }
+   ]
+  },
+  {
+   "index": 227,
+   "author": "https://openalex.org/A5070591760",
+   "name": "Karl Zipser",
+   "decision": "not_faculty",
+   "reason": "Researcher (vision / robotics), not a professor; Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5070591760",
+     "sha256": "27176ed9e4793bca2cd4197e9ce23cce1b83de3b4e4eb398674b095f51a22b3f",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2020,2019,2017,2016,2015]"
+    }
+   ]
+  },
+  {
+   "index": 228,
+   "author": "https://openalex.org/A5011690840",
+   "name": "Janine M. Lupo",
+   "decision": "not_faculty",
+   "reason": "UCSF faculty (radiology), not a UC Berkeley professor; Not named by any captured Berkeley faculty list (EECS all-division, CS, EE, emeriti, visiting, teaching and new-faculty lists 2016-2026, and the live lists of Statistics, IEOR, ME, CEE, Mathematics, I School, Education, Linguistics, Philosophy, Psychology, Physics, Integrative Biology, Neuroscience, Chemistry/CBE, Music, Haas).",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5011690840",
+     "sha256": "22d271edfede7f3e2a95fe09ed6168d45d011a4c08cddef7f6fcce94ade8f30a",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2026,2025,2024,2023,2022,2021,2020,2019,2018,2006]"
+    }
+   ]
+  },
+  {
+   "index": 229,
+   "author": "https://openalex.org/A5102776702",
+   "name": "Nikhil Srivastava",
+   "decision": "accepted",
+   "reason": "Associate Professor, Mathematics; PI: stated PhD advising; one census row with candidate 137",
+   "census_name": "Nikhil Srivastava",
+   "home_department": "Mathematics",
+   "evidence": [
+    {
+     "url": "https://math.berkeley.edu/people/faculty",
+     "sha256": "4610a69d0854660588158b6db7e96dfccd40464471f7052ec5cdeaa85b7aa737",
+     "quote": "Nikhil Srivastava Associate Professor"
+    },
+    {
+     "url": "https://math.berkeley.edu/people/past-department-members/past-phd-students",
+     "sha256": "3c7dac4065e8d13eed2f14fe030bd145733ab26eb945f90330c0312d14316cd0",
+     "quote": "Zachary Stier ; Nikhil Srivastava 2026 PhD Thesis"
+    }
+   ]
+  },
+  {
+   "index": 230,
+   "author": "https://openalex.org/A5072380083",
+   "name": "David Holtz",
+   "decision": "unresolved",
+   "reason": "Haas assistant professor during part of the window (OpenAlex: Berkeley 2020-2026, Columbia from 2024); not on the captured Haas letter page; Wayback refused connections from this host on 2026-10-26, so past department lists could not be checked.",
+   "evidence": [
+    {
+     "url": "https://api.openalex.org/authors/A5072380083",
+     "sha256": "fec4a5466ae2d678bd82b93279167ba2f10af676e60ae4ba2a6728b6009e1a65",
+     "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2026,2025,2024,2023,2022,2021,2020]"
+    }
+   ]
+  }
+ ]
+}

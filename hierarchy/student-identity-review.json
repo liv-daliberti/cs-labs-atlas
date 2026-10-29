@@ -1,0 +1,1088 @@
+[
+ {
+  "school": "princeton",
+  "pi": "Parastoo Abtahi",
+  "a": [
+   "member_cs_structure_40fd2684af44eff1152d",
+   "Mohamed Kari"
+  ],
+  "b": [
+   "ext:princeton:mo-kari",
+   "Mo Kari"
+  ],
+  "verdict": "same_person",
+  "canonical_name": "Mohamed Kari",
+  "reason": "Mo Kari is the short form Mohamed Kari uses himself: his homepage mkari.de is titled 'Mo Kari' and its body names him 'Mohamed Kari', a former Presidential Postdoctoral Fellow at Princeton CS. Abtahi's own site lists 'Mohamed Kari' as her coauthor and 'Mo Kari' among team alumni. Note: he was a postdoc, not a student.",
+  "evidence": [
+   {
+    "url": "https://mkari.de/",
+    "quote": "<title>Mo Kari</title>",
+    "observed": "Homepage title uses the short form.",
+    "sha256": "2f491f1760c5315b145ac7e3f6d40675934308772014005cfab42704be53ee29",
+    "fetched_at": "2026-10-28T18:29:54+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://mkari.de/",
+    "quote": "Mohamed Kari Scholar Resume I am a research scientist at FieldAI 's humanoid Research Institute in Cambridge, MA",
+    "observed": "Same homepage gives the full name.",
+    "sha256": "2f491f1760c5315b145ac7e3f6d40675934308772014005cfab42704be53ee29",
+    "fetched_at": "2026-10-28T18:29:54+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://mkari.de/",
+    "quote": "Prior to joining FieldAI, I was a Presidential Postdoctoral Research Fellow at Princeton Computer Science where I worked on situated interactions for user-colocated robots.",
+    "observed": "Ties the person to Princeton CS (Abtahi's area).",
+    "sha256": "2f491f1760c5315b145ac7e3f6d40675934308772014005cfab42704be53ee29",
+    "fetched_at": "2026-10-28T18:29:54+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://parastooabtahi.com/",
+    "quote": "Reality Promises: Virtual-Physical Decoupling Illusions in Mixed Reality via Invisible Mobile Robots Mohamed Kari, Parastoo Abtahi UIST 2025",
+    "observed": "PI's site uses the full name for her coauthor.",
+    "sha256": "95b5c1e359d8de084ddd7624a75551dd635e4b3467beba90ec839ef9cb03d878",
+    "fetched_at": "2026-10-28T18:29:47+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://parastooabtahi.com/team",
+    "quote": "Alumni Pradnesh Thoppay Michael Huang Joseph Rupertus Mo Kari",
+    "observed": "PI's team page lists the short form among alumni.",
+    "sha256": "8f8f3d7b452145bd833366cf28b11da57ba42a6e4b431b1dd04e3c88ed0457b1",
+    "fetched_at": "2026-10-28T18:29:19+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://api.openalex.org/works?filter=author.id:A5019735734&per-page=50&select=id,display_name,publication_year,authorships",
+    "quote": "SplatXR: A Toolkit for Multi-Layered Extended Reality via On-Headset 3D Gaussian Splatting",
+    "observed": "One OpenAlex author (A5019735734, 'Mohamed Kari', Princeton 2026; Duisburg-Essen earlier) coauthors SplatXR with Abtahi.",
+    "sha256": "b38de598fa91529d4bf9a1d2ed65d794f75cf1bd13e3d7cf7d39a0334d7c1670",
+    "fetched_at": "2026-10-28T18:29:39+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   }
+  ]
+ },
+ {
+  "school": "cmu",
+  "pi": "Martial Hebert",
+  "a": [
+   "cmu_person_7df9d05472762d323782",
+   "Yu-Xiang Wang"
+  ],
+  "b": [
+   "cmu_person_98f56bd98711b3ea32e1",
+   "Yuxiong Wang"
+  ],
+  "verdict": "different_people",
+  "canonical_name": null,
+  "reason": "Two different CMU PhDs. Yu-Xiang Wang got a joint ML/Statistics PhD (CMU-ML-17-105, Dec 2017) with a committee of Tibshirani, Fienberg, Lei, Smola and Smith, and no Hebert. Yuxiong (Yu-Xiong) Wang defended an RI thesis in May 2018 with Martial Hebert as chair. The Yu-Xiang Wang record looks wrongly attached to Hebert's lab, probably a name-match spillover from Yuxiong Wang.",
+  "evidence": [
+   {
+    "url": "http://reports-archive.adm.cs.cmu.edu/anon/ml2017/abstracts/17-105.html",
+    "quote": "CMU-ML-17-105 New Paradigms and Optimality Guarantees in Statistical Learning and Estimation Yu-Xiang Wang December 2017 Ph.D. Thesis Joint Machine Learning Department",
+    "observed": "Yu-Xiang Wang: ML/Statistics PhD thesis, 2017.",
+    "sha256": "850a34c977c162d3d9a5dcbb46ab17a048bca7d7069d2d02c463ec3c0182d3b0",
+    "fetched_at": "2026-10-28T18:30:32+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "http://reports-archive.adm.cs.cmu.edu/anon/ml2017/abstracts/17-105.html",
+    "quote": "Thesis Committee: Ryan J. Tibshirani (Chair) Stephen E. Fienberg Jing Lei Alexander J. Smola Adam D. Smith (Boston University)",
+    "observed": "Hebert is not on Yu-Xiang Wang's committee.",
+    "sha256": "850a34c977c162d3d9a5dcbb46ab17a048bca7d7069d2d02c463ec3c0182d3b0",
+    "fetched_at": "2026-10-28T18:30:32+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://www.ri.cmu.edu/event/learning-to-learn-for-small-sample-visual-recognition/",
+    "quote": "PhD Thesis Defense May 8 Tue Yuxiong Wang Robotics Institute, Carnegie Mellon University",
+    "observed": "Yuxiong Wang: RI PhD defense, 2018.",
+    "sha256": "c0d244f9562296da823bf619cfc7a47b2410cf8ef8372d281b5038bf69d6cd98",
+    "fetched_at": "2026-10-28T18:30:35+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://www.ri.cmu.edu/event/learning-to-learn-for-small-sample-visual-recognition/",
+    "quote": "Thesis Committee Members : Martial Hebert, Chair Deva Ramanan Ruslan Salakhutdinov Andrew Zisserman, University of Oxford",
+    "observed": "Hebert chairs Yuxiong Wang's committee.",
+    "sha256": "c0d244f9562296da823bf619cfc7a47b2410cf8ef8372d281b5038bf69d6cd98",
+    "fetched_at": "2026-10-28T18:30:35+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://www.ri.cmu.edu/wp-json/people/v1/get_programs",
+    "sha256": "aff64ed6a47cb7c80fdbb270b983ec757ddc63d6bbdaf9b286a97150f3afcd82",
+    "from_input": true,
+    "quote": "\"name\": \"Yuxiong Wang\", \"slug\": \"yuxiong-wang\", \"status\": \"publish\", \"programIndex\": 0, \"program\": \"phd\", \"matriculation\": \"08/20/2012\", \"completed\": true, \"completionDate\": \"05/20/2018\", \"advisers\": [{\"name\": \"Martial Hebert\"",
+    "observed": "From the input record (not re-fetched): RI program record, PhD 2012-2018, adviser Hebert."
+   }
+  ]
+ },
+ {
+  "school": "cmu",
+  "pi": "Eric Nyberg",
+  "a": [
+   "cmu_person_source_99a96c9f94cf3567ab97",
+   "Xinyue Chen"
+  ],
+  "b": [
+   "cmu_person_source_b38e5595369acec258a4",
+   "Xi Chen"
+  ],
+  "verdict": "different_people",
+  "canonical_name": null,
+  "reason": "The April 2021 LTI directory lists Xi Chen, Xiaoyi Chen and Xinyue Chen as three separate MCDS entries under Nyberg, each with a different Andrew email ID. Xinyue Chen is still listed in 2022 with the same ID. They are three classmates, not one person under name variants.",
+  "evidence": [
+   {
+    "url": "https://web.archive.org/web/20210417204836id_/https://lti.cs.cmu.edu/directory/students/current/c",
+    "quote": "Academic Advisor: Eric Nyberg Xi Chen Program: Master of Science in Computational Data Science Email:",
+    "observed": "2021 LTI directory: 'Xi Chen' is its own entry (MCDS, adviser Nyberg) with its own Andrew email ID (not reproduced here).",
+    "sha256": "4582af74f9cbb7b907b7fda5baadb0b4ab8f9985c9b9609fcc4ab4594e7e1da9",
+    "fetched_at": "2026-10-28T18:30:58+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://web.archive.org/web/20210417204836id_/https://lti.cs.cmu.edu/directory/students/current/c",
+    "quote": "Academic Advisor: Eric Nyberg Xiaoyi Chen Program: Master of Science in Computational Data Science Email:",
+    "observed": "Same 2021 page: 'Xiaoyi Chen' is a separate entry right after Xi Chen, with a different Andrew email ID.",
+    "sha256": "4582af74f9cbb7b907b7fda5baadb0b4ab8f9985c9b9609fcc4ab4594e7e1da9",
+    "fetched_at": "2026-10-28T18:30:58+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://web.archive.org/web/20210417204836id_/https://lti.cs.cmu.edu/directory/students/current/c",
+    "quote": "Academic Advisor: Eric Nyberg Xinyue Chen Program: Master of Science in Computational Data Science Email:",
+    "observed": "Same 2021 page: 'Xinyue Chen' is a third separate entry with a different Andrew email ID.",
+    "sha256": "4582af74f9cbb7b907b7fda5baadb0b4ab8f9985c9b9609fcc4ab4594e7e1da9",
+    "fetched_at": "2026-10-28T18:30:58+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://web.archive.org/web/20221001172450id_/https://lti.cs.cmu.edu/directory/students/current/all?page=3",
+    "quote": "Xinyue Chen Program: Master of Science in Computational Data Science Email:",
+    "observed": "The 2022 directory still lists Xinyue Chen, with the same Andrew ID as in 2021, while Xi Chen is gone.",
+    "sha256": "54085f6ce8f2c6be51b923faa3ff438563246e3cf8528500faba0e77dfcc86ec",
+    "fetched_at": "2026-10-28T18:31:00+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   }
+  ]
+ },
+ {
+  "school": "cmu",
+  "pi": "Eric Nyberg",
+  "a": [
+   "cmu_person_source_7b86b2a058cbcbc82480",
+   "Yujun Qin"
+  ],
+  "b": [
+   "cmu_person_source_9e7dbb7c64da04c14a64",
+   "Yu Qin"
+  ],
+  "verdict": "different_people",
+  "canonical_name": null,
+  "reason": "Yu Qin is listed as an MCDS student in the July 2016 LTI directory, and Yujun Qin as an MCDS student in the Sept 2022 directory, each with a different email ID. MCDS is a roughly 16-month master's program, and a 6-year gap plus distinct IDs rule out one person.",
+  "evidence": [
+   {
+    "url": "https://web.archive.org/web/20160710061159id_/http://www.lti.cs.cmu.edu:80/directory/students/current/q",
+    "quote": "Academic Advisor: Garth Gibson Yu Qin Program: Master of Science in Computational Data Science Email:",
+    "observed": "2016 directory: Yu Qin, MCDS, adviser Nyberg. Email ID not reproduced; it differs from Yujun Qin's.",
+    "sha256": "f87de16bbc11fe9b16e68efa0e210a63fdf426a077c3c12671b79c9db15b952a",
+    "fetched_at": "2026-10-28T18:31:18+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://web.archive.org/web/20220926151614id_/https://lti.cs.cmu.edu/directory/students/current/q",
+    "quote": "Academic Advisor: Michael Shamos Yujun Qin Program: Master of Science in Computational Data Science Email:",
+    "observed": "2022 directory: Yujun Qin, MCDS, adviser Nyberg, with a different Andrew email ID. No 'Yu Qin' entry on this page.",
+    "sha256": "8645294ed124186f688eb5b437cddca9c9f7021ec64b38533190ba49fd3fc0a0",
+    "fetched_at": "2026-10-28T18:31:16+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   }
+  ]
+ },
+ {
+  "school": "cmu",
+  "pi": "Eric Nyberg",
+  "a": [
+   "cmu_person_source_b38e5595369acec258a4",
+   "Xi Chen"
+  ],
+  "b": [
+   "cmu_person_source_ab3d1f846b2e4aef48e2",
+   "Xiaoyi Chen"
+  ],
+  "verdict": "different_people",
+  "canonical_name": null,
+  "reason": "Xi Chen and Xiaoyi Chen appear as consecutive, separate entries on the same April 2021 LTI directory page, each with its own Andrew email ID (MCDS, adviser Nyberg). Being listed side by side as two entries is direct evidence they are two people.",
+  "evidence": [
+   {
+    "url": "https://web.archive.org/web/20210417204836id_/https://lti.cs.cmu.edu/directory/students/current/c",
+    "quote": "Academic Advisor: Eric Nyberg Xi Chen Program: Master of Science in Computational Data Science Email:",
+    "observed": "2021 LTI directory: 'Xi Chen' is its own entry (MCDS, adviser Nyberg) with its own Andrew email ID (not reproduced here).",
+    "sha256": "4582af74f9cbb7b907b7fda5baadb0b4ab8f9985c9b9609fcc4ab4594e7e1da9",
+    "fetched_at": "2026-10-28T18:30:58+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://web.archive.org/web/20210417204836id_/https://lti.cs.cmu.edu/directory/students/current/c",
+    "quote": "Academic Advisor: Eric Nyberg Xiaoyi Chen Program: Master of Science in Computational Data Science Email:",
+    "observed": "Same 2021 page: 'Xiaoyi Chen' is a separate entry right after Xi Chen, with a different Andrew email ID.",
+    "sha256": "4582af74f9cbb7b907b7fda5baadb0b4ab8f9985c9b9609fcc4ab4594e7e1da9",
+    "fetched_at": "2026-10-28T18:30:58+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   }
+  ]
+ },
+ {
+  "school": "cmu",
+  "pi": "Eric Nyberg",
+  "a": [
+   "cmu_person_source_b38e5595369acec258a4",
+   "Xi Chen"
+  ],
+  "b": [
+   "cmu_person_source_1432504217c790b52597",
+   "Xinyi Chen"
+  ],
+  "verdict": "different_people",
+  "canonical_name": null,
+  "reason": "Xi Chen (MCDS, April 2021 directory) and Xinyi Chen (MCDS, Oct 2022 directory) have different Andrew email IDs. Andrew IDs are permanent per person, so these are two students. The 2021 page has no Xinyi Chen and the 2022 page has no Xi Chen.",
+  "evidence": [
+   {
+    "url": "https://web.archive.org/web/20210417204836id_/https://lti.cs.cmu.edu/directory/students/current/c",
+    "quote": "Academic Advisor: Eric Nyberg Xi Chen Program: Master of Science in Computational Data Science Email:",
+    "observed": "2021 LTI directory: 'Xi Chen' is its own entry (MCDS, adviser Nyberg) with its own Andrew email ID (not reproduced here).",
+    "sha256": "4582af74f9cbb7b907b7fda5baadb0b4ab8f9985c9b9609fcc4ab4594e7e1da9",
+    "fetched_at": "2026-10-28T18:30:58+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://web.archive.org/web/20221001172450id_/https://lti.cs.cmu.edu/directory/students/current/all?page=3",
+    "quote": "Academic Advisor: Robert Frederking Xinyi Chen Program: Master of Science in Computational Data Science Email:",
+    "observed": "2022 directory: 'Xinyi Chen' (MCDS, adviser Nyberg) has a different Andrew email ID from 2021's Xi Chen.",
+    "sha256": "54085f6ce8f2c6be51b923faa3ff438563246e3cf8528500faba0e77dfcc86ec",
+    "fetched_at": "2026-10-28T18:31:00+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   }
+  ]
+ },
+ {
+  "school": "cmu",
+  "pi": "Kris M Kitani",
+  "a": [
+   "cmu_person_1bc3a531aa83315860ab",
+   "Yuan Li"
+  ],
+  "b": [
+   "cmu_person_ri_142292",
+   "Yu-Hsuan Li"
+  ],
+  "verdict": "different_people",
+  "canonical_name": null,
+  "reason": "Different people, and the Yu-Hsuan Li record is a matcher artifact. RI person 142292 is Yu-Hsuan (Eva) Li, an MSCV student (Aug 2024 to Dec 2025) with no adviser listed. The only Kitani evidence on her record is the 2023 ECE PhD dissertation of a third person, Yu-Jhe Li (advisor Kitani). Yuan Li is a different RI person (152706, andrew yuanli5) who started a PhD with Kitani in Aug 2026. Suggest re-keying cmu_person_ri_142292's Kitani relation to Yu-Jhe Li rather than merging.",
+  "evidence": [
+   {
+    "url": "https://www.ri.cmu.edu/wp-json/people/v1/get_programs",
+    "quote": "\"name\":\"Yuan Li\"",
+    "observed": "RI people API (raw JSON): Yuan Li, legacy_id 152706, andrew_id yuanli5, title 'Rob - Kitani - PhD Student', RI PhD matriculating 08/24/2026.",
+    "sha256": "33dee59bc4c800c26f1ff02e2c117bfd5f4e7981dc1a92f22af8bcb4ca7787e3",
+    "fetched_at": "2026-10-28T18:37:48+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://www.ri.cmu.edu/wp-json/people/v1/get_programs",
+    "quote": "\"title\":\"Rob - Kitani - PhD Student\"",
+    "observed": "Yuan Li's RI title names Kitani.",
+    "sha256": "33dee59bc4c800c26f1ff02e2c117bfd5f4e7981dc1a92f22af8bcb4ca7787e3",
+    "fetched_at": "2026-10-28T18:37:48+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://www.ri.cmu.edu/wp-json/people/v1/get_programs",
+    "quote": "\"andrew_id\":\"yuhsuanl\",\"legacy_id\":142292",
+    "observed": "RI person 142292 is Yu-Hsuan Li, a different Andrew ID from Yuan Li's.",
+    "sha256": "33dee59bc4c800c26f1ff02e2c117bfd5f4e7981dc1a92f22af8bcb4ca7787e3",
+    "fetched_at": "2026-10-28T18:37:48+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://www.ri.cmu.edu/wp-json/people/v1/get_programs",
+    "quote": "\"preferred_name\":\"Yu-Hsuan (Eva)\",\"admin_assistant\":null,\"homepage_url\":\"\",\"google_scholar_url\":\"\",\"status\":\"publish\",\"programs\":[{\"ri_program\":\"mscv\",\"ri_matriculation_date\":\"08\\/26\\/2024\",\"ri_completion\":true,\"ri_completion_date\":\"12\\/17\\/2025\",\"ri_thesis\":\"\",\"ri_advisors\":false",
+    "observed": "Yu-Hsuan (Eva) Li: MSCV, 2024 to 2025, with no RI adviser.",
+    "sha256": "33dee59bc4c800c26f1ff02e2c117bfd5f4e7981dc1a92f22af8bcb4ca7787e3",
+    "fetched_at": "2026-10-28T18:37:48+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://www.ri.cmu.edu/ri-people/yu-hsuan-li/",
+    "quote": "Yu-Hsuan Li Completed Program: Program: MSCV Date Completed: December 2025",
+    "observed": "Her RI profile page confirms MSCV, completed Dec 2025.",
+    "sha256": "8d48064bc5e98071f5341fd898d3b8c17921a8b90c462d885247fd2418a1746a",
+    "fetched_at": "2026-10-28T18:37:34+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://api.figshare.com/v2/articles/24268864",
+    "quote": "\"full_name\": \"Yu-Jhe Li\"",
+    "observed": "The dissertation cited on the 'Yu-Hsuan Li' record is by Yu-Jhe Li: 'Domain Adapted Visual Representation Learning for Machine Perception', ECE PhD, 2023-09-21, Advisor(s) Kris Kitani.",
+    "sha256": "8dd1df37c7b67f79d6db5a931e78a38972f674100e0c5ae36cc7e4e4c1181ef0",
+    "fetched_at": "2026-10-28T18:36:51+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://kriskitani.github.io/",
+    "quote": "Current Members: Navyata Sanghvi (RI PhD) Jyun-Ting Song (RI PhD) Yuan Li (RI PhD)",
+    "observed": "The PI's page lists Yuan Li as a current RI PhD student. No Yu-Hsuan Li appears.",
+    "sha256": "542614c20bf4bcaee37f5b4ac4205a1692eb87defd84d717d67892f26badb5d0",
+    "fetched_at": "2026-10-28T18:36:52+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   }
+  ]
+ },
+ {
+  "school": "cmu",
+  "pi": "Kris M Kitani",
+  "a": [
+   "cmu_person_ri_26827",
+   "Yubo Zhang"
+  ],
+  "b": [
+   "cmu_person_ri_25043",
+   "Yu Zhang"
+  ],
+  "verdict": "different_people",
+  "canonical_name": null,
+  "reason": "Kitani's own January 2017 page lists both: 'Yubo 'Claire' Zhang (MS Civil)' under current students and 'Yu Zhang (MSCV'16 Google X)' under lab alumni. RI's records agree: Yu Zhang (25043) finished the MSCV in Dec 2016, while Yubo Zhang (26827, andrew yuboz) was an MSR student from 2017 to 2019 (adviser Hebert). Note: the RI person tied to Yubo Zhang is in the MSR program with Hebert, while Kitani's page lists her as MS Civil.",
+  "evidence": [
+   {
+    "url": "https://web.archive.org/web/20170127213753id_/http://www.cs.cmu.edu:80/~kkitani/",
+    "quote": "Xiaofang Wang (MS RI) Yubo 'Claire' Zhang (MS Civil) Mohit Sharma (MSRI)",
+    "observed": "Current-students section of the PI's page (Jan 2017).",
+    "sha256": "e1080e6a1ea66e9573b163891891717274f1cbd462d1c4ad413fc83e2448afb0",
+    "fetched_at": "2026-10-28T18:38:33+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://web.archive.org/web/20170127213753id_/http://www.cs.cmu.edu:80/~kkitani/",
+    "quote": "Haoqi Fan (MSCV'16 Facebook) Yu Zhang (MSCV'16 Google X)",
+    "observed": "The lab-alumni section of the same page lists Yu Zhang separately.",
+    "sha256": "e1080e6a1ea66e9573b163891891717274f1cbd462d1c4ad413fc83e2448afb0",
+    "fetched_at": "2026-10-28T18:38:33+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://www.ri.cmu.edu/wp-json/people/v1/get_programs",
+    "quote": "\"name\":\"Yu Zhang\",\"image\":\"\",\"email\":null,\"office\":null,\"phone\":null,\"title\":null,\"department\":\"RI\",\"department_override\":\"\",\"category\":\"alumni\",\"slug\":\"yu-zhang\",\"aliases\":[],\"andrew_id\":null,\"legacy_id\":25043",
+    "observed": "RI person 25043 is Yu Zhang. Their program record shows MSCV, completed 12/01/2016.",
+    "sha256": "33dee59bc4c800c26f1ff02e2c117bfd5f4e7981dc1a92f22af8bcb4ca7787e3",
+    "fetched_at": "2026-10-28T18:37:48+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://www.ri.cmu.edu/wp-json/people/v1/get_programs",
+    "quote": "\"andrew_id\":\"yuboz\",\"legacy_id\":26827",
+    "observed": "RI person 26827 is Yubo Zhang: MSR, 08/28/2017 to 07/02/2019, thesis 'A structured model for action detection in the video', adviser Martial Hebert.",
+    "sha256": "33dee59bc4c800c26f1ff02e2c117bfd5f4e7981dc1a92f22af8bcb4ca7787e3",
+    "fetched_at": "2026-10-28T18:37:48+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   }
+  ]
+ },
+ {
+  "school": "cmu",
+  "pi": "Shinji Watanabe",
+  "a": [
+   "cmu_person_9d5051a6979aa6036e6b",
+   "Li-Wei Chen"
+  ],
+  "b": [
+   "ext:cmu:chenda-li",
+   "Chenda Li"
+  ],
+  "verdict": "different_people",
+  "canonical_name": null,
+  "reason": "This is a name-matcher artifact: the names share only the tokens 'Li' and 'Chen' (Li-Wei Chen has surname Chen, Chenda Li has surname Li). WAVLab's member page lists them separately: Li-Wei Chen is a co-supervised CMU PhD student (2022.05 to 2026.03), and Chenda Li is a visitor from Shanghai Jiao Tong University (2023.11 to 2024.04). OpenAlex has Chenda Li as an SJTU author with a single CMU year (2024).",
+  "evidence": [
+   {
+    "url": "https://www.wavlab.org/members/",
+    "quote": "2022. 05 - 2026. 03: Li-Wei Chen (CMU, co-supervising)",
+    "observed": "Listed under the PhD section.",
+    "sha256": "2da3e85ae86787b2c2996e31c6a9b1bb903efa14265923243933a0ecbffc7cc4",
+    "fetched_at": "2026-10-28T18:39:09+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://www.wavlab.org/members/",
+    "quote": "2023. 11 - 2024. 04: Chenda Li (Shanghai Jiaotong University)",
+    "observed": "Listed separately as a visitor from SJTU.",
+    "sha256": "2da3e85ae86787b2c2996e31c6a9b1bb903efa14265923243933a0ecbffc7cc4",
+    "fetched_at": "2026-10-28T18:39:09+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://api.openalex.org/authors?search=Chenda%20Li&per-page=25",
+    "quote": "\"display_name\": \"Chenda Li\"",
+    "observed": "OpenAlex A5090224430 'Chenda Li' (ORCID 0000-0003-0299-9914): Shanghai Jiao Tong University 2020-2026, Carnegie Mellon University 2024. This fits a short visit, not a CMU PhD.",
+    "sha256": "b37b53d5bcc7d43ca76518c3bf8ce2c3ecd0c3d90fef8b0818950b6f6832dd53",
+    "fetched_at": "2026-10-28T18:39:10+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   }
+  ]
+ },
+ {
+  "school": "cmu",
+  "pi": "Ravi Starzl",
+  "a": [
+   "cmu_person_source_b40a78ac1c8a9d091889",
+   "Ru Wang"
+  ],
+  "b": [
+   "cmu_person_source_5006c413f21f4e08f21d",
+   "Rui Wang"
+  ],
+  "verdict": "different_people",
+  "canonical_name": null,
+  "reason": "The LTI directory had two separate person profiles (node IDs 222214661 'ru-wang' and 222197504 'rui-wang'), each with its own headshot file (Wang_Ru_bic.jpeg and Wang_Rui_bic.jpeg; Wayback digests and sizes differ). Both are MSBIC students under Starzl and appear side by side in the 2015 and 2016 listings, so this is not one person under a typo. Rui Wang's profile also carries an office and a TA role that Ru Wang's lacks. Confidence is moderate: no publications or homepages were found for either.",
+  "evidence": [
+   {
+    "url": "https://web.archive.org/web/20160710061220id_/http://www.lti.cs.cmu.edu:80/directory/students/current/w",
+    "quote": "Ru Wang Program: Master of Science in Biotechnology Innovation and Computation Academic Advisor: Ravi Starzl Rui Wang Program: Master of Science in Biotechnology Innovation and Computation Email:",
+    "observed": "Two adjacent, separate entries on the 2016 directory page.",
+    "sha256": "cb7453874a3e8f1c67dd16045cdb24d69960de68c850799a451243dd61d55db5",
+    "fetched_at": "2026-10-28T18:31:21+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://web.archive.org/web/20160710061220id_/http://www.lti.cs.cmu.edu:80/directory/students/current/w",
+    "quote": "<a href=\"/people/222214661/ru-wang\"><h2>Ru Wang</h2></a>",
+    "observed": "Ru Wang links to profile node 222214661.",
+    "sha256": "cb7453874a3e8f1c67dd16045cdb24d69960de68c850799a451243dd61d55db5",
+    "fetched_at": "2026-10-28T18:31:21+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://web.archive.org/web/20160710061220id_/http://www.lti.cs.cmu.edu:80/directory/students/current/w",
+    "quote": "<a href=\"/people/222197504/rui-wang\"><h2>Rui Wang</h2></a>",
+    "observed": "Rui Wang links to a different profile node, 222197504.",
+    "sha256": "cb7453874a3e8f1c67dd16045cdb24d69960de68c850799a451243dd61d55db5",
+    "fetched_at": "2026-10-28T18:31:21+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://web.archive.org/web/20150910213313id_/http://www.lti.cs.cmu.edu/directory/students/current/w",
+    "quote": "Ru Wang Program: Master of Science in Biotechnology Innovation and Computation Academic Advisor: Ravi Starzl Rui Wang Program: Master of Science in Biotechnology Innovation and Computation",
+    "observed": "Both entries are already present side by side in Sept 2015.",
+    "sha256": "415570e20c1673294a7a149769f2d526aa44c49c227d75940767b5860517c54e",
+    "fetched_at": "2026-10-28T18:35:48+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://web.archive.org/web/20151008161138id_/http://www.lti.cs.cmu.edu/people/222214661/ru-wang",
+    "quote": "Ru Wang Academic Advisor: Ravi Starzl Master of Science in Biotechnology Innovation and Computation",
+    "observed": "Ru Wang's own profile page, which has no office or TA role.",
+    "sha256": "2983cd9ca2ba48642ed756ae090c2f4b5497ba1c05f091a12e7b3a705998ec2d",
+    "fetched_at": "2026-10-28T18:33:10+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://web.archive.org/web/20151008183340id_/http://www.lti.cs.cmu.edu/people/222197504/rui-wang",
+    "quote": "Rui Wang Teaching Assistant For LTI - Callan Academic Advisor: Ravi Starzl Master of Science in Biotechnology Innovation and Computation",
+    "observed": "Rui Wang's separate profile page, with a TA role and an office in Gates & Hillman.",
+    "sha256": "3800de002c38940368d950bceeb840c5bc7675aec2d107987834a7dda9ace0b1",
+    "fetched_at": "2026-10-28T18:33:18+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://web.archive.org/cdx/search/cdx?url=www.lti.cs.cmu.edu/sites/default/files/styles/directory_thumb/public/Wang_Ru&matchType=prefix&limit=20",
+    "quote": "Wang_Ru_bic.jpeg?itok=F5X1QvQT image/jpeg 200 N4TPHYKEGSU4SL62HONJQBDJEDZQJC2J 3727",
+    "observed": "Wayback index: Ru Wang's headshot (digest N4TP..., 3727 bytes).",
+    "sha256": "bb63e3f2ab49b0fe5df02668341b52bca4eece32a6d4356fe5011ea9f84e2b4e",
+    "fetched_at": "2026-10-28T18:35:41+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://web.archive.org/cdx/search/cdx?url=www.lti.cs.cmu.edu/sites/default/files/styles/directory_thumb/public/Wang_Ru&matchType=prefix&limit=20",
+    "quote": "Wang_Rui_bic.jpeg?itok=nDyzYN8s image/jpeg 200 Q3K2DEXW5D7ZSNQ53MWH57645EMQ5HAZ 3511",
+    "observed": "Rui Wang's headshot is a different file (digest Q3K2..., 3511 bytes).",
+    "sha256": "bb63e3f2ab49b0fe5df02668341b52bca4eece32a6d4356fe5011ea9f84e2b4e",
+    "fetched_at": "2026-10-28T18:35:41+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://web.archive.org/web/20150912162309id_/http://www.lti.cs.cmu.edu/sites/default/files/styles/directory_thumb/public/Wang_Ru_bic.jpeg?itok=F5X1QvQT",
+    "quote": "",
+    "observed": "Raw bytes of Ru Wang's headshot, captured. Its sha256 differs from Rui Wang's headshot below.",
+    "sha256": "81cf9886f684d1f0582237277e8497e9b716e08fa5932ff4cafd79e4259c06a1",
+    "fetched_at": "2026-10-28T18:35:43+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://web.archive.org/web/20150914165011id_/http://www.lti.cs.cmu.edu/sites/default/files/styles/directory_thumb/public/Wang_Rui_bic.jpeg?itok=nDyzYN8s",
+    "quote": "",
+    "observed": "Raw bytes of Rui Wang's headshot, captured.",
+    "sha256": "1f8edcab25be9307b6ac925369bd731efc574ad8cf17e266664c93c69b1ed518",
+    "fetched_at": "2026-10-28T18:35:46+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   }
+  ]
+ },
+ {
+  "school": "mit",
+  "pi": "Justin Solomon",
+  "a": [
+   "mit_person_8ac21c74dfb16b0e",
+   "Yu Wang"
+  ],
+  "b": [
+   "mit_person_cbf1035eba765740",
+   "Yue Wang"
+  ],
+  "verdict": "different_people",
+  "canonical_name": null,
+  "reason": "Two different Solomon PhD students with separate theses and graduation dates. Yu Wang wrote 'Geometric Computing beyond the Laplacian' (PhD 2023-09; SM 2018 on Steklov geometry processing). Yue Wang wrote 'Learning 3D Representations from Data' (PhD 2022-05; SM 2020 on DGCNN). The group's team page lists them as two separate alumni.",
+  "evidence": [
+   {
+    "url": "https://groups.csail.mit.edu/gdpgroup/team.html",
+    "quote": "Yu Wang (PhD student, graduated summer 2023; thesis: \"Geometric Computing beyond the Laplacian\")",
+    "observed": "Team page entry for Yu Wang.",
+    "sha256": "185bc673ff61e66335bb0f63c5e78903fc8ccfec4a9d9d077b55037d0b2128d0",
+    "fetched_at": "2026-10-28T18:39:29+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://groups.csail.mit.edu/gdpgroup/team.html",
+    "quote": "Yue Wang (PhD student, graduated spring 2022; thesis: \"Learning 3D Representations with Minimal Supervision\")",
+    "observed": "Separate team page entry for Yue Wang.",
+    "sha256": "185bc673ff61e66335bb0f63c5e78903fc8ccfec4a9d9d077b55037d0b2128d0",
+    "fetched_at": "2026-10-28T18:39:29+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/core/items/fbe11e34-b4a2-4bd5-8b41-7d53f82957ba",
+    "quote": "Geometric Computing beyond the Laplacian",
+    "observed": "DSpace: author 'Wang, Yu', advisor 'Solomon, Justin', PhD, 2023-09, hdl 1721.1/152758.",
+    "sha256": "eabfd42712f74cccb00257afb32b6ed96a6e1f3c7b874f7eada3890774d1410c",
+    "fetched_at": "2026-10-28T18:39:29+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/core/items/956d79c6-a2e4-4a72-a0f8-bbed73095f9d",
+    "quote": "Steklov geometry processing : an extrinsic approach to spectral shape analysis",
+    "observed": "DSpace: Yu Wang's 2018 SM thesis, advisor Justin Solomon, hdl 1721.1/118033.",
+    "sha256": "9733903edd09d13b7e4d34e66c2e83268c00d3cdd9f5fa7159d55de0e3c120f7",
+    "fetched_at": "2026-10-28T18:39:32+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/core/items/07491b6a-ed1d-4eaf-bf24-b63aaa3720fc",
+    "quote": "Learning 3D Representations from Data",
+    "observed": "DSpace: author 'Wang, Yue', advisor 'Solomon, Justin M.', PhD, 2022-05, hdl 1721.1/144666.",
+    "sha256": "12ed08f1ff83bc8d33bddee99a693235e97a6866a277748c1f3952ea286d2e31",
+    "fetched_at": "2026-10-28T18:39:34+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/core/items/9149960b-bcfc-42ff-a217-cd6b967baf82",
+    "quote": "DGCNN : learning point cloud representations by dynamic graph CNN",
+    "observed": "DSpace: Yue Wang's 2020 SM thesis, advisor Justin M. Solomon, hdl 1721.1/129178.",
+    "sha256": "27eaeba802c4f1d7d8220a373755c807363d4e1ce9fc7986aee645a363bd2143",
+    "fetched_at": "2026-10-28T18:39:36+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   }
+  ]
+ },
+ {
+  "school": "mit",
+  "pi": "Ron Weiss",
+  "a": [
+   "mit_roster_8717888925f42a3b",
+   "Bre DiAndreth"
+  ],
+  "b": [
+   "ext:mit:breanna-elizabeth-diandreth",
+   "Breanna Elizabeth DiAndreth"
+  ],
+  "verdict": "same_person",
+  "canonical_name": "Breanna DiAndreth",
+  "reason": "'Bre' is a nickname for Breanna, and DiAndreth is a rare surname. The Weiss lab lists exactly one DiAndreth among its graduate alumni ('Bre DiAndreth') and credits 'B. DiAndreth' on its papers. DSpace has one Weiss-advised PhD (2019) by 'DiAndreth, Breanna Elizabeth', and OpenAlex has a single MIT author 'Breanna DiAndreth' whose name variants include the thesis form. No page found uses 'Bre' and 'Breanna' together, but nothing points to two people. She publishes as 'Breanna DiAndreth'; the thesis form is 'Breanna Elizabeth DiAndreth'.",
+  "evidence": [
+   {
+    "url": "http://weiss-lab.mit.edu/alumni/",
+    "quote": "Graduate Alumni Allen Lin Andrew Moorman Bre DiAndreth Casper Enghuus",
+    "observed": "The only DiAndreth on the lab's alumni page, listed as a graduate alumna.",
+    "sha256": "5ae809b03d412a48158840d056067cf3c75a95cc4d92ab8bc7fe2faf34e423c2",
+    "fetched_at": "2026-10-28T18:39:55+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "http://weiss-lab.mit.edu/publications/",
+    "quote": "PERSIST platform provides programmable RNA regulation using CRISPR endoRNases — B. DiAndreth, N. Wauford, E. Hu, S. Palacios, R. Weiss",
+    "observed": "The lab's publications page credits B. DiAndreth on several papers from 2018 to 2022.",
+    "sha256": "8b399e5b47220153733769b1ee3fcd04b31755dfae2b76a83a7c24366d8056ae",
+    "fetched_at": "2026-10-28T18:40:05+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/core/items/bda6ce63-b27e-40c5-bc4c-eae682a1c563",
+    "quote": "DiAndreth, Breanna Elizabeth.",
+    "observed": "DSpace thesis 'RNA sensing and programming platforms for mammalian synthetic Biology', Ph.D. 2019, advisor 'Ron Weiss.', hdl 1721.1/123058.",
+    "sha256": "8e1dd66d3aa90b5487d837c765e9c4be9b4e887cf654425c46d20d0fa8812d01",
+    "fetched_at": "2026-10-28T18:40:05+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=DiAndreth&dsoType=ITEM",
+    "quote": "DiAndreth, Breanna",
+    "observed": "A DSpace search for DiAndreth returns only Breanna (with Weiss coauthors) plus an unrelated MBA thesis by a Christopher DiAndreth. There is no second Weiss-lab DiAndreth.",
+    "sha256": "9efa38200368bc0633e0e9792efa213f5e0a6444484d75ff9b3a29c46d7d2797",
+    "fetched_at": "2026-10-28T18:39:56+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://api.openalex.org/authors/A5066527544",
+    "quote": "Breanna DiAndreth",
+    "observed": "One OpenAlex author (MIT 2018-2022, ORCID 0000-0002-0302-6834) whose name variants include 'B. DiAndreth' and 'DiAndreth, Breanna Elizabeth.'",
+    "sha256": "2a81df6ab6910aa12f8ce1a0afd7166a6a7231d8466a798fa388ab9ae1edca1f",
+    "fetched_at": "2026-10-28T18:40:05+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   }
+  ]
+ },
+ {
+  "school": "mit",
+  "pi": "Takehiko Nagakura",
+  "a": [
+   "mit_thesis_author_435bed33dc76d118617f",
+   "Chin-Yi Cheng"
+  ],
+  "b": [
+   "ext:mit:chi-li-cheng",
+   "Chi-Li Cheng"
+  ],
+  "verdict": "different_people",
+  "canonical_name": null,
+  "reason": "Two separate Nagakura-advised master's theses, seven years apart, by authors with different given names. Chin-Yi Cheng wrote a 2017 S.M. in Architecture plus EECS, co-advised with Patrick Winston, and was a Tangible Media coauthor from 2015 to 2017. Chi-Li Cheng wrote a 2024-05 S.M. in Architecture Studies (SMArchS). A DSpace author-field search on each name returns only that person's own items.",
+  "evidence": [
+   {
+    "url": "https://dspace.mit.edu/server/api/core/items/66c6c2de-6fee-4a8d-b809-9fffea722726",
+    "quote": "Cheng, Chin-Yi",
+    "observed": "Thesis 'Interactive design process based on augmented intelligence', S.M. 2017, advisors 'Takehiko Nagakura and Patrick H. Winston.', orgunits Architecture plus EECS, hdl 1721.1/109017.",
+    "sha256": "37e559fc416cf130d1c0f1ce8e04291aa24f95d569e4fcc5388f0d16eb2c7876",
+    "fetched_at": "2026-10-28T18:40:44+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/core/items/c6f9422a-c1a1-44f3-8f0d-490a1e3763e8",
+    "quote": "Master of Science in Architecture Studies",
+    "observed": "Thesis 'Alive Scene: Participatory Multimodal AI Framework for Collective Narratives in Dynamic 3D Scene' by 'Cheng, Chi-Li', advisor 'Nagakura, Takehiko', 2024-05, hdl 1721.1/157340.",
+    "sha256": "f29ab06c89fdaa0d6b50697327b6547b2bdcb15984e37bfbf69594897565a58f",
+    "fetched_at": "2026-10-28T18:40:46+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.contributor.author%3A%22Cheng%2C+Chin-Yi%22&dsoType=ITEM",
+    "quote": "Cilllia: 3D Printed Micro-Pillar Structures for Surface Texture, Actuation and Sensing",
+    "observed": "The 'Cheng, Chin-Yi' author search returns the 2017 thesis plus 2015-2017 Tangible Media papers, and no 2024 work.",
+    "sha256": "7789a410f494452cba53d2038a760aef31c42424b742943fe21f610f6f7c1d92",
+    "fetched_at": "2026-10-28T18:40:35+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.contributor.author%3A%22Cheng%2C+Chi-Li%22&dsoType=ITEM",
+    "quote": "Alive Scene: Participatory Multimodal AI Framework for Collective Narratives in Dynamic 3D Scene",
+    "observed": "The 'Cheng, Chi-Li' author search returns only the 2024 thesis.",
+    "sha256": "e083a48b0ea874f93ba593aca71afd74329ff893ebad55c4acebd60815f009a8",
+    "fetched_at": "2026-10-28T18:40:37+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   }
+  ]
+ },
+ {
+  "school": "mit",
+  "pi": "Andrew Lo",
+  "a": [
+   "mit_thesis_author_c715ee5929e45d306567",
+   "Dongyoung Kim"
+  ],
+  "b": [
+   "ext:mit:do-hyun-kim",
+   "Do Hyun Kim"
+  ],
+  "verdict": "different_people",
+  "canonical_name": null,
+  "reason": "Lo's student page lists them as separate people. 'Do Hyun Kim' is a 2015 UROP. 'Dongyoung Roman Kim' is a 2016 UROP and then a 2017 MEng (EECS), and his 2016 M.Eng. thesis with Lo is under 'Kim, Dongyoung'. Do-hyun and Dong-young are different Korean given names, not variants. The page uses Dongyoung's middle name 'Roman' every time and never for Do Hyun.",
+  "evidence": [
+   {
+    "url": "https://alo.mit.edu/students/",
+    "quote": "2015 Do Hyun Kim, UROP",
+    "observed": "Do Hyun Kim: a single 2015 UROP entry.",
+    "sha256": "fec10bae9887e0fe5fe2eab0e828431451456f41306dae842baa8c4de50f2305",
+    "fetched_at": "2026-10-28T18:41:05+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://alo.mit.edu/students/",
+    "quote": "2016 Dongyoung Roman Kim , UROP",
+    "observed": "A separate UROP entry for Dongyoung Roman Kim, a year later.",
+    "sha256": "fec10bae9887e0fe5fe2eab0e828431451456f41306dae842baa8c4de50f2305",
+    "fetched_at": "2026-10-28T18:41:05+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://alo.mit.edu/students/",
+    "quote": "2017 Dongyoung Roman Kim , MEng (EECS)",
+    "observed": "Dongyoung Roman Kim continues as an MEng student. No MEng entry exists for Do Hyun Kim.",
+    "sha256": "fec10bae9887e0fe5fe2eab0e828431451456f41306dae842baa8c4de50f2305",
+    "fetched_at": "2026-10-28T18:41:05+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://dspace.mit.edu/server/api/core/items/befaf304-5234-42f9-9069-f5a4f922aec9",
+    "quote": "Kim, Dongyoung, M. Eng. Massachusetts Institute of Technology",
+    "observed": "M.Eng. thesis 'Spectral factor model and risk analysis', 2016, advisor 'Andrew W. Lo.', EECS, hdl 1721.1/106115.",
+    "sha256": "ee0045225a60c59c5ab4d0e7d8902f835e654b2b69d7160e9ae3975584cdb8c7",
+    "fetched_at": "2026-10-28T18:41:06+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   }
+  ]
+ },
+ {
+  "school": "berkeley",
+  "pi": "Pieter Abbeel",
+  "a": [
+   "berkeley_stu_xi-peter-chen",
+   "Xi (Peter) Chen"
+  ],
+  "b": [
+   "ext:berkeley:xinyue-chen",
+   "Xinyue Chen"
+  ],
+  "verdict": "different_people",
+  "canonical_name": null,
+  "reason": "Abbeel's current group page lists both, in different sections. Xi (Peter) Chen is an 'On Leave' PhD student (Founder/CEO Covariant) and a 2014 EECS undergraduate alumnus. Xinyue Chen is a masters student, 'UC Berkeley, CS, 2025'. Xi (Peter) Chen was a BAIR PhD student under Abbeel by 2017, so these are two students about a decade apart.",
+  "evidence": [
+   {
+    "url": "https://people.eecs.berkeley.edu/~pabbeel/group.html",
+    "quote": "On Leave Fred Shentu (Founder xdof) Xi (Peter) Chen (Founder/CEO Covariant)",
+    "observed": "Xi (Peter) Chen is listed as an on-leave PhD student.",
+    "sha256": "490358352a1d46ba5a4296e490e34cebc51e181ce8ed01c4b80c8e42eb508181",
+    "fetched_at": "2026-10-28T18:41:25+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://people.eecs.berkeley.edu/~pabbeel/group.html",
+    "quote": "Masters students Xinyue Chen (UC Berkeley, CS, 2025)",
+    "observed": "Xinyue Chen is listed separately as a 2025 masters student.",
+    "sha256": "490358352a1d46ba5a4296e490e34cebc51e181ce8ed01c4b80c8e42eb508181",
+    "fetched_at": "2026-10-28T18:41:25+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://people.eecs.berkeley.edu/~pabbeel/group.html",
+    "quote": "Xi (Peter) Chen EECS 2014 UC Berkeley, PhD in CS",
+    "observed": "The undergraduate-alumni table gives Xi (Peter) Chen as EECS class of 2014.",
+    "sha256": "490358352a1d46ba5a4296e490e34cebc51e181ce8ed01c4b80c8e42eb508181",
+    "fetched_at": "2026-10-28T18:41:25+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://web.archive.org/web/20170429200412id_/https://bair.berkeley.edu/students.html",
+    "quote": "Xi (Peter) Chen Adv.: Pieter Abbeel Deep reinforcement learning, unsupervised learning",
+    "observed": "BAIR PhD-student list, April 2017.",
+    "sha256": "c4c563736fe6cc7fc21c291100c57a9c239c0cee741514b8243940f0c2123f01",
+    "fetched_at": "2026-10-28T18:41:32+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   }
+  ]
+ },
+ {
+  "school": "berkeley",
+  "pi": "Pieter Abbeel",
+  "a": [
+   "berkeley_stu_yi-wu",
+   "Yi Wu"
+  ],
+  "b": [
+   "ext:berkeley:yilin-wu",
+   "Yilin Wu"
+  ],
+  "verdict": "different_people",
+  "canonical_name": null,
+  "reason": "Yi Wu was a BAIR PhD student co-advised by Abbeel and Stuart Russell (listed 2017 and 2018). Yilin Wu was an Abbeel-lab undergraduate, class of 2020, who went on to a Stanford MS in CS. The two have different roles and degree paths. Note: the Yilin Wu record's quote ('PhD in CS X Finalist Yilin Wu') runs over from the previous row (Laura Smith) of the undergrad table, and the record's year 2021 differs from the class year 2020 on the page.",
+  "evidence": [
+   {
+    "url": "https://web.archive.org/web/20170429200412id_/https://bair.berkeley.edu/students.html",
+    "quote": "Yi Wu Adv.: Pieter Abbeel , Stuart Russell Probabilistic Inference, Machine Learning, Deep Reinforcement Learning",
+    "observed": "BAIR PhD-student list, April 2017.",
+    "sha256": "c4c563736fe6cc7fc21c291100c57a9c239c0cee741514b8243940f0c2123f01",
+    "fetched_at": "2026-10-28T18:41:32+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://people.eecs.berkeley.edu/~pabbeel/group.html",
+    "quote": "Finalist Yilin Wu 2020 Stanford, MS in CS",
+    "observed": "Undergraduate table row: Yilin Wu, class of 2020, then Stanford MS in CS.",
+    "sha256": "490358352a1d46ba5a4296e490e34cebc51e181ce8ed01c4b80c8e42eb508181",
+    "fetched_at": "2026-10-28T18:41:25+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   }
+  ]
+ },
+ {
+  "school": "stanford",
+  "pi": "Oussama Khatib",
+  "a": [
+   "stanford_stu_boyeon-kim",
+   "Boyeon Kim"
+  ],
+  "b": [
+   "ext:stanford:bo-kim",
+   "Bo Kim"
+  ],
+  "verdict": "same_person",
+  "canonical_name": "Boyeon Kim",
+  "reason": "In the 2022 Wayback capture of Oussama Khatib's Stanford profile, the advisee 'Bo Kim' links to profiles.stanford.edu/boyeon-kim. The current profile lists 'Boyeon Kim' at the same link and under the same 'Doctoral Dissertation Advisor (AC)' heading. The linked profile is Boyeon Kim, ME PhD student admitted Spring 2016 and a Khatib/Cutkosky coauthor. 'Bo' is the short display name.",
+  "evidence": [
+   {
+    "url": "https://web.archive.org/web/20220517144030id_/https://profiles.stanford.edu/oussama-khatib",
+    "quote": "<a href=\"https://profiles.stanford.edu/boyeon-kim\">Bo Kim</a>",
+    "observed": "2022: the advisee shown as 'Bo Kim' links to the boyeon-kim profile.",
+    "sha256": "21cbccd922c955255730a451229dd20aadda691a5cd42f7b28b86087cf84ac03",
+    "fetched_at": "2026-10-28T18:42:16+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://profiles.stanford.edu/oussama-khatib",
+    "quote": "<a href=\"https://profiles.stanford.edu/boyeon-kim\">Boyeon Kim</a>",
+    "observed": "2026: the same profile URL is displayed as 'Boyeon Kim'.",
+    "sha256": "08880111e198c35d90fd5115e7eb9fec7960f627d028ba13872080560be1e69e",
+    "fetched_at": "2026-10-28T18:42:15+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://profiles.stanford.edu/oussama-khatib",
+    "quote": "Doctoral Dissertation Advisor (AC) William Chong , Wesley Guo , Boyeon Kim",
+    "observed": "Current advisee heading on the PI's profile.",
+    "sha256": "08880111e198c35d90fd5115e7eb9fec7960f627d028ba13872080560be1e69e",
+    "fetched_at": "2026-10-28T18:42:15+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://profiles.stanford.edu/boyeon-kim",
+    "quote": "Boyeon Kim Ph.D. Student in Mechanical Engineering, admitted Spring 2016 Ph.D. Minor, Computer Science",
+    "observed": "The linked profile is a single student record.",
+    "sha256": "4ce39472d0eda5ff25a3ce9a3e3630c51fe238fe1f803a59a6679b9ec6906d84",
+    "fetched_at": "2026-10-28T18:42:27+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://profiles.stanford.edu/boyeon-kim",
+    "quote": "Ocean One A Robotic Avatar for Oceanic Discovery IEEE ROBOTICS & AUTOMATION MAGAZINE Khatib, O.",
+    "observed": "Publication on the profile coauthored with Khatib and Cutkosky.",
+    "sha256": "4ce39472d0eda5ff25a3ce9a3e3630c51fe238fe1f803a59a6679b9ec6906d84",
+    "fetched_at": "2026-10-28T18:42:27+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   }
+  ]
+ },
+ {
+  "school": "stanford",
+  "pi": "Mark Cutkosky",
+  "a": [
+   "stanford_stu_boyeon-kim",
+   "Boyeon Kim"
+  ],
+  "b": [
+   "ext:stanford:bo-kim",
+   "Bo Kim"
+  ],
+  "verdict": "same_person",
+  "canonical_name": "Boyeon Kim",
+  "reason": "In the 2022 Wayback capture of Mark Cutkosky's Stanford profile, the advisee 'Bo Kim' links to profiles.stanford.edu/boyeon-kim. The current profile lists 'Boyeon Kim' at the same link and under the same 'Doctoral Dissertation Co-Advisor (AC)' heading. The linked profile is Boyeon Kim, ME PhD student admitted Spring 2016 and a Khatib/Cutkosky coauthor. 'Bo' is the short display name.",
+  "evidence": [
+   {
+    "url": "https://web.archive.org/web/20220529013744id_/https://profiles.stanford.edu/mark-cutkosky",
+    "quote": "<a href=\"https://profiles.stanford.edu/boyeon-kim\">Bo Kim</a>",
+    "observed": "2022: the advisee shown as 'Bo Kim' links to the boyeon-kim profile.",
+    "sha256": "ff73c31852a805b690004583396ec2a8c0e4f16d4bd0bd07a501974cb5f4c8b4",
+    "fetched_at": "2026-10-28T18:42:18+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://profiles.stanford.edu/mark-cutkosky",
+    "quote": "<a href=\"https://profiles.stanford.edu/boyeon-kim\">Boyeon Kim</a>",
+    "observed": "2026: the same profile URL is displayed as 'Boyeon Kim'.",
+    "sha256": "d1408ca7720e9d13bc412b41edf7b8bd22bc12ba03bd3d3a31eae1516082cafc",
+    "fetched_at": "2026-10-28T18:42:17+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://profiles.stanford.edu/mark-cutkosky",
+    "quote": "Doctoral Dissertation Co-Advisor (AC) Wesley Guo , Boyeon Kim , Daniel Morton , Baiyu Shi",
+    "observed": "Current advisee heading on the PI's profile.",
+    "sha256": "d1408ca7720e9d13bc412b41edf7b8bd22bc12ba03bd3d3a31eae1516082cafc",
+    "fetched_at": "2026-10-28T18:42:17+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://profiles.stanford.edu/boyeon-kim",
+    "quote": "Boyeon Kim Ph.D. Student in Mechanical Engineering, admitted Spring 2016 Ph.D. Minor, Computer Science",
+    "observed": "The linked profile is a single student record.",
+    "sha256": "4ce39472d0eda5ff25a3ce9a3e3630c51fe238fe1f803a59a6679b9ec6906d84",
+    "fetched_at": "2026-10-28T18:42:27+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://profiles.stanford.edu/boyeon-kim",
+    "quote": "Ocean One A Robotic Avatar for Oceanic Discovery IEEE ROBOTICS & AUTOMATION MAGAZINE Khatib, O.",
+    "observed": "Publication on the profile coauthored with Khatib and Cutkosky.",
+    "sha256": "4ce39472d0eda5ff25a3ce9a3e3630c51fe238fe1f803a59a6679b9ec6906d84",
+    "fetched_at": "2026-10-28T18:42:27+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   }
+  ]
+ },
+ {
+  "school": "stanford",
+  "pi": "Tatsunori Hashimoto",
+  "a": [
+   "stanford_stu_xuechen-li",
+   "Chen Li"
+  ],
+  "b": [
+   "stanford_stu_liangyu-chen",
+   "Liangyu Chen"
+  ],
+  "verdict": "different_people",
+  "canonical_name": null,
+  "reason": "This is a name-matcher artifact: 'Chen Li' (surname Li) and 'Liangyu Chen' (surname Chen) share only tokens. They are two Stanford profiles with different slugs and admission terms. Chen Li (profiles.stanford.edu/xuechen-li) was a CS PhD student admitted Winter 2021 and a Hashimoto dissertation advisee in 2022-2023; that profile is now gone. Liangyu Chen (profiles.stanford.edu/liangyu-chen) is a CS PhD student admitted Autumn 2024 and a Hashimoto co-advisee in 2026. Aside: the slug suggests 'Chen Li' is Xuechen Li's profile display name, but this pass did not confirm that further.",
+  "evidence": [
+   {
+    "url": "https://web.archive.org/web/20230601090530id_/https://profiles.stanford.edu/tatsunori-hashimoto",
+    "quote": "<a href=\"https://profiles.stanford.edu/xuechen-li\">Chen Li</a>",
+    "observed": "2023 Hashimoto profile: the advisee 'Chen Li' links to the xuechen-li profile.",
+    "sha256": "2a18ce5d71983932817e9a18724a33cb577109f80e196bf81f95618f0959654a",
+    "fetched_at": "2026-10-28T18:42:48+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://web.archive.org/web/20230601090530id_/https://profiles.stanford.edu/tatsunori-hashimoto",
+    "quote": "Doctoral Dissertation Advisor (AC) Yann Dubois , Chen Li",
+    "observed": "Advisee heading, 2023.",
+    "sha256": "2a18ce5d71983932817e9a18724a33cb577109f80e196bf81f95618f0959654a",
+    "fetched_at": "2026-10-28T18:42:48+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://web.archive.org/web/20230606231105id_/https://profiles.stanford.edu/xuechen-li",
+    "quote": "Chen Li Ph.D. Student in Computer Science, admitted Winter 2021",
+    "observed": "The linked profile (2023 capture) is CS PhD, admitted Winter 2021. The live profile now returns 404.",
+    "sha256": "f117e99b9393db746af2b23177fe5fe8b3710503429779cf2f2c4cd9dc8facd5",
+    "fetched_at": "2026-10-28T18:43:12+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://profiles.stanford.edu/tatsunori-hashimoto",
+    "quote": "<a href=\"https://profiles.stanford.edu/liangyu-chen\">Liangyu Chen</a>",
+    "observed": "2026 Hashimoto profile: Liangyu Chen links to a different profile slug.",
+    "sha256": "fd36913e1f0637413ab681f8f0123ecc872ec1cbf6f8e2ad381b0d82a736eea2",
+    "fetched_at": "2026-10-28T18:42:51+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   },
+   {
+    "url": "https://profiles.stanford.edu/liangyu-chen",
+    "quote": "Liangyu Chen Ph.D. Student in Computer Science, admitted Autumn 2024",
+    "observed": "Different admission term (Autumn 2024 vs Winter 2021).",
+    "sha256": "d7112d5bcd6ee652ba248364cea1afa4ea84a5d7a139cc22fbebe4dadf456180",
+    "fetched_at": "2026-10-28T18:43:03+00:00",
+    "status": 200,
+    "capture_db": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/chain-research-20261028/same-name-tools/captures.sqlite"
+   }
+  ]
+ }
+]

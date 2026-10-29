@@ -1,0 +1,2781 @@
+{
+ "reviewed": "2026-10-22",
+ "rule": "a PI is a faculty member of a computing department (Princeton CS; CMU's seven SCS departments; MIT EECS, CS+AI side; EPFL IC; Berkeley EECS, CS division) with stated PhD advising in 2016-2026 or a lab they head. Centres, initiatives and multi-PI groups are not labs. EPFL MERs count when they head their own lab or are stated PhD thesis directors.",
+ "captures": "hierarchy/missing-pi-captures.sqlite (fetched or copied pages; quotes are exact substrings of the stored text, whitespace collapsed)",
+ "tools": "hierarchy/missing-pi-tools/{mpcap.py,build_review.py}",
+ "decisions": [
+  {
+   "name": "Yi Ma",
+   "decision": "does_not_qualify",
+   "reason": "homed_outside_scope",
+   "summary": "EECS faculty 2018-2024 (Professor in Residence), but in the EE division: the EECS-wide lists name him every year 2019-2025 while no CS-division faculty list 2019-2026 does, and the live EE Visiting Faculty list names him. Since January 2025 he is a Visiting Professor at Berkeley, having moved to the University of Hong Kong (Director of HKU IDS since 2023-01, Chair Professor in AI since 2023-07). Outside the scope (EECS, CS division) in every year of the window, so no lab is added. On advising alone he would qualify (15 EECS dissertations 2020-2025 name him adviser) if the owner widened Berkeley to the EE division.",
+   "thesis_harvest": {
+    "theses": 15,
+    "years": "2020-2025",
+    "roles": "phd and masters",
+    "source": "hierarchy/thesis-harvest-report.json (non_pi_advisers); records in hierarchy/<school>/thesis-captures.sqlite"
+   },
+   "appointment": {
+    "start": "2018",
+    "professor_in_residence_until": "2024-12",
+    "visiting_professor_from": "2025-01"
+   },
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20190919131344id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "c5157397c0672a4647168e735d64b0d2733705c2cc495a290a82af36776f6cbd",
+     "quote": "Yi Ma Professor in Residence 333A Cory Hall",
+     "observed": "2019-09-19",
+     "kind": "dept_listing:EECS (all divisions)",
+     "capture_copied_from": "listings/berkeley/captures.sqlite"
+    },
+    {
+     "url": "https://web.archive.org/web/20250327042312id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0b4cb2e7e18be539093d1e5560e6c5b16d44d33af3392ceb5624c89171892fc0",
+     "quote": "Yi Ma Professor in Residence 333A Cory Hall",
+     "observed": "2025-03-27",
+     "kind": "dept_listing:EECS (all divisions)",
+     "capture_copied_from": "listings/berkeley/captures.sqlite"
+    },
+    {
+     "url": "https://web.archive.org/web/20251002003248id_/https://www2.eecs.berkeley.edu/Faculty/Lists/visiting.html",
+     "sha256": "232fe4f83876ba9adc9fb14b10315f0326a3f3e46374fae69cbce99cfdb3e3b9",
+     "quote": "Yi Ma Visiting Professor 333A Cory Hall",
+     "observed": "2025-10-02",
+     "kind": "dept_listing:EECS visiting",
+     "capture_copied_from": "listings/berkeley/captures.sqlite"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Lists/EE/visiting.html",
+     "sha256": "d9e9d49ced04079d6f082de85b64a40cad09056abe9ea0a7e6ff3460cf90fcb4",
+     "quote": "EE Visiting Faculty Yi Ma Visiting Professor",
+     "observed": "2026-10-22",
+     "kind": "dept_listing:EECS-EE visiting"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/yima.html",
+     "sha256": "4cde5265c2ccec0c910176c48c29e4807fed035e4cd61c4a1b364810582289e9",
+     "quote": "He joins the faculty of EECS of UC Berkeley in 2018.",
+     "observed": "2026-10-22",
+     "kind": "faculty_homepage"
+    },
+    {
+     "url": "https://people.eecs.berkeley.edu/~yima/",
+     "sha256": "195093bb169b47a47ebda166c2272f9598c69275590db79301f6f62659bd2075",
+     "quote": "I have officially moved to the University of Hong Kong, and currently hold the positions: Visiting Professor of the EECS Department, UC Berkeley, since January 2025.",
+     "observed": "2026-10-22",
+     "kind": "own_homepage"
+    },
+    {
+     "url": "https://people.eecs.berkeley.edu/~yima/",
+     "sha256": "195093bb169b47a47ebda166c2272f9598c69275590db79301f6f62659bd2075",
+     "quote": "Director of the Institute of Data Science (IDS), the University of Hong Kong, since January 1, 2023.",
+     "observed": "2026-10-22",
+     "kind": "own_homepage"
+    },
+    {
+     "url": "https://web.archive.org/web/20191014112202id_/https://www2.eecs.berkeley.edu/Faculty/Lists/CS/faculty.html",
+     "sha256": "2207c281c578ff9a907dd32b17684bf2650f92ea7ac108b9cf30a5de31f95e66",
+     "absent": "Yi Ma",
+     "observed": "2019-10-14",
+     "kind": "dept_listing:EECS-CS",
+     "note": "the CS-division faculty list does not name them"
+    },
+    {
+     "url": "https://web.archive.org/web/20210302054536id_/https://www2.eecs.berkeley.edu/Faculty/Lists/CS/faculty.html",
+     "sha256": "1ebca06af25407bacaced171bd42c960ff4078e29696bf8e64e01cb793bbff2c",
+     "absent": "Yi Ma",
+     "observed": "2021-03-02",
+     "kind": "dept_listing:EECS-CS",
+     "note": "the CS-division faculty list does not name them"
+    },
+    {
+     "url": "https://web.archive.org/web/20230926194702id_/https://www2.eecs.berkeley.edu/Faculty/Lists/CS/faculty.html",
+     "sha256": "e57ac1694a4577b27672596934c869ce666b548cbcd76eec7a12495e2866711e",
+     "absent": "Yi Ma",
+     "observed": "2023-09-26",
+     "kind": "dept_listing:EECS-CS",
+     "note": "the CS-division faculty list does not name them"
+    },
+    {
+     "url": "https://web.archive.org/web/20250425124321id_/https://www2.eecs.berkeley.edu/Faculty/Lists/CS/faculty.html",
+     "sha256": "16b165eebb2908a5c73b99917e48e67e67ea8a97d00474824dd4c22995edbc8c",
+     "absent": "Yi Ma",
+     "observed": "2025-04-25",
+     "kind": "dept_listing:EECS-CS",
+     "note": "the CS-division faculty list does not name them"
+    },
+    {
+     "url": "https://web.archive.org/web/20260311194209id_/https://www2.eecs.berkeley.edu/Faculty/Lists/CS/faculty.html",
+     "sha256": "f2fe9b7b6fdb01dc1fc196a79129826effa23f0db5b1c275bcacc28c41c6c1d6",
+     "absent": "Yi Ma",
+     "observed": "2026-03-11",
+     "kind": "dept_listing:EECS-CS",
+     "note": "the CS-division faculty list does not name them"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Lists/CS/faculty.html",
+     "sha256": "914759b41550b9d5b871513b174ac21bdd200846b236332fa2854a55636e107d",
+     "absent": "Yi Ma",
+     "observed": "2026-10-22",
+     "kind": "dept_listing:EECS-CS",
+     "note": "the CS-division faculty list does not name them"
+    }
+   ]
+  },
+  {
+   "name": "Gopala Anumanchipalli",
+   "aliases": [
+    "Gopala Krishna Anumanchipalli"
+   ],
+   "decision": "does_not_qualify",
+   "reason": "homed_outside_scope",
+   "summary": "EECS faculty since spring 2021 (Assistant, now Associate Professor, Robert E. and Beverly A. Brooks Professor), in the EE division: the live EE Faculty List names him, the EECS-wide lists name him 2020-2026, and no CS-division faculty list 2021-2026 does. Outside the scope (EECS, CS division). On advising alone he would qualify (8 EECS theses 2024-2026) if the owner widened Berkeley to the EE division.",
+   "thesis_harvest": {
+    "theses": 8,
+    "years": "2024-2026",
+    "roles": "phd and masters",
+    "source": "hierarchy/thesis-harvest-report.json (non_pi_advisers); records in hierarchy/<school>/thesis-captures.sqlite"
+   },
+   "evidence": [
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Lists/EE/faculty.html",
+     "sha256": "48935bd9e9e98a98291fcad2b3c56257cf752e137bce1550a49c4d52bc3f75f9",
+     "quote": "EE Faculty List EE Faculty List",
+     "observed": "2026-10-22",
+     "kind": "dept_listing:EECS-EE (page heading)"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Lists/EE/faculty.html",
+     "sha256": "48935bd9e9e98a98291fcad2b3c56257cf752e137bce1550a49c4d52bc3f75f9",
+     "quote": "Gopala Krishna Anumanchipalli Associate Professor 4371 Gateway Building",
+     "observed": "2026-10-22",
+     "kind": "dept_listing:EECS-EE"
+    },
+    {
+     "url": "https://web.archive.org/web/20210417150618id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "53628f98f13175c11c15d8f18252ec99ffbf050716375be2b9ee1a726c1314bb",
+     "quote": "Gopala Krishna Anumanchipalli Assistant Professor gopala@berkeley.edu",
+     "observed": "2021-04-17",
+     "kind": "dept_listing:EECS (all divisions)",
+     "capture_copied_from": "listings/berkeley/captures.sqlite"
+    },
+    {
+     "url": "https://web.archive.org/web/20260417001407id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "57fdde3bbd17b3a34e1175a5e053c886ad9f03d8b32f8dba2de38d24f23a0134",
+     "quote": "Gopala Krishna Anumanchipalli Assistant Professor 490A Cory Hall",
+     "observed": "2026-04-17",
+     "kind": "dept_listing:EECS (all divisions)",
+     "capture_copied_from": "listings/berkeley/captures.sqlite"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/gopala.html",
+     "sha256": "a2e05bccca27b8415818b339c82068a6bf028b00b1024f49b14cf657fb1f108a",
+     "quote": "he joined the faculty of the Department of Electrical Engineering and Computer Sciences at UC Berkeley in Spring 2021",
+     "observed": "2026-10-22",
+     "kind": "faculty_homepage"
+    },
+    {
+     "url": "https://web.archive.org/web/20191014112202id_/https://www2.eecs.berkeley.edu/Faculty/Lists/CS/faculty.html",
+     "sha256": "2207c281c578ff9a907dd32b17684bf2650f92ea7ac108b9cf30a5de31f95e66",
+     "absent": "Anumanchipalli",
+     "observed": "2019-10-14",
+     "kind": "dept_listing:EECS-CS",
+     "note": "the CS-division faculty list does not name them"
+    },
+    {
+     "url": "https://web.archive.org/web/20210302054536id_/https://www2.eecs.berkeley.edu/Faculty/Lists/CS/faculty.html",
+     "sha256": "1ebca06af25407bacaced171bd42c960ff4078e29696bf8e64e01cb793bbff2c",
+     "absent": "Anumanchipalli",
+     "observed": "2021-03-02",
+     "kind": "dept_listing:EECS-CS",
+     "note": "the CS-division faculty list does not name them"
+    },
+    {
+     "url": "https://web.archive.org/web/20230926194702id_/https://www2.eecs.berkeley.edu/Faculty/Lists/CS/faculty.html",
+     "sha256": "e57ac1694a4577b27672596934c869ce666b548cbcd76eec7a12495e2866711e",
+     "absent": "Anumanchipalli",
+     "observed": "2023-09-26",
+     "kind": "dept_listing:EECS-CS",
+     "note": "the CS-division faculty list does not name them"
+    },
+    {
+     "url": "https://web.archive.org/web/20250425124321id_/https://www2.eecs.berkeley.edu/Faculty/Lists/CS/faculty.html",
+     "sha256": "16b165eebb2908a5c73b99917e48e67e67ea8a97d00474824dd4c22995edbc8c",
+     "absent": "Anumanchipalli",
+     "observed": "2025-04-25",
+     "kind": "dept_listing:EECS-CS",
+     "note": "the CS-division faculty list does not name them"
+    },
+    {
+     "url": "https://web.archive.org/web/20260311194209id_/https://www2.eecs.berkeley.edu/Faculty/Lists/CS/faculty.html",
+     "sha256": "f2fe9b7b6fdb01dc1fc196a79129826effa23f0db5b1c275bcacc28c41c6c1d6",
+     "absent": "Anumanchipalli",
+     "observed": "2026-03-11",
+     "kind": "dept_listing:EECS-CS",
+     "note": "the CS-division faculty list does not name them"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Lists/CS/faculty.html",
+     "sha256": "914759b41550b9d5b871513b174ac21bdd200846b236332fa2854a55636e107d",
+     "absent": "Anumanchipalli",
+     "observed": "2026-10-22",
+     "kind": "dept_listing:EECS-CS",
+     "note": "the CS-division faculty list does not name them"
+    }
+   ]
+  },
+  {
+   "name": "Michael Mahoney",
+   "aliases": [
+    "Michael William Mahoney"
+   ],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty_of_a_computing_department",
+   "summary": "Faculty of the Department of Statistics, and at ICSI and LBNL; his EECS tie is membership of RISELab/AMPLab, not an appointment. No EECS faculty, emeritus or visiting list 2016-2026 names him (all captured lists checked). He co-advised 8 EECS theses 2016-2023, which does not make a Statistics professor an EECS PI.",
+   "thesis_harvest": {
+    "theses": 8,
+    "years": "2016-2023",
+    "roles": "phd and masters",
+    "source": "hierarchy/thesis-harvest-report.json (non_pi_advisers); records in hierarchy/<school>/thesis-captures.sqlite"
+   },
+   "evidence": [
+    {
+     "url": "https://www.stat.berkeley.edu/~mmahoney/",
+     "sha256": "f541f0b65e35094995043847b2f4430dfe76d2c0fd555ab822e89ed19afb966f",
+     "quote": "I am in the Department of Statistics at UC Berkeley; I am also at the International Computer Science Institute (ICSI, where I am Vice President and Director of the Big Data Group )",
+     "observed": "2026-10-22",
+     "kind": "own_homepage"
+    },
+    {
+     "url": "https://www.stat.berkeley.edu/~mmahoney/",
+     "sha256": "f541f0b65e35094995043847b2f4430dfe76d2c0fd555ab822e89ed19afb966f",
+     "quote": "I am also in the RISELab (in the past AMPLab ) in the Department of EECS",
+     "observed": "2026-10-22",
+     "kind": "own_homepage"
+    },
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "absent": "Mahoney",
+     "observed": "2016-03-27",
+     "kind": "dept_listing:EECS (all divisions)"
+    },
+    {
+     "url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "absent": "Mahoney",
+     "observed": "2017-11-01",
+     "kind": "dept_listing:EECS (all divisions)"
+    },
+    {
+     "url": "https://web.archive.org/web/20190919131344id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "c5157397c0672a4647168e735d64b0d2733705c2cc495a290a82af36776f6cbd",
+     "absent": "Mahoney",
+     "observed": "2019-09-19",
+     "kind": "dept_listing:EECS (all divisions)"
+    },
+    {
+     "url": "https://web.archive.org/web/20210417150618id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "53628f98f13175c11c15d8f18252ec99ffbf050716375be2b9ee1a726c1314bb",
+     "absent": "Mahoney",
+     "observed": "2021-04-17",
+     "kind": "dept_listing:EECS (all divisions)"
+    },
+    {
+     "url": "https://web.archive.org/web/20250327042312id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0b4cb2e7e18be539093d1e5560e6c5b16d44d33af3392ceb5624c89171892fc0",
+     "absent": "Mahoney",
+     "observed": "2025-03-27",
+     "kind": "dept_listing:EECS (all divisions)"
+    },
+    {
+     "url": "https://web.archive.org/web/20260417001407id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "57fdde3bbd17b3a34e1175a5e053c886ad9f03d8b32f8dba2de38d24f23a0134",
+     "absent": "Mahoney",
+     "observed": "2026-04-17",
+     "kind": "dept_listing:EECS (all divisions)"
+    },
+    {
+     "url": "https://web.archive.org/web/20191014112202id_/https://www2.eecs.berkeley.edu/Faculty/Lists/CS/faculty.html",
+     "sha256": "2207c281c578ff9a907dd32b17684bf2650f92ea7ac108b9cf30a5de31f95e66",
+     "absent": "Mahoney",
+     "observed": "2019-10-14",
+     "kind": "dept_listing:EECS-CS"
+    },
+    {
+     "url": "https://web.archive.org/web/20210302054536id_/https://www2.eecs.berkeley.edu/Faculty/Lists/CS/faculty.html",
+     "sha256": "1ebca06af25407bacaced171bd42c960ff4078e29696bf8e64e01cb793bbff2c",
+     "absent": "Mahoney",
+     "observed": "2021-03-02",
+     "kind": "dept_listing:EECS-CS"
+    },
+    {
+     "url": "https://web.archive.org/web/20230926194702id_/https://www2.eecs.berkeley.edu/Faculty/Lists/CS/faculty.html",
+     "sha256": "e57ac1694a4577b27672596934c869ce666b548cbcd76eec7a12495e2866711e",
+     "absent": "Mahoney",
+     "observed": "2023-09-26",
+     "kind": "dept_listing:EECS-CS"
+    },
+    {
+     "url": "https://web.archive.org/web/20250425124321id_/https://www2.eecs.berkeley.edu/Faculty/Lists/CS/faculty.html",
+     "sha256": "16b165eebb2908a5c73b99917e48e67e67ea8a97d00474824dd4c22995edbc8c",
+     "absent": "Mahoney",
+     "observed": "2025-04-25",
+     "kind": "dept_listing:EECS-CS"
+    },
+    {
+     "url": "https://web.archive.org/web/20260311194209id_/https://www2.eecs.berkeley.edu/Faculty/Lists/CS/faculty.html",
+     "sha256": "f2fe9b7b6fdb01dc1fc196a79129826effa23f0db5b1c275bcacc28c41c6c1d6",
+     "absent": "Mahoney",
+     "observed": "2026-03-11",
+     "kind": "dept_listing:EECS-CS"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Lists/CS/faculty.html",
+     "sha256": "914759b41550b9d5b871513b174ac21bdd200846b236332fa2854a55636e107d",
+     "absent": "Mahoney",
+     "observed": "2026-10-22",
+     "kind": "dept_listing:EECS-CS"
+    }
+   ],
+   "note": "Every captured EECS list page of 2016-2026 in listings/berkeley/captures.sqlite (faculty, CS faculty, emeritus, visiting, teaching, new) was also checked: none contains \"Mahoney\"."
+  },
+  {
+   "name": "Chenming Hu",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor Emeritus, Professor in the Graduate School; Professor Emeritus , Professor in the Graduate School; listing years 2016-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Chenming Hu Professor Emeritus, Professor in the Graduate School"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Andrew R. Neureuther",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor Emeritus; Professor Emeritus , Professor in the Graduate School; Professor Emeritus, Professor in the Graduate School; listing years 2016-2025.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Andrew R. Neureuther Professor Emeritus, Professor in the Graduate School"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Michael A. Lieberman",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor Emeritus; listing years 2016-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "Michael A. Lieberman Professor Emeritus"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "David Attwood",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor in Residence Emeritus; listing years 2016-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "David Attwood Professor in Residence Emeritus"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Allen Yang",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Visiting Lecturer; listing years 2019-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20191014115330id_/https://www2.eecs.berkeley.edu/Faculty/Lists/CS/visiting.html",
+     "sha256": "af05b8881008958de7cacd9fd49e3ecd1df90268ffac2ec1722e8aa3ba74e2e2",
+     "quote": "Allen Yang Visiting Lecturer"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Allan J. Lichtenberg",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor Emeritus; listing years 2016-2022.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "Allan J. Lichtenberg Professor Emeritus"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Lisa Wu",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Visiting Lecturer; listing years 2017-2017.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20170503202039id_/https://www2.eecs.berkeley.edu/Faculty/Lists/visiting.html",
+     "sha256": "da981949ebac6dd21b09509011af7c78a3797fb7295ca9163d16fb2b7ab3b546",
+     "quote": "Lisa Wu Visiting Lecturer"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Shyam Parekh",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "adjunct_or_courtesy_only",
+   "summary": "every department listing 2016-2026 names this person only as Adjunct: an outside appointment, not a PI lab at the school. Titles listed: Adjunct Associate Professor; listing years 2016-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Shyam Parekh Adjunct Associate Professor"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Alper Ozgurluk",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "teaching_only",
+   "summary": "every department listing 2016-2026 names this person only with a teaching title (Lecturer, Instructor, Teaching, of the Practice): teaching faculty, not a PI. Titles listed: Lecturer; listing years 2022-2022.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20220412054425id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "f9073f81438c5f1164c8b73d1dc5f516e7ce16f9309f787804f1894a08a227e1",
+     "quote": "Alper Ozgurluk Lecturer"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "David Tse",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "adjunct_or_courtesy_only",
+   "summary": "every department listing 2016-2026 names this person only as Adjunct: an outside appointment, not a PI lab at the school. Titles listed: Adjunct Professor; listing years 2016-2017.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "David Tse Adjunct Professor"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Sashank Krishnamurthy",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "teaching_only",
+   "summary": "every department listing 2016-2026 names this person only with a teaching title (Lecturer, Instructor, Teaching, of the Practice): teaching faculty, not a PI. Titles listed: Lecturer; listing years 2024-2024.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20240525115814id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "7ed4170bf1913eaf27cc18688483962bdb2c960962b75bdeb9758821e9291f8b",
+     "quote": "Sashank Krishnamurthy Lecturer"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "David G. Messerschmitt",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor Emeritus; listing years 2016-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "David G. Messerschmitt Professor Emeritus"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Richard S. Muller",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor Emeritus; listing years 2016-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "Richard S. Muller Professor Emeritus"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Richard M. White",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor Emeritus; listing years 2016-2019.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "Richard M. White Professor Emeritus"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Vikram Jain",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "teaching_only",
+   "summary": "every department listing 2016-2026 names this person only with a teaching title (Lecturer, Instructor, Teaching, of the Practice): teaching faculty, not a PI. Titles listed: Lecturer; listing years 2024-2025.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20240525115814id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "7ed4170bf1913eaf27cc18688483962bdb2c960962b75bdeb9758821e9291f8b",
+     "quote": "Vikram Jain Lecturer"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Benjamin Keller",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Visiting Professor; listing years 2025-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20251002003248id_/https://www2.eecs.berkeley.edu/Faculty/Lists/visiting.html",
+     "sha256": "232fe4f83876ba9adc9fb14b10315f0326a3f3e46374fae69cbce99cfdb3e3b9",
+     "quote": "Benjamin Keller Visiting Professor"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Eric Friedman",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Visiting Lecturer; listing years 2017-2017.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20170503202039id_/https://www2.eecs.berkeley.edu/Faculty/Lists/visiting.html",
+     "sha256": "da981949ebac6dd21b09509011af7c78a3797fb7295ca9163d16fb2b7ab3b546",
+     "quote": "Eric Friedman Visiting Lecturer"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Thomas F. Budinger",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor in Residence Emeritus; listing years 2016-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "Thomas F. Budinger Professor in Residence Emeritus"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Haoning Tang",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "adjunct_or_courtesy_only",
+   "summary": "every department listing 2016-2026 names this person only as Adjunct: an outside appointment, not a PI lab at the school. Titles listed: Adjunct Assistant Professor; listing years 2025-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20251012212055id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "a46a988939daad22b885c5890ec6b100ac08031b707867ef45569e446ebbcc4a",
+     "quote": "Haoning Tang Adjunct Assistant Professor"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Felix F. Wu",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor Emeritus; listing years 2016-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "Felix F. Wu Professor Emeritus"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Adam Wolisz",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "adjunct_or_courtesy_only",
+   "summary": "every department listing 2016-2026 names this person only as Adjunct: an outside appointment, not a PI lab at the school. Titles listed: Adjunct Professor; listing years 2016-2016.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Adam Wolisz Adjunct Professor"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Abhay Parekh",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "adjunct_or_courtesy_only",
+   "summary": "every department listing 2016-2026 names this person only as Adjunct: an outside appointment, not a PI lab at the school. Titles listed: Adjunct Professor; listing years 2016-2019.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Abhay Parekh Adjunct Professor"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Eugene Wong",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor Emeritus; listing years 2016-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "Eugene Wong Professor Emeritus"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Robert W. Brodersen",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor Emeritus; listing years 2016-2023.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "Robert W. Brodersen Professor Emeritus"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "David A. Hodges",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor Emeritus; listing years 2016-2022.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "David A. Hodges Professor Emeritus"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Elijah Polak",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor Emeritus; listing years 2016-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "Elijah Polak Professor Emeritus"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Nelson Morgan",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor in Residence Emeritus; listing years 2016-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "Nelson Morgan Professor in Residence Emeritus"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Ramesh Sridharan",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Visiting Lecturer; listing years 2019-2020.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20191014115330id_/https://www2.eecs.berkeley.edu/Faculty/Lists/CS/visiting.html",
+     "sha256": "af05b8881008958de7cacd9fd49e3ecd1df90268ffac2ec1722e8aa3ba74e2e2",
+     "quote": "Ramesh Sridharan Visiting Lecturer"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Jack Kolb",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Visiting Lecturer; listing years 2021-2022.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20210417152805id_/https://www2.eecs.berkeley.edu/Faculty/Lists/CS/visiting.html",
+     "sha256": "ae1d549b3afb94b24db9bdd0bd3b29e564b3d43cae4c625145bb877c3ff93424",
+     "quote": "Jack Kolb Visiting Lecturer"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Laura Grigori",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Visiting Professor; listing years 2023-2023.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20230403173548id_/https://www2.eecs.berkeley.edu/Faculty/Lists/CS/visiting.html",
+     "sha256": "7d7dda67f7e552ab250ece271045db9d7e9add0a40e8ac9654c66bd6e49bb2aa",
+     "quote": "Laura Grigori Visiting Professor"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Osama Shana'a",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "adjunct_or_courtesy_only",
+   "summary": "every department listing 2016-2026 names this person only as Adjunct: an outside appointment, not a PI lab at the school. Titles listed: Adjunct Associate Professor; listing years 2019-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20190919131344id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "c5157397c0672a4647168e735d64b0d2733705c2cc495a290a82af36776f6cbd",
+     "quote": "Osama Shana'a Adjunct Associate Professor"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Robert G. Meyer",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor Emeritus; listing years 2016-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "Robert G. Meyer Professor Emeritus"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Sampath Kannan",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Visiting Professor; listing years 2025-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20251002003248id_/https://www2.eecs.berkeley.edu/Faculty/Lists/visiting.html",
+     "sha256": "232fe4f83876ba9adc9fb14b10315f0326a3f3e46374fae69cbce99cfdb3e3b9",
+     "quote": "Sampath Kannan Visiting Professor"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Sergey Karayev",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Visiting Lecturer; listing years 2021-2022.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20210417152805id_/https://www2.eecs.berkeley.edu/Faculty/Lists/CS/visiting.html",
+     "sha256": "ae1d549b3afb94b24db9bdd0bd3b29e564b3d43cae4c625145bb877c3ff93424",
+     "quote": "Sergey Karayev Visiting Lecturer"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Theodore Van Duzer",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor Emeritus; listing years 2016-2023.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "Theodore Van Duzer Professor Emeritus"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Vinod Vaikuntanathan",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Visiting Professor; listing years 2020-2025.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20200930072231id_/https://www2.eecs.berkeley.edu/Faculty/Lists/CS/visiting.html",
+     "sha256": "faf95d0bbd7e81a9d6a075693942df5cc16f8a9a5149d59f24e481582c34e30a",
+     "quote": "Vinod Vaikuntanathan Visiting Professor"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Andreas Kuehlmann",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "adjunct_or_courtesy_only",
+   "summary": "every department listing 2016-2026 names this person only as Adjunct: an outside appointment, not a PI lab at the school. Titles listed: Adjunct Professor; listing years 2016-2016.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Andreas Kuehlmann Adjunct Professor"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Anthony Yen",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Visiting Professor; listing years 2025-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20251002003248id_/https://www2.eecs.berkeley.edu/Faculty/Lists/visiting.html",
+     "sha256": "232fe4f83876ba9adc9fb14b10315f0326a3f3e46374fae69cbce99cfdb3e3b9",
+     "quote": "Anthony Yen Visiting Professor"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Aram J. Thomasian",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor Emeritus; listing years 2016-2022.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "Aram J. Thomasian Professor Emeritus"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Edward L. Keller",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor Emeritus; listing years 2016-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "Edward L. Keller Professor Emeritus"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Edwin R. Lewis",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor Emeritus; listing years 2016-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "Edwin R. Lewis Professor Emeritus"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Jean-Paul Tennant",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "teaching_only",
+   "summary": "every department listing 2016-2026 names this person only with a teaching title (Lecturer, Instructor, Teaching, of the Practice): teaching faculty, not a PI. Titles listed: Lecturer; listing years 2024-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20240525115814id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "7ed4170bf1913eaf27cc18688483962bdb2c960962b75bdeb9758821e9291f8b",
+     "quote": "Jean-Paul Tennant Lecturer"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Jerome R. Singer",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor Emeritus; listing years 2016-2017.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "Jerome R. Singer Professor Emeritus"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Jeronimo Segovia Fernandez",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "teaching_only",
+   "summary": "every department listing 2016-2026 names this person only with a teaching title (Lecturer, Instructor, Teaching, of the Practice): teaching faculty, not a PI. Titles listed: Lecturer; listing years 2024-2025.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20240525115814id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "7ed4170bf1913eaf27cc18688483962bdb2c960962b75bdeb9758821e9291f8b",
+     "quote": "Jeronimo Segovia Fernandez Lecturer"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Joshua Tobin",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Visiting Lecturer; listing years 2021-2021.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20210417152805id_/https://www2.eecs.berkeley.edu/Faculty/Lists/CS/visiting.html",
+     "sha256": "ae1d549b3afb94b24db9bdd0bd3b29e564b3d43cae4c625145bb877c3ff93424",
+     "quote": "Joshua Tobin Visiting Lecturer"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Kam Y. Lau",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor Emeritus; listing years 2016-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "Kam Y. Lau Professor Emeritus"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Kenneth K. Mei",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor Emeritus; listing years 2016-2016.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160503011704id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/emeritus.shtml",
+     "sha256": "4eb71662959a0be4935840fc0aa19e60e9f91ab7653603331d4f72d0b9a4c890",
+     "quote": "Kenneth K. Mei Professor Emeritus"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Kimberly Garcia Garcia",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Visiting Lecturer; listing years 2019-2019.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20191014115330id_/https://www2.eecs.berkeley.edu/Faculty/Lists/CS/visiting.html",
+     "sha256": "af05b8881008958de7cacd9fd49e3ecd1df90268ffac2ec1722e8aa3ba74e2e2",
+     "quote": "Kimberly Garcia Garcia Visiting Lecturer"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Nathan W. Cheung",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor Emeritus; listing years 2016-2016.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160503011704id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/emeritus.shtml",
+     "sha256": "4eb71662959a0be4935840fc0aa19e60e9f91ab7653603331d4f72d0b9a4c890",
+     "quote": "Nathan W. Cheung Professor Emeritus"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Paul R. Gray",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor Emeritus, Executive Vice Chancellor and Provost Emeritus; Professor Emeritus , Executive Vice Chancellor and Provost Emeritus; listing years 2016-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Paul R. Gray Professor Emeritus, Executive Vice Chancellor and Provost Emeritus"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Richard Dorrance",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "teaching_only",
+   "summary": "every department listing 2016-2026 names this person only with a teaching title (Lecturer, Instructor, Teaching, of the Practice): teaching faculty, not a PI. Titles listed: Lecturer; listing years 2025-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20250327042312id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0b4cb2e7e18be539093d1e5560e6c5b16d44d33af3392ceb5624c89171892fc0",
+     "quote": "Richard Dorrance Lecturer"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Steven E. Schwarz",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor Emeritus; listing years 2016-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "Steven E. Schwarz Professor Emeritus"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "T. Kenneth Gustafson",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor Emeritus; listing years 2016-2025.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "T. Kenneth Gustafson Professor Emeritus"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Tahir Ghani",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Visiting Professor; listing years 2025-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20251002003248id_/https://www2.eecs.berkeley.edu/Faculty/Lists/visiting.html",
+     "sha256": "232fe4f83876ba9adc9fb14b10315f0326a3f3e46374fae69cbce99cfdb3e3b9",
+     "quote": "Tahir Ghani Visiting Professor"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Todd Green",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "visiting_only",
+   "summary": "every department listing 2016-2026 names this person only with a Visiting title: a visitor, not a PI at the school. Titles listed: Visiting Lecturer; listing years 2017-2017.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20170503202039id_/https://www2.eecs.berkeley.edu/Faculty/Lists/visiting.html",
+     "sha256": "da981949ebac6dd21b09509011af7c78a3797fb7295ca9163d16fb2b7ab3b546",
+     "quote": "Todd Green Visiting Lecturer"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "William G. Oldham",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor Emeritus; listing years 2016-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "William G. Oldham Professor Emeritus"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "William J. Welch",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "emeritus_only",
+   "summary": "every department listing 2016-2026 names this person only as Emeritus: retired throughout the window, so not counted as a PI (no advising evidence on record). Titles listed: Professor Emeritus; listing years 2016-2023.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "William J. Welch Professor Emeritus"
+    }
+   ],
+   "decided_by": "title rule (chain audit 2026-10-28)"
+  },
+  {
+   "name": "Sayeef Salahuddin",
+   "aliases": [],
+   "decision": "qualifies",
+   "reason": "qualifies",
+   "summary": "His stated focus is physics phenomena for improved energy efficiency in computing, and in-window dissertations he advised include probabilistic Ising architectures, hyperdimensional computing and ferroelectric memories for computing: computing hardware (memory and computing devices/architectures), borderline with device physics (cf. H.-S. Philip Wong at Stanford). PI: EECS dissertations-by-advisor page lists PhDs 2017-2025.",
+   "computing_area": "energy-efficient computing devices / memory / Ising computing",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Sayeef Salahuddin Associate Professor",
+     "observed": "2016-03-27"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/salahuddin.html",
+     "sha256": "3754e8463a1de5b1db984e5b13ba66d03eae1c5749dc613c69afcfe154ac6135",
+     "quote": "His work has focused predominantly on exploring physics phenomena that show potential for improved energy efficiency in computing.",
+     "observed": "2026-10-28"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Faculty/salahuddin.html",
+     "sha256": "948aa8b6338eb61683766780702912b7c5609fc4a650f18c08b5fdb624e58625",
+     "quote": "Probabilistic Ising Architectures for Combinatorial Optimization, Machine Learning and Neuromorphic Computing Saavan Patel [2023]",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Ali Javey",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Research areas are physical electronics, power/energy, MEMS and nanomaterials: materials/device physics, not computing.",
+   "computing_area": "nanomaterials / sensors",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Ali Javey Professor",
+     "observed": "2016-03-27"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/javey.html",
+     "sha256": "25affa1b74c620a02f066ae0747c01c34f745ce8f834ccb7314be55536250017",
+     "quote": "Research Areas Physical Electronics (PHY) Power and Energy (ENE) Micro/Nano Electro Mechanical Systems (MEMS) Nanomaterials and Nanotechnology Research Centers Berkeley Sensor & Actuato",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Robert Pilawa-Podgurski",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Power electronics and power/energy circuits: not computing.",
+   "computing_area": "power electronics",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20190919131344id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "c5157397c0672a4647168e735d64b0d2733705c2cc495a290a82af36776f6cbd",
+     "quote": "Robert Pilawa-Podgurski Associate Professor",
+     "observed": "2019-09-19"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/pilawa.html",
+     "sha256": "dc3603566f6e9a97d77c6691af7e06b7b1facebafea22233741f634511469f29",
+     "quote": "Research Areas Power and Energy (ENE) Integrated Circuits (INC) Physical Electronics (PHY) Research Centers Berkeley Power and Energy Center (BPEC) Teaching Schedule EE 108. Introductio",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Irfan Siddiqi",
+   "aliases": [],
+   "decision": "qualifies",
+   "reason": "qualifies",
+   "summary": "Heads the Quantum Nanoelectronics Laboratory (superconducting qubits, circuit-QED quantum architecture, quantum-limited amplifiers): quantum-computer hardware counts as computing hardware under the owner rule, though the lab frames itself partly as condensed-matter physics (borderline). Home department is Physics per general knowledge (EECS listing 2022-2026); not verified here.",
+   "computing_area": "superconducting quantum computing hardware",
+   "home_department": "Physics / EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20220412054425id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "f9073f81438c5f1164c8b73d1dc5f516e7ce16f9309f787804f1894a08a227e1",
+     "quote": "Irfan Siddiqi Professor",
+     "observed": "2022-04-12"
+    },
+    {
+     "url": "https://qnl.berkeley.edu/",
+     "sha256": "89b698f7df09ccfc295e2dad2d61b3f28c5f93a7272a135fb2107b802b30d6c0",
+     "quote": "Quantum Architecture Group The circuit QED paradigm has enabled a wide variety of experiments demonstrating quantum interactions between… Read ",
+     "observed": "2026-10-28"
+    },
+    {
+     "url": "https://qnl.berkeley.edu/",
+     "sha256": "89b698f7df09ccfc295e2dad2d61b3f28c5f93a7272a135fb2107b802b30d6c0",
+     "quote": "Qubit Qubit is a quantum mechanical two-level system that exists in a superposition of its basis states. It is realized as a macroscopic object that can be experimentally addressed for control and measurement with the proper choice of circuit parameters and operating conditions.",
+     "observed": "2026-10-28"
+    },
+    {
+     "url": "https://qnl.berkeley.edu/group-members",
+     "sha256": "c52979cbd75c0776f880bead57158be23b5d3d1a6817eb57d6564e350bfed4d6",
+     "quote": "Group Members Professor Irfan Siddiqi Principal Investigator Dr. Ravi Naik Post-Doctoral Researcher Dr. Gerwin Koolstra Post-doctoral Researcher Dr. Kasra Nowrouzi Post-doctoral Researcher Dr. Alexis Morvan Post-doctoral Researcher Dr. Jean-Loup Ville Post-Doc",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Ming C. Wu",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Silicon photonics, optoelectronics and optical MEMS: photonics/MEMS, not computing.",
+   "computing_area": "photonics / optical MEMS",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Ming C. Wu Professor",
+     "observed": "2016-03-27"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/wu.html",
+     "sha256": "3d57fd392c7f8e905ea410fb96446ead01f05c923dd0e3473f9d9afed7106012",
+     "quote": "Research Areas Micro/Nano Electro Mechanical Systems (MEMS) Physical Electronics (PHY) Si photonics, optoelectronics, nanophotonics, optical MEMS, Optofluidics Research Centers Berkeley",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Ana Claudia Arias",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Flexible/printed electronics and physical electronics: materials/devices, not computing.",
+   "computing_area": "flexible and printed electronics",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Ana Claudia Arias Associate Professor",
+     "observed": "2016-03-27"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/acarias.html",
+     "sha256": "0e4172d16844536bcdbd2429800b5d644508a7d6e9f74331487faacb3964618c",
+     "quote": "Research Areas Physical Electronics (PHY) Power and Energy (ENE) Flexible and Printed Electronics Research Centers Berkeley Emerging Technologies Research (BETR) Berkeley Wireless Resea",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Boubacar Kanté",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Physical electronics (nanophotonics, lasers, metamaterials): photonics physics, not computing.",
+   "computing_area": "nanophotonics / metamaterials",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20190919131344id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "c5157397c0672a4647168e735d64b0d2733705c2cc495a290a82af36776f6cbd",
+     "quote": "Boubacar Kanté Associate Professor",
+     "observed": "2019-09-19"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/bkante.html",
+     "sha256": "d4b2662355f5009acb19761dd7eb5fe599e065f3d4debb26ebdd3a99f69126d3",
+     "quote": "Research Areas Physical Electronics (PHY) Power and Energy (ENE) Research Centers NSF Challenge Institute for Quantum Computation (CIQC) Teaching Schedule EE 64. Introduction to Circuit",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Steven Conolly",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Medical imaging hardware and signals (magnetic particle imaging): biomedical imaging hardware, computing incidental (borderline: listed under signal processing).",
+   "computing_area": "magnetic particle imaging",
+   "home_department": "Bioengineering / EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Steven Conolly Professor",
+     "observed": "2016-03-27"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/sconolly.html",
+     "sha256": "e3594085f8f24a55dcfef971b41742c2c2f0f6569c59ee34eb5ffbb9a29699b4",
+     "quote": "Research Areas Biosystems & Computational Biology (BIO) , Medical Imaging hardware & Software Signal Processing (SP) , Medical Imaging hardware & software Teaching Schedule EE C145B. Me",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Song Mei",
+   "aliases": [],
+   "decision": "qualifies",
+   "reason": "qualifies",
+   "summary": "Theory of deep learning, language/diffusion models and RL (machine learning): computing area. Joint Statistics/EECS (listed below-the-line in EECS). PI: his group page lists PhD advisees.",
+   "computing_area": "machine learning theory",
+   "home_department": "Statistics",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20220412054425id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "f9073f81438c5f1164c8b73d1dc5f516e7ce16f9309f787804f1894a08a227e1",
+     "quote": "Song Mei Below The Line Assistant Professor",
+     "observed": "2022-04-12"
+    },
+    {
+     "url": "https://www.stat.berkeley.edu/~songmei/",
+     "sha256": "94c9bc11fd252783c89854b7cdaefdaf51b485220c4e6bb520871a2d0db76e15",
+     "quote": "I am an Associate Professor in the Department of Statistics and the Department of Electrical Engineering and Computer Sciences at UC Berkeley.",
+     "observed": "2026-10-28"
+    },
+    {
+     "url": "https://www.stat.berkeley.edu/~songmei/",
+     "sha256": "94c9bc11fd252783c89854b7cdaefdaf51b485220c4e6bb520871a2d0db76e15",
+     "quote": "My research is motivated by data science and AI , and lies at the intersection of statistics , machine learning , information theory , and computer science .",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Clark Nguyen",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "MEMS resonators and integrated circuits for RF: MEMS, not computing.",
+   "computing_area": "MEMS",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Clark Nguyen Professor",
+     "observed": "2016-03-27"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/ctnguyen.html",
+     "sha256": "4fddecd059c0b1edf459116d464256c064b31325edc2685309140f5a31e1f993",
+     "quote": "Research Areas Micro/Nano Electro Mechanical Systems (MEMS) Integrated Circuits (INC) Physical Electronics (PHY) Design, Modeling and Analysis (DMA) Research Centers Berkeley Sensor & A",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Alp Sipahigil",
+   "aliases": [],
+   "decision": "qualifies",
+   "reason": "qualifies",
+   "summary": "Leads the Berkeley Quantum Devices Group, whose stated aim is solid-state device research to advance quantum computation (superconducting qubits, quantum transduction): quantum-computer hardware (borderline with device physics). PI: advised the 2023 dissertation of Mutasem Odeh. Joined Berkeley 2021.",
+   "computing_area": "quantum computing hardware (superconducting qubits, spin qubits)",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20210417150618id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "53628f98f13175c11c15d8f18252ec99ffbf050716375be2b9ee1a726c1314bb",
+     "quote": "Alp Sipahigil Assistant Professor",
+     "observed": "2021-04-17"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/alp.html",
+     "sha256": "e0667572cea1f471053522e9ca625f4505dc3d30fa6703fea9211f24b0ce6aa8",
+     "quote": "He leads the Berkeley Quantum Devices Group which focuses on solid-state device research to advance quantum computation, communication and sensing.",
+     "observed": "2026-10-28"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Faculty/alp.html",
+     "sha256": "09f4df4539269cf418414ca9e79b16e7a2aa7fa6ea48180daa4ef02bb9caf678",
+     "quote": "Phonon-protected superconducting qubits Mutasem Odeh [2023]",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Sagar Karandikar",
+   "aliases": [],
+   "decision": "qualifies",
+   "reason": "qualifies",
+   "summary": "Computer architecture and hardware/software co-design for data centers. PI: his group page lists PhD students. Listed Acting Assistant Professor 2024, Assistant Professor later.",
+   "computing_area": "computer architecture / HW-SW co-design",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20241113124209id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "257a8ce3111f7298099476ad7253e0cc69b743e6ff49e3b20252e0ff25ba7c67",
+     "quote": "Sagar Karandikar Acting Assistant Professor",
+     "observed": "2024-11-13"
+    },
+    {
+     "url": "https://sagark.org",
+     "sha256": "c9bbf4195fbd0ce95bd6dedfef6db5b55e344905811952ad85658c32d0b6be9a",
+     "quote": "My research focuses on AI-driven hardware/software co-design methodologies and hardware/software co-design for hyperscale cloud data centers.",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Giuseppe Loianno",
+   "aliases": [],
+   "decision": "qualifies",
+   "reason": "qualifies",
+   "summary": "Robotics autonomy (perception, learning and control for agile aerial robots). Heads the Agile Robotics And Perception Lab, which moved from NYU to Berkeley in August 2025; the lab page lists EECS PhD students and an EECS postdoc.",
+   "computing_area": "aerial robotics / robot perception and control",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20251012212055id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "a46a988939daad22b885c5890ec6b100ac08031b707867ef45569e446ebbcc4a",
+     "quote": "Giuseppe Loianno Associate Professor",
+     "observed": "2025-10-12"
+    },
+    {
+     "url": "https://arplaboratory.github.io/",
+     "sha256": "03e83c26604ed99bbee7963d1bfcb57343a0a1226e6120e4578ef30700806741",
+     "quote": "The lab has been founded by Prof. Giuseppe Loianno and is located in UC Berkeley.",
+     "observed": "2026-10-28"
+    },
+    {
+     "url": "https://arplaboratory.github.io/",
+     "sha256": "03e83c26604ed99bbee7963d1bfcb57343a0a1226e6120e4578ef30700806741",
+     "quote": "Aug 27, 2025 ARPL has moved to UC Berkeley!",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Grigory Tikhomirov",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "DNA/molecular self-assembly and nanofabrication (listed under bio, MEMS, physical electronics): bioengineering/nanotechnology, not computing (borderline: molecular robotics).",
+   "computing_area": "DNA nanotechnology",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20210417150618id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "53628f98f13175c11c15d8f18252ec99ffbf050716375be2b9ee1a726c1314bb",
+     "quote": "Grigory Tikhomirov Assistant Professor",
+     "observed": "2021-04-17"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/grisha.html",
+     "sha256": "e60d0a630e0e6c018b2bdd5e994ff46cc63ba11e7dfb5500cc46299a84d07f08",
+     "quote": "Research Areas Biosystems & Computational Biology (BIO) Control, Intelligent Systems, and Robotics (CIR) Power and Energy (ENE) Integrated Circuits (INC) Micro/Nano Electro Mechanical S",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Jessica Boles",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Power electronics (piezoelectric power conversion): not computing.",
+   "computing_area": "power electronics",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20220927115537id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "da428411b4f075689c5c390df5ce3a3ee932a9bf1687d0ad9d93dd4e3f8e71b6",
+     "quote": "Jessica Boles Acting Assistant Professor",
+     "observed": "2022-09-27"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/boles.html",
+     "sha256": "c517fb439e5218666ed9702a6cac25faf4318b3657fe67d32ee33db9fe50f919",
+     "quote": "Research Areas Power and Energy (ENE) Integrated Circuits (INC) Micro/Nano Electro Mechanical Systems (MEMS) Physical Electronics (PHY) Research Centers Berkeley Power and Energy Center",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Mengjie Yu",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Integrated nonlinear photonics (physical electronics; AI also ticked): photonics physics, not computing (borderline).",
+   "computing_area": "integrated photonics",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20241113124209id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "257a8ce3111f7298099476ad7253e0cc69b743e6ff49e3b20252e0ff25ba7c67",
+     "quote": "Mengjie Yu Assistant Professor",
+     "observed": "2024-11-13"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/mengjieyu.html",
+     "sha256": "e059736efd5afc4b535b8c0ae31d88467e1cdc58bf7acbfed124b50a1c9554c3",
+     "quote": "Research Areas Physical Electronics (PHY) Artificial Intelligence (AI) Integrated Circuits (INC) Micro/Nano Electro Mechanical Systems (MEMS) Teaching Schedule EE 236A. Quantum and Opti",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Eric Y. Ma",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Physical electronics: nanoscale microwave/optical probing of quantum materials; device/materials physics, not computing.",
+   "computing_area": "quantum materials / nanoscale microscopy",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20210918020234id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "e516491d7ebc6686425aea6986677e3800d02ea547fc8f49b4fffb5cc36fc926",
+     "quote": "Eric Y. Ma Below The Line Assistant Professor",
+     "observed": "2021-09-18"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/eric-y-ma.html",
+     "sha256": "d04f9bb20f1b0e34bac4674fb452e4bbe0d8bac218ccdce3e04ae25709fcefbf",
+     "quote": "Research Areas Physical Electronics (PHY) Power and Energy (ENE) Human-Computer Interaction (HCI) Selected Publications M. Poudineh, C. Maikawa, E. Ma, J. Pan, D. Mamerow, Y. Hang, S. B",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Guanghan Meng",
+   "aliases": [],
+   "decision": "qualifies",
+   "reason": "qualifies",
+   "summary": "Computational imaging: optical physics plus computational methods for eye/brain microscopy, affiliated with the Berkeley Center for Computational Imaging and BAIR (borderline with biophotonics). Heads VOILA; team page lists PhD students (Yuanlong Zhao, Vision Science; Vasilisa Ponomarenko, EECS) and a postdoc.",
+   "computing_area": "computational optical microscopy",
+   "home_department": "Optometry and Vision Science",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20250327042312id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0b4cb2e7e18be539093d1e5560e6c5b16d44d33af3392ceb5624c89171892fc0",
+     "quote": "Guanghan Meng Below The Line Assistant Professor",
+     "observed": "2025-03-27"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/guanghan.html",
+     "sha256": "aaac68bc57a023bd5b4af91ded4c24e26fb2973e8f71f37712441e1ef9b18f90",
+     "quote": "I lead the Visionary Optical Imaging LAb (VOILA). I apply methods of optical physics and modern computational science to develop cutting-edge optical microscopy technologies for eye and brain imaging.",
+     "observed": "2026-10-28"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/guanghan.html",
+     "sha256": "aaac68bc57a023bd5b4af91ded4c24e26fb2973e8f71f37712441e1ef9b18f90",
+     "quote": "Research Centers Berkeley Artificial Intelligence Research Lab (BAIR) Berkeley Center for Computational Imaging (BCCI)",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Yuan Cao",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Physical electronics and physics (twisted 2D materials): not computing.",
+   "computing_area": "condensed-matter physics / 2D materials",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20231127025713id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "a2e5eef908f5f0b90068a7201c637fc2b22979c434a3c0b1cfbdf3258e432453",
+     "quote": "Yuan Cao Assistant Professor",
+     "observed": "2023-11-27"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/caoyuan.html",
+     "sha256": "d5b607063972a486377086aeb4ed5f12e96cc060ec80fd99df622bff446f4b7a",
+     "quote": "Research Areas Physical Electronics (PHY) Micro/Nano Electro Mechanical Systems (MEMS) Physics Teaching Schedule EE 130. Integrated-Circuit Devices , MoWe 17:00-18:29, Etcheverry 3108 E",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Kater Murch",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Experimental open quantum systems, measurement and feedback in superconducting circuits: quantum physics rather than building quantum computers (borderline).",
+   "computing_area": "quantum measurement / open quantum systems",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20260417001407id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "57fdde3bbd17b3a34e1175a5e053c886ad9f03d8b32f8dba2de38d24f23a0134",
+     "quote": "Kater Murch Professor",
+     "observed": "2026-04-17"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/katermurch.html",
+     "sha256": "8020d25b08fe5eef170bc3db4a24965a22e7130dfd7e524f808de9eec429f53e",
+     "quote": "Research Areas Physical Electronics (PHY) , Quantum Teaching Schedule EE 64. Introduction to Circuits & Devices , TuTh 14:00-15:29, Stanley 105 EE 194-5. Open Quantum Systems: Measureme",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Preeya Khanna",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Sensorimotor learning and control, neural engineering and brain-machine interfaces: neuroscience/neuroengineering, computing as tool (borderline; consistent with Stanford Krishna Shenoy).",
+   "computing_area": "neural engineering / brain-machine interfaces",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20230320232425id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "9d270d05521fa80cfff0d5c05ce26219b9a500acc9af568a021052b4a7f1531e",
+     "quote": "Preeya Khanna Assistant Professor",
+     "observed": "2023-03-20"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/pkhanna.html",
+     "sha256": "1c55bd62fe0673ba0c2ac6c7e9914098658000faada7303ae0810fb945e222bc",
+     "quote": "Research Areas Biosystems & Computational Biology (BIO) Human-Computer Interaction (HCI) Signal Processing (SP) Artificial Intelligence (AI) Sensorimotor learning and control; Neural en",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Asir Intisar Khan",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Electronic materials and devices (physical electronics, energy): device/materials physics, not computing (borderline: phase-change memory devices).",
+   "computing_area": "electronic materials / memory devices",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20251012212055id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "a46a988939daad22b885c5890ec6b100ac08031b707867ef45569e446ebbcc4a",
+     "quote": "Asir Intisar Khan Assistant Professor",
+     "observed": "2025-10-12"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/asir.html",
+     "sha256": "dcaadf03b04b1f8c9914c9155105eee8256ed76b1ad3ea76977b7996e1aa4e98",
+     "quote": "Research Areas Physical Electronics (PHY) Power and Energy (ENE) Electronic Materials Research Centers Berkeley Emerging Technologies Research (BETR) Teaching Schedule EE 130. Integrate",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "David Allstot",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_pi",
+   "summary": "Listed 2016 only as \"MacKay Professor in Residence\", a visiting/residence appointment, not a PI; analog/RF circuits would not be computing in any case.",
+   "computing_area": "analog/RF integrated circuits",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "David Allstot MacKay Professor in Residence",
+     "observed": "2016-03-27"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Luke Lee",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Biosystems, MEMS and physical electronics (bio-nanotechnology): bioengineering, not computing.",
+   "computing_area": "biophotonics / bioMEMS",
+   "home_department": "Bioengineering",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Luke Lee Professor",
+     "observed": "2016-03-27"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/lplee.html",
+     "sha256": "858398191c29655c83ab8ba30e84d701003038ab7cdfb402ee502fee58ca363e",
+     "quote": "Research Areas Biosystems & Computational Biology (BIO) Micro/Nano Electro Mechanical Systems (MEMS) Physical Electronics (PHY) Research Centers Berkeley Sensor & Actuator Center (BSAC)",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Jeffrey Bokor",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Physical electronics and nanotechnology (nanomagnetic devices): device physics, not computing.",
+   "computing_area": "nanoelectronics",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Jeffrey Bokor Professor, Associate Dean",
+     "observed": "2016-03-27"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/bokor.html",
+     "sha256": "c961dee33dd666aac07e534c19a53e467ef5f9384216df095747d07c71d38415",
+     "quote": "Research Areas Physical Electronics (PHY) Nanotechnology Research Centers Berkeley Emerging Technologies Research (BETR) Center for Energy Efficient Electronics Science (E3S) Selected P",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Eli Yablonovitch",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Body of in-window work is photonics/optoelectronics (5 of 7 PhD dissertations he advised 2016-2021 are optics/photonic design); a newer thread on physics-based computing for optimization (Ising-style machines; dissertations of Patrick Xiao 2019 and Sri Krishna Vadlamani 2021) is real but minority, so not computing on balance (borderline). He was a PI in-window; now Professor Emeritus.",
+   "computing_area": "photonics / physics-based optimization machines",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Eli Yablonovitch Professor",
+     "observed": "2016-03-27"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/yablonovitch.html",
+     "sha256": "9fb2e0afa312f4d5db0ddc52dec2620539207c5e33a19872ac19529fbccd4798",
+     "quote": "Research Areas Physical Electronics (PHY) , Physics-Based Computing for Optimization & Deep Learning; Photonic Crystals at optical and microwave frequencies; Optical Antennas; and Solar Cells.",
+     "observed": "2026-10-28"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Faculty/yablonovitch.html",
+     "sha256": "d3eb7b1060d0a729ab1fc7479b4c34cee40c94989fcbc65507743b3fcec5b6c0",
+     "quote": "Sharp Switching in Tunnel Transistors and Physics-based Machines for Optimization Sri Krishna Vadlamani [2021]",
+     "observed": "2026-10-28"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Faculty/yablonovitch.html",
+     "sha256": "d3eb7b1060d0a729ab1fc7479b4c34cee40c94989fcbc65507743b3fcec5b6c0",
+     "quote": "Ph.D. Dissertations - Eli Yablonovitch Optical Antenna-Enhanced Light-Emitting Diodes and Inverse Electromagnetic Design Sean Hooten [2021] Photonic heat engines at thermodynamic limits Zunaid Omair [2021] Sharp Switching in Tunnel Transistors and Physics-based Machines for Optimizati",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Tsu-Jae King Liu",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Physical electronics and MEMS (transistors, nano-electro-mechanical relays): device physics, not computing (borderline: low-power logic devices).",
+   "computing_area": "semiconductor devices / MEMS relays",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Tsu-Jae King Liu Professor, Chair",
+     "observed": "2016-03-27"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/king.html",
+     "sha256": "7b117e149485faf7720403c321c4ab30b1c6758314214abb4a7ef120a4198ca6",
+     "quote": "Research Areas Physical Electronics (PHY) Micro/Nano Electro Mechanical Systems (MEMS) Research Centers Center for Energy Efficient Electronics Science (E3S) Marvell NanoLab SpeciaLIzed",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Vivek Subramanian",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Printed electronics and physical electronics: materials/devices, not computing. (Listed Adjunct Professor in later captures.)",
+   "computing_area": "printed electronics",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Vivek Subramanian Professor",
+     "observed": "2016-03-27"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/subramanian.html",
+     "sha256": "c12047af4649c50f1e27a1804dade49b6371e861ece26de85a05cec747a0baaa",
+     "quote": "Research Areas Physical Electronics (PHY) Power and Energy (ENE) Integrated Circuits (INC) Selected Publications W. J. Scheideler, J. Jang, M. A. U. Karim, R. Kitsomboonloha, A. Zeumaul",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Seth R. Sanders",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Power and energy systems, power electronics: not computing.",
+   "computing_area": "power electronics",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Seth R. Sanders Professor",
+     "observed": "2016-03-27"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/sanders.html",
+     "sha256": "8199b993d0ec8bb4c9e0adf36c76c50b5172f925a3b93c45db5d90be766a94f2",
+     "quote": "Research Areas Power and Energy (ENE) Control, Intelligent Systems, and Robotics (CIR) Integrated Circuits (INC) Power and electronics systems Research Centers Berkeley Power and Energy",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Constance Chang-Hasnain",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Physical electronics (semiconductor optoelectronics, VCSELs): photonics, not computing.",
+   "computing_area": "optoelectronics / VCSELs",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Constance Chang-Hasnain Professor",
+     "observed": "2016-03-27"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/chang-hasnain.html",
+     "sha256": "0c53ba2c05bb843647b91c3ccbfed71f634a8ea01a7847ff5d20fcad294e2b75",
+     "quote": "Research Areas Physical Electronics (PHY) Selected Honors and Awards Nick Holonyak Jr. Medal for Semiconductor Optoelectronics Technologies , 2024 Welker Award, 2022 ECE Distinguished A",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Aditya Muppala",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Integrated circuits for RF/wireless (BWRC), physical electronics: RF circuit design, not computing (borderline).",
+   "computing_area": "RF / wireless integrated circuits",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20251012212055id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "a46a988939daad22b885c5890ec6b100ac08031b707867ef45569e446ebbcc4a",
+     "quote": "Aditya Muppala Acting Assistant Professor",
+     "observed": "2025-10-12"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/muppala.html",
+     "sha256": "c5d2a4197e1cb4a71432fe754a63fc5fcb9a38a6fcbfc7ae1e09682ea55ec8bc",
+     "quote": "Research Areas Integrated Circuits (INC) Physical Electronics (PHY) Signal Processing (SP) Research Centers Berkeley Wireless Research Center (BWRC) Teaching Schedule EE 117B. Microwave",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Aditya Varma Muppala",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Same person as \"Aditya Muppala\" (same homepage muppala.html; Acting Assistant Professor 2025, Assistant Professor 2026). RF/wireless integrated circuits: not computing (borderline).",
+   "computing_area": "RF / wireless integrated circuits",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20260417001407id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "57fdde3bbd17b3a34e1175a5e053c886ad9f03d8b32f8dba2de38d24f23a0134",
+     "quote": "Aditya Varma Muppala Assistant Professor",
+     "observed": "2026-04-17"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/muppala.html",
+     "sha256": "c5d2a4197e1cb4a71432fe754a63fc5fcb9a38a6fcbfc7ae1e09682ea55ec8bc",
+     "quote": "Research Areas Integrated Circuits (INC) Physical Electronics (PHY) Signal Processing (SP) Research Centers Berkeley Wireless Research Center (BWRC) Teaching Schedule EE 117B. Microwave",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "EECS Prof. Eli Yablonovitch",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Listing parse duplicate of \"Eli Yablonovitch\" (a news caption \"EECS Prof. Eli Yablonovitch\" followed by \"Our Faculty\"); same decision as that row.",
+   "computing_area": "photonics / physics-based optimization machines",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20171022193540id_/https://eecs.berkeley.edu/people/faculty",
+     "sha256": "56115cd421cbf3df34012b4311c2b462309df51f7a13c811c6132281c9745ec3",
+     "quote": "EECS Prof. Eli Yablonovitch Our Faculty",
+     "observed": "2017-10-22"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Maneesh Agrawala",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_pi",
+   "summary": "Stale/secondary Berkeley listing (2016-2017; titles include Adjunct Professor). He moved to Stanford in 2015 and is already a Stanford PI (census + pis.json \"Maneesh Agrawala\"); at Berkeley he holds no PI appointment in-window.",
+   "computing_area": "visualization / graphics / HCI",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160331021229id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/CS/list.shtml?",
+     "sha256": "1a36e9d1908ece2c6210b09f53ae6cd937ed53f285c7a99f93573940fbe22948",
+     "quote": "Maneesh Agrawala Professor",
+     "observed": "2016-03-31"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "CS Current",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: section heading \"CS Current Faculty\", not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160331021229id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/CS/list.shtml?",
+     "sha256": "1a36e9d1908ece2c6210b09f53ae6cd937ed53f285c7a99f93573940fbe22948",
+     "quote": "CS Current Faculty",
+     "observed": "2016-03-31"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "CS New",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: section heading \"CS New Faculty\", not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20220314222201id_/https://www2.eecs.berkeley.edu/Faculty/Lists/CS/new.html",
+     "sha256": "ef0a5ea6c00dec572b5727023dad1d108bf34e544b40b1778cba64d6de28aac9",
+     "quote": "CS New Faculty",
+     "observed": "2022-03-14"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "DARPA Young",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: award line \"DARPA Young Faculty Award, 2013\" on Pieter Abbeel's homepage, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20181110000244id_/https://www2.eecs.berkeley.edu/Faculty/Homepages/abbeel.html",
+     "sha256": "58cfb63d48041eb0c08d594e9d1122defab4272af1032316f5ace188a23782e3",
+     "quote": "DARPA Young Faculty Award , 2013",
+     "observed": "2018-11-10"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "K-12 Outreach",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: navigation menu (\"K-12 Outreach Faculty Positions\"), not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20210302054536id_/https://www2.eecs.berkeley.edu/Faculty/Lists/CS/faculty.html",
+     "sha256": "1ebca06af25407bacaced171bd42c960ff4078e29696bf8e64e01cb793bbff2c",
+     "quote": "K-12 Outreach Faculty Positions",
+     "observed": "2021-03-02"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "NSF Presidential",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: award line \"NSF Presidential Faculty Fellow (PFF), 1995\" on Ken Goldberg's homepage, not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20180404103506id_/https://www2.eecs.berkeley.edu/Faculty/Homepages/goldberg.html",
+     "sha256": "22b93fb47940abb9a89473fceacce2d2ddfbcf2c299171defc70dd1935139760",
+     "quote": "NSF Presidential Faculty Fellow (PFF) , 1995",
+     "observed": "2018-04-04"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Qian Xu",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Computing area (quantum error correction / fault-tolerant architectures), but his homepage says he starts as Assistant Professor in Fall 2027, outside the 2016-2026 window.",
+   "computing_area": "fault-tolerant quantum computer architecture",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20260712214536id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "8972281ca5ba95ce8780c522686bfd4e85cd45411c108cddea7ffdd31683ffb0",
+     "quote": "Qian Xu Assistant Professor",
+     "observed": "2026-07-12"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/qianxu.html",
+     "sha256": "3712296416414d794b48d49db61dda486e1ef6f68e1ddf9e36318a10d1c55543",
+     "quote": "Qian Xu is an incoming Assistant Professor of Electrical Engineering and Computer Sciences and Igarashi Faculty Fellow at the University of California, Berkeley, starting in Fall 2027.",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "See All",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: link text \"See All Faculty\", not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160918163358id_/https://eecs.berkeley.edu/people/faculty",
+     "sha256": "7ffa6b05d0dcf973917ac3c2ab457b0b907bf58e90ba0a6be17a1f0e45db3170",
+     "quote": "See All Faculty",
+     "observed": "2016-09-18"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Student Affairs",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_faculty",
+   "summary": "Listing parse artifact: navigation menu (\"Student Affairs Faculty Positions\"), not a person.",
+   "computing_area": null,
+   "home_department": null,
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20191014112202id_/https://www2.eecs.berkeley.edu/Faculty/Lists/CS/faculty.html",
+     "sha256": "2207c281c578ff9a907dd32b17684bf2650f92ea7ac108b9cf30a5de31f95e66",
+     "quote": "Student Affairs Faculty Positions",
+     "observed": "2019-10-14"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "YoungJu Jo",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "not_computing",
+   "summary": "Neurotechnology to measure and control neural dynamics (systems and computational neuroscience with optical/genetic engineering): neuroscience, computing incidental (borderline: lists computational optics, AI).",
+   "computing_area": "neurotechnology / systems neuroscience",
+   "home_department": "EECS",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20260712214536id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "8972281ca5ba95ce8780c522686bfd4e85cd45411c108cddea7ffdd31683ffb0",
+     "quote": "YoungJu Jo Assistant Professor",
+     "observed": "2026-07-12"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/yjo.html",
+     "sha256": "871c2cbe162526cbdeaf8c32e707f037431e6968e59b7640264880d19a5a23b1",
+     "quote": "Research Areas Biosystems & Computational Biology (BIO) Physical Electronics (PHY) Artificial Intelligence (AI) Neuroscience; Neuroengineering; Computational Optics Research Centers Hel",
+     "observed": "2026-10-28"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/yjo.html",
+     "sha256": "871c2cbe162526cbdeaf8c32e707f037431e6968e59b7640264880d19a5a23b1",
+     "quote": "His research integrates systems and computational neuroscience with optical and genetic engineering. His laboratory develops and applies next-generation neurotechnologies to measure, model, and control neural dynamics and computation in behaving animals.",
+     "observed": "2026-10-28"
+    }
+   ],
+   "decided_by": "coverage review 2026-10-28"
+  },
+  {
+   "name": "Zaijun Chen",
+   "aliases": [],
+   "decision": "qualifies",
+   "reason": "computing_pi",
+   "summary": "Assistant Professor, EECS (lists 2024-2026). Heads the Intelligent and Quantum Photonics Group (optical computing architectures, photonic neural networks): computing hardware under the owner rule (borderline with photonics). PI: lab members page lists PhD students working on optical computing.",
+   "reviewed": "2026-10-29",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20241113124209id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "257a8ce3111f7298099476ad7253e0cc69b743e6ff49e3b20252e0ff25ba7c67",
+     "quote": "Zaijun Chen Assistant Professor",
+     "observed": "2024-11-13",
+     "kind": "dept_listing"
+    },
+    {
+     "url": "https://web.archive.org/web/20250327042312id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0b4cb2e7e18be539093d1e5560e6c5b16d44d33af3392ceb5624c89171892fc0",
+     "quote": "Zaijun Chen Assistant Professor",
+     "observed": "2025-03-27",
+     "kind": "dept_listing"
+    },
+    {
+     "url": "https://web.archive.org/web/20250514140029id_/https://www2.eecs.berkeley.edu/Faculty/Lists/new.html",
+     "sha256": "127494b0ece8302f1f2a0a8c14fbd351a9e8761949e0c4bf112550d474b7a7c8",
+     "quote": "Zaijun Chen Assistant Professor",
+     "observed": "2025-05-14",
+     "kind": "dept_listing"
+    },
+    {
+     "url": "https://web.archive.org/web/20251012212055id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "a46a988939daad22b885c5890ec6b100ac08031b707867ef45569e446ebbcc4a",
+     "quote": "Zaijun Chen Assistant Professor",
+     "observed": "2025-10-12",
+     "kind": "dept_listing"
+    },
+    {
+     "url": "https://web.archive.org/web/20260415033254id_/https://www2.eecs.berkeley.edu/Faculty/Lists/new.html",
+     "sha256": "d0e1dede81650993cd847bf472f8761916e76a90d3f758d8c9f90800f241c0a7",
+     "quote": "Zaijun Chen Assistant Professor",
+     "observed": "2026-04-15",
+     "kind": "dept_listing"
+    },
+    {
+     "url": "https://web.archive.org/web/20260417001407id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "57fdde3bbd17b3a34e1175a5e053c886ad9f03d8b32f8dba2de38d24f23a0134",
+     "quote": "Zaijun Chen Assistant Professor",
+     "observed": "2026-04-17",
+     "kind": "dept_listing"
+    },
+    {
+     "url": "https://web.archive.org/web/20260712204936id_/https://www2.eecs.berkeley.edu/Faculty/Lists/new.html",
+     "sha256": "0c72e1e4ca953931a88ba93bb42c8beec0c3b910ee6885e9e1b8877346c92a7c",
+     "quote": "Zaijun Chen Assistant Professor",
+     "observed": "2026-07-12",
+     "kind": "dept_listing"
+    },
+    {
+     "url": "https://web.archive.org/web/20260712214536id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "8972281ca5ba95ce8780c522686bfd4e85cd45411c108cddea7ffdd31683ffb0",
+     "quote": "Zaijun Chen Assistant Professor",
+     "observed": "2026-07-12",
+     "kind": "dept_listing"
+    },
+    {
+     "url": "https://zjc.eecs.berkeley.edu/home/",
+     "sha256": "b6e4718e1a5e930ff66b69db7344b6f892a88ab2d9d3e97dc3f395bc46f84f4b",
+     "quote": "The Laboratory of Intelligent and Quantum Photonics is housed within the Department of EECS at UC Berkeley.",
+     "observed": "2026-10-29",
+     "kind": "coverage_review_evidence",
+     "fetched_at": "2026-10-29"
+    },
+    {
+     "url": "https://zjc.eecs.berkeley.edu/home/",
+     "sha256": "b6e4718e1a5e930ff66b69db7344b6f892a88ab2d9d3e97dc3f395bc46f84f4b",
+     "quote": "Our research focuses on new optical computing architectures and neuromorphic devices for low-energy and high-density computing",
+     "observed": "2026-10-29",
+     "kind": "coverage_review_evidence",
+     "fetched_at": "2026-10-29"
+    },
+    {
+     "kind": "advises_PhD student",
+     "url": "https://zjc.eecs.berkeley.edu/labmembers/",
+     "sha256": "515dc6af735fec9420badfc8f1b8519342077a05036e9e5a4cbfe511488e4107",
+     "quote": "PhD Students Kaiwen Xue Research Interest: Optical Computing and Optical Neural Networks",
+     "reviewed": "2026-10-29",
+     "review": "coverage review (chain audit check 0), 2026-10-29"
+    }
+   ]
+  },
+  {
+   "name": "Alex Dimakis",
+   "aliases": [],
+   "decision": "qualifies",
+   "reason": "computing_pi",
+   "summary": "Professor, EECS (lists 2025-2026); the same Alex Dimakis who was at UT Austin until then (his page: Professor, EECS Department, UC Berkeley; alumni listed as UT Austin PhDs). Machine learning / generative AI. PI: group page lists current PhD students. Lab papers count only in listed years 2025-2026.",
+   "reviewed": "2026-10-29",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20250327042312id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0b4cb2e7e18be539093d1e5560e6c5b16d44d33af3392ceb5624c89171892fc0",
+     "quote": "Alex Dimakis Professor",
+     "observed": "2025-03-27",
+     "kind": "dept_listing"
+    },
+    {
+     "url": "https://web.archive.org/web/20250514140029id_/https://www2.eecs.berkeley.edu/Faculty/Lists/new.html",
+     "sha256": "127494b0ece8302f1f2a0a8c14fbd351a9e8761949e0c4bf112550d474b7a7c8",
+     "quote": "Alex Dimakis Professor",
+     "observed": "2025-05-14",
+     "kind": "dept_listing"
+    },
+    {
+     "url": "https://web.archive.org/web/20251012212055id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "a46a988939daad22b885c5890ec6b100ac08031b707867ef45569e446ebbcc4a",
+     "quote": "Alex Dimakis Professor",
+     "observed": "2025-10-12",
+     "kind": "dept_listing"
+    },
+    {
+     "url": "https://web.archive.org/web/20260415033254id_/https://www2.eecs.berkeley.edu/Faculty/Lists/new.html",
+     "sha256": "d0e1dede81650993cd847bf472f8761916e76a90d3f758d8c9f90800f241c0a7",
+     "quote": "Alex Dimakis Professor",
+     "observed": "2026-04-15",
+     "kind": "dept_listing"
+    },
+    {
+     "url": "https://web.archive.org/web/20260417001407id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "57fdde3bbd17b3a34e1175a5e053c886ad9f03d8b32f8dba2de38d24f23a0134",
+     "quote": "Alex Dimakis Professor",
+     "observed": "2026-04-17",
+     "kind": "dept_listing"
+    },
+    {
+     "url": "https://web.archive.org/web/20260712204936id_/https://www2.eecs.berkeley.edu/Faculty/Lists/new.html",
+     "sha256": "0c72e1e4ca953931a88ba93bb42c8beec0c3b910ee6885e9e1b8877346c92a7c",
+     "quote": "Alex Dimakis Professor",
+     "observed": "2026-07-12",
+     "kind": "dept_listing"
+    },
+    {
+     "url": "https://web.archive.org/web/20260712214536id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "8972281ca5ba95ce8780c522686bfd4e85cd45411c108cddea7ffdd31683ffb0",
+     "quote": "Alex Dimakis Professor",
+     "observed": "2026-07-12",
+     "kind": "dept_listing"
+    },
+    {
+     "url": "https://people.eecs.berkeley.edu/~alexdimakis/",
+     "sha256": "0f8d069ecc7679f356de006161977f59c691c083b068aff3e5c0273b890c1346",
+     "quote": "Professor, EECS Department, UC Berkeley",
+     "observed": "2026-10-29",
+     "kind": "coverage_review_evidence",
+     "fetched_at": "2026-10-29"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/adim.html",
+     "sha256": "0b6cc36ca7bfe3af0edbe4b1564876f0371158461a0f3e57427d108452b7b7a6",
+     "quote": "His research interests include Generative AI, Information Theory and Machine Learning.",
+     "observed": "2026-10-29",
+     "kind": "coverage_review_evidence",
+     "fetched_at": "2026-10-29"
+    },
+    {
+     "kind": "advises_PhD student",
+     "url": "https://people.eecs.berkeley.edu/~alexdimakis/group.html",
+     "sha256": "6c803326d198132d14cd299535aa3b4b7937286a926f5bbc8697b77fd0ddf62f",
+     "quote": "Group members PhD students Mert Cemri Harshit Varma Gautham Govind",
+     "reviewed": "2026-10-29",
+     "review": "coverage review (chain audit check 0), 2026-10-29"
+    }
+   ]
+  },
+  {
+   "name": "Pierluigi Nuzzo",
+   "aliases": [
+    "Pierliugi Nuzzo"
+   ],
+   "decision": "qualifies",
+   "reason": "computing_pi",
+   "summary": "Associate Professor, EECS (new-faculty list 2024 as \"Pierliugi Nuzzo\"; faculty lists 2024-2026). Design automation and formal methods for cyber-physical systems and hardware. PI: heads the DesCyPhy Lab, which moved from USC to Berkeley in 2024.",
+   "reviewed": "2026-10-29",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20240813175542id_/https://www2.eecs.berkeley.edu/Faculty/Lists/new.html",
+     "sha256": "7c1475bfbbb6fb0809ab4cdc36e8b07be3756f66aaefea5a3a51d474860a9da3",
+     "quote": "Pierliugi Nuzzo Assistant Professor",
+     "observed": "2024-08-13",
+     "kind": "dept_listing"
+    },
+    {
+     "url": "https://web.archive.org/web/20241113124209id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "257a8ce3111f7298099476ad7253e0cc69b743e6ff49e3b20252e0ff25ba7c67",
+     "quote": "Pierluigi Nuzzo Associate Professor",
+     "observed": "2024-11-13",
+     "kind": "dept_listing"
+    },
+    {
+     "url": "https://web.archive.org/web/20250327042312id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0b4cb2e7e18be539093d1e5560e6c5b16d44d33af3392ceb5624c89171892fc0",
+     "quote": "Pierluigi Nuzzo Associate Professor",
+     "observed": "2025-03-27",
+     "kind": "dept_listing"
+    },
+    {
+     "url": "https://web.archive.org/web/20250514140029id_/https://www2.eecs.berkeley.edu/Faculty/Lists/new.html",
+     "sha256": "127494b0ece8302f1f2a0a8c14fbd351a9e8761949e0c4bf112550d474b7a7c8",
+     "quote": "Pierluigi Nuzzo Associate Professor",
+     "observed": "2025-05-14",
+     "kind": "dept_listing"
+    },
+    {
+     "url": "https://web.archive.org/web/20251012212055id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "a46a988939daad22b885c5890ec6b100ac08031b707867ef45569e446ebbcc4a",
+     "quote": "Pierluigi Nuzzo Associate Professor",
+     "observed": "2025-10-12",
+     "kind": "dept_listing"
+    },
+    {
+     "url": "https://web.archive.org/web/20260415033254id_/https://www2.eecs.berkeley.edu/Faculty/Lists/new.html",
+     "sha256": "d0e1dede81650993cd847bf472f8761916e76a90d3f758d8c9f90800f241c0a7",
+     "quote": "Pierluigi Nuzzo Associate Professor",
+     "observed": "2026-04-15",
+     "kind": "dept_listing"
+    },
+    {
+     "url": "https://web.archive.org/web/20260417001407id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "57fdde3bbd17b3a34e1175a5e053c886ad9f03d8b32f8dba2de38d24f23a0134",
+     "quote": "Pierluigi Nuzzo Associate Professor",
+     "observed": "2026-04-17",
+     "kind": "dept_listing"
+    },
+    {
+     "url": "https://web.archive.org/web/20260712204936id_/https://www2.eecs.berkeley.edu/Faculty/Lists/new.html",
+     "sha256": "0c72e1e4ca953931a88ba93bb42c8beec0c3b910ee6885e9e1b8877346c92a7c",
+     "quote": "Pierluigi Nuzzo Associate Professor",
+     "observed": "2026-07-12",
+     "kind": "dept_listing"
+    },
+    {
+     "url": "https://web.archive.org/web/20260712214536id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "8972281ca5ba95ce8780c522686bfd4e85cd45411c108cddea7ffdd31683ffb0",
+     "quote": "Pierluigi Nuzzo Associate Professor",
+     "observed": "2026-07-12",
+     "kind": "dept_listing"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/pnuzzo.html",
+     "sha256": "9e2b900690d767fcb799ff8ebac063d0e69d9e58fa8af246b8b085d809d32a8f",
+     "quote": "Pierluigi Nuzzo is an Associate Professor in the Department of Electrical Engineering and Computer Sciences (EECS) at the University of California (UC), Berkeley.",
+     "observed": "2026-10-29",
+     "kind": "coverage_review_evidence",
+     "fetched_at": "2026-10-29"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/pnuzzo.html",
+     "sha256": "9e2b900690d767fcb799ff8ebac063d0e69d9e58fa8af246b8b085d809d32a8f",
+     "quote": "His research interests include methodologies and tools for the design and certification of artificial intelligence and autonomous systems, secure and trustworthy hardware design, and mixed-signal electronic design automation.",
+     "observed": "2026-10-29",
+     "kind": "coverage_review_evidence",
+     "fetched_at": "2026-10-29"
+    },
+    {
+     "kind": "heads_lab",
+     "url": "https://sites.usc.edu/descyphy/",
+     "sha256": "53c1703b34841aea1e84120f06e86900904045f109ccc43d6e16f868fd565aa4",
+     "quote": "Pierluigi Nuzzo Cyber-Physical System Design (DesCyPhy) Lab Our lab has moved to UC Berkeley this summer.",
+     "reviewed": "2026-10-29",
+     "review": "coverage review (chain audit check 0), 2026-10-29"
+    }
+   ]
+  },
+  {
+   "name": "Lior Pachter",
+   "aliases": [],
+   "decision": "qualifies",
+   "reason": "computing_pi",
+   "summary": "Professor, EECS/Math/MCB (lists 2016-2017; moved to Caltech). Computational biology (computing as method). PI: 2016 EECS dissertations of Harold Pimentel and Brielin Brown name him adviser. Lab papers count only in 2016-2017.",
+   "reviewed": "2026-10-29",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Lior Pachter Professor",
+     "observed": "2016-03-27",
+     "kind": "dept_listing"
+    },
+    {
+     "url": "https://web.archive.org/web/20160328183503id_/https://math.berkeley.edu/people/faculty",
+     "sha256": "2c6786503dedc706f4d5590aba0e150439af1e163996cc54f4ae4b6847131ed6",
+     "quote": "Lior Pachter Professor",
+     "observed": "2016-03-28",
+     "kind": "dept_listing"
+    },
+    {
+     "url": "https://web.archive.org/web/20160331021229id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/CS/list.shtml?",
+     "sha256": "1a36e9d1908ece2c6210b09f53ae6cd937ed53f285c7a99f93573940fbe22948",
+     "quote": "Lior Pachter Professor",
+     "observed": "2016-03-31",
+     "kind": "dept_listing"
+    },
+    {
+     "url": "https://web.archive.org/web/20160710115357id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/CS/list.shtml",
+     "sha256": "b641d9ea8d6072340dea549b6e78a4194e32cd34ab28c309edf2fb4f99a3293d",
+     "quote": "Lior Pachter Professor",
+     "observed": "2016-07-10",
+     "kind": "dept_listing"
+    },
+    {
+     "url": "https://web.archive.org/web/20161220043411id_/https://math.berkeley.edu/people/faculty",
+     "sha256": "4c119ecbcf19a21ede77dd4f640b5b36908448715520c42b7286eb9fa7f10f68",
+     "quote": "Lior Pachter Professor",
+     "observed": "2016-12-20",
+     "kind": "dept_listing"
+    },
+    {
+     "url": "https://web.archive.org/web/20170714212854id_/https://math.berkeley.edu/people/faculty",
+     "sha256": "72227ca9a0018388bf1f2b1633d04aba979b2709a0536c63a25615cb5bfc73b7",
+     "quote": "Lior Pachter Professor",
+     "observed": "2017-07-14",
+     "kind": "dept_listing"
+    },
+    {
+     "url": "https://web.archive.org/web/20171101140017id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "0c7909ab2ecf7e12c6c713bd0fcd8d2a587a535186d29c538e29ec9dd3c72bbc",
+     "quote": "Lior Pachter Professor",
+     "observed": "2017-11-01",
+     "kind": "dept_listing"
+    },
+    {
+     "kind": "advises_PhD student",
+     "url": "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Years/2016.html",
+     "sha256": "cbd43f0139b0e030a34929c25cf1247d92ecec0e8405f9e5a2329657df16006c",
+     "quote": "Harold Pimentel [advisor: Lior Pachter]",
+     "reviewed": "2026-10-29",
+     "review": "coverage review (chain audit check 0), 2026-10-29"
+    }
+   ]
+  },
+  {
+   "name": "Elchanan Mossel",
+   "aliases": [],
+   "decision": "qualifies",
+   "reason": "computing_pi",
+   "summary": "Professor of Statistics and Computer Science (EECS and Statistics lists of March 2016; at MIT by September 2016). Theory of computing/probability. PI: his Berkeley page (Wayback 2016-01-15) names a current Berkeley graduate student. Lab papers count only in 2016.",
+   "reviewed": "2026-10-29",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160325015527id_/http://statistics.berkeley.edu:80/people/faculty",
+     "sha256": "60c70d10ad0ad5516152fc9978ef7f75cee7211c8f4f686e1ad4e51e28c1b85b",
+     "quote": "Elchanan Mossel Professor",
+     "observed": "2016-03-25",
+     "kind": "dept_listing"
+    },
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Elchanan Mossel Professor",
+     "observed": "2016-03-27",
+     "kind": "dept_listing"
+    },
+    {
+     "url": "https://web.archive.org/web/20160331021229id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/CS/list.shtml?",
+     "sha256": "1a36e9d1908ece2c6210b09f53ae6cd937ed53f285c7a99f93573940fbe22948",
+     "quote": "Elchanan Mossel Professor",
+     "observed": "2016-03-31",
+     "kind": "dept_listing"
+    },
+    {
+     "url": "https://web.archive.org/web/20160115112353id_/http://www.stat.berkeley.edu/%7Emossel/",
+     "sha256": "f1812beaa4232049ac575cf78032c730c60d56954eb3ba7ccfa6e2fa64932b30",
+     "quote": "I am a professor of Statistics and Computer Science at UC Berkeley",
+     "observed": "2016-01-15",
+     "kind": "coverage_review_evidence"
+    },
+    {
+     "url": "https://web.archive.org/web/20160115112353id_/http://www.stat.berkeley.edu/%7Emossel/",
+     "sha256": "f1812beaa4232049ac575cf78032c730c60d56954eb3ba7ccfa6e2fa64932b30",
+     "quote": "Research Interests: Combinatorial Statistics , Discrete Fourier Analysis and Influences , Randomized Algorithms , Computational Complexity",
+     "observed": "2016-01-15",
+     "kind": "coverage_review_evidence"
+    },
+    {
+     "kind": "advises_PhD student",
+     "url": "https://web.archive.org/web/20160115112353id_/http://www.stat.berkeley.edu/%7Emossel/",
+     "sha256": "f1812beaa4232049ac575cf78032c730c60d56954eb3ba7ccfa6e2fa64932b30",
+     "quote": "Current Graduate Students: Miklos S. Racz (U.C. Berkeley)",
+     "reviewed": "2026-10-29",
+     "review": "coverage review (chain audit check 0), 2026-10-29"
+    }
+   ]
+  },
+  {
+   "name": "Tapan S. Parikh",
+   "aliases": [
+    "Tapan Parikh"
+   ],
+   "decision": "qualifies",
+   "reason": "computing_pi",
+   "summary": "Below-the-line Associate Professor in EECS, School of Information home (lists 2016). HCI/ICTD (computing as object). PI: his 2016 page describes his own research group. Lab papers count only in 2016.",
+   "reviewed": "2026-10-29",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160327023702id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/list.shtml",
+     "sha256": "e11e28f997f7d0ee19a279adce431f378dcc60c330cfc78b3d1eecdede9b5712",
+     "quote": "Tapan S. Parikh Below the Line, Associate Professor",
+     "observed": "2016-03-27",
+     "kind": "dept_listing"
+    },
+    {
+     "url": "https://web.archive.org/web/20160331021229id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/CS/list.shtml?",
+     "sha256": "1a36e9d1908ece2c6210b09f53ae6cd937ed53f285c7a99f93573940fbe22948",
+     "quote": "Tapan S. Parikh Below the Line, Associate Professor",
+     "observed": "2016-03-31",
+     "kind": "dept_listing"
+    },
+    {
+     "url": "https://web.archive.org/web/20160710115357id_/http://www.eecs.berkeley.edu:80/Faculty/Lists/CS/list.shtml",
+     "sha256": "b641d9ea8d6072340dea549b6e78a4194e32cd34ab28c309edf2fb4f99a3293d",
+     "quote": "Tapan S. Parikh Below the Line, Associate Professor",
+     "observed": "2016-07-10",
+     "kind": "dept_listing"
+    },
+    {
+     "url": "https://web.archive.org/web/20160116223438id_/http://people.ischool.berkeley.edu:80/~parikh/",
+     "sha256": "95982419c54ab1a9a76afe1022775c839e35baede8eda06ff0d1cf9cb208e409",
+     "quote": "I am an associate professor at the UC Berkeley School of Information",
+     "observed": "2016-01-16",
+     "kind": "coverage_review_evidence"
+    },
+    {
+     "url": "https://web.archive.org/web/20160130221358id_/http://www.ischool.berkeley.edu:80/people/faculty/tapanparikh",
+     "sha256": "03a1b134fe80310e48db8ba35ff8545903df375e1e99d5202be4cf2265e60ba4",
+     "quote": "Tapan Parikh Associate Professor Focus: HCI, ICTD",
+     "observed": "2016-01-30",
+     "kind": "coverage_review_evidence"
+    },
+    {
+     "kind": "heads_research_group",
+     "url": "https://web.archive.org/web/20160116223438id_/http://people.ischool.berkeley.edu:80/~parikh/",
+     "sha256": "95982419c54ab1a9a76afe1022775c839e35baede8eda06ff0d1cf9cb208e409",
+     "quote": "My research group studies the design and use of information and communication technologies for sustainable development.",
+     "reviewed": "2026-10-29",
+     "review": "coverage review (chain audit check 0), 2026-10-29"
+    }
+   ]
+  },
+  {
+   "name": "Behcet Acikmese",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "no_pi_basis",
+   "summary": "Excluded (census-overrides.json): appointment from 2026 only; computing-related (control/optimization, Borrelli/Arcak precedent); no Berkeley advisee or lab evidenced yet.",
+   "reviewed": "2026-10-29",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20260712204936id_/https://www2.eecs.berkeley.edu/Faculty/Lists/new.html",
+     "sha256": "0c72e1e4ca953931a88ba93bb42c8beec0c3b910ee6885e9e1b8877346c92a7c",
+     "quote": "Behcet Acikmese Professor",
+     "observed": "2026-07-12"
+    },
+    {
+     "url": "https://web.archive.org/web/20260712214536id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "8972281ca5ba95ce8780c522686bfd4e85cd45411c108cddea7ffdd31683ffb0",
+     "quote": "Behcet Acikmese Professor",
+     "observed": "2026-07-12"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/bechet.html",
+     "sha256": "0b83fd07782b663640b70c9b3f421b865894492fc352fb0aee40388cb8430ae5",
+     "quote": "Behçet Açıkmeşe is a Chancellor's Professor in the Department of Electrical Engineering and Computer Sciences and the Department of Mechanical Engineering at the University of California, Berkeley.",
+     "observed": "2026-10-29",
+     "fetched_at": "2026-10-29"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/bechet.html",
+     "sha256": "0b83fd07782b663640b70c9b3f421b865894492fc352fb0aee40388cb8430ae5",
+     "quote": "Research Areas Control, Intelligent Systems, and Robotics (CIR) Cyber-Physical Systems and Design Automation (CPSDA)",
+     "observed": "2026-10-29",
+     "fetched_at": "2026-10-29"
+    }
+   ]
+  },
+  {
+   "name": "Victoria Coleman",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "no_pi_basis",
+   "summary": "Excluded (census-overrides.json): Professor from late 2025 (Visiting 2024-2025); administrative role (Associate Provost); no group or PhD advisee evidenced.",
+   "reviewed": "2026-10-29",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20241011043619id_/https://www2.eecs.berkeley.edu/Faculty/Lists/visiting.html",
+     "sha256": "b56d84bf92deb55af7fd72d1686792d61a316e69a4651b90b1d70c640384c782",
+     "quote": "Victoria Coleman Visiting Professor",
+     "observed": "2024-10-11"
+    },
+    {
+     "url": "https://web.archive.org/web/20250325105349id_/https://www2.eecs.berkeley.edu/Faculty/Lists/visiting.html",
+     "sha256": "b56d84bf92deb55af7fd72d1686792d61a316e69a4651b90b1d70c640384c782",
+     "quote": "Victoria Coleman Visiting Professor",
+     "observed": "2025-03-25"
+    },
+    {
+     "url": "https://web.archive.org/web/20251012212055id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "a46a988939daad22b885c5890ec6b100ac08031b707867ef45569e446ebbcc4a",
+     "quote": "Victoria Coleman Professor",
+     "observed": "2025-10-12"
+    },
+    {
+     "url": "https://web.archive.org/web/20260415033254id_/https://www2.eecs.berkeley.edu/Faculty/Lists/new.html",
+     "sha256": "d0e1dede81650993cd847bf472f8761916e76a90d3f758d8c9f90800f241c0a7",
+     "quote": "Victoria Coleman Professor",
+     "observed": "2026-04-15"
+    },
+    {
+     "url": "https://web.archive.org/web/20260417001407id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "57fdde3bbd17b3a34e1175a5e053c886ad9f03d8b32f8dba2de38d24f23a0134",
+     "quote": "Victoria Coleman Professor",
+     "observed": "2026-04-17"
+    },
+    {
+     "url": "https://web.archive.org/web/20260712204936id_/https://www2.eecs.berkeley.edu/Faculty/Lists/new.html",
+     "sha256": "0c72e1e4ca953931a88ba93bb42c8beec0c3b910ee6885e9e1b8877346c92a7c",
+     "quote": "Victoria Coleman Professor",
+     "observed": "2026-07-12"
+    },
+    {
+     "url": "https://web.archive.org/web/20260712214536id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+     "sha256": "8972281ca5ba95ce8780c522686bfd4e85cd45411c108cddea7ffdd31683ffb0",
+     "quote": "Victoria Coleman Professor",
+     "observed": "2026-07-12"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/vcoleman.html",
+     "sha256": "54da2748a196fc64dd92cb79c40290ad2913cfb4921b56c8c9022cad445524e6",
+     "quote": "Victoria Coleman Professor Associate Provost, Berkeley Air & Space Center",
+     "observed": "2026-10-29",
+     "fetched_at": "2026-10-29"
+    },
+    {
+     "url": "https://www2.eecs.berkeley.edu/Faculty/Homepages/vcoleman.html",
+     "sha256": "54da2748a196fc64dd92cb79c40290ad2913cfb4921b56c8c9022cad445524e6",
+     "quote": "Her areas of interest are trusted and assured microelectronics, trusted autonomy, collaborative autonomy, defense innovation, emerging space capabilities and digital human rights.",
+     "observed": "2026-10-29",
+     "fetched_at": "2026-10-29"
+    }
+   ]
+  }
+ ]
+}
