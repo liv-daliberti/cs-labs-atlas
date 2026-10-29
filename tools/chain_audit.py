@@ -62,6 +62,13 @@ def decisions(doc):
     return d if isinstance(d, list) else [dict(v, name=k) if isinstance(v, dict) else {'name': k} for k, v in d.items()]
 
 
+def revisit_due(ov_school, today):
+    """The census-overrides entries of one school whose revisit_after date has come (2026-10-29, owner: best judgement):
+    an exclusion with revisit_after (a new arrival with no group or advisee yet) is decided only until that date; after
+    it the person is open again for a fresh coverage review. Names normalized (norm)."""
+    return {norm(k) for k, v in ov_school.items() if isinstance(v, dict) and v.get('revisit_after') and v['revisit_after'] <= today}
+
+
 def by_pi(rows):
     out = {}
     for r in rows or []:
@@ -92,7 +99,7 @@ def audit(school):
     # an exclusion with revisit_after (a new arrival with no group or advisee yet) is decided only until that date
     # (2026-10-29, owner: best judgement); after it the person is open again for a fresh coverage review
     today = datetime.now(timezone.utc).date().isoformat()
-    due = {norm(k) for k, v in ov_school.items() if isinstance(v, dict) and v.get('revisit_after') and v['revisit_after'] <= today}
+    due = revisit_due(ov_school, today)
     res = {c: {'total': 0, 'pass': 0, 'explained': collections.Counter(), 'unexplained': []} for c in CHECKS}
 
     def item(check, key, ok, reason=None, detail=None):
