@@ -34,6 +34,7 @@ excluded_hosts = []       # hosts under the school's domain that belong to anoth
 # Python regex, matched case-insensitively against raw affiliation strings and page-1 text. It must name the
 # institution, never a bare town. Add every must_match / must_not_match case you checked; --check runs them.
 regex = ''
+loose = ''                # any mention of the school on a paper's page 1 (pi_hierarchy.SCHOOL_LOOSE); may name the town
 own_units = ''            # R-PAP-09: the school's own unit names that contain an institution word ('... Institute')
 must_match = []
 must_not_match = []
@@ -52,6 +53,7 @@ foreign_title_exception = false   # R-PAP-15: true where non-English book titles
 code = ""                 # short code used in the census 'departments' field and the site's mapping ("CSE")
 name = ""
 unit = ""                 # the parent unit ("Electrical Engineering and Computer Science, College of Engineering")
+title_match = ''          # regex: the title lines that are this department's appointment (rank is read from them)
 coverage = "full"
 url = ""
   [[departments.listings]]
@@ -62,12 +64,14 @@ url = ""
   to = "20261231"
   prefix = false          # CDX matchType=prefix (paged listings)
   match = ""              # regex the capture's original URL must match (with prefix)
+  format = ""             # tools/listing_formats.py format name; empty = detect
 
 # Units outside the full-coverage departments where computing-related faculty are looked for (stage 2).
 [[affiliated_units]]
 code = ""
 name = ""
 url = ""                  # the unit's people page (live or Wayback), when robots allows
+listings = []             # faculty listing URLs (CDX keys, no scheme) captured once a year (tools/cs_related_school.py units)
 
 [thesis]
 kind = ""                 # dspace | datacite | proquest-free | none

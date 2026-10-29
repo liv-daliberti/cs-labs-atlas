@@ -34,9 +34,41 @@ def days(ts):
     return time.mktime(time.strptime(ts[:8], "%Y%m%d")) / 86400
 
 
+def charter_config(school):
+    """A school without config_<school>.py (protocol schools, 2026-10-29: Michigan first) takes its listing slots from
+    its charter, schools/<key>.toml [[departments.listings]] (tools/school_config.py listing_slots)."""
+    import types
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "tools"))
+    import school_config
+    return types.SimpleNamespace(SLOTS=school_config.listing_slots(school), DEPT_CODES={}, relevant_slots=lambda pi, n, s: True, CHARTER=True)
+
+
+_CFG = {}
+
+
+def charter_usable(con, cap, s, floor=5):
+    """A charter school's capture must parse (tools/listing_formats.py) to at least `floor` person entries: Michigan's
+    2023-2025 spring captures of the CSE list are 31 KB shells whose people load by script, yet carry title-like
+    navigation lines (learned 2026-10-29)."""
+    import zlib
+    import listing_formats
+    raw = con.execute("select raw_zlib from captures where capture_url=?", (cap,)).fetchone()[0]
+    fmt, es = listing_formats.parse(zlib.decompress(raw).decode("utf-8", "replace") if raw else "", s.get("format"))
+    if len(es) < floor:
+        return False, f"listing format {fmt} parses {len(es)} person entries (< {floor})"
+    return True, None
+
+
 def load(school):
-    cfg = importlib.import_module(f"config_{school}")
-    pis = json.load(open(wb.input_path(school)))["pis"]
+    try:
+        cfg = importlib.import_module(f"config_{school}")
+    except ImportError:
+        cfg = charter_config(school)
+    _CFG[school] = cfg
+    ip = wb.input_path(school)
+    # a protocol school builds its census FROM the listings, so before stage 2 there is no input PI list: a capture is
+    # then usable on its title lines alone (usable())
+    pis = json.load(open(ip))["pis"] if os.path.exists(ip) else []
     return cfg, pis
 
 
@@ -149,6 +181,8 @@ def run_slot(school, s, con, pis, max_tries=2):
                 cap = wb.fetch_capture(r["timestamp"], r["original"], u, s["dept"], con)
                 st, b = ensure_extracted(con, cap)
                 good, why = usable(b, st, pis, school)
+                if good and getattr(_CFG.get(school), "CHARTER", False):
+                    good, why = charter_usable(con, cap, s)
                 fu = con.execute("select final_url from captures where capture_url=?", (cap,)).fetchone()[0] or cap
                 m = re.match(r"https://web\.archive\.org/web/(\d{14})id_/", fu)
                 fts = m.group(1) if m else r["timestamp"]

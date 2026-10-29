@@ -22,6 +22,7 @@ domains = ["epfl.ch"]
 [affiliation]
 regex = '\bepfl\b|polytechnique\s+f[ée]d[ée]rale\s+de\s+lausanne|swiss\s+federal\s+institute\s+of\s+technology\s+(?:in\s+|at\s+)?lausanne|epfl\.ch'
 own_units = ''
+loose = 'epfl|lausanne'          # pi_hierarchy.SCHOOL_LOOSE: any mention of the school on page 1
 must_match = []
 must_not_match = []
 

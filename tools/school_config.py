@@ -150,15 +150,18 @@ def check(key):
                     out.append(f'{key}: department {d.get("code")} has a listing slot without slot/url')
         if not cfg.get('hosts'):
             out.append(f'{key}: no [[hosts]] (stage 0 checks every host against robots.txt)')
-        slots = [s['slot'] for d in deps for s in d.get('listings') or [] if s.get('slot')]
-        if len(slots) != len(set(slots)):
-            out.append(f'{key}: duplicate listing slot names')
+        dept_of = {}
+        for d in deps:
+            for s in d.get('listings') or []:
+                if dept_of.setdefault(s.get('slot'), d.get('code')) != d.get('code'):
+                    out.append(f'{key}: listing slot {s.get("slot")!r} is in two departments')
     return out
 
 
 def listing_slots(key):
-    """The charter's listing slots in the listings pipeline's shape (listings/scripts/plan_fetch.py SLOTS)."""
-    out = []
+    """The charter's listing slots in the listings pipeline's shape (listings/scripts/plan_fetch.py SLOTS). Entries
+    with the same slot name are one slot with several URL eras (a site move), tried in the order listed."""
+    out, by = [], {}
     for d in get(key).get('departments') or []:
         for s in d.get('listings') or []:
             opt = {}
@@ -167,7 +170,10 @@ def listing_slots(key):
             if s.get('match'):
                 opt['match'] = s['match']
             spec = (s['url'], s.get('from') or '20160101', s.get('to') or '20261231') + ((opt,) if opt else ())
-            out.append(dict(dept=d['code'], slot=s['slot'], kind=s.get('kind') or 'main', urls=[spec]))
+            if s['slot'] in by:
+                by[s['slot']]['urls'].append(spec); continue
+            by[s['slot']] = dict(dept=d['code'], slot=s['slot'], kind=s.get('kind') or 'main', urls=[spec])
+            out.append(by[s['slot']])
     return out
 
 

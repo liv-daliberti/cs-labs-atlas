@@ -32,12 +32,13 @@ email_domains = ["umich.edu", "med.umich.edu"]
 excluded_hosts = ["umd.umich.edu", "umflint.edu", "umdearborn.edu"]   # Dearborn (old domain umd.umich.edu) and Flint
 
 [affiliation]
-# 'University of Michigan' (any spelling of University, 'of' optional, 'Mich' abbreviated), not followed by Dearborn or
-# Flint; the umich.edu domain except Dearborn's old umd.umich.edu; 'UMich'; 'Michigan Medicine'. Never a bare 'Ann
+# 'University of Michigan' (any spelling of University, 'of' optional, 'Mich' abbreviated), not followed by Dearborn,
+# Flint or Shanghai (the UM-SJTU Joint Institute is Shanghai Jiao Tong's: DBLP notes, learned 2026-10-29); the umich.edu domain except Dearborn's old umd.umich.edu; 'UMich'; 'Michigan Medicine'. Never a bare 'Ann
 # Arbor' (Toyota Research Institute, NEC, Ford and others sit there) and never 'Michigan' alone (Michigan State,
 # Michigan Tech, Western / Eastern / Central Michigan).
-regex = '''univ\w*\.?\s+(?:of\s+)?mich(?:igan)?\b(?![\s,]*(?:[-–—]\s*)?(?:dearborn|flint)\b)|(?<!umd\.)umich\.edu|\bumich\b(?!\.edu)|\bmichigan\s+medicine\b'''
+regex = '''univ\w*\.?\s+(?:of\s+)?mich(?:igan)?\b(?![\s,]*(?:[-–—]\s*|at\s+|in\s+)?(?:dearborn|flint|shanghai|sjtu)\b)|(?<!umd\.)umich\.edu|\bumich\b(?!\.edu)|\bmichigan\s+medicine\b'''
 own_units = '''\bmichigan\s+institute\s+for\s+(?:data\s+(?:science|and\s+ai\s+in\s+society)|computational\s+discovery(?:\s+(?:and|&)\s+engineering)?|clinical\s+(?:and|&)\s+health\s+research)\b|\binstitute\s+for\s+social\s+research\b|\blife\s+sciences\s+institute\b|\bmichigan\s+(?:robotics|neuroscience)\s+institute\b|\binstitute\s+for\s+healthcare\s+policy\s+(?:and|&)\s+innovation\b|\brobotics\s+institute\b'''
+loose = '''univ\w*\.?\s+(?:of\s+)?mich|\bumich\b|umich\.edu|ann\s+arbor'''   # page-1 'any mention' (pi_hierarchy.SCHOOL_LOOSE)
 must_match = [
   "University of Michigan, Ann Arbor, MI 48109, USA",
   "Computer Science and Engineering, University of Michigan",
@@ -62,6 +63,9 @@ must_not_match = [
   "jdoe@umd.umich.edu",
   "Toyota Research Institute, Ann Arbor, MI",
   "University of Michigan-Dearborn, Dearborn, MI 48128",
+  "University of Michigan at Dearborn, Industrial and Manufacturing Systems Engineering, MI, USA",
+  "University of Michigan - Shanghai Jiao Tong University Joint Institute, Shanghai, China",
+  "University of Michigan-Shanghai Jiao Tong University, UM-SJTU Joint Institute",
 ]
 
 [dblp]
@@ -82,66 +86,125 @@ full_codes = ["CSE"]
 # --- departments -------------------------------------------------------------------------------------------------
 # Both are divisions of Electrical Engineering and Computer Science (EECS), College of Engineering. The live
 # cse.engin.umich.edu and ece.engin.umich.edu serve a Cloudflare challenge (2026-10-29), so both are Wayback-only.
-# Listing slots: filled from Wayback CDX discovery (stage 1, hierarchy/michigan/STAGE-1.md).
 [[departments]]
 code = "CSE"
 name = "Computer Science and Engineering"
 unit = "Electrical Engineering and Computer Science, College of Engineering"
+title_match = '''Electrical Engineering and Computer Science|Computer Science and Engineering|\bEECS\b'''   # the title lines that are the department appointment
 coverage = "full"
 url = "https://cse.engin.umich.edu/"
+  # one slot, three URL eras (CDX 2026-10-29): the EECS site's CSE list (also mirrored at cse.umich.edu) until 2019,
+  # then the CSE WordPress 'All Faculty' page (tenure-track, teaching, research, courtesy and emeritus faculty in one
+  # list, each with the title as listed)
+  [[departments.listings]]
+  slot = "CSE all faculty"
+  kind = "main"
+  url = "eecs.umich.edu/eecs/faculty/csefaculty.html"
+  from = "20160101"
+  to = "20191231"
+  [[departments.listings]]
+  slot = "CSE all faculty"
+  url = "cse.umich.edu/eecs/faculty/csefaculty.html"
+  from = "20160101"
+  to = "20191231"
+  [[departments.listings]]
+  slot = "CSE all faculty"
+  url = "cse.engin.umich.edu/people/faculty/"
+  from = "20190901"
+  to = "20261231"
+  [[departments.listings]]
+  slot = "CSE emeritus faculty"
+  kind = "emeritus"
+  url = "cse.engin.umich.edu/people/faculty/emeritus-faculty/"
+  from = "20190901"
+  to = "20261231"
 
 [[departments]]
 code = "ECE"
 name = "Electrical and Computer Engineering"
 unit = "Electrical Engineering and Computer Science, College of Engineering"
+title_match = '''Electrical Engineering and Computer Science|Electrical and Computer Engineering|\bEECS\b'''
 coverage = "affiliated"   # as Stanford EE: listed faculty count when computing is the object or method of their work
 url = "https://ece.engin.umich.edu/"
+  [[departments.listings]]
+  slot = "ECE all faculty"
+  kind = "main"
+  url = "eecs.umich.edu/eecs/faculty/ecefaculty.html"
+  from = "20160101"
+  to = "20191231"
+  [[departments.listings]]
+  slot = "ECE all faculty"
+  url = "ece.engin.umich.edu/people/faculty/"
+  from = "20190901"
+  to = "20201231"
+  [[departments.listings]]
+  slot = "ECE all faculty"
+  url = "ece.engin.umich.edu/people/directory/faculty/"
+  from = "20200101"
+  to = "20261231"
 
 # --- other units searched for computing-related faculty (stage 2) -------------------------------------------------
+# `listings`: the faculty listing URLs captured once a year from Wayback (CDX 2026-10-29; tools/cs_related_school.py units).
+# No archived faculty list was found for DCMB (medschool.umich.edu) or Ross; SPH's faculty-profiles index covers Biostatistics.
 [[affiliated_units]]
 code = "UMSI"
 name = "School of Information"
 url = "https://www.si.umich.edu/people/directory/faculty"
+listings = ["www.si.umich.edu/people/directory/faculty"]
 
 [[affiliated_units]]
 code = "STATS"
 name = "Statistics"
 url = "https://lsa.umich.edu/stats/people/faculty.html"
+listings = ["lsa.umich.edu/stats/people/faculty.html"]
 
 [[affiliated_units]]
 code = "ROB"
 name = "Robotics"
 url = "https://robotics.umich.edu/people/faculty/"
+listings = ["robotics.umich.edu/people/faculty/"]
 
 [[affiliated_units]]
 code = "IOE"
 name = "Industrial and Operations Engineering"
 url = "https://ioe.engin.umich.edu/people/faculty/"
+listings = ["ioe.engin.umich.edu/people/"]
 
 [[affiliated_units]]
 code = "MATH"
 name = "Mathematics"
 url = "https://lsa.umich.edu/math/people/faculty.html"
+listings = ["lsa.umich.edu/math/people/faculty.html"]
 
 [[affiliated_units]]
 code = "LING"
 name = "Linguistics"
 url = "https://lsa.umich.edu/linguistics/people/faculty.html"
+listings = ["lsa.umich.edu/linguistics/people/faculty.html"]
 
 [[affiliated_units]]
 code = "DCMB"
 name = "Computational Medicine and Bioinformatics (Medical School)"
 url = "https://medschool.umich.edu/departments/computational-medicine-bioinformatics"
+listings = []
 
 [[affiliated_units]]
 code = "BIOSTAT"
 name = "Biostatistics (School of Public Health)"
 url = "https://sph.umich.edu/biostat/"
+listings = ["sph.umich.edu/faculty-profiles/"]
+
+[[affiliated_units]]
+code = "ME"
+name = "Mechanical Engineering (robotics, controls, manufacturing faculty)"
+url = "https://me.engin.umich.edu/people/faculty/"
+listings = ["me.engin.umich.edu/people/faculty/"]
 
 [[affiliated_units]]
 code = "ROSS"
 name = "Ross School of Business (Technology and Operations)"
 url = "https://michiganross.umich.edu/"
+listings = []
 
 # --- students ----------------------------------------------------------------------------------------------------
 [thesis]

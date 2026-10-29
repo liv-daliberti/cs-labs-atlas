@@ -22,6 +22,7 @@ domains = ["cmu.edu"]
 [affiliation]
 regex = 'carnegie[\s-]+mellon|\bcmu\b|cmu\.edu'
 own_units = '\b(?:robotics|neuroscience|language technologies|human-computer interaction|software research|information networking|integrated innovation)\s+institute\b|\binstitute\s+for\s+software\s+research\b'
+loose = 'carnegie|\bcmu\b'          # pi_hierarchy.SCHOOL_LOOSE: any mention of the school on page 1
 must_match = []
 must_not_match = []
 

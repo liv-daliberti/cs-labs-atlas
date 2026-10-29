@@ -22,6 +22,7 @@ domains = ["mit.edu"]
 [affiliation]
 regex = 'massachusetts\s+institute\s+of\s+technology|\bmit\b|mit\.edu|csail'
 own_units = ''
+loose = '\bmit\b|massachusetts|csail'          # pi_hierarchy.SCHOOL_LOOSE: any mention of the school on page 1
 must_match = []
 must_not_match = []
 
