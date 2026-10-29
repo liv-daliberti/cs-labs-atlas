@@ -2,6 +2,8 @@
 # The full rebuild, locally (the Slurm equivalent is hierarchy/rebuild-all.slurm, which runs this script):
 #   snapshot    back up the current packages and record their counts (hierarchy/logs/pkg-before-<tag>/)
 #   build       tools/pi_hierarchy.py for every school
+#   ids         tools/atlas_ids.py: stable atlas ids (atl:p:/atl:w:/atl:l:) into the packages, the registry and the
+#               cross-reference table (hierarchy/ids/; docs/IDS.md); always over every released school
 #   copies      tools/lab_paper_copies.py (copies.json from the full-text stores, with access-review causes)
 #   audits      student audit, chain audit (open items), link diagnosis, chain audit
 #   evidence    tools/evidence_check.py: every claim carries its evidence -> hierarchy/EVIDENCE-CHECK.md; a failure holds the release
@@ -20,7 +22,7 @@ cd "$CS_ATLAS_WORK" || exit 1
 export LD_LIBRARY_PATH="$CS_ATLAS_ENV_LIB${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 PY="nice -n10 $CS_ATLAS_ENV_PY -u"
 SCHOOLS=${SCHOOLS:-$CS_ATLAS_SCHOOLS}
-STAGES=${STAGES:-snapshot build copies audits evidence tests regression release tree}
+STAGES=${STAGES:-snapshot build ids copies audits evidence tests regression release tree}
 TAG=${TAG:-local-$(date +%Y%m%d-%H%M%S)}
 BEFORE=${BEFORE:-hierarchy/logs/pkg-before-$TAG}
 has() { case " $STAGES " in *" $1 "*) return 0 ;; esac; return 1; }
@@ -37,6 +39,10 @@ fi
 if has build; then
   rm -f hierarchy/*/link-diagnosis.json  # stale diagnoses would hide open items from the re-diagnosis
   for s in $SCHOOLS; do echo "== $s $(date +%T)"; $PY tools/pi_hierarchy.py $s || { echo "FAILED $s"; fail=1; }; done
+fi
+if has ids; then
+  # after the build, before every consumer (2026-10-29): ids never change once issued (hierarchy/ids/registry.sqlite)
+  echo "== ids $(date +%T)"; $PY tools/atlas_ids.py || { echo "FAILED ids"; fail=1; }
 fi
 if has copies; then
   # before the audits (2026-10-29): the chain audit's copies check reads copies.json, with the stores' access-review causes

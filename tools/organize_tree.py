@@ -4,9 +4,12 @@
     school.json                     school name, departments, lab list and counts
     labs/<pi-slug>/                 one PI's own lab (the slug the GitHub export uses: <school>:<pi-slug>)
       lab.json                      PI, names, departments, lab name, PI basis, appointment periods with evidence, identity
-                                    (reviewed OpenAlex ids, ORCID), counts, and the hidden-lab reason when it has no papers
-      students.csv                  the lab's students: name, id, roles, years, relation types, sources, linked lab papers
-      papers.csv                    the lab's papers: year, title, venue, type, DOI, OpenAlex id, students on it, and the
+                                    (reviewed OpenAlex ids, ORCID), counts, and the hidden-lab reason when it has no papers;
+                                    the atlas ids (docs/IDS.md): labId (atl:l:), piAtlasId (atl:p:), appointments (every
+                                    atlas school where this person is a PI) and asStudent (their student records elsewhere)
+      students.csv                  the lab's students: atlas_id (atl:p:), name, id (the package's record id), roles, years,
+                                    relation types, sources, linked lab papers, also_pi (lab ids where the person is a PI)
+      papers.csv                    the lab's papers: atlas_work_id (atl:w:), year, title, venue, type, DOI, OpenAlex id, students on it, and the
                                     local PDF (the file in papers/, or the copy status and reason when there is none)
       papers/<year>_<title>_<id>.pdf  a HARDLINK to the stored copy (homogenizing-science/data/fulltext/<school>/objects or
                                     cs-atlas-fulltext/stanford/objects): no extra bytes, and a paper in two labs is in both
@@ -124,7 +127,7 @@ def build(school, hidden):
                 want.add(name); n['pdfs_' + res] += 1
             elif res:
                 n['pdf_' + res] += 1
-            row = dict(year=r.get('year'), title=r.get('title'), venue=r.get('venue'), type=r.get('type'), doi=r.get('doi'),
+            row = dict(atlas_work_id=r.get('atlasWorkId'), year=r.get('year'), title=r.get('title'), venue=r.get('venue'), type=r.get('type'), doi=r.get('doi'),
                        openalex=r.get('oa'), work=r.get('work'), students='; '.join(sorted(set(sp[(p['pi'], k)]))),
                        n_students=len(set(sp[(p['pi'], k)])), pdf=f'papers/{name}' if name in want else '',
                        copy_status=c.get('status') or 'not_in_catalog',
@@ -133,19 +136,20 @@ def build(school, hidden):
         for f in (ldir / 'papers').iterdir():  # stale links: only this tree's own files
             if f.suffix == '.pdf' and f.name not in want:
                 f.unlink(); n['pdfs_unlinked_stale'] += 1
-        write_csv(ldir / 'papers.csv', rows, ['year', 'title', 'venue', 'type', 'doi', 'openalex', 'work', 'students', 'n_students',
+        write_csv(ldir / 'papers.csv', rows, ['atlas_work_id', 'year', 'title', 'venue', 'type', 'doi', 'openalex', 'work', 'students', 'n_students',
                                                 'pdf', 'copy_status', 'landing', 'appointment'])
         srows = []
         for s in sorted(stu.get(p['pi']) or [], key=lambda s: s['name']):
             rel = s.get('relations') or []
-            srows.append(dict(name=s['name'], id=s['person'], aliases='; '.join(s.get('aliases') or []), roles='; '.join(s.get('roles') or []),
+            srows.append(dict(atlas_id=s.get('atlasId'), name=s['name'], id=s['person'], also_pi='; '.join(a['labId'] for a in s.get('alsoPi') or []), aliases='; '.join(s.get('aliases') or []), roles='; '.join(s.get('roles') or []),
                               years='; '.join(str(y) for y in sorted({str(y) for r in rel for y in (r.get('years') or []) if y})),
                               relations='; '.join(sorted({r.get('type') or '' for r in rel})),
                               sources=' | '.join(dict.fromkeys(q.get('url') for r in rel for q in r.get('sources') or [] if q.get('url')))[:2000],
                               lab_papers_linked=sp_by_student[(p['pi'], s['person'])]))
-        write_csv(ldir / 'students.csv', srows, ['name', 'id', 'aliases', 'roles', 'years', 'relations', 'sources', 'lab_papers_linked'])
+        write_csv(ldir / 'students.csv', srows, ['atlas_id', 'name', 'id', 'aliases', 'roles', 'years', 'relations', 'sources', 'lab_papers_linked', 'also_pi'])
         n_pdf = len(want)
-        lab = dict(id=f'{school}:{ls}', school=school, pi=p['pi'], names=p.get('names'), lab=(p.get('lab') or {}).get('name'),
+        lab = dict(id=f'{school}:{ls}', labId=p.get('labId'), piAtlasId=p.get('atlasId'), appointments=p.get('appointments'),
+                   asStudent=p.get('asStudent') or None, school=school, pi=p['pi'], names=p.get('names'), lab=(p.get('lab') or {}).get('name'),
                    departments=p.get('departments'), rank=p.get('rank'), title=p.get('title'), piBasis=p.get('piBasis'),
                    periods=p.get('periods'), listings=p.get('listings'), reviewedOpenAlex=p.get('reviewedOpenAlex'),
                    orcid=p.get('orcid'), dblp=p.get('dblp'),
@@ -153,7 +157,7 @@ def build(school, hidden):
                                student_paper_links=sum(len(set(v)) for (pi, _), v in sp.items() if pi == p['pi'])),
                    hidden=hidden.get((school, p['pi'])))
         write_json(ldir / 'lab.json', lab)
-        labs.append(dict(id=lab['id'], pi=p['pi'], folder=f'labs/{ls}', departments=p.get('departments'), **lab['counts'],
+        labs.append(dict(id=lab['id'], labId=lab['labId'], piAtlasId=lab['piAtlasId'], pi=p['pi'], folder=f'labs/{ls}', departments=p.get('departments'), **lab['counts'],
                          hidden=bool(lab['hidden'])))
         n['labs'] += 1; n['papers'] += len(rows); n['papers_with_pdf'] += n_pdf; n['students'] += len(srows)
     for d in (sdir / 'labs').iterdir():  # folders of PIs no longer in the package (renamed or dropped)

@@ -34,7 +34,9 @@ PACKAGE = ['pis.json', 'students.json', 'report.json', 'lab_papers.jsonl.gz', 's
 SCHOOL_EXTRA = ['link-diagnosis.json']  # audit output per school (the reviewed per-school inputs come from git)
 TOP = ['home-departments.json', 'zero-paper-labs.json', 'school-profiles.json', 'SCHOOL-PROFILES.md', 'missing-papers-audit.json',
        'CHAIN-AUDIT.md', 'chain-audit.json', 'student-audit.json', 'BUILD-REGRESSION.md', 'BUILD-REGRESSION.json',
-       'EVIDENCE-CHECK.md', 'EVIDENCE-CHECK.json']
+       'EVIDENCE-CHECK.md', 'EVIDENCE-CHECK.json',
+       # the atlas ids (tools/atlas_ids.py, docs/IDS.md): the registry travels with every release so an id is never reissued
+       'ids/registry.sqlite', 'ids/crossref.tsv.gz', 'ids/redirects.tsv', 'ids/persons-cross-school.json', 'ids/IDS-REPORT.json']
 NOTES = {'SITE-HANDOFF.md', 'HF-UPLOAD.json'}
 COUNT_KEYS = ['pis', 'lab_papers', 'students', 'lab_student_pairs', 'student_paper_links', 'pis_with_lab_papers', 'pis_with_students',
               'pis_complete_chain', 'labs_with_student_papers', 'lab_papers_by_period', 'lab_papers_by_listing']
@@ -140,6 +142,9 @@ def make(a):
         if miss:
             raise SystemExit(f'hierarchy/{s}/report.json: provenance missing or incomplete ({", ".join(miss)}); rebuild with tools/pi_hierarchy.py')
         prov[s] = rep_['provenance']
+        pis_ = json.loads((P.HIERARCHY / s / 'pis.json').read_text())  # every package carries the atlas ids (2026-10-29)
+        if not all(str(p.get('atlasId', '')).startswith('atl:p:') and str(p.get('labId', '')).startswith('atl:l:') for p in pis_):
+            raise SystemExit(f'hierarchy/{s}/pis.json: atlas ids missing; run tools/atlas_ids.py (rebuild stage ids)')
     newest = max(datetime.fromisoformat(b.rstrip('Z')).replace(tzinfo=timezone.utc).timestamp() for b in built.values())
     reg_p = P.HIERARCHY / 'BUILD-REGRESSION.json'
     reg = json.loads(reg_p.read_text()) if reg_p.exists() else None
@@ -196,6 +201,8 @@ def make(a):
                                           before=(reg or {}).get('before'), allowed=bool(a.allow_swings),
                                           identical_to_before={s: r.get('identical') for s, r in ((reg or {}).get('schools') or {}).items()})),
                counts=counts, upstream=upstream(),
+               ids=({k: v for k, v in json.loads((tmp / 'hierarchy/ids/IDS-REPORT.json').read_text()).items() if k != 'conflicts'}
+                    if (tmp / 'hierarchy/ids/IDS-REPORT.json').exists() else None),  # tools/atlas_ids.py, docs/IDS.md
                layout='paths mirror the working root (hierarchy/, census/, periods/, docs/); hierarchy/<school>/ holds the packages',
                files=entries)
     (tmp / 'MANIFEST.json').write_text(json.dumps(man, indent=1, ensure_ascii=False) + '\n')
