@@ -15,20 +15,28 @@ schools  every school with hierarchy/<school>/pis.json (SCHOOLS) that the site b
 atlas    princeton-live-20261015/atlas: data.json universities, data/universities/<id>.json.gz units, data/labs/*.json.gz
          unit papers + works, data/lab-people/*.json.gz unit people + their works, pi-groups.json, metrics.json.gz
            -> data/atlas/{universities,units,works,unit_papers,unit_people,unit_person_papers,pi_identities}.jsonl.gz
-code     the tools that build all of it -> code/ (emails redacted: the owner's address becomes you@example.org)
+code     the tools that build all of it -> code/ (emails redacted: the owner's address becomes you@example.org), taken from
+         the code repository's HEAD commit (git -C work), never from uncommitted files; MANIFEST export.code.commit
+Data comes from a dated release (tools/make_release.py; default /n/fs/resemble/cs-atlas/releases/latest), recorded as
+MANIFEST export.release; --from-working reads the working hierarchy/ instead (development only).
 Every string is scrubbed: e-mail addresses everywhere; phone numbers and office addresses inside quotes; local file
 paths. Rows are sorted and gzip is written with mtime=0, so a rerun on unchanged sources is byte-identical.
 Ends with tests/verify_release.py <repo dir> when the repo has it.
 
-usage: export_release.py <repo dir> [--skip-code] [--skip-atlas]
+usage: export_release.py <repo dir> [--release ID|DIR] [--from-working] [--skip-code] [--skip-atlas]
        EXPORT_ATLAS_CACHE=<pickle> reuses a local pickle of the atlas shard files (development only)
 """
 import collections, csv, gzip, hashlib, importlib.util, io, json, os, pickle, re, shutil, subprocess, sys, time, zlib
 from pathlib import Path
 
-HERE = Path(__file__).resolve().parents[1]                      # /n/fs/resemble/cs-atlas/work (was .research-sweeps/claude-schools-20261021)
-H = HERE / 'hierarchy'
-SITE_ROOT = Path('/n/fs/resemble/maxent-grpo/princeton-live-20261015')
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import atlas_paths as AP  # noqa: E402  (every path in one place)
+
+HERE = AP.WORK                       # the code repository (/n/fs/resemble/cs-atlas/work; was .research-sweeps/claude-schools-20261021)
+DATA = HERE                          # where the data is read: a release directory (configure()) or the working root
+H = DATA / 'hierarchy'
+RELEASE = None                       # the release read: dict(id, dir, manifest_sha256)
+SITE_ROOT = AP.SITE_ROOT
 ATLAS = SITE_ROOT / 'atlas'
 ORDER = ['princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford']  # display order; any other built school follows
 SCHOOLS = [s for s in ORDER if (H / s / 'pis.json').exists()] + sorted(
@@ -44,6 +52,23 @@ SITE = importlib.util.module_from_spec(_spec); _spec.loader.exec_module(SITE)
 # SCHOOLS); a package the site does not know yet (e.g. a school still being built) is listed in the manifest as skipped
 EXPORT = [s for s in SCHOOLS if s in SITE.SCHOOLS]
 SKIPPED = {s: 'package exists but the site builder (scripts/build-cs-hierarchy.py SCHOOLS) does not list it yet' for s in SCHOOLS if s not in EXPORT}
+
+
+def configure(release=None):
+    """Read the data from a release (an id, 'latest' or a directory), or from the working root when release is None."""
+    global DATA, H, RELEASE, SCHOOLS, EXPORT, SKIPPED
+    if release is not None:
+        d = (AP.RELEASES / release if (AP.RELEASES / release).exists() else Path(release)).resolve()
+        if not (d / 'MANIFEST.json').exists():
+            raise SystemExit(f'not a release (no MANIFEST.json): {d}')
+        RELEASE = dict(id=json.loads((d / 'MANIFEST.json').read_text())['release'], dir=str(d),
+                       manifest_sha256=hashlib.sha256((d / 'MANIFEST.json').read_bytes()).hexdigest())
+        DATA = d
+    H = DATA / 'hierarchy'
+    SCHOOLS = [s for s in ORDER if (H / s / 'pis.json').exists()] + sorted(
+        d.name for d in H.iterdir() if d.is_dir() and d.name not in ORDER and (d / 'pis.json').exists())
+    EXPORT = [s for s in SCHOOLS if s in SITE.SCHOOLS]
+    SKIPPED = {s: 'package exists but the site builder (scripts/build-cs-hierarchy.py SCHOOLS) does not list it yet' for s in SCHOOLS if s not in EXPORT}
 
 # ---------------------------------------------------------------- reading (retry while a file is being rewritten)
 
@@ -260,7 +285,7 @@ def export_school(repo, s, homes_all, profiles, zero):
     else:
         raise SystemExit(f'{s}: package kept changing')
     home = {x['name']: x for x in homes_all if x.get('school') == s and x.get('status') == 'accepted' and x.get('home_department')}
-    adds = {a['name'] for a in (read(HERE / f'census/{s}-additions.json') if (HERE / f'census/{s}-additions.json').exists() else [])
+    adds = {a['name'] for a in (read(DATA / f'census/{s}-additions.json') if (DATA / f'census/{s}-additions.json').exists() else [])
             if 'cs_related' in str(a.get('added'))}
     site_labs, canon = site_lab_map(s, cfg)
     out = f'data/schools/{s}'
@@ -565,44 +590,65 @@ def export_atlas(repo):
 # ---------------------------------------------------------------- code
 
 
-CODE_RULES = [  # (source dir, max depth, patterns); paths in the repo mirror the original layout under code/
-    (HERE / 'tools', 1, ('*.py', '*.slurm')),
-    (H, 1, ('*.sh', 'period-targets-method.py')),
-    (H / 'nicknames', 1, ('*.csv',)),
-    (HERE / 'census', 1, ('*.py',)),
-    (HERE / 'census/tools', 1, ('*.py', '*.sh')),
-    (HERE / 'listings/scripts', 1, ('*.py', '*.sh')),
-    (HERE / 'fulltext-push', 1, ('*.py', '*.sh')),
+CODE_RULES = [  # (directory in the code repository, max depth, patterns); repo paths mirror it under code/claude-schools-20261021/
+    ('tools', 1, ('*.py', '*.slurm')),
+    ('hierarchy', 1, ('*.sh', '*.slurm', 'period-targets-method.py')),
+    ('hierarchy/nicknames', 1, ('*.csv',)),
+    ('census', 1, ('*.py',)),
+    ('census/tools', 1, ('*.py', '*.sh')),
+    ('listings/scripts', 1, ('*.py', '*.sh')),
+    ('fulltext-push', 1, ('*.py', '*.sh')),
+    ('tests', 2, ('*.py', '*.json')),     # since 2026-10-29
+    ('docs', 1, ('*.md',)),               # since 2026-10-29
+    ('', 1, ('paths.sh', '.gitignore')),  # since 2026-10-29
 ]
 CODE_TOOL_DIRS = ['thesis-tools', 'period-tools', 'cs-related-tools', 'few-students-tools', 'few-students-tools-cmu', 'gap-tools-berkeley', 'gap-tools-cmu',
                   'gap-tools-mit', 'gap-tools-princeton-epfl', 'home-dept-tools', 'labpage-tools-cmu', 'labpage-tools-epfl-berkeley',
                   'labpage-tools-princeton-mit', 'missing-pi-tools']
 SKIP_DIRS = {'__pycache__', 'work', 'logs', 'local', 'state', 'discover', 'raw', 'captures', 'cache'}
 SITE_SCRIPTS = ['build-cs-hierarchy.py', 'build-cs-scope.py', 'cs_scope.py', 'lazy_atlas.py']
+CODE = dict(commit=None, uncommitted_tracked_changes=[])
+
+
+def _git(*a, **kw):
+    return subprocess.run(['git', '-C', str(HERE), *a], capture_output=True, check=True, **kw).stdout
 
 
 def code_files():
+    """[(bytes, repo path)]: the files the rules select among those tracked at the code repository's HEAD, with their
+    committed content (git cat-file), plus the site builder's scripts the export documents."""
     import fnmatch
-    out = []
-    rules = list(CODE_RULES) + [(H / d, 3, ('*.py', '*.sh', '*.slurm', '*.md')) for d in CODE_TOOL_DIRS] + \
-        [(H / s / 'cs-related-tools', 2, ('*.py', '*.sh', '*.md')) for s in SCHOOLS]
-    for d, depth, pats in rules:
-        if not d.is_dir():
+    CODE['commit'] = _git('rev-parse', 'HEAD', text=True).strip()
+    CODE['uncommitted_tracked_changes'] = [l[3:] for l in _git('status', '--porcelain', '--untracked-files=no', text=True).split('\n') if l.strip()]
+    rules = list(CODE_RULES) + [(f'hierarchy/{d}', 3, ('*.py', '*.sh', '*.slurm', '*.md')) for d in CODE_TOOL_DIRS] + \
+        [(f'hierarchy/{s}/cs-related-tools', 2, ('*.py', '*.sh', '*.md')) for s in AP.SCHOOL_IDS]
+    want = []
+    for path in _git('ls-tree', '-r', '--name-only', '-z', CODE['commit']).decode().split('\0'):
+        if not path:
             continue
-        stack = [(d, 1)]
-        while stack:
-            cur, lv = stack.pop()
-            for e in sorted(os.scandir(cur), key=lambda e: e.name):
-                if e.is_dir(follow_symlinks=False):
-                    if lv < depth and e.name not in SKIP_DIRS and not e.name.startswith('.'):
-                        stack.append((Path(e.path), lv + 1))
-                elif e.is_file(follow_symlinks=False) and any(fnmatch.fnmatch(e.name, p) for p in pats) and '.bak' not in e.name \
-                        and not e.name.endswith('.env'):
-                    out.append((Path(e.path), 'code/claude-schools-20261021/' + str(Path(e.path).relative_to(HERE))))
+        parts = path.split('/')
+        for d, depth, pats in rules:
+            dp = d.split('/') if d else []
+            rest = parts[len(dp):]
+            if parts[:len(dp)] != dp or not 1 <= len(rest) <= depth or any(x in SKIP_DIRS or x.startswith('.') for x in rest[:-1]):
+                continue
+            name = rest[-1]
+            if any(fnmatch.fnmatch(name, p) for p in pats) and '.bak' not in name and not name.endswith('.env'):
+                want.append(path); break
+    out = []
+    if want:
+        blobs = subprocess.run(['git', '-C', str(HERE), 'cat-file', '--batch'], input=''.join(f"{CODE['commit']}:{p}\n" for p in want).encode(),
+                               capture_output=True, check=True).stdout
+        i = 0
+        for p in want:
+            header_end = blobs.index(b'\n', i)
+            size = int(blobs[i:header_end].split()[2])
+            out.append((blobs[header_end + 1:header_end + 1 + size], 'code/claude-schools-20261021/' + p))
+            i = header_end + 1 + size + 1
     for f in SITE_SCRIPTS:
         if (SITE_ROOT / 'scripts' / f).exists():
-            out.append((SITE_ROOT / 'scripts' / f, 'code/princeton-live-20261015/scripts/' + f))
-    return sorted(set(out), key=lambda t: t[1])
+            out.append(((SITE_ROOT / 'scripts' / f).read_bytes(), 'code/princeton-live-20261015/scripts/' + f))
+    return sorted(out, key=lambda t: t[1])
 
 
 def scrub_code(s):
@@ -624,8 +670,7 @@ def export_code(repo):
     for sub in ('claude-schools-20261021', 'princeton-live-20261015'):
         if (old / sub).exists():
             shutil.rmtree(old / sub)
-    for src, rel in code_files():
-        t = src.read_bytes()
+    for t, rel in code_files():
         try:
             s = t.decode()
         except UnicodeDecodeError:
@@ -634,7 +679,7 @@ def export_code(repo):
         s = scrub_code(s)  # e-mails only (owner -> placeholder); paths stay as written: they document the original layout
         stats['files'] += 1; stats['files_redacted'] += sum(RED.values()) > n0
         write_bytes(repo, rel, s.encode())
-    return dict(stats)
+    return dict(stats, commit=CODE['commit'], uncommitted_tracked_changes_not_exported=CODE['uncommitted_tracked_changes'])
 
 
 # ---------------------------------------------------------------- README coverage table
@@ -642,7 +687,12 @@ def export_code(repo):
 
 def _load_tool(name):
     spec = importlib.util.spec_from_file_location(name, HERE / 'tools' / f'{name}.py')
-    m = importlib.util.module_from_spec(spec); spec.loader.exec_module(m); return m
+    m = importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
+    if hasattr(m, 'H'):  # the tool reads the same data this export reads (a release, or the working root)
+        m.H = H
+    if hasattr(m, 'HERE'):
+        m.HERE = DATA
+    return m
 
 
 def derived_ledgers(homes_all):
@@ -744,10 +794,16 @@ def methods_student_audit(repo, audit):
 
 
 def main():
-    args = [a for a in sys.argv[1:] if not a.startswith('--')]
+    argv = list(sys.argv[1:]); rel = None
+    if '--release' in argv:
+        i = argv.index('--release'); rel = argv[i + 1]; del argv[i:i + 2]
+    rel = next((a.split('=', 1)[1] for a in argv if a.startswith('--release=')), rel)
+    args = [a for a in argv if not a.startswith('--')]
     if len(args) != 1:
         raise SystemExit(__doc__)
     repo = Path(args[0]).resolve(); repo.mkdir(parents=True, exist_ok=True)
+    configure(None if '--from-working' in sys.argv else (rel or 'latest'))
+    print('data', RELEASE or f'working root {DATA} (--from-working)', flush=True)
     homes_all = read(H / 'home-departments.json')
     profiles, zero, derived = derived_ledgers(homes_all)
     summary = dict(schools=[], atlas=None, code=None, derived_ledgers=derived)
@@ -783,6 +839,7 @@ def main():
     readme_coverage(repo, profiles, summary)
     methods_student_audit(repo, audit)
     summary['sources'] = dict(hierarchy=str(H), atlas=str(ATLAS), schools=EXPORT, skipped_schools=SKIPPED)
+    summary['release'] = RELEASE  # the dated release the school data came from (None: the working root, development only)
     files = {k: MANIFEST[k] for k in sorted(MANIFEST)}
     mp = repo / 'MANIFEST.json'
     if mp.exists() and ('--skip-atlas' in sys.argv or '--skip-code' in sys.argv):  # keep the entries this run did not rewrite

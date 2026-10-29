@@ -1,6 +1,6 @@
 """The organized view of the CS PI-lab data on disk: school -> lab -> papers, one folder per PI lab (owner 2026-10-29).
 
-  /n/fs/resemble/cs-atlas/schools/<school>/
+  /n/fs/resemble/cs-atlas/schools/<school>/   (atlas_paths.SCHOOLS_TREE)
     school.json                     school name, departments, lab list and counts
     labs/<pi-slug>/                 one PI's own lab (the slug the GitHub export uses: <school>:<pi-slug>)
       lab.json                      PI, names, departments, lab name, PI basis, appointment periods with evidence, identity
@@ -11,21 +11,28 @@
       papers/<year>_<title>_<id>.pdf  a HARDLINK to the stored copy (homogenizing-science/data/fulltext/<school>/objects or
                                     cs-atlas-fulltext/stanford/objects): no extra bytes, and a paper in two labs is in both
 
-Inputs, read-only: hierarchy/<school>/{pis,students}.json, {lab,student}_papers.jsonl.gz, copies.json (which catalog work
-holds each paper's copy, from tools/lab_paper_copies.py) and the school's catalog.sqlite (the stored file of that work);
-hierarchy/zero-paper-labs.json for hidden-lab reasons. Rerunnable: links that already point at the right file are kept,
-new copies are linked, and PDFs in papers/ that are no longer a lab paper with a copy are unlinked (only inside this tree).
-Run tools/lab_paper_copies.py first so copies.json is current.
-usage: organize_tree.py [school ...]          (default: all six)
+Inputs, read-only, from a dated release (since 2026-10-29; tools/make_release.py; default releases/latest):
+<release>/hierarchy/<school>/{pis,students}.json, {lab,student}_papers.jsonl.gz, copies.json (which catalog work holds
+each paper's copy, from tools/lab_paper_copies.py) and <release>/hierarchy/zero-paper-labs.json for hidden-lab reasons;
+plus the school's catalog.sqlite (the stored file of that work). With --fresh-copies the copies come from the working
+hierarchy/<school>/copies.json instead (rerun tools/lab_paper_copies.py first), so PDFs the collectors fetched since the
+release are linked; the lab and paper lists still come from the release. school.json records the release id and the
+copies' source. Rerunnable: links that already point at the right file are kept, new copies are linked, and PDFs in
+papers/ that are no longer a lab paper with a copy are unlinked (only inside this tree).
+usage: organize_tree.py [--release ID|DIR] [--fresh-copies] [school ...]          (default: all six)
 """
-import csv, gzip, json, os, re, sqlite3, sys, time, unicodedata
+import argparse, csv, gzip, json, os, re, sqlite3, sys, time, unicodedata
 from collections import defaultdict
 from pathlib import Path
 
-HERE = Path(__file__).resolve().parents[1]; H = HERE / 'hierarchy'
-OUT = Path('/n/fs/resemble/cs-atlas/schools')
-FT = Path('/n/fs/resemble/homogenizing-science/data/fulltext')
-SCHOOLS = ['princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford']
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import atlas_paths as P  # noqa: E402  (every path in one place)
+
+HERE = P.WORK; H = P.HIERARCHY  # H is re-pointed at <release>/hierarchy by main()
+OUT = P.SCHOOLS_TREE
+FT = P.STORES
+SCHOOLS = list(P.SCHOOL_IDS)
+RELEASE = dict(id=None, dir=None, copies='release')
 NAMES = {'princeton': 'Princeton University', 'cmu': 'Carnegie Mellon University', 'epfl': 'EPFL',
          'mit': 'Massachusetts Institute of Technology', 'berkeley': 'University of California, Berkeley',
          'stanford': 'Stanford University'}
@@ -102,7 +109,7 @@ def build(school, hidden):
         r = json.loads(l)
         sp[(r['pi'], r.get('work') or r.get('oa'))].append(r.get('name') or r['student'])
         sp_by_student[(r['pi'], r['student'])] += 1
-    copies = json.loads((D / 'copies.json').read_text())['papers']
+    copies = json.loads(((P.HIERARCHY / school if RELEASE['copies'] != 'release' else D) / 'copies.json').read_text())['papers']
     files = stored_files(school)
     sdir = OUT / school; (sdir / 'labs').mkdir(parents=True, exist_ok=True)
     n = defaultdict(int); labs = []
@@ -154,12 +161,26 @@ def build(school, hidden):
         if d.is_dir() and d.name not in {slug(p['pi']) for p in pis}:
             n['stale_lab_folders'] += 1; print(json.dumps(dict(school=school, stale_lab_folder=str(d))), flush=True)
     write_json(sdir / 'school.json', dict(school=school, name=NAMES.get(school, school), builtAt=time.strftime('%Y-%m-%dT%H:%M:%S%z'),
+                                          release=RELEASE['id'], releaseDir=RELEASE['dir'], copiesFrom=RELEASE['copies'],
                                           counts=dict(n), labs=labs))
     print(json.dumps(dict(school=school, **n)), flush=True)
     return n
 
 
-def main(schools):
+def release_dir(rel):
+    """A release id ('2026-10-29'), 'latest', or a directory -> the release directory (resolved, so the id is the real one)."""
+    d = (P.RELEASES / rel if (P.RELEASES / rel).exists() else Path(rel)).resolve()
+    if not (d / 'MANIFEST.json').exists():
+        raise SystemExit(f'not a release (no MANIFEST.json): {d}')
+    return d
+
+
+def main(schools, release='latest', fresh_copies=False):
+    global H
+    d = release_dir(release)
+    H = d / 'hierarchy'
+    RELEASE.update(id=json.loads((d / 'MANIFEST.json').read_text())['release'], dir=str(d),
+                   copies='hierarchy (fresh, tools/lab_paper_copies.py)' if fresh_copies else 'release')
     hidden = {}
     zf = H / 'zero-paper-labs.json'
     if zf.exists():
@@ -170,4 +191,9 @@ def main(schools):
 
 
 if __name__ == '__main__':
-    main(sys.argv[1:] or SCHOOLS)
+    ap = argparse.ArgumentParser()
+    ap.add_argument('schools', nargs='*')
+    ap.add_argument('--release', default='latest', help="release id, 'latest' (default) or a release directory")
+    ap.add_argument('--fresh-copies', action='store_true', help="link copies from the working hierarchy/<school>/copies.json")
+    a = ap.parse_args()
+    main(a.schools or SCHOOLS, a.release, a.fresh_copies)
