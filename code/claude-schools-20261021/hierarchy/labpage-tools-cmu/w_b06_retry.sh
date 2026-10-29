@@ -2,7 +2,7 @@
 # usage: w_b06_retry.sh <lp.py subcommand and args...>   retries on Wayback connection errors (max 4 tries)
 export LABPAGE_DB=/tmp/claude-363432/-n-fs-similarity-maxent-grpo/2bd068f5-5142-4dac-89d1-67eb470f92c1/scratchpad/labpage-cmu/w-b06.sqlite
 export LABPAGE_RO=/tmp/claude-363432/-n-fs-similarity-maxent-grpo/2bd068f5-5142-4dac-89d1-67eb470f92c1/scratchpad/labpage-cmu/crawl.sqlite
-T=/n/fs/similarity/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/labpage-tools-cmu
+T=/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/labpage-tools-cmu
 cd /tmp
 for i in 1 2 3 4 5; do
   out=$(/usr/local/anaconda3/2024.02/bin/python -I $T/lp.py "$@" 2>&1)

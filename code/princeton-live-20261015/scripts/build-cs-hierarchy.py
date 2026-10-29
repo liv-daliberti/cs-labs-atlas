@@ -13,6 +13,11 @@ Inputs are the per-school packages built by .research-sweeps/claude-schools-2026
 present, hierarchy/home-departments.json (reviewed home departments of PIs listed by a computing department but homed
 elsewhere). Writes atlas/data/cs-hierarchy/<school>.json.gz and atlas/data/cs-hierarchy/index.json.
 
+PI labs with zero lab papers stay in <school>.json.gz but are not shown on either page (owner decision 2026-10-22,
+"PI labs with papers only"). Each one's reason is written to atlas/data/cs-hierarchy/hidden-labs.json from the
+reviewed ledger hierarchy/zero-paper-labs.json (tools/zero_paper_ledger.py, run after every package rebuild); the
+build stops when a zero-paper lab has no ledger row, so a hidden lab always has a recorded reason.
+
 usage: build-cs-hierarchy.py [school ...]      (default: every school with a package)
 """
 import collections, datetime, gzip, json, re, sys
@@ -32,13 +37,19 @@ SCHOOLS = {
                 depts={'EECS': 'Electrical Engineering and Computer Science'}),
     'berkeley': dict(name='University of California, Berkeley', uni='university-of-california-berkeley', full=None,
                      depts={'EECS': 'Electrical Engineering and Computer Sciences'}),
+    # Stanford (owner 2026-10-27): the CS department in full; EE lists only its faculty who publish in CS venues
+    # (census/stanford-faculty.json), so EE is a home department that is not covered in full, like other departments.
+    'stanford': dict(name='Stanford University', uni='stanford-university', full=None,
+                     depts={'CS': 'Computer Science', 'EE': 'Electrical Engineering'}),
 }
+FULL_CODES = {'stanford': {'CS'}}  # listing codes covered in full where not every listed department is (default: all)
 PENDING = 'Home department not yet recorded'
 CORE = {'cmu': [(r'Robotics Institute|\bRI\b', 'RI'), (r'Software and Societal|\bS3D\b', 'S3D'), (r'Language Technologies|\bLTI\b', 'LTI'),
                 (r'Human.Computer Interaction Institute|\bHCII\b', 'HCII'), (r'Machine Learning Department|\bMLD\b', 'MLD'),
                 (r'Computational Biology Department|\bCBD\b', 'CBD'), (r'Computer Science Department|\bCSD\b', 'CSD')],
         'mit': [(r'Electrical Engineering and Computer Science|\bEECS\b', 'EECS')],
-        'epfl': [(r'School of Computer and Communication Sciences|\(IC\)', 'IC')]}
+        'epfl': [(r'School of Computer and Communication Sciences|\(IC\)', 'IC')],
+        'stanford': [(r'^(Department of )?Computer Science$', 'CS')]}
 
 
 def home_dept(school, cfg, h):
@@ -49,7 +60,7 @@ def home_dept(school, cfg, h):
         return f"{h['home_department']} (research staff, no academic department)", 'affiliated'
     for rx, code in CORE.get(school, []):
         if re.search(rx, h['home_department']):
-            return cfg['depts'][code], 'full'
+            return cfg['depts'][code], 'full' if code in FULL_CODES.get(school, cfg['depts']) else 'affiliated'
     return h['home_department'], 'affiliated'
 
 
@@ -95,9 +106,48 @@ def department(school, cfg, p, home):
         return (PENDING, 'affiliated') if p.get('rank') == 'affiliated_other_school' else (cfg['depts']['IC'], 'full')
     if school == 'mit' and 'EECS' not in p['departments']:
         return PENDING, 'affiliated'
+    if school == 'stanford' and p.get('rank') == 'courtesy':
+        return PENDING, 'affiliated'  # a courtesy CS appointment is not a home department; the reviewed one is not recorded
     if codes:
-        return cfg['depts'][codes[0]], 'full'
+        return cfg['depts'][codes[0]], 'full' if codes[0] in FULL_CODES.get(school, cfg['depts']) else 'affiliated'
     return PENDING, 'affiliated'
+
+
+LEDGER = H / 'zero-paper-labs.json'
+CATEGORIES = {  # tools/zero_paper_ledger.py diagnose(): where the PI's papers dropped out of the lab-paper rule
+    'joined_after_window': 'the reviewed appointment starts after every paper so far',
+    'no_appointment_coverage': 'papers name the PI and the school, but none falls in a reviewed faculty period or same-year listing',
+    'identity_unanchored': 'school-affiliated name hits, none tied to the PI by DBLP, ORCID, a reviewed id, an advisee or a lab page',
+    'no_school_affiliation': 'the PI\'s papers exist, but none lists the school',
+    'not_in_school_sweep': 'DBLP or the collection knows the PI\'s works, but no 2016-2026 school work carries the name',
+    'no_output_found': 'no work at all in 2016-2026 under the PI\'s names',
+}
+
+
+def hidden_labs(order):
+    """Every PI lab not shown for having zero lab papers, with its reason from the reviewed ledger."""
+    ledger = {(r['school'], r['pi']): r for r in read(LEDGER)['zero_papers']} if LEDGER.exists() else {}
+    schools, counts, missing = {}, {}, []
+    for s in order:
+        x = read(OUT / f'{s}.json.gz'); rows = []
+        for i, l in enumerate(x['labs']):
+            if l['papers']:
+                continue
+            r = ledger.get((s, l['pi']['name']))
+            if r is None:
+                missing.append((s, l['pi']['name'])); continue
+            rows.append(dict(id=l['id'], index=i, lab=l['name'], pi=l['pi']['name'], dept=l['dept'], hidden='no_lab_papers',
+                             category=r['diagnosis'], verdict=r['verdict'], reason=r.get('reason') or CATEGORIES.get(r['diagnosis'])))
+        schools[s] = rows
+        counts[s] = dict(shown=len(x['labs']) - len(rows), hidden=len(rows), byCategory=dict(collections.Counter(r['category'] for r in rows)))
+    if missing:
+        raise SystemExit(f'zero-paper labs without a ledger row (run tools/zero_paper_ledger.py after the package rebuild): {missing}')
+    return dict(builtAt=datetime.datetime.utcnow().replace(microsecond=0).isoformat() + 'Z', builtBy='scripts/build-cs-hierarchy.py',
+                rule='Owner decision 2026-10-22, "PI labs with papers only": a PI lab with zero lab papers is not shown on the CS atlas '
+                     '(index.html) or as a lab on cs-departments.html. Its record stays in <school>.json.gz; this file records why it has none.',
+                source='.research-sweeps/claude-schools-20261021/hierarchy/zero-paper-labs.json (tools/zero_paper_ledger.py: diagnosis from '
+                       'the PI\'s funnel in pis.json; verdict and reason from the reviewed zero-paper-review.json)',
+                categories=CATEGORIES, counts=counts, schools=schools)
 
 
 def build(school):
@@ -202,6 +252,12 @@ if __name__ == '__main__':
                         '; '.join(f"{q['start']}-{q['end'] or 'present'}" for q in l['periods']), l.get('siteLab') or '',
                         'PI on byline + school affiliation on that authorship + faculty period or same-year department listing'])
     (R / 'atlas/downloads/cs-hierarchy-labs.csv').write_text(out.getvalue())
+    hidden = hidden_labs(order)
+    write(OUT / 'hidden-labs.json', hidden)
+    for s in order:
+        idx[s]['hiddenLabs'] = hidden['counts'][s]['hidden']
+        print(json.dumps(dict(school=s, **hidden['counts'][s]), ensure_ascii=False))
     write(idx_p, dict(builtAt=datetime.datetime.utcnow().replace(microsecond=0).isoformat() + 'Z', pending=[s for s in SCHOOLS if s not in idx],
-                      rule='Owner decisions 2026-10-21: school → department → PI labs → papers + students; centres and multi-PI groups are not labs.',
-                      schools=[idx[s] for s in order]))
+                      rule='Owner decisions 2026-10-21: school → department → PI labs → papers + students; centres and multi-PI groups are not labs. '
+                           'PI labs without lab papers are not shown (2026-10-22); hiddenLabsFile records why.',
+                      hiddenLabsFile='data/cs-hierarchy/hidden-labs.json', schools=[idx[s] for s in order]))

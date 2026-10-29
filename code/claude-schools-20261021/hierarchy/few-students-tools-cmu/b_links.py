@@ -1,7 +1,7 @@
 """Print hrefs from a cached capture whose anchor text matches REGEX. usage: b_links.py URL REGEX"""
 import re, sys, zlib
 from urllib.parse import urljoin
-sys.path.insert(0, "/n/fs/similarity/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/few-students-tools-cmu")
+sys.path.insert(0, "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/few-students-tools-cmu")
 import capstore
 from bs4 import BeautifulSoup
 url, rx = sys.argv[1], sys.argv[2]

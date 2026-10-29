@@ -27,7 +27,7 @@ sys.path.insert(0, TOOLS)
 import lpcap  # noqa: E402
 
 ROOT = lpcap.ROOT
-LABREC = "/n/fs/similarity/maxent-grpo/.research-sweeps/claude-labrecords-20261019/records/princeton"
+LABREC = "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-labrecords-20261019/records/princeton"
 
 EXTRA = {}
 # one insert at a time inside this process

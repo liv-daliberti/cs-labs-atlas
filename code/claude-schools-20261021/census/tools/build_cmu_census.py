@@ -27,9 +27,9 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parents[1]
-STAGE = Path('/n/fs/similarity/maxent-grpo/.research-sweeps/claude-cmu-20261017')
-REPAIR = Path('/n/fs/similarity/maxent-grpo/.research-sweeps/cmu-students-repair-20261019/rosters/captures')
-COLL = Path('/n/fs/similarity/maxent-grpo/princeton-live-20261015/atlas/data/collection-cmu.json.gz')
+STAGE = Path('/n/fs/resemble/maxent-grpo/.research-sweeps/claude-cmu-20261017')
+REPAIR = Path('/n/fs/resemble/maxent-grpo/.research-sweeps/cmu-students-repair-20261019/rosters/captures')
+COLL = Path('/n/fs/resemble/maxent-grpo/princeton-live-20261015/atlas/data/collection-cmu.json.gz')
 UMBRELLA = re.compile(r'(?i)\b(center|centre|institute|initiative|program|consortium|alliance|collaborative|school|department|research areas?|cluster)\b')
 GROUP_KINDS = {'department_listed_unit', 'scs_listed_unit', 'research_unit', 'project_lab_row'}
 AFFIL_URL = re.compile(r'(?i)adjunct|affiliat|affilliat|related-faculty|courtesy|visiting|associated')

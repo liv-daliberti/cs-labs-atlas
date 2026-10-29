@@ -6,10 +6,10 @@ import re
 import sys
 import unicodedata
 
-sys.path.insert(0, "/n/fs/similarity/maxent-grpo/.research-sweeps/claude-schools-20261021/tools")
+sys.path.insert(0, "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/tools")
 import pi_hierarchy as ph  # noqa: E402  (main is guarded; only helpers are used)
 
-ROOT = "/n/fs/similarity/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy"
+ROOT = "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy"
 toks, Name, given = ph.toks, ph.Name, ph.given
 
 TITLES = re.compile(r"^(?:prof(?:essor)?\.?|dr\.?|mr\.?|ms\.?|mrs\.?|sir)\s+", re.I)
@@ -69,6 +69,12 @@ def lev(a, b):
     return prev[-1]
 
 
+# Reviewed pairs of DIFFERENT people whose name forms the shared Name rules let match each other (the 'S' of a hyphenated
+# initial 'H.-S.' passes as the initial of 'S. Simon'): never one duplicate group; when both match an adviser string, the
+# one whose full given name is in the string wins (2026-10-27).
+DISTINCT = {"stanford": [("S Simon Wong", "H.-S. Philip Wong")]}
+
+
 class PIIndex:
     def __init__(self, school):
         self.school = school
@@ -98,10 +104,12 @@ class PIIndex:
         # duplicate PI entries for one person (e.g. 'Dan Klein' and 'Daniel Klein'): canonical = the entry whose lab is
         # an existing single-leader unit, else the first; held checks look at every entry of the group
         self.dup = {}
+        self.distinct = {frozenset(x) for x in DISTINCT.get(school, [])}
         names_of = {p["pi"]: [p["pi"]] + list(p.get("names") or []) for p in self.pis}
         unit = {p["pi"]: bool((p.get("lab") or {}).get("unitId")) for p in self.pis}
         for p in self.pis:
-            grp = [q["pi"] for q in self.pis if q["pi"] == p["pi"] or any(self.name[p["pi"]].match(n) for n in names_of[q["pi"]])]
+            grp = [q["pi"] for q in self.pis if q["pi"] == p["pi"] or (any(self.name[p["pi"]].match(n) for n in names_of[q["pi"]])
+                                                                     and frozenset((p["pi"], q["pi"])) not in self.distinct)]
             if len(grp) > 1:
                 canon = sorted(grp, key=lambda x: (not unit[x], [q["pi"] for q in self.pis].index(x)))[0]
                 for g in grp:
@@ -177,6 +185,10 @@ class PIIndex:
             hits = sorted(emb)
             if hits:
                 return hits, how
+        if len(hits) > 1 and any(frozenset((x, y)) in self.distinct for x in hits for y in hits):
+            full_ = [pi for pi in hits if any(len(f) > 1 and l == t[-1] and f in {given(x) for x in t[:-1]} for f, l in self.name[pi].forms)]
+            if len(full_) == 1:
+                return full_, how
         if len(hits) > 1:  # keep the PIs whose full first name agrees, if that disambiguates
             full = [pi for pi in hits if any(given(t[0]) == f for f, l in self.name[pi].forms)]
             if full and len({self.canonical(x) for x in full}) < len({self.canonical(x) for x in hits}):

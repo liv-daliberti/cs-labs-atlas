@@ -1,6 +1,6 @@
 """Print a compact view of each period target: current periods, listings, census override periods."""
 import json, sys
-H = '/n/fs/similarity/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy'
+H = '/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy'
 school = sys.argv[1]
 T = json.load(open(f'{H}/period-targets-20261026.json'))[school]
 P = {p['pi']: p for p in json.load(open(f'{H}/{school}/pis.json'))}

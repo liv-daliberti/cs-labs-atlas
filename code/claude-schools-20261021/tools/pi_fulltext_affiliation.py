@@ -29,7 +29,7 @@ HERE = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(Path(__file__).parent))
 from pi_hierarchy import INST, AFF, read  # noqa: E402
 UA = 'HomogenizingScienceResearch/0.2 (academic metadata inventory)'
-FT = Path('/n/fs/similarity/homogenizing-science/data/fulltext')
+FT = Path('/n/fs/resemble/homogenizing-science/data/fulltext')
 SELECT = 'id,doi,title,publication_year,publication_date,type,authorships,ids,primary_location,locations'
 
 

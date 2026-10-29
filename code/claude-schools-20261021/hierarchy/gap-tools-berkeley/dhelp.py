@@ -8,7 +8,7 @@ every quote against the stored bytes. Options: after=STR (search START after STR
 import json
 import re
 
-TOOLS = "/n/fs/similarity/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/gap-tools-berkeley"
+TOOLS = "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/gap-tools-berkeley"
 WB = "https://web.archive.org/web/"
 PROF = "https://www2.eecs.berkeley.edu/Faculty/Homepages/"
 DISS = "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Faculty/"

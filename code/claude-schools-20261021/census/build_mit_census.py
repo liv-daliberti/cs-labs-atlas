@@ -30,9 +30,9 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-SW = Path('/n/fs/similarity/maxent-grpo/.research-sweeps')
+SW = Path('/n/fs/resemble/maxent-grpo/.research-sweeps')
 STAGE, CODEX = SW / 'claude-mit-20261020', SW / 'mit-cs-deep-20261019'
-SITE = Path('/n/fs/similarity/maxent-grpo/princeton-live-20261015/atlas/data')
+SITE = Path('/n/fs/resemble/maxent-grpo/princeton-live-20261015/atlas/data')
 
 
 def clean(s):

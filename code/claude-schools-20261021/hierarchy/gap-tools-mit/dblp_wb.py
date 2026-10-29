@@ -1,7 +1,7 @@
 """Fetch the newest Wayback id_ capture of DBLP person pages (dblp.org HTML is bot-walled live) and summarize.
 usage: dblp_wb.py PID [PID...]"""
 import re, sys
-sys.path.insert(0, '/n/fs/similarity/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/gap-tools-mit')
+sys.path.insert(0, '/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/gap-tools-mit')
 import capstore
 for p in sys.argv[1:]:
     u = 'https://dblp.org/pid/' + p + '.html'

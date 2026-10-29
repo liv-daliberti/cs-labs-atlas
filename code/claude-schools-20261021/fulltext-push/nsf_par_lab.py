@@ -22,7 +22,7 @@ import ftp_common as F
 
 SCHOOLS = ['mit', 'cmu', 'berkeley', 'princeton']
 DB = F.HERE / 'raw' / 'nsf_par.sqlite'
-PRIN_RAW = Path('/n/fs/similarity/maxent-grpo/.research-sweeps/claude-princeton-20261015/cs-structure/raw/nsf_par')
+PRIN_RAW = Path('/n/fs/resemble/maxent-grpo/.research-sweeps/claude-princeton-20261015/cs-structure/raw/nsf_par')
 PAYWALLED = ('10.1109', '10.1145', '10.1007', '10.1016', '10.1002', '10.1111', '10.1364', '10.1117', '10.1017', '10.1080', '10.1137', '10.1287',
              '10.1049', '10.1142', '10.1177', '10.1115', '10.1061', '10.1093', '10.1162', '10.1063', '10.1021', '10.1039')
 
@@ -62,7 +62,7 @@ def todo(schools):
 
 def search(schools):
     import requests
-    sys.path.insert(0, '/n/fs/similarity/maxent-grpo/.research-sweeps/claude-princeton-20261015/tools')
+    sys.path.insert(0, '/n/fs/resemble/maxent-grpo/.research-sweeps/claude-princeton-20261015/tools')
     from cs_nsf_par import parse
     c = db(); seed_from_princeton(c)
     done = {t for (t,) in c.execute("SELECT t FROM searches WHERE status = '200'")}

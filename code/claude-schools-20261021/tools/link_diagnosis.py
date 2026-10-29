@@ -1,0 +1,124 @@
+"""Why a lab's student has no linked lab paper (chain check 4): each open student checked against the school's own
+OpenAlex sweep (every school-affiliated work 2016-2026, hierarchy/<school>/openalex-sweep.sqlite), offline.
+
+A student's works: sweep authorships that list the school, whose raw name has the student's family name and a
+compatible given name (the same first given name, or its initial when the byline gives only an initial), dated from a
+year before their recorded advising to three years after it. Then:
+  link_missed            one of those works IS a lab paper of this PI: the matcher missed the student's name form
+  paper_not_lab_paper    a work with the PI on the byline (the PI's reviewed or anchored OpenAlex id) that is not one
+                         of the lab's papers: a gap in the lab's paper list
+  with_pi_outside_appointment  every such work with the PI falls outside the PI's evidenced appointment at the school
+                         (no reviewed period and no same-year listing covers its date) or is not a paper (dataset,
+                         abstract, erratum): the builder's rules exclude it, a reason, not a gap
+  publishes_without_pi   school works in their years, none with this PI (other advisers, co-advised, other groups);
+                         the census PIs on those bylines are listed
+  no_school_work         no school-affiliated work under their name in their years
+  ambiguous_name         the name matches 4+ distinct OpenAlex authors at the school in those years and none of the
+                         first two cases holds: the evidence cannot tell them apart
+The first two are work to do; the others are reasons. Evidence: OpenAlex work ids and titles.
+-> hierarchy/<school>/link-diagnosis.json {summary, students: {"<pi> | <student id>": {category, works, pis_seen}}}
+usage: link_diagnosis.py <school> ...
+"""
+import collections, gzip, json, re, sys, unicodedata
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).parent))
+from pi_hierarchy import sweep_works, contains, same_year, NOT_PAPERS, TODAY  # noqa: E402
+
+HERE = Path(__file__).resolve().parents[1]; H = HERE / 'hierarchy'
+SCHOOL_IDS = {}  # filled from the PIs' lab papers: the institution ids their school authorships carry
+
+
+def words(s):
+    s = unicodedata.normalize('NFKD', str(s or '')).encode('ascii', 'ignore').decode().lower()
+    if ',' in s:  # 'Li, Yu-Jhe'
+        a, b = s.split(',', 1); s = f'{b} {a}'
+    return [w for w in re.split(r'[^a-z]+', s) if w]
+
+
+def compatible(student, raw):
+    """Same family name; the first given name equal, or an initial standing for it (either side)."""
+    s, r = words(student), words(raw)
+    if len(s) < 2 or len(r) < 2 or s[-1] != r[-1]:
+        return False
+    a, b = s[0], r[0]
+    if a == b or ''.join(s[:-1]) == ''.join(r[:-1]):
+        return True
+    return (len(a) == 1 or len(b) == 1) and a[0] == b[0]
+
+
+def run(school):
+    A = {x['school']: x for x in json.loads((H / 'chain-audit.json').read_text())['schools']}[school]
+    pis = {p['pi']: p for p in json.loads((H / school / 'pis.json').read_text())}
+    pi_ids = {k: set(p.get('reviewedOpenAlex') or []) | set(p.get('oaAuthorIds') or []) for k, p in pis.items()}
+    id_to_pi = collections.defaultdict(set)
+    for k, ids in pi_ids.items():
+        for a in ids:
+            id_to_pi[a].add(k)
+    lab = collections.defaultdict(set)
+    for l in gzip.open(H / school / 'lab_papers.jsonl.gz', 'rt'):
+        r = json.loads(l)
+        for o in [r.get('oa')] + [e.get('oa') for e in r.get('editions') or []]:
+            if o:
+                lab[r['pi']].add(o)
+    open_items = A['checks']['links']['unexplained']
+    fams = {words(x['student'])[-1] for x in open_items if words(x['student'])}
+    # index the sweep's school-affiliated authorships by family name (only the families we need)
+    idx = collections.defaultdict(list)
+    for w in sweep_works(school):
+        y = w.get('publication_year')
+        auth = w.get('authorships') or []
+        ids_on = {(a.get('author') or {}).get('id') for a in auth}
+        for a in auth:
+            raw = a.get('raw_author_name') or (a.get('author') or {}).get('display_name')
+            ww = words(raw)
+            if not ww or ww[-1] not in fams:
+                continue
+            if not a.get('institutions'):
+                continue
+            idx[ww[-1]].append(dict(work=w['id'], title=(w.get('title') or '')[:120], year=y, raw=raw, type=w.get('type'),
+                                    date=w.get('publication_date') or str(y or ''), aid=(a.get('author') or {}).get('id'), coauthor_ids=ids_on))
+    out, summary = {}, collections.Counter()
+    for x in open_items:
+        ys = x.get('years')
+        lo, hi = (ys[0] - 1, ys[1] + 3) if ys else (2016, 2026)
+        fam = (words(x['student']) or [''])[-1]
+        cand = [c for c in idx.get(fam, []) if c['year'] and lo <= c['year'] <= hi and compatible(x['student'], c['raw'])]
+        pi = x['pi']
+        mine = [c for c in cand if c['work'] in lab[pi]]
+        with_pi = [c for c in cand if c['coauthor_ids'] & pi_ids.get(pi, set()) and c['work'] not in lab[pi]]
+        authors = {c['aid'] for c in cand if c['aid']}
+        def excluded(c):  # why the builder rightly left a work with the PI out of the lab's papers, or None
+            if c.get('type') in NOT_PAPERS or c.get('type') in ('conference-abstract',):
+                return 'not_a_paper'
+            p = pis.get(pi) or {}
+            if any(contains(q.get('start'), q.get('end'), c['date'], q.get('asof') or TODAY) == 'supported' for q in p.get('periods') or []):
+                return None
+            return None if any(l.get('year') == same_year(c['date']) for l in p.get('listings') or []) else 'outside_appointment'
+        if mine:
+            cat = 'link_missed'
+        elif with_pi and all(excluded(c) for c in with_pi):
+            cat = 'with_pi_outside_appointment'
+        elif with_pi:
+            cat = 'paper_not_lab_paper'
+        elif not cand:
+            cat = 'no_school_work'
+        elif len(authors) >= 4:
+            cat = 'ambiguous_name'
+        else:
+            cat = 'publishes_without_pi'
+        with_pi = [dict(c, excluded=excluded(c)) for c in with_pi] if with_pi else with_pi
+        seen = collections.Counter(p for c in cand for a in c['coauthor_ids'] for p in id_to_pi.get(a, ()) if p != pi)
+        ev = (mine or with_pi or cand)[:5]
+        out[f"{pi} | {x.get('id')}"] = dict(pi=pi, student=x['student'], id=x.get('id'), roles=x.get('roles'), years=ys, category=cat,
+                                            works=[dict(oa=c['work'], year=c['year'], title=c['title'], byline_name=c['raw'], type=c.get('type'), excluded=c.get('excluded')) for c in ev],
+                                            n_school_works=len({c['work'] for c in cand}), distinct_author_ids=len(authors),
+                                            pis_seen=[p for p, _ in seen.most_common(3)])
+        summary[cat] += 1
+    (H / school / 'link-diagnosis.json').write_text(json.dumps(dict(summary=dict(summary), students=out), indent=1, ensure_ascii=False))
+    print(json.dumps(dict(school=school, open=len(open_items), **summary)), flush=True)
+
+
+if __name__ == '__main__':
+    for s in sys.argv[1:]:
+        run(s)

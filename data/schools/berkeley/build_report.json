@@ -1,54 +1,60 @@
 {
  "school": "berkeley",
- "builtAt": "2026-10-27T16:46:41.744424Z",
+ "builtAt": "2026-10-29T00:24:52.794487Z",
  "counts": {
   "census_rows_merged_by_nickname": 2,
   "pis_excluded_by_review": 22,
-  "pis": 196,
-  "pis_without_person": 76,
+  "pis": 203,
+  "pis_without_person": 83,
   "labs_reused": 111,
-  "labs_new": 85,
+  "labs_new": 92,
   "student_names_cleaned": 19,
+  "student_corrections_replace_sources": 1,
   "student_records_merged": 73,
-  "student_ids_unified_across_labs": 13,
-  "pis_with_students": 193,
-  "students": 3769,
-  "lab_student_pairs": 4353,
+  "student_same_name_other_labs_unmerged": 13,
+  "pis_with_students": 203,
+  "students": 3859,
+  "lab_student_pairs": 4436,
   "dblp_ids_dropped_name_mismatch": 0,
-  "pis_with_dblp_list": 161,
+  "pis_with_dblp_list": 166,
   "pis_with_own_publication_list": 104,
   "pis_with_lab_publication_page": 54,
-  "sweep_name_hits": 16317,
+  "other_pi_reviewed_ids_blocked": 22837,
+  "sweep_name_hits": 16815,
   "surname_only_hits_by_anchored_id": 73,
-  "pi_work_list_hits": 7868,
-  "hit_without_school_affiliation": 8043,
-  "hit_without_identity": 372,
-  "outside_appointment": 293,
+  "pi_work_list_hits": 7872,
+  "hit_without_school_affiliation": 7922,
+  "hit_without_identity": 410,
+  "outside_appointment": 325,
+  "school_via_advisee_coauthor": 155,
   "dblp_recovered_lab_papers": 342,
-  "labpage_recovered_lab_papers": 33,
-  "edition_records_merged": 870,
-  "lab_papers": 15055,
+  "labpage_recovered_lab_papers": 30,
+  "namesake_claims_dropped": 0,
+  "edition_records_merged": 907,
+  "lab_papers": 15568,
   "lab_papers_in_collection": 0,
-  "lab_papers_new": 15055,
-  "lab_papers_by_period": 7051,
-  "lab_papers_by_listing": 8004,
-  "identity:dblp_person_page_doi": 5214,
-  "identity:reviewed_openalex_author_id": 5978,
-  "identity:dblp_person_page_title": 515,
-  "identity:advisee_coauthor": 1135,
+  "lab_papers_new": 15568,
+  "lab_papers_by_period": 7503,
+  "lab_papers_by_listing": 8065,
+  "identity:dblp_person_page_doi": 5288,
+  "identity:reviewed_openalex_author_id": 6391,
+  "identity:dblp_person_page_title": 525,
+  "identity:advisee_coauthor": 1162,
   "identity:anchored_author_id": 1710,
   "identity:pi_institutional_publication_list": 52,
-  "identity:pi_orcid": 53,
-  "identity:lab_publication_page": 29,
-  "identity:advisee_anchored_author_id": 6,
-  "identity:dblp_person_page": 330,
-  "identity:labpage_listing": 33,
-  "student_paper_links": 14286,
-  "labs_with_student_papers": 182,
-  "student_link:byline_name_with_school_affiliation": 11049,
-  "student_link:advisee_name_on_lab_paper_byline": 3237,
-  "pis_with_lab_papers": 195,
-  "pis_complete_chain": 182
+  "identity:pi_orcid": 54,
+  "identity:lab_publication_page": 31,
+  "identity:advisee_anchored_author_id": 7,
+  "identity:dblp_person_page": 318,
+  "identity:labpage_listing": 30,
+  "students_dropped_program_or_reader_only": 2,
+  "student_paper_links": 15188,
+  "labs_with_student_papers": 190,
+  "student_link:byline_name_with_school_affiliation": 11609,
+  "student_link:advisee_name_on_lab_paper_byline": 3304,
+  "student_link:full_name_on_lab_paper_byline": 275,
+  "pis_with_lab_papers": 202,
+  "pis_complete_chain": 190
  },
  "excluded": [
   {
@@ -143,11 +149,7 @@
  "pisWithoutPapers": [
   "Brian A. Barsky"
  ],
- "pisWithoutStudents": [
-  "Ian Holmes",
-  "Manxi Wu",
-  "Zachary Pardos"
- ],
+ "pisWithoutStudents": [],
  "censusNicknameMerges": [
   [
    "David Wagner",
@@ -157,5 +159,23 @@
    "Daniel Klein",
    "Dan Klein"
   ]
+ ],
+ "droppedProgramOrReaderOnly": [
+  {
+   "pi": "James O'Brien",
+   "student": "ext:berkeley:james-lin",
+   "name": "James Lin",
+   "roles": [
+    "masters"
+   ]
+  },
+  {
+   "pi": "James O'Brien",
+   "student": "ext:berkeley:woojong-koh",
+   "name": "Woojong Koh",
+   "roles": [
+    "masters"
+   ]
+  }
  ]
 }

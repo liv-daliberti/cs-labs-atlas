@@ -5,7 +5,7 @@ usage: a_retry_wb.py URL...   (tries each URL up to 5 times, waiting 120 s after
 import sys
 import time
 
-sys.path.insert(0, "/n/fs/similarity/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/few-students-tools-cmu")
+sys.path.insert(0, "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/few-students-tools-cmu")
 import capstore  # noqa: E402
 
 for u in sys.argv[1:]:

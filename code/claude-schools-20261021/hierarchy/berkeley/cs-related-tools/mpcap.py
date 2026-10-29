@@ -19,7 +19,7 @@ from urllib.parse import urlsplit
 
 import requests
 
-HERE = '/n/fs/similarity/maxent-grpo/.research-sweeps/claude-schools-20261021'
+HERE = '/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021'
 DB = f'{HERE}/hierarchy/berkeley/cs-related-captures.sqlite'
 LOCKDIR = '/tmp/claude-363432/-n-fs-similarity-maxent-grpo/2bd068f5-5142-4dac-89d1-67eb470f92c1/scratchpad/gap-ratelimit'
 UA = ('princeton-cs-research-sweep/1.0 (faculty lab membership research: department faculty lists and thesis adviser '

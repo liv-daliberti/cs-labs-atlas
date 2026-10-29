@@ -22,11 +22,11 @@ papers     work an authorship that matches the student's name and lists the scho
 
 usage: pi_hierarchy.py <school> [<school> ...]
 """
-import calendar, collections, datetime, gzip, json, re, sqlite3, sys, unicodedata, zlib
+import calendar, collections, datetime, gzip, html, json, re, sqlite3, sys, unicodedata, zlib
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parents[1]
-SITE = Path('/n/fs/similarity/maxent-grpo/princeton-live-20261015/atlas/data')
+SITE = Path('/n/fs/resemble/maxent-grpo/princeton-live-20261015/atlas/data')
 DBLP = {'cmu': 'claude-cmu-20261017', 'epfl': 'claude-epfl-20261019', 'mit': 'claude-mit-20261020', 'berkeley': 'claude-berkeley-20261021',
         'stanford': 'claude-stanford-20261027'}
 INST = {'princeton': 'I20089843', 'cmu': 'I74973139', 'epfl': 'I5124864', 'mit': 'I63966007', 'berkeley': 'I95457486', 'stanford': 'I97018004'}
@@ -122,6 +122,56 @@ def clean_person_name(name):
     return re.sub(r'\s+', ' ', t.replace(' .', ' ')).strip(' ,.')
 
 
+ADVISING_LABEL = re.compile(r"Doctoral Dissertation (?:Co-)?Advisor \((?:AC|NonAC)\)|Doctoral Dissertation Reader \((?:AC|NonAC)\)"
+                            r"|Doctoral \(Program\)|Master's Program Advisor|Undergraduate Major Advisor|Postdoctoral Faculty Sponsor"
+                            r"|Postdoctoral Research Mentor")
+WEAK_LABEL = re.compile(r"Reader|\(Program\)|Program Advisor|Major Advisor")
+
+
+def advising_label(quote, names):
+    """The Stanford Profiles advisee heading the student's name sits under in a quote ('Doctoral (Program) A, B
+    Doctoral Dissertation Advisor (AC) C'), or None when the quote names no heading before the name."""
+    q = unicodedata.normalize('NFKD', str(quote or '')).encode('ascii', 'ignore').decode()
+    for nm in names:
+        t = toks(nm)
+        if not t:
+            continue
+        m = re.search(r'\b' + re.escape(t[-1]) + r'\b', q, re.I)
+        if m:
+            heads = [h for h in ADVISING_LABEL.finditer(q) if h.start() < m.start()]
+            return heads[-1].group(0) if heads else None
+    return None
+
+
+ADVISER_NAMED = re.compile(r"advis[oe]rs?(?:\(s\))?\s*:\s*([^;\n]{3,120})|([A-Z][\w.'\- ]{2,40}?)\s*\(advis[oe]r\)", re.I)
+
+
+def relation_names_other_adviser(r, pi_names):
+    """Every source quote names the student's adviser(s), and none of them is this PI (2026-10-28: Princeton's roster
+    line 'Kritkorn Karntikoon - Adviser(s): Bernard Chazelle' had been attached to Weinberg and Braverman too). Quotes
+    that speak of co-advising or a primary advisor describe shared advising and never count as naming another."""
+    fams = {unicodedata.normalize('NFKD', toks(n)[-1]).encode('ascii', 'ignore').decode().lower() for n in pi_names if toks(n)}
+    quotes = [q.get('quote') or '' for q in r.get('sources') or []]
+    if not quotes:
+        return False
+    for q in quotes:
+        if re.search(r'co-?advis|primary advis', q, re.I):
+            return False
+        named = ' '.join((m.group(1) or m.group(2) or '') for m in ADVISER_NAMED.finditer(q))
+        named = unicodedata.normalize('NFKD', named).encode('ascii', 'ignore').decode().lower()
+        if not named or any(re.search(r'\b' + re.escape(f) + r'\b', named) for f in fams):
+            return False
+    return True
+
+
+def relation_is_weak(r, names):
+    """Program advising or a reader role only: every source quote puts the name under such a heading (or, with no
+    quote heading, the relation's own role is one)."""
+    labels = [advising_label(q.get('quote'), names) for q in r.get('sources') or []]
+    labels = [l for l in labels if l] or ([r['role']] if ADVISING_LABEL.fullmatch(str(r.get('role') or '')) else [])
+    return bool(labels) and all(WEAK_LABEL.search(l) for l in labels)
+
+
 def near_relation(s, year):
     """The paper's year is within three years of the student's recorded advising or membership (no years: any)."""
     ys = [int(y) for rel in s.get('relations') or [] for y in rel.get('years') or [] if str(y).isdigit()]
@@ -188,11 +238,41 @@ def same_student(a, b):
     return len(gx) >= 4 and gy.startswith(gx)
 
 
+def byline_name(raw):
+    """A byline string as 'Given Family': HTML entities decoded, and one 'Family, Given[, Middle]' comma form turned round."""
+    s = html.unescape(str(raw or '')).strip()
+    if s.count(',') >= 1 and not re.search(r',\s*(jr|sr|ii|iii|iv)\.?$', s, re.I):
+        fam, rest = s.split(',', 1)
+        s = f"{rest.replace(',', ' ').strip()} {fam.strip()}"
+    return re.sub(r'\s+', ' ', s).strip()
+
+
+def name_variants(name):
+    """A student name with a parenthesized part, as its readings: 'Fatma Imamoglu (Deniz)' -> Fatma Imamoglu, Fatma
+    Deniz; 'Fanglin(Linda) Liu' -> Fanglin Liu, Linda Liu; 'Xi (Peter) Chen' -> Xi Chen, Peter Chen."""
+    m = re.match(r'^(.*?)\s*\(([^)]+)\)\s*(.*)$', name or '')
+    if not m:
+        return []
+    before, inner, after = m.group(1).strip(), m.group(2).strip(), m.group(3).strip()
+    out = [re.sub(r'\s+', ' ', f'{before} {after}').strip()]
+    if '/' in inner or not re.fullmatch(r"[A-Z][a-z'\-]+(?: [A-Z][a-z'\-]+)?", inner) or re.fullmatch(r'(?i)mech\w*|ece|eecs|phd|ms|bs|meng', inner):
+        return [v for v in out if len(v.split()) >= 2]  # pronouns, departments, degrees: not a name
+    if after:  # a given name ('Fanglin(Linda) Liu') or, after a lone given name, a maiden name ('Michelle (Karabin) Harter')
+        out.append(f'{inner} {after}')
+        if len(before.split()) == 1:
+            out.append(f'{before} {inner}')
+    elif len(before.split()) >= 2:  # a family name: 'Fatma Imamoglu (Deniz)'
+        out.append(f'{before.split()[0]} {inner}')
+    return [v for v in out if len(v.split()) >= 2]
+
+
 def student_on_byline(nm, s_toks, raw):
     """A student's name on a byline: Name.match, or forms Name.match rejects but that are the same person on one lab paper:
     given names written joined or split ('Sangeon'/'Sang Eon Park'), a first given name that is a 3+ letter prefix of the
     other ('Divy'/'Divya', 'Themis'/'Themistoklis'), or the byline adding a first name before the known one ('Sergio
-    Sebastian Pineda' for 'Sebastian Pineda'). The family name must agree in every case."""
+    Sebastian Pineda' for 'Sebastian Pineda'). The family name must agree in every case. A byline is read as a name first (byline_name:
+    HTML entities decoded, 'Arye, Matvey' turned round)."""
+    raw = byline_name(raw)
     if nm.match(raw):
         return True
     t = toks(raw)
@@ -271,8 +351,18 @@ def ndoi(s):
     return re.sub(r'^https?://(?:dx\.)?doi\.org/', '', str(s or '').strip(), flags=re.I).lower()
 
 
+SEASON = {'spring': ('01-01', '05-31'), 'summer': ('06-01', '08-31'), 'fall': ('08-01', '12-31'), 'autumn': ('08-01', '12-31')}
+
+
 def datebounds(value):
-    value = str(value or '')
+    """A date's earliest and latest day. A reviewed value may carry a note after the date ('2020 (Fall)', '2022-12 (first
+    dated observation; ...)'): the leading date counts, narrowed to the term when the note names a season."""
+    value = str(value or '').strip()
+    m = re.fullmatch(r'(\d{4}(?:-\d{2}){0,2})\s*\((.*)\)', value)
+    if m:
+        value = m.group(1); term = SEASON.get(m.group(2).strip().lower()) if len(value) == 4 else None
+        if term:
+            return f'{value}-{term[0]}', f'{value}-{term[1]}'
     if re.fullmatch(r'\d{4}', value):
         return value + '-01-01', value + '-12-31'
     if re.fullmatch(r'\d{4}-\d{2}', value):
@@ -316,13 +406,39 @@ def sweep_works(school):
 
 NOT_FACULTY = re.compile(r'\b(ph\.?\s?d\.?\s+(student|candidate)|graduate student|doctoral (student|candidate)|master.?s student|'
                          r'post-?docs?|postdoctoral|post-doctoral)\b', re.I)
+OTHER_INST = re.compile(r'univ|institut|college|polytechn|[ée]cole|laborator|\blabs?\b|\binc\b|corp|\bltd\b|gmbh|\bllc\b|hospital|academy|'
+                        r'cent(?:er|re)\b|google|microsoft|\bmeta\b|amazon|\bibm\b|nvidia|openai|deepmind|foundation|\bcnrs\b|\binria\b|'
+                        r'\beth\b|max planck|national|company', re.I)  # an affiliation string that names some institution, not a department
+INCOMING = re.compile(r'\b(incoming|future faculty|will join|joining (?:us )?(?:in )?(?:the )?(?:fall|spring|summer|\d{4})|'
+                      r'starting (?:in )?(?:(?:fall|spring|summer|autumn|january|july|september) )?\d{4}|arriving)\b', re.I)
 
 
 def not_faculty_row(text):
     """A dated listing row that lists the person as a student or postdoc, not as faculty: it proves no appointment
-    (the same-year listing rule is about faculty listings; directories such as CMU's SCS list students too)."""
+    (the same-year listing rule is about faculty listings; directories such as CMU's SCS list students too). Nor does a
+    row announcing a future appointment ('incoming', 'will join', 'starting 2025'): 'Acting' and other held titles count."""
     t = text or ''
-    return bool(NOT_FACULTY.search(t)) and not re.search(r'professor|lecturer|faculty', t, re.I)
+    return bool(INCOMING.search(t)) or (bool(NOT_FACULTY.search(t)) and not re.search(r'professor|lecturer|faculty', t, re.I))
+
+
+def basis_advisees(quote):
+    """Students a PI's basis quote names as their Ph.D. advisees, with the year when the quote dates it: a DSpace record
+    ('"dc.contributor.author" : [ { "value" : "Huang, Qingqing, Ph. D. Massachusetts ...'), an SCS thesis page
+    ('Kirstin Early August 2017 Ph.D. Thesis'), or a Stanford Profiles advisee heading ('Doctoral Dissertation Advisor
+    (AC) Edward Gan, Sahaana Suri'; co-advisor too, never readers or program advisers)."""
+    q = quote or ''; out = []
+    for m in re.finditer(r'dc\.contributor\.author"\s*:\s*\[\s*\{\s*"value"\s*:\s*"([^"]+)', q):
+        v = re.sub(r'\s*\([^)]*\)', '', m.group(1)); v = re.split(r',\s*Ph\.?\s*D\b', v)[0].strip().rstrip('.')
+        if ',' in v:
+            last, first = [x.strip() for x in v.split(',', 1)]; v = f'{first} {last}'
+        out.append((v, None))
+    m = re.match(r'\s*([A-Z][\w.\'\- ]+?)\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+((?:19|20)\d\d)\s+Ph\.?\s*D\.?\s+Thesis', q)
+    if m:
+        out.append((m.group(1).strip(), int(m.group(2))))
+    m = re.search(r'Doctoral Dissertation (?:Co-)?Advisor \(AC\)\s+(.+?)(?=\s+(?:Doctoral|Postdoctoral|Master|Undergraduate|Reader|Orals|Current)|\s*$)', q)
+    if m:
+        out += [(x.strip(), None) for x in m.group(1).split(',') if len(x.strip().split()) >= 2]
+    return [(clean_person_name(a), y) for a, y in out if a]
 
 
 def as_list(v):
@@ -393,7 +509,7 @@ def build(school):
     dblp_of = lambda x: as_list(x.get('dblp'))
     merged, first, by_family, nick_merges = collections.defaultdict(list), {}, collections.defaultdict(list), []
     for x in census:  # census duplicate pairs (one person listed twice): same DBLP PID or same collection person
-        if not x.get('is_pi') or x.get('not_faculty'):
+        if not (x.get('is_pi') or (ov.get(x['name']) or {}).get('is_pi')) or x.get('not_faculty'):  # a reviewed is_pi wins
             continue
         nk = 'name:' + ' '.join(toks(x['name']))  # spelling variants of one name ("O’Toole" / "O'Toole") are one person too
         k = next((first[q] for q in dblp_of(x) + [x.get('collection_person_id'), nk] if q and q in first), None)
@@ -455,7 +571,7 @@ def build(school):
         pis.append(dict(pi=x['name'], personIds=ids, names=list(dict.fromkeys(names)), dblp=x['dblp'], reviewedOpenAlex=x['openalex'], orcid=x['orcid'],
                         notOpenAlex=list(o.get('not_openalex') or []),  # reviewed namesake author ids: never this PI
                         mergedCensusRows=x['mergedCensusRows'], rank=x.get('rank'), title=x.get('title_as_listed'),
-                        departments=x.get('departments') or x.get('units') or [], piBasis=x.get('pi_basis'), lab=lab,
+                        departments=x.get('departments') or x.get('units') or [], piBasis=o.get('pi_basis') or x.get('pi_basis'), lab=lab,  # a reviewed basis (census-overrides.json) wins
                         periods=[dict(id=p.get('id'), start=p.get('facultyStart'), end=p.get('facultyEnd'), asof=p.get('ongoingAsOf') or p.get('facultyLastConfirmed'),
                                       evidence=(p.get('evidence') or [])[:2]) for p in mine]
                                 + [dict(q, asof=q.get('asof') or (None if q.get('end') else TODAY)) for q in o.get('periods') or []],  # reviewed periods (census-overrides.json)
@@ -474,6 +590,19 @@ def build(school):
     for p in pis:
         for f, l in nm[p['pi']].forms:
             by_sur[l].append(p['pi'])
+
+    # an adviser field names a PI by full given name only through the PI's full-name forms (an 'H. Balakrishnan' alias of
+    # Hamsa must not take 'Balakrishnan, Hari' theses, 2026-10-28); an initials-only field goes to no PI when another PI of
+    # the school shares that family name and initial
+    nm_full = {p['pi']: Name([x for x in p['names'] if len((toks(x) or [''])[0]) > 1] or p['names']) for p in pis}
+
+    def adviser_is(pi, a):
+        t_ = toks(a)
+        if not t_:
+            return False
+        if len(t_[0]) > 1:
+            return nm_full[pi].match(a)
+        return nm[pi].match(a) and not any(q != pi and nm[q].match(a) for q in by_sur.get(t_[-1], []))
 
     # students: advising contexts naming the PI, and memberships of a reused unit
     stu = collections.defaultdict(dict)
@@ -496,7 +625,7 @@ def build(school):
                 for p in (pid0[q] for q in cand):
                     if person['id'] in p['personIds']:
                         continue
-                    if ids_ & set(p['personIds']) or any(a and nm[p['pi']].match(a) for a in advs) or (c.get('unit') and c.get('unit') == p['lab']['unitId'] and t == 'academic_advising'):
+                    if ids_ & set(p['personIds']) or any(a and adviser_is(p['pi'], a) for a in advs) or (c.get('unit') and c.get('unit') == p['lab']['unitId'] and t == 'academic_advising'):
                         r = stu[p['pi']].setdefault(person['id'], dict(person=person['id'], name=person['name'], roles=person.get('roles') or [], relations=[]))
                         r['relations'].append(dict(type=t, years=c.get('years') or ([c['year']] if c.get('year') else []), role=c.get('role'),
                                                    sources=(c.get('sources') or [])[:2], work=c.get('work')))
@@ -511,7 +640,8 @@ def build(school):
             if len(t_) >= 2:
                 by_name[t_[-1]].append(person)
     fe = collections.defaultdict(lambda: dict(students=[]))  # researched students: thin labs and the thesis hunt
-    for fn in ('few-students-evidence.json', 'thesis-evidence.json', 'labpage-evidence.json'):
+    for fn in ('few-students-evidence.json', 'thesis-evidence.json', 'labpage-evidence.json',
+               'thesis-held-years-evidence.json'):
         if (HERE / 'hierarchy' / school / fn).exists():
             for r in read(HERE / 'hierarchy' / school / fn):
                 fe[r['pi']]['students'] = list(fe[r['pi']]['students']) + list(r.get('students') or [])
@@ -525,6 +655,18 @@ def build(school):
             r = stu[p['pi']].setdefault(sid, dict(person=sid, name=match_[0]['name'] if len(match_) == 1 else s_['name'], roles=[s_.get('role') or 'student'], relations=[]))
             r['relations'].append(dict(type='researched_' + ('membership' if s_.get('role') == 'member' else 'advising'), years=[y for y in (s_.get('years') or []) if y],
                                        role=s_.get('role'), sources=[dict(url=s_.get('capture_url') or s_['url'], sha256=s_['sha256'], quote=s_['quote'])]))
+    for p in pis:  # advisees named in the PI's own reviewed basis quote (census-overrides.json pi_basis, kind advises_phd)
+        b = p.get('piBasis') or {}
+        if b.get('kind') != 'advises_phd' or not (b.get('quote') and b.get('sha256')):
+            continue
+        for sname, yr in basis_advisees(b['quote']):  # not 'nm': that is the PI name table
+            t_ = toks(sname); nm_ = Name([sname])
+            match_ = [q for q in by_name.get(t_[-1] if t_ else '', []) if nm_.match(q['name'])]
+            sid = match_[0]['id'] if len(match_) == 1 else f"ext:{school}:{re.sub('[^a-z0-9]+', '-', sname.lower()).strip('-')}"
+            r = stu[p['pi']].setdefault(sid, dict(person=sid, name=match_[0]['name'] if len(match_) == 1 else sname, roles=['phd'], relations=[]))
+            r['relations'].append(dict(type='pi_basis_advising', years=[y for y in (yr or source_year(b),) if y], role='phd',
+                                       sources=[dict(url=b['url'], sha256=b['sha256'], quote=b['quote'])]))
+            n['pi_basis_advisees'] += 1
     merged_students = 0
     for p in pis:  # one record per student and lab: nickname or spelling variants ("Liv" / "Olivia d'Aliberti") merge
         for r in stu[p['pi']].values():
@@ -542,28 +684,55 @@ def build(school):
             else:
                 tgt['relations'] += r['relations']; tgt.setdefault('aliases', []).append(r['name']); tgt.setdefault('merged', []).append(r['person']); merged_students += 1
         stu[p['pi']] = {r['person']: r for r in keep}
+    # reviewed identities (hierarchy/student-identity-review.json, from the same-name research): two records of one lab
+    # that are one person merge under the canonical name; 'different_people' verdicts only feed the chain audit
+    rev = read(HERE / 'hierarchy/student-identity-review.json') if (HERE / 'hierarchy/student-identity-review.json').exists() else []
+    for x in rev:
+        if x.get('school') != school or x.get('verdict') != 'same_person' or x.get('pi') not in stu:
+            continue
+        S = stu[x['pi']]
+        find = lambda i: next((k for k, r in S.items() if k == i or i in (r.get('merged') or [])), None)
+        a, b = find(x['a'][0]), find(x['b'][0])
+        if not a or not b or a == b:
+            continue
+        keep_, drop_ = (a, b) if str(b).startswith('ext:') or not str(a).startswith('ext:') else (b, a)
+        k, d = S[keep_], S.pop(drop_)
+        k['relations'] += d['relations']; k.setdefault('aliases', []).extend([k['name'], d['name']] + list(d.get('aliases') or []))
+        k.setdefault('merged', []).extend([d['person']] + list(d.get('merged') or []))
+        k['name'] = x.get('canonical_name') or k['name']; k['aliases'] = [s for s in dict.fromkeys(k['aliases']) if s != k['name']]
+        k.setdefault('identityReview', []).append(dict(merged=d['person'], reason=x.get('reason'), evidence=x.get('evidence')))
+        merged_students += 1
+    # reviewed record corrections (hierarchy/student-corrections.json): drop a misplaced student from a lab, rename a
+    # record keyed to the wrong person (the old name stays an alias), or replace a relation's mis-cut evidence
+    corr = read(HERE / 'hierarchy/student-corrections.json') if (HERE / 'hierarchy/student-corrections.json').exists() else []
+    for x in corr:
+        S = stu.get(x.get('pi')) if x.get('school') == school else None
+        k = next((k for k, r in (S or {}).items() if k == x['student'] or x['student'] in (r.get('merged') or [])), None)
+        if not k:
+            continue
+        r = S[k]
+        if x['action'] == 'drop':
+            S.pop(k)
+        elif x['action'] == 'rename':
+            r.setdefault('aliases', []).append(r['name']); r['name'] = x['name']
+            if x.get('person'):
+                r.setdefault('merged', []).append(k); r['person'] = x['person']; S[x['person']] = S.pop(k)
+        elif x['action'] == 'replace_sources':
+            r['relations'] = [dict(type=x.get('type', 'researched_advising'), years=x['years'], role=x.get('role'), sources=x['sources'])]
+        r.setdefault('corrections', []).append(dict(action=x['action'], reason=x['reason'], evidence=x.get('evidence')))
+        n['student_corrections_' + x['action']] += 1
     n['student_records_merged'] = merged_students
-    # one id per person across the school's labs: a co-advised student (or one found by two sources) keeps one id, the
-    # collection person's when there is one (the collections themselves list one person under several source ids). Same
-    # name tokens, middle initials ignored; not for short two-part names ('Yang Yang', 'Wei Li'), which are too often
-    # different people, nor across different full middle names ('William Wang' / 'William Wei Wang').
-    groups = collections.defaultdict(list)
+    # Across labs, a matching name alone does not make one person (owner 2026-10-27: merge name variants only within a
+    # lab, under the same PI; AGENTS.md: consolidate alternate names only with explicit identity evidence). Records in
+    # several labs share an id only when their sources already resolved to the same person record; same-name records
+    # in other labs are counted here and listed by tools/student_audit.py (across_labs) as candidates for review.
+    seen_names = collections.defaultdict(set)
     for p in pis:
         for r in stu[p['pi']].values():
-            t_ = [x for x in toks(r['name']) if len(x) > 1]  # middle initials dropped: 'Quanquan C. Liu' = 'Quanquan Liu'
-            if len(t_) >= 2 and not (len(t_) == 2 and len(t_[0]) <= 4 and len(t_[1]) <= 4):
-                groups[tuple(t_)].append((p['pi'], r))
-    for key, recs in groups.items():
-        ids = {r['person'] for _, r in recs}
-        if len(ids) < 2:
-            continue
-        known = sorted(i for i in ids if i in Pid)  # the collections hold one person under several source ids (MIT: roster, thesis, audit)
-        canon = known[0] if known else collections.Counter(r['person'] for _, r in recs).most_common(1)[0][0]
-        for pi_, r in recs:
-            if r['person'] != canon:
-                old = r['person']; r.setdefault('merged', []).append(old); r['person'] = canon
-                stu[pi_] = {(canon if k == old else k): v for k, v in stu[pi_].items()}
-                n['student_ids_unified_across_labs'] += 1
+            t_ = [x for x in toks(r['name']) if len(x) > 1]
+            if len(t_) >= 2:
+                seen_names[tuple(t_)].add(r['person'])
+    n['student_same_name_other_labs_unmerged'] = sum(len(v) > 1 for v in seen_names.values())
     n['pis_with_students'] = sum(bool(stu[p['pi']]) for p in pis); n['students'] = len({s for v in stu.values() for s in v}); n['lab_student_pairs'] = sum(len(v) for v in stu.values())
 
     # identity anchors: the PI's own DBLP publication list, the PI's DBLP-verified collection works, a stated advisee as co-author
@@ -650,6 +819,12 @@ def build(school):
     reviewed_oa = {p['pi']: set(p.get('reviewedOpenAlex') or []) for p in pis}
     orcids = {p['pi']: set(p.get('orcid') or []) for p in pis}
     blocked = {p['pi']: set(p.get('notOpenAlex') or []) for p in pis}
+    # another PI's reviewed author id is never this PI's (2026-10-28: S. Simon Wong's advisees co-wrote with H.-S. Philip
+    # Wong, so the advisee rule anchored Philip Wong's reviewed id to Simon Wong through the 'S.' in 'H.-S.')
+    all_reviewed = collections.Counter(a for s_ in reviewed_oa.values() for a in s_)
+    for p in pis:
+        blocked[p['pi']] |= {a for a in all_reviewed if a not in reviewed_oa[p['pi']]}
+    n['other_pi_reviewed_ids_blocked'] = sum(len(v) for v in blocked.values())
     hits = []  # (pi, oa work, authorship, collection work, identity)
     for w in sweep_works(school):
         if w.get('type') in NOT_PAPERS:  # datasets, peer reviews, errata, supplements: not papers
@@ -723,6 +898,15 @@ def build(school):
             + ['text: ' + z for z in a.get('raw_affiliation_strings') or [] if aff.search(z)]
         if page1 and not a.get('institutions') and not a.get('raw_affiliation_strings'):
             via = [f"page 1 ({page1['how']}): " + ' … '.join(page1['quotes'])]  # the paper's own first page ties the school to the PI
+        if not via and not a.get('institutions') and not any(OTHER_INST.search(z) for z in a.get('raw_affiliation_strings') or []):
+            # the PI's authorship names no institution (none, or a department only, as recent preprints do) and a stated
+            # advisee of the PI on the same byline lists the school: the paper is the lab's (identity and appointment still apply)
+            co = [x.get('raw_author_name') for x in w.get('authorships') or [] if x is not a and x.get('raw_author_name')
+                  and (inst in [i.get('id') for i in x.get('institutions') or []] + [l for i in x.get('institutions') or [] for l in i.get('lineage') or []]
+                       or any(aff.search(z) for z in x.get('raw_affiliation_strings') or []))
+                  and any(an.match(byline_name(x['raw_author_name'])) for an in advisee_names[pi])]
+            if co:
+                via = [f'advisee at the school on the byline: {co[0]}']; n['school_via_advisee_coauthor'] += 1
         school_aff = bool(via)
         funnel[pi]['name_hits'] += 1
         if not school_aff:
@@ -782,6 +966,37 @@ def build(school):
                                              page1=dict(url=ev.get('url'), pdf_sha256=ev.get('pdf_sha256'), how=ev.get('how'), quotes=ev.get('quotes')) if ev.get('how') else None),
                              identity=label, appointment=dict(periodId=per['id']) if per else dict(listing=lst), source=f'{kind}_recover:' + ev['basis']))
             n[f'{kind}_recovered_lab_papers'] += 1
+    # namesake PIs (2026-10-28: Philip / Simon Wong, Hari / Hamsa Balakrishnan, Jean-Philippe / Patrick Thiran): when two
+    # PIs claim one paper through the same byline name, the PI holding that author id as a reviewed id keeps it; else the
+    # PI whose given names the byline spells out; a byline with initials only that no reviewed id settles goes to neither
+    def given_words(names, raw=None):
+        out = set()
+        for nm_ in ([raw] if raw is not None else names):
+            t_ = [w for w in re.split(r"[\s.\-]+", unicodedata.normalize('NFKD', str(nm_ or '')).encode('ascii', 'ignore').decode().lower().replace(',', ' ')) if w]
+            if ',' in str(nm_):  # 'Wong, H. -S. Philip'
+                t_ = t_[1:] + t_[:1]
+            out |= {w for w in t_[:-1] if len(w) > 1}
+        return out
+    pi_given = {p['pi']: given_words(p.get('names') or [p['pi']]) for p in pis}
+    claims = collections.defaultdict(list)
+    for i, r in enumerate(rows):
+        a = r.get('authorship') or {}
+        if a.get('raw_name'):
+            claims[(r['oa'], a['raw_name'].lower(), a.get('position'))].append(i)
+    drop = set()
+    for k, ix in claims.items():
+        if len({rows[i]['pi'] for i in ix}) < 2:
+            continue
+        aid = (rows[ix[0]].get('authorship') or {}).get('author_id')
+        owners = [i for i in ix if aid and aid in reviewed_oa[rows[i]['pi']]]
+        if not owners:
+            words = given_words(None, rows[ix[0]]['authorship']['raw_name'])
+            owners = [i for i in ix if words and words <= pi_given[rows[i]['pi']]] if words else []
+        if len({rows[i]['pi'] for i in owners}) != 1:
+            owners = []
+        drop |= set(ix) - set(owners)
+    n['namesake_claims_dropped'] = len(drop)
+    rows = [r for i, r in enumerate(rows) if i not in drop]
     # one record per unique paper and lab: editions (arXiv preprint, conference, journal version) share a normalized
     # title; the published edition leads (a DOI that is not arXiv's, then a collection work), the rest are its editions
     def rank(r):
@@ -802,8 +1017,23 @@ def build(school):
 
     # student papers
     sp = []
-    snm = {sid: Name([s['name']] + list(s.get('aliases') or [])) for v in stu.values() for sid, s in v.items()}
-    stk = {sid: toks(s['name']) for v in stu.values() for sid, s in v.items()}
+    # every reading of a student's name: the name, its aliases, and parenthesized forms ('Fatma Imamoglu (Deniz)')
+    forms = {sid: [f for f in dict.fromkeys([s['name']] + list(s.get('aliases') or []) + [v_ for x_ in [s['name']] + list(s.get('aliases') or []) for v_ in name_variants(x_)])
+                   if '(' not in f] or [s['name']] for v in stu.values() for sid, s in v.items()}
+    snm = {sid: [(Name([f]), toks(f)) for f in fs] for sid, fs in forms.items()}
+
+    def on_byline(sid, b):
+        return any(student_on_byline(nm_, tk_, b or '') for nm_, tk_ in snm[sid])
+
+    def full_name_on(sid, b):
+        """The byline spells the student's first given name and family name out in full (no initials)."""
+        t = toks(byline_name(b))
+        return len(t) >= 2 and any(len(tk_) >= 2 and len(tk_[0]) > 1 and t[0] == tk_[0] and t[-1] == tk_[-1] for _, tk_ in snm[sid])
+
+    def wide_relation(s, year):
+        """Two years before to six after the recorded advising: recorded years are often a single roster observation."""
+        ys = [int(y) for rel in s.get('relations') or [] for y in rel.get('years') or [] if str(y).isdigit()]
+        return not ys or not year or min(ys) - 2 <= int(year) <= max(ys) + 6
     for r in rows:
         S = stu.get(r['pi']) or {}
         if not S:
@@ -812,13 +1042,31 @@ def build(school):
             l = next((l for l in pls[sid] if r['work'] and l['work'] == r['work']), None)
             if l:
                 sp.append(dict(pi=r['pi'], student=sid, name=s['name'], work=r['work'], oa=r['oa'], status=l.get('status'), basis='collection_person_link'))
-            elif any(student_on_byline(snm[sid], stk[sid], b or '') for b in r['byline_school']):
+            elif any(on_byline(sid, b) for b in r['byline_school']):
                 # the student's name on this lab paper's byline, on an authorship that lists the school
                 sp.append(dict(pi=r['pi'], student=sid, name=s['name'], work=r['work'], oa=r['oa'], status='candidate', basis='byline_name_with_school_affiliation'))
-            elif near_relation(s, r['year']) and any(student_on_byline(snm[sid], stk[sid], b or '') for b in r['byline']):
+            elif near_relation(s, r['year']) and any(on_byline(sid, b) for b in r['byline']):
                 # the PI's own advisee named on the PI's lab paper (an authorship without affiliations, e.g. an ACL
                 # Anthology record), within three years of the recorded advising
                 sp.append(dict(pi=r['pi'], student=sid, name=s['name'], work=r['work'], oa=r['oa'], status='candidate', basis='advisee_name_on_lab_paper_byline'))
+            elif wide_relation(s, r['year']) and any(full_name_on(sid, b) for b in r['byline']):
+                # the lab's own student by full name on the lab's own paper, outside the narrow window (2026-10-28:
+                # recorded years are often one roster observation; alumni keep publishing with the lab)
+                sp.append(dict(pi=r['pi'], student=sid, name=s['name'], work=r['work'], oa=r['oa'], status='candidate', basis='full_name_on_lab_paper_byline'))
+    # Program advising and readers (owner 2026-10-28): a student whose only tie to the lab is a "Doctoral (Program)" or
+    # "Reader" listing stays only when they co-authored one of the lab's papers; the dropped pairs are kept in the report
+    linked = {(x['pi'], x['student']) for x in sp}
+    weak_dropped = []
+    for p in pis:
+        for sid, s in list(stu[p['pi']].items()):
+            if (p['pi'], sid) not in linked and s['relations'] and all(relation_is_weak(r, [s['name']] + list(s.get('aliases') or []))
+                                                                       or relation_names_other_adviser(r, p.get('names') or [p['pi']]) for r in s['relations']):
+                weak_dropped.append(dict(pi=p['pi'], student=sid, name=s['name'], roles=sorted({advising_label(q.get('quote'), [s['name']] + list(s.get('aliases') or [])) or r.get('role') or '' for r in s['relations'] for q in r.get('sources') or []})))
+                del stu[p['pi']][sid]
+    n['students_dropped_program_or_reader_only'] = len(weak_dropped)
+    # recount after the drops: the counts taken when the students were gathered still held the dropped pairs
+    n['pis_with_students'] = sum(bool(stu[p['pi']]) for p in pis); n['students'] = len({s for v in stu.values() for s in v})
+    n['lab_student_pairs'] = sum(len(v) for v in stu.values())
     n['student_paper_links'] = len(sp); n['labs_with_student_papers'] = len({x['pi'] for x in sp})
     n.update({'student_link:' + k: v for k, v in collections.Counter(x['basis'] for x in sp).items()})
 
@@ -838,7 +1086,8 @@ def build(school):
                 f.write(json.dumps(r, ensure_ascii=False) + '\n')
     rep = dict(school=school, builtAt=datetime.datetime.utcnow().isoformat() + 'Z', counts=dict(n), excluded=excluded,
                pisWithoutPapers=sorted(p['pi'] for p in pis if not per_pi[p['pi']]),
-               pisWithoutStudents=sorted(p['pi'] for p in pis if not stu[p['pi']]), censusNicknameMerges=nick_merges)
+               pisWithoutStudents=sorted(p['pi'] for p in pis if not stu[p['pi']]), censusNicknameMerges=nick_merges,
+               droppedProgramOrReaderOnly=weak_dropped)
     json.dump(rep, open(out / 'report.json', 'w'), indent=1, ensure_ascii=False)
     print(json.dumps(dict(school=school, **n)))
 

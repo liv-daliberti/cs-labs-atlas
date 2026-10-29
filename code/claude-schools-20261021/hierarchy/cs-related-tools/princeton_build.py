@@ -207,7 +207,7 @@ def pi_basis(name, q):
 
 # ------------------------------------------------------------------ collection person
 import gzip  # noqa: E402
-C = json.load(gzip.open('/n/fs/similarity/maxent-grpo/princeton-live-20261015/atlas/data/collection-princeton.json.gz', 'rt'))
+C = json.load(gzip.open('/n/fs/resemble/maxent-grpo/princeton-live-20261015/atlas/data/collection-princeton.json.gz', 'rt'))
 PEOPLE = C['people'] if isinstance(C['people'], list) else list(C['people'].values())
 PIS = json.load(open(HERE / 'hierarchy/princeton/pis.json'))
 PI_PERSONS = {i for p in PIS for i in p['personIds']}

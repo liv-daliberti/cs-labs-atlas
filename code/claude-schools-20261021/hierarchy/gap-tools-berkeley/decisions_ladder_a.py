@@ -5,7 +5,7 @@ Evidence specs are resolved and re-verified by build.py; see dhelp.py for the he
 """
 import sys
 
-sys.path.insert(0, "/n/fs/similarity/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/gap-tools-berkeley")
+sys.path.insert(0, "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/gap-tools-berkeley")
 from dhelp import *  # noqa: E402,F401,F403
 import capstore  # noqa: E402
 

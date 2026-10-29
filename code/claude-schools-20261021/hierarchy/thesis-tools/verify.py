@@ -42,7 +42,7 @@ for school in schools:
     pis = {p["pi"]: p for p in json.load(open(f"{ROOT}/{school}/pis.json"))}
     stu = json.load(open(f"{ROOT}/{school}/students.json"))
     con = sqlite3.connect(f"file:{tcap.DBS[school]}?mode=ro", uri=True, timeout=120)
-    cache, bad, n, seen = {}, [], 0, set()
+    cache, bad, n, seen, seen_hy = {}, [], 0, set(), set()
 
     def stored(sha):
         if sha not in cache:
@@ -61,7 +61,14 @@ for school in schools:
                     del cache[k0]
         return cache[sha]
 
-    for r in ev:
+    # plus, where build.HELD_YEARS writes one, thesis-held-years-evidence.json: the same checks, except that each row's
+    # student must ALREADY be one of the PI's students (it only carries earlier years)
+    hy_path = (f"{os.path.dirname(os.path.abspath(__file__))}/out/{school}-thesis-held-years-evidence.json" if draft
+               else f"{ROOT}/{school}/thesis-held-years-evidence.json")
+    batches = [(ev, False)] + ([(json.load(open(hy_path)), True)] if os.path.exists(hy_path) else [])
+    for r, held_file in [(r_, hf_) for ev_, hf_ in batches for r_ in ev_]:
+        if held_file and not seen_hy:
+            seen_hy.add("start"); seen = set()
         if set(r) != {"pi", "students", "notes"}:
             bad.append(f"{r.get('pi')}: keys {sorted(r)}")
         pi = r.get("pi")
@@ -88,8 +95,11 @@ for school in schools:
             if key in seen:
                 bad.append(f"{tag}: duplicate pair")
             seen.add(key)
-            if any(h.match(s.get("name", "")) for h in held):
+            if not held_file and any(h.match(s.get("name", "")) for h in held):
                 bad.append(f"{tag}: already one of the PI's students in students.json")
+            if held_file and not any(h.match(s.get("name", "")) or names.Name([s.get("name", "")]).match(x["name"]) for h, x in
+                                     [(names.Name([x_["name"]]), x_) for x_ in stu.get(pi, [])]):
+                bad.append(f"{tag}: held-years row whose student is not held")
             st = stored(s.get("sha256"))
             if st is None:
                 bad.append(f"{tag}: sha256 {str(s.get('sha256'))[:12]} not in store")
@@ -108,7 +118,7 @@ for school in schools:
             if not names.names_pi(qq, fams):
                 bad.append(f"{tag}: quote does not name the PI: {qq[:120]}")
     con.close()
-    print(f"{school}: {len(ev)} PIs, {n} student rows, {len(bad)} problems")
+    print(f"{school}: {len(ev)} PIs, {n} student rows (incl. held-years rows), {len(bad)} problems")
     for b in bad[:40]:
         print("  BAD", b)
     total_bad += len(bad)

@@ -26,7 +26,7 @@ atlas/data/cs-scope-rule.json for the browser. Never edit the pattern anywhere e
 
 What the atlas SHOWS (owner decision 2026-10-22, "PI labs with papers only"; see SHOWN_RULE):
   * at a school of the CS departments view (atlas/data/cs-hierarchy/index.json: Princeton, CMU,
-    EPFL, MIT, Berkeley) the atlas shows that school's PI labs, built from
+    EPFL, MIT, Berkeley, Stanford) the atlas shows that school's PI labs, built from
     atlas/data/cs-hierarchy/<school>.json.gz, and only those with at least one lab paper
     (hidden: "no_lab_papers"). The school's inventory units are hidden ("replaced_by_pi_labs");
     their shards, lab and people files stay on disk;

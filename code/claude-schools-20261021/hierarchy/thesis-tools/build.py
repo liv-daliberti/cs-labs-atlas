@@ -24,7 +24,7 @@ import names  # noqa: E402
 import records  # noqa: E402
 
 ROOT = names.ROOT
-CENSUS = "/n/fs/similarity/maxent-grpo/.research-sweeps/claude-schools-20261021/census"
+CENSUS = "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/census"
 SCHOOLS = ["princeton", "cmu", "epfl", "mit", "berkeley", "stanford"]
 RANK = {"phd": 3, "masters": 2, "undergraduate": 1, "other": 0}
 STATE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "out")
@@ -39,7 +39,15 @@ STRICT_YEARS = {
     "cmu": {"Cécile Péraire", "Yorie Nakahira", "Guannan Qu", "Michael D. Smith", "Daniel Yurovsky"},
     "epfl": {"José del R. Millán", "Andrea Cavallaro", "Andrew Sonta"},
     "princeton": {"Arash Adel", "Andrea Goldsmith"},
+    # Stanford (gap 3, 2026-10-27): the 'cs_related_scope_20261022' additions (census/stanford-additions.json)
+    "stanford": {"Yinyu Ye", "Kuang Xu", "Michael Saunders", "Brian A. Wandell", "Parag Mallick", "Gary Glover", "S Simon Wong", "Stephen Rock", "Nigam H. Shah", "Jose H. Blanchet", "Kay Giesecke", "Judith Degen", "Daniela Saban", "Gabriel Y. Weintraub", "E.J. Chichilnisky", "Kilian M. Pohl", "H.-S. Philip Wong", "Grace Gao", "Victor R. Lee", "Todd Coleman", "Wing Hung Wong", "Johan Ugander", "Per Enge", "Antony Jameson", "Fuhito Kojima", "Zachary Manchester", "Ingmar Riedel-Kruse", "Stefan Wager", "Md Tauhidul Islam", "Harikesh S. Nair"},
 }
+# Schools whose held pairs may carry EARLIER years (2026-10-27, Stanford: Profiles list only current advisees, so a student
+# held from a 2023/2026 profile is often named on 2016-2022 Wayback captures too). For a pair already held, when the pair's
+# records start before the held student's earliest year (from sources other than this file), one row with the record years
+# and its quote goes to hierarchy/<school>/thesis-held-years-evidence.json; tools/pi_hierarchy.py merges it into the same
+# lab's student record (within-lab name match), never across labs.
+HELD_YEARS = {"stanford"}
 
 
 def census(school):
@@ -73,12 +81,24 @@ def build(school):
         for r_ in json.load(open(f"{ROOT}/{school}/thesis-evidence.json")):
             for s_ in r_["students"]:
                 own.add(s_["sha256"])
+    own_hy = set()  # rows of an earlier thesis-held-years-evidence.json never count as the held years
+    if os.path.exists(f"{ROOT}/{school}/thesis-held-years-evidence.json"):
+        for r_ in json.load(open(f"{ROOT}/{school}/thesis-held-years-evidence.json")):
+            for s_ in r_["students"]:
+                own_hy.add(s_["sha256"])
+
+    def held_first(s_):
+        ys = [y_ for rel in s_.get("relations") or [] if not all(src.get("sha256") in own_hy | own for src in rel.get("sources") or [{}])
+              for y_ in rel.get("years") or [] if isinstance(y_, int)]
+        return min(ys) if ys else None
 
     def independent(s_):
         srcs = [src for rel in s_.get("relations") or [] for src in rel.get("sources") or []]
         return not srcs or not all(src.get("sha256") in own for src in srcs)
     held = {pi: [names.Name([s_["name"]]) for g in ix.group(pi) for s_ in stu.get(g, []) if independent(s_)] for pi in ix.name}
     held_raw = {pi: [s_["name"] for g in ix.group(pi) for s_ in stu.get(g, []) if independent(s_)] for pi in ix.name}
+    held_y = {pi: [(names.Name([s_["name"]]), s_["name"], held_first(s_)) for g in ix.group(pi) for s_ in stu.get(g, []) if independent(s_)]
+              for pi in ix.name}
     active = {}
     for p_ in ix.pis:
         ys = {l_.get("year") for l_ in p_.get("listings") or [] if isinstance(l_.get("year"), int)}
@@ -148,11 +168,9 @@ def build(school):
     added = 0
     no_overlap = []  # STRICT_YEARS rows dropped: their years do not overlap the PI's appointment
     fams = {p_["pi"]: names.pi_family_names(p_["pi"], p_.get("names"), school) for p_ in ix.pis}
-    for (pi, sk), lst in pairs.items():
-        student = lst[0][0]["student"]
-        if any(h.match(student) for h in held[pi]) or any(names.Name([student]).match(h) for h in held_raw[pi]):
-            held_pairs.add((pi, sk))
-            continue
+    held_rows = collections.defaultdict(list)
+
+    def make_row(pi, student, lst):
         lst = sorted(lst, key=lambda x: (RANK.get(x[0]["role"], 0), x[0]["year"]), reverse=True)
         row = None
         for r, a in lst:  # most senior thesis whose quote can be built
@@ -188,6 +206,24 @@ def build(school):
                 row["capture_url"] = r["capture_url"]
             row.update({"sha256": r["sha256"], "quote": quote, "note": note})
             break
+        return row
+
+    for (pi, sk), lst in pairs.items():
+        student = lst[0][0]["student"]
+        if any(h.match(student) for h in held[pi]) or any(names.Name([student]).match(h) for h in held_raw[pi]):
+            held_pairs.add((pi, sk))
+            if school in HELD_YEARS:
+                ys_ = [y_ for x in lst for y_ in (x[0].get("years") or [x[0]["year"]])]
+                h1 = [hy for hn, hr, hy in held_y[pi] if (hn.match(student) or names.Name([student]).match(hr)) and hy]
+                if ys_ and h1 and min(ys_) < min(h1):
+                    hrow = make_row(pi, student, lst)
+                    if hrow:
+                        hrow["note"] = f"earlier years of a held student (held from {min(h1)}): " + hrow["note"]
+                        act = active.get(pi)
+                        if not (act and not (hrow["years"][0] <= act[1] and hrow["years"][1] >= act[0])):
+                            held_rows[pi].append(hrow)
+            continue
+        row = make_row(pi, student, lst)
         if row:
             act = active.get(pi)
             if pi in STRICT_YEARS.get(school, ()) and act and not (row["years"][0] <= act[1] and row["years"][1] >= act[0]):
@@ -215,6 +251,12 @@ def build(school):
     os.makedirs(STATE, exist_ok=True)
     json.dump(ev, open(f"{ROOT}/{school}/thesis-evidence.json" if FINAL else f"{STATE}/{school}-thesis-evidence.json", "w"),
               indent=1, ensure_ascii=False)
+    if school in HELD_YEARS:
+        hev = [{"pi": pi, "students": sorted(held_rows[pi], key=lambda x: (x["years"][0], x["name"])),
+                "notes": f"Earlier advising years of {len(held_rows[pi])} students already held for {pi} (2026-10-27): dated captures that "
+                         f"name them before the held sources do."} for pi in order if held_rows.get(pi)]
+        json.dump(hev, open(f"{ROOT}/{school}/thesis-held-years-evidence.json" if FINAL else f"{STATE}/{school}-thesis-held-years-evidence.json", "w"),
+                  indent=1, ensure_ascii=False)
     # non-PI advisers of CS-relevant theses
     np_list = []
     for k, e in nonpi.items():
@@ -231,6 +273,7 @@ def build(school):
     rep = {"theses_harvested": len(uniq["harvested"]), "theses_cs_relevant": len(uniq["cs"]),
            "theses_with_pi_adviser": len(uniq["pi"]), "thesis_records": stats["thesis_records"], "thesis_pi_links": stats["thesis_pi_links"],
            "pairs_found": len(pairs), "pairs_already_held": len(held_pairs), "pairs_added": added,
+           "held_pairs_with_earlier_years": sum(len(v) for v in held_rows.values()),
            "pis_with_additions": len(ev), "quote_failures": failures, "ambiguous_adviser_matches": ambiguous[:50],
            "by_source": dict(by_source), "by_year": dict(sorted(by_year.items())),
            "inexact_adviser_matches": [{"adviser": a, "pi": p, "how": h, "theses": n} for (a, p, h), n in inexact.most_common()],
@@ -246,6 +289,10 @@ def build(school):
 
 
 SOURCES = {
+    "stanford": "Stanford Digital Repository dissertations: DataCite REST list of SDR (10.25740) Dissertation DOIs -> each PURL's "
+                "public MODS (degree supervisor = adviser), fetched by claude-stanford-20261027/tools/st_dissertations.py and copied "
+                "in by harvest_stanford.py; SearchWorks answers bots with a JavaScript check and is not used; the SDR DOIs cover "
+                "2025-2027 degrees only",
     "princeton": "DataSpace OAI-PMH ListRecords (metadataPrefix=dim, resumption tokens): Doctoral Dissertations community "
                  "(all departments, 2011-2025), Master's Theses community (2022-2024), senior-thesis collections of CS, ECE, "
                  "ORFE, MAE, Math, Psychology, Neuroscience, SPIA, Sociology, Architecture, Music, Molecular Biology, "
@@ -274,6 +321,9 @@ SOURCES = {
 
 
 COVERAGE = {
+    "stanford": "Only the SDR dissertations with DataCite DOIs (degrees conferred 2025-2027, a handful earlier); no catalogue of "
+                "2016-2024 Stanford dissertations with advisers is reachable without SearchWorks (bot check). Earlier advising "
+                "comes from the Stanford Profiles advisee lists and curated faculty homepages (census/stanford-faculty.json).",
     "princeton": "DataSpace holds dissertations through part of 2025 and senior theses through 2024 (no 2025/2026 senior "
                  "collections yet); master's theses only 2022-2024.",
     "cmu": "SCS archive: 9 indexed thesis abstract pages return 404 (2016-2024); ML after 2020, S3D after 2022, RI, LTI and "

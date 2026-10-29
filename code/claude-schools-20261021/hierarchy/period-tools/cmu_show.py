@@ -1,6 +1,6 @@
 """Compact view of CMU period targets: pis.json periods/listings + target info. usage: cmu_show.py [name-substring ...]"""
 import json, sys
-H = '/n/fs/similarity/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy'
+H = '/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy'
 T = json.load(open(f'{H}/period-tools/cmu-targets-20261026.json'))
 P = {p['pi']: p for p in json.load(open(f'{H}/cmu/pis.json'))}
 subs = sys.argv[1:]

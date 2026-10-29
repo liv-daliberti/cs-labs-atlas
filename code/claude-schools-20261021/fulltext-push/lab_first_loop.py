@@ -11,7 +11,9 @@ Each round:
   pause 10 minutes
 It holds data/fulltext/<school>/.loop.lock, the lock claude-berkeley-20261021/tools/bk_collect_loop.py takes, so the
 two never run together. State -> data/fulltext/<school>/loop-state.json, log -> loop.log (as bk_collect_loop.py).
-usage: lab_first_loop.py <school> [--full-hours H]
+--recent-first Y (2026-10-27, Stanford): the lab pass's --work-ids list puts lab papers from year Y on first (the collector
+works through a --work-ids list in its order within each host); without it the order is unchanged.
+usage: lab_first_loop.py <school> [--full-hours H] [--recent-first Y]
 """
 import fcntl, json, signal, subprocess, sys, time
 from pathlib import Path
@@ -19,8 +21,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import ftp_common as F
 
-WRAPPER = '/n/fs/similarity/maxent-grpo/.research-sweeps/claude-cmu-20261017/tools/collector_wrapper.py'
-SCRIPTS = '/n/fs/similarity/homogenizing-science/scripts'
+WRAPPER = '/n/fs/resemble/maxent-grpo/.research-sweeps/claude-cmu-20261017/tools/collector_wrapper.py'
+SCRIPTS = '/n/fs/resemble/homogenizing-science/scripts'
 PY = '/usr/local/anaconda3/2024.02/bin/python'
 
 
@@ -33,7 +35,7 @@ def state(out, **kw):
     s.update(kw, updated_at=F.now(), loop='fulltext-push/lab_first_loop.py'); p.write_text(json.dumps(s, indent=1))
 
 
-def lab_work_ids(school):
+def lab_work_ids(school, recent_first=None):
     papers = F.lab_papers(school)
     cs = F.catalog_state(school, with_urls=False)
     ids = []
@@ -47,13 +49,18 @@ def lab_work_ids(school):
         if len(k) >= 20:
             title_ids.setdefault(k, []).append(i)
     db.close()
+    later = []
     for r in papers.values():
         if F.is_local(school, r, cs):
             continue
         w = F.match_work(school, r, cs)
         group = ([w] if w else []) + doi_ids.get(F.ndoi(r.get('doi')), []) + title_ids.get(F.nt(r.get('title')), [])
-        ids += [i for i in group if cs['status'].get(i) not in F.LOCAL]
-    return list(dict.fromkeys(ids))
+        group = [i for i in group if cs['status'].get(i) not in F.LOCAL]
+        if recent_first and (r.get('year') or 0) < recent_first:
+            later += group
+        else:
+            ids += group
+    return list(dict.fromkeys(ids + later))
 
 
 def run(out, args, label, hours=None):
@@ -78,6 +85,7 @@ def run(out, args, label, hours=None):
 def main():
     school = sys.argv[1]
     hours = float(sys.argv[sys.argv.index('--full-hours') + 1]) if '--full-hours' in sys.argv else 2.0
+    recent = int(sys.argv[sys.argv.index('--recent-first') + 1]) if '--recent-first' in sys.argv else None
     out = F.FT / school
     guard = open(out / '.loop.lock', 'a')
     try:
@@ -88,7 +96,7 @@ def main():
     rounds = 0
     while True:
         rounds += 1
-        ids = lab_work_ids(school)
+        ids = lab_work_ids(school, recent)
         f = F.HERE / 'raw' / f'{school}-lab-work-ids.txt'
         f.write_text('\n'.join(ids) + '\n')
         state(out, rounds=rounds, lab_work_ids=len(ids))

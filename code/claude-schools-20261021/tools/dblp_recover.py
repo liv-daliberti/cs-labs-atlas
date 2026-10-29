@@ -15,7 +15,7 @@ The DBLP record is the PI's own publication list, so it is the identity anchor; 
 when the hierarchy is built.
 -> hierarchy/<school>/dblp-recovered.jsonl (one row per accepted paper) and dblp-recover.sqlite (every attempt, the
    page-1 text and PDF sha256)
-usage: dblp_recover.py <school> [--workers 6]
+usage: [DBLP_RECOVER_YEARS=2016-2023] dblp_recover.py <school> [--workers 6] | dblp_recover.py write <school> ...
 """
 import collections, gzip, hashlib, json, os, re, sqlite3, subprocess, sys, tempfile, threading, time, zlib
 from concurrent.futures import ThreadPoolExecutor
@@ -82,6 +82,11 @@ def page1_text(content):
         return subprocess.run(['pdftotext', '-l', '1', f.name, '-'], capture_output=True, text=True, timeout=120).stdout
 
 
+# DBLP_RECOVER_YEARS=A-B limits a run to publication years A..B (e.g. the part of the window the school's OpenAlex sweep
+# already covers); write_accepted reads every accepted row whatever the limit.
+Y0, Y1 = (int(v) for v in (os.environ.get('DBLP_RECOVER_YEARS') or '2016-2026').split('-'))
+
+
 def candidates(school, skip_have=True):
     pis = read(HERE / 'hierarchy' / school / 'pis.json')
     own = HERE / 'hierarchy' / school / 'raw/dblp_pubs.json.gz'
@@ -103,7 +108,7 @@ def candidates(school, skip_have=True):
     out = []
     for k, rec in pubs.items():
         y = rec.get('year')
-        if not y or not (2016 <= int(y) <= 2026) or 'journals/corr' in k:
+        if not y or not (2016 <= int(y) <= 2026) or 'journals/corr' in k or not (Y0 <= int(y) <= Y1):
             continue
         for q in rec.get('authors') or {}:
             for p in owner.get(q, []):
@@ -200,8 +205,13 @@ def run(school, workers):
 
 def write_accepted(school, c=None):
     """Every accepted paper of every run (not only this run's candidates: earlier recoveries are lab papers by now)."""
+    global Y0, Y1
     c = c or db(school)
-    by = {(x['pi'], x['dblp_key']): x for x in candidates(school, skip_have=False)}
+    lim, (Y0, Y1) = (Y0, Y1), (2016, 2026)  # every accepted row, whatever DBLP_RECOVER_YEARS limited this run to
+    try:
+        by = {(x['pi'], x['dblp_key']): x for x in candidates(school, skip_have=False)}
+    finally:
+        Y0, Y1 = lim
     with gzip.open(HERE / 'hierarchy' / school / 'dblp-recovered.jsonl.gz', 'wt') as f:
         for pi, k, ev in c.execute('select pi, dblp_key, evidence from tries where accepted=1'):
             x = by.get((pi, k))

@@ -1,6 +1,6 @@
 """Fetch figshare article JSON(s) and print author, date, degree, department, advisors. usage: b_fsart.py ID..."""
 import json, sys
-sys.path.insert(0, "/n/fs/similarity/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/few-students-tools-cmu")
+sys.path.insert(0, "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/few-students-tools-cmu")
 import capstore
 for i in sys.argv[1:]:
     r = capstore.fetch("https://api.figshare.com/v2/articles/" + i)

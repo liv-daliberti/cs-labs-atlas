@@ -285,10 +285,26 @@ def root_of(u):
     return r
 
 
+def lab_evidence(school):
+    """hierarchy/<school>/labpage-evidence.json; a school whose lab-pages pass wrote only labpage-pubs-report.json
+    (Stanford, 2026-10-27) gets one entry per PI with its captured publication pages as pubs_pages (and the first of
+    them as lab_site, the pihomes fallback's starting page)."""
+    p = F.SCHOOLS / 'hierarchy' / school / 'labpage-evidence.json'
+    if p.exists():
+        return json.loads(p.read_text())
+    rep = json.loads((F.SCHOOLS / 'hierarchy' / school / 'labpage-pubs-report.json').read_text())
+    out = []
+    for pi, x in (rep.get('pis') or {}).items():
+        pages = [pg['url'] for pg in (x.get('pages') or []) if isinstance(pg, dict) and (pg.get('url') or '').startswith('http')]
+        if pages:
+            out.append(dict(pi=pi, lab_site=pages[0], pubs_pages=pages, source='labpage-pubs-report.json'))
+    return out
+
+
 def pi_pages(school):
     """{PI: set of normalized URLs named in their lab-page evidence}, {PI: site roots} (roots that are not more general
     than another PI's root)."""
-    ev = json.loads((F.SCHOOLS / 'hierarchy' / school / 'labpage-evidence.json').read_text())
+    ev = lab_evidence(school)
     urls, roots = defaultdict(set), defaultdict(set)
     for x in ev:
         pi = x['pi']
@@ -457,7 +473,7 @@ def step_pihomes(school, miss, known, n, has_arxiv):
     import requests
     from lab_channels import Pacer, polite_get
     urls, roots = pi_pages(school)
-    ev = json.loads((F.SCHOOLS / 'hierarchy' / school / 'labpage-evidence.json').read_text())
+    ev = lab_evidence(school)
     by_pi = by_pi_of(miss)
     sites = defaultdict(list)
     for x in ev:

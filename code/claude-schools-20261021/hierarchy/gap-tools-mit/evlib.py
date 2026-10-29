@@ -10,7 +10,7 @@ import sys
 import unicodedata
 import zlib
 
-sys.path.insert(0, "/n/fs/similarity/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/gap-tools-mit")
+sys.path.insert(0, "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/gap-tools-mit")
 import capstore  # noqa: E402
 
 _cache = {}

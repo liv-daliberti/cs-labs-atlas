@@ -134,15 +134,15 @@ the strict PI-lab model.
   `data/schools/student_audit.json`) lists what probably still slipped through:
 
 <!-- student-audit:start -->
-| | princeton | cmu | epfl | mit | berkeley |
-|---|---|---|---|---|---|
-| Lab–student pairs | 3,727 | 9,388 | 4,001 | 7,728 | 4,353 |
-| Probable duplicate pairs within one lab | 1 | 9 | 0 | 4 | 2 |
-| People under several student ids across labs | 9 | 32 | 11 | 67 | 10 |
-| Papers linked to two ids of one person | 0 | 0 | 0 | 0 | 0 |
-| Students with probably missed paper links | 55 | 288 | 29 | 133 | 119 |
-| Probably missed student–paper links | 200 | 814 | 126 | 523 | 342 |
-| Students with no paper link | 2,177 | 3,861 | 1,570 | 3,775 | 1,405 |
+| | princeton | cmu | epfl | mit | berkeley | stanford |
+|---|---|---|---|---|---|---|
+| Lab–student pairs | 3,523 | 9,387 | 3,986 | 7,666 | 4,436 | 3,197 |
+| Probable duplicate pairs within one lab | 0 | 8 | 0 | 3 | 2 | 0 |
+| People under several student ids across labs | 47 | 99 | 13 | 330 | 21 | 13 |
+| Papers linked to two ids of one person | 0 | 0 | 0 | 0 | 0 | 0 |
+| Students with probably missed paper links | 50 | 288 | 28 | 132 | 121 | 93 |
+| Probably missed student–paper links | 185 | 822 | 124 | 524 | 349 | 274 |
+| Students with no paper link | 1,956 | 3,829 | 1,558 | 3,742 | 1,409 | 661 |
 <!-- student-audit:end -->
 
   "Students with no paper link" is not an error by itself: many students (undergraduate and master's thesis students,

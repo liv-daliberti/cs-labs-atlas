@@ -18,7 +18,7 @@ sys.path.insert(0, TOOLS)
 import fscap  # noqa: E402
 import fsev  # noqa: E402
 
-ROOT = "/n/fs/similarity/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy"
+ROOT = "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy"
 bad_total = 0
 for school in sys.argv[1:]:
     bad = []

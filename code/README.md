@@ -3,7 +3,7 @@
 The tools that built the data, copied as they were run. They are here so every step is inspectable and can be
 re-implemented; they are **not** a turnkey pipeline:
 
-- **Paths are the original NFS paths** of the build machine (`/n/fs/similarity/maxent-grpo/...`). The tools expect that
+- **Paths are the original NFS paths** of the build machine (`/n/fs/resemble/maxent-grpo/...` and `/n/fs/resemble/homogenizing-science/...`). The tools expect that
   directory layout, the earlier per-school collections and stage sweeps they read, and the page-capture stores (SQLite
   files of fetched pages) they write and re-verify against. None of those stores, PDFs or raw page captures are
   distributed.

@@ -4,7 +4,8 @@ Each authorship keeps its own institutions and raw affiliation strings, so 'the 
 per author position, not per paper. One cursor per publication year; pages are stored zlib-compressed in
 hierarchy/<school>/openalex-sweep.sqlite and a rerun resumes from the last stored cursor.
 
-usage: oa_sweep.py <school> [<school> ...]       (OPENALEX_API_KEY from the environment; OPENALEX_FLOOR credits are left unspent)
+usage: oa_sweep.py <school> [<school> ...]       (OPENALEX_API_KEY from the environment, e.g. ~/.config/cs-atlas/openalex.env;
+       OPENALEX_FLOOR credits are left unspent)
        Without OPENALEX_API_KEY the sweep runs on the keyless daily budget (1000 list queries per IP, shared; Stanford
        2026-10-27): set OPENALEX_FLOOR low (e.g. 40) and rerun after the budget resets (00:00 UTC) to resume.
 """
@@ -61,7 +62,7 @@ def sweep(school, key, floor):
     return True
 
 
-def sweep_paged(school, floor):
+def sweep_paged(school, floor, key=None):
     """Keyless mode (no OPENALEX_API_KEY; cursor paging needs a key): one date window per month, page-number paging
     (page * 200 <= 10000 per window; a window over that is split in half until it fits). Stored like the cursor sweep:
     (year, page) with page = month * 1000 + window page, cursor = 'window:<from>..<to>;page=<n>'. Rerun resumes."""
@@ -72,7 +73,7 @@ def sweep_paged(school, floor):
     def get(params):
         for attempt in range(6):
             try:
-                r = s.get('https://api.openalex.org/works', timeout=120, params=params)
+                r = s.get('https://api.openalex.org/works', timeout=120, params={**params, **({'api_key': key} if key else {})})
             except requests.RequestException:
                 time.sleep(5 * (attempt + 1)); continue
             if r.status_code == 200:
@@ -129,4 +130,8 @@ def sweep_paged(school, floor):
 if __name__ == '__main__':
     key = os.environ.get('OPENALEX_API_KEY'); floor = int(os.environ.get('OPENALEX_FLOOR') or 1500)
     for school in sys.argv[1:]:
-        sweep(school, key, floor) if key else sweep_paged(school, floor)
+        # a school whose sweep started in month windows (keyless) stays in month windows: the cursor sweep would read a
+        # half-done year's last stored page as the year's end. A key only raises the budget there.
+        c_ = db(school)
+        paged = c_.execute("select count(*) from sqlite_master where name='windows'").fetchone()[0] and c_.execute('select count(*) from windows').fetchone()[0]
+        sweep_paged(school, floor, key) if (paged or not key) else sweep(school, key, floor)

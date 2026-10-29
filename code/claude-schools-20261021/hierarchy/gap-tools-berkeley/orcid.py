@@ -6,7 +6,7 @@ Prints displayName, biography, employments (with organisation and years). Stored
 import json
 import sys
 
-sys.path.insert(0, "/n/fs/similarity/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/gap-tools-berkeley")
+sys.path.insert(0, "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/gap-tools-berkeley")
 import capstore  # noqa: E402
 
 H = {"Accept": "application/json"}

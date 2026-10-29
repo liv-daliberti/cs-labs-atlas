@@ -2,7 +2,7 @@
 Prints article id, title, published date, url. Then fetch article JSON with f.py https://api.figshare.com/v2/articles/<id>.
 """
 import json, sys
-sys.path.insert(0, "/n/fs/similarity/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/few-students-tools-cmu")
+sys.path.insert(0, "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/few-students-tools-cmu")
 import capstore
 q = sys.argv[1]
 n = int(sys.argv[3]) if len(sys.argv) > 3 else 50

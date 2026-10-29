@@ -6,7 +6,7 @@ import os
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-ROOT = "/n/fs/similarity/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy"
+ROOT = "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy"
 draft = "--draft" in sys.argv
 mn = int(sys.argv[sys.argv.index("--min") + 1]) if "--min" in sys.argv else 3
 rep = json.load(open(f"{HERE}/out/thesis-harvest-report.json" if draft else f"{ROOT}/thesis-harvest-report.json"))

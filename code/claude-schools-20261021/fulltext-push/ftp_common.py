@@ -13,15 +13,16 @@ from urllib.parse import urlsplit
 
 HERE = Path(__file__).resolve().parent
 SCHOOLS = HERE.parent
-FT = Path('/n/fs/similarity/homogenizing-science/data/fulltext')
-CMU_TOOLS = Path('/n/fs/similarity/maxent-grpo/.research-sweeps/claude-cmu-20261017/tools')
-PRIN_TOOLS = Path('/n/fs/similarity/maxent-grpo/.research-sweeps/claude-princeton-20261015/tools')
+FT = Path('/n/fs/resemble/homogenizing-science/data/fulltext')
+CMU_TOOLS = Path('/n/fs/resemble/maxent-grpo/.research-sweeps/claude-cmu-20261017/tools')
+PRIN_TOOLS = Path('/n/fs/resemble/maxent-grpo/.research-sweeps/claude-princeton-20261015/tools')
 for p in (CMU_TOOLS, PRIN_TOOLS):
     if str(p) not in sys.path:
         sys.path.insert(0, str(p))
 LOCAL = ('downloaded', 'fulltext_xml')
 BATCH = 200
 UA = 'HomogenizingScienceResearch/0.2 (academic metadata inventory)'
+KEYS = Path.home() / '.config/cs-atlas'
 SCRATCH = Path('/tmp/claude-363432/-n-fs-similarity-maxent-grpo/2bd068f5-5142-4dac-89d1-67eb470f92c1/scratchpad')
 
 
@@ -40,10 +41,13 @@ def ndoi(s):
 
 
 def load_env():
-    """API keys from the session's scratchpad env files into os.environ (never printed or written)."""
+    """API keys into os.environ (never printed or written): ~/.config/cs-atlas/<name>.env (mode 600, shared by every host
+    since 2026-10-27), else the first session's scratchpad on soak."""
     import os
     for name in ('openalex', 's2', 'core'):
-        f = SCRATCH / f'{name}.env'
+        f = KEYS / f'{name}.env'
+        if not f.exists():
+            f = SCRATCH / f'{name}.env'
         if f.exists():
             for line in f.read_text().splitlines():
                 line = line.strip()
@@ -75,18 +79,27 @@ def lab_papers(school):
     return out
 
 
+def oa_store(school):
+    """The school's OpenAlex work records (table works: id, zlib JSON body): hierarchy/<school>/pi-works.sqlite, else
+    (a school whose hierarchy has none, e.g. Stanford, 2026-10-27) the push's own raw/<school>-oa-works.sqlite."""
+    p = SCHOOLS / 'hierarchy' / school / 'pi-works.sqlite'
+    return p if p.exists() else HERE / 'raw' / f'{school}-oa-works.sqlite'
+
+
 def oa_bodies(school, ids):
-    """{OpenAlex id URL: work record} from hierarchy/<school>/pi-works.sqlite (zlib JSON), plus our own cache."""
+    """{OpenAlex id URL: work record} from the school's oa_store (zlib JSON), plus our own cache."""
     want = set(ids)
     out = {}
-    db = sqlite3.connect(f"file:{SCHOOLS / 'hierarchy' / school / 'pi-works.sqlite'}?mode=ro", uri=True, timeout=60)
-    for i, b in db.execute('SELECT id, body FROM works'):
-        if i in want:
-            try:
-                out[i] = json.loads(zlib.decompress(b))
-            except Exception:
-                pass
-    db.close()
+    store = oa_store(school)
+    if store.exists():
+        db = sqlite3.connect(f"file:{store}?mode=ro", uri=True, timeout=60)
+        for i, b in db.execute('SELECT id, body FROM works'):
+            if i in want:
+                try:
+                    out[i] = json.loads(zlib.decompress(b))
+                except Exception:
+                    pass
+        db.close()
     cache = HERE / 'raw' / 'openalex_works.jsonl'
     if cache.exists():
         for line in cache.open():

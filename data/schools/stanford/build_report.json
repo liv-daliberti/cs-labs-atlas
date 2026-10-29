@@ -1,0 +1,4897 @@
+{
+ "school": "stanford",
+ "builtAt": "2026-10-29T00:57:24.870195Z",
+ "counts": {
+  "pis_excluded_by_review": 4,
+  "pis": 232,
+  "pis_without_person": 87,
+  "labs_reused": 5,
+  "labs_new": 227,
+  "pi_basis_advisees": 495,
+  "student_names_cleaned": 1,
+  "student_corrections_rename": 1,
+  "student_records_merged": 150,
+  "student_same_name_other_labs_unmerged": 14,
+  "pis_with_students": 232,
+  "students": 2789,
+  "lab_student_pairs": 3197,
+  "dblp_ids_dropped_name_mismatch": 0,
+  "pis_with_dblp_list": 209,
+  "pis_with_own_publication_list": 124,
+  "pis_with_lab_publication_page": 141,
+  "other_pi_reviewed_ids_blocked": 21021,
+  "sweep_name_hits": 24747,
+  "surname_only_hits_by_anchored_id": 118,
+  "outside_appointment": 581,
+  "hit_without_identity": 1193,
+  "hit_without_school_affiliation": 3217,
+  "school_via_advisee_coauthor": 154,
+  "dblp_recovered_lab_papers": 841,
+  "labpage_recovered_lab_papers": 596,
+  "namesake_claims_dropped": 0,
+  "edition_records_merged": 1442,
+  "lab_papers": 19869,
+  "lab_papers_in_collection": 0,
+  "lab_papers_new": 19869,
+  "lab_papers_by_period": 9571,
+  "lab_papers_by_listing": 10298,
+  "identity:anchored_author_id": 1298,
+  "identity:reviewed_openalex_author_id": 5848,
+  "identity:dblp_person_page_title": 1846,
+  "identity:pi_institutional_publication_list": 1688,
+  "identity:dblp_person_page_doi": 6808,
+  "identity:lab_publication_page": 20,
+  "identity:advisee_coauthor": 1144,
+  "identity:dblp_person_page": 718,
+  "identity:advisee_anchored_author_id": 14,
+  "identity:labpage_listing": 485,
+  "students_dropped_program_or_reader_only": 602,
+  "student_paper_links": 15436,
+  "labs_with_student_papers": 224,
+  "student_link:byline_name_with_school_affiliation": 12862,
+  "student_link:advisee_name_on_lab_paper_byline": 2283,
+  "student_link:full_name_on_lab_paper_byline": 291,
+  "pis_with_lab_papers": 232,
+  "pis_complete_chain": 224
+ },
+ "excluded": [
+  {
+   "pi": "Chris Gregg",
+   "why": "Reviewed 2026-10-28: not a PI at the school in 2016-2026: Teaching-track faculty. No Stanford Profiles capture 2019-2026 (all 18 Wayback captures plus live) lists a Doctoral Dissertation Advisor/Co-Advisor (AC) or Postdoctoral Faculty Sponsor entry; only Master's Program Advisor, Orals Chair, one Doctoral Dissertation Reader (AC) and one Doctoral (Program) student, none of which count. No lab is stated."
+  },
+  {
+   "pi": "Fouad A. Tobagi",
+   "why": "Reviewed 2026-10-28: not a PI at the school in 2016-2026. Professor of EE throughout, but 43 profile captures (2015-2026) show no dissertation advisee or postdoc, only Doctoral (Program), master's program and reader roles; OpenAlex has one 2016-2026 work (a 2018 guest editorial)."
+  },
+  {
+   "pi": "Brad Osgood",
+   "why": "Owner 2026-10-28: an administrative advisor of record is not a PI. His only advising evidence is 'Doctoral Dissertation Advisor (AC)' for two long-running EE students whose research advisors are elsewhere (Chien-yi Chang is Fei-Fei Li's advisee; Travis Skare), and his other listings are Doctoral (Program) only."
+  },
+  {
+   "pi": "Emma Dauterman",
+   "why": "Reviewed 2026-10-28: not a PI at the school in 2016-2026: Ladder faculty who started in fall 2025; neither her live profile nor its six Wayback captures (2024-09..2026-04) list a Doctoral Dissertation Advisor/Co-Advisor (AC) or Postdoctoral Faculty Sponsor, only 'Doctoral (Program)' students (excluded by the 2026-10-28 rule) and Master's Program Advisor. No lab page or student list was found. Likely to qualify later; re-check."
+  }
+ ],
+ "pisWithoutPapers": [],
+ "pisWithoutStudents": [],
+ "censusNicknameMerges": [],
+ "droppedProgramOrReaderOnly": [
+  {
+   "pi": "Gill Bejerano",
+   "student": "ext:stanford:bo-yoo",
+   "name": "Bo Yoo",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Michael Bernstein",
+   "student": "stanford_stu_jordan-troutman",
+   "name": "Jordan Troutman",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Dan Boneh",
+   "student": "stanford_stu_ro",
+   "name": "Ro Nema",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Dan Boneh",
+   "student": "ext:stanford:benton-case",
+   "name": "Benton Case",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Dan Boneh",
+   "student": "ext:stanford:dima-kogan",
+   "name": "Dima Kogan",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Dan Boneh",
+   "student": "ext:stanford:sergio-benitez",
+   "name": "Sergio Benitez",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Moses Charikar",
+   "student": "stanford_stu_aidan-perreault",
+   "name": "Aidan Perreault",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Moses Charikar",
+   "student": "stanford_stu_duong-vuong",
+   "name": "June Vuong",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Dawson Engler",
+   "student": "stanford_stu_matthew-sotoudeh",
+   "name": "Matthew Sotoudeh",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Dawson Engler",
+   "student": "ext:stanford:dillon-huff",
+   "name": "Dillon Huff",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Stefano Ermon",
+   "student": "stanford_stu_miguel-liu-schiaffini",
+   "name": "Miguel Liu-Schiaffini",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Ron Fedkiw",
+   "student": "stanford_stu_yitong-deng",
+   "name": "Yitong Deng",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Patrick Hanrahan",
+   "student": "stanford_stu_tushar-swamy",
+   "name": "Tushar Swamy",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mark Horowitz",
+   "student": "stanford_stu_anna-broome",
+   "name": "Anna Broome",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mark Horowitz",
+   "student": "stanford_stu_qian-dong",
+   "name": "Qian Dong",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mark Horowitz",
+   "student": "stanford_stu_aidan-fitzpatrick",
+   "name": "Aidan Fitzpatrick",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mark Horowitz",
+   "student": "stanford_stu_ke-lei",
+   "name": "Lisa Lei",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mark Horowitz",
+   "student": "stanford_stu_pietro-caragiulo",
+   "name": "Pietro Caragiulo",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mark Horowitz",
+   "student": "ext:stanford:kuan-fang",
+   "name": "Kuan Fang",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Doug James",
+   "student": "stanford_stu_zhehao-li",
+   "name": "Zhehao Li",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Dan Jurafsky",
+   "student": "stanford_stu_dora-demszky",
+   "name": "Dora Demszky",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Sachin Katti",
+   "student": "stanford_stu_ioanna-vavelidou",
+   "name": "Ioanna Vavelidou",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Sachin Katti",
+   "student": "stanford_stu_sundararajan-renganathan",
+   "name": "Sundararajan Renganathan",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Oussama Khatib",
+   "student": "ext:stanford:taizo-yoshikawa",
+   "name": "Taizo Yoshikawa",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Christos Kozyrakis",
+   "student": "stanford_stu_yuzhen-mao",
+   "name": "Yuzhen Mao",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Christos Kozyrakis",
+   "student": "stanford_stu_pete-warden",
+   "name": "Pete Warden",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Christos Kozyrakis",
+   "student": "ext:stanford:blaine-rister",
+   "name": "Blaine Rister",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Christos Kozyrakis",
+   "student": "ext:stanford:kathleen-feng",
+   "name": "Kathleen Feng",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Anshul Kundaje",
+   "student": "stanford_stu_xikun-zhang",
+   "name": "Xikun Zhang",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Anshul Kundaje",
+   "student": "stanford_stu_langxing-deng",
+   "name": "Arthur Deng",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Anshul Kundaje",
+   "student": "stanford_stu_riya-sinha",
+   "name": "Riya Sinha",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Monica Lam",
+   "student": "stanford_stu_jiuding-sun",
+   "name": "Jiuding Sun",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Monica Lam",
+   "student": "stanford_stu_cyrus-zhou",
+   "name": "Cyrus Zhou",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Monica Lam",
+   "student": "stanford_stu_george-liu",
+   "name": "George Liu",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "James Landay",
+   "student": "stanford_stu_danilo-symonette",
+   "name": "Danilo Symonette",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "James Landay",
+   "student": "stanford_stu_zoe-kaputa",
+   "name": "Zoe Kaputa",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jure Leskovec",
+   "student": "stanford_stu_jonas-de-schouwer",
+   "name": "Jonas De Schouwer",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Philip Levis",
+   "student": "stanford_stu_maxwell-strange",
+   "name": "Maxwell Strange",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Philip Levis",
+   "student": "stanford_stu_daniel-mendoza",
+   "name": "Daniel Mendoza",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Philip Levis",
+   "student": "stanford_stu_alexander-bergman",
+   "name": "Alex Bergman",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Philip Levis",
+   "student": "stanford_stu_anna-eaton",
+   "name": "Anna Eaton",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Philip Levis",
+   "student": "stanford_stu_levy-deng",
+   "name": "Levy Deng",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Philip Levis",
+   "student": "ext:stanford:pan-hu",
+   "name": "Pan Hu",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Philip Levis",
+   "student": "ext:stanford:eric-wei",
+   "name": "Eric Wei",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Philip Levis",
+   "student": "ext:stanford:stephen-ibanez",
+   "name": "Stephen Ibanez",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Fei-Fei Li",
+   "student": "stanford_stu_alanzluo",
+   "name": "Alan Luo",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Fei-Fei Li",
+   "student": "stanford_stu_haoquan-fang",
+   "name": "Haoquan Fang",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Fei-Fei Li",
+   "student": "stanford_stu_boxiao-pan",
+   "name": "Boxiao Pan",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Percy Liang",
+   "student": "stanford_stu_tanishq-kumar",
+   "name": "Tanishq Kumar",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Percy Liang",
+   "student": "ext:stanford:tim-shi",
+   "name": "Tim Shi",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "David Mazieres",
+   "student": "stanford_stu_evan-laufer",
+   "name": "Evan Laufer",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "David Mazieres",
+   "student": "stanford_stu_paul-crews",
+   "name": "Juniper Crews",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "David Mazieres",
+   "student": "stanford_stu_michael-paper",
+   "name": "Michael Paper",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Nick McKeown",
+   "student": "stanford_stu_gedeon-nyengele",
+   "name": "Gedeon Nyengele",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kunle Olukotun",
+   "student": "stanford_stu_leo-liu",
+   "name": "Leo Liu",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kunle Olukotun",
+   "student": "stanford_stu_sneha-goenka",
+   "name": "Sneha Goenka",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kunle Olukotun",
+   "student": "stanford_stu_taeyoung-kong",
+   "name": "Taeyoung Kong",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kunle Olukotun",
+   "student": "stanford_stu_juneseo-chang",
+   "name": "Juneseo Chang",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kunle Olukotun",
+   "student": "stanford_stu_wonsuk-jang",
+   "name": "Wonsuk Jang",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kunle Olukotun",
+   "student": "stanford_stu_louis-le-coeur",
+   "name": "Louis Le Coeur",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Balaji Prabhakar",
+   "student": "stanford_stu_karan-chadha",
+   "name": "Karan Chadha",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Balaji Prabhakar",
+   "student": "stanford_stu_srivatsan-sridhar",
+   "name": "Srivatsan Sridhar",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Balaji Prabhakar",
+   "student": "ext:stanford:pin-pin-tea-makorn",
+   "name": "Pin Pin Tea-makorn",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Chris Re",
+   "student": "stanford_stu_congwen-xu",
+   "name": "Nancy Xu",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Chris Re",
+   "student": "stanford_stu_nasim-borazjanizadeh",
+   "name": "Nasim Borazjanizadeh",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Chris Re",
+   "student": "stanford_stu_owen-dugan",
+   "name": "Owen Dugan",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mendel Rosenblum",
+   "student": "stanford_stu_jihwan-oh",
+   "name": "Jihwan Oh",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Greg Valiant",
+   "student": "stanford_stu_mika-jain",
+   "name": "Mika Jain",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Greg Valiant",
+   "student": "stanford_stu_vijaykrishna-gurunathan",
+   "name": "Vijaykrishna Gurunathan",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Matei Zaharia",
+   "student": "stanford_stu_jared-davis",
+   "name": "Jared Davis",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Matei Zaharia",
+   "student": "stanford_stu_liana-patel",
+   "name": "Liana Patel",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Russ Altman",
+   "student": "stanford_stu_283851",
+   "name": "Aviv Korman",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Russ Altman",
+   "student": "stanford_stu_erin-craig",
+   "name": "Erin Craig",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Russ Altman",
+   "student": "stanford_stu_kwangeun-jang",
+   "name": "Kwangeun Jang",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Russ Altman",
+   "student": "stanford_stu_erica-schwarz",
+   "name": "Erica Schwarz",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Russ Altman",
+   "student": "stanford_stu_yasa-baig",
+   "name": "Yasa Baig",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Russ Altman",
+   "student": "stanford_stu_372024",
+   "name": "Sarah Arnold",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Russ Altman",
+   "student": "stanford_stu_janella-schwab",
+   "name": "Janella Schwab Lizárraga",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Russ Altman",
+   "student": "stanford_stu_bella-agusta",
+   "name": "Bella Agusta",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Russ Altman",
+   "student": "stanford_stu_emily-yemington",
+   "name": "Emily Yemington",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Russ Altman",
+   "student": "stanford_stu_ashley-lewis",
+   "name": "Ashley Lewis",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Russ Altman",
+   "student": "ext:stanford:diego-calderon",
+   "name": "Diego Calderon",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Russ Altman",
+   "student": "ext:stanford:luke-yancy-jr",
+   "name": "Luke Yancy Jr",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Russ Altman",
+   "student": "ext:stanford:patrick-ye",
+   "name": "Patrick Ye",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Russ Altman",
+   "student": "ext:stanford:vanessa-sochat",
+   "name": "Vanessa Sochat",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Russ Altman",
+   "student": "ext:stanford:stephanie-schmidt",
+   "name": "Stephanie Schmidt",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Russ Altman",
+   "student": "ext:stanford:vibhu-agarwal",
+   "name": "Vibhu Agarwal",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Russ Altman",
+   "student": "ext:stanford:albee-ling",
+   "name": "Albee Ling",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Russ Altman",
+   "student": "ext:stanford:amalia-hadjitheodorou",
+   "name": "Amalia Hadjitheodorou",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Russ Altman",
+   "student": "ext:stanford:rocky-aikens",
+   "name": "Rocky Aikens",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "John Duchi",
+   "student": "stanford_stu_fangzhao-zhang",
+   "name": "Fangzhao Zhang",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "John Duchi",
+   "student": "stanford_stu_alan-yang",
+   "name": "Alan Yang",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "John Duchi",
+   "student": "stanford_stu_mark-nishimura",
+   "name": "Mark Nishimura",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "John Duchi",
+   "student": "stanford_stu_pratik-rathore",
+   "name": "Pratik Rathore",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "John Duchi",
+   "student": "stanford_stu_lindsey-canessa",
+   "name": "Lindsey Canessa",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "John Duchi",
+   "student": "stanford_stu_audrey-xie",
+   "name": "Audrey Xie",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "John Duchi",
+   "student": "stanford_stu_andy-dong",
+   "name": "Andy Dong",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "John Duchi",
+   "student": "stanford_stu_kai-chia-mo",
+   "name": "Kai-Chia Mo",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "John Duchi",
+   "student": "ext:stanford:ajay-mandlekar",
+   "name": "Ajay Mandlekar",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "John Duchi",
+   "student": "ext:stanford:matthew-tsao",
+   "name": "Matthew Tsao",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Martin Fischer",
+   "student": "stanford_stu_oluwapelumi-egunjobi",
+   "name": "Oluwapelumi Egunjobi",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Martin Fischer",
+   "student": "stanford_stu_vaishnavi-thumuganti",
+   "name": "Vaishnavi Thumuganti",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Martin Fischer",
+   "student": "stanford_stu_nino-giorgadze",
+   "name": "Nino Giorgadze",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Martin Fischer",
+   "student": "stanford_stu_dan-kuepper",
+   "name": "Dan Kuepper",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Martin Fischer",
+   "student": "stanford_stu_philip-kuo",
+   "name": "Philip Kuo",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Martin Fischer",
+   "student": "stanford_stu_guillermo-prado-lujan",
+   "name": "Guillermo Prado Lujan",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Martin Fischer",
+   "student": "ext:stanford:cynthia-brosque-markenson",
+   "name": "Cynthia Brosque Markenson",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Martin Fischer",
+   "student": "ext:stanford:rolf-dixon",
+   "name": "Rolf Dixon",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Sean Follmer",
+   "student": "stanford_stu_matt-caren",
+   "name": "Matt Caren",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Sean Follmer",
+   "student": "stanford_stu_dan-ilyin",
+   "name": "Dan Ilyin",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Ashish Goel",
+   "student": "stanford_stu_nirjhar-das",
+   "name": "Nirjhar Das",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Ashish Goel",
+   "student": "ext:stanford:sanath-kumar-krishna-murthy",
+   "name": "Sanath Kumar Krishna Murthy",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Sharad Goel",
+   "student": "stanford_stu_yun-hong",
+   "name": "Jenny Hong",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Sharad Goel",
+   "student": "stanford_stu_ravisoji",
+   "name": "Ravi Sojitra",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Sharad Goel",
+   "student": "ext:stanford:yun-hong",
+   "name": "Yun Hong",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Noah Goodman",
+   "student": "stanford_stu_gabriel-poesia-poesia-reis-e-silva",
+   "name": "Gabriel Poesia Reis e Silva",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Noah Goodman",
+   "student": "stanford_stu_jason-goldberg",
+   "name": "Jason Goldberg",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Ramesh Johari",
+   "student": "stanford_stu_i-han-lai",
+   "name": "I-han Lai",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Ramesh Johari",
+   "student": "stanford_stu_semyon-lomasov",
+   "name": "Semyon Lomasov",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Ramesh Johari",
+   "student": "ext:stanford:andrei-graur",
+   "name": "Andrei Graur",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Ramesh Johari",
+   "student": "ext:stanford:chenru-liu",
+   "name": "Chenru Liu",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Stephen Montgomery",
+   "student": "stanford_stu_yi-wen-yeh",
+   "name": "Christine Yiwen Yeh",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Stephen Montgomery",
+   "student": "stanford_stu_samson-mataraso",
+   "name": "Samson Mataraso",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Stephen Montgomery",
+   "student": "stanford_stu_juan-manuel-zambrano-chaves",
+   "name": "Juan Manuel Zambrano Chaves",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Stephen Montgomery",
+   "student": "stanford_stu_ben-ehlert",
+   "name": "Ben Ehlert",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Stephen Montgomery",
+   "student": "stanford_stu_sophia-kivelson",
+   "name": "Sophia Kivelson",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Stephen Montgomery",
+   "student": "stanford_stu_alex-belov",
+   "name": "Alex Belov",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Allison Okamura",
+   "student": "stanford_stu_julia-di",
+   "name": "Julia Di",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Allison Okamura",
+   "student": "stanford_stu_ava-lakmazaheri",
+   "name": "Ava Lakmazaheri",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Allison Okamura",
+   "student": "stanford_stu_olivia-tomassetti",
+   "name": "Olivia Tomassetti",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Allison Okamura",
+   "student": "stanford_stu_venny-kojouharov",
+   "name": "Venny Kojouharov",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Allison Okamura",
+   "student": "stanford_stu_justin-kamei",
+   "name": "Justin Kamei",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Roy Pea",
+   "student": "stanford_stu_daniela-ganelin",
+   "name": "Daniela Ganelin",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Roy Pea",
+   "student": "stanford_stu_jaylen-pittman",
+   "name": "Jaylen Pittman",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Roy Pea",
+   "student": "stanford_stu_jiayi-guo",
+   "name": "Jiayi Guo",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Benjamin Van Roy",
+   "student": "stanford_stu_sanath-kumar-krishna-murthy",
+   "name": "Sanath Kumar Krishnamurthy",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Benjamin Van Roy",
+   "student": "stanford_stu_semyon-lomasov",
+   "name": "Semyon Lomasov",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Benjamin Van Roy",
+   "student": "stanford_stu_juanran-wang",
+   "name": "Jun Wang",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Benjamin Van Roy",
+   "student": "stanford_stu_vidhata-jayaraman",
+   "name": "Vidhata Jayaraman",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Benjamin Van Roy",
+   "student": "stanford_stu_shane-barratt",
+   "name": "Shane Barratt",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Benjamin Van Roy",
+   "student": "ext:stanford:christopher-choy",
+   "name": "Christopher Choy",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Ge Wang",
+   "student": "stanford_stu_yikai-li",
+   "name": "Yikai Li",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Ge Wang",
+   "student": "stanford_stu_alexander-han",
+   "name": "Alexander Han",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Clark Barrett",
+   "student": "stanford_stu_liza-pertseva",
+   "name": "Liza Pertseva",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Clark Barrett",
+   "student": "stanford_stu_haoze-wu",
+   "name": "Andrew Wu",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Amin Arbabian",
+   "student": "stanford_stu_thomas-horton-king",
+   "name": "Thomas Horton King",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Amin Arbabian",
+   "student": "stanford_stu_sydney-yan",
+   "name": "Sydney Yan",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Amin Arbabian",
+   "student": "stanford_stu_jiayin-chi",
+   "name": "Jiayin Chi",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Amin Arbabian",
+   "student": "stanford_stu_ahmet-kilic",
+   "name": "Ahmet Kilic",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Amin Arbabian",
+   "student": "stanford_stu_syamantak-payra",
+   "name": "Syamantak Payra",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Amin Arbabian",
+   "student": "stanford_stu_kamyar-rajabali-fardi",
+   "name": "Kamyar Rajabali Fardi",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Amin Arbabian",
+   "student": "stanford_stu_ahmad-ghalayini",
+   "name": "Ahmad Ghalayini",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Amin Arbabian",
+   "student": "ext:stanford:arjun-seshadri",
+   "name": "Arjun Seshadri",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Amin Arbabian",
+   "student": "ext:stanford:kevin-chen",
+   "name": "Kevin Chen",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Amin Arbabian",
+   "student": "ext:stanford:samyuktha-challa",
+   "name": "Samyuktha Challa",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Amin Arbabian",
+   "student": "ext:stanford:deepak-gopalan",
+   "name": "Deepak Gopalan",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Abbas El Gamal",
+   "student": "stanford_stu_andrei-kanavalau",
+   "name": "Andrei Kanavalau",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Abbas El Gamal",
+   "student": "stanford_stu_kaustubh-porlikar",
+   "name": "Kaustubh Porlikar",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Abbas El Gamal",
+   "student": "stanford_stu_bennet-meyers",
+   "name": "Bennet Meyers",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Abbas El Gamal",
+   "student": "ext:stanford:antonio-ginart",
+   "name": "Antonio Ginart",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Abbas El Gamal",
+   "student": "ext:stanford:francis-chen",
+   "name": "Francis Chen",
+   "roles": [
+    "Doctoral Dissertation Reader (AC)"
+   ]
+  },
+  {
+   "pi": "Abbas El Gamal",
+   "student": "ext:stanford:ali-sharafat",
+   "name": "Ali Sharafat",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Abbas El Gamal",
+   "student": "ext:stanford:bennet-meyers-im",
+   "name": "Bennet Meyers-Im",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Bernd Girod",
+   "student": "stanford_stu_louise-zhuang",
+   "name": "Louise Zhuang",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Bernd Girod",
+   "student": "ext:stanford:li-yi",
+   "name": "Li Yi",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Joseph M. Kahn",
+   "student": "stanford_stu_jonathan-fisher",
+   "name": "Jonathan Fisher",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Joseph M. Kahn",
+   "student": "stanford_stu_alexander-ecker",
+   "name": "Alex Ecker",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Joseph M. Kahn",
+   "student": "stanford_stu_mohammed-azzouz",
+   "name": "Mohammed Azzouz",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Joseph M. Kahn",
+   "student": "stanford_stu_louise-schul",
+   "name": "Louise Schul",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Joseph M. Kahn",
+   "student": "stanford_stu_82568",
+   "name": "Ruishan Liu",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Joseph M. Kahn",
+   "student": "ext:stanford:jonathan-wheeler",
+   "name": "Jonathan Wheeler",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Joseph M. Kahn",
+   "student": "ext:stanford:stephanie-tietz",
+   "name": "Stephanie Tietz",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Sanjay Lall",
+   "student": "stanford_stu_naomi-sagan",
+   "name": "Naomi Sagan",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Sanjay Lall",
+   "student": "ext:stanford:jonathan-lacotte",
+   "name": "Jonathan Lacotte",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Sanjay Lall",
+   "student": "ext:stanford:vikranth-dwaracherla",
+   "name": "Vikranth Dwaracherla",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Thomas Lee",
+   "student": "stanford_stu_george-alexopoulos",
+   "name": "George Alexopoulos",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Thomas Lee",
+   "student": "stanford_stu_west-foster",
+   "name": "West Foster",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Thomas Lee",
+   "student": "stanford_stu_pumiao-yan",
+   "name": "Pumiao Yan",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Thomas Lee",
+   "student": "stanford_stu_yueming-zhuo",
+   "name": "Yueming Zhuo",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Thomas Lee",
+   "student": "stanford_stu_oliver-pranis",
+   "name": "Oliver Pranis",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Thomas Lee",
+   "student": "ext:stanford:angad-rekhi",
+   "name": "Angad Rekhi",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Thomas Lee",
+   "student": "ext:stanford:elizabeth-cole",
+   "name": "Elizabeth Cole",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Thomas Lee",
+   "student": "ext:stanford:timothy-mckenna",
+   "name": "Timothy McKenna",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Andrea Montanari",
+   "student": "stanford_stu_khaled-saab",
+   "name": "Khaled Saab",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Andrea Montanari",
+   "student": "stanford_stu_daria-reshetova",
+   "name": "Daria Reshetova",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Andrea Montanari",
+   "student": "stanford_stu_lucas-jacobs",
+   "name": "Lucas Jacobs",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Andrea Montanari",
+   "student": "ext:stanford:qijia-jiang",
+   "name": "Qijia Jiang",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Boris Murmann",
+   "student": "stanford_stu_aya-mouallem",
+   "name": "Aya Mouallem",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Boris Murmann",
+   "student": "stanford_stu_sanghyeon-park",
+   "name": "Sanghyeon Park",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Ayfer Ozgur",
+   "student": "stanford_stu_anmol-kagrecha",
+   "name": "Anmol Kagrecha",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Ayfer Ozgur",
+   "student": "stanford_stu_ethan-liang",
+   "name": "Ethan Liang",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Ayfer Ozgur",
+   "student": "stanford_stu_cagan-alkan",
+   "name": "Cagan Alkan",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Ayfer Ozgur",
+   "student": "stanford_stu_tavor-baharav",
+   "name": "Tavor Baharav",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Ayfer Ozgur",
+   "student": "stanford_stu_onur-cezmi-mutlu",
+   "name": "Onur Cezmi Mutlu",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Ayfer Ozgur",
+   "student": "stanford_stu_mehmet-ogut",
+   "name": "Giray Ogut",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Ayfer Ozgur",
+   "student": "stanford_stu_ertem-tas",
+   "name": "Ertem Tas",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Ayfer Ozgur",
+   "student": "stanford_stu_kirill-acharya",
+   "name": "Kirill Acharya",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Ayfer Ozgur",
+   "student": "stanford_stu_muhammad-ahmad-kaleem",
+   "name": "Muhammad Ahmad Kaleem",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Ayfer Ozgur",
+   "student": "stanford_stu_ching-fang-li",
+   "name": "Ching-Fang Li",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Ayfer Ozgur",
+   "student": "stanford_stu_aayush-rajesh",
+   "name": "Aayush Rajesh",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Ayfer Ozgur",
+   "student": "stanford_stu_burak-bartan",
+   "name": "Burak Bartan",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Ayfer Ozgur",
+   "student": "ext:stanford:ahmadreza-momeni",
+   "name": "Ahmadreza Momeni",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Ayfer Ozgur",
+   "student": "ext:stanford:amirata-ghorbani",
+   "name": "Amirata Ghorbani",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Ayfer Ozgur",
+   "student": "ext:stanford:erdem-biyik",
+   "name": "Erdem Biyik",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Ayfer Ozgur",
+   "student": "ext:stanford:tong-mu",
+   "name": "Tong Mu",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "John M. Pauly",
+   "student": "stanford_stu_laurel-hales",
+   "name": "Laurel Hales",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "John M. Pauly",
+   "student": "stanford_stu_246976",
+   "name": "Eric Wu",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "John M. Pauly",
+   "student": "stanford_stu_yirong-yang",
+   "name": "Yirong Yang",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "John M. Pauly",
+   "student": "stanford_stu_daniel-abraham",
+   "name": "Daniel Abraham",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "John M. Pauly",
+   "student": "stanford_stu_fuat-arslan",
+   "name": "Fuat Arslan",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "John M. Pauly",
+   "student": "stanford_stu_jaehyeok-bae",
+   "name": "Jaehyeok Bae",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "John M. Pauly",
+   "student": "stanford_stu_rachel-barcklay",
+   "name": "Rachel Barcklay",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "John M. Pauly",
+   "student": "stanford_stu_hasan-atakan-bedel",
+   "name": "Hasan Atakan Bedel",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "John M. Pauly",
+   "student": "stanford_stu_onat-dalmaz",
+   "name": "Onat Dalmaz",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "John M. Pauly",
+   "student": "stanford_stu_alisa-hathaway",
+   "name": "Alisa Hathaway",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "John M. Pauly",
+   "student": "stanford_stu_wonkyeong-lee",
+   "name": "Wonkyeong Lee",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "John M. Pauly",
+   "student": "stanford_stu_yimeng-lin",
+   "name": "Yimeng Lin",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "John M. Pauly",
+   "student": "stanford_stu_370034",
+   "name": "Deepro Pasha",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "John M. Pauly",
+   "student": "stanford_stu_karanps",
+   "name": "Karan Singh",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "John M. Pauly",
+   "student": "stanford_stu_alex-sun",
+   "name": "Alex Sun",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "John M. Pauly",
+   "student": "stanford_stu_alice-tor",
+   "name": "Alice Tor",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "John M. Pauly",
+   "student": "stanford_stu_andy-dimnaku",
+   "name": "Andy Dimnaku",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "John M. Pauly",
+   "student": "stanford_stu_bella-hofflich",
+   "name": "Bella Hofflich",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "John M. Pauly",
+   "student": "stanford_stu_sabrina-liu",
+   "name": "Sabrina Liu",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "John M. Pauly",
+   "student": "stanford_stu_jiaqi-wu",
+   "name": "Jiaqi Wu",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "John M. Pauly",
+   "student": "stanford_stu_grant-yang",
+   "name": "Grant Yang",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "John M. Pauly",
+   "student": "ext:stanford:paurakh-rajbhandary",
+   "name": "Paurakh Rajbhandary",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "John M. Pauly",
+   "student": "ext:stanford:nicole-bienert",
+   "name": "Nicole Bienert",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "John M. Pauly",
+   "student": "ext:stanford:rehman-ali",
+   "name": "Rehman Ali",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "John M. Pauly",
+   "student": "ext:stanford:jason-su",
+   "name": "Jason Su",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mary Wootters",
+   "student": "stanford_stu_kamilla-nazirkhanova",
+   "name": "Kamilla Nazirkhanova",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Howard Zebker",
+   "student": "stanford_stu_brookek",
+   "name": "Brooke Krajancich",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Howard Zebker",
+   "student": "stanford_stu_sydney-hunt",
+   "name": "Sydney Hunt",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Howard Zebker",
+   "student": "stanford_stu_miti-shah",
+   "name": "Miti Shah",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Howard Zebker",
+   "student": "stanford_stu_liliana-edmonds",
+   "name": "Liliana Edmonds",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Omer Reingold",
+   "student": "stanford_stu_silvia-casacuberta-puig",
+   "name": "Sílvia Casacuberta Puig",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Justin Grimmer",
+   "student": "stanford_stu_liam-bethlendy",
+   "name": "Liam Bethlendy",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Justin Grimmer",
+   "student": "stanford_stu_katie-clayton",
+   "name": "Katie Clayton",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Justin Grimmer",
+   "student": "stanford_stu_shadie-khubba",
+   "name": "Shadie Khubba",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Justin Grimmer",
+   "student": "stanford_stu_jiehan-liu",
+   "name": "Jiehan Liu",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Justin Grimmer",
+   "student": "stanford_stu_mahda-soltani",
+   "name": "Mahda Soltani",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Russell Poldrack",
+   "student": "stanford_stu_nastasia-klevak",
+   "name": "Nastasia Klevak",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Chris Potts",
+   "student": "stanford_stu_brandon-waldon",
+   "name": "Brandon Waldon",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Aaron Sidford",
+   "student": "stanford_stu_wanqiao-xu",
+   "name": "Wanqiao Xu",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Gordon Wetzstein",
+   "student": "stanford_stu_thomas-teisberg",
+   "name": "Thomas Teisberg",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Gordon Wetzstein",
+   "student": "stanford_stu_kailas-vodrahalli",
+   "name": "Kailas Vodrahalli",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Gordon Wetzstein",
+   "student": "stanford_stu_minseo-kim",
+   "name": "Sonia Kim",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Gordon Wetzstein",
+   "student": "stanford_stu_george-nakayama",
+   "name": "George Nakayama",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Gordon Wetzstein",
+   "student": "stanford_stu_jasmine-cheng",
+   "name": "Jasmine Cheng",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Gordon Wetzstein",
+   "student": "stanford_stu_yoonjae-chung",
+   "name": "Yoonjae Chung",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Gordon Wetzstein",
+   "student": "stanford_stu_nathan-jensen",
+   "name": "Nathan Jensen",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Gordon Wetzstein",
+   "student": "ext:stanford:riley-culberg",
+   "name": "Riley Culberg",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Daniel Yamins",
+   "student": "stanford_stu_yash-shah",
+   "name": "Yash Shah",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "James Zou",
+   "student": "stanford_stu_jacob-chang",
+   "name": "Jake Chang",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "James Zou",
+   "student": "stanford_stu_karen-feng",
+   "name": "Karen Feng",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "James Zou",
+   "student": "stanford_stu_arushi-gupta",
+   "name": "Arushi Gupta",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kwabena Boahen",
+   "student": "stanford_stu_madeline-hays",
+   "name": "Madeline Hays",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kwabena Boahen",
+   "student": "stanford_stu_aj-phillips",
+   "name": "AJ Phillips",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kwabena Boahen",
+   "student": "stanford_stu_issah-samori",
+   "name": "Issah Samori",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kwabena Boahen",
+   "student": "stanford_stu_mary-kate-gale",
+   "name": "Mary Kate Gale",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kwabena Boahen",
+   "student": "stanford_stu_muhammad-abdulla",
+   "name": "Muhammad Abdulla",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kwabena Boahen",
+   "student": "stanford_stu_vivek-chundru",
+   "name": "Vivek Chundru",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kwabena Boahen",
+   "student": "stanford_stu_prithwish-dasgupta",
+   "name": "Prithwish Dasgupta",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kwabena Boahen",
+   "student": "stanford_stu_madison-george",
+   "name": "Madison George",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kwabena Boahen",
+   "student": "stanford_stu_devrath-iyer",
+   "name": "Devrath Iyer",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kwabena Boahen",
+   "student": "stanford_stu_zhaoyang-li",
+   "name": "Zhaoyang Li",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kwabena Boahen",
+   "student": "stanford_stu_yize-liu",
+   "name": "Yize Liu",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kwabena Boahen",
+   "student": "stanford_stu_james-skelly",
+   "name": "James Skelly",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kwabena Boahen",
+   "student": "stanford_stu_jasper-august-tootsi",
+   "name": "Jasper August Tootsi",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kwabena Boahen",
+   "student": "stanford_stu_pamela-herrera-rodriguez",
+   "name": "Pamela Herrera Rodriguez",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kwabena Boahen",
+   "student": "stanford_stu_vedang-lad",
+   "name": "Vedang Lad",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kwabena Boahen",
+   "student": "stanford_stu_laura-moreno-carbonell",
+   "name": "Laura Moreno Carbonell",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kwabena Boahen",
+   "student": "stanford_stu_sabrina-reguyal",
+   "name": "Sabrina Reguyal",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kwabena Boahen",
+   "student": "stanford_stu_hery-shin",
+   "name": "Hery Shin",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kwabena Boahen",
+   "student": "stanford_stu_emily-steiner",
+   "name": "Emily Steiner",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kwabena Boahen",
+   "student": "stanford_stu_caelia-thomas",
+   "name": "Caelia Thomas",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kwabena Boahen",
+   "student": "stanford_stu_charles-van-hook",
+   "name": "Charles Van Hook",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kwabena Boahen",
+   "student": "stanford_stu_selina-weber",
+   "name": "Selina Weber",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kwabena Boahen",
+   "student": "ext:stanford:colleen-rhoades",
+   "name": "Colleen Rhoades",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kwabena Boahen",
+   "student": "ext:stanford:elise-robinson",
+   "name": "Elise Robinson",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kwabena Boahen",
+   "student": "ext:stanford:adam-dai",
+   "name": "Adam Dai",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kwabena Boahen",
+   "student": "ext:stanford:ajay-singhvi",
+   "name": "Ajay Singhvi",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kwabena Boahen",
+   "student": "ext:stanford:alec-tarashansky",
+   "name": "Alec Tarashansky",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kwabena Boahen",
+   "student": "ext:stanford:cara-nunez",
+   "name": "Cara Nunez",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kwabena Boahen",
+   "student": "ext:stanford:christopher-fritz",
+   "name": "Christopher Fritz",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kwabena Boahen",
+   "student": "ext:stanford:ian-thompson",
+   "name": "Ian Thompson",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kwabena Boahen",
+   "student": "ext:stanford:loza-tadesse",
+   "name": "Loza Tadesse",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kwabena Boahen",
+   "student": "ext:stanford:nelson-hall",
+   "name": "Nelson Hall",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kwabena Boahen",
+   "student": "ext:stanford:ziad-ali",
+   "name": "Ziad Ali",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jeannette Bohg",
+   "student": "stanford_stu_lei-shu",
+   "name": "Lei Shu",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Zakir Durumeric",
+   "student": "stanford_stu_thea-rossman",
+   "name": "Thea Rossman",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kayvon Fatahalian",
+   "student": "stanford_stu_nicholas-jennings",
+   "name": "Nicholas Jennings",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Kayvon Fatahalian",
+   "student": "stanford_stu_david-yao",
+   "name": "David Yao",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Tengyu Ma",
+   "student": "stanford_stu_caroline-choi",
+   "name": "Caroline Choi",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Aviad Rubinstein",
+   "student": "ext:stanford:jessica-pointing",
+   "name": "Jessica Pointing",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Dorsa Sadigh",
+   "student": "stanford_stu_julia-costacurta",
+   "name": "Julia Costacurta",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Dorsa Sadigh",
+   "student": "stanford_stu_mottaghi",
+   "name": "Ali Mottaghi",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Dorsa Sadigh",
+   "student": "stanford_stu_xiaoyang-shi",
+   "name": "Lucy Shi",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Dorsa Sadigh",
+   "student": "ext:stanford:andy-palan",
+   "name": "Andy Palan",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jacob Fox",
+   "student": "stanford_stu_richard-ueltzen",
+   "name": "Richard Ueltzen",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Surya Ganguli",
+   "student": "stanford_stu_zhaoheng-guo",
+   "name": "Zhaoheng Guo",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Surya Ganguli",
+   "student": "stanford_stu_eun-sun-song",
+   "name": "Eun Sun Song",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Surya Ganguli",
+   "student": "ext:stanford:rishi-patel",
+   "name": "Rishi Patel",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Surya Ganguli",
+   "student": "ext:stanford:jake-wisser",
+   "name": "Jake Wisser",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Surya Ganguli",
+   "student": "ext:stanford:lauren-riddiford",
+   "name": "Lauren Riddiford",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Surya Ganguli",
+   "student": "ext:stanford:rochelle-radzyminski",
+   "name": "Rochelle Radzyminski",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Surya Ganguli",
+   "student": "ext:stanford:tingting-gong",
+   "name": "Tingting Gong",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Chelsea Finn",
+   "student": "stanford_stu_ariana-mann",
+   "name": "Ariana Mann",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Chelsea Finn",
+   "student": "stanford_stu_siyi-tang",
+   "name": "Siyi Tang",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Chelsea Finn",
+   "student": "stanford_stu_marcel-torne-villasevil",
+   "name": "Marcel Torne Villasevil",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Chelsea Finn",
+   "student": "stanford_stu_yonatan-urman",
+   "name": "Yonatan Urman",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Chelsea Finn",
+   "student": "stanford_stu_zihao-zhao",
+   "name": "Zihao Zhao",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mohammad Akbarpour",
+   "student": "stanford_stu_morteza-honarvar",
+   "name": "Morteza Honarvar",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Marco Pavone",
+   "student": "stanford_stu_erik-bauer",
+   "name": "Erik Bauer",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Marco Pavone",
+   "student": "stanford_stu_jadelynn-dao",
+   "name": "Jadelynn Dao",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Marco Pavone",
+   "student": "stanford_stu_luis-pabon-madrid",
+   "name": "Luis Pabon Madrid",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Marco Pavone",
+   "student": "stanford_stu_fadhil-ginting",
+   "name": "Fadhil Ginting",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Marco Pavone",
+   "student": "ext:stanford:alana-sanchez",
+   "name": "Alana Sanchez",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Daniel Rubin",
+   "student": "stanford_stu_alexander-derry",
+   "name": "Alex Derry",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Daniel Rubin",
+   "student": "stanford_stu_matthew-aguirre",
+   "name": "Matthew Aguirre",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Daniel Rubin",
+   "student": "stanford_stu_oana-enache",
+   "name": "Oana Enache",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Daniel Rubin",
+   "student": "stanford_stu_yixing-jiang",
+   "name": "Yixing Jiang",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Daniel Rubin",
+   "student": "ext:stanford:emily-tsang",
+   "name": "Emily Tsang",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Daniel Rubin",
+   "student": "ext:stanford:winston-haynes",
+   "name": "Winston Haynes",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Daniel Rubin",
+   "student": "ext:stanford:benjamin-huynh",
+   "name": "Benjamin Huynh",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Daniel Rubin",
+   "student": "ext:stanford:jessica-torres",
+   "name": "Jessica Torres",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Serena Yeung-Levy",
+   "student": "stanford_stu_rebecca-hurwitz",
+   "name": "Rebecca Hurwitz",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Serena Yeung-Levy",
+   "student": "stanford_stu_elana-simon",
+   "name": "Elana Simon",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mert Pilanci",
+   "student": "stanford_stu_amirhossein-afsharrad",
+   "name": "Amirhossein Afsharrad",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mert Pilanci",
+   "student": "stanford_stu_dorsa-fathollahi",
+   "name": "Dorsa Fathollahi",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mert Pilanci",
+   "student": "stanford_stu_erin-kunz",
+   "name": "Erin Kunz",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mert Pilanci",
+   "student": "stanford_stu_marc-moussa-nasser",
+   "name": "Marc Moussa Nasser",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mert Pilanci",
+   "student": "stanford_stu_siddharth-tanwar",
+   "name": "Siddharth Tanwar",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Priyanka Raina",
+   "student": "stanford_stu_nikhil-poole",
+   "name": "Nikhil Poole",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Priyanka Raina",
+   "student": "stanford_stu_evan-lai",
+   "name": "Evan Lai",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Priyanka Raina",
+   "student": "stanford_stu_jan-strzeszynski",
+   "name": "Jan Strzeszynski",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Priyanka Raina",
+   "student": "ext:stanford:khushal-sethi",
+   "name": "Khushal Sethi",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Fredrik Kjolstad",
+   "student": "stanford_stu_katherine-mohr",
+   "name": "Katherine Mohr",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Caroline Trippel",
+   "student": "stanford_stu_rishab-parthasarathy",
+   "name": "Rishab Parthasarathy",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jiajun Wu",
+   "student": "stanford_stu_jeff-tan",
+   "name": "Jeff Tan",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Adam Bouland",
+   "student": "stanford_stu_yiyi-cai",
+   "name": "Yiyi Cai",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Carlos Guestrin",
+   "student": "stanford_stu_marina-zhang",
+   "name": "Marina Zhang",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Tatsunori Hashimoto",
+   "student": "stanford_stu_elise-han",
+   "name": "Elise Han",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Tatsunori Hashimoto",
+   "student": "stanford_stu_lusa-shimabucoro",
+   "name": "Luísa Shimabucoro",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Emily Fox",
+   "student": "ext:stanford:alex-wang",
+   "name": "Alex Wang",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jay McClelland",
+   "student": "stanford_stu_violet-xiang",
+   "name": "Violet Xiang",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Nicholas Haber",
+   "student": "stanford_stu_anelise-newman",
+   "name": "Anelise Newman",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Nicholas Haber",
+   "student": "stanford_stu_frieda-rong",
+   "name": "Frieda Rong",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Nicholas Haber",
+   "student": "stanford_stu_konwoo-kim",
+   "name": "Konwoo Kim",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Monroe Kennedy III",
+   "student": "stanford_stu_nicholas-broadbent",
+   "name": "Nicholas Broadbent",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Monroe Kennedy III",
+   "student": "stanford_stu_aaron-garza",
+   "name": "Aaron Garza",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Monroe Kennedy III",
+   "student": "stanford_stu_william-heap",
+   "name": "William Heap",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Monroe Kennedy III",
+   "student": "stanford_stu_394978",
+   "name": "Cindy Huang",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Monroe Kennedy III",
+   "student": "stanford_stu_judith-brown",
+   "name": "Judith Brown",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Sanmi Koyejo",
+   "student": "stanford_stu_344751",
+   "name": "Rui Li",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Sanmi Koyejo",
+   "student": "stanford_stu_colin-sullivan",
+   "name": "Colin Sullivan",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Ellen Vitercik",
+   "student": "stanford_stu_senem-ashak",
+   "name": "Senem Isik",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Ellen Vitercik",
+   "student": "stanford_stu_keertana-veeramony-chidambaram",
+   "name": "Keertana Veeramony Chidambaram",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Ram Rajagopal",
+   "student": "stanford_stu_samuel-bobick",
+   "name": "Samuel Bobick",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Ram Rajagopal",
+   "student": "stanford_stu_nils-angliviel-de-la-beaumelle",
+   "name": "Nils Angliviel de La Beaumelle",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Dustin Schroeder",
+   "student": "stanford_stu_emma-mackie",
+   "name": "Mickey MacKie",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "David Tse",
+   "student": "stanford_stu_surin-ahn",
+   "name": "Surin Ahn",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "David Tse",
+   "student": "stanford_stu_shubh-gupta",
+   "name": "Shubh Gupta",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "David Tse",
+   "student": "stanford_stu_axel-levy",
+   "name": "Axel Levy",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "David Tse",
+   "student": "ext:stanford:chuan-zheng-lee",
+   "name": "Chuan-Zheng Lee",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "David Tse",
+   "student": "ext:stanford:rishi-sharma",
+   "name": "Rishi Sharma",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Daniel Ho",
+   "student": "stanford_stu_alexandra-minsk",
+   "name": "Alexandra Minsk",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Tselil Schramm",
+   "student": "stanford_stu_eric-ma",
+   "name": "Eric Ma",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Hariharan Subramonyam",
+   "student": "stanford_stu_neha-rajagopalan",
+   "name": "Neha Rajagopalan",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Ehsan Adeli",
+   "student": "stanford_stu_jess-brown",
+   "name": "Jessica Brown",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Emily Alsentzer",
+   "student": "stanford_stu_andrew-shen",
+   "name": "Andrew Shen",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Emily Alsentzer",
+   "student": "stanford_stu_catherine-mailly",
+   "name": "Catherine Mailly",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Yejin Choi",
+   "student": "stanford_stu_lily-chen",
+   "name": "Lily Chen",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Yejin Choi",
+   "student": "stanford_stu_etash-guha",
+   "name": "Etash Guha",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Sherri Rose",
+   "student": "stanford_stu_370186",
+   "name": "Audrey Chang",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mac Schwager",
+   "student": "stanford_stu_hugo-buurmeijer",
+   "name": "Hugo Buurmeijer",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mark Cutkosky",
+   "student": "stanford_stu_megan-coram",
+   "name": "Megan Coram",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mark Cutkosky",
+   "student": "stanford_stu_manaka-gomi",
+   "name": "Manaka Gomi",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mark Cutkosky",
+   "student": "stanford_stu_alicia-lin",
+   "name": "Alicia Lin",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mark Cutkosky",
+   "student": "ext:stanford:marissa-lee",
+   "name": "Marissa Lee",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mark Cutkosky",
+   "student": "ext:stanford:savannah-cofer",
+   "name": "Savannah Cofer",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jeremy Bailenson",
+   "student": "stanford_stu_ariel-gordon",
+   "name": "Ariel Gordon",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Amin Saberi",
+   "student": "stanford_stu_nirjhar-das",
+   "name": "Nirjhar Das",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Amin Saberi",
+   "student": "stanford_stu_kiana-asgari",
+   "name": "Kiana Asgari",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Amin Saberi",
+   "student": "stanford_stu_346803",
+   "name": "Elaine Liu",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Amin Saberi",
+   "student": "stanford_stu_joyee-wang",
+   "name": "Joyee Wang",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Amin Saberi",
+   "student": "stanford_stu_annika-younge",
+   "name": "Annika Younge",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Amin Saberi",
+   "student": "stanford_stu_arshia-soltani-moakhar",
+   "name": "Arshia Soltani Moakhar",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Amin Saberi",
+   "student": "ext:stanford:mobin-yahyazadehjeloudar",
+   "name": "Mobin YahyazadehJeloudar",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Amin Saberi",
+   "student": "ext:stanford:ali-ahmaditeshnizi",
+   "name": "Ali Ahmaditeshnizi",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jeffrey Hancock",
+   "student": "stanford_stu_aya-salim",
+   "name": "Aya Salim",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jeffrey Hancock",
+   "student": "stanford_stu_bingxu-han",
+   "name": "Bingxu Han",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Peter Glynn",
+   "student": "stanford_stu_zhangyi-liu",
+   "name": "Zhangyi Liu",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Peter Glynn",
+   "student": "ext:stanford:fan-zhang",
+   "name": "Fan Zhang",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Itai Ashlagi",
+   "student": "stanford_stu_semyon-lomasov",
+   "name": "Semyon Lomasov",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Itai Ashlagi",
+   "student": "stanford_stu_346803",
+   "name": "Elaine Liu",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Itai Ashlagi",
+   "student": "stanford_stu_346003",
+   "name": "Jennifer Chen",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Itai Ashlagi",
+   "student": "stanford_stu_jacqueline-vallon",
+   "name": "Jacqueline Vallon",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Itai Ashlagi",
+   "student": "ext:stanford:mobin-yahyazadehjeloudar",
+   "name": "Mobin YahyazadehJeloudar",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mark Musen",
+   "student": "stanford_stu_kae-nurge",
+   "name": "Kae Nurge",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mark Musen",
+   "student": "stanford_stu_scott-fleming",
+   "name": "Scott Fleming",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mark Musen",
+   "student": "stanford_stu_daisyding",
+   "name": "Daisy Ding",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mark Musen",
+   "student": "stanford_stu_conor-corbin",
+   "name": "Conor Corbin",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mark Musen",
+   "student": "stanford_stu_yuhao-zhang",
+   "name": "Yuhao Zhang",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mark Musen",
+   "student": "stanford_stu_221284",
+   "name": "Eric Sun",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Hae Young Noh",
+   "student": "stanford_stu_sam-kipper",
+   "name": "Sam Kipper",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Hae Young Noh",
+   "student": "stanford_stu_adem-taiyr",
+   "name": "Adem Taiyr",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Hae Young Noh",
+   "student": "stanford_stu_victory-ekpekurede",
+   "name": "Victory Ekpekurede",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "David Lobell",
+   "student": "ext:stanford:samantha-sekar",
+   "name": "Samantha Sekar",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "David Lobell",
+   "student": "ext:stanford:samy-sekar",
+   "name": "Samy Sekar",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Dennis Wall",
+   "student": "stanford_stu_301872",
+   "name": "Rohan Koodli",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Dennis Wall",
+   "student": "stanford_stu_199250",
+   "name": "Maggie Wang",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Dennis Wall",
+   "student": "stanford_stu_craig-smail",
+   "name": "Craig Smail",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Dennis Wall",
+   "student": "stanford_stu_mike-gloudemans",
+   "name": "Mike Gloudemans",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Dennis Wall",
+   "student": "ext:stanford:maulik-kamdar",
+   "name": "Maulik Kamdar",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Dennis Wall",
+   "student": "ext:stanford:adam-lavertu",
+   "name": "Adam Lavertu",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Dennis Wall",
+   "student": "ext:stanford:minh-nguyen",
+   "name": "Minh Nguyen",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Dennis Wall",
+   "student": "ext:stanford:greg-mcinnes",
+   "name": "Greg McInnes",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Dennis Wall",
+   "student": "ext:stanford:stephen-pfohl",
+   "name": "Stephen Pfohl",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Eric Darve",
+   "student": "stanford_stu_larry-marshall",
+   "name": "Larry Marshall",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Eric Darve",
+   "student": "stanford_stu_shai-bernard",
+   "name": "Shai Bernard",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Eric Darve",
+   "student": "stanford_stu_amar-koric",
+   "name": "Amar Koric",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Eric Darve",
+   "student": "stanford_stu_ziyu-liu",
+   "name": "Ziyu Liu",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Eric Darve",
+   "student": "ext:stanford:wai-tong-chung",
+   "name": "Wai Tong Chung",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Eric Darve",
+   "student": "ext:stanford:arun-balakrishna",
+   "name": "Arun Balakrishna",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Simona Onori",
+   "student": "stanford_stu_lynne-irvin",
+   "name": "Lynne Irvin",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Simona Onori",
+   "student": "stanford_stu_eleanor-hennessy",
+   "name": "Eleanor Hennessy",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Daniel Bruce Ennis",
+   "student": "ext:stanford:xianghao-zhan",
+   "name": "Xianghao Zhan",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jason Alan Fries",
+   "student": "stanford_stu_shlok-natarajan",
+   "name": "Shlok Natarajan",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_sammy-luo",
+   "name": "Sammy Luo",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_145511",
+   "name": "Huy Pham",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_yunkun-zhou",
+   "name": "Yunkun Zhou",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_max-xu",
+   "name": "Max Xu",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_panagiotis-lolas",
+   "name": "Panagiotis Lolas",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_shintaro-fushida-hardy",
+   "name": "Shintaro Fushida-Hardy",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_wyatt-mackey",
+   "name": "Wyatt Mackey",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_rodrigo-angelo",
+   "name": "Rodrigo Angelo",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_francisco-arana-herrera",
+   "name": "Francisco Arana Herrera",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_calista-bernard",
+   "name": "Calista Bernard",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_dylan-cant",
+   "name": "Dylan Cant",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_sanchit-chaturvedi",
+   "name": "Sanchit Chaturvedi",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_daren-chen",
+   "name": "Daren Chen",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_shuli-chen",
+   "name": "Shuli Chen",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_sean-cotner",
+   "name": "Sean Cotner",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_ipsita-datta",
+   "name": "Ipsita Datta",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_simona-diaconu",
+   "name": "Simona Diaconu",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_panagiotis-dimakis",
+   "name": "Panagiotis Dimakis",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_daniel-dore",
+   "name": "Daniel Dore",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_paul-falcone",
+   "name": "Paul Falcone",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_francois-simon-fauteux-chapleau",
+   "name": "Francois-Simon Fauteux-Chapleau",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_cole-graham",
+   "name": "Cole Graham",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_jorge-guijarro-ordonez",
+   "name": "Jorge Guijarro Ordonez",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_jimmy-he",
+   "name": "Jimmy He",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_xiaoyu-he",
+   "name": "Xiaoyu He",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_joj-helfer",
+   "name": "Joj Helfer",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_felipe-hernandez",
+   "name": "Felipe Hernandez",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_yue-hui",
+   "name": "Yue Hui",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_derek-khu",
+   "name": "Derek Khu",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_daniel-kim",
+   "name": "Daniel Kim",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_naomi-kraushar",
+   "name": "Naomi Kraushar",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_nikolas-kuhn",
+   "name": "Nikolas Kuhn",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_vivian-kuperberg",
+   "name": "Vivian Kuperberg",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_aaron-landesman",
+   "name": "Aaron Landesman",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_hannah-larson",
+   "name": "Hannah Larson",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_matt-larson",
+   "name": "Matt Larson",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_haoya-li",
+   "name": "Haoya Li",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_zhiqi-li",
+   "name": "Zhiqi Li",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_jonathan-love",
+   "name": "Jonathan Love",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_milo-marsden",
+   "name": "Milo Marsden",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_jared-marx-kuo",
+   "name": "Jared Marx-Kuo",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_sarah-mcconnell",
+   "name": "Sarah McConnell",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_konstantin-miagkov",
+   "name": "Konstantin Miagkov",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_slava-naprienko",
+   "name": "Slava Naprienko",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_dat-nguyen",
+   "name": "Dat Nguyen",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_andrea-ottolini",
+   "name": "Andrea Ottolini",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_mark-perlman",
+   "name": "Mark Perlman",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_lie-qian",
+   "name": "Lie Qian",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_arpon-raksit",
+   "name": "Arpon Raksit",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_mark-sellke",
+   "name": "Mark Sellke",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_mackenzie-simper",
+   "name": "Mackenzie Simper",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_leila-sloman",
+   "name": "Leila Sloman",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_alexandra-stavrianidi",
+   "name": "Alexandra Stavrianidi",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_ka-yu-tam",
+   "name": "Ka Yu Tam",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_libby-taylor",
+   "name": "Libby Taylor",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_nhi-truong-vu",
+   "name": "Nhi Truong Vu",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_yuval-wigderson",
+   "name": "Yuval Wigderson",
+   "roles": [
+    "Doctoral (Program)",
+    "Doctoral Dissertation Reader (AC)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_bogdan-zavyalov",
+   "name": "Bogdan Zavyalov",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_zhengqing-zhou",
+   "name": "Zhengqing Zhou",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_joey-zou",
+   "name": "Joey Zou",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_sheela-devadas",
+   "name": "Sheela Devadas",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_matt-tyler",
+   "name": "Matt Tyler",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_david-stoner",
+   "name": "Cynthia Stoner",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_sanjana-das",
+   "name": "Sanjana Das",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "stanford_stu_maya-sankar",
+   "name": "Maya Sankar",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "ext:stanford:david-stoner",
+   "name": "David Stoner",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "ext:stanford:ben-foster",
+   "name": "Ben Foster",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "ext:stanford:eric-kilgore",
+   "name": "Eric Kilgore",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "ext:stanford:nikhil-pandit",
+   "name": "Nikhil Pandit",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jan Vondrak",
+   "student": "ext:stanford:yujie-wu",
+   "name": "Yujie Wu",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Steven Hartley Collins",
+   "student": "stanford_stu_ariane-richard",
+   "name": "Ariane Richard",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Steven Hartley Collins",
+   "student": "stanford_stu_sarah-glomski",
+   "name": "Sarah Glomski",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Steven Hartley Collins",
+   "student": "ext:stanford:ahad-rauf",
+   "name": "Ahad Rauf",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "George Papanicolaou",
+   "student": "stanford_stu_marco-ioffredi",
+   "name": "Marco Ioffredi",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "George Papanicolaou",
+   "student": "ext:stanford:je-ok-choi",
+   "name": "Je-ok Choi",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mohsen Bayati",
+   "student": "stanford_stu_tony-ye",
+   "name": "Tony Ye",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mohsen Bayati",
+   "student": "ext:stanford:alper-yilmaz",
+   "name": "Alper YILMAZ",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mohsen Bayati",
+   "student": "ext:stanford:bryce-mclaughlin",
+   "name": "Bryce McLaughlin",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mohsen Bayati",
+   "student": "ext:stanford:daniil-vishnev",
+   "name": "Daniil Vishnev",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mohsen Bayati",
+   "student": "ext:stanford:giacomo-mantegazza",
+   "name": "Giacomo Mantegazza",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mohsen Bayati",
+   "student": "ext:stanford:ilan-morgenstern",
+   "name": "Ilan Morgenstern",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mohsen Bayati",
+   "student": "ext:stanford:mingxi-zhu",
+   "name": "Mingxi Zhu",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mohsen Bayati",
+   "student": "ext:stanford:abdullah-coskun",
+   "name": "abdullah coskun",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mohsen Bayati",
+   "student": "ext:stanford:ludovico-crippa",
+   "name": "Ludovico Crippa",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Madeleine Udell",
+   "student": "stanford_stu_shengtai-yao",
+   "name": "Shengtai Yao",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Madeleine Udell",
+   "student": "stanford_stu_teshnizi",
+   "name": "Ali Teshnizi",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Todd Walter",
+   "student": "stanford_stu_louise-zhou",
+   "name": "Louise Zhou",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Daniel McFarland",
+   "student": "stanford_stu_ruishi-chen",
+   "name": "Ruishi Chen",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Daniel McFarland",
+   "student": "stanford_stu_mike-hardy",
+   "name": "Mike Hardy",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Daniel McFarland",
+   "student": "stanford_stu_daniel-verdi",
+   "name": "Daniel Verdi",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Daniel McFarland",
+   "student": "stanford_stu_kelly-liu",
+   "name": "Kelly Liu",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Daniel McFarland",
+   "student": "stanford_stu_marissa-thompson",
+   "name": "Marissa Thompson",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Daniel McFarland",
+   "student": "stanford_stu_hansol-lee",
+   "name": "Hansol Lee",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Daniel McFarland",
+   "student": "ext:stanford:kemi-oyewole",
+   "name": "Kemi Oyewole",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Melissa Valentine",
+   "student": "stanford_stu_rhea-bergman",
+   "name": "Rhea Bergman",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Melissa Valentine",
+   "student": "stanford_stu_chris-dylewski",
+   "name": "Chris Dylewski",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Melissa Valentine",
+   "student": "stanford_stu_martin-jose-gonzalez",
+   "name": "Martin Jose Gonzalez",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Melissa Valentine",
+   "student": "stanford_stu_cuehyon-kim",
+   "name": "Cuehyon (Cue) Kim",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Melissa Valentine",
+   "student": "stanford_stu_ramesh-ramasubramanian",
+   "name": "Ramesh Manian",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Melissa Valentine",
+   "student": "stanford_stu_liemn",
+   "name": "Liem Nguyen",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Melissa Valentine",
+   "student": "stanford_stu_politzer",
+   "name": "Daniel Politzer",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Melissa Valentine",
+   "student": "stanford_stu_pragnya-ramjee",
+   "name": "Pragnya Ramjee",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Melissa Valentine",
+   "student": "stanford_stu_joshua-rosenthal",
+   "name": "Joshua Rosenthal",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Melissa Valentine",
+   "student": "ext:stanford:matt-higgins",
+   "name": "Matt Higgins",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Chris Chafe",
+   "student": "ext:stanford:doug-mccausland",
+   "name": "Doug McCausland",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Chris Chafe",
+   "student": "ext:stanford:clara-allison",
+   "name": "Clara Allison",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Gabriella M. Harari",
+   "student": "stanford_stu_frankie-yaying-zhong",
+   "name": "Frankie Yaying Zhong",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Marc Levenston",
+   "student": "stanford_stu_benjamin-leroy",
+   "name": "Benjamin LeRoy",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Marc Levenston",
+   "student": "ext:stanford:rachel-thomasson",
+   "name": "Rachel Thomasson",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Marc Levenston",
+   "student": "ext:stanford:russell-martin",
+   "name": "Russell Martin",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Daniel Schwartz",
+   "student": "stanford_stu_ethan-roy",
+   "name": "Ethan Roy",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jonathan Berger",
+   "student": "stanford_stu_lemon-guo",
+   "name": "Lemon Guo",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jonathan Berger",
+   "student": "stanford_stu_mohammad-h-javaheri",
+   "name": "Mohammad H. Javaheri",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jonathan Berger",
+   "student": "stanford_stu_calvin-van-zytveld",
+   "name": "Calvin Van Zytveld",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jonathan Berger",
+   "student": "stanford_stu_yoav-tirosh",
+   "name": "Yoav Tirosh",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jonathan Berger",
+   "student": "ext:stanford:se-n-d-laigh",
+   "name": "Seán Ó Dálaigh",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Paul Milgrom",
+   "student": "stanford_stu_eric-tang",
+   "name": "Eric Tang",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Paul Milgrom",
+   "student": "ext:stanford:zi-yang-kang",
+   "name": "Zi Yang Kang",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mitchell L. Stevens",
+   "student": "stanford_stu_amanda-lu",
+   "name": "Amanda Lu",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mitchell L. Stevens",
+   "student": "stanford_stu_kelsey-conroy",
+   "name": "Kelsey Conroy",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mitchell L. Stevens",
+   "student": "stanford_stu_hansol-lee",
+   "name": "Hansol Lee",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mitchell L. Stevens",
+   "student": "stanford_stu_melanie-shimano",
+   "name": "Melanie Shimano",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mitchell L. Stevens",
+   "student": "stanford_stu_leon-marbach",
+   "name": "Léon Marbach",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mitchell L. Stevens",
+   "student": "stanford_stu_crystal-moore",
+   "name": "Crystal Moore",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mitchell L. Stevens",
+   "student": "stanford_stu_erika-bullock",
+   "name": "Erika Bullock",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mitchell L. Stevens",
+   "student": "stanford_stu_kaylee-tuggle-matheny",
+   "name": "Kaylee Tuggle Matheny",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Renyuan Xu",
+   "student": "stanford_stu_lutong-hao",
+   "name": "Lutong Hao",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Renyuan Xu",
+   "student": "stanford_stu_zhangyi-liu",
+   "name": "Zhangyi Liu",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Renyuan Xu",
+   "student": "stanford_stu_shengtai-yao",
+   "name": "Shengtai Yao",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Renyuan Xu",
+   "student": "stanford_stu_daohong-tu",
+   "name": "Daohong Tu",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Pamela Hinds",
+   "student": "stanford_stu_martin-blue",
+   "name": "Martin Blue",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Pamela Hinds",
+   "student": "stanford_stu_brian-lattimore",
+   "name": "Brian Lattimore",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Pamela Hinds",
+   "student": "ext:stanford:ayinwi-muma",
+   "name": "Ayinwi Muma",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Pamela Hinds",
+   "student": "ext:stanford:nick-russell",
+   "name": "Nick Russell",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Pamela Hinds",
+   "student": "ext:stanford:matthew-higgins",
+   "name": "Matthew Higgins",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Yinyu Ye",
+   "student": "ext:stanford:lewis-javier",
+   "name": "Lewis Javier",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Nigam H. Shah",
+   "student": "stanford_stu_ashley-lewis",
+   "name": "Ashley Lewis",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Nigam H. Shah",
+   "student": "stanford_stu_shih-cheng-huang",
+   "name": "Mars Huang",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Nigam H. Shah",
+   "student": "ext:stanford:alice-yu",
+   "name": "Alice Yu",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Nigam H. Shah",
+   "student": "ext:stanford:darvin-yi",
+   "name": "Darvin Yi",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Nigam H. Shah",
+   "student": "ext:stanford:e-flynn",
+   "name": "E Flynn",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Nigam H. Shah",
+   "student": "ext:stanford:hunter-boyce",
+   "name": "Hunter Boyce",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Nigam H. Shah",
+   "student": "ext:stanford:larry-kalesinskas",
+   "name": "Larry Kalesinskas",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Nigam H. Shah",
+   "student": "ext:stanford:sergio-gonzales",
+   "name": "Sergio Gonzales",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Nigam H. Shah",
+   "student": "ext:stanford:yosuke-tanigawa",
+   "name": "Yosuke Tanigawa",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jose H. Blanchet",
+   "student": "stanford_stu_zhangyi-liu",
+   "name": "Zhangyi Liu",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Jose H. Blanchet",
+   "student": "ext:stanford:kimi-sun",
+   "name": "Kimi Sun",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "H.-S. Philip Wong",
+   "student": "stanford_stu_richelle-smith",
+   "name": "Richelle Smith",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "H.-S. Philip Wong",
+   "student": "ext:stanford:alex-gabourie",
+   "name": "Alex Gabourie",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "H.-S. Philip Wong",
+   "student": "ext:stanford:jiaqi-jiang",
+   "name": "Jiaqi Jiang",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "H.-S. Philip Wong",
+   "student": "ext:stanford:yuya-nishio",
+   "name": "Yuya Nishio",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "H.-S. Philip Wong",
+   "student": "ext:stanford:emma-belliveau",
+   "name": "Emma Belliveau",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Grace Gao",
+   "student": "stanford_stu_bradley-collicott",
+   "name": "Bradley Collicott",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Grace Gao",
+   "student": "ext:stanford:hosei-o",
+   "name": "Hosei O",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Grace Gao",
+   "student": "ext:stanford:sri-aditya-deevi",
+   "name": "Sri Aditya Deevi",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Victor R. Lee",
+   "student": "stanford_stu_daniela-ganelin",
+   "name": "Daniela Ganelin",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Victor R. Lee",
+   "student": "stanford_stu_xijia-zhou",
+   "name": "Xi Jia Zhou",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Victor R. Lee",
+   "student": "ext:stanford:robert-wachtel-pronovost",
+   "name": "Robert Wachtel Pronovost",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Victor R. Lee",
+   "student": "ext:stanford:tamara-sobomehin",
+   "name": "Tamara Sobomehin",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Victor R. Lee",
+   "student": "ext:stanford:bernardo-silveira",
+   "name": "Bernardo Silveira",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Victor R. Lee",
+   "student": "ext:stanford:jessica-yauney",
+   "name": "Jessica Yauney",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Victor R. Lee",
+   "student": "ext:stanford:judy-he",
+   "name": "Judy He",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Todd Coleman",
+   "student": "stanford_stu_kenji-marshall",
+   "name": "Kenji Marshall",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Todd Coleman",
+   "student": "stanford_stu_marvin-li",
+   "name": "Marvin Li",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Todd Coleman",
+   "student": "ext:stanford:ziv-lautman",
+   "name": "Ziv Lautman",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Todd Coleman",
+   "student": "ext:stanford:frida-bjoerklund",
+   "name": "Frida Bjoerklund",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Todd Coleman",
+   "student": "ext:stanford:jackson-powell",
+   "name": "Jackson Powell",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Todd Coleman",
+   "student": "ext:stanford:kathryn-myers",
+   "name": "Kathryn Myers",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Todd Coleman",
+   "student": "ext:stanford:kyung-geun-kim",
+   "name": "Kyung Geun Kim",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Todd Coleman",
+   "student": "ext:stanford:michael-megally",
+   "name": "Michael Megally",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Todd Coleman",
+   "student": "ext:stanford:nicolai-dorka",
+   "name": "Nicolai Dorka",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Todd Coleman",
+   "student": "ext:stanford:peter-lu",
+   "name": "Peter Lu",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Johan Ugander",
+   "student": "ext:stanford:yuchen-hu",
+   "name": "Yuchen Hu",
+   "roles": [
+    "Doctoral Dissertation Reader (AC)"
+   ]
+  }
+ ]
+}

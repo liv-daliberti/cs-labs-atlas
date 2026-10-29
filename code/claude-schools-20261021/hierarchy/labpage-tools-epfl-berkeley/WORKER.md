@@ -4,7 +4,7 @@ You review a list of PI labs. For each one you write a **spec** file, `work/<sch
 site, its people pages and its publications pages, and which member names on them count. The build step turns specs
 into evidence; you never write evidence or quotes by hand unless a page needs a manual row.
 
-Tools dir: `/n/fs/similarity/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/labpage-tools-epfl-berkeley`
+Tools dir: `/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/labpage-tools-epfl-berkeley`
 (call it `$T`). Always run through the wrapper, which sets your private capture DB:
 
     $T/lpw.sh <WORKER_ID> <lp.py arguments>

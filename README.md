@@ -39,24 +39,25 @@ These are the owner's decisions; the full rules and the evidence model are in [d
 ## Coverage
 
 <!-- coverage:start -->
-| | Princeton | Carnegie Mellon | EPFL | MIT | UC Berkeley |
-|---|---|---|---|---|---|
-| PI labs | 139 | 458 | 169 | 280 | 196 |
-| … core computing departments | 96 | 343 | 111 | 170 | 121 |
-| … CS-related, other departments | 43 | 115 | 58 | 110 | 75 |
-| Home departments | 14 | 25 | 17 | 17 | 18 |
-| Unique lab papers | 8,313 | 24,793 | 12,566 | 19,733 | 12,745 |
-| Lab–paper rows (a paper can belong to several labs) | 9,080 | 30,062 | 13,352 | 22,064 | 15,055 |
-| Median lab papers per PI | 39 | 50 | 57 | 59 | 51 |
-| Students (unique people) | 3,056 | 7,667 | 3,679 | 6,894 | 3,769 |
-| Lab–student pairs | 3,727 | 9,388 | 4,001 | 7,728 | 4,353 |
-| Student–paper links | 6,816 | 27,481 | 13,498 | 20,602 | 14,286 |
-| Labs with papers | 136 | 456 | 167 | 278 | 195 |
-| Labs with students | 139 | 458 | 169 | 280 | 193 |
-| Labs with papers, students and links | 131 | 445 | 162 | 268 | 182 |
-| DBLP-published papers we hold | 83% | 82% | 87% | 88% | 84% |
+| | Princeton | Carnegie Mellon | EPFL | MIT | UC Berkeley | Stanford |
+|---|---|---|---|---|---|---|
+| PI labs | 140 | 458 | 169 | 277 | 203 | 232 |
+| … core computing departments | 97 | 343 | 111 | 167 | 128 | 145 |
+| … CS-related, other departments | 43 | 115 | 58 | 110 | 75 | 87 |
+| Home departments | 14 | 25 | 17 | 18 | 19 | 37 |
+| Unique lab papers | 8,396 | 24,898 | 12,616 | 19,226 | 13,203 | 17,381 |
+| Lab–paper rows (a paper can belong to several labs) | 9,179 | 30,214 | 13,357 | 21,500 | 15,568 | 19,869 |
+| Median lab papers per PI | 41 | 50 | 57 | 58 | 51 | 59 |
+| Students (unique people) | 3,095 | 7,742 | 3,682 | 7,129 | 3,859 | 2,789 |
+| Lab–student pairs | 3,523 | 9,387 | 3,986 | 7,666 | 4,436 | 3,197 |
+| Student–paper links | 7,078 | 27,855 | 13,691 | 20,665 | 15,188 | 15,436 |
+| Labs with papers | 137 | 456 | 167 | 275 | 202 | 232 |
+| Labs with students | 140 | 458 | 169 | 277 | 203 | 232 |
+| Labs with papers, students and links | 132 | 445 | 162 | 265 | 190 | 224 |
+| DBLP-published papers we hold | 83% | 82% | 88% | 88% | 84% | 87% |
 
 Wider atlas: 300 universities, 37,060 units, 131,309 works, 130,192 unit–paper links, 23,404 unit–person rows,
+7,504 person–paper links, 1,171 PI identities.
 <!-- coverage:end -->
 
 "DBLP-published papers we hold" is the share of the PIs' own DBLP-listed, non-preprint papers in their appointment

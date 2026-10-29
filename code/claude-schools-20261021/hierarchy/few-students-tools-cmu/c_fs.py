@@ -6,7 +6,7 @@ import json
 import re
 import sys
 
-sys.path.insert(0, "/n/fs/similarity/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/few-students-tools-cmu")
+sys.path.insert(0, "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/few-students-tools-cmu")
 import capstore  # noqa: E402
 
 q, rx = sys.argv[1], re.compile(sys.argv[2], re.I)

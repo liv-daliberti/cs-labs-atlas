@@ -61,8 +61,8 @@ LAB_KEYS = ('csScope', 'csScopeReason', 'csShown', 'csHidden')
 VIEWS = ('combined', 'reviewed', 'strict')
 PI_STATUS = 'publication_identity_verified'  # the PI's publication identity is anchored (DBLP page etc.)
 STUDY = ['princeton-university', 'carnegie-mellon-university', 'swiss-federal-institute-of-technology-lausanne',
-         'massachusetts-institute-of-technology-mit', 'university-of-california-berkeley']
-COMPARE = ['harvard-university', 'stanford-university', 'eth-zurich', 'university-of-oxford', 'tsinghua-university']
+         'massachusetts-institute-of-technology-mit', 'university-of-california-berkeley', 'stanford-university']
+COMPARE = ['harvard-university', 'eth-zurich', 'university-of-oxford', 'tsinghua-university']
 
 
 def sha(raw):

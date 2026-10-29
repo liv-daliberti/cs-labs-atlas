@@ -1,7 +1,7 @@
 """Candidate theses from the Codex DSpace snapshot (read-only): items whose dc.contributor.advisor matches REGEX.
 usage: scan_repo.py LABEL=REGEX [...]"""
 import gzip, json, re, sys
-items = json.loads(gzip.decompress(open('/n/fs/similarity/maxent-grpo/.research-sweeps/mit-cs-deep-20261019/repository/repository-items.json.gz', 'rb').read()))
+items = json.loads(gzip.decompress(open('/n/fs/resemble/maxent-grpo/.research-sweeps/mit-cs-deep-20261019/repository/repository-items.json.gz', 'rb').read()))
 for arg in sys.argv[1:]:
     lab, rx = arg.split('=', 1); rx = re.compile(rx, re.I)
     hits = []

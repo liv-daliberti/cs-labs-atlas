@@ -11,7 +11,7 @@ import json, os, sqlite3, sys, zlib
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import tcap  # noqa: E402
 
-SRC = "/n/fs/similarity/maxent-grpo/.research-sweeps/claude-stanford-20261027/raw/captures.sqlite"
+SRC = "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-stanford-20261027/raw/captures.sqlite"
 
 
 def main():

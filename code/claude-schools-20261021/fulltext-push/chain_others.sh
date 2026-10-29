@@ -10,8 +10,8 @@
 cd "$(dirname "$0")"
 PY="/usr/local/anaconda3/2024.02/bin/python -I -u"
 for s in mit cmu epfl princeton; do nice -n 5 $PY add_works.py $s; done
-NW=$(ls -d /n/fs/similarity/homogenizing-science/data/fulltext/princeton/discovery/claude-labpapers-newworks-*/ | xargs -n1 basename | sed 's/^/cs_pi_works:/')
-(cd /n/fs/similarity/maxent-grpo/.research-sweeps/claude-princeton-20261015 && /usr/local/anaconda3/2024.02/bin/python -u tools/import_all_when_free.py $NW)
+NW=$(ls -d /n/fs/resemble/homogenizing-science/data/fulltext/princeton/discovery/claude-labpapers-newworks-*/ | xargs -n1 basename | sed 's/^/cs_pi_works:/')
+(cd /n/fs/resemble/maxent-grpo/.research-sweeps/claude-princeton-20261015 && /usr/local/anaconda3/2024.02/bin/python -u tools/import_all_when_free.py $NW)
 ./run_steps.sh mit oa_arxiv openalex proceedings arxiv_title s2 pmc core >> logs/steps-mit.log 2>&1
 ./run_steps.sh cmu oa_arxiv openalex proceedings arxiv_title s2 pmc figshare core >> logs/steps-cmu.log 2>&1
 ./run_steps.sh epfl oa_arxiv openalex proceedings arxiv_title s2 pmc core infoscience >> logs/steps-epfl.log 2>&1

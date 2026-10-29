@@ -9,11 +9,11 @@ import sqlite3
 import sys
 import zlib
 
-TOOLS = "/n/fs/similarity/maxent-grpo/.research-sweeps/claude-schools-20261021/tools"
+TOOLS = "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/tools"
 sys.path.insert(0, TOOLS)
 from pi_hierarchy import Name, toks, INST, AFF  # noqa: E402
 
-ROOT = "/n/fs/similarity/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy"
+ROOT = "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy"
 school = sys.argv[1]
 only = set(sys.argv[2:])
 gi = json.load(open(f"{ROOT}/{school}/gap-input.json"))

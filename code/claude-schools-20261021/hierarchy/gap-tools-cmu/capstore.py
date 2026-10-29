@@ -20,7 +20,7 @@ from urllib.parse import urlsplit, urlencode, parse_qsl, urlunsplit
 
 import requests
 
-DB = ("/n/fs/similarity/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/cmu/"
+DB = ("/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/cmu/"
       "gap-captures.sqlite")
 UA = ("princeton-cs-research-sweep/1.0 (CMU faculty PI gap investigation: lab members, advisees, "
       "author identifiers; contact via Princeton CS; polite: 1 req/2s/host)")

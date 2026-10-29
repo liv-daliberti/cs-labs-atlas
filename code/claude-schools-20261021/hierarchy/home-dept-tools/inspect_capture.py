@@ -2,7 +2,7 @@
 usage: inspect_capture.py URL REGEX [WIDTH]
 """
 import re, sys, zlib
-sys.path.insert(0, "/n/fs/similarity/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/home-dept-tools")
+sys.path.insert(0, "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/home-dept-tools")
 import capstore
 url, rx = sys.argv[1], sys.argv[2]
 w = int(sys.argv[3]) if len(sys.argv) > 3 else 300

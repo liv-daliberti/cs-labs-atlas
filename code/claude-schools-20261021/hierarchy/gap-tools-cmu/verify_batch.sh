@@ -1,6 +1,6 @@
 #!/bin/sh
 set -a; . /tmp/claude-363432/-n-fs-similarity-maxent-grpo/2bd068f5-5142-4dac-89d1-67eb470f92c1/scratchpad/openalex.env; set +a
-cd /n/fs/similarity/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/gap-tools-cmu
+cd /n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/gap-tools-cmu
 PY="/usr/local/anaconda3/2024.02/bin/python -I"
 v() { echo "######## $1 $2"; $PY verify_oa.py "$1" "$2" "$3" --show 6; }
 v A5069656894 https://borderlab.org/publications Border

@@ -11,7 +11,7 @@ usage: lab_paper_copies.py <school> ...
 import collections, gzip, json, re, sqlite3, sys, time
 from pathlib import Path
 
-HERE = Path(__file__).resolve().parents[1]; FT = Path('/n/fs/similarity/homogenizing-science/data/fulltext')
+HERE = Path(__file__).resolve().parents[1]; FT = Path('/n/fs/resemble/homogenizing-science/data/fulltext')
 LOCAL = ('downloaded', 'fulltext_xml')
 
 

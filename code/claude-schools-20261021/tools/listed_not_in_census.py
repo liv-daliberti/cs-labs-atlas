@@ -43,7 +43,7 @@ def captures(school):
         yield url, ts, sha, [x[-1] if isinstance(x, list) else x.get('text') if isinstance(x, dict) else x for x in b], dept
 
 
-COMPUTING = {'princeton': {'Computer Science'}, 'cmu': None, 'mit': {'EECS', 'CSAIL'}, 'epfl': None, 'berkeley': {'EECS'}}
+COMPUTING = {'princeton': {'Computer Science'}, 'cmu': None, 'mit': {'EECS', 'CSAIL'}, 'epfl': None, 'berkeley': {'EECS'}, 'stanford': {'CS', 'EE'}}
 INSTITUTIONAL = re.compile(r"\b(University|Career|Distinguished|Research|Founders|Group|Family|Development|Service|Alumni|Electronics|America|Seminar|"
                            r"Series|Intranet|Department|Chairs?|Schweiz|Equality|Professorship|Foundation|Fund|Institute|Center|Centre|Lab|Program|Fellow)\b")
 

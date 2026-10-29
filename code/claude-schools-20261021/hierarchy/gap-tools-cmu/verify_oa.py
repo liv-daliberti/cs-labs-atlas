@@ -9,7 +9,7 @@ import re
 import sys
 import zlib
 
-sys.path.insert(0, "/n/fs/similarity/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/gap-tools-cmu")
+sys.path.insert(0, "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/gap-tools-cmu")
 import capstore  # noqa: E402
 
 ap = argparse.ArgumentParser()

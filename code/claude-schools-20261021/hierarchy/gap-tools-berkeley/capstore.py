@@ -20,7 +20,7 @@ from urllib.parse import urlsplit, urlencode, parse_qsl, urlunsplit
 
 import requests
 
-DB_MAIN = ("/n/fs/similarity/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/berkeley/"
+DB_MAIN = ("/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/berkeley/"
            "gap-captures.sqlite")
 # Parallel workers write to their own local SQLite file (GAPCAP_DB, on local /tmp) to avoid concurrent SQLite
 # writers on NFS; merge_workers.py later copies their rows into DB_MAIN with a single writer. Reads see both.

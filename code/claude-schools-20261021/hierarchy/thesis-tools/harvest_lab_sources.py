@@ -19,7 +19,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import tcap  # noqa: E402
 
-SCHOOLS = ("mit", "cmu", "epfl", "princeton")
+SCHOOLS = ("mit", "cmu", "epfl", "princeton", "stanford")
 
 
 def sisters(school):

@@ -9,11 +9,11 @@ import re
 import sys
 from urllib.parse import urljoin
 
-sys.path.insert(0, "/n/fs/similarity/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/gap-tools-berkeley")
+sys.path.insert(0, "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/gap-tools-berkeley")
 import capstore  # noqa: E402
 from bs4 import BeautifulSoup  # noqa: E402
 
-ROOT = "/n/fs/similarity/maxent-grpo/.research-sweeps/claude-schools-20261021"
+ROOT = "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021"
 GAP = ROOT + "/hierarchy/berkeley/gap-input.json"
 CENSUS = ROOT + "/census/berkeley-faculty.json"
 OUT = ROOT + "/hierarchy/gap-tools-berkeley/seed.json"

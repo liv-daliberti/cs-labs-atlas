@@ -25,6 +25,9 @@ def records_for(school):
             raise SystemExit(f"lab_sources: {pi} not in {school}/pis.json")
         pnames = list(dict.fromkeys([pi] + list(pis[pi].get("names") or []) + names.ALIASES.get(school, {}).get(pi, [])))
         qmax = src.get("qmax") or ls.QMAX
+        # 'adviser' (optional): the PI's name form that names.PIIndex resolves to this PI, when the 'pi' string itself
+        # resolves to another entry (Stanford 2026-10-27: 'H.-S. Philip Wong' is grouped with 'S Simon Wong'; 'Hon-Sum Philip
+        # Wong' is not)
         caps = {}
         for u in src["captures"]:
             c = records._capture(school, u)
@@ -49,7 +52,7 @@ def records_for(school):
                     return view.check(qq)
             y0, y1 = max(y0, records.Y0), min(y1, records.Y1)
             out.append(records.rec(school=school, source=src["kind"], id=f"{(cap or url)[-60:]}:{student}", url=url, capture_url=cap,
-                                   sha256=sha, student=student, author_raw=student, advisers=[pi], year=y1, years=[y0, y1],
+                                   sha256=sha, student=student, author_raw=student, advisers=[src.get("adviser") or pi], year=y1, years=[y0, y1],
                                    role=role, degree=f"listed on {src['kind']} ({ycap} capture)",
                                    dept="; ".join(pis[pi].get("departments") or [])[:80], cs=False,
                                    title=(src.get("title") or "")[:200], q=q))

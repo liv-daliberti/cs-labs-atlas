@@ -7,7 +7,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from scan_listings_lib import fold, natural  # noqa: E402
 
-H = '/n/fs/similarity/maxent-grpo/.research-sweeps/claude-schools-20261021'
+H = '/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021'
 
 
 def toks(s):

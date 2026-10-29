@@ -1,5 +1,5 @@
 import json, re, sqlite3, unicodedata, sys
-sys.path.insert(0, '/n/fs/similarity/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/berkeley/cs-related-tools')
+sys.path.insert(0, '/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/berkeley/cs-related-tools')
 import mpcap
 H = mpcap.HERE
 CANDS = json.load(open(f'{H}/hierarchy/berkeley/cs-related-candidates.json'))

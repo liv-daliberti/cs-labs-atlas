@@ -673,7 +673,7 @@ def stanford():
         dept = dm.group(1).strip() if dm else ""
         au_raw = part(au[2])
 
-        def q(adv_raw, view=view, t=t, au=au, sups=sups):
+        def q(adv_raw, view=view, t=t, au=au, sups=sups, au_raw=au_raw):
             e = next((s_ for s_ in sups if names.has_tokens(collapse(re.sub(r"<[^>]+>", " ", s_[2])), names.nat(adv_raw))), sups[0])
             lo, hi = min(au[0], e[0]), max(au[1], e[1])
             span = t[lo:hi]

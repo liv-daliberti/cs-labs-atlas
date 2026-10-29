@@ -3,73 +3,87 @@
   "schools": [
    {
     "school": "princeton",
-    "pis": 139,
-    "papers": 8314,
+    "pis": 140,
+    "papers": 8397,
     "papers_split_from_shared_openalex": 1,
-    "lab_paper_rows": 9080,
+    "lab_paper_rows": 9179,
     "lab_paper_dups_dropped": 0,
-    "students": 3056,
-    "lab_student_pairs": 3727,
-    "student_papers": 6816,
+    "students": 3095,
+    "lab_student_pairs": 3523,
+    "student_papers": 7078,
     "pending_department": 0,
     "profile": true,
-    "package_built": "2026-10-27T16:36:08.374130Z"
+    "package_built": "2026-10-29T00:19:43.954439Z"
    },
    {
     "school": "cmu",
     "pis": 458,
-    "papers": 24795,
+    "papers": 24900,
     "papers_split_from_shared_openalex": 2,
-    "lab_paper_rows": 30062,
+    "lab_paper_rows": 30214,
     "lab_paper_dups_dropped": 0,
-    "students": 7667,
-    "lab_student_pairs": 9388,
-    "student_papers": 27481,
+    "students": 7742,
+    "lab_student_pairs": 9387,
+    "student_papers": 27855,
     "pending_department": 0,
     "profile": true,
-    "package_built": "2026-10-27T16:38:59.594486Z"
+    "package_built": "2026-10-29T00:44:22.556358Z"
    },
    {
     "school": "epfl",
     "pis": 169,
-    "papers": 12568,
+    "papers": 12618,
     "papers_split_from_shared_openalex": 2,
-    "lab_paper_rows": 13352,
+    "lab_paper_rows": 13357,
     "lab_paper_dups_dropped": 0,
-    "students": 3679,
-    "lab_student_pairs": 4001,
-    "student_papers": 13498,
+    "students": 3682,
+    "lab_student_pairs": 3986,
+    "student_papers": 13691,
     "pending_department": 0,
     "profile": true,
-    "package_built": "2026-10-27T16:40:31.724001Z"
+    "package_built": "2026-10-29T00:46:45.644187Z"
    },
    {
     "school": "mit",
-    "pis": 280,
-    "papers": 19735,
+    "pis": 277,
+    "papers": 19228,
     "papers_split_from_shared_openalex": 2,
-    "lab_paper_rows": 22064,
+    "lab_paper_rows": 21500,
     "lab_paper_dups_dropped": 0,
-    "students": 6894,
-    "lab_student_pairs": 7728,
-    "student_papers": 20602,
-    "pending_department": 0,
+    "students": 7129,
+    "lab_student_pairs": 7666,
+    "student_papers": 20665,
+    "pending_department": 2,
     "profile": true,
-    "package_built": "2026-10-27T16:44:07.169194Z"
+    "package_built": "2026-10-29T00:52:55.009963Z"
    },
    {
     "school": "berkeley",
-    "pis": 196,
-    "papers": 12745,
+    "pis": 203,
+    "papers": 13203,
     "papers_split_from_shared_openalex": 0,
-    "lab_paper_rows": 15055,
+    "lab_paper_rows": 15568,
     "lab_paper_dups_dropped": 0,
-    "students": 3769,
-    "lab_student_pairs": 4353,
-    "student_papers": 14286,
-    "pending_department": 0,
+    "students": 3859,
+    "lab_student_pairs": 4436,
+    "student_papers": 15188,
+    "pending_department": 3,
     "profile": true,
-    "package_built": "2026-10-27T16:46:41.744424Z"
+    "package_built": "2026-10-29T00:24:52.794487Z"
+   },
+   {
+    "school": "stanford",
+    "pis": 232,
+    "papers": 17381,
+    "papers_split_from_shared_openalex": 0,
+    "lab_paper_rows": 19869,
+    "lab_paper_dups_dropped": 0,
+    "students": 2789,
+    "lab_student_pairs": 3197,
+    "student_papers": 15436,
+    "pending_department": 6,
+    "profile": true,
+    "package_built": "2026-10-29T00:57:24.870195Z"
    }
   ],
   "atlas": {
@@ -103,7 +117,7 @@
    }
   },
   "code": {
-   "files": 392,
+   "files": 400,
    "files_redacted": 15,
    "redactions": {
     "code_email": 71
@@ -111,40 +125,65 @@
   },
   "derived_ledgers": {
    "zero_paper_labs": "file",
-   "school_profiles": "file",
+   "school_profiles": "recomputed (file older than the packages)",
    "student_audit": "file"
   },
   "redactions": {
    "code_email": 71,
-   "email": 16577,
-   "email_obfuscated": 2049,
-   "office_address": 4476,
-   "phone": 9239
+   "dropped_key:cacheReuseFrom": 1264,
+   "dropped_key:cache_path": 5165,
+   "dropped_key:cachedMetadata": 132,
+   "dropped_key:capture": 9522,
+   "dropped_key:captureEncoding": 19854,
+   "dropped_key:capturePath": 2016,
+   "dropped_key:copies": 470,
+   "dropped_key:database": 42,
+   "dropped_key:extractedCapture": 462,
+   "dropped_key:hosted": 470,
+   "dropped_key:inputFile": 57,
+   "dropped_key:library": 20478,
+   "dropped_key:localSource": 202,
+   "dropped_key:localSourcePath": 3326,
+   "dropped_key:metadataSnapshot": 12708,
+   "dropped_key:primaryReceipt": 224,
+   "dropped_key:priorLibraryObservations": 2361,
+   "dropped_key:profileUrl": 4495,
+   "dropped_key:rawPath": 75,
+   "dropped_key:rawSource": 14,
+   "dropped_key:readerId": 470,
+   "dropped_key:reusedFrom": 1577,
+   "dropped_key:sourceDatabase": 10089,
+   "dropped_key:sourcePath": 71,
+   "dropped_key:textPath": 202,
+   "email": 22749,
+   "email_obfuscated": 3264,
+   "local_path": 29,
+   "office_address": 7140,
+   "phone": 16171
   },
   "sources": {
-   "hierarchy": "/n/fs/similarity/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy",
-   "atlas": "/n/fs/similarity/maxent-grpo/princeton-live-20261015/atlas",
+   "hierarchy": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy",
+   "atlas": "/n/fs/resemble/maxent-grpo/princeton-live-20261015/atlas",
    "schools": [
     "princeton",
     "cmu",
     "epfl",
     "mit",
-    "berkeley"
+    "berkeley",
+    "stanford"
    ],
-   "skipped_schools": {
-    "stanford": "package exists but the site builder (scripts/build-cs-hierarchy.py SCHOOLS) does not list it yet"
-   }
+   "skipped_schools": {}
   }
  },
  "files": {
   "code/claude-schools-20261021/census/build_mit_census.py": {
-   "bytes": 29269,
-   "sha256": "5d8d8b465bc2d02679b6a759d0fbaaeaa02bf875fc2e33a8d6dc8666e2970da1",
+   "bytes": 29265,
+   "sha256": "e5f35cae33103db7f916612ce170d15c66eb71b70abe930a17d2eb4dbaf14e75",
    "rows": null
   },
   "code/claude-schools-20261021/census/tools/build_cmu_census.py": {
-   "bytes": 31839,
-   "sha256": "8e09fc151d0c3fbe6891b84f3f744c12a148baab75a9b3fd57aa66c69ca7a1a1",
+   "bytes": 31833,
+   "sha256": "b48c5f3ab8a3b918c6b10025c38ebad37b5da14fc49d7a1e299b3ca74d45e243",
    "rows": null
   },
   "code/claude-schools-20261021/census/tools/build_cmu_report.py": {
@@ -168,18 +207,18 @@
    "rows": null
   },
   "code/claude-schools-20261021/fulltext-push/chain_labpages.sh": {
-   "bytes": 3138,
-   "sha256": "70e3c99f2ada96bd510e5b6a79fbdc23dcfc05e97746e18fdc72015b607f441f",
+   "bytes": 3134,
+   "sha256": "149276a44ab9bbc2b8fa4b70013a409076e401f0483175a8f9adae39a9168fd8",
    "rows": null
   },
   "code/claude-schools-20261021/fulltext-push/chain_others.sh": {
-   "bytes": 1983,
-   "sha256": "57d8c788ceccc0b3394f4a6bc6da3afc276fd0505735a951a01f94aabe2717eb",
+   "bytes": 1979,
+   "sha256": "f0901501c9e45e9716a97df44b74abed6c1271378031df558bf3f23995a5650d",
    "rows": null
   },
   "code/claude-schools-20261021/fulltext-push/chain_refresh.sh": {
-   "bytes": 1682,
-   "sha256": "456d1012199b9086213bcd7121c01e7f91461869af68df62545266786f7fa315",
+   "bytes": 1678,
+   "sha256": "a212fc02c70a9ea9ea705041d62c2237bb2bd99c8e1d64a4a127093cb6ff41bb",
    "rows": null
   },
   "code/claude-schools-20261021/fulltext-push/channel_yield.py": {
@@ -187,34 +226,39 @@
    "sha256": "0455a0a3f6a84b2e2cf6828902553b0771ea27fea29a844867347ddd1201218d",
    "rows": null
   },
+  "code/claude-schools-20261021/fulltext-push/coverage_bands.py": {
+   "bytes": 2356,
+   "sha256": "d3f04eabff380e8c10735d58523368965e30288385983e7bf68a04a47e06f90e",
+   "rows": null
+  },
   "code/claude-schools-20261021/fulltext-push/disk_guard.sh": {
-   "bytes": 1505,
-   "sha256": "4e6d30ca9c47320d9fc6b256a4823b9c828985d18a81b4facecc828182f198eb",
+   "bytes": 1503,
+   "sha256": "c0f48f5b421c73445bf05d3f7a1c5a2835045f80e65775eb11266fd3c57392dc",
    "rows": null
   },
   "code/claude-schools-20261021/fulltext-push/find_pi_homepages.py": {
-   "bytes": 7042,
-   "sha256": "939f8dd3879d2d5cc75bafb10488d8fe899cb216cc5afb14f345fc45e433e837",
+   "bytes": 6981,
+   "sha256": "7bad82e6fbc45c53214e2cc4c69a2ae0a57f76bed39e81d9538f40cc3574e820",
    "rows": null
   },
   "code/claude-schools-20261021/fulltext-push/ftp_common.py": {
-   "bytes": 12176,
-   "sha256": "a0c57fa974c1a2afc17eeb67fb9ebd5cd3b6a938d67c474b2b0c8580258162f0",
+   "bytes": 12781,
+   "sha256": "c12a96bc582484397e3b5a4216ea859207945a1a51a72c25c5507a97b8de2abb",
    "rows": null
   },
   "code/claude-schools-20261021/fulltext-push/lab_channels.py": {
-   "bytes": 37485,
-   "sha256": "d1b13cae53a11dea76fc050f9eecef3ed10557b26bfc50c343f9c2025940baa8",
+   "bytes": 37471,
+   "sha256": "4b624ce353a9576afd209f791bc548e0a1f116d427e53f0ea3b9d8b14d65e6cb",
    "rows": null
   },
   "code/claude-schools-20261021/fulltext-push/lab_first_loop.py": {
-   "bytes": 4553,
-   "sha256": "e3d966d5f6f1084f0de9575d7f7bfb9d567e37394790166fc1b804b165c7daaf",
+   "bytes": 5080,
+   "sha256": "2170e312b0b3c0e5351131303ef2b45ce12a6d6cbdb82d6190e25c07626f3379",
    "rows": null
   },
   "code/claude-schools-20261021/fulltext-push/labpage_channel.py": {
-   "bytes": 26386,
-   "sha256": "93eb9e487ac2bef80e3c7a869b3657b3850c2e89a0a9cb1047519e65be0c27ca",
+   "bytes": 27140,
+   "sha256": "50ea27beb943e183f9f3e7ced445c01600628ff68ac7db607ccff49b2d7ae423",
    "rows": null
   },
   "code/claude-schools-20261021/fulltext-push/mit_oa_articles.py": {
@@ -223,13 +267,13 @@
    "rows": null
   },
   "code/claude-schools-20261021/fulltext-push/nsf_par_lab.py": {
-   "bytes": 6567,
-   "sha256": "f6bf9894b76b4fab0f28f8fcf5bb127b070bac7518e24a3bd8301cad721861bc",
+   "bytes": 6563,
+   "sha256": "a69870fc05e34b3c7c0ff508b1976d3faafbb6cfd53749713b99a4c00507ee07",
    "rows": null
   },
   "code/claude-schools-20261021/fulltext-push/princeton_pass.sh": {
-   "bytes": 2356,
-   "sha256": "fd131eb3640649fdcfbc211f33bba78f96805ef8f1b0ccd6008cdc7a7820bd1f",
+   "bytes": 2346,
+   "sha256": "39be12ad2776c8f76a11b014f7d60b732690df1330eac39863aa0fd58ee7bda3",
    "rows": null
   },
   "code/claude-schools-20261021/fulltext-push/queued_report.py": {
@@ -243,8 +287,8 @@
    "rows": null
   },
   "code/claude-schools-20261021/fulltext-push/repo_index.py": {
-   "bytes": 2051,
-   "sha256": "da51ae2f3e040c258c7e5f85ec0667566848a51d0317dee106967110b8ba7176",
+   "bytes": 2049,
+   "sha256": "d4de3c110557d49a401cd6a5a366bfbad4535aafd2badd5d46cad2fafceaace0",
    "rows": null
   },
   "code/claude-schools-20261021/fulltext-push/report_remaining.py": {
@@ -253,8 +297,13 @@
    "rows": null
   },
   "code/claude-schools-20261021/fulltext-push/run_steps.sh": {
-   "bytes": 709,
-   "sha256": "fdc26687a688000b822b039f8c8d803cb346f54af9d020c62c280fa2bcc03240",
+   "bytes": 823,
+   "sha256": "b23b6749e8d260923280c6d13aadd30bb97c2ea3072954ad0d041df4e8886265",
+   "rows": null
+  },
+  "code/claude-schools-20261021/fulltext-push/stanford_catalog.py": {
+   "bytes": 9096,
+   "sha256": "a06f823c5220470e384b7cd08f00afcdf8b810aaee5b32b0da70622da1d1780d",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/berkeley/cs-related-tools/accepted.py": {
@@ -263,8 +312,8 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/berkeley/cs-related-tools/apply.py": {
-   "bytes": 3076,
-   "sha256": "d9c4f6de0e9ce52ff96567946d8a281464530214e050c2ec3bfd576727e0f95b",
+   "bytes": 3074,
+   "sha256": "b5ddc2936c961a1bc08239eb61687e74fdeb0d914267e3661a907dcfed2d1bf9",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/berkeley/cs-related-tools/body.py": {
@@ -293,8 +342,8 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/berkeley/cs-related-tools/get.py": {
-   "bytes": 477,
-   "sha256": "f027c736b8da69df4f53b80343229a5c180650817cb569e8289875b6337e0fac",
+   "bytes": 475,
+   "sha256": "45cf3078753665ca32f13d3aa2b75050b6b4e592066ee516483fb003eb9b4a03",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/berkeley/cs-related-tools/index_eecs.py": {
@@ -303,8 +352,8 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/berkeley/cs-related-tools/lib.py": {
-   "bytes": 4716,
-   "sha256": "dd050cbb651ca0ab3d52adb86a6b91f66e0f57b3ea21ec9d574958d18b6efc8b",
+   "bytes": 4714,
+   "sha256": "5fc0d7c344d745417b3aa13ac2ae4dec6cc219275b92eaa27703f7d6cb9094bd",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/berkeley/cs-related-tools/links.py": {
@@ -318,8 +367,8 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/berkeley/cs-related-tools/mpcap.py": {
-   "bytes": 11905,
-   "sha256": "c2982b9c7242d3302766e27111af528c34e1a0fdb842c6ba62a1f1a4a6052c21",
+   "bytes": 11903,
+   "sha256": "0e75498d16f17347d684ae161c7b0fb3060f2e05fca14b6348c5f9716fbee10d",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/berkeley/cs-related-tools/others.py": {
@@ -378,8 +427,8 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/cs-related-tools/csrcap.py": {
-   "bytes": 13020,
-   "sha256": "a2fd164cc11febbe708df540f7c78c436cc210338950b2ed0d8c688198fecdd5",
+   "bytes": 13018,
+   "sha256": "9e5e55e91c47037c2cb37c28ef82761c4999e462ac3a1e313231edb248a949c9",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/cs-related-tools/epfl_copy_lists.py": {
@@ -458,8 +507,8 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/cs-related-tools/princeton_build.py": {
-   "bytes": 23804,
-   "sha256": "b1bb7255a7427d902251329ba826b435fb6384c4803846e503958cc938323d2d",
+   "bytes": 23802,
+   "sha256": "8437476ae24e7d0fe02fcca1fc61f0325cdff90edba1d8272c34e6277564d893",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/cs-related-tools/princeton_decisions.py": {
@@ -518,73 +567,73 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/few-students-tools-cmu/a_kilthub.py": {
-   "bytes": 1397,
-   "sha256": "7c3409b859e393b58bb3ad580f3e6594ae4c1d681fdfa63276217d5606343a6a",
+   "bytes": 1395,
+   "sha256": "9ba8e33d5f76d8bae75bd400019af560fd74e73323b841804c80d54db75f591d",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/few-students-tools-cmu/a_retry_wb.py": {
-   "bytes": 768,
-   "sha256": "5bffb8c335cb7c6e55a5b314bf2badaea6fec33bf1f3df4507e03184c68fee21",
+   "bytes": 766,
+   "sha256": "b00ecc4d0d1f6c35c158a274a75869b4abbd3f2862aca2ecc64af61593e71b78",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/few-students-tools-cmu/b_fs.py": {
-   "bytes": 710,
-   "sha256": "ab7979552af289d668a337bfd72fcbd7aeedee8b7ddafb11c133ad88542cfa4e",
+   "bytes": 708,
+   "sha256": "d69eac3df9190c87f94c479f0278a703d47e8fc0089823cd07443b67b4084fc9",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/few-students-tools-cmu/b_fsart.py": {
-   "bytes": 852,
-   "sha256": "88a74ff794b9fe39c789935c0491762f783bca250602e0d9950c1f6817a5622b",
+   "bytes": 850,
+   "sha256": "9b3b7ff3b389cc2e51dca7b268ed95050db367b6700e808f9014da0b39d8fff1",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/few-students-tools-cmu/b_links.py": {
-   "bytes": 823,
-   "sha256": "dfab0a87da51dcb5da3dbbe296c675c6efe2f7973cdd24df06f9c81aae14628d",
+   "bytes": 821,
+   "sha256": "99ad24ccf659f14b9b83fdc6db40aae0b7936865a2db21e4f27530b6349cb012",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/few-students-tools-cmu/build.py": {
-   "bytes": 8139,
-   "sha256": "029f9e169e8e1a0e8c3e291ad84b8872e96926fc03542c2f8c263f4627da1073",
+   "bytes": 8135,
+   "sha256": "2bba0f562bf7b21adec50737548f0437d01223a9cdf6701fe914ba4243a8e97f",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/few-students-tools-cmu/c_fs.py": {
-   "bytes": 1777,
-   "sha256": "d7f786911c6078ee2ddad3cbfdd771629743b528711f572dcdf587d98bc4ef9b",
+   "bytes": 1775,
+   "sha256": "465af3e98aaf448da57ae516282daa8848ab662991638dce64490b88a0082309",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/few-students-tools-cmu/c_wb.py": {
-   "bytes": 2291,
-   "sha256": "acd3f1eba930ea89635c8881174370dcb1539a19b1864919fd526b4cabb43c08",
+   "bytes": 2289,
+   "sha256": "235e2bb80006f627a6ceb45461d6433a7e5893763ac4546c730f6bcdd9ffa076",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/few-students-tools-cmu/c_wbbatch.py": {
-   "bytes": 1432,
-   "sha256": "af7b403c1891714cc7ed9074319840e48ef9faa0b61caf024bcef2ece6993e7f",
+   "bytes": 1430,
+   "sha256": "490271885afad233c5be37a0ddf97cc742b12767bf67c396d529f630ff3d5617",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/few-students-tools-cmu/capstore.py": {
-   "bytes": 14353,
-   "sha256": "f3a95a6e422b8dec945eac635f0634e0900f64a695cfc106821f11d462fdd41a",
+   "bytes": 14349,
+   "sha256": "475f067b23c70b395ac0fee110e91fb3e3d5c1fee9af5f5f6f1bbde119529aea",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/few-students-tools-cmu/d_cdx.py": {
-   "bytes": 1465,
-   "sha256": "0c26f865616f6f29979a904fa72a99caf8377ae7d62bd971be40e69c68e2384c",
+   "bytes": 1463,
+   "sha256": "f7a0b4a38d10ae5db53368a68393341080d273a69349123afb818cd12905939c",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/few-students-tools-cmu/d_kart.py": {
-   "bytes": 896,
-   "sha256": "0d52324269e0ddb0e81ae2fac850bb6850a21268d555faf3e7025f5724ac71c5",
+   "bytes": 894,
+   "sha256": "aa9f8fcaf9db82ad4c1582d01744d1f4d15fa9ab77d967c2e360d5f6705bd857",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/few-students-tools-cmu/d_kilt.py": {
-   "bytes": 1682,
-   "sha256": "76b441e6b43fbf8528cc539f377385fab6f74249d1eb0bcd77d6e6a134857297",
+   "bytes": 1680,
+   "sha256": "7dab297559690bad2dc2f6ac19b32214709c25f88baee7fb417f2722f0ea8b1d",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/few-students-tools-cmu/d_ri.py": {
-   "bytes": 1918,
-   "sha256": "7e54165d21a1bc82efd7672cd8f7cb982f13feddded9eec79f63004d79db386c",
+   "bytes": 1916,
+   "sha256": "4f128be2f9db26f7301f9acf05b94b8892bbafc2402d10e086948dbfdd0f5981",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/few-students-tools-cmu/decisions_a.py": {
@@ -613,38 +662,38 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/few-students-tools-cmu/f.py": {
-   "bytes": 3104,
-   "sha256": "265a258434d56a25408e756e306810a9c68bfe3e885dcb38147a54e5c790f22d",
+   "bytes": 3102,
+   "sha256": "564ba059fd25b39d822b96e1557f89f72e3a2e91824b57361c8d11d42d12a5c2",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/few-students-tools-cmu/figshare.py": {
-   "bytes": 876,
-   "sha256": "e5c6a0949d7e869853d1d391440799f8c6382c13e2a5414b0e4fc0b19cea5cc3",
+   "bytes": 874,
+   "sha256": "108e4947bf1f843f9f8e1c6de5f669bf7b9ef5d2be73cdafc712b4b0bbeadad6",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/few-students-tools-cmu/harvest_theses.py": {
-   "bytes": 4291,
-   "sha256": "a451bd567b8ee4952b69662c29aef1240b656c3e13ec04bc2bee4a9ddd594c97",
+   "bytes": 4289,
+   "sha256": "0625960c7d93e5ae0a598b10985899571d70b69d82dbba55031fd6763091751d",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/few-students-tools-cmu/insp.py": {
-   "bytes": 1619,
-   "sha256": "46b0207e3e94dc78aac85b15282140d58181cc6cd904b49ce523889da44bf119",
+   "bytes": 1617,
+   "sha256": "7c5956f1147000719e6fd59511407afa0a588662aa74989fc07f16297c81049c",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/few-students-tools-cmu/theses.py": {
-   "bytes": 1131,
-   "sha256": "99dd01a37ca21ae76987cde959a50c1cdd1fe5e22c07725faf0574f8ad362be0",
+   "bytes": 1129,
+   "sha256": "66579c04cfb76b71830cd0f8dfc80df047e15af2cfe263d79bba523f5b03631b",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/few-students-tools-cmu/wbscan.py": {
-   "bytes": 1745,
-   "sha256": "4480b8b6c14508596db15748a40f864abb0cbdc054fe87dd3d194e05bc7f041b",
+   "bytes": 1743,
+   "sha256": "df28e44157e0f4e6bbec215784cdad0e892d9cb9f0357722c5d7283335af78bd",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/few-students-tools/build.py": {
-   "bytes": 2198,
-   "sha256": "e6161a2b33fe736a1f1110ec9028889a62745f0893a433ab337c600e14011215",
+   "bytes": 2196,
+   "sha256": "66724117495911811b5e6bc6eba029191592e6e407f8d6d8f66d0129633a3d1c",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/few-students-tools/decisions_berkeley.py": {
@@ -658,8 +707,8 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/few-students-tools/decisions_mit.py": {
-   "bytes": 25481,
-   "sha256": "0c81970c23ae15b8043025a0ac3793ee8d2d661464ac5523c53ec318f65fa509",
+   "bytes": 25479,
+   "sha256": "571d6c1b237ba315927fa4b432a2162b90849fa52f36da89527109726bc2bd58",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/few-students-tools/decisions_princeton.py": {
@@ -678,8 +727,8 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/few-students-tools/fscap.py": {
-   "bytes": 20990,
-   "sha256": "abe3a61208f6d68a0735e5d852740f280c1b85af51598d394169b0a5cc35cb3a",
+   "bytes": 20988,
+   "sha256": "735179e9a5295e60632d20c5c2a4d31390ca1063b9e23fd9fa59446b2a214bc0",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/few-students-tools/fsev.py": {
@@ -718,8 +767,8 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/few-students-tools/verify.py": {
-   "bytes": 3821,
-   "sha256": "3788fda493baa866990f99b2b65624c917da271c9dbf718911902ecaf5bf3e1f",
+   "bytes": 3819,
+   "sha256": "a61a034f22079323e2bf6a3174ba370122627586ce19a004c967e9e8b09d527d",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/few-students-tools/wb_mit.py": {
@@ -733,108 +782,108 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-berkeley/build.py": {
-   "bytes": 8461,
-   "sha256": "ec952dbc0c6498f70ae257756431d853203bf189787bcca2e4b7b2ee9a1a3b86",
+   "bytes": 8457,
+   "sha256": "875750b827bb3165a34a08f12dcc4f8f30a784916776a7e49b76c91793221198",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-berkeley/candidates.py": {
-   "bytes": 4030,
-   "sha256": "d3b0c6b3ecdd7d75c3b88fdb611b0a39423bd71a5185de63bd74e37c6694c755",
+   "bytes": 4028,
+   "sha256": "c3ccbcc2bc1a3960cbc83f99517da52624c27f54ee3f0041fe6d5a14d10decb6",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-berkeley/capstore.py": {
-   "bytes": 13860,
-   "sha256": "4113a2faf2795b498df7d5de9d0536f9b38e09323cbe7144fdf753826d642532",
+   "bytes": 13858,
+   "sha256": "37ea458a36f84ed76c0fb6ffdd3650d6daf94e85fdd264345415a927a0ae531a",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-berkeley/decisions_departed.py": {
-   "bytes": 27047,
-   "sha256": "be2f26e9fb452ee8372ffa29f3346aa7cb68ec43a1d8c9d6cd5f53856880e4ee",
+   "bytes": 27045,
+   "sha256": "c2044988f13ffe51de662caf95a3231014dbc1e94956f8088116ce0c47e7f9a9",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-berkeley/decisions_emeriti_a.py": {
-   "bytes": 28546,
-   "sha256": "a569d8e062432242fb8ae1b7016221ccc7c841898f2049c062f388c6733e3061",
+   "bytes": 28544,
+   "sha256": "9af741cad05fc173524e58a97db8197d41cd187d2dfc51eee82813466d4bdcab",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-berkeley/decisions_emeriti_b.py": {
-   "bytes": 31904,
-   "sha256": "5e873e951c5acf4f63c1983b5d24b373c446aa76035e2abbd428f42e4bdac90f",
+   "bytes": 31902,
+   "sha256": "3387807d88eaba33c704fadb0179142d9c506991cf8c3ad514505434ef453ae0",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-berkeley/decisions_ladder_a.py": {
-   "bytes": 46364,
-   "sha256": "29386d7bd0fd28dddabb1b27c432dc267e4061f3994e45b21cc0ebfbef395c99",
+   "bytes": 46362,
+   "sha256": "7bb1206069fc0a706be706e04930ff21f8e14d4bbf10b43faa401ca2d2d781f3",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-berkeley/decisions_ladder_b.py": {
-   "bytes": 38219,
-   "sha256": "a41f04c337be4451a07fdda2e8a98328060c2703991da8f965522097cbfea0af",
+   "bytes": 38217,
+   "sha256": "7bd7878927615ab797c9ddf1feacae3cf7ae0c64415dc271435ab8c04ec49204",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-berkeley/dhelp.py": {
-   "bytes": 3998,
-   "sha256": "185d99ddc9173f5148beb10c7abd9dfd2e94a9e4cafaaaa70a88ec2a5f23223e",
+   "bytes": 3996,
+   "sha256": "1b54e9ccc63c997720f9dc69af337bbb00f5394a6be4f330fa54cbfb51f6bfad",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-berkeley/f.py": {
-   "bytes": 3100,
-   "sha256": "ca6a1102c9c79ebaf3e2d60f849a4a5e5df92bedf202ebcf807cc99dd93f253b",
+   "bytes": 3098,
+   "sha256": "fd07e769a3d2574499cb58444634f030313ad0357d3fd04d28d2dd2c131f56d4",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-berkeley/merge_workers.py": {
-   "bytes": 1294,
-   "sha256": "cd028a44e6dd16e37dbc2ccc9512239b5687da28bd37685845b9045c93a97ecf",
+   "bytes": 1292,
+   "sha256": "d239f258646c95d2045f22f95513a812aa7f51754271a46b25b0a2c81272f7b5",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-berkeley/oa.py": {
-   "bytes": 3750,
-   "sha256": "cb1fadb68e89ab6565cf0ea28277fe51bfbb6bb0e7c551952332e156c568b570",
+   "bytes": 3748,
+   "sha256": "36dfb12c4b29475346caf9670a74f90ba958e3a7e14e8a654e91c54651d51b3f",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-berkeley/orcid.py": {
-   "bytes": 1802,
-   "sha256": "dc0498ee15e645c20c707553148cb19e386dd2165fb0a3d1743bb4f25e668c23",
+   "bytes": 1800,
+   "sha256": "34d153b4fd88ea9e560dbab9a2a0cd33e06bc8b2e2943fc9138bd2ff745f6dab",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-berkeley/qa.py": {
-   "bytes": 5345,
-   "sha256": "322bc1401cef6c8fa8f2cee5ac04bd5315171781a2e67733cf8621ad9649028e",
+   "bytes": 5341,
+   "sha256": "1397488a340cbfe464f9abfd4559fef36e7b986e7a3706046794d656ffbedbf0",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-berkeley/seed.py": {
-   "bytes": 3852,
-   "sha256": "51b94c2068eb8491be29bccfb33c73b73d87ae4164e231b69456eb205703c43d",
+   "bytes": 3848,
+   "sha256": "02345deb2899c458d7a718baa85866b9eb928bbf3db349493fc0689d47f03422",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-berkeley/verify_oa.py": {
-   "bytes": 2670,
-   "sha256": "1a5ba51288e90a098e6558cab386f02b6b615e86b47b954e12a7747d5bcd15cb",
+   "bytes": 2668,
+   "sha256": "59c800b664e72084ffe604066759aed6f795b28f5bf931939b70531bebe2ebba",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-berkeley/wbscan.py": {
-   "bytes": 1741,
-   "sha256": "3310a99c0c91f510cee62010e4d045d4e61449e8e22a5f56f0fd99b2d2f2332f",
+   "bytes": 1739,
+   "sha256": "aababd99681a79f7eb05ee6fad03e1beca3da2851ad11e5f719745f0012a1ecb",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-cmu/append_newpis.py": {
-   "bytes": 5523,
-   "sha256": "b5f1c1a850fc83dc9374382dba04527d9d7a48be1396eff9b7241f5f7a3bf376",
+   "bytes": 5519,
+   "sha256": "fc00038d03cf0727b126f31ad97a7487b2b948679fbc9d50c97acbd022fe9d67",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-cmu/build.py": {
-   "bytes": 7235,
-   "sha256": "9962ae34e100a04a2de232a23d75efc9019c96bc2d9265594d6cef9525d65d71",
+   "bytes": 7231,
+   "sha256": "ec7bf3386fc701f4a0b5d53ab69f4d46b057ef60218742a36563abd25d875da3",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-cmu/capstore.py": {
-   "bytes": 11957,
-   "sha256": "be7313472a78d5275d8250cb56688ac557809052a81028a6ee3d74e884b5dd87",
+   "bytes": 11955,
+   "sha256": "bde490af86351c24252a5c21ae495739d0ecd4ed867edfe0c962575d0c064362",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-cmu/dblp.py": {
-   "bytes": 2241,
-   "sha256": "904b616ec72d1338ebab6234146f5501d346269750024a7baa59884cdd6b0683",
+   "bytes": 2239,
+   "sha256": "62d0cf53159669b97974e56fb73c5052b60252721f69d769f59da512f3398e16",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-cmu/decisions.py": {
@@ -848,78 +897,78 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-cmu/f.py": {
-   "bytes": 3095,
-   "sha256": "21d98e30b100a7860ed66b1847e141b9bce9bb4d923ec7c415d809ec242c3ad6",
+   "bytes": 3093,
+   "sha256": "c9c0ff61c11edf4e64fa42334db1ff5210fd6b536146a1c24e04e0ec39c61bbb",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-cmu/figshare.py": {
-   "bytes": 867,
-   "sha256": "58d65acc567d1656e991c19de6347671fcf084d706b97b249896e894d10ad599",
+   "bytes": 865,
+   "sha256": "3e7fe066f5cc01d2b13752e0782440712ab4d1d18242b6199df0c2c0435ab4ec",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-cmu/insp.py": {
-   "bytes": 1610,
-   "sha256": "5b5b83f99918bc7a01e3d16e19345bd6aeb62b8e758b80f2e468424a68bb8fe3",
+   "bytes": 1608,
+   "sha256": "4f9037b96aebaed67f3822ba9aa97e21474ffa416dd41c6becf39c6c9881c5bd",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-cmu/kilt_newpis.py": {
-   "bytes": 1781,
-   "sha256": "2e563dcd7db0df1cf33acd88f18639d349066844d4902dc7b894fb82e61bcbb9",
+   "bytes": 1779,
+   "sha256": "89a9e67384675cab28c4338790618c251baf5f85f0fa83d800287ed57d28a3ae",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-cmu/oa.py": {
-   "bytes": 3737,
-   "sha256": "29fbf6f339636b3fac0faa36bb1053a1f29d56d14db7a1afb467fa659d93e381",
+   "bytes": 3735,
+   "sha256": "8a86ba6e6c732332cfa1198f2864ba8c46d2762f9186368d523c002795157af6",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-cmu/oaworks.sh": {
-   "bytes": 343,
-   "sha256": "19121a08f3ec32118fe890534c6a220df8b867fa9a0a1bb38a87821ebac41352",
+   "bytes": 341,
+   "sha256": "2037f1b5a7c5188a2a65309381dcb323992cc43c422849190ef54bf733155fe4",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-cmu/orcid.py": {
-   "bytes": 1797,
-   "sha256": "bb769bf591fb10fd3d604e1263df293e199e791a599b974a54683dc431d4a3f9",
+   "bytes": 1795,
+   "sha256": "4e3e877052805e8d51aa27b6682ec072b975630b7e30a50ce157388bcd1b8f93",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-cmu/reverify.py": {
-   "bytes": 1372,
-   "sha256": "e3c3b9d05120bece7b2a41fbcaeaf9acf6da7da94c2b6416c8f483492e984876",
+   "bytes": 1368,
+   "sha256": "076db5badbd15c678aa80afa71de17b47b918d5f0e3bf5676ea45bc54a5a81cd",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-cmu/verify_batch.sh": {
-   "bytes": 1220,
-   "sha256": "6cc7c42255d120dd7460276eb66c2205978df01223594a08439629d6eaa345ed",
+   "bytes": 1218,
+   "sha256": "caef3a81f56eba3bb36743867a220481bfa1b0e3db25b10d55fb5c195bc3963a",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-cmu/verify_oa.py": {
-   "bytes": 2895,
-   "sha256": "7cfedbaf8cfdb50ad7b454be6262bfc05f5dc041531b784b721f72b6e72203e1",
+   "bytes": 2893,
+   "sha256": "d6c6e09c300e714b46f6b982a3c7263fe71e62aebb5e4e492570995698624a42",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-cmu/wbscan.py": {
-   "bytes": 1736,
-   "sha256": "324c10cbdb8519b5a7090371eaae7042f2984b760fbdac0bcc11d4d47b10ce8a",
+   "bytes": 1734,
+   "sha256": "7e21b5852468898b76cf8e9ab14ab70713843b8103935698bd99cd1640b760ea",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-mit/append_newpis.py": {
-   "bytes": 5076,
-   "sha256": "0c04b916857e268f557727bd4cf60ce626ae3489a973f015d100b77684a04043",
+   "bytes": 5072,
+   "sha256": "d952b45fab17c6dda94c98fe788e5f309ba15502fdfd54e988bacd2d15c2e8c4",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-mit/build_gap_evidence.py": {
-   "bytes": 2117,
-   "sha256": "f5196a02c8638899f573d425487be7798f5ea65ea80e2b06d23bf22dc1f55eca",
+   "bytes": 2113,
+   "sha256": "edb90f59ce4ed37ab39e853fe52654594e805512a727cd0a56c94aacc43b773e",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-mit/capstore.py": {
-   "bytes": 10331,
-   "sha256": "5cd9dbf5f968f71d38987f8a2ea6237eaa9565aa1c33f74305364eb5ffe37af4",
+   "bytes": 10329,
+   "sha256": "c460c1b84074efdf392a2add5c64718325f3f5bc2edf3beb3ddf99463734330f",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-mit/dblp_wb.py": {
-   "bytes": 1185,
-   "sha256": "8ad5afdc564a56139c47ec7682e26467f2cf3f2d85c9ab1e990f9707289161a4",
+   "bytes": 1183,
+   "sha256": "6610196a809ee565476b216b1b51505fbca2e41eb1f4463e3c6bbb52864b13f3",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-mit/dspace_round2.sh": {
@@ -928,43 +977,43 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-mit/dspace_search.py": {
-   "bytes": 2534,
-   "sha256": "c05c0d6cdaec813b5a8129286c7b8de9f1b653f04e8d4f86f4373b303bd81b22",
+   "bytes": 2532,
+   "sha256": "85028b2cfc745a52e69cd11ef6c18604ab8181dd92b6bdd5f51ab790ad56f229",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-mit/evlib.py": {
-   "bytes": 5303,
-   "sha256": "5ea95244bec3bcec682d0bb197883b904504ca6a76adf6dd91d4130ec2ddda5e",
+   "bytes": 5301,
+   "sha256": "0fd116b352ce5be837881bd0a70a67aa8e338bda9cf30c850f10280358d7c8bb",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-mit/grep_cap.py": {
-   "bytes": 702,
-   "sha256": "b21c58c7c465d5fa58dddcecab4923eb29e757986f865e341692bcb3f7066b94",
+   "bytes": 700,
+   "sha256": "aec123c48219852391159a5e94d2a6bcfb467bf8e7729407b972334b292c85b2",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-mit/links.py": {
-   "bytes": 773,
-   "sha256": "34963cdfd18d1a67026ab081904e1fff3c94951cae014164e9b822b7e1d38720",
+   "bytes": 771,
+   "sha256": "8a56f6f12d9c4f760328a43cf2b9f18ca322b96c5265a222748da1b67645356b",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-mit/look.py": {
-   "bytes": 2029,
-   "sha256": "f68b8f33d9bd246af91df2c82fe31871ed7b937cb4848812606101367a12b4d9",
+   "bytes": 2027,
+   "sha256": "25a23ff0d1df8f43686198718365e05ea36a972e89b8be412e9892f1476b5160",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-mit/oa.py": {
-   "bytes": 3497,
-   "sha256": "52ca72b88317935750d83230434319f09bef2225c92caf3315a72bdda45ba37d",
+   "bytes": 3495,
+   "sha256": "6053b1970dc37a41bafcca992c66f19fed9742e34dd7f974cce8d5b79d759044",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-mit/scan_collection.py": {
-   "bytes": 1336,
-   "sha256": "7e2f82b8c6913f661f76eeefdd85ef5184e08243a3cb0b48420382361412624b",
+   "bytes": 1334,
+   "sha256": "a4400b7533ba2d5aeac1dad2704510cd40dd7dbf92d5de86a037763740698be1",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-mit/scan_repo.py": {
-   "bytes": 947,
-   "sha256": "f3d44dd0fea932659aeb82bc19ea733edc1fc150aa942254898ba7dd33e7a5d8",
+   "bytes": 945,
+   "sha256": "83e18c2410f51e82851b4d46bd95cbb79d6549738944a9c269b5febc30ec8f3b",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-mit/show_hits.py": {
@@ -983,23 +1032,23 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-mit/sweep_hits.py": {
-   "bytes": 3708,
-   "sha256": "9c0973071706938c3b518ff9f6b5076199e0f4bdf661f990ba5742c02791a24b",
+   "bytes": 3702,
+   "sha256": "d868b9fdb65aacca0662a3fd2e4f3242102e0347cacaf2bf42c7374110fcead9",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-mit/verify_gap_evidence.py": {
-   "bytes": 3017,
-   "sha256": "926f7e659ba40ec3fb147ecf0416bc10fd04b3c865a6cfa60817abdaea5f5f0c",
+   "bytes": 3013,
+   "sha256": "ef2441bfe8cfe35a37bce33eb25abf42e5a8c734f10755c9489caef9a8e6aeb3",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-mit/verify_oa.py": {
-   "bytes": 2319,
-   "sha256": "c76473089f45d0ac7274381ebd418086123b7c7cb135d4100fe9d0b7c24f53cf",
+   "bytes": 2317,
+   "sha256": "dc79a82b38ea4377f50970d4ca2b19273a212e38d83a6959f1bf60b6e55c6007",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-mit/wbfetch.py": {
-   "bytes": 1456,
-   "sha256": "b46aa90e2f793b52f09545fa508a4e6d4310b7fd8b72fb207e1c367b00257d37",
+   "bytes": 1454,
+   "sha256": "8750de63774e95b59305c53bde8cd74a1608389990d46961c3c6fc8ca53794cb",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-princeton-epfl/build.py": {
@@ -1033,8 +1082,8 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-princeton-epfl/gapcap.py": {
-   "bytes": 15678,
-   "sha256": "e080e59c9aad8c1c170cf6f68bba875e92213b6e4005c9169380d56e153a4f66",
+   "bytes": 15676,
+   "sha256": "b1dc3bb884ee060e759a8067abbd58acf715c1c340f5531fd1f35f4e6a119ef7",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-princeton-epfl/infosci.py": {
@@ -1053,23 +1102,23 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/gap-tools-princeton-epfl/sweep_hits.py": {
-   "bytes": 3151,
-   "sha256": "fdc3f31c8db2a47aee078e268f7e6d46ea99627d72bf7cd5a8d2652677f1bd17",
+   "bytes": 3147,
+   "sha256": "4f7c3877a598570d85c298d7f108ef305b3c96e56747d672212803cee33f1c9c",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/home-dept-tools/batch_fetch.py": {
-   "bytes": 1639,
-   "sha256": "fc5698022cda5bc46f94c4ced261977702013bcd47347ac0db662b38353c3184",
+   "bytes": 1637,
+   "sha256": "44c75683cd335e7faee1c10c0e45a6b4fe1b1fd97630449beb5ea5d6e1febb59",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/home-dept-tools/build_output.py": {
-   "bytes": 5814,
-   "sha256": "fa4605931b758952ad4e05e403d8ec5d28add79d916a37e7121385e55e91fc6f",
+   "bytes": 5810,
+   "sha256": "1b325896654f68de791f9d286d520a8123f5e9d516f532637b271bb5bf228ef6",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/home-dept-tools/capstore.py": {
-   "bytes": 7824,
-   "sha256": "821c41c3a809ec7a4ac03e9d728573b3964344b06e93cbac9b374659a9616e13",
+   "bytes": 7822,
+   "sha256": "4f5c8b022cf0044e5ba8f9b43a37d831659671f05e5f614f258c43761446e280",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/home-dept-tools/decisions.py": {
@@ -1078,13 +1127,13 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/home-dept-tools/inspect_capture.py": {
-   "bytes": 922,
-   "sha256": "dcad5c43bb83ecf793def0b5498fff355bc1d12726957b68054f4a9c48012ce9",
+   "bytes": 920,
+   "sha256": "f3bfee3db353cda857a1087922d4207fe0f00989c9a18b738323a7edfa4d1d60",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/home-dept-tools/wayback_fetch.py": {
-   "bytes": 1751,
-   "sha256": "4a6749b8b3f86e7e5fe74d6aa7cb6d0fa07ea5bb837e6b82055610680d4377b0",
+   "bytes": 1749,
+   "sha256": "ddf90f1f39340df13b087b51bb977e290726e8c419faaaea9e075076e5c86f23",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/labpage-tools-cmu/build.py": {
@@ -1093,8 +1142,8 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/labpage-tools-cmu/capstore.py": {
-   "bytes": 21310,
-   "sha256": "412eb7afd738a3425bba20434d549c82d612e9f00bb000e7340d7ba80fb0284f",
+   "bytes": 21308,
+   "sha256": "4f3d47b8e2a01360cad44002e846632b9e3c232a59ac06cb51b770d2a923712a",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/labpage-tools-cmu/crawl.py": {
@@ -1263,8 +1312,8 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/labpage-tools-cmu/names.py": {
-   "bytes": 5591,
-   "sha256": "085bcfff5e195d8fac686b193ccc9c30c46a88c8af8aa0d4ec774501075fa8f8",
+   "bytes": 5589,
+   "sha256": "d9788d47b92a1d35e7f9179f1f86134504087d6a99ee904a9c3684eff5cc107f",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/labpage-tools-cmu/pubx.py": {
@@ -1298,8 +1347,8 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/labpage-tools-cmu/w_b05_raw.py": {
-   "bytes": 590,
-   "sha256": "d4cbbfb98999ffc589126b75f9ddd906beb9ad5ef1c6c73170dd0bca4e8ff41c",
+   "bytes": 588,
+   "sha256": "2b2131a728762317ba04b2d0c1086e15ce00474d8136645d2fde09ebb8ecaced",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/labpage-tools-cmu/w_b05_retry.py": {
@@ -1308,8 +1357,8 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/labpage-tools-cmu/w_b06_retry.sh": {
-   "bytes": 1148,
-   "sha256": "122558108173ecd9e5bc19b6508c4ed3b9e51cfbf0882a6feb03331de1a266b8",
+   "bytes": 1146,
+   "sha256": "03a73b18cbcc41e3d171f85abd8a6b1f3c8e9f9e6e04ebacc10b8f472249e5d2",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/labpage-tools-cmu/w_b07_raw.py": {
@@ -1323,8 +1372,8 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/labpage-tools-epfl-berkeley/WORKER.md": {
-   "bytes": 8302,
-   "sha256": "75e436b2eb5936205ec6333bfdef7ed15e135215a8d4aa4fa1dc67bff364c0b8",
+   "bytes": 8300,
+   "sha256": "a7739ad14892c48ac768635e9d5bffe8542f9c4bc92384952c98c39b1457429c",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/labpage-tools-epfl-berkeley/autospec.py": {
@@ -1353,13 +1402,13 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/labpage-tools-epfl-berkeley/lpc.sh": {
-   "bytes": 632,
-   "sha256": "8a090809bc03f552dc9ea8802a4d7068e042dd4dfe4b89034c928d8f54a4d127",
+   "bytes": 630,
+   "sha256": "21ca1c7522a54a053f0ae60800839b3fb249af8b8f3d5366fea5a491ac533d6d",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/labpage-tools-epfl-berkeley/lpcap.py": {
-   "bytes": 21849,
-   "sha256": "71a5db6a36064dea0824f08ee7e93823fd93ec7de73f3c58fc2be37a7463fa5e",
+   "bytes": 21847,
+   "sha256": "4bf2d8056e65f4ace95764957982e7e378d99121e2d766c514a0bee5e503af73",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/labpage-tools-epfl-berkeley/lpdom.py": {
@@ -1368,13 +1417,13 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/labpage-tools-epfl-berkeley/lplab.py": {
-   "bytes": 4731,
-   "sha256": "e8ca47ead0483639fce7c10375042563306f76b175e21836693274d666db43e6",
+   "bytes": 4725,
+   "sha256": "b53ea6c6d2550c5a87a61fc6072e44e36b3cfb547da19b32792d482b528eaef2",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/labpage-tools-epfl-berkeley/lpnames.py": {
-   "bytes": 8154,
-   "sha256": "45ed927fea3efe3d4d68121031bf912b3dfeaff086c6389d170510609b64c8c5",
+   "bytes": 8152,
+   "sha256": "2a76a4b2b87793df6efb9d396017f0897d8fd6493db9a57e0ae8137c858f46a8",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/labpage-tools-epfl-berkeley/lppubs.py": {
@@ -1383,8 +1432,8 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/labpage-tools-epfl-berkeley/lpw.sh": {
-   "bytes": 592,
-   "sha256": "6b1f45cf071c359c467c929d5195ad792759b8e7a2846dcb606f1ba827f7d240",
+   "bytes": 590,
+   "sha256": "234a69be5abd2f879fc771d60f7a76ae94cc984582a94fcf513c2f2df46fb15f",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/labpage-tools-epfl-berkeley/merge.py": {
@@ -1403,18 +1452,18 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/labpage-tools-epfl-berkeley/run_build.sh": {
-   "bytes": 660,
-   "sha256": "dfa9aa51976ed747c01a2ae6006644fa813fa91f884a1eaed9c55bbcbe67bd08",
+   "bytes": 658,
+   "sha256": "4b885faa5b2127e6a839c7afaa939af1c42da030d9cd852ac6e23de45c602f77",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/labpage-tools-epfl-berkeley/run_discover.sh": {
-   "bytes": 634,
-   "sha256": "36cb41fc9b9dfab0be24223b33459da20c73c27f9a53e2ac2962cec6dfeb744e",
+   "bytes": 632,
+   "sha256": "f105eeaf64f625d8e33e2ebe667996545bd20de11ae9e4f4dd211ca0e4da99a8",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/labpage-tools-epfl-berkeley/run_wayback.sh": {
-   "bytes": 625,
-   "sha256": "29da6201e7efe4d6918e2f18d2e9d2f74c14e2fe5464c87019c8e06ed6af919d",
+   "bytes": 623,
+   "sha256": "44ac6754e8233ad6c4161a9e167f95a858411926c150335da5363dd7e874009c",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/labpage-tools-epfl-berkeley/setman.py": {
@@ -1453,8 +1502,8 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/labpage-tools-princeton-mit/disc.py": {
-   "bytes": 16038,
-   "sha256": "9b8619d327d6c8b11acc9a47fdf48140c8350acaed1aadf4481fe42068bbd52e",
+   "bytes": 16036,
+   "sha256": "7108c744d670ea7460b648d92c1f37f3ae91ca5ae816f7981fe00a0849b4febd",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/labpage-tools-princeton-mit/f.py": {
@@ -1468,8 +1517,8 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/labpage-tools-princeton-mit/lpcap.py": {
-   "bytes": 22763,
-   "sha256": "211788f470ccb2a3d02bde27316f7a627aa7570a165bde7bf0e77db66e4c3d5f",
+   "bytes": 22761,
+   "sha256": "bd28dab1511b63a19b1a5bd6469a8b936aea5d2e03f050970ea0cb437cac6a7d",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/labpage-tools-princeton-mit/lpev.py": {
@@ -1488,13 +1537,13 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/labpage-tools-princeton-mit/names.py": {
-   "bytes": 6084,
-   "sha256": "f65d4afaa8946af262f4c68811a570de27dc245043b2e35852a5e0597eb63d61",
+   "bytes": 6082,
+   "sha256": "4152a64a2f7c366560c6009763dc1d137c3bfaaf7fb866a7a3adb6ac0148448a",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/labpage-tools-princeton-mit/newrows.sh": {
-   "bytes": 606,
-   "sha256": "5ab9664dfd365f593c6662022d0527d9edba7c1de4a385528a2df3c64026deda",
+   "bytes": 604,
+   "sha256": "1f51e8a9c3d6d78b482839aa0b375c2c308c48d6b88abbbe5dde4da7438df76f",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/labpage-tools-princeton-mit/peek.py": {
@@ -1528,13 +1577,13 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/labpage-tools-princeton-mit/run_disc.sh": {
-   "bytes": 444,
-   "sha256": "c477025b6b4e3e476c553d1d1ff067c7021b060ac89e6faa69af54d8b9cd3298",
+   "bytes": 442,
+   "sha256": "967835e6ff4caa0726f27d92f87930dfecb3384073e5629f1af49622d266b245",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/labpage-tools-princeton-mit/run_wb.sh": {
-   "bytes": 731,
-   "sha256": "c33e5e66c942ef776fc2d3b79baae5f20b70c9133356745f7881e6248ee36ffe",
+   "bytes": 729,
+   "sha256": "ac68bd437cf2b4f684e53e140401c09884e6c52c8fdba6b860df742c8349800d",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/labpage-tools-princeton-mit/survey.py": {
@@ -1563,13 +1612,13 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/missing-pi-tools/mpcap.py": {
-   "bytes": 11837,
-   "sha256": "6c8f2a2987c59a55ffa6c5954136b25cfc937d3351c0b909a3a9bf75e8046d4e",
+   "bytes": 11835,
+   "sha256": "b286026bf30745a3600731749bb74f25dc515471cba883c287f30c34267bf760",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/mit/cs-related-tools/affiliations.py": {
-   "bytes": 1780,
-   "sha256": "4069731b71cf4bafdc87f8f687bcd5ca069079c895b470a8009de393222fec69",
+   "bytes": 1778,
+   "sha256": "766104b945ec535dabd1b49acceebbcb94ccb1b3af04c441eaad48086de20dfd",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/mit/cs-related-tools/build.py": {
@@ -1593,8 +1642,8 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/mit/cs-related-tools/mpcap.py": {
-   "bytes": 11997,
-   "sha256": "16f03338b07125d3d9d23d05978671fefae64834280fb09acde90042c422767e",
+   "bytes": 11995,
+   "sha256": "cb8e61eb16f1feef67757ed7a8934cb5aae0de81e55e957e5b381b5aaaba79f2",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/mit/cs-related-tools/scan_listings.py": {
@@ -1613,8 +1662,8 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/mit/cs-related-tools/thesis_match.py": {
-   "bytes": 3166,
-   "sha256": "73513a532d6637cf0c3a23a8c87f4fc4d1d9628b26b0b2a8c37188ad6e3d55da",
+   "bytes": 3164,
+   "sha256": "0a7b39cca6583edf85eb7774ce1afb6e0891af99e7832fb729f6af8b396f9e33",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/nicknames/extras.csv": {
@@ -1658,8 +1707,8 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/period-tools/cmu_show.py": {
-   "bytes": 1192,
-   "sha256": "8ca86f8b561686954d4ab90b297653d77531179ee8f18facad07f14e9d9462df",
+   "bytes": 1190,
+   "sha256": "3b49494333f17bed66860f80aade07dc2adde1a567e3eed6f755a2287103e3e3",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/period-tools/cmu_util.py": {
@@ -1698,28 +1747,33 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/period-tools/pm_build.py": {
-   "bytes": 35798,
-   "sha256": "7073b325048b0a0827608147c6ccf616a8d6267a9495b9e0770376c74e95e77f",
+   "bytes": 35794,
+   "sha256": "c56546ae3e41932ab235941e474641c88b2e57801bf6584b7429628083d9e3f1",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/period-tools/pm_copy.py": {
-   "bytes": 1027,
-   "sha256": "dac6c446f9fb6114e22b2f7c6ed85096e24994e8408e8ba40b466392d16abbb7",
+   "bytes": 1023,
+   "sha256": "bbb4aaad5d9a8ffc5e741feb9bfa2bbce774190dd62fb7fc8d6bb517bbd67fe9",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/period-tools/pm_fetch.py": {
-   "bytes": 634,
-   "sha256": "461246d9e37d502c928b0b698ec99bde998f0bf063dfc16012d90d22861e00d5",
+   "bytes": 632,
+   "sha256": "381e3b19481c170653aff9c90ee7aa316b7ab08f5ecdbbc86f6b0c942e83c1be",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/period-tools/pm_show.py": {
-   "bytes": 1186,
-   "sha256": "3d526a634d61efad42b85753e91628e1735acfdb6a2753375158017201523777",
+   "bytes": 1184,
+   "sha256": "2df24cedc78232ef7438e5ff592afd131676167c93cf3314da2e4b307fc95cdc",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/period-tools/pm_wb.py": {
-   "bytes": 1201,
-   "sha256": "688d72f739aec9b5b08e933184613c2cb28658ae1db6fc04606184e343ecffbb",
+   "bytes": 1199,
+   "sha256": "0c99bb7dbd3b0a2c9ff17ebfe7cb3052cb0d74baf70df4fca7357540c3ddfd03",
+   "rows": null
+  },
+  "code/claude-schools-20261021/hierarchy/period-tools/stanford_followup_build.py": {
+   "bytes": 40340,
+   "sha256": "3bc0ed2f31e89cbc39575978919fc65781e66b4a7cf740640c7f83bb1f4f102a",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/run_dblp_recover.sh": {
@@ -1732,19 +1786,29 @@
    "sha256": "e2922dc0b185adde7e4c9a80540a637d8059638b762dcbbb46178253aff9a984",
    "rows": null
   },
+  "code/claude-schools-20261021/hierarchy/run_dblp_recover_stanford.sh": {
+   "bytes": 676,
+   "sha256": "acb70d32fe72d65f3fc62cb3ec01c4bfb01760b24ad1fd1ee5ea67ea9a223159",
+   "rows": null
+  },
   "code/claude-schools-20261021/hierarchy/run_labpage_recover.sh": {
-   "bytes": 636,
-   "sha256": "113e210999e6e736524af3580183109c816fe8d710f3bbbe43d043034fc5736d",
+   "bytes": 561,
+   "sha256": "49881226662bbcf07460f3e2d1dfda41f721d16169a4b6f3991e51876168ad0e",
+   "rows": null
+  },
+  "code/claude-schools-20261021/hierarchy/run_labpage_recover_stanford.sh": {
+   "bytes": 807,
+   "sha256": "94de825da5fc45b820d5647848c2cb649906d61b98175c68df682f14b014d9dd",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/run_page1.sh": {
-   "bytes": 586,
-   "sha256": "1ba41eff1ce80690fcf5a872deb4e6fc3636b325a356d5482a9a3d24c000c03f",
+   "bytes": 605,
+   "sha256": "02b719a49cafa8eea8d4f7293d16c65370c486ae2ed9c98ab2c90cc0a6121509",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/run_page1_all.sh": {
-   "bytes": 790,
-   "sha256": "3d176628a76ac50160bf18c7847f031f72db8e1be3af0039cc47349fd4420b61",
+   "bytes": 809,
+   "sha256": "0c5a9991c7018baa33ff3b693d25286a856848d2763bae39cecc37d0df1ae22b",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/run_page1_pdf.sh": {
@@ -1753,8 +1817,8 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/run_stanford_sweep.sh": {
-   "bytes": 1322,
-   "sha256": "a17b072b6c4bb2d0d0b1975d84ef2d62d235575a7ce0473011b2f8614aba62ac",
+   "bytes": 851,
+   "sha256": "1788f8956c6a04ed20d2e8997cf88456f411aef3ed630da99324b5c53c07c44b",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/run_sweeps.sh": {
@@ -1768,8 +1832,8 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/thesis-tools/build.py": {
-   "bytes": 21215,
-   "sha256": "ec8e49f53010b555a5ea054eda054dc3ff99d5ff041e003db6682f53e9ac61fc",
+   "bytes": 25583,
+   "sha256": "c707762c0becdff224750b6494520698b555467b5db66e1ca52764d5c3b38212",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/thesis-tools/fetch.py": {
@@ -1798,8 +1862,8 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/thesis-tools/harvest_lab_sources.py": {
-   "bytes": 3151,
-   "sha256": "f679d2ac03503976d80281dac70ad1fc00c23cae3aa34b5bab5dd3a7546aefcd",
+   "bytes": 3163,
+   "sha256": "aff97e2c76951a575e1a9f3f8b849543a075a02b6927b6a6dbcb4c484b499fd6",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/thesis-tools/harvest_mit.py": {
@@ -1813,13 +1877,18 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/thesis-tools/harvest_stanford.py": {
-   "bytes": 1723,
-   "sha256": "6bd34641b8af8b0a4a9794653c9077eaeee7476d039b0dee22de7e6a1e299179",
+   "bytes": 1721,
+   "sha256": "6bfea48ca060a5dd8035b071a57152683f627183e95af21d878acccf8750aded",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/thesis-tools/lab_sources.py": {
-   "bytes": 10323,
-   "sha256": "63f1e2c536a37005087f5b700e5a5234959d4b43c7bbb6a7997b95903469299b",
+   "bytes": 10570,
+   "sha256": "80bf4fb262748a391de6e7d0b34c512e7ca0a6aff51f3c9f71bb2efcdeea392d",
+   "rows": null
+  },
+  "code/claude-schools-20261021/hierarchy/thesis-tools/lab_sources_stanford.py": {
+   "bytes": 1776891,
+   "sha256": "81e3bdc64bf722a4399bfe7b6d6a1880b99924bacfd42deacf0551ee3a806fc4",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/thesis-tools/merge.py": {
@@ -1828,33 +1897,33 @@
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/thesis-tools/names.py": {
-   "bytes": 12613,
-   "sha256": "4f4eab74f8975f1b933dcf87b74acc0555ed657b23b9e1b8d76a3fcd1693c83d",
+   "bytes": 13489,
+   "sha256": "4344048fa475e2c8ad5b1aaddf4fe09e14ee7c9043500de37051300396ff0bd3",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/thesis-tools/records.py": {
-   "bytes": 38987,
-   "sha256": "55576142b2a8684d45601854b8185fc3a55ebab98d375cf7c26cf01b2eaa111a",
+   "bytes": 39002,
+   "sha256": "1bd84b325cfba6ba80712e8dfd0bb97f35bcde64359235ee05e517f04f09ad2e",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/thesis-tools/records_labs.py": {
-   "bytes": 2895,
-   "sha256": "f40b3903bddf81449ff35b0baa77addeb5d9e41e5c998f91cff7dfcd8706187b",
+   "bytes": 3186,
+   "sha256": "a189a1391a73d5498bd4f086ca542b2f6d145831eb2d5c4df0fb91dbe72d65ae",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/thesis-tools/summarize.py": {
-   "bytes": 2002,
-   "sha256": "d00fb7e62ae8cd6c0fc973e1b886d27266a01a6d2b851a3da9bee058c7a57ade",
+   "bytes": 2000,
+   "sha256": "1923549c095354367ca7c342e1f406e946166f6beac112bd234d592cc6bcd3f7",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/thesis-tools/tcap.py": {
-   "bytes": 23342,
-   "sha256": "63f9341f9bcc0aa8a557322aa37d88f9a4baad557fb559eb0a8edf1d67002e9d",
+   "bytes": 23340,
+   "sha256": "170ea6b98fea8140b6612dbde4dea85a53a9f71c0791833915e2f631f393d1ec",
    "rows": null
   },
   "code/claude-schools-20261021/hierarchy/thesis-tools/verify.py": {
-   "bytes": 5951,
-   "sha256": "4d0ab500deb6a9e2338c4f729a876078563399972e62757f12c046dc298c0bb0",
+   "bytes": 6955,
+   "sha256": "25dbc65ec1c6dec902b665a4e95426fc7d1c9f8068977cc8f3448bdccf2a9b52",
    "rows": null
   },
   "code/claude-schools-20261021/listings/scripts/build.py": {
@@ -1972,29 +2041,34 @@
    "sha256": "6968b31f61a6606e7aa4ee1111ff0b0285be06d534e70b71426d80e7e92a45dd",
    "rows": null
   },
+  "code/claude-schools-20261021/tools/chain_audit.py": {
+   "bytes": 12693,
+   "sha256": "045081fb96f6aa9879ad6dad960a4abeed28432c2ae01888a7d83e6efa921a94",
+   "rows": null
+  },
   "code/claude-schools-20261021/tools/cs_related_candidates.py": {
    "bytes": 6953,
    "sha256": "7859ac6599bb1cc51565ce19439535d47f7203f172621cb852f1e86a1c423b11",
    "rows": null
   },
   "code/claude-schools-20261021/tools/cs_related_candidates.slurm": {
-   "bytes": 445,
-   "sha256": "747793a60dfa96c39f3311be24bfd60b7917763d294ea5a4ee2c5240a60ee1ae",
+   "bytes": 441,
+   "sha256": "5f6c9f4eadcb0bb5f331203ca05d637e3fbd07a3361d6a842a2bbbda46659615",
    "rows": null
   },
   "code/claude-schools-20261021/tools/dblp_dump_index.py": {
-   "bytes": 3772,
-   "sha256": "8e4cea4a4f93849dafe0185ad07b43521fb8d0a582f2d0768cbb98728836ef65",
+   "bytes": 3770,
+   "sha256": "ceb43c58e27b277c0ede4bd4f79a17db38d1f68bb4fed3c868d1de3e9741062d",
    "rows": null
   },
   "code/claude-schools-20261021/tools/dblp_dump_index.slurm": {
-   "bytes": 591,
-   "sha256": "8c043e3ce4ffb44c7f084c118016641b190ddae87092b6064d3b035f94e03404",
+   "bytes": 585,
+   "sha256": "1b1ddef3008221a56ae45965756e78b86849e763821d0c58d6b7fd2e3e303c16",
    "rows": null
   },
   "code/claude-schools-20261021/tools/dblp_recover.py": {
-   "bytes": 13216,
-   "sha256": "5c629fdf6ba7f4076e92d9051d053bd7a3e923b921489c9f618ae364a95819b7",
+   "bytes": 13785,
+   "sha256": "7c4f60e2e9b84ec9ed788598a0f08551c47ff94fa3344a1991b704630155cdc0",
    "rows": null
   },
   "code/claude-schools-20261021/tools/diagnose_gaps.py": {
@@ -2003,13 +2077,13 @@
    "rows": null
   },
   "code/claude-schools-20261021/tools/epfl_census.py": {
-   "bytes": 25640,
-   "sha256": "9d55bbe74fc8a1347b935c4d01d16e39b65b2b2514cfb12d27bbbd6ece441619",
+   "bytes": 25632,
+   "sha256": "47c528fef4e34a8f17323688ec2f1c1509f652a129ee915affa9a81514f4c981",
    "rows": null
   },
   "code/claude-schools-20261021/tools/epfl_profiles.py": {
-   "bytes": 3716,
-   "sha256": "34b043b06cf38ef6cfc48871bb133c4bd7a3c97ae37fd05c1a8775d651e0e3d0",
+   "bytes": 3712,
+   "sha256": "eec06c39121fbb2fc673d5baa73941533e9df0be0f0de988b4f9227abe061523",
    "rows": null
   },
   "code/claude-schools-20261021/tools/export_release.py": {
@@ -2018,13 +2092,13 @@
    "rows": null
   },
   "code/claude-schools-20261021/tools/faculty_periods.py": {
-   "bytes": 16500,
-   "sha256": "3fe190315539b9af3c6317a0ca63cc326c3ab6cb5c4da3c01bea4afb24f98f4f",
+   "bytes": 16490,
+   "sha256": "07bc0fc890065599926003a224267173724fb3ea723f894e67984048554227fe",
    "rows": null
   },
   "code/claude-schools-20261021/tools/lab_paper_copies.py": {
-   "bytes": 3680,
-   "sha256": "2f3be43d3e2eb9b3e045175dfd9008364a384f9334939b23bb69088496278068",
+   "bytes": 3678,
+   "sha256": "665783ecb51fb3d86deb57839c73034ac00ea6146a51d9b80f15d26f299b6830",
    "rows": null
   },
   "code/claude-schools-20261021/tools/labpage_recover.py": {
@@ -2032,9 +2106,14 @@
    "sha256": "3989736d731226d0faf8a5c9b24014e060e0662906aa36bf6943434df42655b0",
    "rows": null
   },
+  "code/claude-schools-20261021/tools/link_diagnosis.py": {
+   "bytes": 7270,
+   "sha256": "c86266cae4b93974bf23b347a5659da7f848beb5bab5c1f514391ce171c6551d",
+   "rows": null
+  },
   "code/claude-schools-20261021/tools/listed_not_in_census.py": {
-   "bytes": 10117,
-   "sha256": "564841fec256b9c4f0c5de80b51583a6b6fc83c3caf31c9a5dbaede17f07cdea",
+   "bytes": 10143,
+   "sha256": "2b1fe7a6fbda5d401cf3c794b7fc5c49c7cc3330b3563585153faf38bd7ddf2e",
    "rows": null
   },
   "code/claude-schools-20261021/tools/missing_papers_audit.py": {
@@ -2043,23 +2122,23 @@
    "rows": null
   },
   "code/claude-schools-20261021/tools/oa_sweep.py": {
-   "bytes": 7776,
-   "sha256": "05646cd77660eeeb24aaae7ef55b1e7c0685090fdff02f3470679eb2e2ae88a4",
+   "bytes": 8296,
+   "sha256": "64e393ca7558835507f4136ba8f803d895ead106ea98bcf4a6a6c965edd3adfc",
    "rows": null
   },
   "code/claude-schools-20261021/tools/pi_fulltext_affiliation.py": {
-   "bytes": 12451,
-   "sha256": "56044a0c4698f6226b482e05f935882879f681e7a4497d4c8a7e9b5a108e5576",
+   "bytes": 12449,
+   "sha256": "b5775568505628aa35b4bb7304f126bfc7c78b372e2d8389728e5ff8255020ac",
    "rows": null
   },
   "code/claude-schools-20261021/tools/pi_hierarchy.py": {
-   "bytes": 56393,
-   "sha256": "49fbe2b04634bdfd2d969e3c59ab29b4572b4d4e40aa1b73eda8df4c273f98ce",
+   "bytes": 73778,
+   "sha256": "e8671e265aa5eca065e858500df10b79e667a3134dc1e216df2b54e75ec129f8",
    "rows": null
   },
   "code/claude-schools-20261021/tools/princeton_census.py": {
-   "bytes": 8305,
-   "sha256": "0320a7b93fc3fe7bc379e29957b82d30ded6929d39a9a76367cef7984c5f1daa",
+   "bytes": 8303,
+   "sha256": "d94212834ef75abe41f730aaee5f38dc7219ec480358ceeab5bfc5486c17c22c",
    "rows": null
   },
   "code/claude-schools-20261021/tools/school_profiles.py": {
@@ -2078,18 +2157,18 @@
    "rows": null
   },
   "code/princeton-live-20261015/scripts/build-cs-hierarchy.py": {
-   "bytes": 13694,
-   "sha256": "304a07fd7805b8434dad9d1741c14bcc87789eaa609dcb613e6cb5e46d8cf512",
+   "bytes": 18157,
+   "sha256": "9a2a4c9bb9ed08420353c8ec80ce4d013a0ce144f935f38239610a359d0c6315",
    "rows": null
   },
   "code/princeton-live-20261015/scripts/build-cs-scope.py": {
    "bytes": 21247,
-   "sha256": "9b4e35cce7a14162654689e5a6b4c9bf1bafac964a19439199f4468c581acbb8",
+   "sha256": "3f3343bd9830ae94150b1061f2d3dd7deb1e440ad8cb1280442d6d9d15c052a3",
    "rows": null
   },
   "code/princeton-live-20261015/scripts/cs_scope.py": {
-   "bytes": 12304,
-   "sha256": "6b6304675023ba2ff8746f4a6eb8cecadde93ea18efb988a4dcc1fe32162b1f8",
+   "bytes": 12314,
+   "sha256": "29cc3e3252717bfa5e954530ec5fb6be4d3266654ef1bd4999324b815e3d132b",
    "rows": null
   },
   "code/princeton-live-20261015/scripts/lazy_atlas.py": {
@@ -2098,8 +2177,8 @@
    "rows": null
   },
   "data/atlas/atlas_summary.json": {
-   "bytes": 86819,
-   "sha256": "7d9e1c3ea0f606a510f827cd1346b3edddc01d2738d5f3c471102aed140ee381",
+   "bytes": 85778,
+   "sha256": "621c2f9fba1a662fba9a386f58f8c75d571c3e62b86930701382b7283b302713",
    "rows": null
   },
   "data/atlas/metrics.json.gz": {
@@ -2133,13 +2212,13 @@
    "rows": 7504
   },
   "data/atlas/units.jsonl.gz": {
-   "bytes": 11426000,
-   "sha256": "b0a9d24cdfa2994a6a1f74023f3c41c4566f86eb591b97335423b2375277b27d",
+   "bytes": 11425894,
+   "sha256": "7745a91cbeabf78eaff2cd23610aff406319502cc07cecb59a565ac868eb23b6",
    "rows": 37060
   },
   "data/atlas/universities.jsonl.gz": {
-   "bytes": 121621,
-   "sha256": "b9ba1cd44ee6f3e60ca3e304ade226d233a71e6958489934feba3b0c59ace689",
+   "bytes": 121120,
+   "sha256": "4412f9bf618ecd54fae4d18268756252935495a6077f2e4d6054113988cc9cdc",
    "rows": 300
   },
   "data/atlas/works.jsonl.gz": {
@@ -2148,8 +2227,8 @@
    "rows": 131309
   },
   "data/schools/berkeley/build_report.json": {
-   "bytes": 8655,
-   "sha256": "1048ef9fc1118fd46cb2951a557da93713fde8e7c20be1e4d90bc2e1f1975988",
+   "bytes": 9171,
+   "sha256": "37079d54226358e4684b5e3b718e38f186171fd8f5f555e4acf4cf9334a73902",
    "rows": null
   },
   "data/schools/berkeley/excluded_pis.json": {
@@ -2158,29 +2237,29 @@
    "rows": null
   },
   "data/schools/berkeley/lab_papers.csv": {
-   "bytes": 5121103,
-   "sha256": "b4ed6f589801caf1aaf46740cbad91e2ec9e0a7eb2bec3332bd1114dac5b8bf1",
-   "rows": 15055
+   "bytes": 5301522,
+   "sha256": "d239a484e21599fd4623fd2c6fa75bfe42fb4a045c03248ddef79ea033e8d53d",
+   "rows": 15568
   },
   "data/schools/berkeley/lab_students.csv": {
-   "bytes": 844992,
-   "sha256": "5ce133b43797cb517ed450e5cb7cd3c8fc0ecb84dceaad7c93527b1673616b44",
-   "rows": 4353
+   "bytes": 858921,
+   "sha256": "c24a09c514515fcc3e18b80d75137e5ddc081291e257ff541b53a3ddddae8f84",
+   "rows": 4436
   },
   "data/schools/berkeley/papers.jsonl.gz": {
-   "bytes": 2817335,
-   "sha256": "e7880b8ce66393007f7b2540bf3efb1d1e79ee53f8a90a70736a98264bd293f3",
-   "rows": 12745
+   "bytes": 2937927,
+   "sha256": "f134b8372e6c165423010aed7e8183bf849adf57a2662b40e2b5cc95d387dc2e",
+   "rows": 13203
   },
   "data/schools/berkeley/pis.csv": {
-   "bytes": 64706,
-   "sha256": "d8355e9e0b5f3360ef623d1e511d5ccdfa43443e625f5976103d771ec0d74851",
-   "rows": 196
+   "bytes": 66884,
+   "sha256": "a0636345f086d5a2fab46d517cb4a0fdc20b8b2816678f3e3b7b83812c1f548a",
+   "rows": 203
   },
   "data/schools/berkeley/pis.jsonl.gz": {
-   "bytes": 87146,
-   "sha256": "c50fdaf42a87adf6a5ef96365ab422d111b88e840d18e48641affe85217e3048",
-   "rows": 196
+   "bytes": 92033,
+   "sha256": "7f5218053076251ccebe2583395e5b94cec179b4caf0ed8c299ebd47f7797ee0",
+   "rows": 203
   },
   "data/schools/berkeley/scope_review.json.gz": {
    "bytes": 30580,
@@ -2188,28 +2267,28 @@
    "rows": null
   },
   "data/schools/berkeley/student_papers.csv": {
-   "bytes": 3271288,
-   "sha256": "e281b2798db1e53fef5e68b3a8bc378633877dd5eaf6be71752cb727205f5da1",
-   "rows": 14286
+   "bytes": 3478660,
+   "sha256": "4c9a4165fce87da1fba934333a9632c02e65b4ec168e984ac93d4b1d0e42d1e1",
+   "rows": 15188
   },
   "data/schools/berkeley/student_papers.jsonl.gz": {
-   "bytes": 161848,
-   "sha256": "c402607451e613b426bb8449dbcf414b5e284ce0dae04eb89ff11eb3b5c3afcd",
-   "rows": 14286
+   "bytes": 170339,
+   "sha256": "ac29ba69e8c4e027c4f47385017fbfc750a84bec40738b9cfb51608e8bd42911",
+   "rows": 15188
   },
   "data/schools/berkeley/students.jsonl.gz": {
-   "bytes": 951727,
-   "sha256": "0dcac0582391c39e8bf67e38687bb6d4efa0e8b53084628bcc36045f67579efc",
-   "rows": 3769
+   "bytes": 964199,
+   "sha256": "369f15b3b1c76ece6eb7aa2e27ee51fb36b3407f9dd29e88af3028156bf8451c",
+   "rows": 3859
   },
   "data/schools/berkeley/zero_labs.json": {
-   "bytes": 1625,
-   "sha256": "64c6005d3faa92e0ab8a892737603ff0e1f26ac5cbc6f2879a391e0e868b9b98",
+   "bytes": 1117,
+   "sha256": "63aa7a370bd6ae666afaec02405ade07272a47c1602f40b54bc09bf4e7f66294",
    "rows": null
   },
   "data/schools/cmu/build_report.json": {
-   "bytes": 7340,
-   "sha256": "731d63f7427631d0256e78afd49afc7fc00797d57a83001b383bd34add8cd3aa",
+   "bytes": 8011,
+   "sha256": "9425183324a5d22f1696dcc81cee69f5af024a5e02bd3a076084648364de9ce7",
    "rows": null
   },
   "data/schools/cmu/excluded_pis.json": {
@@ -2218,28 +2297,28 @@
    "rows": null
   },
   "data/schools/cmu/lab_papers.csv": {
-   "bytes": 9554228,
-   "sha256": "6aedbf7488795a0c03a1ce1acf747056b3e6ef29e60fdec4f0d535869c400be1",
-   "rows": 30062
+   "bytes": 9599875,
+   "sha256": "980b3a9649cad05aa21a8b310c5cf46bb2b1f42afe9870a90dfd14f77abca19c",
+   "rows": 30214
   },
   "data/schools/cmu/lab_students.csv": {
-   "bytes": 1779859,
-   "sha256": "9bade70235e553eb9aa70af562a9bc6f7745518bd0b84795dc58dfd3567948e9",
-   "rows": 9388
+   "bytes": 1778992,
+   "sha256": "17aeead2b152243c50e5c12099d6883cb86fea2fc2d95135e3c0916adf49fd19",
+   "rows": 9387
   },
   "data/schools/cmu/papers.jsonl.gz": {
-   "bytes": 6380391,
-   "sha256": "4528c7f124cfcbbe4fc74714c8a6d13cc86bac3518b0cf62f39f8063b32eae87",
-   "rows": 24795
+   "bytes": 6407609,
+   "sha256": "243ac57d24a16cf3366ef5d25dc93049900a8f54d1e2d2d73edabd5f513ca3d1",
+   "rows": 24900
   },
   "data/schools/cmu/pis.csv": {
-   "bytes": 163709,
-   "sha256": "471b61596b778058d5c5d39e8a5d83647c476a315f0a1b17f0bf56572e3b5183",
+   "bytes": 163694,
+   "sha256": "d2d42396b46b0baa103184d53006665ef449effb201c50c109fec71023b2db22",
    "rows": 458
   },
   "data/schools/cmu/pis.jsonl.gz": {
-   "bytes": 430847,
-   "sha256": "717b008492edbc7ca6d58a579392105814ae46711843f1277aa4d3962d5b366e",
+   "bytes": 432340,
+   "sha256": "ad6dc08f24fc4560032363ce80c3c17c69d4e73126871c3201f6898734a2fe97",
    "rows": 458
   },
   "data/schools/cmu/scope_review.json.gz": {
@@ -2248,19 +2327,19 @@
    "rows": null
   },
   "data/schools/cmu/student_papers.csv": {
-   "bytes": 6063451,
-   "sha256": "a378df07cca385a5d30a08e88727cd59ac260324939764160f3471c50b54460f",
-   "rows": 27481
+   "bytes": 6141991,
+   "sha256": "3d69cb8ca3cd0a9bc6b17b51cf04e5632bac5b709e2f54b45401fbcd8bce96bd",
+   "rows": 27855
   },
   "data/schools/cmu/student_papers.jsonl.gz": {
-   "bytes": 582876,
-   "sha256": "071d810ebfcd4c4cc8d94e6666dc106d7174fbf5db7f7fce67bcb218d8215e1f",
-   "rows": 27481
+   "bytes": 588652,
+   "sha256": "726b9e8f01f64081b2668932af13975df00a47ad0461c7350a3efe3fd2099d68",
+   "rows": 27855
   },
   "data/schools/cmu/students.jsonl.gz": {
-   "bytes": 1972327,
-   "sha256": "f3de43e0b852ea73eb25993deab6baf016cfb32707822a760ef91208482bea3b",
-   "rows": 7667
+   "bytes": 1968226,
+   "sha256": "db5bfda0de2cd0534ebb4cda469599aeaa430e87921ee55040c8a8c515a0e175",
+   "rows": 7742
   },
   "data/schools/cmu/zero_labs.json": {
    "bytes": 1695,
@@ -2268,8 +2347,8 @@
    "rows": null
   },
   "data/schools/epfl/build_report.json": {
-   "bytes": 4060,
-   "sha256": "12340634431c3d794411ad128228cd5a481db10c46e327a3ff651818e52fae0d",
+   "bytes": 4341,
+   "sha256": "3eeb2579bfd6f03822ac817f44370212cef752b7b0ecdc036fccdd670ba5404c",
    "rows": null
   },
   "data/schools/epfl/excluded_pis.json": {
@@ -2278,28 +2357,28 @@
    "rows": null
   },
   "data/schools/epfl/lab_papers.csv": {
-   "bytes": 4939087,
-   "sha256": "f02168814b1de1077bc252fa566a1377aa7f8ea771af4886bacd4377190d3b76",
-   "rows": 13352
+   "bytes": 4940493,
+   "sha256": "917bfa147721d3cbea5ab3dc4602cc08c7e2b44e25ddaa7caa24188ea0f6ad3c",
+   "rows": 13357
   },
   "data/schools/epfl/lab_students.csv": {
-   "bytes": 987287,
-   "sha256": "4fdc9b50c1dd857f43bc165eec1218093951ffb8742fbb940d88d479cc75dd8a",
-   "rows": 4001
+   "bytes": 983956,
+   "sha256": "d9a9e6a0bb7ea654727b8ccdcaa4ace74e960e7f6e7c1c0ba793a33f011906f2",
+   "rows": 3986
   },
   "data/schools/epfl/papers.jsonl.gz": {
-   "bytes": 2971234,
-   "sha256": "9f71812775d82a488d4480f5d2d8307c9e914629bf6d0ccb031a9aeb44a79511",
-   "rows": 12568
+   "bytes": 2978020,
+   "sha256": "0415f3cfb051ed008c577dfb17abf6fa76994f4b8df5b38b72b7b89e996b887e",
+   "rows": 12618
   },
   "data/schools/epfl/pis.csv": {
    "bytes": 63267,
-   "sha256": "7e926876b41bdbf2c54b1ce601a248b451282c0fee739f6f2852cf25db37199c",
+   "sha256": "5cc9b26dfb5101f59d48a35102c38a48277077471a4ab89180be71711efa8d5b",
    "rows": 169
   },
   "data/schools/epfl/pis.jsonl.gz": {
-   "bytes": 153875,
-   "sha256": "ecf2e4b35fa41afa3f6279da18a83b531220af9a4d4ae88d995d84e4e56076d8",
+   "bytes": 153802,
+   "sha256": "972a4d2d88ca10e6e6ac1850b51f3735772f7822d2db68064e6fa1828748ef4b",
    "rows": 169
   },
   "data/schools/epfl/scope_review.json.gz": {
@@ -2308,19 +2387,19 @@
    "rows": null
   },
   "data/schools/epfl/student_papers.csv": {
-   "bytes": 3119374,
-   "sha256": "c51731049c950bd561a9327428118c3225dd377f23f470bed79b4091c64b6d2b",
-   "rows": 13498
+   "bytes": 3163921,
+   "sha256": "530ab09ab758eb01edbe0c28193cf70eb7b186791f137a6f011d7fbd7496cc0a",
+   "rows": 13691
   },
   "data/schools/epfl/student_papers.jsonl.gz": {
-   "bytes": 263643,
-   "sha256": "af0b0ce4d19f6bda78def3902d615a2edb03d7fc47c55ca6c9575a8e0403dae9",
-   "rows": 13498
+   "bytes": 265901,
+   "sha256": "6625a7a26218ed3fa4d31c2bb52f0097fc7ef948661dcf988e3e91bd62af63c0",
+   "rows": 13691
   },
   "data/schools/epfl/students.jsonl.gz": {
-   "bytes": 906064,
-   "sha256": "2adfc9870bc9593451b8cf849bb41b1f4b9741ae27cfa1d091c033be7a1b331d",
-   "rows": 3679
+   "bytes": 908188,
+   "sha256": "c79eaa47cb35a173bd9c786d3bd57b7b97202eb75e15cdc4f2a56eba67c09160",
+   "rows": 3682
   },
   "data/schools/epfl/zero_labs.json": {
    "bytes": 1790,
@@ -2328,39 +2407,39 @@
    "rows": null
   },
   "data/schools/mit/build_report.json": {
-   "bytes": 7459,
-   "sha256": "7b2f770522b43413c4de2619be7e6f96d34884beb71a3fbd4735cea1fbba17c2",
+   "bytes": 9405,
+   "sha256": "f1cef751a4498cf03faffb2ecf60d62e3545963dce41d0296f486f523ef2e3f5",
    "rows": null
   },
   "data/schools/mit/excluded_pis.json": {
-   "bytes": 5833,
-   "sha256": "95c012168e768d18b1a6921549299420024d44fa53b40673f8fe8dcd9808e619",
+   "bytes": 7497,
+   "sha256": "70d50ea3cfaf4d5b2828f1db6f2eb075e3c81bc5d0edc49ccc84c320612a27c1",
    "rows": null
   },
   "data/schools/mit/lab_papers.csv": {
-   "bytes": 7458033,
-   "sha256": "dace2ae4630d08aaf2f74cf195284700dd637125b57248e752415acfda87a26f",
-   "rows": 22064
+   "bytes": 7286408,
+   "sha256": "26e979a8affe7da45b4571a595b6838213a5aa559a246c2894f257f245580f60",
+   "rows": 21500
   },
   "data/schools/mit/lab_students.csv": {
-   "bytes": 2048948,
-   "sha256": "389626b6ff7177d7ed93417415608adf9ee6ce42dc86586219e27aba35894aad",
-   "rows": 7728
+   "bytes": 2029904,
+   "sha256": "96af0bd9edb8439d1eecd00d1c6ae4f83d51881f497222205a5d46be8be5c9d8",
+   "rows": 7666
   },
   "data/schools/mit/papers.jsonl.gz": {
-   "bytes": 4779640,
-   "sha256": "d4f0ec3a473b76fafa7a58c990222703fbcb95cc853988a3441bececb5ce5ac5",
-   "rows": 19735
+   "bytes": 4608191,
+   "sha256": "cafe1938bd5aea624ddc747705d3c772b3839d5293f2b47a4a41be7edceabf3e",
+   "rows": 19228
   },
   "data/schools/mit/pis.csv": {
-   "bytes": 110215,
-   "sha256": "2b916fe6d3c7d3697b8578d8a9862451a73fda9e91d7fc155e89e2759420d635",
-   "rows": 280
+   "bytes": 108894,
+   "sha256": "2c0f8de3cf8e40204e01dfbc87c9602f86af8a6b01079f894baa0843fd5b723c",
+   "rows": 277
   },
   "data/schools/mit/pis.jsonl.gz": {
-   "bytes": 272760,
-   "sha256": "e63389bb6af69cd2bbce9d4254beb5a8eb6d0c429e3de6437eb46d86276ce50c",
-   "rows": 280
+   "bytes": 272756,
+   "sha256": "329e1d3808a06e481ff24b66bfdf965863f6639a6ef1c2eafce3ddf99a75f583",
+   "rows": 277
   },
   "data/schools/mit/scope_review.json.gz": {
    "bytes": 76390,
@@ -2368,19 +2447,19 @@
    "rows": null
   },
   "data/schools/mit/student_papers.csv": {
-   "bytes": 4774475,
-   "sha256": "620988b77de7ad390793130c13768c4cd6194874ffbd98a245deda500d67d10f",
-   "rows": 20602
+   "bytes": 4789357,
+   "sha256": "f7ae4ba8f8e54bb0cd31ba4d8188008cdecb3aacf8badc5d87c1a462b6dd3376",
+   "rows": 20665
   },
   "data/schools/mit/student_papers.jsonl.gz": {
-   "bytes": 422134,
-   "sha256": "7359e56fda99c2e74799fae1241d30333102c1560272166e95ac62a3204a2790",
-   "rows": 20602
+   "bytes": 423686,
+   "sha256": "e447455ab7f89c35055379ff831c57efe48dfa7f8bd5ba5073661bef1159334c",
+   "rows": 20665
   },
   "data/schools/mit/students.jsonl.gz": {
-   "bytes": 1050291,
-   "sha256": "dffabb5fc918a77e0d54ee89c34888d5173f80a7fe1367233279265a42b113c0",
-   "rows": 6894
+   "bytes": 1048895,
+   "sha256": "ea4765d1eceee079d37baf602100dc187a8706b24eb2aaa4440cb953505aac59",
+   "rows": 7129
   },
   "data/schools/mit/zero_labs.json": {
    "bytes": 1635,
@@ -2388,8 +2467,8 @@
    "rows": null
   },
   "data/schools/princeton/build_report.json": {
-   "bytes": 2456,
-   "sha256": "818229f17d4421e34a0f633d9edd53526c3ac1d41ecbb496dc1e1b0187a86b7d",
+   "bytes": 35878,
+   "sha256": "7bedfc566db81af4da69f65ad9ac389c442f15ab01dda92c5f6bc7ebbce4675f",
    "rows": null
   },
   "data/schools/princeton/excluded_pis.json": {
@@ -2398,29 +2477,29 @@
    "rows": null
   },
   "data/schools/princeton/lab_papers.csv": {
-   "bytes": 2959904,
-   "sha256": "9d03345b57146c756e84fe92e78a6dbc09aac5f2dc79f4e63de20a894ed4a9f0",
-   "rows": 9080
+   "bytes": 2991541,
+   "sha256": "8445d5bb4b773be4c8d7fb495adfda92ddd2b64c07e409fbb4d0e4fde795b603",
+   "rows": 9179
   },
   "data/schools/princeton/lab_students.csv": {
-   "bytes": 814144,
-   "sha256": "02a121ac6388cf1234046c2b0650f20ce949b7a6beb8f2a8882c18ebfbaafeb2",
-   "rows": 3727
+   "bytes": 772431,
+   "sha256": "ea6ed65811412d5b1ad8ef7a268ecea6113ca892ab92bec9e72b51c99e804cee",
+   "rows": 3523
   },
   "data/schools/princeton/papers.jsonl.gz": {
-   "bytes": 1841660,
-   "sha256": "fc619b6b2bfaffc39bc929a7a9d92b2f9f2be0e80c5c8c38ec97d5b133469720",
-   "rows": 8314
+   "bytes": 1858374,
+   "sha256": "ab9d1a9c7e086aa600d2766c82318bbf03855e72377f3a7b1649e25cb5d83bff",
+   "rows": 8397
   },
   "data/schools/princeton/pis.csv": {
-   "bytes": 42923,
-   "sha256": "0b6e4f100fc12a4347141ab34cee6caf73190a663b25376918110487b97b2cb8",
-   "rows": 139
+   "bytes": 43181,
+   "sha256": "4cb958280f675580e7c083a5897e0b618cc2c1d705f6677cf49d39a493bd0e98",
+   "rows": 140
   },
   "data/schools/princeton/pis.jsonl.gz": {
-   "bytes": 86396,
-   "sha256": "b457e0fc0e73ca2f8425f5db5fc0ca5313d050744b0af10b8fb9106f5fa3aeaa",
-   "rows": 139
+   "bytes": 87211,
+   "sha256": "8471514944d8b623fa1a6793254b7bc8908bbbe48e16f8907708c71fe6680220",
+   "rows": 140
   },
   "data/schools/princeton/scope_review.json.gz": {
    "bytes": 36614,
@@ -2428,38 +2507,98 @@
    "rows": null
   },
   "data/schools/princeton/student_papers.csv": {
-   "bytes": 1581882,
-   "sha256": "adc2abc0045f8c24ca7e09d902b15dfcf0bf3199de664e34d2ce69797d295a13",
-   "rows": 6816
+   "bytes": 1641131,
+   "sha256": "424358f096b73bdd50f8463ff03f5b01c7b6f922d23bccf3c22810694ab2832e",
+   "rows": 7078
   },
   "data/schools/princeton/student_papers.jsonl.gz": {
-   "bytes": 151144,
-   "sha256": "edfc24c7a7f311b523a7cee2137d3f82ad7021ea7987da0a095ed4236ecfff80",
-   "rows": 6816
+   "bytes": 155939,
+   "sha256": "6e9b25bbb8d04f51eb66c98a54317f8d7df0f5185127b030a8bda2410332f3fc",
+   "rows": 7078
   },
   "data/schools/princeton/students.jsonl.gz": {
-   "bytes": 520450,
-   "sha256": "826f70fa64ef071231e95936ee281a27c5d2cbe5852cf1cabad18c9f3f37b362",
-   "rows": 3056
+   "bytes": 507042,
+   "sha256": "59befa5be368641cec4b3674407c36bd5dfbf97164018ab0380388fb5a758e93",
+   "rows": 3095
   },
   "data/schools/princeton/zero_labs.json": {
    "bytes": 2453,
-   "sha256": "5c01f91dd58a1a54cd33b24f696a9729038c1204c48f6382f8de745713d7292a",
+   "sha256": "4c51af5a2a2d8b3ee7676b1be51e78e49ec8c4129952f85beb8018bb243a2010",
    "rows": null
   },
   "data/schools/profiles.json": {
-   "bytes": 22323,
-   "sha256": "7bb553206b1928f19224680b6683dc48be91eb97a86eb9e9f979afa9da45b4b0",
+   "bytes": 26100,
+   "sha256": "85795d16fe42d380ccf7f356781c3281bf8610514e78b41388feee5a88ee784d",
+   "rows": null
+  },
+  "data/schools/stanford/build_report.json": {
+   "bytes": 94388,
+   "sha256": "f3f27901aa152ca0772c565b8324fc6792809a21b219940d5bc4a6105da788a1",
+   "rows": null
+  },
+  "data/schools/stanford/excluded_pis.json": {
+   "bytes": 1782,
+   "sha256": "378b317ce804ea6c8d0d00f59ed7623b9d6946c92fd601da5eb7c5aa5bcc895f",
+   "rows": null
+  },
+  "data/schools/stanford/lab_papers.csv": {
+   "bytes": 6356574,
+   "sha256": "3ffe0e2b1c574a2379842311a0715a56118342e841e39f8d57a0bbd2f6aff065",
+   "rows": 19869
+  },
+  "data/schools/stanford/lab_students.csv": {
+   "bytes": 674001,
+   "sha256": "03d6a3e02ebcd927845da33fcf80a7753665d54f8416b3a480987515c463ce06",
+   "rows": 3197
+  },
+  "data/schools/stanford/papers.jsonl.gz": {
+   "bytes": 4004218,
+   "sha256": "3b9e4da8611cc0ac8c7e2788fd21b7dca8aa7ee711183a57e6070948eef73ae4",
+   "rows": 17381
+  },
+  "data/schools/stanford/pis.csv": {
+   "bytes": 87147,
+   "sha256": "2670ae6d15f762d4be635643363f4d669b7fb482a813576b9d0d7fb0f91417f6",
+   "rows": 232
+  },
+  "data/schools/stanford/pis.jsonl.gz": {
+   "bytes": 108327,
+   "sha256": "a0b8a839634e6e21071d400274cf774ad846bce5f7c1d3ea9c6f044c474b06aa",
+   "rows": 232
+  },
+  "data/schools/stanford/scope_review.json.gz": {
+   "bytes": 47492,
+   "sha256": "89bf60a5b4baf059d37430698c209a4c4d0615b427c50227672ddc0e468285ce",
+   "rows": null
+  },
+  "data/schools/stanford/student_papers.csv": {
+   "bytes": 3637270,
+   "sha256": "4264de77581e10bea84f6d16a34cb90e96191e81e05a25fcb2249fe01af7b2b3",
+   "rows": 15436
+  },
+  "data/schools/stanford/student_papers.jsonl.gz": {
+   "bytes": 167733,
+   "sha256": "69bacde42257f697620635c85dbcaf9420f85fbf57e745aaae233a0ac85503f3",
+   "rows": 15436
+  },
+  "data/schools/stanford/students.jsonl.gz": {
+   "bytes": 867129,
+   "sha256": "1d71ed28f883faf918cf610ed2f70d93335bbb48991db49f57ef9211e321db93",
+   "rows": 2789
+  },
+  "data/schools/stanford/zero_labs.json": {
+   "bytes": 203,
+   "sha256": "1312fdc30d425643053d906d2fd47cc1de7bc1015824d4ef0dd94931dda72b2a",
    "rows": null
   },
   "data/schools/student_audit.json": {
-   "bytes": 308408,
-   "sha256": "3af1cc3598c19db71c53c1fe8ac023db9597dc834fa14f43ec7c8c86f5d7df29",
+   "bytes": 465300,
+   "sha256": "f6adcbd1336164f79ad54dc15edcab86df11b344a852a5a21eaf58b7373d0bfc",
    "rows": null
   },
   "docs/SCHOOL-PROFILES.md": {
-   "bytes": 13567,
-   "sha256": "7ab633f536ec61524054f2343274eeccb8b330a8d44a8372e3d2fa13ee276ad1",
+   "bytes": 15378,
+   "sha256": "339a572b421b7aa771c888fb75417ddf82374479a2701292e9061522b8d4f6e3",
    "rows": null
   }
  }

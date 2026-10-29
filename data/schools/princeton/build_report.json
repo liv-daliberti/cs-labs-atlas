@@ -1,53 +1,58 @@
 {
  "school": "princeton",
- "builtAt": "2026-10-27T16:36:08.374130Z",
+ "builtAt": "2026-10-29T00:19:43.954439Z",
  "counts": {
   "pis_excluded_by_review": 2,
-  "pis": 139,
-  "pis_without_person": 25,
+  "pis": 140,
+  "pis_without_person": 26,
   "labs_reused": 89,
-  "labs_new": 50,
+  "labs_new": 51,
   "student_names_cleaned": 3,
-  "student_records_merged": 289,
-  "student_ids_unified_across_labs": 57,
-  "pis_with_students": 139,
-  "students": 3056,
-  "lab_student_pairs": 3727,
+  "student_records_merged": 290,
+  "student_same_name_other_labs_unmerged": 47,
+  "pis_with_students": 140,
+  "students": 3095,
+  "lab_student_pairs": 3523,
   "dblp_ids_dropped_name_mismatch": 0,
   "pis_with_dblp_list": 41,
   "pis_with_own_publication_list": 0,
   "pis_with_lab_publication_page": 45,
-  "sweep_name_hits": 10485,
+  "other_pi_reviewed_ids_blocked": 30164,
+  "sweep_name_hits": 10489,
   "surname_only_hits_by_anchored_id": 9,
   "pi_work_list_hits": 6992,
   "hit_without_identity": 289,
-  "hit_without_school_affiliation": 7409,
-  "outside_appointment": 163,
-  "dblp_recovered_lab_papers": 75,
+  "hit_without_school_affiliation": 7288,
+  "outside_appointment": 168,
+  "school_via_advisee_coauthor": 122,
+  "dblp_recovered_lab_papers": 63,
   "dblp_recovered_outside_appointment": 4,
-  "edition_records_merged": 500,
-  "lab_papers": 9080,
-  "lab_papers_in_collection": 8857,
-  "lab_papers_new": 223,
-  "lab_papers_by_period": 5208,
-  "lab_papers_by_listing": 3872,
-  "identity:reviewed_openalex_author_id": 8855,
-  "identity:advisee_coauthor": 78,
-  "identity:lab_publication_page": 1,
+  "namesake_claims_dropped": 0,
+  "edition_records_merged": 505,
+  "lab_papers": 9179,
+  "lab_papers_in_collection": 8954,
+  "lab_papers_new": 225,
+  "lab_papers_by_period": 5296,
+  "lab_papers_by_listing": 3883,
+  "identity:reviewed_openalex_author_id": 8959,
+  "identity:advisee_coauthor": 83,
+  "identity:lab_publication_page": 3,
   "identity:dblp_person_page_doi": 6,
   "identity:pi_orcid": 27,
   "identity:dblp_verified_collection_work": 23,
   "identity:advisee_anchored_author_id": 9,
   "identity:anchored_author_id": 7,
   "identity:dblp_person_page_title": 1,
-  "identity:dblp_person_page": 73,
-  "student_paper_links": 6816,
-  "labs_with_student_papers": 131,
-  "student_link:byline_name_with_school_affiliation": 2699,
-  "student_link:collection_person_link": 3232,
-  "student_link:advisee_name_on_lab_paper_byline": 885,
-  "pis_with_lab_papers": 136,
-  "pis_complete_chain": 131
+  "identity:dblp_person_page": 61,
+  "students_dropped_program_or_reader_only": 204,
+  "student_paper_links": 7078,
+  "labs_with_student_papers": 132,
+  "student_link:byline_name_with_school_affiliation": 2814,
+  "student_link:collection_person_link": 3260,
+  "student_link:advisee_name_on_lab_paper_byline": 920,
+  "student_link:full_name_on_lab_paper_byline": 84,
+  "pis_with_lab_papers": 137,
+  "pis_complete_chain": 132
  },
  "excluded": [
   {
@@ -65,5 +70,1640 @@
   "Robert Schapire"
  ],
  "pisWithoutStudents": [],
- "censusNicknameMerges": []
+ "censusNicknameMerges": [],
+ "droppedProgramOrReaderOnly": [
+  {
+   "pi": "Aarti Gupta",
+   "student": "member_cs_structure_fbb5745e9a8a5ff93b86",
+   "name": "Joomy Korkut",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Aarti Gupta",
+   "student": "member_cs_7741fca455d879e126e5",
+   "name": "Marcelo Orenes-Vera",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Aarti Gupta",
+   "student": "member_88055e8f8bf9c78b44ce",
+   "name": "Rohan Prabhakar",
+   "roles": [
+    "Academic advising observation"
+   ]
+  },
+  {
+   "pi": "Aarti Gupta",
+   "student": "member_cs_structure_f257c10d2eb84fc2da58",
+   "name": "Ziyang Xu",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Adam Finkelstein",
+   "student": "member_cs_structure_a6b86c1f0b67f54a6d9b",
+   "name": "Zheng Shi",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Adam Finkelstein",
+   "student": "member_2174a0548516cf0096db",
+   "name": "Alejandro Newell",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Adam Finkelstein",
+   "student": "member_be8b81ea5e03d89373ac",
+   "name": "Hei Law",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Adam Finkelstein",
+   "student": "member_c50129016f5fe16a28c1",
+   "name": "Lahav Lipson",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Adam Finkelstein",
+   "student": "member_df4527d4de1768914052",
+   "name": "Zachary Teed",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Adji Bousso Dieng",
+   "student": "member_cs_structure_42b910e4db55c83df3e3",
+   "name": "Andrew Jones",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Aleksandra Korolova",
+   "student": "member_claude_a88028777d190c7bbe56",
+   "name": "Anunay Kulshrestha",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Amit Levy",
+   "student": "member_ed49575d670b1efb2fed",
+   "name": "Devon Loehr",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Andrew Appel",
+   "student": "member_cs_structure_f683eead4b0919d46586",
+   "name": "Shaowei Zhu",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Andrew Appel",
+   "student": "member_cs_structure_a55be4bb1d6af8a41c33",
+   "name": "Sotirios Apostolakis",
+   "roles": [
+    "Academic advising observation"
+   ]
+  },
+  {
+   "pi": "Anirudha Majumdar",
+   "student": "member_cs_structure_073e8f03488535330328",
+   "name": "Jimmy Wu",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Arvind Narayanan",
+   "student": "member_claude_8ce17e219c2abfa988d2",
+   "name": "Mona Wang",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Arvind Narayanan",
+   "student": "member_cs_structure_336a8ec1c9643c078caa",
+   "name": "Varun Nagaraj Rao",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Arvind Narayanan",
+   "student": "member_cs_structure_dc73d2c8b152d09ac47f",
+   "name": "Matheus Venturyne Xavier Ferreira",
+   "roles": [
+    "Academic advising observation"
+   ]
+  },
+  {
+   "pi": "Barbara Engelhardt",
+   "student": "member_986e5d57d38d2f3429f2",
+   "name": "Joshua Wetzel",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Barbara Engelhardt",
+   "student": "member_30445ccc8cd28f94da53",
+   "name": "Ruairidh McLennan Battleday",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Barbara Engelhardt",
+   "student": "member_cs_structure_8404e73e858505f2ec03",
+   "name": "Shilpa Nadimpalli Kobren",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Ben Raphael",
+   "student": "member_cs_structure_42b910e4db55c83df3e3",
+   "name": "Andrew Jones",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Ben Raphael",
+   "student": "member_cs_structure_8404e73e858505f2ec03",
+   "name": "Shilpa Nadimpalli Kobren",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Benjamin Eysenbach",
+   "student": "member_cs_structure_3280f12f590d2c547ede",
+   "name": "Shunyu Yao",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Benjamin Eysenbach",
+   "student": "member_cs_structure_cb57ac2cf4bed6b827cb",
+   "name": "Vishvak Saivenkat Murahari",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Benjamin Eysenbach",
+   "student": "member_c89196c1fa8b85a53488",
+   "name": "Samuel Barnett",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Benjamin Eysenbach",
+   "student": "member_8cdfc574300994997502",
+   "name": "Deniz Oktay",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Benjamin Eysenbach",
+   "student": "member_cs_structure_272860d6ec6d29469f6e",
+   "name": "Kurtland Chua",
+   "roles": [
+    "Academic advising observation"
+   ]
+  },
+  {
+   "pi": "Benjamin Eysenbach",
+   "student": "member_2eb7bb838e9fbe1e6663",
+   "name": "Nick Richardson",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Bernard Chazelle",
+   "student": "member_claude_e6d974f879e7d6a0b70a",
+   "name": "Manik Dhar",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Bernard Chazelle",
+   "student": "member_cs_structure_d4d37f496b8138115ec7",
+   "name": "Andrej Risteski",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Bernard Chazelle",
+   "student": "member_cs_structure_8ac5dcc9526a4c227fc7",
+   "name": "Corwin William Sinnamon",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Bernard Chazelle",
+   "student": "member_059360449b5f17064ade",
+   "name": "Uthsav Chitra",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Brian Kernighan",
+   "student": "member_cs_structure_a55be4bb1d6af8a41c33",
+   "name": "Sotirios Apostolakis",
+   "roles": [
+    "Academic advising observation"
+   ]
+  },
+  {
+   "pi": "Chi Jin",
+   "student": "member_7c532ec86d5f5ce8cb24",
+   "name": "Zhou Lu",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Chi Jin",
+   "student": "member_da7d0d01b16a1b56ebbb",
+   "name": "Dingli Yu",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Chi Jin",
+   "student": "member_cs_structure_039a8bb21f5004b86710",
+   "name": "Kaifeng Lyu",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Chi Jin",
+   "student": "member_71b94d39794c4cf18c72",
+   "name": "Nikunj Saunshi",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Chi Jin",
+   "student": "member_31c3108f55ef3719cba4",
+   "name": "Sadhika Malladi",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Dan Trueman",
+   "student": "member_cs_structure_083dfed042b7c0242f9f",
+   "name": "Reid Oda",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Danqi Chen",
+   "student": "member_347ca42c62e4788ceedf",
+   "name": "Ankit Goyal",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Danqi Chen",
+   "student": "member_2cd4dc928ccba6f92daf",
+   "name": "Mingzhe Wang",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Danqi Chen",
+   "student": "member_71b94d39794c4cf18c72",
+   "name": "Nikunj Saunshi",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Danqi Chen",
+   "student": "member_cs_structure_2207a948ef2eb073df11",
+   "name": "Zhiyuan Li",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "David Walker",
+   "student": "member_cs_structure_fbb5745e9a8a5ff93b86",
+   "name": "Joomy Korkut",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "David Walker",
+   "student": "member_217c99c0e19c5c5ed4e1",
+   "name": "Joshua Cohen",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "David Walker",
+   "student": "member_cs_hunt_e3db554194727fce01d1",
+   "name": "Sata Sengupta",
+   "roles": [
+    "Academic advising observation"
+   ]
+  },
+  {
+   "pi": "David Walker",
+   "student": "member_cs_hunt_978aca03533a5c7f61cc",
+   "name": "Nick Koh",
+   "roles": [
+    "Academic advising observation"
+   ]
+  },
+  {
+   "pi": "David Wentzlaff",
+   "student": "member_cs_structure_dcd2b62f8b3040d3b8b2",
+   "name": "Bhargav Reddy Godala",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "David Wentzlaff",
+   "student": "member_cs_structure_31fa07852c281729ef94",
+   "name": "Ishita Chaturvedi",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Elad Hazan",
+   "student": "member_cs_structure_d4d37f496b8138115ec7",
+   "name": "Andrej Risteski",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Elad Hazan",
+   "student": "member_da7d0d01b16a1b56ebbb",
+   "name": "Dingli Yu",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Elad Hazan",
+   "student": "member_cs_structure_1d41975a732a9e476e6f",
+   "name": "Haoyu Zhao",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Elad Hazan",
+   "student": "member_cs_structure_039a8bb21f5004b86710",
+   "name": "Kaifeng Lyu",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Elad Hazan",
+   "student": "member_cs_structure_272860d6ec6d29469f6e",
+   "name": "Kurtland Chua",
+   "roles": [
+    "Academic advising observation"
+   ]
+  },
+  {
+   "pi": "Ellen Zhong",
+   "student": "member_cs_structure_79f3336605c713c07aae",
+   "name": "Vikram Ramaswamy",
+   "roles": [
+    "Academic advising observation"
+   ]
+  },
+  {
+   "pi": "Ellen Zhong",
+   "student": "member_cs_structure_4d1ec300182517ecfac4",
+   "name": "Javed Muhammad Aman",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Ellen Zhong",
+   "student": "member_6c78da9d438bb7e490d0",
+   "name": "Ksenia Sokolova",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Ellen Zhong",
+   "student": "member_cs_structure_348fc8a10da2835739a4",
+   "name": "Xinhao Liu",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Ellen Zhong",
+   "student": "member_784010237b25668651d2",
+   "name": "Yuan Wang",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Felix Heide",
+   "student": "member_be8b81ea5e03d89373ac",
+   "name": "Hei Law",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Felix Heide",
+   "student": "member_cs_structure_dc5096b97d63302f790e",
+   "name": "Yunyun Wang",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Felix Heide",
+   "student": "member_df4527d4de1768914052",
+   "name": "Zachary Teed",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Felix Heide",
+   "student": "member_2e7e9acce6dc322782be",
+   "name": "Thomas Macrina",
+   "roles": [
+    "Academic advising observation"
+   ]
+  },
+  {
+   "pi": "Gillat Kol",
+   "student": "member_cs_structure_6d6747a75aba1a71c7d5",
+   "name": "Jiaxin Guan",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Gillat Kol",
+   "student": "member_cs_e03cfcd5880bb7e912d1",
+   "name": "Rafael Oliveira",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Huacheng Yu",
+   "student": "member_cs_structure_8dd426d4bdaa5a2c1408",
+   "name": "Linda Cai",
+   "roles": [
+    "Academic advising observation"
+   ]
+  },
+  {
+   "pi": "Jason Lee",
+   "student": "member_cs_structure_67b492ef096dd696081e",
+   "name": "Yi Zhang",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Jennifer Rexford",
+   "student": "member_cs_structure_4d29934bf27569acc3a3",
+   "name": "Qinshi Wang",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Jennifer Rexford",
+   "student": "member_claude_f331a6c6fc404b238442",
+   "name": "Steven Englehardt",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Jennifer Rexford",
+   "student": "member_7686f5510d19948cd90c",
+   "name": "Amy Tai",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Jennifer Rexford",
+   "student": "member_582bcbaa7ea707ef78a0",
+   "name": "Haoyu Zhang",
+   "roles": [
+    "Academic advising observation"
+   ]
+  },
+  {
+   "pi": "Jennifer Rexford",
+   "student": "member_904320a4b4c74d3cf83b",
+   "name": "Nick Giannarakis",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Jennifer Rexford",
+   "student": "member_92666d0aabc5f8a17490",
+   "name": "Zhuqi Li",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Jia Deng",
+   "student": "member_cs_structure_a2e3c072f4bc70fd7da9",
+   "name": "Fangyin Wei",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Jia Deng",
+   "student": "member_0a66169b28e3fdebcc0a",
+   "name": "Ethan Tseng",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Jia Deng",
+   "student": "member_claude_7635297a32f8d75a24eb",
+   "name": "Ilya Chugunov",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Jia Deng",
+   "student": "member_cs_structure_57cbf14b180a7be1f25a",
+   "name": "Sachin Ravi",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Jia Deng",
+   "student": "member_b68fb721fc37efffff08",
+   "name": "Yuting Yang",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Jia Deng",
+   "student": "member_d44bfa067883e87670cc",
+   "name": "Nicholas Turner",
+   "roles": [
+    "Academic advising observation"
+   ]
+  },
+  {
+   "pi": "Jialin Ding",
+   "student": "member_cs_structure_eb0b29e9e7c19c81f70b",
+   "name": "Dongsheng Yang",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Jonathan Mayer",
+   "student": "member_claude_d19df7b8d199bc4c3cbf",
+   "name": "Malte Moeser",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Kai Li",
+   "student": "member_cs_9f37b2e25c1620a90a96",
+   "name": "Wei Tang",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Kai Li",
+   "student": "member_7686f5510d19948cd90c",
+   "name": "Amy Tai",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Kai Li",
+   "student": "member_582bcbaa7ea707ef78a0",
+   "name": "Haoyu Zhang",
+   "roles": [
+    "Academic advising observation"
+   ]
+  },
+  {
+   "pi": "Kai Li",
+   "student": "member_1e78cc16a41fda124714",
+   "name": "Kathy Chen",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Kai Li",
+   "student": "member_6c78da9d438bb7e490d0",
+   "name": "Ksenia Sokolova",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Kai Li",
+   "student": "member_909813378b19c21055e1",
+   "name": "Matvey Arye",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Kai Li",
+   "student": "member_16da8f45886660b41c06",
+   "name": "Murali Ramanujam",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Karthik Narasimhan",
+   "student": "member_cs_structure_0aa3efc8caea0208d121",
+   "name": "Jiaqi Su",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Karthik Narasimhan",
+   "student": "member_2cd4dc928ccba6f92daf",
+   "name": "Mingzhe Wang",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Karthik Narasimhan",
+   "student": "member_6b1380758586790c4d4f",
+   "name": "Zexuan Zhong",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Karthik Narasimhan",
+   "student": "member_def2f993e7166cd2b51b",
+   "name": "Abhishek Panigrahi",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Karthik Narasimhan",
+   "student": "member_cs_structure_037ce1f45a9921467b1d",
+   "name": "Sergiy Popovych",
+   "roles": [
+    "Academic advising observation"
+   ]
+  },
+  {
+   "pi": "Karthik Narasimhan",
+   "student": "member_cs_structure_c37ecad6d09c3d27900d",
+   "name": "Seyed Sobhan Mir Yoosefi",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Karthik Narasimhan",
+   "student": "member_cs_structure_91a93212dd57d3b3363a",
+   "name": "Sinong Geng",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Karthik Narasimhan",
+   "student": "member_cs_structure_e676c2cdb54c7e37ee74",
+   "name": "Yuping Luo",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Kyle Jamieson",
+   "student": "member_582bcbaa7ea707ef78a0",
+   "name": "Haoyu Zhang",
+   "roles": [
+    "Academic advising observation"
+   ]
+  },
+  {
+   "pi": "Mae Milano",
+   "student": "member_cs_9a10f40ff44aaacfd739",
+   "name": "Divya Raghunathan",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Margaret Martonosi",
+   "student": "member_cs_structure_dcd2b62f8b3040d3b8b2",
+   "name": "Bhargav Reddy Godala",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Margaret Martonosi",
+   "student": "member_cs_structure_31fa07852c281729ef94",
+   "name": "Ishita Chaturvedi",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Margaret Martonosi",
+   "student": "member_2eb7bb838e9fbe1e6663",
+   "name": "Nick Richardson",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Margaret Martonosi",
+   "student": "member_64e4e8c40d9bb94299eb",
+   "name": "Sai Srikar Kasi",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Maria Apostolaki",
+   "student": "member_cs_9512cd6ddf21f06548a1",
+   "name": "Xiaoqi Chen",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Maria Apostolaki",
+   "student": "member_claude_f49138d477857aded7d4",
+   "name": "Yue Tan",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Maria Apostolaki",
+   "student": "member_cs_d0da8e35a341289ce204",
+   "name": "Yufei Zheng",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Maria Apostolaki",
+   "student": "member_4e14f0c59864df80524f",
+   "name": "Fan Yi",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Maria Apostolaki",
+   "student": "member_cs_c13edd19846d940f3fd1",
+   "name": "Mary Hogan",
+   "roles": [
+    "Academic advising observation"
+   ]
+  },
+  {
+   "pi": "Maria Apostolaki",
+   "student": "member_16da8f45886660b41c06",
+   "name": "Murali Ramanujam",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Mark Braverman",
+   "student": "member_656a620338b6fdfb2260",
+   "name": "Edgar Minasyan",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Mark Braverman",
+   "student": "member_9bb8bfbd28af40c2f01a",
+   "name": "Naman Agarwal",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Mark Braverman",
+   "student": "member_cs_e03cfcd5880bb7e912d1",
+   "name": "Rafael Oliveira",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Mark Braverman",
+   "student": "member_cs_d0da8e35a341289ce204",
+   "name": "Yufei Zheng",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Mark Braverman",
+   "student": "member_cs_structure_d4d37f496b8138115ec7",
+   "name": "Andrej Risteski",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Mark Braverman",
+   "student": "member_62e8177da8187ba1c86a",
+   "name": "Dmitry Paramonov",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Mark Braverman",
+   "student": "member_b7c675012ad9ad178f81",
+   "name": "Kritkorn Karntikoon",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Mark Braverman",
+   "student": "member_cs_structure_8dd426d4bdaa5a2c1408",
+   "name": "Linda Cai",
+   "roles": [
+    "Academic advising observation"
+   ]
+  },
+  {
+   "pi": "Mark Braverman",
+   "student": "member_93d9de0d73ecc8ad89e1",
+   "name": "Uma Girish",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Mark Braverman",
+   "student": "member_1972d07a5795c7564d68",
+   "name": "Wei Zhan",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Matthew Weinberg",
+   "student": "member_b7c675012ad9ad178f81",
+   "name": "Kritkorn Karntikoon",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Matthew Weinberg",
+   "student": "member_cs_structure_c37ecad6d09c3d27900d",
+   "name": "Seyed Sobhan Mir Yoosefi",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Mengdi Wang",
+   "student": "member_cs_structure_8decfa70855b6e193878",
+   "name": "Niranjani Prasad",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Michael Freedman",
+   "student": "member_cb298bd5460b49927536",
+   "name": "Christopher Hodsdon",
+   "roles": [
+    "Academic advising observation",
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Michael Freedman",
+   "student": "member_claude_28ea1f502feb8159b521",
+   "name": "Jeffrey Helt",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Michael Freedman",
+   "student": "member_00c8598377c84e0d27f2",
+   "name": "Sven Dorkenwald",
+   "roles": [
+    "Academic advising observation"
+   ]
+  },
+  {
+   "pi": "Mona Singh",
+   "student": "member_1e78cc16a41fda124714",
+   "name": "Kathy Chen",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Mona Singh",
+   "student": "member_a8494179eac457ae3628",
+   "name": "Matthew Myers",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Mona Singh",
+   "student": "member_784010237b25668651d2",
+   "name": "Yuan Wang",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Nick Feamster",
+   "student": "member_cs_c2a9fc95062bbdbc5c9a",
+   "name": "Ryan Beckett",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Olga Russakovsky",
+   "student": "member_cs_structure_a6b86c1f0b67f54a6d9b",
+   "name": "Zheng Shi",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Olga Russakovsky",
+   "student": "member_7bf25f2e9bf2367fb00d",
+   "name": "Diana Cai",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Olga Russakovsky",
+   "student": "member_claude_887404c03fab75e0bb8d",
+   "name": "Riley Simmons-Edler",
+   "roles": [
+    "Academic advising observation"
+   ]
+  },
+  {
+   "pi": "Olga Troyanskaya",
+   "student": "member_663d937ee4f206b19eba",
+   "name": "Daniel Suo",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Olga Troyanskaya",
+   "student": "member_cs_structure_8404e73e858505f2ec03",
+   "name": "Shilpa Nadimpalli Kobren",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Peter Henderson",
+   "student": "member_cs_structure_336a8ec1c9643c078caa",
+   "name": "Varun Nagaraj Rao",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Prateek Mittal",
+   "student": "member_claude_f331a6c6fc404b238442",
+   "name": "Steven Englehardt",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Pravesh Kothari",
+   "student": "member_cs_structure_7d64dc50a9b1b3565f3d",
+   "name": "Henri Schmidt",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Pravesh Kothari",
+   "student": "member_cs_hunt_978aca03533a5c7f61cc",
+   "name": "Nick Koh",
+   "roles": [
+    "Academic advising observation"
+   ]
+  },
+  {
+   "pi": "Ran Raz",
+   "student": "member_656a620338b6fdfb2260",
+   "name": "Edgar Minasyan",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Ran Raz",
+   "student": "member_cs_structure_6d6747a75aba1a71c7d5",
+   "name": "Jiaxin Guan",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Ran Raz",
+   "student": "member_cs_e03cfcd5880bb7e912d1",
+   "name": "Rafael Oliveira",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Ran Raz",
+   "student": "member_62e8177da8187ba1c86a",
+   "name": "Dmitry Paramonov",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Ran Raz",
+   "student": "member_cs_structure_dc73d2c8b152d09ac47f",
+   "name": "Matheus Venturyne Xavier Ferreira",
+   "roles": [
+    "Academic advising observation"
+   ]
+  },
+  {
+   "pi": "Ran Raz",
+   "student": "member_d186760aa33d04e393b4",
+   "name": "Zhijun Zhang",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Ravi Netravali",
+   "student": "member_cs_structure_eb0b29e9e7c19c81f70b",
+   "name": "Dongsheng Yang",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Ravi Netravali",
+   "student": "member_claude_cf5026a7f3a612c955ca",
+   "name": "Ashwini Raina",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Ravi Netravali",
+   "student": "member_4e14f0c59864df80524f",
+   "name": "Fan Yi",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Ravi Netravali",
+   "student": "member_cs_c13edd19846d940f3fd1",
+   "name": "Mary Hogan",
+   "roles": [
+    "Academic advising observation"
+   ]
+  },
+  {
+   "pi": "Ravi Netravali",
+   "student": "member_88055e8f8bf9c78b44ce",
+   "name": "Rohan Prabhakar",
+   "roles": [
+    "Academic advising observation"
+   ]
+  },
+  {
+   "pi": "Ravi Netravali",
+   "student": "member_92666d0aabc5f8a17490",
+   "name": "Zhuqi Li",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Ryan Adams",
+   "student": "member_663d937ee4f206b19eba",
+   "name": "Daniel Suo",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Ryan Adams",
+   "student": "member_cs_e1f5189e916a05202e83",
+   "name": "Zhenyu Song",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Ryan Adams",
+   "student": "member_5c81444304d5ade62b19",
+   "name": "Nataly Brukhim",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Ryan Adams",
+   "student": "member_ebdfb505500cdef9d374",
+   "name": "Udaya Ghai",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Ryan Adams",
+   "student": "member_cs_structure_79f3336605c713c07aae",
+   "name": "Vikram Ramaswamy",
+   "roles": [
+    "Academic advising observation"
+   ]
+  },
+  {
+   "pi": "Ryan Adams",
+   "student": "member_7c532ec86d5f5ce8cb24",
+   "name": "Zhou Lu",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Ryan Adams",
+   "student": "member_cs_structure_05834a52a88c311f9e64",
+   "name": "Arushi Gupta",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Ryan Adams",
+   "student": "member_cs_structure_55a2bf78fc9f2ee07f8e",
+   "name": "Donghun Lee",
+   "roles": [
+    "Academic advising as listed"
+   ]
+  },
+  {
+   "pi": "Ryan Adams",
+   "student": "member_claude_5b177cfe5d97be3ddf21",
+   "name": "Paul Krueger",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Ryan Adams",
+   "student": "member_063fb2bd5ed57861b36e",
+   "name": "Rachit Dubey",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Ryan Adams",
+   "student": "member_30445ccc8cd28f94da53",
+   "name": "Ruairidh McLennan Battleday",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Ryan Adams",
+   "student": "member_cs_structure_91a93212dd57d3b3363a",
+   "name": "Sinong Geng",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Ryan Adams",
+   "student": "member_e9f0e0d30e2bd02b2aca",
+   "name": "Ted Sumers",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Ryan Adams",
+   "student": "member_87a680f7fe32e1faddca",
+   "name": "Zoe Ashwood",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Sanjeev Arora",
+   "student": "member_cs_structure_d1ee3fc400a2722dbe3d",
+   "name": "Ameet Deshpande",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Sanjeev Arora",
+   "student": "member_cs_structure_59a413f9772ac3628aa9",
+   "name": "Carlos Jimenez",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Sanjeev Arora",
+   "student": "member_9bb8bfbd28af40c2f01a",
+   "name": "Naman Agarwal",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Sebastian Seung",
+   "student": "member_cs_structure_8decfa70855b6e193878",
+   "name": "Niranjani Prasad",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Szymon Rusinkiewicz",
+   "student": "member_claude_7635297a32f8d75a24eb",
+   "name": "Ilya Chugunov",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Szymon Rusinkiewicz",
+   "student": "member_347ca42c62e4788ceedf",
+   "name": "Ankit Goyal",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Szymon Rusinkiewicz",
+   "student": "member_c50129016f5fe16a28c1",
+   "name": "Lahav Lipson",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Szymon Rusinkiewicz",
+   "student": "member_cs_structure_2c0fc19901fb1c558fcc",
+   "name": "Pranay Manocha",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Szymon Rusinkiewicz",
+   "student": "member_cs_structure_dc5096b97d63302f790e",
+   "name": "Yunyun Wang",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Szymon Rusinkiewicz",
+   "student": "member_b68fb721fc37efffff08",
+   "name": "Yuting Yang",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Szymon Rusinkiewicz",
+   "student": "member_cs_structure_b209cb7ae6dfaae4d949",
+   "name": "Ari Seff",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Szymon Rusinkiewicz",
+   "student": "member_claude_887404c03fab75e0bb8d",
+   "name": "Riley Simmons-Edler",
+   "roles": [
+    "Academic advising observation"
+   ]
+  },
+  {
+   "pi": "Tom Griffiths",
+   "student": "member_87a680f7fe32e1faddca",
+   "name": "Zoe Ashwood",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Tri Dao",
+   "student": "member_cs_structure_5cb27665816ddd1ec635",
+   "name": "Tianyu Gao",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Wyatt Lloyd",
+   "student": "member_claude_f49138d477857aded7d4",
+   "name": "Yue Tan",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Wyatt Lloyd",
+   "student": "member_cs_7cd548ea5741bca3e6da",
+   "name": "Yushan Su",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Wyatt Lloyd",
+   "student": "member_31cc11a33e5645a14806",
+   "name": "Abhishek Kumar Singh",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Wyatt Lloyd",
+   "student": "member_claude_cf5026a7f3a612c955ca",
+   "name": "Ashwini Raina",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Wyatt Lloyd",
+   "student": "member_582bcbaa7ea707ef78a0",
+   "name": "Haoyu Zhang",
+   "roles": [
+    "Academic advising observation"
+   ]
+  },
+  {
+   "pi": "Wyatt Lloyd",
+   "student": "member_cs_structure_d8a7b081a04e98836d54",
+   "name": "Nanqinqin Li",
+   "roles": [
+    "Academic advising observation"
+   ]
+  },
+  {
+   "pi": "Wyatt Lloyd",
+   "student": "member_claude_0158dae5e09e72cc48e5",
+   "name": "Samuel Ginzburg",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Yasaman Ghasempour",
+   "student": "member_31cc11a33e5645a14806",
+   "name": "Abhishek Kumar Singh",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Yasaman Ghasempour",
+   "student": "member_64e4e8c40d9bb94299eb",
+   "name": "Sai Srikar Kasi",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Yuri Pritykin",
+   "student": "member_3304a52b18b8c5720518",
+   "name": "Alexander Strzalkowski",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Yuri Pritykin",
+   "student": "member_a8494179eac457ae3628",
+   "name": "Matthew Myers",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Yuri Pritykin",
+   "student": "member_059360449b5f17064ade",
+   "name": "Uthsav Chitra",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Yuri Pritykin",
+   "student": "member_cs_structure_348fc8a10da2835739a4",
+   "name": "Xinhao Liu",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Zachary Kincaid",
+   "student": "member_claude_28ea1f502feb8159b521",
+   "name": "Jeffrey Helt",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Zachary Kincaid",
+   "student": "member_217c99c0e19c5c5ed4e1",
+   "name": "Joshua Cohen",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Zachary Kincaid",
+   "student": "member_cs_structure_4d29934bf27569acc3a3",
+   "name": "Qinshi Wang",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Zachary Kincaid",
+   "student": "member_cs_99523845238504a9c801",
+   "name": "Yatin Manerkar",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Zachary Kincaid",
+   "student": "member_cs_9a10f40ff44aaacfd739",
+   "name": "Divya Raghunathan",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Zachary Kincaid",
+   "student": "member_cs_18d79e4ac8bf4d568b99",
+   "name": "Lauren Pick",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Robert Schapire",
+   "student": "member_5c81444304d5ade62b19",
+   "name": "Nataly Brukhim",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Yoram Singer",
+   "student": "member_00a3042f2666aae4b9bb",
+   "name": "Cyril Zhang",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Maria Chudnovsky",
+   "student": "member_cs_structure_8ac5dcc9526a4c227fc7",
+   "name": "Corwin William Sinnamon",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Peter J. Ramadge",
+   "student": "member_cs_structure_55a2bf78fc9f2ee07f8e",
+   "name": "Donghun Lee",
+   "roles": [
+    "Academic advising as listed"
+   ]
+  },
+  {
+   "pi": "Noga Alon",
+   "student": "member_claude_e6d974f879e7d6a0b70a",
+   "name": "Manik Dhar",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Naomi Ehrich Leonard",
+   "student": "member_ebdfb505500cdef9d374",
+   "name": "Udaya Ghai",
+   "roles": [
+    "Advising relationship"
+   ]
+  },
+  {
+   "pi": "Leeat Yariv",
+   "student": "member_cs_structure_8df2ee0af133f10964f3",
+   "name": "Clayton Hodges Thomas",
+   "roles": [
+    "Academic advising observation"
+   ]
+  }
+ ]
 }

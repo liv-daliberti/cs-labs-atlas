@@ -1,52 +1,58 @@
 {
  "school": "mit",
- "builtAt": "2026-10-27T16:44:07.169194Z",
+ "builtAt": "2026-10-29T00:52:55.009963Z",
  "counts": {
-  "pis_excluded_by_review": 18,
-  "pis": 280,
-  "pis_without_person": 124,
+  "pis_excluded_by_review": 24,
+  "pis": 277,
+  "pis_without_person": 121,
   "labs_reused": 51,
-  "labs_new": 229,
-  "student_names_cleaned": 393,
-  "student_records_merged": 1689,
-  "student_ids_unified_across_labs": 301,
-  "pis_with_students": 280,
-  "students": 6894,
-  "lab_student_pairs": 7728,
+  "labs_new": 226,
+  "pi_basis_advisees": 115,
+  "student_names_cleaned": 381,
+  "student_records_merged": 1716,
+  "student_same_name_other_labs_unmerged": 290,
+  "pis_with_students": 277,
+  "students": 7129,
+  "lab_student_pairs": 7666,
   "dblp_ids_dropped_name_mismatch": 3,
-  "pis_with_dblp_list": 223,
+  "pis_with_dblp_list": 224,
   "pis_with_own_publication_list": 0,
-  "pis_with_lab_publication_page": 53,
-  "sweep_name_hits": 27450,
+  "pis_with_lab_publication_page": 52,
+  "other_pi_reviewed_ids_blocked": 34500,
+  "sweep_name_hits": 26869,
   "surname_only_hits_by_anchored_id": 137,
-  "pi_work_list_hits": 6895,
-  "outside_appointment": 527,
-  "hit_without_school_affiliation": 9125,
-  "hit_without_identity": 1363,
-  "dblp_recovered_lab_papers": 324,
-  "edition_records_merged": 1013,
-  "lab_papers": 22064,
-  "lab_papers_in_collection": 13788,
-  "lab_papers_new": 8276,
-  "lab_papers_by_period": 16520,
-  "lab_papers_by_listing": 5544,
-  "identity:dblp_person_page_doi": 5399,
-  "identity:dblp_verified_collection_work": 1464,
-  "identity:reviewed_openalex_author_id": 8599,
-  "identity:anchored_author_id": 2519,
-  "identity:advisee_anchored_author_id": 570,
-  "identity:advisee_coauthor": 2671,
-  "identity:dblp_person_page_title": 489,
-  "identity:lab_publication_page": 40,
+  "pi_work_list_hits": 6779,
+  "outside_appointment": 607,
+  "hit_without_school_affiliation": 8832,
+  "hit_without_identity": 1415,
+  "school_via_advisee_coauthor": 209,
+  "dblp_recovered_lab_papers": 299,
+  "namesake_claims_dropped": 1,
+  "edition_records_merged": 1010,
+  "lab_papers": 21500,
+  "lab_papers_in_collection": 13669,
+  "lab_papers_new": 7831,
+  "lab_papers_by_period": 16591,
+  "lab_papers_by_listing": 4909,
+  "identity:dblp_person_page_doi": 5449,
+  "identity:dblp_verified_collection_work": 1502,
+  "identity:reviewed_openalex_author_id": 8462,
+  "identity:anchored_author_id": 2491,
+  "identity:advisee_anchored_author_id": 313,
+  "identity:advisee_coauthor": 2453,
+  "identity:dblp_person_page_title": 496,
+  "identity:lab_publication_page": 46,
   "identity:pi_orcid": 2,
-  "identity:dblp_person_page": 311,
-  "student_paper_links": 20602,
-  "labs_with_student_papers": 268,
-  "student_link:byline_name_with_school_affiliation": 16243,
-  "student_link:advisee_name_on_lab_paper_byline": 3843,
-  "student_link:collection_person_link": 516,
-  "pis_with_lab_papers": 278,
-  "pis_complete_chain": 268
+  "identity:dblp_person_page": 286,
+  "students_dropped_program_or_reader_only": 0,
+  "student_paper_links": 20665,
+  "labs_with_student_papers": 265,
+  "student_link:byline_name_with_school_affiliation": 16092,
+  "student_link:advisee_name_on_lab_paper_byline": 3808,
+  "student_link:collection_person_link": 503,
+  "student_link:full_name_on_lab_paper_byline": 262,
+  "pis_with_lab_papers": 275,
+  "pis_complete_chain": 265
  },
  "excluded": [
   {
@@ -118,8 +124,32 @@
    "why": "Researched: not a PI at the school in 2016-2026 (gap-evidence.json): Professor emeritus long before 2016; died 12 July 2019 (MIT News). No DSpace thesis 2016-2026 names him. DBLP c/FernandoJCorbato exists, but OpenAlex's only 2016+ MIT-affiliated work under his name (W"
   },
   {
+   "pi": "Jing Kong",
+   "why": "Owner 2026-10-28: PIs count when their research is in computing areas, even outside CS; reviewed: not a computing area: nanomaterials (carbon nanotubes, 2D materials); 0 of 305 lab papers in CS venues (Nano Letters, Advanced Materials, ACS Nano)."
+  },
+  {
+   "pi": "Sangeeta Bhatia",
+   "why": "Owner 2026-10-28: PIs count when their research is in computing areas, even outside CS; reviewed: not a computing area: tissue engineering and nanomedicine; 1% of 146 lab papers in CS venues (bioRxiv, Cancer Research, PNAS)."
+  },
+  {
+   "pi": "Jeffrey Shapiro",
+   "why": "Owner 2026-10-28: PIs count when their research is in computing areas, even outside CS; reviewed: not a computing area: quantum optics and quantum communication physics; 7% of 95 lab papers in CS venues (CLEO, Physical Review A, Optics Express)."
+  },
+  {
+   "pi": "Thomas Heldt",
+   "why": "Owner 2026-10-28: PIs count when their research is in computing areas, even outside CS; reviewed: not a computing area: physiological modeling and clinical monitoring; 3% of 68 lab papers in CS venues (IEEE TBME, Acta Neurochirurgica)."
+  },
+  {
+   "pi": "George Verghese",
+   "why": "Owner 2026-10-28: PIs count when their research is in computing areas, even outside CS; reviewed: not a computing area: physiological signal modeling and power systems; 0 of 37 lab papers in CS venues (biomedical journals)."
+  },
+  {
    "pi": "Sanjoy Mitter",
    "why": "Researched: not a PI at the school in 2016-2026 (gap-evidence.json): Professor of Electrical Engineering (post-tenure by 2023; b. 1933), LIDS. His own 'Theses Supervised' list (Wayback 2020-09-28) ends in 2012 (latest entries: Mukul Agarwal PhD 2012, Mesrob Ohannessian"
+  },
+  {
+   "pi": "Dennis Freeman",
+   "why": "Owner 2026-10-28: PIs count when their research is in computing areas, even outside CS; reviewed: not a computing area: auditory biophysics; 0 of 17 lab papers in CS venues (Biophysical Journal, JASA)."
   }
  ],
  "pisWithoutPapers": [
@@ -127,5 +157,6 @@
   "Michael Sipser"
  ],
  "pisWithoutStudents": [],
- "censusNicknameMerges": []
+ "censusNicknameMerges": [],
+ "droppedProgramOrReaderOnly": []
 }

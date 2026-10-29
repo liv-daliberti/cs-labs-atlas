@@ -114,3 +114,8 @@ SOURCES = {
                  "research scholars and are left out. No 2020-2025 Princeton dissertation or senior thesis in DataSpace names her."},
     ],
 }
+
+try:  # Stanford (gap 3, 2026-10-27): Profiles Wayback advisee lists + lab rosters, see lab_sources_stanford.py
+    from lab_sources_stanford import SOURCES as _STANFORD; SOURCES["stanford"] = _STANFORD  # noqa: E702
+except ImportError:
+    pass

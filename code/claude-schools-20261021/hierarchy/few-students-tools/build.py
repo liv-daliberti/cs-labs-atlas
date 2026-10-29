@@ -16,7 +16,7 @@ sys.path.insert(0, TOOLS)
 import fsev  # noqa: E402
 
 school = sys.argv[1]
-H = f"/n/fs/similarity/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/{school}"
+H = f"/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/{school}"
 inp = json.load(open(f"{H}/few-students-input.json"))
 mod = importlib.import_module(f"decisions_{school}")
 D = mod.D

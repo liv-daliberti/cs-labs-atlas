@@ -15,7 +15,7 @@ while [ ! -f raw/disk_guard.stop ]; do
       pkill -TERM -u "$(id -u)" -f "$pat" && echo "{\"stopped\": \"$pat\"}"
     done
     sleep 5
-    for pat in 'collector_wrapper.py --out /n/fs/similarity/homogenizing-science/data/fulltext' 'mit_collector_wrapper.py' 'collect_princeton_fulltext_expanded.py'; do
+    for pat in 'collector_wrapper.py --out /n/fs/resemble/homogenizing-science/data/fulltext' 'mit_collector_wrapper.py' 'collect_princeton_fulltext_expanded.py'; do
       pkill -TERM -u "$(id -u)" -f "$pat" && echo "{\"stopped\": \"$pat\"}"
     done
     touch raw/downloads_stopped_for_disk

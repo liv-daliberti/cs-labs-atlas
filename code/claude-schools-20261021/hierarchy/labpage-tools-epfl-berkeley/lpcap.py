@@ -33,7 +33,7 @@ from urllib.parse import urlsplit, urlencode, quote as urlquote
 
 import requests
 
-ROOT = "/n/fs/similarity/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy"
+ROOT = "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy"
 SCHOOLS = ("epfl", "berkeley")
 DBS = {s: f"{ROOT}/{s}/labpage-captures.sqlite" for s in SCHOOLS}
 SISTER = {s: [f"{ROOT}/{s}/gap-captures.sqlite", f"{ROOT}/{s}/few-students-captures.sqlite",
