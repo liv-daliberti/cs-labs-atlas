@@ -1,8 +1,9 @@
 {
  "school": "cmu",
- "builtAt": "2026-10-29T00:44:22.556358Z",
+ "builtAt": "2026-10-29T13:49:50.390491Z",
  "counts": {
   "census_rows_merged_by_nickname": 3,
+  "listing_years_after_move": 0,
   "listing_rows_not_faculty": 4,
   "pis_excluded_by_review": 17,
   "pis": 458,
@@ -13,49 +14,58 @@
   "student_names_cleaned": 48,
   "student_corrections_rename": 1,
   "student_corrections_drop": 1,
-  "student_records_merged": 455,
+  "student_records_merged": 456,
+  "pi_listed_as_own_student_dropped": 4,
   "student_same_name_other_labs_unmerged": 81,
   "pis_with_students": 458,
-  "students": 7742,
-  "lab_student_pairs": 9387,
+  "students": 7737,
+  "lab_student_pairs": 9382,
   "dblp_ids_dropped_name_mismatch": 1,
-  "pis_with_dblp_list": 417,
+  "dblp_dump_titles_added": 29478,
+  "pis_orcid_from_dblp": 211,
+  "dblp_ids_from_dump_name": 24,
+  "pis_with_dblp_list": 441,
   "pis_with_own_publication_list": 0,
   "pis_with_lab_publication_page": 201,
   "other_pi_reviewed_ids_blocked": 60781,
   "sweep_name_hits": 32703,
-  "surname_only_hits_by_anchored_id": 194,
-  "pi_work_list_hits": 21040,
-  "hit_without_school_affiliation": 21215,
-  "outside_appointment": 556,
-  "hit_without_identity": 552,
-  "school_via_advisee_coauthor": 247,
-  "dblp_recovered_lab_papers": 662,
+  "surname_only_hits_by_anchored_id": 195,
+  "pi_work_list_hits": 21039,
+  "hit_without_school_affiliation": 19390,
+  "outside_appointment": 606,
+  "hit_without_identity": 512,
+  "school_via_advisee_coauthor": 156,
+  "school_via_unaffiliated_byline_advisee": 1722,
+  "dblp_recovered_lab_papers": 597,
   "dblp_recovered_outside_appointment": 1,
   "namesake_claims_dropped": 0,
-  "edition_records_merged": 898,
-  "lab_papers": 30214,
-  "lab_papers_in_collection": 25787,
-  "lab_papers_new": 4427,
-  "lab_papers_by_period": 9335,
-  "lab_papers_by_listing": 20879,
-  "identity:dblp_person_page_doi": 9513,
-  "identity:advisee_anchored_author_id": 54,
-  "identity:dblp_verified_collection_work": 6314,
-  "identity:reviewed_openalex_author_id": 6264,
-  "identity:anchored_author_id": 4175,
-  "identity:dblp_person_page_title": 1012,
-  "identity:advisee_coauthor": 2109,
-  "identity:lab_publication_page": 66,
-  "identity:pi_orcid": 54,
-  "identity:dblp_person_page": 653,
+  "edition_records_merged": 949,
+  "lab_papers": 31724,
+  "lab_papers_in_collection": 26929,
+  "lab_papers_new": 4795,
+  "lab_papers_by_period": 9733,
+  "lab_papers_by_listing": 21991,
+  "identity:dblp_person_page_doi": 3715,
+  "identity:pi_orcid": 14649,
+  "identity:dblp_verified_collection_work": 1324,
+  "identity:reviewed_openalex_author_id": 6467,
+  "identity:dblp_person_page_title": 351,
+  "identity:anchored_author_id": 3917,
+  "identity:lab_publication_page": 35,
+  "identity:advisee_coauthor": 672,
+  "identity:advisee_anchored_author_id": 18,
+  "identity:dblp_person_page": 576,
+  "link_guard_kept_prefix_or_spelling_variant": 172,
+  "link_guard_removed_hyphenated_given": 39,
+  "link_guard_removed_different_full_given": 21,
   "students_dropped_program_or_reader_only": 2,
-  "student_paper_links": 27855,
+  "student_paper_links": 29388,
   "labs_with_student_papers": 445,
-  "student_link:collection_person_link": 13737,
-  "student_link:byline_name_with_school_affiliation": 10951,
-  "student_link:advisee_name_on_lab_paper_byline": 3015,
-  "student_link:full_name_on_lab_paper_byline": 152,
+  "student_link:collection_person_link": 14548,
+  "student_link:byline_name_with_school_affiliation": 10395,
+  "student_link:advisee_name_on_lab_paper_byline": 4151,
+  "student_link:within_lab_byline_match": 136,
+  "student_link:full_name_on_lab_paper_byline": 158,
   "pis_with_lab_papers": 456,
   "pis_complete_chain": 445
  },
@@ -164,6 +174,525 @@
    "roles": [
     "phd"
    ]
+  }
+ ],
+ "pisListedAsOwnStudent": [
+  {
+   "pi": "Christos Faloutsos",
+   "student": "cmu_person_lab_profile_16764bcdbc06a8eb529b",
+   "name": "Christos Faloutsos",
+   "roles": [
+    "faculty"
+   ]
+  },
+  {
+   "pi": "Jeff Ichnowski",
+   "student": "cmu_person_d0f246753567bd3624c4",
+   "name": "Jeffrey Ichnowski",
+   "roles": [
+    "faculty"
+   ]
+  },
+  {
+   "pi": "Carmel S Majidi",
+   "student": "cmu_person_ri_1505",
+   "name": "Carmel Majidi",
+   "roles": [
+    "faculty"
+   ]
+  },
+  {
+   "pi": "Aaron M Steinfeld",
+   "student": "cmu_person_ri_1292",
+   "name": "Aaron Steinfeld",
+   "roles": [
+    "faculty",
+    "staff"
+   ]
+  }
+ ],
+ "linkGuardSamples": [
+  {
+   "pi": "Marcel Bruchez",
+   "student": "Yi-Chia Wang",
+   "byline": "Yi Wang",
+   "oa": "https://openalex.org/W2263056748"
+  },
+  {
+   "pi": "Fernando De La Torre Frade",
+   "student": "Wen-hsuan Chu",
+   "byline": "Wen-Sheng Chu",
+   "oa": "https://openalex.org/W2396445702"
+  },
+  {
+   "pi": "Garth Gibson",
+   "student": "Seung Hyun Lee",
+   "byline": "Seunghak Lee",
+   "oa": "https://openalex.org/W2335835108"
+  },
+  {
+   "pi": "Marcel Bruchez",
+   "student": "Yi-Chia Wang",
+   "byline": "Yi Wang",
+   "oa": "https://openalex.org/W2347009463"
+  },
+  {
+   "pi": "Artur W. Dubrawski",
+   "student": "Xinyu (Rachel) Li",
+   "byline": "Xin Li",
+   "oa": "https://openalex.org/W2578736815"
+  },
+  {
+   "pi": "Marcel Bruchez",
+   "student": "Yi-Chia Wang",
+   "byline": "Yi Wang",
+   "oa": "https://openalex.org/W2405024335"
+  },
+  {
+   "pi": "Patrick Tague",
+   "student": "Xiao Wang",
+   "byline": "Xiaofeng Wang",
+   "oa": "https://openalex.org/W2751531621"
+  },
+  {
+   "pi": "Marcel Bruchez",
+   "student": "Yi-Chia Wang",
+   "byline": "Yi Wang",
+   "oa": "https://openalex.org/W2576331818"
+  },
+  {
+   "pi": "Garth Gibson",
+   "student": "Seung Hyun Lee",
+   "byline": "Lee, Seunghak",
+   "oa": "https://openalex.org/W1833917188"
+  },
+  {
+   "pi": "Min Xu",
+   "student": "Kai Wen Wang",
+   "byline": "Kaiwen Wang",
+   "oa": "https://openalex.org/W2963222567"
+  },
+  {
+   "pi": "Garth Gibson",
+   "student": "Seung Hyun Lee",
+   "byline": "Lee, Seunghak",
+   "oa": "https://openalex.org/W1652793671"
+  },
+  {
+   "pi": "Min Xu",
+   "student": "Kai Wen Wang",
+   "byline": "Kaiwen Wang",
+   "oa": "https://openalex.org/W2964322448"
+  },
+  {
+   "pi": "Min Xu",
+   "student": "Kai Wen Wang",
+   "byline": "Wang, Kaiwen",
+   "oa": "https://openalex.org/W2804850298"
+  },
+  {
+   "pi": "Marcel Bruchez",
+   "student": "Yi-Chia Wang",
+   "byline": "Yi Wang",
+   "oa": "https://openalex.org/W2884118790"
+  },
+  {
+   "pi": "Robert L. Pego",
+   "student": "Son Van",
+   "byline": "Truong-Son Van",
+   "oa": "https://openalex.org/W2785639097"
+  },
+  {
+   "pi": "Fernando De La Torre Frade",
+   "student": "Wen-hsuan Chu",
+   "byline": "Wen-Sheng Chu",
+   "oa": "https://openalex.org/W4252169744"
+  },
+  {
+   "pi": "Eric Xing",
+   "student": "Haohan Wang",
+   "byline": "Hao Wang",
+   "oa": "https://openalex.org/W2807352623"
+  },
+  {
+   "pi": "Min Xu",
+   "student": "Kai Wen Wang",
+   "byline": "Kaiwen Wang",
+   "oa": "https://openalex.org/W2931162162"
+  },
+  {
+   "pi": "Gary K. Fedder",
+   "student": "Yi-Ting Lin",
+   "byline": "Yi-Chung Lin",
+   "oa": "https://openalex.org/W2921888459"
+  },
+  {
+   "pi": "Gary K. Fedder",
+   "student": "Yi-Ting Lin",
+   "byline": "Yi-Chung Lin",
+   "oa": "https://openalex.org/W2980749113"
+  },
+  {
+   "pi": "Marcel Bruchez",
+   "student": "Yi-Chia Wang",
+   "byline": "Yi Wang",
+   "oa": "https://openalex.org/W2947186604"
+  },
+  {
+   "pi": "Marcel Bruchez",
+   "student": "Yi-Chia Wang",
+   "byline": "Yi Wang",
+   "oa": "https://openalex.org/W3046189678"
+  },
+  {
+   "pi": "Gary K. Fedder",
+   "student": "Yi-Ting Lin",
+   "byline": "Yi-Chung Lin",
+   "oa": "https://openalex.org/W3046191169"
+  },
+  {
+   "pi": "Eric Xing",
+   "student": "Hao Zhang",
+   "byline": "Zhang, Haoying",
+   "oa": "https://openalex.org/W3099750993"
+  },
+  {
+   "pi": "Gary K. Fedder",
+   "student": "Yi-Ting Lin",
+   "byline": "Yi Chung Lin",
+   "oa": "https://openalex.org/W3034571103"
+  },
+  {
+   "pi": "Maria Balcan",
+   "student": "Kai Wen-Wang",
+   "byline": "Wang, Kaiwen",
+   "oa": "https://openalex.org/W3115732756"
+  },
+  {
+   "pi": "Gary K. Fedder",
+   "student": "Yi-Ting Lin",
+   "byline": "Yi-Chung Lin",
+   "oa": "https://openalex.org/W3139471250"
+  },
+  {
+   "pi": "Gary K. Fedder",
+   "student": "Yi-Ting Lin",
+   "byline": "Yi-Chung Lin",
+   "oa": "https://openalex.org/W3139144419"
+  },
+  {
+   "pi": "Cleotilde Gonzalez",
+   "student": "Ngoc Nguyen",
+   "byline": "Thuy-Ngoc Nguyen",
+   "oa": "https://openalex.org/W4306700525"
+  },
+  {
+   "pi": "Elaine Shi",
+   "student": "Hao-Wei Chung",
+   "byline": "Chung, Hao",
+   "oa": "https://openalex.org/W4298182915"
+  },
+  {
+   "pi": "Elaine Shi",
+   "student": "Hao-Wei Chung",
+   "byline": "Hao Chung",
+   "oa": "https://openalex.org/W3211582955"
+  },
+  {
+   "pi": "Joshua S Sunshine",
+   "student": "Sang Choi",
+   "byline": "Sangheon Choi",
+   "oa": "https://openalex.org/W4389162022"
+  },
+  {
+   "pi": "Shinji Watanabe",
+   "student": "Li-Wei Chen",
+   "byline": "Li, Chen-An",
+   "oa": "https://openalex.org/W4376632801"
+  },
+  {
+   "pi": "Shinji Watanabe",
+   "student": "Chenda Li",
+   "byline": "Li, Chen-An",
+   "oa": "https://openalex.org/W4376632801"
+  },
+  {
+   "pi": "Elaine Shi",
+   "student": "Hao-Wei Chung",
+   "byline": "Chung, Hao",
+   "oa": "https://openalex.org/W4322716340"
+  },
+  {
+   "pi": "Shinji Watanabe",
+   "student": "Shih-Chuan Wang",
+   "byline": "Shih-Heng Wang",
+   "oa": "https://openalex.org/W4392902623"
+  },
+  {
+   "pi": "Elaine Shi",
+   "student": "Hao-Wei Chung",
+   "byline": "Hao Chung",
+   "oa": "https://openalex.org/W4391871487"
+  },
+  {
+   "pi": "Adam Perer",
+   "student": "Katie Robinson",
+   "byline": "Katherine-Marie Robinson",
+   "oa": "https://openalex.org/W4399363537"
+  },
+  {
+   "pi": "Michael Kaess",
+   "student": "Jui Te Huang",
+   "byline": "Hung-Jui Huang",
+   "oa": "https://openalex.org/W4404688137"
+  },
+  {
+   "pi": "Min Xu",
+   "student": "Haoran Chen",
+   "byline": "Hao Chen",
+   "oa": "https://openalex.org/W4415795802"
+  }
+ ],
+ "linkGuardKeptVariantSamples": [
+  {
+   "pi": "Vyas Sekar",
+   "student": "Antonios Manousis",
+   "byline": "Antonis Manousis",
+   "oa": "https://openalex.org/W2487095677"
+  },
+  {
+   "pi": "Mahadev Satyanarayanan",
+   "student": "Kirong Ha",
+   "byline": "Kiryong Ha",
+   "oa": "https://openalex.org/W2508388616"
+  },
+  {
+   "pi": "J. Andrew (Drew) Bagnell",
+   "student": "Katherina Muelling",
+   "byline": "Katharina Muelling",
+   "oa": "https://openalex.org/W2300987908"
+  },
+  {
+   "pi": "Robert E Kass",
+   "student": "Giuseppi Vinci",
+   "byline": "Giuseppe Vinci",
+   "oa": "https://openalex.org/W2302819739"
+  },
+  {
+   "pi": "Jessica Hammer",
+   "student": "Judeht Oden Choi",
+   "byline": "Judeth Oden Choi",
+   "oa": "https://openalex.org/W2530983154"
+  },
+  {
+   "pi": "Jaime Carbonell",
+   "student": "Ashique KhudaBukhsh",
+   "byline": "Ashiqur R. KhudaBukhsh",
+   "oa": "https://openalex.org/W2557754041"
+  },
+  {
+   "pi": "Anthony Rowe",
+   "student": "Max Buevich",
+   "byline": "Maxim Buevich",
+   "oa": "https://openalex.org/W4232261647"
+  },
+  {
+   "pi": "Cleotilde Gonzalez",
+   "student": "Prashnanth Rajivan",
+   "byline": "Prashanth Rajivan",
+   "oa": "https://openalex.org/W2520845243"
+  },
+  {
+   "pi": "Robert E Kass",
+   "student": "Pencheng Zhou",
+   "byline": "Pengcheng Zhou",
+   "oa": "https://openalex.org/W2397643408"
+  },
+  {
+   "pi": "Mahadev Satyanarayanan",
+   "student": "Kirong Ha",
+   "byline": "Kiryong Ha",
+   "oa": "https://openalex.org/W2766304518"
+  },
+  {
+   "pi": "J. Andrew (Drew) Bagnell",
+   "student": "Katherina Muelling",
+   "byline": "Katharina Muelling",
+   "oa": "https://openalex.org/W2588104504"
+  },
+  {
+   "pi": "Mahadev Satyanarayanan",
+   "student": "Kirong Ha",
+   "byline": "Kiryong Ha",
+   "oa": "https://openalex.org/W2766979722"
+  },
+  {
+   "pi": "Christos Faloutsos",
+   "student": "Dhiyva Eswaran",
+   "byline": "Dhivya Eswaran",
+   "oa": "https://openalex.org/W2584187726"
+  },
+  {
+   "pi": "Cleotilde Gonzalez",
+   "student": "Prashnanth Rajivan",
+   "byline": "Prashanth Rajivan",
+   "oa": "https://openalex.org/W2770511982"
+  },
+  {
+   "pi": "Marcel Bruchez",
+   "student": "Dmytrio Kolodieznyi",
+   "byline": "Dmytro Kolodieznyi",
+   "oa": "https://openalex.org/W2747121213"
+  },
+  {
+   "pi": "Jessica Hammer",
+   "student": "Judeht Oden Choi",
+   "byline": "Judeth Oden Choi",
+   "oa": "https://openalex.org/W2761409433"
+  },
+  {
+   "pi": "Marcel Bruchez",
+   "student": "Dmytrio Kolodieznyi",
+   "byline": "Dmytro Kolodieznyi",
+   "oa": "https://openalex.org/W2766624035"
+  },
+  {
+   "pi": "Christos Faloutsos",
+   "student": "Dhiyva Eswaran",
+   "byline": "Dhivya Eswaran",
+   "oa": "https://openalex.org/W2606651658"
+  },
+  {
+   "pi": "Jaime Carbonell",
+   "student": "Ashique KhudaBukhsh",
+   "byline": "Ashiqur R. KhudaBukhsh",
+   "oa": "https://openalex.org/W2654140798"
+  },
+  {
+   "pi": "Robert F Murphy",
+   "student": "Xiongtao Ruan",
+   "byline": "Xiangtao Ruan",
+   "oa": "https://openalex.org/W2592535523"
+  },
+  {
+   "pi": "Jaime Carbonell",
+   "student": "Ashique KhudaBukhsh",
+   "byline": "Ashiqur R. KhudaBukhsh",
+   "oa": "https://openalex.org/W3023065653"
+  },
+  {
+   "pi": "Christos Faloutsos",
+   "student": "Dhiyva Eswaran",
+   "byline": "Eswaran, Dhivya",
+   "oa": "https://openalex.org/W2765322193"
+  },
+  {
+   "pi": "Christos Faloutsos",
+   "student": "Dhiyva Eswaran",
+   "byline": "Dhivya Eswaran",
+   "oa": "https://openalex.org/W2809409545"
+  },
+  {
+   "pi": "Cleotilde Gonzalez",
+   "student": "Prashnanth Rajivan",
+   "byline": "Prashanth Rajivan",
+   "oa": "https://openalex.org/W2788827950"
+  },
+  {
+   "pi": "Cleotilde Gonzalez",
+   "student": "Prashnanth Rajivan",
+   "byline": "Prashanth Rajivan",
+   "oa": "https://openalex.org/W2805519569"
+  },
+  {
+   "pi": "Christos Faloutsos",
+   "student": "Dhiyva Eswaran",
+   "byline": "Dhivya Eswaran",
+   "oa": "https://openalex.org/W2906694449"
+  },
+  {
+   "pi": "Laura Dabbish",
+   "student": "Joanna Lo",
+   "byline": "Joanne Lo",
+   "oa": "https://openalex.org/W2795776492"
+  },
+  {
+   "pi": "Marcel Bruchez",
+   "student": "Dmytrio Kolodieznyi",
+   "byline": "Dmytro Kolodieznyi",
+   "oa": "https://openalex.org/W2903644795"
+  },
+  {
+   "pi": "Robert E Kass",
+   "student": "Giuseppi Vinci",
+   "byline": "Giuseppe Vinci",
+   "oa": "https://openalex.org/W2884403716"
+  },
+  {
+   "pi": "Jaime Carbonell",
+   "student": "Ashique KhudaBukhsh",
+   "byline": "Ashiqur R. KhudaBukhsh",
+   "oa": "https://openalex.org/W2899275658"
+  },
+  {
+   "pi": "Christos Faloutsos",
+   "student": "Dhiyva Eswaran",
+   "byline": "Dhivya Eswaran",
+   "oa": "https://openalex.org/W2896525927"
+  },
+  {
+   "pi": "Robert E Kass",
+   "student": "Giuseppi Vinci",
+   "byline": "Giuseppe Vinci",
+   "oa": "https://openalex.org/W2890992780"
+  },
+  {
+   "pi": "Cleotilde Gonzalez",
+   "student": "German Lenin Dugarte Pena",
+   "byline": "Dugarte-Peña, German-Lenin",
+   "oa": "https://openalex.org/W2928652416"
+  },
+  {
+   "pi": "Jaime Carbonell",
+   "student": "Ashique KhudaBukhsh",
+   "byline": "Ashiqur R. KhudaBukhsh",
+   "oa": "https://openalex.org/W2895552265"
+  },
+  {
+   "pi": "Robert E Kass",
+   "student": "Giuseppi Vinci",
+   "byline": "Giuseppe Vinci",
+   "oa": "https://openalex.org/W2940070896"
+  },
+  {
+   "pi": "Jaime Carbonell",
+   "student": "Ashique KhudaBukhsh",
+   "byline": "Ashiqur R. KhudaBukhsh",
+   "oa": "https://openalex.org/W7124313276"
+  },
+  {
+   "pi": "Ariel Procaccia",
+   "student": "Alex Psomas",
+   "byline": "Alexandros Psomas",
+   "oa": "https://openalex.org/W2982915530"
+  },
+  {
+   "pi": "Marcel Bruchez",
+   "student": "Dmytrio Kolodieznyi",
+   "byline": "Dmytro Kolodieznyi",
+   "oa": "https://openalex.org/W2970588504"
+  },
+  {
+   "pi": "Zico Kolter",
+   "student": "Guarav Manek",
+   "byline": "Gaurav Manek",
+   "oa": "https://openalex.org/W2970362693"
+  },
+  {
+   "pi": "Christos Faloutsos",
+   "student": "Dhiyva Eswaran",
+   "byline": "Dhivya Eswaran",
+   "oa": "https://openalex.org/W2910965336"
   }
  ]
 }

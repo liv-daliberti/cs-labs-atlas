@@ -10,6 +10,11 @@ year before their recorded advising to three years after it. Then:
   with_pi_outside_appointment  every such work with the PI falls outside the PI's evidenced appointment at the school
                          (no reviewed period and no same-year listing covers its date) or is not a paper (dataset,
                          abstract, erratum): the builder's rules exclude it, a reason, not a gap
+  with_pi_at_other_institution  every such work is excluded as above or, for at least one of them, the PI's own
+                         authorship names another institution and not the school, and the paper's first page
+                         (pi-works.sqlite) does not tie the school to the PI (2026-10-29): written before the PI's
+                         appointment, after it, or on leave elsewhere (Berg-Kirkpatrick at UCSD, Mankoff and Dey at UW,
+                         Ghassemi at Toronto); the lab-paper rule (a) excludes it, a reason, not a gap
   publishes_without_pi   school works in their years, none with this PI (other advisers, co-advised, other groups);
                          the census PIs on those bylines are listed
   no_school_work         no school-affiliated work under their name in their years
@@ -19,11 +24,11 @@ The first two are work to do; the others are reasons. Evidence: OpenAlex work id
 -> hierarchy/<school>/link-diagnosis.json {summary, students: {"<pi> | <student id>": {category, works, pis_seen}}}
 usage: link_diagnosis.py <school> ...
 """
-import collections, gzip, json, re, sys, unicodedata
+import collections, gzip, json, re, sqlite3, sys, unicodedata
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
-from pi_hierarchy import sweep_works, contains, same_year, NOT_PAPERS, TODAY  # noqa: E402
+from pi_hierarchy import sweep_works, contains, same_year, NOT_PAPERS, TODAY, INST, AFF  # noqa: E402
 
 HERE = Path(__file__).resolve().parents[1]; H = HERE / 'hierarchy'
 SCHOOL_IDS = {}  # filled from the PIs' lab papers: the institution ids their school authorships carry
@@ -36,10 +41,25 @@ def words(s):
     return [w for w in re.split(r'[^a-z]+', s) if w]
 
 
+def first_given(s):
+    """The first given name as written, hyphen parts joined: 'Po-Ta Chen' -> 'pota', 'Chen, Po-Hsuan' -> 'pohsuan'."""
+    s = unicodedata.normalize('NFKD', str(s or '')).encode('ascii', 'ignore').decode().lower()
+    if ',' in s:
+        a, b = s.split(',', 1); s = f'{b} {a}'
+    w = [re.sub(r'[^a-z]', '', t) for t in re.split(r'[\s.]+', s)]
+    w = [t for t in w if t]
+    return w[0] if w else ''
+
+
 def compatible(student, raw):
-    """Same family name; the first given name equal, or an initial standing for it (either side)."""
+    """Same family name; the first given name equal, or an initial standing for it (either side). Hyphenated given names
+    count whole (2026-10-29, the builder's given-name guard): 'Po-Ta Chen' is not 'Po-Hsuan Chen', 'Yi-Chia Wang' is
+    not 'Yi Wang'."""
     s, r = words(student), words(raw)
     if len(s) < 2 or len(r) < 2 or s[-1] != r[-1]:
+        return False
+    fa, fb = first_given(student), first_given(raw)
+    if len(fa) > 1 and len(fb) > 1 and fa != fb and ('-' in student.split(',')[-1] or '-' in raw.split(',')[-1]):
         return False
     a, b = s[0], r[0]
     if a == b or ''.join(s[:-1]) == ''.join(r[:-1]):
@@ -63,12 +83,25 @@ def run(school):
                 lab[r['pi']].add(o)
     open_items = A['checks']['links']['unexplained']
     fams = {words(x['student'])[-1] for x in open_items if words(x['student'])}
+    inst, aff = 'https://openalex.org/' + INST[school], re.compile(AFF[school], re.I)
+    pw = H / school / 'pi-works.sqlite'
+    tied = {r[0] for r in sqlite3.connect(f'file:{pw}?mode=ro', uri=True).execute('select work from pages where school_named=1')} if pw.exists() else set()
+
+    def where(a):
+        """'school' when the authorship names the school, 'elsewhere' when it names only other institutions, else 'none'."""
+        if any(inst == i.get('id') or inst in (i.get('lineage') or []) for i in a.get('institutions') or []) or any(aff.search(z) for z in a.get('raw_affiliation_strings') or []):
+            return 'school'
+        return 'elsewhere' if a.get('institutions') else 'none'
     # index the sweep's school-affiliated authorships by family name (only the families we need)
     idx = collections.defaultdict(list)
     for w in sweep_works(school):
         y = w.get('publication_year')
         auth = w.get('authorships') or []
         ids_on = {(a.get('author') or {}).get('id') for a in auth}
+        pi_where = {}
+        for a in auth:
+            for k_ in id_to_pi.get((a.get('author') or {}).get('id'), ()):
+                pi_where.setdefault(k_, where(a))
         for a in auth:
             raw = a.get('raw_author_name') or (a.get('author') or {}).get('display_name')
             ww = words(raw)
@@ -77,7 +110,8 @@ def run(school):
             if not a.get('institutions'):
                 continue
             idx[ww[-1]].append(dict(work=w['id'], title=(w.get('title') or '')[:120], year=y, raw=raw, type=w.get('type'),
-                                    date=w.get('publication_date') or str(y or ''), aid=(a.get('author') or {}).get('id'), coauthor_ids=ids_on))
+                                    date=w.get('publication_date') or str(y or ''), aid=(a.get('author') or {}).get('id'), coauthor_ids=ids_on,
+                                    pi_where=pi_where, tied=w['id'] in tied))
     out, summary = {}, collections.Counter()
     for x in open_items:
         ys = x.get('years')
@@ -91,6 +125,8 @@ def run(school):
         def excluded(c):  # why the builder rightly left a work with the PI out of the lab's papers, or None
             if c.get('type') in NOT_PAPERS or c.get('type') in ('conference-abstract',):
                 return 'not_a_paper'
+            if c['pi_where'].get(pi) == 'elsewhere' and not c['tied']:
+                return 'pi_affiliated_elsewhere'
             p = pis.get(pi) or {}
             if any(contains(q.get('start'), q.get('end'), c['date'], q.get('asof') or TODAY) == 'supported' for q in p.get('periods') or []):
                 return None
@@ -98,7 +134,7 @@ def run(school):
         if mine:
             cat = 'link_missed'
         elif with_pi and all(excluded(c) for c in with_pi):
-            cat = 'with_pi_outside_appointment'
+            cat = 'with_pi_at_other_institution' if any(excluded(c) == 'pi_affiliated_elsewhere' for c in with_pi) else 'with_pi_outside_appointment'
         elif with_pi:
             cat = 'paper_not_lab_paper'
         elif not cand:
@@ -111,7 +147,8 @@ def run(school):
         seen = collections.Counter(p for c in cand for a in c['coauthor_ids'] for p in id_to_pi.get(a, ()) if p != pi)
         ev = (mine or with_pi or cand)[:5]
         out[f"{pi} | {x.get('id')}"] = dict(pi=pi, student=x['student'], id=x.get('id'), roles=x.get('roles'), years=ys, category=cat,
-                                            works=[dict(oa=c['work'], year=c['year'], title=c['title'], byline_name=c['raw'], type=c.get('type'), excluded=c.get('excluded')) for c in ev],
+                                            works=[dict(oa=c['work'], year=c['year'], title=c['title'], byline_name=c['raw'], type=c.get('type'), excluded=c.get('excluded'),
+                                                        pi_affiliation=c.get('pi_where', {}).get(pi)) for c in ev],
                                             n_school_works=len({c['work'] for c in cand}), distinct_author_ids=len(authors),
                                             pis_seen=[p for p, _ in seen.most_common(3)])
         summary[cat] += 1

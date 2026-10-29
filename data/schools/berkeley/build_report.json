@@ -1,60 +1,70 @@
 {
  "school": "berkeley",
- "builtAt": "2026-10-29T00:24:52.794487Z",
+ "builtAt": "2026-10-29T14:06:54.440740Z",
  "counts": {
   "census_rows_merged_by_nickname": 2,
+  "listing_years_after_move": 0,
   "pis_excluded_by_review": 22,
-  "pis": 203,
-  "pis_without_person": 83,
+  "pis": 209,
+  "pis_without_person": 89,
   "labs_reused": 111,
-  "labs_new": 92,
+  "labs_new": 98,
   "student_names_cleaned": 19,
   "student_corrections_replace_sources": 1,
   "student_records_merged": 73,
+  "pi_listed_as_own_student_dropped": 0,
   "student_same_name_other_labs_unmerged": 13,
-  "pis_with_students": 203,
-  "students": 3859,
-  "lab_student_pairs": 4436,
+  "pis_with_students": 208,
+  "students": 3874,
+  "lab_student_pairs": 4452,
   "dblp_ids_dropped_name_mismatch": 0,
-  "pis_with_dblp_list": 166,
+  "dblp_dump_titles_added": 18900,
+  "pis_orcid_from_dblp": 79,
+  "dblp_ids_from_dump_name": 27,
+  "pis_with_dblp_list": 199,
   "pis_with_own_publication_list": 104,
   "pis_with_lab_publication_page": 54,
-  "other_pi_reviewed_ids_blocked": 22837,
-  "sweep_name_hits": 16815,
+  "other_pi_reviewed_ids_blocked": 23510,
+  "sweep_name_hits": 16985,
   "surname_only_hits_by_anchored_id": 73,
-  "pi_work_list_hits": 7872,
-  "hit_without_school_affiliation": 7922,
-  "hit_without_identity": 410,
-  "outside_appointment": 325,
-  "school_via_advisee_coauthor": 155,
+  "pi_work_list_hits": 7829,
+  "hit_without_school_affiliation": 6779,
+  "hit_without_identity": 379,
+  "outside_appointment": 418,
+  "school_via_advisee_coauthor": 106,
+  "school_via_unaffiliated_byline_advisee": 1130,
   "dblp_recovered_lab_papers": 342,
-  "labpage_recovered_lab_papers": 30,
+  "labpage_recovered_lab_papers": 25,
   "namesake_claims_dropped": 0,
-  "edition_records_merged": 907,
-  "lab_papers": 15568,
+  "edition_records_merged": 1070,
+  "lab_papers": 16604,
   "lab_papers_in_collection": 0,
-  "lab_papers_new": 15568,
-  "lab_papers_by_period": 7503,
-  "lab_papers_by_listing": 8065,
-  "identity:dblp_person_page_doi": 5288,
-  "identity:reviewed_openalex_author_id": 6391,
-  "identity:dblp_person_page_title": 525,
-  "identity:advisee_coauthor": 1162,
-  "identity:anchored_author_id": 1710,
-  "identity:pi_institutional_publication_list": 52,
-  "identity:pi_orcid": 54,
-  "identity:lab_publication_page": 31,
-  "identity:advisee_anchored_author_id": 7,
-  "identity:dblp_person_page": 318,
-  "identity:labpage_listing": 30,
+  "lab_papers_new": 16604,
+  "lab_papers_by_period": 7958,
+  "lab_papers_by_listing": 8646,
+  "identity:pi_orcid": 5862,
+  "identity:reviewed_openalex_author_id": 6629,
+  "identity:advisee_coauthor": 518,
+  "identity:dblp_person_page_doi": 1036,
+  "identity:anchored_author_id": 2077,
+  "identity:pi_institutional_publication_list": 24,
+  "identity:dblp_person_page_title": 135,
+  "identity:lab_publication_page": 27,
+  "identity:dblp_person_page": 270,
+  "identity:labpage_listing": 25,
+  "identity:advisee_anchored_author_id": 1,
+  "link_guard_removed_hyphenated_given": 16,
+  "link_guard_removed_different_full_given": 6,
+  "link_guard_kept_prefix_or_spelling_variant": 31,
   "students_dropped_program_or_reader_only": 2,
-  "student_paper_links": 15188,
-  "labs_with_student_papers": 190,
-  "student_link:byline_name_with_school_affiliation": 11609,
-  "student_link:advisee_name_on_lab_paper_byline": 3304,
-  "student_link:full_name_on_lab_paper_byline": 275,
-  "pis_with_lab_papers": 202,
-  "pis_complete_chain": 190
+  "student_paper_links": 16802,
+  "labs_with_student_papers": 196,
+  "student_link:byline_name_with_school_affiliation": 11716,
+  "student_link:advisee_name_on_lab_paper_byline": 4764,
+  "student_link:within_lab_byline_match": 23,
+  "student_link:full_name_on_lab_paper_byline": 299,
+  "pis_with_lab_papers": 208,
+  "pis_complete_chain": 196
  },
  "excluded": [
   {
@@ -149,7 +159,9 @@
  "pisWithoutPapers": [
   "Brian A. Barsky"
  ],
- "pisWithoutStudents": [],
+ "pisWithoutStudents": [
+  "Tapan S. Parikh"
+ ],
  "censusNicknameMerges": [
   [
    "David Wagner",
@@ -176,6 +188,329 @@
    "roles": [
     "masters"
    ]
+  }
+ ],
+ "pisListedAsOwnStudent": [],
+ "linkGuardSamples": [
+  {
+   "pi": "Sanjit A. Seshia",
+   "student": "Yi Wu",
+   "byline": "Yi-Chin Wu",
+   "oa": "https://openalex.org/W2469385076"
+  },
+  {
+   "pi": "Sanjit A. Seshia",
+   "student": "Yi Wu",
+   "byline": "Yi-Chin Wu",
+   "oa": "https://openalex.org/W2736690356"
+  },
+  {
+   "pi": "Claire Tomlin",
+   "student": "Teddey Xiao",
+   "byline": "Xiao, Ted",
+   "oa": "https://openalex.org/W2953084784"
+  },
+  {
+   "pi": "Joseph Gonzalez",
+   "student": "Eyal Sela",
+   "byline": "Gur-Eyal Sela",
+   "oa": "https://openalex.org/W3095488153"
+  },
+  {
+   "pi": "Joseph Gonzalez",
+   "student": "Eyal Sela",
+   "byline": "Sela, Gur-Eyal",
+   "oa": "https://openalex.org/W3110977295"
+  },
+  {
+   "pi": "Pieter Abbeel",
+   "student": "Ruihan (Philip) Zhao",
+   "byline": "Zhao, Rui",
+   "oa": "https://openalex.org/W3005053211"
+  },
+  {
+   "pi": "Dawn Song",
+   "student": "Xiaoyuan Liu",
+   "byline": "Xiao Liu",
+   "oa": "https://openalex.org/W3201244947"
+  },
+  {
+   "pi": "Pieter Abbeel",
+   "student": "Ruihan (Philip) Zhao",
+   "byline": "Zhao, Rui",
+   "oa": "https://openalex.org/W3128190331"
+  },
+  {
+   "pi": "Dawn Song",
+   "student": "Xiaoyuan Liu",
+   "byline": "Xiao Liu",
+   "oa": "https://openalex.org/W4281488715"
+  },
+  {
+   "pi": "Joseph Gonzalez",
+   "student": "Eyal Sela",
+   "byline": "Gur-Eyal Sela",
+   "oa": "https://openalex.org/W4313175388"
+  },
+  {
+   "pi": "Pieter Abbeel",
+   "student": "Xinyue Chen",
+   "byline": "Chen, Xin",
+   "oa": "https://openalex.org/W3201446109"
+  },
+  {
+   "pi": "Michael Jordan",
+   "student": "Yi-An Ma",
+   "byline": "Ma, Yi",
+   "oa": "https://openalex.org/W4385292441"
+  },
+  {
+   "pi": "Mark Mueller",
+   "student": "Ting-Chun Wang",
+   "byline": "Ting-Hao Wang",
+   "oa": "https://openalex.org/W4411055067"
+  },
+  {
+   "pi": "Mark Mueller",
+   "student": "Ting-Chun Wang",
+   "byline": "Ting-Hao Wang",
+   "oa": "https://openalex.org/W4411951899"
+  },
+  {
+   "pi": "Mark Mueller",
+   "student": "Ting-Chun Wang",
+   "byline": "Ting-Hao Wang",
+   "oa": "https://openalex.org/W7168282471"
+  },
+  {
+   "pi": "Michael Jordan",
+   "student": "Yi-An Ma",
+   "byline": "Yi Ma",
+   "oa": "https://openalex.org/W7133209195"
+  },
+  {
+   "pi": "Michael Jordan",
+   "student": "Yi-An Ma",
+   "byline": "Yi Ma",
+   "oa": "https://openalex.org/W7133228454"
+  },
+  {
+   "pi": "Michael Jordan",
+   "student": "Yi-An Ma",
+   "byline": "Yi Ma",
+   "oa": "https://openalex.org/W3176370042"
+  },
+  {
+   "pi": "Joseph Gonzalez",
+   "student": "Eyal Sela",
+   "byline": "Gur-Eyal Sela",
+   "oa": "https://openalex.org/W2903202831"
+  },
+  {
+   "pi": "Joseph Gonzalez",
+   "student": "Eyal Sela",
+   "byline": "Sela, Gur-Eyal",
+   "oa": "https://openalex.org/W3046872152"
+  },
+  {
+   "pi": "Joseph Gonzalez",
+   "student": "Eyal Sela",
+   "byline": "Sela, Gur-Eyal",
+   "oa": "https://openalex.org/W4416858249"
+  },
+  {
+   "pi": "Michael Jordan",
+   "student": "Yi-An Ma",
+   "byline": "Yi Ma",
+   "oa": "https://dblp.org/rec/https://dblp.org/rec/conf/aistats/LiYLG0RJ22"
+  }
+ ],
+ "linkGuardKeptVariantSamples": [
+  {
+   "pi": "Dawn Song",
+   "student": "Tiancheng Xie",
+   "byline": "Tiacheng Xie",
+   "oa": "https://openalex.org/W2942400797"
+  },
+  {
+   "pi": "Björn Hartmann",
+   "student": "Bala Thoravi Kumaravel",
+   "byline": "Balasaravanan Thoravi Kumaravel",
+   "oa": "https://openalex.org/W2941408004"
+  },
+  {
+   "pi": "Sergey Levine",
+   "student": "Sid Kaushik",
+   "byline": "Kaushik, Sidhant",
+   "oa": "https://openalex.org/W3039363169"
+  },
+  {
+   "pi": "Armando Fox",
+   "student": "Asli Akalin",
+   "byline": "Aslihan Akalin",
+   "oa": "https://openalex.org/W3194659418"
+  },
+  {
+   "pi": "Sergey Levine",
+   "student": "Sid Kaushik",
+   "byline": "Kaushik, Sidhant",
+   "oa": "https://openalex.org/W3168711134"
+  },
+  {
+   "pi": "Hany Farid",
+   "student": "Maty Bohacek",
+   "byline": "Matyas Bohacek",
+   "oa": "https://openalex.org/W4309825539"
+  },
+  {
+   "pi": "Björn Hartmann",
+   "student": "Bala Thoravi Kumaravel",
+   "byline": "Balasaravanan Thoravi Kumaravel",
+   "oa": "https://openalex.org/W4280625278"
+  },
+  {
+   "pi": "Hany Farid",
+   "student": "Maty Bohacek",
+   "byline": "Boháček, Matyáš",
+   "oa": "https://openalex.org/W4283643262"
+  },
+  {
+   "pi": "Hany Farid",
+   "student": "Maty Bohacek",
+   "byline": "Matyas Bohacek",
+   "oa": "https://openalex.org/W4390264048"
+  },
+  {
+   "pi": "Hany Farid",
+   "student": "Maty Bohacek",
+   "byline": "Matyáš Boháček",
+   "oa": "https://openalex.org/W4385801620"
+  },
+  {
+   "pi": "Armando Fox",
+   "student": "Asli Akalin",
+   "byline": "Aslıhan Akalın",
+   "oa": "https://openalex.org/W4391447779"
+  },
+  {
+   "pi": "Hany Farid",
+   "student": "Maty Bohacek",
+   "byline": "Matyas Bohacek",
+   "oa": "https://openalex.org/W4402916237"
+  },
+  {
+   "pi": "Dorit S. Hochbaum",
+   "student": "Tor Nitayanont",
+   "byline": "Torpong Nitayanont",
+   "oa": "https://openalex.org/W4404579376"
+  },
+  {
+   "pi": "Hany Farid",
+   "student": "Maty Bohacek",
+   "byline": "Bohacek, Matyas",
+   "oa": "https://openalex.org/W4405033299"
+  },
+  {
+   "pi": "Dorit S. Hochbaum",
+   "student": "Tor Nitayanont",
+   "byline": "Torpong Nitayanont",
+   "oa": "https://openalex.org/W4392305785"
+  },
+  {
+   "pi": "Dorit S. Hochbaum",
+   "student": "Tor Nitayanont",
+   "byline": "Torpong Nitayanont",
+   "oa": "https://openalex.org/W4413437447"
+  },
+  {
+   "pi": "Hany Farid",
+   "student": "Maty Bohacek",
+   "byline": "Matyas Bohacek",
+   "oa": "https://openalex.org/W7131105862"
+  },
+  {
+   "pi": "Dorit S. Hochbaum",
+   "student": "Tor Nitayanont",
+   "byline": "Torpong Nitayanont",
+   "oa": "https://openalex.org/W7160655570"
+  },
+  {
+   "pi": "Björn Hartmann",
+   "student": "Bala Thoravi Kumaravel",
+   "byline": "Balasaravanan Thoravi Kumaravel",
+   "oa": "https://openalex.org/W2980895755"
+  },
+  {
+   "pi": "Björn Hartmann",
+   "student": "Bala Thoravi Kumaravel",
+   "byline": "Balasaravanan Thoravi Kumaravel",
+   "oa": "https://openalex.org/W3093732473"
+  },
+  {
+   "pi": "Björn Hartmann",
+   "student": "Bala Thoravi Kumaravel",
+   "byline": "Balasaravanan Thoravi Kumaravel",
+   "oa": "https://openalex.org/W3031991376"
+  },
+  {
+   "pi": "Björn Hartmann",
+   "student": "Bala Thoravi Kumaravel",
+   "byline": "Balasaravanan Thoravi Kumaravel",
+   "oa": "https://openalex.org/W4225137882"
+  },
+  {
+   "pi": "Björn Hartmann",
+   "student": "Bala Thoravi Kumaravel",
+   "byline": "Balasaravanan Thoravi Kumaravel",
+   "oa": "https://openalex.org/W4308068562"
+  },
+  {
+   "pi": "Björn Hartmann",
+   "student": "Bala Thoravi Kumaravel",
+   "byline": "Kumaravel, Balasaravanan Thoravi",
+   "oa": "https://openalex.org/W4389115483"
+  },
+  {
+   "pi": "Michael Lustig",
+   "student": "Naz Khairallah",
+   "byline": "Nazem Khairallah",
+   "oa": "https://openalex.org/W4401575725"
+  },
+  {
+   "pi": "Joseph Gonzalez",
+   "student": "Vlad Feinberg",
+   "byline": "Feinberg, Vladimir",
+   "oa": "https://openalex.org/W2789824229"
+  },
+  {
+   "pi": "Joseph Gonzalez",
+   "student": "Vlad Feinberg",
+   "byline": "Feinberg, Vladimir",
+   "oa": "https://openalex.org/W2902280036"
+  },
+  {
+   "pi": "Michael Lustig",
+   "student": "Fredric Wang",
+   "byline": "Wang, Frederic",
+   "oa": "https://openalex.org/W4385681389"
+  },
+  {
+   "pi": "Michael Lustig",
+   "student": "Fredric Wang",
+   "byline": "Frederic Wang",
+   "oa": "https://openalex.org/W4401575865"
+  },
+  {
+   "pi": "Michael Lustig",
+   "student": "Naz Khairallah",
+   "byline": "Nazem Khairallah",
+   "oa": "https://openalex.org/W4414235843"
+  },
+  {
+   "pi": "Hany Farid",
+   "student": "Maty Bohacek",
+   "byline": "Bohacek, Matyas",
+   "oa": "https://openalex.org/W4388927659"
   }
  ]
 }

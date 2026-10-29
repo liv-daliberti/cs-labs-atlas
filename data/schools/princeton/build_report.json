@@ -1,56 +1,66 @@
 {
  "school": "princeton",
- "builtAt": "2026-10-29T00:19:43.954439Z",
+ "builtAt": "2026-10-29T13:42:47.845983Z",
  "counts": {
+  "listing_years_after_move": 14,
   "pis_excluded_by_review": 2,
   "pis": 140,
   "pis_without_person": 26,
   "labs_reused": 89,
   "labs_new": 51,
   "student_names_cleaned": 3,
-  "student_records_merged": 290,
+  "student_records_merged": 292,
+  "pi_listed_as_own_student_dropped": 0,
   "student_same_name_other_labs_unmerged": 47,
   "pis_with_students": 140,
-  "students": 3095,
-  "lab_student_pairs": 3523,
+  "students": 3093,
+  "lab_student_pairs": 3524,
   "dblp_ids_dropped_name_mismatch": 0,
-  "pis_with_dblp_list": 41,
+  "dblp_dump_titles_added": 9765,
+  "pis_orcid_from_dblp": 48,
+  "dblp_ids_from_dump_name": 69,
+  "pis_with_dblp_list": 115,
   "pis_with_own_publication_list": 0,
   "pis_with_lab_publication_page": 45,
   "other_pi_reviewed_ids_blocked": 30164,
   "sweep_name_hits": 10489,
   "surname_only_hits_by_anchored_id": 9,
-  "pi_work_list_hits": 6992,
-  "hit_without_identity": 289,
-  "hit_without_school_affiliation": 7288,
-  "outside_appointment": 168,
-  "school_via_advisee_coauthor": 122,
-  "dblp_recovered_lab_papers": 63,
+  "pi_work_list_hits": 6697,
+  "hit_without_school_affiliation": 6476,
+  "hit_without_identity": 245,
+  "outside_appointment": 214,
+  "school_via_advisee_coauthor": 89,
+  "school_via_unaffiliated_byline_advisee": 497,
+  "dblp_recovered_lab_papers": 59,
   "dblp_recovered_outside_appointment": 4,
   "namesake_claims_dropped": 0,
-  "edition_records_merged": 505,
-  "lab_papers": 9179,
-  "lab_papers_in_collection": 8954,
-  "lab_papers_new": 225,
-  "lab_papers_by_period": 5296,
-  "lab_papers_by_listing": 3883,
-  "identity:reviewed_openalex_author_id": 8959,
-  "identity:advisee_coauthor": 83,
+  "edition_records_merged": 538,
+  "lab_papers": 9620,
+  "lab_papers_in_collection": 9304,
+  "lab_papers_new": 316,
+  "lab_papers_by_period": 5596,
+  "lab_papers_by_listing": 4024,
+  "identity:reviewed_openalex_author_id": 9367,
+  "identity:dblp_person_page_doi": 36,
+  "identity:advisee_coauthor": 65,
   "identity:lab_publication_page": 3,
-  "identity:dblp_person_page_doi": 6,
-  "identity:pi_orcid": 27,
-  "identity:dblp_verified_collection_work": 23,
-  "identity:advisee_anchored_author_id": 9,
-  "identity:anchored_author_id": 7,
-  "identity:dblp_person_page_title": 1,
-  "identity:dblp_person_page": 61,
-  "students_dropped_program_or_reader_only": 204,
-  "student_paper_links": 7078,
+  "identity:pi_orcid": 30,
+  "identity:dblp_verified_collection_work": 22,
+  "identity:dblp_person_page_title": 16,
+  "identity:anchored_author_id": 16,
+  "identity:advisee_anchored_author_id": 10,
+  "identity:dblp_person_page": 55,
+  "link_guard_removed_hyphenated_given": 9,
+  "link_guard_removed_different_full_given": 8,
+  "link_guard_kept_prefix_or_spelling_variant": 21,
+  "students_dropped_program_or_reader_only": 201,
+  "student_paper_links": 7677,
   "labs_with_student_papers": 132,
-  "student_link:byline_name_with_school_affiliation": 2814,
-  "student_link:collection_person_link": 3260,
-  "student_link:advisee_name_on_lab_paper_byline": 920,
-  "student_link:full_name_on_lab_paper_byline": 84,
+  "student_link:byline_name_with_school_affiliation": 2830,
+  "student_link:collection_person_link": 3429,
+  "student_link:advisee_name_on_lab_paper_byline": 1308,
+  "student_link:within_lab_byline_match": 17,
+  "student_link:full_name_on_lab_paper_byline": 93,
   "pis_with_lab_papers": 137,
   "pis_complete_chain": 132
  },
@@ -970,14 +980,6 @@
   },
   {
    "pi": "Mark Braverman",
-   "student": "member_cs_d0da8e35a341289ce204",
-   "name": "Yufei Zheng",
-   "roles": [
-    "Advising relationship"
-   ]
-  },
-  {
-   "pi": "Mark Braverman",
    "student": "member_cs_structure_d4d37f496b8138115ec7",
    "name": "Andrej Risteski",
    "roles": [
@@ -1263,14 +1265,6 @@
    "name": "Rohan Prabhakar",
    "roles": [
     "Academic advising observation"
-   ]
-  },
-  {
-   "pi": "Ravi Netravali",
-   "student": "member_92666d0aabc5f8a17490",
-   "name": "Zhuqi Li",
-   "roles": [
-    "Advising relationship"
    ]
   },
   {
@@ -1690,20 +1684,245 @@
    ]
   },
   {
-   "pi": "Naomi Ehrich Leonard",
-   "student": "member_ebdfb505500cdef9d374",
-   "name": "Udaya Ghai",
-   "roles": [
-    "Advising relationship"
-   ]
-  },
-  {
    "pi": "Leeat Yariv",
    "student": "member_cs_structure_8df2ee0af133f10964f3",
    "name": "Clayton Hodges Thomas",
    "roles": [
     "Academic advising observation"
    ]
+  }
+ ],
+ "pisListedAsOwnStudent": [],
+ "linkGuardSamples": [
+  {
+   "pi": "Peter J. Ramadge",
+   "student": "Po-Ta Chen",
+   "byline": "Po-Hsuan Chen",
+   "oa": "https://openalex.org/W2514584507"
+  },
+  {
+   "pi": "Peter J. Ramadge",
+   "student": "Po-Ta Chen",
+   "byline": "Po-Hsuan Chen",
+   "oa": "https://openalex.org/W2598802110"
+  },
+  {
+   "pi": "Peter J. Ramadge",
+   "student": "Po-Ta Chen",
+   "byline": "Po-Hsuan Chen",
+   "oa": "https://openalex.org/W2617323282"
+  },
+  {
+   "pi": "Peter J. Ramadge",
+   "student": "Po-Ta Chen",
+   "byline": "Po-Hsuan Chen",
+   "oa": "https://openalex.org/W2798977369"
+  },
+  {
+   "pi": "Peter J. Ramadge",
+   "student": "Po-Ta Chen",
+   "byline": "Chen, Po-Hsuan",
+   "oa": "https://openalex.org/W2902563587"
+  },
+  {
+   "pi": "Yuxin Chen",
+   "student": "Gene Li",
+   "byline": "Gen Li",
+   "oa": "https://openalex.org/W2984181226"
+  },
+  {
+   "pi": "Yuxin Chen",
+   "student": "Gene Li",
+   "byline": "Li, Gen",
+   "oa": "https://openalex.org/W2979328751"
+  },
+  {
+   "pi": "Yuxin Chen",
+   "student": "Gene Li",
+   "byline": "Gen Li",
+   "oa": "https://openalex.org/W2971195897"
+  },
+  {
+   "pi": "Yuxin Chen",
+   "student": "Gene Li",
+   "byline": "Gen Li",
+   "oa": "https://openalex.org/W3034039613"
+  },
+  {
+   "pi": "Yuxin Chen",
+   "student": "Gene Li",
+   "byline": "Gen Li",
+   "oa": "https://openalex.org/W2982696156"
+  },
+  {
+   "pi": "Yuxin Chen",
+   "student": "Gene Li",
+   "byline": "Gen Li",
+   "oa": "https://openalex.org/W3129308573"
+  },
+  {
+   "pi": "Peter J. Ramadge",
+   "student": "Po-Ta Chen",
+   "byline": "Po-Hsuan Cameron Chen",
+   "oa": "https://openalex.org/W4205155404"
+  },
+  {
+   "pi": "Mengdi Wang",
+   "student": "Hui Yuan",
+   "byline": "Yuan, Huizhuo",
+   "oa": "https://openalex.org/W7204828645"
+  },
+  {
+   "pi": "Peter J. Ramadge",
+   "student": "Po-Ta Chen",
+   "byline": "Chen, Po-Hsuan",
+   "oa": "https://openalex.org/W2510500522"
+  },
+  {
+   "pi": "Peter J. Ramadge",
+   "student": "Po-Ta Chen",
+   "byline": "Chen, Po-Hsuan",
+   "oa": "https://openalex.org/W2526583368"
+  },
+  {
+   "pi": "Mengdi Wang",
+   "student": "Ming Yin",
+   "byline": "Yin, Mingren",
+   "oa": "https://openalex.org/W4414757718"
+  },
+  {
+   "pi": "Peter J. Ramadge",
+   "student": "Po-Ta Chen",
+   "byline": "Po-Hsuan Chen",
+   "oa": "https://openalex.org/W2532775740"
+  }
+ ],
+ "linkGuardKeptVariantSamples": [
+  {
+   "pi": "Olga Troyanskaya",
+   "student": "Avi Boppana",
+   "byline": "Avinash Boppana",
+   "oa": "https://openalex.org/W3091406140"
+  },
+  {
+   "pi": "Anirudha Majumdar",
+   "student": "Anoop Sonar",
+   "byline": "Anoopkumar Sonar",
+   "oa": "https://openalex.org/W2959399500"
+  },
+  {
+   "pi": "Anirudha Majumdar",
+   "student": "Anoop Sonar",
+   "byline": "Sonar, Anoopkumar",
+   "oa": "https://openalex.org/W3029947299"
+  },
+  {
+   "pi": "David August",
+   "student": "Sotirios Apostolakis",
+   "byline": "Sotiris Apostolakis",
+   "oa": "https://openalex.org/W3207761394"
+  },
+  {
+   "pi": "Danqi Chen",
+   "student": "Jacquline He",
+   "byline": "Jacqueline He",
+   "oa": "https://openalex.org/W4224950688"
+  },
+  {
+   "pi": "Jaime Fernández Fisac",
+   "student": "Ken Nakamura",
+   "byline": "Kensuke Nakamura",
+   "oa": "https://openalex.org/W3202626246"
+  },
+  {
+   "pi": "Danqi Chen",
+   "student": "Jacquline He",
+   "byline": "Jacqueline He",
+   "oa": "https://openalex.org/W4385573960"
+  },
+  {
+   "pi": "Naomi Ehrich Leonard",
+   "student": "Ken Nakamura",
+   "byline": "Kensuke Nakamura",
+   "oa": "https://openalex.org/W4312287624"
+  },
+  {
+   "pi": "Naomi Ehrich Leonard",
+   "student": "Ken Nakamura",
+   "byline": "Kensuke Nakamura",
+   "oa": "https://openalex.org/W4391020166"
+  },
+  {
+   "pi": "Jaime Fernández Fisac",
+   "student": "Ken Nakamura",
+   "byline": "Kensuke Nakamura",
+   "oa": "https://openalex.org/W4391020166"
+  },
+  {
+   "pi": "Jianqing Fan",
+   "student": "Shangge Tang",
+   "byline": "Tang, Shange",
+   "oa": "https://openalex.org/W4323322868"
+  },
+  {
+   "pi": "Jianqing Fan",
+   "student": "Shangge Tang",
+   "byline": "Tang, Shange",
+   "oa": "https://openalex.org/W4389116487"
+  },
+  {
+   "pi": "David August",
+   "student": "Sotirios Apostolakis",
+   "byline": "Sotiris Apostolakis",
+   "oa": "https://openalex.org/W4396238970"
+  },
+  {
+   "pi": "Jianqing Fan",
+   "student": "Shangge Tang",
+   "byline": "Tang, Shange",
+   "oa": "https://openalex.org/W4405664038"
+  },
+  {
+   "pi": "Jianqing Fan",
+   "student": "Shangge Tang",
+   "byline": "Tang, Shange",
+   "oa": "https://openalex.org/W4405627540"
+  },
+  {
+   "pi": "Prateek Mittal",
+   "student": "Michael Liao",
+   "byline": "Michel Liao",
+   "oa": "https://openalex.org/W4415230188"
+  },
+  {
+   "pi": "Danqi Chen",
+   "student": "Jacquline He",
+   "byline": "Jacqueline He",
+   "oa": "https://openalex.org/W4417119128"
+  },
+  {
+   "pi": "Maria Apostolaki",
+   "student": "Sata Sengupta",
+   "byline": "Sengupta, Satadal",
+   "oa": "https://openalex.org/W4417433168"
+  },
+  {
+   "pi": "Maria Apostolaki",
+   "student": "Sata Sengupta",
+   "byline": "Satadal Sengupta",
+   "oa": "https://openalex.org/W7139102919"
+  },
+  {
+   "pi": "Jaime Fernández Fisac",
+   "student": "Ken Nakamura",
+   "byline": "Nakamura, Kensuke",
+   "oa": "https://openalex.org/W4386556465"
+  },
+  {
+   "pi": "Jianqing Fan",
+   "student": "Krishna Balasubramanian",
+   "byline": "Balasubramanian, Krishnakumar",
+   "oa": "https://openalex.org/W2884924868"
   }
  ]
 }

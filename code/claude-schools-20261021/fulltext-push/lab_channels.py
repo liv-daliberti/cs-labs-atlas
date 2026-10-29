@@ -694,6 +694,34 @@ STEPS = dict(oar=step_oar, labpages=step_labpages, pihomes=step_pihomes, oa_arxi
              proceedings=step_proceedings, europepmc=step_europepmc, dspace=step_dspace)
 
 
+# 2026-10-29 additions (new modules; the steps above are unchanged):
+#   dblp_ee      DBLP dump electronic editions + CoRR twins (dblp_ee.py)
+#   oa_refresh   OpenAlex records re-read 50 ids per request; arXiv edition DOIs (oa_refresh.py)
+#   oa_editions  OpenAlex title search for separate open editions, budget-guarded (oa_refresh.py)
+#   s2_title     Semantic Scholar /paper/search/match for papers the DOI batch could not use (s2_title.py)
+def step_dblp_ee(school, miss, known, n):
+    import dblp_ee
+    return dblp_ee.step(school, miss, known, n, has_arxiv)
+
+
+def step_oa_refresh(school, miss, known, n):
+    import oa_refresh
+    return oa_refresh.step_oa_refresh(school, miss, known, n, has_arxiv)
+
+
+def step_oa_editions(school, miss, known, n):
+    import oa_refresh
+    return oa_refresh.step_oa_editions(school, miss, known, n, has_arxiv)
+
+
+def step_s2_title(school, miss, known, n):
+    import s2_title
+    return s2_title.step(school, miss, known, n, has_arxiv)
+
+
+STEPS.update(dblp_ee=step_dblp_ee, oa_refresh=step_oa_refresh, oa_editions=step_oa_editions, s2_title=step_s2_title)
+
+
 def write(school, rows, step, ev_dir=None, dry=False):
     if dry or not rows:
         return 0

@@ -41,19 +41,19 @@ These are the owner's decisions; the full rules and the evidence model are in [d
 <!-- coverage:start -->
 | | Princeton | Carnegie Mellon | EPFL | MIT | UC Berkeley | Stanford |
 |---|---|---|---|---|---|---|
-| PI labs | 140 | 458 | 169 | 277 | 203 | 232 |
-| … core computing departments | 97 | 343 | 111 | 167 | 128 | 145 |
+| PI labs | 140 | 458 | 169 | 277 | 209 | 232 |
+| … core computing departments | 97 | 343 | 111 | 167 | 134 | 145 |
 | … CS-related, other departments | 43 | 115 | 58 | 110 | 75 | 87 |
 | Home departments | 14 | 25 | 17 | 18 | 19 | 37 |
-| Unique lab papers | 8,396 | 24,898 | 12,616 | 19,226 | 13,203 | 17,381 |
-| Lab–paper rows (a paper can belong to several labs) | 9,179 | 30,214 | 13,357 | 21,500 | 15,568 | 19,869 |
-| Median lab papers per PI | 41 | 50 | 57 | 58 | 51 | 59 |
-| Students (unique people) | 3,095 | 7,742 | 3,682 | 7,129 | 3,859 | 2,789 |
-| Lab–student pairs | 3,523 | 9,387 | 3,986 | 7,666 | 4,436 | 3,197 |
-| Student–paper links | 7,078 | 27,855 | 13,691 | 20,665 | 15,188 | 15,436 |
-| Labs with papers | 137 | 456 | 167 | 275 | 202 | 232 |
-| Labs with students | 140 | 458 | 169 | 277 | 203 | 232 |
-| Labs with papers, students and links | 132 | 445 | 162 | 265 | 190 | 224 |
+| Unique lab papers | 8,805 | 26,143 | 13,478 | 20,235 | 14,092 | 19,250 |
+| Lab–paper rows (a paper can belong to several labs) | 9,620 | 31,724 | 14,248 | 22,617 | 16,604 | 22,021 |
+| Median lab papers per PI | 42 | 52 | 60 | 61 | 51 | 65 |
+| Students (unique people) | 3,093 | 7,737 | 3,682 | 7,115 | 3,874 | 2,803 |
+| Lab–student pairs | 3,524 | 9,382 | 3,986 | 7,652 | 4,452 | 3,218 |
+| Student–paper links | 7,677 | 29,388 | 15,196 | 21,141 | 16,802 | 18,553 |
+| Labs with papers | 137 | 456 | 167 | 275 | 208 | 232 |
+| Labs with students | 140 | 458 | 169 | 277 | 208 | 232 |
+| Labs with papers, students and links | 132 | 445 | 162 | 267 | 196 | 225 |
 | DBLP-published papers we hold | 83% | 82% | 88% | 88% | 84% | 87% |
 
 Wider atlas: 300 universities, 37,060 units, 131,309 works, 130,192 unit–paper links, 23,404 unit–person rows,

@@ -1,7 +1,8 @@
 {
  "school": "stanford",
- "builtAt": "2026-10-29T00:57:24.870195Z",
+ "builtAt": "2026-10-29T14:12:13.866163Z",
  "counts": {
+  "listing_years_after_move": 0,
   "pis_excluded_by_review": 4,
   "pis": 232,
   "pis_without_person": 87,
@@ -11,48 +12,59 @@
   "student_names_cleaned": 1,
   "student_corrections_rename": 1,
   "student_records_merged": 150,
+  "pi_listed_as_own_student_dropped": 0,
   "student_same_name_other_labs_unmerged": 14,
   "pis_with_students": 232,
-  "students": 2789,
-  "lab_student_pairs": 3197,
+  "students": 2803,
+  "lab_student_pairs": 3218,
   "dblp_ids_dropped_name_mismatch": 0,
-  "pis_with_dblp_list": 209,
+  "dblp_dump_titles_added": 13743,
+  "pis_orcid_from_dblp": 147,
+  "dblp_ids_from_dump_name": 12,
+  "pis_with_dblp_list": 221,
   "pis_with_own_publication_list": 124,
   "pis_with_lab_publication_page": 141,
   "other_pi_reviewed_ids_blocked": 21021,
-  "sweep_name_hits": 24747,
-  "surname_only_hits_by_anchored_id": 118,
-  "outside_appointment": 581,
-  "hit_without_identity": 1193,
-  "hit_without_school_affiliation": 3217,
+  "sweep_name_hits": 24750,
+  "surname_only_hits_by_anchored_id": 116,
+  "pi_work_list_hits": 10215,
+  "outside_appointment": 634,
+  "hit_without_identity": 1239,
+  "hit_without_school_affiliation": 10317,
   "school_via_advisee_coauthor": 154,
-  "dblp_recovered_lab_papers": 841,
-  "labpage_recovered_lab_papers": 596,
+  "school_via_unaffiliated_byline_advisee": 2962,
+  "dblp_recovered_lab_papers": 834,
+  "labpage_recovered_lab_papers": 276,
   "namesake_claims_dropped": 0,
-  "edition_records_merged": 1442,
-  "lab_papers": 19869,
+  "edition_records_merged": 1977,
+  "lab_papers": 22021,
   "lab_papers_in_collection": 0,
-  "lab_papers_new": 19869,
-  "lab_papers_by_period": 9571,
-  "lab_papers_by_listing": 10298,
-  "identity:anchored_author_id": 1298,
-  "identity:reviewed_openalex_author_id": 5848,
-  "identity:dblp_person_page_title": 1846,
-  "identity:pi_institutional_publication_list": 1688,
-  "identity:dblp_person_page_doi": 6808,
-  "identity:lab_publication_page": 20,
-  "identity:advisee_coauthor": 1144,
-  "identity:dblp_person_page": 718,
-  "identity:advisee_anchored_author_id": 14,
-  "identity:labpage_listing": 485,
-  "students_dropped_program_or_reader_only": 602,
-  "student_paper_links": 15436,
-  "labs_with_student_papers": 224,
-  "student_link:byline_name_with_school_affiliation": 12862,
-  "student_link:advisee_name_on_lab_paper_byline": 2283,
-  "student_link:full_name_on_lab_paper_byline": 291,
+  "lab_papers_new": 22021,
+  "lab_papers_by_period": 10769,
+  "lab_papers_by_listing": 11252,
+  "identity:anchored_author_id": 2399,
+  "identity:reviewed_openalex_author_id": 6641,
+  "identity:pi_orcid": 9790,
+  "identity:pi_institutional_publication_list": 329,
+  "identity:dblp_person_page_doi": 1428,
+  "identity:dblp_person_page_title": 507,
+  "identity:advisee_coauthor": 267,
+  "identity:lab_publication_page": 10,
+  "identity:dblp_person_page": 437,
+  "identity:advisee_anchored_author_id": 4,
+  "identity:labpage_listing": 209,
+  "link_guard_kept_prefix_or_spelling_variant": 94,
+  "link_guard_removed_different_full_given": 14,
+  "link_guard_removed_hyphenated_given": 19,
+  "students_dropped_program_or_reader_only": 581,
+  "student_paper_links": 18553,
+  "labs_with_student_papers": 225,
+  "student_link:byline_name_with_school_affiliation": 12957,
+  "student_link:advisee_name_on_lab_paper_byline": 5059,
+  "student_link:within_lab_byline_match": 100,
+  "student_link:full_name_on_lab_paper_byline": 437,
   "pis_with_lab_papers": 232,
-  "pis_complete_chain": 224
+  "pis_complete_chain": 225
  },
  "excluded": [
   {
@@ -165,14 +177,6 @@
    ]
   },
   {
-   "pi": "Ron Fedkiw",
-   "student": "stanford_stu_yitong-deng",
-   "name": "Yitong Deng",
-   "roles": [
-    "Doctoral (Program)"
-   ]
-  },
-  {
    "pi": "Patrick Hanrahan",
    "student": "stanford_stu_tushar-swamy",
    "name": "Tushar Swamy",
@@ -232,22 +236,6 @@
    "pi": "Doug James",
    "student": "stanford_stu_zhehao-li",
    "name": "Zhehao Li",
-   "roles": [
-    "Doctoral (Program)"
-   ]
-  },
-  {
-   "pi": "Dan Jurafsky",
-   "student": "stanford_stu_dora-demszky",
-   "name": "Dora Demszky",
-   "roles": [
-    "Doctoral (Program)"
-   ]
-  },
-  {
-   "pi": "Sachin Katti",
-   "student": "stanford_stu_ioanna-vavelidou",
-   "name": "Ioanna Vavelidou",
    "roles": [
     "Doctoral (Program)"
    ]
@@ -344,14 +332,6 @@
    "pi": "Monica Lam",
    "student": "stanford_stu_george-liu",
    "name": "George Liu",
-   "roles": [
-    "Doctoral (Program)"
-   ]
-  },
-  {
-   "pi": "James Landay",
-   "student": "stanford_stu_danilo-symonette",
-   "name": "Danilo Symonette",
    "roles": [
     "Doctoral (Program)"
    ]
@@ -592,14 +572,6 @@
    "pi": "Chris Re",
    "student": "stanford_stu_nasim-borazjanizadeh",
    "name": "Nasim Borazjanizadeh",
-   "roles": [
-    "Doctoral (Program)"
-   ]
-  },
-  {
-   "pi": "Chris Re",
-   "student": "stanford_stu_owen-dugan",
-   "name": "Owen Dugan",
    "roles": [
     "Doctoral (Program)"
    ]
@@ -1742,24 +1714,8 @@
   },
   {
    "pi": "John M. Pauly",
-   "student": "stanford_stu_daniel-abraham",
-   "name": "Daniel Abraham",
-   "roles": [
-    "Doctoral (Program)"
-   ]
-  },
-  {
-   "pi": "John M. Pauly",
    "student": "stanford_stu_fuat-arslan",
    "name": "Fuat Arslan",
-   "roles": [
-    "Doctoral (Program)"
-   ]
-  },
-  {
-   "pi": "John M. Pauly",
-   "student": "stanford_stu_jaehyeok-bae",
-   "name": "Jaehyeok Bae",
    "roles": [
     "Doctoral (Program)"
    ]
@@ -1840,14 +1796,6 @@
    "pi": "John M. Pauly",
    "student": "stanford_stu_alice-tor",
    "name": "Alice Tor",
-   "roles": [
-    "Doctoral (Program)"
-   ]
-  },
-  {
-   "pi": "John M. Pauly",
-   "student": "stanford_stu_andy-dimnaku",
-   "name": "Andy Dimnaku",
    "roles": [
     "Doctoral (Program)"
    ]
@@ -1952,14 +1900,6 @@
    "pi": "Howard Zebker",
    "student": "stanford_stu_liliana-edmonds",
    "name": "Liliana Edmonds",
-   "roles": [
-    "Doctoral (Program)"
-   ]
-  },
-  {
-   "pi": "Omer Reingold",
-   "student": "stanford_stu_silvia-casacuberta-puig",
-   "name": "Sílvia Casacuberta Puig",
    "roles": [
     "Doctoral (Program)"
    ]
@@ -2389,14 +2329,6 @@
    ]
   },
   {
-   "pi": "Jeannette Bohg",
-   "student": "stanford_stu_lei-shu",
-   "name": "Lei Shu",
-   "roles": [
-    "Doctoral (Program)"
-   ]
-  },
-  {
    "pi": "Zakir Durumeric",
    "student": "stanford_stu_thea-rossman",
    "name": "Thea Rossman",
@@ -2416,14 +2348,6 @@
    "pi": "Kayvon Fatahalian",
    "student": "stanford_stu_david-yao",
    "name": "David Yao",
-   "roles": [
-    "Doctoral (Program)"
-   ]
-  },
-  {
-   "pi": "Tengyu Ma",
-   "student": "stanford_stu_caroline-choi",
-   "name": "Caroline Choi",
    "roles": [
     "Doctoral (Program)"
    ]
@@ -2550,14 +2474,6 @@
   },
   {
    "pi": "Chelsea Finn",
-   "student": "stanford_stu_marcel-torne-villasevil",
-   "name": "Marcel Torne Villasevil",
-   "roles": [
-    "Doctoral (Program)"
-   ]
-  },
-  {
-   "pi": "Chelsea Finn",
    "student": "stanford_stu_yonatan-urman",
    "name": "Yonatan Urman",
    "roles": [
@@ -2576,22 +2492,6 @@
    "pi": "Mohammad Akbarpour",
    "student": "stanford_stu_morteza-honarvar",
    "name": "Morteza Honarvar",
-   "roles": [
-    "Doctoral (Program)"
-   ]
-  },
-  {
-   "pi": "Marco Pavone",
-   "student": "stanford_stu_erik-bauer",
-   "name": "Erik Bauer",
-   "roles": [
-    "Doctoral (Program)"
-   ]
-  },
-  {
-   "pi": "Marco Pavone",
-   "student": "stanford_stu_jadelynn-dao",
-   "name": "Jadelynn Dao",
    "roles": [
     "Doctoral (Program)"
    ]
@@ -2712,6 +2612,14 @@
    "pi": "Mert Pilanci",
    "student": "stanford_stu_dorsa-fathollahi",
    "name": "Dorsa Fathollahi",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Mert Pilanci",
+   "student": "stanford_stu_wei-ning-chen",
+   "name": "Wei-Ning Chen",
    "roles": [
     "Doctoral (Program)"
    ]
@@ -2861,14 +2769,6 @@
    ]
   },
   {
-   "pi": "Nicholas Haber",
-   "student": "stanford_stu_konwoo-kim",
-   "name": "Konwoo Kim",
-   "roles": [
-    "Doctoral (Program)"
-   ]
-  },
-  {
    "pi": "Monroe Kennedy III",
    "student": "stanford_stu_nicholas-broadbent",
    "name": "Nicholas Broadbent",
@@ -2912,14 +2812,6 @@
    "pi": "Sanmi Koyejo",
    "student": "stanford_stu_344751",
    "name": "Rui Li",
-   "roles": [
-    "Doctoral (Program)"
-   ]
-  },
-  {
-   "pi": "Sanmi Koyejo",
-   "student": "stanford_stu_colin-sullivan",
-   "name": "Colin Sullivan",
    "roles": [
     "Doctoral (Program)"
    ]
@@ -3061,25 +2953,9 @@
    ]
   },
   {
-   "pi": "Yejin Choi",
-   "student": "stanford_stu_etash-guha",
-   "name": "Etash Guha",
-   "roles": [
-    "Doctoral (Program)"
-   ]
-  },
-  {
    "pi": "Sherri Rose",
    "student": "stanford_stu_370186",
    "name": "Audrey Chang",
-   "roles": [
-    "Doctoral (Program)"
-   ]
-  },
-  {
-   "pi": "Mac Schwager",
-   "student": "stanford_stu_hugo-buurmeijer",
-   "name": "Hugo Buurmeijer",
    "roles": [
     "Doctoral (Program)"
    ]
@@ -3205,14 +3081,6 @@
    ]
   },
   {
-   "pi": "Jeffrey Hancock",
-   "student": "stanford_stu_bingxu-han",
-   "name": "Bingxu Han",
-   "roles": [
-    "Doctoral (Program)"
-   ]
-  },
-  {
    "pi": "Peter Glynn",
    "student": "stanford_stu_zhangyi-liu",
    "name": "Zhangyi Liu",
@@ -3232,14 +3100,6 @@
    "pi": "Itai Ashlagi",
    "student": "stanford_stu_semyon-lomasov",
    "name": "Semyon Lomasov",
-   "roles": [
-    "Doctoral (Program)"
-   ]
-  },
-  {
-   "pi": "Itai Ashlagi",
-   "student": "stanford_stu_346803",
-   "name": "Elaine Liu",
    "roles": [
     "Doctoral (Program)"
    ]
@@ -4519,14 +4379,6 @@
   },
   {
    "pi": "Renyuan Xu",
-   "student": "stanford_stu_lutong-hao",
-   "name": "Lutong Hao",
-   "roles": [
-    "Doctoral (Program)"
-   ]
-  },
-  {
-   "pi": "Renyuan Xu",
    "student": "stanford_stu_zhangyi-liu",
    "name": "Zhangyi Liu",
    "roles": [
@@ -4823,14 +4675,6 @@
   },
   {
    "pi": "Todd Coleman",
-   "student": "ext:stanford:ziv-lautman",
-   "name": "Ziv Lautman",
-   "roles": [
-    "Doctoral (Program)"
-   ]
-  },
-  {
-   "pi": "Todd Coleman",
    "student": "ext:stanford:frida-bjoerklund",
    "name": "Frida Bjoerklund",
    "roles": [
@@ -4892,6 +4736,449 @@
    "roles": [
     "Doctoral Dissertation Reader (AC)"
    ]
+  }
+ ],
+ "pisListedAsOwnStudent": [],
+ "linkGuardSamples": [
+  {
+   "pi": "Stefano Ermon",
+   "student": "Kun Ho Kim",
+   "byline": "Kim, Kuno",
+   "oa": "https://openalex.org/W3034233208"
+  },
+  {
+   "pi": "Stefano Ermon",
+   "student": "Kun Ho Kim",
+   "byline": "Kim, Kuno",
+   "oa": "https://openalex.org/W3214582495"
+  },
+  {
+   "pi": "Daniel Bruce Ennis",
+   "student": "Qiu Liu",
+   "byline": "Zhan-Qiu Liu",
+   "oa": "https://openalex.org/W3176057175"
+  },
+  {
+   "pi": "Stefano Ermon",
+   "student": "Kun Ho Kim",
+   "byline": "Kuno Kim",
+   "oa": "https://openalex.org/W3169109844"
+  },
+  {
+   "pi": "H.-S. Philip Wong",
+   "student": "Wei-Ning Chen",
+   "byline": "Wei-Chen Chen",
+   "oa": "https://openalex.org/W3200825586"
+  },
+  {
+   "pi": "H.-S. Philip Wong",
+   "student": "Wei-Ning Chen",
+   "byline": "Wei-Chen Chen",
+   "oa": "https://openalex.org/W3208525285"
+  },
+  {
+   "pi": "Daniel Bruce Ennis",
+   "student": "Qiu Liu",
+   "byline": "Zhan-Qiu Liu",
+   "oa": "https://openalex.org/W4225522877"
+  },
+  {
+   "pi": "H.-S. Philip Wong",
+   "student": "Wei-Ning Chen",
+   "byline": "Wei-Chen Chen",
+   "oa": "https://openalex.org/W4385192416"
+  },
+  {
+   "pi": "H.-S. Philip Wong",
+   "student": "Wei-Ning Chen",
+   "byline": "Wei-Chen Chen",
+   "oa": "https://openalex.org/W4391594702"
+  },
+  {
+   "pi": "H.-S. Philip Wong",
+   "student": "Wei-Ning Chen",
+   "byline": "Wei-Chen Chen",
+   "oa": "https://openalex.org/W4394896788"
+  },
+  {
+   "pi": "Daniel Bruce Ennis",
+   "student": "Qiu Liu",
+   "byline": "Zhan-Qiu Liu",
+   "oa": "https://openalex.org/W4401754051"
+  },
+  {
+   "pi": "H.-S. Philip Wong",
+   "student": "Wei-Ning Chen",
+   "byline": "Wei-Chen Chen",
+   "oa": "https://openalex.org/W4404133370"
+  },
+  {
+   "pi": "H.-S. Philip Wong",
+   "student": "Wei-Ning Chen",
+   "byline": "Wei-Chen Chen",
+   "oa": "https://openalex.org/W4404133754"
+  },
+  {
+   "pi": "Daniel Bruce Ennis",
+   "student": "Qiu Liu",
+   "byline": "Zhan-Qiu Liu",
+   "oa": "https://openalex.org/W4404760878"
+  },
+  {
+   "pi": "H.-S. Philip Wong",
+   "student": "Wei-Ning Chen",
+   "byline": "Wei-Chen Chen",
+   "oa": "https://openalex.org/W4407693362"
+  },
+  {
+   "pi": "Daniel Bruce Ennis",
+   "student": "Qiu Liu",
+   "byline": "Zhan-Qiu Liu",
+   "oa": "https://openalex.org/W4411495409"
+  },
+  {
+   "pi": "Daniel Bruce Ennis",
+   "student": "Qiu Liu",
+   "byline": "Zhan-Qiu Liu",
+   "oa": "https://openalex.org/W4406985710"
+  },
+  {
+   "pi": "H.-S. Philip Wong",
+   "student": "Wei-Ning Chen",
+   "byline": "Wei-Chen Chen",
+   "oa": "https://openalex.org/W4409474770"
+  },
+  {
+   "pi": "Judith Fan",
+   "student": "Lio Wong",
+   "byline": "Wong, Lionel",
+   "oa": "https://openalex.org/W7154602941"
+  },
+  {
+   "pi": "Jiajun Wu",
+   "student": "Weiyu Liu",
+   "byline": "Wei Liu",
+   "oa": "https://openalex.org/W7160100416"
+  },
+  {
+   "pi": "Judith Fan",
+   "student": "Lio Wong",
+   "byline": "Wong, Lionel",
+   "oa": "https://openalex.org/W7204152134"
+  },
+  {
+   "pi": "Judith Fan",
+   "student": "Lio Wong",
+   "byline": "Wong, Lionel",
+   "oa": "https://openalex.org/W7214510877"
+  },
+  {
+   "pi": "Jose H. Blanchet",
+   "student": "Fan Zhang",
+   "byline": "Zhang, Fangzhao",
+   "oa": "https://openalex.org/W7126221978"
+  },
+  {
+   "pi": "Judith Fan",
+   "student": "Lio Wong",
+   "byline": "Lionel Wong",
+   "oa": "https://openalex.org/W7143997245"
+  },
+  {
+   "pi": "H.-S. Philip Wong",
+   "student": "Wei-Ning Chen",
+   "byline": "Wei-Chen Chen",
+   "oa": "https://openalex.org/W7163898723"
+  },
+  {
+   "pi": "H.-S. Philip Wong",
+   "student": "Wei-Ning Chen",
+   "byline": "Po-Wei Chen",
+   "oa": "https://openalex.org/W7172430731"
+  },
+  {
+   "pi": "Daniel Bruce Ennis",
+   "student": "Qiu Liu",
+   "byline": "Zhan-Qiu Liu",
+   "oa": "https://openalex.org/W7213287448"
+  },
+  {
+   "pi": "Mert Pilanci",
+   "student": "Wei-Ning Chen",
+   "byline": "Chen, Wei",
+   "oa": "https://openalex.org/W4221167107"
+  },
+  {
+   "pi": "Jose H. Blanchet",
+   "student": "Hao Liu",
+   "byline": "Liu, Haoxin",
+   "oa": "https://openalex.org/W7125205457"
+  },
+  {
+   "pi": "Stefano Ermon",
+   "student": "Kun Ho Kim",
+   "byline": "Kuno Kim",
+   "oa": "https://openalex.org/W7133188987"
+  },
+  {
+   "pi": "Stefano Ermon",
+   "student": "Kun Ho Kim",
+   "byline": "Kuno Kim",
+   "oa": "https://openalex.org/W7133192967"
+  },
+  {
+   "pi": "Jiajun Wu",
+   "student": "Weiyu Liu",
+   "byline": "Liu, Wei",
+   "oa": "https://openalex.org/W7134054690"
+  },
+  {
+   "pi": "Shuran Song",
+   "student": "Han Zhang",
+   "byline": "Hanlin Zhang",
+   "oa": "https://dblp.org/rec/https://dblp.org/rec/conf/nips/LiFSIJGBGKAGXMH24"
+  }
+ ],
+ "linkGuardKeptVariantSamples": [
+  {
+   "pi": "Chris Manning",
+   "student": "Abi See",
+   "byline": "Abigail See",
+   "oa": "https://openalex.org/W2606974598"
+  },
+  {
+   "pi": "Aaron Sidford",
+   "student": "Kiran Shiragur",
+   "byline": "Shiragur, Kirankumar",
+   "oa": "https://openalex.org/W2905277283"
+  },
+  {
+   "pi": "Chris Manning",
+   "student": "Abi See",
+   "byline": "Abigail See",
+   "oa": "https://openalex.org/W2975003218"
+  },
+  {
+   "pi": "Moses Charikar",
+   "student": "Kiran Shiragur",
+   "byline": "Kirankumar Shiragur",
+   "oa": "https://openalex.org/W2944990787"
+  },
+  {
+   "pi": "Aaron Sidford",
+   "student": "Kiran Shiragur",
+   "byline": "Kirankumar Shiragur",
+   "oa": "https://openalex.org/W2944990787"
+  },
+  {
+   "pi": "Moses Charikar",
+   "student": "Kiran Shiragur",
+   "byline": "Shiragur, Kirankumar",
+   "oa": "https://openalex.org/W2991393808"
+  },
+  {
+   "pi": "Aaron Sidford",
+   "student": "Kiran Shiragur",
+   "byline": "Shiragur, Kirankumar",
+   "oa": "https://openalex.org/W2991393808"
+  },
+  {
+   "pi": "Moses Charikar",
+   "student": "Kiran Shiragur",
+   "byline": "Shiragur, Kirankumar",
+   "oa": "https://openalex.org/W3014188605"
+  },
+  {
+   "pi": "Aaron Sidford",
+   "student": "Kiran Shiragur",
+   "byline": "Shiragur, Kirankumar",
+   "oa": "https://openalex.org/W3014188605"
+  },
+  {
+   "pi": "Mac Schwager",
+   "student": "Olaoluwa Shorinwa",
+   "byline": "Ola Shorinwa",
+   "oa": "https://openalex.org/W3015251273"
+  },
+  {
+   "pi": "Mac Schwager",
+   "student": "Olaoluwa Shorinwa",
+   "byline": "Ola Shorinwa",
+   "oa": "https://openalex.org/W3132944213"
+  },
+  {
+   "pi": "Moses Charikar",
+   "student": "Kiran Shiragur",
+   "byline": "Shiragur, Kirankumar",
+   "oa": "https://openalex.org/W3095410722"
+  },
+  {
+   "pi": "Aaron Sidford",
+   "student": "Kiran Shiragur",
+   "byline": "Shiragur, Kirankumar",
+   "oa": "https://openalex.org/W3095410722"
+  },
+  {
+   "pi": "Boris Murmann",
+   "student": "Vlad Kesler",
+   "byline": "Vladimir Kesler",
+   "oa": "https://openalex.org/W3045290641"
+  },
+  {
+   "pi": "Moses Charikar",
+   "student": "Kiran Shiragur",
+   "byline": "Kirankumar Shiragur",
+   "oa": "https://openalex.org/W3109920083"
+  },
+  {
+   "pi": "Moses Charikar",
+   "student": "Kiran Shiragur",
+   "byline": "Kirankumar Shiragur",
+   "oa": "https://openalex.org/W4318578564"
+  },
+  {
+   "pi": "Moses Charikar",
+   "student": "Kiran Shiragur",
+   "byline": "Shiragur, Kirankumar",
+   "oa": "https://openalex.org/W3135550379"
+  },
+  {
+   "pi": "Chris Manning",
+   "student": "Abi See",
+   "byline": "Abigail See",
+   "oa": "https://openalex.org/W3185380220"
+  },
+  {
+   "pi": "Mac Schwager",
+   "student": "Olaoluwa Shorinwa",
+   "byline": "Shorinwa, Ola",
+   "oa": "https://openalex.org/W3138354815"
+  },
+  {
+   "pi": "Balaji Prabhakar",
+   "student": "Vig Sachidananda",
+   "byline": "Vighnesh Sachidananda",
+   "oa": "https://openalex.org/W3171597154"
+  },
+  {
+   "pi": "Ayfer Ozgur",
+   "student": "Wei-Ning Chen",
+   "byline": "Wei-Nina Chen",
+   "oa": "https://openalex.org/W3119669656"
+  },
+  {
+   "pi": "Boris Murmann",
+   "student": "Vlad Kesler",
+   "byline": "Vladimir Kesler",
+   "oa": "https://openalex.org/W3205833945"
+  },
+  {
+   "pi": "Mac Schwager",
+   "student": "Olaoluwa Shorinwa",
+   "byline": "Ola Shorinwa",
+   "oa": "https://openalex.org/W4200235480"
+  },
+  {
+   "pi": "Chris Manning",
+   "student": "Abi See",
+   "byline": "Abigail See",
+   "oa": "https://openalex.org/W4389009538"
+  },
+  {
+   "pi": "Dustin Schroeder",
+   "student": "Winnie Chu",
+   "byline": "Winni Chu",
+   "oa": "https://openalex.org/W4221073489"
+  },
+  {
+   "pi": "Boris Murmann",
+   "student": "Vlad Kesler",
+   "byline": "Vladimir Kesler",
+   "oa": "https://openalex.org/W4298120638"
+  },
+  {
+   "pi": "Anshul Kundaje",
+   "student": "Vivekanandan Ramalingam",
+   "byline": "Vivek Ramalingam",
+   "oa": "https://openalex.org/W4309908782"
+  },
+  {
+   "pi": "Boris Murmann",
+   "student": "Vlad Kesler",
+   "byline": "Vladimir Kesler",
+   "oa": "https://openalex.org/W4313446112"
+  },
+  {
+   "pi": "Mac Schwager",
+   "student": "Olaoluwa Shorinwa",
+   "byline": "Ola Shorinwa",
+   "oa": "https://openalex.org/W4313427364"
+  },
+  {
+   "pi": "Mac Schwager",
+   "student": "Olaoluwa Shorinwa",
+   "byline": "Shorinwa, Ola",
+   "oa": "https://openalex.org/W4318351464"
+  },
+  {
+   "pi": "Mac Schwager",
+   "student": "Olaoluwa Shorinwa",
+   "byline": "Shorinwa, Ola",
+   "oa": "https://openalex.org/W4318620744"
+  },
+  {
+   "pi": "Mac Schwager",
+   "student": "Olaoluwa Shorinwa",
+   "byline": "Ola Shorinwa",
+   "oa": "https://openalex.org/W4366669021"
+  },
+  {
+   "pi": "Anshul Kundaje",
+   "student": "Akshat Nigam",
+   "byline": "AkshatKumar Nigam",
+   "oa": "https://openalex.org/W4377822681"
+  },
+  {
+   "pi": "Mac Schwager",
+   "student": "Olaoluwa Shorinwa",
+   "byline": "Ola Shorinwa",
+   "oa": "https://openalex.org/W4382935670"
+  },
+  {
+   "pi": "Anshul Kundaje",
+   "student": "Akshat Nigam",
+   "byline": "AkshatKumar Nigam",
+   "oa": "https://openalex.org/W4387328229"
+  },
+  {
+   "pi": "Mary Wootters",
+   "student": "Ani Krishna",
+   "byline": "Anirudh Krishna",
+   "oa": "https://openalex.org/W4390575982"
+  },
+  {
+   "pi": "Anshul Kundaje",
+   "student": "Akshat Nigam",
+   "byline": "AkshatKumar Nigam",
+   "oa": "https://openalex.org/W4398150231"
+  },
+  {
+   "pi": "Mac Schwager",
+   "student": "Olaoluwa Shorinwa",
+   "byline": "Ola Shorinwa",
+   "oa": "https://openalex.org/W4400410094"
+  },
+  {
+   "pi": "Mac Schwager",
+   "student": "Olaoluwa Shorinwa",
+   "byline": "Ola Shorinwa",
+   "oa": "https://openalex.org/W4391454149"
+  },
+  {
+   "pi": "Mac Schwager",
+   "student": "Olaoluwa Shorinwa",
+   "byline": "Ola Shorinwa",
+   "oa": "https://openalex.org/W4391791311"
   }
  ]
 }
