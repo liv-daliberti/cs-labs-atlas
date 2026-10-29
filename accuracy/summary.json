@@ -1,0 +1,1433 @@
+{
+ "date": "2026-10-29",
+ "seed": 20261029,
+ "files": {
+  "princeton": {
+   "pis.json": "8c34bee8c541aa6dc9b891ced54e26a66a1eaba15b9babb66874828b67777cdf",
+   "students.json": "d82ac04a99ce8a66687fef61963e994cbe0c3ed6e1917b804ed33ea93946d0b5",
+   "lab_papers.jsonl.gz": "3cc0a295a6930802d0edfa8b3f5b4fbc429db4af9308a8e1b2d588aa7b191ccf",
+   "student_papers.jsonl.gz": "941a877e543bbd360fe91ec9b7bb5745141d5f45831c9e68b1b8300dab49f2f6",
+   "copies.json": "cda57a19be7a5d4eae0289e82461b0109396b7300b7e2bb0fbbfc45918ebd21e"
+  },
+  "cmu": {
+   "pis.json": "a1fd910ac587bec694425ac90295e24a0abf23dc293c0aac80a9b467cd7e79ef",
+   "students.json": "6ac5eca93bca9da351c110bb12136e1b9d8955cb1141eaff2f0b6d42a3bc0163",
+   "lab_papers.jsonl.gz": "a7d89af6b998cc86fa2b46d2df5f9799df8e38d72e51cba3dfaf9b3e69415b1d",
+   "student_papers.jsonl.gz": "afb767de3584fde09a16a96184f3931524cf5dfdabbfed651ba5e671b7ea6032",
+   "copies.json": "57fa891801dc88186093b784cc19bcaeedb473af62b0c7a2dcb6a127c94fcb37"
+  },
+  "epfl": {
+   "pis.json": "a670f8b05aa44083e5e9e8d2504d8160c52159a131645c4d238acea49852778c",
+   "students.json": "f0e80a9bacf4d1819cd633a9a263728b332ac59810891298e74686b21de529b3",
+   "lab_papers.jsonl.gz": "a1bb1205a8193789fea9e86b56c29063f206dbee5701808af2be24216d66c3ba",
+   "student_papers.jsonl.gz": "ed50bfd3c6b9f2840d29a0374240ea5e091e155845237aeee9a5aa9e17b1fb71",
+   "copies.json": "44f576407724d0340d1a43ac2e3ba317f23cf006e90faa848070d5a8ed3f2c23"
+  },
+  "mit": {
+   "pis.json": "71bc5024f954235145e9df9ab9378dcc1aa93a15783e55999e13dcecf86f8b3d",
+   "students.json": "64ab9e2c2da99f1e0f30f4184e6b617330efc01568da6b2ee4be73732418c159",
+   "lab_papers.jsonl.gz": "66fc4792669bd51c48a612f2906ba572e9673d3e3d1f089941ea960feb8ccc6e",
+   "student_papers.jsonl.gz": "a9ff242b9f795cb1287a0ff380cbdb429b238aa7e7418d2744bfa28f1874b803",
+   "copies.json": "6053e5f0e89d32ae39fa6dd7c784510ff777686ec2b5eac4de0637eba1a4824c"
+  },
+  "berkeley": {
+   "pis.json": "c7b4e78508c5fec8692d229a9e6e884f6d5734534dd0af8a548188c61867a2ee",
+   "students.json": "8a9ec1476e1e208634c56b93cc65608606f7e4dadbe1c418e9bd5b0b80817482",
+   "lab_papers.jsonl.gz": "0218c6422e4735e3add677dcd7eae7115079f9f1c4876ffc8d14d2feede2b80a",
+   "student_papers.jsonl.gz": "9051a931eb7367cf60c3cd7aaca88783ff002fe136165152c06690b01ba4c1bd",
+   "copies.json": "79cd24482ba7e5c2c627b93cf10c4c4dd27ea59d446310a69b7ca324a66376ad"
+  },
+  "stanford": {
+   "pis.json": "ee16bd74f68502566a1a5f0f0c6b854d1ea063edb30e7a8f82acd0dcfdcef3db",
+   "students.json": "7c9018f632348e6a3ff62e096e7f9e8c9d1bf1543134aa64470c969ba2695efc",
+   "lab_papers.jsonl.gz": "50d1491b59c94ec80a2af5e8e6c506f6014df42d94906bc50b101fdaff795cbe",
+   "student_papers.jsonl.gz": "1f70b7a89e3d0094534d7d2760824f9688bee4e357d4b596b14250aa072dbe23",
+   "copies.json": "4faa6ca02a91dd494dc8a3cdc058b96d200ed4e3f11b4e607487ff719b0f9987"
+  }
+ },
+ "n_verdicts": 630,
+ "schools": {
+  "princeton": {
+   "lab_precision_uniform": {
+    "k": 25,
+    "n": 25,
+    "p": 1.0,
+    "lo": 0.8668,
+    "hi": 1.0,
+    "unclear": 0
+   },
+   "lab_precision_uniform_if_abstracts_count": {
+    "k": 25,
+    "n": 25,
+    "p": 1.0,
+    "lo": 0.8668,
+    "hi": 1.0,
+    "unclear": 0
+   },
+   "lab_precision_strata": {
+    "advisee_unaffiliated": {
+     "k": 5,
+     "n": 5,
+     "p": 1.0,
+     "lo": 0.5655,
+     "hi": 1.0,
+     "unclear": 0
+    },
+    "listing": {
+     "k": 5,
+     "n": 5,
+     "p": 1.0,
+     "lo": 0.5655,
+     "hi": 1.0,
+     "unclear": 0
+    },
+    "identity_not_reviewed": {
+     "k": 5,
+     "n": 5,
+     "p": 1.0,
+     "lo": 0.5655,
+     "hi": 1.0,
+     "unclear": 0
+    }
+   },
+   "lab_precision_all40": {
+    "k": 40,
+    "n": 40,
+    "p": 1.0,
+    "lo": 0.9124,
+    "hi": 1.0,
+    "unclear": 0
+   },
+   "student_precision_uniform": {
+    "k": 25,
+    "n": 25,
+    "p": 1.0,
+    "lo": 0.8668,
+    "hi": 1.0,
+    "unclear": 0
+   },
+   "student_precision_strata": {
+    "advisee_name_on_lab_paper_byline": {
+     "k": 5,
+     "n": 5,
+     "p": 1.0,
+     "lo": 0.5655,
+     "hi": 1.0,
+     "unclear": 0
+    },
+    "full_name_on_lab_paper_byline": {
+     "k": 5,
+     "n": 5,
+     "p": 1.0,
+     "lo": 0.5655,
+     "hi": 1.0,
+     "unclear": 0
+    },
+    "within_lab_byline_match": {
+     "k": 5,
+     "n": 5,
+     "p": 1.0,
+     "lo": 0.5655,
+     "hi": 1.0,
+     "unclear": 0
+    }
+   },
+   "student_precision_all40": {
+    "k": 40,
+    "n": 40,
+    "p": 1.0,
+    "lo": 0.9124,
+    "hi": 1.0,
+    "unclear": 0
+   },
+   "lab_coverage": {
+    "k": 10,
+    "n": 13,
+    "p": 0.7692,
+    "lo": 0.4974,
+    "hi": 0.9182
+   },
+   "lab_coverage_items": {
+    "drawn": 15,
+    "true_lab_papers": 13,
+    "not_lab_papers_absent": 1,
+    "not_lab_papers_in_build": 1,
+    "unclear": 0
+   },
+   "student_coverage": {
+    "k": 9,
+    "n": 9,
+    "p": 1.0,
+    "lo": 0.7009,
+    "hi": 1.0
+   },
+   "student_coverage_items": {
+    "drawn": 10,
+    "no_coauthored_paper": 1,
+    "duplicate_record": 0
+   },
+   "failures": {
+    "missing_from_build": 3,
+    "not_a_paper": 1
+   },
+   "secondary_flags": {
+    "date_wrong": 0,
+    "metadata_wrong": 0
+   },
+   "population": {
+    "lab_papers": 9469,
+    "student_papers": 7620,
+    "coverage_pool": 5236,
+    "student_candidates": 583
+   }
+  },
+  "cmu": {
+   "lab_precision_uniform": {
+    "k": 23,
+    "n": 25,
+    "p": 0.92,
+    "lo": 0.7503,
+    "hi": 0.9778,
+    "unclear": 0
+   },
+   "lab_precision_uniform_if_abstracts_count": {
+    "k": 24,
+    "n": 25,
+    "p": 0.96,
+    "lo": 0.8046,
+    "hi": 0.9929,
+    "unclear": 0
+   },
+   "lab_precision_strata": {
+    "advisee_unaffiliated": {
+     "k": 5,
+     "n": 5,
+     "p": 1.0,
+     "lo": 0.5655,
+     "hi": 1.0,
+     "unclear": 0
+    },
+    "listing": {
+     "k": 5,
+     "n": 5,
+     "p": 1.0,
+     "lo": 0.5655,
+     "hi": 1.0,
+     "unclear": 0
+    },
+    "identity_not_reviewed": {
+     "k": 5,
+     "n": 5,
+     "p": 1.0,
+     "lo": 0.5655,
+     "hi": 1.0,
+     "unclear": 0
+    }
+   },
+   "lab_precision_all40": {
+    "k": 38,
+    "n": 40,
+    "p": 0.95,
+    "lo": 0.835,
+    "hi": 0.9862,
+    "unclear": 0
+   },
+   "student_precision_uniform": {
+    "k": 25,
+    "n": 25,
+    "p": 1.0,
+    "lo": 0.8668,
+    "hi": 1.0,
+    "unclear": 0
+   },
+   "student_precision_strata": {
+    "advisee_name_on_lab_paper_byline": {
+     "k": 5,
+     "n": 5,
+     "p": 1.0,
+     "lo": 0.5655,
+     "hi": 1.0,
+     "unclear": 0
+    },
+    "full_name_on_lab_paper_byline": {
+     "k": 5,
+     "n": 5,
+     "p": 1.0,
+     "lo": 0.5655,
+     "hi": 1.0,
+     "unclear": 0
+    },
+    "within_lab_byline_match": {
+     "k": 5,
+     "n": 5,
+     "p": 1.0,
+     "lo": 0.5655,
+     "hi": 1.0,
+     "unclear": 0
+    }
+   },
+   "student_precision_all40": {
+    "k": 40,
+    "n": 40,
+    "p": 1.0,
+    "lo": 0.9124,
+    "hi": 1.0,
+    "unclear": 0
+   },
+   "lab_coverage": {
+    "k": 14,
+    "n": 14,
+    "p": 1.0,
+    "lo": 0.7847,
+    "hi": 1.0
+   },
+   "lab_coverage_items": {
+    "drawn": 15,
+    "true_lab_papers": 14,
+    "not_lab_papers_absent": 0,
+    "not_lab_papers_in_build": 1,
+    "unclear": 0
+   },
+   "student_coverage": {
+    "k": 10,
+    "n": 10,
+    "p": 1.0,
+    "lo": 0.7225,
+    "hi": 1.0
+   },
+   "student_coverage_items": {
+    "drawn": 10,
+    "no_coauthored_paper": 0,
+    "duplicate_record": 0
+   },
+   "failures": {
+    "not_a_paper": 3
+   },
+   "secondary_flags": {
+    "date_wrong": 1,
+    "metadata_wrong": 0
+   },
+   "population": {
+    "lab_papers": 31359,
+    "student_papers": 29341,
+    "coverage_pool": 23116,
+    "student_candidates": 1058
+   }
+  },
+  "epfl": {
+   "lab_precision_uniform": {
+    "k": 22,
+    "n": 25,
+    "p": 0.88,
+    "lo": 0.7004,
+    "hi": 0.9583,
+    "unclear": 0
+   },
+   "lab_precision_uniform_if_abstracts_count": {
+    "k": 22,
+    "n": 25,
+    "p": 0.88,
+    "lo": 0.7004,
+    "hi": 0.9583,
+    "unclear": 0
+   },
+   "lab_precision_strata": {
+    "advisee_unaffiliated": {
+     "k": 5,
+     "n": 5,
+     "p": 1.0,
+     "lo": 0.5655,
+     "hi": 1.0,
+     "unclear": 0
+    },
+    "listing": {
+     "k": 5,
+     "n": 5,
+     "p": 1.0,
+     "lo": 0.5655,
+     "hi": 1.0,
+     "unclear": 0
+    },
+    "identity_not_reviewed": {
+     "k": 5,
+     "n": 5,
+     "p": 1.0,
+     "lo": 0.5655,
+     "hi": 1.0,
+     "unclear": 0
+    }
+   },
+   "lab_precision_all40": {
+    "k": 37,
+    "n": 40,
+    "p": 0.925,
+    "lo": 0.8014,
+    "hi": 0.9742,
+    "unclear": 0
+   },
+   "student_precision_uniform": {
+    "k": 25,
+    "n": 25,
+    "p": 1.0,
+    "lo": 0.8668,
+    "hi": 1.0,
+    "unclear": 0
+   },
+   "student_precision_strata": {
+    "advisee_name_on_lab_paper_byline": {
+     "k": 5,
+     "n": 5,
+     "p": 1.0,
+     "lo": 0.5655,
+     "hi": 1.0,
+     "unclear": 0
+    },
+    "full_name_on_lab_paper_byline": {
+     "k": 5,
+     "n": 5,
+     "p": 1.0,
+     "lo": 0.5655,
+     "hi": 1.0,
+     "unclear": 0
+    },
+    "within_lab_byline_match": {
+     "k": 5,
+     "n": 5,
+     "p": 1.0,
+     "lo": 0.5655,
+     "hi": 1.0,
+     "unclear": 0
+    }
+   },
+   "student_precision_all40": {
+    "k": 40,
+    "n": 40,
+    "p": 1.0,
+    "lo": 0.9124,
+    "hi": 1.0,
+    "unclear": 0
+   },
+   "lab_coverage": {
+    "k": 12,
+    "n": 12,
+    "p": 1.0,
+    "lo": 0.7575,
+    "hi": 1.0
+   },
+   "lab_coverage_items": {
+    "drawn": 15,
+    "true_lab_papers": 12,
+    "not_lab_papers_absent": 1,
+    "not_lab_papers_in_build": 2,
+    "unclear": 0
+   },
+   "student_coverage": {
+    "k": 7,
+    "n": 7,
+    "p": 1.0,
+    "lo": 0.6457,
+    "hi": 1.0
+   },
+   "student_coverage_items": {
+    "drawn": 10,
+    "no_coauthored_paper": 3,
+    "duplicate_record": 0
+   },
+   "failures": {
+    "not_a_paper": 5
+   },
+   "secondary_flags": {
+    "date_wrong": 0,
+    "metadata_wrong": 0
+   },
+   "population": {
+    "lab_papers": 13992,
+    "student_papers": 15037,
+    "coverage_pool": 7921,
+    "student_candidates": 572
+   }
+  },
+  "mit": {
+   "lab_precision_uniform": {
+    "k": 25,
+    "n": 25,
+    "p": 1.0,
+    "lo": 0.8668,
+    "hi": 1.0,
+    "unclear": 0
+   },
+   "lab_precision_uniform_if_abstracts_count": {
+    "k": 25,
+    "n": 25,
+    "p": 1.0,
+    "lo": 0.8668,
+    "hi": 1.0,
+    "unclear": 0
+   },
+   "lab_precision_strata": {
+    "advisee_unaffiliated": {
+     "k": 1,
+     "n": 5,
+     "p": 0.2,
+     "lo": 0.0362,
+     "hi": 0.6245,
+     "unclear": 0
+    },
+    "listing": {
+     "k": 5,
+     "n": 5,
+     "p": 1.0,
+     "lo": 0.5655,
+     "hi": 1.0,
+     "unclear": 0
+    },
+    "identity_not_reviewed": {
+     "k": 3,
+     "n": 5,
+     "p": 0.6,
+     "lo": 0.2307,
+     "hi": 0.8824,
+     "unclear": 0
+    }
+   },
+   "lab_precision_all40": {
+    "k": 34,
+    "n": 40,
+    "p": 0.85,
+    "lo": 0.7093,
+    "hi": 0.9294,
+    "unclear": 0
+   },
+   "student_precision_uniform": {
+    "k": 25,
+    "n": 25,
+    "p": 1.0,
+    "lo": 0.8668,
+    "hi": 1.0,
+    "unclear": 0
+   },
+   "student_precision_strata": {
+    "advisee_name_on_lab_paper_byline": {
+     "k": 5,
+     "n": 5,
+     "p": 1.0,
+     "lo": 0.5655,
+     "hi": 1.0,
+     "unclear": 0
+    },
+    "full_name_on_lab_paper_byline": {
+     "k": 5,
+     "n": 5,
+     "p": 1.0,
+     "lo": 0.5655,
+     "hi": 1.0,
+     "unclear": 0
+    },
+    "within_lab_byline_match": {
+     "k": 5,
+     "n": 5,
+     "p": 1.0,
+     "lo": 0.5655,
+     "hi": 1.0,
+     "unclear": 0
+    }
+   },
+   "student_precision_all40": {
+    "k": 40,
+    "n": 40,
+    "p": 1.0,
+    "lo": 0.9124,
+    "hi": 1.0,
+    "unclear": 0
+   },
+   "lab_coverage": {
+    "k": 14,
+    "n": 14,
+    "p": 1.0,
+    "lo": 0.7847,
+    "hi": 1.0
+   },
+   "lab_coverage_items": {
+    "drawn": 15,
+    "true_lab_papers": 14,
+    "not_lab_papers_absent": 0,
+    "not_lab_papers_in_build": 1,
+    "unclear": 0
+   },
+   "student_coverage": {
+    "k": 10,
+    "n": 10,
+    "p": 1.0,
+    "lo": 0.7225,
+    "hi": 1.0
+   },
+   "student_coverage_items": {
+    "drawn": 10,
+    "no_coauthored_paper": 0,
+    "duplicate_record": 1
+   },
+   "failures": {
+    "not_a_paper": 7
+   },
+   "secondary_flags": {
+    "date_wrong": 0,
+    "metadata_wrong": 0
+   },
+   "population": {
+    "lab_papers": 22306,
+    "student_papers": 20976,
+    "coverage_pool": 13305,
+    "student_candidates": 2735
+   }
+  },
+  "berkeley": {
+   "lab_precision_uniform": {
+    "k": 25,
+    "n": 25,
+    "p": 1.0,
+    "lo": 0.8668,
+    "hi": 1.0,
+    "unclear": 0
+   },
+   "lab_precision_uniform_if_abstracts_count": {
+    "k": 25,
+    "n": 25,
+    "p": 1.0,
+    "lo": 0.8668,
+    "hi": 1.0,
+    "unclear": 0
+   },
+   "lab_precision_strata": {
+    "advisee_unaffiliated": {
+     "k": 4,
+     "n": 5,
+     "p": 0.8,
+     "lo": 0.3755,
+     "hi": 0.9638,
+     "unclear": 0
+    },
+    "listing": {
+     "k": 5,
+     "n": 5,
+     "p": 1.0,
+     "lo": 0.5655,
+     "hi": 1.0,
+     "unclear": 0
+    },
+    "identity_not_reviewed": {
+     "k": 5,
+     "n": 5,
+     "p": 1.0,
+     "lo": 0.5655,
+     "hi": 1.0,
+     "unclear": 0
+    }
+   },
+   "lab_precision_all40": {
+    "k": 39,
+    "n": 40,
+    "p": 0.975,
+    "lo": 0.8712,
+    "hi": 0.9956,
+    "unclear": 0
+   },
+   "student_precision_uniform": {
+    "k": 25,
+    "n": 25,
+    "p": 1.0,
+    "lo": 0.8668,
+    "hi": 1.0,
+    "unclear": 0
+   },
+   "student_precision_strata": {
+    "advisee_name_on_lab_paper_byline": {
+     "k": 5,
+     "n": 5,
+     "p": 1.0,
+     "lo": 0.5655,
+     "hi": 1.0,
+     "unclear": 0
+    },
+    "full_name_on_lab_paper_byline": {
+     "k": 5,
+     "n": 5,
+     "p": 1.0,
+     "lo": 0.5655,
+     "hi": 1.0,
+     "unclear": 0
+    },
+    "within_lab_byline_match": {
+     "k": 5,
+     "n": 5,
+     "p": 1.0,
+     "lo": 0.5655,
+     "hi": 1.0,
+     "unclear": 0
+    }
+   },
+   "student_precision_all40": {
+    "k": 40,
+    "n": 40,
+    "p": 1.0,
+    "lo": 0.9124,
+    "hi": 1.0,
+    "unclear": 0
+   },
+   "lab_coverage": {
+    "k": 13,
+    "n": 13,
+    "p": 1.0,
+    "lo": 0.7719,
+    "hi": 1.0
+   },
+   "lab_coverage_items": {
+    "drawn": 15,
+    "true_lab_papers": 13,
+    "not_lab_papers_absent": 2,
+    "not_lab_papers_in_build": 0,
+    "unclear": 0
+   },
+   "student_coverage": {
+    "k": 10,
+    "n": 10,
+    "p": 1.0,
+    "lo": 0.7225,
+    "hi": 1.0
+   },
+   "student_coverage_items": {
+    "drawn": 10,
+    "no_coauthored_paper": 0,
+    "duplicate_record": 0
+   },
+   "failures": {
+    "not_at_school": 1
+   },
+   "secondary_flags": {
+    "date_wrong": 0,
+    "metadata_wrong": 0
+   },
+   "population": {
+    "lab_papers": 16366,
+    "student_papers": 16775,
+    "coverage_pool": 10395,
+    "student_candidates": 591
+   }
+  },
+  "stanford": {
+   "lab_precision_uniform": {
+    "k": 25,
+    "n": 25,
+    "p": 1.0,
+    "lo": 0.8668,
+    "hi": 1.0,
+    "unclear": 0
+   },
+   "lab_precision_uniform_if_abstracts_count": {
+    "k": 25,
+    "n": 25,
+    "p": 1.0,
+    "lo": 0.8668,
+    "hi": 1.0,
+    "unclear": 0
+   },
+   "lab_precision_strata": {
+    "advisee_unaffiliated": {
+     "k": 4,
+     "n": 5,
+     "p": 0.8,
+     "lo": 0.3755,
+     "hi": 0.9638,
+     "unclear": 0
+    },
+    "listing": {
+     "k": 5,
+     "n": 5,
+     "p": 1.0,
+     "lo": 0.5655,
+     "hi": 1.0,
+     "unclear": 0
+    },
+    "identity_not_reviewed": {
+     "k": 3,
+     "n": 5,
+     "p": 0.6,
+     "lo": 0.2307,
+     "hi": 0.8824,
+     "unclear": 0
+    }
+   },
+   "lab_precision_all40": {
+    "k": 37,
+    "n": 40,
+    "p": 0.925,
+    "lo": 0.8014,
+    "hi": 0.9742,
+    "unclear": 0
+   },
+   "student_precision_uniform": {
+    "k": 25,
+    "n": 25,
+    "p": 1.0,
+    "lo": 0.8668,
+    "hi": 1.0,
+    "unclear": 0
+   },
+   "student_precision_strata": {
+    "advisee_name_on_lab_paper_byline": {
+     "k": 5,
+     "n": 5,
+     "p": 1.0,
+     "lo": 0.5655,
+     "hi": 1.0,
+     "unclear": 0
+    },
+    "full_name_on_lab_paper_byline": {
+     "k": 5,
+     "n": 5,
+     "p": 1.0,
+     "lo": 0.5655,
+     "hi": 1.0,
+     "unclear": 0
+    },
+    "within_lab_byline_match": {
+     "k": 5,
+     "n": 5,
+     "p": 1.0,
+     "lo": 0.5655,
+     "hi": 1.0,
+     "unclear": 0
+    }
+   },
+   "student_precision_all40": {
+    "k": 40,
+    "n": 40,
+    "p": 1.0,
+    "lo": 0.9124,
+    "hi": 1.0,
+    "unclear": 0
+   },
+   "lab_coverage": {
+    "k": 12,
+    "n": 14,
+    "p": 0.8571,
+    "lo": 0.6006,
+    "hi": 0.9599
+   },
+   "lab_coverage_items": {
+    "drawn": 15,
+    "true_lab_papers": 14,
+    "not_lab_papers_absent": 0,
+    "not_lab_papers_in_build": 1,
+    "unclear": 0
+   },
+   "student_coverage": {
+    "k": 7,
+    "n": 8,
+    "p": 0.875,
+    "lo": 0.5291,
+    "hi": 0.9776
+   },
+   "student_coverage_items": {
+    "drawn": 10,
+    "no_coauthored_paper": 2,
+    "duplicate_record": 0
+   },
+   "failures": {
+    "not_a_paper": 4,
+    "missing_from_build": 2,
+    "student_not_linked": 1
+   },
+   "secondary_flags": {
+    "date_wrong": 0,
+    "metadata_wrong": 1
+   },
+   "population": {
+    "lab_papers": 21853,
+    "student_papers": 18537,
+    "coverage_pool": 11897,
+    "student_candidates": 1593
+   }
+  }
+ },
+ "pooled": {
+  "lab_precision_uniform": {
+   "k": 145,
+   "n": 150,
+   "p": 0.9667,
+   "lo": 0.9243,
+   "hi": 0.9857,
+   "unclear": 0
+  },
+  "lab_precision_uniform_if_abstracts_count": {
+   "k": 146,
+   "n": 150,
+   "p": 0.9733,
+   "lo": 0.9334,
+   "hi": 0.9896,
+   "unclear": 0
+  },
+  "lab_precision_strata": {
+   "advisee_unaffiliated": {
+    "k": 24,
+    "n": 30,
+    "p": 0.8,
+    "lo": 0.6269,
+    "hi": 0.9049,
+    "unclear": 0
+   },
+   "listing": {
+    "k": 30,
+    "n": 30,
+    "p": 1.0,
+    "lo": 0.8865,
+    "hi": 1.0,
+    "unclear": 0
+   },
+   "identity_not_reviewed": {
+    "k": 26,
+    "n": 30,
+    "p": 0.8667,
+    "lo": 0.7032,
+    "hi": 0.9469,
+    "unclear": 0
+   }
+  },
+  "lab_precision_all40": {
+   "k": 225,
+   "n": 240,
+   "p": 0.9375,
+   "lo": 0.8995,
+   "hi": 0.9618,
+   "unclear": 0
+  },
+  "student_precision_uniform": {
+   "k": 150,
+   "n": 150,
+   "p": 1.0,
+   "lo": 0.975,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "student_precision_strata": {
+   "advisee_name_on_lab_paper_byline": {
+    "k": 30,
+    "n": 30,
+    "p": 1.0,
+    "lo": 0.8865,
+    "hi": 1.0,
+    "unclear": 0
+   },
+   "full_name_on_lab_paper_byline": {
+    "k": 30,
+    "n": 30,
+    "p": 1.0,
+    "lo": 0.8865,
+    "hi": 1.0,
+    "unclear": 0
+   },
+   "within_lab_byline_match": {
+    "k": 30,
+    "n": 30,
+    "p": 1.0,
+    "lo": 0.8865,
+    "hi": 1.0,
+    "unclear": 0
+   }
+  },
+  "student_precision_all40": {
+   "k": 240,
+   "n": 240,
+   "p": 1.0,
+   "lo": 0.9842,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "lab_coverage": {
+   "k": 75,
+   "n": 80,
+   "p": 0.9375,
+   "lo": 0.8619,
+   "hi": 0.973
+  },
+  "lab_coverage_items": {
+   "drawn": 90,
+   "true_lab_papers": 80,
+   "not_lab_papers_absent": 4,
+   "not_lab_papers_in_build": 6,
+   "unclear": 0
+  },
+  "student_coverage": {
+   "k": 53,
+   "n": 54,
+   "p": 0.9815,
+   "lo": 0.9023,
+   "hi": 0.9967
+  },
+  "student_coverage_items": {
+   "drawn": 60,
+   "no_coauthored_paper": 6,
+   "duplicate_record": 1
+  },
+  "failures": {
+   "missing_from_build": 5,
+   "not_a_paper": 20,
+   "not_at_school": 1,
+   "student_not_linked": 1
+  },
+  "secondary_flags": {
+   "date_wrong": 1,
+   "metadata_wrong": 1
+  },
+  "lab_precision_uniform_size_weighted": 0.9637,
+  "student_precision_uniform_size_weighted": 1.0
+ },
+ "incorrect": [
+  {
+   "school": "princeton",
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Prateek Mittal|conf/nips/BhagojiCM19",
+   "failure_type": "missing_from_build",
+   "reason": "NeurIPS 2019 with his Princeton student Bhagoji; Mittal's affiliation is only 'Center for Information Technology Policy' and the roster spells the student 'Arjun Nitin Nitin Bhagoji', so neither the school nor the advisee route fires",
+   "policy": null,
+   "evidence": "https://openalex.org/W2970864518"
+  },
+  {
+   "school": "princeton",
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Prateek Mittal|journals/iacr/PatlanSHMV25",
+   "failure_type": "missing_from_build",
+   "reason": "2025 ePrint/arXiv paper with Princeton students Patlan and Hebbar and Princeton's Viswanath; OpenAlex search finds no record, so the sweep never saw it",
+   "policy": null,
+   "evidence": "https://arxiv.org/abs/2503.16248"
+  },
+  {
+   "school": "princeton",
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Naveen Verma|conf/iwasi/Verma17",
+   "failure_type": "not_a_paper",
+   "reason": "one-page single-author IWASI 2017 keynote abstract (OpenAlex type conference-abstract), not a research paper; the build includes it",
+   "policy": "meeting_abstract",
+   "evidence": "https://openalex.org/W2734831869"
+  },
+  {
+   "school": "princeton",
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Ronnie Sircar|journals/siamrev/ChanS17",
+   "failure_type": "missing_from_build",
+   "reason": "SIAM Review 2017 with Princeton co-author Patrick Chan (his ORFE PhD); Sircar's affiliation is the bare 'Operations Research & Financial Engineering' and Chan is not on Sircar's recorded roster",
+   "policy": null,
+   "evidence": "https://openalex.org/W2744197922"
+  },
+  {
+   "school": "cmu",
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "Sarah Fox|cmu_8fd2fbb393aea4dfc06d|https://openalex.org/W7153821956",
+   "failure_type": "not_a_paper",
+   "reason": "a CHI 2026 workshop proposal ('Workshop on Developing Standards ...'), not a research paper; PI, school and date are right",
+   "policy": null,
+   "evidence": "https://openalex.org/W7153821956"
+  },
+  {
+   "school": "cmu",
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "B. Erik Ydstie|None|https://openalex.org/W3111311984",
+   "failure_type": "not_a_paper",
+   "reason": "AGU Fall Meeting 2019 abstract (type conference-abstract), not a paper; Ydstie and student McGuffin are right",
+   "policy": "meeting_abstract",
+   "evidence": "https://openalex.org/W3111311984"
+  },
+  {
+   "school": "cmu",
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Ken Koedinger|conf/lats/ThomasDKMPRSTK25",
+   "failure_type": "not_a_paper",
+   "reason": "L@S 2025 workshop proposal ('A Collaborative Workshop with the National Tutoring Observatory'), not research; the build includes it",
+   "policy": null,
+   "evidence": "https://openalex.org/W4412975911"
+  },
+  {
+   "school": "epfl",
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "Ronan Boulic|epfl_s2_562b7afb025e80bc3373|https://openalex.org/W2769791602",
+   "failure_type": "not_a_paper",
+   "reason": "editorial foreword to a Computers & Graphics special section, not research; Boulic and EPFL are right",
+   "policy": null,
+   "evidence": "https://openalex.org/W2769791602"
+  },
+  {
+   "school": "epfl",
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "Maryna Viazovska|epfl_is_a936c8f3364cc5ae6a34|https://openalex.org/W7221524172",
+   "failure_type": "not_a_paper",
+   "reason": "Oberwolfach workshop report (the organizers' report, Viazovska among them), not a research paper",
+   "policy": null,
+   "evidence": "https://openalex.org/W7221524172"
+  },
+  {
+   "school": "epfl",
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "Mathias Payer|epfl_7051251a84488776fd23|https://openalex.org/W7127958959",
+   "failure_type": "not_a_paper",
+   "reason": "Zenodo software artifact record (type software) of the CLower paper, not the paper itself",
+   "policy": null,
+   "evidence": "https://openalex.org/W7127958959"
+  },
+  {
+   "school": "epfl",
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "James Larus|journals/cacm/Larus22",
+   "failure_type": "not_a_paper",
+   "reason": "'CACM community', a one-page single-author CACM column, not research; the build includes it",
+   "policy": null,
+   "evidence": "https://openalex.org/W4283212552"
+  },
+  {
+   "school": "epfl",
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Mathias Payer|journals/dagstuhl-reports/ChisnallGHP21",
+   "failure_type": "not_a_paper",
+   "reason": "Dagstuhl Seminar 21481 report (organizers' report), not research; the build includes it",
+   "policy": null,
+   "evidence": "https://openalex.org/W6929199287"
+  },
+  {
+   "school": "mit",
+   "sample": "lab_precision",
+   "stratum": "identity_not_reviewed",
+   "item": "Bonnie Berger|mit_36bd1e2bc5c3c6fe9591|https://openalex.org/W2677610438",
+   "failure_type": "not_a_paper",
+   "reason": "F1000 announcement of the 2017 ISCB senior-scientist award (Pevzner), not research; Berger and MIT are right",
+   "policy": null,
+   "evidence": "https://openalex.org/W2677610438"
+  },
+  {
+   "school": "mit",
+   "sample": "lab_precision",
+   "stratum": "identity_not_reviewed",
+   "item": "Polina Golland|mit_s2_eba295e133e999d841e8|https://openalex.org/W2752575772",
+   "failure_type": "not_a_paper",
+   "reason": "ISC 2017 meeting abstract in a Stroke supplement (type conference-abstract), not a paper",
+   "policy": "meeting_abstract",
+   "evidence": "https://openalex.org/W2752575772"
+  },
+  {
+   "school": "mit",
+   "sample": "lab_precision",
+   "stratum": "advisee_unaffiliated",
+   "item": "Elfar Adalsteinsson|None|https://openalex.org/W4401572680",
+   "failure_type": "not_a_paper",
+   "reason": "ISMRM meeting abstract (Proceedings CD-ROM); Adalsteinsson and his MIT student Arefeen are right",
+   "policy": "meeting_abstract",
+   "evidence": "https://openalex.org/W4401572680"
+  },
+  {
+   "school": "mit",
+   "sample": "lab_precision",
+   "stratum": "advisee_unaffiliated",
+   "item": "Bonnie Berger|None|https://openalex.org/W2605429657",
+   "failure_type": "not_a_paper",
+   "reason": "'Principles of Systems Biology, No. 31', a Cell Systems highlights column of one-paragraph summaries, not research",
+   "policy": null,
+   "evidence": "https://openalex.org/W2605429657"
+  },
+  {
+   "school": "mit",
+   "sample": "lab_precision",
+   "stratum": "advisee_unaffiliated",
+   "item": "William D. Oliver|None|https://openalex.org/W3002031535",
+   "failure_type": "not_a_paper",
+   "reason": "APS March Meeting 2018 abstract (Bulletin of the APS); Oliver and his student Menke are right",
+   "policy": "meeting_abstract",
+   "evidence": "https://openalex.org/W3002031535"
+  },
+  {
+   "school": "mit",
+   "sample": "lab_precision",
+   "stratum": "advisee_unaffiliated",
+   "item": "Dirk Englund|None|https://openalex.org/W2609132648",
+   "failure_type": "not_a_paper",
+   "reason": "APS March Meeting 2017 abstract (Bulletin of the APS); Englund and his student Bunandar are right",
+   "policy": "meeting_abstract",
+   "evidence": "https://openalex.org/W2609132648"
+  },
+  {
+   "school": "mit",
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Joel Emer|journals/micro/BurgerCEHHM25",
+   "failure_type": "not_a_paper",
+   "reason": "'Derek Chiou', a six-author IEEE Micro tribute to a colleague, not research; the build includes it",
+   "policy": null,
+   "evidence": "https://openalex.org/W4408441842"
+  },
+  {
+   "school": "berkeley",
+   "sample": "lab_precision",
+   "stratum": "advisee_unaffiliated",
+   "item": "Sergey Levine|None|https://openalex.org/W4404350116",
+   "failure_type": "not_at_school",
+   "reason": "pi-0 is a Physical Intelligence paper: every author, Levine and Kevin Black included, is credited to Physical Intelligence on the paper; the arXiv record has no affiliations, so the advisee route wrongly made it a Berkeley lab paper",
+   "policy": null,
+   "evidence": "https://arxiv.org/abs/2410.24164"
+  },
+  {
+   "school": "stanford",
+   "sample": "lab_precision",
+   "stratum": "identity_not_reviewed",
+   "item": "Aviad Rubinstein|None|https://openalex.org/W2950014110",
+   "failure_type": "not_a_paper",
+   "reason": "one chapter of Rubinstein's 2019 ACM Books monograph; the lab holds the book and 16 of its chapters, because the chapters have no venue and escaped the 2026-10-29 fold rule (a chapter dump)",
+   "policy": null,
+   "evidence": "https://openalex.org/W2950014110"
+  },
+  {
+   "school": "stanford",
+   "sample": "lab_precision",
+   "stratum": "identity_not_reviewed",
+   "item": "Anshul Kundaje|None|https://openalex.org/W7204929729",
+   "failure_type": "not_a_paper",
+   "reason": "a 2026 Stanford PhD dissertation by Minji Kang; Kundaje appears in the catalog byline as her adviser, not as an author",
+   "policy": null,
+   "evidence": "https://openalex.org/W7204929729"
+  },
+  {
+   "school": "stanford",
+   "sample": "lab_precision",
+   "stratum": "advisee_unaffiliated",
+   "item": "Kawin Setsompop|None|https://openalex.org/W4401571924",
+   "failure_type": "not_a_paper",
+   "reason": "ISMRM 2023 meeting abstract; Setsompop and his student Nan Wang are right",
+   "policy": "meeting_abstract",
+   "evidence": "https://openalex.org/W4401571924"
+  },
+  {
+   "school": "stanford",
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Mykel Kochenderfer|journals/dagstuhl-reports/0001KKTG24",
+   "failure_type": "not_a_paper",
+   "reason": "Dagstuhl Seminar 24361 report (organizers' report), not research; the build includes it",
+   "policy": null,
+   "evidence": "https://openalex.org/W6948057322"
+  },
+  {
+   "school": "stanford",
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Jacob Fox|journals/jctb/FoxPS25",
+   "failure_type": "missing_from_build",
+   "reason": "JCTB 2025 by Fox (Stanford Math), Pach and Suk; the OpenAlex record gives Fox no affiliation and has no advisee co-author, so no route ties it to Stanford",
+   "policy": null,
+   "evidence": "https://openalex.org/W4410132720"
+  },
+  {
+   "school": "stanford",
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Barbara Elizabeth Engelhardt|conf/ml4h/MandyamJYLE23",
+   "failure_type": "missing_from_build",
+   "reason": "ML4H 2023 paper with her student Mandyam, Engelhardt credited to Gladstone/Stanford; the only OpenAlex record is dated by its Oct 2021 arXiv v1, before her 2023 Stanford period, so the date check drops it",
+   "policy": null,
+   "evidence": "https://openalex.org/W4286909580"
+  },
+  {
+   "school": "stanford",
+   "sample": "student_coverage",
+   "stratum": "thesis_advisee_phd_ge_2018",
+   "item": "Johan Ugander|ext:stanford:izzy-aguiar",
+   "failure_type": "student_not_linked",
+   "reason": "Izzy Aguiar, Ugander PhD 2022: three lab papers carry her as 'Izabel Aguiar' (W4281869798, W4395479126, W4407821551) but none is linked; 'Izzy' and 'Izabel' are not a known nickname pair, so the given-name guard rejects the byline",
+   "policy": null,
+   "evidence": "hierarchy/stanford/lab_papers.jsonl.gz"
+  }
+ ],
+ "unclear": [],
+ "screened": [
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "position": 3,
+   "item": "Vivek F. Farias|mit_thesis_author_0d0a98d55b4c0a0ac099",
+   "name": "Steven Hubbard",
+   "screened_out": "thesis degree S.M./M.B.A. (not a PhD), per the DSpace item record",
+   "evidence": "work/accuracy/cache/mit-dspace-degrees.json"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "position": 5,
+   "item": "Tomás Lozano-Pérez|mit_thesis_author_c8dd38fcbd7297234c1a",
+   "name": "Willie B. McClinton III",
+   "screened_out": "thesis degree S.M. (not a PhD), per the DSpace item record",
+   "evidence": "work/accuracy/cache/mit-dspace-degrees.json"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "position": 6,
+   "item": "Pulkit Agrawal|mit_thesis_author_c302bf601f4dae8a3383",
+   "name": "Haokuan Luo",
+   "screened_out": "thesis degree M.Eng. (not a PhD), per the DSpace item record",
+   "evidence": "work/accuracy/cache/mit-dspace-degrees.json"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "position": 7,
+   "item": "Charles Leiserson|mit_thesis_author_f0c9a470cd0e1b776750",
+   "name": "Sean(Sean Cameron Burrows) Fraser",
+   "screened_out": "thesis degree M.Eng. (not a PhD), per the DSpace item record",
+   "evidence": "work/accuracy/cache/mit-dspace-degrees.json"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "position": 8,
+   "item": "Marzyeh Ghassemi|mit_roster_ca6ceafacf17212e",
+   "name": "Eileen Pan",
+   "screened_out": "thesis degree S.M. (not a PhD), per the DSpace item record",
+   "evidence": "work/accuracy/cache/mit-dspace-degrees.json"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "position": 9,
+   "item": "Samuel Madden|mit_thesis_author_373185ae47506bca3fa3",
+   "name": "Isabella M Tromba",
+   "screened_out": "thesis degree M.Eng. (not a PhD), per the DSpace item record",
+   "evidence": "work/accuracy/cache/mit-dspace-degrees.json"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "position": 10,
+   "item": "Roger Mark|mit_thesis_author_81ce1349b0fcf2152c63",
+   "name": "Anna Wong",
+   "screened_out": "thesis degree M.Eng. (not a PhD), per the DSpace item record",
+   "evidence": "work/accuracy/cache/mit-dspace-degrees.json"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "position": 11,
+   "item": "Arvind Satyanarayan|mit_thesis_author_8ca49b6e7aef039a8e48",
+   "name": "Rupayan. Neogy",
+   "screened_out": "thesis degree M.Eng. (not a PhD), per the DSpace item record",
+   "evidence": "work/accuracy/cache/mit-dspace-degrees.json"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "position": 13,
+   "item": "Michael Stonebraker|mit_thesis_author_af6092d7ebb0bef453bb",
+   "name": "Darren Lim",
+   "screened_out": "thesis degree M.Eng. (not a PhD), per the DSpace item record",
+   "evidence": "work/accuracy/cache/mit-dspace-degrees.json"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "position": 16,
+   "item": "Jacob Andreas|mit_thesis_author_914f4b785b00e9d8ff22",
+   "name": "Shinjini Ghosh",
+   "screened_out": "thesis degree M.Eng. (not a PhD), per the DSpace item record",
+   "evidence": "work/accuracy/cache/mit-dspace-degrees.json"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "position": 17,
+   "item": "Constantinos Daskalakis|mit_algorithms_person_fc4831b2b40ab1a5",
+   "name": "Rui Yao",
+   "screened_out": "thesis degree M.Eng. (not a PhD), per the DSpace item record",
+   "evidence": "work/accuracy/cache/mit-dspace-degrees.json"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "position": 19,
+   "item": "Howard Shrobe|mit_thesis_author_82257c7519c845e5488d",
+   "name": "Sam(Sam D.) Nguyen",
+   "screened_out": "thesis degree M.Eng. (not a PhD), per the DSpace item record",
+   "evidence": "work/accuracy/cache/mit-dspace-degrees.json"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "position": 21,
+   "item": "Pattie Maes|mit_thesis_author_3bba9e5ca6797331aa48",
+   "name": "Erica(Erica J.) Yuen",
+   "screened_out": "thesis degree M.Eng. (not a PhD), per the DSpace item record",
+   "evidence": "work/accuracy/cache/mit-dspace-degrees.json"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "position": 22,
+   "item": "Leslie Kaelbling|mit_thesis_author_90bcc6adb32be1f7bead",
+   "name": "Ryan P. Yang",
+   "screened_out": "thesis degree M.Eng. (not a PhD), per the DSpace item record",
+   "evidence": "work/accuracy/cache/mit-dspace-degrees.json"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "position": 23,
+   "item": "Aude Oliva|mit_thesis_author_945170eb4a78697bc1a3",
+   "name": "Nithin Parsan",
+   "screened_out": "thesis degree M.Eng. (not a PhD), per the DSpace item record",
+   "evidence": "work/accuracy/cache/mit-dspace-degrees.json"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "position": 24,
+   "item": "Dylan Hadfield-Menell|mit_roster_ed4317cd329f4298",
+   "name": "Adriano Hernandez",
+   "screened_out": "thesis degree M.Eng. (not a PhD), per the DSpace item record",
+   "evidence": "work/accuracy/cache/mit-dspace-degrees.json"
+  },
+  {
+   "school": "stanford",
+   "sample": "student_coverage",
+   "position": 6,
+   "item": "Patrick Hayden|stanford_stu_alex-may",
+   "name": "Alex May",
+   "screened_out": "a postdoc of Hayden (Postdoctoral Faculty Sponsor); the predicate matched another person's Doctoral Dissertation Advisor entry in the same quote",
+   "evidence": "hierarchy/stanford/students.json"
+  }
+ ],
+ "notes": {
+  "measured_build": "the sha256 in files (the 13:40 build, hashed when the sample was drawn)",
+  "rebuilt_after_draw": {
+   "princeton": {
+    "students.json": "dafa3683a191786bdfc5cc2357f3b032eafb0573e6336eeeabdbb4f62afdeed1",
+    "lab_papers.jsonl.gz": "9adb752246fc4cc3f452ce311995ad7a3fd9d7e370ed7cc421124daac29b7066",
+    "student_papers.jsonl.gz": "2e9db7b3fa000d8bb7767ef9b419e4975fd8979f54b82d455afc8e0ff730d0e0"
+   },
+   "cmu": {
+    "students.json": "16389a84f1340be6bffc122a97d7088840e804676036d414d24284a08a4ab031",
+    "lab_papers.jsonl.gz": "b44674fea86564df43e55537e493c46e93ea85871d0472a08f663448d3757034",
+    "student_papers.jsonl.gz": "27cb1c303029e005e1c2b37a8dad147414aa731efcc51834feabd635c288ed13"
+   },
+   "epfl": {
+    "students.json": "b2cf061b0dedca0b42afd93dc9440b703be05a326ccc1315eba1c9df4602cd14",
+    "lab_papers.jsonl.gz": "261005fc98a1960d64eb2cc31be636f4eb059159f71e583e5539340a2a9d23cc",
+    "student_papers.jsonl.gz": "3ff235022956f727bcd965292f3f0963b0371923fdb4befec12b1e3149d8d166"
+   }
+  },
+  "rebuilt_after_draw_note": "package files whose hash differs from the measured build when summarize.py ran; for the 14:06-14:16 rebuild of princeton/cmu/epfl the row counts and every sampled row key were checked and are unchanged"
+ }
+}
