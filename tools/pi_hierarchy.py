@@ -44,6 +44,7 @@ AFF = {'princeton': r'princeton\s+univ|univ\w*\.?\s+(?:of\s+)?princeton|princeto
        # SRI International (formerly Stanford Research Institute) nor Stanford Research Systems
        'stanford': r'stanford\.edu|\bstanford\b(?!\s+research\s+(?:institute|systems|international))'}
 TODAY = datetime.date.today().isoformat()
+WINDOW_START = 2016  # the atlas window is 2016-2026: the sweeps fetch works published 2016 and later
 COLLECTIVE = re.compile(r'\b(cent(?:er|re)|initiative|consortium|program(?:me)?|project|cluster|institute)\b', re.I)  # not labs (owner, 2026-10-21)
 NOT_PAPERS = {'dataset', 'paratext', 'peer-review', 'erratum', 'supplementary-materials', 'other', 'grant', 'standard', 'retraction', 'reference-entry', 'libguides'}
 ADV_RX = [re.compile(r'(?i:advis[eo]rs?)(?:\(s\))?(?!\s*\(AC\))\s*:?\s*([^;|]+?)(?=\s*(?:Degree:|Research Area|Readers?|Examiners?|;|\||$))'),
@@ -573,6 +574,10 @@ def fold_books(rows, school):
     for k, ix in runs.items():
         if len(ix) >= 5 or (k[1].startswith('doi:') and k in books):
             keep = [] if k in books else [min(ix, key=lambda i: len(rows[i].get('title') or ''))]
+            if k in books:  # the book's own record says how many chapters it stands for
+                for r in rows:
+                    if r.get('type') == 'book' and r['pi'] == k[0] and (k[1] == r.get('venue') and k[2] == r.get('year') or k[1] == 'doi:' + ndoi(r.get('doi'))):
+                        r['chapters_folded'] = r.get('chapters_folded', 0) + len(ix)
             for i in keep:
                 rows[i]['chapters_folded'] = len(ix)
             fold |= set(ix) - set(keep)
@@ -1594,6 +1599,10 @@ def build(school):
         date, dated_by = venue_version_date(w, dblp_venue[pi])
         if dated_by:
             n['dated_by_venue_version'] += 1
+            if dated_by['venue_year'] < WINDOW_START:
+                # the venue version predates the atlas window (2016-2026): a later deposit or preprint of an older paper
+                # is not a lab paper of the window (Sandholm's IJCAI 2009 paper, a 2018 KiltHub deposit)
+                n['dated_before_window'] += 1; funnel[pi]['dated_before_window'] += 1; continue
         per = next((q for q in p['periods'] if contains(q['start'], q['end'], date, q['asof'] or TODAY) == 'supported'), None)
         lst = None
         if per is None:

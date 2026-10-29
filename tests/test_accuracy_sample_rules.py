@@ -114,7 +114,7 @@ def test_r4_rubinstein_chapters_fold_into_the_book(cases):
     rows = [dict(r) for r in cases['rubinstein']]
     assert sum(r['type'] == 'book-chapter' for r in rows) == 16 and any(r['oa'].endswith('W2950014110') for r in rows)   # 13
     kept, folded, _ = h.fold_books(rows, 'stanford')
-    assert [r['type'] for r in kept] == ['book'] and folded == 16
+    assert [r['type'] for r in kept] == ['book'] and folded == 16 and kept[0]['chapters_folded'] == 16
     assert h.doi_book_prefix('10.1145/3241304.3241313') == '10.1145/3241304'
     assert h.doi_book_prefix('10.1007/978-3-030-12345-6_5') == '10.1007/978-3-030-12345-6'
 
@@ -190,7 +190,8 @@ def test_r9_sandholm_kilthub_deposit(cases):
     venues = {h.norm_title(d['title'].rstrip('.')): (d['year'], d['key']) for d in x['dblp']}
     w = dict(title=x['row']['title'], type='article', doi=x['row']['doi'], publication_year=2018, publication_date='2018-06-30',
              primary_location=dict(source=dict(type='repository', display_name='Figshare')))
-    assert h.venue_version_date(w, venues)[0] == '2009'
+    date, by = h.venue_version_date(w, venues)
+    assert date == '2009' and by['venue_year'] < h.WINDOW_START          # before the 2016-2026 window: the build drops it
     assert h.venue_version_date(dict(w, primary_location=dict(source=dict(type='journal'))), venues)[0] == '2018-06-30'  # a venue record keeps its date
 
 

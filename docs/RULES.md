@@ -191,7 +191,8 @@ A preprint or repository deposit (type preprint, an arXiv DOI, or a repository a
 is a venue publication on the PI's DBLP person page (not CoRR, ECCC or IACR ePrint) is dated by that record's year, the
 earliest if several, for the appointment check and the row's year (`dated_by`: the OpenAlex date and the DBLP key).
 Engelhardt's ML4H 2023 paper had only its October 2021 arXiv record; Sandholm's IJCAI 2009 paper was a 2018 KiltHub
-deposit. `venue_version_date`.
+deposit. A venue version from before the atlas window (2016) takes the row out (`dated_before_window`): a later deposit
+or preprint of an older paper is not a lab paper of 2016-2026. `venue_version_date`.
 
 ## Students
 
