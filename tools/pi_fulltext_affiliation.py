@@ -18,7 +18,9 @@ rule     page 1 ties the school to the PI (the same institutional pattern as pi_
          A school named anywhere else on the page (a co-author's affiliation, a reference) does not count. The quotes
          are the passage with the PI's name and the passage naming the school, both substrings of the page text.
 -> hierarchy/<school>/pi-works.sqlite (tables works, pages), read by pi_hierarchy.py
-usage: pi_fulltext_affiliation.py works <school> | pdf <school> [--workers 4]
+           footnote (R8, 2026-10-29) the PI's symbol marker opens a footnote line at the foot of page 1 that names the
+                   school (mathematics papers: 'Jacob Fox∗' ... '∗ Stanford University, Stanford, CA.').
+usage: pi_fulltext_affiliation.py works <school> | pdf <school> [--workers 4] | retie <school>
 """
 import hashlib, json, os, re, sqlite3, subprocess, sys, tempfile, time, zlib
 from concurrent.futures import ThreadPoolExecutor
@@ -103,6 +105,15 @@ def tie(flat, names, aff):
                     for line in re.finditer(r'(?:^|\s)' + re.escape(sym) + r'\s?([^0-9∗*†‡§¶♯]{5,160})', head[m.end() + len(mk.group(0)):]):
                         if aff.search(line.group(1)):
                             return 'marker', [head[m.start():m.end() + len(mk.group(0))], line.group(0).strip()]
+                    # (R8, 2026-10-29) a symbol marker's footnote at the foot of page 1, as mathematics papers place the
+                    # affiliations ('Jacob Fox∗' ... '∗ Stanford University, Stanford, CA.'): the first footnote line after
+                    # the author block that starts with the symbol and a capital letter, naming the school in its first 120
+                    # characters
+                    if sym in '∗*†‡§¶♯':
+                        fn = re.search(r'(?:^|\s)' + re.escape(sym) + r'\s?([A-Z][^∗*†‡§¶♯]{4,160})', flat[len(head):])
+                        a_ = aff.search(fn.group(1)[:120]) if fn else None
+                        if a_ and not re.search(r'(?i)equal|contribut|correspond|work (?:was )?done|intern', fn.group(1)[:a_.start()]):
+                            return 'footnote', [head[m.start():m.end() + len(mk.group(0))], fn.group(0).strip()]
             near = head[m.end():m.end() + 160]
             a = aff.search(near)
             if a and not re.search(r'(?<![A-Za-z])[A-Z][a-z]+\s+[A-Z][a-z]+\s*[0-9∗*†‡]', near[:a.start()]):  # no other author's name in between
@@ -130,17 +141,48 @@ def local_pdfs(school):
     return out
 
 
+def dblp_pages(pis):
+    """{pi: (DOIs, normalized titles)} of each PI's DBLP person page in the DBLP dump extract
+    (hierarchy/dblp-dump-persons.json.gz), for the PI's DBLP ids in pis.json."""
+    import html as html_
+    from pi_hierarchy import norm_title
+    f = HERE / 'hierarchy' / 'dblp-dump-persons.json.gz'
+    if not f.exists():
+        return {}
+    DP = read(f)['persons']; out = {}
+    for p in pis:
+        dois, titles = set(), set()
+        for q in p.get('dblp') or []:
+            for r in (DP.get(q) or {}).get('pubs') or []:
+                dois |= {d.lower() for d in r.get('dois') or []}
+                t = norm_title(html_.unescape(r.get('title') or '').rstrip('.'))
+                if t:
+                    titles.add(t)
+        out[p['pi']] = (dois, titles)
+    return out
+
+
 def candidates(school):
     """Works of the school's PIs whose PI authorship lists no institution (needs page 1): (work, arXiv id or None, name forms,
-    local catalog PDF or None)."""
+    local catalog PDF or None). Two kinds: (a) a work of one of the PI's anchored or reviewed OpenAlex author ids; (b) (R8,
+    2026-10-29, owner: accuracy sample) a work on the PI's own DBLP person page (DOI or title) whose authorship at the PI's
+    name, under any author id, lists no institution (Jacob Fox's JCTB 2025 paper: OpenAlex gives Fox no affiliation)."""
     c = db(school); pis = read(HERE / 'hierarchy' / school / 'pis.json')
     mine = {a for p in pis for a in (p.get('oaAuthorIds') or [])[:6] + (p.get('reviewedOpenAlex') or [])}
-    from pi_hierarchy import toks, given
-    names_of = {}
+    from pi_hierarchy import toks, given, Name, norm_title
+    names_of, forms_of = {}, {}
     for p in pis:
         forms = sorted({(given(t[0]), t[-1]) for n in p['names'] for t in [toks(n)] if len(t) >= 2} | {(t[1], t[-1]) for n in p['names'] for t in [toks(n)] if len(t) >= 3 and len(t[0]) == 1})
+        forms_of[p['pi']] = forms
         for a in (p.get('oaAuthorIds') or [])[:6] + (p.get('reviewedOpenAlex') or []):
             names_of[a] = forms
+    by_doi, by_title = {}, {}
+    for pi, (dois, titles) in dblp_pages(pis).items():
+        for d in dois:
+            by_doi.setdefault(d, []).append(pi)
+        for t in titles:
+            by_title.setdefault(t, []).append(pi)
+    nm = {p['pi']: Name(p['names']) for p in pis}
     done = {r[0] for r in c.execute('select work from pages')}
     local = local_pdfs(school)
     out = []
@@ -149,13 +191,22 @@ def candidates(school):
         if w['id'] in done:
             continue
         a = next((x for x in w.get('authorships') or [] if (x.get('author') or {}).get('id') in mine), None)
+        forms = names_of.get((a.get('author') or {}).get('id')) if a else None
         if a is None or a.get('institutions') or a.get('raw_affiliation_strings'):
-            continue
+            a = None  # (b) the PI's DBLP page names the work and the PI's own authorship lists no institution
+            d = re.sub(r'^https?://(?:dx\.)?doi\.org/', '', w.get('doi') or '', flags=re.I).lower()
+            for pi in dict.fromkeys(by_doi.get(d, []) + by_title.get(norm_title(w.get('title')), [])):
+                a = next((x for x in w.get('authorships') or [] if not x.get('institutions') and not x.get('raw_affiliation_strings')
+                          and nm[pi].match(x.get('raw_author_name') or (x.get('author') or {}).get('display_name') or '')), None)
+                if a is not None:
+                    forms = forms_of[pi]; break
+            if a is None:
+                continue
         ax = arxiv_id(w)
         loc = None if ax else (local.get(re.sub(r'^https?://(?:dx\.)?doi\.org/', '', w.get('doi') or '', flags=re.I).lower())
                                or local.get(f"{school}_oa_{w['id'].rsplit('/', 1)[-1]}"))
         if ax or loc:
-            out.append((w['id'], ax, names_of[(a.get('author') or {}).get('id')], loc))
+            out.append((w['id'], ax, forms, loc))
     return out
 
 
@@ -198,6 +249,40 @@ def pdf(school, workers=4):
     print(json.dumps(dict(school=school, pages=n[0], school_named=n[1])))
 
 
+def retie(school):
+    """Re-read the stored page-1 texts that named the school without a tie (status ok_untied) with the current tie() rule,
+    for every PI whose name is on the work's byline (no download: the text is in the pages table). R8, 2026-10-29."""
+    from pi_hierarchy import toks, given, Name
+    c = db(school); aff = re.compile(AFF[school], re.I); pis = read(HERE / 'hierarchy' / school / 'pis.json')
+    forms_of, nm, by_sur = {}, {}, {}
+    for p in pis:
+        forms_of[p['pi']] = sorted({(given(t[0]), t[-1]) for n in p['names'] for t in [toks(n)] if len(t) >= 2} | {(t[1], t[-1]) for n in p['names'] for t in [toks(n)] if len(t) >= 3 and len(t[0]) == 1})
+        nm[p['pi']] = Name(p['names'])
+        for f, l in nm[p['pi']].forms:
+            by_sur.setdefault(l, set()).add(p['pi'])
+    k = 0
+    for wid, txt in c.execute("select work, page1 from pages where status='ok_untied'").fetchall():
+        b = c.execute('select body from works where id=?', (wid,)).fetchone()
+        if not b or not txt:
+            continue
+        w = json.loads(zlib.decompress(b[0])); flat = re.sub(r'\s+', ' ', zlib.decompress(txt).decode('utf-8', 'replace'))
+        for a in w.get('authorships') or []:
+            raw = a.get('raw_author_name') or (a.get('author') or {}).get('display_name') or ''
+            t = toks(raw)
+            for pi in (by_sur.get(t[-1], set()) if len(t) >= 2 else set()):
+                if not nm[pi].match(raw):
+                    continue
+                how, quotes = tie(flat, forms_of[pi], aff)
+                if how:
+                    c.execute("update pages set status='ok', school_named=1, quote=? where work=?", (json.dumps(dict(how=how, quotes=quotes)), wid)); k += 1
+                    break
+            else:
+                continue
+            break
+    c.commit()
+    print(json.dumps(dict(school=school, retied=k)))
+
+
 if __name__ == '__main__':
     cmd, school = sys.argv[1], sys.argv[2]
-    works(school) if cmd == 'works' else pdf(school, int(sys.argv[4]) if len(sys.argv) > 4 else 4)
+    {'works': lambda: works(school), 'retie': lambda: retie(school)}.get(cmd, lambda: pdf(school, int(sys.argv[4]) if len(sys.argv) > 4 else 4))()

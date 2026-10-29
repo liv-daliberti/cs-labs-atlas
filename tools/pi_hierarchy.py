@@ -28,6 +28,7 @@ from pathlib import Path
 if str(Path(__file__).resolve().parent) not in sys.path:  # loaded by file path (importlib) from elsewhere
     sys.path.append(str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402  (every path in one place)
+import provenance  # noqa: E402  (report.json -> provenance)
 
 HERE = P.WORK
 SITE = P.SITE_DATA
@@ -245,6 +246,8 @@ def same_student(a, b):
         return False
     if len(ta) >= 3 and sorted(ta) == sorted(tb):
         return True
+    if hyphen_half(a, b) or hyphen_half(b, a):
+        return True
     if ta[-1] != tb[-1]:
         return False
     x, y = sorted((ta[0], tb[0]), key=len)
@@ -252,6 +255,18 @@ def same_student(a, b):
         return True
     gx, gy = sorted((''.join(ta[:-1]), ''.join(tb[:-1])), key=len)  # 'Amir'/'Amirali Bagher', 'Kyutae'/'Kyu-Tae Thomas'
     return len(gx) >= 4 and gy.startswith(gx)
+
+
+def hyphen_half(a, b):
+    """(R-STU-06, 2026-10-29, owner: accuracy sample) b's family name is one half of a's hyphenated family name and their
+    first given names agree (equal or a nickname pair): 'Pablo José Ortiz-Lampier' / 'Pablo Ortiz' (MIT, Harrell's lab
+    held both). Used within one lab only."""
+    wa = str(a or '').split(); tb = toks(b)
+    if len(wa) < 2 or len(tb) < 2 or '-' not in wa[-1]:
+        return False
+    halves = [toks(x)[0] for x in wa[-1].split('-') if toks(x)]
+    ta = toks(' '.join(wa[:-1]))
+    return len(halves) >= 2 and tb[-1] in halves and bool(ta) and nick_ok(ta[0], tb[0]) and len(tb[0]) > 1
 
 
 def byline_name(raw):
@@ -541,15 +556,22 @@ def fold_books(rows, school):
     year is one book: the chapters fold into the book's own record, or into one chapter standing for the book when the
     book has no record (marked chapters_folded, in place); (b) outside EPFL (French- and German-speaking), a book or
     chapter whose title reads as German, French, Spanish, Italian or Portuguese and not English is a translated edition.
+    (c) (R-PAP-21, 2026-10-29, owner: accuracy sample) a chapter with no venue is grouped by its DOI's book prefix
+    ('10.1145/3241304.3241312' -> '10.1145/3241304'): every such chapter folds into the lab's own book record with that DOI
+    (Aviad Rubinstein's 16 chapters of his 2019 ACM Books monograph sat beside the book), and 5+ of them with no book
+    record fold into one chapter as in (a).
     Returns (rows kept, chapters folded, translated editions dropped or None at EPFL)."""
     runs = collections.defaultdict(list)
     for i, r in enumerate(rows):
         if r.get('type') == 'book-chapter' and r.get('venue'):
             runs[(r['pi'], r['venue'], r.get('year'))].append(i)
-    books = {(r['pi'], r.get('venue'), r.get('year')) for r in rows if r.get('type') == 'book'}
+        elif r.get('type') == 'book-chapter' and doi_book_prefix(r.get('doi')):
+            runs[(r['pi'], 'doi:' + doi_book_prefix(r.get('doi')), None)].append(i)
+    books = {(r['pi'], r.get('venue'), r.get('year')) for r in rows if r.get('type') == 'book'} \
+        | {(r['pi'], 'doi:' + ndoi(r.get('doi')), None) for r in rows if r.get('type') == 'book' and r.get('doi')}
     fold = set()
     for k, ix in runs.items():
-        if len(ix) >= 5:
+        if len(ix) >= 5 or (k[1].startswith('doi:') and k in books):
             keep = [] if k in books else [min(ix, key=lambda i: len(rows[i].get('title') or ''))]
             for i in keep:
                 rows[i]['chapters_folded'] = len(ix)
@@ -559,6 +581,228 @@ def fold_books(rows, school):
         tr = {i for i, r in enumerate(rows) if i not in fold and r.get('type') in ('book', 'book-chapter') and foreign_title(r.get('title'))}
         translated = len(tr); fold |= tr
     return [r for i, r in enumerate(rows) if i not in fold], folded, translated
+
+
+def doi_book_prefix(doi):
+    """The book DOI a chapter DOI extends: '10.1145/3241304.3241312' -> '10.1145/3241304', '10.1007/978-3-030-1-6_5' ->
+    '10.1007/978-3-030-1-6'; None when the DOI has no such suffix."""
+    m = re.match(r'(10\.\d+/[^/]+?)[._]([^._/]+)$', ndoi(doi))
+    return m.group(1) if m else None
+
+
+# ---- not papers (R-PAP-18, R-PAP-19, R-PAP-22; 2026-10-29, owner: accuracy sample) ---------------------------------
+# Each pattern was tested against every lab paper of the 2026-10-29 build (counts and samples in docs/RULES.md); the
+# patterns are anchored so that research papers that merely mention the words stay ('Puzzles in Memory of Solomon
+# Golomb', 'Remembering the "when"', 'Contraction theory ...: A tutorial overview', 'MedAL: ...').
+SUPPLEMENT_TITLE = re.compile(r'(?i)^\s*(moesm\d+|additional file \d+|supplement \d+\s*:|supplementa(?:ry|l) (?:material|information|data|file|figure|table)s?\b|'
+                              r'code and data for|data,? (?:materials,? )?and code for|data for (?:the )?paper|artifacts? (?:for|of)\b|'
+                              r'reproduction package|replication (?:package|data|code)|research data for|source code for)'
+                              r'|\((?:[\w ]+ )?artifact\)\s*$|\bdata (?:&|and) materials\s*$')
+ERRATUM_TITLE = re.compile(r'(?i)^\s*(?:publisher|author)s?[’\']?\s+correction\b|^\s*correction(?: to)?\s*:|^\s*erratum\b|^\s*corrigendum\b')
+EDITORIAL_TITLE = re.compile(r"(?i)^\s*(guest[- ]editorial|editorial\b|foreword\b|preface\b|from the (?:guest )?editors?\b|"
+                             r"(?:guest )?editors?['’]? (?:introduction|note|preface|message)|editor['’]?s? note|"
+                             r"introduction to the (?:\w+ )?(?:special|focus|featured|themed) (?:issue|section)|"
+                             r"message from the (?:general |program |conference )?(?:co-?)?chairs?|in this issue\b|letter from the editor)")
+AWARD_TITLE = re.compile(r"^\d{4} .*\b(Award|Prize|Medal)\b|\b(Award|Prize|Medal)\b\s*(given to|:)\s*[A-Z][\w.'-]+( [A-Z][\w.'-]+){1,3}\s*$")
+AWARD_END = re.compile(r'\b(Award|Prize|Medal)\s*$')
+WORKSHOP_TITLE = re.compile(r'(?i)^(?:the )?(?:\d+(?:st|nd|rd|th) )?(?:international |joint )?workshop on\b|^tutorial\s*:|'
+                            r':\s*an? (?:collaborative |interactive |half-day |full-day |hands-on )?workshop (?:on|with|for)\b|'
+                            r'\b(?:workshop|tutorial|panel) proposal\b')
+TUTORIAL_ON = re.compile(r'(?i)^tutorial on\b')
+HIGHLIGHTS_TITLE = re.compile(r',\s*No\.\s*\d+\s*$|^(?i:research )?(?i:highlights)\b')
+TRIBUTE_TITLE = re.compile(r"(?i)^\s*(in memoriam|obituary|in memory of|a tribute to|tribute to)\b")
+LIFE_DATES = re.compile(r"^\s*([A-Z][\w.'’‘\- ]{2,60}?)\s*\((?:19|20)\d\d\s*[-–]\s*(?:19|20)\d\d\)\s*$")
+COMMON_WORD_NAMES = set('art ray grace hope faith joy rose may june april august bill will mark gene rich frank sky dawn crystal amber '
+                        'pat sue silence lane chase cash case king page miles bob summer autumn winter spring river'.split())
+NOUN_SUFFIX = re.compile(r'(?:tion|sion|ing|ity|ics|ness|ment|ology|ism|ance|ence|ure|ship|ware|s)$', re.I)
+GIVEN_NAMES = None  # every given name of the nickname tables, read once
+
+
+def given_names():
+    global GIVEN_NAMES
+    if GIVEN_NAMES is None:
+        GIVEN_NAMES = {x for pr in _nick_pairs() for x in pr} | set(NICK) | set(NICK.values())
+    return GIVEN_NAMES
+
+
+def person_name_title(title):
+    """The whole title is a person's name: two or three capitalized words (a middle initial allowed), the first a given name
+    of the nickname tables that is not a common word, the last not shaped like a noun ('Derek Chiou', an IEEE Micro
+    tribute; not 'Art Gallery', 'Silence Localization', 'Ray Tracing Harmonic Functions')."""
+    w = str(title or '').strip().rstrip('.').split()
+    if not 2 <= len(w) <= 3 or not all(re.fullmatch(r"[A-Z][a-zà-ÿ'’\-]+|[A-Z]\.", x) for x in w) or len(w[-1]) < 3:
+        return False
+    first = w[0].lower()
+    return first in given_names() and first not in COMMON_WORD_NAMES and len(first) >= 3 and not NOUN_SUFFIX.search(w[-1])
+
+
+ABSTRACT_VENUE = re.compile(r'(?i)meeting abstracts|bulletin of the american physical society|\bISMRM\b|international society for magnetic '
+                            r'resonance in medicine|abstracts? (?:book|volume)|conference abstracts|EGU General Assembly')
+ABSTRACT_DOI = re.compile(r'(?i)^10\.58530/|^10\.5194/(?:egusphere|epsc|wbf)|meetingabstract|supp(?:l)?[._\-]|supplement|\.am20\d\d|\.canevol|'
+                          r'/ma20\d\d|^10\.1182/blood-20\d\d-')
+ABSTRACT_TITLE = re.compile(r'(?i)^\s*abstract\s+[A-Z]{0,4}[-\s]?\d+\s*[:.]')
+ABSTRACT_JOURNALS = re.compile(r'(?i)^(cancer research|circulation|blood|stroke|sleep|journal of clinical oncology|the journal of the acoustical society|'
+                               r'biophysical journal|the journal of immunology|neuro-oncology|clinical cancer research|cancer immunology research|'
+                               r'journal of the american society of nephrology|innovation in aging|arteriosclerosis|open forum infectious|'
+                               r'genetics in medicine|schizophrenia bulletin|structural dynamics|academy of management proceedings|'
+                               r'regular and young investigator|the faseb journal|neurology|biological psychiatry|value in health|'
+                               r'annals of the rheumatic diseases|american journal of respiratory and critical care|journal of thoracic oncology)')
+THESIS_REPOSITORY_DOI = re.compile(r'^10\.25740/')  # Stanford Digital Repository (purl.stanford.edu): theses, honors theses, capstones
+
+
+def not_a_paper(r):
+    """Why a lab-paper row is not a paper, or None (2026-10-29, owner: accuracy sample). `r` is a lab-paper row (title,
+    venue, type, doi, byline, authorship.position). The tags:
+      R-PAP-18 (R1) software_record, repository_supplement (incl. protocols.io), erratum, machine_translation,
+               dagstuhl_report, oberwolfach_report, editorial, award_announcement, workshop_proposal, highlights_column,
+               tribute
+      R-PAP-19 (R2) meeting_abstract:<venue|doi|title|journal|single_author|keynote>
+      R-PAP-22 (R5) dissertation (the PI is the adviser, not the author)."""
+    t = str(r.get('title') or '').strip(); v = str(r.get('venue') or ''); d = ndoi(r.get('doi')); ty = r.get('type') or ''
+    nb = len(r.get('byline') or [])
+    pos = (r.get('authorship') or {}).get('position')
+    # R5: dissertations and theses are the student's; the PI on their byline is the adviser
+    if ty == 'dissertation' and not (nb == 1 and pos == 'first'):
+        return 'dissertation'
+    if THESIS_REPOSITORY_DOI.match(d) and pos != 'first':
+        return 'dissertation'
+    # R1: repository records and paratext
+    if ty == 'software':
+        return 'software_record'
+    if SUPPLEMENT_TITLE.search(t) or d.startswith('10.17504/protocols.io'):
+        return 'repository_supplement'
+    if ERRATUM_TITLE.search(t):
+        return 'erratum'
+    if '【Powered by NICT】' in t:
+        return 'machine_translation'  # JST's machine-translated Japanese record of a paper (CMU, OpenPose)
+    if re.search(r'(?i)dagstuhl (?:reports|manifestos)', v) or re.match(r'10\.4230/(?:dagrep|dagman)\b', d) or re.search(r'\(Dagstuhl Seminar \d+\)\s*$', t):
+        return 'dagstuhl_report'
+    if re.search(r'(?i)oberwolfach', v) or d.startswith('10.4171/owr'):
+        return 'oberwolfach_report'
+    if EDITORIAL_TITLE.search(t):
+        return 'editorial'
+    if AWARD_TITLE.search(t) or (AWARD_END.search(t) and len(t.split()) <= 8):
+        return 'award_announcement'
+    if WORKSHOP_TITLE.search(t) or (TUTORIAL_ON.search(t) and ty in ('conference-paper', 'conference-abstract')):
+        return 'workshop_proposal'
+    if HIGHLIGHTS_TITLE.search(t):
+        return 'highlights_column'
+    m = LIFE_DATES.match(t)
+    life = m and [w for w in re.sub(r"[‘’'][^‘’']*[‘’']", ' ', m.group(1)).split() if w]  # 'Sanjiv ‘Sam’ Gambhir (1962–2020)'
+    if TRIBUTE_TITLE.search(t) or person_name_title(t) or (life and len(life) <= 4 and all(w[:1].isupper() for w in life)
+                                                            and life[0].lower() in given_names()):
+        return 'tribute'
+    # R2: meeting abstracts (owner: abstracts are not papers)
+    if ABSTRACT_VENUE.search(v):
+        return 'meeting_abstract:venue'
+    if ABSTRACT_DOI.search(d) and ty in ('conference-abstract', 'article', 'other', 'paratext'):
+        return 'meeting_abstract:doi'
+    if ABSTRACT_TITLE.search(t):
+        return 'meeting_abstract:title'
+    if ty == 'conference-abstract' and ABSTRACT_JOURNALS.search(v):
+        return 'meeting_abstract:journal'
+    if ty == 'conference-abstract' and nb == 1:
+        return 'meeting_abstract:single_author'
+    if ty == 'conference-abstract' and re.search(r'(?i)\bkeynote\b|\binvited talk\b', t):
+        return 'meeting_abstract:keynote'
+    return None
+
+
+def doi_year_conflict(r):
+    """R-PAP-23 (2026-10-29, build; the Manning row the accuracy sample found): a record that claims to be a DROPS venue
+    publication (not a preprint) whose DOI names a venue year two or more years after the record's own date mixes two
+    works. OpenAlex's W3011573503 (Stanza's 2020 arXiv record, Manning's ORCID authorship) carried the title and DOI
+    of an unrelated SLATE 2023 paper in the 2026-10-21 sweep snapshot; the edition merge was not involved."""
+    m = re.match(r'10\.4230/(?:lipics|oasics)\.[a-z0-9\-]+\.(\d{4})\.', ndoi(r.get('doi')))
+    return bool(m and r.get('type') != 'preprint' and r.get('year') and int(m.group(1)) >= int(r['year']) + 2)
+
+
+def dedupe_tokens(name):
+    """R7 (R-STU-05, 2026-10-29, owner: accuracy sample): a roster name with a doubled token ('Arjun Nitin Nitin Bhagoji')
+    loses the repeat ('Arjun Nitin Bhagoji'); the first occurrence keeps its spelling."""
+    w = str(name or '').split()
+    out = [x for i, x in enumerate(w) if i == 0 or x.strip('.,').lower() != w[i - 1].strip('.,').lower()]
+    return ' '.join(out) if len(w) >= 3 else str(name or '')
+
+
+def norm_unit(s):
+    """A unit name for comparison: lowercase ASCII, '&' as 'and', no 'Department of' / 'Dept. of' / 'School of', no
+    punctuation ('Operations Research & Financial Engineering' == 'Department of Operations Research and Financial
+    Engineering')."""
+    s = unicodedata.normalize('NFKD', str(s or '')).encode('ascii', 'ignore').decode().lower().replace('&', ' and ')
+    s = re.sub(r'\b(?:the|department|dept|of|school|division|program|programme|in)\b\.?', ' ', s)
+    return ' '.join(re.sub(r'[^a-z0-9 ]', ' ', s).split())
+
+
+PLACE = re.compile(r'^(?:[a-z]+ )?(?:nj|pa|ma|ca|ny|usa|united states|switzerland|lausanne|pittsburgh|cambridge|berkeley|stanford|princeton|'
+                   r'\d{4,5}(?: \d{4})?|[a-z]{2} \d{5}|ch \d{4})$')
+
+
+def units_in(raw, aff):
+    """The unit names in a raw affiliation string that names the school: its comma/semicolon parts before the school's
+    name, minus places and postal codes ('Center for Information Technology Policy, Princeton University, Princeton, NJ'
+    -> ['center for information technology policy'])."""
+    m = aff.search(raw or '')
+    if not m:
+        return []
+    out = []
+    for part in re.split(r'[,;]', raw[:m.start()]):
+        u = norm_unit(part)
+        if len(u.split()) >= 2 and not PLACE.match(u):
+            out.append(u)
+    return out
+
+
+DISCIPLINE_WORDS = set('''computer science sciences electrical engineering and mathematics mathematical applied physics chemistry chemical
+biology biological molecular psychology statistics statistical economics mechanical aerospace civil environmental materials
+neuroscience cognitive brain linguistics philosophy sociology music architecture bioengineering biomedical industrial systems
+information operations research data computing computational eecs ece cs math management business medicine medical public
+health technology electronics communication communications media design energy earth astronomy geosciences genetics
+genomics bioinformatics engineering ee me cee mse'''.split())
+
+
+def generic_unit(u):
+    """A unit name every school has ('computer science', 'electrical and computer engineering', 'psychology'): all of its
+    words are discipline words. 'center for information technology policy' and 'operations research and financial
+    engineering' are not generic."""
+    w = norm_unit(u).split()
+    return bool(w) and all(x in DISCIPLINE_WORDS for x in w)
+
+
+def page1_head(text, title=None):
+    """The author block of a page-1 text: the text before 'Abstract' (or its first 2500 characters), without the arXiv
+    stamp ('arXiv:2410.24164v1 [cs.LG] 31 Oct 2024') and without the title."""
+    flat = re.sub(r'\s+', ' ', text or '')
+    m = re.search(r'\babstract\b', flat[:6000], re.I)
+    head = flat[:m.start()] if m else flat[:2500]
+    head = re.sub(r'arXiv:\s*\d{4}\.\d{4,5}(?:v\d+)?\s*\[[^\]]*\]\s*(?:\d{1,2} \w{3} \d{4})?', ' ', head)
+    if title:
+        tw = [w for w in re.findall(r'\w+', title.lower()) if len(w) > 3][:12]
+        if tw:  # drop the title's words (titles say 'Foundation', 'Universal', 'Meta-RL')
+            head = re.sub(r'(?i)\b(?:' + '|'.join(re.escape(w) for w in tw) + r')\b', ' ', head)
+    return head
+
+
+SCHOOL_LOOSE = {'princeton': r'princeton', 'cmu': r'carnegie|\bcmu\b', 'epfl': r'epfl|lausanne', 'mit': r'\bmit\b|massachusetts|csail',
+                'berkeley': r'berkeley', 'stanford': r'stanford'}
+AFFILIATION_MARK = re.compile(r'univ|institut|college|polytechn|[ée]cole|laborator|\blabs?\b|\binc\b|corp|\bltd\b|gmbh|\bllc\b|hospital|'
+                              r'academy|google|microsoft|\bmeta\b|amazon|\bibm\b|nvidia|openai|deepmind|anthropic|foundation|\bcnrs\b|\binria\b|'
+                              r'\beth\b|max planck|company|\S@\S|https?://|www\.|\.(?:com|ai|io|company|org)\b', re.I)
+
+
+def page1_elsewhere(status, text, school, title=None):
+    """R3 (R-PAP-20, 2026-10-29, owner: accuracy sample): page 1 of the paper, read by tools/pi_fulltext_affiliation.py,
+    names neither the school (not even loosely: 'Berkeley', 'CMU', 'Lausanne', 'CSAIL') nor ties it to anyone, while its
+    author block names another institution, company, e-mail or web domain: the paper was done elsewhere (pi-0: every
+    author on page 1 is Physical Intelligence's, 'physicalintelligence.company'). A page with no affiliations at all
+    says nothing and is kept."""
+    if status != 'ok_absent' or not text:
+        return None
+    flat = re.sub(r'\s+', ' ', text)
+    if re.search(SCHOOL_LOOSE[school], flat, re.I):
+        return None
+    m = AFFILIATION_MARK.search(page1_head(text, title))
+    return m.group(0) if m else None
 
 
 def source_year(s):
@@ -624,13 +868,88 @@ def basis_advisees(quote):
     return [(clean_person_name(a), y) for a, y in out if a]
 
 
+def best_sources(srcs, k=2):
+    """Up to k evidence items, complete ones first (url, sha256 and a quote; 2026-10-29 evidence check): the collection's
+    MIT records write the quoted sentence as 'statement', which becomes the quote (quote_field='statement')."""
+    out = []
+    for q in srcs or []:
+        if isinstance(q, dict) and not str(q.get('quote') or '').strip() and str(q.get('statement') or '').strip():
+            q = dict(q, quote=q['statement'], quote_field='statement')
+        out.append(q)
+    full = lambda q: isinstance(q, dict) and bool(q.get('url')) and bool(re.fullmatch(r'[0-9a-f]{64}', str(q.get('sha256') or ''))) and bool(str(q.get('quote') or '').strip())
+    return sorted(out, key=lambda q: not full(q))[:k]
+
+
+def venue_version_date(w, venues):
+    """R9 (R-PAP-26, 2026-10-29, owner: accuracy sample): (date for the appointment check, dated_by or None). A preprint or
+    repository deposit (type preprint, an arXiv DOI, or a repository as the primary source) whose title is on the PI's
+    DBLP person page as a venue publication (`venues`: normalized title -> (earliest venue year, DBLP key), CoRR, ECCC
+    and ePrint excluded) is dated by that venue year: Engelhardt's ML4H 2023 paper had only its October 2021 arXiv
+    record; Sandholm's IJCAI 2009 paper was a 2018 KiltHub deposit."""
+    date = w.get('publication_date') or str(w.get('publication_year') or '')
+    src = (w.get('primary_location') or {}).get('source') or {}
+    deposit = w.get('type') == 'preprint' or ndoi(w.get('doi')).startswith('10.48550/') or src.get('type') == 'repository'
+    vy = venues.get(norm_title(w.get('title'))) if deposit else None
+    if vy and vy[0] != w.get('publication_year'):
+        return str(vy[0]), dict(oa_date=date, venue_year=vy[0], dblp_key=vy[1])
+    return date, None
+
+
+def bare_unit_school(raws, own_units, school_units, anchored_ok, school_co):
+    """R6 (R-PAP-25, 2026-10-29, owner: accuracy sample): the PI's raw affiliation strings name only units, and count as the
+    school: a generic unit name ('Computer Science', which every school has) when it is the PI's own unit and another
+    author on the byline lists the school; a unit name only this school has when it is the PI's own unit (census
+    department, or seen with the school on 2+ of the PI's works) and the PI's identity is anchored or a school co-author
+    is on the byline ('Operations Research & Financial Engineering', Sircar), or when it is any unit of the school and a
+    school co-author is on the byline ('Center for Information Technology Policy', Mittal with Bhagoji)."""
+    if not raws:
+        return False
+    for z in raws:
+        u = norm_unit(z)
+        if generic_unit(z):
+            if not (u in own_units and school_co):
+                return False
+        elif not ((u in own_units and (anchored_ok or school_co)) or (u in school_units and school_co)):
+            return False
+    return True
+
+
+def rekey_pi_person_ids(labs, pi_pids, school):
+    """R-STU-07 (2026-10-29, owner: accuracy sample): a PI's person id is never a student record. `labs`: {pi: {person id:
+    student record}}; a record keyed by a PI's person id is re-keyed to the lab's own ext: id (merged into it when it
+    exists). Returns the number re-keyed."""
+    k = 0
+    for pi, S in labs.items():
+        for sid in [x for x in S if x in pi_pids]:
+            r = S.pop(sid)
+            new_id = f"ext:{school}:{re.sub('[^a-z0-9]+', '-', clean_person_name(r['name']).lower()).strip('-')}"
+            r['person'] = new_id; r.setdefault('rekeyedFrom', []).append(sid)
+            if new_id in S:
+                S[new_id]['relations'] += r['relations']
+            else:
+                S[new_id] = r
+            k += 1
+    return k
+
+
+def relation_source(student):
+    """The student's roster evidence for a link: the first relation source with url, sha256 and quote (with the relation's
+    type), else the first source at all (the evidence check reports it), else None."""
+    srcs = [(rel.get('type'), q) for rel in student.get('relations') or [] for q in rel.get('sources') or []]
+    best = next(((t, q) for t, q in srcs if q.get('url') and q.get('sha256') and q.get('quote')), None) or (srcs[0] if srcs else None)
+    return dict(relation=best[0], url=best[1].get('url'), sha256=best[1].get('sha256'), quote=best[1].get('quote')) if best else None
+
+
 def as_list(v):
     """An identity field as a list: census rows give a single DBLP/ORCID/OpenAlex id as a string, list() would split it into characters."""
     return [v] if isinstance(v, str) else list(v or [])
 
 
 def build(school):
+    import os
     out = HERE / 'hierarchy' / school
+    if os.environ.get('PI_HIERARCHY_OUT'):  # a trial build elsewhere (tests, rule measurements); the inputs stay where they are
+        out = Path(os.environ['PI_HIERARCHY_OUT']) / school; out.mkdir(parents=True, exist_ok=True)
     cf = HERE / f'census/{school}-faculty-hierarchy.json'  # a school whose census path another chain owns (Berkeley) keeps its own
     census = read(cf if cf.exists() else HERE / f'census/{school}-faculty.json')
     census = census.get('faculty', census) if isinstance(census, dict) else census
@@ -762,7 +1081,7 @@ def build(school):
                         mergedCensusRows=x['mergedCensusRows'], rank=x.get('rank'), title=x.get('title_as_listed'),
                         departments=x.get('departments') or x.get('units') or [], piBasis=o.get('pi_basis') or x.get('pi_basis'), lab=lab,  # a reviewed basis (census-overrides.json) wins
                         periods=[dict(id=p.get('id'), start=p.get('facultyStart'), end=p.get('facultyEnd'), asof=p.get('ongoingAsOf') or p.get('facultyLastConfirmed'),
-                                      evidence=(p.get('evidence') or [])[:2]) for p in mine]
+                                      evidence=best_sources(p.get('evidence'))) for p in mine]
                                 + [dict(q, asof=q.get('asof') or (None if q.get('end') else TODAY)) for q in o.get('periods') or []],  # reviewed periods (census-overrides.json)
                         listings=[listings[y] for y in sorted(listings) if y not in after_move],
                         listingsAfterMove=[after_move[y] for y in sorted(after_move)]))
@@ -818,12 +1137,12 @@ def build(school):
                     if ids_ & set(p['personIds']) or any(a and adviser_is(p['pi'], a) for a in advs) or (c.get('unit') and c.get('unit') == p['lab']['unitId'] and t == 'academic_advising'):
                         r = stu[p['pi']].setdefault(person['id'], dict(person=person['id'], name=person['name'], roles=person.get('roles') or [], relations=[]))
                         r['relations'].append(dict(type=t, years=c.get('years') or ([c['year']] if c.get('year') else []), role=c.get('role'),
-                                                   sources=(c.get('sources') or [])[:2], work=c.get('work')))
+                                                   sources=best_sources(c.get('sources')), work=c.get('work')))
             elif t == 'direct_lab_membership':
                 for p in pis:
                     if p['lab']['unitId'] and c.get('unit') == p['lab']['unitId'] and person['id'] not in p['personIds']:
                         r = stu[p['pi']].setdefault(person['id'], dict(person=person['id'], name=person['name'], roles=person.get('roles') or [], relations=[]))
-                        r['relations'].append(dict(type=t, years=c.get('years') or ([c['year']] if c.get('year') else []), role=c.get('role'), sources=(c.get('sources') or [])[:2]))
+                        r['relations'].append(dict(type=t, years=c.get('years') or ([c['year']] if c.get('year') else []), role=c.get('role'), sources=best_sources(c.get('sources'))))
     by_name = collections.defaultdict(list)
     for person in people:
         for t_ in [toks(person['name'])]:
@@ -857,12 +1176,21 @@ def build(school):
             r['relations'].append(dict(type='pi_basis_advising', years=[y for y in (yr or source_year(b),) if y], role='phd',
                                        sources=[dict(url=b['url'], sha256=b['sha256'], quote=b['quote'])]))
             n['pi_basis_advisees'] += 1
+    # a PI's person id is never a student record (R-STU-07, 2026-10-29, owner: accuracy sample): Berkeley's faculty John
+    # Wright ('berkeley_fac_john-wright') had become the record of the hardware PhD student John Wright in Nikolić's lab
+    # (a unique name match), which also lent the student the faculty member's person links. Such a record is re-keyed to
+    # the lab's own ext: id; its relations and evidence stay.
+    n['student_records_rekeyed_from_pi_person_id'] = rekey_pi_person_ids(stu, {i for p in pis for i in p['personIds']}, school)
     merged_students = 0
     for p in pis:  # one record per student and lab: nickname or spelling variants ("Liv" / "Olivia d'Aliberti") merge
         for r in stu[p['pi']].values():
-            fixed = clean_person_name(r['name'])
+            fixed = dedupe_tokens(clean_person_name(r['name']))  # R7: 'Arjun Nitin Nitin Bhagoji' -> 'Arjun Nitin Bhagoji'
             if fixed != r['name']:
                 r.setdefault('aliases', []).append(r['name']); r['name'] = fixed; n['student_names_cleaned'] += 1
+                if dedupe_tokens(clean_person_name(r['aliases'][-1])) != clean_person_name(r['aliases'][-1]):
+                    n['student_names_doubled_token_cleaned'] += 1
+            if r.get('aliases'):  # aliases are readings for the matchers: their doubled tokens go too (the raw name stays)
+                r['aliases'] = list(dict.fromkeys(r['aliases'] + [dedupe_tokens(x) for x in r['aliases'] if dedupe_tokens(x) != x]))
         recs = list(stu[p['pi']].values())
         recs.sort(key=lambda r: (str(r['person']).startswith('ext:'), -len(r['relations'])))  # a collection person wins
         keep = []
@@ -1122,10 +1450,11 @@ def build(school):
     # the PI's own works outside the sweep (hierarchy/<school>/pi-works.sqlite, tools/pi_fulltext_affiliation.py): an
     # authorship with no recorded institution whose page 1 ties the school to the PI, and works over the sweep's author cap
     pw = HERE / 'hierarchy' / school / 'pi-works.sqlite'
-    tied, from_pw = {}, set()
+    tied, from_pw, page_read = {}, set(), {}
     if pw.exists():
         con = sqlite3.connect(f'file:{pw}?mode=ro', uri=True)
         tied = {r[0]: dict(json.loads(r[1]), url=r[2], pdf_sha256=r[3]) for r in con.execute('select work, quote, url, pdf_sha256 from pages where school_named=1')}
+        page_read = {r[0]: (r[1], r[2], r[3]) for r in con.execute('select work, status, page1, url from pages')}  # R3: every page-1 read
         in_sweep = {h[1]['id'] for h in hits}
         owner = collections.defaultdict(list)
         for p in pis:
@@ -1144,9 +1473,52 @@ def build(school):
                         continue
                     ident = 'reviewed_openalex_author_id' if aid in reviewed_oa[pi] else ('anchored_author_id' if anchored[pi][aid] >= 1 else 'advisee_anchored_author_id')
                     hits.append((pi, w, a, cwork(w), ident, tied.get(w['id']))); from_pw.add((pi, w['id']))
+            # R8 (R-PAP-24, 2026-10-29, owner: accuracy sample): a work whose page 1 ties the school to the PI by name, at an
+            # authorship with no institution, under an author id that is not (yet) anchored, is the PI's when the PI's own
+            # DBLP person page (or another non-advisee identity) names it: Jacob Fox's JCTB 2025 paper
+            if w['id'] in tied:
+                for a in w.get('authorships') or []:
+                    raw = a.get('raw_author_name') or (a.get('author') or {}).get('display_name') or ''
+                    t = nosuffix(toks(raw)); aid = (a.get('author') or {}).get('id')
+                    if len(t) < 2 or a.get('institutions') or a.get('raw_affiliation_strings'):
+                        continue
+                    for pi in set(by_sur.get(t[-1], [])):
+                        if (pi, w['id']) in from_pw or aid in blocked[pi] or not nm[pi].match(raw) \
+                                or toks(pi)[-1] not in toks(' '.join(tied[w['id']].get('quotes') or [])):
+                            continue
+                        cw_ = cwork(w); ident = identity_of(pi, w, a, cw_)
+                        if ident and ident != 'advisee_coauthor':
+                            hits.append((pi, w, a, cw_, ident, tied[w['id']])); from_pw.add((pi, w['id'])); n['pi_work_page1_dblp_hits'] += 1
         n['pi_work_list_hits'] = len(hits) - k0
     funnel = collections.defaultdict(collections.Counter)
 
+    # R6 (R-PAP-25, 2026-10-29, owner: accuracy sample): the PI's own units at the school, for raw affiliation strings that
+    # name only a unit ('Center for Information Technology Policy' for Prateek Mittal, 'Operations Research & Financial
+    # Engineering' for Ronnie Sircar): the PI's census departments, and the unit names the PI's school-affiliated raw
+    # strings carry on 2+ other works ('Center for Information Technology Policy, Princeton University')
+    seen_units = collections.defaultdict(collections.Counter)
+    for pi, w, a, cw, ident, page1 in hits:
+        for u in {u for z in a.get('raw_affiliation_strings') or [] for u in units_in(z, aff)}:
+            seen_units[pi][u] += 1
+    pi_units = {p['pi']: {norm_unit(d) for d in p.get('departments') or [] if isinstance(d, str) and len(norm_unit(d).split()) >= 1}
+                | {u for u, k in seen_units[p['pi']].items() if k >= 2} for p in pis}
+    school_units = {u for v in pi_units.values() for u in v} | {norm_unit(u_.get('name')) for u_ in C['units'] if u_.get('name')} \
+        | {u for c_ in seen_units.values() for u in c_}
+    # R9 (R-PAP-26, 2026-10-29, owner: accuracy sample): the venue version's year on the PI's DBLP person page (a record
+    # that is not a CoRR preprint), by normalized title, for dating a preprint or a repository deposit
+    dblp_venue, dblp_nauth = collections.defaultdict(dict), collections.defaultdict(dict)
+    if DUMP_PERSONS is not None:
+        for p in pis:
+            for q in p['dblp']:
+                for r_ in (DUMP_PERSONS['persons'].get(q) or {}).get('pubs') or []:
+                    if str(r_.get('key') or '').startswith(('journals/corr/', 'journals/eccc/', 'journals/iacr/', 'phd/', 'books/', 'persons/')) or not r_.get('year'):
+                        continue
+                    t_ = norm_title(html.unescape(r_.get('title') or '').rstrip('.'))
+                    if t_:
+                        dblp_nauth[p['pi']][t_] = max(dblp_nauth[p['pi']].get(t_, 0), len(r_.get('authors') or []))
+                    if t_ and (t_ not in dblp_venue[p['pi']] or r_['year'] < dblp_venue[p['pi']][t_][0]):
+                        dblp_venue[p['pi']][t_] = (int(r_['year']), r_['key'])
+    page1_samples = []
     # lab papers
     rows, seen, row_at = [], set(), {}
     for pi, w, a, cw, ident, page1 in hits:
@@ -1161,6 +1533,18 @@ def build(school):
             # ties the school to this PI by name (2026-10-29: Chi Jin, Karthik Narasimhan, Adam Perer); the primary
             # source outranks OpenAlex's derived affiliation
             page1 = tied[w['id']]; via = [f"page 1 ({page1['how']}): " + ' … '.join(page1['quotes'])]
+        raws_ = a.get('raw_affiliation_strings') or []
+        if not via and not a.get('institutions') and raws_ and all(norm_unit(z) in pi_units[pi] or norm_unit(z) in school_units for z in raws_):
+            # R6: the PI's raw affiliation is only the name of one of the PI's own units at the school, and no institution
+            # is named for the PI; it counts as the school when the PI's identity is anchored (not the advisee route) or
+            # another author on the byline lists the school ('Department of Computer Science' alone is common to every
+            # school, so the unit must be the PI's own and one of the two must hold)
+            aid_ = (a.get('author') or {}).get('id')
+            anchored_ok = (ident not in (None, 'advisee_coauthor', 'advisee_anchored_author_id')) or bool(aid_ and anchored[pi].get(aid_, 0) >= 1)
+            school_co = any(x is not a and (inst in [i.get('id') for i in x.get('institutions') or []] + [l for i in x.get('institutions') or [] for l in i.get('lineage') or []]
+                                            or any(aff.search(z) for z in x.get('raw_affiliation_strings') or [])) for x in w.get('authorships') or [])
+            if bare_unit_school(raws_, pi_units[pi], school_units, anchored_ok, school_co):
+                via = [f'school unit on the PI authorship: {raws_[0]}']; n['school_via_bare_unit'] += 1
         if not via and not a.get('institutions') and not any(names_other_inst(z, school) for z in a.get('raw_affiliation_strings') or []):
             # the PI's authorship names no institution (none, or a department only, as recent preprints do) and a stated
             # advisee of the PI on the same byline lists the school: the paper is the lab's (identity and appointment still apply)
@@ -1180,6 +1564,21 @@ def build(school):
             if co:
                 via = [f'advisee on an unaffiliated byline: {co[0]}']; n['school_via_unaffiliated_byline_advisee'] += 1
         unaffiliated = bool(via) and via[0].startswith('advisee on an unaffiliated byline')
+        page1_check = None
+        if unaffiliated:
+            # R3 (R-PAP-20, 2026-10-29, owner: accuracy sample): page 1 first. A paper whose own first page names no school
+            # and puts its authors at another institution or company is not the lab's (pi-0, Physical Intelligence); with no
+            # page read (no arXiv copy, no local PDF) the route stands and the row is tagged page1_unchecked
+            st_, blob_, url_ = page_read.get(w['id']) or (None, None, None)
+            txt_ = zlib.decompress(blob_).decode('utf-8', 'replace') if blob_ else None
+            elsewhere = page1_elsewhere(st_, txt_, school, w.get('title'))
+            if elsewhere:
+                n['unaffiliated_page1_elsewhere'] += 1; funnel[pi]['page1_elsewhere'] += 1
+                if len(page1_samples) < 40:
+                    page1_samples.append(dict(pi=pi, oa=w['id'], title=w.get('title'), page1=url_, mark=elsewhere))
+                continue
+            page1_check = dict(status=st_ or 'unchecked', url=url_) if st_ in ('ok', 'ok_absent', 'ok_untied') else dict(status='page1_unchecked', url=url_)
+            n['unaffiliated_' + ('page1_unchecked' if page1_check['status'] == 'page1_unchecked' else 'page1_read_kept')] += 1
         school_aff = bool(via)
         funnel[pi]['name_hits'] += 1
         if not school_aff:
@@ -1191,6 +1590,10 @@ def build(school):
             n['hit_without_identity'] += 1; continue
         funnel[pi]['identity'] += 1
         date = w.get('publication_date') or str(w.get('publication_year') or '')
+        # R9: a preprint or repository deposit is dated by its venue version on the PI's DBLP page
+        date, dated_by = venue_version_date(w, dblp_venue[pi])
+        if dated_by:
+            n['dated_by_venue_version'] += 1
         per = next((q for q in p['periods'] if contains(q['start'], q['end'], date, q['asof'] or TODAY) == 'supported'), None)
         lst = None
         if per is None:
@@ -1217,7 +1620,7 @@ def build(school):
                                    or any(aff.search(z) for z in x.get('raw_affiliation_strings') or [])]))
             continue
         seen.add(k); row_at[k] = len(rows)
-        rows.append(dict(pi=pi, work=cw, oa=w['id'], doi=ndoi(w.get('doi')), title=w.get('title'), year=w.get('publication_year'), date=date, type=w.get('type'),
+        rows.append(dict(pi=pi, work=cw, oa=w['id'], doi=ndoi(w.get('doi')), title=w.get('title'), year=dated_by['venue_year'] if dated_by else w.get('publication_year'), date=date, type=w.get('type'),
                          venue=((w.get('primary_location') or {}).get('source') or {}).get('display_name'),
                          landing=(w.get('primary_location') or {}).get('landing_page_url'),
                          byline=[(x.get('raw_author_name') or (x.get('author') or {}).get('display_name')) for x in w.get('authorships') or []],
@@ -1227,7 +1630,10 @@ def build(school):
                          authorship=dict(position=a.get('author_position'), raw_name=a.get('raw_author_name'), author_id=aid,
                                          institutions=[i.get('display_name') for i in a.get('institutions') or []], raw_affiliations=a.get('raw_affiliation_strings') or [],
                                          school_via=via[:3], page1=dict(url=page1['url'], pdf_sha256=page1['pdf_sha256'], how=page1['how'], quotes=page1['quotes']) if page1 and via[0].startswith('page 1') else None),
-                         identity=identity, appointment=dict(periodId=per['id']) if per else dict(listing=lst)))
+                         identity=identity, appointment=dict(periodId=per['id']) if per else dict(listing=lst),
+                         **({'dated_by': dated_by} if dated_by else {}),
+                         **({'page1_check': page1_check} if page1_check else {}),
+                         **({'flags': ['page1_unchecked']} if page1_check and page1_check['status'] == 'page1_unchecked' else {})))
     # papers on the PI's own DBLP page that only DOI-resolved OpenAlex records or the paper's first page tie to the school
     # (tools/dblp_recover.py -> hierarchy/<school>/dblp-recovered.jsonl.gz), and likewise papers the PI's own lab
     # publications page lists (tools/labpage_recover.py -> hierarchy/<school>/labpage-recovered.jsonl.gz, key 'labpage:<sha1>')
@@ -1285,8 +1691,26 @@ def build(school):
         drop |= set(ix) - set(owners)
     n['namesake_claims_dropped'] = len(drop)
     rows = [r for i, r in enumerate(rows) if i not in drop]
+    # not papers (R-PAP-18/19/22, 2026-10-29, owner: accuracy sample): repository records, paratext, seminar and workshop
+    # reports, award announcements, tributes, meeting abstracts and dissertations leave the lab (not_a_paper); and a
+    # record whose DOI belongs to another work (R-PAP-23, doi_year_conflict). Counted per tag, with samples, in the report.
+    kept_, not_paper_samples = [], collections.defaultdict(list)
+    for r in rows:
+        why = not_a_paper(r) or ('doi_year_conflict' if doi_year_conflict(r) else None)
+        if why == 'meeting_abstract:single_author' and dblp_nauth[r['pi']].get(norm_title(r.get('title')), 0) >= 2:
+            why = None  # OpenAlex cut the byline: the PI's DBLP page has the paper with co-authors, so it is no keynote
+            n['single_author_abstract_kept_dblp_coauthors'] += 1
+        if why:
+            n['not_paper:' + why] += 1
+            if len(not_paper_samples[why]) < 10:
+                not_paper_samples[why].append(dict(pi=r['pi'], oa=r['oa'], title=r.get('title'), venue=r.get('venue'), type=r.get('type'), doi=r.get('doi')))
+        else:
+            kept_.append(r)
+    n['not_paper_dropped'] = len(rows) - len(kept_); rows = kept_
     # books are one work, and a translation is not new work (2026-10-29, owner: best judgement): fold_books
+    nv0 = sum(r.get('type') == 'book-chapter' and not r.get('venue') for r in rows)
     rows, n['book_chapters_folded'], translated = fold_books(rows, school)
+    n['book_chapters_folded_by_doi_prefix'] = nv0 - sum(r.get('type') == 'book-chapter' and not r.get('venue') for r in rows)
     if translated is not None:
         n['translated_editions_dropped'] = translated
     # one record per unique paper and lab: editions (arXiv preprint, conference, journal version) share a normalized
@@ -1402,17 +1826,17 @@ def build(school):
             if l:
                 done_.add(sid); linked_by_collection[sid] = True
                 sp.append(dict(pi=r['pi'], student=sid, name=s['name'], work=r['work'], oa=r['oa'], status=l.get('status'), basis='collection_person_link'))
-            elif any(byline_ok(sid, b, on_byline, r['pi']) for _, bs in r['_bylines'] for b in bs):
+            elif (b_ := next((b for _, bs in r['_bylines'] for b in bs if byline_ok(sid, b, on_byline, r['pi'])), None)) is not None:
                 # the student's name on this lab paper's byline, on an authorship that lists the school
-                done_.add(sid); sp.append(dict(pi=r['pi'], student=sid, name=s['name'], work=r['work'], oa=r['oa'], status='candidate', basis='byline_name_with_school_affiliation'))
-            elif near_relation(s, r['year']) and any(byline_ok(sid, b, on_byline, r['pi']) for bl, _ in r['_bylines'] for b in bl):
+                done_.add(sid); sp.append(dict(pi=r['pi'], student=sid, name=s['name'], work=r['work'], oa=r['oa'], status='candidate', basis='byline_name_with_school_affiliation', byline=b_))
+            elif near_relation(s, r['year']) and (b_ := next((b for bl, _ in r['_bylines'] for b in bl if byline_ok(sid, b, on_byline, r['pi'])), None)) is not None:
                 # the PI's own advisee named on the PI's lab paper (an authorship without affiliations, e.g. an ACL
                 # Anthology record), within three years of the recorded advising
-                done_.add(sid); sp.append(dict(pi=r['pi'], student=sid, name=s['name'], work=r['work'], oa=r['oa'], status='candidate', basis='advisee_name_on_lab_paper_byline'))
-            elif wide_relation(s, r['year']) and any(byline_ok(sid, b, full_name_on, r['pi']) for bl, _ in r['_bylines'] for b in bl):
+                done_.add(sid); sp.append(dict(pi=r['pi'], student=sid, name=s['name'], work=r['work'], oa=r['oa'], status='candidate', basis='advisee_name_on_lab_paper_byline', byline=b_))
+            elif wide_relation(s, r['year']) and (b_ := next((b for bl, _ in r['_bylines'] for b in bl if byline_ok(sid, b, full_name_on, r['pi'])), None)) is not None:
                 # the lab's own student by full name on the lab's own paper, outside the narrow window (2026-10-28:
                 # recorded years are often one roster observation; alumni keep publishing with the lab)
-                done_.add(sid); sp.append(dict(pi=r['pi'], student=sid, name=s['name'], work=r['work'], oa=r['oa'], status='candidate', basis='full_name_on_lab_paper_byline'))
+                done_.add(sid); sp.append(dict(pi=r['pi'], student=sid, name=s['name'], work=r['work'], oa=r['oa'], status='candidate', basis='full_name_on_lab_paper_byline', byline=b_))
         for sid, s in S.items():  # links the guard took away (counted, with a sample, in the report)
             bl_all = [b for bl, _ in r['_bylines'] for b in bl]
             if sid in done_:
@@ -1438,6 +1862,10 @@ def build(school):
                 sid = hits_[0]; done_.add(sid)
                 sp.append(dict(pi=r['pi'], student=sid, name=S[sid]['name'], work=r['work'], oa=r['oa'], status='candidate', basis='within_lab_byline_match', byline=raw))
     n.update({'link_guard_' + k: v for k, v in guard_n.items()})
+    # every byline link carries its evidence (2026-10-29, build-time evidence check): the work, the exact byline string
+    # matched, and the student's own roster source (the first relation source with url, sha256 and a verbatim quote)
+    for x in sp:
+        x['relation_source'] = relation_source(stu[x['pi']].get(x['student']) or {})
     # Program advising and readers (owner 2026-10-28): a student whose only tie to the lab is a "Doctoral (Program)" or
     # "Reader" listing stays only when they co-authored one of the lab's papers; the dropped pairs are kept in the report
     linked = {(x['pi'], x['student']) for x in sp}
@@ -1475,7 +1903,9 @@ def build(school):
                pisWithoutPapers=sorted(p['pi'] for p in pis if not per_pi[p['pi']]),
                pisWithoutStudents=sorted(p['pi'] for p in pis if not stu[p['pi']]), censusNicknameMerges=nick_merges,
                droppedProgramOrReaderOnly=weak_dropped, pisListedAsOwnStudent=self_listed, linkGuardSamples=guard_samples,
-               linkGuardKeptVariantSamples=guard_kept_samples)
+               linkGuardKeptVariantSamples=guard_kept_samples, notPaperSamples=dict(not_paper_samples),
+               page1ElsewhereSamples=page1_samples,
+               provenance=provenance.block(school))  # what this package was built from (tools/provenance.py; make_release requires it)
     json.dump(rep, open(out / 'report.json', 'w'), indent=1, ensure_ascii=False)
     print(json.dumps(dict(school=school, **n)))
 

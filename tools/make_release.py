@@ -14,8 +14,9 @@
   overwritten: the next free .N is taken. Consumers (tools/organize_tree.py, tools/export_release.py, the site, the
   Hugging Face upload) read a release, never the working packages.
 
-Refuses when: a school's package is missing or was rewritten while copying, the tests fail, the code has uncommitted
-changes to tracked files (--allow-dirty records it instead), or the regression check is older than the packages or
+Refuses when: a school's package is missing, has no complete provenance block (report.json -> provenance, written by
+tools/pi_hierarchy.py through tools/provenance.py; 2026-10-29), or was rewritten while copying, the tests fail, the code
+has uncommitted changes to tracked build files (--allow-dirty records it instead; collectors' files are recorded only), or the regression check is older than the packages or
 flagged swings (--allow-swings records them instead).
 
 usage: make_release.py [--before counts.json] [--allow-dirty] [--allow-swings] [--dry-run]
@@ -27,11 +28,13 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402  (every path in one place)
+import provenance  # noqa: E402  (report.json -> provenance, required)
 
 PACKAGE = ['pis.json', 'students.json', 'report.json', 'lab_papers.jsonl.gz', 'student_papers.jsonl.gz', 'copies.json']
 SCHOOL_EXTRA = ['link-diagnosis.json']  # audit output per school (the reviewed per-school inputs come from git)
 TOP = ['home-departments.json', 'zero-paper-labs.json', 'school-profiles.json', 'SCHOOL-PROFILES.md', 'missing-papers-audit.json',
-       'CHAIN-AUDIT.md', 'chain-audit.json', 'student-audit.json', 'BUILD-REGRESSION.md', 'BUILD-REGRESSION.json']
+       'CHAIN-AUDIT.md', 'chain-audit.json', 'student-audit.json', 'BUILD-REGRESSION.md', 'BUILD-REGRESSION.json',
+       'EVIDENCE-CHECK.md', 'EVIDENCE-CHECK.json']
 NOTES = {'SITE-HANDOFF.md', 'HF-UPLOAD.json'}
 COUNT_KEYS = ['pis', 'lab_papers', 'students', 'lab_student_pairs', 'student_paper_links', 'pis_with_lab_papers', 'pis_with_students',
               'pis_complete_chain', 'labs_with_student_papers', 'lab_papers_by_period', 'lab_papers_by_listing']
@@ -55,9 +58,11 @@ def tracked_inputs():
 
 
 def code_state():
-    head = git('rev-parse', 'HEAD').strip()
-    dirty = [l[3:] for l in git('status', '--porcelain', '--untracked-files=no').split('\n') if l.strip()]
-    return head, dirty
+    """(HEAD, uncommitted tracked build paths, uncommitted tracked paths outside the build). The collectors (fulltext-push/)
+    and the AI-writing study (ai-writing/) are not build inputs (tools/provenance.py NOT_BUILD); other agents edit them
+    while builds run, so their changes are recorded, not refused."""
+    st = provenance.code_state()
+    return st['commit'], st['dirty_paths'], st['other_dirty_paths']
 
 
 def run_tests():
@@ -118,18 +123,23 @@ def point_latest(rid):
 
 
 def make(a):
-    head, dirty = code_state()
+    head, dirty, other_dirty = code_state()
     if dirty and not a.allow_dirty:
         raise SystemExit(f'uncommitted changes to tracked files (commit first, or --allow-dirty): {dirty[:10]}')
     ok, tests = run_tests()
     if not ok:
         raise SystemExit(f'tests failed: {tests}')
-    built = {}
+    built, prov = {}, {}
     for s in P.SCHOOL_IDS:
         for f in PACKAGE:
             if not (P.HIERARCHY / s / f).exists():
                 raise SystemExit(f'missing package file hierarchy/{s}/{f}')
-        built[s] = json.loads((P.HIERARCHY / s / 'report.json').read_text()).get('builtAt')
+        rep_ = json.loads((P.HIERARCHY / s / 'report.json').read_text())
+        built[s] = rep_.get('builtAt')
+        miss = provenance.missing(rep_.get('provenance'))  # (2026-10-29, owner) provenance is required
+        if miss:
+            raise SystemExit(f'hierarchy/{s}/report.json: provenance missing or incomplete ({", ".join(miss)}); rebuild with tools/pi_hierarchy.py')
+        prov[s] = rep_['provenance']
     newest = max(datetime.fromisoformat(b.rstrip('Z')).replace(tzinfo=timezone.utc).timestamp() for b in built.values())
     reg_p = P.HIERARCHY / 'BUILD-REGRESSION.json'
     reg = json.loads(reg_p.read_text()) if reg_p.exists() else None
@@ -138,6 +148,10 @@ def make(a):
             raise SystemExit('hierarchy/BUILD-REGRESSION.json is missing or older than the packages: run tools/build_regression.py check')
     elif reg['flags'] and not a.allow_swings:
         raise SystemExit(f"{len(reg['flags'])} regression flags (hierarchy/BUILD-REGRESSION.md); --allow-swings releases anyway")
+    ev_p = P.HIERARCHY / 'EVIDENCE-CHECK.json'  # the build-time evidence check (tools/evidence_check.py) must have passed
+    ev = json.loads(ev_p.read_text()) if ev_p.exists() else None
+    if not ev or ev_p.stat().st_mtime < newest or ev.get('mode') != 'strict' or not ev.get('ok'):
+        raise SystemExit('hierarchy/EVIDENCE-CHECK.json is missing, older than the packages, not strict, or failed: run tools/evidence_check.py')
     files = [f'hierarchy/{s}/{f}' for s in P.SCHOOL_IDS for f in PACKAGE + SCHOOL_EXTRA if (P.HIERARCHY / s / f).exists()]
     files += [f'hierarchy/{f}' for f in TOP if (P.HIERARCHY / f).exists()]
     files += [f for f in tracked_inputs() if (P.WORK / f).exists()]
@@ -169,7 +183,11 @@ def make(a):
         counts[s] = dict(builtAt=rep.get('builtAt'), **{k: c.get(k) for k in COUNT_KEYS})
     chain = json.loads((tmp / 'hierarchy/chain-audit.json').read_text()) if (tmp / 'hierarchy/chain-audit.json').exists() else {}
     man = dict(release=rid, created=datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
-               code=dict(repository=str(P.WORK), commit=head, uncommitted_tracked_changes=dirty),
+               code=dict(repository=str(P.WORK), commit=head, uncommitted_tracked_changes=dirty, uncommitted_outside_build=other_dirty,
+                         built_from={s: dict(commit=v['code'].get('commit'), dirty=v['code'].get('dirty'), diff_sha256=v['code'].get('diff_sha256'))
+                                     for s, v in prov.items()}),
+               provenance={s: {k: v[k] for k in ('openalex_sweep', 'dblp_dump', 'dblp_persons', 'pi_works')} for s, v in prov.items()},
+               evidence_check=(json.loads((P.HIERARCHY / 'EVIDENCE-CHECK.json').read_text()).get('ok') if (P.HIERARCHY / 'EVIDENCE-CHECK.json').exists() else None),
                rules=[dict(id=i, decided=d) for i, d in rule_ids()], rules_doc='docs/RULES.md',
                build=dict(packages_built=built, chain_audit_at=chain.get('at'),
                           chain_audit_open={x['school']: {c: x['checks'][c]['n_unexplained'] for c in x['checks']} for x in chain.get('schools', [])},

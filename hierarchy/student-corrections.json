@@ -143,5 +143,36 @@
     "quote": "Liangyu Chen Ph.D. Student in Computer Science, admitted Autumn 2024"
    }
   ]
+ },
+ {
+  "school": "stanford",
+  "pi": "James Zou",
+  "student": "stanford_stu_shirley-yingxin-wu",
+  "action": "replace_sources",
+  "type": "thesis_adviser",
+  "years": [
+   2026
+  ],
+  "role": "phd",
+  "sources": [
+   {
+    "url": "https://purl.stanford.edu/kt076zd0858.mods",
+    "sha256": "eb3cd956371403c99fde2380e9ff5f176b916d497c07c7284bd8e1bb41cd63c4",
+    "quote": "<name type=\"personal\"> <namePart>Zou, James</namePart> <role> <roleTerm type=\"text\">degree supervisor</roleTerm> </role> <role> <roleTerm type=\"text\">thesis advisor</roleTerm> </role> </name>"
+   }
+  ],
+  "reason": "2026-10-29 (owner: accuracy sample) review of 'Shirley Wu sits in Zou's lab but her thesis names Leskovec': the thesis record (Stanford Digital Repository MODS, kt076zd0858) names both Jurij Leskovec and James Zou as degree supervisor and thesis advisor, so she is co-advised and stays in both labs. Zou's relation had carried a quote cut to Leskovec's entry ('Leskovec, Jurij degree supervisor thesis advisor'); it now quotes Zou's own entry of the same capture (whitespace-normalized, as every quote of the thesis harvest is).",
+  "evidence": [
+   {
+    "url": "https://purl.stanford.edu/kt076zd0858.mods",
+    "sha256": "eb3cd956371403c99fde2380e9ff5f176b916d497c07c7284bd8e1bb41cd63c4",
+    "quote": "<name type=\"personal\"> <namePart>Zou, James</namePart> <role> <roleTerm type=\"text\">degree supervisor</roleTerm> </role> <role> <roleTerm type=\"text\">thesis advisor</roleTerm> </role> </name>"
+   },
+   {
+    "url": "https://purl.stanford.edu/kt076zd0858.mods",
+    "sha256": "eb3cd956371403c99fde2380e9ff5f176b916d497c07c7284bd8e1bb41cd63c4",
+    "quote": "<name type=\"personal\"> <namePart>Leskovec, Jurij</namePart> <role> <roleTerm type=\"text\">degree supervisor</roleTerm> </role> <role> <roleTerm type=\"text\">thesis advisor</roleTerm> </role> </name>"
+   }
+  ]
  }
 ]
