@@ -25,9 +25,18 @@ PROF = re.compile(r'\bprofessor\b', re.I)
 UNIT = re.compile(r'professor(?:\s*\([^)]*\))?(?: of [^,]+)?,\s*(.+)$', re.I)
 
 
+SCHOOL_LEVEL = re.compile(r'^(?:Medical School|School of|College of|Rackham)', re.I)
+
+
 def unit_of(title):
+    """'Professor, School of Information' -> 'School of Information'; 'Assistant Professor of Computational Medicine and
+    Bioinformatics, Medical School' -> 'Computational Medicine and Bioinformatics' (the department, not the school)."""
     m = UNIT.search(title)
-    return m.group(1).strip() if m else None
+    if not m:
+        return None
+    u = m.group(1).strip()
+    of = re.search(r'professor of (.+?),', title, re.I)
+    return of.group(1).strip() if of and SCHOOL_LEVEL.match(u) else u
 
 
 def main(key, write_shared=False):
@@ -35,6 +44,14 @@ def main(key, write_shared=False):
     deps = {d['code']: d for d in cfg.get('departments') or []}
     tm = {c: re.compile(d.get('title_match') or '.', re.I) for c, d in deps.items()}
     census = json.loads((P.CENSUS / f'{key}-faculty.json').read_text())['faculty']
+    adds = json.loads((P.CENSUS / f'{key}-additions.json').read_text()) if (P.CENSUS / f'{key}-additions.json').exists() else []
+    units = {u['code']: u['name'] for u in cfg.get('affiliated_units') or []}
+    canon = [(re.compile(rx, re.I), name) for name, rx in (S.field(cfg, 'census.home_units') or {}).items()]
+
+    def norm(u):
+        u = re.sub(r'\s*\((?:effective|as of)[^)]*\)', '', u or '').strip()
+        u = re.sub(r'^Department of\s+', '', u)
+        return next((name for rx, name in canon if rx.search(u)), u)
     rows = json.loads((P.LISTINGS / key / 'rows.json').read_text())
     by_name = collections.defaultdict(list)
     for r in rows:
@@ -71,8 +88,19 @@ def main(key, write_shared=False):
                 if u and u != home and not any(tm[c].search(u) for c in tm if deps[c]['name'] == home):
                     also.append(u)
         also += [deps[c]['name'] for c in own if deps[c]['name'] != home]
+        home = norm(home) if home else home
+        also = [a_ for a_ in dict.fromkeys(norm(a_) for a_ in also) if a_ != home]
         row = dict(school=key, name=x['name'], home_department=home, also=list(dict.fromkeys(also)), no_academic_department=False,
                    status='accepted' if home else 'hold', evidence=ev, note=note or 'no professor title on any listing row')
+        out.append(row); n[row['status']] += 1; n['home:' + str(home)] += 1
+    for x in adds:  # accepted CS-related faculty of other units: the unit whose faculty listing proves the appointment
+        if not x.get('is_pi'):
+            continue
+        b = x.get('pi_basis') or {}
+        code = (x.get('departments') or [None])[-1]
+        home = norm(units.get(code, code))
+        row = dict(school=key, name=x['name'], home_department=home, also=[], no_academic_department=False, status='accepted' if home else 'hold',
+                   evidence=dict(url=b.get('url'), sha256=b.get('sha256'), quote=b.get('quote')), note=f'the {code} faculty listing (cs-related-review.json)')
         out.append(row); n[row['status']] += 1; n['home:' + str(home)] += 1
     (P.HIERARCHY / key / 'home-departments.json').write_text(json.dumps(out, indent=1, ensure_ascii=False))
     if write_shared:

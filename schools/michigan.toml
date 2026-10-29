@@ -30,6 +30,7 @@ excludes them. Michigan Medicine I4210114445 (ROR 01zcpa714) is 'related' both w
 domains = ["umich.edu"]
 email_domains = ["umich.edu", "med.umich.edu"]
 excluded_hosts = ["umd.umich.edu", "umflint.edu", "umdearborn.edu"]   # Dearborn (old domain umd.umich.edu) and Flint
+wayback_only_suffixes = ["umich.edu"]   # every umich.edu host probed sat behind a Cloudflare challenge (stage 0); [[hosts]] entries override
 
 [affiliation]
 # 'University of Michigan' (any spelling of University, 'of' optional, 'Mich' abbreviated), not followed by Dearborn,
@@ -78,6 +79,8 @@ foreign_title_exception = false
 
 [census]
 computing_departments = ["CSE", "ECE"]
+# canonical home-unit names: the listings spell units several ways (tools/home_departments_school.py)
+home_units = {"Computer Science and Engineering" = '^(?:EECS\s*[\u2013-]\s*)?Computer Science (?:and|&) Engineering$', "Electrical and Computer Engineering" = '^(?:EECS\s*[\u2013-]\s*)?Electrical (?:and|&) Computer Engineering$', "Linguistics" = '^Lin[gq]uistics$', "Robotics" = '^Robotics(?: Department)?$', "Nuclear Engineering and Radiological Sciences" = 'Nuclear Engineering (?:and|&) Radiological', "Industrial and Operations Engineering" = 'Industrial (?:and|&) Operations', "Civil and Environmental Engineering" = 'Civil (?:and|&) Environmental', "School of Information" = '^(?:School of )?Information$|^School of Information', "Statistics" = '^Statistics$', "Mathematics" = '^Mathematics$', "Mechanical Engineering" = '^Mechanical Engineering$'}
 
 [site]
 depts = {CSE = "Computer Science and Engineering", ECE = "Electrical and Computer Engineering"}
@@ -90,7 +93,7 @@ full_codes = ["CSE"]
 code = "CSE"
 name = "Computer Science and Engineering"
 unit = "Electrical Engineering and Computer Science, College of Engineering"
-title_match = '''Electrical Engineering and Computer Science|Computer Science and Engineering|\bEECS\b'''   # the title lines that are the department appointment
+title_match = '''Electrical Engineering (?:and|&) Computer Science|Computer Science (?:and|&) Engineering|\bEECS\b'''   # the title lines that are the department appointment
 coverage = "full"
 url = "https://cse.engin.umich.edu/"
   # one slot, three URL eras (CDX 2026-10-29): the EECS site's CSE list (also mirrored at cse.umich.edu) until 2019,
@@ -123,7 +126,7 @@ url = "https://cse.engin.umich.edu/"
 code = "ECE"
 name = "Electrical and Computer Engineering"
 unit = "Electrical Engineering and Computer Science, College of Engineering"
-title_match = '''Electrical Engineering and Computer Science|Electrical and Computer Engineering|\bEECS\b'''
+title_match = '''Electrical Engineering (?:and|&) Computer Science|Electrical (?:and|&) Computer Engineering|\bEECS\b'''
 coverage = "affiliated"   # as Stanford EE: listed faculty count when computing is the object or method of their work
 url = "https://ece.engin.umich.edu/"
   [[departments.listings]]
@@ -196,7 +199,7 @@ listings = ["sph.umich.edu/faculty-profiles/"]
 
 [[affiliated_units]]
 code = "ME"
-name = "Mechanical Engineering (robotics, controls, manufacturing faculty)"
+name = "Mechanical Engineering"
 url = "https://me.engin.umich.edu/people/faculty/"
 listings = ["me.engin.umich.edu/people/faculty/"]
 

@@ -158,6 +158,19 @@ def check(key):
     return out
 
 
+def host_use(key, host):
+    """How a stage tool may fetch from a host: the charter's [[hosts]] entry, else 'wayback-only' when the host is
+    under one of [web].wayback_only_suffixes (Michigan: every umich.edu host sits behind a Cloudflare challenge),
+    else 'live' (robots.txt and challenges are still checked by school_web.live)."""
+    host = host.lower().split(':')[0]
+    for h in get(key).get('hosts') or []:
+        if h.get('host', '').lower() == host:
+            return h.get('use') or 'live'
+    if any(host == s_ or host.endswith('.' + s_) for s_ in field(get(key), 'web.wayback_only_suffixes', []) or []):
+        return 'wayback-only'
+    return 'live'
+
+
 def listing_slots(key):
     """The charter's listing slots in the listings pipeline's shape (listings/scripts/plan_fetch.py SLOTS). Entries
     with the same slot name are one slot with several URL eras (a site move), tried in the order listed."""

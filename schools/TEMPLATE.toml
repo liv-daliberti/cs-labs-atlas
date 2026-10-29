@@ -28,6 +28,7 @@ ids_note = ""             # how the ids and the lineage were verified (API call,
 [web]
 domains = []              # web domains of the school (the affiliation regex's domain part comes from these)
 email_domains = []
+wayback_only_suffixes = []  # host suffixes read from Wayback only (a challenge in front of the whole domain); [[hosts]] override
 excluded_hosts = []       # hosts under the school's domain that belong to another institution (other campuses)
 
 [affiliation]
@@ -42,6 +43,17 @@ must_not_match = []
 [dblp]
 affiliation_strings = []  # substrings of DBLP person <note type="affiliation"> values that name the school (dump only)
 legacy_sweep = ""         # pre-protocol schools only: the base sweep holding cached DBLP lists (pi_hierarchy.DBLP)
+
+[census]
+computing_departments = []   # department codes listed_not_in_census.py treats as computing; [] = every listed department
+home_units = {}              # canonical home-unit name = regex over the spellings the listings use
+
+[site]
+depts = {}                # department code = name, as the site builder's SCHOOLS table keys them
+full_codes = []           # codes covered in full
+
+[periods]
+school_regex = ''         # the school as appointment statements name it (tools/periods_school.py); default [affiliation].regex
 
 [rules]
 foreign_title_exception = false   # R-PAP-15: true where non-English book titles are originals, not translations (EPFL)

@@ -28,7 +28,8 @@ def eecs_table(h):
     out = []
     for m in re.finditer(r'<td valign="top">(.*?)</td>\s*</tr>', h, re.S | re.I):
         cell = m.group(1)
-        nm = re.search(r'<span[^>]*font-weight:\s*bold[^>]*>(.*?)</span>|<a [^>]*>\s*<b>(.*?)</b>', cell, re.S | re.I)
+        # the name opens the cell, in a bold span or <b>, inside the homepage link or (no homepage) bare (2018 'Meerkov')
+        nm = re.match(r'\s*(?:<a [^>]*>\s*)?(?:<span[^>]*font-weight:\s*bold[^>]*>(.*?)</span>|<b>(.*?)</b>)', cell, re.S | re.I)
         if not nm or 'Division:' not in cell:
             continue
         link = re.search(r'<a href="([^"]+)"[^>]*>\s*(?:<span[^>]*font-weight|<b>)', cell, re.S | re.I)

@@ -1,0 +1,596 @@
+{
+ "reviewed": "2026-10-29",
+ "rule": "Every name tools/listed_not_in_census.py finds on a Michigan listing capture but not in the census, with a decision. The census is built from the same listings (tools/census_build.py), so only parser artifacts are expected.",
+ "captures": "listings/michigan/captures.sqlite",
+ "tools": [
+  "tools/listed_not_in_census.py",
+  "tools/census_build.py"
+ ],
+ "decisions": [
+  {
+   "name": "All CSE",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "parse_artifact",
+   "summary": "not a person: a page heading, menu item or staff role the listing parser read as a name. Titles listed: Faculty; Faculty (List); listing years 2016-2019.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160412034143id_/http://www.eecs.umich.edu:80/eecs/faculty/csefaculty.html",
+     "sha256": "0717204660525e5506f7e4b68fe3b07d695b7a9a50dac400141c19e87b6e05aa",
+     "quote": "All CSE Faculty"
+    }
+   ],
+   "decided_by": "by hand, 2026-10-29 (Michigan onboarding, stage 2): all 39 items read; none is a person missing from the census"
+  },
+  {
+   "name": "All ECE",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "parse_artifact",
+   "summary": "not a person: a page heading, menu item or staff role the listing parser read as a name. Titles listed: Faculty; Faculty (List); listing years 2016-2024.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160408011850id_/http://www.eecs.umich.edu:80/eecs/faculty/ecefaculty.html",
+     "sha256": "2a106ac47b525864b661b7b9e3cf2e35c0c2b136c5801fa043f863a4cd66b9cd",
+     "quote": "All ECE Faculty"
+    }
+   ],
+   "decided_by": "by hand, 2026-10-29 (Michigan onboarding, stage 2): all 39 items read; none is a person missing from the census"
+  },
+  {
+   "name": "Arthur F. Thurnau",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "endowed_chair_title",
+   "summary": "not a person: the name of an endowed professorship printed above the holder's own title; the holder is a census person. Titles listed: Professor; listing years 2016-2019.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160412034143id_/http://www.eecs.umich.edu:80/eecs/faculty/csefaculty.html",
+     "sha256": "0717204660525e5506f7e4b68fe3b07d695b7a9a50dac400141c19e87b6e05aa",
+     "quote": "Arthur F. Thurnau Professor"
+    }
+   ],
+   "decided_by": "by hand, 2026-10-29 (Michigan onboarding, stage 2): all 39 items read; none is a person missing from the census"
+  },
+  {
+   "name": "Bernard A. Galler Collegiate",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "endowed_chair_title",
+   "summary": "not a person: the name of an endowed professorship printed above the holder's own title; the holder is a census person. Titles listed: Professor of Electrical Engineering and Computer Science; listing years 2016-2019.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160412034143id_/http://www.eecs.umich.edu:80/eecs/faculty/csefaculty.html",
+     "sha256": "0717204660525e5506f7e4b68fe3b07d695b7a9a50dac400141c19e87b6e05aa",
+     "quote": "Bernard A. Galler Collegiate Professor of Electrical Engineering and Computer Science"
+    }
+   ],
+   "decided_by": "by hand, 2026-10-29 (Michigan onboarding, stage 2): all 39 items read; none is a person missing from the census"
+  },
+  {
+   "name": "CSE Division",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "parse_artifact",
+   "summary": "not a person: a page heading, menu item or staff role the listing parser read as a name. Titles listed: Adjunct Professor; listing years 2016-2016.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160412034143id_/http://www.eecs.umich.edu:80/eecs/faculty/csefaculty.html",
+     "sha256": "0717204660525e5506f7e4b68fe3b07d695b7a9a50dac400141c19e87b6e05aa",
+     "quote": "CSE Division Adjunct Professor"
+    }
+   ],
+   "decided_by": "by hand, 2026-10-29 (Michigan onboarding, stage 2): all 39 items read; none is a person missing from the census"
+  },
+  {
+   "name": "CSE Intermittent",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "parse_artifact",
+   "summary": "not a person: a page heading, menu item or staff role the listing parser read as a name. Titles listed: Lecturer; listing years 2017-2017.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20170328090313id_/http://www.eecs.umich.edu/eecs/faculty/csefaculty.html",
+     "sha256": "09e92e1f428f047fd2cc3fa692fea9880a5e013a2d854316ef62de89c1a6221e",
+     "quote": "CSE Intermittent Lecturer"
+    }
+   ],
+   "decided_by": "by hand, 2026-10-29 (Michigan onboarding, stage 2): all 39 items read; none is a person missing from the census"
+  },
+  {
+   "name": "CSE People",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "parse_artifact",
+   "summary": "not a person: a page heading, menu item or staff role the listing parser read as a name. Titles listed: CSE Faculty; listing years 2016-2019.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160412034143id_/http://www.eecs.umich.edu:80/eecs/faculty/csefaculty.html",
+     "sha256": "0717204660525e5506f7e4b68fe3b07d695b7a9a50dac400141c19e87b6e05aa",
+     "quote": "CSE People CSE Faculty"
+    }
+   ],
+   "decided_by": "by hand, 2026-10-29 (Michigan onboarding, stage 2): all 39 items read; none is a person missing from the census"
+  },
+  {
+   "name": "Claude E. Shannon",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "endowed_chair_title",
+   "summary": "not a person: the name of an endowed professorship printed above the holder's own title; the holder is a census person. Titles listed: Professor of Engineering Science; Professor of Engineering ScienceProfessor, Electrical Engineering and ; listing years 2016-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160412034143id_/http://www.eecs.umich.edu:80/eecs/faculty/csefaculty.html",
+     "sha256": "0717204660525e5506f7e4b68fe3b07d695b7a9a50dac400141c19e87b6e05aa",
+     "quote": "Claude E. Shannon Professor of Engineering Science"
+    }
+   ],
+   "decided_by": "by hand, 2026-10-29 (Michigan onboarding, stage 2): all 39 items read; none is a person missing from the census"
+  },
+  {
+   "name": "Computer Vision",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "parse_artifact",
+   "summary": "not a person: a page heading, menu item or staff role the listing parser read as a name. Titles listed: Faculty; listing years 2020-2024.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20200619041306id_/https://ece.engin.umich.edu/people/directory/faculty/",
+     "sha256": "0ff1d7098dea44aac447e26bec028789aa9b34ee6cfabcea6a549608b0dec6e1",
+     "quote": "Computer Vision Faculty"
+    }
+   ],
+   "decided_by": "by hand, 2026-10-29 (Michigan onboarding, stage 2): all 39 items read; none is a person missing from the census"
+  },
+  {
+   "name": "Control Systems",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "parse_artifact",
+   "summary": "not a person: a page heading, menu item or staff role the listing parser read as a name. Titles listed: Faculty; listing years 2020-2024.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20200619041306id_/https://ece.engin.umich.edu/people/directory/faculty/",
+     "sha256": "0ff1d7098dea44aac447e26bec028789aa9b34ee6cfabcea6a549608b0dec6e1",
+     "quote": "Control Systems Faculty"
+    }
+   ],
+   "decided_by": "by hand, 2026-10-29 (Michigan onboarding, stage 2): all 39 items read; none is a person missing from the census"
+  },
+  {
+   "name": "Core CSE",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "parse_artifact",
+   "summary": "not a person: a page heading, menu item or staff role the listing parser read as a name. Titles listed: Faculty; listing years 2019-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20200213121034id_/https://cse.engin.umich.edu/people/faculty/",
+     "sha256": "fd71aad1768c429cd1bbfc9935510301872eebd0f75e405c345bfb5bb4df5555",
+     "quote": "Core CSE Faculty"
+    }
+   ],
+   "decided_by": "by hand, 2026-10-29 (Michigan onboarding, stage 2): all 39 items read; none is a person missing from the census"
+  },
+  {
+   "name": "Departmental Computing Organization Coordinator",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "parse_artifact",
+   "summary": "not a person: a page heading, menu item or staff role the listing parser read as a name. Titles listed: Adjunct Professor; listing years 2016-2019.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160412034143id_/http://www.eecs.umich.edu:80/eecs/faculty/csefaculty.html",
+     "sha256": "0717204660525e5506f7e4b68fe3b07d695b7a9a50dac400141c19e87b6e05aa",
+     "quote": "Departmental Computing Organization Coordinator Adjunct Professor"
+    }
+   ],
+   "decided_by": "by hand, 2026-10-29 (Michigan onboarding, stage 2): all 39 items read; none is a person missing from the census"
+  },
+  {
+   "name": "Departmental Computing Organization CoordinatorAdjunct",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "parse_artifact",
+   "summary": "not a person: a page heading, menu item or staff role the listing parser read as a name. Titles listed: Professor, Electrical Engineering and Computer Sciencehe/him/his; listing years 2020-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20200213121034id_/https://cse.engin.umich.edu/people/faculty/",
+     "sha256": "fd71aad1768c429cd1bbfc9935510301872eebd0f75e405c345bfb5bb4df5555",
+     "quote": "Departmental Computing Organization CoordinatorAdjunct Professor, Electrical Engineering and Computer Sciencehe/him/his"
+    }
+   ],
+   "decided_by": "by hand, 2026-10-29 (Michigan onboarding, stage 2): all 39 items read; none is a person missing from the census"
+  },
+  {
+   "name": "ECE LEO Intermittent",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "parse_artifact",
+   "summary": "not a person: a page heading, menu item or staff role the listing parser read as a name. Titles listed: Lecturer; listing years 2019-2019.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20190417044554id_/http://eecs.umich.edu:80/eecs/faculty/ecefaculty.html",
+     "sha256": "35241eda7cccbb11cfc127c717c8526ee150be549f857fda4c759622b1078555",
+     "quote": "ECE LEO Intermittent Lecturer"
+    }
+   ],
+   "decided_by": "by hand, 2026-10-29 (Michigan onboarding, stage 2): all 39 items read; none is a person missing from the census"
+  },
+  {
+   "name": "ECE Leadership",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "parse_artifact",
+   "summary": "not a person: a page heading, menu item or staff role the listing parser read as a name. Titles listed: Tenure-track faculty; Core T/TT faculty; listing years 2020-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20201018024731id_/https://ece.engin.umich.edu/people/directory/faculty/",
+     "sha256": "65500db90be38465d3ff9c18455587c669b1f328825300cac2adfb4186fd625e",
+     "quote": "ECE Leadership Tenure-track faculty"
+    }
+   ],
+   "decided_by": "by hand, 2026-10-29 (Michigan onboarding, stage 2): all 39 items read; none is a person missing from the census"
+  },
+  {
+   "name": "ECE People",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "parse_artifact",
+   "summary": "not a person: a page heading, menu item or staff role the listing parser read as a name. Titles listed: ECE Faculty; listing years 2016-2019.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160408011850id_/http://www.eecs.umich.edu:80/eecs/faculty/ecefaculty.html",
+     "sha256": "2a106ac47b525864b661b7b9e3cf2e35c0c2b136c5801fa043f863a4cd66b9cd",
+     "quote": "ECE People ECE Faculty"
+    }
+   ],
+   "decided_by": "by hand, 2026-10-29 (Michigan onboarding, stage 2): all 39 items read; none is a person missing from the census"
+  },
+  {
+   "name": "EECS Student Organizations",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "parse_artifact",
+   "summary": "not a person: a page heading, menu item or staff role the listing parser read as a name. Titles listed: CSE Faculty Directory; listing years 2016-2019.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160412034143id_/http://www.eecs.umich.edu:80/eecs/faculty/csefaculty.html",
+     "sha256": "0717204660525e5506f7e4b68fe3b07d695b7a9a50dac400141c19e87b6e05aa",
+     "quote": "EECS Student Organizations CSE Faculty Directory"
+    }
+   ],
+   "decided_by": "by hand, 2026-10-29 (Michigan onboarding, stage 2): all 39 items read; none is a person missing from the census"
+  },
+  {
+   "name": "Embedded Systems",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "parse_artifact",
+   "summary": "not a person: a page heading, menu item or staff role the listing parser read as a name. Titles listed: Faculty; listing years 2020-2024.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20200619041306id_/https://ece.engin.umich.edu/people/directory/faculty/",
+     "sha256": "0ff1d7098dea44aac447e26bec028789aa9b34ee6cfabcea6a549608b0dec6e1",
+     "quote": "Embedded Systems Faculty"
+    }
+   ],
+   "decided_by": "by hand, 2026-10-29 (Michigan onboarding, stage 2): all 39 items read; none is a person missing from the census"
+  },
+  {
+   "name": "George Herbert Mead Collegiate",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "endowed_chair_title",
+   "summary": "not a person: the name of an endowed professorship printed above the holder's own title; the holder is a census person. Titles listed: Professor of Human-Computer Interaction; listing years 2016-2019.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160412034143id_/http://www.eecs.umich.edu:80/eecs/faculty/csefaculty.html",
+     "sha256": "0717204660525e5506f7e4b68fe3b07d695b7a9a50dac400141c19e87b6e05aa",
+     "quote": "George Herbert Mead Collegiate Professor of Human-Computer Interaction"
+    }
+   ],
+   "decided_by": "by hand, 2026-10-29 (Michigan onboarding, stage 2): all 39 items read; none is a person missing from the census"
+  },
+  {
+   "name": "Harrison M Randall Collegiate",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "endowed_chair_title",
+   "summary": "not a person: the name of an endowed professorship printed above the holder's own title; the holder is a census person. Titles listed: Professor of PhysicsProfessor (courtesy), Electrical Engineering and C; Professor of Physics; listing years 2016-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160408011850id_/http://www.eecs.umich.edu:80/eecs/faculty/ecefaculty.html",
+     "sha256": "2a106ac47b525864b661b7b9e3cf2e35c0c2b136c5801fa043f863a4cd66b9cd",
+     "quote": "Harrison M Randall Collegiate Professor of Physics"
+    }
+   ],
+   "decided_by": "by hand, 2026-10-29 (Michigan onboarding, stage 2): all 39 items read; none is a person missing from the census"
+  },
+  {
+   "name": "Herman H. Goldstine Collegiate",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "endowed_chair_title",
+   "summary": "not a person: the name of an endowed professorship printed above the holder's own title; the holder is a census person. Titles listed: Professor of Mathematics; Professor of MathematicsProfessor (courtesy), Electrical Engineering a; listing years 2018-2020.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20181011124846id_/http://www.eecs.umich.edu:80/eecs/faculty/ecefaculty.html",
+     "sha256": "2ee87f15c36f5535c8418f9b080293abc3ba445a571ef887d0b7f3798d2f2297",
+     "quote": "Herman H. Goldstine Collegiate Professor of Mathematics"
+    }
+   ],
+   "decided_by": "by hand, 2026-10-29 (Michigan onboarding, stage 2): all 39 items read; none is a person missing from the census"
+  },
+  {
+   "name": "Instructional Laboratories Manager",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "parse_artifact",
+   "summary": "not a person: a page heading, menu item or staff role the listing parser read as a name. Titles listed: Adjunct Professor; LEO Adjunct Professor; listing years 2016-2019.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160408011850id_/http://www.eecs.umich.edu:80/eecs/faculty/ecefaculty.html",
+     "sha256": "2a106ac47b525864b661b7b9e3cf2e35c0c2b136c5801fa043f863a4cd66b9cd",
+     "quote": "Instructional Laboratories Manager Adjunct Professor"
+    }
+   ],
+   "decided_by": "by hand, 2026-10-29 (Michigan onboarding, stage 2): all 39 items read; none is a person missing from the census"
+  },
+  {
+   "name": "John Derby Evans",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "endowed_chair_title",
+   "summary": "not a person: the name of an endowed professorship printed above the holder's own title; the holder is a census person. Titles listed: Professor of Information; listing years 2018-2019.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20180917100733id_/http://eecs.umich.edu:80/eecs/faculty/csefaculty.html",
+     "sha256": "b2336dd05f5ca78864d1bf7b058262582e406eada66e33aad61b934ec800365d",
+     "quote": "John Derby Evans Professor of Information"
+    }
+   ],
+   "decided_by": "by hand, 2026-10-29 (Michigan onboarding, stage 2): all 39 items read; none is a person missing from the census"
+  },
+  {
+   "name": "John L. Tishman",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "endowed_chair_title",
+   "summary": "not a person: the name of an endowed professorship printed above the holder's own title; the holder is a census person. Titles listed: Professor of EngineeringProfessor, Electrical Engineering and Computer; Professor of Engineering; listing years 2016-2023.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160412034143id_/http://www.eecs.umich.edu:80/eecs/faculty/csefaculty.html",
+     "sha256": "0717204660525e5506f7e4b68fe3b07d695b7a9a50dac400141c19e87b6e05aa",
+     "quote": "John L. Tishman Professor of Engineering"
+    }
+   ],
+   "decided_by": "by hand, 2026-10-29 (Michigan onboarding, stage 2): all 39 items read; none is a person missing from the census"
+  },
+  {
+   "name": "Kensall D. Wise Collegiate",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "endowed_chair_title",
+   "summary": "not a person: the name of an endowed professorship printed above the holder's own title; the holder is a census person. Titles listed: Professor of Electrical Engineering and Computer Science; listing years 2019-2019.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20190724044614id_/https://www.eecs.umich.edu/eecs/faculty/csefaculty.html",
+     "sha256": "c3341d0b10b5d810236a65507cd3680ea24aa306e2b4bc7ccf06d44ebcf3982e",
+     "quote": "Kensall D. Wise Collegiate Professor of Electrical Engineering and Computer Science"
+    }
+   ],
+   "decided_by": "by hand, 2026-10-29 (Michigan onboarding, stage 2): all 39 items read; none is a person missing from the census"
+  },
+  {
+   "name": "Kurt Metzger Collegiate",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "endowed_chair_title",
+   "summary": "not a person: the name of an endowed professorship printed above the holder's own title; the holder is a census person. Titles listed: Lecturer; listing years 2017-2019.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20171014072657id_/http://www.eecs.umich.edu:80/eecs/faculty/csefaculty.html",
+     "sha256": "7b4d9c643b574980f2f9bd9d03df2357cd55b70bd60a96d1ee87e019d6744670",
+     "quote": "Kurt Metzger Collegiate Lecturer"
+    }
+   ],
+   "decided_by": "by hand, 2026-10-29 (Michigan onboarding, stage 2): all 39 items read; none is a person missing from the census"
+  },
+  {
+   "name": "Kurt Metzger Collegiate LecturerTeaching",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "endowed_chair_title",
+   "summary": "not a person: the name of an endowed professorship printed above the holder's own title; the holder is a census person. Titles listed: Professor, Electrical Engineering and Computer Sciencehe/him/his; listing years 2023-2024.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20231003091535id_/https://cse.engin.umich.edu/people/faculty/",
+     "sha256": "1bc135624d645670fb24dc781d6fd7faf117754ae54af2312ec6beede2c26ad4",
+     "quote": "Kurt Metzger Collegiate LecturerTeaching Professor, Electrical Engineering and Computer Sciencehe/him/his"
+    }
+   ],
+   "decided_by": "by hand, 2026-10-29 (Michigan onboarding, stage 2): all 39 items read; none is a person missing from the census"
+  },
+  {
+   "name": "LEO Intermittent",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "parse_artifact",
+   "summary": "not a person: a page heading, menu item or staff role the listing parser read as a name. Titles listed: Lecturer; Lecturer, Electrical Engineering & Computer Science; listing years 2016-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20170328090313id_/http://www.eecs.umich.edu/eecs/faculty/csefaculty.html",
+     "sha256": "09e92e1f428f047fd2cc3fa692fea9880a5e013a2d854316ef62de89c1a6221e",
+     "quote": "LEO Intermittent Lecturer"
+    }
+   ],
+   "decided_by": "by hand, 2026-10-29 (Michigan onboarding, stage 2): all 39 items read; none is a person missing from the census"
+  },
+  {
+   "name": "Louise Ganiard Johnson",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "endowed_chair_title",
+   "summary": "not a person: the name of an endowed professorship printed above the holder's own title; the holder is a census person. Titles listed: Professor of Engineering; listing years 2016-2019.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160408011850id_/http://www.eecs.umich.edu:80/eecs/faculty/ecefaculty.html",
+     "sha256": "2a106ac47b525864b661b7b9e3cf2e35c0c2b136c5801fa043f863a4cd66b9cd",
+     "quote": "Louise Ganiard Johnson Professor of Engineering"
+    }
+   ],
+   "decided_by": "by hand, 2026-10-29 (Michigan onboarding, stage 2): all 39 items read; none is a person missing from the census"
+  },
+  {
+   "name": "Peter A. Franken Collegiate",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "endowed_chair_title",
+   "summary": "not a person: the name of an endowed professorship printed above the holder's own title; the holder is a census person. Titles listed: Professor of Physics; Professor of PhysicsProfessor (courtesy), Electrical Engineering and C; listing years 2016-2020.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160408011850id_/http://www.eecs.umich.edu:80/eecs/faculty/ecefaculty.html",
+     "sha256": "2a106ac47b525864b661b7b9e3cf2e35c0c2b136c5801fa043f863a4cd66b9cd",
+     "quote": "Peter A. Franken Collegiate Professor of Physics"
+    }
+   ],
+   "decided_by": "by hand, 2026-10-29 (Michigan onboarding, stage 2): all 39 items read; none is a person missing from the census"
+  },
+  {
+   "name": "Recent Grads",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "parse_artifact",
+   "summary": "not a person: a page heading, menu item or staff role the listing parser read as a name. Titles listed: Faculty Hiring; listing years 2021-2022.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20210423021206id_/https://ece.engin.umich.edu/people/directory/faculty/",
+     "sha256": "f1027eb71e229059fc5166cb6868b7352077369878fb0a0bc8c5270b41b6c8de",
+     "quote": "Recent Grads Faculty Hiring"
+    }
+   ],
+   "decided_by": "by hand, 2026-10-29 (Michigan onboarding, stage 2): all 39 items read; none is a person missing from the census"
+  },
+  {
+   "name": "Robert J.",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "endowed_chair_title",
+   "summary": "not a person: the name of an endowed professorship printed above the holder's own title; the holder is a census person. Titles listed: Professor of EngineeringProfessor, Electrical Engineering and Computer; listing years 2024-2024.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20240425105921id_/https://ece.engin.umich.edu/people/directory/faculty/",
+     "sha256": "57d998467777feec1f24a1f6ae06eb7870918a4cf55b8d3371db88b1c657fd31",
+     "quote": "Robert J. Professor of EngineeringProfessor, Electrical Engineering and Computer Science"
+    }
+   ],
+   "decided_by": "by hand, 2026-10-29 (Michigan onboarding, stage 2): all 39 items read; none is a person missing from the census"
+  },
+  {
+   "name": "Robert J. Hiller",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "endowed_chair_title",
+   "summary": "not a person: the name of an endowed professorship printed above the holder's own title; the holder is a census person. Titles listed: Professor EmeritusProfessor Emeritus, Electrical Engineering and Compu; Professor; listing years 2016-2026.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160408011850id_/http://www.eecs.umich.edu:80/eecs/faculty/ecefaculty.html",
+     "sha256": "2a106ac47b525864b661b7b9e3cf2e35c0c2b136c5801fa043f863a4cd66b9cd",
+     "quote": "Robert J. Hiller Professor"
+    }
+   ],
+   "decided_by": "by hand, 2026-10-29 (Michigan onboarding, stage 2): all 39 items read; none is a person missing from the census"
+  },
+  {
+   "name": "Rufus S. Teesdale",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "endowed_chair_title",
+   "summary": "not a person: the name of an endowed professorship printed above the holder's own title; the holder is a census person. Titles listed: Professor of Engineering; Director, Radiation Laboratory; Director, CO; Professor of EngineeringProfessor, Electrical Engineering and Computer; listing years 2016-2023.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160408011850id_/http://www.eecs.umich.edu:80/eecs/faculty/ecefaculty.html",
+     "sha256": "2a106ac47b525864b661b7b9e3cf2e35c0c2b136c5801fa043f863a4cd66b9cd",
+     "quote": "Rufus S. Teesdale Professor of Engineering; Director, Radiation Laboratory; Director, COM-BAT Center"
+    }
+   ],
+   "decided_by": "by hand, 2026-10-29 (Michigan onboarding, stage 2): all 39 items read; none is a person missing from the census"
+  },
+  {
+   "name": "Seth Bonder Collegiate",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "endowed_chair_title",
+   "summary": "not a person: the name of an endowed professorship printed above the holder's own title; the holder is a census person. Titles listed: Professor of Industrial & Operations Engineering; listing years 2016-2018.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160412034143id_/http://www.eecs.umich.edu:80/eecs/faculty/csefaculty.html",
+     "sha256": "0717204660525e5506f7e4b68fe3b07d695b7a9a50dac400141c19e87b6e05aa",
+     "quote": "Seth Bonder Collegiate Professor of Industrial & Operations Engineering"
+    }
+   ],
+   "decided_by": "by hand, 2026-10-29 (Michigan onboarding, stage 2): all 39 items read; none is a person missing from the census"
+  },
+  {
+   "name": "Student Organizations",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "parse_artifact",
+   "summary": "not a person: a page heading, menu item or staff role the listing parser read as a name. Titles listed: Faculty Directory; listing years 2016-2019.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20160408011850id_/http://www.eecs.umich.edu:80/eecs/faculty/ecefaculty.html",
+     "sha256": "2a106ac47b525864b661b7b9e3cf2e35c0c2b136c5801fa043f863a4cd66b9cd",
+     "quote": "Student Organizations Faculty Directory"
+    }
+   ],
+   "decided_by": "by hand, 2026-10-29 (Michigan onboarding, stage 2): all 39 items read; none is a person missing from the census"
+  },
+  {
+   "name": "Toby Teorey Collegiate",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "endowed_chair_title",
+   "summary": "not a person: the name of an endowed professorship printed above the holder's own title; the holder is a census person. Titles listed: Lecturer; listing years 2019-2019.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20190401211918id_/https://www.eecs.umich.edu/eecs/faculty/csefaculty.html",
+     "sha256": "a4de987e5f9e9ab98f6e4a343c1e4c6ad43693b8c7eb1351187950f0b4c5843c",
+     "quote": "Toby Teorey Collegiate Lecturer"
+    }
+   ],
+   "decided_by": "by hand, 2026-10-29 (Michigan onboarding, stage 2): all 39 items read; none is a person missing from the census"
+  },
+  {
+   "name": "Toby Teorey Collegiate LecturerTeaching",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "endowed_chair_title",
+   "summary": "not a person: the name of an endowed professorship printed above the holder's own title; the holder is a census person. Titles listed: Professor, Electrical Engineering and Computer Science; listing years 2023-2024.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20231003091535id_/https://cse.engin.umich.edu/people/faculty/",
+     "sha256": "1bc135624d645670fb24dc781d6fd7faf117754ae54af2312ec6beede2c26ad4",
+     "quote": "Toby Teorey Collegiate LecturerTeaching Professor, Electrical Engineering and Computer Science"
+    }
+   ],
+   "decided_by": "by hand, 2026-10-29 (Michigan onboarding, stage 2): all 39 items read; none is a person missing from the census"
+  },
+  {
+   "name": "William L. Root Collegiate",
+   "aliases": [],
+   "decision": "does_not_qualify",
+   "reason": "endowed_chair_title",
+   "summary": "not a person: the name of an endowed professorship printed above the holder's own title; the holder is a census person. Titles listed: Professor of Electrical Engineering and Computer Science; listing years 2016-2019.",
+   "evidence": [
+    {
+     "capture_url": "https://web.archive.org/web/20161009234837id_/http://www.eecs.umich.edu:80/eecs/faculty/ecefaculty.html",
+     "sha256": "a3652da16f61c8f62e887fe10c995639314c50c920e67be296545e0b4e42baa7",
+     "quote": "William L. Root Collegiate Professor of Electrical Engineering and Computer Science"
+    }
+   ],
+   "decided_by": "by hand, 2026-10-29 (Michigan onboarding, stage 2): all 39 items read; none is a person missing from the census"
+  }
+ ]
+}

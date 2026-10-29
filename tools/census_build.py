@@ -30,7 +30,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
-from pi_hierarchy import Name, toks, nick_ok  # noqa: E402
+from pi_hierarchy import Name, toks, nick_ok, EAST_ASIAN_FAMILY  # noqa: E402
 
 ORDER = ['ladder', 'research', 'teaching', 'lecturer', 'adjunct', 'visiting', 'courtesy', 'emeritus', 'other']
 HOME_PROF = re.compile(r'^(?:[A-Z][\w.\'\- ]+ )?(?:Assistant |Associate )?Professor(?! Emerit)(?: of [^,]+)?, (?!Electrical Engineering and Computer Science)(.+)$')
@@ -46,20 +46,62 @@ def read(p, default=None):
     return json.loads(p.read_text()) if p.exists() else default
 
 
+def given_compatible(a, b, fam):
+    """Two given-name token lists of one family name in one school's faculty listings are one person when: the first
+    given names are nickname-equal; one is a 3+ letter prefix of the other ('Raj' / 'Rajesh', 'Mack' / 'Mackillo',
+    'Clay' / 'Clayton'; never under an East Asian family name, R-LNK-02a); one side is initials that spell the other's
+    given names ('P.C.' / 'Pei-Cheng'); or one side's first given name is the other's second ('L. Jay' / 'Jay',
+    'S. Sandeep' / 'Sandeep'). Learned from Michigan 2026-10-29: the CSE/ECE lists spell one person several ways."""
+    if not a or not b:
+        return False
+    if nick_ok(a[0], b[0]):
+        return True
+    if fam not in EAST_ASIAN_FAMILY and min(len(a[0]), len(b[0])) >= 3 and (a[0].startswith(b[0]) or b[0].startswith(a[0])):
+        return True
+    for x, y in ((a, b), (b, a)):
+        if all(len(t) == 1 for t in x) and len(x) <= len(y) and all(y[i].startswith(x[i]) for i in range(len(x))):
+            return True
+        if len(x) >= 2 and len(x[0]) == 1 and x[1] == y[0]:
+            return True
+    return False
+
+
 def merge_people(rows):
-    """Group listing rows into persons: same (first given, family) pair, or a nickname-equal given name with the same
-    family name (rows of one school only; never across schools)."""
+    """Group listing rows into persons: same family name and compatible given names (given_compatible); rows of one
+    school only, never across schools."""
     groups, by_fam = [], collections.defaultdict(list)
     for r in sorted(rows, key=lambda r: r['observed']):
         t = toks(r['name'])
         if len(t) < 2:
             continue
-        g = next((g for g in by_fam[t[-1]] if any(nick_ok(toks(n)[0], t[0]) for n in g['names'])), None)
+        g = next((g for g in by_fam[t[-1]] if any(given_compatible(toks(n)[:-1], t[:-1], t[-1]) for n in g['names'])), None)
         if g is None:
             g = dict(names=[], rows=[]); groups.append(g); by_fam[t[-1]].append(g)
         if r['name'] not in g['names']:
             g['names'].append(r['name'])
         g['rows'].append(r)
+    # the same personal homepage under one family name is one person ('H.V.' / 'Jag' Jagadish, 'Georgios' / 'George'
+    # Tzimpragos, 'Noel' / 'Chris' Giebink: learned from Michigan 2026-10-29); a shared department or lab page is not personal
+    def home_key(u):
+        u = re.sub(r'^https?://(?:www\.|web\.)?', '', (u or '').lower()).rstrip('/')
+        return u if u and not re.fullmatch(r'(?:[\w-]+\.)?(?:engin\.)?[\w-]+\.edu(?:/people(?:/.*)?)?', u) else None  # a bare site root or people page
+    merged = True
+    while merged:
+        merged = False
+        for fam, gs in by_fam.items():
+            for i, a in enumerate(gs):
+                ha = {home_key(r.get('homepage')) for r in a['rows']} - {None}
+                for b in gs[i + 1:]:
+                    if ha & ({home_key(r.get('homepage')) for r in b['rows']} - {None}):
+                        a['names'] += [n for n in b['names'] if n not in a['names']]; a['rows'] += b['rows']
+                        gs.remove(b); groups.remove(b); merged = True
+                        break
+                if merged:
+                    break
+            if merged:
+                break
+    for g in groups:
+        g['rows'].sort(key=lambda r: r['observed'])
     return groups
 
 
@@ -70,6 +112,7 @@ def main(key):
     review = {r['name']: r for r in read(P.HIERARCHY / key / 'cs-related-review.json', {}).get('decisions', [])} \
         if isinstance(read(P.HIERARCHY / key / 'cs-related-review.json', {}), dict) else {}
     basis_ev = {r['pi']: r for r in read(P.HIERARCHY / key / 'pi-basis-evidence.json', [])}
+    dblp_ids = read(P.HIERARCHY / key / 'dblp-ids.json', {})  # stage 5 (tools/dblp_ids_school.py); folded in when present
     census, people, listing_rows, n = [], [], [], collections.Counter()
     for g in merge_people(rows):
         rs = [r for r in g['rows'] if lo <= r['year'] <= hi]
@@ -109,8 +152,11 @@ def main(key):
             home = [(r, m) for r in court for t in r['titles'] for m in [HOME_PROF.match(t)] if m and 'courtesy' not in t.lower() and 'emerit' not in t.lower()]
             if home:
                 r, m = home[0]
+                hu = m.group(1).strip(); of = re.search(r'Professor of (.+?),', m.group(0))
+                if of and re.match(r'(?:Medical School|School of|College of)', hu):  # 'Professor of X, Medical School': the department X
+                    hu = of.group(1).strip()
                 basis = dict(kind='courtesy_faculty', url=r['capture_url'], sha256=r['sha256'], quote=r['quote'], observed=r['observed'],
-                             role='; '.join(r['titles']), home_unit=m.group(1).strip())
+                             role='; '.join(r['titles']), home_unit=hu)
             else:
                 why_not = 'courtesy or affiliate appointment without a professor rank in a home unit'
         elif lad_aff:
@@ -124,7 +170,9 @@ def main(key):
         cid = f'{key}_fac_' + slug(name)
         homepage = next((r['homepage'] for r in reversed(rs) if r.get('homepage')), None)
         census.append(dict(name=name, aliases=[a for a in g['names'] if a != name], collection_person_id=cid, structure_name=name,
-                           profile_url=homepage, dblp=[], rank=best[max(best)], title_as_listed='; '.join(latest['titles']),
+                           profile_url=homepage, dblp=[d_['pid']] if (d_ := dblp_ids.get(name) or {}).get('pid') else [],
+                           dblp_basis=d_.get('basis'), dblp_evidence={k: d_[k] for k in ('url', 'dump', 'sha256', 'quote') if k in d_} or None,
+                           orcid=list(d_.get('orcid') or []), rank=best[max(best)], title_as_listed='; '.join(latest['titles']),
                            departments=depts, listed_in=depts, years_listed=sorted(best), ranks_by_year={str(y): sorted(v, key=ORDER.index) for y, v in sorted(ranks_by_year.items())},
                            sources=sources, is_pi=is_pi, pi_basis=basis, not_pi_reason=None if is_pi else why_not,
                            lab_units=[], collectives=[], emeritus_since=min((y for y, b in best.items() if b == 'emeritus'), default=None)))
@@ -136,6 +184,9 @@ def main(key):
             listing_rows.append(dict(pi=name, school=key, department=d, year=y, capture_url=r['capture_url'], sha256=r['sha256'], quote=r['quote'],
                                      rank_as_listed='; '.join(r['dept_title'] or r['titles']), rank=r['rank'], emeritus=r['rank'] == 'emeritus',
                                      visiting=r['rank'] == 'visiting', observed=r['observed'], slot=r['slot']))
+    for x in read(P.CENSUS / f'{key}-additions.json', []):  # accepted CS-related faculty of other units: a person record each
+        if x.get('collection_person_id') and all(p_['id'] != x['collection_person_id'] for p_ in people):
+            people.append(dict(id=x['collection_person_id'], name=x['name'], roles=['faculty'], contexts=[], profileUrl=x.get('profile_url')))
     rule = __doc__.split('\n-> ')[0]
     (P.CENSUS / f'{key}-faculty.json').write_text(json.dumps(dict(school=key, built_at=datetime.datetime.utcnow().isoformat() + 'Z', rule=rule, faculty=census),
                                                              indent=1, ensure_ascii=False))
