@@ -11,7 +11,7 @@ import re
 import sys
 from urllib.parse import urljoin
 
-TOOLS = "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/few-students-tools-cmu"
+TOOLS = "/n/fs/resemble/cs-atlas/work/hierarchy/few-students-tools-cmu"
 sys.path.insert(0, TOOLS)
 import capstore  # noqa: E402
 from bs4 import BeautifulSoup  # noqa: E402

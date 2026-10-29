@@ -7,7 +7,7 @@ usage: merge_workers.py WORKER_DB [...]
 import sqlite3
 import sys
 
-sys.path.insert(0, "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/gap-tools-berkeley")
+sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-berkeley")
 import capstore  # noqa: E402
 
 COLS = "url,final_url,capture_url,fetched_at,status,sha256,content_type,content,error"

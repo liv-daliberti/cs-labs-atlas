@@ -14,10 +14,10 @@ import sys
 import unicodedata
 import zlib
 
-sys.path.insert(0, "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/gap-tools-berkeley")
+sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-berkeley")
 import capstore  # noqa: E402
 
-H = "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/berkeley"
+H = "/n/fs/resemble/cs-atlas/work/hierarchy/berkeley"
 rows = json.load(open(H + "/gap-evidence.json"))
 gap = json.load(open(H + "/gap-input.json"))
 con = sqlite3.connect(f"file:{capstore.DB_MAIN}?mode=ro", uri=True)

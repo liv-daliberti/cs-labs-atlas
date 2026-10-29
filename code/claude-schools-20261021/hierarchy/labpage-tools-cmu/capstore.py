@@ -27,7 +27,7 @@ from urllib.parse import urlsplit, quote as urlquote
 
 import requests
 
-HIER = "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy"
+HIER = "/n/fs/resemble/cs-atlas/work/hierarchy"
 MAIN_DB = HIER + "/cmu/labpage-captures.sqlite"
 DB = os.environ.get("LABPAGE_DB", MAIN_DB)
 # Per-process capture files live on the project share (one writer per file), so they survive a move to

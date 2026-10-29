@@ -2,7 +2,7 @@
 --after YYYY if given, else the latest), printing snippets around the given names.
 Usage: pm_wb.py [--first] name1,name2 url..."""
 import sys
-sys.path.insert(0, '/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/period-tools')
+sys.path.insert(0, '/n/fs/resemble/cs-atlas/work/hierarchy/period-tools')
 import pcap
 args = sys.argv[1:]
 first = False

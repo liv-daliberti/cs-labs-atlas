@@ -3,11 +3,11 @@ usage: build_gap_evidence.py [--allow-missing]"""
 import json
 import sys
 
-sys.path.insert(0, "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/gap-tools-mit")
+sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-mit")
 import spec_mit  # noqa: E402
 import verify_gap_evidence  # noqa: E402
 
-HERE = "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/mit/"
+HERE = "/n/fs/resemble/cs-atlas/work/hierarchy/mit/"
 gap = json.load(open(HERE + "gap-input.json"))
 out, missing = [], []
 for g in gap:

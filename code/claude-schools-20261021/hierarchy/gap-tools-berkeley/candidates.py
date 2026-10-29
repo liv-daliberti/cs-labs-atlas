@@ -10,7 +10,7 @@ import unicodedata
 import zlib
 from collections import defaultdict
 
-ROOT = "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy"
+ROOT = "/n/fs/resemble/cs-atlas/work/hierarchy"
 SWEEP = ROOT + "/berkeley/openalex-sweep.sqlite"
 GAP = ROOT + "/berkeley/gap-input.json"
 OUT = ROOT + "/gap-tools-berkeley/candidates.json"

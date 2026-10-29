@@ -21,8 +21,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import ftp_common as F
 
-WRAPPER = '/n/fs/resemble/maxent-grpo/.research-sweeps/claude-cmu-20261017/tools/collector_wrapper.py'
-SCRIPTS = '/n/fs/resemble/homogenizing-science/scripts'
+WRAPPER = str(F.P.sweep('claude-cmu-20261017') / 'tools/collector_wrapper.py')
+SCRIPTS = str(F.P.HOMOGENIZING_SCRIPTS)
 PY = '/usr/local/anaconda3/2024.02/bin/python'
 
 

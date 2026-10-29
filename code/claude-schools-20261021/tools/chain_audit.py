@@ -21,7 +21,9 @@ import collections, gzip, json, re, sys, unicodedata
 from datetime import datetime, timezone
 from pathlib import Path
 
-HERE = Path(__file__).resolve().parents[1]; H = HERE / 'hierarchy'
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import atlas_paths as P  # noqa: E402  (every path in one place)
+HERE = P.WORK; H = P.HIERARCHY
 SCHOOLS = ['princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford']
 CHECKS = ['coverage', 'pi', 'students', 'papers', 'links', 'copies', 'one_person']
 LOCAL = {'local', 'fulltext_xml', 'downloaded', 'pdf', 'xml'}
@@ -60,6 +62,13 @@ def decisions(doc):
     return d if isinstance(d, list) else [dict(v, name=k) if isinstance(v, dict) else {'name': k} for k, v in d.items()]
 
 
+def revisit_due(ov_school, today):
+    """The census-overrides entries of one school whose revisit_after date has come (2026-10-29, owner: best judgement):
+    an exclusion with revisit_after (a new arrival with no group or advisee yet) is decided only until that date; after
+    it the person is open again for a fresh coverage review. Names normalized (norm)."""
+    return {norm(k) for k, v in ov_school.items() if isinstance(v, dict) and v.get('revisit_after') and v['revisit_after'] <= today}
+
+
 def by_pi(rows):
     out = {}
     for r in rows or []:
@@ -85,7 +94,12 @@ def audit(school):
     report = load(D / 'report.json', {}) or {}
     ledger = (load(H / 'chain-reasons.json', {}) or {}).get(school, {})
     zero = (load(H / 'zero-paper-review.json', {}) or {}).get(school, {})
-    overrides = json.dumps((load(H / 'census-overrides.json', {}) or {}).get(school, {}))
+    ov_school = (load(H / 'census-overrides.json', {}) or {}).get(school, {})
+    overrides = json.dumps(ov_school)
+    # an exclusion with revisit_after (a new arrival with no group or advisee yet) is decided only until that date
+    # (2026-10-29, owner: best judgement); after it the person is open again for a fresh coverage review
+    today = datetime.now(timezone.utc).date().isoformat()
+    due = revisit_due(ov_school, today)
     res = {c: {'total': 0, 'pass': 0, 'explained': collections.Counter(), 'unexplained': []} for c in CHECKS}
 
     def item(check, key, ok, reason=None, detail=None):
@@ -112,13 +126,13 @@ def audit(school):
     for x in load(D / 'listed-not-in-census.json', []) or []:
         n = norm(x.get('name'))
         item('coverage', 'listed:' + x.get('name', ''), n in pi_names,
-             'decided' if n in decided or (x.get('name') and x['name'] in overrides) else None,
-             {'why': 'a department lists this person; neither in the census nor decided', 'titles': x.get('titles'),
+             'decided' if (n in decided or (x.get('name') and x['name'] in overrides)) and n not in due else None,
+             {'why': 'revisit due: excluded as a new arrival without a group' if n in due else 'a department lists this person; neither in the census nor decided', 'titles': x.get('titles'),
               'years': x.get('years')})
     for x in load(D / 'cs-related-candidates.json', []) or []:
         ns = names_in(x)
         item('coverage', 'candidate:' + x.get('name', ''), bool(ns & pi_names),
-             'decided' if ns & decided else None,
+             'decided' if ns & decided and not ns & due else None,
              {'why': 'CS-related candidate without a decision', 'works': x.get('works'), 'cs_share': x.get('cs_share')})
     if not (D / 'listed-not-in-census.json').exists():
         res['coverage']['unexplained'].append({'key': 'listed-not-in-census.json', 'why': 'the department-listing cross-check was never run'})

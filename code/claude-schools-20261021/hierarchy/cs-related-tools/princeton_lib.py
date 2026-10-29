@@ -3,7 +3,7 @@ import re, sqlite3, unicodedata, zlib
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parents[2]
-LST = HERE.parent / 'claude-princeton-listings-20261022/captures/listings.sqlite'
+LST = Path('/n/fs/resemble/maxent-grpo/.research-sweeps') / 'claude-princeton-listings-20261022/captures/listings.sqlite'
 LST_REL = 'claude-princeton-listings-20261022/captures/listings.sqlite'
 TITLE = re.compile(r'Professor|Lecturer|Emerit|Dean\b|Chair\b|Provost|President|Instructor|Faculty|Associate|Assistant|Director|Scholar|Fellow', re.I)
 STOP = re.compile(r'\s(?:[A-Z]?\d{2,}[A-Z]?\b|\(?\d{3}\)?[-. ]\d{3}|\S+@\S+|Research Interests?|Office|Phone|Email|Website|Room\b|Area[s:]|Fields?:|Ph\.?D\.?,? )')

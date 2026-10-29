@@ -10,7 +10,7 @@ import argparse
 import re
 import sys
 
-sys.path.insert(0, "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/gap-tools-mit")
+sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-mit")
 import evlib  # noqa: E402
 import oa  # noqa: E402
 

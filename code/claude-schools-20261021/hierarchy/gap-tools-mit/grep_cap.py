@@ -1,6 +1,6 @@
 """Print windows of the stored capture of URL (live or capture_url) around REGEX. usage: grep_cap.py URL REGEX [WIDTH]"""
 import re, sys
-sys.path.insert(0, '/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/gap-tools-mit')
+sys.path.insert(0, '/n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-mit')
 import capstore
 r = capstore.latest(sys.argv[1]); w = int(sys.argv[3]) if len(sys.argv) > 3 else 300
 if not r: print('NO CAPTURE'); sys.exit()

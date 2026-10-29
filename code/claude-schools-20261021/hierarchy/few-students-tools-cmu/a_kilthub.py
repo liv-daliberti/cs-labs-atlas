@@ -6,7 +6,7 @@ usage: a_kilthub.py [--search "QUERY"] [ID ...]
 import json
 import sys
 
-sys.path.insert(0, "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/few-students-tools-cmu")
+sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/hierarchy/few-students-tools-cmu")
 import capstore  # noqa: E402
 
 FS = "https://api.figshare.com/v2/articles/"

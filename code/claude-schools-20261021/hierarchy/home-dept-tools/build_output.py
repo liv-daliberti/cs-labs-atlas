@@ -10,12 +10,12 @@ import sys
 import unicodedata
 import zlib
 
-TOOLS = "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/home-dept-tools"
+TOOLS = "/n/fs/resemble/cs-atlas/work/hierarchy/home-dept-tools"
 sys.path.insert(0, TOOLS)
 import capstore  # noqa: E402
 import decisions  # noqa: E402
 
-HIER = "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy"
+HIER = "/n/fs/resemble/cs-atlas/work/hierarchy"
 INPUT = HIER + "/home-department-input.json"
 OUTPUT = HIER + "/home-departments.json"
 WB = re.compile(r"^https://web\.archive\.org/web/(\d+)id_/(.+)$")

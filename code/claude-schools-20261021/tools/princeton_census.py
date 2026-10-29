@@ -15,8 +15,10 @@ periods    the reviewed arrival statements (claude-princeton-periods-20261021/pe
 import collections, datetime, gzip, json, re, sqlite3, sys, zlib
 from pathlib import Path
 
-HERE = Path(__file__).resolve().parents[1]; SW = HERE.parent
-SITE = Path('/n/fs/resemble/maxent-grpo/princeton-live-20261015')
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import atlas_paths as P  # noqa: E402  (every path in one place)
+HERE = P.WORK; SW = P.SWEEPS
+SITE = P.SITE_ROOT
 LST = SW / 'claude-princeton-listings-20261022'
 sys.path.insert(0, str(LST / 'scripts')); sys.path.insert(0, str(HERE / 'tools'))
 import extract, match  # noqa: E402  (the listings sweep's own text extraction)

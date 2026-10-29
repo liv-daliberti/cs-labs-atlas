@@ -20,9 +20,10 @@ import collections, gzip, json, sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
-from pi_hierarchy import Name, toks, given, nick_ok, strict_name_one, near_relation  # noqa: E402
+from pi_hierarchy import Name, toks, given, nick_ok, strict_name_one, near_relation, EAST_ASIAN_FAMILY  # noqa: E402
 
-HERE = Path(__file__).resolve().parents[1]; H = HERE / 'hierarchy'
+import atlas_paths as P  # noqa: E402  (every path in one place)
+HERE = P.WORK; H = P.HIERARCHY
 SCHOOLS = [s for s in ['princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford'] if (H / s / 'students.json').exists()]
 
 
@@ -37,6 +38,10 @@ def compatible(a, b):
         return False
     fa, fb = (ta[0], tb[0]) if ta[-1] == tb[-1] else (ta[-1], tb[0])
     ja, jb = ''.join(ta[:-1]), ''.join(tb[:-1])
+    if ta[-1] in EAST_ASIAN_FAMILY and ta[-1] == tb[-1]:
+        # (2026-10-29, as the link guard) under an East Asian family name a given name that is a prefix of another is a
+        # different common name: 'Yuan Li' and 'Yu-Jhe Li' in Kitani's lab are two people
+        return fa == fb or ja == jb or nick_ok(fa, fb)
     return fa[0] == fb[0] and (fa.startswith(fb) or fb.startswith(fa) or nick_ok(fa, fb) or ja == jb or ja.startswith(jb) or jb.startswith(ja))
 
 

@@ -16,7 +16,7 @@ from urllib.parse import urlsplit, quote
 
 import requests
 
-DB = "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/mit/gap-captures.sqlite"
+DB = "/n/fs/resemble/cs-atlas/work/hierarchy/mit/gap-captures.sqlite"
 UA = ("princeton-cs-research-sweep/1.0 (MIT faculty lab gap research: public group pages, theses metadata; "
       "academic, non-commercial; polite 1 req/2s/host)")
 TIMEOUT = (10, 40)

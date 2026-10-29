@@ -25,8 +25,12 @@ usage: pi_hierarchy.py <school> [<school> ...]
 import calendar, collections, datetime, gzip, html, json, re, sqlite3, sys, unicodedata, zlib
 from pathlib import Path
 
-HERE = Path(__file__).resolve().parents[1]
-SITE = Path('/n/fs/resemble/maxent-grpo/princeton-live-20261015/atlas/data')
+if str(Path(__file__).resolve().parent) not in sys.path:  # loaded by file path (importlib) from elsewhere
+    sys.path.append(str(Path(__file__).resolve().parent))
+import atlas_paths as P  # noqa: E402  (every path in one place)
+
+HERE = P.WORK
+SITE = P.SITE_DATA
 DBLP = {'cmu': 'claude-cmu-20261017', 'epfl': 'claude-epfl-20261019', 'mit': 'claude-mit-20261020', 'berkeley': 'claude-berkeley-20261021',
         'stanford': 'claude-stanford-20261027'}
 INST = {'princeton': 'I20089843', 'cmu': 'I74973139', 'epfl': 'I5124864', 'mit': 'I63966007', 'berkeley': 'I95457486', 'stanford': 'I97018004'}
@@ -57,7 +61,7 @@ def _nick_pairs():
     import csv
     pairs = {frozenset((a, b)) for a, b in NICK.items()}
     for f in ('names.csv', 'extras.csv'):
-        fp = Path(__file__).resolve().parents[1] / 'hierarchy/nicknames' / f
+        fp = P.HIERARCHY / 'nicknames' / f
         if fp.exists():
             for r in csv.DictReader(open(fp)):
                 if r.get('relationship') == 'has_nickname' and r.get('name1') and r.get('name2'):
@@ -414,6 +418,149 @@ def same_year(date):
     return int(b[0][:4]) if b and b[0][:4] == b[1][:4] else None
 
 
+EN_WORDS = set('the of and for in a an to with on from by at as is are its into via toward towards using'.split())
+FOREIGN_WORDS = set('''der die das und eine einer einen ein einführung mit für von zur zum im über des den dem
+le la les de des et une un du pour avec dans sur par aux au à
+el los las del y una para con en por al
+il gli della delle dei per nel nella
+os da do das dos uma com'''.split()) - EN_WORDS
+
+
+def foreign_title(title):
+    """The title reads as German, French, Spanish, Italian or Portuguese, not English: two or more words, at least one
+    of those languages' function words, and no English function word."""
+    w = [x for x in re.split(r"[^\w']+", unicodedata.normalize('NFC', str(title or '')).lower()) if x and not x.isdigit()]
+    return len(w) >= 2 and any(x in FOREIGN_WORDS for x in w) and not any(x in EN_WORDS for x in w)
+
+
+def transition_side(p, lst, date):
+    """Which side of a listing's capture date a work falls on, in the PI's first (arrival) or last (departure) listed year.
+    'inside' when the year is no transition year, or every possible date of the work is on the school's side of the
+    capture (on or before it in a departure year; on or after it in an arrival year); else 'outside'. The window's
+    first year (2016) is no arrival and the current year no departure."""
+    ys = sorted(l['year'] for l in p.get('listings') or [])
+    y = lst['year']
+    departing = y == ys[-1] and y < int(TODAY[:4])
+    arriving = y == ys[0] and y > 2016
+    if not departing and not arriving:
+        return 'inside'
+    m = re.search(r'/web/(\d{4})(\d{2})(\d{2})', lst.get('url') or '')
+    cap = f'{m.group(1)}-{m.group(2)}-{m.group(3)}' if m else None
+    pb = datebounds(date)
+    if not cap or not pb:
+        return 'outside'
+    if departing and pb[1] > cap:
+        return 'outside'
+    if arriving and pb[0] < cap:
+        return 'outside'
+    return 'inside'
+
+
+def _year(v):
+    return int(str(v)[:4]) if str(v or '')[:4].isdigit() else None
+
+
+def listings_after_move(listings, mine, reviewed_periods):
+    """The listing years after an evidenced departure, {year: listing} (2026-10-29): a listing after an evidenced departure
+    is a stale page, not an appointment (Princeton ECE kept Mung Chiang, left 2017, and Yuxin Chen, left 2021, on its
+    faculty list through 2026); kept aside as listingsAfterMove. A later period (collection or reviewed) that covers the
+    year keeps the listing. `mine` are the PI's collection faculty periods (facultyStart/facultyEnd/evidence), and
+    `reviewed_periods` the census-overrides periods (start/end)."""
+    moved = [_year(q['facultyEnd']) for q in mine if _year(q.get('facultyEnd')) and any('end_moved' in (e.get('kind') or '') for e in q.get('evidence') or [])]
+    spans = [(_year(q.get('facultyStart')), _year(q.get('facultyEnd'))) for q in mine] + [(_year(q.get('start')), _year(q.get('end'))) for q in reviewed_periods or []]
+
+    def covered(y):
+        return any(s and s <= y and (e is None or y <= e) for s, e in spans)
+    return {y: l for y, l in listings.items() if moved and y > max(moved) and not covered(y)}
+
+
+def full_pair(nm_):
+    """(first given name, family name) when the first given name is written out (no initial), generational suffix dropped."""
+    t_ = nosuffix(toks(nm_))
+    return (t_[0], t_[-1]) if len(t_) >= 2 and len(t_[0]) > 1 else None
+
+
+def all_initials(names, raw):
+    """The byline gives initials only, two or more, and they spell every given name of one of the PI's full-name forms
+    (`names`: the PI's name forms). 'M.T. Islam' is Md Tauhidul Islam; 'Y. L. Chen' is not Yuxin Chen."""
+    t_ = nosuffix(toks(byline_name(raw)))
+    if len(t_) < 3 or any(len(x) != 1 for x in t_[:-1]):
+        return False
+    for f in names:
+        ft = nosuffix(toks(f))
+        if len(ft) >= 3 and ft[-1] == t_[-1] and all(len(x) > 1 for x in ft[:-1]) and [x[0] for x in ft[:-1]] == t_[:-1]:
+            return True
+    return False
+
+
+def gwords(x):
+    """Name words with hyphenated parts joined ('Wei-Ning Chen' -> ['weining', 'chen']), accents and LETTERS folded."""
+    x = byline_name(str(x or '').translate(LETTERS).replace('–', '-').replace('—', '-').replace('‐', '-'))
+    x = unicodedata.normalize('NFKD', x); x = re.sub(r'\([^)]*\)', ' ', ''.join(c for c in x if not unicodedata.combining(c)).lower())
+    w = [re.sub(r'[^a-z]', '', t) for t in re.split(r'[\s.]+', x.replace("'", ''))]
+    return nosuffix([t for t in w if t])
+
+
+def given_conflict(student_forms, raw, strict=False, pi=None, recur=None, lab_names=None):
+    """The given-name guard (2026-10-29, owner): the byline's first given name is a full word that no full-given-name
+    reading of the student (`student_forms`: the student's name readings) allows. Allowed: equal, a nickname pair,
+    hyphen/space variants, a middle name used as the preferred name, the family name written first on either side, and
+    (unless strict, the owner's literal guard) a 3+ letter prefix ('Avi'/'Avinash', 'Gen'/'Gene'; not under an East
+    Asian family name) or a one-letter spelling variant of a 4+ letter name ('Johann'/'Johan', 'Katherina'/'Katharina');
+    'Wei-Ning' / 'Wei-Chen' differ by three letters and conflict. With `pi`, `recur` ((lab, byline name words) -> number
+    of the lab's papers carrying it) and `lab_names` (lab -> the name words of its students), a recurring one-letter
+    variant of a lab student is allowed too (see below)."""
+    bt = gwords(raw)
+    if len(bt) < 2 or len(bt[0]) <= 1:
+        return False
+    for f in student_forms:
+        st = gwords(clean_person_name(f))
+        if len(st) < 2 or len(st[0]) <= 1:
+            return False
+        a, b = st[0], bt[0]
+        if a == b or nick_ok(a, b) or nick_ok(b, a) or ''.join(st[:-1]) == ''.join(bt[:-1]) or b in st[1:-1] or a in bt[1:-1] \
+                or (bt[0] == st[-1] and bt[-1] == st[0]):  # family name first on either side ('Paiton Dylan' / 'Dylan M. Paiton')
+            return False
+        if not strict:
+            x, y = sorted((a, b), key=len)
+            if (len(x) >= 3 and y.startswith(x) and st[-1] not in EAST_ASIAN_FAMILY and bt[-1] not in EAST_ASIAN_FAMILY) \
+                    or (len(x) >= 4 and one_edit(a, b)):
+                return False
+            # a recurring co-author one letter from a lab student, on 3+ of the lab's papers, with no student of
+            # the lab spelled that way, is the student under a roster misspelling (2026-10-29, owner: best judgement;
+            # Yuxin Chen's roster says 'Gene Li', his papers say 'Gen Li')
+            key = ' '.join(bt)
+            if pi and len(x) >= 3 and st[-1] == bt[-1] and one_edit(a, b) and recur[(pi, key)] >= 3 and key not in lab_names[pi]:
+                return False
+    return True
+
+
+def fold_books(rows, school):
+    """Books are one work, and a translation is not new work (2026-10-29, owner: best judgement; Leiserson's lab had 131
+    chapters of the German and French editions of CLRS): (a) a run of 5+ book chapters of one PI with one venue and one
+    year is one book: the chapters fold into the book's own record, or into one chapter standing for the book when the
+    book has no record (marked chapters_folded, in place); (b) outside EPFL (French- and German-speaking), a book or
+    chapter whose title reads as German, French, Spanish, Italian or Portuguese and not English is a translated edition.
+    Returns (rows kept, chapters folded, translated editions dropped or None at EPFL)."""
+    runs = collections.defaultdict(list)
+    for i, r in enumerate(rows):
+        if r.get('type') == 'book-chapter' and r.get('venue'):
+            runs[(r['pi'], r['venue'], r.get('year'))].append(i)
+    books = {(r['pi'], r.get('venue'), r.get('year')) for r in rows if r.get('type') == 'book'}
+    fold = set()
+    for k, ix in runs.items():
+        if len(ix) >= 5:
+            keep = [] if k in books else [min(ix, key=lambda i: len(rows[i].get('title') or ''))]
+            for i in keep:
+                rows[i]['chapters_folded'] = len(ix)
+            fold |= set(ix) - set(keep)
+    folded, translated = len(fold), None
+    if school != 'epfl':
+        tr = {i for i, r in enumerate(rows) if i not in fold and r.get('type') in ('book', 'book-chapter') and foreign_title(r.get('title'))}
+        translated = len(tr); fold |= tr
+    return [r for i, r in enumerate(rows) if i not in fold], folded, translated
+
+
 def source_year(s):
     m = re.search(r'/web/(\d{4})\d{4,10}', s.get('url') or '')
     if m:
@@ -592,14 +739,7 @@ def build(school):
                 listings.setdefault(int(r['year']), dict(url=r['capture_url'], sha256=r['sha256'], quote=r['quote'], kind='dept_listing:' + (r.get('department') or ''),
                                                          year=int(r['year']), rank=r.get('rank_as_listed'), emeritus=r.get('emeritus'), visiting=r.get('visiting')))
         mine = [p for p in periods if p.get('personId') in ids or Name([p.get('name') or '']).match(x['name'])]
-        # a listing after an evidenced departure is a stale page, not an appointment (2026-10-29): Princeton ECE kept Mung
-        # Chiang (left 2017) and Yuxin Chen (left 2021) on its faculty list through 2026; kept aside as listingsAfterMove.
-        # A later period (collection or reviewed) that covers the year keeps the listing.
-        yr = lambda v: int(str(v)[:4]) if str(v or '')[:4].isdigit() else None
-        moved = [yr(q['facultyEnd']) for q in mine if yr(q.get('facultyEnd')) and any('end_moved' in (e.get('kind') or '') for e in q.get('evidence') or [])]
-        spans = [(yr(q.get('facultyStart')), yr(q.get('facultyEnd'))) for q in mine] + [(yr(q.get('start')), yr(q.get('end'))) for q in o.get('periods') or []]
-        covered = lambda y: any(s and s <= y and (e is None or y <= e) for s, e in spans)
-        after_move = {y: l for y, l in listings.items() if moved and y > max(moved) and not covered(y)}
+        after_move = listings_after_move(listings, mine, o.get('periods'))  # stale listings after an evidenced move
         n['listing_years_after_move'] += len(after_move)
         lab = None
         collective = lambda nm_: bool(COLLECTIVE.search(nm_ or '')) and not re.search(r'\b(lab|laboratory|group)\b', nm_ or '', re.I)
@@ -775,10 +915,7 @@ def build(school):
     # the PI is not their own student (2026-10-29): lab rosters list their head ('Jim Glass' and 'John W. Fisher III' as
     # principal_investigator, 'Christos Faloutsos' as faculty). A record whose full first given name and family name are
     # the PI's own (nickname-equal, generational suffix ignored, initials never count) and that holds no student or
-    # postdoc role is the PI; it leaves the lab's students (kept in the report as pisListedAsOwnStudent).
-    def full_pair(nm_):
-        t_ = nosuffix(toks(nm_))
-        return (t_[0], t_[-1]) if len(t_) >= 2 and len(t_[0]) > 1 else None
+    # postdoc role is the PI; it leaves the lab's students (kept in the report as pisListedAsOwnStudent). (full_pair)
     studentish = re.compile(r'phd|student|master|undergrad|postdoc|graduate|thesis|visitor|intern', re.I)
     self_listed = []
     for p in pis:
@@ -806,7 +943,7 @@ def build(school):
     # identity anchors: the PI's own DBLP publication list, the PI's DBLP-verified collection works, a stated advisee as co-author
     verified = {p['pi']: {l['work'] for i in p['personIds'] for l in pls[i] if l.get('status') == 'verified' and l.get('role', 'author') == 'author'} for p in pis}
     dblp_doi, dblp_title = collections.defaultdict(set), collections.defaultdict(dict)
-    dp = HERE.parent / DBLP.get(school, '') / 'raw/dblp_pubs.json.gz'
+    dp = P.sweep(DBLP.get(school, '')) / 'raw/dblp_pubs.json.gz'
     if (HERE / 'hierarchy' / school / 'raw/dblp_pubs.json.gz').exists():  # Princeton: converted from the lab records' cached DBLP answers
         dp = HERE / 'hierarchy' / school / 'raw/dblp_pubs.json.gz'
     if dp.exists() and dp.name == 'dblp_pubs.json.gz' and (DBLP.get(school) or 'hierarchy' in str(dp)):
@@ -921,7 +1058,10 @@ def build(school):
         def full(x):
             t_ = nosuffix(toks(byline_name(x)))
             return len(t_) >= 2 and len(t_[0]) > 1
-        pi_full = full(a.get('raw_author_name') or (a.get('author') or {}).get('display_name') or '')
+        pi_raw = a.get('raw_author_name') or (a.get('author') or {}).get('display_name') or ''
+        # ... unless the initials spell every given name of a PI with two or more ('M.T. Islam' is Md Tauhidul Islam;
+        # 'Y. L. Chen' is still not Yuxin Chen, 'M. Wang' still not Mengdi Wang) (2026-10-29, owner: best judgement)
+        pi_full = full(pi_raw) or all_initials(pid0[pi].get('names') or [pi], pi_raw)
         if any(an.match(o) and (pi_full or full(o)) for an in advisee_names[pi] for o in others):
             return 'advisee_coauthor'
         return None
@@ -1039,6 +1179,7 @@ def build(school):
                   and full_pair(byline_name(x['raw_author_name'])) in adv_full[pi]]
             if co:
                 via = [f'advisee on an unaffiliated byline: {co[0]}']; n['school_via_unaffiliated_byline_advisee'] += 1
+        unaffiliated = bool(via) and via[0].startswith('advisee on an unaffiliated byline')
         school_aff = bool(via)
         funnel[pi]['name_hits'] += 1
         if not school_aff:
@@ -1056,6 +1197,12 @@ def build(school):
             y = same_year(date); lst = next((l for l in p['listings'] if l['year'] == y), None) if y else None
         if per is None and lst is None:
             n['outside_appointment'] += 1; funnel[pi]['outside_appointment_' + str(w.get('publication_year'))] += 1; continue
+        if unaffiliated and per is None and transition_side(p, lst, date) == 'outside':
+            # (2026-10-29, owner: best judgement) a byline with no affiliations says nothing about where the work was done,
+            # so in a PI's arrival or departure year a listing proves only its own side of the capture date: Thomas
+            # Griffiths's last Berkeley listing is April 2018 and he moved to Princeton that July, so an unaffiliated
+            # September 2018 preprint is not a Berkeley lab paper (an affiliated one still is)
+            n['unaffiliated_transition_year_outside'] += 1; funnel[pi]['transition_year_outside'] += 1; continue
         funnel[pi]['in_appointment'] += 1
         k = (pi, cw or w['id'])
         if k in seen:
@@ -1138,6 +1285,10 @@ def build(school):
         drop |= set(ix) - set(owners)
     n['namesake_claims_dropped'] = len(drop)
     rows = [r for i, r in enumerate(rows) if i not in drop]
+    # books are one work, and a translation is not new work (2026-10-29, owner: best judgement): fold_books
+    rows, n['book_chapters_folded'], translated = fold_books(rows, school)
+    if translated is not None:
+        n['translated_editions_dropped'] = translated
     # one record per unique paper and lab: editions (arXiv preprint, conference, journal version) share a normalized
     # title; the published edition leads (a DOI that is not arXiv's, then a collection work), the rest are its editions
     def rank(r):
@@ -1187,39 +1338,18 @@ def build(school):
     # variants ('Hong-Xing Yu' / 'Hongxing Yu'), nickname pairs and an order swap ('Zhang Wei') stay links.
     guard_n = collections.Counter()
 
-    def gwords(x):
-        """Name words with hyphenated parts joined ('Wei-Ning Chen' -> ['weining', 'chen']), accents and LETTERS folded."""
-        x = byline_name(str(x or '').translate(LETTERS).replace('\u2013', '-').replace('\u2014', '-').replace('\u2010', '-'))
-        x = unicodedata.normalize('NFKD', x); x = re.sub(r'\([^)]*\)', ' ', ''.join(c for c in x if not unicodedata.combining(c)).lower())
-        w = [re.sub(r'[^a-z]', '', t) for t in re.split(r'[\s.]+', x.replace("'", ''))]
-        return nosuffix([t for t in w if t])
+    def student_given_conflict(sid, raw, strict=False, pi=None):
+        """The given-name guard (module-level given_conflict) for one of this school's students."""
+        return given_conflict(forms[sid], raw, strict=strict, pi=pi, recur=recur, lab_names=lab_names)
 
-    def given_conflict(sid, raw, strict=False):
-        """The byline's first given name is a full word that no full-given-name reading of the student allows. Allowed:
-        equal, a nickname pair, hyphen/space variants, a middle name used as the preferred name, the family name written
-        first on either side, and (unless strict, the owner's literal guard) a 3+ letter prefix ('Avi'/'Avinash',
-        'Gen'/'Gene'; not under an East Asian family name) or a one-letter spelling variant of a 4+ letter name ('Johann'/'Johan', 'Katherina'/'Katharina');
-        'Wei-Ning' / 'Wei-Chen' differ by three letters and conflict."""
-        bt = gwords(raw)
-        if len(bt) < 2 or len(bt[0]) <= 1:
-            return False
-        for f in forms[sid]:
-            st = gwords(clean_person_name(f))
-            if len(st) < 2 or len(st[0]) <= 1:
-                return False
-            a, b = st[0], bt[0]
-            if a == b or nick_ok(a, b) or nick_ok(b, a) or ''.join(st[:-1]) == ''.join(bt[:-1]) or b in st[1:-1] or a in bt[1:-1] \
-                    or (bt[0] == st[-1] and bt[-1] == st[0]):  # family name first on either side ('Paiton Dylan' / 'Dylan M. Paiton')
-                return False
-            if not strict:
-                x, y = sorted((a, b), key=len)
-                if (len(x) >= 3 and y.startswith(x) and st[-1] not in EAST_ASIAN_FAMILY and bt[-1] not in EAST_ASIAN_FAMILY) \
-                        or (len(x) >= 4 and one_edit(a, b)):
-                    return False
-        return True
+    recur = collections.Counter()  # (lab, byline name words) -> number of the lab's papers carrying it
+    for r_ in rows:
+        for key in {' '.join(gwords(b)) for bl, _ in r_['_bylines'] for b in bl}:
+            recur[(r_['pi'], key)] += 1
+    lab_names = {pi_: {' '.join(gwords(clean_person_name(f))) for sid in S_ for f in forms[sid]} for pi_, S_ in stu.items()}
 
-    def byline_ok(sid, raw, how):
-        return how(sid, raw) and not given_conflict(sid, raw)
+    def byline_ok(sid, raw, how, pi=None):
+        return how(sid, raw) and not student_given_conflict(sid, raw, pi=pi)
     guard_samples, guard_kept_samples = [], []
 
     # (2026-10-29, owner) within-lab byline matching (the link_sweep.py measurement as a rule): a byline author who is
@@ -1272,14 +1402,14 @@ def build(school):
             if l:
                 done_.add(sid); linked_by_collection[sid] = True
                 sp.append(dict(pi=r['pi'], student=sid, name=s['name'], work=r['work'], oa=r['oa'], status=l.get('status'), basis='collection_person_link'))
-            elif any(byline_ok(sid, b, on_byline) for _, bs in r['_bylines'] for b in bs):
+            elif any(byline_ok(sid, b, on_byline, r['pi']) for _, bs in r['_bylines'] for b in bs):
                 # the student's name on this lab paper's byline, on an authorship that lists the school
                 done_.add(sid); sp.append(dict(pi=r['pi'], student=sid, name=s['name'], work=r['work'], oa=r['oa'], status='candidate', basis='byline_name_with_school_affiliation'))
-            elif near_relation(s, r['year']) and any(byline_ok(sid, b, on_byline) for bl, _ in r['_bylines'] for b in bl):
+            elif near_relation(s, r['year']) and any(byline_ok(sid, b, on_byline, r['pi']) for bl, _ in r['_bylines'] for b in bl):
                 # the PI's own advisee named on the PI's lab paper (an authorship without affiliations, e.g. an ACL
                 # Anthology record), within three years of the recorded advising
                 done_.add(sid); sp.append(dict(pi=r['pi'], student=sid, name=s['name'], work=r['work'], oa=r['oa'], status='candidate', basis='advisee_name_on_lab_paper_byline'))
-            elif wide_relation(s, r['year']) and any(byline_ok(sid, b, full_name_on) for bl, _ in r['_bylines'] for b in bl):
+            elif wide_relation(s, r['year']) and any(byline_ok(sid, b, full_name_on, r['pi']) for bl, _ in r['_bylines'] for b in bl):
                 # the lab's own student by full name on the lab's own paper, outside the narrow window (2026-10-28:
                 # recorded years are often one roster observation; alumni keep publishing with the lab)
                 done_.add(sid); sp.append(dict(pi=r['pi'], student=sid, name=s['name'], work=r['work'], oa=r['oa'], status='candidate', basis='full_name_on_lab_paper_byline'))
@@ -1287,7 +1417,7 @@ def build(school):
             bl_all = [b for bl, _ in r['_bylines'] for b in bl]
             if sid in done_:
                 used = [b for b in bl_all if on_byline(sid, b) or full_name_on(sid, b)]
-                if not linked_by_collection.get(sid) and used and all(given_conflict(sid, b, strict=True) for b in used):
+                if not linked_by_collection.get(sid) and used and all(student_given_conflict(sid, b, strict=True) for b in used):
                     guard_n['kept_prefix_or_spelling_variant'] += 1  # the literal guard would have removed it
                     if len(guard_kept_samples) < 40:
                         guard_kept_samples.append(dict(pi=r['pi'], student=s['name'], byline=used[0], oa=r['oa']))
@@ -1304,7 +1434,7 @@ def build(school):
             bt = sw_toks(raw)
             cand_ = {sid for f2, _ in sw_forms(bt, False) for sid in sw_index.get(r['pi'], {}).get(f2, ())}
             hits_ = [sid for sid in cand_ if sw_same(sid, bt)]
-            if len(hits_) == 1 and hits_[0] not in done_ and wide_relation(S[hits_[0]], r['year']) and not given_conflict(hits_[0], raw):
+            if len(hits_) == 1 and hits_[0] not in done_ and wide_relation(S[hits_[0]], r['year']) and not student_given_conflict(hits_[0], raw):
                 sid = hits_[0]; done_.add(sid)
                 sp.append(dict(pi=r['pi'], student=sid, name=S[sid]['name'], work=r['work'], oa=r['oa'], status='candidate', basis='within_lab_byline_match', byline=raw))
     n.update({'link_guard_' + k: v for k, v in guard_n.items()})

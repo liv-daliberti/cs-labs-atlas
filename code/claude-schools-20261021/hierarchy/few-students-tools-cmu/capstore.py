@@ -20,11 +20,11 @@ from urllib.parse import urlsplit, urlencode, parse_qsl, urlunsplit
 
 import requests
 
-DB = ("/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/cmu/"
+DB = ("/n/fs/resemble/cs-atlas/work/hierarchy/cmu/"
       "few-students-captures.sqlite")
 # Read-only fallback cache: the sister gap investigation's captures. A hit there is copied (with its original
 # fetched_at/sha256/bytes) into DB, so every cited capture lives in DB.
-GAP_DB = ("/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/cmu/"
+GAP_DB = ("/n/fs/resemble/cs-atlas/work/hierarchy/cmu/"
           "gap-captures.sqlite")
 LOCKDIR = "/tmp/claude-363432/-n-fs-similarity-maxent-grpo/2bd068f5-5142-4dac-89d1-67eb470f92c1/scratchpad/gap-ratelimit"
 UA = ("princeton-cs-research-sweep/1.0 (CMU faculty lab members and advisees; "

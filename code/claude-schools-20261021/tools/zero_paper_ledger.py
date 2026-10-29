@@ -16,7 +16,9 @@ usage: zero_paper_ledger.py
 import collections, json, sys
 from pathlib import Path
 
-HERE = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import atlas_paths as P  # noqa: E402  (every path in one place)
+HERE = P.WORK
 SCHOOLS = ['princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford']
 
 

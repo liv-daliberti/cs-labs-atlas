@@ -12,11 +12,11 @@ import sys
 import unicodedata
 import zlib
 
-TOOLS = "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/few-students-tools-cmu"
+TOOLS = "/n/fs/resemble/cs-atlas/work/hierarchy/few-students-tools-cmu"
 sys.path.insert(0, TOOLS)
 import capstore  # noqa: E402
 
-HIER = "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/cmu"
+HIER = "/n/fs/resemble/cs-atlas/work/hierarchy/cmu"
 INPUT = HIER + "/few-students-input.json"
 OUTPUT = HIER + "/few-students-evidence.json"
 MODULES = ["decisions_a", "decisions_b", "decisions_c", "decisions_d"]

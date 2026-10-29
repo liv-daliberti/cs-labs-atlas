@@ -4,7 +4,7 @@ import re
 import unicodedata
 from collections import defaultdict
 
-NICK_DIR = "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/nicknames"
+NICK_DIR = "/n/fs/resemble/cs-atlas/work/hierarchy/nicknames"
 TITLES = {"dr", "prof", "professor", "mr", "ms", "mrs", "miss", "sir"}
 SUFFIXES = {"jr", "sr", "ii", "iii", "iv", "phd", "ph d", "md", "mba", "ms", "msc", "bs", "ba", "pe"}
 

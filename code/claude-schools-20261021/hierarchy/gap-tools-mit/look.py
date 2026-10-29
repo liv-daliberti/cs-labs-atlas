@@ -4,7 +4,7 @@ usage: look.py [--grep RX] [--chars N] [--wb] [--force] URL...
 import argparse, json, re, sys
 from collections import defaultdict, deque
 from urllib.parse import urlsplit
-sys.path.insert(0, '/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/gap-tools-mit')
+sys.path.insert(0, '/n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-mit')
 import capstore
 
 ap = argparse.ArgumentParser()

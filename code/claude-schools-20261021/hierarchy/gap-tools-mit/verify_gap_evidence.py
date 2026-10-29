@@ -11,7 +11,7 @@ import sqlite3
 import sys
 import zlib
 
-sys.path.insert(0, "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/gap-tools-mit")
+sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-mit")
 import capstore  # noqa: E402
 from evlib import has_name  # noqa: E402
 
@@ -63,4 +63,4 @@ def verify(path):
 
 
 if __name__ == "__main__":
-    verify(sys.argv[1] if len(sys.argv) > 1 else "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/mit/gap-evidence.json")
+    verify(sys.argv[1] if len(sys.argv) > 1 else "/n/fs/resemble/cs-atlas/work/hierarchy/mit/gap-evidence.json")

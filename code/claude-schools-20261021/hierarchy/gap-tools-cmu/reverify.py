@@ -1,9 +1,9 @@
 """Independent re-verification of gap-evidence.json: every quote must be an exact substring of the whitespace-collapsed
 text of the stored bytes it cites, and those bytes must hash to the cited sha256."""
 import hashlib, json, sqlite3, sys, zlib
-sys.path.insert(0, "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/gap-tools-cmu")
+sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-cmu")
 import capstore
-rows = json.load(open("/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/cmu/gap-evidence.json"))
+rows = json.load(open("/n/fs/resemble/cs-atlas/work/hierarchy/cmu/gap-evidence.json"))
 con = sqlite3.connect(capstore.DB)
 n = bad = 0
 for r in rows:

@@ -1,6 +1,6 @@
 """Merge the staged Berkeley CS-related outputs into place (only this review's own keys/rows)."""
 import json, sys, os
-H = '/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021'
+H = '/n/fs/resemble/cs-atlas/work'
 S = sys.argv[1]
 adds = json.load(open(f'{S}/additions.json'))
 for a in adds:

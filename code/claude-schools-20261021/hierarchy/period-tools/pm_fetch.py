@@ -1,6 +1,6 @@
 """Fetch URLs (argv after --names) via pcap and print snippets around the given names. Usage: pm_fetch.py name1,name2 url..."""
 import sys
-sys.path.insert(0, '/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/period-tools')
+sys.path.insert(0, '/n/fs/resemble/cs-atlas/work/hierarchy/period-tools')
 import pcap
 names = [n for n in sys.argv[1].split(',') if n]
 for u in sys.argv[2:]:

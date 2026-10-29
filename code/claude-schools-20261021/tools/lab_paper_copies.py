@@ -11,7 +11,9 @@ usage: lab_paper_copies.py <school> ...
 import collections, gzip, json, re, sqlite3, sys, time
 from pathlib import Path
 
-HERE = Path(__file__).resolve().parents[1]; FT = Path('/n/fs/resemble/homogenizing-science/data/fulltext')
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import atlas_paths as P  # noqa: E402  (every path in one place)
+HERE = P.WORK; FT = P.STORES
 LOCAL = ('downloaded', 'fulltext_xml')
 
 

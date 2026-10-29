@@ -11,7 +11,7 @@ import os
 import re
 import unicodedata
 
-ROOT = "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy"
+ROOT = "/n/fs/resemble/cs-atlas/work/hierarchy"
 _pairs = None
 
 

@@ -9,13 +9,13 @@ import sqlite3
 import sys
 import zlib
 
-sys.path.insert(0, "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/gap-tools-mit")
+sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-mit")
 import capstore  # noqa: E402
 import spec_newpis  # noqa: E402
 import verify_gap_evidence  # noqa: E402
 from evlib import has_name  # noqa: E402
 
-HIER = "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy"
+HIER = "/n/fs/resemble/cs-atlas/work/hierarchy"
 INPUT = HIER + "/new-pis-gap-input.json"
 OUTPUT = HIER + "/mit/gap-evidence.json"
 

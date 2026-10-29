@@ -22,10 +22,12 @@ from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
-HERE = Path(__file__).resolve().parents[1]
-ATLAS = Path('/n/fs/resemble/maxent-grpo/princeton-live-20261015/atlas/data')
-STAGES = {'epfl': Path('/n/fs/resemble/maxent-grpo/.research-sweeps/claude-epfl-20261019'), 'cmu': Path('/n/fs/resemble/maxent-grpo/.research-sweeps/claude-cmu-20261017'),
-          'mit': Path('/n/fs/resemble/maxent-grpo/.research-sweeps/claude-mit-20261020'), 'berkeley': Path('/n/fs/resemble/maxent-grpo/.research-sweeps/claude-berkeley-20261021')}
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import atlas_paths as P  # noqa: E402  (every path in one place)
+HERE = P.WORK
+ATLAS = P.SITE_DATA
+STAGES = {'epfl': P.sweep('claude-epfl-20261019'), 'cmu': P.sweep('claude-cmu-20261017'),
+          'mit': P.sweep('claude-mit-20261020'), 'berkeley': P.sweep('claude-berkeley-20261021')}
 SCHOOL = {'epfl': r'EPFL|[ÉE]cole\s+[Pp]olytechnique\s+[Ff][ée]d[ée]rale\s+de\s+Lausanne|Swiss Federal Institute of Technology,?\s+(?:in\s+)?Lausanne',
           'cmu': r'Carnegie\s+Mellon|CMU', 'mit': r'Massachusetts\s+Institute\s+of\s+Technology|\bMIT\b',
           'berkeley': r'U\.?\s?C\.?\s+Berkeley|University\s+of\s+California,?\s+Berkeley|\bBerkeley\b'}

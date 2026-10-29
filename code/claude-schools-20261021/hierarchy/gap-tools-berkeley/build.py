@@ -16,12 +16,12 @@ import sqlite3
 import sys
 import zlib
 
-TOOLS = "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/gap-tools-berkeley"
+TOOLS = "/n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-berkeley"
 sys.path.insert(0, TOOLS)
 import capstore  # noqa: E402
 
 PARTS = ["decisions_ladder_a", "decisions_ladder_b", "decisions_departed", "decisions_emeriti_a", "decisions_emeriti_b"]
-HIER = "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/berkeley"
+HIER = "/n/fs/resemble/cs-atlas/work/hierarchy/berkeley"
 INPUT = HIER + "/gap-input.json"
 OUTPUT = HIER + "/gap-evidence.json"
 MAXQ_HTML = 700

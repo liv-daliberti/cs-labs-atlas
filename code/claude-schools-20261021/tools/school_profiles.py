@@ -11,10 +11,12 @@ measures PIs (core computing departments vs CS-related additions), home departme
 -> hierarchy/school-profiles.json, hierarchy/SCHOOL-PROFILES.md
 usage: school_profiles.py
 """
-import collections, gzip, importlib.util, json
+import collections, gzip, importlib.util, json, sys
 from pathlib import Path
 
-HERE = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import atlas_paths as P  # noqa: E402  (every path in one place)
+HERE = P.WORK
 H = HERE / 'hierarchy'
 SCHOOLS = ['princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford']
 NAMES = dict(princeton='Princeton', cmu='Carnegie Mellon', epfl='EPFL', mit='MIT', berkeley='UC Berkeley', stanford='Stanford')
@@ -25,7 +27,7 @@ def load(p, default=None):
     return json.load(open(p)) if p.exists() else default
 
 
-SITE_BUILDER = HERE.parents[1] / 'princeton-live-20261015/scripts/build-cs-hierarchy.py'
+SITE_BUILDER = P.SITE_ROOT / 'scripts/build-cs-hierarchy.py'
 _spec = importlib.util.spec_from_file_location('build_cs_hierarchy', SITE_BUILDER)
 SITE = importlib.util.module_from_spec(_spec); _spec.loader.exec_module(SITE)
 

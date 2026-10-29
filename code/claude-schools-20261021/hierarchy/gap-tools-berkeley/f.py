@@ -11,7 +11,7 @@ import sys
 from collections import defaultdict, deque
 from urllib.parse import urlsplit, urljoin
 
-sys.path.insert(0, "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/gap-tools-berkeley")
+sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-berkeley")
 import capstore  # noqa: E402
 
 ap = argparse.ArgumentParser()

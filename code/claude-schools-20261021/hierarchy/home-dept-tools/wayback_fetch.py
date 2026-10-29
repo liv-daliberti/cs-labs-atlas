@@ -3,7 +3,7 @@ until one's text matches REQUIRE regex (and not REJECT regex). Stores every fetc
 usage: wayback_fetch.py URL [--require RX] [--reject RX] [--max N]
 """
 import argparse, json, re, sys
-sys.path.insert(0, "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/home-dept-tools")
+sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/hierarchy/home-dept-tools")
 import capstore
 
 ap = argparse.ArgumentParser()

@@ -14,7 +14,7 @@ ROOT = lpcap.ROOT
 TOOLS = os.path.dirname(os.path.abspath(__file__))
 BASES = {"epfl": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-epfl-20261019/people",
          "berkeley": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-berkeley-20261021/people"}
-CENSUS = "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/census"
+CENSUS = "/n/fs/resemble/cs-atlas/work/census"
 
 
 def slug(s):

@@ -3,7 +3,7 @@ Wayback id_ URL), then print a text window. (New-PI gap research 2026-10-22; loo
 usage: wbfetch.py [--grep RX] [--chars N] [--head N] WAYBACK_ID_URL...
 """
 import argparse, json, re, sys
-sys.path.insert(0, "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/gap-tools-mit")
+sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-mit")
 import capstore  # noqa: E402
 
 RX = re.compile(r"^https?://web\.archive\.org/web/(\d{4,14})id_/(.+)$")

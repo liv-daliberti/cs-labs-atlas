@@ -26,6 +26,7 @@ import requests
 sys.path.insert(0, str(Path(__file__).parent))
 from pi_hierarchy import read, HERE, DBLP, INST, AFF, ndoi, norm_title, Name, toks, given  # noqa: E402
 from pi_fulltext_affiliation import tie  # noqa: E402
+import atlas_paths as P  # noqa: E402  (every path in one place)
 
 UA = 'HomogenizingScienceResearch/0.2 (academic metadata inventory)'
 OPEN_HOSTS = ('aclanthology.org', 'proceedings.mlr.press', 'openaccess.thecvf.com', 'papers.nips.cc', 'proceedings.neurips.cc',
@@ -90,7 +91,7 @@ Y0, Y1 = (int(v) for v in (os.environ.get('DBLP_RECOVER_YEARS') or '2016-2026').
 def candidates(school, skip_have=True):
     pis = read(HERE / 'hierarchy' / school / 'pis.json')
     own = HERE / 'hierarchy' / school / 'raw/dblp_pubs.json.gz'
-    pubs = read(own if own.exists() else HERE.parent / DBLP[school] / 'raw/dblp_pubs.json.gz')['pubs']
+    pubs = read(own if own.exists() else P.sweep(DBLP[school]) / 'raw/dblp_pubs.json.gz')['pubs']
     rows = [json.loads(l) for l in gzip.open(HERE / 'hierarchy' / school / 'lab_papers.jsonl.gz', 'rt')]
     have = collections.defaultdict(set)
     for r in rows:

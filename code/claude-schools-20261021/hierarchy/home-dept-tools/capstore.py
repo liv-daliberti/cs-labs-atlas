@@ -14,7 +14,7 @@ from urllib.parse import urlsplit, urljoin
 
 import requests
 
-DB = "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/home-departments-captures.sqlite"
+DB = "/n/fs/resemble/cs-atlas/work/hierarchy/home-departments-captures.sqlite"
 UA = ("princeton-cs-research-sweep/1.0 (home-department census of faculty PIs; "
       "contact via Princeton CS; polite: 1 req/2s/host)")
 TIMEOUT = (10, 30)

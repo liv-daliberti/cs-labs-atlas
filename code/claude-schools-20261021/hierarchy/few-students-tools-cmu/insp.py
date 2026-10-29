@@ -8,7 +8,7 @@ import re
 import sys
 import zlib
 
-sys.path.insert(0, "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/few-students-tools-cmu")
+sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/hierarchy/few-students-tools-cmu")
 import capstore  # noqa: E402
 
 ap = argparse.ArgumentParser()

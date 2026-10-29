@@ -9,7 +9,7 @@ import sys
 import time
 from urllib.parse import urlencode
 
-sys.path.insert(0, "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/gap-tools-mit")
+sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-mit")
 import capstore  # noqa: E402
 
 capstore.GAP["dspace.mit.edu"] = 120.0

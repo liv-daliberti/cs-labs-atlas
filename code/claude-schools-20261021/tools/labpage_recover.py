@@ -47,7 +47,8 @@ from dblp_recover import pdf_url, OPEN_HOSTS  # noqa: E402
 sys.path.insert(0, str(HERE / 'hierarchy' / 'missing-pi-tools'))
 import mpcap  # noqa: E402
 
-ARXIV_OAI = HERE.parent / 'claude-cmu-20261017' / 'raw' / 'arxiv_oai'
+import atlas_paths as P  # noqa: E402  (every path in one place)
+ARXIV_OAI = P.sweep('claude-cmu-20261017') / 'raw' / 'arxiv_oai'
 GCS = 'https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/{yymm}/{aid}v1.pdf'
 OA = 'https://api.openalex.org/works'
 SELECT = 'id,doi,title,publication_year,publication_date,type,authorships,ids,primary_location,locations'

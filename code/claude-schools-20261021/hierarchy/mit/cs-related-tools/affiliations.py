@@ -4,7 +4,7 @@ a hospital, a department) and help classify people the faculty listings do not s
 usage: affiliations.py <out.json>
 """
 import collections, json, sqlite3, sys, zlib
-H = '/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021'
+H = '/n/fs/resemble/cs-atlas/work'
 cands = {c['author']: c['name'] for c in json.load(open(f'{H}/hierarchy/mit/cs-related-candidates.json'))}
 orc = collections.defaultdict(collections.Counter); aff = collections.defaultdict(collections.Counter); yrs = collections.defaultdict(collections.Counter)
 con = sqlite3.connect(f'file:{H}/hierarchy/mit/openalex-sweep.sqlite?mode=ro', uri=True)

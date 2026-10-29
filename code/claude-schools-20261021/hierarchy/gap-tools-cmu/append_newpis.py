@@ -10,13 +10,13 @@ import sqlite3
 import sys
 import zlib
 
-TOOLS = "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/gap-tools-cmu"
+TOOLS = "/n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-cmu"
 sys.path.insert(0, TOOLS)
 import build  # noqa: E402
 import capstore  # noqa: E402
 import decisions_newpis  # noqa: E402
 
-HIER = "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy"
+HIER = "/n/fs/resemble/cs-atlas/work/hierarchy"
 INPUT = HIER + "/new-pis-gap-input.json"
 OUTPUT = HIER + "/cmu/gap-evidence.json"
 

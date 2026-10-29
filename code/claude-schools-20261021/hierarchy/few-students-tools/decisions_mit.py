@@ -80,7 +80,7 @@ def _key(n):
 
 def held_names(pi):
     import json
-    inp = json.load(open("/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/mit/few-students-input.json"))
+    inp = json.load(open("/n/fs/resemble/cs-atlas/work/hierarchy/mit/few-students-input.json"))
     r = next(x for x in inp if x["pi"] == pi)
     return list(r["students_already"])  # compared by (first, last) token, as build.py does
 

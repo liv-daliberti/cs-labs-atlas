@@ -24,7 +24,7 @@ import names  # noqa: E402
 import records  # noqa: E402
 
 ROOT = names.ROOT
-CENSUS = "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/census"
+CENSUS = "/n/fs/resemble/cs-atlas/work/census"
 SCHOOLS = ["princeton", "cmu", "epfl", "mit", "berkeley", "stanford"]
 RANK = {"phd": 3, "masters": 2, "undergraduate": 1, "other": 0}
 STATE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "out")

@@ -17,7 +17,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from pi_hierarchy import nick_ok, byline_name  # noqa: E402
 
-H = Path(__file__).resolve().parents[1] / 'hierarchy'
+import atlas_paths as P  # noqa: E402  (every path in one place)
+H = P.HIERARCHY
 
 
 def toks(s):

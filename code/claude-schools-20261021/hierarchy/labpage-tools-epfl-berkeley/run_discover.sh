@@ -1,6 +1,6 @@
 #!/bin/bash
 # Discovery shards for the lab-page pass; each shard writes its own local capture DB (merged later by merge.py).
-T=/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/labpage-tools-epfl-berkeley
+T=/n/fs/resemble/cs-atlas/work/hierarchy/labpage-tools-epfl-berkeley
 S=/tmp/claude-363432/-n-fs-similarity-maxent-grpo/2bd068f5-5142-4dac-89d1-67eb470f92c1/scratchpad/lpdb
 for school in epfl berkeley; do
   for shard in 0 1 2; do

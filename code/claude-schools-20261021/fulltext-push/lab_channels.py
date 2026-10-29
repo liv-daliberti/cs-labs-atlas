@@ -232,14 +232,14 @@ def _study_plan(school, miss, known):
 
 
 def step_pmc(school, miss, known, n):
-    sys.path.insert(0, '/n/fs/resemble/maxent-grpo/.research-sweeps/claude-homogenization-20261019/tools')
+    sys.path.insert(0, str(F.P.sweep('claude-homogenization-20261019') / 'tools'))
     import study_copies as sc
     rows = sc.pmc_rows(_study_plan(school, miss, defaultdict(set, {w: set(u) for w, u in known.items()})), n).get(school, [])  # a copy, as above
     return [dict(r, source='pmc_open_data') for r in rows]
 
 
 def step_figshare(school, miss, known, n):
-    sys.path.insert(0, '/n/fs/resemble/maxent-grpo/.research-sweeps/claude-homogenization-20261019/tools')
+    sys.path.insert(0, str(F.P.sweep('claude-homogenization-20261019') / 'tools'))
     import study_copies as sc
     plan = _study_plan(school, miss, {w: set(u) for w, u in known.items()})
     return [dict(r, source='figshare_api') for r in sc.figshare_rows(plan, n).get(school, [])]
@@ -363,7 +363,7 @@ def step_wayback_acm(school, miss, known, n):
     s = requests.Session(); s.headers['User-Agent'] = UA
     log_f = HERE / 'raw' / 'wayback_lookups.jsonl'
     done = {}
-    R = '/n/fs/resemble/maxent-grpo/.research-sweeps/'  # earlier lookups by the school stages are reused, not repeated
+    R = str(F.P.SWEEPS) + '/'  # earlier lookups by the school stages are reused, not repeated
     for lf in (log_f, Path(R + 'claude-mit-20261020/raw/wayback_lookups.jsonl'), Path(R + 'claude-cmu-20261017/raw/wayback_lookups.jsonl'),
                Path(R + 'claude-epfl-20261019/raw/wayback_lookups.jsonl'), Path(R + 'claude-princeton-20261015/cs-structure/raw/wayback/lookups.jsonl')):
         if lf.exists():
@@ -505,7 +505,7 @@ def step_homepages(school, miss, known, n):
     import requests, zlib
     from urllib.parse import urlsplit, urljoin
     import s2_key_lookup as s2k, core_search as cs
-    BK = Path('/n/fs/resemble/maxent-grpo/.research-sweeps/claude-berkeley-20261021/people')
+    BK = F.P.sweep('claude-berkeley-20261021') / 'people'
     dept = json.loads((BK / 'dept_berkeley.json').read_text())
     units = json.loads((BK / 'units.json').read_text())['units']
     sites = defaultdict(list)
@@ -585,7 +585,7 @@ def step_infoscience(school, miss, known, n):
     (../../claude-epfl-20261019/tools/epfl_infoscience_rest.py resolve + add, restricted to these works; 3 s per
     request; an empty 202 / 429 / 503 pauses it and is never worked around). It writes its own candidates."""
     assert school == 'epfl'
-    sys.path.insert(0, '/n/fs/resemble/maxent-grpo/.research-sweeps/claude-epfl-20261019/tools')
+    sys.path.insert(0, str(F.P.sweep('claude-epfl-20261019') / 'tools'))
     import epfl_infoscience_rest as eir
     handles = {}
     for r, w in miss:
@@ -610,7 +610,7 @@ def step_proceedings(school, miss, known, n):
     import gzip
     import s2_key_lookup as s2k
     idx = defaultdict(list)
-    src = Path('/n/fs/resemble/maxent-grpo/.research-sweeps/claude-princeton-20261015/cs-structure/raw/proceedings/index.json.gz')
+    src = F.P.sweep('claude-princeton-20261015') / 'cs-structure/raw/proceedings/index.json.gz'
     for t, y, u, land, venue in json.loads(gzip.decompress(src.read_bytes())):
         k = F.nt(t)
         if len(k) >= 20:
@@ -655,7 +655,7 @@ def step_dspace(school, miss, known, n):
     (../../claude-mit-20261020/tools/mit_dspace_rest.py resolve + add, restricted to these works). It writes its own
     candidates; the web front end (rate-limited) is never used."""
     assert school == 'mit'
-    sys.path.insert(0, '/n/fs/resemble/maxent-grpo/.research-sweeps/claude-mit-20261020/tools')
+    sys.path.insert(0, str(F.P.sweep('claude-mit-20261020') / 'tools'))
     import mit_dspace_rest as mds
     handles = {}
     for r, w in miss:

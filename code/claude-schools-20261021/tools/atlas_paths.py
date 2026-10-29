@@ -1,0 +1,113 @@
+"""Every path the CS Labs Atlas code uses, in one place (stdlib only; Python 3.6+).
+
+Python   sys.path.insert(0, '<work>/tools'); import atlas_paths as P; P.HIERARCHY / 'princeton' / 'pis.json'
+         (scripts in work/tools already have their own directory on sys.path; scripts elsewhere insert
+         Path(__file__).resolve().parents[k] / 'tools' first)
+shell    source /n/fs/resemble/cs-atlas/work/paths.sh   then $CS_ATLAS_WORK, $CS_ATLAS_ENV_PY, ... (see `--sh`)
+         paths.sh is generated: python tools/atlas_paths.py --sh > paths.sh (tests/test_atlas_paths.py checks it)
+CLI      python tools/atlas_paths.py [NAME]      prints one path, or every name=value
+
+Overrides: CS_ATLAS_ROOT moves the organized root (and with it WORK, the tree and the releases); any other name can
+be overridden by CS_ATLAS_<NAME> (for example CS_ATLAS_SWEEPS, CS_ATLAS_SITE_ROOT, CS_ATLAS_ENV_PY).
+"""
+import os
+import sys
+from pathlib import Path
+
+SCHOOL_IDS = ['princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford']
+
+# (name, default, derived-from-ROOT?) in dependency order; a derived default is relative to ROOT or WORK
+_SPEC = [
+    ('ROOT', '/n/fs/resemble/cs-atlas', None),
+    ('WORK', 'work', 'ROOT'),                       # the working root: code, inputs, built packages
+    ('TOOLS', 'tools', 'WORK'),
+    ('TESTS', 'tests', 'WORK'),
+    ('HIERARCHY', 'hierarchy', 'WORK'),             # built packages hierarchy/<school>/ and the reviewed inputs
+    ('CENSUS', 'census', 'WORK'),
+    ('PERIODS', 'periods', 'WORK'),
+    ('LISTINGS', 'listings', 'WORK'),
+    ('CAPTURES', 'captures', 'WORK'),
+    ('FULLTEXT_PUSH', 'fulltext-push', 'WORK'),     # the full-text collectors
+    ('AI_WRITING', 'ai-writing', 'WORK'),
+    ('SCHOOLS_TREE', 'schools', 'ROOT'),            # the organized school -> lab -> papers tree (tools/organize_tree.py)
+    ('RELEASES', 'releases', 'ROOT'),               # immutable dated releases (tools/make_release.py)
+    ('STORES', '/n/fs/resemble/homogenizing-science/data/fulltext', None),  # full-text stores <STORES>/<school>
+    ('STANFORD_STORE', '/n/fs/resemble/cs-atlas-fulltext/stanford', None),  # where <STORES>/stanford points
+    ('HOMOGENIZING', '/n/fs/resemble/homogenizing-science', None),          # the collectors' own scripts/ live here
+    ('SWEEPS', '/n/fs/resemble/maxent-grpo/.research-sweeps', None),       # the base sweeps (DBLP lists, captures, census sources)
+    ('DBLP_DUMP', '/n/fs/resemble/maxent-grpo/var/data/dblp-dump', None),   # DBLP's XML dump directory
+    ('SITE_ROOT', '/n/fs/resemble/maxent-grpo/princeton-live-20261015', None),  # the 300-university atlas site (collections)
+    ('GITHUB_EXPORT', '/n/fs/resemble/cs-labs-atlas', None),               # the public GitHub export repo
+    ('ENV', '/n/fs/resemble/cs-atlas-env', None),
+    ('ENV_PY', '/n/fs/resemble/cs-atlas-env/py310/bin/python', None),      # run with LD_LIBRARY_PATH=ENV_LIB
+    ('ENV_LIB', '/n/fs/resemble/cs-atlas-env/py310/lib', None),
+    ('HF_HOME', '/n/fs/resemble/cs-atlas-env/hf-cache', None),
+    ('COLLECTOR_PY', '/usr/local/anaconda3/2024.02/bin/python', None),     # the collectors' interpreter (run with -I)
+]
+DBLP_DUMP_FILE = 'dblp-2026-09-01.xml.gz'
+
+
+def _resolve(env=None):
+    env = os.environ if env is None else env
+    out = {}
+    for name, default, base in _SPEC:
+        v = env.get('CS_ATLAS_' + name)
+        out[name] = Path(v) if v else (out[base] / default if base else Path(default))
+    return out
+
+
+_P = _resolve()
+globals().update(_P)
+ROOT = _P['ROOT']; WORK = _P['WORK']; TOOLS = _P['TOOLS']; TESTS = _P['TESTS']; HIERARCHY = _P['HIERARCHY']
+CENSUS = _P['CENSUS']; PERIODS = _P['PERIODS']; LISTINGS = _P['LISTINGS']; CAPTURES = _P['CAPTURES']
+FULLTEXT_PUSH = _P['FULLTEXT_PUSH']; AI_WRITING = _P['AI_WRITING']; SCHOOLS_TREE = _P['SCHOOLS_TREE']; RELEASES = _P['RELEASES']
+STORES = _P['STORES']; STANFORD_STORE = _P['STANFORD_STORE']; HOMOGENIZING = _P['HOMOGENIZING']; SWEEPS = _P['SWEEPS']
+DBLP_DUMP = _P['DBLP_DUMP']; SITE_ROOT = _P['SITE_ROOT']; GITHUB_EXPORT = _P['GITHUB_EXPORT']; ENV = _P['ENV']
+ENV_PY = _P['ENV_PY']; ENV_LIB = _P['ENV_LIB']; HF_HOME = _P['HF_HOME']; COLLECTOR_PY = _P['COLLECTOR_PY']
+SITE_DATA = SITE_ROOT / 'atlas/data'               # collection-<school>.json.gz, universities/
+DBLP_DUMP_XML = DBLP_DUMP / DBLP_DUMP_FILE
+HOMOGENIZING_SCRIPTS = HOMOGENIZING / 'scripts'
+
+
+def sweep(name):
+    """A base sweep directory: sweep('claude-cmu-20261017') -> <SWEEPS>/claude-cmu-20261017."""
+    return SWEEPS / name
+
+
+def store(school):
+    """A school's full-text store as the collectors address it (<STORES>/<school>; Stanford's is a link to STANFORD_STORE)."""
+    return STORES / school
+
+
+def shell():
+    """paths.sh: every name as an exported CS_ATLAS_<NAME>, ROOT-derived ones written relative to $CS_ATLAS_ROOT so that
+    overriding CS_ATLAS_ROOT before sourcing moves them together."""
+    defaults = _resolve({})
+    L = ['# Generated by tools/atlas_paths.py --sh; do not edit. Regenerate: python tools/atlas_paths.py --sh > paths.sh',
+         '# Every name may be set beforehand to override it (CS_ATLAS_ROOT moves the organized root).']
+    for name, default, base in _SPEC:
+        val = f'$CS_ATLAS_{base}/{default}' if base else str(defaults[name])
+        L.append(f'export CS_ATLAS_{name}="${{CS_ATLAS_{name}:-{val}}}"')
+    L += [f'export CS_ATLAS_SITE_DATA="$CS_ATLAS_SITE_ROOT/atlas/data"',
+          f'export CS_ATLAS_DBLP_DUMP_XML="$CS_ATLAS_DBLP_DUMP/{DBLP_DUMP_FILE}"',
+          'export CS_ATLAS_HOMOGENIZING_SCRIPTS="$CS_ATLAS_HOMOGENIZING/scripts"',
+          f'export CS_ATLAS_SCHOOLS="{" ".join(SCHOOL_IDS)}"',
+          'cs_atlas_sweep() { printf "%s/%s\\n" "$CS_ATLAS_SWEEPS" "$1"; }']
+    return '\n'.join(L) + '\n'
+
+
+def as_dict():
+    d = {k: str(v) for k, v in _P.items()}
+    d.update(SITE_DATA=str(SITE_DATA), DBLP_DUMP_XML=str(DBLP_DUMP_XML), HOMOGENIZING_SCRIPTS=str(HOMOGENIZING_SCRIPTS))
+    return d
+
+
+if __name__ == '__main__':
+    a = sys.argv[1:]
+    if a == ['--sh']:
+        sys.stdout.write(shell())
+    elif a:
+        print(as_dict()[a[0]])
+    else:
+        for k, v in as_dict().items():
+            print(f'{k}={v}')

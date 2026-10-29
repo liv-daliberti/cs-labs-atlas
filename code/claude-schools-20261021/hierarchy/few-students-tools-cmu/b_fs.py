@@ -1,6 +1,6 @@
 """KiltHub thesis search via the figshare API (item_type 8 = thesis). usage: b_fs.py "<query>" [n]"""
 import json, sys
-sys.path.insert(0, "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/few-students-tools-cmu")
+sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/hierarchy/few-students-tools-cmu")
 import capstore
 q = sys.argv[1]
 n = int(sys.argv[2]) if len(sys.argv) > 2 else 100

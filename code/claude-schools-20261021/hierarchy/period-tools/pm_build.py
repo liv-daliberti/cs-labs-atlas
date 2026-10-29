@@ -2,10 +2,10 @@
 Every new evidence item is built with pcap.ev (the quote is verified against the stored capture); kept existing
 evidence items are copied from hierarchy/<school>/pis.json unchanged."""
 import json, sys
-sys.path.insert(0, '/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/period-tools')
+sys.path.insert(0, '/n/fs/resemble/cs-atlas/work/hierarchy/period-tools')
 import pcap
 
-H = '/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy'
+H = '/n/fs/resemble/cs-atlas/work/hierarchy'
 TODAY = '2026-10-26'
 WB = 'https://web.archive.org/web/'
 import unicodedata

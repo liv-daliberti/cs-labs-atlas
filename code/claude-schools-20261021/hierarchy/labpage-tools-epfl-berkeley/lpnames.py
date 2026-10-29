@@ -13,7 +13,7 @@ import re
 import unicodedata
 from functools import lru_cache
 
-NICK_DIR = "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/nicknames"
+NICK_DIR = "/n/fs/resemble/cs-atlas/work/hierarchy/nicknames"
 PARTICLES = {"van", "von", "der", "den", "de", "del", "della", "di", "da", "dos", "das", "du", "la", "le", "el", "al",
              "bin", "ben", "ter", "ten", "zu", "y", "e"}
 TITLES = {"dr", "prof", "professor", "mr", "ms", "mrs", "phd", "ph", "d", "msc", "bsc", "jr", "sr", "ii", "iii", "iv"}

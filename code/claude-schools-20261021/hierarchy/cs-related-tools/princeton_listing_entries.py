@@ -8,7 +8,7 @@ usage: princeton_listing_entries.py <out_dir> [extra_captures.json]
 import json, re, sqlite3, sys, zlib
 from pathlib import Path
 
-HERE = Path(__file__).resolve().parents[2]; SW = HERE.parent
+HERE = Path(__file__).resolve().parents[2]; SW = Path('/n/fs/resemble/maxent-grpo/.research-sweeps')
 LST = SW / 'claude-princeton-listings-20261022'
 sys.path.insert(0, str(LST / 'scripts'))
 import extract, match  # noqa: E402

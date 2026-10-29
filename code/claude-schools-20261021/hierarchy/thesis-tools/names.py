@@ -6,10 +6,10 @@ import re
 import sys
 import unicodedata
 
-sys.path.insert(0, "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/tools")
+sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/tools")
 import pi_hierarchy as ph  # noqa: E402  (main is guarded; only helpers are used)
 
-ROOT = "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy"
+ROOT = "/n/fs/resemble/cs-atlas/work/hierarchy"
 toks, Name, given = ph.toks, ph.Name, ph.given
 
 TITLES = re.compile(r"^(?:prof(?:essor)?\.?|dr\.?|mr\.?|ms\.?|mrs\.?|sir)\s+", re.I)

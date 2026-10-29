@@ -9,7 +9,7 @@ import json
 import re
 import sys
 
-IDX = "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/few-students-tools-cmu/theses_index.json"
+IDX = "/n/fs/resemble/cs-atlas/work/hierarchy/few-students-tools-cmu/theses_index.json"
 rx = re.compile(sys.argv[1], re.I)
 anyw = "--any" in sys.argv
 rows = json.load(open(IDX))

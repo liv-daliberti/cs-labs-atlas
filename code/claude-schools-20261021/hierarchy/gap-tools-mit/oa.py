@@ -10,7 +10,7 @@ import os
 import sys
 from urllib.parse import urlencode
 
-sys.path.insert(0, "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/gap-tools-mit")
+sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-mit")
 import capstore  # noqa: E402
 
 BASE = "https://api.openalex.org/"
