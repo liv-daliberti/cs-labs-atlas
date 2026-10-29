@@ -21,7 +21,9 @@ import collections, gzip, json, re, sys, unicodedata
 from datetime import datetime, timezone
 from pathlib import Path
 
-HERE = Path(__file__).resolve().parents[1]; H = HERE / 'hierarchy'
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import atlas_paths as P  # noqa: E402  (every path in one place)
+HERE = P.WORK; H = P.HIERARCHY
 SCHOOLS = ['princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford']
 CHECKS = ['coverage', 'pi', 'students', 'papers', 'links', 'copies', 'one_person']
 LOCAL = {'local', 'fulltext_xml', 'downloaded', 'pdf', 'xml'}

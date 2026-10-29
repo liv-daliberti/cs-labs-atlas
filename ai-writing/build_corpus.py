@@ -11,8 +11,11 @@ import collections, gzip, json, os, sqlite3, sys, time, zlib
 from pathlib import Path
 import requests
 
-HERE = Path(__file__).resolve().parent; H = HERE.parent / 'hierarchy'
-SITE = Path('/n/fs/resemble/maxent-grpo/princeton-live-20261015/atlas/data/cs-hierarchy')
+HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE.parent / 'tools'))
+import atlas_paths as P  # noqa: E402  (every path in one place)
+H = P.HIERARCHY
+SITE = P.SITE_DATA / 'cs-hierarchy'
 SCHOOLS = ('princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford')
 
 

@@ -9,9 +9,10 @@
 #SBATCH --output=/n/fs/resemble/cs-atlas/work/hierarchy/logs/organize-tree-%j.out
 # Rebuild the organized school -> lab -> papers tree under /n/fs/resemble/cs-atlas/schools (tools/organize_tree.py):
 # refresh copies.json first so newly downloaded copies are linked.
-cd /n/fs/resemble/cs-atlas/work
-export LD_LIBRARY_PATH=/n/fs/resemble/cs-atlas-env/py310/lib
-PY=/n/fs/resemble/cs-atlas-env/py310/bin/python
+. /n/fs/resemble/cs-atlas/work/paths.sh  # every path in one place (tools/atlas_paths.py)
+cd "$CS_ATLAS_WORK"
+export LD_LIBRARY_PATH=$CS_ATLAS_ENV_LIB
+PY=$CS_ATLAS_ENV_PY
 S=${SCHOOLS:-princeton cmu epfl mit berkeley stanford}
 nice -n10 $PY -u tools/lab_paper_copies.py $S
 nice -n10 ionice -c3 $PY -u tools/organize_tree.py $S

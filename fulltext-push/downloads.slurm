@@ -12,5 +12,6 @@
 #SBATCH --output=/n/fs/resemble/cs-atlas/work/fulltext-push/logs/downloads-%A_%a.out
 SCHOOLS=(princeton cmu epfl mit berkeley stanford)
 s=${SCHOOLS[$SLURM_ARRAY_TASK_ID]}
-cd /n/fs/resemble/cs-atlas/work/fulltext-push
+. /n/fs/resemble/cs-atlas/work/paths.sh  # every path in one place (tools/atlas_paths.py)
+cd "$CS_ATLAS_FULLTEXT_PUSH"
 exec nice -n 5 /usr/local/anaconda3/2024.02/bin/python -I -u lab_first_loop.py $s --recent-first 2023 >> logs/lab_first_loop-$s.out 2>&1 < /dev/null

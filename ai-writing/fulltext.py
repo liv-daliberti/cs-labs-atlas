@@ -15,7 +15,9 @@ from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-HOM = Path('/n/fs/resemble/maxent-grpo/.research-sweeps/claude-homogenization-20261019')
+sys.path.insert(0, str(HERE.parent / 'tools'))
+import atlas_paths as P  # noqa: E402  (every path in one place)
+HOM = P.sweep('claude-homogenization-20261019')
 sys.path.insert(0, str(HOM / 'tools'))
 import fulltext_store as fs  # noqa: E402
 

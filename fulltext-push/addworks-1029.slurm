@@ -11,10 +11,11 @@
 #SBATCH --mem=28G
 #SBATCH --time=2-00:00:00
 #SBATCH --output=/n/fs/resemble/cs-atlas/work/fulltext-push/logs/addworks-1029-%j.out
-cd /n/fs/resemble/cs-atlas/work/fulltext-push
+. /n/fs/resemble/cs-atlas/work/paths.sh  # every path in one place (tools/atlas_paths.py)
+cd "$CS_ATLAS_FULLTEXT_PUSH"
 PY="nice -n 5 /usr/local/anaconda3/2024.02/bin/python -I -u"
-PRIN=/n/fs/resemble/maxent-grpo/.research-sweeps/claude-princeton-20261015
-OUT=/n/fs/resemble/homogenizing-science/data/fulltext/princeton
+PRIN=$(cs_atlas_sweep claude-princeton-20261015)
+OUT=$CS_ATLAS_STORES/princeton
 for s in princeton cmu epfl mit berkeley stanford; do $PY add_works.py $s; done
 pk=$(ls -d $OUT/discovery/claude-labpapers-newworks-2026102913* $OUT/discovery/claude-labpapers-newworks-2026102914* $OUT/discovery/claude-labpapers-newworks-2026102915* $OUT/discovery/claude-labpapers-newworks-2026102916* $OUT/discovery/claude-labpapers-newworks-2026102917* $OUT/discovery/claude-labpapers-newworks-2026102918* 2>/dev/null | while read d; do echo "cs_pi_works:$(basename $d)"; done)
 [ -n "$pk" ] && (cd $PRIN && nice -n 5 /usr/local/anaconda3/2024.02/bin/python -u tools/import_all_when_free.py $pk)

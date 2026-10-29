@@ -11,11 +11,13 @@ generate one model per run (vLLM). Each source gets two AI versions, by two diff
          -> generated-<model>.jsonl {key, model, task, text}
 usage: gen.py sample | gen.py generate <model-short-name> [--tp N]
 """
-import argparse, gzip, json, random, re
+import argparse, gzip, json, random, re, sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-HF = '/n/fs/resemble/cs-atlas-env/hf-cache/hub'
+sys.path.insert(0, str(HERE.parent / 'tools'))
+import atlas_paths as P  # noqa: E402  (every path in one place)
+HF = str(P.HF_HOME / 'hub')
 MODELS = {'qwen7b': 'Qwen/Qwen2.5-7B-Instruct', 'qwen3b': 'Qwen/Qwen2.5-3B-Instruct', 'llama70b': 'meta-llama/Llama-3.3-70B-Instruct',
           'qwen72b': 'Qwen/Qwen2.5-72B-Instruct'}  # the 70B Llama cache is incomplete (no config.json); Qwen-72B is the large generator
 ORDER = ['qwen7b', 'qwen3b', 'llama70b']

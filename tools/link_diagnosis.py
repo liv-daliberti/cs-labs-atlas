@@ -30,7 +30,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from pi_hierarchy import sweep_works, contains, same_year, NOT_PAPERS, TODAY, INST, AFF  # noqa: E402
 
-HERE = Path(__file__).resolve().parents[1]; H = HERE / 'hierarchy'
+import atlas_paths as P  # noqa: E402  (every path in one place)
+HERE = P.WORK; H = P.HIERARCHY
 SCHOOL_IDS = {}  # filled from the PIs' lab papers: the institution ids their school authorships carry
 
 

@@ -9,7 +9,8 @@
 #SBATCH --output=/n/fs/resemble/cs-atlas/work/fulltext-push/logs/s2-rerun-%j.out
 # the Semantic Scholar channel failed on every compute node on 2026-10-28 (its pacing file sat in a login-host /tmp
 # scratchpad); rerun it where it failed, plus Stanford's figshare step, which its collector never listed
-cd /n/fs/resemble/cs-atlas/work/fulltext-push
+. /n/fs/resemble/cs-atlas/work/paths.sh  # every path in one place (tools/atlas_paths.py)
+cd "$CS_ATLAS_FULLTEXT_PUSH"
 ./run_steps.sh princeton s2 >> logs/steps-princeton.log 2>&1 < /dev/null
 ./run_steps.sh epfl s2 >> logs/steps-epfl.log 2>&1 < /dev/null
 ./run_steps.sh berkeley s2 >> logs/steps-berkeley.log 2>&1 < /dev/null

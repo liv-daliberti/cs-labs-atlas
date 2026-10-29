@@ -12,7 +12,9 @@ import hashlib, html, json, re, sqlite3, sys, time, zlib
 from pathlib import Path
 import requests
 
-HERE = Path(__file__).resolve().parents[1]; OUT = HERE / 'hierarchy/berkeley'
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import atlas_paths as P  # noqa: E402  (every path in one place)
+HERE = P.WORK; OUT = HERE / 'hierarchy/berkeley'
 UA = 'HomogenizingScienceResearch/0.2 (academic metadata inventory)'
 
 
@@ -23,7 +25,7 @@ def db():
 
 
 def targets():
-    d = json.loads((Path('/n/fs/resemble/maxent-grpo/.research-sweeps') / 'claude-berkeley-20261021/people/dept_berkeley.json').read_text())
+    d = json.loads((P.sweep('claude-berkeley-20261021') / 'people/dept_berkeley.json').read_text())
     census = {x['name'] for x in json.loads((HERE / 'census/berkeley-faculty.json').read_text()) if x['is_pi']}
     seen = {}
     for r in d['people']:

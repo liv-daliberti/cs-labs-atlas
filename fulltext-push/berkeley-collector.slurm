@@ -9,7 +9,8 @@
 #SBATCH --mem=8G
 #SBATCH --time=3-00:00:00
 #SBATCH --output=/n/fs/resemble/cs-atlas/work/fulltext-push/logs/berkeley-collector-%j.out
-cd /n/fs/resemble/cs-atlas/work/fulltext-push
+. /n/fs/resemble/cs-atlas/work/paths.sh  # every path in one place (tools/atlas_paths.py)
+cd "$CS_ATLAS_FULLTEXT_PUSH"
 ./run_steps.sh berkeley techrpt pubpages homepages oa_arxiv openalex proceedings arxiv_title s2 core europepmc pmc figshare wayback_acm >> logs/steps-berkeley.log 2>&1 < /dev/null &
 nice -n 5 /usr/local/anaconda3/2024.02/bin/python -I -u lab_first_loop.py berkeley --recent-first 2023 >> logs/lab_first_loop-berkeley.out 2>&1 < /dev/null &
 wait

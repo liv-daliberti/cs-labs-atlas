@@ -24,14 +24,18 @@ lab_units  collection units the person leads (collection leaders, the structure'
 """
 import gzip, json, re, sqlite3, unicodedata, zlib
 from collections import Counter, defaultdict
+import sys
 from pathlib import Path
 
-SW = Path('/n/fs/resemble/maxent-grpo/.research-sweeps')
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import atlas_paths as P  # noqa: E402  (every path in one place)
+
+SW = P.SWEEPS
 ADMIN = re.compile(r'^(?:IC-|SIN-|SSC-|TBC$|TBD$|N/?A$|NANO-?TERA$)|deanship|teaching|committee', re.I)  # administrative or placeholder units, not labs
 EP = SW / 'claude-epfl-20261019'
-OUT = Path('/n/fs/resemble/cs-atlas/work') / 'census'
-STAGE = Path('/n/fs/resemble/homogenizing-science/data/reviews/unipapers/swiss-federal-institute-of-technology-lausanne')
-COLL = Path('/n/fs/resemble/maxent-grpo/princeton-live-20261015/atlas/data/collection-epfl.json.gz')
+OUT = P.CENSUS
+STAGE = P.HOMOGENIZING / 'data/reviews/unipapers/swiss-federal-institute-of-technology-lausanne'
+COLL = P.SITE_DATA / 'collection-epfl.json.gz'
 
 
 def nt(s):
@@ -147,7 +151,7 @@ def main():
     for line in (STAGE / 'infoscience' / 'sources.jsonl').open():
         s = json.loads(line)
         if 'configuration=orgunit' in s.get('requested_url', '') and s.get('http_status') == 200:
-            p = Path('/n/fs/resemble/homogenizing-science') / s['snapshot_path'] if not s['snapshot_path'].startswith('/') else Path(s['snapshot_path'])
+            p = P.HOMOGENIZING / s['snapshot_path'] if not s['snapshot_path'].startswith('/') else Path(s['snapshot_path'])
             if p.exists():
                 b = p.read_bytes()
                 stage_bodies[s['source_id']] = (s['requested_url'], s['sha256'], (gzip.decompress(b) if b[:2] == b'\x1f\x8b' else b).decode('utf-8', 'ignore'))

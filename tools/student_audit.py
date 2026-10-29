@@ -22,7 +22,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from pi_hierarchy import Name, toks, given, nick_ok, strict_name_one, near_relation, EAST_ASIAN_FAMILY  # noqa: E402
 
-HERE = Path(__file__).resolve().parents[1]; H = HERE / 'hierarchy'
+import atlas_paths as P  # noqa: E402  (every path in one place)
+HERE = P.WORK; H = P.HIERARCHY
 SCHOOLS = [s for s in ['princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford'] if (H / s / 'students.json').exists()]
 
 

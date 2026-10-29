@@ -25,14 +25,16 @@ is_pi      named_group: leads a CSAIL group with at most two leads (the groups A
 lab_units  the collection's research-group units they lead (at most two leaders); else a proposed "<Name> group" unit.
 -> census/mit-faculty.json, census/mit-report.md
 """
-import gzip, hashlib, html, json, re, sqlite3, unicodedata, zlib
+import gzip, hashlib, html, json, re, sqlite3, sys, unicodedata, zlib
 from collections import Counter, defaultdict
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-SW = Path('/n/fs/resemble/maxent-grpo/.research-sweeps')
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
+import atlas_paths as P  # noqa: E402  (every path in one place)
+SW = P.SWEEPS
 STAGE, CODEX = SW / 'claude-mit-20261020', SW / 'mit-cs-deep-20261019'
-SITE = Path('/n/fs/resemble/maxent-grpo/princeton-live-20261015/atlas/data')
+SITE = P.SITE_DATA
 
 
 def clean(s):

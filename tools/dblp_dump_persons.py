@@ -25,8 +25,9 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from pi_hierarchy import toks  # noqa: E402
 
-HERE = Path(__file__).resolve().parents[1]
-DUMP = Path('/n/fs/resemble/maxent-grpo/var/data/dblp-dump/dblp-2026-09-01.xml.gz')
+import atlas_paths as P  # noqa: E402  (every path in one place)
+HERE = P.WORK
+DUMP = P.DBLP_DUMP_XML
 OUT = HERE / 'hierarchy' / 'dblp-dump-persons.json.gz'
 SCHOOLS = ['princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford']
 REC = re.compile(r'<(article|inproceedings|proceedings|book|incollection|phdthesis|mastersthesis|www|data) ([^>]*?)key="([^"]+)"[^>]*>(.*?)</\1>', re.S)

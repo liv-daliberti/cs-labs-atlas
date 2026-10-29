@@ -17,7 +17,8 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).parent))
 from pi_hierarchy import norm_title  # noqa: E402
 
-DUMP = Path('/n/fs/resemble/maxent-grpo/var/data/dblp-dump/dblp-2026-09-01.xml.gz')
+import atlas_paths as P  # noqa: E402  (every path in one place)
+DUMP = P.DBLP_DUMP_XML
 OUT = DUMP.with_name('dblp-2026-09-01-index.npz')
 DOI = re.compile(r'<ee[^>]*>https?://(?:dx\.)?doi\.org/([^<]+)</ee>')
 TITLE = re.compile(r'<title[^>]*>(.*?)</title>', re.S)

@@ -9,7 +9,8 @@
 #SBATCH --mem=12G
 #SBATCH --time=16:00:00
 #SBATCH --output=/n/fs/resemble/cs-atlas/work/fulltext-push/logs/retry_transient-%j.out
-cd /n/fs/resemble/cs-atlas/work/fulltext-push
+. /n/fs/resemble/cs-atlas/work/paths.sh  # every path in one place (tools/atlas_paths.py)
+cd "$CS_ATLAS_FULLTEXT_PUSH"
 for s in princeton cmu epfl mit berkeley stanford; do
   nice -n 5 /usr/local/anaconda3/2024.02/bin/python -I -u retry_transient.py $s &
   sleep 60

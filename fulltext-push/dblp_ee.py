@@ -23,7 +23,7 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import ftp_common as F
 
-DUMP = Path('/n/fs/resemble/maxent-grpo/var/data/dblp-dump/dblp-2026-09-01.xml.gz')
+DUMP = F.P.DBLP_DUMP_XML
 CACHE = HERE / 'raw' / 'dblp_ee_matches.jsonl.gz'
 REC = re.compile(r'<(article|inproceedings|proceedings|book|incollection|phdthesis|mastersthesis|www|data) [^>]*?key="([^"]+)"[^>]*>(.*?)</\1>', re.S)
 EE = re.compile(r'<ee[^>]*>([^<]+)</ee>')

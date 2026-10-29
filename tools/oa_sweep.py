@@ -13,7 +13,9 @@ import json, os, sqlite3, sys, time, zlib
 from pathlib import Path
 import requests
 
-HERE = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import atlas_paths as P  # noqa: E402  (every path in one place)
+HERE = P.WORK
 INST = {'princeton': 'I20089843', 'cmu': 'I74973139', 'epfl': 'I5124864', 'mit': 'I63966007', 'berkeley': 'I95457486', 'stanford': 'I97018004'}
 YEARS = range(2016, 2027)
 SELECT = 'id,doi,title,publication_year,publication_date,type,authorships,ids,primary_location'

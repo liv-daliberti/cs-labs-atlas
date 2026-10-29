@@ -10,7 +10,8 @@
 #SBATCH --time=03:00:00
 #SBATCH --output=/n/fs/resemble/cs-atlas/work/hierarchy/logs/piworks-stanford-%j.out
 set -u
-cd /n/fs/resemble/cs-atlas/work
+. /n/fs/resemble/cs-atlas/work/paths.sh  # every path in one place (tools/atlas_paths.py)
+cd "$CS_ATLAS_WORK"
 set -a; . ~/.config/cs-atlas/openalex.env; set +a
-export LD_LIBRARY_PATH=/n/fs/resemble/cs-atlas-env/py310/lib
-/n/fs/resemble/cs-atlas-env/py310/bin/python -u tools/pi_fulltext_affiliation.py works stanford
+export LD_LIBRARY_PATH=$CS_ATLAS_ENV_LIB
+$CS_ATLAS_ENV_PY -u tools/pi_fulltext_affiliation.py works stanford

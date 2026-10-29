@@ -5,7 +5,8 @@
 #SBATCH --cpus-per-task=8
 set -euo pipefail
 ROOT=/n/fs/resemble/maxent-grpo
-cd /n/fs/resemble/cs-atlas/work/ai-writing
-export LD_LIBRARY_PATH="/n/fs/resemble/cs-atlas-env/py310/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-export HF_HOME=/n/fs/resemble/cs-atlas-env/hf-cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 TOKENIZERS_PARALLELISM=false
-/n/fs/resemble/cs-atlas-env/py310/bin/python -u detector.py "$@"
+. /n/fs/resemble/cs-atlas/work/paths.sh  # every path in one place (tools/atlas_paths.py)
+cd "$CS_ATLAS_AI_WRITING"
+export LD_LIBRARY_PATH="$CS_ATLAS_ENV_LIB${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+export HF_HOME=$CS_ATLAS_HF_HOME HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 TOKENIZERS_PARALLELISM=false
+$CS_ATLAS_ENV_PY -u detector.py "$@"

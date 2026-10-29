@@ -25,8 +25,10 @@ usage: pi_hierarchy.py <school> [<school> ...]
 import calendar, collections, datetime, gzip, html, json, re, sqlite3, sys, unicodedata, zlib
 from pathlib import Path
 
-HERE = Path(__file__).resolve().parents[1]
-SITE = Path('/n/fs/resemble/maxent-grpo/princeton-live-20261015/atlas/data')
+import atlas_paths as P  # noqa: E402  (every path in one place)
+
+HERE = P.WORK
+SITE = P.SITE_DATA
 DBLP = {'cmu': 'claude-cmu-20261017', 'epfl': 'claude-epfl-20261019', 'mit': 'claude-mit-20261020', 'berkeley': 'claude-berkeley-20261021',
         'stanford': 'claude-stanford-20261027'}
 INST = {'princeton': 'I20089843', 'cmu': 'I74973139', 'epfl': 'I5124864', 'mit': 'I63966007', 'berkeley': 'I95457486', 'stanford': 'I97018004'}
@@ -57,7 +59,7 @@ def _nick_pairs():
     import csv
     pairs = {frozenset((a, b)) for a, b in NICK.items()}
     for f in ('names.csv', 'extras.csv'):
-        fp = Path(__file__).resolve().parents[1] / 'hierarchy/nicknames' / f
+        fp = P.HIERARCHY / 'nicknames' / f
         if fp.exists():
             for r in csv.DictReader(open(fp)):
                 if r.get('relationship') == 'has_nickname' and r.get('name1') and r.get('name2'):
@@ -844,7 +846,7 @@ def build(school):
     # identity anchors: the PI's own DBLP publication list, the PI's DBLP-verified collection works, a stated advisee as co-author
     verified = {p['pi']: {l['work'] for i in p['personIds'] for l in pls[i] if l.get('status') == 'verified' and l.get('role', 'author') == 'author'} for p in pis}
     dblp_doi, dblp_title = collections.defaultdict(set), collections.defaultdict(dict)
-    dp = Path('/n/fs/resemble/maxent-grpo/.research-sweeps') / DBLP.get(school, '') / 'raw/dblp_pubs.json.gz'
+    dp = P.sweep(DBLP.get(school, '')) / 'raw/dblp_pubs.json.gz'
     if (HERE / 'hierarchy' / school / 'raw/dblp_pubs.json.gz').exists():  # Princeton: converted from the lab records' cached DBLP answers
         dp = HERE / 'hierarchy' / school / 'raw/dblp_pubs.json.gz'
     if dp.exists() and dp.name == 'dblp_pubs.json.gz' and (DBLP.get(school) or 'hierarchy' in str(dp)):

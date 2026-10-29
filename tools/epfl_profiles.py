@@ -8,8 +8,10 @@ import hashlib, json, re, sqlite3, sys, time, unicodedata, urllib.parse, urllib.
 from datetime import datetime, timezone
 from pathlib import Path
 
-OUT = Path('/n/fs/resemble/cs-atlas/work/census/raw')
-EP = Path('/n/fs/resemble/maxent-grpo/.research-sweeps/claude-epfl-20261019')
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import atlas_paths as P  # noqa: E402  (every path in one place)
+OUT = P.CENSUS / 'raw'
+EP = P.sweep('claude-epfl-20261019')
 UA = 'HomogenizingScienceResearch/0.2 (academic metadata inventory)'
 LAST, ROBOTS = {}, {}
 

@@ -13,9 +13,12 @@ merged    with the Berkeley chain's own census (census/berkeley-faculty.json, wr
 -> census/berkeley-faculty-hierarchy.json (the chain owns census/berkeley-faculty.json), hierarchy/berkeley/collection.json.gz
 """
 import collections, gzip, hashlib, json, re
+import sys
 from pathlib import Path
 
-HERE = Path(__file__).resolve().parents[1]; BK = Path('/n/fs/resemble/maxent-grpo/.research-sweeps') / 'claude-berkeley-20261021/people'
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import atlas_paths as P  # noqa: E402  (every path in one place)
+HERE = P.WORK; BK = P.sweep('claude-berkeley-20261021') / 'people'
 
 
 def slug(s):

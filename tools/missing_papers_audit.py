@@ -17,13 +17,14 @@ import collections, gzip, json, re, sqlite3, sys, zlib
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from pi_hierarchy import read, HERE, DBLP, ndoi, norm_title  # noqa: E402
+import atlas_paths as P  # noqa: E402  (every path in one place)
 
 
 def run(school):
     pis = read(HERE / 'hierarchy' / school / 'pis.json')
     dp = HERE / 'hierarchy' / school / 'raw/dblp_pubs.json.gz'
     if not dp.exists():
-        dp = Path('/n/fs/resemble/maxent-grpo/.research-sweeps') / DBLP.get(school, '') / 'raw/dblp_pubs.json.gz'
+        dp = P.sweep(DBLP.get(school, '')) / 'raw/dblp_pubs.json.gz'
     if not dp.exists() or not (DBLP.get(school) or 'hierarchy' in str(dp)):
         return dict(school=school, note='no DBLP cache')
     pubs = read(dp)['pubs']

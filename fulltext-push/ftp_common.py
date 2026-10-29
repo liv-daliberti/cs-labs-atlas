@@ -12,10 +12,13 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 HERE = Path(__file__).resolve().parent
-SCHOOLS = HERE.parent
-FT = Path('/n/fs/resemble/homogenizing-science/data/fulltext')
-CMU_TOOLS = Path('/n/fs/resemble/maxent-grpo/.research-sweeps/claude-cmu-20261017/tools')
-PRIN_TOOLS = Path('/n/fs/resemble/maxent-grpo/.research-sweeps/claude-princeton-20261015/tools')
+if str(HERE.parent / 'tools') not in sys.path:  # appended, never first: tools/ must not shadow the stages' modules
+    sys.path.append(str(HERE.parent / 'tools'))
+import atlas_paths as P  # noqa: E402  (every path in one place; collectors reach it as F.P)
+SCHOOLS = P.WORK
+FT = P.STORES
+CMU_TOOLS = P.sweep('claude-cmu-20261017') / 'tools'
+PRIN_TOOLS = P.sweep('claude-princeton-20261015') / 'tools'
 for p in (CMU_TOOLS, PRIN_TOOLS):
     if str(p) not in sys.path:
         sys.path.insert(0, str(p))

@@ -25,11 +25,12 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 import requests
 
-HERE = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(Path(__file__).parent))
+import atlas_paths as P  # noqa: E402  (every path in one place)
 from pi_hierarchy import INST, AFF, read  # noqa: E402
+HERE = P.WORK
 UA = 'HomogenizingScienceResearch/0.2 (academic metadata inventory)'
-FT = Path('/n/fs/resemble/homogenizing-science/data/fulltext')
+FT = P.STORES
 SELECT = 'id,doi,title,publication_year,publication_date,type,authorships,ids,primary_location,locations'
 
 
