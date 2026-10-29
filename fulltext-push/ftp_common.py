@@ -26,7 +26,9 @@ LOCAL = ('downloaded', 'fulltext_xml')
 BATCH = 200
 UA = 'HomogenizingScienceResearch/0.2 (academic metadata inventory)'
 KEYS = Path.home() / '.config/cs-atlas'
-SCRATCH = Path('/tmp/claude-363432/-n-fs-similarity-maxent-grpo/2bd068f5-5142-4dac-89d1-67eb470f92c1/scratchpad')
+# Shared scratch for pace / lock files: a project path every host and compute node sees (2026-10-29; it was one Claude
+# session's /tmp scratchpad, which compute nodes and later sessions do not have). Never a place for keys.
+SCRATCH = P.FULLTEXT_PUSH / 'logs'
 
 
 def now():
@@ -45,12 +47,10 @@ def ndoi(s):
 
 def load_env():
     """API keys into os.environ (never printed or written): ~/.config/cs-atlas/<name>.env (mode 600, shared by every host
-    since 2026-10-27), else the first session's scratchpad on soak."""
+    since 2026-10-27; the old session-scratchpad fallback is gone)."""
     import os
     for name in ('openalex', 's2', 'core'):
         f = KEYS / f'{name}.env'
-        if not f.exists():
-            f = SCRATCH / f'{name}.env'
         if f.exists():
             for line in f.read_text().splitlines():
                 line = line.strip()
@@ -139,11 +139,52 @@ def fetch_oa_bodies(ids):
     return got
 
 
+def read_retry(db, sql, args=(), tries=10):
+    """fetchall() of one short read statement; 'database is locked' (a writer held the rollback-journal lock past the
+    connection's busy timeout) is waited out, 30 s apart, instead of failing the whole step (2026-10-29: princeton oa_arxiv)."""
+    for i in range(tries):
+        try:
+            return db.execute(sql, args).fetchall()
+        except sqlite3.OperationalError as e:
+            if 'locked' not in str(e) and 'busy' not in str(e) or i == tries - 1:
+                raise
+            time.sleep(30)
+
+
 def chunks(db, table, cols, n=1500):
-    hi = db.execute(f'SELECT MAX(rowid) FROM {table}').fetchone()[0] or 0
+    hi = read_retry(db, f'SELECT MAX(rowid) FROM {table}')[0][0] or 0
     for lo in range(0, hi + 1, n):
-        yield from db.execute(f'SELECT {cols} FROM {table} WHERE rowid >= ? AND rowid < ?', (lo, lo + n)).fetchall()
+        yield from read_retry(db, f'SELECT {cols} FROM {table} WHERE rowid >= ? AND rowid < ?', (lo, lo + n))
         time.sleep(0.05)
+
+
+SLIM_INDEX = 'works_slim'
+SLIM_COLS = ('id', 'status', 'doi', 'title', 'year', 'identity_check', 'byte_count', 'sha256')
+SLIM_SQL = f"CREATE INDEX IF NOT EXISTS {SLIM_INDEX} ON works({', '.join(SLIM_COLS)})"
+
+
+def works_rows(db, cols, n=5000):
+    """Rows of `cols` (a comma list of works columns) in rowid order, as chunks(db, 'works', cols) yields them.
+
+    When the catalog has the covering index works_slim (2026-10-29: SLIM_SQL) and every column is in it, the rows come from
+    the index alone, keyset-paged by id in short statements: no table page is read. Princeton's works rows carry ~30 KB of
+    graph_json / oa_json each and status is stored after them, so a rowid scan that reads status walked the whole 2.1 GB
+    table on NFS. Without the index (or for other columns) this is chunks() as before."""
+    want = [c.strip() for c in cols.split(',')]
+    if not set(want) <= set(SLIM_COLS) or not read_retry(db, "SELECT 1 FROM sqlite_master WHERE type='index' AND name=?", (SLIM_INDEX,)):
+        yield from chunks(db, 'works', cols)
+        return
+    rows, last = [], ''
+    while True:
+        part = read_retry(db, f'SELECT rowid, id, {cols} FROM works INDEXED BY {SLIM_INDEX} WHERE id > ? ORDER BY id LIMIT ?', (last, n))
+        if not part:
+            break
+        rows += part
+        last = part[-1][1]
+        time.sleep(0.02)
+    rows.sort(key=lambda r: r[0])
+    for r in rows:
+        yield tuple(r[2:])
 
 
 def catalog_state(school, with_urls=True):
@@ -154,7 +195,7 @@ def catalog_state(school, with_urls=True):
     if not path.exists():
         return dict(status=st, doi=doi, title=title, local=local, urls=urls)
     db = sqlite3.connect(f'file:{path}?mode=ro', uri=True, timeout=120)
-    for i, d, s, t in chunks(db, 'works', 'id, doi, status, title'):
+    for i, d, s, t in works_rows(db, 'id, doi, status, title'):
         if st.get(i) not in LOCAL:
             st[i] = s
         if d:

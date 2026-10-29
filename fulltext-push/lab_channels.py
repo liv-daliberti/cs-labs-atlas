@@ -14,8 +14,8 @@ steps (each adds candidates only for works with no copy, and only URLs not alrea
               shared author family name with the paper's byline, first version 1 year after to 3 years before) -> bulk copy
   proceedings the open proceedings index of the Princeton sweep (NeurIPS, PMLR, ICLR, CVF, ACL, IJCAI, USENIX, JMLR, ...):
               same normalized title, year within 2 -> the PDF on the proceedings host
-  s2          Semantic Scholar /paper/batch by DOI or arXiv id with the user's key (S2_API_KEY from the scratchpad env
-              file only; one request per 1.2 s shared across processes): ArXiv id -> bulk copy, PMCID -> PMC S3,
+  s2          Semantic Scholar /paper/batch by DOI or arXiv id with the user's key (S2_API_KEY from ~/.config/cs-atlas/s2.env
+              only; one request per 1.2 s shared across processes): ArXiv id -> bulk copy, PMCID -> PMC S3,
               ACL id -> aclanthology.org, openAccessPdf on a usable host (../../claude-cmu-20261017/tools/s2_key_lookup.py)
   core        CORE search API, 25 DOIs per request (CORE_API_KEY; repository links only; core_search.usable)
   europepmc   Europe PMC search by DOI (10 s per query) -> PMCID -> the PMC open-data files on S3
