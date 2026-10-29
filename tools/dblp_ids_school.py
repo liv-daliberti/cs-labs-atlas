@@ -7,8 +7,10 @@ decision    homepage_url        exactly one candidate whose <url>s include the h
             school_affiliation  exactly one candidate whose affiliation note matches the charter's affiliation regex or
                                 one of whose URLs is on a school web domain (a disambiguated record names the school)
             unique_name         the only candidate (no homonym record carries the name) and it is not a disambiguation
-                                profile; accepted only when its record names no other institution as current
-                                (otherwise ambiguous)
+                                profile (the builder's R-PAP-05; a PI who moved away keeps the new institution in DBLP)
+            unique_exact_name   exactly one candidate carries one of the PI's full names exactly, it has no DBLP homonym
+                                number, and no other candidate has more 2016-2026 records (the others only share a
+                                (given, family) form; a busier middle-initial record may be the PI)
             none                several candidates and none (or several) names the school, or the only candidate is a
                                 disambiguation profile: identity then rests on OpenAlex ids, ORCID or advisees
 evidence    url (https://dblp.org/pid/..., the person page the dump record is), the dump file, sha256 of the record's XML
@@ -115,8 +117,14 @@ def main(key):
             d = dict(c, basis='homepage_url', quote=f'<url>{u}</url>')
         elif len(sch) == 1:
             c = sch[0]; d = dict(c, basis='school_affiliation', quote=c['school_note'] or f"<url>{c['school_url']}</url>")
-        elif len(cs) == 1 and not cs[0]['disambiguation'] and not [a for a in cs[0]['affiliations'] if not aff.search(a)]:
-            c = cs[0]; d = dict(c, basis='unique_name', quote=c['names'][0])
+        elif len(cs) == 1 and not cs[0]['disambiguation']:  # R-PAP-05: the one record that carries the name (a PI who moved
+            c = cs[0]; d = dict(c, basis='unique_name', quote=c['names'][0])  # away has another institution in the notes)
+        else:
+            full = {' '.join(toks(nm)) for nm in [x['name']] + list(x.get('aliases') or []) if len(toks(nm)) >= 2}
+            ex = [c for c in cs if not c['disambiguation'] and full & {' '.join(toks(re.sub(r'\s+\d{4}$', '', nm))) for nm in c['names']}]
+            if len(ex) == 1 and not any(re.search(r'\s\d{4}$', nm) for nm in ex[0]['names']) \
+                    and ex[0]['n_window'] >= max(c['n_window'] for c in cs):  # never over a busier record ('Vijay G. Subramanian')
+                c = ex[0]; d = dict(c, basis='unique_exact_name', quote=c['names'][0])
         if d:
             out[x['name']] = dict(pid=d['pid'], basis=d['basis'], url=d['pid'], dump=P.DBLP_DUMP_FILE, sha256=d['sha256'], quote=d['quote'],
                                   orcid=d['orcid'], names=d['names'], candidates=len(cs), n_window=d['n_window'])

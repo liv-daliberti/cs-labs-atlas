@@ -14,9 +14,9 @@
   "UMSI"
  ],
  "counts": {
-  "accepted": 74,
-  "pending_openalex": 44,
-  "faculty_not_computing": 22,
+  "accepted": 91,
+  "faculty_not_computing": 27,
+  "pending_openalex": 22,
   "not_faculty_listed": 409,
   "duplicate_dblp_record": 15,
   "research_or_other_rank": 2,
@@ -128,13 +128,13 @@
      "https://dblp.org/pid/25/6625"
     ],
     "dblp_window": 108,
-    "dblp_basis": "school_affiliation",
+    "dblp_basis": "homepage_url",
     "evidence": [
      {
       "url": "https://dblp.org/pid/25/6625",
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "sha256": "7289903c9250ea9307cb12c945906f812003fb606132c9751da2bbd7243919ca",
-      "quote": "University of Michigan, Ann Arbor"
+      "quote": "<url>http://web.eecs.umich.edu/~girasole/</url>"
      }
     ]
    },
@@ -167,13 +167,22 @@
    "name": "Pallab Bhattacharya",
    "aliases": [],
    "source": "affiliated_department",
-   "decision": "pending_openalex",
-   "reason": "5 DBLP persons of this name, none names the school: decide with the OpenAlex sweep (DBLP-indexed share of the school works)",
+   "decision": "accepted",
+   "reason": "faculty (ECE listing, professor rank) with 9 DBLP records 2016-2026 naming the school",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
+    "dblp": [
+     "https://dblp.org/pid/178/3027"
+    ],
+    "dblp_window": 9,
+    "dblp_basis": "unique_exact_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/178/3027",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "2b43260313b18aaad716dbbfd51bc132f066667e965b37ff40053d5ca830a563",
+      "quote": "Pallab Bhattacharya"
+     }
+    ]
    },
    "faculty_evidence": [
     {
@@ -344,13 +353,13 @@
      "https://dblp.org/pid/f/JeffreyAFessler"
     ],
     "dblp_window": 134,
-    "dblp_basis": "school_affiliation",
+    "dblp_basis": "homepage_url",
     "evidence": [
      {
       "url": "https://dblp.org/pid/f/JeffreyAFessler",
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "sha256": "53f7ab8c90d079a5ec664b56a3319705dacbc7ac707ca873ad3e9f3c6350b15b",
-      "quote": "University of Michigan, Ann Arbor, USA"
+      "quote": "<url>http://www.eecs.umich.edu/~fessler/</url>"
      }
     ]
    },
@@ -431,13 +440,13 @@
      "https://dblp.org/pid/66/2655"
     ],
     "dblp_window": 58,
-    "dblp_basis": "school_affiliation",
+    "dblp_basis": "homepage_url",
     "evidence": [
      {
       "url": "https://dblp.org/pid/66/2655",
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "sha256": "02a7c477dc3bf6172a173d8107f0a6425913ba285566548d44ed9adc049949d0",
-      "quote": "University of Michigan, Department of Electrical Engineering and Computer Science, Ann Arbor, MI, USA"
+      "quote": "<url>http://web.eecs.umich.edu/~mpflynn/</url>"
      }
     ]
    },
@@ -527,13 +536,13 @@
      "https://dblp.org/pid/22/1165"
     ],
     "dblp_window": 6,
-    "dblp_basis": "school_affiliation",
+    "dblp_basis": "homepage_url",
     "evidence": [
      {
       "url": "https://dblp.org/pid/22/1165",
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "sha256": "f88b77b6c1fd4c231a58fdb10b1f9b43a494e8479be35133dfd27912127dc203",
-      "quote": "University of Michigan, Ann Arbor, USA"
+      "quote": "<url>https://freudenberg.engin.umich.edu/</url>"
      }
     ]
    },
@@ -604,13 +613,22 @@
     "Yogesh Gianchandani"
    ],
    "source": "affiliated_department",
-   "decision": "pending_openalex",
-   "reason": "2 DBLP persons of this name, none names the school: decide with the OpenAlex sweep (DBLP-indexed share of the school works)",
+   "decision": "accepted",
+   "reason": "faculty (ECE listing, professor rank) with 13 DBLP records 2016-2026 naming the school",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
+    "dblp": [
+     "https://dblp.org/pid/65/1031"
+    ],
+    "dblp_window": 13,
+    "dblp_basis": "unique_exact_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/65/1031",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "dcc74ff9882350cc77b0d85d99259b2043c6b575ba810acdea50e150d01d74b5",
+      "quote": "Yogesh B. Gianchandani"
+     }
+    ]
    },
    "faculty_evidence": [
     {
@@ -1074,13 +1092,22 @@
     "Mark Kushner"
    ],
    "source": "affiliated_department",
-   "decision": "pending_openalex",
-   "reason": "2 DBLP persons of this name, none names the school: decide with the OpenAlex sweep (DBLP-indexed share of the school works)",
+   "decision": "faculty_not_computing",
+   "reason": "faculty (ECE), 1 DBLP records 2016-2026 (< 5)",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
+    "dblp": [
+     "https://dblp.org/pid/68/11101"
+    ],
+    "dblp_window": 1,
+    "dblp_basis": "unique_exact_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/68/11101",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "64ed582a025f0c9e4cef376ffe026692bef1b8ae997c953b7a925f1f9a0a0122",
+      "quote": "Mark J. Kushner"
+     }
+    ]
    },
    "faculty_evidence": [
     {
@@ -1157,13 +1184,13 @@
      "https://dblp.org/pid/160/1674"
     ],
     "dblp_window": 61,
-    "dblp_basis": "school_affiliation",
+    "dblp_basis": "homepage_url",
     "evidence": [
      {
       "url": "https://dblp.org/pid/160/1674",
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "sha256": "785ee60b164706e64315d14f31298b76771a50dc7f5a0a392ae88fc880557e20",
-      "quote": "University of Michigan, Department of Electrical Engineering and Computer Science, MI, USA"
+      "quote": "<url>http://www-personal.umich.edu/~wluee/</url>"
      }
     ]
    },
@@ -1380,13 +1407,13 @@
      "https://dblp.org/pid/m/DavidCMunsonJr"
     ],
     "dblp_window": 0,
-    "dblp_basis": "school_affiliation",
+    "dblp_basis": "homepage_url",
     "evidence": [
      {
       "url": "https://dblp.org/pid/m/DavidCMunsonJr",
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "sha256": "581e4d387ff4281d460181cb1e605b7f60535b8eab282044bb5045674086154a",
-      "quote": "University of Michigan, Ann Arbor, USA"
+      "quote": "<url>http://www.eecs.umich.edu/~munson/</url>"
      }
     ]
    },
@@ -1514,13 +1541,13 @@
      "https://dblp.org/pid/17/4018"
     ],
     "dblp_window": 19,
-    "dblp_basis": "school_affiliation",
+    "dblp_basis": "homepage_url",
     "evidence": [
      {
       "url": "https://dblp.org/pid/17/4018",
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "sha256": "b6b0368fd1a97a2975a1bd2c37775efea16a25f31330ded044c7f5b4c97359ce",
-      "quote": "University of Michigan, Electrical Engineering and Computer Science Department"
+      "quote": "<url>http://web.eecs.umich.edu/~neuhoff/</url>"
      }
     ]
    },
@@ -1555,13 +1582,22 @@
     "Ted Norris"
    ],
    "source": "affiliated_department",
-   "decision": "pending_openalex",
-   "reason": "4 DBLP persons of this name, none names the school: decide with the OpenAlex sweep (DBLP-indexed share of the school works)",
+   "decision": "faculty_not_computing",
+   "reason": "faculty (ECE), 4 DBLP records 2016-2026 (< 5)",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
+    "dblp": [
+     "https://dblp.org/pid/265/6888"
+    ],
+    "dblp_window": 4,
+    "dblp_basis": "unique_exact_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/265/6888",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "602f90722feb6cb2bd305cad2b833a5c4bf3c77675e8eff663ac29258635ae82",
+      "quote": "Theodore B. Norris"
+     }
+    ]
    },
    "faculty_evidence": [
     {
@@ -1599,13 +1635,13 @@
      "https://dblp.org/pid/09/2955"
     ],
     "dblp_window": 205,
-    "dblp_basis": "school_affiliation",
+    "dblp_basis": "homepage_url",
     "evidence": [
      {
       "url": "https://dblp.org/pid/09/2955",
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "sha256": "9c3861a3cc5dfc4b7698b49c85b9ee89eea73fef15aa4d9a65d7068935874b92",
-      "quote": "University of Michigan, Ann Arbor, MI, USA"
+      "quote": "<url>http://web.eecs.umich.edu/~necmiye/</url>"
      }
     ]
    },
@@ -1680,13 +1716,22 @@
     "Jamie Phillips"
    ],
    "source": "affiliated_department",
-   "decision": "pending_openalex",
-   "reason": "29 DBLP persons of this name, none names the school: decide with the OpenAlex sweep (DBLP-indexed share of the school works)",
+   "decision": "accepted",
+   "reason": "faculty (ECE listing, professor rank) with 17 DBLP records 2016-2026 naming the school",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
+    "dblp": [
+     "https://dblp.org/pid/176/6269"
+    ],
+    "dblp_window": 17,
+    "dblp_basis": "unique_exact_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/176/6269",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "03e079231dad73b7ff334c04bf0262fe19cca7d9097df6448bb8b26853752c14",
+      "quote": "Jamie Phillips"
+     }
+    ]
    },
    "faculty_evidence": [
     {
@@ -1719,13 +1764,22 @@
     "Sandeep Pradhan"
    ],
    "source": "affiliated_department",
-   "decision": "pending_openalex",
-   "reason": "119 DBLP persons of this name, none names the school: decide with the OpenAlex sweep (DBLP-indexed share of the school works)",
+   "decision": "accepted",
+   "reason": "faculty (ECE listing, professor rank) with 102 DBLP records 2016-2026 naming the school",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
+    "dblp": [
+     "https://dblp.org/pid/14/2640"
+    ],
+    "dblp_window": 102,
+    "dblp_basis": "unique_exact_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/14/2640",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "cf65233818422348fe9c32f839106753f5dcf28908a0e6d39c8201122caf0bc8",
+      "quote": "S. Sandeep Pradhan"
+     }
+    ]
    },
    "faculty_evidence": [
     {
@@ -2078,13 +2132,22 @@
     "Wayne Stark"
    ],
    "source": "affiliated_department",
-   "decision": "pending_openalex",
-   "reason": "4 DBLP persons of this name, none names the school: decide with the OpenAlex sweep (DBLP-indexed share of the school works)",
+   "decision": "faculty_not_computing",
+   "reason": "faculty (ECE), 3 DBLP records 2016-2026 (< 5)",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
+    "dblp": [
+     "https://dblp.org/pid/00/1158"
+    ],
+    "dblp_window": 3,
+    "dblp_basis": "unique_exact_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/00/1158",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "e1bd794d6407add88d9ab8c2d48e462cc0c5c607f68230bbbab0d08b1421001d",
+      "quote": "Wayne E. Stark"
+     }
+    ]
    },
    "faculty_evidence": [
     {
@@ -2287,13 +2350,13 @@
      "https://dblp.org/pid/14/4547"
     ],
     "dblp_window": 82,
-    "dblp_basis": "school_affiliation",
+    "dblp_basis": "homepage_url",
     "evidence": [
      {
       "url": "https://dblp.org/pid/14/4547",
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "sha256": "fda7807fd10fa76ff9808e357aafbbf8e636e5b80ac5e291166c328ee1879c4d",
-      "quote": "University of Michigan, Ann Arbor, USA"
+      "quote": "<url>http://web.eecs.umich.edu/~leutsang/</url>"
      }
     ]
    },
@@ -2554,13 +2617,13 @@
      "https://dblp.org/pid/47/1279"
     ],
     "dblp_window": 1,
-    "dblp_basis": "school_affiliation",
+    "dblp_basis": "homepage_url",
     "evidence": [
      {
       "url": "https://dblp.org/pid/47/1279",
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "sha256": "98770615fbdb3af43d0f57bf5f189d3839e04ffaad4ee397eeb1c55b27a156f5",
-      "quote": "University of Michigan, Ann Arbor, USA"
+      "quote": "<url>http://web.eecs.umich.edu/~aey/</url>"
      }
     ]
    },
@@ -2676,13 +2739,22 @@
    "name": "Zhaohui Zhong",
    "aliases": [],
    "source": "affiliated_department",
-   "decision": "pending_openalex",
-   "reason": "4 DBLP persons of this name, none names the school: decide with the OpenAlex sweep (DBLP-indexed share of the school works)",
+   "decision": "faculty_not_computing",
+   "reason": "faculty (ECE), 4 DBLP records 2016-2026 (< 5)",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
+    "dblp": [
+     "https://dblp.org/pid/177/0309"
+    ],
+    "dblp_window": 4,
+    "dblp_basis": "unique_exact_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/177/0309",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "c55af7926d2c9ab6f27cc43a269f5c69900a06e02b40d1965a58a638b6dd0bba",
+      "quote": "Zhaohui Zhong"
+     }
+    ]
    },
    "faculty_evidence": [
     {
@@ -3120,13 +3192,22 @@
    "name": "Zhongming Liu",
    "aliases": [],
    "source": "affiliated_department",
-   "decision": "pending_openalex",
-   "reason": "26 DBLP persons of this name, none names the school: decide with the OpenAlex sweep (DBLP-indexed share of the school works)",
+   "decision": "accepted",
+   "reason": "faculty (ECE listing, professor rank) with 39 DBLP records 2016-2026 naming the school",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
+    "dblp": [
+     "https://dblp.org/pid/08/1653"
+    ],
+    "dblp_window": 39,
+    "dblp_basis": "unique_exact_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/08/1653",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "dc2036ebb87beea0cd4a8522b39bb0d84cbc477fbab22d5b5435e7f5dab71962",
+      "quote": "Zhongming Liu"
+     }
+    ]
    },
    "faculty_evidence": [
     {
@@ -3157,13 +3238,22 @@
    "name": "Andrew Owens",
    "aliases": [],
    "source": "affiliated_department",
-   "decision": "pending_openalex",
-   "reason": "5 DBLP persons of this name, none names the school: decide with the OpenAlex sweep (DBLP-indexed share of the school works)",
+   "decision": "accepted",
+   "reason": "faculty (ECE listing, professor rank) with 121 DBLP records 2016-2026 naming the school",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
+    "dblp": [
+     "https://dblp.org/pid/85/2697"
+    ],
+    "dblp_window": 121,
+    "dblp_basis": "unique_exact_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/85/2697",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "8a7303a41d35b4834d99a79e31b9413e9c92a6beb3b8ff5e3bc03f24d988f62d",
+      "quote": "Andrew Owens"
+     }
+    ]
    },
    "faculty_evidence": [
     {
@@ -3286,13 +3376,22 @@
    "name": "Ziyou Song",
    "aliases": [],
    "source": "affiliated_department",
-   "decision": "pending_openalex",
-   "reason": "5 DBLP persons of this name, none names the school: decide with the OpenAlex sweep (DBLP-indexed share of the school works)",
+   "decision": "accepted",
+   "reason": "faculty (ECE listing, professor rank) with 61 DBLP records 2016-2026 naming the school",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
+    "dblp": [
+     "https://dblp.org/pid/228/4770"
+    ],
+    "dblp_window": 61,
+    "dblp_basis": "unique_exact_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/228/4770",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "c41c7561d144b62fcb699a38862220d45f6e9d8ec585a6e2c16c4fafc750ef52",
+      "quote": "Ziyou Song"
+     }
+    ]
    },
    "faculty_evidence": [
     {
@@ -3323,13 +3422,22 @@
    "name": "Xiwen Gong",
    "aliases": [],
    "source": "affiliated_department",
-   "decision": "pending_openalex",
-   "reason": "3 DBLP persons of this name, none names the school: decide with the OpenAlex sweep (DBLP-indexed share of the school works)",
+   "decision": "faculty_not_computing",
+   "reason": "faculty (ECE), 2 DBLP records 2016-2026 (< 5)",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
+    "dblp": [
+     "https://dblp.org/pid/258/9928"
+    ],
+    "dblp_window": 2,
+    "dblp_basis": "unique_exact_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/258/9928",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "7d83e552f2597795bb94f53114a8b8e438fa5545e75995c00af911369e541b02",
+      "quote": "Xiwen Gong"
+     }
+    ]
    },
    "faculty_evidence": [
     {
@@ -3442,13 +3550,22 @@
    "name": "Aline Eid",
    "aliases": [],
    "source": "affiliated_department",
-   "decision": "pending_openalex",
-   "reason": "4 DBLP persons of this name, none names the school: decide with the OpenAlex sweep (DBLP-indexed share of the school works)",
+   "decision": "accepted",
+   "reason": "faculty (ECE listing, professor rank) with 21 DBLP records 2016-2026 naming the school",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
+    "dblp": [
+     "https://dblp.org/pid/302/5246"
+    ],
+    "dblp_window": 21,
+    "dblp_basis": "unique_exact_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/302/5246",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "b31759f587e5124d075570599501f7613437f4c9e59f3a515d5295e9758a60f9",
+      "quote": "Aline Eid"
+     }
+    ]
    },
    "faculty_evidence": [
     {
@@ -3479,13 +3596,22 @@
    "name": "Liyue Shen",
    "aliases": [],
    "source": "affiliated_department",
-   "decision": "pending_openalex",
-   "reason": "10 DBLP persons of this name, none names the school: decide with the OpenAlex sweep (DBLP-indexed share of the school works)",
+   "decision": "accepted",
+   "reason": "faculty (ECE listing, professor rank) with 71 DBLP records 2016-2026 naming the school",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
+    "dblp": [
+     "https://dblp.org/pid/159/2036"
+    ],
+    "dblp_window": 71,
+    "dblp_basis": "unique_exact_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/159/2036",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "f81fb7e17229502494f0d73a1a470f70381aebcf739a373ffc3c210fa2e3f594",
+      "quote": "Liyue Shen"
+     }
+    ]
    },
    "faculty_evidence": [
     {
@@ -3593,11 +3719,21 @@
    ],
    "source": "affiliated_department",
    "decision": "faculty_not_computing",
-   "reason": "faculty (ECE), 0 DBLP records 2016-2026 (< 5)",
+   "reason": "faculty (ECE), 2 DBLP records 2016-2026 (< 5)",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "note": "0 DBLP persons of this name, none with a 2016-2026 record"
+    "dblp": [
+     "https://dblp.org/pid/244/7435"
+    ],
+    "dblp_window": 2,
+    "dblp_basis": "unique_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/244/7435",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "e9bc836e4ee1249db27a1869eebf7fbf6aa8af16238e242dbd97cc6d02e34f96",
+      "quote": "Noel Giebink"
+     }
+    ]
    },
    "faculty_evidence": [
     {
@@ -3674,13 +3810,22 @@
    "name": "Vladimir Dvorkin",
    "aliases": [],
    "source": "affiliated_department",
-   "decision": "pending_openalex",
-   "reason": "2 DBLP persons of this name, none names the school: decide with the OpenAlex sweep (DBLP-indexed share of the school works)",
+   "decision": "accepted",
+   "reason": "faculty (ECE listing, professor rank) with 33 DBLP records 2016-2026 naming the school",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
+    "dblp": [
+     "https://dblp.org/pid/234/2084"
+    ],
+    "dblp_window": 33,
+    "dblp_basis": "unique_exact_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/234/2084",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "cefabefbbd17a786975a07afab462f99f2f7b4dc22ea061c98ab40ab73b29f21",
+      "quote": "Vladimir Dvorkin"
+     }
+    ]
    },
    "faculty_evidence": [
     {
@@ -3757,13 +3902,22 @@
    "name": "Di Liang",
    "aliases": [],
    "source": "affiliated_department",
-   "decision": "pending_openalex",
-   "reason": "7 DBLP persons of this name, none names the school: decide with the OpenAlex sweep (DBLP-indexed share of the school works)",
+   "decision": "accepted",
+   "reason": "faculty (ECE listing, professor rank) with 100 DBLP records 2016-2026 naming the school",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
+    "dblp": [
+     "https://dblp.org/pid/165/2145"
+    ],
+    "dblp_window": 100,
+    "dblp_basis": "unique_exact_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/165/2145",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "e6550b38a52c7f1371abcbf88f6104ce3c6fa6207d38a6ed08eed20f25657057",
+      "quote": "Di Liang"
+     }
+    ]
    },
    "faculty_evidence": [
     {
@@ -3840,13 +3994,22 @@
    "name": "Shubhanshu Shekhar",
    "aliases": [],
    "source": "affiliated_department",
-   "decision": "pending_openalex",
-   "reason": "4 DBLP persons of this name, none names the school: decide with the OpenAlex sweep (DBLP-indexed share of the school works)",
+   "decision": "accepted",
+   "reason": "faculty (ECE listing, professor rank) with 51 DBLP records 2016-2026 naming the school",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
+    "dblp": [
+     "https://dblp.org/pid/207/2181"
+    ],
+    "dblp_window": 51,
+    "dblp_basis": "unique_exact_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/207/2181",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "c4a3eecb0c84679393bd91db5aca77d90a09d729f90debb0b069bba8e1fe9123",
+      "quote": "Shubhanshu Shekhar"
+     }
+    ]
    },
    "faculty_evidence": [
     {
@@ -3914,13 +4077,22 @@
    "name": "Jalani Williams",
    "aliases": [],
    "source": "affiliated_department",
-   "decision": "pending_openalex",
-   "reason": "32 DBLP persons of this name, none names the school: decide with the OpenAlex sweep (DBLP-indexed share of the school works)",
+   "decision": "accepted",
+   "reason": "faculty (ECE listing, professor rank) with 7 DBLP records 2016-2026 naming the school",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
+    "dblp": [
+     "https://dblp.org/pid/266/7814"
+    ],
+    "dblp_window": 7,
+    "dblp_basis": "unique_exact_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/266/7814",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "c2e1082beda41a590e841292a554d280bd7a529cb158ef697327117c740d2d5d",
+      "quote": "Jalani Williams"
+     }
+    ]
    },
    "faculty_evidence": [
     {
@@ -4034,13 +4206,22 @@
    "name": "Changxiao Cai",
    "aliases": [],
    "source": "affiliated_department",
-   "decision": "pending_openalex",
-   "reason": "4 DBLP persons of this name, none names the school: decide with the OpenAlex sweep (DBLP-indexed share of the school works)",
+   "decision": "accepted",
+   "reason": "faculty (ECE listing, professor rank) with 28 DBLP records 2016-2026 naming the school",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
+    "dblp": [
+     "https://dblp.org/pid/180/1308"
+    ],
+    "dblp_window": 28,
+    "dblp_basis": "unique_exact_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/180/1308",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "ed5694dcf17865ed57de7a3fe5e7da3a90eb4d90686470268badd017952212eb",
+      "quote": "Changxiao Cai"
+     }
+    ]
    },
    "faculty_evidence": [
     {
@@ -4071,13 +4252,22 @@
    "name": "Yulong Dong",
    "aliases": [],
    "source": "affiliated_department",
-   "decision": "pending_openalex",
-   "reason": "8 DBLP persons of this name, none names the school: decide with the OpenAlex sweep (DBLP-indexed share of the school works)",
+   "decision": "accepted",
+   "reason": "faculty (ECE listing, professor rank) with 21 DBLP records 2016-2026 naming the school",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
+    "dblp": [
+     "https://dblp.org/pid/233/0908"
+    ],
+    "dblp_window": 21,
+    "dblp_basis": "unique_exact_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/233/0908",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "f302badb5211b0e847265a9f6e06408b7a330f43be798bdabccfd639242f6a4b",
+      "quote": "Yulong Dong"
+     }
+    ]
    },
    "faculty_evidence": [
     {
@@ -4145,13 +4335,22 @@
    "name": "Seah Kim",
    "aliases": [],
    "source": "affiliated_department",
-   "decision": "pending_openalex",
-   "reason": "51 DBLP persons of this name, none names the school: decide with the OpenAlex sweep (DBLP-indexed share of the school works)",
+   "decision": "accepted",
+   "reason": "faculty (ECE listing, professor rank) with 13 DBLP records 2016-2026 naming the school",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
+    "dblp": [
+     "https://dblp.org/pid/276/3470"
+    ],
+    "dblp_window": 13,
+    "dblp_basis": "unique_exact_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/276/3470",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "25e92bc79ea804be84a46300cb961164ef5ad461ff6bd760326ede22f88761b1",
+      "quote": "Seah Kim"
+     }
+    ]
    },
    "faculty_evidence": [
     {
@@ -4293,13 +4492,22 @@
    "name": "Matthias Wilms",
    "aliases": [],
    "source": "affiliated_department",
-   "decision": "pending_openalex",
-   "reason": "2 DBLP persons of this name, none names the school: decide with the OpenAlex sweep (DBLP-indexed share of the school works)",
+   "decision": "accepted",
+   "reason": "faculty (ECE listing, professor rank) with 86 DBLP records 2016-2026 naming the school",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
+    "dblp": [
+     "https://dblp.org/pid/15/9855"
+    ],
+    "dblp_window": 86,
+    "dblp_basis": "unique_exact_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/15/9855",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "f016c0003ec464ebdf7d7c5b5251aaa4607e675461d7b4621842b2a923820eb4",
+      "quote": "Matthias Wilms"
+     }
+    ]
    },
    "faculty_evidence": [
     {

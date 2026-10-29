@@ -1,7 +1,7 @@
 # Michigan, stage 2: faculty census
 
-Date: 2026-10-29. Gate: **not passed. 44 documented open items wait on the OpenAlex sweep**, which runs after the
-00:00 UTC credit reset. Everything else is decided.
+Date: 2026-10-29. Gate: **not passed. 22 documented open items wait on the OpenAlex sweep**, which runs after the
+00:00 UTC credit reset. Everything else is decided. These numbers are after the stage-5 DBLP ids were folded back in.
 
 ## What was done
 - **Census.** `tools/census_build.py michigan` built the census from the 5,804 listing rows of stage 1.
@@ -32,8 +32,8 @@ Date: 2026-10-29. Gate: **not passed. 44 documented open items wait on the OpenA
   - The decisions are in `hierarchy/michigan/missing-pi-review.json`.
 
 ## Counts
-- **Census.** 454 persons; 194 PIs (174 `ladder_faculty`, 20 `courtesy_faculty`).
-  - By department: CSE 158 PIs and 81 not; ECE 60 PIs and 184 not.
+- **Census.** 454 persons; 211 PIs (191 `ladder_faculty`, 20 `courtesy_faculty`).
+  - By department: CSE 158 PIs and 81 not; ECE 77 PIs and 167 not.
   - Not PI, by reason: lecturer 57, research 50, emeritus 30, courtesy without a home professor rank 29, adjunct 19,
     visiting 6, plus the CS-related decisions below.
 - **Additions.** 37 accepted CS-related faculty of other units, in `census/michigan-additions.json`: UMSI 17, Robotics
@@ -42,7 +42,7 @@ Date: 2026-10-29. Gate: **not passed. 44 documented open items wait on the OpenA
 
   | source | accepted | faculty_not_computing | pending_openalex | not_faculty_listed | research_or_other_rank | census_alias |
   |---|---|---|---|---|---|---|
-  | ECE ladder faculty | 37 | 22 | **44** | – | – | – |
+  | ECE ladder faculty | 54 | 27 | **22** | – | – | – |
   | DBLP persons naming Michigan | 37 | – | – | 409 | 2 | 2 |
 
   15 DBLP records duplicated a name already decided.
@@ -51,13 +51,17 @@ Date: 2026-10-29. Gate: **not passed. 44 documented open items wait on the OpenA
 - **Chain-audit `coverage`:** 609 items; 78 pass, 531 decided, **0 open**.
   - It was run in-process with a wired copy of the builder. `tools/wire_charters.py` was applied to a copy in
     `hierarchy/michigan/tmp/wiretest`; the builder's own files were not edited.
-- **Stricter check:** `tools/stage_gate.py michigan 2` counts `pending_openalex` as open, so this gate **fails with 44
+- **Stricter check:** `tools/stage_gate.py michigan 2` counts `pending_openalex` as open, so this gate **fails with 22
   open items**.
 
 ## Exceptions with reasons
-1. **44 ECE ladder faculty are `pending_openalex`.**
-   - Their names have DBLP namesakes and none of the records names Michigan. Examples: Hun-Seok Kim (56 namesakes),
-     Raj Nadakuditi, Sandeep Pradhan, Vijay Subramanian, Zhengya Zhang, Andrew Owens, Jiasi Chen.
+1. **22 ECE ladder faculty are `pending_openalex`.**
+   - Their names have DBLP namesakes, and none of the records names Michigan, links the listed homepage, or is the
+     unique exact-name record.
+   - They are: Cynthia Finelli, L. Jay Guo, Mohammed N. Islam, Hun-Seok Kim, Pei-Cheng Ku, Somin Lee, Johanna Mathieu,
+     Rajesh Rao Nadakuditi, Becky Peterson, Jasprit Singh, Vijay Subramanian, Zhengya Zhang, Robert Gregg, Zheshen
+     Zhang, Jiasi Chen, Jun Gao, Souvik Biswas, Minji Kim, Sushil Varma, Joyce Yan-Ran Wang, Matthew Willsey and Kevin
+     Zhou.
    - The decision needs the OpenAlex sweep: the DBLP-indexed share of each person's Michigan works, as for Stanford EE.
    - A missing Michigan note in DBLP is not evidence that a person has no computing output. Deciding them negatively
      would have dropped obvious computing faculty.

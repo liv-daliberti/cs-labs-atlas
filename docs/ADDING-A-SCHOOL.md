@@ -99,12 +99,16 @@ The protocol is config-driven. A school is a charter, `schools/<key>.toml`, and 
     - **Unit listings** are captured yearly from Wayback (`[[affiliated_units]].listings`).
     - **Decisions:** `accepted`, `faculty_not_computing`, `research_or_other_rank` or `not_faculty_listed`, each with its evidence and the units searched. They go to `hierarchy/<key>/cs-related-review.json`; accepted people of other units go to `census/<key>-additions.json`.
   - Run the listed-not-in-census cross-check (`tools/listed_not_in_census.py`). For a protocol school the census is built from the listings, so this is a consistency check.
-- **Gate:** the chain audit has 0 open `coverage` items.
-  - Until `pi_hierarchy.py` and `chain_audit.py` read the charters (`tools/wire_charters.py`), run the coverage check on the census directly: every candidate has a decision.
+- **Gate:** the chain audit has 0 open `coverage` items, and `tools/stage_gate.py <key> 2` passes.
+  - `stage_gate.py` is stricter than the audit: it also counts `pending_openalex` decisions as open. It checks the gates of stages 1–5 from the stage files.
+  - Until `pi_hierarchy.py` and `chain_audit.py` read the charters, run them from a wired copy: `tools/wire_charters.py` applied to a copy of `tools/` under `hierarchy/<key>/tmp/`. Then call `chain_audit.audit('<key>')` in-process; never write the shared `chain-audit.json` that way.
 - **Learned from Michigan (2026-10-29):**
   - **Build the census from the listings.** v1 assumed a census existed before the listings, as it did for the site-collection schools. A protocol school's census is built from its dated listings, so stages 1 and 2 are one pipeline.
   - **Courtesy and affiliate appointments in a full-coverage department are the cross-listing.** They count as PIs when the same listing row gives a professor rank in the person's home unit (basis `courtesy_faculty`). The home unit goes to `home-departments.json`.
   - **DBLP-affiliation candidates are mostly students, postdocs and alumni.** A "not faculty" decision is only as good as the units searched, so name them in the decision.
+  - **A DBLP record that does not name the school is not evidence of no computing output.** Decide an affiliated-department person negatively only when no DBLP record of the name has output in the window. Otherwise the person is `pending_openalex` until the sweep gives the DBLP-indexed share of their school works.
+  - **Name forms in one school's listings:** merge forms that link the same personal homepage ('H.V.' / 'Jag' Jagadish, 'Georgios' / 'George' Tzimpragos).
+  - **Parser completeness:** assert, per capture, that the parsed entries equal the page's own entry markers. The first Michigan parser silently dropped 2018–19 entries that had no homepage link.
 
 ## Stage 3: PIs and labs
 - **Do:**
@@ -122,17 +126,29 @@ The protocol is config-driven. A school is a charter, `schools/<key>.toml`, and 
   - Run `tools/periods_school.py fetch|extract <key>`. It fetches each PI's listed homepage, live where `host_use` allows and otherwise the Wayback captures nearest 2026 and nearest the first listed year. It extracts appointment statements with `faculty_periods.candidates()`.
   - Mark a departure as `faculty_end_moved` when the person's own page says they moved.
 - **Output:** `periods/<key>-faculty-periods.json` and `periods/<key>-holds.json`.
+- **Learned from Michigan (2026-10-29):**
+  - `faculty_periods.candidates()` matches case-sensitively, so pass the school pattern as `(?i:...)`.
+  - Homepage fetching shares the Wayback lock with every other capture (6 s per request), so start it as soon as the census exists: 248 PIs take about 3 hours.
 - **Gate:** every PI has a period, or a listing for each year that has papers. Before stage 7 there are no papers yet, so check that each PI's listing years are contiguous from the first listed year to the last.
 
 ## Stage 5: identity
 - **Do:**
   - Review each PI's OpenAlex author ids, recording them as `reviewedOpenAlex`, `not_openalex` or `mixed_openalex` with evidence. This needs the sweep.
-  - Add DBLP ids from the dump with `tools/dblp_ids_school.py <key>`: `school_affiliation` when exactly one candidate's note or URL names the school; `unique_name` when the only candidate names no other institution. The evidence is the dump record's sha256 and its affiliation note.
+  - Add DBLP ids from the dump with `tools/dblp_ids_school.py <key>`. The rules, in order:
+    - `homepage_url`: the record links the homepage the department listing links;
+    - `school_affiliation`: exactly one candidate's note or URL names the school;
+    - `unique_exact_name`: exactly one record carries the full name, with no homonym number and no busier namesake;
+    - `unique_name`: the only record of the name.
+
+    The evidence is the dump record's sha256 and the quote (the note, the `<url>` or the name). The tool also counts each candidate's records in the window, which the CS-related review uses.
   - Add ORCIDs from the DBLP person's URLs. `census_build.py` folds both into the census.
   - Run `tools/dblp_dump_persons.py`. It includes onboarding schools.
 - **Gate:** every PI has at least one anchor: a reviewed OpenAlex id, an ORCID or a DBLP page. Namesakes are reviewed.
 - **Learned from Michigan (2026-10-29):**
-  - DBLP decides about 70% of PIs on its own. The rest have common names whose DBLP records name no institution, and need the OpenAlex review.
+  - With the affiliation note and the strict unique-name rule alone, 27% of PIs got no DBLP id (45 of 164 in the first run). With the listing's homepage URL, the exact-name rule and the relaxed unique-name rule, 9% got none (19 of 211), before any OpenAlex review.
+  - A unique record must not be rejected for naming another institution: a PI who moved away has only the new one in DBLP.
+  - An exact-name record must not win over a busier middle-initial record ('Vijay Subramanian' / 'Vijay G. Subramanian').
+  - The remaining PIs have common names and need the OpenAlex review.
   - Listing names can differ from DBLP names ("Satinder Singh Baveja" is DBLP's "Satinder Singh"; "Jag Jagadish" is "H. V. Jagadish"). Record such aliases in `census-overrides.json`.
 
 ## Stage 6: students
@@ -183,7 +199,7 @@ OpenAlex co-authorship is never on its own evidence of advising.
 - `tools/atlas_paths.py` (`SCHOOL_IDS`) and its generated `paths.sh` (`CS_ATLAS_SCHOOLS`), and through them `hierarchy/rebuild.sh`, `tools/make_release.py` and `tools/build_regression.py`.
 - `tools/oa_sweep.py`, `tools/cs_related_candidates.py`, `tools/dblp_dump_persons.py`, `tools/listed_not_in_census.py`, `tools/student_audit.py`, `tools/zero_paper_ledger.py`, `tools/link_sweep.py` and `tools/school_profiles.py`.
 - `listings/scripts/wb.py` and `listings/scripts/plan_fetch.py`.
-- The stage tools added for protocol v2: `school_web.py`, `school_hosts.py`, `dblp_affiliated.py`, `listing_rows.py`, `census_build.py`, `cs_related_school.py`, `dblp_ids_school.py`, `home_departments_school.py` and `periods_school.py`.
+- The stage tools added for protocol v2: `school_web.py`, `school_hosts.py`, `dblp_affiliated.py`, `listing_formats.py`, `listing_rows.py`, `census_build.py`, `cs_related_school.py`, `dblp_ids_school.py`, `home_departments_school.py`, `periods_school.py` and `stage_gate.py`.
 
 **Prepared, not applied:** `tools/wire_charters.py` makes these read the charters. Run it once the builder agent's work on them is committed. It was tested on a copy: the six released schools' tables come out identical.
 - `tools/pi_hierarchy.py`: `DBLP`, `INST`, `AFF`, `SCHOOL_LOOSE`, `OWN_UNITS` and the EPFL foreign-title exception. `pi_fulltext_affiliation.py`, `dblp_recover.py`, `labpage_recover.py` and `link_diagnosis.py` follow, because they import these from it.

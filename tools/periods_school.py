@@ -71,7 +71,7 @@ def fetch(key):
 
 def extract(key):
     cfg = S.get(key); c = W.con(key)
-    FP.SCHOOL[key] = S.field(cfg, 'periods.school_regex') or S.aff(key)
+    FP.SCHOOL[key] = '(?i:' + (S.field(cfg, 'periods.school_regex') or S.aff(key)) + ')'  # the candidates' patterns are case-sensitive
     lo, hi = cfg.get('window') or [2016, 2026]
     periods, holds = [], []
     for t in targets(key):
