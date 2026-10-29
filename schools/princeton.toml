@@ -1,0 +1,39 @@
+# Princeton University: released before protocol v1 (built 2026-10-17..27). Only the fields the released build and the
+# shared tools read are filled; the stage-tool fields (listing slots, hosts) live in that school's own sweep code.
+key = "princeton"
+name = "Princeton University"
+short = "Princeton"
+site_uni = "princeton-university"
+status = "released"
+order = 1
+stage = 10
+legacy = true
+window = [2016, 2026]
+
+[ids]
+openalex = ["I20089843"]
+openalex_related = []
+ror = "https://ror.org/00hx57361"
+ids_note = "OpenAlex /institutions?filter=openalex_id 2026-10-29: display name and ROR as here"
+
+[web]
+domains = ["princeton.edu"]
+
+[affiliation]
+regex = 'princeton\s+univ|univ\w*\.?\s+(?:of\s+)?princeton|princeton\.edu'
+own_units = ''
+must_match = []
+must_not_match = []
+
+[dblp]
+affiliation_strings = []
+legacy_sweep = ""
+
+[rules]
+foreign_title_exception = false
+
+[census]
+computing_departments = ["Computer Science"]   # listed_not_in_census.py; [] = every listed department
+
+[site]
+depts = {}

@@ -45,7 +45,8 @@ def captures(school):
         yield url, ts, sha, [x[-1] if isinstance(x, list) else x.get('text') if isinstance(x, dict) else x for x in b], dept
 
 
-COMPUTING = {'princeton': {'Computer Science'}, 'cmu': None, 'mit': {'EECS', 'CSAIL'}, 'epfl': None, 'berkeley': {'EECS'}, 'stanford': {'CS', 'EE'}}
+import school_config as S  # noqa: E402  (the school charters: [census].computing_departments; empty = every listed department)
+COMPUTING = {k: S.computing(k) for k in S.keys()}
 INSTITUTIONAL = re.compile(r"\b(University|Career|Distinguished|Research|Founders|Group|Family|Development|Service|Alumni|Electronics|America|Seminar|"
                            r"Series|Intranet|Department|Chairs?|Schweiz|Equality|Professorship|Foundation|Fund|Institute|Center|Centre|Lab|Program|Fellow)\b")
 
@@ -59,8 +60,7 @@ def chair_fragment(blocks, i, n, t):
 def activity(school, names):
     """School-affiliated OpenAlex authorships 2016-2026 per candidate name (the hierarchy sweep)."""
     import zlib
-    from pi_hierarchy import INST, AFF
-    inst = 'https://openalex.org/' + INST[school]; aff = re.compile(AFF[school], re.I)
+    insts = {'https://openalex.org/' + i for i in S.inst_ids(school)}; aff = S.aff_rx(school)  # lineage ids only (related ids need the raw string)
     idx = collections.defaultdict(list)
     for n in names:
         for f, l in Name([n]).forms:
@@ -74,7 +74,7 @@ def activity(school, names):
                 if len(tk) < 2:
                     continue
                 for n in set(idx.get(tk[-1], [])):
-                    if Name([n]).match(raw) and (inst in [l for i in a.get('institutions') or [] for l in i.get('lineage') or []] or any(aff.search(z) for z in a.get('raw_affiliation_strings') or [])):
+                    if Name([n]).match(raw) and (insts & {l for i in a.get('institutions') or [] for l in i.get('lineage') or []} or any(aff.search(z) for z in a.get('raw_affiliation_strings') or [])):
                         cnt[n] += 1
     return cnt
 

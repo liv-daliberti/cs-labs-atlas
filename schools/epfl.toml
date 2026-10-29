@@ -1,0 +1,39 @@
+# EPFL: released before protocol v1 (built 2026-10-17..27). Only the fields the released build and the
+# shared tools read are filled; the stage-tool fields (listing slots, hosts) live in that school's own sweep code.
+key = "epfl"
+name = "EPFL"
+short = "EPFL"
+site_uni = "swiss-federal-institute-of-technology-lausanne"
+status = "released"
+order = 3
+stage = 10
+legacy = true
+window = [2016, 2026]
+
+[ids]
+openalex = ["I5124864"]
+openalex_related = []
+ror = "https://ror.org/02s376052"
+ids_note = "OpenAlex /institutions?filter=openalex_id 2026-10-29: display name and ROR as here"
+
+[web]
+domains = ["epfl.ch"]
+
+[affiliation]
+regex = '\bepfl\b|polytechnique\s+f[ée]d[ée]rale\s+de\s+lausanne|swiss\s+federal\s+institute\s+of\s+technology\s+(?:in\s+|at\s+)?lausanne|epfl\.ch'
+own_units = ''
+must_match = []
+must_not_match = []
+
+[dblp]
+affiliation_strings = []
+legacy_sweep = "claude-epfl-20261019"
+
+[rules]
+foreign_title_exception = true
+
+[census]
+computing_departments = []   # listed_not_in_census.py; [] = every listed department
+
+[site]
+depts = {IC = "School of Computer and Communication Sciences (IC)"}

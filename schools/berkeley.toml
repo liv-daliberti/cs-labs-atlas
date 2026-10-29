@@ -1,0 +1,39 @@
+# University of California, Berkeley: released before protocol v1 (built 2026-10-17..27). Only the fields the released build and the
+# shared tools read are filled; the stage-tool fields (listing slots, hosts) live in that school's own sweep code.
+key = "berkeley"
+name = "University of California, Berkeley"
+short = "UC Berkeley"
+site_uni = "university-of-california-berkeley"
+status = "released"
+order = 5
+stage = 10
+legacy = true
+window = [2016, 2026]
+
+[ids]
+openalex = ["I95457486"]
+openalex_related = []
+ror = "https://ror.org/01an7q238"
+ids_note = "OpenAlex /institutions?filter=openalex_id 2026-10-29: display name and ROR as here"
+
+[web]
+domains = ["berkeley.edu"]
+
+[affiliation]
+regex = '(?:university\s+of\s+california|\buc)[\s,]+berkeley|berkeley\.edu'
+own_units = ''
+must_match = []
+must_not_match = []
+
+[dblp]
+affiliation_strings = []
+legacy_sweep = "claude-berkeley-20261021"
+
+[rules]
+foreign_title_exception = false
+
+[census]
+computing_departments = ["EECS"]   # listed_not_in_census.py; [] = every listed department
+
+[site]
+depts = {EECS = "Electrical Engineering and Computer Sciences"}

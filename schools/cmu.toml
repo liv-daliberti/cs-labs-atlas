@@ -1,0 +1,39 @@
+# Carnegie Mellon University: released before protocol v1 (built 2026-10-17..27). Only the fields the released build and the
+# shared tools read are filled; the stage-tool fields (listing slots, hosts) live in that school's own sweep code.
+key = "cmu"
+name = "Carnegie Mellon University"
+short = "Carnegie Mellon"
+site_uni = "carnegie-mellon-university"
+status = "released"
+order = 2
+stage = 10
+legacy = true
+window = [2016, 2026]
+
+[ids]
+openalex = ["I74973139"]
+openalex_related = []
+ror = "https://ror.org/05x2bcf33"
+ids_note = "OpenAlex /institutions?filter=openalex_id 2026-10-29: display name and ROR as here"
+
+[web]
+domains = ["cmu.edu"]
+
+[affiliation]
+regex = 'carnegie[\s-]+mellon|\bcmu\b|cmu\.edu'
+own_units = '\b(?:robotics|neuroscience|language technologies|human-computer interaction|software research|information networking|integrated innovation)\s+institute\b|\binstitute\s+for\s+software\s+research\b'
+must_match = []
+must_not_match = []
+
+[dblp]
+affiliation_strings = []
+legacy_sweep = "claude-cmu-20261017"
+
+[rules]
+foreign_title_exception = false
+
+[census]
+computing_departments = []   # listed_not_in_census.py; [] = every listed department
+
+[site]
+depts = {CSD = "Computer Science Department", MLD = "Machine Learning Department", RI = "Robotics Institute", HCII = "Human–Computer Interaction Institute", LTI = "Language Technologies Institute", S3D = "Software and Societal Systems Department", CBD = "Computational Biology Department"}

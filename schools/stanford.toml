@@ -1,0 +1,39 @@
+# Stanford University: released before protocol v1 (built 2026-10-17..27). Only the fields the released build and the
+# shared tools read are filled; the stage-tool fields (listing slots, hosts) live in that school's own sweep code.
+key = "stanford"
+name = "Stanford University"
+short = "Stanford"
+site_uni = "stanford-university"
+status = "released"
+order = 6
+stage = 10
+legacy = true
+window = [2016, 2026]
+
+[ids]
+openalex = ["I97018004"]
+openalex_related = []
+ror = "https://ror.org/00f54p054"
+ids_note = "OpenAlex /institutions?filter=openalex_id 2026-10-29: display name and ROR as here"
+
+[web]
+domains = ["stanford.edu"]
+
+[affiliation]
+regex = 'stanford\.edu|\bstanford\b(?!\s+research\s+(?:institute|systems|international))'
+own_units = ''
+must_match = []
+must_not_match = []
+
+[dblp]
+affiliation_strings = []
+legacy_sweep = "claude-stanford-20261027"
+
+[rules]
+foreign_title_exception = false
+
+[census]
+computing_departments = ["CS", "EE"]   # listed_not_in_census.py; [] = every listed department
+
+[site]
+depts = {CS = "Computer Science", EE = "Electrical Engineering"}

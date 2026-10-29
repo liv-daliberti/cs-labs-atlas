@@ -19,7 +19,8 @@ import urllib.request
 import zlib
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # .../listings
-SCHOOLS = ("cmu", "epfl", "mit", "berkeley", "stanford")
+SCHOOLS = ("cmu", "epfl", "mit", "berkeley", "stanford")  # the pre-protocol schools; any school with a charter
+                                                           # (schools/<key>.toml) is accepted too (school_dir)
 HIER = os.path.join(os.path.dirname(ROOT), "hierarchy")
 LOCK = "/tmp/claude-363432/-n-fs-similarity-maxent-grpo/2bd068f5-5142-4dac-89d1-67eb470f92c1/scratchpad/wb.lock"
 MIN_GAP = 6.0  # never faster than the 1.5 s ceiling; Wayback refused connections under load (other clients share this host), so ~10/min
@@ -27,7 +28,7 @@ UA = "Mozilla/5.0 (compatible; faculty-listing-archival-research/1.0)"
 
 
 def school_dir(school):
-    assert school in SCHOOLS, school
+    assert school in SCHOOLS or os.path.exists(os.path.join(os.path.dirname(ROOT), "schools", f"{school}.toml")), school
     return os.path.join(ROOT, school)
 
 

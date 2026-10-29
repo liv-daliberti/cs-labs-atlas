@@ -24,7 +24,7 @@ from pi_hierarchy import Name, toks, given, nick_ok, strict_name_one, near_relat
 
 import atlas_paths as P  # noqa: E402  (every path in one place)
 HERE = P.WORK; H = P.HIERARCHY
-SCHOOLS = [s for s in ['princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford'] if (H / s / 'students.json').exists()]
+SCHOOLS = [s for s in P.SCHOOL_IDS if (H / s / 'students.json').exists()]
 
 
 def compatible(a, b):

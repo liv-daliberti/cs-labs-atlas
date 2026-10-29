@@ -1,0 +1,270 @@
+# University of Michigan (Ann Arbor): the seventh school and the first one onboarded with the protocol
+# (docs/ADDING-A-SCHOOL.md). Owner request 2026-10-29. Stage reports: hierarchy/michigan/STAGE-<n>.md.
+
+key = "michigan"
+name = "University of Michigan"
+short = "Michigan"
+site_uni = "university-of-michigan-ann-arbor"
+status = "onboarding"
+order = 7
+stage = 0
+started = "2026-10-29"
+window = [2016, 2026]
+
+[ids]
+openalex = ["I27837315"]
+# Michigan Medicine (the U-M academic medical centre and health system) is a 'related' institution of the university in
+# ROR and OpenAlex, not a child, so authors tagged only with it (Computational Medicine and Bioinformatics, Biostatistics
+# collaborators, Learning Health Sciences) are not in I27837315's lineage. Its works are swept; such an authorship counts
+# for Michigan only when its raw affiliation string matches [affiliation].regex (most read "University of Michigan
+# Medical School"). Compare Stanford, whose health system is a child in its lineage. OWNER DECISION requested.
+openalex_related = ["I4210114445"]
+openalex_excluded = ["I4210130704", "I4210092198"]   # University of Michigan-Dearborn, University of Michigan-Flint
+ror = "https://ror.org/00jmfr291"
+ids_note = """api.openalex.org/institutions search 'University of Michigan' and filter=openalex_id, 2026-10-29:
+I27837315 'University of Michigan', ROR 00jmfr291, lineage [I27837315] (no parent); Dearborn I4210130704 (ROR 035wtm547)
+and Flint I4210092198 (ROR 01c3xc117) are separate institutions with their own lineage ('related'), so the lineage filter
+excludes them. Michigan Medicine I4210114445 (ROR 01zcpa714) is 'related' both ways (api.ror.org v2, 2026-10-29)."""
+
+[web]
+domains = ["umich.edu"]
+email_domains = ["umich.edu", "med.umich.edu"]
+excluded_hosts = ["umd.umich.edu", "umflint.edu", "umdearborn.edu"]   # Dearborn (old domain umd.umich.edu) and Flint
+
+[affiliation]
+# 'University of Michigan' (any spelling of University, 'of' optional, 'Mich' abbreviated), not followed by Dearborn or
+# Flint; the umich.edu domain except Dearborn's old umd.umich.edu; 'UMich'; 'Michigan Medicine'. Never a bare 'Ann
+# Arbor' (Toyota Research Institute, NEC, Ford and others sit there) and never 'Michigan' alone (Michigan State,
+# Michigan Tech, Western / Eastern / Central Michigan).
+regex = '''univ\w*\.?\s+(?:of\s+)?mich(?:igan)?\b(?![\s,]*(?:[-–—]\s*)?(?:dearborn|flint)\b)|(?<!umd\.)umich\.edu|\bumich\b(?!\.edu)|\bmichigan\s+medicine\b'''
+own_units = '''\bmichigan\s+institute\s+for\s+(?:data\s+(?:science|and\s+ai\s+in\s+society)|computational\s+discovery(?:\s+(?:and|&)\s+engineering)?|clinical\s+(?:and|&)\s+health\s+research)\b|\binstitute\s+for\s+social\s+research\b|\blife\s+sciences\s+institute\b|\bmichigan\s+(?:robotics|neuroscience)\s+institute\b|\binstitute\s+for\s+healthcare\s+policy\s+(?:and|&)\s+innovation\b|\brobotics\s+institute\b'''
+must_match = [
+  "University of Michigan, Ann Arbor, MI 48109, USA",
+  "Computer Science and Engineering, University of Michigan",
+  "Univ. of Michigan",
+  "University of Michigan–Ann Arbor",
+  "Univ Mich, Dept EECS",
+  "University Michigan",
+  "Department of Computational Medicine and Bioinformatics, Michigan Medicine",
+  "jdoe@umich.edu",
+  "UMich",
+  "University of Michigan Medical School, Ann Arbor",
+]
+must_not_match = [
+  "University of Michigan-Dearborn",
+  "University of Michigan – Flint",
+  "University of Michigan, Dearborn, MI",
+  "University of Michigan Flint",
+  "Michigan State University",
+  "Western Michigan University",
+  "Michigan Technological University",
+  "Eastern Michigan University",
+  "jdoe@umd.umich.edu",
+  "Toyota Research Institute, Ann Arbor, MI",
+  "University of Michigan-Dearborn, Dearborn, MI 48128",
+]
+
+[dblp]
+# DBLP <note type="affiliation"> values are matched with [affiliation].regex (dump only; dblp.org is never fetched)
+affiliation_strings = ["University of Michigan"]
+legacy_sweep = ""
+
+[rules]
+foreign_title_exception = false
+
+[census]
+computing_departments = ["CSE", "ECE"]
+
+[site]
+depts = {CSE = "Computer Science and Engineering", ECE = "Electrical and Computer Engineering"}
+full_codes = ["CSE"]
+
+# --- departments -------------------------------------------------------------------------------------------------
+# Both are divisions of Electrical Engineering and Computer Science (EECS), College of Engineering. The live
+# cse.engin.umich.edu and ece.engin.umich.edu serve a Cloudflare challenge (2026-10-29), so both are Wayback-only.
+# Listing slots: filled from Wayback CDX discovery (stage 1, hierarchy/michigan/STAGE-1.md).
+[[departments]]
+code = "CSE"
+name = "Computer Science and Engineering"
+unit = "Electrical Engineering and Computer Science, College of Engineering"
+coverage = "full"
+url = "https://cse.engin.umich.edu/"
+
+[[departments]]
+code = "ECE"
+name = "Electrical and Computer Engineering"
+unit = "Electrical Engineering and Computer Science, College of Engineering"
+coverage = "affiliated"   # as Stanford EE: listed faculty count when computing is the object or method of their work
+url = "https://ece.engin.umich.edu/"
+
+# --- other units searched for computing-related faculty (stage 2) -------------------------------------------------
+[[affiliated_units]]
+code = "UMSI"
+name = "School of Information"
+url = "https://www.si.umich.edu/people/directory/faculty"
+
+[[affiliated_units]]
+code = "STATS"
+name = "Statistics"
+url = "https://lsa.umich.edu/stats/people/faculty.html"
+
+[[affiliated_units]]
+code = "ROB"
+name = "Robotics"
+url = "https://robotics.umich.edu/people/faculty/"
+
+[[affiliated_units]]
+code = "IOE"
+name = "Industrial and Operations Engineering"
+url = "https://ioe.engin.umich.edu/people/faculty/"
+
+[[affiliated_units]]
+code = "MATH"
+name = "Mathematics"
+url = "https://lsa.umich.edu/math/people/faculty.html"
+
+[[affiliated_units]]
+code = "LING"
+name = "Linguistics"
+url = "https://lsa.umich.edu/linguistics/people/faculty.html"
+
+[[affiliated_units]]
+code = "DCMB"
+name = "Computational Medicine and Bioinformatics (Medical School)"
+url = "https://medschool.umich.edu/departments/computational-medicine-bioinformatics"
+
+[[affiliated_units]]
+code = "BIOSTAT"
+name = "Biostatistics (School of Public Health)"
+url = "https://sph.umich.edu/biostat/"
+
+[[affiliated_units]]
+code = "ROSS"
+name = "Ross School of Business (Technology and Operations)"
+url = "https://michiganross.umich.edu/"
+
+# --- students ----------------------------------------------------------------------------------------------------
+[thesis]
+kind = "dspace"
+base_url = "https://deepblue.lib.umich.edu/"
+endpoints = ["https://deepblue.lib.umich.edu/dspace-oai/request", "https://deepblue.lib.umich.edu/server/api"]
+robots = "disallowed-for-ai-agents"
+note = """deepblue.lib.umich.edu/robots.txt (2026-10-29) allows '*' but disallows ClaudeBot, anthropic-ai and Claude-Web by
+name (and other AI crawlers), with 'Content-Signal: ai-train=no, use=reference'. This project's agents are Claude, so Deep
+Blue is not fetched, live or through its Wayback captures, until the owner decides (STAGE-0.md). Students come from the
+CSE/ECE PhD defence and graduation pages (Wayback), lab member pages and the PIs' own pages instead."""
+
+[students]
+sources = [
+  "CSE and ECE dissertation defence announcements (cse.engin.umich.edu/event/..., Wayback): 'Chair: Prof. X'",
+  "CSE and ECE PhD graduate / alumni lists (Wayback)",
+  "lab member pages and PI homepages (live where robots allows, else Wayback)",
+  "Deep Blue dissertations (dc.contributor.committeemember / chair): blocked pending the owner (see [thesis])",
+]
+
+[labpages]
+hints = ["web.eecs.umich.edu/~<uniqname>/", "<lab>.engin.umich.edu", "<lab>.eecs.umich.edu", "sites.google.com/umich.edu/<lab>", "github.io"]
+
+[store]
+path = "/n/fs/resemble/homogenizing-science/data/fulltext/michigan"
+
+# --- hosts (stage-0 gate: tools/school_hosts.py michigan) ----------------------------------------------------------
+# 2026-10-29: every umich.edu web host probed except robotics.umich.edu served a Cloudflare challenge ("Just a
+# moment...", HTTP 403) to a plain request, although each robots.txt allows it; they are Wayback-only. web.eecs.umich.edu
+# fails TLS verification (robots unreachable), so it is Wayback-only too. news/record.umich.edu and Deep Blue disallow AI
+# agents by name in robots.txt, so they are not used at all (not through Wayback either).
+[[hosts]]
+host = "web.archive.org"
+use = "live"
+purpose = "Wayback id_ captures and CDX (listings 2016-2026, defence pages, lab pages)"
+probe = "https://web.archive.org/web/2020id_/https://cse.engin.umich.edu/"
+
+[[hosts]]
+host = "cse.engin.umich.edu"
+use = "wayback-only"
+purpose = "CSE faculty listings, defence announcements, news"
+probe = "https://cse.engin.umich.edu/people/faculty/"
+
+[[hosts]]
+host = "ece.engin.umich.edu"
+use = "wayback-only"
+purpose = "ECE faculty listings, defence announcements"
+probe = "https://ece.engin.umich.edu/people/faculty/"
+
+[[hosts]]
+host = "deepblue.lib.umich.edu"
+use = "none"
+purpose = "dissertations with advisor fields"
+probe = "https://deepblue.lib.umich.edu/"
+
+[[hosts]]
+host = "www.si.umich.edu"
+use = "wayback-only"
+purpose = "School of Information faculty directory and profiles"
+probe = "https://www.si.umich.edu/people/directory/faculty"
+
+[[hosts]]
+host = "lsa.umich.edu"
+use = "wayback-only"
+purpose = "Statistics, Mathematics and Linguistics faculty pages"
+probe = "https://lsa.umich.edu/stats/people/faculty.html"
+
+[[hosts]]
+host = "robotics.umich.edu"
+use = "live"
+purpose = "Robotics department faculty"
+probe = "https://robotics.umich.edu/people/faculty/"
+
+[[hosts]]
+host = "ioe.engin.umich.edu"
+use = "wayback-only"
+purpose = "IOE faculty"
+probe = "https://ioe.engin.umich.edu/people/faculty/"
+
+[[hosts]]
+host = "medschool.umich.edu"
+use = "wayback-only"
+purpose = "Computational Medicine and Bioinformatics faculty"
+probe = "https://medschool.umich.edu/departments/computational-medicine-bioinformatics"
+
+[[hosts]]
+host = "sph.umich.edu"
+use = "wayback-only"
+purpose = "Biostatistics faculty"
+probe = "https://sph.umich.edu/biostat/"
+
+[[hosts]]
+host = "michiganross.umich.edu"
+use = "wayback-only"
+purpose = "Ross Technology and Operations faculty"
+probe = "https://michiganross.umich.edu/"
+
+[[hosts]]
+host = "news.umich.edu"
+use = "none"
+purpose = "appointment announcements (periods)"
+probe = "https://news.umich.edu/"
+
+[[hosts]]
+host = "record.umich.edu"
+use = "none"
+purpose = "Regents' appointment records (periods)"
+probe = "https://record.umich.edu/"
+
+[[hosts]]
+host = "web.eecs.umich.edu"
+use = "wayback-only"
+purpose = "faculty homepages (~uniqname) and lab pages"
+probe = "https://web.eecs.umich.edu/"
+
+[[hosts]]
+host = "api.openalex.org"
+use = "live"
+purpose = "the institution sweep and author lookups (key from ~/.config/cs-atlas/openalex.env)"
+probe = ""
+
+[[hosts]]
+host = "api.ror.org"
+use = "live"
+purpose = "ROR relationships (stage 0)"
+probe = ""

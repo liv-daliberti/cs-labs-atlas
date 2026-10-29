@@ -1,0 +1,94 @@
+# schools/<key>.toml: one school's charter (docs/ADDING-A-SCHOOL.md, stage 0). Copy this file to schools/<key>.toml,
+# fill every field, run `python tools/school_config.py --check <key>` and `python tools/school_hosts.py <key>`, then
+# commit it. Every stage tool reads the school from here; nothing else needs a school list (see the protocol's
+# "files that must learn a new school" for the few that still do).
+#
+# Facts in this file are decisions about where to look, not evidence: evidence (url + sha256 + verbatim quote) lives in
+# the captures and the stage outputs. Say how each identifier was verified in the *_note fields.
+
+key = ""                  # lower-case, [a-z0-9]+; the folder name everywhere (hierarchy/<key>, stores/<key>, schools/<key>)
+name = ""                 # full official name ("University of Michigan")
+short = ""                # display name ("Michigan")
+site_uni = ""             # the 300-university atlas id (SITE_DATA/universities/<site_uni>.json.gz), if any
+status = "onboarding"     # onboarding | released. Only released schools are in atlas_paths.SCHOOL_IDS (the build,
+                          # the release, the tree); flip it at stage 10, never earlier
+order = 0                 # display and build order (released schools are listed in this order)
+stage = 0                 # the last stage whose gate passed (hierarchy/<key>/STAGE-<n>.md)
+started = ""              # YYYY-MM-DD the onboarding started
+window = [2016, 2026]     # the study window (owner rule; do not change per school)
+
+[ids]
+openalex = []             # institution ids whose lineage IS the school (authorships.institutions.lineage); the first is primary
+openalex_related = []     # related (not lineage) institutions whose works are swept too; an authorship tagged only with
+                          # one of these counts for the school only when its raw string matches [affiliation].regex
+openalex_excluded = []    # same-name institutions that are NOT the school (other campuses), for the record and the tests
+ror = ""                  # https://ror.org/<id> of the school
+ids_note = ""             # how the ids and the lineage were verified (API call, date)
+
+[web]
+domains = []              # web domains of the school (the affiliation regex's domain part comes from these)
+email_domains = []
+excluded_hosts = []       # hosts under the school's domain that belong to another institution (other campuses)
+
+[affiliation]
+# Python regex, matched case-insensitively against raw affiliation strings and page-1 text. It must name the
+# institution, never a bare town. Add every must_match / must_not_match case you checked; --check runs them.
+regex = ''
+own_units = ''            # R-PAP-09: the school's own unit names that contain an institution word ('... Institute')
+must_match = []
+must_not_match = []
+
+[dblp]
+affiliation_strings = []  # substrings of DBLP person <note type="affiliation"> values that name the school (dump only)
+legacy_sweep = ""         # pre-protocol schools only: the base sweep holding cached DBLP lists (pi_hierarchy.DBLP)
+
+[rules]
+foreign_title_exception = false   # R-PAP-15: true where non-English book titles are originals, not translations (EPFL)
+
+# One table per department. coverage: full (every listed faculty member is a census candidate, as for the CS
+# departments) | affiliated (only members whose computing work is the object or method of their research).
+# Listing slots are captured once per year 2016-2026 from Wayback (`id_` URLs); url is the CDX key without scheme.
+[[departments]]
+code = ""                 # short code used in the census 'departments' field and the site's mapping ("CSE")
+name = ""
+unit = ""                 # the parent unit ("Electrical Engineering and Computer Science, College of Engineering")
+coverage = "full"
+url = ""
+  [[departments.listings]]
+  slot = ""               # unique name of the slot
+  kind = "main"           # main | emeritus | adjunct | lecturer | courtesy | research | staff
+  url = ""                # Wayback CDX url key, no scheme ("cse.engin.umich.edu/people/faculty/")
+  from = "20160101"       # first capture date the slot is valid for (YYYYMMDD)
+  to = "20261231"
+  prefix = false          # CDX matchType=prefix (paged listings)
+  match = ""              # regex the capture's original URL must match (with prefix)
+
+# Units outside the full-coverage departments where computing-related faculty are looked for (stage 2).
+[[affiliated_units]]
+code = ""
+name = ""
+url = ""                  # the unit's people page (live or Wayback), when robots allows
+
+[thesis]
+kind = ""                 # dspace | datacite | proquest-free | none
+base_url = ""
+endpoints = []            # OAI-PMH / REST endpoints, when robots allows them
+robots = ""               # allowed | disallowed | disallowed-for-ai-agents | unreachable  (from tools/school_hosts.py)
+note = ""
+
+[students]
+sources = []              # in the protocol's order of preference: thesis repository, defence / graduation lists, lab pages
+
+[labpages]
+hints = []                # lab directories and naming patterns ("<x>.engin.umich.edu", "web.eecs.umich.edu/~<uniqname>")
+
+[store]
+path = ""                 # <STORES>/<key> (atlas_paths.store(key)); the organized root links stores/<key> to it
+
+# Every host the stage tools will fetch from. tools/school_hosts.py <key> fetches each robots.txt (requests, timeout),
+# records status, crawl delay and the decision in hierarchy/<key>/hosts.json, and fails the stage-0 gate on any host
+# whose recorded decision disagrees with what it finds. use = live | wayback-only | none.
+[[hosts]]
+host = ""
+use = "live"
+purpose = ""

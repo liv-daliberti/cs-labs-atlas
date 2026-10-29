@@ -11,10 +11,11 @@ Overrides: CS_ATLAS_ROOT moves the organized root (and with it WORK, the tree an
 be overridden by CS_ATLAS_<NAME> (for example CS_ATLAS_SWEEPS, CS_ATLAS_SITE_ROOT, CS_ATLAS_ENV_PY).
 """
 import os
+import re
 import sys
 from pathlib import Path
 
-SCHOOL_IDS = ['princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford']
+SCHOOL_IDS_STATIC = ['princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford']  # fallback when schools/ is unreadable
 
 # (name, default, derived-from-ROOT?) in dependency order; a derived default is relative to ROOT or WORK
 _SPEC = [
@@ -22,6 +23,7 @@ _SPEC = [
     ('WORK', 'work', 'ROOT'),                       # the working root: code, inputs, built packages
     ('TOOLS', 'tools', 'WORK'),
     ('TESTS', 'tests', 'WORK'),
+    ('SCHOOL_CONFIGS', 'schools', 'WORK'),         # the school charters schools/<key>.toml (tools/school_config.py)
     ('HIERARCHY', 'hierarchy', 'WORK'),             # built packages hierarchy/<school>/ and the reviewed inputs
     ('CENSUS', 'census', 'WORK'),
     ('PERIODS', 'periods', 'WORK'),
@@ -59,6 +61,7 @@ def _resolve(env=None):
 _P = _resolve()
 globals().update(_P)
 ROOT = _P['ROOT']; WORK = _P['WORK']; TOOLS = _P['TOOLS']; TESTS = _P['TESTS']; HIERARCHY = _P['HIERARCHY']
+SCHOOL_CONFIGS = _P['SCHOOL_CONFIGS']
 CENSUS = _P['CENSUS']; PERIODS = _P['PERIODS']; LISTINGS = _P['LISTINGS']; CAPTURES = _P['CAPTURES']
 FULLTEXT_PUSH = _P['FULLTEXT_PUSH']; AI_WRITING = _P['AI_WRITING']; SCHOOLS_TREE = _P['SCHOOLS_TREE']; RELEASES = _P['RELEASES']
 STORES = _P['STORES']; STANFORD_STORE = _P['STANFORD_STORE']; HOMOGENIZING = _P['HOMOGENIZING']; SWEEPS = _P['SWEEPS']
@@ -67,6 +70,27 @@ ENV_PY = _P['ENV_PY']; ENV_LIB = _P['ENV_LIB']; HF_HOME = _P['HF_HOME']; COLLECT
 SITE_DATA = SITE_ROOT / 'atlas/data'               # collection-<school>.json.gz, universities/
 DBLP_DUMP_XML = DBLP_DUMP / DBLP_DUMP_FILE
 HOMOGENIZING_SCRIPTS = HOMOGENIZING / 'scripts'
+
+
+def _released_schools(d):
+    """The released schools in charter order, read from schools/<key>.toml with two line patterns (stdlib only, so this
+    module stays importable by any Python 3.6+): `status = "released"` and `order = N`. A school being onboarded
+    (status = "onboarding") is not in SCHOOL_IDS: the build, the release and the tree never see it before stage 10."""
+    out = []
+    try:
+        for f in sorted(Path(d).glob('*.toml')):
+            if f.stem == 'TEMPLATE':
+                continue
+            t = f.read_text()
+            st = re.search(r'^status\s*=\s*"([a-z]+)"', t, re.M); od = re.search(r'^order\s*=\s*(\d+)', t, re.M)
+            if st and st.group(1) == 'released':
+                out.append((int(od.group(1)) if od else 999, f.stem))
+    except OSError:
+        return []
+    return [k for _, k in sorted(out)]
+
+
+SCHOOL_IDS = _released_schools(SCHOOL_CONFIGS) or list(SCHOOL_IDS_STATIC)
 
 
 def sweep(name):
