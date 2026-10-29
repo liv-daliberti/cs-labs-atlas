@@ -1,0 +1,43 @@
+{
+ "_doc": "Whitelisted evidence-check violations (tools/evidence_check.py; docs/RULES.md R-AUD-05), 2026-10-29. Each entry: the most violations allowed for one category and school, and why they cannot be fixed in this build. A count above max fails the check and holds the release. Lower the counts as the gaps are fixed; never raise one without a reason.",
+ "student_relation": {
+  "cmu": {
+   "max": 6236,
+   "of": 19991,
+   "why": "CMU's site collection gives these advising contexts (source_advising_context: MLD alumni index, CSD profiles, SCS thesis reports, KiltHub thesis records) as bare URLs with no sha256 and no quote (6,236 relations; 2,411 without a hash, 3,814 with a hash but no quote, 11 with no source); the pages were never captured with a quote. Fix: re-capture the cited pages and cut the student's line as the quote.",
+   "decided": "2026-10-29"
+  },
+  "epfl": {
+   "max": 5266,
+   "of": 9543,
+   "why": "EPFL's site collection kept the sha256 of each capture (EDIC student lists and published-theses pages, Infoscience OAI records, lab pages) but no quote; the capture bodies sat under /n/fs/similarity, which was removed in the 2026-10-28 migration. Fix: re-fetch the archived captures by URL, check the sha256, and cut the student's line as the quote.",
+   "decided": "2026-10-29"
+  },
+  "mit": {
+   "max": 5827,
+   "of": 10590,
+   "why": "MIT's site collection cites DSpace item API records through a metadata snapshot (repository-items.json.gz, no sha256 of the response) for academic_advising, and CSAIL group pages with a sha256 but no quote for direct_lab_membership. Fix: hash the DSpace item responses and quote the advisor field; cut the member's line from the CSAIL group captures.",
+   "decided": "2026-10-29"
+  }
+ },
+ "link_relation_source": {
+  "cmu": {
+   "max": 521,
+   "of": 14824,
+   "why": "A byline link carries the student's roster source (relation_source); these links belong to students every one of whose relations is one of the whitelisted student_relation sources above, so the link carries the best source there is (url, and a sha256 where one exists) but no quote. They clear when those relations do.",
+   "decided": "2026-10-29"
+  },
+  "epfl": {
+   "max": 95,
+   "of": 9546,
+   "why": "A byline link carries the student's roster source (relation_source); these links belong to students every one of whose relations is one of the whitelisted student_relation sources above, so the link carries the best source there is (url, and a sha256 where one exists) but no quote. They clear when those relations do.",
+   "decided": "2026-10-29"
+  },
+  "mit": {
+   "max": 7894,
+   "of": 19843,
+   "why": "A byline link carries the student's roster source (relation_source); these links belong to students every one of whose relations is one of the whitelisted student_relation sources above, so the link carries the best source there is (url, and a sha256 where one exists) but no quote. They clear when those relations do.",
+   "decided": "2026-10-29"
+  }
+ }
+}

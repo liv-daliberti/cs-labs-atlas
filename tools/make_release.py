@@ -54,7 +54,7 @@ def git(*a):
 
 def tracked_inputs():
     """The reviewed inputs: every tracked JSON/CSV file outside tests/ (the .gitignore whitelist names them)."""
-    return [f for f in git('ls-files', '*.json', '*.csv').split('\n') if f and not f.startswith('tests/')]
+    return provenance.tracked_inputs()  # the accuracy sample (accuracy/) is a measurement, not an input
 
 
 def code_state():

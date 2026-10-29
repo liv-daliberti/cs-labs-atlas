@@ -39,8 +39,22 @@ BUILD_CODE = ['tools/pi_hierarchy.py', 'tools/atlas_paths.py', 'tools/provenance
 NOT_BUILD = ('fulltext-push/', 'ai-writing/')
 
 
+def onboarding_schools():
+    """Schools with a charter (schools/<key>.toml) that are not released yet (not in atlas_paths.SCHOOL_IDS): their inputs
+    are not this build's and stay out of the release until the school is admitted."""
+    d = getattr(P, 'SCHOOL_CONFIGS', P.WORK / 'schools')
+    return {f.stem for f in Path(d).glob('*.toml')} - set(P.SCHOOL_IDS) - {'TEMPLATE'} if Path(d).is_dir() else set()
+
+
+def of_onboarding_school(f, keys=None):
+    keys = onboarding_schools() if keys is None else keys
+    parts = f.split('/')
+    return any(x in keys or x.split('-')[0] in keys for x in parts)
+
+
 def is_build_path(f):
-    return any(f == b or (b.endswith('/') and f.startswith(b)) for b in BUILD_CODE) or (f.endswith(('.json', '.csv')) and not f.startswith('tests/'))
+    return (any(f == b or (b.endswith('/') and f.startswith(b)) for b in BUILD_CODE)
+            or (f.endswith(('.json', '.csv')) and not f.startswith(('tests/', 'accuracy/')) and not of_onboarding_school(f)))
 
 
 def sha256(p):
@@ -82,7 +96,9 @@ def rule_ids():
 
 def tracked_inputs():
     """The reviewed inputs: every tracked JSON/CSV file outside tests/ (the .gitignore whitelist names them)."""
-    return [f for f in _git('ls-files', '*.json', '*.csv').split('\n') if f and not f.startswith('tests/')]
+    keys = onboarding_schools()
+    return [f for f in _git('ls-files', '*.json', '*.csv').split('\n') if f and not f.startswith(('tests/', 'accuracy/'))
+            and not of_onboarding_school(f, keys)]
 
 
 def openalex_sweep(school):
