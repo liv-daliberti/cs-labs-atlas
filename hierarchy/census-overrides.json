@@ -3405,6 +3405,36 @@
      }
     ]
    }
+  },
+  "Cynthia Rudin": {
+   "periods": [
+    {
+     "id": "override_period_mit_cynthia_rudin",
+     "start": "2009",
+     "end": "2016",
+     "asof": "2026-10-29",
+     "datePrecision": "year",
+     "evidence": [
+      {
+       "url": "https://users.cs.duke.edu/~cynthia/cv.pdf",
+       "sha256": "3dc40c52820aa01d74ee0ec147613c0347dedc785e53d5a92918db99f36d6221",
+       "quote": "Massachusetts Institute of Technology, MIT Computer Science and Artificial Intelligence Laboratory and Sloan School of Management, Associate Professor of Statistics 2013-2016, Assistant Professor of Statistics 2009-2013"
+      },
+      {
+       "url": "https://users.cs.duke.edu/~cynthia/cv.pdf",
+       "sha256": "3dc40c52820aa01d74ee0ec147613c0347dedc785e53d5a92918db99f36d6221",
+       "quote": "Associate Professor 2016-2019, Professor 2019-2024, Distinguished Professor 2024-present"
+      },
+      {
+       "url": "https://www.csail.mit.edu/csaildirectoryoutput/pi",
+       "capture_url": "https://web.archive.org/web/20160329035244id_/https://www.csail.mit.edu/csaildirectoryoutput/pi",
+       "sha256": "fff89ef44e7be3a76704647b2ffb25610f0f8e9be3f6dca17bb971ad0d702a52",
+       "quote": "\"label\":\"Cynthia Rudin\", \"name\":\"Rudin Cynthia\", \"email\":\"rudin@mit.edu\", \"phone\":\"+1 (617) 258-7579\", \"url\":\"/user/3770\", \"position\":\"Associate Professor\""
+      }
+     ]
+    }
+   ],
+   "note_20261029": "period from the 2026-10-29 home-department pass (hierarchy/logs/tmp-ids/homedept/exclusions-proposed.json): MIT Sloan (and CSAIL) Associate Professor of Statistics until 2016, then Duke (Associate Professor from 2016). Her only window year at MIT is 2016; the census has rank 'ladder' with no periods, so every 2016-2026 MIT-affiliated paper currently counts. Keep her in the MIT census only for 2016 (end 2016; the CV gives years only, a Duke start of July 2016 is likely but not evidenced), or exclude if a"
   }
  },
  "cmu": {
@@ -9550,6 +9580,13 @@
      "reviewed": "2026-10-28"
     }
    ]
+  },
+  "Tom Griffiths": {
+   "dblp": [
+    "https://dblp.org/pid/34/4472"
+   ],
+   "orcid": "0000-0002-5138-7255",
+   "why_identity": "2026-10-29 (atlas ids, cross-school persons): DBLP person 34/4472 (DBLP dump 2026-09-01, hierarchy/dblp-dump-persons.json.gz) is 'Thomas L. Griffiths 0001' / 'Tom Griffiths 0001' with affiliations 'Princeton University, Department of Psychology, NJ, USA' and 'University of California, Berkeley, Department of Psychology, USA' and ORCID 0000-0002-5138-7255; the Berkeley PI 'Thomas Griffiths' carries the same DBLP id and ORCID, and its reviewed basis says he moved to Princeton in 2018 and is the same person."
   }
  },
  "epfl": {
@@ -21161,6 +21198,55 @@
      "reviewed": "2026-10-28"
     }
    ]
+  },
+  "Sharad Goel": {
+   "periods": [
+    {
+     "id": "override_period_stanford_sharad_goel",
+     "start": "2016",
+     "end": "2021-07",
+     "asof": "2026-10-29",
+     "datePrecision": "month",
+     "evidence": [
+      {
+       "url": "https://profiles.stanford.edu/sharad-goel",
+       "capture_url": "https://web.archive.org/web/20210117063021id_/https://profiles.stanford.edu/sharad-goel",
+       "sha256": "91ddc73efebed204362b0cf6ce050bdfabbbcce49608857fb3cb839f30a5055e",
+       "quote": "Academic Appointments Assistant Professor, Management Science and Engineering"
+      },
+      {
+       "url": "https://5harad.com/",
+       "capture_url": "https://web.archive.org/web/20210615214833id_/https://5harad.com/",
+       "sha256": "9e60849023244792a06db8418da9a475e6b721416f0ac2b7bf4053f5dac15928",
+       "quote": "Hello! I’m an assistant professor at Stanford University in the Department of Management Science & Engineering"
+      },
+      {
+       "url": "https://5harad.com/",
+       "capture_url": "https://web.archive.org/web/20210724204734id_/https://5harad.com/",
+       "sha256": "d58e09fd2de1babf65529bc70eb8abe9c7419b59e604f04beb557f2a48fadf63",
+       "quote": "Hello! I’m a Professor of Public Policy at Harvard Kennedy School",
+       "kind": "faculty_end_moved"
+      }
+     ]
+    }
+   ],
+   "note_20261029": "period from the 2026-10-29 home-department pass (hierarchy/logs/tmp-ids/homedept/exclusions-proposed.json): Assistant Professor of MS&E (courtesy CS) through at least 2021-06-15; his homepage names Harvard Kennedy School by 2021-07-24, and the Stanford profile has no appointment lines by 2021-08-04 (sha256 498765f42daf60f8). End = 2021-07 (bounded 2021-06-15..2021-07-24). Start 2016 is the window floor (CS directory lists him from the 2016 capture; he joined Stanford before the window). Census rank is '"
+  }
+ },
+ "michigan": {
+  "Chad Jenkins": {
+   "aliases": [
+    "Odest Chadwicke Jenkins"
+   ],
+   "why_aliases": "2026-10-29, Michigan request 5: DBLP person 99/4449 'Odest Chadwicke Jenkins' is the CSE listing's 'Chad Jenkins' (census_alias decision in hierarchy/michigan/cs-related-review.json)."
+  },
+  "Satinder Singh Baveja": {
+   "aliases": [
+    "Satinder Singh",
+    "Satinder P. Singh",
+    "Satinder Pal Singh"
+   ],
+   "why_aliases": "2026-10-29, Michigan request 5: the CSE listing's 'Satinder Singh Baveja' (Robotics: 'Satinder Singh Baveja Professor') is DBLP person 09/3058 'Satinder Singh' (census_alias decision in hierarchy/michigan/cs-related-review.json)."
   }
  }
 }
