@@ -66,7 +66,7 @@ if has release; then
   if [ $fail != 0 ]; then echo "== release skipped: a stage failed"
   elif [ $swings != 0 ] && [ "${ALLOW_SWINGS:-0}" != 1 ]; then echo "== release skipped: regression swings (hierarchy/BUILD-REGRESSION.md); ALLOW_SWINGS=1 releases anyway"
   else
-    echo "== release $(date +%T)"; $PY tools/make_release.py --before "$BEFORE/counts.json" || fail=1
+    echo "== release $(date +%T)"; $PY tools/make_release.py --before "$BEFORE/counts.json" $([ "${ALLOW_SWINGS:-0}" = 1 ] && echo --allow-swings) || fail=1
   fi
 fi
 if has tree && [ $fail = 0 ]; then
