@@ -23,8 +23,9 @@ sys.path.insert(0, str(Path(__file__).parent))
 from pi_hierarchy import Name, HERE  # noqa: E402
 from dblp_dump_index import Index  # noqa: E402
 
-INST = {'princeton': 'I20089843', 'cmu': 'I74973139', 'epfl': 'I5124864', 'mit': 'I63966007', 'berkeley': 'I95457486'}
-SCHOOLS = list(INST)
+import school_config as S  # noqa: E402  (the school charters)
+INST = {k: S.inst(k) for k in S.keys()}
+SCHOOLS = ['princeton', 'cmu', 'epfl', 'mit', 'berkeley']  # the default run (2026-10-22); name any other school on the command line
 
 
 def works(school):

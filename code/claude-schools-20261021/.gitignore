@@ -61,8 +61,11 @@ __pycache__/
 /hierarchy/labpage-tools-epfl-berkeley/local/
 /hierarchy/period-tools/proposals/
 /hierarchy/cmu/labpage-parts/
+/hierarchy/*/tmp/
 /fulltext-push/local-reuse/ident/
 /fulltext-push/local-reuse/lists/
 
-# the accuracy sample (another agent, in progress 2026-10-29): admit it once it settles
-/accuracy/
+# the accuracy sample (2026-10-29; admitted once its secret scan was clean): code, report, verdicts, re-checks; its API cache stays out
+!accuracy/*.json
+!accuracy/*.jsonl
+/accuracy/cache/

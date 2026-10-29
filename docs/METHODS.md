@@ -136,13 +136,13 @@ the strict PI-lab model.
 <!-- student-audit:start -->
 | | princeton | cmu | epfl | mit | berkeley | stanford |
 |---|---|---|---|---|---|---|
-| Lab–student pairs | 3,524 | 9,382 | 3,986 | 7,652 | 4,452 | 3,218 |
+| Lab–student pairs | 3,524 | 9,378 | 3,984 | 7,649 | 4,451 | 3,214 |
 | Probable duplicate pairs within one lab | 0 | 1 | 0 | 0 | 0 | 0 |
 | People under several student ids across labs | 47 | 99 | 13 | 329 | 21 | 13 |
 | Papers linked to two ids of one person | 0 | 0 | 0 | 0 | 0 | 0 |
-| Students with probably missed paper links | 52 | 298 | 27 | 136 | 124 | 99 |
-| Probably missed student–paper links | 189 | 856 | 123 | 541 | 355 | 299 |
-| Students with no paper link | 1,927 | 3,699 | 1,481 | 3,638 | 1,346 | 560 |
+| Students with probably missed paper links | 52 | 296 | 27 | 137 | 124 | 98 |
+| Probably missed student–paper links | 189 | 849 | 123 | 532 | 356 | 298 |
+| Students with no paper link | 1,929 | 3,710 | 1,480 | 3,656 | 1,359 | 596 |
 <!-- student-audit:end -->
 
   "Students with no paper link" is not an error by itself: many students (undergraduate and master's thesis students,

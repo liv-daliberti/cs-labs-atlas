@@ -1,6 +1,6 @@
 {
  "school": "berkeley",
- "builtAt": "2026-10-29T18:31:58.521841Z",
+ "builtAt": "2026-10-29T20:48:28.651439Z",
  "counts": {
   "census_rows_merged_by_nickname": 2,
   "listing_years_after_move": 0,
@@ -9,14 +9,15 @@
   "pis_without_person": 89,
   "labs_reused": 111,
   "labs_new": 98,
+  "student_records_rekeyed_from_pi_person_id": 3,
   "student_names_cleaned": 19,
   "student_corrections_replace_sources": 1,
-  "student_records_merged": 73,
+  "student_records_merged": 74,
   "pi_listed_as_own_student_dropped": 0,
   "student_same_name_other_labs_unmerged": 13,
   "pis_with_students": 208,
-  "students": 3874,
-  "lab_student_pairs": 4452,
+  "students": 3873,
+  "lab_student_pairs": 4451,
   "dblp_ids_dropped_name_mismatch": 0,
   "dblp_dump_titles_added": 18900,
   "pis_orcid_from_dblp": 79,
@@ -27,45 +28,68 @@
   "other_pi_reviewed_ids_blocked": 23510,
   "sweep_name_hits": 16985,
   "surname_only_hits_by_anchored_id": 73,
-  "pi_work_list_hits": 7829,
-  "hit_without_school_affiliation": 6779,
-  "hit_without_identity": 379,
-  "outside_appointment": 418,
-  "school_via_advisee_coauthor": 106,
-  "school_via_unaffiliated_byline_advisee": 1130,
-  "unaffiliated_transition_year_outside": 11,
+  "pi_work_page1_dblp_hits": 4,
+  "pi_work_list_hits": 7833,
+  "hit_without_school_affiliation": 6687,
+  "hit_without_identity": 380,
+  "outside_appointment": 405,
+  "school_via_bare_unit": 34,
+  "school_via_advisee_coauthor": 95,
+  "dated_by_venue_version": 879,
+  "dated_before_window": 14,
+  "school_via_unaffiliated_byline_advisee": 1035,
+  "unaffiliated_page1_unchecked": 435,
+  "unaffiliated_page1_read_kept": 538,
+  "unaffiliated_page1_elsewhere": 62,
+  "unaffiliated_transition_year_outside": 8,
   "dblp_recovered_lab_papers": 342,
-  "labpage_recovered_lab_papers": 25,
+  "labpage_recovered_lab_papers": 23,
   "namesake_claims_dropped": 0,
+  "not_paper:editorial": 31,
+  "not_paper:meeting_abstract:single_author": 39,
+  "not_paper:meeting_abstract:venue": 71,
+  "not_paper:meeting_abstract:doi": 20,
+  "not_paper:software_record": 27,
+  "not_paper:oberwolfach_report": 7,
+  "single_author_abstract_kept_dblp_coauthors": 1,
+  "not_paper:workshop_proposal": 2,
+  "not_paper:meeting_abstract:journal": 4,
+  "not_paper:meeting_abstract:title": 1,
+  "not_paper:dagstuhl_report": 4,
+  "not_paper:repository_supplement": 4,
+  "not_paper:machine_translation": 13,
+  "not_paper:erratum": 5,
+  "not_paper_dropped": 228,
   "book_chapters_folded": 226,
+  "book_chapters_folded_by_doi_prefix": 0,
   "translated_editions_dropped": 1,
-  "edition_records_merged": 1070,
-  "lab_papers": 16366,
+  "edition_records_merged": 1059,
+  "lab_papers": 16182,
   "lab_papers_in_collection": 0,
-  "lab_papers_new": 16366,
-  "lab_papers_by_period": 7857,
-  "lab_papers_by_listing": 8509,
-  "identity:pi_orcid": 5796,
-  "identity:reviewed_openalex_author_id": 6472,
-  "identity:advisee_coauthor": 518,
+  "lab_papers_new": 16182,
+  "lab_papers_by_period": 7747,
+  "lab_papers_by_listing": 8435,
+  "identity:pi_orcid": 5790,
+  "identity:reviewed_openalex_author_id": 6416,
+  "identity:advisee_coauthor": 508,
   "identity:dblp_person_page_doi": 1036,
-  "identity:anchored_author_id": 2062,
+  "identity:anchored_author_id": 2008,
   "identity:pi_institutional_publication_list": 24,
   "identity:dblp_person_page_title": 135,
   "identity:lab_publication_page": 27,
-  "identity:dblp_person_page": 270,
-  "identity:labpage_listing": 25,
+  "identity:labpage_listing": 23,
+  "identity:dblp_person_page": 214,
   "identity:advisee_anchored_author_id": 1,
   "link_guard_removed_hyphenated_given": 16,
-  "link_guard_removed_different_full_given": 6,
-  "link_guard_kept_prefix_or_spelling_variant": 31,
+  "link_guard_removed_different_full_given": 5,
+  "link_guard_kept_prefix_or_spelling_variant": 28,
   "students_dropped_program_or_reader_only": 2,
-  "student_paper_links": 16775,
+  "student_paper_links": 16537,
   "labs_with_student_papers": 196,
-  "student_link:byline_name_with_school_affiliation": 11707,
-  "student_link:advisee_name_on_lab_paper_byline": 4746,
-  "student_link:within_lab_byline_match": 23,
-  "student_link:full_name_on_lab_paper_byline": 299,
+  "student_link:byline_name_with_school_affiliation": 11667,
+  "student_link:advisee_name_on_lab_paper_byline": 4548,
+  "student_link:within_lab_byline_match": 21,
+  "student_link:full_name_on_lab_paper_byline": 301,
   "pis_with_lab_papers": 208,
   "pis_complete_chain": 196
  },
@@ -254,12 +278,6 @@
    "student": "Eyal Sela",
    "byline": "Gur-Eyal Sela",
    "oa": "https://openalex.org/W4313175388"
-  },
-  {
-   "pi": "Pieter Abbeel",
-   "student": "Xinyue Chen",
-   "byline": "Chen, Xin",
-   "oa": "https://openalex.org/W3201446109"
   },
   {
    "pi": "Michael Jordan",
@@ -474,12 +492,6 @@
    "oa": "https://openalex.org/W4389115483"
   },
   {
-   "pi": "Michael Lustig",
-   "student": "Naz Khairallah",
-   "byline": "Nazem Khairallah",
-   "oa": "https://openalex.org/W4401575725"
-  },
-  {
    "pi": "Joseph Gonzalez",
    "student": "Vlad Feinberg",
    "byline": "Feinberg, Vladimir",
@@ -498,22 +510,1351 @@
    "oa": "https://openalex.org/W4385681389"
   },
   {
-   "pi": "Michael Lustig",
-   "student": "Fredric Wang",
-   "byline": "Frederic Wang",
-   "oa": "https://openalex.org/W4401575865"
-  },
-  {
-   "pi": "Michael Lustig",
-   "student": "Naz Khairallah",
-   "byline": "Nazem Khairallah",
-   "oa": "https://openalex.org/W4414235843"
-  },
-  {
    "pi": "Hany Farid",
    "student": "Maty Bohacek",
    "byline": "Bohacek, Matyas",
    "oa": "https://openalex.org/W4388927659"
   }
- ]
+ ],
+ "notPaperSamples": {
+  "editorial": [
+   {
+    "pi": "Alexei (Alyosha) Efros",
+    "oa": "https://openalex.org/W2439008315",
+    "title": "Guest Editorial: Big Data",
+    "venue": "International Journal of Computer Vision",
+    "type": "editorial",
+    "doi": "10.1007/s11263-016-0914-5"
+   },
+   {
+    "pi": "Javad Lavaei",
+    "oa": "https://openalex.org/W2437447102",
+    "title": "Guest Editorial The Theory of Complex Systems With Applications to Smart Grid Operations",
+    "venue": "IEEE Transactions on Smart Grid",
+    "type": "editorial",
+    "doi": "10.1109/tsg.2016.2575418"
+   },
+   {
+    "pi": "Ken Goldberg",
+    "oa": "https://openalex.org/W2528725498",
+    "title": "Editorial: “One Robot is Robotics, Ten Robots is Automation”",
+    "venue": "IEEE Transactions on Automation Science and Engineering",
+    "type": "editorial",
+    "doi": "10.1109/tase.2016.2606859"
+   },
+   {
+    "pi": "Claire Tomlin",
+    "oa": "https://openalex.org/W2199999532",
+    "title": "Guest Editorial Special Section on Human-Centered Automation",
+    "venue": "IEEE Transactions on Automation Science and Engineering",
+    "type": "editorial",
+    "doi": "10.1109/tase.2015.2503538"
+   },
+   {
+    "pi": "Jan M. Rabaey",
+    "oa": "https://openalex.org/W2552703515",
+    "title": "Guest Editorial Special Issue on Sensors and Interfaces for Mobile Healthcare",
+    "venue": "IEEE Sensors Journal",
+    "type": "editorial",
+    "doi": "10.1109/jsen.2016.2616738"
+   },
+   {
+    "pi": "Alexandre Bayen",
+    "oa": "https://openalex.org/W2331553902",
+    "title": "Guest Editorial Special Section on Control and Automation From the 2015 International Conference on Cyber-Physical Systems (ICCPS)",
+    "venue": "IEEE Transactions on Automation Science and Engineering",
+    "type": "editorial",
+    "doi": "10.1109/tase.2016.2541238"
+   },
+   {
+    "pi": "Ken Goldberg",
+    "oa": "https://openalex.org/W2213731917",
+    "title": "Editorial Fine-Tuning T-ASE",
+    "venue": "IEEE Transactions on Automation Science and Engineering",
+    "type": "editorial",
+    "doi": "10.1109/tase.2015.2503808"
+   },
+   {
+    "pi": "Elad Alon",
+    "oa": "https://openalex.org/W2559156534",
+    "title": "Introduction to the December Special Issue on the 2016 IEEE International Solid-State Circuits Conference",
+    "venue": "IEEE Journal of Solid-State Circuits",
+    "type": "editorial",
+    "doi": "10.1109/jssc.2016.2621918"
+   },
+   {
+    "pi": "Jitendra Malik",
+    "oa": "https://openalex.org/W2772198268",
+    "title": "Editorial- Deep Learning for Computer Vision",
+    "venue": "Computer Vision and Image Understanding",
+    "type": "editorial",
+    "doi": "10.1016/j.cviu.2017.11.006"
+   },
+   {
+    "pi": "Javad Lavaei",
+    "oa": "https://openalex.org/W2766740286",
+    "title": "Guest Editorial Distributed Control and Efficient Optimization Methods for Smart Grid",
+    "venue": "IEEE Transactions on Smart Grid",
+    "type": "editorial",
+    "doi": "10.1109/tsg.2017.2758907"
+   }
+  ],
+  "meeting_abstract:single_author": [
+   {
+    "pi": "Michael Jordan",
+    "oa": "https://openalex.org/W2474482331",
+    "title": "On Computational Thinking, Inferential Thinking and Data Science",
+    "venue": "ACM Symposium on Parallelism in Algorithms and Architectures (SPAA)",
+    "type": "conference-abstract",
+    "doi": "10.1145/2935764.2935826"
+   },
+   {
+    "pi": "Joseph M. Hellerstein",
+    "oa": "https://openalex.org/W2516470118",
+    "title": "People, Computers, and The Hot Mess of Real Data",
+    "venue": "ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (KDD)",
+    "type": "conference-abstract",
+    "doi": "10.1145/2939672.2945356"
+   },
+   {
+    "pi": "Doug Tygar",
+    "oa": "https://openalex.org/W2316545501",
+    "title": "Security Analytics in the Context of Adversarial Machine Learning",
+    "venue": null,
+    "type": "conference-abstract",
+    "doi": "10.1145/2875475.2875488"
+   },
+   {
+    "pi": "Laura Waller",
+    "oa": "https://openalex.org/W2582307284",
+    "title": "Large-scale computational microscopy",
+    "venue": "IEEE Photonics Conference",
+    "type": "conference-abstract",
+    "doi": "10.1109/ipcon.2016.7831009"
+   },
+   {
+    "pi": "Shmuel Oren",
+    "oa": "https://openalex.org/W4230115221",
+    "title": "Introduction to the Economics, Markets and Policy Minitrack, Electric Energy Minitrack",
+    "venue": "Proceedings of the ... Annual Hawaii International Conference on System Sciences/Proceedings of the Annual Hawaii International Conference on System Sciences",
+    "type": "conference-abstract",
+    "doi": "10.1109/hicss.2016.287"
+   },
+   {
+    "pi": "Dawn Song",
+    "oa": "https://openalex.org/W4237545657",
+    "title": "Formal verification for computer security: Lessons learned and future directions",
+    "venue": "Formal Methods in Computer-Aided Design",
+    "type": "conference-abstract",
+    "doi": "10.1109/fmcad.2016.7886647"
+   },
+   {
+    "pi": "Christos Papadimitriou",
+    "oa": "https://openalex.org/W4247823631",
+    "title": "Understanding evolution through algorithms",
+    "venue": "Formal Methods in Computer-Aided Design",
+    "type": "conference-abstract",
+    "doi": "10.1109/fmcad.2016.7886648"
+   },
+   {
+    "pi": "Bin Yu",
+    "oa": "https://openalex.org/W2742485803",
+    "title": "Three Principles of Data Science",
+    "venue": "ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (KDD)",
+    "type": "conference-abstract",
+    "doi": "10.1145/3097983.3105808"
+   },
+   {
+    "pi": "Michael Jordan",
+    "oa": "https://openalex.org/W2624155648",
+    "title": "On Gradient-Based Optimization",
+    "venue": "ACM SIGMETRICS International Conference on Measurement and Modeling of Computer Systems (SIGMETRICS)",
+    "type": "conference-abstract",
+    "doi": "10.1145/3078505.3078506"
+   },
+   {
+    "pi": "David Wagner",
+    "oa": "https://openalex.org/W2765324653",
+    "title": "Security and Machine Learning",
+    "venue": "ACM SIGSAC Conference on Computer and Communications Security (CCS)",
+    "type": "conference-abstract",
+    "doi": "10.1145/3133956.3134108"
+   }
+  ],
+  "meeting_abstract:venue": [
+   {
+    "pi": "Sayeef Salahuddin",
+    "oa": "https://openalex.org/W2511272949",
+    "title": "(Invited) Negative Capacitance Transistors",
+    "venue": "ECS Meeting Abstracts",
+    "type": "conference-abstract",
+    "doi": "10.1149/ma2016-02/30/1958"
+   },
+   {
+    "pi": "Sayeef Salahuddin",
+    "oa": "https://openalex.org/W2726536029",
+    "title": "Accurate Modeling of Gate-Induced Drain Leakage for III-V Mosfets",
+    "venue": "ECS Meeting Abstracts",
+    "type": "conference-abstract",
+    "doi": "10.1149/ma2017-02/52/2203"
+   },
+   {
+    "pi": "Scott Moura",
+    "oa": "https://openalex.org/W2905435019",
+    "title": "(Invited) Open Software for Electrochemical Battery Modeling, Estimation, and Control",
+    "venue": "ECS Meeting Abstracts",
+    "type": "conference-abstract",
+    "doi": "10.1149/ma2018-02/15/2189"
+   },
+   {
+    "pi": "Sayeef Salahuddin",
+    "oa": "https://openalex.org/W4302768208",
+    "title": "(Invited) Negative Capacitance Transistors",
+    "venue": "ECS Meeting Abstracts",
+    "type": "conference-abstract",
+    "doi": "10.1149/ma2018-01/22/1367"
+   },
+   {
+    "pi": "Benjamin Recht",
+    "oa": "https://openalex.org/W3022228933",
+    "title": "Generalized Planetary Remote Sensing",
+    "venue": "AGU Fall Meeting Abstracts",
+    "type": "conference-abstract",
+    "doi": ""
+   },
+   {
+    "pi": "Scott Moura",
+    "oa": "https://openalex.org/W3025143023",
+    "title": "Optimal Sensor Selection for an Electrochemical Li-Ion Battery Model",
+    "venue": "ECS Meeting Abstracts",
+    "type": "conference-abstract",
+    "doi": "10.1149/ma2020-014540mtgabs"
+   },
+   {
+    "pi": "Benjamin Recht",
+    "oa": "https://openalex.org/W3160828327",
+    "title": "Convolutions of random patches as a generalizable featurization for multi-domain prediction using remote sensing imagery",
+    "venue": "AGU Fall Meeting Abstracts",
+    "type": "conference-abstract",
+    "doi": ""
+   },
+   {
+    "pi": "Shawn C. Shadden",
+    "oa": "https://openalex.org/W2580389217",
+    "title": "Computation of the deformation spectrum for flows on a sphere",
+    "venue": "Bulletin of the American Physical Society",
+    "type": "article",
+    "doi": ""
+   },
+   {
+    "pi": "Shawn C. Shadden",
+    "oa": "https://openalex.org/W2596791509",
+    "title": "Computational reconstruction and fluid dynamics of in vivo thrombi from the microcirculation",
+    "venue": "Bulletin of the American Physical Society",
+    "type": "article",
+    "doi": ""
+   },
+   {
+    "pi": "Shawn C. Shadden",
+    "oa": "https://openalex.org/W2602622392",
+    "title": "Finite element modeling of mass transport in high-P\\'{e}clet cardiovascular flows",
+    "venue": "Bulletin of the American Physical Society",
+    "type": "article",
+    "doi": ""
+   }
+  ],
+  "meeting_abstract:doi": [
+   {
+    "pi": "Shawn C. Shadden",
+    "oa": "https://openalex.org/W2613437591",
+    "title": "Abstract TMP103: New Blood Velocity Indices Can Improve the Accuracy of Transcranial Doppler to Detect Vasospasm After Subarachnoid Hemorrhage",
+    "venue": "Stroke",
+    "type": "conference-abstract",
+    "doi": "10.1161/str.47.suppl_1.tmp103"
+   },
+   {
+    "pi": "Laura Waller",
+    "oa": "https://openalex.org/W3024390215",
+    "title": "New Approaches and Insights into Cortical Microcircuits",
+    "venue": "The FASEB Journal",
+    "type": "article",
+    "doi": "10.1096/fasebj.30.1_supplement.371.1"
+   },
+   {
+    "pi": "Ken Goldberg",
+    "oa": "https://openalex.org/W2794516141",
+    "title": "Abstract P284: ClusterAnalysis of Objectively Measured Physical Activity Patterns in Women in the mPEDTrial",
+    "venue": "Circulation",
+    "type": "conference-abstract",
+    "doi": "10.1161/circ.137.suppl_1.p284"
+   },
+   {
+    "pi": "Anil Aswani",
+    "oa": "https://openalex.org/W2794516141",
+    "title": "Abstract P284: ClusterAnalysis of Objectively Measured Physical Activity Patterns in Women in the mPEDTrial",
+    "venue": "Circulation",
+    "type": "conference-abstract",
+    "doi": "10.1161/circ.137.suppl_1.p284"
+   },
+   {
+    "pi": "Nir Yosef",
+    "oa": "https://openalex.org/W4313383618",
+    "title": "Cell-specific metabolic models reveal novel metabolic regulators of Th17 pathogenicity: from single-cell RNA-Seq to actionable metabolic targets",
+    "venue": "The Journal of Immunology",
+    "type": "conference-abstract",
+    "doi": "10.4049/jimmunol.200.supp.163.21"
+   },
+   {
+    "pi": "Nir Yosef",
+    "oa": "https://openalex.org/W4313373109",
+    "title": "In Silico Modeling of Metabolic State in Single Th17 Cells Reveals Novel Regulators of Inflammation and Autoimmunity",
+    "venue": "The Journal of Immunology",
+    "type": "conference-abstract",
+    "doi": "10.4049/jimmunol.204.supp.150.22"
+   },
+   {
+    "pi": "Nir Yosef",
+    "oa": "https://openalex.org/W4313373511",
+    "title": "Molecular cues dictating positive and negative selection in the thymus",
+    "venue": "The Journal of Immunology",
+    "type": "conference-abstract",
+    "doi": "10.4049/jimmunol.204.supp.61.13"
+   },
+   {
+    "pi": "Shawn C. Shadden",
+    "oa": "https://openalex.org/W3160585481",
+    "title": "Abstract 16856: Mathematical Modeling of Blood Flow to Evaluate the Hemodynamic Significance of Peripheral Vascular Lesions",
+    "venue": "Circulation",
+    "type": "conference-abstract",
+    "doi": "10.1161/circ.142.suppl_3.16856"
+   },
+   {
+    "pi": "Nir Yosef",
+    "oa": "https://openalex.org/W4313373306",
+    "title": "Transcriptomic and Epigenomic Regulation of Leukocytes by the Polyamine Pathway",
+    "venue": "The Journal of Immunology",
+    "type": "conference-abstract",
+    "doi": "10.4049/jimmunol.204.supp.228.19"
+   },
+   {
+    "pi": "Nir Yosef",
+    "oa": "https://openalex.org/W4319433522",
+    "title": "Endothelial immune surveillance by intravascular antigen-experienced CD8+ T cells as a novel mechanism of antiviral adaptive immunity",
+    "venue": "The Journal of Immunology",
+    "type": "conference-abstract",
+    "doi": "10.4049/jimmunol.206.supp.103.30"
+   }
+  ],
+  "software_record": [
+   {
+    "pi": "Sayeef Salahuddin",
+    "oa": "https://openalex.org/W2593177688",
+    "title": "MIT Virtual Source Negative Capacitance (MVSNC) model",
+    "venue": "HubZero",
+    "type": "software",
+    "doi": "10.4231/d3k649t9t"
+   },
+   {
+    "pi": "Murat Arcak",
+    "oa": "https://openalex.org/W4391980528",
+    "title": "TIRA: Toolbox for Interval Reachability Analysis",
+    "venue": "HAL (Le Centre pour la Communication Scientifique Directe)",
+    "type": "software",
+    "doi": "10.48550/arxiv.1902.05204"
+   },
+   {
+    "pi": "Jack Gallant",
+    "oa": "https://openalex.org/W7115587212",
+    "title": "autoflatten: automatically create cortical flatmaps from FreeSurfer surfaces",
+    "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+    "type": "software",
+    "doi": "10.5281/zenodo.17933205"
+   },
+   {
+    "pi": "Max Willsey",
+    "oa": "https://openalex.org/W7135192602",
+    "title": "Docker Image for the Evaluation of \"Navigating AND–OR Graph Modifications to Debug Failing Proof Search\"",
+    "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+    "type": "software",
+    "doi": "10.5281/zenodo.19006570"
+   },
+   {
+    "pi": "Sarah Chasins",
+    "oa": "https://openalex.org/W7135192602",
+    "title": "Docker Image for the Evaluation of \"Navigating AND–OR Graph Modifications to Debug Failing Proof Search\"",
+    "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+    "type": "software",
+    "doi": "10.5281/zenodo.19006570"
+   },
+   {
+    "pi": "Nilah Ioannidis",
+    "oa": "https://openalex.org/W7139914891",
+    "title": "Fine-tuning sequence-to-expression models on personal genome and transcriptome data",
+    "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+    "type": "software",
+    "doi": "10.5281/zenodo.19038795"
+   },
+   {
+    "pi": "Yun S. Song",
+    "oa": "https://openalex.org/W7170156316",
+    "title": "GPN-Star model source code",
+    "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+    "type": "software",
+    "doi": "10.5281/zenodo.21501176"
+   },
+   {
+    "pi": "Stella Yu",
+    "oa": "https://openalex.org/W7123584131",
+    "title": "Adaptive optical correction for in vivo two-photon fluorescence microscopy with neural fields",
+    "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+    "type": "software",
+    "doi": "10.5281/zenodo.18227509"
+   },
+   {
+    "pi": "Alvin Cheung",
+    "oa": "https://openalex.org/W7136857146",
+    "title": "Artifact for \"Optimism in Equality Saturation\" (PLDI 2026)",
+    "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+    "type": "software",
+    "doi": "10.5281/zenodo.19056371"
+   },
+   {
+    "pi": "Max Willsey",
+    "oa": "https://openalex.org/W7136857146",
+    "title": "Artifact for \"Optimism in Equality Saturation\" (PLDI 2026)",
+    "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+    "type": "software",
+    "doi": "10.5281/zenodo.19056371"
+   }
+  ],
+  "oberwolfach_report": [
+   {
+    "pi": "Bernd Sturmfels",
+    "oa": "https://openalex.org/W4250728902",
+    "title": "Algebraic Statistics",
+    "venue": "Oberwolfach Reports",
+    "type": "article",
+    "doi": "10.4171/owr/2017/20"
+   },
+   {
+    "pi": "Martin Wainwright",
+    "oa": "https://openalex.org/W2781894238",
+    "title": "Statistical Recovery of Discrete, Geometric and Invariant Structures",
+    "venue": "Oberwolfach Reports",
+    "type": "article",
+    "doi": "10.4171/owr/2017/16"
+   },
+   {
+    "pi": "Bin Yu",
+    "oa": "https://openalex.org/W2781894238",
+    "title": "Statistical Recovery of Discrete, Geometric and Invariant Structures",
+    "venue": "Oberwolfach Reports",
+    "type": "article",
+    "doi": "10.4171/owr/2017/16"
+   },
+   {
+    "pi": "Lin Lin",
+    "oa": "https://openalex.org/W4238990692",
+    "title": "Mathematical Methods in Quantum Chemistry",
+    "venue": "Oberwolfach Reports",
+    "type": "article",
+    "doi": "10.4171/owr/2018/13"
+   },
+   {
+    "pi": "Peter Bartlett",
+    "oa": "https://openalex.org/W4221031098",
+    "title": "Mathematical Foundations of Machine Learning",
+    "venue": "Oberwolfach Reports",
+    "type": "article",
+    "doi": "10.4171/owr/2021/15"
+   },
+   {
+    "pi": "Lin Lin",
+    "oa": "https://openalex.org/W4410481536",
+    "title": "Arbeitsgemeinschaft: Quantum Signal Processing and Nonlinear Fourier Analysis",
+    "venue": "Oberwolfach Reports",
+    "type": "article",
+    "doi": "10.4171/owr/2024/46"
+   },
+   {
+    "pi": "Shafi Goldwasser",
+    "oa": "https://openalex.org/W4413804277",
+    "title": "Cryptography",
+    "venue": "Oberwolfach Reports",
+    "type": "article",
+    "doi": "10.4171/owr/2025/3"
+   }
+  ],
+  "workshop_proposal": [
+   {
+    "pi": "Rikky Muller",
+    "oa": "https://openalex.org/W4410536574",
+    "title": "Tutorial: Brain-Computer Interfaces: Fundamentals to Future Technologies",
+    "venue": "Digest of technical papers/Digest of technical papers - IEEE International Solid-State Circuits Conference",
+    "type": "conference-paper",
+    "doi": "10.1109/isscc42613.2021.11005838"
+   },
+   {
+    "pi": "Sophia Shao",
+    "oa": "https://openalex.org/W4410538931",
+    "title": "Tutorial: Domain-Specific Accelerators: From Hardware to Systems",
+    "venue": "Digest of technical papers/Digest of technical papers - IEEE International Solid-State Circuits Conference",
+    "type": "conference-abstract",
+    "doi": "10.1109/isscc49657.2024.11007233"
+   }
+  ],
+  "meeting_abstract:journal": [
+   {
+    "pi": "Nilah Ioannidis",
+    "oa": "https://openalex.org/W4397047823",
+    "title": "Identification of Kidney Cell-Type-Specific Regulatory Elements Reveals Genetic Variants, Genes, and Cell Types Influencing Kidney Function Heritability",
+    "venue": "Journal of the American Society of Nephrology",
+    "type": "conference-abstract",
+    "doi": "10.1681/asn.20223311s1408b"
+   },
+   {
+    "pi": "Nilah Ioannidis",
+    "oa": "https://openalex.org/W4397040791",
+    "title": "Identification of Genes and Regulatory Elements Affecting Human Kidney Function",
+    "venue": "Journal of the American Society of Nephrology",
+    "type": "conference-abstract",
+    "doi": "10.1681/asn.20233411s134b"
+   },
+   {
+    "pi": "Ahmed Alaa",
+    "oa": "https://openalex.org/W4403511683",
+    "title": "P10.06.A AGENT-BASED MODELING FOR PATIENT-CENTERED CLINICAL DECISION SUPPORT IN NEURO-ONCOLOGY",
+    "venue": "Neuro-Oncology",
+    "type": "conference-abstract",
+    "doi": "10.1093/neuonc/noae144.182"
+   },
+   {
+    "pi": "Irene Chen",
+    "oa": "https://openalex.org/W4405749563",
+    "title": "RWD92 Disparities Associated With CAR-T Therapy Access for Multiple Myeloma Patients",
+    "venue": "Value in Health",
+    "type": "conference-abstract",
+    "doi": "10.1016/j.jval.2024.10.3650"
+   }
+  ],
+  "meeting_abstract:title": [
+   {
+    "pi": "Bin Yu",
+    "oa": "https://openalex.org/W4313591628",
+    "title": "Abstract P076: Contribution of the microbiome to a metabolomic signature predictive of risk for pancreatic cancer",
+    "venue": "Cancer Prevention Research",
+    "type": "conference-abstract",
+    "doi": "10.1158/1940-6215.precprev22-p076"
+   }
+  ],
+  "dagstuhl_report": [
+   {
+    "pi": "Venkatesan Guruswami",
+    "oa": "https://openalex.org/W7116441373",
+    "title": "The Constraint Satisfaction Problem: Complexity and Approximability (Dagstuhl Seminar 25211)",
+    "venue": "DROPS (Schloss Dagstuhl – Leibniz Center for Informatics)",
+    "type": "article",
+    "doi": "10.4230/dagrep.15.5.114"
+   },
+   {
+    "pi": "Edward A. Lee",
+    "oa": "https://openalex.org/W7084747032",
+    "title": "Tradeoffs in Reactive Systems Design (Dagstuhl Seminar 25091)",
+    "venue": "Dagstuhl Reports",
+    "type": "article",
+    "doi": "10.4230/dagrep.15.2.126"
+   },
+   {
+    "pi": "Venkatesan Guruswami",
+    "oa": "https://openalex.org/W6891676335",
+    "title": "The Constraint Satisfaction Problem: Complexity and Approximability (Dagstuhl Seminar 22201)",
+    "venue": "Dagstuhl Reports",
+    "type": "article",
+    "doi": "10.4230/dagrep.12.5.112"
+   },
+   {
+    "pi": "Jennifer Listgarten",
+    "oa": "https://openalex.org/W6966541726",
+    "title": "Machine Learning for Protein-Protein and Protein-Ligand Interactions (Dagstuhl Seminar 24451)",
+    "venue": "Dagstuhl Reports",
+    "type": "article",
+    "doi": "10.4230/dagrep.14.11.1"
+   }
+  ],
+  "repository_supplement": [
+   {
+    "pi": "Nilah Ioannidis",
+    "oa": "https://openalex.org/W7169845343",
+    "title": "Additional file 1 of Fine-tuning sequence-to-expression models on personal genome and transcriptome data",
+    "venue": "Figshare",
+    "type": "article",
+    "doi": "10.6084/m9.figshare.33044925"
+   },
+   {
+    "pi": "Laura Waller",
+    "oa": "https://openalex.org/W7128768787",
+    "title": "Supplement 1: Compressive light-field microscopy for 3D neural activity recording",
+    "venue": "Figshare",
+    "type": "article",
+    "doi": "10.6084/m9.figshare.4922405"
+   },
+   {
+    "pi": "Alvin Cheung",
+    "oa": "https://openalex.org/W6966901591",
+    "title": "Tenspiler: A Verified-Lifting-Based Compiler for Tensor Operations (Artifact)",
+    "venue": "Dagstuhl Artifacts Ser.",
+    "type": "article",
+    "doi": "10.4230/darts.10.2.17"
+   },
+   {
+    "pi": "Sanjit A. Seshia",
+    "oa": "https://openalex.org/W6966901591",
+    "title": "Tenspiler: A Verified-Lifting-Based Compiler for Tensor Operations (Artifact)",
+    "venue": "Dagstuhl Artifacts Ser.",
+    "type": "article",
+    "doi": "10.4230/darts.10.2.17"
+   }
+  ],
+  "machine_translation": [
+   {
+    "pi": "Jitendra Malik",
+    "oa": "https://openalex.org/W2753847284",
+    "title": "物体再構成のためのカテゴリー特異的変形可能な3Dモデルの学習【Powered by NICT】",
+    "venue": "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+    "type": "article",
+    "doi": ""
+   },
+   {
+    "pi": "Vladimir Stojanovic",
+    "oa": "https://openalex.org/W2744473890",
+    "title": "28nm FDSOIにおける非対称界面のためのモデル予測制御等化送信機【Powered by NICT】",
+    "venue": "IEEE Conference Proceedings",
+    "type": "conference-paper",
+    "doi": ""
+   },
+   {
+    "pi": "Vladimir Stojanovic",
+    "oa": "https://openalex.org/W2753721173",
+    "title": "45nm SOI CMOSによるリング共振器光DACに基づいた29.3A40Gb/s PAM‐4送信機【Powered by NICT】",
+    "venue": "IEEE Conference Proceedings",
+    "type": "conference-paper",
+    "doi": ""
+   },
+   {
+    "pi": "Trevor Darrell",
+    "oa": "https://openalex.org/W2743231212",
+    "title": "視覚認識と記述のための長期再発畳込みネットワーク【Powered by NICT】",
+    "venue": "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+    "type": "article",
+    "doi": ""
+   },
+   {
+    "pi": "Trevor Darrell",
+    "oa": "https://openalex.org/W2749962028",
+    "title": "深部組成キャプション付け:対訓練データを用いない新しい記述オブジェクトカテゴリー【Powered by NICT】",
+    "venue": "IEEE Conference Proceedings",
+    "type": "conference-paper",
+    "doi": ""
+   },
+   {
+    "pi": "Claire Tomlin",
+    "oa": "https://openalex.org/W2743225707",
+    "title": "スマートメータデータを用いた住宅負荷需要応答へのBayes法の適用【Powered by NICT】",
+    "venue": "IEEE Conference Proceedings",
+    "type": "conference-paper",
+    "doi": ""
+   },
+   {
+    "pi": "Claire Tomlin",
+    "oa": "https://openalex.org/W2745357943",
+    "title": "観測データを用いた機械学習を用いた住宅需要応答標的化【Powered by NICT】",
+    "venue": "IEEE Conference Proceedings",
+    "type": "conference-paper",
+    "doi": ""
+   },
+   {
+    "pi": "S. Shankar Sastry",
+    "oa": "https://openalex.org/W2744974637",
+    "title": "ヒト内部状態上での情報収集作用【Powered by NICT】",
+    "venue": "IEEE Conference Proceedings",
+    "type": "conference-paper",
+    "doi": ""
+   },
+   {
+    "pi": "S. Shankar Sastry",
+    "oa": "https://openalex.org/W2748610438",
+    "title": "信頼できる自動化に向けて:内部および外部認識を伝達するユーザインタフェイス【Powered by NICT】",
+    "venue": "IEEE Conference Proceedings",
+    "type": "conference-paper",
+    "doi": ""
+   },
+   {
+    "pi": "Alexandre Bayen",
+    "oa": "https://openalex.org/W2743294408",
+    "title": "ダイヤモンド車線の最適化:より扱いやすいカープール問題とアルゴリズム【Powered by NICT】",
+    "venue": "IEEE Conference Proceedings",
+    "type": "conference-paper",
+    "doi": ""
+   }
+  ],
+  "erratum": [
+   {
+    "pi": "Bernd Sturmfels",
+    "oa": "https://openalex.org/W3192058386",
+    "title": "Correction to: The Schläfli Fan",
+    "venue": "Discret. Comput. Geom.",
+    "type": "article",
+    "doi": "10.1007/s00454-021-00322-3"
+   },
+   {
+    "pi": "Bernd Sturmfels",
+    "oa": "https://openalex.org/W4292248854",
+    "title": "Publisher Correction: Geometry of Log-Concave Density Estimation",
+    "venue": "Discret. Comput. Geom.",
+    "type": "article",
+    "doi": "10.1007/s00454-022-00434-4"
+   },
+   {
+    "pi": "Trevor Darrell",
+    "oa": "https://openalex.org/W2418634587",
+    "title": "Corrigendum to \"Robotic learning of haptic adjectives through physical interaction\" [Robot. Auton. Syst. 63 (P3) (2015) 279-292]",
+    "venue": "Robotics Auton. Syst.",
+    "type": "article",
+    "doi": "10.1016/j.robot.2016.05.002"
+   },
+   {
+    "pi": "Stuart J. Russell",
+    "oa": "https://openalex.org/W4403650534",
+    "title": "Correction: AI content detection in the emerging information ecosystem: new obligations for media and tech companies",
+    "venue": "Ethics Inf. Technol.",
+    "type": "article",
+    "doi": "10.1007/s10676-024-09808-z"
+   },
+   {
+    "pi": "Sanjit A. Seshia",
+    "oa": "https://openalex.org/W4412993489",
+    "title": "Correction: Hypercontracts",
+    "venue": "Formal Methods Syst. Des.",
+    "type": "article",
+    "doi": "10.1007/s10703-025-00485-2"
+   }
+  ]
+ },
+ "page1ElsewhereSamples": [
+  {
+   "pi": "Benjamin Recht",
+   "oa": "https://openalex.org/W2794571261",
+   "title": "DeepLoco: Fast 3D Localization Microscopy Using Neural Networks",
+   "page1": "local:berkeley_oa_W2794571261",
+   "mark": "https://"
+  },
+  {
+   "pi": "Anca Dragan",
+   "oa": "https://openalex.org/W4393063881",
+   "title": "Evaluating Frontier Models for Dangerous Capabilities",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2403/2403.13793v1.pdf",
+   "mark": "Anthropic"
+  },
+  {
+   "pi": "Jitendra Malik",
+   "oa": "https://openalex.org/W4416551737",
+   "title": "SAM 3D: 3Dfy Anything in Images",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2511/2511.16624v1.pdf",
+   "mark": "Meta"
+  },
+  {
+   "pi": "Anca Dragan",
+   "oa": "https://openalex.org/W4402502788",
+   "title": "Gemma Scope: Open Sparse Autoencoders Everywhere All At Once on Gemma 2",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2408/2408.05147v1.pdf",
+   "mark": "Google"
+  },
+  {
+   "pi": "Daniel Klein",
+   "oa": "https://openalex.org/W4296414348",
+   "title": "The Whole Truth and Nothing But the Truth: Faithful and Controllable Dialogue Response Generation with Dataflow Transduction and Constrained Decoding",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2209/2209.07800v1.pdf",
+   "mark": "Microsoft"
+  },
+  {
+   "pi": "Aditya Parameswaran",
+   "oa": "https://openalex.org/W2795027513",
+   "title": "How Developers Iterate on Machine Learning Workflows -- A Survey of the Applied Machine Learning Literature",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1803/1803.10311v1.pdf",
+   "mark": "Univ"
+  },
+  {
+   "pi": "Alexandre Bayen",
+   "oa": "https://openalex.org/W3114953427",
+   "title": "A Graph Convolutional Network with Signal Phasing Information for Arterial Traffic Prediction",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2012/2012.13479v1.pdf",
+   "mark": "meta"
+  },
+  {
+   "pi": "Aditya Parameswaran",
+   "oa": "https://openalex.org/W2762680923",
+   "title": "Accelerating Scientific Data Exploration via Visual Query Systems.",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1710/1710.00763v1.pdf",
+   "mark": "Univ"
+  },
+  {
+   "pi": "Sergey Levine",
+   "oa": "https://openalex.org/W4224912544",
+   "title": "Do As I Can, Not As I Say: Grounding Language in Robotic Affordances",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2204/2204.01691v1.pdf",
+   "mark": "Google"
+  },
+  {
+   "pi": "Sergey Levine",
+   "oa": "https://openalex.org/W4323572061",
+   "title": "PaLM-E: An Embodied Multimodal Language Model",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2303/2303.03378v1.pdf",
+   "mark": "Google"
+  },
+  {
+   "pi": "Sergey Levine",
+   "oa": "https://openalex.org/W4385473486",
+   "title": "RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2307/2307.15818v1.pdf",
+   "mark": "https://"
+  },
+  {
+   "pi": "Sergey Levine",
+   "oa": "https://openalex.org/W2975909688",
+   "title": "Deep Dynamics Models for Learning Dexterous Manipulation",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1909/1909.11652v1.pdf",
+   "mark": "Google"
+  },
+  {
+   "pi": "Sergey Levine",
+   "oa": "https://openalex.org/W2919872398",
+   "title": "Learning Latent Plans from Play",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1903/1903.01973v1.pdf",
+   "mark": "Google"
+  },
+  {
+   "pi": "Sergey Levine",
+   "oa": "https://openalex.org/W3154938165",
+   "title": "MT-Opt: Continuous Multi-Task Robotic Reinforcement Learning at Scale",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2104/2104.08212v1.pdf",
+   "mark": "Google"
+  },
+  {
+   "pi": "Sergey Levine",
+   "oa": "https://openalex.org/W2914112028",
+   "title": "From Language to Goals: Inverse Reinforcement Learning for Vision-Based Instruction Following",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1902/1902.07742v1.pdf",
+   "mark": "Google"
+  },
+  {
+   "pi": "Sergey Levine",
+   "oa": "https://openalex.org/W2775954438",
+   "title": "Sim2Real View Invariant Visual Servoing by Recurrent Control",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1712/1712.07642v1.pdf",
+   "mark": "Univ"
+  },
+  {
+   "pi": "Sergey Levine",
+   "oa": "https://openalex.org/W4386942526",
+   "title": "Q-Transformer: Scalable Offline Reinforcement Learning via Autoregressive Q-Functions",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2309/2309.10150v1.pdf",
+   "mark": "Google"
+  },
+  {
+   "pi": "Sergey Levine",
+   "oa": "https://openalex.org/W4391212790",
+   "title": "AutoRT: Embodied Foundation Models for Large Scale Orchestration of Robotic Agents",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2401/2401.12963v1.pdf",
+   "mark": "Google"
+  },
+  {
+   "pi": "Sergey Levine",
+   "oa": "https://openalex.org/W4391801209",
+   "title": "PIVOT: Iterative Visual Prompting Elicits Actionable Knowledge for VLMs",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2402/2402.07872v1.pdf",
+   "mark": "DeepMind"
+  },
+  {
+   "pi": "Sergey Levine",
+   "oa": "https://openalex.org/W4404350116",
+   "title": "$π_0$: A Vision-Language-Action Flow Model for General Robot Control",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2410/2410.24164v1.pdf",
+   "mark": "https://"
+  },
+  {
+   "pi": "Sergey Levine",
+   "oa": "https://openalex.org/W2899041500",
+   "title": "Addressing Sample Inefficiency and Reward Bias in Inverse Reinforcement Learning.",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1809/1809.02925v1.pdf",
+   "mark": "Institut"
+  },
+  {
+   "pi": "Sergey Levine",
+   "oa": "https://openalex.org/W4400601208",
+   "title": "Mobility VLA: Multimodal Instruction Navigation with Long-Context VLMs and Topological Graphs",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2407/2407.07775v1.pdf",
+   "mark": "Google"
+  },
+  {
+   "pi": "Sergey Levine",
+   "oa": "https://openalex.org/W4414674749",
+   "title": "$π_{0.5}$: a Vision-Language-Action Model with Open-World Generalization",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2504/2504.16054v1.pdf",
+   "mark": "https://"
+  },
+  {
+   "pi": "Sergey Levine",
+   "oa": "https://openalex.org/W4417215404",
+   "title": "$π^{*}_{0.6}$: a VLA That Learns From Experience",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2511/2511.14759v1.pdf",
+   "mark": "https://"
+  },
+  {
+   "pi": "Sergey Levine",
+   "oa": "https://openalex.org/W7155019052",
+   "title": "$π_{0.7}$: a Steerable Generalist Robotic Foundation Model with Emergent Capabilities",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2604/2604.15483v1.pdf",
+   "mark": "https://"
+  },
+  {
+   "pi": "Sergey Levine",
+   "oa": "https://openalex.org/W7157012058",
+   "title": "RL Token: Bootstrapping Online RL with Vision-Language-Action Models",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2604/2604.23073v1.pdf",
+   "mark": "https://"
+  },
+  {
+   "pi": "Bernd Sturmfels",
+   "oa": "https://openalex.org/W7163676334",
+   "title": "Benchmarks in Leipzig",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2606/2606.05818v1.pdf",
+   "mark": "Max Planck"
+  },
+  {
+   "pi": "Trevor Darrell",
+   "oa": "https://openalex.org/W7221858463",
+   "title": "Robota-Embed: Unified VLA Embeddings for Robot In-Context Learning and Evolution",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2610/2610.19495v1.pdf",
+   "mark": "NVIDIA"
+  },
+  {
+   "pi": "Moritz Hardt",
+   "oa": "https://openalex.org/W4415797819",
+   "title": "Questioning the Survey Responses of Large Language Models",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2306/2306.07951v1.pdf",
+   "mark": "Max Planck"
+  },
+  {
+   "pi": "Moritz Hardt",
+   "oa": "https://openalex.org/W4415798117",
+   "title": "Do causal predictors generalize better to new domains?",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2402/2402.09891v1.pdf",
+   "mark": "Max Planck"
+  },
+  {
+   "pi": "Moritz Hardt",
+   "oa": "https://openalex.org/W4415796313",
+   "title": "Evaluating language models as risk scores",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2407/2407.14614v1.pdf",
+   "mark": "Max Planck"
+  },
+  {
+   "pi": "Claire Tomlin",
+   "oa": "https://openalex.org/W2284992624",
+   "title": "Guaranteeing Safety and Liveness of Unmanned Aerial Vehicle Platoons on Air Highways.",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1602/1602.08150v1.pdf",
+   "mark": "Institut"
+  },
+  {
+   "pi": "Claire Tomlin",
+   "oa": "https://openalex.org/W2969806596",
+   "title": "Reachability-Based Safety and Liveness of Unmanned Aerial Vehicle Platoons on Air Highways",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1602/1602.08150v1.pdf",
+   "mark": "Institut"
+  },
+  {
+   "pi": "Moritz Hardt",
+   "oa": "https://openalex.org/W4415971657",
+   "title": "Train-before-Test Harmonizes Language Model Rankings",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2507/2507.05195v1.pdf",
+   "mark": "Max Planck"
+  },
+  {
+   "pi": "Pieter Abbeel",
+   "oa": "https://openalex.org/W2963024489",
+   "title": "Parameter Space Noise for Exploration",
+   "page1": "local:berkeley_oa_W2963024489",
+   "mark": "OpenAI"
+  },
+  {
+   "pi": "Pieter Abbeel",
+   "oa": "https://openalex.org/W2733961795",
+   "title": "Hindsight Experience Replay",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1707/1707.01495v1.pdf",
+   "mark": "OpenAI"
+  },
+  {
+   "pi": "Pieter Abbeel",
+   "oa": "https://openalex.org/W2623491082",
+   "title": "Parameter Space Noise for Exploration",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1706/1706.01905v1.pdf",
+   "mark": "OpenAI"
+  },
+  {
+   "pi": "Joshua Blumenstock",
+   "oa": "https://openalex.org/W2437297022",
+   "title": "Machine Learning Across Cultures: Modeling the Adoption of Financial Services for the Poor",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1606/1606.05105v1.pdf",
+   "mark": "Univ"
+  },
+  {
+   "pi": "Alvin Cheung",
+   "oa": "https://openalex.org/W2912282903",
+   "title": "Vignette: Perceptual Compression for Video Storage and Processing Systems",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1902/1902.01372v1.pdf",
+   "mark": "Univ"
+  },
+  {
+   "pi": "Alvin Cheung",
+   "oa": "https://openalex.org/W2464861703",
+   "title": "Database-Backed Applications in the Wild: How Well Do They Work?",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1607/1607.02561v1.pdf",
+   "mark": "Univ"
+  }
+ ],
+ "provenance": {
+  "at": "2026-10-29T20:48:28Z",
+  "code": {
+   "commit": "f31cec02f57d9f7fdf877186a6990d3478f2b1fa",
+   "dirty": false,
+   "dirty_paths": [],
+   "other_dirty_paths": [
+    ".gitignore"
+   ]
+  },
+  "rules": [
+   {
+    "id": "R-HIER-01",
+    "decided": "2026-10-21, owner"
+   },
+   {
+    "id": "R-HIER-02",
+    "decided": "2026-10-21, owner"
+   },
+   {
+    "id": "R-HIER-03",
+    "decided": "2026-10-27, owner"
+   },
+   {
+    "id": "R-HIER-04",
+    "decided": "2026-10-29, build"
+   },
+   {
+    "id": "R-PAP-01",
+    "decided": "2026-10-21, owner"
+   },
+   {
+    "id": "R-PAP-02",
+    "decided": "2026-10-28, build"
+   },
+   {
+    "id": "R-PAP-03",
+    "decided": "2026-10-29, owner"
+   },
+   {
+    "id": "R-PAP-05",
+    "decided": "2026-10-29, build"
+   },
+   {
+    "id": "R-PAP-06",
+    "decided": "2026-10-29, build"
+   },
+   {
+    "id": "R-PAP-07",
+    "decided": "2026-10-29, owner: best judgement"
+   },
+   {
+    "id": "R-PAP-08",
+    "decided": "2026-10-29, build"
+   },
+   {
+    "id": "R-PAP-09",
+    "decided": "2026-10-29, build"
+   },
+   {
+    "id": "R-PAP-10",
+    "decided": "2026-10-29, build"
+   },
+   {
+    "id": "R-PAP-11",
+    "decided": "2026-10-28, build"
+   },
+   {
+    "id": "R-PAP-12",
+    "decided": "2026-10-29, owner"
+   },
+   {
+    "id": "R-PAP-13",
+    "decided": "2026-10-29, owner: best judgement"
+   },
+   {
+    "id": "R-PAP-14",
+    "decided": "2026-10-28, build"
+   },
+   {
+    "id": "R-PAP-15",
+    "decided": "2026-10-29, owner: best judgement"
+   },
+   {
+    "id": "R-PAP-16",
+    "decided": "2026-10-29, build"
+   },
+   {
+    "id": "R-PAP-18",
+    "decided": "2026-10-29, owner: accuracy sample"
+   },
+   {
+    "id": "R-PAP-19",
+    "decided": "2026-10-29, owner: accuracy sample"
+   },
+   {
+    "id": "R-PAP-20",
+    "decided": "2026-10-29, owner: accuracy sample"
+   },
+   {
+    "id": "R-PAP-21",
+    "decided": "2026-10-29, owner: accuracy sample"
+   },
+   {
+    "id": "R-PAP-22",
+    "decided": "2026-10-29, owner: accuracy sample"
+   },
+   {
+    "id": "R-PAP-23",
+    "decided": "2026-10-29, build"
+   },
+   {
+    "id": "R-PAP-24",
+    "decided": "2026-10-29, owner: accuracy sample"
+   },
+   {
+    "id": "R-PAP-25",
+    "decided": "2026-10-29, owner: accuracy sample"
+   },
+   {
+    "id": "R-PAP-26",
+    "decided": "2026-10-29, owner: accuracy sample"
+   },
+   {
+    "id": "R-STU-01",
+    "decided": "2026-10-21, owner"
+   },
+   {
+    "id": "R-STU-02",
+    "decided": "2026-10-28, owner"
+   },
+   {
+    "id": "R-STU-03",
+    "decided": "2026-10-28, build"
+   },
+   {
+    "id": "R-STU-04",
+    "decided": "2026-10-28"
+   },
+   {
+    "id": "R-STU-05",
+    "decided": "2026-10-29, owner: accuracy sample"
+   },
+   {
+    "id": "R-STU-06",
+    "decided": "2026-10-29, owner: accuracy sample"
+   },
+   {
+    "id": "R-STU-07",
+    "decided": "2026-10-29, owner: accuracy sample"
+   },
+   {
+    "id": "R-LNK-02",
+    "decided": "2026-10-29, owner"
+   },
+   {
+    "id": "R-LNK-02a",
+    "decided": "2026-10-29, review of the guard's kept prefixes"
+   },
+   {
+    "id": "R-LNK-02b",
+    "decided": "2026-10-29, owner: best judgement"
+   },
+   {
+    "id": "R-LNK-03",
+    "decided": "2026-10-29, owner"
+   },
+   {
+    "id": "R-LNK-04",
+    "decided": "2026-10-29, owner: accuracy sample"
+   },
+   {
+    "id": "R-LNK-05",
+    "decided": "2026-10-29, owner"
+   },
+   {
+    "id": "R-AUD-01",
+    "decided": "2026-10-28, owner"
+   },
+   {
+    "id": "R-AUD-02",
+    "decided": "2026-10-29, owner: best judgement"
+   },
+   {
+    "id": "R-AUD-03",
+    "decided": "2026-10-29, as R-LNK-02a"
+   },
+   {
+    "id": "R-AUD-04",
+    "decided": "2026-10-29"
+   },
+   {
+    "id": "R-AUD-05",
+    "decided": "2026-10-29, owner"
+   },
+   {
+    "id": "R-AUD-06",
+    "decided": "2026-10-29, owner"
+   },
+   {
+    "id": "R-AUD-07",
+    "decided": "2026-10-29, coordinator"
+   }
+  ],
+  "openalex_sweep": {
+   "path": "[local path]",
+   "bytes": 144441344,
+   "modified": "2026-10-22T01:23:44Z",
+   "sha256": "07611d8972e014dedccb5e86d994a3ba021e347d22d3bf1c6020c0baca7a503d",
+   "first_fetched": "2026-10-22T01:06:11Z",
+   "last_fetched": "2026-10-22T01:23:44Z",
+   "pages": 989,
+   "works": 196636
+  },
+  "dblp_dump": {
+   "file": "[local path]",
+   "date": "2026-09-01",
+   "md5": "41abb87b4e8b8a2e3c470efd6528ad88"
+  },
+  "dblp_persons": {
+   "path": "[local path]",
+   "bytes": 20391983,
+   "modified": "2026-10-29T12:36:36Z",
+   "sha256": "6e86d6a14d0086adbb3a9085d1029a5204bf240709a6b14f6349a32913591831",
+   "dump": "dblp-2026-09-01.xml.gz"
+  },
+  "pi_works": {
+   "path": "[local path]",
+   "bytes": 44838912,
+   "modified": "2026-10-29T19:36:44Z",
+   "sha256": "9bf46b3b979cc2d8075f621f9fd1e11e8ab48af46107139ff7093d0426ee900a",
+   "works": 20622,
+   "page1_reads": 2444,
+   "page1_last_read": "2026-10-29T19:19:00Z"
+  },
+  "reviewed_inputs": {
+   "census/berkeley-additions.json": "53fa9ad93150e0b1a0a6e9cdeb373368e1a02d0160d844bea836b1581e0b6420",
+   "census/cmu-additions.json": "59deb477b0933eb116d23eae8fd437c99e44084e77eb8bd6cbd7c291bb324ce8",
+   "census/epfl-additions.json": "5f2b12aa95419da361dd9b1997acc820fe55666687f442ea392ad922af0f60ef",
+   "census/mit-additions.json": "7f5b74babcaeea7d8f992c0eabc420c24178655c82b6f0811a2ab0567c9667ab",
+   "census/princeton-additions.json": "a689fb83bd49e6c5ec7968f1657669641c58a1d19b043d9154cb7a3689b4b077",
+   "census/stanford-additions.json": "79e9e9d227a176dba7f54a90b189684a4cafc987147a1b7e74c51b259b6f43d5",
+   "docs/evidence-whitelist.json": "28f532129932c7292c4329ca5197ad1794f01bdf450a09103976242eb94751e3",
+   "hierarchy/berkeley/cs-related-review.json": "ae7dfd8b4e60a9c93a79926e20d5c28df012828cde1df335f6bff0359a5a7717",
+   "hierarchy/berkeley/few-students-evidence.json": "09832857fc64ce6158a0b055c18de570fb0eb1381b42122e682d9998c692ca66",
+   "hierarchy/berkeley/gap-evidence.json": "a0ec0be36f55226b3c26411a0ee4962e3bc7d3dd59d80fe236262a4de5ce64c7",
+   "hierarchy/berkeley/missing-pi-review.json": "3c40e5edd6287ceae4e0358d348217ddb13125617a9b8f0cd75280e363029bdb",
+   "hierarchy/census-overrides.json": "17f81d61a891b7ccf0bfc5fc9c90899ed0b0c419a4ec18353c2bed4fb13000bf",
+   "hierarchy/chain-reasons.json": "671dc6012f14e4819915a99f7fe2d0263017f77277e209042374ee525d08b2e8",
+   "hierarchy/cmu/cs-related-review.json": "9cfb1099c6003d47d8de21a7dd4dd0bc1b6813a334710ecf0b737d5160e24d86",
+   "hierarchy/cmu/few-students-evidence.json": "16675154254ece8f380fd43d4bbce0f0c8f6f0c06af7a33b9387b8daf1a6cb5c",
+   "hierarchy/cmu/gap-evidence.json": "9a3029798795c4141d7970d117849130996d03743a5f9461cefaf8d0970c52f4",
+   "hierarchy/cmu/missing-pi-review.json": "2ead73753dde486cd9071d2c42badf40c757c5d45d3c767b0adc685c6ddb88e5",
+   "hierarchy/cs-venues.json": "8068588399cf1d555f8c652e85a4fa83ac11f4388906b2a2ba688967680321dd",
+   "hierarchy/epfl/cs-related-review.json": "0cf5f300451d510db76ccf773cdd55497d394332e9f4c21081108630081870d6",
+   "hierarchy/epfl/few-students-evidence.json": "1e5d32ee93afb9ef0fe211446b6149fe3ef16c41993bbdcc78e6bd8a9fa496c9",
+   "hierarchy/epfl/gap-evidence.json": "00de395ebe7bfa3567d627edb8ca69b74ee984e78807f002115bfbff0061df12",
+   "hierarchy/epfl/missing-pi-review.json": "dcfa38ef689d15966d19c9f9234bbabd71a66aadb2de26340cb929df6fb6f84b",
+   "hierarchy/home-departments.json": "ffbb55a894e3820223030ff3ccd8c423b88f196f2c4e0dba20406d0b407ca866",
+   "hierarchy/mit/cs-related-review.json": "3c301201982c046a53cfa73c2309db3a2641cc8a11b6260beec14a68610b969b",
+   "hierarchy/mit/few-students-evidence.json": "98fd4e5b01052e6794f1799b6a1df2c3bf40889828c992a2bf37e1b7eccb2ff7",
+   "hierarchy/mit/gap-evidence.json": "829c8924a1779a80a99e90860a23ac9650468609f2344f9b0b2e96cefb326fde",
+   "hierarchy/mit/missing-pi-review.json": "73fdd3bd43f5c5aaa40746818968ff06a214f4fef2d71d3335d373bc18c99b97",
+   "hierarchy/nicknames/extras.csv": "29fe28fbe49e393924a1d2378df44470ddf61571dec818182bc87eaba7e7a970",
+   "hierarchy/nicknames/names.csv": "e6a4e5a55ca5b47a4146dbc118f26c71c63053d4b79ca9659de8e74efb65847e",
+   "hierarchy/princeton/cs-related-review.json": "40eb1c2057ca7f027b3b56f582befb23e8d794ecc77eea287543669d3fd37bf2",
+   "hierarchy/princeton/few-students-evidence.json": "45977216b903063c02490cb532389885adcdf2bb5197e4421f0199d22610d3e0",
+   "hierarchy/princeton/gap-evidence.json": "6ec339469906b462da42f771c239406ae73a95ef6275fb7abce84717b8a37d74",
+   "hierarchy/princeton/missing-pi-review.json": "f42f179b1c772b2a9839947af11a531aef0d25178e7f52b878b00cba92e5519b",
+   "hierarchy/stanford/cs-related-review.json": "446c36e36a863d6d86605e65384c2060fabcf7f2c77fb1ffa9f5e0bd67a604d3",
+   "hierarchy/stanford/few-students-evidence.json": "915e35f46458735a730b971b2da4bb434bba6b4d9280d8f93cb233364471710d",
+   "hierarchy/stanford/missing-pi-review.json": "ee6a2291c3a2c0462b134855ac62027bf657550c7bb473a9fee9c0f3f9c34ff1",
+   "hierarchy/stanford/tobagi-review.json": "37b45c44a19bc50a80b7ffa4981418c96f1b3cb89baa789e24f592068e0da7aa",
+   "hierarchy/student-corrections.json": "9874836bfdc594d2bf1d88eb230f1d2b13df6cf219575cc70c8e10b5d15798ae",
+   "hierarchy/student-identity-review.json": "360bd0e9c9b71b7da54a93a94c7bdeb5824b9abd53a439b6ebe75fe9151d051e",
+   "hierarchy/zero-paper-labs.json": "7ad77c071db3f2d9aa0a882aa7a0bfdba6ad952032773d80018cb528610a0d8e",
+   "hierarchy/zero-paper-review.json": "2ef50b6cc7355cf8bb9d0cadd203c2e773168f38ff8619044cf4e2f9a7991f7a",
+   "periods/cmu-faculty-periods.json": "bf2f129b3d2b4b78bf418dc4933649aade207366319998cbe503c5488fdf2f47",
+   "periods/epfl-faculty-periods.json": "3e336b690572824725025c9d0172dd9e1fc04dd6c9ebcee9adfd457832b58649",
+   "periods/mit-faculty-periods.json": "4d5d72627a673640594a636fe65d66c503a05c4351132055fecb383ebb0080d4",
+   "periods/princeton-faculty-periods.json": "5470bd4d4cb6e1f71d595cc3f334e1354275cc548352dd1086718d0bfd868420"
+  },
+  "inputs": {
+   "/n/fs/resemble/cs-atlas/work/census/berkeley-faculty-hierarchy.json": {
+    "bytes": 624719,
+    "modified": "2026-10-22T16:17:49Z",
+    "sha256": "3352946e6e9e4f7424d650c7039887712e4b750e5f7dfb7fab2f75486d8300f1"
+   },
+   "/n/fs/resemble/cs-atlas/work/census/berkeley-faculty.json": {
+    "bytes": 624750,
+    "modified": "2026-10-22T12:50:13Z",
+    "sha256": "f3f118fb41c7a17c65de05dea7a49958fe5bad74be3ed947ebd72c61461683e7"
+   },
+   "/n/fs/resemble/cs-atlas/work/hierarchy/berkeley/collection.json.gz": {
+    "bytes": 87034,
+    "modified": "2026-10-22T16:17:49Z",
+    "sha256": "ff77f6fcd2d7652a393fca0f1f0b9ae605281d2392526fae57b8e2bc17994ee6"
+   },
+   "/n/fs/resemble/cs-atlas/work/listings/berkeley/listings.json": {
+    "bytes": 5201306,
+    "modified": "2026-10-27T01:37:30Z",
+    "sha256": "561779458c3d686bdc1dc0b0692940b9a563388787cdfd4e3d4e23a6a7fae9f9"
+   },
+   "/n/fs/resemble/cs-atlas/work/hierarchy/berkeley/thesis-evidence.json": {
+    "bytes": 1084322,
+    "modified": "2026-10-27T15:36:56Z",
+    "sha256": "0b40b638c57a298f2203a572718ba5b877df6ef2cc769bf757a377815ef7523a"
+   },
+   "/n/fs/resemble/cs-atlas/work/hierarchy/berkeley/labpage-evidence.json": {
+    "bytes": 4555804,
+    "modified": "2026-10-23T02:48:33Z",
+    "sha256": "35558c439d4d2ff9eea32545c6be0cf4d673e5500cd36ef4e06c74f0e35afb63"
+   },
+   "/n/fs/resemble/cs-atlas/work/hierarchy/berkeley/dblp-recovered.jsonl.gz": {
+    "bytes": 58826,
+    "modified": "2026-10-22T18:45:45Z",
+    "sha256": "a8b704863a2f0a1ba5f8315063e072693a6a38e9a60e4e716afbbeac32724e8b"
+   },
+   "/n/fs/resemble/cs-atlas/work/hierarchy/berkeley/labpage-recovered.jsonl.gz": {
+    "bytes": 11961,
+    "modified": "2026-10-23T03:25:10Z",
+    "sha256": "08044eae2c54f1335f72dbf5f5e4014b49bda1464e19b941f75b557d4a7e5eea"
+   },
+   "/n/fs/resemble/cs-atlas/work/hierarchy/berkeley/pi-publication-lists.json": {
+    "bytes": 2079481,
+    "modified": "2026-10-22T02:15:33Z",
+    "sha256": "88172a003c8af252bb4249126a16662204bd175add150dd6bfe7a824b9435134"
+   },
+   "/n/fs/resemble/cs-atlas/work/hierarchy/berkeley/labpage-pubs.jsonl.gz": {
+    "bytes": 138525,
+    "modified": "2026-10-23T02:48:33Z",
+    "sha256": "611a4a09f23018e5989c7ccfd5b0d65ffaf2b41607ae69f404155b305c0daf55"
+   }
+  }
+ }
 }

@@ -42,7 +42,7 @@ def lab_work_ids(school, recent_first=None):
     import sqlite3
     db = sqlite3.connect(f'file:{F.FT / school / "catalog.sqlite"}?mode=ro', uri=True, timeout=120)
     doi_ids, title_ids = {}, {}
-    for i, d, t in F.chunks(db, 'works', 'id, doi, title'):
+    for i, d, t in F.works_rows(db, 'id, doi, title'):  # the works_slim covering index when present (2026-10-29)
         if d:
             doi_ids.setdefault(F.ndoi(d), []).append(i)
         k = F.nt(t)

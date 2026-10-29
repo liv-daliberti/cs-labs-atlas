@@ -1,6 +1,6 @@
 {
  "school": "stanford",
- "builtAt": "2026-10-29T18:45:37.461266Z",
+ "builtAt": "2026-10-29T20:53:29.440253Z",
  "counts": {
   "listing_years_after_move": 0,
   "pis_excluded_by_review": 4,
@@ -9,14 +9,17 @@
   "labs_reused": 5,
   "labs_new": 227,
   "pi_basis_advisees": 495,
-  "student_names_cleaned": 1,
+  "student_records_rekeyed_from_pi_person_id": 0,
+  "student_names_cleaned": 4,
+  "student_names_doubled_token_cleaned": 3,
   "student_corrections_rename": 1,
-  "student_records_merged": 150,
+  "student_corrections_replace_sources": 1,
+  "student_records_merged": 151,
   "pi_listed_as_own_student_dropped": 0,
   "student_same_name_other_labs_unmerged": 14,
   "pis_with_students": 232,
-  "students": 2803,
-  "lab_student_pairs": 3218,
+  "students": 2801,
+  "lab_student_pairs": 3214,
   "dblp_ids_dropped_name_mismatch": 0,
   "dblp_dump_titles_added": 13743,
   "pis_orcid_from_dblp": 147,
@@ -28,44 +31,69 @@
   "sweep_name_hits": 24750,
   "surname_only_hits_by_anchored_id": 116,
   "pi_work_list_hits": 10216,
-  "outside_appointment": 634,
-  "hit_without_identity": 1236,
-  "hit_without_school_affiliation": 10318,
-  "school_via_advisee_coauthor": 154,
-  "school_via_unaffiliated_byline_advisee": 2962,
-  "unaffiliated_transition_year_outside": 18,
-  "dblp_recovered_lab_papers": 834,
-  "labpage_recovered_lab_papers": 279,
+  "outside_appointment": 659,
+  "dated_by_venue_version": 1027,
+  "hit_without_identity": 1240,
+  "hit_without_school_affiliation": 9378,
+  "school_via_advisee_coauthor": 71,
+  "dated_before_window": 11,
+  "school_via_bare_unit": 30,
+  "school_via_unaffiliated_byline_advisee": 1662,
+  "unaffiliated_page1_unchecked": 1008,
+  "unaffiliated_page1_read_kept": 600,
+  "unaffiliated_page1_elsewhere": 54,
+  "unaffiliated_transition_year_outside": 7,
+  "dblp_recovered_lab_papers": 833,
+  "labpage_recovered_lab_papers": 147,
   "namesake_claims_dropped": 0,
-  "book_chapters_folded": 164,
-  "translated_editions_dropped": 0,
-  "edition_records_merged": 1969,
-  "lab_papers": 21853,
+  "not_paper:meeting_abstract:journal": 70,
+  "not_paper:editorial": 49,
+  "not_paper:meeting_abstract:single_author": 28,
+  "not_paper:meeting_abstract:venue": 248,
+  "not_paper:meeting_abstract:doi": 112,
+  "not_paper:meeting_abstract:title": 12,
+  "not_paper:meeting_abstract:keynote": 2,
+  "not_paper:award_announcement": 2,
+  "not_paper:doi_year_conflict": 1,
+  "not_paper:dissertation": 235,
+  "not_paper:repository_supplement": 9,
+  "not_paper:software_record": 51,
+  "not_paper:dagstuhl_report": 2,
+  "not_paper:oberwolfach_report": 2,
+  "not_paper:workshop_proposal": 1,
+  "not_paper:machine_translation": 7,
+  "not_paper:erratum": 17,
+  "not_paper_dropped": 848,
+  "book_chapters_folded": 199,
+  "book_chapters_folded_by_doi_prefix": 35,
+  "translated_editions_dropped": 1,
+  "edition_records_merged": 2116,
+  "lab_papers": 21546,
   "lab_papers_in_collection": 0,
-  "lab_papers_new": 21853,
-  "lab_papers_by_period": 10699,
-  "lab_papers_by_listing": 11154,
-  "identity:anchored_author_id": 2391,
-  "identity:reviewed_openalex_author_id": 6564,
-  "identity:pi_orcid": 9709,
+  "lab_papers_new": 21546,
+  "lab_papers_by_period": 10428,
+  "lab_papers_by_listing": 11118,
+  "identity:anchored_author_id": 2698,
+  "identity:reviewed_openalex_author_id": 6440,
+  "identity:pi_orcid": 9527,
   "identity:pi_institutional_publication_list": 329,
-  "identity:dblp_person_page_doi": 1428,
-  "identity:dblp_person_page_title": 507,
-  "identity:advisee_coauthor": 260,
-  "identity:lab_publication_page": 10,
-  "identity:dblp_person_page": 438,
+  "identity:dblp_person_page_doi": 1432,
+  "identity:dblp_person_page_title": 515,
+  "identity:advisee_coauthor": 254,
+  "identity:lab_publication_page": 11,
+  "identity:dblp_person_page": 236,
   "identity:advisee_anchored_author_id": 5,
-  "identity:labpage_listing": 212,
-  "link_guard_kept_prefix_or_spelling_variant": 99,
+  "identity:labpage_listing": 99,
+  "link_guard_kept_prefix_or_spelling_variant": 94,
   "link_guard_removed_hyphenated_given": 19,
   "link_guard_removed_different_full_given": 9,
-  "students_dropped_program_or_reader_only": 581,
-  "student_paper_links": 18537,
+  "students_dropped_program_or_reader_only": 584,
+  "student_paper_links": 17746,
   "labs_with_student_papers": 225,
-  "student_link:byline_name_with_school_affiliation": 12953,
-  "student_link:advisee_name_on_lab_paper_byline": 5047,
-  "student_link:within_lab_byline_match": 100,
-  "student_link:full_name_on_lab_paper_byline": 437,
+  "student_link:byline_name_with_school_affiliation": 12810,
+  "student_link:advisee_name_on_lab_paper_byline": 4458,
+  "student_link:within_lab_byline_match": 99,
+  "student_link:full_name_on_lab_paper_byline": 379,
   "pis_with_lab_papers": 232,
   "pis_complete_chain": 225
  },
@@ -558,7 +586,7 @@
   {
    "pi": "Balaji Prabhakar",
    "student": "ext:stanford:pin-pin-tea-makorn",
-   "name": "Pin Pin Tea-makorn",
+   "name": "Pin Tea-makorn",
    "roles": [
     "Doctoral (Program)"
    ]
@@ -1348,14 +1376,6 @@
    ]
   },
   {
-   "pi": "Abbas El Gamal",
-   "student": "ext:stanford:bennet-meyers-im",
-   "name": "Bennet Meyers-Im",
-   "roles": [
-    "Doctoral (Program)"
-   ]
-  },
-  {
    "pi": "Bernd Girod",
    "student": "stanford_stu_louise-zhuang",
    "name": "Louise Zhuang",
@@ -1717,8 +1737,24 @@
   },
   {
    "pi": "John M. Pauly",
+   "student": "stanford_stu_daniel-abraham",
+   "name": "Daniel Abraham",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "John M. Pauly",
    "student": "stanford_stu_fuat-arslan",
    "name": "Fuat Arslan",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "John M. Pauly",
+   "student": "stanford_stu_jaehyeok-bae",
+   "name": "Jaehyeok Bae",
    "roles": [
     "Doctoral (Program)"
    ]
@@ -1799,6 +1835,14 @@
    "pi": "John M. Pauly",
    "student": "stanford_stu_alice-tor",
    "name": "Alice Tor",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "John M. Pauly",
+   "student": "stanford_stu_andy-dimnaku",
+   "name": "Andy Dimnaku",
    "roles": [
     "Doctoral (Program)"
    ]
@@ -4678,6 +4722,14 @@
   },
   {
    "pi": "Todd Coleman",
+   "student": "ext:stanford:ziv-lautman",
+   "name": "Ziv Lautman",
+   "roles": [
+    "Doctoral (Program)"
+   ]
+  },
+  {
+   "pi": "Todd Coleman",
    "student": "ext:stanford:frida-bjoerklund",
    "name": "Frida Bjoerklund",
    "roles": [
@@ -4888,6 +4940,12 @@
    "oa": "https://openalex.org/W7213287448"
   },
   {
+   "pi": "Shuran Song",
+   "student": "Han Zhang",
+   "byline": "Hanlin Zhang",
+   "oa": "https://openalex.org/W4415798713"
+  },
+  {
    "pi": "Mert Pilanci",
    "student": "Wei-Ning Chen",
    "byline": "Chen, Wei",
@@ -4904,12 +4962,6 @@
    "student": "Weiyu Liu",
    "byline": "Liu, Wei",
    "oa": "https://openalex.org/W7134054690"
-  },
-  {
-   "pi": "Shuran Song",
-   "student": "Han Zhang",
-   "byline": "Hanlin Zhang",
-   "oa": "https://dblp.org/rec/https://dblp.org/rec/conf/nips/LiFSIJGBGKAGXMH24"
   }
  ],
  "linkGuardKeptVariantSamples": [
@@ -5076,12 +5128,6 @@
    "oa": "https://openalex.org/W4389009538"
   },
   {
-   "pi": "Dustin Schroeder",
-   "student": "Winnie Chu",
-   "byline": "Winni Chu",
-   "oa": "https://openalex.org/W4221073489"
-  },
-  {
    "pi": "Boris Murmann",
    "student": "Vlad Kesler",
    "byline": "Vladimir Kesler",
@@ -5152,6 +5198,1588 @@
    "student": "Akshat Nigam",
    "byline": "AkshatKumar Nigam",
    "oa": "https://openalex.org/W4398150231"
+  },
+  {
+   "pi": "Mac Schwager",
+   "student": "Olaoluwa Shorinwa",
+   "byline": "Ola Shorinwa",
+   "oa": "https://openalex.org/W4400410094"
   }
- ]
+ ],
+ "notPaperSamples": {
+  "meeting_abstract:journal": [
+   {
+    "pi": "Chris Potts",
+    "oa": "https://openalex.org/W2617964797",
+    "title": "Enculturation Trajectories and Individual Attainment: An Interactional Language Use Model",
+    "venue": "Academy of Management Proceedings",
+    "type": "conference-abstract",
+    "doi": "10.5465/ambpp.2016.10318abstract"
+   },
+   {
+    "pi": "Pamela Hinds",
+    "oa": "https://openalex.org/W2766548409",
+    "title": "Iterative Prototyping for Team Creativity: A Cross-Cultural Examination",
+    "venue": "Academy of Management Proceedings",
+    "type": "conference-abstract",
+    "doi": "10.5465/ambpp.2016.12335abstract"
+   },
+   {
+    "pi": "Melissa Valentine",
+    "oa": "https://openalex.org/W2766559912",
+    "title": "\"What Is A Team? Team as Symbol of Mutual Dependence, Support, and Respect\"",
+    "venue": "Academy of Management Proceedings",
+    "type": "conference-abstract",
+    "doi": "10.5465/ambpp.2016.15223abstract"
+   },
+   {
+    "pi": "Pamela Hinds",
+    "oa": "https://openalex.org/W2766594104",
+    "title": "The Role of Individual Boundary Spanners in the Global Transfer of Practices",
+    "venue": "Academy of Management Proceedings",
+    "type": "conference-abstract",
+    "doi": "10.5465/ambpp.2016.14815abstract"
+   },
+   {
+    "pi": "Pamela Hinds",
+    "oa": "https://openalex.org/W2767111573",
+    "title": "What Happened to My Office? The Role of Place Identity at Work",
+    "venue": "Academy of Management Proceedings",
+    "type": "conference-abstract",
+    "doi": "10.5465/ambpp.2016.11983abstract"
+   },
+   {
+    "pi": "Melissa Valentine",
+    "oa": "https://openalex.org/W2796027897",
+    "title": "\"Online Labor Markets: Fad, Fringe, or Future of Work?\"",
+    "venue": "Academy of Management Proceedings",
+    "type": "conference-abstract",
+    "doi": "10.5465/ambpp.2016.14694symposium"
+   },
+   {
+    "pi": "Melissa Valentine",
+    "oa": "https://openalex.org/W2765692106",
+    "title": "Working in the Shadow of the Future: Provisional Contracting in Online Labor Markets",
+    "venue": "Academy of Management Proceedings",
+    "type": "conference-abstract",
+    "doi": "10.5465/ambpp.2017.16790abstract"
+   },
+   {
+    "pi": "Melissa Valentine",
+    "oa": "https://openalex.org/W2766162298",
+    "title": "Renegotiating Spheres of Obligation: The Role of Hierarchy in Synchronizing Group Learning",
+    "venue": "Academy of Management Proceedings",
+    "type": "conference-abstract",
+    "doi": "10.5465/ambpp.2017.14743abstract"
+   },
+   {
+    "pi": "Daniel Rubin",
+    "oa": "https://openalex.org/W2767248395",
+    "title": "NIMG-27. GLIOBLASTOMA TUMOR SEGMENTATION USING DEEP CONVOLUTIONAL NEURAL NETWORKS",
+    "venue": "Neuro-Oncology",
+    "type": "conference-abstract",
+    "doi": "10.1093/neuonc/nox168.602"
+   },
+   {
+    "pi": "Andrea Goldsmith",
+    "oa": "https://openalex.org/W2797904750",
+    "title": "F270. Regularized Linear Regression Guides Development of a Multilocus Genetic Profile Score for Cannabis Use Disorder",
+    "venue": "Biological Psychiatry",
+    "type": "conference-abstract",
+    "doi": "10.1016/j.biopsych.2018.02.884"
+   }
+  ],
+  "editorial": [
+   {
+    "pi": "Oussama Khatib",
+    "oa": "https://openalex.org/W4229715415",
+    "title": "Editorial",
+    "venue": "International Journal of Social Robotics",
+    "type": "editorial",
+    "doi": "10.1007/s12369-015-0335-6"
+   },
+   {
+    "pi": "Oussama Khatib",
+    "oa": "https://openalex.org/W2322931147",
+    "title": "Guest Editorial of the Special Issue on Whole-Body Control for Robots in the Real World",
+    "venue": "International Journal of Humanoid Robotics",
+    "type": "editorial",
+    "doi": "10.1142/s0219843616020011"
+   },
+   {
+    "pi": "Subhasish Mitra",
+    "oa": "https://openalex.org/W2916399724",
+    "title": "Introduction to the January Special Issue on the 2016 IEEE International Solid-State Circuits Conference",
+    "venue": "IEEE Journal of Solid-State Circuits",
+    "type": "editorial",
+    "doi": "10.1109/jssc.2016.2635358"
+   },
+   {
+    "pi": "Oussama Khatib",
+    "oa": "https://openalex.org/W4254445142",
+    "title": "Editorial",
+    "venue": "International Journal of Social Robotics",
+    "type": "editorial",
+    "doi": "10.1007/s12369-017-0395-x"
+   },
+   {
+    "pi": "Boris Murmann",
+    "oa": "https://openalex.org/W2593821788",
+    "title": "Foreword: Intelligent Chips for a Smart World",
+    "venue": "Digest of technical papers/Digest of technical papers - IEEE International Solid-State Circuits Conference",
+    "type": "conference-abstract",
+    "doi": "10.1109/isscc.2017.7870238"
+   },
+   {
+    "pi": "Oussama Khatib",
+    "oa": "https://openalex.org/W4240379531",
+    "title": "Preface",
+    "venue": "International Journal of Social Robotics",
+    "type": "article",
+    "doi": "10.1007/s12369-017-0406-y"
+   },
+   {
+    "pi": "Oussama Khatib",
+    "oa": "https://openalex.org/W4243025612",
+    "title": "Preface",
+    "venue": "International Journal of Social Robotics",
+    "type": "article",
+    "doi": "10.1007/s12369-017-0418-7"
+   },
+   {
+    "pi": "Oussama Khatib",
+    "oa": "https://openalex.org/W4256041661",
+    "title": "Preface",
+    "venue": "International Journal of Social Robotics",
+    "type": "article",
+    "doi": "10.1007/s12369-017-0423-x"
+   },
+   {
+    "pi": "Geoffrey Sonn",
+    "oa": "https://openalex.org/W4246220941",
+    "title": "Editorial Comment",
+    "venue": "The Journal of Urology",
+    "type": "editorial",
+    "doi": "10.1016/j.juro.2017.07.108"
+   },
+   {
+    "pi": "Oussama Khatib",
+    "oa": "https://openalex.org/W4231685086",
+    "title": "Preface",
+    "venue": "International Journal of Social Robotics",
+    "type": "article",
+    "doi": "10.1007/s12369-017-0438-3"
+   }
+  ],
+  "meeting_abstract:single_author": [
+   {
+    "pi": "Kenneth Salisbury",
+    "oa": "https://openalex.org/W2345599385",
+    "title": "Plenary talks: Touching",
+    "venue": "IEEE Haptics Symposium",
+    "type": "conference-abstract",
+    "doi": "10.1109/haptics.2016.7463141"
+   },
+   {
+    "pi": "Subhasish Mitra",
+    "oa": "https://openalex.org/W2417248121",
+    "title": "Transforming nanodevices into nanosystems: The N3XT 1,000X",
+    "venue": null,
+    "type": "conference-abstract",
+    "doi": "10.1109/latw.2016.7483329"
+   },
+   {
+    "pi": "Subhasish Mitra",
+    "oa": "https://openalex.org/W2479827648",
+    "title": "Cross-layer resilience",
+    "venue": "Proceedings/Proceedings - European Test Workshop",
+    "type": "conference-abstract",
+    "doi": "10.1109/ets.2016.7519318"
+   },
+   {
+    "pi": "Andrew Ng",
+    "oa": "https://openalex.org/W7124135171",
+    "title": "Deep Learning: What's Next",
+    "venue": "Adaptive Agents and Multi-Agents Systems",
+    "type": "conference-abstract",
+    "doi": "10.65109/husu6538"
+   },
+   {
+    "pi": "Jure Leskovec",
+    "oa": "https://openalex.org/W2507191355",
+    "title": "Beyond nodes and edges",
+    "venue": null,
+    "type": "conference-abstract",
+    "doi": "10.1145/2980523.2980525"
+   },
+   {
+    "pi": "Chris Manning",
+    "oa": "https://openalex.org/W2460580556",
+    "title": "Understanding Human Language",
+    "venue": "International ACM SIGIR Conference on Research and Development in Information Retrieval (SIGIR)",
+    "type": "conference-abstract",
+    "doi": "10.1145/2911451.2926732"
+   },
+   {
+    "pi": "Tim Roughgarden",
+    "oa": "https://openalex.org/W2486809103",
+    "title": "Intrinsic Robustness of the Price of Anarchy",
+    "venue": "ACM Conference on Economics and Computation (EC)",
+    "type": "conference-abstract",
+    "doi": "10.1145/2940716.2940797"
+   },
+   {
+    "pi": "Boris Murmann",
+    "oa": "https://openalex.org/W2567819163",
+    "title": "Mixed-signal circuits for the data-driven world",
+    "venue": "IEEE International Conference on Electron Devices and Solid-State Circuits (EDSSC)",
+    "type": "conference-abstract",
+    "doi": "10.1109/edssc.2016.7785197"
+   },
+   {
+    "pi": "Kunle Olukotun",
+    "oa": "https://openalex.org/W2516178486",
+    "title": "Scaling Data Analytics with Moore's Law",
+    "venue": "International Conference on Parallel Architectures and Compilation Techniques",
+    "type": "conference-abstract",
+    "doi": "10.1145/2967938.2970375"
+   },
+   {
+    "pi": "Alex Aiken",
+    "oa": "https://openalex.org/W2581931177",
+    "title": "Back to the future: The compiler research revival",
+    "venue": null,
+    "type": "conference-abstract",
+    "doi": "10.1109/icter.2016.7829891"
+   }
+  ],
+  "meeting_abstract:venue": [
+   {
+    "pi": "H.-S. Philip Wong",
+    "oa": "https://openalex.org/W4234226907",
+    "title": "(Invited) Graphene Plane Electrode for Low Power 3D Resistive Random Access Memory",
+    "venue": "ECS Meeting Abstracts",
+    "type": "conference-abstract",
+    "doi": "10.1149/ma2016-01/23/1182"
+   },
+   {
+    "pi": "Stefano Ermon",
+    "oa": "https://openalex.org/W2612272044",
+    "title": "Dynamic, Reversible Oxygen Redox As a Mediator of Voltage Hysteresis in Lithium-Rich Layered Oxide Electrodes",
+    "venue": "ECS Meeting Abstracts",
+    "type": "conference-abstract",
+    "doi": "10.1149/ma2017-01/1/92"
+   },
+   {
+    "pi": "Simona Onori",
+    "oa": "https://openalex.org/W2784497698",
+    "title": "On the Limitations of the Doyle-Fuller-Newman Model across Operating Temperatures in Predicting Lithium-Ion Battery Dynamics",
+    "venue": "ECS Meeting Abstracts",
+    "type": "conference-abstract",
+    "doi": "10.1149/ma2018-01/21/1351"
+   },
+   {
+    "pi": "Howard Zebker",
+    "oa": "https://openalex.org/W3124067172",
+    "title": "Persistent Scatterer Density by Image Resolution and Terrain Type",
+    "venue": "AGU Fall Meeting Abstracts",
+    "type": "conference-abstract",
+    "doi": ""
+   },
+   {
+    "pi": "Dustin Schroeder",
+    "oa": "https://openalex.org/W3137502093",
+    "title": "Retrieval of Englacial Firn Aquifer Thickness from Ice-Penetrating Radar Sounding in Southeastern Greenland",
+    "venue": "AGU Fall Meeting Abstracts",
+    "type": "conference-abstract",
+    "doi": ""
+   },
+   {
+    "pi": "Stefano Ermon",
+    "oa": "https://openalex.org/W2939154150",
+    "title": "Closed-Loop Optimization of Battery Fast Charging Procedures",
+    "venue": "ECS Meeting Abstracts",
+    "type": "conference-abstract",
+    "doi": "10.1149/ma2019-03/2/227"
+   },
+   {
+    "pi": "Andrew Ng",
+    "oa": "https://openalex.org/W3015284667",
+    "title": "FLUXNET Methane Synthesis: Modeling Wetland Methane Fluxes from Sites to the Globe",
+    "venue": "AGU Fall Meeting Abstracts",
+    "type": "conference-abstract",
+    "doi": ""
+   },
+   {
+    "pi": "David Lobell",
+    "oa": "https://openalex.org/W3033948172",
+    "title": "Insights into Effective Satellite Crop Yield Estimation from an Extensive Ground Truth Dataset in the US Corn Belt",
+    "venue": "AGU Fall Meeting Abstracts",
+    "type": "conference-abstract",
+    "doi": ""
+   },
+   {
+    "pi": "Eric Darve",
+    "oa": "https://openalex.org/W3012522123",
+    "title": "Time-lapse Full-waveform Inversion of Dynamic Geophysical Processes with Examples from Multi-phase Flow",
+    "venue": "AGU Fall Meeting Abstracts",
+    "type": "conference-abstract",
+    "doi": ""
+   },
+   {
+    "pi": "Eric Darve",
+    "oa": "https://openalex.org/W2997161146",
+    "title": "deep learning techniques for riverine bathymetry and flow velocity estimation",
+    "venue": "AGU Fall Meeting Abstracts",
+    "type": "conference-abstract",
+    "doi": ""
+   }
+  ],
+  "meeting_abstract:doi": [
+   {
+    "pi": "Nigam H. Shah",
+    "oa": "https://openalex.org/W3011458560",
+    "title": "Abstract 122: Use of Machine Learning to Accurately Predict Adverse Events in Patients With Peripheral Artery Disease Using Electronic Health Record Data",
+    "venue": "Arteriosclerosis Thrombosis and Vascular Biology",
+    "type": "conference-abstract",
+    "doi": "10.1161/atvb.36.suppl_1.122"
+   },
+   {
+    "pi": "Daniel Rubin",
+    "oa": "https://openalex.org/W2890168660",
+    "title": "Randomized phase II study of cisplatin and etoposide versus temozolomide and capecitabine in patients (pts) with advanced G3 non-small cell gastroenteropancreatic neuroendocrine carcinomas (GEPNEC): A trial of the ECOG-ACRIN Cancer Research Group (EA2142).",
+    "venue": "Journal of Clinical Oncology",
+    "type": "conference-abstract",
+    "doi": "10.1200/jco.2016.34.15_suppl.tps4149"
+   },
+   {
+    "pi": "Anshul Kundaje",
+    "oa": "https://openalex.org/W2482988738",
+    "title": "Abstract 4489: Using functional data from Roadmap Epigenomics to inform analysis of rare variants linked to gene expression in a large colorectal cancer study",
+    "venue": "Cancer Research",
+    "type": "conference-abstract",
+    "doi": "10.1158/1538-7445.am2016-4489"
+   },
+   {
+    "pi": "Nigam H. Shah",
+    "oa": "https://openalex.org/W2506503664",
+    "title": "Abstract 4307: Influence of age on androgen deprivation therapy-associated Alzheimer's disease",
+    "venue": "Cancer Research",
+    "type": "conference-abstract",
+    "doi": "10.1158/1538-7445.am2016-4307"
+   },
+   {
+    "pi": "Geoffrey Sonn",
+    "oa": "https://openalex.org/W2739835189",
+    "title": "Abstract 2390: Clinical validation of an epigenetic field of susceptibility to detect significant prostate cancer from 2 non-tumor biopsies",
+    "venue": "Cancer Research",
+    "type": "conference-abstract",
+    "doi": "10.1158/1538-7445.am2017-2390"
+   },
+   {
+    "pi": "Russ Altman",
+    "oa": "https://openalex.org/W2741737180",
+    "title": "Abstract 81: E2F4/p107 complex regulates chemotherapy resistance in human colorectal cancer stem cells",
+    "venue": "Cancer Research",
+    "type": "conference-abstract",
+    "doi": "10.1158/1538-7445.am2017-81"
+   },
+   {
+    "pi": "Russ Altman",
+    "oa": "https://openalex.org/W3161954179",
+    "title": "Maria: Accurate Prediction of MHC-II Peptide Presentation with Deep-Learning and Lymphoma Patient MHC-II Ligandome",
+    "venue": "Blood",
+    "type": "article",
+    "doi": "10.1182/blood.v130.suppl_1.1486.1486"
+   },
+   {
+    "pi": "John M. Pauly",
+    "oa": "https://openalex.org/W2891229117",
+    "title": "Abstract WP53: Improved Prediction of the Final Infarct From Acute Stroke Neuroimaging Using Deep Learning",
+    "venue": "Stroke",
+    "type": "conference-abstract",
+    "doi": "10.1161/str.49.suppl_1.wp53"
+   },
+   {
+    "pi": "Nigam H. Shah",
+    "oa": "https://openalex.org/W2921338161",
+    "title": "Abstract 245: Phenotype Discovery in Cardiovascular Patients Using Unsupervised Learning",
+    "venue": "Arteriosclerosis Thrombosis and Vascular Biology",
+    "type": "conference-abstract",
+    "doi": "10.1161/atvb.38.suppl_1.245"
+   },
+   {
+    "pi": "S Simon Wong",
+    "oa": "https://openalex.org/W2887255904",
+    "title": "Abstract 3048: Deep learning to predict survival prognosis for patients with non-small cell lung cancer using images and clinical data",
+    "venue": "Cancer Research",
+    "type": "conference-abstract",
+    "doi": "10.1158/1538-7445.am2018-3048"
+   }
+  ],
+  "meeting_abstract:title": [
+   {
+    "pi": "Parag Mallick",
+    "oa": "https://openalex.org/W2536473538",
+    "title": "Abstract A23: Characterization of diverging molecular and phenotypic responses under changing extracellular matrix stiffness in MCF10A cells",
+    "venue": "Cancer Research",
+    "type": "conference-abstract",
+    "doi": "10.1158/1538-7445.tme16-a23"
+   },
+   {
+    "pi": "Anshul Kundaje",
+    "oa": "https://openalex.org/W2954735365",
+    "title": "Abstract 4349: Predicting gene expression from plasma cell-free DNA using both the fragment length and fragment position",
+    "venue": "Molecular and Cellular Biology / Genetics",
+    "type": "conference-abstract",
+    "doi": "10.1158/1538-7445.sabcs18-4349"
+   },
+   {
+    "pi": "Bruce Daniel",
+    "oa": "https://openalex.org/W3024475759",
+    "title": "Abstract QS36: Spatial Fidelity Of Microvascular Perforating Vessels As Perceived By Augmented Reality Holographic Projections",
+    "venue": "Plastic & Reconstructive Surgery Global Open",
+    "type": "conference-abstract",
+    "doi": "10.1097/01.gox.0000668000.74238.10"
+   },
+   {
+    "pi": "Geoffrey Sonn",
+    "oa": "https://openalex.org/W3133560731",
+    "title": "Abstract PO-025: Differentiation of benign from clinically significant prostate cancer tissues using convolution neural networks on raw micro-ultrasound data",
+    "venue": "Clinical Cancer Research",
+    "type": "conference-abstract",
+    "doi": "10.1158/1557-3265.adi21-po-025"
+   },
+   {
+    "pi": "Curtis Langlotz",
+    "oa": "https://openalex.org/W4313590363",
+    "title": "Abstract P068: A hybrid modelling approach for abstracting CT imaging indications by integrating natural language processing from radiology reports with structured data from electronic health records",
+    "venue": "Cancer Prevention Research",
+    "type": "conference-abstract",
+    "doi": "10.1158/1940-6215.precprev22-p068"
+   },
+   {
+    "pi": "Peter Bailis",
+    "oa": "https://openalex.org/W3012738236",
+    "title": "Abstract 14675: Developing Convolutional Neural Networks for Deep Learning of Ventricular Action Potentials to Predict Risk for Ventricular Arrhythmias",
+    "venue": "Circulation",
+    "type": "conference-abstract",
+    "doi": ""
+   },
+   {
+    "pi": "Matei Zaharia",
+    "oa": "https://openalex.org/W3012738236",
+    "title": "Abstract 14675: Developing Convolutional Neural Networks for Deep Learning of Ventricular Action Potentials to Predict Risk for Ventricular Arrhythmias",
+    "venue": "Circulation",
+    "type": "conference-abstract",
+    "doi": ""
+   },
+   {
+    "pi": "James Zou",
+    "oa": "https://openalex.org/W3138588828",
+    "title": "Abstract 16339: Machine Learning Prediction of Left Ventricular Chamber Size and Ejection Fraction",
+    "venue": "Circulation",
+    "type": "conference-abstract",
+    "doi": ""
+   },
+   {
+    "pi": "Peter Bailis",
+    "oa": "https://openalex.org/W3159169877",
+    "title": "Abstract 16231: Machine Learning of Remodeled Ventricular Action Potentials and Long-Term Follow-Up of Ventricular Arrhythmias",
+    "venue": "Circulation",
+    "type": "conference-abstract",
+    "doi": ""
+   },
+   {
+    "pi": "Matei Zaharia",
+    "oa": "https://openalex.org/W3159169877",
+    "title": "Abstract 16231: Machine Learning of Remodeled Ventricular Action Potentials and Long-Term Follow-Up of Ventricular Arrhythmias",
+    "venue": "Circulation",
+    "type": "conference-abstract",
+    "doi": ""
+   }
+  ],
+  "meeting_abstract:keynote": [
+   {
+    "pi": "Subhasish Mitra",
+    "oa": "https://openalex.org/W2588261926",
+    "title": "ASP-DAC 2017 keynote speech I: In memory of Edward J. McCluskey: The next wave of pioneering innovations",
+    "venue": "Asia and South Pacific Design Automation Conference (ASP-DAC)",
+    "type": "conference-abstract",
+    "doi": "10.1109/aspdac.2017.7858250"
+   },
+   {
+    "pi": "Tim Roughgarden",
+    "oa": "https://openalex.org/W2626580500",
+    "title": "Why prices need algorithms (invited talk)",
+    "venue": "ACM Symposium on Theory of Computing (STOC)",
+    "type": "conference-abstract",
+    "doi": "10.1145/3055399.3079077"
+   }
+  ],
+  "award_announcement": [
+   {
+    "pi": "Pamela Hinds",
+    "oa": "https://openalex.org/W2899376207",
+    "title": "Lasting Impact Award",
+    "venue": "ACM Conference on Computer Supported Cooperative Work (CSCW)",
+    "type": "conference-paper",
+    "doi": "10.1145/3272973.3282491"
+   },
+   {
+    "pi": "Gordon Wetzstein",
+    "oa": "https://openalex.org/W4394825386",
+    "title": "VGTC Virtual Reality Technical Achievement Award",
+    "venue": "IEEE Conference on Virtual Reality and 3D User Interfaces (VR)",
+    "type": "conference-abstract",
+    "doi": "10.1109/vr58804.2024.00017"
+   }
+  ],
+  "doi_year_conflict": [
+   {
+    "pi": "Chris Manning",
+    "oa": "https://openalex.org/W3011573503",
+    "title": "A Framework for Fostering Easier Access to Enriched Textual Information",
+    "venue": "DROPS (Schloss Dagstuhl – Leibniz Center for Informatics)",
+    "type": "article",
+    "doi": "10.4230/oasics.slate.2023.2"
+   }
+  ],
+  "dissertation": [
+   {
+    "pi": "Martin Fischer",
+    "oa": "https://openalex.org/W4315588688",
+    "title": "Digital Twin: Where do humans fit in?",
+    "venue": "Americanae (AECID Library)",
+    "type": "dissertation",
+    "doi": "10.48550/arxiv.2301.03040"
+   },
+   {
+    "pi": "Martin Fischer",
+    "oa": "https://openalex.org/W4415987765",
+    "title": "SYNBUILD-3D: A large, multi-modal, and semantically rich synthetic dataset of 3D building models at Level of Detail 4",
+    "venue": "arXiv (Cornell University)",
+    "type": "preprint",
+    "doi": "10.25740/kz908vb7844"
+   },
+   {
+    "pi": "Mark Cutkosky",
+    "oa": "https://openalex.org/W7154527830",
+    "title": "Golf Hawks - an AI golf caddie in the form of sunglasses",
+    "venue": "Stanford Digital Repository",
+    "type": "article",
+    "doi": "10.25740/nf908vf4396"
+   },
+   {
+    "pi": "Mark Cutkosky",
+    "oa": "https://openalex.org/W7161546672",
+    "title": "Matchbox: Wearable Technology to Spark Conversation",
+    "venue": "Stanford Digital Repository",
+    "type": "article",
+    "doi": "10.25740/dz445kw8592"
+   },
+   {
+    "pi": "Jeffrey Hancock",
+    "oa": "https://openalex.org/W7162100005",
+    "title": "Exploring College Students’ Use of Generative AI by Omotolani Azeez",
+    "venue": "Stanford Digital Repository",
+    "type": "article",
+    "doi": "10.25740/xs750my8766"
+   },
+   {
+    "pi": "Jeffrey Hancock",
+    "oa": "https://openalex.org/W7162198011",
+    "title": "Autistic People, Caregivers, and Allies: Fundamental Needs in the Autism Community",
+    "venue": "Stanford Digital Repository",
+    "type": "article",
+    "doi": "10.25740/nf949cd7098"
+   },
+   {
+    "pi": "Jeffrey Hancock",
+    "oa": "https://openalex.org/W7162414362",
+    "title": "Autistic People, Caregivers, and Allies: Fundamental Needs in the Autism Community",
+    "venue": "Stanford Digital Repository",
+    "type": "article",
+    "doi": "10.25740/kx211ym0703"
+   },
+   {
+    "pi": "Mark Cutkosky",
+    "oa": "https://openalex.org/W7162643781",
+    "title": "Demanufacturing: Increasing Circularity for Disposable Medical Devices",
+    "venue": "Stanford Digital Repository",
+    "type": "article",
+    "doi": "10.25740/zy775jw5922"
+   },
+   {
+    "pi": "Victor R. Lee",
+    "oa": "https://openalex.org/W7163516481",
+    "title": "PROMPTING DIFFERENCE: COLLEGE STUDENTS WITH ADHD AND THEIR USE OF LARGE LANGUAGE MODELS IN LEARNING CONTEXTS",
+    "venue": "Stanford Digital Repository",
+    "type": "article",
+    "doi": "10.25740/fp936wf2160"
+   },
+   {
+    "pi": "Candace Thille",
+    "oa": "https://openalex.org/W7163691981",
+    "title": "From Automated to Augmented Feedback and Beyond: Rethinking Human-AI Collaboration in Feedback Provision",
+    "venue": "Stanford Digital Repository",
+    "type": "article",
+    "doi": "10.25740/hp094zw9886"
+   }
+  ],
+  "repository_supplement": [
+   {
+    "pi": "Sara Achour",
+    "oa": "https://openalex.org/W4386556380",
+    "title": "Artifact for the OOPSLA 2023 Article \"Hardware-Aware Static Optimization of Hyperdimensional Computations\"",
+    "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+    "type": "conference-paper",
+    "doi": "10.5281/zenodo.8329812"
+   },
+   {
+    "pi": "Clark Barrett",
+    "oa": "https://openalex.org/W4391334961",
+    "title": "Artifact for Marabou 2.0: A Versatile Formal Analyzer of Neural Networks",
+    "venue": "arXiv (Cornell University)",
+    "type": "preprint",
+    "doi": "10.48550/arxiv.2401.14461"
+   },
+   {
+    "pi": "Russ Altman",
+    "oa": "https://openalex.org/W7117327225",
+    "title": "Additional file 2 of The Human Omnibus of Targetable Pockets",
+    "venue": "Figshare",
+    "type": "article",
+    "doi": "10.6084/m9.figshare.30947975"
+   },
+   {
+    "pi": "Barbara Elizabeth Engelhardt",
+    "oa": "https://openalex.org/W7128637322",
+    "title": "Additional file 1 of Neighborhood nonnegative matrix factorization identifies patterns and spatially-variable genes in large-scale spatial transcriptomics data",
+    "venue": "Figshare",
+    "type": "article",
+    "doi": "10.6084/m9.figshare.31311538"
+   },
+   {
+    "pi": "Fredrik Kjolstad",
+    "oa": "https://openalex.org/W7128021911",
+    "title": "Artifact for Deegen: A JIT-Capable VM Generator for Dynamic Languages",
+    "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+    "type": "article",
+    "doi": "10.5281/zenodo.18503843"
+   },
+   {
+    "pi": "Wing Hung Wong",
+    "oa": "https://openalex.org/W7155394004",
+    "title": "Additional file 2 of Reducing demographic bias in biomedical machine learning for cancer detection using cfDNA methylation",
+    "venue": "Figshare",
+    "type": "article",
+    "doi": "10.6084/m9.figshare.32082127"
+   },
+   {
+    "pi": "Gabriella M. Harari",
+    "oa": "https://openalex.org/W3144863514",
+    "title": "Supplementary materials for preprint: Computational Personality Assessment - An Overview and Perspective",
+    "venue": "OSF Preprints (OSF Preprints)",
+    "type": "preprint",
+    "doi": ""
+   },
+   {
+    "pi": "Gabriella M. Harari",
+    "oa": "https://openalex.org/W7160735469",
+    "title": "Supplementary materials for preprint: Computational Personality Assessment - An Overview and Perspective",
+    "venue": "OSF Preprints (OSF Preprints)",
+    "type": "preprint",
+    "doi": ""
+   },
+   {
+    "pi": "Russ Altman",
+    "oa": "https://openalex.org/W7135402822",
+    "title": "Additional file 1: of Cohort-specific imputation of gene expression improves prediction of warfarin dose for African Americans",
+    "venue": "Figshare",
+    "type": "article",
+    "doi": "10.6084/m9.figshare.5632306"
+   }
+  ],
+  "software_record": [
+   {
+    "pi": "Fredrik Kjolstad",
+    "oa": "https://openalex.org/W7105988443",
+    "title": "Ember: A Compiler for Embedding Operations on Decoupled Access-Execute Architectures",
+    "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+    "type": "software",
+    "doi": "10.5281/zenodo.17636955"
+   },
+   {
+    "pi": "John Mitchell",
+    "oa": "https://openalex.org/W7115067934",
+    "title": "Protean Artifact",
+    "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+    "type": "software",
+    "doi": "10.5281/zenodo.17857895"
+   },
+   {
+    "pi": "Caroline Trippel",
+    "oa": "https://openalex.org/W7115067934",
+    "title": "Protean Artifact",
+    "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+    "type": "software",
+    "doi": "10.5281/zenodo.17857895"
+   },
+   {
+    "pi": "Russell Poldrack",
+    "oa": "https://openalex.org/W7114926675",
+    "title": "bids-validator",
+    "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+    "type": "software",
+    "doi": "10.5281/zenodo.17902244"
+   },
+   {
+    "pi": "Zakir Durumeric",
+    "oa": "https://openalex.org/W7116092734",
+    "title": "Hop: Artifact for USENIX Security '26",
+    "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+    "type": "software",
+    "doi": "10.5281/zenodo.17953396"
+   },
+   {
+    "pi": "Daniel Ho",
+    "oa": "https://openalex.org/W7133212504",
+    "title": "Monotone Ecological Inference",
+    "venue": "Code Ocean",
+    "type": "software",
+    "doi": "10.24433/co.6554779.v1"
+   },
+   {
+    "pi": "Clark Barrett",
+    "oa": "https://openalex.org/W7128738356",
+    "title": "Artifact for: \"Exploring the SMT-LIB Benchmark Library\"",
+    "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+    "type": "software",
+    "doi": "10.5281/zenodo.18192492"
+   },
+   {
+    "pi": "Karen Liu",
+    "oa": "https://openalex.org/W7126236594",
+    "title": "MAJIC Filter: Estimating Magnetic Field at Joint Centers Reduces Kinematic Errors",
+    "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+    "type": "software",
+    "doi": "10.5281/zenodo.18437562"
+   },
+   {
+    "pi": "Russell Poldrack",
+    "oa": "https://openalex.org/W7128504383",
+    "title": "Better Code, Better Science",
+    "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+    "type": "software",
+    "doi": "10.5281/zenodo.18603014"
+   },
+   {
+    "pi": "James Landay",
+    "oa": "https://openalex.org/W7128532448",
+    "title": "parkersruth/bayesian_pulse_deconvolution: v1.0.0-preprint",
+    "venue": "Zenodo (CERN European Organization for Nuclear Research)",
+    "type": "software",
+    "doi": "10.5281/zenodo.18586098"
+   }
+  ],
+  "dagstuhl_report": [
+   {
+    "pi": "Diyi Yang",
+    "oa": "https://openalex.org/W7159029883",
+    "title": "Natural Language Processing for Mental Health (Dagstuhl Seminar 25361)",
+    "venue": "TUbilio (Technical University of Darmstadt)",
+    "type": "article",
+    "doi": "10.4230/dagrep.15.8.62"
+   },
+   {
+    "pi": "Mykel Kochenderfer",
+    "oa": "https://openalex.org/W6948057322",
+    "title": "Artificial Intelligence and Formal Methods Join Forces for Reliable Autonomy (Dagstuhl Seminar 24361)",
+    "venue": "Dagstuhl Reports",
+    "type": "article",
+    "doi": "10.4230/dagrep.14.9.1"
+   }
+  ],
+  "oberwolfach_report": [
+   {
+    "pi": "Mary Wootters",
+    "oa": "https://openalex.org/W7129000878",
+    "title": "New Mathematical Directions in Coding Theory",
+    "venue": "Oberwolfach Reports",
+    "type": "article",
+    "doi": "10.4171/owr/2025/41"
+   },
+   {
+    "pi": "Jacob Fox",
+    "oa": "https://openalex.org/W7169827347",
+    "title": "Combinatorics",
+    "venue": "Oberwolfach Reports",
+    "type": "article",
+    "doi": "10.4171/owr/2026/1"
+   }
+  ],
+  "workshop_proposal": [
+   {
+    "pi": "Dora Demszky",
+    "oa": "https://openalex.org/W4412975911",
+    "title": "Advancing the Science of Teaching with Tutoring Data: A Collaborative Workshop with the National Tutoring Observatory",
+    "venue": "ACM Conference on Learning @ Scale (L@S)",
+    "type": "conference-paper",
+    "doi": "10.1145/3698205.3733961"
+   }
+  ],
+  "machine_translation": [
+   {
+    "pi": "Silvio Savarese",
+    "oa": "https://openalex.org/W2743381754",
+    "title": "DeLay:雑然とした屋内シーンのためのロバストな空間レイアウト推定【Powered by NICT】",
+    "venue": "IEEE Conference Proceedings",
+    "type": "conference-paper",
+    "doi": ""
+   },
+   {
+    "pi": "Tsachy Weissman",
+    "oa": "https://openalex.org/W2746915448",
+    "title": "最大尤度を超えて:大規模アルファベットのためのChow‐Liuアルゴリズムブースティング【Powered by NICT】",
+    "venue": "IEEE Conference Proceedings",
+    "type": "conference-paper",
+    "doi": ""
+   },
+   {
+    "pi": "Amin Arbabian",
+    "oa": "https://openalex.org/W2745407028",
+    "title": "1.55での12.5Gbit/s pJ/b/mを達成する三次元印刷した26DBIレンズアンテナを用いた17.8コンパクト130GHz完全包装したポイントツーポイント無線システム【Powered by NICT】",
+    "venue": "IEEE Conference Proceedings",
+    "type": "conference-paper",
+    "doi": ""
+   },
+   {
+    "pi": "Andrea Goldsmith",
+    "oa": "https://openalex.org/W2742605953",
+    "title": "部分サンプルからのシステム同定:非漸近解析【Powered by NICT】",
+    "venue": "IEEE Conference Proceedings",
+    "type": "conference-paper",
+    "doi": ""
+   },
+   {
+    "pi": "Andrea Goldsmith",
+    "oa": "https://openalex.org/W2746763894",
+    "title": "拡散ベースの分子タイミングチャネル上での通信【Powered by NICT】",
+    "venue": "IEEE Conference Proceedings",
+    "type": "conference-paper",
+    "doi": ""
+   },
+   {
+    "pi": "Andrea Goldsmith",
+    "oa": "https://openalex.org/W2978883140",
+    "title": "分子タイミングチャネルにおける時間同期化の影響について【Powered by NICT】",
+    "venue": "IEEE Conference Proceedings",
+    "type": "conference-paper",
+    "doi": ""
+   },
+   {
+    "pi": "Chris Re",
+    "oa": "https://openalex.org/W2751723987",
+    "title": "非同期性は運動量を生む,深い学習への応用【Powered by NICT】",
+    "venue": "IEEE Conference Proceedings",
+    "type": "conference-paper",
+    "doi": ""
+   }
+  ],
+  "erratum": [
+   {
+    "pi": "Oussama Khatib",
+    "oa": "https://openalex.org/W3168234123",
+    "title": "Correction to: Experimental Robotics",
+    "venue": "ISER",
+    "type": "article",
+    "doi": "10.1007/978-3-030-71151-1_55"
+   },
+   {
+    "pi": "Daniel Ho",
+    "oa": "https://openalex.org/W4296691523",
+    "title": "Author Correction: Advances, challenges and opportunities in creating data for trustworthy AI",
+    "venue": "Nat. Mac. Intell.",
+    "type": "article",
+    "doi": "10.1038/s42256-022-00548-7"
+   },
+   {
+    "pi": "Fei-Fei Li",
+    "oa": "https://openalex.org/W4296691523",
+    "title": "Author Correction: Advances, challenges and opportunities in creating data for trustworthy AI",
+    "venue": "Nat. Mac. Intell.",
+    "type": "article",
+    "doi": "10.1038/s42256-022-00548-7"
+   },
+   {
+    "pi": "Matei Zaharia",
+    "oa": "https://openalex.org/W4296691523",
+    "title": "Author Correction: Advances, challenges and opportunities in creating data for trustworthy AI",
+    "venue": "Nat. Mac. Intell.",
+    "type": "article",
+    "doi": "10.1038/s42256-022-00548-7"
+   },
+   {
+    "pi": "James Zou",
+    "oa": "https://openalex.org/W4296691523",
+    "title": "Author Correction: Advances, challenges and opportunities in creating data for trustworthy AI",
+    "venue": "Nat. Mac. Intell.",
+    "type": "article",
+    "doi": "10.1038/s42256-022-00548-7"
+   },
+   {
+    "pi": "Daniel Rubin",
+    "oa": "https://openalex.org/W4226037395",
+    "title": "Author Correction: Advancing COVID-19 diagnosis with privacy-preserving collaboration in artificial intelligence",
+    "venue": "Nat. Mach. Intell.",
+    "type": "article",
+    "doi": "10.1038/s42256-022-00485-5"
+   },
+   {
+    "pi": "Andrew Ng",
+    "oa": "https://openalex.org/W3045831388",
+    "title": "Author Correction: PENet - a scalable deep-learning model for automated diagnosis of pulmonary embolism using volumetric CT imaging",
+    "venue": "npj Digit. Medicine",
+    "type": "article",
+    "doi": "10.1038/s41746-020-00310-6"
+   },
+   {
+    "pi": "Oussama Khatib",
+    "oa": "https://openalex.org/W4380924361",
+    "title": "Correction to: Editorial",
+    "venue": "Int. J. Soc. Robotics",
+    "type": "article",
+    "doi": "10.1007/s12369-020-00630-3"
+   },
+   {
+    "pi": "Jacob Fox",
+    "oa": "https://openalex.org/W2790907782",
+    "title": "Erratum: On Regularity Lemmas and their Algorithmic Applications",
+    "venue": "Comb. Probab. Comput.",
+    "type": "article",
+    "doi": "10.1017/s0963548318000111"
+   },
+   {
+    "pi": "Christos Kozyrakis",
+    "oa": "https://openalex.org/W2778763463",
+    "title": "Corrigendum to \"The IX Operating System: Combining Low Latency, High Throughput and Efficiency in a Protected Dataplane\"",
+    "venue": "ACM Trans. Comput. Syst.",
+    "type": "article",
+    "doi": "10.1145/3154292"
+   }
+  ]
+ },
+ "page1ElsewhereSamples": [
+  {
+   "pi": "Chelsea Finn",
+   "oa": "https://openalex.org/W7204808299",
+   "title": "π*₀.₆: a VLA That Learns From Experience",
+   "page1": "local:stanford_oa_W7204808299",
+   "mark": "https://"
+  },
+  {
+   "pi": "Chelsea Finn",
+   "oa": "https://openalex.org/W2755546070",
+   "title": "One-Shot Visual Imitation Learning via Meta-Learning",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1709/1709.04905v1.pdf",
+   "mark": "Univ"
+  },
+  {
+   "pi": "Chelsea Finn",
+   "oa": "https://openalex.org/W4385473486",
+   "title": "RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2307/2307.15818v1.pdf",
+   "mark": "https://"
+  },
+  {
+   "pi": "Chelsea Finn",
+   "oa": "https://openalex.org/W2892490014",
+   "title": "Few-Shot Goal Inference for Visuomotor Learning and Planning",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1810/1810.00482v1.pdf",
+   "mark": "Univ"
+  },
+  {
+   "pi": "Chelsea Finn",
+   "oa": "https://openalex.org/W2558634851",
+   "title": "Generalizing Skills with Semi-Supervised Reinforcement Learning",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1612/1612.00429v1.pdf",
+   "mark": "Univ"
+  },
+  {
+   "pi": "Chelsea Finn",
+   "oa": "https://openalex.org/W4386942526",
+   "title": "Q-Transformer: Scalable Offline Reinforcement Learning via Autoregressive Q-Functions",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2309/2309.10150v1.pdf",
+   "mark": "Google"
+  },
+  {
+   "pi": "Chelsea Finn",
+   "oa": "https://openalex.org/W4404350116",
+   "title": "$π_0$: A Vision-Language-Action Flow Model for General Robot Control",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2410/2410.24164v1.pdf",
+   "mark": "https://"
+  },
+  {
+   "pi": "Chelsea Finn",
+   "oa": "https://openalex.org/W4400601208",
+   "title": "Mobility VLA: Multimodal Instruction Navigation with Long-Context VLMs and Topological Graphs",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2407/2407.07775v1.pdf",
+   "mark": "Google"
+  },
+  {
+   "pi": "Chelsea Finn",
+   "oa": "https://openalex.org/W4414674749",
+   "title": "$π_{0.5}$: a Vision-Language-Action Model with Open-World Generalization",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2504/2504.16054v1.pdf",
+   "mark": "https://"
+  },
+  {
+   "pi": "James Zou",
+   "oa": "https://openalex.org/W4415337371",
+   "title": "Can Language Models Discover Scaling Laws?",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2507/2507.21184v1.pdf",
+   "mark": "Institut"
+  },
+  {
+   "pi": "Chelsea Finn",
+   "oa": "https://openalex.org/W4417215404",
+   "title": "$π^{*}_{0.6}$: a VLA That Learns From Experience",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2511/2511.14759v1.pdf",
+   "mark": "https://"
+  },
+  {
+   "pi": "Zachary Manchester",
+   "oa": "https://openalex.org/W7153003978",
+   "title": "Sumo: Dynamic and Generalizable Whole-Body Loco-Manipulation",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2604/2604.08508v1.pdf",
+   "mark": "Institut"
+  },
+  {
+   "pi": "Chelsea Finn",
+   "oa": "https://openalex.org/W7155019052",
+   "title": "$π_{0.7}$: a Steerable Generalist Robotic Foundation Model with Emergent Capabilities",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2604/2604.15483v1.pdf",
+   "mark": "https://"
+  },
+  {
+   "pi": "Tim Roughgarden",
+   "oa": "https://openalex.org/W2615064102",
+   "title": "Pricing Identical Items.",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1706/1706.10009v1.pdf",
+   "mark": "Univ"
+  },
+  {
+   "pi": "Percy Liang",
+   "oa": "https://openalex.org/W4415257516",
+   "title": "Holistic Agent Leaderboard: The Missing Infrastructure for AI Agent Evaluation",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2510/2510.11977v1.pdf",
+   "mark": "}@p"
+  },
+  {
+   "pi": "Virginia Williams",
+   "oa": "https://openalex.org/W3094575411",
+   "title": "New Techniques and Fine-Grained Hardness for Dynamic Near-Additive Spanners",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2010/2010.10134v1.pdf",
+   "mark": "Univ"
+  },
+  {
+   "pi": "Benjamin Van Roy",
+   "oa": "https://openalex.org/W7133210595",
+   "title": "Epistemic Neural Networks",
+   "page1": "local:stanford_oa_W7133210595",
+   "mark": "Google"
+  },
+  {
+   "pi": "Benjamin Van Roy",
+   "oa": "https://openalex.org/W7133221452",
+   "title": "An Analysis of Ensemble Sampling",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2203/2203.01303v1.pdf",
+   "mark": "Univ"
+  },
+  {
+   "pi": "Benjamin Van Roy",
+   "oa": "https://openalex.org/W4384448138",
+   "title": "Reinforcement Learning, Bit by Bit",
+   "page1": "local:stanford_oa_W4384448138",
+   "mark": "DeepMind"
+  },
+  {
+   "pi": "Benjamin Van Roy",
+   "oa": "https://openalex.org/W7133264879",
+   "title": "The Neural Testbed: Evaluating Joint Predictions",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2110/2110.04629v1.pdf",
+   "mark": "DeepMind"
+  },
+  {
+   "pi": "Benjamin Van Roy",
+   "oa": "https://openalex.org/W3186948595",
+   "title": "Epistemic Neural Networks",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2107/2107.08924v1.pdf",
+   "mark": "DeepMind"
+  },
+  {
+   "pi": "Marco Pavone",
+   "oa": "https://openalex.org/W4384644126",
+   "title": "Language Conditioned Traffic Generation",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2307/2307.07947v1.pdf",
+   "mark": "NVIDIA"
+  },
+  {
+   "pi": "Virginia Williams",
+   "oa": "https://openalex.org/W2964093101",
+   "title": "Fine-Grained I/O Complexity via Reductions: New lower bounds, faster algorithms, and a time hierarchy",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1711/1711.07960v1.pdf",
+   "mark": "Lab"
+  },
+  {
+   "pi": "Benjamin Van Roy",
+   "oa": "https://openalex.org/W3206527523",
+   "title": "Evaluating Predictive Distributions: Does Bayesian Deep Learning Work?",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2110/2110.04629v1.pdf",
+   "mark": "DeepMind"
+  },
+  {
+   "pi": "Benjamin Van Roy",
+   "oa": "https://openalex.org/W3185734706",
+   "title": "Evaluating Probabilistic Inference in Deep Learning: Beyond Marginal Predictions.",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2107/2107.09224v1.pdf",
+   "mark": "DeepMind"
+  },
+  {
+   "pi": "Benjamin Van Roy",
+   "oa": "https://openalex.org/W4221148039",
+   "title": "Evaluating High-Order Predictive Distributions in Deep Learning",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2202/2202.13509v1.pdf",
+   "mark": "DeepMind"
+  },
+  {
+   "pi": "Benjamin Van Roy",
+   "oa": "https://openalex.org/W4283822691",
+   "title": "Robustness of Epinets against Distributional Shifts",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2207/2207.00137v1.pdf",
+   "mark": "DeepMind"
+  },
+  {
+   "pi": "Marco Pavone",
+   "oa": "https://openalex.org/W4415935425",
+   "title": "Alpamayo-R1: Bridging Reasoning and Action Prediction for Generalizable Autonomous Driving in the Long Tail",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2511/2511.00088v1.pdf",
+   "mark": "NVIDIA"
+  },
+  {
+   "pi": "Benjamin Van Roy",
+   "oa": "https://openalex.org/W4287072266",
+   "title": "From Predictions to Decisions: The Importance of Joint Predictive Distributions",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2107/2107.09224v1.pdf",
+   "mark": "DeepMind"
+  },
+  {
+   "pi": "Marco Pavone",
+   "oa": "https://openalex.org/W4396786711",
+   "title": "Language-Image Models with 3D Understanding",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2405/2405.03685v1.pdf",
+   "mark": "NVIDIA"
+  },
+  {
+   "pi": "Marco Pavone",
+   "oa": "https://openalex.org/W4403619071",
+   "title": "Promptable Closed-loop Traffic Simulation",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2409/2409.05863v1.pdf",
+   "mark": "NVIDIA"
+  },
+  {
+   "pi": "Benjamin Van Roy",
+   "oa": "https://openalex.org/W7138842930",
+   "title": "Efficient Exploration at Scale",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2603/2603.17378v1.pdf",
+   "mark": "Google"
+  },
+  {
+   "pi": "Marco Pavone",
+   "oa": "https://openalex.org/W7162330647",
+   "title": "Fast-dDrive: Efficient Block-Diffusion VLM for Autonomous Driving",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2605/2605.23163v1.pdf",
+   "mark": "Univ"
+  },
+  {
+   "pi": "Christos Kozyrakis",
+   "oa": "https://openalex.org/W7166102167",
+   "title": "SOLAR: AI-Powered Speed-of-Light Performance Analysis",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2606/2606.26383v1.pdf",
+   "mark": "NVIDIA"
+  },
+  {
+   "pi": "Marco Pavone",
+   "oa": "https://openalex.org/W7203648177",
+   "title": "Coverage Aware Active Evaluation for Failure Discovery with Paired Systems",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2608/2608.13719v1.pdf",
+   "mark": "Laborator"
+  },
+  {
+   "pi": "Marco Pavone",
+   "oa": "https://openalex.org/W7215049067",
+   "title": "Vision-Language-Action Autonomous Driving Agent with Language-based Memory",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2609/2609.38641v1.pdf",
+   "mark": "Univ"
+  },
+  {
+   "pi": "Stephen Boyd",
+   "oa": "https://openalex.org/W3172276411",
+   "title": "Optimal Claiming of Social Security Benefits",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2106/2106.00125v1.pdf",
+   "mark": "Inc"
+  },
+  {
+   "pi": "Mac Schwager",
+   "oa": "https://openalex.org/W7160634598",
+   "title": "Cubit: Token Mixer with Kernel Ridge Regression",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2605/2605.06501v1.pdf",
+   "mark": "e@g"
+  },
+  {
+   "pi": "Greg Valiant",
+   "oa": "https://openalex.org/W7223727506",
+   "title": "Learning Discrete Distributions from Untrusted Batches",
+   "page1": "local:stanford_oa_W2963381878",
+   "mark": "Google"
+  },
+  {
+   "pi": "Kawin Setsompop",
+   "oa": "https://openalex.org/W2985693367",
+   "title": "High-fidelity, high-isotropic resolution diffusion imaging through gSlider acquisition with B1+ & T1 corrections and multi-coil B0 shim array",
+   "page1": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1811/1811.05473v1.pdf",
+   "mark": "Hospital"
+  }
+ ],
+ "provenance": {
+  "at": "2026-10-29T20:53:29Z",
+  "code": {
+   "commit": "f31cec02f57d9f7fdf877186a6990d3478f2b1fa",
+   "dirty": false,
+   "dirty_paths": [],
+   "other_dirty_paths": [
+    ".gitignore"
+   ]
+  },
+  "rules": [
+   {
+    "id": "R-HIER-01",
+    "decided": "2026-10-21, owner"
+   },
+   {
+    "id": "R-HIER-02",
+    "decided": "2026-10-21, owner"
+   },
+   {
+    "id": "R-HIER-03",
+    "decided": "2026-10-27, owner"
+   },
+   {
+    "id": "R-HIER-04",
+    "decided": "2026-10-29, build"
+   },
+   {
+    "id": "R-PAP-01",
+    "decided": "2026-10-21, owner"
+   },
+   {
+    "id": "R-PAP-02",
+    "decided": "2026-10-28, build"
+   },
+   {
+    "id": "R-PAP-03",
+    "decided": "2026-10-29, owner"
+   },
+   {
+    "id": "R-PAP-05",
+    "decided": "2026-10-29, build"
+   },
+   {
+    "id": "R-PAP-06",
+    "decided": "2026-10-29, build"
+   },
+   {
+    "id": "R-PAP-07",
+    "decided": "2026-10-29, owner: best judgement"
+   },
+   {
+    "id": "R-PAP-08",
+    "decided": "2026-10-29, build"
+   },
+   {
+    "id": "R-PAP-09",
+    "decided": "2026-10-29, build"
+   },
+   {
+    "id": "R-PAP-10",
+    "decided": "2026-10-29, build"
+   },
+   {
+    "id": "R-PAP-11",
+    "decided": "2026-10-28, build"
+   },
+   {
+    "id": "R-PAP-12",
+    "decided": "2026-10-29, owner"
+   },
+   {
+    "id": "R-PAP-13",
+    "decided": "2026-10-29, owner: best judgement"
+   },
+   {
+    "id": "R-PAP-14",
+    "decided": "2026-10-28, build"
+   },
+   {
+    "id": "R-PAP-15",
+    "decided": "2026-10-29, owner: best judgement"
+   },
+   {
+    "id": "R-PAP-16",
+    "decided": "2026-10-29, build"
+   },
+   {
+    "id": "R-PAP-18",
+    "decided": "2026-10-29, owner: accuracy sample"
+   },
+   {
+    "id": "R-PAP-19",
+    "decided": "2026-10-29, owner: accuracy sample"
+   },
+   {
+    "id": "R-PAP-20",
+    "decided": "2026-10-29, owner: accuracy sample"
+   },
+   {
+    "id": "R-PAP-21",
+    "decided": "2026-10-29, owner: accuracy sample"
+   },
+   {
+    "id": "R-PAP-22",
+    "decided": "2026-10-29, owner: accuracy sample"
+   },
+   {
+    "id": "R-PAP-23",
+    "decided": "2026-10-29, build"
+   },
+   {
+    "id": "R-PAP-24",
+    "decided": "2026-10-29, owner: accuracy sample"
+   },
+   {
+    "id": "R-PAP-25",
+    "decided": "2026-10-29, owner: accuracy sample"
+   },
+   {
+    "id": "R-PAP-26",
+    "decided": "2026-10-29, owner: accuracy sample"
+   },
+   {
+    "id": "R-STU-01",
+    "decided": "2026-10-21, owner"
+   },
+   {
+    "id": "R-STU-02",
+    "decided": "2026-10-28, owner"
+   },
+   {
+    "id": "R-STU-03",
+    "decided": "2026-10-28, build"
+   },
+   {
+    "id": "R-STU-04",
+    "decided": "2026-10-28"
+   },
+   {
+    "id": "R-STU-05",
+    "decided": "2026-10-29, owner: accuracy sample"
+   },
+   {
+    "id": "R-STU-06",
+    "decided": "2026-10-29, owner: accuracy sample"
+   },
+   {
+    "id": "R-STU-07",
+    "decided": "2026-10-29, owner: accuracy sample"
+   },
+   {
+    "id": "R-LNK-02",
+    "decided": "2026-10-29, owner"
+   },
+   {
+    "id": "R-LNK-02a",
+    "decided": "2026-10-29, review of the guard's kept prefixes"
+   },
+   {
+    "id": "R-LNK-02b",
+    "decided": "2026-10-29, owner: best judgement"
+   },
+   {
+    "id": "R-LNK-03",
+    "decided": "2026-10-29, owner"
+   },
+   {
+    "id": "R-LNK-04",
+    "decided": "2026-10-29, owner: accuracy sample"
+   },
+   {
+    "id": "R-LNK-05",
+    "decided": "2026-10-29, owner"
+   },
+   {
+    "id": "R-AUD-01",
+    "decided": "2026-10-28, owner"
+   },
+   {
+    "id": "R-AUD-02",
+    "decided": "2026-10-29, owner: best judgement"
+   },
+   {
+    "id": "R-AUD-03",
+    "decided": "2026-10-29, as R-LNK-02a"
+   },
+   {
+    "id": "R-AUD-04",
+    "decided": "2026-10-29"
+   },
+   {
+    "id": "R-AUD-05",
+    "decided": "2026-10-29, owner"
+   },
+   {
+    "id": "R-AUD-06",
+    "decided": "2026-10-29, owner"
+   },
+   {
+    "id": "R-AUD-07",
+    "decided": "2026-10-29, coordinator"
+   }
+  ],
+  "openalex_sweep": {
+   "path": "[local path]",
+   "bytes": 273383424,
+   "modified": "2026-10-27T19:18:40Z",
+   "sha256": "79931af0434751777fef4d218169f344dba9f7af25ffcfc5e58e4418f88e664d",
+   "first_fetched": "2026-10-27T16:13:15Z",
+   "last_fetched": "2026-10-27T19:18:39Z",
+   "pages": 1369,
+   "works": 260891
+  },
+  "dblp_dump": {
+   "file": "[local path]",
+   "date": "2026-09-01",
+   "md5": "41abb87b4e8b8a2e3c470efd6528ad88"
+  },
+  "dblp_persons": {
+   "path": "[local path]",
+   "bytes": 20391983,
+   "modified": "2026-10-29T12:36:36Z",
+   "sha256": "6e86d6a14d0086adbb3a9085d1029a5204bf240709a6b14f6349a32913591831",
+   "dump": "dblp-2026-09-01.xml.gz"
+  },
+  "pi_works": {
+   "path": "[local path]",
+   "bytes": 71237632,
+   "modified": "2026-10-29T19:36:28Z",
+   "sha256": "0f82ccd64decca296ce2fb4df1c1a212665fcbb45c9c3098d36a24973fa39e36",
+   "works": 31437,
+   "page1_reads": 3250,
+   "page1_last_read": "2026-10-29T19:18:46Z"
+  },
+  "reviewed_inputs": {
+   "census/berkeley-additions.json": "53fa9ad93150e0b1a0a6e9cdeb373368e1a02d0160d844bea836b1581e0b6420",
+   "census/cmu-additions.json": "59deb477b0933eb116d23eae8fd437c99e44084e77eb8bd6cbd7c291bb324ce8",
+   "census/epfl-additions.json": "5f2b12aa95419da361dd9b1997acc820fe55666687f442ea392ad922af0f60ef",
+   "census/mit-additions.json": "7f5b74babcaeea7d8f992c0eabc420c24178655c82b6f0811a2ab0567c9667ab",
+   "census/princeton-additions.json": "a689fb83bd49e6c5ec7968f1657669641c58a1d19b043d9154cb7a3689b4b077",
+   "census/stanford-additions.json": "79e9e9d227a176dba7f54a90b189684a4cafc987147a1b7e74c51b259b6f43d5",
+   "docs/evidence-whitelist.json": "28f532129932c7292c4329ca5197ad1794f01bdf450a09103976242eb94751e3",
+   "hierarchy/berkeley/cs-related-review.json": "ae7dfd8b4e60a9c93a79926e20d5c28df012828cde1df335f6bff0359a5a7717",
+   "hierarchy/berkeley/few-students-evidence.json": "09832857fc64ce6158a0b055c18de570fb0eb1381b42122e682d9998c692ca66",
+   "hierarchy/berkeley/gap-evidence.json": "a0ec0be36f55226b3c26411a0ee4962e3bc7d3dd59d80fe236262a4de5ce64c7",
+   "hierarchy/berkeley/missing-pi-review.json": "3c40e5edd6287ceae4e0358d348217ddb13125617a9b8f0cd75280e363029bdb",
+   "hierarchy/census-overrides.json": "17f81d61a891b7ccf0bfc5fc9c90899ed0b0c419a4ec18353c2bed4fb13000bf",
+   "hierarchy/chain-reasons.json": "671dc6012f14e4819915a99f7fe2d0263017f77277e209042374ee525d08b2e8",
+   "hierarchy/cmu/cs-related-review.json": "9cfb1099c6003d47d8de21a7dd4dd0bc1b6813a334710ecf0b737d5160e24d86",
+   "hierarchy/cmu/few-students-evidence.json": "16675154254ece8f380fd43d4bbce0f0c8f6f0c06af7a33b9387b8daf1a6cb5c",
+   "hierarchy/cmu/gap-evidence.json": "9a3029798795c4141d7970d117849130996d03743a5f9461cefaf8d0970c52f4",
+   "hierarchy/cmu/missing-pi-review.json": "2ead73753dde486cd9071d2c42badf40c757c5d45d3c767b0adc685c6ddb88e5",
+   "hierarchy/cs-venues.json": "8068588399cf1d555f8c652e85a4fa83ac11f4388906b2a2ba688967680321dd",
+   "hierarchy/epfl/cs-related-review.json": "0cf5f300451d510db76ccf773cdd55497d394332e9f4c21081108630081870d6",
+   "hierarchy/epfl/few-students-evidence.json": "1e5d32ee93afb9ef0fe211446b6149fe3ef16c41993bbdcc78e6bd8a9fa496c9",
+   "hierarchy/epfl/gap-evidence.json": "00de395ebe7bfa3567d627edb8ca69b74ee984e78807f002115bfbff0061df12",
+   "hierarchy/epfl/missing-pi-review.json": "dcfa38ef689d15966d19c9f9234bbabd71a66aadb2de26340cb929df6fb6f84b",
+   "hierarchy/home-departments.json": "ffbb55a894e3820223030ff3ccd8c423b88f196f2c4e0dba20406d0b407ca866",
+   "hierarchy/mit/cs-related-review.json": "3c301201982c046a53cfa73c2309db3a2641cc8a11b6260beec14a68610b969b",
+   "hierarchy/mit/few-students-evidence.json": "98fd4e5b01052e6794f1799b6a1df2c3bf40889828c992a2bf37e1b7eccb2ff7",
+   "hierarchy/mit/gap-evidence.json": "829c8924a1779a80a99e90860a23ac9650468609f2344f9b0b2e96cefb326fde",
+   "hierarchy/mit/missing-pi-review.json": "73fdd3bd43f5c5aaa40746818968ff06a214f4fef2d71d3335d373bc18c99b97",
+   "hierarchy/nicknames/extras.csv": "29fe28fbe49e393924a1d2378df44470ddf61571dec818182bc87eaba7e7a970",
+   "hierarchy/nicknames/names.csv": "e6a4e5a55ca5b47a4146dbc118f26c71c63053d4b79ca9659de8e74efb65847e",
+   "hierarchy/princeton/cs-related-review.json": "40eb1c2057ca7f027b3b56f582befb23e8d794ecc77eea287543669d3fd37bf2",
+   "hierarchy/princeton/few-students-evidence.json": "45977216b903063c02490cb532389885adcdf2bb5197e4421f0199d22610d3e0",
+   "hierarchy/princeton/gap-evidence.json": "6ec339469906b462da42f771c239406ae73a95ef6275fb7abce84717b8a37d74",
+   "hierarchy/princeton/missing-pi-review.json": "f42f179b1c772b2a9839947af11a531aef0d25178e7f52b878b00cba92e5519b",
+   "hierarchy/stanford/cs-related-review.json": "446c36e36a863d6d86605e65384c2060fabcf7f2c77fb1ffa9f5e0bd67a604d3",
+   "hierarchy/stanford/few-students-evidence.json": "915e35f46458735a730b971b2da4bb434bba6b4d9280d8f93cb233364471710d",
+   "hierarchy/stanford/missing-pi-review.json": "ee6a2291c3a2c0462b134855ac62027bf657550c7bb473a9fee9c0f3f9c34ff1",
+   "hierarchy/stanford/tobagi-review.json": "37b45c44a19bc50a80b7ffa4981418c96f1b3cb89baa789e24f592068e0da7aa",
+   "hierarchy/student-corrections.json": "9874836bfdc594d2bf1d88eb230f1d2b13df6cf219575cc70c8e10b5d15798ae",
+   "hierarchy/student-identity-review.json": "360bd0e9c9b71b7da54a93a94c7bdeb5824b9abd53a439b6ebe75fe9151d051e",
+   "hierarchy/zero-paper-labs.json": "7ad77c071db3f2d9aa0a882aa7a0bfdba6ad952032773d80018cb528610a0d8e",
+   "hierarchy/zero-paper-review.json": "2ef50b6cc7355cf8bb9d0cadd203c2e773168f38ff8619044cf4e2f9a7991f7a",
+   "periods/cmu-faculty-periods.json": "bf2f129b3d2b4b78bf418dc4933649aade207366319998cbe503c5488fdf2f47",
+   "periods/epfl-faculty-periods.json": "3e336b690572824725025c9d0172dd9e1fc04dd6c9ebcee9adfd457832b58649",
+   "periods/mit-faculty-periods.json": "4d5d72627a673640594a636fe65d66c503a05c4351132055fecb383ebb0080d4",
+   "periods/princeton-faculty-periods.json": "5470bd4d4cb6e1f71d595cc3f334e1354275cc548352dd1086718d0bfd868420"
+  },
+  "inputs": {
+   "/n/fs/resemble/cs-atlas/work/census/stanford-faculty.json": {
+    "bytes": 1383596,
+    "modified": "2026-10-27T19:43:59Z",
+    "sha256": "f1f074d30f06a4dd9263d94fbc0f21d3612af9bd59e8968fe5e014b8f5c26677"
+   },
+   "/n/fs/resemble/cs-atlas/work/hierarchy/stanford/collection.json.gz": {
+    "bytes": 161132,
+    "modified": "2026-10-27T19:44:00Z",
+    "sha256": "3dd03f9b2373faa7acb5c3a255b58b3ee8067d026e6db2014bb5169f9bde117f"
+   },
+   "/n/fs/resemble/cs-atlas/work/listings/stanford/listings.json": {
+    "bytes": 1674587,
+    "modified": "2026-10-27T19:54:38Z",
+    "sha256": "7c051dd34cfcdd6e415c1e5057cd5d7157f48661a7381b366082dd17baa8464b"
+   },
+   "/n/fs/resemble/cs-atlas/work/hierarchy/stanford/thesis-evidence.json": {
+    "bytes": 2043284,
+    "modified": "2026-10-27T22:06:50Z",
+    "sha256": "6fee3a103964757bab8d2174dd736d64c13dc167346e0d87bb464196873da393"
+   },
+   "/n/fs/resemble/cs-atlas/work/hierarchy/stanford/thesis-held-years-evidence.json": {
+    "bytes": 1059066,
+    "modified": "2026-10-27T22:06:50Z",
+    "sha256": "38ac9e5b697e5f5ad4decf80763a7aac6340d9d643560f545cd544d71adc3214"
+   },
+   "/n/fs/resemble/cs-atlas/work/hierarchy/stanford/dblp-recovered.jsonl.gz": {
+    "bytes": 133302,
+    "modified": "2026-10-27T21:52:21Z",
+    "sha256": "551a71e8c2ba43c08bd8fd427b05686fc3a638d35d47fe68da1f4201f57131a2"
+   },
+   "/n/fs/resemble/cs-atlas/work/hierarchy/stanford/labpage-recovered.jsonl.gz": {
+    "bytes": 172657,
+    "modified": "2026-10-27T22:32:47Z",
+    "sha256": "daed04f33bc432af7ee05d25c7b21614efcb297f8b3d911df1d923f24155c165"
+   },
+   "/n/fs/resemble/cs-atlas/work/hierarchy/stanford/pi-publication-lists.json": {
+    "bytes": 4404925,
+    "modified": "2026-10-27T19:44:00Z",
+    "sha256": "3a698c82aedfb8c8f03de67319569e265bdfe0fea3faf0e0f0529f24a2740913"
+   },
+   "/n/fs/resemble/cs-atlas/work/hierarchy/stanford/labpage-pubs.jsonl.gz": {
+    "bytes": 424357,
+    "modified": "2026-10-27T21:10:33Z",
+    "sha256": "03347d676c33b29d23cc3f86b0916d23fe6aa7cf36e31122597190247ff3b105"
+   }
+  }
+ }
 }

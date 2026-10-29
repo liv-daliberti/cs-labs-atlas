@@ -29,7 +29,8 @@ import atlas_paths as P  # noqa: E402  (every path in one place)
 HERE = P.WORK
 DUMP = P.DBLP_DUMP_XML
 OUT = HERE / 'hierarchy' / 'dblp-dump-persons.json.gz'
-SCHOOLS = ['princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford']
+import school_config as S  # noqa: E402  (the school charters)
+SCHOOLS = S.keys()  # released and onboarding schools: a new school's PIs get their DBLP pages before its first release
 REC = re.compile(r'<(article|inproceedings|proceedings|book|incollection|phdthesis|mastersthesis|www|data) ([^>]*?)key="([^"]+)"[^>]*>(.*?)</\1>', re.S)
 AUTH = re.compile(r'<(?:author|editor)([^>]*)>(.*?)</(?:author|editor)>', re.S)
 ORC = re.compile(r'orcid="([0-9X-]{19})"')

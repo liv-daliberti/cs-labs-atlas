@@ -16,7 +16,10 @@ import requests
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402  (every path in one place)
 HERE = P.WORK
-INST = {'princeton': 'I20089843', 'cmu': 'I74973139', 'epfl': 'I5124864', 'mit': 'I63966007', 'berkeley': 'I95457486', 'stanford': 'I97018004'}
+import school_config as S  # noqa: E402  (the school charters schools/<key>.toml)
+# the lineage filter value per school: the charter's lineage ids plus its related ids (Michigan: Michigan Medicine is
+# 'related' to the university in ROR, not a child, so its authors are not in the university's lineage), OR-ed
+INST = {k: '|'.join(S.sweep_ids(k)) for k in S.keys()}
 YEARS = range(2016, 2027)
 SELECT = 'id,doi,title,publication_year,publication_date,type,authorships,ids,primary_location'
 UA = 'HomogenizingScienceResearch/0.2 (academic metadata inventory)'

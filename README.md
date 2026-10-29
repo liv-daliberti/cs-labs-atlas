@@ -45,15 +45,15 @@ These are the owner's decisions; the full rules and the evidence model are in [d
 | … core computing departments | 97 | 343 | 111 | 167 | 134 | 145 |
 | … CS-related, other departments | 43 | 115 | 58 | 110 | 75 | 87 |
 | Home departments | 14 | 25 | 17 | 18 | 19 | 37 |
-| Unique lab papers | 8,680 | 25,817 | 13,223 | 19,943 | 13,876 | 19,093 |
-| Lab–paper rows (a paper can belong to several labs) | 9,469 | 31,359 | 13,992 | 22,306 | 16,366 | 21,853 |
-| Median lab papers per PI | 41 | 52 | 59 | 60 | 50 | 65 |
-| Students (unique people) | 3,093 | 7,737 | 3,682 | 7,115 | 3,874 | 2,803 |
-| Lab–student pairs | 3,524 | 9,382 | 3,986 | 7,652 | 4,452 | 3,218 |
-| Student–paper links | 7,620 | 29,341 | 15,037 | 20,976 | 16,775 | 18,537 |
+| Unique lab papers | 8,576 | 25,199 | 13,022 | 19,462 | 13,658 | 18,662 |
+| Lab–paper rows (a paper can belong to several labs) | 9,376 | 30,772 | 13,793 | 21,839 | 16,182 | 21,546 |
+| Median lab papers per PI | 41 | 51 | 58 | 58 | 50 | 63 |
+| Students (unique people) | 3,093 | 7,735 | 3,680 | 7,112 | 3,873 | 2,801 |
+| Lab–student pairs | 3,524 | 9,378 | 3,984 | 7,649 | 4,451 | 3,214 |
+| Student–paper links | 7,518 | 29,032 | 14,821 | 20,389 | 16,537 | 17,746 |
 | Labs with papers | 137 | 456 | 167 | 275 | 208 | 232 |
 | Labs with students | 140 | 458 | 169 | 277 | 208 | 232 |
-| Labs with papers, students and links | 132 | 445 | 162 | 267 | 196 | 225 |
+| Labs with papers, students and links | 131 | 445 | 162 | 267 | 196 | 225 |
 | DBLP-published papers we hold | 83% | 82% | 88% | 88% | 84% | 87% |
 
 Wider atlas: 300 universities, 37,060 units, 131,309 works, 130,192 unit–paper links, 23,404 unit–person rows,

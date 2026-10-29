@@ -114,5 +114,5 @@ def run(school):
 
 
 if __name__ == '__main__':
-    for s in sys.argv[1:] or ['princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford']:
+    for s in sys.argv[1:] or P.SCHOOL_IDS:
         run(s)

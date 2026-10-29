@@ -10,8 +10,9 @@
   6 one_person  same/same-ish names within a lab are one record, or a reason (student-audit within_lab)
 
 Reasons come from the evidence files the research passes wrote, from rules applied to the record itself (a student
-whose advising starts in 2025 or later has had no time to publish; the lab has no paper in the student's years; only
-paywalled or login copies exist), or from hierarchy/chain-reasons.json, the reviewed ledger for everything else:
+whose advising starts in 2025 or later has had no time to publish; the lab has no paper in the student's years; a
+missing copy's cause as the stores' access review recorded it: paywall, login, bot challenge, robots.txt, landing page
+without a PDF, not found, ... (ACCESS_REASON)), or from hierarchy/chain-reasons.json, the reviewed ledger for everything else:
   {school: {check: {item_key: {"verdict": "explained"|"fix", "reason": "...", "evidence": [...]}}}}
 A 'fix' verdict counts as unexplained: it names work still to do.
 -> hierarchy/chain-audit.json (counts plus every unexplained item) and hierarchy/CHAIN-AUDIT.md
@@ -27,6 +28,31 @@ HERE = P.WORK; H = P.HIERARCHY
 SCHOOLS = ['princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford']
 CHECKS = ['coverage', 'pi', 'students', 'papers', 'links', 'copies', 'one_person']
 LOCAL = {'local', 'fulltext_xml', 'downloaded', 'pdf', 'xml'}
+# why a lab paper has no local copy, by the cause the stores' access review recorded (2026-10-29; the collector keeps such a
+# work at needs_access_review): only 401/403, a login or identity-provider redirect, and a bot challenge are paywalls/logins
+ACCESS_REASON = {
+    'paywall_or_forbidden': 'only paywalled copies found (HTTP 401/403)',
+    'login': 'only login copies found (redirect to a login page or identity provider)',
+    'challenge': 'only copies behind a bot challenge found',
+    'publisher_landing_no_pdf': 'only a publisher landing page without a PDF link found',
+    'robots_disallow': "robots.txt disallows every copy found",
+    'robots_unavailable': 'robots.txt could not be read (4xx), so no copy was fetched',
+    'embargoed': 'the copy is embargoed (signed store answered 403)',
+    'not_found': 'every copy URL is gone (404/410)',
+    'integrity_mismatch': 'the copy failed its integrity check',
+    'unapproved_redirect': 'the copy URLs redirect to hosts the collector may not follow',
+    'landing_no_pdf': 'only landing pages without a PDF found',
+    'not_pdf': 'the copy URLs serve no PDF',
+    'identity_mismatch': 'the only PDFs found are another paper (identity mismatch)',
+    'tls_error': 'TLS errors on every copy host',
+    'too_large': 'the copy is larger than the store accepts',
+    'policy_skip': 'skipped by the collection policy',
+    'transient_on_challenge_or_publisher_host': 'transient failures on a challenge or publisher host (not retried)',
+    'transient_exhausted': 'transient failures; retries exhausted',
+    'transient': 'transient failures; requeued for another try',
+    'no_attempts': 'no copy URL was ever tried',
+    'other': 'no copy fetched (unclassified failure)',
+}
 
 
 def load(p, default=None):
@@ -205,10 +231,14 @@ def audit(school):
         st = (c or {}).get('status')
         reason = None
         if st == 'needs_access_review':
-            reason = 'only paywalled or login copies found'
+            # the stores' access review (fulltext-push/review_access.py, catalog table access_review, carried into
+            # copies.json by lab_paper_copies.py) names the real cause; a work it has not classified yet says so
+            cause = (c or {}).get('access_cause')
+            reason = ACCESS_REASON.get(cause) or (f'no copy fetched: {cause}' if cause else 'no copy fetched; the access review has not classified the cause yet')
         item('copies', w, st in LOCAL, reason,
              {'why': 'not in copies.json (copies were computed before this paper became a lab paper)' if c is None
-              else f'status {st}', 'pi': r['pi'], 'year': r.get('year'), 'doi': r.get('doi'), 'title': (r.get('title') or '')[:100]})
+              else f'status {st}', 'cause': (c or {}).get('access_cause'), 'causes': (c or {}).get('access_causes'),
+              'pi': r['pi'], 'year': r.get('year'), 'doi': r.get('doi'), 'title': (r.get('title') or '')[:100]})
 
     # 6 one person per lab
     sa = {x['school']: x for x in load(H / 'student-audit.json', []) or []}.get(school)

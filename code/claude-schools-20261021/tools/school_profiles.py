@@ -18,8 +18,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402  (every path in one place)
 HERE = P.WORK
 H = HERE / 'hierarchy'
-SCHOOLS = ['princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford']
-NAMES = dict(princeton='Princeton', cmu='Carnegie Mellon', epfl='EPFL', mit='MIT', berkeley='UC Berkeley', stanford='Stanford')
+import school_config as S  # noqa: E402  (the school charters)
+SCHOOLS = list(P.SCHOOL_IDS)
+NAMES = S.short_names()
 YEARS = list(range(2016, 2027))
 
 
