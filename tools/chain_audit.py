@@ -85,7 +85,10 @@ def decisions(doc):
     if not doc:
         return []
     d = doc.get('decisions', doc) if isinstance(doc, dict) else doc
-    return d if isinstance(d, list) else [dict(v, name=k) if isinstance(v, dict) else {'name': k} for k, v in d.items()]
+    d = d if isinstance(d, list) else [dict(v, name=k) if isinstance(v, dict) else {'name': k} for k, v in d.items()]
+    # a decision whose value starts with 'pending' ('pending_openalex') is not a decision yet (Michigan request 3,
+    # 2026-10-29; tools/stage_gate.py already reads it so)
+    return [x for x in d if not (isinstance(x, dict) and str(x.get('decision') or '').startswith('pending'))]
 
 
 def revisit_due(ov_school, today):
@@ -177,6 +180,8 @@ def audit(school):
     DIAG_REASON = {'no_school_work': 'no school-affiliated work under their name in their years (OpenAlex sweep)',
                    'publishes_without_pi': 'publishes at the school in their years, never with this PI (OpenAlex sweep)',
                    'ambiguous_name': 'name matches 4+ distinct school authors in their years: cannot be told apart',
+                   'linked_in_coadviser_lab': "co-advised: linked in the other adviser's lab, whose PI is on their school works (OpenAlex sweep)",
+                   'same_name_record_linked_in_other_lab': 'a same-name record in another lab is linked there with that PI (not merged across labs; review)',
                  'with_pi_outside_appointment': "co-wrote with the PI only outside the PI's evidenced appointment at the school, or only non-paper outputs (OpenAlex sweep)",
                  'with_pi_at_other_institution': "co-wrote with the PI only on works where the PI's own authorship names another institution (or outside the appointment, or non-papers) (OpenAlex sweep)"}
     thesis = by_pi(load(D / 'thesis-evidence.json', []))

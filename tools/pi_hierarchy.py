@@ -183,6 +183,150 @@ def relation_is_weak(r, names):
     return bool(labels) and all(WEAK_LABEL.search(l) for l in labels)
 
 
+PROGRAM_Q = re.compile(r'Program:\s*(.+?)\s+(?:Email|Phone|Office|Academic Advisor)')
+ACADEMIC_ADVISOR_Q = re.compile(r'Academic Advisor:\s*([^\n]+?)\s*$')
+
+
+def program_adviser_groups(stu_all):
+    """(program, academic advisor) pairs of a department directory that name one adviser for a whole program (R-STU-09,
+    2026-10-29, owner: link-gap sample): a pair that holds 10+ students and 25%+ of the program's students in the school
+    is the program's academic adviser (CMU: MCDS -> Eric Nyberg, 325 of 360; MIIS -> Teruko Mitamura; MSBIC -> Starzl),
+    not a research adviser. Reads every relation source quote 'Program: <program> ... Academic Advisor: <name>'."""
+    adv, allp = collections.defaultdict(set), collections.defaultdict(set)
+    for recs in stu_all.values():
+        for r in recs.values():
+            for rel in r.get('relations') or []:
+                for q in rel.get('sources') or []:
+                    m, a = PROGRAM_Q.search(q.get('quote') or ''), ACADEMIC_ADVISOR_Q.search(q.get('quote') or '')
+                    if m and a:
+                        adv[(m.group(1).strip(), a.group(1).strip())].add(r['person']); allp[m.group(1).strip()].add(r['person'])
+    return {k for k, v in adv.items() if len(v) >= 10 and len(v) >= 0.25 * len(allp[k[0]])}
+
+
+def relation_is_program_advising(rel, groups):
+    """Every source quote of the relation is a directory line of a program-wide academic adviser (program_adviser_groups)."""
+    qs = [q.get('quote') or '' for q in rel.get('sources') or []]
+    if not qs or not groups:
+        return False
+    for q in qs:
+        m, a = PROGRAM_Q.search(q), ACADEMIC_ADVISOR_Q.search(q)
+        if not (m and a and (m.group(1).strip(), a.group(1).strip()) in groups):
+            return False
+    return True
+
+
+ADVISER_LABEL = re.compile(r'(?i)\badvis[eo]rs?(?:\(s\))?\s*:')
+
+
+def _fold(s):
+    return unicodedata.normalize('NFKD', str(s or '')).encode('ascii', 'ignore').decode().lower()
+
+
+def names_full_form(text, pi_names):
+    """One of the PI's full-name forms (a full first given name; accents folded; 'Family, Given' too) occurs in text as a run
+    of whole tokens."""
+    t = ' '.join(toks(_fold(text))); raw = _fold(text)
+    for n in pi_names:
+        tk = toks(n)
+        if len(tk) < 2 or len(tk[0]) < 2:
+            continue
+        if re.search(r'(?:^| )' + re.escape(' '.join(tk)) + r'(?: |$)', t) or f'{tk[-1]}, {tk[0]}' in raw:
+            return True
+    return False
+
+
+def own_roster_entry(quote, student_names, pi_names):
+    """The adviser field of the student's own entry on a multi-student page (R-STU-10, 2026-10-29, owner: link-gap
+    sample): a quote with 2+ 'Advisor(s):' labels is a page of many entries, and the next student's name trails any
+    adviser value, so the whole quote proves nothing. The student's name is found (first given name, then up to 40
+    characters, then the family name); the first adviser label after it, within 250 characters, is theirs; its value is
+    cut at Publications/Office/Website/Email/Phone or at 80 characters. Returns 'single' (not a multi-entry quote),
+    'names_pi', 'names_other', or 'unknown' (name or field not found). CMU's SE-PhD page: 'David Garlan' is Moreno's
+    field, so Moreno is not Aldrich's or Kastner's student."""
+    q = quote or ''
+    labs_ = list(ADVISER_LABEL.finditer(q))
+    if len(labs_) < 2:
+        return 'single'
+    t = _fold(q); pos = -1
+    for f in student_names:
+        tk = toks(clean_person_name(f))
+        if len(tk) >= 2:
+            m = re.search(re.escape(_fold(f).split()[0]) + r'[^.]{0,40}?\b' + re.escape(tk[-1]), t)
+            if m:
+                pos = m.end(); break
+    if pos < 0:
+        return 'unknown'
+    nxt = next((m for m in labs_ if m.start() >= pos), None)
+    if not nxt or nxt.start() - pos > 250:
+        return 'unknown'
+    seg = re.split(r'\b(?:Publications|Office|Website|Email|Phone)\b', q[nxt.end(): nxt.end() + 80])[0]
+    return 'names_pi' if names_full_form(seg, pi_names) else 'names_other'
+
+
+DSPACE_ADVISOR = re.compile(r'"dc\.contributor\.advisor"\s*:\s*\[(.*?)\]', re.S)
+
+
+def dspace_advisors(quote):
+    """The dc.contributor.advisor values of a DSpace record quote ('Freund, Robert M.' -> 'Robert M. Freund'), or []."""
+    m = DSPACE_ADVISOR.search(quote or '')
+    out = []
+    for v in re.findall(r'"value"\s*:\s*"([^"]+)"', m.group(1)) if m else []:
+        for part in re.split(r'\s+and\s+|;\s*', v.strip().rstrip('.')):
+            part = part.strip().rstrip('.')
+            if re.fullmatch(r"[^,]{2,40}, [^,]{2,40}", part):
+                fam, giv = [x.strip() for x in part.split(',', 1)]; part = f'{giv} {fam}'
+            if part:
+                out.append(part)
+    return out
+
+
+def apply_relation_evidence(stu_all, school, here):
+    """Re-captured evidence for relations the site collections gave without a quote or hash (R-STU-08, 2026-10-29, owner):
+    hierarchy/<school>/relation-evidence.json (tools/relation_recapture.py; the bodies in relation-captures.sqlite) gives,
+    per (cited url, person), the capture url, the sha256 of the captured bytes and a verbatim quote naming the student, and
+    whether it also names the PI or the PI's lab (names_pi). A source without url+sha256+quote takes the record for its
+    PI first (names_pi), else a student-only record (names_pi false, kept visible: the quote proves the page names the
+    student, the collection's advising context names the PI). The source's earlier sha256 stays as original_sha256."""
+    p = Path(here) / 'hierarchy' / school / 'relation-evidence.json'
+    n = collections.Counter()
+    if not p.exists():
+        return n
+    recs = collections.defaultdict(list)
+    for x in json.loads(p.read_text()).get('records') or []:
+        recs[(x['url'], x['person'])].append(x)
+    sha = re.compile(r'^[0-9a-f]{64}$')
+    ok = lambda q: bool(q.get('url')) and bool(sha.match(str(q.get('sha256') or ''))) and bool(str(q.get('quote') or '').strip())
+    for pi, S in stu_all.items():
+        for r in S.values():
+            ids_ = [r['person']] + list(r.get('merged') or [])
+            for rel in r.get('relations') or []:
+                if any(ok(q) for q in rel.get('sources') or []):
+                    continue
+                best = None
+                for q in rel.get('sources') or []:
+                    cands = [x for i in ids_ for x in recs.get((q.get('url'), i), [])]
+                    hit = next((x for x in cands if x.get('pi') == pi and x.get('names_pi')), None) \
+                        or next((x for x in cands if x.get('pi') is None and not x.get('names_pi')), None)
+                    if hit and (best is None or (hit.get('names_pi') and not best[1].get('names_pi'))):
+                        best = (q, hit)
+                if best:
+                    q, x = best
+                    if q.get('sha256') and q['sha256'] != x['sha256']:
+                        q['original_sha256'] = q['sha256']
+                    q.update(sha256=x['sha256'], quote=x['quote'], capture_url=x.get('capture_url'), names_pi=bool(x.get('names_pi')),
+                             recaptured=dict(observed=x.get('observed'), method=x.get('method'), matches_original=x.get('matches_original')))
+                    n['relation_evidence_recaptured_' + ('names_pi' if x.get('names_pi') else 'student_only')] += 1
+                else:
+                    n['relation_evidence_not_found'] += 1
+    return n
+
+
+def relation_own_entry_names_other(rel, student_names, pi_names):
+    """Every source quote is a multi-entry roster whose adviser field for this student names someone else (R-STU-10)."""
+    v = [own_roster_entry(q.get('quote'), student_names, pi_names) for q in rel.get('sources') or []]
+    return bool(v) and all(x == 'names_other' for x in v)
+
+
 def near_relation(s, year):
     """The paper's year is within three years of the student's recorded advising or membership (no years: any)."""
     ys = [int(y) for rel in s.get('relations') or [] for y in rel.get('years') or [] if str(y).isdigit()]
@@ -476,6 +620,9 @@ def listings_after_move(listings, mine, reviewed_periods):
     year keeps the listing. `mine` are the PI's collection faculty periods (facultyStart/facultyEnd/evidence), and
     `reviewed_periods` the census-overrides periods (start/end)."""
     moved = [_year(q['facultyEnd']) for q in mine if _year(q.get('facultyEnd')) and any('end_moved' in (e.get('kind') or '') for e in q.get('evidence') or [])]
+    # a reviewed period that ends with a move counts too (2026-10-29: Cynthia Rudin, MIT to Duke in 2016; MIT's CSAIL PI
+    # listing still named her in 2026)
+    moved += [_year(q['end']) for q in reviewed_periods or [] if _year(q.get('end')) and any('end_moved' in (e.get('kind') or '') for e in q.get('evidence') or [])]
     spans = [(_year(q.get('facultyStart')), _year(q.get('facultyEnd'))) for q in mine] + [(_year(q.get('start')), _year(q.get('end'))) for q in reviewed_periods or []]
 
     def covered(y):
@@ -932,8 +1079,17 @@ def relation_source(student):
     """The student's roster evidence for a link: the first relation source with url, sha256 and quote (with the relation's
     type), else the first source at all (the evidence check reports it), else None."""
     srcs = [(rel.get('type'), q) for rel in student.get('relations') or [] for q in rel.get('sources') or []]
-    best = next(((t, q) for t, q in srcs if q.get('url') and q.get('sha256') and q.get('quote')), None) or (srcs[0] if srcs else None)
-    return dict(relation=best[0], url=best[1].get('url'), sha256=best[1].get('sha256'), quote=best[1].get('quote')) if best else None
+    full = [(t, q) for t, q in srcs if q.get('url') and q.get('sha256') and q.get('quote')]
+    # a quote that names the PI or the lab first; a re-captured student-only quote (names_pi false, R-STU-08) after it
+    best = next(((t, q) for t, q in full if q.get('names_pi') is not False), None) or next(iter(full), None) or (srcs[0] if srcs else None)
+    if not best:
+        return None
+    out = dict(relation=best[0], url=best[1].get('url'), sha256=best[1].get('sha256'), quote=best[1].get('quote'))
+    if best[1].get('names_pi') is False:
+        out['names_pi'] = False
+    if best[1].get('capture_url'):
+        out['capture_url'] = best[1]['capture_url']
+    return out
 
 
 def as_list(v):
@@ -1159,10 +1315,20 @@ def build(school):
             sid = match_[0]['id'] if len(match_) == 1 else f"ext:{school}:{re.sub('[^a-z0-9]+', '-', s_['name'].lower()).strip('-')}"
             r = stu[p['pi']].setdefault(sid, dict(person=sid, name=match_[0]['name'] if len(match_) == 1 else s_['name'], roles=[s_.get('role') or 'student'], relations=[]))
             r['relations'].append(dict(type='researched_' + ('membership' if s_.get('role') == 'member' else 'advising'), years=[y for y in (s_.get('years') or []) if y],
-                                       role=s_.get('role'), sources=[dict(url=s_.get('capture_url') or s_['url'], sha256=s_['sha256'], quote=s_['quote'])]))
+                                       role=s_.get('role'), sources=[dict(url=s_.get('capture_url') or s_['url'], sha256=s_['sha256'], quote=s_['quote'])]
+                                       # a defense announcement's 'Faculty Host <PI>' line, same page and hash (Michigan request 4)
+                                       + ([dict(url=s_.get('capture_url') or s_['url'], sha256=s_['sha256'], quote=s_['host_quote'])] if s_.get('host_quote') else []),
+                                       # automatic, unreviewed lab-page students stay marked (Michigan request 6: the accuracy sample stratifies on it)
+                                       **({'auto': True} if s_.get('auto') else {})))
+            if s_.get('auto'):
+                r['auto'] = True
     for p in pis:  # advisees named in the PI's own reviewed basis quote (census-overrides.json pi_basis, kind advises_phd)
         b = p.get('piBasis') or {}
         if b.get('kind') != 'advises_phd' or not (b.get('quote') and b.get('sha256')):
+            continue
+        advs_ = dspace_advisors(b['quote'])  # R-STU-11: the record's own advisor field must name the PI (Renbo Zhao's record
+        if advs_ and not any(nm_full[p['pi']].match(a) for a in advs_):  # in Van Parys's basis names Robert Freund)
+            n['pi_basis_records_other_advisor'] += 1
             continue
         for sname, yr in basis_advisees(b['quote']):  # not 'nm': that is the PI name table
             t_ = toks(sname); nm_ = Name([sname])
@@ -1236,6 +1402,16 @@ def build(school):
         r.setdefault('corrections', []).append(dict(action=x['action'], reason=x['reason'], evidence=x.get('evidence')))
         n['student_corrections_' + x['action']] += 1
     n['student_records_merged'] = merged_students
+    # re-captured evidence for the site collections' bare-URL relations (R-STU-08, 2026-10-29)
+    n.update(apply_relation_evidence(stu, school, HERE))
+    # program-wide academic advisers are program advising, not research advising (R-STU-09, 2026-10-29)
+    prog_groups = program_adviser_groups(stu)
+    n['program_adviser_groups'] = len(prog_groups)
+    for S_ in stu.values():
+        for r in S_.values():
+            for rel in r['relations']:
+                if relation_is_program_advising(rel, prog_groups):
+                    rel['weak'] = 'program_adviser'; n['relations_program_adviser'] += 1
     # the PI is not their own student (2026-10-29): lab rosters list their head ('Jim Glass' and 'John W. Fisher III' as
     # principal_investigator, 'Christos Faloutsos' as faculty). A record whose full first given name and family name are
     # the PI's own (nickname-equal, generational suffix ignored, initials never count) and that holds no student or
@@ -1872,9 +2048,16 @@ def build(school):
     weak_dropped = []
     for p in pis:
         for sid, s in list(stu[p['pi']].items()):
-            if (p['pi'], sid) not in linked and s['relations'] and all(relation_is_weak(r, [s['name']] + list(s.get('aliases') or []))
-                                                                       or relation_names_other_adviser(r, p.get('names') or [p['pi']]) for r in s['relations']):
-                weak_dropped.append(dict(pi=p['pi'], student=sid, name=s['name'], roles=sorted({advising_label(q.get('quote'), [s['name']] + list(s.get('aliases') or [])) or r.get('role') or '' for r in s['relations'] for q in r.get('sources') or []})))
+            nms_ = [s['name']] + list(s.get('aliases') or [])
+            if (p['pi'], sid) not in linked and s['relations'] and all(relation_is_weak(r, nms_) or r.get('weak') == 'program_adviser'
+                                                                       or relation_names_other_adviser(r, p.get('names') or [p['pi']])
+                                                                       or relation_own_entry_names_other(r, nms_, p.get('names') or [p['pi']])
+                                                                       for r in s['relations']):
+                why_ = sorted({'program_adviser' if r.get('weak') == 'program_adviser' else 'reader_or_program_heading' if relation_is_weak(r, nms_)
+                               else 'quote_names_other_adviser' if relation_names_other_adviser(r, p.get('names') or [p['pi']]) else 'own_roster_entry_names_other'
+                               for r in s['relations']})
+                n['students_dropped_why:' + '+'.join(why_)] += 1
+                weak_dropped.append(dict(pi=p['pi'], student=sid, name=s['name'], why=why_, roles=sorted({advising_label(q.get('quote'), [s['name']] + list(s.get('aliases') or [])) or r.get('role') or '' for r in s['relations'] for q in r.get('sources') or []})))
                 del stu[p['pi']][sid]
     n['students_dropped_program_or_reader_only'] = len(weak_dropped)
     # recount after the drops: the counts taken when the students were gathered still held the dropped pairs

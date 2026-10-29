@@ -4,6 +4,9 @@ Checked per school, in hierarchy/<school>/ (or --dir <root>/<school>/):
   pi_period              a PI appointment period (pis.json periods) with no evidence item that has url, sha256 and quote
   faculty_listing        a dated department listing (pis.json listings) without url, sha256 and quote
   student_relation       a student relation (students.json relations) with no source that has url, sha256 and quote
+  student_relation_student_only  (2026-10-29) a student relation whose only sourced evidence is a re-captured page that names
+                         the student but not the PI or the PI's lab (source names_pi false; tools/relation_recapture.py,
+                         R-STU-08): the hash and quote are real, the adviser rests on the collection's advising context
   student_no_relation    a student record with no relation at all
   paper_school_basis     a lab paper without its school basis (authorship.school_via)
   paper_appointment      a lab paper whose appointment is neither a periodId of one of the PI's periods with evidence, nor
@@ -12,6 +15,7 @@ Checked per school, in hierarchy/<school>/ (or --dir <root>/<school>/):
                          byline_name_with_school_affiliation, advisee_name_on_lab_paper_byline, full_name_on_lab_paper_byline)
                          without the work id and the exact byline string matched
   link_relation_source   such a link without the student's own roster source (relation_source: url, sha256, quote)
+  link_relation_source_student_only  (2026-10-29) such a link whose roster source is a re-captured student-only quote
 
 A sha256 must be 64 hex digits; a quote must be non-empty text. Whitelisted categories (docs/evidence-whitelist.json:
 {category: {school: {"max": n, "why": "..."}}}) pass up to their count; anything over it, or not listed, fails.
@@ -26,8 +30,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402  (every path in one place)
 
 BYLINE_BASES = {'within_lab_byline_match', 'byline_name_with_school_affiliation', 'advisee_name_on_lab_paper_byline', 'full_name_on_lab_paper_byline'}
-CATEGORIES = ['pi_period', 'faculty_listing', 'student_relation', 'student_no_relation', 'paper_school_basis', 'paper_appointment',
-              'link_byline', 'link_relation_source']
+CATEGORIES = ['pi_period', 'faculty_listing', 'student_relation', 'student_relation_student_only', 'student_no_relation', 'paper_school_basis', 'paper_appointment',
+              'link_byline', 'link_relation_source', 'link_relation_source_student_only']
 WHITELIST = P.WORK / 'docs' / 'evidence-whitelist.json'
 SHA = re.compile(r'^[0-9a-f]{64}$')
 
@@ -72,8 +76,11 @@ def check(school, root):
                 flag('student_no_relation', f"{pi} | {s.get('person')} | {s.get('name')}")
             for rel in rels:
                 total['student_relation'] += 1
+                total['student_relation_student_only'] += 1
                 if not any(sourced(q) for q in rel.get('sources') or []):
                     flag('student_relation', f"{pi} | {s.get('person')} | {s.get('name')} | {rel.get('type')}")
+                elif not any(sourced(q) and q.get('names_pi') is not False for q in rel.get('sources') or []):
+                    flag('student_relation_student_only', f"{pi} | {s.get('person')} | {s.get('name')} | {rel.get('type')}")
     for r in papers:
         key = f"{r['pi']} | {r.get('oa')}"
         total['paper_school_basis'] += 1; total['paper_appointment'] += 1
@@ -89,11 +96,13 @@ def check(school, root):
         if x.get('basis') not in BYLINE_BASES:
             continue
         key = f"{x['pi']} | {x.get('student')} | {x.get('oa')} | {x['basis']}"
-        total['link_byline'] += 1; total['link_relation_source'] += 1
+        total['link_byline'] += 1; total['link_relation_source'] += 1; total['link_relation_source_student_only'] += 1
         if not ((x.get('oa') or x.get('work')) and str(x.get('byline') or '').strip()):
             flag('link_byline', key)
         if not sourced(x.get('relation_source')):
             flag('link_relation_source', key)
+        elif (x.get('relation_source') or {}).get('names_pi') is False:
+            flag('link_relation_source_student_only', key)
     return {c: dict(n=len(bad[c]), of=total[c], samples=bad[c][:15]) for c in CATEGORIES}
 
 
