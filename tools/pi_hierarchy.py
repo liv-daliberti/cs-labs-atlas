@@ -32,17 +32,10 @@ import provenance  # noqa: E402  (report.json -> provenance)
 
 HERE = P.WORK
 SITE = P.SITE_DATA
-DBLP = {'cmu': 'claude-cmu-20261017', 'epfl': 'claude-epfl-20261019', 'mit': 'claude-mit-20261020', 'berkeley': 'claude-berkeley-20261021',
-        'stanford': 'claude-stanford-20261027'}
-INST = {'princeton': 'I20089843', 'cmu': 'I74973139', 'epfl': 'I5124864', 'mit': 'I63966007', 'berkeley': 'I95457486', 'stanford': 'I97018004'}
-AFF = {'princeton': r'princeton\s+univ|univ\w*\.?\s+(?:of\s+)?princeton|princeton\.edu',
-       'cmu': r'carnegie[\s-]+mellon|\bcmu\b|cmu\.edu',
-       'epfl': r'\bepfl\b|polytechnique\s+f[ée]d[ée]rale\s+de\s+lausanne|swiss\s+federal\s+institute\s+of\s+technology\s+(?:in\s+|at\s+)?lausanne|epfl\.ch',
-       'mit': r'massachusetts\s+institute\s+of\s+technology|\bmit\b|mit\.edu|csail',
-       'berkeley': r'(?:university\s+of\s+california|\buc)[\s,]+berkeley|berkeley\.edu',
-       # Stanford University (OpenAlex I97018004, ROR 00f54p054; 'Leland Stanford Junior University' is its legal name); not
-       # SRI International (formerly Stanford Research Institute) nor Stanford Research Systems
-       'stanford': r'stanford\.edu|\bstanford\b(?!\s+research\s+(?:institute|systems|international))'}
+import school_config as _S  # noqa: E402  (the school charters schools/<key>.toml: protocol stage 0)
+DBLP = {k: _S.dblp_sweep(k) for k in _S.keys() if _S.dblp_sweep(k)}  # pre-protocol schools' cached DBLP lists
+INST = {k: _S.inst(k) for k in _S.keys()}  # the primary lineage id ([ids].openalex[0])
+AFF = {k: _S.aff(k) for k in _S.keys()}  # [affiliation].regex, tested by school_config.py --check
 TODAY = datetime.date.today().isoformat()
 WINDOW_START = 2016  # the atlas window is 2016-2026: the sweeps fetch works published 2016 and later
 COLLECTIVE = re.compile(r'\b(cent(?:er|re)|initiative|consortium|program(?:me)?|project|cluster|institute)\b', re.I)  # not labs (owner, 2026-10-21)
@@ -582,7 +575,7 @@ def fold_books(rows, school):
                 rows[i]['chapters_folded'] = len(ix)
             fold |= set(ix) - set(keep)
     folded, translated = len(fold), None
-    if school != 'epfl':
+    if not _S.field(_S.get(school), 'rules.foreign_title_exception'):  # R-PAP-15 (EPFL's French titles are originals)
         tr = {i for i, r in enumerate(rows) if i not in fold and r.get('type') in ('book', 'book-chapter') and foreign_title(r.get('title'))}
         translated = len(tr); fold |= tr
     return [r for i, r in enumerate(rows) if i not in fold], folded, translated
@@ -788,8 +781,7 @@ def page1_head(text, title=None):
     return head
 
 
-SCHOOL_LOOSE = {'princeton': r'princeton', 'cmu': r'carnegie|\bcmu\b', 'epfl': r'epfl|lausanne', 'mit': r'\bmit\b|massachusetts|csail',
-                'berkeley': r'berkeley', 'stanford': r'stanford'}
+SCHOOL_LOOSE = {k: _S.field(_S.get(k), 'affiliation.loose') or _S.aff(k) for k in _S.keys()}
 AFFILIATION_MARK = re.compile(r'univ|institut|college|polytechn|[ée]cole|laborator|\blabs?\b|\binc\b|corp|\bltd\b|gmbh|\bllc\b|hospital|'
                               r'academy|google|microsoft|\bmeta\b|amazon|\bibm\b|nvidia|openai|deepmind|anthropic|foundation|\bcnrs\b|\binria\b|'
                               r'\beth\b|max planck|company|\S@\S|https?://|www\.|\.(?:com|ai|io|company|org)\b', re.I)
@@ -832,8 +824,7 @@ OTHER_INST = re.compile(r'univ|institut|college|polytechn|[ée]cole|laborator|\b
 # the school's own units whose names hold an institution word (2026-10-29: CMU's 'Neuroscience Institute' had made the
 # HALPER authorship of Andreas Pfenning read as another institution): a raw affiliation string made only of such unit
 # names and department words names no other institution
-OWN_UNITS = {'cmu': re.compile(r'\b(?:robotics|neuroscience|language technologies|human-computer interaction|software research|'
-                               r'information networking|integrated innovation)\s+institute\b|\binstitute\s+for\s+software\s+research\b', re.I)}
+OWN_UNITS = {k: rx for k in _S.keys() for rx in [_S.own_units(k)] if rx}  # [affiliation].own_units (R-PAP-09)
 
 
 def names_other_inst(z, school):

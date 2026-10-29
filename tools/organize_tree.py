@@ -33,9 +33,8 @@ OUT = P.SCHOOLS_TREE
 FT = P.STORES
 SCHOOLS = list(P.SCHOOL_IDS)
 RELEASE = dict(id=None, dir=None, copies='release')
-NAMES = {'princeton': 'Princeton University', 'cmu': 'Carnegie Mellon University', 'epfl': 'EPFL',
-         'mit': 'Massachusetts Institute of Technology', 'berkeley': 'University of California, Berkeley',
-         'stanford': 'Stanford University'}
+import school_config as _S  # noqa: E402  (the school charters)
+NAMES = _S.full_names()
 
 
 def slug(s, n=None):  # as tools/export_release.py

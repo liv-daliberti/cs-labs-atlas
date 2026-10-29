@@ -38,7 +38,7 @@ H = DATA / 'hierarchy'
 RELEASE = None                       # the release read: dict(id, dir, manifest_sha256)
 SITE_ROOT = AP.SITE_ROOT
 ATLAS = SITE_ROOT / 'atlas'
-ORDER = ['princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford']  # display order; any other built school follows
+ORDER = list(AP.SCHOOL_IDS)  # display order; any other built school follows
 SCHOOLS = [s for s in ORDER if (H / s / 'pis.json').exists()] + sorted(
     d.name for d in H.iterdir() if d.is_dir() and d.name not in ORDER and (d / 'pis.json').exists())
 OWNER_EMAIL_SHA256 = '3d295a08f3a63465645d9d4e99fbe34f11aa0622bbf29a754e0b23cb4263aacf'  # the owner's address, kept out of the code itself
