@@ -113,6 +113,12 @@ def main(key):
         if isinstance(read(P.HIERARCHY / key / 'cs-related-review.json', {}), dict) else {}
     basis_ev = {r['pi']: r for r in read(P.HIERARCHY / key / 'pi-basis-evidence.json', [])}
     dblp_ids = read(P.HIERARCHY / key / 'dblp-ids.json', {})  # stage 5 (tools/dblp_ids_school.py); folded in when present
+    for nm_, h_ in read(P.HIERARCHY / key / 'homepage-identity.json', {}).items():  # the PI's own homepage links (stage 5)
+        d0 = dblp_ids.setdefault(nm_, {})
+        if not d0.get('pid') and h_.get('dblp'):
+            d0.update(pid=h_['dblp']['pid'], basis='pi_homepage_link', url=h_['dblp']['url'], sha256=h_['dblp']['sha256'], quote=h_['dblp']['quote'],
+                      dump=None)
+        d0['orcid'] = sorted(set(d0.get('orcid') or []) | {o['orcid'] for o in h_.get('orcid') or []})
     census, people, listing_rows, n = [], [], [], collections.Counter()
     for g in merge_people(rows):
         rs = [r for r in g['rows'] if lo <= r['year'] <= hi]
