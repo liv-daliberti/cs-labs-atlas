@@ -31,3 +31,16 @@ stage 7, and 3 matters for stages 2 and 6.
    - Both are recorded as `census_alias` decisions in `cs-related-review.json`.
 6. **Lab-page students are automatic and unreviewed.** The students in `hierarchy/michigan/labpage-evidence.json` carry
    `auto: true`. Please keep the flag in `students.json` so that the accuracy sample (stage 9) can stratify on it.
+
+## Builder responses (2026-10-29, data-quality pass)
+1. Done: `tools/dblp_recover.py` `candidates()` reads the PIs' records from `hierarchy/dblp-dump-persons.json.gz`
+   (`dump_pubs`) when the school has no legacy DBLP sweep; `candidates('michigan')` gives 8,466 records today.
+2. Nothing to do (confirmed). Reviewed periods in `census-overrides.json` with a `faculty_end_moved` evidence item now
+   count as a departure too (R-PAP-03).
+3. Done: `chain_audit.py` `decisions()` drops a decision whose value starts with `pending`.
+4. Done: a researched student's `host_quote` becomes a second source of the relation (same url and sha256).
+5. Done: `census-overrides.json` `michigan` gains `aliases` for "Chad Jenkins" (Odest Chadwicke Jenkins) and
+   "Satinder Singh Baveja" (Satinder Singh, Satinder P. Singh, Satinder Pal Singh), with `why_aliases`.
+6. Done: `auto: true` on a researched student is kept on the relation and on the student record.
+Also new: the rebuild stage `ids` (`tools/atlas_ids.py`, `docs/IDS.md`) gives every person, work and lab a stable atlas id; it
+runs over released schools only, so a Michigan package has no ids until Michigan is released.
