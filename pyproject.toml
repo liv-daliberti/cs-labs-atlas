@@ -63,6 +63,8 @@ ignore = [
   "E401",   # several imports on one line (house style: import gzip, json, re, sys)
   "E402",   # imports after sys.path setup are the norm for scripts here
   "E741",   # short names like l, I in comprehensions
+  "F841",   # unused local variables: 29 sites (2026-10-30), none a bug on review of the list; fixed by their owners
+            # as they touch the code. `ruff check --select F841` lists them.
 ]
 
 [tool.ruff.lint.per-file-ignores]

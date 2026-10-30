@@ -26,6 +26,6 @@ mapfile -t pyfiles < <(git diff --cached --name-only --diff-filter=ACMR -- '*.py
 if [ ${#pyfiles[@]} -gt 0 ] && [ -n "$RUFF" ]; then
   (cd "$top" && "$RUFF" check --quiet --force-exclude --select E9,F63,F7,F82 "${pyfiles[@]}") >&2 || {
     echo "pre-commit: ruff found syntax errors or undefined names; nothing was committed" >&2; exit 1; }
-  (cd "$top" && "$RUFF" check --quiet --force-exclude "${pyfiles[@]}") >&2 || echo "pre-commit: ruff warnings above (not blocking)" >&2
+  (cd "$top" && "$RUFF" check --quiet --force-exclude --output-format concise "${pyfiles[@]}") >&2 || echo "pre-commit: ruff warnings above (not blocking)" >&2
 fi
 exit 0
