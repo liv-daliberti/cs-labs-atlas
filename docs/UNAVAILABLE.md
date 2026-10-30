@@ -85,6 +85,9 @@ Exactly one per paper, the first that applies in this order:
 | `landing_page_without_pdf` | yes | the open locations are landing pages (PubMed record without PMC text, a repository record without a file) with no PDF |
 | `open_copy_unusable` | yes | the listed open copies are gone (404/410), not the paper (title check failed), not a PDF, or too large |
 | `paywall_only` | yes | a location is listed as open, but every URL tried answered 401/403 (paywall or forbidden) |
+
+A paper open at the publisher (OpenAlex gold / hybrid / bronze) whose publisher host refused this client gets the code of
+the refusal (`open_copy_robots_disallowed`, `open_copy_bot_challenge`, `open_copy_behind_login`), else `paywall_only`.
 | `publisher_only_closed` | yes | closed at the publisher (OpenAlex not OA) and no open copy in any checked source |
 | `no_doi_no_match` | yes | no DOI, and no source matched the title |
 
