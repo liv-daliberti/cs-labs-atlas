@@ -19,10 +19,10 @@ Status: `open` · `in progress (<who>)` · `done <date> <commit>` · `queued (af
 
 | # | Item | Status | Done when |
 |---|---|---|---|
-| 1 | One Python env, pinned; `pyproject.toml`; `atlas <command>` entry point | in progress (infra agent) | env at `homogenizing-science/env/atlas` built from a lock; one `PY` everywhere; full tests + a Michigan build pass under it |
-| 2 | Code from the old working folders brought into the repo | in progress (infra agent) | `git grep` finds no `research-sweeps` / `P.sweep(` read in code that the build or collectors run; provenance per file |
-| 3 | Public remote + CI | in progress (infra agent) | `dev` branch on `liv-daliberti/cs-labs-atlas`; CI (ruff, fixture tests, secret scan, charter check) green; history scan clean |
-| 4 | Agents work on branches | in progress (infra agent) | `docs/CONTRIBUTING.md`; `tools/agent_worktree.sh`; main-commit hook warns now, enforces after the current agents finish |
+| 1 | One Python env, pinned; `pyproject.toml`; `atlas <command>` entry point | done 2026-10-30 f73ec14 (217 tests pass under env/atlas; collectors still on COLLECTOR_PY until the switch-over) | env at `homogenizing-science/env/atlas` built from a lock; one `PY` everywhere; full tests + a Michigan build pass under it |
+| 2 | Code from the old working folders brought into the repo | done 2026-10-30 0351fa8, 076bde9 (46 files in vendor/, PROVENANCE.tsv; originals retire after the loops restart) | `git grep` finds no `research-sweeps` / `P.sweep(` read in code that the build or collectors run; provenance per file |
+| 3 | Public remote + CI | done 2026-10-30 16d9e6a (dev = main pushed; CI red only on two unused imports in files still open) | `dev` branch on `liv-daliberti/cs-labs-atlas`; CI (ruff, fixture tests, secret scan, charter check) green; history scan clean |
+| 4 | Agents work on branches | done 2026-10-30 16d9e6a (hook warns; enforce with `git config atlas.mainCommits enforce` once current agents finish) | `docs/CONTRIBUTING.md`; `tools/agent_worktree.sh`; main-commit hook warns now, enforces after the current agents finish |
 | P | Everything under `/n/fs/resemble/homogenizing-science` | queued (after 1–4, M, L/R report; rinse loops stopped; Codex told) | `relocate_project.py` dry run reviewed by the owner; move logged; no references to old paths left; no compat links left; loops restarted as Slurm jobs |
 
 ## 2. Make schools mechanical
