@@ -94,7 +94,7 @@ def test_result_status_is_closed():
 def test_arxiv_loose_matches_only_the_same_author_set(monkeypatch):
     from channels import arxiv_loose as A
     import arxiv_oai as ao
-    recs = [('2101.00001', 'Learning Fixture Representations for Channel Plugins', ('lovelace', 'babbage'), 2020),
+    recs = [('2101.00001', 'FixRep: Learning Fixture Representations for Channel Plugins', ('lovelace', 'babbage'), 2020),
             ('2101.00002', 'Learning Fixture Representations for Channel Plugin Systems', ('hopper',), 2020),
             ('2101.00003', 'Learning Fixture Representations for Channel Plugins', ('lovelace', 'babbage'), 2010)]
     post = defaultdict(list)
@@ -105,12 +105,15 @@ def test_arxiv_loose_matches_only_the_same_author_set(monkeypatch):
         for w in ws:
             post[w].append(i)
     monkeypatch.setattr(A, '_IDX', dict(recs=built, post=post, ao=ao))
-    r = dict(title='Learning Fixture Representation for Channel Plugins', year=2021, byline=['Ada Lovelace', 'Charles Babbage'], pis=['Ada Lovelace'])
+    r = dict(title='Learning Fixture Representations for Channel Plugins', year=2021, byline=['Ada Lovelace', 'Charles Babbage'], pis=['Ada Lovelace'])
     best, d = A.match(r)
     assert best[0] == '2101.00001' and d['similarity'] >= A.MIN_SIM
     assert A.match(dict(r, byline=['Grace Hopper', 'Ada Lovelace']))[0] is None       # another author set
     assert A.match(dict(r, year=2025))[0] is None                                       # outside the year window
     assert A.same_authors(['Lovelace, Ada', 'Babbage, Charles'], [], ('lovelace', 'babbage', 'x'))
+    assert not A.strict_ok('Two More Attacks on Proof-of-Stake', 'Two Attacks on Proof-of-Stake', 0.95, 0.86)       # a word of its own
+    assert not A.strict_ok('On Satisfiable k-CSPs: II', 'On Satisfiable k-CSPs: VII', 0.99, 0.9)                   # another part
+    assert not A.strict_ok('Rejoinder: Coauthorship Networks for Statisticians', 'Coauthorship Networks for Statisticians', 0.91, 0.8)
 
 
 def test_ledger_found_turns_tokens_into_candidates(monkeypatch):
