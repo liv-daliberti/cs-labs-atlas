@@ -31,6 +31,12 @@ MOVED = re.compile(r'before (?:coming|joining|moving) to|moved to|left (?:the Un
                    r'was (?:an? )?(?:assistant |associate )?professor .{0,80}? from (?:19|20)\d\d to', re.I)
 
 
+DBLP_URL_SKIP = re.compile(r'orcid|wikidata|wikipedia|scholar\.google|twitter|linkedin|dblp|acm\.org|ieee|researchgate|github\.com/[^/]+/?$|'
+                           r'mathgenealogy|zbmath|scopus|semanticscholar|openreview|x\.com|bsky|mastodon|mailto:|'
+                           r'd-nb\.info|id\.loc\.gov|viaf\.org|isni|bnf\.fr|idref\.fr|nla\.gov\.au|wikimedia|mathscinet|ams\.org/mathscinet|'
+                           r'genealogy\.|crossref|youtube|facebook', re.I)  # authority records and profiles are not homepages
+
+
 def targets(key):
     census = json.loads((P.CENSUS / f'{key}-faculty.json').read_text())['faculty']
     add = json.loads((P.CENSUS / f'{key}-additions.json').read_text()) if (P.CENSUS / f'{key}-additions.json').exists() else []
@@ -40,12 +46,23 @@ def targets(key):
         if r.get('homepage'):
             hp[r['name']].append(r['homepage'])
     out = []
+    dpf = P.HIERARCHY / 'dblp-dump-persons.json.gz'
+    dp = json.load(__import__('gzip').open(dpf, 'rt'))['persons'] if dpf.exists() else {}
+    ov = json.loads((P.HIERARCHY / 'census-overrides.json').read_text()).get(key, {}) if (P.HIERARCHY / 'census-overrides.json').exists() else {}
     for x in census + add:
         if not x.get('is_pi'):
             continue
         urls = [u for nm in [x['name']] + list(x.get('aliases') or []) for u in hp.get(nm, [])] + ([x['profile_url']] if x.get('profile_url') else [])
         urls = [('https:' + u if u.startswith('//') else u) for u in urls if u and not re.search(r'mentor|mailto:|linkedin|twitter|x\.com|facebook', u)]
-        out.append(dict(name=x['name'], person=x.get('collection_person_id'), urls=list(dict.fromkeys(urls))[:3],
+        urls = list(dict.fromkeys(urls))[:3]
+        # the PI's own homepage from their DBLP person record (learned 2026-10-30: most PIs of other units have no
+        # homepage in their unit listing); reviewed DBLP ids (census-overrides) first
+        dids = ([(ov.get(x['name']) or {}).get('dblp')] if isinstance((ov.get(x['name']) or {}).get('dblp'), str) else list((ov.get(x['name']) or {}).get('dblp') or [])) or list(x.get('dblp') or [])
+        for d in dids:
+            for u in (dp.get(d) or {}).get('urls') or []:
+                if not DBLP_URL_SKIP.search(u) and u not in urls and len(urls) < 4:
+                    urls.append(u)
+        out.append(dict(name=x['name'], person=x.get('collection_person_id'), urls=urls,
                         first=min(x.get('years_listed') or [2016]), years=sorted(x.get('years_listed') or []), ranks=x.get('ranks_by_year') or {}))
     return out
 
