@@ -10,6 +10,7 @@ wired into pi_hierarchy.py / chain_audit.py. Prints one JSON line per stage and 
   4 periods   every PI has a reviewed period (periods/<key>-faculty-periods.json, census-overrides periods) or listing years
               that run without a gap from their first to their last listed year (a year with papers outside them is
               checked again at stage 7)
+  2 also      the bulk-pull sanity check passes (tools/sweep_check.py -> hierarchy/<key>/sweep-check.json)
   5 identity  every PI has an anchor: a DBLP id, an ORCID or a reviewed OpenAlex id (census, additions, census-overrides)
 usage: stage_gate.py <key> [stage ...]
 """
@@ -43,12 +44,22 @@ def g1(key):
     return bad, dict(departments=len(S.get(key).get('departments') or []))
 
 
+def sweep_gate(key):
+    """The bulk-pull sanity check (tools/sweep_check.py -> hierarchy/<key>/sweep-check.json) must exist and pass."""
+    sc = read(P.HIERARCHY / key / 'sweep-check.json')
+    if not sc:
+        return ['sweep check: hierarchy/<key>/sweep-check.json missing (run tools/sweep_check.py <key>)'.replace('<key>', key)]
+    return [f"sweep check: {t['test']} {t.get('year') or ''} {t['why']}".replace('  ', ' ') for t in sc.get('failed') or []] + \
+           (['sweep check: status ' + str(sc.get('status'))] if sc.get('status') != 'pass' and not sc.get('failed') else [])
+
+
 def g2(key):
     cands = read(P.HIERARCHY / key / 'cs-related-candidates.json', [])
     rev = read(P.HIERARCHY / key / 'cs-related-review.json', {}) or {}
     dec = {d['name']: d for d in rev.get('decisions', [])}
     bad = [f"{c['name']}: no decision" for c in cands if c['name'] not in dec and not any(a in dec for a in c.get('aliases') or [])]
     bad += [f"{d['name']}: {d['decision']} ({d['reason'][:100]})" for d in dec.values() if d['decision'] == 'pending_openalex']
+    bad += sweep_gate(key)  # the OpenAlex sweep and the DBLP pulls feed the review (owner standard 2026-10-30)
     return bad, dict(candidates=len(cands), **collections.Counter(d['decision'] for d in dec.values()))
 
 
@@ -65,6 +76,23 @@ def g3(key):
     return bad, dict(pis=len(pis_of(key)), homes=len(homes))
 
 
+def pi_years(x):
+    """The span a PI must be evidenced for: first to last year with a professor rank (ladder or courtesy) when the census
+    has ranks per year, else first to last listed year. Learned 2026-10-30: an 'Assistant Research Scientist' row in
+    2020 does not open a span for a professorship from 2025 (Ziyou Song); an adjunct year inside a professorship is
+    still a listed year (Jason Corso, adjunct in 2021)."""
+    rk = x.get('ranks_by_year') or {}
+    pr = sorted({int(y) for y, r in rk.items() if {'ladder', 'courtesy'} & set(r if isinstance(r, list) else [r])}) if rk else []
+    ys = sorted(set(x.get('years_listed') or []))
+    return list(range(pr[0], pr[-1] + 1)) if pr else (list(range(ys[0], ys[-1] + 1)) if ys else [])
+
+
+def span_gaps(x):
+    """Years of pi_years(x) with no listing of any rank."""
+    have = set(x.get('years_listed') or [])
+    return [y for y in pi_years(x) if y not in have]
+
+
 def g4(key):
     per = read(P.PERIODS / f'{key}-faculty-periods.json', [])
     ov = (read(P.HIERARCHY / 'census-overrides.json', {}) or {}).get(key, {})
@@ -74,7 +102,7 @@ def g4(key):
         if x['name'] in have:
             n['period'] += 1; continue
         ys = sorted(set(x.get('years_listed') or []))
-        if ys and ys == list(range(ys[0], ys[-1] + 1)):
+        if ys and not span_gaps(x):
             n['contiguous_listings'] += 1; continue
         bad.append(f"{x['name']}: no period, listing years {ys}")
     return bad, dict(n)

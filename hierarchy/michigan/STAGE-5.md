@@ -1,6 +1,6 @@
 # Michigan, stage 5: identity
 
-Date: 2026-10-29. Gate: **not passed. 19 PIs have no anchor yet**, and the OpenAlex author review waits on the sweep.
+Date: 2026-10-29, updated 2026-10-30. Gate: **passed** (see the update at the end).
 
 ## What was done
 - `tools/dblp_ids_school.py michigan` searched the DBLP dump (dblp-2026-09-01; dblp.org is never fetched) in two
@@ -72,3 +72,25 @@ Dong, Q. Vera Liao, Majdi Radaideh.
   Park, Alexander Rodríguez, Hao-Wen (Herman) Dong, Q. Vera Liao and Majdi Radaideh need the OpenAlex author review.
   The sweep starts after 00:10 UTC.
 
+
+## Update, 2026-10-30: OpenAlex identity review. Gate passed
+- **The 11 open PIs were reviewed by hand** against `hierarchy/michigan/oa-author-stats.json.gz`, the per-author school
+  works of the sweep with names, ORCIDs, venues and years. Decisions are in
+  `hierarchy/michigan/openalex-identity-review.json`:
+  - by ORCID: Zeeshan H. Syed, Joshua Welch (2 ids), Jie Liu, Lin Ma, Jeong Joon Park, Alexander Rodríguez, Hao-Wen
+    (Herman) Dong (2), Q. Vera Liao (2), Majdi Radaideh;
+  - by name with field and years: Wei Hu (NeurIPS 2023–2025);
+  - Long Nguyen is XuanLong Nguyen. The listing links `~xuanlong`, and the id has 37 Statistics works; the alias was
+    added.
+  - Namesakes set aside: 'Jeong M. Park' (transplant pharmacology), 'Wei-Hsiu Hu' (concrete), a Singapore 'Lin Ma'
+    (economics).
+- **The 42 accepted people without a DBLP id** (OpenAlex-rule candidates and new ECE acceptances) take the ids of their
+  share test. The identity rule is ORCID, or full name with namesakes set aside.
+- **`tools/oa_identity_school.py michigan`** (new) writes `openalex`, `why_openalex` and `openalex_evidence` into
+  Michigan's section of `hierarchy/census-overrides.json`. The evidence is one sweep work per id: url = the API url,
+  sha256 = the stored record, quote = "<raw author name> | <raw affiliation string>". 53 PIs; no id lacked evidence.
+- **Stella Yu** is reviewed as DBLP `58/5089`, "Stella X. Yu", ORCID 0000-0002-3507-5761. Berkeley's PI carries the
+  same ids.
+  - Her 2022 Michigan homepage links `pid/172/9071`, which is not a person in the 2026-09-01 dump, so it is not used.
+  - This also lets stage 6 recognise her Berkeley advisees.
+- **Gate** (`tools/stage_gate.py michigan 5`): **pass**. 288 PIs: DBLP+ORCID 130, DBLP 105, OpenAlex 53.

@@ -14,7 +14,8 @@ accept    the earliest stated faculty start year; a closed range or 'until'/'lef
           are kept as conflictingStartYears. Everything else is a hold.
 -> periods/<key>-faculty-periods.json (the site's facultyPeriods format; personId = the census collection_person_id),
    periods/<key>-holds.json
-usage: periods_school.py fetch|extract <key>
+gaps      dated Wayback captures for a PI's listing gap years (see gaps()); closes the gap with a reviewed period
+usage: periods_school.py fetch|extract|gaps <key>
 """
 import collections, json, re, sys, time, zlib
 from pathlib import Path
@@ -124,5 +125,82 @@ def extract(key):
     print(json.dumps(dict(school=key, periods=len(periods), holds=len(holds), conflicts=sum(1 for p in periods if p['conflictingStartYears']))))
 
 
+def gaps(key, write=True):
+    """Gap years (protocol stage 4, learned 2026-10-30 at Michigan): a PI whose listing years have a hole gets, for
+    each missing year, the dated Wayback captures of that year (monthly, at most 4 per URL) of the PI's own homepage, of
+    the unit listing that lists the PI, and of a UMSI profile page; a capture whose text names the PI with a ladder
+    professor title (cs_related_school.faculty_evidence; a homepage must also name the school) proves that calendar
+    year, like a dated listing. Roster years are never bridged without such a capture. When every gap year has one,
+    the PI gets a reviewed period in census-overrides.json from the first to the last evidenced year (the
+    Berkeley 'bridged' form: start a lower bound, no end claimed, asof the last evidence). Years without a capture stay
+    open. -> hierarchy/<key>/gap-year-evidence.json"""
+    import cs_related_school as CR
+    c = W.con(key); rx = S.aff_rx(key); out = {}
+    add = {x['name']: x for x in json.loads((P.CENSUS / f'{key}-additions.json').read_text())} if (P.CENSUS / f'{key}-additions.json').exists() else {}
+    cen = {x['name']: x for x in json.loads((P.CENSUS / f'{key}-faculty.json').read_text())['faculty']}
+    import stage_gate as SG
+    for t in targets(key):
+        x0 = cen.get(t['name']) or add.get(t['name']) or {}
+        miss = SG.span_gaps(x0)  # years of the professor-rank span with no listing (stage_gate.span_gaps)
+        ys = sorted(set(x0.get('years_listed') or []))
+        if not miss:
+            continue
+        x = cen.get(t['name']) or add.get(t['name']) or {}
+        names = [t['name']] + list(x.get('aliases') or [])
+        urls = list(t['urls'])
+        for s_ in x.get('sources') or []:
+            u = re.sub(r'^https?://web\.archive\.org/web/\d+(?:id_)?/', '', s_.get('url') or '')
+            if u and u not in urls:
+                urls.append(u)
+        if any('UMSI' in (d or '') for d in x.get('departments') or []) or any('si.umich.edu' in u for u in urls):
+            tk = [w for w in re.sub(r'[^a-z ]', ' ', t['name'].lower().replace('jr', '')).split() if len(w) > 1]
+            urls.append(f"www.si.umich.edu/people/{tk[0]}-{tk[-1]}")
+        ev = {}
+        for y in miss:
+            for u in urls:
+                if y in ev:
+                    break
+                k = re.sub(r'^https?://', '', u)
+                rows = W.cdx_rows(c, k, frm=str(y), to=str(y), collapse='timestamp:6')
+                for r in rows[:4]:
+                    cap, st, sha, b = W.capture(c, r['timestamp'], r['original'], u, 'gap:' + t['name'])
+                    if st != 200:
+                        continue
+                    flat = W.flat(b)
+                    is_home = u in t['urls']
+                    if is_home and not rx.search(flat):
+                        continue
+                    hit = CR.faculty_evidence([('gap', cap, sha, r['timestamp'], flat)], names)
+                    hit = [h for h in hit if h['ladder']]
+                    if hit:
+                        ev[y] = dict(url=cap, sha256=sha, quote=hit[0]['quote'], observed=f"{r['timestamp'][:4]}-{r['timestamp'][4:6]}-{r['timestamp'][6:8]}",
+                                     kind='homepage_capture' if is_home else 'unit_page_capture', page=u)
+                        break
+        out[t['name']] = dict(listing_years=ys, gap_years=miss, evidence={str(y): e for y, e in ev.items()}, closed=all(y in ev for y in miss), urls_tried=urls)
+        print(json.dumps(dict(pi=t['name'], gaps=miss, closed=sorted(ev))), flush=True)
+    (P.HIERARCHY / key / 'gap-year-evidence.json').write_text(json.dumps(out, indent=1, ensure_ascii=False))
+    if not write:
+        return out
+    rows = json.loads((P.LISTINGS / key / 'rows.json').read_text())
+    f = P.HIERARCHY / 'census-overrides.json'; txt = f.read_text(); ov = json.loads(txt); sec = ov.setdefault(key, {})
+    for name, g in out.items():
+        if not g['closed']:
+            continue
+        x = cen.get(name) or add.get(name) or {}
+        srcs = sorted([s_ for s_ in x.get('sources') or [] if s_.get('quote')], key=lambda s_: s_.get('observed') or '')
+        first, last = (srcs[0], srcs[-1]) if srcs else (None, None)
+        evs = ([dict(url=first['url'], sha256=first['sha256'], quote=first['quote'], observed=first.get('observed'), kind='dept_listing')] if first else []) + \
+              [dict(url=e['url'], sha256=e['sha256'], quote=e['quote'], observed=e['observed'], kind=e['kind']) for _, e in sorted(g['evidence'].items())] + \
+              ([dict(url=last['url'], sha256=last['sha256'], quote=last['quote'], observed=last.get('observed'), kind='dept_listing')] if last and last is not first else [])
+        sec.setdefault(name, {})['periods'] = [dict(id=f"override_period_gaps_{key}_{re.sub(r'[^a-z0-9]+', '_', name.lower()).strip('_')}", start=str(g['listing_years'][0]),
+                                                    end=None, asof=(evs[-1].get('observed') or '')[:10] or None, datePrecision='year', evidence=evs,
+                                                    note=f"Bridged from dated evidence for every year {g['listing_years'][0]}-{g['listing_years'][-1]}: listings, and for the gap years "
+                                                         f"{g['gap_years']} dated Wayback captures naming the PI with a professor title (hierarchy/{key}/gap-year-evidence.json). "
+                                                         "Start is a lower bound (the first listing in the window); no end is claimed.",
+                                                    reviewed='periods_school_gaps_20261030')]
+        sec[name]['why_periods'] = 'Gap years closed by dated captures (tools/periods_school.py gaps).'
+    f.write_text(json.dumps(ov, indent=1, ensure_ascii='\\u' in txt) + ('\n' if txt.endswith('\n') else ''))
+
+
 if __name__ == '__main__':
-    {'fetch': fetch, 'extract': extract}[sys.argv[1]](sys.argv[2])
+    {'fetch': fetch, 'extract': extract, 'gaps': gaps}[sys.argv[1]](sys.argv[2])

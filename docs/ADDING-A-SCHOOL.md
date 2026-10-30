@@ -1,9 +1,17 @@
 # Adding a school: the standard protocol
 
-**Version 2, 2026-10-29.**
+**Version 2.1, 2026-10-30.**
 - Version 1 was drafted from how Princeton, CMU, EPFL, MIT, Berkeley and Stanford were built.
 - Version 2 is version 1 corrected by its first run, on the University of Michigan, the seventh school (`hierarchy/michigan/STAGE-*.md`).
-- Each change is marked **Learned from Michigan (2026-10-29)**.
+- Version 2.1 adds what Michigan's stages 2–8 taught on 2026-10-30, marked **Learned from Michigan (2026-10-30)**:
+  - the bulk-pull sanity gate;
+  - gzip-encoded Wayback captures;
+  - the computing-share test;
+  - gap-year evidence;
+  - the reviewed OpenAlex identity tool;
+  - the previous-school, alumni-text and student-directory rules;
+  - the unavailability ledger.
+- Each change is marked **Learned from Michigan (2026-10-29)** or **(2026-10-30)**.
 
 Each stage has inputs, tools, outputs, a gate (what must be true before the next stage starts) and a stage report. A school is "in" only when every gate passes and it ships in a release.
 
@@ -31,6 +39,9 @@ The protocol is config-driven. A school is a charter, `schools/<key>.toml`, and 
   - No paywalls, logins or bot challenges. Stop using a host as soon as it serves a challenge.
   - Respect robots.txt. **Learned from Michigan (2026-10-29):** this includes rules that disallow AI agents by name (ClaudeBot, anthropic-ai, Claude-Web). This project's fetchers are Claude agents, so such a host is not used, whatever User-Agent string the tools send, and not through its Wayback captures either. `tools/school_web.py` enforces this.
   - dblp.org is never fetched; use the local dump (`atlas_paths.DBLP_DUMP`).
+  - **Learned from Michigan (2026-10-30):** `pub.orcid.org/robots.txt` is `User-agent: * / Disallow: /`. The ORCID public
+    API is therefore not a usable period source, although one Berkeley period (Giuseppe Loianno) cites
+    `pub.orcid.org/v3.0/.../employments`; the owner should review that citation.
   - API keys live in `~/.config/cs-atlas/*.env` and are never printed. The owner's email is never sent anywhere.
 - **Compute.**
   - Follow `/etc/claude-code/CLAUDE.md`.
@@ -71,6 +82,25 @@ The protocol is config-driven. A school is a charter, `schools/<key>.toml`, and 
   - **The OpenAlex lineage may not contain the school's medical centre.** Michigan Medicine is "related" to the university, not a child. List such ids as `openalex_related`: they are swept, and an authorship tagged only with them counts when its raw string matches the regex. This needs the owner's agreement once per school.
   - **Test the affiliation regex against DBLP notes as well as OpenAlex strings.** "University of Michigan – Shanghai Jiao Tong University Joint Institute" and "University of Michigan at Dearborn" matched the first regex.
   - **Check the shared OpenAlex key's credits before starting the sweep.** It had 492 left on 2026-10-29. `hierarchy/<key>/sweep_daily.sh` reruns the sweep after each 00:00 UTC reset until it is complete.
+- **Learned from Michigan (2026-10-30):**
+  - **Bulk-pull sanity gate (owner standard).** After every OpenAlex sweep and every DBLP dump pull, run
+    `tools/sweep_check.py <key>`. It is wired into `hierarchy/<key>/run_sweep.sh`, and `stage_gate.py` reads the result
+    for stage 2 and stage 7. It writes `hierarchy/<key>/sweep-check.json` with:
+    - per-year raw and paper-only counts, and stored-vs-API-count completeness;
+    - the duplicate rate by work id and by DOI;
+    - a year-outlier test: 3× (or ⅓×) the median of the other years, or a robust z above 8 with the MAD floored at
+      5% of the median; the current year is exempt on the low side;
+    - the share of works carrying a charter institution id, and that every lineage id occurs;
+    - for DBLP: the dump file, the PIs' per-year records, duplicate keys, and PI ids missing from the dump-persons file.
+
+    It exits 1 when a test trips, unless the charter's `[sweep_check].exceptions` holds a reviewed exception with a
+    reason. With `verify = "papers_normal"` the check re-verifies the stated cause: the paper-only count must be normal.
+  - Michigan's 2022 had 434,618 ENCODE dataset records (one UM author). The back-test on the released sweeps found
+    Berkeley 2026 with 36,836 PNNL dataset records; there is no exception recorded for it yet. Both are non-papers that
+    every reader drops (`pi_hierarchy.NOT_PAPERS`). A tool that reads the sweep must drop them too:
+    `cs_related_candidates.py` did not.
+  - The DBLP part needs `pis.json`, so run the check again after the first build of stage 3 or 7. Regenerate
+    `hierarchy/dblp-dump-persons.json.gz` (`tools/dblp_dump_persons.py`) after the PI set changes.
 
 ## Stage 1: sources and captures
 - **Do:**
@@ -87,6 +117,14 @@ The protocol is config-driven. A school is a charter, `schools/<key>.toml`, and 
 - **Learned from Michigan (2026-10-29):**
   - **A usable capture must parse to people, not just look like a listing.** Three spring captures of the CSE list were 31 KB script-rendered shells with title-like navigation lines. `plan_fetch` now requires a charter school's capture to parse to at least 5 entries.
   - **Page formats drift inside one site.** The name moved from a bold span to `<b>` in 2018, and from `<h4>` to `p.eecs_person_name` in 2025. Re-run `listing_rows.py` and compare the people per year after every format fix.
+- **Learned from Michigan (2026-10-30):** **Wayback `id_` captures can be gzip-encoded.** Wayback serves the archived
+  bytes with their original Content-Encoding, even to a request asking for identity.
+  - Stored raw, they parse as an empty page. Michigan's "31 KB script-rendered shells" of the CSE list were full 230 KB
+    lists, gzipped.
+  - Read stored bytes through `wb.body()` (`school_web.body`). It gunzips, while the sha256 stays the hash of the
+    bytes as served.
+  - `school_web.repair_gzip(con)` re-derives blocks and text for stored rows. Before calling a capture unusable, check
+    `zlib.decompress(raw)[:2] == b'\x1f\x8b'`.
 
 ## Stage 2: faculty census
 - **Do:**
@@ -109,6 +147,33 @@ The protocol is config-driven. A school is a charter, `schools/<key>.toml`, and 
   - **A DBLP record that does not name the school is not evidence of no computing output.** Decide an affiliated-department person negatively only when no DBLP record of the name has output in the window. Otherwise the person is `pending_openalex` until the sweep gives the DBLP-indexed share of their school works.
   - **Name forms in one school's listings:** merge forms that link the same personal homepage ('H.V.' / 'Jag' Jagadish, 'Georgios' / 'George' Tzimpragos).
   - **Parser completeness:** assert, per capture, that the parsed entries equal the page's own entry markers. The first Michigan parser silently dropped 2018–19 entries that had no homepage link.
+- **Learned from Michigan (2026-10-30):**
+  - **Run the OpenAlex candidate rule for one school** with
+    `tools/cs_related_candidates.py --no-venues --stats --out cs-related-candidates-openalex.json <key>`.
+    - It leaves the shared `cs-venues.json` alone and writes `hierarchy/<key>/oa-author-stats.json.gz` (every author
+      id with 3+ school papers).
+    - It counts papers only, and authorships of `openalex_related` institutions only when the raw string matches the
+      regex.
+    - `cs_related_school.py candidates` merges these candidates as source `openalex_rule`.
+  - **Search the units the OpenAlex candidates come from.** At Michigan they came from Aerospace, CLASP, BME, CEE and
+    the Medical School, none of which had been searched. A unit's faculty list is often its `/people/` page, not
+    `/people/faculty/`: exact-URL CDX both.
+  - **Computing-share test** (`cs_related_school.share_test`, owner decision 2026-10-30).
+    - Identity: ORCID ids, plus ids under the family name and first spelled-out given name, with namesakes set aside
+      (another ORCID, or works ending before the first listing).
+    - Computing when 5+ school papers are DBLP-indexed and they are ≥ 20% of the papers. Not computing when it fails
+      on 8+ papers. Below 8, the DBLP decision stands; with no DBLP decision, `too_few_school_works`, which is a
+      decision, not open.
+    - It decides pending people, OpenAlex candidates, people without 5 DBLP records, and the acceptances the owner
+      names in `[cs_related].share_test_settles`. Other DBLP acceptances stand, with `share_flag` when the test fails.
+      The owner rules on those.
+    - It is noisy for arXiv-heavy theorists with few school works: unpublished preprints count as papers but not as
+      DBLP-indexed.
+  - **Read a listed rank up to its own "Professor".** "Associate Professor of Information, School of Information and
+    Research Associate Professor, ICPSR" is a ladder title.
+  - **Reviewed OpenAlex ids** (`tools/oa_identity_school.py <key>`) come from `hierarchy/<key>/openalex-identity-review.json`
+    (hand decisions) and from the accepted people's share-test ids. They go into the school's section of
+    `census-overrides.json` with sweep-work evidence.
 
 ## Stage 3: PIs and labs
 - **Do:**
@@ -132,7 +197,25 @@ The protocol is config-driven. A school is a charter, `schools/<key>.toml`, and 
   - A closed range followed by later professor-rank listings is a rank step, not a departure ('2014-2020: Assistant Professor').
   - A closing statement that says the PI moved is written as `faculty_end_moved` evidence, which the builder's R-PAP-03 uses to set stale listings aside. At Michigan, Cafarella's 6 adjunct years after his move to MIT were set aside.
   - Wayback starts refusing connections when several fetchers run at once, even under the shared 6 s lock. Run one fetching stage at a time.
-- **Gate:** every PI has a period, or a listing for each year that has papers. Before stage 7 there are no papers yet, so check that each PI's listing years are contiguous from the first listed year to the last.
+- **Gate:** every PI has a period, or a listing for each year that has papers. Before stage 7 there are no papers yet,
+  so check that every year of the PI's professor-rank span (first to last ladder or courtesy year) has a listing of
+  any rank (`stage_gate.span_gaps`).
+- **Learned from Michigan (2026-10-30):**
+  - **Gap years.** `tools/periods_school.py gaps <key>` reads, for each year missing from the span, dated Wayback
+    captures of that year: the PI's homepage, the unit listing that lists them, and the unit's per-person profile
+    page.
+    - A capture naming the PI with a ladder title proves that calendar year, like a dated listing. A homepage must
+      also name the school.
+    - When every gap year is proven, a bridged period goes to `census-overrides.json`
+      (`reviewed: periods_school_gaps_<date>`).
+    - Roster years alone never bridge a gap.
+  - **The span is set by professor rank.** A research-scientist year does not open it (Ziyou Song: research 2020,
+    visiting 2024, ladder 2025–). An adjunct year inside it still counts as listed (Jason Corso, 2021).
+  - **"Assistant Professor (beginning 9/2017)" is a future start** (R-PAP-02). Census ranks should not count it as
+    ladder. Mert Pilanci is in Michigan's census for 2016–2018 and is also Stanford's PI, so the owner should review
+    him.
+  - **Profile pages.** UMSI profile pages (`www.si.umich.edu/people/<first>-<last>`) closed the gap years the
+    paginated UMSI directory missed.
 
 ## Stage 5: identity
 - **Do:**
@@ -155,6 +238,17 @@ The protocol is config-driven. A school is a charter, `schools/<key>.toml`, and 
   - The PI's own homepage often links DBLP and ORCID (`tools/homepage_links_school.py`).
   - The remaining PIs have common names and need the OpenAlex review.
   - Listing names can differ from DBLP names ("Satinder Singh Baveja" is DBLP's "Satinder Singh"; "Jag Jagadish" is "H. V. Jagadish"). Record such aliases in `census-overrides.json`.
+- **Learned from Michigan (2026-10-30):**
+  - **The OpenAlex review is a file, then a tool.** Write the hand decisions to `hierarchy/<key>/openalex-identity-review.json`
+    as `{name: {openalex, why, aliases?}}`, then run `tools/oa_identity_school.py <key>`. Read the candidates from
+    `oa-author-stats.json.gz` (names, ORCIDs, venues, years per author id).
+  - **First-given-name matching admits namesakes.** 'Jeong M. Park' matches 'Jeong Joon Park'. Check venues against the
+    PI's field and years against the listing.
+  - **A homepage's DBLP link can point to a pid that is not in the dump** (Stella Yu: `pid/172/9071`, merged or
+    retired). Prefer the dump person carrying the PI's ORCID, and the id the PI's lab at another atlas school carries.
+  - **Cross-school PIs** (Stella Yu: Berkeley to Michigan in 2022; Jia Deng, Matthew Johnson-Roberson, Pei Zhang,
+    Michael Cafarella, Leia Stirling, Prabal Dutta, Mert Pilanci) should carry the same DBLP id or ORCID in both
+    schools. Stage 6 and the atlas ids rely on it.
 
 ## Stage 6: students
 Use sources in this order of preference:
@@ -175,6 +269,30 @@ OpenAlex co-authorship is never on its own evidence of advising.
   captures). The defenses index pages name no chair.
 - **Program directories without advisers** (the CSE PhD directory) help only after stage 7, through the
   co-authorship rule.
+  **Corrected 2026-10-30:** they do not, through co-authorship. R-STU-02 keeps a weak tie that already names the lab,
+  and a directory without an adviser names none. They help through the students' own websites (below).
+
+**Learned from Michigan (2026-10-30):**
+- **Students' own websites.** `tools/labpage_students_school.py directory <key>` reads the charter's
+  `[students].directories`: program PhD directories that list each student's website, with no adviser.
+  - It fetches each website like a lab page.
+  - It keeps a relation when the page names the school, says PhD, and puts an adviser phrase ('advised by', 'under
+    the supervision of', 'my advisor is', 'Advisor:') directly before a PI's full name. 'Working with' does not count.
+  - Years are the directory years that list the student. The evidence is the student's page (url, sha256, quote), plus
+    the directory capture.
+- **Alumni sections without heading elements.** An 'Alumni' line that is plain text leaves the role headings under it
+  looking current (Stella Yu's Berkeley PhD alumni and postdocs).
+  - `alumni_in_text`: an alumni marker before the section heading, with no 'Current' marker between, makes the
+    section alumni.
+  - The quote then starts at the marker, and alumni without a year are dropped as before.
+- **Students from the PI's previous school.** A lab-page student whom the same PI's lab at a released school already
+  holds is that school's student. The PI is matched by a shared DBLP id or ORCID.
+  - Such a student is dropped unless the page states a start year in or after the PI's first listing here
+    (`previous_school_students`).
+  - At Michigan this dropped 11 students under 8 cross-school PIs. Stella Yu's are the ones Berkeley lists.
+- **The Mathematics Genealogy Project** (no robots.txt) has advisers for many CS dissertations. It was offline from
+  21 October 2026 (a PHP vulnerability), so try it when it is back.
+- **Gzip-encoded captures** (stage 1) also hid lab pages: Stella Yu's 2026 page was one of 12 such lab pages.
 
 - **Do:** record each relation with role, years and `url + sha256 + quote`.
 - **Gate:** the `students` and `one_person` checks are 100% or explained.
@@ -195,7 +313,20 @@ OpenAlex co-authorship is never on its own evidence of advising.
   - Create the store catalog (stage 0), then add the lab papers (`fulltext-push/add_works.py`).
   - Run the channels (`run_steps.sh <key> oa_arxiv openalex proceedings arxiv_title dblp_ee s2 core europepmc pmc figshare labpages <school repository>`).
   - Start the download loop (`downloads.slurm`, adding the school to the array).
-- **Gate:** copies are measured. The target is 85% of lab papers; every lab paper without a copy has a reason (only paywalled or login copies were found, or no open copy exists).
+  - Measure: `tools/lab_paper_copies.py <key>` -> `hierarchy/<key>/copies.json`.
+  - **Unavailability ledger (owner standard 2026-10-30; spec and vocabulary: `docs/UNAVAILABLE.md`).** Run
+    `fulltext-push/unavailable_ledger.py <key>` (collector Python, `-I`) after `copies.json` exists. Output: an
+    unavailability ledger for every lab paper without a copy, `hierarchy/<key>/unavailable.jsonl.gz` and
+    `unavailable-summary.json`: one reason code per paper from the fixed vocabulary, with its evidence and check date, and
+    `incomplete_check` when any applicable source was not checked. It attaches `unavailable_reason` to `copies.json` and
+    records its checks in `fulltext-push/checks/<key>.sqlite`. Options: `--max-age-days N` (default 30; OpenAlex 7),
+    `--offline`, `--only <paper key>`, `--no-network-sources s2,s2_title,core,dblp,wayback_acm`. The release step is
+    `ledger`, after `copies`, in `hierarchy/rebuild.sh`.
+- **Gate:**
+  - copies are measured. The target is 85% of lab papers.
+  - every non-local lab paper has a ledger entry, and `incomplete_check` is at most the whitelisted threshold
+    (`docs/evidence-whitelist.json`; the evidence check's categories `unavailable_missing`, `unavailable_stale` and
+    `unavailable_incomplete`).
 
 ## Stage 9: accuracy
 - **Do:** run the hand-checked sample (`accuracy/sample.py`, 105 judgments per school).

@@ -82,6 +82,12 @@ computing_departments = ["CSE", "ECE"]
 # canonical home-unit names: the listings spell units several ways (tools/home_departments_school.py)
 home_units = {"Computer Science and Engineering" = '^(?:EECS\s*[\u2013-]\s*)?Computer Science (?:and|&) Engineering$', "Electrical and Computer Engineering" = '^(?:EECS\s*[\u2013-]\s*)?Electrical (?:and|&) Computer Engineering$', "Linguistics" = '^Lin[gq]uistics$', "Robotics" = '^Robotics(?: Department)?$', "Nuclear Engineering and Radiological Sciences" = 'Nuclear Engineering (?:and|&) Radiological', "Industrial and Operations Engineering" = 'Industrial (?:and|&) Operations', "Civil and Environmental Engineering" = 'Civil (?:and|&) Environmental', "School of Information" = '^(?:School of )?Information$|^School of Information', "Statistics" = '^Statistics$', "Mathematics" = '^Mathematics$', "Mechanical Engineering" = '^Mechanical Engineering$'}
 
+[sweep_check]
+# Reviewed exceptions to tools/sweep_check.py (each with its reason; verify = "papers_normal" re-checks the cause).
+exceptions = [
+  {test = "year_outlier", year = 2022, verify = "papers_normal", reason = "434,618 of the 455,386 works of 2022 are ENCODE dataset records (DOI prefix 10.17989, source 'ENCODE Datasets', one University of Michigan author, dated 22-25 March 2022): OpenAlex type dataset, which every reader drops (pi_hierarchy.NOT_PAPERS, R-PAP-17; cs_related_candidates.py since 2026-10-30). Paper-only counts of 2022 are in line with the other years. Diagnosed 2026-10-30 (STAGE-2.md)."},
+]
+
 [cs_related]
 # Owner decision 2026-10-30 (5): these acceptances are settled by the OpenAlex computing-share test
 # (tools/cs_related_school.py share_test); every other DBLP-decided acceptance stands, with its share result recorded.
@@ -253,11 +259,14 @@ Blue is not fetched, live or through its Wayback captures (owner decided 2026-10
 CSE/ECE PhD defence and graduation pages (Wayback), lab member pages and the PIs' own pages instead."""
 
 [students]
+# program PhD directories (name + the student's own website; no adviser): tools/labpage_students_school.py directory
+directories = ["cse.engin.umich.edu/people/phd-students/", "ece.engin.umich.edu/people/directory/phd-students/"]
 sources = [
   "CSE and ECE dissertation defence announcements (cse.engin.umich.edu/event/..., Wayback): 'Chair: Prof. X'",
   "CSE and ECE PhD graduate / alumni lists (Wayback)",
   "lab member pages and PI homepages (live where robots allows, else Wayback)",
-  "Deep Blue dissertations (dc.contributor.committeemember / chair): blocked pending the owner (see [thesis])",
+  "students' own websites linked from the CSE and ECE PhD directories: 'advised by <PI>' (added 2026-10-30)",
+  "Deep Blue dissertations: never used (owner decision 2026-10-30; robots.txt names Claude's agents)",
 ]
 
 [labpages]

@@ -21732,7 +21732,42 @@
      "observed": "2026-01-02",
      "source": "OpenAlex sweep 2026-10-29 (hierarchy/michigan/openalex-sweep.sqlite)"
     }
-   ]
+   ],
+   "periods": [
+    {
+     "id": "override_period_gaps_michigan_raed_al_kontar",
+     "start": "2019",
+     "end": null,
+     "asof": "2026012820",
+     "datePrecision": "year",
+     "evidence": [
+      {
+       "url": "https://web.archive.org/web/20190615171813id_/https://ioe.engin.umich.edu/people/",
+       "sha256": "59a021d9c64196cee585ebd5dca0c2d3e988a6acd44191b46a9ae0456b78a641",
+       "quote": "Raed Al Kontar Assistant Professor",
+       "observed": "20190615171813",
+       "kind": "dept_listing"
+      },
+      {
+       "url": "https://web.archive.org/web/20250215173942id_/https://ioe.engin.umich.edu/people/",
+       "sha256": "52c09603617352bef4f12e92aff7c21e5ad0c47331d4d226f124be1e5f4a9131",
+       "quote": "Raed Al Kontar Associate Professor",
+       "observed": "2025-02-15",
+       "kind": "unit_page_capture"
+      },
+      {
+       "url": "https://web.archive.org/web/20260128203237id_/https://ioe.engin.umich.edu/people/",
+       "sha256": "ef05c453e67b60c8e25d676a7fbfb1e107e8428b14fdf28eb49410d26cff995a",
+       "quote": "Raed Al Kontar Associate Professor",
+       "observed": "20260128203237",
+       "kind": "dept_listing"
+      }
+     ],
+     "note": "Bridged from dated evidence for every year 2019-2026: listings, and for the gap years [2025] dated Wayback captures naming the PI with a professor title (hierarchy/michigan/gap-year-evidence.json). Start is a lower bound (the first listing in the window); no end is claimed.",
+     "reviewed": "periods_school_gaps_20261030"
+    }
+   ],
+   "why_periods": "Gap years closed by dated captures (tools/periods_school.py gaps)."
   },
   "Xiuli Chao": {
    "openalex": [
@@ -22108,6 +22143,152 @@
      "source": "OpenAlex sweep 2026-10-29 (hierarchy/michigan/openalex-sweep.sqlite)"
     }
    ]
+  },
+  "Christopher Brooks": {
+   "periods": [
+    {
+     "id": "override_period_gaps_michigan_christopher_brooks",
+     "start": "2020",
+     "end": null,
+     "asof": "2026012902",
+     "datePrecision": "year",
+     "evidence": [
+      {
+       "url": "https://web.archive.org/web/20200803175303id_/https://www.si.umich.edu/people/directory/faculty",
+       "sha256": "bc1470faa53bf3d321231e7a855c31a38dd5aaaae535f8cc0bf3e2a2bacbc877",
+       "quote": "Christopher Brooks Assistant Professor of Information, School of Information ",
+       "observed": "20200803175303",
+       "kind": "dept_listing"
+      },
+      {
+       "url": "https://web.archive.org/web/20240520155206id_/https://www.si.umich.edu/people/christopher-brooks",
+       "sha256": "59e45349985aec4fff41294489209206941e65e3e33e09ba58c3bea102654b00",
+       "quote": "Christopher Brooks Back To Directory Christopher Brooks Associate Professor of Information, School of Information Email",
+       "observed": "2024-05-20",
+       "kind": "unit_page_capture"
+      },
+      {
+       "url": "https://web.archive.org/web/20250729235557id_/https://www.si.umich.edu/people/directory/faculty",
+       "sha256": "e10f12e955b32fc352f50358d3be2ae19f9800e3b60f2366f4b5869f53d39e47",
+       "quote": "Christopher Brooks Associate Professor of Information, School of Information ",
+       "observed": "2025-07-29",
+       "kind": "unit_page_capture"
+      },
+      {
+       "url": "https://web.archive.org/web/20260129025423id_/https://www.si.umich.edu/people/directory/faculty",
+       "sha256": "317d2f54d04f792ed98c927df5ae7dc2d7e49bbe989d30853687d90d7428188a",
+       "quote": "Christopher Brooks Associate Professor of Information, School of Information ",
+       "observed": "20260129025423",
+       "kind": "dept_listing"
+      }
+     ],
+     "note": "Bridged from dated evidence for every year 2020-2026: listings, and for the gap years [2024, 2025] dated Wayback captures naming the PI with a professor title (hierarchy/michigan/gap-year-evidence.json). Start is a lower bound (the first listing in the window); no end is claimed.",
+     "reviewed": "periods_school_gaps_20261030"
+    }
+   ],
+   "why_periods": "Gap years closed by dated captures (tools/periods_school.py gaps)."
+  },
+  "Lionel P. Robert Jr.": {
+   "periods": [
+    {
+     "id": "override_period_gaps_michigan_lionel_p_robert_jr",
+     "start": "2019",
+     "end": null,
+     "asof": "20261029",
+     "datePrecision": "year",
+     "evidence": [
+      {
+       "url": "https://web.archive.org/web/20190322203001id_/https://robotics.umich.edu/people/faculty/",
+       "sha256": "2c6a072a9a03112d2ca6eb70fa9d50660e9f647cd7ee455c72cc00b75c754b67",
+       "quote": "Lionel Robert Associate Professor of Information, School of Information Elliott Rouse Assistant Professor, Mechanical ",
+       "observed": "20190322203001",
+       "kind": "dept_listing"
+      },
+      {
+       "url": "https://web.archive.org/web/20230223195253id_/https://www.si.umich.edu/people/lionel-robert",
+       "sha256": "3a8b5fd580b3e45baede5ba9a205be694e92b411ee6f14f994c6fb3fdf642f2a",
+       "quote": "Lionel Robert Back To Directory Lionel Robert Professor of Information and Associate Dean for Faculty Development and Faculty Affairs, Schoo",
+       "observed": "2023-02-23",
+       "kind": "unit_page_capture"
+      },
+      {
+       "url": "https://robotics.umich.edu/people/faculty/",
+       "sha256": "869f888509fb726771c5817a7e7750632bafa4eef48c6b05b6f5d59e429b0cc0",
+       "quote": "Lionel Robert Professor",
+       "observed": "20261029",
+       "kind": "dept_listing"
+      }
+     ],
+     "note": "Bridged from dated evidence for every year 2019-2026: listings, and for the gap years [2023] dated Wayback captures naming the PI with a professor title (hierarchy/michigan/gap-year-evidence.json). Start is a lower bound (the first listing in the window); no end is claimed.",
+     "reviewed": "periods_school_gaps_20261030"
+    }
+   ],
+   "why_periods": "Gap years closed by dated captures (tools/periods_school.py gaps)."
+  },
+  "Yan Chen": {
+   "periods": [
+    {
+     "id": "override_period_gaps_michigan_yan_chen",
+     "start": "2020",
+     "end": null,
+     "asof": "2026012902",
+     "datePrecision": "year",
+     "evidence": [
+      {
+       "url": "https://web.archive.org/web/20200803175303id_/https://www.si.umich.edu/people/directory/faculty",
+       "sha256": "bc1470faa53bf3d321231e7a855c31a38dd5aaaae535f8cc0bf3e2a2bacbc877",
+       "quote": "Yan Chen Daniel Kahneman Collegiate Professor of Information, Professor of Information, School of Information and Research Profess",
+       "observed": "20200803175303",
+       "kind": "dept_listing"
+      },
+      {
+       "url": "https://web.archive.org/web/20210119022818id_/https://www.si.umich.edu/people/yan-chen",
+       "sha256": "706bf195a616ed8ccb1fa2a0d65dd2dae390558ba897dd204a5af661e17d1a69",
+       "quote": "Yan Chen Back To Directory Yan Chen Daniel Kahneman Collegiate Professor of Information, Professor of Information, School of Information and Research Profess",
+       "observed": "2021-01-19",
+       "kind": "unit_page_capture"
+      },
+      {
+       "url": "https://web.archive.org/web/20220122021201id_/https://www.si.umich.edu/people/yan-chen",
+       "sha256": "d0689cfb8df638faf253521f25568e06253c19bf87a145fbbdc24e698cecd936",
+       "quote": "Yan Chen Back To Directory Yan Chen Daniel Kahneman Collegiate Professor of Information, Professor of Information, School of Information and Research Profess",
+       "observed": "2022-01-22",
+       "kind": "unit_page_capture"
+      },
+      {
+       "url": "https://web.archive.org/web/20230110170955id_/https://www.si.umich.edu/people/yan-chen",
+       "sha256": "2a7fce0ce2df5811b202b3dde0cb5427e811af26b33c448512f18dd07caebd3d",
+       "quote": "Yan Chen Back To Directory Yan Chen Daniel Kahneman Collegiate Professor of Information, Professor of Information, School of Information and Research Profess",
+       "observed": "2023-01-10",
+       "kind": "unit_page_capture"
+      },
+      {
+       "url": "https://web.archive.org/web/20240227163520id_/https://www.si.umich.edu/people/yan-chen",
+       "sha256": "8765464379387548b2b552d9bc4f1db6f6004ccfe33150bd608df6ba152a9e09",
+       "quote": "Yan Chen Back To Directory Yan Chen Daniel Kahneman Collegiate Professor of Information, Professor of Information, School of Information and Research Profess",
+       "observed": "2024-02-27",
+       "kind": "unit_page_capture"
+      },
+      {
+       "url": "https://web.archive.org/web/20250729235557id_/https://www.si.umich.edu/people/directory/faculty",
+       "sha256": "e10f12e955b32fc352f50358d3be2ae19f9800e3b60f2366f4b5869f53d39e47",
+       "quote": "Yan Chen Daniel Kahneman Collegiate Professor of Information, Professor of Information, School of Information and Research Profess",
+       "observed": "2025-07-29",
+       "kind": "unit_page_capture"
+      },
+      {
+       "url": "https://web.archive.org/web/20260129025423id_/https://www.si.umich.edu/people/directory/faculty",
+       "sha256": "317d2f54d04f792ed98c927df5ae7dc2d7e49bbe989d30853687d90d7428188a",
+       "quote": "Yan Chen Daniel Kahneman Collegiate Professor of Information, Professor of Information, School of Information and Research Profess",
+       "observed": "20260129025423",
+       "kind": "dept_listing"
+      }
+     ],
+     "note": "Bridged from dated evidence for every year 2020-2026: listings, and for the gap years [2021, 2022, 2023, 2024, 2025] dated Wayback captures naming the PI with a professor title (hierarchy/michigan/gap-year-evidence.json). Start is a lower bound (the first listing in the window); no end is claimed.",
+     "reviewed": "periods_school_gaps_20261030"
+    }
+   ],
+   "why_periods": "Gap years closed by dated captures (tools/periods_school.py gaps)."
   }
  }
 }
