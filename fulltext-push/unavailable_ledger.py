@@ -676,8 +676,10 @@ def src_repository(school, papers, oa, core, offline, n):
         o, c = oa.get(p['key']) or {}, core.get(p['key']) or {}
         if o.get('result') not in ('found', 'none'):
             out[p['key']] = check('repository', p['key'], 'error', 'OpenAlex check missing'); continue
-        locs = [l for l in ((o.get('detail') or {}).get('locations') or []) if pat.search(' '.join(str(l.get(x) or '') for x in ('host', 'source', 'landing', 'pdf')))]
-        links = [u for u in ((c.get('detail') or {}).get('links') or []) if isinstance(c.get('detail'), dict) and pat.search(u)]
+        od = o.get('detail') if isinstance(o.get('detail'), dict) else {}
+        cd = c.get('detail') if isinstance(c.get('detail'), dict) else {}  # an unanswered CORE check carries a note, not links
+        locs = [l for l in od.get('locations') or [] if pat.search(' '.join(str(l.get(x) or '') for x in ('host', 'source', 'landing', 'pdf')))]
+        links = [u for u in cd.get('links') or [] if pat.search(u)]
         usable = [l['pdf'] for l in locs if l.get('pdf')] + links
         out[p['key']] = check('repository', p['key'], 'found' if usable else 'none',
                               dict(repository=REPO[school], records=[l.get('landing') for l in locs][:3], usable=usable[:3],
