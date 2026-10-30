@@ -206,9 +206,10 @@ def gaps(key, write=True):
         x = cen.get(name) or add.get(name) or {}
         srcs = sorted([s_ for s_ in x.get('sources') or [] if s_.get('quote')], key=lambda s_: s_.get('observed') or '')
         first, last = (srcs[0], srcs[-1]) if srcs else (None, None)
-        evs = ([dict(url=first['url'], sha256=first['sha256'], quote=first['quote'], observed=first.get('observed'), kind='dept_listing')] if first else []) + \
+        iso = lambda d: (f'{d[:4]}-{d[4:6]}-{d[6:8]}' if d and re.fullmatch(r'\d{8}', d) else d)  # contains() reads ISO dates only
+        evs = ([dict(url=first['url'], sha256=first['sha256'], quote=first['quote'], observed=iso(first.get('observed')), kind='dept_listing')] if first else []) + \
               [dict(url=e['url'], sha256=e['sha256'], quote=e['quote'], observed=e['observed'], kind=e['kind']) for _, e in sorted(g['evidence'].items())] + \
-              ([dict(url=last['url'], sha256=last['sha256'], quote=last['quote'], observed=last.get('observed'), kind='dept_listing')] if last and last is not first else [])
+              ([dict(url=last['url'], sha256=last['sha256'], quote=last['quote'], observed=iso(last.get('observed')), kind='dept_listing')] if last and last is not first else [])
         sec.setdefault(name, {})['periods'] = [dict(id=f"override_period_gaps_{key}_{re.sub(r'[^a-z0-9]+', '_', name.lower()).strip('_')}", start=str(g['listing_years'][0]),
                                                     end=None, asof=(evs[-1].get('observed') or '')[:10] or None, datePrecision='year', evidence=evs,
                                                     note=f"Bridged from dated evidence for every year {g['listing_years'][0]}-{g['listing_years'][-1]}: listings, and for the gap years "

@@ -1200,7 +1200,7 @@ def build(school):
         names = [x['name']] + list(x.get('aliases') or []) + [Pid[i]['name'] for i in ids]
         listings = {}
         for s in x.get('sources') or []:
-            y = source_year(s); sur = toks(x['name'])[-1] if toks(x['name']) else ''
+            y = source_year(s); sur = nosuffix(toks(x['name']))[-1] if toks(x['name']) else ''  # R-PAP-08: 'Lionel P. Robert Jr.' is listed as 'Lionel Robert'
             if y and 2016 <= y <= 2026 and s.get('sha256') and s.get('quote') and sur and sur in ' '.join(toks(s['quote'])) and not not_faculty_row(s['quote']):
                 listings.setdefault(y, dict(url=s['url'], sha256=s['sha256'], quote=s['quote'], kind=s.get('kind') or '', year=y))
         for nm_ in [x['name']] + list(x.get('mergedCensusRows') or []):
