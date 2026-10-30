@@ -1,0 +1,31 @@
+#!/bin/bash
+# The repository's pre-commit check (installed by tools/install_hooks.sh; runs the copy in the worktree committing).
+#   1. direct commits to main: WARN (default) or refuse, by `git config atlas.mainCommits warn|enforce`
+#      (merges are fine: a fast-forward makes no commit, a merge commit runs pre-merge-commit, not this hook)
+#   2. the secret scan over the staged files (tools/secret_scan.py --staged): a finding stops the commit
+#   3. ruff on the staged Python files: syntax errors and undefined names stop the commit; the rest of the
+#      pyproject.toml rules are shown as warnings (CI runs them in full)
+# Bypass only with care: ATLAS_ALLOW_MAIN=1 silences the main check for one commit; `git commit --no-verify` skips all.
+set -u
+top=$(git rev-parse --show-toplevel) || exit 1
+. "$top/paths.sh" 2>/dev/null
+PY=${CS_ATLAS_PY:-python3}; [ -x "$PY" ] || PY=python3
+RUFF=$(dirname "$PY")/ruff; [ -x "$RUFF" ] || RUFF=$(command -v ruff || true)
+
+branch=$(git symbolic-ref --short -q HEAD || echo)
+if [ "$branch" = main ] && [ "${ATLAS_ALLOW_MAIN:-0}" != 1 ]; then
+  mode=$(git config --get atlas.mainCommits || echo warn)
+  msg="direct commit to main: work on a branch in your own worktree (tools/agent_worktree.sh <name>), then rebase, test and fast-forward main (docs/CONTRIBUTING.md)"
+  if [ "$mode" = enforce ]; then echo "pre-commit: REFUSED $msg" >&2; exit 1; fi
+  echo "pre-commit: WARNING $msg" >&2
+fi
+
+"$PY" "$top/tools/secret_scan.py" --staged --repo "$top" >&2 || { echo "pre-commit: the secret scan found something; nothing was committed" >&2; exit 1; }
+
+mapfile -t pyfiles < <(git diff --cached --name-only --diff-filter=ACMR -- '*.py')
+if [ ${#pyfiles[@]} -gt 0 ] && [ -n "$RUFF" ]; then
+  (cd "$top" && "$RUFF" check --quiet --force-exclude --select E9,F63,F7,F82 "${pyfiles[@]}") >&2 || {
+    echo "pre-commit: ruff found syntax errors or undefined names; nothing was committed" >&2; exit 1; }
+  (cd "$top" && "$RUFF" check --quiet --force-exclude "${pyfiles[@]}") >&2 || echo "pre-commit: ruff warnings above (not blocking)" >&2
+fi
+exit 0

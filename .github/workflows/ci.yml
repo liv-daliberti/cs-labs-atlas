@@ -1,0 +1,75 @@
+# CI for the CS Labs Atlas code (branch dev; also runs on main, where the release exports live and the job is a no-op).
+# Public repository: no step prints the environment or a secret. Secrets reach scripts only through env vars that the
+# scripts never echo (secret_scan.py prints file:line and the kind of a finding, never a value).
+name: ci
+on:
+  push:
+    branches: [dev, main]
+  pull_request:
+    branches: [dev, main]
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: bash -el {0}
+    env:
+      CS_ATLAS_CI: "1"                          # tests marked nfs (they need the project data) are skipped
+      CS_ATLAS_CODE: ${{ github.workspace }}    # every code-relative path is this checkout
+      CS_ATLAS_CONFIG: ${{ github.workspace }}/.ci-config   # no keys here; the scan still checks token shapes
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Is this the code branch?
+        id: detect
+        run: |
+          if [ -f env/conda-linux-64.lock ]; then echo "code=true" >> "$GITHUB_OUTPUT"; else echo "code=false" >> "$GITHUB_OUTPUT"; echo "no env lock: the release-export branch; nothing to check"; fi
+      - name: Set up conda (miniforge)
+        if: steps.detect.outputs.code == 'true'
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          miniforge-version: latest
+          auto-activate-base: false
+          activate-environment: ""
+      - name: Create the env from the lock
+        if: steps.detect.outputs.code == 'true'
+        run: |
+          conda create --yes --quiet --override-channels -c conda-forge -p "$RUNNER_TEMP/atlas" --file env/conda-linux-64.lock
+          "$RUNNER_TEMP/atlas/bin/python" -m pip install --no-deps --no-build-isolation -q -e .
+          echo "$RUNNER_TEMP/atlas/bin" >> "$GITHUB_PATH"
+      - name: ruff
+        if: steps.detect.outputs.code == 'true'
+        run: ruff check . --output-format=github
+      - name: Tests (fixtures only)
+        if: steps.detect.outputs.code == 'true'
+        run: python -m pytest -m "not nfs"
+      - name: Charters (school_config.check on every charter)
+        if: steps.detect.outputs.code == 'true'
+        run: python tools/school_config.py --check
+      - name: Vendored code matches its provenance
+        if: steps.detect.outputs.code == 'true'
+        run: python tools/vendor_sync.py check --no-sources
+      - name: No hardcoded project paths in code
+        if: steps.detect.outputs.code == 'true'
+        run: python tools/route_paths.py check | grep -v '^note' || true; python tools/route_paths.py check > /dev/null
+      - name: Secret scan over the pushed or proposed commits
+        if: steps.detect.outputs.code == 'true'
+        env:
+          SCAN_EMAIL_SHA256: ${{ secrets.SCAN_EMAIL_SHA256 }}   # optional repository secret: the owner's address hash
+          BASE: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          mkdir -p "$CS_ATLAS_CONFIG"
+          if [ -n "$SCAN_EMAIL_SHA256" ]; then printf '%s\n' "$SCAN_EMAIL_SHA256" > "$CS_ATLAS_CONFIG/scan-hashes.txt"; fi
+          if [ -n "$BASE" ] && [ "$BASE" != 0000000000000000000000000000000000000000 ] && git cat-file -e "$BASE^{commit}" 2>/dev/null; then
+            range="$BASE..HEAD"
+          else
+            range="HEAD"
+          fi
+          python tools/secret_scan.py --history "$range"
