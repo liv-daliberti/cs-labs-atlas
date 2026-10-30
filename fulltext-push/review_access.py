@@ -68,7 +68,7 @@ def cause(a):
     d, st, h = a['detail'] or '', a['status'], host(a['url'])
     if st == 'excluded_nonarticle':
         return 'policy_skip', False
-    if st == 'identity_mismatch' or re.search(r'title differs|DOI mismatch|arXiv identifier differs', d):
+    if st == 'identity_mismatch' or re.search(r'title differs|DOI mismatch|arXiv identifier differs|identity unconfirmed', d):
         return 'identity_mismatch', False
     if CHALLENGE.search(re.sub(r'https?://\S+', ' ', d)) or re.search(r'outside the evidence-approved public hosts: \S*(?:perfdrive|captcha)', d):
         return 'challenge', False

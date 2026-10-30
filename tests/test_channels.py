@@ -2,7 +2,7 @@
 every plugin on fixture papers, the legacy adapter's Results, and the runner's known-URL filtering and dry run."""
 import sys
 import types
-from collections import Counter, defaultdict
+from collections import defaultdict
 from pathlib import Path
 
 import pytest
