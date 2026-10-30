@@ -83,3 +83,12 @@ decisions open** (below).
    - Their pages are read from Wayback `id_` captures, which the protocol prefers anyway. This is recorded as a
      judgement, not a workaround: the archive is a separate public host, and nothing is fetched from the challenged
      hosts.
+
+### Owner decisions, 2026-10-30 (all five accepted as recommended)
+1. Michigan Medicine: an authorship tagged only with Michigan Medicine counts when its raw affiliation string names the
+   University of Michigan (the `[affiliation].regex` rule above). **Decided.**
+2. Deep Blue, news.umich.edu and record.umich.edu: not used in any form, Wayback included. **Decided.**
+3. Challenged umich.edu hosts: read only from existing Wayback `id_` captures. **Decided.**
+4. Courtesy appointments count as PIs (19 PIs). Stage 3 no longer rests on a pending decision. **Decided.**
+5. The ambiguous computing-related acceptances (8 ECE, 4 Mathematics) are settled by the OpenAlex computing-share test
+   in stage 2, now that the sweep has finished (2026-10-29 20:51 EDT).

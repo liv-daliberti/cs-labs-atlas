@@ -17,7 +17,7 @@ openalex = ["I27837315"]
 # ROR and OpenAlex, not a child, so authors tagged only with it (Computational Medicine and Bioinformatics, Biostatistics
 # collaborators, Learning Health Sciences) are not in I27837315's lineage. Its works are swept; such an authorship counts
 # for Michigan only when its raw affiliation string matches [affiliation].regex (most read "University of Michigan
-# Medical School"). Compare Stanford, whose health system is a child in its lineage. OWNER DECISION requested.
+# Medical School"). Compare Stanford, whose health system is a child in its lineage. Owner decided 2026-10-30: keep this rule.
 openalex_related = ["I4210114445"]
 openalex_excluded = ["I4210130704", "I4210092198"]   # University of Michigan-Dearborn, University of Michigan-Flint
 ror = "https://ror.org/00jmfr291"
@@ -217,7 +217,7 @@ endpoints = ["https://deepblue.lib.umich.edu/dspace-oai/request", "https://deepb
 robots = "disallowed-for-ai-agents"
 note = """deepblue.lib.umich.edu/robots.txt (2026-10-29) allows '*' but disallows ClaudeBot, anthropic-ai and Claude-Web by
 name (and other AI crawlers), with 'Content-Signal: ai-train=no, use=reference'. This project's agents are Claude, so Deep
-Blue is not fetched, live or through its Wayback captures, until the owner decides (STAGE-0.md). Students come from the
+Blue is not fetched, live or through its Wayback captures (owner decided 2026-10-30, STAGE-0.md). Students come from the
 CSE/ECE PhD defence and graduation pages (Wayback), lab member pages and the PIs' own pages instead."""
 
 [students]
