@@ -1,6 +1,6 @@
 # Michigan, stage 6: students
 
-Date: 2026-10-29, updated 2026-10-30. Gate: **not passed. 116 of 288 labs have students; 172 do not**, and the
+Date: 2026-10-29, updated 2026-10-30. Gate: **not passed. 117 of 288 labs have students in build 4; 171 do not**, and the
 allowed sources are exhausted (see the update at the end).
 
 ## Sources used, and the ones that are not
@@ -103,3 +103,5 @@ What would close the gap, in order of yield:
 2. a researched few-students pass over the 172 labs (lab sites found through publications and group names), as the
    released schools did for their last labs;
 3. an owner decision on Deep Blue metadata.
+
+- Build 4 (2026-10-30 ~15:00, after the profile years): 661 students, 683 pairs, 117 labs with students; `one_person` 683/683.
