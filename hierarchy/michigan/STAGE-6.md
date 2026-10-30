@@ -1,7 +1,7 @@
 # Michigan, stage 6: students
 
-Date: 2026-10-29 (started). Gate: **not passed. 219 of 251 labs have no students yet**; two fetches are still
-running.
+Date: 2026-10-29, updated 2026-10-30. Gate: **not passed. 116 of 288 labs have students; 172 do not**, and the
+allowed sources are exhausted (see the update at the end).
 
 ## Sources used, and the ones that are not
 - **Not used.** Deep Blue, news.umich.edu and record.umich.edu are not used in any form: not live, not through OAI-PMH or
@@ -53,3 +53,53 @@ LD_LIBRARY_PATH=/n/fs/resemble/cs-atlas-env/py310/lib /n/fs/resemble/cs-atlas-en
 Then the few-students research pass for labs still without students: lab sites found through the PIs' publications
 and group names, in the pattern of `hierarchy/few-students-tools/`. Then program listings with the co-authorship check,
 once stage 7 has lab papers.
+
+## Update, 2026-10-30: all allowed sources run. Gate not passed (source-limited)
+
+### What was added
+- **Gzip-encoded lab pages.** 12 lab pages and many homepages had been read as empty, Stella Yu's 2026 page among them.
+  They are decoded now (`wb.body`).
+- **Alumni markers in page text** (`alumni_in_text`). An 'Alumni' line that is not a heading element left the role
+  headings under it looking current. The rule found 1,183 such rows; alumni without a stated year are dropped as
+  before, which accounts for 1,632 drops.
+- **Students of the PI's previous school** (`previous_school_students`). A student whom the same PI's lab at a released
+  school already holds is dropped. The PI is matched by a shared DBLP id or ORCID.
+  - 31 students were dropped under 8 cross-school PIs: Jia Deng (Princeton), Matthew Johnson-Roberson and Pei Zhang
+    (CMU), Michael Cafarella and Leia Stirling (MIT), Prabal Dutta and Stella Yu (Berkeley), Mert Pilanci (Stanford).
+  - Stella Yu's Berkeley PhD students and postdocs are gone. Her 2022 Michigan graduate students (Ganesan,
+    Doraiswamy, Wang, Zhang) and her 2026 group stay.
+- **Students' own websites from the CSE and ECE PhD directories** (`labpage_students_school.py directory`;
+  charter `[students].directories`). 15 yearly directory captures 2019–2026 list 561 students, 260 of them with a
+  website.
+  - A page counts when it names Michigan, says PhD, and puts an adviser phrase directly before a PI's full name.
+  - Result: 99 relations, 97 students, 56 labs; 28 of them were already on a lab page.
+  - The quotes are the students' own sentences, for example "Ph.D. student in Computer Science and Engineering at the
+    University of Michigan, advised by Prof. Jean-Baptiste Jeannin". One directory name parsed badly (". Sidharth").
+- **PIs' homepages from their DBLP person records** (`periods_school.targets`). 248 new URLs were tried; authority
+  records (DNB, LoC, VIAF) are skipped. Then `links` and `extract` were re-run.
+- **Defense announcements:** 142 captures, 3 announcements with a Faculty Host, and none of those hosts is a single
+  PI. They give no students.
+
+### Counts (build of 2026-10-30 14:14)
+- Lab pages: 626 students in 91 labs. Directory websites: 99 relations.
+- Builder: 658 students, 680 lab–student pairs, 116 labs with students.
+- `tools/student_audit.py`: 680 pairs; 0 within-lab duplicate pairs; 2 people across labs, listed and not merged.
+- Chain checks in-process: `students` 116/288; `one_person` 680/680; `links` 520 pass, 71 explained, 89 open.
+- **Caution:** run `student_audit.py` with every school. It rewrites the shared `hierarchy/student-audit.json`. A
+  Michigan-only run dropped the six released schools' entries; it was re-run at once for all seven.
+
+### Gate
+**Not passed: 172 labs without students.** The cause is the sources, and it is outside this run's control:
+- **Deep Blue**, the dissertation repository with advisers, is excluded by owner decision 2 (2026-10-30). Its
+  robots.txt names Claude's agents.
+- **The Mathematics Genealogy Project** (no robots.txt) has advisers for many CS dissertations. It has been offline
+  since 21 October 2026 (a PHP vulnerability).
+- **The CSE and ECE pages are Cloudflare-challenged** and read only from Wayback (decision 3). The defense
+  announcements name a Faculty Host in 3 of 142 captures.
+- **Program directories name no adviser.** R-STU-02 does not let co-authorship alone make one.
+
+What would close the gap, in order of yield:
+1. the Mathematics Genealogy Project once it is back online;
+2. a researched few-students pass over the 172 labs (lab sites found through publications and group names), as the
+   released schools did for their last labs;
+3. an owner decision on Deep Blue metadata.

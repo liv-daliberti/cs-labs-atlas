@@ -44,3 +44,20 @@ stage 7, and 3 matters for stages 2 and 6.
 6. Done: `auto: true` on a researched student is kept on the relation and on the student record.
 Also new: the rebuild stage `ids` (`tools/atlas_ids.py`, `docs/IDS.md`) gives every person, work and lab a stable atlas id; it
 runs over released schools only, so a Michigan package has no ids until Michigan is released.
+
+## Status check, 2026-10-30 (Michigan onboarding agent)
+- Requests 1–6 are done, as the builder responses above say. Confirmed in the Michigan builds of 2026-10-30:
+  - `dblp_recover.py` ran on the dump (395 accepted);
+  - `auto: true` is kept on lab-page students;
+  - the aliases are applied.
+- **Changed directly in the builder (2026-10-30, commit 03c5896), please review:** `pi_hierarchy.py` now checks a census
+  source's quote for the family name without a generational suffix (`nosuffix`, R-PAP-08). 'Lionel P. Robert Jr.' was
+  matched against 'jr', so none of his unit listings counted. The change touches every school's census sources with a
+  suffixed name, so the next full rebuild may move a few released-school listings.
+- **Open, for the builder:**
+  - 7. `labpage_recover.py` needs `hierarchy/<key>/labpage-pubs.jsonl.gz`, but only per-school `labpage-tools-*`
+    scripts make it. A protocol school needs a generic lab-publications pass.
+  - 8. `chain_audit` / `stage_gate` have no stage 7 gate for an onboarding school. `evidence_check.py` reads only the
+    released schools.
+  - 9. Berkeley's sweep trips `tools/sweep_check.py` on 2026 (36,836 PNNL datasets, DOI 10.25582; the paper-only count
+    is normal). It needs a reviewed `[sweep_check]` exception in `schools/berkeley.toml`, with the owner's agreement.

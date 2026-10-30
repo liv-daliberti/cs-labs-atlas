@@ -10,6 +10,8 @@ wired into pi_hierarchy.py / chain_audit.py. Prints one JSON line per stage and 
   4 periods   every PI has a reviewed period (periods/<key>-faculty-periods.json, census-overrides periods) or listing years
               that run without a gap from their first to their last listed year (a year with papers outside them is
               checked again at stage 7)
+  4 also      a span gap passes when census-overrides names it in unproven_years with why_unproven (searched, no
+              dated evidence; papers of those years stay outside the appointment)
   2 also      the bulk-pull sanity check passes (tools/sweep_check.py -> hierarchy/<key>/sweep-check.json)
   5 identity  every PI has an anchor: a DBLP id, an ORCID or a reviewed OpenAlex id (census, additions, census-overrides)
 usage: stage_gate.py <key> [stage ...]
@@ -102,7 +104,11 @@ def g4(key):
         if x['name'] in have:
             n['period'] += 1; continue
         ys = sorted(set(x.get('years_listed') or []))
-        if ys and not span_gaps(x):
+        o = ov.get(x['name']) or {}
+        gaps = span_gaps(x)
+        if ys and gaps and o.get('unproven_years') and o.get('why_unproven') and set(gaps) <= set(o['unproven_years']):
+            n['gap_reviewed_unproven'] += 1; continue  # searched, no dated evidence: those years prove nothing (R-PAP-01)
+        if ys and not gaps:
             n['contiguous_listings'] += 1; continue
         bad.append(f"{x['name']}: no period, listing years {ys}")
     return bad, dict(n)

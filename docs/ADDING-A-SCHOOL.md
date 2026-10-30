@@ -216,6 +216,19 @@ The protocol is config-driven. A school is a charter, `schools/<key>.toml`, and 
     him.
   - **Profile pages.** UMSI profile pages (`www.si.umich.edu/people/<first>-<last>`) closed the gap years the
     paginated UMSI directory missed.
+  - **Unit directories miss whole years, not just gaps.** UMSI's directory is paginated in Wayback for 2021–2025, so its
+    faculty were listed in 2020 and 2026 only, and their lab papers in between fell outside the appointment.
+    - `tools/periods_school.py extend <key>` checks every unlisted window year of a census addition against the
+      dated captures of its unit profile page. The URL shapes are the charter's `[periods].profile_patterns`, for
+      example `www.si.umich.edu/people/{first}-{last}`, `robotics.umich.edu/profile/{all}/` and
+      `bme.umich.edu/people/{last}-{first}/`.
+    - Each contiguous run of proven years becomes a reviewed period.
+    - Run it before the stage 7 build. It reads one CDX per URL for the whole window.
+  - **Periods written by a tool must use ISO dates** (`2026-10-29`). `pi_hierarchy.contains()` reads `20261029` as
+    unresolved, so every paper falls outside the period.
+  - **A suffix is not the family name in listing quotes either** (R-PAP-08, fixed in `pi_hierarchy` 2026-10-30).
+    'Lionel P. Robert Jr.' is listed as 'Lionel Robert'.
+  - **Wayback shells.** Robotics' 2025 directory captures are 2.4 KB script shells; 2025 needs the per-person profiles.
 
 ## Stage 5: identity
 - **Do:**
@@ -293,6 +306,12 @@ OpenAlex co-authorship is never on its own evidence of advising.
 - **The Mathematics Genealogy Project** (no robots.txt) has advisers for many CS dissertations. It was offline from
   21 October 2026 (a PHP vulnerability), so try it when it is back.
 - **Gzip-encoded captures** (stage 1) also hid lab pages: Stella Yu's 2026 page was one of 12 such lab pages.
+- **Run `tools/student_audit.py` with every school** (`princeton cmu epfl mit berkeley stanford <key>`). It rewrites
+  the shared `hierarchy/student-audit.json`, and a one-school run drops the released schools' entries.
+- **PIs' homepages from DBLP.** `periods_school.targets` adds the URLs of the PI's DBLP person record, skipping
+  authority records. Most PIs of other units have no homepage in their unit listing.
+- **Gate result at Michigan (2026-10-30): source-limited.** 116 of 288 labs have students. With the thesis
+  repository excluded, a school needs a researched few-students pass over the remaining labs before stage 6 passes.
 
 - **Do:** record each relation with role, years and `url + sha256 + quote`.
 - **Gate:** the `students` and `one_person` checks are 100% or explained.
@@ -313,6 +332,13 @@ OpenAlex co-authorship is never on its own evidence of advising.
   - Create the store catalog (stage 0), then add the lab papers (`fulltext-push/add_works.py`).
   - Run the channels (`run_steps.sh <key> oa_arxiv openalex proceedings arxiv_title dblp_ee s2 core europepmc pmc figshare labpages <school repository>`).
   - Start the download loop (`downloads.slurm`, adding the school to the array).
+  - **Learned from Michigan (2026-10-30):**
+    - Compute nodes have no `/usr/local/anaconda3`, while the collector child (`vendor/cmu_tools/collector_wrapper.py`)
+      needs `protego`.
+    - Run the school's channels and its loop as one Slurm job modelled on `<school>-collector.slurm`
+      (`fulltext-push/michigan-collector.slurm`). Use `CS_ATLAS_COLLECTOR_PY` / `FTP_PY` set to the project env on
+      shared storage (`env/atlas/bin/python`, which has protego and bs4).
+    - Seed the catalog with `add_works.py <key>` on the login host first.
   - Measure: `tools/lab_paper_copies.py <key>` -> `hierarchy/<key>/copies.json`.
   - **Unavailability ledger (owner standard 2026-10-30; spec and vocabulary: `docs/UNAVAILABLE.md`).** Run
     `fulltext-push/unavailable_ledger.py <key>` (collector Python, `-I`) after `copies.json` exists. Output: an

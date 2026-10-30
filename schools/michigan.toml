@@ -82,6 +82,10 @@ computing_departments = ["CSE", "ECE"]
 # canonical home-unit names: the listings spell units several ways (tools/home_departments_school.py)
 home_units = {"Computer Science and Engineering" = '^(?:EECS\s*[\u2013-]\s*)?Computer Science (?:and|&) Engineering$', "Electrical and Computer Engineering" = '^(?:EECS\s*[\u2013-]\s*)?Electrical (?:and|&) Computer Engineering$', "Linguistics" = '^Lin[gq]uistics$', "Robotics" = '^Robotics(?: Department)?$', "Nuclear Engineering and Radiological Sciences" = 'Nuclear Engineering (?:and|&) Radiological', "Industrial and Operations Engineering" = 'Industrial (?:and|&) Operations', "Civil and Environmental Engineering" = 'Civil (?:and|&) Environmental', "School of Information" = '^(?:School of )?Information$|^School of Information', "Statistics" = '^Statistics$', "Mathematics" = '^Mathematics$', "Mechanical Engineering" = '^Mechanical Engineering$'}
 
+[periods]
+# per-person profile pages of the units, for gap years (tools/periods_school.py gaps; {first} {last} {all} = name tokens)
+profile_patterns = ["www.si.umich.edu/people/{first}-{last}", "robotics.umich.edu/profile/{all}/", "robotics.umich.edu/profile/{first}-{last}/", "bme.umich.edu/people/{last}-{first}/"]
+
 [sweep_check]
 # Reviewed exceptions to tools/sweep_check.py (each with its reason; verify = "papers_normal" re-checks the cause).
 exceptions = [
