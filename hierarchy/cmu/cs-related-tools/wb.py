@@ -2,7 +2,7 @@
 let the archive redirect to its nearest capture, store the bytes via csrcap (robots, politeness, bot checks), and set
 the stored row's capture_url to the resolved 14-digit id_ URL, so quotes cite the exact capture.
 usage: wb.py <ts> <url> [<url> ...]     (ts like 2016 or 20170601)"""
-import re, sqlite3, sys
+import re, sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'cs-related-tools'))
 import csrcap  # noqa: E402

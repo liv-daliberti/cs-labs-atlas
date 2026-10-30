@@ -29,7 +29,7 @@ import requests
 
 sys.path.insert(0, str(Path(__file__).parent))
 import atlas_paths as P  # noqa: E402  (every path in one place)
-from pi_hierarchy import INST, AFF, read  # noqa: E402
+from pi_hierarchy import INST, AFF, read  # noqa: F401,E402
 HERE = P.WORK
 UA = 'HomogenizingScienceResearch/0.2 (academic metadata inventory)'
 FT = P.STORES

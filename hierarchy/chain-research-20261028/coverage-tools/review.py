@@ -1,6 +1,6 @@
 """Decision store for the coverage review. decisions.json (keyed school|name) -> ../coverage-review.json (input order).
 Every evidence/advisee quote is cut verbatim from a capture row in captures.sqlite (sha256 of raw bytes)."""
-import json, os, re, sqlite3
+import json, os, re
 from datetime import date
 from lib import fetch, import_sha, con, H
 D = os.path.dirname(os.path.abspath(__file__)) + "/decisions.json"

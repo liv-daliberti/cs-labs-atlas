@@ -17,7 +17,7 @@ from pathlib import Path as _Path  # noqa: E402
 _sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
 import atlas_paths as P  # noqa: E402
 import csv, gzip, json, sqlite3, zlib
-from collections import Counter, defaultdict
+from collections import Counter
 from pathlib import Path
 import numpy as np
 import matplotlib

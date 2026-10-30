@@ -2,7 +2,7 @@
 entries (2016+) and profile links. usage: seed_berkeley.py"""
 import json, os, re, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import fscap, fsev  # noqa: E402
+import fscap, fsev  # noqa: F401,E402
 S = "berkeley"
 SLUGS = dict(zip(["Jonathan Bachrach","Phillip Colella","John DeNero","Hany Farid","Marti Hearst","Nilah Ioannidis","John D. Kubiatowicz","Jennifer Listgarten","James O'Brien","Aditya Parameswaran","David A. Patterson","Jonathan Ragan-Kelley","Jonathan Shewchuk","Doug Tygar","Jean Walrand","Christian Borgs","Jennifer Chayes","Nika Haghtalab","Stella Yu","John Wright","Aditi Krishnapriyan","Irene Chen","Christopher Fletcher","Emma Pierson","Michael Franklin"],
  "bachrach colella denero hfarid hearst nilah kubiatowicz listgarten obrien adityagp patterson jrk shewchuk tygar walrand borgs jchayes nika stellayu jswright aditik iychen cwfletcher emmapierson franklin".split()))

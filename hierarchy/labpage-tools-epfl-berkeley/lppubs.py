@@ -15,7 +15,7 @@ import re
 from functools import lru_cache
 from urllib.parse import urljoin
 
-from bs4 import NavigableString, Tag
+from bs4 import Tag
 
 import lpcap
 import lpdom

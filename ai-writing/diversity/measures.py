@@ -39,7 +39,7 @@ Citations
   C4               (paper-level) share of a paper's references that are the lab's own papers
 Resampling: every set-level measure is averaged over equal-size draws (equal_size_n, resample).
 """
-import math, re, zlib
+import re, zlib
 from functools import lru_cache
 import numpy as np
 

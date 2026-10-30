@@ -10,7 +10,7 @@ relation. Current students get years [Y, Y] where Y is the capture year (live fe
 import re
 
 import evlib
-import gapcap
+import gapcap  # noqa: F401  (kept: a project module; possibly a re-export or a side effect)
 
 HEADS = [("Past EPFL PhD Students as codirector", "codirector"), ("Past EPFL PhD Students", "past"), ("PhD Students", "current")]
 STOP = r"(?=\s(?:Past EPFL PhD Students|Courses|Contact EPFL|Teaching & PhD|Awards|Publications|Research|Infoscience)\b|$)"

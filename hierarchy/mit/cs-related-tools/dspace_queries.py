@@ -4,7 +4,7 @@ already harvested by year). One request per 100 s (mpcap GAPS, shared lock with 
 retried once after its Retry-After. Every page of a result is fetched.
 usage: dspace_queries.py
 """
-import json, sys, time, zlib
+import json, sys, time
 from pathlib import Path
 from urllib.parse import quote_plus
 sys.path.insert(0, str(Path(__file__).parent))

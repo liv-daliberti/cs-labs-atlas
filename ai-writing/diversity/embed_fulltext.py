@@ -20,7 +20,6 @@ status    counts; --todo-jobs prints how many 59-minute jobs the todo needs at t
 """
 import argparse, gzip, json, os, random, sqlite3, time
 from datetime import datetime, timezone
-from pathlib import Path
 import numpy as np
 import common as C
 

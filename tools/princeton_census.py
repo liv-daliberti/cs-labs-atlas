@@ -12,7 +12,7 @@ periods    the reviewed arrival statements (claude-princeton-periods-20261021/pe
            -> periods/princeton-faculty-periods.json, in the collection's facultyPeriods shape.
 -> census/princeton-faculty.json, periods/princeton-faculty-periods.json
 """
-import collections, datetime, gzip, json, re, sqlite3, sys, zlib
+import collections, datetime, json, re, sqlite3, sys, zlib
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))

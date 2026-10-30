@@ -12,7 +12,6 @@ import re
 import sqlite3
 import sys
 import zlib
-from urllib.parse import urlsplit
 
 R = str(AP.CODE)
 B = str(AP.SWEEPS / 'claude-stanford-20261027')

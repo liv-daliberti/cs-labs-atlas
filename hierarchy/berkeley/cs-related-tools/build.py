@@ -5,7 +5,7 @@ usage: build.py STAGE_DIR      writes additions.json, overrides.json (berkeley p
 """
 import json, os, re, sys
 from ev import *
-from accepted import A, EEH, EE_LIST
+from accepted import A, EEH, EE_LIST  # noqa: F401  (kept: a project module; possibly a re-export or a side effect)
 from others import O
 
 ADDED = 'cs_related_scope_20261022'

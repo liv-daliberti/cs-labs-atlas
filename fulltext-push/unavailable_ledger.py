@@ -15,7 +15,7 @@ usage: unavailable_ledger.py <school> [<school> ...] [--max-age-days N] [--offli
   writes  hierarchy/<school>/unavailable.jsonl.gz and unavailable-summary.json, the new checks into the checks store,
           and the reason onto copies.json (lab_paper_copies.attach_ledger). Catalogs are never written.
 """
-import argparse, collections, difflib, gzip, json, os, re, sqlite3, sys, time
+import argparse, difflib, gzip, json, os, re, sqlite3, sys, time
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path

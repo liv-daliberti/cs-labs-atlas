@@ -14,7 +14,6 @@ usage: detector.py train [--holdout MODEL] | detector.py score
 import argparse, glob, gzip, json, random, re
 from pathlib import Path
 import numpy as np, torch
-from torch.utils.data import DataLoader
 from transformers import AutoModelForSequenceClassification, AutoTokenizer, get_linear_schedule_with_warmup
 from sklearn.metrics import roc_auc_score, f1_score, precision_score, recall_score
 

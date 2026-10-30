@@ -88,7 +88,6 @@ def prep(tag, calib):
 def score(tag, shard, nshards):
     INP = CACHE / f'score_input_{tag}.sqlite'
     import shutil, os, time
-    import torch
     from transformers import AutoModelForSequenceClassification, AutoTokenizer
     import detector as V1
     local = Path(os.environ.get('TMPDIR', '/tmp')) / f'cit_score_{os.getpid()}.sqlite'

@@ -8,7 +8,7 @@ copy_listing(src, capture_url, copied_from)   copy one capture from a listings s
 copy_thesis(src, url, copied_from)            copy one capture from a thesis store (url, content zlib, sha256)
 text(url) / quote_ok(url, quote) / around(url, needle)   the stored capture's text view (tags removed, whitespace collapsed)
 """
-import sqlite3, sys, zlib
+import sqlite3, sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parents[2]

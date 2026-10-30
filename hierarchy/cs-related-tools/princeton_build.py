@@ -14,7 +14,7 @@ import sys as _sys  # noqa: E402
 from pathlib import Path as _Path  # noqa: E402
 _sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
 import atlas_paths as P  # noqa: E402
-import collections, datetime, json, re, sqlite3, sys
+import collections, json, re, sqlite3, sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))

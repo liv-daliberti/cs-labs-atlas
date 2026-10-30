@@ -14,7 +14,6 @@ from pathlib import Path as _Path  # noqa: E402
 _sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
 import atlas_paths as P  # noqa: E402
 import json
-import re
 import sqlite3
 import sys
 import zlib

@@ -12,7 +12,7 @@ merged    with the Berkeley chain's own census (census/berkeley-faculty.json, wr
           bk_census.py): its DBLP person ids and aliases join each person, and a person is a PI when either census says so
 -> census/berkeley-faculty-hierarchy.json (the chain owns census/berkeley-faculty.json), hierarchy/berkeley/collection.json.gz
 """
-import collections, gzip, hashlib, json, re
+import collections, gzip, json, re
 import sys
 from pathlib import Path
 

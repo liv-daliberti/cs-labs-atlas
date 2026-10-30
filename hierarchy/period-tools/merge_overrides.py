@@ -5,7 +5,7 @@ replaces the period with the same id (existing override_period_* id) or adds ove
 The file is re-read immediately before writing; other schools/PIs/keys are left exactly as found.
 usage: merge_overrides.py <school> [--file proposals/<name>.json] [--dry]
 """
-import json, os, re, sys, unicodedata, datetime, tempfile
+import json, os, re, sys, unicodedata, tempfile
 from pathlib import Path
 HERE = Path(__file__).resolve().parents[2]
 OV = HERE / 'hierarchy/census-overrides.json'

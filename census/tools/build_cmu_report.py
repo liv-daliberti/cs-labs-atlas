@@ -83,7 +83,7 @@ def main():
 
     w('## PIs\n')
     b = Counter(r['pi_basis']['kind'] for r in pis)
-    w(f"A PI leads a research group. The basis is recorded in order of strength, with the quote and URL in `pi_basis`:\n")
+    w("A PI leads a research group. The basis is recorded in order of strength, with the quote and URL in `pi_basis`:\n")
     w(f"- **named_lab** ({b['named_lab']}): the person is the named leader of a non-umbrella lab (no center, institute, program or research area in the name; at most three leaders), quoted from the lab's own page.")
     w(f"- **own_group** ({b['own_group']}): the person alone leads a collection research unit, or their homepage or group page lists students under a heading ('Current PhD Students', 'Lab Members').")
     w(f"- **advises_phd** ({b['advises_phd']}): a PhD student or alumnus names the person as adviser, thesis chair or supervisor on a captured page.\n")

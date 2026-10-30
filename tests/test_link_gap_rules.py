@@ -31,7 +31,7 @@ def test_program_adviser_groups_and_weak_relations():
     stu = {'Eric Nyberg': _directory('Master of Science in Computational Data Science', 'Eric Nyberg', 12),
            'Carolyn Rose': _directory('Master of Language Technologies', 'Carolyn Rose', 3)}
     stu['Teruko Mitamura'] = {f'q{i}': dict(person=f'q{i}', name='x', relations=[dict(sources=[dict(
-        quote=f'Haoyang Wen Program: Ph.D. in Language and Information Technology Email h@x Academic Advisor: Teruko Mitamura')])]) for i in range(6)}
+        quote='Haoyang Wen Program: Ph.D. in Language and Information Technology Email h@x Academic Advisor: Teruko Mitamura')])]) for i in range(6)}
     g = h.program_adviser_groups(stu)
     assert ('Master of Science in Computational Data Science', 'Eric Nyberg') in g
     assert not any(p.startswith('Ph.D.') for p, _ in g)          # 6 PhD students: under 10, a research adviser

@@ -276,7 +276,7 @@ def main(write):
     for name, per in periods.items():
         e = m.setdefault(name, {})
         e['periods'] = [per]
-        e.setdefault('why', f'Reviewed appointment period (MIT CS-related scope review 2026-10-27, hierarchy/mit/cs-related-review.json): dated department listings.')
+        e.setdefault('why', 'Reviewed appointment period (MIT CS-related scope review 2026-10-27, hierarchy/mit/cs-related-review.json): dated department listings.')
     json.dump(d, open(of, 'w'), indent=1, ensure_ascii=False)
     print('written', len(adds), 'additions,', len(periods), 'periods')
 

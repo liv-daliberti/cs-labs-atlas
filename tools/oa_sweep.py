@@ -42,7 +42,7 @@ def sweep(school, key, floor):
                 try:
                     r = s.get('https://api.openalex.org/works', timeout=120, params={**({'api_key': key} if key else {}), 'filter': f'authorships.institutions.lineage:{inst},publication_year:{y},authors_count:<101',
                         'per-page': 200, 'cursor': cursor, 'select': SELECT})
-                except requests.RequestException as e:
+                except requests.RequestException:
                     time.sleep(5 * (attempt + 1)); continue
                 if r.status_code == 200:
                     try:

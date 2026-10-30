@@ -5,7 +5,7 @@ from pathlib import Path as _Path  # noqa: E402
 _sys.path.append(str(_Path(__file__).resolve().parents[3] / 'tools'))  # atlas_paths: every path
 import atlas_paths as P  # noqa: E402
 import hashlib, json, re, sqlite3, zlib, unicodedata
-from cap import con, to_text, fetch, ctx
+from cap import con, to_text, fetch, ctx  # noqa: F401  (kept: a project module; possibly a re-export or a side effect)
 ROOT = str(P.CODE)
 H = ROOT + "/hierarchy"
 SRC_DBS = [ROOT + f"/listings/{s}/captures.sqlite" for s in ["princeton", "stanford", "cmu", "mit", "berkeley", "epfl"]] + [

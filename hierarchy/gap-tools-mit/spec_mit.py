@@ -3,7 +3,7 @@ its verbatim quote; build_gap_evidence.py turns these into hierarchy/mit/gap-evi
 
 Sources are live URLs or Wayback id_ capture URLs stored in hierarchy/mit/gap-captures.sqlite.
 """
-from evlib import ev, student as S, idev, appt, dspace_student as DS
+from evlib import ev, student as S, idev, appt, dspace_student as DS  # noqa: F401  (kept: a project module; possibly a re-export or a side effect)
 
 WB = "https://web.archive.org/web/"
 KAIMING_WB = WB + "20260303190408id_/https://people.csail.mit.edu/kaiming/"

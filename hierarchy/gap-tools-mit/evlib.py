@@ -9,7 +9,6 @@ _sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_p
 import atlas_paths as P  # noqa: E402
 import json
 import re
-import sqlite3
 import sys
 import unicodedata
 import zlib

@@ -11,7 +11,7 @@ the region is recorded, not required. At most MAX_PAGES pages and MAX_FIGS figur
    n_figs, error); rerunning skips papers already in the shard
 usage: extract.py [--limit N] [--shard i --of n] [--keys FILE]
 """
-import argparse, hashlib, os, gzip, io, json, re, signal, sqlite3, sys, time
+import argparse, hashlib, os, gzip, io, json, re, signal, sqlite3, time
 from pathlib import Path
 
 import pymupdf

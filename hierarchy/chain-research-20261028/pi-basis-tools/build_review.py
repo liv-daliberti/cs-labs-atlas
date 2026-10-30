@@ -4,7 +4,7 @@ import sys as _sys  # noqa: E402
 from pathlib import Path as _Path  # noqa: E402
 _sys.path.append(str(_Path(__file__).resolve().parents[3] / 'tools'))  # atlas_paths: every path
 import atlas_paths as P  # noqa: E402
-import json, re, sqlite3, sys
+import json, re, sqlite3
 from cap import DB
 
 HERE = str(P.HIERARCHY / 'chain-research-20261028')

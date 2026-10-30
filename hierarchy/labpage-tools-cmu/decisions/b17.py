@@ -1,4 +1,4 @@
-from dhelp import M, PUB, WB
+from dhelp import M, PUB, WB  # noqa: F401  (kept: a project module; possibly a re-export or a side effect)
 D = {}
 
 TM = "https://augmented-design-capability-studio.github.io/team.html"

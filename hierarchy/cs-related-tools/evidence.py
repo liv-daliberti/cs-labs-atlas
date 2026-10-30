@@ -1,7 +1,7 @@
 """Evidence helpers for the CS-related review: copy a stored capture from an earlier sweep's store into
 hierarchy/cmu/cs-related-captures.sqlite (bytes and sha256 unchanged, copied_from set), then cut exact quotes from the
 stored text."""
-import json, re, sqlite3, zlib
+import json, re, sqlite3
 from pathlib import Path
 import csrcap
 

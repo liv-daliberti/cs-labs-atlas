@@ -13,7 +13,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(HERE / 'tools')); sys.path.insert(0, str(HERE / 'hierarchy/cs-related-tools')); sys.path.insert(0, str(Path(__file__).parent))
-from pi_hierarchy import Name, toks  # noqa: E402
+from pi_hierarchy import Name, toks  # noqa: F401,E402
 import csrcap, evidence  # noqa: E402
 from people import P  # noqa: E402
 import decisions as D  # noqa: E402

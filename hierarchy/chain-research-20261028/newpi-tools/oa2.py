@@ -1,5 +1,5 @@
 """Author inspection helpers on top of oa.get (cached in captures.sqlite)."""
-import sys, json, re
+import sys, re
 from oa import get
 def author(aid):
     return get("authors/" + aid)

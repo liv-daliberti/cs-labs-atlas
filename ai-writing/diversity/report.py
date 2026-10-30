@@ -4,7 +4,7 @@ from datetime import date
 import numpy as np
 import pandas as pd
 import common as C
-from analyze import LABELS, FAMILY, FAMILY_TITLE, WITHIN_LABELS, DIRECTION
+from analyze import LABELS, FAMILY, FAMILY_TITLE, WITHIN_LABELS, DIRECTION  # noqa: F401  (kept: a project module; possibly a re-export or a side effect)
 
 MEASURE_TEXT = [
     ('S1', 'knowledge extent: largest distance of a paper from the set centroid (Hao et al. M8)', 'set', 'abstract, full text'),

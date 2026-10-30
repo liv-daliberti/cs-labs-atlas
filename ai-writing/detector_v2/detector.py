@@ -23,7 +23,6 @@ usage: detector.py train [--holdout GEN] [--save] | detector.py score --shard I 
 """
 import argparse, gzip, json, os, random, sqlite3, time, zlib
 from collections import defaultdict
-from pathlib import Path
 import numpy as np, torch
 from transformers import AutoModelForSequenceClassification, AutoTokenizer, get_linear_schedule_with_warmup
 from sklearn.metrics import roc_auc_score

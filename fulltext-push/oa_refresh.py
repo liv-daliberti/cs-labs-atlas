@@ -15,7 +15,6 @@ oa_editions  separate open editions found by title: 15 titles per request (filte
 """
 import json, os, re, time, unicodedata
 from collections import defaultdict
-from pathlib import Path
 
 import ftp_common as F
 

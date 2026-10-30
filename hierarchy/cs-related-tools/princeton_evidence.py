@@ -3,12 +3,12 @@ listing entries naming them (any department, incl. CS), and the author-index cou
 -> <out>/princeton-evidence.json
 usage: princeton_evidence.py <csrel_dir> <out_dir>
 """
-import collections, json, re, sqlite3, sys, zlib
+import collections, json, sqlite3, sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 import princeton_lib as L  # noqa: E402
-import helpers  # noqa: E402
+import helpers  # noqa: F401,E402
 from helpers import Name, toks  # noqa: E402
 
 csrel, out = Path(sys.argv[1]), Path(sys.argv[2])

@@ -17,7 +17,7 @@ usage (CLI)   school_web.py <key> cdx <url> [prefix]       list Wayback 200 capt
               school_web.py <key> live <url>               fetch one live page (robots honoured), print its text
               school_web.py <key> robots <host>            print the stored robots decision
 """
-import hashlib, json, os, re, sqlite3, sys, time, urllib.parse, urllib.robotparser, zlib
+import hashlib, json, os, re, sys, time, urllib.parse, urllib.robotparser, zlib
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))

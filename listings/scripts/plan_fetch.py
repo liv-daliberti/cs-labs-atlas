@@ -50,7 +50,6 @@ def charter_usable(con, cap, s, floor=5):
     """A charter school's capture must parse (tools/listing_formats.py) to at least `floor` person entries: Michigan's
     2023-2025 spring captures of the CSE list looked like 31 KB shells with title-like navigation lines (learned
     2026-10-29); they were gzip-encoded full lists read undecoded (learned 2026-10-30), so the bytes go through wb.body."""
-    import zlib
     import listing_formats
     raw = con.execute("select raw_zlib from captures where capture_url=?", (cap,)).fetchone()[0]
     fmt, es = listing_formats.parse(wb.body(raw).decode("utf-8", "replace") if raw else "", s.get("format"))

@@ -1,5 +1,5 @@
 """Evidence helpers for the Berkeley CS-related review: every quote is checked to be an exact substring of the stored capture."""
-import json, re
+import json
 from lib import *
 
 class Missing(Exception):

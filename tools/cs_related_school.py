@@ -52,7 +52,7 @@ review      faculty evidence: a 2016-2026 unit capture whose text has the candid
                ladder_faculty from the unit listing; added = cs_related_review_<date>)
 usage: cs_related_school.py candidates|units|review <key>
 """
-import collections, datetime, gzip, json, re, sys, time
+import collections, datetime, gzip, json, re, sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))

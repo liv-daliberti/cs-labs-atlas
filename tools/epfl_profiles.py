@@ -4,7 +4,7 @@ capture), cached with sha256 in census/raw/profiles.sqlite. robots.txt honoured 
 usage: epfl_profiles.py <name> [<name> ...]   (people.epfl.ch handles are derived from the sweep's rows; else the
        public search page is not used — a person without a handle or SCIPER is reported)
 """
-import hashlib, json, re, sqlite3, sys, time, unicodedata, urllib.parse, urllib.robotparser, zlib
+import hashlib, json, sqlite3, sys, time, urllib.parse, urllib.robotparser, zlib
 from datetime import datetime, timezone
 from pathlib import Path
 

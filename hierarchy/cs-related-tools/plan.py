@@ -1,5 +1,5 @@
 """Plan of department listing captures used for yearly rows (table plan_csr in hierarchy/cmu/cs-related-captures.sqlite)."""
-import json, re, sqlite3
+import json, re
 import csrcap
 
 H = "home department faculty list"

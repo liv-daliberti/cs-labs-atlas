@@ -11,7 +11,7 @@ Match rules (a candidate only; the importer re-runs the collector's own identity
 -> ident/shard-<i>.jsonl.gz (one row per listed path)
 usage: identify.py <shard index> <shard count>
 """
-import gzip, hashlib, json, os, re, sys, time, unicodedata, zlib
+import gzip, hashlib, json, re, sys, time, unicodedata, zlib
 from collections import defaultdict
 from pathlib import Path
 

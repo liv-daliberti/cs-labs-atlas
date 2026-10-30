@@ -25,7 +25,6 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 import common as C
-import measures as M
 from analyze import LABELS, FAMILY, FAMILY_TITLE, WITHIN_LABELS, huber
 
 C_LESS, C_MORE = '#2a78d6', '#eb6834'          # "less AI" / "more AI"

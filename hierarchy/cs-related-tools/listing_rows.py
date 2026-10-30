@@ -8,7 +8,7 @@ MechE, Chemistry, Philosophy home-department lists, and SCS affiliated/core list
 Every row's quote is checked to be a substring of the capture's extracted text before it is kept.
 usage: listing_rows.py > rows.json
 """
-import collections, importlib, json, re, sqlite3, sys, zlib
+import importlib, json, re, sqlite3, sys, zlib
 from pathlib import Path
 HERE = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(HERE / 'listings/scripts'))

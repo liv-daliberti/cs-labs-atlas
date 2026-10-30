@@ -18,7 +18,7 @@ for r in records.load('princeton'):
     for a in r['advisers']:
         try:
             q = r['q'](a)
-        except ValueError as e:
+        except ValueError:
             q = None
         out.append(dict(adviser=a, student=r['student'], year=r['year'], role=r['role'], dept=r['dept'], title=r['title'],
                         url=r['url'], sha256=r['sha256'], id=r['id'], handle=r.get('handle'), quote=q))

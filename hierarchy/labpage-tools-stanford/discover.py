@@ -7,7 +7,7 @@ import re
 import sys
 import threading
 from concurrent.futures import ThreadPoolExecutor
-from urllib.parse import urlsplit, urljoin
+from urllib.parse import urlsplit
 
 import os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))

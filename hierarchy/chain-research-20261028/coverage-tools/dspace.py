@@ -1,5 +1,5 @@
 """DSpace@MIT REST discover: theses 2016-2026 whose dc.contributor.advisor names a person. Prints PhD-ish hits."""
-import json, re, sys, urllib.parse
+import json, sys, urllib.parse
 from cap import fetch
 def q(last, firsts, size=100):
     fq = " OR ".join(firsts)

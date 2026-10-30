@@ -30,7 +30,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
-from pi_hierarchy import Name, toks, nick_ok, EAST_ASIAN_FAMILY  # noqa: E402
+from pi_hierarchy import Name, toks, nick_ok, EAST_ASIAN_FAMILY  # noqa: F401,E402
 
 ORDER = ['ladder', 'research', 'teaching', 'lecturer', 'adjunct', 'visiting', 'courtesy', 'emeritus', 'other']
 HOME_PROF = re.compile(r'^(?:[A-Z][\w.\'\- ]+ )?(?:Assistant |Associate )?Professor(?! Emerit)(?: of [^,]+)?, (?!Electrical Engineering and Computer Science)(.+)$')

@@ -1,6 +1,6 @@
 """CDX prefix queries for one year, cached in listings/<school>/captures.sqlite (wb.cdx; polite shared throttle).
 usage: cdx_year.py <school> <year> <prefix> [<prefix> ...] [--grep REGEX]"""
-import collections, os, re, sys
+import re, sys
 from pathlib import Path
 HERE = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(HERE / 'listings/scripts'))

@@ -5,7 +5,7 @@ usage: cmu_util.py fetch <url> [needle ...]      polite fetch (stored in period-
        cmu_util.py wb <first|last|YYYY> <url> [needle ...]   Wayback: CDX then fetch the first/last/first-in-year id_ capture
        cmu_util.py cdx <url>                     list Wayback captures (one per month)
 """
-import sqlite3, sys
+import sys
 from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))

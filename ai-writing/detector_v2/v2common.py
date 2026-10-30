@@ -31,7 +31,7 @@ TASKS = ('polish', 'paraphrase', 'notes')
 BASE = 'answerdotai/ModernBERT-large'
 
 sys.path.insert(0, str(AIW / 'diversity'))
-from common import passages, usable_text, wordish_ratio  # noqa: E402  (numpy-only import)
+from common import passages, usable_text, wordish_ratio  # noqa: F401,E402  (numpy-only import)
 import common as _div  # noqa: E402
 
 SPLITTER_SHA = hashlib.sha1(inspect.getsource(_div.passages).encode()).hexdigest()[:12]

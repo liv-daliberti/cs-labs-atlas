@@ -14,7 +14,7 @@ import sys
 import time
 import zlib
 from datetime import datetime, timezone
-from urllib.parse import urlsplit, urljoin
+from urllib.parse import urlsplit
 
 import requests
 
@@ -101,7 +101,7 @@ def robots_allowed(url):
             txt = r.text if r.status_code == 200 else ""
             if r.status_code in (401, 403):
                 txt = "User-agent: *\nDisallow: /\n"
-        except Exception as e:  # unreachable robots -> treat as allow, record
+        except Exception:  # unreachable robots -> treat as allow, record
             txt = ""
         _robots[base] = _parse_robots(txt)
     groups = _robots[base]

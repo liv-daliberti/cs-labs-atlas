@@ -128,7 +128,7 @@ def main():
     print(json.dumps(dict(ai_gap=gap, same_lab_pool=len(pool))), flush=True)
     import matplotlib; matplotlib.use('Agg'); import matplotlib.pyplot as plt
     fig, ax = plt.subplots(figsize=(7, 4))
-    for rs, lab, c in ((rows, f'all eligible labs', '#2b6cb0'), (same, 'same labs every year', '#c05621')):
+    for rs, lab, c in ((rows, 'all eligible labs', '#2b6cb0'), (same, 'same labs every year', '#c05621')):
         rs = [r for r in rs if r.get('acc') is not None]
         if rs:
             ax.errorbar([r['year'] for r in rs], [r['acc'] for r in rs], yerr=[[r['acc'] - r['lo'] for r in rs], [r['hi'] - r['acc'] for r in rs]],

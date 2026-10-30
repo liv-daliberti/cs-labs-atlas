@@ -7,7 +7,7 @@ copy_listing(school, cap_url)   copy a capture unchanged from listings/<school>/
 text(url) / around(url, needle) / quote_ok(url, quote)
 ev(url, quote, kind, observed, note=None)   an evidence item whose quote is verified against the stored capture
 """
-import re, sqlite3, sys, zlib, hashlib
+import re, sqlite3, sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parents[2]

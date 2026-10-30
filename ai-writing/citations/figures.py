@@ -156,7 +156,7 @@ def main_figure(mA):
     a.set_title(f'A  {LABELS[mA]}, by year and AI group', loc='left', fontsize=9)
     a.set_xlabel('publication year of the citing lab paper', fontsize=7.8)
     dose_panel(b, cells, mA)
-    b.set_title(f'B  the same against the paper’s AI dose', loc='left', fontsize=9)
+    b.set_title('B  the same against the paper’s AI dose', loc='left', fontsize=9)
     if (RES / 'q2v2_strata.csv').exists():
         q2v2_panel(c, pd.read_csv(RES / 'q2v2_strata.csv'))
         c.set_title('C  how many cited works are themselves AI-written (full-text detector)', loc='left', fontsize=9)

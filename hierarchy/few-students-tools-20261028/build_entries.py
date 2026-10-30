@@ -2,7 +2,7 @@
 Berkeley captures in captures.sqlite. Writes entries_stanford.json / entries_berkeley.json next to this script;
 merge.py appends them to the school files."""
 import json, re
-from cap import fetch, ctx
+from cap import fetch, ctx  # noqa: F401  (kept: a project module; possibly a re-export or a side effect)
 
 def q(s):
     return re.sub(r"\s+,", ",", re.sub(r"\s+", " ", s)).strip()

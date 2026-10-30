@@ -29,7 +29,7 @@ import   per (school, work) still without a copy, proposals in order (doi+title,
            Evidence (every accepted row) -> data/fulltext/<school>/discovery/claude-<school>-local-reuse/evidence/
 usage: reuse_import.py plan | rematch | import [--dry]   (plan rebuilds the tables; rematch only adds proposals)
 """
-import fcntl, gzip, json, os, re, shutil, sqlite3, subprocess, sys, tempfile, time
+import fcntl, gzip, json, os, re, shutil, sqlite3, sys, tempfile, time
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path

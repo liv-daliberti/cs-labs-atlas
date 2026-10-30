@@ -3,7 +3,7 @@ pages it fetched) that names them: year, page, quote (name + title, or section h
 -> <out>/princeton-gather.json
 usage: princeton_gather.py <out_dir> <config.json>
 """
-import json, sqlite3, sys, zlib
+import json, sqlite3, sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
@@ -11,7 +11,7 @@ import princeton_lib as L  # noqa: E402
 
 HERE = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(HERE / 'hierarchy/missing-pi-tools'))
-import mpcap  # noqa: E402
+import mpcap  # noqa: F401,E402
 
 out, cfg = Path(sys.argv[1]), json.load(open(sys.argv[2]))
 texts = {}

@@ -11,7 +11,6 @@ import atlas_paths as P  # noqa: E402
 import argparse
 import re
 import sys
-import zlib
 
 sys.path.insert(0, str(P.HIERARCHY / 'gap-tools-berkeley'))
 import capstore  # noqa: E402

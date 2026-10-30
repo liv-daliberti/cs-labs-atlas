@@ -34,7 +34,7 @@ import subprocess
 import time
 import zlib
 from datetime import datetime, timezone, timedelta
-from urllib.parse import urlsplit, urlencode, quote as urlquote
+from urllib.parse import urlsplit, urlencode
 
 import requests
 
