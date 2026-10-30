@@ -1,0 +1,24 @@
+# The CS Labs Atlas pipeline environment (conda-forge only). Exact versions are in env/conda-linux-64.lock.
+# Build from the lock (reproducible):   env/build_env.sh            (-> $CS_ATLAS_ENV/atlas = <root>/env/atlas)
+# Re-solve after editing this file:     env/build_env.sh --solve    (then commit the new lock)
+# The ML study stack (torch/transformers/vllm for studies/ai-writing) is NOT here: see pyproject.toml [studies].
+name: atlas
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python=3.12
+  - pip
+  # pipeline
+  - requests
+  - beautifulsoup4
+  - lxml              # BeautifulSoup(..., "lxml") in hierarchy/*-tools
+  - protego           # robots.txt (the full-text collector)
+  - rapidfuzz         # fulltext-push/review_identity.py
+  - pymupdf           # fitz: fulltext-push/local-reuse/identify.py
+  - numpy             # tools/dblp_dump_index.py, vendor homog.py
+  - huggingface_hub   # tools/hf_upload_release.py
+  - poppler           # pdftotext / pdfinfo, called by the collector and fulltext_store
+  # development
+  - pytest
+  - ruff

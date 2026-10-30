@@ -1,0 +1,6 @@
+#!/bin/bash
+# atlas <command> from this checkout (a worktree runs its own tools): the project interpreter from paths.sh
+# (CS_ATLAS_PY; override it to use another) on atlas_cli/. `bin/atlas help` lists the commands.
+HERE=$(cd "$(dirname "$(readlink -f "$0")")/.." && pwd)
+. "$HERE/paths.sh"
+PYTHONPATH="$HERE${PYTHONPATH:+:$PYTHONPATH}" exec "$CS_ATLAS_PY" -m atlas_cli "$@"

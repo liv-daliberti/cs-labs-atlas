@@ -1,0 +1,77 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cs-atlas"
+version = "2026.10.30"
+description = "CS Labs Atlas: school -> PI lab -> papers + students, built from evidenced sources"
+readme = "docs/README.md"
+requires-python = ">=3.11"
+license = { text = "Code: see the repository; data: see each release" }
+# The pipeline's own needs. Exact versions: env/conda-linux-64.lock (the environment is built with conda from that lock,
+# see docs/ENVIRONMENT.md); these ranges are what a pip install would accept.
+dependencies = [
+  "requests>=2.31",
+  "beautifulsoup4>=4.12",
+  "lxml>=5",
+  "protego>=0.3",
+  "rapidfuzz>=3",
+  "pymupdf>=1.24",
+  "numpy>=1.26",
+  "huggingface_hub>=0.24",
+]
+
+[project.optional-dependencies]
+# The ML/study stack for studies/ai-writing (SPECTER2 / Pythia studies, detectors, figures). Not in env/atlas: these
+# run on the py310 env until a studies env is built (docs/ENVIRONMENT.md).
+studies = [
+  "torch>=2.1",
+  "transformers>=4.40",
+  "vllm",
+  "scikit-learn",
+  "scipy",
+  "pandas",
+  "pyarrow",
+  "matplotlib",
+  "pillow",
+  "joblib",
+]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[project.scripts]
+atlas = "atlas_cli:main"
+
+[tool.setuptools]
+packages = ["atlas_cli"]
+
+# ---------------------------------------------------------------------------------------------------------------- ruff
+[tool.ruff]
+line-length = 120
+target-version = "py310"   # the code also runs on the py310 study env and the old Anaconda Python (3.11)
+extend-exclude = [
+  "vendor",                # copies of outside code, kept byte-close to their sources (tools/vendor_sync.py)
+]
+
+[tool.ruff.lint]
+# Real problems only: syntax errors, undefined names, unused imports/variables, redefinitions, bad comparisons,
+# invalid escape sequences. Style rules (E1/E2/E3/E5, E70x compound statements) are off: the code uses a dense,
+# deliberate one-line style and reformatting it would churn every file without fixing anything.
+select = ["E4", "E9", "F", "W6"]
+ignore = [
+  "F403", "F405",  # `from x import *` in the one-off research tools (hierarchy/*-tools), deliberate there
+  "E401",   # several imports on one line (house style: import gzip, json, re, sys)
+  "E402",   # imports after sys.path setup are the norm for scripts here
+  "E741",   # short names like l, I in comprehensions
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["F811"]   # pytest fixtures shadow imports
+
+# -------------------------------------------------------------------------------------------------------------- pytest
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q -p no:cacheprovider"
+markers = [
+  "nfs: needs the project data on /n/fs (packages, stores, sweeps); CI skips these (-m 'not nfs' or CS_ATLAS_CI=1)",
+]
