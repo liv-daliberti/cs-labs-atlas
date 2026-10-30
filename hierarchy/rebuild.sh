@@ -20,10 +20,9 @@
 #        TAG=<name> sets the snapshot name (default local-<timestamp>); BEFORE=<dir> compares against another snapshot
 # Exit status: 0 all good, 1 a stage failed, 2 regression swings blocked the release.
 set -u -o pipefail
-. /n/fs/resemble/cs-atlas/work/paths.sh  # every path in one place (tools/atlas_paths.py)
+. "$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)/paths.sh" || exit 1  # every path in one place (tools/atlas_paths.py)
 cd "$CS_ATLAS_WORK" || exit 1
-export LD_LIBRARY_PATH="$CS_ATLAS_ENV_LIB${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-PY="nice -n10 $CS_ATLAS_ENV_PY -u"
+PY="nice -n10 $CS_ATLAS_PY -u"  # the project interpreter (env/atlas; tools/atlas_paths.py PY)
 SCHOOLS=${SCHOOLS:-$CS_ATLAS_SCHOOLS}
 STAGES=${STAGES:-snapshot build ids copies ledger audits evidence tests regression release tree}
 TAG=${TAG:-local-$(date +%Y%m%d-%H%M%S)}
@@ -55,7 +54,7 @@ if has ledger; then
   # after the copies, before the audits and the evidence check (2026-10-30, docs/UNAVAILABLE.md, R-AUD-10): the
   # unavailability ledger, run with the collectors' interpreter; it also writes the reasons onto copies.json
   # (lab_paper_copies.attach_ledger). Onboarding schools (school charters) get their ledger before their first release.
-  onb=$($CS_ATLAS_ENV_PY -c 'import sys; sys.path.insert(0, "tools"); import school_config as c; print(" ".join(c.onboarding()))') || { echo "FAILED ledger: onboarding schools"; fail=1; onb=""; }
+  onb=$($CS_ATLAS_PY -c 'import sys; sys.path.insert(0, "tools"); import school_config as c; print(" ".join(c.onboarding()))') || { echo "FAILED ledger: onboarding schools"; fail=1; onb=""; }
   ledger_schools=$(echo $SCHOOLS $onb | tr ' ' '\n' | awk 'NF && !seen[$0]++' | tr '\n' ' ')
   echo "== ledger $(date +%T) schools: $ledger_schools"
   nice -n10 $CS_ATLAS_COLLECTOR_PY -I -u "$CS_ATLAS_FULLTEXT_PUSH/unavailable_ledger.py" $ledger_schools || { echo "FAILED ledger"; fail=1; }
@@ -88,7 +87,7 @@ if has release; then
   fi
 fi
 if has tree && [ $fail = 0 ]; then
-  echo "== tree $(date +%T)"; nice -n10 ionice -c3 $CS_ATLAS_ENV_PY -u tools/organize_tree.py $SCHOOLS || fail=1
+  echo "== tree $(date +%T)"; nice -n10 ionice -c3 $CS_ATLAS_PY -u tools/organize_tree.py $SCHOOLS || fail=1
 fi
 echo "== done all $(date +%T) fail=$fail swings=$swings"
 [ $fail != 0 ] && exit 1

@@ -72,7 +72,9 @@ def code_state():
 
 
 def run_tests():
-    env = dict(os.environ, LD_LIBRARY_PATH=f"{P.ENV_LIB}:{os.environ.get('LD_LIBRARY_PATH', '')}".rstrip(':'))
+    env = dict(os.environ)  # the interpreter running the release (env/atlas needs no LD_LIBRARY_PATH; py310 does)
+    if Path(sys.executable).resolve() == Path(P.ENV_PY).resolve():
+        env['LD_LIBRARY_PATH'] = f"{P.ENV_LIB}:{os.environ.get('LD_LIBRARY_PATH', '')}".rstrip(':')
     r = subprocess.run([sys.executable, '-m', 'pytest', str(P.TESTS), '-q', '-p', 'no:cacheprovider'], cwd=P.WORK, env=env,
                        capture_output=True, text=True)
     lines = [l for l in r.stdout.strip().split('\n') if l.strip()]

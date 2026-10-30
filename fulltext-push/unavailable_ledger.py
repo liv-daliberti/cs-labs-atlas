@@ -552,7 +552,7 @@ def src_dblp(by_school, offline, n):
 
 def src_proceedings(papers, n):
     import s2_key_lookup as s2k
-    src = F.P.sweep('claude-princeton-20261015') / 'cs-structure/raw/proceedings/index.json.gz'
+    src = F.P.archive_sweep('claude-princeton-20261015') / 'cs-structure/raw/proceedings/index.json.gz'
     idx = defaultdict(list)
     for t, y, u, land, venue in json.loads(gzip.decompress(src.read_bytes())):
         k = F.nt(t)
@@ -579,7 +579,7 @@ def src_repository(school, papers, oa, core, offline, n):
     if school == 'princeton':
         import glob
         by_doi, by_t, items = {}, {}, 0
-        for f in sorted(glob.glob(str(F.P.sweep('claude-princeton-20261015') / 'cs-structure/raw/oar/items_*.json.gz'))):
+        for f in sorted(glob.glob(str(F.P.archive_sweep('claude-princeton-20261015') / 'cs-structure/raw/oar/items_*.json.gz'))):
             for it in json.loads(gzip.open(f).read()):
                 if it.get('status') != 200:
                     continue
@@ -618,7 +618,7 @@ def src_repository(school, papers, oa, core, offline, n):
                 out[p['key']] = check('repository', q, 'error', dict(repository='DSpace@MIT Open Access Articles', note=f'harvest partial ({k} items)'))
         return out
     if school == 'cmu':
-        lst = json.loads((F.P.sweep('claude-cmu-20261017') / 'raw/kilthub/list.json').read_text())
+        lst = json.loads((F.P.archive_sweep('claude-cmu-20261017') / 'raw/kilthub/list.json').read_text())
         by_doi, by_t = {}, {}
         for it in lst['items']:
             if it.get('doi'):
@@ -632,7 +632,7 @@ def src_repository(school, papers, oa, core, offline, n):
                                   dict(repository='KiltHub', usable=[it.get('url')], item=it.get('id')) if it else dict(repository='KiltHub', items_indexed=len(lst['items']), harvested=lst.get('fetched_at')))
         return out
     if school == 'epfl':
-        S = F.P.sweep('claude-epfl-20261019')
+        S = F.P.archive_sweep('claude-epfl-20261019')
         sys.path.insert(0, str(S / 'tools'))
         import epfl_infoscience_rest as eir
         rest = eir.load_cache()
