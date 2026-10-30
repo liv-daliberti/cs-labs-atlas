@@ -13,6 +13,7 @@ Status: `open` · `in progress (<who>)` · `done <date> <commit>` · `queued (af
 | L | Per-paper unavailability ledger, as a standard | in progress (downloads agent) | every non-local lab paper has a reason code built from recorded checks; `ledger` step in rebuild.sh; build gate; `docs/UNAVAILABLE.md`; 20 hand-checked entries |
 | M | Michigan through stages 0–9; stage 10 prepared | in progress (Michigan agent) | stage gates pass or report their blockers; protocol updated; release steps listed |
 | R | Copy recovery toward 85% | in progress (downloads agent) | measured before/after per school; ceiling under the no-paywall rule stated |
+| LP | Lab-page audit, all 7 schools (owner 2026-10-30) | in progress (lab-page agent) | every PI lab has a lab_page record (found, or none_found with a reason); students incl. alumni and pubs-page papers audited against the build with a reason per gap; additions proposed with evidence; `docs/LAB-PAGES.md`; a gate in the protocol |
 
 ## 1. Foundations
 
