@@ -20,7 +20,7 @@ import atlas_paths as P  # noqa: E402  (every path in one place)
 HERE = P.WORK; SW = P.SWEEPS
 SITE = P.SITE_ROOT
 LST = SW / 'claude-princeton-listings-20261022'
-sys.path.insert(0, str(LST / 'scripts')); sys.path.insert(0, str(HERE / 'tools'))
+sys.path.insert(0, str(P.vendor('princeton_listings'))); sys.path.insert(0, str(HERE / 'tools'))  # the listings sweep's code, vendored
 import extract, match  # noqa: E402  (the listings sweep's own text extraction)
 from pi_hierarchy import Name, read  # noqa: E402
 

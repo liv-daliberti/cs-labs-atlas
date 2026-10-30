@@ -633,7 +633,7 @@ def src_repository(school, papers, oa, core, offline, n):
         return out
     if school == 'epfl':
         S = F.P.archive_sweep('claude-epfl-20261019')
-        sys.path.insert(0, str(S / 'tools'))
+        sys.path.insert(0, str(F.P.vendor('epfl_tools')))  # vendored code (tools/vendor_sync.py); its data stays in S
         import epfl_infoscience_rest as eir
         rest = eir.load_cache()
         by_doi, by_t, k = {}, {}, 0

@@ -14,7 +14,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parents[2]; SW = P.SWEEPS
 LST = SW / 'claude-princeton-listings-20261022'
-sys.path.insert(0, str(LST / 'scripts'))
+sys.path.insert(0, str(P.vendor('princeton_listings')))  # the listings sweep's code, vendored (tools/vendor_sync.py)
 import extract, match  # noqa: E402
 
 NAME = re.compile(r"^[A-ZÀ-Ž][\w'’.\-À-ž]+(?: (?:[A-ZÀ-Ž(][\w'’.\-À-ž)]*|de|van|von|der|da|del|di|la|le)){1,4}$")

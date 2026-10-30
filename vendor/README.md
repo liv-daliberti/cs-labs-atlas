@@ -11,7 +11,7 @@ the site build's `scripts/`). That code is now here, **code only, never data**, 
 | `princeton_tools/` | `.research-sweeps/claude-princeton-20261015/tools` | 9 | `import_all_when_free.py` (the Princeton import path: `newsteps.slurm`, `chain_*.sh`, ...) and the package modules it imports (`cs_pi_works`, `cs_complete`, `cs_open_copies`, `cs_structure_catalog`); `cs_nsf_par`, `oar_index`, `catalog_snapshot` |
 | `homogenization_tools/` | `.research-sweeps/claude-homogenization-20261019/tools` | 3 | `study_copies` (lab_channels pmc/figshare), `fulltext_store`, `homog` (ai-writing) |
 | `epfl_tools/`, `mit_tools/` | the EPFL and MIT sweeps' `tools/` | 1 + 1 | `epfl_infoscience_rest`, `mit_dspace_rest` (lab_channels) |
-| `princeton_listings/` | `.research-sweeps/claude-princeton-listings-20261022/scripts` | 1 | `extract` (tools/listed_not_in_census.py) |
+| `princeton_listings/` | `.research-sweeps/claude-princeton-listings-20261022/scripts` | 2 | `extract`, `match` (tools/listed_not_in_census.py, tools/princeton_census.py) |
 | `site_builder/` | `maxent-grpo/princeton-live-20261015/scripts` | 1 | `build-cs-hierarchy.py` (tools/school_profiles.py, tools/export_release.py) |
 
 **Provenance.** `PROVENANCE.tsv` has one row per file: the vendored path, the source path, the source's sha256 when it

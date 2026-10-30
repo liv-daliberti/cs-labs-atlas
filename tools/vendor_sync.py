@@ -55,7 +55,7 @@ ORIGINS = {
     'site_builder': ('/n/fs/resemble/maxent-grpo/princeton-live-20261015/scripts', '/n/fs/resemble/maxent-grpo/princeton-live-20261015',
                      ['build-cs-hierarchy.py']),  # imported by tools/school_profiles.py and tools/export_release.py
     'princeton_listings': (f'{SW}/claude-princeton-listings-20261022/scripts', f'{SW}/claude-princeton-listings-20261022',
-                           ['extract.py']),
+                           ['extract.py', 'match.py']),  # tools/listed_not_in_census.py, tools/princeton_census.py
 }
 
 OWN = 'str(Path(__file__).resolve().parent)'

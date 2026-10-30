@@ -232,14 +232,14 @@ def _study_plan(school, miss, known):
 
 
 def step_pmc(school, miss, known, n):
-    sys.path.insert(0, str(F.P.sweep('claude-homogenization-20261019') / 'tools'))
+    sys.path.insert(0, str(F.P.vendor('homogenization_tools')))
     import study_copies as sc
     rows = sc.pmc_rows(_study_plan(school, miss, defaultdict(set, {w: set(u) for w, u in known.items()})), n).get(school, [])  # a copy, as above
     return [dict(r, source='pmc_open_data') for r in rows]
 
 
 def step_figshare(school, miss, known, n):
-    sys.path.insert(0, str(F.P.sweep('claude-homogenization-20261019') / 'tools'))
+    sys.path.insert(0, str(F.P.vendor('homogenization_tools')))
     import study_copies as sc
     plan = _study_plan(school, miss, {w: set(u) for w, u in known.items()})
     return [dict(r, source='figshare_api') for r in sc.figshare_rows(plan, n).get(school, [])]
@@ -505,7 +505,7 @@ def step_homepages(school, miss, known, n):
     import requests, zlib
     from urllib.parse import urlsplit, urljoin
     import s2_key_lookup as s2k, core_search as cs
-    BK = F.P.sweep('claude-berkeley-20261021') / 'people'
+    BK = F.P.archive_sweep('claude-berkeley-20261021') / 'people'
     dept = json.loads((BK / 'dept_berkeley.json').read_text())
     units = json.loads((BK / 'units.json').read_text())['units']
     sites = defaultdict(list)
@@ -585,7 +585,7 @@ def step_infoscience(school, miss, known, n):
     (../../claude-epfl-20261019/tools/epfl_infoscience_rest.py resolve + add, restricted to these works; 3 s per
     request; an empty 202 / 429 / 503 pauses it and is never worked around). It writes its own candidates."""
     assert school == 'epfl'
-    sys.path.insert(0, str(F.P.sweep('claude-epfl-20261019') / 'tools'))
+    sys.path.insert(0, str(F.P.vendor('epfl_tools')))
     import epfl_infoscience_rest as eir
     handles = {}
     for r, w in miss:
@@ -610,7 +610,7 @@ def step_proceedings(school, miss, known, n):
     import gzip
     import s2_key_lookup as s2k
     idx = defaultdict(list)
-    src = F.P.sweep('claude-princeton-20261015') / 'cs-structure/raw/proceedings/index.json.gz'
+    src = F.P.archive_sweep('claude-princeton-20261015') / 'cs-structure/raw/proceedings/index.json.gz'
     for t, y, u, land, venue in json.loads(gzip.decompress(src.read_bytes())):
         k = F.nt(t)
         if len(k) >= 20:
@@ -655,7 +655,7 @@ def step_dspace(school, miss, known, n):
     (../../claude-mit-20261020/tools/mit_dspace_rest.py resolve + add, restricted to these works). It writes its own
     candidates; the web front end (rate-limited) is never used."""
     assert school == 'mit'
-    sys.path.insert(0, str(F.P.sweep('claude-mit-20261020') / 'tools'))
+    sys.path.insert(0, str(F.P.vendor('mit_tools')))
     import mit_dspace_rest as mds
     handles = {}
     for r, w in miss:
