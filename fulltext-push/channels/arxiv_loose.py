@@ -5,7 +5,10 @@ characters and no arXiv link known yet.
 
 Candidates: arXiv records sharing the paper's rarest significant title words (each word on <= 4,000 records). A record
 is the paper's preprint only when ALL of these hold:
-  - title similarity >= MIN_SIM (difflib ratio of the normalized titles) and word Jaccard >= MIN_JACCARD
+  - title similarity (difflib ratio of the normalized titles) >= 0.90 with word Jaccard >= 0.70, or >= 0.85 with
+    Jaccard >= 0.80; the same numbers and roman numerals; no item-type word (artifact, demo, abstract, part, ...) in
+    the catalog title that the arXiv title lacks; every significant word of the catalog title in the arXiv title, which
+    may add words (a system name, a qualifier) but not drop or swap any (strict_ok)
   - the same author set: every family name of the paper's byline (at most the first 8) is among the record's author
     families, or (bylines over 8 names) at least 6 of the first 8 and every lab PI are; a byline of one or two names
     needs both the names and an identical first author
@@ -23,7 +26,44 @@ import unicodedata
 from collections import Counter, defaultdict
 
 NAME = 'arxiv_loose'
-MIN_SIM, MIN_JACCARD, MAX_POSTING = 0.80, 0.55, 4000
+MIN_SIM, MIN_JACCARD, MAX_POSTING = 0.85, 0.70, 4000
+# a hand-checked sample of 40 matches at similarity >= 0.80 / Jaccard >= 0.55 (2026-10-30) had 10 that were not the
+# paper: research artifacts and demo abstracts matched to the paper, a series part (II vs VII), related papers of one
+# group. Hence: similarity >= 0.90 with Jaccard >= 0.70, or similarity >= 0.85 with Jaccard >= 0.80; equal numbers and
+# roman numerals; no item-type word in the catalog title that the arXiv title lacks.
+TYPE_WORDS = {'artifact', 'artefact', 'experiments', 'experiment', 'demo', 'demonstration', 'abstract', 'poster', 'workshop', 'proceedings',
+              'solution', 'tutorial', 'extended', 'supplementary', 'supplement', 'appendix', 'erratum', 'errata', 'correction', 'corrigendum',
+              'part', 'keynote', 'panel', 'dataset', 'code', 'software', 'thesis', 'dissertation', 'report', 'summary', 'overview',
+              'rejoinder', 'discussion', 'comment', 'comments', 'reply', 'response', 'invited', 'chapter', 'preface', 'editorial'}
+NEGATION = {'non', 'not', 'no', 'un', 'without', 'anti'}
+# a second hand-checked sample (35 at the rule above) still had rejoinders matched to their paper, 'non-symmetric'
+# matched to 'symmetric', and word substitutions (binary / network systems, stochastic / robust, context / time).
+ROMAN = re.compile(r'^(?:i{1,3}|iv|v|vi{1,3}|ix|x|xi{1,3})$')
+
+
+def _numbers(t):
+    toks = re.findall(r'[a-z0-9]+', unicodedata.normalize('NFKD', t or '').encode('ascii', 'ignore').decode().lower())
+    return sorted(x for x in toks if x.isdigit() or ROMAN.match(x))
+
+
+def strict_ok(title, arxiv_title, sim, jac):
+    if not ((sim >= 0.90 and jac >= 0.70) or (sim >= 0.85 and jac >= 0.80)):
+        return False
+    if _numbers(title) != _numbers(arxiv_title):
+        return False
+    ct = set(re.findall(r'[a-z]+', (title or '').lower()))
+    at = set(re.findall(r'[a-z]+', (arxiv_title or '').lower()))
+    if (ct - at) & TYPE_WORDS or (ct ^ at) & NEGATION:
+        return False
+    import ftp_common  # noqa: F401  (puts the CMU stage's tools, arxiv_oai among them, on sys.path)
+    import arxiv_oai as ao
+    stem = lambda w: re.sub(r'(?:ically|ally|ations?|ness|ing|ed|al|es|s)$', '', w) if len(w) > 4 else w
+    cw = {stem(w) for w in ao.words(title)} - {''}
+    aw = {stem(w) for w in ao.words(arxiv_title)} - {''}
+    # a third sample (30) still had catalog titles with words of their own: 'Two More Attacks' vs 'Two Attacks', a
+    # 'Replication of', an 'O28:' abstract, 'Deep compression and EIE' (a talk) vs 'EIE', 'Semi-Supervised' added: the
+    # catalog title's significant words must all be in the arXiv title (the arXiv title may add a name or a qualifier)
+    return not (cw - aw)
 _IDX = {}
 
 
@@ -100,7 +140,7 @@ def match(r):
         if sim > best_seen[1]:
             best_seen = ((aid, title), sim)
         jac = len(ws & rws) / max(1, len(ws | rws))
-        if sim < MIN_SIM or jac < MIN_JACCARD:
+        if sim < MIN_SIM or jac < MIN_JACCARD or not strict_ok(r.get('title'), title, sim, jac):
             continue
         if y0 and y and not -1 <= y0 - y <= 3:
             continue
