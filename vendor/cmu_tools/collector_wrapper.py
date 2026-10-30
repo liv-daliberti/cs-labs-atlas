@@ -1,4 +1,4 @@
-# Vendored 2026-10-30 from /n/fs/resemble/maxent-grpo/.research-sweeps/claude-cmu-20261017/tools/collector_wrapper.py (sha256 f5bdaaba7784272361b29abe477c8603981d99c8e0613ddc85a68a568b80bce2); see vendor/PROVENANCE.tsv and tools/vendor_sync.py.
+# Vendored 2026-10-30 from /n/fs/resemble/maxent-grpo/.research-sweeps/claude-cmu-20261017/tools/collector_wrapper.py (sha256 17030d4e23e1c4de2c9e25dbbc8b18ce8da06151fea2e5de9f2865752c07ede4); see vendor/PROVENANCE.tsv and tools/vendor_sync.py.
 """The Princeton collector (homogenizing-science/scripts/collect_princeton_fulltext_expanded.py), unchanged on disk,
 run for the CMU and EPFL catalogs with these additions:
 
@@ -46,7 +46,10 @@ from protego import Protego
 
 DELIVERY = {'s3-eu-west-1.amazonaws.com': '/pstorage-cmu-348901238291901/',
             'cf002.cdn.4science.cloud': '/4s-assetstore-epfl-prod/'}
-MIN_DELAY = {'infoscience.epfl.ch': 10.0, 'www.biorxiv.org': 15.0, 'www.medrxiv.org': 15.0, 'web.archive.org': 6.0}
+# 2026-10-30: dspace.mit.edu (HTTP 429 at 3 s; Open Access Articles manuscripts of MIT's IEEE / ACM / Springer papers) at
+# one request per 15 s, bioRxiv / medRxiv slowed from 15 s to 30 s (429 again at 15 s); a 429 still pauses the host for the
+# pass and the pass-start requeue asks again next pass
+MIN_DELAY = {'infoscience.epfl.ch': 10.0, 'www.biorxiv.org': 30.0, 'www.medrxiv.org': 30.0, 'web.archive.org': 6.0, 'dspace.mit.edu': 15.0}
 MAX_WAIT = 300.0
 IS_BITSTREAM = re.compile(r'^https?://infoscience\.epfl\.ch/bitstreams/([0-9a-f-]{36})/download')
 IS_PAGE = re.compile(r'^https?://infoscience\.epfl\.ch/(?:handle|record|items|entities)/')
@@ -84,7 +87,7 @@ def get(self, url, limit=500 * 1024 * 1024):
     if IS_PAGE.match(url):
         raise ValueError('Infoscience web page not fetched: its files come through the REST API (/server/api)')
     try:
-        data, final, ctype = _get(self, url, limit)
+        data, final, ctype = _get_following(self, url, limit)
     except c.requests.HTTPError as e:
         store = urlsplit(e.response.url).hostname if e.response is not None else ''
         if store in DELIVERY and e.response.status_code == 403:
@@ -100,7 +103,70 @@ def get(self, url, limit=500 * 1024 * 1024):
     if host in MIN_DELAY and not data:
         self.blocked[host] = CHALLENGE
         raise RuntimeError('source_paused: ' + CHALLENGE)
+    if not data:
+        # an empty 2xx answer is never a paper: figshare.com and arodes.hes-so.ch answer an empty HTTP 202 (a WAF bot
+        # challenge, 2026-10-30). The host is paused for the pass and the attempt is recorded as a challenge, which the
+        # pass-start requeue does not ask again (nothing works around a challenge).
+        self.blocked[host] = CHALLENGE_FINAL
+        raise ValueError(CHALLENGE_FINAL)
+    if 'html' in (ctype or '').lower() and b'<' not in data[:512] and data.lstrip()[:1] == b'<':
+        data = data.lstrip()  # www.osti.gov pages open with > 512 bytes of whitespace: the collector's HTML test reads the first 512
     return data, final, ctype
+
+
+# Redirects (2026-10-30): the collector follows a redirect only to a host some candidate of the catalog already names.
+# 680 lab papers stopped at 'Redirect or URL outside the evidence-approved public hosts'. Approved now, per redirect:
+#   - the same site: the target's registrable domain equals the requested URL's (www.psyarxiv.com <- psyarxiv.com,
+#     ijcai.org <- www.ijcai.org, publications.ri.cmu.edu <- www.ri.cmu.edu, backoffice.biblio.ugent.be <- biblio.ugent.be)
+#   - the Handle System (hdl.handle.net) and the DOI resolver (doi.org) resolving to the record's registered home, when
+#     that home is not a publisher host (review_access.PUBLISHERS) and not a login / identity provider (LOGIN_HOST)
+#   - documented moves of one site: biorobotics.ri.cmu.edu -> biorobotics.org (the CMU Biorobotics Lab's site),
+#     lirias.kuleuven.be -> kuleuven.limo.libis.be (KU Leuven's Lirias records served by its library system LIBIS)
+# robots.txt (with the AI-crawler groups above), the per-host pacing and the title check apply on the new host as on any.
+OUTSIDE = 'Redirect or URL outside the evidence-approved public hosts: '
+MOVES = {'biorobotics.ri.cmu.edu': {'biorobotics.org', 'www.biorobotics.org'}, 'lirias.kuleuven.be': {'kuleuven.limo.libis.be'}}
+RESOLVERS = {'hdl.handle.net', 'doi.org', 'dx.doi.org'}
+LOGIN_HOST = re.compile(r'(?:^|[.-])(?:idp|login|auth|sso|shibboleth|wayf|openathens|signin|accounts|myaccount|cas|ezproxy|secure)(?:[.-]|$)')
+PUBLISHER = re.compile(r'(?:^|\.)(?:acm\.org|ieee\.org|sciencedirect\.com|elsevier\.com|springer\.com|nature\.com|wiley\.com|tandfonline\.com|'
+                       r'sagepub\.com|ssrn\.com|cambridge\.org|oup\.com|jstor\.org|science\.org|cell\.com|annualreviews\.org|informs\.org|aps\.org|'
+                       r'iop\.org|siam\.org|pnas\.org|degruyter\.com|emerald\.com|worldscientific\.com|direct\.mit\.edu|ams\.org|asme\.org|'
+                       r'ascelibrary\.org|aip\.org|acs\.org|rsc\.org|karger\.com|lww\.com|jamanetwork\.com|bmj\.com|thelancet\.com|optica\.org|'
+                       r'osapublishing\.org|spiedigitallibrary\.org|researchgate\.net|semanticscholar\.org|scitation\.org|igi-global\.com|'
+                       r'inderscience\.com|liebertpub\.com|royalsocietypublishing\.org|mdpi\.com|frontiersin\.org|amazonaws\.com|primo\.exlibrisgroup\.com)$')
+CC2 = {'ac', 'co', 'edu', 'gov', 'org', 'com', 'net', 'or', 'ne', 'go'}
+
+
+def site(h):
+    p = (h or '').lower().split('.')
+    return '.'.join(p[-3:]) if len(p) >= 3 and len(p[-1]) == 2 and p[-2] in CC2 else '.'.join(p[-2:])
+
+
+def redirect_ok(origin, target):
+    if not target or LOGIN_HOST.search(target) or re.search(r'login|signin|auth', target):
+        return False
+    if target in MOVES.get(origin, ()):
+        return True
+    if site(origin) == site(target) and not PUBLISHER.search(target):
+        return True
+    return origin in RESOLVERS and not PUBLISHER.search(target)
+
+
+CHALLENGE_FINAL = 'HTTP 202 with an empty body (the site\'s bot challenge); the host is not asked again'
+
+
+def _get_following(self, url, limit):
+    origin = urlsplit(url).hostname or ''
+    for _ in range(4):
+        try:
+            return _get(self, url, limit)
+        except ValueError as e:
+            m = str(e)
+            target = m[len(OUTSIDE):].strip() if m.startswith(OUTSIDE) else None
+            if not target or target in self.allowed or not redirect_ok(origin, target):
+                raise
+            with self.guard:
+                self.allowed.add(target)
+    return _get(self, url, limit)
 
 
 c.PublicClient.__init__, c.PublicClient.get, c.PublicClient.pause = __init__, get, pause
