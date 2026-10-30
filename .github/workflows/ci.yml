@@ -49,7 +49,13 @@ jobs:
         run: ruff check . --output-format=github
       - name: Tests (fixtures only)
         if: ${{ !cancelled() && steps.detect.outputs.code == 'true' }}  # runs even when an earlier check failed
-        run: python -m pytest -m "not nfs"
+        run: |
+          set -o pipefail
+          python -m pytest -m "not nfs" -rfE 2>&1 | tee "$RUNNER_TEMP/pytest.log"; rc=$?
+          # each failing test as an annotation (visible on the run page and through the public API)
+          grep -E '^(FAILED|ERROR) ' "$RUNNER_TEMP/pytest.log" | cut -c1-300 | sed 's/^/::error title=pytest::/' || true
+          grep -E '^E   ' "$RUNNER_TEMP/pytest.log" | head -20 | cut -c1-300 | sed 's/^/::warning title=pytest detail::/' || true
+          exit $rc
       - name: Charters (school_config.check on every charter)
         if: ${{ !cancelled() && steps.detect.outputs.code == 'true' }}  # runs even when an earlier check failed
         run: python tools/school_config.py --check
