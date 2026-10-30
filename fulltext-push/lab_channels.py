@@ -722,6 +722,70 @@ def step_s2_title(school, miss, known, n):
 STEPS.update(dblp_ee=step_dblp_ee, oa_refresh=step_oa_refresh, oa_editions=step_oa_editions, s2_title=step_s2_title)
 
 
+# ---------------------------------------------------------------- negatives (2026-10-30, owner; docs/UNAVAILABLE.md)
+# Every step records one check per paper it examined into fulltext-push/checks/<school>.sqlite (checks.py): 'found' with
+# the URLs it produced, else 'none'. A paper is examined when it is in the step's scope below (the query names what was
+# asked); a step that stopped early on a budget or on repeated failures records 'error' for the papers it did not find.
+_ARX = lambda k: has_arxiv(k)
+_DOI = lambda r: F.ndoi(r.get('doi'))
+_T = lambda r: r.get('title') if len(F.nt(r.get('title'))) >= 20 else None
+_OA = lambda r: F.oa_short(r.get('oa')) or None
+SCOPE = dict(
+    oa_arxiv=lambda s, r, k: None if _ARX(k) else (f'arXiv id of {_OA(r)} (DOI / OpenAlex locations)' if _OA(r) else None),
+    openalex=lambda s, r, k: _OA(r) and f'OpenAlex locations of {_OA(r)}',
+    oa_refresh=lambda s, r, k: _OA(r) and f'OpenAlex record refreshed: {_OA(r)}',
+    oa_editions=lambda s, r, k: _T(r) and f'OpenAlex open editions by title: {_T(r)}',
+    arxiv_title=lambda s, r, k: None if _ARX(k) else (_T(r) and f'arXiv OAI index title: {_T(r)}'),
+    s2=lambda s, r, k: (f'DOI:{_DOI(r)}' if _DOI(r) else (f'ARXIV:{F.arxiv_of(r, None)}' if F.arxiv_of(r, None) else None)),
+    s2_title=lambda s, r, k: None if (_DOI(r) or F.arxiv_of(r, None)) else (_T(r) and f'S2 search/match: {_T(r)}'),
+    core=lambda s, r, k: _DOI(r) and not _DOI(r).startswith('10.48550/') and f'CORE doi:{_DOI(r)}',
+    europepmc=lambda s, r, k: _DOI(r) and not _DOI(r).startswith('10.48550/') and not any('pmc-oa-opendata' in u for u in k) and f'Europe PMC DOI:{_DOI(r)}',
+    pmc=lambda s, r, k: any(F.PMC_LINK.search(u) for u in k) and 'PMC links among known URLs',
+    figshare=lambda s, r, k: (any(re.search(r'figshare|kilthub', u) for u in k) or _DOI(r).startswith(('10.6084/', '10.1184/'))) and 'Figshare / KiltHub article files',
+    dblp_ee=lambda s, r, k: (_DOI(r) or _T(r)) and f'DBLP dump ee: {_DOI(r) or _T(r)}',
+    proceedings=lambda s, r, k: _T(r) and f'open proceedings index title: {_T(r)}',
+    labpages=lambda s, r, k: f"lab-page captures of {', '.join(r.get('pis') or [])}",
+    pihomes=lambda s, r, k: f"PI homepages of {', '.join(r.get('pis') or [])}",
+    oar=lambda s, r, k: s == 'princeton' and f'Princeton OAR index: {_DOI(r) or _T(r)}',
+    techrpt=lambda s, r, k: s == 'berkeley' and _T(r) and f'EECS technical reports title: {_T(r)}',
+    pubpages=lambda s, r, k: s == 'berkeley' and _T(r) and f'EECS faculty publications pages title: {_T(r)}',
+    homepages=lambda s, r, k: s == 'berkeley' and _T(r) and f"author / lab sites of {', '.join(r.get('pis') or [])}",
+    wayback_acm=lambda s, r, k: _DOI(r).startswith('10.1145/') and not any('web.archive.org' in u for u in k) and not _ARX(k)
+    and f'Wayback CDX dl.acm.org/doi/pdf/{_DOI(r)}',
+    infoscience=lambda s, r, k: any('infoscience.epfl.ch' in u for u in k) and 'Infoscience REST files of the known handles',
+    dspace=lambda s, r, k: any(re.search(r'hdl\.handle\.net/1721\.1/|dspace\.mit\.edu', u) for u in k) and 'DSpace@MIT files of the known handles',
+)
+STOPPED = ('openalex_budget_stop', 's2_title_stopped_after_failures')
+
+
+def record_checks(school, step, miss, known, before, rows, n):
+    import checks
+    found = defaultdict(list)
+    for x in rows:
+        found[x['work_id']].append(x['url'])
+    for _, w in miss:
+        grown = known[w] - before[w]
+        if grown:
+            found[w] += sorted(grown)
+    scope = SCOPE.get(step)
+    stopped = any(n.get(k) for k in STOPPED)
+    out, at = [], F.now()
+    for r, w in miss:
+        try:
+            q = scope(school, r, before[w]) if scope else f'{step}'
+        except Exception:
+            q = None
+        if not q:
+            continue
+        res = 'found' if found.get(w) else ('error' if stopped else 'none')
+        out.append(dict(paper_key=r['work'] or r['oa'], work_id=w, channel=step, at=at, query=q, result=res,
+                        detail=dict(urls=list(dict.fromkeys(found[w]))[:5]) if found.get(w) else (dict(stopped=True) if stopped else None)))
+    try:
+        n['checks_recorded'] = checks.record(school, out)
+    except Exception as e:  # the checks store must never cost a step its candidates
+        n['checks_record_failed'] = str(e)[:200]
+
+
 def write(school, rows, step, ev_dir=None, dry=False):
     if dry or not rows:
         return 0
@@ -755,7 +819,10 @@ def main():
     for step in steps:
         n = Counter()
         t0 = time.time()
+        before = {w: set(known[w]) for _, w in miss}
         rows = STEPS[step](school, miss, known, n)
+        if not dry:
+            record_checks(school, step, miss, known, before, rows, n)
         rows = new_rows(rows, known)
         added = write(school, rows, step, dry=dry)
         rec = dict(at=F.now(), school=school, step=step, missing_in_catalog=len(miss), rows=len(rows), works=len({r['work_id'] for r in rows}),

@@ -11,9 +11,15 @@ access_cause (the deciding cause: paywall_or_forbidden, login, challenge, robots
 access_causes (every cause seen) and access_verdict ('closed', or a requeue verdict). The table is read like the works
 table: read-only, short rowid chunks, busy timeout.
 -> hierarchy/<school>/copies.json {summary, papers: {paper key: {status, catalog, doi, oa, year, access_cause?, ...}}}
+   summary.counted_at: when the coverage was counted (UTC; the evidence check's unavailable_stale compares the ledger to it)
+The unavailability ledger (docs/UNAVAILABLE.md; fulltext-push/unavailable_ledger.py, 2026-10-30): attach_ledger(school)
+reads hierarchy/<school>/unavailable.jsonl.gz and sets unavailable_reason (the record's reason_code) and unavailable_summary
+(its summary) on every non-local paper of copies.json, with summary counts unavailable:<reason_code> and ledger_built_at
+(unavailable-summary.json built_at). A paper that is local now gets neither (stale ledger rows are ignored). run() calls it
+at the end when the ledger exists; the ledger tool calls it after writing the ledger.
 usage: lab_paper_copies.py <school> ...
 """
-import collections, gzip, json, re, sqlite3, sys, time
+import collections, gzip, json, os, re, sqlite3, sys, time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -23,6 +29,21 @@ LOCAL = ('downloaded', 'fulltext_xml')
 
 
 def chunks(db, sql_cols, chunk=1500):
+    """works rows in rowid order. With the covering index works_slim (fulltext-push/ftp_common.SLIM_SQL; 2026-10-30) the
+    rows come from the index alone, keyset-paged by id: Princeton's rows carry ~30 KB of JSON before status, so a rowid
+    scan read the whole 2.1 GB table over NFS."""
+    if db.execute("select 1 from sqlite_master where type='index' and name='works_slim'").fetchone() and \
+            set(c.strip() for c in sql_cols.split(',')) <= {'id', 'status', 'doi', 'title', 'year', 'identity_check', 'byte_count', 'sha256'}:
+        rows, last = [], ''
+        while True:
+            part = db.execute(f'select rowid, id, {sql_cols} from works indexed by works_slim where id > ? order by id limit 5000', (last,)).fetchall()
+            if not part:
+                break
+            rows += part; last = part[-1][1]
+            time.sleep(0.02)
+        rows.sort(key=lambda r: r[0])
+        yield from (tuple(r[2:]) for r in rows)
+        return
     hi = db.execute('select max(rowid) from works').fetchone()[0] or 0
     for lo in range(0, hi + 1, chunk):
         yield from db.execute(f'select {sql_cols} from works where rowid >= ? and rowid < ?', (lo, lo + chunk)).fetchall()
@@ -77,9 +98,54 @@ def run(school):
             out[key].update(access.get(cid) or dict(access_cause=None))
             n['access_cause:' + str(out[key].get('access_cause'))] += 1
         n['local' if st in LOCAL else (st or 'not_in_catalog')] += 1
-    summary = dict(school=school, lab_papers=len(out), **n, local_share=round(n['local'] / max(1, len(out)), 3))
+    summary = dict(school=school, lab_papers=len(out), **n, local_share=round(n['local'] / max(1, len(out)), 3),
+                   counted_at=time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()))
     json.dump(dict(summary=summary, papers=out), open(HERE / 'hierarchy' / school / 'copies.json', 'w'))
+    if (HERE / 'hierarchy' / school / 'unavailable.jsonl.gz').exists():  # the ledger's reasons onto the non-local papers (2026-10-30)
+        summary = attach_ledger(school)['summary']
     print(json.dumps(summary))
+
+
+def attach_ledger(school, out=None):
+    """The unavailability ledger's reason onto copies.json (docs/UNAVAILABLE.md; 2026-10-30). `out` is the directory
+    holding copies.json and the ledger (default hierarchy/<school>/). Every non-local paper with a ledger record gets
+    unavailable_reason (= reason_code) and unavailable_summary (= summary); local papers and papers without a record get
+    neither (earlier values are cleared, so stale ledger rows never stick). The summary gets unavailable:<reason_code>
+    counts and ledger_built_at (unavailable-summary.json built_at). copies.json is rewritten (atomically); returns it.
+    Without a ledger file the fields are only cleared."""
+    d = Path(out) if out is not None else HERE / 'hierarchy' / school
+    doc = json.loads((d / 'copies.json').read_text())
+    papers, summary = doc.get('papers') or {}, doc.get('summary') or {}
+    ledger, have = {}, (d / 'unavailable.jsonl.gz').exists()
+    if have:
+        with gzip.open(d / 'unavailable.jsonl.gz', 'rt') as f:
+            for l in f:
+                if l.strip():
+                    r = json.loads(l)
+                    ledger[r.get('key')] = r
+    built_at = None
+    if (d / 'unavailable-summary.json').exists():
+        try:
+            built_at = json.loads((d / 'unavailable-summary.json').read_text()).get('built_at')
+        except ValueError:
+            pass
+    n = collections.Counter()
+    for k, c in papers.items():
+        c.pop('unavailable_reason', None); c.pop('unavailable_summary', None)
+        r = ledger.get(k)
+        if c.get('status') in LOCAL or r is None:
+            continue
+        c['unavailable_reason'] = r.get('reason_code'); c['unavailable_summary'] = r.get('summary')
+        n['unavailable:' + str(r.get('reason_code'))] += 1
+    summary = {k: v for k, v in summary.items() if not k.startswith('unavailable:') and k != 'ledger_built_at'}
+    if have:
+        summary.update(sorted(n.items()), ledger_built_at=built_at)
+    doc['summary'], doc['papers'] = summary, papers
+    tmp = d / f'.copies.json.{os.getpid()}.part'
+    with open(tmp, 'w') as f:
+        json.dump(doc, f)
+    os.replace(tmp, d / 'copies.json')
+    return doc
 
 
 if __name__ == '__main__':

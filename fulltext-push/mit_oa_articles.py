@@ -21,6 +21,9 @@ import ftp_common as F
 OAI = 'https://dspace.mit.edu/server/oai/request'
 SET = 'col_1721.1_49433'
 DB = F.HERE / 'raw' / 'mit_oa_articles.sqlite'
+# seconds between OAI requests: 12 until 2026-10-27, when the repository answered 429 with Retry-After 900 after 37 pages;
+# 20 from 2026-10-30 (Retry-After is still honoured on every 429 / 503)
+PACE = 20.0
 
 
 def db():
@@ -40,7 +43,7 @@ def harvest():
     last = 0.0
     while True:
         params = dict(verb='ListRecords', resumptionToken=token) if token else dict(verb='ListRecords', metadataPrefix='oai_dc', set=SET)
-        time.sleep(max(0, 12 - (time.monotonic() - last))); last = time.monotonic()
+        time.sleep(max(0, PACE - (time.monotonic() - last))); last = time.monotonic()
         try:
             r = s.get(OAI, params=params, timeout=(20, 180))
         except Exception as e:
@@ -51,6 +54,9 @@ def harvest():
             time.sleep(wait); continue
         if r.status_code != 200:
             print(json.dumps(dict(status=r.status_code, stop=True))); return
+        err = re.search(r'<error code="([^"]+)"', r.text)
+        if err:  # an OAI-PMH error (e.g. badResumptionToken) is never stored as a page, so it cannot end the harvest as 'complete'
+            print(json.dumps(dict(oai_error=err.group(1), token=token, stop=True))); return
         m = re.search(r'<resumptionToken[^>]*>([^<]*)</resumptionToken>', r.text)
         nxt = html.unescape(m.group(1)).strip() if m else ''
         c.execute('INSERT INTO pages VALUES (?,?,?,?,?)', (n, token, nxt, F.now(), zlib.compress(r.content)))

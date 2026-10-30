@@ -5,6 +5,9 @@
 #   ids         tools/atlas_ids.py: stable atlas ids (atl:p:/atl:w:/atl:l:) into the packages, the registry and the
 #               cross-reference table (hierarchy/ids/; docs/IDS.md); always over every released school
 #   copies      tools/lab_paper_copies.py (copies.json from the full-text stores, with access-review causes)
+#   ledger      fulltext-push/unavailable_ledger.py (collector Python): why each lab paper without a local copy has none
+#               -> hierarchy/<school>/unavailable.jsonl.gz + unavailable-summary.json, reasons onto copies.json
+#               (docs/UNAVAILABLE.md); for $SCHOOLS plus every charter with status "onboarding"
 #   audits      student audit, chain audit (open items), link diagnosis, chain audit
 #   evidence    tools/evidence_check.py: every claim carries its evidence -> hierarchy/EVIDENCE-CHECK.md; a failure holds the release
 #   tests       pytest tests/
@@ -22,7 +25,7 @@ cd "$CS_ATLAS_WORK" || exit 1
 export LD_LIBRARY_PATH="$CS_ATLAS_ENV_LIB${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 PY="nice -n10 $CS_ATLAS_ENV_PY -u"
 SCHOOLS=${SCHOOLS:-$CS_ATLAS_SCHOOLS}
-STAGES=${STAGES:-snapshot build ids copies audits evidence tests regression release tree}
+STAGES=${STAGES:-snapshot build ids copies ledger audits evidence tests regression release tree}
 TAG=${TAG:-local-$(date +%Y%m%d-%H%M%S)}
 BEFORE=${BEFORE:-hierarchy/logs/pkg-before-$TAG}
 has() { case " $STAGES " in *" $1 "*) return 0 ;; esac; return 1; }
@@ -47,6 +50,15 @@ fi
 if has copies; then
   # before the audits (2026-10-29): the chain audit's copies check reads copies.json, with the stores' access-review causes
   echo "== copies $(date +%T)"; $PY tools/lab_paper_copies.py $SCHOOLS || fail=1
+fi
+if has ledger; then
+  # after the copies, before the audits and the evidence check (2026-10-30, docs/UNAVAILABLE.md, R-AUD-10): the
+  # unavailability ledger, run with the collectors' interpreter; it also writes the reasons onto copies.json
+  # (lab_paper_copies.attach_ledger). Onboarding schools (school charters) get their ledger before their first release.
+  onb=$($CS_ATLAS_ENV_PY -c 'import sys; sys.path.insert(0, "tools"); import school_config as c; print(" ".join(c.onboarding()))') || { echo "FAILED ledger: onboarding schools"; fail=1; onb=""; }
+  ledger_schools=$(echo $SCHOOLS $onb | tr ' ' '\n' | awk 'NF && !seen[$0]++' | tr '\n' ' ')
+  echo "== ledger $(date +%T) schools: $ledger_schools"
+  nice -n10 $CS_ATLAS_COLLECTOR_PY -I -u "$CS_ATLAS_FULLTEXT_PUSH/unavailable_ledger.py" $ledger_schools || { echo "FAILED ledger"; fail=1; }
 fi
 if has audits; then
   echo "== student audit $(date +%T)"; $PY tools/student_audit.py $CS_ATLAS_SCHOOLS > /dev/null || fail=1

@@ -52,10 +52,10 @@ def fam(name):
     return toks[-1] if toks and len(toks[-1]) >= 3 else ''
 
 
-def targets(extra=()):
+def targets(extra=(), only_extra=False):
     rows = []
     p = HERE / 'local-reuse' / 'missing.jsonl.gz'
-    if p.exists():
+    if p.exists() and not only_extra:
         rows += [json.loads(l) for l in gzip.open(p, 'rt')]
     rows += list(extra)
     by_doi, by_title = defaultdict(list), defaultdict(list)
@@ -70,11 +70,14 @@ def targets(extra=()):
     return by_doi, by_title
 
 
-def scan(extra=()):
-    by_doi, by_title = targets(extra)
+def scan(extra=(), out=None, only_extra=False):
+    """out: another matches file (2026-10-30: the unavailability ledger scans its own papers into
+    raw/ledger_dblp_matches.jsonl.gz, leaving the step's cache alone); only_extra: the extra rows only."""
+    by_doi, by_title = targets(extra, only_extra)
+    cache = Path(out) if out else CACHE
     print(json.dumps(dict(dois=len(by_doi), titles=len(by_title))), flush=True)
     n, hits, tail, t0 = 0, 0, '', time.time()
-    tmp = CACHE.with_suffix('.part')
+    tmp = cache.with_suffix('.part')
     with gzip.open(DUMP, 'rt', encoding='utf-8', errors='replace') as f, gzip.open(tmp, 'wt') as out:
         while True:
             chunk = f.read(16 << 20)
@@ -122,7 +125,8 @@ def scan(extra=()):
             if n and n % 500000 < 20000:
                 pass
         print(json.dumps(dict(records=n, hits=hits, seconds=round(time.time() - t0))), flush=True)
-    tmp.replace(CACHE)
+    tmp.replace(cache)
+    return dict(records=n, hits=hits)
 
 
 def open_url(u):

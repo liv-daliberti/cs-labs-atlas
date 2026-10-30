@@ -6,7 +6,10 @@ snapshot  counts of the current packages (or of a backup directory laid out like
 check     the current packages against a snapshot -> hierarchy/BUILD-REGRESSION.md and BUILD-REGRESSION.json; flags
             a school-level count that moves more than 5% (and by 5 or more),
             a PI losing more than 30% of their lab papers and at least 10 (or vanishing with 10 or more),
-            a PI gaining more than 100% and at least 20.
+            a PI gaining more than 100% and at least 20,
+            an unavailability-ledger reason count (hierarchy/<school>/unavailable-summary.json by_reason; docs/UNAVAILABLE.md)
+            moving more than 25% and by 20 or more papers, or the ledger vanishing (2026-10-30). The ledger moves as the
+            collectors download and re-check, so its threshold is wider than the school counts'.
           Exit status 2 when anything is flagged (hierarchy/rebuild.sh then holds the release), 0 otherwise.
 
 usage: build_regression.py snapshot --out counts.json [--from DIR]
@@ -25,6 +28,16 @@ PI_GAIN_PCT, PI_GAIN_MIN = 1.00, 20
 KEY_COUNTS = ['pis', 'lab_papers', 'students', 'lab_student_pairs', 'student_paper_links', 'pis_with_lab_papers',
               'pis_with_students', 'pis_complete_chain', 'labs_with_student_papers']
 ROWS = ['lab_papers', 'student_papers', 'lab_student_pairs', 'pis']
+LEDGER_PCT, LEDGER_MIN = 0.25, 20
+
+
+def ledger(d):
+    """The ledger's counts by reason_code (docs/UNAVAILABLE.md): {built_at, papers, by_reason}, None without a summary."""
+    p = Path(d) / 'unavailable-summary.json'
+    if not p.exists():
+        return None
+    x = json.loads(p.read_text())
+    return dict(built_at=x.get('built_at'), papers=x.get('papers'), by_reason=dict(sorted((x.get('by_reason') or {}).items())))
 
 
 def jsonl(p):
@@ -62,7 +75,7 @@ def counts(base):
         out[s] = dict(builtAt=rep.get('builtAt'), report=rep.get('counts') or {},
                       rows=dict(lab_papers=len(lp), student_papers=len(sp), lab_student_pairs=len(pairs), pis=len(pis)),
                       digests=dict(lab_papers=digest(lp), student_papers=digest(sp), students=digest(pairs), pis=digest(pis)),
-                      per_pi={p['pi']: per_pi.get(p['pi'], 0) for p in pis})
+                      per_pi={p['pi']: per_pi.get(p['pi'], 0) for p in pis}, ledger=ledger(d))
     return dict(at=datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'), source=str(base), code=code_commit(), schools=out)
 
 
@@ -74,7 +87,8 @@ def compare(before, after):
     res = dict(before=dict(at=before['at'], source=before['source'], code=before.get('code')),
                after=dict(at=after['at'], source=after['source'], code=after.get('code')),
                thresholds=dict(school_pct=SCHOOL_PCT, school_min=SCHOOL_MIN, pi_loss_pct=PI_LOSS_PCT, pi_loss_min=PI_LOSS_MIN,
-                               pi_gain_pct=PI_GAIN_PCT, pi_gain_min=PI_GAIN_MIN), schools={}, flags=[])
+                               pi_gain_pct=PI_GAIN_PCT, pi_gain_min=PI_GAIN_MIN, ledger_pct=LEDGER_PCT, ledger_min=LEDGER_MIN),
+               schools={}, flags=[])
     for s in P.SCHOOL_IDS:
         b, a = before['schools'].get(s), after['schools'].get(s)
         if not b or not a:
@@ -103,6 +117,17 @@ def compare(before, after):
                 res['flags'].append(dict(school=s, kind='pi_vanished' if y is None else 'pi_loss', pi=pi, before=x, after=y))
             elif y0 > x0 and (y0 - x0) >= PI_GAIN_MIN and pct(x0, y0) > PI_GAIN_PCT:
                 res['flags'].append(dict(school=s, kind='pi_new' if x is None else 'pi_gain', pi=pi, before=x, after=y))
+        lb, la = b.get('ledger'), a.get('ledger')  # the unavailability ledger's reason counts (2026-10-30)
+        r['ledger'] = {}
+        if lb and not la:
+            res['flags'].append(dict(school=s, kind='ledger_missing', detail='unavailable-summary.json only in before'))
+        elif lb and la:
+            for code in sorted(set(lb['by_reason']) | set(la['by_reason'])):
+                x, y = lb['by_reason'].get(code, 0), la['by_reason'].get(code, 0)
+                if x != y:
+                    r['ledger'][code] = dict(before=x, after=y)
+                    if abs(pct(x, y)) > LEDGER_PCT and abs(y - x) >= LEDGER_MIN:
+                        res['flags'].append(dict(school=s, kind='ledger_reason', count=code, before=x, after=y))
         res['schools'][s] = r
     return res
 
@@ -113,7 +138,8 @@ def md(res):
          f"After: {res['after']['source']} (counted {res['after']['at']}, code {str(res['after']['code'])[:10]}). "
          'Written by tools/build_regression.py.', '',
          f"Flags: school counts moving more than {SCHOOL_PCT:.0%} (and by {SCHOOL_MIN}+), a PI losing more than {PI_LOSS_PCT:.0%} "
-         f"and {PI_LOSS_MIN}+ lab papers, a PI gaining more than {PI_GAIN_PCT:.0%} and {PI_GAIN_MIN}+.", '',
+         f"and {PI_LOSS_MIN}+ lab papers, a PI gaining more than {PI_GAIN_PCT:.0%} and {PI_GAIN_MIN}+, an unavailability-ledger "
+         f"reason count moving more than {LEDGER_PCT:.0%} and by {LEDGER_MIN}+.", '',
          f"**{len(res['flags'])} flagged.**", '',
          '| School | lab papers | student-paper links | lab-student pairs | PIs | row sets identical | PIs changed |', '|---|---|---|---|---|---|---|']
     for s, r in res['schools'].items():
@@ -125,10 +151,13 @@ def md(res):
         for f in res['flags']:
             L.append('- ' + ', '.join(f'{k}: {v}' for k, v in f.items()))
     for s, r in res['schools'].items():
-        if r['report'] or r['pis_changed']:
+        if r['report'] or r['pis_changed'] or r.get('ledger'):
             L += ['', f'## {s}', '']
             if r['report']:
                 L.append('Report counts that changed: ' + '; '.join(f"{k} {v['before']} → {v['after']}" for k, v in r['report'].items()))
+            if r.get('ledger'):
+                L += [''] if r['report'] else []
+                L.append('Ledger reasons that changed: ' + '; '.join(f"{k} {v['before']} → {v['after']}" for k, v in r['ledger'].items()))
             big = sorted(r['pis_changed'], key=lambda x: -abs((x['after'] or 0) - (x['before'] or 0)))[:15]
             if big:
                 L.append('')

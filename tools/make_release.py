@@ -2,14 +2,17 @@
 
   /n/fs/resemble/cs-atlas/releases/<YYYY-MM-DD>[.N]/       (atlas_paths.RELEASES; .2, .3 ... for later builds that day)
     hierarchy/<school>/{pis.json, students.json, report.json, lab_papers.jsonl.gz, student_papers.jsonl.gz, copies.json,
-                        link-diagnosis.json}                        the built packages and their audit outputs
+                        link-diagnosis.json, unavailable.jsonl.gz, unavailable-summary.json}
+                                                                    the built packages, their audit outputs and the
+                                                                    unavailability ledger (docs/UNAVAILABLE.md) when present
     hierarchy/..., census/..., periods/...                          the reviewed inputs (every JSON/CSV input tracked in
                                                                     the code repository, at the paths it has there)
     hierarchy/{home-departments.json, zero-paper-labs.json, ...}    what the site builder and the export read
     hierarchy/{CHAIN-AUDIT.md, chain-audit.json, student-audit.json, BUILD-REGRESSION.md, BUILD-REGRESSION.json}
     docs/RULES.md                                                   the rules this build applied
     MANIFEST.json      sha256 and bytes per file, the code commit, rule ids, counts per school, build and audit times,
-                       upstream versions (OpenAlex sweep dates, the DBLP dump, the site collections), tests, regression
+                       upstream versions (OpenAlex sweep dates, the DBLP dump, the site collections), tests, regression,
+                       and per school the ledger's built_at, papers and counts by reason_code (`ledger`; null without one)
   Files and directories are made read-only; releases/latest points at the newest. An existing release is never
   overwritten: the next free .N is taken. Consumers (tools/organize_tree.py, tools/export_release.py, the site, the
   Hugging Face upload) read a release, never the working packages.
@@ -22,7 +25,7 @@ flagged swings (--allow-swings records them instead).
 usage: make_release.py [--before counts.json] [--allow-dirty] [--allow-swings] [--dry-run]
        make_release.py add-note <release id> <SITE-HANDOFF.md|HF-UPLOAD.json> <file>   (add one note file, never a manifest file)
 """
-import argparse, hashlib, json, os, re, shutil, sqlite3, subprocess, sys
+import argparse, gzip, hashlib, json, os, re, shutil, sqlite3, subprocess, sys
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -31,7 +34,8 @@ import atlas_paths as P  # noqa: E402  (every path in one place)
 import provenance  # noqa: E402  (report.json -> provenance, required)
 
 PACKAGE = ['pis.json', 'students.json', 'report.json', 'lab_papers.jsonl.gz', 'student_papers.jsonl.gz', 'copies.json']
-SCHOOL_EXTRA = ['link-diagnosis.json']  # audit output per school (the reviewed per-school inputs come from git)
+SCHOOL_EXTRA = ['link-diagnosis.json',  # audit output per school (the reviewed per-school inputs come from git)
+                'unavailable.jsonl.gz', 'unavailable-summary.json']  # the unavailability ledger (docs/UNAVAILABLE.md; 2026-10-30)
 TOP = ['home-departments.json', 'zero-paper-labs.json', 'school-profiles.json', 'SCHOOL-PROFILES.md', 'missing-papers-audit.json',
        'CHAIN-AUDIT.md', 'chain-audit.json', 'student-audit.json', 'BUILD-REGRESSION.md', 'BUILD-REGRESSION.json',
        'EVIDENCE-CHECK.md', 'EVIDENCE-CHECK.json',
@@ -100,6 +104,25 @@ def upstream():
 def rule_ids():
     rp = P.WORK / 'docs/RULES.md'
     return re.findall(r'^### (R-[A-Z]+-\d+[a-z]?) \(([^)]*)\)', rp.read_text(), re.M) if rp.exists() else []
+
+
+def ledger_counts(d):
+    """The unavailability ledger of one school directory (docs/UNAVAILABLE.md): {built_at, papers, by_reason} from
+    unavailable-summary.json, by_reason recounted from unavailable.jsonl.gz when the summary lacks it; None without a ledger."""
+    d = Path(d); sm = d / 'unavailable-summary.json'; lg = d / 'unavailable.jsonl.gz'
+    if not sm.exists() and not lg.exists():
+        return None
+    summ = json.loads(sm.read_text()) if sm.exists() else {}
+    by = summ.get('by_reason')
+    if by is None and lg.exists():
+        by = {}
+        with gzip.open(lg, 'rt') as f:
+            for l in f:
+                if l.strip():
+                    c = json.loads(l).get('reason_code'); by[c] = by.get(c, 0) + 1
+    by = dict(sorted((by or {}).items()))
+    return dict(built_at=summ.get('built_at'), papers=summ.get('papers', sum(by.values())), by_reason=by,
+                final=summ.get('final'), not_final=summ.get('not_final'))
 
 
 def next_id(day):
@@ -201,6 +224,7 @@ def make(a):
                                           before=(reg or {}).get('before'), allowed=bool(a.allow_swings),
                                           identical_to_before={s: r.get('identical') for s, r in ((reg or {}).get('schools') or {}).items()})),
                counts=counts, upstream=upstream(),
+               ledger={s: ledger_counts(tmp / 'hierarchy' / s) for s in P.SCHOOL_IDS},  # docs/UNAVAILABLE.md (2026-10-30)
                ids=({k: v for k, v in json.loads((tmp / 'hierarchy/ids/IDS-REPORT.json').read_text()).items() if k != 'conflicts'}
                     if (tmp / 'hierarchy/ids/IDS-REPORT.json').exists() else None),  # tools/atlas_ids.py, docs/IDS.md
                layout='paths mirror the working root (hierarchy/, census/, periods/, docs/); hierarchy/<school>/ holds the packages',

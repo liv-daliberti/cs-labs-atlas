@@ -10,13 +10,18 @@
       students.csv                  the lab's students: atlas_id (atl:p:), name, id (the package's record id), roles, years,
                                     relation types, sources, linked lab papers, also_pi (lab ids where the person is a PI)
       papers.csv                    the lab's papers: atlas_work_id (atl:w:), year, title, venue, type, DOI, OpenAlex id, students on it, and the
-                                    local PDF (the file in papers/, or the copy status and reason when there is none)
+                                    local PDF (the file in papers/, or the copy status and reason when there is none):
+                                    copy_status ('local', else the copies.json status), unavailable_reason and
+                                    unavailable_summary (the unavailability ledger's reason_code and summary,
+                                    docs/UNAVAILABLE.md; empty for local papers and papers the ledger has no record of)
       papers/<year>_<title>_<id>.pdf  a HARDLINK to the stored copy (homogenizing-science/data/fulltext/<school>/objects or
                                     cs-atlas-fulltext/stanford/objects): no extra bytes, and a paper in two labs is in both
 
 Inputs, read-only, from a dated release (since 2026-10-29; tools/make_release.py; default releases/latest):
 <release>/hierarchy/<school>/{pis,students}.json, {lab,student}_papers.jsonl.gz, copies.json (which catalog work holds
-each paper's copy, from tools/lab_paper_copies.py) and <release>/hierarchy/zero-paper-labs.json for hidden-lab reasons;
+each paper's copy, from tools/lab_paper_copies.py, with the ledger's unavailable_reason / unavailable_summary on non-local
+papers; <school>/unavailable.jsonl.gz next to it fills them for a copies.json written before attach_ledger) and
+<release>/hierarchy/zero-paper-labs.json for hidden-lab reasons;
 plus the school's catalog.sqlite (the stored file of that work). With --fresh-copies the copies come from the working
 hierarchy/<school>/copies.json instead (rerun tools/lab_paper_copies.py first), so PDFs the collectors fetched since the
 release are linked; the lab and paper lists still come from the release. school.json records the release id and the
@@ -87,6 +92,32 @@ def link(src, dst):
         return f'link_failed:{e.errno}'
 
 
+LOCAL = ('downloaded', 'fulltext_xml')  # as tools/lab_paper_copies.py
+
+
+def ledger(d):
+    """{paper key: (reason_code, summary)} from <d>/unavailable.jsonl.gz (docs/UNAVAILABLE.md), {} without one."""
+    out = {}
+    if (d / 'unavailable.jsonl.gz').exists():
+        with gzip.open(d / 'unavailable.jsonl.gz', 'rt') as f:
+            for l in f:
+                if l.strip():
+                    r = json.loads(l); out[r.get('key')] = (r.get('reason_code'), r.get('summary'))
+    return out
+
+
+def unavailable(c, led, k):
+    """(copy_status, unavailable_reason, unavailable_summary) of one paper: copies.json's own fields first, else the ledger's
+    record; the reason columns are empty for a local paper."""
+    st = c.get('status') or 'not_in_catalog'
+    if st in LOCAL:
+        return 'local', '', ''
+    if c.get('unavailable_reason'):
+        return st, c['unavailable_reason'], c.get('unavailable_summary') or ''
+    r = led.get(k) or ('', '')
+    return st, r[0] or '', r[1] or ''
+
+
 def write_csv(path, rows, cols):
     tmp = path.with_suffix('.csv.part')
     with open(tmp, 'w', newline='', encoding='utf-8') as f:
@@ -111,7 +142,9 @@ def build(school, hidden):
         r = json.loads(l)
         sp[(r['pi'], r.get('work') or r.get('oa'))].append(r.get('name') or r['student'])
         sp_by_student[(r['pi'], r['student'])] += 1
-    copies = json.loads(((P.HIERARCHY / school if RELEASE['copies'] != 'release' else D) / 'copies.json').read_text())['papers']
+    cdir = P.HIERARCHY / school if RELEASE['copies'] != 'release' else D
+    copies = json.loads((cdir / 'copies.json').read_text())['papers']
+    led = ledger(cdir)  # the unavailability ledger next to that copies.json (2026-10-30)
     files = stored_files(school)
     sdir = OUT / school; (sdir / 'labs').mkdir(parents=True, exist_ok=True)
     n = defaultdict(int); labs = []
@@ -120,6 +153,7 @@ def build(school, hidden):
         rows, want = [], set()
         for r in sorted(lp[p['pi']], key=lambda r: (str(r.get('year') or ''), r.get('title') or '')):
             k = r.get('work') or r.get('oa'); c = copies.get(k) or {}
+            cst, ureason, usummary = unavailable(c, led, k)
             src = files.get(c.get('catalog')) if c.get('status') == 'downloaded' else None
             name = f"{r.get('year') or 'nd'}_{slug(r.get('title') or 'untitled', 60)}_{short_id(r)}.pdf"
             res = link(src, ldir / 'papers' / name) if src else None
@@ -130,14 +164,14 @@ def build(school, hidden):
             row = dict(atlas_work_id=r.get('atlasWorkId'), year=r.get('year'), title=r.get('title'), venue=r.get('venue'), type=r.get('type'), doi=r.get('doi'),
                        openalex=r.get('oa'), work=r.get('work'), students='; '.join(sorted(set(sp[(p['pi'], k)]))),
                        n_students=len(set(sp[(p['pi'], k)])), pdf=f'papers/{name}' if name in want else '',
-                       copy_status=c.get('status') or 'not_in_catalog',
+                       copy_status=cst, unavailable_reason=ureason, unavailable_summary=usummary,
                        landing=r.get('landing'), appointment=json.dumps(r.get('appointment'), ensure_ascii=False))
             rows.append(row)
         for f in (ldir / 'papers').iterdir():  # stale links: only this tree's own files
             if f.suffix == '.pdf' and f.name not in want:
                 f.unlink(); n['pdfs_unlinked_stale'] += 1
         write_csv(ldir / 'papers.csv', rows, ['atlas_work_id', 'year', 'title', 'venue', 'type', 'doi', 'openalex', 'work', 'students', 'n_students',
-                                                'pdf', 'copy_status', 'landing', 'appointment'])
+                                                'pdf', 'copy_status', 'unavailable_reason', 'unavailable_summary', 'landing', 'appointment'])
         srows = []
         for s in sorted(stu.get(p['pi']) or [], key=lambda s: s['name']):
             rel = s.get('relations') or []

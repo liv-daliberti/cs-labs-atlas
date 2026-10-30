@@ -1,0 +1,27 @@
+{
+ "source": "synthetic (2026-10-30): one school's copies.json and unavailability ledger (docs/UNAVAILABLE.md) for tests/test_unavailable_ledger.py",
+ "copies": {
+  "summary": {"school": "princeton", "lab_papers": 4, "local": 1, "needs_access_review": 1, "not_in_catalog": 1, "queued": 1, "local_share": 0.25},
+  "papers": {
+   "W1": {"status": "downloaded", "catalog": "c1", "doi": "10.1/one", "oa": "https://openalex.org/W1", "year": 2020},
+   "W2": {"status": "needs_access_review", "catalog": "c2", "doi": "10.1109/two", "oa": "https://openalex.org/W2", "year": 2021,
+          "access_cause": "paywall_or_forbidden"},
+   "W3": {"status": "not_in_catalog", "catalog": null, "doi": null, "oa": "https://openalex.org/W3", "year": 2022},
+   "W4": {"status": "queued", "catalog": "c4", "doi": "10.1145/four", "oa": "https://openalex.org/W4", "year": 2023}
+  }
+ },
+ "ledger": [
+  {"key": "W1", "school": "princeton", "status": "needs_access_review", "reason_code": "paywall_only", "final": true,
+   "summary": "Stale row: the paper has a local copy now.", "checks": [], "missing_checks": [], "attempts": []},
+  {"key": "W2", "school": "princeton", "status": "needs_access_review", "reason_code": "paywall_only", "final": true,
+   "summary": "Listed open at IEEE, but every URL tried answered 403.", "publisher": "IEEE", "checks": [], "missing_checks": [],
+   "attempts": [{"url": "https://ieeexplore.ieee.org/x", "at": "2026-10-30T00:00:00Z", "status": 403, "cause": "paywall_or_forbidden"}]},
+  {"key": "W3", "school": "princeton", "status": "not_in_catalog", "reason_code": "no_doi_no_match", "final": true,
+   "summary": "No DOI, and no source matched the title.", "checks": [], "missing_checks": [], "attempts": []},
+  {"key": "W4", "school": "princeton", "status": "queued", "reason_code": "incomplete_check", "final": false,
+   "summary": "CORE not checked yet.", "checks": [], "missing_checks": ["core"], "attempts": []}
+ ],
+ "ledger_summary": {"school": "princeton", "built_at": "2026-10-30T12:00:00Z", "inputs": {}, "papers": 4,
+                    "by_reason": {"paywall_only": 2, "no_doi_no_match": 1, "incomplete_check": 1},
+                    "by_publisher": {}, "by_reason_publisher": {}, "final": 3, "not_final": 1, "max_age_days": 30}
+}

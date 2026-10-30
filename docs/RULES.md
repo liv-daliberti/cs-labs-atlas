@@ -355,6 +355,21 @@ given name (`resolved.by = labmate_coauthor`).
 `names_pi: false`) as `student_relation_student_only`, and such a link as `link_relation_source_student_only`, each with
 its whitelisted count: the page names the student, the adviser rests on the collection's advising context.
 
+### R-AUD-10 (2026-10-30, owner) — every missing copy has a recorded reason
+Every CS lab paper without a local full-text copy carries a recorded reason why there is none, resting on dated checks of
+every applicable open source and on every download attempt ("show that we definitely tried, and that there is a firm
+reason why it can't be done"): the unavailability ledger, `fulltext-push/unavailable_ledger.py` (rebuild stage `ledger`,
+after `copies`, before the audits and `evidence`; released and onboarding schools) ->
+`hierarchy/<school>/unavailable.jsonl.gz` (one record per non-local paper: exactly one `reason_code`, its `summary`, the
+checks, the attempts) and `unavailable-summary.json`; `tools/lab_paper_copies.py` `attach_ledger` puts `unavailable_reason`
+and `unavailable_summary` on the paper in `copies.json`. The release carries both files and `MANIFEST.json` `ledger` the
+counts by `reason_code`; the organized tree's `papers.csv` has `copy_status`, `unavailable_reason`, `unavailable_summary`.
+`tools/evidence_check.py` fails the build on `unavailable_missing` (a non-local paper without a record), `unavailable_stale`
+(a record checked before the school's `lab_papers.jsonl.gz` or `copies.json` `counted_at`, 300 s tolerance) and
+`unavailable_incomplete` (`incomplete_check`) over their whitelisted counts; `tools/build_regression.py` flags a reason
+count moving more than 25% and by 20+. The standard (sources, reason codes and their order, record schema):
+`docs/UNAVAILABLE.md`.
+
 ## Atlas ids
 
 ### R-ID-01 (2026-10-29, owner) — one scheme

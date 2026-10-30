@@ -4,7 +4,8 @@
 # one channel (one API key, one arXiv-bulk listing, one set of hosts) never runs twice at once.
 # usage: run_steps.sh <school> <step> [<step> ...]   log -> logs/steps-<school>.log
 cd "$(dirname "$0")"
-PY="/usr/local/anaconda3/2024.02/bin/python -I -u"
+# FTP_PY: another interpreter (2026-10-30: compute nodes have no /usr/local/anaconda3; Slurm jobs pass the project env)
+PY="${FTP_PY:-/usr/local/anaconda3/2024.02/bin/python} -I -u"
 school=$1; shift
 for step in "$@"; do
   (
