@@ -17,7 +17,7 @@ accept    the earliest stated faculty start year; a closed range or 'until'/'lef
 gaps      dated Wayback captures for a PI's listing gap years (see gaps()); closes the gap with a reviewed period
 usage: periods_school.py fetch|extract|gaps <key>
 """
-import collections, json, re, sys, time, zlib
+import collections, json, re, sys, zlib
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
