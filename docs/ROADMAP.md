@@ -11,7 +11,7 @@ Status: `open` · `in progress (<who>)` · `done <date> <commit>` · `queued (af
 |---|---|---|---|
 | 0 | Stable-ID re-run fix (`tools/atlas_ids.py`) | done 2026-10-30 (Slurm 32032541: two runs identical, 0 person/work diffs vs release; 37 ambiguous anchors held out) | two consecutive real-data runs give identical ids; test added; committed |
 | L | Per-paper unavailability ledger, as a standard | in progress (downloads agent) | every non-local lab paper has a reason code built from recorded checks; `ledger` step in rebuild.sh; build gate; `docs/UNAVAILABLE.md`; 20 hand-checked entries |
-| M | Michigan through stages 0–9; stage 10 prepared | in progress (Michigan agent) | stage gates pass or report their blockers; protocol updated; release steps listed |
+| M | Michigan through stages 0–9; stage 10 prepared | blocked at stage 6 (owner decision), 2026-10-30 dc307d6: stages 0–5 pass; stage 6 fails with 117/288 labs having students once allowed sources are exhausted; stage 7 measured (14,149 lab papers, 278 labs); stage 8 prepared, not submitted | stage gates pass or report their blockers; protocol updated; release steps listed |
 | R | Copy recovery toward 85% | in progress (downloads agent) | measured before/after per school; ceiling under the no-paywall rule stated |
 | LP | Lab-page audit, all 7 schools (owner 2026-10-30) | in progress (lab-page agent) | every PI lab has a lab_page record (found, or none_found with a reason); students incl. alumni and pubs-page papers audited against the build with a reason per gap; additions proposed with evidence; `docs/LAB-PAGES.md`; a gate in the protocol |
 
