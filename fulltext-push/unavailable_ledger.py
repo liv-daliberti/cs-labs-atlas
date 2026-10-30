@@ -1024,6 +1024,10 @@ def run(schools, max_age, offline, only=None, skip=()):
     by_school = {}
     for s in schools:
         t0 = time.time()
+        if not (F.SCHOOLS / 'hierarchy' / s / 'copies.json').exists():  # an onboarding school before its first copies stage
+            sys.path.insert(0, str(F.SCHOOLS / 'tools'))
+            import lab_paper_copies
+            lab_paper_copies.run(s)
         ps = load_school(s)
         if only:
             ps = {k: v for k, v in ps.items() if k == only}
