@@ -55,6 +55,7 @@ jobs:
           # each failing test as an annotation (visible on the run page and through the public API)
           grep -E '^(FAILED|ERROR) ' "$RUNNER_TEMP/pytest.log" | cut -c1-300 | sed 's/^/::error title=pytest::/' || true
           grep -E '^E   ' "$RUNNER_TEMP/pytest.log" | head -20 | cut -c1-300 | sed 's/^/::warning title=pytest detail::/' || true
+          if [ $rc != 0 ]; then tail -25 "$RUNNER_TEMP/pytest.log" | cut -c1-300 | sed 's/^/::notice title=pytest tail::/'; fi
           exit $rc
       - name: Charters (school_config.check on every charter)
         if: ${{ !cancelled() && steps.detect.outputs.code == 'true' }}  # runs even when an earlier check failed
