@@ -41,7 +41,10 @@ import atlas_paths as P  # noqa: E402
 EXTRAS = HERE.parent / 'docs' / 'relocation' / 'map-extra.tsv'
 KINDS = ('rename', 'split', 'pool', 'keep', 'alias', 'stale-link', 'skip')
 REF = re.compile(r'/n/fs/resemble(?:/[A-Za-z0-9._+@=,\-]+)+')
-REWRITE_EXCLUDE = ('tools/atlas_paths.py', 'tools/relocate_project.py', 'tests/test_relocate_project.py',
+# vendor/ keeps its provenance headers (source paths as they were; vendor_sync.py checks the bytes), and the
+# relocation docs and tools that hold old paths on purpose
+REWRITE_EXCLUDE_DIRS = ('vendor/', 'docs/relocation/')
+REWRITE_EXCLUDE = ('tools/atlas_paths.py', 'tools/relocate_project.py', 'tests/test_relocate_project.py', 'tools/route_paths.py', 'tools/vendor_sync.py', 'tests/test_vendor_and_paths.py',
                    'tests/test_atlas_paths.py', 'docs/relocation/map-extra.tsv')  # they hold the old paths on purpose
 MAX_TEXT = 5 * 1024 * 1024
 
@@ -329,7 +332,7 @@ def text_files(repo, extra=(), exclude=()):
     r = subprocess.run(['git', '-C', str(repo), 'ls-files', '-z'], stdout=subprocess.PIPE, check=True)
     names = [n.decode() for n in r.stdout.split(b'\0') if n]
     out = [(n, Path(repo) / n) for n in names
-           if n not in REWRITE_EXCLUDE and not any(fnmatch.fnmatch(n, g) for g in exclude)]
+           if n not in REWRITE_EXCLUDE and not n.startswith(REWRITE_EXCLUDE_DIRS) and not any(fnmatch.fnmatch(n, g) for g in exclude)]
     out += [(str(f), Path(f)) for f in extra]
     return out
 

@@ -48,19 +48,19 @@ jobs:
         if: steps.detect.outputs.code == 'true'
         run: ruff check . --output-format=github
       - name: Tests (fixtures only)
-        if: steps.detect.outputs.code == 'true'
+        if: ${{ !cancelled() && steps.detect.outputs.code == 'true' }}  # runs even when an earlier check failed
         run: python -m pytest -m "not nfs"
       - name: Charters (school_config.check on every charter)
-        if: steps.detect.outputs.code == 'true'
+        if: ${{ !cancelled() && steps.detect.outputs.code == 'true' }}  # runs even when an earlier check failed
         run: python tools/school_config.py --check
       - name: Vendored code matches its provenance
-        if: steps.detect.outputs.code == 'true'
+        if: ${{ !cancelled() && steps.detect.outputs.code == 'true' }}  # runs even when an earlier check failed
         run: python tools/vendor_sync.py check --no-sources
       - name: No hardcoded project paths in code
-        if: steps.detect.outputs.code == 'true'
+        if: ${{ !cancelled() && steps.detect.outputs.code == 'true' }}  # runs even when an earlier check failed
         run: python tools/route_paths.py check | grep -v '^note' || true; python tools/route_paths.py check > /dev/null
       - name: Secret scan over the pushed or proposed commits
-        if: steps.detect.outputs.code == 'true'
+        if: ${{ !cancelled() && steps.detect.outputs.code == 'true' }}  # runs even when an earlier check failed
         env:
           SCAN_EMAIL_SHA256: ${{ secrets.SCAN_EMAIL_SHA256 }}   # optional repository secret: the owner's address hash
           BASE: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
