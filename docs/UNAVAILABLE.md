@@ -27,8 +27,9 @@ Catalogs (`stores/<school>/catalog.sqlite`) are read only, in short chunks; noth
 ## The checks store (every channel logs its negatives)
 
 `fulltext-push/checks/<school>.sqlite`, table `checks(id, school, paper_key, work_id, channel, at, query, result, detail)`;
-`result` is `found`, `none`, `error` or `not_applicable`; `detail` is JSON text. Every step of
-`fulltext-push/lab_channels.py` appends one row per paper it examined (`fulltext-push/checks.py record`), committed in
+`result` is `found`, `none`, `error` or `not_applicable`; `detail` is JSON text. Every discovery channel (a plugin in
+`fulltext-push/channels/`, run by `fulltext-push/channel_runner.py`; docs/CHANNELS.md) appends one row per paper it
+examined (`fulltext-push/checks.py record`), committed in
 batches of at most 200 rows with a busy timeout, so steps of different channels can write at once. The ledger writes its
 own checks to the same table, and reuses any check of a channel younger than `--max-age-days` instead of asking again;
 only stale or missing checks are asked. The store is outside the full-text stores (the collectors and the Michigan

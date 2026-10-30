@@ -45,7 +45,7 @@ Candidates go straight into data/fulltext/<school>/catalog.sqlite (CMU, EPFL, MI
 discovery/claude-<school>-labpapers/evidence/), for Princeton into a discovery package
 data/fulltext/princeton/discovery/claude-labpapers-<step>-<stamp>/ (cs_open_copies format) for its import path.
 Counts -> fulltext-push/logs/channels.jsonl.
-usage: lab_channels.py <school> <step> [<step> ...] [--dry]
+usage: lab_channels.py <school> <step> [<step> ...] [--dry]   (runs channel_runner.py: each step is the plugin channels/<step>.py)
 """
 import html, json, re, sqlite3, sys, time
 from collections import Counter, defaultdict
@@ -724,8 +724,9 @@ STEPS.update(dblp_ee=step_dblp_ee, oa_refresh=step_oa_refresh, oa_editions=step_
 
 # ---------------------------------------------------------------- negatives (2026-10-30, owner; docs/UNAVAILABLE.md)
 # Every step records one check per paper it examined into fulltext-push/checks/<school>.sqlite (checks.py): 'found' with
-# the URLs it produced, else 'none'. A paper is examined when it is in the step's scope below (the query names what was
-# asked); a step that stopped early on a budget or on repeated failures records 'error' for the papers it did not find.
+# the URLs it produced, else 'none' (channels/legacy.py turns a step's outcome into Results; channel_runner.py records
+# them). A paper is examined when it is in the step's scope below (the query names what was asked); a step that stopped
+# early on a budget or on repeated failures records 'error' for the papers it did not find.
 _ARX = lambda k: has_arxiv(k)
 _DOI = lambda r: F.ndoi(r.get('doi'))
 _T = lambda r: r.get('title') if len(F.nt(r.get('title'))) >= 20 else None
@@ -755,35 +756,6 @@ SCOPE = dict(
     infoscience=lambda s, r, k: any('infoscience.epfl.ch' in u for u in k) and 'Infoscience REST files of the known handles',
     dspace=lambda s, r, k: any(re.search(r'hdl\.handle\.net/1721\.1/|dspace\.mit\.edu', u) for u in k) and 'DSpace@MIT files of the known handles',
 )
-STOPPED = ('openalex_budget_stop', 's2_title_stopped_after_failures')
-
-
-def record_checks(school, step, miss, known, before, rows, n):
-    import checks
-    found = defaultdict(list)
-    for x in rows:
-        found[x['work_id']].append(x['url'])
-    for _, w in miss:
-        grown = known[w] - before[w]
-        if grown:
-            found[w] += sorted(grown)
-    scope = SCOPE.get(step)
-    stopped = any(n.get(k) for k in STOPPED)
-    out, at = [], F.now()
-    for r, w in miss:
-        try:
-            q = scope(school, r, before[w]) if scope else f'{step}'
-        except Exception:
-            q = None
-        if not q:
-            continue
-        res = 'found' if found.get(w) else ('error' if stopped else 'none')
-        out.append(dict(paper_key=r['work'] or r['oa'], work_id=w, channel=step, at=at, query=q, result=res,
-                        detail=dict(urls=list(dict.fromkeys(found[w]))[:5]) if found.get(w) else (dict(stopped=True) if stopped else None)))
-    try:
-        n['checks_recorded'] = checks.record(school, out)
-    except Exception as e:  # the checks store must never cost a step its candidates
-        n['checks_record_failed'] = str(e)[:200]
 
 
 def write(school, rows, step, ev_dir=None, dry=False):
@@ -808,29 +780,10 @@ def write(school, rows, step, ev_dir=None, dry=False):
 
 
 def main():
-    args = [a for a in sys.argv[1:] if not a.startswith('--')]
-    dry = '--dry' in sys.argv
-    if dry:
-        import labpage_channel
-        labpage_channel.DRY = True
-    school, steps = args[0], args[1:]
-    F.load_env()
-    miss, known, base = plan_for(school)
-    for step in steps:
-        n = Counter()
-        t0 = time.time()
-        before = {w: set(known[w]) for _, w in miss}
-        rows = STEPS[step](school, miss, known, n)
-        if not dry:
-            record_checks(school, step, miss, known, before, rows, n)
-        rows = new_rows(rows, known)
-        added = write(school, rows, step, dry=dry)
-        rec = dict(at=F.now(), school=school, step=step, missing_in_catalog=len(miss), rows=len(rows), works=len({r['work_id'] for r in rows}),
-                   candidates_added=added + n.pop('candidates_added', 0), seconds=round(time.time() - t0), dry=dry, **n)
-        print(json.dumps(rec), flush=True)
-        if not dry:
-            with open(HERE / 'logs' / 'channels.jsonl', 'a') as f:
-                f.write(json.dumps(rec) + '\n')
+    """Since 2026-10-30 a thin wrapper: every step runs as a channel plugin (channels/<step>.py) through the one runner
+    (channel_runner.py: known-URL filtering, candidate writes, the per-paper checks, the channels.jsonl line)."""
+    import channel_runner
+    channel_runner.main(sys.argv[1:])
 
 
 if __name__ == '__main__':
