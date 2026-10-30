@@ -65,3 +65,13 @@ oa_editions, s2_title. Their bodies still live in `lab_channels.py` (`step_<name
 `lab_channels.SCOPE[name]` as `APPLIES`. Old and new produce identical candidates: CMU dry runs on 2026-10-30, with the
 works' known URLs and with none (proceedings 13 = 13 rows, dblp_ee 23 = 23, labpages 202 = 202, openalex 2,081 = 2,081,
 oa_arxiv 3 = 3). Moving a body into its module is the next step per channel; the interface does not change.
+
+## Native channels (written for the interface, 2026-10-30)
+
+- `arxiv_loose`: arXiv versions posted under a different title, from the local arXiv OAI index: title similarity
+  >= 0.80 and word Jaccard >= 0.55, the same author set (every byline family among the record's authors; long bylines:
+  6 of the first 8 and every PI; one- or two-name bylines: also the same first author), first version 3 years before to
+  1 year after, and no near-tie with another record. Validated on a hand-checked sample before its first write
+  (fulltext-push/review-20261030/arxiv-loose-sample.json).
+- `ledger_found`: the open copies the unavailability ledger's checks found that are not candidates yet
+  (`new_open_urls` in `hierarchy/<school>/unavailable.jsonl.gz`).
