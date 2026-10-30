@@ -45,7 +45,11 @@ ATLAS = SITE_ROOT / 'atlas'
 ORDER = list(AP.SCHOOL_IDS)  # display order; any other built school follows
 SCHOOLS = [s for s in ORDER if (H / s / 'pis.json').exists()] + sorted(
     d.name for d in H.iterdir() if d.is_dir() and d.name not in ORDER and (d / 'pis.json').exists())
-OWNER_EMAIL_SHA256 = '3d295a08f3a63465645d9d4e99fbe34f11aa0622bbf29a754e0b23cb4263aacf'  # the owner's address, kept out of the code itself
+# The owner's address is recognized by its sha256, which is kept OUT of the repository (2026-10-30: the repository is
+# public; a bare sha256 of an address is easy to reverse): ~/.config/cs-atlas/scan-hashes.txt, as secret_scan.py reads it.
+OWNER_EMAIL_HASHES = frozenset(
+    l.split()[0].lower() for f in [Path(os.environ.get('CS_ATLAS_CONFIG', Path.home() / '.config/cs-atlas')) / 'scan-hashes.txt']
+    if f.exists() for l in f.read_text().splitlines() if l.strip() and not l.startswith('#'))
 PLACEHOLDER_EMAIL = 'you@example.org'
 MAX_FILE = 50 * 1024 * 1024
 SHARD_AT = 45 * 1024 * 1024
@@ -124,7 +128,7 @@ RED = collections.Counter()
 
 
 def is_owner(e):
-    return hashlib.sha256(e.strip().lower().encode()).hexdigest() == OWNER_EMAIL_SHA256
+    return hashlib.sha256(e.strip().lower().encode()).hexdigest() in OWNER_EMAIL_HASHES
 
 
 def _phone_ok(m):
@@ -687,11 +691,12 @@ def scrub_code(s):
 
 
 def export_code(repo):
+    """The code copy. Every file is scrubbed, then the whole copy goes through the secret scan (tools/secret_scan.py:
+    the ~/.config/cs-atlas key values, token shapes, the listed address hashes, as addresses or written out) BEFORE
+    anything is written; one finding stops the export (2026-10-30: a hash constant once went out this way)."""
+    import secret_scan
     stats = collections.Counter()
-    old = repo / 'code'
-    for sub in ('claude-schools-20261021', 'princeton-live-20261015'):
-        if (old / sub).exists():
-            shutil.rmtree(old / sub)
+    files = []
     for t, rel in code_files():
         try:
             s = t.decode()
@@ -700,7 +705,18 @@ def export_code(repo):
         n0 = sum(RED.values())
         s = scrub_code(s)  # e-mails only (owner -> placeholder); paths stay as written: they document the original layout
         stats['files'] += 1; stats['files_redacted'] += sum(RED.values()) > n0
-        write_bytes(repo, rel, s.encode())
+        files.append((rel, s.encode()))
+    vals, hs = secret_scan.env_values(), secret_scan.hashes([])
+    found = [f for rel, b in files for f in secret_scan.scan_bytes(rel, b, vals, hs)]
+    if found:
+        raise SystemExit('export_code: the secret scan found ' + '; '.join(f'{k}: {f}:{ln}' for f, ln, k in found[:20])
+                         + ' -- nothing was written')
+    old = repo / 'code'
+    for sub in ('claude-schools-20261021', 'princeton-live-20261015'):
+        if (old / sub).exists():
+            shutil.rmtree(old / sub)
+    for rel, b in files:
+        write_bytes(repo, rel, b)
     return dict(stats, commit=CODE['commit'], uncommitted_tracked_changes_not_exported=CODE['uncommitted_tracked_changes'])
 
 
