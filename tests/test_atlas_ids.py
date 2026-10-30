@@ -2,7 +2,6 @@
 the owner named on 2026-10-29 (Griffiths Berkeley -> Princeton, Jason Lee Princeton -> Berkeley; Dimakis, Mung Chiang and
 Yuxin Chen each have one atlas school). Identifiers below are the real ones from the 2026-10-29 packages."""
 import gzip, json, sqlite3, zlib
-import pytest
 
 import atlas_ids as A
 
@@ -187,3 +186,24 @@ def test_normalizers():
     assert A.norm_orcid('https://orcid.org/0000-0003-0064-780x') == '0000-0003-0064-780X'
     assert A.compatible('Tom Griffiths', 'Thomas L. Griffiths', A.__dict__.get('nick') or (lambda a, b: {a, b} == {'tom', 'thomas'}))
     assert not A.compatible('Y. Chen', 'Yuxin Chen')
+
+
+def test_rows_sharing_one_openalex_record_stay_stable(tmp_path):
+    """Two rows of one lab behind one OpenAlex record (two Zenodo versions DOI-resolved to W7): the shared anchor is
+    ambiguous, so a second build neither merges nor re-mints them (the 2026-10-29 real-data re-run found 37 such pairs)."""
+    fx = fixture()
+    fx['princeton']['papers'] += [paper('Mung Chiang', 'https://openalex.org/W7', doi='10.5281/zenodo.71', work='paper_a'),
+                                  paper('Mung Chiang', 'https://openalex.org/W7', doi='10.5281/zenodo.72', work='paper_b')]
+    write(tmp_path / 'a', fx)
+    db = A.open_registry(tmp_path / 'r.sqlite', seed=False)
+    one = A.run(['berkeley', 'princeton'], tmp_path / 'a', db, today='2026-10-29', write=False)['work_of']
+    two = A.run(['berkeley', 'princeton'], tmp_path / 'a', db, today='2026-10-30', write=False)['work_of']
+    assert one == two
+    assert db.execute("select count(*) from ids where status='redirect'").fetchone()[0] == 0
+    rows = [k for k in one if k[0] == 'princeton']
+    w7 = [one[k] for k in rows if k[1] >= len(fx['princeton']['papers']) - 2]
+    assert len(set(w7)) == 2
+    write(tmp_path / 'b', fx, reverse=True)
+    db2 = A.open_registry(tmp_path / 'r2.sqlite', seed=False)
+    rev = A.run(['berkeley', 'princeton'], tmp_path / 'b', db2, today='2026-10-29', write=False)['work_of']
+    assert sorted(set(one.values())) == sorted(set(rev.values()))

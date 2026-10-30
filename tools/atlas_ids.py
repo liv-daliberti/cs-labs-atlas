@@ -219,18 +219,32 @@ def assign(db, kind, prefix, comps, today, stats):
     """comps: {component key: sorted list of (rank, anchor string)}. Returns {component key: id}. Deterministic: components are
     processed in the order of their strongest anchor; a registry hit wins; several hits merge into the earliest issued."""
     out = {}
-    owner = {}  # id -> component that holds the id's minted_from anchor (keeps the id when two components claim it)
     taken = set()
-    order = sorted(comps, key=lambda c: comps[c][0])
+    # an anchor held by two components (two rows of one lab the builder keeps apart behind one OpenAlex record; a join
+    # refused for differing family names) is ambiguous: it never finds or merges ids, and it is never registered; it is
+    # used only to recognise the id that was minted from it
+    cnt = collections.Counter(a for c in comps for _, a in comps[c])
+    amb = {a for a, n in cnt.items() if n > 1}
+    stats['ambiguous_anchors'] += len(amb)
+    order = sorted(comps, key=lambda c: (comps[c], str(c)))
     claims = collections.defaultdict(list)
+    issued = lambda i: (db.execute('select issued from ids where id=?', (i,)).fetchone() or ('9',))[0] + i
     for c in order:
-        anchors = [a for _, a in comps[c]]
+        own = [a for _, a in comps[c] if a not in amb]
         hits = set()
-        for a in anchors:
+        for a in own:
             row = db.execute('select id from anchors where anchor=?', (a,)).fetchone()
             if row:
                 hits.add(resolve(db, row[0]))
-        hits = sorted(hits, key=lambda i: (db.execute('select issued from ids where id=?', (i,)).fetchone() or ('9',))[0] + i)
+        if not hits:
+            mine = {a for _, a in comps[c]}
+            for a in mine & amb:
+                row = db.execute('select id from anchors where anchor=?', (a,)).fetchone()
+                if row:
+                    i = resolve(db, row[0]); mf = db.execute('select minted_from from ids where id=?', (i,)).fetchone()
+                    if mf and mf[0] in mine:
+                        hits.add(i)
+        hits = sorted(hits, key=issued)
         if hits:
             keep = hits[0]
             for other in hits[1:]:
@@ -239,7 +253,7 @@ def assign(db, kind, prefix, comps, today, stats):
                 stats['redirects_new'] += 1
             claims[keep].append(c)
         else:
-            out[c] = mint(db, prefix, anchors[0], kind, today, taken); stats['minted'] += 1
+            out[c] = mint(db, prefix, (own or [a for _, a in comps[c]])[0], kind, today, taken); stats['minted'] += 1
     for i, cs in claims.items():  # one id claimed by several components (an entity that the data now splits)
         if len(cs) == 1:
             out[cs[0]] = i; stats['reused'] += 1; continue
@@ -249,9 +263,11 @@ def assign(db, kind, prefix, comps, today, stats):
             if c == keeper:
                 out[c] = i; stats['reused'] += 1
             else:
-                out[c] = mint(db, prefix, comps[c][0][1], kind, today, taken); stats['split_minted'] += 1
+                out[c] = mint(db, prefix, ([a for _, a in comps[c] if a not in amb] or [comps[c][0][1]])[0], kind, today, taken); stats['split_minted'] += 1
     for c, i in out.items():
         for _, a in comps[c]:
+            if a in amb:
+                continue
             row = db.execute('select id from anchors where anchor=?', (a,)).fetchone()
             if row is None:
                 db.execute('insert into anchors (anchor, id, kind, first_seen) values (?,?,?,?)', (a, i, kind, today))

@@ -9,7 +9,7 @@ Status: `open` · `in progress (<who>)` · `done <date> <commit>` · `queued (af
 
 | # | Item | Status | Done when |
 |---|---|---|---|
-| 0 | Stable-ID re-run fix (`tools/atlas_ids.py`) | in progress (coordinator) | two consecutive real-data runs give identical ids; test added; committed |
+| 0 | Stable-ID re-run fix (`tools/atlas_ids.py`) | done 2026-10-30 (Slurm 32032541: two runs identical, 0 person/work diffs vs release; 37 ambiguous anchors held out) | two consecutive real-data runs give identical ids; test added; committed |
 | L | Per-paper unavailability ledger, as a standard | in progress (downloads agent) | every non-local lab paper has a reason code built from recorded checks; `ledger` step in rebuild.sh; build gate; `docs/UNAVAILABLE.md`; 20 hand-checked entries |
 | M | Michigan through stages 0–9; stage 10 prepared | in progress (Michigan agent) | stage gates pass or report their blockers; protocol updated; release steps listed |
 | R | Copy recovery toward 85% | in progress (downloads agent) | measured before/after per school; ceiling under the no-paywall rule stated |
