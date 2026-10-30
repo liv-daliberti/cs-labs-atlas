@@ -18,7 +18,7 @@ jobs:
     timeout-minutes: 30
     defaults:
       run:
-        shell: bash -el {0}
+        shell: bash -e {0}   # not a login shell: the job uses the env by its path ($ATLAS/bin), never conda's base
     env:
       CS_ATLAS_CI: "1"                          # tests marked nfs (they need the project data) are skipped
       CS_ATLAS_CODE: ${{ github.workspace }}    # every code-relative path is this checkout
@@ -41,17 +41,18 @@ jobs:
       - name: Create the env from the lock
         if: steps.detect.outputs.code == 'true'
         run: |
-          conda create --yes --quiet --override-channels -c conda-forge -p "$RUNNER_TEMP/atlas" --file env/conda-linux-64.lock
+          "$CONDA/bin/conda" create --yes --quiet --override-channels -c conda-forge -p "$RUNNER_TEMP/atlas" --file env/conda-linux-64.lock
           "$RUNNER_TEMP/atlas/bin/python" -m pip install --no-deps --no-build-isolation -q -e .
-          echo "$RUNNER_TEMP/atlas/bin" >> "$GITHUB_PATH"
+          echo "ATLAS=$RUNNER_TEMP/atlas" >> "$GITHUB_ENV"
       - name: ruff
         if: steps.detect.outputs.code == 'true'
-        run: ruff check . --output-format=github
+        run: |
+          "$ATLAS/bin/ruff" check . --output-format=github
       - name: Tests (fixtures only)
         if: ${{ !cancelled() && steps.detect.outputs.code == 'true' }}  # runs even when an earlier check failed
         run: |
           set -o pipefail
-          rc=0; python -m pytest -m "not nfs" -rfE 2>&1 | tee "$RUNNER_TEMP/pytest.log" || rc=$?   # the shell runs with -e
+          rc=0; "$ATLAS/bin/python" -m pytest -m "not nfs" -rfE 2>&1 | tee "$RUNNER_TEMP/pytest.log" || rc=$?   # the shell runs with -e
           # each failing test as an annotation (visible on the run page and through the public API)
           grep -E '^(FAILED|ERROR) ' "$RUNNER_TEMP/pytest.log" | cut -c1-300 | sed 's/^/::error title=pytest::/' || true
           grep -E '^E   ' "$RUNNER_TEMP/pytest.log" | head -20 | cut -c1-300 | sed 's/^/::warning title=pytest detail::/' || true
@@ -59,13 +60,17 @@ jobs:
           exit $rc
       - name: Charters (school_config.check on every charter)
         if: ${{ !cancelled() && steps.detect.outputs.code == 'true' }}  # runs even when an earlier check failed
-        run: python tools/school_config.py --check
+        run: |
+          "$ATLAS/bin/python" tools/school_config.py --check
       - name: Vendored code matches its provenance
         if: ${{ !cancelled() && steps.detect.outputs.code == 'true' }}  # runs even when an earlier check failed
-        run: python tools/vendor_sync.py check --no-sources
+        run: |
+          "$ATLAS/bin/python" tools/vendor_sync.py check --no-sources
       - name: No hardcoded project paths in code
         if: ${{ !cancelled() && steps.detect.outputs.code == 'true' }}  # runs even when an earlier check failed
-        run: python tools/route_paths.py check | grep -v '^note' || true; python tools/route_paths.py check > /dev/null
+        run: |
+          "$ATLAS/bin/python" tools/route_paths.py check | grep -v '^note' || true
+          "$ATLAS/bin/python" tools/route_paths.py check > /dev/null
       - name: Secret scan over the pushed or proposed commits
         if: ${{ !cancelled() && steps.detect.outputs.code == 'true' }}  # runs even when an earlier check failed
         env:
@@ -79,4 +84,4 @@ jobs:
           else
             range="HEAD"
           fi
-          python tools/secret_scan.py --history "$range"
+          "$ATLAS/bin/python" tools/secret_scan.py --history "$range"
