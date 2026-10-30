@@ -32,7 +32,7 @@ def main(key):
                 pages.append((u, r[1], zlib.decompress(r[2]).decode('utf-8', 'replace')))
             for cap, sha, raw in c.execute('select capture_url, sha256, raw_zlib from captures where page_url=? and http_status=200', (u,)):
                 if raw:
-                    pages.append((cap, sha, zlib.decompress(raw).decode('utf-8', 'replace')))
+                    pages.append((cap, sha, W.body(raw).decode('utf-8', 'replace')))
         d, o = {}, {}
         for u, sha, h in pages:
             if fam not in h.lower():

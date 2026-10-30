@@ -1,9 +1,9 @@
 # University of Michigan: faculty census
 
-Built 2026-10-29 by `tools/census_build.py michigan` from `listings/michigan/rows.json`.
+Built 2026-10-30 by `tools/census_build.py michigan` from `listings/michigan/rows.json`.
 
-- persons: 454; PIs: 214
-- listing rows (person, department, year): 3233
+- persons: 454; PIs: 213
+- listing rows (person, department, year): 3236
 
 | rank (latest) | PI | not PI |
 |---|---|---|
@@ -15,28 +15,28 @@ Built 2026-10-29 by `tools/census_build.py michigan` from `listings/michigan/row
 | visiting | 0 | 6 |
 | courtesy | 53 | 30 |
 | emeritus | 15 | 38 |
-| other | 1 | 2 |
+| other | 0 | 3 |
 
 | department | PI | not PI |
 |---|---|---|
 | CSE | 158 | 81 |
-| ECE | 80 | 164 |
+| ECE | 79 | 165 |
 
 ## PI basis
 
 - courtesy_faculty: 19
-- ladder_faculty: 195
+- ladder_faculty: 194
 
 ## Not PI, by reason
 
 - rank lecturer without reviewed advising or own-group evidence: 57
 - rank research without reviewed advising or own-group evidence: 50
+- CS-related review: faculty_not_computing: 41
 - rank emeritus without reviewed advising or own-group evidence: 30
-- CS-related review: faculty_not_computing: 27
 - rank courtesy without reviewed advising or own-group evidence: 26
 - rank adjunct without reviewed advising or own-group evidence: 19
-- CS-related review: pending_openalex: 18
 - rank visiting without reviewed advising or own-group evidence: 6
+- CS-related review: too_few_school_works: 5
 - courtesy or affiliate appointment without a professor rank in a home unit: 3
 - rank teaching without reviewed advising or own-group evidence: 2
 - rank other without reviewed advising or own-group evidence: 2

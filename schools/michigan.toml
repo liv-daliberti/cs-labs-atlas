@@ -82,6 +82,12 @@ computing_departments = ["CSE", "ECE"]
 # canonical home-unit names: the listings spell units several ways (tools/home_departments_school.py)
 home_units = {"Computer Science and Engineering" = '^(?:EECS\s*[\u2013-]\s*)?Computer Science (?:and|&) Engineering$', "Electrical and Computer Engineering" = '^(?:EECS\s*[\u2013-]\s*)?Electrical (?:and|&) Computer Engineering$', "Linguistics" = '^Lin[gq]uistics$', "Robotics" = '^Robotics(?: Department)?$', "Nuclear Engineering and Radiological Sciences" = 'Nuclear Engineering (?:and|&) Radiological', "Industrial and Operations Engineering" = 'Industrial (?:and|&) Operations', "Civil and Environmental Engineering" = 'Civil (?:and|&) Environmental', "School of Information" = '^(?:School of )?Information$|^School of Information', "Statistics" = '^Statistics$', "Mathematics" = '^Mathematics$', "Mechanical Engineering" = '^Mechanical Engineering$'}
 
+[cs_related]
+# Owner decision 2026-10-30 (5): these acceptances are settled by the OpenAlex computing-share test
+# (tools/cs_related_school.py share_test); every other DBLP-decided acceptance stands, with its share result recorded.
+share_test_settles = ["Kamal Sarabandi", "Leung Tsang", "Anthony W England", "Eric Michielssen", "Khalil Najafi", "Euisik Yoon",
+                      "Zetian Mi", "Anthony Grbic", "Alexander I. Barvinok", "Jeffrey C. Lagarias", "Asaf Cohen", "Erhan Bayraktar"]
+
 [site]
 depts = {CSE = "Computer Science and Engineering", ECE = "Electrical and Computer Engineering"}
 full_codes = ["CSE"]
@@ -208,6 +214,32 @@ code = "ROSS"
 name = "Ross School of Business (Technology and Operations)"
 url = "https://michiganross.umich.edu/"
 listings = []
+
+# Added 2026-10-30: the OpenAlex candidate rule (tools/cs_related_candidates.py) found computing-share authors in units
+# no listing had been searched for (control, remote sensing, biomedical imaging). Exact-URL CDX, collapse timestamp:4.
+[[affiliated_units]]
+code = "AERO"
+name = "Aerospace Engineering"
+url = "https://aero.engin.umich.edu/people/"
+listings = ["aero.engin.umich.edu/people/"]
+
+[[affiliated_units]]
+code = "CLASP"
+name = "Climate and Space Sciences and Engineering"
+url = "https://clasp.engin.umich.edu/people/"
+listings = ["clasp.engin.umich.edu/people/faculty/", "clasp.engin.umich.edu/people/"]
+
+[[affiliated_units]]
+code = "BME"
+name = "Biomedical Engineering"
+url = "https://bme.umich.edu/people/"
+listings = ["bme.umich.edu/people/"]
+
+[[affiliated_units]]
+code = "CEE"
+name = "Civil and Environmental Engineering"
+url = "https://cee.engin.umich.edu/people/"
+listings = ["cee.engin.umich.edu/people/faculty/", "cee.engin.umich.edu/people/"]
 
 # --- students ----------------------------------------------------------------------------------------------------
 [thesis]

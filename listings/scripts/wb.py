@@ -174,6 +174,23 @@ def cdx(params, con, refresh=False):
     return [dict(zip(hdr, r)) for r in rows[1:]]
 
 
+def body(raw_zlib):
+    """The page bytes of a stored capture: raw_zlib decompressed, then gunzipped when Wayback served the archived bytes
+    gzip-encoded (an `id_` capture keeps the original Content-Encoding even when the request asks for identity; learned
+    2026-10-30 at Michigan, where 7 of 61 listing captures and ~80 homepage captures were stored gzip-encoded and read as
+    empty pages). sha256 stays the hash of the bytes as served."""
+    import gzip
+    b = zlib.decompress(raw_zlib) if raw_zlib else b""
+    for _ in range(2):
+        if b[:2] != b"\x1f\x8b":
+            break
+        try:
+            b = gzip.decompress(b)
+        except (OSError, EOFError):
+            break
+    return b
+
+
 def fetch_capture(ts, original, page_url, department, con, refresh=False):
     cap = f"https://web.archive.org/web/{ts}id_/{original}"
     row = con.execute("select http_status, sha256 from captures where capture_url=?", (cap,)).fetchone()

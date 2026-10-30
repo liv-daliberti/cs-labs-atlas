@@ -1,0 +1,18 @@
+{
+ "school": "michigan",
+ "reviewed": "2026-10-30",
+ "rule": "An OpenAlex author id is a PI's when (a) it carries the PI's ORCID, or (b) its school works (hierarchy/michigan/oa-author-stats.json.gz, papers only) are under the PI's full name, at the University of Michigan, in years the department listing names the PI, in venues of the PI's listed field, and no other id at the school carries that name with another field. Namesakes seen and set aside are listed. Evidence: one sweep work per id, quoting the authorship's raw name and raw affiliation string (tools/oa_identity_school.py).",
+ "decisions": {
+  "Long Nguyen": {"openalex": ["A5111598410"], "aliases": ["XuanLong Nguyen"], "why": "The CSE listing's 'Nguyen, Long Professor, Statistics' links dept.stat.lsa.umich.edu/~xuanlong/; A5111598410 (ORCID 0009-0007-5199-5553) holds 37 school works 2016-2026 as 'XuanLong Nguyen', Department of Statistics, University of Michigan (Annals of Statistics, Bernoulli, PODS). Set aside: A5102021622 (2 works, another ORCID, an EECS student in 2016)."},
+  "Zeeshan H. Syed": {"openalex": ["A5103067445"], "why": "Only id at the school under 'Zeeshan Syed' (ORCID 0000-0003-3838-0398), 2016-2021, AAAI and Physiological Measurement: machine learning for health, his listed field; listed in CSE 2016-2017."},
+  "Joshua Welch": {"openalex": ["A5032755605", "A5050036215"], "why": "Both ids carry ORCID 0000-0002-5869-2391 and hold 'Joshua D. Welch' school works 2019-2026 in computational biology (Nature Communications, Genome Biology, Bioinformatics); listed in CSE from 2018."},
+  "Jie Liu": {"openalex": ["A5100454161"], "why": "ORCID 0000-0002-9504-0587; 22 school works 2020-2026 as 'Jie Liu' in computational biology (Nucleic Acids Research, PLoS Computational Biology), matching his CSE listing from 2020 (also Computational Medicine and Bioinformatics). The only 'Jie Liu' id at the school."},
+  "Wei Hu": {"openalex": ["A5108923830"], "why": "'Wei Hu' at the University of Michigan 2023-2025 in NeurIPS (machine-learning theory), matching the CSE listing from 2022. Set aside: A5010441759 'Wei-Hsiu Hu' (cement and concrete)."},
+  "Lin Ma": {"openalex": ["A5072023220"], "why": "ORCID 0000-0001-9626-8754; 'Lin Ma', University of Michigan, Proceedings of the VLDB Endowment 2024-2025 (query execution, database knob tuning), his listed field (CSE from 2022). Set aside: A5009989185 (economics, Singapore), and single-work ids not otherwise identified."},
+  "Jeong Joon Park": {"openalex": ["A5109413502"], "why": "ORCID 0009-0009-8908-3861; 9 school works 2024-2026 as 'Jeong Joon Park', University of Michigan, CVPR and ECCV (3D vision), matching the CSE listing from 2023. Set aside: A5056160785 'Jeong M. Park' (transplant pharmacology)."},
+  "Alexander Rodríguez": {"openalex": ["A5067521241"], "why": "ORCID 0000-0002-4313-9913; 11 school works 2023-2026 (KDD, AAAI: epidemic forecasting with machine learning), matching the CSE listing from 2023."},
+  "Hao-Wen (Herman) Dong": {"openalex": ["A5028026494", "A5136742686"], "why": "A5028026494 carries ORCID 0000-0002-1020-0001 (ICASSP, AAAI: music and audio generation, 2024-2026); A5136742686 is 'Dong, Hao-Wen' at the school in 2026 in ICME workshops (music), the same field; listed in CSE and ECE from 2025."},
+  "Q. Vera Liao": {"openalex": ["A5045428659", "A5024320659"], "why": "Both ids carry ORCID 0000-0003-4543-7196 ('Q. Vera Liao', CHI, CSCW, AIES; 2025-2026), matching the CSE listing from 2025."},
+  "Majdi Radaideh": {"openalex": ["A5049880944"], "why": "ORCID 0000-0002-2743-0567; 54 school works 2022-2026 as 'Majdi I. Radaideh' (Nuclear Engineering and Design, Energy and AI), his home unit Nuclear Engineering and Radiological Sciences; CSE lists him from 2026."}
+ }
+}

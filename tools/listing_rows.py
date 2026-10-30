@@ -21,6 +21,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
 import listing_formats as LF  # noqa: E402
+from school_web import body as wb_body  # noqa: E402  (stored capture bytes, gunzipped)
 
 RANKS = [('emeritus', r'emerit'), ('courtesy', r'courtesy|\baffiliate\s+faculty'), ('adjunct', r'\badjunct\b'), ('visiting', r'\bvisiting\b'),
          ('lecturer', r'\blecturer\b|\binstructor\b'), ('research', r'\bresearch\s+(?:scientist|investigator|professor|fellow|faculty)|\bresearch\s+assistant\s+professor'),
@@ -75,7 +76,7 @@ def main(key):
         if status != 'ok':
             continue
         raw, sha, txt, ts = c.execute('select raw_zlib, sha256, text, wayback_timestamp from captures where capture_url=?', (cap,)).fetchone()
-        h = zlib.decompress(raw).decode('utf-8', 'replace')
+        h = wb_body(raw).decode('utf-8', 'replace')  # gunzipped when Wayback served it gzip-encoded
         flat = ' '.join((txt or '').split())
         fmt, es = LF.parse(h, fmt_of.get(slot))
         n[f'captures_{fmt}'] += 1

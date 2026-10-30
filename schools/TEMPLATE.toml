@@ -48,6 +48,9 @@ legacy_sweep = ""         # pre-protocol schools only: the base sweep holding ca
 computing_departments = []   # department codes listed_not_in_census.py treats as computing; [] = every listed department
 home_units = {}              # canonical home-unit name = regex over the spellings the listings use
 
+[cs_related]
+share_test_settles = []      # acceptances the owner sent to the OpenAlex computing-share test (pending_openalex people always go to it)
+
 [site]
 depts = {}                # department code = name, as the site builder's SCHOOLS table keys them
 full_codes = []           # codes covered in full

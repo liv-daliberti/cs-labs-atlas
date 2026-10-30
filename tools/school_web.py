@@ -69,16 +69,32 @@ def capture(c, ts, original, page_url, dept):
     cap = wb.fetch_capture(ts, original, page_url, dept, c)
     st, raw, ct, bj, sha = c.execute('select http_status, raw_zlib, content_type, blocks_json, sha256 from captures where capture_url=?', (cap,)).fetchone()
     if bj is None:
-        b = extract.blocks(zlib.decompress(raw), ct, cap) if raw else []
+        b = extract.blocks(body(raw), ct, cap) if raw else []
         c.execute('update captures set blocks_json=?, text=? where capture_url=?', (json.dumps(b), '\n'.join(t for _, t in b), cap)); c.commit()
     else:
         b = json.loads(bj)
     return cap, st, sha, b
 
 
+body = wb.body  # stored bytes, gunzipped when Wayback served them gzip-encoded
+
+
 def raw_html(c, cap):
     r = c.execute('select raw_zlib from captures where capture_url=?', (cap,)).fetchone()
-    return zlib.decompress(r[0]).decode('utf-8', 'replace') if r and r[0] else ''
+    return body(r[0]).decode('utf-8', 'replace') if r and r[0] else ''
+
+
+def repair_gzip(c):
+    """Re-derive blocks_json and text of every stored capture whose bytes were gzip-encoded (they were extracted from the
+    compressed bytes, i.e. read as empty). raw_zlib and sha256 are left as served. Returns the number repaired."""
+    n = 0
+    for cap, raw, ct in c.execute('select capture_url, raw_zlib, content_type from captures where raw_zlib is not null').fetchall():
+        if zlib.decompress(raw)[:2] != b'\x1f\x8b':
+            continue
+        b = extract.blocks(body(raw), ct, cap)
+        c.execute('update captures set blocks_json=?, text=? where capture_url=?', (json.dumps(b), '\n'.join(t for _, t in b), cap)); n += 1
+    c.commit()
+    return n
 
 
 def robots_row(c, host, refresh=False):
