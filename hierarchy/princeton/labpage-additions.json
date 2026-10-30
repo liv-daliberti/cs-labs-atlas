@@ -1,0 +1,4506 @@
+{
+ "school": "princeton",
+ "generated_at": "2026-10-30T19:10:01+00:00",
+ "tool": "tools/labpage_audit.py",
+ "standard": "docs/LAB-PAGES.md",
+ "status": "proposed, unreviewed: not read by tools/pi_hierarchy.py until wired (docs/LAB-PAGES.md, integration)",
+ "rules": {
+  "LP-STU-01": "A person listed on the PI's own lab page (people, members, alumni section; live page or a Wayback id_ capture), under a people heading, not the PI, not in a faculty/collaborator/staff section, not another PI of the school, whose stated years do not end before 2016 or before the PI's appointment at the school, and who is dated or listed as current on a 2016+ capture (undated alumni only when the lab has only ever been at this school) is a lab member: the same admission the 2026-10-22 lab-page rows had (labpage-evidence.json, R-STU-01 'researched advisees'), with url, sha256 and a verbatim quote naming the person.",
+  "LP-PAP-01": "A paper listed on the PI's own lab publications page whose resolved work carries the PI on the byline, falls in the PI's appointment (R-PAP-01) and whose PI authorship lists the school (or page 1 ties the school to the PI) is a lab paper with identity 'labpage_listing' (R-PAP-04: the lab's own publications page), exactly the rows tools/labpage_recover.py accepts into labpage-recovered.jsonl.gz."
+ },
+ "students": [
+  {
+   "name": "Ashley Conard",
+   "role": "member",
+   "years": [
+    2018,
+    2018
+   ],
+   "url": "https://raphael-group.github.io/people#jobs",
+   "sha256": "284f2787273359f9f566439877d4714e7c4231e3d346b473dd26aaee62c0f2e5",
+   "quote": "Master’s Students Maya Gupta (Computer Science, MSE 2024) Ashley Conard",
+   "note": "lab-page audit 2026-10-30; section: Master’s Students",
+   "pi": "Ben Raphael",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Ellen Su",
+   "role": "undergraduate",
+   "years": [
+    2021,
+    2021
+   ],
+   "url": "https://raphael-group.github.io/people#jobs",
+   "sha256": "284f2787273359f9f566439877d4714e7c4231e3d346b473dd26aaee62c0f2e5",
+   "quote": "Undergraduate and Visiting Students Rishabh Rout (Summer 2021 - Spring 2024) Kimberly Ding (Thesis, 2021) Yaw Asante (Thesis, 2021) Ellen Su",
+   "note": "lab-page audit 2026-10-30; section: Undergraduate and Visiting Students",
+   "pi": "Ben Raphael",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Shirley Zhang",
+   "role": "undergraduate",
+   "years": [
+    2020,
+    2020
+   ],
+   "url": "https://raphael-group.github.io/people#jobs",
+   "sha256": "284f2787273359f9f566439877d4714e7c4231e3d346b473dd26aaee62c0f2e5",
+   "quote": "Undergraduate and Visiting Students Rishabh Rout (Summer 2021 - Spring 2024) Kimberly Ding (Thesis, 2021) Yaw Asante (Thesis, 2021) Ellen Su (Summer 2021) Shirley Zhang",
+   "note": "lab-page audit 2026-10-30; section: Undergraduate and Visiting Students",
+   "pi": "Ben Raphael",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Chandler Ault",
+   "role": "undergraduate",
+   "years": [
+    2020,
+    2020
+   ],
+   "url": "https://raphael-group.github.io/people#jobs",
+   "sha256": "284f2787273359f9f566439877d4714e7c4231e3d346b473dd26aaee62c0f2e5",
+   "quote": "Undergraduate and Visiting Students Rishabh Rout (Summer 2021 - Spring 2024) Kimberly Ding (Thesis, 2021) Yaw Asante (Thesis, 2021) Ellen Su (Summer 2021) Shirley Zhang (2020) Max Land (2020) Chandler Ault",
+   "note": "lab-page audit 2026-10-30; section: Undergraduate and Visiting Students",
+   "pi": "Ben Raphael",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Geoffrey Mon",
+   "role": "undergraduate",
+   "years": [
+    2018,
+    2019
+   ],
+   "url": "https://raphael-group.github.io/people#jobs",
+   "sha256": "284f2787273359f9f566439877d4714e7c4231e3d346b473dd26aaee62c0f2e5",
+   "quote": "Undergraduate and Visiting Students Rishabh Rout (Summer 2021 - Spring 2024) Kimberly Ding (Thesis, 2021) Yaw Asante (Thesis, 2021) Ellen Su (Summer 2021) Shirley Zhang (2020) Max Land (2020) Chandler Ault (Summer 2020) Claire Du (Honors Thesis, 2020) Geoffrey Mon",
+   "note": "lab-page audit 2026-10-30; section: Undergraduate and Visiting Students",
+   "pi": "Ben Raphael",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Alan Kipkorir",
+   "role": "undergraduate",
+   "years": [
+    2021,
+    2021
+   ],
+   "url": "https://www.cs.princeton.edu/~wlloyd/",
+   "capture_url": "https://web.archive.org/web/20211128014000id_/https://www.cs.princeton.edu/~wlloyd/",
+   "sha256": "51d4578dc7d8b716d344d5c9820f7cf27b39d651fd907e00353b534b91e0537f",
+   "quote": "Undergrad Alan Kipkorir",
+   "note": "lab-page audit 2026-10-30; section: Undergrad",
+   "pi": "Wyatt Lloyd",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2017
+  },
+  {
+   "name": "Xiaohang Sun",
+   "role": "phd",
+   "years": null,
+   "url": "http://www.princeton.edu/~jasonf/people.html",
+   "capture_url": "https://web.archive.org/web/20201112054702id_/http://www.princeton.edu/~jasonf/people.html",
+   "sha256": "0ebd733e8978bfe45a2888fd623784d8c83152715f0d8de0300a2feeeb5ce8c3",
+   "quote": "Graduate students Xiaohang Sun",
+   "note": "lab-page audit 2026-10-30; section: Graduate students",
+   "pi": "Jason W. Fleischer",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Lung-Yen Chen",
+   "role": "phd",
+   "years": null,
+   "url": "https://nverma.princeton.edu/group-members",
+   "capture_url": "https://web.archive.org/web/20250912001548id_/https://nverma.princeton.edu/group-members",
+   "sha256": "f4e3b75bb8d68272b76f05531b4bba398a930c0169591abf5628243d9682db4e",
+   "quote": "Lung-Yen Chen Lung-Yen Chen: I am from Taiwan and received my B.S. in Electrical Engineer",
+   "note": "lab-page audit 2026-10-30; section: Current Graduate Students",
+   "pi": "Naveen Verma",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Prakhar Kumar",
+   "role": "phd",
+   "years": null,
+   "url": "https://nverma.princeton.edu/group-members",
+   "capture_url": "https://web.archive.org/web/20250912001548id_/https://nverma.princeton.edu/group-members",
+   "sha256": "f4e3b75bb8d68272b76f05531b4bba398a930c0169591abf5628243d9682db4e",
+   "quote": "Prakhar Kumar Prakhar Kumar: I received my B.E.(Hons) in Electrical and Electronics Engineer",
+   "note": "lab-page audit 2026-10-30; section: Current Graduate Students > https://scholar.princeton.edu/hongyangjia/",
+   "pi": "Naveen Verma",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Yoni Mehlman",
+   "role": "phd",
+   "years": null,
+   "url": "https://nverma.princeton.edu/group-members",
+   "capture_url": "https://web.archive.org/web/20250912001548id_/https://nverma.princeton.edu/group-members",
+   "sha256": "f4e3b75bb8d68272b76f05531b4bba398a930c0169591abf5628243d9682db4e",
+   "quote": "https://scholar.princeton.edu/prakhar Yoni Mehlman",
+   "note": "lab-page audit 2026-10-30; section: Current Graduate Students > https://scholar.princeton.edu/prakhar",
+   "pi": "Naveen Verma",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Murat Ozatay",
+   "role": "phd",
+   "years": null,
+   "url": "https://nverma.princeton.edu/group-members",
+   "capture_url": "https://web.archive.org/web/20250912001548id_/https://nverma.princeton.edu/group-members",
+   "sha256": "f4e3b75bb8d68272b76f05531b4bba398a930c0169591abf5628243d9682db4e",
+   "quote": "https://scholar.princeton.edu/prakhar Yoni Mehlman Yoni Mehlman: While I originally come from a very distant and merry land, I went off to study physics and math at Yeshiva University in a small town know as Manhattan. After deciding that my true dream is to become an electrical engineer (read: philosopher of physics), I made my way down south to ol' Princeton, NJ. I spend most of my time figuring out how to enhance the performance of thin-film-transistors to enable new circuits, and designing circuits to push the performance of those transistors, important for creating the next generation of hybrid-large-area systems! Murat Ozatay",
+   "note": "lab-page audit 2026-10-30; section: Current Graduate Students > https://scholar.princeton.edu/prakhar",
+   "pi": "Naveen Verma",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Can Wu",
+   "role": "phd",
+   "years": null,
+   "url": "https://nverma.princeton.edu/group-members",
+   "capture_url": "https://web.archive.org/web/20250912001548id_/https://nverma.princeton.edu/group-members",
+   "sha256": "f4e3b75bb8d68272b76f05531b4bba398a930c0169591abf5628243d9682db4e",
+   "quote": "Can Wu Can Wu: I grew up in China and received my B. S. in Microelectronics from Tsinghua University in 20",
+   "note": "lab-page audit 2026-10-30; section: Current Graduate Students > https://scholar.princeton.edu/prakhar",
+   "pi": "Naveen Verma",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Juho Park",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://www.princeton.edu/~kaushiks/pages/People.html",
+   "capture_url": "https://web.archive.org/web/20250520131616id_/https://www.princeton.edu/~kaushiks/pages/People.html",
+   "sha256": "0f9b9490a8fe663d42187ce32ce86171df71a17c2bd82809de44928672eb6831",
+   "quote": "Juho Park Juho Park received his B.S.",
+   "note": "lab-page audit 2026-10-30; section: Post-doctoral Scholars",
+   "pi": "Kaushik Sengupta",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Hossein Jalili",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://www.princeton.edu/~kaushiks/pages/People.html",
+   "capture_url": "https://web.archive.org/web/20250520131616id_/https://www.princeton.edu/~kaushiks/pages/People.html",
+   "sha256": "0f9b9490a8fe663d42187ce32ce86171df71a17c2bd82809de44928672eb6831",
+   "quote": "Hossein Jalili Hossein Jalili received his B.Sc. and M.S.",
+   "note": "lab-page audit 2026-10-30; section: Post-doctoral Scholars",
+   "pi": "Kaushik Sengupta",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Zijian Shao",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://www.princeton.edu/~kaushiks/pages/People.html",
+   "capture_url": "https://web.archive.org/web/20250520131616id_/https://www.princeton.edu/~kaushiks/pages/People.html",
+   "sha256": "0f9b9490a8fe663d42187ce32ce86171df71a17c2bd82809de44928672eb6831",
+   "quote": "Zijian Shao Zijian received the B.S.",
+   "note": "lab-page audit 2026-10-30; section: Post-doctoral Scholars",
+   "pi": "Kaushik Sengupta",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Xiaolong Huang",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://www.princeton.edu/~kaushiks/pages/People.html",
+   "capture_url": "https://web.archive.org/web/20250520131616id_/https://www.princeton.edu/~kaushiks/pages/People.html",
+   "sha256": "0f9b9490a8fe663d42187ce32ce86171df71a17c2bd82809de44928672eb6831",
+   "quote": "Xiaolong Huang Xiaolong Huang received his Ph.D. in Electrical Engineer",
+   "note": "lab-page audit 2026-10-30; section: Post-doctoral Scholars",
+   "pi": "Kaushik Sengupta",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Suresh Venkatesh",
+   "role": "postdoc",
+   "years": [
+    2018,
+    2022
+   ],
+   "url": "https://www.princeton.edu/~kaushiks/pages/People.html",
+   "capture_url": "https://web.archive.org/web/20250520131616id_/https://www.princeton.edu/~kaushiks/pages/People.html",
+   "sha256": "0f9b9490a8fe663d42187ce32ce86171df71a17c2bd82809de44928672eb6831",
+   "quote": "Suresh Venkatesh (2018-2022) Ph.D",
+   "note": "lab-page audit 2026-10-30; section: Post-doctoral Scholars",
+   "pi": "Kaushik Sengupta",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Tushar Sharma",
+   "role": "postdoc",
+   "years": [
+    2018,
+    2018
+   ],
+   "url": "https://www.princeton.edu/~kaushiks/pages/People.html",
+   "capture_url": "https://web.archive.org/web/20250520131616id_/https://www.princeton.edu/~kaushiks/pages/People.html",
+   "sha256": "0f9b9490a8fe663d42187ce32ce86171df71a17c2bd82809de44928672eb6831",
+   "quote": "Tushar Sharma (2018-19) PhD",
+   "note": "lab-page audit 2026-10-30; section: Post-doctoral Scholars",
+   "pi": "Kaushik Sengupta",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Jesus Maldonado",
+   "role": "postdoc",
+   "years": [
+    2019,
+    2019
+   ],
+   "url": "https://www.princeton.edu/~kaushiks/pages/People.html",
+   "capture_url": "https://web.archive.org/web/20250520131616id_/https://www.princeton.edu/~kaushiks/pages/People.html",
+   "sha256": "0f9b9490a8fe663d42187ce32ce86171df71a17c2bd82809de44928672eb6831",
+   "quote": "Jesus Maldonado (2019-21) Ph.D",
+   "note": "lab-page audit 2026-10-30; section: Post-doctoral Scholars",
+   "pi": "Kaushik Sengupta",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Xinyu Zhou",
+   "role": "postdoc",
+   "years": [
+    2020,
+    2020
+   ],
+   "url": "https://www.princeton.edu/~kaushiks/pages/People.html",
+   "capture_url": "https://web.archive.org/web/20250520131616id_/https://www.princeton.edu/~kaushiks/pages/People.html",
+   "sha256": "0f9b9490a8fe663d42187ce32ce86171df71a17c2bd82809de44928672eb6831",
+   "quote": "Xinyu Zhou (2020-21) Ph.D. in Electrical Engineer",
+   "note": "lab-page audit 2026-10-30; section: Post-doctoral Scholars",
+   "pi": "Kaushik Sengupta",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Jie (Lucy) Lu",
+   "role": "masters",
+   "years": null,
+   "url": "https://www.princeton.edu/~jha/files/students.html",
+   "capture_url": "https://web.archive.org/web/20250214152211id_/https://www.princeton.edu/~jha/files/students.html",
+   "sha256": "2153833df1b284e451c06967e9fe87acfa7acdbc360c772e263a0836459b8cff",
+   "quote": "Jie (Lucy) Lu , June '21 Member of Technical Staff",
+   "note": "lab-page audit 2026-10-30; section: Ph.D. Students graduated > Meng Zhang",
+   "pi": "Niraj K. Jha",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Bhishma Dedhia",
+   "role": "phd",
+   "years": null,
+   "url": "https://www.princeton.edu/~jha/files/students.html",
+   "capture_url": "https://web.archive.org/web/20250214152211id_/https://www.princeton.edu/~jha/files/students.html",
+   "sha256": "2153833df1b284e451c06967e9fe87acfa7acdbc360c772e263a0836459b8cff",
+   "quote": "Current Ph.D. Students Bhishma Dedhia",
+   "note": "lab-page audit 2026-10-30; section: Current Ph.D. Students",
+   "pi": "Niraj K. Jha",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Chang Yue",
+   "role": "phd",
+   "years": null,
+   "url": "https://www.princeton.edu/~jha/files/students.html",
+   "capture_url": "https://web.archive.org/web/20250214152211id_/https://www.princeton.edu/~jha/files/students.html",
+   "sha256": "2153833df1b284e451c06967e9fe87acfa7acdbc360c772e263a0836459b8cff",
+   "quote": "Current Ph.D. Students Bhishma Dedhia Chang Yue",
+   "note": "lab-page audit 2026-10-30; section: Current Ph.D. Students",
+   "pi": "Niraj K. Jha",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Alexander La Cour",
+   "role": "phd",
+   "years": null,
+   "url": "https://www.princeton.edu/~jha/files/students.html",
+   "capture_url": "https://web.archive.org/web/20250214152211id_/https://www.princeton.edu/~jha/files/students.html",
+   "sha256": "2153833df1b284e451c06967e9fe87acfa7acdbc360c772e263a0836459b8cff",
+   "quote": "Current Ph.D. Students Bhishma Dedhia Chang Yue Alexander La Cour",
+   "note": "lab-page audit 2026-10-30; section: Current Ph.D. Students",
+   "pi": "Niraj K. Jha",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Hongjie Wang",
+   "role": "phd",
+   "years": null,
+   "url": "https://www.princeton.edu/~jha/files/students.html",
+   "capture_url": "https://web.archive.org/web/20250214152211id_/https://www.princeton.edu/~jha/files/students.html",
+   "sha256": "2153833df1b284e451c06967e9fe87acfa7acdbc360c772e263a0836459b8cff",
+   "quote": "Current Ph.D. Students Bhishma Dedhia Chang Yue Alexander La Cour Hongjie Wang",
+   "note": "lab-page audit 2026-10-30; section: Current Ph.D. Students",
+   "pi": "Niraj K. Jha",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Margarita Belova",
+   "role": "phd",
+   "years": null,
+   "url": "https://www.princeton.edu/~jha/files/students.html",
+   "capture_url": "https://web.archive.org/web/20250214152211id_/https://www.princeton.edu/~jha/files/students.html",
+   "sha256": "2153833df1b284e451c06967e9fe87acfa7acdbc360c772e263a0836459b8cff",
+   "quote": "Current Ph.D. Students Bhishma Dedhia Chang Yue Alexander La Cour Hongjie Wang Margarita Belova",
+   "note": "lab-page audit 2026-10-30; section: Current Ph.D. Students",
+   "pi": "Niraj K. Jha",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Yihao Liang",
+   "role": "phd",
+   "years": null,
+   "url": "https://www.princeton.edu/~jha/files/students.html",
+   "capture_url": "https://web.archive.org/web/20250214152211id_/https://www.princeton.edu/~jha/files/students.html",
+   "sha256": "2153833df1b284e451c06967e9fe87acfa7acdbc360c772e263a0836459b8cff",
+   "quote": "Current Ph.D. Students Bhishma Dedhia Chang Yue Alexander La Cour Hongjie Wang Margarita Belova Yihao Liang",
+   "note": "lab-page audit 2026-10-30; section: Current Ph.D. Students",
+   "pi": "Niraj K. Jha",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Jiaxin Xiao",
+   "role": "phd",
+   "years": null,
+   "url": "https://www.princeton.edu/~jha/files/students.html",
+   "capture_url": "https://web.archive.org/web/20250214152211id_/https://www.princeton.edu/~jha/files/students.html",
+   "sha256": "2153833df1b284e451c06967e9fe87acfa7acdbc360c772e263a0836459b8cff",
+   "quote": "Current Ph.D. Students Bhishma Dedhia Chang Yue Alexander La Cour Hongjie Wang Margarita Belova Yihao Liang Jiaxin Xiao",
+   "note": "lab-page audit 2026-10-30; section: Current Ph.D. Students",
+   "pi": "Niraj K. Jha",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Yuval Kansal",
+   "role": "phd",
+   "years": null,
+   "url": "https://www.princeton.edu/~jha/files/students.html",
+   "capture_url": "https://web.archive.org/web/20250214152211id_/https://www.princeton.edu/~jha/files/students.html",
+   "sha256": "2153833df1b284e451c06967e9fe87acfa7acdbc360c772e263a0836459b8cff",
+   "quote": "Current Ph.D. Students Bhishma Dedhia Chang Yue Alexander La Cour Hongjie Wang Margarita Belova Yihao Liang Jiaxin Xiao Yuval Kansal",
+   "note": "lab-page audit 2026-10-30; section: Current Ph.D. Students",
+   "pi": "Niraj K. Jha",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Hee Yun Suh",
+   "role": "phd",
+   "years": null,
+   "url": "https://www.princeton.edu/~jha/files/students.html",
+   "capture_url": "https://web.archive.org/web/20250214152211id_/https://www.princeton.edu/~jha/files/students.html",
+   "sha256": "2153833df1b284e451c06967e9fe87acfa7acdbc360c772e263a0836459b8cff",
+   "quote": "Current Ph.D. Students Bhishma Dedhia Chang Yue Alexander La Cour Hongjie Wang Margarita Belova Yihao Liang Jiaxin Xiao Yuval Kansal Hee Yun Suh",
+   "note": "lab-page audit 2026-10-30; section: Current Ph.D. Students",
+   "pi": "Niraj K. Jha",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Martha Kunicki",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://www.princeton.edu/~jha/files/students.html",
+   "capture_url": "https://web.archive.org/web/20250214152211id_/https://www.princeton.edu/~jha/files/students.html",
+   "sha256": "2153833df1b284e451c06967e9fe87acfa7acdbc360c772e263a0836459b8cff",
+   "quote": "Current Post-doctoral Researcher Martha Kunicki",
+   "note": "lab-page audit 2026-10-30; section: Current Post-doctoral Researcher",
+   "pi": "Niraj K. Jha",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Arsalan Mohsen Nia",
+   "role": "phd",
+   "years": null,
+   "url": "http://www.princeton.edu:80/~jha/files/students.html",
+   "capture_url": "https://web.archive.org/web/20160917034137id_/http://www.princeton.edu:80/~jha/files/students.html",
+   "sha256": "a385f6e865d1b2c00c7008b31bf6c17d8b6093c4706f3fedb955dec8089e9f3c",
+   "quote": "Current Ph.D. Students Debajit Bhattacharya Arsalan Mohsen Nia",
+   "note": "lab-page audit 2026-10-30; section: Current Ph.D. Students",
+   "pi": "Niraj K. Jha",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Zih-Rou (Zoe) Cyue",
+   "role": "phd",
+   "years": null,
+   "url": "https://sturm.scholar.princeton.edu/people-f",
+   "capture_url": "https://web.archive.org/web/20250717192424id_/https://sturm.scholar.princeton.edu/people-f",
+   "sha256": "488c442884282df21b498370992cd845d7012b8f4770358f53f97993e8872b73",
+   "quote": "Graduate Students Zih-Rou (Zoe) Cyue",
+   "note": "lab-page audit 2026-10-30; section: Graduate Students",
+   "pi": "James C. Sturm",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Nicholas Fata",
+   "role": "phd",
+   "years": null,
+   "url": "https://sturm.scholar.princeton.edu/people-f",
+   "capture_url": "https://web.archive.org/web/20250717192424id_/https://sturm.scholar.princeton.edu/people-f",
+   "sha256": "488c442884282df21b498370992cd845d7012b8f4770358f53f97993e8872b73",
+   "quote": "Graduate Students Zih-Rou (Zoe) Cyue Email [email protected] Nicholas Fata",
+   "note": "lab-page audit 2026-10-30; section: Graduate Students",
+   "pi": "James C. Sturm",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Xiaoyang Ma",
+   "role": "phd",
+   "years": null,
+   "url": "https://sturm.scholar.princeton.edu/people-f",
+   "capture_url": "https://web.archive.org/web/20250717192424id_/https://sturm.scholar.princeton.edu/people-f",
+   "sha256": "488c442884282df21b498370992cd845d7012b8f4770358f53f97993e8872b73",
+   "quote": "Graduate Students Zih-Rou (Zoe) Cyue Email [email protected] Nicholas Fata Email [email protected] Xiaoyang Ma",
+   "note": "lab-page audit 2026-10-30; section: Graduate Students",
+   "pi": "James C. Sturm",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Zili Tang",
+   "role": "phd",
+   "years": null,
+   "url": "https://sturm.scholar.princeton.edu/people-f",
+   "capture_url": "https://web.archive.org/web/20250717192424id_/https://sturm.scholar.princeton.edu/people-f",
+   "sha256": "488c442884282df21b498370992cd845d7012b8f4770358f53f97993e8872b73",
+   "quote": "Graduate Students Zih-Rou (Zoe) Cyue Email [email protected] Nicholas Fata Email [email protected] Xiaoyang Ma Email [email protected] Kumar Mritunjay Email [email protected] Miftahul Jannat Rasna Email [email protected] Zili Tang",
+   "note": "lab-page audit 2026-10-30; section: Graduate Students",
+   "pi": "James C. Sturm",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Zhiwu Zheng",
+   "role": "member",
+   "years": null,
+   "url": "https://sturm.scholar.princeton.edu/alumni",
+   "capture_url": "https://web.archive.org/web/20250914211456id_/https://sturm.scholar.princeton.edu/alumni",
+   "sha256": "e6e5eccf79d4530564b4acdbfdda7d4a4bc046d5212ca7c7f67f8c762dc8d0e0",
+   "quote": "Alumni | Sturm Lab Sturm Lab Stephen R. Forrest Professor of Electrical Engineering Off screen: Skip to content Off screen: Skip to search Sturm Lab Stephen R. Forrest Professor of Electrical Engineering B410 Engineering Quadrangle (E-Quad, B-Wing) Main Menu Menu Research People Submenu Alumni Publications Submenu Conference Papers Journal Articles M.S.E. Theses Ph.D. Theses Volumes Edited, Chapters Teaching Facilities Group Gallery Submenu Lab in Action! Social Events Taught Classes FPO and Graduation Dinners FPO Prognostications Links Log in Search Search Alumni Zhiwu Zheng",
+   "note": "lab-page audit 2026-10-30; section: Alumni",
+   "pi": "James C. Sturm",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Mohammad Shafiqul Islam",
+   "role": "member",
+   "years": [
+    null,
+    2022
+   ],
+   "url": "https://sturm.scholar.princeton.edu/alumni",
+   "capture_url": "https://web.archive.org/web/20250914211456id_/https://sturm.scholar.princeton.edu/alumni",
+   "sha256": "e6e5eccf79d4530564b4acdbfdda7d4a4bc046d5212ca7c7f67f8c762dc8d0e0",
+   "quote": "Alumni | Sturm Lab Sturm Lab Stephen R. Forrest Professor of Electrical Engineering Off screen: Skip to content Off screen: Skip to search Sturm Lab Stephen R. Forrest Professor of Electrical Engineering B410 Engineering Quadrangle (E-Quad, B-Wing) Main Menu Menu Research People Submenu Alumni Publications Submenu Conference Papers Journal Articles M.S.E. Theses Ph.D. Theses Volumes Edited, Chapters Teaching Facilities Group Gallery Submenu Lab in Action! Social Events Taught Classes FPO and Graduation Dinners FPO Prognostications Links Log in Search Search Alumni Zhiwu Zheng P.h.D. 2023 Senior Research Analyst with Analog Devices Mohammad Shafiqul Islam",
+   "note": "lab-page audit 2026-10-30; section: Alumni",
+   "pi": "James C. Sturm",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Can Wu",
+   "role": "phd",
+   "years": [
+    null,
+    2022
+   ],
+   "url": "https://sturm.scholar.princeton.edu/alumni",
+   "capture_url": "https://web.archive.org/web/20250914211456id_/https://sturm.scholar.princeton.edu/alumni",
+   "sha256": "e6e5eccf79d4530564b4acdbfdda7d4a4bc046d5212ca7c7f67f8c762dc8d0e0",
+   "quote": "Can Wu Ph.D",
+   "note": "lab-page audit 2026-10-30; section: Alumni",
+   "pi": "James C. Sturm",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Jonathan Mehlman",
+   "role": "phd",
+   "years": [
+    null,
+    2021
+   ],
+   "url": "https://sturm.scholar.princeton.edu/alumni",
+   "capture_url": "https://web.archive.org/web/20250914211456id_/https://sturm.scholar.princeton.edu/alumni",
+   "sha256": "e6e5eccf79d4530564b4acdbfdda7d4a4bc046d5212ca7c7f67f8c762dc8d0e0",
+   "quote": "Jonathan Mehlman Ph. D",
+   "note": "lab-page audit 2026-10-30; section: Alumni",
+   "pi": "James C. Sturm",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Levent Aygun",
+   "role": "phd",
+   "years": null,
+   "url": "https://sturm.scholar.princeton.edu/people-f",
+   "capture_url": "https://web.archive.org/web/20240415135325id_/https://sturm.scholar.princeton.edu/people-f",
+   "sha256": "6f64cacaff3b418aa509280a445e89a5b1079e38a9352794ddbad0ff177d4d32",
+   "quote": "Levent Aygun Graduate Student",
+   "note": "lab-page audit 2026-10-30; section: Graduate Students",
+   "pi": "James C. Sturm",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Dhruv Kohli",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://web.math.princeton.edu/~amits/People.html",
+   "sha256": "65dbb7cd88c3cd353eae106fca601454a6e7b6a27f105e603695e1aff3d9b4b4",
+   "quote": "Dhruv Kohli (PhD",
+   "note": "lab-page audit 2026-10-30; section: Postdocs",
+   "pi": "Amit Singer",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Tony Xiao",
+   "role": "phd",
+   "years": null,
+   "url": "https://web.math.princeton.edu/~amits/People.html",
+   "sha256": "65dbb7cd88c3cd353eae106fca601454a6e7b6a27f105e603695e1aff3d9b4b4",
+   "quote": "Graduate Students Tony Xiao",
+   "note": "lab-page audit 2026-10-30; section: Graduate Students",
+   "pi": "Amit Singer",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Andy Zhang",
+   "role": "phd",
+   "years": null,
+   "url": "https://web.math.princeton.edu/~amits/People.html",
+   "sha256": "65dbb7cd88c3cd353eae106fca601454a6e7b6a27f105e603695e1aff3d9b4b4",
+   "quote": "Graduate Students Tony Xiao Liane Xu Andy Zhang",
+   "note": "lab-page audit 2026-10-30; section: Graduate Students",
+   "pi": "Amit Singer",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Liu Zhang",
+   "role": "phd",
+   "years": null,
+   "url": "https://web.math.princeton.edu/~amits/People.html",
+   "sha256": "65dbb7cd88c3cd353eae106fca601454a6e7b6a27f105e603695e1aff3d9b4b4",
+   "quote": "Graduate Students Tony Xiao Liane Xu Andy Zhang Liu Zhang",
+   "note": "lab-page audit 2026-10-30; section: Graduate Students",
+   "pi": "Amit Singer",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Garrett Wright",
+   "role": "other",
+   "years": null,
+   "url": "https://web.math.princeton.edu/~amits/People.html",
+   "sha256": "65dbb7cd88c3cd353eae106fca601454a6e7b6a27f105e603695e1aff3d9b4b4",
+   "quote": "Research Software Engineers Garrett Wright",
+   "note": "lab-page audit 2026-10-30; section: Research Software Engineers",
+   "pi": "Amit Singer",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Joshua Carmichael",
+   "role": "other",
+   "years": null,
+   "url": "https://web.math.princeton.edu/~amits/People.html",
+   "sha256": "65dbb7cd88c3cd353eae106fca601454a6e7b6a27f105e603695e1aff3d9b4b4",
+   "quote": "Research Software Engineers Garrett Wright (Lead RSE) Joshua Carmichael",
+   "note": "lab-page audit 2026-10-30; section: Research Software Engineers",
+   "pi": "Amit Singer",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Marc Gilles",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://web.math.princeton.edu/~amits/People.html",
+   "sha256": "65dbb7cd88c3cd353eae106fca601454a6e7b6a27f105e603695e1aff3d9b4b4",
+   "quote": "Former Postdocs Joakim Andén (now Associate Professor at KTH, Sweden) Tamir Bendory (now Associate Professor at Tel Aviv University, Israel) Nicolas Boumal (now Associate Professor at EPFL, Switzerland) Kunal Chaudhury (now Associate Professor at IISC Bangalore, India) Marc Gilles",
+   "note": "lab-page audit 2026-10-30; section: Former Postdocs",
+   "pi": "Amit Singer",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Nicholas Marshall",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://web.math.princeton.edu/~amits/People.html",
+   "sha256": "65dbb7cd88c3cd353eae106fca601454a6e7b6a27f105e603695e1aff3d9b4b4",
+   "quote": "Former Postdocs Joakim Andén (now Associate Professor at KTH, Sweden) Tamir Bendory (now Associate Professor at Tel Aviv University, Israel) Nicolas Boumal (now Associate Professor at EPFL, Switzerland) Kunal Chaudhury (now Associate Professor at IISC Bangalore, India) Marc Gilles (now Assistant Professor at Princeton) Ayelet Heimowitz (now Assistant Professor at Ariel University, Israel) Joseph Kileel (now Associate Professor at UT Austin) Ti-Yen Lan (now at Apple) William Leeb (now Associate Professor at University of Minnesota) Roy Lederman (now Assistant Professor at Yale University) Nicholas Marshall",
+   "note": "lab-page audit 2026-10-30; section: Former Postdocs",
+   "pi": "Amit Singer",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Oscar Mickelin",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://web.math.princeton.edu/~amits/People.html",
+   "sha256": "65dbb7cd88c3cd353eae106fca601454a6e7b6a27f105e603695e1aff3d9b4b4",
+   "quote": "Former Postdocs Joakim Andén (now Associate Professor at KTH, Sweden) Tamir Bendory (now Associate Professor at Tel Aviv University, Israel) Nicolas Boumal (now Associate Professor at EPFL, Switzerland) Kunal Chaudhury (now Associate Professor at IISC Bangalore, India) Marc Gilles (now Assistant Professor at Princeton) Ayelet Heimowitz (now Assistant Professor at Ariel University, Israel) Joseph Kileel (now Associate Professor at UT Austin) Ti-Yen Lan (now at Apple) William Leeb (now Associate Professor at University of Minnesota) Roy Lederman (now Assistant Professor at Yale University) Nicholas Marshall (now Assistant Professor at Oregon State University) Oscar Mickelin",
+   "note": "lab-page audit 2026-10-30; section: Former Postdocs",
+   "pi": "Amit Singer",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Yunpeng Shi",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://web.math.princeton.edu/~amits/People.html",
+   "sha256": "65dbb7cd88c3cd353eae106fca601454a6e7b6a27f105e603695e1aff3d9b4b4",
+   "quote": "Former Postdocs Joakim Andén (now Associate Professor at KTH, Sweden) Tamir Bendory (now Associate Professor at Tel Aviv University, Israel) Nicolas Boumal (now Associate Professor at EPFL, Switzerland) Kunal Chaudhury (now Associate Professor at IISC Bangalore, India) Marc Gilles (now Assistant Professor at Princeton) Ayelet Heimowitz (now Assistant Professor at Ariel University, Israel) Joseph Kileel (now Associate Professor at UT Austin) Ti-Yen Lan (now at Apple) William Leeb (now Associate Professor at University of Minnesota) Roy Lederman (now Assistant Professor at Yale University) Nicholas Marshall (now Assistant Professor at Oregon State University) Oscar Mickelin (now Assistant Professor at Tsinghua University) Amit Moscovich-Eiger (now Assistant Professor at Tel Aviv University) Nir Sharon (now Associate Professor at Tel Aviv University) Yunpeng Shi",
+   "note": "lab-page audit 2026-10-30; section: Former Postdocs",
+   "pi": "Amit Singer",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Eric Verbeke",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://web.math.princeton.edu/~amits/People.html",
+   "sha256": "65dbb7cd88c3cd353eae106fca601454a6e7b6a27f105e603695e1aff3d9b4b4",
+   "quote": "Former Postdocs Joakim Andén (now Associate Professor at KTH, Sweden) Tamir Bendory (now Associate Professor at Tel Aviv University, Israel) Nicolas Boumal (now Associate Professor at EPFL, Switzerland) Kunal Chaudhury (now Associate Professor at IISC Bangalore, India) Marc Gilles (now Assistant Professor at Princeton) Ayelet Heimowitz (now Assistant Professor at Ariel University, Israel) Joseph Kileel (now Associate Professor at UT Austin) Ti-Yen Lan (now at Apple) William Leeb (now Associate Professor at University of Minnesota) Roy Lederman (now Assistant Professor at Yale University) Nicholas Marshall (now Assistant Professor at Oregon State University) Oscar Mickelin (now Assistant Professor at Tsinghua University) Amit Moscovich-Eiger (now Assistant Professor at Tel Aviv University) Nir Sharon (now Associate Professor at Tel Aviv University) Yunpeng Shi (now Assistant Professor at UC Davis) Justin Solomon (now Associate Professor at MIT) Eric Verbeke",
+   "note": "lab-page audit 2026-10-30; section: Former Postdocs",
+   "pi": "Amit Singer",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Ruiyi Yang",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://web.math.princeton.edu/~amits/People.html",
+   "sha256": "65dbb7cd88c3cd353eae106fca601454a6e7b6a27f105e603695e1aff3d9b4b4",
+   "quote": "Former Postdocs Joakim Andén (now Associate Professor at KTH, Sweden) Tamir Bendory (now Associate Professor at Tel Aviv University, Israel) Nicolas Boumal (now Associate Professor at EPFL, Switzerland) Kunal Chaudhury (now Associate Professor at IISC Bangalore, India) Marc Gilles (now Assistant Professor at Princeton) Ayelet Heimowitz (now Assistant Professor at Ariel University, Israel) Joseph Kileel (now Associate Professor at UT Austin) Ti-Yen Lan (now at Apple) William Leeb (now Associate Professor at University of Minnesota) Roy Lederman (now Assistant Professor at Yale University) Nicholas Marshall (now Assistant Professor at Oregon State University) Oscar Mickelin (now Assistant Professor at Tsinghua University) Amit Moscovich-Eiger (now Assistant Professor at Tel Aviv University) Nir Sharon (now Associate Professor at Tel Aviv University) Yunpeng Shi (now Assistant Professor at UC Davis) Justin Solomon (now Associate Professor at MIT) Eric Verbeke (now CZI Global Science Scholar) Hau-tieng Wu (now Professor at NYU) Sheng Xu (now Assistant Professor at UT Dallas) Ruiyi Yang",
+   "note": "lab-page audit 2026-10-30; section: Former Postdocs",
+   "pi": "Amit Singer",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Christopher Langfield",
+   "role": "other",
+   "years": null,
+   "url": "https://web.math.princeton.edu/~amits/People.html",
+   "capture_url": "https://web.archive.org/web/20220516153819id_/https://web.math.princeton.edu/~amits/People.html",
+   "sha256": "b8656cf6dc6ee06344e5b66416b573ecdc8d039e1835cf9702461a2d99990e02",
+   "quote": "Research Software Engineers Garrett Wright (Senior RSE) Joshua Carmichael Christopher Langfield",
+   "note": "lab-page audit 2026-10-30; section: Research Software Engineers",
+   "pi": "Amit Singer",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Boris Shigida",
+   "role": "phd",
+   "years": [
+    2026,
+    2028
+   ],
+   "url": "https://mdcattaneo.github.io/students/",
+   "sha256": "5a0288efef94a60202b4a58dc9eaaa7d76e55f6e8f19ad190875a9c70196e41e",
+   "quote": "Boris Shigida Ph.D. in Operations Research and Financial Engineer",
+   "note": "lab-page audit 2026-10-30; section: Current and Former Ph.D. Students",
+   "pi": "Matias D. Cattaneo",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2019
+  },
+  {
+   "name": "Eric Xia",
+   "role": "postdoc",
+   "years": [
+    2025,
+    null
+   ],
+   "url": "https://klusowski.princeton.edu/students/",
+   "sha256": "28d985d91c4bc6aba39e25b86fef104986c18f2c42e29b9b91dcdd627683b891",
+   "quote": "Eric Xia Operations Research and Financial Engineer",
+   "note": "lab-page audit 2026-10-30; section: Postdoctoral Researchers",
+   "pi": "Jason Klusowski",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2020
+  },
+  {
+   "name": "Thierry Rioual",
+   "role": "phd",
+   "years": null,
+   "url": "https://klusowski.princeton.edu/students/",
+   "sha256": "28d985d91c4bc6aba39e25b86fef104986c18f2c42e29b9b91dcdd627683b891",
+   "quote": "Thierry Rioual (co-advised with Matias Cattaneo) Ph.D. in Operations Research and Financial Engineer",
+   "note": "lab-page audit 2026-10-30; section: Doctoral Students",
+   "pi": "Jason Klusowski",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2020
+  },
+  {
+   "name": "Xialu Zheng",
+   "role": "phd",
+   "years": null,
+   "url": "https://klusowski.princeton.edu/students/",
+   "sha256": "28d985d91c4bc6aba39e25b86fef104986c18f2c42e29b9b91dcdd627683b891",
+   "quote": "Xialu Zheng (co-advised with Jianqing Fan) Ph.D. in Operations Research and Financial Engineer",
+   "note": "lab-page audit 2026-10-30; section: Doctoral Students",
+   "pi": "Jason Klusowski",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2020
+  },
+  {
+   "name": "Jiahao Shi",
+   "role": "phd",
+   "years": null,
+   "url": "https://klusowski.princeton.edu/students/",
+   "sha256": "28d985d91c4bc6aba39e25b86fef104986c18f2c42e29b9b91dcdd627683b891",
+   "quote": "Jiahao Shi Ph.D. in Electrical and Computer Engineer",
+   "note": "lab-page audit 2026-10-30; section: Doctoral Students",
+   "pi": "Jason Klusowski",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2020
+  },
+  {
+   "name": "Chang Yu",
+   "role": "phd",
+   "years": null,
+   "url": "https://klusowski.princeton.edu/students/",
+   "sha256": "28d985d91c4bc6aba39e25b86fef104986c18f2c42e29b9b91dcdd627683b891",
+   "quote": "Chang Yu Ph.D. in Operations Research and Financial Engineer",
+   "note": "lab-page audit 2026-10-30; section: Doctoral Students",
+   "pi": "Jason Klusowski",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2020
+  },
+  {
+   "name": "Sijin Chen",
+   "role": "phd",
+   "years": null,
+   "url": "https://klusowski.princeton.edu/students/",
+   "sha256": "28d985d91c4bc6aba39e25b86fef104986c18f2c42e29b9b91dcdd627683b891",
+   "quote": "Sijin Chen Ph.D. in Electrical and Computer Engineer",
+   "note": "lab-page audit 2026-10-30; section: Doctoral Students",
+   "pi": "Jason Klusowski",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2020
+  },
+  {
+   "name": "Xin Chen",
+   "role": "phd",
+   "years": null,
+   "url": "https://klusowski.princeton.edu/students/",
+   "sha256": "28d985d91c4bc6aba39e25b86fef104986c18f2c42e29b9b91dcdd627683b891",
+   "quote": "Xin Chen Ph.D. in Operations Research and Financial Engineer",
+   "note": "lab-page audit 2026-10-30; section: Doctoral Students",
+   "pi": "Jason Klusowski",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2020
+  },
+  {
+   "name": "Omar Hagrass",
+   "role": "postdoc",
+   "years": [
+    2024,
+    2026
+   ],
+   "url": "https://klusowski.princeton.edu/students/",
+   "sha256": "28d985d91c4bc6aba39e25b86fef104986c18f2c42e29b9b91dcdd627683b891",
+   "quote": "Omar Hagrass DataX Postdoctoral",
+   "note": "lab-page audit 2026-10-30; section: Former Members",
+   "pi": "Jason Klusowski",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2020
+  },
+  {
+   "name": "Daniel E. Rigobon",
+   "role": "phd",
+   "years": null,
+   "url": "http://mracz.princeton.edu/students.html",
+   "capture_url": "https://web.archive.org/web/20230205204723id_/http://mracz.princeton.edu/students.html",
+   "sha256": "c851ea6b40dd7d25928b5f23952a70d70b4c25054c676353ec662fc32c58d278",
+   "quote": "PhD Daniel E. Rigobon",
+   "note": "lab-page audit 2026-10-30; section: Current students > PhD",
+   "pi": "Miklos Racz",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2017
+  },
+  {
+   "name": "Anirudh Sridhar",
+   "role": "phd",
+   "years": null,
+   "url": "http://mracz.princeton.edu/students.html",
+   "capture_url": "https://web.archive.org/web/20230205204723id_/http://mracz.princeton.edu/students.html",
+   "sha256": "c851ea6b40dd7d25928b5f23952a70d70b4c25054c676353ec662fc32c58d278",
+   "quote": "PhD Daniel E. Rigobon , ORFE (co-advised w/ R. Sircar) Anirudh Sridhar",
+   "note": "lab-page audit 2026-10-30; section: Current students > PhD",
+   "pi": "Miklos Racz",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2017
+  },
+  {
+   "name": "Mayee F. Chen",
+   "role": "undergraduate",
+   "years": null,
+   "url": "http://mracz.princeton.edu/students.html",
+   "capture_url": "https://web.archive.org/web/20230205204723id_/http://mracz.princeton.edu/students.html",
+   "sha256": "c851ea6b40dd7d25928b5f23952a70d70b4c25054c676353ec662fc32c58d278",
+   "quote": "Undergraduate Vydhourie R.T. Thiyageswaran , Mathematics, 2020 Jan. - 2021 May; now PhD student at the University of Washington Mayee F. Chen",
+   "note": "lab-page audit 2026-10-30; section: Adam Chang, ORFE, 2019 - 2020; [ senior thesis ] > Undergraduate",
+   "pi": "Miklos Racz",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2017
+  },
+  {
+   "name": "Charlie Hou",
+   "role": "undergraduate",
+   "years": null,
+   "url": "http://mracz.princeton.edu/students.html",
+   "capture_url": "https://web.archive.org/web/20230205204723id_/http://mracz.princeton.edu/students.html",
+   "sha256": "c851ea6b40dd7d25928b5f23952a70d70b4c25054c676353ec662fc32c58d278",
+   "quote": "Undergraduate Vydhourie R.T. Thiyageswaran , Mathematics, 2020 Jan. - 2021 May; now PhD student at the University of Washington Mayee F. Chen , ORFE, 2018 Jan. - 2019 May; now PhD student at Stanford University Benjamin Schiffer , ORFE, 2018 Jan. - 2019 May; now PhD student at Harvard University Charlie Hou",
+   "note": "lab-page audit 2026-10-30; section: Adam Chang, ORFE, 2019 - 2020; [ senior thesis ] > Undergraduate",
+   "pi": "Miklos Racz",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2017
+  },
+  {
+   "name": "Walter Li",
+   "role": "undergraduate",
+   "years": null,
+   "url": "http://mracz.princeton.edu/students.html",
+   "capture_url": "https://web.archive.org/web/20230205204723id_/http://mracz.princeton.edu/students.html",
+   "sha256": "c851ea6b40dd7d25928b5f23952a70d70b4c25054c676353ec662fc32c58d278",
+   "quote": "Undergraduate Vydhourie R.T. Thiyageswaran , Mathematics, 2020 Jan. - 2021 May; now PhD student at the University of Washington Mayee F. Chen , ORFE, 2018 Jan. - 2019 May; now PhD student at Stanford University Benjamin Schiffer , ORFE, 2018 Jan. - 2019 May; now PhD student at Harvard University Charlie Hou, ORFE, 2018 spring; now PhD student at CMU Walter Li",
+   "note": "lab-page audit 2026-10-30; section: Adam Chang, ORFE, 2019 - 2020; [ senior thesis ] > Undergraduate",
+   "pi": "Miklos Racz",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2017
+  },
+  {
+   "name": "Kabir Dabholkar",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://pillowlab.princeton.edu/people.html",
+   "sha256": "8d7b18a942b1b715cb3e6f591c78e14e5c8279e715d94468bea0084ea0901213",
+   "quote": "Postdocs Juncal Arbelaiz Juncal is a C. V. Starr fellow at the Princeton Neuroscience Institute, affiliated with the Center for Statistics and Machine Learning. Previously, she was a Schmidt Science postdoctoral fellow at the School of Engineering and Applied Sciences at Princeton University. She received her Ph.D. degree in applied mathematics from the Massachusetts Institute of Technology (MIT), in September 2022. Her doctoral advisors were Ali Jadbabaie and Anette (Peko) Hosoi, and regularly collaborated with Bassam Bamieh. Her research interests are in (1) optimal decentralized control and estimation of spatially distributed dynamical systems, with a focus on systems with spatiotemporal dynamics; (2) design of principled bio-inspired and neuromorphic controllers with performance guarantees; and (3) statistical inference, learning, and inverse problems in neural dynamics. Outside the lab, you will find Juncal running or at the gym, cooking, and advocating for women in STEM fields. Kabir Dabholkar",
+   "note": "lab-page audit 2026-10-30; section: Postdocs",
+   "pi": "Jonathan W. Pillow",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2014
+  },
+  {
+   "name": "Helena Liu",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://pillowlab.princeton.edu/people.html",
+   "sha256": "8d7b18a942b1b715cb3e6f591c78e14e5c8279e715d94468bea0084ea0901213",
+   "quote": "Helena Liu Helena received her Ph.D. in Applied Mathematics from the University of Washington, supervised by P",
+   "note": "lab-page audit 2026-10-30; section: Postdocs",
+   "pi": "Jonathan W. Pillow",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2014
+  },
+  {
+   "name": "Alex Riordan",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://pillowlab.princeton.edu/people.html",
+   "sha256": "8d7b18a942b1b715cb3e6f591c78e14e5c8279e715d94468bea0084ea0901213",
+   "quote": "Alex Riordan Alex is a hybrid computational-experimental neuroscientist",
+   "note": "lab-page audit 2026-10-30; section: Postdocs",
+   "pi": "Jonathan W. Pillow",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2014
+  },
+  {
+   "name": "Anushri Arora",
+   "role": "phd",
+   "years": null,
+   "url": "https://pillowlab.princeton.edu/people.html",
+   "sha256": "8d7b18a942b1b715cb3e6f591c78e14e5c8279e715d94468bea0084ea0901213",
+   "quote": "Anushri Arora Anushri is a 4th-year Ph.D",
+   "note": "lab-page audit 2026-10-30; section: Students",
+   "pi": "Jonathan W. Pillow",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2014
+  },
+  {
+   "name": "Shaunak Bhandarkar",
+   "role": "phd",
+   "years": null,
+   "url": "https://pillowlab.princeton.edu/people.html",
+   "sha256": "8d7b18a942b1b715cb3e6f591c78e14e5c8279e715d94468bea0084ea0901213",
+   "quote": "Shaunak Bhandarkar (joint with Boris Hanin ) Shaunak is a 3rd-year PhD",
+   "note": "lab-page audit 2026-10-30; section: Students",
+   "pi": "Jonathan W. Pillow",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2014
+  },
+  {
+   "name": "Yousuf El-Jayyousi",
+   "role": "phd",
+   "years": null,
+   "url": "https://pillowlab.princeton.edu/people.html",
+   "sha256": "8d7b18a942b1b715cb3e6f591c78e14e5c8279e715d94468bea0084ea0901213",
+   "quote": "Yousuf El-Jayyousi (joint with Ilana Witten ) Yousuf is a 5th-year Ph.D",
+   "note": "lab-page audit 2026-10-30; section: Students",
+   "pi": "Jonathan W. Pillow",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2014
+  },
+  {
+   "name": "Alexander \"Sasha\" Lanine",
+   "role": "phd",
+   "years": null,
+   "url": "https://pillowlab.princeton.edu/people.html",
+   "sha256": "8d7b18a942b1b715cb3e6f591c78e14e5c8279e715d94468bea0084ea0901213",
+   "quote": "Alexander \"Sasha\" Lanine Sasha is a 2nd-year PhD",
+   "note": "lab-page audit 2026-10-30; section: Students",
+   "pi": "Jonathan W. Pillow",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2014
+  },
+  {
+   "name": "Zhiyu \"Melissa\" Tian",
+   "role": "phd",
+   "years": null,
+   "url": "https://pillowlab.princeton.edu/people.html",
+   "sha256": "8d7b18a942b1b715cb3e6f591c78e14e5c8279e715d94468bea0084ea0901213",
+   "quote": "Zhiyu \"Melissa\" Tian (joint with Mala Murthy ) Melissa is a 2nd-year PhD",
+   "note": "lab-page audit 2026-10-30; section: Students",
+   "pi": "Jonathan W. Pillow",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2014
+  },
+  {
+   "name": "Ning Wang",
+   "role": "phd",
+   "years": null,
+   "url": "https://pillowlab.princeton.edu/people.html",
+   "sha256": "8d7b18a942b1b715cb3e6f591c78e14e5c8279e715d94468bea0084ea0901213",
+   "quote": "Ning Wang (joint with Fenna Krienen ) Ning is a 3rd-year Ph.D",
+   "note": "lab-page audit 2026-10-30; section: Students",
+   "pi": "Jonathan W. Pillow",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2014
+  },
+  {
+   "name": "Bichan Wu",
+   "role": "phd",
+   "years": null,
+   "url": "https://pillowlab.princeton.edu/people.html",
+   "sha256": "8d7b18a942b1b715cb3e6f591c78e14e5c8279e715d94468bea0084ea0901213",
+   "quote": "Bichan Wu (joint with Ilana Witten ) Bichan is a 5th-year Ph.D",
+   "note": "lab-page audit 2026-10-30; section: Students",
+   "pi": "Jonathan W. Pillow",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2014
+  },
+  {
+   "name": "Adam Charles",
+   "role": "postdoc",
+   "years": [
+    2015,
+    2020
+   ],
+   "url": "https://pillowlab.princeton.edu/people.html",
+   "sha256": "8d7b18a942b1b715cb3e6f591c78e14e5c8279e715d94468bea0084ea0901213",
+   "quote": "Adam Charles (Postdoc",
+   "note": "lab-page audit 2026-10-30; section: Postdocs",
+   "pi": "Jonathan W. Pillow",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2014
+  },
+  {
+   "name": "Mikio Aoi",
+   "role": "postdoc",
+   "years": [
+    2015,
+    2020
+   ],
+   "url": "https://pillowlab.princeton.edu/people.html",
+   "sha256": "8d7b18a942b1b715cb3e6f591c78e14e5c8279e715d94468bea0084ea0901213",
+   "quote": "Mikio Aoi (Postdoc",
+   "note": "lab-page audit 2026-10-30; section: Postdocs",
+   "pi": "Jonathan W. Pillow",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2014
+  },
+  {
+   "name": "Stephen Keeley",
+   "role": "postdoc",
+   "years": [
+    2016,
+    2020
+   ],
+   "url": "https://pillowlab.princeton.edu/people.html",
+   "sha256": "8d7b18a942b1b715cb3e6f591c78e14e5c8279e715d94468bea0084ea0901213",
+   "quote": "Stephen Keeley (Postdoc",
+   "note": "lab-page audit 2026-10-30; section: Postdocs",
+   "pi": "Jonathan W. Pillow",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2014
+  },
+  {
+   "name": "Abby Russo",
+   "role": "postdoc",
+   "years": [
+    2019,
+    2020
+   ],
+   "url": "https://pillowlab.princeton.edu/people.html",
+   "sha256": "8d7b18a942b1b715cb3e6f591c78e14e5c8279e715d94468bea0084ea0901213",
+   "quote": "Abby Russo (Joint Postdoc",
+   "note": "lab-page audit 2026-10-30; section: Postdocs",
+   "pi": "Jonathan W. Pillow",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2014
+  },
+  {
+   "name": "Brian DePasquale",
+   "role": "postdoc",
+   "years": [
+    2016,
+    2022
+   ],
+   "url": "https://pillowlab.princeton.edu/people.html",
+   "sha256": "8d7b18a942b1b715cb3e6f591c78e14e5c8279e715d94468bea0084ea0901213",
+   "quote": "Brian DePasquale (Joint Postdoc",
+   "note": "lab-page audit 2026-10-30; section: Postdocs",
+   "pi": "Jonathan W. Pillow",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2014
+  },
+  {
+   "name": "Zeinab Mohammadi",
+   "role": "postdoc",
+   "years": [
+    2020,
+    2023
+   ],
+   "url": "https://pillowlab.princeton.edu/people.html",
+   "sha256": "8d7b18a942b1b715cb3e6f591c78e14e5c8279e715d94468bea0084ea0901213",
+   "quote": "Zeinab Mohammadi (Postdoc",
+   "note": "lab-page audit 2026-10-30; section: Postdocs",
+   "pi": "Jonathan W. Pillow",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2014
+  },
+  {
+   "name": "Dean Pospisil",
+   "role": "postdoc",
+   "years": [
+    2021,
+    2025
+   ],
+   "url": "https://pillowlab.princeton.edu/people.html",
+   "sha256": "8d7b18a942b1b715cb3e6f591c78e14e5c8279e715d94468bea0084ea0901213",
+   "quote": "Postdocs Il Memming Park (Postdoc, 2010-2014). Now group leader at Champalimaud Center for the Unknown Adam Charles (Postdoc, 2015-2020) Now asst. prof. in BME at Johns Hopkins. Mikio Aoi (Postdoc, 2015-2020) Now asst. prof. in Neuroscience & Data Science at UCSD. Stephen Keeley (Postdoc, 2016-2020) Now asst. prof. in Neuroscience at Fordham Abby Russo (Joint Postdoc w/ Carlos Brody, 2019-2020) Now at CTRL-Labs. Ben Cowley (Postdoc, 2018-2022). Now asst. prof. at Cold Spring Harbor Laboratory Brian DePasquale (Joint Postdoc w/ Carlos Brody, 2016-2022). Now asst. prof. at Boston University Zeinab Mohammadi (Postdoc, 2020-2023) Now postdoc at Northwestern University Rich Pang (Joint Postdoc w/ Mala Murthy, 2020-2025) Now founder and chief scientist at Neurotaxis. Dean Pospisil",
+   "note": "lab-page audit 2026-10-30; section: Postdocs",
+   "pi": "Jonathan W. Pillow",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2014
+  },
+  {
+   "name": "Matthew Creamer",
+   "role": "postdoc",
+   "years": [
+    2019,
+    2025
+   ],
+   "url": "https://pillowlab.princeton.edu/people.html",
+   "sha256": "8d7b18a942b1b715cb3e6f591c78e14e5c8279e715d94468bea0084ea0901213",
+   "quote": "Matthew Creamer (Joint postdoc",
+   "note": "lab-page audit 2026-10-30; section: Postdocs",
+   "pi": "Jonathan W. Pillow",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2014
+  },
+  {
+   "name": "Jacob Yates",
+   "role": "phd",
+   "years": null,
+   "url": "http://pillowlab.princeton.edu:80/people.html",
+   "capture_url": "https://web.archive.org/web/20160315033303id_/http://pillowlab.princeton.edu:80/people.html",
+   "sha256": "d152f17521dd01001659cb4f6473588cd9aec9e00ab2a4d764cb8451feb2fe54",
+   "quote": "Jacob Yates Jake is Ph.D",
+   "note": "lab-page audit 2026-10-30; section: Students",
+   "pi": "Jonathan W. Pillow",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2014
+  },
+  {
+   "name": "Victor Geadah",
+   "role": "phd",
+   "years": [
+    null,
+    2026
+   ],
+   "url": "https://pillowlab.princeton.edu/people.html",
+   "sha256": "8d7b18a942b1b715cb3e6f591c78e14e5c8279e715d94468bea0084ea0901213",
+   "quote": "Ph.D. Students Mijung Park (Ph.D. in ECE, 2013). Now asst. prof. at U. British Columbia Evan Archer (Ph.D. in applied math 2014). Now Research Scientist at at Sony AI. Karin Knudson (Ph.D. in mathematics, 2014; co-advised by Rachel Ward). Now Senior Data Scientist at Tufts University. Kenneth Latimer (Ph.D. in neuroscience, 2015). Now data scientist at Fifth Third Bank. Jacob Yates (Ph.D. in neuroscience, 2016; co-advised by Alex Huk). Now assistant professor at UC Berkeley. Ji Hyun Bak (Ph.D. in physics, 2016; co-advised by Bill Bialek). Now data scientist at Delfi Diagnostics. Anqi Wu (Ph.D. in neuroscience, 2019). Now assistant professor at Georgia Tech. Nick Roy (Ph.D. in neuroscience, 2020). Now research scientist at Google/DeepMind. Mike Morais (Ph.D. in neuroscience, 2021). Now applied scientist at Amazon Web Services. David Zoltowski (Ph.D. in neuroscience, 2022). Now postdoc at Stanford University. Zoe Ashwood (Ph.D. in computer science, 2022). Now research scientist at Google/DeepMind. Iris Stone (Ph.D. in neuroscience, 2023; co-advised by Ilana Witten). Now postdoctoral fellow at the Allen Institute. Aditi Jha (Ph.D. in ECE, 2024). Now postdoc at Stanford University. Kevin Chen (Joint w/ Andy Leifer; Ph.D. in neuroscience, 2024). Now postdoc at Yale University. Yoel Sanchez Araujo (Joint w/ Nathaniel Daw; Ph.D. in neuroscience, 2025). Now bioinformatician at Georgetown. Orren Karniol-Tambour (Ph.D. in neuroscience, 2025). Victor Geadah",
+   "note": "lab-page audit 2026-10-30; section: Ph.D. Students",
+   "pi": "Jonathan W. Pillow",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2014
+  },
+  {
+   "name": "Umesh Singla",
+   "role": "phd",
+   "years": [
+    2023,
+    2023
+   ],
+   "url": "https://pillowlab.princeton.edu/people.html",
+   "sha256": "8d7b18a942b1b715cb3e6f591c78e14e5c8279e715d94468bea0084ea0901213",
+   "quote": "Umesh Singla (RA",
+   "note": "lab-page audit 2026-10-30; section: RAs / Visitors",
+   "pi": "Jonathan W. Pillow",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2014
+  },
+  {
+   "name": "Alejandro Tlaie Boria",
+   "role": "postdoc",
+   "years": [
+    null,
+    2023
+   ],
+   "url": "https://pillowlab.princeton.edu/people.html",
+   "sha256": "8d7b18a942b1b715cb3e6f591c78e14e5c8279e715d94468bea0084ea0901213",
+   "quote": "Alejandro Tlaie Boria (visiting postdoc",
+   "note": "lab-page audit 2026-10-30; section: RAs / Visitors",
+   "pi": "Jonathan W. Pillow",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2014
+  },
+  {
+   "name": "Lea Duncker",
+   "role": "other",
+   "years": [
+    2015,
+    2016
+   ],
+   "url": "https://pillowlab.princeton.edu/people.html",
+   "sha256": "8d7b18a942b1b715cb3e6f591c78e14e5c8279e715d94468bea0084ea0901213",
+   "quote": "Lea Duncker (RA",
+   "note": "lab-page audit 2026-10-30; section: RAs / Visitors",
+   "pi": "Jonathan W. Pillow",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2014
+  },
+  {
+   "name": "Alex Hyafil",
+   "role": "postdoc",
+   "years": [
+    null,
+    2017
+   ],
+   "url": "https://pillowlab.princeton.edu/people.html",
+   "sha256": "8d7b18a942b1b715cb3e6f591c78e14e5c8279e715d94468bea0084ea0901213",
+   "quote": "Alex Hyafil (visiting postdoc",
+   "note": "lab-page audit 2026-10-30; section: RAs / Visitors",
+   "pi": "Jonathan W. Pillow",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2014
+  },
+  {
+   "name": "Emily Huang",
+   "role": "undergraduate",
+   "years": null,
+   "url": "http://pillowlab.princeton.edu:80/people.html",
+   "capture_url": "https://web.archive.org/web/20160315033303id_/http://pillowlab.princeton.edu:80/people.html",
+   "sha256": "d152f17521dd01001659cb4f6473588cd9aec9e00ab2a4d764cb8451feb2fe54",
+   "quote": "Undergraduate researchers Emily Huang",
+   "note": "lab-page audit 2026-10-30; section: Undergraduate researchers",
+   "pi": "Jonathan W. Pillow",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2014
+  },
+  {
+   "name": "Connor McGrory",
+   "role": "undergraduate",
+   "years": null,
+   "url": "http://pillowlab.princeton.edu:80/people.html",
+   "capture_url": "https://web.archive.org/web/20160315033303id_/http://pillowlab.princeton.edu:80/people.html",
+   "sha256": "d152f17521dd01001659cb4f6473588cd9aec9e00ab2a4d764cb8451feb2fe54",
+   "quote": "Undergraduate researchers Emily Huang - ORFE 2017 Connor McGrory",
+   "note": "lab-page audit 2026-10-30; section: Undergraduate researchers",
+   "pi": "Jonathan W. Pillow",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2014
+  },
+  {
+   "name": "Katherine Lee",
+   "role": "undergraduate",
+   "years": null,
+   "url": "http://pillowlab.princeton.edu:80/people.html",
+   "capture_url": "https://web.archive.org/web/20160315033303id_/http://pillowlab.princeton.edu:80/people.html",
+   "sha256": "d152f17521dd01001659cb4f6473588cd9aec9e00ab2a4d764cb8451feb2fe54",
+   "quote": "Undergraduate researchers Emily Huang - ORFE 2017 Connor McGrory - CS 2016. Katherine Lee",
+   "note": "lab-page audit 2026-10-30; section: Undergraduate researchers",
+   "pi": "Jonathan W. Pillow",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2014
+  },
+  {
+   "name": "Daniel Greenidge",
+   "role": "undergraduate",
+   "years": null,
+   "url": "https://pillowlab.princeton.edu/people.html",
+   "capture_url": "https://web.archive.org/web/20191122092050id_/https://pillowlab.princeton.edu/people.html",
+   "sha256": "a679d8d271e28dc9430095f2c6cd08f146d6d55573df00ad976b8db8b3196b38",
+   "quote": "Daniel Greenidge Daniel graduated with a B.S.E.",
+   "note": "lab-page audit 2026-10-30; section: Students > Research Assistant",
+   "pi": "Jonathan W. Pillow",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2014
+  },
+  {
+   "name": "Mel Andrews",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://cognition.princeton.edu/people",
+   "capture_url": "https://web.archive.org/web/20260312055830id_/https://cognition.princeton.edu/people",
+   "sha256": "4a91c40524e3978604d351f7906a5e4f3a800225ffff2ba17cc1fa31c50b9742",
+   "quote": "Mel Andrews Mel Andrews is a postdoctoral",
+   "note": "lab-page audit 2026-10-30; section: Postdoctoral Scholars",
+   "pi": "Tania Lombrozo",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2018
+  },
+  {
+   "name": "Huili Chen",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://cognition.princeton.edu/people",
+   "capture_url": "https://web.archive.org/web/20260312055830id_/https://cognition.princeton.edu/people",
+   "sha256": "4a91c40524e3978604d351f7906a5e4f3a800225ffff2ba17cc1fa31c50b9742",
+   "quote": "Huili Chen Huili Chen is a cross-disciplinary researcher, scientist",
+   "note": "lab-page audit 2026-10-30; section: Postdoctoral Scholars",
+   "pi": "Tania Lombrozo",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2018
+  },
+  {
+   "name": "Joseph Sommer",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://cognition.princeton.edu/people",
+   "capture_url": "https://web.archive.org/web/20260312055830id_/https://cognition.princeton.edu/people",
+   "sha256": "4a91c40524e3978604d351f7906a5e4f3a800225ffff2ba17cc1fa31c50b9742",
+   "quote": "Joseph Sommer Joseph is a postdoctoral",
+   "note": "lab-page audit 2026-10-30; section: Postdoctoral Scholars",
+   "pi": "Tania Lombrozo",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2018
+  },
+  {
+   "name": "Anna Tsvetkov",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://cognition.princeton.edu/people",
+   "capture_url": "https://web.archive.org/web/20260312055830id_/https://cognition.princeton.edu/people",
+   "sha256": "4a91c40524e3978604d351f7906a5e4f3a800225ffff2ba17cc1fa31c50b9742",
+   "quote": "Anna Tsvetkov Anna Tsvetkov is an AI Postdoctoral",
+   "note": "lab-page audit 2026-10-30; section: Postdoctoral Scholars",
+   "pi": "Tania Lombrozo",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2018
+  },
+  {
+   "name": "Sarah Joo",
+   "role": "phd",
+   "years": null,
+   "url": "https://cognition.princeton.edu/people",
+   "capture_url": "https://web.archive.org/web/20260312055830id_/https://cognition.princeton.edu/people",
+   "sha256": "4a91c40524e3978604d351f7906a5e4f3a800225ffff2ba17cc1fa31c50b9742",
+   "quote": "Sarah Joo Sarah is a graduate student",
+   "note": "lab-page audit 2026-10-30; section: Graduate Students",
+   "pi": "Tania Lombrozo",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2018
+  },
+  {
+   "name": "Casey Lewry",
+   "role": "phd",
+   "years": null,
+   "url": "https://cognition.princeton.edu/people",
+   "capture_url": "https://web.archive.org/web/20260312055830id_/https://cognition.princeton.edu/people",
+   "sha256": "4a91c40524e3978604d351f7906a5e4f3a800225ffff2ba17cc1fa31c50b9742",
+   "quote": "Casey Lewry Casey is a graduate student",
+   "note": "lab-page audit 2026-10-30; section: Graduate Students",
+   "pi": "Tania Lombrozo",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2018
+  },
+  {
+   "name": "Francisco Cruz",
+   "role": "phd",
+   "years": [
+    2023,
+    2024
+   ],
+   "url": "https://cognition.princeton.edu/people",
+   "capture_url": "https://web.archive.org/web/20260312055830id_/https://cognition.princeton.edu/people",
+   "sha256": "4a91c40524e3978604d351f7906a5e4f3a800225ffff2ba17cc1fa31c50b9742",
+   "quote": "Francisco Cruz Francisco Cruz is a graduate student",
+   "note": "lab-page audit 2026-10-30; section: Lab Visitors",
+   "pi": "Tania Lombrozo",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2018
+  },
+  {
+   "name": "Kathryn McGregor",
+   "role": "other",
+   "years": null,
+   "url": "https://cognition.princeton.edu/people",
+   "capture_url": "https://web.archive.org/web/20260312055830id_/https://cognition.princeton.edu/people",
+   "sha256": "4a91c40524e3978604d351f7906a5e4f3a800225ffff2ba17cc1fa31c50b9742",
+   "quote": "Kathryn McGregor Kathryn is our lab manager",
+   "note": "lab-page audit 2026-10-30; section: Lab Manager",
+   "pi": "Tania Lombrozo",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2018
+  },
+  {
+   "name": "Sana Asifriyaz",
+   "role": "undergraduate",
+   "years": null,
+   "url": "https://cognition.princeton.edu/people",
+   "capture_url": "https://web.archive.org/web/20260312055830id_/https://cognition.princeton.edu/people",
+   "sha256": "4a91c40524e3978604d351f7906a5e4f3a800225ffff2ba17cc1fa31c50b9742",
+   "quote": "Undergraduate Students Sana Asifriyaz",
+   "note": "lab-page audit 2026-10-30; section: Undergraduate Students",
+   "pi": "Tania Lombrozo",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2018
+  },
+  {
+   "name": "Haruka Nabeshima",
+   "role": "undergraduate",
+   "years": null,
+   "url": "https://cognition.princeton.edu/people",
+   "capture_url": "https://web.archive.org/web/20260312055830id_/https://cognition.princeton.edu/people",
+   "sha256": "4a91c40524e3978604d351f7906a5e4f3a800225ffff2ba17cc1fa31c50b9742",
+   "quote": "Haruka Nabeshima Haruka is an undergrad",
+   "note": "lab-page audit 2026-10-30; section: Undergraduate Students",
+   "pi": "Tania Lombrozo",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2018
+  },
+  {
+   "name": "Sam Park",
+   "role": "undergraduate",
+   "years": null,
+   "url": "https://cognition.princeton.edu/people",
+   "capture_url": "https://web.archive.org/web/20260312055830id_/https://cognition.princeton.edu/people",
+   "sha256": "4a91c40524e3978604d351f7906a5e4f3a800225ffff2ba17cc1fa31c50b9742",
+   "quote": "Sam Park Sam is an undergrad",
+   "note": "lab-page audit 2026-10-30; section: Undergraduate Students",
+   "pi": "Tania Lombrozo",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2018
+  },
+  {
+   "name": "Joshua Schoenberg",
+   "role": "undergraduate",
+   "years": null,
+   "url": "https://cognition.princeton.edu/people",
+   "capture_url": "https://web.archive.org/web/20260312055830id_/https://cognition.princeton.edu/people",
+   "sha256": "4a91c40524e3978604d351f7906a5e4f3a800225ffff2ba17cc1fa31c50b9742",
+   "quote": "Joshua Schoenberg Josh Schoenberg is an undergrad",
+   "note": "lab-page audit 2026-10-30; section: Undergraduate Students",
+   "pi": "Tania Lombrozo",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2018
+  },
+  {
+   "name": "Emily Foster-Hanson",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://cognition.princeton.edu/people",
+   "capture_url": "https://web.archive.org/web/20260312055830id_/https://cognition.princeton.edu/people",
+   "sha256": "4a91c40524e3978604d351f7906a5e4f3a800225ffff2ba17cc1fa31c50b9742",
+   "quote": "Emily Foster-Hanson Postdoctoral",
+   "note": "lab-page audit 2026-10-30; section: & former positions within the lab",
+   "pi": "Tania Lombrozo",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2018
+  },
+  {
+   "name": "David Kinney",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://cognition.princeton.edu/people",
+   "capture_url": "https://web.archive.org/web/20260312055830id_/https://cognition.princeton.edu/people",
+   "sha256": "4a91c40524e3978604d351f7906a5e4f3a800225ffff2ba17cc1fa31c50b9742",
+   "quote": "David Kinney Postdoctoral",
+   "note": "lab-page audit 2026-10-30; section: & former positions within the lab > Gena Gorlin Lab Visitor",
+   "pi": "Tania Lombrozo",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2018
+  },
+  {
+   "name": "Maya Malaviya",
+   "role": "other",
+   "years": null,
+   "url": "https://cognition.princeton.edu/people",
+   "capture_url": "https://web.archive.org/web/20260312055830id_/https://cognition.princeton.edu/people",
+   "sha256": "4a91c40524e3978604d351f7906a5e4f3a800225ffff2ba17cc1fa31c50b9742",
+   "quote": "Maya Malaviya Lab Manager",
+   "note": "lab-page audit 2026-10-30; section: & former positions within the lab > Gena Gorlin Lab Visitor",
+   "pi": "Tania Lombrozo",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2018
+  },
+  {
+   "name": "Anahid Modrek",
+   "role": "undergraduate",
+   "years": null,
+   "url": "https://cognition.princeton.edu/people",
+   "capture_url": "https://web.archive.org/web/20260312055830id_/https://cognition.princeton.edu/people",
+   "sha256": "4a91c40524e3978604d351f7906a5e4f3a800225ffff2ba17cc1fa31c50b9742",
+   "quote": "Anahid Modrek Lab Visit",
+   "note": "lab-page audit 2026-10-30; section: & former positions within the lab > Alexia Martinez Undergraduate Student",
+   "pi": "Tania Lombrozo",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2018
+  },
+  {
+   "name": "Logan Nelson",
+   "role": "undergraduate",
+   "years": null,
+   "url": "https://cognition.princeton.edu/people",
+   "capture_url": "https://web.archive.org/web/20260312055830id_/https://cognition.princeton.edu/people",
+   "sha256": "4a91c40524e3978604d351f7906a5e4f3a800225ffff2ba17cc1fa31c50b9742",
+   "quote": "Logan Nelson Lab Manager",
+   "note": "lab-page audit 2026-10-30; section: & former positions within the lab > Alexia Martinez Undergraduate Student",
+   "pi": "Tania Lombrozo",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2018
+  },
+  {
+   "name": "Himani Sinhmar",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://naomi.princeton.edu/research-group/",
+   "sha256": "0092fd216d79adcbf83b1fb9a8b5fa8132e5fd05a8459b96f60259d06b62d31f",
+   "quote": "Current Post-docs Himani Sinhmar",
+   "note": "lab-page audit 2026-10-30; section: Current Post-docs",
+   "pi": "Naomi Ehrich Leonard",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Mallory E. Gaspard",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://naomi.princeton.edu/research-group/",
+   "sha256": "0092fd216d79adcbf83b1fb9a8b5fa8132e5fd05a8459b96f60259d06b62d31f",
+   "quote": "Current Post-docs Himani Sinhmar Department: MAE Office: H-116 E-Quad Email: Personal Webpage Himani Sinhmar’s research focuses on modeling the dynamics of cooperation and collective intelligence to better understand and shape behaviors engineered systems such as robot swarms. She earned her PhD from Cornell University in 2024, after completing her Bachelor’s and Master’s degrees in Technology from IIT Bombay in 2019. Her doctoral work involved developing certifiably safe controllers and motion planners for resource-constrained robotic systems. Sinhmar’s interdisciplinary approach spans control theory, non-linear dynamics, collective intelligence, and formal methods, with the goal of creating practical, theoretically sound solutions to improve the safety and reliability of robots in unstructured, dynamic environments. Mallory E. Gaspard",
+   "note": "lab-page audit 2026-10-30; section: Current Post-docs",
+   "pi": "Naomi Ehrich Leonard",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Giovanna Amorim",
+   "role": "phd",
+   "years": null,
+   "url": "https://naomi.princeton.edu/research-group/",
+   "sha256": "0092fd216d79adcbf83b1fb9a8b5fa8132e5fd05a8459b96f60259d06b62d31f",
+   "quote": "Current Graduate Students Giovanna Amorim",
+   "note": "lab-page audit 2026-10-30; section: Current Graduate Students",
+   "pi": "Naomi Ehrich Leonard",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Ian Xul Belaustegui",
+   "role": "phd",
+   "years": null,
+   "url": "https://naomi.princeton.edu/research-group/",
+   "sha256": "0092fd216d79adcbf83b1fb9a8b5fa8132e5fd05a8459b96f60259d06b62d31f",
+   "quote": "Current Graduate Students Giovanna Amorim Department: MAE Office: H-120 E-Quad Email: giamorim [at] princeton.edu Personal Webpage My research focuses on perceptual decision-making, with an emphasis on how agents can use sensory information to make reliable decisions under sensing, communication, and computational constraints. I study single-agent and multi-agent dynamical systems for decision-making over continuous option spaces, using tools from nonlinear dynamics, control theory, and frequency-domain analysis. My work spans control theory and robotics, including neuromorphic decision-making models, collective behavior in robot swarms, and applications to navigation and task allocation in dynamic environments. Ian Xul Belaustegui",
+   "note": "lab-page audit 2026-10-30; section: Current Graduate Students",
+   "pi": "Naomi Ehrich Leonard",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Jeremy (JJ) Kuznetsov",
+   "role": "phd",
+   "years": null,
+   "url": "https://naomi.princeton.edu/research-group/",
+   "sha256": "0092fd216d79adcbf83b1fb9a8b5fa8132e5fd05a8459b96f60259d06b62d31f",
+   "quote": "Current Graduate Students Giovanna Amorim Department: MAE Office: H-120 E-Quad Email: giamorim [at] princeton.edu Personal Webpage My research focuses on perceptual decision-making, with an emphasis on how agents can use sensory information to make reliable decisions under sensing, communication, and computational constraints. I study single-agent and multi-agent dynamical systems for decision-making over continuous option spaces, using tools from nonlinear dynamics, control theory, and frequency-domain analysis. My work spans control theory and robotics, including neuromorphic decision-making models, collective behavior in robot swarms, and applications to navigation and task allocation in dynamic environments. Ian Xul Belaustegui Department: MAE Office: H-120 E-Quad Email: ianxul [at] princeton.edu My main research interests relate to dynamical systems, control theory, information theory, distributed systems and optimization. I am also very interested in exploring engineering applications that take inspiration from biological systems. Jeremy (JJ) Kuznetsov",
+   "note": "lab-page audit 2026-10-30; section: Current Graduate Students",
+   "pi": "Naomi Ehrich Leonard",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Marcela Ordorica Arango",
+   "role": "phd",
+   "years": null,
+   "url": "https://naomi.princeton.edu/research-group/",
+   "sha256": "0092fd216d79adcbf83b1fb9a8b5fa8132e5fd05a8459b96f60259d06b62d31f",
+   "quote": "Current Graduate Students Giovanna Amorim Department: MAE Office: H-120 E-Quad Email: giamorim [at] princeton.edu Personal Webpage My research focuses on perceptual decision-making, with an emphasis on how agents can use sensory information to make reliable decisions under sensing, communication, and computational constraints. I study single-agent and multi-agent dynamical systems for decision-making over continuous option spaces, using tools from nonlinear dynamics, control theory, and frequency-domain analysis. My work spans control theory and robotics, including neuromorphic decision-making models, collective behavior in robot swarms, and applications to navigation and task allocation in dynamic environments. Ian Xul Belaustegui Department: MAE Office: H-120 E-Quad Email: ianxul [at] princeton.edu My main research interests relate to dynamical systems, control theory, information theory, distributed systems and optimization. I am also very interested in exploring engineering applications that take inspiration from biological systems. Jeremy (JJ) Kuznetsov Department: MAE Office: H-120 E-Quad Email: jk7289 [at] princeton.edu I research open questions in control theory using tools from dynamical systems and applied analysis, with applications to high degree-of-freedom, soft-robot, or multi-agent systems. I look to take inspiration from neuromorphic and biological solutions for frugal, highly coordinated decision-making and control. Marcela Ordorica Arango",
+   "note": "lab-page audit 2026-10-30; section: Current Graduate Students",
+   "pi": "Naomi Ehrich Leonard",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Daniel Richard Levy",
+   "role": "phd",
+   "years": null,
+   "url": "https://naomi.princeton.edu/research-group/",
+   "sha256": "0092fd216d79adcbf83b1fb9a8b5fa8132e5fd05a8459b96f60259d06b62d31f",
+   "quote": "Daniel Richard Levy Department: PACM Office: 218 Fine Hall Email: dl8529 [at] princeton.edu I develop rigorous mathemat",
+   "note": "lab-page audit 2026-10-30; section: Current Graduate Students",
+   "pi": "Naomi Ehrich Leonard",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Kathryn Wantlin",
+   "role": "phd",
+   "years": null,
+   "url": "https://naomi.princeton.edu/research-group/",
+   "sha256": "0092fd216d79adcbf83b1fb9a8b5fa8132e5fd05a8459b96f60259d06b62d31f",
+   "quote": "Kathryn Wantlin Department: COS Office: Computer Science Building 418b Email: kw2960 [at] princeton.edu",
+   "note": "lab-page audit 2026-10-30; section: Current Graduate Students",
+   "pi": "Naomi Ehrich Leonard",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Emily Yang",
+   "role": "undergraduate",
+   "years": null,
+   "url": "https://naomi.princeton.edu/research-group/",
+   "sha256": "0092fd216d79adcbf83b1fb9a8b5fa8132e5fd05a8459b96f60259d06b62d31f",
+   "quote": "Current Undergraduate Students Emily Yang",
+   "note": "lab-page audit 2026-10-30; section: Current Undergraduate Students",
+   "pi": "Naomi Ehrich Leonard",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Yenan (Daniel) Shen",
+   "role": "phd",
+   "years": null,
+   "url": "https://naomi.princeton.edu/research-group/",
+   "sha256": "0092fd216d79adcbf83b1fb9a8b5fa8132e5fd05a8459b96f60259d06b62d31f",
+   "quote": "Former Graduate Students Yenan (Daniel) Shen",
+   "note": "lab-page audit 2026-10-30; section: Former Graduate Students",
+   "pi": "Naomi Ehrich Leonard",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Justin Lidard",
+   "role": "phd",
+   "years": null,
+   "url": "https://naomi.princeton.edu/research-group/",
+   "sha256": "0092fd216d79adcbf83b1fb9a8b5fa8132e5fd05a8459b96f60259d06b62d31f",
+   "quote": "Former Graduate Students Yenan (Daniel) Shen Justin Lidard",
+   "note": "lab-page audit 2026-10-30; section: Former Graduate Students",
+   "pi": "Naomi Ehrich Leonard",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Anthony Savas",
+   "role": "phd",
+   "years": null,
+   "url": "https://naomi.princeton.edu/research-group/",
+   "sha256": "0092fd216d79adcbf83b1fb9a8b5fa8132e5fd05a8459b96f60259d06b62d31f",
+   "quote": "Anthony Savas, PhD",
+   "note": "lab-page audit 2026-10-30; section: Former Graduate Students",
+   "pi": "Naomi Ehrich Leonard",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Mari Kawakatsu",
+   "role": "phd",
+   "years": null,
+   "url": "https://naomi.princeton.edu/research-group/",
+   "sha256": "0092fd216d79adcbf83b1fb9a8b5fa8132e5fd05a8459b96f60259d06b62d31f",
+   "quote": "Mari Kawakatsu , PhD",
+   "note": "lab-page audit 2026-10-30; section: Former Graduate Students",
+   "pi": "Naomi Ehrich Leonard",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Yunxiu Zhou",
+   "role": "phd",
+   "years": null,
+   "url": "https://naomi.princeton.edu/research-group/",
+   "sha256": "0092fd216d79adcbf83b1fb9a8b5fa8132e5fd05a8459b96f60259d06b62d31f",
+   "quote": "Former Graduate Students Yenan (Daniel) Shen Justin Lidard Charlotte Cathcart, PhD thesis Justice Mason Isla Xi Han , PhD thesis Kathryn Wantlin Udari Madhushani , PhD thesis Anastasia Bizyaeva , PhD thesis Anthony Savas, PhD thesis Mari Kawakatsu , PhD thesis Yunxiu Zhou",
+   "note": "lab-page audit 2026-10-30; section: Former Graduate Students",
+   "pi": "Naomi Ehrich Leonard",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "María Santos",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://naomi.princeton.edu/research-group/",
+   "sha256": "0092fd216d79adcbf83b1fb9a8b5fa8132e5fd05a8459b96f60259d06b62d31f",
+   "quote": "Former Post Docs Juncal Arbelaiz María Santos",
+   "note": "lab-page audit 2026-10-30; section: Former Post Docs",
+   "pi": "Naomi Ehrich Leonard",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Kenza Hamidouche",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://naomi.princeton.edu/research-group/",
+   "sha256": "0092fd216d79adcbf83b1fb9a8b5fa8132e5fd05a8459b96f60259d06b62d31f",
+   "quote": "Former Post Docs Juncal Arbelaiz María Santos Christine Allen-Blanchette Kenza Hamidouche",
+   "note": "lab-page audit 2026-10-30; section: Former Post Docs",
+   "pi": "Naomi Ehrich Leonard",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Timothy Sorochkin",
+   "role": "other",
+   "years": null,
+   "url": "https://naomi.princeton.edu/research-group/",
+   "capture_url": "https://web.archive.org/web/20210303121637id_/https://naomi.princeton.edu/research-group/",
+   "sha256": "43525181e076d1216dbee3544d95a9d1d795e27fd2da94d11c9dd17b1ec5f1be",
+   "quote": "Timothy Sorochkin (visit",
+   "note": "lab-page audit 2026-10-30; section: Yati Patel (visiting from Rutgers)",
+   "pi": "Naomi Ehrich Leonard",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Jacob Walrath (MAE)",
+   "role": "other",
+   "years": null,
+   "url": "https://naomi.princeton.edu/research-group/",
+   "capture_url": "https://web.archive.org/web/20210303121637id_/https://naomi.princeton.edu/research-group/",
+   "sha256": "43525181e076d1216dbee3544d95a9d1d795e27fd2da94d11c9dd17b1ec5f1be",
+   "quote": "Yati Patel (visiting from Rutgers) Gargi Sadalgekar (MAE) Timothy Sorochkin (visiting from U. Waterloo) Jacob Walrath (MAE)",
+   "note": "lab-page audit 2026-10-30; section: Yati Patel (visiting from Rutgers)",
+   "pi": "Naomi Ehrich Leonard",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Brett Phelan",
+   "role": "undergraduate",
+   "years": null,
+   "url": "https://scholar.princeton.edu/cristealab/lab-members",
+   "capture_url": "https://web.archive.org/web/20221003091441id_/https://scholar.princeton.edu/cristealab/lab-members",
+   "sha256": "b8db6d3eac9ae0359ec93bd82c3e5fa9eb50a38d8ddae291cf57d927d7349b19",
+   "quote": "Former Undergrads: Elene Tsopurashvili - Princeton Project 55 Fellow @ Carol Franc Buck Breast Care Center, UCSF (2022) Brett Phelan",
+   "note": "lab-page audit 2026-10-30; section: Former Undergrads:",
+   "pi": "Ileana M. Cristea",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2008
+  },
+  {
+   "name": "Emmanouil Alexis",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://cwrowley.princeton.edu/people/",
+   "sha256": "d88852933f3e6600c0b0705242014e48337586ac7f3e48bbf7ce07d50ee4f7ad",
+   "quote": "Emmanouil Alexis Chemical and Biological Engineer",
+   "note": "lab-page audit 2026-10-30; section: Postdoctoral researchers",
+   "pi": "Clarence W. Rowley",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Greg Macchio",
+   "role": "phd",
+   "years": null,
+   "url": "https://cwrowley.princeton.edu/people/",
+   "sha256": "d88852933f3e6600c0b0705242014e48337586ac7f3e48bbf7ce07d50ee4f7ad",
+   "quote": "Greg Macchio Mechanical and Aerospace Engineer",
+   "note": "lab-page audit 2026-10-30; section: PhD students",
+   "pi": "Clarence W. Rowley",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Yu Shuai",
+   "role": "phd",
+   "years": null,
+   "url": "https://cwrowley.princeton.edu/people/",
+   "sha256": "d88852933f3e6600c0b0705242014e48337586ac7f3e48bbf7ce07d50ee4f7ad",
+   "quote": "Yu Shuai Mechanical and Aerospace Engineer",
+   "note": "lab-page audit 2026-10-30; section: PhD students",
+   "pi": "Clarence W. Rowley",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Jinsu Kim",
+   "role": "phd",
+   "years": null,
+   "url": "https://cwrowley.princeton.edu/people/",
+   "sha256": "d88852933f3e6600c0b0705242014e48337586ac7f3e48bbf7ce07d50ee4f7ad",
+   "quote": "Jinsu Kim Mechanical and Aerospace Engineer",
+   "note": "lab-page audit 2026-10-30; section: PhD students",
+   "pi": "Clarence W. Rowley",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Xiaoyang Xie",
+   "role": "phd",
+   "years": null,
+   "url": "https://cwrowley.princeton.edu/people/",
+   "sha256": "d88852933f3e6600c0b0705242014e48337586ac7f3e48bbf7ce07d50ee4f7ad",
+   "quote": "PhD students Greg Macchio Mechanical and Aerospace Engineering Reduced-order models on nonlinear manifolds Yu Shuai Mechanical and Aerospace Engineering Data-driven models of systems with translation invariance Jinsu Kim Mechanical and Aerospace Engineering and PPPL Structure-preserving reduced-order models Xiaoyang Xie",
+   "note": "lab-page audit 2026-10-30; section: PhD students",
+   "pi": "Clarence W. Rowley",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Sanjana Venkatesh",
+   "role": "undergraduate",
+   "years": null,
+   "url": "https://cwrowley.princeton.edu/people/",
+   "sha256": "d88852933f3e6600c0b0705242014e48337586ac7f3e48bbf7ce07d50ee4f7ad",
+   "quote": "Undergraduate researchers S Sanjana Venkatesh",
+   "note": "lab-page audit 2026-10-30; section: Undergraduate researchers",
+   "pi": "Clarence W. Rowley",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Debdipta Goswami",
+   "role": "postdoc",
+   "years": [
+    2020,
+    2020
+   ],
+   "url": "https://cwrowley.princeton.edu/people/",
+   "sha256": "d88852933f3e6600c0b0705242014e48337586ac7f3e48bbf7ce07d50ee4f7ad",
+   "quote": "Former postdoctoral researchers Debdipta Goswami",
+   "note": "lab-page audit 2026-10-30; section: Former postdoctoral researchers",
+   "pi": "Clarence W. Rowley",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Max Eggl",
+   "role": "postdoc",
+   "years": [
+    2019,
+    2019
+   ],
+   "url": "https://cwrowley.princeton.edu/people/",
+   "sha256": "d88852933f3e6600c0b0705242014e48337586ac7f3e48bbf7ce07d50ee4f7ad",
+   "quote": "Former postdoctoral researchers Debdipta Goswami (2020-22) — Assistant Professor, Ohio State University Xuanhong An (2019-22) — Assistant Professor, Kent State University Max Eggl",
+   "note": "lab-page audit 2026-10-30; section: Former postdoctoral researchers",
+   "pi": "Clarence W. Rowley",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Andres Goza",
+   "role": "postdoc",
+   "years": [
+    2017,
+    2017
+   ],
+   "url": "https://cwrowley.princeton.edu/people/",
+   "sha256": "d88852933f3e6600c0b0705242014e48337586ac7f3e48bbf7ce07d50ee4f7ad",
+   "quote": "Former postdoctoral researchers Debdipta Goswami (2020-22) — Assistant Professor, Ohio State University Xuanhong An (2019-22) — Assistant Professor, Kent State University Max Eggl (2019-20) — Institute of Neuroscience, Alicante, Spain Andres Goza",
+   "note": "lab-page audit 2026-10-30; section: Former postdoctoral researchers",
+   "pi": "Clarence W. Rowley",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2016
+  },
+  {
+   "name": "Andy Su",
+   "role": "phd",
+   "years": null,
+   "url": "https://mulvey.princeton.edu/students",
+   "capture_url": "https://web.archive.org/web/20250805195044id_/https://mulvey.princeton.edu/students",
+   "sha256": "3cbbd7cb7ac0f1c2864dcdcc3be6002c4c5f080021b0ff0d58ca4be479a4bb04",
+   "quote": "Andy Su, Tech Startup Yuqi Nie, 3rd year doctoral",
+   "note": "lab-page audit 2026-10-30; section: Ph.D. Students",
+   "pi": "John M. Mulvey",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 1978
+  },
+  {
+   "name": "Shambhavi Suryanarayanan",
+   "role": "phd",
+   "years": [
+    null,
+    2026
+   ],
+   "url": "https://erebrova.github.io",
+   "sha256": "9bb49a0b846ef4d0331f52a5bb8fca173ae1ee100aa1de2177e86f707dc46034",
+   "quote": "Shambhavi Suryanarayanan , Ph.D",
+   "note": "lab-page audit 2026-10-30; section: Former Ph.D. students:",
+   "pi": "Elizaveta Rebrova",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021
+  },
+  {
+   "name": "Sofiia Shvaiko",
+   "role": "member",
+   "years": null,
+   "url": "https://erebrova.github.io/",
+   "capture_url": "https://web.archive.org/web/20231023003656id_/https://erebrova.github.io/",
+   "sha256": "6030bdad2f23d17e8474b647d9d22cd509da9c0697922e5161b8c42eda504139",
+   "quote": "Students I am very happy to work with these great Ph.D. students: Abraar Chaudhry (5th year, co-advised with Amir Ali Ahmadi ) Jackie Lok (3rd year) Shambhavi Suryanarayanan (3rd year) Sofiia Shvaiko",
+   "note": "lab-page audit 2026-10-30; section: Students",
+   "pi": "Elizaveta Rebrova",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021
+  },
+  {
+   "name": "Boris Shigida",
+   "role": "member",
+   "years": null,
+   "url": "https://hanin.princeton.edu",
+   "sha256": "13bec6ea84818e20dc950a29a04dc8b85cef18a8823a0f5c71155e0727d8ce65",
+   "quote": "Research Group I am fortunate to supervise several excellent PhD students: Boris Shigida",
+   "note": "lab-page audit 2026-10-30; section: Research Group",
+   "pi": "Boris Hanin",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2020
+  },
+  {
+   "name": "Alex Negron",
+   "role": "member",
+   "years": null,
+   "url": "https://hanin.princeton.edu",
+   "sha256": "13bec6ea84818e20dc950a29a04dc8b85cef18a8823a0f5c71155e0727d8ce65",
+   "quote": "Research Group I am fortunate to supervise several excellent PhD students: Boris Shigida (joint with Matias Cattaneo), Alex Negron",
+   "note": "lab-page audit 2026-10-30; section: Research Group",
+   "pi": "Boris Hanin",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2020
+  },
+  {
+   "name": "Jake Freeman",
+   "role": "member",
+   "years": null,
+   "url": "https://hanin.princeton.edu",
+   "sha256": "13bec6ea84818e20dc950a29a04dc8b85cef18a8823a0f5c71155e0727d8ce65",
+   "quote": "Research Group I am fortunate to supervise several excellent PhD students: Boris Shigida (joint with Matias Cattaneo), Alex Negron , Jake Freeman",
+   "note": "lab-page audit 2026-10-30; section: Research Group",
+   "pi": "Boris Hanin",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2020
+  },
+  {
+   "name": "Tianze Jiang",
+   "role": "member",
+   "years": null,
+   "url": "https://hanin.princeton.edu",
+   "sha256": "13bec6ea84818e20dc950a29a04dc8b85cef18a8823a0f5c71155e0727d8ce65",
+   "quote": "Research Group I am fortunate to supervise several excellent PhD students: Boris Shigida (joint with Matias Cattaneo), Alex Negron , Jake Freeman , Tianze Jiang",
+   "note": "lab-page audit 2026-10-30; section: Research Group",
+   "pi": "Boris Hanin",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2020
+  },
+  {
+   "name": "Francesco Caporali",
+   "role": "member",
+   "years": null,
+   "url": "https://hanin.princeton.edu",
+   "sha256": "13bec6ea84818e20dc950a29a04dc8b85cef18a8823a0f5c71155e0727d8ce65",
+   "quote": "Research Group I am fortunate to supervise several excellent PhD students: Boris Shigida (joint with Matias Cattaneo), Alex Negron , Jake Freeman , Tianze Jiang , Francesco Caporali",
+   "note": "lab-page audit 2026-10-30; section: Research Group",
+   "pi": "Boris Hanin",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2020
+  },
+  {
+   "name": "Shaunak Bhandarkar",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://hanin.princeton.edu",
+   "sha256": "13bec6ea84818e20dc950a29a04dc8b85cef18a8823a0f5c71155e0727d8ce65",
+   "quote": "Shaunak Bhandarkar (joint with Jonathan Pillow). I am excited to be working with several phenomenal postdocs",
+   "note": "lab-page audit 2026-10-30; section: Research Group",
+   "pi": "Boris Hanin",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2020
+  },
+  {
+   "name": "Paolo Baglioni",
+   "role": "member",
+   "years": null,
+   "url": "https://hanin.princeton.edu",
+   "sha256": "13bec6ea84818e20dc950a29a04dc8b85cef18a8823a0f5c71155e0727d8ce65",
+   "quote": "Research Group I am fortunate to supervise several excellent PhD students: Boris Shigida (joint with Matias Cattaneo), Alex Negron , Jake Freeman , Tianze Jiang , Francesco Caporali , Shaunak Bhandarkar (joint with Jonathan Pillow). I am excited to be working with several phenomenal postdocs: Gage DeZoort , Paolo Baglioni",
+   "note": "lab-page audit 2026-10-30; section: Research Group",
+   "pi": "Boris Hanin",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2020
+  }
+ ],
+ "papers": [
+  {
+   "pi": "Amir Ali Ahmadi",
+   "key": "labpage:96bced7a9436edb7d35909368476aa13548b9f81",
+   "title": "Robust-to-Dynamics Optimization A. A. Ahmadi and O. Gunluk Mathematics of Operations Research, 2024 [",
+   "year": 2018,
+   "doi": "10.48550/arxiv.1805.03682",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "1805.03682",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "footnote",
+    "quotes": [
+     "Amir Ali Ahmadi † ",
+     "† ORFE, Princeton University, Sherrerd Hall, Princeton, NJ 08540 (a a a@princeton.edu)"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1805/1805.03682v1.pdf",
+    "pdf_sha256": "4d76586c78c01a80c914d6325c616d7a8ab68a89e626606edd074e7167287074",
+    "step": "arxiv",
+    "match": "entry_link",
+    "appointment": {
+     "periodId": "princeton_claude_ahmadi_faculty_period_20261019"
+    },
+    "arxiv": "1805.03682",
+    "labpage": {
+     "url": "https://aaa.princeton.edu/publications",
+     "capture_url": "https://web.archive.org/web/20260922164137id_/https://aaa.princeton.edu/publications",
+     "sha256": "af80c5b8e8dba386bcb084f72442430f5fea9fe5a91d66da087d89ad081cf569",
+     "quote": "Robust-to-Dynamics Optimization A. A. Ahmadi and O. Gunluk Mathematics of Operations Research, 2024 [ pdf ]",
+     "listed_title": "Mathematics of Operations Research, 2024",
+     "listed_year": 2018
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "b4bc77501adac245"
+  },
+  {
+   "pi": "Arvind Narayanan",
+   "key": "labpage:4a23b209b5b48247bf5c2152b11aeed78b1e3aea",
+   "title": "Dark Patterns at Scale: Findings from a Crawl of 11K Shopping Websites",
+   "year": 2019,
+   "doi": "10.48550/arxiv.1907.07032",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "1907.07032",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "near",
+    "quotes": [
+     "ARVIND NARAYANAN, Princeton Univ"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1907/1907.07032v1.pdf",
+    "pdf_sha256": "b0919c7b56546412ed7e5e4efb384544840b33545db9f9bc1ccf5ddbe6afa71d",
+    "step": "arxiv",
+    "match": "oai_exact_title",
+    "appointment": {
+     "periodId": "princeton_faculty_period_41"
+    },
+    "arxiv": "1907.07032",
+    "labpage": {
+     "url": "https://www.cs.princeton.edu/~arvindn/publications",
+     "capture_url": null,
+     "sha256": "0e0a3dde46e590fae700ceecd09dd9459b74582ce4e20dd6f1a70a5740bb8652",
+     "quote": "Conference Dark Patterns at Scale: Findings from a Crawl of 11K Shopping Websites Arunesh Mathur, Gunes Acar, Michael Friedman, Elena Lucherini, Jonathan Mayer, Marshini Chetty, Arvind Narayanan . ACM Conference on Computer-Supported Cooperative Work and Social Computing, 2019. FPF Privacy Papers for Policy Makers Award. ★",
+     "listed_title": "Dark Patterns at Scale: Findings from a Crawl of 11K Shopping Websites",
+     "listed_year": 2019
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "cb2ecfe3d449d10c"
+  },
+  {
+   "pi": "Arvind Narayanan",
+   "key": "labpage:37ec2efbdd21a76a13ba488b5f1ba06edce67ae1",
+   "title": "An Empirical Analysis of Linkability in the Monero Blockchain",
+   "year": 2017,
+   "doi": "10.48550/arxiv.1704.04299",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "1704.04299",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "footnote",
+    "quotes": [
+     "Arvind Narayanan § ",
+     "§ Princeton University"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1704/1704.04299v1.pdf",
+    "pdf_sha256": "d04aa4af8e0e4ec1b113817bacb725b48fff9a70a5b9a3b7f0f0b428a898b1e7",
+    "step": "arxiv",
+    "match": "entry_link",
+    "appointment": {
+     "periodId": "princeton_faculty_period_41"
+    },
+    "arxiv": "1704.04299",
+    "labpage": {
+     "url": "https://www.cs.princeton.edu/~arvindn/publications",
+     "capture_url": null,
+     "sha256": "0e0a3dde46e590fae700ceecd09dd9459b74582ce4e20dd6f1a70a5740bb8652",
+     "quote": "Journal An Empirical Analysis of Linkability in the Monero Blockchain Malte Möser, Kyle Soska, Ethan Heilman, Kevin Lee, Henry Heffan, Shashvat Srivastava, Kyle Hogan, Jason Hennessey, Andrew Miller, Arvind Narayanan , Nicolas Christin. Proceedings on Privacy Enhancing Technologies (PoPETs) 2018. Demo . ★",
+     "listed_title": "An Empirical Analysis of Linkability in the Monero Blockchain",
+     "listed_year": 2018
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "3d8ee3de768e1f17"
+  },
+  {
+   "pi": "Bernard Chazelle",
+   "key": "labpage:9f7db0a840161bf913f3af788f2980ecf54949ed",
+   "title": "Iterated Learning in Dynamic Social Networks",
+   "year": 2019,
+   "doi": null,
+   "venue": "Journal of Machine Learning Research",
+   "byline": [
+    "Bernard Chazelle",
+    "Chu Wang"
+   ],
+   "arxiv": null,
+   "evidence": {
+    "basis": "page1_open",
+    "how": "near",
+    "quotes": [
+     "Bernard Chazelle CHAZELLE @ CS . PRINCETON . EDU Department of Computer Science, Princeton Univ"
+    ],
+    "url": "https://jmlr.org/papers/volume20/18-539/18-539.pdf",
+    "pdf_sha256": "8cc8ee571bc1458ced3f859990e339ffca6cf56f0a92ad2326f94890dde96a60",
+    "step": "pi_works",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W2913716705",
+    "appointment": {
+     "periodId": "princeton_arrivals_faculty_bernard-chazelle"
+    },
+    "labpage": {
+     "url": "https://www.cs.princeton.edu/~chazelle/pubs.html",
+     "capture_url": null,
+     "sha256": "0b5f5d473a9c0c25a2a6b2af9d1d317cea4997c0315eb97c1a3deb668d285d42",
+     "quote": "Iterated Learning in Dynamic Social Networks , B. Chazelle, C. Wang, Journal of Machine Learning Research 20 (2019) 1-28.",
+     "listed_title": "Iterated Learning in Dynamic Social Networks",
+     "listed_year": 2019
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "9700ee396799f545"
+  },
+  {
+   "pi": "Chi Jin",
+   "key": "labpage:520c72359676f53b375495758d0de2eb4af91899",
+   "title": "Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction",
+   "year": 2025,
+   "doi": "10.48550/arxiv.2508.03613",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2508.03613",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "near",
+    "quotes": [
+     "Chi Jin1 ∗ 1 Princeton Language and Intelligence, Princeton Univ"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2508/2508.03613v1.pdf",
+    "pdf_sha256": "1782c481c40c6314d4ab8de687bdcf347f1f154a4131d57776989237fc16298c",
+    "step": "arxiv",
+    "match": "entry_link",
+    "appointment": {
+     "periodId": "princeton_faculty_period_arrival_3"
+    },
+    "arxiv": "2508.03613",
+    "labpage": {
+     "url": "https://sites.google.com/view/cjin/publications",
+     "capture_url": null,
+     "sha256": "c2dacf1cbb0b6e88491e838453bf2ed5b91e711f82ead8bd40d0f892c9243c41",
+     "quote": "Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction [ arXiv ]",
+     "listed_title": "Goedel-Prover-V2: Scaling Formal Theorem Proving with Scaffolded Data Synthesis and Self-Correction [ arXiv ]",
+     "listed_year": 2025
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "b3b41b2ec6be8d4e"
+  },
+  {
+   "pi": "Chi Jin",
+   "key": "labpage:d7084ae39085bb2f7a636d00213685abda1370c9",
+   "title": "Is Elo Rating Reliable?",
+   "year": 2025,
+   "doi": "10.48550/arxiv.2502.10985",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2502.10985",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "footnote",
+    "quotes": [
+     "Chi Jin† ",
+     "† Department of ORFE, Princeton University; shangetang@princeton.edu of ECE, Princeton University 1"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2502/2502.10985v1.pdf",
+    "pdf_sha256": "fd83165448b98b5e3a5b00267113e12256f6b719e1908811a7c4289f14d5f4c5",
+    "step": "arxiv",
+    "match": "entry_link",
+    "appointment": {
+     "periodId": "princeton_faculty_period_arrival_3"
+    },
+    "arxiv": "2502.10985",
+    "labpage": {
+     "url": "https://sites.google.com/view/cjin/publications",
+     "capture_url": null,
+     "sha256": "c2dacf1cbb0b6e88491e838453bf2ed5b91e711f82ead8bd40d0f892c9243c41",
+     "quote": "Is Elo Rating Reliable? A Study Under Model Misspecification [ arXiv ]",
+     "listed_title": "Is Elo Rating Reliable?",
+     "listed_year": 2025
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "50652b77ff658e5c"
+  },
+  {
+   "pi": "Chi Jin",
+   "key": "labpage:68d93ed566cda7dcfca8faa20b61380fa917f2a0",
+   "title": "ZeroSwap: Data-driven Optimal Market Making in DeFi",
+   "year": 2023,
+   "doi": "10.48550/arxiv.2310.09413",
+   "venue": "arXiv (Cornell University)",
+   "byline": [
+    "Nadkarni, Viraj",
+    "Hu, Jiachen",
+    "Rana, Ranvir",
+    "Jin, Chi",
+    "Kulkarni, Sanjeev",
+    "Viswanath, Pramod"
+   ],
+   "arxiv": "2310.09413",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "near",
+    "quotes": [
+     "CHI JIN, Princeton Univ"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2310/2310.09413v1.pdf",
+    "pdf_sha256": "331f88f1633461ebecdad3883b6121f08c80ec57124f62a998dd333945259228",
+    "step": "sweep",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W4387723624",
+    "appointment": {
+     "periodId": "princeton_faculty_period_arrival_3"
+    },
+    "arxiv": "2310.09413",
+    "labpage": {
+     "url": "https://sites.google.com/view/cjin/publications",
+     "capture_url": null,
+     "sha256": "c2dacf1cbb0b6e88491e838453bf2ed5b91e711f82ead8bd40d0f892c9243c41",
+     "quote": "ZeroSwap: Data-driven Optimal Market Making in DeFi [ arXiv ]",
+     "listed_title": "ZeroSwap: Data-driven Optimal Market Making in DeFi [ arXiv ]",
+     "listed_year": 2023
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "aa165466713f55c1"
+  },
+  {
+   "pi": "Chi Jin",
+   "key": "labpage:11e4a06d157408b665bfb3b61fcd108567138f02",
+   "title": "DoWG Unleashed: An Efficient Universal Parameter-Free Gradient Descent Method",
+   "year": 2023,
+   "doi": "10.48550/arxiv.2305.16284",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2305.16284",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "marker",
+    "quotes": [
+     "Chi Jin1 ",
+     "1 Princeton University Samsung AI Center"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2305/2305.16284v1.pdf",
+    "pdf_sha256": "35217fa48313c9170a2c8cee86d0970570cc06751fa49c33b2293f3ff3a11653",
+    "step": "arxiv",
+    "match": "entry_link",
+    "appointment": {
+     "periodId": "princeton_faculty_period_arrival_3"
+    },
+    "arxiv": "2305.16284",
+    "labpage": {
+     "url": "https://sites.google.com/view/cjin/publications",
+     "capture_url": null,
+     "sha256": "c2dacf1cbb0b6e88491e838453bf2ed5b91e711f82ead8bd40d0f892c9243c41",
+     "quote": "DoWG Unleashed: An Efficient Universal Parameter-Free Gradient Descent Method. [ arXiv ]",
+     "listed_title": "DoWG Unleashed: An Efficient Universal Parameter-Free Gradient Descent Method. [ arXiv ]",
+     "listed_year": 2023
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "4df5f02824b3016c"
+  },
+  {
+   "pi": "Chi Jin",
+   "key": "labpage:0ed25d96a9f4290b640699dc7699aa760c1f4db3",
+   "title": "Context-lumpable Stochastic Bandits. [ arXiv ]",
+   "year": 2023,
+   "doi": "10.48550/arxiv.2306.13053",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2306.13053",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "near",
+    "quotes": [
+     "Chi Jin Princeton Univ"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2306/2306.13053v1.pdf",
+    "pdf_sha256": "31a71f21949b1c238461a942345db5c506b5c1ea823c17829bc9f7ee493d8d7a",
+    "step": "arxiv",
+    "match": "entry_link",
+    "appointment": {
+     "periodId": "princeton_faculty_period_arrival_3"
+    },
+    "arxiv": "2306.13053",
+    "labpage": {
+     "url": "https://sites.google.com/view/cjin/publications",
+     "capture_url": null,
+     "sha256": "c2dacf1cbb0b6e88491e838453bf2ed5b91e711f82ead8bd40d0f892c9243c41",
+     "quote": "Context-lumpable Stochastic Bandits. [ arXiv ]",
+     "listed_title": "Context-lumpable Stochastic Bandits. [ arXiv ]",
+     "listed_year": 2023
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "6f04ec74bae3e4b6"
+  },
+  {
+   "pi": "Chi Jin",
+   "key": "labpage:358996cf7c8cc3c0667aea38239fa9bafd68a696",
+   "title": "Optimistic Natural Policy Gradient: a Simple Efficient Policy Optimization Framework for Online RL",
+   "year": 2023,
+   "doi": "10.48550/arxiv.2305.11032",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2305.11032",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "near",
+    "quotes": [
+     "Chi Jin Princeton Univ"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2305/2305.11032v1.pdf",
+    "pdf_sha256": "b8ef225c7cb8bb3df1b0e98216dbc0b1bddcb3a9440868b175c788e463d1b6aa",
+    "step": "arxiv",
+    "match": "entry_link",
+    "appointment": {
+     "periodId": "princeton_faculty_period_arrival_3"
+    },
+    "arxiv": "2305.11032",
+    "labpage": {
+     "url": "https://sites.google.com/view/cjin/publications",
+     "capture_url": null,
+     "sha256": "c2dacf1cbb0b6e88491e838453bf2ed5b91e711f82ead8bd40d0f892c9243c41",
+     "quote": "Optimistic Natural Policy Gradient: a Simple Efficient Policy Optimization Framework for Online RL. [ arXiv ]",
+     "listed_title": "Optimistic Natural Policy Gradient: a Simple Efficient Policy Optimization Framework for Online RL. [ arXiv ]",
+     "listed_year": 2023
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "38ad4983336a2846"
+  },
+  {
+   "pi": "Chi Jin",
+   "key": "labpage:edf4ce86621acc94e1778c877f71adf77330d232",
+   "title": "Sample-Efficient Reinforcement Learning of Partially Observable Markov Games",
+   "year": 2022,
+   "doi": "10.48550/arxiv.2206.01315",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2206.01315",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "footnote",
+    "quotes": [
+     "Chi Jin‡ ",
+     "‡ Princeton University. Email: chij@princeton.edu"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2206/2206.01315v1.pdf",
+    "pdf_sha256": "96756b51f76e8b55f4bdd9a171582a22af18d3aa133fba596e7de4319a0b169b",
+    "step": "arxiv",
+    "match": "entry_link",
+    "appointment": {
+     "periodId": "princeton_faculty_period_arrival_3"
+    },
+    "arxiv": "2206.01315",
+    "labpage": {
+     "url": "https://sites.google.com/view/cjin/publications",
+     "capture_url": null,
+     "sha256": "c2dacf1cbb0b6e88491e838453bf2ed5b91e711f82ead8bd40d0f892c9243c41",
+     "quote": "Sample-Efficient Reinforcement Learning of Partially Observable Markov Games [ arXiv ]",
+     "listed_title": "Sample-Efficient Reinforcement Learning of Partially Observable Markov Games [ arXiv ]",
+     "listed_year": 2022
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "c4118a7f734fd118"
+  },
+  {
+   "pi": "Danqi Chen",
+   "key": "labpage:89cfaa890c35cd25e8bc7068d1fac262fabd7319",
+   "title": "Language Models that Think, Chat Better",
+   "year": 2025,
+   "doi": "10.48550/arxiv.2509.20357",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2509.20357",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "near",
+    "quotes": [
+     "Danqi Chen Princeton Language and Intelligence Princeton Univ"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2509/2509.20357v1.pdf",
+    "pdf_sha256": "039e0d1d301a81a6fb0d37c4791bb05a5921bc4f8f541595f344295a944d94e4",
+    "step": "arxiv",
+    "match": "entry_link",
+    "appointment": {
+     "periodId": "princeton_faculty_period_35"
+    },
+    "arxiv": "2509.20357",
+    "labpage": {
+     "url": "https://www.cs.princeton.edu/~danqic/papers.html",
+     "capture_url": null,
+     "sha256": "3b2717fb0ed56b78d4496029de1e6f77d360c898c2d057b0b62b274ed5787faf",
+     "quote": "Language Models that Think, Chat Better",
+     "listed_title": "Language Models that Think, Chat Better",
+     "listed_year": 2026
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "d8def028e3288664"
+  },
+  {
+   "pi": "David Walker",
+   "key": "labpage:567724cac48493b99d88157b3b9194c0d52e846f",
+   "title": "Lucid: A Language for Control in the Data Plane",
+   "year": 2021,
+   "doi": "10.48550/arxiv.2107.02244",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2107.02244",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "near",
+    "quotes": [
+     "David Walker Princeton Univ"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2107/2107.02244v1.pdf",
+    "pdf_sha256": "aa37a02e128b293c5fad12783cb3e77e83d1bb134855469661f834c5208abe92",
+    "step": "arxiv",
+    "match": "oai_exact_title",
+    "appointment": {
+     "periodId": "princeton_faculty_period_4"
+    },
+    "arxiv": "2107.02244",
+    "labpage": {
+     "url": "https://www.cs.princeton.edu/~dpw/papers.html",
+     "capture_url": null,
+     "sha256": "0fd6351c720a7bb92b6940db4a3335033192459cf61e0f1cd01fcfc4dbf463fa",
+     "quote": "Lucid: A Language for Control in the Data Plane. John Sonchack, Devon Loehr, Jennifer Rexford and David Walker. ACM SIGCOMM, August 2021. ( PDF , github )",
+     "listed_title": "Lucid: A Language for Control in the Data Plane",
+     "listed_year": 2021
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "4b0cb224469d5552"
+  },
+  {
+   "pi": "Jason Lee",
+   "key": "labpage:f0d7871996ae9166c2df4dd23f4311b6e2baaced",
+   "title": "Transformers Learn to Implement Multi-step Gradient Descent with Chain of Thought",
+   "year": 2025,
+   "doi": "10.48550/arxiv.2502.21212",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2502.21212",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "marker",
+    "quotes": [
+     "Jason D. Lee2 1 ",
+     "2 Princeton University March"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2502/2502.21212v1.pdf",
+    "pdf_sha256": "67022b6979e1b523756968cbcb26ee0fa9206116c2635d9d735818bbe8fb8c3d",
+    "step": "arxiv",
+    "match": "entry_link",
+    "appointment": {
+     "listing": 2025
+    },
+    "arxiv": "2502.21212",
+    "labpage": {
+     "url": "https://jasondlee88.github.io/publications.html",
+     "capture_url": null,
+     "sha256": "4a5807e773470147de194c5489e271878d863346bf8d765696ee1940a432aeb3",
+     "quote": "Transformers Learn to Implement Multi-step Gradient Descent with Chain of Thought. Jianhao Huang, Zixuan Wang, Jason D. Lee. ICLR 2025.",
+     "listed_title": "Transformers Learn to Implement Multi-step Gradient Descent with Chain of Thought",
+     "listed_year": 2025
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "4979ebde6ad7cb8f"
+  },
+  {
+   "pi": "Jason Lee",
+   "key": "labpage:db4a403f8e857dbee5e851cce60fcbc7264c900a",
+   "title": "Neural network learns low-dimensional polynomials with SGD near the information-theoretic limit",
+   "year": 2024,
+   "doi": "10.48550/arxiv.2406.01581",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2406.01581",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "footnote",
+    "quotes": [
+     "Jason D. Lee∗, ",
+     "∗ Princeton University. jasonlee@princeton.edu. of Tokyo and RIKEN AIP. oko-kazusato@g.ecc.u-tokyo.ac.jp."
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2406/2406.01581v1.pdf",
+    "pdf_sha256": "7aea8798983f7506e58339122698b28aa50a2e6270c9d94f1745a3428e0ad773",
+    "step": "arxiv",
+    "match": "entry_link",
+    "appointment": {
+     "periodId": "princeton_faculty_period_arrival_9"
+    },
+    "arxiv": "2406.01581",
+    "labpage": {
+     "url": "https://jasondlee88.github.io/publications.html",
+     "capture_url": null,
+     "sha256": "4a5807e773470147de194c5489e271878d863346bf8d765696ee1940a432aeb3",
+     "quote": "Neural network learns low-dimensional polynomials with SGD near the information-theoretic limit. Jason D. Lee, Kazusato Oko, Taiji Suzuki, Denny Wu. NeurIPS 2024.",
+     "listed_title": "Neural network learns low-dimensional polynomials with SGD near the information-theoretic limit",
+     "listed_year": 2024
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "0440863964e768ef"
+  },
+  {
+   "pi": "Jason Lee",
+   "key": "labpage:e146dc02594563cbc79a1dce556de723db0b3fa7",
+   "title": "Towards Understanding Hierarchical Learning: Benefits of Neural Representations",
+   "year": 2020,
+   "doi": "10.48550/arxiv.2006.13436",
+   "venue": "arXiv (Cornell University)",
+   "byline": [
+    "Chen, Minshuo",
+    "Bai, Yu",
+    "Lee, Jason D.",
+    "Zhao, Tuo",
+    "Wang, Huan",
+    "Xiong, Caiming",
+    "Socher, Richard"
+   ],
+   "arxiv": "2006.13436",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "footnote",
+    "quotes": [
+     "Jason D. Lee‡ ",
+     "‡ Princeton University. jasonlee@princeton.edu"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2006/2006.13436v1.pdf",
+    "pdf_sha256": "7f5a95163df775d4d3964ca30883ecce2f496ce3d558aed41ea877755365306b",
+    "step": "pi_works",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W3098527778",
+    "appointment": {
+     "periodId": "princeton_faculty_period_arrival_9"
+    },
+    "arxiv": "2006.13436",
+    "labpage": {
+     "url": "https://jasondlee88.github.io/publications.html",
+     "capture_url": null,
+     "sha256": "4a5807e773470147de194c5489e271878d863346bf8d765696ee1940a432aeb3",
+     "quote": "Towards Understanding Hierarchical Learning: Benefits of Neural Representations. Minshuo Chen, Yu Bai, Jason D. Lee, Tuo Zhao, Huan Wang, Caiming Xiong, and Richard Socher. NeurIPS 2020.",
+     "listed_title": "Towards Understanding Hierarchical Learning: Benefits of Neural Representations",
+     "listed_year": 2020
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "830817e8d86c017d"
+  },
+  {
+   "pi": "Jason Lee",
+   "key": "labpage:37ef1d5aedaadc28d8a777cc4e2b4731013b4410",
+   "title": "Convergence of Meta-Learning with Task-Specific Adaptation over Partial Parameters",
+   "year": 2020,
+   "doi": "10.48550/arxiv.2006.09486",
+   "venue": "arXiv (Cornell University)",
+   "byline": [
+    "Ji, Kaiyi",
+    "Lee, Jason D.",
+    "Liang, Yingbin",
+    "Poor, H. Vincent"
+   ],
+   "arxiv": "2006.09486",
+   "evidence": {
+    "basis": "page1_open",
+    "how": "near",
+    "quotes": [
+     "Jason D. Lee Department of EE Princeton Univ"
+    ],
+    "url": "https://papers.nips.cc/paper/2020/file/84c578f202616448a2f80e6f56d5f16d-Paper.pdf",
+    "pdf_sha256": "9a3ab31bebc22300d6884de2f9e0ba4a66fff746595f9db025947efcf2afb691",
+    "step": "pi_works",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W3100702524",
+    "appointment": {
+     "periodId": "princeton_faculty_period_arrival_9"
+    },
+    "labpage": {
+     "url": "https://jasondlee88.github.io/publications.html",
+     "capture_url": null,
+     "sha256": "4a5807e773470147de194c5489e271878d863346bf8d765696ee1940a432aeb3",
+     "quote": "Convergence of Meta-Learning with Task-Specific Adaptation over Partial Parameters. Kaiyi Ji, Jason D. Lee, Yingbin Liang, H. Vincent Poor. NeurIPS 2020.",
+     "listed_title": "Convergence of Meta-Learning with Task-Specific Adaptation over Partial Parameters",
+     "listed_year": 2020
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "557c1c792091fd1c"
+  },
+  {
+   "pi": "Jason Lee",
+   "key": "labpage:4adcb7f0304a3f62576b87b0c3fee5d4e991f313",
+   "title": "Solving a Class of Non-Convex Min-Max Games Using Iterative First Order Methods",
+   "year": 2019,
+   "doi": "10.48550/arxiv.1902.08297",
+   "venue": "arXiv (Cornell University)",
+   "byline": [
+    "Nouiehed, Maher",
+    "Sanjabi, Maziar",
+    "Huang, Tianjian",
+    "Lee, Jason D.",
+    "Razaviyayn, Meisam"
+   ],
+   "arxiv": "1902.08297",
+   "evidence": {
+    "basis": "page1_open",
+    "how": "near",
+    "quotes": [
+     "Jason D. Lee jasonlee@princeton.edu"
+    ],
+    "url": "https://papers.nips.cc/paper/9631-solving-a-class-of-non-convex-min-max-games-using-iterative-first-order-methods.pdf",
+    "pdf_sha256": "04adc5bae25d4b83a7bce65d5fedc55529ee43b62189349d325a51b18bf722df",
+    "step": "pi_works",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W2970416783",
+    "appointment": {
+     "listing": 2019
+    },
+    "labpage": {
+     "url": "https://jasondlee88.github.io/publications.html",
+     "capture_url": null,
+     "sha256": "4a5807e773470147de194c5489e271878d863346bf8d765696ee1940a432aeb3",
+     "quote": "Solving a Class of Non-Convex Min-Max Games Using Iterative First Order Methods . Maher Nouiehed, Maziar Sanjabi, Jason D. Lee, and Meisam Razaviyayn. This supersedes our earlier note . NeurIPS 2019.",
+     "listed_title": "Solving a Class of Non-Convex Min-Max Games Using Iterative First Order Methods",
+     "listed_year": 2019
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "fab31f5b7d4e19ba"
+  },
+  {
+   "pi": "Jennifer Rexford",
+   "key": "labpage:567724cac48493b99d88157b3b9194c0d52e846f",
+   "title": "Lucid: A language for control in the data plane",
+   "year": 2021,
+   "doi": "10.48550/arxiv.2107.02244",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2107.02244",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "near",
+    "quotes": [
+     "Jennifer Rexford David Walker Princeton Univ"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2107/2107.02244v1.pdf",
+    "pdf_sha256": "aa37a02e128b293c5fad12783cb3e77e83d1bb134855469661f834c5208abe92",
+    "step": "arxiv",
+    "match": "oai_exact_title",
+    "appointment": {
+     "periodId": "princeton_faculty_period_6"
+    },
+    "arxiv": "2107.02244",
+    "labpage": {
+     "url": "https://www.cs.princeton.edu/~jrex/publications.html",
+     "capture_url": null,
+     "sha256": "1ef3bb06633802178d667e2d2cad29eff915e76aebad724748b7e4c216bc4de0",
+     "quote": "John Sonchack, Devon Loehr, Jennifer Rexford, and David Walker, \"Lucid: A language for control in the data plane,\" in ACM SIGCOMM, August 2021 (John's SIGCOMM video , SIGCOMM slides , longer NPI video , and longer NPI slides ).",
+     "listed_title": "Lucid: A language for control in the data plane",
+     "listed_year": 2021
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "0a0060518e2fe144"
+  },
+  {
+   "pi": "Jonathan Mayer",
+   "key": "labpage:17728e5d5a08b5139a2d0abe0b7841a780df3682",
+   "title": "Content Moderation for End-to-End Encryption",
+   "year": 2023,
+   "doi": "10.48550/arxiv.2303.03979",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2303.03979",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "near",
+    "quotes": [
+     "Jonathan Mayer Princeton Univ"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2303/2303.03979v1.pdf",
+    "pdf_sha256": "8acf870c6f227d7e9a94879f2cefdb0d467c87be5cc2a54eeb80949545e50abb",
+    "step": "arxiv",
+    "match": "entry_link",
+    "appointment": {
+     "periodId": "princeton_faculty_period_40"
+    },
+    "arxiv": "2303.03979",
+    "labpage": {
+     "url": "https://jonathanmayer.org/publications/",
+     "capture_url": null,
+     "sha256": "73355ebd96a47dfe8758a67c332bd6df94665dac53e99d2c18160d6d52fe9926",
+     "quote": "Content Moderation for End-to-End Encryption Privacy Enhancing Technologies Symposium (2023) Web PDF",
+     "listed_title": "Content Moderation for End-to-End Encryption",
+     "listed_year": 2023
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "194fba27cafa1114"
+  },
+  {
+   "pi": "Jonathan Mayer",
+   "key": "labpage:017b53c6a31cd1eda488c909159e953641b8fa71",
+   "title": "Estimating Incidental Collection in Foreign Intelligence Surveillance",
+   "year": 2022,
+   "doi": null,
+   "venue": "Usenix Security (2022) Web PDF",
+   "byline": [],
+   "arxiv": null,
+   "evidence": {
+    "basis": "page1_open",
+    "how": "near",
+    "quotes": [
+     "Jonathan Mayer, Princeton Univ"
+    ],
+    "url": "https://www.usenix.org/system/files/sec22-kulshrestha.pdf",
+    "pdf_sha256": "95a46df67b3eb18d28fa891d140fea9475acaf1868bfd8c2d134f171a7cfce0a",
+    "step": "proceedings",
+    "match": "entry_link",
+    "appointment": {
+     "periodId": "princeton_faculty_period_40"
+    },
+    "labpage": {
+     "url": "https://jonathanmayer.org/publications/",
+     "capture_url": null,
+     "sha256": "73355ebd96a47dfe8758a67c332bd6df94665dac53e99d2c18160d6d52fe9926",
+     "quote": "Estimating Incidental Collection in Foreign Intelligence Surveillance Usenix Security (2022) Web PDF",
+     "listed_title": "Estimating Incidental Collection in Foreign Intelligence Surveillance",
+     "listed_year": 2022
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "1eb34fbf4fdaf0e0"
+  },
+  {
+   "pi": "Jonathan Mayer",
+   "key": "labpage:4a23b209b5b48247bf5c2152b11aeed78b1e3aea",
+   "title": "Dark Patterns at Scale: Findings from a Crawl of 11K Shopping Websites",
+   "year": 2019,
+   "doi": "10.48550/arxiv.1907.07032",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "1907.07032",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "near",
+    "quotes": [
+     "JONATHAN MAYER, Princeton Univ"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1907/1907.07032v1.pdf",
+    "pdf_sha256": "b0919c7b56546412ed7e5e4efb384544840b33545db9f9bc1ccf5ddbe6afa71d",
+    "step": "arxiv",
+    "match": "entry_link",
+    "appointment": {
+     "periodId": "princeton_faculty_period_40"
+    },
+    "arxiv": "1907.07032",
+    "labpage": {
+     "url": "https://jonathanmayer.org/publications/",
+     "capture_url": null,
+     "sha256": "73355ebd96a47dfe8758a67c332bd6df94665dac53e99d2c18160d6d52fe9926",
+     "quote": "Dark Patterns at Scale: Findings from a Crawl of 11K Shopping Websites ACM CSCW (2019) Web PDF",
+     "listed_title": "Dark Patterns at Scale: Findings from a Crawl of 11K Shopping Websites",
+     "listed_year": 2019
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "7c3135673578bbbe"
+  },
+  {
+   "pi": "Mae Milano",
+   "key": "labpage:237de02c2d06a9ad2cad06f21a756cccab5399d9",
+   "title": "Building Bridges: Safe Interactions with Foreign Languages through Omniglot",
+   "year": 2025,
+   "doi": null,
+   "venue": "19th USENIX Symposium on Operating Systems Design and Implementation",
+   "byline": [],
+   "arxiv": null,
+   "evidence": {
+    "basis": "page1_open",
+    "how": "near",
+    "quotes": [
+     "Mae Milano and Amit Levy, Princeton Univ"
+    ],
+    "url": "https://www.usenix.org/system/files/osdi25-schuermann.pdf",
+    "pdf_sha256": "59edcd0a84a331d16caf50199143ab34f832191cdf856ffc2f0f65e8b83b633d",
+    "step": "proceedings",
+    "match": "entry_link",
+    "appointment": {
+     "periodId": "princeton_faculty_period_23"
+    },
+    "labpage": {
+     "url": "https://www.languagesforsyste.ms/publication/",
+     "capture_url": null,
+     "sha256": "91cee51605d205e0fee04ee122f7731f12453b40df0a3baad72ea28871458071",
+     "quote": "Building Bridges: Safe Interactions with Foreign Languages through Omniglot Leon Schuermann, Jack Toubes, Tyler Potyondy, Pat Pannuto, Mae Milano, Amit Levy 19th USENIX Symposium on Operating Systems Design and Implementation , 2025 PDF Project",
+     "listed_title": "Building Bridges: Safe Interactions with Foreign Languages through Omniglot",
+     "listed_year": 2025
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "7e0f27c1ecede745"
+  },
+  {
+   "pi": "Paul Seymour",
+   "key": "labpage:02ae406f45296d908d2b44219ac779124c397034",
+   "title": "Cops and robbers on P 5 -free graphs",
+   "year": 2023,
+   "doi": "10.48550/arxiv.2301.13175",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2301.13175",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "near",
+    "quotes": [
+     "Paul Seymour3 Princeton Univ"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2301/2301.13175v1.pdf",
+    "pdf_sha256": "48f834e38435e03498744adf89f26cb1ce77c1980cc092882f072a7f895075b9",
+    "step": "arxiv",
+    "match": "oai_exact_title",
+    "appointment": {
+     "periodId": "princeton_faculty_period_arrival_16"
+    },
+    "arxiv": "2301.13175",
+    "labpage": {
+     "url": "https://web.math.princeton.edu/~pds/online.html",
+     "capture_url": null,
+     "sha256": "72b45101013d4a0e099b1272d3071c2e1674dd057b861972ae35ff1ae52a6c56",
+     "quote": "Cops and robbers on P 5 -free graphs (with Maria Chudnovsky, Sergey Norin, Jérémie Turcotte).",
+     "listed_title": "Cops and robbers on P 5 -free graphs",
+     "listed_year": 2024
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "d773a0109e1ebf58"
+  },
+  {
+   "pi": "Ryan Adams",
+   "key": "labpage:29ad8219de5a130d74013b6507ebc8cf640c11b8",
+   "title": "Multi-fidelity Monte Carlo: a pseudo-marginal approach",
+   "year": 2022,
+   "doi": "10.48550/arxiv.2210.01534",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2210.01534",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "near",
+    "quotes": [
+     "Ryan P. Adams∗ arXiv:2210.01534v1 [stat.ML] 4 Oct 2022 Princeton Univ"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2210/2210.01534v1.pdf",
+    "pdf_sha256": "026e39b9030d30a780cec2941fb2bcacd0fd415b41947dbe092f751b94dc4ff6",
+    "step": "arxiv",
+    "match": "oai_exact_title",
+    "appointment": {
+     "periodId": "princeton_faculty_period_15"
+    },
+    "arxiv": "2210.01534",
+    "labpage": {
+     "url": "https://lips.cs.princeton.edu/pubs/",
+     "capture_url": null,
+     "sha256": "871743b6ac049b34d8cc4d1f8ec67ed2125bf7bab1a9e6ebb2595b8b162a3aa7",
+     "quote": "Cai, D., & Adams, R. P. (2022). Multi-fidelity Monte Carlo: a pseudo-marginal approach. Advances in Neural Information Processing Systems , 35 , 21654–21667. [ PDF ] bibtex/details",
+     "listed_title": "Multi-fidelity Monte Carlo: a pseudo-marginal approach",
+     "listed_year": 2022
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "23ff71f6fe459637"
+  },
+  {
+   "pi": "Ryan Adams",
+   "key": "labpage:f0f246ac1906b892fbd2d4da5cf4e2788f24cbde",
+   "title": "SpArSe: Sparse Architecture Search for CNNs on Resource-Constrained Microcontrollers",
+   "year": 2019,
+   "doi": "10.48550/arxiv.1905.12107",
+   "venue": "arXiv (Cornell University)",
+   "byline": [
+    "Fedorov, Igor",
+    "Adams, Ryan P.",
+    "Mattina, Matthew",
+    "Whatmough, Paul N."
+   ],
+   "arxiv": "1905.12107",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "marker",
+    "quotes": [
+     "Ryan P. Adams2 , ",
+     "2 ARM ML Research Princeton University"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1905/1905.12107v1.pdf",
+    "pdf_sha256": "a420e16d49770cca0a60827dd601f9eb05dbbb331ae3facb9138b47d67a5ba6a",
+    "step": "pi_works",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W2947565354",
+    "appointment": {
+     "periodId": "princeton_faculty_period_15"
+    },
+    "arxiv": "1905.12107",
+    "labpage": {
+     "url": "https://lips.cs.princeton.edu/pubs/",
+     "capture_url": null,
+     "sha256": "871743b6ac049b34d8cc4d1f8ec67ed2125bf7bab1a9e6ebb2595b8b162a3aa7",
+     "quote": "Fedorov, I., Adams, R. P., Mattina, M., & Whatmough, P. (2019). Sparse: Sparse architecture search for cnns on resource-constrained microcontrollers. Advances in Neural Information Processing Systems , 32 . [ PDF ] bibtex/details",
+     "listed_title": "Sparse: Sparse architecture search for cnns on resource-constrained microcontrollers",
+     "listed_year": 2019
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "1be4df9481ba3700"
+  },
+  {
+   "pi": "Ryan Adams",
+   "key": "labpage:d030896953af5e7d322d6c352839b5b91271850c",
+   "title": "PASS-GLM: polynomial approximate sufficient statistics for scalable Bayesian GLM inference",
+   "year": 2017,
+   "doi": "10.48550/arxiv.1709.09216",
+   "venue": "arXiv (Cornell University)",
+   "byline": [
+    "Huggins, Jonathan H.",
+    "Adams, Ryan P.",
+    "Broderick, Tamara"
+   ],
+   "arxiv": "1709.09216",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "near",
+    "quotes": [
+     "Ryan P. Adams Google Brain and Princeton rpa@princeton.edu"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1709/1709.09216v1.pdf",
+    "pdf_sha256": "88fdd8459c1ff1176374c428a84ad01254cf341ab4b4f198a3806fd68a65ca50",
+    "step": "pi_works",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W2752017681",
+    "appointment": {
+     "listing": 2017
+    },
+    "arxiv": "1709.09216",
+    "labpage": {
+     "url": "https://lips.cs.princeton.edu/pubs/",
+     "capture_url": null,
+     "sha256": "871743b6ac049b34d8cc4d1f8ec67ed2125bf7bab1a9e6ebb2595b8b162a3aa7",
+     "quote": "Huggins, J., Adams, R. P., & Broderick, T. (2017). PASS-GLM: Polynomial Approximate Sufficient Statistics for Scalable Bayesian GLM Inference. Advances in Neural Information Processing Systems (NIPS) 30 . [ PDF ] bibtex/details",
+     "listed_title": "PASS-GLM: Polynomial Approximate Sufficient Statistics for Scalable Bayesian GLM Inference",
+     "listed_year": 2017
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "4789f63c4cddef95"
+  },
+  {
+   "pi": "Sanjeev Arora",
+   "key": "labpage:768a83b578bfa172fff2fb2a0554659a6e704062",
+   "title": "Understanding Gradient Descent on the Edge of Stability in Deep Learning",
+   "year": 2022,
+   "doi": null,
+   "venue": "ICML 2022 Sanjeev Arora , Zhiyuan Li , Abhishek Panigrahi arXiv",
+   "byline": [],
+   "arxiv": null,
+   "evidence": {
+    "basis": "page1_open",
+    "how": "footnote",
+    "quotes": [
+     "Sanjeev Arora * 1 ",
+     "* Alphabetical order 1 Princeton University . Correspondence to: Sanjeev Arora <arora@cs.princeton.edu>, Zhiyuan Li <zhiyuanli@cs.princeton.edu>, Abhishek Panigrah"
+    ],
+    "url": "https://proceedings.mlr.press/v162/arora22a/arora22a.pdf",
+    "pdf_sha256": "292ff30f8788df4dd6b99b7e092be81f4830819004a18e04f98575f369c067e6",
+    "step": "proceedings",
+    "match": "entry_link",
+    "appointment": {
+     "periodId": "princeton_faculty_period_1"
+    },
+    "labpage": {
+     "url": "https://aroraresearch-princeton.github.io/pages/publications.html",
+     "capture_url": null,
+     "sha256": "6e4122d3c351cb261ebdfac672555078df1642b74d770c2619aaead864670770",
+     "quote": "Understanding Gradient Descent on the Edge of Stability in Deep Learning ICML 2022 Sanjeev Arora , Zhiyuan Li , Abhishek Panigrahi arXiv",
+     "listed_title": "Understanding Gradient Descent on the Edge of Stability in Deep Learning",
+     "listed_year": 2022
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "f3aebffc5817f502"
+  },
+  {
+   "pi": "Tom Griffiths",
+   "key": "labpage:c8a72918bb2793f1fd316127bd414b9975d98985",
+   "title": "Evaluating language models' evaluations of games",
+   "year": 2025,
+   "doi": "10.48550/arxiv.2510.10930",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2510.10930",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "marker",
+    "quotes": [
+     "Thomas L. Griffiths5,† 1 ",
+     "5 Princeton University,"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2510/2510.10930v1.pdf",
+    "pdf_sha256": "3fe3605d92b712ca9ab841a5161001dc714d7257996bb67baf9eb79b8be704da",
+    "step": "arxiv",
+    "match": "oai_exact_title",
+    "appointment": {
+     "periodId": "princeton_faculty_period_45"
+    },
+    "arxiv": "2510.10930",
+    "labpage": {
+     "url": "https://cocosci.princeton.edu/publications.php",
+     "capture_url": null,
+     "sha256": "59a6bb5aca91865c32ebb892bf02f8d15e26e17d5d3cf763e31f6425bd49081e",
+     "quote": "SML Collins, K. M. , Zhang, C. E. , Todd, G. , Ying, L. , Barba da Costa, M. , Liu, R. , Sharma, P. , Weller, A. , Kuperwajs, I. , Wong, L. , Tenenbaum, J. B. , & Griffiths, T. L. (2026). Evaluating language models' evaluations of games. Proceedings of the 14th International Conference on Learning Representations (ICLR). (pdf)",
+     "listed_title": "Evaluating language models' evaluations of games",
+     "listed_year": 2026
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "a6bdc9936c59d4d4"
+  },
+  {
+   "pi": "Tom Griffiths",
+   "key": "labpage:eeb228651d624249a124c2b6cf49917ca9d4b0bb",
+   "title": "Understanding task representations in neural networks via bayesian ablation",
+   "year": 2025,
+   "doi": "10.48550/arxiv.2505.13742",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2505.13742",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "near",
+    "quotes": [
+     "Thomas L. Griffiths Jonathan D. Cohen1 Department of Psychology, Princeton Univ"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2505/2505.13742v1.pdf",
+    "pdf_sha256": "53039063416a49ddc5a33342af0e16343bc1616519ec4e4da17cb7731e81a260",
+    "step": "arxiv",
+    "match": "oai_exact_title",
+    "appointment": {
+     "periodId": "princeton_faculty_period_45"
+    },
+    "arxiv": "2505.13742",
+    "labpage": {
+     "url": "https://cocosci.princeton.edu/publications.php",
+     "capture_url": null,
+     "sha256": "59a6bb5aca91865c32ebb892bf02f8d15e26e17d5d3cf763e31f6425bd49081e",
+     "quote": "CI Nam, A. J. , Campbell, D. I. , Griffiths, T. L. , Cohen, J. D. , & Leslie, S. J. (2026). Understanding task representations in neural networks via bayesian ablation. Proceedings of the Fifth Conference on Causal Learning and Reasoning . (pdf)",
+     "listed_title": "Understanding task representations in neural networks via bayesian ablation",
+     "listed_year": 2026
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "de57509e9fbb0899"
+  },
+  {
+   "pi": "Tom Griffiths",
+   "key": "labpage:71f4942b390dbbcbecf1bce9b211116c826bf79b",
+   "title": "VideoGameBench: Can vision-language models complete popular video games?",
+   "year": 2025,
+   "doi": "10.48550/arxiv.2505.18134",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2505.18134",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "near",
+    "quotes": [
+     "Thomas L. Griffiths Karthik R. Narasimhan Ofir Press Princeton Univ"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2505/2505.18134v1.pdf",
+    "pdf_sha256": "3cd14c21d4d7de0f8c8db5b286d4e0d16a8fde217b955585ab896ded495dad07",
+    "step": "arxiv",
+    "match": "oai_exact_title",
+    "appointment": {
+     "periodId": "princeton_faculty_period_45"
+    },
+    "arxiv": "2505.18134",
+    "labpage": {
+     "url": "https://cocosci.princeton.edu/publications.php",
+     "capture_url": null,
+     "sha256": "59a6bb5aca91865c32ebb892bf02f8d15e26e17d5d3cf763e31f6425bd49081e",
+     "quote": "P SML Zhang, A. L. , Griffiths, T. L. , Narsimhan, K. R. , & Press, O. (2026). VideoGameBench: Can vision-language models complete popular video games?. (preprint)",
+     "listed_title": "VideoGameBench: Can vision-language models complete popular video games?",
+     "listed_year": 2026
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "98effc16a40c91fd"
+  },
+  {
+   "pi": "Tom Griffiths",
+   "key": "labpage:feb0a4ec0384b25dc326c7a9965935c45ae9cfa4",
+   "title": "Recovering event probabilities from large language model embeddings via axiomatic constraints",
+   "year": 2025,
+   "doi": "10.48550/arxiv.2505.07883",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2505.07883",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "near",
+    "quotes": [
+     "Thomas L. Griffiths Departments of Psychology and Computer Science Princeton Univ"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2505/2505.07883v1.pdf",
+    "pdf_sha256": "c9698f02344739103933ad22bf0d3d64ebe8b2602c024cd165cd41890a4d99af",
+    "step": "arxiv",
+    "match": "oai_exact_title",
+    "appointment": {
+     "periodId": "princeton_faculty_period_45"
+    },
+    "arxiv": "2505.07883",
+    "labpage": {
+     "url": "https://cocosci.princeton.edu/publications.php",
+     "capture_url": null,
+     "sha256": "59a6bb5aca91865c32ebb892bf02f8d15e26e17d5d3cf763e31f6425bd49081e",
+     "quote": "PR SML Zhu, J. Q. , Yan, H. , & Griffiths, T. L. (2026). Recovering event probabilities from large language model embeddings via axiomatic constraints. Proceedings of the Annual Meeting of the Cognitive Science Society , 48. (pdf)",
+     "listed_title": "Recovering event probabilities from large language model embeddings via axiomatic constraints",
+     "listed_year": 2026
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "3399277749225aeb"
+  },
+  {
+   "pi": "Tom Griffiths",
+   "key": "labpage:8c0b498950b5f5803394929dfd4b76dfa7f98a8f",
+   "title": "Teasing apart architecture and initial weights as sources of inductive bias in neural networks",
+   "year": 2025,
+   "doi": "10.48550/arxiv.2502.20237",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2502.20237",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "marker",
+    "quotes": [
+     "Thomas L. Griffiths1,4 ",
+     "1 Department of Computer Science, Princeton University"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2502/2502.20237v1.pdf",
+    "pdf_sha256": "83e4aa63e582097a2c20f4c391c1ff02f926254c3bc72c7141587dd256d9a26a",
+    "step": "arxiv",
+    "match": "oai_exact_title",
+    "appointment": {
+     "periodId": "princeton_faculty_period_45"
+    },
+    "arxiv": "2502.20237",
+    "labpage": {
+     "url": "https://cocosci.princeton.edu/publications.php",
+     "capture_url": null,
+     "sha256": "59a6bb5aca91865c32ebb892bf02f8d15e26e17d5d3cf763e31f6425bd49081e",
+     "quote": "IB Bencomo, G. , Gupta, M. , Marinescu, I. , McCoy, R. T. , & Griffiths, T. L. (2025). Teasing apart architecture and initial weights as sources of inductive bias in neural networks. Proceedings of the Annual Meeting of the Cognitive Science Society , 47. (pdf)",
+     "listed_title": "Teasing apart architecture and initial weights as sources of inductive bias in neural networks",
+     "listed_year": 2025
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "3129a6af41dd8b3d"
+  },
+  {
+   "pi": "Tom Griffiths",
+   "key": "labpage:a2821d34aa9f2b1e02838eee45a4861fc7b59b3c",
+   "title": "Generation and evaluation in the human invention process through the lens of game design",
+   "year": 2025,
+   "doi": "10.48550/arxiv.2508.10914",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2508.10914",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "single",
+    "quotes": [
+     "Thomas L. Griffiths",
+     "University of Cambridge 2 MIT 3 NYU 4 Stanford University 5 Princeton University Correspondenc"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2508/2508.10914v1.pdf",
+    "pdf_sha256": "7e666ead5e61bf9c265e4514c3d79da7e59860090f9bc576fdde9910826bf490",
+    "step": "arxiv",
+    "match": "oai_exact_title",
+    "appointment": {
+     "periodId": "princeton_faculty_period_45"
+    },
+    "arxiv": "2508.10914",
+    "labpage": {
+     "url": "https://cocosci.princeton.edu/publications.php",
+     "capture_url": null,
+     "sha256": "59a6bb5aca91865c32ebb892bf02f8d15e26e17d5d3cf763e31f6425bd49081e",
+     "quote": "RPM Collins, K. M , Todd, G. , Zhang, C. E , Weller, A. , Togelius, J. , Chu, J. , Wong, L. , Griffiths, T. L. , & Tenenbaum, J. B. (2025). Generation and evaluation in the human invention process through the lens of game design. Proceedings of the Annual Meeting of the Cognitive Science Society, 47. (pdf)",
+     "listed_title": "Generation and evaluation in the human invention process through the lens of game design",
+     "listed_year": 2025
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "d02236620f2788a4"
+  },
+  {
+   "pi": "Tom Griffiths",
+   "key": "labpage:bed8e155616cb4aaf2013644b430d08791635582",
+   "title": "People use fast, flat goal-directed simulation to reason about novel problems",
+   "year": 2025,
+   "doi": "10.48550/arxiv.2510.11503",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2510.11503",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "marker",
+    "quotes": [
+     "Thomas L. Griffiths6 , ",
+     "6 Princeton University"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2510/2510.11503v1.pdf",
+    "pdf_sha256": "d8609791ae30839c9bd69406639f1164915cb845dfb0364263ef07401e87cd35",
+    "step": "arxiv",
+    "match": "entry_link",
+    "appointment": {
+     "periodId": "princeton_faculty_period_45"
+    },
+    "arxiv": "2510.11503",
+    "labpage": {
+     "url": "https://cocosci.princeton.edu/publications.php",
+     "capture_url": null,
+     "sha256": "59a6bb5aca91865c32ebb892bf02f8d15e26e17d5d3cf763e31f6425bd49081e",
+     "quote": "DMRL RPM Collins, K. M. , Zhang, C. E. , Wong, L. , da Costa, M. B. , Todd, G. , Weller, A. , Cheyette, S. J. , Griffiths, T. L. , & Tenenbaum, J. B. (2025). People use fast, flat goal-directed simulation to reason about novel problems. (preprint)",
+     "listed_title": "People use fast, flat goal-directed simulation to reason about novel problems",
+     "listed_year": 2025
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "a15cfe1821a8d4a1"
+  },
+  {
+   "pi": "Tom Griffiths",
+   "key": "labpage:db8a2fbfaee8f7a3593f9fe98d25154c2274ea17",
+   "title": "Are large language models reliable AI scientists? Assessing reverse-engineering of black-box systems",
+   "year": 2025,
+   "doi": "10.48550/arxiv.2505.17968",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2505.17968",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "near",
+    "quotes": [
+     "Thomas L. Griffiths Department of Computer Science Department of Psychology Princeton Univ"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2505/2505.17968v1.pdf",
+    "pdf_sha256": "5ad11d8b30c4b0c40639a27efeee1fa3439b077158e434023d87c0a4f95f2dd9",
+    "step": "arxiv",
+    "match": "entry_link",
+    "appointment": {
+     "periodId": "princeton_faculty_period_45"
+    },
+    "arxiv": "2505.17968",
+    "labpage": {
+     "url": "https://cocosci.princeton.edu/publications.php",
+     "capture_url": null,
+     "sha256": "59a6bb5aca91865c32ebb892bf02f8d15e26e17d5d3cf763e31f6425bd49081e",
+     "quote": "PR SML Geng, J. , Chen, H. , Arumugam, D. , & Griffiths, T. L. (2025). Are large language models reliable AI scientists? Assessing reverse-engineering of black-box systems. (preprint)",
+     "listed_title": "Are large language models reliable AI scientists? Assessing reverse-engineering of black-box systems",
+     "listed_year": 2025
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "77f0ad3d214b3bb0"
+  },
+  {
+   "pi": "Tom Griffiths",
+   "key": "labpage:721df361f24a4d9113f6f1693f99454c33108cc7",
+   "title": "Convolutional neural networks can (meta-) learn the same-different relation",
+   "year": 2025,
+   "doi": "10.48550/arxiv.2503.23212",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2503.23212",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "marker",
+    "quotes": [
+     "Thomas L. Griffiths1,3 ",
+     "1 Department of Computer Science, Princeton University"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2503/2503.23212v1.pdf",
+    "pdf_sha256": "f1699ba0fe6dd2e7b0ec463899cddd607c137ca184b25e1f3d1c378ec2c6cd2d",
+    "step": "arxiv",
+    "match": "oai_exact_title",
+    "appointment": {
+     "periodId": "princeton_faculty_period_45"
+    },
+    "arxiv": "2503.23212",
+    "labpage": {
+     "url": "https://cocosci.princeton.edu/publications.php",
+     "capture_url": null,
+     "sha256": "59a6bb5aca91865c32ebb892bf02f8d15e26e17d5d3cf763e31f6425bd49081e",
+     "quote": "IB Gupta, M. , Rane, S. , McCoy, R. T. , & Griffiths, T. L. (2025). Convolutional neural networks can (meta-) learn the same-different relation. Proceeding of the Annual Meeting of the Cognitive Science Society, 47. (pdf)",
+     "listed_title": "Convolutional neural networks can (meta-) learn the same-different relation",
+     "listed_year": 2025
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "d43637dcd358ab30"
+  },
+  {
+   "pi": "Tom Griffiths",
+   "key": "labpage:d25fbaaea179737889c15d08720b3707c203b69b",
+   "title": "Analyzing the benefits of prototypes for semi-supervised category learning",
+   "year": 2024,
+   "doi": "10.48550/arxiv.2406.02268",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2406.02268",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "near",
+    "quotes": [
+     "Thomas L. Griffiths (tomg@princeton.edu"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2406/2406.02268v1.pdf",
+    "pdf_sha256": "f966ee69d6e65fc40c7f09ef02e81deee0bd1e8136591078246a13e5ac50c688",
+    "step": "arxiv",
+    "match": "oai_exact_title",
+    "appointment": {
+     "periodId": "princeton_faculty_period_45"
+    },
+    "arxiv": "2406.02268",
+    "labpage": {
+     "url": "https://cocosci.princeton.edu/publications.php",
+     "capture_url": null,
+     "sha256": "59a6bb5aca91865c32ebb892bf02f8d15e26e17d5d3cf763e31f6425bd49081e",
+     "quote": "IB S&C Zhang, L. , Nelson, L. , & Griffiths, T. L. (2024). Analyzing the benefits of prototypes for semi-supervised category learning. 46th Annual Meeting of the Cognitive Science Society. (pdf)",
+     "listed_title": "Analyzing the benefits of prototypes for semi-supervised category learning",
+     "listed_year": 2024
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "34bed37552f1724a"
+  },
+  {
+   "pi": "Tom Griffiths",
+   "key": "labpage:f496e7cfb2efadb04fa8f6f8e7f9aa9bedb4da49",
+   "title": "Eliciting the Priors of Large Language Models using Iterated In-Context Learning",
+   "year": 2025,
+   "doi": null,
+   "venue": "OSF Preprints (OSF Preprints)",
+   "byline": [
+    "Thomas L. Griffiths",
+    "Jian-Qiao Zhu"
+   ],
+   "arxiv": "2406.01860",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "near",
+    "quotes": [
+     "Thomas L. Griffiths Department of Psychology and Computer Science Princeton Univ"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2406/2406.01860v1.pdf",
+    "pdf_sha256": "59c16f1a9babd4cea96e5bd8e29fe20813437b4cfeb0d2f5ded3f4f4bd1b14be",
+    "step": "pi_works",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W7125621304",
+    "appointment": {
+     "periodId": "princeton_faculty_period_45"
+    },
+    "arxiv": "2406.01860",
+    "labpage": {
+     "url": "https://cocosci.princeton.edu/publications.php",
+     "capture_url": null,
+     "sha256": "59a6bb5aca91865c32ebb892bf02f8d15e26e17d5d3cf763e31f6425bd49081e",
+     "quote": "PR SML Zhu, J. Q. , & Griffiths, T. L. (2024). Eliciting the priors of large language models using iterated in-context learning. (preprint)",
+     "listed_title": "Eliciting the priors of large language models using iterated in-context learning",
+     "listed_year": 2024
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "fe056741a51097b7"
+  },
+  {
+   "pi": "Tom Griffiths",
+   "key": "labpage:e235063b418806fb9fad13e996939e7beb8664b3",
+   "title": "Recovering mental representations from large language models with Markov chain Monte Carlo",
+   "year": 2024,
+   "doi": "10.48550/arxiv.2401.16657",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2401.16657",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "near",
+    "quotes": [
+     "Thomas L. Griffiths (tomg@princeton.edu"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2401/2401.16657v1.pdf",
+    "pdf_sha256": "824be3abf6556ffccbfc3dffa77a148a0810fb80117bdec787445991243bb835",
+    "step": "arxiv",
+    "match": "oai_exact_title",
+    "appointment": {
+     "periodId": "princeton_faculty_period_45"
+    },
+    "arxiv": "2401.16657",
+    "labpage": {
+     "url": "https://cocosci.princeton.edu/publications.php",
+     "capture_url": null,
+     "sha256": "59a6bb5aca91865c32ebb892bf02f8d15e26e17d5d3cf763e31f6425bd49081e",
+     "quote": "IB S&C Zhu, J. Q. , Yan, H. , & Griffiths, T. (2024). Recovering mental representations from large language models with Markov chain Monte Carlo. 46th Annual Meeting of the Cognitive Science Society. (pdf)",
+     "listed_title": "Recovering mental representations from large language models with Markov chain Monte Carlo",
+     "listed_year": 2024
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "e400fdb254880f16"
+  },
+  {
+   "pi": "Tom Griffiths",
+   "key": "labpage:c797abbfea8aee9fddd7c948e73d972c9ae9dbf8",
+   "title": "What language reveals about perception: Distilling psychophysical knowledge from large language models",
+   "year": 2023,
+   "doi": "10.48550/arxiv.2302.01308",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2302.01308",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "near",
+    "quotes": [
+     "Thomas L. Griffiths1,2 1 Department of Psychology, Princeton Univ"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2302/2302.01308v1.pdf",
+    "pdf_sha256": "db75ad8fd8e19398f602e15bc0a29d4c512de64b13d8b33167772ffa33e40bd2",
+    "step": "arxiv",
+    "match": "entry_link",
+    "appointment": {
+     "periodId": "princeton_faculty_period_45"
+    },
+    "arxiv": "2302.01308",
+    "labpage": {
+     "url": "https://cocosci.princeton.edu/publications.php",
+     "capture_url": null,
+     "sha256": "59a6bb5aca91865c32ebb892bf02f8d15e26e17d5d3cf763e31f6425bd49081e",
+     "quote": "P SML Marjieh, R. , Sucholutsky, I. , van Rijn, P. , Jacoby, N. , & Griffiths, T. L. (2023). What language reveals about perception: Distilling psychophysical knowledge from large language models. 45th Annual Meeting of the Cognitive Science Society. (pdf)",
+     "listed_title": "What language reveals about perception: Distilling psychophysical knowledge from large language models",
+     "listed_year": 2023
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "8d6753b6ddb27272"
+  },
+  {
+   "pi": "Tom Griffiths",
+   "key": "labpage:f7995a75d4df5a7e18fb3ca1a215abf4c952a05d",
+   "title": "Predicting word learning in children from the performance of computer vision systems",
+   "year": 2022,
+   "doi": "10.48550/arxiv.2207.09847",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2207.09847",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "near",
+    "quotes": [
+     "Thomas L. Griffiths Department of Psychology Department of Computer Science Princeton Univ"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2207/2207.09847v1.pdf",
+    "pdf_sha256": "0ebbdca66c89ee9588f7c5de01cf8b40f989ca1f8205fc6a7036b82a06e1ada5",
+    "step": "arxiv",
+    "match": "oai_exact_title",
+    "appointment": {
+     "periodId": "princeton_faculty_period_45"
+    },
+    "arxiv": "2207.09847",
+    "labpage": {
+     "url": "https://cocosci.princeton.edu/publications.php",
+     "capture_url": null,
+     "sha256": "59a6bb5aca91865c32ebb892bf02f8d15e26e17d5d3cf763e31f6425bd49081e",
+     "quote": "CD P Rane, S. , Nencheva, M. L. , Wang, Z. , Lew-Williams, C. , Russakovsky, O. , & Griffiths, T. L. (2023). Predicting word learning in children from the performance of computer vision systems. 45th Annual Meeting of the Cognitive Science Society. (pdf)",
+     "listed_title": "Predicting word learning in children from the performance of computer vision systems",
+     "listed_year": 2023
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "8a4eb6471afab075"
+  },
+  {
+   "pi": "Tom Griffiths",
+   "key": "labpage:1577ebcf92021bf7df82e9ffef1ca1f6cf0ebb0e",
+   "title": "A metalearned neural circuit for nonparametric Bayesian inference",
+   "year": 2023,
+   "doi": "10.48550/arxiv.2311.14601",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2311.14601",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "near",
+    "quotes": [
+     "Thomas L. Griffiths1,2 1 2 Department of Computer Science Department of Psychology Princeton Univ"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2311/2311.14601v1.pdf",
+    "pdf_sha256": "a213ab5d6eebad2a8980ee32b8270016822ca9a8720ff8425246bd31449e4326",
+    "step": "arxiv",
+    "match": "entry_link",
+    "appointment": {
+     "periodId": "princeton_faculty_period_45"
+    },
+    "arxiv": "2311.14601",
+    "labpage": {
+     "url": "https://cocosci.princeton.edu/publications.php",
+     "capture_url": null,
+     "sha256": "59a6bb5aca91865c32ebb892bf02f8d15e26e17d5d3cf763e31f6425bd49081e",
+     "quote": "NBM Snell, J. C. , Bencomo, G. M. , Griffiths, T. L. (2023). A metalearned neural circuit for nonparametric Bayesian inference. Advances in Neural Information Processing Systems 37. (preprint)",
+     "listed_title": "A metalearned neural circuit for nonparametric Bayesian inference",
+     "listed_year": 2023
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "1001e349957273ba"
+  },
+  {
+   "pi": "Tom Griffiths",
+   "key": "labpage:823980a104665d82dde3a44ebaa2d052e4e4a1a2",
+   "title": "Multitasking Capacity: Hardness Results and Improved Constructions",
+   "year": 2020,
+   "doi": "10.1137/18m1224672",
+   "venue": "SIAM Journal on Discrete Mathematics",
+   "byline": [
+    "Noga Alon",
+    "Jonathan D. Cohen",
+    "Thomas L Griffiths",
+    "Pasin Manurangsi",
+    "Daniel Reichman",
+    "Igor Shinkar",
+    "Tal Wagner",
+    "Alexander Yu"
+   ],
+   "arxiv": "1809.02835",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "footnote",
+    "quotes": [
+     "Thomas L. Griffiths‡ ",
+     "‡ Princeton University tomg@princeton.edu"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1809/1809.02835v1.pdf",
+    "pdf_sha256": "6f22dcd834c28b52ae4923ee267ff35020ae2838ed39e3a468a6bfe8d98447f9",
+    "step": "pi_works",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W3014010934",
+    "appointment": {
+     "periodId": "princeton_faculty_period_45"
+    },
+    "arxiv": "1809.02835",
+    "labpage": {
+     "url": "https://cocosci.princeton.edu/publications.php",
+     "capture_url": null,
+     "sha256": "59a6bb5aca91865c32ebb892bf02f8d15e26e17d5d3cf763e31f6425bd49081e",
+     "quote": "DMRL Alon, N. , Cohen, J. D. , Griffiths, T. L. , Manurangsi, P. , Reichman, D. , Shinkar, I. , Wagner, T. , Yu, A. (2020). Multitasking capacity: Hardness results and improved constructions. SIAM Journal on Discrete Mathematics, 34 (1), 885-903. (pdf)",
+     "listed_title": "Multitasking capacity: Hardness results and improved constructions",
+     "listed_year": 2020
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "45e0f858fb0c5649"
+  },
+  {
+   "pi": "Tom Griffiths",
+   "key": "labpage:50460637a23b5d4d49a63fd4090e22a506da2cc6",
+   "title": "Resource-rational Task Decomposition to Minimize Planning Costs",
+   "year": 2020,
+   "doi": "10.48550/arxiv.2007.13862",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2007.13862",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "near",
+    "quotes": [
+     "Thomas L. Griffiths (tomg@princeton.edu"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2007/2007.13862v1.pdf",
+    "pdf_sha256": "d453f4f21543cce9085ec1d77585ae75a6b637fe6dd2a719ab16c251fa3817e8",
+    "step": "arxiv",
+    "match": "oai_exact_title",
+    "appointment": {
+     "periodId": "princeton_faculty_period_45"
+    },
+    "arxiv": "2007.13862",
+    "labpage": {
+     "url": "https://cocosci.princeton.edu/publications.php",
+     "capture_url": null,
+     "sha256": "59a6bb5aca91865c32ebb892bf02f8d15e26e17d5d3cf763e31f6425bd49081e",
+     "quote": "DMRL RPM Correa, C. G.* , Ho, M. K.* , Callaway, F. , & Griffiths, T. L. (2020). Resource-rational Task Decomposition to Minimize Planning Costs. Proceedings of the 42nd Annual Conference of the Cognitive Science Society. (pdf)",
+     "listed_title": "Resource-rational Task Decomposition to Minimize Planning Costs",
+     "listed_year": 2020
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "528d01eb9004fb6d"
+  },
+  {
+   "pi": "Tri Dao",
+   "key": "labpage:c986c05b4e8b9fd2f1db56e4babd1a7cd6e7ae3f",
+   "title": "Starcoder 2 and the stack v2: The next generation",
+   "year": 2024,
+   "doi": "10.48550/arxiv.2402.19173",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2402.19173",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "marker",
+    "quotes": [
+     "Tri Dao21 ",
+     "21 Princeton University"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2402/2402.19173v1.pdf",
+    "pdf_sha256": "f0fa4c579f033454b6ab67ba28b4f5023fafa708dbe42ccc01f71de1e7ccf15e",
+    "step": "arxiv",
+    "match": "oai_exact_title",
+    "appointment": {
+     "listing": 2024
+    },
+    "arxiv": "2402.19173",
+    "labpage": {
+     "url": "https://dao-lab.ai/publications/",
+     "capture_url": null,
+     "sha256": "9a28a7a1fc5698e13bc20d9ce849ad6897dcb3f7be9ab3c0d075153a47e7658a",
+     "quote": "Starcoder 2 and the stack v2: The next generation Anton Lozhkov, Raymond Li, Loubna Ben Allal, Federico Cassano, Joel Lamy-Poirier, Nouamane Tazi, Ao Tang, Dmytro Pykhtar, Jiawei Liu, Yuxiang Wei, and others arXiv preprint arXiv:2402.19173 , 2024",
+     "listed_title": "Starcoder 2 and the stack v2: The next generation",
+     "listed_year": 2024
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "58975505087d9dbe"
+  },
+  {
+   "pi": "Yuri Pritykin",
+   "key": "labpage:8eba6dc137fcd5818f25a372b0d45d24f96abac1",
+   "title": "Single-cell multi-omics reveals archetypal regulatory programs shared across T cell subsets",
+   "year": 2026,
+   "doi": "10.1016/j.celrep.2026.118156",
+   "venue": "Cell Reports",
+   "byline": [
+    "Sarah K. Walker",
+    "Joris van der Veeken",
+    "Alexander Y. Rudensky",
+    "Yuri Pritykin"
+   ],
+   "arxiv": null,
+   "evidence": {
+    "step": "openalex",
+    "match": "doi_entry_link",
+    "oa": "https://openalex.org/W7223676679",
+    "appointment": {
+     "listing": 2026
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Princeton University",
+     "text: Lewis-Sigler Institute for Integrative Genomics, Princeton University, Princeton, NJ, USA; Department of Computer Science, Princeton University, Princeton, NJ, USA. Electronic address: pritykin@princeton.edu"
+    ],
+    "institutions": [
+     "Princeton University"
+    ],
+    "raw_affiliations": [
+     "Lewis-Sigler Institute for Integrative Genomics, Princeton University, Princeton, NJ, USA; Department of Computer Science, Princeton University, Princeton, NJ, USA. Electronic address: pritykin@princeton.edu"
+    ],
+    "labpage": {
+     "url": "https://pritykinlab.github.io/#publications",
+     "capture_url": null,
+     "sha256": "8ac731b1383b093c8d1dc7436d4f5a1462e1024a79506959fb107191abdc4b0b",
+     "quote": "Single-cell multi-omics reveals archetypal regulatory programs shared across T cell subsets",
+     "listed_title": "Single-cell multi-omics reveals archetypal regulatory programs shared across T cell subsets",
+     "listed_year": 2026
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "a72b97fc8d0b871c"
+  },
+  {
+   "pi": "Yuxin Chen",
+   "key": "labpage:f245619bf97a50bf32a0046514f65603f7f58d42",
+   "title": "Policy Mirror Descent for Regularized Reinforcement Learning: A Generalized Framework with Linear Convergence",
+   "year": 2021,
+   "doi": "10.48550/arxiv.2105.11066",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2105.11066",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "footnote",
+    "quotes": [
+     "Yuxin Chen¶ ",
+     "¶ Department of Electrical and Computer Engineering, Princeton University."
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2105/2105.11066v1.pdf",
+    "pdf_sha256": "ead5d2ccf35e5b17e8f193ab4e25f69816cfac06552c694e7c5fad2e34169ad2",
+    "step": "arxiv",
+    "match": "entry_link",
+    "appointment": {
+     "listing": 2021
+    },
+    "arxiv": "2105.11066",
+    "labpage": {
+     "url": "https://yuxinchen2020.github.io/Publications_year.html",
+     "capture_url": null,
+     "sha256": "4dc5ccfdaa09a7beedc8f63354a20f1bd18ab6f61aea17878f8dfeeeb68a5378",
+     "quote": "Policy Mirror Descent for Regularized Reinforcement Learning: A Generalized Framework with Linear Convergence W. Zhan*, S. Cen*, B. Huang, Y. Chen , J. D. Lee, Y. Chi, SIAM Journal on Optimization , vol. 33, no. 2, pp. 1061-1091, June 2023. (*=equal contributions) [paper]",
+     "listed_title": "Policy Mirror Descent for Regularized Reinforcement Learning: A Generalized Framework with Linear Convergence",
+     "listed_year": 2023
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "1e6175d8804507b5"
+  },
+  {
+   "pi": "Yuxin Chen",
+   "key": "labpage:a7352adf3168722e7613250ad8e86bbd84cb26a6",
+   "title": "Inference for Heteroskedastic PCA with Missing Data",
+   "year": 2021,
+   "doi": "10.48550/arxiv.2107.12365",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2107.12365",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "footnote",
+    "quotes": [
+     "Yuxin Chen† ",
+     "† Department of Electrical and Computer Engineering, Princeton University, Princeton, NJ 08544, USA; Email: yuxin.chen@princeton.edu."
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2107/2107.12365v1.pdf",
+    "pdf_sha256": "8b4fdc35405439a58e5533326504777dc9f1bf43d6d12f0677cb78350c9f85f1",
+    "step": "arxiv",
+    "match": "oai_exact_title",
+    "appointment": {
+     "listing": 2021
+    },
+    "arxiv": "2107.12365",
+    "labpage": {
+     "url": "https://yuxinchen2020.github.io/Publications_year.html",
+     "capture_url": null,
+     "sha256": "4dc5ccfdaa09a7beedc8f63354a20f1bd18ab6f61aea17878f8dfeeeb68a5378",
+     "quote": "Inference for Heteroskedastic PCA with Missing Data Y. Yan, Y. Chen , J. Fan, Annals of Statistics , vol. 52, no. 2, pp. 729-756, 2024. [ArXiv] [AoS version] [slides]",
+     "listed_title": "Inference for Heteroskedastic PCA with Missing Data",
+     "listed_year": 2024
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "8facb36b3dc86c0b"
+  },
+  {
+   "pi": "Zeev Dvir",
+   "key": "labpage:61f771394427d9b62dc50cc789a8828f42c7ea28",
+   "title": "Matrix rigidity and the Croot-Lev-Pach lemma",
+   "year": 2017,
+   "doi": "10.48550/arxiv.1708.01646",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "1708.01646",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "footnote",
+    "quotes": [
+     "Zeev Dvir∗ ",
+     "∗ Department of Computer Science and Department of Mathematics, Princeton University. Email: zeev.dvir@gmail.com. Research supported by NSF CAREER award DMS-145119"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1708/1708.01646v1.pdf",
+    "pdf_sha256": "085c70633b320a1bdc6c0c369fd2459c2e0bf4df28457d28441eee0336049237",
+    "step": "arxiv",
+    "match": "entry_link",
+    "appointment": {
+     "listing": 2017
+    },
+    "arxiv": "1708.01646",
+    "labpage": {
+     "url": "https://www.cs.princeton.edu/~zdvir/publications.html",
+     "capture_url": null,
+     "sha256": "6bca14c5e1ee37a1fec3820f286337e18f25d82690743a8a8c38b0916f67b393",
+     "quote": "Matrix rigidity and the Croot-Lev-Pach lemma Z. Dvir and B. Edelman. Theory of Computing, Volume 15 pp. 1-7 [Note]. 2019. arXiv ↗",
+     "listed_title": "Matrix rigidity and the Croot-Lev-Pach lemma",
+     "listed_year": 2019
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "71a71ed5b5d3cdcf"
+  },
+  {
+   "pi": "Emmanuel Abbe",
+   "key": "labpage:752bd7c23f95eaebcd8aa449e46074dfb256aa95",
+   "title": "Entrywise eigenvector analysis of random matrices of low expected rank",
+   "year": 2017,
+   "doi": "10.48550/arxiv.1709.09565",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "1709.09565",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "footnote",
+    "quotes": [
+     "Emmanuel Abbe∗, ",
+     "∗ Address: Program in Applied and Computational Mathematics, and Department of EE, Princeton University, Princeton, NJ 08544, USA; E-mails:eabbe@princeton.edu. The"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1709/1709.09565v1.pdf",
+    "pdf_sha256": "16da8272aea1f72e1c407780056015bbcce97104f3b12ee352d9d7849f2bebdf",
+    "step": "arxiv",
+    "match": "entry_link",
+    "appointment": {
+     "listing": 2017
+    },
+    "arxiv": "1709.09565",
+    "labpage": {
+     "url": "https://web.math.princeton.edu/~eabbe/#pubs",
+     "capture_url": null,
+     "sha256": "c8bb2ca194f57ebb917ec0d11d7f181bc0b1ceb223230cb55f5d22cfff447361",
+     "quote": "E. Abbe, J. Fan, K. Wang, Y. Zhong, \"Entrywise eigenvector analysis of random matrices of low expected rank\"",
+     "listed_title": "Entrywise eigenvector analysis of random matrices of low expected rank",
+     "listed_year": 2017
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "0f448df77897a9ee"
+  },
+  {
+   "pi": "Jason W. Fleischer",
+   "key": "labpage:f08eb69e79f6ee457b5c8f8542db648dcd588c06",
+   "title": "Biphoton transmission through non-unitary objects",
+   "year": 2017,
+   "doi": "10.1088/2040-8986/aa6175",
+   "venue": "Journal of Optics",
+   "byline": [
+    "Matthew Reichert",
+    "Hugo Defienne",
+    "Xiaohang Sun",
+    "Jason W Fleischer"
+   ],
+   "arxiv": null,
+   "evidence": {
+    "step": "sweep",
+    "match": "title_in_citation",
+    "oa": "https://openalex.org/W2559536729",
+    "appointment": {
+     "listing": 2017
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Princeton University",
+     "text: Princeton University"
+    ],
+    "institutions": [
+     "Princeton University"
+    ],
+    "raw_affiliations": [
+     "Princeton University"
+    ],
+    "labpage": {
+     "url": "http://www.princeton.edu/~jasonf/pubs.html",
+     "capture_url": "https://web.archive.org/web/20201112054648id_/http://www.princeton.edu/~jasonf/pubs.html",
+     "sha256": "cff2b17565ad89070e65829d84396002ef337cdb2f1c7c8bbe5b6b56e5580c12",
+     "quote": "“Biphoton transmission through non-unitary objects (invited)” Matthew Reichert, Hugo Defienne, Xiaohang Sun, and Jason W. Fleischer, Journal of Optics 19 , 044004 (2017)",
+     "listed_title": "Biphoton transmission through non-unitary objects (invited)",
+     "listed_year": 2017
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "f9d1f0d514befc59"
+  },
+  {
+   "pi": "Amit Singer",
+   "key": "labpage:e651b4208bdfdbb0af80713b195a0e72e2e1d1ed",
+   "title": "The generalized orthogonal Procrustes problem in the high noise regime",
+   "year": 2020,
+   "doi": "10.1093/imaiai/iaaa035",
+   "venue": "Information and Inference A Journal of the IMA",
+   "byline": [
+    "Thomas Pumir",
+    "Amit Singer",
+    "Nicolas Boumal"
+   ],
+   "arxiv": null,
+   "evidence": {
+    "step": "sweep",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W2953514291",
+    "appointment": {
+     "listing": 2020
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Princeton University",
+     "text: Mathematics Department, Princeton University, Fine Hall, 304 Washington Rd, Princeton, NJ 08544, USA"
+    ],
+    "institutions": [
+     "Princeton University"
+    ],
+    "raw_affiliations": [
+     "Mathematics Department, Princeton University, Fine Hall, 304 Washington Rd, Princeton, NJ 08544, USA"
+    ],
+    "labpage": {
+     "url": "https://web.math.princeton.edu/~amits/publications.html",
+     "capture_url": null,
+     "sha256": "617782d6375445853a6e8a525aa92581dec567dcd00d216c2f944beae200eaf5",
+     "quote": "T. Pumir, A. Singer, N. Boumal, `` The generalized orthogonal Procrustes problem in the high noise regime ”, Information and Inference: A Journal of the IMA , 10 (3), pp. 921-954 (2021).",
+     "listed_title": "The generalized orthogonal Procrustes problem in the high noise regime",
+     "listed_year": 2021
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "21547fd5b9fe3040"
+  },
+  {
+   "pi": "Jason Klusowski",
+   "key": "labpage:e90d196f465b36089ff123cbdbd09824a0769c2b",
+   "title": "Robust Transfer Learning with Unreliable Source Data",
+   "year": 2023,
+   "doi": "10.48550/arxiv.2310.04606",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2310.04606",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "near",
+    "quotes": [
+     "Jason M. Klusowski Department of Operations Research and Financial Engineering arXiv:2310.04606v1 [stat.ML] 6 Oct 2023 Princeton Univ"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2310/2310.04606v1.pdf",
+    "pdf_sha256": "10b3845935364afe58e4d090156dd98606d1638de6e17c986e97f0110e06cca1",
+    "step": "arxiv",
+    "match": "entry_link",
+    "appointment": {
+     "listing": 2023
+    },
+    "arxiv": "2310.04606",
+    "labpage": {
+     "url": "https://klusowski.princeton.edu/publications/",
+     "capture_url": null,
+     "sha256": "8035565b69fae1ae8f4f147cd16292157db9459d73095a1d50c3647101abcfc7",
+     "quote": "J. Fan, C. Gao, and J. M. Klusowski, \"Robust Transfer Learning with Unreliable Source Data,\" Annals of Statistics , 2025 [ journal ] [ preprint ]",
+     "listed_title": "Robust Transfer Learning with Unreliable Source Data",
+     "listed_year": 2025
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "f78d457a7f193641"
+  },
+  {
+   "pi": "Jonathan W. Pillow",
+   "key": "labpage:409fb73a2360b3bfd204476fab8df8580605efa4",
+   "title": "Adaptive optimal training of animal behavior",
+   "year": 2017,
+   "doi": null,
+   "venue": "Bulletin of the American Physical Society",
+   "byline": [
+    "Ji Hyun Bak",
+    "Jung Yoon Choi",
+    "Athena Akrami",
+    "Ilana B. Witten",
+    "Jonathan W. Pillow"
+   ],
+   "arxiv": null,
+   "evidence": {
+    "step": "sweep",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W2554433030",
+    "appointment": {
+     "periodId": "override_period_princeton_jonathan_w_pillow"
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Princeton University"
+    ],
+    "institutions": [
+     "Princeton University"
+    ],
+    "raw_affiliations": [
+     "Princeton Neuroscience Institute"
+    ],
+    "labpage": {
+     "url": "https://pillowlab.princeton.edu/pubs.html",
+     "capture_url": null,
+     "sha256": "f73b8aa478e9dd54147ff59b6692694d92f4112eccaefd1fc5fbf8b67f8a71de",
+     "quote": "Adaptive optimal training of animal behavior Bak JH, Choi JY, Akrami A, Witten IB, & Pillow JW (2016). eds D. D. Lee and M. Sugiyama and U. V. Luxburg and I. Guyon and R. Garnett. Advances in Neural Information Processing Systems 29 , 1947-1955. [ abs | pdf | bibtex | code ]",
+     "listed_title": "Adaptive optimal training of animal behavior",
+     "listed_year": 2016
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "c34a641753571cd6"
+  },
+  {
+   "pi": "Ileana M. Cristea",
+   "key": "labpage:76176bf3b855dbfbe5c71c2513d0e7304d4f10db",
+   "title": "Editorial overview: Untangling proteome organization in space and time",
+   "year": 2019,
+   "doi": "10.1016/j.cbpa.2019.02.001",
+   "venue": "Current Opinion in Chemical Biology",
+   "byline": [
+    "Ileana M Cristea",
+    "Kathryn S Lilley"
+   ],
+   "arxiv": null,
+   "evidence": {
+    "step": "sweep",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W2911778518",
+    "appointment": {
+     "periodId": "override_period_princeton_ileana_m_cristea"
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Princeton University",
+     "text: Department of Molecular Biology, Princeton University, Lewis Thomas Laboratory, Washington Road, Princeton, NJ 08544, USA. Electronic address: icristea@princeton.edu",
+     "text: Department of Molecular Biology, Princeton University, Lewis Thomas Laboratory, Washington Road, Princeton, NJ 08544, USA"
+    ],
+    "institutions": [
+     "Princeton University"
+    ],
+    "raw_affiliations": [
+     "Department of Molecular Biology, Princeton University, Lewis Thomas Laboratory, Washington Road, Princeton, NJ 08544, USA. Electronic address: icristea@princeton.edu",
+     "Department of Molecular Biology, Princeton University, Lewis Thomas Laboratory, Washington Road, Princeton, NJ 08544, USA"
+    ],
+    "labpage": {
+     "url": "https://scholar.princeton.edu/cristealab/publications",
+     "capture_url": "https://web.archive.org/web/20221003082525id_/https://scholar.princeton.edu/cristealab/publications",
+     "sha256": "e19b8fb8c9ab33462d5a0e699494156bc4faddfe93ddba7b806ac909cdc14a98",
+     "quote": "Cristea, Ileana M, and Kathryn S Lilley . “ Editorial overview: Untangling proteome organization in space and time ”. Curr Opin Chem Biol 48 (2019): , 48 , A1-A4. Web.",
+     "listed_title": "Editorial overview: Untangling proteome organization in space and time",
+     "listed_year": 2019
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "4de0379e32c1cd67"
+  },
+  {
+   "pi": "Clarence W. Rowley",
+   "key": "labpage:17fa2943f469a495dc808dbd3534e78db082b4b1",
+   "title": "Mini-Workshop: Data-driven Modeling, Analysis, and Control of Dynamical Systems",
+   "year": 2025,
+   "doi": "10.4171/owr/2024/57",
+   "venue": "Oberwolfach Reports",
+   "byline": [
+    "Clarence W. Rowley",
+    "Claudia Schillings",
+    "Karl Worthmann"
+   ],
+   "arxiv": null,
+   "evidence": {
+    "step": "sweep",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W4410504963",
+    "appointment": {
+     "listing": 2025
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Princeton University",
+     "text: Princeton University, Princeton, USA"
+    ],
+    "institutions": [
+     "Princeton University"
+    ],
+    "raw_affiliations": [
+     "Princeton University, Princeton, USA"
+    ],
+    "labpage": {
+     "url": "https://cwrowley.princeton.edu/publications/",
+     "capture_url": null,
+     "sha256": "dece00bb84dc6e1796a8dc99e7868a77f9d1d5f0c13f52a9f30b5cfe9725050f",
+     "quote": "Mini-Workshop: Data-driven modeling, analysis, and control of dynamical systems Rowley, C. W. , Schillings, C., and Worthmann, K. Oberwolfach Reports , 21(4):3255–3300, 2024. 10.4171/OWR/2024/57",
+     "listed_title": "Mini-Workshop: Data-driven modeling, analysis, and control of dynamical systems",
+     "listed_year": 2024
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "3551b347157b41c9"
+  },
+  {
+   "pi": "Clarence W. Rowley",
+   "key": "labpage:c6e2dc3f8a7b00fa8a5c514b3d6e46f23fe4f763",
+   "title": "Data-Driven Model Predictive Control using Interpolated Koopman Generators",
+   "year": 2020,
+   "doi": "10.1137/20m1325678",
+   "venue": "SIAM Journal on Applied Dynamical Systems",
+   "byline": [
+    "Sebastian Peitz",
+    "Samuel E. Otto",
+    "Clarence W. Rowley"
+   ],
+   "arxiv": "2003.07094",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "marker",
+    "quotes": [
+     "Clarence W. Rowley2 1 ",
+     "2 Department of Mathematics, Paderborn University, Germany Department of Mechanical and Aerospace Engineering, Princeton University, USA"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2003/2003.07094v1.pdf",
+    "pdf_sha256": "834330f3028d112821953edeaab75afc79be705895ad99d28e42a88786beab09",
+    "step": "openalex",
+    "match": "doi_entry_link",
+    "oa": "https://openalex.org/W3012046555",
+    "appointment": {
+     "listing": 2020
+    },
+    "arxiv": "2003.07094",
+    "labpage": {
+     "url": "https://cwrowley.princeton.edu/publications/",
+     "capture_url": null,
+     "sha256": "dece00bb84dc6e1796a8dc99e7868a77f9d1d5f0c13f52a9f30b5cfe9725050f",
+     "quote": "Data-driven model predictive control using interpolated Koopman generators Peitz, S., Otto, S. E., and Rowley, C. W. SIAM Journal on Applied Dynamical Systems , 19(3):2162–2193, Sep 2020. 10.1137/20M1325678",
+     "listed_title": "Data-driven model predictive control using interpolated Koopman generators",
+     "listed_year": 2020
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "43aa612defddc541"
+  },
+  {
+   "pi": "Clarence W. Rowley",
+   "key": "labpage:1a0b6afd8fc5fd3eb311a536a9f7430a5aa7d1d9",
+   "title": "De-biasing the dynamic mode decomposition for applied Koopman spectral analysis of noisy datasets",
+   "year": 2017,
+   "doi": "10.1007/s00162-017-0432-2",
+   "venue": "Theoretical and Computational Fluid Dynamics",
+   "byline": [
+    "Maziar S. Hemati",
+    "Clarence W. Rowley",
+    "Eric A. Deem",
+    "Louis N. Cattafesta"
+   ],
+   "arxiv": null,
+   "evidence": {
+    "step": "sweep",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W1908611567",
+    "appointment": {
+     "listing": 2017
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Princeton University",
+     "text: Mechanical and Aerospace Engineering, Princeton University, Princeton, NJ, 08544, USA"
+    ],
+    "institutions": [
+     "Princeton University"
+    ],
+    "raw_affiliations": [
+     "Mechanical and Aerospace Engineering, Princeton University, Princeton, NJ, 08544, USA"
+    ],
+    "labpage": {
+     "url": "https://cwrowley.princeton.edu/publications/",
+     "capture_url": null,
+     "sha256": "dece00bb84dc6e1796a8dc99e7868a77f9d1d5f0c13f52a9f30b5cfe9725050f",
+     "quote": "De-biasing the dynamic mode decomposition for applied Koopman spectral analysis of noisy datasets Hemati, M. S., Rowley, C. W. , Deem, E. A., and Cattafesta, L. N. Theoretical and Computational Fluid Dynamics , 31(4):349–368, Aug 2017. 10.1007/s00162-017-0432-2",
+     "listed_title": "De-biasing the dynamic mode decomposition for applied Koopman spectral analysis of noisy datasets",
+     "listed_year": 2017
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "fdbd2805eb0c1a13"
+  }
+ ]
+}

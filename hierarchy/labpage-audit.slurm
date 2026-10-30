@@ -1,0 +1,27 @@
+#!/bin/bash
+# Lab-page audit (tools/labpage_audit.py, docs/LAB-PAGES.md): discover -> recover -> audit for each school given.
+# Network steps are paced (>= 3 s per host, Wayback 6 s) and honour robots.txt, including groups naming AI agents; a bot
+# challenge is never retried (the host is then read from existing Wayback id_ captures only). One writer per school
+# store: do not run another discover/recover for the same school while this runs. Check with `sbatch --test-only` first.
+# usage: sbatch hierarchy/labpage-audit.slurm princeton [cmu ...]      (STEPS="discover recover audit" by default;
+#        ARGS="--redo-unrecorded" passes options to every step)
+#SBATCH --job-name=lp-audit
+#SBATCH --partition=mltheory
+#SBATCH --account=mltheory
+#SBATCH --exclude=node302
+#SBATCH --cpus-per-task=2
+#SBATCH --mem=8G
+#SBATCH --time=12:00:00
+#SBATCH --output=hierarchy/logs/labpage-audit-%j.out
+set -u
+. "${CS_ATLAS_CODE:-${SLURM_SUBMIT_DIR:?}}/paths.sh" || exit 1  # every path in one place; submit from the code root
+cd "$CS_ATLAS_WORK"
+set -a; . "$HOME/.config/cs-atlas/openalex.env"; set +a   # OPENALEX_API_KEY for the recover step (never printed)
+export TMPDIR=/tmp
+PY="$CS_ATLAS_COLLECTOR_PY"; [ -x "$PY" ] || PY="$CS_ATLAS_PY"   # some nodes have no /usr/local/anaconda3
+for s in "$@"; do
+  for st in ${STEPS:-discover recover audit}; do
+    echo "== $s $st $(date -Is)"
+    nice "$PY" -I -u tools/labpage_audit.py "$st" "$s" ${ARGS:-} || echo "!! $s $st failed"
+  done
+done
