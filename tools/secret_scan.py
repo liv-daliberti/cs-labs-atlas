@@ -71,7 +71,7 @@ def staged(repo):
 
 
 def history(repo, rev_range=None):
-    """(name, bytes) for every distinct blob reachable in the range (all refs by default), named commit:path."""
+    """(name, bytes) for every distinct blob reachable in the range (all refs by default), named commit:path#blob."""
     revs = [rev_range] if rev_range else ['--all']
     log = subprocess.run(['git', '-C', str(repo), 'log', '--format=C %h', '--raw', '--no-abbrev', '--no-renames', '-m',
                           '--diff-filter=AM', *revs], check=True, capture_output=True, text=True).stdout
@@ -83,7 +83,7 @@ def history(repo, rev_range=None):
             meta, path = line.split('\t', 1)
             blob = meta.split()[3]
             if blob not in seen and set(blob) != {'0'}:
-                seen.add(blob); todo.append((blob, f'{commit}:{path}'))
+                seen.add(blob); todo.append((blob, f'{commit}:{path}#{blob}'))
     # the root commits' files appear as additions above; one cat-file process for every blob
     p = subprocess.Popen(['git', '-C', str(repo), 'cat-file', '--batch'], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
     for blob, name in todo:
@@ -93,6 +93,24 @@ def history(repo, rev_range=None):
         data = p.stdout.read(size); p.stdout.read(1)
         yield name, data
     p.stdin.close(); p.wait()
+
+
+ALLOW = Path(__file__).resolve().with_name('secret_scan_allow.tsv')
+
+
+def allowed():
+    """{(blob id, kind)}: findings in OLD blobs that were reviewed and accepted (tools/secret_scan_allow.tsv). Scoped to
+    exact blob ids, so the same text in any new or changed file is still a finding."""
+    if not ALLOW.exists():
+        return set()
+    rows = [l.split('\t') for l in ALLOW.read_text().splitlines() if l.strip() and not l.startswith('#')]
+    return {(r[0], r[1]) for r in rows}
+
+
+def split_accepted(found, ok):
+    """(findings, accepted): a finding is accepted only in a history blob (name ...#<blob>) listed with its kind."""
+    acc = [f for f in found if '#' in f[0] and (f[0].rsplit('#', 1)[1], f[2]) in ok]
+    return [f for f in found if f not in acc], acc
 
 
 def walk(paths):
@@ -116,9 +134,13 @@ def main():
     for name, data in src:
         n += 1
         found += scan_bytes(name, data, vals, hs)
+    found, accepted = split_accepted(found, allowed())
+    for f, line, kind in accepted:
+        print(f'accepted {kind}: {f}:{line} (tools/secret_scan_allow.tsv)')
     for f, line, kind in found:
         print(f'FOUND {kind}: {f}:{line}')
-    print(f'secret_scan: {n} files, {len(found)} findings ({len(vals)} env values, {len(hs)} email hashes checked)')
+    print(f'secret_scan: {n} files, {len(found)} findings, {len(accepted)} accepted old findings '
+          f'({len(vals)} env values, {len(hs)} email hashes checked)')
     return 1 if found else 0
 
 
