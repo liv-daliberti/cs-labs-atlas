@@ -3,10 +3,14 @@
 usage: orcid.py 0000-0000-0000-0000 [...]
 Prints displayName, biography, employments (with organisation and years). Stored in the capture DB.
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import json
 import sys
 
-sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-berkeley")
+sys.path.insert(0, str(P.HIERARCHY / 'gap-tools-berkeley'))
 import capstore  # noqa: E402
 
 H = {"Accept": "application/json"}

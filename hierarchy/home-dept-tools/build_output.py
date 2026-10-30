@@ -2,6 +2,10 @@
 
 usage: build_output.py [--dry]
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import hashlib
 import json
 import re
@@ -10,12 +14,12 @@ import sys
 import unicodedata
 import zlib
 
-TOOLS = "/n/fs/resemble/cs-atlas/work/hierarchy/home-dept-tools"
+TOOLS = str(P.HIERARCHY / 'home-dept-tools')
 sys.path.insert(0, TOOLS)
 import capstore  # noqa: E402
 import decisions  # noqa: E402
 
-HIER = "/n/fs/resemble/cs-atlas/work/hierarchy"
+HIER = str(P.HIERARCHY)
 INPUT = HIER + "/home-department-input.json"
 OUTPUT = HIER + "/home-departments.json"
 WB = re.compile(r"^https://web\.archive\.org/web/(\d+)id_/(.+)$")

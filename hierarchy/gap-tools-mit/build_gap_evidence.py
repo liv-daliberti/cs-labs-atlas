@@ -1,13 +1,17 @@
 """Build hierarchy/mit/gap-evidence.json (one row per gap-input PI) from spec_mit.py, then re-verify every quote.
 usage: build_gap_evidence.py [--allow-missing]"""
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import json
 import sys
 
-sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-mit")
+sys.path.insert(0, str(P.HIERARCHY / 'gap-tools-mit'))
 import spec_mit  # noqa: E402
 import verify_gap_evidence  # noqa: E402
 
-HERE = "/n/fs/resemble/cs-atlas/work/hierarchy/mit/"
+HERE = f"{P.HIERARCHY}/mit/"
 gap = json.load(open(HERE + "gap-input.json"))
 out, missing = [], []
 for g in gap:

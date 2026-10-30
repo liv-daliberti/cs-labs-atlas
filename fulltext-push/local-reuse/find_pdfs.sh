@@ -10,14 +10,15 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=2G
 #SBATCH --time=08:00:00
-#SBATCH --output=/n/fs/resemble/cs-atlas/work/fulltext-push/local-reuse/logs/find-%j.out
+#SBATCH --output=fulltext-push/local-reuse/logs/find-%j.out
 set -u
-HERE=/n/fs/resemble/cs-atlas/work/fulltext-push/local-reuse
-R=/n/fs/resemble/maxent-grpo/.research-sweeps
-HS=/n/fs/resemble/homogenizing-science
+. "$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)/paths.sh" || exit 1  # every path in one place (tools/atlas_paths.py)
+HERE=${CS_ATLAS_FULLTEXT_PUSH}/local-reuse
+R=${CS_ATLAS_SWEEPS}
+HS=${CS_ATLAS_WORLD_ATLAS}
 dirs=(
   "$R/release-20261023/huggingface/papers"
-  /n/fs/resemble/maxent-grpo/research-library
+  ${CS_ATLAS_RESEARCH_LIBRARY}
 )
 for d in "$R"/mit-* "$R"/princeton-hunt-* "$R"/princeton-claude-labs-publish-* "$R"/princeton-deep-* \
          "$R"/local-reuse-integration-* "$R"/cs300-* "$R"/cs19-* "$R"/cs11-* "$R"/cs10-* "$R"/cs18-* \

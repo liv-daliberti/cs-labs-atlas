@@ -5,9 +5,13 @@ Evidence specs name stored captures (see dhelp.py); build.py resolves and re-ver
 MGP = Mathematics Genealogy Project (live site offline since 2026-10-20 for a PHP vulnerability, so Wayback id_
 captures are used). math.berkeley.edu robots.txt sets Crawl-delay: 10, honoured for the past-PhD pages.
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import sys
 
-sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-berkeley")
+sys.path.insert(0, str(P.HIERARCHY / 'gap-tools-berkeley'))
 from dhelp import *  # noqa: E402,F401,F403
 
 D = {}

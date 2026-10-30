@@ -1,9 +1,13 @@
 """Berkeley gap decisions, worker 'departed' (2026-10-21/22): ladder PIs whose EECS listing ends early or who hold
 non-standard posts -- Trevisan, Tygar, Necula, Franklin, Ramamoorthi, Abebe, L. Blum, Chayes.
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import sys
 
-sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-berkeley")
+sys.path.insert(0, str(P.HIERARCHY / 'gap-tools-berkeley'))
 from dhelp import *  # noqa: E402,F401,F403
 
 D = {}

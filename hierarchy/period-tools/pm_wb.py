@@ -1,8 +1,12 @@
 """Wayback fetch: for each URL, list captures via CDX (2010-2026) and fetch one id_ capture (the earliest after
 --after YYYY if given, else the latest), printing snippets around the given names.
 Usage: pm_wb.py [--first] name1,name2 url..."""
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import sys
-sys.path.insert(0, '/n/fs/resemble/cs-atlas/work/hierarchy/period-tools')
+sys.path.insert(0, str(P.HIERARCHY / 'period-tools'))
 import pcap
 args = sys.argv[1:]
 first = False

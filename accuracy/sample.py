@@ -20,11 +20,15 @@ Rows are addressed by their position in the file and by a key; the package files
 -> work/accuracy/sample.json
 usage: sample.py
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[1] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import gzip, hashlib, json, random, re
 from pathlib import Path
 
 SEED = 20261029
-ROOT = Path('/n/fs/resemble/cs-atlas/work')
+ROOT = P.CODE
 H = ROOT / 'hierarchy'
 OUT = ROOT / 'accuracy' / 'sample.json'
 SCHOOLS = ['princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford']

@@ -14,6 +14,10 @@ summary   per group and citing year: papers, the median reference age (citing ye
 -> figures/cited_years_by_ai.png, results/cited_years_by_ai.csv
 usage: cited_years_by_ai.py
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import ast, csv, gzip, json, sqlite3, zlib
 from collections import defaultdict
 from pathlib import Path
@@ -23,8 +27,8 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 HERE = Path(__file__).resolve().parent; AIW = HERE.parent
-OADB = '/n/fs/resemble/cs-atlas-cache/citations/openalex.sqlite'
-S2DB = '/n/fs/resemble/cs-atlas-cache/citations/s2.sqlite'
+OADB = str(P.CACHE / 'citations/openalex.sqlite')
+S2DB = str(P.CACHE / 'citations/s2.sqlite')
 YEARS = [2022, 2023, 2024, 2025]   # the owner's figure: 2022-2025 (2026 is a partial year)
 LO = 2000    # the curves start here; the share of older references is given in the legend
 MIN_N = 30   # a group smaller than this gets no curve

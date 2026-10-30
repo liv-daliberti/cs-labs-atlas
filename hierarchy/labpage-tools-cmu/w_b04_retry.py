@@ -4,13 +4,17 @@ usage: python -I w_b04_retry.py OUTFILE URL [URL ...]
 Each URL is fetched with `lp.py get URL --compact`; on a connection/read error the fetch is retried
 (up to 8 attempts, 60 s apart). Output of the successful (or last) attempt is appended to OUTFILE.
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import os
 import subprocess
 import sys
 import time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-PY = "/usr/local/anaconda3/2024.02/bin/python"
+PY = str(P.PY)
 
 
 def main():

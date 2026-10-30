@@ -1,12 +1,16 @@
 """Print the hunt's summary from hierarchy/thesis-harvest-report.json (or thesis-tools/out/ with --draft): per-school
 counts, the PIs with the most additions, and non-PI advisers of 3+ CS-relevant theses (census status shown).
 usage: summarize.py [--draft] [--min N]"""
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import json
 import os
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-ROOT = "/n/fs/resemble/cs-atlas/work/hierarchy"
+ROOT = str(P.HIERARCHY)
 draft = "--draft" in sys.argv
 mn = int(sys.argv[sys.argv.index("--min") + 1]) if "--min" in sys.argv else 3
 rep = json.load(open(f"{HERE}/out/thesis-harvest-report.json" if draft else f"{ROOT}/thesis-harvest-report.json"))

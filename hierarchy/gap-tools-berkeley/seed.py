@@ -4,16 +4,20 @@
 Resumable: fetches are cached in the capture DB. Writes gap-tools-berkeley/seed.json.
 usage: seed.py
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import json
 import re
 import sys
 from urllib.parse import urljoin
 
-sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-berkeley")
+sys.path.insert(0, str(P.HIERARCHY / 'gap-tools-berkeley'))
 import capstore  # noqa: E402
 from bs4 import BeautifulSoup  # noqa: E402
 
-ROOT = "/n/fs/resemble/cs-atlas/work"
+ROOT = str(P.CODE)
 GAP = ROOT + "/hierarchy/berkeley/gap-input.json"
 CENSUS = ROOT + "/census/berkeley-faculty.json"
 OUT = ROOT + "/hierarchy/gap-tools-berkeley/seed.json"

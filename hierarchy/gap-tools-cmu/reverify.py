@@ -1,9 +1,13 @@
 """Independent re-verification of gap-evidence.json: every quote must be an exact substring of the whitespace-collapsed
 text of the stored bytes it cites, and those bytes must hash to the cited sha256."""
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import hashlib, json, sqlite3, sys, zlib
-sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-cmu")
+sys.path.insert(0, str(P.HIERARCHY / 'gap-tools-cmu'))
 import capstore
-rows = json.load(open("/n/fs/resemble/cs-atlas/work/hierarchy/cmu/gap-evidence.json"))
+rows = json.load(open(str(P.HIERARCHY / 'cmu/gap-evidence.json')))
 con = sqlite3.connect(capstore.DB)
 n = bad = 0
 for r in rows:

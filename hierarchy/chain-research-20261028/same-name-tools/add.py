@@ -2,10 +2,14 @@
 Evidence items give url + quote (+ observed); sha256/capture info is filled from captures.sqlite and the quote is
 checked verbatim against the captured text (whitespace-normalized) or raw bytes. Pre-existing evidence from the
 input records can be passed with an explicit sha256 and 'from_input': true (not re-verified here)."""
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[3] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import json, sys, re, sqlite3, zlib, os, html
 from cap import DB
-OUT = "/n/fs/resemble/cs-atlas/work/hierarchy/chain-research-20261028/same-name-review.json"
-INP = "/n/fs/resemble/cs-atlas/work/hierarchy/chain-research-20261028/same-name-input.json"
+OUT = str(P.HIERARCHY / 'chain-research-20261028/same-name-review.json')
+INP = str(P.HIERARCHY / 'chain-research-20261028/same-name-input.json')
 norm = lambda s: re.sub(r"\s+", " ", s).strip()
 def main():
     e = json.load(sys.stdin)

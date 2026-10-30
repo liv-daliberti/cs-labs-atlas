@@ -18,7 +18,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402  (every path in one place)
-HERE = P.WORK; BK = P.sweep('claude-berkeley-20261021') / 'people'
+HERE = P.WORK; BK = P.archive_sweep('claude-berkeley-20261021') / 'people'
 
 
 def slug(s):

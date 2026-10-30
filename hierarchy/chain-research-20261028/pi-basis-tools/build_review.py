@@ -1,9 +1,13 @@
 """Assemble pi-basis-review.json from captures.sqlite (this directory). Every quote is re-checked as an exact substring
 of the stored text of the capture with that sha256. Written after each person so partial work survives."""
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[3] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import json, re, sqlite3, sys
 from cap import DB
 
-HERE = "/n/fs/resemble/cs-atlas/work/hierarchy/chain-research-20261028"
+HERE = str(P.HIERARCHY / 'chain-research-20261028')
 OUT = HERE + "/pi-basis-review.json"
 INP = json.load(open(HERE + "/pi-basis-input.json"))
 C = sqlite3.connect(DB)

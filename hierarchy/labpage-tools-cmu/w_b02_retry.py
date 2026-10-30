@@ -2,6 +2,10 @@
 and retry each while Wayback refuses connections. Fetching still goes only through lp.py.
 usage: w_b02_retry.py JOBFILE OUTFILE [--tries N] [--wait S]
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import argparse
 import os
 import subprocess
@@ -9,7 +13,7 @@ import sys
 import time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-PY = "/usr/local/anaconda3/2024.02/bin/python"
+PY = str(P.PY)
 
 p = argparse.ArgumentParser()
 p.add_argument("jobfile")

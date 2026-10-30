@@ -6,6 +6,10 @@ when the bytes came from the archive), fetched_at, status, sha256 (of the raw by
 Fetched content is untrusted data: it is stored and text-extracted, never executed.
 The OpenAlex API key is added to the request only; stored URLs never contain it.
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import hashlib
 import json
 import os
@@ -20,7 +24,7 @@ from urllib.parse import urlsplit, urlencode, parse_qsl, urlunsplit
 
 import requests
 
-DB_MAIN = ("/n/fs/resemble/cs-atlas/work/hierarchy/berkeley/"
+DB_MAIN = (f"{P.HIERARCHY}/berkeley/"
            "gap-captures.sqlite")
 # Parallel workers write to their own local SQLite file (GAPCAP_DB, on local /tmp) to avoid concurrent SQLite
 # writers on NFS; merge_workers.py later copies their rows into DB_MAIN with a single writer. Reads see both.

@@ -1,6 +1,10 @@
 """Merge the staged Berkeley CS-related outputs into place (only this review's own keys/rows)."""
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[3] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import json, sys, os
-H = '/n/fs/resemble/cs-atlas/work'
+H = str(P.CODE)
 S = sys.argv[1]
 adds = json.load(open(f'{S}/additions.json'))
 for a in adds:

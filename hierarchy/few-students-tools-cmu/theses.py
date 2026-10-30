@@ -5,11 +5,15 @@ usage: theses.py REGEX [--any]
   --any:   theses whose committee text mentions REGEX anywhere (chair not marked, or plain member)
 Prints report, degree, author/title head, chairs, committee, url.
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import json
 import re
 import sys
 
-IDX = "/n/fs/resemble/cs-atlas/work/hierarchy/few-students-tools-cmu/theses_index.json"
+IDX = str(P.HIERARCHY / 'few-students-tools-cmu/theses_index.json')
 rx = re.compile(sys.argv[1], re.I)
 anyw = "--any" in sys.argv
 rows = json.load(open(IDX))

@@ -5,6 +5,10 @@ tokens in the quote). DSpace@MIT rows come from four discover searches by dc.con
 (dspace_mit.py; one of them is the sister gap investigation's stored query, copied unchanged). Students already held are
 kept only when the source is new (not the DSpace record they were taken from).
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import os
 import re
 import sys
@@ -80,7 +84,7 @@ def _key(n):
 
 def held_names(pi):
     import json
-    inp = json.load(open("/n/fs/resemble/cs-atlas/work/hierarchy/mit/few-students-input.json"))
+    inp = json.load(open(str(P.HIERARCHY / 'mit/few-students-input.json')))
     r = next(x for x in inp if x["pi"] == pi)
     return list(r["students_already"])  # compared by (first, last) token, as build.py does
 

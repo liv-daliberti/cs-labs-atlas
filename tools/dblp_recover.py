@@ -111,7 +111,7 @@ def candidates(school, skip_have=True):
     pis = read(HERE / 'hierarchy' / school / 'pis.json')
     own = HERE / 'hierarchy' / school / 'raw/dblp_pubs.json.gz'
     if own.exists() or school in DBLP:
-        pubs = read(own if own.exists() else P.sweep(DBLP[school]) / 'raw/dblp_pubs.json.gz')['pubs']
+        pubs = read(own if own.exists() else P.archive_sweep(DBLP[school]) / 'raw/dblp_pubs.json.gz')['pubs']
     else:  # a protocol school has no legacy DBLP sweep (Michigan request 1, 2026-10-29): the PIs' pages from the dump
         pubs = dump_pubs(pis)
     rows = [json.loads(l) for l in gzip.open(HERE / 'hierarchy' / school / 'lab_papers.jsonl.gz', 'rt')]

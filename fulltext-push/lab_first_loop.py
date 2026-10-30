@@ -21,9 +21,9 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import ftp_common as F
 
-WRAPPER = str(F.P.sweep('claude-cmu-20261017') / 'tools/collector_wrapper.py')
-SCRIPTS = str(F.P.HOMOGENIZING_SCRIPTS)
-PY = '/usr/local/anaconda3/2024.02/bin/python'
+WRAPPER = str(F.P.vendor('cmu_tools') / 'collector_wrapper.py')  # vendored 2026-10-30 (tools/vendor_sync.py)
+SCRIPTS = str(F.P.vendor('homogenizing_scripts'))  # the collector's directory (its cwd)
+PY = str(F.P.COLLECTOR_PY)
 
 
 def state(out, **kw):

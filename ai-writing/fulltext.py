@@ -17,8 +17,8 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent / 'tools'))
 import atlas_paths as P  # noqa: E402  (every path in one place)
-HOM = P.sweep('claude-homogenization-20261019')
-sys.path.insert(0, str(HOM / 'tools'))
+HOM = P.HOMOGENIZATION_STUDY  # the homogenization study's corpus (data)
+sys.path.insert(0, str(P.vendor('homogenization_tools')))  # its code, vendored
 import fulltext_store as fs  # noqa: E402
 
 WORDISH = re.compile(r'^[A-Za-z][A-Za-z\-\']*[.,;:]?$')

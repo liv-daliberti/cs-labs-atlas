@@ -10,14 +10,15 @@
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=24G
 #SBATCH --time=00:59:00
-#SBATCH --output=/n/fs/resemble/cs-atlas/work/ai-writing/detector_v2/logs/detdelta-%A_%a.out
+#SBATCH --output=ai-writing/detector_v2/logs/detdelta-%A_%a.out
 set -euo pipefail
+. "${CS_ATLAS_CODE:-${SLURM_SUBMIT_DIR:?}}/paths.sh" || exit 1  # every path in one place (tools/atlas_paths.py); submit from the code root
 TAG=$1; N=$2; I=${SLURM_ARRAY_TASK_ID}
-PY=/n/fs/resemble/cs-atlas-env/py310/bin/python
-D=/n/fs/resemble/cs-atlas/work/ai-writing/detector_v2
+PY=${CS_ATLAS_ENV_PY}
+D=${CS_ATLAS_AI_WRITING}/detector_v2
 cd $D
-export LD_LIBRARY_PATH="/n/fs/resemble/cs-atlas-env/py310/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-export HF_HOME=/n/fs/resemble/cs-atlas-env/hf-cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 TOKENIZERS_PARALLELISM=false PYTHONDONTWRITEBYTECODE=1
+export LD_LIBRARY_PATH="${CS_ATLAS_ENV_LIB}${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+export HF_HOME=${CS_ATLAS_HF_HOME} HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 TOKENIZERS_PARALLELISM=false PYTHONDONTWRITEBYTECODE=1
 export OMP_NUM_THREADS=${SLURM_CPUS_PER_TASK:-8}
 L=/tmp/aiw2-detdelta-${SLURM_JOB_ID}; mkdir -p $L; trap 'rm -rf "$L"' EXIT
 export TRITON_CACHE_DIR=$L/triton  # ~/.triton/cache is absent on the nodes (job 32014579 failed on it)

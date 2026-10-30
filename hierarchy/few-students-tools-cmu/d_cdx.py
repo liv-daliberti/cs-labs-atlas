@@ -3,12 +3,16 @@
 usage: d_cdx.py PREFIX [--rx REGEX] [--from YYYY] [--to YYYY] [--limit N]
 Prints: first-timestamp last-timestamp original  (first/last from a collapse=urlkey listing + its own row)
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import argparse
 import json
 import re
 import sys
 
-sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/hierarchy/few-students-tools-cmu")
+sys.path.insert(0, str(P.HIERARCHY / 'few-students-tools-cmu'))
 import capstore  # noqa: E402
 import requests  # noqa: E402
 

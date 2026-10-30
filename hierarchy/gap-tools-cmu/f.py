@@ -4,6 +4,10 @@ usage: f.py [--grep RX] [--chars N] [--force] [--wb] [--head N] [--file F] URL..
   --wb    when the live fetch is not 200 (or robots-disallowed), try the newest Wayback id_ capture
   --links RX  print hrefs whose URL or anchor text matches RX
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import argparse
 import json
 import re
@@ -11,7 +15,7 @@ import sys
 from collections import defaultdict, deque
 from urllib.parse import urlsplit, urljoin
 
-sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-cmu")
+sys.path.insert(0, str(P.HIERARCHY / 'gap-tools-cmu'))
 import capstore  # noqa: E402
 
 ap = argparse.ArgumentParser()

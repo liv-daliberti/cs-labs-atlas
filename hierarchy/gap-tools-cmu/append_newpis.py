@@ -4,19 +4,23 @@ then re-verify every quote of the new rows against the stored bytes (sha256 + ex
 Rows are built exactly as build.py builds them (same resolve(), same row schema). Re-running replaces only the rows of the
 PIs named in decisions_newpis.py. usage: append_newpis.py [--dry]
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import hashlib
 import json
 import sqlite3
 import sys
 import zlib
 
-TOOLS = "/n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-cmu"
+TOOLS = str(P.HIERARCHY / 'gap-tools-cmu')
 sys.path.insert(0, TOOLS)
 import build  # noqa: E402
 import capstore  # noqa: E402
 import decisions_newpis  # noqa: E402
 
-HIER = "/n/fs/resemble/cs-atlas/work/hierarchy"
+HIER = str(P.HIERARCHY)
 INPUT = HIER + "/new-pis-gap-input.json"
 OUTPUT = HIER + "/cmu/gap-evidence.json"
 

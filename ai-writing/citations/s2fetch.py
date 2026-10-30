@@ -10,13 +10,17 @@ citationCount, publicationTypes and s2FieldsOfStudy.
 The key is read from ~/.config/cs-atlas/s2.env and never printed. One request at a time, >= 1.1 s apart; 429 backs off.
 usage: s2fetch.py run | status
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import gzip, json, os, sqlite3, sys, time, zlib
 from pathlib import Path
 import requests
 
 HERE = Path(__file__).resolve().parent
 AIW = HERE.parent
-DB = Path('/n/fs/resemble/cs-atlas-cache/citations/s2.sqlite')
+DB = P.CACHE / 'citations/s2.sqlite'
 FIELDS = ('externalIds,year,referenceCount,references.paperId,references.externalIds,references.year,references.venue,'
           'references.publicationVenue,references.citationCount,references.publicationTypes,references.s2FieldsOfStudy')
 

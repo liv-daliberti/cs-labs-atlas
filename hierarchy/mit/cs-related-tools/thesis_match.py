@@ -2,12 +2,16 @@
 matched on folded given name (or initial when the adviser string has only an initial) plus surname.
 usage: thesis_match.py <theses.jsonl> <out.json>
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[3] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import json, re, sys, collections
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 from scan_listings_lib import fold, natural  # noqa: E402
 
-H = '/n/fs/resemble/cs-atlas/work'
+H = str(P.CODE)
 
 
 def toks(s):

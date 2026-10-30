@@ -1,6 +1,10 @@
 """Builds ../stanford-pi-check.json (every quote verified by evid.ev)."""
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[3] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 from evid import ev, adv, save
-OUT = "/n/fs/resemble/cs-atlas/work/hierarchy/chain-research-20261028/stanford-pi-check.json"
+OUT = str(P.HIERARCHY / 'chain-research-20261028/stanford-pi-check.json')
 OA = "https://openalex.org/"
 W = "https://web.archive.org/web/{}id_/https://profiles.stanford.edu/{}"
 rows = []

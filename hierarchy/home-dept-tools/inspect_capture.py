@@ -1,8 +1,12 @@
 """Print windows of the whitespace-collapsed text of the latest 200 capture of URL around REGEX.
 usage: inspect_capture.py URL REGEX [WIDTH]
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import re, sys, zlib
-sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/hierarchy/home-dept-tools")
+sys.path.insert(0, str(P.HIERARCHY / 'home-dept-tools'))
 import capstore
 url, rx = sys.argv[1], sys.argv[2]
 w = int(sys.argv[3]) if len(sys.argv) > 3 else 300

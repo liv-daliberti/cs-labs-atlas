@@ -5,12 +5,16 @@ usage:
   oa.py search "Name"                       -> author search
   oa.py work W123...                        -> one work's authorships
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import json
 import os
 import sys
 from urllib.parse import urlencode
 
-sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-mit")
+sys.path.insert(0, str(P.HIERARCHY / 'gap-tools-mit'))
 import capstore  # noqa: E402
 
 BASE = "https://api.openalex.org/"

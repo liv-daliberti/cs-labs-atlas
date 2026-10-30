@@ -17,12 +17,16 @@ go only into a phase run with --calib, which must come after the fetch has finis
 first and an early calibration sample would be the popular works only; labchk goes into the first phase).
 usage: score.py prep TAG [--calib] | score TAG SHARD NSHARDS
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import gzip, json, random, sqlite3, sys, zlib
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 AIW = HERE.parent
-CACHE = Path('/n/fs/resemble/cs-atlas-cache/citations')
+CACHE = P.CACHE / 'citations'
 CALIB_PRE, CALIB_PUB, LABCHK = 15000, 15000, 3000
 SEED = 20261022
 sys.path.insert(0, str(AIW))

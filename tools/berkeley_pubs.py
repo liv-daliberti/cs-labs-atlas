@@ -25,7 +25,7 @@ def db():
 
 
 def targets():
-    d = json.loads((P.sweep('claude-berkeley-20261021') / 'people/dept_berkeley.json').read_text())
+    d = json.loads((P.archive_sweep('claude-berkeley-20261021') / 'people/dept_berkeley.json').read_text())
     census = {x['name'] for x in json.loads((HERE / 'census/berkeley-faculty.json').read_text()) if x['is_pi']}
     seen = {}
     for r in d['people']:

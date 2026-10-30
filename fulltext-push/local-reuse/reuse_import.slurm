@@ -8,8 +8,9 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=8G
 #SBATCH --time=20:00:00
-#SBATCH --output=/n/fs/resemble/cs-atlas/work/fulltext-push/local-reuse/logs/import-%j.out
-cd /n/fs/resemble/cs-atlas/work/fulltext-push/local-reuse
+#SBATCH --output=fulltext-push/local-reuse/logs/import-%j.out
+. "${CS_ATLAS_CODE:-${SLURM_SUBMIT_DIR:?}}/paths.sh" || exit 1  # every path in one place (tools/atlas_paths.py); submit from the code root
+cd ${CS_ATLAS_FULLTEXT_PUSH}/local-reuse
 export TMPDIR=${TMPDIR:-/tmp}
-PY="nice -n 10 /usr/local/anaconda3/2024.02/bin/python -I -u"
+PY="nice -n 10 ${CS_ATLAS_COLLECTOR_PY} -I -u"
 $PY reuse_import.py plan && $PY reuse_import.py import

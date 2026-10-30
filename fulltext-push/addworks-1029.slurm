@@ -10,15 +10,14 @@
 #SBATCH --cpus-per-task=6
 #SBATCH --mem=28G
 #SBATCH --time=2-00:00:00
-#SBATCH --output=/n/fs/resemble/cs-atlas/work/fulltext-push/logs/addworks-1029-%j.out
-. /n/fs/resemble/cs-atlas/work/paths.sh  # every path in one place (tools/atlas_paths.py)
+#SBATCH --output=fulltext-push/logs/addworks-1029-%j.out
+. "${CS_ATLAS_CODE:-${SLURM_SUBMIT_DIR:?}}/paths.sh" || exit 1  # every path in one place (tools/atlas_paths.py); submit from the code root
 cd "$CS_ATLAS_FULLTEXT_PUSH"
-PY="nice -n 5 /usr/local/anaconda3/2024.02/bin/python -I -u"
-PRIN=$(cs_atlas_sweep claude-princeton-20261015)
+PY="nice -n 5 ${CS_ATLAS_COLLECTOR_PY} -I -u"
 OUT=$CS_ATLAS_STORES/princeton
 for s in princeton cmu epfl mit berkeley stanford; do $PY add_works.py $s; done
 pk=$(ls -d $OUT/discovery/claude-labpapers-newworks-2026102913* $OUT/discovery/claude-labpapers-newworks-2026102914* $OUT/discovery/claude-labpapers-newworks-2026102915* $OUT/discovery/claude-labpapers-newworks-2026102916* $OUT/discovery/claude-labpapers-newworks-2026102917* $OUT/discovery/claude-labpapers-newworks-2026102918* 2>/dev/null | while read d; do echo "cs_pi_works:$(basename $d)"; done)
-[ -n "$pk" ] && (cd $PRIN && nice -n 5 /usr/local/anaconda3/2024.02/bin/python -u tools/import_all_when_free.py $pk)
+[ -n "$pk" ] && (nice -n 5 ${CS_ATLAS_COLLECTOR_PY} -u "$CS_ATLAS_VENDOR/princeton_tools/import_all_when_free.py" $pk)
 COMMON="oa_arxiv openalex proceedings arxiv_title dblp_ee s2 core europepmc pmc figshare labpages"
 ./run_steps.sh princeton oar $COMMON >> logs/steps-princeton.log 2>&1 < /dev/null &
 ./run_steps.sh cmu $COMMON >> logs/steps-cmu.log 2>&1 < /dev/null &
@@ -28,5 +27,5 @@ COMMON="oa_arxiv openalex proceedings arxiv_title dblp_ee s2 core europepmc pmc 
 ./run_steps.sh stanford $COMMON >> logs/steps-stanford.log 2>&1 < /dev/null &
 wait
 pk=$(ls -d $OUT/discovery/claude-labpapers-*-2026102[9]*/ $OUT/discovery/claude-labpapers-*-2026103*/ 2>/dev/null | grep -v newworks | while read d; do [ -s "$d/cs-open-copies-candidates.jsonl" ] && echo "cs_open_copies:$(basename $d)"; done)
-[ -n "$pk" ] && (cd $PRIN && nice -n 5 /usr/local/anaconda3/2024.02/bin/python -u tools/import_all_when_free.py $pk)
+[ -n "$pk" ] && (nice -n 5 ${CS_ATLAS_COLLECTOR_PY} -u "$CS_ATLAS_VENDOR/princeton_tools/import_all_when_free.py" $pk)
 echo '{"addworks_1029": "done"}'

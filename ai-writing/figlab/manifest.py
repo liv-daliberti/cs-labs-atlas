@@ -10,11 +10,15 @@ flag    the full-text detector (ai-writing/paragraph_scores.jsonl.gz): ai_share 
 -> data/manifest.jsonl.gz, one row per (school, paper); prints papers per school and year
 usage: manifest.py [school ...]
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import collections, gzip, json, sqlite3, sys, time
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent; AIW = HERE.parent; ROOT = AIW.parent
-H = ROOT / 'hierarchy'; FT = Path('/n/fs/resemble/homogenizing-science/data/fulltext')
+H = ROOT / 'hierarchy'; FT = P.STORES
 SCHOOLS = ['princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford']
 FLAG = 0.25
 

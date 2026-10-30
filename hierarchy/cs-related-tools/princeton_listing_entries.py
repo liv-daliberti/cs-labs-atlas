@@ -5,10 +5,14 @@ sweep's own block extraction: a block that is a person's name followed within tw
 -> <out>/princeton-listing-entries.json  [{dept, page_url, capture_url, ts, year, sha256, name, title, heading, src}]
 usage: princeton_listing_entries.py <out_dir> [extra_captures.json]
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import json, re, sqlite3, sys, zlib
 from pathlib import Path
 
-HERE = Path(__file__).resolve().parents[2]; SW = Path('/n/fs/resemble/maxent-grpo/.research-sweeps')
+HERE = Path(__file__).resolve().parents[2]; SW = P.SWEEPS
 LST = SW / 'claude-princeton-listings-20261022'
 sys.path.insert(0, str(LST / 'scripts'))
 import extract, match  # noqa: E402

@@ -24,6 +24,10 @@ Writes: short transactions, busy_timeout 120 s, <= 200 rows each, WHERE status='
 collector moved meanwhile is left alone). Every change -> review-20261029/<school>.jsonl.
 usage: review_access.py classify|apply <school>
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[1] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import json, re, sqlite3, sys, time
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
@@ -32,7 +36,7 @@ from urllib.parse import urlsplit
 
 HERE = Path(__file__).resolve().parent
 OUT = HERE / 'review-20261029'
-STORES = Path('/n/fs/resemble/cs-atlas/stores')
+STORES = P.STORES
 sys.path.insert(0, str(HERE))
 from retry_transient import TRANSIENT, SKIP_HOSTS  # noqa: E402  (the push's own transient rule and publisher hosts)
 

@@ -9,9 +9,10 @@
 #SBATCH --cpus-per-task=2
 #SBATCH --mem=8G
 #SBATCH --time=1-00:00:00
-#SBATCH --output=/n/fs/resemble/cs-atlas/work/ai-writing/citations/logs/fetch-new-%j.out
-cd /n/fs/resemble/cs-atlas/work/ai-writing/citations
-PY=/n/fs/resemble/cs-atlas-env/py310/bin/python
+#SBATCH --output=ai-writing/citations/logs/fetch-new-%j.out
+. "${CS_ATLAS_CODE:-${SLURM_SUBMIT_DIR:?}}/paths.sh" || exit 1  # every path in one place (tools/atlas_paths.py); submit from the code root
+cd ${CS_ATLAS_AI_WRITING}/citations
+PY=${CS_ATLAS_ENV_PY}
 echo "{\"node\": \"$(hostname)\", \"start\": \"$(date -u +%FT%TZ)\"}"
 nice -n 10 $PY -u s2fetch.py run >> logs/s2fetch-new-20261028.log 2>&1 &
 nice -n 10 $PY -u fetch.py citing >> logs/fetch_citing-new-20261028.log 2>&1

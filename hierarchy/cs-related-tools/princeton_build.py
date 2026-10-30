@@ -10,6 +10,10 @@ Every quote is checked as an exact substring of the capture stored in hierarchy/
 hierarchy/princeton/thesis-captures.sqlite, Wayback pages fetched by this review).
 usage: princeton_build.py <csrel_dir> <work_dir>
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import collections, datetime, json, re, sqlite3, sys
 from pathlib import Path
 
@@ -207,7 +211,7 @@ def pi_basis(name, q):
 
 # ------------------------------------------------------------------ collection person
 import gzip  # noqa: E402
-C = json.load(gzip.open('/n/fs/resemble/maxent-grpo/princeton-live-20261015/atlas/data/collection-princeton.json.gz', 'rt'))
+C = json.load(gzip.open(str(P.SITE_ROOT / 'atlas/data/collection-princeton.json.gz'), 'rt'))
 PEOPLE = C['people'] if isinstance(C['people'], list) else list(C['people'].values())
 PIS = json.load(open(HERE / 'hierarchy/princeton/pis.json'))
 PI_PERSONS = {i for p in PIS for i in p['personIds']}

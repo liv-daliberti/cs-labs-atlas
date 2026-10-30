@@ -3,19 +3,23 @@ re-verify the whole file with verify_gap_evidence.verify plus a strict per-quote
 sha256 has the cited url/capture_url). Rows have the same keys as build_gap_evidence.py writes.
 Re-running replaces only the rows of the PIs in spec_newpis.py. usage: append_newpis.py [--dry]
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import hashlib
 import json
 import sqlite3
 import sys
 import zlib
 
-sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-mit")
+sys.path.insert(0, str(P.HIERARCHY / 'gap-tools-mit'))
 import capstore  # noqa: E402
 import spec_newpis  # noqa: E402
 import verify_gap_evidence  # noqa: E402
 from evlib import has_name  # noqa: E402
 
-HIER = "/n/fs/resemble/cs-atlas/work/hierarchy"
+HIER = str(P.HIERARCHY)
 INPUT = HIER + "/new-pis-gap-input.json"
 OUTPUT = HIER + "/mit/gap-evidence.json"
 

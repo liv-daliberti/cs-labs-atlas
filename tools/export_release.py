@@ -54,7 +54,7 @@ PLACEHOLDER_EMAIL = 'you@example.org'
 MAX_FILE = 50 * 1024 * 1024
 SHARD_AT = 45 * 1024 * 1024
 
-_spec = importlib.util.spec_from_file_location('build_cs_hierarchy', SITE_ROOT / 'scripts/build-cs-hierarchy.py')
+_spec = importlib.util.spec_from_file_location('build_cs_hierarchy', AP.vendor('site_builder') / 'build-cs-hierarchy.py')  # vendored
 SITE = importlib.util.module_from_spec(_spec); _spec.loader.exec_module(SITE)
 # exported: the built schools the site's department rule knows (a school is ready once it is added to the site builder's
 # SCHOOLS); a package the site does not know yet (e.g. a school still being built) is listed in the manifest as skipped

@@ -1,4 +1,8 @@
 """Lab rows, slugs, seed URLs and stored-capture lookup for the lab-page pass."""
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import gzip
 import json
 import os
@@ -12,9 +16,9 @@ import lpnames
 
 ROOT = lpcap.ROOT
 TOOLS = os.path.dirname(os.path.abspath(__file__))
-BASES = {"epfl": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-epfl-20261019/people",
-         "berkeley": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-berkeley-20261021/people"}
-CENSUS = "/n/fs/resemble/cs-atlas/work/census"
+BASES = {"epfl": str(P.SWEEPS / 'claude-epfl-20261019/people'),
+         "berkeley": str(P.SWEEPS / 'claude-berkeley-20261021/people')}
+CENSUS = str(P.CENSUS)
 
 
 def slug(s):

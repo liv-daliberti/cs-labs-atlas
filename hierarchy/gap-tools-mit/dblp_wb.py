@@ -1,7 +1,11 @@
 """Fetch the newest Wayback id_ capture of DBLP person pages (dblp.org HTML is bot-walled live) and summarize.
 usage: dblp_wb.py PID [PID...]"""
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import re, sys
-sys.path.insert(0, '/n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-mit')
+sys.path.insert(0, str(P.HIERARCHY / 'gap-tools-mit'))
 import capstore
 for p in sys.argv[1:]:
     u = 'https://dblp.org/pid/' + p + '.html'

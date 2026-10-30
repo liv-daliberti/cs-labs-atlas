@@ -17,8 +17,8 @@ if str(HERE.parent / 'tools') not in sys.path:  # appended, never first: tools/ 
 import atlas_paths as P  # noqa: E402  (every path in one place; collectors reach it as F.P)
 SCHOOLS = P.WORK
 FT = P.STORES
-CMU_TOOLS = P.sweep('claude-cmu-20261017') / 'tools'
-PRIN_TOOLS = P.sweep('claude-princeton-20261015') / 'tools'
+CMU_TOOLS = P.vendor('cmu_tools')  # vendored 2026-10-30 from claude-cmu-20261017/tools (vendor/PROVENANCE.tsv)
+PRIN_TOOLS = P.vendor('princeton_tools')  # vendored from claude-princeton-20261015/tools
 for p in (CMU_TOOLS, PRIN_TOOLS):
     if str(p) not in sys.path:
         sys.path.insert(0, str(p))

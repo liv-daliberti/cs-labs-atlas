@@ -17,13 +17,17 @@ Question-3 coverage (OpenAlex references of the oa5 papers to cited works publis
                     v2score.py) or a corpus lab paper with a paragraph score (matched on OpenAlex id)
 -> results/coverage.csv
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import glob, gzip, json, sqlite3
 import numpy as np, pandas as pd
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 DATA, RES = HERE / 'data', HERE / 'results'
-CACHE = Path('/n/fs/resemble/cs-atlas-cache/citations')
+CACHE = P.CACHE / 'citations'
 
 
 def scored_sets():

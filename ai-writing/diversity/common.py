@@ -21,6 +21,10 @@ usable_text` with diversity/ on sys.path (numpy only). passages(body) gives the 
 use when a paper has < 3 rows in the paragraphs table; segments(body, paras) applies that rule; usable_text(kind, body,
 flags) is the full-text filter; seg_signature(src, segs) identifies a segmentation.
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import getpass, gzip, hashlib, json, os, pickle, re, sqlite3, sys, time, zlib
 from collections import defaultdict
 from pathlib import Path
@@ -28,7 +32,7 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parent
 AIW = ROOT.parent
-HOM = Path('/n/fs/resemble/maxent-grpo/.research-sweeps/claude-homogenization-20261019')
+HOM = P.HOMOGENIZATION_STUDY
 BACKGROUND = HOM / 'corpus' / 'background.sqlite'
 S2DB = HOM / 'corpus' / 's2.sqlite'
 KOBAK = HOM / 'lit' / 'kobak_reference' / 'kobak_2024_rare_style_words.csv'
@@ -52,8 +56,8 @@ MIN_WORDS_FT = 1000  # a full text shorter than this (after the References cut) 
 def llm_pattern():
     """The homogenization study's LLM-topic pattern (title + abstract), imported lazily so that the text helpers below
     (passages, segments, usable_text) import with numpy alone."""
-    if str(HOM / 'tools') not in sys.path:
-        sys.path.insert(0, str(HOM / 'tools'))
+    if str(P.vendor('homogenization_tools')) not in sys.path:  # vendored code (tools/vendor_sync.py)
+        sys.path.insert(0, str(P.vendor('homogenization_tools')))
     from homog import LLM
     return LLM
 

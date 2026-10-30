@@ -13,6 +13,10 @@ Conventions
 - 'no_change' entries carry the sourced reason why the rejected papers stay outside.
 usage: /usr/local/anaconda3/2024.02/bin/python -I stanford_followup_build.py
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import json, re, sqlite3, sys
 from pathlib import Path
 HERE = Path(__file__).resolve().parent
@@ -21,7 +25,7 @@ import pcap  # noqa: E402
 import mpcap  # noqa: E402  (imported by pcap; DB already points at period-captures.sqlite)
 
 ROOT = HERE.parents[1]
-BASE = '/n/fs/resemble/maxent-grpo/.research-sweeps/claude-stanford-20261027/raw/captures.sqlite'
+BASE = str(P.SWEEPS / 'claude-stanford-20261027/raw/captures.sqlite')
 OVR = json.load(open(ROOT / 'hierarchy/census-overrides.json')).get('stanford', {})
 PIS = {p['pi']: p for p in json.load(open(ROOT / 'hierarchy/stanford/pis.json'))}
 WB = 'https://web.archive.org/web/'

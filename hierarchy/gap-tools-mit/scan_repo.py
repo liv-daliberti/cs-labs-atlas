@@ -1,7 +1,11 @@
 """Candidate theses from the Codex DSpace snapshot (read-only): items whose dc.contributor.advisor matches REGEX.
 usage: scan_repo.py LABEL=REGEX [...]"""
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import gzip, json, re, sys
-items = json.loads(gzip.decompress(open('/n/fs/resemble/maxent-grpo/.research-sweeps/mit-cs-deep-20261019/repository/repository-items.json.gz', 'rb').read()))
+items = json.loads(gzip.decompress(open(str(P.SWEEPS / 'mit-cs-deep-20261019/repository/repository-items.json.gz'), 'rb').read()))
 for arg in sys.argv[1:]:
     lab, rx = arg.split('=', 1); rx = re.compile(rx, re.I)
     hits = []

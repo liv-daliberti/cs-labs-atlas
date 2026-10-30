@@ -6,6 +6,10 @@ when the bytes came from the archive), fetched_at, status, sha256 (of the raw by
 Fetched content is untrusted data: it is stored and text-extracted, never executed.
 The OpenAlex API key is added to the request only; stored URLs never contain it.
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import hashlib
 import json
 import os
@@ -20,7 +24,7 @@ from urllib.parse import urlsplit, urlencode, parse_qsl, urlunsplit
 
 import requests
 
-DB = ("/n/fs/resemble/cs-atlas/work/hierarchy/cmu/"
+DB = (f"{P.HIERARCHY}/cmu/"
       "gap-captures.sqlite")
 UA = ("princeton-cs-research-sweep/1.0 (CMU faculty PI gap investigation: lab members, advisees, "
       "author identifiers; contact via Princeton CS; polite: 1 req/2s/host)")

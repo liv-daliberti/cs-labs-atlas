@@ -6,12 +6,16 @@ or an initial ("J. Greenfield"); surnames equal ignoring hyphens/apostrophes/spa
 the other ("Horta Ribeiro" / "Ribeiro"); "Last, First" is turned around; East-Asian order swaps are accepted; a
 first-name-only listing ("liv") matches when exactly one held name has a compatible first name.
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import csv
 import os
 import re
 import unicodedata
 
-ROOT = "/n/fs/resemble/cs-atlas/work/hierarchy"
+ROOT = str(P.HIERARCHY)
 _pairs = None
 
 

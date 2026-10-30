@@ -1,6 +1,10 @@
 """Compact view of CMU period targets: pis.json periods/listings + target info. usage: cmu_show.py [name-substring ...]"""
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as AP  # noqa: E402
 import json, sys
-H = '/n/fs/resemble/cs-atlas/work/hierarchy'
+H = str(AP.HIERARCHY)
 T = json.load(open(f'{H}/period-tools/cmu-targets-20261026.json'))
 P = {p['pi']: p for p in json.load(open(f'{H}/cmu/pis.json'))}
 subs = sys.argv[1:]

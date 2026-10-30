@@ -2,6 +2,10 @@
 author id, year, school affiliation, raw name, title. Output: gap-tools-princeton-epfl/sweep_hits_<school>.json and a summary.
 usage: sweep_hits.py SCHOOL [PI ...]
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import collections
 import json
 import re
@@ -9,11 +13,11 @@ import sqlite3
 import sys
 import zlib
 
-TOOLS = "/n/fs/resemble/cs-atlas/work/tools"
+TOOLS = str(P.TOOLS)
 sys.path.insert(0, TOOLS)
 from pi_hierarchy import Name, toks, INST, AFF  # noqa: E402
 
-ROOT = "/n/fs/resemble/cs-atlas/work/hierarchy"
+ROOT = str(P.HIERARCHY)
 school = sys.argv[1]
 only = set(sys.argv[2:])
 gi = json.load(open(f"{ROOT}/{school}/gap-input.json"))

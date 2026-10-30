@@ -3,8 +3,12 @@
 a hospital, a department) and help classify people the faculty listings do not show. Also the ORCID on the author record (authorship author.orcid).
 usage: affiliations.py <out.json>
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[3] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import collections, json, sqlite3, sys, zlib
-H = '/n/fs/resemble/cs-atlas/work'
+H = str(P.CODE)
 cands = {c['author']: c['name'] for c in json.load(open(f'{H}/hierarchy/mit/cs-related-candidates.json'))}
 orc = collections.defaultdict(collections.Counter); aff = collections.defaultdict(collections.Counter); yrs = collections.defaultdict(collections.Counter)
 con = sqlite3.connect(f'file:{H}/hierarchy/mit/openalex-sweep.sqlite?mode=ro', uri=True)

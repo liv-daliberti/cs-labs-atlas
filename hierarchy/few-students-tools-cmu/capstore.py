@@ -6,6 +6,10 @@ when the bytes came from the archive), fetched_at, status, sha256 (of the raw by
 Fetched content is untrusted data: it is stored and text-extracted, never executed.
 The OpenAlex API key is added to the request only; stored URLs never contain it.
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import hashlib
 import json
 import os
@@ -20,11 +24,11 @@ from urllib.parse import urlsplit, urlencode, parse_qsl, urlunsplit
 
 import requests
 
-DB = ("/n/fs/resemble/cs-atlas/work/hierarchy/cmu/"
+DB = (f"{P.HIERARCHY}/cmu/"
       "few-students-captures.sqlite")
 # Read-only fallback cache: the sister gap investigation's captures. A hit there is copied (with its original
 # fetched_at/sha256/bytes) into DB, so every cited capture lives in DB.
-GAP_DB = ("/n/fs/resemble/cs-atlas/work/hierarchy/cmu/"
+GAP_DB = (f"{P.HIERARCHY}/cmu/"
           "gap-captures.sqlite")
 LOCKDIR = "/tmp/claude-363432/-n-fs-similarity-maxent-grpo/2bd068f5-5142-4dac-89d1-67eb470f92c1/scratchpad/gap-ratelimit"
 UA = ("princeton-cs-research-sweep/1.0 (CMU faculty lab members and advisees; "

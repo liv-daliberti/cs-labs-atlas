@@ -2,6 +2,10 @@
 census rows' homepage/profile fields, and the 'Links' anchors (Lab Website, Personal Website, ...) of the PI's Stanford
 Profiles page as stored by the base sweep (raw/captures.sqlite table live; read-only, no fetching here).
 usage: seeds.py OUT.json"""
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as AP  # noqa: E402
 import html
 import json
 import re
@@ -10,8 +14,8 @@ import sys
 import zlib
 from urllib.parse import urlsplit
 
-R = "/n/fs/resemble/cs-atlas/work"
-B = "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-stanford-20261027"
+R = str(AP.CODE)
+B = str(AP.SWEEPS / 'claude-stanford-20261027')
 SKIP = re.compile(r"doi\.org|isiknowledge|ncbi\.nlm|pubmed|orcid\.org|cap\.stanford\.edu|profiles\.stanford\.edu|"
                   r"scholar\.google|dblp|escholarship|linkedin|twitter\.com|x\.com/|facebook|youtube|instagram|"
                   r"^https?://(www\.)?stanford\.edu/?$|med\.stanford\.edu/profiles|searchworks|purl\.stanford|"

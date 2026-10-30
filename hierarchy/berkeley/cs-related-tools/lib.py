@@ -1,5 +1,9 @@
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[3] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import json, re, sqlite3, unicodedata, sys
-sys.path.insert(0, '/n/fs/resemble/cs-atlas/work/hierarchy/berkeley/cs-related-tools')
+sys.path.insert(0, str(P.HIERARCHY / 'berkeley/cs-related-tools'))
 import mpcap
 H = mpcap.HERE
 CANDS = json.load(open(f'{H}/hierarchy/berkeley/cs-related-candidates.json'))

@@ -22,14 +22,18 @@ units     lab_units: collection unit ids the person leads (named labs and the pe
           '<name> research group' with the evidence.
 -> census/cmu-faculty.json, census/cmu-report.md, census/cmu-listing-only.json (names on listings the structure lacks)
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as AP  # noqa: E402
 import gzip, json, re, sqlite3, unicodedata, zlib
 from collections import Counter, defaultdict
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parents[1]
-STAGE = Path('/n/fs/resemble/maxent-grpo/.research-sweeps/claude-cmu-20261017')
-REPAIR = Path('/n/fs/resemble/maxent-grpo/.research-sweeps/cmu-students-repair-20261019/rosters/captures')
-COLL = Path('/n/fs/resemble/maxent-grpo/princeton-live-20261015/atlas/data/collection-cmu.json.gz')
+STAGE = AP.SWEEPS / 'claude-cmu-20261017'
+REPAIR = AP.SWEEPS / 'cmu-students-repair-20261019/rosters/captures'
+COLL = AP.SITE_ROOT / 'atlas/data/collection-cmu.json.gz'
 UMBRELLA = re.compile(r'(?i)\b(center|centre|institute|initiative|program|consortium|alliance|collaborative|school|department|research areas?|cluster)\b')
 GROUP_KINDS = {'department_listed_unit', 'scs_listed_unit', 'research_unit', 'project_lab_row'}
 AFFIL_URL = re.compile(r'(?i)adjunct|affiliat|affilliat|related-faculty|courtesy|visiting|associated')

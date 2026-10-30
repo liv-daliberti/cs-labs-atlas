@@ -11,7 +11,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402  (every path in one place)
 OUT = P.CENSUS / 'raw'
-EP = P.sweep('claude-epfl-20261019')
+EP = P.archive_sweep('claude-epfl-20261019')
 UA = 'HomogenizingScienceResearch/0.2 (academic metadata inventory)'
 LAST, ROBOTS = {}, {}
 

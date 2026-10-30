@@ -7,13 +7,17 @@ is equal to, a nickname/formal variant of, or an initial of a held token. Tokens
 and apostrophes split ("Bösel-Schmid" -> bosel, schmid). Comma forms ("Last, First") are reordered first.
 'fuzzy' (one edit in a surname of 6+ letters, same given name) is reported as a candidate only; callers decide.
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import csv
 import os
 import re
 import unicodedata
 from functools import lru_cache
 
-NICK_DIR = "/n/fs/resemble/cs-atlas/work/hierarchy/nicknames"
+NICK_DIR = str(P.HIERARCHY / 'nicknames')
 PARTICLES = {"van", "von", "der", "den", "de", "del", "della", "di", "da", "dos", "das", "du", "la", "le", "el", "al",
              "bin", "ben", "ter", "ten", "zu", "y", "e"}
 TITLES = {"dr", "prof", "professor", "mr", "ms", "mrs", "phd", "ph", "d", "msc", "bsc", "jr", "sr", "ii", "iii", "iv"}

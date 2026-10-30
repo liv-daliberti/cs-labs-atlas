@@ -24,7 +24,7 @@ def run(school):
     pis = read(HERE / 'hierarchy' / school / 'pis.json')
     dp = HERE / 'hierarchy' / school / 'raw/dblp_pubs.json.gz'
     if not dp.exists():
-        dp = P.sweep(DBLP.get(school, '')) / 'raw/dblp_pubs.json.gz'
+        dp = P.archive_sweep(DBLP.get(school, '')) / 'raw/dblp_pubs.json.gz'
     if not dp.exists() or not (DBLP.get(school) or 'hierarchy' in str(dp)):
         return dict(school=school, note='no DBLP cache')
     pubs = read(dp)['pubs']

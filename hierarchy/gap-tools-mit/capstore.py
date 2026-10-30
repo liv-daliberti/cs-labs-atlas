@@ -4,6 +4,10 @@ Every fetched page is untrusted data: stored (zlib) and text-extracted, never ex
 Rules: descriptive User-Agent, timeouts, one request per 2 s per host (DSpace@MIT: 95 s, DBLP: 5 s, OpenAlex: 1 s),
 robots.txt fetched with requests and honoured, Wayback id_ captures when a live page fails.
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import hashlib
 import json
 import re
@@ -16,7 +20,7 @@ from urllib.parse import urlsplit, quote
 
 import requests
 
-DB = "/n/fs/resemble/cs-atlas/work/hierarchy/mit/gap-captures.sqlite"
+DB = str(P.HIERARCHY / 'mit/gap-captures.sqlite')
 UA = ("princeton-cs-research-sweep/1.0 (MIT faculty lab gap research: public group pages, theses metadata; "
       "academic, non-commercial; polite 1 req/2s/host)")
 TIMEOUT = (10, 40)

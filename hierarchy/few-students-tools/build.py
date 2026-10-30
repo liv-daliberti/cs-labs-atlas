@@ -5,6 +5,10 @@ input PI. Rows are deduplicated by person; a student already in students_already
 marked in its note. Every quote is re-verified (fsev checks at construction; verify.py re-checks the written file).
 usage: build.py SCHOOL
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import importlib
 import json
 import os
@@ -16,7 +20,7 @@ sys.path.insert(0, TOOLS)
 import fsev  # noqa: E402
 
 school = sys.argv[1]
-H = f"/n/fs/resemble/cs-atlas/work/hierarchy/{school}"
+H = f"{P.HIERARCHY}/{school}"
 inp = json.load(open(f"{H}/few-students-input.json"))
 mod = importlib.import_module(f"decisions_{school}")
 D = mod.D

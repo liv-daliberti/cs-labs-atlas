@@ -1,7 +1,8 @@
 #!/bin/sh
 set -a; . /tmp/claude-363432/-n-fs-similarity-maxent-grpo/2bd068f5-5142-4dac-89d1-67eb470f92c1/scratchpad/openalex.env; set +a
-cd /n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-cmu
-PY="/usr/local/anaconda3/2024.02/bin/python -I"
+. "$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)/paths.sh" || exit 1  # every path in one place (tools/atlas_paths.py)
+cd ${CS_ATLAS_HIERARCHY}/gap-tools-cmu
+PY="${CS_ATLAS_PY} -I"
 v() { echo "######## $1 $2"; $PY verify_oa.py "$1" "$2" "$3" --show 6; }
 v A5069656894 https://borderlab.org/publications Border
 v A5134514127 https://borderlab.org/publications Border

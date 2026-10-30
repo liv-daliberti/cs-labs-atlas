@@ -28,14 +28,14 @@ SKIP = re.compile(r"^(Faculty|People|Professors?|Emerit\w*|Lecturers?|Research|D
 
 def captures(school):
     if school == 'princeton':
-        db = P.sweep('claude-princeton-listings-20261022') / 'captures/listings.sqlite'
+        db = P.archive_sweep('claude-princeton-listings-20261022') / 'captures/listings.sqlite'
     else:
         db = HERE / 'listings' / school / 'captures.sqlite'
     c = sqlite3.connect(f'file:{db}?mode=ro', uri=True)
     cols = [r[1] for r in c.execute('pragma table_info(captures)')]
     q = 'select capture_url, wayback_timestamp, sha256, blocks_json, department from captures where http_status=200' if 'blocks_json' in cols else None
     if q is None:  # the Princeton store keeps raw bytes only
-        import zlib; sys.path.insert(0, str(P.sweep('claude-princeton-listings-20261022') / 'scripts')); import extract as pex  # noqa
+        import zlib; sys.path.insert(0, str(P.vendor('princeton_listings'))); import extract as pex  # noqa
         for url, ts, ct, raw, sha, dept in c.execute('select capture_url, wayback_timestamp, content_type, raw_zlib, sha256, department from captures where http_status=200'):
             yield url, ts, sha, [t for _, t in pex.blocks(zlib.decompress(raw), ct)], dept
         return

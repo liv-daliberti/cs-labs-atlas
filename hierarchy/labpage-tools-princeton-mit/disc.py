@@ -12,6 +12,10 @@ Run with LPCAP_LOCAL set to a scratch SQLite (single writer: this process; threa
 into hierarchy/<school>/labpage-captures.sqlite with merge.py.
 usage: disc.py SCHOOL [--threads N] [--only PI ...] [--redo]
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import argparse
 import json
 import os
@@ -27,7 +31,7 @@ sys.path.insert(0, TOOLS)
 import lpcap  # noqa: E402
 
 ROOT = lpcap.ROOT
-LABREC = "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-labrecords-20261019/records/princeton"
+LABREC = str(P.SWEEPS / 'claude-labrecords-20261019/records/princeton')
 
 EXTRA = {}
 # one insert at a time inside this process

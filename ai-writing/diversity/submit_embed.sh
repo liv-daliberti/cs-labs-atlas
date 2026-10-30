@@ -2,9 +2,9 @@
 # Submit the full-text embedding jobs: nothing if any is already queued or running; otherwise one job, plus a second
 # that starts after it (afterany) when the todo needs more than one job at the last measured rate. Never more than 2.
 set -euo pipefail
+. "$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)/paths.sh" || exit 1  # every path in one place (tools/atlas_paths.py)
 D="$(cd "$(dirname "$0")" && pwd)"
-ROOT=/n/fs/resemble/maxent-grpo
-PY=/n/fs/resemble/cs-atlas-env/py310/bin/python
+PY=${CS_ATLAS_ENV_PY}
 export LD_LIBRARY_PATH="$(dirname "$(readlink -f "$PY")")/../lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 cd "$D"
 queued=$(squeue -u "$USER" -h -n aiw-divemb -o %i | wc -l)

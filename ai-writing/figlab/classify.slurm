@@ -8,9 +8,10 @@
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=32G
 #SBATCH --time=12:00:00
-#SBATCH --output=/n/fs/resemble/cs-atlas/work/ai-writing/figlab/logs/classify-%j.out
-cd /n/fs/resemble/cs-atlas/work/ai-writing/figlab
-PY=/n/fs/resemble/cs-atlas-env/py310/bin/python
+#SBATCH --output=ai-writing/figlab/logs/classify-%j.out
+. "${CS_ATLAS_CODE:-${SLURM_SUBMIT_DIR:?}}/paths.sh" || exit 1  # every path in one place (tools/atlas_paths.py); submit from the code root
+cd ${CS_ATLAS_AI_WRITING}/figlab
+PY=${CS_ATLAS_ENV_PY}
 export OMP_NUM_THREADS=1  # parallel over draws/folds instead (classify.py --jobs)
 $PY -u classify.py --L 20 --K 8 --draws 100 --folds 4 --K-ai 6 --min-figs 1 --years 2016-2026 --tag _L20
 $PY -u classify.py --L 10 --K 8 --draws 100 --folds 4 --K-ai 6 --min-figs 1 --years 2018-2025 --tag _L10_2018_2025

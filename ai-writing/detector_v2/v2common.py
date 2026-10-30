@@ -10,6 +10,10 @@ norm      v1's normalizer (detector.py: markup, HTML, 'Abstract' labels, whitesp
 split     by paper: sha1(seed|key) -> train 70% / cal 10% / test 20%; a paper's passages and their AI versions
           always share a split.
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import hashlib, inspect, re, sys, unicodedata
 from pathlib import Path
 
@@ -18,7 +22,7 @@ HERE = Path(__file__).resolve().parent
 AIW = HERE.parent
 DATA, MODELS, RESULTS, LOGS = HERE / 'data', HERE / 'models', HERE / 'results', HERE / 'logs'
 FULLTEXT = AIW / 'fulltext.sqlite'
-HF = '/n/fs/resemble/cs-atlas-env/hf-cache/hub'
+HF = str(P.HF_HOME / 'hub')
 SEED = 20261022
 PRE = range(2016, 2022)  # human training text: published 2016-2021, before ChatGPT
 GENS = ('qwen72b', 'qwen7b', 'llama70b')

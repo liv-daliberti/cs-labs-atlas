@@ -37,7 +37,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent))
 sys.path.insert(0, str(HERE))
-sys.path.insert(0, '/n/fs/resemble/homogenizing-science/scripts')
+sys.path.insert(0, str(HERE.parents[1] / 'vendor' / 'homogenizing_scripts'))  # the collector, vendored (tools/vendor_sync.py)
 import ftp_common as F
 from lr_common import SCHOOLS, load_missing, load_stores
 

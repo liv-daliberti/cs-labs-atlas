@@ -9,18 +9,22 @@ id_ URL (matches captures.capture_url). The latest status-200 capture is used.
 
 usage: build.py [--dry]
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import json
 import re
 import sqlite3
 import sys
 import zlib
 
-TOOLS = "/n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-cmu"
+TOOLS = str(P.HIERARCHY / 'gap-tools-cmu')
 sys.path.insert(0, TOOLS)
 import capstore  # noqa: E402
 import decisions  # noqa: E402
 
-HIER = "/n/fs/resemble/cs-atlas/work/hierarchy/cmu"
+HIER = str(P.HIERARCHY / 'cmu')
 INPUT = HIER + "/gap-input.json"
 OUTPUT = HIER + "/gap-evidence.json"
 MAXQ_HTML = 700

@@ -5,10 +5,14 @@ start/end markers (SE); build.py extracts and validates the quote, fills sha256/
 every quote against the stored bytes. Options: after=STR (search START after STR), must=[tokens], raw=True
 (match against the raw whitespace-collapsed bytes, e.g. JSON).
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import json
 import re
 
-TOOLS = "/n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-berkeley"
+TOOLS = str(P.HIERARCHY / 'gap-tools-berkeley')
 WB = "https://web.archive.org/web/"
 PROF = "https://www2.eecs.berkeley.edu/Faculty/Homepages/"
 DISS = "https://www2.eecs.berkeley.edu/Pubs/Dissertations/Faculty/"

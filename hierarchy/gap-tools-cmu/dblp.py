@@ -3,13 +3,17 @@
 usage: dblp.py search "<name>" ["<name>" ...]
        dblp.py pid 12/345 [--from 2016]
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import json
 import re
 import sys
 import xml.etree.ElementTree as ET
 from urllib.parse import quote
 
-sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-cmu")
+sys.path.insert(0, str(P.HIERARCHY / 'gap-tools-cmu'))
 import capstore  # noqa: E402
 
 cmd = sys.argv[1]

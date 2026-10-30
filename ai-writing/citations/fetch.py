@@ -15,6 +15,10 @@ after the reset. At most ~7 requests per second over all threads; 429 and 5xx ba
 The key is read from ~/.config/cs-atlas/openalex.env and never printed or logged.
 usage: fetch.py citing | works [--order priority] | status
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import gzip, json, os, sqlite3, sys, threading, time, zlib
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
@@ -22,7 +26,7 @@ import requests
 
 HERE = Path(__file__).resolve().parent
 AIW = HERE.parent
-CACHE = Path('/n/fs/resemble/cs-atlas-cache/citations')
+CACHE = P.CACHE / 'citations'
 DB = CACHE / 'openalex.sqlite'
 RESERVE = int(os.environ.get('CIT_RESERVE', 1200))
 RPS = 7.0

@@ -10,18 +10,22 @@ Wayback id_ URL (matches captures.capture_url). The latest status-200 capture is
 
 usage: build.py [--dry] [--part NAME ...]   (--part: only check those modules, implies --dry)
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import importlib
 import json
 import sqlite3
 import sys
 import zlib
 
-TOOLS = "/n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-berkeley"
+TOOLS = str(P.HIERARCHY / 'gap-tools-berkeley')
 sys.path.insert(0, TOOLS)
 import capstore  # noqa: E402
 
 PARTS = ["decisions_ladder_a", "decisions_ladder_b", "decisions_departed", "decisions_emeriti_a", "decisions_emeriti_b"]
-HIER = "/n/fs/resemble/cs-atlas/work/hierarchy/berkeley"
+HIER = str(P.HIERARCHY / 'berkeley')
 INPUT = HIER + "/gap-input.json"
 OUTPUT = HIER + "/gap-evidence.json"
 MAXQ_HTML = 700

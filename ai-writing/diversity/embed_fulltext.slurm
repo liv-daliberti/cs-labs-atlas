@@ -8,13 +8,13 @@
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=48G
 #SBATCH --time=00:59:00
-#SBATCH --output=/n/fs/resemble/cs-atlas/work/ai-writing/diversity/logs/emb-%j.out
+#SBATCH --output=ai-writing/diversity/logs/emb-%j.out
 set -euo pipefail
-ROOT=/n/fs/resemble/maxent-grpo
-PY=/n/fs/resemble/cs-atlas-env/py310/bin/python
+. "${CS_ATLAS_CODE:-${SLURM_SUBMIT_DIR:?}}/paths.sh" || exit 1  # every path in one place (tools/atlas_paths.py); submit from the code root
+PY=${CS_ATLAS_ENV_PY}
 export LD_LIBRARY_PATH="$(dirname "$(readlink -f "$PY")")/../lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-export HF_HOME=/n/fs/resemble/cs-atlas-env/hf-cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 TOKENIZERS_PARALLELISM=true
+export HF_HOME=${CS_ATLAS_HF_HOME} HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 TOKENIZERS_PARALLELISM=true
 export TRITON_CACHE_DIR=/tmp/aiw-divemb-triton-$SLURM_JOB_ID
-cd /n/fs/resemble/cs-atlas/work/ai-writing/diversity
+cd ${CS_ATLAS_AI_WRITING}/diversity
 nvidia-smi --query-gpu=name,memory.total --format=csv,noheader
 $PY -u embed_fulltext.py run --budget "${BUDGET:-3000}"

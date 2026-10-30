@@ -22,6 +22,10 @@ Bias of the open subset: the v1 abstract flag rate, arXiv share, field and citat
 whole stratum frame (all cited works with a v1 abstract score).
 -> results/q2v2_strata.csv, q2v2_coverage.csv, q2v2_bias.csv, q2v2_citing.csv, q2v2_versions.csv, q2v2_within.csv
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as AP  # noqa: E402
 import glob, gzip, json, sqlite3
 from pathlib import Path
 import numpy as np, pandas as pd
@@ -29,7 +33,7 @@ import numpy as np, pandas as pd
 HERE = Path(__file__).resolve().parent
 AIW = HERE.parent
 DATA, RES = HERE / 'data', HERE / 'results'
-CACHE = Path('/n/fs/resemble/cs-atlas-cache/citations')
+CACHE = AP.CACHE / 'citations'
 SEED = 20261022
 
 

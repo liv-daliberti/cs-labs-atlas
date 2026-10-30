@@ -11,8 +11,8 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=2G
 #SBATCH --time=12:00:00
-#SBATCH --output=/n/fs/resemble/cs-atlas/work/fulltext-push/local-reuse/logs/princeton-import-%j.out
-PRIN=/n/fs/resemble/maxent-grpo/.research-sweeps/claude-princeton-20261015
-OUT=/n/fs/resemble/homogenizing-science/data/fulltext/princeton
+#SBATCH --output=fulltext-push/local-reuse/logs/princeton-import-%j.out
+. "${CS_ATLAS_CODE:-${SLURM_SUBMIT_DIR:?}}/paths.sh" || exit 1  # every path in one place (tools/atlas_paths.py); submit from the code root
+OUT=${CS_ATLAS_STORES}/princeton
 pk=$(ls -d $OUT/discovery/claude-labpapers-*/ 2>/dev/null | grep -v newworks | while read d; do [ -s "$d/cs-open-copies-candidates.jsonl" ] && echo "cs_open_copies:$(basename $d)"; done)
-cd $PRIN && nice -n 5 /usr/local/anaconda3/2024.02/bin/python -u tools/import_all_when_free.py $pk
+nice -n 5 ${CS_ATLAS_COLLECTOR_PY} -u "$CS_ATLAS_VENDOR/princeton_tools/import_all_when_free.py" $pk

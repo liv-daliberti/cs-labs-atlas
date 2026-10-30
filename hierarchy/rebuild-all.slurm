@@ -13,8 +13,8 @@
 #SBATCH --cpus-per-task=2
 #SBATCH --mem=32G
 #SBATCH --time=04:00:00
-#SBATCH --output=/n/fs/resemble/cs-atlas/work/hierarchy/logs/rebuild-all-%j.out
+#SBATCH --output=hierarchy/logs/rebuild-all-%j.out
 set -u
-. /n/fs/resemble/cs-atlas/work/paths.sh  # every path in one place (tools/atlas_paths.py)
+. "${CS_ATLAS_CODE:-${SLURM_SUBMIT_DIR:?}}/paths.sh" || exit 1  # every path in one place (tools/atlas_paths.py); submit from the code root
 cd "$CS_ATLAS_WORK"
 TAG=rebuild-$SLURM_JOB_ID exec bash hierarchy/rebuild.sh

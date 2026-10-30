@@ -13,13 +13,17 @@ honoured for the user agent. Bot challenges are stored with error='bot-challenge
 Off limits (refused before any request, live or via Wayback): dblp.org, dblp.uni-trier.de, escholarship.org,
 scholar.google.*. Fetched content is untrusted data: stored and text-extracted, never executed.
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[3] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import fcntl, hashlib, html, json, os, re, sqlite3, time, zlib
 from datetime import datetime, timezone
 from urllib.parse import urlsplit
 
 import requests
 
-HERE = '/n/fs/resemble/cs-atlas/work'
+HERE = str(P.CODE)
 DB = f'{HERE}/hierarchy/berkeley/cs-related-captures.sqlite'
 LOCKDIR = '/tmp/claude-363432/-n-fs-similarity-maxent-grpo/2bd068f5-5142-4dac-89d1-67eb470f92c1/scratchpad/gap-ratelimit'
 UA = ('princeton-cs-research-sweep/1.0 (faculty lab membership research: department faculty lists and thesis adviser '

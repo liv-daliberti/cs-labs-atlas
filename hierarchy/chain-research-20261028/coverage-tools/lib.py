@@ -1,8 +1,12 @@
 """Helpers for the 2026-10-28 coverage review: copy existing verified captures into captures.sqlite,
 name index over census + additions + pis per school, input/listing join."""
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[3] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import hashlib, json, re, sqlite3, zlib, unicodedata
 from cap import con, to_text, fetch, ctx
-ROOT = "/n/fs/resemble/cs-atlas/work"
+ROOT = str(P.CODE)
 H = ROOT + "/hierarchy"
 SRC_DBS = [ROOT + f"/listings/{s}/captures.sqlite" for s in ["princeton", "stanford", "cmu", "mit", "berkeley", "epfl"]] + [
     H + f"/cs-related-captures-{s}.sqlite" for s in ["stanford", "mit", "epfl", "princeton", "berkeley"]] + [

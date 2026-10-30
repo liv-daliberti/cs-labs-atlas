@@ -3,6 +3,10 @@ candidate OpenAlex author ids, observed ORCIDs, raw names and sample works. Writ
 
 usage: candidates.py
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import json
 import re
 import sqlite3
@@ -10,7 +14,7 @@ import unicodedata
 import zlib
 from collections import defaultdict
 
-ROOT = "/n/fs/resemble/cs-atlas/work/hierarchy"
+ROOT = str(P.HIERARCHY)
 SWEEP = ROOT + "/berkeley/openalex-sweep.sqlite"
 GAP = ROOT + "/berkeley/gap-input.json"
 OUT = ROOT + "/gap-tools-berkeley/candidates.json"

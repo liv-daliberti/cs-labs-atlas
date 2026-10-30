@@ -12,6 +12,10 @@ D         AI-detected rate by subfield and year
 -> figures/ai_by_field.png, results/ai_by_subfield.csv, results/ai_by_topic.csv
 usage: ai_by_field.py
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import csv, gzip, json, sqlite3, zlib
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -22,7 +26,7 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
 
 HERE = Path(__file__).resolve().parent; AIW = HERE.parent
-OADB = '/n/fs/resemble/cs-atlas-cache/citations/openalex.sqlite'
+OADB = str(P.CACHE / 'citations/openalex.sqlite')
 YEARS = [2023, 2024, 2025, 2026]
 N_SUB, MIN_TOPIC, N_TOPIC = 20, 40, 14
 C_LESS, C_MORE = '#2a78d6', '#eb6834'

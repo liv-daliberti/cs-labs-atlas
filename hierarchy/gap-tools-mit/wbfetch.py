@@ -2,8 +2,12 @@
 Wayback id_ URL), then print a text window. (New-PI gap research 2026-10-22; look.py stores a pasted Wayback URL as a live url.)
 usage: wbfetch.py [--grep RX] [--chars N] [--head N] WAYBACK_ID_URL...
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import argparse, json, re, sys
-sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-mit")
+sys.path.insert(0, str(P.HIERARCHY / 'gap-tools-mit'))
 import capstore  # noqa: E402
 
 RX = re.compile(r"^https?://web\.archive\.org/web/(\d{4,14})id_/(.+)$")

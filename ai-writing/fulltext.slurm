@@ -8,9 +8,9 @@
 #SBATCH --cpus-per-task=16
 #SBATCH --mem=24G
 #SBATCH --time=04:00:00
-#SBATCH --output=/n/fs/resemble/cs-atlas/work/ai-writing/logs/fulltext-%j.out
+#SBATCH --output=ai-writing/logs/fulltext-%j.out
 set -euo pipefail
-. /n/fs/resemble/cs-atlas/work/paths.sh  # every path in one place (tools/atlas_paths.py)
+. "${CS_ATLAS_CODE:-${SLURM_SUBMIT_DIR:?}}/paths.sh" || exit 1  # every path in one place (tools/atlas_paths.py); submit from the code root
 cd "$CS_ATLAS_AI_WRITING"
 export LD_LIBRARY_PATH="$CS_ATLAS_ENV_LIB${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 echo "{\"node\": \"$(hostname)\", \"start\": \"$(date -u +%FT%TZ)\"}"

@@ -3,6 +3,10 @@
 A source key is either a live URL (stored with capture_url NULL) or a Wayback id_ capture URL (stored as capture_url).
 Quotes are found with a regex on the whitespace-collapsed page text (capstore.page_text) and returned verbatim.
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import json
 import re
 import sqlite3
@@ -10,7 +14,7 @@ import sys
 import unicodedata
 import zlib
 
-sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-mit")
+sys.path.insert(0, str(P.HIERARCHY / 'gap-tools-mit'))
 import capstore  # noqa: E402
 
 _cache = {}

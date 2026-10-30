@@ -1,9 +1,13 @@
 """Copy captures unchanged from another mpcap-format store into period-captures.sqlite (as cscap.copy_mp does).
 Usage: pm_copy.py <src store path relative to hierarchy/> url..."""
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import sqlite3, sys
-sys.path.insert(0, '/n/fs/resemble/cs-atlas/work/hierarchy/period-tools')
+sys.path.insert(0, str(P.HIERARCHY / 'period-tools'))
 import pcap
-H = '/n/fs/resemble/cs-atlas/work/hierarchy/'
+H = f'{P.HIERARCHY}/'
 src = H + sys.argv[1]
 for url in sys.argv[2:]:
     s = sqlite3.connect(f'file:{src}?mode=ro', uri=True)

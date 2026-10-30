@@ -12,7 +12,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import ftp_common as F
 
-OAR = str(F.P.sweep('claude-princeton-20261015') / 'cs-structure/raw/oar/items_*.json.gz')
+OAR = str(F.P.archive_sweep('claude-princeton-20261015') / 'cs-structure/raw/oar/items_*.json.gz')
 
 
 def step_oar(school, miss, known, n):

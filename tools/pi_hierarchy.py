@@ -1443,7 +1443,7 @@ def build(school):
     # identity anchors: the PI's own DBLP publication list, the PI's DBLP-verified collection works, a stated advisee as co-author
     verified = {p['pi']: {l['work'] for i in p['personIds'] for l in pls[i] if l.get('status') == 'verified' and l.get('role', 'author') == 'author'} for p in pis}
     dblp_doi, dblp_title = collections.defaultdict(set), collections.defaultdict(dict)
-    dp = P.sweep(DBLP.get(school, '')) / 'raw/dblp_pubs.json.gz'
+    dp = P.archive_sweep(DBLP.get(school, '')) / 'raw/dblp_pubs.json.gz'
     if (HERE / 'hierarchy' / school / 'raw/dblp_pubs.json.gz').exists():  # Princeton: converted from the lab records' cached DBLP answers
         dp = HERE / 'hierarchy' / school / 'raw/dblp_pubs.json.gz'
     if dp.exists() and dp.name == 'dblp_pubs.json.gz' and (DBLP.get(school) or 'hierarchy' in str(dp)):

@@ -8,11 +8,11 @@
 #SBATCH --cpus-per-task=2
 #SBATCH --mem=12G
 #SBATCH --time=16:00:00
-#SBATCH --output=/n/fs/resemble/cs-atlas/work/fulltext-push/logs/retry_transient-%j.out
-. /n/fs/resemble/cs-atlas/work/paths.sh  # every path in one place (tools/atlas_paths.py)
+#SBATCH --output=fulltext-push/logs/retry_transient-%j.out
+. "${CS_ATLAS_CODE:-${SLURM_SUBMIT_DIR:?}}/paths.sh" || exit 1  # every path in one place (tools/atlas_paths.py); submit from the code root
 cd "$CS_ATLAS_FULLTEXT_PUSH"
 for s in princeton cmu epfl mit berkeley stanford; do
-  nice -n 5 /usr/local/anaconda3/2024.02/bin/python -I -u retry_transient.py $s &
+  nice -n 5 ${CS_ATLAS_COLLECTOR_PY} -I -u retry_transient.py $s &
   sleep 60
 done
 wait

@@ -1,9 +1,13 @@
 """Princeton helpers for the CS-related review: accent-insensitive name search in a capture's text and listing quotes."""
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import re, sqlite3, unicodedata, zlib
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parents[2]
-LST = Path('/n/fs/resemble/maxent-grpo/.research-sweeps') / 'claude-princeton-listings-20261022/captures/listings.sqlite'
+LST = P.SWEEPS / 'claude-princeton-listings-20261022/captures/listings.sqlite'
 LST_REL = 'claude-princeton-listings-20261022/captures/listings.sqlite'
 TITLE = re.compile(r'Professor|Lecturer|Emerit|Dean\b|Chair\b|Provost|President|Instructor|Faculty|Associate|Assistant|Director|Scholar|Fellow', re.I)
 STOP = re.compile(r'\s(?:[A-Z]?\d{2,}[A-Z]?\b|\(?\d{3}\)?[-. ]\d{3}|\S+@\S+|Research Interests?|Office|Phone|Email|Website|Room\b|Area[s:]|Fields?:|Ph\.?D\.?,? )')

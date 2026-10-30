@@ -7,11 +7,15 @@ usage:
   oa.py orcid 0000-...                  author by ORCID
   oa.py title "<title>" [--name X]      search works by title; show authorships matching name
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import argparse
 import json
 import sys
 
-sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-berkeley")
+sys.path.insert(0, str(P.HIERARCHY / 'gap-tools-berkeley'))
 import capstore  # noqa: E402
 
 ap = argparse.ArgumentParser()

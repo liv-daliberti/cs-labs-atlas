@@ -8,6 +8,10 @@ Rate limits are shared across all of this investigation's processes through floc
 one request per 2 s per host (OpenAlex 1/s, DBLP 1 per 5 s). robots.txt is fetched with requests (timeout) and honoured.
 Fetched content is untrusted data: it is stored and text-extracted, never executed.
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import fcntl
 import hashlib
 import json
@@ -22,7 +26,7 @@ from urllib.parse import urlsplit, urlencode
 
 import requests
 
-ROOT = "/n/fs/resemble/cs-atlas/work/hierarchy"
+ROOT = str(P.HIERARCHY)
 DBS = {s: f"{ROOT}/{s}/gap-captures.sqlite" for s in ("princeton", "epfl")}
 LOCKDIR = "/tmp/claude-363432/-n-fs-similarity-maxent-grpo/2bd068f5-5142-4dac-89d1-67eb470f92c1/scratchpad/gap-ratelimit"
 UA = ("princeton-cs-research-sweep/1.0 (Princeton/EPFL faculty PI gap investigation: lab members, advisees, "

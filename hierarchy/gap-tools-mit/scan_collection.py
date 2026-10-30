@@ -1,7 +1,11 @@
 """Scan the MIT collection (read-only) for advising contexts whose adviser text mentions a gap PI's surname.
 usage: scan_collection.py SURNAME [SURNAME...]"""
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import gzip, json, re, sys, collections
-C = json.loads(gzip.decompress(open('/n/fs/resemble/maxent-grpo/princeton-live-20261015/atlas/data/collection-mit.json.gz', 'rb').read()))
+C = json.loads(gzip.decompress(open(str(P.SITE_ROOT / 'atlas/data/collection-mit.json.gz'), 'rb').read()))
 people = C['people'] if isinstance(C['people'], list) else list(C['people'].values())
 types = collections.Counter(c.get('type') for p in people for c in p.get('contexts') or [])
 print('context types', types.most_common(20))

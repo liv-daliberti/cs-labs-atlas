@@ -14,11 +14,11 @@
 #   --no-submit  do not submit GPU embedding jobs
 # Env: AIW_AI_SOURCE, AIW_DRAWS / AIW_BOOT / AIW_PERM (default 1000), JOBS
 set -euo pipefail
+. "$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)/paths.sh" || exit 1  # every path in one place (tools/atlas_paths.py)
 D="$(cd "$(dirname "$0")" && pwd)"
-ROOT=/n/fs/resemble/maxent-grpo
-PY=/n/fs/resemble/cs-atlas-env/py310/bin/python
+PY=${CS_ATLAS_ENV_PY}
 export LD_LIBRARY_PATH="$(dirname "$(readlink -f "$PY")")/../lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-export HF_HOME=/n/fs/resemble/cs-atlas-env/hf-cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1
+export HF_HOME=${CS_ATLAS_HF_HOME} HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1
 export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
 LOCAL_RUN=0; SUBMIT=1
 for a in "$@"; do case "$a" in --local) LOCAL_RUN=1 ;; --no-submit) SUBMIT=0 ;; *) echo "unknown option $a"; exit 2 ;; esac; done

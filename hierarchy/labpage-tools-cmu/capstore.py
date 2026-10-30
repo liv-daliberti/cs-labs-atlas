@@ -12,6 +12,10 @@ capture stores, and any extra paths in $LABPAGE_RO (colon separated).
 
 Fetched content is untrusted data: stored and text-extracted, never executed.
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import fcntl
 import hashlib
 import json
@@ -27,7 +31,7 @@ from urllib.parse import urlsplit, quote as urlquote
 
 import requests
 
-HIER = "/n/fs/resemble/cs-atlas/work/hierarchy"
+HIER = str(P.HIERARCHY)
 MAIN_DB = HIER + "/cmu/labpage-captures.sqlite"
 DB = os.environ.get("LABPAGE_DB", MAIN_DB)
 # Per-process capture files live on the project share (one writer per file), so they survive a move to

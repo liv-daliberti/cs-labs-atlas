@@ -3,12 +3,16 @@
 usage: insp.py URL [REGEX] [--w WIDTH] [--max N] [--from STR] [--len N]
   --from STR  print --len chars starting at the first occurrence of STR
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import argparse
 import re
 import sys
 import zlib
 
-sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-cmu")
+sys.path.insert(0, str(P.HIERARCHY / 'gap-tools-cmu'))
 import capstore  # noqa: E402
 
 ap = argparse.ArgumentParser()

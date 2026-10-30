@@ -28,6 +28,10 @@ store    /n/fs/resemble/cs-atlas-cache/citations/ft.sqlite
 target   TARGET usable texts per stratum (attempts stop there), MAX_TRY attempts per stratum at most.
 usage: ftsample.py plan | fetch [--workers 8] | status
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import argparse, json, os, re, sqlite3, sys, threading, time, zlib
 from collections import Counter, defaultdict
 from concurrent.futures import ThreadPoolExecutor
@@ -38,11 +42,11 @@ from urllib import robotparser
 HERE = Path(__file__).resolve().parent
 AIW = HERE.parent
 DATA = HERE / 'data'
-CACHE = Path('/n/fs/resemble/cs-atlas-cache/citations')
+CACHE = P.CACHE / 'citations'
 FTDB = Path(os.environ.get('CIT_FTDB', CACHE / 'ft.sqlite'))
 SCR = Path(os.environ.get('CIT_SCRATCH', '/tmp/claude-363432/-n-fs-similarity-maxent-grpo/2bd068f5-5142-4dac-89d1-67eb470f92c1/scratchpad/ftpdf'))
-HOM = Path('/n/fs/resemble/maxent-grpo/.research-sweeps/claude-homogenization-20261019/tools')
-CMU_TOOLS = Path('/n/fs/resemble/maxent-grpo/.research-sweeps/claude-cmu-20261017/tools')
+HOM = P.vendor('homogenization_tools')  # vendored code (tools/vendor_sync.py)
+CMU_TOOLS = P.vendor('cmu_tools')
 UA = 'HomogenizingScienceResearch/0.2 (academic metadata inventory)'
 SEED, TARGET, MAX_TRY = 20261022, int(os.environ.get('CIT_TARGET', 2500)), int(os.environ.get('CIT_MAXTRY', 9000))
 STRATA_YEARS = {'2016-2021': range(2016, 2022), '2023': [2023], '2024': [2024], '2025': [2025], '2026': [2026]}

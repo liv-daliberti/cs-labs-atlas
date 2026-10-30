@@ -2,11 +2,15 @@
 Searches theses (item_type 8) for the phrase, fetches each article JSON (cached in the capture DB), and prints
 those whose Advisor(s) field matches SURNAME_REGEX: id, date, author(s), department, degree, advisors.
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import json
 import re
 import sys
 
-sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/hierarchy/few-students-tools-cmu")
+sys.path.insert(0, str(P.HIERARCHY / 'few-students-tools-cmu'))
 import capstore  # noqa: E402
 
 q, rx = sys.argv[1], re.compile(sys.argv[2], re.I)

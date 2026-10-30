@@ -1,11 +1,15 @@
 """Build proposals/princeton.json and proposals/mit.json for the 2026-10-26 appointment-period review.
 Every new evidence item is built with pcap.ev (the quote is verified against the stored capture); kept existing
 evidence items are copied from hierarchy/<school>/pis.json unchanged."""
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as AP  # noqa: E402
 import json, sys
-sys.path.insert(0, '/n/fs/resemble/cs-atlas/work/hierarchy/period-tools')
+sys.path.insert(0, str(AP.HIERARCHY / 'period-tools'))
 import pcap
 
-H = '/n/fs/resemble/cs-atlas/work/hierarchy'
+H = str(AP.HIERARCHY)
 TODAY = '2026-10-26'
 WB = 'https://web.archive.org/web/'
 import unicodedata

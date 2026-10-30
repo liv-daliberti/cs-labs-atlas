@@ -6,6 +6,10 @@ whose url (and capture_url, when cited) match and whose bytes re-hash to that sh
 of one whitespace-collapsed text view of those bytes; the quote contains every token of the student's name.
 usage: verify.py SCHOOL [SCHOOL ...]     (exit 1 on any failure)
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import hashlib
 import json
 import os
@@ -18,7 +22,7 @@ sys.path.insert(0, TOOLS)
 import fscap  # noqa: E402
 import fsev  # noqa: E402
 
-ROOT = "/n/fs/resemble/cs-atlas/work/hierarchy"
+ROOT = str(P.HIERARCHY)
 bad_total = 0
 for school in sys.argv[1:]:
     bad = []

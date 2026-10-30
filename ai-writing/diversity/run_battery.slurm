@@ -9,13 +9,13 @@
 #SBATCH --cpus-per-task=32
 #SBATCH --mem=24G
 #SBATCH --time=00:59:00
-#SBATCH --output=/n/fs/resemble/cs-atlas/work/ai-writing/diversity/logs/battery-%j.out
+#SBATCH --output=ai-writing/diversity/logs/battery-%j.out
 set -euo pipefail
-ROOT=/n/fs/resemble/maxent-grpo
-D=/n/fs/resemble/cs-atlas/work/ai-writing/diversity
-PY=/n/fs/resemble/cs-atlas-env/py310/bin/python
+. "${CS_ATLAS_CODE:-${SLURM_SUBMIT_DIR:?}}/paths.sh" || exit 1  # every path in one place (tools/atlas_paths.py); submit from the code root
+D=${CS_ATLAS_AI_WRITING}/diversity
+PY=${CS_ATLAS_ENV_PY}
 export LD_LIBRARY_PATH="$(dirname "$(readlink -f "$PY")")/../lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-export HF_HOME=/n/fs/resemble/cs-atlas-env/hf-cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1
+export HF_HOME=${CS_ATLAS_HF_HOME} HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1
 export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
 export AIW_DIV_LOCAL=/tmp/aiw-divbat-$SLURM_JOB_ID
 export AIW_SNAPSHOT=$AIW_DIV_LOCAL/ft_snapshot.sqlite

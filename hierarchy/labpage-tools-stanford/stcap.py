@@ -8,6 +8,10 @@ Stanford store:
 Rate limiting is lpcap's: flock'd per-host stamps in the shared gap-ratelimit directory (archive.org shared by all
 workers), robots.txt honoured, bot challenges stored and never retried, dblp/eScholarship/Scholar refused.
 Import this module before lplab/lppubs."""
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import hashlib
 import os
 import sqlite3
@@ -23,7 +27,7 @@ import lpcap  # noqa: E402
 S = "stanford"
 lpcap.DBS[S] = f"{lpcap.ROOT}/{S}/labpage-captures.sqlite"
 lpcap.SISTER[S] = [f"{lpcap.ROOT}/{S}/thesis-captures.sqlite"]
-BASE_LIVE = "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-stanford-20261027/raw/captures.sqlite"
+BASE_LIVE = str(P.SWEEPS / 'claude-stanford-20261027/raw/captures.sqlite')
 
 _orig_cached = lpcap.cached
 

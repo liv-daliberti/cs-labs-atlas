@@ -2,10 +2,14 @@
 
 usage: a_retry_wb.py URL...   (tries each URL up to 5 times, waiting 120 s after a refused connection)
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import sys
 import time
 
-sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/hierarchy/few-students-tools-cmu")
+sys.path.insert(0, str(P.HIERARCHY / 'few-students-tools-cmu'))
 import capstore  # noqa: E402
 
 for u in sys.argv[1:]:

@@ -10,12 +10,13 @@
 #SBATCH --cpus-per-task=24
 #SBATCH --mem=64G
 #SBATCH --time=04:00:00
-#SBATCH --output=/n/fs/resemble/cs-atlas/work/ai-writing/citations/logs/rerun-%j.out
+#SBATCH --output=ai-writing/citations/logs/rerun-%j.out
 set -uo pipefail
-export LD_LIBRARY_PATH=/n/fs/resemble/cs-atlas-env/py310/lib PYTHONDONTWRITEBYTECODE=1 MPLBACKEND=Agg
+. "${CS_ATLAS_CODE:-${SLURM_SUBMIT_DIR:?}}/paths.sh" || exit 1  # every path in one place (tools/atlas_paths.py); submit from the code root
+export LD_LIBRARY_PATH=${CS_ATLAS_ENV_LIB} PYTHONDONTWRITEBYTECODE=1 MPLBACKEND=Agg
 export TMPDIR=/tmp/cit-rerun-$SLURM_JOB_ID SQLITE_TMPDIR=/tmp/cit-rerun-$SLURM_JOB_ID; mkdir -p $TMPDIR; trap 'rm -rf "$TMPDIR"' EXIT
-cd /n/fs/resemble/cs-atlas/work/ai-writing/citations
-PY="nice -n 10 /n/fs/resemble/cs-atlas-env/py310/bin/python -u -B"
+cd ${CS_ATLAS_AI_WRITING}/citations
+PY="nice -n 10 ${CS_ATLAS_ENV_PY} -u -B"
 step() { echo "== $* ($(date +%T))"; $PY "$@" || { echo "FAILED: $*"; exit 1; }; }
 step build.py
 step coverage.py

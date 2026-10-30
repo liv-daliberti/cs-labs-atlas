@@ -3,6 +3,10 @@ re-verify every quote against the stored bytes (sha256 + exact substring + url/c
 
 usage: build.py [--dry] [--only decisions_a,decisions_b]   (--dry: resolve + verify, do not write the output)
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import hashlib
 import importlib
 import json
@@ -12,11 +16,11 @@ import sys
 import unicodedata
 import zlib
 
-TOOLS = "/n/fs/resemble/cs-atlas/work/hierarchy/few-students-tools-cmu"
+TOOLS = str(P.HIERARCHY / 'few-students-tools-cmu')
 sys.path.insert(0, TOOLS)
 import capstore  # noqa: E402
 
-HIER = "/n/fs/resemble/cs-atlas/work/hierarchy/cmu"
+HIER = str(P.HIERARCHY / 'cmu')
 INPUT = HIER + "/few-students-input.json"
 OUTPUT = HIER + "/few-students-evidence.json"
 MODULES = ["decisions_a", "decisions_b", "decisions_c", "decisions_d"]

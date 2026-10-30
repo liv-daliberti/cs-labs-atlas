@@ -6,6 +6,10 @@ the stored page's whitespace-collapsed text; quotes name the person (PI surname/
 identity items; a token of the student's name for student rows); roles and years are well-formed.
 usage: qa.py
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import hashlib
 import json
 import re
@@ -14,10 +18,10 @@ import sys
 import unicodedata
 import zlib
 
-sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-berkeley")
+sys.path.insert(0, str(P.HIERARCHY / 'gap-tools-berkeley'))
 import capstore  # noqa: E402
 
-H = "/n/fs/resemble/cs-atlas/work/hierarchy/berkeley"
+H = str(P.HIERARCHY / 'berkeley')
 rows = json.load(open(H + "/gap-evidence.json"))
 gap = json.load(open(H + "/gap-input.json"))
 con = sqlite3.connect(f"file:{capstore.DB_MAIN}?mode=ro", uri=True)

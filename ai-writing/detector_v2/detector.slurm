@@ -3,14 +3,14 @@
 # (detector.py score --shard I --nshards N; the shard index is SLURM_ARRAY_TASK_ID, and each task reads one contiguous
 # rowid range of ai-writing/fulltext.sqlite in place).
 #SBATCH --job-name=aiw2-det
-#SBATCH --output=/n/fs/resemble/cs-atlas/work/ai-writing/detector_v2/logs/det-%A_%a.out
+#SBATCH --output=ai-writing/detector_v2/logs/det-%A_%a.out
 set -euo pipefail
-ROOT=/n/fs/resemble/maxent-grpo
-PY=/n/fs/resemble/cs-atlas-env/py310/bin/python
-D=/n/fs/resemble/cs-atlas/work/ai-writing/detector_v2
+. "${CS_ATLAS_CODE:-${SLURM_SUBMIT_DIR:?}}/paths.sh" || exit 1  # every path in one place (tools/atlas_paths.py); submit from the code root
+PY=${CS_ATLAS_ENV_PY}
+D=${CS_ATLAS_AI_WRITING}/detector_v2
 cd $D
-export LD_LIBRARY_PATH="/n/fs/resemble/cs-atlas-env/py310/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-export HF_HOME=/n/fs/resemble/cs-atlas-env/hf-cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 TOKENIZERS_PARALLELISM=false PYTHONDONTWRITEBYTECODE=1
+export LD_LIBRARY_PATH="${CS_ATLAS_ENV_LIB}${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+export HF_HOME=${CS_ATLAS_HF_HOME} HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 TOKENIZERS_PARALLELISM=false PYTHONDONTWRITEBYTECODE=1
 export OMP_NUM_THREADS=${SLURM_CPUS_PER_TASK:-8}
 echo "{\"node\": \"$(hostname)\", \"args\": \"$*\", \"gpus\": \"${CUDA_VISIBLE_DEVICES:-}\"}"
 if [ "$1" = score ]; then

@@ -1,10 +1,14 @@
 """Fetch URLs (round-robin across hosts, cached in gap-captures.sqlite) and print text windows around a regex.
 usage: look.py [--grep RX] [--chars N] [--wb] [--force] URL...
   --wb : if the live fetch is not 200 (or matches a login wall), fall back to the newest Wayback id_ capture."""
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import argparse, json, re, sys
 from collections import defaultdict, deque
 from urllib.parse import urlsplit
-sys.path.insert(0, '/n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-mit')
+sys.path.insert(0, str(P.HIERARCHY / 'gap-tools-mit'))
 import capstore
 
 ap = argparse.ArgumentParser()

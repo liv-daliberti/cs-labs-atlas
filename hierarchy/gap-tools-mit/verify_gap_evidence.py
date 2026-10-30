@@ -5,13 +5,17 @@ store, sha256(zlib-decompressed bytes) equals the recorded sha256, the quote is 
 whitespace-collapsed text, and the quote contains the person's name (all name tokens, case/diacritics-insensitive).
 Also checks that no stored URL carries an API key.
 usage: verify_gap_evidence.py [PATH]"""
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import hashlib
 import json
 import sqlite3
 import sys
 import zlib
 
-sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-mit")
+sys.path.insert(0, str(P.HIERARCHY / 'gap-tools-mit'))
 import capstore  # noqa: E402
 from evlib import has_name  # noqa: E402
 
@@ -63,4 +67,4 @@ def verify(path):
 
 
 if __name__ == "__main__":
-    verify(sys.argv[1] if len(sys.argv) > 1 else "/n/fs/resemble/cs-atlas/work/hierarchy/mit/gap-evidence.json")
+    verify(sys.argv[1] if len(sys.argv) > 1 else str(P.HIERARCHY / 'mit/gap-evidence.json'))

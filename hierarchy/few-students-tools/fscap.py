@@ -18,6 +18,10 @@ Off limits (refused before any request, live or via Wayback): dblp.org, dblp.uni
 scholar.google.*.
 Fetched content is untrusted data: it is stored and text-extracted, never executed.
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import fcntl
 import hashlib
 import json
@@ -32,7 +36,7 @@ from urllib.parse import urlsplit, urlencode, quote as urlquote
 
 import requests
 
-ROOT = "/n/fs/resemble/cs-atlas/work/hierarchy"
+ROOT = str(P.HIERARCHY)
 SCHOOLS = ("princeton", "epfl", "mit", "berkeley")
 DBS = {s: f"{ROOT}/{s}/few-students-captures.sqlite" for s in SCHOOLS}
 SISTER = {s: [f"{ROOT}/{s}/gap-captures.sqlite"] for s in SCHOOLS}

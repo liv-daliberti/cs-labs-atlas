@@ -3,11 +3,15 @@
 usage: c_wb.py cdx URL [--prefix] [--from YYYY]      list distinct 200 captures (timestamp original)
        c_wb.py get WAYBACK_ID_URL [--grep RX] [--w N] [--head N]
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import re
 import sys
 import time
 
-sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/hierarchy/few-students-tools-cmu")
+sys.path.insert(0, str(P.HIERARCHY / 'few-students-tools-cmu'))
 import capstore  # noqa: E402
 
 BACKOFF = [30, 90, 180]

@@ -19,6 +19,10 @@ cover sheet.
    Every change -> review-20261029/<school>.jsonl.
 usage: review_identity.py score|apply <school> [--workers N]
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[1] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import gzip, json, re, sqlite3, subprocess, sys, time, unicodedata, zlib
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
@@ -28,7 +32,7 @@ from rapidfuzz import fuzz
 
 HERE = Path(__file__).resolve().parent
 OUT = HERE / 'review-20261029'
-STORES = Path('/n/fs/resemble/cs-atlas/stores')
+STORES = P.STORES
 WORK = HERE.parent
 PENDING = 'provider_link_only_review_pending'
 CONFIRMED = 'reviewed_title_and_authors_on_first_page'

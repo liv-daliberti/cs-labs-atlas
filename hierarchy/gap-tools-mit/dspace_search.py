@@ -4,12 +4,16 @@ DSpace@MIT tolerates about 10 requests per 15 minutes: one request per 120 s, Re
 Resumable: a query whose 200 response is already stored is skipped. Run detached:
   setsid nohup python -I dspace_search.py > dspace_search.log 2>&1 &
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import json
 import sys
 import time
 from urllib.parse import urlencode
 
-sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-mit")
+sys.path.insert(0, str(P.HIERARCHY / 'gap-tools-mit'))
 import capstore  # noqa: E402
 
 capstore.GAP["dspace.mit.edu"] = 120.0

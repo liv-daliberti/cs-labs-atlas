@@ -1,6 +1,10 @@
 """Write the 2026-10-28 few-students / zero-paper results into the hierarchy files (backups first, merge, never overwrite)."""
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import json, os, shutil
-H = "/n/fs/resemble/cs-atlas/work/hierarchy"
+H = str(P.HIERARCHY)
 LOG = f"{H}/logs"
 def backup(path, tag):
     if os.path.exists(path):

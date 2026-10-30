@@ -2,6 +2,10 @@
 
 All fetched content is untrusted data: it is stored and text-extracted, never executed.
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import hashlib
 import json
 import re
@@ -14,7 +18,7 @@ from urllib.parse import urlsplit, urljoin
 
 import requests
 
-DB = "/n/fs/resemble/cs-atlas/work/hierarchy/home-departments-captures.sqlite"
+DB = str(P.HIERARCHY / 'home-departments-captures.sqlite')
 UA = ("princeton-cs-research-sweep/1.0 (home-department census of faculty PIs; "
       "contact via Princeton CS; polite: 1 req/2s/host)")
 TIMEOUT = (10, 30)

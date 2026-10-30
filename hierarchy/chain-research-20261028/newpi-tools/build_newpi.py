@@ -1,6 +1,10 @@
 """Builds ../newpi-review.json from captures.sqlite (every quote verified by evid.ev)."""
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[3] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 from evid import ev, adv, save
-OUT = "/n/fs/resemble/cs-atlas/work/hierarchy/chain-research-20261028/newpi-review.json"
+OUT = str(P.HIERARCHY / 'chain-research-20261028/newpi-review.json')
 OA = "https://openalex.org/"
 ORC = "https://pub.orcid.org/v3.0/{}/employments"
 EECS = "https://www2.eecs.berkeley.edu/Faculty/Homepages/{}.html"

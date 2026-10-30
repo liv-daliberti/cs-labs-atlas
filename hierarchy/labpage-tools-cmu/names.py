@@ -1,10 +1,14 @@
 """Name normalisation + held-person matching with nicknames and spelling variants (CMU lab-page pass)."""
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as AP  # noqa: E402
 import csv
 import re
 import unicodedata
 from collections import defaultdict
 
-NICK_DIR = "/n/fs/resemble/cs-atlas/work/hierarchy/nicknames"
+NICK_DIR = str(AP.HIERARCHY / 'nicknames')
 TITLES = {"dr", "prof", "professor", "mr", "ms", "mrs", "miss", "sir"}
 SUFFIXES = {"jr", "sr", "ii", "iii", "iv", "phd", "ph d", "md", "mba", "ms", "msc", "bs", "ba", "pe"}
 

@@ -2,6 +2,10 @@
 
 usage: batch_fetch.py [--grep REGEX] [--chars N] [--force] (--file F | URL...)
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import argparse
 import json
 import re
@@ -9,7 +13,7 @@ import sys
 from collections import defaultdict, deque
 from urllib.parse import urlsplit
 
-sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/hierarchy/home-dept-tools")
+sys.path.insert(0, str(P.HIERARCHY / 'home-dept-tools'))
 import capstore  # noqa: E402
 
 ap = argparse.ArgumentParser()

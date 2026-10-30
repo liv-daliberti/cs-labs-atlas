@@ -28,7 +28,7 @@ def load(p, default=None):
     return json.load(open(p)) if p.exists() else default
 
 
-SITE_BUILDER = P.SITE_ROOT / 'scripts/build-cs-hierarchy.py'
+SITE_BUILDER = P.vendor('site_builder') / 'build-cs-hierarchy.py'  # vendored from the site build's scripts/ (tools/vendor_sync.py)
 _spec = importlib.util.spec_from_file_location('build_cs_hierarchy', SITE_BUILDER)
 SITE = importlib.util.module_from_spec(_spec); _spec.loader.exec_module(SITE)
 

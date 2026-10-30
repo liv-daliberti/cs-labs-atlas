@@ -1,15 +1,19 @@
 """Name matching for the thesis hunt: the hierarchy builder's own rules (tools/pi_hierarchy.py: toks, Name, NICK), plus
 adviser-field cleanup. A thesis adviser matches a PI when Name(pi.names).match(adviser) holds and the adviser's given
 name is a full name (not an initial) or the initial is unique among the school's PIs with that surname."""
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import json
 import re
 import sys
 import unicodedata
 
-sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/tools")
+sys.path.insert(0, str(P.TOOLS))
 import pi_hierarchy as ph  # noqa: E402  (main is guarded; only helpers are used)
 
-ROOT = "/n/fs/resemble/cs-atlas/work/hierarchy"
+ROOT = str(P.HIERARCHY)
 toks, Name, given = ph.toks, ph.Name, ph.given
 
 TITLES = re.compile(r"^(?:prof(?:essor)?\.?|dr\.?|mr\.?|ms\.?|mrs\.?|sir)\s+", re.I)

@@ -1,0 +1,71 @@
+# Relocation map, the part tools/atlas_paths.py does not name (2026-10-30). Read by tools/relocate_project.py together
+# with atlas_paths._LEGACY -> the project layout. Columns: old<TAB>new<TAB>kind<TAB>note
+#   new   relative to the project root (atlas_paths.ROOT) unless absolute; '-' for none
+#   kind  rename      move old -> new (os.rename, same filesystem)
+#         split       old is dissolved: its items are mapped one by one; leftovers are reported; new is created
+#         pool        old stays (another project): only the listed items move out of it
+#         keep        stays where it is (references to it are fine)
+#         alias       not moved: a path that reaches a moved directory (a link, or a path through a link); rewrite only
+#         stale-link  a symlink that is left dangling by the move: remove it after the move; rewrite references
+#         skip        not moved by this tool; the note says what to do
+# A row here overrides an atlas_paths slot with the same old path.
+#
+# today's homogenizing-science root becomes the project root; its own content moves to world-atlas/
+/n/fs/resemble/homogenizing-science/app	world-atlas/app	rename	the 300-university atlas
+/n/fs/resemble/homogenizing-science/config	world-atlas/config	rename	the 300-university atlas
+/n/fs/resemble/homogenizing-science/data	world-atlas/data	rename	the 300-university atlas
+/n/fs/resemble/homogenizing-science/docs	world-atlas/docs	rename	the 300-university atlas
+/n/fs/resemble/homogenizing-science/tests	world-atlas/tests	rename	the 300-university atlas
+/n/fs/resemble/homogenizing-science/scripts	world-atlas/scripts	rename	the 300-university atlas
+/n/fs/resemble/homogenizing-science/README.md	world-atlas/README.md	rename	the 300-university atlas
+/n/fs/resemble/homogenizing-science/pytest.ini	world-atlas/pytest.ini	rename	the 300-university atlas
+/n/fs/resemble/homogenizing-science/requirements.txt	world-atlas/requirements.txt	rename	the 300-university atlas
+/n/fs/resemble/homogenizing-science/.gitignore	world-atlas/.gitignore	rename	the 300-university atlas
+/n/fs/resemble/homogenizing-science/.pytest_cache	world-atlas/.pytest_cache	rename	the 300-university atlas
+/n/fs/resemble/homogenizing-science/.work	world-atlas/.work	rename	the 300-university atlas
+/n/fs/resemble/homogenizing-science/env	env	keep	already at its final place (env/atlas, built 2026-10-30)
+# the stores leave data/fulltext one school at a time, before data/ moves (catalogs hold relative objects/ paths)
+/n/fs/resemble/homogenizing-science/data/fulltext	stores	split	dissolved: each school moves to stores/<school> as a real directory
+/n/fs/resemble/homogenizing-science/data/fulltext/princeton	stores/princeton	rename	full-text store
+/n/fs/resemble/homogenizing-science/data/fulltext/cmu	stores/cmu	rename	full-text store
+/n/fs/resemble/homogenizing-science/data/fulltext/epfl	stores/epfl	rename	full-text store
+/n/fs/resemble/homogenizing-science/data/fulltext/mit	stores/mit	rename	full-text store
+/n/fs/resemble/homogenizing-science/data/fulltext/berkeley	stores/berkeley	rename	full-text store
+/n/fs/resemble/homogenizing-science/data/fulltext/michigan	stores/michigan	rename	full-text store
+/n/fs/resemble/homogenizing-science/data/fulltext/stanford	stores/stanford	stale-link	link to cs-atlas-fulltext/stanford (which moves to stores/stanford); travels to world-atlas/data/fulltext
+/n/fs/resemble/cs-atlas-fulltext	stores	split	only stanford/ is in it (slot STANFORD_STORE)
+# maxent-grpo is another project and stays; the atlas's site history leaves it
+/n/fs/resemble/maxent-grpo	archive/site-history	pool	only the items below (and the atlas_paths slots inside it) move
+/n/fs/resemble/maxent-grpo/cambridge-research-20261013	archive/site-history/cambridge-research-20261013	rename	site history
+/n/fs/resemble/maxent-grpo/cambridge-workbook-tmp	archive/site-history/cambridge-workbook-tmp	rename	site history
+/n/fs/resemble/maxent-grpo/catalogue-publish-20261021	archive/site-history/catalogue-publish-20261021	rename	site history
+/n/fs/resemble/maxent-grpo/princeton-live-20261015	archive/site-history/princeton-live-20261015	rename	site history
+/n/fs/resemble/maxent-grpo/princeton-live-20261020-recovery	archive/site-history/princeton-live-20261020-recovery	rename	site history
+/n/fs/resemble/maxent-grpo/princeton-live-addendum-20261020	archive/site-history/princeton-live-addendum-20261020	rename	site history
+/n/fs/resemble/maxent-grpo/princeton-live-night-20261020	archive/site-history/princeton-live-night-20261020	rename	site history
+/n/fs/resemble/maxent-grpo/princeton-live-refresh-20261020	archive/site-history/princeton-live-refresh-20261020	rename	site history
+/n/fs/resemble/maxent-grpo/princeton-refresh-source-transfer-20261020	archive/site-history/princeton-refresh-source-transfer-20261020	rename	site history
+/n/fs/resemble/maxent-grpo/princeton-source-transfer-20261020	archive/site-history/princeton-source-transfer-20261020	rename	site history
+/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021	code	stale-link	link to cs-atlas/work; not followed; travels inside archive/sweeps; remove after the move
+# cs-atlas is dissolved
+/n/fs/resemble/cs-atlas	.	split	dissolved into the project root
+/n/fs/resemble/cs-atlas/archive	archive/cs-atlas-archive	rename	pointers to sweeps archived on Hugging Face
+/n/fs/resemble/cs-atlas/studies	studies	split	studies/ becomes a real directory. ai-writing's CODE is tracked in the repo (code/ai-writing): moving it out would split the git repository; proposal: code stays in code/ai-writing, only its git-ignored data goes to studies/ai-writing (a separate, later step)
+/n/fs/resemble/cs-atlas/studies/ai-writing	code/ai-writing	stale-link	link to cs-atlas/work/ai-writing
+/n/fs/resemble/cs-atlas/env	env	stale-link	link to cs-atlas-env
+/n/fs/resemble/cs-atlas/env/py310	/n/fs/resemble/cs-atlas-env/py310	alias	the old env, through the env link
+/n/fs/resemble/cs-atlas/env/hf-cache	env/hf-cache	alias	through the env link
+/n/fs/resemble/cs-atlas/release	export	stale-link	link to cs-labs-atlas
+/n/fs/resemble/cs-atlas/site	site	stale-link	link to maxent-grpo/homogenizing-publish-20261029
+/n/fs/resemble/cs-atlas/stores	stores	alias	a directory of links to the stores; remove it after the move
+/n/fs/resemble/cs-atlas/stores/princeton	stores/princeton	stale-link	link to the princeton store
+/n/fs/resemble/cs-atlas/stores/cmu	stores/cmu	stale-link	link to the cmu store
+/n/fs/resemble/cs-atlas/stores/epfl	stores/epfl	stale-link	link to the epfl store
+/n/fs/resemble/cs-atlas/stores/mit	stores/mit	stale-link	link to the mit store
+/n/fs/resemble/cs-atlas/stores/berkeley	stores/berkeley	stale-link	link to the berkeley store
+/n/fs/resemble/cs-atlas/stores/michigan	stores/michigan	stale-link	link to the michigan store
+/n/fs/resemble/cs-atlas/stores/stanford	stores/stanford	stale-link	link to the stanford store
+/n/fs/resemble/cs-atlas/work-infra	-	skip	a git worktree of code/: remove it (git worktree remove) or move it before the move; run git worktree repair in code/ after
+# the old env stays until it is retired (conda envs cannot be moved); only the model cache moves
+/n/fs/resemble/cs-atlas-env	env	pool	only hf-cache moves (slot HF_HOME)
+/n/fs/resemble/cs-atlas-env/py310	/n/fs/resemble/cs-atlas-env/py310	keep	conda env: stays until retired

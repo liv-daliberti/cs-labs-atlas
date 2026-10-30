@@ -12,6 +12,10 @@ Advisers of CS-relevant theses that match no PI are counted per person and annot
 usage: build.py [--final] [SCHOOL ...]   (default: all five; the report covers every school built so far;
        --final writes hierarchy/<school>/thesis-evidence.json and hierarchy/thesis-harvest-report.json)
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import collections
 import datetime
 import json
@@ -24,7 +28,7 @@ import names  # noqa: E402
 import records  # noqa: E402
 
 ROOT = names.ROOT
-CENSUS = "/n/fs/resemble/cs-atlas/work/census"
+CENSUS = str(P.CENSUS)
 SCHOOLS = ["princeton", "cmu", "epfl", "mit", "berkeley", "stanford"]
 RANK = {"phd": 3, "masters": 2, "undergraduate": 1, "other": 0}
 STATE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "out")

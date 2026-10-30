@@ -8,10 +8,10 @@
 #   battery  run_all.sh --local --no-submit (paper features, lab diversity, analyses, figures, REPORT.md) on this host
 # Log: logs/refresh-20261027.log; the last line is {"done": ...} or {"stopped": ...}.
 set -euo pipefail
-ROOT=/n/fs/resemble/maxent-grpo
-AW=/n/fs/resemble/cs-atlas/work/ai-writing
-PY=/n/fs/resemble/cs-atlas-env/py310/bin/python
-export LD_LIBRARY_PATH="/n/fs/resemble/cs-atlas-env/py310/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+. "$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)/paths.sh" || exit 1  # every path in one place (tools/atlas_paths.py)
+AW=${CS_ATLAS_AI_WRITING}
+PY=${CS_ATLAS_ENV_PY}
+export LD_LIBRARY_PATH="${CS_ATLAS_ENV_LIB}${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 say() { echo "{\"at\": \"$(date -u +%FT%TZ)\", $1}"; }
 stop() { say "\"stopped\": \"$1\""; exit 1; }
 cd "$AW"

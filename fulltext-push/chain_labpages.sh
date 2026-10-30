@@ -14,12 +14,12 @@ cd "$(dirname "$0")"
   sleep 60
 done
 rm -f logs/steps-princeton.log.since-$1
-PY="/usr/local/anaconda3/2024.02/bin/python -I -u"
+PY="${CS_ATLAS_COLLECTOR_PY} -I -u"
 echo "{\"at\": \"$(date -u +%FT%TZ)\", \"chain_labpages\": \"start\"}"
 nice -n 5 $PY berkeley_catalog.py
 for s in cmu epfl mit princeton; do nice -n 5 $PY add_works.py $s; done
 NW=$(ls -d $CS_ATLAS_STORES/princeton/discovery/claude-labpapers-newworks-*/ | xargs -n1 basename | sed 's/^/cs_pi_works:/')
-(cd "$(cs_atlas_sweep claude-princeton-20261015)" && /usr/local/anaconda3/2024.02/bin/python -u tools/import_all_when_free.py $NW)
+(${CS_ATLAS_COLLECTOR_PY} -u "$CS_ATLAS_VENDOR/princeton_tools/import_all_when_free.py" $NW)
 ./run_steps.sh berkeley proceedings arxiv_title s2 core techrpt pubpages >> logs/steps-berkeley.log 2>&1
 ./run_steps.sh cmu oa_arxiv openalex proceedings arxiv_title s2 core >> logs/steps-cmu.log 2>&1
 ./run_steps.sh epfl oa_arxiv openalex proceedings arxiv_title s2 core >> logs/steps-epfl.log 2>&1

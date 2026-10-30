@@ -8,6 +8,10 @@ nothing under detector_v2/results/ is touched:
 Each task reads a contiguous rowid range of a node-local copy of ft.sqlite.
 usage: v2score.py SHARD NSHARDS
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import gzip, importlib.util, json, os, shutil, sqlite3, sys, time, zlib
 from pathlib import Path
 
@@ -19,7 +23,7 @@ import v2common as V  # noqa: E402
 
 spec = importlib.util.spec_from_file_location('detector_v2_detector', D2 / 'detector.py')
 DET = importlib.util.module_from_spec(spec); spec.loader.exec_module(DET)
-CACHE = Path('/n/fs/resemble/cs-atlas-cache/citations')
+CACHE = P.CACHE / 'citations'
 OUT = CACHE / 'v2scores'
 
 

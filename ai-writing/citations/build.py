@@ -22,6 +22,10 @@ reference stubs with no metadata).
                     as published (the ML-conference failure mode: NeurIPS/ICLR/ICML papers that OpenAlex knows only as
                     their arXiv record).
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import gzip, json, re, sqlite3, zlib
 from collections import Counter
 from pathlib import Path
@@ -30,7 +34,7 @@ import numpy as np, pandas as pd
 HERE = Path(__file__).resolve().parent
 AIW = HERE.parent
 DATA = HERE / 'data'
-CACHE = Path('/n/fs/resemble/cs-atlas-cache/citations')
+CACHE = P.CACHE / 'citations'
 PUB_SRC = {'journal', 'conference', 'book series', 'ebook platform'}
 NOT_PUBLISHER_TYPES = {'preprint', 'posted-content', 'dissertation', 'dataset', 'report', 'standard', 'grant', 'peer-review',
                        'software', 'other', 'retraction', None}

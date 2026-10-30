@@ -6,9 +6,13 @@ listings, each PI's EECS Ph.D. dissertations-by-faculty page (newest entry), EEC
 Mathematics Genealogy Project pages (Wayback captures; the live MGP site is offline since 2026-10-20 for a PHP
 vulnerability), Barsky Lab pages, EECS technical reports ("Advisors:"), and ICSI AI-group pages (Feldman).
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import sys
 
-sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-berkeley")
+sys.path.insert(0, str(P.HIERARCHY / 'gap-tools-berkeley'))
 from dhelp import *  # noqa: E402,F401,F403
 
 D = {}

@@ -4,10 +4,14 @@ Copies every worker row not already present in the main DB (same url, capture_ur
 preserving all columns (url, final_url, capture_url, fetched_at, status, sha256, content_type, zlib content, error).
 usage: merge_workers.py WORKER_DB [...]
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import sqlite3
 import sys
 
-sys.path.insert(0, "/n/fs/resemble/cs-atlas/work/hierarchy/gap-tools-berkeley")
+sys.path.insert(0, str(P.HIERARCHY / 'gap-tools-berkeley'))
 import capstore  # noqa: E402
 
 COLS = "url,final_url,capture_url,fetched_at,status,sha256,content_type,content,error"

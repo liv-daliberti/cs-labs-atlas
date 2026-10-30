@@ -1,11 +1,11 @@
 #!/bin/bash
 # Resume refresh_20261027.sh after the detector publish (its gate check misread a passed gate: grep -q closed the pipe).
 set -euo pipefail
-ROOT=/n/fs/resemble/maxent-grpo
-PY=/n/fs/resemble/cs-atlas-env/py310/bin/python
-export LD_LIBRARY_PATH="/n/fs/resemble/cs-atlas-env/py310/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+. "$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)/paths.sh" || exit 1  # every path in one place (tools/atlas_paths.py)
+PY=${CS_ATLAS_ENV_PY}
+export LD_LIBRARY_PATH="${CS_ATLAS_ENV_LIB}${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 say() { echo "{\"at\": \"$(date -u +%FT%TZ)\", $1}"; }
-cd /n/fs/resemble/cs-atlas/work/ai-writing/diversity
+cd ${CS_ATLAS_AI_WRITING}/diversity
 step() { nice -n 10 "$PY" -u "$@"; }
 for round in $(seq 1 12); do
   while [ "$(squeue -u "$USER" -h -n aiw-divemb -o %i | wc -l)" -ge 1 ]; do sleep 300; done

@@ -1,6 +1,10 @@
 """Print a compact view of each period target: current periods, listings, census override periods."""
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as AP  # noqa: E402
 import json, sys
-H = '/n/fs/resemble/cs-atlas/work/hierarchy'
+H = str(AP.HIERARCHY)
 school = sys.argv[1]
 T = json.load(open(f'{H}/period-targets-20261026.json'))[school]
 P = {p['pi']: p for p in json.load(open(f'{H}/{school}/pis.json'))}

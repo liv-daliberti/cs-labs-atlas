@@ -7,11 +7,15 @@ are copied in unchanged here (same fetched_at and sha256; copied_from names the 
 reads them like any other capture. Resumable (a URL already stored is skipped).
 usage: harvest_stanford.py
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import json, os, sqlite3, sys, zlib
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import tcap  # noqa: E402
 
-SRC = "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-stanford-20261027/raw/captures.sqlite"
+SRC = str(P.SWEEPS / 'claude-stanford-20261027/raw/captures.sqlite')
 
 
 def main():

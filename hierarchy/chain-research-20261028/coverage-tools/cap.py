@@ -1,12 +1,16 @@
 """Polite fetcher + capture store for the 2026-10-28 coverage review.
 Every page relied on is a row in captures.sqlite: url, final_url, fetched_at, status, sha256 (raw bytes), text, raw (zlib).
 Off limits: dblp.org, scholar.google.*. Bot challenges are stored and never worked around. API keys never stored."""
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[3] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import hashlib, re, sqlite3, sys, time, zlib, html
 from datetime import datetime, timezone
 from urllib.parse import urlsplit
 import requests
 
-DB = "/n/fs/resemble/cs-atlas/work/hierarchy/chain-research-20261028/coverage-tools/captures.sqlite"
+DB = str(P.HIERARCHY / 'chain-research-20261028/coverage-tools/captures.sqlite')
 UA = "princeton-cs-research-sweep/1.0 (faculty lab membership research; academic, non-commercial; polite 1 req/2s/host)"
 BLOCKED = re.compile(r"(^|\.)(dblp\.org|dblp\.uni-trier\.de)$|(^|\.)scholar\.google\.", re.I)
 CHAL = re.compile(rb"(<title>\s*Just a moment|cf_chl_opt|cf-browser-verification|Attention Required! \| Cloudflare|Checking your browser|_Incapsula_Resource|px-captcha|Verifying you are human|Pardon Our Interruption|/TSPD/|bobcmn)", re.I)
