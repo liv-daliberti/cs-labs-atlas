@@ -88,10 +88,32 @@ def page1_text(content):
 Y0, Y1 = (int(v) for v in (os.environ.get('DBLP_RECOVER_YEARS') or '2016-2026').split('-'))
 
 
+def dump_pubs(pis):
+    """The PIs' DBLP records from DBLP's own dump (hierarchy/dblp-dump-persons.json.gz, tools/dblp_dump_persons.py) in the
+    cached-list shape {key: {title, year, doi, venue, ee, authors: {pid or 'n<i>': name}}}; the PI's own byline entry is
+    keyed by the PI's pid."""
+    persons = read(HERE / 'hierarchy' / 'dblp-dump-persons.json.gz').get('persons') or {}
+    out = {}
+    for p in pis:
+        for q in p.get('dblp') or []:
+            per = persons.get(q) or {}
+            mine = {re.sub(r'\s+\d{4}$', '', n) for n in per.get('names') or []}
+            for rec in per.get('pubs') or []:
+                r = out.setdefault(rec['key'], dict(title=rec.get('title'), year=rec.get('year'), doi=(rec.get('dois') or [None])[0],
+                                                    venue=rec.get('venue'), ee=[], authors={}))
+                for i, (nm, pid) in enumerate(rec.get('authors') or []):
+                    k = q if re.sub(r'\s+\d{4}$', '', nm) in mine else (pid or f'n{i}')
+                    r['authors'].setdefault(k, re.sub(r'\s+\d{4}$', '', nm))
+    return out
+
+
 def candidates(school, skip_have=True):
     pis = read(HERE / 'hierarchy' / school / 'pis.json')
     own = HERE / 'hierarchy' / school / 'raw/dblp_pubs.json.gz'
-    pubs = read(own if own.exists() else P.sweep(DBLP[school]) / 'raw/dblp_pubs.json.gz')['pubs']
+    if own.exists() or school in DBLP:
+        pubs = read(own if own.exists() else P.sweep(DBLP[school]) / 'raw/dblp_pubs.json.gz')['pubs']
+    else:  # a protocol school has no legacy DBLP sweep (Michigan request 1, 2026-10-29): the PIs' pages from the dump
+        pubs = dump_pubs(pis)
     rows = [json.loads(l) for l in gzip.open(HERE / 'hierarchy' / school / 'lab_papers.jsonl.gz', 'rt')]
     have = collections.defaultdict(set)
     for r in rows:

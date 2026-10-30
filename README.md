@@ -44,13 +44,13 @@ These are the owner's decisions; the full rules and the evidence model are in [d
 | PI labs | 140 | 458 | 169 | 277 | 209 | 232 |
 | … core computing departments | 97 | 343 | 111 | 167 | 134 | 145 |
 | … CS-related, other departments | 43 | 115 | 58 | 110 | 75 | 87 |
-| Home departments | 14 | 25 | 17 | 18 | 19 | 37 |
-| Unique lab papers | 8,576 | 25,199 | 13,022 | 19,462 | 13,658 | 18,662 |
-| Lab–paper rows (a paper can belong to several labs) | 9,376 | 30,772 | 13,793 | 21,839 | 16,182 | 21,546 |
+| Home departments | 14 | 25 | 17 | 17 | 18 | 37 |
+| Unique lab papers | 8,575 | 25,199 | 13,022 | 19,462 | 13,658 | 18,662 |
+| Lab–paper rows (a paper can belong to several labs) | 9,375 | 30,772 | 13,793 | 21,839 | 16,182 | 21,546 |
 | Median lab papers per PI | 41 | 51 | 58 | 58 | 50 | 63 |
-| Students (unique people) | 3,093 | 7,735 | 3,680 | 7,112 | 3,873 | 2,801 |
-| Lab–student pairs | 3,524 | 9,378 | 3,984 | 7,649 | 4,451 | 3,214 |
-| Student–paper links | 7,518 | 29,032 | 14,821 | 20,389 | 16,537 | 17,746 |
+| Students (unique people) | 3,093 | 7,387 | 3,680 | 7,110 | 3,873 | 2,801 |
+| Lab–student pairs | 3,524 | 8,987 | 3,984 | 7,643 | 4,451 | 3,215 |
+| Student–paper links | 7,517 | 29,032 | 14,828 | 20,391 | 16,537 | 17,753 |
 | Labs with papers | 137 | 456 | 167 | 275 | 208 | 232 |
 | Labs with students | 140 | 458 | 169 | 277 | 208 | 232 |
 | Labs with papers, students and links | 131 | 445 | 162 | 267 | 196 | 225 |

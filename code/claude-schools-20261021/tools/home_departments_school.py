@@ -105,9 +105,10 @@ def main(key, write_shared=False):
     (P.HIERARCHY / key / 'home-departments.json').write_text(json.dumps(out, indent=1, ensure_ascii=False))
     if write_shared:
         f = P.HIERARCHY / 'home-departments.json'
-        shared = json.loads(f.read_text())
+        txt = f.read_text(); shared = json.loads(txt)
+        ind = len(re.match(r'\[\n( *)', txt).group(1)) if re.match(r'\[\n( *)', txt) else 2  # keep the file's own layout
         shared = [r for r in shared if r.get('school') != key] + out
-        f.write_text(json.dumps(shared, indent=1, ensure_ascii=False) + '\n')
+        f.write_text(json.dumps(shared, indent=ind, ensure_ascii='\\u' in txt) + ('\n' if txt.endswith('\n') else ''))
     print(json.dumps(dict(n.most_common(20))))
 
 

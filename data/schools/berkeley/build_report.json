@@ -1,6 +1,6 @@
 {
  "school": "berkeley",
- "builtAt": "2026-10-29T20:48:28.651439Z",
+ "builtAt": "2026-10-30T00:02:14.674232Z",
  "counts": {
   "census_rows_merged_by_nickname": 2,
   "listing_years_after_move": 0,
@@ -13,6 +13,7 @@
   "student_names_cleaned": 19,
   "student_corrections_replace_sources": 1,
   "student_records_merged": 74,
+  "program_adviser_groups": 0,
   "pi_listed_as_own_student_dropped": 0,
   "student_same_name_other_labs_unmerged": 13,
   "pis_with_students": 208,
@@ -83,6 +84,7 @@
   "link_guard_removed_hyphenated_given": 16,
   "link_guard_removed_different_full_given": 5,
   "link_guard_kept_prefix_or_spelling_variant": 28,
+  "students_dropped_why:quote_names_other_adviser": 2,
   "students_dropped_program_or_reader_only": 2,
   "student_paper_links": 16537,
   "labs_with_student_papers": 196,
@@ -204,6 +206,9 @@
    "pi": "James O'Brien",
    "student": "ext:berkeley:james-lin",
    "name": "James Lin",
+   "why": [
+    "quote_names_other_adviser"
+   ],
    "roles": [
     "masters"
    ]
@@ -212,6 +217,9 @@
    "pi": "James O'Brien",
    "student": "ext:berkeley:woojong-koh",
    "name": "Woojong Koh",
+   "why": [
+    "quote_names_other_adviser"
+   ],
    "roles": [
     "masters"
    ]
@@ -1523,14 +1531,12 @@
   }
  ],
  "provenance": {
-  "at": "2026-10-29T20:48:28Z",
+  "at": "2026-10-30T00:02:14Z",
   "code": {
-   "commit": "f31cec02f57d9f7fdf877186a6990d3478f2b1fa",
+   "commit": "10075d675a4b571e5dfdc5b6425da05c6014b84b",
    "dirty": false,
    "dirty_paths": [],
-   "other_dirty_paths": [
-    ".gitignore"
-   ]
+   "other_dirty_paths": []
   },
   "rules": [
    {
@@ -1674,6 +1680,22 @@
     "decided": "2026-10-29, owner: accuracy sample"
    },
    {
+    "id": "R-STU-08",
+    "decided": "2026-10-29, owner"
+   },
+   {
+    "id": "R-STU-09",
+    "decided": "2026-10-29, owner: link-gap sample"
+   },
+   {
+    "id": "R-STU-10",
+    "decided": "2026-10-29, owner: link-gap sample"
+   },
+   {
+    "id": "R-STU-11",
+    "decided": "2026-10-29, owner: link-gap sample"
+   },
+   {
     "id": "R-LNK-02",
     "decided": "2026-10-29, owner"
    },
@@ -1692,6 +1714,10 @@
    {
     "id": "R-LNK-04",
     "decided": "2026-10-29, owner: accuracy sample"
+   },
+   {
+    "id": "R-LNK-04a",
+    "decided": "2026-10-29, owner: link-gap sample"
    },
    {
     "id": "R-LNK-05",
@@ -1724,6 +1750,34 @@
    {
     "id": "R-AUD-07",
     "decided": "2026-10-29, coordinator"
+   },
+   {
+    "id": "R-AUD-08",
+    "decided": "2026-10-29, owner: link-gap sample"
+   },
+   {
+    "id": "R-AUD-09",
+    "decided": "2026-10-29, owner"
+   },
+   {
+    "id": "R-ID-01",
+    "decided": "2026-10-29, owner"
+   },
+   {
+    "id": "R-ID-02",
+    "decided": "2026-10-29, owner"
+   },
+   {
+    "id": "R-ID-03",
+    "decided": "2026-10-29, owner"
+   },
+   {
+    "id": "R-ID-04",
+    "decided": "2026-10-29, owner"
+   },
+   {
+    "id": "R-ID-05",
+    "decided": "2026-10-29, owner"
    }
   ],
   "openalex_sweep": {
@@ -1743,9 +1797,9 @@
   },
   "dblp_persons": {
    "path": "[local path]",
-   "bytes": 20391983,
-   "modified": "2026-10-29T12:36:36Z",
-   "sha256": "6e86d6a14d0086adbb3a9085d1029a5204bf240709a6b14f6349a32913591831",
+   "bytes": 23886148,
+   "modified": "2026-10-29T21:17:08Z",
+   "sha256": "67ee171e9c6264bfd74792550e669d1a836d292fb51184f234f37ffd88be11d1",
    "dump": "dblp-2026-09-01.xml.gz"
   },
   "pi_works": {
@@ -1764,28 +1818,31 @@
    "census/mit-additions.json": "7f5b74babcaeea7d8f992c0eabc420c24178655c82b6f0811a2ab0567c9667ab",
    "census/princeton-additions.json": "a689fb83bd49e6c5ec7968f1657669641c58a1d19b043d9154cb7a3689b4b077",
    "census/stanford-additions.json": "79e9e9d227a176dba7f54a90b189684a4cafc987147a1b7e74c51b259b6f43d5",
-   "docs/evidence-whitelist.json": "28f532129932c7292c4329ca5197ad1794f01bdf450a09103976242eb94751e3",
+   "docs/evidence-whitelist.json": "ba836fc81b4a850a1391c92c210ecd44113db8f2c55c8f2bdb27d9114583b162",
    "hierarchy/berkeley/cs-related-review.json": "ae7dfd8b4e60a9c93a79926e20d5c28df012828cde1df335f6bff0359a5a7717",
    "hierarchy/berkeley/few-students-evidence.json": "09832857fc64ce6158a0b055c18de570fb0eb1381b42122e682d9998c692ca66",
    "hierarchy/berkeley/gap-evidence.json": "a0ec0be36f55226b3c26411a0ee4962e3bc7d3dd59d80fe236262a4de5ce64c7",
    "hierarchy/berkeley/missing-pi-review.json": "3c40e5edd6287ceae4e0358d348217ddb13125617a9b8f0cd75280e363029bdb",
-   "hierarchy/census-overrides.json": "17f81d61a891b7ccf0bfc5fc9c90899ed0b0c419a4ec18353c2bed4fb13000bf",
+   "hierarchy/census-overrides.json": "3ed8af9f68ed05ef539f4f0ec96aebfbae81078befb9d9bb32980e746326f3f3",
    "hierarchy/chain-reasons.json": "671dc6012f14e4819915a99f7fe2d0263017f77277e209042374ee525d08b2e8",
    "hierarchy/cmu/cs-related-review.json": "9cfb1099c6003d47d8de21a7dd4dd0bc1b6813a334710ecf0b737d5160e24d86",
    "hierarchy/cmu/few-students-evidence.json": "16675154254ece8f380fd43d4bbce0f0c8f6f0c06af7a33b9387b8daf1a6cb5c",
    "hierarchy/cmu/gap-evidence.json": "9a3029798795c4141d7970d117849130996d03743a5f9461cefaf8d0970c52f4",
    "hierarchy/cmu/missing-pi-review.json": "2ead73753dde486cd9071d2c42badf40c757c5d45d3c767b0adc685c6ddb88e5",
+   "hierarchy/cmu/relation-evidence.json": "1140b653ce106e820df14918de8b29fcd3755139343dc8cffc64779078945480",
    "hierarchy/cs-venues.json": "8068588399cf1d555f8c652e85a4fa83ac11f4388906b2a2ba688967680321dd",
    "hierarchy/epfl/cs-related-review.json": "0cf5f300451d510db76ccf773cdd55497d394332e9f4c21081108630081870d6",
    "hierarchy/epfl/few-students-evidence.json": "1e5d32ee93afb9ef0fe211446b6149fe3ef16c41993bbdcc78e6bd8a9fa496c9",
    "hierarchy/epfl/gap-evidence.json": "00de395ebe7bfa3567d627edb8ca69b74ee984e78807f002115bfbff0061df12",
    "hierarchy/epfl/missing-pi-review.json": "dcfa38ef689d15966d19c9f9234bbabd71a66aadb2de26340cb929df6fb6f84b",
-   "hierarchy/home-departments.json": "ffbb55a894e3820223030ff3ccd8c423b88f196f2c4e0dba20406d0b407ca866",
+   "hierarchy/epfl/relation-evidence.json": "b27f4f4803d50fe0516a3981f0fbcba02dc83a0e93076c22b1ad6b5ef4f0ef5c",
+   "hierarchy/home-departments.json": "03cae81c27e03275896c12a163cca5d9ce2a26f57a37635b3d71c9981e3360e5",
    "hierarchy/mit/cs-related-review.json": "3c301201982c046a53cfa73c2309db3a2641cc8a11b6260beec14a68610b969b",
    "hierarchy/mit/few-students-evidence.json": "98fd4e5b01052e6794f1799b6a1df2c3bf40889828c992a2bf37e1b7eccb2ff7",
    "hierarchy/mit/gap-evidence.json": "829c8924a1779a80a99e90860a23ac9650468609f2344f9b0b2e96cefb326fde",
    "hierarchy/mit/missing-pi-review.json": "73fdd3bd43f5c5aaa40746818968ff06a214f4fef2d71d3335d373bc18c99b97",
-   "hierarchy/nicknames/extras.csv": "29fe28fbe49e393924a1d2378df44470ddf61571dec818182bc87eaba7e7a970",
+   "hierarchy/mit/relation-evidence.json": "1651c23b18de51a9364d4b1f1402a41f018be58bcb6d45927e8c003d121270af",
+   "hierarchy/nicknames/extras.csv": "fd1e0a04fe9ac25173d95aea1208872804748cdf1699c1509feef720be1756ea",
    "hierarchy/nicknames/names.csv": "e6a4e5a55ca5b47a4146dbc118f26c71c63053d4b79ca9659de8e74efb65847e",
    "hierarchy/princeton/cs-related-review.json": "40eb1c2057ca7f027b3b56f582befb23e8d794ecc77eea287543669d3fd37bf2",
    "hierarchy/princeton/few-students-evidence.json": "45977216b903063c02490cb532389885adcdf2bb5197e4421f0199d22610d3e0",

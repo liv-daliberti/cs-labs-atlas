@@ -25,6 +25,36 @@ Not every evidence object has every field; older collection records may have onl
 
 Schools: `princeton`, `cmu`, `epfl`, `mit`, `berkeley` (and any later school, e.g. `stanford`).
 
+### Atlas ids (since release 2026-10-29.4)
+
+Every row also carries opaque, stable atlas ids; the older ids (`pi_id`, `paper_id`, `student_id`, `lab_id`) stay.
+
+| id | form | what |
+|---|---|---|
+| person | `atl:p:<12 hex>` | one person across labs and schools (a PI at two schools, or a student who became a PI, is one person) |
+| work | `atl:w:<12 hex>` | one paper; its editions (preprint, conference, journal) and the same paper in other labs or schools share it |
+| lab | `atl:l:<school>:<pi-slug>` | one PI lab at one school |
+
+Fields: `pis` `atlas_id`, `atlas_lab_id`, `appointments[]` (`school`, `pi_id`, `atlas_lab_id`: every atlas school where this
+person is a PI), `as_student[]`; `papers` `atlas_work_id` (`atlas_work_ids_also` when one OpenAlex record holds rows the ids
+keep apart); `students` `atlas_ids` (one legacy `ext:` student id is a name, so it can hold several people), `atlas_id` (when
+there is one), `also_pi[]`, and `advisors[].atlas_id`, `advisors[].atlas_lab_id`; `student_papers` `student_atlas_id`,
+`atlas_work_id`, `atlas_lab_id`. The CSVs end with the same columns.
+
+An id is derived from the strongest identifier first seen for the entity (ORCID, a reviewed OpenAlex author id, a DBLP
+person, the collection person id, else school + name + the evidence URL; for works DOI, OpenAlex, DBLP key, arXiv id,
+collection work, lab-page record) and never changes after that: a registry maps every identifier ever seen to its id. Two
+ids found to be one entity are merged by a redirect (`data/ids/redirects.tsv`: `old_id`, `new_id`); an id is never
+reused. People are joined across labs and schools only by ORCID, a reviewed OpenAlex id or a DBLP person, never by name
+alone.
+
+- `data/ids/crossref.tsv.gz`: `atlas_id`, `entity` (`person`, `work`, `lab`), `scheme` (`orcid`, `openalex_author`,
+  `dblp_person`, `collection_person`, `name_evidence`, `legacy_pi_id`, `legacy_student_id`, `doi`, `openalex_work`,
+  `dblp_key`, `arxiv`, `collection_work`, `labpage`, `legacy_lab_id`, `pi_atlas_id`), `value`.
+- `data/ids/persons_cross_school.json`: `persons[]` with `atlasId`, `name`, `appointments[]` (`school`, `pi`, `labId`),
+  `studentRecords[]` (their student records at atlas schools), `matchedBy` (the shared identifiers) and `studentEvidence`
+  (for a student matched to a PI: the byline author id, work and byline string).
+
 ### pis.jsonl.gz — one row per PI lab
 
 | field | meaning |

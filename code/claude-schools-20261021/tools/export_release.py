@@ -8,6 +8,10 @@ schools  every school with hierarchy/<school>/pis.json (SCHOOLS) that the site b
                                                          lab-page key), with every lab it belongs to and why
            data/schools/<school>/students.jsonl.gz       one row per student id, with every advising PI and the sources
            data/schools/<school>/student_papers.jsonl.gz one row per (PI, student, paper) link
+           every row also carries the atlas ids (atl:p: person, atl:w: work, atl:l: lab; atlas_id, atlas_work_id,
+           atlas_lab_id ...), stable across releases; the old ids stay
+ids      data/ids/{crossref.tsv.gz, redirects.tsv, persons_cross_school.json}: atlas id <-> OpenAlex, DBLP, ORCID, DOI,
+           arXiv, collection and legacy ids; merged ids; people at two schools
            data/schools/<school>/{lab_papers,lab_students,student_papers,pis}.csv   flat joins
            data/schools/<school>/{zero_labs.json, excluded_pis.json, scope_review.json.gz, build_report.json}
          Departments are assigned exactly as the site does: the site builder's own department()
@@ -38,7 +42,7 @@ H = DATA / 'hierarchy'
 RELEASE = None                       # the release read: dict(id, dir, manifest_sha256)
 SITE_ROOT = AP.SITE_ROOT
 ATLAS = SITE_ROOT / 'atlas'
-ORDER = ['princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford']  # display order; any other built school follows
+ORDER = list(AP.SCHOOL_IDS)  # display order; any other built school follows
 SCHOOLS = [s for s in ORDER if (H / s / 'pis.json').exists()] + sorted(
     d.name for d in H.iterdir() if d.is_dir() and d.name not in ORDER and (d / 'pis.json').exists())
 OWNER_EMAIL_SHA256 = '3d295a08f3a63465645d9d4e99fbe34f11aa0622bbf29a754e0b23cb4263aacf'  # the owner's address, kept out of the code itself
@@ -300,7 +304,10 @@ def export_school(repo, s, homes_all, profiles, zero):
         lab = p['lab']; unit = lab.get('unitId'); site = canon.get(unit, unit) if unit else None
         h = home.get(p['pi'])
         P.append(dict(
-            pi_id=i, school=s, name=p['pi'], name_forms=p.get('names') or [], merged_census_rows=p.get('mergedCensusRows') or [],
+            pi_id=i, atlas_id=p.get('atlasId'), atlas_lab_id=p.get('labId'),
+            appointments=[dict(school=a['school'], pi_id=f"{a['school']}:{slug(a['pi'])}", atlas_lab_id=a['labId']) for a in p.get('appointments') or []],
+            as_student=[dict(school=a['school'], pi_id=f"{a['school']}:{slug(a['pi'])}", atlas_lab_id=a.get('labId')) for a in p.get('asStudent') or []],
+            school=s, name=p['pi'], name_forms=p.get('names') or [], merged_census_rows=p.get('mergedCensusRows') or [],
             department=dept, department_coverage=cov, departments_as_listed=p.get('departments') or [],
             home_department_review=dict(home_department=h['home_department'], also=h.get('also') or [], no_academic_department=bool(h.get('no_academic_department')),
                                         evidence=source_row(h.get('evidence') or {}), note=h.get('note')) if h else None,
@@ -338,11 +345,13 @@ def export_school(repo, s, homes_all, profiles, zero):
             by_pi_work.setdefault((i, r['work']), k)
         x = papers.get(k)
         if x is None:
-            x = papers[k] = dict(paper_id=k, openalex=r['oa'] if str(r['oa']).startswith('https://openalex.org/') else None, doi=r.get('doi') or None,
+            x = papers[k] = dict(paper_id=k, atlas_work_id=r.get('atlasWorkId'), openalex=r['oa'] if str(r['oa']).startswith('https://openalex.org/') else None, doi=r.get('doi') or None,
                                  title=r.get('title'), year=r.get('year'), date=r.get('date'), venue=r.get('venue'), type=r.get('type'),
                                  landing_url=r.get('landing'), byline=r.get('byline') or [], byline_school=r.get('byline_school') or [],
                                  collection_work=r.get('work'), openalex_shared_with=split, editions=[], labs=[])
         x['collection_work'] = x['collection_work'] or r.get('work')
+        if r.get('atlasWorkId') and r['atlasWorkId'] != x['atlas_work_id']:  # rows the atlas ids keep apart (rare)
+            x.setdefault('atlas_work_ids_also', []).append(r['atlasWorkId'])
         for e in r.get('editions') or []:
             e2 = dict(paper_id=paper_id(e.get('oa')), collection_work=e.get('work'), doi=e.get('doi'), year=e.get('year'), venue=e.get('venue'))
             if e2 not in x['editions']:
@@ -372,7 +381,7 @@ def export_school(repo, s, homes_all, profiles, zero):
             sid = r['person'] if str(r['person']).startswith('ext:') else f"{s}:{r['person']}"
             x = S.get(sid)
             if x is None:
-                x = S[sid] = dict(student_id=sid, school=s, source_person_id=r['person'], name=r['name'], aliases=[], merged_ids=[],
+                x = S[sid] = dict(student_id=sid, atlas_id=None, atlas_ids=[], school=s, source_person_id=r['person'], name=r['name'], aliases=[], merged_ids=[],
                                   roles=[], role_label=None, advisors=[])
             for a in [r['name']] + list(r.get('aliases') or []):
                 if a != x['name'] and a not in x['aliases']:
@@ -386,8 +395,14 @@ def export_school(repo, s, homes_all, profiles, zero):
                     x['roles'].append(ro)
             rels = r.get('relations') or []
             yrs = sorted({y for rel in rels for y in rel.get('years') or [] if isinstance(y, int)})
+            if r.get('atlasId') and r['atlasId'] not in x['atlas_ids']:
+                x['atlas_ids'].append(r['atlasId'])
+            for a in r.get('alsoPi') or []:
+                x.setdefault('also_pi', [])
+                if a['labId'] not in [z['atlas_lab_id'] for z in x['also_pi']]:
+                    x['also_pi'].append(dict(school=a['school'], pi_id=f"{a['school']}:{slug(a['pi'])}", atlas_lab_id=a['labId']))
             x['advisors'].append(dict(
-                pi_id=i, pi_name=pi, lab_id=byp[i]['lab']['lab_id'],
+                pi_id=i, atlas_lab_id=byp[i]['atlas_lab_id'], atlas_id=r.get('atlasId'), pi_name=pi, lab_id=byp[i]['lab']['lab_id'],
                 relation='member' if rels and all(rel['type'] == 'direct_lab_membership' for rel in rels) else 'advisee',
                 role_label=SITE.role_label(r.get('roles') or [], rels), first_year=yrs[0] if yrs else None, last_year=yrs[-1] if yrs else None,
                 relations=[{k: v for k, v in dict(type=rel.get('type'), role=rel.get('role'), years=[y for y in rel.get('years') or [] if y] or None,
@@ -395,6 +410,9 @@ def export_school(repo, s, homes_all, profiles, zero):
                            for rel in rels]))
     for x in S.values():
         x['advisors'].sort(key=lambda a: a['pi_id'])
+        # one legacy student id can hold several atlas people: an ext: id is a name, and the same name in two labs is two
+        # people unless one evidence page names both (R-HIER-03; docs/IDS.md)
+        x['atlas_ids'].sort(); x['atlas_id'] = x['atlas_ids'][0] if len(x['atlas_ids']) == 1 else None
         x['role_label'] = SITE.role_label(x['roles'], [rel for a in x['advisors'] for rel in a['relations']])
     ST = scrub([S[k] for k in sorted(S)])
     stud = {r['student_id']: r for r in ST}
@@ -404,7 +422,9 @@ def export_school(repo, s, homes_all, profiles, zero):
     for x in sp:
         sid = x['student'] if str(x['student']).startswith('ext:') else f"{s}:{x['student']}"
         i = pid[x['pi']]
-        SP.append(dict(pi_id=i, student_id=sid, paper_id=by_pi_work.get((i, x.get('work'))) or paper_id(x['oa']), status=x.get('status'), basis=x.get('basis'),
+        SP.append(dict(pi_id=i, student_id=sid, paper_id=by_pi_work.get((i, x.get('work'))) or paper_id(x['oa']),
+                       student_atlas_id=x.get('studentAtlasId'), atlas_work_id=x.get('atlasWorkId'), atlas_lab_id=x.get('labId'),
+                       status=x.get('status'), basis=x.get('basis'),
                        collection_work=x.get('work'), student_name=x.get('name')))
     SP = scrub(sorted(SP, key=lambda r: (r['pi_id'], r['student_id'], r['paper_id'])))
 
@@ -416,29 +436,31 @@ def export_school(repo, s, homes_all, profiles, zero):
     # flat CSVs
     write_csv(repo, f'{out}/pis.csv', ['pi_id', 'name', 'department', 'department_coverage', 'scope', 'rank', 'title', 'lab_id', 'lab_name', 'lab_url',
                                        'atlas_unit_id', 'dblp', 'openalex', 'orcid', 'first_period_start', 'listing_years', 'lab_papers', 'students',
-                                       'student_paper_links'],
+                                       'student_paper_links', 'atlas_id', 'atlas_lab_id'],
               [[p['pi_id'], p['name'], p['department'], p['department_coverage'], p['scope'], p['rank'], p['title'], p['lab']['lab_id'], p['lab']['name'],
                 p['lab']['url'], p['lab']['atlas_unit_id'], ' '.join(p['identifiers']['dblp']),
                 ' '.join(p['identifiers']['openalex_reviewed'] or p['identifiers']['openalex_anchored'][:3]), ' '.join(p['identifiers']['orcid']),
                 min((str(q['start']) for q in p['periods'] if q['start']), default=None), ' '.join(str(l['year']) for l in p['listings']),
-                p['counts'].get('labPapers', 0), p['counts'].get('students', 0), p['counts'].get('studentPaperLinks', 0)] for p in P])
+                p['counts'].get('labPapers', 0), p['counts'].get('students', 0), p['counts'].get('studentPaperLinks', 0), p['atlas_id'], p['atlas_lab_id']] for p in P])
     lp = sorted(((l['pi_id'], x) for x in PA for l in x['labs']), key=lambda t: (t[0], t[1]['paper_id']))
     write_csv(repo, f'{out}/lab_papers.csv', ['pi_id', 'pi_name', 'lab_id', 'department', 'paper_id', 'doi', 'title', 'year', 'venue', 'type', 'identity', 'appointment_basis',
-                                              'appointment_ref'],
+                                              'appointment_ref', 'atlas_lab_id', 'atlas_work_id'],
               [[i, byp[i]['name'], byp[i]['lab']['lab_id'], byp[i]['department'], x['paper_id'], x['doi'], x['title'], x['year'], x['venue'], x['type'],
-                l['identity'], l['appointment']['basis'], l['appointment'].get('period_id') or l['appointment'].get('year')]
+                l['identity'], l['appointment']['basis'], l['appointment'].get('period_id') or l['appointment'].get('year'), byp[i]['atlas_lab_id'], x.get('atlas_work_id')]
                for i, x in lp for l in x['labs'] if l['pi_id'] == i])
     ls_rows = []
     for x in ST:
         for a in x['advisors']:
             src0 = next((z for rel in a['relations'] for z in rel.get('sources') or [] if z.get('url')), {})
             ls_rows.append([a['pi_id'], a['pi_name'], x['student_id'], x['name'], a['role_label'], a['relation'], a['first_year'], a['last_year'],
-                            ' '.join(sorted({rel['type'] for rel in a['relations']})), src0.get('url')])
+                            ' '.join(sorted({rel['type'] for rel in a['relations']})), src0.get('url'), a.get('atlas_lab_id'), a.get('atlas_id')])
     write_csv(repo, f'{out}/lab_students.csv', ['pi_id', 'pi_name', 'student_id', 'student_name', 'role_label', 'relation', 'first_year', 'last_year',
-                                                'relation_types', 'source_url'], sorted(ls_rows, key=lambda r: (r[0], r[2])))
-    write_csv(repo, f'{out}/student_papers.csv', ['pi_id', 'student_id', 'student_name', 'paper_id', 'doi', 'title', 'year', 'status', 'basis'],
+                                                'relation_types', 'source_url', 'atlas_lab_id', 'student_atlas_id'], sorted(ls_rows, key=lambda r: (r[0], r[2])))
+    write_csv(repo, f'{out}/student_papers.csv', ['pi_id', 'student_id', 'student_name', 'paper_id', 'doi', 'title', 'year', 'status', 'basis',
+                                                  'atlas_lab_id', 'student_atlas_id', 'atlas_work_id'],
               [[r['pi_id'], r['student_id'], r['student_name'], r['paper_id'], (pap.get(r['paper_id']) or {}).get('doi'),
-                (pap.get(r['paper_id']) or {}).get('title'), (pap.get(r['paper_id']) or {}).get('year'), r['status'], r['basis']] for r in SP])
+                (pap.get(r['paper_id']) or {}).get('title'), (pap.get(r['paper_id']) or {}).get('year'), r['status'], r['basis'],
+                r['atlas_lab_id'], r['student_atlas_id'], r['atlas_work_id']] for r in SP])
 
     # review ledgers
     zp = [dict(r, pi_id=pid.get(r['pi'])) for r in zero.get('zero_papers', []) if r.get('school') == s]
@@ -811,6 +833,13 @@ def main():
         print('school', s, flush=True)
         summary['schools'].append(export_school(repo, s, homes_all, profiles, zero))
     write_json(repo, 'data/schools/profiles.json', scrub(profiles))
+    # the atlas ids (tools/atlas_ids.py, docs/IDS.md in the code): the cross-reference table, the redirects and the people
+    # who are PIs at two atlas schools (or a student at one and a PI at another)
+    if (H / 'ids' / 'crossref.tsv.gz').exists():
+        write_bytes(repo, 'data/ids/crossref.tsv.gz', (H / 'ids' / 'crossref.tsv.gz').read_bytes())
+        write_bytes(repo, 'data/ids/redirects.tsv', (H / 'ids' / 'redirects.tsv').read_bytes())
+        write_json(repo, 'data/ids/persons_cross_school.json', scrub(read(H / 'ids' / 'persons-cross-school.json')))
+        summary['ids'] = {k: v for k, v in read(H / 'ids' / 'IDS-REPORT.json').items() if k in ('people', 'pi_people', 'works', 'labs', 'cross_school_persons')}
     audit = None
     ap = H / 'student-audit.json'
     newest = max(read(H / s / 'report.json').get('builtAt') or '' for s in EXPORT)

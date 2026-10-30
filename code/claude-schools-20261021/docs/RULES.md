@@ -48,7 +48,9 @@ A dated listing row that lists the person as a student or postdoc, or announces 
 A listing after an evidenced departure (`faculty_end_moved` evidence) is a stale page, not an appointment: Princeton ECE
 kept Mung Chiang (left 2017) and Yuxin Chen (left 2021) on its list through 2026. Such years are kept aside as
 `listingsAfterMove`; a later collection or reviewed period that covers the year keeps the listing.
-`listings_after_move`.
+`listings_after_move`. Since 2026-10-29 a reviewed period (census-overrides.json) whose evidence has kind
+`faculty_end_moved` counts as the departure too (Cynthia Rudin, MIT Sloan to Duke in 2016: MIT CSAIL's PI listing still
+named her in 2026; Sharad Goel, Stanford MS&E to Harvard Kennedy School in July 2021).
 
 ### R-PAP-04 — identity of the authorship
 In order: never an author id reviewed as someone else's (`notOpenAlex`), or another PI's reviewed id (2026-10-28: Simon
@@ -227,6 +229,35 @@ A student record keyed by any PI's person id is re-keyed to the lab's own `ext:<
 John Wright's id had become the record of Nikolić's PhD student John Wright, lending him the faculty member's person
 links). `rekey_pi_person_ids`, `student_records_rekeyed_from_pi_person_id`.
 
+### R-STU-08 (2026-10-29, owner) — re-captured relation evidence
+The site collections gave some advising contexts as bare URLs (CMU), hashes without quotes whose capture bodies were lost
+(EPFL), or an unhashed DSpace snapshot (MIT). `tools/relation_recapture.py` re-captured the cited pages (a stored copy, a
+Wayback `id_` copy near the original observation, or the live page; one request per second per host, robots.txt
+respected), and `hierarchy/<school>/relation-evidence.json` gives per (cited url, person) the capture url, the sha256 of
+the captured bytes and a verbatim quote naming the student, with `names_pi` when it also names the PI or the PI's lab
+(the bodies are in `hierarchy/<school>/relation-captures.sqlite`). A source without url, sha256 and quote takes the
+record for its PI, else a student-only record (`names_pi: false`). The source keeps its earlier hash as
+`original_sha256`. `apply_relation_evidence`.
+
+### R-STU-09 (2026-10-29, owner: link-gap sample) — program-wide academic advisers
+A department directory line 'Program: <program> ... Academic Advisor: <name>' whose (program, adviser) pair covers 10+
+students and 25%+ of that program's students in the school is the program's academic adviser, not a research adviser
+(CMU: MCDS -> Eric Nyberg, 325 of 360; MIIS -> Teruko Mitamura; MSBIC -> Ravi Starzl). Such a relation is weak (as
+R-STU-02): the pair stays only when the student co-authored a lab paper. `program_adviser_groups`,
+`relation_is_program_advising`.
+
+### R-STU-10 (2026-10-29, owner: link-gap sample) — the student's own roster entry
+A quote with two or more 'Advisor(s):' labels is a page of many entries, where the next student's name trails each
+adviser value. Only the student's own entry counts: the first adviser label after the student's name (within 250
+characters), cut at Publications/Office/Website/Email/Phone or 80 characters, must name the PI by a full-name form. A
+relation whose every quote is such a page naming someone else is weak (CMU's SE-PhD page: Moreno's adviser is David
+Garlan, not Aldrich or Kästner). `own_roster_entry`.
+
+### R-STU-11 (2026-10-29, owner: link-gap sample) — a basis record's own advisor field
+Advisees named in a PI's reviewed basis quote from a DSpace record count only when that record's
+`dc.contributor.advisor` names the PI ('Freund, Robert M.' on Renbo Zhao's record in Van Parys's basis).
+`dspace_advisors`.
+
 ## Student–paper links
 
 ### R-LNK-01 — link bases
@@ -259,6 +290,9 @@ hyphens), within two years before to six after the recorded years, is that stude
 ### R-LNK-04 (2026-10-29, owner: accuracy sample) — nickname table additions (R10)
 `hierarchy/nicknames/extras.csv`: Izzy is a nickname of Isabel, Izabel, Isabella and Isobel (Izzy Aguiar, Ugander's
 student, publishes as Izabel Aguiar).
+
+### R-LNK-04a (2026-10-29, owner: link-gap sample) — more nickname pairs
+`extras.csv`: Manolis/Emmanouil (Zampetakis), Robbie/Robert, Dima/Dmitry and Dmitri, Ági/Agnes, Lily/Lillian.
 
 ### R-LNK-05 (2026-10-29, owner) — links carry their evidence
 Every byline link (`within_lab_byline_match`, `byline_name_with_school_affiliation`, `advisee_name_on_lab_paper_byline`,
@@ -306,3 +340,42 @@ DBLP person extract's and pi-works' dates and sha256, every reviewed input's sha
 paper by it (`ACCESS_REASON`): only 401/403, login/identity-provider redirects and bot challenges read as paywalled or
 login copies; robots.txt, landing pages without a PDF, not found, policy skips, exhausted retries, unapproved redirects,
 non-PDFs and identity mismatches each say so. The copies stage now runs before the audits.
+
+### R-AUD-08 (2026-10-29, owner: link-gap sample) — the link diagnosis
+`tools/link_diagnosis.py`: a student's school works are authorships that list the school (not just any institution),
+without non-papers, dissertations and abstracts; an initial-only byline counts only when its author id also carries the
+student's full given name ('Q. Yu' at Max Planck). A student who publishes without this PI but whose record (id or merged
+id) is linked in another lab whose PI is on those works is `linked_in_coadviser_lab`; a linked same-name record of
+another lab is `same_name_record_linked_in_other_lab`, never merged (R-HIER-03). A name shared by 4+ school authors is
+resolved when exactly one of those author ids shares a school byline with another student of the lab written with a full
+given name (`resolved.by = labmate_coauthor`).
+
+### R-AUD-09 (2026-10-29, owner) — student-only quotes are counted apart
+`tools/evidence_check.py` counts a relation whose only sourced evidence is a re-captured student-only quote (R-STU-08,
+`names_pi: false`) as `student_relation_student_only`, and such a link as `link_relation_source_student_only`, each with
+its whitelisted count: the page names the student, the adviser rests on the collection's advising context.
+
+## Atlas ids
+
+### R-ID-01 (2026-10-29, owner) — one scheme
+People `atl:p:<12 hex>`, works `atl:w:<12 hex>`, labs `atl:l:<school>:<pi-slug>`; opaque, deterministic from the strongest
+anchor (person: ORCID, reviewed OpenAlex id, DBLP person, collection person id, school + name + evidence url; work: DOI,
+OpenAlex, DBLP key, arXiv id, collection work, lab-page record). `docs/IDS.md`, `tools/atlas_ids.py`.
+
+### R-ID-02 (2026-10-29, owner) — never changes, merges redirect
+`hierarchy/ids/registry.sqlite` maps every anchor ever seen to its id; an entity keeps the id any of its anchors finds.
+Two ids that become one entity: the earlier-issued stays, the other redirects (`redirects.tsv`) and is never reissued.
+
+### R-ID-03 (2026-10-29, owner) — joining people
+Across labs and schools only by ORCID, a reviewed OpenAlex id or a DBLP person, never by name alone; a join between
+different family names is refused. A student joins a PI elsewhere when the byline author id on the student's linked lab
+paper is that PI's reviewed OpenAlex id and the names are compatible (full first given name or a nickname pair).
+
+### R-ID-04 (2026-10-29, owner) — joining works
+Rows sharing a work anchor, editions included, are one work across labs and schools; two rows of one lab are never one
+work (they join only through their own lead record).
+
+### R-ID-05 (2026-10-29, owner) — everywhere
+The ids are written by the rebuild stage `ids` into the packages, copied into every release with the registry and the
+cross-reference table, and carried by the tree, the GitHub export and the site handoff; `make_release.py` refuses a
+package without them.

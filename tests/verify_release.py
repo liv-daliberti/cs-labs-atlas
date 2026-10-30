@@ -10,6 +10,9 @@ Self-contained (standard library only); reads nothing outside the repository.
   joins      every lab entry, advisor, student-paper link and CSV row resolves to rows of pis / papers / students, and a
              student-paper link's paper lists that PI and its student lists that PI as advisor; atlas unit papers, people
              and person papers resolve to units (and works where the work is in the works table)
+  atlas ids  every PI, student, paper and link carries its atlas ids (atl:p: person, atl:w: work, atl:l: lab); no two PIs
+             of one school share a lab id; a link's atlas ids match its PI, student and paper; every atlas id is in
+             data/ids/crossref.tsv.gz; the people at two schools have an appointment row at each
   department every PI has a department (the site's placeholder 'Home department not yet recorded' is reported)
   files      every file is under 50 MB
   privacy    no e-mail address in any data file; the owner's address nowhere in the repository
@@ -21,6 +24,7 @@ from pathlib import Path
 REPO = Path(sys.argv[1] if len(sys.argv) > 1 else Path(__file__).resolve().parents[1]).resolve()
 FAIL, WARN, INFO = [], [], []
 PENDING = 'Home department not yet recorded'
+IDS_SEEN = set()
 EMAIL = re.compile(r'(?<![\w.%+-])[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}\b')
 OWNER_SHA256 = '3d295a08f3a63465645d9d4e99fbe34f11aa0622bbf29a754e0b23cb4263aacf'  # sha256 of the owner's address (not stored in clear)
 
@@ -91,6 +95,24 @@ def school(s, prof):
     check(len(c2) == pairs and all(r['pi_id'] in pi and r['student_id'] in st for r in c2), f'{s}: lab_students.csv {len(c2)} rows resolve')
     check(len(c3) == len(L) and all(r['pi_id'] in pi and r['paper_id'] in pa and r['student_id'] in st for r in c3), f'{s}: student_papers.csv {len(c3)} rows resolve')
     check(len(c4) == len(P), f'{s}: pis.csv {len(c4)} rows')
+    # atlas ids (docs/IDS.md in the code)
+    if any('atlas_id' in p for p in P):
+        bad = [p['pi_id'] for p in P if not str(p.get('atlas_id')).startswith('atl:p:') or not str(p.get('atlas_lab_id')).startswith('atl:l:')]
+        check(not bad, f'{s}: every PI has an atlas person id and lab id ({len(bad)} without: {bad[:3]})')
+        d_ = dup([p['atlas_lab_id'] for p in P]); check(not d_, f'{s}: no duplicate atlas_lab_id ({d_[:3]})')
+        bad = [p['pi_id'] for p in P if s not in {a['school'] for a in p.get('appointments') or []}]
+        check(not bad, f'{s}: every PI lists its own appointment ({len(bad)} bad: {bad[:3]})')
+        bad = [x['paper_id'] for x in A if not str(x.get('atlas_work_id')).startswith('atl:w:')]
+        check(not bad, f'{s}: every paper has an atlas work id ({len(bad)} without: {bad[:3]})')
+        bad = [x['student_id'] for x in S if not x.get('atlas_ids') or not all(str(a.get('atlas_id')).startswith('atl:p:') for a in x['advisors'])]
+        check(not bad, f'{s}: every student and advisor entry has an atlas person id ({len(bad)} without: {bad[:3]})')
+        lab_of = {p['pi_id']: p['atlas_lab_id'] for p in P}
+        adv_atlas = {(x['student_id'], a['pi_id']): a['atlas_id'] for x in S for a in x['advisors']}
+        bad = [r for r in L if r.get('atlas_lab_id') != lab_of.get(r['pi_id']) or r.get('student_atlas_id') != adv_atlas.get((r['student_id'], r['pi_id']))
+               or (r.get('atlas_work_id') not in {pa[r['paper_id']].get('atlas_work_id')} | set(pa[r['paper_id']].get('atlas_work_ids_also') or []))]
+        check(not bad, f"{s}: every student-paper link's atlas ids match its lab, student and paper ({len(bad)} bad: {bad[:2]})")
+        IDS_SEEN.update(p['atlas_id'] for p in P); IDS_SEEN.update(p['atlas_lab_id'] for p in P)
+        IDS_SEEN.update(a['atlas_id'] for x in S for a in x['advisors']); IDS_SEEN.update(x['atlas_work_id'] for x in A)
     return dict(pis=len(P), papers=len(A), lab_rows=lab_rows, students=len(S), pairs=pairs, links=len(L))
 
 
@@ -150,6 +172,21 @@ def main():
         school(s, prof[s])
     if (REPO / 'data/atlas').exists():
         atlas()
+    if IDS_SEEN and (REPO / 'data/ids/crossref.tsv.gz').exists():
+        xr = list(csv.DictReader(gzip.open(REPO / 'data/ids/crossref.tsv.gz', 'rt', encoding='utf-8'), delimiter='\t'))
+        known = {r['atlas_id'] for r in xr}
+        miss = sorted(IDS_SEEN - known)
+        check(not miss, f'every atlas id in the school data is in data/ids/crossref.tsv.gz ({len(miss)} missing: {miss[:3]})')
+        INFO.append(f'note crossref: {len(xr)} rows, {len(known)} atlas ids, schemes {dict(collections.Counter(r["scheme"] for r in xr))}')
+        cross = json.loads((REPO / 'data/ids/persons_cross_school.json').read_text())['persons']
+        pis_by = {}
+        for s in schools:
+            for p in rows(f'data/schools/{s}/pis.jsonl.gz'):
+                pis_by[p['atlas_lab_id']] = p['atlas_id']
+        bad = [c['atlasId'] for c in cross if any(pis_by.get(a['labId']) not in (c['atlasId'], None) for a in c['appointments'])]
+        check(not bad, f'people at two schools: every appointment lab belongs to that person ({len(cross)} people, {len(bad)} bad)')
+    elif IDS_SEEN:
+        FAIL.append('FAIL data/ids/crossref.tsv.gz is missing')
     files_and_privacy()
     for m in INFO + WARN + FAIL:
         print(m)

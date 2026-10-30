@@ -26,6 +26,10 @@ import school_web as W  # noqa: E402
 import faculty_periods as FP  # noqa: E402
 
 
+MOVED = re.compile(r'before (?:coming|joining|moving) to|moved to|left (?:the University of )?Michigan|now (?:at|with) |prior to (?:joining|coming to)|'
+                   r'was (?:an? )?(?:assistant |associate )?professor .{0,80}? from (?:19|20)\d\d to', re.I)
+
+
 def targets(key):
     census = json.loads((P.CENSUS / f'{key}-faculty.json').read_text())['faculty']
     add = json.loads((P.CENSUS / f'{key}-additions.json').read_text()) if (P.CENSUS / f'{key}-additions.json').exists() else []
@@ -41,7 +45,7 @@ def targets(key):
         urls = [u for nm in [x['name']] + list(x.get('aliases') or []) for u in hp.get(nm, [])] + ([x['profile_url']] if x.get('profile_url') else [])
         urls = [('https:' + u if u.startswith('//') else u) for u in urls if u and not re.search(r'mentor|mailto:|linkedin|twitter|x\.com|facebook', u)]
         out.append(dict(name=x['name'], person=x.get('collection_person_id'), urls=list(dict.fromkeys(urls))[:3],
-                        first=min(x.get('years_listed') or [2016])))
+                        first=min(x.get('years_listed') or [2016]), years=sorted(x.get('years_listed') or []), ranks=x.get('ranks_by_year') or {}))
     return out
 
 
@@ -95,13 +99,24 @@ def extract(key):
         best = min(found, key=lambda f: int(f['start']))
         ends = sorted({int(f['end']) for f in found if f.get('end')})
         end = str(ends[-1]) if ends and ends[-1] < hi else None
+        later = [y for y in t.get('years') or [] if end and y > int(end) + 1 and {'ladder', 'courtesy'} & set(t['ranks'].get(str(y)) or ['ladder'])]
+        if later:  # a closed range followed by later professor-rank listings is a rank step ('2014-2020: Assistant Professor'),
+            # not a departure; adjunct listings after it are not (Cafarella: MIT from 2020, CSE adjunct 2021-2026: R-PAP-03)
+            note = f'closed range ending {end} ignored: listed in {later[0]}-{later[-1]} (learned 2026-10-29, Viswanath Nagarajan)'
+            end = None
+        else:
+            note = None
+        evs = [{k: best[k] for k in ('url', 'sha256', 'quote', 'observedAt')}] + [{k: f[k] for k in ('url', 'sha256', 'quote', 'observedAt')} for f in found if f is not best][:2]
+        if end:  # the statement that closes the period says the PI moved: the builder's R-PAP-03 sets later listings aside
+            fe = next((f for f in found if f.get('end') == end), None)
+            if fe and MOVED.search(fe['quote']):
+                evs.insert(0, dict({k: fe[k] for k in ('url', 'sha256', 'quote', 'observedAt')}, kind='faculty_end_moved'))
         periods.append(dict(id=f'{key}_faculty_period_{len(periods)}', personId=t['person'], name=t['name'], school=key, unitIds=[],
                             facultyStart=str(starts[0]), facultyEnd=end, labStart=None, labEnd=None, datePrecision='year',
                             endDatePrecision='year' if end else None,
-                            evidence=[{k: best[k] for k in ('url', 'sha256', 'quote', 'observedAt')}] +
-                                     [{k: f[k] for k in ('url', 'sha256', 'quote', 'observedAt')} for f in found if f is not best][:2],
+                            evidence=evs,
                             facultyPeriodStatus='supported_start', labPeriodStatus='unresolved', boundaryYearUncertain=True, boundaryMonthUncertain=True,
-                            conflictingStartYears=starts if len(starts) > 1 else [], addedBy=f'tools/periods_school.py {key}',
+                            conflictingStartYears=starts if len(starts) > 1 else [], addedBy=f'tools/periods_school.py {key}', endNote=note,
                             qualification="Appointment year from the page's own statement naming the school; the earliest stated faculty year is kept."))
     P.PERIODS.mkdir(exist_ok=True)
     (P.PERIODS / f'{key}-faculty-periods.json').write_text(json.dumps(periods, indent=1, ensure_ascii=False))
