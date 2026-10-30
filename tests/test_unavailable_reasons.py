@@ -115,3 +115,9 @@ def test_summary_is_one_paragraph():
     c, m, n = U.decide(p)
     s = U.summarize(p, c, m, n)
     assert s.startswith('At IEEE (closed access, IEEE Transactions on Robotics).') and 'ieeexplore.ieee.org paywall_or_forbidden' in s and '\n' not in s
+
+
+def test_open_at_publisher_but_robots_disallow():
+    p = paper(attempts=[att('https://www.sciencedirect.com/science/article/pii/X', 'robots_disallow')])
+    p['checks']['openalex'] = dict(none('openalex'), detail=dict(is_oa=True, oa_status='hybrid'))
+    assert code(p) == 'open_copy_robots_disallowed'

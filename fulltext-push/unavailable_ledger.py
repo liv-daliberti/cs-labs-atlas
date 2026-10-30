@@ -961,6 +961,11 @@ def decide(p):
     if not p['doi']:
         return 'no_doi_no_match', missing, new
     if oad.get('is_oa') and per_url:
+        # open at the publisher (gold / hybrid / bronze), and the publisher's own host refused this client: say how
+        pubc = {c for cs in per_url.values() for c in cs}
+        for c, code in (('challenge', 'open_copy_bot_challenge'), ('login', 'open_copy_behind_login'), ('robots_disallow', 'open_copy_robots_disallowed')):
+            if c in pubc:
+                return code, missing, new
         return 'paywall_only', missing, new
     if oad.get('is_oa'):
         return 'landing_page_without_pdf', missing, new
@@ -986,8 +991,9 @@ def summarize(p, code, missing, new):
         s.append('No open copy in ' + (', '.join(checked[:-1]) + ' or ' + checked[-1] if len(checked) > 1 else checked[0]) +
                  f"; checked {(p['checked_at'] or '')[:10]}.")
     fnd = [LABEL[x] for x in p['applicable'] if (chk.get(x) or {}).get('result') == 'found']
-    if fnd:
-        s.append('Open copy listed by ' + ', '.join(fnd) + '.')
+    if fnd:  # every location these sources list was tried (else the code is found_awaiting_download)
+        s.append(('Locations listed by ' if code not in ('found_awaiting_download', 'found_not_in_catalog') else 'Open copy listed by ') + ', '.join(fnd) +
+                 (' were tried (attempts below).' if code not in ('found_awaiting_download', 'found_not_in_catalog') else '.'))
     if missing:
         s.append('Not checked yet: ' + ', '.join(LABEL[x] for x in missing) + '.')
     if p['attempts']:

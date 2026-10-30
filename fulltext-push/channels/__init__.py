@@ -39,8 +39,8 @@ class Result(namedtuple('Result', 'paper_key work_id status urls query detail'))
 # every channel module, in the order lab_channels.py has listed them
 NAMES = ['oa_arxiv', 'openalex', 'arxiv_title', 'proceedings', 's2', 'core', 'europepmc', 'pmc', 'figshare', 'techrpt', 'pubpages',
          'homepages', 'dspace', 'infoscience', 'labpages', 'pihomes', 'oar', 'wayback_acm', 'dblp_ee', 'oa_refresh', 'oa_editions', 's2_title',
-         'arxiv_loose', 'ledger_found']
-NATIVE = ['arxiv_loose', 'ledger_found']  # written for the interface (the others run a lab_channels.py step through channels/_legacy.py)
+         'arxiv_loose', 'ledger_found', 'oa_publisher']
+NATIVE = ['arxiv_loose', 'ledger_found', 'oa_publisher']  # written for the interface (the others run a lab_channels.py step through channels/_legacy.py)
 
 
 def load(name):

@@ -50,6 +50,9 @@ PUBLISHERS = re.compile(r'(?:^|\.)(?:acm\.org|ieee\.org|ieeexplore\.ieee\.org|sc
 LOGIN_HOST = re.compile(r'(?:^|[.-])(?:idp|login|auth|sso|shibboleth|wayf|openathens|signin|accounts|myaccount|cas|ezproxy|secure)(?:[.-]|$)')
 CHALLENGE = re.compile(r'perfdrive|captcha|cloudflare|challenge|Just a moment|HTTP 202 with an empty body|radware|incapsula|distil|px-captcha|'
                        r'validate\.|hcaptcha|recaptcha', re.I)
+# hosts whose empty HTTP 202 (a bot challenge) the collector recorded as 'neither a PDF nor an HTML landing page' before
+# 2026-10-30, when collector_wrapper.py began recording it as a challenge
+EMPTY_202_HOSTS = {'figshare.com', 'arodes.hes-so.ch'}
 PRIORITY = ['challenge', 'login', 'paywall_or_forbidden', 'publisher_landing_no_pdf', 'robots_disallow', 'robots_unavailable', 'embargoed',
             'not_found', 'integrity_mismatch', 'unapproved_redirect', 'landing_no_pdf', 'not_pdf', 'identity_mismatch', 'tls_error', 'too_large', 'policy_skip',
             'transient_on_challenge_or_publisher_host', 'transient_exhausted', 'transient', 'other']
@@ -99,6 +102,8 @@ def cause(a):
         return 'transient', True
     if 'no unambiguous primary PDF link' in d or 'no unambiguous' in d:
         return ('publisher_landing_no_pdf' if PUBLISHERS.search(h) else 'landing_no_pdf'), False
+    if 'neither a PDF nor an HTML landing page' in d and h in EMPTY_202_HOSTS:
+        return 'challenge', False  # these hosts answer an empty HTTP 202 (a WAF bot challenge; collector_wrapper 2026-10-30)
     if re.search(r'neither a PDF|not a PDF|pdfinfo|PDF failed|not a complete JATS|XML', d):
         return 'not_pdf', False
     if re.search(r'\b4\d\d Client Error', d):

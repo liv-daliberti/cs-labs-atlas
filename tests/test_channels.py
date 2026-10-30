@@ -131,3 +131,18 @@ def test_ledger_found_turns_tokens_into_candidates(monkeypatch):
     assert [p.key for p in chosen] == ['w1']
     (res,) = list(LF.discover('mit', chosen, ctx))
     assert res.status == 'found' and len(res.urls) == 3
+
+
+def test_oa_publisher_asks_the_publishers_open_location(monkeypatch):
+    from channels import oa_publisher as OP
+    oa = dict(source='openalex', result='none', detail=dict(locations=[
+        dict(is_oa=True, type='journal', landing='http://www.example-journal.org/a/1', pdf=None),
+        dict(is_oa=False, type='repository', landing='https://repo.example.edu/1', pdf='https://repo.example.edu/1.pdf')]))
+    monkeypatch.setattr(OP, '_CACHE', {'mit': {
+        'w1': dict(key='w1', doi='10.5555/abc', oa_status='gold', publisher='Example', checks=[oa]),
+        'w2': dict(key='w2', doi='10.1109/xyz', oa_status='hybrid', publisher='IEEE', checks=[oa])}})
+    ps, known = papers()
+    assert [p.key for p in ps if OP.APPLIES('mit', p)] == ['w1']       # IEEE (a bot challenge) is left alone
+    ctx = R.Ctx('mit', ps, known, dry=True)
+    (res,) = list(OP.discover('mit', [ps[0]], ctx))
+    assert res.urls[0]['url'] == 'https://www.example-journal.org/a/1' and res.urls[0]['landing_url'] == 'http://www.example-journal.org/a/1'
