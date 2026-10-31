@@ -40,13 +40,13 @@ Status: `open` · `in progress (<who>)` · `done <date> <commit>` · `queued (af
 |---|---|---|---|
 | 9 | A schema + data dictionary for every table | queued (refactor agent, after item 5 merges; owner-approved 2026-10-31: phase A design + schemas + build validation, nothing moves; phase B layout move only after an owner-reviewed dry run) | schemas in the repo; the build validates every output against them |
 | 10 | Separate raw / reviewed / derived | queued (refactor agent, after item 5 merges; owner-approved 2026-10-31: phase A design + schemas + build validation, nothing moves; phase B layout move only after an owner-reviewed dry run) | raw immutable, reviewed decisions in git, derived rebuilt from both; documented |
-| 11 | Stores moved into the project, one writer per catalog, backup policy | stores moved (P); rest: downloads agent after the loop restart | stores are real dirs under `stores/`; one writer per catalog; written retention policy |
+| 11 | Stores moved into the project, one writer per catalog, backup policy | done 2026-10-31 619d8e3, 7364291 (stores under stores/; catalog_lock.py on every write path except the Princeton importer and two vendored resolvers, documented; docs/STORES.md retention/backup policy) | stores are real dirs under `stores/`; one writer per catalog; written retention policy |
 
 ## 4. Operations
 
 | # | Item | Status | Done when |
 |---|---|---|---|
-| 12 | Supervised collectors + status page | in progress (downloads agent: loops to Slurm, then STATUS.md) | loops run as Slurm jobs that back off when idle; generated `STATUS.md` per school |
+| 12 | Supervised collectors + status page | built 2026-10-31 7364291 (SIGTERM-clean Slurm loops, idle backoff 10 min-4 h, generated hierarchy/COLLECTORS-STATUS.md); done when all six loops run as Slurm jobs | loops run as Slurm jobs that back off when idle; generated `STATUS.md` per school |
 | 13 | Scratch housekeeping | queued (data-standards agent, after the downloads agent) | scratch outside the tree, cleaned automatically |
 | 14 | Release notes generated from the build regression | queued (data-standards agent, after the downloads agent) | each release carries a generated `CHANGES.md` |
 
