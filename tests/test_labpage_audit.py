@@ -292,3 +292,20 @@ def test_listed_titles_lose_a_run_in_byline():
 def test_a_degree_from_another_school_in_parentheses():
     m = A.DEGREE_AT_RX.search('(PhD 2016 (DTU), Position: Research Scientist, Mosek)')
     assert m and m.group(1) == 'DTU' and not A.re.search(A.SCHOOL_NAMES['berkeley'], m.group(1))
+
+
+def test_season_ranges_and_institution_listings():
+    assert A.entry_years(', UG researcher, Fall 2019 - Summer 2020 Manu', None) == ([2019, 2020], 'stated_in_entry')
+    assert A.INSTITUTION_LISTING.search('/people/alumni') and A.INSTITUTION_LISTING.search('/people/')
+    assert not A.INSTITUTION_LISTING.search('/people/anind-dey') and not A.INSTITUTION_LISTING.search('/lab/people')
+    assert A._HOST_INST.search('safari.ethz.ch') and A._HOST_INST.search('cse.ucsd.edu')
+
+
+@pytest.mark.parametrize('row,want', [
+    (dict(title='Implementation science for software engineering (keynote)', doi='10.1145/3238147.3264581'), 'talk_or_abstract_title'),
+    (dict(title='Machine Learning Informed Decision-Making', doi='10.5465/ambpp.2021.264'), 'meeting_abstract:doi'),
+    (dict(title='How Representative Are Web Crawlers', doi='10.5281/zenodo.22683521'), 'repository_record'),
+    (dict(title='Extreme Parkour with Legged Robots', doi='10.48550/arxiv.2309.14341'), None),
+])
+def test_recovered_rows_that_are_not_papers(row, want):
+    assert A.addition_not_a_paper(row) == want

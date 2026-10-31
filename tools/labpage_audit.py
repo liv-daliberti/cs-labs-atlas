@@ -86,6 +86,7 @@ STUDENT_REASONS = {
     'name_unresolved': 'a fragment, first name only, or not a person name',
     'merged_under_variant': 'in the build under another spelling of the same name (within this lab)',
     'dropped_by_review': 'in the reviewed corrections (hierarchy/student-corrections.json) as not this lab',
+    'site_at_other_institution': "a people page of a lab at another institution (its host, or a header naming another school and never this one)",
     'shared_page_no_adviser': 'a people page several PIs share (a centre or group listing); the entry does not name this PI as adviser',
     'after_pi_left': "the PI left the school; the entry is undated or dated after the move (another institution's member)",
     'reviewer_excluded': 'the 2026-10-22 lab-page reviewer excluded the name or its section (non-person, collaborator, other lab)',
@@ -1034,6 +1035,31 @@ def plausible(kit, name):
         return True
 
 
+INST_RX = re.compile(r"\b(?:University of [A-Z][\w-]+(?: [A-Z][\w-]+)?|[A-Z][\w-]+ University|UC [A-Z][a-z]+(?: [A-Z][a-z]+)?|"
+                     r"ETH Z[uü]rich|ETH|EPFL|MIT|Stanford|Berkeley|Carnegie Mellon|CMU|Princeton|UCSD|UCLA|Harvard|Yale|Cornell|"
+                     r"Columbia|Caltech|Georgia Tech|Max Planck|INRIA|Oxford|Cambridge|Toronto|TU [A-Z][a-z]+)\b")
+_HOST_INST = re.compile(r'(ethz\.ch|\.ac\.[a-z]{2}$|\.edu$|\.edu\.[a-z]{2}$|mpg\.de|inria\.fr|uni-[a-z]+\.de|tum\.de)')
+
+
+def page_institution(kit, school, src):
+    """Another institution, when a people page belongs to a lab elsewhere: its host is another university's, or its header
+    (title and first 1,500 characters) names another institution and never this school (Onur Mutlu's SAFARI pages at ETH,
+    a lab that moved with its PI). None otherwise."""
+    try:
+        row, views = kit.lpev.cap(school, src)
+    except (KeyError, ValueError):
+        return None
+    host = urlsplit(unwayback(row.get('url') or '')).hostname or ''
+    dom = SCHOOLS[school]['domain']
+    if _HOST_INST.search(host) and not re.search(dom, host):
+        return host
+    head = (views.get('html') or views.get('raw') or '')[:1500]
+    if re.search(SCHOOL_NAMES.get(school, '^$'), head):
+        return None
+    others = [m.group(0) for m in INST_RX.finditer(head)]
+    return others[0] if others else None
+
+
 def coadvisers(kit, school, src):
     """Names written after 'joint with' / 'co-advised with' on a page: co-advisers, not members."""
     try:
@@ -1055,7 +1081,8 @@ def entry_years(desc, head):
     d = (desc or '')[:90]
     m = re.match(r'^\W{0,3}\(([^()]{0,80})\)', d)
     seg = m.group(1) if m else re.split(r'(?<=[a-z0-9)])\.\s|\s(?:received|graduated from|is|was|joined|works?)\s', d, maxsplit=1)[0][:70]
-    r = re.search(r'(%s)\s*(?:-|–|—|to|until)\s*(%s|present|now|current|today)?' % (YEAR_, YEAR_), seg, re.I)
+    r = re.search(r'(%s)\s*(?:-|–|—|to|until)\s*(?:(?:spring|summer|fall|autumn|winter|[A-Z][a-z]{2,8}\.?)\s+)?(%s|present|now|current|today)?'
+                  % (YEAR_, YEAR_), seg, re.I)
     if r:
         b = r.group(2)
         return [int(r.group(1)), int(b) if b and b[:2] in ('19', '20') else None], 'stated_in_entry'
@@ -1127,7 +1154,7 @@ def pm_candidates(kit, school, pi, plan, held):
     cands, unreadable = [], []
     auto_plan = bool(plan.get('strict')) or plan.get('notes', '').startswith('lab-page audit discovery')
     homepage_people = bool(plan.get('homepage_people'))
-    coadv = {}
+    coadv, inst_ = {}, {}
     for src, is_cap in srcs:
         spans = plan.get('span', {})
         orig = None
@@ -1161,9 +1188,12 @@ def pm_candidates(kit, school, pi, plan, held):
                 x['role'], x['role_basis'] = roles_[fn], 'reviewer'
             if src not in coadv:
                 coadv[src] = coadvisers(kit, school, src)
+                inst_[src] = page_institution(kit, school, src)
             flagged = [f for f in x['flags'] if f != 'weak-quote']
             why = None
-            if CREDIT_RX.search(x.get('quote') or '') or CREDIT_RX.search((x.get('desc') or '')[:60]):
+            if inst_.get(src):
+                why, x['detail'] = 'site_at_other_institution', f"the page's header names {inst_[src]}, not this school"
+            elif CREDIT_RX.search(x.get('quote') or '') or CREDIT_RX.search((x.get('desc') or '')[:60]):
                 why, x['detail'] = 'name_unresolved', 'site credit or footer'
             elif any(names.match_one(x['name'], c) for c in coadv[src]):
                 why, x['detail'] = 'not_a_student', 'named as a co-adviser (joint with / co-advised with)'
@@ -1229,7 +1259,7 @@ def pm_candidates(kit, school, pi, plan, held):
             continue
         cap_y = int(re.search(r'/web/(\d{4})', x.get('capture_url') or '/web/2026').group(1))
         destination = re.match(r'^\W{0,3}[-–—]\s*\S', x.get('desc') or '') or \
-            re.search(r'\b(now|currently) (at|a|an|with)\b|→|->|\bposition:', (x.get('desc') or '')[:100], re.I)
+            re.search(r'\b(now|currently) (at|a|an|with)\b|→|->|\bposition:|\bcurrent(ly)?:|\bnext:', (x.get('desc') or '')[:100], re.I)
         listed_now = cap_y >= 2025 and not destination and not x['alumni']  # on a 2025-26 page, not with a later job
         if auto_plan and (start is None or start < 2014) and not ys and fn not in keep and not listed_now and not \
                 re.search(r'\b(current|present|now)\b', x.get('head') or '', re.I) and not \
@@ -1279,7 +1309,7 @@ def group_people(names, rows):
     return groups
 
 
-STUDENT_REASON_ORDER = ('genuinely_missing', 'evidence_not_in_build', 'dropped_by_review', 'shared_page_no_adviser', 'after_pi_left', 'at_previous_school', 'outside_2016_2026',
+STUDENT_REASON_ORDER = ('genuinely_missing', 'evidence_not_in_build', 'dropped_by_review', 'site_at_other_institution', 'shared_page_no_adviser', 'after_pi_left', 'at_previous_school', 'outside_2016_2026',
                         'undated_alumni_cannot_place', 'undated_cannot_place', 'not_in_people_section', 'reviewer_excluded',
                         'not_a_student', 'name_unresolved')
 
@@ -1520,6 +1550,30 @@ def fix_titles_from_arxiv(adds):
     return adds
 
 
+REPOSITORY_DOI = re.compile(r'^10\.5281/zenodo\.|^10\.6084/m9\.figshare|^10\.17605/osf\.io|^10\.5061/dryad')
+TALK_TITLE = re.compile(r'\((?:keynote|invited talk|invited|tutorial|panel|talk|abstract|poster|extended abstract)\)\s*$|^keynote\s*:', re.I)
+AOM_ABSTRACT_DOI = re.compile(r'^10\.5465/ambpp\.')  # Academy of Management Proceedings: meeting abstracts (R-PAP-19)
+
+
+def addition_not_a_paper(row):
+    """Why a recovered row is not a paper: tools/pihier/papers.not_a_paper (R-PAP-17/18/19/22) on its title, venue and DOI,
+    and what that rule reads from the OpenAlex type, which a recovered row does not carry: a repository record (Zenodo,
+    figshare, OSF, Dryad DOI), a title marked as a keynote, talk, poster or abstract, an Academy of Management meeting
+    abstract. None for a paper."""
+    from pihier.papers import not_a_paper
+    t, d = str(row.get('title') or ''), ndoi(row.get('doi'))
+    why = not_a_paper(dict(title=t, venue=row.get('venue'), doi=d, byline=row.get('byline') or [], type=row.get('type')))
+    if why:
+        return why
+    if REPOSITORY_DOI.search(d):
+        return 'repository_record'
+    if TALK_TITLE.search(t):
+        return 'talk_or_abstract_title'
+    if AOM_ABSTRACT_DOI.search(d):
+        return 'meeting_abstract:doi'
+    return None
+
+
 def recover_dir(school):
     return H / school / 'labpage-audit-recover'
 
@@ -1569,6 +1623,10 @@ def finish_papers(sec, ents, p, verdicts):
             item['detail'] = why
         sec['missing'].append(item)
         if rc == 'genuinely_missing' and acc:
+            np_ = addition_not_a_paper(acc)
+            if np_:  # the build's own not-paper rules (R-PAP-18/19) and the record kinds they do not see without a type
+                item['reason_code'], item['detail'] = 'not_a_paper', np_
+                continue
             a_ = dict(acc, pi=p['pi'], rule='LP-PAP-01', audit_key=e['audit_key'])
             t_, how_ = clean_listed_title(a_.get('title'), p)
             if how_:
@@ -1625,6 +1683,8 @@ def none_reason(p, d, checks):
 
 
 # ---------------------------------------------------------------- per-toolkit adapters
+INSTITUTION_LISTING = re.compile(r'^/(people|directory|alumni|students|our-people)(/(alumni|students|phd(-students)?|graduates?|faculty|staff|'
+                                 r'postdocs?|all))?/?$', re.I)  # a department's own list (hcii.cmu.edu/people/alumni), not a lab's
 PEOPLE_PATH = re.compile(r'people|member|team|student|alumni|group|personnel|advisee|former|lab', re.I)
 PUBS_PATH = re.compile(r'publication|papers|pubs|bibliograph|/cv|vita|talks|thesis|teaching|course', re.I)
 STRICT_HEAD = re.compile(r'\b(students?|ph\.?\s?d|post-?docs?|post-?doctoral|alumni|alumnae|graduated|graduates|advisees?|members?|team|'
@@ -1657,7 +1717,10 @@ def adapter_plan(kit, ctx, p, prior):
     live, caps = [], collections.defaultdict(list)
     for u in pages:
         if not u or (u != prior.get('people_page') and not PEOPLE_PATH.search(urlsplit(unwayback(u)).path or '')) or \
-                PUBS_PATH.search(urlsplit(unwayback(u)).path or ''):
+                PUBS_PATH.search(urlsplit(unwayback(u)).path or '') or \
+                (INSTITUTION_LISTING.search(urlsplit(unwayback(u)).path or '') and
+                 urlsplit(unwayback(u)).hostname != urlsplit(prior.get('lab_site') or '').hostname) or \
+                is_profile(unwayback(u), ctx['cfg'].get('domain', r'^$')):
             continue  # the pass also cited publication lists and homepages for single rows; only people pages are re-parsed
         if re.match(r'^https?://web\.archive\.org/web/', u):
             caps[unwayback(u)].append(u)
@@ -2046,9 +2109,42 @@ def cmd_summary():
     write_md(read(sp) if sp.exists() else {})
 
 
+def cmd_sample(school, kind, n, seed):
+    """A random sample of proposed additions with the page text around each quote (students) or the identity, school and
+    appointment evidence (papers), for a hand-check round (docs/LAB-PAGES.md, acceptance bar). The seed makes it
+    reproducible; every round uses a new seed."""
+    import random
+    rows = read(H / school / 'labpage-additions.json')[kind]
+    random.seed(seed)
+    sample = random.sample(rows, min(n, len(rows)))
+    kit = Kit(school) if kind == 'students' else None
+    for i, r in enumerate(sample, 1):
+        if kind == 'students':
+            src = r.get('capture_url') or r['sha256']
+            try:
+                t = kit.lpev.text(school, src)
+            except (KeyError, ValueError):
+                t = ''
+            j = t.find(r['quote'])
+            ctx = t[max(0, j - 220): j + len(r['quote']) + 220] if j >= 0 else '(quote not found)'
+            print(f"[{i}] {r['pi']} | {r['name']} | role={r.get('role')} ({r.get('role_basis')}) years={r.get('years')} "
+                  f"({r.get('years_basis')}) alumni={r.get('alumni')} pi_from={r.get('pi_first_year')} | {src[:110]}")
+            print('     CTX:', ctx.replace('\n', ' ')[:650])
+        else:
+            ev = r.get('evidence') or {}
+            print(f"[{i}] {r['pi']} | {str(r.get('title'))[:110]} ({r.get('title_basis') or 'listed'}) | {r.get('year')} | doi={r.get('doi')}")
+            print('     basis:', ev.get('basis'), ev.get('step'), '| via:', str(ev.get('school_via') or ev.get('quotes') or '')[:170],
+                  '| app:', ev.get('appointment'))
+            lp = ev.get('labpage') or {}
+            print('     listed:', str(lp.get('listed_title'))[:110], lp.get('listed_year'), lp.get('url'))
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('cmd', choices=['discover', 'recover', 'audit', 'recover-audit', 'all', 'summary'])
+    ap.add_argument('cmd', choices=['discover', 'recover', 'audit', 'recover-audit', 'all', 'summary', 'sample'])
+    ap.add_argument('--kind', choices=['students', 'papers'], default='students')
+    ap.add_argument('--n', type=int, default=20)
+    ap.add_argument('--seed', type=int, default=0)
     ap.add_argument('school', nargs='?')
     ap.add_argument('--pi', nargs='*')
     ap.add_argument('--redo', action='store_true')
@@ -2063,6 +2159,8 @@ def main():
         cmd_recover_audit(a.school, a.title_credits)
     if a.cmd == 'audit':
         cmd_audit(a.school)
+    if a.cmd == 'sample':
+        cmd_sample(a.school, a.kind, a.n, a.seed)
     if a.cmd == 'summary':
         cmd_summary()
 
