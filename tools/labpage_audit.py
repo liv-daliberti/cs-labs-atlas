@@ -121,6 +121,10 @@ SCHOOLS = {
     'stanford': dict(family='st', tools='labpage-tools-stanford', domain=r'stanford\.edu'),
     'michigan': dict(family='michigan', domain=r'umich\.edu'),
 }
+SCHOOL_NAMES = dict(princeton=r'Princeton', mit=r'MIT|Massachusetts Institute', cmu=r'CMU|Carnegie Mellon', epfl=r'EPFL|[EÉ]cole Polytechnique',
+                    berkeley=r'Berkeley|UCB', stanford=r'Stanford', michigan=r'Michigan|UMich|U-M\b')
+ELSEWHERE_RX = re.compile(r"\b(?i:ph\.?\s?d\.?|graduate|doctoral|master'?s|undergraduate|visiting) (?i:student|candidate)"
+                          r"(?: in [\w &,-]{2,60}?)? at (?:the )?([A-Z][\w.&'-]*(?: (?:of )?[A-Z][\w.&'-]*){0,5})")
 
 
 # ---------------------------------------------------------------- pure helpers (tests/test_labpage_audit.py)
@@ -301,7 +305,9 @@ def pi_start_year(p):
     if ys:
         return min(ys)
     ls = [l['year'] for l in p.get('listings') or [] if l.get('year')]
-    return min(ls) if ls else None
+    if not ls or min(ls) <= WINDOW[0]:
+        return None  # a first listing in 2016 is the window's floor, not an arrival (Leonard, Jha: decades at the school)
+    return min(ls)
 
 
 def pi_left_year(p):
@@ -343,8 +349,10 @@ class Kit:
         sys.path.insert(0, str(H / PM))
         import lpcap, lpev, autom, pubx, names  # noqa: E401
         self.lpcap, self.lpev, self.autom, self.pubx, self.names = lpcap, lpev, autom, pubx, names
-        lpcap.DBS.setdefault(school, str(H / school / 'labpage-captures.sqlite'))
-        lpcap.SISTER.setdefault(school, [])
+        lpcap.ROOT = pubx.ROOT = str(H)  # the toolkit's own constant predates tools/atlas_paths.py
+        for k_ in list(lpcap.DBS) + [school]:
+            lpcap.DBS[k_] = str(H / k_ / 'labpage-captures.sqlite')
+            lpcap.SISTER[k_] = [p_.replace(str(Path(p_).parents[1]), str(H)) for p_ in lpcap.SISTER.get(k_, [])]
         lpcap.DEFAULT_GAP = max(lpcap.DEFAULT_GAP, HOST_GAP)
         lpcap.LOCKDIR = os.path.join(os.environ.get('TMPDIR') or '/tmp', 'lp-ratelimit')
         owait = lpcap._wait
@@ -1095,6 +1103,9 @@ def pm_candidates(kit, school, pi, plan, held):
                 why, x['detail'] = 'name_unresolved', 'site credit or footer'
             elif any(names.match_one(x['name'], c) for c in coadv[src]):
                 why, x['detail'] = 'not_a_student', 'named as a co-adviser (joint with / co-advised with)'
+            elif auto_plan and (m_el := ELSEWHERE_RX.search((x.get('desc') or '')[:220])) and \
+                    not re.search(SCHOOL_NAMES.get(school, '^$'), m_el.group(1)):
+                why, x['detail'] = 'at_previous_school', f"the entry places the person at {m_el.group(1)}"
             elif re.search(r'\brotation', (x.get('head') or '') + ' ' + (x.get('desc') or '')[:60], re.I):
                 why, x['detail'] = 'not_a_student', 'rotation student'
             elif re.search(r'\bfaculty\b|vice[- ]chancellor|\bdean\b|professors?\b', x.get('head') or '', re.I) and \

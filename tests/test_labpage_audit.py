@@ -220,3 +220,11 @@ def test_pi_left_year_from_periods_or_stale_listings():
     assert A.pi_left_year(dict(periods=[dict(start='2008', end=None)], listings=[])) is None
     assert A.pi_left_year(dict(periods=[], listings=[dict(year=2016), dict(year=2017)])) == 2017  # Aaronson: MIT listings end 2017
     assert A.pi_left_year(dict(periods=[], listings=[dict(year=2025), dict(year=2026)])) is None
+
+
+def test_an_entry_placing_the_student_at_another_school():
+    d = 'Jake is Ph.D. student in Neuroscience at UT Austin, co-supervised by Alex Huk.'
+    m = A.ELSEWHERE_RX.search(d)
+    assert m and m.group(1).startswith('UT Austin')
+    m = A.ELSEWHERE_RX.search('Ning is a 3rd-year Ph.D. student in PNI at Princeton University.')
+    assert m and A.re.search(A.SCHOOL_NAMES['princeton'], m.group(1))
