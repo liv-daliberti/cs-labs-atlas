@@ -221,3 +221,9 @@ $PY tools/cs_related_school.py review michigan && $PY tools/census_build.py mich
 ### Gate
 `tools/stage_gate.py michigan 2`: **pass**, 0 open, and the sweep check passes for the OpenAlex sweep.
 - The DBLP part of the sweep check needs the dump-persons file regenerated after the build. It is re-run with stage 7.
+
+## Owner decisions, 2026-10-30 (after the stage reports)
+- **The 13 flagged DBLP acceptances stand** (Avestruz, Bhattacharya, Hofmann, Zhongming Liu, Dvorkin, Di Liang, Shekhar,
+  Cai, Menassa, Friedman, Balter, Jionghua Jin, Jun Ni): they fail the OpenAlex share test, but the DBLP decision is kept.
+- **Mert Pilanci is not a Michigan PI.** Recorded in `schools/michigan.toml` `[census].not_pi`, which `tools/census_build.py`
+  honours; the census now has 212 PIs (from 213). He leaves `pis.json` and the package at the next Michigan stage 3 rerun.

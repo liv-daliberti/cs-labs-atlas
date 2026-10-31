@@ -112,6 +112,7 @@ def main(key):
     review = {r['name']: r for r in read(P.HIERARCHY / key / 'cs-related-review.json', {}).get('decisions', [])} \
         if isinstance(read(P.HIERARCHY / key / 'cs-related-review.json', {}), dict) else {}
     basis_ev = {r['pi']: r for r in read(P.HIERARCHY / key / 'pi-basis-evidence.json', [])}
+    not_pi = {x['name']: x['reason'] for x in S.field(cfg, 'census.not_pi', [])}  # owner decisions: never a PI, whatever the listing says
     dblp_ids = read(P.HIERARCHY / key / 'dblp-ids.json', {})  # stage 5 (tools/dblp_ids_school.py); folded in when present
     for nm_, h_ in read(P.HIERARCHY / key / 'homepage-identity.json', {}).items():  # the PI's own homepage links (stage 5)
         d0 = dblp_ids.setdefault(nm_, {})
@@ -171,6 +172,8 @@ def main(key):
             e = basis_ev[name]; basis = {k: e[k] for k in ('kind', 'url', 'sha256', 'quote', 'observed', 'role') if k in e}
         if basis is None and why_not is None:
             why_not = f"rank {best[max(best)]} without reviewed advising or own-group evidence"
+        if name in not_pi or any(a_ in not_pi for a_ in g['names']):
+            basis, why_not = None, 'owner decision: ' + not_pi.get(name, next((not_pi[a_] for a_ in g['names'] if a_ in not_pi), ''))
         is_pi = basis is not None
         n[f'pi:{is_pi}'] += 1; n[f"basis:{(basis or {}).get('kind')}"] += 1
         cid = f'{key}_fac_' + slug(name)

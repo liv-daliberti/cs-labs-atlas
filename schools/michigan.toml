@@ -79,6 +79,10 @@ foreign_title_exception = false
 
 [census]
 computing_departments = ["CSE", "ECE"]
+# Owner decisions: never a PI of this school, whatever the listings say (tools/census_build.py)
+not_pi = [
+  {name = "Mert Pilanci", reason = "owner decided 2026-10-30: not a Michigan PI. The listings show only an announced start (EECS, beginning 9/2017), a visiting year and one 2018 professor row; he has 0 Michigan works and is Stanford's PI (STAGE-4.md, STAGE-7.md)"},
+]
 # canonical home-unit names: the listings spell units several ways (tools/home_departments_school.py)
 home_units = {"Computer Science and Engineering" = '^(?:EECS\s*[\u2013-]\s*)?Computer Science (?:and|&) Engineering$', "Electrical and Computer Engineering" = '^(?:EECS\s*[\u2013-]\s*)?Electrical (?:and|&) Computer Engineering$', "Linguistics" = '^Lin[gq]uistics$', "Robotics" = '^Robotics(?: Department)?$', "Nuclear Engineering and Radiological Sciences" = 'Nuclear Engineering (?:and|&) Radiological', "Industrial and Operations Engineering" = 'Industrial (?:and|&) Operations', "Civil and Environmental Engineering" = 'Civil (?:and|&) Environmental', "School of Information" = '^(?:School of )?Information$|^School of Information', "Statistics" = '^Statistics$', "Mathematics" = '^Mathematics$', "Mechanical Engineering" = '^Mechanical Engineering$'}
 

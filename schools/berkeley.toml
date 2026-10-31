@@ -38,3 +38,9 @@ computing_departments = ["EECS"]   # listed_not_in_census.py; [] = every listed 
 
 [site]
 depts = {EECS = "Electrical Engineering and Computer Sciences"}
+
+[sweep_check]
+# Reviewed exceptions to tools/sweep_check.py (each with its reason; verify = "papers_normal" re-checks the cause). Owner approved 2026-10-30.
+exceptions = [
+  {test = "year_outlier", year = 2026, verify = "papers_normal", reason = "36,836 of the 49,645 works of 2026 are DOE Pacific Northwest National Laboratory (PNNL) Repository dataset records (DOI prefix 10.25582; 38,074 datasets in all): OpenAlex type dataset, which every reader drops (pi_hierarchy.NOT_PAPERS, R-PAP-17). Paper-only count of 2026 (11,144) is in line with the other years. Diagnosed 2026-10-30; the release is unaffected."},
+]
