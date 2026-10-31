@@ -38,8 +38,8 @@ Status: `open` · `in progress (<who>)` · `done <date> <commit>` · `queued (af
 
 | # | Item | Status | Done when |
 |---|---|---|---|
-| 9 | A schema + data dictionary for every table | queued (data-standards agent, after the downloads agent) | schemas in the repo; the build validates every output against them |
-| 10 | Separate raw / reviewed / derived | queued (data-standards agent, after the downloads agent) | raw immutable, reviewed decisions in git, derived rebuilt from both; documented |
+| 9 | A schema + data dictionary for every table | queued (refactor agent, after item 5 merges; owner-approved 2026-10-31: phase A design + schemas + build validation, nothing moves; phase B layout move only after an owner-reviewed dry run) | schemas in the repo; the build validates every output against them |
+| 10 | Separate raw / reviewed / derived | queued (refactor agent, after item 5 merges; owner-approved 2026-10-31: phase A design + schemas + build validation, nothing moves; phase B layout move only after an owner-reviewed dry run) | raw immutable, reviewed decisions in git, derived rebuilt from both; documented |
 | 11 | Stores moved into the project, one writer per catalog, backup policy | stores moved (P); rest: downloads agent after the loop restart | stores are real dirs under `stores/`; one writer per catalog; written retention policy |
 
 ## 4. Operations
