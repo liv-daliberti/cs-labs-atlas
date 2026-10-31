@@ -19,6 +19,6 @@ for s in ${SCHOOLS:-mit berkeley stanford princeton epfl cmu}; do
 done
 PRIN=$(cs_atlas_sweep claude-princeton-20261015)
 OUT=$CS_ATLAS_STORES/princeton
-pk=$(ls -d $OUT/discovery/claude-labpapers-{arxiv_loose,ledger_found}-*/ 2>/dev/null | while read d; do [ -s "$d/cs-open-copies-candidates.jsonl" ] && echo "cs_open_copies:$(basename $d)"; done)
+pk=$(ls -d $OUT/discovery/claude-labpapers-{arxiv_loose,ledger_found,oa_publisher}-*/ 2>/dev/null | while read d; do [ -s "$d/cs-open-copies-candidates.jsonl" ] && echo "cs_open_copies:$(basename $d)"; done)
 [ -n "$pk" ] && (cd $PRIN && nice -n 5 $FTP_PY -u tools/import_all_when_free.py $pk)
 echo '{"channels-1030": "done"}'
