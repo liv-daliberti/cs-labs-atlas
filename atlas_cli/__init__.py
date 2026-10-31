@@ -27,6 +27,7 @@ COMMANDS = {
     'release':    ('py', 'tools/make_release.py', 'cut a release (refuses on uncommitted code or failed stages)'),
     'tree':       ('py', 'tools/organize_tree.py', 'the organized school/lab/paper tree from a release'),
     'export':     ('py', 'tools/export_release.py', 'the GitHub export: atlas export <repo dir> [--skip-atlas]'),
+    'sweep':      ('py', 'tools/sweep_school.py', 'a school\'s OpenAlex sweep + sweep check: atlas sweep <school> [--daily] [--print]'),
     'stage-gate': ('py', 'tools/stage_gate.py', 'a protocol school\'s stage gates: atlas stage-gate <school> [stage ...]'),
     'charters':   ('py', 'tools/school_config.py --check', 'validate every school charter (schools/*.toml)'),
     'collect':    ('special', 'fulltext-push/lab_first_loop.py', 'the lab-first download loop: atlas collect <school> [...]'),
