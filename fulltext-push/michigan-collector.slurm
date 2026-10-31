@@ -11,9 +11,9 @@
 #SBATCH --cpus-per-task=2
 #SBATCH --mem=8G
 #SBATCH --time=3-00:00:00
-#SBATCH --output=/n/fs/resemble/homogenizing-science/code/fulltext-push/logs/michigan-collector-%j.out
-. /n/fs/resemble/homogenizing-science/code/paths.sh  # every path in one place (tools/atlas_paths.py)
-export CS_ATLAS_COLLECTOR_PY=/n/fs/resemble/homogenizing-science/env/atlas/bin/python
+#SBATCH --output=fulltext-push/logs/michigan-collector-%j.out
+. "${CS_ATLAS_CODE:-$SLURM_SUBMIT_DIR}/paths.sh" || exit 1  # submit from the code root  # every path in one place (tools/atlas_paths.py)
+export CS_ATLAS_COLLECTOR_PY="$CS_ATLAS_PY"
 export FTP_PY="$CS_ATLAS_COLLECTOR_PY"
 cd "$CS_ATLAS_FULLTEXT_PUSH"
 ./run_steps.sh michigan oa_arxiv openalex proceedings arxiv_title dblp_ee s2 core europepmc pmc figshare labpages pihomes wayback_acm \

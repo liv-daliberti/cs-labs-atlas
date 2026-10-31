@@ -6,13 +6,13 @@
 #SBATCH --mem=16G
 #SBATCH --time=16:00:00
 #SBATCH --exclude=node302
-#SBATCH --output=/n/fs/resemble/homogenizing-science/code/fulltext-push/logs/recover-1030-%j.out
+#SBATCH --output=fulltext-push/logs/recover-1030-%j.out
 # 2026-10-30 recovery from the first unavailability ledger:
 #   1. add_works.py: lab papers no catalog work matches (the ledger's found_not_in_catalog: 481) become queued works
 #   2. ledger_found: the open copies the ledger's checks found that are not candidates yet (found_awaiting_download)
 #   3. the usual channels for the works added in 1 (their candidates), as addworks-1029.slurm did
 #   4. Princeton's packages through its own import path
-. /n/fs/resemble/homogenizing-science/code/paths.sh
+. "${CS_ATLAS_CODE:-$SLURM_SUBMIT_DIR}/paths.sh" || exit 1  # submit from the code root
 export LD_LIBRARY_PATH="$CS_ATLAS_ENV_LIB${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 export FTP_PY="$CS_ATLAS_ENV_PY"
 PY="nice -n 5 $FTP_PY -I -u"
