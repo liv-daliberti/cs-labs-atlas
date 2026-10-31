@@ -121,3 +121,7 @@ def test_open_at_publisher_but_robots_disallow():
     p = paper(attempts=[att('https://www.sciencedirect.com/science/article/pii/X', 'robots_disallow')])
     p['checks']['openalex'] = dict(none('openalex'), detail=dict(is_oa=True, oa_status='hybrid'))
     assert code(p) == 'open_copy_robots_disallowed'
+
+
+def test_quarantined_copy_is_robots_disallowed():
+    assert code(paper(quarantined=True, attempts=[att('https://hal.science/hal-1/document', 'other')])) == 'open_copy_robots_disallowed'

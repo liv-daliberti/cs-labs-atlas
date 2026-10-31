@@ -143,6 +143,7 @@ def load_school(school):
     for k, p in papers.items():
         g = ([p['cid']] if p['cid'] else []) + doi_ids.get(p['doi'], []) + t_ids.get(F.nt(p['r'].get('title')), [])
         p['group'] = [i for i in dict.fromkeys(g) if st.get(i) not in F.LOCAL]
+        p['quarantined'] = any(st.get(i) == 'quarantined_robots_ai' for i in p['group'])  # quarantine_robots_ai.py (2026-10-31)
         for i in p['group']:
             gid[i].add(k)
     att, cand = defaultdict(list), defaultdict(set)
@@ -932,6 +933,8 @@ def decide(p):
         return 'found_awaiting_download', missing, new
     if new:
         return ('found_awaiting_download' if p['in_catalog'] else 'found_not_in_catalog'), missing, new
+    if p.get('quarantined'):  # a copy was taken from a path robots.txt disallows for an Anthropic crawler; quarantined
+        return 'open_copy_robots_disallowed', missing, new
     per_url = defaultdict(list)
     for a in p['attempts']:
         per_url[a['url']].append(a['cause'])
