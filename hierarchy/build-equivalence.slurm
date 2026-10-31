@@ -27,6 +27,7 @@ SCHOOLS=${SCHOOLS:-$CS_ATLAS_SCHOOLS}
 export PYTHONHASHSEED=${PYTHONHASHSEED:-0}
 CONTROL=${CONTROL:-}
 CONTROL_CODE=${CONTROL_CODE:-old}
+VALIDATE=${VALIDATE:-}   # 1: also validate the new packages against schemas/ (tools/validate.py)
 case $CONTROL_CODE in old|new) ;; *) echo "CONTROL_CODE must be old or new"; exit 1 ;; esac
 T=/tmp/$USER-$SLURM_JOB_ID
 mkdir -p "$T/old-code" "$T/old" "$T/new" "$T/control" "$REPORT" || exit 1
@@ -61,5 +62,11 @@ fi
 echo "== old vs new"
 "$CS_ATLAS_PY" "$NEW_CODE/tools/package_diff.py" "$T/old" "$T/new" --schools $SCHOOLS --json "$REPORT/equivalence-$SLURM_JOB_ID.json" \
   | tee "$REPORT/equivalence-$SLURM_JOB_ID.txt" || fail=1
+if [ -n "$VALIDATE" ]; then
+  mkdir -p "$T/vroot" && ln -sfn "$T/new" "$T/vroot/hierarchy"   # validate.py --root reads <root>/hierarchy/<school>/
+  echo "== validate the new packages"
+  "$CS_ATLAS_PY" "$NEW_CODE/tools/validate.py" $SCHOOLS --root "$T/vroot" --json "$REPORT/validate-$SLURM_JOB_ID.json" \
+    | tee "$REPORT/validate-$SLURM_JOB_ID.txt" || fail=1
+fi
 echo "== done $(date +%F\ %T) fail=$fail"
 exit $fail
