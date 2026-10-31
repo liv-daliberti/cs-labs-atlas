@@ -24,7 +24,7 @@ def _load(p):
         b = gzip.decompress(b)
     name = p.name[:-3] if p.suffix == '.gz' else p.name
     if name.endswith('.jsonl'):
-        return 'jsonl', [json.loads(x) for x in b.decode().splitlines() if x.strip()]
+        return 'jsonl', [json.loads(x) for x in b.decode().split('\n') if x.strip()]  # not splitlines(): U+2028 occurs inside strings
     if name.endswith('.json'):
         return 'json', json.loads(b)
     return 'bytes', b
