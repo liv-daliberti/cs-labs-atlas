@@ -26,6 +26,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402  (every path in one place)
 HERE = P.WORK; FT = P.STORES
 LOCAL = ('downloaded', 'fulltext_xml')
+# the collector's identity when neither the catalog title nor the DOI was found in the file; such a copy counts only once
+# fulltext-push/identity_review.py (or the download-time rule) confirms it (docs/UNAVAILABLE.md)
+PENDING = 'provider_link_only_review_pending'
 
 
 def chunks(db, sql_cols, chunk=1500):
@@ -70,7 +73,9 @@ def run(school):
                         pass
                     access[wid] = dict(access_verdict=verdict, access_cause=cause, access_causes=causes)
                 time.sleep(0.05)
-        for wid, doi, st, title in chunks(db, 'id, doi, status, title'):
+        for wid, doi, st, title, ic in chunks(db, 'id, doi, status, title, identity_check'):
+            if st == 'downloaded' and ic == PENDING:
+                st = 'identity_unconfirmed'  # a copy whose identity is not confirmed does not count (owner, 2026-10-31)
             if status.get(wid) not in LOCAL:
                 status[wid] = st
             if doi and (st in LOCAL or ndoi(doi) not in by_doi):

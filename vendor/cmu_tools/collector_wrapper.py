@@ -310,9 +310,10 @@ def check_identity(row, path):
     if identity != IR.PENDING:
         return identity
     store = Path(path).parents[1]
-    first = IR.first_author(CODE_ROOT, store.name, row['id'], row.get('title'), row.get('doi'), catalog=store / 'catalog.sqlite')
+    first, auth = IR.first_author(CODE_ROOT, store.name, row['id'], row.get('title'), row.get('doi'), catalog=store / 'catalog.sqlite')
     mapped = IR.mapped_arxiv(row.get('doi'), _s2_cache(), CODE_ROOT / 'fulltext-push' / 'raw' / 'ledger_openalex.jsonl')
-    verdict, ev = IR.judge(IR.page_text(path, 1, 1), row.get('title'), first, row.get('doi'), getattr(_TIER, 'final', None), mapped)
+    verdict, ev = IR.judge(IR.page_text(path, 1, 1), row.get('title'), first, row.get('doi'), getattr(_TIER, 'final', None), mapped,
+                           p12=IR.page_text(path, 1, 2), author_authoritative=auth)
     if verdict in IR.TAGS:
         return IR.TAGS[verdict]
     if verdict == 'fail' or loose:

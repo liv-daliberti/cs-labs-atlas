@@ -34,7 +34,7 @@ UA = F.UA
 # ---------------------------------------------------------------- vocabulary (docs/UNAVAILABLE.md)
 REASONS = {  # code: final?
     'found_awaiting_download': False, 'found_not_in_catalog': False, 'pending_retry': False, 'incomplete_check': False,
-    'open_copy_bot_challenge': True, 'open_copy_behind_login': True, 'open_copy_robots_disallowed': True,
+    'identity_unconfirmed': False, 'open_copy_bot_challenge': True, 'open_copy_behind_login': True, 'open_copy_robots_disallowed': True,
     'landing_page_without_pdf': True, 'open_copy_unusable': True, 'paywall_only': True, 'publisher_only_closed': True,
     'no_doi_no_match': True}
 SOURCES = ['openalex', 'arxiv', 's2', 'core', 'pmc', 'dblp', 'proceedings', 'repository', 'labpages', 'wayback_acm']
@@ -935,6 +935,8 @@ def decide(p):
         return ('found_awaiting_download' if p['in_catalog'] else 'found_not_in_catalog'), missing, new
     if p.get('quarantined'):  # a copy was taken from a path robots.txt disallows for an Anthropic crawler; quarantined
         return 'open_copy_robots_disallowed', missing, new
+    if p.get('status') == 'identity_unconfirmed':  # a copy is downloaded, but its identity is not confirmed (identity_rule.py)
+        return 'identity_unconfirmed', missing, new
     per_url = defaultdict(list)
     for a in p['attempts']:
         per_url[a['url']].append(a['cause'])
@@ -1013,6 +1015,7 @@ def summarize(p, code, missing, new):
     lead = {'found_awaiting_download': f"Open copy waiting for the collector ({(p['untried'] or new or ['?'])[0][:120]}).",
             'found_not_in_catalog': 'Open copy found, but the paper has no catalog work yet.',
             'pending_retry': 'Temporary failure; the collector asks again.',
+            'identity_unconfirmed': 'A copy is downloaded, but neither its title nor its authors confirm it is this paper; it does not count until confirmed.',
             'incomplete_check': 'Checks incomplete.'}.get(code)
     return ' '.join(([lead] if lead else []) + s)
 

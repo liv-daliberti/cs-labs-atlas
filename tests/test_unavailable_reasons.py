@@ -125,3 +125,7 @@ def test_open_at_publisher_but_robots_disallow():
 
 def test_quarantined_copy_is_robots_disallowed():
     assert code(paper(quarantined=True, attempts=[att('https://hal.science/hal-1/document', 'other')])) == 'open_copy_robots_disallowed'
+
+
+def test_identity_unconfirmed_copy():
+    assert code(paper(status='identity_unconfirmed')) == 'identity_unconfirmed'

@@ -22,8 +22,17 @@ def test_judge_pass_fail_undecided():
     assert IR.judge(PAGE_OK, TITLE, 'lovelace', None, None, None)[0] == 'pass_title'
     assert IR.judge(PAGE_OTHER, TITLE, 'lovelace', '10.5555/x', None, None)[0] == 'fail'
     assert IR.judge('', TITLE, 'lovelace', None, None, None)[0] == 'undecided'               # no text layer
-    assert IR.judge(PAGE_OTHER, TITLE, '', None, None, None)[0] == 'undecided'               # no author, no DOI known
-    retitled = 'arXiv:2101.00001v2 [cs.LG]  Something Else Entirely  Ada Lovelace ' + 'y' * 200
+    assert IR.judge(PAGE_OTHER, TITLE, '', None, None, None)[0] == 'fail'                    # nothing of the title: another document
+    partly = 'Learning Fixture Representations  Grace Hopper ' + 'w' * 200                          # retitled or abbreviated, no author known
+    assert IR.judge(partly, TITLE, '', '10.5555/x', None, None)[0] == 'undecided'
+    caps = 'Published as a conference paper  L EARNING F IXTURE R EPRESENTATIONS FOR C HANNEL P LUGINS  Ada Lovelace ' + 'v' * 200
+    assert IR.judge(caps, TITLE, 'lovelace', None, None, None)[0] == 'pass_title'             # small caps split by pdftotext
+    ru = 'Экономическая социология. Рынок труда соискателей и трения в поиске работы на современных онлайн-платформах ' * 2
+    assert IR.judge(ru, 'Рынок труда соискателей и трения в поиске работы', 'braverman', None, None, None, author_authoritative=False)[0] != 'fail'
+    cover = 'Peer review status: This is a non-peer-reviewed preprint submitted to EarthArXiv. ' * 2
+    assert IR.judge(cover, TITLE, '', '10.5555/x', None, None, p12=cover + TITLE + ' Ada Lovelace')[0] == 'undecided'   # title on page 2
+    assert IR.judge(PAGE_OTHER, TITLE, 'lovelace', None, None, None, author_authoritative=False)[0] == 'fail'      # no title word at all
+    retitled = 'arXiv:2101.00001v2 [cs.LG]  Something Else Entirely  Ada Lovelace, Department of Physics, University of the North ' + 'y' * 200
     assert IR.judge(retitled, TITLE, 'lovelace', '10.5555/x', 'https://x/2101.00001v2.pdf', '2101.00001')[0] == 'pass_arxiv'
     assert IR.judge(retitled, TITLE, 'lovelace', '10.5555/x', 'https://x/2101.00009v1.pdf', '2101.00001')[0] == 'fail'
     assert IR.judge('Queueing Delay Minimization in Overloaded Networks  Xinyu Wu, Dan Wu ' + 'z' * 100, 'Queueing Delay Minimization in Overloaded Networks', 'wu',
@@ -41,7 +50,7 @@ def store(tmp_path, monkeypatch):
     (st / 'objects' / 'a.pdf').write_bytes(b'%PDF-1.4 fixture')
     import collector_wrapper as W
     monkeypatch.setattr(W, '_check_identity', lambda row, path: IR.PENDING)
-    monkeypatch.setattr(IR, 'first_author', lambda *a, **k: 'lovelace')
+    monkeypatch.setattr(IR, 'first_author', lambda *a, **k: ('lovelace', True))
     monkeypatch.setattr(IR, 'mapped_arxiv', lambda *a, **k: None)
     return st, W
 

@@ -99,6 +99,7 @@ Exactly one per paper, the first that applies in this order:
 | `found_not_in_catalog` | no | a check found an open copy, but the paper has no catalog work to attach it to |
 | `pending_retry` | no | the last failures are temporary (timeouts, 5xx, 429, a paused host) or a redirect awaiting allowlist review; the collector asks again |
 | `incomplete_check` | no | at least one applicable source was not checked (or its check is stale or failed); `missing_checks` lists them |
+| `identity_unconfirmed` | no | a copy is downloaded, but the identity rule neither confirmed nor rejected it (identity_check `provider_link_only_review_pending`); it does not count until confirmed |
 | `open_copy_bot_challenge` | yes | the only open copy is on a host that served a bot challenge (never worked around) |
 | `open_copy_behind_login` | yes | the only open copy redirects to a login / identity provider |
 | `open_copy_robots_disallowed` | yes | the only open copy is on a path robots.txt disallows (for our client, `*`, ClaudeBot or anthropic-ai) |
