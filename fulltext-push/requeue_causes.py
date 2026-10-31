@@ -83,6 +83,7 @@ def main():
             part = items[i:i + 200]
             for attempt in range(30):
                 try:
+                  with F.catalog_lock(store):  # one writer per catalog
                     recs = []
                     for w, groups in part:
                         for rows in groups:
@@ -90,7 +91,8 @@ def main():
                             db.execute(f"DELETE FROM attempts WHERE id IN ({','.join('?' * len(ids_))}) AND work_id=?", ids_ + [w])
                             recs += rows
                         done['requeued_works'] += db.execute("UPDATE works SET status='queued' WHERE id=? AND status='needs_access_review'", (w,)).rowcount
-                    db.commit(); break
+                    db.commit()
+                  break
                 except sqlite3.OperationalError:
                     db.rollback(); time.sleep(20)
             else:

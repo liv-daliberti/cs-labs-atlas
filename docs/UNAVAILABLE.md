@@ -69,18 +69,35 @@ stores' access-review verdict and cause, when there is one.
   moved to `<store>/quarantine/robots-ai/`, its catalog status becomes `quarantined_robots_ai`, and the paper's reason is
   `open_copy_robots_disallowed` (`fulltext-push/quarantine_robots_ai.py`; per-store `manifest.jsonl` with work id, both
   paths, sha256, URLs and the rule; `restore` reverses it). 1,961 works on 2026-10-31.
-- **Identity.** A copy counts only with a confirmed identity. The collector confirms a file when the catalog title or
-  DOI is in its first three pages; a file it accepted without that (`provider_link_only_review_pending`) is reviewed by
-  `fulltext-push/identity_review.py`: it passes when at least 80% of the title's significant words are in page 1's title
-  region (its first 600 characters) and the first author's family name or the DOI is on page 1, or when page 1's arXiv
-  stamp is the arXiv id the copy was downloaded as, Semantic Scholar or OpenAlex maps the work's DOI to it and the first
-  author is on page 1. Failures are reverted (`revert_downloads.py`: back to needs_access_review, the download's attempt
-  marked identity_mismatch, so that URL is not asked again; the work's other candidates still are). Measured on a hand
-  check of 20 passes and 20 failures (2026-10-31, review-20261030/identity-review-handcheck.json): about 5% of passes are
-  not the paper (1 of 20, 1 uncertain), and a few true papers fail. Two reverted copies were the paper: one whose catalog
-  title carries a suffix ("... to Appear in a Festschrift for Grigori Mints"), one retitled before publication; they go
-  back through the queue like every reverted work, and their reason in the ledger is the identity mismatch until another
-  copy is found.
+- **Identity (final rule, 2026-10-31).** A copy counts only with a confirmed identity. The collector confirms a file
+  when the catalog title or the DOI is in its first three pages. A file it could not confirm
+  (`provider_link_only_review_pending`) is judged by `fulltext-push/identity_rule.py`, one module used both at download
+  time (`vendor/cmu_tools/collector_wrapper.py`) and for the copies already in the catalogs
+  (`fulltext-push/identity_review.py`):
+  - **pass**: at least 80% of the title's significant words in page 1's title region (its first 600 characters; small
+    caps matched on letters; a title in another script by its own characters) and the first author's family name or the
+    DOI on page 1; or the arXiv stamp on page 1 is the id the work's DOI maps to (Semantic Scholar / OpenAlex) and the
+    first author is on page 1; or (`identity_review.py --alt-titles`, caches only) the same with another title known for
+    the work (OpenAlex, Semantic Scholar, the arXiv title of the id the DOI maps to; at least 3 significant words).
+    Identity tags `auto_title_author_page1[_20261031]`, `auto_arxiv_id_doi_mapping[_20261031]`, `auto_alt_title_20261031`.
+  - **fail**, only on positive evidence of another document in a readable title region (mostly letters and real words):
+    none of the title's words there and not on pages 1–2 either, or an authoritative first author (the lab paper's
+    byline, the work's own author list; never the school people a catalog graph lists) absent with under half of the
+    title's words. A failed copy is reverted (back to needs_access_review, the download's attempt marked
+    identity_mismatch, so the same URL is never fetched again; the work's other candidates still are); at download time
+    the file goes to `quarantine/identity-rejected/` (docs/STORES.md).
+  - **undecided**, everything else: the copy keeps the pending state and **does not count** (counter status
+    `identity_unconfirmed`, ledger code `identity_unconfirmed`).
+
+  Measured on hand-checked samples (2026-10-31; review-20261030/identity-review-handcheck.json and the samples in the
+  reports): passes about 95% right (1 wrong, 1 uncertain of 20; alt-title passes 8–9 of 10, a 1-word alternative title
+  then excluded); fails 5–7 of 10 another document, 2 of 10 true papers (retitled, or the title not on page 1) and the
+  rest uncertain (covers, unreadable fonts). Undecided copies were 9 of 10 true papers, which is why they are kept, not
+  rejected. Earlier rules, superseded the same day: 'not confirmed = rejected' (14 of 15 rejections were the paper) and
+  'under half of the title = rejected' (about 6 of 10). The 839 copies the first rule reverted were judged again
+  (`--reverted`): 37 restored as confirmed, 650 restored as pending, 124 stay reverted. Two true papers known to be
+  reverted (one catalog title with the suffix "to Appear in a Festschrift for Grigori Mints", one retitled before
+  publication) go back through the queue like every reverted work.
 
 ## Publisher and venue
 

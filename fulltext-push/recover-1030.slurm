@@ -14,7 +14,7 @@
 #   4. Princeton's packages through its own import path
 . "${CS_ATLAS_CODE:-$SLURM_SUBMIT_DIR}/paths.sh" || exit 1  # submit from the code root
 export LD_LIBRARY_PATH="$CS_ATLAS_ENV_LIB${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-export FTP_PY="$CS_ATLAS_ENV_PY"
+export FTP_PY="$CS_ATLAS_PY"  # the pinned project env (2026-10-31)
 PY="nice -n 5 $FTP_PY -I -u"
 cd "$CS_ATLAS_FULLTEXT_PUSH"
 OUT=$CS_ATLAS_STORES/princeton

@@ -14,7 +14,7 @@
 . "${CS_ATLAS_CODE:-${SLURM_SUBMIT_DIR:?}}/paths.sh" || exit 1  # every path in one place (tools/atlas_paths.py); submit from the code root
 # compute nodes have no /usr/local/anaconda3: the project env (requests, no protego/bs4; nothing here needs them)
 export LD_LIBRARY_PATH="$CS_ATLAS_ENV_LIB${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-export FTP_PY="$CS_ATLAS_ENV_PY"
+export FTP_PY="$CS_ATLAS_PY"  # the pinned project env (2026-10-31)
 cd "$CS_ATLAS_FULLTEXT_PUSH"
 PY="$FTP_PY -I -u"
 nice -n 5 $PY mit_oa_articles.py harvest >> logs/mit_oa_articles-harvest.log 2>&1

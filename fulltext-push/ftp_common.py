@@ -15,6 +15,7 @@ HERE = Path(__file__).resolve().parent
 if str(HERE.parent / 'tools') not in sys.path:  # appended, never first: tools/ must not shadow the stages' modules
     sys.path.append(str(HERE.parent / 'tools'))
 import atlas_paths as P  # noqa: E402  (every path in one place; collectors reach it as F.P)
+from catalog_lock import catalog_lock, catalog_lock_for  # noqa: E402,F401  (one writer per catalog)
 SCHOOLS = P.WORK
 FT = P.STORES
 CMU_TOOLS = P.vendor('cmu_tools')  # vendored 2026-10-30 from claude-cmu-20261017/tools (vendor/PROVENANCE.tsv)
@@ -250,10 +251,12 @@ def write_batches(db, sql, rows, batch=BATCH):
         part = rows[i:i + batch]
         for attempt in range(30):
             try:
-                c = 0
-                for r in part:
-                    c += db.execute(sql, r).rowcount
-                db.commit(); n += c; break
+                with catalog_lock_for(db):  # one writer per catalog (catalog_lock.py)
+                    c = 0
+                    for r in part:
+                        c += db.execute(sql, r).rowcount
+                    db.commit()
+                n += c; break
             except sqlite3.OperationalError:
                 db.rollback(); time.sleep(20)
         else:

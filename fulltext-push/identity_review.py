@@ -16,6 +16,8 @@ usage: identity_review.py plan|apply <school> ... [--all-pending]
        which the full-text studies read); the first author then comes from the work's graph when no lab paper names it
        --reverted: the copies the round-1 review reverted under the earlier rule, judged again (pass -> restored confirmed,
        undecided -> restored pending, fail -> stays reverted)
+       --alt-titles: every copy still pending, judged against every other title known for the work from caches (OpenAlex,
+       Semantic Scholar, the arXiv titles of the ids the DOI maps to); passes -> identity_check auto_alt_title_20261031
 """
 import json, re, sqlite3, sys
 from collections import Counter
@@ -59,7 +61,7 @@ def reverted_rows(school):
     log = store / 'staged' / 'reverted-downloads.jsonl'
     for line in open(log) if log.exists() else []:
         r = json.loads(line)
-        if str(r.get('reason', '')).startswith('automatic identity review 2026-10-31') and 'before' in r:
+        if str(r.get('reason', '')).startswith('automatic identity review 2026-10-31:') and 'before' in r:  # round 1 only
             recs[r['work']] = r
     db = sqlite3.connect(f'file:{store / "catalog.sqlite"}?mode=ro', uri=True, timeout=120)
     rows = {}
@@ -72,6 +74,143 @@ def reverted_rows(school):
                        attempt_urls=[r['url']], kind='reverted_round1', revert=r)
     db.close()
     return rows, len(recs)
+
+
+_ALT = {}
+
+
+def alt_title_sources():
+    """From caches only: DOI -> (S2 title, S2 arXiv id); OpenAlex id / DOI -> (title, arXiv id) from the ledger's records."""
+    if not _ALT:
+        import s2_key_lookup as s2k
+        s2 = {}
+        if s2k.CACHE.exists():
+            for line in open(s2k.CACHE):
+                try:
+                    r = json.loads(line)
+                except ValueError:
+                    continue
+                d = r.get('data')
+                if isinstance(d, dict) and str(r.get('id', '')).startswith('DOI:'):
+                    s2[r['id'][4:].lower()] = (d.get('title'), (d.get('externalIds') or {}).get('ArXiv'))
+        oa = {}
+        p = HERE / 'raw' / 'ledger_openalex.jsonl'
+        if p.exists():
+            for line in open(p):
+                try:
+                    r = json.loads(line)
+                except ValueError:
+                    continue
+                b = r.get('body') or {}
+                if b:
+                    v = (b.get('title'), F.arxiv_of({}, b))
+                    oa[r['id']] = v
+                    if F.ndoi(b.get('doi')):
+                        oa['doi:' + F.ndoi(b['doi'])] = v
+        _ALT.update(s2=s2, oa=oa)
+    return _ALT
+
+
+def arxiv_titles(ids):
+    """{arXiv id: title} from the local arXiv OAI index, for these ids only."""
+    import arxiv_oai as ao
+    want, out = set(ids), {}
+    if not want:
+        return out
+    import gzip as _gz
+    for f in sorted(ao.RAW.glob('*.jsonl.gz')):
+        for line in _gz.decompress(f.read_bytes()).decode().splitlines():
+            if not line:
+                continue
+            r = json.loads(line)
+            if r['id'] in want:
+                out[r['id']] = r['title']
+    return out
+
+
+def plan_alt(school):
+    """Every copy still pending: judged again against every title known for the work, from caches only (OpenAlex,
+    Semantic Scholar, and the arXiv titles of the arXiv ids those map the DOI to). A pass needs the same evidence as
+    the main rule: the alternative title's words in page 1's title region and the authoritative first author (or the
+    DOI) on page 1. Nothing is rejected here."""
+    store = F.FT / school
+    src = alt_title_sources()
+    papers = F.lab_papers(school)
+    lab_oa = {}
+    for r in papers.values():
+        for k in (r.get('work'), F.oa_work_id(school, r)):
+            if k:
+                lab_oa[k] = r.get('oa')
+    db = sqlite3.connect(f'file:{store / "catalog.sqlite"}?mode=ro', uri=True, timeout=120)
+    ids = [i for i, ic, st in F.works_rows(db, 'id, identity_check, status') if ic == PENDING and st == 'downloaded']
+    cand = {}
+    for k in range(0, len(ids), 500):
+        part = ids[k:k + 500]
+        q = ','.join('?' * len(part))
+        for i, fp, du, title, doi, g, oaj in db.execute(f'SELECT id, file_path, download_url, title, doi, graph_json, oa_json FROM works WHERE id IN ({q})', part):
+            alts, arx = [], []
+            d = F.ndoi(doi)
+            try:
+                gj = json.loads(g or '{}')
+            except ValueError:
+                gj = {}
+            oa_id = lab_oa.get(i) or gj.get('openalex')
+            try:
+                oj = json.loads(oaj) if oaj else {}
+            except ValueError:
+                oj = {}
+            none = (None, None)
+            o1 = src['oa'].get(oa_id) or none
+            o2 = (src['oa'].get('doi:' + d) or none) if d else none
+            s2t = (src['s2'].get(d) or none) if d else none
+            for t, a, how in [(oj.get('title') or oj.get('display_name'), F.arxiv_of({}, oj) if oj else None, 'catalog OpenAlex record'),
+                              (o1[0], o1[1], 'OpenAlex'), (o2[0], o2[1], 'OpenAlex by DOI'), (s2t[0], s2t[1], 'Semantic Scholar')]:
+                if t and F.nt(t) != F.nt(title):
+                    alts.append((t, how))
+                if a:
+                    arx.append(re.sub(r'v\d+$', '', a))
+            cand[i] = dict(file_path=fp, download_url=du, title=title, doi=d, graph=g, alts=alts, arxiv=sorted(set(arx)))
+    db.close()
+    axt = arxiv_titles({a for c in cand.values() for a in c['arxiv']})
+    out, n = [], Counter()
+    for w, c in cand.items():
+        for a in c['arxiv']:
+            if axt.get(a) and F.nt(axt[a]) != F.nt(c['title']):
+                c['alts'].append((' '.join(axt[a].split()), f'arXiv {a} (the DOI maps to it)'))
+        if not c['alts'] or not c['file_path'] or not (store / c['file_path']).exists():
+            n['no_alternative_title' if not c['alts'] else 'file_missing'] += 1
+            continue
+        p1, p12 = R.page_text(store / c['file_path'], 1, 1), R.page_text(store / c['file_path'], 1, 2)
+        first, auth = R.first_author(F.SCHOOLS, school, w, c['title'], c['doi'], graph_json=c['graph'])
+        hit = None
+        for t, how in c['alts']:
+            if len([x for x in R.norm_words(t) if len(x) >= 3 and x not in R.STOP]) < 3:
+                continue  # a short alternative title ('ALTO') is no evidence (hand check, 2026-10-31)
+            v, ev = R.judge(p1, t, first, c['doi'], c['download_url'], None, p12=p12, author_authoritative=auth)
+            if v == 'pass_title':
+                hit = (t, how, ev); break
+        n['pass_alt' if hit else 'still_undecided'] += 1
+        out.append(dict(work=w, verdict='pass_alt' if hit else 'undecided', title=c['title'], alt_title=hit[0] if hit else None, alt_source=hit[1] if hit else None,
+                        alts=c['alts'][:5], **(hit[2] if hit else dict(first_author=first)), page1=re.sub(r'\s+', ' ', p1)[:400]))
+    OUT.mkdir(exist_ok=True)
+    (OUT / f'identity-review-alt-{school}.json').write_text(json.dumps(dict(school=school, at=F.now(), scope='alt', rows=out), indent=0))
+    print(json.dumps(dict(school=school, scope='alt', pending=len(ids), **n)), flush=True)
+
+
+def apply_alt(school):
+    store = F.FT / school
+    rows = json.loads((OUT / f'identity-review-alt-{school}.json').read_text())['rows']
+    db = sqlite3.connect(str(store / 'catalog.sqlite'), timeout=120)
+    db.execute('PRAGMA busy_timeout=120000')
+    n = Counter()
+    for x in rows:
+        if x['verdict'] == 'pass_alt':
+            with F.catalog_lock(store):  # one writer per catalog
+                n['confirmed'] += db.execute("UPDATE works SET identity_check='auto_alt_title_20261031' WHERE id=? AND identity_check=?", (x['work'], PENDING)).rowcount
+                db.execute("UPDATE assets SET identity_check='auto_alt_title_20261031' WHERE work_id=? AND identity_check=?", (x['work'], PENDING))
+                db.commit()
+    db.close()
+    print(json.dumps(dict(school=school, scope='alt', **n)), flush=True)
 
 
 def plan(school, scope='lab'):
@@ -132,7 +271,7 @@ def apply(school, scope='lab'):
         for x in rows:
             if x['verdict'] == 'fail':
                 n['still_reverted'] += 1; continue
-            ident = R.TAGS.get(x['verdict'], PENDING)
+            ident = R.TAGS[x['verdict']] + '_20261031' if x['verdict'] in R.TAGS else PENDING
             r = restore(school, x['work'], x['revert'], ident, f"identity rule fixed 2026-10-31: {x['verdict']}")
             n['skipped' if 'skipped' in r else ('restored_confirmed' if ident != PENDING else 'restored_pending')] += 1
         print(json.dumps(dict(school=school, scope=scope, **n)), flush=True)
@@ -143,20 +282,24 @@ def apply(school, scope='lab'):
     for x in rows:
         if x['verdict'].startswith('pass'):
             tag = 'auto_title_author_page1_20261031' if x['verdict'] == 'pass_title' else 'auto_arxiv_id_doi_mapping_20261031'
-            n['confirmed'] += db.execute("UPDATE works SET identity_check=? WHERE id=? AND identity_check=?", (tag, x['work'], PENDING)).rowcount
-            db.execute("UPDATE assets SET identity_check=? WHERE work_id=? AND identity_check=?", (tag, x['work'], PENDING))
-            db.commit()
+            with F.catalog_lock(store):  # one writer per catalog
+                n['confirmed'] += db.execute("UPDATE works SET identity_check=? WHERE id=? AND identity_check=?", (tag, x['work'], PENDING)).rowcount
+                db.execute("UPDATE assets SET identity_check=? WHERE work_id=? AND identity_check=?", (tag, x['work'], PENDING))
+                db.commit()
     db.close()
     for x in rows:
         if x['verdict'] == 'fail':
-            r = revert(school, x['work'], x['url'], 'automatic identity review 2026-10-31: ' + R.reason(x))
+            r = revert(school, x['work'], x['url'], 'automatic identity review 2026-10-31 (fixed rule): ' + R.reason(x))
             n['reverted' if 'skipped' not in r else 'revert_skipped'] += 1
     print(json.dumps(dict(school=school, **n)), flush=True)
 
 
 if __name__ == '__main__':
-    scope = 'all' if '--all-pending' in sys.argv else ('reverted' if '--reverted' in sys.argv else 'lab')
+    scope = 'all' if '--all-pending' in sys.argv else ('reverted' if '--reverted' in sys.argv else ('alt' if '--alt-titles' in sys.argv else 'lab'))
     args = [a for a in sys.argv[1:] if not a.startswith('--')]
     cmd, schools = args[0], args[1:]
     for s in schools:
-        {'plan': plan, 'apply': apply}[cmd](s, scope)
+        if scope == 'alt':
+            {'plan': plan_alt, 'apply': apply_alt}[cmd](s)
+        else:
+            {'plan': plan, 'apply': apply}[cmd](s, scope)

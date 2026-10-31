@@ -15,7 +15,7 @@ two never run together. State -> data/fulltext/<school>/loop-state.json, log -> 
 works through a --work-ids list in its order within each host); without it the order is unchanged.
 usage: lab_first_loop.py <school> [--full-hours H] [--recent-first Y]
 """
-import fcntl, json, signal, subprocess, sys, time
+import fcntl, json, os, signal, socket, sqlite3, subprocess, sys, time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -63,11 +63,45 @@ def lab_work_ids(school, recent_first=None):
     return list(dict.fromkeys(ids + later))
 
 
+# Supervision (ROADMAP item 12, 2026-10-31): the loop runs as a Slurm job (fulltext-push/downloads.slurm). SIGTERM (scancel,
+# the job's time limit) stops it cleanly: the running collector gets SIGTERM (a stopped pass loses nothing: tried URLs
+# are recorded per work), the state says 'stopped', the lock is released. A round that made no new attempt counts as
+# idle and the pause doubles (10 min up to 4 h) instead of spinning; any attempt resets it. After every round the status
+# page is regenerated (collectors_status.py -> hierarchy/COLLECTORS-STATUS.md).
+STOP = {'flag': False, 'child': None}
+
+
+def _on_term(signum, frame):
+    STOP['flag'] = True
+    c = STOP['child']
+    if c is not None and c.poll() is None:
+        c.send_signal(signal.SIGTERM)
+
+
+def max_attempt(out):
+    try:
+        db = sqlite3.connect(f'file:{out / "catalog.sqlite"}?mode=ro', uri=True, timeout=60)
+        v = db.execute('SELECT MAX(id) FROM attempts').fetchone()[0] or 0
+        db.close()
+        return v
+    except sqlite3.Error:
+        return None
+
+
+def sleep_unless_stopped(seconds):
+    end = time.monotonic() + seconds
+    while not STOP['flag'] and time.monotonic() < end:
+        time.sleep(min(15, end - time.monotonic()))
+
+
 def run(out, args, label, hours=None):
+    if STOP['flag']:
+        return
     with open(out / 'loop.log', 'a') as log:
         log.write(json.dumps(dict(phase=label, started_at=F.now())) + '\n'); log.flush()
         child = subprocess.Popen(['nice', '-n', '10', PY, '-u', WRAPPER, '--out', str(out), '--skip-candidate-import', '--workers', '16'] + args,
                                  stdin=subprocess.DEVNULL, stdout=log, stderr=log, cwd=SCRIPTS)
+        STOP['child'] = child
         state(out, phase=label, started=F.now(), child_pid=child.pid)
         try:
             code = child.wait(timeout=hours * 3600 if hours else None)
@@ -79,6 +113,7 @@ def run(out, args, label, hours=None):
                 child.kill(); code = child.wait()
             code = f'stopped after {hours} h (SIGTERM {code})'
         log.write(json.dumps(dict(phase=label, finished_at=F.now(), exit=code)) + '\n')
+    STOP['child'] = None
     state(out, child_pid=None)
 
 
@@ -93,9 +128,16 @@ def main():
     except BlockingIOError:
         print(json.dumps(dict(at=F.now(), exit='another loop holds .loop.lock')), flush=True)
         return
-    rounds = 0
-    while True:
+    signal.signal(signal.SIGTERM, _on_term)
+    signal.signal(signal.SIGINT, _on_term)
+    job = os.environ.get('SLURM_JOB_ID')
+    if os.environ.get('SLURM_ARRAY_JOB_ID'):
+        job = f"{os.environ['SLURM_ARRAY_JOB_ID']}_{os.environ.get('SLURM_ARRAY_TASK_ID')}"
+    state(out, slurm_job=job, host=socket.gethostname(), pid=os.getpid(), python=PY, wrapper=WRAPPER, idle_rounds=0)
+    rounds, idle = 0, 0
+    while not STOP['flag']:
         rounds += 1
+        before = max_attempt(out)
         ids = lab_work_ids(school, recent)
         f = F.HERE / 'raw' / f'{school}-lab-work-ids.txt'
         f.write_text('\n'.join(ids) + '\n')
@@ -103,8 +145,18 @@ def main():
         if ids:
             run(out, ['--work-ids', str(f)], f'lab_{len(ids)}')
         run(out, [], 'main', hours)
-        state(out, phase='paused', child_pid=None)
-        time.sleep(600)
+        after = max_attempt(out)
+        idle = idle + 1 if (before is not None and after == before) else 0
+        pause = min(600 * 2 ** idle, 4 * 3600)
+        state(out, phase='stopped' if STOP['flag'] else 'paused', child_pid=None, idle_rounds=idle, next_round_in_s=0 if STOP['flag'] else pause)
+        try:
+            import collectors_status
+            collectors_status.main()
+        except Exception as e:  # the status page must never stop the loop
+            print(json.dumps(dict(at=F.now(), status_page_failed=str(e)[:200])), flush=True)
+        sleep_unless_stopped(pause)
+    state(out, phase='stopped', child_pid=None, stopped_at=F.now())
+    print(json.dumps(dict(at=F.now(), exit='stopped on SIGTERM', rounds=rounds)), flush=True)
 
 
 if __name__ == '__main__':

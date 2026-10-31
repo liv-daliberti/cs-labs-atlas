@@ -20,6 +20,7 @@ def revert(school, work, url, reason):
     db.row_factory = sqlite3.Row
     for attempt in range(30):
         try:
+          with F.catalog_lock(store):  # one writer per catalog
             w = db.execute('SELECT * FROM works WHERE id=?', (work,)).fetchone()
             if not w or w['status'] != 'downloaded':
                 db.close(); return dict(school=school, work=work, skipped=f"status {w['status'] if w else None}")
@@ -29,7 +30,8 @@ def revert(school, work, url, reason):
             db.execute("DELETE FROM assets WHERE work_id=? AND kind='pdf'", (work,))
             n = db.execute("UPDATE attempts SET status='identity_mismatch', detail=? WHERE work_id=? AND url=? AND status='downloaded'",
                            (f'identity unconfirmed: {reason} (hand check 2026-10-30; download reverted)', work, url)).rowcount
-            db.commit(); break
+            db.commit()
+          break
         except sqlite3.OperationalError:
             db.rollback(); time.sleep(20)
     else:
@@ -66,6 +68,7 @@ def restore(school, work, rec, identity, why):
     db.execute('PRAGMA busy_timeout=120000')
     for attempt in range(30):
         try:
+          with F.catalog_lock(store):  # one writer per catalog
             c = db.execute("UPDATE works SET status='downloaded', file_path=?, sha256=?, byte_count=?, download_url=?, identity_check=? "
                            "WHERE id=? AND status IN ('needs_access_review','queued')", (fp, b['sha256'], size, b['download_url'], identity, work)).rowcount
             if not c:
@@ -75,7 +78,8 @@ def restore(school, work, rec, identity, why):
                        (work, 'pdf', b['download_url'], fp, b['sha256'], size, None, None, None, F.now(), identity))
             db.execute("UPDATE attempts SET status='downloaded', detail=? WHERE work_id=? AND url=? AND status='identity_mismatch'",
                        (json.dumps(dict(final_url=b['download_url'], sha256=b['sha256'], restored_by='revert_downloads.restore', why=why)), work, rec['url']))
-            db.commit(); break
+            db.commit()
+          break
         except sqlite3.OperationalError:
             db.rollback(); time.sleep(20)
     else:

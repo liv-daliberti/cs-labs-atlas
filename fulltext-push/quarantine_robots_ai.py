@@ -150,9 +150,11 @@ def apply(school):
             os.rename(store / fp, store / new); moved = True
         for attempt in range(30):
             try:
-                db.execute('UPDATE works SET status=?, file_path=? WHERE id=?', (STATUS, new, w))
-                db.execute('UPDATE assets SET path=? WHERE work_id=? AND path=?', (new, w, fp))
-                db.commit(); break
+                with F.catalog_lock(store):  # one writer per catalog
+                    db.execute('UPDATE works SET status=?, file_path=? WHERE id=?', (STATUS, new, w))
+                    db.execute('UPDATE assets SET path=? WHERE work_id=? AND path=?', (new, w, fp))
+                    db.commit()
+                break
             except sqlite3.OperationalError:
                 db.rollback(); time.sleep(10)
         else:

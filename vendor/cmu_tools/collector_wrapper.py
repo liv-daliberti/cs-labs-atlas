@@ -332,6 +332,25 @@ def process_work(work, client, out):
 c.base.Links = Links
 c.base.check_identity, c.process_work = check_identity, process_work
 
+# One writer per catalog (ROADMAP item 11, local edit 2026-10-31; fulltext-push/catalog_lock.py): every result the
+# collector saves, and the start-of-pass reclassification, hold the store's catalog write lock for their transaction, as
+# the channels, imports and recovery tools do.
+from catalog_lock import catalog_lock_for  # noqa: E402
+_save_result, _reclassify = c.save_result, c.reclassify_nonarticles
+
+
+def save_result(db, r):
+    with catalog_lock_for(db):
+        return _save_result(db, r)
+
+
+def reclassify_nonarticles(db, out):
+    with catalog_lock_for(db):
+        return _reclassify(db, out)
+
+
+c.save_result, c.reclassify_nonarticles = save_result, reclassify_nonarticles
+
 
 def requeue(out):
     db = sqlite3.connect(str(out / 'catalog.sqlite'), timeout=300)
@@ -349,9 +368,12 @@ def requeue(out):
     with log.open('a') as f:
         for r in rows:
             f.write(json.dumps(dict(zip(cols, r), requeued_at=datetime.now(timezone.utc).isoformat())) + '\n')
+    from catalog_lock import catalog_lock
     for attempt in range(20):
         try:
-            db.executemany('DELETE FROM attempts WHERE id=?', [(r[0],) for r in rows]); db.commit(); break
+            with catalog_lock(out):
+                db.executemany('DELETE FROM attempts WHERE id=?', [(r[0],) for r in rows]); db.commit()
+            break
         except sqlite3.OperationalError:
             db.rollback(); time.sleep(30)
     print(json.dumps(dict(requeued_attempts=len(rows))), flush=True)

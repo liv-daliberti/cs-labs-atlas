@@ -12,7 +12,7 @@
 # copies). Princeton's packages are imported through its own import path afterwards, as in newsteps.slurm.
 . "${CS_ATLAS_CODE:-$SLURM_SUBMIT_DIR}/paths.sh" || exit 1  # submit from the code root
 export LD_LIBRARY_PATH="$CS_ATLAS_ENV_LIB${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-export FTP_PY="$CS_ATLAS_ENV_PY"
+export FTP_PY="$CS_ATLAS_PY"  # the pinned project env (2026-10-31)
 cd "$CS_ATLAS_FULLTEXT_PUSH"
 for s in ${SCHOOLS:-mit berkeley stanford princeton epfl cmu}; do
   ./run_steps.sh $s ${CHANNELS:-arxiv_loose} >> logs/steps-$s.log 2>&1 < /dev/null

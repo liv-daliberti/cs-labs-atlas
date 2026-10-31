@@ -39,6 +39,7 @@ OUT = HERE / 'review-20261029'
 STORES = P.STORES
 sys.path.insert(0, str(HERE))
 from retry_transient import TRANSIENT, SKIP_HOSTS  # noqa: E402  (the push's own transient rule and publisher hosts)
+from catalog_lock import catalog_lock  # noqa: E402  (one writer per catalog)
 
 PUBLISHERS = re.compile(r'(?:^|\.)(?:acm\.org|ieee\.org|ieeexplore\.ieee\.org|sciencedirect\.com|elsevier\.com|springer\.com|nature\.com|wiley\.com|'
                         r'tandfonline\.com|sagepub\.com|ssrn\.com|cambridge\.org|oup\.com|academic\.oup\.com|jstor\.org|science\.org|cell\.com|'
@@ -205,6 +206,7 @@ def apply(school):
         part = plan[i:i + 200]
         for attempt in range(30):
             try:
+              with catalog_lock(store):  # one writer per catalog (catalog_lock.py)
                 recs, removed = [], []
                 for p in part:
                     w = p['id']
@@ -230,7 +232,8 @@ def apply(school):
                                (w, p['verdict'], p['cause'], json.dumps(p['causes']), p['max_attempt_id'], now(), 'fulltext-push/review_access.py 2026-10-29'))
                     recs.append(dict(id=w, kind='access', old=dict(status='needs_access_review'), new=dict(status='queued'), reason=p['verdict'],
                                      causes=p['causes'], attempts_removed=len(p['retry_attempt_ids']) if p['verdict'] == 'requeue_transient' else 0))
-                db.commit(); break
+                db.commit()
+              break
             except sqlite3.OperationalError as e:
                 db.rollback(); print(json.dumps(dict(retry=str(e))), flush=True); time.sleep(20)
         else:
