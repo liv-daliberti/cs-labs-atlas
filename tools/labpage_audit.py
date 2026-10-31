@@ -1830,6 +1830,32 @@ def patch_mpcap(mpcap):
     mpcap.robots_allowed = robots_allowed
 
 
+class DeadlineRequests:
+    """requests with an overall deadline per download (requests' read timeout is per chunk, so a server that trickles
+    bytes can hold a worker forever) and a size cap; otherwise the requests module."""
+    def __init__(self, deadline=150, cap=60 * 2 ** 20):
+        import requests
+        self._r, self.deadline, self.cap = requests, deadline, cap
+        self.RequestException = requests.RequestException
+        self.exceptions = requests.exceptions
+
+    def get(self, url, **kw):
+        import time as _t
+        kw['stream'] = True
+        r = self._r.get(url, **kw)
+        t0, buf = _t.time(), bytearray()
+        try:
+            for chunk in r.iter_content(65536):
+                buf += chunk
+                if _t.time() - t0 > self.deadline or len(buf) > self.cap:
+                    r.close()
+                    raise self._r.exceptions.ReadTimeout(f'deadline or size cap reached for {url[:120]}')
+        finally:
+            r.close()
+        r._content = bytes(buf)
+        return r
+
+
 def relink(target, link):
     """link -> target, replacing a link that points elsewhere (a stale path from before the 2026-10-30 project move)."""
     if not Path(target).exists():
@@ -1872,6 +1898,7 @@ def run_recovery(school, rows, title_credits=600):
     print(json.dumps(dict(school=school, recover_rows=len(rows))), flush=True)
     import labpage_recover as LR
     LR.HERE = root
+    LR.requests = DeadlineRequests()  # 2026-10-31: Princeton and MIT hung for hours on one trickling PDF download
     patch_mpcap(LR.mpcap)
     lockdir = os.path.join(os.environ.get('TMPDIR') or '/tmp', 'lp-ratelimit')  # node-local per-host stamps (not the old scratch path)
     LR.mpcap.LOCKDIR = lockdir
