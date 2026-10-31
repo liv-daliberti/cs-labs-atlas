@@ -9,7 +9,7 @@ output, with the time it was counted).
 (lab_first_loop.py), so the page is never more than one round old; it can also be run by hand.
 usage: collectors_status.py [school ...]          (default: every store with a loop-state.json)
 """
-import json, os, sqlite3, sys, time
+import json, os, re, sqlite3, sys, time
 from collections import Counter
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -46,11 +46,13 @@ def recent_attempts(store, hours=24):
     hi = db.execute('SELECT MAX(id) FROM attempts').fetchone()[0] or 0
     n, done = Counter(), False
     while hi > 0 and not done:
-        rows = db.execute('SELECT observed_at, status FROM attempts WHERE id > ? AND id <= ?', (hi - 5000, hi)).fetchall()
-        for at, st in rows:
+        rows = db.execute('SELECT observed_at, status, detail FROM attempts WHERE id > ? AND id <= ?', (hi - 5000, hi)).fetchall()
+        for at, st, d in rows:
             if (at or '') >= cut:
                 n['attempts'] += 1
                 n[st] += 1
+                if st not in ('downloaded', 'fulltext_xml'):
+                    n['detail:' + f'{st}: ' + re.sub(r'\d+', 'N', (d or '')[:90])] += 1
         done = not rows or min((r[0] or '') for r in rows) < cut
         hi -= 5000
         time.sleep(0.02)
@@ -67,9 +69,14 @@ def school_status(school):
     cp = F.SCHOOLS / 'hierarchy' / school / 'copies.json'
     summ = json.loads(cp.read_text()).get('summary', {}) if cp.exists() else {}
     att = recent_attempts(store) if (store / 'catalog.sqlite').exists() else Counter()
+    fails = Counter({k[7:]: v for k, v in att.items() if k.startswith('detail:')})
+    downloads = att.get('downloaded', 0) + att.get('fulltext_xml', 0)
+    # attempts but no download in 24 h: the loop runs but nothing lands (2026-10-31: Michigan's missing sources/)
+    alarm = (f"{att.get('attempts', 0):,} attempts and no download in 24 h; most common failure: "
+             f"{fails.most_common(1)[0][0]} ({fails.most_common(1)[0][1]:,})") if att.get('attempts', 0) and not downloads and fails else None
     return dict(school=school, slurm_job=st.get('slurm_job'), host=st.get('host'), phase=st.get('phase'), rounds=st.get('rounds'),
                 updated_at=st.get('updated_at'), lab_work_ids=st.get('lab_work_ids'), idle_rounds=st.get('idle_rounds'),
-                attempts_24h=att.get('attempts', 0), downloads_24h=att.get('downloaded', 0) + att.get('fulltext_xml', 0),
+                attempts_24h=att.get('attempts', 0), downloads_24h=downloads, alarm=alarm, top_failures=dict(fails.most_common(3)),
                 catalog=prog.get('status_counts'), pending_identity_review=prog.get('pending_identity_review'), paused_sources=paused,
                 lab_papers=summ.get('lab_papers'), local=summ.get('local'), coverage=summ.get('local_share'), lab_queued=summ.get('queued'),
                 lab_access_review=summ.get('needs_access_review'), counted_at=summ.get('counted_at'))
@@ -84,6 +91,9 @@ def render(rows):
         cov = f"{r['local']:,} / {r['lab_papers']:,} ({r['coverage']:.1%})" if r.get('local') is not None and r.get('coverage') is not None else '—'
         out.append(f"| {r['school']} | {r['slurm_job'] or '—'} | {r['phase'] or '—'} | {r['rounds'] or '—'} | {(r['updated_at'] or '—')[:16]} | "
                    f"{r['attempts_24h']:,} | {r['downloads_24h']:,} | {r['lab_queued'] or 0:,} | {r['lab_access_review'] or 0:,} | {cov} | {(r['counted_at'] or '—')[:16]} |")
+    alarms = [r for r in rows if r.get('alarm')]
+    out += ['', '## Alarms', '']
+    out += [f"- **{r['school']}**: {r['alarm']}" for r in alarms] or ['- none']
     out += ['', '## Paused sources (last pass)', '']
     for r in rows:
         ps = r['paused_sources'] or {}

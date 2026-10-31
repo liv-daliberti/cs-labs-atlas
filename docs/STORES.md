@@ -15,6 +15,12 @@ One store per school, `stores/<school>/` (paths from `paths.sh` / `tools/atlas_p
 | `backups/catalog.<reason>-<date>.sqlite` | catalog snapshots taken before a bulk change | the latest two per store |
 | `loop-state.json`, `loop.log` | the download loop's state and log | `loop.log` may be rotated by size |
 
+## Required layout
+
+`fulltext-push/store_layout.py` creates `objects/`, `sources/`, `staged/`, `by_lab/`, `discovery/`, `quarantine/` and `summary.json`
+when they are missing, and refuses to start when there is no `catalog.sqlite`. The download loop and the collector wrapper
+run it before anything else (2026-10-31: a store created without `sources/` failed every attempt as `worker_error`).
+
 ## One writer per catalog
 
 - **The loop lock.** One download loop per store holds `<store>/.loop.lock` for its whole life (`fulltext-push/lab_first_loop.py`);

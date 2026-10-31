@@ -122,6 +122,10 @@ def main():
     hours = float(sys.argv[sys.argv.index('--full-hours') + 1]) if '--full-hours' in sys.argv else 2.0
     recent = int(sys.argv[sys.argv.index('--recent-first') + 1]) if '--recent-first' in sys.argv else None
     out = F.FT / school
+    import store_layout  # the store's directories first: a collector without sources/ fails every attempt (2026-10-31)
+    made = store_layout.ensure(out)
+    if made:
+        print(json.dumps(dict(at=F.now(), store_layout_created=made)), flush=True)
     guard = open(out / '.loop.lock', 'a')
     try:
         fcntl.flock(guard, fcntl.LOCK_EX | fcntl.LOCK_NB)

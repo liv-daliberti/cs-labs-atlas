@@ -382,5 +382,7 @@ def requeue(out):
 if __name__ == '__main__':
     out = Path(sys.argv[sys.argv.index('--out') + 1]) if '--out' in sys.argv else None
     if out:
+        import store_layout  # create sources/, staged/, ... or refuse to start (local edit 2026-10-31)
+        store_layout.ensure(out)
         requeue(out)
     c.main()

@@ -7,7 +7,7 @@ Selection: lab-paper works without a copy (lab_first_loop.lab_work_ids: the coun
 needs_access_review; a URL qualifies when every one of its attempts has a cause in --causes (review_access.cause), its
 host is not in --exclude-hosts, and the pair was never requeued under the same tag (one retry per fix). Writes commit per
 200 rows with a 120 s busy timeout (the collectors share the catalog).
-usage: requeue_causes.py <school> --causes c1,c2 --tag <name> [--exclude-hosts h1,h2] [--hosts h1,h2] [--max-attempts N] [--redirect-rule] [--dry]
+usage: requeue_causes.py <school> (--causes c1,c2 | --attempt-status S [--detail-contains T]) --tag <name> [--exclude-hosts h1,h2] [--hosts h1,h2] [--max-attempts N] [--redirect-rule] [--dry]
 """
 import argparse, json, sqlite3, sys, time
 from collections import Counter, defaultdict
@@ -22,7 +22,9 @@ from lab_first_loop import lab_work_ids  # noqa: E402
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('school'); ap.add_argument('--causes', required=True); ap.add_argument('--tag', required=True)
+    ap.add_argument('school'); ap.add_argument('--causes', default=''); ap.add_argument('--tag', required=True)
+    ap.add_argument('--attempt-status', default=None, help="instead of --causes: attempts with this status (e.g. worker_error)")
+    ap.add_argument('--detail-contains', default=None, help='with --attempt-status: and this text in the detail')
     ap.add_argument('--exclude-hosts', default=''); ap.add_argument('--hosts', default='')
     ap.add_argument('--max-attempts', type=int, default=3); ap.add_argument('--dry', action='store_true')
     ap.add_argument('--redirect-rule', action='store_true', help='unapproved_redirect URLs only when collector_wrapper.redirect_ok now approves the target')
@@ -58,6 +60,10 @@ def main():
             continue
         h = host(u)
         if h in excl or (only and h not in only) or len(rows) > a.max_attempts:
+            continue
+        if a.attempt_status:  # a collector fault, not an access outcome (2026-10-31: Michigan's store lacked sources/)
+            if all(r['status'] == a.attempt_status and (a.detail_contains or '') in (r['detail'] or '') for r in rows):
+                plan[w].append(rows); n['urls'] += 1; n['host:' + h] += 1
             continue
         cs = {cause(r)[0] for r in rows}
         if a.redirect_rule and 'unapproved_redirect' in cs:
