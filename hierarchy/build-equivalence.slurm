@@ -9,14 +9,15 @@
 # Both builders run with the same PYTHONHASHSEED (default 0): the builder's output depends on str hash order in places
 # (2026-10-31: re-captured relation evidence shared by several labs, R-STU-08), so two runs of the same code with
 # different seeds can differ. CONTROL=<schools> also builds those schools with the OLD code under PYTHONHASHSEED=1 and
-# compares it with the seed-0 old build, to show that seed dependence apart from the refactor.
+# compares it with the seed-0 old build, to show that seed dependence apart from the refactor. CONTROL_CODE=new builds
+# the control with the NEW code instead (compared with the seed-0 new build): a determinism check of the new code.
 # Check with `sbatch --test-only` first.
 #SBATCH --job-name=cs-hier-equiv
 #SBATCH --partition=mltheory
 #SBATCH --account=mltheory
 #SBATCH --exclude=node302
-#SBATCH --cpus-per-task=2
-#SBATCH --mem=32G
+#SBATCH --cpus-per-task=3
+#SBATCH --mem=40G
 #SBATCH --time=03:00:00
 set -u -o pipefail
 : "${OLD:?OLD=<commit of the old builder>}" "${REPORT:?REPORT=<directory for the diff report>}"
@@ -25,6 +26,8 @@ NEW_CODE=${NEW_CODE:-${SLURM_SUBMIT_DIR:?}}
 SCHOOLS=${SCHOOLS:-$CS_ATLAS_SCHOOLS}
 export PYTHONHASHSEED=${PYTHONHASHSEED:-0}
 CONTROL=${CONTROL:-}
+CONTROL_CODE=${CONTROL_CODE:-old}
+case $CONTROL_CODE in old|new) ;; *) echo "CONTROL_CODE must be old or new"; exit 1 ;; esac
 T=/tmp/$USER-$SLURM_JOB_ID
 mkdir -p "$T/old-code" "$T/old" "$T/new" "$T/control" "$REPORT" || exit 1
 trap 'rm -rf "$T"' EXIT
@@ -32,25 +35,28 @@ git -C "$NEW_CODE" archive "$OLD" tools | tar -x -C "$T/old-code" || exit 1
 cd "$T" || exit 1
 echo "== equivalence old=$OLD new=$NEW_CODE ($(git -C "$NEW_CODE" rev-parse --short HEAD)) schools: $SCHOOLS PYTHONHASHSEED=$PYTHONHASHSEED control: ${CONTROL:-none} $(date +%F\ %T)"
 fail=0
+if [ "$CONTROL_CODE" = new ]; then CTL_TOOL="$NEW_CODE/tools/pi_hierarchy.py"; CTL_BASE="$T/new"; else CTL_TOOL="$T/old-code/tools/pi_hierarchy.py"; CTL_BASE="$T/old"; fi
 for s in $SCHOOLS; do
   echo "== $s $(date +%F\ %T)"
   PI_HIERARCHY_OUT="$T/old" nice -n10 "$CS_ATLAS_PY" -u "$T/old-code/tools/pi_hierarchy.py" "$s" > "$T/old-$s.log" 2>&1 &
   po=$!
   PI_HIERARCHY_OUT="$T/new" nice -n10 "$CS_ATLAS_PY" -u "$NEW_CODE/tools/pi_hierarchy.py" "$s" > "$T/new-$s.log" 2>&1 &
   pn=$!
-  wait $po; ro=$?; wait $pn; rn=$?
-  echo "   exit old=$ro new=$rn $(date +%F\ %T)"
-  [ $ro = 0 ] && [ $rn = 0 ] || { fail=1; tail -5 "$T/old-$s.log" "$T/new-$s.log"; }
+  pc=
+  case " $CONTROL " in *" $s "*)   # the control runs at the same moment, on the same inputs
+    PYTHONHASHSEED=1 PI_HIERARCHY_OUT="$T/control" nice -n10 "$CS_ATLAS_PY" -u "$CTL_TOOL" "$s" > "$T/control-$s.log" 2>&1 &
+    pc=$! ;;
+  esac
+  wait $po; ro=$?; wait $pn; rn=$?; rc=0; [ -n "$pc" ] && { wait $pc; rc=$?; }
+  echo "   exit old=$ro new=$rn${pc:+ control($CONTROL_CODE, seed 1)=$rc} $(date +%F\ %T)"
+  [ $ro = 0 ] && [ $rn = 0 ] && [ $rc = 0 ] || { fail=1; tail -5 "$T/old-$s.log" "$T/new-$s.log"; }
   cmp -s <(tail -1 "$T/old-$s.log") <(tail -1 "$T/new-$s.log") && echo "   printed counts identical" || echo "   printed counts DIFFER"
 done
-for s in $CONTROL; do
-  echo "== control $s: old code, PYTHONHASHSEED=1 $(date +%F\ %T)"
-  PYTHONHASHSEED=1 PI_HIERARCHY_OUT="$T/control" nice -n10 "$CS_ATLAS_PY" -u "$T/old-code/tools/pi_hierarchy.py" "$s" > "$T/control-$s.log" 2>&1 || { fail=1; tail -5 "$T/control-$s.log"; }
-done
 if [ -n "$CONTROL" ]; then
-  echo "== control: old seed 0 vs old seed 1"
-  "$CS_ATLAS_PY" "$NEW_CODE/tools/package_diff.py" "$T/old" "$T/control" --schools $CONTROL --json "$REPORT/control-$SLURM_JOB_ID.json" \
-    | tee "$REPORT/control-$SLURM_JOB_ID.txt"   # differences here are the old code's own seed dependence, not a failure
+  echo "== control: $CONTROL_CODE seed $PYTHONHASHSEED vs $CONTROL_CODE seed 1"
+  # old code: differences are its own seed dependence (not a failure); new code: any difference is a failure
+  "$CS_ATLAS_PY" "$NEW_CODE/tools/package_diff.py" "$CTL_BASE" "$T/control" --schools $CONTROL --json "$REPORT/control-$SLURM_JOB_ID.json" \
+    | tee "$REPORT/control-$SLURM_JOB_ID.txt" || { [ "$CONTROL_CODE" = new ] && fail=1; }
 fi
 echo "== old vs new"
 "$CS_ATLAS_PY" "$NEW_CODE/tools/package_diff.py" "$T/old" "$T/new" --schools $SCHOOLS --json "$REPORT/equivalence-$SLURM_JOB_ID.json" \
