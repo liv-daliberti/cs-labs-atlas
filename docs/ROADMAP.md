@@ -38,8 +38,8 @@ Status: `open` · `in progress (<who>)` · `done <date> <commit>` · `queued (af
 
 | # | Item | Status | Done when |
 |---|---|---|---|
-| 9 | A schema + data dictionary for every table | queued (refactor agent, after item 5 merges; owner-approved 2026-10-31: phase A design + schemas + build validation, nothing moves; phase B layout move only after an owner-reviewed dry run) | schemas in the repo; the build validates every output against them |
-| 10 | Separate raw / reviewed / derived | queued (refactor agent, after item 5 merges; owner-approved 2026-10-31: phase A design + schemas + build validation, nothing moves; phase B layout move only after an owner-reviewed dry run) | raw immutable, reviewed decisions in git, derived rebuilt from both; documented |
+| 9 | A schema + data dictionary for every table | phase A done 2026-10-31 (refactor agent): 34 schemas in schemas/, tools/schema_check.py + tools/validate.py, rebuild stage `validate`, docs/DATA-DICTIONARY.md generated; findings on current data: 13 files, 2,437 violations (hierarchy/logs/validation-findings-20261031.json), not fixed | schemas in the repo; the build validates every output against them |
+| 10 | Separate raw / reviewed / derived | phase A done 2026-10-31 (refactor agent): atlas_paths.DATA_FILES + data() (flat today, split after the move), builder and provenance routed, docs/DATA-LAYOUT.md; Slurm 32041363: 7/7 identical (hierarchy/logs/equivalence-datalayout-32041363.*); phase B (the move) awaits the owner's OK on a dry run | raw immutable, reviewed decisions in git, derived rebuilt from both; documented |
 | 11 | Stores moved into the project, one writer per catalog, backup policy | done 2026-10-31 619d8e3, 7364291 (stores under stores/; catalog_lock.py on every write path except the Princeton importer and two vendored resolvers, documented; docs/STORES.md retention/backup policy) | stores are real dirs under `stores/`; one writer per catalog; written retention policy |
 
 ## 4. Operations
