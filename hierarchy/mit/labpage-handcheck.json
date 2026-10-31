@@ -1,43 +1,86 @@
 {
  "school": "mit",
- "checked_at": "2026-10-30",
+ "checked_at": "2026-10-31",
  "checker": "lab-page audit agent, by hand: the page context around each quote, and the page-1 or OpenAlex evidence of each paper",
- "additions_file_generated_at": "2026-10-31T01:24:00+00:00",
+ "additions_file_generated_at": "2026-10-31T04:39:03+00:00",
+ "additions": {
+  "students": 137,
+  "papers": 132
+ },
  "students": {
   "sampled": 20,
-  "seed": 11,
-  "membership_errors": 1,
-  "role_or_year_errors": 2,
-  "error_items": [
+  "seed": 41,
+  "membership_errors": 0,
+  "doubtful_count": 1,
+  "name_artifacts": 1,
+  "role_or_year_errors": 4,
+  "doubtful_items": [
    {
-    "pi": "Scott Aaronson",
-    "name": "Alexander Belov",
-    "why": "Aaronson's site lists his UT Austin postdocs; MIT listings end 2017. The tool's after_pi_left rule (added since) removes such rows at the next MIT audit run"
+    "pi": "Rahul Mazumder",
+    "name": "Debarghya Mukherjee",
+    "why": "listed in a run of undergraduate and former-student lines; role and era not clear from the context"
+   }
+  ],
+  "name_artifact_items": [
+   {
+    "pi": "Alexander Rakhlin",
+    "name": "Sasha Voitovych (IDSS)",
+    "why": "the program in parentheses kept in the name"
    }
   ],
   "role_or_year_error_items": [
    {
-    "pi": "Negar Reiskarimian",
-    "name": "Jose Guajardo",
-    "why": "years [2024, 2025] taken from the previous entry; the page says 2020"
+    "pi": "Rahul Mazumder",
+    "name": "Gabriel Afriat",
+    "why": "'PhD student, MIT ORC, 20xx -' read as masters"
    },
    {
     "pi": "Rahul Mazumder",
-    "name": "Hussein Hazimeh",
-    "why": "role masters; the page says former PhD student 2016-2021"
+    "name": "Mehdi Makni",
+    "why": "'PhD student, MIT ORC, 20xx -' read as masters"
+   },
+   {
+    "pi": "Rahul Mazumder",
+    "name": "Charlie Liu",
+    "why": "'PhD student, MIT ORC, 20xx -' read as masters"
+   },
+   {
+    "pi": "Negar Reiskarimian",
+    "name": "Jose Guajardo",
+    "why": "years [2024, 2025] from the previous entry; the page says 2020"
    }
   ]
  },
  "papers": {
   "sampled": 20,
-  "seed": 11,
-  "errors": 1,
-  "error_items": [
+  "seed": 41,
+  "errors": 0,
+  "doubtful_count": 1,
+  "metadata_errors": 1,
+  "doubtful_items": [
+   {
+    "pi": "Adam Chlipala",
+    "title": "Causality and Semantic Separation",
+    "why": "a Zenodo DOI (10.5281/zenodo.19075957): may be an artifact record (R-PAP-18) rather than the paper"
+   }
+  ],
+  "metadata_error_items": [
    {
     "pi": "William Freeman",
-    "title": "Freeman, Joshua T",
-    "why": "the listed title was an author fragment; the arXiv id 1812.10972 is a real MIT Freeman paper but the row's title is wrong (flagged title_is_an_author_name by the tool since)"
+    "why": "title carries the author list ('... Michael Janner, Sergey Levine, William T Free'); the work (arXiv 1812.10972) is right"
    }
   ]
+ },
+ "earlier_sample": {
+  "at": "2026-10-30",
+  "additions_students": 220,
+  "additions_papers": 135,
+  "students_membership_errors": 1,
+  "papers_errors": 1,
+  "note": "Belov (Aaronson's UT Austin postdoc) and the Coley-group and Media Lab rows are gone after the after_pi_left, other-group and institution-listing fixes"
+ },
+ "open": {
+  "not_yet_resolved_papers": 79,
+  "why": "publications pages found by the 2026-10-31 rediscovery; the recover step is queued"
  }
 }
