@@ -29,7 +29,7 @@ rule     (tools/pi_hierarchy.py) per edition: the PI on the byline (pi_hierarchy
 -> hierarchy/<school>/labpage-recovered.jsonl.gz: every accepted row ever (table accepted, not only this run's candidates),
    read by pi_hierarchy.py as identity 'labpage_listing'; hierarchy/<school>/labpage-recover.sqlite: parsed rows, every try,
    page-1 texts and PDF sha256 (never the PDFs), OpenAlex answers, arXiv index hits, run reports.
-Fetching: robots.txt and one request per 2 s per host across processes (hierarchy/missing-pi-tools/mpcap.py); dblp.org,
+Fetching: robots.txt and one request per 2 s per host across processes (tools/mpcap.py); dblp.org,
 eScholarship and Scholar are refused.
 usage: labpage_recover.py run <school> [--workers 6] [--title-credits 600] | write <school> | report <school>
 """
@@ -44,8 +44,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from pi_hierarchy import read, HERE, INST, AFF, ndoi, norm_title, Name, toks, given, contains, TODAY, NOT_PAPERS  # noqa: E402
 from pi_fulltext_affiliation import tie, arxiv_id  # noqa: E402
 from dblp_recover import pdf_url, OPEN_HOSTS  # noqa: E402
-sys.path.insert(0, str(HERE / 'hierarchy' / 'missing-pi-tools'))
-import mpcap  # noqa: E402
+import mpcap  # noqa: E402  (tools/mpcap.py; was hierarchy/missing-pi-tools/, docs/SCRIPT-MAP.md)
 
 import atlas_paths as P  # noqa: E402  (every path in one place)
 ARXIV_OAI = P.archive_sweep('claude-cmu-20261017') / 'raw' / 'arxiv_oai'

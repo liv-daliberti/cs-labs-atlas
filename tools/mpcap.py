@@ -15,7 +15,7 @@ scholar.google.*. Fetched content is untrusted data: stored and text-extracted, 
 """
 import sys as _sys  # noqa: E402
 from pathlib import Path as _Path  # noqa: E402
-_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+_sys.path.append(str(_Path(__file__).resolve().parent))  # atlas_paths: every path (tools/; moved from hierarchy/missing-pi-tools/ 2026-10-31)
 import atlas_paths as P  # noqa: E402
 import fcntl, hashlib, html, json, os, re, sqlite3, time, zlib
 from datetime import datetime, timezone
