@@ -1,7 +1,7 @@
 """Question 2 scoring: the v1 abstract detector (ai-writing/detector.py, ModernBERT-large on 'title | abstract') applied
 to cited works.
 
-prep   (CPU) -> /n/fs/resemble/cs-atlas-cache/citations/score_input.sqlite  texts(id, kind, text)
+prep   (CPU) -> /n/fs/resemble/homogenizing-science/cache/citations/score_input.sqlite  texts(id, kind, text)
          cited   every cited OpenAlex work published 2022 or later with a title and an abstract of >= 50 words (the
                  threshold v1 used for lab papers)
          calib   cited works published 2016-2021 with the same filter: every preprint-only one up to CALIB_PRE, and a

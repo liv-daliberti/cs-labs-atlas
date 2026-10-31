@@ -12,7 +12,7 @@
 
 Use it without activating anything (the conda env needs no `LD_LIBRARY_PATH`):
 ```
-. /n/fs/resemble/cs-atlas/work/paths.sh      # (after the move: <root>/code/paths.sh)
+. /n/fs/resemble/homogenizing-science/code/paths.sh      # (after the move: <root>/code/paths.sh)
 $CS_ATLAS_PY tools/pi_hierarchy.py michigan   # any tool
 bin/atlas test                               # the dispatcher, from this checkout (a worktree runs its own code)
 ```

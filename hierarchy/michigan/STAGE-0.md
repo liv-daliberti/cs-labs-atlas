@@ -19,8 +19,8 @@ decisions open** (below).
     They are recorded as `openalex_excluded`.
   - Michigan Medicine (`I4210114445`, ROR `01zcpa714`) is a *related* institution, not a child. It is swept as
     `openalex_related` (see decision 1).
-- **Store.** `/n/fs/resemble/homogenizing-science/data/fulltext/michigan` holds `catalog.sqlite` (schema copied from
-  Stanford's catalog, no works yet), `objects/` and `discovery/`. It is linked as `/n/fs/resemble/cs-atlas/stores/michigan`.
+- **Store.** `/n/fs/resemble/homogenizing-science/stores/michigan` holds `catalog.sqlite` (schema copied from
+  Stanford's catalog, no works yet), `objects/` and `discovery/`. It is linked as `/n/fs/resemble/homogenizing-science/stores/michigan`.
 - **Package directory.** `hierarchy/michigan/` exists. Its `tmp/` subfolder is ignored by git.
 - **Hosts.** `python tools/school_hosts.py michigan` checked 16 hosts against robots.txt and probed each live one
   (`hierarchy/michigan/hosts.json`). Result: 16 hosts, 0 inconsistent.

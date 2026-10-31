@@ -2,7 +2,7 @@
 of the Princeton collector (scripts/collect_princeton_fulltext_expanded.py runs on it unchanged, through the CMU stage's
 collector_wrapper.py, as at CMU, EPFL, MIT and Berkeley). Modelled on berkeley_catalog.py.
 
-storage     data/fulltext/stanford is a symlink to /n/fs/resemble/cs-atlas-fulltext/stanford (new downloads go to
+storage     data/fulltext/stanford is a symlink to /n/fs/resemble/homogenizing-science/stores/stanford (new downloads go to
             resemble; the homogenizing-science tree's migration keeps the symlink). Every path the collector stores is
             relative to that directory (objects/<sha256>.pdf), as at the other schools.
 works       one per Stanford lab paper (hierarchy/stanford/lab_papers.jsonl.gz, keyed by OpenAlex id, else the DBLP record

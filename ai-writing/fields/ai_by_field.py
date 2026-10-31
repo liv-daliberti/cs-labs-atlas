@@ -3,7 +3,7 @@
 papers    lab papers of 2023-2026 with a full-text passage score (ai-writing/paragraph_scores.jsonl.gz); AI-detected =
           ai_share >= 0.25
 labels    OpenAlex primary_topic of each paper (topic < subfield < field < domain), from the citation study's cache
-          (/n/fs/resemble/cs-atlas-cache/citations/openalex.sqlite, table citing; read-only)
+          (/n/fs/resemble/homogenizing-science/cache/citations/openalex.sqlite, table citing; read-only)
 A         AI-detected rate per subfield (the 20 largest; the rest pooled as 'other'), 95% Wilson intervals
 B         the same subfields: share of all AI-detected papers vs share of all other papers that sit there
           (over-represented when the orange dot is right of the blue one)

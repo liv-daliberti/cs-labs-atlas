@@ -1,6 +1,6 @@
 #!/bin/bash
 # Citation-analysis fetchers, resumed from resemble after the cutover (2026-10-28): OpenAlex cited-work metadata and
-# Semantic Scholar reference lists. Both skip what /n/fs/resemble/cs-atlas-cache/citations already holds.
+# Semantic Scholar reference lists. Both skip what /n/fs/resemble/homogenizing-science/cache/citations already holds.
 #SBATCH --job-name=cit-fetchers
 #SBATCH --partition=mltheory
 #SBATCH --account=mltheory

@@ -36,7 +36,7 @@ from pathlib import Path
 
 SCHOOL_IDS_STATIC = ['princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford']  # fallback when schools/ is unreadable
 ROOT_DEFAULT = '/n/fs/resemble/homogenizing-science'
-LAYOUT_DEFAULT = 'legacy'  # <- the cutover line: 'project' once the directories have moved
+LAYOUT_DEFAULT = 'project'  # cutover 2026-10-30 (archive/migrations/relocate-2026-10-30.jsonl); 'legacy' = the old paths
 
 # (name, path in the project layout, relative to which slot (None: absolute)) in dependency order
 _SPEC = [

@@ -12,9 +12,9 @@
 #   evidence    tools/evidence_check.py: every claim carries its evidence -> hierarchy/EVIDENCE-CHECK.md; a failure holds the release
 #   tests       pytest tests/
 #   regression  tools/build_regression.py check against the snapshot -> hierarchy/BUILD-REGRESSION.md (+ .json)
-#   release     tools/make_release.py -> /n/fs/resemble/cs-atlas/releases/<date>[.N]/ and releases/latest; only when
+#   release     tools/make_release.py -> /n/fs/resemble/homogenizing-science/releases/<date>[.N]/ and releases/latest; only when
 #               every earlier stage passed and the regression flagged nothing (ALLOW_SWINGS=1 releases anyway)
-#   tree        tools/organize_tree.py from releases/latest -> /n/fs/resemble/cs-atlas/schools/
+#   tree        tools/organize_tree.py from releases/latest -> /n/fs/resemble/homogenizing-science/schools/
 # usage: hierarchy/rebuild.sh                       (all stages, all schools; run under nohup or in tmux, ~1 h)
 #        STAGES="build audits" SCHOOLS="mit" hierarchy/rebuild.sh
 #        TAG=<name> sets the snapshot name (default local-<timestamp>); BEFORE=<dir> compares against another snapshot

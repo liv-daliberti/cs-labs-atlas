@@ -6,7 +6,7 @@ worktree, and `main` only moves by fast-forward after a rebase and the full test
 ## Branches and the remote
 | Where | Branch | What it holds |
 |---|---|---|
-| local (`/n/fs/resemble/cs-atlas/work`, after the move `<root>/code`) | `main` | the integrated code; the data next to it is built from it |
+| local (`/n/fs/resemble/homogenizing-science/code`, after the move `<root>/code`) | `main` | the integrated code; the data next to it is built from it |
 | local worktrees | `agent/<name>`, `infra/<topic>`, `fix/<topic>`, `person/<name>` | one line of work each; never pushed |
 | remote `origin` = `git@github.com:liv-daliberti/cs-labs-atlas` (public) | `dev` | the development history: local `main`, pushed as `git push origin main:dev` |
 | | `main` | the release exports (`code/`, `data/`, `MANIFEST.json`, `CITATION.cff`), written by `tools/export_release.py`. Never force-pushed, never rewritten |

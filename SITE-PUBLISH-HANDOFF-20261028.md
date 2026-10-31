@@ -4,13 +4,13 @@
 
 > **Published October 29, 2026:** Option A (the two-page site) is now live at https://homogenizing-science.ldaliberti.chatgpt.site, with owner-only access preserved. Stanford is included; the six detailed schools show 1,469 PI labs with papers, and ten zero-paper PI labs retain reviewed hidden reasons. The CS atlas and CS departments directory are the only pages. Saved abstracts, existing reader mappings, the live storage runtime, and October 23 source evidence were preserved.
 >
-> Source checkout: `/n/fs/resemble/maxent-grpo/homogenizing-publish-20261029`; pushed commit `dca30ecbb2e69a08e29203e0b135428cbb5828c0`. Deployment `appgdep_6ae336403f7881919ae387d969d11698` returned **succeeded**. Hierarchy, scope, two-page links, abstract interactions, metadata, storage and build checks passed. No visual browser verification was available. The original preparation notes below are retained for history.
+> Source checkout: `/n/fs/resemble/homogenizing-science/site`; pushed commit `dca30ecbb2e69a08e29203e0b135428cbb5828c0`. Deployment `appgdep_6ae336403f7881919ae387d969d11698` returned **succeeded**. Hierarchy, scope, two-page links, abstract interactions, metadata, storage and build checks passed. No visual browser verification was available. The original preparation notes below are retained for history.
 
 The owner approved publishing on 2026-10-28. Claude has no Sites credential, so the upload has to run through the Sites
 workflow (Codex's plugin, with the service credential on hidden stdin).
 
 ## What is ready
-- **Where:** `/n/fs/resemble/maxent-grpo/princeton-live-20261015`, branch `claude/cs-audit-20261016`. Nothing pushed or published.
+- **Where:** `/n/fs/resemble/homogenizing-science/archive/site-history/princeton-live-20261015`, branch `claude/cs-audit-20261016`. Nothing pushed or published.
 - **Commit `23e888ab`:** records the previously uncommitted state of the 330 files the change touches (the 10-22 two-page /
   "PI labs with papers only" work and the 10-26 data build). Squash it into the next commit if preferred.
 - **Commit `1ecafb5a`:** Stanford as the 6th school, and zero-paper PI labs hidden with reasons (29 files).

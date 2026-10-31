@@ -9,8 +9,8 @@ Don't write or edit anything else under hierarchy/ (not the tools, dossiers, oth
 evidence files). The coordinator merges stores and builds the outputs.
 
 PATHS
-  T = /n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/labpage-tools-princeton-mit
-  H = /n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy
+  T = /n/fs/resemble/homogenizing-science/code/hierarchy/labpage-tools-princeton-mit
+  H = /n/fs/resemble/homogenizing-science/code/hierarchy
   S = /tmp/claude-363432/-n-fs-similarity-maxent-grpo/2bd068f5-5142-4dac-89d1-67eb470f92c1/scratchpad/lp-local
   Input rows:  H/<school>/labpage-input.json  (pi, names, lab_name, lab_url, title, departments, students_held = names
                and aliases we already hold, lab_papers = count)
@@ -18,7 +18,7 @@ PATHS
                title}], people_links, pubs_links, site_links. A heuristic crawl, already stored: often incomplete, and it
                sometimes picks a coauthor's lab or the PI's previous institution. Verify everything.
   Princeton:   lab records (already used as seeds) at
-               /n/fs/resemble/maxent-grpo/.research-sweeps/claude-labrecords-20261019/records/princeton/<slug>/record.json
+               /n/fs/resemble/homogenizing-science/archive/sweeps/claude-labrecords-20261019/records/princeton/<slug>/record.json
                field lab_pages.
   Worked example: T/dec_princeton_ham.py (Humans and Machines Lab) - copy its style.
 

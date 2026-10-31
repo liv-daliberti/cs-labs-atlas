@@ -1,6 +1,6 @@
 """One immutable, dated release per successful build (2026-10-29).
 
-  /n/fs/resemble/cs-atlas/releases/<YYYY-MM-DD>[.N]/       (atlas_paths.RELEASES; .2, .3 ... for later builds that day)
+  /n/fs/resemble/homogenizing-science/releases/<YYYY-MM-DD>[.N]/       (atlas_paths.RELEASES; .2, .3 ... for later builds that day)
     hierarchy/<school>/{pis.json, students.json, report.json, lab_papers.jsonl.gz, student_papers.jsonl.gz, copies.json,
                         link-diagnosis.json, unavailable.jsonl.gz, unavailable-summary.json}
                                                                     the built packages, their audit outputs and the

@@ -4,7 +4,7 @@ years of the works they cite, oldest to newest.
 
 weights   every citing paper counts once: its references with a known publication year share a weight of 1, so long
           reference lists do not dominate a group
-data      references and cited-work years from the citation caches (read-only, /n/fs/resemble/cs-atlas-cache/citations/):
+data      references and cited-work years from the citation caches (read-only, /n/fs/resemble/homogenizing-science/cache/citations/):
           Semantic Scholar (s2fetch.py: parsed from the PDFs, so arXiv-only papers have them) and OpenAlex (fetch.py:
           mostly publisher deposits); per paper the list with more references of known year is used. Citing year from
           ai-writing/papers.jsonl.gz. Papers with no reference list in either are left out; panel C shows what share of

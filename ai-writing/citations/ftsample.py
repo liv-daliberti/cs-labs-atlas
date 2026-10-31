@@ -20,7 +20,7 @@ sources  (the fulltext-push rules; no paywalls, logins or bot challenges, never 
 extract  claude-homogenization-20261019/tools/fulltext_store.extract (pdftotext, 60 pages; body from the Introduction to
          the last References heading; flags.title_found = OpenAlex title on page 1, the identity check that
          diversity/common.usable_text applies to PDFs)
-store    /n/fs/resemble/cs-atlas-cache/citations/ft.sqlite
+store    /n/fs/resemble/homogenizing-science/cache/citations/ft.sqlite
            texts(key, school, path, kind, chars, intro, body, flags)  = ai-writing/fulltext.sqlite's schema; key = W id,
                                                                         school = 'cited', path = the URL
            meta(key, stratum, source, version, detail, ncite, order_rank, status, at)  every attempt (status ok / fail reason)

@@ -11,8 +11,8 @@
 #SBATCH --cpus-per-task=2
 #SBATCH --mem=8G
 #SBATCH --time=3-00:00:00
-#SBATCH --output=/n/fs/resemble/cs-atlas/work/fulltext-push/logs/michigan-collector-%j.out
-. /n/fs/resemble/cs-atlas/work/paths.sh  # every path in one place (tools/atlas_paths.py)
+#SBATCH --output=/n/fs/resemble/homogenizing-science/code/fulltext-push/logs/michigan-collector-%j.out
+. /n/fs/resemble/homogenizing-science/code/paths.sh  # every path in one place (tools/atlas_paths.py)
 export CS_ATLAS_COLLECTOR_PY=/n/fs/resemble/homogenizing-science/env/atlas/bin/python
 export FTP_PY="$CS_ATLAS_COLLECTOR_PY"
 cd "$CS_ATLAS_FULLTEXT_PUSH"

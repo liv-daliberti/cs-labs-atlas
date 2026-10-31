@@ -1,6 +1,6 @@
 """The organized view of the CS PI-lab data on disk: school -> lab -> papers, one folder per PI lab (owner 2026-10-29).
 
-  /n/fs/resemble/cs-atlas/schools/<school>/   (atlas_paths.SCHOOLS_TREE)
+  /n/fs/resemble/homogenizing-science/schools/<school>/   (atlas_paths.SCHOOLS_TREE)
     school.json                     school name, departments, lab list and counts
     labs/<pi-slug>/                 one PI's own lab (the slug the GitHub export uses: <school>:<pi-slug>)
       lab.json                      PI, names, departments, lab name, PI basis, appointment periods with evidence, identity

@@ -1,6 +1,6 @@
 # CS Labs Atlas: the code repository
 
-The code repository (`/n/fs/resemble/cs-atlas/work`; after the project move `homogenizing-science/code`) is a git repository (branch `main`) since 2026-10-29. It holds the code, the docs and the
+The code repository (`/n/fs/resemble/homogenizing-science/code`; after the project move `homogenizing-science/code`) is a git repository (branch `main`) since 2026-10-29. It holds the code, the docs and the
 reviewed inputs; everything else in `work/` (packages, sweeps, captures, logs, PDFs, sqlite) is data and stays out of git
 (`.gitignore` is a whitelist). Data leaves the working root only through a dated release.
 
@@ -26,7 +26,7 @@ bin/atlas test                               # the tests (seconds); --ci skips t
 bin/atlas build michigan                     # one school's packages (tools/pi_hierarchy.py)
 STAGES="build audits" SCHOOLS=mit bin/atlas rebuild     # hierarchy/rebuild.sh: snapshot, build, audits, tests,
                                              # regression, copies, release, tree (~1 h; one heavy builder at a time)
-bin/atlas export /n/fs/resemble/cs-labs-atlas --skip-atlas   # the GitHub export from releases/latest
+bin/atlas export /n/fs/resemble/homogenizing-science/export --skip-atlas   # the GitHub export from releases/latest
 ```
 Shell and Slurm scripts take every path and the interpreter from `paths.sh` (`$CS_ATLAS_PY`, `$CS_ATLAS_HIERARCHY`, ...);
 submit Slurm scripts from the code root (`sbatch hierarchy/rebuild-all.slurm`): their logs are written relative to it.

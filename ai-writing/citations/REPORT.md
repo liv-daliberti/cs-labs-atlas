@@ -217,4 +217,4 @@ File: `figures/cited_years_by_ai.png`, data in `results/cited_years_by_ai.csv`. 
 | `cited_years_by_ai.py` | `figures/cited_years_by_ai.png` |
 | `figures.py` | `figures/citations_main.png`, `citations_measures_{oa,s2}.png`, `citations_spread_by_year.png` |
 
-Caches are in `/n/fs/resemble/cs-atlas-cache/citations/`.
+Caches are in `/n/fs/resemble/homogenizing-science/cache/citations/`.

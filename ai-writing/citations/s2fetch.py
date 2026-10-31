@@ -6,7 +6,7 @@ DOI (arXiv DOIs 10.48550/arXiv.X are looked up as ARXIV:X) this fetches, 100 pap
 the paper's externalIds and year, and per reference its paperId, externalIds, year, venue, publicationVenue,
 citationCount, publicationTypes and s2FieldsOfStudy.
 
--> /n/fs/resemble/cs-atlas-cache/citations/s2.sqlite  table refs(key, query, status, data zlib-json)
+-> /n/fs/resemble/homogenizing-science/cache/citations/s2.sqlite  table refs(key, query, status, data zlib-json)
 The key is read from ~/.config/cs-atlas/s2.env and never printed. One request at a time, >= 1.1 s apart; 429 backs off.
 usage: s2fetch.py run | status
 """

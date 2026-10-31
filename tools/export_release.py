@@ -21,7 +21,7 @@ atlas    princeton-live-20261015/atlas: data.json universities, data/universitie
            -> data/atlas/{universities,units,works,unit_papers,unit_people,unit_person_papers,pi_identities}.jsonl.gz
 code     the tools that build all of it -> code/ (emails redacted: the owner's address becomes you@example.org), taken from
          the code repository's HEAD commit (git -C work), never from uncommitted files; MANIFEST export.code.commit
-Data comes from a dated release (tools/make_release.py; default /n/fs/resemble/cs-atlas/releases/latest), recorded as
+Data comes from a dated release (tools/make_release.py; default /n/fs/resemble/homogenizing-science/releases/latest), recorded as
 MANIFEST export.release; --from-working reads the working hierarchy/ instead (development only).
 Every string is scrubbed: e-mail addresses everywhere; phone numbers and office addresses inside quotes; local file
 paths. Rows are sorted and gzip is written with mtime=0, so a rerun on unchanged sources is byte-identical.
@@ -36,7 +36,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as AP  # noqa: E402  (every path in one place)
 
-HERE = AP.WORK                       # the code repository (/n/fs/resemble/cs-atlas/work; was .research-sweeps/claude-schools-20261021)
+HERE = AP.WORK                       # the code repository (/n/fs/resemble/homogenizing-science/code; was .research-sweeps/claude-schools-20261021)
 DATA = HERE                          # where the data is read: a release directory (configure()) or the working root
 H = DATA / 'hierarchy'
 RELEASE = None                       # the release read: dict(id, dir, manifest_sha256)

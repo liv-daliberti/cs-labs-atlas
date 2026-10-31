@@ -1,6 +1,6 @@
 # Whitelist: everything is ignored, then code, docs and the reviewed inputs are admitted. Data never enters git:
 # packages, sweeps, captures, logs, PDFs, sqlite, .gz and model files live on disk and in the dated releases
-# (/n/fs/resemble/cs-atlas/releases/<id>/), not here.
+# (/n/fs/resemble/homogenizing-science/releases/<id>/), not here.
 *
 !*/
 !.gitignore
@@ -43,6 +43,7 @@
 !hierarchy/*/gap-evidence.json
 !hierarchy/*/relation-evidence.json
 !hierarchy/*/labpage-additions.json
+!hierarchy/*/labpage-handcheck.json
 !hierarchy/labpage-audit-summary.json
 !hierarchy/stanford/tobagi-review.json
 !hierarchy/nicknames/*.csv

@@ -3,7 +3,7 @@
 Same model, splitter (v2common.passages = diversity/common.passages), normalizer (v2common.norm), fp32-head
 predict() and usable-text rule as detector_v2/detector.py score; the only change is where the output goes, so that
 nothing under detector_v2/results/ is touched:
-  -> /n/fs/resemble/cs-atlas-cache/citations/v2scores/shard-<i>.jsonl.gz {key, pidx, words, p}
+  -> /n/fs/resemble/homogenizing-science/cache/citations/v2scores/shard-<i>.jsonl.gz {key, pidx, words, p}
      and papers-<i>.jsonl.gz {key, kind, usable, body_words, n_passages}
 Each task reads a contiguous rowid range of a node-local copy of ft.sqlite.
 usage: v2score.py SHARD NSHARDS

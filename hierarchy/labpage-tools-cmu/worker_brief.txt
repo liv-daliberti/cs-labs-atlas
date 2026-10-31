@@ -33,8 +33,8 @@ HOST RULES (shared multi-user machine; mandatory)
   fetch in small groups rather than huge loops.
 
 SETUP (every Bash call; env does not persist between calls)
-  export LABPAGE_DB=/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/cmu/labpage-parts/w-<BATCH>.sqlite
-  T=/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/hierarchy/labpage-tools-cmu
+  export LABPAGE_DB=/n/fs/resemble/homogenizing-science/code/hierarchy/cmu/labpage-parts/w-<BATCH>.sqlite
+  T=/n/fs/resemble/homogenizing-science/code/hierarchy/labpage-tools-cmu
   PY="/usr/local/anaconda3/2024.02/bin/python -I"
   cd /tmp
 (LABPAGE_DB is your own capture file on the project share: one writer per file, never write anyone else's.

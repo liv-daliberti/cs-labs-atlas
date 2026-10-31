@@ -6,11 +6,11 @@
 #SBATCH --mem=16G
 #SBATCH --time=12:00:00
 #SBATCH --exclude=node302
-#SBATCH --output=/n/fs/resemble/cs-atlas/work/fulltext-push/logs/channels-1030-%j.out
+#SBATCH --output=/n/fs/resemble/homogenizing-science/code/fulltext-push/logs/channels-1030-%j.out
 # 2026-10-30 channels for every school, one after another (run_steps.sh's per-channel locks): CHANNELS (default
 # arxiv_loose: preprints under another title, validated on a hand-checked sample; ledger_found: the ledger's new open
 # copies). Princeton's packages are imported through its own import path afterwards, as in newsteps.slurm.
-. /n/fs/resemble/cs-atlas/work/paths.sh
+. /n/fs/resemble/homogenizing-science/code/paths.sh
 export LD_LIBRARY_PATH="$CS_ATLAS_ENV_LIB${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 export FTP_PY="$CS_ATLAS_ENV_PY"
 cd "$CS_ATLAS_FULLTEXT_PUSH"

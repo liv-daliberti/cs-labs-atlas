@@ -1,7 +1,7 @@
 #!/bin/bash
 # Citation fetchers for papers new to paragraph_scores.jsonl.gz (2026-10-28: Stanford added): OpenAlex citing works,
 # then the cited works not yet cached; Semantic Scholar reference lists in parallel. Each skips what
-# /n/fs/resemble/cs-atlas-cache/citations already holds, and fetch.py pauses at its OpenAlex budget reserve.
+# /n/fs/resemble/homogenizing-science/cache/citations already holds, and fetch.py pauses at its OpenAlex budget reserve.
 #SBATCH --job-name=cit-fetch-new
 #SBATCH --partition=mltheory
 #SBATCH --account=mltheory

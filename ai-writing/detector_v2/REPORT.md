@@ -199,7 +199,7 @@ Dropping passages under 100 words changes no year by more than 0.06 points.
 
 ## Outputs
 
-All paths are under `/n/fs/resemble/maxent-grpo/.research-sweeps/claude-schools-20261021/ai-writing/`.
+All paths are under `/n/fs/resemble/homogenizing-science/code/ai-writing/`.
 
 | file | content |
 |---|---|
