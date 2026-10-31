@@ -263,6 +263,14 @@ Advisees named in a PI's reviewed basis quote from a DSpace record count only wh
 `dc.contributor.advisor` names the PI ('Freund, Robert M.' on Renbo Zhao's record in Van Parys's basis).
 `dspace_advisors`.
 
+### R-STU-12 (2026-10-31, coordinator: validation findings) — no evidence without a hash
+A relation source without a sha256 is no evidence: after the re-captured evidence (R-STU-08) is applied, it leaves the
+relation; a relation left with no source, and a student left with no relation, leave the lab (`droppedWithoutHashedSource`
+in the report). CMU's site collection cited 2,260 bare URLs that the re-capture could not quote (368 relations, 12
+students); MIT 9 (9 relations, 2 students). Record years are integers in 1950 .. next year: a string is read for its
+4-digit years, others are dropped (`as_years`); reviewed period dates written as Wayback timestamps are read as ISO
+dates (`iso_date`). `drop_hashless_sources`.
+
 ## Student–paper links
 
 ### R-LNK-01 — link bases

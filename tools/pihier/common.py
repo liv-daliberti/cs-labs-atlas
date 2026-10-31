@@ -65,6 +65,31 @@ def as_list(v):
     return [v] if isinstance(v, str) else list(v or [])
 
 
+def as_years(v, n=None):
+    """A record's years as integers (2026-10-31, validation findings): a string ('2020', '2019-2021') gives the 4-digit
+    years in it (few-students-evidence.json had strings, read before character by character), a list its integer-like
+    items; years outside 1950 .. next year are dropped (a lab page's 2099 placeholder), counted in n."""
+    items = re.findall(r'(?<!\d)\d{4}(?!\d)', v) if isinstance(v, str) else list(v or [])
+    out = []
+    for y in items:
+        y = int(y) if isinstance(y, int) or (isinstance(y, str) and y.strip().isdigit()) else None
+        if y is None:
+            continue
+        if 1950 <= y <= int(TODAY[:4]) + 1:
+            out.append(y)
+        elif n is not None:
+            n['record_years_out_of_range_dropped'] += 1
+    if isinstance(v, str) and n is not None:
+        n['record_years_parsed_from_string'] += 1
+    return out
+
+
+def iso_date(v):
+    """A date written as a Wayback timestamp or digits (20260128, 2026012820, 20260128203237) as ISO (2026-01-28);
+    anything else unchanged (2026-10-31: a reviewed period's asof '2026012820' read as unresolved)."""
+    return f'{v[:4]}-{v[4:6]}-{v[6:8]}' if isinstance(v, str) and re.fullmatch(r'\d{8}(?:\d{2}){0,3}', v) else v
+
+
 def collection_work_matcher(works):
     """cwork(oa work) -> the collection work id it is (by DOI, else by normalized title within one year), or None."""
     # collection works by DOI and title

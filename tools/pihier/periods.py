@@ -2,7 +2,7 @@
 R-PAP-02 (not_faculty_row, datebounds seasons), R-PAP-03 (listings_after_move), R-PAP-13 (transition_side)."""
 import calendar, re
 
-from .common import TODAY, best_sources, source_year
+from .common import TODAY, best_sources, iso_date, source_year
 from .names import Name, nosuffix, toks
 
 SEASON = {'spring': ('01-01', '05-31'), 'summer': ('06-01', '08-31'), 'fall': ('08-01', '12-31'), 'autumn': ('08-01', '12-31')}
@@ -131,4 +131,5 @@ def pi_periods(mine, o):
     current as of today)."""
     return [dict(id=p.get('id'), start=p.get('facultyStart'), end=p.get('facultyEnd'), asof=p.get('ongoingAsOf') or p.get('facultyLastConfirmed'),
                  evidence=best_sources(p.get('evidence'))) for p in mine] \
-        + [dict(q, asof=q.get('asof') or (None if q.get('end') else TODAY)) for q in o.get('periods') or []]  # reviewed periods (census-overrides.json)
+        + [dict(q, **{k: iso_date(q[k]) for k in ('start', 'end') if q.get(k)},
+                asof=iso_date(q.get('asof')) or (None if q.get('end') else TODAY)) for q in o.get('periods') or []]  # reviewed periods (census-overrides.json)

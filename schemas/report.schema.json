@@ -994,6 +994,36 @@
     "inputs"
    ],
    "additionalProperties": false
+  },
+  "droppedWithoutHashedSource": {
+   "description": "Students that left a lab because none of their relations kept a source with a sha256 (R-STU-12).",
+   "x-rules": [
+    "R-STU-12"
+   ],
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": [
+     "pi",
+     "student",
+     "name"
+    ],
+    "properties": {
+     "pi": {
+      "description": "The lab's PI.",
+      "type": "string"
+     },
+     "student": {
+      "description": "The student record id.",
+      "type": "string"
+     },
+     "name": {
+      "description": "The student's name.",
+      "type": "string"
+     }
+    },
+    "additionalProperties": false
+   }
   }
  },
  "required": [

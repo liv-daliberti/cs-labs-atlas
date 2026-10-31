@@ -411,3 +411,40 @@ def test_R_STU_08_each_lab_gets_its_own_recaptured_source(tmp_path):
     assert len({id(s) for s in src.values()}) == 3                                       # three dicts, none shared
     assert ctx.n['relation_evidence_recaptured_names_pi'] == 2 and ctx.n['relation_evidence_recaptured_student_only'] == 1
     assert next(p for p in ctx.people if p['id'] == 'p_sam')['contexts'][0]['sources'][0]['quote'] == ''   # the input is untouched
+
+
+# ---- validation findings (2026-10-31) --------------------------------------------------------------------------------
+
+def test_R_STU_12_hashless_sources_leave(tmp_path):
+    n = collections.Counter()
+    q_ok, q_bare = dict(url='https://a', sha256=SHA, quote='A B, PhD'), dict(url='https://b', sha256='', quote='')
+    stu = {'P Q': {'s1': dict(person='s1', name='A B', relations=[dict(type='academic_advising', sources=[q_ok, q_bare])]),
+                   's2': dict(person='s2', name='C D', relations=[dict(type='source_advising_context', sources=[q_bare])]),
+                   's3': dict(person='s3', name='E F', relations=[dict(type='x', sources=[dict(q_ok, sha256=SHA + ',' + 'b' * 64)])])}}
+    dropped = students.drop_hashless_sources(stu, n)
+    assert stu['P Q']['s1']['relations'][0]['sources'] == [q_ok] and 's3' in stu['P Q']
+    assert dropped == [dict(pi='P Q', student='s2', name='C D')] and 's2' not in stu['P Q']
+    assert (n['relation_sources_dropped_hashless'], n['relations_dropped_no_hashed_source'], n['students_dropped_no_hashed_source']) == (2, 1, 1)
+
+
+def test_R_STU_12_record_years_and_dates():
+    n = collections.Counter()
+    assert common.as_years('2020', n) == [2020] and common.as_years('2019-2021', n) == [2019, 2021]
+    assert common.as_years([2099, 2099, '2018', None, 2017], n) == [2018, 2017] and n['record_years_out_of_range_dropped'] == 2
+    assert common.iso_date('2026012820') == '2026-01-28' and common.iso_date('20260128203237') == '2026-01-28'
+    assert common.iso_date('2019') == '2019' and common.iso_date(None) is None
+    p = periods.pi_periods([], dict(periods=[dict(id='r1', start='2019', end=None, asof='2026012820', evidence=[])]))
+    assert p[0]['asof'] == '2026-01-28'
+
+
+def test_R_PAP_01_recovered_rows_stay_in_the_window(tmp_path):
+    write_school(tmp_path)
+    ev = dict(basis='openalex_authorship', school_via=['Princeton University'], oa=OA + 'W90')
+    rows = [dict(pi='Ada Lovelace', year=2015, title='An Old Paper From Before', doi='10.9/old', evidence=ev, dblp_key='conf/x/1'),
+            dict(pi='Ada Lovelace', year=2020, title='A Recovered Paper Inside', doi='10.9/new', evidence=dict(ev, oa=OA + 'W91'), dblp_key='conf/x/2')]
+    with gzip.open(tmp_path / 'hierarchy' / SCHOOL / 'dblp-recovered.jsonl.gz', 'wt') as f:
+        f.write('\n'.join(json.dumps(r) for r in rows) + '\n')
+    ctx = run_stages(tmp_path, upto='papers')
+    titles = set(rows_of(ctx, 'Ada Lovelace'))
+    assert 'A Recovered Paper Inside' in titles and 'An Old Paper From Before' not in titles
+    assert ctx.n['dblp_recovered_outside_window'] == 1

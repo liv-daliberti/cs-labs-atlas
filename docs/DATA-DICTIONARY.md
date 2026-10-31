@@ -509,6 +509,11 @@ The build's report: counters, exclusions, samples of what the rules dropped, and
 | `provenance.inputs.<key>.bytes` | integer | yes | Size. | at least 0 |  |
 | `provenance.inputs.<key>.modified` | string | yes | mtime (UTC). | pattern `^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}` |  |
 | `provenance.inputs.<key>.sha256` | string | yes | sha256 of the file. | pattern `^[0-9a-f]{64}$` |  |
+| `droppedWithoutHashedSource` | array of object | no | Students that left a lab because none of their relations kept a source with a sha256 (R-STU-12). |  | R-STU-12 |
+| `droppedWithoutHashedSource[]` | object | — |  | no other keys |  |
+| `droppedWithoutHashedSource[].pi` | string | yes | The lab's PI. |  |  |
+| `droppedWithoutHashedSource[].student` | string | yes | The student record id. |  |  |
+| `droppedWithoutHashedSource[].name` | string | yes | The student's name. |  |  |
 
 ## `hierarchy/<school>/student_papers.jsonl.gz`
 
@@ -617,7 +622,7 @@ A relation source: evidence item, possibly re-captured (R-STU-08). Collection so
 | `quote` | string \| null | no | Verbatim quote naming the student (and, when names_pi, the PI or lab). |  |  |
 | `capture_url` | string \| null | no | The capture the re-captured hash and quote come from. |  | R-STU-08 |
 | `names_pi` | boolean | no | Re-captured: whether the quote also names the PI or the PI's lab (false = student-only quote). |  | R-STU-08, R-AUD-09 |
-| `original_sha256` | string \| null | no | The source's earlier sha256 when the re-capture replaced it. | pattern `^[0-9a-f]{64}$` | R-STU-08 |
+| `original_sha256` | string \| null \| array of string | no | The source's earlier sha256 when the re-capture replaced it; a list when the earlier source cited several captures (2026-10-31: no longer comma-joined). |  |  |
 | `recaptured` | object | no | How the source was re-captured. | no other keys | R-STU-08 |
 | `recaptured.observed` | string \| null | yes | Capture date. |  |  |
 | `recaptured.method` | string \| null | yes | Capture method. | e.g. `local`, `api`, `live`, `wayback`, `oai` |  |
@@ -1437,7 +1442,7 @@ Re-captured url, sha256 and quote for collection relations that had none, per (c
 | `records[].quote` | string | yes | Verbatim quote naming the student. | non-empty |  |
 | `records[].names_pi` | boolean | yes | The quote also names the PI or the PI's lab. |  | R-AUD-09 |
 | `records[].observed` | string \| null | no | Capture date. |  |  |
-| `records[].original_sha256` | string \| null | no | The earlier sha256. | pattern `^[0-9a-f]{64}$` |  |
+| `records[].original_sha256` | string \| null \| array of string | no | The source's earlier sha256 when the re-capture replaced it; a list when the earlier source cited several captures (2026-10-31: no longer comma-joined). |  |  |
 | `records[].matches_original` | boolean \| null | no | Same bytes as the original. |  |  |
 | `records[].method` | string \| null | no | Capture method. | e.g. `local`, `live`, `api`, `oai`, `wayback` |  |
 

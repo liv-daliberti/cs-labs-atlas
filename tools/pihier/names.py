@@ -21,9 +21,10 @@ def _nick_pairs():
     for f in ('names.csv', 'extras.csv'):
         fp = P.data('nicknames') / f
         if fp.exists():
-            for r in csv.DictReader(open(fp)):
-                if r.get('relationship') == 'has_nickname' and r.get('name1') and r.get('name2'):
-                    pairs.add(frozenset((r['name1'].strip().lower(), r['name2'].strip().lower())))
+            with open(fp) as fh:
+                for r in csv.DictReader(fh):
+                    if r.get('relationship') == 'has_nickname' and r.get('name1') and r.get('name2'):
+                        pairs.add(frozenset((r['name1'].strip().lower(), r['name2'].strip().lower())))
     return pairs
 
 

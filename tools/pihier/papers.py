@@ -520,6 +520,8 @@ def recovered_rows(ctx, rows, seen):
             if not p:
                 continue
             ev = x['evidence']; date = str(x['year'])
+            if not WINDOW_START <= int(x['year']) <= int(TODAY[:4]):  # the atlas window, as the sweep's (2026-10-31: EPFL 2015 row)
+                n[f'{kind}_recovered_outside_window'] += 1; continue
             via = ev.get('school_via') or [f"page 1 ({ev.get('how')}): " + ' … '.join(ev.get('quotes') or [])]
             per = next((q for q in p['periods'] if contains(q['start'], q['end'], date, q['asof'] or TODAY) == 'supported'), None)
             lst = None if per else next((l for l in p['listings'] if l['year'] == int(x['year'])), None)

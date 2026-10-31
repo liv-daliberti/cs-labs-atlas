@@ -8,7 +8,7 @@ from pathlib import Path
 
 import atlas_paths as P  # data paths (DATA_FILES)
 
-from .common import best_sources, read, source_year
+from .common import as_years, best_sources, read, source_year
 from .names import Name, _fold, clean_person_name, dedupe_tokens, full_pair, names_full_form, nick_ok, same_student, toks
 
 # Researched student evidence files, hierarchy/<school>/<file>, each a list of {pi, students: [{name, quote, sha256, url,
@@ -186,7 +186,7 @@ def apply_relation_evidence(stu_all, school, here):
                     j, q, x = best
                     q = dict(q); rel['sources'] = list(rel['sources']); rel['sources'][j] = q
                     if q.get('sha256') and q['sha256'] != x['sha256']:
-                        q['original_sha256'] = q['sha256']
+                        q['original_sha256'] = q['sha256'].split(',') if ',' in q['sha256'] else q['sha256']  # several captures: a list
                     q.update(sha256=x['sha256'], quote=x['quote'], capture_url=x.get('capture_url'), names_pi=bool(x.get('names_pi')),
                              recaptured=dict(observed=x.get('observed'), method=x.get('method'), matches_original=x.get('matches_original')))
                     n['relation_evidence_recaptured_' + ('names_pi' if x.get('names_pi') else 'student_only')] += 1
@@ -252,6 +252,37 @@ def adviser_named(ctx, pi, a):
     return nm[pi].match(a) and not any(q != pi and nm[q].match(a) for q in by_sur.get(t_[-1], []))
 
 
+HASHED = re.compile(r'^[0-9a-f]{64}(?:,[0-9a-f]{64})*$')
+
+
+def drop_hashless_sources(stu, n):
+    """R-STU-12 (2026-10-31, coordinator; validation findings): a relation source without a sha256 is no evidence and
+    leaves the relation (CMU's site collection cited 2,260 bare URLs that the R-STU-08 re-capture could not quote); a
+    relation left with no source, and a student left with no relation, leave the lab. Runs after the re-captured
+    evidence is applied. Returns the dropped students [{pi, student, name}] for the report."""
+    dropped = []
+    for pi, S in stu.items():
+        for sid, r in list(S.items()):
+            rels = []
+            for rel in r['relations']:
+                srcs = rel.get('sources') or []
+                kept = [q for q in srcs if HASHED.match(str(q.get('sha256') or ''))]
+                if len(kept) < len(srcs):
+                    n['relation_sources_dropped_hashless'] += len(srcs) - len(kept)
+                    if not kept:
+                        n['relations_dropped_no_hashed_source'] += 1
+                        continue
+                    rel = dict(rel, sources=kept)
+                rels.append(rel)
+            if r['relations'] and not rels:
+                del S[sid]
+                dropped.append(dict(pi=pi, student=sid, name=r['name']))
+                n['students_dropped_no_hashed_source'] += 1
+            else:
+                r['relations'] = rels
+    return dropped
+
+
 def from_contexts(ctx):
     """R-STU-01: the collection's advising contexts that name the PI (by person id, a named adviser field, or the
     academic advising of a reused unit), and direct memberships of a reused lab unit. Returns {pi: {person id: record}}."""
@@ -305,7 +336,7 @@ def people_by_family(people):
 def researched(ctx, stu, by_name):
     """R-STU-01: researched advisees and lab members with a quote and hash (gap-evidence.json and RESEARCHED_FILES); a
     unique collection person of that name takes the record, else an ext:<school>:<name> id."""
-    HERE, school, pis, ge = ctx.here, ctx.school, ctx.pis, ctx.ge
+    HERE, school, pis, ge, n = ctx.here, ctx.school, ctx.pis, ctx.ge, ctx.n
     fe = collections.defaultdict(lambda: dict(students=[]))  # researched students: thin labs and the thesis hunt
     for fn in RESEARCHED_FILES:
         if P.data(fn, school, root=HERE).exists():
@@ -319,7 +350,7 @@ def researched(ctx, stu, by_name):
             match_ = [q for q in by_name.get(t_[-1] if t_ else '', []) if nm_.match(q['name'])]
             sid = match_[0]['id'] if len(match_) == 1 else f"ext:{school}:{re.sub('[^a-z0-9]+', '-', s_['name'].lower()).strip('-')}"
             r = stu[p['pi']].setdefault(sid, dict(person=sid, name=match_[0]['name'] if len(match_) == 1 else s_['name'], roles=[s_.get('role') or 'student'], relations=[]))
-            r['relations'].append(dict(type='researched_' + ('membership' if s_.get('role') == 'member' else 'advising'), years=[y for y in (s_.get('years') or []) if y],
+            r['relations'].append(dict(type='researched_' + ('membership' if s_.get('role') == 'member' else 'advising'), years=as_years(s_.get('years'), n),
                                        role=s_.get('role'), sources=[dict(url=s_.get('capture_url') or s_['url'], sha256=s_['sha256'], quote=s_['quote'])]
                                        # a defense announcement's 'Faculty Host <PI>' line, same page and hash (Michigan request 4)
                                        + ([dict(url=s_.get('capture_url') or s_['url'], sha256=s_['sha256'], quote=s_['host_quote'])] if s_.get('host_quote') else []),
@@ -450,6 +481,7 @@ def gather(ctx):
     n['student_records_merged'] = merged_students
     # re-captured evidence for the site collections' bare-URL relations (R-STU-08, 2026-10-29)
     n.update(apply_relation_evidence(stu, school, HERE))
+    ctx.unevidenced = drop_hashless_sources(stu, n)  # R-STU-12
     # program-wide academic advisers are program advising, not research advising (R-STU-09, 2026-10-29)
     prog_groups = program_adviser_groups(stu)
     n['program_adviser_groups'] = len(prog_groups)
