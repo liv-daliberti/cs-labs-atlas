@@ -87,7 +87,7 @@ def ids(root, reg, today='2026-10-29'):
     return out, res
 
 
-def test_ids_are_prefixed_and_stable(tmp_path):
+def test_R_ID_01_ids_are_prefixed_and_stable(tmp_path):
     write(tmp_path / 'a', fixture())
     one, _ = ids(tmp_path / 'a', tmp_path / 'r1.sqlite')
     two, _ = ids(tmp_path / 'a', tmp_path / 'r1.sqlite')          # rebuild with the registry
@@ -107,7 +107,7 @@ def test_reordered_input_gives_identical_ids(tmp_path):
     assert one == rev
 
 
-def test_cross_school_persons(tmp_path):
+def test_R_ID_03_cross_school_persons(tmp_path):
     write(tmp_path / 'a', fixture())
     out, res = ids(tmp_path / 'a', tmp_path / 'r.sqlite')
     # Griffiths, Berkeley -> Princeton: one person (ORCID, DBLP), two appointments, two labs
@@ -129,7 +129,7 @@ def test_cross_school_persons(tmp_path):
     assert {'Tom Griffiths', 'Jason D. Lee', 'Chi Jin'} <= names or {'Thomas Griffiths', 'Jason Lee', 'Chi Jin'} & names
 
 
-def test_name_alone_never_joins(tmp_path):
+def test_R_ID_03_name_alone_never_joins(tmp_path):
     write(tmp_path / 'a', fixture())
     out, _ = ids(tmp_path / 'a', tmp_path / 'r.sqlite')
     ychen = {out[('stu', 'berkeley', 'Alex Dimakis', 'ext:berkeley:yuxin-chen')], out[('stu', 'princeton', 'Tom Griffiths', 'ext:princeton:yuxin-chen')],
@@ -137,7 +137,7 @@ def test_name_alone_never_joins(tmp_path):
     assert len(ychen) == 3
 
 
-def test_identifier_join_refused_when_family_names_differ(tmp_path):
+def test_R_ID_03_identifier_join_refused_when_family_names_differ(tmp_path):
     fx = fixture()
     fx['princeton']['pis'].append(pi('Someone Else', personIds=['member_x'], orcid=[LEE_ORCID]))  # a wrong ORCID on another person
     write(tmp_path / 'a', fx)
@@ -146,7 +146,7 @@ def test_identifier_join_refused_when_family_names_differ(tmp_path):
     assert res['report']['conflicts_refused'] >= 1
 
 
-def test_works_join_by_doi_and_editions_but_not_inside_one_lab(tmp_path):
+def test_R_ID_04_works_join_by_doi_and_editions_but_not_inside_one_lab(tmp_path):
     write(tmp_path / 'a', fixture())
     out, _ = ids(tmp_path / 'a', tmp_path / 'r.sqlite')
     # one paper at two schools (same DOI, case-insensitive): one work id
@@ -158,7 +158,7 @@ def test_works_join_by_doi_and_editions_but_not_inside_one_lab(tmp_path):
     assert out[('w', 'princeton', 'Mung Chiang', 'https://openalex.org/W3')] != out[('w', 'princeton', 'Mung Chiang', 'https://openalex.org/W4')]
 
 
-def test_merge_is_a_redirect_never_a_reuse(tmp_path):
+def test_R_ID_02_merge_is_a_redirect_never_a_reuse(tmp_path):
     fx = fixture()
     fx['princeton']['pis'][0] = pi('Tom Griffiths', personIds=['leader_97645be09649f505'])  # no shared identifier yet
     write(tmp_path / 'a', fx)
@@ -207,3 +207,15 @@ def test_rows_sharing_one_openalex_record_stay_stable(tmp_path):
     db2 = A.open_registry(tmp_path / 'r2.sqlite', seed=False)
     rev = A.run(['berkeley', 'princeton'], tmp_path / 'b', db2, today='2026-10-29', write=False)['work_of']
     assert sorted(set(one.values())) == sorted(set(rev.values()))
+
+
+def test_R_ID_05_every_package_row_carries_its_id(tmp_path):
+    write(tmp_path / 'a', fixture())
+    ids(tmp_path / 'a', tmp_path / 'r.sqlite')
+    for s in ('berkeley', 'princeton'):
+        D = tmp_path / 'a' / s
+        assert all(p['atlasId'].startswith('atl:p:') and p['labId'].startswith(f'atl:l:{s}:') for p in json.loads((D / 'pis.json').read_text()))
+        assert all(r['atlasId'].startswith('atl:p:') for v in json.loads((D / 'students.json').read_text()).values() for r in v)
+        assert all(json.loads(l)['atlasWorkId'].startswith('atl:w:') for l in gzip.open(D / 'lab_papers.jsonl.gz', 'rt'))
+    src = open(A.__file__.replace('atlas_ids.py', 'make_release.py')).read()       # and the release refuses a package without them
+    assert "atlas ids missing; run tools/atlas_ids.py" in src

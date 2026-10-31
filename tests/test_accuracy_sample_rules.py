@@ -40,7 +40,7 @@ def by_oa(cases, w):
     ('W4255267968', 'repository_supplement'),  # protocols.io
     ('W3136338351', 'machine_translation'),    # JST machine translation of OpenPose
 ])
-def test_r1_not_papers(cases, w, tag):
+def test_R_PAP_18_not_papers(cases, w, tag):
     assert h.not_a_paper(by_oa(cases, w)) == tag
 
 
@@ -56,12 +56,12 @@ def test_r1_not_papers(cases, w, tag):
     ('Big data approaches for novel mechanistic insights on sleep and circadian rhythms: a workshop summary', 'article'),
     ('Obituaries can popularize science and health', 'article'),
 ])
-def test_r1_keeps_real_papers(title, typ):
+def test_R_PAP_18_keeps_real_papers(title, typ):
     assert h.not_a_paper(dict(title=title, type=typ, venue='Some Journal', doi='10.1/x', byline=['A B', 'C D'],
                               authorship=dict(position='last'))) is None
 
 
-def test_r1_tribute_forms():
+def test_R_PAP_18_tribute_forms():
     assert h.person_name_title('Derek Chiou')
     assert not h.person_name_title('Art Gallery')
     row = dict(type='article', venue='Nature', doi='10.1038/530282a', byline=['Patrick Winston'], authorship=dict(position='first'))
@@ -80,11 +80,11 @@ def test_r1_tribute_forms():
     ('W4401571924', 'meeting_abstract:venue'),          # 15 Setsompop, ISMRM
     ('W2734831869', 'meeting_abstract:single_author'),  # 16 Verma, IWASI 2017 keynote abstract
 ])
-def test_r2_meeting_abstracts(cases, w, tag):
+def test_R_PAP_19_meeting_abstracts(cases, w, tag):
     assert h.not_a_paper(by_oa(cases, w)) == tag
 
 
-def test_r2_cs_conference_abstracts_stay():
+def test_R_PAP_19_cs_conference_abstracts_stay():
     # EC, FPGA, SIGCSE one-page abstracts with co-authors are CS conference publications and stay
     r = dict(title='Optimal Auctions via the Multiplicative Weight Method', type='conference-abstract',
              venue='ACM Conference on Economics and Computation (EC)', doi='10.1145/3033274.3085126', byline=['A B', 'C D'],
@@ -94,13 +94,13 @@ def test_r2_cs_conference_abstracts_stay():
 
 # ---- R3 page 1 before the unaffiliated-advisee route (R-PAP-20) -------------------------------------------------
 
-def test_r3_pi0_is_physical_intelligence(cases):
+def test_R_PAP_20_pi0_is_physical_intelligence(cases):
     x = cases['pi0']
     assert x['status'] == 'ok_absent'
     assert h.page1_elsewhere(x['status'], x['page1'], 'berkeley', x['title'])     # 12 Levine, pi-0
 
 
-def test_r3_keeps_pages_without_affiliations_and_school_pages(cases):
+def test_R_PAP_20_keeps_pages_without_affiliations_and_school_pages(cases):
     plain = 'Guiding the search in continuous state-action spaces arXiv:1711.01391v1 [cs.AI] 4 Nov 2017 Beomjoon Kim, Leslie Pack Kaelbling and Tomas Lozano-Perez Abstract We ...'
     assert h.page1_elsewhere('ok_absent', plain, 'mit', 'Guiding the search in continuous state-action spaces') is None
     assert h.page1_elsewhere('ok_absent', 'A paper Jane Doe Berkeley AI Research Abstract x', 'berkeley') is None   # the school, loosely
@@ -110,7 +110,7 @@ def test_r3_keeps_pages_without_affiliations_and_school_pages(cases):
 
 # ---- R4 chapters without a venue fold by DOI prefix (R-PAP-21) ---------------------------------------------------
 
-def test_r4_rubinstein_chapters_fold_into_the_book(cases):
+def test_R_PAP_21_rubinstein_chapters_fold_into_the_book(cases):
     rows = [dict(r) for r in cases['rubinstein']]
     assert sum(r['type'] == 'book-chapter' for r in rows) == 16 and any(r['oa'].endswith('W2950014110') for r in rows)   # 13
     kept, folded, _ = h.fold_books(rows, 'stanford')
@@ -121,7 +121,7 @@ def test_r4_rubinstein_chapters_fold_into_the_book(cases):
 
 # ---- R5 dissertations (R-PAP-22) --------------------------------------------------------------------------------
 
-def test_r5_kundaje_dissertation(cases):
+def test_R_PAP_22_kundaje_dissertation(cases):
     r = by_oa(cases, 'W7204929729')                                        # 14 Minji Kang's dissertation, Kundaje adviser
     assert r['byline'][0].startswith('Kang') and h.not_a_paper(r) == 'dissertation'
     own = dict(r, byline=['Kundaje, Anshul'], authorship=dict(position='first'))
@@ -130,7 +130,7 @@ def test_r5_kundaje_dissertation(cases):
 
 # ---- R6 bare unit names (R-PAP-25) ------------------------------------------------------------------------------
 
-def test_r6_units():
+def test_R_PAP_25_units():
     assert h.norm_unit('Operations Research & Financial Engineering') == h.norm_unit('Department of Operations Research and Financial Engineering')
     assert h.generic_unit('Department of Computer Science') and h.generic_unit('Electrical and Computer Engineering')
     assert not h.generic_unit('Center for Information Technology Policy') and not h.generic_unit('Operations Research & Financial Engineering')
@@ -138,7 +138,7 @@ def test_r6_units():
     assert h.units_in('Center for Information Technology Policy, Princeton University, Princeton, NJ', aff) == ['center for information technology policy']
 
 
-def test_r6_sircar_and_mittal():
+def test_R_PAP_25_sircar_and_mittal():
     sircar_units = {h.norm_unit('Operations Research and Financial Engineering')}
     # 24 Sircar, SIAM Review 2017: his own (census) unit, his reviewed author id
     assert h.bare_unit_school(['Operations Research & Financial Engineering'], sircar_units, sircar_units, anchored_ok=True, school_co=False)
@@ -156,7 +156,7 @@ def test_r6_sircar_and_mittal():
 
 # ---- R7 doubled roster tokens (R-STU-05) ------------------------------------------------------------------------
 
-def test_r7_doubled_tokens():
+def test_R_STU_05_doubled_tokens():
     assert h.dedupe_tokens('Arjun Nitin Nitin Bhagoji') == 'Arjun Nitin Bhagoji'                       # 22 Mittal's roster
     assert h.dedupe_tokens('Li Li') == 'Li Li'                                                           # two-token names stay
     assert h.dedupe_tokens('Jean Jean-Pierre Martin') == 'Jean Jean-Pierre Martin'
@@ -165,27 +165,27 @@ def test_r7_doubled_tokens():
 
 # ---- R8 page 1 for DBLP-anchored works (R-PAP-24) ---------------------------------------------------------------
 
-def test_r8_fox_footnote_tie(cases):
+def test_R_PAP_24_fox_footnote_tie(cases):
     x = cases['fox']                                                       # 25 Fox, JCTB 2025: '∗ Stanford University, ...'
     how, quotes = F.tie(re.sub(r'\s+', ' ', x['page1']), [('jacob', 'fox')], re.compile(h.AFF['stanford'], re.I))
     assert how == 'footnote' and quotes[0].startswith('Jacob Fox') and 'Stanford University' in quotes[1]
 
 
-def test_r8_footnote_is_not_an_equal_contribution_note():
+def test_R_PAP_24_footnote_is_not_an_equal_contribution_note():
     page = 'A title Jane Doe∗ John Roe Abstract text. ∗ Equal contribution. Stanford University and elsewhere.'
     assert F.tie(page, [('jane', 'doe')], re.compile(h.AFF['stanford'], re.I))[0] is None
 
 
 # ---- R9 venue-version dating (R-PAP-26) -------------------------------------------------------------------------
 
-def test_r9_engelhardt_ml4h(cases):
+def test_R_PAP_26_engelhardt_ml4h(cases):
     x = cases['engelhardt']                                                # 26 arXiv v1 2021-10, ML4H 2023
     venues = {h.norm_title(d['title'].rstrip('.')): (d['year'], d['key']) for d in x['dblp']}
     date, by = h.venue_version_date(x['work'], venues)
     assert date == '2023' and by['dblp_key'] == 'conf/ml4h/MandyamJYLE23' and by['oa_date'] == '2021-10-06'
 
 
-def test_r9_sandholm_kilthub_deposit(cases):
+def test_R_PAP_26_sandholm_kilthub_deposit(cases):
     x = cases['sandholm']                                                  # IJCAI 2009 deposited on KiltHub in 2018
     venues = {h.norm_title(d['title'].rstrip('.')): (d['year'], d['key']) for d in x['dblp']}
     w = dict(title=x['row']['title'], type='article', doi=x['row']['doi'], publication_year=2018, publication_date='2018-06-30',
@@ -197,33 +197,33 @@ def test_r9_sandholm_kilthub_deposit(cases):
 
 # ---- R10 nicknames (R-LNK-04) -----------------------------------------------------------------------------------
 
-def test_r10_izzy():
+def test_R_LNK_04_izzy():
     assert h.nick_ok('izzy', 'izabel') and h.nick_ok('izzy', 'isabel')
     assert not h.given_conflict(['Izzy Aguiar'], 'Izabel Aguiar')         # 27 Ugander's student
 
 
 # ---- recorded data issues -----------------------------------------------------------------------------------------
 
-def test_manning_record_with_another_works_doi(cases):
+def test_R_PAP_23_manning_record_with_another_works_doi(cases):
     r = by_oa(cases, 'W3011573503')
     assert r['doi'] == '10.4230/oasics.slate.2023.2' and r['year'] == 2020 and h.doi_year_conflict(r)
     assert not h.doi_year_conflict(dict(r, type='preprint'))                # a preprint with its later venue DOI is normal
     assert not h.doi_year_conflict(dict(r, doi='10.4230/lipics.types.2016.11', year=2018))
 
 
-def test_hyphenated_family_name_merges_within_a_lab():
+def test_R_STU_06_hyphenated_family_name_merges_within_a_lab():
     assert h.same_student('Pablo José. Ortiz-Lampier', 'Pablo Ortiz') and h.same_student('Pablo Ortiz', 'Pablo José Ortiz-Lampier')
     assert not h.same_student('Maria Ortiz-Lampier', 'Pablo Ortiz')
 
 
-def test_pi_person_id_is_never_a_student():
+def test_R_STU_07_pi_person_id_is_never_a_student():
     labs = {'Borivoje Nikolic': {'berkeley_fac_john-wright': dict(person='berkeley_fac_john-wright', name='John Wright', relations=[{'type': 'researched_advising'}])}}
     assert h.rekey_pi_person_ids(labs, {'berkeley_fac_john-wright'}, 'berkeley') == 1
     r = labs['Borivoje Nikolic']['ext:berkeley:john-wright']
     assert r['person'] == 'ext:berkeley:john-wright' and r['rekeyedFrom'] == ['berkeley_fac_john-wright']
 
 
-def test_shirley_wu_reviewed_evidence():
+def test_R_STU_04_shirley_wu_reviewed_evidence():
     x = [c for c in json.loads((WORK / 'hierarchy/student-corrections.json').read_text())
          if c.get('student') == 'stanford_stu_shirley-yingxin-wu' and c.get('pi') == 'James Zou']
     assert len(x) == 1 and x[0]['action'] == 'replace_sources'
@@ -233,14 +233,14 @@ def test_shirley_wu_reviewed_evidence():
 
 # ---- evidence carried by links, and provenance ------------------------------------------------------------------
 
-def test_relation_source_prefers_complete_sources():
+def test_R_LNK_05_relation_source_prefers_complete_sources():
     s = dict(relations=[dict(type='a', sources=[dict(url='u', sha256='', quote='')]),
                         dict(type='b', sources=[dict(url='u2', sha256='a' * 64, quote='Adviser: X')])])
     assert h.relation_source(s) == dict(relation='b', url='u2', sha256='a' * 64, quote='Adviser: X')
     assert h.best_sources([dict(url='u', sha256='b' * 64, statement='Joined MIT in 2007.')])[0]['quote'] == 'Joined MIT in 2007.'
 
 
-def test_provenance_missing():
+def test_R_AUD_06_provenance_missing():
     import provenance
     assert provenance.missing(None) == list(provenance.REQUIRED)
     full = dict(code=dict(commit='c', dirty=False), rules=[1], openalex_sweep=dict(sha256='s', last_fetched='t'),

@@ -23,7 +23,7 @@ def _package(tmp_path, link):
     return tmp_path
 
 
-def test_evidence_check_clean_and_violations(tmp_path):
+def test_R_AUD_05_evidence_check_clean_and_violations(tmp_path):
     good = dict(pi='P', student='s1', oa='W1', basis='within_lab_byline_match', byline='S. One',
                 relation_source=dict(relation='researched_advising', url='u', sha256=SHA, quote='Adviser: P'))
     res = evidence_check.check('princeton', _package(tmp_path / 'a', good))
@@ -36,7 +36,7 @@ def test_evidence_check_clean_and_violations(tmp_path):
     assert res['link_byline']['of'] == 0
 
 
-def test_access_causes_explain_missing_copies():
+def test_R_AUD_07_access_causes_explain_missing_copies():
     for cause in ('paywall_or_forbidden', 'login', 'challenge'):
         assert any(w in chain_audit.ACCESS_REASON[cause] for w in ('paywalled', 'login', 'challenge'))
     for cause in ('robots_disallow', 'landing_no_pdf', 'not_found', 'policy_skip', 'transient_exhausted', 'unapproved_redirect',

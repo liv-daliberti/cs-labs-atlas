@@ -18,7 +18,7 @@ import pi_hierarchy as h
     ('Ruihan Zhao', 'Rui Zhao'),
     ('Seung Hyun Lee', 'Seunghak Lee'),
 ])
-def test_given_conflict_different_people(student, byline):
+def test_R_LNK_02_given_conflict_different_people(student, byline):
     assert h.given_conflict([student], byline)
 
 
@@ -35,18 +35,18 @@ def test_given_conflict_different_people(student, byline):
     ('Dylan M. Paiton', 'Paiton Dylan'),       # family name first
     ('Wei-Ning Chen', 'W. Chen'),              # an initial is never a conflict
 ])
-def test_given_conflict_allowed(student, byline):
+def test_R_LNK_02_given_conflict_allowed(student, byline):
     assert not h.given_conflict([student], byline)
 
 
-def test_given_conflict_strict_is_the_literal_guard():
+def test_R_LNK_02_given_conflict_strict_is_the_literal_guard():
     # the owner's literal guard would remove prefix and spelling variants; the build only counts those (kept_prefix_or_spelling_variant)
     assert h.given_conflict(['Avinash Boppana'], 'Avi Boppana', strict=True)
     assert h.given_conflict(['Johann Paratte'], 'Johan Paratte', strict=True)
     assert not h.given_conflict(['Xiang Lisa Li'], 'Lisa Li', strict=True)
 
 
-def test_given_conflict_recurring_one_letter_variant():
+def test_R_LNK_02b_given_conflict_recurring_one_letter_variant():
     # Yuxin Chen's roster says 'Gene Li', his papers say 'Gen Li': allowed on 3+ of the lab's papers, not on 2
     lab = {'Yuxin Chen': {'gene li'}}
     three = collections.Counter({('Yuxin Chen', 'gen li'): 3})
@@ -59,14 +59,14 @@ def test_given_conflict_recurring_one_letter_variant():
     assert h.given_conflict(['Gene Li'], 'Gen Li')
 
 
-def test_east_asian_family_list_holds_the_cases():
+def test_R_LNK_02a_east_asian_family_list_holds_the_cases():
     for fam in ('li', 'liu', 'zhao', 'lee', 'chen', 'ha'):
         assert fam in h.EAST_ASIAN_FAMILY
 
 
 # ---- initials on the PI's byline -----------------------------------------------------------------------------------
 
-def test_all_initials():
+def test_R_PAP_07_all_initials():
     assert h.all_initials(['Md Tauhidul Islam'], 'M.T. Islam')
     assert h.all_initials(['Md Tauhidul Islam'], 'M. T. Islam')
     assert not h.all_initials(['Yuxin Chen'], 'Y. L. Chen')        # two initials for a one-given-name PI
@@ -77,7 +77,7 @@ def test_all_initials():
 
 # ---- the transition-year rule for unaffiliated bylines ------------------------------------------------------------
 
-def test_transition_side_griffiths(fixture_json):
+def test_R_PAP_13_transition_side_griffiths(fixture_json):
     # Thomas Griffiths: Berkeley listings 2016-2018, the last captured 2018-04-05; he moved to Princeton in July 2018
     p = fixture_json('griffiths-berkeley.json')
     by_year = {l['year']: l for l in p['listings']}
@@ -92,7 +92,7 @@ def test_transition_side_griffiths(fixture_json):
     assert h.transition_side(p, by_year[2016], '2016-01-02') == 'inside'   # the window's first year is no arrival
 
 
-def test_transition_side_arrival_year():
+def test_R_PAP_13_transition_side_arrival_year():
     p = {'listings': [{'year': 2019, 'url': 'https://web.archive.org/web/20190915000000id_/x'}, {'year': 2020, 'url': 'u'}]}
     lst = p['listings'][0]
     assert h.transition_side(p, lst, '2019-10-01') == 'inside'
@@ -109,7 +109,7 @@ def test_transition_side_arrival_year():
     ('Die stacking for 3D chips', False),     # 'die' is German, but 'for' is English
     ('Algorithmen', False),                   # one word says nothing
 ])
-def test_foreign_title(title, foreign):
+def test_R_PAP_15_foreign_title(title, foreign):
     assert h.foreign_title(title) is foreign
 
 
@@ -117,27 +117,27 @@ def _chapters(k, pi='Charles Leiserson', venue='Algorithmen - Eine Einführung',
     return [dict(pi=pi, type='book-chapter', venue=venue, year=year, title=f'{title} {i}', oa=f'W{i}') for i in range(k)]
 
 
-def test_fold_books_chapter_run_without_book_record():
+def test_R_PAP_15_fold_books_chapter_run_without_book_record():
     rows = _chapters(5, venue='Introduction to Algorithms', title='Chapter')
     kept, folded, translated = h.fold_books(rows, 'mit')
     assert len(kept) == 1 and folded == 4 and translated == 0
     assert kept[0]['chapters_folded'] == 5
 
 
-def test_fold_books_chapter_run_into_book_record():
+def test_R_PAP_15_fold_books_chapter_run_into_book_record():
     rows = _chapters(5, venue='Introduction to Algorithms', title='Chapter') + \
         [dict(pi='Charles Leiserson', type='book', venue='Introduction to Algorithms', year=2010, title='Introduction to Algorithms', oa='WB')]
     kept, folded, translated = h.fold_books(rows, 'mit')
     assert [r['oa'] for r in kept] == ['WB'] and folded == 5
 
 
-def test_fold_books_needs_five_chapters_of_one_pi_venue_year():
+def test_R_PAP_15_fold_books_needs_five_chapters_of_one_pi_venue_year():
     rows = _chapters(4, venue='Introduction to Algorithms', title='Chapter') + _chapters(1, venue='Introduction to Algorithms', year=2011, title='Chapter')
     kept, folded, _ = h.fold_books(rows, 'mit')
     assert len(kept) == 5 and folded == 0
 
 
-def test_fold_books_translations_dropped_outside_epfl_only():
+def test_R_PAP_15_fold_books_translations_dropped_outside_epfl_only():
     rows = [dict(pi='X', type='book-chapter', venue='V', year=2012, title='9. Médianes et statistiques d’ordre', oa='W1'),
             dict(pi='X', type='book', venue='V2', year=2012, title='Algorithmen - Eine Einführung', oa='W2'),
             dict(pi='X', type='article', venue='J', year=2012, title='Algorithmen und Datenstrukturen für die Praxis', oa='W3')]
@@ -149,7 +149,7 @@ def test_fold_books_translations_dropped_outside_epfl_only():
 
 # ---- stale listings after an evidenced move ------------------------------------------------------------------------
 
-def test_listings_after_move_mung_chiang(fixture_json):
+def test_R_PAP_03_listings_after_move_mung_chiang(fixture_json):
     # Mung Chiang left Princeton in 2017 (faculty_end_moved); Princeton ECE kept him on its list 2019-2026
     x = fixture_json('mung-chiang-princeton.json')
     listings = {l['year']: l for l in x['listings']}
@@ -158,14 +158,14 @@ def test_listings_after_move_mung_chiang(fixture_json):
     assert 2016 not in after and 2017 not in after
 
 
-def test_listings_after_move_kept_by_a_later_period(fixture_json):
+def test_R_PAP_03_listings_after_move_kept_by_a_later_period(fixture_json):
     x = fixture_json('mung-chiang-princeton.json')
     listings = {l['year']: l for l in x['listings']}
     after = h.listings_after_move(listings, x['collection_periods'], [dict(start='2021', end=None)])
     assert sorted(after) == [2019, 2020]
 
 
-def test_listings_after_move_needs_move_evidence(fixture_json):
+def test_R_PAP_03_listings_after_move_needs_move_evidence(fixture_json):
     x = fixture_json('mung-chiang-princeton.json')
     listings = {l['year']: l for l in x['listings']}
     periods = [dict(p, evidence=[e for e in p['evidence'] if e['kind'] != 'faculty_end_moved']) for p in x['collection_periods']]
