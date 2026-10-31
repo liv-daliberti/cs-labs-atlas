@@ -46,7 +46,7 @@ Status: `open` · `in progress (<who>)` · `done <date> <commit>` · `queued (af
 
 | # | Item | Status | Done when |
 |---|---|---|---|
-| 12 | Supervised collectors + status page | built 2026-10-31 7364291 (SIGTERM-clean Slurm loops, idle backoff 10 min-4 h, generated hierarchy/COLLECTORS-STATUS.md); done when all six loops run as Slurm jobs | loops run as Slurm jobs that back off when idle; generated `STATUS.md` per school |
+| 12 | Supervised collectors + status page | done 2026-10-31 7364291 (SIGTERM-clean Slurm loops, idle backoff 10 min-4 h, generated hierarchy/COLLECTORS-STATUS.md); six loops on Slurm: 32041175_0, 32041308_1-5; Princeton proof round passed | loops run as Slurm jobs that back off when idle; generated `STATUS.md` per school |
 | 13 | Scratch housekeeping | queued (data-standards agent, after the downloads agent) | scratch outside the tree, cleaned automatically |
 | 14 | Release notes generated from the build regression | queued (data-standards agent, after the downloads agent) | each release carries a generated `CHANGES.md` |
 
