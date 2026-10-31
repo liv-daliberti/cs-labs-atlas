@@ -1,6 +1,6 @@
 #!/bin/bash
-# One worktree per agent or person (docs/CONTRIBUTING.md). Worktrees live next to the code checkout as code-<name>/
-# (today: /n/fs/resemble/cs-atlas/work-<name>), each on its own branch <kind>/<name>.
+# One worktree per agent or person (docs/CONTRIBUTING.md). Worktrees live beside the code checkout in worktrees/<name>
+# (/n/fs/resemble/homogenizing-science/worktrees/<name>), each on its own branch <kind>/<name>.
 #   tools/agent_worktree.sh new <name> [<kind>]   create the worktree and branch <kind>/<name> from main (kind: agent)
 #   tools/agent_worktree.sh <name>                 the same (shorthand)
 #   tools/agent_worktree.sh land <name>            rebase <kind>/<name> onto main, run the full tests, fast-forward main
@@ -14,7 +14,7 @@ main_top=$(git -C "$(dirname "$0")" rev-parse --path-format=absolute --git-commo
 cmd=${1:-ls}
 case "$cmd" in new|land|rm|ls) shift || true ;; *) cmd=new ;; esac
 name=${1:-}; kind=${2:-agent}
-dir="$(dirname "$main_top")/$(basename "$main_top")-${name}"
+dir="$(dirname "$main_top")/worktrees/${name}"
 branch_of() { git -C "$main_top" worktree list --porcelain | awk -v d="$1" '$1=="worktree"{w=$2} $1=="branch" && w==d {sub("refs/heads/","",$2); print $2}'; }
 need_name() { [ -n "$name" ] || { echo "usage: $0 $cmd <name>"; exit 2; }; [[ "$name" =~ ^[a-z0-9][a-z0-9._-]*$ ]] || { echo "name: lower-case letters, digits, . _ -"; exit 2; }; }
 case "$cmd" in
@@ -22,6 +22,7 @@ case "$cmd" in
   new)
     need_name
     [ -e "$dir" ] && { echo "$dir exists"; exit 1; }
+    mkdir -p "$(dirname "$dir")"
     git -C "$main_top" worktree add "$dir" -b "$kind/$name" main
     echo "worktree $dir on branch $kind/$name. Work and commit there; land with: $0 land $name" ;;
   land)

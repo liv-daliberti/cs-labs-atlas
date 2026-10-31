@@ -18,8 +18,8 @@ the secret scan runs in the pre-commit hook, before each push, and in CI.
 
 ## Your own worktree
 ```
-tools/agent_worktree.sh new <name> [kind]    # ../work-<name> on branch <kind>/<name> (kind: agent, infra, fix, person)
-cd ../work-<name>                            # work and commit here, as often as you like
+tools/agent_worktree.sh new <name> [kind]    # ../worktrees/<name> on branch <kind>/<name> (kind: agent, infra, fix, person)
+cd ../worktrees/<name>                       # work and commit here, as often as you like
 tools/agent_worktree.sh land <name>          # rebase on main, full tests, fast-forward main
 tools/agent_worktree.sh rm <name>            # when done (refuses while there are uncommitted changes)
 ```
