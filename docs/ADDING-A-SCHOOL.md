@@ -324,7 +324,10 @@ OpenAlex co-authorship is never on its own evidence of advising.
 - **Lab-page audit (v2.2) gate:** every found lab page, and every homepage used as the lab page, has its students section
   audited, alumni included (`students.page_status` set). Every listed member is in the build or carries a reason code.
   `genuinely_missing` is at most the whitelisted share, and every such member is in `hierarchy/<key>/labpage-additions.json`
-  (rule LP-STU-01). At least 20 random proposed students are hand-checked and the error count is in the stage report.
+  (rule LP-STU-01). The additions are wired only when a fresh random 20 proposed students has at most 1 membership error and
+  at most 2 role/year errors (doubtful = half); a failed round means a rule fix, a re-run and a NEW sample of 20, and after 3
+  failed rounds the work stops and is reported. Every round is recorded (`labpage-handcheck.json`, `LABPAGE-AUDIT.md`); the
+  accepted one is `labpage-acceptance.json`. After any rule change, 10 students are re-sampled at every accepted school.
 
 ## Stage 7: papers and links
 - **Do:**
@@ -337,8 +340,9 @@ OpenAlex co-authorship is never on its own evidence of advising.
   - the evidence check passes;
   - **Lab-page audit (v2.2):** every listed 2016-2026 paper on a lab page is a lab paper or carries a reason code; no paper
     is `not_yet_resolved` (run the `recover` step after the OpenAlex daily reset if the budget ran out; it stops at 6k
-    credits left); `genuinely_missing` papers are in `labpage-additions.json` (rule LP-PAP-01); at least 20 random proposed
-    papers are hand-checked and the error count is in the stage report.
+    credits left); `genuinely_missing` papers are in `labpage-additions.json` (rule LP-PAP-01); a fresh random 20 proposed
+    papers has at most 1 error (doubtful = half, wrong metadata = an error) before they are wired, under the same rounds rule
+    as stage 6.
 - **Debt:** `dblp_recover.py` reads a pre-protocol school's cached DBLP lists (`pi_hierarchy.DBLP`). A protocol school needs it to read `hierarchy/dblp-dump-persons.json.gz` instead, or a `hierarchy/<key>/raw/dblp_pubs.json.gz` written from it.
 
 ## Stage 8: full texts

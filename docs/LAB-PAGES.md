@@ -173,6 +173,23 @@ list), `no_lab_page`, `page_not_captured`, `page_unparseable`.
   iterate `labpage-additions.json` `papers[]` (same schema), after `labpage-recovered.jsonl.gz`, so the `seen` check keeps
   one row per work.
 
+## Acceptance bar for wiring additions (owner's coordinator, 2026-10-31)
+
+1. A school's `labpage-additions.json` is wired into the build only when a fresh random hand check of 20 proposed students
+   has at most 1 membership error and at most 2 role/year errors, and 20 proposed papers have at most 1 error. A doubtful
+   item counts as half an error; a paper whose metadata is wrong (a title with a byline) counts as an error.
+2. A school that fails gets its rule fixed, is re-run, and is re-sampled with a NEW random 20 (a new seed). The same sample
+   is never re-checked after a fix: that measures the fix, not the rate.
+3. After any rule change, 10 students are re-sampled at every school already accepted.
+4. Every round, failed ones included, is recorded in `hierarchy/<school>/labpage-handcheck.json` (`rounds`: date, seed,
+   sample sizes, errors by type, the items, the result) and in the hand-check table of `hierarchy/LABPAGE-AUDIT.md`. The
+   accepted round is written to `hierarchy/<school>/labpage-acceptance.json` (the round, the additions file's
+   `generated_at` and sha256, the counts), which is checked before wiring.
+5. After 3 failed rounds at a school the work stops and the error patterns are reported, rather than patched further.
+
+Roles and years in additions are only what the entry states: `role` / `years` are null with `role_basis` / `years_basis`
+`none` when the entry does not state them (`entry_role`, `entry_years`); the build keeps undated students.
+
 ## Pass condition (per school)
 
 1. Every PI in `pis.json` has a `lab_page` record with a status, a reason code from the vocabulary and at least one dated check.

@@ -1999,19 +1999,18 @@ def write_md(allsum):
         x = allsum[s]['papers']
         rs = ', '.join(f'{k} {v}' for k, v in sorted(x['missing_by_reason'].items(), key=lambda kv: -kv[1]) if k != 'genuinely_missing')
         L.append(f"| {s} | {x['listed']} | {x['in_window']} | {x['matched_in_lab_papers']} | {rs} | {x['genuinely_missing']} | {x['proposed_additions']} |")
-    L += ['', '## Hand checks of proposed additions', '',
-          '| school | checked | students sampled | membership errors | role/year errors | papers sampled | paper errors | notes |',
-          '|---|---|---:|---:|---:|---:|---:|---|']
+    L += ['', '## Hand-check rounds (acceptance bar: docs/LAB-PAGES.md)', '',
+          '| school | round | date | students | membership errors (doubtful = 0.5) | role/year errors | papers | paper errors | result | what changed |',
+          '|---|---:|---|---:|---:|---:|---:|---:|---|---|']
     for s_ in order:
         hp = H / s_ / 'labpage-handcheck.json'
         if not hp.exists():
             continue
-        hc = read(hp)
-        for k in [hc] + list(hc.get('rechecks') or []):
+        for k in read(hp).get('rounds') or []:
             st, pa = k.get('students') or {}, k.get('papers') or {}
-            L.append(f"| {s_} | {k.get('checked_at', '')} | {st.get('sampled', '')} | {st.get('membership_errors', '')} | "
-                     f"{st.get('role_or_year_errors', st.get('role_errors', ''))} | {pa.get('sampled', '')} | {pa.get('errors', '')} | "
-                     f"{str(k.get('label') or '')[:80]} |")
+            L.append(f"| {s_} | {k.get('round')} | {k.get('date')} | {st.get('sampled', '')} | {k.get('membership_score')} | "
+                     f"{k.get('role_year_errors')} | {pa.get('sampled', '-')} | {'-' if k.get('paper_score') is None else k['paper_score']} | "
+                     f"{k.get('result')} | {str(k.get('label') or '')[:70]} |")
     open(H / 'LABPAGE-AUDIT.md', 'w', encoding='utf-8').write('\n'.join(L) + '\n')
 
 
