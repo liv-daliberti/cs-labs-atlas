@@ -1,4 +1,4 @@
-# Vendored 2026-10-30 from /n/fs/resemble/maxent-grpo/.research-sweeps/claude-cmu-20261017/tools/collector_wrapper.py (sha256 17030d4e23e1c4de2c9e25dbbc8b18ce8da06151fea2e5de9f2865752c07ede4); see vendor/PROVENANCE.tsv and tools/vendor_sync.py.
+# Vendored 2026-10-30 from /n/fs/resemble/maxent-grpo/.research-sweeps/claude-cmu-20261017/tools/collector_wrapper.py (sha256 73b55a6cf239c301ffe6467c42bc8d5c56b01a7de272b76d6c85b689b3793c92); see vendor/PROVENANCE.tsv and tools/vendor_sync.py.
 """The Princeton collector (homogenizing-science/scripts/collect_princeton_fulltext_expanded.py), unchanged on disk,
 run for the CMU and EPFL catalogs with these additions:
 
@@ -207,12 +207,19 @@ c.Protego = _ProtegoAI
 #   pdfs       DSpace '/bitstream/' PDF links; else <link type="application/pdf">; else every <a> whose path ends in .pdf
 #              (or is a /retrieve/ or /bitstreams/ file) and is not a supplement, slides or poster
 # The collector still requires exactly one distinct link, and the title check on the downloaded file applies.
-NOT_ARTICLE = re.compile(r'supp|slide|poster|present|handout|appendi|errat|abstract[-_.]|cover|flyer|cv[-_.]|resume|syllabus|\.ppt', re.I)
+NOT_ARTICLE = re.compile(r'supp|slide|poster|present|handout|appendi|errat|abstract[-_.]|cover|flyer|cv[-_.]|resume|syllabus|\.ppt|privacy|'
+                         r'datenschutz|protection|licen[cs]e|terms|conditions|policy|sponsor|brochure|cfp|call[-_]?for|program(?:me)?[-_.]|'
+                         r'schedule|agenda|form[-_.]|guidelines|template|manual|newsletter|annual[-_]?report', re.I)
+# A PDF reached through the new tiers (a <link type=application/pdf>, or the page's one PDF anchor) counts only when the
+# collector's identity check finds the catalog title (or DOI) in it: on 2026-10-30, 21 of 27 such files whose title
+# was not found were repository privacy statements, licence pages, a conference sponsorship flyer or another paper.
+_TIER = __import__('threading').local()
 
 
 class Links(c.base.HTMLParser):
     def __init__(self):
         super().__init__(); self.citations = []; self._bit = []; self._link = []; self._any = []
+        _TIER.loose = False
 
     def handle_starttag(self, tag, attrs):
         a = dict(attrs)
@@ -233,10 +240,29 @@ class Links(c.base.HTMLParser):
 
     @property
     def pdfs(self):
-        return self._bit or self._link or self._any
+        out = self._bit or self._link or self._any
+        _TIER.loose = bool(out) and not self.citations and not self._bit
+        return out
+
+
+_check_identity, _process_work = c.base.check_identity, c.process_work
+
+
+def check_identity(row, path):
+    loose, _TIER.loose = getattr(_TIER, 'loose', False), False
+    identity = _check_identity(row, path)
+    if loose and identity == 'provider_link_only_review_pending':
+        raise ValueError('Landing-page PDF link: the catalog title is not in the file (identity unconfirmed)')
+    return identity
+
+
+def process_work(work, client, out):
+    _TIER.loose = False
+    return _process_work(work, client, out)
 
 
 c.base.Links = Links
+c.base.check_identity, c.process_work = check_identity, process_work
 
 
 def requeue(out):
