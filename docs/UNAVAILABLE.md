@@ -62,6 +62,26 @@ DOI or normalized title (the collector's lab-paper group): `{url, at, status, ca
 landing_no_pdf, not_pdf, not_found, unapproved_redirect, identity_mismatch, transient, ...). `access_review` is the
 stores' access-review verdict and cause, when there is one.
 
+## Copies that do not count (2026-10-31, owner)
+
+- **Quarantined: robots.txt for an Anthropic crawler.** A copy the collector took from a path whose robots.txt disallows
+  ClaudeBot, anthropic-ai or another Claude agent (the collector checked only its own user agent until 2026-10-30) is
+  moved to `<store>/quarantine/robots-ai/`, its catalog status becomes `quarantined_robots_ai`, and the paper's reason is
+  `open_copy_robots_disallowed` (`fulltext-push/quarantine_robots_ai.py`; per-store `manifest.jsonl` with work id, both
+  paths, sha256, URLs and the rule; `restore` reverses it). 1,961 works on 2026-10-31.
+- **Identity.** A copy counts only with a confirmed identity. The collector confirms a file when the catalog title or
+  DOI is in its first three pages; a file it accepted without that (`provider_link_only_review_pending`) is reviewed by
+  `fulltext-push/identity_review.py`: it passes when at least 80% of the title's significant words are in page 1's title
+  region (its first 600 characters) and the first author's family name or the DOI is on page 1, or when page 1's arXiv
+  stamp is the arXiv id the copy was downloaded as, Semantic Scholar or OpenAlex maps the work's DOI to it and the first
+  author is on page 1. Failures are reverted (`revert_downloads.py`: back to needs_access_review, the download's attempt
+  marked identity_mismatch, so that URL is not asked again; the work's other candidates still are). Measured on a hand
+  check of 20 passes and 20 failures (2026-10-31, review-20261030/identity-review-handcheck.json): about 5% of passes are
+  not the paper (1 of 20, 1 uncertain), and a few true papers fail. Two reverted copies were the paper: one whose catalog
+  title carries a suffix ("... to Appear in a Festschrift for Grigori Mints"), one retitled before publication; they go
+  back through the queue like every reverted work, and their reason in the ledger is the identity mismatch until another
+  copy is found.
+
 ## Publisher and venue
 
 `publisher`: OpenAlex `primary_location.source.host_organization_name`, else the lineage of the DOI's location, else the

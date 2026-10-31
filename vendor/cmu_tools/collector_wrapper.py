@@ -111,6 +111,7 @@ def get(self, url, limit=500 * 1024 * 1024):
         raise ValueError(CHALLENGE_FINAL)
     if 'html' in (ctype or '').lower() and b'<' not in data[:512] and data.lstrip()[:1] == b'<':
         data = data.lstrip()  # www.osti.gov pages open with > 512 bytes of whitespace: the collector's HTML test reads the first 512
+    _TIER.final = final  # the URL the file came from (the identity rule's arXiv check)
     return data, final, ctype
 
 
@@ -248,16 +249,82 @@ class Links(c.base.HTMLParser):
 _check_identity, _process_work = c.base.check_identity, c.process_work
 
 
+# Download-time identity rule (local edit 2026-10-31, owner): a file whose catalog title the collector's own check did
+# not find (identity 'provider_link_only_review_pending') goes through the automatic rule of
+# fulltext-push/identity_rule.py, the module identity_review.py uses for the copies already in the catalogs:
+#   pass       counted, with the rule's identity tag (auto_title_author_page1 / auto_arxiv_id_doi_mapping)
+#   fail       never counted: the attempt fails as 'identity unconfirmed: <reason>' (access review: identity_mismatch),
+#              the work stays queued for its other candidates, and the file leaves objects/ for
+#              quarantine/identity-rejected/ (manifest.jsonl; the newest REJECT_KEEP files are kept, older ones pruned;
+#              a file another downloaded work also uses stays where it is)
+#   undecided  (no text layer, or neither a first author nor a DOI known) keeps the pending state, as before
+# A PDF reached through the new landing-page tiers is never kept without evidence (undecided is rejected there too).
+CODE_ROOT = Path(__file__).resolve().parents[2]
+if str(CODE_ROOT / 'fulltext-push') not in sys.path:
+    sys.path.append(str(CODE_ROOT / 'fulltext-push'))
+import identity_rule as IR  # noqa: E402
+REJECT_KEEP = 500
+_REJECT_LOCK = __import__('threading').Lock()
+
+
+def _s2_cache():
+    try:
+        import s2_key_lookup as s2k
+        return s2k.CACHE
+    except Exception:
+        return None
+
+
+def _reject(row, path, ev, why):
+    import os
+    store = Path(path).parents[1]
+    rel = str(Path(path).relative_to(store))
+    qdir = store / 'quarantine' / 'identity-rejected'
+    with _REJECT_LOCK:
+        shared = False
+        try:
+            db = sqlite3.connect(f'file:{store / "catalog.sqlite"}?mode=ro', uri=True, timeout=60)
+            shared = bool(db.execute("SELECT 1 FROM works WHERE file_path=? AND status IN ('downloaded','fulltext_xml') AND id<>? LIMIT 1",
+                                     (rel, row['id'])).fetchone())
+            db.close()
+        except sqlite3.Error:
+            shared = True  # unsure: leave the file where it is
+        moved = None
+        if not shared and Path(path).exists():
+            moved = str(Path('quarantine') / 'identity-rejected' / Path(path).name)
+            qdir.mkdir(parents=True, exist_ok=True)
+            os.rename(path, store / moved)
+        qdir.mkdir(parents=True, exist_ok=True)
+        with open(qdir / 'manifest.jsonl', 'a') as m:
+            m.write(json.dumps(dict(at=datetime.now(timezone.utc).isoformat(), work_id=row['id'], title=row.get('title'), doi=row.get('doi'),
+                                    object=rel, kept_as=moved, shared_file=shared, why=why, evidence=ev,
+                                    final_url=getattr(_TIER, 'final', None))) + '\n')
+        files = sorted((f for f in qdir.iterdir() if f.suffix == '.pdf'), key=lambda f: f.stat().st_mtime)
+        for f in files[:max(0, len(files) - REJECT_KEEP)]:
+            f.unlink()  # a rejected file is not a paper; the manifest keeps its record
+
+
 def check_identity(row, path):
     loose, _TIER.loose = getattr(_TIER, 'loose', False), False
     identity = _check_identity(row, path)
-    if loose and identity == 'provider_link_only_review_pending':
-        raise ValueError('Landing-page PDF link: the catalog title is not in the file (identity unconfirmed)')
+    if identity != IR.PENDING:
+        return identity
+    store = Path(path).parents[1]
+    first = IR.first_author(CODE_ROOT, store.name, row['id'], row.get('title'), row.get('doi'), catalog=store / 'catalog.sqlite')
+    mapped = IR.mapped_arxiv(row.get('doi'), _s2_cache(), CODE_ROOT / 'fulltext-push' / 'raw' / 'ledger_openalex.jsonl')
+    verdict, ev = IR.judge(IR.page_text(path, 1, 1), row.get('title'), first, row.get('doi'), getattr(_TIER, 'final', None), mapped)
+    if verdict in IR.TAGS:
+        return IR.TAGS[verdict]
+    if verdict == 'fail' or loose:
+        why = ('landing-page PDF link; ' if loose else '') + (IR.reason(ev) if verdict == 'fail' else ev.get('why', 'undecided'))
+        _reject(row, path, ev, why)
+        raise ValueError('identity unconfirmed: ' + why)
     return identity
 
 
 def process_work(work, client, out):
     _TIER.loose = False
+    _TIER.final = None
     return _process_work(work, client, out)
 
 
