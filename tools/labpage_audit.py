@@ -1139,6 +1139,18 @@ def paren_years(desc):
     return [None, ys[0]] if re.search(r'ph\.?\s?d|degree|graduat|class|m\.?s\.?|b\.?s|postdoc|alum|until|left', m.group(1), re.I) else [ys[0], ys[0]]
 
 
+CURRENT_HEAD = re.compile(r'\b(current|present)\b', re.I)
+CURRENT_ENTRY = re.compile(r'\b(current(ly)?\s+(a\s+)?(ph\.?\s?d|student|postdoc|member|graduate)|\d(st|nd|rd|th)[- ]year|candidate|'
+                           r'is a (ph\.?\s?d|graduate|doctoral|master|post-?doc)|expected\s+(?:graduation\s+)?(?:19|20)\d\d|'
+                           r'class of 20(?:2[6-9]|3\d))', re.I)
+
+
+def current_marker(x):
+    """An explicit current marker in the entry's own text or its own section heading (not a parent heading)."""
+    own_head = (x.get('head') or '').split(' > ')[-1]
+    return bool(CURRENT_HEAD.search(own_head) or CURRENT_ENTRY.search((x.get('desc') or '')[:160]))
+
+
 def pm_candidates(kit, school, pi, plan, held):
     """Every name autom.extract proposes from a lab plan's pages (lpauto.rows_for's sources), with the disposition
     rows_for gives it (None: kept as an evidence row). plan keys: see lpauto.py."""
@@ -1258,23 +1270,21 @@ def pm_candidates(kit, school, pi, plan, held):
         if auto_plan and start and start >= 2010 and ys and ys[0] and ys[0] < start and fn not in keep:
             x['why'], x['detail'] = 'at_previous_school', f"began {ys[0]}, before the PI's arrival ({start})"
             continue
-        current_ = re.search(r'\b(current|present|now)\b', x.get('head') or '', re.I) or \
-            re.search(r'\b(\d(st|nd|rd|th)[- ]year|candidate|is a (ph\.?\s?d|graduate|doctoral))', x.get('desc') or '', re.I)
-        if plan.get('prior_reviewed') and not ys and not current_ and fn not in keep:
+        if plan.get('prior_reviewed') and not ys and not current_marker(x) and fn not in keep:
             x['why'], x['detail'] = 'undated_cannot_place', 'undated, not marked current, and not kept by the school\'s own reviewed pass'
             continue
-        cap_y = int(re.search(r'/web/(\d{4})', x.get('capture_url') or '/web/2026').group(1))
         destination = re.match(r'^\W{0,3}[-–—]\s*\S', x.get('desc') or '') or \
             re.search(r'\b(now|currently) (at|a|an|with)\b|→|->|\bposition:|\bcurrent(ly)?:|\bnext:', (x.get('desc') or '')[:100], re.I)
-        # on a 2025-26 page, not with a later job, AND the entry itself reads as a current member (its own role words:
-        # 'PhD student', 'doctoral student', 'Graduate Student', 'Postdoctoral ...'): a bare name in an undated list of an
-        # older lab is not current (Princeton round 3: Mulvey's all-era 'M.S.E. & M.F. Students', Cohen's 'Graduate Students')
-        listed_now = cap_y >= 2025 and not destination and not x['alumni'] and x.get('role_basis') == 'entry'
-        if auto_plan and (start is None or start < 2014) and not ys and fn not in keep and not listed_now and not \
-                re.search(r'\b(current|present|now)\b', x.get('head') or '', re.I) and not \
-                re.search(r'\b(\d(st|nd|rd|th)[- ]year|candidate|is a (ph\.?\s?d|graduate|doctoral))', x.get('desc') or '', re.I):
-            x['why'], x['detail'] = 'undated_cannot_place', (f"an undated entry of a lab older than the window (PI from {start or 'before 2016'}), "
-                                                             "not marked current" + ('; it names a later position' if destination else ''))
+        # labs older than the window (coordinator, 2026-10-31): an undated name is an addition only with an explicit current
+        # marker in its own entry or its own section heading - 'current', 'Nth-year', 'candidate', an expected graduation year
+        # (a stated year makes the entry dated). The old path for names on a 2025-26 page without a later job is gone: it
+        # caused membership errors at Berkeley, CMU and Princeton. strict_removed marks the names that path used to admit.
+        if auto_plan and (start is None or start < 2014) and not ys and fn not in keep and not current_marker(x):
+            cap_y = int(re.search(r'/web/(\d{4})', x.get('capture_url') or '/web/2026').group(1))
+            x['why'], x['detail'] = 'undated_cannot_place', (f"an undated entry of a lab older than the window (PI from {start or 'before 2016'}) "
+                                                             "without a current marker in its entry or section heading"
+                                                             + ('; it names a later position' if destination else ''))
+            x['strict_removed'] = bool(cap_y >= 2025 and not destination and not x['alumni'])
             continue
         if start and start >= WINDOW[0] and last == start and fn not in keep:  # R-PAP-13's transition year, for people
             x['why'], x['detail'] = 'at_previous_school', f"dated only to the PI's arrival year ({start}): cannot place at this school"
@@ -1356,7 +1366,8 @@ def audit_students(kit, ctx, p, lab, plan, auto_plan=False):
     for c in cands:
         rows.append(dict(name=c['name'], role=c['role'], years=c['years'], quote=c['quote'], url=c['url'], capture_url=c.get('capture_url'),
                          sha256=c['sha256'], kept=False, alumni=c['alumni'], why=c['why'], head=c.get('head'), desc=c.get('desc'),
-                         is_cap=c['is_cap'], detail=c.get('detail'), role_basis=c.get('role_basis'), years_basis=c.get('years_basis')))
+                         is_cap=c['is_cap'], detail=c.get('detail'), role_basis=c.get('role_basis'), years_basis=c.get('years_basis'),
+                         strict_removed=c.get('strict_removed')))
     drops = {(x.get('pi'), x.get('student')) for x in corrections(school) if x.get('action') == 'drop'}
     matched_build = set()
     for g in group_people(names, rows):
@@ -1393,6 +1404,8 @@ def audit_students(kit, ctx, p, lab, plan, auto_plan=False):
         det = next((r.get('detail') for r in g if r.get('detail')), None)
         if det:
             miss['detail'] = det
+        if rc == 'undated_cannot_place' and any(r.get('strict_removed') for r in g):
+            miss['strict_current_rule'] = True  # admitted before the 2026-10-31 stricter rule
         sec['missing_from_build'].append(miss)
         if rc == 'genuinely_missing':
             years, ybasis = best.get('years'), best.get('years_basis') or 'none'
@@ -1996,6 +2009,7 @@ def school_summary(recs, stu_adds, pap_adds):
                       listed_alumni=sum(len(r['students']['listed_alumni']) for r in recs),
                       matched_in_build=sum(r['students']['matched_in_build'] for r in recs),
                       missing_by_reason=dict(s_miss), genuinely_missing=s_miss.get('genuinely_missing', 0),
+                      removed_by_strict_current_rule=sum(1 for r in recs for m in r['students']['missing_from_build'] if m.get('strict_current_rule')),
                       proposed_additions=len(stu_adds),
                       extra_in_build_not_on_page=sum(r['students']['extra_in_build_not_on_page'] for r in recs
                                                      if r['students']['page_status'] == 'audited')),

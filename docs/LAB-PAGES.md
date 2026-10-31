@@ -185,7 +185,19 @@ list), `no_lab_page`, `page_not_captured`, `page_unparseable`.
    sample sizes, errors by type, the items, the result) and in the hand-check table of `hierarchy/LABPAGE-AUDIT.md`. The
    accepted round is written to `hierarchy/<school>/labpage-acceptance.json` (the round, the additions file's
    `generated_at` and sha256, the counts), which is checked before wiring.
-5. After 3 failed rounds at a school the work stops and the error patterns are reported, rather than patched further.
+5. After 3 failed rounds at a school the work stops and the error patterns are reported, rather than patched further
+   (Princeton was given a fourth and last round under the stricter undated-name rule; if it fails, its students are not wired).
+
+**Undated names in labs older than the window** (no arrival year in 2016-2026, or an arrival before 2014; coordinator,
+2026-10-31): an addition only with an explicit current marker in its own entry or its own section heading ('current',
+'present', 'Nth-year', 'candidate', 'is a PhD student', an expected graduation year; a stated start year in the window makes
+the entry dated). Everything else is `undated_cannot_place`; the earlier path for names on a 2025-26 page without a later
+job is removed (it caused membership errors at Berkeley, CMU and Princeton). `removed_by_strict_current_rule` in the summary
+counts the names that path used to admit.
+
+**Students and papers are accepted separately**: a school whose students fail may still have its papers wired, and the
+other way round; `labpage-acceptance.json` records `students` and `papers` each with its round and result. A school gets at
+most four rounds per kind; when the last fails, that kind is not wired and the reason is recorded.
 
 Roles and years in additions are only what the entry states: `role` / `years` are null with `role_basis` / `years_basis`
 `none` when the entry does not state them (`entry_role`, `entry_years`); the build keeps undated students.

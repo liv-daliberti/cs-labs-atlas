@@ -314,3 +314,15 @@ def test_recovered_rows_that_are_not_papers(row, want):
 def test_two_digit_range_ends():
     assert A.entry_years('(2017-18) — Assistant Professor, University of Illinois', None) == ([2017, 2018], 'stated_in_entry')
     assert A.entry_years('(2020-22) — Assistant Professor', None) == ([2020, 2022], 'stated_in_entry')
+
+
+@pytest.mark.parametrize('x,want', [
+    (dict(head='Graduate Students', desc='Shanka Subhra Mondal'), False),
+    (dict(head='Current Graduate Students', desc=''), True),
+    (dict(head='Current Members > PhD Students', desc=''), False),  # only the entry's own section heading counts
+    (dict(head='PhD Students', desc='is a 3rd-year PhD student'), True),
+    (dict(head='Students', desc='Ph.D. in ORFE, Princeton University, expected 2028'), True),
+    (dict(head='M.S.E. & M.F. Students', desc=', Benheim Center for Finance'), False),
+])
+def test_current_marker_is_the_entrys_own(x, want):
+    assert A.current_marker(x) == want
