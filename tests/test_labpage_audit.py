@@ -309,3 +309,8 @@ def test_season_ranges_and_institution_listings():
 ])
 def test_recovered_rows_that_are_not_papers(row, want):
     assert A.addition_not_a_paper(row) == want
+
+
+def test_two_digit_range_ends():
+    assert A.entry_years('(2017-18) — Assistant Professor, University of Illinois', None) == ([2017, 2018], 'stated_in_entry')
+    assert A.entry_years('(2020-22) — Assistant Professor', None) == ([2020, 2022], 'stated_in_entry')

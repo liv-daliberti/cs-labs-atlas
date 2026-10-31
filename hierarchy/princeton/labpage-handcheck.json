@@ -59,6 +59,34 @@
    "role_year_errors": 1,
    "paper_score": null,
    "result": "fail"
+  },
+  {
+   "round": 3,
+   "date": "2026-10-31",
+   "label": "after the role/year, other-institution, older-lab and not-paper rules",
+   "additions_generated_at": "2026-10-31T16:00:55+00:00",
+   "students": {
+    "sampled": 20,
+    "seed": 71,
+    "membership_errors": 3,
+    "doubtful_count": 0,
+    "role_or_year_errors": 1
+   },
+   "papers": null,
+   "items": {
+    "membership": [
+     "Michael Beck and Ahmet Gurer (Mulvey): an undated all-era 'M.S.E. & M.F. Students' list on a 2025 capture",
+     "Mark Gilzenrat (Cohen): an undated name in Cohen's all-era 'Graduate Students' list"
+    ],
+    "role_or_year": [
+     "Andres Goza (Rowley): '(2017-18)' read as [2017, None]"
+    ]
+   },
+   "membership_score": 3,
+   "role_year_errors": 1,
+   "paper_score": null,
+   "result": "fail",
+   "note": "third failed round: Princeton stopped and reported (acceptance bar rule 5). Cause: the 2025-26-page exception for undated names of older labs admitted bare names; now it needs the entry's own role words. Not re-sampled until the coordinator says so."
   }
  ]
 }

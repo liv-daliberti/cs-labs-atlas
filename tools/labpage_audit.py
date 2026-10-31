@@ -1084,11 +1084,14 @@ def entry_years(desc, head):
     d = (desc or '')[:90]
     m = re.match(r'^\W{0,3}\(([^()]{0,80})\)', d)
     seg = m.group(1) if m else re.split(r'(?<=[a-z0-9)])\.\s|\s(?:received|graduated from|is|was|joined|works?)\s', d, maxsplit=1)[0][:70]
-    r = re.search(r'(%s)\s*(?:-|–|—|to|until)\s*(?:(?:spring|summer|fall|autumn|winter|[A-Z][a-z]{2,8}\.?)\s+)?(%s|present|now|current|today)?'
+    r = re.search(r'(%s)\s*(?:-|–|—|to|until)\s*(?:(?:spring|summer|fall|autumn|winter|[A-Z][a-z]{2,8}\.?)\s+)?(%s|\d\d(?!\d)|present|now|current|today)?'
                   % (YEAR_, YEAR_), seg, re.I)
     if r:
-        b = r.group(2)
-        return [int(r.group(1)), int(b) if b and b[:2] in ('19', '20') else None], 'stated_in_entry'
+        a, b = int(r.group(1)), r.group(2)
+        if b and re.fullmatch(r'\d\d', b):  # '(2017-18)', '(2020-22)'
+            e_ = a // 100 * 100 + int(b)
+            return [a, e_ if e_ >= a else e_ + 100], 'stated_in_entry'
+        return [a, int(b) if b and b[:2] in ('19', '20') else None], 'stated_in_entry'
     ys = [int(y) for y in re.findall(r'(?<!\d)(%s)(?!\d)' % YEAR_, seg)]
     if len(ys) == 1:
         if re.search(r"\bph\.?\s?d|\bdegree|\bgraduated|\bclass of|\bm\.?s\.?\b|\bb\.?s\.?\b|\bm\.?eng|\bthesis|\balum|\buntil|\bleft|'\d\d", seg, re.I):
@@ -1263,7 +1266,10 @@ def pm_candidates(kit, school, pi, plan, held):
         cap_y = int(re.search(r'/web/(\d{4})', x.get('capture_url') or '/web/2026').group(1))
         destination = re.match(r'^\W{0,3}[-–—]\s*\S', x.get('desc') or '') or \
             re.search(r'\b(now|currently) (at|a|an|with)\b|→|->|\bposition:|\bcurrent(ly)?:|\bnext:', (x.get('desc') or '')[:100], re.I)
-        listed_now = cap_y >= 2025 and not destination and not x['alumni']  # on a 2025-26 page, not with a later job
+        # on a 2025-26 page, not with a later job, AND the entry itself reads as a current member (its own role words:
+        # 'PhD student', 'doctoral student', 'Graduate Student', 'Postdoctoral ...'): a bare name in an undated list of an
+        # older lab is not current (Princeton round 3: Mulvey's all-era 'M.S.E. & M.F. Students', Cohen's 'Graduate Students')
+        listed_now = cap_y >= 2025 and not destination and not x['alumni'] and x.get('role_basis') == 'entry'
         if auto_plan and (start is None or start < 2014) and not ys and fn not in keep and not listed_now and not \
                 re.search(r'\b(current|present|now)\b', x.get('head') or '', re.I) and not \
                 re.search(r'\b(\d(st|nd|rd|th)[- ]year|candidate|is a (ph\.?\s?d|graduate|doctoral))', x.get('desc') or '', re.I):
