@@ -3,6 +3,7 @@ R-AUD-09) and reviewed move periods (R-PAP-03). Real cases from the link-gap sam
 import json
 
 import pi_hierarchy as h
+import pihier.names  # noqa: F401  (pihier.names.NICK_MAP)
 import evidence_check as ec
 
 SE_PHD = ('Cheng Moreno Advisor: David Garlan Publications ... Waqar Ahmad Advisor: Jonathan Aldrich and Christian Kästner '
@@ -51,7 +52,7 @@ def test_basis_record_advisor_field():
 
 
 def test_nickname_additions():
-    h.NICK_MAP = None
+    pihier.names.NICK_MAP = None  # the read-once cache lives in the names stage
     assert h.nick_ok('manolis', 'emmanouil') and h.nick_ok('robbie', 'robert') and h.nick_ok('dima', 'dmitry')
     assert h.nick_ok('agi', 'agnes') and h.nick_ok('lily', 'lillian')
 
