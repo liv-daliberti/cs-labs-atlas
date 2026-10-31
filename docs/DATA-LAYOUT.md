@@ -103,6 +103,7 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `thesis-evidence.json` | reviewed | `hierarchy/{school}/thesis-evidence.json` | `hierarchy/{school}/reviewed/thesis-evidence.json` | 0/6 | <100MB |
 | `thesis-held-years-evidence.json` | reviewed | `hierarchy/{school}/thesis-held-years-evidence.json` | `hierarchy/{school}/reviewed/thesis-held-years-evidence.json` | 0/1 | <100MB |
 | `labpage-evidence.json` | reviewed | `hierarchy/{school}/labpage-evidence.json` | `hierarchy/{school}/reviewed/labpage-evidence.json` | 0/6 | <100MB |
+| `labpage-acceptance.json` | reviewed | `hierarchy/{school}/labpage-acceptance.json` | `hierarchy/{school}/reviewed/labpage-acceptance.json` | 1/1 | <10KB |
 | `labpage-additions.json` | reviewed | `hierarchy/{school}/labpage-additions.json` | `hierarchy/{school}/reviewed/labpage-additions.json` | 2/4 | <100MB |
 | `relation-evidence.json` | reviewed | `hierarchy/{school}/relation-evidence.json` | `hierarchy/{school}/reviewed/relation-evidence.json` | 3/3 | <100MB |
 | `pi-publication-lists.json` | reviewed | `hierarchy/{school}/pi-publication-lists.json` | `hierarchy/{school}/reviewed/pi-publication-lists.json` | 0/2 | <100MB |

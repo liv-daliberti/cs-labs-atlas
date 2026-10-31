@@ -448,3 +448,43 @@ def test_R_PAP_01_recovered_rows_stay_in_the_window(tmp_path):
     titles = set(rows_of(ctx, 'Ada Lovelace'))
     assert 'A Recovered Paper Inside' in titles and 'An Old Paper From Before' not in titles
     assert ctx.n['dblp_recovered_outside_window'] == 1
+
+
+# ---- lab-page additions (2026-10-31): wired only when accepted --------------------------------------------------------
+
+def write_additions(root, accept_papers=True, accept_students=False, stale=False):
+    import hashlib
+    add = dict(school=SCHOOL, generated_at='2026-10-31T00:00:00+00:00', tool='tools/labpage_audit.py', status='proposed',
+               students=[dict(name='Nora Newcomer', role='phd', years=[2021], url='https://lovelace.example.edu/people', sha256=SHA,
+                              quote='PhD students Nora Newcomer', pi='Ada Lovelace', rule='LP-STU-01', auto=True)],
+               papers=[dict(pi='Ada Lovelace', key='labpage:' + 'f' * 40, title='A Paper Only The Lab Page Lists', year=2021,
+                            doi='10.9/lp', venue='arXiv', byline=[], rule='LP-PAP-01',
+                            evidence=dict(basis='page1_arxiv', how='footnote', quotes=['Ada Lovelace', 'Princeton University'],
+                                          url='https://arxiv.example/x.pdf', pdf_sha256=SHA))])
+    f = root / 'hierarchy' / SCHOOL / 'labpage-additions.json'
+    f.write_text(json.dumps(add))
+    sha = hashlib.sha256(f.read_bytes()).hexdigest()
+    (root / 'hierarchy' / SCHOOL / 'labpage-acceptance.json').write_text(json.dumps(dict(
+        school=SCHOOL, additions_sha256=('0' * 64 if stale else sha), students=dict(accepted=accept_students), papers=dict(accepted=accept_papers))))
+
+
+def test_labpage_additions_wired_only_when_accepted(tmp_path):
+    write_school(tmp_path)
+    write_additions(tmp_path, accept_papers=True, accept_students=False)
+    ctx = run_stages(tmp_path)
+    row = rows_of(ctx, 'Ada Lovelace').get('A Paper Only The Lab Page Lists')
+    assert row and row['identity'] == 'labpage_listing' and row['source'] == 'labpage_addition:LP-PAP-01:page1_arxiv'
+    assert not any(r['name'] == 'Nora Newcomer' for r in ctx.stu['Ada Lovelace'].values())        # students not accepted
+    assert ctx.n['labpage_additions_papers_wired'] == 1 and ctx.n['labpage_additions_students_not_wired:not_accepted'] == 1
+
+
+def test_labpage_additions_students_when_accepted_and_nothing_when_stale(tmp_path):
+    write_school(tmp_path)
+    write_additions(tmp_path, accept_papers=False, accept_students=True)
+    ctx = run_stages(tmp_path)
+    assert any(r['name'] == 'Nora Newcomer' for r in ctx.stu['Ada Lovelace'].values())
+    assert 'A Paper Only The Lab Page Lists' not in rows_of(ctx, 'Ada Lovelace')
+    write_additions(tmp_path, accept_papers=True, accept_students=True, stale=True)               # changed after the hand check
+    ctx = run_stages(tmp_path)
+    assert 'A Paper Only The Lab Page Lists' not in rows_of(ctx, 'Ada Lovelace')
+    assert ctx.n['labpage_additions_papers_not_wired:additions_changed_since_acceptance'] == 1

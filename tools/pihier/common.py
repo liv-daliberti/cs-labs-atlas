@@ -1,5 +1,5 @@
 """What every stage of the build shares: the charter tables, the date, the readers, the work keys and the evidence order."""
-import collections, datetime, gzip, json, re, sqlite3, unicodedata, zlib
+import collections, datetime, gzip, hashlib, json, re, sqlite3, unicodedata, zlib
 from pathlib import Path
 
 import atlas_paths as P  # every path in one place
@@ -88,6 +88,33 @@ def iso_date(v):
     """A date written as a Wayback timestamp or digits (20260128, 2026012820, 20260128203237) as ISO (2026-01-28);
     anything else unchanged (2026-10-31: a reviewed period's asof '2026012820' read as unresolved)."""
     return f'{v[:4]}-{v[4:6]}-{v[6:8]}' if isinstance(v, str) and re.fullmatch(r'\d{8}(?:\d{2}){0,3}', v) else v
+
+
+def accepted_additions(school, kind, here=None, n=None):
+    """The lab-page additions of one kind ('students' | 'papers') the build reads (docs/LAB-PAGES.md, acceptance bar;
+    2026-10-31): only when hierarchy/<school>/labpage-acceptance.json accepts that kind and names the additions file the
+    build sees by its sha256 (additions regenerated after the hand check are not wired until accepted again). Written by
+    the lab-page agent's tools; read only here. A school with additions but no accepted kind counts the reason in n."""
+    acc_f, add_f = P.data('labpage-acceptance.json', school, root=here), P.data('labpage-additions.json', school, root=here)
+    why = None
+    if not acc_f.exists():
+        why = 'no_acceptance'
+    else:
+        acc = read(acc_f)
+        if not (acc.get(kind) or {}).get('accepted'):
+            why = 'not_accepted'
+        elif not add_f.exists():
+            why = 'no_additions_file'
+        elif hashlib.sha256(add_f.read_bytes()).hexdigest() != acc.get('additions_sha256'):
+            why = 'additions_changed_since_acceptance'
+    if why:
+        if n is not None and add_f.exists():
+            n[f'labpage_additions_{kind}_not_wired:{why}'] += 1
+        return []
+    rows = list(read(add_f).get(kind) or [])
+    if n is not None:
+        n[f'labpage_additions_{kind}_wired'] += len(rows)
+    return rows
 
 
 def collection_work_matcher(works):

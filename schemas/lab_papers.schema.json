@@ -436,12 +436,13 @@
    ]
   },
   "source": {
-   "description": "Recovered rows: <kind>_recover:<basis> (tools/dblp_recover.py, tools/labpage_recover.py).",
+   "description": "Recovered rows: <kind>_recover:<basis> (tools/dblp_recover.py, tools/labpage_recover.py); accepted lab-page additions: labpage_addition:<rule>:<basis> (labpage-additions.json, gated by labpage-acceptance.json).",
    "type": "string",
-   "pattern": "^(dblp|labpage)_recover:[a-z0-9_]+$",
+   "pattern": "^((dblp|labpage)_recover:[a-z0-9_]+|labpage_addition:LP-PAP-\\d+:[a-z0-9_]+)$",
    "examples": [
     "dblp_recover:openalex_authorship",
-    "labpage_recover:page1_arxiv"
+    "labpage_recover:page1_arxiv",
+    "labpage_addition:LP-PAP-01:page1_arxiv"
    ],
    "x-rules": [
     "R-PAP-24"

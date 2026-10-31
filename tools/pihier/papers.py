@@ -6,15 +6,24 @@ import collections, gzip, html, json, re, unicodedata, zlib
 
 import atlas_paths as P  # data paths (DATA_FILES)
 import school_config as _S  # the school charters (R-PAP-15's foreign-title exception)
-from .common import OWN_UNITS, SCHOOL_LOOSE, TODAY, WINDOW_START, ndoi, norm_title
+from .common import OWN_UNITS, SCHOOL_LOOSE, TODAY, WINDOW_START, accepted_additions, ndoi, norm_title
 from .names import NICK, _nick_pairs, byline_name, full_pair, toks
 from .periods import contains, same_year, transition_side
 from . import identity
 
-# Recovered lab-paper rows, hierarchy/<school>/<kind>-recovered.jsonl.gz, as (kind, identity label): tools/dblp_recover.py
-# and tools/labpage_recover.py. EXTENSION POINT: a new reviewed paper source (hierarchy/<school>/labpage-additions.json,
-# docs/LAB-PAGES.md) is added here, by the coordinator.
-RECOVERED_KINDS = [('dblp', 'dblp_person_page'), ('labpage', 'labpage_listing')]
+# Recovered lab-paper rows as (kind, identity label): hierarchy/<school>/<kind>-recovered.jsonl.gz (tools/dblp_recover.py,
+# tools/labpage_recover.py), and the accepted lab-page additions (labpage-additions.json `papers`, LP-PAP-01, gated by
+# labpage-acceptance.json; 2026-10-31). EXTENSION POINT: a new reviewed paper source is one more entry here and in
+# recovered_source.
+RECOVERED_KINDS = [('dblp', 'dblp_person_page'), ('labpage', 'labpage_listing'), ('labpage_addition', 'labpage_listing')]
+
+
+def recovered_source(ctx, kind):
+    """The rows of one RECOVERED_KINDS kind, in the recovered-row format {pi, key, title, year, doi, venue, byline, evidence}."""
+    if kind == 'labpage_addition':
+        return accepted_additions(ctx.school, 'papers', ctx.here, ctx.n)
+    rf = P.data(f'{kind}-recovered.jsonl.gz', ctx.school, root=ctx.here)
+    return (json.loads(l) for l in gzip.open(rf, 'rt')) if rf.exists() else []
 
 EN_WORDS = set('the of and for in a an to with on from by at as is are its into via toward towards using'.split())
 FOREIGN_WORDS = set('''der die das und eine einer einen ein einführung mit für von zur zum im über des den dem
@@ -514,8 +523,7 @@ def recovered_rows(ctx, rows, seen):
     # (tools/dblp_recover.py -> hierarchy/<school>/dblp-recovered.jsonl.gz), and likewise papers the PI's own lab
     # publications page lists (tools/labpage_recover.py -> hierarchy/<school>/labpage-recovered.jsonl.gz, key 'labpage:<sha1>')
     for kind, label in RECOVERED_KINDS:
-        rf = P.data(f'{kind}-recovered.jsonl.gz', school, root=HERE)
-        for x in (json.loads(l) for l in gzip.open(rf, 'rt')) if rf.exists() else []:
+        for x in recovered_source(ctx, kind):
             p = pid0.get(x['pi'])
             if not p:
                 continue
@@ -536,7 +544,8 @@ def recovered_rows(ctx, rows, seen):
                              venue=x.get('venue'), landing=ev.get('url'), byline=x.get('byline') or [], byline_school=[],
                              authorship=dict(position=None, raw_name=None, author_id=None, institutions=[], raw_affiliations=[], school_via=via[:3],
                                              page1=dict(url=ev.get('url'), pdf_sha256=ev.get('pdf_sha256'), how=ev.get('how'), quotes=ev.get('quotes')) if ev.get('how') else None),
-                             identity=label, appointment=dict(periodId=per['id']) if per else dict(listing=lst), source=f'{kind}_recover:' + ev['basis']))
+                             identity=label, appointment=dict(periodId=per['id']) if per else dict(listing=lst),
+                             source=(f'{kind}_recover:' if kind != 'labpage_addition' else f"labpage_addition:{x.get('rule')}:") + ev['basis']))
             n[f'{kind}_recovered_lab_papers'] += 1
 
 

@@ -8,12 +8,12 @@ from pathlib import Path
 
 import atlas_paths as P  # data paths (DATA_FILES)
 
-from .common import as_years, best_sources, read, source_year
+from .common import accepted_additions, as_years, best_sources, read, source_year
 from .names import Name, _fold, clean_person_name, dedupe_tokens, full_pair, names_full_form, nick_ok, same_student, toks
 
 # Researched student evidence files, hierarchy/<school>/<file>, each a list of {pi, students: [{name, quote, sha256, url,
-# ...}]}. EXTENSION POINT: a new reviewed student source (hierarchy/<school>/labpage-additions.json, docs/LAB-PAGES.md)
-# is added here, by the coordinator.
+# ...}]}. EXTENSION POINT for a new reviewed student source. The lab-page additions (labpage-additions.json `students`)
+# come in through common.accepted_additions, gated by labpage-acceptance.json (2026-10-31).
 RESEARCHED_FILES = ['few-students-evidence.json', 'thesis-evidence.json', 'labpage-evidence.json', 'thesis-held-years-evidence.json']
 
 ADV_RX = [re.compile(r'(?i:advis[eo]rs?)(?:\(s\))?(?!\s*\(AC\))\s*:?\s*([^;|]+?)(?=\s*(?:Degree:|Research Area|Readers?|Examiners?|;|\||$))'),
@@ -342,6 +342,8 @@ def researched(ctx, stu, by_name):
         if P.data(fn, school, root=HERE).exists():
             for r in read(P.data(fn, school, root=HERE)):
                 fe[r['pi']]['students'] = list(fe[r['pi']]['students']) + list(r.get('students') or [])
+    for s_ in accepted_additions(school, 'students', HERE, ctx.n):  # LP-STU-01, accepted (docs/LAB-PAGES.md): one row per student
+        fe[s_['pi']]['students'] = list(fe[s_['pi']]['students']) + [s_]
     for p in pis:  # researched students (gap-evidence.json, few-students-evidence.json): a stated advisee or lab member, with its quote
         for s_ in list((ge.get(p['pi']) or {}).get('students') or []) + list((fe.get(p['pi']) or {}).get('students') or []):
             if not (s_.get('name') and s_.get('quote') and s_.get('sha256')):
