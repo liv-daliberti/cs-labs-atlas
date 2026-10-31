@@ -212,12 +212,12 @@ def gaps(key, write=True):
         x = cen.get(name) or add.get(name) or {}
         srcs = sorted([s_ for s_ in x.get('sources') or [] if s_.get('quote')], key=lambda s_: s_.get('observed') or '')
         first, last = (srcs[0], srcs[-1]) if srcs else (None, None)
-        iso = lambda d: (f'{d[:4]}-{d[4:6]}-{d[6:8]}' if d and re.fullmatch(r'\d{8}', d) else d)  # contains() reads ISO dates only
+        iso = lambda d: (f'{d[:4]}-{d[4:6]}-{d[6:8]}' if d and re.fullmatch(r'\d{8}(?:\d{2}){0,3}', d) else d)  # contains() reads ISO dates only
         evs = ([dict(url=first['url'], sha256=first['sha256'], quote=first['quote'], observed=iso(first.get('observed')), kind='dept_listing')] if first else []) + \
               [dict(url=e['url'], sha256=e['sha256'], quote=e['quote'], observed=e['observed'], kind=e['kind']) for _, e in sorted(g['evidence'].items())] + \
               ([dict(url=last['url'], sha256=last['sha256'], quote=last['quote'], observed=iso(last.get('observed')), kind='dept_listing')] if last and last is not first else [])
         sec.setdefault(name, {})['periods'] = [dict(id=f"override_period_gaps_{key}_{re.sub(r'[^a-z0-9]+', '_', name.lower()).strip('_')}", start=str(g['listing_years'][0]),
-                                                    end=None, asof=(evs[-1].get('observed') or '')[:10] or None, datePrecision='year', evidence=evs,
+                                                    end=None, asof=iso(evs[-1].get('observed') or '')[:10] or None, datePrecision='year', evidence=evs,
                                                     note=f"Bridged from dated evidence for every year {g['listing_years'][0]}-{g['listing_years'][-1]}: listings, and for the gap years "
                                                          f"{g['gap_years']} dated Wayback captures naming the PI with a professor title (hierarchy/{key}/gap-year-evidence.json). "
                                                          "Start is a lower bound (the first listing in the window); no end is claimed.",
@@ -240,7 +240,7 @@ def extend(key, write=True):
     c = W.con(key); lo, hi = S.get(key).get('window') or [2016, 2026]
     pats = list(S.field(S.get(key), 'periods.profile_patterns') or [])
     add = json.loads((P.CENSUS / f'{key}-additions.json').read_text()) if (P.CENSUS / f'{key}-additions.json').exists() else []
-    iso = lambda d: (f'{d[:4]}-{d[4:6]}-{d[6:8]}' if d and re.fullmatch(r'\d{8}', d) else d)
+    iso = lambda d: (f'{d[:4]}-{d[4:6]}-{d[6:8]}' if d and re.fullmatch(r'\d{8}(?:\d{2}){0,3}', d) else d)
     out = {}
     for x in add:
         if not x.get('is_pi'):

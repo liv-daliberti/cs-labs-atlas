@@ -1218,7 +1218,7 @@ def extract(schools):
                             records.append(dict(url=u, person=t['person'], name=t['name'],
                                                 pi=t['pi'] if tag == 'pi' else None, capture_url=r2[0], sha256=r2[2],
                                                 quote=q, names_pi=tag == 'pi', observed=r2[6],
-                                                original_sha256=(osha[0] if len(osha) == 1 else (','.join(osha) or None)),
+                                                original_sha256=(osha[0] if len(osha) == 1 else (osha or None)),
                                                 matches_original=False if osha else None, method='oai'))
                             why['oai_adjacent_page_' + tag] += 1
                     found = {g[0]['person'] + '|' + g[0]['pi'] for g in got if g[2] != 'name_not_on_page'}
@@ -1234,7 +1234,7 @@ def extract(schools):
                 records.append(dict(url=u, person=t['person'], name=t['name'],
                                     pi=t['pi'] if tag == 'pi' else None, capture_url=cu, sha256=sha, quote=q,
                                     names_pi=tag == 'pi', observed=observed,
-                                    original_sha256=(osha[0] if len(osha) == 1 else (','.join(osha) or None)),
+                                    original_sha256=(osha[0] if len(osha) == 1 else (osha or None)),
                                     matches_original=None if not osha else bool(match), method=method))
         uniq = {}
         for r in records:
