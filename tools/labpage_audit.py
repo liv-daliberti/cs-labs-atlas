@@ -2151,6 +2151,9 @@ def main():
     ap.add_argument('--redo-unrecorded', action='store_true', help='discover again every lab the 2026-10-22 pass did not record')
     ap.add_argument('--title-credits', type=int, default=600)
     a = ap.parse_args()
+    if a.cmd in ('recover', 'recover-audit', 'all'):  # where a stalled run waits (2026-10-31: Princeton and MIT stalled twice)
+        import faulthandler
+        faulthandler.dump_traceback_later(900, repeat=True)
     if a.cmd in ('discover', 'all'):
         cmd_discover(a.school, a.pi, a.redo, a.redo_unrecorded)
     if a.cmd == 'recover':

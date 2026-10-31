@@ -505,7 +505,7 @@ def page1_tie(txt, names, aff, titles):
 
 def run(school, workers=6, title_credits=600, floor=4000, dry=False):
     t0 = time.time()
-    c = db(school); lock = threading.Lock()
+    c = db(school); lock = threading.RLock()  # re-entrant: a revocation records a try while the main loop holds the lock (2026-10-31 deadlock)
     inst = 'https://openalex.org/' + INST[school]; aff = re.compile(AFF[school], re.I)
     pis = read(HERE / 'hierarchy' / school / 'pis.json'); P = {p['pi']: p for p in pis}
     alias = {}
