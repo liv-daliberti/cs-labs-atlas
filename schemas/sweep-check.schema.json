@@ -1,0 +1,330 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "hierarchy/<school>/sweep-check.json",
+ "description": "Sanity check of the school's bulk pulls: the OpenAlex sweep and the PIs' DBLP records.",
+ "x-file": "hierarchy/<school>/sweep-check.json",
+ "x-kind": "derived",
+ "x-writer": "tools/sweep_check.py",
+ "x-readers": [
+  "tools/stage_gate.py",
+  "tools/sweep_school.py"
+ ],
+ "type": "object",
+ "properties": {
+  "school": {
+   "description": "School key.",
+   "type": "string",
+   "pattern": "^[a-z]+$"
+  },
+  "thresholds": {
+   "description": "Thresholds.",
+   "type": "object",
+   "properties": {
+    "ratio": {
+     "description": "Year outlier ratio.",
+     "type": "number"
+    },
+    "zmax": {
+     "description": "Robust z maximum.",
+     "type": "number"
+    },
+    "dup_id": {
+     "description": "Max duplicate id rate.",
+     "type": "number"
+    },
+    "dup_doi": {
+     "description": "Max duplicate DOI rate.",
+     "type": "number"
+    },
+    "inst_min": {
+     "description": "Min institution share.",
+     "type": "number"
+    }
+   },
+   "required": [
+    "ratio",
+    "zmax",
+    "dup_id",
+    "dup_doi",
+    "inst_min"
+   ],
+   "additionalProperties": false
+  },
+  "openalex": {
+   "description": "The sweep (or {missing, trips} without one).",
+   "type": "object",
+   "properties": {
+    "db": {
+     "description": "Sweep sqlite.",
+     "type": "string"
+    },
+    "missing": {
+     "description": "The absent sweep path.",
+     "type": "string"
+    },
+    "works": {
+     "description": "Stored works.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "distinct": {
+     "description": "Distinct ids.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "paged": {
+     "description": "A paged sweep (no single meta count).",
+     "type": "boolean"
+    },
+    "years": {
+     "description": "Per publication year.",
+     "type": "object",
+     "patternProperties": {
+      "^\\d{4}$": {
+       "description": "A year.",
+       "type": "object",
+       "properties": {
+        "stored": {
+         "description": "Stored works.",
+         "type": "integer",
+         "minimum": 0
+        },
+        "papers": {
+         "description": "Papers (types outside NOT_PAPERS).",
+         "type": "integer",
+         "minimum": 0
+        },
+        "meta_count": {
+         "description": "The API's meta count.",
+         "type": [
+          "integer",
+          "null"
+         ]
+        },
+        "complete": {
+         "description": "Every page stored (null when paged).",
+         "type": [
+          "boolean",
+          "null"
+         ]
+        }
+       },
+       "required": [
+        "stored",
+        "papers",
+        "meta_count",
+        "complete"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "additionalProperties": false
+    },
+    "dup_id_rate": {
+     "description": "Repeated id rate.",
+     "type": "number",
+     "minimum": 0
+    },
+    "dup_doi_rate": {
+     "description": "DOIs on 2+ works rate.",
+     "type": "number",
+     "minimum": 0
+    },
+    "inst_share": {
+     "description": "Share with a charter institution.",
+     "type": "number",
+     "minimum": 0,
+     "maximum": 1
+    },
+    "inst_seen": {
+     "description": "Charter institution ids seen.",
+     "type": "object",
+     "patternProperties": {
+      "^I\\d+$": {
+       "type": "integer",
+       "minimum": 0
+      }
+     },
+     "additionalProperties": false
+    },
+    "trips": {
+     "description": "Tests that tripped.",
+     "type": "array",
+     "items": {
+      "$ref": "#/$defs/trip"
+     }
+    }
+   },
+   "required": [
+    "trips"
+   ],
+   "additionalProperties": false
+  },
+  "dblp": {
+   "description": "The PIs' DBLP records.",
+   "type": "object",
+   "properties": {
+    "dump_expected": {
+     "description": "The dump atlas_paths names.",
+     "type": "string"
+    },
+    "dump": {
+     "description": "The dump of dblp-dump-persons.json.gz.",
+     "type": "string"
+    },
+    "pis_with_dblp": {
+     "description": "PIs with a DBLP pid.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "missing_in_dump": {
+     "description": "PI pids not in the extract.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "records": {
+     "description": "Records.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "years": {
+     "description": "Records by year.",
+     "type": "object",
+     "patternProperties": {
+      "^\\d{4}$": {
+       "type": "integer",
+       "minimum": 0
+      }
+     },
+     "additionalProperties": false
+    },
+    "dup_key_rate": {
+     "description": "Duplicate key rate.",
+     "type": "number"
+    },
+    "dup_doi_rate": {
+     "description": "Duplicate DOI rate.",
+     "type": "number"
+    },
+    "trips": {
+     "description": "Tests that tripped.",
+     "type": "array",
+     "items": {
+      "$ref": "#/$defs/trip"
+     }
+    },
+    "affiliated": {
+     "description": "dblp-affiliated.json check.",
+     "type": "object",
+     "properties": {
+      "dump": {
+       "description": "Dump.",
+       "type": "string"
+      },
+      "persons": {
+       "description": "Persons.",
+       "type": "integer"
+      },
+      "notes": {
+       "description": "Notes.",
+       "type": "integer"
+      },
+      "notes_not_matching_regex": {
+       "description": "Notes not matching the charter regex.",
+       "type": "integer"
+      }
+     },
+     "required": [
+      "dump",
+      "persons",
+      "notes",
+      "notes_not_matching_regex"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "required": [
+    "dump_expected",
+    "trips"
+   ],
+   "additionalProperties": false
+  },
+  "failed": {
+   "description": "Trips without a reviewed exception.",
+   "type": "array",
+   "items": {
+    "$ref": "#/$defs/trip"
+   }
+  },
+  "excused": {
+   "description": "Trips excused by the charter [sweep_check].exceptions.",
+   "type": "array",
+   "items": {
+    "$ref": "#/$defs/trip"
+   }
+  },
+  "status": {
+   "description": "pass when nothing failed.",
+   "type": "string",
+   "enum": [
+    "pass",
+    "fail"
+   ]
+  }
+ },
+ "required": [
+  "school",
+  "thresholds",
+  "openalex",
+  "dblp",
+  "failed",
+  "excused",
+  "status"
+ ],
+ "additionalProperties": false,
+ "$defs": {
+  "trip": {
+   "description": "A test that tripped.",
+   "type": "object",
+   "properties": {
+    "test": {
+     "description": "Test name.",
+     "type": "string",
+     "enum": [
+      "year_outlier",
+      "year_incomplete",
+      "duplicate_ids",
+      "duplicate_dois",
+      "institutions",
+      "no_sweep",
+      "dblp_dump",
+      "dblp_year_outlier",
+      "dblp_duplicate_keys",
+      "dblp_missing_persons"
+     ]
+    },
+    "year": {
+     "description": "Year concerned.",
+     "type": "integer"
+    },
+    "why": {
+     "description": "Measured value.",
+     "type": "string"
+    },
+    "papers_outlier": {
+     "description": "The paper-only count of that year is an outlier too.",
+     "type": "boolean"
+    },
+    "exception": {
+     "description": "The charter exception's reason (excused trips).",
+     "type": "string"
+    }
+   },
+   "required": [
+    "test",
+    "why"
+   ],
+   "additionalProperties": false
+  }
+ }
+}

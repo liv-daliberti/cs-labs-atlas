@@ -1,0 +1,168 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "hierarchy/chain-audit.json",
+ "description": "The owner's seven chain checks per school: each item passes, is explained, or is open.",
+ "x-file": "hierarchy/chain-audit.json",
+ "x-kind": "derived",
+ "x-writer": "tools/chain_audit.py",
+ "x-readers": [
+  "tools/link_diagnosis.py",
+  "tools/make_release.py"
+ ],
+ "x-rules": [
+  "R-AUD-01",
+  "R-AUD-02"
+ ],
+ "type": "object",
+ "properties": {
+  "at": {
+   "description": "When (UTC).",
+   "type": "string",
+   "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}"
+  },
+  "schools": {
+   "description": "One entry per released school.",
+   "type": "array",
+   "items": {
+    "description": "A school.",
+    "type": "object",
+    "properties": {
+     "school": {
+      "description": "School key.",
+      "type": "string",
+      "pattern": "^[a-z]+$"
+     },
+     "builtAt": {
+      "description": "The package's report builtAt.",
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "checks": {
+      "description": "The seven checks.",
+      "type": "object",
+      "properties": {
+       "coverage": {
+        "$ref": "#/$defs/check",
+        "description": "Check coverage."
+       },
+       "pi": {
+        "$ref": "#/$defs/check",
+        "description": "Check pi."
+       },
+       "students": {
+        "$ref": "#/$defs/check",
+        "description": "Check students."
+       },
+       "papers": {
+        "$ref": "#/$defs/check",
+        "description": "Check papers."
+       },
+       "links": {
+        "$ref": "#/$defs/check",
+        "description": "Check links."
+       },
+       "copies": {
+        "$ref": "#/$defs/check",
+        "description": "Check copies."
+       },
+       "one_person": {
+        "$ref": "#/$defs/check",
+        "description": "Check one_person."
+       }
+      },
+      "required": [
+       "coverage",
+       "pi",
+       "students",
+       "papers",
+       "links",
+       "copies",
+       "one_person"
+      ],
+      "additionalProperties": false
+     }
+    },
+    "required": [
+     "school",
+     "builtAt",
+     "checks"
+    ],
+    "additionalProperties": false
+   }
+  }
+ },
+ "required": [
+  "at",
+  "schools"
+ ],
+ "additionalProperties": false,
+ "$defs": {
+  "check": {
+   "description": "One chain check of one school.",
+   "type": "object",
+   "properties": {
+    "total": {
+     "description": "Items checked.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "pass": {
+     "description": "Items that pass.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "explained": {
+     "description": "Failing items with a reason, by reason text.",
+     "type": "object",
+     "additionalProperties": {
+      "type": "integer",
+      "minimum": 0
+     },
+     "x-rules": [
+      "R-AUD-01"
+     ]
+    },
+    "unexplained": {
+     "description": "Open items: key plus the check's detail (and fix, from a fix verdict).",
+     "type": "array",
+     "items": {
+      "description": "An open item.",
+      "type": "object",
+      "properties": {
+       "key": {
+        "description": "Item key (check-specific: listed:<name>, <pi> | <student> | <id>, a paper key, ...).",
+        "type": "string"
+       },
+       "why": {
+        "description": "Why it is open.",
+        "type": "string"
+       },
+       "fix": {
+        "description": "A chain-reasons 'fix' verdict's reason.",
+        "type": "string"
+       }
+      },
+      "required": [
+       "key"
+      ]
+     }
+    },
+    "n_unexplained": {
+     "description": "len(unexplained).",
+     "type": "integer",
+     "minimum": 0
+    }
+   },
+   "required": [
+    "total",
+    "pass",
+    "explained",
+    "unexplained",
+    "n_unexplained"
+   ],
+   "additionalProperties": false
+  }
+ }
+}

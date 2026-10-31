@@ -1,0 +1,185 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "hierarchy/student-corrections.json",
+ "description": "Reviewed corrections to single student records: drop, rename, or replace the evidence.",
+ "x-file": "hierarchy/student-corrections.json",
+ "x-kind": "reviewed",
+ "x-writer": "hand-reviewed",
+ "x-readers": [
+  "tools/pi_hierarchy.py (tools/pihier/students.py corrections)",
+  "tools/labpage_audit.py"
+ ],
+ "x-rules": [
+  "R-STU-04"
+ ],
+ "type": "array",
+ "items": {
+  "description": "One correction.",
+  "type": "object",
+  "required": [
+   "school",
+   "pi",
+   "student",
+   "action",
+   "reason"
+  ],
+  "properties": {
+   "school": {
+    "description": "School key.",
+    "type": "string",
+    "pattern": "^[a-z]+$"
+   },
+   "pi": {
+    "description": "The lab (PI name).",
+    "type": "string"
+   },
+   "student": {
+    "description": "The record id (or a merged id).",
+    "type": "string"
+   },
+   "action": {
+    "description": "What to do.",
+    "type": "string",
+    "enum": [
+     "drop",
+     "rename",
+     "replace_sources"
+    ],
+    "x-rules": [
+     "R-STU-04"
+    ]
+   },
+   "reason": {
+    "description": "Why.",
+    "type": "string",
+    "minLength": 1
+   },
+   "evidence": {
+    "description": "Evidence items.",
+    "type": "array",
+    "items": {
+     "$ref": "#/$defs/evidence"
+    }
+   },
+   "name": {
+    "description": "rename: the new name.",
+    "type": "string"
+   },
+   "person": {
+    "description": "rename: the new record id.",
+    "type": "string"
+   },
+   "type": {
+    "description": "replace_sources: the relation type (default researched_advising).",
+    "type": "string",
+    "pattern": "^(direct_lab_membership|researched_membership|[a-z_]*advis[a-z_]*)$"
+   },
+   "years": {
+    "description": "replace_sources: the years.",
+    "type": "array",
+    "items": {
+     "type": "integer"
+    }
+   },
+   "role": {
+    "description": "replace_sources: the role.",
+    "type": [
+     "string",
+     "null"
+    ]
+   },
+   "sources": {
+    "description": "replace_sources: the new sources.",
+    "type": "array",
+    "items": {
+     "$ref": "#/$defs/evidence"
+    }
+   }
+  },
+  "$comment": "rename needs name; replace_sources needs years and sources.",
+  "allOf": [
+   {
+    "anyOf": [
+     {
+      "properties": {
+       "action": {
+        "enum": [
+         "drop",
+         "replace_sources"
+        ]
+       }
+      }
+     },
+     {
+      "required": [
+       "name"
+      ]
+     }
+    ]
+   },
+   {
+    "anyOf": [
+     {
+      "properties": {
+       "action": {
+        "enum": [
+         "drop",
+         "rename"
+        ]
+       }
+      }
+     },
+     {
+      "required": [
+       "years",
+       "sources"
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "$defs": {
+  "evidence": {
+   "description": "An evidence item (url, sha256, verbatim quote; free-form extras).",
+   "type": "object",
+   "properties": {
+    "url": {
+     "description": "The page.",
+     "type": "string",
+     "minLength": 1
+    },
+    "sha256": {
+     "description": "sha256 of the captured bytes.",
+     "type": "string",
+     "pattern": "^[0-9a-f]{64}$"
+    },
+    "quote": {
+     "description": "Verbatim quote.",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "capture_url": {
+     "description": "The capture.",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "observed": {
+     "description": "When seen.",
+     "type": [
+      "string",
+      "null"
+     ]
+    }
+   },
+   "required": [
+    "url",
+    "sha256"
+   ]
+  }
+ }
+}

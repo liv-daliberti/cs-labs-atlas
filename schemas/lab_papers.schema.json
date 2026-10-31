@@ -1,0 +1,559 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "hierarchy/<school>/lab_papers.jsonl.gz",
+ "description": "One row per unique paper and lab (JSON lines, gzip): an OpenAlex work by the PI, at the school, inside the appointment.",
+ "x-file": "hierarchy/<school>/lab_papers.jsonl.gz",
+ "x-kind": "derived",
+ "x-writer": "tools/pi_hierarchy.py (tools/pihier/papers.py, build.py); atlasWorkId by tools/atlas_ids.py",
+ "x-readers": [
+  "tools/atlas_ids.py",
+  "tools/lab_paper_copies.py",
+  "tools/chain_audit.py",
+  "tools/evidence_check.py",
+  "tools/student_audit.py",
+  "tools/link_diagnosis.py",
+  "tools/build_regression.py",
+  "tools/export_release.py",
+  "tools/organize_tree.py",
+  "fulltext-push/unavailable_ledger.py"
+ ],
+ "x-format": "jsonl",
+ "x-rules": [
+  "R-PAP-01",
+  "R-PAP-04"
+ ],
+ "type": "object",
+ "properties": {
+  "pi": {
+   "description": "The PI (pis.json pi).",
+   "type": "string",
+   "minLength": 1
+  },
+  "work": {
+   "description": "The collection work id the OpenAlex work matched (DOI, else normalized title within one year); null for a new work.",
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "oa": {
+   "description": "The OpenAlex work; for recovered rows without one, https://dblp.org/rec/<key> (DBLP) or labpage:<sha1> (lab page).",
+   "type": "string",
+   "pattern": "^(https://openalex\\.org/W\\d+|https://dblp\\.org/rec/\\S+|labpage:[0-9a-f]{40})$",
+   "x-rules": [
+    "R-PAP-24"
+   ]
+  },
+  "doi": {
+   "description": "Normalized DOI (lowercase, no resolver prefix); '' or null without one.",
+   "type": [
+    "string",
+    "null"
+   ],
+   "pattern": "^(10\\.\\S+/\\S*)?$"
+  },
+  "title": {
+   "description": "Title.",
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "year": {
+   "description": "Publication year, or the DBLP venue year for a deposit dated by its venue version.",
+   "type": "integer",
+   "minimum": 2016,
+   "maximum": 2026,
+   "x-rules": [
+    "R-PAP-26"
+   ]
+  },
+  "date": {
+   "description": "Publication date YYYY-MM-DD, else YYYY (the venue year when dated_by).",
+   "type": "string",
+   "pattern": "^\\d{4}(-\\d{2}-\\d{2})?$",
+   "x-rules": [
+    "R-PAP-01",
+    "R-PAP-26"
+   ]
+  },
+  "type": {
+   "description": "OpenAlex work type; never a not-paper type (dataset, paratext, erratum, ...). Recovered rows are article.",
+   "type": "string",
+   "pattern": "^(?!(dataset|paratext|peer-review|erratum|supplementary-materials|other|grant|standard|retraction|reference-entry|libguides)$)[a-z-]+$",
+   "examples": [
+    "article",
+    "conference-paper",
+    "preprint",
+    "book-chapter"
+   ],
+   "x-rules": [
+    "R-PAP-17",
+    "R-PAP-18"
+   ]
+  },
+  "venue": {
+   "description": "Primary location source name.",
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "landing": {
+   "description": "Landing page url (recovered rows: the evidence page).",
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "byline": {
+   "description": "Every author name on the lead record (raw names).",
+   "type": "array",
+   "items": {
+    "type": "string"
+   }
+  },
+  "byline_school": {
+   "description": "The byline names whose authorship lists the school (institution lineage or raw affiliation).",
+   "type": "array",
+   "items": {
+    "type": "string"
+   }
+  },
+  "authorship": {
+   "description": "The PI's authorship on the work and why it counts as the school.",
+   "type": "object",
+   "properties": {
+    "position": {
+     "description": "Author position.",
+     "type": [
+      "string",
+      "null"
+     ],
+     "enum": [
+      "first",
+      "middle",
+      "last",
+      null
+     ]
+    },
+    "raw_name": {
+     "description": "Raw author name.",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "author_id": {
+     "description": "OpenAlex author id of the authorship.",
+     "type": [
+      "string",
+      "null"
+     ],
+     "pattern": "^https://openalex\\.org/A\\d+$"
+    },
+    "institutions": {
+     "description": "Institution display names of the authorship.",
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "raw_affiliations": {
+     "description": "Raw affiliation strings of the authorship.",
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "school_via": {
+     "description": "Why the authorship is at the school (up to three reasons: institution, raw-text match, page 1, advisee, bare unit, ...).",
+     "type": "array",
+     "items": {
+      "type": "string"
+     },
+     "minItems": 1,
+     "x-rules": [
+      "R-PAP-09",
+      "R-PAP-10",
+      "R-PAP-11",
+      "R-PAP-12",
+      "R-PAP-25",
+      "R-AUD-05"
+     ]
+    },
+    "page1": {
+     "description": "Page-1 evidence when the school basis is page 1.",
+     "type": [
+      "object",
+      "null"
+     ],
+     "properties": {
+      "url": {
+       "description": "The PDF read.",
+       "type": [
+        "string",
+        "null"
+       ]
+      },
+      "pdf_sha256": {
+       "description": "sha256 of the PDF.",
+       "type": [
+        "string",
+        "null"
+       ],
+       "pattern": "^[0-9a-f]{64}$"
+      },
+      "how": {
+       "description": "How page 1 ties the school to the PI.",
+       "type": "string",
+       "enum": [
+        "near",
+        "marker",
+        "single",
+        "footnote"
+       ]
+      },
+      "quotes": {
+       "description": "Verbatim page-1 text.",
+       "type": "array",
+       "items": {
+        "type": "string"
+       }
+      }
+     },
+     "required": [
+      "url",
+      "pdf_sha256",
+      "how",
+      "quotes"
+     ],
+     "additionalProperties": false,
+     "x-rules": [
+      "R-PAP-10",
+      "R-PAP-24"
+     ]
+    }
+   },
+   "required": [
+    "position",
+    "raw_name",
+    "author_id",
+    "institutions",
+    "raw_affiliations",
+    "school_via",
+    "page1"
+   ],
+   "additionalProperties": false
+  },
+  "identity": {
+   "description": "What makes the authorship the PI (first that applies).",
+   "type": "string",
+   "enum": [
+    "reviewed_openalex_author_id",
+    "pi_orcid",
+    "dblp_verified_collection_work",
+    "dblp_person_page_doi",
+    "dblp_person_page_title",
+    "pi_institutional_publication_list",
+    "lab_publication_page",
+    "advisee_coauthor",
+    "anchored_author_id",
+    "advisee_anchored_author_id",
+    "dblp_person_page",
+    "labpage_listing"
+   ],
+   "x-rules": [
+    "R-PAP-04",
+    "R-PAP-05",
+    "R-PAP-06",
+    "R-PAP-07"
+   ]
+  },
+  "appointment": {
+   "description": "The appointment the paper falls in: a reviewed period (periodId) or a same-year listing.",
+   "x-rules": [
+    "R-PAP-01",
+    "R-PAP-13"
+   ],
+   "$comment": "Exactly one of periodId (a period that contains every possible date) or listing (a same-year listing).",
+   "oneOf": [
+    {
+     "description": "By period.",
+     "type": "object",
+     "properties": {
+      "periodId": {
+       "description": "pis.json periods[].id of a period that contains every possible date.",
+       "type": "string"
+      }
+     },
+     "required": [
+      "periodId"
+     ],
+     "additionalProperties": false
+    },
+    {
+     "description": "By listing.",
+     "type": "object",
+     "properties": {
+      "listing": {
+       "$ref": "#/$defs/listing",
+       "description": "The listing of the paper's year."
+      }
+     },
+     "required": [
+      "listing"
+     ],
+     "additionalProperties": false
+    }
+   ]
+  },
+  "editions": {
+   "description": "Other records of the same paper and lab (preprint, conference, journal versions; a second OpenAlex record of one collection work).",
+   "type": "array",
+   "items": {
+    "description": "An edition.",
+    "type": "object",
+    "properties": {
+     "oa": {
+      "description": "OpenAlex work (or recovered key).",
+      "type": "string"
+     },
+     "work": {
+      "description": "Collection work.",
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "doi": {
+      "description": "DOI.",
+      "type": [
+       "string",
+       "null"
+      ],
+      "pattern": "^(10\\.\\S+/\\S*)?$"
+     },
+     "year": {
+      "description": "Year.",
+      "type": [
+       "integer",
+       "null"
+      ]
+     },
+     "venue": {
+      "description": "Venue.",
+      "type": [
+       "string",
+       "null"
+      ]
+     }
+    },
+    "required": [
+     "oa",
+     "work",
+     "doi",
+     "year",
+     "venue"
+    ],
+    "additionalProperties": false
+   },
+   "x-rules": [
+    "R-PAP-16"
+   ]
+  },
+  "dated_by": {
+   "description": "A deposit dated by its venue version on the PI's DBLP page.",
+   "type": "object",
+   "properties": {
+    "oa_date": {
+     "description": "OpenAlex's own date.",
+     "type": "string"
+    },
+    "venue_year": {
+     "description": "DBLP venue year.",
+     "type": "integer",
+     "minimum": 2016
+    },
+    "dblp_key": {
+     "description": "DBLP record key.",
+     "type": "string"
+    }
+   },
+   "x-rules": [
+    "R-PAP-26"
+   ],
+   "required": [
+    "oa_date",
+    "venue_year",
+    "dblp_key"
+   ],
+   "additionalProperties": false
+  },
+  "page1_check": {
+   "description": "Page-1 read for a paper entering through the unaffiliated-advisee route.",
+   "type": "object",
+   "properties": {
+    "status": {
+     "description": "ok_* = page 1 read and kept; page1_unchecked = no page could be read.",
+     "type": "string",
+     "enum": [
+      "ok",
+      "ok_absent",
+      "ok_untied",
+      "page1_unchecked"
+     ]
+    },
+    "url": {
+     "description": "The page read.",
+     "type": [
+      "string",
+      "null"
+     ]
+    }
+   },
+   "x-rules": [
+    "R-PAP-12",
+    "R-PAP-20"
+   ],
+   "required": [
+    "status",
+    "url"
+   ],
+   "additionalProperties": false
+  },
+  "flags": {
+   "description": "Row flags.",
+   "type": "array",
+   "items": {
+    "type": "string",
+    "enum": [
+     "page1_unchecked"
+    ]
+   },
+   "x-rules": [
+    "R-PAP-20"
+   ]
+  },
+  "source": {
+   "description": "Recovered rows: <kind>_recover:<basis> (tools/dblp_recover.py, tools/labpage_recover.py).",
+   "type": "string",
+   "pattern": "^(dblp|labpage)_recover:[a-z0-9_]+$",
+   "examples": [
+    "dblp_recover:openalex_authorship",
+    "labpage_recover:page1_arxiv"
+   ],
+   "x-rules": [
+    "R-PAP-24"
+   ]
+  },
+  "chapters_folded": {
+   "description": "Book chapters folded into this row.",
+   "type": "integer",
+   "minimum": 1,
+   "x-rules": [
+    "R-PAP-15",
+    "R-PAP-21"
+   ]
+  },
+  "atlasWorkId": {
+   "description": "Atlas work id (ids stage).",
+   "type": "string",
+   "pattern": "^atl:w:[0-9a-f]{12}$",
+   "x-rules": [
+    "R-ID-01",
+    "R-ID-04"
+   ]
+  }
+ },
+ "required": [
+  "pi",
+  "work",
+  "oa",
+  "doi",
+  "title",
+  "year",
+  "date",
+  "type",
+  "venue",
+  "landing",
+  "byline",
+  "byline_school",
+  "authorship",
+  "identity",
+  "appointment",
+  "editions"
+ ],
+ "additionalProperties": false,
+ "$defs": {
+  "listing": {
+   "description": "A dated department listing that names the PI as faculty in one calendar year (census source or verified yearly listing).",
+   "type": "object",
+   "properties": {
+    "url": {
+     "description": "The captured listing page (Wayback id_ capture for yearly listings).",
+     "type": "string",
+     "minLength": 1
+    },
+    "sha256": {
+     "description": "sha256 of the captured listing bytes.",
+     "type": "string",
+     "pattern": "^[0-9a-f]{64}$"
+    },
+    "quote": {
+     "description": "The row of the listing that names the PI.",
+     "type": "string",
+     "minLength": 1
+    },
+    "kind": {
+     "description": "Source kind; 'dept_listing:<department>' for the verified yearly listings (listings/<school>/listings.json).",
+     "type": "string",
+     "examples": [
+      "dept_listing:Computer Science",
+      "mit_catalog_faculty",
+      "wayback_listing"
+     ]
+    },
+    "year": {
+     "description": "The calendar year the listing proves (the capture year).",
+     "type": "integer",
+     "minimum": 2016,
+     "maximum": 2026
+    },
+    "rank": {
+     "description": "The rank as listed (yearly listings only).",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "emeritus": {
+     "description": "The listing marks the PI emeritus (yearly listings only).",
+     "type": [
+      "boolean",
+      "null"
+     ]
+    },
+    "visiting": {
+     "description": "The listing marks the PI visiting (yearly listings only).",
+     "type": [
+      "boolean",
+      "null"
+     ]
+    }
+   },
+   "x-rules": [
+    "R-PAP-01",
+    "R-PAP-02"
+   ],
+   "required": [
+    "url",
+    "sha256",
+    "quote",
+    "kind",
+    "year"
+   ],
+   "additionalProperties": false
+  }
+ }
+}

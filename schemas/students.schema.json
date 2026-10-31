@@ -1,0 +1,452 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "hierarchy/<school>/students.json",
+ "description": "Each lab's students: an object from PI name (pis.json pi) to the lab's student records.",
+ "x-file": "hierarchy/<school>/students.json",
+ "x-kind": "derived",
+ "x-writer": "tools/pi_hierarchy.py (tools/pihier/students.py, build.py); atlas ids by tools/atlas_ids.py",
+ "x-readers": [
+  "tools/atlas_ids.py",
+  "tools/chain_audit.py",
+  "tools/evidence_check.py",
+  "tools/student_audit.py",
+  "tools/link_diagnosis.py",
+  "tools/build_regression.py",
+  "tools/export_release.py",
+  "tools/organize_tree.py",
+  "tools/make_release.py"
+ ],
+ "x-rules": [
+  "R-HIER-03",
+  "R-HIER-04"
+ ],
+ "type": "object",
+ "additionalProperties": {
+  "description": "The lab's student records (key: the PI name).",
+  "type": "array",
+  "items": {
+   "$ref": "#/$defs/student"
+  }
+ },
+ "$defs": {
+  "student": {
+   "description": "One student record of one lab (a person may have records in several labs; never merged across labs).",
+   "type": "object",
+   "properties": {
+    "person": {
+     "description": "Record id: the collection person id, else ext:<school>:<name-slug> (researched students, re-keyed PI ids).",
+     "type": "string",
+     "minLength": 1,
+     "x-rules": [
+      "R-HIER-03",
+      "R-STU-07"
+     ]
+    },
+    "name": {
+     "description": "Display name (cleaned of catalogue junk and doubled tokens).",
+     "type": "string",
+     "minLength": 1,
+     "x-rules": [
+      "R-STU-05"
+     ]
+    },
+    "roles": {
+     "description": "Roles from the collection person or the researched row (open vocabulary).",
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "relations": {
+     "description": "The relations that make this person a student of the lab.",
+     "type": "array",
+     "items": {
+      "$ref": "#/$defs/relation"
+     },
+     "x-rules": [
+      "R-STU-01"
+     ]
+    },
+    "aliases": {
+     "description": "Other names of the record (raw names before cleaning, merged records' names).",
+     "type": "array",
+     "items": {
+      "type": "string"
+     },
+     "x-rules": [
+      "R-STU-05",
+      "R-STU-06"
+     ]
+    },
+    "merged": {
+     "description": "Ids of records merged into this one within the lab.",
+     "type": "array",
+     "items": {
+      "type": "string"
+     },
+     "x-rules": [
+      "R-HIER-03",
+      "R-STU-04"
+     ]
+    },
+    "identityReview": {
+     "description": "Reviewed same-person merges applied (hierarchy/student-identity-review.json).",
+     "type": "array",
+     "items": {
+      "description": "A merge verdict applied.",
+      "type": "object",
+      "properties": {
+       "merged": {
+        "description": "The record id merged in.",
+        "type": "string"
+       },
+       "reason": {
+        "description": "Reviewer reason.",
+        "type": [
+         "string",
+         "null"
+        ]
+       },
+       "evidence": {
+        "description": "Evidence items of the review.",
+        "type": [
+         "array",
+         "null"
+        ]
+       }
+      },
+      "required": [
+       "merged",
+       "reason",
+       "evidence"
+      ],
+      "additionalProperties": false
+     },
+     "x-rules": [
+      "R-STU-04"
+     ]
+    },
+    "rekeyedFrom": {
+     "description": "A PI's person id this record was keyed by before re-keying to an ext: id.",
+     "type": "array",
+     "items": {
+      "type": "string"
+     },
+     "x-rules": [
+      "R-STU-07"
+     ]
+    },
+    "corrections": {
+     "description": "Reviewed corrections applied (hierarchy/student-corrections.json).",
+     "type": "array",
+     "items": {
+      "description": "A correction applied.",
+      "type": "object",
+      "properties": {
+       "action": {
+        "description": "What was done.",
+        "type": "string",
+        "enum": [
+         "rename",
+         "replace_sources"
+        ]
+       },
+       "reason": {
+        "description": "Reviewer reason.",
+        "type": "string"
+       },
+       "evidence": {
+        "description": "Evidence items.",
+        "type": [
+         "array",
+         "null"
+        ]
+       }
+      },
+      "required": [
+       "action",
+       "reason",
+       "evidence"
+      ],
+      "additionalProperties": false
+     },
+     "x-rules": [
+      "R-STU-04"
+     ]
+    },
+    "auto": {
+     "description": "The record holds an automatic, unreviewed lab-page relation.",
+     "type": "boolean",
+     "const": true,
+     "x-rules": [
+      "R-STU-01"
+     ]
+    },
+    "atlasId": {
+     "description": "The student's atlas person id (ids stage).",
+     "type": "string",
+     "pattern": "^atl:p:[0-9a-f]{12}$",
+     "x-rules": [
+      "R-ID-01",
+      "R-ID-03"
+     ]
+    },
+    "alsoPi": {
+     "description": "The PI appointments of a student who is also an atlas PI.",
+     "type": "array",
+     "items": {
+      "description": "A PI appointment.",
+      "type": "object",
+      "properties": {
+       "school": {
+        "description": "School key.",
+        "type": "string",
+        "pattern": "^[a-z]+$"
+       },
+       "pi": {
+        "description": "PI name.",
+        "type": "string"
+       },
+       "labId": {
+        "description": "Atlas lab id.",
+        "type": "string",
+        "pattern": "^atl:l:[a-z]+:[a-z0-9]+(-[a-z0-9]+)*$"
+       }
+      },
+      "required": [
+       "school",
+       "pi",
+       "labId"
+      ],
+      "additionalProperties": false
+     },
+     "x-rules": [
+      "R-ID-03"
+     ]
+    }
+   },
+   "required": [
+    "person",
+    "name",
+    "roles",
+    "relations"
+   ],
+   "additionalProperties": false
+  },
+  "relation": {
+   "description": "One relation tying the student to the PI: an advising context, a lab membership, researched evidence or the PI basis quote.",
+   "type": "object",
+   "properties": {
+    "type": {
+     "description": "Relation type: a collection context type containing \"advis\", direct_lab_membership, researched_advising / researched_membership (researched files), pi_basis_advising (the PI basis quote), or a correction's type.",
+     "type": "string",
+     "pattern": "^(direct_lab_membership|researched_membership|[a-z_]*advis[a-z_]*)$",
+     "examples": [
+      "researched_advising",
+      "academic_advising",
+      "source_advising_context",
+      "direct_lab_membership",
+      "academic_adviser",
+      "researched_membership",
+      "thesis_adviser",
+      "pi_basis_advising"
+     ],
+     "x-rules": [
+      "R-STU-01"
+     ]
+    },
+    "years": {
+     "description": "Years the relation is recorded for (advising years, roster observations).",
+     "type": "array",
+     "items": {
+      "type": "integer",
+      "minimum": 1900,
+      "maximum": 2030
+     }
+    },
+    "role": {
+     "description": "Role as the source states it (open vocabulary).",
+     "type": [
+      "string",
+      "null"
+     ],
+     "examples": [
+      "phd",
+      "masters",
+      "undergraduate",
+      "postdoc",
+      "member"
+     ]
+    },
+    "sources": {
+     "description": "Evidence items (up to two from the collection, complete ones first).",
+     "type": "array",
+     "items": {
+      "$ref": "#/$defs/source"
+     },
+     "x-rules": [
+      "R-STU-01",
+      "R-LNK-05"
+     ]
+    },
+    "work": {
+     "description": "The thesis work of an advising context (collection work id).",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "weak": {
+     "description": "program_adviser: a program-wide academic adviser, not research advising.",
+     "type": "string",
+     "enum": [
+      "program_adviser"
+     ],
+     "x-rules": [
+      "R-STU-09"
+     ]
+    },
+    "auto": {
+     "description": "An automatic, unreviewed lab-page relation.",
+     "type": "boolean",
+     "const": true,
+     "x-rules": [
+      "R-STU-01"
+     ]
+    }
+   },
+   "x-rules": [
+    "R-STU-01"
+   ],
+   "required": [
+    "type",
+    "years",
+    "role",
+    "sources"
+   ],
+   "additionalProperties": false
+  },
+  "source": {
+   "description": "A relation source: evidence item, possibly re-captured (R-STU-08). Collection sources carry further free-form capture fields.",
+   "type": "object",
+   "properties": {
+    "url": {
+     "description": "The cited page.",
+     "type": "string",
+     "minLength": 1
+    },
+    "sha256": {
+     "description": "sha256 of the captured bytes (the re-captured hash after R-STU-08).",
+     "type": [
+      "string",
+      "null"
+     ],
+     "pattern": "^[0-9a-f]{64}$"
+    },
+    "quote": {
+     "description": "Verbatim quote naming the student (and, when names_pi, the PI or lab).",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "capture_url": {
+     "description": "The capture the re-captured hash and quote come from.",
+     "type": [
+      "string",
+      "null"
+     ],
+     "x-rules": [
+      "R-STU-08"
+     ]
+    },
+    "names_pi": {
+     "description": "Re-captured: whether the quote also names the PI or the PI's lab (false = student-only quote).",
+     "type": "boolean",
+     "x-rules": [
+      "R-STU-08",
+      "R-AUD-09"
+     ]
+    },
+    "original_sha256": {
+     "description": "The source's earlier sha256 when the re-capture replaced it.",
+     "type": [
+      "string",
+      "null"
+     ],
+     "pattern": "^[0-9a-f]{64}$",
+     "x-rules": [
+      "R-STU-08"
+     ]
+    },
+    "recaptured": {
+     "description": "How the source was re-captured.",
+     "type": "object",
+     "properties": {
+      "observed": {
+       "description": "Capture date.",
+       "type": [
+        "string",
+        "null"
+       ]
+      },
+      "method": {
+       "description": "Capture method.",
+       "type": [
+        "string",
+        "null"
+       ],
+       "examples": [
+        "local",
+        "api",
+        "live",
+        "wayback",
+        "oai"
+       ]
+      },
+      "matches_original": {
+       "description": "The new capture hashes to the original sha256.",
+       "type": [
+        "boolean",
+        "null"
+       ]
+      }
+     },
+     "x-rules": [
+      "R-STU-08"
+     ],
+     "required": [
+      "observed",
+      "method",
+      "matches_original"
+     ],
+     "additionalProperties": false
+    },
+    "kind": {
+     "description": "Source kind (collection vocabulary).",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "quote_field": {
+     "description": "'statement' when best_sources took the quote from the collection's statement field.",
+     "type": "string",
+     "enum": [
+      "statement"
+     ],
+     "x-rules": [
+      "R-LNK-05"
+     ]
+    }
+   },
+   "x-rules": [
+    "R-STU-01",
+    "R-STU-08"
+   ],
+   "required": [
+    "url"
+   ]
+  }
+ }
+}

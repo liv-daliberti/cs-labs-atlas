@@ -1,0 +1,285 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "hierarchy/student-audit.json",
+ "description": "Are students one record each, and tied to their lab's papers? One entry per school.",
+ "x-file": "hierarchy/student-audit.json",
+ "x-kind": "derived",
+ "x-writer": "tools/student_audit.py",
+ "x-readers": [
+  "tools/chain_audit.py",
+  "tools/export_release.py",
+  "tools/make_release.py"
+ ],
+ "x-rules": [
+  "R-AUD-03"
+ ],
+ "type": "array",
+ "items": {
+  "description": "A school.",
+  "type": "object",
+  "properties": {
+   "school": {
+    "description": "School key.",
+    "type": "string",
+    "pattern": "^[a-z]+$"
+   },
+   "within_lab": {
+    "description": "Two records in one lab that are probably one person.",
+    "type": "array",
+    "items": {
+     "description": "A pair.",
+     "type": "object",
+     "properties": {
+      "pi": {
+       "description": "PI.",
+       "type": "string"
+      },
+      "a": {
+       "description": "[record id, name].",
+       "type": "array",
+       "items": {
+        "type": "string"
+       },
+       "minItems": 2
+      },
+      "b": {
+       "description": "[record id, name].",
+       "type": "array",
+       "items": {
+        "type": "string"
+       },
+       "minItems": 2
+      }
+     },
+     "required": [
+      "pi",
+      "a",
+      "b"
+     ],
+     "additionalProperties": false
+    },
+    "x-rules": [
+     "R-AUD-03"
+    ]
+   },
+   "across_labs": {
+    "description": "One strict name key under several ids in different labs (review candidates, never merged).",
+    "type": "array",
+    "items": {
+     "description": "A name.",
+     "type": "object",
+     "properties": {
+      "key": {
+       "description": "[first given name, family name].",
+       "type": "array",
+       "items": {
+        "type": "string"
+       },
+       "minItems": 2
+      },
+      "records": {
+       "description": "[record id, pi, name] per record.",
+       "type": "array",
+       "items": {
+        "description": "A record.",
+        "type": "array",
+        "items": {
+         "type": "string"
+        },
+        "minItems": 3
+       },
+       "minItems": 2
+      }
+     },
+     "required": [
+      "key",
+      "records"
+     ],
+     "additionalProperties": false
+    },
+    "x-rules": [
+     "R-HIER-03"
+    ]
+   },
+   "same_paper": {
+    "description": "One lab paper linked to two same-name ids of a lab.",
+    "type": "array",
+    "items": {
+     "description": "A pair.",
+     "type": "object",
+     "properties": {
+      "pi": {
+       "description": "PI.",
+       "type": "string"
+      },
+      "oa": {
+       "description": "Work.",
+       "type": "string"
+      },
+      "a": {
+       "description": "[record id, name].",
+       "type": "array",
+       "items": {
+        "type": "string"
+       },
+       "minItems": 2
+      },
+      "b": {
+       "description": "[record id, name].",
+       "type": "array",
+       "items": {
+        "type": "string"
+       },
+       "minItems": 2
+      }
+     },
+     "required": [
+      "pi",
+      "oa",
+      "a",
+      "b"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "missed_link": {
+    "description": "Students with lab papers whose school byline has their family name and initial but no link.",
+    "type": "array",
+    "items": {
+     "description": "A student.",
+     "type": "object",
+     "properties": {
+      "pi": {
+       "description": "PI.",
+       "type": "string"
+      },
+      "student": {
+       "description": "Record id.",
+       "type": "string"
+      },
+      "name": {
+       "description": "Name.",
+       "type": "string"
+      },
+      "papers": {
+       "description": "Up to 5 papers.",
+       "type": "array",
+       "items": {
+        "description": "A paper.",
+        "type": "object",
+        "properties": {
+         "oa": {
+          "description": "Work.",
+          "type": "string"
+         },
+         "year": {
+          "description": "Year.",
+          "type": [
+           "integer",
+           "null"
+          ]
+         },
+         "byline_name": {
+          "description": "Byline.",
+          "type": "string"
+         }
+        },
+        "required": [
+         "oa",
+         "year",
+         "byline_name"
+        ],
+        "additionalProperties": false
+       }
+      },
+      "n": {
+       "description": "Candidate papers.",
+       "type": "integer",
+       "minimum": 1
+      }
+     },
+     "required": [
+      "pi",
+      "student",
+      "name",
+      "papers",
+      "n"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "students_without_links": {
+    "description": "Students without a link although the lab has papers in their years.",
+    "type": "integer",
+    "minimum": 0
+   },
+   "lab_student_pairs": {
+    "description": "Student records over all labs.",
+    "type": "integer",
+    "minimum": 0
+   },
+   "counts": {
+    "description": "Counts.",
+    "type": "object",
+    "properties": {
+     "lab_student_pairs": {
+      "description": "lab student pairs.",
+      "type": "integer",
+      "minimum": 0
+     },
+     "within_lab_pairs": {
+      "description": "within lab pairs.",
+      "type": "integer",
+      "minimum": 0
+     },
+     "across_lab_people": {
+      "description": "across lab people.",
+      "type": "integer",
+      "minimum": 0
+     },
+     "same_paper_pairs": {
+      "description": "same paper pairs.",
+      "type": "integer",
+      "minimum": 0
+     },
+     "students_with_missed_links": {
+      "description": "students with missed links.",
+      "type": "integer",
+      "minimum": 0
+     },
+     "missed_links": {
+      "description": "missed links.",
+      "type": "integer",
+      "minimum": 0
+     },
+     "students_without_links": {
+      "description": "students without links.",
+      "type": "integer",
+      "minimum": 0
+     }
+    },
+    "required": [
+     "lab_student_pairs",
+     "within_lab_pairs",
+     "across_lab_people",
+     "same_paper_pairs",
+     "students_with_missed_links",
+     "missed_links",
+     "students_without_links"
+    ],
+    "additionalProperties": false
+   }
+  },
+  "required": [
+   "school",
+   "within_lab",
+   "across_labs",
+   "same_paper",
+   "missed_link",
+   "students_without_links",
+   "lab_student_pairs",
+   "counts"
+  ],
+  "additionalProperties": false
+ }
+}

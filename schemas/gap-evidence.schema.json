@@ -1,0 +1,240 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "hierarchy/<school>/gap-evidence.json",
+ "description": "Researched gap labs: status, identity, the collection person and researched students.",
+ "x-file": "hierarchy/<school>/gap-evidence.json",
+ "x-kind": "reviewed",
+ "x-writer": "research pass (gap tools)",
+ "x-readers": [
+  "tools/pi_hierarchy.py (tools/pihier/census.py reviewed_inputs, students.py researched)",
+  "the site builder"
+ ],
+ "x-rules": [
+  "R-STU-01"
+ ],
+ "type": "array",
+ "items": {
+  "description": "A gap lab.",
+  "type": "object",
+  "properties": {
+   "pi": {
+    "description": "PI (census name).",
+    "type": "string",
+    "minLength": 1
+   },
+   "status": {
+    "description": "not_pi_in_window (with status_evidence) excludes the PI.",
+    "type": "string",
+    "enum": [
+     "pi",
+     "not_pi_in_window"
+    ],
+    "x-rules": [
+     "R-HIER-01"
+    ]
+   },
+   "status_evidence": {
+    "description": "Evidence of the status.",
+    "type": "array",
+    "items": {
+     "$ref": "#/$defs/evidence"
+    }
+   },
+   "students": {
+    "description": "Researched students.",
+    "type": "array",
+    "items": {
+     "$ref": "#/$defs/student"
+    },
+    "x-rules": [
+     "R-STU-01"
+    ]
+   },
+   "identity": {
+    "description": "Identity added to the overrides.",
+    "type": "object",
+    "properties": {
+     "dblp": {
+      "description": "DBLP pids.",
+      "type": [
+       "array",
+       "string"
+      ]
+     },
+     "orcid": {
+      "description": "ORCIDs.",
+      "type": [
+       "array",
+       "string"
+      ]
+     },
+     "openalex": {
+      "description": "OpenAlex ids (bare A... or urls).",
+      "type": "array",
+      "items": {
+       "type": "string",
+       "pattern": "^(https://openalex\\.org/)?A\\d+$"
+      }
+     },
+     "evidence": {
+      "description": "Evidence.",
+      "type": "array",
+      "items": {
+       "$ref": "#/$defs/evidence"
+      }
+     }
+    }
+   },
+   "collection_person_id": {
+    "description": "The collection person.",
+    "type": [
+     "string",
+     "null"
+    ]
+   },
+   "notes": {
+    "description": "Notes (the exclusion reason quotes them).",
+    "type": [
+     "string",
+     "null"
+    ]
+   },
+   "appointment_notes": {
+    "description": "Appointment evidence.",
+    "type": "array",
+    "items": {
+     "$ref": "#/$defs/evidence"
+    }
+   }
+  },
+  "required": [
+   "pi",
+   "status"
+  ]
+ },
+ "$defs": {
+  "student": {
+   "description": "A researched student or lab member (with its quote and hash).",
+   "type": "object",
+   "properties": {
+    "name": {
+     "description": "Name as the source writes it.",
+     "type": "string",
+     "minLength": 1
+    },
+    "role": {
+     "description": "Role; 'member' makes a researched_membership relation.",
+     "type": [
+      "string",
+      "null"
+     ],
+     "examples": [
+      "phd",
+      "masters",
+      "undergraduate",
+      "postdoc",
+      "member",
+      "other"
+     ]
+    },
+    "years": {
+     "description": "Years.",
+     "type": [
+      "array",
+      "null"
+     ],
+     "items": {
+      "type": [
+       "integer",
+       "null"
+      ]
+     }
+    },
+    "url": {
+     "description": "The page.",
+     "type": "string",
+     "minLength": 1
+    },
+    "sha256": {
+     "description": "sha256 of the captured page.",
+     "type": "string",
+     "pattern": "^[0-9a-f]{64}$"
+    },
+    "quote": {
+     "description": "Verbatim quote naming the student (and the PI or lab).",
+     "type": "string",
+     "minLength": 1
+    },
+    "capture_url": {
+     "description": "The capture (cited instead of url when present).",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "note": {
+     "description": "Note.",
+     "type": "string"
+    },
+    "host_quote": {
+     "description": "A 'Faculty Host <PI>' line on the same page.",
+     "type": "string"
+    },
+    "auto": {
+     "description": "Automatic, unreviewed.",
+     "type": "boolean"
+    }
+   },
+   "x-rules": [
+    "R-STU-01"
+   ],
+   "required": [
+    "name",
+    "url",
+    "sha256",
+    "quote"
+   ]
+  },
+  "evidence": {
+   "description": "An evidence item (url, sha256, verbatim quote; free-form extras).",
+   "type": "object",
+   "properties": {
+    "url": {
+     "description": "The page.",
+     "type": "string",
+     "minLength": 1
+    },
+    "sha256": {
+     "description": "sha256 of the captured bytes.",
+     "type": "string",
+     "pattern": "^[0-9a-f]{64}$"
+    },
+    "quote": {
+     "description": "Verbatim quote.",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "capture_url": {
+     "description": "The capture.",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "observed": {
+     "description": "When seen.",
+     "type": [
+      "string",
+      "null"
+     ]
+    }
+   },
+   "required": [
+    "url",
+    "sha256"
+   ]
+  }
+ }
+}

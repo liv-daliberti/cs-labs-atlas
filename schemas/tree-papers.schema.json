@@ -1,0 +1,139 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "schools/<school>/labs/<pi-slug>/papers.csv",
+ "description": "One lab's papers in the organized tree, with the local PDF or why there is none.",
+ "x-file": "schools/<school>/labs/<pi-slug>/papers.csv",
+ "x-kind": "derived",
+ "x-writer": "tools/organize_tree.py",
+ "x-readers": [
+  "people browsing the organized tree (schools/<school>/labs/<pi-slug>/)"
+ ],
+ "x-format": "csv",
+ "type": "object",
+ "properties": {
+  "atlas_work_id": {
+   "description": "Atlas work id.",
+   "pattern": "^(atl:w:[0-9a-f]{12})?$",
+   "x-rules": [
+    "R-ID-05"
+   ],
+   "type": "string"
+  },
+  "year": {
+   "description": "Year.",
+   "pattern": "^(\\d{4})?$",
+   "type": "string"
+  },
+  "title": {
+   "description": "Title.",
+   "type": "string"
+  },
+  "venue": {
+   "description": "Venue.",
+   "type": "string"
+  },
+  "type": {
+   "description": "Work type.",
+   "type": "string"
+  },
+  "doi": {
+   "description": "DOI.",
+   "pattern": "^(10\\.\\S+/\\S*)?$",
+   "type": "string"
+  },
+  "openalex": {
+   "description": "lab_papers oa.",
+   "minLength": 1,
+   "type": "string"
+  },
+  "work": {
+   "description": "Collection work.",
+   "type": "string"
+  },
+  "students": {
+   "description": "Linked student names, \"; \"-separated.",
+   "type": "string"
+  },
+  "n_students": {
+   "description": "Linked students.",
+   "pattern": "^\\d+$",
+   "type": "string"
+  },
+  "pdf": {
+   "description": "papers/<file>.pdf when the copy is linked.",
+   "pattern": "^(papers/.+\\.pdf)?$",
+   "type": "string"
+  },
+  "copy_status": {
+   "description": "local, else the copies.json status.",
+   "minLength": 1,
+   "examples": [
+    "local",
+    "queued",
+    "needs_access_review"
+   ],
+   "type": "string"
+  },
+  "unavailable_reason": {
+   "description": "Ledger reason_code (non-local papers).",
+   "enum": [
+    "found_awaiting_download",
+    "found_not_in_catalog",
+    "pending_retry",
+    "incomplete_check",
+    "identity_unconfirmed",
+    "open_copy_bot_challenge",
+    "open_copy_behind_login",
+    "open_copy_robots_disallowed",
+    "landing_page_without_pdf",
+    "open_copy_unusable",
+    "paywall_only",
+    "publisher_only_closed",
+    "no_doi_no_match",
+    ""
+   ],
+   "x-rules": [
+    "R-AUD-10"
+   ],
+   "type": "string"
+  },
+  "unavailable_summary": {
+   "description": "Ledger summary.",
+   "x-rules": [
+    "R-AUD-10"
+   ],
+   "type": "string"
+  },
+  "landing": {
+   "description": "Landing url.",
+   "type": "string"
+  },
+  "appointment": {
+   "description": "The appointment object as JSON text.",
+   "pattern": "^\\{\"(periodId|listing)\": ",
+   "x-rules": [
+    "R-PAP-01"
+   ],
+   "type": "string"
+  }
+ },
+ "required": [
+  "atlas_work_id",
+  "year",
+  "title",
+  "venue",
+  "type",
+  "doi",
+  "openalex",
+  "work",
+  "students",
+  "n_students",
+  "pdf",
+  "copy_status",
+  "unavailable_reason",
+  "unavailable_summary",
+  "landing",
+  "appointment"
+ ],
+ "additionalProperties": false
+}

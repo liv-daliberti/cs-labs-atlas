@@ -1,0 +1,101 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "export/data/schools/<school>/lab_students.csv",
+ "description": "The flat lab-student table of the GitHub export: one row per (lab, student).",
+ "x-file": "export/data/schools/<school>/lab_students.csv",
+ "x-kind": "derived",
+ "x-writer": "tools/export_release.py",
+ "x-readers": [
+  "the public GitHub export (export/data/schools/<school>/)",
+  "tools/hf_upload_release.py"
+ ],
+ "x-format": "csv",
+ "type": "object",
+ "properties": {
+  "pi_id": {
+   "description": "<school>:<pi-slug>.",
+   "pattern": "^[a-z]+:[a-z0-9]+(-[a-z0-9]+)*$",
+   "type": "string"
+  },
+  "pi_name": {
+   "description": "PI name.",
+   "minLength": 1,
+   "type": "string"
+  },
+  "student_id": {
+   "description": "ext:<school>:<slug>, else <school>:<record id>.",
+   "minLength": 1,
+   "type": "string"
+  },
+  "student_name": {
+   "description": "Name.",
+   "minLength": 1,
+   "type": "string"
+  },
+  "role_label": {
+   "description": "Role label (site vocabulary).",
+   "examples": [
+    "PhD student",
+    "Master’s",
+    "Student",
+    "Lab member",
+    "PhD alumnus",
+    "Undergraduate",
+    "Postdoc"
+   ],
+   "type": "string"
+  },
+  "relation": {
+   "description": "member when every relation is direct_lab_membership, else advisee.",
+   "enum": [
+    "advisee",
+    "member"
+   ],
+   "type": "string"
+  },
+  "first_year": {
+   "description": "First recorded year.",
+   "pattern": "^(\\d{4})?$",
+   "type": "string"
+  },
+  "last_year": {
+   "description": "Last recorded year.",
+   "pattern": "^(\\d{4})?$",
+   "type": "string"
+  },
+  "relation_types": {
+   "description": "Relation types, space-separated, sorted.",
+   "pattern": "^([a-z_]+( [a-z_]+)*)?$",
+   "type": "string"
+  },
+  "source_url": {
+   "description": "First source url.",
+   "type": "string"
+  },
+  "atlas_lab_id": {
+   "description": "Atlas lab id.",
+   "pattern": "^(atl:l:[a-z]+:[a-z0-9]+(-[a-z0-9]+)*)?$",
+   "type": "string"
+  },
+  "student_atlas_id": {
+   "description": "Atlas person id.",
+   "pattern": "^(atl:p:[0-9a-f]{12})?$",
+   "type": "string"
+  }
+ },
+ "required": [
+  "pi_id",
+  "pi_name",
+  "student_id",
+  "student_name",
+  "role_label",
+  "relation",
+  "first_year",
+  "last_year",
+  "relation_types",
+  "source_url",
+  "atlas_lab_id",
+  "student_atlas_id"
+ ],
+ "additionalProperties": false
+}

@@ -1,0 +1,148 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "docs/evidence-whitelist.json",
+ "description": "Allowed evidence-check violations per category and school, each with its reason; anything over max fails the release.",
+ "x-file": "docs/evidence-whitelist.json",
+ "x-kind": "reviewed",
+ "x-writer": "hand-reviewed",
+ "x-readers": [
+  "tools/evidence_check.py",
+  "tools/relation_recapture.py"
+ ],
+ "x-rules": [
+  "R-AUD-05",
+  "R-AUD-09",
+  "R-AUD-10"
+ ],
+ "type": "object",
+ "properties": {
+  "_doc": {
+   "description": "What the file is.",
+   "type": "string"
+  },
+  "pi_period": {
+   "description": "Category pi_period: per school.",
+   "type": "object",
+   "additionalProperties": {
+    "$ref": "#/$defs/allowance"
+   }
+  },
+  "faculty_listing": {
+   "description": "Category faculty_listing: per school.",
+   "type": "object",
+   "additionalProperties": {
+    "$ref": "#/$defs/allowance"
+   }
+  },
+  "student_relation": {
+   "description": "Category student_relation: per school.",
+   "type": "object",
+   "additionalProperties": {
+    "$ref": "#/$defs/allowance"
+   }
+  },
+  "student_relation_student_only": {
+   "description": "Category student_relation_student_only: per school.",
+   "type": "object",
+   "additionalProperties": {
+    "$ref": "#/$defs/allowance"
+   }
+  },
+  "student_no_relation": {
+   "description": "Category student_no_relation: per school.",
+   "type": "object",
+   "additionalProperties": {
+    "$ref": "#/$defs/allowance"
+   }
+  },
+  "paper_school_basis": {
+   "description": "Category paper_school_basis: per school.",
+   "type": "object",
+   "additionalProperties": {
+    "$ref": "#/$defs/allowance"
+   }
+  },
+  "paper_appointment": {
+   "description": "Category paper_appointment: per school.",
+   "type": "object",
+   "additionalProperties": {
+    "$ref": "#/$defs/allowance"
+   }
+  },
+  "link_byline": {
+   "description": "Category link_byline: per school.",
+   "type": "object",
+   "additionalProperties": {
+    "$ref": "#/$defs/allowance"
+   }
+  },
+  "link_relation_source": {
+   "description": "Category link_relation_source: per school.",
+   "type": "object",
+   "additionalProperties": {
+    "$ref": "#/$defs/allowance"
+   }
+  },
+  "link_relation_source_student_only": {
+   "description": "Category link_relation_source_student_only: per school.",
+   "type": "object",
+   "additionalProperties": {
+    "$ref": "#/$defs/allowance"
+   }
+  },
+  "unavailable_missing": {
+   "description": "Category unavailable_missing: per school.",
+   "type": "object",
+   "additionalProperties": {
+    "$ref": "#/$defs/allowance"
+   }
+  },
+  "unavailable_stale": {
+   "description": "Category unavailable_stale: per school.",
+   "type": "object",
+   "additionalProperties": {
+    "$ref": "#/$defs/allowance"
+   }
+  },
+  "unavailable_incomplete": {
+   "description": "Category unavailable_incomplete: per school.",
+   "type": "object",
+   "additionalProperties": {
+    "$ref": "#/$defs/allowance"
+   }
+  }
+ },
+ "additionalProperties": false,
+ "$defs": {
+  "allowance": {
+   "description": "An allowance.",
+   "type": "object",
+   "properties": {
+    "max": {
+     "description": "Most violations allowed.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "of": {
+     "description": "Items checked when decided.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "why": {
+     "description": "Why they cannot be fixed in this build.",
+     "type": "string",
+     "minLength": 1
+    },
+    "decided": {
+     "description": "Decision date.",
+     "type": "string",
+     "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    }
+   },
+   "required": [
+    "max",
+    "why"
+   ]
+  }
+ }
+}

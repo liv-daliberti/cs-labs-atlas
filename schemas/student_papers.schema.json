@@ -1,0 +1,205 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "hierarchy/<school>/student_papers.jsonl.gz",
+ "description": "One row per (lab paper, lab student) link (JSON lines, gzip).",
+ "x-file": "hierarchy/<school>/student_papers.jsonl.gz",
+ "x-kind": "derived",
+ "x-writer": "tools/pi_hierarchy.py (tools/pihier/links.py); atlas ids by tools/atlas_ids.py",
+ "x-readers": [
+  "tools/atlas_ids.py",
+  "tools/chain_audit.py",
+  "tools/evidence_check.py",
+  "tools/student_audit.py",
+  "tools/link_diagnosis.py",
+  "tools/build_regression.py",
+  "tools/export_release.py",
+  "tools/organize_tree.py"
+ ],
+ "x-format": "jsonl",
+ "x-rules": [
+  "R-LNK-01",
+  "R-LNK-05"
+ ],
+ "$comment": "Every byline basis carries the byline string (R-LNK-05).",
+ "type": "object",
+ "properties": {
+  "pi": {
+   "description": "The PI.",
+   "type": "string",
+   "minLength": 1
+  },
+  "student": {
+   "description": "The student record id (students.json person).",
+   "type": "string",
+   "minLength": 1
+  },
+  "name": {
+   "description": "The student's name.",
+   "type": "string"
+  },
+  "work": {
+   "description": "The lab paper's collection work.",
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "oa": {
+   "description": "The lab paper's oa (lab_papers.jsonl.gz oa).",
+   "type": "string"
+  },
+  "status": {
+   "description": "verified: the collection's person link (its status); candidate: a byline match.",
+   "type": "string",
+   "enum": [
+    "candidate",
+    "verified"
+   ],
+   "x-rules": [
+    "R-LNK-01"
+   ]
+  },
+  "basis": {
+   "description": "How the student was tied to the paper.",
+   "type": "string",
+   "enum": [
+    "collection_person_link",
+    "byline_name_with_school_affiliation",
+    "advisee_name_on_lab_paper_byline",
+    "full_name_on_lab_paper_byline",
+    "within_lab_byline_match"
+   ],
+   "x-rules": [
+    "R-LNK-01",
+    "R-LNK-03"
+   ]
+  },
+  "byline": {
+   "description": "The exact byline string matched (every byline basis).",
+   "type": "string",
+   "minLength": 1,
+   "x-rules": [
+    "R-LNK-02",
+    "R-LNK-05"
+   ]
+  },
+  "relation_source": {
+   "description": "The student's own roster evidence: the first relation source with url, sha256 and quote (naming the PI first), else the first source at all; null when the student has no source.",
+   "type": [
+    "object",
+    "null"
+   ],
+   "properties": {
+    "relation": {
+     "description": "The relation type.",
+     "type": [
+      "string",
+      "null"
+     ],
+     "pattern": "^(direct_lab_membership|researched_membership|[a-z_]*advis[a-z_]*)$"
+    },
+    "url": {
+     "description": "Source url.",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "sha256": {
+     "description": "Source sha256.",
+     "type": [
+      "string",
+      "null"
+     ],
+     "pattern": "^[0-9a-f]{64}$"
+    },
+    "quote": {
+     "description": "Source quote.",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "names_pi": {
+     "description": "Present (false) when the quote is a re-captured student-only quote.",
+     "type": "boolean",
+     "const": false
+    },
+    "capture_url": {
+     "description": "The capture of a re-captured source.",
+     "type": "string"
+    }
+   },
+   "required": [
+    "relation",
+    "url",
+    "sha256",
+    "quote"
+   ],
+   "additionalProperties": false,
+   "x-rules": [
+    "R-LNK-05",
+    "R-STU-08",
+    "R-AUD-09"
+   ]
+  },
+  "studentAtlasId": {
+   "description": "The student's atlas person id (ids stage).",
+   "type": [
+    "string",
+    "null"
+   ],
+   "pattern": "^atl:p:[0-9a-f]{12}$",
+   "x-rules": [
+    "R-ID-03"
+   ]
+  },
+  "atlasWorkId": {
+   "description": "The lab paper's atlas work id.",
+   "type": [
+    "string",
+    "null"
+   ],
+   "pattern": "^atl:w:[0-9a-f]{12}$",
+   "x-rules": [
+    "R-ID-04"
+   ]
+  },
+  "labId": {
+   "description": "The lab's atlas id.",
+   "type": [
+    "string",
+    "null"
+   ],
+   "pattern": "^atl:l:[a-z]+:[a-z0-9]+(-[a-z0-9]+)*$",
+   "x-rules": [
+    "R-ID-01"
+   ]
+  }
+ },
+ "required": [
+  "pi",
+  "student",
+  "name",
+  "work",
+  "oa",
+  "status",
+  "basis",
+  "relation_source"
+ ],
+ "additionalProperties": false,
+ "anyOf": [
+  {
+   "properties": {
+    "basis": {
+     "const": "collection_person_link"
+    }
+   }
+  },
+  {
+   "required": [
+    "byline"
+   ]
+  }
+ ]
+}

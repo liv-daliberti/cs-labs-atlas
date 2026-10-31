@@ -1,0 +1,128 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "export/data/schools/<school>/lab_papers.csv",
+ "description": "The flat lab-paper table of the GitHub export: one row per (lab, paper).",
+ "x-file": "export/data/schools/<school>/lab_papers.csv",
+ "x-kind": "derived",
+ "x-writer": "tools/export_release.py",
+ "x-readers": [
+  "the public GitHub export (export/data/schools/<school>/)",
+  "tools/hf_upload_release.py"
+ ],
+ "x-format": "csv",
+ "type": "object",
+ "properties": {
+  "pi_id": {
+   "description": "<school>:<pi-slug>.",
+   "pattern": "^[a-z]+:[a-z0-9]+(-[a-z0-9]+)*$",
+   "type": "string"
+  },
+  "pi_name": {
+   "description": "PI name.",
+   "minLength": 1,
+   "type": "string"
+  },
+  "lab_id": {
+   "description": "Lab id.",
+   "minLength": 1,
+   "type": "string"
+  },
+  "department": {
+   "description": "Department.",
+   "type": "string"
+  },
+  "paper_id": {
+   "description": "OpenAlex W id, dblp:<key>, labpage:<sha1>, or doi:/work: for split records.",
+   "pattern": "^(W\\d+|dblp:\\S+|labpage:[0-9a-f]{40}|doi:\\S+|work:\\S+)$",
+   "type": "string"
+  },
+  "doi": {
+   "description": "DOI.",
+   "pattern": "^(10\\.\\S+/\\S*)?$",
+   "type": "string"
+  },
+  "title": {
+   "description": "Title.",
+   "type": "string"
+  },
+  "year": {
+   "description": "Year.",
+   "pattern": "^(\\d{4})?$",
+   "type": "string"
+  },
+  "venue": {
+   "description": "Venue.",
+   "type": "string"
+  },
+  "type": {
+   "description": "Work type.",
+   "pattern": "^(?!(dataset|paratext|peer-review|erratum|supplementary-materials|other|grant|standard|retraction|reference-entry|libguides)$)[a-z-]*$",
+   "type": "string"
+  },
+  "identity": {
+   "description": "Identity label.",
+   "enum": [
+    "reviewed_openalex_author_id",
+    "pi_orcid",
+    "dblp_verified_collection_work",
+    "dblp_person_page_doi",
+    "dblp_person_page_title",
+    "pi_institutional_publication_list",
+    "lab_publication_page",
+    "advisee_coauthor",
+    "anchored_author_id",
+    "advisee_anchored_author_id",
+    "dblp_person_page",
+    "labpage_listing"
+   ],
+   "x-rules": [
+    "R-PAP-04"
+   ],
+   "type": "string"
+  },
+  "appointment_basis": {
+   "description": "How the appointment is shown.",
+   "enum": [
+    "faculty_period",
+    "same_year_listing"
+   ],
+   "x-rules": [
+    "R-PAP-01"
+   ],
+   "type": "string"
+  },
+  "appointment_ref": {
+   "description": "The period id, or the listing year.",
+   "minLength": 1,
+   "type": "string"
+  },
+  "atlas_lab_id": {
+   "description": "Atlas lab id.",
+   "pattern": "^(atl:l:[a-z]+:[a-z0-9]+(-[a-z0-9]+)*)?$",
+   "type": "string"
+  },
+  "atlas_work_id": {
+   "description": "Atlas work id.",
+   "pattern": "^(atl:w:[0-9a-f]{12})?$",
+   "type": "string"
+  }
+ },
+ "required": [
+  "pi_id",
+  "pi_name",
+  "lab_id",
+  "department",
+  "paper_id",
+  "doi",
+  "title",
+  "year",
+  "venue",
+  "type",
+  "identity",
+  "appointment_basis",
+  "appointment_ref",
+  "atlas_lab_id",
+  "atlas_work_id"
+ ],
+ "additionalProperties": false
+}

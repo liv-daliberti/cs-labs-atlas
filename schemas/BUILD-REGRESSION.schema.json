@@ -1,0 +1,364 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "hierarchy/BUILD-REGRESSION.json",
+ "description": "The rebuild compared with the snapshot before it; a flag holds the release.",
+ "x-file": "hierarchy/BUILD-REGRESSION.json",
+ "x-kind": "derived",
+ "x-writer": "tools/build_regression.py check",
+ "x-readers": [
+  "tools/make_release.py"
+ ],
+ "x-rules": [
+  "R-AUD-04"
+ ],
+ "type": "object",
+ "properties": {
+  "before": {
+   "description": "A snapshot.",
+   "type": "object",
+   "properties": {
+    "at": {
+     "description": "When.",
+     "type": "string",
+     "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}"
+    },
+    "source": {
+     "description": "Directory counted.",
+     "type": "string"
+    },
+    "code": {
+     "description": "git commit.",
+     "type": [
+      "string",
+      "null"
+     ],
+     "pattern": "^[0-9a-f]{40}$"
+    }
+   },
+   "required": [
+    "at",
+    "source",
+    "code"
+   ],
+   "additionalProperties": false
+  },
+  "after": {
+   "description": "A snapshot.",
+   "type": "object",
+   "properties": {
+    "at": {
+     "description": "When.",
+     "type": "string",
+     "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}"
+    },
+    "source": {
+     "description": "Directory counted.",
+     "type": "string"
+    },
+    "code": {
+     "description": "git commit.",
+     "type": [
+      "string",
+      "null"
+     ],
+     "pattern": "^[0-9a-f]{40}$"
+    }
+   },
+   "required": [
+    "at",
+    "source",
+    "code"
+   ],
+   "additionalProperties": false
+  },
+  "thresholds": {
+   "description": "Flag thresholds.",
+   "type": "object",
+   "properties": {
+    "school_pct": {
+     "description": "School count move.",
+     "type": "number",
+     "minimum": 0
+    },
+    "school_min": {
+     "description": "and by at least.",
+     "type": "number",
+     "minimum": 0
+    },
+    "pi_loss_pct": {
+     "description": "PI loss.",
+     "type": "number",
+     "minimum": 0
+    },
+    "pi_loss_min": {
+     "description": "and at least.",
+     "type": "number",
+     "minimum": 0
+    },
+    "pi_gain_pct": {
+     "description": "PI gain.",
+     "type": "number",
+     "minimum": 0
+    },
+    "pi_gain_min": {
+     "description": "and at least.",
+     "type": "number",
+     "minimum": 0
+    },
+    "ledger_pct": {
+     "description": "Ledger reason move.",
+     "type": "number",
+     "minimum": 0
+    },
+    "ledger_min": {
+     "description": "and by at least.",
+     "type": "number",
+     "minimum": 0
+    }
+   },
+   "required": [
+    "school_pct",
+    "school_min",
+    "pi_loss_pct",
+    "pi_loss_min",
+    "pi_gain_pct",
+    "pi_gain_min",
+    "ledger_pct",
+    "ledger_min"
+   ],
+   "additionalProperties": false
+  },
+  "schools": {
+   "description": "Per school.",
+   "type": "object",
+   "additionalProperties": {
+    "description": "A school.",
+    "type": "object",
+    "properties": {
+     "builtAt": {
+      "description": "report builtAt.",
+      "type": "object",
+      "properties": {
+       "before": {
+        "description": "Before.",
+        "type": [
+         "string",
+         "null"
+        ]
+       },
+       "after": {
+        "description": "After.",
+        "type": [
+         "string",
+         "null"
+        ]
+       }
+      },
+      "required": [
+       "before",
+       "after"
+      ],
+      "additionalProperties": false
+     },
+     "rows": {
+      "description": "Row counts.",
+      "type": "object",
+      "additionalProperties": {
+       "description": "Count.",
+       "type": "object",
+       "properties": {
+        "before": {
+         "description": "Before.",
+         "type": [
+          "integer",
+          "null"
+         ]
+        },
+        "after": {
+         "description": "After.",
+         "type": [
+          "integer",
+          "null"
+         ]
+        }
+       },
+       "required": [
+        "before",
+        "after"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "report": {
+      "description": "report.json counts that moved.",
+      "type": "object",
+      "additionalProperties": {
+       "description": "Count.",
+       "type": "object",
+       "properties": {
+        "before": {
+         "description": "Before.",
+         "type": [
+          "integer",
+          "null"
+         ]
+        },
+        "after": {
+         "description": "After.",
+         "type": [
+          "integer",
+          "null"
+         ]
+        }
+       },
+       "required": [
+        "before",
+        "after"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "identical": {
+      "description": "Row-set digests equal.",
+      "type": "object",
+      "additionalProperties": {
+       "type": "boolean"
+      }
+     },
+     "pis_changed": {
+      "description": "PIs whose lab-paper count moved.",
+      "type": "array",
+      "items": {
+       "description": "A PI.",
+       "type": "object",
+       "properties": {
+        "pi": {
+         "description": "PI.",
+         "type": "string"
+        },
+        "before": {
+         "description": "Before.",
+         "type": [
+          "integer",
+          "null"
+         ]
+        },
+        "after": {
+         "description": "After.",
+         "type": [
+          "integer",
+          "null"
+         ]
+        }
+       },
+       "required": [
+        "pi",
+        "before",
+        "after"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "ledger": {
+      "description": "Ledger reason counts that moved.",
+      "type": "object",
+      "additionalProperties": {
+       "description": "Count.",
+       "type": "object",
+       "properties": {
+        "before": {
+         "description": "Before.",
+         "type": [
+          "integer",
+          "null"
+         ]
+        },
+        "after": {
+         "description": "After.",
+         "type": [
+          "integer",
+          "null"
+         ]
+        }
+       },
+       "required": [
+        "before",
+        "after"
+       ],
+       "additionalProperties": false
+      }
+     }
+    },
+    "required": [
+     "builtAt",
+     "rows",
+     "report",
+     "identical",
+     "pis_changed",
+     "ledger"
+    ],
+    "additionalProperties": false
+   }
+  },
+  "flags": {
+   "description": "What holds the release.",
+   "type": "array",
+   "items": {
+    "description": "A flag.",
+    "type": "object",
+    "properties": {
+     "school": {
+      "description": "School.",
+      "type": "string"
+     },
+     "kind": {
+      "description": "Flag kind.",
+      "type": "string",
+      "enum": [
+       "school_missing",
+       "school_rows",
+       "school_count",
+       "pi_vanished",
+       "pi_loss",
+       "pi_new",
+       "pi_gain",
+       "ledger_missing",
+       "ledger_reason"
+      ]
+     },
+     "count": {
+      "description": "The count concerned.",
+      "type": "string"
+     },
+     "pi": {
+      "description": "The PI concerned.",
+      "type": "string"
+     },
+     "before": {
+      "description": "Before."
+     },
+     "after": {
+      "description": "After."
+     },
+     "detail": {
+      "description": "Detail.",
+      "type": "string"
+     }
+    },
+    "required": [
+     "school",
+     "kind"
+    ],
+    "additionalProperties": false
+   }
+  }
+ },
+ "required": [
+  "before",
+  "after",
+  "thresholds",
+  "schools",
+  "flags"
+ ],
+ "additionalProperties": false
+}

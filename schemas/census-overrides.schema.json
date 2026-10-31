@@ -1,0 +1,317 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "hierarchy/census-overrides.json",
+ "description": "Reviewed census corrections per school and person: exclusions, PI status, aliases, identity, reviewed periods and PI basis.",
+ "x-file": "hierarchy/census-overrides.json",
+ "x-kind": "reviewed",
+ "x-writer": "hand-reviewed (coverage, gap and period reviews)",
+ "x-readers": [
+  "tools/pi_hierarchy.py (tools/pihier/census.py, periods.py, students.py)",
+  "tools/chain_audit.py",
+  "tools/export_release.py",
+  "tools/stage_gate.py",
+  "tools/oa_identity_school.py",
+  "tools/listed_not_in_census.py",
+  "tools/periods_school.py"
+ ],
+ "x-rules": [
+  "R-HIER-01"
+ ],
+ "type": "object",
+ "properties": {
+  "_note": {
+   "description": "What the file is.",
+   "type": "string"
+  }
+ },
+ "additionalProperties": {
+  "description": "One school: person name (census name) -> override.",
+  "type": "object",
+  "additionalProperties": {
+   "$ref": "#/$defs/override"
+  }
+ },
+ "$defs": {
+  "override": {
+   "description": "Reviewed corrections for one person (keys the build does not know are kept as reviewer notes).",
+   "type": "object",
+   "properties": {
+    "exclude": {
+     "description": "Not a faculty PI at the school in 2016-2026: removed from pis.json (report excluded).",
+     "type": "boolean",
+     "x-rules": [
+      "R-HIER-01"
+     ]
+    },
+    "why": {
+     "description": "The reason (required with exclude).",
+     "type": "string"
+    },
+    "revisit_after": {
+     "description": "An exclusion holds only until this date; after it the person is an open coverage item again.",
+     "type": "string",
+     "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+     "x-rules": [
+      "R-AUD-02"
+     ]
+    },
+    "is_pi": {
+     "description": "Reviewed PI status: overrides the census is_pi.",
+     "type": "boolean",
+     "x-rules": [
+      "R-HIER-01"
+     ]
+    },
+    "aliases": {
+     "description": "Further name forms.",
+     "type": "array",
+     "items": {
+      "type": "string"
+     },
+     "x-rules": [
+      "R-PAP-08"
+     ]
+    },
+    "collection_person_id": {
+     "description": "The collection person of this PI.",
+     "type": "string"
+    },
+    "dblp": {
+     "description": "DBLP pid url(s).",
+     "type": [
+      "array",
+      "string"
+     ],
+     "x-rules": [
+      "R-PAP-05"
+     ]
+    },
+    "orcid": {
+     "description": "ORCID(s), bare or as urls.",
+     "type": [
+      "array",
+      "string"
+     ],
+     "x-rules": [
+      "R-PAP-04"
+     ]
+    },
+    "openalex": {
+     "description": "Reviewed OpenAlex author id(s).",
+     "type": [
+      "array",
+      "string"
+     ],
+     "x-rules": [
+      "R-PAP-04"
+     ]
+    },
+    "not_openalex": {
+     "description": "Namesake author ids: never this PI.",
+     "type": "array",
+     "items": {
+      "type": "string",
+      "pattern": "^https://openalex\\.org/A\\d+$"
+     },
+     "x-rules": [
+      "R-PAP-04"
+     ]
+    },
+    "mixed_openalex": {
+     "description": "Mixed author ids holding some of the PI's works.",
+     "type": "array",
+     "items": {
+      "type": "string",
+      "pattern": "^https://openalex\\.org/A\\d+$"
+     },
+     "x-rules": [
+      "R-PAP-06"
+     ]
+    },
+    "pi_basis": {
+     "description": "A reviewed PI basis (wins over the census).",
+     "type": "object",
+     "properties": {
+      "kind": {
+       "description": "Basis kind (advises_phd quotes feed pi_basis_advising students).",
+       "type": "string",
+       "examples": [
+        "advises_phd"
+       ],
+       "x-rules": [
+        "R-STU-11"
+       ]
+      },
+      "url": {
+       "description": "Evidence page.",
+       "type": "string"
+      },
+      "sha256": {
+       "description": "sha256.",
+       "type": "string",
+       "pattern": "^[0-9a-f]{64}$"
+      },
+      "quote": {
+       "description": "Verbatim quote.",
+       "type": "string",
+       "minLength": 1
+      },
+      "reviewed": {
+       "description": "Review date.",
+       "type": "string"
+      }
+     },
+     "x-rules": [
+      "R-HIER-01"
+     ],
+     "required": [
+      "kind",
+      "url",
+      "sha256",
+      "quote"
+     ]
+    },
+    "periods": {
+     "description": "Reviewed appointment periods (added to the collection periods).",
+     "type": "array",
+     "items": {
+      "description": "A reviewed period.",
+      "type": "object",
+      "properties": {
+       "id": {
+        "description": "Period id (override_period_<school>_<slug>...).",
+        "type": "string",
+        "minLength": 1
+       },
+       "start": {
+        "description": "Start (YYYY[-MM[-DD]], optional parenthesized note).",
+        "type": [
+         "string",
+         "null"
+        ],
+        "pattern": "^\\d{4}(-\\d{2}(-\\d{2})?)?(\\s*\\(.*\\))?$"
+       },
+       "end": {
+        "description": "End; null when open.",
+        "type": [
+         "string",
+         "null"
+        ],
+        "pattern": "^\\d{4}(-\\d{2}(-\\d{2})?)?(\\s*\\(.*\\))?$"
+       },
+       "asof": {
+        "description": "Last confirmed (open periods).",
+        "type": [
+         "string",
+         "null"
+        ],
+        "pattern": "^\\d{4}(-\\d{2}(-\\d{2})?)?(\\s*\\(.*\\))?$"
+       },
+       "evidence": {
+        "description": "Evidence items; an evidence kind containing end_moved marks a departure (R-PAP-03).",
+        "type": "array",
+        "items": {
+         "$ref": "#/$defs/evidence"
+        },
+        "minItems": 1
+       },
+       "datePrecision": {
+        "description": "Precision.",
+        "type": "string",
+        "enum": [
+         "day",
+         "month",
+         "year"
+        ]
+       },
+       "endPrecision": {
+        "description": "Precision.",
+        "type": "string",
+        "enum": [
+         "day",
+         "month",
+         "year"
+        ]
+       }
+      },
+      "required": [
+       "id",
+       "start",
+       "end",
+       "evidence"
+      ]
+     },
+     "x-rules": [
+      "R-PAP-01",
+      "R-PAP-03"
+     ]
+    }
+   },
+   "patternProperties": {
+    "^(why|note)_": {
+     "description": "Reviewer note on one correction.",
+     "type": "string"
+    }
+   },
+   "$comment": "An exclusion carries its reason: exclude true requires why.",
+   "anyOf": [
+    {
+     "properties": {
+      "exclude": {
+       "const": false
+      }
+     }
+    },
+    {
+     "required": [
+      "why"
+     ]
+    }
+   ],
+   "x-rules": [
+    "R-HIER-01"
+   ]
+  },
+  "evidence": {
+   "description": "An evidence item (url, sha256, verbatim quote; free-form extras).",
+   "type": "object",
+   "properties": {
+    "url": {
+     "description": "The page.",
+     "type": "string",
+     "minLength": 1
+    },
+    "sha256": {
+     "description": "sha256 of the captured bytes.",
+     "type": "string",
+     "pattern": "^[0-9a-f]{64}$"
+    },
+    "quote": {
+     "description": "Verbatim quote.",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "capture_url": {
+     "description": "The capture.",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "observed": {
+     "description": "When seen.",
+     "type": [
+      "string",
+      "null"
+     ]
+    }
+   },
+   "required": [
+    "url",
+    "sha256"
+   ]
+  }
+ }
+}

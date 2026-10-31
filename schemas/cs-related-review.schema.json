@@ -1,0 +1,112 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "hierarchy/<school>/cs-related-review.json",
+ "description": "Decisions on CS-related faculty candidates in other departments.",
+ "x-file": "hierarchy/<school>/cs-related-review.json",
+ "x-kind": "reviewed",
+ "x-writer": "research pass; tools/cs_related_school.py for onboarding schools",
+ "x-readers": [
+  "tools/chain_audit.py (coverage)",
+  "tools/export_release.py",
+  "tools/census_build.py",
+  "tools/home_departments_school.py",
+  "tools/stage_gate.py"
+ ],
+ "x-rules": [
+  "R-AUD-01"
+ ],
+ "type": "object",
+ "properties": {
+  "reviewed": {
+   "description": "Review date(s).",
+   "type": "string"
+  },
+  "rule": {
+   "description": "The decision rule applied.",
+   "type": "string"
+  },
+  "captures": {
+   "description": "Where the captured pages are.",
+   "type": [
+    "string",
+    "array"
+   ]
+  },
+  "tools": {
+   "description": "The tools used.",
+   "type": [
+    "string",
+    "array"
+   ]
+  },
+  "counts": {
+   "description": "Counts.",
+   "type": "object"
+  },
+  "notes": {
+   "description": "Notes.",
+   "type": "array"
+  },
+  "decisions": {
+   "description": "Decisions.",
+   "type": "array",
+   "items": {
+    "$ref": "#/$defs/decision"
+   },
+   "x-rules": [
+    "R-AUD-01"
+   ]
+  }
+ },
+ "required": [
+  "decisions"
+ ],
+ "$defs": {
+  "decision": {
+   "description": "A decision on one person.",
+   "type": "object",
+   "properties": {
+    "name": {
+     "description": "Name.",
+     "type": "string",
+     "minLength": 1
+    },
+    "aliases": {
+     "description": "Other names (the audit matches them too).",
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "decision": {
+     "description": "The decision (school vocabulary; a value starting with 'pending' is no decision yet).",
+     "type": "string",
+     "examples": [
+      "accepted",
+      "qualifies",
+      "does_not_qualify",
+      "not_faculty",
+      "faculty_no_pi_evidence",
+      "alias_added",
+      "unresolved"
+     ]
+    },
+    "reason": {
+     "description": "Why.",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "evidence": {
+     "description": "Evidence items.",
+     "type": "array"
+    }
+   },
+   "required": [
+    "name",
+    "decision"
+   ]
+  }
+ }
+}

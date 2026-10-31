@@ -1,0 +1,68 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "hierarchy/<school>/openalex-identity-review.json",
+ "description": "Hand-reviewed OpenAlex author ids of an onboarding school's PIs.",
+ "x-file": "hierarchy/<school>/openalex-identity-review.json",
+ "x-kind": "reviewed",
+ "x-writer": "hand-reviewed (Michigan onboarding)",
+ "x-readers": [
+  "tools/oa_identity_school.py"
+ ],
+ "type": "object",
+ "properties": {
+  "school": {
+   "description": "School key.",
+   "type": "string",
+   "pattern": "^[a-z]+$"
+  },
+  "reviewed": {
+   "description": "Review date.",
+   "type": "string"
+  },
+  "rule": {
+   "description": "The rule applied.",
+   "type": "string"
+  },
+  "decisions": {
+   "description": "PI name -> decision.",
+   "type": "object",
+   "additionalProperties": {
+    "description": "A decision.",
+    "type": "object",
+    "properties": {
+     "openalex": {
+      "description": "Author ids (bare A ids).",
+      "type": "array",
+      "items": {
+       "type": "string",
+       "pattern": "^(https://openalex\\.org/)?A\\d+$"
+      },
+      "x-rules": [
+       "R-PAP-04"
+      ]
+     },
+     "aliases": {
+      "description": "Name forms.",
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "why": {
+      "description": "Why.",
+      "type": "string",
+      "minLength": 1
+     }
+    },
+    "required": [
+     "openalex",
+     "why"
+    ]
+   }
+  }
+ },
+ "required": [
+  "school",
+  "decisions"
+ ]
+}

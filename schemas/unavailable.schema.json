@@ -1,0 +1,406 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "hierarchy/<school>/unavailable.jsonl.gz",
+ "description": "The unavailability ledger (JSON lines, gzip): one record per non-local lab paper, with exactly one reason code, the checks and the attempts (docs/UNAVAILABLE.md).",
+ "x-file": "hierarchy/<school>/unavailable.jsonl.gz",
+ "x-kind": "derived",
+ "x-writer": "fulltext-push/unavailable_ledger.py",
+ "x-readers": [
+  "tools/lab_paper_copies.py (attach_ledger)",
+  "tools/evidence_check.py",
+  "tools/organize_tree.py",
+  "tools/make_release.py"
+ ],
+ "x-format": "jsonl",
+ "x-rules": [
+  "R-AUD-10"
+ ],
+ "type": "object",
+ "properties": {
+  "key": {
+   "description": "The copies.json paper key (work, else oa).",
+   "type": "string",
+   "minLength": 1
+  },
+  "school": {
+   "description": "School key.",
+   "type": "string",
+   "pattern": "^[a-z]+$"
+  },
+  "work_id": {
+   "description": "The catalog work id.",
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "status": {
+   "description": "The copies.json status (non-local).",
+   "type": "string",
+   "examples": [
+    "queued",
+    "needs_access_review",
+    "not_in_catalog",
+    "identity_unconfirmed",
+    "quarantined_robots_ai"
+   ]
+  },
+  "reason_code": {
+   "description": "Why there is no local copy: the first code that applies, in the documented order.",
+   "type": "string",
+   "enum": [
+    "found_awaiting_download",
+    "found_not_in_catalog",
+    "pending_retry",
+    "incomplete_check",
+    "identity_unconfirmed",
+    "open_copy_bot_challenge",
+    "open_copy_behind_login",
+    "open_copy_robots_disallowed",
+    "landing_page_without_pdf",
+    "open_copy_unusable",
+    "paywall_only",
+    "publisher_only_closed",
+    "no_doi_no_match"
+   ],
+   "x-rules": [
+    "R-AUD-10"
+   ]
+  },
+  "final": {
+   "description": "The reason is final (firmly unobtainable) rather than work in progress.",
+   "type": "boolean",
+   "x-rules": [
+    "R-AUD-10"
+   ]
+  },
+  "summary": {
+   "description": "One sentence built from the record.",
+   "type": "string",
+   "minLength": 1
+  },
+  "publisher": {
+   "description": "Folded publisher name, else 'unknown'.",
+   "type": "string",
+   "minLength": 1
+  },
+  "venue": {
+   "description": "Primary location source.",
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "doi": {
+   "description": "DOI.",
+   "type": [
+    "string",
+    "null"
+   ],
+   "pattern": "^(10\\.\\S+/\\S*)?$"
+  },
+  "year": {
+   "description": "Year.",
+   "type": [
+    "integer",
+    "null"
+   ]
+  },
+  "title": {
+   "description": "Title.",
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "is_oa": {
+   "description": "OpenAlex is_oa.",
+   "type": [
+    "boolean",
+    "null"
+   ]
+  },
+  "oa_status": {
+   "description": "OpenAlex oa_status.",
+   "type": [
+    "string",
+    "null"
+   ],
+   "enum": [
+    "closed",
+    "green",
+    "hybrid",
+    "bronze",
+    "gold",
+    "diamond",
+    null
+   ]
+  },
+  "arxiv": {
+   "description": "arXiv id found by the arxiv check.",
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "checked_at": {
+   "description": "The ledger run's time (ISO).",
+   "type": "string",
+   "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}",
+   "x-rules": [
+    "R-AUD-10"
+   ]
+  },
+  "checks": {
+   "description": "One check per applicable source.",
+   "type": "array",
+   "items": {
+    "description": "A check.",
+    "type": "object",
+    "properties": {
+     "source": {
+      "description": "Source checked.",
+      "type": "string",
+      "enum": [
+       "openalex",
+       "arxiv",
+       "s2",
+       "core",
+       "pmc",
+       "dblp",
+       "proceedings",
+       "repository",
+       "labpages",
+       "wayback_acm"
+      ]
+     },
+     "at": {
+      "description": "When.",
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "query": {
+      "description": "What was asked (text, or the query parameters as an object).",
+      "type": [
+       "string",
+       "object",
+       "null"
+      ]
+     },
+     "result": {
+      "description": "Outcome.",
+      "type": "string",
+      "enum": [
+       "found",
+       "none",
+       "error",
+       "not_applicable"
+      ]
+     },
+     "detail": {
+      "description": "Source-specific detail (JSON object or a note).",
+      "type": [
+       "object",
+       "string",
+       "null"
+      ]
+     }
+    },
+    "required": [
+     "source",
+     "result"
+    ]
+   }
+  },
+  "missing_checks": {
+   "description": "Applicable sources not (freshly) checked (incomplete_check).",
+   "type": "array",
+   "items": {
+    "type": "string",
+    "enum": [
+     "openalex",
+     "arxiv",
+     "s2",
+     "core",
+     "pmc",
+     "dblp",
+     "proceedings",
+     "repository",
+     "labpages",
+     "wayback_acm"
+    ]
+   }
+  },
+  "attempts": {
+   "description": "Every download attempt for the paper's catalog works.",
+   "type": "array",
+   "items": {
+    "description": "An attempt.",
+    "type": "object",
+    "properties": {
+     "url": {
+      "description": "URL tried.",
+      "type": "string"
+     },
+     "at": {
+      "description": "When.",
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "status": {
+      "description": "Catalog attempt status.",
+      "type": [
+       "string",
+       "integer",
+       "null"
+      ],
+      "examples": [
+       "unavailable",
+       "identity_mismatch",
+       "worker_error",
+       "downloaded"
+      ]
+     },
+     "cause": {
+      "description": "review_access.cause() classification.",
+      "type": "string",
+      "enum": [
+       "policy_skip",
+       "identity_mismatch",
+       "challenge",
+       "login",
+       "unapproved_redirect",
+       "robots_disallow",
+       "embargoed",
+       "robots_unavailable",
+       "paywall_or_forbidden",
+       "not_found",
+       "tls_error",
+       "other",
+       "integrity_mismatch",
+       "too_large",
+       "transient",
+       "publisher_landing_no_pdf",
+       "landing_no_pdf",
+       "not_pdf"
+      ],
+      "x-rules": [
+       "R-AUD-07"
+      ]
+     },
+     "detail": {
+      "description": "Attempt detail (up to 200 characters).",
+      "type": [
+       "string",
+       "null"
+      ]
+     }
+    },
+    "required": [
+     "url",
+     "at",
+     "status",
+     "cause",
+     "detail"
+    ],
+    "additionalProperties": false
+   }
+  },
+  "access_review": {
+   "description": "The stores' access-review verdict and cause, when there is one.",
+   "type": [
+    "object",
+    "null"
+   ],
+   "properties": {
+    "verdict": {
+     "description": "Verdict.",
+     "type": "string",
+     "enum": [
+      "closed",
+      "requeue_untried",
+      "requeue_transient"
+     ]
+    },
+    "cause": {
+     "description": "Deciding cause.",
+     "type": "string",
+     "enum": [
+      "challenge",
+      "login",
+      "paywall_or_forbidden",
+      "publisher_landing_no_pdf",
+      "robots_disallow",
+      "robots_unavailable",
+      "embargoed",
+      "not_found",
+      "integrity_mismatch",
+      "unapproved_redirect",
+      "landing_no_pdf",
+      "not_pdf",
+      "identity_mismatch",
+      "tls_error",
+      "too_large",
+      "policy_skip",
+      "transient_on_challenge_or_publisher_host",
+      "transient_exhausted",
+      "transient",
+      "other",
+      "no_attempts"
+     ]
+    }
+   },
+   "required": [
+    "verdict",
+    "cause"
+   ],
+   "additionalProperties": false,
+   "x-rules": [
+    "R-AUD-07"
+   ]
+  },
+  "untried_candidates": {
+   "description": "Open candidate URLs the collector has not tried (up to 10).",
+   "type": "array",
+   "items": {
+    "type": "string"
+   }
+  },
+  "new_open_urls": {
+   "description": "Open URLs this run found (up to 10).",
+   "type": "array",
+   "items": {
+    "type": "string"
+   }
+  }
+ },
+ "required": [
+  "key",
+  "school",
+  "work_id",
+  "status",
+  "reason_code",
+  "final",
+  "summary",
+  "publisher",
+  "venue",
+  "doi",
+  "year",
+  "title",
+  "is_oa",
+  "oa_status",
+  "arxiv",
+  "checked_at",
+  "checks",
+  "missing_checks",
+  "attempts",
+  "access_review",
+  "untried_candidates",
+  "new_open_urls"
+ ],
+ "additionalProperties": false
+}

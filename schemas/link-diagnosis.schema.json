@@ -1,0 +1,240 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "hierarchy/<school>/link-diagnosis.json",
+ "description": "Why each open student (chain check 4) has no linked lab paper, from the school's OpenAlex sweep.",
+ "x-file": "hierarchy/<school>/link-diagnosis.json",
+ "x-kind": "derived",
+ "x-writer": "tools/link_diagnosis.py",
+ "x-readers": [
+  "tools/chain_audit.py",
+  "tools/make_release.py"
+ ],
+ "x-rules": [
+  "R-AUD-08"
+ ],
+ "type": "object",
+ "properties": {
+  "summary": {
+   "description": "Students by category, plus ambiguous_resolved_by_<by>.",
+   "type": "object",
+   "patternProperties": {
+    "^(link_missed|paper_not_lab_paper|with_pi_outside_appointment|with_pi_at_other_institution|publishes_without_pi|linked_in_coadviser_lab|same_name_record_linked_in_other_lab|no_school_work|ambiguous_name)$": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "^ambiguous_resolved_by_[a-z_]+$": {
+     "type": "integer",
+     "minimum": 0
+    }
+   },
+   "additionalProperties": false
+  },
+  "students": {
+   "description": "Per \"<pi> | <student id>\".",
+   "type": "object",
+   "patternProperties": {
+    "^.+ \\| .*$": {
+     "$ref": "#/$defs/student"
+    }
+   },
+   "additionalProperties": false
+  }
+ },
+ "required": [
+  "summary",
+  "students"
+ ],
+ "additionalProperties": false,
+ "$defs": {
+  "student": {
+   "description": "One open student.",
+   "type": "object",
+   "properties": {
+    "pi": {
+     "description": "PI.",
+     "type": "string"
+    },
+    "student": {
+     "description": "Student name.",
+     "type": "string"
+    },
+    "id": {
+     "description": "Student record id.",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "roles": {
+     "description": "Roles.",
+     "type": [
+      "array",
+      "null"
+     ],
+     "items": {
+      "type": "string"
+     }
+    },
+    "years": {
+     "description": "[first, last] recorded year, or null.",
+     "type": [
+      "array",
+      "null"
+     ],
+     "items": {
+      "type": "integer",
+      "minimum": 1900,
+      "maximum": 2030
+     },
+     "minItems": 2
+    },
+    "category": {
+     "description": "Diagnosis (link_missed and paper_not_lab_paper are work to do; the others are reasons).",
+     "type": "string",
+     "enum": [
+      "link_missed",
+      "paper_not_lab_paper",
+      "with_pi_outside_appointment",
+      "with_pi_at_other_institution",
+      "publishes_without_pi",
+      "linked_in_coadviser_lab",
+      "same_name_record_linked_in_other_lab",
+      "no_school_work",
+      "ambiguous_name"
+     ],
+     "x-rules": [
+      "R-AUD-08"
+     ]
+    },
+    "works": {
+     "description": "Up to 5 evidence works.",
+     "type": "array",
+     "items": {
+      "description": "A school work.",
+      "type": "object",
+      "properties": {
+       "oa": {
+        "description": "OpenAlex work.",
+        "type": "string",
+        "pattern": "^https://openalex\\.org/W\\d+$"
+       },
+       "year": {
+        "description": "Year.",
+        "type": [
+         "integer",
+         "null"
+        ]
+       },
+       "title": {
+        "description": "Title (120 chars).",
+        "type": "string"
+       },
+       "byline_name": {
+        "description": "Raw byline name.",
+        "type": [
+         "string",
+         "null"
+        ]
+       },
+       "type": {
+        "description": "Work type.",
+        "type": [
+         "string",
+         "null"
+        ]
+       },
+       "excluded": {
+        "description": "Why the build rightly left a with-PI work out.",
+        "type": [
+         "string",
+         "null"
+        ],
+        "enum": [
+         "not_a_paper",
+         "pi_affiliated_elsewhere",
+         "outside_appointment",
+         null
+        ]
+       },
+       "pi_affiliation": {
+        "description": "Where the PI's authorship sits.",
+        "type": [
+         "string",
+         "null"
+        ],
+        "enum": [
+         "school",
+         "elsewhere",
+         "none",
+         null
+        ]
+       }
+      },
+      "required": [
+       "oa",
+       "year",
+       "title",
+       "byline_name",
+       "type",
+       "excluded",
+       "pi_affiliation"
+      ],
+      "additionalProperties": false
+     }
+    },
+    "n_school_works": {
+     "description": "School works under the name in the years.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "distinct_author_ids": {
+     "description": "Distinct OpenAlex author ids among them.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "pis_seen": {
+     "description": "Other census PIs on those works (top 3).",
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "resolved": {
+     "description": "An ambiguous name resolved by a lab-mate co-author.",
+     "type": "object",
+     "properties": {
+      "by": {
+       "description": "How.",
+       "type": "string",
+       "enum": [
+        "labmate_coauthor"
+       ]
+      },
+      "author": {
+       "description": "The author id chosen.",
+       "type": "string"
+      }
+     },
+     "required": [
+      "by",
+      "author"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "required": [
+    "pi",
+    "student",
+    "id",
+    "roles",
+    "years",
+    "category",
+    "works",
+    "n_school_works",
+    "distinct_author_ids",
+    "pis_seen"
+   ],
+   "additionalProperties": false
+  }
+ }
+}

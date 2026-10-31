@@ -1,0 +1,137 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "hierarchy/<school>/few-students-evidence.json",
+ "description": "Researched advisees of thin labs, with quotes and hashes.",
+ "x-file": "hierarchy/<school>/few-students-evidence.json",
+ "x-kind": "reviewed",
+ "x-writer": "research pass (few-students tools)",
+ "x-readers": [
+  "tools/pi_hierarchy.py (tools/pihier/students.py researched)",
+  "tools/chain_audit.py"
+ ],
+ "x-rules": [
+  "R-STU-01"
+ ],
+ "type": "array",
+ "items": {
+  "description": "A lab.",
+  "type": "object",
+  "properties": {
+   "pi": {
+    "description": "PI.",
+    "type": "string",
+    "minLength": 1
+   },
+   "students": {
+    "description": "Researched students.",
+    "type": "array",
+    "items": {
+     "$ref": "#/$defs/student"
+    },
+    "x-rules": [
+     "R-STU-01"
+    ]
+   },
+   "notes": {
+    "description": "Notes.",
+    "type": "string"
+   },
+   "lab_note": {
+    "description": "Lab note.",
+    "type": "string"
+   },
+   "note": {
+    "description": "Note.",
+    "type": "string"
+   }
+  },
+  "required": [
+   "pi",
+   "students"
+  ]
+ },
+ "$defs": {
+  "student": {
+   "description": "A researched student or lab member (with its quote and hash).",
+   "type": "object",
+   "properties": {
+    "name": {
+     "description": "Name as the source writes it.",
+     "type": "string",
+     "minLength": 1
+    },
+    "role": {
+     "description": "Role; 'member' makes a researched_membership relation.",
+     "type": [
+      "string",
+      "null"
+     ],
+     "examples": [
+      "phd",
+      "masters",
+      "undergraduate",
+      "postdoc",
+      "member",
+      "other"
+     ]
+    },
+    "years": {
+     "description": "Years.",
+     "type": [
+      "array",
+      "null"
+     ],
+     "items": {
+      "type": [
+       "integer",
+       "null"
+      ]
+     }
+    },
+    "url": {
+     "description": "The page.",
+     "type": "string",
+     "minLength": 1
+    },
+    "sha256": {
+     "description": "sha256 of the captured page.",
+     "type": "string",
+     "pattern": "^[0-9a-f]{64}$"
+    },
+    "quote": {
+     "description": "Verbatim quote naming the student (and the PI or lab).",
+     "type": "string",
+     "minLength": 1
+    },
+    "capture_url": {
+     "description": "The capture (cited instead of url when present).",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "note": {
+     "description": "Note.",
+     "type": "string"
+    },
+    "host_quote": {
+     "description": "A 'Faculty Host <PI>' line on the same page.",
+     "type": "string"
+    },
+    "auto": {
+     "description": "Automatic, unreviewed.",
+     "type": "boolean"
+    }
+   },
+   "x-rules": [
+    "R-STU-01"
+   ],
+   "required": [
+    "name",
+    "url",
+    "sha256",
+    "quote"
+   ]
+  }
+ }
+}

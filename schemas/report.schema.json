@@ -1,0 +1,1016 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "hierarchy/<school>/report.json",
+ "description": "The build's report: counters, exclusions, samples of what the rules dropped, and the provenance block.",
+ "x-file": "hierarchy/<school>/report.json",
+ "x-kind": "derived",
+ "x-writer": "tools/pi_hierarchy.py (tools/pihier/build.py write); provenance by tools/provenance.py",
+ "x-readers": [
+  "tools/build_regression.py",
+  "tools/chain_audit.py",
+  "tools/export_release.py",
+  "tools/make_release.py",
+  "tools/package_diff.py",
+  "tools/school_profiles.py"
+ ],
+ "x-rules": [
+  "R-AUD-06"
+ ],
+ "type": "object",
+ "properties": {
+  "school": {
+   "description": "School key.",
+   "type": "string",
+   "pattern": "^[a-z]+$"
+  },
+  "builtAt": {
+   "description": "Build time (UTC, ISO with Z).",
+   "type": "string",
+   "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}"
+  },
+  "counts": {
+   "description": "The build's counters, in the order the stages add them (a counter that never fired is absent unless listed as required).",
+   "type": "object",
+   "properties": {
+    "pis": {
+     "description": "PIs in pis.json.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "pis_excluded_by_review": {
+     "description": "PIs removed by a reviewed exclusion.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "pis_without_person": {
+     "description": "PIs with no collection person.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "labs_reused": {
+     "description": "Labs that reuse a single-leader collection unit.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "labs_new": {
+     "description": "New own labs.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "listing_years_after_move": {
+     "description": "Listing years set aside after an evidenced move (R-PAP-03).",
+     "type": "integer",
+     "minimum": 0
+    },
+    "student_records_rekeyed_from_pi_person_id": {
+     "description": "Student records re-keyed from a PI person id (R-STU-07).",
+     "type": "integer",
+     "minimum": 0
+    },
+    "student_records_merged": {
+     "description": "Student records merged within a lab.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "program_adviser_groups": {
+     "description": "Program-wide adviser groups found (R-STU-09).",
+     "type": "integer",
+     "minimum": 0
+    },
+    "pi_listed_as_own_student_dropped": {
+     "description": "PI records removed from their own lab (R-HIER-04).",
+     "type": "integer",
+     "minimum": 0
+    },
+    "student_same_name_other_labs_unmerged": {
+     "description": "Same-name student records in several labs, kept apart (R-HIER-03).",
+     "type": "integer",
+     "minimum": 0
+    },
+    "pis_with_students": {
+     "description": "PIs with 1+ student.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "students": {
+     "description": "Distinct student record ids.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "lab_student_pairs": {
+     "description": "Student records over all labs.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "students_dropped_program_or_reader_only": {
+     "description": "Students dropped whose every relation is weak (R-STU-02, R-STU-09, R-STU-10).",
+     "type": "integer",
+     "minimum": 0
+    },
+    "pis_with_dblp_list": {
+     "description": "PIs with a DBLP publication list.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "pis_with_own_publication_list": {
+     "description": "PIs with an institutional publication list.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "pis_with_lab_publication_page": {
+     "description": "PIs with a lab publications page.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "other_pi_reviewed_ids_blocked": {
+     "description": "Author ids blocked as another PI's reviewed id.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "sweep_name_hits": {
+     "description": "Sweep authorships matching a PI name.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "pi_work_list_hits": {
+     "description": "Hits found through the PIs' own work lists.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "dblp_ids_dropped_name_mismatch": {
+     "description": "DBLP pids dropped on a name conflict (R-PAP-05).",
+     "type": "integer",
+     "minimum": 0
+    },
+    "dblp_ids_from_dump_name": {
+     "description": "DBLP pids taken from a unique dump name.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "dblp_dump_titles_added": {
+     "description": "Titles added from the DBLP dump.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "pis_orcid_from_dblp": {
+     "description": "PIs given an ORCID from the DBLP dump.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "hit_without_school_affiliation": {
+     "description": "Name hits without a school basis.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "hit_without_identity": {
+     "description": "School hits without an identity anchor.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "outside_appointment": {
+     "description": "Hits outside the appointment.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "dated_by_venue_version": {
+     "description": "Deposits dated by their venue version (R-PAP-26).",
+     "type": "integer",
+     "minimum": 0
+    },
+    "dated_before_window": {
+     "description": "Deposits whose venue version predates 2016.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "namesake_claims_dropped": {
+     "description": "Rows dropped as namesake claims (R-PAP-14).",
+     "type": "integer",
+     "minimum": 0
+    },
+    "not_paper_dropped": {
+     "description": "Rows dropped as not papers (R-PAP-17..19, 22).",
+     "type": "integer",
+     "minimum": 0
+    },
+    "book_chapters_folded": {
+     "description": "Book chapters folded (R-PAP-15).",
+     "type": "integer",
+     "minimum": 0
+    },
+    "book_chapters_folded_by_doi_prefix": {
+     "description": "Venue-less chapters folded by DOI prefix (R-PAP-21).",
+     "type": "integer",
+     "minimum": 0
+    },
+    "translated_editions_dropped": {
+     "description": "Translated editions dropped.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "edition_records_merged": {
+     "description": "Edition records merged into a lead (R-PAP-16).",
+     "type": "integer",
+     "minimum": 0
+    },
+    "lab_papers": {
+     "description": "Rows of lab_papers.jsonl.gz.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "lab_papers_in_collection": {
+     "description": "Lab papers matched to a collection work.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "lab_papers_new": {
+     "description": "Lab papers with no collection work.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "lab_papers_by_period": {
+     "description": "Lab papers placed by a period.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "lab_papers_by_listing": {
+     "description": "Lab papers placed by a same-year listing.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "student_paper_links": {
+     "description": "Rows of student_papers.jsonl.gz.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "labs_with_student_papers": {
+     "description": "Labs with 1+ link.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "pis_with_lab_papers": {
+     "description": "PIs with 1+ lab paper.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "pis_complete_chain": {
+     "description": "PIs with lab papers, students and links.",
+     "type": "integer",
+     "minimum": 0
+    }
+   },
+   "patternProperties": {
+    "^identity:": {
+     "description": "Lab papers by identity label (lab_papers identity).",
+     "type": "integer",
+     "minimum": 0,
+     "x-rules": [
+      "R-PAP-04"
+     ]
+    },
+    "^student_link:": {
+     "description": "Links by basis (student_papers basis).",
+     "type": "integer",
+     "minimum": 0,
+     "x-rules": [
+      "R-LNK-01"
+     ]
+    },
+    "^not_paper:": {
+     "description": "Rows dropped as not papers, by reason tag.",
+     "type": "integer",
+     "minimum": 0,
+     "x-rules": [
+      "R-PAP-17",
+      "R-PAP-18",
+      "R-PAP-19",
+      "R-PAP-22"
+     ]
+    },
+    "^students_dropped_why:": {
+     "description": "Students dropped, by reason.",
+     "type": "integer",
+     "minimum": 0,
+     "x-rules": [
+      "R-STU-02",
+      "R-STU-09",
+      "R-STU-10"
+     ]
+    },
+    "^link_guard_": {
+     "description": "Given-name guard outcomes.",
+     "type": "integer",
+     "minimum": 0,
+     "x-rules": [
+      "R-LNK-02",
+      "R-LNK-02a"
+     ]
+    },
+    "^relation_evidence_": {
+     "description": "Re-captured relation evidence outcomes.",
+     "type": "integer",
+     "minimum": 0,
+     "x-rules": [
+      "R-STU-08"
+     ]
+    },
+    "^student_corrections_": {
+     "description": "Reviewed corrections applied, by action.",
+     "type": "integer",
+     "minimum": 0,
+     "x-rules": [
+      "R-STU-04"
+     ]
+    },
+    "^(dblp|labpage)_recovered_": {
+     "description": "Recovered rows (kept, or outside the appointment).",
+     "type": "integer",
+     "minimum": 0,
+     "x-rules": [
+      "R-PAP-24"
+     ]
+    },
+    "^(unaffiliated|school_via)_": {
+     "description": "School-basis route counters.",
+     "type": "integer",
+     "minimum": 0,
+     "x-rules": [
+      "R-PAP-11",
+      "R-PAP-12",
+      "R-PAP-20",
+      "R-PAP-25"
+     ]
+    }
+   },
+   "required": [
+    "pis",
+    "pis_excluded_by_review",
+    "pis_without_person",
+    "labs_reused",
+    "labs_new",
+    "student_records_rekeyed_from_pi_person_id",
+    "student_records_merged",
+    "program_adviser_groups",
+    "pi_listed_as_own_student_dropped",
+    "student_same_name_other_labs_unmerged",
+    "pis_with_students",
+    "students",
+    "lab_student_pairs",
+    "students_dropped_program_or_reader_only",
+    "pis_with_dblp_list",
+    "pis_with_own_publication_list",
+    "pis_with_lab_publication_page",
+    "other_pi_reviewed_ids_blocked",
+    "sweep_name_hits",
+    "pi_work_list_hits",
+    "dblp_ids_dropped_name_mismatch",
+    "namesake_claims_dropped",
+    "not_paper_dropped",
+    "book_chapters_folded",
+    "book_chapters_folded_by_doi_prefix",
+    "edition_records_merged",
+    "lab_papers",
+    "lab_papers_in_collection",
+    "lab_papers_new",
+    "lab_papers_by_period",
+    "lab_papers_by_listing",
+    "student_paper_links",
+    "labs_with_student_papers",
+    "pis_with_lab_papers",
+    "pis_complete_chain"
+   ],
+   "additionalProperties": {
+    "type": "integer",
+    "minimum": 0
+   }
+  },
+  "excluded": {
+   "description": "PIs removed by a reviewed exclusion (census-overrides.json exclude, gap-evidence not_pi_in_window).",
+   "type": "array",
+   "items": {
+    "description": "A sample.",
+    "type": "object",
+    "properties": {
+     "pi": {
+      "description": "Name.",
+      "type": "string"
+     },
+     "why": {
+      "description": "The reviewed reason.",
+      "type": [
+       "string",
+       "null"
+      ]
+     }
+    },
+    "required": [
+     "pi",
+     "why"
+    ],
+    "additionalProperties": false
+   }
+  },
+  "pisWithoutPapers": {
+   "description": "PIs with no lab paper.",
+   "type": "array",
+   "items": {
+    "type": "string"
+   }
+  },
+  "pisWithoutStudents": {
+   "description": "PIs with no student.",
+   "type": "array",
+   "items": {
+    "type": "string"
+   }
+  },
+  "censusNicknameMerges": {
+   "description": "Census rows merged by a nickname-equal given name: [first name, merged name].",
+   "type": "array",
+   "items": {
+    "description": "A pair.",
+    "type": "array",
+    "items": {
+     "type": "string"
+    },
+    "minItems": 2
+   }
+  },
+  "droppedProgramOrReaderOnly": {
+   "description": "Students dropped whose every relation is weak.",
+   "type": "array",
+   "items": {
+    "description": "A sample.",
+    "type": "object",
+    "properties": {
+     "pi": {
+      "description": "PI.",
+      "type": "string"
+     },
+     "student": {
+      "description": "Record id.",
+      "type": "string"
+     },
+     "name": {
+      "description": "Name.",
+      "type": "string"
+     },
+     "why": {
+      "description": "Reasons.",
+      "type": "array",
+      "items": {
+       "type": "string"
+      },
+      "x-rules": [
+       "R-STU-02",
+       "R-STU-09",
+       "R-STU-10"
+      ]
+     },
+     "roles": {
+      "description": "Roles / advising labels seen.",
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "pi",
+     "student",
+     "name",
+     "why",
+     "roles"
+    ],
+    "additionalProperties": false
+   }
+  },
+  "pisListedAsOwnStudent": {
+   "description": "Records of the PI found among their own students and removed.",
+   "type": "array",
+   "items": {
+    "description": "A sample.",
+    "type": "object",
+    "properties": {
+     "pi": {
+      "description": "PI.",
+      "type": "string"
+     },
+     "student": {
+      "description": "Record id.",
+      "type": "string"
+     },
+     "name": {
+      "description": "Name.",
+      "type": "string"
+     },
+     "roles": {
+      "description": "Roles.",
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     }
+    },
+    "required": [
+     "pi",
+     "student",
+     "name",
+     "roles"
+    ],
+    "additionalProperties": false
+   }
+  },
+  "linkGuardSamples": {
+   "description": "Up to 40 links the given-name guard removed.",
+   "type": "array",
+   "items": {
+    "description": "A sample.",
+    "type": "object",
+    "properties": {
+     "pi": {
+      "description": "PI.",
+      "type": "string"
+     },
+     "student": {
+      "description": "Student name.",
+      "type": "string"
+     },
+     "byline": {
+      "description": "Byline.",
+      "type": "string"
+     },
+     "oa": {
+      "description": "Work.",
+      "type": "string"
+     }
+    },
+    "required": [
+     "pi",
+     "student",
+     "byline",
+     "oa"
+    ],
+    "additionalProperties": false
+   }
+  },
+  "linkGuardKeptVariantSamples": {
+   "description": "Up to 40 links the literal guard would have removed but the variant rule kept.",
+   "type": "array",
+   "items": {
+    "description": "A sample.",
+    "type": "object",
+    "properties": {
+     "pi": {
+      "description": "PI.",
+      "type": "string"
+     },
+     "student": {
+      "description": "Student name.",
+      "type": "string"
+     },
+     "byline": {
+      "description": "Byline.",
+      "type": "string"
+     },
+     "oa": {
+      "description": "Work.",
+      "type": "string"
+     }
+    },
+    "required": [
+     "pi",
+     "student",
+     "byline",
+     "oa"
+    ],
+    "additionalProperties": false
+   }
+  },
+  "notPaperSamples": {
+   "description": "Samples of rows dropped as not papers, by reason tag.",
+   "type": "object",
+   "additionalProperties": {
+    "description": "Samples.",
+    "type": "array",
+    "items": {
+     "description": "A sample.",
+     "type": "object",
+     "properties": {
+      "pi": {
+       "description": "PI.",
+       "type": "string"
+      },
+      "oa": {
+       "description": "Work.",
+       "type": "string"
+      },
+      "title": {
+       "description": "Title.",
+       "type": [
+        "string",
+        "null"
+       ]
+      },
+      "venue": {
+       "description": "Venue.",
+       "type": [
+        "string",
+        "null"
+       ]
+      },
+      "type": {
+       "description": "Type.",
+       "type": [
+        "string",
+        "null"
+       ]
+      },
+      "doi": {
+       "description": "DOI.",
+       "type": [
+        "string",
+        "null"
+       ]
+      }
+     },
+     "required": [
+      "pi",
+      "oa",
+      "title",
+      "venue",
+      "type",
+      "doi"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "x-rules": [
+    "R-PAP-17"
+   ]
+  },
+  "page1ElsewhereSamples": {
+   "description": "Up to 40 unaffiliated-route works whose page 1 puts the authors elsewhere.",
+   "type": "array",
+   "items": {
+    "description": "A sample.",
+    "type": "object",
+    "properties": {
+     "pi": {
+      "description": "PI.",
+      "type": "string"
+     },
+     "oa": {
+      "description": "Work.",
+      "type": "string"
+     },
+     "title": {
+      "description": "Title.",
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "page1": {
+      "description": "Page read.",
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "mark": {
+      "description": "What page 1 shows (institution or company mark)."
+     }
+    },
+    "required": [
+     "pi",
+     "oa",
+     "title",
+     "page1",
+     "mark"
+    ],
+    "additionalProperties": false
+   }
+  },
+  "provenance": {
+   "description": "What the package was built from (tools/provenance.py); make_release.py refuses a package without a complete block.",
+   "type": "object",
+   "properties": {
+    "at": {
+     "description": "When the block was taken (UTC).",
+     "type": "string",
+     "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}"
+    },
+    "code": {
+     "description": "The code state.",
+     "type": "object",
+     "properties": {
+      "commit": {
+       "description": "git HEAD.",
+       "type": "string",
+       "pattern": "^[0-9a-f]{40}$"
+      },
+      "dirty": {
+       "description": "A tracked build path differs from HEAD.",
+       "type": "boolean"
+      },
+      "dirty_paths": {
+       "description": "Build paths that differ.",
+       "type": "array",
+       "items": {
+        "type": "string"
+       }
+      },
+      "other_dirty_paths": {
+       "description": "Other changed tracked paths.",
+       "type": "array",
+       "items": {
+        "type": "string"
+       }
+      },
+      "diff_sha256": {
+       "description": "sha256 of the diff of the dirty build paths.",
+       "type": "string",
+       "pattern": "^[0-9a-f]{64}$"
+      }
+     },
+     "required": [
+      "commit",
+      "dirty",
+      "dirty_paths",
+      "other_dirty_paths"
+     ],
+     "additionalProperties": false
+    },
+    "rules": {
+     "description": "The rule ids of docs/RULES.md and their decision notes.",
+     "type": "array",
+     "items": {
+      "description": "A rule.",
+      "type": "object",
+      "properties": {
+       "id": {
+        "description": "Rule id.",
+        "type": "string",
+        "pattern": "^R-[A-Z]+-\\d+[a-z]?$"
+       },
+       "decided": {
+        "description": "The heading note (date, who).",
+        "type": "string"
+       }
+      },
+      "required": [
+       "id",
+       "decided"
+      ],
+      "additionalProperties": false
+     },
+     "minItems": 1
+    },
+    "openalex_sweep": {
+     "description": "The OpenAlex sweep sqlite: file info, first/last fetch, pages, works.",
+     "type": [
+      "object",
+      "null"
+     ],
+     "properties": {
+      "path": {
+       "description": "File path.",
+       "type": "string"
+      },
+      "bytes": {
+       "description": "Size.",
+       "type": "integer",
+       "minimum": 0
+      },
+      "modified": {
+       "description": "mtime (UTC).",
+       "type": "string",
+       "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}"
+      },
+      "sha256": {
+       "description": "sha256 of the file.",
+       "type": "string",
+       "pattern": "^[0-9a-f]{64}$"
+      },
+      "first_fetched": {
+       "description": "First page fetch.",
+       "type": [
+        "string",
+        "null"
+       ]
+      },
+      "last_fetched": {
+       "description": "Last page fetch.",
+       "type": [
+        "string",
+        "null"
+       ]
+      },
+      "pages": {
+       "description": "Pages.",
+       "type": [
+        "integer",
+        "null"
+       ]
+      },
+      "works": {
+       "description": "Works.",
+       "type": [
+        "integer",
+        "null"
+       ]
+      }
+     },
+     "required": [
+      "path",
+      "sha256",
+      "last_fetched"
+     ]
+    },
+    "dblp_dump": {
+     "description": "The DBLP dump.",
+     "type": "object",
+     "properties": {
+      "file": {
+       "description": "Dump file.",
+       "type": "string"
+      },
+      "date": {
+       "description": "Dump date.",
+       "type": [
+        "string",
+        "null"
+       ],
+       "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+      },
+      "md5": {
+       "description": "Published md5.",
+       "type": [
+        "string",
+        "null"
+       ],
+       "pattern": "^[0-9a-f]{32}$"
+      }
+     },
+     "required": [
+      "file",
+      "date",
+      "md5"
+     ],
+     "additionalProperties": false
+    },
+    "dblp_persons": {
+     "description": "hierarchy/dblp-dump-persons.json.gz file info and its dump.",
+     "type": [
+      "object",
+      "null"
+     ],
+     "properties": {
+      "path": {
+       "description": "File path.",
+       "type": "string"
+      },
+      "bytes": {
+       "description": "Size.",
+       "type": "integer",
+       "minimum": 0
+      },
+      "modified": {
+       "description": "mtime (UTC).",
+       "type": "string",
+       "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}"
+      },
+      "sha256": {
+       "description": "sha256 of the file.",
+       "type": "string",
+       "pattern": "^[0-9a-f]{64}$"
+      },
+      "dump": {
+       "description": "Dump file name.",
+       "type": "string"
+      }
+     }
+    },
+    "pi_works": {
+     "description": "hierarchy/<school>/pi-works.sqlite file info and its counts, or {path, present: false}.",
+     "type": "object",
+     "properties": {
+      "path": {
+       "description": "File path.",
+       "type": "string"
+      },
+      "bytes": {
+       "description": "Size.",
+       "type": "integer",
+       "minimum": 0
+      },
+      "modified": {
+       "description": "mtime (UTC).",
+       "type": "string",
+       "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}"
+      },
+      "sha256": {
+       "description": "sha256 of the file.",
+       "type": "string",
+       "pattern": "^[0-9a-f]{64}$"
+      },
+      "present": {
+       "description": "False when the file is absent.",
+       "type": "boolean",
+       "const": false
+      },
+      "works": {
+       "description": "Works.",
+       "type": "integer"
+      },
+      "page1_reads": {
+       "description": "Page-1 reads.",
+       "type": "integer"
+      },
+      "page1_last_read": {
+       "description": "Last page-1 read.",
+       "type": [
+        "string",
+        "null"
+       ]
+      }
+     },
+     "required": [
+      "path"
+     ]
+    },
+    "reviewed_inputs": {
+     "description": "Every tracked reviewed input (JSON/CSV) and its sha256.",
+     "type": "object",
+     "additionalProperties": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+     }
+    },
+    "inputs": {
+     "description": "The school's other inputs (census, collection, listings, evidence files, recovered rows): path -> {bytes, modified, sha256}.",
+     "type": "object",
+     "additionalProperties": {
+      "description": "File info.",
+      "type": "object",
+      "properties": {
+       "bytes": {
+        "description": "Size.",
+        "type": "integer",
+        "minimum": 0
+       },
+       "modified": {
+        "description": "mtime (UTC).",
+        "type": "string",
+        "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}"
+       },
+       "sha256": {
+        "description": "sha256 of the file.",
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+       }
+      },
+      "required": [
+       "bytes",
+       "modified",
+       "sha256"
+      ],
+      "additionalProperties": false
+     }
+    }
+   },
+   "x-rules": [
+    "R-AUD-06"
+   ],
+   "required": [
+    "at",
+    "code",
+    "rules",
+    "openalex_sweep",
+    "dblp_dump",
+    "dblp_persons",
+    "pi_works",
+    "reviewed_inputs",
+    "inputs"
+   ],
+   "additionalProperties": false
+  }
+ },
+ "required": [
+  "school",
+  "builtAt",
+  "counts",
+  "excluded",
+  "pisWithoutPapers",
+  "pisWithoutStudents",
+  "censusNicknameMerges",
+  "droppedProgramOrReaderOnly",
+  "pisListedAsOwnStudent",
+  "linkGuardSamples",
+  "linkGuardKeptVariantSamples",
+  "notPaperSamples",
+  "page1ElsewhereSamples",
+  "provenance"
+ ],
+ "additionalProperties": false
+}

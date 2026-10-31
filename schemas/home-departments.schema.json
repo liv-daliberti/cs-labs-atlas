@@ -1,0 +1,121 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "hierarchy/home-departments.json",
+ "description": "A PI's home department, with evidence and a review status.",
+ "x-file": "hierarchy/home-departments.json",
+ "x-kind": "reviewed",
+ "x-writer": "hand-reviewed; tools/home_departments_school.py for onboarding schools",
+ "x-readers": [
+  "the site builder",
+  "tools/export_release.py",
+  "tools/school_profiles.py",
+  "tools/make_release.py",
+  "tools/census_build.py",
+  "tools/stage_gate.py"
+ ],
+ "type": "array",
+ "items": {
+  "description": "A PI.",
+  "type": "object",
+  "properties": {
+   "school": {
+    "description": "School key.",
+    "type": "string",
+    "pattern": "^[a-z]+$"
+   },
+   "name": {
+    "description": "PI name.",
+    "type": "string",
+    "minLength": 1
+   },
+   "home_department": {
+    "description": "The home department.",
+    "type": [
+     "string",
+     "null"
+    ]
+   },
+   "also": {
+    "description": "Other departments.",
+    "type": "array",
+    "items": {
+     "type": "string"
+    }
+   },
+   "no_academic_department": {
+    "description": "The PI has no academic department (institute-only, research staff).",
+    "type": "boolean"
+   },
+   "status": {
+    "description": "Review status.",
+    "type": "string",
+    "enum": [
+     "accepted",
+     "hold"
+    ]
+   },
+   "evidence": {
+    "$ref": "#/$defs/evidence",
+    "description": "The evidence item."
+   },
+   "note": {
+    "description": "Reviewer note.",
+    "type": "string"
+   },
+   "reason": {
+    "description": "Why (hold or no department).",
+    "type": "string"
+   }
+  },
+  "required": [
+   "school",
+   "name",
+   "home_department",
+   "status",
+   "evidence"
+  ]
+ },
+ "$defs": {
+  "evidence": {
+   "description": "An evidence item (url, sha256, verbatim quote; free-form extras).",
+   "type": "object",
+   "properties": {
+    "url": {
+     "description": "The page.",
+     "type": "string",
+     "minLength": 1
+    },
+    "sha256": {
+     "description": "sha256 of the captured bytes.",
+     "type": "string",
+     "pattern": "^[0-9a-f]{64}$"
+    },
+    "quote": {
+     "description": "Verbatim quote.",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "capture_url": {
+     "description": "The capture.",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "observed": {
+     "description": "When seen.",
+     "type": [
+      "string",
+      "null"
+     ]
+    }
+   },
+   "required": [
+    "url",
+    "sha256"
+   ]
+  }
+ }
+}

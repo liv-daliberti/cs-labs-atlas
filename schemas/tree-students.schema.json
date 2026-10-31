@@ -1,0 +1,77 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "schools/<school>/labs/<pi-slug>/students.csv",
+ "description": "One lab's students in the organized tree.",
+ "x-file": "schools/<school>/labs/<pi-slug>/students.csv",
+ "x-kind": "derived",
+ "x-writer": "tools/organize_tree.py",
+ "x-readers": [
+  "people browsing the organized tree (schools/<school>/labs/<pi-slug>/)"
+ ],
+ "x-format": "csv",
+ "type": "object",
+ "properties": {
+  "atlas_id": {
+   "description": "Atlas person id.",
+   "pattern": "^(atl:p:[0-9a-f]{12})?$",
+   "x-rules": [
+    "R-ID-05"
+   ],
+   "type": "string"
+  },
+  "name": {
+   "description": "Name.",
+   "minLength": 1,
+   "type": "string"
+  },
+  "id": {
+   "description": "students.json person.",
+   "minLength": 1,
+   "type": "string"
+  },
+  "aliases": {
+   "description": "Aliases, \"; \"-separated.",
+   "type": "string"
+  },
+  "roles": {
+   "description": "Roles, \"; \"-separated.",
+   "type": "string"
+  },
+  "years": {
+   "description": "Recorded years, \"; \"-separated.",
+   "pattern": "^(\\d{4}(; \\d{4})*)?$",
+   "type": "string"
+  },
+  "relations": {
+   "description": "Relation types, \"; \"-separated.",
+   "type": "string"
+  },
+  "sources": {
+   "description": "Source urls, \" | \"-separated (2,000 characters at most).",
+   "type": "string"
+  },
+  "lab_papers_linked": {
+   "description": "Links.",
+   "pattern": "^\\d+$",
+   "type": "string"
+  },
+  "also_pi": {
+   "description": "Atlas lab ids where the person is a PI.",
+   "pattern": "^(atl:l:\\S+(; atl:l:\\S+)*)?$",
+   "type": "string"
+  }
+ },
+ "required": [
+  "atlas_id",
+  "name",
+  "id",
+  "aliases",
+  "roles",
+  "years",
+  "relations",
+  "sources",
+  "lab_papers_linked",
+  "also_pi"
+ ],
+ "additionalProperties": false
+}

@@ -1,0 +1,152 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "export/data/schools/<school>/pis.csv",
+ "description": "The flat PI table of the GitHub export.",
+ "x-file": "export/data/schools/<school>/pis.csv",
+ "x-kind": "derived",
+ "x-writer": "tools/export_release.py",
+ "x-readers": [
+  "the public GitHub export (export/data/schools/<school>/)",
+  "tools/hf_upload_release.py"
+ ],
+ "x-format": "csv",
+ "type": "object",
+ "properties": {
+  "pi_id": {
+   "description": "<school>:<pi-slug>.",
+   "pattern": "^[a-z]+:[a-z0-9]+(-[a-z0-9]+)*$",
+   "type": "string"
+  },
+  "name": {
+   "description": "PI name.",
+   "minLength": 1,
+   "type": "string"
+  },
+  "department": {
+   "description": "Department shown (site rule, home-departments review).",
+   "type": "string"
+  },
+  "department_coverage": {
+   "description": "full: a core computing department; affiliated: an addition from another department.",
+   "enum": [
+    "full",
+    "affiliated",
+    ""
+   ],
+   "type": "string"
+  },
+  "scope": {
+   "description": "Why the PI is in the atlas.",
+   "enum": [
+    "core_computing_department",
+    "cs_related_addition"
+   ],
+   "type": "string"
+  },
+  "rank": {
+   "description": "Census rank code.",
+   "type": "string"
+  },
+  "title": {
+   "description": "Title as listed.",
+   "type": "string"
+  },
+  "lab_id": {
+   "description": "Collection unit id, else <school>-pi-lab-<slug>.",
+   "minLength": 1,
+   "type": "string"
+  },
+  "lab_name": {
+   "description": "Lab name.",
+   "minLength": 1,
+   "type": "string"
+  },
+  "lab_url": {
+   "description": "Lab url.",
+   "type": "string"
+  },
+  "atlas_unit_id": {
+   "description": "The site unit id of a reused lab unit.",
+   "type": "string"
+  },
+  "dblp": {
+   "description": "DBLP pids, space-separated.",
+   "pattern": "^(https://dblp\\.org/pid/\\S+( https://dblp\\.org/pid/\\S+)*)?$",
+   "type": "string"
+  },
+  "openalex": {
+   "description": "Reviewed OpenAlex ids (else up to 3 anchored), space-separated.",
+   "pattern": "^(https://openalex\\.org/A\\d+( https://openalex\\.org/A\\d+)*)?$",
+   "type": "string"
+  },
+  "orcid": {
+   "description": "ORCIDs, space-separated.",
+   "pattern": "^(\\d{4}-\\d{4}-\\d{4}-\\d{3}[\\dX]( \\d{4}-\\d{4}-\\d{4}-\\d{3}[\\dX])*)?$",
+   "type": "string"
+  },
+  "first_period_start": {
+   "description": "Earliest period start.",
+   "type": "string"
+  },
+  "listing_years": {
+   "description": "Listed years, space-separated.",
+   "pattern": "^(\\d{4}( \\d{4})*)?$",
+   "type": "string"
+  },
+  "lab_papers": {
+   "description": "Lab papers.",
+   "pattern": "^\\d+$",
+   "type": "string"
+  },
+  "students": {
+   "description": "Students.",
+   "pattern": "^\\d+$",
+   "type": "string"
+  },
+  "student_paper_links": {
+   "description": "Links.",
+   "pattern": "^\\d+$",
+   "type": "string"
+  },
+  "atlas_id": {
+   "description": "Atlas person id.",
+   "pattern": "^(atl:p:[0-9a-f]{12})?$",
+   "x-rules": [
+    "R-ID-05"
+   ],
+   "type": "string"
+  },
+  "atlas_lab_id": {
+   "description": "Atlas lab id.",
+   "pattern": "^(atl:l:[a-z]+:[a-z0-9]+(-[a-z0-9]+)*)?$",
+   "x-rules": [
+    "R-ID-05"
+   ],
+   "type": "string"
+  }
+ },
+ "required": [
+  "pi_id",
+  "name",
+  "department",
+  "department_coverage",
+  "scope",
+  "rank",
+  "title",
+  "lab_id",
+  "lab_name",
+  "lab_url",
+  "atlas_unit_id",
+  "dblp",
+  "openalex",
+  "orcid",
+  "first_period_start",
+  "listing_years",
+  "lab_papers",
+  "students",
+  "student_paper_links",
+  "atlas_id",
+  "atlas_lab_id"
+ ],
+ "additionalProperties": false
+}

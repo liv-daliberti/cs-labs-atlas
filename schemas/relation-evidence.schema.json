@@ -1,0 +1,131 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "hierarchy/<school>/relation-evidence.json",
+ "description": "Re-captured url, sha256 and quote for collection relations that had none, per (cited url, person).",
+ "x-file": "hierarchy/<school>/relation-evidence.json",
+ "x-kind": "reviewed",
+ "x-writer": "tools/relation_recapture.py (bodies in relation-captures.sqlite)",
+ "x-readers": [
+  "tools/pi_hierarchy.py (tools/pihier/students.py apply_relation_evidence)"
+ ],
+ "x-rules": [
+  "R-STU-08"
+ ],
+ "type": "object",
+ "properties": {
+  "_doc": {
+   "description": "What the file is.",
+   "type": "string"
+  },
+  "school": {
+   "description": "School key.",
+   "type": "string",
+   "pattern": "^[a-z]+$"
+  },
+  "made": {
+   "description": "When.",
+   "type": "string",
+   "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}"
+  },
+  "records": {
+   "description": "Records.",
+   "type": "array",
+   "items": {
+    "description": "A re-capture.",
+    "type": "object",
+    "properties": {
+     "url": {
+      "description": "The cited url.",
+      "type": "string"
+     },
+     "person": {
+      "description": "The student record id.",
+      "type": "string"
+     },
+     "name": {
+      "description": "Student name.",
+      "type": "string"
+     },
+     "pi": {
+      "description": "The PI the quote names (null for a student-only record).",
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "capture_url": {
+      "description": "The capture.",
+      "type": "string"
+     },
+     "sha256": {
+      "description": "sha256 of the captured bytes.",
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+     },
+     "quote": {
+      "description": "Verbatim quote naming the student.",
+      "type": "string",
+      "minLength": 1
+     },
+     "names_pi": {
+      "description": "The quote also names the PI or the PI's lab.",
+      "type": "boolean",
+      "x-rules": [
+       "R-AUD-09"
+      ]
+     },
+     "observed": {
+      "description": "Capture date.",
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "original_sha256": {
+      "description": "The earlier sha256.",
+      "type": [
+       "string",
+       "null"
+      ],
+      "pattern": "^[0-9a-f]{64}$"
+     },
+     "matches_original": {
+      "description": "Same bytes as the original.",
+      "type": [
+       "boolean",
+       "null"
+      ]
+     },
+     "method": {
+      "description": "Capture method.",
+      "type": [
+       "string",
+       "null"
+      ],
+      "examples": [
+       "local",
+       "live",
+       "api",
+       "oai",
+       "wayback"
+      ]
+     }
+    },
+    "required": [
+     "url",
+     "person",
+     "pi",
+     "sha256",
+     "quote",
+     "names_pi"
+    ],
+    "additionalProperties": false
+   }
+  }
+ },
+ "required": [
+  "school",
+  "records"
+ ],
+ "additionalProperties": false
+}

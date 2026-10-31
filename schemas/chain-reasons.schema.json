@@ -1,0 +1,114 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "hierarchy/chain-reasons.json",
+ "description": "Reviewed explained / fix verdicts for open chain-audit items: {school: {check: {item key: verdict}}}.",
+ "x-file": "hierarchy/chain-reasons.json",
+ "x-kind": "reviewed",
+ "x-writer": "hand-reviewed",
+ "x-readers": [
+  "tools/chain_audit.py"
+ ],
+ "x-rules": [
+  "R-AUD-01"
+ ],
+ "type": "object",
+ "additionalProperties": {
+  "description": "One school: per check.",
+  "type": "object",
+  "properties": {
+   "coverage": {
+    "description": "Items of check coverage by item key.",
+    "type": "object",
+    "additionalProperties": {
+     "$ref": "#/$defs/verdict"
+    }
+   },
+   "pi": {
+    "description": "Items of check pi by item key.",
+    "type": "object",
+    "additionalProperties": {
+     "$ref": "#/$defs/verdict"
+    }
+   },
+   "students": {
+    "description": "Items of check students by item key.",
+    "type": "object",
+    "additionalProperties": {
+     "$ref": "#/$defs/verdict"
+    }
+   },
+   "papers": {
+    "description": "Items of check papers by item key.",
+    "type": "object",
+    "additionalProperties": {
+     "$ref": "#/$defs/verdict"
+    }
+   },
+   "links": {
+    "description": "Items of check links by item key.",
+    "type": "object",
+    "additionalProperties": {
+     "$ref": "#/$defs/verdict"
+    }
+   },
+   "copies": {
+    "description": "Items of check copies by item key.",
+    "type": "object",
+    "additionalProperties": {
+     "$ref": "#/$defs/verdict"
+    }
+   },
+   "one_person": {
+    "description": "Items of check one_person by item key.",
+    "type": "object",
+    "additionalProperties": {
+     "$ref": "#/$defs/verdict"
+    }
+   },
+   "notes": {
+    "description": "Reviewer notes by item (not read by the audit).",
+    "type": "object",
+    "additionalProperties": {
+     "$ref": "#/$defs/verdict"
+    }
+   }
+  },
+  "additionalProperties": false
+ },
+ "$defs": {
+  "verdict": {
+   "description": "A reviewed verdict on one audit item.",
+   "type": "object",
+   "properties": {
+    "verdict": {
+     "description": "explained: the item has a reason; fix: work still to do (counts as open).",
+     "type": "string",
+     "enum": [
+      "explained",
+      "fix"
+     ],
+     "x-rules": [
+      "R-AUD-01"
+     ]
+    },
+    "reason": {
+     "description": "The reason (or what to fix).",
+     "type": "string",
+     "minLength": 1
+    },
+    "evidence": {
+     "description": "Evidence urls or items.",
+     "type": "array"
+    },
+    "reviewed": {
+     "description": "Review date.",
+     "type": "string"
+    }
+   },
+   "required": [
+    "verdict",
+    "reason"
+   ]
+  }
+ }
+}

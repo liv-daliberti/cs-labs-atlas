@@ -1,0 +1,337 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "hierarchy/<school>/labpage-additions.json",
+ "description": "Proposed lab-page students and papers, each with url, sha256, verbatim quote and the admitting rule.",
+ "x-file": "hierarchy/<school>/labpage-additions.json",
+ "x-kind": "reviewed",
+ "x-writer": "tools/labpage_audit.py (the lab-page agent; proposals, not read by the build until wired)",
+ "x-readers": [
+  "docs/LAB-PAGES.md acceptance (hand check)",
+  "tools/pi_hierarchy.py once wired"
+ ],
+ "type": "object",
+ "properties": {
+  "school": {
+   "description": "School key.",
+   "type": "string",
+   "pattern": "^[a-z]+$"
+  },
+  "generated_at": {
+   "description": "When.",
+   "type": "string",
+   "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}"
+  },
+  "tool": {
+   "description": "Writer.",
+   "type": "string"
+  },
+  "standard": {
+   "description": "Standard.",
+   "type": "string"
+  },
+  "status": {
+   "description": "Wiring status.",
+   "type": "string"
+  },
+  "rules": {
+   "description": "Rule texts.",
+   "type": "object",
+   "properties": {
+    "LP-STU-01": {
+     "description": "Student rule.",
+     "type": "string"
+    },
+    "LP-PAP-01": {
+     "description": "Paper rule.",
+     "type": "string"
+    }
+   }
+  },
+  "students": {
+   "description": "Proposed students.",
+   "type": "array",
+   "items": {
+    "$ref": "#/$defs/student"
+   }
+  },
+  "papers": {
+   "description": "Proposed papers.",
+   "type": "array",
+   "items": {
+    "$ref": "#/$defs/paper"
+   }
+  }
+ },
+ "required": [
+  "school",
+  "generated_at",
+  "rules",
+  "students",
+  "papers"
+ ],
+ "additionalProperties": false,
+ "$defs": {
+  "student": {
+   "description": "A proposed lab member (LP-STU-01): the labpage-evidence row shape plus pi, alumni, rule, auto.",
+   "type": "object",
+   "properties": {
+    "name": {
+     "description": "Name.",
+     "type": "string",
+     "minLength": 1
+    },
+    "role": {
+     "description": "Role stated by the entry, else null.",
+     "type": [
+      "string",
+      "null"
+     ],
+     "enum": [
+      "phd",
+      "postdoc",
+      "masters",
+      "undergraduate",
+      "member",
+      "other",
+      null
+     ]
+    },
+    "years": {
+     "description": "Years stated, else null.",
+     "type": [
+      "array",
+      "null"
+     ],
+     "items": {
+      "type": [
+       "integer",
+       "null"
+      ]
+     }
+    },
+    "url": {
+     "description": "The page.",
+     "type": "string"
+    },
+    "capture_url": {
+     "description": "The capture.",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "sha256": {
+     "description": "sha256 of the page.",
+     "type": "string",
+     "pattern": "^[0-9a-f]{64}$"
+    },
+    "quote": {
+     "description": "Verbatim entry.",
+     "type": "string",
+     "minLength": 1
+    },
+    "note": {
+     "description": "Section note.",
+     "type": "string"
+    },
+    "pi": {
+     "description": "PI.",
+     "type": "string"
+    },
+    "alumni": {
+     "description": "Listed as alumni.",
+     "type": "boolean"
+    },
+    "rule": {
+     "description": "Rule.",
+     "type": "string",
+     "const": "LP-STU-01"
+    },
+    "auto": {
+     "description": "Automatic.",
+     "type": "boolean",
+     "const": true
+    },
+    "pi_first_year": {
+     "description": "The PI's first year here.",
+     "type": [
+      "integer",
+      "null"
+     ]
+    },
+    "role_basis": {
+     "description": "Where the role comes from.",
+     "type": "string",
+     "enum": [
+      "section_heading",
+      "entry",
+      "reviewer",
+      "none"
+     ]
+    },
+    "years_basis": {
+     "description": "Where the years come from.",
+     "type": "string",
+     "enum": [
+      "stated_in_entry",
+      "section_year_heading",
+      "reviewer",
+      "none"
+     ]
+    }
+   },
+   "x-rules": [
+    "R-STU-01"
+   ],
+   "required": [
+    "name",
+    "role",
+    "years",
+    "url",
+    "sha256",
+    "quote",
+    "pi",
+    "alumni",
+    "rule",
+    "auto"
+   ]
+  },
+  "paper": {
+   "description": "A proposed lab paper (LP-PAP-01): the labpage-recovered row shape plus rule and audit_key.",
+   "type": "object",
+   "properties": {
+    "pi": {
+     "description": "PI.",
+     "type": "string"
+    },
+    "key": {
+     "description": "labpage:<sha1> key.",
+     "type": "string",
+     "pattern": "^labpage:[0-9a-f]{40}$"
+    },
+    "title": {
+     "description": "Title.",
+     "type": "string"
+    },
+    "year": {
+     "description": "Year.",
+     "type": "integer",
+     "minimum": 2016,
+     "maximum": 2026
+    },
+    "doi": {
+     "description": "DOI.",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "venue": {
+     "description": "Venue.",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "byline": {
+     "description": "Byline.",
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "arxiv": {
+     "description": "arXiv id.",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "evidence": {
+     "description": "Why the paper is the lab's.",
+     "type": "object",
+     "properties": {
+      "basis": {
+       "description": "School basis.",
+       "type": "string",
+       "enum": [
+        "page1_arxiv",
+        "page1_open",
+        "openalex_authorship"
+       ]
+      },
+      "labpage": {
+       "description": "The listing on the lab page.",
+       "type": "object",
+       "properties": {
+        "url": {
+         "description": "Page.",
+         "type": "string"
+        },
+        "sha256": {
+         "description": "sha256.",
+         "type": "string",
+         "pattern": "^[0-9a-f]{64}$"
+        },
+        "quote": {
+         "description": "Entry.",
+         "type": "string"
+        }
+       },
+       "required": [
+        "url",
+        "sha256",
+        "quote"
+       ]
+      },
+      "appointment": {
+       "description": "periodId or listing year.",
+       "type": "object"
+      }
+     },
+     "required": [
+      "basis",
+      "labpage",
+      "appointment"
+     ]
+    },
+    "rule": {
+     "description": "Rule.",
+     "type": "string",
+     "const": "LP-PAP-01"
+    },
+    "audit_key": {
+     "description": "Audit key.",
+     "type": "string"
+    },
+    "listed_title": {
+     "description": "Title as listed.",
+     "type": "string"
+    },
+    "title_basis": {
+     "description": "How the title was fixed.",
+     "type": "string"
+    },
+    "flags": {
+     "description": "Flags.",
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    }
+   },
+   "x-rules": [
+    "R-PAP-04"
+   ],
+   "required": [
+    "pi",
+    "key",
+    "title",
+    "year",
+    "byline",
+    "evidence",
+    "rule"
+   ]
+  }
+ }
+}

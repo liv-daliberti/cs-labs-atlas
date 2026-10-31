@@ -1,0 +1,212 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "hierarchy/EVIDENCE-CHECK.json",
+ "description": "The build-time evidence check: every claim in the packages carries its evidence; counts over the whitelist fail the release.",
+ "x-file": "hierarchy/EVIDENCE-CHECK.json",
+ "x-kind": "derived",
+ "x-writer": "tools/evidence_check.py",
+ "x-readers": [
+  "tools/make_release.py"
+ ],
+ "x-rules": [
+  "R-AUD-05",
+  "R-AUD-09",
+  "R-AUD-10"
+ ],
+ "type": "object",
+ "properties": {
+  "at": {
+   "description": "When (UTC).",
+   "type": "string",
+   "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}"
+  },
+  "mode": {
+   "description": "strict fails over the whitelist; report only counts.",
+   "type": "string",
+   "enum": [
+    "strict",
+    "report"
+   ]
+  },
+  "whitelist": {
+   "description": "The whitelist file read.",
+   "type": "string"
+  },
+  "schools": {
+   "description": "Per school, per category.",
+   "type": "object",
+   "additionalProperties": {
+    "description": "A school.",
+    "type": "object",
+    "properties": {
+     "pi_period": {
+      "$ref": "#/$defs/category",
+      "description": "pi_period"
+     },
+     "faculty_listing": {
+      "$ref": "#/$defs/category",
+      "description": "faculty_listing"
+     },
+     "student_relation": {
+      "$ref": "#/$defs/category",
+      "description": "student_relation"
+     },
+     "student_relation_student_only": {
+      "$ref": "#/$defs/category",
+      "description": "student_relation_student_only"
+     },
+     "student_no_relation": {
+      "$ref": "#/$defs/category",
+      "description": "student_no_relation"
+     },
+     "paper_school_basis": {
+      "$ref": "#/$defs/category",
+      "description": "paper_school_basis"
+     },
+     "paper_appointment": {
+      "$ref": "#/$defs/category",
+      "description": "paper_appointment"
+     },
+     "link_byline": {
+      "$ref": "#/$defs/category",
+      "description": "link_byline"
+     },
+     "link_relation_source": {
+      "$ref": "#/$defs/category",
+      "description": "link_relation_source"
+     },
+     "link_relation_source_student_only": {
+      "$ref": "#/$defs/category",
+      "description": "link_relation_source_student_only"
+     },
+     "unavailable_missing": {
+      "$ref": "#/$defs/category",
+      "description": "unavailable_missing"
+     },
+     "unavailable_stale": {
+      "$ref": "#/$defs/category",
+      "description": "unavailable_stale"
+     },
+     "unavailable_incomplete": {
+      "$ref": "#/$defs/category",
+      "description": "unavailable_incomplete"
+     }
+    },
+    "required": [
+     "pi_period",
+     "faculty_listing",
+     "student_relation",
+     "student_relation_student_only",
+     "student_no_relation",
+     "paper_school_basis",
+     "paper_appointment",
+     "link_byline",
+     "link_relation_source",
+     "link_relation_source_student_only",
+     "unavailable_missing",
+     "unavailable_stale",
+     "unavailable_incomplete"
+    ],
+    "additionalProperties": false
+   }
+  },
+  "over_whitelist": {
+   "description": "Categories over their allowed count.",
+   "type": "array",
+   "items": {
+    "description": "An overrun.",
+    "type": "object",
+    "properties": {
+     "school": {
+      "description": "School.",
+      "type": "string"
+     },
+     "category": {
+      "description": "Category.",
+      "type": "string",
+      "enum": [
+       "pi_period",
+       "faculty_listing",
+       "student_relation",
+       "student_relation_student_only",
+       "student_no_relation",
+       "paper_school_basis",
+       "paper_appointment",
+       "link_byline",
+       "link_relation_source",
+       "link_relation_source_student_only",
+       "unavailable_missing",
+       "unavailable_stale",
+       "unavailable_incomplete"
+      ]
+     },
+     "n": {
+      "description": "Violations.",
+      "type": "integer"
+     },
+     "whitelisted": {
+      "description": "Allowed.",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "school",
+     "category",
+     "n",
+     "whitelisted"
+    ],
+    "additionalProperties": false
+   }
+  },
+  "ok": {
+   "description": "Nothing over the whitelist.",
+   "type": "boolean"
+  }
+ },
+ "required": [
+  "at",
+  "mode",
+  "whitelist",
+  "schools",
+  "over_whitelist",
+  "ok"
+ ],
+ "additionalProperties": false,
+ "$defs": {
+  "category": {
+   "description": "One category of one school.",
+   "type": "object",
+   "properties": {
+    "n": {
+     "description": "Violations.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "of": {
+     "description": "Items checked.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "samples": {
+     "description": "Up to 15 item keys.",
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "whitelisted": {
+     "description": "Allowed count (docs/evidence-whitelist.json).",
+     "type": "integer",
+     "minimum": 0
+    }
+   },
+   "required": [
+    "n",
+    "of",
+    "samples",
+    "whitelisted"
+   ],
+   "additionalProperties": false
+  }
+ }
+}

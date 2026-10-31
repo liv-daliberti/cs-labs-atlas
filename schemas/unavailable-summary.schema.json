@@ -1,0 +1,137 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "hierarchy/<school>/unavailable-summary.json",
+ "description": "The ledger's counts by reason, publisher and missing check.",
+ "x-file": "hierarchy/<school>/unavailable-summary.json",
+ "x-kind": "derived",
+ "x-writer": "fulltext-push/unavailable_ledger.py",
+ "x-readers": [
+  "tools/build_regression.py",
+  "tools/lab_paper_copies.py (ledger_built_at)",
+  "tools/make_release.py"
+ ],
+ "x-rules": [
+  "R-AUD-10"
+ ],
+ "type": "object",
+ "properties": {
+  "school": {
+   "description": "School key.",
+   "type": "string",
+   "pattern": "^[a-z]+$"
+  },
+  "built_at": {
+   "description": "Ledger run time (= the records' checked_at).",
+   "type": "string",
+   "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}"
+  },
+  "max_age_days": {
+   "description": "Check reuse age.",
+   "type": "number",
+   "minimum": 0
+  },
+  "offline": {
+   "description": "Run without network.",
+   "type": "boolean"
+  },
+  "inputs": {
+   "description": "mtimes of the inputs.",
+   "type": "object",
+   "properties": {
+    "copies_json": {
+     "description": "copies.json mtime.",
+     "type": "string",
+     "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}"
+    },
+    "lab_papers": {
+     "description": "lab_papers.jsonl.gz mtime.",
+     "type": "string",
+     "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}"
+    }
+   },
+   "required": [
+    "copies_json",
+    "lab_papers"
+   ],
+   "additionalProperties": false
+  },
+  "papers": {
+   "description": "Ledger records.",
+   "type": "integer",
+   "minimum": 0
+  },
+  "by_reason": {
+   "description": "Records by reason_code.",
+   "type": "object",
+   "patternProperties": {
+    "^(found_awaiting_download|found_not_in_catalog|pending_retry|incomplete_check|identity_unconfirmed|open_copy_bot_challenge|open_copy_behind_login|open_copy_robots_disallowed|landing_page_without_pdf|open_copy_unusable|paywall_only|publisher_only_closed|no_doi_no_match)$": {
+     "type": "integer",
+     "minimum": 0
+    }
+   },
+   "additionalProperties": false,
+   "x-rules": [
+    "R-AUD-10"
+   ]
+  },
+  "by_publisher": {
+   "description": "Records by publisher (top 40).",
+   "type": "object",
+   "additionalProperties": {
+    "type": "integer",
+    "minimum": 0
+   }
+  },
+  "by_reason_publisher": {
+   "description": "Per reason_code, records by publisher (top 15).",
+   "type": "object",
+   "patternProperties": {
+    "^(found_awaiting_download|found_not_in_catalog|pending_retry|incomplete_check|identity_unconfirmed|open_copy_bot_challenge|open_copy_behind_login|open_copy_robots_disallowed|landing_page_without_pdf|open_copy_unusable|paywall_only|publisher_only_closed|no_doi_no_match)$": {
+     "description": "By publisher.",
+     "type": "object",
+     "additionalProperties": {
+      "type": "integer",
+      "minimum": 0
+     }
+    }
+   },
+   "additionalProperties": false
+  },
+  "final": {
+   "description": "Records with a final reason.",
+   "type": "integer",
+   "minimum": 0
+  },
+  "not_final": {
+   "description": "Records with a non-final reason.",
+   "type": "integer",
+   "minimum": 0
+  },
+  "missing_checks": {
+   "description": "Missing checks by source.",
+   "type": "object",
+   "patternProperties": {
+    "^(openalex|arxiv|s2|core|pmc|dblp|proceedings|repository|labpages|wayback_acm)$": {
+     "type": "integer",
+     "minimum": 0
+    }
+   },
+   "additionalProperties": false
+  }
+ },
+ "required": [
+  "school",
+  "built_at",
+  "max_age_days",
+  "offline",
+  "inputs",
+  "papers",
+  "by_reason",
+  "by_publisher",
+  "by_reason_publisher",
+  "final",
+  "not_final",
+  "missing_checks"
+ ],
+ "additionalProperties": false
+}

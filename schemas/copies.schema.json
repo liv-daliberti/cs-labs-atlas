@@ -1,0 +1,263 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "hierarchy/<school>/copies.json",
+ "description": "Which lab papers have a local full-text copy in the school catalog, and why not (access-review cause, ledger reason).",
+ "x-file": "hierarchy/<school>/copies.json",
+ "x-kind": "derived",
+ "x-writer": "tools/lab_paper_copies.py (run, attach_ledger)",
+ "x-readers": [
+  "tools/chain_audit.py",
+  "tools/evidence_check.py",
+  "tools/organize_tree.py",
+  "tools/make_release.py",
+  "fulltext-push/unavailable_ledger.py",
+  "tools/school_profiles.py"
+ ],
+ "x-rules": [
+  "R-AUD-07",
+  "R-AUD-10"
+ ],
+ "type": "object",
+ "properties": {
+  "summary": {
+   "description": "Counts by status (the collector catalog vocabulary; local = downloaded or fulltext_xml).",
+   "type": "object",
+   "properties": {
+    "school": {
+     "description": "School key.",
+     "type": "string",
+     "pattern": "^[a-z]+$"
+    },
+    "lab_papers": {
+     "description": "Unique papers (paper keys).",
+     "type": "integer",
+     "minimum": 0
+    },
+    "local": {
+     "description": "Papers with a local copy.",
+     "type": "integer",
+     "minimum": 0
+    },
+    "local_share": {
+     "description": "local / lab_papers, 3 decimals.",
+     "type": "number",
+     "minimum": 0,
+     "maximum": 1
+    },
+    "counted_at": {
+     "description": "When the coverage was counted (UTC); the ledger staleness check compares to it.",
+     "type": "string",
+     "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}",
+     "x-rules": [
+      "R-AUD-10"
+     ]
+    },
+    "ledger_built_at": {
+     "description": "unavailable-summary.json built_at of the attached ledger.",
+     "type": [
+      "string",
+      "null"
+     ],
+     "x-rules": [
+      "R-AUD-10"
+     ]
+    }
+   },
+   "patternProperties": {
+    "^access_cause:": {
+     "description": "needs_access_review papers by access-review cause.",
+     "type": "integer",
+     "minimum": 0,
+     "x-rules": [
+      "R-AUD-07"
+     ]
+    },
+    "^unavailable:": {
+     "description": "Non-local papers by ledger reason_code.",
+     "type": "integer",
+     "minimum": 0,
+     "x-rules": [
+      "R-AUD-10"
+     ]
+    }
+   },
+   "required": [
+    "school",
+    "lab_papers",
+    "local_share",
+    "counted_at"
+   ],
+   "additionalProperties": {
+    "type": "integer",
+    "minimum": 0
+   }
+  },
+  "papers": {
+   "description": "Per paper key (lab_papers work, else oa).",
+   "type": "object",
+   "additionalProperties": {
+    "$ref": "#/$defs/paper"
+   }
+  }
+ },
+ "required": [
+  "summary",
+  "papers"
+ ],
+ "additionalProperties": false,
+ "$defs": {
+  "paper": {
+   "description": "One unique paper.",
+   "type": "object",
+   "properties": {
+    "status": {
+     "description": "Catalog status of the matched work (downloaded, fulltext_xml = local), or not_in_catalog; identity_unconfirmed for a downloaded copy whose identity is pending.",
+     "type": "string",
+     "examples": [
+      "downloaded",
+      "fulltext_xml",
+      "queued",
+      "needs_access_review",
+      "quarantined_robots_ai",
+      "identity_unconfirmed",
+      "not_in_catalog"
+     ]
+    },
+    "catalog": {
+     "description": "The catalog work id holding (or queued for) the copy.",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "doi": {
+     "description": "DOI of the lab paper.",
+     "type": [
+      "string",
+      "null"
+     ],
+     "pattern": "^(10\\.\\S+/\\S*)?$"
+    },
+    "oa": {
+     "description": "oa of the lab paper.",
+     "type": "string"
+    },
+    "year": {
+     "description": "Year.",
+     "type": [
+      "integer",
+      "null"
+     ]
+    },
+    "access_verdict": {
+     "description": "Access-review verdict (needs_access_review only).",
+     "type": [
+      "string",
+      "null"
+     ],
+     "enum": [
+      "closed",
+      "requeue_untried",
+      "requeue_transient",
+      null
+     ],
+     "x-rules": [
+      "R-AUD-07"
+     ]
+    },
+    "access_cause": {
+     "description": "Deciding access-review cause (needs_access_review only).",
+     "type": [
+      "string",
+      "null"
+     ],
+     "enum": [
+      "challenge",
+      "login",
+      "paywall_or_forbidden",
+      "publisher_landing_no_pdf",
+      "robots_disallow",
+      "robots_unavailable",
+      "embargoed",
+      "not_found",
+      "integrity_mismatch",
+      "unapproved_redirect",
+      "landing_no_pdf",
+      "not_pdf",
+      "identity_mismatch",
+      "tls_error",
+      "too_large",
+      "policy_skip",
+      "transient_on_challenge_or_publisher_host",
+      "transient_exhausted",
+      "transient",
+      "other",
+      "no_attempts",
+      null
+     ],
+     "x-rules": [
+      "R-AUD-07"
+     ]
+    },
+    "access_causes": {
+     "description": "Every cause seen: cause -> URLs.",
+     "type": [
+      "object",
+      "null"
+     ],
+     "additionalProperties": {
+      "type": "integer",
+      "minimum": 0
+     },
+     "x-rules": [
+      "R-AUD-07"
+     ]
+    },
+    "unavailable_reason": {
+     "description": "The ledger's reason_code (non-local papers with a ledger record).",
+     "type": [
+      "string",
+      "null"
+     ],
+     "enum": [
+      "found_awaiting_download",
+      "found_not_in_catalog",
+      "pending_retry",
+      "incomplete_check",
+      "identity_unconfirmed",
+      "open_copy_bot_challenge",
+      "open_copy_behind_login",
+      "open_copy_robots_disallowed",
+      "landing_page_without_pdf",
+      "open_copy_unusable",
+      "paywall_only",
+      "publisher_only_closed",
+      "no_doi_no_match",
+      null
+     ],
+     "x-rules": [
+      "R-AUD-10"
+     ]
+    },
+    "unavailable_summary": {
+     "description": "The ledger's one-sentence summary.",
+     "type": [
+      "string",
+      "null"
+     ],
+     "x-rules": [
+      "R-AUD-10"
+     ]
+    }
+   },
+   "required": [
+    "status",
+    "catalog",
+    "doi",
+    "oa",
+    "year"
+   ],
+   "additionalProperties": false
+  }
+ }
+}

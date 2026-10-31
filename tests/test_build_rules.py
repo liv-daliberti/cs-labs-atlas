@@ -77,10 +77,10 @@ SWEEP = [
     work('W6', 'Before the Appointment', 2010, [au('Ada Lovelace', 'A1')]),                                     # R-PAP-01
     work('W7', 'A Listed Year', 2020, [au('Grace Hopper', 'A2')]),
     work('W8', 'A Student Row Year', 2021, [au('Grace Hopper', 'A2')]),                                          # R-PAP-02
-    work('W9', 'Mixed Record Paper', 2020, [au('Ada Lovelace', 'M1'), au('Alan Turing', 'A9')]),                 # R-PAP-06
+    work('W9', 'Mixed Record Paper', 2020, [au('Ada Lovelace', 'A77'), au('Alan Turing', 'A9')]),                 # R-PAP-06
 ]
 OVERRIDES = {SCHOOL: {
-    'Ada Lovelace': dict(openalex=[OA + 'A1'], mixed_openalex=[OA + 'M1'],
+    'Ada Lovelace': dict(openalex=[OA + 'A1'], mixed_openalex=[OA + 'A77'],
                          periods=[dict(id='reviewed:ada-lovelace:1', start='2015', end=None, evidence=[src('Ada Lovelace joined Princeton in 2015.')])]),
     'Grace Hopper': dict(openalex=[OA + 'A2']),
 }}
@@ -242,10 +242,10 @@ def test_R_PAP_05_dblp_dump():
 
 
 def test_R_PAP_06_mixed_ids_neither_anchor_nor_block(built):
-    assert OA + 'M1' not in built.blocked['Ada Lovelace'] and OA + 'M1' in built.mixed['Ada Lovelace']
-    assert OA + 'M1' not in built.anchored['Ada Lovelace'] and built.anchored['Ada Lovelace'][OA + 'A1'] >= 1
+    assert OA + 'A77' not in built.blocked['Ada Lovelace'] and OA + 'A77' in built.mixed['Ada Lovelace']
+    assert OA + 'A77' not in built.anchored['Ada Lovelace'] and built.anchored['Ada Lovelace'][OA + 'A1'] >= 1
     r = rows_of(built, 'Ada Lovelace')['Mixed Record Paper']                                 # kept on per-work evidence
-    assert r['identity'] == 'advisee_coauthor' and r['authorship']['author_id'] == OA + 'M1'
+    assert r['identity'] == 'advisee_coauthor' and r['authorship']['author_id'] == OA + 'A77'
 
 
 def test_R_PAP_08_generational_suffixes():

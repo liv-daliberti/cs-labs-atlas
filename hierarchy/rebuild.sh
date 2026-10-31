@@ -12,6 +12,8 @@
 #   evidence    tools/evidence_check.py: every claim carries its evidence -> hierarchy/EVIDENCE-CHECK.md; a failure holds the release
 #   tests       pytest tests/
 #   regression  tools/build_regression.py check against the snapshot -> hierarchy/BUILD-REGRESSION.md (+ .json)
+#   validate    tools/validate.py: every package and shared derived file against schemas/ (docs/DATA-DICTIONARY.md)
+#               -> hierarchy/VALIDATION.json; a violation fails the stage and holds the release
 #   release     tools/make_release.py -> /n/fs/resemble/homogenizing-science/releases/<date>[.N]/ and releases/latest; only when
 #               every earlier stage passed and the regression flagged nothing (ALLOW_SWINGS=1 releases anyway)
 #   tree        tools/organize_tree.py from releases/latest -> /n/fs/resemble/homogenizing-science/schools/
@@ -24,7 +26,7 @@ set -u -o pipefail
 cd "$CS_ATLAS_WORK" || exit 1
 PY="nice -n10 $CS_ATLAS_PY -u"  # the project interpreter (env/atlas; tools/atlas_paths.py PY)
 SCHOOLS=${SCHOOLS:-$CS_ATLAS_SCHOOLS}
-STAGES=${STAGES:-snapshot build ids copies ledger audits evidence tests regression release tree}
+STAGES=${STAGES:-snapshot build ids copies ledger audits evidence tests regression validate release tree}
 TAG=${TAG:-local-$(date +%Y%m%d-%H%M%S)}
 BEFORE=${BEFORE:-hierarchy/logs/pkg-before-$TAG}
 has() { case " $STAGES " in *" $1 "*) return 0 ;; esac; return 1; }
@@ -78,6 +80,10 @@ if has regression; then
   $PY tools/build_regression.py check --before "$BEFORE/counts.json"; rc=$?
   [ $rc = 2 ] && swings=1
   [ $rc = 1 ] && fail=1
+fi
+if has validate; then
+  # (2026-10-31, ROADMAP item 9) the packages and the shared derived files against their schemas
+  echo "== validate $(date +%T)"; $PY tools/validate.py $SCHOOLS --shared --json "$($CS_ATLAS_PY -c 'import sys; sys.path.insert(0, "tools"); import atlas_paths as P; print(P.data("VALIDATION.json"))')" || { echo "FAILED validate"; fail=1; }
 fi
 if has release; then
   if [ $fail != 0 ]; then echo "== release skipped: a stage failed"

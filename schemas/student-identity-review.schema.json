@@ -1,0 +1,129 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "hierarchy/student-identity-review.json",
+ "description": "Verdicts on two records of one lab: one person (merged) or different people.",
+ "x-file": "hierarchy/student-identity-review.json",
+ "x-kind": "reviewed",
+ "x-writer": "hand-reviewed (same-name research)",
+ "x-readers": [
+  "tools/pi_hierarchy.py (tools/pihier/students.py identity_review)",
+  "tools/chain_audit.py"
+ ],
+ "x-rules": [
+  "R-STU-04"
+ ],
+ "type": "array",
+ "items": {
+  "description": "A verdict.",
+  "type": "object",
+  "properties": {
+   "school": {
+    "description": "School key.",
+    "type": "string",
+    "pattern": "^[a-z]+$"
+   },
+   "pi": {
+    "description": "The lab.",
+    "type": "string"
+   },
+   "a": {
+    "description": "[record id, name].",
+    "type": "array",
+    "items": {
+     "type": "string"
+    },
+    "minItems": 2
+   },
+   "b": {
+    "description": "[record id, name].",
+    "type": "array",
+    "items": {
+     "type": "string"
+    },
+    "minItems": 2
+   },
+   "verdict": {
+    "description": "same_person merges the records; different_people only feeds the chain audit.",
+    "type": "string",
+    "enum": [
+     "same_person",
+     "different_people"
+    ],
+    "x-rules": [
+     "R-STU-04",
+     "R-AUD-03"
+    ]
+   },
+   "canonical_name": {
+    "description": "The merged record's name.",
+    "type": [
+     "string",
+     "null"
+    ]
+   },
+   "reason": {
+    "description": "Why.",
+    "type": "string",
+    "minLength": 1
+   },
+   "evidence": {
+    "description": "Evidence items.",
+    "type": "array",
+    "items": {
+     "$ref": "#/$defs/evidence"
+    }
+   }
+  },
+  "required": [
+   "school",
+   "pi",
+   "a",
+   "b",
+   "verdict",
+   "reason"
+  ]
+ },
+ "$defs": {
+  "evidence": {
+   "description": "An evidence item (url, sha256, verbatim quote; free-form extras).",
+   "type": "object",
+   "properties": {
+    "url": {
+     "description": "The page.",
+     "type": "string",
+     "minLength": 1
+    },
+    "sha256": {
+     "description": "sha256 of the captured bytes.",
+     "type": "string",
+     "pattern": "^[0-9a-f]{64}$"
+    },
+    "quote": {
+     "description": "Verbatim quote.",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "capture_url": {
+     "description": "The capture.",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "observed": {
+     "description": "When seen.",
+     "type": [
+      "string",
+      "null"
+     ]
+    }
+   },
+   "required": [
+    "url",
+    "sha256"
+   ]
+  }
+ }
+}
