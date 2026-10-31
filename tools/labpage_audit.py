@@ -85,6 +85,7 @@ STUDENT_REASONS = {
     'name_unresolved': 'a fragment, first name only, or not a person name',
     'merged_under_variant': 'in the build under another spelling of the same name (within this lab)',
     'dropped_by_review': 'in the reviewed corrections (hierarchy/student-corrections.json) as not this lab',
+    'shared_page_no_adviser': 'a people page several PIs share (a centre or group listing); the entry does not name this PI as adviser',
     'after_pi_left': "the PI left the school; the entry is undated or dated after the move (another institution's member)",
     'reviewer_excluded': 'the 2026-10-22 lab-page reviewer excluded the name or its section (non-person, collaborator, other lab)',
     'undated_cannot_place': 'the page lists members of every era without dates and the reviewer required dates',
@@ -522,6 +523,8 @@ PUBS_LINK = re.compile(r'^\W*((selected|recent|all|full|research|our|lab|group)\
 STUDENT_HEAD = re.compile(r'\b(students?|advisees?|ph\.?\s?d|postdocs?|group members|lab members|current members|alumni|'
                           r'graduated|mentees|research group|post-?docs?|post-?doctoral|graduates?|undergrad\w*|members|team|people|'
                           r'researchers|visitors|former|current|doctoral|masters?|interns?|staff)\b', re.I)
+GENERIC_PAGE_RX = re.compile(r'/(undergraduate|graduate|admissions?|visit|apply|news|events?|students|academics|programs?|'
+                             r'giving|calendar|directory|about-us|contact)\b', re.I)
 PROFILE_RX = re.compile(r'/(people|faculty|directory|profiles?|person|staff|our-people|bios?)/(profile/|faculty/)?[^/?#]+'
                         r'(/(overview|bio|about|profile|research|publications))?/?$', re.I)
 NOT_HOME = re.compile(r'/news/|/events?/|/article|wikipedia|/\d{4}/\d{2}/|people-list|/people/?$|/faculty/?$|/directory|'
@@ -762,7 +765,8 @@ def discover_lab(kit, school, p, ctx, full=True):
             via=src, capture_url=r.get('capture_url'), sha256=r.get('sha256'),
             final_url=r.get('final_url') if r.get('final_url') and r.get('final_url') != u else None)
         # a frameset or script-built homepage: kept when the school's own profile links it, or DBLP / ORCID name it on the school's domain
-        if txt and (names_pi or src == 'school_profile_link' or (strong and re.search(dom, host))):
+        generic = bool(GENERIC_PAGE_RX.search(urlsplit(u).path or '')) or (host.split('.')[0] in ('www', 'grad', 'admissions', 'apply'))
+        if txt and (names_pi or (not generic and (src == 'school_profile_link' or (strong and re.search(dom, host))))):
             title = ''
             m = re.search(rb'<title[^>]*>(.*?)</title>', r['content'][:20000], re.I | re.S)
             if m:
@@ -1097,7 +1101,9 @@ def pm_candidates(kit, school, pi, plan, held):
             x['single_token'] = len(names.parse(x['name'])['tokens']) < 2
             x['years'] = yrs.get(fn, x['years']) or paren_years(x.get('desc'))
             hr_ = kit.autom._role(x.get('head') or '')[0] if auto_plan else None
-            if hr_ in ('phd', 'postdoc', 'masters', 'undergraduate'):
+            own_ = re.match(r'^\W{0,3}\(|^\W{0,3}\S+(?:\s\S+){0,3}\s*$', (x.get('desc') or '')[:40]) or \
+                kit.autom._role((x.get('desc') or '')[:25])[0]  # '(student, UC Berkeley, PhD ...)': the entry's own role word
+            if hr_ in ('phd', 'postdoc', 'masters', 'undergraduate') and not own_:
                 x['role'] = hr_  # automatic plans: the section heading outranks a bio's degree words ('Post-doctoral Scholars' > 'B.S.')
             elif x['role'] == 'other' and re.search(r'ph\.?\s?d', (x.get('desc') or '')[:80], re.I) and \
                     not re.search(r'post-?doc', (x.get('desc') or '')[:80], re.I):
@@ -1127,7 +1133,9 @@ def pm_candidates(kit, school, pi, plan, held):
             elif auto_plan and not (STUDENT_HEAD.search(x.get('head') or '') or
                                     (not homepage_people and (x['under_people_heading'] or x.get('qkind') == 'name+role'))):
                 why = 'not_in_people_section'  # on a homepage, names in the bio prose are collaborators and mentors
-            elif auto_plan and (fold(family(pi)) in fold((x.get('desc') or '')[:160]) or
+            elif auto_plan and plan.get('shared_page') and not re.search(r'\b' + re.escape(fold(family(pi))) + r'\b', fold((x.get('desc') or '')[:200])):
+                why, x['detail'] = 'shared_page_no_adviser', f"a people page shared by {plan['shared_page']} labs; the entry does not name this PI"
+            elif auto_plan and not plan.get('shared_page') and (fold(family(pi)) in fold((x.get('desc') or '')[:160]) or
                                 re.search(r'[“"]|\b(proceedings|conference|journal|workshop|arxiv|ICASSP|Interspeech|ACL|EMNLP|NeurIPS|'
                                           r'ICML|CVPR|pp\.)\b', (x.get('desc') or '')[:160])):
                 why, x['detail'] = 'not_in_people_section', 'a byline or citation, not a member entry'
@@ -1213,7 +1221,7 @@ def group_people(names, rows):
     return groups
 
 
-STUDENT_REASON_ORDER = ('genuinely_missing', 'evidence_not_in_build', 'dropped_by_review', 'after_pi_left', 'at_previous_school', 'outside_2016_2026',
+STUDENT_REASON_ORDER = ('genuinely_missing', 'evidence_not_in_build', 'dropped_by_review', 'shared_page_no_adviser', 'after_pi_left', 'at_previous_school', 'outside_2016_2026',
                         'undated_alumni_cannot_place', 'undated_cannot_place', 'not_in_people_section', 'reviewer_excluded',
                         'not_a_student', 'name_unresolved')
 
@@ -1639,10 +1647,25 @@ def lab_record(kit, ctx, p, disc):
     return lab, plan
 
 
+def shared_people_pages(ctx, disc):
+    """People pages the discovery chose for 2+ labs of the school (BLISS's students.html for Anantharam and Courtade)."""
+    c = collections.Counter()
+    for d in disc.values():
+        u = (d.get('chosen') or {}).get('people_page')
+        if u:
+            c[re.sub(r'^https?://(www\.)?', '', u).rstrip('/')] += 1
+    return {k: n for k, n in c.items() if n >= 2}
+
+
 def assemble(kit, ctx, disc, verdicts=None):
     recs, stu_adds, pap_adds, rec_rows = [], [], [], []
+    shared = shared_people_pages(ctx, disc)
     for p in ctx['pis']:
         lab, plan = lab_record(kit, ctx, p, disc)
+        pp_ = re.sub(r'^https?://(www\.)?', '', lab['urls'].get('people_page') or '').rstrip('/')
+        if pp_ in shared and plan.get('notes', '').startswith('lab-page audit discovery'):
+            plan = dict(plan, shared_page=shared[pp_])
+            lab['shared_people_page'] = shared[pp_]
         if lab.get('moved_site'):
             plan = dict(plan, people=[], wb=[], pubs=[])
         st, sa = audit_students(kit, ctx, p, lab, plan)

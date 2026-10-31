@@ -235,3 +235,15 @@ def test_profile_subpages_and_institution_listings():
     lk = A.classify_links([('https://www.media.mit.edu/people/', 'People'), ('https://www.media.mit.edu/people/pattie/publications/', 'Publications')],
                           'https://www.media.mit.edu/people/pattie/overview/', r'mit\.edu')
     assert 'people' not in lk and lk.get('pubs') == ['https://www.media.mit.edu/people/pattie/publications/']
+
+
+def test_shared_people_pages_are_counted_across_labs():
+    disc = {'A': dict(chosen=dict(people_page='https://bliss.eecs.berkeley.edu/students.html')),
+            'B': dict(chosen=dict(people_page='http://bliss.eecs.berkeley.edu/students.html/')),
+            'C': dict(chosen=dict(people_page='https://lab-c.example.edu/people'))}
+    assert A.shared_people_pages({}, disc) == {'bliss.eecs.berkeley.edu/students.html': 2}
+
+
+def test_generic_school_pages_are_never_sites_on_strength_alone():
+    assert A.GENERIC_PAGE_RX.search('/undergraduate/visit/') and A.GENERIC_PAGE_RX.search('/students/')
+    assert not A.GENERIC_PAGE_RX.search('/view/ncclab/')
