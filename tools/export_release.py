@@ -618,6 +618,7 @@ def export_atlas(repo):
 
 CODE_RULES = [  # (directory in the code repository, max depth, patterns); repo paths mirror it under code/claude-schools-20261021/
     ('tools', 1, ('*.py', '*.slurm')),
+    ('tools/pihier', 1, ('*.py',)),       # the builder's stages (tools/pi_hierarchy.py is their entry point), since 2026-10-31
     ('hierarchy', 1, ('*.sh', '*.slurm')),
     ('hierarchy/nicknames', 1, ('*.csv',)),
     ('census', 1, ('*.py',)),
