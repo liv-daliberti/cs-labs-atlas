@@ -1041,6 +1041,56 @@ def coadvisers(kit, school, src):
     return list(dict.fromkeys(m.group(1) for m in COADV_RX.finditer(t)))
 
 
+YEAR_ = r'(?:19[89]\d|20[0-2]\d)'
+
+
+def entry_years(desc, head):
+    """(years, basis) stated by the entry itself; never a neighbour's dates or a bio's degree dates.
+      '(Postdoc, 2010-2014)' -> [2010, 2014]; '(PhD student, MIT ORC, 2022 -)' -> [2022, None] (an open range is a start);
+      '(Ph.D. in applied math 2014)' or 'PhD 2021' -> [None, 2014] (a degree year ends the stay); 'MIT Undergraduate Student, 2020'
+      -> [2020, 2020]; a section heading that is only a year ('2019') -> that year, basis section_year_heading; else
+      (None, 'none'): the build keeps undated students."""
+    d = (desc or '')[:90]
+    m = re.match(r'^\W{0,3}\(([^()]{0,80})\)', d)
+    seg = m.group(1) if m else re.split(r'(?<=[a-z0-9)])\.\s|\s(?:received|graduated from|is|was|joined|works?)\s', d, maxsplit=1)[0][:70]
+    r = re.search(r'(%s)\s*(?:-|–|—|to|until)\s*(%s|present|now|current|today)?' % (YEAR_, YEAR_), seg, re.I)
+    if r:
+        b = r.group(2)
+        return [int(r.group(1)), int(b) if b and b[:2] in ('19', '20') else None], 'stated_in_entry'
+    ys = [int(y) for y in re.findall(r'(?<!\d)(%s)(?!\d)' % YEAR_, seg)]
+    if len(ys) == 1:
+        if re.search(r"\bph\.?\s?d|\bdegree|\bgraduated|\bclass of|\bm\.?s\.?\b|\bb\.?s\.?\b|\bm\.?eng|\bthesis|\balum|\buntil|\bleft|'\d\d", seg, re.I):
+            return [None, ys[0]], 'stated_in_entry'
+        return [ys[0], ys[0]], 'stated_in_entry'
+    if head and re.fullmatch(r'\W*(%s)\W*' % YEAR_, head.split(' > ')[-1].strip()):
+        y = int(re.search(YEAR_, head.split(' > ')[-1]).group(0))
+        return [y, y], 'section_year_heading'
+    return None, 'none'
+
+
+ROLE_NEAR = re.compile(r"^\W{0,3}[(,:–—-]?\s*(?:[A-Z][\w.&'-]*\s){0,2}?(?:visiting\s|joint\s|former\s|current\s|\d(?:st|nd|rd|th)[- ]year\s)?"
+                       r"(ph\.?\s?d|post-?doc|postdoctoral|master|m\.?s\.?\b|m\.?eng|meng|undergrad|b\.?s\.?e?\b|ug\b|urop|superurop|"
+                       r"graduate|grad\b|doctoral|student|candidate|research|visiting|lab manager|engineer|scientist|staff|intern)", re.I)
+
+
+def entry_role(desc, head, role_of):
+    """(role, basis): the role the entry states right after the name ('(PhD student, ...)', ', Postdoc', 'MIT Undergraduate
+    Student'), else the role its section heading names ('PhD Students', 'Post-doctoral Scholars'), else (None, 'none').
+    A role word further into a bio ('received his B.S. ...', 'Ph.D. in Electrical Engineering from ...') never counts."""
+    d = (desc or '')[:60]
+    if ROLE_NEAR.match(d):
+        r = role_of(d[:45])[0]
+        if r and r != 'member':
+            return r, 'entry'
+    h = (head or '').split(' > ')[-1]
+    r = role_of(h)[0] if h else None
+    if not r and head and ' > ' in head:
+        r = role_of(head.split(' > ')[0])[0]
+    if r and r != 'member':
+        return r, 'section_heading'
+    return None, 'none'
+
+
 def paren_years(desc):
     """Years in the parenthetical right after a name: '(Ph.D. in applied math 2014)', '(Postdoc, 2010-2014)'."""
     m = re.match(r'^\W{0,3}\(([^()]{0,60})\)', desc or '')
@@ -1062,6 +1112,7 @@ def pm_candidates(kit, school, pi, plan, held):
     drop = [names.fold(x) for x in plan.get('drop', [])]
     keep = [names.fold(x) for x in plan.get('keep', [])]
     yrs = {names.fold(k): v for k, v in plan.get('years', {}).items()}
+    roles_ = {names.fold(k): v for k, v in plan.get('roles', {}).items()}
     drop_heads = re.compile(plan['drop_heads'], re.I) if plan.get('drop_heads') else None
     only_heads = re.compile(plan['only_heads'], re.I) if plan.get('only_heads') else None
     srcs = [(s, False) for s in plan.get('auto', plan.get('people', []) if 'rows' not in plan else [])]
@@ -1099,19 +1150,13 @@ def pm_candidates(kit, school, pi, plan, held):
                                    for a in plan.get('alumni_pages', ()))))
             x['under_people_heading'] = bool(x['head'] and kit.autom.HEADWORD.search(x['head']))
             x['single_token'] = len(names.parse(x['name'])['tokens']) < 2
-            x['years'] = yrs.get(fn, x['years']) or paren_years(x.get('desc'))
-            hr_ = kit.autom._role(x.get('head') or '')[0] if auto_plan else None
-            own_ = re.match(r'^\W{0,3}\(|^\W{0,3}\S+(?:\s\S+){0,3}\s*$', (x.get('desc') or '')[:40]) or \
-                kit.autom._role((x.get('desc') or '')[:25])[0]  # '(student, UC Berkeley, PhD ...)': the entry's own role word
-            if hr_ in ('phd', 'postdoc', 'masters', 'undergraduate') and not own_:
-                x['role'] = hr_  # automatic plans: the section heading outranks a bio's degree words ('Post-doctoral Scholars' > 'B.S.')
-            elif x['role'] == 'other' and re.search(r'ph\.?\s?d', (x.get('desc') or '')[:80], re.I) and \
-                    not re.search(r'post-?doc', (x.get('desc') or '')[:80], re.I):
-                x['role'] = 'phd'  # 'Ph.D. in ... Engineering': the role word is Ph.D., not 'engineer'
-            elif x['role'] == 'other' and re.search(r'engineer', (x.get('desc') or '')[:80], re.I):
-                hr = kit.autom._role(x.get('head') or '')[0]
-                if hr in ('phd', 'postdoc', 'masters', 'undergraduate'):
-                    x['role'] = hr  # '... Aerospace Engineering' is the department under a 'PhD students' heading
+            if fn in yrs:
+                x['years'], x['years_basis'] = yrs[fn], 'reviewer'
+            else:
+                x['years'], x['years_basis'] = entry_years(x.get('desc'), x.get('head'))
+            x['role'], x['role_basis'] = entry_role(x.get('desc'), x.get('head'), kit.autom._role)
+            if fn in roles_:
+                x['role'], x['role_basis'] = roles_[fn], 'reviewer'
             if src not in coadv:
                 coadv[src] = coadvisers(kit, school, src)
             flagged = [f for f in x['flags'] if f != 'weak-quote']
@@ -1209,6 +1254,12 @@ def typo_pair(names, a, b):
         (min(len(fa), len(fb)) >= 5 and difflib.SequenceMatcher(None, fa, fb).ratio() >= 0.8)
 
 
+def src_recency(r):
+    """Sort key: a live page first, then Wayback captures by timestamp."""
+    m = re.search(r'/web/(\d{8,14})', r.get('capture_url') or '')
+    return '99999999' if not r.get('is_cap') and not m else (m.group(1) if m else '0')
+
+
 def group_people(names, rows):
     """Rows of one lab grouped by person (names.match_one within the lab; R-HIER-03: never across labs)."""
     groups = []
@@ -1259,7 +1310,7 @@ def audit_students(kit, ctx, p, lab, plan, auto_plan=False):
     for c in cands:
         rows.append(dict(name=c['name'], role=c['role'], years=c['years'], quote=c['quote'], url=c['url'], capture_url=c.get('capture_url'),
                          sha256=c['sha256'], kept=False, alumni=c['alumni'], why=c['why'], head=c.get('head'), desc=c.get('desc'),
-                         is_cap=c['is_cap'], detail=c.get('detail')))
+                         is_cap=c['is_cap'], detail=c.get('detail'), role_basis=c.get('role_basis'), years_basis=c.get('years_basis')))
     drops = {(x.get('pi'), x.get('student')) for x in corrections(school) if x.get('action') == 'drop'}
     matched_build = set()
     for g in group_people(names, rows):
@@ -1280,7 +1331,8 @@ def audit_students(kit, ctx, p, lab, plan, auto_plan=False):
             matched_build.add(next(i for i, (_, ns, _) in enumerate(bs) if hit[0] in ns))
             continue
         kept = [r for r in g if r['kept']]
-        best = next((r for r in g if r['kept']), None) or next((r for r in g if not r['why']), None) or g[0]
+        ok_ = sorted((r for r in g if not r['why']), key=src_recency, reverse=True)  # the live page, else the newest capture
+        best = next((r for r in g if r['kept']), None) or (ok_[0] if ok_ else g[0])
         if kept:
             slug = re.sub('[^a-z0-9]+', '-', fold(nm)).strip('-')
             rc = 'dropped_by_review' if any(x[0] == pi and str(x[1] or '').endswith(':' + slug) for x in drops) else 'evidence_not_in_build'
@@ -1297,15 +1349,22 @@ def audit_students(kit, ctx, p, lab, plan, auto_plan=False):
             miss['detail'] = det
         sec['missing_from_build'].append(miss)
         if rc == 'genuinely_missing':
-            role = best.get('role') if best.get('role') in ROLE_OK else 'member'
+            years, ybasis = best.get('years'), best.get('years_basis') or 'none'
+            if not years:  # a date another capture of the same person states
+                dated = [r for r in ok_ if r.get('years')]
+                if dated:
+                    years, ybasis = dated[0]['years'], dated[0].get('years_basis') or 'stated_in_entry'
             try:  # the evidence check the build's lab-page rows pass: the quote is verbatim on the stored capture and names the person
-                row = kit.lpev.M(school, nm, role, best.get('years'), best.get('capture_url') or best['sha256'], quote=best['quote'],
+                row = kit.lpev.M(school, nm, best.get('role') if best.get('role') in ROLE_OK else 'member', years,
+                                 best.get('capture_url') or best['sha256'], quote=best['quote'],
                                  note=f"lab-page audit {TODAY}; section: {best.get('head')}")
             except (ValueError, KeyError) as e:
                 miss['reason_code'] = 'name_unresolved'
                 miss['note'] = f'quote check failed: {str(e)[:120]}'
                 continue
-            row.update(pi=pi, alumni=alumni, rule='LP-STU-01', auto=True, pi_first_year=pi_start_year(p))
+            row.update(pi=pi, alumni=alumni, rule='LP-STU-01', auto=True, pi_first_year=pi_start_year(p),
+                       role=best.get('role') if best.get('role') in ROLE_OK else None, role_basis=best.get('role_basis') or 'none',
+                       years=years, years_basis=ybasis if years else 'none')
             adds.append(row)
     sec['extra_in_build_not_on_page'] = len(bs) - len(matched_build)
     by = collections.Counter(m['reason_code'] for m in sec['missing_from_build'])
@@ -1402,6 +1461,58 @@ def collect_papers(kit, ctx, p, lab, plan):
     return sec, out
 
 
+AUTHOR_TAIL = re.compile(r"[\s.,;:]+(?:[A-Z][\w'’.-]*\s){1,3}[A-Z][\w'’-]*(?:\s*\*)?(?:\s*,\s*(?:and\s+)?(?:[A-Z][\w'’.-]*\s){1,3}[A-Z][\w'’-]*\*?)+.*$")
+AUTHOR_ONLY = re.compile(r"^[A-Z][\w'’-]+, [A-Z][\w.]*(?: [A-Z]\.?)?$")
+
+
+def clean_listed_title(title, p):
+    """(title, how): a listed title with the byline run into it ('Reasoning about physical interactions with object-centric
+    models Michael Janner, Sergey Levine, William T Free...') loses the byline when the cut-off part names the PI or holds
+    three or more names; a title that is only an author ('Freeman, Joshua T') is marked for the arXiv title (how
+    'author_only'); else (title, None)."""
+    t = title or ''
+    if AUTHOR_ONLY.match(t.strip()):
+        return t, 'author_only'
+    m = AUTHOR_TAIL.search(t)
+    if m and m.start() >= 20:
+        tail = fold(m.group(0))
+        if any(fold(family(n)) in tail for n in [p['pi']] + list(p.get('names') or [])) or tail.count(',') >= 2:
+            return t[:m.start()].rstrip(' .,;:'), 'author_tail_cut'
+    return t, None
+
+
+def arxiv_titles(ids):
+    """{arXiv id: title} from the local arXiv OAI-PMH index labpage_recover reads (one pass; only when needed)."""
+    import labpage_recover as LR
+    want, out = set(ids), {}
+    if not want:
+        return out
+    for f in sorted(LR.ARXIV_OAI.glob('*.jsonl.gz')):
+        for line in gzip.decompress(f.read_bytes()).decode().splitlines():
+            if line and any(i in line[:40] for i in want):
+                a = json.loads(line)
+                if a['id'] in want:
+                    out[a['id']] = re.sub(r'\s+', ' ', a['title']).strip()
+        if len(out) == len(want):
+            break
+    return out
+
+
+def fix_titles_from_arxiv(adds):
+    """Rows whose title was only an author name, or whose resolved work is an arXiv id with no OpenAlex record, take the
+    arXiv record's own title (title_basis arxiv_oai)."""
+    need = [a for a in adds if a.get('arxiv') and (a.get('title_basis') == 'author_only' or not (a.get('evidence') or {}).get('oa'))]
+    got = arxiv_titles({a['arxiv'] for a in need})
+    for a in need:
+        t = got.get(a['arxiv'])
+        if t:
+            a.setdefault('listed_title', a.get('title'))
+            a['title'], a['title_basis'] = t, 'arxiv_oai'
+        elif a.get('title_basis') == 'author_only':
+            a['flags'] = list(a.get('flags') or []) + ['title_is_an_author_name']
+    return adds
+
+
 def recover_dir(school):
     return H / school / 'labpage-audit-recover'
 
@@ -1452,8 +1563,9 @@ def finish_papers(sec, ents, p, verdicts):
         sec['missing'].append(item)
         if rc == 'genuinely_missing' and acc:
             a_ = dict(acc, pi=p['pi'], rule='LP-PAP-01', audit_key=e['audit_key'])
-            if re.match(r"^[A-Z][\w'’-]+, [A-Z][\w.]*( [A-Z]\.?)?$", a_.get('title') or ''):  # 'Freeman, Joshua T': an author cut as the title
-                a_['flags'] = list(a_.get('flags') or []) + ['title_is_an_author_name']
+            t_, how_ = clean_listed_title(a_.get('title'), p)
+            if how_:
+                a_['listed_title'], a_['title'], a_['title_basis'] = a_.get('title'), t_, how_
             adds.append(a_)
     by = collections.Counter(m['reason_code'] for m in sec['missing'] if m['reason_code'] != 'outside_window')
     if sec['pubs_page_status'] != 'audited':
@@ -1783,6 +1895,7 @@ def cmd_audit(school):
     disc = read_discovery(school)
     verdicts = recover_verdicts(school)
     recs, stu_adds, pap_adds, _ = assemble(kit, ctx, disc, verdicts)
+    fix_titles_from_arxiv(pap_adds)
     out = H / school / 'labpage-audit.jsonl.gz'
     with gzip.open(str(out) + '.tmp', 'wt', encoding='utf-8') as f:
         for r in recs:

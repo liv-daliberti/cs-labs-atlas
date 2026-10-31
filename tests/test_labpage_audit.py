@@ -247,3 +247,43 @@ def test_shared_people_pages_are_counted_across_labs():
 def test_generic_school_pages_are_never_sites_on_strength_alone():
     assert A.GENERIC_PAGE_RX.search('/undergraduate/visit/') and A.GENERIC_PAGE_RX.search('/students/')
     assert not A.GENERIC_PAGE_RX.search('/view/ncclab/')
+
+
+def _role_of():
+    sys.path.insert(0, str(A.H / A.PM))
+    import autom
+    return autom._role
+
+
+@pytest.mark.parametrize('desc,head,want', [
+    ('(PhD student, MIT ORC, 2022 –) Brian Liu (PhD student, MIT ORC, 2021 –)', 'Current Students (PhD and Masters)', ([2022, None], 'stated_in_entry')),
+    ('MIT Undergraduate Student, 2020 Deniz Erus MIT Undergraduate Student, 2023', 'MIT Undergraduate Student, SuperUROP 2024-2025', ([2020, 2020], 'stated_in_entry')),
+    ('(Postdoc, 2010-2014). Now group leader', 'Postdocs', ([2010, 2014], 'stated_in_entry')),
+    ('(Ph.D. in applied math 2014). Now Research Scientist', 'Ph.D. Students', ([None, 2014], 'stated_in_entry')),
+    ('Juho Park received his B.S. degree in 2017 and his Ph.D. in 2022', 'Post-doctoral Scholars', (None, 'none')),
+    ('Kim', 'Undergraduates > 2019', ([2019, 2019], 'section_year_heading')),
+    ('Anushri is a 4th-year Ph.D. student', 'Graduate Students', (None, 'none')),
+])
+def test_entry_years_are_the_entrys_own(desc, head, want):
+    assert A.entry_years(desc, head) == want
+
+
+@pytest.mark.parametrize('desc,head,want', [
+    ('(PhD student, MIT ORC, 2022 –)', 'Current Students (PhD and Masters)', ('phd', 'entry')),
+    ('Juho Park received his B.S. degree from Seoul National University', 'Post-doctoral Scholars', ('postdoc', 'section_heading')),
+    ('Xiaolong Huang received his Ph.D. in Electrical Engineering', 'Post-doctoral Scholars', ('postdoc', 'section_heading')),
+    ('MIT Undergraduate Student, 2020', 'Students', ('undergraduate', 'entry')),
+    ('(student, UC Berkeley, PhD 2021)', 'Students and postdocs', ('phd', 'entry')),
+    ('Kathryn is our lab manager and is interested in', 'People', (None, 'none')),
+])
+def test_entry_role_never_comes_from_bio_words(desc, head, want):
+    assert A.entry_role(desc, head, _role_of()) == want
+
+
+def test_listed_titles_lose_a_run_in_byline():
+    p = dict(pi='William Freeman', names=['William T. Freeman'])
+    t = 'Reasoning about physical interactions with object-centric models Michael Janner, Sergey Levine, William T Freeman, Joshua B Tenenbaum'
+    assert A.clean_listed_title(t, p) == ('Reasoning about physical interactions with object-centric models', 'author_tail_cut')
+    assert A.clean_listed_title('Freeman, Joshua T', p) == ('Freeman, Joshua T', 'author_only')
+    assert A.clean_listed_title('Learning to See by Moving', p) == ('Learning to See by Moving', None)
+    assert A.clean_listed_title('Graph Neural Networks for Wireless Networks, Revisited', p)[1] is None
