@@ -32,7 +32,7 @@ REQUIRED = ('code', 'rules', 'openalex_sweep', 'dblp_dump', 'dblp_persons', 'pi_
 # regression check, the release and tree tools, the rebuild script, the rules, the tests and every tracked JSON/CSV input.
 # Other tracked files (the collectors in fulltext-push/, the AI-writing study, the school-onboarding tools and configs that
 # other agents edit while builds run) are recorded as other_dirty_paths, never refused.
-BUILD_CODE = ['tools/pi_hierarchy.py', 'tools/atlas_paths.py', 'tools/provenance.py', 'tools/pi_fulltext_affiliation.py',
+BUILD_CODE = ['tools/pi_hierarchy.py', 'tools/pihier/', 'tools/atlas_paths.py', 'tools/provenance.py', 'tools/pi_fulltext_affiliation.py',
               'tools/student_audit.py', 'tools/chain_audit.py', 'tools/link_diagnosis.py', 'tools/evidence_check.py',
               'tools/lab_paper_copies.py', 'tools/build_regression.py', 'tools/make_release.py', 'tools/organize_tree.py',
               'tools/zero_paper_ledger.py', 'hierarchy/rebuild.sh', 'paths.sh', 'docs/RULES.md', 'docs/evidence-whitelist.json', 'tests/']
