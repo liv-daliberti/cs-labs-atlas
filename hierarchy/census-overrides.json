@@ -6842,8 +6842,8 @@
     {
      "id": "override_period_cmu_venkatesan_guruswami",
      "start": "2016-05-12",
-     "end": null,
-     "asof": "2026-10-17",
+     "end": "2021-12",
+     "asof": "2026-10-31",
      "datePrecision": "day",
      "evidence": [
       {
@@ -6874,20 +6874,29 @@
        "observed": "2026-10-17",
        "kind": "dept_listing:CSD",
        "note": "quote verified by the listings pipeline against listings/cmu/captures.sqlite (quote not in capture text: https://web.archive.org/web/20261)"
+      },
+      {
+       "url": "https://people.eecs.berkeley.edu/~venkatg/",
+       "sha256": "b18fcbd40bb930f4827cc8430e53cb71b405f9f3488748fdc2936b450599ef52",
+       "quote": "Before moving to UC Berkeley in Jan 2022, I spent 13+ enjoyable years in the CS Dept. at Carnegie Mellon",
+       "observed": "2026-10-30",
+       "kind": "faculty_end_moved"
       }
      ],
      "note": "Bridged from dated faculty listings: listed as faculty in 2016, 2017, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026; no department listing or profile capture exists for 2018 and no evidence of a break. Start is a LOWER BOUND (the first dated faculty listing in the 2016-2026 window); the period stops at the last dated faculty listing (asof), no end is claimed.",
-     "reviewed": "appointment_period_review_20261026"
+     "reviewed": "appointment_period_review_20261026",
+     "datePrecisionEnd": "month"
     }
-   ]
+   ],
+   "note_20261031": "R-PAP-03 (2026-10-29, owner): a reviewed faculty_end_moved period makes later department listings stale (listingsAfterMove). Departure found by the lab-page audit (2026-10-31: the lab's people page is at the new institution while the build had an open period here; coordinator-approved review); end from the dated quote in the faculty_end_moved evidence."
   },
   "Bernhard Haeupler": {
    "periods": [
     {
      "id": "override_period_cmu_bernhard_haeupler",
      "start": "2016-05-12",
-     "end": null,
-     "asof": "2024-02-24",
+     "end": "2022",
+     "asof": "2026-10-31",
      "datePrecision": "day",
      "evidence": [
       {
@@ -6917,12 +6926,21 @@
        "quote": "Haeupler, Bernhard Adjunct Faculty haeupler@andrew.cmu.edu",
        "observed": "2024-02-24",
        "kind": "dept_listing:wayback_csd_faculty"
+      },
+      {
+       "url": "https://people.inf.ethz.ch/haeuplb/",
+       "sha256": "ac45a9a3e34ffdbb12b70e97ed92aa8a2cd01dcb1ec20603d73d178757598280",
+       "quote": "Professor, Carnegie Mellon University , Computer Science Department (2014 - 2019 Assistant Prof.; 2019 - 2022 Associate Prof.; 2022 - 2024 Adjunct Prof.)",
+       "observed": "2026-10-22",
+       "kind": "faculty_end_moved"
       }
      ],
      "note": "Bridged from dated faculty listings: listed as faculty in 2016, 2017, 2019, 2020, 2021, 2022, 2023, 2024; no department listing or profile capture exists for 2018 and no evidence of a break. Start is a LOWER BOUND (the first dated faculty listing in the 2016-2026 window); the period stops at the last dated faculty listing (asof), no end is claimed.",
-     "reviewed": "appointment_period_review_20261026"
+     "reviewed": "appointment_period_review_20261026",
+     "datePrecisionEnd": "year"
     }
-   ]
+   ],
+   "note_20261031": "R-PAP-03 (2026-10-29, owner): a reviewed faculty_end_moved period makes later department listings stale (listingsAfterMove). Departure found by the lab-page audit (2026-10-31: the lab's people page is at the new institution while the build had an open period here; coordinator-approved review); end from the dated quote in the faculty_end_moved evidence."
   },
   "Robert Harper": {
    "periods": [
@@ -7158,8 +7176,8 @@
     {
      "id": "override_period_cmu_taylor_berg_kirkpatrick",
      "start": "2016-09-22",
-     "end": null,
-     "asof": "2025-04-05",
+     "end": "2018-10",
+     "asof": "2026-10-31",
      "datePrecision": "day",
      "evidence": [
       {
@@ -7189,12 +7207,21 @@
        "quote": "Taylor Berg-Kirkpatrick Assistant Professor, University of California, San Diego",
        "observed": "2025-04-05",
        "kind": "dept_listing:LTI"
+      },
+      {
+       "url": "https://icebergnlp.github.io/",
+       "sha256": "2f16ce890f567ba1dfcdcde8da7bcb9d564fb83f286243a6fc0b1d5a3a2fff61",
+       "quote": "October 10, 2018 Taylor Berg-Kirkpatrick has completed the move to sunny San Diego and UCSD!",
+       "observed": "2026-10-23",
+       "kind": "faculty_end_moved"
       }
      ],
      "note": "Bridged from dated faculty listings: listed as faculty in 2016, 2017, 2019, 2020, 2021, 2022, 2023, 2024, 2025; no department listing or profile capture exists for 2018 and no evidence of a break. Start is a LOWER BOUND (the first dated faculty listing in the 2016-2026 window); the period stops at the last dated faculty listing (asof), no end is claimed.",
-     "reviewed": "appointment_period_review_20261026"
+     "reviewed": "appointment_period_review_20261026",
+     "datePrecisionEnd": "month"
     }
-   ]
+   ],
+   "note_20261031": "R-PAP-03 (2026-10-29, owner): a reviewed faculty_end_moved period makes later department listings stale (listingsAfterMove). Departure found by the lab-page audit (2026-10-31: the lab's people page is at the new institution while the build had an open period here; coordinator-approved review); end from the dated quote in the faculty_end_moved evidence."
   },
   "Chinmay Kulkarni": {
    "periods": [
@@ -8837,6 +8864,64 @@
      }
     ]
    }
+  },
+  "Lining Yao": {
+   "periods": [
+    {
+     "id": "override_period_cmu_lining_yao",
+     "start": "2017",
+     "end": "2023-12",
+     "asof": "2026-10-31",
+     "datePrecision": "year",
+     "datePrecisionEnd": "month",
+     "evidence": [
+      {
+       "url": "https://web.archive.org/web/20170102174350id_/https://www.hcii.cmu.edu/people/faculty",
+       "sha256": "1d0146ec97851a80eb8b2e8518e0d1ea996c6f444b5c2a08661fd01509a9dc71",
+       "quote": "um Berntsen Ken Koedinger Laura Dabbish Lining Yao Marti Louw Mayank Goel Robert Kraut Roberta Klatzky Sara Kiesler Scott Hudson SeungJun Kim Skip She",
+       "observed": "2017",
+       "kind": "hcii_listing_archived"
+      },
+      {
+       "url": "https://me.berkeley.edu/people/lining-yao/",
+       "sha256": "8011a84f4990fe890116728ce6a3801449e3bfe89a9a3dfbe624b885d84b78ee",
+       "quote": "Dr. Lining Yao will be joining the Department of Mechanical Engineering at the University of California, Berkeley in January of 2024.",
+       "observed": "2026-10-30",
+       "kind": "faculty_end_moved"
+      }
+     ]
+    }
+   ],
+   "note_20261031": "R-PAP-03 (2026-10-29, owner): a reviewed faculty_end_moved period makes later department listings stale (listingsAfterMove). Departure found by the lab-page audit (2026-10-31: the lab's people page is at the new institution while the build had an open period here; coordinator-approved review); end from the dated quote in the faculty_end_moved evidence."
+  },
+  "Pravesh Kothari": {
+   "periods": [
+    {
+     "id": "override_period_cmu_pravesh_kothari",
+     "start": "2019",
+     "end": "2024",
+     "asof": "2026-10-31",
+     "datePrecision": "year",
+     "datePrecisionEnd": "year",
+     "evidence": [
+      {
+       "url": "https://web.archive.org/web/20190724065615id_/https://www.csd.cs.cmu.edu/directory/faculty",
+       "sha256": "290ae169e9489f4b9008df4c83f4e0054d79ae461f525917d0ed34a94acedc52",
+       "quote": "Kothari, Pravesh Affiliated Faculty kothari@andrew.cmu.edu",
+       "observed": "2019",
+       "kind": "wayback_csd_faculty_directory"
+      },
+      {
+       "url": "https://www.cs.princeton.edu/people/profile/kothari",
+       "sha256": "a05d0b70b0fa379d047612a9c85dd10563fbbd2d64ee2a208226adbec890bd79",
+       "quote": "Pravesh K. Kothari joined Princeton as an assistant professor in 2024. Before coming to Princeton, he was an assistant professor at Carnegie Mellon University.",
+       "observed": "2026-10-31",
+       "kind": "faculty_end_moved"
+      }
+     ]
+    }
+   ],
+   "note_20261031": "R-PAP-03 (2026-10-29, owner): a reviewed faculty_end_moved period makes later department listings stale (listingsAfterMove). Departure found by the lab-page audit (2026-10-31: the lab's people page is at the new institution while the build had an open period here; coordinator-approved review); end from the dated quote in the faculty_end_moved evidence."
   }
  },
  "princeton": {

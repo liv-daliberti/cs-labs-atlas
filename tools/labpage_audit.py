@@ -901,6 +901,16 @@ def load_ctx(school, kit=None, plan=True):
     cfg = SCHOOLS[school]
     ctx = dict(school=school, cfg=cfg)
     ctx['pis'] = read(H / school / 'pis.json')
+    # reviewed departures not yet in a rebuilt pis.json (R-PAP-03): the audit reads census-overrides.json's faculty_end_moved
+    # periods directly, so after_pi_left applies before the coordinator's rebuild lands
+    ovp = H / 'census-overrides.json'
+    ovs = (read(ovp).get(school) or {}) if ovp.exists() else {}
+    for p_ in ctx['pis']:
+        o_ = ovs.get(p_['pi']) or {}
+        pers = [q for q in o_.get('periods') or [] if q.get('end') and any(e.get('kind') == 'faculty_end_moved' for e in q.get('evidence') or [])]
+        if pers and not any(q.get('end') for q in p_.get('periods') or []):
+            p_['periods'] = [dict(q, asof=q.get('asof') or TODAY) for q in pers]
+            p_['periods_from_overrides'] = True
     ctx['students'] = read(H / school / 'students.json')
     lp = collections.defaultdict(list)
     for r in read(H / school / 'lab_papers.jsonl.gz'):

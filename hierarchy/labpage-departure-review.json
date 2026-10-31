@@ -1,0 +1,88 @@
+{
+ "reviewed_at": "2026-10-31",
+ "rule": "R-PAP-03 (2026-10-29, owner): a reviewed faculty_end_moved period makes later listings stale",
+ "source": "tools/labpage_audit.py: labs whose people page is at another institution (site_at_other_institution, pi_left_school_site_moved, or a moved lab page) while the build has an open period here",
+ "confirmed": {
+  "cmu": {
+   "Taylor Berg-Kirkpatrick": {
+    "end": "2018-10",
+    "effect": {
+     "lab_papers": 23,
+     "papers_after_end": 8,
+     "papers_in_end_year": 9,
+     "students": 12,
+     "students_only_after_end": 8
+    }
+   },
+   "Lining Yao": {
+    "end": "2023-12",
+    "effect": {
+     "lab_papers": 103,
+     "papers_after_end": 13,
+     "papers_in_end_year": 25,
+     "students": 50,
+     "students_only_after_end": 2
+    }
+   },
+   "Venkatesan Guruswami": {
+    "end": "2021-12",
+    "effect": {
+     "lab_papers": 102,
+     "papers_after_end": 16,
+     "papers_in_end_year": 17,
+     "students": 16,
+     "students_only_after_end": 4
+    }
+   },
+   "Bernhard Haeupler": {
+    "end": "2022",
+    "effect": {
+     "lab_papers": 78,
+     "papers_after_end": 13,
+     "papers_in_end_year": 9,
+     "students": 6,
+     "students_only_after_end": 0
+    }
+   },
+   "Pravesh Kothari": {
+    "end": "2024",
+    "effect": {
+     "lab_papers": 40,
+     "papers_after_end": 5,
+     "papers_in_end_year": 5,
+     "students": 13,
+     "students_only_after_end": 6
+    }
+   }
+  }
+ },
+ "unresolved": {
+  "cmu": {
+   "Anupam Gupta": "NYU homepage (sha256 4ad98235...) shows NYU teaching in 2025 and 'Herb Simon Award ... at Carnegie Mellon', but no quote dates the move; CMU listings run to 2026. No end set.",
+   "Andre Platzer": "symbolaris.com names him Alexander von Humboldt Professor at KIT; no stored quote dates the move (KIT's 2022 announcement URL 404s). No end set."
+  }
+ },
+ "not_departures": {
+  "princeton": {
+   "Pramod Viswanath": "arrival in 2022; the site found is his former UIUC page",
+   "Andrea Goldsmith": "arrival in 2020; the site found is her former Stanford page",
+   "Amit Singer": "false flag of the old header test (superseded)"
+  },
+  "cmu": {
+   "Mona Diab": "arrival (2023); the site found is her former GWU page",
+   "Onur Mutlu": "primary appointment at ETH since 2015 with CMU listings to 2024; already ends by listings",
+   "Srinivasan Seshan": "false flag (an alumnus placement in the header)",
+   "George D Stetten": "joint Pitt/CMU appointment; the lab is at Pitt",
+   "John R. Anderson": "the site found is a Franklin Institute laureate page"
+  },
+  "berkeley": {
+   "Benjamin Recht": "false flag",
+   "Dawn Song": "false flag",
+   "Henry Corrigan-Gibbs": "the header names his PhD school"
+  },
+  "epfl": {
+   "George Candea": "period already ends 2021"
+  }
+ },
+ "rebuild_needed": "cmu: pis.json periods change for 5 PIs; the audit reads the overrides directly until the coordinator rebuilds"
+}
