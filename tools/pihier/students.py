@@ -171,14 +171,18 @@ def apply_relation_evidence(stu_all, school, here):
                 if any(ok(q) for q in rel.get('sources') or []):
                     continue
                 best = None
-                for q in rel.get('sources') or []:
+                for j, q in enumerate(rel.get('sources') or []):
                     cands = [x for i in ids_ for x in recs.get((q.get('url'), i), [])]
                     hit = next((x for x in cands if x.get('pi') == pi and x.get('names_pi')), None) \
                         or next((x for x in cands if x.get('pi') is None and not x.get('names_pi')), None)
-                    if hit and (best is None or (hit.get('names_pi') and not best[1].get('names_pi'))):
-                        best = (q, hit)
+                    if hit and (best is None or (hit.get('names_pi') and not best[2].get('names_pi'))):
+                        best = (j, q, hit)
                 if best:
-                    q, x = best
+                    # this relation's own copy (2026-10-31): a context naming several advisers gives every lab the same
+                    # source dicts, and updating them in place let the first lab processed (an order set by str hashing)
+                    # decide the quote and names_pi of the others
+                    j, q, x = best
+                    q = dict(q); rel['sources'] = list(rel['sources']); rel['sources'][j] = q
                     if q.get('sha256') and q['sha256'] != x['sha256']:
                         q['original_sha256'] = q['sha256']
                     q.update(sha256=x['sha256'], quote=x['quote'], capture_url=x.get('capture_url'), names_pi=bool(x.get('names_pi')),
@@ -271,7 +275,7 @@ def from_contexts(ctx):
                 ids_ = {c.get('advisorPersonId'), c.get('advisorPerson'), c.get('advisorSuggestedPersonId')} - {None}
                 cand = {q for a in advs if a for t_ in [toks(a)] if t_ for q in by_sur.get(t_[-1], []) + by_sur.get(''.join(t_[1:]), []) + by_sur.get(t_[0], [])}  # one-word advisers too ("Arvind.")
                 cand |= {p['pi'] for p in pis if ids_ & set(p['personIds'])} | set(by_unit.get(c.get('unit'), []))
-                for p in (pid0[q] for q in cand):
+                for p in (pid0[q] for q in sorted(cand)):  # sorted: set order follows str hashing (2026-10-31)
                     if person['id'] in p['personIds']:
                         continue
                     if ids_ & set(p['personIds']) or any(a and adviser_is(p['pi'], a) for a in advs) or (c.get('unit') and c.get('unit') == p['lab']['unitId'] and t == 'academic_advising'):

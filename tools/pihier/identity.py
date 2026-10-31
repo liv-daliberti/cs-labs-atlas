@@ -205,7 +205,7 @@ def hits(ctx):
             t = nosuffix(toks(raw))  # "John Fisher III" is looked up under Fisher
             if len(t) < 2:
                 continue
-            for pi in set(by_sur.get(t[-1], []) + by_sur.get(''.join(t[1:]), []) + by_sur.get(t[0], [])):
+            for pi in sorted(set(by_sur.get(t[-1], []) + by_sur.get(''.join(t[1:]), []) + by_sur.get(t[0], []))):  # sorted: hit order
                 if pi in done:
                     continue
                 if not nm[pi].match(raw):
@@ -270,7 +270,7 @@ def hits(ctx):
                     t = nosuffix(toks(raw)); aid = (a.get('author') or {}).get('id')
                     if len(t) < 2 or a.get('institutions') or a.get('raw_affiliation_strings'):
                         continue
-                    for pi in set(by_sur.get(t[-1], [])):
+                    for pi in sorted(set(by_sur.get(t[-1], []))):
                         if (pi, w['id']) in from_pw or aid in blocked[pi] or not nm[pi].match(raw) \
                                 or toks(pi)[-1] not in toks(' '.join(tied[w['id']].get('quotes') or [])):
                             continue

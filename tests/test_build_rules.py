@@ -376,3 +376,38 @@ def test_R_LNK_05_links_carry_their_evidence(built):
         assert x['relation_source'] and x['relation_source']['sha256'] == SHA and x['relation_source']['quote']
         if x['basis'] != 'collection_person_link':
             assert x['byline'] and x['oa']
+
+
+# ---- determinism (2026-10-31): a context naming several advisers -----------------------------------------------
+SHARED_URL = 'https://example.edu/theses/sam-shared'
+SHARED = dict(id='p_sam', name='Sam Shared', roles=['phd'], contexts=[dict(
+    type='phd_advising', advisors=['Ada Lovelace', 'Grace Hopper', 'Dan Klein'], years=[2020], role='phd',
+    sources=[dict(url=SHARED_URL, sha256='', quote='')])])   # a bare-URL source: the collection gave no quote or hash
+
+
+def write_shared_advising(root):
+    """A student whose one advising context names three PIs, with re-captured evidence (R-STU-08): a quote naming Ada, one
+    naming Dan, and a student-only one (Grace's lab has no quote of its own)."""
+    H = root / 'hierarchy'
+    coll = json.loads(gzip.decompress((H / SCHOOL / 'collection.json.gz').read_bytes()))
+    coll['people'].insert(0, SHARED)  # first: the labs' order is then the order the build meets them here
+    (H / SCHOOL / 'collection.json.gz').write_bytes(gzip.compress(json.dumps(coll).encode()))
+    rec = lambda pi, names_pi, q, h: dict(url=SHARED_URL, person='p_sam', pi=pi, names_pi=names_pi, sha256=h * 64, quote=q,
+                                          capture_url=SHARED_URL, observed='2026-10-29', method='live')
+    (H / SCHOOL / 'relation-evidence.json').write_text(json.dumps(dict(records=[
+        rec('Ada Lovelace', True, 'Sam Shared, PhD 2020. Advisor: Ada Lovelace', 'b'),
+        rec('Dan Klein', True, 'Sam Shared, PhD 2020, Klein group', 'c'),
+        rec(None, False, 'Sam Shared, PhD 2020', 'd')])))
+
+
+def test_R_STU_08_each_lab_gets_its_own_recaptured_source(tmp_path):
+    write_school(tmp_path)
+    write_shared_advising(tmp_path)
+    ctx = run_stages(tmp_path, upto='students')
+    src = {pi: ctx.stu[pi]['p_sam']['relations'][0]['sources'][0] for pi in ('Ada Lovelace', 'Grace Hopper', 'Dan Klein')}
+    assert src['Ada Lovelace']['names_pi'] is True and 'Ada Lovelace' in src['Ada Lovelace']['quote']
+    assert src['Dan Klein']['names_pi'] is True and 'Klein' in src['Dan Klein']['quote']
+    assert src['Grace Hopper']['names_pi'] is False and src['Grace Hopper']['quote'] == 'Sam Shared, PhD 2020'
+    assert len({id(s) for s in src.values()}) == 3                                       # three dicts, none shared
+    assert ctx.n['relation_evidence_recaptured_names_pi'] == 2 and ctx.n['relation_evidence_recaptured_student_only'] == 1
+    assert next(p for p in ctx.people if p['id'] == 'p_sam')['contexts'][0]['sources'][0]['quote'] == ''   # the input is untouched

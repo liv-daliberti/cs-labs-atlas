@@ -238,6 +238,11 @@ the captured bytes and a verbatim quote naming the student, with `names_pi` when
 (the bodies are in `hierarchy/<school>/relation-captures.sqlite`). A source without url, sha256 and quote takes the
 record for its PI, else a student-only record (`names_pi: false`). The source keeps its earlier hash as
 `original_sha256`. `apply_relation_evidence`.
+Clarified 2026-10-31 (build): the choice is made per lab. An advising context that names several PIs gives each of their
+labs the same cited source; each lab takes its own record (the one for its PI, else the student-only one) on its own copy
+of the source. Before, the first lab processed wrote its record into the shared source and the others kept it, so a lab
+could carry another PI's quote with `names_pi: true`, and which lab came first depended on Python's string hashing (CMU:
+Austin Matthews in Lavie's, Neubig's and Dyer's labs). The build's output no longer depends on `PYTHONHASHSEED`.
 
 ### R-STU-09 (2026-10-29, owner: link-gap sample) — program-wide academic advisers
 A department directory line 'Program: <program> ... Academic Advisor: <name>' whose (program, adviser) pair covers 10+
