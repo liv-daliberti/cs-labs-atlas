@@ -153,3 +153,70 @@ def test_social_hosts_are_not_sites_but_google_sites_are():
     assert A.social('https://x.com/someone') and not A.social('https://latex.com/')
     assert A.social('http://isni.org/isni/0000000045035005') and A.social('https://viaf.org/viaf/78465839')
     assert not A.social('https://raphael-group.github.io/') and A.social('https://github.com/raphael-group')
+
+
+class _Kit:
+    """The two Kit methods adapter_plan uses, without stores: every page is stored live."""
+    def src_of(self, u):
+        return u
+
+
+def _ctx(family, **kw):
+    c = dict(school='x', cfg=dict(family=family), pubs_rows={}, pubs_rows_pages={}, manual={})
+    c.update(kw)
+    return c
+
+
+PI = dict(pi='Ada Lovelace', names=['Ada Lovelace'], periods=[dict(start='2018', end=None)], listings=[])
+
+
+def test_cmu_adapter_splits_live_pages_from_wayback_captures():
+    prior = dict(lab_site='https://ada.example.org', people_page='https://ada.example.org/people',
+                 people_pages=['https://ada.example.org/people',
+                               'https://web.archive.org/web/20190101000000id_/https://ada.example.org/people',
+                               'https://ada.example.org/alumni'],
+                 pubs_pages=[dict(url='https://ada.example.org/pubs', entries=10)], students=[])
+    plan = A.adapter_plan(_Kit(), _ctx('cmu'), PI, prior)
+    assert plan['people'] == ['https://ada.example.org/people', 'https://ada.example.org/alumni']
+    assert plan['wb_caps'] == {'https://ada.example.org/people': ['https://web.archive.org/web/20190101000000id_/https://ada.example.org/people']}
+    assert plan['alumni_pages'] == ['https://ada.example.org/alumni']
+    assert [x['pubs_page'] for x in plan['pubs']] == ['https://ada.example.org/pubs']
+    assert plan['strict'] and plan['prior_reviewed'] and plan['min_last_year'] == 2018 and plan['wb_from'] == 2018
+
+
+def test_eb_adapter_reads_pubs_rows_and_reviewer_overrides():
+    prior = dict(lab_site='https://lab.example.ch', people_page='https://inst.example.ch/all-members', students=[])
+    ctx = _ctx('eb', pubs_rows_pages={'Ada Lovelace': ['https://lab.example.ch/publications']},
+               manual={'Ada Lovelace': dict(people=[], drop=['Not A Member'])})
+    plan = A.adapter_plan(_Kit(), ctx, PI, prior)
+    assert plan['people'] == []  # the reviewer rejected the discovered institute-wide page
+    assert plan['drop'] == ['Not A Member']
+    assert [x['pubs_page'] for x in plan['pubs']] == ['https://lab.example.ch/publications']
+    ctx['manual']['Ada Lovelace']['no_pubs'] = True
+    assert A.adapter_plan(_Kit(), ctx, PI, prior)['pubs'] == []
+
+
+def test_prior_parse_rows_back_an_unparseable_publications_page():
+    ctx = _ctx('st', pubs_rows={'Ada Lovelace': [dict(title='T1', url='https://a/pubs'), dict(title='T2', page_url='https://a/pubs2')]})
+    assert [r['title'] for r in A.prior_rows_for(ctx, 'Ada Lovelace', 'https://a/pubs2')] == ['T2']
+
+
+def test_wayback_only_and_never_used_results_are_named():
+    assert A.result_of(dict(error='wayback-only-host')) == 'wayback_only_host'
+    assert A.result_of(dict(error='off-limits-host')) == 'off_limits'
+
+
+@pytest.mark.nfs
+def test_michigan_charter_never_uses_deep_blue_and_reads_umich_from_wayback():
+    import school_config as SC
+    assert SC.host_use('michigan', 'deepblue.lib.umich.edu') == 'none'
+    assert SC.host_use('michigan', 'news.umich.edu') == 'none' and SC.host_use('michigan', 'record.umich.edu') == 'none'
+    assert SC.host_use('michigan', 'cse.engin.umich.edu') == 'wayback-only'
+    assert SC.host_use('michigan', 'some-lab.engin.umich.edu') == 'wayback-only'
+
+
+def test_pi_left_year_from_periods_or_stale_listings():
+    assert A.pi_left_year(dict(periods=[dict(start='2008', end='2016-06-30')], listings=[])) == 2016
+    assert A.pi_left_year(dict(periods=[dict(start='2008', end=None)], listings=[])) is None
+    assert A.pi_left_year(dict(periods=[], listings=[dict(year=2016), dict(year=2017)])) == 2017  # Aaronson: MIT listings end 2017
+    assert A.pi_left_year(dict(periods=[], listings=[dict(year=2025), dict(year=2026)])) is None

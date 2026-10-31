@@ -17,7 +17,13 @@ set -u
 . "${CS_ATLAS_CODE:-${SLURM_SUBMIT_DIR:?}}/paths.sh" || exit 1  # every path in one place; submit from the code root
 cd "$CS_ATLAS_WORK"
 set -a; . "$HOME/.config/cs-atlas/openalex.env"; set +a   # OPENALEX_API_KEY for the recover step (never printed)
-export TMPDIR=/tmp
+# per-job scratch for page-1 PDFs and per-host stamps (never /n/fs); node805's shared /tmp was full on 2026-10-30 (not by
+# us: the job's private /tmp was empty), so check df first and fall back to /dev/shm
+export TMPDIR="${SLURM_TMPDIR:-/tmp/$USER-$SLURM_JOB_ID}"
+avail=$(df --output=avail -k /tmp | tail -1)
+if [ "${avail:-0}" -lt 2000000 ]; then echo "/tmp has ${avail} kB free: using /dev/shm"; export TMPDIR=/dev/shm/$USER-$SLURM_JOB_ID; fi
+mkdir -p "$TMPDIR" || exit 1; trap 'rm -rf "$TMPDIR"' EXIT
+df -h "$TMPDIR" | tail -1
 PY="$CS_ATLAS_COLLECTOR_PY"; [ -x "$PY" ] || PY="$CS_ATLAS_PY"   # some nodes have no /usr/local/anaconda3
 for s in "$@"; do
   for st in ${STEPS:-discover recover audit}; do

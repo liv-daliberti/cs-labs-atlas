@@ -1,0 +1,43 @@
+{
+ "school": "mit",
+ "checked_at": "2026-10-30",
+ "checker": "lab-page audit agent, by hand: the page context around each quote, and the page-1 or OpenAlex evidence of each paper",
+ "additions_file_generated_at": "2026-10-31T01:24:00+00:00",
+ "students": {
+  "sampled": 20,
+  "seed": 11,
+  "membership_errors": 1,
+  "role_or_year_errors": 2,
+  "error_items": [
+   {
+    "pi": "Scott Aaronson",
+    "name": "Alexander Belov",
+    "why": "Aaronson's site lists his UT Austin postdocs; MIT listings end 2017. The tool's after_pi_left rule (added since) removes such rows at the next MIT audit run"
+   }
+  ],
+  "role_or_year_error_items": [
+   {
+    "pi": "Negar Reiskarimian",
+    "name": "Jose Guajardo",
+    "why": "years [2024, 2025] taken from the previous entry; the page says 2020"
+   },
+   {
+    "pi": "Rahul Mazumder",
+    "name": "Hussein Hazimeh",
+    "why": "role masters; the page says former PhD student 2016-2021"
+   }
+  ]
+ },
+ "papers": {
+  "sampled": 20,
+  "seed": 11,
+  "errors": 1,
+  "error_items": [
+   {
+    "pi": "William Freeman",
+    "title": "Freeman, Joshua T",
+    "why": "the listed title was an author fragment; the arXiv id 1812.10972 is a real MIT Freeman paper but the row's title is wrong (flagged title_is_an_author_name by the tool since)"
+   }
+  ]
+ }
+}

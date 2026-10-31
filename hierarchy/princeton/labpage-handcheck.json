@@ -1,0 +1,47 @@
+{
+ "school": "princeton",
+ "checked_at": "2026-10-30",
+ "checker": "lab-page audit agent, by hand: the page context around each quote, and the page-1 or OpenAlex evidence of each paper",
+ "additions_file_generated_at": "2026-10-31T03:08:14+00:00",
+ "students": {
+  "sampled": 20,
+  "seed": 23,
+  "membership_errors": 1,
+  "doubtful_count": 1,
+  "role_errors": 1,
+  "error_items": [
+   {
+    "pi": "Jonathan W. Pillow",
+    "name": "Jacob Yates",
+    "why": "the 2016 capture says 'Ph.D. student in Neuroscience at UT Austin': a previous-school student"
+   }
+  ],
+  "doubtful_items": [
+   {
+    "pi": "Ben Raphael",
+    "name": "Geoffrey Mon",
+    "why": "undergraduate 2018-2019 on a page that mixes Brown and Princeton eras; school not stated"
+   }
+  ],
+  "role_error_items": [
+   {
+    "pi": "Boris Hanin",
+    "name": "Shaunak Bhandarkar",
+    "listed": "postdoc",
+    "actual": "PhD student (joint with Jonathan Pillow)"
+   }
+  ],
+  "earlier_sample": {
+   "sampled": 22,
+   "seed": 7,
+   "membership_errors": 1,
+   "note": "Maya Malaviya (Lombrozo): undated list mixing Berkeley and Princeton eras; the role errors then were fixed by the heading-role rule"
+  }
+ },
+ "papers": {
+  "sampled": 22,
+  "seed": 7,
+  "errors": 0,
+  "note": "every sampled paper carries the PI with Princeton in its OpenAlex authorship or on page 1, inside the appointment; the paper additions are unchanged since"
+ }
+}

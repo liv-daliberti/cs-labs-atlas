@@ -42,7 +42,8 @@ The tool is `tools/labpage_audit.py`; it runs on Slurm with `hierarchy/labpage-a
      the school) of each people and alumni page;
    - for labs the 2026-10-22 pass recorded: only other candidate sites (a missed lab site), and the alumni and publications
      links on the stored lab and people pages that pass never read.
-2. **Recover** (network). Every listed 2016-2026 paper that is not a lab paper goes through `tools/labpage_recover.run` in
+2. **Recover** (network; OpenAlex stops at 6,000 credits left for the day (the shared key allows 10,000 a day; the downloads agent uses the rest):
+   queue the step after the UTC reset with `sbatch --begin` rather than skipping it). Every listed 2016-2026 paper that is not a lab paper goes through `tools/labpage_recover.run` in
    the private shadow tree: its parse (talks, patents, theses, headings), its resolution (school sweep, the PI's works,
    arXiv, proceedings, OpenAlex DOI and title search) and the build's own rule (PI on the byline, appointment R-PAP-01,
    school authorship or page 1 R-PAP-10).
@@ -114,6 +115,15 @@ lab/group host, or its people page is a separate members page; otherwise it is t
 | `not_a_student` | a faculty / collaborator / staff section, another PI of the school, a co-adviser ('joint with'), a rotation student |
 | `name_unresolved` | a fragment, a first name only, a site credit or footer, or a quote that fails the verbatim check |
 
+**Strict rules** (labs discovered by the audit, and the re-parse of labs another school's pass recorded): a name counts
+only under a member section (students, PhD, postdocs, alumni, members, team, people ...; on a homepage used as the people
+page only students / PhD / postdocs / advisees / alumni / group sections), never under committee, publications, theses,
+talks, courses, collaborators, press or service headings, never in a byline or citation (the PI's family name or a venue in
+the entry's text), never a site credit, a co-adviser ('joint with'), a rotation or high-school student, an initial-only or
+implausible name; the section heading's role outranks a bio's degree words; a stated start year before the PI's arrival
+(PI from 2010 on) is `at_previous_school`; and in a lab the school's own pass reviewed, an undated name the pass did not keep
+counts only when marked current ('current' heading, 'Nth-year', 'candidate').
+
 The build admits every lab-page row with a quote and hash whatever its role (R-STU-01), so postdocs, undergraduates,
 visitors and staff listed on a lab page are lab members here too; their role is kept.
 
@@ -178,8 +188,12 @@ list), `no_lab_page`, `page_not_captured`, `page_unparseable`.
 
 | school | adapter | status |
 |---|---|---|
-| princeton, mit | `labpage-tools-princeton-mit` (plan modules, `autom`, `pubx`) | princeton audited 2026-10-30 |
-| cmu | `labpage-tools-cmu` | pending |
-| epfl, berkeley | `labpage-tools-epfl-berkeley` (`lpdom`) | pending |
-| stanford | `labpage-tools-stanford` (no input/evidence file) | pending |
-| michigan | read-only from `labpage-evidence.json` and `labpage-students-report.json` (the Michigan agent's outputs) | pending |
+| princeton, mit | the reviewed plan modules (`plan_<school>.py`: people pages, Wayback history, reviewer drops, per-page publication specs), re-run through `lpauto`'s own rules with every disposition kept | princeton audited 2026-10-30 |
+| cmu | `adapter_plan`: `labpage-evidence.json` `people_pages` (live and Wayback) and `pubs_pages`; strict re-parse | |
+| epfl, berkeley | `adapter_plan`: `labpage-evidence.json` pages, publications pages from `labpage-pubs.jsonl.gz`, reviewer overrides in `labpage-tools-epfl-berkeley/manual_pages.json` | |
+| stanford | no evidence file: `labpage-tools-stanford/decisions.json` pages seed the discovery of every lab | |
+| michigan | `adapter_plan` over the Michigan pass's `labpage-evidence.json`; discovery for every other lab under the charter's host policy (`schools/michigan.toml`: Deep Blue, news.umich.edu, record.umich.edu never used, Wayback included; umich.edu hosts read only from Wayback `id_` captures) | |
+
+Every school's charter host policy is applied to every fetch (`school_config.host_use`: `none` is refused, live or
+Wayback; `wayback-only` is read from Wayback `id_` captures only). When `pubx` finds no entries on a publications page the
+school's earlier parse of that page (`labpage-pubs.jsonl.gz` rows) stands in, flagged `from_prior_parse`.

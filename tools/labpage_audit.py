@@ -55,6 +55,7 @@ H = P.HIERARCHY
 WINDOW = (2016, 2026)
 AI_AGENTS = ('ClaudeBot', 'anthropic-ai', 'Claude-Web', 'Claude-User', 'Claude-SearchBot')
 HOST_GAP = 3.0
+OPENALEX_FLOOR = 6000  # the shared key allows 10,000 credits a day (X-RateLimit-Limit): stop resolving below 6,000 left, ~4k a day at most
 WAYBACK_GAP = 6.0
 TODAY = datetime.date.today().isoformat()
 
@@ -84,6 +85,7 @@ STUDENT_REASONS = {
     'name_unresolved': 'a fragment, first name only, or not a person name',
     'merged_under_variant': 'in the build under another spelling of the same name (within this lab)',
     'dropped_by_review': 'in the reviewed corrections (hierarchy/student-corrections.json) as not this lab',
+    'after_pi_left': "the PI left the school; the entry is undated or dated after the move (another institution's member)",
     'reviewer_excluded': 'the 2026-10-22 lab-page reviewer excluded the name or its section (non-person, collaborator, other lab)',
     'undated_cannot_place': 'the page lists members of every era without dates and the reviewer required dates',
     'evidence_not_in_build': 'in labpage-evidence.json but in no student record of the lab (a build-side loss to check)',
@@ -117,7 +119,7 @@ SCHOOLS = {
     'epfl': dict(family='eb', tools='labpage-tools-epfl-berkeley', domain=r'epfl\.ch'),
     'berkeley': dict(family='eb', tools='labpage-tools-epfl-berkeley', domain=r'berkeley\.edu'),
     'stanford': dict(family='st', tools='labpage-tools-stanford', domain=r'stanford\.edu'),
-    'michigan': dict(family='michigan', domain=r'umich\.edu', read_only=True),
+    'michigan': dict(family='michigan', domain=r'umich\.edu'),
 }
 
 
@@ -302,6 +304,15 @@ def pi_start_year(p):
     return min(ls) if ls else None
 
 
+def pi_left_year(p):
+    """The year the PI left: a reviewed period's end, else (no periods) the last listing year when it is before 2025."""
+    e = pi_end_year(p)
+    if e or p.get('periods'):
+        return e
+    ls = [l['year'] for l in p.get('listings') or [] if l.get('year')]
+    return max(ls) if ls and max(ls) < 2025 else None
+
+
 def pi_end_year(p):
     ends = []
     for q in p.get('periods') or []:
@@ -335,6 +346,9 @@ class Kit:
         lpcap.DBS.setdefault(school, str(H / school / 'labpage-captures.sqlite'))
         lpcap.SISTER.setdefault(school, [])
         lpcap.DEFAULT_GAP = max(lpcap.DEFAULT_GAP, HOST_GAP)
+        lpcap.LOCKDIR = os.path.join(os.environ.get('TMPDIR') or '/tmp', 'lp-ratelimit')
+        owait = lpcap._wait
+        lpcap._wait = lambda host: owait(host or '_no-host_')  # a link with no host must not name the lock directory itself
         lpcap.GAPS['web.archive.org'] = WAYBACK_GAP
         lpcap.GAPS['archive.org'] = WAYBACK_GAP
         lpcap.GAPS['api.openalex.org'] = max(lpcap.GAPS.get('api.openalex.org', 0), 1.05)
@@ -350,6 +364,22 @@ class Kit:
         lpcap.robots_allowed = robots_allowed
         con = lpcap.connect(school)  # create the store
         con.close()
+        try:  # the school charter's host policy (schools/<key>.toml): 'none' is never fetched, live or Wayback; 'wayback-only'
+            import school_config as SC  # hosts are read only from Wayback id_ captures (Michigan: Deep Blue, news, record; umich.edu)
+            SC.get(school)
+            self.host_use = lambda h: SC.host_use(school, h)
+        except Exception:  # noqa: BLE001 (a school without a charter: every host live, robots and challenges still checked)
+            self.host_use = lambda h: 'live'
+        ofetch = lpcap.fetch
+
+        def fetch(school_, url, **kw):
+            use = self.host_use(lpcap.host_of(url) or '')
+            if use == 'none':
+                return {'url': url, 'capture_url': None, 'status': None, 'error': 'off-limits-host', 'content': b''}
+            if use == 'wayback-only' and not lpcap.WAYBACK_RX.match(url) and 'web.archive.org/cdx/' not in url:
+                return {'url': url, 'capture_url': None, 'status': None, 'error': 'wayback-only-host', 'content': b''}
+            return ofetch(school_, url, **kw)
+        lpcap.fetch = fetch
         pis = read(H / school / 'pis.json')  # autom's is-a-PI flag: every PI of the school, not only the 2026-10-22 input
         autom._all_pis[school] = list(dict.fromkeys(n for p_ in pis for n in [p_['pi']] + list(p_.get('names') or [])))
 
@@ -405,6 +435,40 @@ class Kit:
                 return row[0]
         return url
 
+    def import_school_web(self, path, urls):
+        """Copy a protocol school's stored pages (tools/school_web.py container: tables live and captures) for these page URLs
+        into the audit store, unchanged (their own fetched_at and sha256; copied_from names the container), so the
+        extractors read them without fetching again. Bodies Wayback served gzip-encoded are stored decoded."""
+        import gzip as gz
+        if not os.path.exists(path):
+            return 0
+        src = sqlite3.connect(f'file:{path}?mode=ro', uri=True, timeout=60)
+        dst = self.lpcap.connect(self.school)
+        n = 0
+        for u in urls:
+            if not u:
+                continue
+            rows = [(u, None, f, st, sha, ct, raw) for f, st, sha, ct, raw in src.execute(
+                'select fetched_at, status, sha256, content_type, raw_zlib from live where url=? and status=200', (u,))]
+            rows += [(pu, cap, f, st, sha, ct, raw) for pu, cap, f, st, sha, ct, raw in src.execute(
+                'select page_url, capture_url, fetched_at, http_status, sha256, content_type, raw_zlib from captures '
+                'where (page_url=? or capture_url=?) and http_status=200', (u, u))]
+            for url, cap, f, st, sha, ct, raw in rows:
+                if not raw or dst.execute('select 1 from captures where url=? and capture_url is ? and sha256=?', (url, cap, sha)).fetchone():
+                    continue
+                body = zlib.decompress(raw)
+                if body[:2] == b'\x1f\x8b':
+                    body = gz.decompress(body)
+                dst.execute('insert into captures(url,final_url,capture_url,fetched_at,status,sha256,content_type,content,error,copied_from) '
+                            'values (?,?,?,?,?,?,?,?,?,?)', (url, cap or url, cap, f, st, sha, ct, zlib.compress(body, 9), None,
+                                                             os.path.basename(path)))
+                n += 1
+        dst.commit()
+        dst.close()
+        src.close()
+        self.lpev._cache.clear()
+        return n
+
     def stored(self, src):
         try:
             return self.lpev.cap(self.school, src)
@@ -420,6 +484,8 @@ def result_of(r):
         return 'bot_challenge'
     if r.get('error') == 'off-limits-host':
         return 'off_limits'
+    if r.get('error') == 'wayback-only-host':
+        return 'wayback_only_host'
     if r.get('status') == 200 and r.get('content'):
         return 'ok_wayback' if r.get('capture_url') else 'ok'
     if r.get('status'):
@@ -583,6 +649,9 @@ def discover_lab(kit, school, p, ctx, full=True):
             add('prior_labpage_pass_2026-10-22', pg.get('capture_url') or pg['url'],
                 'ok' if pg.get('status') == 200 else (pg.get('error') or f"http_{pg.get('status')}"), kind=pg.get('kind'),
                 sha256=pg.get('sha256'))
+    for u in ctx.get('seeds', {}).get(p['pi'], []):
+        add('prior_labpage_pass', u, 'recorded_page')
+        cand(u, 'earlier_homepage_find')
     if full:
         # 1. department listing -> school profile
         lst = sorted(p.get('listings') or [], key=lambda l: -(l.get('year') or 0))
@@ -823,6 +892,23 @@ def load_ctx(school, kit=None, plan=True):
         if plan and kit is not None:
             import importlib
             ctx['plan'] = importlib.import_module(cfg['plan']).P
+    ctx['pubs_rows'], ctx['pubs_rows_pages'] = collections.defaultdict(list), collections.defaultdict(list)
+    pr = H / school / 'labpage-pubs.jsonl.gz'
+    if pr.exists() and cfg['family'] != 'pm':
+        for r in read(pr):
+            ctx['pubs_rows'][r['pi']].append(r)
+            u = r.get('page_url') or r.get('url')
+            if u and u not in ctx['pubs_rows_pages'][r['pi']]:
+                ctx['pubs_rows_pages'][r['pi']].append(u)
+    ctx['manual'] = {}
+    mp = H / 'labpage-tools-epfl-berkeley' / 'manual_pages.json'
+    if cfg['family'] == 'eb' and mp.exists():
+        ctx['manual'] = read(mp).get(school) or {}
+    ctx['seeds'] = {}
+    if cfg['family'] == 'st':  # Stanford's pass kept its pages in decisions.json and wrote no evidence file
+        dp = H / cfg['tools'] / 'decisions.json'
+        for pi_, d_ in (read(dp) if dp.exists() else {}).items():
+            ctx['seeds'][pi_] = [x['url'] for x in d_.get('pages') or [] if x.get('url')]
     hf = P.FULLTEXT_PUSH / 'raw' / f'pi-homepages-{school}.json'
     ctx['homepage_finds'] = read(hf) if hf.exists() else {}
     ctx['dblp_persons'] = {}
@@ -869,9 +955,13 @@ def cmd_discover(school, only=None, redo=False, redo_unrecorded=False):
             continue
         kit.robots_log.clear()
         prior = ctx['prior'].get(p['pi'])
-        rec = discover_lab(kit, school, p, ctx, full=True)
-        if prior:
-            rec['prior_scan'] = scan_prior(kit, school, p, ctx)
+        try:
+            rec = discover_lab(kit, school, p, ctx, full=True)
+            if prior:
+                rec['prior_scan'] = scan_prior(kit, school, p, ctx)
+        except Exception as e:  # noqa: BLE001 (one lab's failure is recorded and the run goes on; --redo retries it)
+            rec = dict(pi=p['pi'], checked_at=now(), checks=[dict(source='discovery_error', url=None, at=now(), result=repr(e)[:300])],
+                       chosen=dict(lab_site=None), sites=[], wayback={}, error=repr(e)[:300])
         rec['had_prior_record'] = bool(prior)
         out.write(json.dumps(rec, ensure_ascii=False) + '\n')
         out.flush()
@@ -959,7 +1049,7 @@ def pm_candidates(kit, school, pi, plan, held):
             if lpauto.wb_from(school, pi, plan) <= y <= plan.get('wb_to', 2026):
                 srcs.append((c, True))
     cands, unreadable = [], []
-    auto_plan = plan.get('notes', '').startswith('lab-page audit discovery')
+    auto_plan = bool(plan.get('strict')) or plan.get('notes', '').startswith('lab-page audit discovery')
     homepage_people = bool(plan.get('homepage_people'))
     coadv = {}
     for src, is_cap in srcs:
@@ -1015,7 +1105,15 @@ def pm_candidates(kit, school, pi, plan, held):
             elif auto_plan and not (STUDENT_HEAD.search(x.get('head') or '') or
                                     (not homepage_people and (x['under_people_heading'] or x.get('qkind') == 'name+role'))):
                 why = 'not_in_people_section'  # on a homepage, names in the bio prose are collaborators and mentors
-            elif auto_plan and (not plausible(kit, x['name']) or re.match(r'^[A-Z]\.\s', x['name'])):
+            elif auto_plan and (fold(family(pi)) in fold((x.get('desc') or '')[:160]) or
+                                re.search(r'[“"]|\b(proceedings|conference|journal|workshop|arxiv|ICASSP|Interspeech|ACL|EMNLP|NeurIPS|'
+                                          r'ICML|CVPR|pp\.)\b', (x.get('desc') or '')[:160])):
+                why, x['detail'] = 'not_in_people_section', 'a byline or citation, not a member entry'
+            elif auto_plan and (not (HOMEPAGE_HEAD if homepage_people else STRICT_HEAD).search(x.get('head') or '') or
+                                NOT_MEMBER_HEAD.search(x.get('head') or '')):
+                why, x['detail'] = 'not_in_people_section', f"section '{(x.get('head') or '')[:60]}' is not a member list"
+            elif auto_plan and (not plausible(kit, x['name']) or re.match(r'^[A-Z]\.\s', x['name']) or
+                                all(t.isupper() and len(t) <= 4 for t in x['name'].split())):
                 why, x['detail'] = 'name_unresolved', 'not a plausible full person name (automatic plan)'
             elif fn in drop or any(names.match_one(x['name'], d) for d in plan.get('drop', [])):
                 why = 'reviewer_excluded'
@@ -1039,6 +1137,19 @@ def pm_candidates(kit, school, pi, plan, held):
             x['why'], x['detail'] = 'at_previous_school', f"PhD finished {ys[1]}, within 4 years of the PI's arrival ({start}): begun before it"
             continue
         last = (ys[1] if ys[1] is not None else ys[0]) if ys else None
+        end_ = plan.get('pi_end')
+        if end_ and fn not in keep and (not ys or (ys[0] or last or 0) > end_):
+            x['why'], x['detail'] = 'after_pi_left', (f"the PI left the school in {end_}; " +
+                                                      ('undated: cannot place before the move' if not ys else f'dated from {ys[0] or last}'))
+            continue
+        if auto_plan and start and start >= 2010 and ys and ys[0] and ys[0] < start and fn not in keep:
+            x['why'], x['detail'] = 'at_previous_school', f"began {ys[0]}, before the PI's arrival ({start})"
+            continue
+        current_ = re.search(r'\b(current|present|now)\b', x.get('head') or '', re.I) or \
+            re.search(r'\b(\d(st|nd|rd|th)[- ]year|candidate|is a (ph\.?\s?d|graduate|doctoral))', x.get('desc') or '', re.I)
+        if plan.get('prior_reviewed') and not ys and not current_ and fn not in keep:
+            x['why'], x['detail'] = 'undated_cannot_place', 'undated, not marked current, and not kept by the school\'s own reviewed pass'
+            continue
         if auto_plan and start and start < 2014 and not ys and not x['alumni'] and fn not in keep and not \
                 re.search(r'\b(current|present|now)\b', x.get('head') or '', re.I) and not \
                 re.search(r'\b(\d(st|nd|rd|th)[- ]year|candidate|is a (ph\.?\s?d|graduate|doctoral))', x.get('desc') or '', re.I):
@@ -1080,7 +1191,7 @@ def group_people(names, rows):
     return groups
 
 
-STUDENT_REASON_ORDER = ('genuinely_missing', 'evidence_not_in_build', 'dropped_by_review', 'at_previous_school', 'outside_2016_2026',
+STUDENT_REASON_ORDER = ('genuinely_missing', 'evidence_not_in_build', 'dropped_by_review', 'after_pi_left', 'at_previous_school', 'outside_2016_2026',
                         'undated_alumni_cannot_place', 'undated_cannot_place', 'not_in_people_section', 'reviewer_excluded',
                         'not_a_student', 'name_unresolved')
 
@@ -1097,7 +1208,7 @@ def audit_students(kit, ctx, p, lab, plan, auto_plan=False):
     if lab['status'] == 'none_found' and lab['reason_code'] != 'pi_homepage_only_no_lab_site':
         sec.update(page_status='no_lab_page', reason_code='no_lab_page', reason='no lab page or homepage: nothing to audit')
         return sec, adds
-    cands, unreadable = pm_candidates(kit, school, pi, dict(plan, pi_start=pi_start_year(p)), held) if plan else ([], [])
+    cands, unreadable = pm_candidates(kit, school, pi, dict(plan, pi_start=pi_start_year(p), pi_end=pi_left_year(p)), held) if plan else ([], [])
     prior = ctx['prior'].get(pi) or {}
     ev_rows = list(prior.get('students') or [])
     sec['pages'] = sorted({c['src'] for c in cands} | {r.get('capture_url') or r['url'] for r in ev_rows})
@@ -1225,6 +1336,9 @@ def collect_papers(kit, ctx, p, lab, plan):
         except Exception as e:  # noqa: BLE001 (a page the extractor cannot read)
             bad.append(('page_unparseable', pg['pubs_page'], repr(e)[:160]))
             continue
+        if not es and pg.get('prior_url'):
+            es = [dict(title=x.get('title'), year=x.get('year'), venue=x.get('venue'), links=x.get('links') or [],
+                       quote=x.get('quote'), from_prior_parse=True) for x in prior_rows_for(ctx, pi, pg['prior_url'])]
         if not es:
             bad.append(('page_unparseable', pg['pubs_page'], 'no entries extracted'))
             continue
@@ -1307,7 +1421,10 @@ def finish_papers(sec, ents, p, verdicts):
             item['detail'] = why
         sec['missing'].append(item)
         if rc == 'genuinely_missing' and acc:
-            adds.append(dict(acc, pi=p['pi'], rule='LP-PAP-01', audit_key=e['audit_key']))
+            a_ = dict(acc, pi=p['pi'], rule='LP-PAP-01', audit_key=e['audit_key'])
+            if re.match(r"^[A-Z][\w'’-]+, [A-Z][\w.]*( [A-Z]\.?)?$", a_.get('title') or ''):  # 'Freeman, Joshua T': an author cut as the title
+                a_['flags'] = list(a_.get('flags') or []) + ['title_is_an_author_name']
+            adds.append(a_)
     by = collections.Counter(m['reason_code'] for m in sec['missing'] if m['reason_code'] != 'outside_window')
     if sec['pubs_page_status'] != 'audited':
         return adds
@@ -1358,6 +1475,65 @@ def none_reason(p, d, checks):
     return 'no_web_presence_found', 'no homepage or lab site at any source checked'
 
 
+# ---------------------------------------------------------------- per-toolkit adapters
+PEOPLE_PATH = re.compile(r'people|member|team|student|alumni|group|personnel|advisee|former|lab', re.I)
+PUBS_PATH = re.compile(r'publication|papers|pubs|bibliograph|/cv|vita|talks|thesis|teaching|course', re.I)
+STRICT_HEAD = re.compile(r'\b(students?|ph\.?\s?d|post-?docs?|post-?doctoral|alumni|alumnae|graduated|graduates|advisees?|members?|team|'
+                         r'people|researchers|visitors|undergrad\w*|masters?|interns?|doctoral|staff|former|current)\b', re.I)
+HOMEPAGE_HEAD = re.compile(r'\b(students?|ph\.?\s?d|post-?docs?|post-?doctoral|advisees?|alumni|graduated|mentees|group members|'
+                           r'lab members|research group|my group)\b', re.I)  # a homepage used as the people page: only these sections
+NOT_MEMBER_HEAD = re.compile(r'committee|publication|papers|thesis|theses|talks?|course|collaborat|co-?authors?|press|news|award|'
+                             r'service|editor|reviewer|program', re.I)
+
+
+def adapter_plan(kit, ctx, p, prior):
+    """A plan (lpauto keys) for a lab the school's own lab-page pass recorded, read from that pass's outputs:
+      cmu       labpage-evidence.json: lab_site, people_page, people_pages (live URLs and Wayback id_ captures),
+                pubs_pages [{url, mode, entries, ...}] (hierarchy/labpage-tools-cmu)
+      eb        labpage-evidence.json: lab_site, people_page; publications pages = the urls of the PI's rows in
+                labpage-pubs.jsonl.gz; reviewer overrides in labpage-tools-epfl-berkeley/manual_pages.json (people: [] =
+                the discovered page was rejected; drop: names)
+      michigan  labpage-evidence.json (tools/labpage_students_school.py): lab_site, people_page
+    The re-parse runs autom.extract over these pages under the strict rules (strict: True); the pass's own rows stay the
+    kept evidence rows."""
+    pi = p['pi']
+    start = pi_start_year(p) or WINDOW[0]
+    pages = [prior.get('people_page')] + list(prior.get('people_pages') or [])
+    if ctx['cfg']['family'] == 'michigan':  # the Michigan pass's pages live in its school_web container
+        pages += sorted({r.get('capture_url') for r in prior.get('students') or [] if r.get('capture_url')})
+        kit.import_school_web(str(P.CAPTURES / 'michigan.sqlite'), [prior.get('people_page'), prior.get('lab_site')] + pages)
+    man = (ctx.get('manual') or {}).get(pi) or {}
+    if 'people' in man:
+        pages = list(man['people'])
+    live, caps = [], collections.defaultdict(list)
+    for u in pages:
+        if not u or (u != prior.get('people_page') and not PEOPLE_PATH.search(urlsplit(unwayback(u)).path or '')) or \
+                PUBS_PATH.search(urlsplit(unwayback(u)).path or ''):
+            continue  # the pass also cited publication lists and homepages for single rows; only people pages are re-parsed
+        if re.match(r'^https?://web\.archive\.org/web/', u):
+            caps[unwayback(u)].append(u)
+        elif u not in live:
+            live.append(u)
+    pubs = [x['url'] for x in prior.get('pubs_pages') or [] if isinstance(x, dict) and x.get('url')]
+    pubs += [u for u in ctx.get('pubs_rows_pages', {}).get(pi, []) if u not in pubs]
+    if man.get('no_pubs'):
+        pubs = []
+    plan = dict(people=[kit.src_of(u) for u in live], wb=list(caps), wb_caps=dict(caps),
+                alumni_pages=[u for u in live if re.search(r'alumni|former|past', u, re.I)],
+                drop=list(man.get('drop') or []), wb_from=max(WINDOW[0], start), min_last_year=max(WINDOW[0], start),
+                pubs=[dict(pubs_page=kit.src_of(u), spec={}, years=list(WINDOW), prior_url=u) for u in pubs[:4]],
+                strict=True, prior_reviewed=True,
+                homepage_people=bool(prior.get('people_page') and prior.get('lab_site') and
+                                     prior['people_page'].rstrip('/') == prior['lab_site'].rstrip('/')), notes=f"lab-page audit adapter ({ctx['cfg']['family']}): {str(prior.get('notes') or '')[:300]}")
+    return plan
+
+
+def prior_rows_for(ctx, pi, url):
+    """The school's earlier parse of one publications page (labpage-pubs.jsonl.gz rows: the entries it could not match),
+    used when pubx finds no entries on the page."""
+    return [r for r in ctx.get('pubs_rows', {}).get(pi, []) if url in (r.get('url'), r.get('page_url'), r.get('capture_url'))]
+
+
 def lab_record(kit, ctx, p, disc):
     """The lab_page section and the plan the students and papers audits read."""
     school, pi = ctx['school'], p['pi']
@@ -1376,6 +1552,8 @@ def lab_record(kit, ctx, p, disc):
     lab = dict(status=None, urls=dict(lab_site=None, people_page=None, alumni_page=None, pubs_page=None), evidence=None,
                reason_code=None, reason=None, checks=checks, discovery_run=bool(d), prior_record=bool(prior))
     plan = dict(ctx['plan'].get(pi) or {})
+    if prior and ctx['cfg']['family'] != 'pm':
+        plan = adapter_plan(kit, ctx, p, prior)
     site = people = alumni = pubs = None
     if prior and prior.get('lab_site') and not is_profile(prior['lab_site'], dom):
         site, people = prior['lab_site'], prior.get('people_page')
@@ -1395,7 +1573,7 @@ def lab_record(kit, ctx, p, disc):
                 not any(isinstance(x, dict) and x.get('title') for x in plan.get('pubs') or []):
             pubs = new_pubs[0]
             plan['pubs'] = [dict(pubs_page=new_pubs[0], spec={}, years=list(WINDOW), note='lab-page audit: publications link the 2026-10-22 pass did not use')]
-        lab['source'] = 'prior_labpage_pass_2026-10-22'
+        lab['source'] = ctx['cfg'].get('prior_label', 'prior_labpage_pass_2026-10-22')
     elif d and d['chosen'].get('lab_site'):
         ch = d['chosen']
         site, people, alumni, pubs = ch['lab_site'], ch.get('people_page'), ch.get('alumni_page'), ch.get('pubs_page')
@@ -1517,9 +1695,11 @@ def cmd_recover(school, title_credits=600):
     import labpage_recover as LR
     LR.HERE = root
     patch_mpcap(LR.mpcap)
+    lockdir = os.path.join(os.environ.get('TMPDIR') or '/tmp', 'lp-ratelimit')  # node-local per-host stamps (not the old scratch path)
+    LR.mpcap.LOCKDIR = lockdir
     if not os.environ.get('OPENALEX_API_KEY'):
         print('warning: OPENALEX_API_KEY not set: no OpenAlex DOI or title resolution', flush=True)
-    return LR.run(school, workers=4, title_credits=title_credits)
+    return LR.run(school, workers=4, title_credits=title_credits, floor=OPENALEX_FLOOR)
 
 
 # ---------------------------------------------------------------- audit and summary

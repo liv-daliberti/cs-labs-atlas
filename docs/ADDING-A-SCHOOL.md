@@ -1,6 +1,6 @@
 # Adding a school: the standard protocol
 
-**Version 2.1, 2026-10-30.**
+**Version 2.2, 2026-10-30.**
 - Version 1 was drafted from how Princeton, CMU, EPFL, MIT, Berkeley and Stanford were built.
 - Version 2 is version 1 corrected by its first run, on the University of Michigan, the seventh school (`hierarchy/michigan/STAGE-*.md`).
 - Version 2.1 adds what Michigan's stages 2–8 taught on 2026-10-30, marked **Learned from Michigan (2026-10-30)**:
@@ -11,6 +11,8 @@
   - the reviewed OpenAlex identity tool;
   - the previous-school, alumni-text and student-directory rules;
   - the unavailability ledger.
+- Version 2.2 adds the lab-page audit gates to stages 3, 6 and 7 (`tools/labpage_audit.py`, `docs/LAB-PAGES.md`), marked
+  **Lab-page audit (v2.2)**.
 - Each change is marked **Learned from Michigan (2026-10-29)** or **(2026-10-30)**.
 
 Each stage has inputs, tools, outputs, a gate (what must be true before the next stage starts) and a stage report. A school is "in" only when every gate passes and it ships in a release.
@@ -184,6 +186,10 @@ The protocol is config-driven. A school is a charter, `schools/<key>.toml`, and 
   - Map each PI to a lab. A single-leader lab page becomes the lab; otherwise the PI gets a new own lab (`pi_hierarchy.py`).
   - Assign each PI a reviewed home department with `tools/home_departments_school.py <key> --write-shared`. It replaces only this school's rows in `hierarchy/home-departments.json`. No placeholders: a PI without a result is `hold`.
 - **Gate:** the `pi` check is 100%, and every PI has a home department.
+- **Lab-page audit (v2.2) gate:** `tools/labpage_audit.py discover <key>` has run (Slurm: `hierarchy/labpage-audit.slurm <key>`,
+  STEPS=discover). Every PI in `pis.json` has a `lab_page` record in `hierarchy/<key>/labpage-audit.jsonl.gz` with a status,
+  a reason code from `docs/LAB-PAGES.md`, and dated checks of the school profile, DBLP, ORCID and homepage sources. A lab
+  whose only site is at another institution is never audited as this school's lab.
 - **Learned from Michigan (2026-10-29):** a PI's home department comes from the same listing row that proves the appointment. No separate profile crawl is needed when the listing carries every title.
 
 ## Stage 4: appointment periods
@@ -315,6 +321,10 @@ OpenAlex co-authorship is never on its own evidence of advising.
 
 - **Do:** record each relation with role, years and `url + sha256 + quote`.
 - **Gate:** the `students` and `one_person` checks are 100% or explained.
+- **Lab-page audit (v2.2) gate:** every found lab page, and every homepage used as the lab page, has its students section
+  audited, alumni included (`students.page_status` set). Every listed member is in the build or carries a reason code.
+  `genuinely_missing` is at most the whitelisted share, and every such member is in `hierarchy/<key>/labpage-additions.json`
+  (rule LP-STU-01). At least 20 random proposed students are hand-checked and the error count is in the stage report.
 
 ## Stage 7: papers and links
 - **Do:**
@@ -324,7 +334,11 @@ OpenAlex co-authorship is never on its own evidence of advising.
 - **Gate:**
   - the `papers` check passes: every zero-paper lab is reviewed and has a reason in `zero-paper-labs.json`;
   - the `links` check has 0 open items;
-  - the evidence check passes.
+  - the evidence check passes;
+  - **Lab-page audit (v2.2):** every listed 2016-2026 paper on a lab page is a lab paper or carries a reason code; no paper
+    is `not_yet_resolved` (run the `recover` step after the OpenAlex daily reset if the budget ran out; it stops at 6k
+    credits left); `genuinely_missing` papers are in `labpage-additions.json` (rule LP-PAP-01); at least 20 random proposed
+    papers are hand-checked and the error count is in the stage report.
 - **Debt:** `dblp_recover.py` reads a pre-protocol school's cached DBLP lists (`pi_hierarchy.DBLP`). A protocol school needs it to read `hierarchy/dblp-dump-persons.json.gz` instead, or a `hierarchy/<key>/raw/dblp_pubs.json.gz` written from it.
 
 ## Stage 8: full texts
