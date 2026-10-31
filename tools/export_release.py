@@ -618,7 +618,7 @@ def export_atlas(repo):
 
 CODE_RULES = [  # (directory in the code repository, max depth, patterns); repo paths mirror it under code/claude-schools-20261021/
     ('tools', 1, ('*.py', '*.slurm')),
-    ('hierarchy', 1, ('*.sh', '*.slurm', 'period-targets-method.py')),
+    ('hierarchy', 1, ('*.sh', '*.slurm')),
     ('hierarchy/nicknames', 1, ('*.csv',)),
     ('census', 1, ('*.py',)),
     ('census/tools', 1, ('*.py', '*.sh')),
@@ -627,10 +627,9 @@ CODE_RULES = [  # (directory in the code repository, max depth, patterns); repo 
     ('tests', 2, ('*.py', '*.json')),     # since 2026-10-29
     ('docs', 1, ('*.md',)),               # since 2026-10-29
     ('', 1, ('paths.sh', '.gitignore')),  # since 2026-10-29
+    ('archive', 5, ('*.py', '*.sh', '*.slurm', '*.md', '*.txt')),  # retired one-off scripts (docs/SCRIPT-MAP.md), since 2026-10-31
 ]
-CODE_TOOL_DIRS = ['thesis-tools', 'period-tools', 'cs-related-tools', 'few-students-tools', 'few-students-tools-cmu', 'gap-tools-berkeley', 'gap-tools-cmu',
-                  'gap-tools-mit', 'gap-tools-princeton-epfl', 'home-dept-tools', 'labpage-tools-cmu', 'labpage-tools-epfl-berkeley',
-                  'labpage-tools-princeton-mit', 'missing-pi-tools']
+CODE_TOOL_DIRS = ['labpage-tools-cmu', 'labpage-tools-epfl-berkeley', 'labpage-tools-princeton-mit']  # the others moved to archive/
 SKIP_DIRS = {'__pycache__', 'work', 'logs', 'local', 'state', 'discover', 'raw', 'captures', 'cache'}
 SITE_SCRIPTS = ['build-cs-hierarchy.py', 'build-cs-scope.py', 'cs_scope.py', 'lazy_atlas.py']
 CODE = dict(commit=None, uncommitted_tracked_changes=[])
@@ -646,8 +645,7 @@ def code_files():
     import fnmatch
     CODE['commit'] = _git('rev-parse', 'HEAD', text=True).strip()
     CODE['uncommitted_tracked_changes'] = [l[3:] for l in _git('status', '--porcelain', '--untracked-files=no', text=True).split('\n') if l.strip()]
-    rules = list(CODE_RULES) + [(f'hierarchy/{d}', 3, ('*.py', '*.sh', '*.slurm', '*.md')) for d in CODE_TOOL_DIRS] + \
-        [(f'hierarchy/{s}/cs-related-tools', 2, ('*.py', '*.sh', '*.md')) for s in AP.SCHOOL_IDS]
+    rules = list(CODE_RULES) + [(f'hierarchy/{d}', 3, ('*.py', '*.sh', '*.slurm', '*.md')) for d in CODE_TOOL_DIRS]
     want = []
     for path in _git('ls-tree', '-r', '--name-only', '-z', CODE['commit']).decode().split('\0'):
         if not path:
