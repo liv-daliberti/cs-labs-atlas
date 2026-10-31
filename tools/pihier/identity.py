@@ -86,8 +86,8 @@ def anchors(ctx):
     verified = {p['pi']: {l['work'] for i in p['personIds'] for l in pls[i] if l.get('status') == 'verified' and l.get('role', 'author') == 'author'} for p in pis}
     dblp_doi, dblp_title = collections.defaultdict(set), collections.defaultdict(dict)
     dp = P.archive_sweep(DBLP.get(school, '')) / 'raw/dblp_pubs.json.gz'
-    if (HERE / 'hierarchy' / school / 'raw/dblp_pubs.json.gz').exists():  # Princeton: converted from the lab records' cached DBLP answers
-        dp = HERE / 'hierarchy' / school / 'raw/dblp_pubs.json.gz'
+    if P.data('dblp_pubs.json.gz', school, root=HERE).exists():  # Princeton: converted from the lab records' cached DBLP answers
+        dp = P.data('dblp_pubs.json.gz', school, root=HERE)
     if dp.exists() and dp.name == 'dblp_pubs.json.gz' and (DBLP.get(school) or 'hierarchy' in str(dp)):
         pubs = read(dp)['pubs']
         apply_cached_lists(pis, pubs, dblp_doi, dblp_title, n)
@@ -98,7 +98,7 @@ def anchors(ctx):
     # person record of exactly that name in the dump when no other record carries the name (no homonyms); a census id
     # whose dump names never carry the PI's name is dropped as with the cached lists. ORCIDs on the person record (DBLP's
     # curated person links) join the PI's ORCIDs.
-    dd_f = HERE / 'hierarchy' / 'dblp-dump-persons.json.gz'
+    dd_f = P.data('dblp-dump-persons.json.gz', root=HERE)
     if dd_f.exists():
         global DUMP_PERSONS
         if DUMP_PERSONS is None:
@@ -106,13 +106,13 @@ def anchors(ctx):
         apply_dump(pis, DUMP_PERSONS, dblp_doi, dblp_title, n)
     n['pis_with_dblp_list'] = sum(bool(dblp_title[p['pi']]) for p in pis)
     own_list = collections.defaultdict(dict)  # the PI's own institutional publication list (hierarchy/<school>/pi-publication-lists.json)
-    pl_f = HERE / 'hierarchy' / school / 'pi-publication-lists.json'
+    pl_f = P.data('pi-publication-lists.json', school, root=HERE)
     for pi_, rows_ in (read(pl_f) if pl_f.exists() else {}).items():
         for r_ in rows_:
             own_list[pi_][norm_title(r_['title'])] = r_.get('year')
     n['pis_with_own_publication_list'] = sum(bool(own_list[p['pi']]) for p in pis)
     lab_page = collections.defaultdict(list)  # the lab's own publications page (labpage-pubs.jsonl.gz): citation strings, title inside
-    lp_f = HERE / 'hierarchy' / school / 'labpage-pubs.jsonl.gz'
+    lp_f = P.data('labpage-pubs.jsonl.gz', school, root=HERE)
     for line in (gzip.open(lp_f, 'rt') if lp_f.exists() else []):
         r_ = json.loads(line)
         if r_.get('sha256') and r_.get('quote'):
@@ -237,7 +237,7 @@ def hits(ctx):
         n['surname_only_hits_by_anchored_id'] += 1
     # the PI's own works outside the sweep (hierarchy/<school>/pi-works.sqlite, tools/pi_fulltext_affiliation.py): an
     # authorship with no recorded institution whose page 1 ties the school to the PI, and works over the sweep's author cap
-    pw = HERE / 'hierarchy' / school / 'pi-works.sqlite'
+    pw = P.data('pi-works.sqlite', school, root=HERE)
     tied, from_pw, page_read = {}, set(), {}
     if pw.exists():
         con = sqlite3.connect(f'file:{pw}?mode=ro', uri=True)

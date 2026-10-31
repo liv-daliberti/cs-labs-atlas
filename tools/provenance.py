@@ -32,7 +32,7 @@ REQUIRED = ('code', 'rules', 'openalex_sweep', 'dblp_dump', 'dblp_persons', 'pi_
 # regression check, the release and tree tools, the rebuild script, the rules, the tests and every tracked JSON/CSV input.
 # Other tracked files (the collectors in fulltext-push/, the AI-writing study, the school-onboarding tools and configs that
 # other agents edit while builds run) are recorded as other_dirty_paths, never refused.
-BUILD_CODE = ['tools/pi_hierarchy.py', 'tools/pihier/', 'tools/atlas_paths.py', 'tools/provenance.py', 'tools/pi_fulltext_affiliation.py',
+BUILD_CODE = ['tools/pi_hierarchy.py', 'tools/pihier/', 'schemas/', 'tools/schema_check.py', 'tools/validate.py', 'tools/atlas_paths.py', 'tools/provenance.py', 'tools/pi_fulltext_affiliation.py',
               'tools/student_audit.py', 'tools/chain_audit.py', 'tools/link_diagnosis.py', 'tools/evidence_check.py',
               'tools/lab_paper_copies.py', 'tools/build_regression.py', 'tools/make_release.py', 'tools/organize_tree.py',
               'tools/zero_paper_ledger.py', 'hierarchy/rebuild.sh', 'paths.sh', 'docs/RULES.md', 'docs/evidence-whitelist.json', 'tests/']
@@ -95,14 +95,15 @@ def rule_ids():
 
 
 def tracked_inputs():
-    """The reviewed inputs: every tracked JSON/CSV file outside tests/ (the .gitignore whitelist names them)."""
+    """The reviewed inputs: every tracked JSON/CSV file outside tests/, accuracy/ and schemas/ (the schemas are build code,
+    BUILD_CODE; the .gitignore whitelist names the inputs)."""
     keys = onboarding_schools()
-    return [f for f in _git('ls-files', '*.json', '*.csv').split('\n') if f and not f.startswith(('tests/', 'accuracy/'))
+    return [f for f in _git('ls-files', '*.json', '*.csv').split('\n') if f and not f.startswith(('tests/', 'accuracy/', 'schemas/'))
             and not of_onboarding_school(f, keys)]
 
 
 def openalex_sweep(school):
-    db = P.HIERARCHY / school / 'openalex-sweep.sqlite'
+    db = P.data('openalex-sweep.sqlite', school)
     if not db.exists():
         return None
     c = sqlite3.connect(f'file:{db}?mode=ro', uri=True, timeout=60)
@@ -118,7 +119,7 @@ def dblp_dump():
 
 
 def pi_works(school):
-    f = P.HIERARCHY / school / 'pi-works.sqlite'
+    f = P.data('pi-works.sqlite', school)
     if not f.exists():
         return dict(path=str(f), present=False)
     out = _file(f)
@@ -131,11 +132,11 @@ def pi_works(school):
 
 
 def school_inputs(school):
-    H = P.HIERARCHY / school
-    cands = [P.CENSUS / f'{school}-faculty-hierarchy.json', P.CENSUS / f'{school}-faculty.json', H / 'collection.json.gz',
-             P.SITE_DATA / f'collection-{school}.json.gz', P.LISTINGS / school / 'listings.json', H / 'thesis-evidence.json',
-             H / 'labpage-evidence.json', H / 'thesis-held-years-evidence.json', H / 'dblp-recovered.jsonl.gz',
-             H / 'labpage-recovered.jsonl.gz', H / 'pi-publication-lists.json', H / 'labpage-pubs.jsonl.gz', H / 'raw/dblp_pubs.json.gz']
+    D = lambda name: P.data(name, school)  # noqa: E731  (atlas_paths.DATA_FILES)
+    cands = [D('census-faculty-hierarchy.json'), D('census-faculty.json'), D('collection.json.gz'),
+             P.SITE_DATA / f'collection-{school}.json.gz', D('listings.json'), D('thesis-evidence.json'),
+             D('labpage-evidence.json'), D('thesis-held-years-evidence.json'), D('dblp-recovered.jsonl.gz'),
+             D('labpage-recovered.jsonl.gz'), D('pi-publication-lists.json'), D('labpage-pubs.jsonl.gz'), D('dblp_pubs.json.gz')]
     out = {}
     for p in cands:
         if p.exists():
@@ -144,7 +145,7 @@ def school_inputs(school):
 
 
 def block(school):
-    dp = P.HIERARCHY / 'dblp-dump-persons.json.gz'
+    dp = P.data('dblp-dump-persons.json.gz')
     persons = _file(dp)
     if persons:
         persons['dump'] = P.DBLP_DUMP_FILE

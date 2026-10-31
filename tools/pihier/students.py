@@ -6,6 +6,8 @@ advisers), R-STU-10 (the student's own roster entry), R-STU-11 (a basis record's
 import collections, json, re, unicodedata
 from pathlib import Path
 
+import atlas_paths as P  # data paths (DATA_FILES)
+
 from .common import best_sources, read, source_year
 from .names import Name, _fold, clean_person_name, dedupe_tokens, full_pair, names_full_form, nick_ok, same_student, toks
 
@@ -155,7 +157,7 @@ def apply_relation_evidence(stu_all, school, here):
     whether it also names the PI or the PI's lab (names_pi). A source without url+sha256+quote takes the record for its
     PI first (names_pi), else a student-only record (names_pi false, kept visible: the quote proves the page names the
     student, the collection's advising context names the PI). The source's earlier sha256 stays as original_sha256."""
-    p = Path(here) / 'hierarchy' / school / 'relation-evidence.json'
+    p = P.data('relation-evidence.json', school, root=Path(here))
     n = collections.Counter()
     if not p.exists():
         return n
@@ -306,8 +308,8 @@ def researched(ctx, stu, by_name):
     HERE, school, pis, ge = ctx.here, ctx.school, ctx.pis, ctx.ge
     fe = collections.defaultdict(lambda: dict(students=[]))  # researched students: thin labs and the thesis hunt
     for fn in RESEARCHED_FILES:
-        if (HERE / 'hierarchy' / school / fn).exists():
-            for r in read(HERE / 'hierarchy' / school / fn):
+        if P.data(fn, school, root=HERE).exists():
+            for r in read(P.data(fn, school, root=HERE)):
                 fe[r['pi']]['students'] = list(fe[r['pi']]['students']) + list(r.get('students') or [])
     for p in pis:  # researched students (gap-evidence.json, few-students-evidence.json): a stated advisee or lab member, with its quote
         for s_ in list((ge.get(p['pi']) or {}).get('students') or []) + list((fe.get(p['pi']) or {}).get('students') or []):
@@ -385,7 +387,8 @@ def identity_review(ctx, stu):
     merged_students = 0
     # reviewed identities (hierarchy/student-identity-review.json, from the same-name research): two records of one lab
     # that are one person merge under the canonical name; 'different_people' verdicts only feed the chain audit
-    rev = read(HERE / 'hierarchy/student-identity-review.json') if (HERE / 'hierarchy/student-identity-review.json').exists() else []
+    rev_f = P.data('student-identity-review.json', root=HERE)
+    rev = read(rev_f) if rev_f.exists() else []
     for x in rev:
         if x.get('school') != school or x.get('verdict') != 'same_person' or x.get('pi') not in stu:
             continue
@@ -409,7 +412,8 @@ def corrections(ctx, stu):
     HERE, school, n = ctx.here, ctx.school, ctx.n
     # reviewed record corrections (hierarchy/student-corrections.json): drop a misplaced student from a lab, rename a
     # record keyed to the wrong person (the old name stays an alias), or replace a relation's mis-cut evidence
-    corr = read(HERE / 'hierarchy/student-corrections.json') if (HERE / 'hierarchy/student-corrections.json').exists() else []
+    corr_f = P.data('student-corrections.json', root=HERE)
+    corr = read(corr_f) if corr_f.exists() else []
     for x in corr:
         S = stu.get(x.get('pi')) if x.get('school') == school else None
         k = next((k for k, r in (S or {}).items() if k == x['student'] or x['student'] in (r.get('merged') or [])), None)

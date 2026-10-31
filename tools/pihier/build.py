@@ -5,6 +5,7 @@ census -> periods (inside the PI records) -> students -> identity -> papers -> l
 import collections, datetime, gzip, json, os
 from pathlib import Path
 
+import atlas_paths as P  # data paths (DATA_FILES)
 import provenance  # report.json -> provenance
 from .common import HERE, Ctx
 from . import census, identity, links, papers, students
@@ -45,7 +46,7 @@ def write(ctx):
 
 
 def build(school):
-    out = HERE / 'hierarchy' / school
+    out = P.data('pis.json', school, root=HERE).parent  # the package directory (derived)
     if os.environ.get('PI_HIERARCHY_OUT'):  # a trial build elsewhere (tests, rule measurements); the inputs stay where they are
         out = Path(os.environ['PI_HIERARCHY_OUT']) / school; out.mkdir(parents=True, exist_ok=True)
     ctx = Ctx(school, out=out)

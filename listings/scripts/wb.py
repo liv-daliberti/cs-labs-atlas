@@ -26,7 +26,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # .../listin
 SCHOOLS = ("cmu", "epfl", "mit", "berkeley", "stanford")  # the pre-protocol schools; any school with a charter
                                                            # (schools/<key>.toml) is accepted too (school_dir)
 HIER = os.path.join(os.path.dirname(ROOT), "hierarchy")
-LOCK = str(P.LOCKS / "wb.lock")  # the one Wayback lock of every process on this host (atlas_paths LOCKS)
+LOCK = str(P.RATE_STAMPS / "wayback.stamp")  # one Wayback request per MIN_GAP across every process on every node (atlas_paths RATE_STAMPS)
 MIN_GAP = 6.0  # never faster than the 1.5 s ceiling; Wayback refused connections under load (other clients share this host), so ~10/min
 UA = "Mozilla/5.0 (compatible; faculty-listing-archival-research/1.0)"
 

@@ -19,7 +19,7 @@ def _nick_pairs():
     import csv
     pairs = {frozenset((a, b)) for a, b in NICK.items()}
     for f in ('names.csv', 'extras.csv'):
-        fp = P.HIERARCHY / 'nicknames' / f
+        fp = P.data('nicknames') / f
         if fp.exists():
             for r in csv.DictReader(open(fp)):
                 if r.get('relationship') == 'has_nickname' and r.get('name1') and r.get('name2'):

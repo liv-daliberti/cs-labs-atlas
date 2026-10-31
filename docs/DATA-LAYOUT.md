@@ -1,0 +1,202 @@
+# Data layout: raw, reviewed, derived (ROADMAP item 10)
+
+**Status: phase A (design; nothing has moved), 2026-10-31.** The table below is `tools/atlas_paths.py` `DATA_FILES`;
+`tests/test_schemas.py` checks that every entry is listed here. The move itself (phase B) is a dry-run tool and an owner
+decision; it has not been run.
+
+## The rules
+
+| kind | what | who writes it | in git |
+|---|---|---|---|
+| `raw` | captures and bulk pulls: the OpenAlex sweep, pi-works, page captures, DBLP pulls, listing captures | the collectors and capture tools, once per capture; never rewritten (a re-capture adds rows, never edits them) | no (too large; the releases carry hashes) |
+| `reviewed` | human or agent decisions with their evidence: overrides, corrections, researched evidence, review files | review tools and hand edits, through commits | yes (the `.gitignore` whitelist) |
+| `derived` | what the build makes: packages, copies, ledger, audits, diagnoses, the census built from listings | only the build (`hierarchy/rebuild.sh` and the stage tools that build) | no; rebuilt, never hand-edited |
+| `work` | tool state that can be rebuilt from raw + reviewed: recovery databases, recovered rows, `tmp/` | the tool that owns it | no |
+| `logs`, `reports` | run logs; generated Markdown reports (`*-AUDIT.md`, `STAGE-*.md` are reviewed reports and stay tracked) | the runs | reports: tracked when reviewed |
+
+## The target layout
+
+```
+hierarchy/
+  <school>/
+    raw/        openalex-sweep.sqlite, pi-works.sqlite, *-captures.sqlite, dblp_pubs.json.gz, school-captures.sqlite
+    reviewed/   gap-evidence.json, few-students-evidence.json, relation-evidence.json, labpage-additions.json, ...,
+                census-additions.json, faculty-periods.json   (from census/ and periods/)
+    derived/    pis.json, students.json, lab_papers.jsonl.gz, student_papers.jsonl.gz, report.json, copies.json,
+                unavailable*.json*, link-diagnosis.json, sweep-check.json, census-faculty*.json, collection.json.gz
+    work/       *-recover.sqlite, *-recovered.jsonl.gz, labpage-pubs.jsonl.gz, tmp/
+    reports/    STAGE-*.md, REQUESTS-FOR-BUILDER.md
+  raw/         dblp-dump-persons.json.gz
+  reviewed/    census-overrides.json, student-corrections.json, student-identity-review.json, home-departments.json,
+               chain-reasons.json, zero-paper-review.json, cs-venues.json, nicknames/
+  derived/     chain-audit.json, student-audit.json, EVIDENCE-CHECK.json, BUILD-REGRESSION.json, VALIDATION.json,
+               zero-paper-labs.json, ids/
+  logs/        every *.log (today scattered over hierarchy/ and hierarchy/<school>/tmp/)
+  reports/     CHAIN-AUDIT.md, EVIDENCE-CHECK.md, BUILD-REGRESSION.md, SCHOOL-PROFILES.md, LABPAGE-AUDIT.md
+listings/<school>/raw/captures.sqlite, listings/<school>/derived/{rows,listings,coverage,...}.json
+```
+
+`census/` and `periods/` are absorbed into the schools' `reviewed/` and `derived/`; `captures/<school>.sqlite` becomes the
+school's `raw/school-captures.sqlite`. The stores (`stores/<school>/`) and the releases keep their own layout.
+
+## How the code finds a file
+
+- `atlas_paths.data(name, school=None, root=None, layout=None)` gives a data file's path from `DATA_FILES`. `DATA_LAYOUT`
+  (`CS_ATLAS_DATA_LAYOUT`) is `flat` today: every path is the old one. After the move it becomes `split`, and the code does
+  not change. This is the same pattern as `LAYOUT_DEFAULT` for the project move. `root` points a trial build or a test at a
+  copy; without it each top directory follows its slot (`HIERARCHY`, `CENSUS`, `LISTINGS`, `PERIODS`, `CAPTURES`).
+- New slots: `RATE_STAMPS` (`<ROOT>/cache/rate-stamps`) and `LOCKS` (`/tmp/cs-atlas-locks`, below). No new top-level
+  slot is needed for the kinds; they are directories inside `HIERARCHY` and `LISTINGS`.
+- Routed so far (phase A): the builder (`tools/pihier/`), `tools/provenance.py`, `tools/validate.py`, the nickname tables.
+  The equivalence run proves no output change. Still joining paths directly: 192 places in 37 files (below). They are routed the same way,
+  one tool at a time, each with a stage-level equivalence check, before the move. Not ours to change: `tools/labpage_audit.py` and
+  `hierarchy/labpage-tools-*` (the lab-page agent), `fulltext-push/**` (the downloads agent); their paths are mapped here.
+
+## Locks and rate stamps (decided 2026-10-31)
+
+- **Rate stamps are shared**, in `RATE_STAMPS` on project storage: one stamp file per host, flock'd. The NFS mount has
+  `local_lock=none` (NFSv3 with NLM), so a flock is seen by every node, and the I/O is one tiny file per request. The
+  Wayback throttle (`listings/scripts/wb.py`, `tools/school_web.py`) and `tools/mpcap.py`'s per-host spacing use it, so
+  Slurm jobs on different nodes keep one request rate per host. Before this they were node-local and did not coordinate.
+- **Node-local `LOCKS`** (`/tmp/cs-atlas-locks`) is for true mutexes inside one host. Nothing uses it today.
+- The lab-page agent's `lpcap` still uses its own directory (`labpage_audit.py` sets `$TMPDIR/lp-ratelimit` for `lpcap`
+  and `mpcap`). Pointing it at `RATE_STAMPS/hosts` would make all three share one stamp per host. That is for the lab-page agent.
+
+## Every file in the table: today and after the move
+
+Tracked: tracked files / files on disk today, across the schools. Size: the largest class in the inventory.
+
+| name | kind | today | after the move | tracked | size |
+|---|---|---|---|---|---|
+| `pis.json` | derived | `hierarchy/{school}/pis.json` | `hierarchy/{school}/derived/pis.json` | 0/7 | <100MB |
+| `students.json` | derived | `hierarchy/{school}/students.json` | `hierarchy/{school}/derived/students.json` | 0/7 | <100MB |
+| `lab_papers.jsonl.gz` | derived | `hierarchy/{school}/lab_papers.jsonl.gz` | `hierarchy/{school}/derived/lab_papers.jsonl.gz` | 0/7 | <100MB |
+| `student_papers.jsonl.gz` | derived | `hierarchy/{school}/student_papers.jsonl.gz` | `hierarchy/{school}/derived/student_papers.jsonl.gz` | 0/7 | <100MB |
+| `report.json` | derived | `hierarchy/{school}/report.json` | `hierarchy/{school}/derived/report.json` | 0/7 | <1MB |
+| `copies.json` | derived | `hierarchy/{school}/copies.json` | `hierarchy/{school}/derived/copies.json` | 0/6 | <100MB |
+| `unavailable.jsonl.gz` | derived | `hierarchy/{school}/unavailable.jsonl.gz` | `hierarchy/{school}/derived/unavailable.jsonl.gz` | 0/6 | <100MB |
+| `unavailable-summary.json` | derived | `hierarchy/{school}/unavailable-summary.json` | `hierarchy/{school}/derived/unavailable-summary.json` | 0/6 | <1MB |
+| `link-diagnosis.json` | derived | `hierarchy/{school}/link-diagnosis.json` | `hierarchy/{school}/derived/link-diagnosis.json` | 0/6 | <100MB |
+| `listed-not-in-census.json` | derived | `hierarchy/{school}/listed-not-in-census.json` | `hierarchy/{school}/derived/listed-not-in-census.json` | 0/7 | <100MB |
+| `sweep-check.json` | derived | `hierarchy/{school}/sweep-check.json` | `hierarchy/{school}/derived/sweep-check.json` | 0/7 | <1MB |
+| `cs-related-candidates.json` | derived | `hierarchy/{school}/cs-related-candidates.json` | `hierarchy/{school}/derived/cs-related-candidates.json` | 0/7 | <100MB |
+| `oa-author-stats.json.gz` | derived | `hierarchy/{school}/oa-author-stats.json.gz` | `hierarchy/{school}/derived/oa-author-stats.json.gz` | 0/1 | <100MB |
+| `collection.json.gz` | derived | `hierarchy/{school}/collection.json.gz` | `hierarchy/{school}/derived/collection.json.gz` | 0/3 | <1MB |
+| `census-faculty.json` | derived | `census/{school}-faculty.json` | `hierarchy/{school}/derived/census-faculty.json` | 0/7 | <100MB |
+| `census-faculty-hierarchy.json` | derived | `census/{school}-faculty-hierarchy.json` | `hierarchy/{school}/derived/census-faculty-hierarchy.json` | 0/1 | <1MB |
+| `listings.json` | derived | `listings/{school}/listings.json` | `listings/{school}/derived/listings.json` | 0/7 | <100MB |
+| `openalex-sweep.sqlite` | raw | `hierarchy/{school}/openalex-sweep.sqlite` | `hierarchy/{school}/raw/openalex-sweep.sqlite` | 0/7 | >=100MB |
+| `pi-works.sqlite` | raw | `hierarchy/{school}/pi-works.sqlite` | `hierarchy/{school}/raw/pi-works.sqlite` | 0/7 | >=100MB |
+| `dblp_pubs.json.gz` | raw | `hierarchy/{school}/raw/dblp_pubs.json.gz` | `hierarchy/{school}/raw/dblp_pubs.json.gz` | 0/1 | <1MB |
+| `relation-captures.sqlite` | raw | `hierarchy/{school}/relation-captures.sqlite` | `hierarchy/{school}/raw/relation-captures.sqlite` | 0/3 | >=100MB |
+| `pubs-pages.sqlite` | raw | `hierarchy/{school}/pubs-pages.sqlite` | `hierarchy/{school}/raw/pubs-pages.sqlite` | 0/1 | <100MB |
+| `gap-captures.sqlite` | raw | `hierarchy/{school}/gap-captures.sqlite` | `hierarchy/{school}/raw/gap-captures.sqlite` | 0/5 | <100MB |
+| `few-students-captures.sqlite` | raw | `hierarchy/{school}/few-students-captures.sqlite` | `hierarchy/{school}/raw/few-students-captures.sqlite` | 0/5 | <100MB |
+| `thesis-captures.sqlite` | raw | `hierarchy/{school}/thesis-captures.sqlite` | `hierarchy/{school}/raw/thesis-captures.sqlite` | 0/6 | >=100MB |
+| `cs-related-captures.sqlite` | raw | `hierarchy/{school}/cs-related-captures.sqlite` | `hierarchy/{school}/raw/cs-related-captures.sqlite` | 0/5 | >=100MB |
+| `labpage-captures.sqlite` | raw | `hierarchy/{school}/labpage-captures.sqlite` | `hierarchy/{school}/raw/labpage-captures.sqlite` | 0/6 | >=100MB |
+| `labpage-audit-captures.sqlite` | raw | `hierarchy/{school}/labpage-audit-captures.sqlite` | `hierarchy/{school}/raw/labpage-audit-captures.sqlite` | 0/7 | >=100MB |
+| `school-captures.sqlite` | raw | `captures/{school}.sqlite` | `hierarchy/{school}/raw/school-captures.sqlite` | 0/4 | >=100MB |
+| `listings-captures.sqlite` | raw | `listings/{school}/captures.sqlite` | `listings/{school}/raw/captures.sqlite` | 0/6 | >=100MB |
+| `gap-evidence.json` | reviewed | `hierarchy/{school}/gap-evidence.json` | `hierarchy/{school}/reviewed/gap-evidence.json` | 5/5 | <100MB |
+| `few-students-evidence.json` | reviewed | `hierarchy/{school}/few-students-evidence.json` | `hierarchy/{school}/reviewed/few-students-evidence.json` | 6/6 | <100MB |
+| `thesis-evidence.json` | reviewed | `hierarchy/{school}/thesis-evidence.json` | `hierarchy/{school}/reviewed/thesis-evidence.json` | 0/6 | <100MB |
+| `thesis-held-years-evidence.json` | reviewed | `hierarchy/{school}/thesis-held-years-evidence.json` | `hierarchy/{school}/reviewed/thesis-held-years-evidence.json` | 0/1 | <100MB |
+| `labpage-evidence.json` | reviewed | `hierarchy/{school}/labpage-evidence.json` | `hierarchy/{school}/reviewed/labpage-evidence.json` | 0/6 | <100MB |
+| `labpage-additions.json` | reviewed | `hierarchy/{school}/labpage-additions.json` | `hierarchy/{school}/reviewed/labpage-additions.json` | 2/4 | <100MB |
+| `relation-evidence.json` | reviewed | `hierarchy/{school}/relation-evidence.json` | `hierarchy/{school}/reviewed/relation-evidence.json` | 3/3 | <100MB |
+| `pi-publication-lists.json` | reviewed | `hierarchy/{school}/pi-publication-lists.json` | `hierarchy/{school}/reviewed/pi-publication-lists.json` | 0/2 | <100MB |
+| `cs-related-review.json` | reviewed | `hierarchy/{school}/cs-related-review.json` | `hierarchy/{school}/reviewed/cs-related-review.json` | 7/7 | <100MB |
+| `missing-pi-review.json` | reviewed | `hierarchy/{school}/missing-pi-review.json` | `hierarchy/{school}/reviewed/missing-pi-review.json` | 7/7 | <1MB |
+| `openalex-identity-review.json` | reviewed | `hierarchy/{school}/openalex-identity-review.json` | `hierarchy/{school}/reviewed/openalex-identity-review.json` | 1/1 | <10KB |
+| `census-additions.json` | reviewed | `census/{school}-additions.json` | `hierarchy/{school}/reviewed/census-additions.json` | 7/7 | <100MB |
+| `faculty-periods.json` | reviewed | `periods/{school}-faculty-periods.json` | `hierarchy/{school}/reviewed/faculty-periods.json` | 5/5 | <1MB |
+| `dblp-recovered.jsonl.gz` | work | `hierarchy/{school}/dblp-recovered.jsonl.gz` | `hierarchy/{school}/work/dblp-recovered.jsonl.gz` | 0/7 | <1MB |
+| `labpage-recovered.jsonl.gz` | work | `hierarchy/{school}/labpage-recovered.jsonl.gz` | `hierarchy/{school}/work/labpage-recovered.jsonl.gz` | 0/3 | <1MB |
+| `labpage-pubs.jsonl.gz` | work | `hierarchy/{school}/labpage-pubs.jsonl.gz` | `hierarchy/{school}/work/labpage-pubs.jsonl.gz` | 0/6 | <100MB |
+| `dblp-recover.sqlite` | work | `hierarchy/{school}/dblp-recover.sqlite` | `hierarchy/{school}/work/dblp-recover.sqlite` | 0/7 | <100MB |
+| `labpage-recover.sqlite` | work | `hierarchy/{school}/labpage-recover.sqlite` | `hierarchy/{school}/work/labpage-recover.sqlite` | 0/5 | <100MB |
+| `census-overrides.json` | reviewed | `hierarchy/census-overrides.json` | `hierarchy/reviewed/census-overrides.json` | 1/1 | <100MB |
+| `student-corrections.json` | reviewed | `hierarchy/student-corrections.json` | `hierarchy/reviewed/student-corrections.json` | 1/1 | <10KB |
+| `student-identity-review.json` | reviewed | `hierarchy/student-identity-review.json` | `hierarchy/reviewed/student-identity-review.json` | 1/1 | <1MB |
+| `home-departments.json` | reviewed | `hierarchy/home-departments.json` | `hierarchy/reviewed/home-departments.json` | 1/1 | <1MB |
+| `chain-reasons.json` | reviewed | `hierarchy/chain-reasons.json` | `hierarchy/reviewed/chain-reasons.json` | 1/1 | <1MB |
+| `zero-paper-review.json` | reviewed | `hierarchy/zero-paper-review.json` | `hierarchy/reviewed/zero-paper-review.json` | 1/1 | <1MB |
+| `zero-paper-labs.json` | derived | `hierarchy/zero-paper-labs.json` | `hierarchy/derived/zero-paper-labs.json` | 1/1 | <10KB |
+| `cs-venues.json` | reviewed | `hierarchy/cs-venues.json` | `hierarchy/reviewed/cs-venues.json` | 1/1 | <1MB |
+| `nicknames` | reviewed | `hierarchy/nicknames` | `hierarchy/reviewed/nicknames` | 0/1 | dir |
+| `dblp-dump-persons.json.gz` | raw | `hierarchy/dblp-dump-persons.json.gz` | `hierarchy/raw/dblp-dump-persons.json.gz` | 0/1 | <100MB |
+| `chain-audit.json` | derived | `hierarchy/chain-audit.json` | `hierarchy/derived/chain-audit.json` | 0/1 | <100MB |
+| `student-audit.json` | derived | `hierarchy/student-audit.json` | `hierarchy/derived/student-audit.json` | 0/1 | <1MB |
+| `EVIDENCE-CHECK.json` | derived | `hierarchy/EVIDENCE-CHECK.json` | `hierarchy/derived/EVIDENCE-CHECK.json` | 0/1 | <1MB |
+| `BUILD-REGRESSION.json` | derived | `hierarchy/BUILD-REGRESSION.json` | `hierarchy/derived/BUILD-REGRESSION.json` | 0/1 | <10KB |
+| `VALIDATION.json` | derived | `hierarchy/VALIDATION.json` | `hierarchy/derived/VALIDATION.json` | - | - |
+| `ids` | derived | `hierarchy/ids` | `hierarchy/derived/ids` | 0/1 | dir |
+| `logs` | work | `hierarchy/logs` | `hierarchy/logs` | 0/1 | dir |
+
+## Files outside the table (inventory of 2026-10-31)
+
+The inventory (`os.scandir` at depth 2 or less on known paths; 666 paths in 342 patterns) puts the rest into these groups.
+Each group has one rule for the move:
+
+| group | paths | rule |
+|---|---|---|
+| logs (`*.log`, `hierarchy/logs/`) | 186 | to `hierarchy/logs/` (shared) or `<school>/work/logs/`; never inputs |
+| named by code, not yet in the table | 69 | added to `DATA_FILES` when the tool that names them is routed (the list below) |
+| lab-page agent files (`labpage-audit*`, `labpage-parts/`, `labpage-handcheck.json`, ...) | 50 | mapped with the lab-page agent: captures to `raw/`, the hand checks to `reviewed/`, the audit to `derived/`, parts to `work/` |
+| one-off outputs nothing reads (`period-targets-*.json`, `*-captures-<school>.sqlite`, ...) | 34 | to `hierarchy/archive-data/` with a dated note, or deleted after review |
+| reports (`*.md`) | 21 | to `reports/`; the reviewed ones stay tracked |
+| `hierarchy/<school>/tmp/` | 21 | to `<school>/work/tmp/` |
+| leftover directories of the archived tools (untracked state, caches) | 19 | to `hierarchy/archive-data/<dir>/`; their code is in `archive/` |
+
+The inventory's writer and reader columns come from `git grep`, so a tool that builds a path from parts is missed.
+`missing-pi-captures.sqlite` (`tools/mpcap.py`) shows up as unreferenced for that reason. Each file is checked by hand when its tool is routed.
+
+## Still to route (direct path joins in live code, comments excluded)
+
+| file | places |
+|---|---|
+| `tools/make_release.py` | 22 |
+| `tools/periods_school.py` | 15 |
+| `tools/labpage_students_school.py` | 15 |
+| `tools/labpage_recover.py` | 13 |
+| `tools/cs_related_school.py` | 12 |
+| `tools/census_build.py` | 12 |
+| `tools/stage_gate.py` | 10 |
+| `tools/relation_recapture.py` | 7 |
+| `tools/oa_identity_school.py` | 6 |
+| `tools/dblp_recover.py` | 6 |
+| `tools/cs_related_candidates.py` | 6 |
+| `tools/sweep_check.py` | 5 |
+| `tools/pi_fulltext_affiliation.py` | 5 |
+| `tools/missing_papers_audit.py` | 5 |
+| `tools/listed_not_in_census.py` | 5 |
+| `tools/home_departments_school.py` | 5 |
+| `tools/export_release.py` | 5 |
+| `tools/lab_paper_copies.py` | 4 |
+| `tools/dblp_ids_school.py` | 4 |
+| `tools/zero_paper_ledger.py` | 3 |
+| `tools/listing_rows.py` | 3 |
+| `tools/diagnose_gaps.py` | 3 |
+| `tools/sweep_school.py` | 2 |
+| `tools/school_web.py` | 2 |
+| `tools/school_profiles.py` | 2 |
+| `tools/organize_tree.py` | 2 |
+| `tools/dblp_dump_persons.py` | 2 |
+| `tools/atlas_ids.py` | 2 |
+| `tools/school_hosts.py` | 1 |
+| `tools/oa_sweep.py` | 1 |
+| `tools/mpcap.py` | 1 |
+| `tools/homepage_links_school.py` | 1 |
+| `tools/dblp_affiliated.py` | 1 |
+| `tools/build_regression.py` | 1 |
+| `hierarchy/rebuild.sh` | 1 |
+| `accuracy/sample.py` | 1 |
+| `accuracy/record.py` | 1 |
+
+## Phase B (not started; needs the owner's OK)
+
+A dry-run tool (an extension of `tools/relocate_project.py`, or a sibling) prints the ordered renames from `DATA_FILES`
+(`flat` to `split`), the conflicts, a preflight of busy processes and held locks (`lsof` on the files, the stores' loop
+locks, running Slurm jobs of the project), and the record it would write to `MIGRATIONS`. The owner picks a quiet point when
+the lab-page and downloads agents are idle; the coordinator applies it and flips `DATA_LAYOUT_DEFAULT` to `split` in the same commit.

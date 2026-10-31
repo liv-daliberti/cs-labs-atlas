@@ -43,7 +43,7 @@ def source_year(s):
 
 
 def sweep_works(school, here=None):
-    c = sqlite3.connect(f'file:{here or HERE}/hierarchy/{school}/openalex-sweep.sqlite?mode=ro', uri=True)
+    c = sqlite3.connect(f"file:{P.data('openalex-sweep.sqlite', school, root=here or HERE)}?mode=ro", uri=True)
     for (body,) in c.execute('select body from pages order by year, page'):
         yield from json.loads(zlib.decompress(body))
 

@@ -3,6 +3,8 @@ R-HIER-01 (one own lab per PI; a census lab unit is reused only with this PI as 
 are not labs: COLLECTIVE)."""
 import collections, re
 
+import atlas_paths as P  # data paths (DATA_FILES)
+
 from .common import AFF, INST, as_list, collection_work_matcher, read
 from .names import Name, nick_ok, toks
 from .periods import listings_after_move, pi_listings, pi_mine, pi_periods
@@ -15,17 +17,17 @@ def load(ctx):
     the site's), the faculty periods (collection + periods/<school>-faculty-periods.json), the charter's institution and
     affiliation pattern, the collection's person links and the collection-work matcher."""
     HERE, SITE, school = ctx.here, ctx.site, ctx.school
-    cf = HERE / f'census/{school}-faculty-hierarchy.json'  # a school whose census path another chain owns (Berkeley) keeps its own
-    census = read(cf if cf.exists() else HERE / f'census/{school}-faculty.json')
+    cf = P.data('census-faculty-hierarchy.json', school, root=HERE)  # a school whose census path another chain owns (Berkeley) keeps its own
+    census = read(cf if cf.exists() else P.data('census-faculty.json', school, root=HERE))
     census = census.get('faculty', census) if isinstance(census, dict) else census
-    if (HERE / f'census/{school}-additions.json').exists():  # listed faculty the census missed (tools/listed_not_in_census.py)
-        census = list(census) + read(HERE / f'census/{school}-additions.json')
-    own_c = HERE / 'hierarchy' / school / 'collection.json.gz'  # a school without a site collection (Berkeley) brings its own
+    if P.data('census-additions.json', school, root=HERE).exists():  # listed faculty the census missed (tools/listed_not_in_census.py)
+        census = list(census) + read(P.data('census-additions.json', school, root=HERE))
+    own_c = P.data('collection.json.gz', school, root=HERE)  # a school without a site collection (Berkeley) brings its own
     C = read(own_c if own_c.exists() else SITE / f'collection-{school}.json.gz')
     people = C['people'] if isinstance(C['people'], list) else list(C['people'].values())
     Pid = {p['id']: p for p in people}; units = {u['id']: u for u in C['units']}; works = C['works']
     periods = list(C.get('facultyPeriods') or [])
-    pf = HERE / f'periods/{school}-faculty-periods.json'
+    pf = P.data('faculty-periods.json', school, root=HERE)
     if pf.exists():
         x = read(pf); periods += x if isinstance(x, list) else x.get('periods', [])
     inst = 'https://openalex.org/' + INST[school]; aff = re.compile(AFF[school], re.I)
@@ -42,12 +44,13 @@ def reviewed_inputs(ctx):
     exclusions, identity and the collection person to the overrides."""
     HERE, school = ctx.here, ctx.school
     yearly = collections.defaultdict(list)  # listings/<school>/listings.json: verified yearly department listings (one row per person-year)
-    lf = HERE / 'listings' / school / 'listings.json'
+    lf = P.data('listings.json', school, root=HERE)
     for r in (read(lf) if lf.exists() else []):
         if not r.get('future_start_note') and r.get('sha256') and r.get('quote'):
             yearly[r['pi']].append(r)
-    ov = read(HERE / 'hierarchy/census-overrides.json').get(school, {}) if (HERE / 'hierarchy/census-overrides.json').exists() else {}
-    ge = {r['pi']: r for r in read(HERE / 'hierarchy' / school / 'gap-evidence.json')} if (HERE / 'hierarchy' / school / 'gap-evidence.json').exists() else {}
+    ov_f, ge_f = P.data('census-overrides.json', root=HERE), P.data('gap-evidence.json', school, root=HERE)
+    ov = read(ov_f).get(school, {}) if ov_f.exists() else {}
+    ge = {r['pi']: r for r in read(ge_f)} if ge_f.exists() else {}
     for pi_, r in ge.items():  # researched gap labs: status, identity, the PI's collection person
         o = ov.setdefault(pi_, {})
         if r.get('status') == 'not_pi_in_window' and r.get('status_evidence'):

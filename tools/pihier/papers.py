@@ -4,6 +4,7 @@ rows, namesakes, not-papers, books and editions.
 R-PAP-08 .. R-PAP-26 (see docs/RULES.md); R-PAP-01/02/03/13 come from periods, R-PAP-04 .. 07 from identity."""
 import collections, gzip, html, json, re, unicodedata, zlib
 
+import atlas_paths as P  # data paths (DATA_FILES)
 import school_config as _S  # the school charters (R-PAP-15's foreign-title exception)
 from .common import OWN_UNITS, SCHOOL_LOOSE, TODAY, WINDOW_START, ndoi, norm_title
 from .names import NICK, _nick_pairs, byline_name, full_pair, toks
@@ -513,7 +514,7 @@ def recovered_rows(ctx, rows, seen):
     # (tools/dblp_recover.py -> hierarchy/<school>/dblp-recovered.jsonl.gz), and likewise papers the PI's own lab
     # publications page lists (tools/labpage_recover.py -> hierarchy/<school>/labpage-recovered.jsonl.gz, key 'labpage:<sha1>')
     for kind, label in RECOVERED_KINDS:
-        rf = HERE / 'hierarchy' / school / f'{kind}-recovered.jsonl.gz'
+        rf = P.data(f'{kind}-recovered.jsonl.gz', school, root=HERE)
         for x in (json.loads(l) for l in gzip.open(rf, 'rt')) if rf.exists() else []:
             p = pid0.get(x['pi'])
             if not p:
