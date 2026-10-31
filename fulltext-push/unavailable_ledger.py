@@ -44,7 +44,7 @@ LABEL = dict(openalex='OpenAlex', arxiv='arXiv', s2='Semantic Scholar', core='CO
 REPO = dict(princeton='Princeton OAR', mit='DSpace@MIT Open Access Articles', cmu='KiltHub', epfl='Infoscience',
             berkeley='eScholarship (through OpenAlex and CORE)', stanford='the Stanford Digital Repository (through OpenAlex and CORE)')
 PUBFOLD = [(r'Institute of Electrical and Electronics Engineers|\bIEEE\b', 'IEEE'), (r'Association for Computing Machinery|\bACM\b', 'ACM'),
-           (r'Springer|Nature Portfolio|Nature Publishing|BioMed Central|Palgrave', 'Springer Nature'), (r'\bSSRN\b|Social Science Research Network', 'SSRN (Elsevier)'),
+           (r'Springer|Nature Portfolio|Nature Publishing|BioMed Central|Palgrave', 'Springer Nature'), (r'\bSSRN\b|Social Science Research Network|RELX', 'SSRN (Elsevier)'),
            (r'Elsevier|Cell Press|Academic Press|North-Holland|Pergamon', 'Elsevier'), (r'Wiley|Blackwell', 'Wiley'),
            (r'Taylor ?(&|and) ?Francis|Routledge|Informa', 'Taylor & Francis'), (r'Optica|Optical Society', 'Optica'), (r'\bSPIE\b', 'SPIE'),
            (r'SAGE', 'SAGE'), (r'Oxford University Press', 'Oxford University Press'), (r'Cambridge University Press', 'Cambridge University Press'),
@@ -203,7 +203,8 @@ def src_openalex(papers, offline, n):
     """OpenAlex records, 50 ids per request (filter=openalex_id:..), select with open_access; cache raw/ledger_openalex.jsonl."""
     cache_f = RAW / 'ledger_openalex.jsonl'
     cache = read_jsonl(cache_f, lambda r: r.get('id'))
-    want = list(dict.fromkeys(p['r']['oa'] for p in papers if p['r'].get('oa')))
+    isw = lambda i: bool(re.match(r'https://openalex\.org/W\d+$', i or ''))  # lab papers from DBLP or lab pages carry their own keys
+    want = list(dict.fromkeys(p['r']['oa'] for p in papers if isw(p['r'].get('oa'))))
     stale = [i for i in want if i not in cache or C.age_days(cache[i].get('at')) > OA_AGE]
     n['openalex_to_ask'] = 0 if offline else len(stale)
     if stale and not offline:
@@ -247,8 +248,8 @@ def src_openalex(papers, offline, n):
     for p in papers:
         i = p['r'].get('oa')
         x = cache.get(i)
-        if not i:
-            out[p['key']] = check('openalex', None, 'not_applicable', 'no OpenAlex id'); continue
+        if not isw(i):
+            out[p['key']] = check('openalex', i, 'not_applicable', 'no OpenAlex work: the lab paper comes from DBLP or a lab page'); continue
         if not x or C.age_days(x.get('at')) > OA_AGE:
             out[p['key']] = check('openalex', F.oa_short(i), 'error', 'record not refreshed within 7 days', at=(x or {}).get('at')); continue
         if not x.get('body'):
@@ -674,7 +675,7 @@ def src_repository(school, papers, oa, core, offline, n):
     pat = re.compile(r'escholarship\.org|escholarship' if school == 'berkeley' else r'purl\.stanford\.edu|stacks\.stanford\.edu|searchworks\.stanford\.edu|Stanford Digital Repository', re.I)
     for p in papers:
         o, c = oa.get(p['key']) or {}, core.get(p['key']) or {}
-        if o.get('result') not in ('found', 'none'):
+        if o.get('result') not in ('found', 'none', 'not_applicable'):
             out[p['key']] = check('repository', p['key'], 'error', 'OpenAlex check missing'); continue
         od = o.get('detail') if isinstance(o.get('detail'), dict) else {}
         cd = c.get('detail') if isinstance(c.get('detail'), dict) else {}  # an unanswered CORE check carries a note, not links
