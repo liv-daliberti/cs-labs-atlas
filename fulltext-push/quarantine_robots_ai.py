@@ -21,7 +21,7 @@ usage: quarantine_robots_ai.py plan|apply <school> ...
        quarantine_robots_ai.py restore <school> [--dry-run] [--only <work id>,<work id>]
 """
 import json, os, re, sqlite3, sys, time
-from collections import Counter, defaultdict
+from collections import Counter
 from pathlib import Path
 from urllib.parse import urlsplit
 
