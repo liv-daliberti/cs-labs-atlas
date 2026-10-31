@@ -21,7 +21,7 @@ def test_one_root_project_layout():
     d = P._resolve({'CS_ATLAS_LAYOUT': 'project'})
     assert d['ROOT'] == HS
     for name, v in d.items():
-        if name not in ('ENV_PY', 'ENV_LIB', 'COLLECTOR_PY'):  # the old envs stay where they are until retired
+        if name not in ('ENV_PY', 'ENV_LIB', 'COLLECTOR_PY', 'LOCKS'):  # the old envs stay until retired; LOCKS is node-local /tmp by design
             assert v == HS or HS in v.parents, (name, v)
     assert d['CODE'] == HS / 'code' and d['HIERARCHY'] == HS / 'code/hierarchy' and d['WORK'] == d['CODE']
     assert d['STORES'] == HS / 'stores' and d['STANFORD_STORE'] == HS / 'stores/stanford'

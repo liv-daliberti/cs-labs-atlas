@@ -66,6 +66,7 @@ _SPEC = [
     ('PY', 'atlas/bin/python', 'ENV'),              # THE project interpreter (env/environment.yml)
     ('HF_HOME', 'hf-cache', 'ENV'),
     ('CACHE', 'cache', 'ROOT'),                     # API caches (never in git)
+    ('LOCKS', '/tmp/cs-atlas-locks', None),         # node-local flock files that space requests across processes on one host
     ('EXTERNAL', 'external', 'ROOT'),
     ('DBLP_DUMP', 'dblp-dump', 'EXTERNAL'),         # DBLP's XML dump directory
     ('RESEARCH_LIBRARY', 'research-library', 'EXTERNAL'),

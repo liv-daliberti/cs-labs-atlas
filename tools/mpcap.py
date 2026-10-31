@@ -25,7 +25,7 @@ import requests
 
 HERE = str(P.CODE)
 DB = f'{HERE}/hierarchy/missing-pi-captures.sqlite'
-LOCKDIR = '/tmp/claude-363432/-n-fs-similarity-maxent-grpo/2bd068f5-5142-4dac-89d1-67eb470f92c1/scratchpad/gap-ratelimit'
+LOCKDIR = str(P.LOCKS / 'host-ratelimit')  # per-host stamps (atlas_paths LOCKS; tools/labpage_audit.py sets its own)
 UA = ('princeton-cs-research-sweep/1.0 (faculty lab membership research: department faculty lists and thesis adviser '
       'metadata; academic, non-commercial; polite: 1 req/2s/host)')
 UA_TOKEN = 'princeton-cs-research-sweep'
