@@ -29,29 +29,29 @@ Status: `open` · `in progress (<who>)` · `done <date> <commit>` · `queued (af
 
 | # | Item | Status | Done when |
 |---|---|---|---|
-| 5 | Replace the one-school scripts (271 files) with config-driven tools | queued (after M and P) | each one-school script is folded into a `tools/*_school.py` stage tool or retired to `archive/`, with a list of what went where; adding a school = a charter + `atlas stage-gate` runs |
-| 6 | Discovery channels as plugins (`discover(school, papers) -> hits + recorded misses`) | in progress (downloads agent) | each source is one module; a shared runner writes candidates + checks; old and new outputs are identical on one school; a test per plugin; `docs/CHANNELS.md` |
-| 7 | Sanity checks on bulk pulls (per-year counts, duplicates, outliers) | in progress (Michigan agent) | `sweep-check.json` per school; fails on a synthetic 20× year; passes or explains the released schools; wired into the stage gate and the protocol |
-| 8 | Split `pi_hierarchy.py` (2,098 lines) into census / periods / identity / papers / students / links; one test per rule ID | queued (after M and P) | a rebuild before and after the split gives identical packages for all schools; every rule in `RULES.md` has a test named after its id; CI checks that coverage |
+| 5 | Replace the one-school scripts (271 files) with config-driven tools | in progress (refactor agent, after 8) | each one-school script is folded into a `tools/*_school.py` stage tool or retired to `archive/`, with a list of what went where; adding a school = a charter + `atlas stage-gate` runs |
+| 6 | Discovery channels as plugins (`discover(school, papers) -> hits + recorded misses`) | done 2026-10-30 d164d03 (25 plugins in fulltext-push/channels/, channel_runner.py; old = new candidates on CMU; tests/test_channels.py; docs/CHANNELS.md) | each source is one module; a shared runner writes candidates + checks; old and new outputs are identical on one school; a test per plugin; `docs/CHANNELS.md` |
+| 7 | Sanity checks on bulk pulls (per-year counts, duplicates, outliers) | done 2026-10-30 7320995, 6e75a20 (tools/sweep_check.py; all 7 schools pass, Michigan 2022 and Berkeley 2026 by reviewed exceptions; tests/test_sweep_check.py) | `sweep-check.json` per school; fails on a synthetic 20× year; passes or explains the released schools; wired into the stage gate and the protocol |
+| 8 | Split `pi_hierarchy.py` (2,098 lines) into census / periods / identity / papers / students / links; one test per rule ID | in progress (refactor agent, worktree infra/refactor) | a rebuild before and after the split gives identical packages for all schools; every rule in `RULES.md` has a test named after its id; CI checks that coverage |
 
 ## 3. Data standards
 
 | # | Item | Status | Done when |
 |---|---|---|---|
-| 9 | A schema + data dictionary for every table | open | schemas in the repo; the build validates every output against them |
-| 10 | Separate raw / reviewed / derived | open | raw immutable, reviewed decisions in git, derived rebuilt from both; documented |
-| 11 | Stores moved into the project, one writer per catalog, backup policy | partly via P | stores are real dirs under `stores/`; one writer per catalog; written retention policy |
+| 9 | A schema + data dictionary for every table | queued (data-standards agent, after the downloads agent) | schemas in the repo; the build validates every output against them |
+| 10 | Separate raw / reviewed / derived | queued (data-standards agent, after the downloads agent) | raw immutable, reviewed decisions in git, derived rebuilt from both; documented |
+| 11 | Stores moved into the project, one writer per catalog, backup policy | stores moved (P); rest: downloads agent after the loop restart | stores are real dirs under `stores/`; one writer per catalog; written retention policy |
 
 ## 4. Operations
 
 | # | Item | Status | Done when |
 |---|---|---|---|
-| 12 | Supervised collectors + status page | queued (with P) | loops run as Slurm jobs that back off when idle; generated `STATUS.md` per school |
-| 13 | Scratch housekeeping | open | scratch outside the tree, cleaned automatically |
-| 14 | Release notes generated from the build regression | open | each release carries a generated `CHANGES.md` |
+| 12 | Supervised collectors + status page | in progress (downloads agent: loops to Slurm, then STATUS.md) | loops run as Slurm jobs that back off when idle; generated `STATUS.md` per school |
+| 13 | Scratch housekeeping | queued (data-standards agent, after the downloads agent) | scratch outside the tree, cleaned automatically |
+| 14 | Release notes generated from the build regression | queued (data-standards agent, after the downloads agent) | each release carries a generated `CHANGES.md` |
 
 ## 5. Documentation
 
 | # | Item | Status | Done when |
 |---|---|---|---|
-| 15 | Architecture overview + runbook | open | `docs/ARCHITECTURE.md` and `docs/RUNBOOK.md` cover rebuild, collectors, release and recovery |
+| 15 | Architecture overview + runbook | queued (data-standards agent, after the downloads agent) | `docs/ARCHITECTURE.md` and `docs/RUNBOOK.md` cover rebuild, collectors, release and recovery |
