@@ -77,3 +77,17 @@ def test_route_check_flags_code_not_comments(tmp_path, monkeypatch):
     f.write_text("# see /n/fs/resemble/cs-atlas/work\nX = '/n/fs/resemble/cs-labs-atlas'\n")
     code, notes = R.py_findings(f.read_text())
     assert [p for _, p in code] == ['/n/fs/resemble/cs-labs-atlas'] and len(notes) == 1
+
+
+def test_moved_follows_the_recorded_renames_in_order(tmp_path, monkeypatch):
+    rec = tmp_path / 'relocate-2026-10-30.jsonl'
+    rec.write_text('\n'.join([
+        '{"op": "mkdir", "new": "/x/root/stores"}',
+        '{"op": "rename", "old": "/x/old/data/fulltext/a", "new": "/x/root/stores/a"}',
+        '{"op": "rename", "old": "/x/old/data", "new": "/x/root/world/data"}',
+        '{"op": "rename", "old": "/x/sweeps", "new": "/x/root/archive/sweeps"}']) + '\n')
+    monkeypatch.setattr(V.atlas_paths, 'MIGRATIONS', tmp_path)
+    assert V.moved('/x/sweeps/claude-cmu/tools/w.py') == Path('/x/root/archive/sweeps/claude-cmu/tools/w.py')
+    assert V.moved('/x/old/data/fulltext/a/catalog.sqlite') == Path('/x/root/stores/a/catalog.sqlite')
+    assert V.moved('/x/old/data/raw') == Path('/x/root/world/data/raw')
+    assert V.moved('/x/sweepsX/f') == Path('/x/sweepsX/f')  # a prefix of a name is not its directory

@@ -18,11 +18,24 @@ Exit status 1 when check finds a mismatch (drift alone is reported and exits 0 u
 Once the download loops run on vendor/ and the originals are retired, vendor/ is the only copy: edit it directly and
 drop the file's entry here (see vendor/README.md).
 """
-import argparse, hashlib, re, sys
+import argparse, hashlib, json, re, sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import route_paths  # noqa: E402
+import atlas_paths  # noqa: E402
+
+
+def moved(path):
+    """Where an original lives now: the recorded renames of the project moves (<MIGRATIONS>/relocate-*.jsonl), applied in
+    order, so a source path recorded before a move still finds its file."""
+    p = str(path)
+    for rec in sorted(Path(atlas_paths.MIGRATIONS).glob('relocate-*.jsonl')):
+        for line in rec.read_text().splitlines():
+            r = json.loads(line)
+            if r.get('op') == 'rename' and (p == r['old'] or p.startswith(r['old'] + '/')):
+                p = r['new'] + p[len(r['old']):]
+    return Path(p)
 
 REPO = Path(__file__).resolve().parents[1]
 VENDOR = REPO / 'vendor'  # this checkout's vendor/ (atlas_paths.VENDOR, the one the scripts run, is <WORK>/vendor)
@@ -105,7 +118,7 @@ def sha(b):
 
 def vendor(origin, name):
     src_dir, root, _ = ORIGINS[origin]
-    src = Path(src_dir) / name
+    src = moved(Path(src_dir) / name)
     raw = src.read_bytes()
     text = raw.decode('utf-8')
     applied = []
@@ -169,7 +182,7 @@ def check(strict=False, sources=True):
         if not f.exists() or sha(f.read_bytes()) != r['vendored_sha256']:
             bad.append(f"{r['vendored']}: differs from PROVENANCE.tsv (edited after vendoring?)")
         if sources:
-            s = Path(r['source'])
+            s = moved(r['source'])
             if not s.exists():
                 missing.append(r['source'])
             elif sha(s.read_bytes()) != r['source_sha256']:
