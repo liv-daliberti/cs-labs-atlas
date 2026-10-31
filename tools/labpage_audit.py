@@ -125,6 +125,7 @@ SCHOOLS = {
 }
 SCHOOL_NAMES = dict(princeton=r'Princeton', mit=r'MIT|Massachusetts Institute', cmu=r'CMU|Carnegie Mellon', epfl=r'EPFL|[EÉ]cole Polytechnique',
                     berkeley=r'Berkeley|UCB', stanford=r'Stanford', michigan=r'Michigan|UMich|U-M\b')
+DEGREE_AT_RX = re.compile(r"\b(?i:ph\.?\s?d|m\.?s|b\.?s|m\.?eng|msc|bsc)\.?,?\s*(?:19|20)\d\d\s*\(([A-Z][\w&.' -]{1,40})\)")  # 'PhD 2016 (DTU)'
 ELSEWHERE_RX = re.compile(r"\b(?i:ph\.?\s?d\.?|graduate|doctoral|master'?s|undergraduate|visiting) (?i:student|candidate)"
                           r"(?: in [\w &,-]{2,60}?)? at (?:the )?([A-Z][\w.&'-]*(?: (?:of )?[A-Z][\w.&'-]*){0,5})")
 
@@ -1166,7 +1167,7 @@ def pm_candidates(kit, school, pi, plan, held):
                 why, x['detail'] = 'name_unresolved', 'site credit or footer'
             elif any(names.match_one(x['name'], c) for c in coadv[src]):
                 why, x['detail'] = 'not_a_student', 'named as a co-adviser (joint with / co-advised with)'
-            elif auto_plan and (m_el := ELSEWHERE_RX.search((x.get('desc') or '')[:220])) and \
+            elif auto_plan and (m_el := (ELSEWHERE_RX.search((x.get('desc') or '')[:220]) or DEGREE_AT_RX.search((x.get('desc') or '')[:120]))) and \
                     not re.search(SCHOOL_NAMES.get(school, '^$'), m_el.group(1)):
                 why, x['detail'] = 'at_previous_school', f"the entry places the person at {m_el.group(1)}"
             elif re.search(r'\brotation', (x.get('head') or '') + ' ' + (x.get('desc') or '')[:60], re.I):
@@ -1226,10 +1227,15 @@ def pm_candidates(kit, school, pi, plan, held):
         if plan.get('prior_reviewed') and not ys and not current_ and fn not in keep:
             x['why'], x['detail'] = 'undated_cannot_place', 'undated, not marked current, and not kept by the school\'s own reviewed pass'
             continue
-        if auto_plan and start and start < 2014 and not ys and not x['alumni'] and fn not in keep and not \
+        cap_y = int(re.search(r'/web/(\d{4})', x.get('capture_url') or '/web/2026').group(1))
+        destination = re.match(r'^\W{0,3}[-–—]\s*\S', x.get('desc') or '') or \
+            re.search(r'\b(now|currently) (at|a|an|with)\b|→|->|\bposition:', (x.get('desc') or '')[:100], re.I)
+        listed_now = cap_y >= 2025 and not destination and not x['alumni']  # on a 2025-26 page, not with a later job
+        if auto_plan and (start is None or start < 2014) and not ys and fn not in keep and not listed_now and not \
                 re.search(r'\b(current|present|now)\b', x.get('head') or '', re.I) and not \
                 re.search(r'\b(\d(st|nd|rd|th)[- ]year|candidate|is a (ph\.?\s?d|graduate|doctoral))', x.get('desc') or '', re.I):
-            x['why'], x['detail'] = 'undated_cannot_place', f"an undated entry of a lab older than the window (PI from {start}), not marked current"
+            x['why'], x['detail'] = 'undated_cannot_place', (f"an undated entry of a lab older than the window (PI from {start or 'before 2016'}), "
+                                                             "not marked current" + ('; it names a later position' if destination else ''))
             continue
         if start and start >= WINDOW[0] and last == start and fn not in keep:  # R-PAP-13's transition year, for people
             x['why'], x['detail'] = 'at_previous_school', f"dated only to the PI's arrival year ({start}): cannot place at this school"

@@ -287,3 +287,8 @@ def test_listed_titles_lose_a_run_in_byline():
     assert A.clean_listed_title('Freeman, Joshua T', p) == ('Freeman, Joshua T', 'author_only')
     assert A.clean_listed_title('Learning to See by Moving', p) == ('Learning to See by Moving', None)
     assert A.clean_listed_title('Graph Neural Networks for Wireless Networks, Revisited', p)[1] is None
+
+
+def test_a_degree_from_another_school_in_parentheses():
+    m = A.DEGREE_AT_RX.search('(PhD 2016 (DTU), Position: Research Scientist, Mosek)')
+    assert m and m.group(1) == 'DTU' and not A.re.search(A.SCHOOL_NAMES['berkeley'], m.group(1))
