@@ -2099,13 +2099,15 @@ def write_md(allsum):
         x = allsum[s]
         rs = ', '.join(f'{k} {v}' for k, v in sorted(x['lab_page_by_reason'].items(), key=lambda kv: -kv[1]) if k != 'lab_site')
         L.append(f"| {s} | {x['labs']} | {x['lab_page'].get('found', 0)} | {x['lab_page'].get('none_found', 0)} | {rs} |")
-    L += ['', '## Students listed on lab pages', '', '| school | listed | current | alumni | in build | missing (reason: n) | genuinely missing | proposed |',
-          '|---|---:|---:|---:|---:|---|---:|---:|']
+    L += ['', '## Students listed on lab pages', '',
+          '`removed by strict rule`: proposals the 2026-10-31 rule (undated names in older labs need an explicit current marker) removed.', '',
+          '| school | listed | current | alumni | in build | missing (reason: n) | genuinely missing | proposed | removed by strict rule |',
+          '|---|---:|---:|---:|---:|---|---:|---:|---:|']
     for s in order:
         x = allsum[s]['students']
         rs = ', '.join(f'{k} {v}' for k, v in sorted(x['missing_by_reason'].items(), key=lambda kv: -kv[1]) if k != 'genuinely_missing')
         L.append(f"| {s} | {x['listed']} | {x['listed_current']} | {x['listed_alumni']} | {x['matched_in_build']} | {rs} | "
-                 f"{x['genuinely_missing']} | {x['proposed_additions']} |")
+                 f"{x['genuinely_missing']} | {x['proposed_additions']} | {x.get('removed_by_strict_current_rule', '-')} |")
     L += ['', '## Papers listed on lab pages', '', '| school | listed | 2016-2026 | lab papers | missing (reason: n) | genuinely missing | proposed |',
           '|---|---:|---:|---:|---|---:|---:|']
     for s in order:
