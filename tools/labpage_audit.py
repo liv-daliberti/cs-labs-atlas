@@ -522,7 +522,8 @@ PUBS_LINK = re.compile(r'^\W*((selected|recent|all|full|research|our|lab|group)\
 STUDENT_HEAD = re.compile(r'\b(students?|advisees?|ph\.?\s?d|postdocs?|group members|lab members|current members|alumni|'
                           r'graduated|mentees|research group|post-?docs?|post-?doctoral|graduates?|undergrad\w*|members|team|people|'
                           r'researchers|visitors|former|current|doctoral|masters?|interns?|staff)\b', re.I)
-PROFILE_RX = re.compile(r'/(people|faculty|directory|profiles?|person|staff|our-people|bios?)/(profile/|faculty/)?[^/?#]+/?$', re.I)
+PROFILE_RX = re.compile(r'/(people|faculty|directory|profiles?|person|staff|our-people|bios?)/(profile/|faculty/)?[^/?#]+'
+                        r'(/(overview|bio|about|profile|research|publications))?/?$', re.I)
 NOT_HOME = re.compile(r'/news/|/events?/|/article|wikipedia|/\d{4}/\d{2}/|people-list|/people/?$|/faculty/?$|/directory|'
                       r'/oai/|dataspace|/courses?/|\.pdf$|cv\.html?$|/cv/?$|resume', re.I)
 
@@ -606,6 +607,9 @@ def classify_links(lks, site_url, domain_rx):
             continue
         if h == sh and seg and (urlsplit(href).path.strip('/').split('/') or [''])[0] != seg:
             continue  # a personal page on a department host (/~user/...): only links under the same first path segment
+        segs = [x for x in sp.split('/') if x]
+        if h == sh and len(segs) >= 2 and not (urlsplit(href).path or '/').startswith('/' + '/'.join(segs[:2])):
+            continue  # a page two levels deep (/people/pattie/...): never the institution's own /people/ listing
         t = (txt or '').strip()
         path = urlsplit(href).path.lower()
         if ALUMNI_LINK.search(t) or re.search(r'/(alumni|former|past-members|alums)\b', path):
@@ -766,6 +770,13 @@ def discover_lab(kit, school, p, ctx, full=True):
             other_edu = bool(re.search(r'\.edu$|\.ac\.[a-z]{2}$|university|\.edu\.[a-z]{2}$', host)) and not re.search(dom, host)
             sites.append(dict(url=u, row=r, title=title, school_host=bool(re.search(dom, host)), other_school=other_edu, via=src,
                               text=txt, names_pi=names_pi))
+    fam_t = fold(family(p['pi']))
+    named = any(fam_t and fam_t in fold(x['title']) for x in sites)
+
+    def other_group(x):  # 'Coley Research Group' on Ashia Wilson's profile: another PI's group, when a candidate names her
+        m = re.search(r"\b([A-Z][\w'’-]+)(?:'s)? (?:research group|lab|laboratory|group)\b", x['title'] or '', re.I)
+        return bool(named and m and fam_t not in fold(x['title']) and fold(m.group(1)) not in ('the', 'research', 'our', 'mit', 'ai', 'ml'))
+    sites = [x for x in sites if not other_group(x)] or sites
     rank = lambda s: (not s['school_host'], s['other_school'], not is_lab_site(s['title'], s['url']), not s['names_pi'],
                       len([x for x in urlsplit(s['url']).path.split('/') if x]), s['via'] != 'prior_labpage_pass')
     sites.sort(key=rank)

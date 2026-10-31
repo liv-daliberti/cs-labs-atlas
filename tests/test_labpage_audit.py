@@ -228,3 +228,10 @@ def test_an_entry_placing_the_student_at_another_school():
     assert m and m.group(1).startswith('UT Austin')
     m = A.ELSEWHERE_RX.search('Ning is a 3rd-year Ph.D. student in PNI at Princeton University.')
     assert m and A.re.search(A.SCHOOL_NAMES['princeton'], m.group(1))
+
+
+def test_profile_subpages_and_institution_listings():
+    assert A.is_profile('https://www.media.mit.edu/people/pattie/overview/', r'mit\.edu')
+    lk = A.classify_links([('https://www.media.mit.edu/people/', 'People'), ('https://www.media.mit.edu/people/pattie/publications/', 'Publications')],
+                          'https://www.media.mit.edu/people/pattie/overview/', r'mit\.edu')
+    assert 'people' not in lk and lk.get('pubs') == ['https://www.media.mit.edu/people/pattie/publications/']
