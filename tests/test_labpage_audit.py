@@ -326,3 +326,8 @@ def test_two_digit_range_ends():
 ])
 def test_current_marker_is_the_entrys_own(x, want):
     assert A.current_marker(x) == want
+
+
+def test_a_current_and_former_heading_is_no_current_marker():
+    assert not A.current_marker(dict(head='Current and Former Ph.D. Students', desc=', Tech Startup'))
+    assert A.current_marker(dict(head='Current and Former Ph.D. Students', desc='Ph.D. in Economics, Princeton University, in progress, expected 2027'))

@@ -1148,7 +1148,8 @@ CURRENT_ENTRY = re.compile(r'\b(current(ly)?\s+(a\s+)?(ph\.?\s?d|student|postdoc
 def current_marker(x):
     """An explicit current marker in the entry's own text or its own section heading (not a parent heading)."""
     own_head = (x.get('head') or '').split(' > ')[-1]
-    return bool(CURRENT_HEAD.search(own_head) or CURRENT_ENTRY.search((x.get('desc') or '')[:160]))
+    mixed = re.search(r'\b(former|past|previous|alumni|alumnae|graduated)\b', own_head, re.I)  # 'Current and Former Students'
+    return bool((CURRENT_HEAD.search(own_head) and not mixed) or CURRENT_ENTRY.search((x.get('desc') or '')[:160]))
 
 
 def pm_candidates(kit, school, pi, plan, held):
