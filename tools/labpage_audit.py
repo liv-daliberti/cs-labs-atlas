@@ -35,6 +35,7 @@ usage: labpage_audit.py discover|recover|audit|all <school> [--pi NAME ...]
 """
 import argparse
 import collections
+import copy
 import datetime
 import gzip
 import hashlib
@@ -1769,7 +1770,7 @@ def shared_people_pages(ctx, disc):
     return {k: n for k, n in c.items() if n >= 2}
 
 
-def assemble(kit, ctx, disc, verdicts=None):
+def assemble(kit, ctx, disc, verdicts=None, keep=None):
     recs, stu_adds, pap_adds, rec_rows = [], [], [], []
     shared = shared_people_pages(ctx, disc)
     for p in ctx['pis']:
@@ -1787,6 +1788,8 @@ def assemble(kit, ctx, disc, verdicts=None):
                 rec_rows.append(dict(pi=p['pi'], title=e['title'], year=e['year'], venue=e.get('venue'), links=e.get('links') or [],
                                      url=e.get('url'), capture_url=e.get('capture_url'), sha256=e.get('sha256'), quote=e.get('quote'),
                                      audit_key=e['audit_key']))
+        if keep is not None:
+            keep[p['pi']] = (p, copy.deepcopy(ps), ents)
         pa = finish_papers(ps, ents, p, verdicts or {})
         recs.append(dict(school=ctx['school'], pi=p['pi'], labId=p.get('labId'), departments=p.get('departments'),
                          audited_at=now(), lab_page=lab, students=st, papers=ps))
@@ -1821,19 +1824,31 @@ def patch_mpcap(mpcap):
     mpcap.robots_allowed = robots_allowed
 
 
+def relink(target, link):
+    """link -> target, replacing a link that points elsewhere (a stale path from before the 2026-10-30 project move)."""
+    if not Path(target).exists():
+        return
+    if link.is_symlink() and os.readlink(link) != str(target):
+        link.unlink()
+    if not link.is_symlink():
+        os.symlink(target, link)
+
+
 def cmd_recover(school, title_credits=600):
     kit = Kit(school)
     ctx = load_ctx(school, kit)
     disc = read_discovery(school)
     _, _, _, rows = assemble(kit, ctx, disc)
+    return run_recovery(school, rows, title_credits)
+
+
+def run_recovery(school, rows, title_credits=600):
     root = recover_dir(school)
     sh = root / 'hierarchy' / school
     sh.mkdir(parents=True, exist_ok=True)
     for f in ('pis.json', 'lab_papers.jsonl.gz', 'openalex-sweep.sqlite', 'pi-works.sqlite'):
-        if (H / school / f).exists() and not (sh / f).exists():
-            os.symlink(H / school / f, sh / f)
-    if not (root / 'hierarchy' / 'cs-venues.json').exists():
-        os.symlink(H / 'cs-venues.json', root / 'hierarchy' / 'cs-venues.json')
+        relink(H / school / f, sh / f)
+    relink(H / 'cs-venues.json', root / 'hierarchy' / 'cs-venues.json')
     db = sh / 'labpage-recover.sqlite'
     if not db.exists() and (H / school / 'labpage-recover.sqlite').exists():  # reuse the earlier run's arXiv index and OpenAlex cache
         src = sqlite3.connect(f"file:{H / school / 'labpage-recover.sqlite'}?mode=ro", uri=True)
@@ -1895,6 +1910,34 @@ def cmd_audit(school):
     disc = read_discovery(school)
     verdicts = recover_verdicts(school)
     recs, stu_adds, pap_adds, _ = assemble(kit, ctx, disc, verdicts)
+    write_audit(school, recs, stu_adds, pap_adds)
+
+
+def refinish(recs, keep, verdicts):
+    """The papers sections and paper additions again under new recovery verdicts, from the sections kept before
+    finish_papers ran (the students sections and lab pages do not depend on the recovery)."""
+    adds = []
+    for r in recs:
+        p, ps0, ents = keep[r['pi']]
+        ps = copy.deepcopy(ps0)
+        adds += finish_papers(ps, ents, p, verdicts)
+        r['papers'] = ps
+    return adds
+
+
+def cmd_recover_audit(school, title_credits=600):
+    """recover, then audit, in one process: the labs are assembled once (CMU's assembly takes over an hour)."""
+    kit = Kit(school)
+    ctx = load_ctx(school, kit)
+    disc = read_discovery(school)
+    keep = {}
+    recs, stu_adds, _, rows = assemble(kit, ctx, disc, recover_verdicts(school), keep=keep)
+    run_recovery(school, rows, title_credits)
+    pap_adds = refinish(recs, keep, recover_verdicts(school))
+    write_audit(school, recs, stu_adds, pap_adds)
+
+
+def write_audit(school, recs, stu_adds, pap_adds):
     fix_titles_from_arxiv(pap_adds)
     out = H / school / 'labpage-audit.jsonl.gz'
     with gzip.open(str(out) + '.tmp', 'wt', encoding='utf-8') as f:
@@ -1950,6 +1993,19 @@ def write_md(allsum):
         x = allsum[s]['papers']
         rs = ', '.join(f'{k} {v}' for k, v in sorted(x['missing_by_reason'].items(), key=lambda kv: -kv[1]) if k != 'genuinely_missing')
         L.append(f"| {s} | {x['listed']} | {x['in_window']} | {x['matched_in_lab_papers']} | {rs} | {x['genuinely_missing']} | {x['proposed_additions']} |")
+    L += ['', '## Hand checks of proposed additions', '',
+          '| school | checked | students sampled | membership errors | role/year errors | papers sampled | paper errors | notes |',
+          '|---|---|---:|---:|---:|---:|---:|---|']
+    for s_ in order:
+        hp = H / s_ / 'labpage-handcheck.json'
+        if not hp.exists():
+            continue
+        hc = read(hp)
+        for k in [hc] + list(hc.get('rechecks') or []):
+            st, pa = k.get('students') or {}, k.get('papers') or {}
+            L.append(f"| {s_} | {k.get('checked_at', '')} | {st.get('sampled', '')} | {st.get('membership_errors', '')} | "
+                     f"{st.get('role_or_year_errors', st.get('role_errors', ''))} | {pa.get('sampled', '')} | {pa.get('errors', '')} | "
+                     f"{str(k.get('label') or '')[:80]} |")
     open(H / 'LABPAGE-AUDIT.md', 'w', encoding='utf-8').write('\n'.join(L) + '\n')
 
 
@@ -1960,7 +2016,7 @@ def cmd_summary():
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('cmd', choices=['discover', 'recover', 'audit', 'all', 'summary'])
+    ap.add_argument('cmd', choices=['discover', 'recover', 'audit', 'recover-audit', 'all', 'summary'])
     ap.add_argument('school', nargs='?')
     ap.add_argument('--pi', nargs='*')
     ap.add_argument('--redo', action='store_true')
@@ -1969,9 +2025,11 @@ def main():
     a = ap.parse_args()
     if a.cmd in ('discover', 'all'):
         cmd_discover(a.school, a.pi, a.redo, a.redo_unrecorded)
-    if a.cmd in ('recover', 'all'):
+    if a.cmd == 'recover':
         cmd_recover(a.school, a.title_credits)
-    if a.cmd in ('audit', 'all'):
+    if a.cmd in ('recover-audit', 'all'):
+        cmd_recover_audit(a.school, a.title_credits)
+    if a.cmd == 'audit':
         cmd_audit(a.school)
     if a.cmd == 'summary':
         cmd_summary()
