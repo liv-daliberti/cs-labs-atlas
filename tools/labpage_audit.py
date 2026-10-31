@@ -1042,9 +1042,10 @@ _HOST_INST = re.compile(r'(ethz\.ch|\.ac\.[a-z]{2}$|\.edu$|\.edu\.[a-z]{2}$|mpg\
 
 
 def page_institution(kit, school, src):
-    """Another institution, when a people page belongs to a lab elsewhere: its host is another university's, or its header
-    (title and first 1,500 characters) names another institution and never this school (Onur Mutlu's SAFARI pages at ETH,
-    a lab that moved with its PI). None otherwise."""
+    """Another institution, when a people page belongs to a lab elsewhere: its host is another university's, or the page
+    never names this school while its title or first 400 characters name another institution (Onur Mutlu's SAFARI pages
+    at ETH, a lab that moved with its PI). Alumni placements and bios name other schools on every lab page, so a page that
+    names this school anywhere is never another institution's. None otherwise."""
     try:
         row, views = kit.lpev.cap(school, src)
     except (KeyError, ValueError):
@@ -1053,9 +1054,11 @@ def page_institution(kit, school, src):
     dom = SCHOOLS[school]['domain']
     if _HOST_INST.search(host) and not re.search(dom, host):
         return host
-    head = (views.get('html') or views.get('raw') or '')[:1500]
-    if re.search(SCHOOL_NAMES.get(school, '^$'), head):
-        return None
+    text = views.get('html') or views.get('raw') or ''
+    if re.search(SCHOOL_NAMES.get(school, '^$'), text):
+        return None  # the school appears somewhere on the page: alumni placements and bios name other schools too
+    m_ = re.search(r'<title[^>]*>(.*?)</title>', kit.lpcap.decode(row['content'][:30000]), re.I | re.S)
+    head = ((m_.group(1) if m_ else '') + ' ' + text[:400])
     others = [m.group(0) for m in INST_RX.finditer(head)]
     return others[0] if others else None
 
