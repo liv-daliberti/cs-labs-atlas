@@ -66,7 +66,8 @@ The protocol is config-driven. A school is a charter, `schools/<key>.toml`, and 
     - every host with its `use` (`live | wayback-only | none`) and a probe URL.
   - Create `hierarchy/<key>/` and the store: `<STORES>/<key>/` holds `catalog.sqlite` (the schema of the other stores' catalogs), `objects/` and `discovery/`. Link it as `<ROOT>/stores/<key>`.
   - Start the slow inputs now. Later stages need them, and they cost nothing to start:
-    - `tools/oa_sweep.py <key>`: the OpenAlex institution sweep, for stages 2 and 7;
+    - `atlas sweep <key>` (`tools/sweep_school.py`): the OpenAlex institution sweep (`tools/oa_sweep.py`) and its sanity check
+      (`tools/sweep_check.py`), for stages 2 and 7; `--daily` repeats it after each credit reset until the window is stored;
     - `tools/dblp_affiliated.py <key> --pubs`: dump persons whose affiliation note or URL names the school.
 - **Tools:**
   - `tools/school_config.py --check <key>`: required fields, id formats, and the regex against its test cases;
@@ -83,10 +84,10 @@ The protocol is config-driven. A school is a charter, `schools/<key>.toml`, and 
   - **The host gate needs a probe fetch.** robots.txt allowing a host proves nothing about a Cloudflare challenge in front of it. At Michigan, every umich.edu host but one challenged a plain request. The charter's `[web].wayback_only_suffixes` makes a whole domain Wayback-only, and `school_config.host_use()` applies it.
   - **The OpenAlex lineage may not contain the school's medical centre.** Michigan Medicine is "related" to the university, not a child. List such ids as `openalex_related`: they are swept, and an authorship tagged only with them counts when its raw string matches the regex. This needs the owner's agreement once per school.
   - **Test the affiliation regex against DBLP notes as well as OpenAlex strings.** "University of Michigan – Shanghai Jiao Tong University Joint Institute" and "University of Michigan at Dearborn" matched the first regex.
-  - **Check the shared OpenAlex key's credits before starting the sweep.** It had 492 left on 2026-10-29. `hierarchy/<key>/sweep_daily.sh` reruns the sweep after each 00:00 UTC reset until it is complete.
+  - **Check the shared OpenAlex key's credits before starting the sweep.** It had 492 left on 2026-10-29. `atlas sweep <key> --daily` reruns the sweep after each 00:00 UTC reset until it is complete.
 - **Learned from Michigan (2026-10-30):**
   - **Bulk-pull sanity gate (owner standard).** After every OpenAlex sweep and every DBLP dump pull, run
-    `tools/sweep_check.py <key>`. It is wired into `hierarchy/<key>/run_sweep.sh`, and `stage_gate.py` reads the result
+    `tools/sweep_check.py <key>`. It is wired into `tools/sweep_school.py` (`atlas sweep <key>`), and `stage_gate.py` reads the result
     for stage 2 and stage 7. It writes `hierarchy/<key>/sweep-check.json` with:
     - per-year raw and paper-only counts, and stored-vs-API-count completeness;
     - the duplicate rate by work id and by DOI;
@@ -399,9 +400,13 @@ OpenAlex co-authorship is never on its own evidence of advising.
 - `tools/export_release.py`: `ORDER`.
 - `tools/organize_tree.py`: `NAMES`.
 
+**Applied 2026-10-31** (ROADMAP item 5, `docs/SCRIPT-MAP.md`): `hierarchy/organize-tree.slurm` defaults to `$CS_ATLAS_SCHOOLS`;
+the one-school runners (`hierarchy/michigan/run_sweep.sh`, `sweep_daily.sh`, `hierarchy/run_stanford_sweep.sh`) are
+`tools/sweep_school.py <key>`; the one-off research tools of the six pre-protocol schools and their census builders are in
+`archive/`, and nothing the build, the collectors or the stage tools run reads them.
+
 **Still by hand:** each is debt.
 - `fulltext-push/downloads.slurm` (`SCHOOLS=(...)`) and the one-off collector scripts: `addworks-1029.slurm`, `newsteps.slurm`, `oa_editions.slurm`, `retry_transient.slurm`, `chain_*.sh` and `local-reuse/lr_common.py`.
-- `hierarchy/organize-tree.slurm` (default `S=`).
 - The per-school catalog builders (`fulltext-push/berkeley_catalog.py`, `stanford_catalog.py`). A protocol school should use one generic builder with the school key.
 - `tools/faculty_periods.py`: `STAGES` and `SCHOOL`, for the pre-protocol schools. Protocol schools use `tools/periods_school.py`.
 - The site builder's `SCHOOLS`, `FULL_CODES` and `CORE` tables (Codex's checkout).

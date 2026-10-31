@@ -1,7 +1,7 @@
 # Script map: the one-school and one-off scripts, and where each went (ROADMAP item 5)
 
-**Status: inventory and planned fates (2026-10-31); the moves are not made yet.** Each fate below is a plan until
-the item-5 commits land; this line changes then.
+**Status: done 2026-10-31.** The moves are made (`git mv`, history kept); `tests/test_script_map.py` checks this map
+against the tree.
 
 Inventory of 2026-10-31 (refactor agent). Scope: every tracked script (`.py`, `.sh`, `.slurm`) under `hierarchy/` except the
 build itself (`rebuild.sh`, `rebuild-all.slurm`, `organize-tree.slurm`, `build-equivalence.slurm`, `labpage-audit.slurm`), under
@@ -20,8 +20,12 @@ checks each stage. Nothing in this map is needed for it:
 - the pre-protocol census builders (`tools/princeton_census.py`, `berkeley_census.py`, `epfl_census.py`, `epfl_profiles.py`,
   `berkeley_pubs.py`, `census/build_mit_census.py`, `census/tools/build_cmu_*.py`) built census files that are now frozen inputs;
   a protocol school uses `tools/census_build.py <key>`;
+- `hierarchy/organize-tree.slurm` defaults to the released charters (`$CS_ATLAS_SCHOOLS`) instead of a list of six;
 - the one-school runners became `tools/sweep_school.py <key>`, or are the stage tools run with the key
   (`tools/dblp_recover.py <key>`, `tools/labpage_recover.py run <key>`, `tools/pi_fulltext_affiliation.py works|pdf <key>`).
+
+Also moved with their directory: the four batch lists of `hierarchy/gap-tools-cmu/` (`batch1.txt` .. `batch4.txt`). The
+export (`tools/export_release.py`) copies `archive/` into the code record, so the public copy keeps these scripts.
 
 Fates: **folded** (into a config-driven tool, path given), **kept** (data or config, read by live code), **retired** (`git mv`
 to `archive/<same path>`: no build, collector or stage tool runs it), **deferred** (another agent owns the file; listed for
@@ -56,7 +60,7 @@ by path, by basename and by module import, then checked by hand: every hit not l
 | `run_page1_all.sh` | Page-1 affiliation checks for every school, one school at a time (work lists, then arXiv v1 page 1); | none | retired: `archive/hierarchy/run_page1_all.sh` |
 | `run_page1_pdf.sh` | Page-1 checks only (work lists already fetched), with a chosen number of parallel downloads: | none | retired: `archive/hierarchy/run_page1_pdf.sh` |
 | `run_piworks_stanford.slurm` | Stanford PI works by anchored/reviewed OpenAlex id (tools/pi_fulltext_affiliation.py works), needed by the 2026-10-29 unaffiliated-byline rule; | none | retired: `archive/hierarchy/run_piworks_stanford.slurm` |
-| `run_stanford_sweep.sh` | Resumable OpenAlex sweep for Stanford in month windows (tools/oa_sweep.py sweep_paged), now with the OpenAlex key from ~/.config/cs-atlas/openalex.env (copied there from soak on 2026-10-27; | none | folded: tools/sweep_school.py stanford |
+| `run_stanford_sweep.sh` | Resumable OpenAlex sweep for Stanford in month windows (tools/oa_sweep.py sweep_paged), now with the OpenAlex key from ~/.config/cs-atlas/openalex.env (copied there from soak on 2026-10-27; | none | folded: tools/sweep_school.py stanford; the original is in archive/ |
 | `run_sweeps.sh` | OpenAlex school sweeps for the PI hierarchy (2026-10-22); | none | retired: `archive/hierarchy/run_sweeps.sh` |
 
 ## `hierarchy/berkeley/cs-related-tools/` (15: 15 retired)
@@ -333,8 +337,8 @@ by path, by basename and by module import, then checked by hand: every hit not l
 
 | script | what it does | live callers | fate |
 |---|---|---|---|
-| `run_sweep.sh` | Michigan OpenAlex institution sweep (tools/oa_sweep.py; | none | folded: tools/sweep_school.py <key> (sweep + sweep check, any charter school) |
-| `sweep_daily.sh` | Re-run the Michigan sweep after each OpenAlex daily credit reset (00:00 UTC) until every year 2016-2026 is stored. | none | folded: tools/sweep_school.py <key> --daily |
+| `run_sweep.sh` | Michigan OpenAlex institution sweep (tools/oa_sweep.py; | none | folded: tools/sweep_school.py <key> = atlas sweep <key> (sweep + sweep check, any charter school); the original is in archive/ |
+| `sweep_daily.sh` | Re-run the Michigan sweep after each OpenAlex daily credit reset (00:00 UTC) until every year 2016-2026 is stored. | none | folded: tools/sweep_school.py <key> --daily; the original is in archive/ |
 
 ## `hierarchy/missing-pi-tools/` (2: 1 folded, 1 retired)
 

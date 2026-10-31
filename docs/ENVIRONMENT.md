@@ -85,8 +85,8 @@ interpreter stays `COLLECTOR_PY` until step 4 below.
 Data only; no code path the build or the collectors run points outside the repository except these data reads, all
 through `atlas_paths`:
 - `archive_sweep(<stage>)`: the DBLP publication lists (`raw/dblp_pubs.json.gz`, pi_hierarchy, dblp_recover,
-  missing_papers_audit), the EPFL/CMU/MIT/Berkeley people and roster captures (faculty_periods, epfl_census,
-  epfl_profiles, berkeley_census, berkeley_pubs, princeton_census), the arXiv OAI index (labpage_recover), the Princeton
+  missing_papers_audit), the EPFL/CMU/MIT/Berkeley people and roster captures (faculty_periods; and the
+  census builders epfl_census, epfl_profiles, berkeley_census, berkeley_pubs, princeton_census, in `archive/tools/` since 2026-10-31), the arXiv OAI index (labpage_recover), the Princeton
   listings capture, and the Princeton OAR / NSF-PAR / proceedings indexes (repo_index, nsf_par_lab, lab_channels).
   The vendored modules' own stage data (S2/arXiv caches, discovery packages) is reached the same way.
 - `SITE_DATA`: the site collections `collection-<school>.json.gz` (pi_hierarchy, faculty_periods, provenance,
