@@ -263,14 +263,20 @@ Flat layout today: the slot is the same directory the code used. `tools/route_ft
 After the move (phase B) the raw state and locks stay out of git, the review directories join the `reviewed/` kind, and `checks/` moves
 under derived; only these slot values change.
 
-## Phase B (dry run written 2026-10-31; apply not written; needs the owner's OK)
+## Phase B: the move (tools/relocate_data.py)
 
-`tools/relocate_data.py` is a sibling of `tools/relocate_project.py` and only plans. It prints the moves from `DATA_FILES`
-(`flat` to `split`, for every charter school and the shared files, plus `hierarchy/<school>/tmp/`, the schools' `STAGE-*.md`
-and the shared audit reports), marking each as `git mv` (tracked) or `rename`; the conflicts (destination exists, other
-filesystem); the table entries with no file; the readiness (code that still joins old paths, the `.gitignore` lines to
-change); the preflight (this user's processes with a cwd or open file under a source, sqlite journals, the user's Slurm
-jobs, the stores' held `.loop.lock` files); and the `MIGRATIONS` lines an apply would write. It has no apply mode:
-the owner reviews the plan, then an apply is added that refuses on any conflict, readiness blocker or dirty preflight.
-The owner picks a quiet point when the lab-page and downloads agents are idle; the coordinator applies it and flips
-`DATA_LAYOUT_DEFAULT` to `split` in the same commit.
+Routed 2026-11-01: no tool, toolkit or script joins a data directory by hand any more (readiness: 0 joins; the check is the `readiness` part of the dry
+run, and `route-ok` on a line says why it is not a data path). Code asks `atlas_paths`: `data()`/`data_w()` for a file, `SchoolDir(school[, hdir])` and
+`ListingsDir` for a school's directory, `hfile(hdir, name)` for a tool that takes a hierarchy-like directory (the live one follows the layout, a release or
+a backup is flat), and `flat_of()` so releases and the export keep the flat names whatever the working layout.
+
+    relocate_data.py                     dry run: moves, conflicts, readiness, preflight, the .gitignore translation
+    relocate_data.py --settle-journals   open each sqlite file that has a stale journal once for writing (rolls it back), then plan again
+    relocate_data.py --apply --approved-by WHO [--no-commit]
+    relocate_data.py --verify [--record FILE]
+
+`--apply` refuses on any conflict, readiness blocker, busy process, sqlite journal, held `.loop.lock` or project Slurm job (listed), then moves every
+entry of the table: tracked files by `git mv`, the rest by `os.rename`, a sqlite file's `-journal`/`-wal`/`-shm` with it; translates the 25 `.gitignore`
+whitelist lines; sets `DATA_LAYOUT_DEFAULT = 'split'`; regenerates `paths.sh`; and commits the tracked moves with those three edits as one commit.
+Every action is appended to `archive/migrations/relocate-data-<date>.jsonl`; `--verify` reads it. Nothing is copied or deleted; there are no compat links.
+Not moved: tracked code that lives in hierarchy/ (`rebuild.sh`, `labpage-tools-*`, `gap-tools-*`) and the files the table does not name.

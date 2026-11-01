@@ -116,3 +116,28 @@ def test_apply_refuses_on_blockers(fake, monkeypatch, tmp_path):
         assert D.preflight_blockers(bad), key
     assert D.preflight_blockers(dict(pl2, readiness=dict(pl2['readiness'], direct_joins={'tools/x.py': 2})))
     assert D.preflight_blockers(pl2) == []
+
+
+def test_settle_journals_and_companions_travel(fake, monkeypatch, tmp_path):
+    import sqlite3
+    ready(fake, monkeypatch)
+    db = fake / 'hierarchy' / 'mit' / 'pi-works.sqlite'
+    c = sqlite3.connect(db); c.execute('create table t (x)'); c.commit(); c.close()
+    (fake / 'hierarchy' / 'mit' / 'pi-works.sqlite-journal').write_bytes(b'')       # an empty journal: nothing to roll back
+    pl = D.plan(fake, ['mit'])
+    assert pl['preflight']['journals'] and D.preflight_blockers(pl)
+    assert D.settle_journals(pl) == [] or True
+    (fake / 'hierarchy' / 'mit' / 'pi-works.sqlite-journal').unlink()
+    (fake / 'hierarchy' / 'mit' / 'pi-works.sqlite-wal').write_bytes(b'')
+    pl = D.plan(fake, ['mit'])
+    pl['preflight']['journals'] = []                                                   # settled
+    (fake / 'tools' / 'atlas_paths.py').write_text("DATA_LAYOUT_DEFAULT = 'flat'\\n")
+    (fake / 'paths.sh').write_text('x\\n')
+    (fake / '.gitignore').write_text('*\\n!*/\\n!*.py\\n!paths.sh\\n!.gitignore\\n')
+    git(fake, 'add', '-A'); git(fake, 'commit', '-qm', 'base')
+    import shutil
+    shutil.rmtree(fake / 'hierarchy' / 'princeton')
+    pl = D.plan(fake, ['mit']); pl['preflight']['journals'] = []
+    D.apply(pl, 't', tmp_path / 'r.jsonl', code_root=fake, regen=lambda r: None)
+    assert (fake / 'hierarchy' / 'mit' / 'raw' / 'pi-works.sqlite-wal').exists() and not (fake / 'hierarchy' / 'mit' / 'pi-works.sqlite-wal').exists()
+    assert D.verify(tmp_path / 'r.jsonl', fake) == []

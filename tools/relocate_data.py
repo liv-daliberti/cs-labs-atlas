@@ -242,6 +242,23 @@ def regenerate_paths_sh(code_root):
     (code_root / 'paths.sh').write_text(out)
 
 
+def settle_journals(pl):
+    """Open each sqlite file that has a journal or WAL beside it for writing once (a hot journal is rolled back, a WAL checkpointed) and
+    report which journals are still there. Only for files no process holds (the plan's preflight says); a stale journal left by a
+    killed writer (hierarchy/epfl/labpage-recover.sqlite-journal, 2026-10-22) is settled this way, not deleted."""
+    import sqlite3
+    left = []
+    for j in pl['preflight']['journals']:
+        db = j.rsplit('-', 1)[0]
+        c = sqlite3.connect(db, timeout=30)
+        c.execute('pragma quick_check').fetchall()
+        c.execute('pragma wal_checkpoint(truncate)').fetchall()
+        c.close()
+        if os.path.exists(j) and os.path.getsize(j) > 0:
+            left.append(j)
+    return left
+
+
 def apply(pl, approved_by, record, commit=True, code_root=None, regen=regenerate_paths_sh):
     """Make the moves of a plan that has no blocker. Returns the number of moves."""
     blockers = preflight_blockers(pl)
@@ -260,6 +277,10 @@ def apply(pl, approved_by, record, commit=True, code_root=None, regen=regenerate
         else:
             os.rename(m['old'], m['new'])
         R.record(record, kind='git-mv' if m['tracked'] else 'rename', old=m['old'], new=m['new'], dir=m['dir'], name=m['name'], school=m['school'])
+        for suffix in ('-journal', '-wal', '-shm'):   # a sqlite file's companions travel with it (the preflight refuses a live journal first)
+            if m['old'].endswith('.sqlite') and os.path.exists(m['old'] + suffix):
+                os.rename(m['old'] + suffix, m['new'] + suffix)
+                R.record(record, kind='rename', old=m['old'] + suffix, new=m['new'] + suffix, dir=False, name=m['name'] + suffix, school=m['school'])
     n_gi = translate_gitignore(code_root, pl['readiness']['gitignore_plan'])
     flip_layout(code_root)
     regen(code_root)
@@ -303,6 +324,7 @@ def main():
     ap.add_argument('--apply', action='store_true')
     ap.add_argument('--approved-by')
     ap.add_argument('--no-commit', action='store_true', help='with --apply: leave the moves and the three edited files staged, uncommitted')
+    ap.add_argument('--settle-journals', action='store_true', help='open each sqlite file that has a journal or WAL once for writing, then re-plan')
     ap.add_argument('--verify', action='store_true')
     ap.add_argument('--record', help='--verify: the migration record (default: the newest relocate-data-*.jsonl)')
     a = ap.parse_args()
@@ -314,6 +336,9 @@ def main():
         print(f'verify {rec}: {len(probs)} problems')
         return 1 if probs else 0
     pl = plan()
+    if a.settle_journals:
+        print('journals left after settling:', settle_journals(pl))
+        pl = plan()
     pl['preflight']['jobs'] = project_jobs()
     show(pl)
     rec, ex = record_preview(pl)
