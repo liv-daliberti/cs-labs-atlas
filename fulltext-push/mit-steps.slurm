@@ -11,4 +11,4 @@
 # download loop keeps running in mit-fulltext (32011930), whose own step runner waited on the old global lock and was stopped
 . "${CS_ATLAS_CODE:-${SLURM_SUBMIT_DIR:?}}/paths.sh" || exit 1  # every path in one place (tools/atlas_paths.py); submit from the code root
 cd "$CS_ATLAS_FULLTEXT_PUSH"
-./run_steps.sh mit oa_arxiv openalex proceedings arxiv_title s2 core europepmc pmc figshare dspace labpages pihomes wayback_acm >> logs/steps-mit.log 2>&1 < /dev/null
+./run_steps.sh mit oa_arxiv openalex proceedings arxiv_title s2 core europepmc pmc figshare dspace labpages pihomes wayback_acm >> "$CS_ATLAS_FT_LOGS"/steps-mit.log 2>&1 < /dev/null

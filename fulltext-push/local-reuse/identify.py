@@ -16,6 +16,8 @@ from collections import defaultdict
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE.parent))
+import ftp_common as F  # noqa: E402  (F.P: atlas_paths, for FT_LOCAL_REUSE)
 DOI = re.compile(r'\b(10\.\d{4,9}/[^\s"<>]+)', re.I)
 ARX = re.compile(r'arXiv:\s?(\d{4}\.\d{4,5})(v\d+)?', re.I)
 YEAR = re.compile(r'\b(19[89]\d|20[0-3]\d)\b')
@@ -40,7 +42,7 @@ def family(name):
 
 def load_index():
     by_doi, by_title = defaultdict(list), defaultdict(list)
-    for l in gzip.open(HERE / 'missing.jsonl.gz', 'rt'):
+    for l in gzip.open(F.P.FT_LOCAL_REUSE / 'missing.jsonl.gz', 'rt'):
         r = json.loads(l)
         if not r['work_id']:
             continue
@@ -152,13 +154,13 @@ def identify(path, size, idx):
 def main():
     i, n = int(sys.argv[1]), int(sys.argv[2])
     files = []
-    for f in sorted((HERE / 'lists').glob('*.tsv')):
+    for f in sorted((F.P.FT_LOCAL_REUSE / 'lists').glob('*.tsv')):
         for line in f.open():
             size, path = line.rstrip('\n').split('\t', 1)
             if zlib.crc32(path.encode()) % n == i:
                 files.append((path, int(size), f.stem))
     idx = load_index()
-    out = HERE / 'ident' / f'shard-{i:02d}.jsonl.gz'
+    out = F.P.FT_LOCAL_REUSE / 'ident' / f'shard-{i:02d}.jsonl.gz'
     done = set()
     if out.exists():  # resumable: keep what an earlier run of this shard wrote
         try:

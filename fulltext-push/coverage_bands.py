@@ -42,7 +42,7 @@ def main():
             state[b][s] += 1; state['all'][s] += 1
         out = dict(at=F.now(), school=school, bands={b: dict(lab_papers=tot[b], local=loc[b], share=round(loc[b] / tot[b], 3) if tot[b] else None,
                                                              missing=dict(state[b])) for b in [x[0] for x in BANDS] + ['all'] if tot[b]})
-        with open(F.HERE / 'logs' / 'coverage-bands.jsonl', 'a') as f:
+        with open(F.P.FT_LOGS / 'coverage-bands.jsonl', 'a') as f:
             f.write(json.dumps(out) + '\n')
         print(json.dumps(out), flush=True)
 

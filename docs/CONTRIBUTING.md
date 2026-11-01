@@ -90,6 +90,10 @@ $CS_ATLAS_PY -u "$CS_ATLAS_TOOLS/some_tool.py" ...           # the code: "$CS_AT
   `review-*/`). Its jobs (`ledger`, `recover-1030`, `channels-1030`, `michigan-collector`, `downloads`) therefore source
   `fulltext-push/job_snapshot.sh`, which takes the snapshot and links every untracked entry of the main `fulltext-push/` into it.
   The loops adopt it at their next restart.
+- The collectors' own data (`fulltext-push/raw`, `checks`, `logs`, `local-reuse` data, `review-<stamp>`) is reached through the
+  slots `FT_RAW`, `FT_CHECKS`, `FT_LOGS`, `FT_LOCAL_REUSE` and `ft_review()` (shell `$CS_ATLAS_FT_*`), which point at the main
+  checkout; `tools/route_ft_data.py` and a test fail on a hand-joined path. Download loops already running keep the code they
+  loaded (hand-joined paths included) until they restart; they write the same directories, so nothing moves.
 - Adopted by `hierarchy/rebuild.sh`, `rebuild-all.slurm`, `organize-tree.slurm` and `build-equivalence.slurm`. Other
   scripts: source the helper after `paths.sh` and replace `tools/` in the command lines.
 

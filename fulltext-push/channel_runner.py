@@ -88,7 +88,7 @@ def run_channel(school, name, miss, known, dry=False, log=True):
                results=dict(Counter(r.status for r in results)), seconds=round(time.time() - t0), dry=dry, **n)
     print(json.dumps(rec), flush=True)
     if log and not dry:
-        with open(F.HERE / 'logs' / 'channels.jsonl', 'a') as f:
+        with open(F.P.FT_LOGS / 'channels.jsonl', 'a') as f:
             f.write(json.dumps(rec) + '\n')
     return rows, n
 

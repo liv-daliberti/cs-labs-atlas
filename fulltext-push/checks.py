@@ -11,7 +11,9 @@ import json, sqlite3, time
 from datetime import datetime, timezone
 from pathlib import Path
 
-DIR = Path(__file__).resolve().parent / 'checks'
+import atlas_paths as P  # the data lives in the main checkout whatever checkout the code runs from (FT_CHECKS)
+
+DIR = P.FT_CHECKS
 COLS = ('school', 'paper_key', 'work_id', 'channel', 'at', 'query', 'result', 'detail')
 RESULTS = ('found', 'none', 'error', 'not_applicable')
 

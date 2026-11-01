@@ -35,7 +35,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 HERE = Path(__file__).resolve().parent
-OUT = HERE / 'review-20261029'
+OUT = P.ft_review('20261029')
 STORES = P.STORES
 sys.path.insert(0, str(HERE))
 from retry_transient import TRANSIENT, SKIP_HOSTS  # noqa: E402  (the push's own transient rule and publisher hosts)

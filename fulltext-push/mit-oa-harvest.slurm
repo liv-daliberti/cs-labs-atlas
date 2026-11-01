@@ -17,7 +17,7 @@ export LD_LIBRARY_PATH="$CS_ATLAS_ENV_LIB${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 export FTP_PY="$CS_ATLAS_PY"  # the pinned project env (2026-10-31)
 cd "$CS_ATLAS_FULLTEXT_PUSH"
 PY="$FTP_PY -I -u"
-nice -n 5 $PY mit_oa_articles.py harvest >> logs/mit_oa_articles-harvest.log 2>&1
-nice -n 5 $PY mit_oa_articles.py match >> logs/mit_oa_articles-harvest.log 2>&1
-./run_steps.sh mit dspace >> logs/steps-mit.log 2>&1 < /dev/null
+nice -n 5 $PY mit_oa_articles.py harvest >> "$CS_ATLAS_FT_LOGS"/mit_oa_articles-harvest.log 2>&1
+nice -n 5 $PY mit_oa_articles.py match >> "$CS_ATLAS_FT_LOGS"/mit_oa_articles-harvest.log 2>&1
+./run_steps.sh mit dspace >> "$CS_ATLAS_FT_LOGS"/steps-mit.log 2>&1 < /dev/null
 echo '{"mit-oa-harvest": "done"}'

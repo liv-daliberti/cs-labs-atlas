@@ -143,7 +143,7 @@ def main():
         rounds += 1
         before = max_attempt(out)
         ids = lab_work_ids(school, recent)
-        f = F.HERE / 'raw' / f'{school}-lab-work-ids.txt'
+        f = F.P.FT_RAW / f'{school}-lab-work-ids.txt'
         f.write_text('\n'.join(ids) + '\n')
         state(out, rounds=rounds, lab_work_ids=len(ids))
         if ids:

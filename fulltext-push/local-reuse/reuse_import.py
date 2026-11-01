@@ -41,7 +41,7 @@ sys.path.insert(0, str(HERE.parents[1] / 'vendor' / 'homogenizing_scripts'))  # 
 import ftp_common as F
 from lr_common import SCHOOLS, load_missing, load_stores
 
-INV = HERE / 'inventory.sqlite'
+INV = F.P.FT_LOCAL_REUSE / 'inventory.sqlite'
 LOCAL = ('downloaded', 'fulltext_xml')
 GOOD = {'title_in_first_three_pages', 'doi_in_first_three_pages', 'title_in_first_page_layout'}
 RULE_ORDER = {'doi+title': 0, 'doi': 1, 'cross_doi': 0, 'cross_title': 1, 'title': 2, 'title_found': 3}
@@ -66,7 +66,7 @@ def plan():
       CREATE TABLE IF NOT EXISTS meta (k TEXT PRIMARY KEY, v TEXT);
     ''')
     n = Counter()
-    for f in sorted((HERE / 'ident').glob('shard-*.jsonl.gz')):
+    for f in sorted((F.P.FT_LOCAL_REUSE / 'ident').glob('shard-*.jsonl.gz')):
         try:
             lines = gzip.open(f, 'rt').read().splitlines()
         except EOFError:

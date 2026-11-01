@@ -31,7 +31,7 @@ import ftp_common as F  # noqa: E402
 
 AI_AGENTS = ('ClaudeBot', 'anthropic-ai', 'Claude-Web', 'Claude-User', 'Claude-SearchBot')
 STATUS = 'quarantined_robots_ai'
-PLAN = HERE / 'review-20261030'
+PLAN = F.P.ft_review('20261030')
 AUDITED = {h for h, v in json.loads((PLAN / 'ai-robots-audit.json').read_text()).items() if v.get('ai_disallowed')} \
     if (PLAN / 'ai-robots-audit.json').exists() else set()
 

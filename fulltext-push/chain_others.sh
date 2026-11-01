@@ -13,11 +13,11 @@ PY="${CS_ATLAS_COLLECTOR_PY} -I -u"
 for s in mit cmu epfl princeton; do nice -n 5 $PY add_works.py $s; done
 NW=$(ls -d $CS_ATLAS_STORES/princeton/discovery/claude-labpapers-newworks-*/ | xargs -n1 basename | sed 's/^/cs_pi_works:/')
 (${CS_ATLAS_COLLECTOR_PY} -u "$CS_ATLAS_VENDOR/princeton_tools/import_all_when_free.py" $NW)
-./run_steps.sh mit oa_arxiv openalex proceedings arxiv_title s2 pmc core >> logs/steps-mit.log 2>&1
-./run_steps.sh cmu oa_arxiv openalex proceedings arxiv_title s2 pmc figshare core >> logs/steps-cmu.log 2>&1
-./run_steps.sh epfl oa_arxiv openalex proceedings arxiv_title s2 pmc core infoscience >> logs/steps-epfl.log 2>&1
-./run_steps.sh princeton oa_arxiv openalex proceedings arxiv_title s2 pmc core >> logs/steps-princeton.log 2>&1
-./princeton_pass.sh >> logs/princeton-pass.log 2>&1
-for s in berkeley mit cmu epfl princeton; do ./run_steps.sh $s wayback_acm >> logs/steps-$s.log 2>&1; done
-./princeton_pass.sh >> logs/princeton-pass.log 2>&1
+./run_steps.sh mit oa_arxiv openalex proceedings arxiv_title s2 pmc core >> "$CS_ATLAS_FT_LOGS"/steps-mit.log 2>&1
+./run_steps.sh cmu oa_arxiv openalex proceedings arxiv_title s2 pmc figshare core >> "$CS_ATLAS_FT_LOGS"/steps-cmu.log 2>&1
+./run_steps.sh epfl oa_arxiv openalex proceedings arxiv_title s2 pmc core infoscience >> "$CS_ATLAS_FT_LOGS"/steps-epfl.log 2>&1
+./run_steps.sh princeton oa_arxiv openalex proceedings arxiv_title s2 pmc core >> "$CS_ATLAS_FT_LOGS"/steps-princeton.log 2>&1
+./princeton_pass.sh >> "$CS_ATLAS_FT_LOGS"/princeton-pass.log 2>&1
+for s in berkeley mit cmu epfl princeton; do ./run_steps.sh $s wayback_acm >> "$CS_ATLAS_FT_LOGS"/steps-$s.log 2>&1; done
+./princeton_pass.sh >> "$CS_ATLAS_FT_LOGS"/princeton-pass.log 2>&1
 echo "{\"at\": \"$(date -u +%FT%TZ)\", \"chain_others\": \"done\"}"

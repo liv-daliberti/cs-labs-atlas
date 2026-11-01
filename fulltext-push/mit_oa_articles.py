@@ -20,7 +20,7 @@ import ftp_common as F
 
 OAI = 'https://dspace.mit.edu/server/oai/request'
 SET = 'col_1721.1_49433'
-DB = F.HERE / 'raw' / 'mit_oa_articles.sqlite'
+DB = F.P.FT_RAW / 'mit_oa_articles.sqlite'
 # seconds between OAI requests: 12 until 2026-10-27, when the repository answered 429 with Retry-After 900 after 37 pages;
 # 20 from 2026-10-30 (Retry-After is still honoured on every 429 / 503)
 PACE = 20.0
@@ -65,7 +65,7 @@ def harvest():
             print(json.dumps(dict(page=n, token=nxt)), flush=True)
         n += 1
         if not nxt:
-            (F.HERE / 'raw' / 'mit_oa_articles.done').write_text(F.now() + '\n')
+            (F.P.FT_RAW / 'mit_oa_articles.done').write_text(F.now() + '\n')
             print(json.dumps(dict(harvest='complete', pages=n))); return
         token = nxt
 
@@ -115,7 +115,7 @@ def match(dry=False):
                candidates_added=added, dry=dry, **n)
     print(json.dumps(rec), flush=True)
     if not dry:
-        with open(F.HERE / 'logs' / 'channels.jsonl', 'a') as f:
+        with open(F.P.FT_LOGS / 'channels.jsonl', 'a') as f:
             f.write(json.dumps(rec) + '\n')
 
 

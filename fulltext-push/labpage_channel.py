@@ -480,7 +480,7 @@ def step_pihomes(school, miss, known, n, has_arxiv):
         for u in (x.get('lab_site'), x.get('people_page')):
             if u and u.startswith('http'):
                 sites[x['pi']].append(u)
-    extra = F.HERE / 'raw' / f'pi-homepages-{school}.json'
+    extra = F.P.FT_RAW / f'pi-homepages-{school}.json'
     if extra.exists():
         for pi, us in json.loads(extra.read_text()).items():
             for u in us:
@@ -493,7 +493,7 @@ def step_pihomes(school, miss, known, n, has_arxiv):
                 captured.setdefault(nurl(u), (unwrap(url), decode(content), (ct or '').lower()))
     s = requests.Session(); s.headers['User-Agent'] = F.UA
     pacer, robots = Pacer(3.0), {}
-    cache = sqlite3.connect(str(F.HERE / 'raw' / 'pihomes.sqlite'))
+    cache = sqlite3.connect(str(F.P.FT_RAW / 'pihomes.sqlite'))
     cache.execute('CREATE TABLE IF NOT EXISTS pages (url TEXT PRIMARY KEY, ok INT, fetched_at TEXT, body BLOB)')
 
     def get(u):

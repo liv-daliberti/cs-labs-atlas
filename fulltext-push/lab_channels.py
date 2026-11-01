@@ -285,7 +285,7 @@ def step_techrpt(school, miss, known, n):
     import requests
     s = requests.Session(); s.headers['User-Agent'] = UA
     pacer, robots = Pacer(3.0), {}
-    cache_f = HERE / 'raw' / 'eecs_techrpts.jsonl'
+    cache_f = F.P.FT_RAW / 'eecs_techrpts.jsonl'
     cache = {}
     if cache_f.exists():
         for line in cache_f.open():
@@ -361,7 +361,7 @@ def step_pubpages(school, miss, known, n):
 def step_wayback_acm(school, miss, known, n):
     import requests
     s = requests.Session(); s.headers['User-Agent'] = UA
-    log_f = HERE / 'raw' / 'wayback_lookups.jsonl'
+    log_f = F.P.FT_RAW / 'wayback_lookups.jsonl'
     done = {}
     R = str(F.P.SWEEPS) + '/'  # earlier lookups by the school stages are reused, not repeated
     for lf in (log_f, Path(R + 'claude-mit-20261020/raw/wayback_lookups.jsonl'), Path(R + 'claude-cmu-20261017/raw/wayback_lookups.jsonl'),
@@ -521,7 +521,7 @@ def step_homepages(school, miss, known, n):
             by_pi[pi].append((r, w))
     s = requests.Session(); s.headers['User-Agent'] = UA
     pacer, robots = Pacer(3.0), {}
-    cache = sqlite3.connect(str(HERE / 'raw' / 'homepages.sqlite'))
+    cache = sqlite3.connect(str(F.P.FT_RAW / 'homepages.sqlite'))
     cache.execute('CREATE TABLE IF NOT EXISTS pages (url TEXT PRIMARY KEY, ok INT, fetched_at TEXT, body BLOB)')
 
     def get(url):

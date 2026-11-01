@@ -31,7 +31,7 @@ from pathlib import Path
 from rapidfuzz import fuzz
 
 HERE = Path(__file__).resolve().parent
-OUT = HERE / 'review-20261029'
+OUT = P.ft_review('20261029')
 STORES = P.STORES
 WORK = HERE.parent
 PENDING = 'provider_link_only_review_pending'
@@ -102,7 +102,7 @@ def byline_index(school):
                     idx.setdefault(k, names)
     store = WORK / 'hierarchy' / school / 'pi-works.sqlite'
     if not store.exists():
-        store = HERE / 'raw' / f'{school}-oa-works.sqlite'
+        store = P.FT_RAW / f'{school}-oa-works.sqlite'
     if store.exists():
         db = sqlite3.connect(f'file:{store}?mode=ro', uri=True, timeout=60)
         for _, b in db.execute('SELECT id, body FROM works'):
@@ -111,7 +111,7 @@ def byline_index(school):
             except Exception:
                 pass
         db.close()
-    cache = HERE / 'raw' / 'openalex_works.jsonl'
+    cache = P.FT_RAW / 'openalex_works.jsonl'
     if cache.exists():
         for line in cache.open():
             try:

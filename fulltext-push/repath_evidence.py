@@ -21,7 +21,7 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import ftp_common as F  # noqa: E402
 
-OUT = HERE / 'review-20261030'
+OUT = F.P.ft_review('20261030')
 TABLES = (('candidates', 'metadata_source'), ('assets', 'metadata_source'), ('works', 'metadata_source'),
           ('collection_scope', 'evidence_path'), ('work_lab_sources', 'evidence_path'), ('work_coauthor_sources', 'evidence_path'))
 

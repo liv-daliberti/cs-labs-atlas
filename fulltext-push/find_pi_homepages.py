@@ -48,7 +48,7 @@ def main():
     dry = '--dry' in sys.argv
     s = requests.Session(); s.headers['User-Agent'] = F.UA
     pacer, robots = Pacer(3.0), {}
-    cache = sqlite3.connect(str(F.HERE / 'raw' / 'pihomes.sqlite'))
+    cache = sqlite3.connect(str(F.P.FT_RAW / 'pihomes.sqlite'))
     cache.execute('CREATE TABLE IF NOT EXISTS pages (url TEXT PRIMARY KEY, ok INT, fetched_at TEXT, body BLOB)')
 
     def get(u):
@@ -68,9 +68,9 @@ def main():
         papers = F.lab_papers(school)
         cs = F.catalog_state(school, with_urls=False)
         missing = Counter(pi for r in papers.values() if not F.is_local(school, r, cs) for pi in r['pis'])
-        out_f = F.HERE / 'raw' / f'pi-homepages-{school}.json'
+        out_f = F.P.FT_RAW / f'pi-homepages-{school}.json'
         found = json.loads(out_f.read_text()) if out_f.exists() else {}
-        evid_f = F.HERE / 'raw' / f'pi-homepages-{school}-evidence.json'
+        evid_f = F.P.FT_RAW / f'pi-homepages-{school}-evidence.json'
         evid = json.loads(evid_f.read_text()) if evid_f.exists() else {}
         n = Counter()
         for p in sorted(pis, key=lambda p: -missing.get(p['pi'], 0)):

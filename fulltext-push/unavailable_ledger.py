@@ -26,7 +26,7 @@ sys.path.insert(0, str(HERE))
 import ftp_common as F  # noqa: E402
 import checks as C  # noqa: E402
 
-RAW = HERE / 'raw'
+RAW = F.P.FT_RAW
 MAX_AGE = 30.0
 OA_AGE = 7.0
 UA = F.UA

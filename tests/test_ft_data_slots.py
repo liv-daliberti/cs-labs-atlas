@@ -22,3 +22,9 @@ def test_route_check_finds_hand_joins(tmp_path):
     (tmp_path / 'local-reuse' / 'c.py').write_text("INV = HERE / 'inventory.sqlite'\n")
     got = sorted((f.name, n) for f, n, _ in R.scan(tmp_path))
     assert got == [('a.py', 1), ('a.py', 3), ('b.sh', 1), ('c.py', 1)]
+
+
+def test_fulltext_push_joins_no_data_directory_by_hand():
+    """Every read and write of raw/, checks/, logs/, local-reuse data and review-<stamp>/ goes through the slots, so a code
+    snapshot sees the shared data (docs/CONTRIBUTING.md)."""
+    assert R.scan(Path(__file__).resolve().parents[1] / 'fulltext-push') == []

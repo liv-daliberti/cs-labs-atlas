@@ -28,7 +28,7 @@ def family(name):
 
 
 def snapshot():
-    with gzip.open(HERE / 'missing.jsonl.gz.part', 'wt') as f:
+    with gzip.open(F.P.FT_LOCAL_REUSE / 'missing.jsonl.gz.part', 'wt') as f:
         for school in SCHOOLS:
             papers = F.lab_papers(school)
             cs = F.catalog_state(school, with_urls=False)
@@ -42,8 +42,8 @@ def snapshot():
                                         editions=eds, title=r.get('title'), year=r.get('year'), byline=r.get('byline') or [], pis=r.get('pis') or [])) + '\n')
                 n += 1
             print(json.dumps(dict(school=school, lab_papers=len(papers), missing=n)), flush=True)
-    (HERE / 'missing.jsonl.gz.part').replace(HERE / 'missing.jsonl.gz')
-    with gzip.open(HERE / 'stores.jsonl.gz.part', 'wt') as f:
+    (F.P.FT_LOCAL_REUSE / 'missing.jsonl.gz.part').replace(F.P.FT_LOCAL_REUSE / 'missing.jsonl.gz')
+    with gzip.open(F.P.FT_LOCAL_REUSE / 'stores.jsonl.gz.part', 'wt') as f:
         for school in SCHOOLS:
             db = sqlite3.connect(f'file:{F.FT / school / "catalog.sqlite"}?mode=ro', uri=True, timeout=120)
             n = 0
@@ -57,16 +57,16 @@ def snapshot():
             db.close()
             f.write(json.dumps(dict(school=school, asset_shas=sorted(shas))) + '\n')
             print(json.dumps(dict(school=school, downloaded=n, asset_shas=len(shas))), flush=True)
-    (HERE / 'stores.jsonl.gz.part').replace(HERE / 'stores.jsonl.gz')
+    (F.P.FT_LOCAL_REUSE / 'stores.jsonl.gz.part').replace(F.P.FT_LOCAL_REUSE / 'stores.jsonl.gz')
 
 
 def load_missing():
-    return [json.loads(l) for l in gzip.open(HERE / 'missing.jsonl.gz', 'rt')]
+    return [json.loads(l) for l in gzip.open(F.P.FT_LOCAL_REUSE / 'missing.jsonl.gz', 'rt')]
 
 
 def load_stores():
     works, shas = [], {}
-    for l in gzip.open(HERE / 'stores.jsonl.gz', 'rt'):
+    for l in gzip.open(F.P.FT_LOCAL_REUSE / 'stores.jsonl.gz', 'rt'):
         r = json.loads(l)
         if 'asset_shas' in r:
             for s in r['asset_shas']:

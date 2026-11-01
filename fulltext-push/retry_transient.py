@@ -37,7 +37,7 @@ SKIP_HOSTS = ('dl.acm.org', 'ieeexplore.ieee.org', 'www.sciencedirect.com', 'onl
 
 
 def missing_works(school):
-    p = HERE / 'local-reuse' / 'missing.jsonl.gz'
+    p = F.P.FT_LOCAL_REUSE / 'missing.jsonl.gz'
     return {r['work_id'] for l in gzip.open(p, 'rt') if (r := json.loads(l))['school'] == school and r['work_id']}
 
 
@@ -95,7 +95,7 @@ def run(school, dry):
     rec = dict(at=F.now(), school=school, dry=dry, attempts_removed=0 if dry else len(rows), **{k: v for k, v in n.items() if not k.startswith('host:')}, top_hosts=top)
     print(json.dumps(rec), flush=True)
     if not dry:
-        with open(HERE / 'logs' / 'channels.jsonl', 'a') as f:
+        with open(F.P.FT_LOGS / 'channels.jsonl', 'a') as f:
             f.write(json.dumps(dict(rec, step='retry_transient')) + '\n')
 
 

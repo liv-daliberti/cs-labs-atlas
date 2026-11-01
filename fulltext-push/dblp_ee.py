@@ -24,7 +24,7 @@ sys.path.insert(0, str(HERE))
 import ftp_common as F
 
 DUMP = F.P.DBLP_DUMP_XML
-CACHE = HERE / 'raw' / 'dblp_ee_matches.jsonl.gz'
+CACHE = F.P.FT_RAW / 'dblp_ee_matches.jsonl.gz'
 REC = re.compile(r'<(article|inproceedings|proceedings|book|incollection|phdthesis|mastersthesis|www|data) [^>]*?key="([^"]+)"[^>]*>(.*?)</\1>', re.S)
 EE = re.compile(r'<ee[^>]*>([^<]+)</ee>')
 TITLE = re.compile(r'<title[^>]*>(.*?)</title>', re.S)
@@ -54,7 +54,7 @@ def fam(name):
 
 def targets(extra=(), only_extra=False):
     rows = []
-    p = HERE / 'local-reuse' / 'missing.jsonl.gz'
+    p = F.P.FT_LOCAL_REUSE / 'missing.jsonl.gz'
     if p.exists() and not only_extra:
         rows += [json.loads(l) for l in gzip.open(p, 'rt')]
     rows += list(extra)

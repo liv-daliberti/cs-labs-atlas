@@ -74,8 +74,8 @@ def main():
     n['works_added'] = F.write_batches(db, 'INSERT OR IGNORE INTO works(id,title,doi,year,graph_json,metadata_source,status) VALUES (?,?,?,?,?,?,?)', wrows)
     n['nodes_added'] = F.write_batches(db, 'INSERT OR IGNORE INTO nodes VALUES (?,?,?,?)', nrows)
     db.close()
-    (F.HERE / 'logs').mkdir(exist_ok=True)
-    with open(F.HERE / 'logs' / 'added-works.jsonl', 'a') as f:
+    (F.P.FT_LOGS).mkdir(exist_ok=True)
+    with open(F.P.FT_LOGS / 'added-works.jsonl', 'a') as f:
         f.write(json.dumps(dict(at=F.now(), school=school, **n)) + '\n')
     print(json.dumps(dict(n)))
 

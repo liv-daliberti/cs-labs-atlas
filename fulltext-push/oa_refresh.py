@@ -19,9 +19,9 @@ from collections import defaultdict
 import ftp_common as F
 
 RESERVE = 800
-BUDGET_LOG = F.HERE / 'raw' / 'openalex_budget.jsonl'
-REFRESH = F.HERE / 'raw' / 'oa_refresh.jsonl'
-EDITIONS = F.HERE / 'raw' / 'oa_editions.jsonl'
+BUDGET_LOG = F.P.FT_RAW / 'openalex_budget.jsonl'
+REFRESH = F.P.FT_RAW / 'oa_refresh.jsonl'
+EDITIONS = F.P.FT_RAW / 'oa_editions.jsonl'
 SEL = 'id,doi,title,publication_year,ids,locations,primary_location,best_oa_location,authorships'
 
 

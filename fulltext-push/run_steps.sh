@@ -13,6 +13,6 @@ for step in "$@"; do
     flock 9
     echo "{\"at\": \"$(date -u +%FT%TZ)\", \"start\": \"$school $step\"}"
     nice -n 5 $PY lab_channels.py $school $step || echo "{\"failed\": \"$school $step\"}"
-  ) 9>>logs/run_steps-$step.lock
+  ) 9>>"$CS_ATLAS_FT_LOGS"/run_steps-$step.lock
 done
 echo "{\"at\": \"$(date -u +%FT%TZ)\", \"done\": \"$school $*\"}"

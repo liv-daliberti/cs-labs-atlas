@@ -13,7 +13,7 @@
 . "${CS_ATLAS_CODE:-${SLURM_SUBMIT_DIR:?}}/paths.sh" || exit 1  # every path in one place (tools/atlas_paths.py); submit from the code root
 cd "$CS_ATLAS_FULLTEXT_PUSH"
 for s in ${SCHOOLS:-mit berkeley stanford princeton epfl cmu}; do
-  ./run_steps.sh $s oa_refresh dblp_ee s2_title oa_editions >> logs/steps-$s.log 2>&1 < /dev/null &
+  ./run_steps.sh $s oa_refresh dblp_ee s2_title oa_editions >> "$CS_ATLAS_FT_LOGS"/steps-$s.log 2>&1 < /dev/null &
   sleep 30
 done
 wait

@@ -28,7 +28,7 @@ sys.path.insert(0, str(HERE))
 import ftp_common as F  # noqa: E402
 import identity_rule as R  # noqa: E402  (the rule itself, shared with the collector wrapper)
 
-OUT = HERE / 'review-20261030'
+OUT = F.P.ft_review('20261030')
 SUFFIX = {'lab': '', 'all': '-all', 'reverted': '-reverted'}
 PENDING = R.PENDING
 
@@ -94,7 +94,7 @@ def alt_title_sources():
                 if isinstance(d, dict) and str(r.get('id', '')).startswith('DOI:'):
                     s2[r['id'][4:].lower()] = (d.get('title'), (d.get('externalIds') or {}).get('ArXiv'))
         oa = {}
-        p = HERE / 'raw' / 'ledger_openalex.jsonl'
+        p = F.P.FT_RAW / 'ledger_openalex.jsonl'
         if p.exists():
             for line in open(p):
                 try:
@@ -251,7 +251,7 @@ def plan(school, scope='lab'):
         first, auth = R.first_author(F.SCHOOLS, school, w, title, doi, graph_json=row.get('graph'), catalog=store / 'catalog.sqlite')
         d = F.ndoi(doi or r.get('doi'))
         import s2_key_lookup as s2k
-        mapped = R.mapped_arxiv(d, s2k.CACHE, HERE / 'raw' / 'ledger_openalex.jsonl', r.get('oa'))
+        mapped = R.mapped_arxiv(d, s2k.CACHE, F.P.FT_RAW / 'ledger_openalex.jsonl', r.get('oa'))
         verdict, ev = R.judge(p1, title, first, d, row['download_url'], mapped, p12=p12, author_authoritative=auth)
         n[verdict] += 1
         out.append(dict(work=w, kind=row.get('kind', 'lab'), verdict=verdict, title=title, **ev, url=(row['attempt_urls'] or [row['download_url']])[0],

@@ -8,7 +8,7 @@
 cd "$(dirname "$0")"
 . ../paths.sh  # every path in one place (tools/atlas_paths.py)
 LIMIT_GB=150
-while [ ! -f raw/disk_guard.stop ]; do
+while [ ! -f "$CS_ATLAS_FT_RAW"/disk_guard.stop ]; do
   free=$(df -B1G --output=avail /n/fs/similarity | tail -1 | tr -d ' ')
   if [ "$free" -lt "$LIMIT_GB" ]; then
     echo "{\"at\": \"$(date -u +%FT%TZ)\", \"free_gb\": $free, \"action\": \"stopping downloads\"}"
@@ -19,7 +19,7 @@ while [ ! -f raw/disk_guard.stop ]; do
     for pat in "collector_wrapper.py --out $CS_ATLAS_STORES" 'mit_collector_wrapper.py' 'collect_princeton_fulltext_expanded.py'; do
       pkill -TERM -u "$(id -u)" -f "$pat" && echo "{\"stopped\": \"$pat\"}"
     done
-    touch raw/downloads_stopped_for_disk
+    touch "$CS_ATLAS_FT_RAW"/downloads_stopped_for_disk
     exit 0
   fi
   sleep 120

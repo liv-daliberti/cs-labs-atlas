@@ -43,7 +43,7 @@ def fetch_records(oa_ids):
     """OpenAlex records for the W ids not yet in raw/stanford-oa-works.sqlite, 100 per request (0.25 s apart)."""
     import requests
     store = F.oa_store(SCHOOL)
-    assert store.parent == F.HERE / 'raw', store
+    assert store.parent == F.P.FT_RAW, store
     db = sqlite3.connect(str(store), timeout=60)
     db.execute('CREATE TABLE IF NOT EXISTS works (id TEXT PRIMARY KEY, body BLOB)')
     db.execute('CREATE TABLE IF NOT EXISTS fetches (at TEXT, asked INT, got INT, status INT)')

@@ -13,7 +13,7 @@
 #SBATCH --output=fulltext-push/local-reuse/logs/find-%j.out
 set -u
 . "$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)/paths.sh" || exit 1  # every path in one place (tools/atlas_paths.py)
-HERE=${CS_ATLAS_FULLTEXT_PUSH}/local-reuse
+HERE=${CS_ATLAS_FT_LOCAL_REUSE}   # the data side of local-reuse/ (lists/, logs/)
 R=${CS_ATLAS_SWEEPS}
 HS=${CS_ATLAS_WORLD_ATLAS}
 dirs=(
@@ -32,9 +32,9 @@ for d in "${dirs[@]}"; do
   out="$HERE/lists/$label.tsv"
   [ -s "$out.done" ] && continue
   t0=$(date +%s)
-  nice -n 15 ionice -c3 find "$d" -maxdepth 6 -type f -name '*.pdf' -not -path '*/data/fulltext/*/objects/*' -printf '%s\t%p\n' > "$out.part" 2>>"$HERE/logs/find.err"
+  nice -n 15 ionice -c3 find "$d" -maxdepth 6 -type f -name '*.pdf' -not -path '*/data/fulltext/*/objects/*' -printf '%s\t%p\n' > "$out.part" 2>>"$CS_ATLAS_FT_LOCAL_REUSE/logs/find.err"
   mv "$out.part" "$out"
-  echo "{\"dir\": \"$d\", \"pdfs\": $(wc -l < "$out"), \"seconds\": $(( $(date +%s) - t0 ))}" | tee -a "$HERE/logs/find.log" > "$out.done"
+  echo "{\"dir\": \"$d\", \"pdfs\": $(wc -l < "$out"), \"seconds\": $(( $(date +%s) - t0 ))}" | tee -a "$CS_ATLAS_FT_LOCAL_REUSE/logs/find.log" > "$out.done"
   sleep 2
 done
-echo '{"find": "done"}' >> "$HERE/logs/find.log"
+echo '{"find": "done"}' >> "$CS_ATLAS_FT_LOCAL_REUSE/logs/find.log"

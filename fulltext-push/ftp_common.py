@@ -29,7 +29,7 @@ UA = 'HomogenizingScienceResearch/0.2 (academic metadata inventory)'
 KEYS = Path.home() / '.config/cs-atlas'
 # Shared scratch for pace / lock files: a project path every host and compute node sees (2026-10-29; it was one Claude
 # session's /tmp scratchpad, which compute nodes and later sessions do not have). Never a place for keys.
-SCRATCH = P.FULLTEXT_PUSH / 'logs'
+SCRATCH = P.FT_LOGS
 
 
 def now():
@@ -87,7 +87,7 @@ def oa_store(school):
     """The school's OpenAlex work records (table works: id, zlib JSON body): hierarchy/<school>/pi-works.sqlite, else
     (a school whose hierarchy has none, e.g. Stanford, 2026-10-27) the push's own raw/<school>-oa-works.sqlite."""
     p = SCHOOLS / 'hierarchy' / school / 'pi-works.sqlite'
-    return p if p.exists() else HERE / 'raw' / f'{school}-oa-works.sqlite'
+    return p if p.exists() else P.FT_RAW / f'{school}-oa-works.sqlite'
 
 
 def oa_bodies(school, ids):
@@ -104,7 +104,7 @@ def oa_bodies(school, ids):
                 except Exception:
                     pass
         db.close()
-    cache = HERE / 'raw' / 'openalex_works.jsonl'
+    cache = P.FT_RAW / 'openalex_works.jsonl'
     if cache.exists():
         for line in cache.open():
             try:
@@ -120,7 +120,7 @@ def fetch_oa_bodies(ids):
     """OpenAlex single-work records by id for papers whose record is not cached (with the key from the environment)."""
     import os, requests
     load_env()
-    cache = HERE / 'raw' / 'openalex_works.jsonl'
+    cache = P.FT_RAW / 'openalex_works.jsonl'
     cache.parent.mkdir(exist_ok=True)
     s = requests.Session(); s.headers['User-Agent'] = UA
     key = os.environ.get('OPENALEX_API_KEY')

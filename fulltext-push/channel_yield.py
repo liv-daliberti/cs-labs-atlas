@@ -62,7 +62,7 @@ def main():
             if hit:
                 n[channel(src.get(hit))] += 1
         out = dict(school=school, since=START, new_local_lab_papers=sum(n.values()), by_channel=dict(n.most_common()))
-        (F.HERE / 'logs' / f'yield-{school}.json').write_text(json.dumps(out, indent=1))
+        (F.P.FT_LOGS / f'yield-{school}.json').write_text(json.dumps(out, indent=1))
         print(json.dumps(out), flush=True)
 
 
