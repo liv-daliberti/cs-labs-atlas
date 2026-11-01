@@ -1679,10 +1679,16 @@ def not_a_member_context(kit, school, name, best):
     heads_rx = re.compile(r"Doctoral Dissertation Advisor|Doctoral Dissertation Co-Advisor|Doctoral Dissertation Reader|Postdoctoral Faculty Sponsor|"
                           r"Postdoctoral Research Mentor|Doctoral \(Program\)|Master's Program Advisor|Undergraduate Major Advisor|Orals Evaluator|Reader \(AC\)")
     if j >= 0 and (q or t):
-        win = t[max(0, j - 500): j + 1]
+        win = t[max(0, j - 500): j + max(q.find(name.split()[0]) if name else 0, 0) + 1]
         hs = list(heads_rx.finditer(win))
         if hs and WEAK_PROFILE_LABEL.search(hs[-1].group(0)):
             return 'not_a_student', 'profile reader / program / major-advisor listing, not an advisee'
+    if j >= 0:  # a 'Rotating PhD Students' list: rotation students are not lab members (docs/LAB-PAGES.md, not_a_student)
+        qn = q.find(name.split()[0]) if name else -1
+        pre = t[max(0, j - 200): j + max(qn, 0)]
+        rm = list(re.finditer(r'\b(?:Rotating|Rotation)\s+(?:Ph\.?D\.?\s+)?Students\b', pre))
+        if rm and not re.search(r'Undergraduate|Alumni|Postdoc|Master|Visitors|Staff|Graduate Students', pre[rm[-1].end():]):
+            return 'not_a_student', 'a rotation student'
     if j >= 0:
         k = t.find(name.split()[-1], j) if name else j
         k = j if k < 0 else k
