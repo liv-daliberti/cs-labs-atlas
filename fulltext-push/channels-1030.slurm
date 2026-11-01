@@ -16,7 +16,7 @@ export FTP_PY="$CS_ATLAS_PY"  # the pinned project env (2026-10-31)
 . "$CS_ATLAS_CODE/fulltext-push/job_snapshot.sh" || exit 1  # code of one commit, data shared (docs/CONTRIBUTING.md); submit with `atlas submit`
 cd "$CS_ATLAS_FULLTEXT_PUSH"
 for s in ${SCHOOLS:-mit berkeley stanford princeton epfl cmu}; do
-  ./run_steps.sh $s ${CHANNELS:-arxiv_loose} >> logs/steps-$s.log 2>&1 < /dev/null
+  ./run_steps.sh $s ${CHANNELS:-arxiv_loose} >> "$CS_ATLAS_FT_LOGS"/steps-$s.log 2>&1 < /dev/null
 done
 PRIN=$(cs_atlas_sweep claude-princeton-20261015)
 OUT=$CS_ATLAS_STORES/princeton
