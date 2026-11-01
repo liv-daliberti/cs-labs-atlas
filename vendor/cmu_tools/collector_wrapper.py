@@ -262,6 +262,9 @@ _check_identity, _process_work = c.base.check_identity, c.process_work
 CODE_ROOT = Path(__file__).resolve().parents[2]
 if str(CODE_ROOT / 'fulltext-push') not in sys.path:
     sys.path.append(str(CODE_ROOT / 'fulltext-push'))
+if str(CODE_ROOT / 'tools') not in sys.path:
+    sys.path.append(str(CODE_ROOT / 'tools'))
+import atlas_paths as P  # noqa: E402  (the data slots: FT_RAW is the main checkout's raw/ whatever checkout or snapshot this runs from)
 import identity_rule as IR  # noqa: E402
 REJECT_KEEP = 500
 _REJECT_LOCK = __import__('threading').Lock()
@@ -311,7 +314,7 @@ def check_identity(row, path):
         return identity
     store = Path(path).parents[1]
     first, auth = IR.first_author(CODE_ROOT, store.name, row['id'], row.get('title'), row.get('doi'), catalog=store / 'catalog.sqlite')
-    mapped = IR.mapped_arxiv(row.get('doi'), _s2_cache(), CODE_ROOT / 'fulltext-push' / 'raw' / 'ledger_openalex.jsonl')
+    mapped = IR.mapped_arxiv(row.get('doi'), _s2_cache(), P.FT_RAW / 'ledger_openalex.jsonl')
     verdict, ev = IR.judge(IR.page_text(path, 1, 1), row.get('title'), first, row.get('doi'), getattr(_TIER, 'final', None), mapped,
                            p12=IR.page_text(path, 1, 2), author_authoritative=auth)
     if verdict in IR.TAGS:

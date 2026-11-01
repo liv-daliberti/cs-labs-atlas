@@ -28,3 +28,22 @@ def test_fulltext_push_joins_no_data_directory_by_hand():
     """Every read and write of raw/, checks/, logs/, local-reuse data and review-<stamp>/ goes through the slots, so a code
     snapshot sees the shared data (docs/CONTRIBUTING.md)."""
     assert R.scan(Path(__file__).resolve().parents[1] / 'fulltext-push') == []
+
+
+def test_route_check_finds_fulltext_push_joins_outside_fulltext_push(tmp_path):
+    """FULLTEXT_PUSH / 'raw' in tools/ or vendor/ resolves inside a code snapshot (2026-11-01: s2-pace, labpage_audit, collector_wrapper)."""
+    (tmp_path / 'fulltext-push').mkdir()
+    (tmp_path / 'tools').mkdir()
+    (tmp_path / 'vendor').mkdir()
+    (tmp_path / 'tools' / 'a.py').write_text("hf = P.FULLTEXT_PUSH / 'raw' / 'x.json'\nok = P.FULLTEXT_PUSH / 'channel_runner.py'\nok2 = P.FT_RAW / 'x'\n")
+    (tmp_path / 'vendor' / 'b.py').write_text("PACE = P.FULLTEXT_PUSH / 'logs/s2-pace'\nr = CODE_ROOT / 'fulltext-push' / 'raw' / 'l.jsonl'\n")
+    (tmp_path / 'tools' / 'c.sh').write_text('cat "$CS_ATLAS_FULLTEXT_PUSH/logs/x.log"\nsh "$CS_ATLAS_FULLTEXT_PUSH/run_steps.sh"\n')
+    got = sorted((f.name, n) for f, n, _ in R.scan_outside(tmp_path))
+    assert got == [('a.py', 1), ('b.py', 1), ('b.py', 2), ('c.sh', 1)]
+
+
+def test_repository_has_no_fulltext_push_data_joins_outside_it():
+    """The lab-page agent's tools/labpage_audit.py:948 is the one known site, being fixed by its owner."""
+    code = Path(__file__).resolve().parents[1]
+    left = {f.relative_to(code).as_posix() for f, _, _ in R.scan_outside(code)}
+    assert left <= {'tools/labpage_audit.py'}, left
