@@ -54,7 +54,7 @@ from cs_open_copies import nt, family, arxiv_id
 
 # the pacing file sits on the shared project storage, so collectors on every node share the key's one request per 1.2 s
 # (it was in one session's /tmp scratchpad, which compute nodes do not have: every s2 step there failed, 2026-10-28)
-PACE = P.FULLTEXT_PUSH / 'logs/s2-pace'
+PACE = P.FT_LOGS / 's2-pace'  # data slot: the main checkout's logs/ whatever checkout or snapshot the code runs from
 
 
 def wait_turn():
