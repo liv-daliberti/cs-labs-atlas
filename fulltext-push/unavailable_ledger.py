@@ -42,7 +42,8 @@ LABEL = dict(openalex='OpenAlex', arxiv='arXiv', s2='Semantic Scholar', core='CO
              proceedings='the open proceedings', repository='the school repository', labpages="the PI's lab and home pages",
              wayback_acm='the Wayback Machine (ACM PDF)')
 REPO = dict(princeton='Princeton OAR', mit='DSpace@MIT Open Access Articles', cmu='KiltHub', epfl='Infoscience',
-            berkeley='eScholarship (through OpenAlex and CORE)', stanford='the Stanford Digital Repository (through OpenAlex and CORE)')
+            berkeley='eScholarship (through OpenAlex and CORE)', stanford='the Stanford Digital Repository (through OpenAlex and CORE)',
+            michigan='Deep Blue Documents (never asked; through OpenAlex and CORE)')
 PUBFOLD = [(r'Institute of Electrical and Electronics Engineers|\bIEEE\b', 'IEEE'), (r'Association for Computing Machinery|\bACM\b', 'ACM'),
            (r'Springer|Nature Portfolio|Nature Publishing|BioMed Central|Palgrave', 'Springer Nature'), (r'\bSSRN\b|Social Science Research Network|RELX', 'SSRN (Elsevier)'),
            (r'Elsevier|Cell Press|Academic Press|North-Holland|Pergamon', 'Elsevier'), (r'Wiley|Blackwell', 'Wiley'),
@@ -673,7 +674,9 @@ def src_repository(school, papers, oa, core, offline, n):
         return out
     # berkeley, stanford: the repository refuses this client (eScholarship: HTTP 403 on robots.txt and every page,
     # 2026-10-30) or has no harvest interface used here (SDR); their holdings reach us through OpenAlex and CORE
-    pat = re.compile(r'escholarship\.org|escholarship' if school == 'berkeley' else r'purl\.stanford\.edu|stacks\.stanford\.edu|searchworks\.stanford\.edu|Stanford Digital Repository', re.I)
+    # michigan: Deep Blue is never used in any form (owner rule 2026-10-30), so only what OpenAlex and CORE list for it counts
+    pat = re.compile({'berkeley': r'escholarship\.org|escholarship', 'michigan': r'deepblue\.lib\.umich\.edu|deep ?blue'}.get(
+        school, r'purl\.stanford\.edu|stacks\.stanford\.edu|searchworks\.stanford\.edu|Stanford Digital Repository'), re.I)
     for p in papers:
         o, c = oa.get(p['key']) or {}, core.get(p['key']) or {}
         if o.get('result') not in ('found', 'none', 'not_applicable'):
@@ -682,10 +685,10 @@ def src_repository(school, papers, oa, core, offline, n):
         cd = c.get('detail') if isinstance(c.get('detail'), dict) else {}  # an unanswered CORE check carries a note, not links
         locs = [l for l in od.get('locations') or [] if pat.search(' '.join(str(l.get(x) or '') for x in ('host', 'source', 'landing', 'pdf')))]
         links = [u for u in cd.get('links') or [] if pat.search(u)]
-        usable = [l['pdf'] for l in locs if l.get('pdf')] + links
+        usable = [] if school == 'michigan' else [l['pdf'] for l in locs if l.get('pdf')] + links  # Deep Blue copies are never fetched
         out[p['key']] = check('repository', p['key'], 'found' if usable else 'none',
                               dict(repository=REPO[school], records=[l.get('landing') for l in locs][:3], usable=usable[:3],
-                                   note='direct access refused (HTTP 403) or not harvested; checked through OpenAlex and CORE'), at=o.get('at'))
+                                   note=('Deep Blue is never asked (owner rule); ' if school == 'michigan' else 'direct access refused (HTTP 403) or not harvested; ') + 'checked through OpenAlex and CORE'), at=o.get('at'))
     return out
 
 
