@@ -293,6 +293,9 @@ def school_rows(school, lab_rows, arxiv_lic, hosted_shas=frozenset(), db_parts=N
     for key, r in first.items():
         stats['lab_papers'] += 1
         cp = copies.get(cid_of.get(key))
+        if cp and cp['decision'] == 'link' and not cp['source_url']:   # a link with nothing to open is not readable
+            stats['link_without_source_url'] += 1
+            cp = None
         if not cp:
             stats['not_readable'] += 1
             if matches.get(key, (None,))[0] in open_cands:
@@ -395,6 +398,7 @@ def write_outputs(school_recs, per_school_stats, hosted_not, outdir, built_at, l
         d = dict(lab_papers=st['lab_papers'], confirmed_copies=st['host'] + st['link'], host=st['host'], link=st['link'],
                  readable=st['host'] + st['link'], not_readable=st['not_readable'],
                  not_readable_with_open_candidate=st['not_readable_with_open_candidate'],
+                 link_without_source_url=st['link_without_source_url'],
                  by_license={k[len('license:'):]: v for k, v in sorted(st.items()) if k.startswith('license:')},
                  by_license_basis={k[len('basis:'):]: v for k, v in sorted(st.items()) if k.startswith('basis:')},
                  link_source_kinds={k[len('source_kind:'):]: v for k, v in sorted(st.items()) if k.startswith('source_kind:')})

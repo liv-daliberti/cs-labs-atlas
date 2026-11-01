@@ -1008,6 +1008,7 @@ Counts of the reader export per school and in total.
 | `schools.<key>.link` | integer | yes | Papers shown with a source link. | at least 0 |  |
 | `schools.<key>.readable` | integer | yes | host + link. | at least 0 |  |
 | `schools.<key>.not_readable_with_open_candidate` | integer | no | Of those, papers whose catalog work has an open-source candidate that is not a confirmed copy (reported, not readable). | at least 0 |  |
+| `schools.<key>.link_without_source_url` | integer | no | Confirmed copies that would be links but have no source URL: counted as not readable. | at least 0 |  |
 | `schools.<key>.not_readable` | integer | yes | Papers with no confirmed copy. | at least 0 |  |
 | `schools.<key>.by_license` | map | no | Papers by decision:licence. |  |  |
 | `schools.<key>.by_license.<key>` | integer | — |  |  |  |

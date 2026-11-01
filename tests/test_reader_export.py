@@ -135,3 +135,15 @@ def test_full_text_xml_copy_takes_its_file_from_the_asset_row():
     assert (cp['format'], cp['decision'], cp['sha256'], cp['bytes']) == ('xml', 'host', SHA(9), 50)
     w['status'] = 'quarantined_robots_ai'
     assert R.copy_for('w', w, a, [], R.ArxivLicenses()) is None
+
+
+def test_link_without_a_source_url_is_not_readable(tmp_path, monkeypatch):
+    papers = make_store(tmp_path, monkeypatch)
+    db = sqlite3.connect(tmp_path / 'stores' / 'mit' / 'catalog.sqlite')
+    db.execute("update works set doi=null, download_url='ftp://nowhere/x.pdf' where id='w_none'")
+    db.execute("update assets set url='ftp://nowhere/x.pdf' where work_id='w_none'")
+    db.commit()
+    papers[6]['doi'] = None
+    recs, stats, _ = R.school_rows('mit', papers, R.ArxivLicenses())
+    assert 'w_none' not in {r['key'] for r in recs} and stats['link_without_source_url'] == 1
+    assert all(r['source_url'] or r['decision'] == 'host' for r in recs)
