@@ -51,6 +51,47 @@
    "role_year_errors": 0,
    "paper_score": null,
    "result": "fail"
+  },
+  {
+   "round": 3,
+   "date": "2026-10-31",
+   "label": "after reader, citation, rotation and shared-page rules; last student round",
+   "additions_generated_at": "2026-11-01T15:46:10+00:00",
+   "students": {
+    "sampled": 20,
+    "seed": 3211,
+    "membership_errors": 4,
+    "doubtful_count": 1,
+    "role_or_year_errors": 2
+   },
+   "papers": {
+    "sampled": 20,
+    "seed": 3212,
+    "errors": 0.5,
+    "doubtful_count": 1,
+    "metadata_errors": 0
+   },
+   "items": {
+    "membership": [
+     "Fischer: 'Oral's Chair Ruixue Guo' (an oral-exam chair, dirty name)",
+     "Setsompop: Goncalves Filho, a co-author in a PubMed citation",
+     "Wong: Richard Chappell (PhD 1990) and Ming-Chih Kao (PhD 2004), rows of a 'Past Doctoral Students' table with the year in a pipe column"
+    ],
+    "doubtful": [
+     "Potts: Will Monroe (PhD 2018, a dissertation list the PI chaired or co-chaired)"
+    ],
+    "role_or_year": [
+     "Engelhardt: Maria Carilli (postdoctoral sponsor listing) read as phd",
+     "Potts: Will Monroe read as postdoc"
+    ],
+    "papers_papers_doubtful": [
+     "Milgrom: two 2017 chapters (10.1017/9781316471609.x) of a book first published in 2004"
+    ]
+   },
+   "membership_score": 4.5,
+   "role_year_errors": 2,
+   "paper_score": 0.5,
+   "result": "students_fail_papers_pass"
   }
  ]
 }

@@ -1,6 +1,6 @@
 # Lab-page audit
 
-Generated 2026-11-01T16:02:53+00:00 by `tools/labpage_audit.py`; method and reason codes in `docs/LAB-PAGES.md`.
+Generated 2026-11-01T23:43:11+00:00 by `tools/labpage_audit.py`; method and reason codes in `docs/LAB-PAGES.md`.
 
 ## Lab pages
 
@@ -62,4 +62,5 @@ Generated 2026-11-01T16:02:53+00:00 by `tools/labpage_audit.py`; method and reas
 | berkeley | 3 | 2026-10-31 | 20 | 0.5 | 3 | 20 | 0.0 | students_membership_only_papers_pass | after the all-caps PAST heading rule; last student round |
 | stanford | 1 | 2026-10-31 | 20 | 8 | 0 | - | - | fail | first Stanford audit |
 | stanford | 2 | 2026-10-31 | 20 | 8 | 0 | - | - | fail | after the profile-reader (quote-only) and citation rules; the reader h |
+| stanford | 3 | 2026-10-31 | 20 | 4.5 | 2 | 20 | 0.5 | students_fail_papers_pass | after reader, citation, rotation and shared-page rules; last student r |
 | michigan | 1 | 2026-10-31 | 20 | 2.5 | 2 | - | - | fail | first Michigan audit |
