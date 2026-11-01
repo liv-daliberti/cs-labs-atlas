@@ -75,7 +75,7 @@
   {
    "round": 3,
    "date": "2026-10-31",
-   "label": "after the CMU/MIT rediscovery rerun and strict undated rule; last student round",
+   "label": "after the CMU/MIT rediscovery rerun and strict undated rule; last student round; papers resolved by the rerun recover-audit (first round with proposals)",
    "additions_generated_at": "2026-10-31T19:31:16+00:00",
    "students": {
     "sampled": 20,
@@ -84,16 +84,25 @@
     "doubtful_count": 0,
     "role_or_year_errors": 0
    },
-   "papers": null,
+   "papers": {
+    "sampled": 20,
+    "seed": 3131,
+    "errors": 0.5,
+    "doubtful_count": 1,
+    "metadata_errors": 0
+   },
    "items": {
     "note": [
      "Fagnan (Andrew Lo, Wayback 2016) dated 'Expected 2016'; Giani (Moe Win) under 'Current Members'; Lewis (Han) a 2024 visitor, kept as role other"
+    ],
+    "papers_doubtful": [
+     "Freeman: Reasoning About Physical Interactions, the page entry reads 'Freeman, Joshua T' (a byline as the listed title); the resolved work is right"
     ]
    },
    "membership_score": 0,
    "role_year_errors": 0,
-   "paper_score": null,
-   "result": "students_pass_papers_not_sampled"
+   "paper_score": 0.5,
+   "result": "students_pass_papers_pass"
   }
  ]
 }
