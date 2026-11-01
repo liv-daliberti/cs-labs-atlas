@@ -8,6 +8,7 @@
     hierarchy/..., census/..., periods/...                          the reviewed inputs (every JSON/CSV input tracked in
                                                                     the code repository, at the paths it has there)
     hierarchy/{home-departments.json, zero-paper-labs.json, ...}    what the site builder and the export read
+    CHANGES.md         what moved since the previous build, generated from the regression (tools/release_notes.py)
     hierarchy/{CHAIN-AUDIT.md, chain-audit.json, student-audit.json, BUILD-REGRESSION.md, BUILD-REGRESSION.json}
     docs/RULES.md                                                   the rules this build applied
     MANIFEST.json      sha256 and bytes per file, the code commit, rule ids, counts per school, build and audit times,
@@ -32,6 +33,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402  (every path in one place)
 import provenance  # noqa: E402  (report.json -> provenance, required)
+import release_notes  # noqa: E402  (CHANGES.md, generated from the build regression)
 
 PACKAGE = ['pis.json', 'students.json', 'report.json', 'lab_papers.jsonl.gz', 'student_papers.jsonl.gz', 'copies.json']
 SCHOOL_EXTRA = ['link-diagnosis.json',  # audit output per school (the reviewed per-school inputs come from git)
@@ -206,6 +208,12 @@ def make(a):
         if now != built[s] or sha256(P.HIERARCHY / s / 'lab_papers.jsonl.gz') != entries[f'hierarchy/{s}/lab_papers.jsonl.gz']['sha256']:
             shutil.rmtree(tmp)
             raise SystemExit(f'{s}: package rewritten while copying; rerun')
+    if reg:  # CHANGES.md (ROADMAP item 14): generated from the regression, the rule ids and the commits; a manifest file
+        prev = (P.RELEASES / 'latest').resolve() if (P.RELEASES / 'latest').exists() else None
+        prev_rules = json.loads((prev / 'MANIFEST.json').read_text()).get('rules') if prev and (prev / 'MANIFEST.json').exists() else None
+        (tmp / 'CHANGES.md').write_text(release_notes.render(reg, rid, prev.name if prev else None, [dict(id=i, decided=d) for i, d in rule_ids()],
+                                                             prev_rules, P.WORK))
+        entries['CHANGES.md'] = dict(bytes=(tmp / 'CHANGES.md').stat().st_size, sha256=sha256(tmp / 'CHANGES.md'))
     counts = {}
     for s in P.SCHOOL_IDS:
         rep = json.loads((tmp / 'hierarchy' / s / 'report.json').read_text())
