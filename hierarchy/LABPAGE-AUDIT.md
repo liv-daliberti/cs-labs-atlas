@@ -1,6 +1,6 @@
 # Lab-page audit
 
-Generated 2026-11-01T00:41:45+00:00 by `tools/labpage_audit.py`; method and reason codes in `docs/LAB-PAGES.md`.
+Generated 2026-11-01T02:01:15+00:00 by `tools/labpage_audit.py`; method and reason codes in `docs/LAB-PAGES.md`.
 
 ## Lab pages
 
@@ -52,4 +52,5 @@ Generated 2026-11-01T00:41:45+00:00 by `tools/labpage_audit.py`; method and reas
 | mit | 2 | 2026-10-31 | 20 | 0.5 | 4 | 20 | 1.5 | fail | rediscovery (other-group, institution-listing, generic-page rules) |
 | cmu | 1 | 2026-10-31 | 20 | 11 | 1 | 20 | 2.5 | fail | first CMU audit |
 | cmu | 2 | 2026-10-31 | 20 | 4 | 1 | - | - | fail | after the other-institution, listing, not-paper and strict undated rul |
+| cmu | 3 | 2026-10-31 | 20 | 3 | 2 | 20 | 1.0 | students_fail_papers_pass | after the 5 reviewed departures (R-PAP-03) and the strict undated rule |
 | berkeley | 1 | 2026-10-31 | 20 | 6.5 | 0 | - | - | fail | first Berkeley audit |

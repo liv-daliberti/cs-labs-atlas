@@ -72,6 +72,45 @@
    "paper_score": null,
    "result": "fail",
    "note": "two of the four are appointment-data gaps (no departure evidence for Berg-Kirkpatrick or Yao), not page parsing; 'current and former' headings no longer count as a current marker"
+  },
+  {
+   "round": 3,
+   "date": "2026-10-31",
+   "label": "after the 5 reviewed departures (R-PAP-03) and the strict undated rule; last student round",
+   "additions_generated_at": "2026-10-31T20:17:13+00:00",
+   "students": {
+    "sampled": 20,
+    "seed": 3101,
+    "membership_errors": 3,
+    "doubtful_count": 0,
+    "role_or_year_errors": 2
+   },
+   "papers": {
+    "sampled": 20,
+    "seed": 3102,
+    "errors": 1.0,
+    "doubtful_count": 2,
+    "metadata_errors": 0
+   },
+   "items": {
+    "membership": [
+     "Webster-Wood: Trevor Jones is the named co-advisor of Imogen Barnes on the directory page, not a member",
+     "Grossmann: Shengnan Zhao, an undated visitor from Northeastern Univ. (Shenyang) under 'Associate Researchers and Visitors' in a pre-window lab; no current marker",
+     "Anind Dey: Azim Ali, 'Class of 2009' on HCII's department-wide alumni page, given years [2016, 2016]"
+    ],
+    "role_or_year": [
+     "Flanigan: Sam Esquivel (PhD Pre-Candidate) read as undergraduate",
+     "Flanigan: Cheyu Lin (PhD Candidate) read as undergraduate"
+    ],
+    "papers_papers_doubtful": [
+     "Haeupler: Parallel Greedy Spanners, listed on his ETH page (CMU adjunct 2022-24; byline ETH & CMU); listed title is a fragment",
+     "Ulissi: From Molecules to Materials, FAIR at Meta + CMU affiliation; page lists it as 2024"
+    ]
+   },
+   "membership_score": 3,
+   "role_year_errors": 2,
+   "paper_score": 1.0,
+   "result": "students_fail_papers_pass"
   }
  ]
 }
