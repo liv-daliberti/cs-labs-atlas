@@ -14,7 +14,7 @@ SHA = lambda n: f'{n:064x}'   # noqa: E731
     ('https://creativecommons.org/licenses/by-nc/4.0/', 'cc-by-nc'), ('https://creativecommons.org/publicdomain/zero/1.0/', 'cc0'),
     ('CC0', 'cc0'), ('cc0-1.0', 'cc0'), ('Public Domain', 'public-domain'), ('publicdomain', 'public-domain'),
     ('http://arxiv.org/licenses/nonexclusive-distrib/1.0/', 'arxiv-nonexclusive'), ('other-oa', 'other-oa'), ('tdm', 'tdm'),
-    ('', None), (None, None), ('unknown', None)])
+    ('cc-byncnd', 'cc-by-nc-nd'), ('CC BY-NC 3.0', 'cc-by-nc'), ('ccby', 'cc-by'), ('', None), (None, None), ('unknown', None)])
 def test_normalise_license(raw, want):
     assert R.normalise_license(raw) == want
 
@@ -124,3 +124,14 @@ def test_hosted_not_permitted_is_strict(tmp_path, monkeypatch):
     assert rows[SHA(3)][3] == 'license' and rows[SHA(3)][4] == 'arxiv-nonexclusive'
     assert rows[SHA(5)][3] == 'no_confirmed_copy'                  # quarantined
     assert rows[SHA(99)][3] == 'not_in_stores'
+
+
+def test_full_text_xml_copy_takes_its_file_from_the_asset_row():
+    w = dict(id='w', doi='10.1/x', title='t', year=2020, status='fulltext_xml', file_path=None, sha256=None, byte_count=None,
+             download_url='https://europepmc.org/x', identity_check=None)
+    a = [dict(work_id='w', kind='xml', url='https://europepmc.org/x', path='objects/' + SHA(9) + '.xml', sha256=SHA(9), bytes=50, version='publishedVersion',
+              license='cc-by', identity_check=None)]
+    cp = R.copy_for('w', w, a, [], R.ArxivLicenses())
+    assert (cp['format'], cp['decision'], cp['sha256'], cp['bytes']) == ('xml', 'host', SHA(9), 50)
+    w['status'] = 'quarantined_robots_ai'
+    assert R.copy_for('w', w, a, [], R.ArxivLicenses()) is None

@@ -26,7 +26,7 @@ make_release copies the directory to reader/ in the release): docs in the README
 
 usage: reader_export.py [school ...] [--site-local-papers FILE] [--out DIR]        (default: every released school; Slurm, it reads the catalogs)
 """
-import argparse, collections, gzip, json, re, sqlite3, sys, time
+import argparse, collections, gzip, json, re, sqlite3, sys, time, zlib
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -62,6 +62,9 @@ def normalise_license(raw):
     t = re.sub(r'[\s_]+', '-', t.replace('+', ''))
     t = re.sub(r'^cc-?by', 'cc-by', t) if t.startswith('ccby') else t
     t = re.sub(r'[-v]*\d(?:\.\d)?$', '', t) if re.match(r'^cc', t) and not t.startswith('cc0') else t   # drop the version (cc-by-4.0)
+    m = re.match(r'^cc-?by(?:-?(nc))?(?:-?(nd|sa))?(?:[-v]*\d[\d.]*)?$', t)
+    if m:
+        t = 'cc-by' + ('-nc' if m.group(1) else '') + ('-' + m.group(2) if m.group(2) else '')
     t = re.sub(r'^cc-?0.*$', 'cc0', t)
     t = re.sub(r'^cc-zero.*$', 'cc0', t)
     if t in ('public-domain', 'publicdomain', 'pd', 'pdm', 'public-domain-mark'):
@@ -107,7 +110,12 @@ class ArxivLicenses:
             if p.suffix == '.sqlite':
                 db = sqlite3.connect(f'file:{p}?mode=ro', uri=True, timeout=60)
                 for (body,) in db.execute('select body from works'):
-                    self.add_body(json.loads(body))
+                    if isinstance(body, bytes):
+                        body = zlib.decompress(body) if body[:1] != b'{' else body
+                    try:
+                        self.add_body(json.loads(body))
+                    except ValueError:
+                        pass
                 continue
             op = gzip.open if p.suffix == '.gz' else open
             with op(p, 'rt') as f:
@@ -132,7 +140,7 @@ class ArxivLicenses:
 
 def local_openalex_files():
     return [P.FT_RAW / 'openalex_works.jsonl', P.FT_RAW / 'ledger_openalex.jsonl', P.FT_RAW / 'stanford-oa-works.sqlite',
-            P.archive_sweep('claude-cmu-20261017') / 'raw' / 'openalex_works.json.gz']
+            P.archive_sweep('claude-cmu-20261017') / 'raw' / 'openalex_works.json.gz'] + [P.data('pi-works.sqlite', s) for s in P.SCHOOL_IDS]
 
 
 def url_kind(url):
@@ -193,6 +201,9 @@ def copy_for(wid, w, assets, cands, arxiv_lic):
     fmt = 'xml' if w['status'] == 'fulltext_xml' else 'pdf'
     sha = w['sha256']
     chosen = next((a for a in assets if a['sha256'] == sha and a['kind'] in ('pdf', 'xml') and a['identity_check'] != PENDING), None)
+    if chosen is None and not sha:   # a full-text XML work keeps its file on the asset row only
+        chosen = next((a for a in assets if a['kind'] == fmt and a['sha256'] and a['identity_check'] != PENDING), None)
+        sha = (chosen or {}).get('sha256')
     path = (chosen or {}).get('path') or w['file_path']
     if not sha or not path or 'quarantine' in str(path):
         return None
@@ -214,7 +225,7 @@ def copy_for(wid, w, assets, cands, arxiv_lic):
     decision, lic, basis = decide(raw, arxiv, arxiv_lic)
     src, kind = pick_source(w['doi'], arxiv, urls)
     return dict(catalog_work=wid, format=fmt, decision=decision, license=lic, license_basis=basis, source_url=src, source_kind=kind,
-                sha256=sha, bytes=w['byte_count'], path=path, version=(chosen or {}).get('version'), identity_check=w['identity_check'],
+                sha256=sha, bytes=w['byte_count'] or (chosen or {}).get('bytes'), path=path, version=(chosen or {}).get('version'), identity_check=w['identity_check'],
                 download_url=dl, arxiv=arxiv)
 
 
