@@ -1004,6 +1004,52 @@
    ],
    "additionalProperties": false
   },
+  "labpageAdditionsSetAside": {
+   "description": "Accepted lab-page papers (labpage-additions.json, gated by labpage-acceptance.json) the build did not keep, with the reason.",
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": [
+     "pi",
+     "year",
+     "reason"
+    ],
+    "properties": {
+     "pi": {
+      "description": "The PI whose lab page lists it.",
+      "type": "string"
+     },
+     "year": {
+      "description": "Its year.",
+      "type": "integer"
+     },
+     "title": {
+      "description": "Its title.",
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "key": {
+      "description": "The lab-page record key (labpage:<sha1>).",
+      "type": [
+       "string",
+       "null"
+      ]
+     },
+     "reason": {
+      "description": "Why it was not kept.",
+      "type": "string",
+      "enum": [
+       "outside_window",
+       "outside_appointment",
+       "already_a_lab_paper"
+      ]
+     }
+    },
+    "additionalProperties": false
+   }
+  },
   "droppedWithoutHashedSource": {
    "description": "Students that left a lab because none of their relations kept a source with a sha256 (R-STU-12).",
    "x-rules": [

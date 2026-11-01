@@ -151,3 +151,4 @@ class Ctx:
         self.site = Path(site) if site is not None else SITE
         self.out = out
         self.n = collections.Counter()
+        self.labpage_set_aside = []  # accepted lab-page papers the build did not keep, with the reason (report.json)

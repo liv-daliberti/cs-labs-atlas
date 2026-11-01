@@ -504,3 +504,4 @@ def test_labpage_additions_obey_the_appointment_period(tmp_path, monkeypatch):
     assert 'Lab Page Paper 2018' in titles                                  # inside the period
     assert 'A Paper Only The Lab Page Lists' not in titles                  # 2021, after the departure
     assert ctx.n['labpage_addition_recovered_outside_appointment'] == 1 and ctx.n['labpage_addition_recovered_lab_papers'] == 1
+    assert [(x['year'], x['reason']) for x in ctx.labpage_set_aside] == [(2021, 'outside_appointment')]   # named for the report

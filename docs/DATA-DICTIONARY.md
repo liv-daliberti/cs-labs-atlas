@@ -511,6 +511,13 @@ The build's report: counters, exclusions, samples of what the rules dropped, and
 | `provenance.inputs.<key>.bytes` | integer | yes | Size. | at least 0 |  |
 | `provenance.inputs.<key>.modified` | string | yes | mtime (UTC). | pattern `^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}` |  |
 | `provenance.inputs.<key>.sha256` | string | yes | sha256 of the file. | pattern `^[0-9a-f]{64}$` |  |
+| `labpageAdditionsSetAside` | array of object | no | Accepted lab-page papers (labpage-additions.json, gated by labpage-acceptance.json) the build did not keep, with the reason. |  |  |
+| `labpageAdditionsSetAside[]` | object | — |  | no other keys |  |
+| `labpageAdditionsSetAside[].pi` | string | yes | The PI whose lab page lists it. |  |  |
+| `labpageAdditionsSetAside[].year` | integer | yes | Its year. |  |  |
+| `labpageAdditionsSetAside[].title` | string \| null | no | Its title. |  |  |
+| `labpageAdditionsSetAside[].key` | string \| null | no | The lab-page record key (labpage:<sha1>). |  |  |
+| `labpageAdditionsSetAside[].reason` | string | yes | Why it was not kept. | one of `outside_window`, `outside_appointment`, `already_a_lab_paper` |  |
 | `droppedWithoutHashedSource` | array of object | no | Students that left a lab because none of their relations kept a source with a sha256 (R-STU-12). |  | R-STU-12 |
 | `droppedWithoutHashedSource[]` | object | — |  | no other keys |  |
 | `droppedWithoutHashedSource[].pi` | string | yes | The lab's PI. |  |  |
