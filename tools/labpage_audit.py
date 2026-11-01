@@ -1430,7 +1430,7 @@ def audit_students(kit, ctx, p, lab, plan, auto_plan=False):
                 dated = [r for r in ok_ if r.get('years')]
                 if dated:
                     years, ybasis = dated[0]['years'], dated[0].get('years_basis') or 'stated_in_entry'
-            why_ = not_a_member_context(kit, school, nm, best)
+            why_ = not_a_member_context(kit, school, nm, best) or page_lacks_pi(kit, school, p, best)
             if why_:  # a Stanford Profiles reader / program listing, or a name in a citation (Stanford round 1, 2026-11-01)
                 miss['reason_code'], miss['detail'] = why_
                 continue
@@ -1676,11 +1676,12 @@ def not_a_member_context(kit, school, name, best):
     except (KeyError, ValueError):
         t = ''
     j = t.find(q) if q else -1
-    if WEAK_PROFILE_LABEL.search(q):
-        heads = list(re.finditer(r"Doctoral Dissertation Advisor|Doctoral Dissertation Reader|Postdoctoral Faculty Sponsor|Postdoctoral Research Mentor|Doctoral \(Program\)|Master's Program Advisor|Undergraduate Major Advisor|Orals Evaluator|Reader \(AC\)", q))
-        k = q.find(name.split()[-1]) if name else -1
-        before = [h for h in heads if k < 0 or h.start() < k]
-        if before and WEAK_PROFILE_LABEL.search(before[-1].group(0)):
+    heads_rx = re.compile(r"Doctoral Dissertation Advisor|Doctoral Dissertation Co-Advisor|Doctoral Dissertation Reader|Postdoctoral Faculty Sponsor|"
+                          r"Postdoctoral Research Mentor|Doctoral \(Program\)|Master's Program Advisor|Undergraduate Major Advisor|Orals Evaluator|Reader \(AC\)")
+    if j >= 0 and (q or t):
+        win = t[max(0, j - 500): j + 1]
+        hs = list(heads_rx.finditer(win))
+        if hs and WEAK_PROFILE_LABEL.search(hs[-1].group(0)):
             return 'not_a_student', 'profile reader / program / major-advisor listing, not an advisee'
     if j >= 0:
         k = t.find(name.split()[-1], j) if name else j
@@ -1688,6 +1689,19 @@ def not_a_member_context(kit, school, name, best):
         if CITATION_CONTEXT.search(t[max(0, k - 160): k + 160]):
             return 'name_unresolved', 'the name sits inside a publication citation'
     return None
+
+
+def page_lacks_pi(kit, school, p, best):
+    """Stanford: a page that never names the PI is a department or program page (Journalism's students list under Hancock),
+    not the lab's page. Other schools' lab pages legitimately omit the PI's name, so this applies to Stanford only."""
+    if school != 'stanford':
+        return None
+    try:
+        t = kit.lpev.text(school, best.get('capture_url') or best['sha256'])
+    except (KeyError, ValueError):
+        return None
+    fam = str(p.get('pi') or '').split()[-1:] or ['']
+    return None if (not t or fold(fam[0]).lower() in fold(t).lower()) else ('shared_page_no_adviser', 'the page never names the PI: a department or program page')
 
 
 def appointed_in(p, year):
