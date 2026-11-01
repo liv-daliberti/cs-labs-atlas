@@ -17,4 +17,5 @@
 set -u
 . "${CS_ATLAS_CODE:-${SLURM_SUBMIT_DIR:?}}/paths.sh" || exit 1  # every path in one place (tools/atlas_paths.py); submit from the code root
 cd "$CS_ATLAS_WORK"
+# rebuild.sh takes its own code snapshot (tools/job_code_snapshot.sh) of CS_ATLAS_SNAPSHOT_COMMIT (`atlas submit` sets it to HEAD at submit time)
 TAG=rebuild-$SLURM_JOB_ID exec bash hierarchy/rebuild.sh

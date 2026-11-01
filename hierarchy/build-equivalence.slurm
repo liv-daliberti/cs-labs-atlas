@@ -33,15 +33,21 @@ T=/tmp/$USER-$SLURM_JOB_ID
 mkdir -p "$T/old-code" "$T/old" "$T/new" "$T/control" "$REPORT" || exit 1
 trap 'rm -rf "$T"' EXIT
 git -C "$NEW_CODE" archive "$OLD" tools | tar -x -C "$T/old-code" || exit 1
+# the new code is a snapshot of the checkout's HEAD too (tools/job_code_snapshot.sh): a landing during the run cannot change it.
+# The data stays the main checkout's. Uncommitted changes in the checkout are NOT in the snapshot: commit first.
+git -C "$NEW_CODE" diff --quiet HEAD -- tools hierarchy schemas || echo "WARNING: $NEW_CODE has uncommitted changes; the snapshot is its HEAD"
+SNAPSHOT_REPO="$NEW_CODE" CS_ATLAS_SNAPSHOT_COMMIT=$(git -C "$NEW_CODE" rev-parse HEAD) SNAPSHOT_DIR="$T/new-code" . "$NEW_CODE/tools/job_code_snapshot.sh" || exit 1
+NEWT=$CS_ATLAS_TOOLS
+unset CS_ATLAS_SNAPSHOT_COMMIT   # the old build records the live checkout's commit, as before
 cd "$T" || exit 1
 echo "== equivalence old=$OLD new=$NEW_CODE ($(git -C "$NEW_CODE" rev-parse --short HEAD)) schools: $SCHOOLS PYTHONHASHSEED=$PYTHONHASHSEED control: ${CONTROL:-none} $(date +%F\ %T)"
 fail=0
-if [ "$CONTROL_CODE" = new ]; then CTL_TOOL="$NEW_CODE/tools/pi_hierarchy.py"; CTL_BASE="$T/new"; else CTL_TOOL="$T/old-code/tools/pi_hierarchy.py"; CTL_BASE="$T/old"; fi
+if [ "$CONTROL_CODE" = new ]; then CTL_TOOL="$NEWT/pi_hierarchy.py"; CTL_BASE="$T/new"; else CTL_TOOL="$T/old-code/tools/pi_hierarchy.py"; CTL_BASE="$T/old"; fi
 for s in $SCHOOLS; do
   echo "== $s $(date +%F\ %T)"
   PI_HIERARCHY_OUT="$T/old" nice -n10 "$CS_ATLAS_PY" -u "$T/old-code/tools/pi_hierarchy.py" "$s" > "$T/old-$s.log" 2>&1 &
   po=$!
-  PI_HIERARCHY_OUT="$T/new" nice -n10 "$CS_ATLAS_PY" -u "$NEW_CODE/tools/pi_hierarchy.py" "$s" > "$T/new-$s.log" 2>&1 &
+  PI_HIERARCHY_OUT="$T/new" nice -n10 "$CS_ATLAS_PY" -u "$NEWT/pi_hierarchy.py" "$s" > "$T/new-$s.log" 2>&1 &
   pn=$!
   pc=
   case " $CONTROL " in *" $s "*)   # the control runs at the same moment, on the same inputs
@@ -56,16 +62,16 @@ done
 if [ -n "$CONTROL" ]; then
   echo "== control: $CONTROL_CODE seed $PYTHONHASHSEED vs $CONTROL_CODE seed 1"
   # old code: differences are its own seed dependence (not a failure); new code: any difference is a failure
-  "$CS_ATLAS_PY" "$NEW_CODE/tools/package_diff.py" "$CTL_BASE" "$T/control" --schools $CONTROL --json "$REPORT/control-$SLURM_JOB_ID.json" \
+  "$CS_ATLAS_PY" "$NEWT/package_diff.py" "$CTL_BASE" "$T/control" --schools $CONTROL --json "$REPORT/control-$SLURM_JOB_ID.json" \
     | tee "$REPORT/control-$SLURM_JOB_ID.txt" || { [ "$CONTROL_CODE" = new ] && fail=1; }
 fi
 echo "== old vs new"
-"$CS_ATLAS_PY" "$NEW_CODE/tools/package_diff.py" "$T/old" "$T/new" --schools $SCHOOLS --json "$REPORT/equivalence-$SLURM_JOB_ID.json" \
+"$CS_ATLAS_PY" "$NEWT/package_diff.py" "$T/old" "$T/new" --schools $SCHOOLS --ignore report.json:builtAt report.json:provenance.at report.json:provenance.code --json "$REPORT/equivalence-$SLURM_JOB_ID.json" \
   | tee "$REPORT/equivalence-$SLURM_JOB_ID.txt" || fail=1
 if [ -n "$VALIDATE" ]; then
   mkdir -p "$T/vroot" && ln -sfn "$T/new" "$T/vroot/hierarchy"   # validate.py --root reads <root>/hierarchy/<school>/
   echo "== validate the new packages"
-  "$CS_ATLAS_PY" "$NEW_CODE/tools/validate.py" $SCHOOLS --root "$T/vroot" --json "$REPORT/validate-$SLURM_JOB_ID.json" \
+  "$CS_ATLAS_PY" "$NEWT/validate.py" $SCHOOLS --root "$T/vroot" --json "$REPORT/validate-$SLURM_JOB_ID.json" \
     | tee "$REPORT/validate-$SLURM_JOB_ID.txt" || fail=1
 fi
 echo "== done $(date +%F\ %T) fail=$fail"

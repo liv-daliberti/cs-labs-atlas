@@ -17,6 +17,7 @@ usage (a check): provenance.py <school>     prints the block the builder would w
 """
 import hashlib
 import json
+import os
 import re
 import sqlite3
 import subprocess
@@ -83,7 +84,12 @@ def code_state():
     head = _git('rev-parse', 'HEAD').strip()
     changed = [l[3:] for l in _git('status', '--porcelain', '--untracked-files=no').split('\n') if l.strip()]
     mine = [f for f in changed if is_build_path(f) and not f.startswith(NOT_BUILD)]
-    out = dict(commit=head, dirty=bool(mine), dirty_paths=mine, other_dirty_paths=[f for f in changed if f not in mine])
+    snap = os.environ.get('CS_ATLAS_SNAPSHOT_COMMIT')  # a Slurm job running from a code snapshot (tools/job_code_snapshot.sh)
+    out = dict(commit=snap or head, dirty=bool(mine), dirty_paths=mine, other_dirty_paths=[f for f in changed if f not in mine])
+    if snap:
+        out['snapshot'] = True
+        if snap != head:
+            out['live_head'] = head
     if mine:
         out['diff_sha256'] = hashlib.sha256(_git('diff', 'HEAD', '--', *mine).encode()).hexdigest()
     return out

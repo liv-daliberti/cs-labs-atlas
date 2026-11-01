@@ -470,6 +470,8 @@ The build's report: counters, exclusions, samples of what the rules dropped, and
 | `provenance.code.dirty_paths` | array of string | yes | Build paths that differ. |  |  |
 | `provenance.code.other_dirty_paths` | array of string | yes | Other changed tracked paths. |  |  |
 | `provenance.code.diff_sha256` | string | no | sha256 of the diff of the dirty build paths. | pattern `^[0-9a-f]{64}$` |  |
+| `provenance.code.snapshot` | boolean | no | The build ran from a code snapshot of `commit` (tools/job_code_snapshot.sh), not from the live checkout. |  |  |
+| `provenance.code.live_head` | string | no | HEAD of the live checkout when it differed from the snapshot commit. | pattern `^[0-9a-f]{40}$` |  |
 | `provenance.rules` | array of object | yes | The rule ids of docs/RULES.md and their decision notes. | at least 1 item(s) |  |
 | `provenance.rules[]` | object | — | A rule. | no other keys |  |
 | `provenance.rules[].id` | string | yes | Rule id. | pattern `^R-[A-Z]+-\d+[a-z]?$` |  |

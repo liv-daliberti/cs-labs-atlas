@@ -731,6 +731,15 @@
        "description": "sha256 of the diff of the dirty build paths.",
        "type": "string",
        "pattern": "^[0-9a-f]{64}$"
+      },
+      "snapshot": {
+       "description": "The build ran from a code snapshot of `commit` (tools/job_code_snapshot.sh), not from the live checkout.",
+       "type": "boolean"
+      },
+      "live_head": {
+       "description": "HEAD of the live checkout when it differed from the snapshot commit.",
+       "type": "string",
+       "pattern": "^[0-9a-f]{40}$"
       }
      },
      "required": [

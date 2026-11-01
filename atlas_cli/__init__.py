@@ -38,6 +38,7 @@ COMMANDS = {
     'vendor':     ('py', 'tools/vendor_sync.py', 'vendored code: atlas vendor check|sync|list'),
     'paths':      ('py', 'tools/atlas_paths.py', 'every path, or one: atlas paths [NAME]'),
     'relocate':   ('py', 'tools/relocate_project.py', 'the project move (dry run by default)'),
+    'submit':     ('special', 'sbatch', 'sbatch with the code pinned: atlas submit [sbatch options] script.slurm (CS_ATLAS_SNAPSHOT_COMMIT = main\'s HEAD now)'),
     'run':        ('special', '', 'any script of this checkout on the project interpreter: atlas run tools/x.py [...]'),
 }
 
@@ -88,6 +89,12 @@ def main(argv=None):
         return rc
     if kind == 'sh':
         return _run(['bash', CODE / target, *args])
+    if cmd == 'submit':  # the job runs the code of THIS commit, whatever lands before it starts (tools/job_code_snapshot.sh)
+        r = subprocess.run(['git', '-C', str(_paths().CODE), 'rev-parse', 'HEAD'], capture_output=True, text=True)
+        if r.returncode:
+            print('atlas submit: cannot read HEAD of ' + str(_paths().CODE), file=sys.stderr)
+            return 1
+        return _run(['sbatch', f'--export=ALL,CS_ATLAS_SNAPSHOT_COMMIT={r.stdout.strip()}', *args], cwd=os.getcwd())
     if cmd == 'test':
         env_ci = '--ci' in args
         args = [a for a in args if a != '--ci']

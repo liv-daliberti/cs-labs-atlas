@@ -63,6 +63,32 @@ Never commit another agent's uncommitted files. To pass work to someone else:
   checkout: other agents' changes are in the same working tree.
 - Note what is running (job ids, hosts, locks held) and what must not be touched until it finishes.
 
+## Slurm jobs run from a code snapshot
+A landing is a fast-forward that rewrites many files in the main checkout. A job that imports code from that checkout while
+it happens can see half a commit (2026-10-31: `atlas_paths has no LOCKS`, then `no RATE_STAMPS`, in lab-page jobs). So a job
+runs the code of **one commit**, extracted from git into job-local scratch, and reads and writes the data in the main checkout:
+```
+. "$CS_ATLAS_CODE/paths.sh" || exit 1
+. "$CS_ATLAS_CODE/tools/job_code_snapshot.sh" || exit 1      # git archive <commit> -> $TMPDIR/atlas-code-<user>-<jobid>
+cd "$CS_ATLAS_CODE"                                          # the data
+$CS_ATLAS_PY -u "$CS_ATLAS_TOOLS/some_tool.py" ...           # the code: "$CS_ATLAS_TOOLS/x.py", never "tools/x.py"
+```
+- `git archive` reads the object store, so the snapshot is exact whatever happens to the working tree. The helper points
+  `CS_ATLAS_TOOLS`, `TESTS`, `VENDOR`, `SCHOOL_CONFIGS`, `FULLTEXT_PUSH` and `AI_WRITING` at it; `CS_ATLAS_CODE` and every data
+  slot keep pointing at the main checkout through atlas_paths. The snapshot is removed on exit (an `EXIT` trap, installed only
+  when the script has none; otherwise call `snapshot_remove` from yours, or set `SNAPSHOT_DIR` and remove it yourself).
+- **Which commit:** `CS_ATLAS_SNAPSHOT_COMMIT`, else main's HEAD when the job starts. Submit with `atlas submit [sbatch options] script.slurm`
+  to pin main's HEAD **at submit time** (it is `sbatch --export=ALL,CS_ATLAS_SNAPSHOT_COMMIT=<sha>`). The commit is printed
+  in the job log (`code snapshot: commit ...`) and `tools/provenance.py` records it as `report.json` provenance `code.commit`
+  (`snapshot: true`, plus `live_head` when main had moved on).
+- Run the *script* from the snapshot too when it is long: `hierarchy/rebuild.sh` extracts a snapshot and re-runs its own
+  copy from it. Slurm already copies the batch script itself at submit.
+- Data is not snapshotted. Reviewed inputs and packages are read live, so a landing that changes them mid-run still shows;
+  land inputs between jobs. `SNAPSHOT_REPO=<worktree>` takes the code from a branch under test (`hierarchy/build-equivalence.slurm`
+  does, for the new side; commit first: uncommitted changes are not in the snapshot).
+- Adopted by `hierarchy/rebuild.sh`, `rebuild-all.slurm`, `organize-tree.slurm` and `build-equivalence.slurm`. Other
+  scripts: source the helper after `paths.sh` and replace `tools/` in the command lines.
+
 ## Checks run by CI (`.github/workflows/ci.yml`, on pushes and pull requests to `dev` and `main`)
 - The env is built from `env/conda-linux-64.lock`.
 - `ruff check .`
