@@ -49,7 +49,7 @@ def first_names():
         import csv
         _first = set()
         for f in ("names.csv", "extras.csv"):
-            p = f"{names.ROOT}/nicknames/{f}"
+            p = str(names.P.data("nicknames") / f)
             if os.path.exists(p):
                 for row in csv.DictReader(open(p, encoding="utf-8")):
                     _first.add(names.fold(row.get("name1", "")))
@@ -272,7 +272,7 @@ _all_pis = {}
 
 def school_pis(school):
     if school not in _all_pis:
-        _all_pis[school] = [l["pi"] for l in json.load(open(f"{lpcap.ROOT}/{school}/labpage-input.json"))]
+        _all_pis[school] = [l["pi"] for l in json.load(open(lpcap.data("labpage-input.json", school)))]
     return _all_pis[school]
 
 
@@ -412,7 +412,7 @@ def main():
     if short:
         sys.argv.remove("--short")
     school, pi = sys.argv[1], sys.argv[2]
-    labs = {l["pi"]: l for l in json.load(open(f"{lpcap.ROOT}/{school}/labpage-input.json"))}
+    labs = {l["pi"]: l for l in json.load(open(lpcap.data("labpage-input.json", school)))}
     held = labs[pi]["students_held"] if pi in labs else []
     for src in sys.argv[3:]:
         rows = extract(school, src, pi, held)

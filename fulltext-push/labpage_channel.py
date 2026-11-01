@@ -286,13 +286,13 @@ def root_of(u):
 
 
 def lab_evidence(school):
-    """hierarchy/<school>/labpage-evidence.json; a school whose lab-pages pass wrote only labpage-pubs-report.json
+    """The school's labpage-evidence.json; a school whose lab-pages pass wrote only labpage-pubs-report.json
     (Stanford, 2026-10-27) gets one entry per PI with its captured publication pages as pubs_pages (and the first of
     them as lab_site, the pihomes fallback's starting page)."""
-    p = F.SCHOOLS / 'hierarchy' / school / 'labpage-evidence.json'
+    p = F.P.data('labpage-evidence.json', school)
     if p.exists():
         return json.loads(p.read_text())
-    rep = json.loads((F.SCHOOLS / 'hierarchy' / school / 'labpage-pubs-report.json').read_text())
+    rep = json.loads((F.P.data('labpage-pubs-report.json', school)).read_text())
     out = []
     for pi, x in (rep.get('pis') or {}).items():
         pages = [pg['url'] for pg in (x.get('pages') or []) if isinstance(pg, dict) and (pg.get('url') or '').startswith('http')]
@@ -308,7 +308,7 @@ def audit_pages(school):
     """Evidence-shaped entries from hierarchy/<school>/labpage-audit.jsonl.gz (the lab-page audit): the lab_page.urls of every
     PI the audit found a page for. Labs the audit discovered itself have their roots only here, not in labpage-evidence.json
     (2026-11-01). A school without the file gives []. Hosts a school never uses are dropped."""
-    p = F.SCHOOLS / 'hierarchy' / school / 'labpage-audit.jsonl.gz'
+    p = F.P.data('labpage-audit.jsonl.gz', school)
     if not p.exists():
         return []
     import gzip
@@ -368,7 +368,7 @@ def page_owners(url, final, urls, roots):
 
 
 def iter_captures(school):
-    db = sqlite3.connect(f"file:{F.SCHOOLS / 'hierarchy' / school / 'labpage-captures.sqlite'}?mode=ro", uri=True, timeout=60)
+    db = sqlite3.connect(f"file:{F.P.data('labpage-captures.sqlite', school)}?mode=ro", uri=True, timeout=60)
     hi = db.execute('SELECT MAX(id) FROM captures').fetchone()[0] or 0
     for lo in range(0, hi + 1, 200):
         for row in db.execute("SELECT url, final_url, capture_url, content_type, content FROM captures WHERE id >= ? AND id < ? AND status = 200 "

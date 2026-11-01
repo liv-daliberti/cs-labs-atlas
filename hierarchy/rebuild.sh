@@ -43,12 +43,12 @@ echo "== rebuild $TAG stages: $STAGES schools: $SCHOOLS code: $(git rev-parse --
 if has snapshot; then
   echo "== snapshot $(date +%T)"
   for s in $SCHOOLS; do
-    mkdir -p "$BEFORE/$s" && cp -p hierarchy/$s/{pis.json,students.json,report.json,lab_papers.jsonl.gz,student_papers.jsonl.gz} "$BEFORE/$s/" 2>/dev/null
+    mkdir -p "$BEFORE/$s" && $CS_ATLAS_PY -c "import sys, shutil; sys.path.insert(0, '$CS_ATLAS_TOOLS'); import atlas_paths as P; [shutil.copy2(P.data(f, '$s'), '$BEFORE/$s/' + f) for f in ('pis.json', 'students.json', 'report.json', 'lab_papers.jsonl.gz', 'student_papers.jsonl.gz') if P.data(f, '$s').exists()]" 2>/dev/null
   done
   $PY $CS_ATLAS_TOOLS/build_regression.py snapshot --out "$BEFORE/counts.json" || fail=1
 fi
 if has build; then
-  rm -f hierarchy/*/link-diagnosis.json  # stale diagnoses would hide open items from the re-diagnosis
+  $CS_ATLAS_PY -c "import sys; sys.path.insert(0, '$CS_ATLAS_TOOLS'); import atlas_paths as P; [P.data('link-diagnosis.json', s).unlink(missing_ok=True) for s in P.SCHOOL_IDS]"  # stale diagnoses would hide open items from the re-diagnosis
   for s in $SCHOOLS; do echo "== $s $(date +%T)"; $PY $CS_ATLAS_TOOLS/pi_hierarchy.py $s || { echo "FAILED $s"; fail=1; }; done
 fi
 if has ids; then

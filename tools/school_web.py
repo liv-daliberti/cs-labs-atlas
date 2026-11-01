@@ -23,7 +23,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
 
-sys.path.insert(0, str(P.LISTINGS / 'scripts'))
+sys.path.insert(0, str(P.LISTINGS / 'scripts'))  # route-ok: code (listings/scripts), not data
 import wb  # noqa: E402
 import extract  # noqa: E402
 
@@ -41,7 +41,7 @@ def db_path(key):
 
 
 def con(key):
-    P.CAPTURES.mkdir(parents=True, exist_ok=True)
+    db_path(key).parent.mkdir(parents=True, exist_ok=True)
     wb.db_path = lambda school, _p=str(db_path(key)): _p  # this school's container (the listings schema)
     c = wb.db(key)
     c.execute('create table if not exists live (url text primary key, fetched_at text, status int, sha256 text, content_type text, raw_zlib blob, text text)')

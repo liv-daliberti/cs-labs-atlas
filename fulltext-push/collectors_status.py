@@ -66,7 +66,7 @@ def school_status(school):
     lines = tail_lines(store / 'loop.log')
     prog = last_json(lines, 'status_counts') or {}
     paused = (last_json(lines, 'paused_sources') or {}).get('paused_sources') or {}
-    cp = F.SCHOOLS / 'hierarchy' / school / 'copies.json'
+    cp = F.P.data('copies.json', school)
     summ = json.loads(cp.read_text()).get('summary', {}) if cp.exists() else {}
     att = recent_attempts(store) if (store / 'catalog.sqlite').exists() else Counter()
     fails = Counter({k[7:]: v for k, v in att.items() if k.startswith('detail:')})
@@ -107,11 +107,11 @@ def render(rows):
 def main(schools=None):
     schools = schools or sorted(p.name for p in F.FT.iterdir() if (p / 'loop-state.json').exists())
     rows = [school_status(s) for s in schools]
-    d = F.SCHOOLS / 'hierarchy'
-    tmp = d / f'.COLLECTORS-STATUS.md.{os.getpid()}'
-    tmp.write_text(render(rows)); os.replace(tmp, d / 'COLLECTORS-STATUS.md')
-    tmp = d / f'.COLLECTORS-STATUS.json.{os.getpid()}'
-    tmp.write_text(json.dumps(dict(generated_at=F.now(), schools=rows), indent=1)); os.replace(tmp, d / 'COLLECTORS-STATUS.json')
+    md, js = F.P.data_w('COLLECTORS-STATUS.md'), F.P.data_w('COLLECTORS-STATUS.json')
+    tmp = md.with_name(f'.{md.name}.{os.getpid()}')
+    tmp.write_text(render(rows)); os.replace(tmp, md)
+    tmp = js.with_name(f'.{js.name}.{os.getpid()}')
+    tmp.write_text(json.dumps(dict(generated_at=F.now(), schools=rows), indent=1)); os.replace(tmp, js)
     return rows
 
 

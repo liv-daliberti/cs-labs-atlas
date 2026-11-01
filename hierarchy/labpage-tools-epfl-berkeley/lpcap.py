@@ -37,11 +37,15 @@ from urllib.parse import urlsplit, urlencode
 
 import requests
 
-ROOT = str(P.HIERARCHY)
+ROOT = str(P.HIERARCHY)  # route-ok: kept for the callers that still print it; file paths go through data()
+def data(name, school=None):
+    """The path of a data file by its atlas_paths name, in the build's layout (flat or split)."""
+    return str(P.data(name, school))
+
 SCHOOLS = ("epfl", "berkeley")
-DBS = {s: f"{ROOT}/{s}/labpage-captures.sqlite" for s in SCHOOLS}
-SISTER = {s: [f"{ROOT}/{s}/gap-captures.sqlite", f"{ROOT}/{s}/few-students-captures.sqlite",
-              f"{ROOT}/{s}/thesis-captures.sqlite"] for s in SCHOOLS}
+DBS = {s: data("labpage-captures.sqlite", s) for s in SCHOOLS}
+SISTER = {s: [data("gap-captures.sqlite", s), data("few-students-captures.sqlite", s),
+              data("thesis-captures.sqlite", s)] for s in SCHOOLS}
 LOCKDIR = "/tmp/claude-363432/-n-fs-similarity-maxent-grpo/2bd068f5-5142-4dac-89d1-67eb470f92c1/scratchpad/gap-ratelimit"
 UA = ("princeton-cs-research-sweep/1.0 (faculty lab membership research: public lab member and publication pages; "
       "academic, non-commercial; polite: 1 req/2s/host)")

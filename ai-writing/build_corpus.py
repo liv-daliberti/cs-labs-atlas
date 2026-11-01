@@ -14,14 +14,13 @@ import requests
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent / 'tools'))
 import atlas_paths as P  # noqa: E402  (every path in one place)
-H = P.HIERARCHY
 SITE = P.SITE_DATA / 'cs-hierarchy'
 SCHOOLS = ('princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford')
 
 
 def rows():
     for s in SCHOOLS:
-        with gzip.open(H / s / 'lab_papers.jsonl.gz', 'rt') as f:
+        with gzip.open(P.data('lab_papers.jsonl.gz', s), 'rt') as f:
             for line in f:
                 r = json.loads(line); r['school'] = s; yield r
 
@@ -71,7 +70,7 @@ def build():
         x = json.loads(gzip.decompress((SITE / f'{s}.json.gz').read_bytes())) if (SITE / f'{s}.json.gz').exists() else {'labs': []}
         for l in x['labs']:
             dept[(s, l['pi']['name'])] = (l['name'], l['dept'])
-        for q in json.load(open(H / s / 'pis.json')):  # PIs added since the site's last build: their own lab, first department
+        for q in json.load(open(P.data('pis.json', s))):  # PIs added since the site's last build: their own lab, first department
             dept.setdefault((s, q['pi']), (q['pi'], (q.get('departments') or [None])[0]))
     out = collections.OrderedDict()
     for r in rows():

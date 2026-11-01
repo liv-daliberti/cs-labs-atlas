@@ -137,7 +137,6 @@ def extract(key):
                             facultyPeriodStatus='supported_start', labPeriodStatus='unresolved', boundaryYearUncertain=True, boundaryMonthUncertain=True,
                             conflictingStartYears=starts if len(starts) > 1 else [], addedBy=f'tools/periods_school.py {key}', endNote=note,
                             qualification="Appointment year from the page's own statement naming the school; the earliest stated faculty year is kept."))
-    P.PERIODS.mkdir(exist_ok=True)
     P.data_w('faculty-periods.json', key).write_text(json.dumps(periods, indent=1, ensure_ascii=False))
     P.data_w('holds.json', key).write_text(json.dumps(holds, indent=1, ensure_ascii=False))
     print(json.dumps(dict(school=key, periods=len(periods), holds=len(holds), conflicts=sum(1 for p in periods if p['conflictingStartYears']))))

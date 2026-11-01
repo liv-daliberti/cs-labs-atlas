@@ -31,17 +31,17 @@ from urllib.parse import urlsplit, quote as urlquote
 
 import requests
 
-HIER = str(P.HIERARCHY)
-MAIN_DB = HIER + "/cmu/labpage-captures.sqlite"
+HIER = str(P.HIERARCHY)  # route-ok: tracked code and run state stay in hierarchy/labpage-tools-cmu; data goes through P.data
+MAIN_DB = str(P.data("labpage-captures.sqlite", "cmu"))
 DB = os.environ.get("LABPAGE_DB", MAIN_DB)
 # Per-process capture files live on the project share (one writer per file), so they survive a move to
 # another login host (host-local /tmp does not). Shared stable stores are read-only fallbacks.
-PARTS = HIER + "/cmu/labpage-parts"
+PARTS = str(P.data("labpage-parts", "cmu"))
 # soak-tmp.sqlite = the original crawl + b01-b14 worker captures from soak's /tmp, published to the share
 # 2026-10-23 03:07 UTC (the exact bytes the b01-b14 quotes were written against); read before the re-fetch store.
 RO_DBS = [p for p in ([MAIN_DB, PARTS + "/soak-tmp.sqlite", PARTS + "/refetch.sqlite", PARTS + "/crawl2.sqlite"]
-                      + [HIER + "/cmu/few-students-captures.sqlite", HIER + "/cmu/gap-captures.sqlite",
-                         HIER + "/cmu/thesis-captures.sqlite"]
+                      + [str(P.data("few-students-captures.sqlite", "cmu")), str(P.data("gap-captures.sqlite", "cmu")),
+                         str(P.data("thesis-captures.sqlite", "cmu"))]
                       + [x for x in os.environ.get("LABPAGE_RO", "").split(":") if x])
           if os.path.abspath(p) != os.path.abspath(DB)]
 SCRATCH = "/tmp/claude-363432/-n-fs-similarity-maxent-grpo/2bd068f5-5142-4dac-89d1-67eb470f92c1/scratchpad"

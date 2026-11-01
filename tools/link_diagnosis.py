@@ -37,7 +37,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from pi_hierarchy import sweep_works, contains, same_year, NOT_PAPERS, TODAY, INST, AFF  # noqa: E402
 
 import atlas_paths as P  # noqa: E402  (every path in one place)
-HERE = P.WORK; H = P.HIERARCHY
+HERE = P.WORK; H = P.HIERARCHY   # tests point H at a flat fixture tree; hfile follows the layout for the live one
 SCHOOL_IDS = {}  # filled from the PIs' lab papers: the institution ids their school authorships carry
 
 
@@ -79,24 +79,24 @@ def name_key(s):
 
 
 def run(school):
-    A = {x['school']: x for x in json.loads((H / 'chain-audit.json').read_text())['schools']}[school]
-    pis = {p['pi']: p for p in json.loads((H / school / 'pis.json').read_text())}
+    A = {x['school']: x for x in json.loads((P.hfile(H, 'chain-audit.json')).read_text())['schools']}[school]
+    pis = {p['pi']: p for p in json.loads((P.hfile(H, 'pis.json', school)).read_text())}
     pi_ids = {k: set(p.get('reviewedOpenAlex') or []) | set(p.get('oaAuthorIds') or []) for k, p in pis.items()}
     id_to_pi = collections.defaultdict(set)
     for k, ids in pi_ids.items():
         for a in ids:
             id_to_pi[a].add(k)
     lab = collections.defaultdict(set)
-    for l in gzip.open(H / school / 'lab_papers.jsonl.gz', 'rt'):
+    for l in gzip.open(P.hfile(H, 'lab_papers.jsonl.gz', school), 'rt'):
         r = json.loads(l)
         for o in [r.get('oa')] + [e.get('oa') for e in r.get('editions') or []]:
             if o:
                 lab[r['pi']].add(o)
     open_items = A['checks']['links']['unexplained']
     # the labs where each student record (by id, merged ids included) and each name has a student-paper link (R-D2)
-    stu_ = json.loads((H / school / 'students.json').read_text())
+    stu_ = json.loads((P.hfile(H, 'students.json', school)).read_text())
     merged_of = {(pi_, r['person']): list(r.get('merged') or []) for pi_, rs in stu_.items() for r in rs}
-    linked_pairs = {(json.loads(l)['pi'], json.loads(l)['student']) for l in gzip.open(H / school / 'student_papers.jsonl.gz', 'rt')}
+    linked_pairs = {(json.loads(l)['pi'], json.loads(l)['student']) for l in gzip.open(P.hfile(H, 'student_papers.jsonl.gz', school), 'rt')}
     linked_labs, linked_by_name = collections.defaultdict(set), collections.defaultdict(set)
     for pi_, rs in stu_.items():
         for r in rs:
@@ -106,7 +106,7 @@ def run(school):
                 linked_by_name[name_key(r['name'])].add(pi_)
     fams = {words(x['student'])[-1] for x in open_items if words(x['student'])}
     inst, aff = 'https://openalex.org/' + INST[school], re.compile(AFF[school], re.I)
-    pw = H / school / 'pi-works.sqlite'
+    pw = P.hfile(H, 'pi-works.sqlite', school)
     tied = {r[0] for r in sqlite3.connect(f'file:{pw}?mode=ro', uri=True).execute('select work from pages where school_named=1')} if pw.exists() else set()
 
     def where(a):
@@ -202,7 +202,7 @@ def run(school):
         if resolved:
             summary['ambiguous_resolved_by_' + resolved['by']] += 1
         summary[cat] += 1
-    (H / school / 'link-diagnosis.json').write_text(json.dumps(dict(summary=dict(summary), students=out), indent=1, ensure_ascii=False))
+    P.hfile_w(H, 'link-diagnosis.json', school).write_text(json.dumps(dict(summary=dict(summary), students=out), indent=1, ensure_ascii=False))
     print(json.dumps(dict(school=school, open=len(open_items), **summary)), flush=True)
 
 

@@ -86,7 +86,7 @@ def main():
     if not dry:
         n.update(fetch_records([r['oa'] for r in papers.values()]))
     bodies = F.oa_bodies(SCHOOL, [r['oa'] for r in papers.values()])
-    pis = json.loads((F.SCHOOLS / 'hierarchy' / SCHOOL / 'pis.json').read_text())
+    pis = json.loads((F.P.data('pis.json', SCHOOL)).read_text())
     lab_of = {p['pi']: (p.get('lab') or {}) for p in pis}
     n['with_openalex_record'] = sum(1 for r in papers.values() if r['oa'] in bodies)
     works, nodes, edges, ids = [], {}, [], Counter()
@@ -106,7 +106,7 @@ def main():
             nodes.setdefault(lid, ('lab', lab.get('name') or f'{pi} group', dict(id=lid, type='lab', name=lab.get('name') or f'{pi} group', pi=pi,
                                                                                  basis=lab.get('basis'), url=lab.get('url'))))
             edges.append((f'{wid}->listed_by->{lid}', wid, lid, 'listed_by', dict(source=wid, target=lid, kind='listed_by', pi=pi,
-                                                                                    basis='hierarchy/stanford/lab_papers.jsonl.gz')))
+                                                                                    basis='hierarchy/stanford/lab_papers.jsonl.gz')))  # route-ok: a label
         n['with_arxiv_id'] += bool(a)
     n['work_id_collisions'] = sum(1 for v in ids.values() if v > 1)
     print(json.dumps(dict(n)), flush=True)

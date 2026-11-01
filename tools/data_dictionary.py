@@ -175,7 +175,7 @@ def anchor(text):
 
 def place(path):
     """Where a file sits, for the order: a school's package, the shared hierarchy files, the export, the tree, the rest."""
-    for i, pre in enumerate(('hierarchy/<school>/', 'hierarchy/', 'export/', 'schools/')):
+    for i, pre in enumerate(('hierarchy/<school>/', 'hierarchy/', 'export/', 'schools/')):  # route-ok: x-file patterns, not paths
         if str(path).startswith(pre):
             return i
     return 4

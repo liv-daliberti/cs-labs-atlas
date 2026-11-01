@@ -79,7 +79,7 @@ def family(name):
 def byline_index(school):
     """lab paper bylines by work id, OpenAlex-keyed id, DOI and normalized title."""
     idx = {}
-    p = WORK / 'hierarchy' / school / 'lab_papers.jsonl.gz'
+    p = P.data('lab_papers.jsonl.gz', school)
     if not p.exists():
         return idx
     for line in gzip.open(p, 'rt'):
@@ -100,7 +100,7 @@ def byline_index(school):
             for k in ('oa:' + (body.get('id') or '').rsplit('/', 1)[-1], 'doi:' + ndoi(body.get('doi')), 't:' + nt(body.get('title'))):
                 if k not in ('oa:', 'doi:', 't:'):
                     idx.setdefault(k, names)
-    store = WORK / 'hierarchy' / school / 'pi-works.sqlite'
+    store = P.data('pi-works.sqlite', school)
     if not store.exists():
         store = P.FT_RAW / f'{school}-oa-works.sqlite'
     if store.exists():

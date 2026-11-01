@@ -130,7 +130,7 @@ def write_json(path, data):
 
 
 def build(school, hidden):
-    D = H / school
+    D = P.SchoolDir(school, H)
     pis = json.loads((D / 'pis.json').read_text())
     stu = json.loads((D / 'students.json').read_text())
     lp = defaultdict(list)
@@ -142,7 +142,7 @@ def build(school, hidden):
         r = json.loads(l)
         sp[(r['pi'], r.get('work') or r.get('oa'))].append(r.get('name') or r['student'])
         sp_by_student[(r['pi'], r['student'])] += 1
-    cdir = P.data('copies.json', school).parent if RELEASE['copies'] != 'release' else D
+    cdir = P.SchoolDir(school) if RELEASE['copies'] != 'release' else D
     copies = json.loads((cdir / 'copies.json').read_text())['papers']
     led = ledger(cdir)  # the unavailability ledger next to that copies.json (2026-10-30)
     files = stored_files(school)
@@ -215,11 +215,11 @@ def release_dir(rel):
 def main(schools, release='latest', fresh_copies=False):
     global H
     d = release_dir(release)
-    H = d / 'hierarchy'
+    H = d / P.REL_HIERARCHY
     RELEASE.update(id=json.loads((d / 'MANIFEST.json').read_text())['release'], dir=str(d),
                    copies='hierarchy (fresh, tools/lab_paper_copies.py)' if fresh_copies else 'release')
     hidden = {}
-    zf = H / 'zero-paper-labs.json'
+    zf = P.hfile(H, 'zero-paper-labs.json')
     if zf.exists():
         for r in json.loads(zf.read_text()).get('zero_papers') or []:
             hidden[(r['school'], r['pi'])] = {k: r.get(k) for k in ('diagnosis', 'verdict', 'reason', 'evidence') if r.get(k)}

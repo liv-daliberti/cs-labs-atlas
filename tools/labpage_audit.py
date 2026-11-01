@@ -344,18 +344,18 @@ class Kit:
     def __init__(self, school):
         cfg = SCHOOLS[school]
         self.school = school
-        self.store = H / school / 'labpage-audit-captures.sqlite'
+        self.store = P.data('labpage-audit-captures.sqlite', school)
         os.environ['LPCAP_LOCAL'] = str(self.store)
-        extra = [str(H / school / f) for f in cfg.get('extra_stores', [])]
-        if (H / school / 'labpage-captures.sqlite').exists():
-            extra.append(str(H / school / 'labpage-captures.sqlite'))
+        extra = [str(P.data(f, school)) for f in cfg.get('extra_stores', [])]
+        if (P.data('labpage-captures.sqlite', school)).exists():
+            extra.append(str(P.data('labpage-captures.sqlite', school)))
         os.environ['LPCAP_EXTRA'] = ':'.join(extra)
-        sys.path.insert(0, str(H / PM))
+        sys.path.insert(0, str(H / PM))  # route-ok: tracked code that stays in hierarchy/
         import lpcap, lpev, autom, pubx, names  # noqa: E401
         self.lpcap, self.lpev, self.autom, self.pubx, self.names = lpcap, lpev, autom, pubx, names
-        lpcap.ROOT = pubx.ROOT = str(H)  # the toolkit's own constant predates tools/atlas_paths.py
+        lpcap.ROOT = pubx.ROOT = str(H)  # the toolkit's own constant predates tools/atlas_paths.py; its file paths now go through atlas_paths.data
         for k_ in list(lpcap.DBS) + [school]:
-            lpcap.DBS[k_] = str(H / k_ / 'labpage-captures.sqlite')
+            lpcap.DBS[k_] = str(P.data('labpage-captures.sqlite', k_))
             lpcap.SISTER[k_] = [p_.replace(str(Path(p_).parents[1]), str(H)) for p_ in lpcap.SISTER.get(k_, [])]
         lpcap.DEFAULT_GAP = max(lpcap.DEFAULT_GAP, HOST_GAP)
         lpcap.LOCKDIR = str(P.RATE_STAMPS / 'hosts')  # shared per-host stamps (atlas_paths RATE_STAMPS), one pace for every job and node
@@ -392,7 +392,7 @@ class Kit:
                 return {'url': url, 'capture_url': None, 'status': None, 'error': 'wayback-only-host', 'content': b''}
             return ofetch(school_, url, **kw)
         lpcap.fetch = fetch
-        pis = read(H / school / 'pis.json')  # autom's is-a-PI flag: every PI of the school, not only the 2026-10-22 input
+        pis = read(P.data('pis.json', school))  # autom's is-a-PI flag: every PI of the school, not only the 2026-10-22 input
         autom._all_pis[school] = list(dict.fromkeys(n for p_ in pis for n in [p_['pi']] + list(p_.get('names') or [])))
 
     def _ai_allowed(self, url):
@@ -900,10 +900,10 @@ def scan_prior(kit, school, p, ctx):
 def load_ctx(school, kit=None, plan=True):
     cfg = SCHOOLS[school]
     ctx = dict(school=school, cfg=cfg)
-    ctx['pis'] = read(H / school / 'pis.json')
+    ctx['pis'] = read(P.data('pis.json', school))
     # reviewed departures not yet in a rebuilt pis.json (R-PAP-03): the audit reads census-overrides.json's faculty_end_moved
     # periods directly, so after_pi_left applies before the coordinator's rebuild lands
-    ovp = H / 'census-overrides.json'
+    ovp = P.data('census-overrides.json')
     ovs = (read(ovp).get(school) or {}) if ovp.exists() else {}
     for p_ in ctx['pis']:
         o_ = ovs.get(p_['pi']) or {}
@@ -911,25 +911,25 @@ def load_ctx(school, kit=None, plan=True):
         if pers and not any(q.get('end') for q in p_.get('periods') or []):
             p_['periods'] = [dict(q, asof=q.get('asof') or TODAY) for q in pers]
             p_['periods_from_overrides'] = True
-    ctx['students'] = read(H / school / 'students.json')
+    ctx['students'] = read(P.data('students.json', school))
     lp = collections.defaultdict(list)
-    for r in read(H / school / 'lab_papers.jsonl.gz'):
+    for r in read(P.data('lab_papers.jsonl.gz', school)):
         lp[r['pi']].append(r)
     ctx['lab_papers'] = lp
-    ev = H / school / 'labpage-evidence.json'
+    ev = P.data('labpage-evidence.json', school)
     ctx['prior'] = {r['pi']: r for r in read(ev)} if ev.exists() else {}
-    inp = H / school / 'labpage-input.json'
+    inp = P.data('labpage-input.json', school)
     ctx['input'] = {r['pi']: r for r in read(inp)} if inp.exists() else {}
     ctx['dossier'] = {}
     ctx['plan'] = {}
     if cfg['family'] == 'pm':
-        d = H / cfg['tools'] / cfg['dossier']
+        d = H / cfg['tools'] / cfg['dossier']  # route-ok: tracked code that stays in hierarchy/
         ctx['dossier'] = read(d) if d.exists() else {}
         if plan and kit is not None:
             import importlib
             ctx['plan'] = importlib.import_module(cfg['plan']).P
     ctx['pubs_rows'], ctx['pubs_rows_pages'] = collections.defaultdict(list), collections.defaultdict(list)
-    pr = H / school / 'labpage-pubs.jsonl.gz'
+    pr = P.data('labpage-pubs.jsonl.gz', school)
     if pr.exists() and cfg['family'] != 'pm':
         for r in read(pr):
             ctx['pubs_rows'][r['pi']].append(r)
@@ -937,12 +937,12 @@ def load_ctx(school, kit=None, plan=True):
             if u and u not in ctx['pubs_rows_pages'][r['pi']]:
                 ctx['pubs_rows_pages'][r['pi']].append(u)
     ctx['manual'] = {}
-    mp = H / 'labpage-tools-epfl-berkeley' / 'manual_pages.json'
+    mp = H / 'labpage-tools-epfl-berkeley' / 'manual_pages.json'  # route-ok: tracked code that stays in hierarchy/
     if cfg['family'] == 'eb' and mp.exists():
         ctx['manual'] = read(mp).get(school) or {}
     ctx['seeds'] = {}
     if cfg['family'] == 'st':  # Stanford's pass kept its pages in decisions.json and wrote no evidence file
-        dp = H / cfg['tools'] / 'decisions.json'
+        dp = H / cfg['tools'] / 'decisions.json'  # route-ok: tracked code that stays in hierarchy/
         for pi_, d_ in (read(dp) if dp.exists() else {}).items():
             ctx['seeds'][pi_] = [x['url'] for x in d_.get('pages') or [] if x.get('url')]
     hf = P.FT_RAW / f'pi-homepages-{school}.json'
@@ -954,13 +954,13 @@ def load_ctx(school, kit=None, plan=True):
 def load_dblp(ctx):
     if not ctx['dblp_persons']:
         want = {pid for p in ctx['pis'] for pid in p.get('dblp') or []}
-        d = read(H / 'dblp-dump-persons.json.gz')['persons']
+        d = read(P.data('dblp-dump-persons.json.gz'))['persons']
         ctx['dblp_persons'] = {k: v for k, v in d.items() if k in want}
     return ctx['dblp_persons']
 
 
 def discovery_path(school):
-    return H / school / 'labpage-audit-discovery.jsonl'
+    return P.data('labpage-audit-discovery.jsonl', school)
 
 
 def read_discovery(school):
@@ -1021,7 +1021,7 @@ def build_students(ctx, pi):
 
 
 def corrections(school):
-    p = H / 'student-corrections.json'
+    p = P.data('student-corrections.json')
     return [x for x in (read(p) if p.exists() else []) if x.get('school') == school]
 
 
@@ -1036,7 +1036,7 @@ _plaus = {}
 def plausible(kit, name):
     """lpdom.plausible_person (hierarchy/labpage-tools-epfl-berkeley): the given name occurs in bylines or rosters."""
     if 'f' not in _plaus:
-        sys.path.append(str(H / 'labpage-tools-epfl-berkeley'))
+        sys.path.append(str(H / 'labpage-tools-epfl-berkeley'))  # route-ok: tracked code that stays in hierarchy/
         import lpdom
         _plaus['f'] = lpdom.plausible_person
     try:
@@ -1619,12 +1619,12 @@ def addition_not_a_paper(row):
 
 
 def recover_dir(school):
-    return H / school / 'labpage-audit-recover'
+    return P.data('labpage-audit-recover', school)
 
 
 def recover_verdicts(school):
     """{audit_key: (status, junk reason, accepted row or None)} from the shadow recovery store."""
-    db = recover_dir(school) / 'hierarchy' / school / 'labpage-recover.sqlite'
+    db = recover_dir(school) / 'hierarchy' / school / 'labpage-recover.sqlite'  # route-ok: the recovery's private root is flat
     if not db.exists():
         return {}
     c = sqlite3.connect(f'file:{db}?mode=ro', uri=True)
@@ -1841,7 +1841,7 @@ def adapter_plan(kit, ctx, p, prior):
     pages = [prior.get('people_page')] + list(prior.get('people_pages') or [])
     if ctx['cfg']['family'] == 'michigan':  # the Michigan pass's pages live in its school_web container
         pages += sorted({r.get('capture_url') for r in prior.get('students') or [] if r.get('capture_url')})
-        kit.import_school_web(str(P.CAPTURES / 'michigan.sqlite'), [prior.get('people_page'), prior.get('lab_site')] + pages)
+        kit.import_school_web(str(P.data('school-captures.sqlite', 'michigan')), [prior.get('people_page'), prior.get('lab_site')] + pages)
     man = (ctx.get('manual') or {}).get(pi) or {}
     if 'people' in man:
         pages = list(man['people'])
@@ -2070,14 +2070,14 @@ def cmd_recover(school, title_credits=600):
 
 def run_recovery(school, rows, title_credits=600):
     root = recover_dir(school)
-    sh = root / 'hierarchy' / school
+    sh = root / 'hierarchy' / school  # route-ok: the recovery's private root is laid out flat
     sh.mkdir(parents=True, exist_ok=True)
     for f in ('pis.json', 'lab_papers.jsonl.gz', 'openalex-sweep.sqlite', 'pi-works.sqlite'):
-        relink(H / school / f, sh / f)
-    relink(H / 'cs-venues.json', root / 'hierarchy' / 'cs-venues.json')
+        relink(P.data(f, school), sh / f)
+    relink(P.data('cs-venues.json'), root / 'hierarchy' / 'cs-venues.json')  # route-ok: private flat root
     db = sh / 'labpage-recover.sqlite'
-    if not db.exists() and (H / school / 'labpage-recover.sqlite').exists():  # reuse the earlier run's arXiv index and OpenAlex cache
-        src = sqlite3.connect(f"file:{H / school / 'labpage-recover.sqlite'}?mode=ro", uri=True)
+    if not db.exists() and (P.data('labpage-recover.sqlite', school)).exists():  # reuse the earlier run's arXiv index and OpenAlex cache
+        src = sqlite3.connect(f"file:{P.data('labpage-recover.sqlite', school)}?mode=ro", uri=True)
         dst = sqlite3.connect(db)
         src.backup(dst)
         dst.execute('delete from rows')
@@ -2166,7 +2166,7 @@ def cmd_recover_audit(school, title_credits=600):
 
 def write_audit(school, recs, stu_adds, pap_adds):
     fix_titles_from_arxiv(pap_adds)
-    out = H / school / 'labpage-audit.jsonl.gz'
+    out = P.data('labpage-audit.jsonl.gz', school)
     with gzip.open(str(out) + '.tmp', 'wt', encoding='utf-8') as f:
         for r in recs:
             f.write(json.dumps(r, ensure_ascii=False) + '\n')
@@ -2176,8 +2176,8 @@ def write_audit(school, recs, stu_adds, pap_adds):
                 status='proposed, unreviewed: not read by tools/pi_hierarchy.py until wired (docs/LAB-PAGES.md, integration)',
                 rules={'LP-STU-01': RULE_TEXT['LP-STU-01'], 'LP-PAP-01': RULE_TEXT['LP-PAP-01']},
                 students=withheld_if_membership_only(school, stu_adds), papers=pap_adds)
-    json.dump(adds, open(H / school / 'labpage-additions.json', 'w', encoding='utf-8'), indent=1, ensure_ascii=False)
-    sp = H / 'labpage-audit-summary.json'
+    json.dump(adds, open(P.data_w('labpage-additions.json', school), 'w', encoding='utf-8'), indent=1, ensure_ascii=False)
+    sp = P.data('labpage-audit-summary.json')
     allsum = read(sp) if sp.exists() else {}
     allsum[school] = dict(summ, audited_at=now())
     json.dump(allsum, open(sp, 'w', encoding='utf-8'), indent=1, ensure_ascii=False)
@@ -2226,7 +2226,7 @@ def write_md(allsum):
           '| school | round | date | students | membership errors (doubtful = 0.5) | role/year errors | papers | paper errors | result | what changed |',
           '|---|---:|---|---:|---:|---:|---:|---:|---|---|']
     for s_ in order:
-        hp = H / s_ / 'labpage-handcheck.json'
+        hp = P.data('labpage-handcheck.json', s_)
         if not hp.exists():
             continue
         for k in read(hp).get('rounds') or []:
@@ -2234,11 +2234,11 @@ def write_md(allsum):
             L.append(f"| {s_} | {k.get('round')} | {k.get('date')} | {st.get('sampled', '')} | {k.get('membership_score')} | "
                      f"{k.get('role_year_errors')} | {pa.get('sampled', '-')} | {'-' if k.get('paper_score') is None else k['paper_score']} | "
                      f"{k.get('result')} | {str(k.get('label') or '')[:70]} |")
-    open(H / 'LABPAGE-AUDIT.md', 'w', encoding='utf-8').write('\n'.join(L) + '\n')
+    open(P.data_w('LABPAGE-AUDIT.md'), 'w', encoding='utf-8').write('\n'.join(L) + '\n')
 
 
 def cmd_summary():
-    sp = H / 'labpage-audit-summary.json'
+    sp = P.data('labpage-audit-summary.json')
     write_md(read(sp) if sp.exists() else {})
 
 
@@ -2247,7 +2247,7 @@ def cmd_sample(school, kind, n, seed):
     appointment evidence (papers), for a hand-check round (docs/LAB-PAGES.md, acceptance bar). The seed makes it
     reproducible; every round uses a new seed."""
     import random
-    rows = read(H / school / 'labpage-additions.json')[kind]
+    rows = read(P.data('labpage-additions.json', school))[kind]
     random.seed(seed)
     sample = random.sample(rows, min(n, len(rows)))
     kit = Kit(school) if kind == 'students' else None
@@ -2286,7 +2286,7 @@ def withhold_roles(rows, years=False):
 
 
 def withheld_if_membership_only(school, rows):
-    ap = H / school / 'labpage-acceptance.json'
+    ap = P.data('labpage-acceptance.json', school)
     if not ap.exists():
         return rows
     k = (json.loads(ap.read_text(encoding='utf-8')).get('students') or {})
@@ -2298,7 +2298,7 @@ def withheld_if_membership_only(school, rows):
 def membership_only(school, decision, root=None):
     """Wire a school's students membership-only: withhold roles in the additions file, record the scope in the acceptance, and
     stamp the new sha256. `decision` carries round, seed, sampled and the error breakdown."""
-    d = Path(root) if root else H / school
+    d = Path(root) if root else P.SchoolDir(school)
     ap, add = d / 'labpage-acceptance.json', d / 'labpage-additions.json'
     acc = json.loads(ap.read_text(encoding='utf-8'))
     adds = json.loads(add.read_text(encoding='utf-8'))
@@ -2363,7 +2363,7 @@ def restamp(school, root=None, repo=None, old=None, apply=True):
     kind compare the accepted set with the new one by stable key. A subset with the same fields (rows removed by existing
     rules) is re-stamped with the new sha256 and `restamped_from`; a kind with an added or changed row loses `accepted` (it
     needs a fresh hand-check round). Returns the report."""
-    d = Path(root) if root else H / school
+    d = Path(root) if root else P.SchoolDir(school)
     ap, add = d / 'labpage-acceptance.json', d / 'labpage-additions.json'
     if not ap.exists():
         return dict(school=school, status='no_acceptance')

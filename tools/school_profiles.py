@@ -15,9 +15,10 @@ import collections, gzip, importlib.util, json, sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-import atlas_paths as P  # noqa: E402  (every path in one place)
+import atlas_paths as P  # noqa: E402
+import atlas_paths as AP  # noqa: E402  (main() has a local P)  (every path in one place)
 HERE = P.WORK
-H = HERE / 'hierarchy'
+H = P.HIERARCHY   # export_release re-points H at a release's hierarchy/ (flat); hfile follows the layout for the live one
 import school_config as S  # noqa: E402  (the school charters)
 SCHOOLS = list(P.SCHOOL_IDS)
 NAMES = S.short_names()
@@ -45,12 +46,12 @@ def dept(s, p, homes):
 
 
 def profile(s, homes, audit, zero):
-    pis = json.load(open(H / s / 'pis.json'))
-    rep = json.load(open(H / s / 'report.json'))['counts']
-    adds = {a['name'] for a in load(P.data('census-additions.json', s), []) if 'cs_related' in str(a.get('added'))}
+    pis = json.load(open(AP.hfile(H, 'pis.json', s)))
+    rep = json.load(open(AP.hfile(H, 'report.json', s)))['counts']
+    adds = {a['name'] for a in load(AP.hfile(H, 'census-additions.json', s), []) if 'cs_related' in str(a.get('added'))}
     home = {p['pi']: dept(s, p, homes) for p in pis}
     papers, by_year, venues, per_pi = {}, collections.Counter(), collections.Counter(), collections.Counter()
-    for line in gzip.open(H / s / 'lab_papers.jsonl.gz', 'rt'):
+    for line in gzip.open(AP.hfile(H, 'lab_papers.jsonl.gz', s), 'rt'):
         r = json.loads(line)
         per_pi[r['pi']] += 1
         if r['oa'] not in papers:
@@ -58,14 +59,14 @@ def profile(s, homes, audit, zero):
             by_year[r.get('year')] += 1
             if r.get('venue'):
                 venues[r['venue']] += 1
-    S = json.load(open(H / s / 'students.json'))
+    S = json.load(open(AP.hfile(H, 'students.json', s)))
     people, roles = {}, collections.Counter()
     for pi, rows in S.items():
         for x in rows:
             if x['person'] not in people:
                 people[x['person']] = x
                 roles[(x.get('roles') or ['unknown'])[0]] += 1
-    links = sum(1 for _ in gzip.open(H / s / 'student_papers.jsonl.gz', 'rt'))
+    links = sum(1 for _ in gzip.open(AP.hfile(H, 'student_papers.jsonl.gz', s), 'rt'))
     starts = collections.Counter(); ends = collections.Counter()
     for p in pis:
         for q in p.get('periods') or []:
@@ -76,7 +77,7 @@ def profile(s, homes, audit, zero):
                 ends[int(y1)] += 1
     depts = collections.Counter(home.values())
     a = next((x for x in audit if x['school'] == s), {})
-    cop = (load(H / s / 'copies.json', {}) or {}).get('summary', {})
+    cop = (load(AP.hfile(H, 'copies.json', s), {}) or {}).get('summary', {})
     return dict(
         school=s, name=NAMES[s],
         pis=len(pis), pis_core=sum(p['pi'] not in adds for p in pis), pis_cs_related_additions=sum(p['pi'] in adds for p in pis),
@@ -130,14 +131,14 @@ def md(P):
 
 def main():
     homes = collections.defaultdict(dict)  # the site builder's view: accepted reviewed home departments by school
-    for r in json.load(open(H / 'home-departments.json')):
+    for r in json.load(open(AP.hfile(H, 'home-departments.json'))):
         if r.get('status') == 'accepted' and r.get('home_department'):
             homes[r['school']][r['name']] = r
-    audit = load(H / 'missing-papers-audit.json', [])
-    zero = json.load(open(H / 'zero-paper-labs.json'))
+    audit = load(AP.hfile(H, 'missing-papers-audit.json'), [])
+    zero = json.load(open(AP.hfile(H, 'zero-paper-labs.json')))
     P = [profile(s, homes, audit, zero) for s in SCHOOLS]
-    json.dump(P, open(H / 'school-profiles.json', 'w'), indent=1, ensure_ascii=False)
-    open(H / 'SCHOOL-PROFILES.md', 'w').write(md(P))
+    json.dump(P, open(AP.hfile_w(H, 'school-profiles.json'), 'w'), indent=1, ensure_ascii=False)
+    open(AP.hfile_w(H, 'SCHOOL-PROFILES.md'), 'w').write(md(P))
     for p in P:
         print(json.dumps({k: p[k] for k in ['school', 'pis', 'pis_cs_related_additions', 'lab_papers_unique', 'students_unique', 'student_paper_links', 'pis_complete_chain']}))
 

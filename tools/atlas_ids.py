@@ -183,7 +183,7 @@ create table if not exists meta (k text primary key, v text);
 def open_registry(path, seed=True):
     path = Path(path)
     if not path.exists() and seed:
-        rel = P.RELEASES / 'latest' / 'hierarchy' / 'ids' / 'registry.sqlite'
+        rel = P.RELEASES / 'latest' / P.REL_HIERARCHY / 'ids' / 'registry.sqlite'
         if rel.exists():
             path.parent.mkdir(parents=True, exist_ok=True); shutil.copy2(rel, path); path.chmod(0o644)
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -293,7 +293,7 @@ def student_urls(r):
 def byline_author_ids(school, wanted, hdir):
     """{(openalex work id, raw byline name): author id} for the wanted pairs, from the school's OpenAlex sweep."""
     out = {}
-    db = hdir / school / 'openalex-sweep.sqlite'
+    db = P.SchoolDir(school, hdir) / 'openalex-sweep.sqlite'
     if not wanted or not db.exists():
         return out
     want_w = {w for w, _ in wanted}
@@ -321,7 +321,7 @@ def run(schools, hdir, registry, use_sweep=True, today=None, write=True):
         sys.path.insert(0, str(P.TOOLS)); from pi_hierarchy import nick_ok  # noqa: E402
     except Exception:  # pragma: no cover
         nick_ok = None
-    data = {s: load_school(hdir / s) for s in schools}
+    data = {s: load_school(P.SchoolDir(s, hdir)) for s in schools}
     stats = collections.Counter()
     # ---- people
     ents = {}      # entity key -> dict(kind, school, name, anchors set of (k, v), ref)
@@ -477,7 +477,7 @@ def run(schools, hdir, registry, use_sweep=True, today=None, write=True):
     # ---- write
     if write:
         for s, (pis, stu, rows, sp) in data.items():
-            D = hdir / s
+            D = P.SchoolDir(s, hdir)
             for p in pis:
                 k = ('pi', s, p['pi'])
                 p['atlasId'] = person_of[k]; p['labId'] = lab_ids[k]
@@ -504,15 +504,15 @@ def run(schools, hdir, registry, use_sweep=True, today=None, write=True):
                 x['atlasWorkId'] = by_work.get((x['pi'], x.get('work'))) or by_work.get((x['pi'], x.get('oa')))
                 x['labId'] = lab_ids.get(('pi', s, x['pi']))
             del key
-            tmpf = D / 'pis.json.ids-tmp'; tmpf.write_text(json.dumps(pis, indent=1, ensure_ascii=False)); tmpf.replace(D / 'pis.json')
-            tmpf = D / 'students.json.ids-tmp'; tmpf.write_text(json.dumps(stu, indent=1, ensure_ascii=False)); tmpf.replace(D / 'students.json')
+            tmpf = D.tmp('pis.json', '.ids-tmp'); tmpf.write_text(json.dumps(pis, indent=1, ensure_ascii=False)); tmpf.replace(D / 'pis.json')
+            tmpf = D.tmp('students.json', '.ids-tmp'); tmpf.write_text(json.dumps(stu, indent=1, ensure_ascii=False)); tmpf.replace(D / 'students.json')
             for name, rr in (('lab_papers', rows), ('student_papers', sp)):
-                tmpf = D / f'{name}.jsonl.gz.ids-tmp'
+                tmpf = D.tmp(f'{name}.jsonl.gz', '.ids-tmp')
                 with gzip.open(tmpf, 'wt') as f:
                     for r in rr:
                         f.write(json.dumps(r, ensure_ascii=False) + '\n')
                 tmpf.replace(D / f'{name}.jsonl.gz')
-        out = hdir / 'ids'; out.mkdir(exist_ok=True)
+        out = P.hfile(hdir, 'ids'); out.mkdir(parents=True, exist_ok=True)
         # cross-reference table
         xr = set()
         for k, e in ents.items():
@@ -553,7 +553,7 @@ def run(schools, hdir, registry, use_sweep=True, today=None, write=True):
                              anchors=db.execute('select count(*) from anchors').fetchone()[0],
                              redirects=db.execute("select count(*) from ids where status='redirect'").fetchone()[0]))
     if write:
-        (hdir / 'ids' / 'IDS-REPORT.json').write_text(json.dumps(rep, indent=1, ensure_ascii=False) + '\n')
+        (P.hfile(hdir, 'ids') / 'IDS-REPORT.json').write_text(json.dumps(rep, indent=1, ensure_ascii=False) + '\n')
     return dict(report=rep, person_of=person_of, work_of=work_of, lab_ids=lab_ids, cross=cross)
 
 

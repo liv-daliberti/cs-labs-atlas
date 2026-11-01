@@ -111,7 +111,7 @@ def check(source, query, result, detail=None, at=None):
 
 def load_school(school):
     """The non-local lab papers by copies.json, with their catalog group, attempts and untried candidates."""
-    copies = json.loads((F.SCHOOLS / 'hierarchy' / school / 'copies.json').read_text())
+    copies = json.loads((F.P.data('copies.json', school)).read_text())
     rows = F.lab_papers(school)
     papers = {}
     for k, c in copies['papers'].items():
@@ -694,8 +694,8 @@ def src_repository(school, papers, oa, core, offline, n):
 
 def src_labpages(school, papers, n):
     import labpage_channel as lc
-    ev_ok = (F.SCHOOLS / 'hierarchy' / school / 'labpage-evidence.json').exists() or (F.SCHOOLS / 'hierarchy' / school / 'labpage-pubs-report.json').exists()
-    cap = F.SCHOOLS / 'hierarchy' / school / 'labpage-captures.sqlite'
+    ev_ok = (F.P.data('labpage-evidence.json', school)).exists() or (F.P.data('labpage-pubs-report.json', school)).exists()
+    cap = F.P.data('labpage-captures.sqlite', school)
     out = {}
     if not ev_ok or not cap.exists():
         for p in papers:
@@ -1042,7 +1042,7 @@ def run(schools, max_age, offline, only=None, skip=()):
     by_school = {}
     for s in schools:
         t0 = time.time()
-        if not (F.SCHOOLS / 'hierarchy' / s / 'copies.json').exists():  # an onboarding school before its first copies stage
+        if not (F.P.data('copies.json', s)).exists():  # an onboarding school before its first copies stage
             sys.path.insert(0, str(F.SCHOOLS / 'tools'))
             import lab_paper_copies
             lab_paper_copies.run(s)
@@ -1126,14 +1126,15 @@ def run(schools, max_age, offline, only=None, skip=()):
                        access_review=p['access'], untried_candidates=p['untried'][:10], new_open_urls=new[:10])
             recs.append(rec)
         if not only:
-            out = F.SCHOOLS / 'hierarchy' / s
+            out = F.P.SchoolDir(s)
+            F.P.data_w('unavailable.jsonl.gz', s)   # the directory first
             jdump(out / 'unavailable.jsonl.gz', recs)
             by_r = Counter(r['reason_code'] for r in recs)
             by_p = Counter(r['publisher'] for r in recs)
             by_rp = defaultdict(Counter)
             for r in recs:
                 by_rp[r['reason_code']][r['publisher']] += 1
-            lp = F.SCHOOLS / 'hierarchy' / s / 'lab_papers.jsonl.gz'
+            lp = F.P.data('lab_papers.jsonl.gz', s)
             summ = dict(school=s, built_at=at, max_age_days=MAX_AGE, offline=offline,
                         inputs=dict(copies_json=datetime.fromtimestamp((out / 'copies.json').stat().st_mtime, timezone.utc).isoformat(),
                                     lab_papers=datetime.fromtimestamp(lp.stat().st_mtime, timezone.utc).isoformat()),
@@ -1141,7 +1142,7 @@ def run(schools, max_age, offline, only=None, skip=()):
                         by_reason_publisher={k: dict(v.most_common(15)) for k, v in by_rp.items()},
                         final=sum(1 for r in recs if r['final']), not_final=sum(1 for r in recs if not r['final']),
                         missing_checks=dict(Counter(m for r in recs for m in r['missing_checks']).most_common()))
-            tmp = out / f'.unavailable-summary.json.{os.getpid()}.part'
+            tmp = (out / 'unavailable-summary.json').with_name(f'.unavailable-summary.json.{os.getpid()}.part')
             tmp.write_text(json.dumps(summ, indent=1)); os.replace(tmp, out / 'unavailable-summary.json')
             # the new checks into the store (reused ones are already there)
             rows = []

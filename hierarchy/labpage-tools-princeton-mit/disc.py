@@ -129,7 +129,7 @@ def seeds_for(school, lab):
                     if u and not BAD_EXT.search(urlsplit(lpcap.WAYBACK_RX.sub(r"\2", u)).path):
                         out.append(u)
                 break
-        pis = {p["pi"]: p for p in json.load(open(f"{ROOT}/princeton/pis.json"))}
+        pis = {p["pi"]: p for p in json.load(open(lpcap.data("pis.json", "princeton")))}
         p = pis.get(lab["pi"]) or {}
         for per in p.get("periods") or []:
             for ev in per.get("evidence") or []:
@@ -323,7 +323,7 @@ def main():
     a = ap.parse_args()
     if a.extra:
         EXTRA.update(json.load(open(a.extra)))
-    labs = json.load(open(f"{ROOT}/{a.school}/labpage-input.json"))
+    labs = json.load(open(lpcap.data("labpage-input.json", a.school)))
     out_path = f"{TOOLS}/dossier_{a.school}.json"
     dossier = json.load(open(out_path)) if os.path.exists(out_path) else {}
     todo = [l for l in labs if (a.only is None or l["pi"] in a.only) and (a.redo or l["pi"] not in dossier)]

@@ -134,6 +134,19 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `VALIDATION.json` | derived | `hierarchy/VALIDATION.json` | `hierarchy/derived/VALIDATION.json` | - | - |
 | `ids` | derived | `hierarchy/ids` | `hierarchy/derived/ids` | 0/1 | dir |
 | `logs` | work | `hierarchy/logs` | `hierarchy/logs` | 0/1 | dir |
+| `COLLECTORS-STATUS.md` | derived | `hierarchy/COLLECTORS-STATUS.md` | `hierarchy/derived/COLLECTORS-STATUS.md` | - | <100MB |
+| `COLLECTORS-STATUS.json` | derived | `hierarchy/COLLECTORS-STATUS.json` | `hierarchy/derived/COLLECTORS-STATUS.json` | - | <100MB |
+| `labpage-parts` | work | `hierarchy/{school}/labpage-parts` | `hierarchy/{school}/work/labpage-parts` | - | <100MB |
+| `labpage-input.json` | reviewed | `hierarchy/{school}/labpage-input.json` | `hierarchy/{school}/reviewed/labpage-input.json` | - | <100MB |
+| `labpage-pubs-report.json` | derived | `hierarchy/{school}/labpage-pubs-report.json` | `hierarchy/{school}/derived/labpage-pubs-report.json` | - | <100MB |
+| `labpage-audit.jsonl.gz` | derived | `hierarchy/{school}/labpage-audit.jsonl.gz` | `hierarchy/{school}/derived/labpage-audit.jsonl.gz` | - | <100MB |
+| `labpage-audit-discovery.jsonl` | raw | `hierarchy/{school}/labpage-audit-discovery.jsonl` | `hierarchy/{school}/raw/labpage-audit-discovery.jsonl` | - | <100MB |
+| `labpage-audit-recover` | work | `hierarchy/{school}/labpage-audit-recover` | `hierarchy/{school}/work/labpage-audit-recover` | - | <100MB |
+| `labpage-handcheck.json` | reviewed | `hierarchy/{school}/labpage-handcheck.json` | `hierarchy/{school}/reviewed/labpage-handcheck.json` | - | <100MB |
+| `labpage-departure-review.json` | reviewed | `hierarchy/labpage-departure-review.json` | `hierarchy/reviewed/labpage-departure-review.json` | - | <100MB |
+| `labpage-audit-summary.json` | derived | `hierarchy/labpage-audit-summary.json` | `hierarchy/derived/labpage-audit-summary.json` | - | <100MB |
+| `tobagi-review.json` | reviewed | `hierarchy/{school}/tobagi-review.json` | `hierarchy/{school}/reviewed/tobagi-review.json` | - | <100MB |
+| `link-sweep.json` | derived | `hierarchy/link-sweep/{school}.json` | `hierarchy/derived/link-sweep/{school}.json` | - | <100MB |
 | `reader.jsonl.gz` | derived | `hierarchy/reader/{school}.jsonl.gz` | `hierarchy/derived/reader/{school}.jsonl.gz` | - | <100MB |
 | `reader-SUMMARY.json` | derived | `hierarchy/reader/SUMMARY.json` | `hierarchy/derived/reader/SUMMARY.json` | - | <100MB |
 | `reader-hosted-files.tsv` | derived | `hierarchy/reader/hosted-files.tsv` | `hierarchy/derived/reader/hosted-files.tsv` | - | <100MB |
@@ -165,7 +178,6 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `holds.json` | derived | `periods/{school}-holds.json` | `hierarchy/{school}/derived/holds.json` | - | <100MB |
 | `gap-year-evidence.json` | reviewed | `hierarchy/{school}/gap-year-evidence.json` | `hierarchy/{school}/reviewed/gap-year-evidence.json` | - | <100MB |
 | `profile-year-evidence.json` | reviewed | `hierarchy/{school}/profile-year-evidence.json` | `hierarchy/{school}/reviewed/profile-year-evidence.json` | - | <100MB |
-| `labpage-tools-epfl-berkeley` | work | `hierarchy/labpage-tools-epfl-berkeley` | `hierarchy/work/labpage-tools-epfl-berkeley` | - | <100MB |
 
 ## Files outside the table (inventory of 2026-10-31)
 

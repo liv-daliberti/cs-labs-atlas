@@ -45,8 +45,7 @@ def nt(s):
 
 
 def db_for(school):
-    (HERE / 'captures').mkdir(parents=True, exist_ok=True)
-    db = sqlite3.connect(str(HERE / 'captures' / f'{school}.sqlite'))
+    db = sqlite3.connect(str(P.data_w('school-captures.sqlite', school)))
     db.execute('CREATE TABLE IF NOT EXISTS pages (url TEXT PRIMARY KEY, fetched_url TEXT, status INTEGER, sha256 TEXT, text BLOB, at TEXT, kind TEXT)')
     return db
 
@@ -254,7 +253,6 @@ def extract(school):
                             qualification='Appointment year from the page\'s own statement naming the school; the earliest stated faculty year is kept. '
                                           'Faculty appointment evidence is separate from leadership of each named unit.'))
         nid += 1
-    (HERE / 'periods').mkdir(exist_ok=True)
     P.data_w('faculty-periods.json', school).write_text(json.dumps(periods, indent=1, ensure_ascii=False))
     P.data_w('holds.json', school).write_text(json.dumps(holds, indent=1, ensure_ascii=False))
     print(json.dumps(dict(school=school, periods=len(periods), holds=len(holds), conflicts=sum(1 for p in periods if p['conflictingStartYears']))))

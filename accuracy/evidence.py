@@ -6,7 +6,7 @@ import gzip, html, json, re, sys, unicodedata
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
-from sample import H, dblp_persons  # noqa: E402
+from sample import P, dblp_persons  # noqa: E402
 
 ACC = Path(__file__).parent
 
@@ -33,7 +33,7 @@ def short(x, n):
 
 def main(school, what):
     S = json.load(open(ACC / 'sample.json'))['schools'][school]
-    pis = {p['pi']: p for p in json.load(open(H / school / 'pis.json'))}
+    pis = {p['pi']: p for p in json.load(open(P.data('pis.json', school)))}
     if what in ('lab', 'coverage'):
         pages = dblp_persons({q for p in pis.values() for q in p.get('dblp') or []})
         dd = {pi: ({ndoi(x) for q in p.get('dblp') or [] for r in pages.get(q, []) for x in r['dois']},
@@ -41,7 +41,7 @@ def main(school, what):
         del pages
     if what == 'lab':
         want = {it['i']: it for it in S['lab_precision']}
-        for i, line in enumerate(gzip.open(H / school / 'lab_papers.jsonl.gz', 'rt')):
+        for i, line in enumerate(gzip.open(P.data('lab_papers.jsonl.gz', school), 'rt')):
             if i not in want:
                 continue
             r, it = json.loads(line), want[i]
@@ -56,15 +56,15 @@ def main(school, what):
     elif what == 'student':
         want = {it['i']: it for it in S['student_precision']}
         rows, works = {}, set()
-        for i, line in enumerate(gzip.open(H / school / 'student_papers.jsonl.gz', 'rt')):
+        for i, line in enumerate(gzip.open(P.data('student_papers.jsonl.gz', school), 'rt')):
             if i in want:
                 rows[i] = json.loads(line); works.add((rows[i]["pi"], rows[i]["oa"]))
         lp = {}
-        for line in gzip.open(H / school / 'lab_papers.jsonl.gz', 'rt'):
+        for line in gzip.open(P.data('lab_papers.jsonl.gz', school), 'rt'):
             r = json.loads(line)
             if (r["pi"], r["oa"]) in works:
                 lp[(r["pi"], r["oa"])] = r
-        stj = json.load(open(H / school / 'students.json'))
+        stj = json.load(open(P.data('students.json', school)))
         for i in sorted(rows):
             r, it = rows[i], want[i]
             s = next((x for x in stj.get(r['pi']) or [] if x['person'] == r['student']), {})
@@ -84,7 +84,7 @@ def main(school, what):
     elif what == 'coverage':
         items = S['lab_coverage']
         have = {}
-        for line in gzip.open(H / school / 'lab_papers.jsonl.gz', 'rt'):
+        for line in gzip.open(P.data('lab_papers.jsonl.gz', school), 'rt'):
             r = json.loads(line)
             for e in [r] + list(r.get('editions') or []):
                 if e.get('doi'):
@@ -99,19 +99,19 @@ def main(school, what):
             print(f"   authors={short(d['authors'],160)} | PI {yr(p)} depts={p.get('departments')}")
             print(f"   BUILD: in_PI_lab={own or 'NO'} other_labs={other[:3]}")
     elif what == 'scov':
-        stj = json.load(open(H / school / 'students.json'))
+        stj = json.load(open(P.data('students.json', school)))
         n = int(sys.argv[3]) if len(sys.argv) > 3 else 14
         start = int(sys.argv[4]) if len(sys.argv) > 4 else 0
         cands = S['student_coverage_order'][start:start + n]
         need = {c['pi'] for c in cands}
         pages = dblp_persons({q for pi in need for q in pis[pi].get('dblp') or []})
         sp = {}
-        for line in gzip.open(H / school / 'student_papers.jsonl.gz', 'rt'):
+        for line in gzip.open(P.data('student_papers.jsonl.gz', school), 'rt'):
             r = json.loads(line)
             if r['pi'] in need:
                 sp.setdefault((r['pi'], r['student']), []).append(r)
         lp = {}
-        for line in gzip.open(H / school / 'lab_papers.jsonl.gz', 'rt'):
+        for line in gzip.open(P.data('lab_papers.jsonl.gz', school), 'rt'):
             r = json.loads(line)
             if r['pi'] in need:
                 lp[(r['pi'], r['oa'])] = r

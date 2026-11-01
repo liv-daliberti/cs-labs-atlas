@@ -64,7 +64,7 @@ def main():
 
     for school in [a for a in sys.argv[1:] if not a.startswith('--')]:
         ev = {x['pi'] for x in lc.lab_evidence(school)}
-        pis = [p for p in json.loads((F.SCHOOLS / 'hierarchy' / school / 'pis.json').read_text()) if p['pi'] not in ev]
+        pis = [p for p in json.loads((F.P.data('pis.json', school)).read_text()) if p['pi'] not in ev]
         papers = F.lab_papers(school)
         cs = F.catalog_state(school, with_urls=False)
         missing = Counter(pi for r in papers.values() if not F.is_local(school, r, cs) for pi in r['pis'])

@@ -97,7 +97,7 @@ def check_ledger(D, flag, total):
 
 
 def check(school, root):
-    D = Path(root) / school
+    D = P.SchoolDir(school, root)
     pis = load(D / 'pis.json'); students = load(D / 'students.json')
     papers = load(D / 'lab_papers.jsonl.gz'); links = load(D / 'student_papers.jsonl.gz')
     bad = collections.defaultdict(list); total = collections.Counter()

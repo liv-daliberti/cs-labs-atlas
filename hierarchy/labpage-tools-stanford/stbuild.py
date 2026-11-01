@@ -28,8 +28,8 @@ import lppubs  # noqa: E402
 
 S = "stanford"
 HERE = os.path.dirname(os.path.abspath(__file__))
-OUT = f"{lpcap.ROOT}/{S}/labpage-pubs.jsonl.gz"
-REP = f"{lpcap.ROOT}/{S}/labpage-pubs-report.json"
+OUT = lpcap.data("labpage-pubs.jsonl.gz", S)
+REP = lpcap.data("labpage-pubs-report.json", S)
 VENUE_TITLE = re.compile(r"^(?:in\s+(?:proc|the\s|ieee|acm|international|annual|\d)|proc\.|proceedings|ieee|acm|international|annual|journal|transactions|conference|"
                          r"workshop|symposium|arxiv|advances in|neural information|nature\b|science\b|accepted|to appear|"
                          r"under review|submitted|preprint|technical report|vol\.|pp\.|pages\s|\d+(?:st|nd|rd|th)\s)", re.I)
@@ -335,7 +335,7 @@ def views_of(url):
 
 def build(only=None, show=False):
     dec = json.load(open(f"{HERE}/decisions.json"))
-    pis = [p["pi"] for p in json.load(open(f"{lpcap.ROOT}/{S}/pis.json"))]
+    pis = [p["pi"] for p in json.load(open(lpcap.data("pis.json", S)))]
     rows, rep = [], {}
     for pi in pis:
         if only and pi not in only:

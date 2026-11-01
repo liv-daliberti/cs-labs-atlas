@@ -43,7 +43,7 @@ def main(school, sample):
         if not ev and 'openalex.org/W' in key:
             ev = key.split('|')[-1]
         out.append(dict(school=school, sample=sample, stratum=it.get('stratum'), item=key, row=it.get('i'), verdict=verdict,
-                        failure_type=ft if verdict == 'incorrect' else None, reason=reason, evidence=ev or f'hierarchy/{school}',
+                        failure_type=ft if verdict == 'incorrect' else None, reason=reason, evidence=ev or f'hierarchy/{school}',  # route-ok: a label, not a path
                         judged_at=datetime.datetime.now().isoformat(timespec='seconds'), **extra))
     with open(vf, 'a') as fh:
         for d in out:

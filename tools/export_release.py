@@ -38,13 +38,13 @@ import atlas_paths as AP  # noqa: E402  (every path in one place)
 
 HERE = AP.WORK                       # the code repository (/n/fs/resemble/homogenizing-science/code; was .research-sweeps/claude-schools-20261021)
 DATA = HERE                          # where the data is read: a release directory (configure()) or the working root
-H = DATA / 'hierarchy'
+H = DATA / AP.REL_HIERARCHY
 RELEASE = None                       # the release read: dict(id, dir, manifest_sha256)
 SITE_ROOT = AP.SITE_ROOT
 ATLAS = SITE_ROOT / 'atlas'
 ORDER = list(AP.SCHOOL_IDS)  # display order; any other built school follows
-SCHOOLS = [s for s in ORDER if (H / s / 'pis.json').exists()] + sorted(
-    d.name for d in H.iterdir() if d.is_dir() and d.name not in ORDER and (d / 'pis.json').exists())
+SCHOOLS = [s for s in ORDER if (AP.hfile(H, 'pis.json', s)).exists()] + sorted(
+    d.name for d in H.iterdir() if d.is_dir() and d.name not in ORDER and (AP.SchoolDir(d.name, H) / 'pis.json').exists())
 # The owner's address is recognized by its sha256, which is kept OUT of the repository (2026-10-30: the repository is
 # public; a bare sha256 of an address is easy to reverse): ~/.config/cs-atlas/scan-hashes.txt, as secret_scan.py reads it.
 OWNER_EMAIL_HASHES = frozenset(
@@ -72,9 +72,9 @@ def configure(release=None):
         RELEASE = dict(id=json.loads((d / 'MANIFEST.json').read_text())['release'], dir=str(d),
                        manifest_sha256=hashlib.sha256((d / 'MANIFEST.json').read_bytes()).hexdigest())
         DATA = d
-    H = DATA / 'hierarchy'
-    SCHOOLS = [s for s in ORDER if (H / s / 'pis.json').exists()] + sorted(
-        d.name for d in H.iterdir() if d.is_dir() and d.name not in ORDER and (d / 'pis.json').exists())
+    H = DATA / AP.REL_HIERARCHY
+    SCHOOLS = [s for s in ORDER if (AP.hfile(H, 'pis.json', s)).exists()] + sorted(
+        d.name for d in H.iterdir() if d.is_dir() and d.name not in ORDER and (AP.SchoolDir(d.name, H) / 'pis.json').exists())
     EXPORT = [s for s in SCHOOLS if s in SITE.SCHOOLS]
     SKIPPED = {s: 'package exists but the site builder (scripts/build-cs-hierarchy.py SCHOOLS) does not list it yet' for s in SCHOOLS if s not in EXPORT}
 
@@ -282,7 +282,7 @@ def export_school(repo, s, homes_all, profiles, zero):
     if s not in SITE.SCHOOLS:
         raise SystemExit(f'{s}: not in the site builder SCHOOLS ({SITE_ROOT}/scripts/build-cs-hierarchy.py); add it there '
                          f'first so departments follow the site rule')
-    cfg = SITE.SCHOOLS[s]; src = H / s
+    cfg = SITE.SCHOOLS[s]; src = AP.SchoolDir(s, H)
     for attempt in range(6):  # a consistent snapshot: the package must not be rebuilt while it is read
         rep = read(src / 'report.json')
         pis = read(src / 'pis.json'); rows = jsonl(src / 'lab_papers.jsonl.gz'); stu = read(src / 'students.json')
@@ -293,7 +293,7 @@ def export_school(repo, s, homes_all, profiles, zero):
     else:
         raise SystemExit(f'{s}: package kept changing')
     home = {x['name']: x for x in homes_all if x.get('school') == s and x.get('status') == 'accepted' and x.get('home_department')}
-    adds = {a['name'] for a in (read(DATA / f'census/{s}-additions.json') if (DATA / f'census/{s}-additions.json').exists() else [])
+    adds = {a['name'] for a in (read(AP.hfile(H, 'census-additions.json', s)) if AP.hfile(H, 'census-additions.json', s).exists() else [])
             if 'cs_related' in str(a.get('added'))}
     site_labs, canon = site_lab_map(s, cfg)
     out = f'data/schools/{s}'
@@ -475,7 +475,7 @@ def export_school(repo, s, homes_all, profiles, zero):
     write_json(repo, f'{out}/excluded_pis.json', scrub(dict(
         note='Census PIs excluded by review: no faculty appointment at the school in 2016-2026 (hierarchy/census-overrides.json, gap research).',
         excluded=rep.get('excluded') or [])))
-    cr = H / s / 'cs-related-review.json'
+    cr = AP.hfile(H, 'cs-related-review.json', s)
     if cr.exists():
         write_json(repo, f'{out}/scope_review.json.gz', scrub(read(cr)))
     write_json(repo, f'{out}/build_report.json', scrub({k: v for k, v in rep.items()}))
@@ -620,7 +620,7 @@ CODE_RULES = [  # (directory in the code repository, max depth, patterns); repo 
     ('tools', 1, ('*.py', '*.slurm')),
     ('tools/pihier', 1, ('*.py',)),       # the builder's stages (tools/pi_hierarchy.py is their entry point), since 2026-10-31
     ('hierarchy', 1, ('*.sh', '*.slurm')),
-    ('hierarchy/nicknames', 1, ('*.csv',)),
+    (AP.data('nicknames', root=Path('.')).as_posix(), 1, ('*.csv',)),   # the repository's own path to the nickname tables (flat or split)
     ('census', 1, ('*.py',)),
     ('census/tools', 1, ('*.py', '*.sh')),
     ('listings/scripts', 1, ('*.py', '*.sh')),
@@ -646,7 +646,7 @@ def code_files():
     import fnmatch
     CODE['commit'] = _git('rev-parse', 'HEAD', text=True).strip()
     CODE['uncommitted_tracked_changes'] = [l[3:] for l in _git('status', '--porcelain', '--untracked-files=no', text=True).split('\n') if l.strip()]
-    rules = list(CODE_RULES) + [(f'hierarchy/{d}', 3, ('*.py', '*.sh', '*.slurm', '*.md')) for d in CODE_TOOL_DIRS]
+    rules = list(CODE_RULES) + [(f'hierarchy/{d}', 3, ('*.py', '*.sh', '*.slurm', '*.md')) for d in CODE_TOOL_DIRS]  # route-ok: tracked code dirs that stay in hierarchy/
     want = []
     for path in _git('ls-tree', '-r', '--name-only', '-z', CODE['commit']).decode().split('\0'):
         if not path:
@@ -668,7 +668,7 @@ def code_files():
         for p in want:
             header_end = blobs.index(b'\n', i)
             size = int(blobs[i:header_end].split()[2])
-            out.append((blobs[header_end + 1:header_end + 1 + size], 'code/claude-schools-20261021/' + p))
+            out.append((blobs[header_end + 1:header_end + 1 + size], 'code/claude-schools-20261021/' + AP.flat_of(p)))   # the export keeps the flat names
             i = header_end + 1 + size + 1
     for f in SITE_SCRIPTS:
         if (SITE_ROOT / 'scripts' / f).exists():
@@ -735,19 +735,19 @@ def _load_tool(name):
 def derived_ledgers(homes_all):
     """school-profiles.json and zero-paper-labs.json as written by their tools, or, when a package was rebuilt after them,
     recomputed in memory with those tools' own functions (nothing is written to the sources)."""
-    newest = max(read(H / s / 'report.json').get('builtAt') or '' for s in EXPORT)
+    newest = max(read(AP.hfile(H, 'report.json', s)).get('builtAt') or '' for s in EXPORT)
     import datetime
     mt = lambda p: datetime.datetime.utcfromtimestamp(p.stat().st_mtime).isoformat() if p.exists() else ''
-    zp, pp = H / 'zero-paper-labs.json', H / 'school-profiles.json'
+    zp, pp = AP.hfile(H, 'zero-paper-labs.json'), AP.hfile(H, 'school-profiles.json')
     out = {}
     if mt(zp) >= newest[:26]:
         zero = read(zp); out['zero_paper_labs'] = 'file'
     else:
         Z = _load_tool('zero_paper_ledger')
-        rv = read(H / 'zero-paper-review.json') if (H / 'zero-paper-review.json').exists() else {}
+        rv = read(AP.hfile(H, 'zero-paper-review.json')) if (AP.hfile(H, 'zero-paper-review.json')).exists() else {}
         zero = dict(built_by='tools/zero_paper_ledger.py (recomputed by export_release.py)', zero_papers=[], zero_students=[])
         for s in EXPORT:
-            for p in read(H / s / 'pis.json'):
+            for p in read(AP.hfile(H, 'pis.json', s)):
                 c = p.get('counts') or {}; f = p.get('funnel') or {}
                 if not c.get('labPapers'):
                     r = (rv.get(s) or {}).get(p['pi']) or {}
@@ -768,7 +768,7 @@ def derived_ledgers(homes_all):
         for r in homes_all:
             if r.get('status') == 'accepted' and r.get('home_department'):
                 homes[r['school']][r['name']] = r
-        audit = read(H / 'missing-papers-audit.json') if (H / 'missing-papers-audit.json').exists() else []
+        audit = read(AP.hfile(H, 'missing-papers-audit.json')) if (AP.hfile(H, 'missing-papers-audit.json')).exists() else []
         missing = [s for s in EXPORT if s not in SPF.NAMES]
         if missing:
             raise SystemExit(f'add {missing} to NAMES in tools/school_profiles.py')
@@ -841,7 +841,7 @@ def main():
     repo = Path(args[0]).resolve(); repo.mkdir(parents=True, exist_ok=True)
     configure(None if '--from-working' in sys.argv else (rel or 'latest'))
     print('data', RELEASE or f'working root {DATA} (--from-working)', flush=True)
-    homes_all = read(H / 'home-departments.json')
+    homes_all = read(AP.hfile(H, 'home-departments.json'))
     profiles, zero, derived = derived_ledgers(homes_all)
     summary = dict(schools=[], atlas=None, code=None, derived_ledgers=derived)
     for s in EXPORT:
@@ -850,14 +850,14 @@ def main():
     write_json(repo, 'data/schools/profiles.json', scrub(profiles))
     # the atlas ids (tools/atlas_ids.py, docs/IDS.md in the code): the cross-reference table, the redirects and the people
     # who are PIs at two atlas schools (or a student at one and a PI at another)
-    if (H / 'ids' / 'crossref.tsv.gz').exists():
-        write_bytes(repo, 'data/ids/crossref.tsv.gz', (H / 'ids' / 'crossref.tsv.gz').read_bytes())
-        write_bytes(repo, 'data/ids/redirects.tsv', (H / 'ids' / 'redirects.tsv').read_bytes())
-        write_json(repo, 'data/ids/persons_cross_school.json', scrub(read(H / 'ids' / 'persons-cross-school.json')))
-        summary['ids'] = {k: v for k, v in read(H / 'ids' / 'IDS-REPORT.json').items() if k in ('people', 'pi_people', 'works', 'labs', 'cross_school_persons')}
+    if (AP.hfile(H, 'ids') / 'crossref.tsv.gz').exists():
+        write_bytes(repo, 'data/ids/crossref.tsv.gz', (AP.hfile(H, 'ids') / 'crossref.tsv.gz').read_bytes())
+        write_bytes(repo, 'data/ids/redirects.tsv', (AP.hfile(H, 'ids') / 'redirects.tsv').read_bytes())
+        write_json(repo, 'data/ids/persons_cross_school.json', scrub(read(AP.hfile(H, 'ids') / 'persons-cross-school.json')))
+        summary['ids'] = {k: v for k, v in read(AP.hfile(H, 'ids') / 'IDS-REPORT.json').items() if k in ('people', 'pi_people', 'works', 'labs', 'cross_school_persons')}
     audit = None
-    ap = H / 'student-audit.json'
-    newest = max(read(H / s / 'report.json').get('builtAt') or '' for s in EXPORT)
+    ap = AP.hfile(H, 'student-audit.json')
+    newest = max(read(AP.hfile(H, 'report.json', s)).get('builtAt') or '' for s in EXPORT)
     import datetime
     if ap.exists() and datetime.datetime.utcfromtimestamp(ap.stat().st_mtime).isoformat() >= newest[:26] \
             and {x['school'] for x in read(ap)} >= set(EXPORT):
@@ -866,8 +866,8 @@ def main():
         audit = [_load_tool('student_audit').audit(s) for s in EXPORT]; summary['derived_ledgers']['student_audit'] = 'recomputed (file older than the packages)'
     if audit:  # tools/student_audit.py: probable duplicate student records and missed student-paper links
         write_json(repo, 'data/schools/student_audit.json', scrub(audit))
-    if summary['derived_ledgers']['school_profiles'] == 'file' and (H / 'SCHOOL-PROFILES.md').exists():
-        md = (H / 'SCHOOL-PROFILES.md').read_text()
+    if summary['derived_ledgers']['school_profiles'] == 'file' and (AP.hfile(H, 'SCHOOL-PROFILES.md')).exists():
+        md = (AP.hfile(H, 'SCHOOL-PROFILES.md')).read_text()
     else:
         md = _load_tool('school_profiles').md(profiles)
     write_bytes(repo, 'docs/SCHOOL-PROFILES.md', scrub_str(md).encode())

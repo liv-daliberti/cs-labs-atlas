@@ -20,7 +20,7 @@ _CACHE = {}
 def ledger(school):
     if school not in _CACHE:
         import ftp_common as F
-        p = F.SCHOOLS / 'hierarchy' / school / 'unavailable.jsonl.gz'
+        p = F.P.data('unavailable.jsonl.gz', school)
         out = {}
         if p.exists():
             with gzip.open(p, 'rt') as f:

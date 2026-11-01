@@ -92,7 +92,7 @@ def main(argv=None):
     ap.add_argument('release', nargs='?', default='latest')
     a = ap.parse_args(argv)
     d = Path(P.RELEASES) / a.release
-    reg = json.loads((d / 'hierarchy' / 'BUILD-REGRESSION.json').read_text())
+    reg = json.loads((d / P.REL_HIERARCHY / 'BUILD-REGRESSION.json').read_text())
     man = json.loads((d / 'MANIFEST.json').read_text())
     sys.stdout.write(render(reg, man.get('release'), None, man.get('rules'), None))
     return 0

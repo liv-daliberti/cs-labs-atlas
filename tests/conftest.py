@@ -30,3 +30,14 @@ def fixture_json():
     def load(name):
         return json.loads((FIXTURES / name).read_text())
     return load
+
+
+@pytest.fixture
+def flat_data_root(monkeypatch):
+    """Point atlas_paths.data (and so hfile, SchoolDir, data_w) at a flat fixture tree: use_root(tmp_path) before the code under test runs."""
+    import atlas_paths
+    orig = atlas_paths.data
+
+    def use_root(root):
+        monkeypatch.setattr(atlas_paths, 'data', lambda name, school=None, root_=None, layout=None, **kw: orig(name, school, root=kw.get('root', root_) or root, layout=layout or 'flat'))
+    return use_root

@@ -23,8 +23,8 @@ sys.path.insert(0, str(Path(__file__).parent))
 from pi_hierarchy import Name, toks, given, nick_ok, strict_name_one, near_relation, EAST_ASIAN_FAMILY  # noqa: F401,E402
 
 import atlas_paths as P  # noqa: E402  (every path in one place)
-HERE = P.WORK; H = P.HIERARCHY
-SCHOOLS = [s for s in P.SCHOOL_IDS if (H / s / 'students.json').exists()]
+HERE = P.WORK; H = P.HIERARCHY  # export_release re-points H at a release's hierarchy/ (flat); hfile follows the layout for the live one
+SCHOOLS = [s for s in P.SCHOOL_IDS if (P.hfile(H, 'students.json', s)).exists()]
 
 
 def compatible(a, b):
@@ -46,9 +46,9 @@ def compatible(a, b):
 
 
 def audit(s):
-    S = json.load(open(H / s / 'students.json'))
-    rows = [json.loads(l) for l in gzip.open(H / s / 'lab_papers.jsonl.gz', 'rt')]
-    sp = [json.loads(l) for l in gzip.open(H / s / 'student_papers.jsonl.gz', 'rt')]
+    S = json.load(open(P.hfile(H, 'students.json', s)))
+    rows = [json.loads(l) for l in gzip.open(P.hfile(H, 'lab_papers.jsonl.gz', s), 'rt')]
+    sp = [json.loads(l) for l in gzip.open(P.hfile(H, 'student_papers.jsonl.gz', s), 'rt')]
     by_lab = collections.defaultdict(list)
     for r in rows:
         by_lab[r['pi']].append(r)
@@ -106,7 +106,7 @@ def audit(s):
 
 def main(schools):
     res = [audit(s) for s in schools]
-    json.dump(res, open(H / 'student-audit.json', 'w'), indent=1, ensure_ascii=False)
+    json.dump(res, open(P.hfile_w(H, 'student-audit.json'), 'w'), indent=1, ensure_ascii=False)
     for r in res:
         print(json.dumps(dict(school=r['school'], **r['counts'])))
 

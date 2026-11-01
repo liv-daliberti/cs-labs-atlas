@@ -72,7 +72,7 @@ def oa_work_id(school, r):
 def lab_papers(school):
     """{paper key: row} (first row per key, as tools/lab_paper_copies.py) with 'pis' = every PI the paper is listed for."""
     out, pis = {}, defaultdict(list)
-    for line in gzip.open(SCHOOLS / 'hierarchy' / school / 'lab_papers.jsonl.gz', 'rt'):
+    for line in gzip.open(P.data('lab_papers.jsonl.gz', school), 'rt'):
         r = json.loads(line)
         k = r['work'] or r['oa']
         out.setdefault(k, r)
@@ -86,7 +86,7 @@ def lab_papers(school):
 def oa_store(school):
     """The school's OpenAlex work records (table works: id, zlib JSON body): hierarchy/<school>/pi-works.sqlite, else
     (a school whose hierarchy has none, e.g. Stanford, 2026-10-27) the push's own raw/<school>-oa-works.sqlite."""
-    p = SCHOOLS / 'hierarchy' / school / 'pi-works.sqlite'
+    p = P.data('pi-works.sqlite', school)
     return p if p.exists() else P.FT_RAW / f'{school}-oa-works.sqlite'
 
 

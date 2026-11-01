@@ -7,14 +7,13 @@ from pathlib import Path
 CODE = Path(__file__).resolve().parents[1]
 if str(CODE / 'fulltext-push') not in sys.path:
     sys.path.append(str(CODE / 'fulltext-push'))
-import ftp_common as F  # noqa: E402
 import labpage_channel as L  # noqa: E402
 
 
-def setup(tmp_path, monkeypatch, school='michigan'):
+def setup(tmp_path, use_root, school='michigan'):
     h = tmp_path / 'hierarchy' / school
     h.mkdir(parents=True)
-    monkeypatch.setattr(F, 'SCHOOLS', tmp_path)
+    use_root(tmp_path)
     (h / 'labpage-evidence.json').write_text(json.dumps([dict(pi='A One', lab_site='https://a.example.edu/lab/', people_page=None, pubs_pages=[])]))
     rows = [dict(pi='B Two', lab_page=dict(status='found', urls=dict(lab_site='https://b.example.edu/~two/', people_page='https://b.example.edu/~two/people', pubs_page=None))),
             dict(pi='A One', lab_page=dict(status='found', urls=dict(pubs_page='https://a.example.edu/lab/papers'))),
@@ -25,8 +24,8 @@ def setup(tmp_path, monkeypatch, school='michigan'):
     return h
 
 
-def test_roots_come_from_both_sources(tmp_path, monkeypatch):
-    setup(tmp_path, monkeypatch)
+def test_roots_come_from_both_sources(tmp_path, flat_data_root):
+    setup(tmp_path, flat_data_root)
     urls, roots = L.pi_pages('michigan')
     assert set(urls) == {'A One', 'B Two'}  # Deep Blue and the page-less PI contribute nothing
     assert roots['B Two'] and roots['A One']
@@ -34,8 +33,8 @@ def test_roots_come_from_both_sources(tmp_path, monkeypatch):
     assert any(u.rstrip('/').endswith('/lab') for u in urls['A One'])
 
 
-def test_a_school_without_an_audit_file_is_unchanged(tmp_path, monkeypatch):
-    h = setup(tmp_path, monkeypatch)
+def test_a_school_without_an_audit_file_is_unchanged(tmp_path, flat_data_root):
+    h = setup(tmp_path, flat_data_root)
     (h / 'labpage-audit.jsonl.gz').unlink()
     assert L.audit_pages('michigan') == []
     assert set(L.pi_pages('michigan')[0]) == {'A One'}

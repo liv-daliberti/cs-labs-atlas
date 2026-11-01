@@ -119,7 +119,7 @@ def department(school, cfg, p, home):
     return PENDING, 'affiliated'
 
 
-LEDGER = H / 'zero-paper-labs.json'
+LEDGER = P.hfile(H, 'zero-paper-labs.json')
 CATEGORIES = {  # tools/zero_paper_ledger.py diagnose(): where the PI's papers dropped out of the lab-paper rule
     'joined_after_window': 'the reviewed appointment starts after every paper so far',
     'no_appointment_coverage': 'papers name the PI and the school, but none falls in a reviewed faculty period or same-year listing',
@@ -157,16 +157,16 @@ def hidden_labs(order):
 
 
 def build(school):
-    cfg = SCHOOLS[school]; src = H / school
+    cfg = SCHOOLS[school]; src = P.SchoolDir(school)
     pis = read(src / 'pis.json'); rep = read(src / 'report.json')
     rows = jsonl(src / 'lab_papers.jsonl.gz'); stu = read(src / 'students.json'); sp = jsonl(src / 'student_papers.jsonl.gz')
     home = {}
-    if (H / 'home-departments.json').exists():
-        home = {x['name']: x for x in read(H / 'home-departments.json')
+    if (P.hfile(H, 'home-departments.json')).exists():
+        home = {x['name']: x for x in read(P.hfile(H, 'home-departments.json'))
                 if x.get('school') == school and x.get('status') == 'accepted' and x.get('home_department')}
     gapnote = {}  # the gap research's finding for a lab still missing papers or students (hierarchy/<school>/gap-evidence.json)
-    if (H / school / 'gap-evidence.json').exists():
-        gapnote = {r['pi']: (r.get('notes') or '')[:400] for r in read(H / school / 'gap-evidence.json') if r.get('status') == 'pi'}
+    if (P.hfile(H, 'gap-evidence.json', school)).exists():
+        gapnote = {r['pi']: (r.get('notes') or '')[:400] for r in read(P.hfile(H, 'gap-evidence.json', school)) if r.get('status') == 'pi'}
     site_labs = set()
     if (D / f"universities/{cfg['uni']}.json.gz").exists():
         site_labs = {l['id'] for l in read(D / f"universities/{cfg['uni']}.json.gz")['labs']}
@@ -239,7 +239,7 @@ def build(school):
 
 
 if __name__ == '__main__':
-    schools = sys.argv[1:] or [s for s in SCHOOLS if (H / s / 'pis.json').exists()]
+    schools = sys.argv[1:] or [s for s in SCHOOLS if P.hfile(H, 'pis.json', s).exists()]
     idx_p = OUT / 'index.json'
     idx = {x['id']: x for x in (read(idx_p)['schools'] if idx_p.exists() else [])}
     for s in schools:

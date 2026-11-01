@@ -118,7 +118,8 @@ def lab_first_authors(code_root, school):
     """{work id / 'doi:..' / 't:..': first author family} from hierarchy/<school>/lab_papers.jsonl.gz (byline order)."""
     if school not in _LAB:
         out = {}
-        p = Path(code_root) / 'hierarchy' / school / 'lab_papers.jsonl.gz'
+        import atlas_paths as _AP   # the data slot: the main checkout's package, whatever checkout or snapshot this runs from
+        p = _AP.data('lab_papers.jsonl.gz', school)
         if p.exists():
             for line in gzip.open(p, 'rt'):
                 r = json.loads(line)

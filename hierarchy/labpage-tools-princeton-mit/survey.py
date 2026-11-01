@@ -14,7 +14,7 @@ import lpcap  # noqa: E402
 school = sys.argv[1]
 only = sys.argv[2:]
 T = os.path.dirname(os.path.abspath(__file__))
-labs = json.load(open(f"{lpcap.ROOT}/{school}/labpage-input.json"))
+labs = json.load(open(lpcap.data("labpage-input.json", school)))
 dos = json.load(open(f"{T}/dossier_{school}.json"))
 PROFILE = re.compile(r"(cs\.princeton\.edu/people/profile|eecs\.mit\.edu/people/|csail\.mit\.edu/person/)")
 out = {}

@@ -29,7 +29,7 @@ def slug(s):
 
 @lru_cache(maxsize=4)
 def rows(school):
-    return json.load(open(f"{ROOT}/{school}/labpage-input.json"))
+    return json.load(open(lpcap.data("labpage-input.json", school)))
 
 
 def lab(school, key):
@@ -138,7 +138,7 @@ def spread(cdx_rows, n, lo=2016, hi=2026):
 @lru_cache(maxsize=4)
 def lab_papers(school):
     by = {}
-    with gzip.open(f"{ROOT}/{school}/lab_papers.jsonl.gz", "rt") as f:
+    with gzip.open(lpcap.data("lab_papers.jsonl.gz", school), "rt") as f:
         for l in f:
             d = json.loads(l)
             by.setdefault(d["pi"], []).append(d)

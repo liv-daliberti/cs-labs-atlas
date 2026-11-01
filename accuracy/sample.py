@@ -28,7 +28,6 @@ import gzip, hashlib, json, random, re
 
 SEED = 20261029
 ROOT = P.CODE
-H = ROOT / 'hierarchy'
 OUT = ROOT / 'accuracy' / 'sample.json'
 SCHOOLS = ['princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford']
 FILES = ['pis.json', 'students.json', 'lab_papers.jsonl.gz', 'student_papers.jsonl.gz', 'copies.json']
@@ -45,7 +44,7 @@ def sha(p):
 def dblp_persons(wanted):
     """Stream the persons map of dblp-dump-persons.json.gz one record at a time (the file is ~95 MB of JSON; only the
     wanted person pages are kept)."""
-    s = gzip.open(H / 'dblp-dump-persons.json.gz', 'rt').read()
+    s = gzip.open(P.data('dblp-dump-persons.json.gz'), 'rt').read()
     dec = json.JSONDecoder()
     i = s.index('"persons"'); i = s.index('{', i) + 1
     out = {}
@@ -112,7 +111,7 @@ def main():
     out = {'seed': SEED, 'date': '2026-10-29', 'schools': {}, 'files': {}}
     for school in SCHOOLS:
         rng = random.Random(SEED)
-        d = H / school
+        d = P.SchoolDir(school)
         out['files'][school] = {f: sha(d / f) for f in FILES}
         # 1. lab papers
         meta = []

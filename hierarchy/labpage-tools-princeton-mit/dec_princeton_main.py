@@ -12,7 +12,7 @@ from lpev import Lab  # noqa: E402
 from plan_princeton import P  # noqa: E402
 
 SCH = "princeton"
-_labs = {l["pi"]: l for l in json.load(open(f"{lpauto.lpev.lpcap.ROOT}/{SCH}/labpage-input.json"))}
+_labs = {l["pi"]: l for l in json.load(open(lpauto.lpev.lpcap.data("labpage-input.json", SCH)))}
 _only = json.loads(os.environ.get("LP_ONLY", "null"))
 D = {}
 for _pi, _plan in P.items():

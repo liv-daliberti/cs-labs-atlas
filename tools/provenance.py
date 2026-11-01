@@ -36,7 +36,8 @@ REQUIRED = ('code', 'rules', 'openalex_sweep', 'dblp_dump', 'dblp_persons', 'pi_
 BUILD_CODE = ['tools/pi_hierarchy.py', 'tools/pihier/', 'schemas/', 'tools/schema_check.py', 'tools/validate.py', 'tools/atlas_paths.py', 'tools/provenance.py', 'tools/pi_fulltext_affiliation.py',
               'tools/student_audit.py', 'tools/chain_audit.py', 'tools/link_diagnosis.py', 'tools/evidence_check.py',
               'tools/lab_paper_copies.py', 'tools/build_regression.py', 'tools/make_release.py', 'tools/organize_tree.py',
-              'tools/zero_paper_ledger.py', 'hierarchy/rebuild.sh', 'paths.sh', 'docs/RULES.md', 'docs/evidence-whitelist.json', 'tests/']
+              'tools/zero_paper_ledger.py', 'hierarchy/rebuild.sh', 'paths.sh',  # route-ok: tracked code paths
+        'docs/RULES.md', 'docs/evidence-whitelist.json', 'tests/']
 NOT_BUILD = ('fulltext-push/', 'ai-writing/')
 
 

@@ -37,7 +37,7 @@ PENDING = R.PENDING
 def catalog_pending(school, db, lab_ids):
     """Every downloaded catalog work still at the pending identity, lab-related or not (the full-text studies read the
     whole catalog), with its kind: lab (a lab paper's own work), sibling (a work sharing its DOI / title) or other."""
-    copies = json.loads((F.SCHOOLS / 'hierarchy' / school / 'copies.json').read_text())['papers']
+    copies = json.loads((F.P.data('copies.json', school)).read_text())['papers']
     cids = {c.get('catalog') for c in copies.values()}
     ids = [i for i, ic, st in F.works_rows(db, 'id, identity_check, status') if ic == PENDING and st == 'downloaded']
     rows = {}

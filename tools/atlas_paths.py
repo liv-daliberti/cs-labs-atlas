@@ -305,7 +305,6 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('holds.json', 'derived', 'periods/{school}-holds.json', 'hierarchy/{school}/derived/holds.json'),
     ('gap-year-evidence.json', 'reviewed', 'hierarchy/{school}/gap-year-evidence.json', 'hierarchy/{school}/reviewed/gap-year-evidence.json'),
     ('profile-year-evidence.json', 'reviewed', 'hierarchy/{school}/profile-year-evidence.json', 'hierarchy/{school}/reviewed/profile-year-evidence.json'),
-    ('labpage-tools-epfl-berkeley', 'work', 'hierarchy/labpage-tools-epfl-berkeley', 'hierarchy/work/labpage-tools-epfl-berkeley'),
     ('school-profiles.json', 'derived', 'hierarchy/school-profiles.json', 'hierarchy/derived/school-profiles.json'),
     ('missing-papers-audit.json', 'derived', 'hierarchy/missing-papers-audit.json', 'hierarchy/derived/missing-papers-audit.json'),
     ('CHAIN-AUDIT.md', 'derived', 'hierarchy/CHAIN-AUDIT.md', 'hierarchy/derived/CHAIN-AUDIT.md'),
@@ -324,6 +323,19 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('reader-hosted-files.tsv', 'derived', 'hierarchy/reader/hosted-files.tsv', 'hierarchy/derived/reader/hosted-files.tsv'),
     ('reader-not-permitted.tsv', 'derived', 'hierarchy/reader/currently-hosted-not-permitted.tsv', 'hierarchy/derived/reader/currently-hosted-not-permitted.tsv'),
     ('reader-README.md', 'derived', 'hierarchy/reader/README.md', 'hierarchy/derived/reader/README.md'),
+    ('link-sweep.json', 'derived', 'hierarchy/link-sweep/{school}.json', 'hierarchy/derived/link-sweep/{school}.json'),
+    ('labpage-input.json', 'reviewed', 'hierarchy/{school}/labpage-input.json', 'hierarchy/{school}/reviewed/labpage-input.json'),
+    ('labpage-pubs-report.json', 'derived', 'hierarchy/{school}/labpage-pubs-report.json', 'hierarchy/{school}/derived/labpage-pubs-report.json'),
+    ('labpage-audit.jsonl.gz', 'derived', 'hierarchy/{school}/labpage-audit.jsonl.gz', 'hierarchy/{school}/derived/labpage-audit.jsonl.gz'),
+    ('labpage-audit-discovery.jsonl', 'raw', 'hierarchy/{school}/labpage-audit-discovery.jsonl', 'hierarchy/{school}/raw/labpage-audit-discovery.jsonl'),
+    ('labpage-audit-recover', 'work', 'hierarchy/{school}/labpage-audit-recover', 'hierarchy/{school}/work/labpage-audit-recover'),
+    ('labpage-handcheck.json', 'reviewed', 'hierarchy/{school}/labpage-handcheck.json', 'hierarchy/{school}/reviewed/labpage-handcheck.json'),
+    ('labpage-departure-review.json', 'reviewed', 'hierarchy/labpage-departure-review.json', 'hierarchy/reviewed/labpage-departure-review.json'),
+    ('labpage-audit-summary.json', 'derived', 'hierarchy/labpage-audit-summary.json', 'hierarchy/derived/labpage-audit-summary.json'),
+    ('tobagi-review.json', 'reviewed', 'hierarchy/{school}/tobagi-review.json', 'hierarchy/{school}/reviewed/tobagi-review.json'),
+    ('labpage-parts', 'work', 'hierarchy/{school}/labpage-parts', 'hierarchy/{school}/work/labpage-parts'),
+    ('COLLECTORS-STATUS.md', 'derived', 'hierarchy/COLLECTORS-STATUS.md', 'hierarchy/derived/COLLECTORS-STATUS.md'),
+    ('COLLECTORS-STATUS.json', 'derived', 'hierarchy/COLLECTORS-STATUS.json', 'hierarchy/derived/COLLECTORS-STATUS.json'),
 ]
 _DATA = {n: (k, a, b) for n, k, a, b in DATA_FILES}
 
@@ -374,6 +386,46 @@ def flat_of(rel):
         if m:
             return flat.format(school=m.groupdict().get('school')) + (m.group('rest') or '')
     return rel
+
+
+REL_HIERARCHY = 'hierarchy'   # a release's own layout (and a backup's): flat, whatever the working layout (flat_of)
+
+
+def hfile(hdir, name, school=None):
+    """data() for a tool that takes a hierarchy-like directory: the live one (HIERARCHY or None) follows the data layout, any other
+    (a release, a backup, a test fixture) is a flat copy laid out as hierarchy/ was."""
+    if hdir is None or Path(hdir) == HIERARCHY:
+        return data(name, school)
+    flat = _DATA[name][1].format(school=school)
+    top, _, rest = flat.partition('/')
+    return Path(hdir) / rest if top == 'hierarchy' else Path(hdir).parent / flat   # census/, listings/, periods/ sit beside hierarchy/ in a release
+
+
+def hfile_w(hdir, name, school=None):
+    """hfile(), for a file about to be written: its directory is created first."""
+    p = hfile(hdir, name, school)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    return p
+
+
+class SchoolDir:
+    """Stand-in for the directory hierarchy/<school>/ in code that joins file names onto it: `D = SchoolDir(school); D / 'pis.json'` is
+    data('pis.json', school) in either layout. Only names in DATA_FILES are accepted (KeyError otherwise), so a file the table does not
+    know cannot be written next to the packages by accident."""
+
+    def __init__(self, school, hdir=None):
+        self.school, self.hdir = school, hdir
+
+    def __truediv__(self, name):
+        return hfile(self.hdir, name, self.school)
+
+    def __fspath__(self):   # the package directory itself
+        return str(hfile(self.hdir, 'pis.json', self.school).parent)
+
+    def tmp(self, name, suffix):
+        """A temporary file beside one of this school's files (same directory, so a rename over it is atomic)."""
+        p = self / name
+        return p.with_name(p.name + suffix)
 
 
 def data_kind(name):

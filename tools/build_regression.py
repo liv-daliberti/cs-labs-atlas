@@ -33,7 +33,7 @@ LEDGER_PCT, LEDGER_MIN = 0.25, 20
 
 def ledger(d):
     """The ledger's counts by reason_code (docs/UNAVAILABLE.md): {built_at, papers, by_reason}, None without a summary."""
-    p = Path(d) / 'unavailable-summary.json'
+    p = d / 'unavailable-summary.json'
     if not p.exists():
         return None
     x = json.loads(p.read_text())
@@ -63,7 +63,7 @@ def code_commit():
 def counts(base):
     out = {}
     for s in P.SCHOOL_IDS:
-        d = Path(base) / s
+        d = P.SchoolDir(s, base)
         if not (d / 'report.json').exists():
             continue
         rep = json.loads((d / 'report.json').read_text())

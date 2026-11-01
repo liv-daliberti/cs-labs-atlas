@@ -332,7 +332,7 @@ def step_pubpages(school, miss, known, n):
     import zlib
     import s2_key_lookup as s2k, core_search as cs
     from cs_open_copies import arxiv_id
-    db = sqlite3.connect(f"file:{F.SCHOOLS / 'hierarchy' / 'berkeley' / 'pubs-pages.sqlite'}?mode=ro", uri=True)
+    db = sqlite3.connect(f"file:{F.P.data('pubs-pages.sqlite', 'berkeley')}?mode=ro", uri=True)
     by_title = defaultdict(list)
     for pi, url, body in db.execute('SELECT pi, url, body FROM pages WHERE status=200'):
         try:

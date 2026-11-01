@@ -24,10 +24,9 @@ import lpev  # noqa: E402
 
 bad_total = 0
 for school in sys.argv[1:]:
-    H = f"{lpcap.ROOT}/{school}"
     bad = []
-    inp = json.load(open(f"{H}/labpage-input.json"))
-    ev = json.load(open(f"{H}/labpage-evidence.json"))
+    inp = json.load(open(lpcap.data("labpage-input.json", school)))
+    ev = json.load(open(lpcap.data("labpage-evidence.json", school)))
     con = sqlite3.connect(f"file:{lpcap.DBS[school]}?mode=ro", uri=True)
     views = {}
 
@@ -90,7 +89,7 @@ for school in sys.argv[1:]:
                 bad.append(f"{r['pi']} / {s['name']}: already_held without held_name")
     pis = {r["pi"] for r in inp}
     npub = 0
-    with gzip.open(f"{H}/labpage-pubs.jsonl.gz", "rt", encoding="utf-8") as f:
+    with gzip.open(lpcap.data("labpage-pubs.jsonl.gz", school), "rt", encoding="utf-8") as f:
         for line in f:
             p = json.loads(line)
             npub += 1

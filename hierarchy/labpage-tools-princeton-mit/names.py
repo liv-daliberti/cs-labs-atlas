@@ -15,7 +15,7 @@ import os
 import re
 import unicodedata
 
-ROOT = str(P.HIERARCHY)
+ROOT = str(P.HIERARCHY)  # route-ok: kept for importers; nickname files go through P.data("nicknames")
 _pairs = None
 
 
@@ -30,7 +30,7 @@ def pairs():
     if _pairs is None:
         _pairs = set()
         for f in ("names.csv", "extras.csv"):
-            p = f"{ROOT}/nicknames/{f}"
+            p = str(P.data("nicknames") / f)
             if not os.path.exists(p):
                 continue
             for row in csv.DictReader(open(p, encoding="utf-8")):

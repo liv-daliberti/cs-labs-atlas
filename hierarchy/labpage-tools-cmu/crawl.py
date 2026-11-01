@@ -20,8 +20,7 @@ from urllib.parse import urljoin, urlsplit, urldefrag
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import capstore  # noqa: E402
 
-HIER = capstore.HIER
-INPUT = HIER + "/cmu/labpage-input.json"
+INPUT = str(capstore.P.data("labpage-input.json", "cmu"))
 SUMMARY = capstore.STATE + "/crawl-summary.jsonl"
 
 PEOPLE_RX = re.compile(r"\b(people|members?|team|students|personnel|who we are|folks|alumni|advisees|"

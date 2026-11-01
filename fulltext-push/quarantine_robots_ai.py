@@ -77,7 +77,7 @@ class Robots:
 
 def lab_local_works(school):
     """{work id: row} of the local catalog works that make lab papers local by the counter's rule."""
-    copies = json.loads((F.SCHOOLS / 'hierarchy' / school / 'copies.json').read_text())['papers']
+    copies = json.loads((F.P.data('copies.json', school)).read_text())['papers']
     papers = F.lab_papers(school)
     cids = {c['catalog'] for c in copies.values() if c.get('catalog')}
     dois = {F.ndoi(r.get('doi')) for r in papers.values()} - {''}

@@ -170,7 +170,7 @@ def share_test(S_, names, orcids, first_year, author_ids=()):
                names=list(st[a]['raw'])[:3], orcids=sorted(st[a].get('orcids') or {}), venues=list(st[a]['venues'])[:3],
                dblp_examples=st[a].get('dblp_examples', [])[:2], other_examples=st[a].get('other_examples', [])[:2]) for a in sorted(ids, key=lambda a: -st[a]['n'])]
     return dict(result=res, ids=sorted(ids), school_works=n, dblp_indexed=cs, share=round(share, 3), thresholds=dict(dblp_indexed=SHARE_MIN_CS, share=SHARE_MIN, min_works_for_negative=SHARE_MIN_N),
-                namesake_orcids=len(orcs) > 1, excluded=excl[:5], authors=ev[:6], source='hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)')
+                namesake_orcids=len(orcs) > 1, excluded=excl[:5], authors=ev[:6], source='hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)')  # route-ok: a label
 
 
 def units(key):

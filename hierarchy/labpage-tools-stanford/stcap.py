@@ -25,8 +25,8 @@ if EB not in sys.path:
 import lpcap  # noqa: E402
 
 S = "stanford"
-lpcap.DBS[S] = f"{lpcap.ROOT}/{S}/labpage-captures.sqlite"
-lpcap.SISTER[S] = [f"{lpcap.ROOT}/{S}/thesis-captures.sqlite"]
+lpcap.DBS[S] = lpcap.data("labpage-captures.sqlite", S)
+lpcap.SISTER[S] = [lpcap.data("thesis-captures.sqlite", S)]
 BASE_LIVE = str(P.SWEEPS / 'claude-stanford-20261027/raw/captures.sqlite')
 
 _orig_cached = lpcap.cached

@@ -17,7 +17,7 @@ import re
 import unicodedata
 from functools import lru_cache
 
-NICK_DIR = str(P.HIERARCHY / 'nicknames')
+NICK_DIR = str(P.data('nicknames'))
 PARTICLES = {"van", "von", "der", "den", "de", "del", "della", "di", "da", "dos", "das", "du", "la", "le", "el", "al",
              "bin", "ben", "ter", "ten", "zu", "y", "e"}
 TITLES = {"dr", "prof", "professor", "mr", "ms", "mrs", "phd", "ph", "d", "msc", "bsc", "jr", "sr", "ii", "iii", "iv"}

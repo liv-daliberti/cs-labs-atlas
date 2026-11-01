@@ -17,11 +17,10 @@ import stcap  # noqa: E402,F401
 import lpcap  # noqa: E402
 import lpdom  # noqa: E402
 
-R = lpcap.ROOT + "/stanford"
-pis = {p["pi"] for p in json.load(open(f"{R}/pis.json"))}
-rows = [json.loads(l) for l in gzip.open(f"{R}/labpage-pubs.jsonl.gz", "rt")]
-rep = json.load(open(f"{R}/labpage-pubs-report.json"))
-con = sqlite3.connect(f"file:{R}/labpage-captures.sqlite?mode=ro", uri=True)
+pis = {p["pi"] for p in json.load(open(lpcap.data("pis.json", "stanford")))}
+rows = [json.loads(l) for l in gzip.open(lpcap.data("labpage-pubs.jsonl.gz", "stanford"), "rt")]
+rep = json.load(open(lpcap.data("labpage-pubs-report.json", "stanford")))
+con = sqlite3.connect(f"file:{lpcap.data('labpage-captures.sqlite', 'stanford')}?mode=ro", uri=True)
 cache, bad, seen = {}, [], set()
 
 

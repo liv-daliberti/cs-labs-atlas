@@ -24,7 +24,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402  (every path in one place)
-HERE = P.WORK; H = P.HIERARCHY
+HERE = P.WORK; H = P.HIERARCHY   # tests point H at a flat fixture tree; hfile follows the layout for the live one
 SCHOOLS = list(P.SCHOOL_IDS)  # the released schools (schools/<key>.toml); an onboarding school is named on the command line
 CHECKS = ['coverage', 'pi', 'students', 'papers', 'links', 'copies', 'one_person']
 LOCAL = {'local', 'fulltext_xml', 'downloaded', 'pdf', 'xml'}
@@ -114,16 +114,16 @@ def years_of(stu):
 
 
 def audit(school):
-    D = H / school
+    D = P.SchoolDir(school, H)
     pis = load(D / 'pis.json', [])
     students = load(D / 'students.json', {})
     lab_papers = load(D / 'lab_papers.jsonl.gz', [])
     links = load(D / 'student_papers.jsonl.gz', [])
     copies = (load(D / 'copies.json', {}) or {}).get('papers', {})
     report = load(D / 'report.json', {}) or {}
-    ledger = (load(H / 'chain-reasons.json', {}) or {}).get(school, {})
-    zero = (load(H / 'zero-paper-review.json', {}) or {}).get(school, {})
-    ov_school = (load(H / 'census-overrides.json', {}) or {}).get(school, {})
+    ledger = (load(P.hfile(H, 'chain-reasons.json'), {}) or {}).get(school, {})
+    zero = (load(P.hfile(H, 'zero-paper-review.json'), {}) or {}).get(school, {})
+    ov_school = (load(P.hfile(H, 'census-overrides.json'), {}) or {}).get(school, {})
     overrides = json.dumps(ov_school)
     # an exclusion with revisit_after (a new arrival with no group or advisee yet) is decided only until that date
     # (2026-10-29, owner: best judgement); after it the person is open again for a fresh coverage review
@@ -246,7 +246,7 @@ def audit(school):
               'pi': r['pi'], 'year': r.get('year'), 'doi': r.get('doi'), 'title': (r.get('title') or '')[:100]})
 
     # 6 one person per lab
-    sa = {x['school']: x for x in load(H / 'student-audit.json', []) or []}.get(school)
+    sa = {x['school']: x for x in load(P.hfile(H, 'student-audit.json'), []) or []}.get(school)
     if sa is None:
         res['one_person']['unexplained'].append({'key': 'student-audit.json', 'why': 'student_audit.py has no entry for this school'})
         res['one_person']['total'] += 1
@@ -285,12 +285,12 @@ def md(out):
 
 def main(argv):
     schools = argv or SCHOOLS
-    prev = {x['school']: x for x in (load(H / 'chain-audit.json', {}) or {}).get('schools', [])}
+    prev = {x['school']: x for x in (load(P.hfile(H, 'chain-audit.json'), {}) or {}).get('schools', [])}
     for s in schools:
         prev[s] = audit(s)
     out = {'at': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'), 'schools': [prev[s] for s in SCHOOLS if s in prev]}
-    (H / 'chain-audit.json').write_text(json.dumps(out, indent=1, ensure_ascii=False))
-    (H / 'CHAIN-AUDIT.md').write_text(md(out))
+    P.hfile_w(H, 'chain-audit.json').write_text(json.dumps(out, indent=1, ensure_ascii=False))
+    P.hfile_w(H, 'CHAIN-AUDIT.md').write_text(md(out))
     for s in out['schools']:
         print(s['school'], {c: (s['checks'][c]['pass'], s['checks'][c]['total'], s['checks'][c]['n_unexplained']) for c in CHECKS})
 

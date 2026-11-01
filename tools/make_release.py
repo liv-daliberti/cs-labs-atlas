@@ -83,7 +83,7 @@ def run_tests():
     return r.returncode == 0, (lines[-1] if lines else r.stderr.strip()[-300:])
 
 
-REL_HIERARCHY = 'hierarchy'  # the release's own layout: it keeps the flat names whatever the working layout (atlas_paths.flat_of)
+REL_HIERARCHY = P.REL_HIERARCHY  # the release's own layout: it keeps the flat names whatever the working layout (atlas_paths.flat_of)
 
 
 def rel_of(name, school=None):
