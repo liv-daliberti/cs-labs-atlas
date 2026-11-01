@@ -301,10 +301,33 @@ def lab_evidence(school):
     return out
 
 
+NEVER_HOSTS = {'michigan': ('deepblue.lib.umich.edu', 'news.umich.edu', 'record.umich.edu')}  # owner rule: never used in any form
+
+
+def audit_pages(school):
+    """Evidence-shaped entries from hierarchy/<school>/labpage-audit.jsonl.gz (the lab-page audit): the lab_page.urls of every
+    PI the audit found a page for. Labs the audit discovered itself have their roots only here, not in labpage-evidence.json
+    (2026-11-01). A school without the file gives []. Hosts a school never uses are dropped."""
+    p = F.SCHOOLS / 'hierarchy' / school / 'labpage-audit.jsonl.gz'
+    if not p.exists():
+        return []
+    import gzip
+    bad = NEVER_HOSTS.get(school, ())
+    out = []
+    for line in gzip.open(p, 'rt'):
+        r = json.loads(line)
+        u = ((r.get('lab_page') or {}).get('urls')) or {}
+        keep = {k: v for k, v in u.items() if isinstance(v, str) and v.startswith('http') and not any(h in v for h in bad)}
+        if r.get('pi') and keep:
+            out.append(dict(pi=r['pi'], lab_site=keep.get('lab_site'), people_page=keep.get('people_page'),
+                            pubs_pages=[keep['pubs_page']] if keep.get('pubs_page') else [], source='labpage-audit.jsonl.gz'))
+    return out
+
+
 def pi_pages(school):
     """{PI: set of normalized URLs named in their lab-page evidence}, {PI: site roots} (roots that are not more general
-    than another PI's root)."""
-    ev = lab_evidence(school)
+    than another PI's root). The evidence file and the audit's lab_page.urls are both read."""
+    ev = lab_evidence(school) + audit_pages(school)
     urls, roots = defaultdict(set), defaultdict(set)
     for x in ev:
         pi = x['pi']
