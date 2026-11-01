@@ -8,6 +8,7 @@
 #   ledger      fulltext-push/unavailable_ledger.py (collector Python): why each lab paper without a local copy has none
 #               -> hierarchy/<school>/unavailable.jsonl.gz + unavailable-summary.json, reasons onto copies.json
 #               (docs/UNAVAILABLE.md); for $SCHOOLS plus every charter with status "onboarding"
+#   reader      tools/reader_export.py: host-or-link decision per confirmed copy by licence -> hierarchy/reader/ (released as reader/)
 #   audits      student audit, chain audit (open items), link diagnosis, chain audit
 #   evidence    tools/evidence_check.py: every claim carries its evidence -> hierarchy/EVIDENCE-CHECK.md; a failure holds the release
 #   tests       pytest tests/
@@ -32,7 +33,7 @@ if [ -z "${CS_ATLAS_SNAPSHOT:-}" ]; then  # run from a code snapshot of one comm
 fi
 PY="nice -n10 $CS_ATLAS_PY -u"  # the project interpreter (env/atlas; tools/atlas_paths.py PY)
 SCHOOLS=${SCHOOLS:-$CS_ATLAS_SCHOOLS}
-STAGES=${STAGES:-snapshot build ids copies ledger audits evidence tests regression validate release tree housekeeping}
+STAGES=${STAGES:-snapshot build ids copies ledger reader audits evidence tests regression validate release tree housekeeping}
 TAG=${TAG:-local-$(date +%Y%m%d-%H%M%S)}
 BEFORE=${BEFORE:-$CS_ATLAS_SCRATCH/pkg-before-$TAG}   # scratch, outside the tree (tools/scratch.py)
 has() { case " $STAGES " in *" $1 "*) return 0 ;; esac; return 1; }
@@ -66,6 +67,12 @@ if has ledger; then
   ledger_schools=$(echo $SCHOOLS $onb | tr ' ' '\n' | awk 'NF && !seen[$0]++' | tr '\n' ' ')
   echo "== ledger $(date +%T) schools: $ledger_schools"
   nice -n10 $CS_ATLAS_COLLECTOR_PY -I -u "$CS_ATLAS_FULLTEXT_PUSH/unavailable_ledger.py" $ledger_schools || { echo "FAILED ledger"; fail=1; }
+fi
+if has reader; then
+  # (2026-11-01, owner) which confirmed copies the site may host (licence allows redistribution) and a source link for the rest;
+  # reads the catalogs read-only -> hierarchy/reader/ (README.md there), copied into the release as reader/
+  echo "== reader $(date +%T)"
+  $PY $CS_ATLAS_TOOLS/reader_export.py --site-local-papers "$CS_ATLAS_SITE/atlas/data/local-papers.json" || { echo "FAILED reader"; fail=1; }
 fi
 if has audits; then
   echo "== student audit $(date +%T)"; $PY $CS_ATLAS_TOOLS/student_audit.py $CS_ATLAS_SCHOOLS > /dev/null || fail=1

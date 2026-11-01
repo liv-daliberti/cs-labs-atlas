@@ -1,0 +1,185 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "hierarchy/reader/<school>.jsonl.gz",
+ "description": "The reader export: one row per lab paper with a confirmed full-text copy, saying whether the site hosts the copy (licence allows redistribution) or links to the source. Readable = host or link.",
+ "x-file": "hierarchy/reader/<school>.jsonl.gz",
+ "x-format": "jsonl",
+ "x-kind": "derived",
+ "x-writer": "tools/reader_export.py (rebuild stage reader)",
+ "x-readers": [
+  "tools/make_release.py",
+  "the site builder (reader/ in a release)"
+ ],
+ "x-rules": [],
+ "type": "object",
+ "required": [
+  "school",
+  "key",
+  "readable",
+  "decision",
+  "license_basis",
+  "sha256",
+  "format",
+  "lookup_keys"
+ ],
+ "properties": {
+  "school": {
+   "description": "School key.",
+   "type": "string",
+   "pattern": "^[a-z]+$"
+  },
+  "key": {
+   "description": "Paper key (the lab-paper work id, else its OpenAlex id).",
+   "type": "string"
+  },
+  "atlas_work_id": {
+   "description": "Atlas work id.",
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "oa": {
+   "description": "OpenAlex work id.",
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "doi": {
+   "description": "DOI.",
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "arxiv": {
+   "description": "arXiv id of the copy or the paper.",
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "title": {
+   "description": "Title.",
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "year": {
+   "description": "Year.",
+   "type": [
+    "integer",
+    "null"
+   ]
+  },
+  "readable": {
+   "description": "Always true in this file: a paper with a confirmed copy is readable, hosted or linked.",
+   "type": "boolean",
+   "const": true
+  },
+  "decision": {
+   "description": "host = the site hosts our copy; link = the site links to the source.",
+   "type": "string",
+   "enum": [
+    "host",
+    "link"
+   ]
+  },
+  "license": {
+   "description": "Normalised licence (cc-by, cc-by-sa, cc-by-nc, cc-by-nc-sa, cc-by-nd, cc-by-nc-nd, cc0, public-domain, arxiv-nonexclusive, other-oa, ...), null when unknown.",
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "license_basis": {
+   "description": "Where the licence came from.",
+   "type": "string",
+   "enum": [
+    "asset",
+    "candidate",
+    "arxiv_openalex",
+    "arxiv_default",
+    "arxiv_unknown",
+    "none"
+   ]
+  },
+  "source_url": {
+   "description": "The open page to read at the source (arXiv abs page, repository landing page, publisher page or DOI).",
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "source_kind": {
+   "description": "What source_url is.",
+   "type": [
+    "string",
+    "null"
+   ],
+   "enum": [
+    "arxiv",
+    "repository",
+    "publisher",
+    "doi",
+    null
+   ]
+  },
+  "sha256": {
+   "description": "sha256 of the stored file.",
+   "type": "string",
+   "pattern": "^[0-9a-f]{64}$"
+  },
+  "bytes": {
+   "description": "Size of the stored file.",
+   "type": [
+    "integer",
+    "null"
+   ],
+   "minimum": 0
+  },
+  "format": {
+   "description": "File format.",
+   "type": "string",
+   "enum": [
+    "pdf",
+    "xml"
+   ]
+  },
+  "path": {
+   "description": "Store-relative path of the file (host rows only).",
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "version": {
+   "description": "Version of the copy as the catalog records it (publishedVersion, acceptedVersion, submittedVersion).",
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "identity_check": {
+   "description": "How the copy's identity was confirmed.",
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "catalog_work": {
+   "description": "The store catalog work id of the copy.",
+   "type": "string"
+  },
+  "lookup_keys": {
+   "description": "The keys the site looks the work up by.",
+   "type": "array",
+   "items": {
+    "type": "string"
+   }
+  }
+ },
+ "additionalProperties": false
+}

@@ -108,6 +108,11 @@ def release_sources():
     for f in tracked_inputs():
         if (P.WORK / f).exists():
             src[P.flat_of(f)] = P.WORK / f
+    rd = P.data('reader-SUMMARY.json').parent   # the reader export (tools/reader_export.py; rebuild stage `reader`): copied whole to reader/ in the release
+    if rd.is_dir():
+        for p in sorted(rd.iterdir()):
+            if p.is_file():
+                src[f'reader/{p.name}'] = p
     src['docs/RULES.md'] = P.WORK / 'docs/RULES.md'
     return src
 
@@ -259,6 +264,7 @@ def make(a):
                           regression=dict(at=(reg or {}).get('after', {}).get('at'), flags=len((reg or {}).get('flags') or []),
                                           before=(reg or {}).get('before'), allowed=bool(a.allow_swings),
                                           identical_to_before={s: r.get('identical') for s, r in ((reg or {}).get('schools') or {}).items()})),
+               reader=(json.loads((tmp / 'reader/SUMMARY.json').read_text()) if (tmp / 'reader/SUMMARY.json').exists() else None),  # the reader export (tools/reader_export.py)
                counts=counts, upstream=upstream(),
                ledger={s: ledger_counts(tmp / REL_HIERARCHY / s) for s in P.SCHOOL_IDS},  # docs/UNAVAILABLE.md (2026-10-30)
                ids=({k: v for k, v in json.loads((tmp / REL_HIERARCHY / 'ids/IDS-REPORT.json').read_text()).items() if k != 'conflicts'}

@@ -319,6 +319,11 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('home-departments-school.json', 'derived', 'hierarchy/{school}/home-departments.json', 'hierarchy/{school}/derived/home-departments.json'),
     ('sweep.log', 'work', 'hierarchy/sweep-{school}.log', 'hierarchy/work/sweep-{school}.log'),
     ('tmp', 'work', 'hierarchy/{school}/tmp', 'hierarchy/{school}/work/tmp'),
+    ('reader.jsonl.gz', 'derived', 'hierarchy/reader/{school}.jsonl.gz', 'hierarchy/derived/reader/{school}.jsonl.gz'),
+    ('reader-SUMMARY.json', 'derived', 'hierarchy/reader/SUMMARY.json', 'hierarchy/derived/reader/SUMMARY.json'),
+    ('reader-hosted-files.tsv', 'derived', 'hierarchy/reader/hosted-files.tsv', 'hierarchy/derived/reader/hosted-files.tsv'),
+    ('reader-not-permitted.tsv', 'derived', 'hierarchy/reader/currently-hosted-not-permitted.tsv', 'hierarchy/derived/reader/currently-hosted-not-permitted.tsv'),
+    ('reader-README.md', 'derived', 'hierarchy/reader/README.md', 'hierarchy/derived/reader/README.md'),
 ]
 _DATA = {n: (k, a, b) for n, k, a, b in DATA_FILES}
 

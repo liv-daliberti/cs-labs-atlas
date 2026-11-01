@@ -57,6 +57,38 @@ def ndoi(s):
     return re.sub(r'^https?://(?:dx\.)?doi\.org/', '', str(s or '').strip(), flags=re.I).lower()
 
 
+def resolve(school, rows, status, by_doi, local_titles, access=None, matches=None):
+    """The coverage counter's rule, one place (tools/reader_export.py uses it too): lab-paper rows -> ({paper key: {status, catalog,
+    doi, oa, year, ...}}, counts). `status` is {catalog work id: status} (a downloaded copy whose identity is still pending is
+    'identity_unconfirmed'), `by_doi` {DOI: work id}, `local_titles` the normalized titles of local copies. If `matches` is a
+    dict it receives {paper key: (catalog work id or None, status)} for the callers that need the copy itself."""
+    access = access or {}
+    out, n = {}, collections.Counter()
+    for r in rows:
+        key = r['work'] or r['oa']
+        if key in out:
+            continue
+        st, cid = None, None
+        for e in [r] + list(r.get('editions') or []):  # one unique paper: a copy of any edition counts
+            oaw = f"{school}_oa_{(e.get('oa') or '').rsplit('/', 1)[-1]}"  # lab papers added to a catalog under their OpenAlex id (fulltext-push, 2026-10-22)
+            c_ = e.get('work') if e.get('work') in status else (oaw if oaw in status else None) or by_doi.get(ndoi(e.get('doi'))) or (by_doi.get('10.48550/arxiv.' + r['arxiv']) if r.get('arxiv') else None)
+            if c_ and (cid is None or status.get(c_) in LOCAL):
+                cid = c_
+            if cid and status.get(cid) in LOCAL:
+                break
+        st = status.get(cid) if cid else None
+        if st not in LOCAL and re.sub(r'[^a-z0-9]', '', (r.get('title') or '').lower()) in local_titles:
+            st = 'downloaded'  # another catalog record of the same paper (same title) has the copy
+        out[key] = dict(status=st or 'not_in_catalog', catalog=cid, doi=r.get('doi'), oa=r['oa'], year=r.get('year'))
+        if matches is not None:
+            matches[key] = (cid, st)
+        if st == 'needs_access_review':
+            out[key].update(access.get(cid) or dict(access_cause=None))
+            n['access_cause:' + str(out[key].get('access_cause'))] += 1
+        n['local' if st in LOCAL else (st or 'not_in_catalog')] += 1
+    return out, n
+
+
 def run(school):
     rows = [json.loads(l) for l in gzip.open(P.data('lab_papers.jsonl.gz', school), 'rt')]
     status, by_doi, local_titles, access = {}, {}, set(), {}  # the coverage counter's rule: any catalog work with the same id, DOI or title
@@ -82,27 +114,7 @@ def run(school):
                 by_doi[ndoi(doi)] = wid
             if st in LOCAL and title:
                 local_titles.add(re.sub(r'[^a-z0-9]', '', title.lower()))
-    out, n = {}, collections.Counter()
-    for r in rows:
-        key = r['work'] or r['oa']
-        if key in out:
-            continue
-        st, cid = None, None
-        for e in [r] + list(r.get('editions') or []):  # one unique paper: a copy of any edition counts
-            oaw = f"{school}_oa_{(e.get('oa') or '').rsplit('/', 1)[-1]}"  # lab papers added to a catalog under their OpenAlex id (fulltext-push, 2026-10-22)
-            c_ = e.get('work') if e.get('work') in status else (oaw if oaw in status else None) or by_doi.get(ndoi(e.get('doi'))) or (by_doi.get('10.48550/arxiv.' + r['arxiv']) if r.get('arxiv') else None)
-            if c_ and (cid is None or status.get(c_) in LOCAL):
-                cid = c_
-            if cid and status.get(cid) in LOCAL:
-                break
-        st = status.get(cid) if cid else None
-        if st not in LOCAL and re.sub(r'[^a-z0-9]', '', (r.get('title') or '').lower()) in local_titles:
-            st = 'downloaded'  # another catalog record of the same paper (same title) has the copy
-        out[key] = dict(status=st or 'not_in_catalog', catalog=cid, doi=r.get('doi'), oa=r['oa'], year=r.get('year'))
-        if st == 'needs_access_review':
-            out[key].update(access.get(cid) or dict(access_cause=None))
-            n['access_cause:' + str(out[key].get('access_cause'))] += 1
-        n['local' if st in LOCAL else (st or 'not_in_catalog')] += 1
+    out, n = resolve(school, rows, status, by_doi, local_titles, access)
     summary = dict(school=school, lab_papers=len(out), **n, local_share=round(n['local'] / max(1, len(out)), 3),
                    counted_at=time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()))
     json.dump(dict(summary=summary, papers=out), open(P.data_w('copies.json', school), 'w'))

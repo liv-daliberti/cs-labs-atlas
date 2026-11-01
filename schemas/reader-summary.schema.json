@@ -1,0 +1,130 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "hierarchy/reader/SUMMARY.json",
+ "description": "Counts of the reader export per school and in total.",
+ "x-file": "hierarchy/reader/SUMMARY.json",
+ "x-kind": "derived",
+ "x-writer": "tools/reader_export.py",
+ "x-readers": [
+  "tools/make_release.py"
+ ],
+ "x-rules": [],
+ "type": "object",
+ "required": [
+  "built_at",
+  "rule",
+  "schools",
+  "totals",
+  "currently_hosted_not_permitted",
+  "hosted_files"
+ ],
+ "properties": {
+  "built_at": {
+   "description": "UTC build time.",
+   "type": "string"
+  },
+  "rule": {
+   "description": "The rule in words.",
+   "type": "string"
+  },
+  "schools": {
+   "description": "Per school counts.",
+   "type": "object",
+   "additionalProperties": {
+    "type": "object",
+    "required": [
+     "lab_papers",
+     "confirmed_copies",
+     "host",
+     "link",
+     "readable",
+     "not_readable"
+    ],
+    "properties": {
+     "lab_papers": {
+      "description": "Unique lab papers.",
+      "type": "integer",
+      "minimum": 0
+     },
+     "confirmed_copies": {
+      "description": "Papers with a confirmed copy.",
+      "type": "integer",
+      "minimum": 0
+     },
+     "host": {
+      "description": "Papers whose copy the site hosts.",
+      "type": "integer",
+      "minimum": 0
+     },
+     "link": {
+      "description": "Papers shown with a source link.",
+      "type": "integer",
+      "minimum": 0
+     },
+     "readable": {
+      "description": "host + link.",
+      "type": "integer",
+      "minimum": 0
+     },
+     "not_readable_with_open_candidate": {
+      "description": "Of those, papers whose catalog work has an open-source candidate that is not a confirmed copy (reported, not readable).",
+      "type": "integer",
+      "minimum": 0
+     },
+     "not_readable": {
+      "description": "Papers with no confirmed copy.",
+      "type": "integer",
+      "minimum": 0
+     },
+     "by_license": {
+      "description": "Papers by decision:licence.",
+      "type": "object",
+      "additionalProperties": {
+       "type": "integer"
+      }
+     },
+     "by_license_basis": {
+      "description": "Papers by licence basis.",
+      "type": "object",
+      "additionalProperties": {
+       "type": "integer"
+      }
+     },
+     "link_source_kinds": {
+      "description": "Link papers by source kind.",
+      "type": "object",
+      "additionalProperties": {
+       "type": "integer"
+      }
+     }
+    },
+    "additionalProperties": false
+   }
+  },
+  "totals": {
+   "description": "Sums over the schools.",
+   "type": "object",
+   "additionalProperties": {
+    "type": "integer"
+   }
+  },
+  "currently_hosted_not_permitted": {
+   "description": "Files the site hosts today that the rule would not host.",
+   "type": "integer",
+   "minimum": 0
+  },
+  "hosted_files": {
+   "description": "Files to host (deduplicated by sha256).",
+   "type": "integer",
+   "minimum": 0
+  },
+  "arxiv_licences": {
+   "description": "Licences found for arXiv deposits in the local OpenAlex files.",
+   "type": "object",
+   "additionalProperties": {
+    "type": "integer"
+   }
+  }
+ },
+ "additionalProperties": false
+}

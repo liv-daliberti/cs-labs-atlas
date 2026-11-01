@@ -19,6 +19,8 @@ Paths: `a.b` a key inside an object, `[]` an array item, `<key>` any key of a ma
 - [`hierarchy/BUILD-REGRESSION.json`](#hierarchybuild-regressionjson)
 - [`hierarchy/chain-audit.json`](#hierarchychain-auditjson)
 - [`hierarchy/EVIDENCE-CHECK.json`](#hierarchyevidence-checkjson)
+- [`hierarchy/reader/<school>.jsonl.gz`](#hierarchyreaderschooljsonlgz)
+- [`hierarchy/reader/SUMMARY.json`](#hierarchyreadersummaryjson)
 - [`hierarchy/student-audit.json`](#hierarchystudent-auditjson)
 - [`export/data/schools/<school>/lab_papers.csv`](#exportdataschoolsschoollab_paperscsv)
 - [`export/data/schools/<school>/lab_students.csv`](#exportdataschoolsschoollab_studentscsv)
@@ -948,6 +950,77 @@ One category of one school.
 | `of` | integer | yes | Items checked. | at least 0 |  |
 | `samples` | array of string | yes | Up to 15 item keys. |  |  |
 | `whitelisted` | integer | yes | Allowed count (docs/evidence-whitelist.json). | at least 0 |  |
+
+## `hierarchy/reader/<school>.jsonl.gz`
+
+The reader export: one row per lab paper with a confirmed full-text copy, saying whether the site hosts the copy (licence allows redistribution) or links to the source. Readable = host or link.
+
+- schema: `schemas/reader.schema.json`
+- kind: derived (built by a tool; never hand-edited)
+- format: JSON lines (the schema describes each line)
+- writer: tools/reader_export.py (rebuild stage reader)
+- readers: tools/make_release.py, the site builder (reader/ in a release)
+
+| Field | Type | Required | Meaning | Allowed values | Rules |
+|---|---|---|---|---|---|
+| `school` | string | yes | School key. | pattern `^[a-z]+$` |  |
+| `key` | string | yes | Paper key (the lab-paper work id, else its OpenAlex id). |  |  |
+| `atlas_work_id` | string \| null | no | Atlas work id. |  |  |
+| `oa` | string \| null | no | OpenAlex work id. |  |  |
+| `doi` | string \| null | no | DOI. |  |  |
+| `arxiv` | string \| null | no | arXiv id of the copy or the paper. |  |  |
+| `title` | string \| null | no | Title. |  |  |
+| `year` | integer \| null | no | Year. |  |  |
+| `readable` | boolean | yes | Always true in this file: a paper with a confirmed copy is readable, hosted or linked. | always `true` |  |
+| `decision` | string | yes | host = the site hosts our copy; link = the site links to the source. | one of `host`, `link` |  |
+| `license` | string \| null | no | Normalised licence (cc-by, cc-by-sa, cc-by-nc, cc-by-nc-sa, cc-by-nd, cc-by-nc-nd, cc0, public-domain, arxiv-nonexclusive, other-oa, ...), null when unknown. |  |  |
+| `license_basis` | string | yes | Where the licence came from. | one of `asset`, `candidate`, `arxiv_openalex`, `arxiv_default`, `arxiv_unknown`, `none` |  |
+| `source_url` | string \| null | no | The open page to read at the source (arXiv abs page, repository landing page, publisher page or DOI). |  |  |
+| `source_kind` | string \| null | no | What source_url is. | one of `arxiv`, `repository`, `publisher`, `doi`, `null` |  |
+| `sha256` | string | yes | sha256 of the stored file. | pattern `^[0-9a-f]{64}$` |  |
+| `bytes` | integer \| null | no | Size of the stored file. | at least 0 |  |
+| `format` | string | yes | File format. | one of `pdf`, `xml` |  |
+| `path` | string \| null | no | Store-relative path of the file (host rows only). |  |  |
+| `version` | string \| null | no | Version of the copy as the catalog records it (publishedVersion, acceptedVersion, submittedVersion). |  |  |
+| `identity_check` | string \| null | no | How the copy's identity was confirmed. |  |  |
+| `catalog_work` | string | no | The store catalog work id of the copy. |  |  |
+| `lookup_keys` | array of string | yes | The keys the site looks the work up by. |  |  |
+
+## `hierarchy/reader/SUMMARY.json`
+
+Counts of the reader export per school and in total.
+
+- schema: `schemas/reader-summary.schema.json`
+- kind: derived (built by a tool; never hand-edited)
+- format: JSON
+- writer: tools/reader_export.py
+- readers: tools/make_release.py
+
+| Field | Type | Required | Meaning | Allowed values | Rules |
+|---|---|---|---|---|---|
+| `built_at` | string | yes | UTC build time. |  |  |
+| `rule` | string | yes | The rule in words. |  |  |
+| `schools` | map | yes | Per school counts. |  |  |
+| `schools.<key>` | object | — |  | no other keys |  |
+| `schools.<key>.lab_papers` | integer | yes | Unique lab papers. | at least 0 |  |
+| `schools.<key>.confirmed_copies` | integer | yes | Papers with a confirmed copy. | at least 0 |  |
+| `schools.<key>.host` | integer | yes | Papers whose copy the site hosts. | at least 0 |  |
+| `schools.<key>.link` | integer | yes | Papers shown with a source link. | at least 0 |  |
+| `schools.<key>.readable` | integer | yes | host + link. | at least 0 |  |
+| `schools.<key>.not_readable_with_open_candidate` | integer | no | Of those, papers whose catalog work has an open-source candidate that is not a confirmed copy (reported, not readable). | at least 0 |  |
+| `schools.<key>.not_readable` | integer | yes | Papers with no confirmed copy. | at least 0 |  |
+| `schools.<key>.by_license` | map | no | Papers by decision:licence. |  |  |
+| `schools.<key>.by_license.<key>` | integer | — |  |  |  |
+| `schools.<key>.by_license_basis` | map | no | Papers by licence basis. |  |  |
+| `schools.<key>.by_license_basis.<key>` | integer | — |  |  |  |
+| `schools.<key>.link_source_kinds` | map | no | Link papers by source kind. |  |  |
+| `schools.<key>.link_source_kinds.<key>` | integer | — |  |  |  |
+| `totals` | map | yes | Sums over the schools. |  |  |
+| `totals.<key>` | integer | — |  |  |  |
+| `currently_hosted_not_permitted` | integer | yes | Files the site hosts today that the rule would not host. | at least 0 |  |
+| `hosted_files` | integer | yes | Files to host (deduplicated by sha256). | at least 0 |  |
+| `arxiv_licences` | map | no | Licences found for arXiv deposits in the local OpenAlex files. |  |  |
+| `arxiv_licences.<key>` | integer | — |  |  |  |
 
 ## `hierarchy/student-audit.json`
 
