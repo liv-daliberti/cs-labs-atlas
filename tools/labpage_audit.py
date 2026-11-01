@@ -2215,10 +2215,99 @@ def cmd_sample(school, kind, n, seed):
             lp = ev.get('labpage') or {}
             print('     listed:', str(lp.get('listed_title'))[:110], lp.get('listed_year'), lp.get('url'))
 
+# ---------------------------------------------------------------- restamp (2026-10-31, coordinator)
+def additions_keys(rows, kind):
+    """{stable key: the fields that matter} of one kind of additions: students (pi, name) -> role, years; papers (pi, work
+    key) -> title, year, doi."""
+    out = {}
+    for r in rows:
+        if kind == 'students':
+            out[(r['pi'], names_fold(r['name']))] = (r.get('role'), json.dumps(r.get('years')))
+        else:
+            out[(r['pi'], r.get('key') or r.get('doi') or norm_title_key(r.get('title')))] = (r.get('title'), r.get('year'), r.get('doi'))
+    return out
+
+
+def names_fold(n):
+    import unicodedata
+    return re.sub(r'\s+', ' ', ''.join(c for c in unicodedata.normalize('NFKD', str(n)) if not unicodedata.combining(c))).strip().lower()
+
+
+def norm_title_key(t):
+    return re.sub(r'[^a-z0-9]+', ' ', str(t or '').lower()).strip()
+
+
+def compare_additions(old, new, kind):
+    """(removed, added, changed) between the accepted additions and the regenerated ones, by stable key."""
+    a, b = additions_keys(old.get(kind) or [], kind), additions_keys(new.get(kind) or [], kind)
+    removed = sorted(k for k in a if k not in b)
+    added = sorted(k for k in b if k not in a)
+    changed = sorted(k for k in a if k in b and a[k] != b[k])
+    return removed, added, changed
+
+
+def find_accepted_file(add_path, sha, repo=None):
+    """The additions file with this sha256: the working copy, else the newest git revision of it that hashes to it."""
+    import subprocess
+    add_path = Path(add_path)
+    if hashlib.sha256(add_path.read_bytes()).hexdigest() == sha:
+        return json.loads(add_path.read_text(encoding='utf-8'))
+    repo = Path(repo or P.CODE)
+    rel = str(add_path.resolve().relative_to(repo.resolve()))
+    revs = subprocess.run(['git', '-C', str(repo), 'log', '--format=%H', '--', rel], capture_output=True, text=True).stdout.split()
+    for h_ in revs:
+        blob = subprocess.run(['git', '-C', str(repo), 'show', f'{h_}:{rel}'], capture_output=True).stdout
+        if blob and hashlib.sha256(blob).hexdigest() == sha:
+            return json.loads(blob.decode('utf-8'))
+    return None
+
+
+def restamp(school, root=None, repo=None, old=None, apply=True):
+    """After the additions were regenerated, keep an acceptance valid only when it still describes the file: for every accepted
+    kind compare the accepted set with the new one by stable key. A subset with the same fields (rows removed by existing
+    rules) is re-stamped with the new sha256 and `restamped_from`; a kind with an added or changed row loses `accepted` (it
+    needs a fresh hand-check round). Returns the report."""
+    d = Path(root) if root else H / school
+    ap, add = d / 'labpage-acceptance.json', d / 'labpage-additions.json'
+    if not ap.exists():
+        return dict(school=school, status='no_acceptance')
+    acc = json.loads(ap.read_text(encoding='utf-8'))
+    raw = add.read_bytes()
+    new_sha = hashlib.sha256(raw).hexdigest()
+    if new_sha == acc.get('additions_sha256'):
+        return dict(school=school, status='current')
+    new = json.loads(raw.decode('utf-8'))
+    prev = old if old is not None else find_accepted_file(add, acc.get('additions_sha256'), repo)
+    if prev is None:
+        return dict(school=school, status='accepted_file_not_found', old_sha=acc.get('additions_sha256'))
+    rep = dict(school=school, status='restamped', kinds={})
+    for kind in ('students', 'papers'):
+        k = acc.get(kind) or {}
+        if not k.get('accepted'):
+            continue
+        rem, addd, chg = compare_additions(prev, new, kind)
+        info = dict(removed=len(rem), added=len(addd), changed=len(chg), proposed=len(new.get(kind) or []))
+        if addd or chg:
+            info['result'] = 'needs_new_round'
+            k.update(accepted=False, reason=f"rows added ({len(addd)}) or changed ({len(chg)}) since round {k.get('round')}: "
+                     f"a fresh hand-check round is needed", restamped_from=dict(sha256=acc.get('additions_sha256'), added=len(addd), changed=len(chg)))
+        else:
+            info['result'] = 'subset'
+            k['restamped_from'] = dict(sha256=acc.get('additions_sha256'), generated_at=acc.get('additions_generated_at'),
+                                       removed=len(rem), reason='rows removed by existing rules on regeneration '
+                                       '(appointment periods R-PAP-01/03, strict current rule); no row added or changed')
+            k['counts'] = dict(k.get('counts') or {}, proposed=len(new.get(kind) or []))
+        acc[kind] = k
+        rep['kinds'][kind] = info
+    acc.update(additions_sha256=new_sha, additions_generated_at=new.get('generated_at'))
+    if apply:
+        ap.write_text(json.dumps(acc, indent=1, ensure_ascii=False) + '\n', encoding='utf-8')
+    return rep
+
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('cmd', choices=['discover', 'recover', 'audit', 'recover-audit', 'all', 'summary', 'sample'])
+    ap.add_argument('cmd', choices=['discover', 'recover', 'audit', 'recover-audit', 'all', 'summary', 'sample', 'restamp'])
     ap.add_argument('--kind', choices=['students', 'papers'], default='students')
     ap.add_argument('--n', type=int, default=20)
     ap.add_argument('--seed', type=int, default=0)
@@ -2243,6 +2332,9 @@ def main():
         cmd_sample(a.school, a.kind, a.n, a.seed)
     if a.cmd == 'summary':
         cmd_summary()
+    if a.cmd == 'restamp':
+        for s_ in ([a.school] if a.school else list(SCHOOLS)):
+            print(json.dumps(restamp(s_), ensure_ascii=False))
 
 
 if __name__ == '__main__':

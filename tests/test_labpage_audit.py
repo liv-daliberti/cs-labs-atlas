@@ -331,3 +331,47 @@ def test_current_marker_is_the_entrys_own(x, want):
 def test_a_current_and_former_heading_is_no_current_marker():
     assert not A.current_marker(dict(head='Current and Former Ph.D. Students', desc=', Tech Startup'))
     assert A.current_marker(dict(head='Current and Former Ph.D. Students', desc='Ph.D. in Economics, Princeton University, in progress, expected 2027'))
+
+
+def _restamp_setup(tmp_path, old, new):
+    import hashlib
+    import json
+    d = tmp_path / 'x'
+    d.mkdir()
+    ob = json.dumps(old).encode()
+    (d / 'labpage-additions.json').write_bytes(json.dumps(new).encode())
+    acc = dict(additions_sha256=hashlib.sha256(ob).hexdigest(), students=dict(accepted=True, round=1, counts=dict(proposed=2)),
+               papers=dict(accepted=True, round=1, counts=dict(proposed=1)))
+    (d / 'labpage-acceptance.json').write_text(json.dumps(acc))
+    return d, old
+
+
+def _adds(students, papers):
+    return dict(generated_at='t', students=students, papers=papers)
+
+
+S = lambda n, role='phd': dict(pi='P', name=n, role=role, years=None)  # noqa: E731
+W = lambda k: dict(pi='P', key=k, title='T' + k, year=2020, doi=None)  # noqa: E731
+
+
+def test_restamp_subset_keeps_acceptance(tmp_path):
+    import json
+    old = _adds([S('Ann Lee'), S('Bo Wu')], [W('a')])
+    new = _adds([S('Ann Lee')], [])
+    d, old = _restamp_setup(tmp_path, old, new)
+    rep = A.restamp('x', root=d, old=old)
+    acc = json.loads((d / 'labpage-acceptance.json').read_text())
+    assert rep['kinds']['students']['result'] == 'subset' and rep['kinds']['students']['removed'] == 1
+    assert acc['students']['accepted'] and acc['papers']['accepted'] and acc['students']['restamped_from']['removed'] == 1
+    assert A.restamp('x', root=d, old=old)['status'] == 'current'
+
+
+def test_restamp_added_or_changed_row_needs_a_new_round(tmp_path):
+    import json
+    old = _adds([S('Ann Lee'), S('Bo Wu')], [W('a')])
+    new = _adds([S('Ann Lee', role='postdoc'), S('Bo Wu'), S('Cy Xu')], [W('a')])
+    d, old = _restamp_setup(tmp_path, old, new)
+    rep = A.restamp('x', root=d, old=old)
+    acc = json.loads((d / 'labpage-acceptance.json').read_text())
+    assert rep['kinds']['students']['result'] == 'needs_new_round' and not acc['students']['accepted']
+    assert acc['papers']['accepted'] and rep['kinds']['papers']['result'] == 'subset'
