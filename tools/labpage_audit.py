@@ -945,7 +945,7 @@ def load_ctx(school, kit=None, plan=True):
         dp = H / cfg['tools'] / 'decisions.json'
         for pi_, d_ in (read(dp) if dp.exists() else {}).items():
             ctx['seeds'][pi_] = [x['url'] for x in d_.get('pages') or [] if x.get('url')]
-    hf = P.FULLTEXT_PUSH / 'raw' / f'pi-homepages-{school}.json'
+    hf = P.FT_RAW / f'pi-homepages-{school}.json'
     ctx['homepage_finds'] = read(hf) if hf.exists() else {}
     ctx['dblp_persons'] = {}
     return ctx
@@ -1427,6 +1427,10 @@ def audit_students(kit, ctx, p, lab, plan, auto_plan=False):
                 dated = [r for r in ok_ if r.get('years')]
                 if dated:
                     years, ybasis = dated[0]['years'], dated[0].get('years_basis') or 'stated_in_entry'
+            why_ = not_a_member_context(kit, school, nm, best)
+            if why_:  # a Stanford Profiles reader / program listing, or a name in a citation (Stanford round 1, 2026-11-01)
+                miss['reason_code'], miss['detail'] = why_
+                continue
             try:  # the evidence check the build's lab-page rows pass: the quote is verbatim on the stored capture and names the person
                 row = kit.lpev.M(school, nm, best.get('role') if best.get('role') in ROLE_OK else 'member', years,
                                  best.get('capture_url') or best['sha256'], quote=best['quote'],
@@ -1652,6 +1656,34 @@ def caps_heading_is_past(kit, school, src, name, cache):
     for m in re.finditer(r'\b(?:CURRENT|PRESENT|PAST|FORMER|PREVIOUS|ALUMNI|ALUMNAE)\b(?: [A-Z][A-Z\-/&,]*){1,6}', t[:j]):
         last = m
     return bool(last and last.group(0).split()[0] in ('PAST', 'FORMER', 'PREVIOUS', 'ALUMNI', 'ALUMNAE'))
+
+
+WEAK_PROFILE_LABEL = re.compile(r"Doctoral Dissertation Reader|Reader \(AC\)|\(Program\)|Program Advisor|Major Advisor|Orals Evaluator")
+CITATION_CONTEXT = re.compile(r"\bpp\.\s*\d|\bPDF\s*\||\bView details for\b|\bProceedings of\b|\bTrans\. on\b|\bBibTeX\b|\bSupplemental\b")
+
+
+def not_a_member_context(kit, school, name, best):
+    """(reason code, detail) when the evidence for a student is not a membership statement: a Stanford Profiles reader / program /
+    major-advisor heading (the profile lists the person as read-by or in-program, not as an advisee; pihier.students.WEAK_LABEL),
+    or a name inside a publication citation (page text near the quote carries page ranges, PDF links or a venue). None otherwise."""
+    q = best.get('quote') or ''
+    try:
+        t = kit.lpev.text(school, best.get('capture_url') or best['sha256'])
+    except (KeyError, ValueError):
+        t = ''
+    j = t.find(q) if q else -1
+    if WEAK_PROFILE_LABEL.search(q):
+        heads = list(re.finditer(r"Doctoral Dissertation Advisor|Doctoral Dissertation Reader|Postdoctoral Faculty Sponsor|Postdoctoral Research Mentor|Doctoral \(Program\)|Master's Program Advisor|Undergraduate Major Advisor|Orals Evaluator|Reader \(AC\)", q))
+        k = q.find(name.split()[-1]) if name else -1
+        before = [h for h in heads if k < 0 or h.start() < k]
+        if before and WEAK_PROFILE_LABEL.search(before[-1].group(0)):
+            return 'not_a_student', 'profile reader / program / major-advisor listing, not an advisee'
+    if j >= 0:
+        k = t.find(name.split()[-1], j) if name else j
+        k = j if k < 0 else k
+        if CITATION_CONTEXT.search(t[max(0, k - 160): k + 160]):
+            return 'name_unresolved', 'the name sits inside a publication citation'
+    return None
 
 
 def appointed_in(p, year):
