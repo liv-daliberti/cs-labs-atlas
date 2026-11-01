@@ -47,11 +47,11 @@ Status: `open` · `in progress (<who>)` · `done <date> <commit>` · `queued (af
 | # | Item | Status | Done when |
 |---|---|---|---|
 | 12 | Supervised collectors + status page | done 2026-10-31 7364291 (SIGTERM-clean Slurm loops, idle backoff 10 min-4 h, generated hierarchy/COLLECTORS-STATUS.md); six loops on Slurm: 32041175_0, 32041308_1-5; Princeton proof round passed | loops run as Slurm jobs that back off when idle; generated `STATUS.md` per school |
-| 13 | Scratch housekeeping | queued (data-standards agent, after the downloads agent) | scratch outside the tree, cleaned automatically |
-| 14 | Release notes generated from the build regression | queued (data-standards agent, after the downloads agent) | each release carries a generated `CHANGES.md` |
+| 13 | Scratch housekeeping | done 2026-11-01 314feeb (SCRATCH slot outside the tree, tools/scratch.py clean, rebuild housekeeping stage) | scratch outside the tree, cleaned automatically |
+| 14 | Release notes generated from the build regression | done 2026-11-01 8322ca4 (tools/release_notes.py: each release carries a generated CHANGES.md from the build regression) | each release carries a generated `CHANGES.md` |
 
 ## 5. Documentation
 
 | # | Item | Status | Done when |
 |---|---|---|---|
-| 15 | Architecture overview + runbook | queued (data-standards agent, after the downloads agent) | `docs/ARCHITECTURE.md` and `docs/RUNBOOK.md` cover rebuild, collectors, release and recovery |
+| 15 | Architecture overview + runbook | done 2026-11-01 (docs/ARCHITECTURE.md, docs/RUNBOOK.md; also 7fb0cdb: Slurm jobs run from a code snapshot) | `docs/ARCHITECTURE.md` and `docs/RUNBOOK.md` cover rebuild, collectors, release and recovery |
