@@ -1,6 +1,6 @@
 # Lab-page audit
 
-Generated 2026-11-01T14:29:09+00:00 by `tools/labpage_audit.py`; method and reason codes in `docs/LAB-PAGES.md`.
+Generated 2026-11-01T14:42:59+00:00 by `tools/labpage_audit.py`; method and reason codes in `docs/LAB-PAGES.md`.
 
 ## Lab pages
 
@@ -35,7 +35,7 @@ Generated 2026-11-01T14:29:09+00:00 by `tools/labpage_audit.py`; method and reas
 | princeton | 7607 | 3184 | 2134 | outside_window 3293, undated_entry 945, unresolved_metadata 355, from_previous_school 253, no_school_affiliation_evidence 120, other_institution_affiliation 100, outside_appointment 72, not_a_paper 32, pi_not_author 28, parse_artifact 10 | 56 | 56 |
 | mit | 13393 | 6100 | 4118 | outside_window 6576, unresolved_metadata 617, undated_entry 510, from_previous_school 348, pi_not_author 338, no_school_affiliation_evidence 190, not_a_paper 142, other_institution_affiliation 81, outside_appointment 72, parse_artifact 20, not_yet_resolved 2 | 135 | 135 |
 | cmu | 30933 | 16173 | 9519 | outside_window 12952, unresolved_metadata 2646, from_previous_school 1056, undated_entry 1046, other_institution_affiliation 760, pi_not_author 736, no_school_affiliation_evidence 515, outside_appointment 267, not_a_paper 188, parse_artifact 184, not_yet_resolved 32 | 215 | 215 |
-| epfl | 10532 | 6759 | 3453 | outside_window 3646, pi_not_author 1360, unresolved_metadata 722, not_a_paper 624, from_previous_school 284, no_school_affiliation_evidence 128, undated_entry 119, other_institution_affiliation 69, outside_appointment 49, parse_artifact 19 | 33 | 33 |
+| epfl | 10532 | 6759 | 3453 | outside_window 3646, pi_not_author 1360, unresolved_metadata 722, not_a_paper 627, from_previous_school 284, no_school_affiliation_evidence 128, undated_entry 119, other_institution_affiliation 69, outside_appointment 49, parse_artifact 19 | 30 | 30 |
 | berkeley | 10352 | 4734 | 2847 | outside_window 5043, unresolved_metadata 739, from_previous_school 486, undated_entry 476, no_school_affiliation_evidence 131, not_a_paper 115, other_institution_affiliation 106, parse_artifact 92, pi_not_author 86, outside_appointment 49, not_yet_resolved 11 | 44 | 44 |
 | stanford | 19496 | 5725 | 4519 | outside_window 7628, undated_entry 4612, unresolved_metadata 421, from_previous_school 286, no_school_affiliation_evidence 167, outside_appointment 115, other_institution_affiliation 77, pi_not_author 37, parse_artifact 19, not_a_paper 15, not_yet_resolved 1 | 36 | 36 |
 | michigan | 3585 | 2035 | 996 | outside_window 1410, unresolved_metadata 387, from_previous_school 377, undated_entry 117, no_school_affiliation_evidence 76, outside_appointment 57, other_institution_affiliation 56, pi_not_author 36, not_a_paper 30, parse_artifact 6 | 7 | 7 |
@@ -55,6 +55,7 @@ Generated 2026-11-01T14:29:09+00:00 by `tools/labpage_audit.py`; method and reas
 | cmu | 2 | 2026-10-31 | 20 | 4 | 1 | - | - | fail | after the other-institution, listing, not-paper and strict undated rul |
 | cmu | 3 | 2026-10-31 | 20 | 3 | 2 | 20 | 1.0 | students_fail_papers_pass | after the 5 reviewed departures (R-PAP-03) and the strict undated rule |
 | epfl | 1 | 2026-10-31 | 20 | 0.5 | 2 | 20 | 2.5 | students_pass_papers_fail | first EPFL audit |
+| epfl | 2 | 2026-10-31 |  | None | None | 20 | 2.5 | papers_fail | papers only, after the EGU/Schizophrenia Bulletin abstract rule |
 | berkeley | 1 | 2026-10-31 | 20 | 6.5 | 0 | - | - | fail | first Berkeley audit |
 | berkeley | 2 | 2026-10-31 | 20 | 6 | 0 | - | - | fail | after the strict undated rule and rediscovery |
 | berkeley | 3 | 2026-10-31 | 20 | 0.5 | 3 | 20 | 0.0 | students_membership_only_papers_pass | after the all-caps PAST heading rule; last student round |
