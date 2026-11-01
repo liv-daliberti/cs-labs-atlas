@@ -1181,6 +1181,7 @@ def pm_candidates(kit, school, pi, plan, held):
             if lpauto.wb_from(school, pi, plan) <= y <= plan.get('wb_to', 2026):
                 srcs.append((c, True))
     cands, unreadable = [], []
+    text_cache = {}
     auto_plan = bool(plan.get('strict')) or plan.get('notes', '').startswith('lab-page audit discovery')
     homepage_people = bool(plan.get('homepage_people'))
     coadv, inst_ = {}, {}
@@ -1206,6 +1207,8 @@ def pm_candidates(kit, school, pi, plan, held):
                                or src in plan.get('alumni_pages', ()) or (orig is not None and any(
                                    orig.replace('http://', 'https://').rstrip('/') == unwayback(a).replace('http://', 'https://').rstrip('/')
                                    for a in plan.get('alumni_pages', ()))))
+            if not x['alumni'] and caps_heading_is_past(kit, school, src, x['name'], text_cache):
+                x['alumni'] = True  # an all-caps 'PAST ...' / 'FORMER ...' heading the extractor's section did not follow
             x['under_people_heading'] = bool(x['head'] and kit.autom.HEADWORD.search(x['head']))
             x['single_token'] = len(names.parse(x['name'])['tokens']) < 2
             if fn in yrs:
@@ -1629,6 +1632,26 @@ def recover_verdicts(school):
             out[ak] = (status, reason, acc.get((pi, key.split(':', 2)[0] + ':' + key.split(':', 2)[1]) if key.count(':') >= 2 else (pi, key)))
     c.close()
     return out
+
+
+
+def caps_heading_is_past(kit, school, src, name, cache):
+    """True when the closest ALL-CAPS heading before the name on the page text says PAST / FORMER / ALUMNI (Berkeley round 2,
+    2026-10-31: Sastry's 'PAST POST-DOCTORAL RESEARCHERS' names were read under the 'CURRENT POST-DOCTORAL RESEARCHERS'
+    section). Only a heading in capitals counts, so a name in prose is never moved."""
+    try:
+        if src not in cache:
+            cache[src] = kit.lpev.text(school, src)
+        t = cache[src]
+    except (KeyError, ValueError):
+        return False
+    j = t.find(name)
+    if j < 0:
+        return False
+    last = None
+    for m in re.finditer(r'\b(?:CURRENT|PRESENT|PAST|FORMER|PREVIOUS|ALUMNI|ALUMNAE)\b(?: [A-Z][A-Z\-/&,]*){1,6}', t[:j]):
+        last = m
+    return bool(last and last.group(0).split()[0] in ('PAST', 'FORMER', 'PREVIOUS', 'ALUMNI', 'ALUMNAE'))
 
 
 def appointed_in(p, year):
