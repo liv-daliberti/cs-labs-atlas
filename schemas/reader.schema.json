@@ -18,9 +18,9 @@
   "readable",
   "decision",
   "license_basis",
-  "sha256",
-  "format",
-  "lookup_keys"
+  "lookup_keys",
+  "link_basis",
+  "stored_copy"
  ],
  "properties": {
   "school": {
@@ -80,7 +80,7 @@
    "const": true
   },
   "decision": {
-   "description": "host = the site hosts our copy; link = the site links to the source.",
+   "description": "host = the site hosts our copy; link = the site links to the source (never hosted when stored_copy is false).",
    "type": "string",
    "enum": [
     "host",
@@ -128,8 +128,11 @@
    ]
   },
   "sha256": {
-   "description": "sha256 of the stored file.",
-   "type": "string",
+   "description": "sha256 of the stored file (null for a link from a candidate URL: there is no stored copy).",
+   "type": [
+    "string",
+    "null"
+   ],
    "pattern": "^[0-9a-f]{64}$"
   },
   "bytes": {
@@ -141,11 +144,15 @@
    "minimum": 0
   },
   "format": {
-   "description": "File format.",
-   "type": "string",
+   "description": "File format (null without a stored copy).",
+   "type": [
+    "string",
+    "null"
+   ],
    "enum": [
     "pdf",
-    "xml"
+    "xml",
+    null
    ]
   },
   "path": {
@@ -179,6 +186,25 @@
    "items": {
     "type": "string"
    }
+  },
+  "link_basis": {
+   "description": "Why the link is to this paper: confirmed_copy (we hold a confirmed copy, not licensed for hosting), or for a candidate URL with no stored copy: arxiv_id_doi, openalex_location, arxiv_metadata, landing_page_metadata. Null for host rows.",
+   "type": [
+    "string",
+    "null"
+   ],
+   "enum": [
+    "confirmed_copy",
+    "arxiv_id_doi",
+    "openalex_location",
+    "arxiv_metadata",
+    "landing_page_metadata",
+    null
+   ]
+  },
+  "stored_copy": {
+   "description": "We hold a confirmed copy of the file (always true for host rows; false for a link from a candidate URL).",
+   "type": "boolean"
   }
  },
  "additionalProperties": false

@@ -973,19 +973,21 @@ The reader export: one row per lab paper with a confirmed full-text copy, saying
 | `title` | string \| null | no | Title. |  |  |
 | `year` | integer \| null | no | Year. |  |  |
 | `readable` | boolean | yes | Always true in this file: a paper with a confirmed copy is readable, hosted or linked. | always `true` |  |
-| `decision` | string | yes | host = the site hosts our copy; link = the site links to the source. | one of `host`, `link` |  |
+| `decision` | string | yes | host = the site hosts our copy; link = the site links to the source (never hosted when stored_copy is false). | one of `host`, `link` |  |
 | `license` | string \| null | no | Normalised licence (cc-by, cc-by-sa, cc-by-nc, cc-by-nc-sa, cc-by-nd, cc-by-nc-nd, cc0, public-domain, arxiv-nonexclusive, other-oa, ...), null when unknown. |  |  |
 | `license_basis` | string | yes | Where the licence came from. | one of `asset`, `candidate`, `arxiv_openalex`, `arxiv_default`, `arxiv_unknown`, `none` |  |
 | `source_url` | string \| null | no | The open page to read at the source (arXiv abs page, repository landing page, publisher page or DOI). |  |  |
 | `source_kind` | string \| null | no | What source_url is. | one of `arxiv`, `repository`, `publisher`, `doi`, `null` |  |
-| `sha256` | string | yes | sha256 of the stored file. | pattern `^[0-9a-f]{64}$` |  |
+| `sha256` | string \| null | no | sha256 of the stored file (null for a link from a candidate URL: there is no stored copy). | pattern `^[0-9a-f]{64}$` |  |
 | `bytes` | integer \| null | no | Size of the stored file. | at least 0 |  |
-| `format` | string | yes | File format. | one of `pdf`, `xml` |  |
+| `format` | string \| null | no | File format (null without a stored copy). | one of `pdf`, `xml`, `null` |  |
 | `path` | string \| null | no | Store-relative path of the file (host rows only). |  |  |
 | `version` | string \| null | no | Version of the copy as the catalog records it (publishedVersion, acceptedVersion, submittedVersion). |  |  |
 | `identity_check` | string \| null | no | How the copy's identity was confirmed. |  |  |
 | `catalog_work` | string | no | The store catalog work id of the copy. |  |  |
 | `lookup_keys` | array of string | yes | The keys the site looks the work up by. |  |  |
+| `link_basis` | string \| null | yes | Why the link is to this paper: confirmed_copy (we hold a confirmed copy, not licensed for hosting), or for a candidate URL with no stored copy: arxiv_id_doi, openalex_location, arxiv_metadata, landing_page_metadata. Null for host rows. | one of `confirmed_copy`, `arxiv_id_doi`, `openalex_location`, `arxiv_metadata`, `landing_page_metadata`, `null` |  |
+| `stored_copy` | boolean | yes | We hold a confirmed copy of the file (always true for host rows; false for a link from a candidate URL). |  |  |
 
 ## `hierarchy/reader/SUMMARY.json`
 
@@ -1017,12 +1019,19 @@ Counts of the reader export per school and in total.
 | `schools.<key>.by_license_basis.<key>` | integer | — |  |  |  |
 | `schools.<key>.link_source_kinds` | map | no | Link papers by source kind. |  |  |
 | `schools.<key>.link_source_kinds.<key>` | integer | — |  |  |  |
+| `schools.<key>.link_by_basis` | map | no | Link papers by link_basis. |  |  |
+| `schools.<key>.link_by_basis.<key>` | integer | — |  |  |  |
+| `schools.<key>.newly_readable_from_candidates` | integer | no | Papers readable only through a confirmed candidate URL (no stored copy). | at least 0 |  |
+| `schools.<key>.link_check_requests` | integer | no | Papers with an unconfirmed candidate, listed in link-check-requests.tsv for the landing-page check. | at least 0 |  |
 | `totals` | map | yes | Sums over the schools. |  |  |
 | `totals.<key>` | integer | — |  |  |  |
 | `currently_hosted_not_permitted` | integer | yes | Files the site hosts today that the rule would not host. | at least 0 |  |
 | `hosted_files` | integer | yes | Files to host (deduplicated by sha256). | at least 0 |  |
 | `arxiv_licences` | map | no | Licences found for arXiv deposits in the local OpenAlex files. |  |  |
 | `arxiv_licences.<key>` | integer | — |  |  |  |
+| `link_check_request_urls` | integer | no | Rows in link-check-requests.tsv. | at least 0 |  |
+| `link_check_request_hosts` | map | no | The 25 hosts with most request rows. |  |  |
+| `link_check_request_hosts.<key>` | integer | — |  |  |  |
 
 ## `hierarchy/student-audit.json`
 

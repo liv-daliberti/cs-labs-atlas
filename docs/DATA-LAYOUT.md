@@ -153,6 +153,8 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `labpage-audit-summary.json` | derived | `hierarchy/labpage-audit-summary.json` | `hierarchy/derived/labpage-audit-summary.json` | - | <100MB |
 | `tobagi-review.json` | reviewed | `hierarchy/{school}/tobagi-review.json` | `hierarchy/{school}/reviewed/tobagi-review.json` | - | <100MB |
 | `link-sweep.json` | derived | `hierarchy/link-sweep/{school}.json` | `hierarchy/derived/link-sweep/{school}.json` | - | <100MB |
+| `reader-link-requests.tsv` | derived | `hierarchy/reader/link-check-requests.tsv` | `hierarchy/derived/reader/link-check-requests.tsv` | - | <100MB |
+| `reader-link-verdicts.jsonl` | reviewed | `hierarchy/reader/link-verdicts.jsonl` | `hierarchy/reviewed/reader/link-verdicts.jsonl` | - | <100MB |
 | `reader.jsonl.gz` | derived | `hierarchy/reader/{school}.jsonl.gz` | `hierarchy/derived/reader/{school}.jsonl.gz` | - | <100MB |
 | `reader-SUMMARY.json` | derived | `hierarchy/reader/SUMMARY.json` | `hierarchy/derived/reader/SUMMARY.json` | - | <100MB |
 | `reader-hosted-files.tsv` | derived | `hierarchy/reader/hosted-files.tsv` | `hierarchy/derived/reader/hosted-files.tsv` | - | <100MB |

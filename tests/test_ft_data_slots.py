@@ -43,7 +43,7 @@ def test_route_check_finds_fulltext_push_joins_outside_fulltext_push(tmp_path):
 
 
 def test_repository_has_no_fulltext_push_data_joins_outside_it():
-    """The lab-page agent's tools/labpage_audit.py:948 is the one known site, being fixed by its owner."""
+    """No exceptions: every join of FULLTEXT_PUSH onto a data directory outside fulltext-push/ goes through the slots."""
     code = Path(__file__).resolve().parents[1]
     left = {f.relative_to(code).as_posix() for f, _, _ in R.scan_outside(code)}
-    assert left <= {'tools/labpage_audit.py'}, left
+    assert not left, left

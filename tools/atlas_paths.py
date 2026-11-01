@@ -342,6 +342,8 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('listings-summary.json', 'derived', 'listings/{school}/summary.json', 'listings/{school}/derived/summary.json'),
     ('listings-verify.json', 'derived', 'listings/{school}/verify.json', 'listings/{school}/derived/verify.json'),
     ('listings-input.json', 'reviewed', 'hierarchy/listings-input-{school}.json', 'hierarchy/reviewed/listings-input-{school}.json'),
+    ('reader-link-requests.tsv', 'derived', 'hierarchy/reader/link-check-requests.tsv', 'hierarchy/derived/reader/link-check-requests.tsv'),
+    ('reader-link-verdicts.jsonl', 'reviewed', 'hierarchy/reader/link-verdicts.jsonl', 'hierarchy/reviewed/reader/link-verdicts.jsonl'),
 ]
 _DATA = {n: (k, a, b) for n, k, a, b in DATA_FILES}
 

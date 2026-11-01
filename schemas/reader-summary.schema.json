@@ -101,6 +101,23 @@
       "additionalProperties": {
        "type": "integer"
       }
+     },
+     "link_by_basis": {
+      "description": "Link papers by link_basis.",
+      "type": "object",
+      "additionalProperties": {
+       "type": "integer"
+      }
+     },
+     "newly_readable_from_candidates": {
+      "description": "Papers readable only through a confirmed candidate URL (no stored copy).",
+      "type": "integer",
+      "minimum": 0
+     },
+     "link_check_requests": {
+      "description": "Papers with an unconfirmed candidate, listed in link-check-requests.tsv for the landing-page check.",
+      "type": "integer",
+      "minimum": 0
      }
     },
     "additionalProperties": false
@@ -125,6 +142,18 @@
   },
   "arxiv_licences": {
    "description": "Licences found for arXiv deposits in the local OpenAlex files.",
+   "type": "object",
+   "additionalProperties": {
+    "type": "integer"
+   }
+  },
+  "link_check_request_urls": {
+   "description": "Rows in link-check-requests.tsv.",
+   "type": "integer",
+   "minimum": 0
+  },
+  "link_check_request_hosts": {
+   "description": "The 25 hosts with most request rows.",
    "type": "object",
    "additionalProperties": {
     "type": "integer"
