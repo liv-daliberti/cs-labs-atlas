@@ -1,6 +1,6 @@
 # Lab-page audit
 
-Generated 2026-11-01T15:22:54+00:00 by `tools/labpage_audit.py`; method and reason codes in `docs/LAB-PAGES.md`.
+Generated 2026-11-01T16:02:53+00:00 by `tools/labpage_audit.py`; method and reason codes in `docs/LAB-PAGES.md`.
 
 ## Lab pages
 
@@ -22,11 +22,11 @@ Generated 2026-11-01T15:22:54+00:00 by `tools/labpage_audit.py`; method and reas
 |---|---:|---:|---:|---:|---|---:|---:|---:|
 | princeton | 2631 | 1686 | 945 | 1378 | undated_alumni_cannot_place 267, not_in_people_section 198, undated_cannot_place 159, outside_2016_2026 150, not_a_student 120, reviewer_excluded 115, at_previous_school 42, name_unresolved 42, site_at_other_institution 31, after_pi_left 27 | 102 | 102 | 73 |
 | mit | 5852 | 3055 | 2797 | 3421 | undated_alumni_cannot_place 1042, outside_2016_2026 382, not_a_student 193, reviewer_excluded 187, name_unresolved 131, not_in_people_section 129, undated_cannot_place 56, after_pi_left 50, site_at_other_institution 39, at_previous_school 27, evidence_not_in_build 2 | 193 | 193 | 8 |
-| cmu | 12797 | 8577 | 4220 | 6848 | not_in_people_section 1992, undated_cannot_place 1635, name_unresolved 385, site_at_other_institution 353, not_a_student 317, outside_2016_2026 308, at_previous_school 280, undated_alumni_cannot_place 206, after_pi_left 136, shared_page_no_adviser 66, evidence_not_in_build 6 | 265 | 265 | 23 |
+| cmu | 12797 | 8571 | 4226 | 6848 | not_in_people_section 1992, undated_cannot_place 1635, name_unresolved 385, site_at_other_institution 353, not_a_student 317, outside_2016_2026 308, at_previous_school 280, undated_alumni_cannot_place 206, after_pi_left 136, shared_page_no_adviser 66, evidence_not_in_build 6 | 265 | 265 | 23 |
 | epfl | 6867 | 5265 | 1602 | 3276 | not_in_people_section 1820, undated_cannot_place 711, name_unresolved 393, outside_2016_2026 142, after_pi_left 128, at_previous_school 125, not_a_student 40, undated_alumni_cannot_place 22, reviewer_excluded 20, site_at_other_institution 7, evidence_not_in_build 1 | 182 | 182 | 68 |
 | berkeley | 6610 | 4000 | 2610 | 2778 | not_in_people_section 881, shared_page_no_adviser 659, undated_cannot_place 582, outside_2016_2026 443, name_unresolved 282, at_previous_school 253, undated_alumni_cannot_place 139, not_a_student 114, after_pi_left 43, site_at_other_institution 31, reviewer_excluded 22, evidence_not_in_build 2 | 381 | 381 | 20 |
-| stanford | 5270 | 3861 | 1409 | 1062 | not_in_people_section 1654, undated_cannot_place 532, not_a_student 521, name_unresolved 390, undated_alumni_cannot_place 217, at_previous_school 132, outside_2016_2026 110, site_at_other_institution 64, after_pi_left 53 | 535 | 535 | 105 |
-| michigan | 4457 | 3012 | 1445 | 660 | not_in_people_section 1035, undated_cannot_place 836, name_unresolved 350, site_at_other_institution 222, after_pi_left 193, at_previous_school 176, undated_alumni_cannot_place 120, not_a_student 118, outside_2016_2026 93, evidence_not_in_build 1 | 653 | 653 | 17 |
+| stanford | 5270 | 3861 | 1409 | 1062 | not_in_people_section 1654, not_a_student 593, undated_cannot_place 532, name_unresolved 390, undated_alumni_cannot_place 217, at_previous_school 132, outside_2016_2026 110, site_at_other_institution 64, after_pi_left 53, shared_page_no_adviser 34 | 429 | 429 | 105 |
+| michigan | 4457 | 3012 | 1445 | 660 | not_in_people_section 1035, undated_cannot_place 836, name_unresolved 357, site_at_other_institution 222, after_pi_left 193, at_previous_school 180, undated_alumni_cannot_place 120, not_a_student 118, outside_2016_2026 93, evidence_not_in_build 1 | 642 | 642 | 17 |
 
 ## Papers listed on lab pages
 
@@ -34,7 +34,7 @@ Generated 2026-11-01T15:22:54+00:00 by `tools/labpage_audit.py`; method and reas
 |---|---:|---:|---:|---|---:|---:|
 | princeton | 7607 | 3184 | 2134 | outside_window 3293, undated_entry 945, unresolved_metadata 355, from_previous_school 253, no_school_affiliation_evidence 120, other_institution_affiliation 100, outside_appointment 72, not_a_paper 32, pi_not_author 28, parse_artifact 10 | 56 | 56 |
 | mit | 13393 | 6100 | 4118 | outside_window 6576, unresolved_metadata 617, undated_entry 510, from_previous_school 348, pi_not_author 338, no_school_affiliation_evidence 190, not_a_paper 142, other_institution_affiliation 81, outside_appointment 72, parse_artifact 20, not_yet_resolved 2 | 135 | 135 |
-| cmu | 30933 | 16173 | 9519 | outside_window 12952, unresolved_metadata 2646, from_previous_school 1056, undated_entry 1046, other_institution_affiliation 760, pi_not_author 736, no_school_affiliation_evidence 515, outside_appointment 267, not_a_paper 188, parse_artifact 184, not_yet_resolved 32 | 215 | 215 |
+| cmu | 30933 | 16173 | 9519 | outside_window 12952, unresolved_metadata 2646, from_previous_school 1056, undated_entry 1046, other_institution_affiliation 760, pi_not_author 736, no_school_affiliation_evidence 515, outside_appointment 269, not_a_paper 188, parse_artifact 184, not_yet_resolved 32 | 213 | 213 |
 | epfl | 10532 | 6759 | 3453 | outside_window 3646, pi_not_author 1360, unresolved_metadata 722, not_a_paper 629, from_previous_school 284, no_school_affiliation_evidence 128, undated_entry 119, other_institution_affiliation 69, outside_appointment 49, parse_artifact 19 | 28 | 28 |
 | berkeley | 10352 | 4734 | 2847 | outside_window 5043, unresolved_metadata 739, from_previous_school 486, undated_entry 476, no_school_affiliation_evidence 131, not_a_paper 115, other_institution_affiliation 106, parse_artifact 92, pi_not_author 86, outside_appointment 49, not_yet_resolved 11 | 44 | 44 |
 | stanford | 19496 | 5725 | 4519 | outside_window 7628, undated_entry 4612, unresolved_metadata 421, from_previous_school 286, no_school_affiliation_evidence 167, outside_appointment 115, other_institution_affiliation 77, pi_not_author 37, parse_artifact 19, not_a_paper 15, not_yet_resolved 1 | 36 | 36 |
