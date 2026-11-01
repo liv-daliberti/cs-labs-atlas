@@ -22,6 +22,17 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import ftp_common as F
 
 
+def ensure_graph_receipt(db, school, works):
+    """A catalog the collector exports needs a 'graph' receipt (collect_princeton_fulltext.export reads it); a catalog created
+    from another school's schema has none (Michigan, 2026-11-01). Written once, under the catalog lock (write_batches)."""
+    if db.execute("SELECT 1 FROM receipts WHERE key='graph'").fetchone():
+        return False
+    graph = dict(source=f'CS lab papers of {school} (hierarchy/{school}/lab_papers.jsonl.gz), added by fulltext-push/add_works.py',
+                 built_at=F.now(), works=works)
+    F.write_batches(db, 'INSERT OR IGNORE INTO receipts VALUES (?,?)', [('graph', json.dumps(graph))])
+    return True
+
+
 def main():
     school = sys.argv[1]; dry = '--dry' in sys.argv
     papers = F.lab_papers(school)
@@ -73,6 +84,7 @@ def main():
     db = F.connect_rw(school)
     n['works_added'] = F.write_batches(db, 'INSERT OR IGNORE INTO works(id,title,doi,year,graph_json,metadata_source,status) VALUES (?,?,?,?,?,?,?)', wrows)
     n['nodes_added'] = F.write_batches(db, 'INSERT OR IGNORE INTO nodes VALUES (?,?,?,?)', nrows)
+    n['graph_receipt_added'] = ensure_graph_receipt(db, school, len(papers))
     db.close()
     (F.P.FT_LOGS).mkdir(exist_ok=True)
     with open(F.P.FT_LOGS / 'added-works.jsonl', 'a') as f:

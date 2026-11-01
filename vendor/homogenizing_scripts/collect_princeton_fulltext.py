@@ -345,10 +345,17 @@ def export(db,args):
              'download_bytes':db.execute('SELECT COALESCE(SUM(byte_count),0) FROM works').fetchone()[0],
              'labs_with_downloads':db.execute("SELECT COUNT(DISTINCT e.target) FROM edges e JOIN works w ON w.id=e.source WHERE e.kind='listed_by' AND w.status='downloaded'").fetchone()[0],
              'identity_checks':dict(db.execute('SELECT identity_check,COUNT(*) FROM works WHERE status=? GROUP BY identity_check',('downloaded',)).fetchall()),
-             'source_graph':json.loads(db.execute('SELECT value FROM receipts WHERE key=?',('graph',)).fetchone()[0]),
+             'source_graph':source_graph(db),
              'complete':False,'attribution':'Existing sourced bibliography links; current leadership and paper authorship are separate relations. No new PI/lab attribution is inferred.'}
     (args.out/'summary.json').write_text(json.dumps(summary,indent=2)+'\n')
     print(dump(summary),flush=True)
+
+
+def source_graph(db):
+    """The catalog's 'graph' receipt; None when a catalog was created without one (Michigan's, 2026-10-29: its export crashed
+    every round with TypeError on fetchone()[0]). The summary then records no source graph instead of stopping the pass."""
+    row=db.execute('SELECT value FROM receipts WHERE key=?',('graph',)).fetchone()
+    return json.loads(row[0]) if row else None
 
 
 def main():
