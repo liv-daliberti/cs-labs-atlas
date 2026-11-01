@@ -195,6 +195,13 @@ the entry dated). Everything else is `undated_cannot_place`; the earlier path fo
 job is removed (it caused membership errors at Berkeley, CMU and Princeton). `removed_by_strict_current_rule` in the summary
 counts the names that path used to admit.
 
+**Membership-only wiring** (coordinator, 2026-11-01): when a kind's final students round passes on membership (at most 1
+error, doubtful = 0.5) but fails on role/year, the students are wired membership-only: every addition's `role` is null with
+`role_basis: "withheld_role_round_failed"` (and `years` null with `years_basis` likewise when the year check failed too);
+`labpage-acceptance.json` records `students.accepted: true, scope: "membership_only"` with the round, seed and error breakdown, and
+`labpage_audit.py audit` re-applies the withholding whenever the additions are regenerated. The builder treats a null role as
+undetermined. It does not apply to a kind that failed on membership (Princeton and CMU students). Berkeley's round 3 is the first.
+
 **Students and papers are accepted separately**: a school whose students fail may still have its papers wired, and the
 other way round; `labpage-acceptance.json` records `students` and `papers` each with its round and result. A school gets at
 most four rounds per kind; when the last fails, that kind is not wired and the reason is recorded.

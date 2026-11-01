@@ -4,14 +4,24 @@
  "bar": "docs/LAB-PAGES.md, acceptance bar",
  "additions_file": "hierarchy/berkeley/labpage-additions.json",
  "additions_generated_at": "2026-11-01T04:21:39+00:00",
- "additions_sha256": "d05c0d43ca28b1aa93a44b52e2bdc009c0fc49cd4e888f1f311a47133a1d83d6",
+ "additions_sha256": "52cd78fcda3a282369e97a776b203ca05ee1f7b84b792df083013ba36e74e12a",
  "students": {
-  "accepted": false,
-  "round": 3,
-  "reason": "three rounds failed (seeds 3121 and the first-audit round at 6.5 and 6 membership errors; round 3 at 0.5 membership but 3 role errors, bar <= 2): section headings of adjacent one-line lists ('Postdocs and Visitors', 'Undergraduate Researchers') are read onto the wrong names, and undated lists in decades-old labs. Berkeley student additions are not wired.",
+  "accepted": true,
+  "scope": "membership_only",
   "counts": {
    "proposed": 381
-  }
+  },
+  "round": 3,
+  "seed": 3141,
+  "sampled": 20,
+  "membership_errors": 0,
+  "doubtful_count": 1,
+  "membership_score": 0.5,
+  "role_or_year_errors": 3,
+  "year_errors": 0,
+  "role_errors": 3,
+  "years_withheld": false,
+  "reason": "final round (3): membership passed (0 errors, 1 doubtful = 0.5; bar <= 1) but role errors were 3 (bar <= 2), all roles and none years; wired membership-only: roles withheld (null, role_basis withheld_role_round_failed), years kept"
  },
  "papers": {
   "accepted": true,

@@ -2119,7 +2119,7 @@ def write_audit(school, recs, stu_adds, pap_adds):
     adds = dict(school=school, generated_at=now(), tool='tools/labpage_audit.py', standard='docs/LAB-PAGES.md',
                 status='proposed, unreviewed: not read by tools/pi_hierarchy.py until wired (docs/LAB-PAGES.md, integration)',
                 rules={'LP-STU-01': RULE_TEXT['LP-STU-01'], 'LP-PAP-01': RULE_TEXT['LP-PAP-01']},
-                students=stu_adds, papers=pap_adds)
+                students=withheld_if_membership_only(school, stu_adds), papers=pap_adds)
     json.dump(adds, open(H / school / 'labpage-additions.json', 'w', encoding='utf-8'), indent=1, ensure_ascii=False)
     sp = H / 'labpage-audit-summary.json'
     allsum = read(sp) if sp.exists() else {}
@@ -2214,6 +2214,46 @@ def cmd_sample(school, kind, n, seed):
                   '| app:', ev.get('appointment'))
             lp = ev.get('labpage') or {}
             print('     listed:', str(lp.get('listed_title'))[:110], lp.get('listed_year'), lp.get('url'))
+
+# ---------------------------------------------------------------- membership-only students (2026-11-01, coordinator)
+def withhold_roles(rows, years=False):
+    """Students wired membership-only: a final round passed on membership but failed on role/year (docs/LAB-PAGES.md). The role
+    (and, when the year check failed too, the years) are withheld: null, with a `role_basis` / `years_basis` saying why."""
+    out = []
+    for r in rows:
+        r = dict(r)
+        r['role'], r['role_basis'] = None, 'withheld_role_round_failed'
+        if years:
+            r['years'], r['years_basis'] = None, 'withheld_role_round_failed'
+        out.append(r)
+    return out
+
+
+def withheld_if_membership_only(school, rows):
+    ap = H / school / 'labpage-acceptance.json'
+    if not ap.exists():
+        return rows
+    k = (json.loads(ap.read_text(encoding='utf-8')).get('students') or {})
+    if k.get('accepted') and k.get('scope') == 'membership_only':
+        return withhold_roles(rows, years=bool(k.get('years_withheld')))
+    return rows
+
+
+def membership_only(school, decision, root=None):
+    """Wire a school's students membership-only: withhold roles in the additions file, record the scope in the acceptance, and
+    stamp the new sha256. `decision` carries round, seed, sampled and the error breakdown."""
+    d = Path(root) if root else H / school
+    ap, add = d / 'labpage-acceptance.json', d / 'labpage-additions.json'
+    acc = json.loads(ap.read_text(encoding='utf-8'))
+    adds = json.loads(add.read_text(encoding='utf-8'))
+    adds['students'] = withhold_roles(adds['students'], years=bool(decision.get('years_withheld')))
+    raw = (json.dumps(adds, indent=1, ensure_ascii=False)).encode('utf-8')
+    add.write_bytes(raw)
+    acc['students'] = dict(accepted=True, scope='membership_only', counts=dict(proposed=len(adds['students'])), **decision)
+    acc.update(additions_sha256=hashlib.sha256(raw).hexdigest(), additions_generated_at=adds.get('generated_at'))
+    ap.write_text(json.dumps(acc, indent=1, ensure_ascii=False) + '\n', encoding='utf-8')
+    return acc['students']
+
 
 # ---------------------------------------------------------------- restamp (2026-10-31, coordinator)
 def additions_keys(rows, kind):

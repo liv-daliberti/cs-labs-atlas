@@ -375,3 +375,18 @@ def test_restamp_added_or_changed_row_needs_a_new_round(tmp_path):
     acc = json.loads((d / 'labpage-acceptance.json').read_text())
     assert rep['kinds']['students']['result'] == 'needs_new_round' and not acc['students']['accepted']
     assert acc['papers']['accepted'] and rep['kinds']['papers']['result'] == 'subset'
+
+
+def test_membership_only_withholds_roles_and_stamps(tmp_path):
+    import hashlib
+    import json
+    d = tmp_path / 'y'
+    d.mkdir()
+    (d / 'labpage-additions.json').write_text(json.dumps(_adds([S('Ann Lee', 'postdoc')], [W('a')])))
+    (d / 'labpage-acceptance.json').write_text(json.dumps(dict(papers=dict(accepted=True), students=dict(accepted=False))))
+    A.membership_only('y', dict(round=3, seed=1, sampled=20, years_withheld=False), root=d)
+    adds = json.loads((d / 'labpage-additions.json').read_text())
+    acc = json.loads((d / 'labpage-acceptance.json').read_text())
+    assert adds['students'][0]['role'] is None and adds['students'][0]['role_basis'] == 'withheld_role_round_failed'
+    assert acc['students']['scope'] == 'membership_only' and acc['students']['accepted']
+    assert acc['additions_sha256'] == hashlib.sha256((d / 'labpage-additions.json').read_bytes()).hexdigest()
