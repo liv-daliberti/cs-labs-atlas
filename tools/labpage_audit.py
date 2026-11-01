@@ -1594,8 +1594,9 @@ def fix_titles_from_arxiv(adds):
 
 
 REPOSITORY_DOI = re.compile(r'^10\.5281/zenodo\.|^10\.6084/m9\.figshare|^10\.17605/osf\.io|^10\.5061/dryad')
+ABSTRACT_CODE_TITLE = re.compile(r'^(?:[A-Z]{1,2}\d{1,3}(?:\.\d+)*\.|(?!(?:19|20)\d\d\s)\d{3,4})\s+\S')  # '0689 Automated ...', 'S72. FUNCTIONAL ...': a meeting abstract's number
 TALK_TITLE = re.compile(r'\((?:keynote|invited talk|invited|tutorial|panel|talk|abstract|poster|extended abstract)\)\s*$|^keynote\s*:', re.I)
-AOM_ABSTRACT_DOI = re.compile(r'^10\.5465/ambpp\.|^10\.5194/egusphere-egu|^10\.1093/schbul/sb[a-z]+\d+\.\d+')  # meeting abstracts (R-PAP-19): Academy of Management Proceedings, EGU General Assembly (egusphere-egu), Schizophrenia Bulletin supplements (EPFL round 1)
+AOM_ABSTRACT_DOI = re.compile(r'^10\.5465/ambpp\.|^10\.5194/egusphere-egu|^10\.1093/schbul/sb[a-z]+\d+\.\d+|^10\.1093/sleep/zs[a-z]+\d+\.\d+')  # meeting abstracts (R-PAP-19): Academy of Management Proceedings, EGU General Assembly (egusphere-egu), Schizophrenia Bulletin supplements (EPFL round 1)
 
 
 def addition_not_a_paper(row):
@@ -1610,7 +1611,7 @@ def addition_not_a_paper(row):
         return why
     if REPOSITORY_DOI.search(d):
         return 'repository_record'
-    if TALK_TITLE.search(t):
+    if TALK_TITLE.search(t) or ABSTRACT_CODE_TITLE.search(t):
         return 'talk_or_abstract_title'
     if AOM_ABSTRACT_DOI.search(d):
         return 'meeting_abstract:doi'
