@@ -52,6 +52,15 @@ _SPEC = [
     ('LISTINGS', 'listings', 'CODE'),
     ('CAPTURES', 'captures', 'CODE'),
     ('FULLTEXT_PUSH', 'fulltext-push', 'CODE'),     # the full-text collectors
+    # fulltext-push/'s DATA side (2026-10-31): the collectors keep caches, locks, logs and reviews next to their code. These
+    # slots derive from CODE (the main checkout), never from FULLTEXT_PUSH, so a job running from a code snapshot
+    # (tools/job_code_snapshot.sh, which moves FULLTEXT_PUSH) still reads and writes the shared data. Flat layout: the same
+    # directories as before. docs/DATA-LAYOUT.md has the kind of each.
+    ('FT_DATA', 'fulltext-push', 'CODE'),           # the directory that holds the four below and the review-<stamp>/ dirs
+    ('FT_RAW', 'raw', 'FT_DATA'),                   # raw + state: OpenAlex budget log, work-id lists, caches, sqlite pulls, stop flags
+    ('FT_CHECKS', 'checks', 'FT_DATA'),             # <school>.sqlite: the ledger's recorded checks (derived, rebuilt by the ledger)
+    ('FT_LOGS', 'logs', 'FT_DATA'),                 # run logs, channel locks (run_steps-<step>.lock), channels.jsonl, yield files
+    ('FT_LOCAL_REUSE', 'local-reuse', 'FT_DATA'),   # local-reuse data (inventory.sqlite, ident/, lists/, missing.jsonl.gz, logs/)
     ('AI_WRITING', 'ai-writing', 'CODE'),           # the AI-writing study's code (its data is git-ignored)
     ('RELEASES', 'releases', 'ROOT'),               # immutable dated releases (tools/make_release.py)
     ('SCHOOLS_TREE', 'schools', 'ROOT'),            # the organized school -> lab -> papers tree (tools/organize_tree.py)
@@ -145,6 +154,7 @@ EXTERNAL = _P['EXTERNAL']; DBLP_DUMP = _P['DBLP_DUMP']; RESEARCH_LIBRARY = _P['R
 SWEEPS = _P['SWEEPS']; SITE_HISTORY = _P['SITE_HISTORY']; SITE_ROOT = _P['SITE_ROOT']; MIGRATIONS = _P['MIGRATIONS']
 WORLD_ATLAS = HOMOGENIZING = _P['WORLD_ATLAS']; ENV_PY = _P['ENV_PY']; ENV_LIB = _P['ENV_LIB']
 COLLECTOR_PY = _P['COLLECTOR_PY']
+FT_DATA = _P['FT_DATA']; FT_RAW = _P['FT_RAW']; FT_CHECKS = _P['FT_CHECKS']; FT_LOGS = _P['FT_LOGS']; FT_LOCAL_REUSE = _P['FT_LOCAL_REUSE']
 SITE_DATA = SITE_ROOT / 'atlas/data'               # collection-<school>.json.gz, universities/
 DBLP_DUMP_XML = DBLP_DUMP / DBLP_DUMP_FILE
 HOMOGENIZING_SCRIPTS = WORLD_ATLAS / 'scripts'     # the collector's origin (vendored: vendor/homogenizing_scripts)
@@ -169,6 +179,12 @@ def _released_schools(d):
 
 
 SCHOOL_IDS = _released_schools(SCHOOL_CONFIGS) or list(SCHOOL_IDS_STATIC)
+
+
+def ft_review(stamp):
+    """A dated review directory of the full-text collectors: ft_review('20261030') -> <FT_DATA>/review-20261030 (reviewed decisions
+    and their plans: access-*, identity-review-*, robots-ai-quarantine-plan-*, repath-*)."""
+    return FT_DATA / f'review-{stamp}'
 
 
 def archive_sweep(name):

@@ -194,6 +194,24 @@ The inventory's writer and reader columns come from `git grep`, so a tool that b
 | `accuracy/sample.py` | 1 |
 | `accuracy/record.py` | 1 |
 
+## The collectors' data directories (decided 2026-10-31)
+
+`fulltext-push/` keeps data next to its code. A job that runs from a code snapshot (docs/CONTRIBUTING.md) has no such data, so
+each directory has an atlas_paths slot derived from `CODE` (the main checkout), not from `FULLTEXT_PUSH` (which a snapshot moves).
+Flat layout today: the slot is the same directory the code used. `tools/route_ft_data.py` lists the places that still join by hand.
+
+| slot (shell: `$CS_ATLAS_<NAME>`) | today | kind | holds |
+|---|---|---|---|
+| `FT_DATA` | `fulltext-push/` | (container) | the four below and `review-<stamp>/` |
+| `FT_RAW` | `fulltext-push/raw/` | raw, and state | OpenAlex works caches, work-id lists, DBLP-ee / NSF-PAR / homepages pulls; state: `openalex_budget.jsonl` (the shared daily quota log), `downloads_stopped_for_disk`, `mit_oa_articles.done` |
+| `FT_CHECKS` | `fulltext-push/checks/` | derived | `<school>.sqlite`: the ledger's recorded checks, rebuilt by the ledger |
+| `FT_LOGS` | `fulltext-push/logs/` | logs, and state | run logs, `channels.jsonl`, yield files; state: the per-channel `run_steps-<step>.lock` files |
+| `FT_LOCAL_REUSE` | `fulltext-push/local-reuse/` (data files only) | raw, and work | `inventory.sqlite`, `ident/`, `lists/`, `missing.jsonl.gz`, `stores.jsonl.gz`, `logs/` (the code beside them stays code) |
+| `ft_review(<stamp>)` | `fulltext-push/review-<stamp>/` | reviewed | access, identity-review and quarantine plans with their verdicts |
+
+After the move (phase B) the raw state and locks stay out of git, the review directories join the `reviewed/` kind, and `checks/` moves
+under derived; only these slot values change.
+
 ## Phase B (not started; needs the owner's OK)
 
 A dry-run tool (an extension of `tools/relocate_project.py`, or a sibling) prints the ordered renames from `DATA_FILES`
