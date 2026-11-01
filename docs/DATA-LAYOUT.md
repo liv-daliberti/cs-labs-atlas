@@ -134,6 +134,20 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `VALIDATION.json` | derived | `hierarchy/VALIDATION.json` | `hierarchy/derived/VALIDATION.json` | - | - |
 | `ids` | derived | `hierarchy/ids` | `hierarchy/derived/ids` | 0/1 | dir |
 | `logs` | work | `hierarchy/logs` | `hierarchy/logs` | 0/1 | dir |
+| `rows.json` | derived | `listings/{school}/rows.json` | `listings/{school}/derived/rows.json` | - | <100MB |
+| `pi-basis-evidence.json` | reviewed | `hierarchy/{school}/pi-basis-evidence.json` | `hierarchy/{school}/reviewed/pi-basis-evidence.json` | - | <100MB |
+| `dblp-ids.json` | derived | `hierarchy/{school}/dblp-ids.json` | `hierarchy/{school}/derived/dblp-ids.json` | - | <100MB |
+| `homepage-identity.json` | derived | `hierarchy/{school}/homepage-identity.json` | `hierarchy/{school}/derived/homepage-identity.json` | - | <100MB |
+| `census-report.md` | derived | `census/{school}-report.md` | `hierarchy/{school}/derived/report.md` | - | <100MB |
+| `dblp-affiliated.json` | derived | `hierarchy/{school}/dblp-affiliated.json` | `hierarchy/{school}/derived/dblp-affiliated.json` | - | <100MB |
+| `cs-related-candidates-openalex.json` | derived | `hierarchy/{school}/cs-related-candidates-openalex.json` | `hierarchy/{school}/derived/cs-related-candidates-openalex.json` | - | <100MB |
+| `defense-evidence.json` | reviewed | `hierarchy/{school}/defense-evidence.json` | `hierarchy/{school}/reviewed/defense-evidence.json` | - | <100MB |
+| `directory-evidence.json` | reviewed | `hierarchy/{school}/directory-evidence.json` | `hierarchy/{school}/reviewed/directory-evidence.json` | - | <100MB |
+| `labpage-students-report.json` | derived | `hierarchy/{school}/labpage-students-report.json` | `hierarchy/{school}/derived/labpage-students-report.json` | - | <100MB |
+| `holds.json` | derived | `periods/{school}-holds.json` | `hierarchy/{school}/derived/holds.json` | - | <100MB |
+| `gap-year-evidence.json` | reviewed | `hierarchy/{school}/gap-year-evidence.json` | `hierarchy/{school}/reviewed/gap-year-evidence.json` | - | <100MB |
+| `profile-year-evidence.json` | reviewed | `hierarchy/{school}/profile-year-evidence.json` | `hierarchy/{school}/reviewed/profile-year-evidence.json` | - | <100MB |
+| `labpage-tools-epfl-berkeley` | work | `hierarchy/labpage-tools-epfl-berkeley` | `hierarchy/work/labpage-tools-epfl-berkeley` | - | <100MB |
 
 ## Files outside the table (inventory of 2026-10-31)
 

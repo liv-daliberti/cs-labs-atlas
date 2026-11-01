@@ -108,13 +108,13 @@ def merge_people(rows):
 def main(key):
     cfg = S.get(key); lo, hi = cfg.get('window') or [2016, 2026]
     coverage = {d['code']: d.get('coverage') or 'full' for d in cfg.get('departments') or []}
-    rows = read(P.LISTINGS / key / 'rows.json', [])
-    review = {r['name']: r for r in read(P.HIERARCHY / key / 'cs-related-review.json', {}).get('decisions', [])} \
-        if isinstance(read(P.HIERARCHY / key / 'cs-related-review.json', {}), dict) else {}
-    basis_ev = {r['pi']: r for r in read(P.HIERARCHY / key / 'pi-basis-evidence.json', [])}
+    rows = read(P.data('rows.json', key), [])
+    review = {r['name']: r for r in read(P.data('cs-related-review.json', key), {}).get('decisions', [])} \
+        if isinstance(read(P.data('cs-related-review.json', key), {}), dict) else {}
+    basis_ev = {r['pi']: r for r in read(P.data('pi-basis-evidence.json', key), [])}
     not_pi = {x['name']: x['reason'] for x in S.field(cfg, 'census.not_pi', [])}  # owner decisions: never a PI, whatever the listing says
-    dblp_ids = read(P.HIERARCHY / key / 'dblp-ids.json', {})  # stage 5 (tools/dblp_ids_school.py); folded in when present
-    for nm_, h_ in read(P.HIERARCHY / key / 'homepage-identity.json', {}).items():  # the PI's own homepage links (stage 5)
+    dblp_ids = read(P.data('dblp-ids.json', key), {})  # stage 5 (tools/dblp_ids_school.py); folded in when present
+    for nm_, h_ in read(P.data('homepage-identity.json', key), {}).items():  # the PI's own homepage links (stage 5)
         d0 = dblp_ids.setdefault(nm_, {})
         if not d0.get('pid') and h_.get('dblp'):
             d0.update(pid=h_['dblp']['pid'], basis='pi_homepage_link', url=h_['dblp']['url'], sha256=h_['dblp']['sha256'], quote=h_['dblp']['quote'],
@@ -193,17 +193,17 @@ def main(key):
             listing_rows.append(dict(pi=name, school=key, department=d, year=y, capture_url=r['capture_url'], sha256=r['sha256'], quote=r['quote'],
                                      rank_as_listed='; '.join(r['dept_title'] or r['titles']), rank=r['rank'], emeritus=r['rank'] == 'emeritus',
                                      visiting=r['rank'] == 'visiting', observed=r['observed'], slot=r['slot']))
-    for x in read(P.CENSUS / f'{key}-additions.json', []):  # accepted CS-related faculty of other units: a person record each
+    for x in read(P.data('census-additions.json', key), []):  # accepted CS-related faculty of other units: a person record each
         if x.get('collection_person_id') and all(p_['id'] != x['collection_person_id'] for p_ in people):
             people.append(dict(id=x['collection_person_id'], name=x['name'], roles=['faculty'], contexts=[], profileUrl=x.get('profile_url')))
     rule = __doc__.split('\n-> ')[0]
-    (P.CENSUS / f'{key}-faculty.json').write_text(json.dumps(dict(school=key, built_at=datetime.datetime.utcnow().isoformat() + 'Z', rule=rule, faculty=census),
+    P.data_w('census-faculty.json', key).write_text(json.dumps(dict(school=key, built_at=datetime.datetime.utcnow().isoformat() + 'Z', rule=rule, faculty=census),
                                                              indent=1, ensure_ascii=False))
-    (P.LISTINGS / key / 'listings.json').write_text(json.dumps(listing_rows, indent=0, ensure_ascii=False))
+    P.data_w('listings.json', key).write_text(json.dumps(listing_rows, indent=0, ensure_ascii=False))
     C = dict(people=people, works={}, personLinks=[], unitLinks=[], units=[], facultyPeriods=[],
              source=f'tools/census_build.py {key} (no site collection exists for this school)')
-    (P.HIERARCHY / key).mkdir(parents=True, exist_ok=True)
-    (P.HIERARCHY / key / 'collection.json.gz').write_bytes(gzip.compress(json.dumps(C, ensure_ascii=False).encode(), mtime=0))
+    P.data('collection.json.gz', key).parent.mkdir(parents=True, exist_ok=True)
+    P.data_w('collection.json.gz', key).write_bytes(gzip.compress(json.dumps(C, ensure_ascii=False).encode(), mtime=0))
     by = collections.Counter((x['rank'], x['is_pi']) for x in census)
     dep = collections.Counter((d, x['is_pi']) for x in census for d in x['departments'])
     L = [f"# {cfg['name']}: faculty census", '', f"Built {datetime.date.today()} by `tools/census_build.py {key}` from `listings/{key}/rows.json`.", '',
@@ -215,7 +215,7 @@ def main(key):
     L += ['', '| department | PI | not PI |', '|---|---|---|'] + [f'| {d} | {dep[(d, True)]} | {dep[(d, False)]} |' for d in coverage]
     L += ['', '## PI basis', ''] + [f'- {k[6:]}: {v}' for k, v in sorted(n.items()) if k.startswith('basis:') and k != 'basis:None']
     L += ['', '## Not PI, by reason', ''] + [f'- {k}: {v}' for k, v in collections.Counter(x['not_pi_reason'] for x in census if not x['is_pi']).most_common()]
-    (P.CENSUS / f'{key}-report.md').write_text('\n'.join(L) + '\n')
+    P.data_w('census-report.md', key).write_text('\n'.join(L) + '\n')
     print(json.dumps(dict(persons=len(census), pis=sum(x['is_pi'] for x in census), listing_rows=len(listing_rows), **{k: v for k, v in n.items()})))
 
 

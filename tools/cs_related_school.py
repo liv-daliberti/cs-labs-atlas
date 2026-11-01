@@ -78,7 +78,7 @@ def clean_dblp(n):
 
 
 def candidates(key):
-    census = read(P.CENSUS / f'{key}-faculty.json')['faculty']
+    census = read(P.data('census-faculty.json', key))['faculty']
     cov = {d['code']: d.get('coverage') for d in S.get(key).get('departments') or []}
     out = []
     for x in census:  # (a) ladder in an affiliated department, never ladder in a full-coverage one
@@ -86,7 +86,7 @@ def candidates(key):
         if any(cov.get(d) == 'affiliated' and r == 'ladder' for d, r in dep_rank) and not any(cov.get(d) == 'full' and r == 'ladder' for d, r in dep_rank):
             out.append(dict(name=x['name'], aliases=x.get('aliases') or [], source='affiliated_department', departments=x['departments']))
     names = [Name([x['name']] + list(x.get('aliases') or [])) for x in census]
-    for p in read(P.HIERARCHY / key / 'dblp-affiliated.json', {}).get('persons', []):
+    for p in read(P.data('dblp-affiliated.json', key), {}).get('persons', []):
         if p.get('n_window', 0) < MIN_DBLP or p.get('disambiguation'):
             continue
         nm = clean_dblp(p['names'][0])
@@ -95,19 +95,19 @@ def candidates(key):
         out.append(dict(name=nm, aliases=[clean_dblp(n) for n in p['names'][1:]], source='dblp_affiliation', dblp=p['pid'], dblp_window=p['n_window'],
                         affiliations=[a['text'] for a in p['affiliations']], matched_by=p['matched_by']))
     have = names + [Name([c['name']] + list(c.get('aliases') or [])) for c in out]
-    for r in read(P.HIERARCHY / key / 'cs-related-candidates-openalex.json', []):  # (c)
+    for r in read(P.data('cs-related-candidates-openalex.json', key), []):  # (c)
         if r.get('name_matches_pi') or any(N.match(n) for N in have for n in r['names'][:3]):
             continue
         nm = r['name'] if ',' not in r['name'] else ' '.join(reversed([x.strip() for x in r['name'].split(',', 1)]))
         out.append(dict(name=nm, aliases=[n for n in r['names'] if n != r['name']], source='openalex_rule', openalex=[r['author']], oa_works=r['works'],
                         oa_dblp_works=r['dblp_works'], oa_cs_share=r['cs_share'], oa_years=r['years']))
         have.append(Name([nm] + r['names']))
-    (P.HIERARCHY / key / 'cs-related-candidates.json').write_text(json.dumps(out, indent=1, ensure_ascii=False))
+    P.data_w('cs-related-candidates.json', key).write_text(json.dumps(out, indent=1, ensure_ascii=False))
     print(json.dumps(dict(candidates=len(out), **collections.Counter(c['source'] for c in out))))
 
 
 def oa_stats(key):
-    p = P.HIERARCHY / key / 'oa-author-stats.json.gz'
+    p = P.data('oa-author-stats.json.gz', key)
     if not p.exists():
         return None
     st = json.load(gzip.open(p, 'rt'))['authors']
@@ -268,11 +268,11 @@ def census_alias(census, names):
 
 
 def review(key):
-    cands = read(P.HIERARCHY / key / 'cs-related-candidates.json', [])
-    dblp = read(P.HIERARCHY / key / 'dblp-affiliated.json', {}).get('persons', [])
-    census = {x['name']: x for x in read(P.CENSUS / f'{key}-faculty.json')['faculty']}
+    cands = read(P.data('cs-related-candidates.json', key), [])
+    dblp = read(P.data('dblp-affiliated.json', key), {}).get('persons', [])
+    census = {x['name']: x for x in read(P.data('census-faculty.json', key))['faculty']}
     pages = unit_pages(key)
-    ids = read(P.HIERARCHY / key / 'dblp-ids.json', {})
+    ids = read(P.data('dblp-ids.json', key), {})
     SH = oa_stats(key)
     SETTLE = list(S.field(S.get(key), 'cs_related.share_test_settles') or [])
     searched = sorted({p[0] for p in pages})
@@ -371,8 +371,8 @@ def review(key):
                              lab_units=[], added=f'cs_related_review_{TODAY.replace("-", "")}'))
     doc = dict(school=key, reviewed=TODAY, rule=__doc__.split('\nusage')[0], min_dblp=MIN_DBLP, share_test=dict(min_dblp_indexed=SHARE_MIN_CS, min_share=SHARE_MIN,
                min_works_for_negative=SHARE_MIN_N, applied=bool(SH)), units_searched=searched, counts=dict(n), decisions=dec)
-    (P.HIERARCHY / key / 'cs-related-review.json').write_text(json.dumps(doc, indent=1, ensure_ascii=False))
-    (P.CENSUS / f'{key}-additions.json').write_text(json.dumps(adds, indent=1, ensure_ascii=False))
+    P.data_w('cs-related-review.json', key).write_text(json.dumps(doc, indent=1, ensure_ascii=False))
+    P.data_w('census-additions.json', key).write_text(json.dumps(adds, indent=1, ensure_ascii=False))
     print(json.dumps(dict(decisions=len(dec), additions=len(adds), **n)))
 
 

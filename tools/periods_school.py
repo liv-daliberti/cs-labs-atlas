@@ -39,17 +39,17 @@ DBLP_URL_SKIP = re.compile(r'orcid|wikidata|wikipedia|scholar\.google|twitter|li
 
 
 def targets(key):
-    census = json.loads((P.CENSUS / f'{key}-faculty.json').read_text())['faculty']
-    add = json.loads((P.CENSUS / f'{key}-additions.json').read_text()) if (P.CENSUS / f'{key}-additions.json').exists() else []
-    rows = json.loads((P.LISTINGS / key / 'rows.json').read_text())
+    census = json.loads((P.data('census-faculty.json', key)).read_text())['faculty']
+    add = json.loads((P.data('census-additions.json', key)).read_text()) if (P.data('census-additions.json', key)).exists() else []
+    rows = json.loads((P.data('rows.json', key)).read_text())
     hp = collections.defaultdict(list)
     for r in rows:
         if r.get('homepage'):
             hp[r['name']].append(r['homepage'])
     out = []
-    dpf = P.HIERARCHY / 'dblp-dump-persons.json.gz'
+    dpf = P.data('dblp-dump-persons.json.gz')
     dp = json.load(__import__('gzip').open(dpf, 'rt'))['persons'] if dpf.exists() else {}
-    ov = json.loads((P.HIERARCHY / 'census-overrides.json').read_text()).get(key, {}) if (P.HIERARCHY / 'census-overrides.json').exists() else {}
+    ov = json.loads((P.data('census-overrides.json')).read_text()).get(key, {}) if (P.data('census-overrides.json')).exists() else {}
     for x in census + add:
         if not x.get('is_pi'):
             continue
@@ -138,8 +138,8 @@ def extract(key):
                             conflictingStartYears=starts if len(starts) > 1 else [], addedBy=f'tools/periods_school.py {key}', endNote=note,
                             qualification="Appointment year from the page's own statement naming the school; the earliest stated faculty year is kept."))
     P.PERIODS.mkdir(exist_ok=True)
-    (P.PERIODS / f'{key}-faculty-periods.json').write_text(json.dumps(periods, indent=1, ensure_ascii=False))
-    (P.PERIODS / f'{key}-holds.json').write_text(json.dumps(holds, indent=1, ensure_ascii=False))
+    P.data_w('faculty-periods.json', key).write_text(json.dumps(periods, indent=1, ensure_ascii=False))
+    P.data_w('holds.json', key).write_text(json.dumps(holds, indent=1, ensure_ascii=False))
     print(json.dumps(dict(school=key, periods=len(periods), holds=len(holds), conflicts=sum(1 for p in periods if p['conflictingStartYears']))))
 
 
@@ -154,8 +154,8 @@ def gaps(key, write=True):
     open. -> hierarchy/<key>/gap-year-evidence.json"""
     import cs_related_school as CR
     c = W.con(key); rx = S.aff_rx(key); out = {}
-    add = {x['name']: x for x in json.loads((P.CENSUS / f'{key}-additions.json').read_text())} if (P.CENSUS / f'{key}-additions.json').exists() else {}
-    cen = {x['name']: x for x in json.loads((P.CENSUS / f'{key}-faculty.json').read_text())['faculty']}
+    add = {x['name']: x for x in json.loads((P.data('census-additions.json', key)).read_text())} if (P.data('census-additions.json', key)).exists() else {}
+    cen = {x['name']: x for x in json.loads((P.data('census-faculty.json', key)).read_text())['faculty']}
     import stage_gate as SG
     for t in targets(key):
         x0 = cen.get(t['name']) or add.get(t['name']) or {}
@@ -201,11 +201,11 @@ def gaps(key, write=True):
                         break
         out[t['name']] = dict(listing_years=ys, gap_years=miss, evidence={str(y): e for y, e in ev.items()}, closed=all(y in ev for y in miss), urls_tried=urls)
         print(json.dumps(dict(pi=t['name'], gaps=miss, closed=sorted(ev))), flush=True)
-    (P.HIERARCHY / key / 'gap-year-evidence.json').write_text(json.dumps(out, indent=1, ensure_ascii=False))
+    P.data_w('gap-year-evidence.json', key).write_text(json.dumps(out, indent=1, ensure_ascii=False))
     if not write:
         return out
-    rows = json.loads((P.LISTINGS / key / 'rows.json').read_text())
-    f = P.HIERARCHY / 'census-overrides.json'; txt = f.read_text(); ov = json.loads(txt); sec = ov.setdefault(key, {})
+    rows = json.loads((P.data('rows.json', key)).read_text())
+    f = P.data('census-overrides.json'); txt = f.read_text(); ov = json.loads(txt); sec = ov.setdefault(key, {})
     for name, g in out.items():
         if not g['closed']:
             continue
@@ -239,7 +239,7 @@ def extend(key, write=True):
     import cs_related_school as CR
     c = W.con(key); lo, hi = S.get(key).get('window') or [2016, 2026]
     pats = list(S.field(S.get(key), 'periods.profile_patterns') or [])
-    add = json.loads((P.CENSUS / f'{key}-additions.json').read_text()) if (P.CENSUS / f'{key}-additions.json').exists() else []
+    add = json.loads((P.data('census-additions.json', key)).read_text()) if (P.data('census-additions.json', key)).exists() else []
     iso = lambda d: (f'{d[:4]}-{d[4:6]}-{d[6:8]}' if d and re.fullmatch(r'\d{8}(?:\d{2}){0,3}', d) else d)
     out = {}
     for x in add:
@@ -284,10 +284,10 @@ def extend(key, write=True):
             src.setdefault(int(str(s_.get('observed') or '0')[:4] or 0), s_)
         out[x['name']] = dict(listed=sorted(listed), profile_years=sorted(ev), runs=runs, evidence={str(y): e for y, e in sorted(ev.items())}, urls=urls)
         print(json.dumps(dict(pi=x['name'], listed=sorted(listed), added=sorted(ev), runs=[[r[0], r[-1]] for r in runs])), flush=True)
-    (P.HIERARCHY / key / 'profile-year-evidence.json').write_text(json.dumps(out, indent=1, ensure_ascii=False))
+    P.data_w('profile-year-evidence.json', key).write_text(json.dumps(out, indent=1, ensure_ascii=False))
     if not write:
         return out
-    f = P.HIERARCHY / 'census-overrides.json'; txt = f.read_text(); ov = json.loads(txt); sec = ov.setdefault(key, {})
+    f = P.data('census-overrides.json'); txt = f.read_text(); ov = json.loads(txt); sec = ov.setdefault(key, {})
     for name, g in out.items():
         if not g['profile_years']:
             continue

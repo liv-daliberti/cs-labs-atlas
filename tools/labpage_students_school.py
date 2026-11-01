@@ -46,7 +46,7 @@ import school_web as W  # noqa: E402
 import periods_school as PS  # noqa: E402
 from pi_hierarchy import Name, toks  # noqa: E402
 
-sys.path.insert(0, str(P.HIERARCHY / 'labpage-tools-epfl-berkeley'))
+sys.path.insert(0, str(P.data('labpage-tools-epfl-berkeley')))
 import lpdom  # noqa: E402
 
 PEOPLE = re.compile(r'\b(people|students|group|members|team|lab)\b', re.I)
@@ -161,7 +161,7 @@ def defenses(key):
             out.append(dict(student=name, host=host, year=int(w.group(1)), url=r['original'], capture_url=cap, sha256=sha,
                             quote=t[qi:qj + len(name)], host_quote=t[hq:hq + len('Faculty Host ' + host)] if hq >= 0 else 'Faculty Host ' + host))
             n['defenses'] += 1
-    (P.HIERARCHY / key / 'defense-evidence.json').write_text(json.dumps(out, indent=1, ensure_ascii=False))
+    P.data_w('defense-evidence.json', key).write_text(json.dumps(out, indent=1, ensure_ascii=False))
     print(json.dumps(dict(n)))
 
 
@@ -189,16 +189,16 @@ def previous_school_students(key):
     """{PI name at this school: (released school, [Name of a student of the same PI there])}. The same PI is a released
     school's PI with a shared DBLP pid or ORCID (census, additions, census-overrides). Learned 2026-10-30: Stella Yu's
     Michigan homepage lists her Berkeley advisees; Berkeley's package already holds them under her Berkeley lab."""
-    ov = json.loads((P.HIERARCHY / 'census-overrides.json').read_text()).get(key, {})
+    ov = json.loads((P.data('census-overrides.json')).read_text()).get(key, {})
     ids = {}
-    for x in json.loads((P.CENSUS / f'{key}-faculty.json').read_text())['faculty'] + \
-            (json.loads((P.CENSUS / f'{key}-additions.json').read_text()) if (P.CENSUS / f'{key}-additions.json').exists() else []):
+    for x in json.loads((P.data('census-faculty.json', key)).read_text())['faculty'] + \
+            (json.loads((P.data('census-additions.json', key)).read_text()) if (P.data('census-additions.json', key)).exists() else []):
         o = ov.get(x['name']) or {}
         dl = lambda v: [v] if isinstance(v, str) else list(v or [])
         ids[x['name']] = {('dblp', d) for d in dl(o.get('dblp')) or dl(x.get('dblp'))} | {('orcid', q) for q in dl(x.get('orcid')) + dl(o.get('orcid'))}
     out = {}
     for s in S.released():
-        pf, sf = P.HIERARCHY / s / 'pis.json', P.HIERARCHY / s / 'students.json'
+        pf, sf = P.data('pis.json', s), P.data('students.json', s)
         if not (pf.exists() and sf.exists()):
             continue
         st = json.loads(sf.read_text())
@@ -248,8 +248,8 @@ def directory(key):
     -> hierarchy/<key>/directory-evidence.json, merged into labpage-evidence.json by extract."""
     c = W.con(key); rx = S.aff_rx(key); n = collections.Counter(); out = []
     pis = [(t['name'], [t['name']] + list(t.get('aliases') or [])) for t in PS.targets(key)]
-    cen = {x['name']: x for x in json.loads((P.CENSUS / f'{key}-faculty.json').read_text())['faculty']}
-    add = {x['name']: x for x in json.loads((P.CENSUS / f'{key}-additions.json').read_text())} if (P.CENSUS / f'{key}-additions.json').exists() else {}
+    cen = {x['name']: x for x in json.loads((P.data('census-faculty.json', key)).read_text())['faculty']}
+    add = {x['name']: x for x in json.loads((P.data('census-additions.json', key)).read_text())} if (P.data('census-additions.json', key)).exists() else {}
     forms = []
     for pi, _ in pis:
         x = cen.get(pi) or add.get(pi) or {}
@@ -288,7 +288,7 @@ def directory(key):
                         break
                 if got:
                     break
-    (P.HIERARCHY / key / 'directory-evidence.json').write_text(json.dumps(out, indent=1, ensure_ascii=False))
+    P.data_w('directory-evidence.json', key).write_text(json.dumps(out, indent=1, ensure_ascii=False))
     print(json.dumps(dict(n, students_with_adviser=len({r['student'] for r in out}), labs=len({r['pi'] for r in out}))))
 
 
@@ -297,8 +297,8 @@ def extract(key):
     prev = previous_school_students(key); dropped_prev = []
     first_year = {t['name']: min(t.get('years') or [9999]) for t in PS.targets(key)}
     fac = []  # the school's listed faculty: a co-adviser named in a students list is not a student
-    for x in json.loads((P.CENSUS / f'{key}-faculty.json').read_text())['faculty'] + \
-            (json.loads((P.CENSUS / f'{key}-additions.json').read_text()) if (P.CENSUS / f'{key}-additions.json').exists() else []):
+    for x in json.loads((P.data('census-faculty.json', key)).read_text())['faculty'] + \
+            (json.loads((P.data('census-additions.json', key)).read_text()) if (P.data('census-additions.json', key)).exists() else []):
         fac.append(Name([x['name']] + list(x.get('aliases') or [])))
     for pi, (t, urls) in targets_pages(key).items():
         N = Name([pi]); studs, seen = [], set()
@@ -353,7 +353,7 @@ def extract(key):
             rep['labs_with_students'] += 1; rep['students'] += len(studs)
         else:
             rep['labs_without'] += 1
-    dfs = json.loads((P.HIERARCHY / key / 'defense-evidence.json').read_text()) if (P.HIERARCHY / key / 'defense-evidence.json').exists() else []
+    dfs = json.loads((P.data('defense-evidence.json', key)).read_text()) if (P.data('defense-evidence.json', key)).exists() else []
     by_pi = {e['pi']: e for e in ev}
     pis = {t['name']: Name([t['name']]) for t in PS.targets(key)}
     for d in dfs:
@@ -367,7 +367,7 @@ def extract(key):
                                   section='dissertation defense announcement', url=d['url'], capture_url=d['capture_url'], sha256=d['sha256'],
                                   quote=d['quote'], host_quote=d['host_quote'], auto=True))
         rep['defense_students'] += 1
-    dirs = json.loads((P.HIERARCHY / key / 'directory-evidence.json').read_text()) if (P.HIERARCHY / key / 'directory-evidence.json').exists() else []
+    dirs = json.loads((P.data('directory-evidence.json', key)).read_text()) if (P.data('directory-evidence.json', key)).exists() else []
     for d in dirs:
         e = by_pi.setdefault(d['pi'], dict(pi=d['pi'], lab_site=None, people_page=None, students=[]))
         if e not in ev:
@@ -378,8 +378,8 @@ def extract(key):
                                   section="student's own page (program PhD directory website)", url=d['url'], capture_url=d['capture_url'],
                                   sha256=d['sha256'], quote=d['quote'], directory_evidence=d['directory_evidence'], auto=True))
         rep['directory_students'] += 1
-    (P.HIERARCHY / key / 'labpage-evidence.json').write_text(json.dumps(ev, indent=1, ensure_ascii=False))
-    (P.HIERARCHY / key / 'labpage-students-report.json').write_text(json.dumps(dict(rep, previous_school_pis={k: v[0] for k, v in prev.items()},
+    P.data_w('labpage-evidence.json', key).write_text(json.dumps(ev, indent=1, ensure_ascii=False))
+    P.data_w('labpage-students-report.json', key).write_text(json.dumps(dict(rep, previous_school_pis={k: v[0] for k, v in prev.items()},
                                                                                  dropped_previous_school=dropped_prev), indent=1))
     print(json.dumps(dict(rep)))
 

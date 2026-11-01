@@ -291,6 +291,21 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('VALIDATION.json', 'derived', 'hierarchy/VALIDATION.json', 'hierarchy/derived/VALIDATION.json'),
     ('ids', 'derived', 'hierarchy/ids', 'hierarchy/derived/ids'),
     ('logs', 'work', 'hierarchy/logs', 'hierarchy/logs'),
+    # routed 2026-10-31 (ROADMAP item 10, infra/datarouting): files the stage tools name
+    ('rows.json', 'derived', 'listings/{school}/rows.json', 'listings/{school}/derived/rows.json'),
+    ('pi-basis-evidence.json', 'reviewed', 'hierarchy/{school}/pi-basis-evidence.json', 'hierarchy/{school}/reviewed/pi-basis-evidence.json'),
+    ('dblp-ids.json', 'derived', 'hierarchy/{school}/dblp-ids.json', 'hierarchy/{school}/derived/dblp-ids.json'),
+    ('homepage-identity.json', 'derived', 'hierarchy/{school}/homepage-identity.json', 'hierarchy/{school}/derived/homepage-identity.json'),
+    ('census-report.md', 'derived', 'census/{school}-report.md', 'hierarchy/{school}/derived/report.md'),
+    ('dblp-affiliated.json', 'derived', 'hierarchy/{school}/dblp-affiliated.json', 'hierarchy/{school}/derived/dblp-affiliated.json'),
+    ('cs-related-candidates-openalex.json', 'derived', 'hierarchy/{school}/cs-related-candidates-openalex.json', 'hierarchy/{school}/derived/cs-related-candidates-openalex.json'),
+    ('defense-evidence.json', 'reviewed', 'hierarchy/{school}/defense-evidence.json', 'hierarchy/{school}/reviewed/defense-evidence.json'),
+    ('directory-evidence.json', 'reviewed', 'hierarchy/{school}/directory-evidence.json', 'hierarchy/{school}/reviewed/directory-evidence.json'),
+    ('labpage-students-report.json', 'derived', 'hierarchy/{school}/labpage-students-report.json', 'hierarchy/{school}/derived/labpage-students-report.json'),
+    ('holds.json', 'derived', 'periods/{school}-holds.json', 'hierarchy/{school}/derived/holds.json'),
+    ('gap-year-evidence.json', 'reviewed', 'hierarchy/{school}/gap-year-evidence.json', 'hierarchy/{school}/reviewed/gap-year-evidence.json'),
+    ('profile-year-evidence.json', 'reviewed', 'hierarchy/{school}/profile-year-evidence.json', 'hierarchy/{school}/reviewed/profile-year-evidence.json'),
+    ('labpage-tools-epfl-berkeley', 'work', 'hierarchy/labpage-tools-epfl-berkeley', 'hierarchy/work/labpage-tools-epfl-berkeley'),
 ]
 _DATA = {n: (k, a, b) for n, k, a, b in DATA_FILES}
 
@@ -318,6 +333,14 @@ def data(name, school=None, root=None, layout=None):
     top, _, rest = rel.partition('/')  # without a root, each top directory follows its own slot (CS_ATLAS_HIERARCHY, ...)
     base = {'hierarchy': HIERARCHY, 'census': CENSUS, 'listings': LISTINGS, 'periods': PERIODS, 'captures': CAPTURES}.get(top)
     return base / rest if base is not None else CODE / rel
+
+
+def data_w(name, school=None, root=None, layout=None):
+    """data(), for a file about to be written: its directory is created first (the split layout has directories the flat one
+    does not)."""
+    p = data(name, school, root=root, layout=layout)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    return p
 
 
 def data_kind(name):
