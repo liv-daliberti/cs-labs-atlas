@@ -213,9 +213,14 @@ Flat layout today: the slot is the same directory the code used. `tools/route_ft
 After the move (phase B) the raw state and locks stay out of git, the review directories join the `reviewed/` kind, and `checks/` moves
 under derived; only these slot values change.
 
-## Phase B (not started; needs the owner's OK)
+## Phase B (dry run written 2026-10-31; apply not written; needs the owner's OK)
 
-A dry-run tool (an extension of `tools/relocate_project.py`, or a sibling) prints the ordered renames from `DATA_FILES`
-(`flat` to `split`), the conflicts, a preflight of busy processes and held locks (`lsof` on the files, the stores' loop
-locks, running Slurm jobs of the project), and the record it would write to `MIGRATIONS`. The owner picks a quiet point when
-the lab-page and downloads agents are idle; the coordinator applies it and flips `DATA_LAYOUT_DEFAULT` to `split` in the same commit.
+`tools/relocate_data.py` is a sibling of `tools/relocate_project.py` and only plans. It prints the moves from `DATA_FILES`
+(`flat` to `split`, for every charter school and the shared files, plus `hierarchy/<school>/tmp/`, the schools' `STAGE-*.md`
+and the shared audit reports), marking each as `git mv` (tracked) or `rename`; the conflicts (destination exists, other
+filesystem); the table entries with no file; the readiness (code that still joins old paths, the `.gitignore` lines to
+change); the preflight (this user's processes with a cwd or open file under a source, sqlite journals, the user's Slurm
+jobs, the stores' held `.loop.lock` files); and the `MIGRATIONS` lines an apply would write. It has no apply mode:
+the owner reviews the plan, then an apply is added that refuses on any conflict, readiness blocker or dirty preflight.
+The owner picks a quiet point when the lab-page and downloads agents are idle; the coordinator applies it and flips
+`DATA_LAYOUT_DEFAULT` to `split` in the same commit.
