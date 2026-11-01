@@ -1,6 +1,6 @@
 # Lab-page audit
 
-Generated 2026-11-01T14:42:59+00:00 by `tools/labpage_audit.py`; method and reason codes in `docs/LAB-PAGES.md`.
+Generated 2026-11-01T15:08:57+00:00 by `tools/labpage_audit.py`; method and reason codes in `docs/LAB-PAGES.md`.
 
 ## Lab pages
 
@@ -25,7 +25,7 @@ Generated 2026-11-01T14:42:59+00:00 by `tools/labpage_audit.py`; method and reas
 | cmu | 12797 | 8577 | 4220 | 6848 | not_in_people_section 1992, undated_cannot_place 1635, name_unresolved 385, site_at_other_institution 353, not_a_student 317, outside_2016_2026 308, at_previous_school 280, undated_alumni_cannot_place 206, after_pi_left 136, shared_page_no_adviser 66, evidence_not_in_build 6 | 265 | 265 | 23 |
 | epfl | 6867 | 5265 | 1602 | 3276 | not_in_people_section 1820, undated_cannot_place 711, name_unresolved 393, outside_2016_2026 142, after_pi_left 128, at_previous_school 125, not_a_student 40, undated_alumni_cannot_place 22, reviewer_excluded 20, site_at_other_institution 7, evidence_not_in_build 1 | 182 | 182 | 68 |
 | berkeley | 6610 | 4000 | 2610 | 2778 | not_in_people_section 881, shared_page_no_adviser 659, undated_cannot_place 582, outside_2016_2026 443, name_unresolved 282, at_previous_school 253, undated_alumni_cannot_place 139, not_a_student 114, after_pi_left 43, site_at_other_institution 31, reviewer_excluded 22, evidence_not_in_build 2 | 381 | 381 | 20 |
-| stanford | 5270 | 3861 | 1409 | 1062 | not_in_people_section 1654, undated_cannot_place 532, not_a_student 414, name_unresolved 275, undated_alumni_cannot_place 217, at_previous_school 132, outside_2016_2026 110, site_at_other_institution 64, after_pi_left 53 | 757 | 757 | 105 |
+| stanford | 5270 | 3861 | 1409 | 1062 | not_in_people_section 1654, undated_cannot_place 532, not_a_student 521, name_unresolved 390, undated_alumni_cannot_place 217, at_previous_school 132, outside_2016_2026 110, site_at_other_institution 64, after_pi_left 53 | 535 | 535 | 105 |
 | michigan | 4457 | 3012 | 1445 | 660 | not_in_people_section 1035, undated_cannot_place 836, name_unresolved 350, site_at_other_institution 222, after_pi_left 193, at_previous_school 176, undated_alumni_cannot_place 120, not_a_student 118, outside_2016_2026 93, evidence_not_in_build 1 | 653 | 653 | 17 |
 
 ## Papers listed on lab pages
@@ -60,4 +60,5 @@ Generated 2026-11-01T14:42:59+00:00 by `tools/labpage_audit.py`; method and reas
 | berkeley | 2 | 2026-10-31 | 20 | 6 | 0 | - | - | fail | after the strict undated rule and rediscovery |
 | berkeley | 3 | 2026-10-31 | 20 | 0.5 | 3 | 20 | 0.0 | students_membership_only_papers_pass | after the all-caps PAST heading rule; last student round |
 | stanford | 1 | 2026-10-31 | 20 | 8 | 0 | - | - | fail | first Stanford audit |
+| stanford | 2 | 2026-10-31 | 20 | 8 | 0 | - | - | fail | after the profile-reader (quote-only) and citation rules; the reader h |
 | michigan | 1 | 2026-10-31 | 20 | 2.5 | 2 | - | - | fail | first Michigan audit |
