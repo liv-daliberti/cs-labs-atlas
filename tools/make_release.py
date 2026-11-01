@@ -83,16 +83,45 @@ def run_tests():
     return r.returncode == 0, (lines[-1] if lines else r.stderr.strip()[-300:])
 
 
+REL_HIERARCHY = 'hierarchy'  # the release's own layout: it keeps the flat names whatever the working layout (atlas_paths.flat_of)
+
+
+def rel_of(name, school=None):
+    """The release-relative (flat) path of a data file, or of a file inside a data directory ('ids/registry.sqlite')."""
+    head, _, rest = name.partition('/')
+    return (P.data(head, school, root=Path('.'), layout='flat') / rest).as_posix()
+
+
+def release_sources():
+    """{release path: source file} of everything a release copies: the packages and audits per school, the shared derived files, the
+    tracked reviewed inputs (under their flat names) and docs/RULES.md. Only files that exist."""
+    src = {}
+    for s in P.SCHOOL_IDS:
+        for f in PACKAGE + SCHOOL_EXTRA:
+            if P.data(f, s).exists():
+                src[rel_of(f, s)] = P.data(f, s)
+    for f in TOP:
+        head, _, rest = f.partition('/')
+        p = P.data(head) / rest if rest else P.data(head)
+        if p.exists():
+            src[rel_of(f)] = p
+    for f in tracked_inputs():
+        if (P.WORK / f).exists():
+            src[P.flat_of(f)] = P.WORK / f
+    src['docs/RULES.md'] = P.WORK / 'docs/RULES.md'
+    return src
+
+
 def upstream():
     out = dict(openalex_sweeps={}, dblp_dump=None, site_collections={})
     for s in P.SCHOOL_IDS:
-        db = P.HIERARCHY / s / 'openalex-sweep.sqlite'
+        db = P.data('openalex-sweep.sqlite', s)
         if db.exists():
             c = sqlite3.connect(f'file:{db}?mode=ro', uri=True, timeout=60)
             lo, hi, pages, works = c.execute('select min(fetched_at), max(fetched_at), count(*), sum(n) from pages').fetchone()
             out['openalex_sweeps'][s] = dict(first_fetched=lo, last_fetched=hi, pages=pages, works=works)
             c.close()
-        coll = P.HIERARCHY / s / 'collection.json.gz'
+        coll = P.data('collection.json.gz', s)
         coll = coll if coll.exists() else P.SITE_DATA / f'collection-{s}.json.gz'
         if coll.exists():
             st = coll.stat()
@@ -101,7 +130,7 @@ def upstream():
     m = re.search(r'(\d{4}-\d{2}-\d{2})', P.DBLP_DUMP_FILE)
     out['dblp_dump'] = dict(file=str(P.DBLP_DUMP_XML), date=m.group(1) if m else None,
                             md5=md5.read_text().split()[0] if md5.exists() else None,
-                            persons_extract=str(P.HIERARCHY / 'dblp-dump-persons.json.gz'))
+                            persons_extract=str(P.data('dblp-dump-persons.json.gz')))
     return out
 
 
@@ -161,34 +190,31 @@ def make(a):
     built, prov = {}, {}
     for s in P.SCHOOL_IDS:
         for f in PACKAGE:
-            if not (P.HIERARCHY / s / f).exists():
-                raise SystemExit(f'missing package file hierarchy/{s}/{f}')
-        rep_ = json.loads((P.HIERARCHY / s / 'report.json').read_text())
+            if not P.data(f, s).exists():
+                raise SystemExit(f'missing package file {P.data(f, s)}')
+        rep_ = json.loads(P.data('report.json', s).read_text())
         built[s] = rep_.get('builtAt')
         miss = provenance.missing(rep_.get('provenance'))  # (2026-10-29, owner) provenance is required
         if miss:
-            raise SystemExit(f'hierarchy/{s}/report.json: provenance missing or incomplete ({", ".join(miss)}); rebuild with tools/pi_hierarchy.py')
+            raise SystemExit(f'{P.data("report.json", s)}: provenance missing or incomplete ({", ".join(miss)}); rebuild with tools/pi_hierarchy.py')
         prov[s] = rep_['provenance']
-        pis_ = json.loads((P.HIERARCHY / s / 'pis.json').read_text())  # every package carries the atlas ids (2026-10-29)
+        pis_ = json.loads(P.data('pis.json', s).read_text())  # every package carries the atlas ids (2026-10-29)
         if not all(str(p.get('atlasId', '')).startswith('atl:p:') and str(p.get('labId', '')).startswith('atl:l:') for p in pis_):
-            raise SystemExit(f'hierarchy/{s}/pis.json: atlas ids missing; run tools/atlas_ids.py (rebuild stage ids)')
+            raise SystemExit(f'{P.data("pis.json", s)}: atlas ids missing; run tools/atlas_ids.py (rebuild stage ids)')
     newest = max(datetime.fromisoformat(b.rstrip('Z')).replace(tzinfo=timezone.utc).timestamp() for b in built.values())
-    reg_p = P.HIERARCHY / 'BUILD-REGRESSION.json'
+    reg_p = P.data('BUILD-REGRESSION.json')
     reg = json.loads(reg_p.read_text()) if reg_p.exists() else None
     if not reg or reg_p.stat().st_mtime < newest:
         if not a.allow_swings:
-            raise SystemExit('hierarchy/BUILD-REGRESSION.json is missing or older than the packages: run tools/build_regression.py check')
+            raise SystemExit('BUILD-REGRESSION.json is missing or older than the packages: run tools/build_regression.py check')
     elif reg['flags'] and not a.allow_swings:
-        raise SystemExit(f"{len(reg['flags'])} regression flags (hierarchy/BUILD-REGRESSION.md); --allow-swings releases anyway")
-    ev_p = P.HIERARCHY / 'EVIDENCE-CHECK.json'  # the build-time evidence check (tools/evidence_check.py) must have passed
+        raise SystemExit(f"{len(reg['flags'])} regression flags (BUILD-REGRESSION.md); --allow-swings releases anyway")
+    ev_p = P.data('EVIDENCE-CHECK.json')  # the build-time evidence check (tools/evidence_check.py) must have passed
     ev = json.loads(ev_p.read_text()) if ev_p.exists() else None
     if not ev or ev_p.stat().st_mtime < newest or ev.get('mode') != 'strict' or not ev.get('ok'):
-        raise SystemExit('hierarchy/EVIDENCE-CHECK.json is missing, older than the packages, not strict, or failed: run tools/evidence_check.py')
-    files = [f'hierarchy/{s}/{f}' for s in P.SCHOOL_IDS for f in PACKAGE + SCHOOL_EXTRA if (P.HIERARCHY / s / f).exists()]
-    files += [f'hierarchy/{f}' for f in TOP if (P.HIERARCHY / f).exists()]
-    files += [f for f in tracked_inputs() if (P.WORK / f).exists()]
-    files += ['docs/RULES.md']
-    files = sorted(dict.fromkeys(files))
+        raise SystemExit('EVIDENCE-CHECK.json is missing, older than the packages, not strict, or failed: run tools/evidence_check.py')
+    sources = release_sources()
+    files = sorted(sources)
     day = datetime.now().strftime('%Y-%m-%d')
     P.RELEASES.mkdir(parents=True, exist_ok=True)
     rid = a.id or next_id(day)
@@ -199,13 +225,13 @@ def make(a):
     tmp = P.RELEASES / f'.tmp-{rid}-{os.getpid()}'
     entries = {}
     for f in files:
-        src, dst = P.WORK / f, tmp / f
+        src, dst = sources[f], tmp / f
         dst.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(src, dst)
         entries[f] = dict(bytes=dst.stat().st_size, sha256=sha256(dst))
     for s in P.SCHOOL_IDS:  # the package must not have been rebuilt while it was copied
-        now = json.loads((P.HIERARCHY / s / 'report.json').read_text()).get('builtAt')
-        if now != built[s] or sha256(P.HIERARCHY / s / 'lab_papers.jsonl.gz') != entries[f'hierarchy/{s}/lab_papers.jsonl.gz']['sha256']:
+        now = json.loads(P.data('report.json', s).read_text()).get('builtAt')
+        if now != built[s] or sha256(P.data('lab_papers.jsonl.gz', s)) != entries[rel_of('lab_papers.jsonl.gz', s)]['sha256']:
             shutil.rmtree(tmp)
             raise SystemExit(f'{s}: package rewritten while copying; rerun')
     if reg:  # CHANGES.md (ROADMAP item 14): generated from the regression, the rule ids and the commits; a manifest file
@@ -216,16 +242,16 @@ def make(a):
         entries['CHANGES.md'] = dict(bytes=(tmp / 'CHANGES.md').stat().st_size, sha256=sha256(tmp / 'CHANGES.md'))
     counts = {}
     for s in P.SCHOOL_IDS:
-        rep = json.loads((tmp / 'hierarchy' / s / 'report.json').read_text())
+        rep = json.loads((tmp / REL_HIERARCHY / s / 'report.json').read_text())
         c = rep.get('counts') or {}
         counts[s] = dict(builtAt=rep.get('builtAt'), **{k: c.get(k) for k in COUNT_KEYS})
-    chain = json.loads((tmp / 'hierarchy/chain-audit.json').read_text()) if (tmp / 'hierarchy/chain-audit.json').exists() else {}
+    chain = json.loads((tmp / REL_HIERARCHY / 'chain-audit.json').read_text()) if (tmp / REL_HIERARCHY / 'chain-audit.json').exists() else {}
     man = dict(release=rid, created=datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
                code=dict(repository=str(P.WORK), commit=head, uncommitted_tracked_changes=dirty, uncommitted_outside_build=other_dirty,
                          built_from={s: dict(commit=v['code'].get('commit'), dirty=v['code'].get('dirty'), diff_sha256=v['code'].get('diff_sha256'))
                                      for s, v in prov.items()}),
                provenance={s: {k: v[k] for k in ('openalex_sweep', 'dblp_dump', 'dblp_persons', 'pi_works')} for s, v in prov.items()},
-               evidence_check=(json.loads((P.HIERARCHY / 'EVIDENCE-CHECK.json').read_text()).get('ok') if (P.HIERARCHY / 'EVIDENCE-CHECK.json').exists() else None),
+               evidence_check=(json.loads(P.data('EVIDENCE-CHECK.json').read_text()).get('ok') if P.data('EVIDENCE-CHECK.json').exists() else None),
                rules=[dict(id=i, decided=d) for i, d in rule_ids()], rules_doc='docs/RULES.md',
                build=dict(packages_built=built, chain_audit_at=chain.get('at'),
                           chain_audit_open={x['school']: {c: x['checks'][c]['n_unexplained'] for c in x['checks']} for x in chain.get('schools', [])},
@@ -234,9 +260,9 @@ def make(a):
                                           before=(reg or {}).get('before'), allowed=bool(a.allow_swings),
                                           identical_to_before={s: r.get('identical') for s, r in ((reg or {}).get('schools') or {}).items()})),
                counts=counts, upstream=upstream(),
-               ledger={s: ledger_counts(tmp / 'hierarchy' / s) for s in P.SCHOOL_IDS},  # docs/UNAVAILABLE.md (2026-10-30)
-               ids=({k: v for k, v in json.loads((tmp / 'hierarchy/ids/IDS-REPORT.json').read_text()).items() if k != 'conflicts'}
-                    if (tmp / 'hierarchy/ids/IDS-REPORT.json').exists() else None),  # tools/atlas_ids.py, docs/IDS.md
+               ledger={s: ledger_counts(tmp / REL_HIERARCHY / s) for s in P.SCHOOL_IDS},  # docs/UNAVAILABLE.md (2026-10-30)
+               ids=({k: v for k, v in json.loads((tmp / REL_HIERARCHY / 'ids/IDS-REPORT.json').read_text()).items() if k != 'conflicts'}
+                    if (tmp / REL_HIERARCHY / 'ids/IDS-REPORT.json').exists() else None),  # tools/atlas_ids.py, docs/IDS.md
                layout='paths mirror the working root (hierarchy/, census/, periods/, docs/); hierarchy/<school>/ holds the packages',
                files=entries)
     (tmp / 'MANIFEST.json').write_text(json.dumps(man, indent=1, ensure_ascii=False) + '\n')

@@ -306,6 +306,13 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('gap-year-evidence.json', 'reviewed', 'hierarchy/{school}/gap-year-evidence.json', 'hierarchy/{school}/reviewed/gap-year-evidence.json'),
     ('profile-year-evidence.json', 'reviewed', 'hierarchy/{school}/profile-year-evidence.json', 'hierarchy/{school}/reviewed/profile-year-evidence.json'),
     ('labpage-tools-epfl-berkeley', 'work', 'hierarchy/labpage-tools-epfl-berkeley', 'hierarchy/work/labpage-tools-epfl-berkeley'),
+    ('school-profiles.json', 'derived', 'hierarchy/school-profiles.json', 'hierarchy/derived/school-profiles.json'),
+    ('missing-papers-audit.json', 'derived', 'hierarchy/missing-papers-audit.json', 'hierarchy/derived/missing-papers-audit.json'),
+    ('CHAIN-AUDIT.md', 'derived', 'hierarchy/CHAIN-AUDIT.md', 'hierarchy/derived/CHAIN-AUDIT.md'),
+    ('EVIDENCE-CHECK.md', 'derived', 'hierarchy/EVIDENCE-CHECK.md', 'hierarchy/derived/EVIDENCE-CHECK.md'),
+    ('BUILD-REGRESSION.md', 'derived', 'hierarchy/BUILD-REGRESSION.md', 'hierarchy/derived/BUILD-REGRESSION.md'),
+    ('SCHOOL-PROFILES.md', 'derived', 'hierarchy/SCHOOL-PROFILES.md', 'hierarchy/derived/SCHOOL-PROFILES.md'),
+    ('LABPAGE-AUDIT.md', 'derived', 'hierarchy/LABPAGE-AUDIT.md', 'hierarchy/derived/LABPAGE-AUDIT.md'),
 ]
 _DATA = {n: (k, a, b) for n, k, a, b in DATA_FILES}
 
@@ -341,6 +348,21 @@ def data_w(name, school=None, root=None, layout=None):
     p = data(name, school, root=root, layout=layout)
     p.parent.mkdir(parents=True, exist_ok=True)
     return p
+
+
+def flat_of(rel):
+    """The flat-layout path of a repository- or root-relative data path in either layout: a split path
+    ('hierarchy/mit/derived/pis.json') gives its flat one ('hierarchy/mit/pis.json'); anything else is returned unchanged. A
+    release keeps the flat names whatever the working layout, so consumers of releases never see the move."""
+    rel = str(rel)
+    for _, _, flat, split in DATA_FILES:
+        if flat == split:
+            continue
+        rx = '^' + re.escape(split).replace(re.escape('{school}'), '(?P<school>[a-z0-9_-]+)') + '(?P<rest>/.*)?$'
+        m = re.match(rx, rel)
+        if m:
+            return flat.format(school=m.groupdict().get('school')) + (m.group('rest') or '')
+    return rel
 
 
 def data_kind(name):

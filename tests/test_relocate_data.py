@@ -38,7 +38,7 @@ def test_plan_lists_moves_conflicts_and_readiness(fake):
     assert by_old['hierarchy/mit/gap-evidence.json']['tracked'] and not by_old['hierarchy/mit/pis.json']['tracked']
     assert os.path.relpath(by_old['hierarchy/mit/tmp']['new'], fake) == 'hierarchy/mit/work/tmp'
     assert os.path.relpath(by_old['hierarchy/mit/STAGE-3.md']['new'], fake) == 'hierarchy/mit/reports/STAGE-3.md'
-    assert os.path.relpath(by_old['hierarchy/CHAIN-AUDIT.md']['new'], fake) == 'hierarchy/reports/CHAIN-AUDIT.md'
+    assert os.path.relpath(by_old['hierarchy/CHAIN-AUDIT.md']['new'], fake) == 'hierarchy/derived/CHAIN-AUDIT.md'
     assert [os.path.relpath(c['old'], fake) for c in pl['conflicts']] == ['hierarchy/princeton/pis.json']   # destination exists
     assert pl['readiness']['direct_joins'] == {'tools/joins.py': 1}      # the comment line is not counted
     assert pl['readiness']['gitignore_lines'] == ['!hierarchy/mit/gap-evidence.json']

@@ -33,7 +33,6 @@ import atlas_paths as P  # noqa: E402
 import relocate_project as R  # noqa: E402  (busy_processes, store_locks, record, _dev)
 import school_config  # noqa: E402
 
-SHARED_REPORTS = ('CHAIN-AUDIT.md', 'EVIDENCE-CHECK.md', 'BUILD-REGRESSION.md', 'SCHOOL-PROFILES.md', 'LABPAGE-AUDIT.md')
 DIRECT_JOIN = re.compile(r"(P\.)?(HIERARCHY|CENSUS|LISTINGS|PERIODS|CAPTURES)\s*/|'hierarchy'\s*/|/ 'hierarchy'|"
                          r"f'(\{[A-Z_.]+\}/)?(hierarchy|census|listings|periods)/|[\"']hierarchy/")
 
@@ -57,8 +56,6 @@ def entries(root, schools):
         for n in sorted(R._listdir(str(H))):
             if fnmatch.fnmatch(n, 'STAGE-*.md') or n == 'REQUESTS-FOR-BUILDER.md':
                 out.append((n, s, H / n, H / 'reports' / n))
-    for n in SHARED_REPORTS:
-        out.append((n, None, Path(root) / 'hierarchy' / n, Path(root) / 'hierarchy' / 'reports' / n))
     return out
 
 
