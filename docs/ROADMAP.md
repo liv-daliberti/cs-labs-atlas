@@ -38,8 +38,8 @@ Status: `open` · `in progress (<who>)` · `done <date> <commit>` · `queued (af
 
 | # | Item | Status | Done when |
 |---|---|---|---|
-| 9 | A schema + data dictionary for every table | phase A done 2026-10-31 (refactor agent): 34 schemas in schemas/, tools/schema_check.py + tools/validate.py, rebuild stage `validate`, docs/DATA-DICTIONARY.md generated; findings on current data: 13 files, 2,437 violations (hierarchy/logs/validation-findings-20261031.json), not fixed | schemas in the repo; the build validates every output against them |
-| 10 | Separate raw / reviewed / derived | phase A done 2026-10-31 (refactor agent): atlas_paths.DATA_FILES + data() (flat today, split after the move), builder and provenance routed, docs/DATA-LAYOUT.md; Slurm 32041363: 7/7 identical (hierarchy/logs/equivalence-datalayout-32041363.*); phase B (the move) awaits the owner's OK on a dry run | raw immutable, reviewed decisions in git, derived rebuilt from both; documented |
+| 9 | A schema + data dictionary for every table | phase A done 2026-10-31 (refactor agent): 34 schemas in schemas/, tools/schema_check.py + tools/validate.py, rebuild stage `validate`, docs/DATA-DICTIONARY.md generated; findings on current data: 13 files, 2,437 violations (hierarchy/logs/validation-findings-20261031.json); fixed at the source and in the builder 2026-10-31 (fix/valfix, landed 1697e3c: new packages 35/35 clean in the equivalence job; the live packages clear at the next rebuild) | schemas in the repo; the build validates every output against them |
+| 10 | Separate raw / reviewed / derived | phase A done 2026-10-31 (refactor agent): atlas_paths.DATA_FILES + data() (flat today, split after the move), builder and provenance routed, docs/DATA-LAYOUT.md; Slurm 32041363: 7/7 identical (hierarchy/logs/equivalence-datalayout-32041363.*); phase B (the move): dry-run tool tools/relocate_data.py on branch infra/datalayout (286 moves, 0 conflicts, 227 direct path joins in 55 files still to route), no apply mode; awaits the owner's review of the plan. Collector data dirs routed through slots FT_* (infra/ftroute 5301ea3) | raw immutable, reviewed decisions in git, derived rebuilt from both; documented |
 | 11 | Stores moved into the project, one writer per catalog, backup policy | done 2026-10-31 619d8e3, 7364291 (stores under stores/; catalog_lock.py on every write path except the Princeton importer and two vendored resolvers, documented; docs/STORES.md retention/backup policy) | stores are real dirs under `stores/`; one writer per catalog; written retention policy |
 
 ## 4. Operations
@@ -47,11 +47,11 @@ Status: `open` · `in progress (<who>)` · `done <date> <commit>` · `queued (af
 | # | Item | Status | Done when |
 |---|---|---|---|
 | 12 | Supervised collectors + status page | done 2026-10-31 7364291 (SIGTERM-clean Slurm loops, idle backoff 10 min-4 h, generated hierarchy/COLLECTORS-STATUS.md); six loops on Slurm: 32041175_0, 32041308_1-5; Princeton proof round passed | loops run as Slurm jobs that back off when idle; generated `STATUS.md` per school |
-| 13 | Scratch housekeeping | done 2026-11-01 314feeb (SCRATCH slot outside the tree, tools/scratch.py clean, rebuild housekeeping stage) | scratch outside the tree, cleaned automatically |
-| 14 | Release notes generated from the build regression | done 2026-11-01 8322ca4 (tools/release_notes.py: each release carries a generated CHANGES.md from the build regression) | each release carries a generated `CHANGES.md` |
+| 13 | Scratch housekeeping | done 2026-10-31 (refactor agent): SCRATCH slot, tools/scratch.py clean (dry run by default; `--apply` as the last rebuild stage), rebuild snapshots in scratch/ | scratch outside the tree, cleaned automatically |
+| 14 | Release notes generated from the build regression | done 2026-10-31 (refactor agent): tools/release_notes.py; make_release writes CHANGES.md into each release (a manifest file) | each release carries a generated `CHANGES.md` |
 
 ## 5. Documentation
 
 | # | Item | Status | Done when |
 |---|---|---|---|
-| 15 | Architecture overview + runbook | done 2026-11-01 (docs/ARCHITECTURE.md, docs/RUNBOOK.md; also 7fb0cdb: Slurm jobs run from a code snapshot) | `docs/ARCHITECTURE.md` and `docs/RUNBOOK.md` cover rebuild, collectors, release and recovery |
+| 15 | Architecture overview + runbook | done 2026-10-31 (refactor agent): docs/ARCHITECTURE.md, docs/RUNBOOK.md | `docs/ARCHITECTURE.md` and `docs/RUNBOOK.md` cover rebuild, collectors, release and recovery |
