@@ -1091,6 +1091,9 @@ def entry_years(desc, head):
       '(Ph.D. in applied math 2014)' or 'PhD 2021' -> [None, 2014] (a degree year ends the stay); 'MIT Undergraduate Student, 2020'
       -> [2020, 2020]; a section heading that is only a year ('2019') -> that year, basis section_year_heading; else
       (None, 'none'): the build keeps undated students."""
+    dm = re.search(r'\b[Dd]efended\b[^.\[]{0,50}?\b((?:19|20)\d\d)\b', (desc or '')[:220])
+    if dm:  # 'Defended on the 6th of January, 2012.' ends the stay (Michigan round 1: Bayraktar's alumni list)
+        return [None, int(dm.group(1))], 'stated_in_entry'
     d = (desc or '')[:90]
     m = re.match(r'^\W{0,3}\(([^()]{0,80})\)', d)
     seg = m.group(1) if m else re.split(r'(?<=[a-z0-9)])\.\s|\s(?:received|graduated from|is|was|joined|works?)\s', d, maxsplit=1)[0][:70]
@@ -1659,7 +1662,7 @@ def caps_heading_is_past(kit, school, src, name, cache):
 
 
 WEAK_PROFILE_LABEL = re.compile(r"Doctoral Dissertation Reader|Reader \(AC\)|\(Program\)|Program Advisor|Major Advisor|Orals Evaluator")
-CITATION_CONTEXT = re.compile(r"\bpp\.\s*\d|\bPDF\s*\||\bView details for\b|\bProceedings of\b|\bTrans\. on\b|\bBibTeX\b|\bSupplemental\b")
+CITATION_CONTEXT = re.compile(r"\bpp\.\s*\d|\bPDF\s*\||\bView details for\b|\bProceedings of\b|\bTrans\. on\b|(?i:\bbibtex\b)|\bSupplemental\b|\bproject page\b")
 
 
 def not_a_member_context(kit, school, name, best):
