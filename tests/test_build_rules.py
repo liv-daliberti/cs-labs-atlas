@@ -452,15 +452,15 @@ def test_R_PAP_01_recovered_rows_stay_in_the_window(tmp_path):
 
 # ---- lab-page additions (2026-10-31): wired only when accepted --------------------------------------------------------
 
-def write_additions(root, accept_papers=True, accept_students=False, stale=False):
+def write_additions(root, accept_papers=True, accept_students=False, stale=False, paper_years=(2021,)):
     import hashlib
     add = dict(school=SCHOOL, generated_at='2026-10-31T00:00:00+00:00', tool='tools/labpage_audit.py', status='proposed',
                students=[dict(name='Nora Newcomer', role='phd', years=[2021], url='https://lovelace.example.edu/people', sha256=SHA,
                               quote='PhD students Nora Newcomer', pi='Ada Lovelace', rule='LP-STU-01', auto=True)],
-               papers=[dict(pi='Ada Lovelace', key='labpage:' + 'f' * 40, title='A Paper Only The Lab Page Lists', year=2021,
-                            doi='10.9/lp', venue='arXiv', byline=[], rule='LP-PAP-01',
+               papers=[dict(pi='Ada Lovelace', key='labpage:' + str(y) * 10 + 'f' * 26, title=('A Paper Only The Lab Page Lists' if y == 2021 else f'Lab Page Paper {y}'),
+                            year=y, doi=f'10.9/lp{y}', venue='arXiv', byline=[], rule='LP-PAP-01',
                             evidence=dict(basis='page1_arxiv', how='footnote', quotes=['Ada Lovelace', 'Princeton University'],
-                                          url='https://arxiv.example/x.pdf', pdf_sha256=SHA))])
+                                          url='https://arxiv.example/x.pdf', pdf_sha256=SHA)) for y in paper_years])
     f = root / 'hierarchy' / SCHOOL / 'labpage-additions.json'
     f.write_text(json.dumps(add))
     sha = hashlib.sha256(f.read_bytes()).hexdigest()
@@ -488,3 +488,19 @@ def test_labpage_additions_students_when_accepted_and_nothing_when_stale(tmp_pat
     ctx = run_stages(tmp_path)
     assert 'A Paper Only The Lab Page Lists' not in rows_of(ctx, 'Ada Lovelace')
     assert ctx.n['labpage_additions_papers_not_wired:additions_changed_since_acceptance'] == 1
+
+
+def test_labpage_additions_obey_the_appointment_period(tmp_path, monkeypatch):
+    """The coordinator's requirement (2026-10-31): an accepted addition outside the PI's appointment (here a period closed by
+    a faculty_end_moved departure) is not a lab paper; the same periods rule as every other recovered source."""
+    ov = json.loads(json.dumps(OVERRIDES))
+    ov[SCHOOL]['Ada Lovelace']['periods'] = [dict(id='reviewed:ada-lovelace:1', start='2015', end='2019', evidence=[
+        dict(src('Ada Lovelace moved to another university in 2019.'), kind='faculty_end_moved')])]
+    monkeypatch.setitem(globals(), 'OVERRIDES', ov)
+    write_school(tmp_path)
+    write_additions(tmp_path, accept_papers=True, paper_years=(2018, 2021))
+    ctx = run_stages(tmp_path)
+    titles = set(rows_of(ctx, 'Ada Lovelace'))
+    assert 'Lab Page Paper 2018' in titles                                  # inside the period
+    assert 'A Paper Only The Lab Page Lists' not in titles                  # 2021, after the departure
+    assert ctx.n['labpage_addition_recovered_outside_appointment'] == 1 and ctx.n['labpage_addition_recovered_lab_papers'] == 1

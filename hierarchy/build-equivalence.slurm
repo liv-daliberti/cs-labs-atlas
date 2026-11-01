@@ -68,6 +68,9 @@ fi
 echo "== old vs new"
 "$CS_ATLAS_PY" "$NEWT/package_diff.py" "$T/old" "$T/new" --schools $SCHOOLS --ignore report.json:builtAt report.json:provenance.at report.json:provenance.code --json "$REPORT/equivalence-$SLURM_JOB_ID.json" \
   | tee "$REPORT/equivalence-$SLURM_JOB_ID.txt" || fail=1
+echo "== accepted lab-page papers: wired or set aside"
+"$CS_ATLAS_PY" "$NEW_CODE/tools/wired_additions_report.py" "$T/new" --schools $SCHOOLS --json "$REPORT/wired-additions-$SLURM_JOB_ID.json" \
+  | tee "$REPORT/wired-additions-$SLURM_JOB_ID.txt"
 if [ -n "$VALIDATE" ]; then
   mkdir -p "$T/vroot" && ln -sfn "$T/new" "$T/vroot/hierarchy"   # validate.py --root reads <root>/hierarchy/<school>/
   echo "== validate the new packages"
