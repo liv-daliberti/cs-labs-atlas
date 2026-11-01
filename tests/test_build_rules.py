@@ -505,3 +505,19 @@ def test_labpage_additions_obey_the_appointment_period(tmp_path, monkeypatch):
     assert 'A Paper Only The Lab Page Lists' not in titles                  # 2021, after the departure
     assert ctx.n['labpage_addition_recovered_outside_appointment'] == 1 and ctx.n['labpage_addition_recovered_lab_papers'] == 1
     assert [(x['year'], x['reason']) for x in ctx.labpage_set_aside] == [(2021, 'outside_appointment')]   # named for the report
+
+
+def test_withheld_role_is_a_lab_member_not_a_student(tmp_path):
+    """Berkeley's lab-page students are wired membership-only (role null, role_basis withheld_*, 2026-11-01): they may be postdocs or
+    visitors, so they are members (the site shows 'Lab member'), flagged role_withheld; entries with a role stay as they were."""
+    write_school(tmp_path)
+    (tmp_path / 'hierarchy' / SCHOOL / 'few-students-evidence.json').write_text(json.dumps([dict(pi='Grace Hopper', students=[
+        dict(name='Walter Withheld', role=None, role_basis='withheld_role_round_failed', years=[None, 2024], url='https://example.edu/hopper', sha256=SHA,
+             quote='Walter Withheld, Lab alumni', auto=True),
+        dict(name='Rosa Researched', role='phd', years=[2020], url='https://example.edu/hopper', sha256=SHA, quote='Rosa Researched, PhD student')])]))
+    ctx = run_stages(tmp_path, upto='students')
+    rec = {r['name']: r for r in ctx.stu['Grace Hopper'].values()}
+    w, r_ = rec['Walter Withheld'], rec['Rosa Researched']
+    assert w['roles'] == ['member'] and w['relations'][0]['role_withheld'] is True and w['relations'][0]['type'] == 'researched_membership'
+    assert w['relations'][0]['years'] == [2024] and ctx.n['students_role_withheld'] == 1
+    assert r_['roles'] == ['phd'] and 'role_withheld' not in r_['relations'][0]

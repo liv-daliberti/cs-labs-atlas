@@ -313,6 +313,14 @@
      "x-rules": [
       "R-STU-01"
      ]
+    },
+    "role_withheld": {
+     "description": "The lab-page audit withheld this entry's role (its role round failed); the entry is a plain lab member, possibly a postdoc or visitor, and the record's roles are ['member'].",
+     "type": "boolean",
+     "const": true,
+     "x-rules": [
+      "R-STU-01"
+     ]
     }
    },
    "x-rules": [

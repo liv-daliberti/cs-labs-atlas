@@ -621,6 +621,7 @@ One relation tying the student to the PI: an advising context, a lab membership,
 | `work` | string \| null | no | The thesis work of an advising context (collection work id). |  |  |
 | `weak` | string | no | program_adviser: a program-wide academic adviser, not research advising. | one of `program_adviser` | R-STU-09 |
 | `auto` | boolean | no | An automatic, unreviewed lab-page relation. | always `true` | R-STU-01 |
+| `role_withheld` | boolean | no | The lab-page audit withheld this entry's role (its role round failed); the entry is a plain lab member, possibly a postdoc or visitor, and the record's roles are ['member']. | always `true` | R-STU-01 |
 
 ### students: shape `source`
 

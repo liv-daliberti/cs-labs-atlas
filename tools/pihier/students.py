@@ -351,9 +351,15 @@ def researched(ctx, stu, by_name):
             t_ = toks(s_['name']); nm_ = Name([s_['name']])
             match_ = [q for q in by_name.get(t_[-1] if t_ else '', []) if nm_.match(q['name'])]
             sid = match_[0]['id'] if len(match_) == 1 else f"ext:{school}:{re.sub('[^a-z0-9]+', '-', s_['name'].lower()).strip('-')}"
-            r = stu[p['pi']].setdefault(sid, dict(person=sid, name=match_[0]['name'] if len(match_) == 1 else s_['name'], roles=[s_.get('role') or 'student'], relations=[]))
-            r['relations'].append(dict(type='researched_' + ('membership' if s_.get('role') == 'member' else 'advising'), years=as_years(s_.get('years'), n),
-                                       role=s_.get('role'), sources=[dict(url=s_.get('capture_url') or s_['url'], sha256=s_['sha256'], quote=s_['quote'])]
+            # a lab-page entry whose role the audit withheld (role null, role_basis withheld_*: Berkeley, 2026-11-01) is a plain lab MEMBER, not a
+            # student: it may be a postdoc or a visitor. roles ['member'] shows as 'Lab member' on the site (build-cs-hierarchy.py role_label).
+            withheld = bool(s_.get('role_basis')) and not s_.get('role')
+            if withheld:
+                n['students_role_withheld'] += 1
+            r = stu[p['pi']].setdefault(sid, dict(person=sid, name=match_[0]['name'] if len(match_) == 1 else s_['name'],
+                                                  roles=['member'] if withheld else [s_.get('role') or 'student'], relations=[]))
+            r['relations'].append(dict(type='researched_' + ('membership' if s_.get('role') == 'member' or withheld else 'advising'), years=as_years(s_.get('years'), n),
+                                       role=s_.get('role'), **({'role_withheld': True} if withheld else {}), sources=[dict(url=s_.get('capture_url') or s_['url'], sha256=s_['sha256'], quote=s_['quote'])]
                                        # a defense announcement's 'Faculty Host <PI>' line, same page and hash (Michigan request 4)
                                        + ([dict(url=s_.get('capture_url') or s_['url'], sha256=s_['sha256'], quote=s_['host_quote'])] if s_.get('host_quote') else []),
                                        # automatic, unreviewed lab-page students stay marked (Michigan request 6: the accuracy sample stratifies on it)
