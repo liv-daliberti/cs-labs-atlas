@@ -1588,7 +1588,7 @@ def fix_titles_from_arxiv(adds):
 
 REPOSITORY_DOI = re.compile(r'^10\.5281/zenodo\.|^10\.6084/m9\.figshare|^10\.17605/osf\.io|^10\.5061/dryad')
 TALK_TITLE = re.compile(r'\((?:keynote|invited talk|invited|tutorial|panel|talk|abstract|poster|extended abstract)\)\s*$|^keynote\s*:', re.I)
-AOM_ABSTRACT_DOI = re.compile(r'^10\.5465/ambpp\.')  # Academy of Management Proceedings: meeting abstracts (R-PAP-19)
+AOM_ABSTRACT_DOI = re.compile(r'^10\.5465/ambpp\.|^10\.5194/egusphere-egu|^10\.1093/schbul/sb[a-z]+\d+\.\d+')  # meeting abstracts (R-PAP-19): Academy of Management Proceedings, EGU General Assembly (egusphere-egu), Schizophrenia Bulletin supplements (EPFL round 1)
 
 
 def addition_not_a_paper(row):
