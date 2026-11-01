@@ -15,6 +15,7 @@
 . "${CS_ATLAS_CODE:-$SLURM_SUBMIT_DIR}/paths.sh" || exit 1  # submit from the code root  # every path in one place (tools/atlas_paths.py)
 export CS_ATLAS_COLLECTOR_PY="$CS_ATLAS_PY"
 export FTP_PY="$CS_ATLAS_COLLECTOR_PY"
+. "$CS_ATLAS_CODE/fulltext-push/job_snapshot.sh" || exit 1  # code of one commit, data shared (docs/CONTRIBUTING.md); submit with `atlas submit`
 cd "$CS_ATLAS_FULLTEXT_PUSH"
 ./run_steps.sh michigan oa_arxiv openalex proceedings arxiv_title dblp_ee s2 core europepmc pmc figshare labpages pihomes wayback_acm \
     >> logs/steps-michigan.log 2>&1 < /dev/null &

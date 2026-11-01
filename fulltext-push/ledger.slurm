@@ -14,7 +14,8 @@
 # compute nodes have no /usr/local/anaconda3: the project env (requests, no protego/bs4; nothing here needs them)
 export LD_LIBRARY_PATH="$CS_ATLAS_ENV_LIB${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 export FTP_PY="$CS_ATLAS_PY"  # the pinned project env (2026-10-31)
+. "$CS_ATLAS_CODE/fulltext-push/job_snapshot.sh" || exit 1  # code of one commit, data shared (docs/CONTRIBUTING.md); submit with `atlas submit`
 cd "$CS_ATLAS_WORK"
 S=${SCHOOLS:-princeton cmu epfl mit berkeley stanford}
-nice -n 5 $FTP_PY -I -u tools/lab_paper_copies.py $S
-/usr/bin/time -v nice -n 5 $FTP_PY -I -u fulltext-push/unavailable_ledger.py $S ${LEDGER_ARGS:-}
+nice -n 5 $FTP_PY -I -u "$CS_ATLAS_TOOLS/lab_paper_copies.py" $S
+/usr/bin/time -v nice -n 5 $FTP_PY -I -u "$CS_ATLAS_FULLTEXT_PUSH/unavailable_ledger.py" $S ${LEDGER_ARGS:-}

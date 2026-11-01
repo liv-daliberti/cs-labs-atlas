@@ -86,6 +86,10 @@ $CS_ATLAS_PY -u "$CS_ATLAS_TOOLS/some_tool.py" ...           # the code: "$CS_AT
 - Data is not snapshotted. Reviewed inputs and packages are read live, so a landing that changes them mid-run still shows;
   land inputs between jobs. `SNAPSHOT_REPO=<worktree>` takes the code from a branch under test (`hierarchy/build-equivalence.slurm`
   does, for the new side; commit first: uncommitted changes are not in the snapshot).
+- `fulltext-push/` modules keep their caches, logs, locks and the OpenAlex budget log next to the code (`raw/`, `checks/`, `logs/`,
+  `review-*/`). Its jobs (`ledger`, `recover-1030`, `channels-1030`, `michigan-collector`, `downloads`) therefore source
+  `fulltext-push/job_snapshot.sh`, which takes the snapshot and links every untracked entry of the main `fulltext-push/` into it.
+  The loops adopt it at their next restart.
 - Adopted by `hierarchy/rebuild.sh`, `rebuild-all.slurm`, `organize-tree.slurm` and `build-equivalence.slurm`. Other
   scripts: source the helper after `paths.sh` and replace `tools/` in the command lines.
 

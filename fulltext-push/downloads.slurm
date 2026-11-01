@@ -13,5 +13,7 @@
 SCHOOLS=(princeton cmu epfl mit berkeley stanford)
 s=${SCHOOLS[$SLURM_ARRAY_TASK_ID]}
 . "${CS_ATLAS_CODE:-${SLURM_SUBMIT_DIR:?}}/paths.sh" || exit 1  # every path in one place (tools/atlas_paths.py); submit from the code root
+. "$CS_ATLAS_CODE/fulltext-push/job_snapshot.sh" || exit 1  # code of one commit, data shared (docs/CONTRIBUTING.md); submit with `atlas submit`
 cd "$CS_ATLAS_FULLTEXT_PUSH"
-exec nice -n 5 ${CS_ATLAS_COLLECTOR_PY} -I -u lab_first_loop.py $s --recent-first 2023 >> logs/lab_first_loop-$s.out 2>&1 < /dev/null
+# no exec: the snapshot's EXIT trap must run when the loop ends. A restart takes the then-current commit (atlas submit pins it).
+nice -n 5 ${CS_ATLAS_COLLECTOR_PY} -I -u lab_first_loop.py $s --recent-first 2023 >> logs/lab_first_loop-$s.out 2>&1 < /dev/null
