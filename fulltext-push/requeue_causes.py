@@ -80,6 +80,7 @@ def main():
                           top_hosts=dict(Counter({k[5:]: v for k, v in n.items() if k.startswith('host:')}).most_common(15)))), flush=True)
     if a.dry or not plan:
         return
+    F.backup_catalog(store, 'before-requeue')
     db = sqlite3.connect(str(store / 'catalog.sqlite'), timeout=120)
     db.execute('PRAGMA busy_timeout=120000')
     items = list(plan.items())

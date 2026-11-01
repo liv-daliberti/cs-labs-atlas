@@ -12,7 +12,7 @@ One store per school, `stores/<school>/` (paths from `paths.sh` / `tools/atlas_p
 | `quarantine/robots-ai/` | copies taken from paths robots.txt disallows for an Anthropic crawler, moved out of `objects/` (`fulltext-push/quarantine_robots_ai.py`), with `manifest.jsonl` (work, both paths, sha256, URLs, rule) | kept; `restore` reverses a move |
 | `quarantine/identity-rejected/` | files the download-time identity rule rejected (`collector_wrapper.py`), with `manifest.jsonl` | the newest 500 files; older files are deleted (they are not papers), their manifest lines stay |
 | `staged/requeued-attempts.jsonl`, `staged/reverted-downloads.jsonl`, `staged/restored-downloads.jsonl` | every attempt row a tool deleted, every download a tool reverted or restored | kept (append-only logs; they make each step reversible) |
-| `backups/catalog.<reason>-<date>.sqlite` | catalog snapshots taken before a bulk change | the latest two per store |
+| `backups/catalog.<reason>-<date>.sqlite` | catalog snapshots taken before a bulk change | the newest 3 per store |
 | `loop-state.json`, `loop.log` | the download loop's state and log | `loop.log` may be rotated by size |
 
 ## Required layout
@@ -41,9 +41,12 @@ run it before anything else (2026-10-31: a store created without `sources/` fail
 
 ## Backup and retention policy
 
-- **The catalogs are the record.** A bulk change (a review apply, a quarantine, a revert) takes a snapshot
-  `backups/catalog.<reason>-<date>.sqlite` first, unless every row it changes is logged in `staged/*.jsonl` or a
-  quarantine manifest (then the log is the backup). Keep the latest two snapshots per store. Each is a few hundred MB to
+- **The catalogs are the record.** Any bulk catalog write (more than 1,000 rows, or any `apply` step) takes a locked
+  snapshot first: `catalog_lock.backup_catalog(store, '<reason>')` (also `ftp_common.backup_catalog`), sqlite's online
+  backup taken while holding the catalog write lock, into `backups/catalog.<reason>-<date>.sqlite`. It keeps the newest 3
+  `catalog.*.sqlite` per store. The apply paths of `identity_review`, `quarantine_robots_ai`, `review_access`,
+  `requeue_causes`, `revert_downloads` and `repath_evidence` call it before their first write; a new bulk writer must too.
+  A log of every changed row in `staged/*.jsonl` does not replace it (2026-10-31: a 600k-row repath ran without one). Each is a few hundred MB to
   2 GB, so no more copies than that on shared storage.
 - **Files are not duplicated.** `objects/` is content-addressed; nothing copies it. A file leaves `objects/` only by an
   `os.rename` into a quarantine directory, with a manifest line, never by deletion. The one exception is a rejected file

@@ -200,6 +200,7 @@ def plan_alt(school):
 def apply_alt(school):
     store = F.FT / school
     rows = json.loads((OUT / f'identity-review-alt-{school}.json').read_text())['rows']
+    F.backup_catalog(store, 'before-identity-alt')
     db = sqlite3.connect(str(store / 'catalog.sqlite'), timeout=120)
     db.execute('PRAGMA busy_timeout=120000')
     n = Counter()
@@ -265,6 +266,7 @@ def apply(school, scope='lab'):
     from revert_downloads import revert
     store = F.FT / school
     rows = json.loads((OUT / f'identity-review{SUFFIX[scope]}-{school}.json').read_text())['rows']
+    F.backup_catalog(store, 'before-identity-review')
     if scope == 'reverted':  # passes come back confirmed, undecided ones come back pending (not counted), failures stay reverted
         from revert_downloads import restore
         n = Counter()

@@ -15,7 +15,7 @@ HERE = Path(__file__).resolve().parent
 if str(HERE.parent / 'tools') not in sys.path:  # appended, never first: tools/ must not shadow the stages' modules
     sys.path.append(str(HERE.parent / 'tools'))
 import atlas_paths as P  # noqa: E402  (every path in one place; collectors reach it as F.P)
-from catalog_lock import catalog_lock, catalog_lock_for  # noqa: E402,F401  (one writer per catalog)
+from catalog_lock import backup_catalog, catalog_lock, catalog_lock_for  # noqa: E402,F401  (one writer per catalog)
 SCHOOLS = P.WORK
 FT = P.STORES
 CMU_TOOLS = P.vendor('cmu_tools')  # vendored 2026-10-30 from claude-cmu-20261017/tools (vendor/PROVENANCE.tsv)

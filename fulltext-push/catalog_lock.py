@@ -52,3 +52,32 @@ def store_of(db):
 
 def catalog_lock_for(db, timeout=1800):
     return catalog_lock(store_of(db), timeout)
+
+
+def backup_catalog(store, reason, keep=3):
+    """A consistent snapshot of <store>/catalog.sqlite before a bulk write (2026-10-31; docs/STORES.md): sqlite's online
+    backup API, taken while holding the catalog write lock, into <store>/backups/catalog.<reason>-<UTC date>.sqlite
+    (written to a .part file and renamed, so a half-copy never looks like a backup). Then only the newest `keep`
+    catalog.*.sqlite files stay. Call it before the tool's own locked writes (the lock is not re-entrant). Returns the path."""
+    import sqlite3
+    from datetime import datetime, timezone
+    store = Path(store)
+    bdir = store / 'backups'
+    bdir.mkdir(exist_ok=True)
+    now = datetime.now(timezone.utc)
+    dest = bdir / f'catalog.{reason}-{now:%Y%m%d}.sqlite'
+    if dest.exists():
+        dest = bdir / f'catalog.{reason}-{now:%Y%m%d-%H%M%S}.sqlite'
+    part = Path(str(dest) + '.part')
+    with catalog_lock(store):
+        src = sqlite3.connect(f'file:{store / "catalog.sqlite"}?mode=ro', uri=True, timeout=120)
+        dst = sqlite3.connect(str(part))
+        try:
+            src.backup(dst)
+        finally:
+            dst.close(); src.close()
+        os.replace(part, dest)
+    old = sorted(bdir.glob('catalog.*.sqlite'), key=lambda p: (p.stat().st_mtime, p.name), reverse=True)[keep:]
+    for p in old:
+        p.unlink()
+    return dest

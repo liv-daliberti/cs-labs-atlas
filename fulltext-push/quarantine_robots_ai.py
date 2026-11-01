@@ -126,6 +126,7 @@ def apply(school):
     qdir = store / 'quarantine' / 'robots-ai'
     qdir.mkdir(parents=True, exist_ok=True)
     flagged = {x['id'] for x in p['flagged']}
+    F.backup_catalog(store, 'before-quarantine')
     db = sqlite3.connect(str(store / 'catalog.sqlite'), timeout=120)
     db.execute('PRAGMA busy_timeout=120000')
     # files another local, unflagged work also uses stay in place

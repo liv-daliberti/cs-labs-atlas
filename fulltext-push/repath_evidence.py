@@ -79,6 +79,7 @@ def plan(school):
 
 def apply(school):
     store = F.FT / school
+    F.backup_catalog(store, 'before-repath')
     db = sqlite3.connect(str(store / 'catalog.sqlite'), timeout=120)
     db.execute('PRAGMA busy_timeout=120000')
     ok_cache, n = {}, Counter()

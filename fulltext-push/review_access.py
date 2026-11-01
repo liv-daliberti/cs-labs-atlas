@@ -39,7 +39,7 @@ OUT = HERE / 'review-20261029'
 STORES = P.STORES
 sys.path.insert(0, str(HERE))
 from retry_transient import TRANSIENT, SKIP_HOSTS  # noqa: E402  (the push's own transient rule and publisher hosts)
-from catalog_lock import catalog_lock  # noqa: E402  (one writer per catalog)
+from catalog_lock import backup_catalog, catalog_lock  # noqa: E402  (one writer per catalog)
 
 PUBLISHERS = re.compile(r'(?:^|\.)(?:acm\.org|ieee\.org|ieeexplore\.ieee\.org|sciencedirect\.com|elsevier\.com|springer\.com|nature\.com|wiley\.com|'
                         r'tandfonline\.com|sagepub\.com|ssrn\.com|cambridge\.org|oup\.com|academic\.oup\.com|jstor\.org|science\.org|cell\.com|'
@@ -189,6 +189,7 @@ def classify(school):
 def apply(school):
     store = STORES / school
     plan = [json.loads(l) for l in open(OUT / f'access-plan-{school}.jsonl')]
+    backup_catalog(store, 'before-review-access')
     db = sqlite3.connect(str(store / 'catalog.sqlite'), timeout=120)
     db.execute('PRAGMA busy_timeout=120000')
     db.row_factory = sqlite3.Row

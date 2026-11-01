@@ -49,7 +49,10 @@ def revert(school, work, url, reason):
 
 
 if __name__ == '__main__':
-    for x in json.load(open(sys.argv[1])):
+    todo = json.load(open(sys.argv[1]))
+    for sch in sorted({x['school'] for x in todo}):
+        F.backup_catalog(F.FT / sch, 'before-revert')  # a bulk write: locked snapshot first (docs/STORES.md)
+    for x in todo:
         print(json.dumps(revert(x['school'], x['work'], x['url'], x['reason'])), flush=True)
 
 
