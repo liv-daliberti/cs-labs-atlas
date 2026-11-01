@@ -358,7 +358,7 @@ class Kit:
             lpcap.DBS[k_] = str(H / k_ / 'labpage-captures.sqlite')
             lpcap.SISTER[k_] = [p_.replace(str(Path(p_).parents[1]), str(H)) for p_ in lpcap.SISTER.get(k_, [])]
         lpcap.DEFAULT_GAP = max(lpcap.DEFAULT_GAP, HOST_GAP)
-        lpcap.LOCKDIR = os.path.join(os.environ.get('TMPDIR') or '/tmp', 'lp-ratelimit')
+        lpcap.LOCKDIR = str(P.RATE_STAMPS / 'hosts')  # shared per-host stamps (atlas_paths RATE_STAMPS), one pace for every job and node
         owait = lpcap._wait
         lpcap._wait = lambda host: owait(host or '_no-host_')  # a link with no host must not name the lock directory itself
         lpcap.GAPS['web.archive.org'] = WAYBACK_GAP
@@ -1631,6 +1631,22 @@ def recover_verdicts(school):
     return out
 
 
+def appointed_in(p, year):
+    """The build's appointment test for a proposed paper (R-PAP-01, R-PAP-03) on the PI as the audit reads them, overrides
+    included: a period that contains the year ('supported'), else a listing of that year that is not a stale page after an
+    evidenced departure (listings_after_move). The recovery step judged against the pis.json it was shadowed on; this
+    re-applies the rule to the current periods (2026-10-31: Haeupler 2023 after his 2022 end, Yao 2025 after her 2023-12 end)."""
+    if not year:
+        return True
+    from pihier.periods import contains, listings_after_move
+    pers = p.get('periods') or []
+    if any(contains(q.get('start'), q.get('end'), str(year), q.get('asof') or TODAY) == 'supported' for q in pers):
+        return True
+    ls = {l['year']: l for l in p.get('listings') or [] if l.get('year')}
+    stale = listings_after_move(ls, [], pers)
+    return int(year) in ls and int(year) not in stale
+
+
 def finish_papers(sec, ents, p, verdicts):
     """Reasons for every listed entry that is not a lab paper; accepted recoveries become proposed additions."""
     start = pi_start_year(p)
@@ -1648,6 +1664,9 @@ def finish_papers(sec, ents, p, verdicts):
             continue
         st, why, acc = verdicts.get(e['audit_key'], ('candidate', None, None))
         rc = paper_reason(st, why, e.get('year'), start)
+        if rc == 'genuinely_missing' and acc and not appointed_in(p, acc.get('year') or e.get('year')):
+            rc = paper_reason('outside_appointment', None, acc.get('year') or e.get('year'), start)
+            st, why = 'outside_appointment', None
         if rc == 'matched':
             sec['matched_in_lab_papers'] += 1
             continue
@@ -1996,8 +2015,7 @@ def run_recovery(school, rows, title_credits=600):
     LR.HERE = root
     LR.requests = DeadlineRequests()  # 2026-10-31: Princeton and MIT hung for hours on one trickling PDF download
     patch_mpcap(LR.mpcap)
-    lockdir = os.path.join(os.environ.get('TMPDIR') or '/tmp', 'lp-ratelimit')  # node-local per-host stamps (not the old scratch path)
-    LR.mpcap.LOCKDIR = lockdir
+    LR.mpcap.LOCKDIR = str(P.RATE_STAMPS / 'hosts')  # shared per-host stamps (atlas_paths RATE_STAMPS)
     if not os.environ.get('OPENALEX_API_KEY'):
         print('warning: OPENALEX_API_KEY not set: no OpenAlex DOI or title resolution', flush=True)
     return LR.run(school, workers=4, title_credits=title_credits, floor=OPENALEX_FLOOR)

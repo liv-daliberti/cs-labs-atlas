@@ -2,7 +2,7 @@
 # Lab-page audit (tools/labpage_audit.py, docs/LAB-PAGES.md): discover -> recover -> audit for each school given.
 # Network steps are paced (>= 3 s per host, Wayback 6 s) and honour robots.txt, including groups naming AI agents; a bot
 # challenge is never retried (the host is then read from existing Wayback id_ captures only). One writer per school
-# store: do not run another discover/recover for the same school while this runs. Check with `sbatch --test-only` first.
+# store: do not run another discover/recover for the same school while this runs. Check with `sbatch --test-only` first; submit with `atlas submit`.
 # usage: sbatch hierarchy/labpage-audit.slurm princeton [cmu ...]      (STEPS="discover recover audit" by default;
 #        ARGS="--redo-unrecorded" passes options to every step)
 #SBATCH --job-name=lp-audit
@@ -24,10 +24,13 @@ avail=$(df --output=avail -k /tmp | tail -1)
 if [ "${avail:-0}" -lt 2000000 ]; then echo "/tmp has ${avail} kB free: using /dev/shm"; export TMPDIR=/dev/shm/$USER-$SLURM_JOB_ID; fi
 mkdir -p "$TMPDIR" || exit 1; trap 'rm -rf "$TMPDIR"' EXIT
 df -h "$TMPDIR" | tail -1
+# run the code of ONE commit (docs/CONTRIBUTING.md, "Slurm jobs run from a code snapshot"); submit with `atlas submit` to pin it
+# (the snapshot lives in $TMPDIR, which the trap above removes)
+. "$CS_ATLAS_CODE/tools/job_code_snapshot.sh" || exit 1
 PY="$CS_ATLAS_COLLECTOR_PY"; [ -x "$PY" ] || PY="$CS_ATLAS_PY"   # some nodes have no /usr/local/anaconda3
 for s in "$@"; do
   for st in ${STEPS:-discover recover audit}; do
     echo "== $s $st $(date -Is)"
-    nice "$PY" -I -u tools/labpage_audit.py "$st" "$s" ${ARGS:-} || echo "!! $s $st failed"
+    nice "$PY" -I -u "$CS_ATLAS_TOOLS/labpage_audit.py" "$st" "$s" ${ARGS:-} || echo "!! $s $st failed"
   done
 done
