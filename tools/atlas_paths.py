@@ -66,6 +66,7 @@ _SPEC = [
     ('PY', 'atlas/bin/python', 'ENV'),              # THE project interpreter (env/environment.yml)
     ('HF_HOME', 'hf-cache', 'ENV'),
     ('CACHE', 'cache', 'ROOT'),                     # API caches (never in git)
+    ('SCRATCH', 'scratch', 'ROOT'),                 # throw-away working files outside the code tree; tools/scratch.py cleans it (ROADMAP item 13)
     ('RATE_STAMPS', 'rate-stamps', 'CACHE'),        # flock'd per-host request stamps shared by every node (NFS locks, local_lock=none)
     ('LOCKS', '/tmp/cs-atlas-locks', None),         # node-local mutexes (one host only); rate stamps go in RATE_STAMPS
     ('EXTERNAL', 'external', 'ROOT'),

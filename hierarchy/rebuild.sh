@@ -1,6 +1,6 @@
 #!/bin/bash
 # The full rebuild, locally (the Slurm equivalent is hierarchy/rebuild-all.slurm, which runs this script):
-#   snapshot    back up the current packages and record their counts (hierarchy/logs/pkg-before-<tag>/)
+#   snapshot    back up the current packages and record their counts (<SCRATCH>/pkg-before-<tag>/, outside the tree)
 #   build       tools/pi_hierarchy.py for every school
 #   ids         tools/atlas_ids.py: stable atlas ids (atl:p:/atl:w:/atl:l:) into the packages, the registry and the
 #               cross-reference table (hierarchy/ids/; docs/IDS.md); always over every released school
@@ -17,6 +17,7 @@
 #   release     tools/make_release.py -> /n/fs/resemble/homogenizing-science/releases/<date>[.N]/ and releases/latest; only when
 #               every earlier stage passed and the regression flagged nothing (ALLOW_SWINGS=1 releases anyway)
 #   tree        tools/organize_tree.py from releases/latest -> /n/fs/resemble/homogenizing-science/schools/
+#   housekeeping tools/scratch.py clean --apply: scratch and old equivalence reports older than 14 days (never packages)
 # usage: hierarchy/rebuild.sh                       (all stages, all schools; run under nohup or in tmux, ~1 h)
 #        STAGES="build audits" SCHOOLS="mit" hierarchy/rebuild.sh
 #        TAG=<name> sets the snapshot name (default local-<timestamp>); BEFORE=<dir> compares against another snapshot
@@ -26,9 +27,9 @@ set -u -o pipefail
 cd "$CS_ATLAS_WORK" || exit 1
 PY="nice -n10 $CS_ATLAS_PY -u"  # the project interpreter (env/atlas; tools/atlas_paths.py PY)
 SCHOOLS=${SCHOOLS:-$CS_ATLAS_SCHOOLS}
-STAGES=${STAGES:-snapshot build ids copies ledger audits evidence tests regression validate release tree}
+STAGES=${STAGES:-snapshot build ids copies ledger audits evidence tests regression validate release tree housekeeping}
 TAG=${TAG:-local-$(date +%Y%m%d-%H%M%S)}
-BEFORE=${BEFORE:-hierarchy/logs/pkg-before-$TAG}
+BEFORE=${BEFORE:-$CS_ATLAS_SCRATCH/pkg-before-$TAG}   # scratch, outside the tree (tools/scratch.py)
 has() { case " $STAGES " in *" $1 "*) return 0 ;; esac; return 1; }
 fail=0; swings=0
 echo "== rebuild $TAG stages: $STAGES schools: $SCHOOLS code: $(git rev-parse --short HEAD 2>/dev/null)$(git diff --quiet HEAD -- tools 2>/dev/null || echo '+dirty') $(date +%T)"
@@ -94,6 +95,9 @@ if has release; then
 fi
 if has tree && [ $fail = 0 ]; then
   echo "== tree $(date +%T)"; nice -n10 ionice -c3 $CS_ATLAS_PY -u tools/organize_tree.py $SCHOOLS || fail=1
+fi
+if has housekeeping; then  # ROADMAP item 13: scratch older than 14 days, old equivalence reports; never touches packages
+  echo "== housekeeping $(date +%T)"; $PY tools/scratch.py clean --apply || echo "housekeeping failed (not fatal)"
 fi
 echo "== done all $(date +%T) fail=$fail swings=$swings"
 [ $fail != 0 ] && exit 1
