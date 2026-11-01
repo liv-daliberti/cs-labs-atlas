@@ -25,7 +25,8 @@ REPO = HERE.parent
 ANACONDA = '/usr/local/anaconda3/2024.02/bin/python'
 # files that hold the legacy locations on purpose
 ALLOW = {'tools/atlas_paths.py', 'tools/relocate_project.py', 'tools/route_paths.py', 'tools/vendor_sync.py',
-         'tests/test_relocate_project.py', 'tests/test_atlas_paths.py', 'tests/test_vendor_and_paths.py', 'paths.sh'}
+         'tests/test_relocate_project.py', 'tests/test_atlas_paths.py', 'tests/test_vendor_and_paths.py', 'paths.sh',
+         'fulltext-push/repath_evidence.py', 'tests/test_repath_evidence.py'}
 ALLOW_DIRS = ('vendor/', 'docs/')
 SUFFIXES = ('.py', '.sh', '.slurm')
 PATH_RX = re.compile(r"(?:/n/fs/resemble/(?:cs-atlas[a-z-]*|cs-labs-atlas|maxent-grpo|homogenizing-science)"
