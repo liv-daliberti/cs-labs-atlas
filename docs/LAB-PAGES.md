@@ -202,6 +202,10 @@ error, doubtful = 0.5) but fails on role/year, the students are wired membership
 `labpage_audit.py audit` re-applies the withholding whenever the additions are regenerated. The builder treats a null role as
 undetermined. It does not apply to a kind that failed on membership (Princeton and CMU students). Berkeley's round 3 is the first.
 
+**Round-limit exception** (owner, 2026-11-01): Stanford and CMU students get two more rounds (4 and 5) with repairs in place, recorded as
+`round_limit_extended_by_owner: 5` in their `labpage-acceptance.json`; after round 5 the work stops. Princeton is not included, and
+Michigan keeps its normal limit (round 3 is its last).
+
 **Students and papers are accepted separately**: a school whose students fail may still have its papers wired, and the
 other way round; `labpage-acceptance.json` records `students` and `papers` each with its round and result. A school gets at
 most four rounds per kind; when the last fails, that kind is not wired and the reason is recorded.
