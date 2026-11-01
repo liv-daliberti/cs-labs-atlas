@@ -56,7 +56,7 @@ SOCIAL = re.compile(r'(?i)facebook|twitter|x\.com|linkedin|instagram|youtube|sch
 
 def pis(school):
     """[(person id, name, [urls])]: the census PIs when census/<school>-faculty.json exists, else every unit leader of the collection."""
-    cen = HERE / 'census' / f'{school}-faculty.json'
+    cen = P.data('census-faculty.json', school)
     st = json.loads((STAGES[school] / 'people' / 'structure.json').read_text())
     sp = {nt(p['name']): p for p in st['people']}
     if cen.exists():
@@ -255,8 +255,8 @@ def extract(school):
                                           'Faculty appointment evidence is separate from leadership of each named unit.'))
         nid += 1
     (HERE / 'periods').mkdir(exist_ok=True)
-    (HERE / 'periods' / f'{school}-faculty-periods.json').write_text(json.dumps(periods, indent=1, ensure_ascii=False))
-    (HERE / 'periods' / f'{school}-holds.json').write_text(json.dumps(holds, indent=1, ensure_ascii=False))
+    P.data_w('faculty-periods.json', school).write_text(json.dumps(periods, indent=1, ensure_ascii=False))
+    P.data_w('holds.json', school).write_text(json.dumps(holds, indent=1, ensure_ascii=False))
     print(json.dumps(dict(school=school, periods=len(periods), holds=len(holds), conflicts=sum(1 for p in periods if p['conflictingStartYears']))))
 
 

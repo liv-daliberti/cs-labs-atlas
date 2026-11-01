@@ -47,7 +47,7 @@ def dept(s, p, homes):
 def profile(s, homes, audit, zero):
     pis = json.load(open(H / s / 'pis.json'))
     rep = json.load(open(H / s / 'report.json'))['counts']
-    adds = {a['name'] for a in load(HERE / f'census/{s}-additions.json', []) if 'cs_related' in str(a.get('added'))}
+    adds = {a['name'] for a in load(P.data('census-additions.json', s), []) if 'cs_related' in str(a.get('added'))}
     home = {p['pi']: dept(s, p, homes) for p in pis}
     papers, by_year, venues, per_pi = {}, collections.Counter(), collections.Counter(), collections.Counter()
     for line in gzip.open(H / s / 'lab_papers.jsonl.gz', 'rt'):

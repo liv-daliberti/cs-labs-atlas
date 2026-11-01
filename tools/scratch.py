@@ -44,7 +44,7 @@ def candidates(days, keep, now=None, scratch=None, logs=None, equivs=None):
     now = time.time() if now is None else now
     cut = now - days * DAY
     scratch = Path(P.SCRATCH if scratch is None else scratch)
-    logs = Path(P.HIERARCHY / 'logs' if logs is None else logs)
+    logs = Path(P.data('logs') if logs is None else logs)
     equivs = worktree_equiv() if equivs is None else equivs
     out = []
     if scratch.is_dir():

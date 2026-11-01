@@ -24,7 +24,7 @@ from urllib.parse import urlsplit
 import requests
 
 HERE = str(P.CODE)
-DB = f'{HERE}/hierarchy/missing-pi-captures.sqlite'
+DB = str(P.data('missing-pi-captures.sqlite'))
 LOCKDIR = str(P.RATE_STAMPS / 'hosts')  # per-host stamps shared by every node (atlas_paths RATE_STAMPS; tools/labpage_audit.py sets its own)
 UA = ('princeton-cs-research-sweep/1.0 (faculty lab membership research: department faculty lists and thesis adviser '
       'metadata; academic, non-commercial; polite: 1 req/2s/host)')

@@ -69,7 +69,7 @@ def main(key, pubs=False):
             c = cnt[pid]
             p['pubs_by_year'] = {str(y): c[y] for y in sorted(y for y in c if y and lo <= y <= hi)}
             p['n_window'] = sum(p['pubs_by_year'].values()); p['n_all'] = sum(c.values())
-    out = P.HIERARCHY / key / 'dblp-affiliated.json'
+    out = P.data('dblp-affiliated.json', key)
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(dict(school=key, dump=P.DBLP_DUMP_FILE, rule=__doc__.split('\n-> ')[0], built_at=time.strftime('%Y-%m-%dT%H:%M:%S'),
                                    persons=sorted(persons.values(), key=lambda p: p['names'][0] if p['names'] else '')), indent=1, ensure_ascii=False))

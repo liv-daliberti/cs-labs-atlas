@@ -32,7 +32,8 @@ import collections, gzip, json, sqlite3, sys, zlib
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
-from pi_hierarchy import Name, HERE, NOT_PAPERS  # noqa: E402
+from pi_hierarchy import Name, NOT_PAPERS  # noqa: E402
+import atlas_paths as P  # noqa: E402  (every path in one place)
 from dblp_dump_index import Index  # noqa: E402
 
 import school_config as S  # noqa: E402  (the school charters)
@@ -41,7 +42,7 @@ SCHOOLS = ['princeton', 'cmu', 'epfl', 'mit', 'berkeley']  # the default run (20
 
 
 def works(school):
-    c = sqlite3.connect(f"file:{HERE / 'hierarchy' / school / 'openalex-sweep.sqlite'}?mode=ro", uri=True)
+    c = sqlite3.connect(f"file:{P.data('openalex-sweep.sqlite', school)}?mode=ro", uri=True)
     seen = set()
     for (b,) in c.execute('select body from pages order by year, page'):
         try:
@@ -79,7 +80,7 @@ def school_test(key):
 def venues():
     lab_oa = set()
     for s in SCHOOLS:
-        for line in gzip.open(HERE / 'hierarchy' / s / 'lab_papers.jsonl.gz', 'rt'):
+        for line in gzip.open(P.data('lab_papers.jsonl.gz', s), 'rt'):
             r = json.loads(line)
             lab_oa.update([r['oa']] + [e['oa'] for e in r.get('editions') or []])
     total, lab, names = collections.Counter(), collections.Counter(), {}
@@ -91,7 +92,7 @@ def venues():
                 lab[sid] += w['id'] in lab_oa
     cs_venues = {sid for sid in total if lab[sid] >= 5 and lab[sid] / total[sid] >= 0.25}
     json.dump(sorted(({'source': sid, 'name': names[sid], 'lab_papers': lab[sid], 'works': total[sid]} for sid in cs_venues),
-                     key=lambda x: -x['lab_papers']), open(HERE / 'hierarchy/cs-venues.json', 'w'), indent=1, ensure_ascii=False)
+                     key=lambda x: -x['lab_papers']), open(P.data_w('cs-venues.json'), 'w'), indent=1, ensure_ascii=False)
     print(json.dumps(dict(cs_venues=len(cs_venues), lab_papers_in_cs_venues=sum(lab[s] for s in cs_venues))), flush=True)
 
 
@@ -101,7 +102,7 @@ def main(schools, do_venues=True, stats=False, out_name='cs-related-candidates.j
     dblp = Index()
     for s in schools:
         at_school = school_test(s); skipped = collections.Counter()
-        pis = json.load(open(HERE / 'hierarchy' / s / 'pis.json'))
+        pis = json.load(open(P.data('pis.json', s)))
         pi_ids = {a for p in pis for a in (p.get('oaAuthorIds') or []) + (p.get('reviewedOpenAlex') or [])}
         pi_names = [(p['pi'], Name(p.get('names') or [p['pi']])) for p in pis]
         A = collections.defaultdict(lambda: dict(n=0, cs=0, last=0, years=set(), raw=collections.Counter(), venues=collections.Counter(),
@@ -148,13 +149,13 @@ def main(schools, do_venues=True, stats=False, out_name='cs-related-candidates.j
                             top_venues=[v for v, _ in x['venues'].most_common(5)], top_dblp_venues=[v for v, _ in x['cs_venues'].most_common(5)],
                             example_works=x['works'], name_matches_pi=hit))
         out.sort(key=lambda r: (r['name_matches_pi'] is not None, -r['dblp_works']))
-        json.dump(out, open(HERE / 'hierarchy' / s / out_name, 'w'), indent=1, ensure_ascii=False)
+        json.dump(out, open(P.data_w('cs-related-candidates.json', s).parent / out_name, 'w'), indent=1, ensure_ascii=False)
         if stats:
             st = {aid: dict(n=x['n'], cs=x['cs'], last=x['last'], years=sorted(y for y in x['years'] if y), raw=dict(x['raw'].most_common(5)),
                             orcids=dict(x.get('orcids') or {}), venues=dict(x['venues'].most_common(5)), cs_venues=dict(x['cs_venues'].most_common(5)),
                             dblp_examples=x['works'][:3], other_examples=x.get('other') or [])
                   for aid, x in A.items() if x['n'] >= 3}
-            with gzip.open(HERE / 'hierarchy' / s / 'oa-author-stats.json.gz', 'wt') as f:
+            with gzip.open(P.data_w('oa-author-stats.json.gz', s), 'wt') as f:
                 json.dump(dict(school=s, rule='papers only (not NOT_PAPERS); school authorships (lineage, or related id + regex); authors with >= 3 school works',
                                skipped=dict(skipped), authors=st), f, ensure_ascii=False)
         print(json.dumps(dict(school=s, authors=len(A), candidates=len(out), name_matches_existing_pi=sum(r['name_matches_pi'] is not None for r in out),

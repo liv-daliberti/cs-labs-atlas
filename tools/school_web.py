@@ -37,7 +37,7 @@ _blocked = set()
 
 
 def db_path(key):
-    return P.CAPTURES / f'{key}.sqlite'
+    return P.data('school-captures.sqlite', key)
 
 
 def con(key):

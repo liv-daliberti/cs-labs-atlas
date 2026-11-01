@@ -110,7 +110,7 @@ def check_openalex(db, sweep_ids, lineage_ids, current_year):
 
 def check_dblp(key, pis_dblp):
     out = dict(dump_expected=P.DBLP_DUMP_FILE)
-    f = P.HIERARCHY / 'dblp-dump-persons.json.gz'
+    f = P.data('dblp-dump-persons.json.gz')
     trips = []
     if f.exists() and pis_dblp:
         d = json.load(gzip.open(f, 'rt'))
@@ -138,7 +138,7 @@ def check_dblp(key, pis_dblp):
             trips.append(dict(test='dblp_duplicate_keys', why=f"{out['dup_key_rate']:.4f}"))
         if missing:
             trips.append(dict(test='dblp_missing_persons', why=f'{missing} PI DBLP ids are not in dblp-dump-persons.json.gz'))
-    fa = P.HIERARCHY / key / 'dblp-affiliated.json'
+    fa = P.data('dblp-affiliated.json', key)
     if fa.exists():
         a = json.loads(fa.read_text()); rx = S.aff_rx(key)
         notes = [x['text'] for p in a.get('persons', []) for x in p.get('affiliations') or [] if 'affiliation_note' in (p.get('matched_by') or [])]
@@ -166,17 +166,17 @@ def run(key, write=True):
     exc = list(S.field(cfg, 'sweep_check.exceptions') or [])
     cur = (cfg.get('window') or [2016, 2026])[1]
     res = dict(school=key, thresholds=dict(ratio=RATIO, zmax=ZMAX, dup_id=DUP_MAX, dup_doi=DOI_DUP_MAX, inst_min=INST_MIN))
-    db = P.HIERARCHY / key / 'openalex-sweep.sqlite'
+    db = P.data('openalex-sweep.sqlite', key)
     res['openalex'] = check_openalex(db, set(S.sweep_ids(key)), S.inst_ids(key), cur) if db.exists() else dict(missing=str(db), trips=[dict(test='no_sweep', why='no sweep')])
     pis_dblp = set()
-    for f in (P.HIERARCHY / key / 'pis.json',):
+    for f in (P.data('pis.json', key),):
         if f.exists():
             pis_dblp |= {d for p in json.loads(f.read_text()) for d in p.get('dblp') or []}
     res['dblp'] = check_dblp(key, pis_dblp)
     failed, excused = apply_exceptions(res['openalex']['trips'] + res['dblp']['trips'], exc)
     res.update(failed=failed, excused=excused, status='pass' if not failed else 'fail')
     if write:
-        (P.HIERARCHY / key / 'sweep-check.json').write_text(json.dumps(res, indent=1, ensure_ascii=False))
+        P.data_w('sweep-check.json', key).write_text(json.dumps(res, indent=1, ensure_ascii=False))
     return res
 
 

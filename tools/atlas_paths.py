@@ -313,6 +313,12 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('BUILD-REGRESSION.md', 'derived', 'hierarchy/BUILD-REGRESSION.md', 'hierarchy/derived/BUILD-REGRESSION.md'),
     ('SCHOOL-PROFILES.md', 'derived', 'hierarchy/SCHOOL-PROFILES.md', 'hierarchy/derived/SCHOOL-PROFILES.md'),
     ('LABPAGE-AUDIT.md', 'derived', 'hierarchy/LABPAGE-AUDIT.md', 'hierarchy/derived/LABPAGE-AUDIT.md'),
+    ('gaps.json', 'derived', 'hierarchy/{school}/gaps.json', 'hierarchy/{school}/derived/gaps.json'),
+    ('coverage.json', 'derived', 'listings/{school}/coverage.json', 'listings/{school}/derived/coverage.json'),
+    ('missing-pi-captures.sqlite', 'raw', 'hierarchy/missing-pi-captures.sqlite', 'hierarchy/raw/missing-pi-captures.sqlite'),
+    ('home-departments-school.json', 'derived', 'hierarchy/{school}/home-departments.json', 'hierarchy/{school}/derived/home-departments.json'),
+    ('sweep.log', 'work', 'hierarchy/sweep-{school}.log', 'hierarchy/work/sweep-{school}.log'),
+    ('tmp', 'work', 'hierarchy/{school}/tmp', 'hierarchy/{school}/work/tmp'),
 ]
 _DATA = {n: (k, a, b) for n, k, a, b in DATA_FILES}
 

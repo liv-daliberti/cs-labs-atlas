@@ -40,11 +40,11 @@ def diagnose(p):
 
 
 def main():
-    rv_path = HERE / 'hierarchy/zero-paper-review.json'
+    rv_path = P.data('zero-paper-review.json')
     rv = json.load(open(rv_path)) if rv_path.exists() else {}
     out, counts = dict(built_by='tools/zero_paper_ledger.py', zero_papers=[], zero_students=[]), collections.Counter()
     for s in SCHOOLS:
-        for p in json.load(open(HERE / 'hierarchy' / s / 'pis.json')):
+        for p in json.load(open(P.data('pis.json', s))):
             c = p.get('counts') or {}
             f = p.get('funnel') or {}
             if not c.get('labPapers'):
@@ -60,7 +60,7 @@ def main():
                 out['zero_students'].append(dict(school=s, pi=p['pi'], departments=p.get('departments'), lab_papers=c.get('labPapers', 0)))
                 counts[s, 'zero_students'] += 1
     out['counts'] = {f'{k[0]}:{":".join(k[1:])}': v for k, v in sorted(counts.items())}
-    json.dump(out, open(HERE / 'hierarchy/zero-paper-labs.json', 'w'), indent=1, ensure_ascii=False)
+    json.dump(out, open(P.data_w('zero-paper-labs.json'), 'w'), indent=1, ensure_ascii=False)
     print(json.dumps(out['counts']))
     for r in out['zero_papers']:
         print(f"{r['school']:9} {r['pi'][:28]:28} {r['diagnosis']:24} {r['verdict']}")

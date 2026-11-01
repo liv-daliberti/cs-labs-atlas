@@ -142,7 +142,7 @@ def build(school, hidden):
         r = json.loads(l)
         sp[(r['pi'], r.get('work') or r.get('oa'))].append(r.get('name') or r['student'])
         sp_by_student[(r['pi'], r['student'])] += 1
-    cdir = P.HIERARCHY / school if RELEASE['copies'] != 'release' else D
+    cdir = P.data('copies.json', school).parent if RELEASE['copies'] != 'release' else D
     copies = json.loads((cdir / 'copies.json').read_text())['papers']
     led = ledger(cdir)  # the unavailability ledger next to that copies.json (2026-10-30)
     files = stored_files(school)

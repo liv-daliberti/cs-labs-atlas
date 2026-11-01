@@ -49,7 +49,7 @@ def main(key):
         n['orcid'] += bool(o)
         if rec['dblp'] or rec['orcid'] or rec['conflicts']:
             out[t['name']] = rec
-    (P.HIERARCHY / key / 'homepage-identity.json').write_text(json.dumps(out, indent=1, ensure_ascii=False))
+    P.data_w('homepage-identity.json', key).write_text(json.dumps(out, indent=1, ensure_ascii=False))
     print(json.dumps(dict(pis=len(PS.targets(key)), **n)))
 
 

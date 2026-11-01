@@ -12,12 +12,13 @@ usage: diagnose_gaps.py <school> [...]
 import collections, json, sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
-from pi_hierarchy import read, toks, SITE, HERE  # noqa: E402
+from pi_hierarchy import read, toks, SITE  # noqa: E402
+import atlas_paths as P  # noqa: E402  (every path in one place)
 
 
 def diagnose(school):
-    pis = read(HERE / 'hierarchy' / school / 'pis.json')
-    own_c = HERE / 'hierarchy' / school / 'collection.json.gz'
+    pis = read(P.data('pis.json', school))
+    own_c = P.data('collection.json.gz', school)
     C = read(own_c if own_c.exists() else SITE / f'collection-{school}.json.gz')
     people = C['people'] if isinstance(C['people'], list) else list(C['people'].values())
     mentions = collections.Counter()  # surname -> advising contexts mentioning it
@@ -47,7 +48,7 @@ def diagnose(school):
             r['studentMentions'] = mentions.get(sur, 0)
             r['students_cause'] = 'no_advising_records' if not r['studentMentions'] else 'adviser_name_unmatched_or_namesake'
         rows.append(r)
-    json.dump(rows, open(HERE / 'hierarchy' / school / 'gaps.json', 'w'), indent=1, ensure_ascii=False)
+    json.dump(rows, open(P.data_w('gaps.json', school), 'w'), indent=1, ensure_ascii=False)
     print(json.dumps(dict(school=school, gap_labs=len(rows), papers=dict(collections.Counter(r.get('papers') for r in rows if r.get('papers'))),
                           students=dict(collections.Counter(r.get('students_cause') for r in rows if r.get('students_cause'))),
                           ranks=dict(collections.Counter(str(r['rank']) for r in rows)))))

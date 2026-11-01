@@ -53,7 +53,7 @@ def main(key, refresh=False):
                         blocked=blocked[0] if blocked else None, consistent=not problems, problems=problems,
                         checked_at=time.strftime('%Y-%m-%dT%H:%M:%S')))
         print(json.dumps(out[-1], ensure_ascii=False), flush=True)
-    d = P.HIERARCHY / key; d.mkdir(parents=True, exist_ok=True)
+    d = P.data_w('pis.json', key).parent
     (d / 'hosts.json').write_text(json.dumps(dict(school=key, hosts=out, gate=all(x['consistent'] for x in out)), indent=1, ensure_ascii=False))
     bad = [x for x in out if not x['consistent']]
     print(f'{key}: {len(out)} hosts, {len(bad)} inconsistent' + (': ' + '; '.join(f"{x['host']}: {', '.join(x['problems'])}" for x in bad) if bad else ''))

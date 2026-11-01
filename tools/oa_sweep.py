@@ -26,8 +26,7 @@ UA = 'HomogenizingScienceResearch/0.2 (academic metadata inventory)'
 
 
 def db(school):
-    p = HERE / 'hierarchy' / school; p.mkdir(parents=True, exist_ok=True)
-    c = sqlite3.connect(p / 'openalex-sweep.sqlite')
+    c = sqlite3.connect(P.data_w('openalex-sweep.sqlite', school))
     c.execute('create table if not exists pages (year int, page int, cursor text, next_cursor text, n int, count int, fetched_at text, body blob, primary key (year, page))')
     return c
 

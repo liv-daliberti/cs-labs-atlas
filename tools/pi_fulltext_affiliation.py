@@ -37,7 +37,7 @@ SELECT = 'id,doi,title,publication_year,publication_date,type,authorships,ids,pr
 
 
 def db(school):
-    c = sqlite3.connect(HERE / 'hierarchy' / school / 'pi-works.sqlite', timeout=60)
+    c = sqlite3.connect(P.data('pi-works.sqlite', school), timeout=60)
     c.execute('create table if not exists queries (batch text primary key, done int)')
     c.execute('create table if not exists works (id text primary key, body blob)')
     c.execute('create table if not exists pages (work text primary key, arxiv text, url text, status text, pdf_sha256 text, page1 blob, school_named int, quote text, fetched_at text)')
@@ -47,7 +47,7 @@ def db(school):
 def works(school):
     key = os.environ['OPENALEX_API_KEY']; floor = int(os.environ.get('OPENALEX_FLOOR') or 1500)
     c = db(school); s = requests.Session(); s.headers['User-Agent'] = UA
-    pis = read(HERE / 'hierarchy' / school / 'pis.json')
+    pis = read(P.data('pis.json', school))
     ids = sorted({a.rsplit('/', 1)[-1] for p in pis for a in (p.get('oaAuthorIds') or [])[:6] + (p.get('reviewedOpenAlex') or [])})
     for i in range(0, len(ids), 25):
         batch = '|'.join(ids[i:i + 25])
@@ -146,7 +146,7 @@ def dblp_pages(pis):
     (hierarchy/dblp-dump-persons.json.gz), for the PI's DBLP ids in pis.json."""
     import html as html_
     from pi_hierarchy import norm_title
-    f = HERE / 'hierarchy' / 'dblp-dump-persons.json.gz'
+    f = P.data('dblp-dump-persons.json.gz')
     if not f.exists():
         return {}
     DP = read(f)['persons']; out = {}
@@ -167,7 +167,7 @@ def candidates(school):
     local catalog PDF or None). Two kinds: (a) a work of one of the PI's anchored or reviewed OpenAlex author ids; (b) (R8,
     2026-10-29, owner: accuracy sample) a work on the PI's own DBLP person page (DOI or title) whose authorship at the PI's
     name, under any author id, lists no institution (Jacob Fox's JCTB 2025 paper: OpenAlex gives Fox no affiliation)."""
-    c = db(school); pis = read(HERE / 'hierarchy' / school / 'pis.json')
+    c = db(school); pis = read(P.data('pis.json', school))
     mine = {a for p in pis for a in (p.get('oaAuthorIds') or [])[:6] + (p.get('reviewedOpenAlex') or [])}
     from pi_hierarchy import toks, given, Name, norm_title
     names_of, forms_of = {}, {}
@@ -253,7 +253,7 @@ def retie(school):
     """Re-read the stored page-1 texts that named the school without a tie (status ok_untied) with the current tie() rule,
     for every PI whose name is on the work's byline (no download: the text is in the pages table). R8, 2026-10-29."""
     from pi_hierarchy import toks, given, Name
-    c = db(school); aff = re.compile(AFF[school], re.I); pis = read(HERE / 'hierarchy' / school / 'pis.json')
+    c = db(school); aff = re.compile(AFF[school], re.I); pis = read(P.data('pis.json', school))
     forms_of, nm, by_sur = {}, {}, {}
     for p in pis:
         forms_of[p['pi']] = sorted({(given(t[0]), t[-1]) for n in p['names'] for t in [toks(n)] if len(t) >= 2} | {(t[1], t[-1]) for n in p['names'] for t in [toks(n)] if len(t) >= 3 and len(t[0]) == 1})

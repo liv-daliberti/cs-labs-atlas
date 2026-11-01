@@ -52,7 +52,6 @@ def entries(root, schools):
                 out.append((name, s, old, new))
     for s in schools:
         H = Path(root) / 'hierarchy' / s
-        out.append(('tmp/', s, H / 'tmp', H / 'work' / 'tmp'))
         for n in sorted(R._listdir(str(H))):
             if fnmatch.fnmatch(n, 'STAGE-*.md') or n == 'REQUESTS-FOR-BUILDER.md':
                 out.append((n, s, H / n, H / 'reports' / n))

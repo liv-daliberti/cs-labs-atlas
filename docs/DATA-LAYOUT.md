@@ -134,6 +134,12 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `VALIDATION.json` | derived | `hierarchy/VALIDATION.json` | `hierarchy/derived/VALIDATION.json` | - | - |
 | `ids` | derived | `hierarchy/ids` | `hierarchy/derived/ids` | 0/1 | dir |
 | `logs` | work | `hierarchy/logs` | `hierarchy/logs` | 0/1 | dir |
+| `sweep.log` | work | `hierarchy/sweep-{school}.log` | `hierarchy/work/sweep-{school}.log` | - | <100MB |
+| `tmp` | work | `hierarchy/{school}/tmp` | `hierarchy/{school}/work/tmp` | - | <100MB |
+| `gaps.json` | derived | `hierarchy/{school}/gaps.json` | `hierarchy/{school}/derived/gaps.json` | - | <100MB |
+| `coverage.json` | derived | `listings/{school}/coverage.json` | `listings/{school}/derived/coverage.json` | - | <100MB |
+| `missing-pi-captures.sqlite` | raw | `hierarchy/missing-pi-captures.sqlite` | `hierarchy/raw/missing-pi-captures.sqlite` | - | <100MB |
+| `home-departments-school.json` | derived | `hierarchy/{school}/home-departments.json` | `hierarchy/{school}/derived/home-departments.json` | - | <100MB |
 | `school-profiles.json` | derived | `hierarchy/school-profiles.json` | `hierarchy/derived/school-profiles.json` | - | <100MB |
 | `missing-papers-audit.json` | derived | `hierarchy/missing-papers-audit.json` | `hierarchy/derived/missing-papers-audit.json` | - | <100MB |
 | `CHAIN-AUDIT.md` | derived | `hierarchy/CHAIN-AUDIT.md` | `hierarchy/derived/CHAIN-AUDIT.md` | - | <100MB |

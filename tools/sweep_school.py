@@ -74,10 +74,10 @@ def main(argv=None):
     a = ap.parse_args(argv)
     if a.key not in school_config.keys():
         raise SystemExit(f'no charter schools/{a.key}.toml')
-    log = P.HIERARCHY / f'sweep-{a.key}.log'
+    log = P.data('sweep.log', a.key)
     if a.show or not a.daily:
         return run_once(a.key, log, a.floor, a.show)
-    tmp = P.HIERARCHY / a.key / 'tmp'
+    tmp = P.data('tmp', a.key)
     tmp.mkdir(parents=True, exist_ok=True)
     (tmp / 'sweep_daily.pid').write_text(str(os.getpid()))
     while not complete(log):

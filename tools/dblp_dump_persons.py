@@ -28,7 +28,7 @@ from pi_hierarchy import toks  # noqa: E402
 import atlas_paths as P  # noqa: E402  (every path in one place)
 HERE = P.WORK
 DUMP = P.DBLP_DUMP_XML
-OUT = HERE / 'hierarchy' / 'dblp-dump-persons.json.gz'
+OUT = P.data('dblp-dump-persons.json.gz')
 import school_config as S  # noqa: E402  (the school charters)
 SCHOOLS = S.keys()  # released and onboarding schools: a new school's PIs get their DBLP pages before its first release
 REC = re.compile(r'<(article|inproceedings|proceedings|book|incollection|phdthesis|mastersthesis|www|data) ([^>]*?)key="([^"]+)"[^>]*>(.*?)</\1>', re.S)
@@ -65,11 +65,11 @@ def records():
 def main():
     pids, names = set(), set()
     for s in SCHOOLS:
-        p_ = HERE / 'hierarchy' / s / 'pis.json'
+        p_ = P.data('pis.json', s)
         for p in json.loads(p_.read_text()) if p_.exists() else []:
             pids |= {q.rstrip('/') for q in (p.get('dblp') or []) + (p.get('dblpDropped') or []) if '/pid/' in q}
             names |= {' '.join(toks(n)) for n in p.get('names') or [] if len(toks(n)) >= 2}
-        a_ = HERE / 'census' / f'{s}-additions.json'  # census additions not yet built into pis.json
+        a_ = P.data('census-additions.json', s)  # census additions not yet built into pis.json
         for x in json.loads(a_.read_text()) if a_.exists() else []:
             pids |= {q.rstrip('/') for q in ([x['dblp']] if isinstance(x.get('dblp'), str) else x.get('dblp') or []) if '/pid/' in q}
             names |= {' '.join(toks(n)) for n in [x.get('name')] + list(x.get('aliases') or []) if n and len(toks(n)) >= 2}

@@ -43,8 +43,8 @@ def main(key, write_shared=False):
     cfg = S.get(key)
     deps = {d['code']: d for d in cfg.get('departments') or []}
     tm = {c: re.compile(d.get('title_match') or '.', re.I) for c, d in deps.items()}
-    census = json.loads((P.CENSUS / f'{key}-faculty.json').read_text())['faculty']
-    adds = json.loads((P.CENSUS / f'{key}-additions.json').read_text()) if (P.CENSUS / f'{key}-additions.json').exists() else []
+    census = json.loads((P.data('census-faculty.json', key)).read_text())['faculty']
+    adds = json.loads((P.data('census-additions.json', key)).read_text()) if (P.data('census-additions.json', key)).exists() else []
     units = {u['code']: u['name'] for u in cfg.get('affiliated_units') or []}
     canon = [(re.compile(rx, re.I), name) for name, rx in (S.field(cfg, 'census.home_units') or {}).items()]
 
@@ -52,7 +52,7 @@ def main(key, write_shared=False):
         u = re.sub(r'\s*\((?:effective|as of)[^)]*\)', '', u or '').strip()
         u = re.sub(r'^Department of\s+', '', u)
         return next((name for rx, name in canon if rx.search(u)), u)
-    rows = json.loads((P.LISTINGS / key / 'rows.json').read_text())
+    rows = json.loads((P.data('rows.json', key)).read_text())
     by_name = collections.defaultdict(list)
     for r in rows:
         by_name[r['name']].append(r)
@@ -102,9 +102,9 @@ def main(key, write_shared=False):
         row = dict(school=key, name=x['name'], home_department=home, also=[], no_academic_department=False, status='accepted' if home else 'hold',
                    evidence=dict(url=b.get('url'), sha256=b.get('sha256'), quote=b.get('quote')), note=f'the {code} faculty listing (cs-related-review.json)')
         out.append(row); n[row['status']] += 1; n['home:' + str(home)] += 1
-    (P.HIERARCHY / key / 'home-departments.json').write_text(json.dumps(out, indent=1, ensure_ascii=False))
+    P.data_w('home-departments-school.json', key).write_text(json.dumps(out, indent=1, ensure_ascii=False))
     if write_shared:
-        f = P.HIERARCHY / 'home-departments.json'
+        f = P.data('home-departments.json')
         txt = f.read_text(); shared = json.loads(txt)
         ind = len(re.match(r'\[\n( *)', txt).group(1)) if re.match(r'\[\n( *)', txt) else 2  # keep the file's own layout
         shared = [r for r in shared if r.get('school') != key] + out

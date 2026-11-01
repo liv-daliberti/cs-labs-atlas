@@ -30,13 +30,13 @@ def read(p, default=None):
 
 
 def pis_of(key):
-    cen = read(P.CENSUS / f'{key}-faculty.json', {}).get('faculty', [])
-    add = read(P.CENSUS / f'{key}-additions.json', [])
+    cen = read(P.data('census-faculty.json', key), {}).get('faculty', [])
+    add = read(P.data('census-additions.json', key), [])
     return [x for x in cen + add if x.get('is_pi')]
 
 
 def g1(key):
-    cov = read(P.LISTINGS / key / 'coverage.json', {}); lo, hi = S.get(key).get('window')
+    cov = read(P.data('coverage.json', key), {}); lo, hi = S.get(key).get('window')
     bad = []
     for d in S.get(key).get('departments') or []:
         for y in range(lo, hi + 1):
@@ -48,7 +48,7 @@ def g1(key):
 
 def sweep_gate(key):
     """The bulk-pull sanity check (tools/sweep_check.py -> hierarchy/<key>/sweep-check.json) must exist and pass."""
-    sc = read(P.HIERARCHY / key / 'sweep-check.json')
+    sc = read(P.data('sweep-check.json', key))
     if not sc:
         return ['sweep check: hierarchy/<key>/sweep-check.json missing (run tools/sweep_check.py <key>)'.replace('<key>', key)]
     return [f"sweep check: {t['test']} {t.get('year') or ''} {t['why']}".replace('  ', ' ') for t in sc.get('failed') or []] + \
@@ -56,8 +56,8 @@ def sweep_gate(key):
 
 
 def g2(key):
-    cands = read(P.HIERARCHY / key / 'cs-related-candidates.json', [])
-    rev = read(P.HIERARCHY / key / 'cs-related-review.json', {}) or {}
+    cands = read(P.data('cs-related-candidates.json', key), [])
+    rev = read(P.data('cs-related-review.json', key), {}) or {}
     dec = {d['name']: d for d in rev.get('decisions', [])}
     bad = [f"{c['name']}: no decision" for c in cands if c['name'] not in dec and not any(a in dec for a in c.get('aliases') or [])]
     bad += [f"{d['name']}: {d['decision']} ({d['reason'][:100]})" for d in dec.values() if d['decision'] == 'pending_openalex']
@@ -66,7 +66,7 @@ def g2(key):
 
 
 def g3(key):
-    homes = {r['name']: r for r in read(P.HIERARCHY / key / 'home-departments.json', [])}
+    homes = {r['name']: r for r in read(P.data('home-departments-school.json', key), [])}
     bad = []
     for x in pis_of(key):
         b = x.get('pi_basis') or {}
@@ -96,8 +96,8 @@ def span_gaps(x):
 
 
 def g4(key):
-    per = read(P.PERIODS / f'{key}-faculty-periods.json', [])
-    ov = (read(P.HIERARCHY / 'census-overrides.json', {}) or {}).get(key, {})
+    per = read(P.data('faculty-periods.json', key), [])
+    ov = (read(P.data('census-overrides.json'), {}) or {}).get(key, {})
     have = {p['name'] for p in per} | {k for k, v in ov.items() if isinstance(v, dict) and v.get('periods')}
     bad, n = [], collections.Counter()
     for x in pis_of(key):
@@ -115,7 +115,7 @@ def g4(key):
 
 
 def g5(key):
-    ov = (read(P.HIERARCHY / 'census-overrides.json', {}) or {}).get(key, {})
+    ov = (read(P.data('census-overrides.json'), {}) or {}).get(key, {})
     bad, n = [], collections.Counter()
     for x in pis_of(key):
         o = ov.get(x['name']) or {}

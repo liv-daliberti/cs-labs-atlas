@@ -58,7 +58,7 @@ def ndoi(s):
 
 
 def run(school):
-    rows = [json.loads(l) for l in gzip.open(HERE / 'hierarchy' / school / 'lab_papers.jsonl.gz', 'rt')]
+    rows = [json.loads(l) for l in gzip.open(P.data('lab_papers.jsonl.gz', school), 'rt')]
     status, by_doi, local_titles, access = {}, {}, set(), {}  # the coverage counter's rule: any catalog work with the same id, DOI or title
     if (FT / school / 'catalog.sqlite').exists():
         db = sqlite3.connect(f'file:{FT / school / "catalog.sqlite"}?mode=ro', uri=True, timeout=120)
@@ -105,8 +105,8 @@ def run(school):
         n['local' if st in LOCAL else (st or 'not_in_catalog')] += 1
     summary = dict(school=school, lab_papers=len(out), **n, local_share=round(n['local'] / max(1, len(out)), 3),
                    counted_at=time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()))
-    json.dump(dict(summary=summary, papers=out), open(HERE / 'hierarchy' / school / 'copies.json', 'w'))
-    if (HERE / 'hierarchy' / school / 'unavailable.jsonl.gz').exists():  # the ledger's reasons onto the non-local papers (2026-10-30)
+    json.dump(dict(summary=summary, papers=out), open(P.data_w('copies.json', school), 'w'))
+    if (P.data('unavailable.jsonl.gz', school)).exists():  # the ledger's reasons onto the non-local papers (2026-10-30)
         summary = attach_ledger(school)['summary']
     print(json.dumps(summary))
 
@@ -118,7 +118,7 @@ def attach_ledger(school, out=None):
     neither (earlier values are cleared, so stale ledger rows never stick). The summary gets unavailable:<reason_code>
     counts and ledger_built_at (unavailable-summary.json built_at). copies.json is rewritten (atomically); returns it.
     Without a ledger file the fields are only cleared."""
-    d = Path(out) if out is not None else HERE / 'hierarchy' / school
+    d = Path(out) if out is not None else P.data('copies.json', school).parent
     doc = json.loads((d / 'copies.json').read_text())
     papers, summary = doc.get('papers') or {}, doc.get('summary') or {}
     ledger, have = {}, (d / 'unavailable.jsonl.gz').exists()

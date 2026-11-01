@@ -90,7 +90,7 @@ from evidence_check import BYLINE_BASES, sourced  # noqa: E402
 
 SCHOOLS = ['epfl', 'cmu', 'mit']
 UA = 'HomogenizingScienceResearch/0.2 (academic metadata inventory)'
-TMP = P.HIERARCHY / 'logs' / 'tmp-ids' / 'recapture'
+TMP = P.data('logs') / 'tmp-ids' / 'recapture'
 TIMEOUT = (15, 90)
 MIN_GAP = 1.05
 AI_AGENTS = ('claudebot', 'claude-web', 'anthropic-ai', 'claude')
@@ -140,8 +140,7 @@ def obs_date(src, years):
 
 def plan(school):
     """{url: {'targets': {(person, pi): {...}}, 'orig': set(sha), 'dates': [YYYYMMDD], 'relations': n}}"""
-    D = P.HIERARCHY / school
-    S = load_json(D / 'students.json')
+    S = load_json(P.data('students.json', school))
     byid = {}
     for pi, recs in S.items():
         for s in recs:
@@ -171,7 +170,7 @@ def plan(school):
                 for q in rel.get('sources') or []:
                     if q.get('url'):
                         add(q['url'], s, pi, rel.get('years'), q)
-    links = load_json(D / 'student_papers.jsonl.gz')
+    links = load_json(P.data('student_papers.jsonl.gz', school))
     for x in links:
         rs = x.get('relation_source') or {}
         if x.get('basis') in BYLINE_BASES and not sourced(rs) and rs.get('url'):
@@ -182,7 +181,7 @@ def plan(school):
 
 # ------------------------------------------------------------------------------------------------------------ storage
 def db_path(school):
-    return P.HIERARCHY / school / 'relation-captures.sqlite'
+    return P.data('relation-captures.sqlite', school)
 
 
 _dblock = threading.Lock()
@@ -228,7 +227,7 @@ def done_urls(con, retry_errors=False):
 
 # ---------------------------------------------------------------------------------------------------- local lookups
 def local_stores(school):
-    fs = sorted(P.HIERARCHY.glob('*captures*.sqlite')) + sorted((P.HIERARCHY / school).glob('*captures*.sqlite'))
+    fs = sorted(P.data('missing-pi-captures.sqlite').parent.glob('*captures*.sqlite')) + sorted(P.data('relation-captures.sqlite', school).parent.glob('*captures*.sqlite'))
     return [f for f in fs if f.name != 'relation-captures.sqlite']
 
 
@@ -1166,7 +1165,7 @@ def extract(schools):
         pl = plan(school)
         con = connect(school)
         pirecs = {}
-        for p in load_json(P.HIERARCHY / school / 'pis.json'):
+        for p in load_json(P.data('pis.json', school)):
             pirecs[p['pi']] = p
         records, why = [], collections.Counter()
         why_hosts = collections.defaultdict(collections.Counter)
@@ -1249,7 +1248,7 @@ def extract(schools):
                          'the captured text, whitespace-collapsed; " … " separates two excerpts of the same page in '
                          'document order. matches_original compares the new hash with the sha256 the source carried.'),
                    school=school, made=now(), records=records)
-        out = P.HIERARCHY / school / 'relation-evidence.json'
+        out = P.data('relation-evidence.json', school)
         s = json.dumps(doc, ensure_ascii=False, separators=(',', ':')).replace('},{"url"', '},\n{"url"')
         out.write_text(s + '\n')
         summary[school] = dict(records=len(records), names_pi=sum(r['names_pi'] for r in records), outcomes=dict(why),
@@ -1264,10 +1263,9 @@ def extract(schools):
 def estimate(schools):
     res = {}
     for school in schools:
-        D = P.HIERARCHY / school
-        S = load_json(D / 'students.json')
-        links = load_json(D / 'student_papers.jsonl.gz')
-        ev = json.loads((D / 'relation-evidence.json').read_text())['records']
+        S = load_json(P.data('students.json', school))
+        links = load_json(P.data('student_papers.jsonl.gz', school))
+        ev = json.loads(P.data('relation-evidence.json', school).read_text())['records']
         alias = {}
         for pi, recs in S.items():
             for s in recs:

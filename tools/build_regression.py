@@ -170,7 +170,7 @@ def main(argv=None):
     sub = ap.add_subparsers(dest='cmd', required=True)
     a1 = sub.add_parser('snapshot'); a1.add_argument('--out', required=True); a1.add_argument('--from', dest='src', default=str(P.HIERARCHY))
     a2 = sub.add_parser('check'); a2.add_argument('--before', required=True); a2.add_argument('--after'); a2.add_argument('--from', dest='src', default=str(P.HIERARCHY))
-    a2.add_argument('--md', default=str(P.HIERARCHY / 'BUILD-REGRESSION.md')); a2.add_argument('--json', default=str(P.HIERARCHY / 'BUILD-REGRESSION.json'))
+    a2.add_argument('--md', default=str(P.data('BUILD-REGRESSION.md'))); a2.add_argument('--json', default=str(P.data('BUILD-REGRESSION.json')))
     a = ap.parse_args(argv)
     if a.cmd == 'snapshot':
         c = counts(a.src)

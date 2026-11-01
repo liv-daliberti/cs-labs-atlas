@@ -29,11 +29,11 @@ def full(a):
 
 
 def wanted(key):
-    rev = json.loads((P.HIERARCHY / key / 'openalex-identity-review.json').read_text())['decisions']
+    rev = json.loads((P.data('openalex-identity-review.json', key)).read_text())['decisions']
     out = {n: dict(openalex=[full(a) for a in d['openalex']], why=d['why'], aliases=d.get('aliases') or [], basis='reviewed') for n, d in rev.items()}
-    cen = {x['name']: x for x in json.loads((P.CENSUS / f'{key}-faculty.json').read_text())['faculty']}
-    add = {x['name']: x for x in json.loads((P.CENSUS / f'{key}-additions.json').read_text())} if (P.CENSUS / f'{key}-additions.json').exists() else {}
-    for d in json.loads((P.HIERARCHY / key / 'cs-related-review.json').read_text())['decisions']:
+    cen = {x['name']: x for x in json.loads((P.data('census-faculty.json', key)).read_text())['faculty']}
+    add = {x['name']: x for x in json.loads((P.data('census-additions.json', key)).read_text())} if (P.data('census-additions.json', key)).exists() else {}
+    for d in json.loads((P.data('cs-related-review.json', key)).read_text())['decisions']:
         if d['decision'] != 'accepted' or d['name'] in out:
             continue
         x = cen.get(d['name']) or add.get(d['name']) or {}
@@ -48,7 +48,7 @@ def wanted(key):
 
 def evidence(key, ids):
     at_school = school_test(key); ev = {}
-    c = sqlite3.connect(f"file:{P.HIERARCHY / key / 'openalex-sweep.sqlite'}?mode=ro", uri=True)
+    c = sqlite3.connect(f"file:{P.data('openalex-sweep.sqlite', key)}?mode=ro", uri=True)
     for (b,) in c.execute('select body from pages order by year desc, page'):
         for w in json.loads(zlib.decompress(b)):
             if w.get('type') in NOT_PAPERS:
@@ -67,7 +67,7 @@ def evidence(key, ids):
 def main(key, dry=False):
     want = wanted(key)
     ev = evidence(key, {a for d in want.values() for a in d['openalex']})
-    f = P.HIERARCHY / 'census-overrides.json'; txt = f.read_text(); ov = json.loads(txt)
+    f = P.data('census-overrides.json'); txt = f.read_text(); ov = json.loads(txt)
     sec = ov.setdefault(key, {}); n = {'reviewed': 0, 'share_test': 0, 'no_evidence': 0}
     for name, d in want.items():
         ids = [a for a in d['openalex'] if a in ev]

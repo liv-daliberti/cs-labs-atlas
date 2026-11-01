@@ -24,7 +24,7 @@ from urllib.parse import urlsplit
 import requests
 
 sys.path.insert(0, str(Path(__file__).parent))
-from pi_hierarchy import read, HERE, DBLP, INST, AFF, ndoi, norm_title, Name, toks, given  # noqa: E402
+from pi_hierarchy import read, DBLP, INST, AFF, ndoi, norm_title, Name, toks, given  # noqa: E402
 from pi_fulltext_affiliation import tie  # noqa: E402
 import atlas_paths as P  # noqa: E402  (every path in one place)
 
@@ -92,7 +92,7 @@ def dump_pubs(pis):
     """The PIs' DBLP records from DBLP's own dump (hierarchy/dblp-dump-persons.json.gz, tools/dblp_dump_persons.py) in the
     cached-list shape {key: {title, year, doi, venue, ee, authors: {pid or 'n<i>': name}}}; the PI's own byline entry is
     keyed by the PI's pid."""
-    persons = read(HERE / 'hierarchy' / 'dblp-dump-persons.json.gz').get('persons') or {}
+    persons = read(P.data('dblp-dump-persons.json.gz')).get('persons') or {}
     out = {}
     for p in pis:
         for q in p.get('dblp') or []:
@@ -108,13 +108,13 @@ def dump_pubs(pis):
 
 
 def candidates(school, skip_have=True):
-    pis = read(HERE / 'hierarchy' / school / 'pis.json')
-    own = HERE / 'hierarchy' / school / 'raw/dblp_pubs.json.gz'
+    pis = read(P.data('pis.json', school))
+    own = P.data('dblp_pubs.json.gz', school)
     if own.exists() or school in DBLP:
         pubs = read(own if own.exists() else P.archive_sweep(DBLP[school]) / 'raw/dblp_pubs.json.gz')['pubs']
     else:  # a protocol school has no legacy DBLP sweep (Michigan request 1, 2026-10-29): the PIs' pages from the dump
         pubs = dump_pubs(pis)
-    rows = [json.loads(l) for l in gzip.open(HERE / 'hierarchy' / school / 'lab_papers.jsonl.gz', 'rt')]
+    rows = [json.loads(l) for l in gzip.open(P.data('lab_papers.jsonl.gz', school), 'rt')]
     have = collections.defaultdict(set)
     for r in rows:
         have[r['pi']].add(norm_title(r.get('title'))); have[r['pi']].add(ndoi(r.get('doi')))
@@ -148,7 +148,7 @@ def candidates(school, skip_have=True):
 
 
 def db(school):
-    c = sqlite3.connect(HERE / 'hierarchy' / school / 'dblp-recover.sqlite', timeout=60, check_same_thread=False)
+    c = sqlite3.connect(P.data_w('dblp-recover.sqlite', school), timeout=60, check_same_thread=False)
     c.execute('create table if not exists tries (pi text, dblp_key text, step text, url text, status text, pdf_sha256 text, page1 blob, '
               'accepted int, evidence text, at text, primary key (pi, dblp_key, step))')
     return c
@@ -235,7 +235,7 @@ def write_accepted(school, c=None):
         by = {(x['pi'], x['dblp_key']): x for x in candidates(school, skip_have=False)}
     finally:
         Y0, Y1 = lim
-    with gzip.open(HERE / 'hierarchy' / school / 'dblp-recovered.jsonl.gz', 'wt') as f:
+    with gzip.open(P.data_w('dblp-recovered.jsonl.gz', school), 'wt') as f:
         for pi, k, ev in c.execute('select pi, dblp_key, evidence from tries where accepted=1'):
             x = by.get((pi, k))
             if x:

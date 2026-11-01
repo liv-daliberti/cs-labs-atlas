@@ -561,7 +561,7 @@ def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument('schools', nargs='*')
     ap.add_argument('--dir', default=str(P.HIERARCHY))
-    ap.add_argument('--registry', default=str(P.HIERARCHY / 'ids' / 'registry.sqlite'))
+    ap.add_argument('--registry', default=str(P.data('ids') / 'registry.sqlite'))
     ap.add_argument('--no-sweep', action='store_true', help='skip the OpenAlex byline author ids (student -> PI elsewhere)')
     a = ap.parse_args(argv)
     db = open_registry(a.registry)

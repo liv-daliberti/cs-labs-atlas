@@ -41,8 +41,8 @@ def main(key):
     cfg = S.get(key); aff = S.aff_rx(key)
     doms = [d.lower() for d in (cfg.get('web') or {}).get('domains') or []]
     xh = [d.lower() for d in (cfg.get('web') or {}).get('excluded_hosts') or []]
-    census = json.loads((P.CENSUS / f'{key}-faculty.json').read_text())['faculty']
-    adds = json.loads((P.CENSUS / f'{key}-additions.json').read_text()) if (P.CENSUS / f'{key}-additions.json').exists() else []
+    census = json.loads((P.data('census-faculty.json', key)).read_text())['faculty']
+    adds = json.loads((P.data('census-additions.json', key)).read_text()) if (P.data('census-additions.json', key)).exists() else []
     cov = {d['code']: d.get('coverage') for d in cfg.get('departments') or []}
     # the PIs, plus the ladder faculty of affiliated departments (their CS-related review needs their DBLP output)
     pis = [x for x in census + adds if x.get('is_pi') or any(cov.get(s_['kind'].split(':')[-1]) == 'affiliated' and s_.get('rank') == 'ladder'
@@ -50,7 +50,7 @@ def main(key):
     def nurl(u):
         return re.sub(r'^https?://(?:www\.|web\.)?', '', (u or '').lower()).rstrip('/')
     homes = collections.defaultdict(set)  # the homepage each PI's department listing links (tools/listing_rows.py)
-    for r in json.loads((P.LISTINGS / key / 'rows.json').read_text()) if (P.LISTINGS / key / 'rows.json').exists() else []:
+    for r in json.loads((P.data('rows.json', key)).read_text()) if (P.data('rows.json', key)).exists() else []:
         if r.get('homepage') and '/people' not in r['homepage']:
             homes[r['name']].add(nurl(r['homepage']))
     by_fam = collections.defaultdict(list)
@@ -158,7 +158,7 @@ def main(key):
                                   quote=c['names'][0], coauthors=mates, coauthored_records=score[c['pid']], orcid=c['orcid'], names=c['names'],
                                   candidates=len(cs), n_window=c['n_window'])
             n['none'] -= 1; n['school_coauthors'] += 1
-    (P.HIERARCHY / key / 'dblp-ids.json').write_text(json.dumps(out, indent=1, ensure_ascii=False))
+    P.data_w('dblp-ids.json', key).write_text(json.dumps(out, indent=1, ensure_ascii=False))
     print(json.dumps(dict(pis=len(pis), secs=round(time.time() - t0), **n)))
 
 

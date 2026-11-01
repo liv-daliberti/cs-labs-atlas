@@ -30,7 +30,7 @@ def captures(school):
     if school == 'princeton':
         db = P.archive_sweep('claude-princeton-listings-20261022') / 'captures/listings.sqlite'
     else:
-        db = HERE / 'listings' / school / 'captures.sqlite'
+        db = P.data('listings-captures.sqlite', school)
     c = sqlite3.connect(f'file:{db}?mode=ro', uri=True)
     cols = [r[1] for r in c.execute('pragma table_info(captures)')]
     q = 'select capture_url, wayback_timestamp, sha256, blocks_json, department from captures where http_status=200' if 'blocks_json' in cols else None
@@ -82,7 +82,7 @@ def activity(school, names):
 def advisees(school, names):
     """Advising records naming each candidate (the school's collection, or Berkeley's own)."""
     from pi_hierarchy import read, SITE
-    own = HERE / 'hierarchy' / school / 'collection.json.gz'
+    own = P.data('collection.json.gz', school)
     C = read(own if own.exists() else SITE / f'collection-{school}.json.gz')
     people = C['people'] if isinstance(C['people'], list) else list(C['people'].values())
     nm = {n: Name([n]) for n in names}; cnt = collections.Counter()
@@ -97,10 +97,10 @@ def advisees(school, names):
 
 
 def run(school):
-    cf = HERE / f'census/{school}-faculty-hierarchy.json'
-    census = json.loads((cf if cf.exists() else HERE / f'census/{school}-faculty.json').read_text())
+    cf = P.data('census-faculty-hierarchy.json', school)
+    census = json.loads((cf if cf.exists() else P.data('census-faculty.json', school)).read_text())
     census = census.get('faculty', census) if isinstance(census, dict) else census
-    ov = json.loads((HERE / 'hierarchy/census-overrides.json').read_text()).get(school, {}) if (HERE / 'hierarchy/census-overrides.json').exists() else {}
+    ov = json.loads((P.data('census-overrides.json')).read_text()).get(school, {}) if (P.data('census-overrides.json')).exists() else {}
     known = [Name([x['name']] + list(x.get('aliases') or []) + list(ov.get(x['name'], {}).get('aliases') or [])) for x in census]
     by_sur = collections.defaultdict(list)
     for k in known:
@@ -139,7 +139,7 @@ def run(school):
                      'ladder' if re.search(r'Professor', t) else 'other')
         x['likely_missing_pi'] = x['kind'] not in ('ee_only_out_of_scope',) and x['works_2016_2026'] >= 3 and (x['advising_records'] > 0 or x['kind'] == 'ladder')
     out.sort(key=lambda x: (not x['likely_missing_pi'], -x['works_2016_2026'], x['name']))
-    (HERE / 'hierarchy' / school / 'listed-not-in-census.json').write_text(json.dumps(out, indent=1, ensure_ascii=False))
+    P.data_w('listed-not-in-census.json', school).write_text(json.dumps(out, indent=1, ensure_ascii=False))
     miss = [x for x in out if x['likely_missing_pi']]
     print(json.dumps(dict(school=school, names_not_in_census=len(out), kinds=dict(collections.Counter(x['kind'] for x in out)), likely_missing_pis=len(miss),
                           examples=[(x['name'], f"{x['years'][0]}-{x['years'][-1]}", x['kind'], x['works_2016_2026'], x['advising_records'], x['titles'][0][:45]) for x in miss[:40]])))

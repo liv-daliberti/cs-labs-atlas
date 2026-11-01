@@ -67,7 +67,7 @@ def main(key):
     tm = {d['code']: re.compile(d.get('title_match') or r'.', re.I) for d in cfg.get('departments') or []}
     fmt_of = {s['slot']: s.get('format') for d in cfg.get('departments') or [] for s in d.get('listings') or []}
     kind_of = {s['slot']: s['kind'] for s in S.listing_slots(key)}
-    db = P.LISTINGS / key / 'captures.sqlite'
+    db = P.data('listings-captures.sqlite', key)
     c = sqlite3.connect(f'file:{db}?mode=ro', uri=True)
     rows, n = [], collections.Counter()
     cov = collections.defaultdict(lambda: collections.defaultdict(dict))
@@ -92,9 +92,9 @@ def main(key):
                              half=half, observed=obs, titles=e['titles'], dept_title=dt, rank=(rank_of(dt) if dt and rank_of(dt) != 'other' else rank_of(e['titles'])), division=e.get('division'),
                              homepage=e.get('homepage'), capture_url=cap, sha256=sha, quote=q))
             n['rows'] += 1
-    out = P.LISTINGS / key / 'rows.json'
+    out = P.data('rows.json', key)
     out.write_text(json.dumps(rows, indent=0, ensure_ascii=False))
-    (P.LISTINGS / key / 'coverage.json').write_text(json.dumps({d: {str(y): v for y, v in sorted(ys.items())} for d, ys in cov.items()}, indent=1))
+    P.data_w('coverage.json', key).write_text(json.dumps({d: {str(y): v for y, v in sorted(ys.items())} for d, ys in cov.items()}, indent=1))
     people = collections.defaultdict(set)
     for r in rows:
         people[r['dept']].add(r['name'])
