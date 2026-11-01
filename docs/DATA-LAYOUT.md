@@ -134,6 +134,12 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `VALIDATION.json` | derived | `hierarchy/VALIDATION.json` | `hierarchy/derived/VALIDATION.json` | - | - |
 | `ids` | derived | `hierarchy/ids` | `hierarchy/derived/ids` | 0/1 | dir |
 | `logs` | work | `hierarchy/logs` | `hierarchy/logs` | 0/1 | dir |
+| `listings-pages.json` | derived | `listings/{school}/pages.json` | `listings/{school}/derived/pages.json` | - | <100MB |
+| `listings-gaps.json` | derived | `listings/{school}/gaps.json` | `listings/{school}/derived/gaps.json` | - | <100MB |
+| `listings-ambiguous.json` | derived | `listings/{school}/ambiguous.json` | `listings/{school}/derived/ambiguous.json` | - | <100MB |
+| `listings-summary.json` | derived | `listings/{school}/summary.json` | `listings/{school}/derived/summary.json` | - | <100MB |
+| `listings-verify.json` | derived | `listings/{school}/verify.json` | `listings/{school}/derived/verify.json` | - | <100MB |
+| `listings-input.json` | reviewed | `hierarchy/listings-input-{school}.json` | `hierarchy/reviewed/listings-input-{school}.json` | - | <100MB |
 | `COLLECTORS-STATUS.md` | derived | `hierarchy/COLLECTORS-STATUS.md` | `hierarchy/derived/COLLECTORS-STATUS.md` | - | <100MB |
 | `COLLECTORS-STATUS.json` | derived | `hierarchy/COLLECTORS-STATUS.json` | `hierarchy/derived/COLLECTORS-STATUS.json` | - | <100MB |
 | `labpage-parts` | work | `hierarchy/{school}/labpage-parts` | `hierarchy/{school}/work/labpage-parts` | - | <100MB |

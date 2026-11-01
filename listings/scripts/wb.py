@@ -25,7 +25,6 @@ import atlas_paths as P  # noqa: E402  (every path in one place)
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # .../listings
 SCHOOLS = ("cmu", "epfl", "mit", "berkeley", "stanford")  # the pre-protocol schools; any school with a charter
                                                            # (schools/<key>.toml) is accepted too (school_dir)
-HIER = os.path.join(os.path.dirname(ROOT), "hierarchy")
 LOCK = str(P.RATE_STAMPS / "wayback.stamp")  # one Wayback request per MIN_GAP across every process on every node (atlas_paths RATE_STAMPS)
 MIN_GAP = 6.0  # never faster than the 1.5 s ceiling; Wayback refused connections under load (other clients share this host), so ~10/min
 UA = "Mozilla/5.0 (compatible; faculty-listing-archival-research/1.0)"
@@ -33,15 +32,15 @@ UA = "Mozilla/5.0 (compatible; faculty-listing-archival-research/1.0)"
 
 def school_dir(school):
     assert school in SCHOOLS or os.path.exists(os.path.join(os.path.dirname(ROOT), "schools", f"{school}.toml")), school
-    return os.path.join(ROOT, school)
+    return P.ListingsDir(school)
 
 
 def db_path(school):
-    return os.path.join(school_dir(school), "captures.sqlite")
+    return str(school_dir(school) / "captures.sqlite")
 
 
 def input_path(school):
-    return os.path.join(HIER, f"listings-input-{school}.json")
+    return str(P.data("listings-input.json", school))
 
 
 def db(school):

@@ -8,7 +8,7 @@ import re
 import unicodedata
 from collections import defaultdict
 
-NICK_DIR = str(AP.HIERARCHY / 'nicknames')
+NICK_DIR = str(AP.data('nicknames'))
 TITLES = {"dr", "prof", "professor", "mr", "ms", "mrs", "miss", "sir"}
 SUFFIXES = {"jr", "sr", "ii", "iii", "iv", "phd", "ph d", "md", "mba", "ms", "msc", "bs", "ba", "pe"}
 

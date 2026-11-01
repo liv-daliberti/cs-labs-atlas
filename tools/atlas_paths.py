@@ -336,6 +336,12 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('labpage-parts', 'work', 'hierarchy/{school}/labpage-parts', 'hierarchy/{school}/work/labpage-parts'),
     ('COLLECTORS-STATUS.md', 'derived', 'hierarchy/COLLECTORS-STATUS.md', 'hierarchy/derived/COLLECTORS-STATUS.md'),
     ('COLLECTORS-STATUS.json', 'derived', 'hierarchy/COLLECTORS-STATUS.json', 'hierarchy/derived/COLLECTORS-STATUS.json'),
+    ('listings-pages.json', 'derived', 'listings/{school}/pages.json', 'listings/{school}/derived/pages.json'),
+    ('listings-gaps.json', 'derived', 'listings/{school}/gaps.json', 'listings/{school}/derived/gaps.json'),
+    ('listings-ambiguous.json', 'derived', 'listings/{school}/ambiguous.json', 'listings/{school}/derived/ambiguous.json'),
+    ('listings-summary.json', 'derived', 'listings/{school}/summary.json', 'listings/{school}/derived/summary.json'),
+    ('listings-verify.json', 'derived', 'listings/{school}/verify.json', 'listings/{school}/derived/verify.json'),
+    ('listings-input.json', 'reviewed', 'hierarchy/listings-input-{school}.json', 'hierarchy/reviewed/listings-input-{school}.json'),
 ]
 _DATA = {n: (k, a, b) for n, k, a, b in DATA_FILES}
 
@@ -406,6 +412,21 @@ def hfile_w(hdir, name, school=None):
     p = hfile(hdir, name, school)
     p.parent.mkdir(parents=True, exist_ok=True)
     return p
+
+
+class ListingsDir:
+    """The directory listings/<school>/ for listings/scripts: `d / 'listings.json'` is data(...) in either layout. The scripts' own file
+    names map to DATA_FILES names (captures.sqlite -> listings-captures.sqlite, pages.json -> listings-pages.json, ...)."""
+    ALIAS = {'captures.sqlite': 'listings-captures.sqlite', 'pages.json': 'listings-pages.json', 'gaps.json': 'listings-gaps.json',
+             'ambiguous.json': 'listings-ambiguous.json', 'summary.json': 'listings-summary.json', 'verify.json': 'listings-verify.json'}
+
+    def __init__(self, school):
+        self.school = school
+
+    def __truediv__(self, name):
+        p = data(self.ALIAS.get(name, name), self.school)
+        p.parent.mkdir(parents=True, exist_ok=True)   # a script writing here may be the first to
+        return p
 
 
 class SchoolDir:

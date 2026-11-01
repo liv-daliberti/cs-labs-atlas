@@ -18,7 +18,6 @@ ROOT = lpcap.ROOT
 TOOLS = os.path.dirname(os.path.abspath(__file__))
 BASES = {"epfl": str(P.SWEEPS / 'claude-epfl-20261019/people'),
          "berkeley": str(P.SWEEPS / 'claude-berkeley-20261021/people')}
-CENSUS = str(P.CENSUS)
 
 
 def slug(s):
@@ -52,7 +51,7 @@ def spec_path(school, row):
 
 @lru_cache(maxsize=4)
 def census(school):
-    d = json.load(open(f"{CENSUS}/{school}-faculty.json"))
+    d = json.load(open(lpcap.data("census-faculty.json", school)))
     return d["faculty"] if isinstance(d, dict) else d
 
 

@@ -15,10 +15,10 @@ import wb
 def main(schools):
     for s in schools:
         d = wb.school_dir(s)
-        summ = json.load(open(os.path.join(d, "summary.json")))
-        ver = json.load(open(os.path.join(d, "verify.json")))
-        amb = json.load(open(os.path.join(d, "ambiguous.json")))
-        gaps = json.load(open(os.path.join(d, "gaps.json")))
+        summ = json.load(open(d / "summary.json"))
+        ver = json.load(open(d / "verify.json"))
+        amb = json.load(open(d / "ambiguous.json"))
+        gaps = json.load(open(d / "gaps.json"))
         con = sqlite3.connect(wb.db_path(s))
         n200 = con.execute("select count(*) from captures where http_status=200").fetchone()[0]
         nall = con.execute("select count(*) from captures").fetchone()[0]
