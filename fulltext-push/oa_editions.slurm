@@ -10,6 +10,7 @@
 #SBATCH --time=12:00:00
 #SBATCH --output=fulltext-push/logs/oa_editions-%j.out
 . "${CS_ATLAS_CODE:-${SLURM_SUBMIT_DIR:?}}/paths.sh" || exit 1  # every path in one place (tools/atlas_paths.py); submit from the code root
+. "$CS_ATLAS_CODE/fulltext-push/job_snapshot.sh" || exit 1  # code of one commit, data shared (docs/CONTRIBUTING.md); submit with `atlas submit`
 cd "$CS_ATLAS_FULLTEXT_PUSH"
 for s in cmu epfl stanford princeton mit berkeley; do
   ./run_steps.sh $s oa_editions >> "$CS_ATLAS_FT_LOGS"/steps-$s.log 2>&1 < /dev/null

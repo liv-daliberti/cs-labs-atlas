@@ -290,7 +290,7 @@ def apply(pl, approved_by, record, commit=True, code_root=None, regen=regenerate
         subprocess.run(['git', '-C', str(code_root), 'add', '--'] + files, check=True)
         subprocess.run(['git', '-C', str(code_root), 'commit', '-q', '-m', f"Data layout: raw/reviewed/derived/work split ({len(pl['moves'])} moves, tracked files by git mv), "
                         f"DATA_LAYOUT_DEFAULT = 'split', .gitignore whitelist translated\n\nApproved by {approved_by}. Record: {record}.\n\n"
-                        "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"], check=True)
+                        "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"], check=True, env=dict(os.environ, ATLAS_ALLOW_MAIN='1'))   # the one sanctioned direct commit to main
     R.record(record, kind='done', commit=bool(commit))
     return len(pl['moves'])
 
