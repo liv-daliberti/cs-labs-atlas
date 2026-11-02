@@ -53,6 +53,7 @@ The protocol is config-driven. A school is a charter, `schools/<key>.toml`, and 
 
 ## Stage 0: charter and config
 - **Do:**
+  - **`atlas new-school <key> --name "University of X"`** (`tools/new_school.py`) does the next two bullets' scaffolding in one step: the charter from `TEMPLATE.toml`, `hierarchy/<key>/` (raw, reviewed, derived, work, reports, tmp), the store with an EMPTY `catalog.sqlite` of the standard schema (never a copy of another school's store), the folders a collector needs and a receipts row; it refuses an existing school and lists what the charter still lacks. Then fill the charter in.
   - Copy `schools/TEMPLATE.toml` to `schools/<key>.toml` and fill it in. `TEMPLATE.toml` documents every field:
     - name, key, `status = "onboarding"`, `order`;
     - OpenAlex lineage ids, related ids, excluded ids, and the ROR id, with how each was verified;

@@ -29,6 +29,7 @@ COMMANDS = {
     'tree':       ('py', 'tools/organize_tree.py', 'the organized school/lab/paper tree from a release'),
     'export':     ('py', 'tools/export_release.py', 'the GitHub export: atlas export <repo dir> [--skip-atlas]'),
     'sweep':      ('py', 'tools/sweep_school.py', 'a school\'s OpenAlex sweep + sweep check: atlas sweep <school> [--daily] [--print]'),
+    'new-school': ('py', 'tools/new_school.py', 'stage 0 of a new school in one command: atlas new-school <key> --name "University of X" [--dry-run]'),
     'stage-gate': ('py', 'tools/stage_gate.py', 'a protocol school\'s stage gates: atlas stage-gate <school> [stage ...]'),
     'charters':   ('py', 'tools/school_config.py --check', 'validate every school charter (schools/*.toml)'),
     'collect':    ('special', 'fulltext-push/lab_first_loop.py', 'the lab-first download loop: atlas collect <school> [...]'),
