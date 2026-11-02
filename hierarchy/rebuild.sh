@@ -34,6 +34,7 @@ fi
 PY="nice -n10 $CS_ATLAS_PY -u"  # the project interpreter (env/atlas; tools/atlas_paths.py PY)
 SCHOOLS=${SCHOOLS:-$CS_ATLAS_SCHOOLS}
 STAGES=${STAGES:-snapshot build ids copies ledger reader audits evidence tests regression validate release tree housekeeping}
+if [ "$STAGES" = auto ]; then STAGES=$($CS_ATLAS_PY "$CS_ATLAS_TOOLS/stale_stages.py" --stages $SCHOOLS); fi   # ROADMAP #33: only the stale stages, then the checks (tools/stale_stages.py)
 TAG=${TAG:-local-$(date +%Y%m%d-%H%M%S)}
 BEFORE=${BEFORE:-$CS_ATLAS_SCRATCH/pkg-before-$TAG}   # scratch, outside the tree (tools/scratch.py)
 has() { case " $STAGES " in *" $1 "*) return 0 ;; esac; return 1; }
