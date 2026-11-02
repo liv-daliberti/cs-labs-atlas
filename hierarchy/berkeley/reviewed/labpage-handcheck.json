@@ -88,6 +88,54 @@
    "paper_score": 0.0,
    "result": "students_membership_only_papers_pass",
    "note": "coordinator 2026-11-01: wired membership-only (roles withheld); all 3 errors were roles, none years"
+  },
+  {
+   "round": "recheck-1",
+   "date": "2026-11-02",
+   "label": "re-check after the 2026-11-01 rule changes (10 students, membership-only)",
+   "additions_generated_at": "2026-11-01T04:21:39+00:00",
+   "students": {
+    "sampled": 10,
+    "seed": 4061,
+    "membership_errors": 2,
+    "doubtful_count": 1,
+    "role_or_year_errors": 0
+   },
+   "papers": null,
+   "items": {
+    "membership": [
+     "Cheshire: Elif Sert, a research affiliate (Berkman Klein) on the AFOG centre page",
+     "Wu: Haripriya Pulyassary, named in the PI's publication list (a citation)"
+    ],
+    "doubtful": [
+     "Cheshire: Zoe Kahn, PhD '25 on the AFOG centre page"
+    ]
+   },
+   "membership_score": 2.5,
+   "role_year_errors": 0,
+   "paper_score": null,
+   "result": "students_recheck_fail",
+   "note": "the affiliate and citation rules (0706082, dbb2234) are in; the Berkeley audit is re-run (32071133) and the students re-sampled with a fresh seed"
+  },
+  {
+   "round": "recheck-2",
+   "date": "2026-11-02",
+   "label": "re-check after the affiliate, citation and AFOG-type repairs (10 fresh students, membership-only)",
+   "additions_generated_at": "2026-11-02T15:51:14+00:00",
+   "students": {
+    "sampled": 10,
+    "seed": 4071,
+    "membership_errors": 0,
+    "doubtful_count": 0,
+    "role_or_year_errors": 0
+   },
+   "papers": null,
+   "items": {},
+   "membership_score": 0,
+   "role_year_errors": 0,
+   "paper_score": null,
+   "result": "students_recheck_pass",
+   "note": "the regenerated file lost 7 student rows (subset, restamped); roles stay withheld"
   }
  ]
 }

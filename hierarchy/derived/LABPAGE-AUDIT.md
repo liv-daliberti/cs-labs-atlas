@@ -1,6 +1,6 @@
 # Lab-page audit
 
-Generated 2026-11-02T15:31:00+00:00 by `tools/labpage_audit.py`; method and reason codes in `docs/LAB-PAGES.md`.
+Generated 2026-11-02T15:51:55+00:00 by `tools/labpage_audit.py`; method and reason codes in `docs/LAB-PAGES.md`.
 
 ## Lab pages
 
@@ -24,7 +24,7 @@ Generated 2026-11-02T15:31:00+00:00 by `tools/labpage_audit.py`; method and reas
 | mit | 5852 | 3055 | 2797 | 3421 | undated_alumni_cannot_place 1042, outside_2016_2026 382, not_a_student 193, reviewer_excluded 187, name_unresolved 131, not_in_people_section 129, undated_cannot_place 56, after_pi_left 50, site_at_other_institution 39, at_previous_school 27, evidence_not_in_build 2 | 193 | 193 | 8 |
 | cmu | 12797 | 8571 | 4226 | 6848 | not_in_people_section 1992, undated_cannot_place 1636, name_unresolved 386, site_at_other_institution 353, not_a_student 317, outside_2016_2026 308, at_previous_school 280, undated_alumni_cannot_place 206, after_pi_left 136, shared_page_no_adviser 66, evidence_not_in_build 6 | 263 | 263 | 23 |
 | epfl | 6867 | 5265 | 1602 | 3276 | not_in_people_section 1820, undated_cannot_place 711, name_unresolved 393, outside_2016_2026 142, after_pi_left 128, at_previous_school 125, not_a_student 40, undated_alumni_cannot_place 22, reviewer_excluded 20, site_at_other_institution 7, evidence_not_in_build 1 | 182 | 182 | 68 |
-| berkeley | 6610 | 4000 | 2610 | 2778 | not_in_people_section 881, shared_page_no_adviser 659, undated_cannot_place 582, outside_2016_2026 443, name_unresolved 282, at_previous_school 253, undated_alumni_cannot_place 139, not_a_student 114, after_pi_left 43, site_at_other_institution 31, reviewer_excluded 22, evidence_not_in_build 2 | 381 | 381 | 20 |
+| berkeley | 6609 | 4000 | 2609 | 2778 | not_in_people_section 881, shared_page_no_adviser 661, undated_cannot_place 582, outside_2016_2026 443, name_unresolved 282, at_previous_school 253, undated_alumni_cannot_place 139, not_a_student 118, after_pi_left 43, site_at_other_institution 31, reviewer_excluded 22, evidence_not_in_build 2 | 374 | 374 | 20 |
 | stanford | 5270 | 3861 | 1409 | 1062 | not_in_people_section 1654, not_a_student 599, undated_cannot_place 533, name_unresolved 398, undated_alumni_cannot_place 216, at_previous_school 139, outside_2016_2026 110, site_at_other_institution 64, shared_page_no_adviser 63, after_pi_left 53 | 379 | 379 | 105 |
 | michigan | 4457 | 3012 | 1445 | 660 | not_in_people_section 1035, undated_cannot_place 836, name_unresolved 359, site_at_other_institution 254, after_pi_left 193, at_previous_school 180, not_a_student 123, undated_alumni_cannot_place 120, outside_2016_2026 93, evidence_not_in_build 1 | 603 | 603 | 17 |
 
@@ -36,7 +36,7 @@ Generated 2026-11-02T15:31:00+00:00 by `tools/labpage_audit.py`; method and reas
 | mit | 13393 | 6100 | 4118 | outside_window 6576, unresolved_metadata 617, undated_entry 510, from_previous_school 348, pi_not_author 338, no_school_affiliation_evidence 190, not_a_paper 142, other_institution_affiliation 81, outside_appointment 72, parse_artifact 20, not_yet_resolved 2 | 135 | 135 |
 | cmu | 30933 | 16173 | 9519 | outside_window 12952, unresolved_metadata 2646, from_previous_school 1056, undated_entry 1046, other_institution_affiliation 760, pi_not_author 736, no_school_affiliation_evidence 515, outside_appointment 269, not_a_paper 188, parse_artifact 184, not_yet_resolved 32 | 213 | 213 |
 | epfl | 10532 | 6759 | 3453 | outside_window 3646, pi_not_author 1360, unresolved_metadata 722, not_a_paper 629, from_previous_school 284, no_school_affiliation_evidence 128, undated_entry 119, other_institution_affiliation 69, outside_appointment 49, parse_artifact 19 | 28 | 28 |
-| berkeley | 10352 | 4734 | 2847 | outside_window 5043, unresolved_metadata 739, from_previous_school 486, undated_entry 476, no_school_affiliation_evidence 131, not_a_paper 115, other_institution_affiliation 106, parse_artifact 92, pi_not_author 86, outside_appointment 49, not_yet_resolved 11 | 44 | 44 |
+| berkeley | 10334 | 4717 | 2838 | outside_window 5044, unresolved_metadata 741, from_previous_school 486, undated_entry 474, no_school_affiliation_evidence 131, not_a_paper 115, other_institution_affiliation 106, parse_artifact 92, pi_not_author 86, outside_appointment 49, not_yet_resolved 1 | 44 | 44 |
 | stanford | 19496 | 5725 | 4519 | outside_window 7628, undated_entry 4612, unresolved_metadata 421, from_previous_school 286, no_school_affiliation_evidence 167, outside_appointment 115, other_institution_affiliation 77, pi_not_author 37, parse_artifact 19, not_a_paper 15, not_yet_resolved 1 | 36 | 36 |
 | michigan | 3585 | 2035 | 996 | outside_window 1410, unresolved_metadata 387, from_previous_school 377, undated_entry 117, no_school_affiliation_evidence 76, outside_appointment 57, other_institution_affiliation 56, pi_not_author 36, not_a_paper 30, parse_artifact 6 | 7 | 7 |
 
@@ -51,6 +51,7 @@ Generated 2026-11-02T15:31:00+00:00 by `tools/labpage_audit.py`; method and reas
 | mit | 1 | 2026-10-30 | 20 | 1.0 | 2 | 20 | 1.0 | pass | first MIT audit |
 | mit | 2 | 2026-10-31 | 20 | 0.5 | 4 | 20 | 1.5 | fail | rediscovery (other-group, institution-listing, generic-page rules) |
 | mit | 3 | 2026-10-31 | 20 | 0 | 0 | 20 | 0.5 | students_pass_papers_pass | after the CMU/MIT rediscovery rerun and strict undated rule; last stud |
+| mit | recheck-1 | 2026-11-02 | 10 | 0 | 1 | - | - | students_recheck_pass | re-check after the 2026-11-01 rule changes (10 students) |
 | cmu | 1 | 2026-10-31 | 20 | 11 | 1 | 20 | 2.5 | fail | first CMU audit |
 | cmu | 2 | 2026-10-31 | 20 | 4 | 1 | - | - | fail | after the other-institution, listing, not-paper and strict undated rul |
 | cmu | 3 | 2026-10-31 | 20 | 3 | 2 | 20 | 1.0 | students_fail_papers_pass | after the 5 reviewed departures (R-PAP-03) and the strict undated rule |
@@ -58,9 +59,12 @@ Generated 2026-11-02T15:31:00+00:00 by `tools/labpage_audit.py`; method and reas
 | epfl | 1 | 2026-10-31 | 20 | 0.5 | 2 | 20 | 2.5 | students_pass_papers_fail | first EPFL audit |
 | epfl | 2 | 2026-10-31 |  | None | None | 20 | 2.5 | papers_fail | papers only, after the EGU/Schizophrenia Bulletin abstract rule |
 | epfl | 3 | 2026-10-31 |  | None | None | 20 | 0.5 | papers_pass | papers only, after the abstract-number and Sleep supplement rules |
+| epfl | recheck-1 | 2026-11-02 | 10 | 1.0 | 2 | - | - | students_recheck_pass_after_rule | re-check after the 2026-11-01 rule changes (10 students) |
 | berkeley | 1 | 2026-10-31 | 20 | 6.5 | 0 | - | - | fail | first Berkeley audit |
 | berkeley | 2 | 2026-10-31 | 20 | 6 | 0 | - | - | fail | after the strict undated rule and rediscovery |
 | berkeley | 3 | 2026-10-31 | 20 | 0.5 | 3 | 20 | 0.0 | students_membership_only_papers_pass | after the all-caps PAST heading rule; last student round |
+| berkeley | recheck-1 | 2026-11-02 | 10 | 2.5 | 0 | - | - | students_recheck_fail | re-check after the 2026-11-01 rule changes (10 students, membership-on |
+| berkeley | recheck-2 | 2026-11-02 | 10 | 0 | 0 | - | - | students_recheck_pass | re-check after the affiliate, citation and AFOG-type repairs (10 fresh |
 | stanford | 1 | 2026-10-31 | 20 | 8 | 0 | - | - | fail | first Stanford audit |
 | stanford | 2 | 2026-10-31 | 20 | 8 | 0 | - | - | fail | after the profile-reader (quote-only) and citation rules; the reader h |
 | stanford | 3 | 2026-10-31 | 20 | 4.5 | 2 | 20 | 0.5 | students_fail_papers_pass | after reader, citation, rotation and shared-page rules; last student r |

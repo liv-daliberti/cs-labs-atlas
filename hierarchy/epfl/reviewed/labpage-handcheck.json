@@ -90,6 +90,33 @@
    "role_year_errors": null,
    "paper_score": 0.5,
    "result": "papers_pass"
+  },
+  {
+   "round": "recheck-1",
+   "date": "2026-11-02",
+   "label": "re-check after the 2026-11-01 rule changes (10 students)",
+   "additions_generated_at": "2026-11-01T15:22:09+00:00",
+   "students": {
+    "sampled": 10,
+    "seed": 4061,
+    "membership_errors": 1,
+    "doubtful_count": 0,
+    "role_or_year_errors": 2
+   },
+   "papers": null,
+   "items": {
+    "membership": [
+     "Ferrari-Trecate: Nicole Bouendin, a secretary (administrative staff)"
+    ],
+    "role_or_year": [
+     "Dujic: Pascal Bleuler (trainee 2016) read as phd, years [2016, 2031]"
+    ]
+   },
+   "membership_score": 1.0,
+   "role_year_errors": 2,
+   "paper_score": null,
+   "result": "students_recheck_pass_after_rule",
+   "note": "within the bar (<= 1 membership, <= 2 role/year); the administrative-staff rule (0706082) removes the secretary row on the next regeneration"
   }
  ]
 }
