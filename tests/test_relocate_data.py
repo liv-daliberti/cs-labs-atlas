@@ -141,3 +141,11 @@ def test_settle_journals_and_companions_travel(fake, monkeypatch, tmp_path):
     D.apply(pl, 't', tmp_path / 'r.jsonl', code_root=fake, regen=lambda r: None)
     assert (fake / 'hierarchy' / 'mit' / 'raw' / 'pi-works.sqlite-wal').exists() and not (fake / 'hierarchy' / 'mit' / 'pi-works.sqlite-wal').exists()
     assert D.verify(tmp_path / 'r.jsonl', fake) == []
+
+
+def test_only_restricts_the_plan_to_named_entries(fake):
+    pl = D.plan(fake, ['mit'])
+    names = {m['name'] for m in pl['moves']}
+    assert {'pis.json', 'gap-evidence.json'} <= names
+    r = D.restrict(pl, {'pis.json'})
+    assert {m['name'] for m in r['moves']} == {'pis.json'} and len(r['moves']) == 1

@@ -134,6 +134,12 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `VALIDATION.json` | derived | `hierarchy/VALIDATION.json` | `hierarchy/derived/VALIDATION.json` | - | - |
 | `ids` | derived | `hierarchy/ids` | `hierarchy/derived/ids` | 0/1 | dir |
 | `logs` | work | `hierarchy/logs` | `hierarchy/logs` | 0/1 | dir |
+| `hosts.json` | derived | `hierarchy/{school}/hosts.json` | `hierarchy/{school}/derived/hosts.json` | - | <100MB |
+| `few-students-input.json` | reviewed | `hierarchy/{school}/few-students-input.json` | `hierarchy/{school}/reviewed/few-students-input.json` | - | <100MB |
+| `gap-input.json` | reviewed | `hierarchy/{school}/gap-input.json` | `hierarchy/{school}/reviewed/gap-input.json` | - | <100MB |
+| `cs-related-home-departments.json` | reviewed | `hierarchy/{school}/cs-related-home-departments.json` | `hierarchy/{school}/reviewed/cs-related-home-departments.json` | - | <100MB |
+| `departures-20261031.json` | reviewed | `hierarchy/{school}/departures-20261031.json` | `hierarchy/{school}/reviewed/departures-20261031.json` | - | <100MB |
+| `pubs-fetch.log` | work | `hierarchy/{school}/pubs-fetch.log` | `hierarchy/{school}/work/pubs-fetch.log` | - | <100MB |
 | `listings-pages.json` | derived | `listings/{school}/pages.json` | `listings/{school}/derived/pages.json` | - | <100MB |
 | `listings-gaps.json` | derived | `listings/{school}/gaps.json` | `listings/{school}/derived/gaps.json` | - | <100MB |
 | `listings-ambiguous.json` | derived | `listings/{school}/ambiguous.json` | `listings/{school}/derived/ambiguous.json` | - | <100MB |
@@ -204,6 +210,18 @@ Each group has one rule for the move:
 
 The inventory's writer and reader columns come from `git grep`, so a tool that builds a path from parts is missed.
 `missing-pi-captures.sqlite` (`tools/mpcap.py`) shows up as unreferenced for that reason. Each file is checked by hand when its tool is routed.
+
+## What stays where it is after the move (2026-11-01)
+
+Files in `hierarchy/` that the table does not name were not moved, and nothing in live code reads them (their writers are retired to `archive/`):
+`hierarchy/cs-related-captures*.sqlite`, `home-departments-captures.sqlite`, `period-captures.sqlite`, `period-targets-*.json`, `home-department-input.json`,
+`new-pis-gap-input.json`, the `*-berkeley|cmu|epfl|mit|princeton|stanford.log` run logs, `LINKS-AGENT-REPORT-20261029.md`, and the leftover tool directories
+(`cs-related-tools/`, `few-students-tools*/`, `gap-tools-*/`, `home-dept-tools/`, `missing-pi-tools/`, `period-tools/`, `chain-research-20261028/`).
+They are candidates for `hierarchy/archive-data/` (with a dated note) or deletion after review, which is the owner's call. The per-school inputs
+`few-students-input.json`, `gap-input.json`, `cs-related-home-departments.json`, CMU's `departures-20261031.json`, Berkeley's `pubs-fetch.log` and
+`hosts.json` (written by `tools/school_hosts.py`) are in the table now and move with `relocate_data.py --apply --only
+hosts.json,few-students-input.json,gap-input.json,cs-related-home-departments.json,departures-20261031.json,pubs-fetch.log` (no loop or job touches them).
+Ignore lines of the old layout in `.gitignore` were translated by hand in the same commit as this note.
 
 ## Still to route (direct path joins in live code, comments excluded)
 

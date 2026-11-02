@@ -29,7 +29,7 @@ def test_schema_is_supported_and_resolves(f):
     V.paths_for(s['x-file'], 'mit' if '<school>' in s['x-file'] else None, root=CODE)   # every file pattern resolves
 
 
-def test_fixture_build_outputs_conform(tmp_path, monkeypatch):
+def test_fixture_build_outputs_conform(tmp_path, monkeypatch, layout):
     import provenance
     import test_build_rules as T
     from pihier import build
@@ -66,11 +66,15 @@ def test_data_files_keep_todays_paths_and_split_by_kind():
         assert P.data(name, 'mit', root='/r', layout='flat') == Path('/r') / flat.format(school='mit')
         if name != 'logs':
             assert re.search(rf'/({kind}|logs)(/|$)', split.format(school='mit')), (name, split)
-    # the paths the builder used before the layout table (tools/pihier, provenance)
-    assert P.data('pis.json', 'mit', root='/r') == Path('/r/hierarchy/mit/pis.json')
-    assert P.data('census-faculty.json', 'mit', root='/r') == Path('/r/census/mit-faculty.json')
+    # the flat paths the builder used before the layout table (tools/pihier, provenance), still available as layout='flat'
+    assert P.data('pis.json', 'mit', root='/r', layout='flat') == Path('/r/hierarchy/mit/pis.json')
+    assert P.data('census-faculty.json', 'mit', root='/r', layout='flat') == Path('/r/census/mit-faculty.json')
+    assert P.data('dblp_pubs.json.gz', 'princeton', root='/r', layout='flat') == Path('/r/hierarchy/princeton/raw/dblp_pubs.json.gz')
+    # the default since the move of 2026-11-01 (7407588) is the split layout
+    assert P.DATA_LAYOUT_DEFAULT == 'split'
+    assert P.data('pis.json', 'mit', root='/r') == Path('/r/hierarchy/mit/derived/pis.json')
+    assert P.data('census-faculty.json', 'mit', root='/r') == Path('/r/hierarchy/mit/derived/census-faculty.json')
     assert P.data('dblp_pubs.json.gz', 'princeton', root='/r') == Path('/r/hierarchy/princeton/raw/dblp_pubs.json.gz')
-    assert P.data('pis.json', 'mit', root='/r', layout='split') == Path('/r/hierarchy/mit/derived/pis.json')
     with pytest.raises(KeyError):
         P.data('no-such-file.json', 'mit')
 

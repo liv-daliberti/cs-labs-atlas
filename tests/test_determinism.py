@@ -28,7 +28,7 @@ def run(root, seed):
     return subprocess.run([sys.executable, '-c', code], capture_output=True, text=True, check=True, env=env).stdout
 
 
-def test_R_STU_08_build_is_independent_of_the_hash_seed(tmp_path):
+def test_R_STU_08_build_is_independent_of_the_hash_seed(tmp_path, layout):
     import test_build_rules as T
     T.write_school(tmp_path)
     T.write_shared_advising(tmp_path)          # one context naming three advisers, with re-captured evidence per lab

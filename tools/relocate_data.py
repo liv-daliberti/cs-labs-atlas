@@ -259,6 +259,12 @@ def settle_journals(pl):
     return left
 
 
+def restrict(pl, names):
+    """The plan reduced to the table entries called `names` (a small follow-up move of files no running job touches)."""
+    keep = [m for m in pl['moves'] if m['name'] in names]
+    return dict(pl, moves=keep, conflicts=[c for c in pl['conflicts'] if c['name'] in names])
+
+
 def apply(pl, approved_by, record, commit=True, code_root=None, regen=regenerate_paths_sh):
     """Make the moves of a plan that has no blocker. Returns the number of moves."""
     blockers = preflight_blockers(pl)
@@ -285,7 +291,8 @@ def apply(pl, approved_by, record, commit=True, code_root=None, regen=regenerate
     flip_layout(code_root)
     regen(code_root)
     R.record(record, kind='layout', gitignore_lines=n_gi, data_layout='split')
-    if commit:
+    staged = subprocess.run(['git', '-C', str(code_root), 'diff', '--cached', '--quiet'], capture_output=True).returncode
+    if commit and staged:   # nothing staged (a follow-up move of untracked files, layout already split): nothing to commit
         files = ['.gitignore', 'tools/atlas_paths.py', 'paths.sh']
         subprocess.run(['git', '-C', str(code_root), 'add', '--'] + files, check=True)
         subprocess.run(['git', '-C', str(code_root), 'commit', '-q', '-m', f"Data layout: raw/reviewed/derived/work split ({len(pl['moves'])} moves, tracked files by git mv), "
@@ -325,6 +332,7 @@ def main():
     ap.add_argument('--approved-by')
     ap.add_argument('--no-commit', action='store_true', help='with --apply: leave the moves and the three edited files staged, uncommitted')
     ap.add_argument('--settle-journals', action='store_true', help='open each sqlite file that has a journal or WAL once for writing, then re-plan')
+    ap.add_argument('--only', help='--apply: only these table names, comma separated; held loop locks and project jobs are then not blockers (the named files must not be touched by them)')
     ap.add_argument('--verify', action='store_true')
     ap.add_argument('--record', help='--verify: the migration record (default: the newest relocate-data-*.jsonl)')
     a = ap.parse_args()
@@ -340,6 +348,9 @@ def main():
         print('journals left after settling:', settle_journals(pl))
         pl = plan()
     pl['preflight']['jobs'] = project_jobs()
+    if a.only:
+        pl = restrict(pl, set(a.only.split(',')))
+        pl['preflight'] = dict(pl['preflight'], jobs=[], loop_locks={})
     show(pl)
     rec, ex = record_preview(pl)
     print(f'record an apply would write: {rec}')

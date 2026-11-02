@@ -347,6 +347,12 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('listings-input.json', 'reviewed', 'hierarchy/listings-input-{school}.json', 'hierarchy/reviewed/listings-input-{school}.json'),
     ('reader-link-requests.tsv', 'derived', 'hierarchy/reader/link-check-requests.tsv', 'hierarchy/derived/reader/link-check-requests.tsv'),
     ('reader-link-verdicts.jsonl', 'reviewed', 'hierarchy/reader/link-verdicts.jsonl', 'hierarchy/reviewed/reader/link-verdicts.jsonl'),
+    ('hosts.json', 'derived', 'hierarchy/{school}/hosts.json', 'hierarchy/{school}/derived/hosts.json'),
+    ('few-students-input.json', 'reviewed', 'hierarchy/{school}/few-students-input.json', 'hierarchy/{school}/reviewed/few-students-input.json'),
+    ('gap-input.json', 'reviewed', 'hierarchy/{school}/gap-input.json', 'hierarchy/{school}/reviewed/gap-input.json'),
+    ('cs-related-home-departments.json', 'reviewed', 'hierarchy/{school}/cs-related-home-departments.json', 'hierarchy/{school}/reviewed/cs-related-home-departments.json'),
+    ('departures-20261031.json', 'reviewed', 'hierarchy/{school}/departures-20261031.json', 'hierarchy/{school}/reviewed/departures-20261031.json'),
+    ('pubs-fetch.log', 'work', 'hierarchy/{school}/pubs-fetch.log', 'hierarchy/{school}/work/pubs-fetch.log'),
 ]
 _DATA = {n: (k, a, b) for n, k, a, b in DATA_FILES}
 

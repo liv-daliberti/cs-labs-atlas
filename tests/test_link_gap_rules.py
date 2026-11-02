@@ -2,6 +2,7 @@
 R-AUD-09) and reviewed move periods (R-PAP-03). Real cases from the link-gap sample (hierarchy/logs/tmp-ids/linkgaps/)."""
 import json
 
+import atlas_paths as P
 import pi_hierarchy as h
 import pihier.names  # noqa: F401  (pihier.names.NICK_MAP)
 import evidence_check as ec
@@ -57,10 +58,9 @@ def test_R_LNK_04a_nickname_additions():
     assert h.nick_ok('agi', 'agnes') and h.nick_ok('lily', 'lillian')
 
 
-def test_R_STU_08_apply_relation_evidence(tmp_path):
-    (tmp_path / 'hierarchy' / 'cmu').mkdir(parents=True)
+def test_R_STU_08_apply_relation_evidence(tmp_path, layout):
     url = 'https://ml.cmu.edu/people/alumni-phd-people/istelmakh'
-    (tmp_path / 'hierarchy/cmu/relation-evidence.json').write_text(json.dumps(dict(records=[
+    P.data_w('relation-evidence.json', 'cmu', root=tmp_path).write_text(json.dumps(dict(records=[
         dict(url=url, person='cmu_person_5bbbbe2361a868d8dd74', pi='Aarti Singh', names_pi=True, sha256='a' * 64,
              quote='Ivan Stelmakh ... Advisor: Aarti Singh', capture_url=url, observed='2026-10-29', method='live'),
         dict(url='https://csd.cmu.edu/x', person='cmu_person_other', pi=None, names_pi=False, sha256='b' * 64, quote='Jane Doe PhD student')])))

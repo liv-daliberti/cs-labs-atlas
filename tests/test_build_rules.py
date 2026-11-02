@@ -7,7 +7,10 @@ import collections, gzip, json, sqlite3, zlib
 
 import pytest
 
+import atlas_paths as P
 from pihier import census, common, identity, links, names, papers, periods, students
+
+pytestmark = pytest.mark.usefixtures('layout')   # every test runs in both data layouts
 
 SCHOOL = 'princeton'
 INST = 'https://openalex.org/' + common.INST[SCHOOL]
@@ -90,26 +93,27 @@ LISTINGS = [dict(pi='Grace Hopper', year=2020, capture_url='https://web.archive.
                  sha256=SHA, quote='Grace Hopper PhD student', rank_as_listed='PhD student', department='Computer Science')]
 
 
+def put(root, name, school=SCHOOL):
+    """The fixture file's path in the layout under test (the `layout` fixture sets it): written through atlas_paths.data, never by hand."""
+    return P.data_w(name, school, root=root)
+
+
 def write_school(root, sweep=SWEEP):
-    H = root / 'hierarchy'
-    (H / SCHOOL / 'raw').mkdir(parents=True)
-    (root / 'census').mkdir()
-    (root / 'listings' / SCHOOL).mkdir(parents=True)
-    (root / 'census' / f'{SCHOOL}-faculty.json').write_text(json.dumps(CENSUS))
+    put(root, 'dblp_pubs.json.gz').write_bytes(gzip.compress(json.dumps(dict(pubs={})).encode()))  # no cached DBLP lists
+    put(root, 'census-faculty.json').write_text(json.dumps(CENSUS))
     coll = dict(people=PEOPLE, units=UNITS, works=WORKS, facultyPeriods=[],
                 personLinks=[dict(person='p_linus', work='cw1', status='verified', role='author')])
-    (H / SCHOOL / 'collection.json.gz').write_bytes(gzip.compress(json.dumps(coll).encode()))
-    (H / SCHOOL / 'raw' / 'dblp_pubs.json.gz').write_bytes(gzip.compress(json.dumps(dict(pubs={})).encode()))  # no cached DBLP lists
-    (H / 'census-overrides.json').write_text(json.dumps(OVERRIDES))
-    (root / 'listings' / SCHOOL / 'listings.json').write_text(json.dumps(LISTINGS))
-    (H / SCHOOL / 'few-students-evidence.json').write_text(json.dumps([dict(pi='Grace Hopper', students=[dict(
+    put(root, 'collection.json.gz').write_bytes(gzip.compress(json.dumps(coll).encode()))
+    put(root, 'census-overrides.json', None).write_text(json.dumps(OVERRIDES))
+    put(root, 'listings.json').write_text(json.dumps(LISTINGS))
+    put(root, 'few-students-evidence.json').write_text(json.dumps([dict(pi='Grace Hopper', students=[dict(
         name='Rosa Researched', role='phd', years=[2020], url='https://example.edu/hopper', sha256=SHA,
         quote='Rosa Researched, PhD student of Grace Hopper')])]))
-    (H / 'student-identity-review.json').write_text(json.dumps([dict(school=SCHOOL, pi='Ada Lovelace', verdict='same_person',
+    put(root, 'student-identity-review.json', None).write_text(json.dumps([dict(school=SCHOOL, pi='Ada Lovelace', verdict='same_person',
                                                                     a=['p_mm1'], b=['p_mm2'], canonical_name='Mary Major', reason='maiden name')]))
-    (H / 'student-corrections.json').write_text(json.dumps([dict(school=SCHOOL, pi='Ada Lovelace', student='p_carl', action='drop',
+    put(root, 'student-corrections.json', None).write_text(json.dumps([dict(school=SCHOOL, pi='Ada Lovelace', student='p_carl', action='drop',
                                                                 reason='not a student of the lab')]))
-    db = sqlite3.connect(str(H / SCHOOL / 'openalex-sweep.sqlite'))
+    db = sqlite3.connect(str(put(root, 'openalex-sweep.sqlite')))
     db.execute('create table pages (year int, page int, n int, fetched_at text, body blob, primary key (year, page))')
     for y in sorted({w['publication_year'] for w in sweep}):
         ws = [w for w in sweep if w['publication_year'] == y]
@@ -388,13 +392,12 @@ SHARED = dict(id='p_sam', name='Sam Shared', roles=['phd'], contexts=[dict(
 def write_shared_advising(root):
     """A student whose one advising context names three PIs, with re-captured evidence (R-STU-08): a quote naming Ada, one
     naming Dan, and a student-only one (Grace's lab has no quote of its own)."""
-    H = root / 'hierarchy'
-    coll = json.loads(gzip.decompress((H / SCHOOL / 'collection.json.gz').read_bytes()))
+    coll = json.loads(gzip.decompress(put(root, 'collection.json.gz').read_bytes()))
     coll['people'].insert(0, SHARED)  # first: the labs' order is then the order the build meets them here
-    (H / SCHOOL / 'collection.json.gz').write_bytes(gzip.compress(json.dumps(coll).encode()))
+    put(root, 'collection.json.gz').write_bytes(gzip.compress(json.dumps(coll).encode()))
     rec = lambda pi, names_pi, q, h: dict(url=SHARED_URL, person='p_sam', pi=pi, names_pi=names_pi, sha256=h * 64, quote=q,
                                           capture_url=SHARED_URL, observed='2026-10-29', method='live')
-    (H / SCHOOL / 'relation-evidence.json').write_text(json.dumps(dict(records=[
+    put(root, 'relation-evidence.json').write_text(json.dumps(dict(records=[
         rec('Ada Lovelace', True, 'Sam Shared, PhD 2020. Advisor: Ada Lovelace', 'b'),
         rec('Dan Klein', True, 'Sam Shared, PhD 2020, Klein group', 'c'),
         rec(None, False, 'Sam Shared, PhD 2020', 'd')])))
@@ -442,7 +445,7 @@ def test_R_PAP_01_recovered_rows_stay_in_the_window(tmp_path):
     ev = dict(basis='openalex_authorship', school_via=['Princeton University'], oa=OA + 'W90')
     rows = [dict(pi='Ada Lovelace', year=2015, title='An Old Paper From Before', doi='10.9/old', evidence=ev, dblp_key='conf/x/1'),
             dict(pi='Ada Lovelace', year=2020, title='A Recovered Paper Inside', doi='10.9/new', evidence=dict(ev, oa=OA + 'W91'), dblp_key='conf/x/2')]
-    with gzip.open(tmp_path / 'hierarchy' / SCHOOL / 'dblp-recovered.jsonl.gz', 'wt') as f:
+    with gzip.open(put(tmp_path, 'dblp-recovered.jsonl.gz'), 'wt') as f:
         f.write('\n'.join(json.dumps(r) for r in rows) + '\n')
     ctx = run_stages(tmp_path, upto='papers')
     titles = set(rows_of(ctx, 'Ada Lovelace'))
@@ -461,10 +464,10 @@ def write_additions(root, accept_papers=True, accept_students=False, stale=False
                             year=y, doi=f'10.9/lp{y}', venue='arXiv', byline=[], rule='LP-PAP-01',
                             evidence=dict(basis='page1_arxiv', how='footnote', quotes=['Ada Lovelace', 'Princeton University'],
                                           url='https://arxiv.example/x.pdf', pdf_sha256=SHA)) for y in paper_years])
-    f = root / 'hierarchy' / SCHOOL / 'labpage-additions.json'
+    f = put(root, 'labpage-additions.json')
     f.write_text(json.dumps(add))
     sha = hashlib.sha256(f.read_bytes()).hexdigest()
-    (root / 'hierarchy' / SCHOOL / 'labpage-acceptance.json').write_text(json.dumps(dict(
+    put(root, 'labpage-acceptance.json').write_text(json.dumps(dict(
         school=SCHOOL, additions_sha256=('0' * 64 if stale else sha), students=dict(accepted=accept_students), papers=dict(accepted=accept_papers))))
 
 
@@ -511,7 +514,7 @@ def test_withheld_role_is_a_lab_member_not_a_student(tmp_path):
     """Berkeley's lab-page students are wired membership-only (role null, role_basis withheld_*, 2026-11-01): they may be postdocs or
     visitors, so they are members (the site shows 'Lab member'), flagged role_withheld; entries with a role stay as they were."""
     write_school(tmp_path)
-    (tmp_path / 'hierarchy' / SCHOOL / 'few-students-evidence.json').write_text(json.dumps([dict(pi='Grace Hopper', students=[
+    put(tmp_path, 'few-students-evidence.json').write_text(json.dumps([dict(pi='Grace Hopper', students=[
         dict(name='Walter Withheld', role=None, role_basis='withheld_role_round_failed', years=[None, 2024], url='https://example.edu/hopper', sha256=SHA,
              quote='Walter Withheld, Lab alumni', auto=True),
         dict(name='Rosa Researched', role='phd', years=[2020], url='https://example.edu/hopper', sha256=SHA, quote='Rosa Researched, PhD student')])]))

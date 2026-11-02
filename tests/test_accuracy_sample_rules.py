@@ -6,6 +6,7 @@ from pathlib import Path
 
 import pytest
 
+import atlas_paths as P
 import pi_fulltext_affiliation as F
 import pi_hierarchy as h
 
@@ -224,7 +225,7 @@ def test_R_STU_07_pi_person_id_is_never_a_student():
 
 
 def test_R_STU_04_shirley_wu_reviewed_evidence():
-    x = [c for c in json.loads((WORK / 'hierarchy/student-corrections.json').read_text())
+    x = [c for c in json.loads(P.data('student-corrections.json', root=WORK).read_text())
          if c.get('student') == 'stanford_stu_shirley-yingxin-wu' and c.get('pi') == 'James Zou']
     assert len(x) == 1 and x[0]['action'] == 'replace_sources'
     src = x[0]['sources'][0]
