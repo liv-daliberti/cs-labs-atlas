@@ -64,7 +64,7 @@ Order: **P0** = starts right after the data-layout move (item 10 phase B), in th
 
 | # | Item | Status | Done when |
 |---|---|---|---|
-| 16 | Agents commit through branches only; Slurm jobs only from a code snapshot | **P0-2** | every agent works in a worktree and lands with `agent_worktree.sh land`; the main-commit hook refuses (enforce mode); CI fails on any `.slurm` that does not source `job_code_snapshot.sh`; `atlas submit` is the documented submit path |
+| 16 | Agents commit through branches only; Slurm jobs only from a code snapshot | **P0-2** (in progress, refactor agent: CI test `tests/test_slurm_snapshot.py`, collector one-offs retired to archive/fulltext-push, `atlas submit` documented; the enforce switch awaits the coordinator's word) | every agent works in a worktree and lands with `agent_worktree.sh land`; the main-commit hook refuses (enforce mode); CI fails on any `.slurm` that does not source `job_code_snapshot.sh`; `atlas submit` is the documented submit path |
 | 17 | One lease per agent or session | open | a lease file per agent, renewed while it works; a second copy refuses to start while the lease is live; restart checklist uses it |
 | 18 | Download loops that restart themselves | open | a loop resubmits itself at its time limit on the current pinned commit; no manual restart at 3 days |
 | 19 | `atlas new-school <key>` | open | one command makes the charter, store, folders, catalog schema and receipts, and runs the stage-0 check (no cloning another school's store) |

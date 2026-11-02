@@ -41,17 +41,19 @@ changed under `vendor/`, set `CS_ATLAS_VENDOR=$PWD/vendor`.
    `bin/atlas scan --history origin/dev..main` (what the push adds) and the test suite. No force pushes.
 
 ## No direct commits to main
-Commits on `main` other than merges go through the hook. For now it **warns**, because agents started before this rule
-are still committing on `main`. When they have moved to worktrees, the owner turns enforcement on for every worktree:
+Commits on `main` other than merges go through the hook. The owner turns enforcement on for the whole repository (every worktree shares the setting):
 ```
-git config atlas.mainCommits enforce      # refuse direct commits to main (warn is the default)
+git config atlas.mainCommits enforce      # refuse direct commits to main (the default is warn)
 git config atlas.mainCommits warn         # back to warnings
 ```
-Install the hooks once per clone with `tools/install_hooks.sh`. The installed stub runs `tools/hooks/pre-commit` from
-whichever worktree is committing. The hook does three things:
-- It warns about, or refuses, a direct commit to main.
+Install the hooks once per clone with `tools/install_hooks.sh`. The installed stub runs `tools/hooks/pre-commit` from whichever worktree is committing.
+The hook does three things:
+- It warns about, or (enforce) refuses, a direct commit to main. `ATLAS_ALLOW_MAIN=1` is for the one sanctioned case, `relocate_data.py --apply`'s commit.
 - It runs the secret scan on the staged files. A finding blocks the commit.
 - It runs ruff on the staged Python files. Syntax errors and undefined names block the commit; the other rules only warn.
+
+Slurm jobs go the same way: submit with `atlas submit [sbatch options] script.slurm`, and every `.slurm` script sources the code-snapshot helper
+(`tests/test_slurm_snapshot.py` fails CI on a script that does not; the ML studies in `ai-writing/` and `archive/` are exempt).
 
 ## Handing off uncommitted work
 Never commit another agent's uncommitted files. To pass work to someone else:
