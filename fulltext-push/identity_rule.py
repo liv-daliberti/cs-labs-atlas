@@ -44,6 +44,41 @@ def page_text(path, first=1, last=1):
         return ''
 
 
+def pdf_meta_title(path):
+    """The PDF's own /Title metadata (pdfinfo), '' when absent."""
+    try:
+        out = subprocess.run(['pdfinfo', str(path)], capture_output=True, text=True, timeout=60).stdout
+    except Exception:
+        return ''
+    m = re.search(r'^Title:\s*(.*)$', out, re.M)
+    return m.group(1).strip() if m else ''
+
+
+def judge_meta(meta, titles, p1, first, doi):
+    """A pass from the PDF's own title metadata (ROADMAP #25): the metadata title and one of the work's known titles agree (at least 4
+    significant words; 90% of the known title's words are in the metadata title and 70% of the metadata title's words are in the
+    known title, so a generic or reused template title does not pass), AND, as for every pass, the authoritative first author or the DOI
+    is on page 1. Returns (verdict, evidence)."""
+    sig = lambda t: [x for x in norm_words(t) if len(x) >= 3 and x not in STOP]  # noqa: E731
+    mw = sig(meta)
+    if len(mw) < 4:
+        return 'undecided', dict(why='no usable PDF metadata title')
+    letters1 = re.sub(r'[^a-z]', '', unicodedata.normalize('NFKD', (p1 or '')[:4000]).encode('ascii', 'ignore').decode().lower())
+    first = first or ''
+    author_ok = len(first) >= 3 and first in letters1
+    d = ndoi(doi)
+    doi_ok = bool(d) and d in (p1 or '').lower()
+    for t in titles:
+        tw = sig(t)
+        if len(tw) < 4:
+            continue
+        a = sum(x in set(mw) for x in tw) / len(tw)
+        b = sum(x in set(tw) for x in mw) / len(mw)
+        if a >= 0.9 and b >= 0.7 and (author_ok or doi_ok):
+            return 'pass_meta', dict(meta_title=meta, matched_title=t, known_in_meta=round(a, 2), meta_in_known=round(b, 2), author_on_page1=author_ok, doi_on_page1=doi_ok)
+    return 'undecided', dict(why='PDF metadata title does not match a known title with the author or DOI on page 1', meta_title=meta)
+
+
 def ndoi(s):
     return re.sub(r'^https?://(?:dx\.)?doi\.org/', '', str(s or '').strip(), flags=re.I).lower()
 

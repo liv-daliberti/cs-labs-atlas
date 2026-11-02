@@ -128,7 +128,7 @@ def arxiv_titles(ids):
     return out
 
 
-def plan_alt(school):
+def plan_alt(school, scope='pending'):
     """Every copy still pending: judged again against every title known for the work, from caches only (OpenAlex,
     Semantic Scholar, and the arXiv titles of the arXiv ids those map the DOI to). A pass needs the same evidence as
     the main rule: the alternative title's words in page 1's title region and the authoritative first author (or the
@@ -142,7 +142,12 @@ def plan_alt(school):
             if k:
                 lab_oa[k] = r.get('oa')
     db = sqlite3.connect(f'file:{store / "catalog.sqlite"}?mode=ro', uri=True, timeout=120)
-    ids = [i for i, ic, st in F.works_rows(db, 'id, identity_check, status') if ic == PENDING and st == 'downloaded']
+    reverted = {}
+    if scope == 'reverted':  # the copies a review reverted, whose file is still in objects/ (judged again with every known title)
+        reverted, _ = reverted_rows(school)
+        ids = list(reverted)
+    else:
+        ids = [i for i, ic, st in F.works_rows(db, 'id, identity_check, status') if ic == PENDING and st == 'downloaded']
     cand = {}
     for k in range(0, len(ids), 500):
         part = ids[k:k + 500]
@@ -163,12 +168,22 @@ def plan_alt(school):
             o1 = src['oa'].get(oa_id) or none
             o2 = (src['oa'].get('doi:' + d) or none) if d else none
             s2t = (src['s2'].get(d) or none) if d else none
+            snap = F.snapshot_bodies([k for k in (oa_id,) if k]).get(oa_id) if oa_id else None  # the OpenAlex bulk snapshot (ROADMAP #24)
+            if snap is None and d:
+                try:
+                    import oa_snapshot as OS
+                    snap = OS.work(d)
+                except (ImportError, FileNotFoundError, OSError):
+                    snap = None
             for t, a, how in [(oj.get('title') or oj.get('display_name'), F.arxiv_of({}, oj) if oj else None, 'catalog OpenAlex record'),
+                              (snap and (snap.get('title') or snap.get('display_name')), F.arxiv_of({}, snap) if snap else None, 'OpenAlex snapshot'),
                               (o1[0], o1[1], 'OpenAlex'), (o2[0], o2[1], 'OpenAlex by DOI'), (s2t[0], s2t[1], 'Semantic Scholar')]:
                 if t and F.nt(t) != F.nt(title):
                     alts.append((t, how))
                 if a:
                     arx.append(re.sub(r'v\d+$', '', a))
+            if i in reverted:
+                fp, du = reverted[i]['file_path'], reverted[i]['download_url']
             cand[i] = dict(file_path=fp, download_url=du, title=title, doi=d, graph=g, alts=alts, arxiv=sorted(set(arx)))
     db.close()
     axt = arxiv_titles({a for c in cand.values() for a in c['arxiv']})
@@ -177,12 +192,22 @@ def plan_alt(school):
         for a in c['arxiv']:
             if axt.get(a) and F.nt(axt[a]) != F.nt(c['title']):
                 c['alts'].append((' '.join(axt[a].split()), f'arXiv {a} (the DOI maps to it)'))
-        if not c['alts'] or not c['file_path'] or not (store / c['file_path']).exists():
-            n['no_alternative_title' if not c['alts'] else 'file_missing'] += 1
+        if not c['file_path'] or not (store / c['file_path']).exists():
+            n['file_missing'] += 1
             continue
         p1, p12 = R.page_text(store / c['file_path'], 1, 1), R.page_text(store / c['file_path'], 1, 2)
         first, auth = R.first_author(F.SCHOOLS, school, w, c['title'], c['doi'], graph_json=c['graph'])
         hit = None
+        meta = R.pdf_meta_title(store / c['file_path'])
+        mv, mev = R.judge_meta(meta, [c['title']] + [t for t, _ in c['alts']], p1, first if auth else '', c['doi'])
+        if mv == 'pass_meta':
+            n['pass_meta'] += 1
+            out.append(dict(work=w, verdict='pass_meta', title=c['title'], alt_title=mev['matched_title'], alt_source='PDF metadata title', **mev,
+                            page1=re.sub(r'\s+', ' ', p1)[:400], revert=(reverted.get(w) or {}).get('revert')))
+            continue
+        if not c['alts']:
+            n['no_alternative_title'] += 1
+            continue
         for t, how in c['alts']:
             if len([x for x in R.norm_words(t) if len(x) >= 3 and x not in R.STOP]) < 3:
                 continue  # a short alternative title ('ALTO') is no evidence (hand check, 2026-10-31)
@@ -191,24 +216,36 @@ def plan_alt(school):
                 hit = (t, how, ev); break
         n['pass_alt' if hit else 'still_undecided'] += 1
         out.append(dict(work=w, verdict='pass_alt' if hit else 'undecided', title=c['title'], alt_title=hit[0] if hit else None, alt_source=hit[1] if hit else None,
-                        alts=c['alts'][:5], **(hit[2] if hit else dict(first_author=first)), page1=re.sub(r'\s+', ' ', p1)[:400]))
+                        alts=c['alts'][:5], **(hit[2] if hit else dict(first_author=first, meta_title=meta)), page1=re.sub(r'\s+', ' ', p1)[:400],
+                        revert=(reverted.get(w) or {}).get('revert')))
     OUT.mkdir(exist_ok=True)
-    (OUT / f'identity-review-alt-{school}.json').write_text(json.dumps(dict(school=school, at=F.now(), scope='alt', rows=out), indent=0))
-    print(json.dumps(dict(school=school, scope='alt', pending=len(ids), **n)), flush=True)
+    (OUT / f'identity-review-alt{"-reverted" if scope == "reverted" else ""}-{school}.json').write_text(json.dumps(dict(school=school, at=F.now(), scope='alt-' + scope, rows=out), indent=0))
+    print(json.dumps(dict(school=school, scope='alt-' + scope, pending=len(ids), **n)), flush=True)
 
 
-def apply_alt(school):
+def apply_alt(school, scope='pending'):
     store = F.FT / school
-    rows = json.loads((OUT / f'identity-review-alt-{school}.json').read_text())['rows']
+    suffix = '-reverted' if scope == 'reverted' else ''
+    rows = json.loads((OUT / f'identity-review-alt{suffix}-{school}.json').read_text())['rows']
     F.backup_catalog(store, 'before-identity-alt')
+    TAG = {'pass_alt': 'auto_alt_title_20261031', 'pass_meta': 'auto_pdf_meta_title_20261102'}
+    if scope == 'reverted':  # a pass brings the copy back confirmed; everything else stays reverted
+        from revert_downloads import restore
+        n = Counter()
+        for x in rows:
+            if x['verdict'] in TAG and x.get('revert'):
+                r = restore(school, x['work'], x['revert'], TAG[x['verdict']], 'identity rule with every known title / PDF metadata: ' + x['verdict'])
+                n['skipped' if 'skipped' in r else 'restored_confirmed'] += 1
+        print(json.dumps(dict(school=school, scope='alt-reverted', **n)), flush=True)
+        return
     db = sqlite3.connect(str(store / 'catalog.sqlite'), timeout=120)
     db.execute('PRAGMA busy_timeout=120000')
     n = Counter()
     for x in rows:
-        if x['verdict'] == 'pass_alt':
+        if x['verdict'] in TAG:
             with F.catalog_lock(store):  # one writer per catalog
-                n['confirmed'] += db.execute("UPDATE works SET identity_check='auto_alt_title_20261031' WHERE id=? AND identity_check=?", (x['work'], PENDING)).rowcount
-                db.execute("UPDATE assets SET identity_check='auto_alt_title_20261031' WHERE work_id=? AND identity_check=?", (x['work'], PENDING))
+                n['confirmed'] += db.execute('UPDATE works SET identity_check=? WHERE id=? AND identity_check=?', (TAG[x['verdict']], x['work'], PENDING)).rowcount
+                db.execute('UPDATE assets SET identity_check=? WHERE work_id=? AND identity_check=?', (TAG[x['verdict']], x['work'], PENDING))
                 db.commit()
     db.close()
     print(json.dumps(dict(school=school, scope='alt', **n)), flush=True)
@@ -297,11 +334,11 @@ def apply(school, scope='lab'):
 
 
 if __name__ == '__main__':
-    scope = 'all' if '--all-pending' in sys.argv else ('reverted' if '--reverted' in sys.argv else ('alt' if '--alt-titles' in sys.argv else 'lab'))
+    scope = 'all' if '--all-pending' in sys.argv else ('alt' if '--alt-titles' in sys.argv else ('reverted' if '--reverted' in sys.argv else 'lab'))  # --alt-titles --reverted: every known title on the reverted copies
     args = [a for a in sys.argv[1:] if not a.startswith('--')]
     cmd, schools = args[0], args[1:]
     for s in schools:
         if scope == 'alt':
-            {'plan': plan_alt, 'apply': apply_alt}[cmd](s)
+            {'plan': plan_alt, 'apply': apply_alt}[cmd](s, 'reverted' if '--reverted' in sys.argv else 'pending')
         else:
             {'plan': plan, 'apply': apply}[cmd](s, scope)
