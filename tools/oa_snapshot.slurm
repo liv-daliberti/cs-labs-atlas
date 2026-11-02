@@ -13,5 +13,5 @@
 #SBATCH --output=fulltext-push/logs/oa-snapshot-%A_%a.out
 . "${CS_ATLAS_CODE:-${SLURM_SUBMIT_DIR:?}}/paths.sh" || exit 1
 . "$CS_ATLAS_CODE/tools/job_code_snapshot.sh" || exit 1
-: "${OA_DATE:?set OA_DATE to the snapshot date (the manifests' date)}"
+: "${OA_DATE:?set OA_DATE to the snapshot date (the manifest date)}"
 exec nice -n 5 "$CS_ATLAS_PY" -u "$CS_ATLAS_TOOLS/oa_snapshot.py" filter "$SLURM_ARRAY_TASK_ID" 16 --date "$OA_DATE"
