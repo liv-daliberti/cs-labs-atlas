@@ -1680,6 +1680,7 @@ CITATION_CONTEXT = re.compile(r"\bpp\.\s*\d|\bPDF\s*\||\bView details for\b|\bPr
 NAME_NOISE = re.compile(r"\b(?:Oral'?s?|Orals?\s+Chair|Chair|Reader|Committee|Evaluator|Examiner|Moderator|Panelist)\b", re.I)
 PAREN_TAIL = re.compile(r'\s*\(([^()]{1,40})\)\s*$')
 COADVISER_BEFORE = re.compile(r"(?:co-?advis(?:ed|ors?|ing|e)|co-?supervis\w*|jointly\s+\w+|joint(?:ly)?)\s*(?:with|w/|by|:)\s*$|\(\s*with\s+$|\bw/\s*$|\bwith\s+Prof\.?\s+$", re.I)
+COLLAB_PROSE = re.compile(r"collaborat\w*\s+with\s+(?:the\s+|some\s+)?(?:\w+\s+){0,3}(?:students|researchers|postdocs)", re.I)
 CITE_INITIALS = re.compile(r"[A-Z][\w'\u00C0-\u017F-]+(?:\s[A-Z][\w'\u00C0-\u017F-]+)*,\s(?:[A-Z]\.\s?){1,3}(?:,|\.|\s)")
 OTHER_INST_AT = re.compile(r"@\s*([A-Z][A-Za-z]{1,8})\b")
 OWN_INST = {'michigan': {'UM', 'UMICH', 'MICHIGAN', 'UMICHIGAN'}, 'stanford': {'STANFORD', 'SU'}, 'mit': {'MIT'},
@@ -1721,6 +1722,9 @@ def repair_reason(kit, school, name, best, start, pi=None):
     a co-adviser named in a 'co-advised with X' phrase, a student of another institution ('@NUS'), and an undated entry of a
     lab older than the window without a current marker whatever the plan (the earlier rule ran for audit-discovered labs only).
     None for a member."""
+    cm = re.search(r'/web/(\d{4})', best.get('capture_url') or '')
+    if cm and int(cm.group(1)) < WINDOW[0] and not best.get('years'):
+        return 'outside_2016_2026', f'listed on a {cm.group(1)} capture, before the window, and undated'
     if NAME_NOISE.search(name or ''):
         return 'name_unresolved', 'the name carries a committee or honorific word (Oral\'s Chair, Reader, Committee)'
     q = best.get('quote') or ''
@@ -1736,6 +1740,8 @@ def repair_reason(kit, school, name, best, start, pi=None):
             return 'not_a_student', 'named as the co-adviser of another member (co-advised with / jointly supervised with)'
         if pi and other_pis_on_page(school, pi, t, k) >= 6 and len(re.findall(r'co-?advis|jointly|\bw/|\(with ', t[max(0, k - 900): k + 900], re.I)) < 2 and fold(pi.split()[-1]).lower() not in fold(t[k: k + 120]).lower():
             return 'shared_page_no_adviser', 'a page that names several faculty and their students; the entry does not name this PI as adviser'
+        if COLLAB_PROSE.search(t[max(0, k - 300): k]):
+            return 'not_a_student', 'listed among collaborators ("collaborate with the PhD students ...")'
         win = t[max(0, k - 250): k + 250]
         if len(CITE_INITIALS.findall(win)) >= 3 or re.search(r'\bPubMed(?:ID)?\b', win):
             return 'name_unresolved', 'the name sits inside a reference block (author list of citations)'
