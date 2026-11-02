@@ -43,8 +43,12 @@ Date: 2026-11-01. Gate: **not passed** (copies 53.5% against the 85% target; the
 3. 38 `requeue_transient` works are back in the queue; the paused hosts (dspace.mit.edu 429, t2r2.star.titech.ac.jp robots delay, figshare bot challenge) hold most of the remaining queue.
 4. Coverage target 85% is not met; the gap is mostly publisher paywalls (publisher_only_closed 3,248) and landing pages without a PDF (970).
 
-## Running jobs and restarts (owner decision 2026-11-01)
-The six school loops (32041175_0, 32041308_1-5) and Michigan's collector 32041862 run on the **old code**. Leave them running to their 3-day limit (about Nov 3), or until one stops for another reason. Restart each then with `bin/atlas submit` (pins the commit; code snapshot with the FT_* data slots), `--test-only` first, never on "Preempts:". Michigan: `atlas submit fulltext-push/michigan-collector.slurm`; schools: `atlas submit --array=<n> fulltext-push/downloads.slurm` (0 princeton, 1 cmu, 2 epfl, 3 mit, 4 berkeley, 5 stanford). A plain `scancel -s TERM` does not reach the loop (it needs `--batch`), and stopping them early is not allowed.
+## Running jobs and restarts (2026-11-02)
+All seven loops run as `downloads.slurm` array 32065276 (tasks 0-6: princeton, cmu, epfl, mit, berkeley, stanford, michigan; snapshot 5889755).
+They restart themselves: Slurm sends USR1 900 s before the 3-day limit, the script stops the loop cleanly and resubmits its own task with
+`atlas submit` (loop_job.sh, ROADMAP #18; docs/RUNBOOK.md). Nothing needs a manual restart at the limit. `scancel` (TERM) stops a loop for
+good with no resubmit; to bring one back: `atlas submit --array=<n> fulltext-push/downloads.slurm` (Michigan is 6), `--test-only` first.
+Michigan's old channel-plus-loop job (`michigan-collector.slurm`) is no longer used for the loop; its channels finished 2026-10-31.
 
 ## Gate
 - Copies measured; **53.5%, below the 85% target.**
