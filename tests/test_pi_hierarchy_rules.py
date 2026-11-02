@@ -92,7 +92,7 @@ def test_R_PAP_13_transition_side_griffiths(fixture_json):
     assert h.transition_side(p, by_year[2016], '2016-01-02') == 'inside'   # the window's first year is no arrival
 
 
-def test_R_PAP_29_transition_status_keeps_undecided_apart():
+def test_R_PAP_13_transition_status_keeps_undecided_apart():
     p = {'listings': [{'year': 2018, 'url': 'https://web.archive.org/web/20180405000000/x'}, {'year': 2019, 'url': 'u'}]}
     dep, arr = {'year': 2019, 'url': 'https://web.archive.org/web/20190915000000/x'}, p['listings'][0]
     q = {'listings': [{'year': 2016, 'url': 'a'}, {'year': 2017, 'url': 'b'}, {'year': 2018, 'url': 'https://web.archive.org/web/20180405000000/x'}]}
