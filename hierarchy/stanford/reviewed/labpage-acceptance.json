@@ -1,19 +1,18 @@
 {
  "school": "stanford",
- "decided_at": "2026-10-31",
+ "decided_at": "2026-11-02",
  "bar": "docs/LAB-PAGES.md, acceptance bar",
  "additions_file": "hierarchy/stanford/reviewed/labpage-additions.json",
  "additions_generated_at": "2026-11-02T05:39:46+00:00",
  "additions_sha256": "1cd16b460bef25db82d101db68632285db1d503a0d572ec8247f0a8b4c9f0ea8",
  "students": {
   "accepted": false,
-  "round": 3,
-  "reason": "three rounds failed (seeds 3161, 3191, 3211: 8, 8 and 4.5 membership errors; bar <= 1): reader and program listings, publication citations, department program pages and year-in-a-table alumni rows. Stanford student additions are not wired.",
-  "counts": {
-   "proposed": 429
-  },
+  "round": 5,
   "round_limit_extended_by_owner": 5,
-  "round_limit_note": "owner decision 2026-11-01: students get rounds 4 and 5 with repairs in place (recorded exception to the 3-round limit); the kind stays unwired until a round passes"
+  "reason": "five rounds failed (seeds 3161, 3191, 3211, 4011, 4021: 8, 8, 4.5, 4.0 and 2.5 membership errors; bar <= 1). Last patterns: consulting professors and bio-text names read as members, a 'Past' section whose entries read 'PhD Candidate'. After round 5 the work stops (owner extension). Stanford student additions are not wired.",
+  "counts": {
+   "proposed": 379
+  }
  },
  "papers": {
   "accepted": true,
