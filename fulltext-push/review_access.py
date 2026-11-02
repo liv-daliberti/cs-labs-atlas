@@ -74,6 +74,10 @@ def cause(a):
         return 'policy_skip', False
     if st == 'identity_mismatch' or re.search(r'title differs|DOI mismatch|arXiv identifier differs|identity unconfirmed', d):
         return 'identity_mismatch', False
+    if d.startswith('host_blocked:'):  # collector_wrapper.BLOCKED_HOSTS: a host that refuses every automated request
+        return 'challenge', False
+    if h == 'onlinelibrary.wiley.com' and re.search(r'\b403 Client Error', d):  # the same host's 403s recorded before it was blocked
+        return 'challenge', False
     if CHALLENGE.search(re.sub(r'https?://\S+', ' ', d)) or re.search(r'outside the evidence-approved public hosts: \S*(?:perfdrive|captcha)', d):
         return 'challenge', False
     m = re.match(r'Redirect or URL outside the evidence-approved public hosts: (\S+)', d)

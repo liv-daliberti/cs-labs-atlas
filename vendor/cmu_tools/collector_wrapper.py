@@ -51,6 +51,11 @@ DELIVERY = {'s3-eu-west-1.amazonaws.com': '/pstorage-cmu-348901238291901/',
 # pass and the pass-start requeue asks again next pass
 MIN_DELAY = {'infoscience.epfl.ch': 10.0, 'www.biorxiv.org': 30.0, 'www.medrxiv.org': 30.0, 'web.archive.org': 6.0, 'dspace.mit.edu': 15.0}
 MAX_WAIT = 300.0
+# 2026-11-02: hosts that answer every automated request with a refusal. They are not asked at all: the attempt is recorded at once,
+# with a detail the pass-start requeue does not clear (it is not 'source_paused:'), and review_access reads it as a bot challenge
+# (ledger reason open_copy_bot_challenge). Wiley: HTTP 403 on every request in the logs of all six stores, burning three attempts
+# a pass before the host paused.
+BLOCKED_HOSTS = {'onlinelibrary.wiley.com': 'answers HTTP 403 (a bot challenge) to every automated request; not asked (recorded 2026-11-02)'}
 IS_BITSTREAM = re.compile(r'^https?://infoscience\.epfl\.ch/bitstreams/([0-9a-f-]{36})/download')
 IS_PAGE = re.compile(r'^https?://infoscience\.epfl\.ch/(?:handle|record|items|entities)/')
 CHALLENGE = 'HTTP 202 with an empty body (the site\'s bot challenge); retry in a later pass'
@@ -81,6 +86,9 @@ def pause(self, key, delay):
 
 
 def get(self, url, limit=500 * 1024 * 1024):
+    blocked = BLOCKED_HOSTS.get((urlsplit(url).hostname or '').lower())
+    if blocked:
+        raise ValueError(f'host_blocked: {urlsplit(url).hostname} {blocked}')
     m = IS_BITSTREAM.match(url)
     if m:
         url = f'https://infoscience.epfl.ch/server/api/core/bitstreams/{m.group(1)}/content'
