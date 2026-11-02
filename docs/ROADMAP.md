@@ -58,19 +58,19 @@ Status: `open` · `in progress (<who>)` · `done <date> <commit>` · `queued (af
 
 ## 6. Next round (owner-approved 2026-11-01)
 
-Order: **P0** = starts right after the data-layout move (item 10 phase B), in this order; the rest are open.
+Order: **P0** = starts right after the data-layout move (item 10 phase B), in this order. **P1** = next, all before the release (owner 2026-11-01). The rest are open.
 
 ### Robustness and cleanliness
 
 | # | Item | Status | Done when |
 |---|---|---|---|
 | 16 | Agents commit through branches only; Slurm jobs only from a code snapshot | **P0-2** (in progress, refactor agent: CI test `tests/test_slurm_snapshot.py`, collector one-offs retired to archive/fulltext-push, `atlas submit` documented; the enforce switch awaits the coordinator's word) | every agent works in a worktree and lands with `agent_worktree.sh land`; the main-commit hook refuses (enforce mode); CI fails on any `.slurm` that does not source `job_code_snapshot.sh`; `atlas submit` is the documented submit path |
-| 17 | One lease per agent or session | open | a lease file per agent, renewed while it works; a second copy refuses to start while the lease is live; restart checklist uses it |
-| 18 | Download loops that restart themselves | open | a loop resubmits itself at its time limit on the current pinned commit; no manual restart at 3 days |
+| 17 | One lease per agent or session | **P1-3** (before the release; owner 2026-11-01) | a lease file per agent, renewed while it works; a second copy refuses to start while the lease is live; restart checklist uses it |
+| 18 | Download loops that restart themselves | **P1-2** (before the release; owner 2026-11-01) | a loop resubmits itself at its time limit on the current pinned commit; no manual restart at 3 days |
 | 19 | `atlas new-school <key>` | open | one command makes the charter, store, folders, catalog schema and receipts, and runs the stage-0 check (no cloning another school's store) |
-| 20 | No half-covered catalog locks | open | the Princeton importer and the two vendored resolvers take the catalog lock and the pre-write backup |
+| 20 | No half-covered catalog locks | **P1-5** (before the release; owner 2026-11-01) | the Princeton importer and the two vendored resolvers take the catalog lock and the pre-write backup |
 | 21 | Code as an installed package | open | tools/ installed as a package; no `sys.path` edits in tools, vendor or tests |
-| 22 | Deterministic generators everywhere | in progress (refactor agent): two-seed tests for the reader export (all its files), the release notes and the coverage counter's resolution; `atlas_paths.gzip_text` writes gzip with a zero header time, used by the package writer, the id writer, the ledger and the reader export (a re-run on unchanged data rewrites identical bytes). Left: the ledger's and the release manifest's deliberate `built_at`/`created` stamps | the two-seed determinism test covers the ledger, reader export, coverage counter and release; a content-neutral re-run changes no file |
+| 22 | Deterministic generators everywhere | **P1-4** (before the release; owner 2026-11-01); in progress (refactor agent): two-seed tests for the reader export (all its files), the release notes and the coverage counter's resolution; `atlas_paths.gzip_text` writes gzip with a zero header time, used by the package writer, the id writer, the ledger and the reader export (a re-run on unchanged data rewrites identical bytes). Left: the ledger's and the release manifest's deliberate `built_at`/`created` stamps | the two-seed determinism test covers the ledger, reader export, coverage counter and release; a content-neutral re-run changes no file |
 | 23 | Chores | open | CI action versions bumped (Node 20 deprecation); merged branches removed; py310 retired once a studies env exists |
 
 ### Data quality
@@ -83,7 +83,7 @@ Order: **P0** = starts right after the data-layout move (item 10 phase B), in th
 | 27 | Lab-page template readers | open | structural readers for al-folio/Jekyll, Google Sites and WordPress team pages; membership error rate re-measured |
 | 28 | One entry per paper in the stores | open | DOI/title sibling works collapsed onto the atlas work id in every store; counts and identity checks run on canonical works |
 | 29 | Boundary years settled | open | the dated-capture (transition_side) rule applies to every arrival/departure-year paper; undecided count reported per school |
-| 30 | The site serves only from releases | open | the release's reader export is the only source of hosted files; the 5,326 untraceable hosted files are gone |
+| 30 | The site serves only from releases | **P1-1** (before the release; owner 2026-11-01) | the release's reader export is the only source of hosted files; the 5,326 untraceable hosted files are gone |
 | 31 | Open owner decisions | open | publisher TDM access via the Library; Michigan's 171-lab student gap |
 
 ### Speed and efficiency
