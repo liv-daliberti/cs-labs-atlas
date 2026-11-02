@@ -15,6 +15,7 @@ set -u -o pipefail
 . "$CS_ATLAS_CODE/tools/job_code_snapshot.sh" || exit 1  # code of one commit, data in the main checkout (docs/CONTRIBUTING.md)
 cd "$CS_ATLAS_WORK"
 case $PIPE_PY in project) PY="nice -n 5 $CS_ATLAS_PY -u" ;; collector) PY="nice -n 5 $CS_ATLAS_COLLECTOR_PY -I -u" ;; *) echo "PIPE_PY must be project or collector"; exit 1 ;; esac
+PY() { $PY "$@"; }   # the registry's commands start with PY
 TOOLS=$CS_ATLAS_TOOLS; FTP=$CS_ATLAS_FULLTEXT_PUSH
 read -r -a _S <<< "$SCHOOL_LIST"
 school=${_S[${SLURM_ARRAY_TASK_ID:-0}]:-}
