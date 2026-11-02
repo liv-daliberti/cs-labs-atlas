@@ -32,6 +32,14 @@ Set up a shell: `. /n/fs/resemble/homogenizing-science/code/paths.sh` (gives `$C
 - Failed attempts: diagnose from the catalog's attempts table and `loop.log`; `fulltext-push/requeue_causes.py` requeues by cause
   and logs every row it deletes under `staged/`.
 
+## Pipelines (the mechanical chains)
+
+`atlas pipeline --list` shows them. `atlas pipeline copies` runs lab_paper_copies per school (a Slurm array), then the unavailability ledger, the coverage recount and
+the collectors status page; `atlas pipeline labpage` runs the lab-page audit per school, restamps the acceptance files and writes the summary; `atlas pipeline reader`
+the reader export. Each stage is submitted `afterok` the one before, from a code snapshot of main's HEAD, so nothing is polled and nothing is typed between stages;
+`--test-only` checks the first stage, `--wait` blocks once (scontrol wait_job) and prints the states, `atlas pipeline status` shows a run. A new chain is a new entry
+in `PIPELINES` in tools/atlas_pipeline.py. The hand checks, the design and the diagnosis of a failed stage stay with the agent.
+
 ## Release
 
 `atlas release` runs the whole chain and stops at the first failure: preflight, rebuild, validate, regression, reader export, release (with the generated

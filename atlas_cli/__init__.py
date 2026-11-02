@@ -40,6 +40,7 @@ COMMANDS = {
     'relocate':   ('py', 'tools/relocate_project.py', 'the project move (dry run by default)'),
     'submit':     ('special', 'sbatch', 'sbatch with the code pinned: atlas submit [sbatch options] script.slurm (CS_ATLAS_SNAPSHOT_COMMIT = main\'s HEAD now)'),
     'release':    ('py', 'tools/atlas_release.py', 'the whole release chain, stopping at the first failure: atlas release [--dry-run] [--yes-push] [--yes-hf] [--resume] [--from STEP]'),
+    'pipeline':   ('py', 'tools/atlas_pipeline.py', 'the mechanical chains as Slurm pipelines: atlas pipeline copies|labpage|reader [SCHOOLS="a b"] [--test-only] [--wait] | --list | status'),
     'parallel':   ('sh', 'hierarchy/submit-parallel.sh', 'per-school Slurm arrays + a merge job: atlas parallel equivalence OLD=<commit> REPORT=<dir> | atlas parallel rebuild'),
     'run':        ('special', '', 'any script of this checkout on the project interpreter: atlas run tools/x.py [...]'),
 }

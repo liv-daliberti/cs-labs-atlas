@@ -92,7 +92,7 @@ Order: **P0** = starts right after the data-layout move (item 10 phase B), in th
 |---|---|---|---|
 | 32 | Per-school parallel equivalence and rebuild | **P0-3** (built, refactor agent: `atlas parallel equivalence|rebuild` = hierarchy/submit-parallel.sh, build-school.slurm array + merge-equivalence.slurm / rebuild stages; the timing and the identical-to-serial proof run after the data move) | one Slurm array task per school plus a merge step; equivalence ≈ 15 min, full rebuild ≈ 45 min |
 | 33 | Rebuild only what changed | open | a dependency-driven rebuild from DATA_FILES inputs/outputs that redoes only stale outputs |
-| 34 | Script the mechanical work out of agents | **P0-5** | submit/poll/recount/restamp/ledger/copies run as a Slurm pipeline with dependencies; agents only for hand checks, design and diagnosis |
+| 34 | Script the mechanical work out of agents | **P0-5** (built, refactor agent: `atlas pipeline copies|labpage|reader`, tools/atlas_pipeline.py + hierarchy/pipeline-stage.slurm; the fulltext-push stages (ledger, recount, status) run the downloads agent's tools unchanged - it should read the registry) | submit/poll/recount/restamp/ledger/copies run as a Slurm pipeline with dependencies; agents only for hand checks, design and diagnosis |
 | 35 | Poll less | open (with 34) | jobs chain by Slurm dependencies and output files instead of repeated status checks |
 | 36 | A review page for hand checks | open | a page per sample with each row's quote, capture and a verdict box; rounds recorded from it |
 
