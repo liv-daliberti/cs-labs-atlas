@@ -1106,7 +1106,9 @@ def entry_years(desc, head):
         a, b = int(r.group(1)), r.group(2)
         if b and re.fullmatch(r'\d\d', b):  # '(2017-18)', '(2020-22)'
             e_ = a // 100 * 100 + int(b)
-            return [a, e_ if e_ >= a else e_ + 100], 'stated_in_entry'
+            if e_ < a or e_ > a + 12 or int(b) in range(1, 13) and re.match(r'\s*[-\u2013]\s*\d\d[-\u2013:\s]\d', seg[seg.find(str(a)) + 4:] or ''):
+                return None, 'none'  # '2020-05-24' is a date, not a stay
+            return [a, e_], 'stated_in_entry'
         return [a, int(b) if b and b[:2] in ('19', '20') else None], 'stated_in_entry'
     ys = [int(y) for y in re.findall(r'(?<!\d)(%s)(?!\d)' % YEAR_, seg)]
     if len(ys) == 1:
@@ -1439,7 +1441,7 @@ def audit_students(kit, ctx, p, lab, plan, auto_plan=False):
                 if role_c and best.get('role') in (None, 'member', 'other', 'postdoc', 'phd'):
                     best = dict(best, role=role_c, role_basis='entry_parenthetical')
             why_ = (not_a_member_context(kit, school, nm, best) or page_lacks_pi(kit, school, p, best)
-                    or repair_reason(kit, school, nm, dict(best, years=years), pi_start_year(p)))
+                    or repair_reason(kit, school, nm, dict(best, years=years), pi_start_year(p), p.get('pi')))
             if why_:  # a Stanford Profiles reader / program listing, or a name in a citation (Stanford round 1, 2026-11-01)
                 miss['reason_code'], miss['detail'] = why_
                 continue
@@ -1672,7 +1674,7 @@ def caps_heading_is_past(kit, school, src, name, cache):
 
 
 WEAK_PROFILE_LABEL = re.compile(r"Doctoral Dissertation Reader|Reader \(AC\)|\(Program\)|Program Advisor|Major Advisor|Orals Evaluator")
-CITATION_CONTEXT = re.compile(r"\bpp\.\s*\d|\bPDF\s*\||\bView details for\b|\bProceedings of\b|\bTrans\. on\b|(?i:\bbibtex\b)|\bSupplemental\b|\bproject page\b")
+CITATION_CONTEXT = re.compile(r"\bpp\.\s*\d|\bPDF\s*\||\bView details for\b|\bProceedings of\b|\bTrans\. on\b|(?i:\bbibtex\b)|\bSupplemental\b|\bproject page\b|\[Link\]|\b(?:Journal|Transactions|Review|Letters|Conference) (?:on|of|in)\b[^.]{0,80}\((?:19|20)\d\d\)")
 
 
 NAME_NOISE = re.compile(r"\b(?:Oral'?s?|Orals?\s+Chair|Chair|Reader|Committee|Evaluator|Examiner|Moderator|Panelist)\b", re.I)
@@ -1701,7 +1703,19 @@ def clean_parenthetical_name(name):
     return nm, role
 
 
-def repair_reason(kit, school, name, best, start):
+_PI_NAMES = {}
+
+
+def other_pis_on_page(school, pi, text, k=None):
+    """How many OTHER PIs of the school are named in full on the page: a page that lists several faculty and then all of their
+    students (graphics.stanford.edu/people.html) is a shared page, not this PI's lab page (Stanford round 4)."""
+    if school not in _PI_NAMES:
+        _PI_NAMES[school] = [r['pi'] for r in read(P.data('pis.json', school))]
+    t = fold(text if k is None else text[max(0, k - 900): k + 900]).lower()
+    return sum(1 for n in _PI_NAMES[school] if n != pi and len(n.split()) >= 2 and fold(n).lower() in t)
+
+
+def repair_reason(kit, school, name, best, start, pi=None):
     """(reason code, detail) for the 2026-11-01 repairs (owner exception, Stanford/CMU rounds 4-5; Michigan round 3), applied
     to every school: honorific / committee words in a name, a name inside a reference block (PubMed 'Surname, A. B.,' lists),
     a co-adviser named in a 'co-advised with X' phrase, a student of another institution ('@NUS'), and an undated entry of a
@@ -1720,6 +1734,8 @@ def repair_reason(kit, school, name, best, start):
         k = j if k < 0 else k
         if COADVISER_BEFORE.search(t[max(0, k - 40): k]):
             return 'not_a_student', 'named as the co-adviser of another member (co-advised with / jointly supervised with)'
+        if pi and other_pis_on_page(school, pi, t, k) >= 6 and len(re.findall(r'co-?advis|jointly|\bw/|\(with ', t[max(0, k - 900): k + 900], re.I)) < 2 and fold(pi.split()[-1]).lower() not in fold(t[k: k + 120]).lower():
+            return 'shared_page_no_adviser', 'a page that names several faculty and their students; the entry does not name this PI as adviser'
         win = t[max(0, k - 250): k + 250]
         if len(CITE_INITIALS.findall(win)) >= 3 or re.search(r'\bPubMed(?:ID)?\b', win):
             return 'name_unresolved', 'the name sits inside a reference block (author list of citations)'

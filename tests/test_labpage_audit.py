@@ -422,3 +422,9 @@ def test_reference_block_and_other_institution_marker():
     assert len(A.CITE_INITIALS.findall('Smith, J. K., Doe, A. B., Roe, C. D., and more')) >= 3
     assert A.OTHER_INST_AT.search('Haoyi Lin, Undergrad student @NUSRI, 2023').group(1) == 'NUSRI'
     assert ref
+
+
+def test_date_is_not_a_year_range_and_link_marker_is_a_citation():
+    assert A.entry_years('Page generated 2020-05-24 15:57:44 PDT, by jemdoc', None)[0] is None
+    assert A.entry_years('(Postdoc, 2017-18)', None)[0] == [2017, 2018]
+    assert A.CITATION_CONTEXT.search('Lexing Ying. A parallel method. SIAM Journal on Scientific Computing 36 (2014). [Link]')
