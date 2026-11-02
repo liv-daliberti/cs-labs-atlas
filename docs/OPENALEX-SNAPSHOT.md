@@ -170,14 +170,17 @@ with the ENCODE records and works of more than 100 authors dropped; snapshot und
 | stanford | 257,328 | 270,855 | 1.053 |
 | michigan | 232,408 | 248,897 | 1.071 |
 
-Every school's snapshot holds at least its API count: the quarterly snapshot is newer than the sweeps (works added or re-affiliated since,
-and OpenAlex's xpack records). The one place below the API is the current year (2026: princeton 0.976, cmu 0.977, epfl 0.977, mit 0.984,
-berkeley 0.953, michigan 0.945, stanford 0.890): works created between the snapshot date (2026-10-14) and the sweeps (late October),
-which the API fallback covers.
+Every school's snapshot holds at least its API count. A sample of 60 Princeton 2024 works that are in the snapshot but not in the API sweep
+shows why: 25 are datasets, 9 "other", 8 software, 4 preprints, 2 supplementary materials and only 9 articles, so the surplus is mostly
+non-paper records (the sweeps ask the API for the same lineage filter, but its default type/xpac handling and later merges differ); the
+readers drop datasets anyway. The one place below the API is the current year (2026: princeton 0.976, cmu 0.977, epfl 0.977, mit 0.984,
+berkeley 0.953, michigan 0.945, stanford 0.890): works created between the snapshot date (2026-10-14) and the late-October sweeps, which the
+API fallback covers.
 
 Field check (`oa_snapshot_compare.py fields epfl --n 1000`, same job): 997 of 1,000 sampled works are in the snapshot (3 newer than it);
 over those 997 the compared fields (doi, title, year, date, type, author ids, institution ids, pmid, primary-location source, landing,
 pdf, licence, version, is_oa) differ only in license 1, landing 2, source 2, type 2, pmid 1: reclassification or newer data, not filter errors.
 
 First code path switched: `ftp_common.oa_bodies` reads the snapshot first (complete `locations` for every lab paper, no API credits), so the
-`openalex` channel turns snapshot OA locations into candidates.
+`openalex` channel turns snapshot OA locations into candidates. Its first run on 2026-11-02 added 485 new candidates (epfl 236, mit 103,
+cmu 77, princeton 41, stanford 13, michigan 11, berkeley 4): earlier channel runs had already harvested most OpenAlex locations.
