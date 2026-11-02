@@ -89,10 +89,29 @@ def gitignore_translate(line):
     return None
 
 
+SPLIT_DIR = re.compile(r'^(?:hierarchy/[^/]+|census|periods|listings)(?:/[^/]+)?/(?:raw|reviewed|derived|work|reports)(?:/|$)')
+
+
+def gitignore_is_split(line):
+    """True for a whitelist line already in split form (it names a DATA_FILES split path or a split kind directory): nothing to translate."""
+    body = line[1:]
+    if SPLIT_DIR.match(body):
+        return True
+    for name, kind, flat, split in P.DATA_FILES:
+        sp = split.replace('{school}', '*')
+        if body == sp or body.startswith(sp + '/'):
+            return True
+        if '{school}' in split and re.fullmatch(re.escape(split).replace(re.escape('{school}'), '[a-z0-9_-]+'), body):
+            return True
+    return False
+
+
 def gitignore_plan(lines):
     plan_, unmapped = [], []
     for ln in lines:
         new = gitignore_translate(ln)
+        if not new and gitignore_is_split(ln):
+            continue
         (plan_ if new else unmapped).append((ln, new) if new else ln)
     return plan_, unmapped
 
@@ -262,7 +281,11 @@ def settle_journals(pl):
 def restrict(pl, names):
     """The plan reduced to the table entries called `names` (a small follow-up move of files no running job touches)."""
     keep = [m for m in pl['moves'] if m['name'] in names]
-    return dict(pl, moves=keep, conflicts=[c for c in pl['conflicts'] if c['name'] in names])
+    flats = {Path(m['old']).name for m in keep}   # .gitignore lines count only when they concern a named entry
+    r = pl['readiness']
+    about = lambda ln: Path(ln[1:] if isinstance(ln, str) else ln[0][1:]).name in flats
+    r = dict(r, gitignore_plan=[x for x in r['gitignore_plan'] if about(x)], gitignore_unmapped=[x for x in r['gitignore_unmapped'] if about(x)])
+    return dict(pl, moves=keep, conflicts=[c for c in pl['conflicts'] if c['name'] in names], readiness=r)
 
 
 def apply(pl, approved_by, record, commit=True, code_root=None, regen=regenerate_paths_sh):

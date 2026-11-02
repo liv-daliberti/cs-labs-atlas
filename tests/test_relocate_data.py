@@ -149,3 +149,18 @@ def test_only_restricts_the_plan_to_named_entries(fake):
     assert {'pis.json', 'gap-evidence.json'} <= names
     r = D.restrict(pl, {'pis.json'})
     assert {m['name'] for m in r['moves']} == {'pis.json'} and len(r['moves']) == 1
+
+
+def test_gitignore_lines_already_split_are_translated_not_unmapped():
+    plan_, unmapped = D.gitignore_plan(['!hierarchy/*/reviewed/faculty-periods.json', '!hierarchy/reviewed/nicknames/*.csv',
+                                        '!hierarchy/*/gap-evidence.json', '!hierarchy/unknown-thing.json'])
+    assert unmapped == ['!hierarchy/unknown-thing.json']
+    assert plan_ == [('!hierarchy/*/gap-evidence.json', '!hierarchy/*/reviewed/gap-evidence.json')]
+
+
+def test_only_considers_gitignore_lines_of_the_named_entries():
+    pl = dict(moves=[dict(name='gap-input.json', old='/r/hierarchy/mit/gap-input.json')], conflicts=[],
+              readiness=dict(direct_joins={}, gitignore_lines=[], gitignore_plan=[('!hierarchy/*/gap-evidence.json', '!x')],
+                             gitignore_unmapped=['!hierarchy/unknown-thing.json', '!hierarchy/*/gap-input.json']))
+    r = D.restrict(pl, {'gap-input.json'})['readiness']
+    assert r['gitignore_plan'] == [] and r['gitignore_unmapped'] == ['!hierarchy/*/gap-input.json']
