@@ -1091,6 +1091,9 @@ def entry_years(desc, head):
       '(Ph.D. in applied math 2014)' or 'PhD 2021' -> [None, 2014] (a degree year ends the stay); 'MIT Undergraduate Student, 2020'
       -> [2020, 2020]; a section heading that is only a year ('2019') -> that year, basis section_year_heading; else
       (None, 'none'): the build keeps undated students."""
+    tm = re.match(r'^\s{0,3}\|[^|]{1,100}\|\s*((?:19|20)\d\d)\b', desc or '')
+    if tm:  # '| Stanford Univ. Medical Center | 2004' (a 'Past Doctoral Students' table): the year ends the stay (Stanford round 3)
+        return [None, int(tm.group(1))], 'stated_in_entry'
     dm = re.search(r'\b[Dd]efended\b[^.\[]{0,50}?\b((?:19|20)\d\d)\b', (desc or '')[:220])
     if dm:  # 'Defended on the 6th of January, 2012.' ends the stay (Michigan round 1: Bayraktar's alumni list)
         return [None, int(dm.group(1))], 'stated_in_entry'
@@ -1430,7 +1433,13 @@ def audit_students(kit, ctx, p, lab, plan, auto_plan=False):
                 dated = [r for r in ok_ if r.get('years')]
                 if dated:
                     years, ybasis = dated[0]['years'], dated[0].get('years_basis') or 'stated_in_entry'
-            why_ = not_a_member_context(kit, school, nm, best) or page_lacks_pi(kit, school, p, best)
+            nm_c, role_c = clean_parenthetical_name(nm)
+            if nm_c != nm:
+                nm = nm_c
+                if role_c and best.get('role') in (None, 'member', 'other', 'postdoc', 'phd'):
+                    best = dict(best, role=role_c, role_basis='entry_parenthetical')
+            why_ = (not_a_member_context(kit, school, nm, best) or page_lacks_pi(kit, school, p, best)
+                    or repair_reason(kit, school, nm, dict(best, years=years), pi_start_year(p)))
             if why_:  # a Stanford Profiles reader / program listing, or a name in a citation (Stanford round 1, 2026-11-01)
                 miss['reason_code'], miss['detail'] = why_
                 continue
@@ -1664,6 +1673,63 @@ def caps_heading_is_past(kit, school, src, name, cache):
 
 WEAK_PROFILE_LABEL = re.compile(r"Doctoral Dissertation Reader|Reader \(AC\)|\(Program\)|Program Advisor|Major Advisor|Orals Evaluator")
 CITATION_CONTEXT = re.compile(r"\bpp\.\s*\d|\bPDF\s*\||\bView details for\b|\bProceedings of\b|\bTrans\. on\b|(?i:\bbibtex\b)|\bSupplemental\b|\bproject page\b")
+
+
+NAME_NOISE = re.compile(r"\b(?:Oral'?s?|Orals?\s+Chair|Chair|Reader|Committee|Evaluator|Examiner|Moderator|Panelist)\b", re.I)
+PAREN_TAIL = re.compile(r'\s*\(([^()]{1,40})\)\s*$')
+COADVISER_BEFORE = re.compile(r"(?:co-?advis(?:ed|ors?|ing|e)|co-?supervis\w*|jointly\s+\w+|joint(?:ly)?)\s*(?:with|w/|by|:)\s*$|\(\s*with\s+$|\bw/\s*$|\bwith\s+Prof\.?\s+$", re.I)
+CITE_INITIALS = re.compile(r"[A-Z][\w'\u00C0-\u017F-]+(?:\s[A-Z][\w'\u00C0-\u017F-]+)*,\s(?:[A-Z]\.\s?){1,3}(?:,|\.|\s)")
+OTHER_INST_AT = re.compile(r"@\s*([A-Z][A-Za-z]{1,8})\b")
+OWN_INST = {'michigan': {'UM', 'UMICH', 'MICHIGAN', 'UMICHIGAN'}, 'stanford': {'STANFORD', 'SU'}, 'mit': {'MIT'},
+            'cmu': {'CMU'}, 'berkeley': {'UCB', 'BERKELEY', 'UCBERKELEY'}, 'epfl': {'EPFL'}, 'princeton': {'PRINCETON'}}
+ROLE_PAREN = (('postdoc', 'postdoc'), ('post-doc', 'postdoc'), ('phd', 'phd'), ('ph.d', 'phd'), ('master', 'masters'),
+              ('ms student', 'masters'), ('undergrad', 'undergraduate'))
+
+
+def clean_parenthetical_name(name):
+    """('Linfeng Li (postdoc) (co-advisor)') -> ('Linfeng Li', 'postdoc'): trailing parentheticals are annotations, not the
+    name; a role word in them is the entry's stated role (Michigan round 2)."""
+    role, nm = None, name or ''
+    while True:
+        m = PAREN_TAIL.search(nm)
+        if not m or len(nm[:m.start()].split()) < 2:
+            break
+        for k, v in ROLE_PAREN:
+            if k in m.group(1).lower() and role is None:
+                role = v
+        nm = nm[:m.start()].strip()
+    return nm, role
+
+
+def repair_reason(kit, school, name, best, start):
+    """(reason code, detail) for the 2026-11-01 repairs (owner exception, Stanford/CMU rounds 4-5; Michigan round 3), applied
+    to every school: honorific / committee words in a name, a name inside a reference block (PubMed 'Surname, A. B.,' lists),
+    a co-adviser named in a 'co-advised with X' phrase, a student of another institution ('@NUS'), and an undated entry of a
+    lab older than the window without a current marker whatever the plan (the earlier rule ran for audit-discovered labs only).
+    None for a member."""
+    if NAME_NOISE.search(name or ''):
+        return 'name_unresolved', 'the name carries a committee or honorific word (Oral\'s Chair, Reader, Committee)'
+    q = best.get('quote') or ''
+    try:
+        t = kit.lpev.text(school, best.get('capture_url') or best['sha256'])
+    except (KeyError, ValueError):
+        t = ''
+    j = t.find(q) if q else -1
+    if j >= 0:
+        k = t.find(name.split()[0], j) if name else j
+        k = j if k < 0 else k
+        if COADVISER_BEFORE.search(t[max(0, k - 40): k]):
+            return 'not_a_student', 'named as the co-adviser of another member (co-advised with / jointly supervised with)'
+        win = t[max(0, k - 250): k + 250]
+        if len(CITE_INITIALS.findall(win)) >= 3 or re.search(r'\bPubMed(?:ID)?\b', win):
+            return 'name_unresolved', 'the name sits inside a reference block (author list of citations)'
+        tail = t[k: k + 90]
+        m = OTHER_INST_AT.search(tail)
+        if m and m.group(1).upper() not in OWN_INST.get(school, set()) | {'HOME'} and m.group(1).isupper():
+            return 'site_at_other_institution', f'the entry places the person at another institution (@{m.group(1)})'
+    if (start is None or start < 2014) and not best.get('years') and not current_marker(best) and not best.get('alumni_marked_dated'):
+        return 'undated_cannot_place', 'an undated entry of a lab older than the window without a current marker in its entry or section heading'
+    return None
 
 
 def not_a_member_context(kit, school, name, best):
@@ -2234,6 +2300,14 @@ def write_md(allsum):
             L.append(f"| {s_} | {k.get('round')} | {k.get('date')} | {st.get('sampled', '')} | {k.get('membership_score')} | "
                      f"{k.get('role_year_errors')} | {pa.get('sampled', '-')} | {'-' if k.get('paper_score') is None else k['paper_score']} | "
                      f"{k.get('result')} | {str(k.get('label') or '')[:70]} |")
+    ext = []
+    for s_ in order:
+        ap_ = P.data('labpage-acceptance.json', s_)
+        if ap_.exists() and read(ap_).get('round_limit_extended_by_owner'):
+            ext.append(s_)
+    if ext:
+        L += ['', f"Round-limit exception (owner, 2026-11-01): {', '.join(ext)} students get rounds 4 and 5 with repairs in place "
+                  "(`round_limit_extended_by_owner: 5` in the acceptance file); after round 5 the work stops. Princeton is not included."]
     open(P.data_w('LABPAGE-AUDIT.md'), 'w', encoding='utf-8').write('\n'.join(L) + '\n')
 
 

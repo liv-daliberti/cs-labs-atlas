@@ -390,3 +390,35 @@ def test_membership_only_withholds_roles_and_stamps(tmp_path):
     assert adds['students'][0]['role'] is None and adds['students'][0]['role_basis'] == 'withheld_role_round_failed'
     assert acc['students']['scope'] == 'membership_only' and acc['students']['accepted']
     assert acc['additions_sha256'] == hashlib.sha256((d / 'labpage-additions.json').read_bytes()).hexdigest()
+
+
+def test_entry_years_table_row_and_defended():
+    assert A.entry_years('| Stanford Univ. Medical Center | 2004 | Ming Lin', None)[0] == [None, 2004]
+    assert A.entry_years(', Goldman Sachs. Defended on the 6th of January, 2012. [ Thesis ]', None)[0] == [None, 2012]
+
+
+def test_parenthetical_name_is_stripped_and_gives_role():
+    assert A.clean_parenthetical_name('Linfeng Li (postdoc) (co-advisor)') == ('Linfeng Li', 'postdoc')
+    assert A.clean_parenthetical_name('Wei Liu (ROB)') == ('Wei Liu', None)
+    assert A.clean_parenthetical_name('Prince (artist)') == ('Prince (artist)', None)  # one-word names stay
+
+
+def test_committee_words_are_not_names():
+    assert A.NAME_NOISE.search("Oral's Chair Ruixue Guo")
+    assert A.NAME_NOISE.search('Reader Isabella Douglas')
+    assert not A.NAME_NOISE.search('Ruixue Guo')
+
+
+def test_coadviser_phrase_before_a_name():
+    assert A.COADVISER_BEFORE.search('PhD Student, Robotics co-advised w/ ')
+    assert A.COADVISER_BEFORE.search('Omar Shaikh PhD, Co-advise with ')
+    assert A.COADVISER_BEFORE.search('Rubens Lacouture (with ')
+    assert not A.COADVISER_BEFORE.search('PhD Students Yulun ')
+
+
+def test_reference_block_and_other_institution_marker():
+    ref = ('Goncalves Filho, A. L., Longo, M. G., Conklin, J., Cauley, S. F., Polak, D., Liu, W., Setsompop, K., Schaefer, P. W., '
+           'Huang, S. Y., Rapalino, O. 2021 Abstract')
+    assert len(A.CITE_INITIALS.findall('Smith, J. K., Doe, A. B., Roe, C. D., and more')) >= 3
+    assert A.OTHER_INST_AT.search('Haoyi Lin, Undergrad student @NUSRI, 2023').group(1) == 'NUSRI'
+    assert ref
