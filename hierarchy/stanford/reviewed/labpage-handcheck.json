@@ -92,6 +92,38 @@
    "role_year_errors": 2,
    "paper_score": 0.5,
    "result": "students_fail_papers_pass"
+  },
+  {
+   "round": 4,
+   "date": "2026-11-02",
+   "label": "after the 2026-11-01 repairs (committee words, citations, co-adviser phrases, table years, older-lab rule); owner extension",
+   "additions_generated_at": "2026-11-02T05:12:01+00:00",
+   "students": {
+    "sampled": 20,
+    "seed": 4011,
+    "membership_errors": 3,
+    "doubtful_count": 2,
+    "role_or_year_errors": 1
+   },
+   "papers": null,
+   "items": {
+    "membership": [
+     "Ying: Austin Benson, an author in a publication list (SIAM citation with [Link])",
+     "Boyd: Peter Nystrup, a 'Former long-term visitor' with years [2020, 2105] parsed from 'Page generated 2020-05-24'",
+     "Wu: Jongmin Baek, a student of another PI on the Graphics Lab people page (a faculty roster plus all students)"
+    ],
+    "doubtful": [
+     "James: Jonathan Pham listed under 'Past' with 'PhD Candidate'",
+     "Ashlagi: Maximillien Burq (graduated student list; MIT-era student of the PI)"
+    ],
+    "role_or_year": [
+     "Boyd: Nystrup years [2020, 2105]"
+    ]
+   },
+   "membership_score": 4.0,
+   "role_year_errors": 1,
+   "paper_score": null,
+   "result": "fail"
   }
  ]
 }

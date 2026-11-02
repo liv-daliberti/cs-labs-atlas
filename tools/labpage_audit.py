@@ -2513,7 +2513,7 @@ def record_round(spec):
     if spec.get('acceptance'):
         acc = json.loads(ap.read_text(encoding='utf-8')) if ap.exists() else {}
         acc.update({'school': school, 'decided_at': spec.get('date') or TODAY, 'bar': 'docs/LAB-PAGES.md, acceptance bar',
-                    'additions_file': f'hierarchy/{school}/labpage-additions.json', 'additions_generated_at': a['generated_at'],
+                    'additions_file': str(add.relative_to(P.CODE)), 'additions_generated_at': a['generated_at'],
                     'additions_sha256': hashlib.sha256(raw).hexdigest()})
         acc.update(spec['acceptance'])
         ap.write_text(json.dumps(acc, indent=1, ensure_ascii=False) + '\n', encoding='utf-8')
