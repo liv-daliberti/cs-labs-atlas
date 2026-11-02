@@ -206,6 +206,11 @@ undetermined. It does not apply to a kind that failed on membership (Princeton a
 `round_limit_extended_by_owner: 5` in their `labpage-acceptance.json`; after round 5 the work stops. Princeton is not included, and
 Michigan keeps its normal limit (round 3 is its last).
 
+**Second round-limit exception** (owner, 2026-11-02): one more students round each after repairs: Stanford round 6, Michigan round 4,
+CMU round 6 (only if its round 5 fails). These rounds use a 30-row sample (fresh seed) at the same rates scaled: membership errors
+<= 1.5, role/year errors <= 3, doubtful = 0.5. The acceptance files carry `round_limit_extended_by_owner` and `sample_size: 30`.
+An extended round that fails ends the work; no further rounds without the owner.
+
 **Students and papers are accepted separately**: a school whose students fail may still have its papers wired, and the
 other way round; `labpage-acceptance.json` records `students` and `papers` each with its round and result. A school gets at
 most four rounds per kind; when the last fails, that kind is not wired and the reason is recorded.

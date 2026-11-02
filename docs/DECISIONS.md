@@ -46,5 +46,24 @@ section by the coordinator.
 | 2026-11-01 | The data tree is split into raw / reviewed / derived / work, reached only through `atlas_paths.data()` | `docs/DATA-LAYOUT.md`; commit 7407588 |
 | 2026-11-01 | The site reader hosts a copy only with a redistribution licence (CC / public domain); the rest get read-at-source links | `docs/CHANNELS.md`, reader export |
 
-## Coordinator-side decisions
-(To be added by the coordinator: reader licence rule detail, quarantine, identity rule, P0/P1/P2.)
+## Coordinator-side and owner decisions (from the coordinator, 2026-11-02)
+| date | decision | where it lives |
+|---|---|---|
+| 2026-10-30 | Every lab paper without a local copy gets a recorded, evidence-backed reason | unavailable ledger; `docs/UNAVAILABLE.md`; rebuild `ledger` stage; R-AUD-10 |
+| 2026-10-30 | Development history is public on liv-daliberti/cs-labs-atlas branch `dev` (main to dev after tests and scans); the old email hash in history was accepted, not rewritten | 6ea0309; `secret_scan_allow.tsv` |
+| 2026-10-30 | Everything lives under /n/fs/resemble/homogenizing-science | project move 619d8e3; `archive/migrations/relocate-2026-10-30.jsonl` |
+| 2026-10-30 | Michigan: Mert Pilanci is not a Michigan PI; the 13 flagged DBLP acceptances stand; Berkeley's 2026 PNNL datasets are a sweep-check exception | `schools/michigan.toml` [census].not_pi (6e75a20); STAGE-2.md; `schools/berkeley.toml` [sweep_check] |
+| 2026-10-30 | Copies taken from paths whose robots.txt disallows ClaudeBot or anthropic-ai are quarantined, not deleted | 4e18b85; `stores/<school>/quarantine/robots-ai/` with a manifest |
+| 2026-10-30 | Only identity-confirmed copies count toward coverage; the identity rule rejects only on positive evidence of another document and the middle band stays pending | 58d42cf `fulltext-push/identity_rule.py`; download-time use 02b6fe5 |
+| 2026-10-31 | The lab-page audit stops at 6k OpenAlex credits left; downloads take the rest | `docs/LAB-PAGES.md`; `docs/OPENALEX-SNAPSHOT.md` |
+| 2026-10-31 | Subagents run on Sonnet; long-running Opus agents are replaced, not resumed | `~/.claude/settings.json` CLAUDE_CODE_SUBAGENT_MODEL=sonnet; `.claude/agents/atlas-worker.md` |
+| 2026-10-31 | Lab-page acceptance bar: at most 1 membership, 2 role/year, 1 paper error per 20; doubtful 0.5; fresh seed per round; 3 rounds; kinds accepted separately; re-check 10 after rule changes; restamp when a regenerated set is a subset | `docs/LAB-PAGES.md` |
+| 2026-10-31 | R-PAP-03 generalised: reviewed `faculty_end_moved` departures, with dated quotes, for every lab page found at another institution (CMU: 5 PIs) | `docs/RULES.md` R-PAP-03; 6ea8b88 |
+| 2026-11-01 | A final round that passes membership but fails role/year wires the students membership-only, roles withheld (Berkeley) | `docs/LAB-PAGES.md`; d8cc85a |
+| 2026-11-01 | The site hosts a copy only under a redistribution licence (CC-BY family, CC0, PD); every other confirmed copy is a "Read at source" link shown as readable (green); a candidate without a confirmed copy becomes a link only when confirmed to be the paper, by a basis that passes a 1-in-20 hand check | reader export d9ed021 |
+| 2026-11-01 | The takedown of not-permitted hosted files goes to Codex inside the release handoff; `atlas release` fails without the "Take down" section | e1d1f60 |
+| 2026-11-01 | The data-layout move to raw/reviewed/derived/work is applied at a forced quiet moment | 7407588; leftovers 8d02026 / `relocate-data-2026-11-02.jsonl` |
+| 2026-11-01 | ROADMAP section 6 (#16 to #41): P0 (24, 16, 32, 37, 34), P1 (30, 18, 17, 22, 20), P2 (25, 26, 28, 29, 19, 33, 21, 27, 38, 23, decided 2026-11-02); all of P1 and P2 come before the release | `docs/ROADMAP.md` |
+| 2026-11-01 | Direct commits to main are refused; Slurm jobs run only from a code snapshot; agents run an auto-resume check every 30 minutes after usage limits | `docs/CONTRIBUTING.md` (atlas.mainCommits enforce); session cron |
+| 2026-11-02 | The download loops restart themselves at their time limit (#18); restarted onto that code as array 32065276 | `docs/ROADMAP.md` #18 |
+| 2026-11-02 | One more students round each, with repairs first: Stanford round 6, Michigan round 4, CMU round 6 (after a failed round 5), on a 30-row sample per round at the same rates (membership <= 1.5, role/year <= 3, doubtful 0.5); an extended round that fails ends the work without the owner; `round_limit_extended_by_owner` and `sample_size: 30` in the acceptance files | `docs/LAB-PAGES.md`; acceptance files |
