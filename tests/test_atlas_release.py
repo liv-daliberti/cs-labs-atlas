@@ -60,10 +60,20 @@ def test_dry_run_lists_every_step_and_runs_nothing(env, capsys):
     assert 'EXTERNAL --yes-push' in out and 'EXTERNAL --yes-hf' in out
 
 
-def test_handoff_note_text(tmp_path):
+def test_handoff_note_text_has_host_link_and_take_down(tmp_path):
     d = tmp_path / 'rel'
     (d / 'reader').mkdir(parents=True)
     (d / 'MANIFEST.json').write_text(json.dumps(dict(created='2026-11-02T00:00:00Z', code=dict(commit='a' * 40), counts={'mit': dict(pis=1, lab_papers=2, students=3, student_paper_links=4)})))
-    (d / 'reader' / 'SUMMARY.json').write_text(json.dumps(dict(totals=dict(readable=5, lab_papers=9, host=2, link=3, not_readable=4), currently_hosted_not_permitted=7, link_check_request_urls=11)))
+    summ = dict(totals=dict(readable=5, lab_papers=9, host=2, link=3, not_readable=4), currently_hosted_not_permitted=7, link_check_request_urls=11,
+                site_sync=dict(site_files=20, keep=10, unpublish=10, unpublish_by_reason={'not_in_stores': 6, 'license': 4}, upload=3))
+    (d / 'reader' / 'SUMMARY.json').write_text(json.dumps(summ))
     t = AR.render_handoff('2026-11-02', d)
-    assert '| mit | 1 | 2 | 3 | 4 |' in t and '5 of 9 lab papers are readable' in t and 'release-2026-11-02' in t
+    assert '| mit | 1 | 2 | 3 | 4 |' in t and '## Host' in t and '## Link' in t and '## Take down (required)' in t
+    assert t.index('## Host') < t.index('## Link') < t.index('## Take down')
+    assert 'Remove 10 files' in t and 'not_in_stores: 6, license: 4' in t and 'reader/unpublish.tsv' in t and 'goes UP' in t and 'without touching our stores' in t
+    (d / 'reader' / 'SUMMARY.json').write_text(json.dumps(dict(summ, site_sync=None)))
+    try:
+        AR.render_handoff('2026-11-02', d)
+        raise AssertionError('the note must fail without a site sync')
+    except ValueError:
+        pass

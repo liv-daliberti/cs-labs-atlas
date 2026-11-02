@@ -529,12 +529,16 @@ def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('schools', nargs='*')
     ap.add_argument('--site-local-papers', help="the site's data/local-papers.json (read only), for the currently-hosted check")
+    ap.add_argument('--site-reader-objects', help="the site's data/reader-objects.json (read only): its files count as hosted too")
     ap.add_argument('--out', default=str(P.data('reader-SUMMARY.json').parent))
     a = ap.parse_args(argv)
     schools = a.schools or list(P.SCHOOL_IDS)
     hosted_files = {}
     if a.site_local_papers and Path(a.site_local_papers).exists():
         hosted_files = {sha: dict(bytes=f.get('bytes'), path=f.get('path')) for sha, f in json.load(open(a.site_local_papers))['files'].items()}
+    if a.site_reader_objects and Path(a.site_reader_objects).exists():   # served files the works index does not list are hosted just the same
+        for sha, size in json.load(open(a.site_reader_objects))['files'].items():
+            hosted_files.setdefault(sha, dict(bytes=size, path=f'papers/{sha}.pdf'))
     t0 = time.time()
     arxiv_lic = ArxivLicenses.from_files(local_openalex_files())
     print(f'arXiv licences: {len(arxiv_lic.lic)} with a licence, {len(arxiv_lic.seen)} ids seen ({time.time() - t0:.0f} s)', flush=True)
@@ -546,7 +550,7 @@ def main(argv=None):
         print(s, json.dumps({k: v for k, v in stats[s].items() if not k.startswith(('license:', 'basis:', 'source_kind:'))}), flush=True)
     hosted_not = hosted_not_permitted(hosted_files, checks) if hosted_files else []
     built = max((json.load(open(P.data('report.json', s_))).get('builtAt') or '' for s_ in schools), default='')   # the packages' own build time: a re-run on the same packages writes the same bytes
-    summ = write_outputs(recs, stats, hosted_not, a.out, built, None, requests=requests, site_files=hosted_files if a.site_local_papers else None,
+    summ = write_outputs(recs, stats, hosted_not, a.out, built, None, requests=requests, site_files=hosted_files if (a.site_local_papers or a.site_reader_objects) else None,
                          extra=dict(arxiv_licences=dict(with_licence=len(arxiv_lic.lic), ids_seen=len(arxiv_lic.seen))))
     print(json.dumps(summ['totals']), 'not permitted:', len(hosted_not))
     return 0

@@ -33,6 +33,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402  (every path in one place)
 import provenance  # noqa: E402  (report.json -> provenance, required)
+import content_hash  # noqa: E402  (content hashes without the clock)
 import release_notes  # noqa: E402  (CHANGES.md, generated from the build regression)
 
 PACKAGE = ['pis.json', 'students.json', 'report.json', 'lab_papers.jsonl.gz', 'student_papers.jsonl.gz', 'copies.json']
@@ -234,6 +235,8 @@ def make(a):
         dst.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(src, dst)
         entries[f] = dict(bytes=dst.stat().st_size, sha256=sha256(dst))
+        if dst.name in content_hash.VOLATILE:   # a stamp is kept but is not content: the hash without it (ROADMAP #22)
+            entries[f]['content_sha256'] = content_hash.content_sha256(dst)
     for s in P.SCHOOL_IDS:  # the package must not have been rebuilt while it was copied
         now = json.loads(P.data('report.json', s).read_text()).get('builtAt')
         if now != built[s] or sha256(P.data('lab_papers.jsonl.gz', s)) != entries[rel_of('lab_papers.jsonl.gz', s)]['sha256']:

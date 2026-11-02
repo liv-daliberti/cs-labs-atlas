@@ -15,7 +15,8 @@ import json
 import sys
 from pathlib import Path
 
-DEFAULT_IGNORE = ['report.json:builtAt', 'report.json:provenance.at']  # build timestamps, nothing else
+from content_hash import VOLATILE  # noqa: E402  (the stamps that are not content: tools/content_hash.py)
+DEFAULT_IGNORE = [f'{fn}:{p}' for fn in ('report.json', 'unavailable-summary.json', 'unavailable.jsonl.gz', 'copies.json') for p in VOLATILE[fn]]   # timestamps, nothing else
 
 
 def _load(p):
@@ -77,6 +78,9 @@ def compare_dir(old, new, ignore):
             fn, _, path = spec.partition(':')
             if fn == f and ko == 'json':
                 ignored += [path] if (_drop(a, path) | _drop(b, path)) else []
+            elif fn == f and ko == 'jsonl':   # the path is a key of every row
+                hit = [_drop(r, path) for r in a] + [_drop(r, path) for r in b]
+                ignored += [path] if any(hit) else []
         if a == b:
             res[f] = dict(status='identical', kind=ko, ignored=ignored, **({'records': len(a)} if ko == 'jsonl' else {}))
         else:

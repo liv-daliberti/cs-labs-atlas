@@ -66,7 +66,11 @@ def cmd_for(step, c):
         return preflight
     if step == 'rebuild':
         return stages('snapshot build ids copies ledger audits evidence tests')(c)
-    if step in ('validate', 'regression', 'reader', 'tree'):
+    if step == 'reader':   # recomputed at release time against the site's hosted set as it is now (read-only): the takedown list travels in the release
+        site = Path(P.SITE) / 'atlas' / 'data'
+        return ([sys.executable, str(CODE / 'tools' / 'reader_export.py'), '--site-local-papers', str(site / 'local-papers.json'),
+                 '--site-reader-objects', str(site / 'reader-objects.json')], c.env)
+    if step in ('validate', 'regression', 'tree'):
         return stages(step)(c)
     if step == 'release':
         return ([sys.executable, str(CODE / 'tools' / 'make_release.py')] + (['--allow-swings'] if c.a.allow_swings else []), c.env)
@@ -103,7 +107,7 @@ def check_notes(c):
     if not rid:
         return False, 'no release'
     d = Path(P.RELEASES) / rid
-    need = ['CHANGES.md', 'MANIFEST.json', 'reader/SUMMARY.json', 'reader/README.md', 'reader/unpublish.tsv', 'reader/upload.tsv']
+    need = ['CHANGES.md', 'MANIFEST.json', 'reader/SUMMARY.json', 'reader/README.md', 'reader/unpublish.tsv', 'reader/upload.tsv', 'reader/currently-hosted-not-permitted.tsv']
     miss = [n for n in need if not (d / n).exists()]
     return (not miss), (f'release {rid}: ' + ('CHANGES.md and reader/ present' if not miss else f'missing {miss}'))
 
@@ -124,31 +128,36 @@ def push_export(c):
 
 
 def render_handoff(rid, d):
+    """The Codex handoff note. Raises ValueError when the Take down section cannot be produced (no reader export with a site sync): the release step then fails."""
     man = json.loads((d / 'MANIFEST.json').read_text())
     rd = json.loads((d / 'reader' / 'SUMMARY.json').read_text()) if (d / 'reader' / 'SUMMARY.json').exists() else {}
+    if not rd or not rd.get('site_sync'):
+        raise ValueError('no reader export with a site sync (reader/SUMMARY.json site_sync): the Take down section cannot be produced')
+    t, ss = rd.get('totals') or {}, rd['site_sync']
+    by = ', '.join(f'{k}: {v}' for k, v in (ss.get('unpublish_by_reason') or {}).items())
     L = [f'# Handoff for Codex: release {rid}', '',
          f"Created {man.get('created')} from code {str((man.get('code') or {}).get('commit'))[:10]}. Read-only, immutable: `{d}`.", '',
          '## What changed', '', 'CHANGES.md in the release is generated from the build regression: counts per school, the PIs that moved most, rules added, commits. Start there.', '']
     L += ['## Counts per school', '', '| school | PIs | lab papers | students | student-paper links |', '|---|---|---|---|---|']
     for s, c in (man.get('counts') or {}).items():
         L.append(f"| {s} | {c.get('pis')} | {c.get('lab_papers')} | {c.get('students')} | {c.get('student_paper_links')} |")
-    if rd:
-        t = rd.get('totals') or {}
-        L += ['', '## Readable papers (reader/)', '',
-              f"{t.get('readable')} of {t.get('lab_papers')} lab papers are readable: {t.get('host')} hosted (licence allows redistribution), {t.get('link')} linked to the source; "
-              f"{t.get('not_readable')} not readable. `reader/README.md` says exactly how the site marks a paper readable (a works entry in local-papers.json; link entries have "
-              f"`link: true` and no `path`), `reader/hosted-files.tsv` lists the files to upload and `reader/currently-hosted-not-permitted.tsv` the {rd.get('currently_hosted_not_permitted')} files to unpublish.",
-              f"Candidate links wait for a landing-page check where unconfirmed: `reader/link-check-requests.tsv` ({rd.get('link_check_request_urls')} URLs).", '']
-    ss = rd.get('site_sync')
-    if ss:
-        by = ', '.join(f'{k} {v}' for k, v in (ss.get('unpublish_by_reason') or {}).items())
-        L += ['## Site sync: the site serves only from releases', '',
-              f"From this release on the site's hosted files are exactly `reader/hosted-files.tsv`; nothing else may be served. The site hosted {ss.get('site_files')} files when this "
-              f"release was made: keep {ss.get('keep')}, **unpublish {ss.get('unpublish')}** (`reader/unpublish.tsv`, with the reason per file: {by}), and upload {ss.get('upload')} "
-              "(`reader/upload.tsv`). After the sync `data/local-papers.json` `files` and `reader-objects.json` must equal hosted-files.tsv, and every `works` entry must come from a "
-              "`reader/<school>.jsonl.gz` row (host rows with a path, link rows without one). Untraceable files (`not_in_stores`) are removed too: a file with no store record "
-              "has no licence we can show.", '']
-    L += ['## Where', '', f"- Release: `{d}` (MANIFEST.json lists every file with its sha256).",
+    L += ['', '## Host', '',
+          f"{t.get('host')} papers have a stored copy whose licence allows redistribution; the site HOSTS them. `reader/hosted-files.tsv` lists the files (sha256, bytes, school, store path); "
+          f"`reader/upload.tsv` the {ss.get('upload')} not on the site yet. `reader/<school>.jsonl.gz` rows with `decision: host` carry the path. `reader/README.md` says exactly how the site "
+          "marks a paper readable (a works entry in local-papers.json).", '',
+          '## Link', '',
+          f"{t.get('link')} papers are readable through a source link: a confirmed copy whose licence does not allow hosting, or a candidate URL confirmed to be the paper (`link_basis`). "
+          "Rows with `decision: link` carry `source_url`; write them as works entries with `link: true` and no `path` (see reader/README.md). Candidate links wait for a landing-page check "
+          f"where unconfirmed: `reader/link-check-requests.tsv` ({rd.get('link_check_request_urls')} URLs). Readable papers overall: {t.get('readable')} of {t.get('lab_papers')}, host and link "
+          f"together (this goes UP with this release); {t.get('not_readable')} stay not readable.", '',
+          '## Take down (required)', '',
+          f"The site serves ONLY from releases. **Remove {ss.get('unpublish')} files from public hosting, from `data/local-papers.json` (`files` and the `works` entries that point at them) and "
+          "from `reader-objects.json`**, without touching our stores. The list, computed at release time against the site's hosted set as it was then "
+          f"({ss.get('site_files')} files; {ss.get('keep')} stay): `reader/unpublish.tsv` (sha256, bytes, path, reason, licence, schools). Reasons: {by}. `not_in_stores` files are untraceable to any "
+          "store and have no licence we can show; `license` files may not be redistributed; `no_confirmed_copy` files have no confirmed copy; `outside_release` are outside this release's hosted set. "
+          "`reader/currently-hosted-not-permitted.tsv` is the licence subset. After the take-down and the upload, `files` in local-papers.json and reader-objects.json equal "
+          "`reader/hosted-files.tsv` exactly.", '',
+          '## Where', '', f"- Release: `{d}` (MANIFEST.json lists every file with its sha256).",
           f"- GitHub export: tag `release-{rid}` on the export repository's main.", '- Hugging Face: the private dataset, releases/<id>/ (HF-UPLOAD.json in the release records the verified upload).', '']
     return '\n'.join(L)
 
@@ -157,7 +166,10 @@ def handoff(c):
     rid = c.release_id or latest_release()
     d = Path(P.RELEASES) / rid
     f = c.dir / 'SITE-HANDOFF.md'
-    f.write_text(render_handoff(rid, d))
+    try:
+        f.write_text(render_handoff(rid, d))
+    except ValueError as e:
+        return False, str(e)
     r = subprocess.run([sys.executable, str(CODE / 'tools' / 'make_release.py'), 'add-note', rid, 'SITE-HANDOFF.md', str(f)], capture_output=True, text=True)
     return r.returncode == 0, (r.stdout + r.stderr).strip()[-300:]
 
