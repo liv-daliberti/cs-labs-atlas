@@ -43,3 +43,24 @@ def test_R_AUD_07_access_causes_explain_missing_copies():
                   'not_pdf', 'identity_mismatch'):
         r = chain_audit.ACCESS_REASON[cause]
         assert 'paywall' not in r and 'login' not in r
+
+def test_default_audit_replaces_the_report_consumed_by_release(tmp_path, monkeypatch):
+    legacy = tmp_path / 'legacy-output'; legacy.mkdir()
+    derived = legacy / 'derived'; derived.mkdir()
+    report = derived / 'EVIDENCE-CHECK.json'
+    report.write_text(json.dumps({'ok': True, 'mode': 'strict'}))
+    original_data = evidence_check.P.data
+
+    def data(name, *args, **kwargs):
+        if name in ('EVIDENCE-CHECK.json', 'EVIDENCE-CHECK.md') and not args and not kwargs:
+            return derived / name
+        return original_data(name, *args, **kwargs)
+
+    monkeypatch.setattr(evidence_check.P, 'HIERARCHY', legacy)
+    monkeypatch.setattr(evidence_check.P, 'data', data)
+    monkeypatch.setattr(evidence_check, 'WHITELIST', tmp_path / 'no-whitelist.json')
+    package = _package(tmp_path / 'package', dict(pi='P', student='s1', oa='W1',
+                       basis='within_lab_byline_match', byline='', relation_source={}))
+    assert evidence_check.main(['--dir', str(package), 'princeton']) == 1
+    assert json.loads(report.read_text())['ok'] is False
+    assert not (legacy / 'EVIDENCE-CHECK.json').exists()

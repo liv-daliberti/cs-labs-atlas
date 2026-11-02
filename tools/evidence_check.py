@@ -161,7 +161,7 @@ def main(argv=None):
     ap.add_argument('schools', nargs='*')
     ap.add_argument('--report', action='store_true', help='count and write, never fail')
     ap.add_argument('--dir', default=str(P.HIERARCHY))
-    ap.add_argument('--out', default=str(P.HIERARCHY))
+    ap.add_argument('--out', default=str(P.data('EVIDENCE-CHECK.json').parent))
     a = ap.parse_args(argv)
     schools = a.schools or P.SCHOOL_IDS
     wl = json.loads(WHITELIST.read_text()) if WHITELIST.exists() else {}

@@ -18,6 +18,10 @@ reviewed inputs; everything else in `work/` (packages, sweeps, captures, logs, P
 | `docs/REVIEWED-INPUTS.md` | the hand-curated decision files the build reads |
 
 ## Run
+For website releases, see [PUBLISHING.md](PUBLISHING.md): `bin/atlas release
+--target site` freezes accepted research without GitHub/Hugging Face publication,
+then the site repository's standard commands prepare, check and upload it.
+
 The project interpreter is `env/atlas` (Python 3.12, built from `env/conda-linux-64.lock`; docs/ENVIRONMENT.md).
 Everything is reachable through one entry point, `bin/atlas <command>` (or `atlas` with the env's `bin/` on PATH):
 ```
