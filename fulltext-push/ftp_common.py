@@ -90,10 +90,28 @@ def oa_store(school):
     return p if p.exists() else P.FT_RAW / f'{school}-oa-works.sqlite'
 
 
+def snapshot_bodies(ids):
+    """{OpenAlex id URL: work record} for the ids the local snapshot (tools/oa_snapshot.py) holds; {} when there is none. Each record
+    carries `snapshot_date`; a work the snapshot lacks (newer than it) is left to the older stores and the API."""
+    try:
+        import oa_snapshot as OS
+        OS.conn()
+    except (ImportError, FileNotFoundError, OSError):
+        return {}
+    out = {}
+    for i in ids:
+        w = OS.work(i)
+        if w:
+            out[i] = w
+    return out
+
+
 def oa_bodies(school, ids):
     """{OpenAlex id URL: work record} from the school's oa_store (zlib JSON), plus our own cache."""
     want = set(ids)
     out = {}
+    out.update(snapshot_bodies(want))  # the OpenAlex bulk snapshot first (ROADMAP #24): complete `locations`, no API credits
+    want = want - set(out)
     store = oa_store(school)
     if store.exists():
         db = sqlite3.connect(f"file:{store}?mode=ro", uri=True, timeout=60)
