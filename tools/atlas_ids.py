@@ -508,7 +508,7 @@ def run(schools, hdir, registry, use_sweep=True, today=None, write=True):
             tmpf = D.tmp('students.json', '.ids-tmp'); tmpf.write_text(json.dumps(stu, indent=1, ensure_ascii=False)); tmpf.replace(D / 'students.json')
             for name, rr in (('lab_papers', rows), ('student_papers', sp)):
                 tmpf = D.tmp(f'{name}.jsonl.gz', '.ids-tmp')
-                with gzip.open(tmpf, 'wt') as f:
+                with P.gzip_text(tmpf) as f:
                     for r in rr:
                         f.write(json.dumps(r, ensure_ascii=False) + '\n')
                 tmpf.replace(D / f'{name}.jsonl.gz')

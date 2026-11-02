@@ -70,7 +70,7 @@ Order: **P0** = starts right after the data-layout move (item 10 phase B), in th
 | 19 | `atlas new-school <key>` | open | one command makes the charter, store, folders, catalog schema and receipts, and runs the stage-0 check (no cloning another school's store) |
 | 20 | No half-covered catalog locks | open | the Princeton importer and the two vendored resolvers take the catalog lock and the pre-write backup |
 | 21 | Code as an installed package | open | tools/ installed as a package; no `sys.path` edits in tools, vendor or tests |
-| 22 | Deterministic generators everywhere | open | the two-seed determinism test covers the ledger, reader export, coverage counter and release; a content-neutral re-run changes no file |
+| 22 | Deterministic generators everywhere | in progress (refactor agent): two-seed tests for the reader export (all its files), the release notes and the coverage counter's resolution; `atlas_paths.gzip_text` writes gzip with a zero header time, used by the package writer, the id writer, the ledger and the reader export (a re-run on unchanged data rewrites identical bytes). Left: the ledger's and the release manifest's deliberate `built_at`/`created` stamps | the two-seed determinism test covers the ledger, reader export, coverage counter and release; a content-neutral re-run changes no file |
 | 23 | Chores | open | CI action versions bumped (Node 20 deprecation); merged branches removed; py310 retired once a studies env exists |
 
 ### Data quality

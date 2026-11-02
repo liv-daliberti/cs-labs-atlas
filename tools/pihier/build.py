@@ -2,7 +2,7 @@
 census -> periods (inside the PI records) -> students -> identity -> papers -> links -> weak students -> the package.
 -> hierarchy/<school>/pis.json, lab_papers.jsonl.gz, students.json, student_papers.jsonl.gz, report.json
 (PI_HIERARCHY_OUT=<dir> writes <dir>/<school>/ instead; the inputs stay where they are)."""
-import collections, datetime, gzip, json, os
+import collections, datetime, json, os
 from pathlib import Path
 
 import atlas_paths as P  # data paths (DATA_FILES)
@@ -31,7 +31,7 @@ def write(ctx):
     for r in rows:
         r.pop('_bylines', None)
     for name, data in (('lab_papers', rows), ('student_papers', sp)):
-        with gzip.open(out / f'{name}.jsonl.gz', 'wt') as f:
+        with P.gzip_text(out / f'{name}.jsonl.gz') as f:
             for r in data:
                 f.write(json.dumps(r, ensure_ascii=False) + '\n')
     rep = dict(school=school, builtAt=datetime.datetime.utcnow().isoformat() + 'Z', counts=dict(n), excluded=excluded,

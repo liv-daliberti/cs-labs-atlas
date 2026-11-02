@@ -468,7 +468,7 @@ def write_outputs(school_recs, per_school_stats, hosted_not, outdir, built_at, l
     outdir.mkdir(parents=True, exist_ok=True)
     seen, hosted = set(), []
     for school, recs in school_recs.items():
-        with gzip.open(outdir / f'{school}.jsonl.gz', 'wt') as f:
+        with P.gzip_text(outdir / f'{school}.jsonl.gz') as f:
             for r in recs:
                 f.write(json.dumps(r, ensure_ascii=False, sort_keys=True) + '\n')
         for r in recs:
@@ -529,7 +529,8 @@ def main(argv=None):
         recs[s], stats[s], checks[s], requests[s] = school_rows(s, rows, arxiv_lic, frozenset(hosted_files), links=links)
         print(s, json.dumps({k: v for k, v in stats[s].items() if not k.startswith(('license:', 'basis:', 'source_kind:'))}), flush=True)
     hosted_not = hosted_not_permitted(hosted_files, checks) if hosted_files else []
-    summ = write_outputs(recs, stats, hosted_not, a.out, time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()), None, requests=requests,
+    built = max((json.load(open(P.data('report.json', s_))).get('builtAt') or '' for s_ in schools), default='')   # the packages' own build time: a re-run on the same packages writes the same bytes
+    summ = write_outputs(recs, stats, hosted_not, a.out, built, None, requests=requests,
                          extra=dict(arxiv_licences=dict(with_licence=len(arxiv_lic.lic), ids_seen=len(arxiv_lic.seen))))
     print(json.dumps(summ['totals']), 'not permitted:', len(hosted_not))
     return 0

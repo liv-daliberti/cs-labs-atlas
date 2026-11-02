@@ -29,6 +29,9 @@ LD_LIBRARY_PATH needed). COLLECTOR_PY is what the download loops run: the old An
 restarted on the new env (docs/ENVIRONMENT.md, switch-over), then PY. ENV_PY/ENV_LIB are the old py310 env, kept in
 place for the ML studies (torch, transformers) until a [studies] env replaces it (conda envs cannot be moved).
 """
+import contextlib
+import gzip
+import io
 import os
 import re
 import sys
@@ -407,6 +410,14 @@ def hfile(hdir, name, school=None):
     flat = _DATA[name][1].format(school=school)
     top, _, rest = flat.partition('/')
     return Path(hdir) / rest if top == 'hierarchy' else Path(hdir).parent / flat   # census/, listings/, periods/ sit beside hierarchy/ in a release
+
+
+@contextlib.contextmanager
+def gzip_text(path, encoding='utf-8'):
+    """Open a .gz file for writing text with a zero time (and no name) in the gzip header: a generator re-run on unchanged data then writes
+    the same bytes (ROADMAP #22; the default header carries the clock)."""
+    with open(path, 'wb') as raw, gzip.GzipFile(filename='', mode='wb', fileobj=raw, mtime=0) as gz, io.TextIOWrapper(gz, encoding=encoding) as f:
+        yield f
 
 
 def hfile_w(hdir, name, school=None):

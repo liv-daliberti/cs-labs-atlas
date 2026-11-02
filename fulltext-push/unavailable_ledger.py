@@ -82,7 +82,7 @@ def fold_publisher(name):
 
 def jdump(path, rows):
     tmp = path.with_name(f'.{path.name}.{os.getpid()}.part')
-    with gzip.open(tmp, 'wt') as f:
+    with F.P.gzip_text(tmp) as f:
         for r in rows:
             f.write(json.dumps(r, default=str) + '\n')
     os.replace(tmp, path)
