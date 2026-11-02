@@ -1685,9 +1685,10 @@ BIO_TRIGGER = re.compile(r"(?:worked\s+(?:closely\s+)?with|advised\s+by|advis[eo
 BIO_TAIL = re.compile(r"^(?:(?:Prof\.?|Professor|Dr\.?)\s+)?(?:[A-Z]\.|[A-Z][\w'À-ſ-]+)(?:\s+(?:[A-Z]\.|[A-Z][\w'À-ſ-]+)){0,3}(?:\s*(?:,|and|&)\s+(?:(?:Prof\.?|Professor|Dr\.?)\s+)?(?:[A-Z]\.|[A-Z][\w'À-ſ-]+)(?:\s+(?:[A-Z]\.|[A-Z][\w'À-ſ-]+)){0,3})*\s*,?\s*(?:and\s+)?$")
 OTHER_INST_ROLE = re.compile(r"\b(?:MS|M\.S\.|MSc|PhD|Ph\.D\.|BS|B\.S\.|Undergrad(?:uate)?|Master'?s?)\s+(?:Student|Candidate|Researcher)?\s*,?\s*(MIT|Harvard|Caltech|Cornell|Yale|Princeton|Columbia|Oxford|Cambridge|ETH|EPFL|NUS|Tsinghua|Stanford|Berkeley|CMU|UCLA|UCSD|Toronto|Waterloo|Michigan)\b")
 OWN_INST_NAMES = {'michigan': {'MICHIGAN'}, 'stanford': {'STANFORD'}, 'mit': {'MIT'}, 'cmu': {'CMU'}, 'berkeley': {'BERKELEY'}, 'epfl': {'EPFL'}, 'princeton': {'PRINCETON'}}
+FACULTY_HEAD = re.compile(r"\bVisiting\s+(?:Scientists?|Professors?|Faculty|Researchers?\s+at)\b|\bFaculty\b(?!.*student)|\bCollaborators?\b", re.I)
 NAME_NOISE = re.compile(r"\b(?:Oral'?s?|Orals?\s+Chair|Chair|Reader|Committee|Evaluator|Examiner|Moderator|Panelist)\b", re.I)
 PAREN_TAIL = re.compile(r'\s*\(([^()]{1,40})\)\s*$')
-COADVISER_BEFORE = re.compile(r"(?:co-?advis(?:ed|ors?|ing|e)|co-?supervis\w*|jointly\s+\w+|joint(?:ly)?)\s*(?:with|w/|by|:)\s*$|\(\s*with\s+$|\bw/\s*$|\bwith\s+Prof\.?\s+$", re.I)
+COADVISER_BEFORE = re.compile(r"(?:co-?advis(?:ed|ors?|ing|e)|co-?taught|taught|co-?supervis\w*|jointly\s+\w+|joint(?:ly)?)\s*(?:with|w/|by|:)\s*$|\(\s*with\s+$|\bw/\s*$|\bwith\s+Prof\.?\s+$", re.I)
 COLLAB_PROSE = re.compile(r"collaborat\w*\s+with\s+(?:the\s+|some\s+)?(?:\w+\s+){0,3}(?:students|researchers|postdocs)", re.I)
 CITE_INITIALS = re.compile(r"[A-Z][\w'\u00C0-\u017F-]+(?:\s[A-Z][\w'\u00C0-\u017F-]+)*,\s(?:[A-Z]\.\s?){1,3}(?:,|\.|\s)")
 OTHER_INST_AT = re.compile(r"@\s*([A-Z][A-Za-z]{1,8})\b")
@@ -1734,6 +1735,8 @@ def repair_reason(kit, school, name, best, start, pi=None):
     if cm and int(cm.group(1)) < WINDOW[0] and not best.get('years'):
         return 'outside_2016_2026', f'listed on a {cm.group(1)} capture, before the window, and undated'
     ds = (best.get('desc') or '')[:90]
+    if FACULTY_HEAD.search((best.get('head') or '').split(' > ')[-1]):
+        return 'not_a_student', 'under a visiting-scientist, faculty or collaborator heading'
     if ADMIN_DESC.search(ds):
         return 'not_a_student', 'administrative staff (secretary, administrative assistant): not a lab member in the study'
     if PROF_TITLE_DESC.search(ds) and not re.search(r'student|candidate|postdoc', ds, re.I):

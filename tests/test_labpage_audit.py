@@ -454,3 +454,10 @@ def test_courtesy_titles_bio_sentences_and_other_institution_roles():
     om = A.OTHER_INST_ROLE.search('Sarah Gonzalez MS Student MIT AeroAstro Aditi Gupta')
     assert om and om.group(1) == 'MIT'
     assert not A.OTHER_INST_ROLE.search('Xiangyu Peng MS Student UM Robotics Institute')
+
+
+def test_cotaught_and_visiting_scientist_heading():
+    assert A.COADVISER_BEFORE.search('Fall 2016: 10-601B Introduction to Machine Learning (Masters) , co-taught with ')
+    assert A.FACULTY_HEAD.search('Visiting Scientists at NTT Research')
+    assert A.FACULTY_HEAD.search('Collaborators')
+    assert not A.FACULTY_HEAD.search('PhD Students')
