@@ -55,7 +55,8 @@ def test_dry_run_lists_every_step_and_runs_nothing(env, capsys):
     r = Runner()
     assert AR.main(['--tag', 't3', '--dry-run'], runner=r) == 0 and r.calls == []
     out = capsys.readouterr().out
-    assert out.index('rebuild') < out.index('validate') < out.index('regression') < out.index('reader') < out.index('release') < out.index('export-push') < out.index('hf-upload')
+    order = [ln.split()[0] for ln in out.splitlines() if ln.strip()]
+    assert order == AR.ORDER
     assert 'EXTERNAL --yes-push' in out and 'EXTERNAL --yes-hf' in out
 
 
