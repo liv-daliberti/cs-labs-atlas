@@ -35,7 +35,7 @@ def schemas():
 def paths_for(xfile, school, root=None):
     """The files a schema's x-file pattern names for one school (or shared when the pattern has no <school>)."""
     if xfile in _FLAT:
-        return [P.data(_FLAT[xfile], school, root=root)]
+        return [P.data(_FLAT[xfile], school, root=root, layout='flat' if root else None)]  # a --root is a trial build or a release: flat names
     if xfile.startswith('docs/'):
         return [Path(root or P.CODE) / xfile]
     for top, base in (('export/', P.EXPORT), ('schools/', P.SCHOOLS_TREE)):

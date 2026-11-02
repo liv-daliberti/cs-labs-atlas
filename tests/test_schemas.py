@@ -83,3 +83,10 @@ def test_data_layout_doc_lists_every_data_file():
     doc = (CODE / 'docs' / 'DATA-LAYOUT.md').read_text()
     missing = [n for n, _, flat, split in P.DATA_FILES if f'| `{n}` |' not in doc or f'`{flat}`' not in doc or f'`{split}`' not in doc]
     assert not missing, missing
+
+
+def test_validate_root_reads_flat_names_in_either_layout(tmp_path, layout):
+    """A --root is a trial build (PI_HIERARCHY_OUT) or a release: both keep the flat names whatever the working layout (ROADMAP #32)."""
+    (tmp_path / 'hierarchy' / 'mit').mkdir(parents=True)
+    (tmp_path / 'hierarchy' / 'mit' / 'pis.json').write_text('[]')
+    assert V.paths_for('hierarchy/<school>/pis.json', 'mit', tmp_path) == [tmp_path / 'hierarchy' / 'mit' / 'pis.json']
