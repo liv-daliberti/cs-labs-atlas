@@ -57,7 +57,7 @@ def ndoi(s):
     return re.sub(r'^https?://(?:dx\.)?doi\.org/', '', str(s or '').strip(), flags=re.I).lower()
 
 
-def resolve(school, rows, status, by_doi, local_titles, access=None, matches=None):
+def resolve(school, rows, status, by_doi, local_titles, access=None, matches=None, alias=None):
     """The coverage counter's rule, one place (tools/reader_export.py uses it too): lab-paper rows -> ({paper key: {status, catalog,
     doi, oa, year, ...}}, counts). `status` is {catalog work id: status} (a downloaded copy whose identity is still pending is
     'identity_unconfirmed'), `by_doi` {DOI: work id}, `local_titles` the normalized titles of local copies. If `matches` is a
@@ -72,6 +72,7 @@ def resolve(school, rows, status, by_doi, local_titles, access=None, matches=Non
         for e in [r] + list(r.get('editions') or []):  # one unique paper: a copy of any edition counts
             oaw = f"{school}_oa_{(e.get('oa') or '').rsplit('/', 1)[-1]}"  # lab papers added to a catalog under their OpenAlex id (fulltext-push, 2026-10-22)
             c_ = e.get('work') if e.get('work') in status else (oaw if oaw in status else None) or by_doi.get(ndoi(e.get('doi'))) or (by_doi.get('10.48550/arxiv.' + r['arxiv']) if r.get('arxiv') else None)
+            c_ = (alias or {}).get(c_, c_)
             if c_ and (cid is None or status.get(c_) in LOCAL):
                 cid = c_
             if cid and status.get(cid) in LOCAL:
@@ -91,6 +92,7 @@ def resolve(school, rows, status, by_doi, local_titles, access=None, matches=Non
 
 def run(school):
     rows = [json.loads(l) for l in gzip.open(P.data('lab_papers.jsonl.gz', school), 'rt')]
+    alias = {}
     status, by_doi, local_titles, access = {}, {}, set(), {}  # the coverage counter's rule: any catalog work with the same id, DOI or title
     if (FT / school / 'catalog.sqlite').exists():
         db = sqlite3.connect(f'file:{FT / school / "catalog.sqlite"}?mode=ro', uri=True, timeout=120)
@@ -105,7 +107,12 @@ def run(school):
                         pass
                     access[wid] = dict(access_verdict=verdict, access_cause=cause, access_causes=causes)
                 time.sleep(0.05)
+        try:   # ROADMAP #28: DOI sibling works are aliases of one canonical work; a paper's copy is the canonical's
+            alias = dict(db.execute('select alias_id, canonical_id from work_alias'))
+        except sqlite3.OperationalError:
+            alias = {}
         for wid, doi, st, title, ic in chunks(db, 'id, doi, status, title, identity_check'):
+            wid = alias.get(wid, wid)
             if st == 'downloaded' and ic == PENDING:
                 st = 'identity_unconfirmed'  # a copy whose identity is not confirmed does not count (owner, 2026-10-31)
             if status.get(wid) not in LOCAL:
@@ -114,7 +121,9 @@ def run(school):
                 by_doi[ndoi(doi)] = wid
             if st in LOCAL and title:
                 local_titles.add(re.sub(r'[^a-z0-9]', '', title.lower()))
-    out, n = resolve(school, rows, status, by_doi, local_titles, access)
+    for a, c in alias.items():
+        status.setdefault(a, status.get(c))   # an alias id answers with its canonical's status
+    out, n = resolve(school, rows, status, by_doi, local_titles, access, alias=alias)
     summary = dict(school=school, lab_papers=len(out), **n, local_share=round(n['local'] / max(1, len(out)), 3),
                    counted_at=time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()))
     json.dump(dict(summary=summary, papers=out), open(P.data_w('copies.json', school), 'w'))

@@ -132,8 +132,11 @@ def load_school(school):
     db = sqlite3.connect(f'file:{cat}?mode=ro', uri=True, timeout=120)
     db.execute('PRAGMA busy_timeout=120000')
     doi_ids, t_ids, st = defaultdict(list), defaultdict(list), {}
+    al = F.alias_map(db)   # ROADMAP #28: an alias counts as its canonical work
     for i, d, s, t in F.works_rows(db, 'id, doi, status, title'):
-        st[i] = s
+        i = al.get(i, i)
+        if st.get(i) not in F.LOCAL:
+            st[i] = s
         d = F.ndoi(d)
         if d in want_doi:
             doi_ids[d].append(i)

@@ -35,8 +35,11 @@ def main():
         papers = F.lab_papers(school)
         db = sqlite3.connect(f'file:{F.FT / school / "catalog.sqlite"}?mode=ro', uri=True, timeout=120)
         info, doi_ids, title_ids = {}, defaultdict(list), defaultdict(list)
+        al = F.alias_map(db)   # ROADMAP #28
         for i, d, t, st in F.chunks(db, 'works', 'id, doi, title, status'):
-            info[i] = st
+            i = al.get(i, i)
+            if info.get(i) not in F.LOCAL:
+                info[i] = st
             if d:
                 doi_ids[F.ndoi(d)].append(i)
             if len(F.nt(t)) >= 20:

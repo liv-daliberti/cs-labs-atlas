@@ -16,6 +16,7 @@ Title + year groups are a REVIEW REPORT only (they are often a preprint and its 
   catalog_alias.py [school ...]            dry run (read-only): groups, canonical choice, coverage before/after, 10 sample groups per school
   catalog_alias.py [school ...] --apply    backup_catalog(store, 'before-alias'), then the rows in short transactions of at most 200 under the
                                            catalog write lock (fulltext-push/catalog_lock.py)
+  Each alias's candidate rows are copied to its canonical (INSERT OR IGNORE) in the same transaction, so the canonical keeps every URL.
   --report FILE                            write the dry-run report as JSON
 """
 import argparse, datetime, json, re, sqlite3, sys
@@ -118,6 +119,16 @@ def canonical_of(conn_or_map, work_id):
     return m.get(work_id, work_id)
 
 
+def copy_candidates(db, alias_ids):
+    """Copy the candidate rows of these aliases to their canonical works (INSERT OR IGNORE: an existing (work, url) row wins). Returns rows added."""
+    q = ','.join('?' * len(alias_ids))
+    before = db.total_changes
+    db.execute(f'insert or ignore into candidates (work_id, url, landing_url, license, version, metadata_source) '
+               f'select a.canonical_id, c.url, c.landing_url, c.license, c.version, c.metadata_source '
+               f'from candidates c join work_alias a on a.alias_id = c.work_id where a.alias_id in ({q})', alias_ids)
+    return db.total_changes - before
+
+
 def apply(store, groups, now=None):
     """Write the alias rows for a store: a locked backup first, then batches of at most BATCH rows, each its own short transaction."""
     sys.path.insert(0, str(P.FULLTEXT_PUSH))
@@ -133,9 +144,11 @@ def apply(store, groups, now=None):
             db = sqlite3.connect(str(Path(store) / 'catalog.sqlite'), timeout=60)
             try:
                 db.executescript(SCHEMA)
-                db.executemany('insert or ignore into work_alias values (?,?,?,?,?)', rows[i:i + BATCH])
-                db.commit()
+                part = rows[i:i + BATCH]
+                db.executemany('insert or ignore into work_alias values (?,?,?,?,?)', part)
                 n += db.total_changes
+                copy_candidates(db, [r[0] for r in part])   # the canonical keeps every URL its siblings had
+                db.commit()
             finally:
                 db.close()
     return n

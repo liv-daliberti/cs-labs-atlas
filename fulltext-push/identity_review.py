@@ -39,7 +39,7 @@ def catalog_pending(school, db, lab_ids):
     whole catalog), with its kind: lab (a lab paper's own work), sibling (a work sharing its DOI / title) or other."""
     copies = json.loads((F.P.data('copies.json', school)).read_text())['papers']
     cids = {c.get('catalog') for c in copies.values()}
-    ids = [i for i, ic, st in F.works_rows(db, 'id, identity_check, status') if ic == PENDING and st == 'downloaded']
+    ids = [i for i, ic, st in F.works_rows(db, 'id, identity_check, status', canonical=True) if ic == PENDING and st == 'downloaded']
     rows = {}
     for k in range(0, len(ids), 500):
         part = ids[k:k + 500]
@@ -147,7 +147,7 @@ def plan_alt(school, scope='pending'):
         reverted, _ = reverted_rows(school)
         ids = list(reverted)
     else:
-        ids = [i for i, ic, st in F.works_rows(db, 'id, identity_check, status') if ic == PENDING and st == 'downloaded']
+        ids = [i for i, ic, st in F.works_rows(db, 'id, identity_check, status', canonical=True) if ic == PENDING and st == 'downloaded']
     cand = {}
     for k in range(0, len(ids), 500):
         part = ids[k:k + 500]

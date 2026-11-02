@@ -42,7 +42,9 @@ def lab_work_ids(school, recent_first=None):
     import sqlite3
     db = sqlite3.connect(f'file:{F.FT / school / "catalog.sqlite"}?mode=ro', uri=True, timeout=120)
     doi_ids, title_ids = {}, {}
+    al = cs.get('alias') or {}   # ROADMAP #28: work ids are canonical, never an alias
     for i, d, t in F.works_rows(db, 'id, doi, title'):  # the works_slim covering index when present (2026-10-29)
+        i = al.get(i, i)
         if d:
             doi_ids.setdefault(F.ndoi(d), []).append(i)
         k = F.nt(t)
@@ -55,7 +57,7 @@ def lab_work_ids(school, recent_first=None):
             continue
         w = F.match_work(school, r, cs)
         group = ([w] if w else []) + doi_ids.get(F.ndoi(r.get('doi')), []) + title_ids.get(F.nt(r.get('title')), [])
-        group = [i for i in group if cs['status'].get(i) not in F.LOCAL]
+        group = [i for i in dict.fromkeys(al.get(i, i) for i in group) if cs['status'].get(i) not in F.LOCAL]
         if recent_first and (r.get('year') or 0) < recent_first:
             later += group
         else:

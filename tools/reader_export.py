@@ -285,7 +285,14 @@ def load_catalog(school, hosted_shas=()):
     db = sqlite3.connect(f'file:{P.STORES / school / "catalog.sqlite"}?mode=ro', uri=True, timeout=120)
     db.execute('pragma busy_timeout = 120000')
     status, by_doi, local_titles, title_local, sha_refs = {}, {}, set(), {}, collections.defaultdict(list)
+    try:   # ROADMAP #28: DOI sibling works are aliases of one canonical work (tools/catalog_alias.py); status and DOI map to the canonical
+        alias = dict(db.execute('select alias_id, canonical_id from work_alias'))
+    except sqlite3.OperationalError:
+        alias = {}
     for wid, doi, st, title, ic, sha in LPC.chunks(db, 'id, doi, status, title, identity_check, sha256'):
+        if sha and sha in hosted_shas:
+            sha_refs[sha].append(wid)   # the file belongs to the work that holds it
+        wid = alias.get(wid, wid)
         if st == 'downloaded' and ic == PENDING:
             st = 'identity_unconfirmed'
         if status.get(wid) not in LOCAL:
@@ -296,8 +303,9 @@ def load_catalog(school, hosted_shas=()):
             t = re.sub(r'[^a-z0-9]', '', title.lower())
             local_titles.add(t)
             title_local.setdefault(t, wid)
-        if sha and sha in hosted_shas:
-            sha_refs[sha].append(wid)
+    for a, c in alias.items():
+        status.setdefault(a, status.get(c))
+    load_catalog.alias = alias
     return db, status, by_doi, local_titles, title_local, sha_refs
 
 
@@ -320,7 +328,7 @@ def school_rows(school, lab_rows, arxiv_lic, hosted_shas=frozenset(), db_parts=N
     `links` (a reader_links.LinkTools) turns the catalog candidates of papers with no stored copy into confirmed source links."""
     db, status, by_doi, local_titles, title_local, sha_refs = db_parts or load_catalog(school, hosted_shas)
     matches = {}
-    out, counts = LPC.resolve(school, lab_rows, status, by_doi, local_titles, matches=matches)
+    out, counts = LPC.resolve(school, lab_rows, status, by_doi, local_titles, matches=matches, alias=getattr(load_catalog, 'alias', None))
     first = {}
     for r in lab_rows:
         first.setdefault(r['work'] or r['oa'], r)

@@ -56,8 +56,9 @@ def run(school, dry):
         if r['work_id'] in want:
             hist[(r['work_id'], r['url'])].append(r)
     st = {}
+    al = F.alias_map(db)
     for i, s in F.chunks(db, 'works', 'id, status'):
-        if i in want:
+        if i in want and i not in al:
             st[i] = s
     db.close()
     n, rows = Counter(), []

@@ -120,7 +120,11 @@ def load(school):
     store = STORES / school
     db = sqlite3.connect(f'file:{store / "catalog.sqlite"}?mode=ro', uri=True, timeout=120)
     db.row_factory = sqlite3.Row
-    ids = [r[0] for r in db.execute("SELECT id FROM works WHERE status='needs_access_review'")]
+    try:   # ROADMAP #28: an alias is classified through its canonical work
+        al = {r[0] for r in db.execute('SELECT alias_id FROM work_alias')}
+    except sqlite3.OperationalError:
+        al = set()
+    ids = [r[0] for r in db.execute("SELECT id FROM works WHERE status='needs_access_review'") if r[0] not in al]
     atts, cands = defaultdict(list), defaultdict(set)
     for i in range(0, len(ids), 500):
         part = ids[i:i + 500]

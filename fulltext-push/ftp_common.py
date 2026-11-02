@@ -182,7 +182,26 @@ SLIM_COLS = ('id', 'status', 'doi', 'title', 'year', 'identity_check', 'byte_cou
 SLIM_SQL = f"CREATE INDEX IF NOT EXISTS {SLIM_INDEX} ON works({', '.join(SLIM_COLS)})"
 
 
-def works_rows(db, cols, n=5000):
+def alias_map(db):
+    """{alias work id: canonical work id} of a catalog connection ({} before tools/catalog_alias.py made work_alias). ROADMAP #28: DOI sibling
+    works alias onto one canonical work; nothing is deleted, so every reader that counts or matches works maps through this."""
+    try:
+        return dict(read_retry(db, 'SELECT alias_id, canonical_id FROM work_alias'))
+    except sqlite3.OperationalError:
+        return {}
+
+
+def works_rows(db, cols, n=5000, canonical=False):
+    """canonical=True skips alias works (columns must include id)."""
+    if canonical:
+        al = alias_map(db)
+        i = [c.strip() for c in cols.split(',')].index('id')
+        yield from (r for r in works_rows(db, cols, n) if r[i] not in al)
+        return
+    yield from _works_rows(db, cols, n)
+
+
+def _works_rows(db, cols, n=5000):
     """Rows of `cols` (a comma list of works columns) in rowid order, as chunks(db, 'works', cols) yields them.
 
     When the catalog has the covering index works_slim (2026-10-29: SLIM_SQL) and every column is in it, the rows come from
@@ -212,9 +231,11 @@ def catalog_state(school, with_urls=True):
     path = FT / school / 'catalog.sqlite'
     st, doi, title, local, urls = {}, {}, {}, set(), defaultdict(set)
     if not path.exists():
-        return dict(status=st, doi=doi, title=title, local=local, urls=urls)
+        return dict(status=st, doi=doi, title=title, local=local, urls=urls, alias={})
     db = sqlite3.connect(f'file:{path}?mode=ro', uri=True, timeout=120)
+    alias = alias_map(db)   # ROADMAP #28: a sibling's rows and URLs belong to its canonical work
     for i, d, s, t in works_rows(db, 'id, doi, status, title'):
+        i = alias.get(i, i)
         if st.get(i) not in LOCAL:
             st[i] = s
         if d:
@@ -230,17 +251,20 @@ def catalog_state(school, with_urls=True):
     if with_urls:
         for tbl in ('candidates', 'attempts'):
             for w, u in chunks(db, tbl, 'work_id, url', n=20000):
-                urls[w].add(u)
+                urls[alias.get(w, w)].add(u)
     db.close()
-    return dict(status=st, doi=doi, title=title, local=local, urls=urls)
+    for a, c in alias.items():
+        st[a] = st.get(c, st.get(a))   # an alias id answers with its canonical's status
+    return dict(status=st, doi=doi, title=title, local=local, urls=urls, alias=alias)
 
 
 def match_work(school, r, cs):
     """The catalog work of a lab paper by the counter's rule: collection work id, our OA-keyed id, DOI, arXiv DOI, title."""
     st = cs['status']
+    al = cs.get('alias') or {}
     for k in (r.get('work'), oa_work_id(school, r)):
         if k and k in st:
-            return k
+            return al.get(k, k)
     d = ndoi(r.get('doi'))
     if d and d in cs['doi']:
         return cs['doi'][d]
