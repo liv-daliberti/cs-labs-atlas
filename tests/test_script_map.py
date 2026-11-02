@@ -7,7 +7,7 @@ from pathlib import Path
 
 CODE = Path(__file__).resolve().parents[1]
 MAP = (CODE / 'docs' / 'SCRIPT-MAP.md').read_text()
-BUILD = {'hierarchy/rebuild.sh', 'hierarchy/rebuild-all.slurm', 'hierarchy/organize-tree.slurm', 'hierarchy/build-equivalence.slurm', 'hierarchy/layout-equivalence.slurm', 'hierarchy/build-school.slurm', 'hierarchy/merge-equivalence.slurm', 'hierarchy/submit-parallel.sh',
+BUILD = {'hierarchy/rebuild.sh', 'hierarchy/rebuild-all.slurm', 'hierarchy/organize-tree.slurm', 'hierarchy/build-equivalence.slurm', 'hierarchy/layout-equivalence.slurm', 'hierarchy/build-school.slurm', 'hierarchy/merge-equivalence.slurm', 'hierarchy/submit-parallel.sh', 'hierarchy/release.slurm',
          'hierarchy/labpage-audit.slurm'}
 SCHOOLS = 'princeton|cmu|epfl|mit|berkeley|stanford|michigan'
 

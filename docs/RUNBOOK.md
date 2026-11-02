@@ -34,12 +34,14 @@ Set up a shell: `. /n/fs/resemble/homogenizing-science/code/paths.sh` (gives `$C
 
 ## Release
 
-A release is cut by the last stages of the rebuild (`tools/make_release.py`): `releases/<date>[.N]/`, read-only, with
-`MANIFEST.json` (hashes, code commit, rules, counts, regression, ledger, ids) and a generated `CHANGES.md`. `releases/latest`
-points at the newest. Releases are never overwritten or edited; notes are added only with `make_release.py add-note`.
-Downstream, from a release: `bin/atlas tree` (organized tree), `bin/atlas export <dir>` (GitHub export), the site handoff, the
-Hugging Face upload (`tools/hf_upload_release.py`). Before a push: `bin/atlas scan --history origin/dev..main` and the tests.
-Agents do not push; the coordinator does (`git push origin main:dev`).
+`atlas release` runs the whole chain and stops at the first failure: preflight, rebuild, validate, regression, reader export, release (with the generated
+CHANGES.md), notes check, organized tree, GitHub export (written and committed locally), then the two steps that publish outside this host, `export-push`
+(tag `release-<id>` and push) and `hf-upload`, and last the Codex handoff note (SITE-HANDOFF.md, added to the release). The two external steps need
+`--yes-push` / `--yes-hf` (or a "y" at the terminal); without them the run stops with exit status 3 and `--resume` continues after you confirm. As a job:
+`atlas submit hierarchy/release.slurm` (`RELEASE_ARGS="--yes-push --yes-hf"` in the environment to confirm in advance). `atlas release --dry-run` prints the steps.
+A release is `releases/<date>[.N]/`, read-only, with `MANIFEST.json` (hashes, code commit, rules, counts, regression, ledger, ids, reader) and `CHANGES.md`;
+`releases/latest` points at the newest. Releases are never overwritten or edited; notes are added only with `make_release.py add-note` (`atlas make-release`
+cuts just the release). Agents do not push; the coordinator confirms the external steps.
 
 ## Recovery
 

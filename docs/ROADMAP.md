@@ -100,7 +100,7 @@ Order: **P0** = starts right after the data-layout move (item 10 phase B), in th
 
 | # | Item | Status | Done when |
 |---|---|---|---|
-| 37 | One release command: `atlas release` | **P0-4** | rebuild → validate → regression → reader export → release notes → release → GitHub export → HF upload → Codex handoff note, in order, stopping at any failure |
+| 37 | One release command: `atlas release` | **P0-4** (built, refactor agent: tools/atlas_release.py, hierarchy/release.slurm, tests; the first real run is the next release) | rebuild → validate → regression → reader export → release notes → release → GitHub export → HF upload → Codex handoff note, in order, stopping at any failure |
 | 38 | One decision log | open | docs/DECISIONS.md, dated, each decision linked to the rule or file it changed |
 | 39 | Adding a school runs itself to the review steps | open (with 19) | `atlas new-school` + `atlas stage-gate` per stage; the protocol's checks as code |
 | 40 | Restart checklist in the runbook | open | other sessions, agent handover, auto-resume check, no job on live code |

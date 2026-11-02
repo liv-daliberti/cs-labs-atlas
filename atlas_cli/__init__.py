@@ -25,7 +25,7 @@ COMMANDS = {
     'evidence':   ('py', 'tools/evidence_check.py', 'the build-time evidence check'),
     'validate':   ('py', 'tools/validate.py', 'data files against schemas/: atlas validate [school ...] [--shared --reviewed --tree --export]'),
     'regression': ('py', 'tools/build_regression.py', 'build regression: snapshot | check --before <counts.json>'),
-    'release':    ('py', 'tools/make_release.py', 'cut a release (refuses on uncommitted code or failed stages)'),
+    'make-release': ('py', 'tools/make_release.py', 'cut just the release (refuses on uncommitted code or failed stages)'),
     'tree':       ('py', 'tools/organize_tree.py', 'the organized school/lab/paper tree from a release'),
     'export':     ('py', 'tools/export_release.py', 'the GitHub export: atlas export <repo dir> [--skip-atlas]'),
     'sweep':      ('py', 'tools/sweep_school.py', 'a school\'s OpenAlex sweep + sweep check: atlas sweep <school> [--daily] [--print]'),
@@ -39,6 +39,7 @@ COMMANDS = {
     'paths':      ('py', 'tools/atlas_paths.py', 'every path, or one: atlas paths [NAME]'),
     'relocate':   ('py', 'tools/relocate_project.py', 'the project move (dry run by default)'),
     'submit':     ('special', 'sbatch', 'sbatch with the code pinned: atlas submit [sbatch options] script.slurm (CS_ATLAS_SNAPSHOT_COMMIT = main\'s HEAD now)'),
+    'release':    ('py', 'tools/atlas_release.py', 'the whole release chain, stopping at the first failure: atlas release [--dry-run] [--yes-push] [--yes-hf] [--resume] [--from STEP]'),
     'parallel':   ('sh', 'hierarchy/submit-parallel.sh', 'per-school Slurm arrays + a merge job: atlas parallel equivalence OLD=<commit> REPORT=<dir> | atlas parallel rebuild'),
     'run':        ('special', '', 'any script of this checkout on the project interpreter: atlas run tools/x.py [...]'),
 }
