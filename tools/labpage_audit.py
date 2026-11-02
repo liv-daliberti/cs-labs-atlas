@@ -1686,7 +1686,7 @@ BIO_TAIL = re.compile(r"^(?:(?:Prof\.?|Professor|Dr\.?)\s+)?(?:[A-Z]\.|[A-Z][\w'
 OTHER_INST_ROLE = re.compile(r"\b(?:MS|M\.S\.|MSc|PhD|Ph\.D\.|BS|B\.S\.|Undergrad(?:uate)?|Master'?s?)\s+(?:Student|Candidate|Researcher)?\s*,?\s*(MIT|Harvard|Caltech|Cornell|Yale|Princeton|Columbia|Oxford|Cambridge|ETH|EPFL|NUS|Tsinghua|Stanford|Berkeley|CMU|UCLA|UCSD|Toronto|Waterloo|Michigan)\b")
 OWN_INST_NAMES = {'michigan': {'MICHIGAN'}, 'stanford': {'STANFORD'}, 'mit': {'MIT'}, 'cmu': {'CMU'}, 'berkeley': {'BERKELEY'}, 'epfl': {'EPFL'}, 'princeton': {'PRINCETON'}}
 FACULTY_HEAD = re.compile(r"\bVisiting\s+(?:Scientists?|Professors?|Faculty|Researchers?\s+at)\b|\bFaculty\b(?!.*student)|\bCollaborators?\b", re.I)
-NAME_NOISE = re.compile(r"\b(?:Oral'?s?|Orals?\s+Chair|Chair|Reader|Committee|Evaluator|Examiner|Moderator|Panelist)\b", re.I)
+NAME_NOISE = re.compile(r"\b(?:Fellowship|Scholarship|Award|Prize|Grant|Foundation|Oral'?s?|Orals?\s+Chair|Chair|Reader|Committee|Evaluator|Examiner|Moderator|Panelist)\b", re.I)
 PAREN_TAIL = re.compile(r'\s*\(([^()]{1,40})\)\s*$')
 COADVISER_BEFORE = re.compile(r"(?:co-?advis(?:ed|ors?|ing|e)|co-?taught|taught|co-?supervis\w*|jointly\s+\w+|joint(?:ly)?)\s*(?:with|w/|by|:)\s*$|\(\s*with\s+$|\bw/\s*$|\bwith\s+Prof\.?\s+$", re.I)
 COLLAB_PROSE = re.compile(r"collaborat\w*\s+with\s+(?:the\s+|some\s+)?(?:\w+\s+){0,3}(?:students|researchers|postdocs)", re.I)
@@ -1813,7 +1813,7 @@ def not_a_member_context(kit, school, name, best):
 def page_lacks_pi(kit, school, p, best):
     """Stanford: a page that never names the PI is a department or program page (Journalism's students list under Hancock),
     not the lab's page. Other schools' lab pages legitimately omit the PI's name, so this applies to Stanford only."""
-    if school != 'stanford':
+    if school not in ('stanford', 'berkeley'):
         return None
     try:
         t = kit.lpev.text(school, best.get('capture_url') or best['sha256'])

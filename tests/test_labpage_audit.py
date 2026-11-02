@@ -461,3 +461,9 @@ def test_cotaught_and_visiting_scientist_heading():
     assert A.FACULTY_HEAD.search('Visiting Scientists at NTT Research')
     assert A.FACULTY_HEAD.search('Collaborators')
     assert not A.FACULTY_HEAD.search('PhD Students')
+
+
+def test_fellowship_names_are_noise():
+    assert A.NAME_NOISE.search('William J. Happel Fellowship')
+    assert A.NAME_NOISE.search('NSF Graduate Research Fellowship')
+    assert not A.NAME_NOISE.search('William Happel')
