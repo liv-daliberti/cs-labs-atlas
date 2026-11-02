@@ -60,6 +60,22 @@ def recent_attempts(store, hours=24):
     return n
 
 
+def pending_canonical(store):
+    """Pending identity reviews that count (ROADMAP #28): an alias's duplicate download stays pending but is not a backlog. None without work_alias."""
+    p = store / 'catalog.sqlite'
+    if not p.exists():
+        return None
+    db = sqlite3.connect(f'file:{p}?mode=ro', uri=True, timeout=120)
+    try:
+        if not F.alias_map(db):
+            return None
+        return sum(1 for _i, ic, st in F.works_rows(db, 'id, identity_check, status', canonical=True) if ic == 'provider_link_only_review_pending' and st == 'downloaded')
+    except sqlite3.Error:
+        return None
+    finally:
+        db.close()
+
+
 def school_status(school):
     store = F.FT / school
     st = json.loads((store / 'loop-state.json').read_text()) if (store / 'loop-state.json').exists() else {}
@@ -77,7 +93,7 @@ def school_status(school):
     return dict(school=school, slurm_job=st.get('slurm_job'), host=st.get('host'), phase=st.get('phase'), rounds=st.get('rounds'),
                 updated_at=st.get('updated_at'), lab_work_ids=st.get('lab_work_ids'), idle_rounds=st.get('idle_rounds'),
                 attempts_24h=att.get('attempts', 0), downloads_24h=downloads, alarm=alarm, top_failures=dict(fails.most_common(3)),
-                catalog=prog.get('status_counts'), pending_identity_review=prog.get('pending_identity_review'), paused_sources=paused,
+                catalog=prog.get('status_counts'), pending_identity_review=(lambda c: prog.get('pending_identity_review') if c is None else c)(pending_canonical(store)), paused_sources=paused,
                 lab_papers=summ.get('lab_papers'), local=summ.get('local'), coverage=summ.get('local_share'), lab_queued=summ.get('queued'),
                 lab_access_review=summ.get('needs_access_review'), counted_at=summ.get('counted_at'))
 
@@ -98,7 +114,8 @@ def render(rows):
     for r in rows:
         ps = r['paused_sources'] or {}
         out.append(f"- **{r['school']}**: " + ('; '.join(f'{h} ({why})' for h, why in sorted(ps.items())) if ps else 'none'))
-    out += ['', '## Catalog status counts (the collector\'s last progress line)', '']
+    out += ['', '## Catalog status counts (the collector\'s last progress line)', '',
+            'Catalog status counts are raw work rows, aliases included (tools/catalog_alias.py); coverage above comes from copies.json, and pending identity review excludes aliases.', '']
     for r in rows:
         out.append(f"- **{r['school']}**: {json.dumps(r['catalog'] or {})}; pending identity review {r['pending_identity_review']}")
     return '\n'.join(out) + '\n'

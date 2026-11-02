@@ -106,3 +106,18 @@ def test_readers_resolve_through_the_alias_view(tmp_path, monkeypatch):
     assert len(list(F.works_rows(ro, 'id'))) == 3
     out, n = LPC.resolve('mit', [dict(work='mit_hash1', oa='W1', doi=None, title='x', year=2016)], dict(cs['status']), cs['doi'], set(), alias=cs['alias'])
     assert out['mit_hash1']['catalog'] == 'mit_oa_W1' and n['local'] == 1
+
+
+def test_alias_candidate_lands_once_on_a_canonical_without_candidates_and_a_second_apply_is_a_noop(tmp_path):
+    store = make_store(tmp_path)
+    db = sqlite3.connect(store / 'catalog.sqlite')
+    db.execute("delete from candidates where work_id='mit_oa_W1'")   # the canonical has none; its alias has exactly one
+    db.commit()
+    groups = A.plan(A.load(db))['groups']
+    db.close()
+    A.apply(store, groups)
+    A.apply(store, groups)
+    db = sqlite3.connect(store / 'catalog.sqlite')
+    assert list(db.execute("select work_id, url from candidates where work_id='mit_oa_W1'")) == [('mit_oa_W1', 'https://a/1.pdf')]
+    assert list(db.execute("select work_id, url from candidates where work_id='mit_hash1'")) == [('mit_hash1', 'https://a/1.pdf')]   # the alias keeps its own row
+    assert db.execute('select count(*) from work_alias').fetchone()[0] == 1
