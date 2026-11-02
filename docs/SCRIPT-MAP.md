@@ -60,6 +60,16 @@ by path, by basename and by module import, then checked by hand: every hit not l
 | `run_page1_all.sh` | Page-1 affiliation checks for every school, one school at a time (work lists, then arXiv v1 page 1); | none | retired: `archive/hierarchy/run_page1_all.sh` |
 | `run_page1_pdf.sh` | Page-1 checks only (work lists already fetched), with a chosen number of parallel downloads: | none | retired: `archive/hierarchy/run_page1_pdf.sh` |
 | `run_piworks_stanford.slurm` | Stanford PI works by anchored/reviewed OpenAlex id (tools/pi_fulltext_affiliation.py works), needed by the 2026-10-29 unaffiliated-byline rule; | none | retired: `archive/hierarchy/run_piworks_stanford.slurm` |
+| `berkeley-collector.slurm` | Berkeley collector pass: the channel steps plus the lab-first loop (superseded by downloads.slurm and the per-channel run_steps); | none | retired: `archive/fulltext-push/berkeley-collector.slurm` |
+| `cmu-collector.slurm` | CMU collector pass (superseded by downloads.slurm); | none | retired: `archive/fulltext-push/cmu-collector.slurm` |
+| `epfl-collector.slurm` | EPFL collector pass (superseded by downloads.slurm); | none | retired: `archive/fulltext-push/epfl-collector.slurm` |
+| `mit-collector.slurm` | MIT collector pass (superseded by downloads.slurm); | none | retired: `archive/fulltext-push/mit-collector.slurm` |
+| `princeton-collector.slurm` | Princeton collector pass (superseded by downloads.slurm); | none | retired: `archive/fulltext-push/princeton-collector.slurm` |
+| `stanford-collector.slurm` | Stanford collector pass (superseded by downloads.slurm; michigan-collector.slurm keeps the pattern); | none | retired: `archive/fulltext-push/stanford-collector.slurm` |
+| `identity-review.slurm` | one-off identity review run (2026-10-31); | none | retired: `archive/fulltext-push/identity-review.slurm` |
+| `mit-oa-harvest.slurm` | MIT OA articles harvest (one-off); | none | retired: `archive/fulltext-push/mit-oa-harvest.slurm` |
+| `mit-steps.slurm` | MIT channel steps (one-off); | none | retired: `archive/fulltext-push/mit-steps.slurm` |
+| `s2-rerun.slurm` | Semantic Scholar re-run of four schools (one-off); | none | retired: `archive/fulltext-push/s2-rerun.slurm` |
 | `run_stanford_sweep.sh` | Resumable OpenAlex sweep for Stanford in month windows (tools/oa_sweep.py sweep_paged), now with the OpenAlex key from ~/.config/cs-atlas/openalex.env (copied there from soak on 2026-10-27; | none | folded: tools/sweep_school.py stanford; the original is in archive/ |
 | `run_sweeps.sh` | OpenAlex school sweeps for the PI hierarchy (2026-10-22); | none | retired: `archive/hierarchy/run_sweeps.sh` |
 
