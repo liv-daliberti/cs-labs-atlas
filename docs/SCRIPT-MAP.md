@@ -4,7 +4,7 @@
 against the tree.
 
 Inventory of 2026-10-31 (refactor agent). Scope: every tracked script (`.py`, `.sh`, `.slurm`) under `hierarchy/` except the
-build itself (`rebuild.sh`, `rebuild-all.slurm`, `organize-tree.slurm`, `build-equivalence.slurm`, `layout-equivalence.slurm`, `labpage-audit.slurm`), under
+build itself (`rebuild.sh`, `rebuild-all.slurm`, `organize-tree.slurm`, `build-equivalence.slurm`, `layout-equivalence.slurm`, `build-school.slurm`, `merge-equivalence.slurm`, `submit-parallel.sh`, `labpage-audit.slurm`), under
 `census/`, the per-school listing configs `listings/scripts/config_<school>.py`, the per-school tools `tools/<school>_*.py`, and
 the per-school scripts of `fulltext-push/`.
 

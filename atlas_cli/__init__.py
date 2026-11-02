@@ -39,6 +39,7 @@ COMMANDS = {
     'paths':      ('py', 'tools/atlas_paths.py', 'every path, or one: atlas paths [NAME]'),
     'relocate':   ('py', 'tools/relocate_project.py', 'the project move (dry run by default)'),
     'submit':     ('special', 'sbatch', 'sbatch with the code pinned: atlas submit [sbatch options] script.slurm (CS_ATLAS_SNAPSHOT_COMMIT = main\'s HEAD now)'),
+    'parallel':   ('sh', 'hierarchy/submit-parallel.sh', 'per-school Slurm arrays + a merge job: atlas parallel equivalence OLD=<commit> REPORT=<dir> | atlas parallel rebuild'),
     'run':        ('special', '', 'any script of this checkout on the project interpreter: atlas run tools/x.py [...]'),
 }
 
