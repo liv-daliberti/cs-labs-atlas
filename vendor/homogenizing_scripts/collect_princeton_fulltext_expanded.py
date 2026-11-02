@@ -21,6 +21,10 @@ import xml.etree.ElementTree as ET
 from protego import Protego
 import requests
 import collect_princeton_fulltext as base
+import atlas_paths as P  # noqa: E402
+import sys as _sys  # noqa: E402
+_sys.path.append(str(P.FULLTEXT_PUSH))
+import catalog_lock as CL  # noqa: E402  (one writer per catalog; docs/STORES.md)
 
 CORPUS=base.DEFAULT_OUT
 STAGE=CORPUS/'discovery/expanded-20261015'
@@ -289,8 +293,8 @@ def finish(db,args):
     import csv
     with (args.out/'fulltext_assets.csv').open('w',newline='') as f:
         writer=csv.writer(f);writer.writerow(['paper_id','format','source_url','local_path','sha256','bytes','version','license','evidence_path','downloaded_at','identity_check'])
-        writer.writerows(db.execute('SELECT * FROM assets ORDER BY work_id,kind,url'))
-    for row in db.execute("SELECT a.work_id,a.kind,a.path,w.year,n.id,n.name FROM assets a JOIN works w ON a.work_id=w.id JOIN edges e ON e.source=w.id AND e.kind='listed_by' JOIN nodes n ON n.id=e.target AND n.kind='lab' WHERE a.kind='xml'"):
+        writer.writerows(db.execute('SELECT * FROM assets ORDER BY work_id,kind,url').fetchall())  # no open cursor while files are written
+    for row in db.execute("SELECT a.work_id,a.kind,a.path,w.year,n.id,n.name FROM assets a JOIN works w ON a.work_id=w.id JOIN edges e ON e.source=w.id AND e.kind='listed_by' JOIN nodes n ON n.id=e.target AND n.kind='lab' WHERE a.kind='xml'").fetchall():
         name=re.sub(r'[^a-z0-9]+','-',row[5].lower()).strip('-')[:70]
         directory=args.out/'by_lab'/(name+'--'+row[4]);directory.mkdir(parents=True,exist_ok=True)
         link=directory/(str(row[3])+'--'+row[0].replace('/','%2F')+'.xml')
@@ -319,11 +323,12 @@ def main():
         db.execute('CREATE INDEX IF NOT EXISTS attempts_work_url ON attempts(work_id,url)')
         db.execute('CREATE TABLE IF NOT EXISTS assets (work_id TEXT,kind TEXT,url TEXT,path TEXT,sha256 TEXT,bytes INTEGER,version TEXT,license TEXT,metadata_source TEXT,downloaded_at TEXT,identity_check TEXT,PRIMARY KEY(work_id,kind,url))')
         # Bring earlier PDFs into the unified asset manifest without fetching them again.
-        for w in db.execute("SELECT * FROM works w WHERE status='downloaded' AND NOT EXISTS (SELECT 1 FROM assets a WHERE a.work_id=w.id AND a.kind='pdf')").fetchall():
-            a=db.execute("SELECT detail FROM attempts WHERE work_id=? AND status='downloaded' ORDER BY id DESC LIMIT 1",(w['id'],)).fetchone()
-            d=json.loads(a[0]) if a else {}
-            db.execute('INSERT OR IGNORE INTO assets VALUES (?,?,?,?,?,?,?,?,?,?,?)',(w['id'],'pdf',w['download_url'],w['file_path'],w['sha256'],w['byte_count'],d.get('version_as_listed'),d.get('license_as_listed'),d.get('metadata_source',w['metadata_source']),w['downloaded_at'],w['identity_check']))
-        db.commit()
+        with CL.catalog_lock(args.out):  # one writer per catalog: this backfill used to write without it (docs/STORES.md)
+            for w in db.execute("SELECT * FROM works w WHERE status='downloaded' AND NOT EXISTS (SELECT 1 FROM assets a WHERE a.work_id=w.id AND a.kind='pdf')").fetchall():
+                a=db.execute("SELECT detail FROM attempts WHERE work_id=? AND status='downloaded' ORDER BY id DESC LIMIT 1",(w['id'],)).fetchone()
+                d=json.loads(a[0]) if a else {}
+                db.execute('INSERT OR IGNORE INTO assets VALUES (?,?,?,?,?,?,?,?,?,?,?)',(w['id'],'pdf',w['download_url'],w['file_path'],w['sha256'],w['byte_count'],d.get('version_as_listed'),d.get('license_as_listed'),d.get('metadata_source',w['metadata_source']),w['downloaded_at'],w['identity_check']))
+            db.commit()
         reclassify_nonarticles(db,args.out)
         if not args.skip_candidate_import:import_candidates(db,args.stage)
         if args.export_only or args.import_only:finish(db,args);return

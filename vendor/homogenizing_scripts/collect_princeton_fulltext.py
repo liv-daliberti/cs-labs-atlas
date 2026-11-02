@@ -318,22 +318,22 @@ def export(db,args):
     fields=['paper_id','title','doi','year','status','local_pdf','sha256','byte_count','pages','identity_check','lab_ids','lab_names','download_url','download_version','license_as_listed']
     with (args.out/'catalog.csv').open('w',newline='') as f:
         writer=csv.DictWriter(f,fieldnames=fields);writer.writeheader()
-        for row in db.execute('SELECT * FROM works ORDER BY year DESC,title'):
+        for row in db.execute('SELECT * FROM works ORDER BY year DESC,title').fetchall():  # fetchall: no cursor stays open while files are written (docs/STORES.md)
             labs=db.execute("SELECT DISTINCT n.id,n.name FROM edges e JOIN nodes n ON n.id=e.target WHERE e.source=? AND e.kind='listed_by' AND n.kind='lab' ORDER BY n.name",(row['id'],)).fetchall()
             attempt=db.execute("SELECT detail FROM attempts WHERE work_id=? AND status='downloaded' ORDER BY id DESC LIMIT 1",(row['id'],)).fetchone()
             details=json.loads(attempt[0]) if attempt else {}
             writer.writerow(dict(zip(fields,[row['id'],row['title'],row['doi'],row['year'],row['status'],row['file_path'],row['sha256'],row['byte_count'],row['pages'],row['identity_check'],'; '.join(x['id'] for x in labs),'; '.join(x['name'] for x in labs),row['download_url'],details.get('version_as_listed'),details.get('license_as_listed')])))
     with gzip.open(args.out/'relationships.jsonl.gz','wt') as f:
-        for row in db.execute('SELECT record_json FROM edges ORDER BY id'):f.write(row[0]+'\n')
+        for row in db.execute('SELECT record_json FROM edges ORDER BY id').fetchall():f.write(row[0]+'\n')
     with gzip.open(args.out/'entities.jsonl.gz','wt') as f:
-        for row in db.execute('SELECT record_json FROM nodes ORDER BY id'):f.write(row[0]+'\n')
+        for row in db.execute('SELECT record_json FROM nodes ORDER BY id').fetchall():f.write(row[0]+'\n')
     with (args.out/'lab_leadership.csv').open('w',newline='') as f:
         writer=csv.writer(f)
         writer.writerow(['lab_id','lab_name','person_id','person_name','role_as_listed','status_as_listed','evidence_json'])
-        for row in db.execute("SELECT e.record_json,p.id,p.name,l.id,l.name FROM edges e JOIN nodes p ON p.id=e.source JOIN nodes l ON l.id=e.target WHERE e.kind='leads' ORDER BY l.name,p.name"):
+        for row in db.execute("SELECT e.record_json,p.id,p.name,l.id,l.name FROM edges e JOIN nodes p ON p.id=e.source JOIN nodes l ON l.id=e.target WHERE e.kind='leads' ORDER BY l.name,p.name").fetchall():
             e=json.loads(row[0]);writer.writerow([row[3],row[4],row[1],row[2],e.get('role'),e.get('status'),row[0]])
     # Per-lab folders point to one checksum-addressed copy of each PDF.
-    for row in db.execute("SELECT DISTINCT w.id,w.year,w.file_path,n.id,n.name FROM works w JOIN edges e ON e.source=w.id AND e.kind='listed_by' JOIN nodes n ON n.id=e.target AND n.kind='lab' WHERE w.status='downloaded'"):
+    for row in db.execute("SELECT DISTINCT w.id,w.year,w.file_path,n.id,n.name FROM works w JOIN edges e ON e.source=w.id AND e.kind='listed_by' JOIN nodes n ON n.id=e.target AND n.kind='lab' WHERE w.status='downloaded'").fetchall():
         name=re.sub(r'[^a-z0-9]+','-',row[4].lower()).strip('-')[:70]
         directory=args.out/'by_lab'/(name+'--'+row[3]);directory.mkdir(parents=True,exist_ok=True)
         link=directory/(str(row[1])+'--'+row[0].replace('/','%2F')+'.pdf')
