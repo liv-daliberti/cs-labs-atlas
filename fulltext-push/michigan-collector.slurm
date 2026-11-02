@@ -11,14 +11,22 @@
 #SBATCH --cpus-per-task=2
 #SBATCH --mem=8G
 #SBATCH --time=3-00:00:00
+#SBATCH --signal=B:USR1@900   # near the limit: stop cleanly and resubmit as the loop-only task downloads.slurm --array=6 (loop_job.sh, ROADMAP #18)
 #SBATCH --output=fulltext-push/logs/michigan-collector-%j.out
 . "${CS_ATLAS_CODE:-$SLURM_SUBMIT_DIR}/paths.sh" || exit 1  # submit from the code root  # every path in one place (tools/atlas_paths.py)
 export CS_ATLAS_COLLECTOR_PY="$CS_ATLAS_PY"
 export FTP_PY="$CS_ATLAS_COLLECTOR_PY"
 . "$CS_ATLAS_CODE/fulltext-push/job_snapshot.sh" || exit 1  # code of one commit, data shared (docs/CONTRIBUTING.md); submit with `atlas submit`
 cd "$CS_ATLAS_FULLTEXT_PUSH"
+. "$CS_ATLAS_CODE/fulltext-push/loop_job.sh"
+RESTART_LOG="$CS_ATLAS_FT_LOGS/lab_first_loop-michigan.out"
 ./run_steps.sh michigan oa_arxiv openalex proceedings arxiv_title dblp_ee s2 core europepmc pmc figshare labpages pihomes wayback_acm \
     >> "$CS_ATLAS_FT_LOGS"/steps-michigan.log 2>&1 < /dev/null &
-nice -n 5 $CS_ATLAS_COLLECTOR_PY -I -u lab_first_loop.py michigan --recent-first 2023 \
-    >> "$CS_ATLAS_FT_LOGS"/lab_first_loop-michigan.out 2>&1 < /dev/null &
+EXTRA_PIDS=($!)
+# the channels are finite and finished 2026-10-31; the restart is the loop alone (downloads.slurm task 6)
+run_restartable "fulltext-push/downloads.slurm" "--array=6" -- \
+    nice -n 5 $CS_ATLAS_COLLECTOR_PY -I -u lab_first_loop.py michigan --recent-first 2023 \
+    >> "$CS_ATLAS_FT_LOGS"/lab_first_loop-michigan.out 2>&1 < /dev/null
+rc=$?
 wait
+exit $rc

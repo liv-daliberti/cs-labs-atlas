@@ -21,11 +21,17 @@ Set up a shell: `. /n/fs/resemble/homogenizing-science/code/paths.sh` (gives `$C
 
 ## Collectors
 
-- Six loops, one per school with a store, as one Slurm array: `sbatch fulltext-push/downloads.slurm` (submit from the code
-  root). `hierarchy/COLLECTORS-STATUS.md` (regenerated after every round) shows each loop's job, phase, last round,
+- Seven loops, one per school with a store, as one Slurm array (task 0-6, Michigan is 6): `atlas submit fulltext-push/downloads.slurm`
+  (from the code root; `--array=N` for one school; pins main's HEAD). `hierarchy/COLLECTORS-STATUS.md` (regenerated after every round) shows each loop's job, phase, last round,
   attempts and downloads in 24 h. Check it before touching anything.
 - Stop a loop: `scancel <jobid>` (SIGTERM; the running pass stops cleanly and loses nothing, tried URLs are recorded).
   A loop that idles backs off from 10 minutes to 4 hours by itself.
+- **Loops restart themselves** (ROADMAP #18, `fulltext-push/loop_job.sh`): Slurm sends USR1 to the batch script 900 s before the
+  3-day limit (`--signal=B:USR1@900`); the script stops the loop with TERM (lock released, pass stopped cleanly), then runs
+  `atlas submit --test-only` and, unless it prints `Preempts:`, `atlas submit fulltext-push/downloads.slurm --array=<n>`, which
+  pins main's HEAD at that moment. The line `{"loop_job": ...}` in `<store>/loop.log`/`lab_first_loop-<school>.out` says what
+  happened; a refused or failed resubmit leaves the loop down (the status page alarm). `scancel` (TERM) stops for good: no resubmit.
+  Michigan's collector job restarts as `downloads.slurm --array=6`, the loop alone. Proof: `tests/test_loop_job.py`.
 - A second loop for the same store exits at once (`<store>/.loop.lock`); `flock -n <store>/.loop.lock true` tells whether it is free.
 - Never run a writer that does not take the catalog lock (Princeton importer, vendored Infoscience/DSpace resolvers) while that
   store's loop runs (docs/STORES.md). Do not `du` or walk `stores/`; use `df`.

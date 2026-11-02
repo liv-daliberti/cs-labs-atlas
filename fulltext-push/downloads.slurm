@@ -8,13 +8,17 @@
 #SBATCH --cpus-per-task=2
 #SBATCH --mem=8G
 #SBATCH --time=3-00:00:00
-#SBATCH --array=0-5
+#SBATCH --array=0-6
+#SBATCH --signal=B:USR1@900   # 15 min before the limit: stop the loop cleanly and resubmit this task (loop_job.sh, ROADMAP #18)
 #SBATCH --output=fulltext-push/logs/downloads-%A_%a.out
-SCHOOLS=(princeton cmu epfl mit berkeley stanford)
+SCHOOLS=(princeton cmu epfl mit berkeley stanford michigan)  # 6 = michigan (its channels finished 2026-10-31: the loop only)
 s=${SCHOOLS[$SLURM_ARRAY_TASK_ID]}
 . "${CS_ATLAS_CODE:-${SLURM_SUBMIT_DIR:?}}/paths.sh" || exit 1  # every path in one place (tools/atlas_paths.py); submit from the code root
 export CS_ATLAS_COLLECTOR_PY="$CS_ATLAS_PY"  # compute nodes have no /usr/local/anaconda3; the project env has protego and bs4 (as michigan-collector.slurm)
 . "$CS_ATLAS_CODE/fulltext-push/job_snapshot.sh" || exit 1  # code of one commit, data shared (docs/CONTRIBUTING.md); submit with `atlas submit`
 cd "$CS_ATLAS_FULLTEXT_PUSH"
-# no exec: the snapshot's EXIT trap must run when the loop ends. A restart takes the then-current commit (atlas submit pins it).
-nice -n 5 ${CS_ATLAS_COLLECTOR_PY} -I -u lab_first_loop.py $s --recent-first 2023 >> "$CS_ATLAS_FT_LOGS"/lab_first_loop-$s.out 2>&1 < /dev/null
+. "$CS_ATLAS_CODE/fulltext-push/loop_job.sh"
+RESTART_LOG="$CS_ATLAS_FT_LOGS/lab_first_loop-$s.out"
+# the loop runs as a child so USR1 near the time limit can stop it and resubmit this task (loop_job.sh); TERM from scancel stops it for good
+run_restartable "fulltext-push/downloads.slurm" "--array=$SLURM_ARRAY_TASK_ID" -- \
+  nice -n 5 ${CS_ATLAS_COLLECTOR_PY} -I -u lab_first_loop.py $s --recent-first 2023 >> "$CS_ATLAS_FT_LOGS"/lab_first_loop-$s.out 2>&1 < /dev/null
