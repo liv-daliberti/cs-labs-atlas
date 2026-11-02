@@ -1680,6 +1680,11 @@ CITATION_CONTEXT = re.compile(r"\bpp\.\s*\d|\bPDF\s*\||\bView details for\b|\bPr
 
 ADMIN_DESC = re.compile(r"\b(?:Secretary|Administrative\s+(?:Assistant|Specialist|Associate|Staff)|Group\s+Administrator|Office\s+Manager|Executive\s+Assistant)\b", re.I)
 AFFILIATE_DESC = re.compile(r"^\W{0,3}(?:Research\s+|Senior\s+)?(?:Affiliate|Partner|Collaborator|Consulting\s+Professor|Adjunct)\b", re.I)
+PROF_TITLE_DESC = re.compile(r"^\W{0,3}(?:\(\s*)?(?:consulting|courtesy|adjunct|emeritus)\s+(?:associate\s+|assistant\s+|full\s+)?(?:professor|faculty|lecturer)\b|^\W{0,3}(?:Professor|Associate Professor|Assistant Professor)\b", re.I)
+BIO_TRIGGER = re.compile(r"(?:worked\s+(?:closely\s+)?with|advised\s+by|advis[eo]rs?\s+(?:was|were|is|are)|mentored\s+by|supervised\s+by|collaborat\w+\s+with|together\s+with|studied\s+under|under\s+the\s+(?:guidance|supervision)\s+of)\s+", re.I)
+BIO_TAIL = re.compile(r"^(?:(?:Prof\.?|Professor|Dr\.?)\s+)?(?:[A-Z]\.|[A-Z][\w'À-ſ-]+)(?:\s+(?:[A-Z]\.|[A-Z][\w'À-ſ-]+)){0,3}(?:\s*(?:,|and|&)\s+(?:(?:Prof\.?|Professor|Dr\.?)\s+)?(?:[A-Z]\.|[A-Z][\w'À-ſ-]+)(?:\s+(?:[A-Z]\.|[A-Z][\w'À-ſ-]+)){0,3})*\s*,?\s*(?:and\s+)?$")
+OTHER_INST_ROLE = re.compile(r"\b(?:MS|M\.S\.|MSc|PhD|Ph\.D\.|BS|B\.S\.|Undergrad(?:uate)?|Master'?s?)\s+(?:Student|Candidate|Researcher)?\s*,?\s*(MIT|Harvard|Caltech|Cornell|Yale|Princeton|Columbia|Oxford|Cambridge|ETH|EPFL|NUS|Tsinghua|Stanford|Berkeley|CMU|UCLA|UCSD|Toronto|Waterloo|Michigan)\b")
+OWN_INST_NAMES = {'michigan': {'MICHIGAN'}, 'stanford': {'STANFORD'}, 'mit': {'MIT'}, 'cmu': {'CMU'}, 'berkeley': {'BERKELEY'}, 'epfl': {'EPFL'}, 'princeton': {'PRINCETON'}}
 NAME_NOISE = re.compile(r"\b(?:Oral'?s?|Orals?\s+Chair|Chair|Reader|Committee|Evaluator|Examiner|Moderator|Panelist)\b", re.I)
 PAREN_TAIL = re.compile(r'\s*\(([^()]{1,40})\)\s*$')
 COADVISER_BEFORE = re.compile(r"(?:co-?advis(?:ed|ors?|ing|e)|co-?supervis\w*|jointly\s+\w+|joint(?:ly)?)\s*(?:with|w/|by|:)\s*$|\(\s*with\s+$|\bw/\s*$|\bwith\s+Prof\.?\s+$", re.I)
@@ -1731,6 +1736,8 @@ def repair_reason(kit, school, name, best, start, pi=None):
     ds = (best.get('desc') or '')[:90]
     if ADMIN_DESC.search(ds):
         return 'not_a_student', 'administrative staff (secretary, administrative assistant): not a lab member in the study'
+    if PROF_TITLE_DESC.search(ds) and not re.search(r'student|candidate|postdoc', ds, re.I):
+        return 'not_a_student', 'a consulting, courtesy, adjunct or professor title: faculty, not a student'
     if AFFILIATE_DESC.search(ds):
         return 'not_a_student', 'an affiliate, partner or collaborator of the group, not a member'
     if NAME_NOISE.search(name or ''):
@@ -1744,6 +1751,13 @@ def repair_reason(kit, school, name, best, start, pi=None):
     if j >= 0:
         k = t.find(name.split()[0], j) if name else j
         k = j if k < 0 else k
+        pre_bio = t[max(0, k - 140): k]
+        tm = list(BIO_TRIGGER.finditer(pre_bio))
+        if tm and (not pre_bio[tm[-1].end():].strip() or BIO_TAIL.match(pre_bio[tm[-1].end():])) and len(re.findall(r'\b[a-z]{3,}\b', pre_bio[:tm[-1].start()])) >= 3:
+            return 'not_a_student', 'named in a bio sentence (worked with / advised by ...), not listed as a member'
+        om = OTHER_INST_ROLE.search(t[k + len(name): k + len(name) + 40])
+        if om and om.group(1).upper() not in OWN_INST_NAMES.get(school, set()) and not re.search(r'(?:now|next|currently|then|→|->|\bat)\W{0,3}(?:a\s+|an\s+)?$', t[k + len(name): k + len(name) + om.start()][-40:], re.I):
+            return 'site_at_other_institution', f'the entry places the person at {om.group(1)}'
         if COADVISER_BEFORE.search(t[max(0, k - 40): k]):
             return 'not_a_student', 'named as the co-adviser of another member (co-advised with / jointly supervised with)'
         if pi and other_pis_on_page(school, pi, t, k) >= 6 and len(re.findall(r'co-?advis|jointly|\bw/|\(with ', t[max(0, k - 900): k + 900], re.I)) < 2 and fold(pi.split()[-1]).lower() not in fold(t[k: k + 120]).lower():

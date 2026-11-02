@@ -442,3 +442,15 @@ def test_admin_staff_and_affiliates_are_not_members():
     assert not A.ADMIN_DESC.search('Position Scientist Office ME C2')
     assert A.AFFILIATE_DESC.search('Research Affiliate, Berkman Klein Center')
     assert not A.AFFILIATE_DESC.search('Research Scientist, ICSI')
+
+
+def test_courtesy_titles_bio_sentences_and_other_institution_roles():
+    assert A.PROF_TITLE_DESC.search('(consulting professor).')
+    assert A.PROF_TITLE_DESC.search('Professor, University of Toronto')
+    assert not A.PROF_TITLE_DESC.search('PhD student, Computer Science')
+    pre = 'I obtained my B.S. and M.S. degrees in EE from Bilkent University, where I worked with '
+    m = list(A.BIO_TRIGGER.finditer(pre))
+    assert A.BIO_TAIL.match('Orhan Arikan and ') is not None
+    om = A.OTHER_INST_ROLE.search('Sarah Gonzalez MS Student MIT AeroAstro Aditi Gupta')
+    assert om and om.group(1) == 'MIT'
+    assert not A.OTHER_INST_ROLE.search('Xiangyu Peng MS Student UM Robotics Institute')
