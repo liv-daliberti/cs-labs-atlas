@@ -262,3 +262,13 @@ listed). Used in further rounds only as part of the normal rule set.
   unusual and its metadata is not in OpenAlex as a typed article. If the publisher record shows a comment or editorial type, the row is
   `not_a_paper` and leaves the EPFL papers (28 rows) as a subset; it counted 0.5 in each EPFL paper round and is not a membership
   question. Decision pending a look at the publisher record.
+
+## Open repairs (2026-11-02)
+
+The lab-page work stops here for the November release. Two repairs remain open for the owner to revisit:
+
+1. **Older-lab test.** The undated-name rule (an explicit current marker is needed in a lab older than the window) keys on the PI's
+   first period year, which is 2016 for PIs whose earliest capture is the window start (Grossmann, Tai-Sing Lee). Those labs are
+   treated as new and their undated alumni and visitors pass (CMU round 6).
+2. **Stale-page footer year.** A page whose latest year is before 2016 (a footer such as `Copyright 2012`) is a stale page even when
+   captured later; its 'current' students are pre-window (Stanford round 6, Olukotun).
