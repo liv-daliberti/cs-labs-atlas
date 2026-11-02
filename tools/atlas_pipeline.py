@@ -69,7 +69,7 @@ def submit(name, schools, run=subprocess.run, test_only=False, commit=None):
             argv.append(f'--dependency=afterok:{prev}')
         # the command contains spaces and quotes: everything travels in the environment (--export=ALL), not in a comma list
         e = dict(os.environ, PIPE_CMD=cmd, CS_ATLAS_SNAPSHOT_COMMIT=commit, **env)
-        argv += ['--export=ALL', str(CODE / 'hierarchy' / 'pipeline-stage.slurm')]
+        argv += ['--export=ALL', str(CODE / 'hierarchy' / 'pipeline-stage.slurm')]  # route-ok: code that stays in hierarchy/
         r = run(argv, capture_output=True, text=True, env=e, cwd=str(CODE))
         if r.returncode:
             raise SystemExit(f'sbatch failed for stage {stage}: {r.stderr.strip()[:300]}')
