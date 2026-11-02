@@ -221,7 +221,7 @@ def store(school):
 # Code asks data(name, school) instead of joining paths, so the move is this table plus DATA_LAYOUT, as LAYOUT_DEFAULT
 # was for the project move. Kinds: raw (captures and pulls, never rewritten after capture), reviewed (decisions, changed
 # only by review tools and commits), derived (written only by the build), work (tool state, rebuildable), report.
-DATA_LAYOUT_DEFAULT = 'flat'
+DATA_LAYOUT_DEFAULT = 'split'
 DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the school key
     # per school: the build's outputs
     ('pis.json', 'derived', 'hierarchy/{school}/pis.json', 'hierarchy/{school}/derived/pis.json'),
