@@ -1,7 +1,6 @@
 # OpenAlex bulk snapshot instead of the API (ROADMAP #24, P0-1): plan
 
-Status 2026-11-01: **plan only**. No job has run and no code changed. Figures marked (verify) come from OpenAlex's public
-documentation as known today and are confirmed by the probe in step 0 before anything is built.
+Status 2026-11-02: step 0 done (section 3 holds the measured sizes and layout); no build job has run.
 
 ## 1. Why
 The shared key allows 10,000 credits a day, split between this work and the lab-page audit. It throttles the sweeps
@@ -32,14 +31,31 @@ Works (the large part) and authors, filtered to what the pipeline reads.
 - Types: keep all, but tag `type`; readers already drop datasets (Michigan's 434,618 ENCODE records of 2022 are the big case, so
   **drop `type == dataset` with a DOI prefix 10.17989 at the filter** to save about 1 GB; everything else stays).
 
-## 3. The source
-- Public S3 bucket `s3://openalex` (us-east-1), no credentials, also reachable over HTTPS (`https://openalex.s3.amazonaws.com/...`).
-  Layout (verify): `data/works/updated_date=YYYY-MM-DD/part_NNN.gz` (gzipped JSON Lines, one work per line),
-  `data/authors/...`, `data/institutions/...`, `data/works/manifest` with per-part sizes and record counts.
-- Size (verify): works are roughly 250 million records, about 300 GB gzipped and 1.5-2 TB uncompressed; authors about 90-100
-  million, tens of GB. The manifest gives exact byte counts; step 0 reads only the manifests (a few KB).
-- The host has no `aws` CLI; use HTTPS ranges/streams from Python (`requests`, already in the env), or boto3 with an unsigned config
-  if the env has it. Do not install system-wide.
+## 3. The source (probed 2026-11-02, step 0: manifests and one 80 MB range read, nothing stored)
+- Public S3 bucket `s3://openalex` (us-east-1), no credentials, also over HTTPS (`https://openalex.s3.amazonaws.com/...`; the
+  bucket listing works with `list-type=2`). `RELEASE_NOTES.txt` says: **quarterly releases on the second Wednesday of January,
+  April, July and October**; the current one is **2026-10-14** (the snapshot has been the "walden" dataset since 2025-11-12,
+  including "xpack" records, so works are 463M).
+- Layout: `data/jsonl/<entity>/updated_date=YYYY-MM-DD/part_NNNN.gz` (gzipped JSON Lines) and the same under `data/parquet/`.
+  `data/jsonl/<entity>/manifest.json` = `{date, format, entity, record_count, content_length, files:[{url: "s3://openalex/...",
+  meta:{content_length, record_count}}]}` (a flat list of every part). `data/jsonl/works/deleted_ids.csv.gz` lists merged and
+  deleted ids. `legacy-data/` is the old pre-walden layout: not used.
+- Sizes from the 2026-10-14 manifests:
+
+| entity | records | gzipped | files |
+|---|---|---|---|
+| works (jsonl) | 464,765,485 | 675 GB | 1,898 (avg 356 MB) |
+| works (parquet) | same | 744 GB | 1,898 |
+| authors (jsonl) | 101,066,311 | 74 GB | 517 |
+| institutions (jsonl) | 143,455 | 0.2 GB | 83 |
+
+  Larger than the first estimate (which assumed about 300 GB). Gzip expands about 8.4x on works (measured on one part), so
+  the works stream is about 5.7 TB of JSON that is read once and never stored.
+- One HTTPS stream from the login host reads about 93 MB/s (80 MB range, measured). With 16 tasks the 675 GB downloads in well
+  under an hour if the node uplinks allow; CPU is gunzip (5.7 TB at about 300 MB/s per core is about 5 core-hours) plus the
+  byte pre-filter.
+- JSONL, not Parquet: the env has no `pyarrow`; the JSONL parts are line-oriented, so the byte pre-filter works.
+- The host has no `aws` CLI; use HTTPS streams from Python (`requests`, in the env).
 
 ## 4. How to stream and filter without landing the dump
 Never write the raw snapshot to shared storage.
@@ -85,18 +101,19 @@ Tables: `works(id TEXT PRIMARY KEY, doi, year, type, title, body BLOB)`, `work_i
   build.
 
 ## 7. Run time and effort on Slurm
-- Download: about 300 GB over HTTPS. At 100-200 MB/s per node, with 8 workers, about 1-2 h wall.
-- CPU: with the byte pre-filter the cost is gunzip (about 150-250 MB/s per core), so 1.5-2 TB uncompressed over 8 cores is
-  about 1.5-3 h; parse only the few percent that pass. Plan: one `atlas submit` array of 16 tasks (2 CPU, 8 GB, 4 h each,
-  `mltheory`, `--exclude=node302`), then a single merge job (1 CPU, 16 GB, 1 h). `sbatch --test-only` first, never on
-  "Preempts:". Total wall about 4-5 h, CPU about 60-80 core-hours.
+- Download: 675 GB of works plus 74 GB of authors over HTTPS; the 1,898 + 517 parts are dealt to 16 tasks by size so each
+  reads about 47 GB. At about 90 MB/s per stream that is about 9 min of pure transfer per task if the fabric holds it; plan for 1-2 h.
+- CPU: gunzip about 300 MB/s per core over 5.7 TB (works) is about 5 core-hours, the substring pre-filter about 1-2 more; parse
+  only the few percent that pass. Plan: one `atlas submit` array of 16 tasks (2 CPU, 8 GB, 4 h each, `mltheory`,
+  `--exclude=node302`), then a single merge job (1 CPU, 16 GB, 1 h). `sbatch --test-only` first, never on "Preempts:".
+  Total wall about 2-3 h, CPU about 10-20 core-hours.
 - Engineering: about 2-3 days. The filter job and merge, `atlas_paths` slot, the reader library (`oa_snapshot.py`: `works_by_lineage`,
   `work(id|doi)`, `authors`), a manifest/refresh command, tests on a fixture of 3 hand-made part files, the equivalence check.
 
 ## 8. Refresh schedule and fallback
-- OpenAlex republishes the snapshot on a periodic cadence (monthly or so; verify the current one in step 0). Refresh monthly
-  with a job that diffs the manifest: only partitions whose `updated_date` is newer than the stored snapshot's are read
-  (the snapshot is organised by `updated_date`), merged by `id` into a new file; the previous file is kept.
+- OpenAlex republishes **quarterly** (second Wednesday of Jan, Apr, Jul, Oct; next 2027-01-13). Refresh once per release with a
+  job that diffs the new manifest against the stored one: parts whose `url` and `content_length` are unchanged are skipped, and
+  `deleted_ids.csv.gz` removes merged ids. The API stays the freshness layer between releases.
 - The store records `snapshot_date` per row. A lookup returns the row and its date; a caller that needs fresher than
   `max_age_days` (the ledger's 7-day OpenAlex rule, relaxed to 35 days for snapshot rows) asks the API for just that id.
 - **Fallback order:** snapshot, then the API key (budget-guarded as today, `oa_refresh.get`), then "missing". A work absent from
@@ -129,7 +146,7 @@ notes. Differences that are real (OpenAlex data changed) are listed, not hidden.
 - Disk: keep two snapshots only.
 
 ## 12. Steps after the data-layout move
-0. Probe the manifests (read-only, tiny) and record the real size and cadence here.
+0. Done 2026-11-02: manifests probed, sizes and cadence recorded in section 3.
 1. Add the `atlas_paths` slot and the reader library with tests on fixtures.
 2. Submit the filter array and the merge with `atlas submit`.
 3. Switch `oa_sweep`, run the one-school equivalence, report.
