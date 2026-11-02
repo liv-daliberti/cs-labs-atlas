@@ -84,6 +84,7 @@ _SPEC = [
     ('LOCKS', '/tmp/cs-atlas-locks', None),         # node-local mutexes (one host only); rate stamps go in RATE_STAMPS
     ('EXTERNAL', 'external', 'ROOT'),
     ('DBLP_DUMP', 'dblp-dump', 'EXTERNAL'),         # DBLP's XML dump directory
+    ('OA_SNAPSHOT', 'openalex-snapshot', 'EXTERNAL'),  # the filtered OpenAlex bulk snapshot <date>/openalex.sqlite + current (tools/oa_snapshot.py)
     ('RESEARCH_LIBRARY', 'research-library', 'EXTERNAL'),
     ('ARCHIVE', 'archive', 'ROOT'),                 # read-only history; code should not need it (see vendor/README.md)
     ('SWEEPS', 'sweeps', 'ARCHIVE'),                # the old base sweeps (DBLP lists, captures, census sources)
