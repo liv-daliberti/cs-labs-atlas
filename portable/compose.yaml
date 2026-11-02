@@ -1,0 +1,13 @@
+services:
+  atlas:
+    build:
+      context: ..
+      dockerfile: portable/Dockerfile
+    ports:
+      - "127.0.0.1:8787:8787"
+    volumes:
+      - "${ATLAS_DATA_DIR:?Set ATLAS_DATA_DIR to an absolute publication bundle path}:/data:ro"
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped

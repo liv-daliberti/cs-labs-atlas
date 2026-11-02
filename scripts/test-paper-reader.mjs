@@ -1,0 +1,24 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import vm from 'node:vm';
+function element(tag,text='') {return {tag,textContent:text,children:[],isConnected:true,append(...nodes){this.children.push(...nodes);}};}
+const hosted={path:'papers/'+'a'.repeat(64)+'.pdf',sha256:'a'.repeat(64)};
+const linked={link:true,sourceUrl:'https://example.org/paper'};
+const index={schema:2,records:[hosted,linked,{link:true,sourceUrl:'javascript:alert(1)'}],works:{hosted:0,'doi:10.1234/test':1,bad:2}};
+const ctx={console,document:{createElement:element},fetch:async()=>({ok:true,json:async()=>index})};ctx.window=ctx;
+vm.createContext(ctx);vm.runInContext(fs.readFileSync('atlas/assets/paper-reader.js','utf8'),ctx);
+const reader=ctx.PaperReader;
+assert.equal(reader.find(index,{id:'hosted'}),hosted,'record zero must resolve');
+assert.equal(reader.find(index,{doi:'https://doi.org/10.1234/TEST'}),linked);
+assert.equal(reader.find(index,{id:'bad'}),null,'unsafe source links are not readable');
+assert.equal(reader.find(index,{id:'missing'}),null);
+assert.equal(reader.find({schema:1,works:{legacy:hosted}},{aliases:['legacy']}),hosted);
+const box=element('div');reader.append(box,{doi:'10.1234/test'});
+await new Promise(resolve=>setTimeout(resolve,0));
+const anchor=box.children[0].children[0];
+assert.equal(anchor.tag,'a');assert.equal(anchor.textContent,'Read at source ↗');assert.equal(anchor.href,linked.sourceUrl);
+assert.equal(anchor.target,'_blank');assert.equal(anchor.rel,'noopener noreferrer');
+const pdfBox=element('div');reader.append(pdfBox,{id:'hosted'});await new Promise(resolve=>setTimeout(resolve,0));
+assert.equal(pdfBox.children[0].children[0].tag,'button');
+assert.equal(pdfBox.children[0].children[0].textContent,'Read here · stored PDF');
+console.log('Reader: hosted copies, source links, compact record zero, legacy aliases and unsafe URLs passed.');

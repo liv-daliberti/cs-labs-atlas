@@ -1,0 +1,22 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>CS departments · labs, papers, students</title><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="assets/lab-map.css"><link rel="stylesheet" href="cs-departments.css"></head><body><main class="csd">
+<nav class="csd-nav"><a href="./">CS atlas</a><a href="downloads/cs-hierarchy-labs.csv" download>Labs · CSV</a></nav>
+<header class="csd-head"><p class="eyebrow">Computer science · 2016–2026</p><h1>Departments, labs, papers and students</h1>
+<p>Each school’s computing departments, plus every faculty member in any other department who publishes in computer-science venues; each faculty PI’s own lab, the PI’s papers written there, and the students they advise. Centres, initiatives and multi-PI groups are not labs, so they are not listed.</p></header>
+<div class="csd-schools" role="tablist" aria-label="School" id="csd-schools"></div>
+<div class="csd-stats" id="csd-stats"></div>
+<div id="csd-error" role="alert" hidden></div>
+<div class="csd-body">
+<aside class="csd-depts" aria-label="Departments"><h2>Departments</h2><ul id="csd-dept-list"></ul></aside>
+<section class="csd-labs" aria-label="Labs">
+<div class="csd-controls"><label>Find a lab, PI, student or paper<input id="csd-search" type="search" placeholder="Name or title"></label>
+<label>Show<select id="csd-filter"><option value="all">All labs</option><option value="complete">Papers, students and links</option><option value="nostudents">No students yet</option></select></label></div>
+<p id="csd-count" aria-live="polite">Loading…</p>
+<div class="csd-table-wrap"><table><thead><tr><th scope="col">Lab and PI</th><th scope="col" class="num">Papers</th><th scope="col" class="num">Students and members</th><th scope="col" class="num">Student–paper links</th></tr></thead><tbody id="csd-rows"></tbody></table></div>
+</section></div>
+<section class="csd-lab" id="csd-lab" hidden aria-live="polite"></section>
+<details class="csd-method"><summary>How labs, papers and students are decided</summary>
+<p><b>Departments.</b> Every faculty member of the computing departments is covered: Princeton CS; CMU’s seven School of Computer Science departments; MIT EECS; EPFL’s IC school; Berkeley EECS; Stanford CS. Stanford EE lists its faculty who work in computer science. Faculty of any other department are covered when they work in computer science: their papers at the school are in CS venues (indexed by DBLP, the computer-science bibliography; at least 5 papers and a fifth of their output). They appear under their home department, which lists only those faculty.</p>
+<p><b>Labs.</b> Each faculty PI has one lab: the PI and their advisees. A PI is a faculty member with stated PhD advising or a lab they head. Only labs with at least one lab paper are listed; the count of labs not listed, and the reason for each, are kept with the data.</p>
+<p><b>Papers.</b> A paper is the lab’s when the PI is on the byline, the paper has a supported school connection, and it falls in the PI’s appointment. The school connection can come from the PI’s affiliation, reviewed paper text, or a stated advisee co-author at the school. A paper whose entire byline has no affiliations can also count when a stated advisee is on it. The appointment is a reviewed faculty period, or a captured department faculty listing from the paper’s own year; a listing after an evidenced move does not extend the appointment. The PI’s identity is anchored by their DBLP person page, their department’s publication list, their verified works, a reviewed OpenAlex author id or ORCID, an advisee co-author, or an OpenAlex author id seen on those.</p>
+<p><b>Students and lab members.</b> Stated advisees (rosters, theses, alumni pages, FPO announcements) and the people the PI’s own lab pages list: students, and also postdocs, staff and visitors, each with the role the page gives. The headline student count is students only. A student–paper link is the student’s recorded authorship of a lab paper (verified), or a supported name match on that lab paper’s byline (candidate). Candidate matching rejects different full given names, including hyphenated names, and disallows partial-prefix matches under East Asian family names.</p></details>
+<footer id="csd-foot"></footer></main><script src="research-data.js"></script><script src="assets/paper-reader.js"></script><script src="cs-departments.js"></script></body></html>
