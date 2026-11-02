@@ -33,7 +33,7 @@ section by the coordinator.
 | 2026-10-31 | Paper additions are re-checked against each PI's current appointment periods, overrides included; a regenerated additions file keeps its acceptance only if the set only shrank (`restamp`) | commits fd97e21, b329aac |
 | 2026-11-01 | A final students round that passes membership but fails role/year wires the kind membership-only (roles withheld) | `docs/LAB-PAGES.md`; commit 5a3106e (Berkeley) |
 | 2026-11-01 | Stanford and CMU students get rounds 4 and 5 (recorded exception to the 3-round limit); Princeton is not included; Michigan keeps its limit | `docs/LAB-PAGES.md`; `round_limit_extended_by_owner` in the acceptance files; commit 9ed4030 |
-| 2026-11-01 | Repairs apply to all schools: committee words, reference blocks, co-advised-with names, parenthetical roles, other-institution markers, older-lab undated rule for every plan, administrative staff and affiliates | `tools/labpage_audit.py` (`repair_reason`); commits aeb44ff, f3a38f9, 468d2a1, 0706082 |
+| 2026-11-01 | Repairs apply to all schools: committee words, reference blocks, co-advised-with names, parenthetical roles, other-institution markers, older-lab undated rule for every plan, administrative staff and affiliates | `tools/labpage_audit.py` (`repair_reason`); commits ee5b9f4, f3a38f9, 468d2a1, 0706082 |
 | 2026-11-01 | After any rule change, 10 students are re-sampled at every accepted school | `docs/LAB-PAGES.md` (acceptance bar 3) |
 
 ## Working practice
