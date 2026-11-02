@@ -208,8 +208,6 @@ class Checker:
             return dict(base, verdict='unreachable', title_seen=None, authors_seen=[], robots_ok=why != 'robots_disallow' if why else True, reason=why)
         base['robots_ok'] = True
         if 'pdf' in ct or data[:5] == b'%PDF-':
-            if row['url_kind'] != 'file':
-                return dict(base, verdict='unreachable', title_seen=None, authors_seen=[], reason='landing_url_served_a_pdf')
             with tempfile.NamedTemporaryFile(suffix='.pdf') as f:
                 f.write(data)
                 f.flush()
@@ -220,6 +218,12 @@ class Checker:
             seen = ' '.join(p1.split())[:200]
             if v == 'pass_title':
                 return dict(base, verdict='match', title_seen=meta or seen, authors_seen=[first], how='pdf_page1', reason='title_and_author_on_page1')
+            ascii_share = sum(ch.isascii() and ch.isalpha() for ch in p1) / max(1, len(p1.replace(' ', '').replace('\n', '')))
+            if v == 'undecided' and meta and ascii_share < 0.5:  # a font without a Unicode map: the text cannot be read, the metadata title can
+                mw = [x for x in R.norm_words(meta) if len(x) >= 3 and x not in R.STOP]
+                tw = [x for x in R.norm_words(row['title']) if len(x) >= 3 and x not in R.STOP]
+                if len(tw) >= 4 and len(mw) >= 4 and sum(x in set(mw) for x in tw) / len(tw) >= 0.9 and sum(x in set(tw) for x in mw) / len(mw) >= 0.8:
+                    return dict(base, verdict='match', title_seen=meta, authors_seen=[], how='pdf_metadata_title', reason='page text unreadable; the PDF title metadata is the paper title')
             if v == 'fail':
                 return dict(base, verdict='mismatch', title_seen=meta or seen, authors_seen=[], how='pdf_page1', reason=R.reason(ev))
             return dict(base, verdict='unreachable', title_seen=meta or seen, authors_seen=[], how='pdf_page1', reason='not_confirmed')
