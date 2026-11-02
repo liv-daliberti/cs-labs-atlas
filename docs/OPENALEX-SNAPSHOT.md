@@ -49,10 +49,15 @@ Never write the raw snapshot to shared storage.
    institution ids (`"I20089843"` and so on) or one of our author ids as a byte substring. This rejects well over 95% of lines at
    memory speed and avoids parsing 1.5+ TB of JSON. A false positive costs one parse; there are no false negatives, because ids
    appear in the line verbatim. After parsing, the exact lineage / author test decides.
-3. Kept works are projected to the field list above and appended to a **local `/tmp` SQLite shard per worker** (job-local disk,
-   not shared storage), compressed (zlib JSON body, as `pi-works.sqlite` does), then merged.
-4. The merge writes **one SQLite file** per snapshot to the project, with sequential block writes (>= 64 KiB pages, large
-   transactions), then `VACUUM`/index creation at the end. No per-work files, no per-partition files on `/n/fs`.
+3. Kept works are projected to the field list above and appended to a **job-local `/tmp` SQLite part** (zlib JSON body, as
+   `pi-works.sqlite` does), one part per array task. The merge job runs on another node and cannot read `/tmp`, so when a task
+   has finished its partitions it **copies its one finished part to the SCRATCH slot** (`P.SCRATCH / 'openalex-<snapshot-date>' /
+   part-NN.sqlite`, a single sequential write of a few hundred MB; 16 files in total, not a small-file load), then writes
+   `part-NN.done` (the part's byte count and sha256). A crashed task leaves no `.done`, and a retry rewrites its part.
+4. The merge job (after `afterok` on the array) checks every `.done`, attaches the 16 parts and writes **one SQLite file** per
+   snapshot to the project, with sequential block writes (>= 64 KiB pages, large transactions), then indexes and
+   `VACUUM`. **After the merge verifies its row counts against the parts, it removes the 16 parts and `.done` files**
+   (`tools/scratch.py` rules, logged in `manifest.json`). No per-work files and no per-partition files on `/n/fs`.
 5. Authors and institutions go in the same file as separate tables.
 Layout: `snapshots/openalex/<snapshot-date>/openalex.sqlite` (resolved through a new `atlas_paths` data slot, never a literal
 path) plus `manifest.json` (snapshot date, the manifest checksums, id sets used, counts, code commit).
@@ -68,8 +73,9 @@ Tables: `works(id TEXT PRIMARY KEY, doi, year, type, title, body BLOB)`, `work_i
   for the same projection and a narrower window, which bounds the estimate.
 - Room: `df -h /n/fs/resemble` shows 12 TB, 8.9 TB used, 3.2 TB free (74%) on 2026-11-01, so one store is nothing; keep the
   latest two snapshots (the older one for rollback), the rest are deleted by a documented step, never by hand.
-- Job-local scratch: each worker's shard is a few hundred MB on `/tmp`; request `--gres`-free CPU nodes with about 100 GB local
-  disk free or cap shard size and flush.
+- Job-local scratch: each worker's part is a few hundred MB on `/tmp` until it is copied to SCRATCH; the SCRATCH parts total
+  about the final store's size (4-8 GB) until the merge removes them. Request CPU nodes with enough local `/tmp` free or flush
+  the part when it reaches 2 GB (then a task writes a few numbered parts, still tens of files, not thousands).
 
 ## 6. Shared-storage I/O (host rules)
 - Reads from S3 are network, not `/n/fs`. Writes to `/n/fs`: one file, large sequential blocks, in a single merge step, which is the
