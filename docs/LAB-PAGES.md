@@ -249,3 +249,11 @@ template-page rows of the Stanford, CMU and Michigan additions (Berkeley's are r
 the role of 19 rows and was net negative by hand (2 better, 6 worse; it dropped roles stated in sibling text), the conservative
 rule above keeps the 2 gains and none of the losses; membership is unchanged (the readers set section and role, not who is
 listed). Used in further rounds only as part of the normal rule set.
+
+## Recorded doubts
+
+- **EPFL, Dario Floreano, "Tesla's problem: overestimating automation, underestimating humans"** (2018, DOI 10.64628/ab.erpghjxak):
+  doubtful in three samples (EPFL paper rounds 1, 2 and 3). It looks like a comment piece, not a research paper; the DOI prefix is
+  unusual and its metadata is not in OpenAlex as a typed article. If the publisher record shows a comment or editorial type, the row is
+  `not_a_paper` and leaves the EPFL papers (28 rows) as a subset; it counted 0.5 in each EPFL paper round and is not a membership
+  question. Decision pending a look at the publisher record.
