@@ -52,7 +52,7 @@ def plan(name, schools):
     out = []
     for stage, kind, cmd, py, cpus, mem, tm in PIPELINES[name]:
         args = [f'--job-name=cs-{name}-{stage}', f'--cpus-per-task={cpus}', f'--mem={mem}', f'--time={tm}',
-                f'--output={CODE}/hierarchy/logs/pipeline-{name}-{stage}-%A' + ('_%a' if kind == 'school' else '') + '.out']
+                f'--output={P.data("logs")}/pipeline-{name}-{stage}-%A' + ('_%a' if kind == 'school' else '') + '.out']
         if kind == 'school':
             args.append(f'--array=0-{len(schools) - 1}')
         out.append((stage, args, dict(PIPE_STAGE=stage, PIPE_PY=py, SCHOOL_LIST=' '.join(schools)), cmd))

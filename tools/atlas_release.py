@@ -31,7 +31,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
 
 CODE = Path(__file__).resolve().parents[1]
-REBUILD = ['bash', str(CODE / 'hierarchy' / 'rebuild.sh')]
+REBUILD = ['bash', str(CODE / 'hierarchy' / 'rebuild.sh')]  # route-ok: code that stays in hierarchy/, not a data file
 EXTERNAL = {'export-push': 'yes_push', 'hf-upload': 'yes_hf'}
 FLAG = {'yes_push': '--yes-push', 'yes_hf': '--yes-hf'}
 ORDER = ['preflight', 'rebuild', 'validate', 'regression', 'reader', 'release', 'notes', 'tree', 'export', 'export-push', 'hf-upload', 'handoff']
