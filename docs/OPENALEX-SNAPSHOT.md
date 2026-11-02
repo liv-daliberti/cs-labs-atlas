@@ -151,3 +151,33 @@ notes. Differences that are real (OpenAlex data changed) are listed, not hidden.
 2. Submit the filter array and the merge with `atlas submit`.
 3. Switch `oa_sweep`, run the one-school equivalence, report.
 4. Switch the other paths in the order of section 9.
+
+## 13. Build and proof results (2026-11-02)
+Build: 16 filter tasks plus the merge (jobs 32065436 and 32065438, pinned main e12b06c+) took the 2026-10-14 snapshot (2,498 parts, 675 GB of
+works streamed, nothing stored) to `external/openalex-snapshot/2026-10-14/openalex.sqlite`: **2,728,841 works, 1,315,489 authors,
+143,455 institutions**, 9.2 GB. `current` points at it. Per-part yield is 0.03-1% depending on the partition, 0.6% overall.
+
+Counts against the API sweeps (job 32071102; `tools/oa_snapshot_compare.py counts`; API = hierarchy/<school>/raw/openalex-sweep.sqlite
+with the ENCODE records and works of more than 100 authors dropped; snapshot under the same school ids, same drops; window 2016-2026):
+
+| school | API works | snapshot works | ratio |
+|---|---|---|---|
+| princeton | 74,442 | 85,291 | 1.146 |
+| cmu | 64,732 | 70,105 | 1.083 |
+| epfl | 67,799 | 73,920 | 1.090 |
+| mit | 155,468 | 165,325 | 1.063 |
+| berkeley | 196,636 | 205,988 | 1.048 |
+| stanford | 257,328 | 270,855 | 1.053 |
+| michigan | 232,408 | 248,897 | 1.071 |
+
+Every school's snapshot holds at least its API count: the quarterly snapshot is newer than the sweeps (works added or re-affiliated since,
+and OpenAlex's xpack records). The one place below the API is the current year (2026: princeton 0.976, cmu 0.977, epfl 0.977, mit 0.984,
+berkeley 0.953, michigan 0.945, stanford 0.890): works created between the snapshot date (2026-10-14) and the sweeps (late October),
+which the API fallback covers.
+
+Field check (`oa_snapshot_compare.py fields epfl --n 1000`, same job): 997 of 1,000 sampled works are in the snapshot (3 newer than it);
+over those 997 the compared fields (doi, title, year, date, type, author ids, institution ids, pmid, primary-location source, landing,
+pdf, licence, version, is_oa) differ only in license 1, landing 2, source 2, type 2, pmid 1: reclassification or newer data, not filter errors.
+
+First code path switched: `ftp_common.oa_bodies` reads the snapshot first (complete `locations` for every lab paper, no API credits), so the
+`openalex` channel turns snapshot OA locations into candidates.
