@@ -1,6 +1,6 @@
 # Lab-page audit
 
-Generated 2026-11-02T23:31:49+00:00 by `tools/labpage_audit.py`; method and reason codes in `docs/LAB-PAGES.md`.
+Generated 2026-11-02T23:34:12+00:00 by `tools/labpage_audit.py`; method and reason codes in `docs/LAB-PAGES.md`.
 
 ## Lab pages
 
@@ -57,6 +57,7 @@ Generated 2026-11-02T23:31:49+00:00 by `tools/labpage_audit.py`; method and reas
 | cmu | 3 | 2026-10-31 | 20 | 3 | 2 | 20 | 1.0 | students_fail_papers_pass | after the 5 reviewed departures (R-PAP-03) and the strict undated rule |
 | cmu | 4 | 2026-11-02 | 20 | 4.0 | 2 | - | - | fail | after the 2026-11-01 repairs; owner extension (round 4 of 5) |
 | cmu | 5 | 2026-11-02 | 20 | 2.5 | 2 | - | - | fail | after the 2026-11-01 repairs and collaborator/pre-2016/admin rules; ow |
+| cmu | 6 | 2026-11-02 | 30 | 8.0 | 1 | - | - | fail | after the CMU round-5 repairs; second owner extension, 30-row sample |
 | epfl | 1 | 2026-10-31 | 20 | 0.5 | 2 | 20 | 2.5 | students_pass_papers_fail | first EPFL audit |
 | epfl | 2 | 2026-10-31 |  | None | None | 20 | 2.5 | papers_fail | papers only, after the EGU/Schizophrenia Bulletin abstract rule |
 | epfl | 3 | 2026-10-31 |  | None | None | 20 | 0.5 | papers_pass | papers only, after the abstract-number and Sleep supplement rules |
@@ -71,8 +72,10 @@ Generated 2026-11-02T23:31:49+00:00 by `tools/labpage_audit.py`; method and reas
 | stanford | 3 | 2026-10-31 | 20 | 4.5 | 2 | 20 | 0.5 | students_fail_papers_pass | after reader, citation, rotation and shared-page rules; last student r |
 | stanford | 4 | 2026-11-02 | 20 | 4.0 | 1 | - | - | fail | after the 2026-11-01 repairs (committee words, citations, co-adviser p |
 | stanford | 5 | 2026-11-02 | 20 | 2.5 | 2 | - | - | fail | after the Stanford round-4 repairs (date ranges, [Link] references, fa |
+| stanford | 6 | 2026-11-02 | 30 | 2.0 | 1 | - | - | fail | after the courtesy-title, bio-sentence and other-institution repairs;  |
 | michigan | 1 | 2026-10-31 | 20 | 2.5 | 2 | - | - | fail | first Michigan audit |
 | michigan | 2 | 2026-10-31 | 20 | 4.5 | 1 | 7 | 0.0 | students_fail_papers_pass | after the defended-year and citation rules |
 | michigan | 3 | 2026-11-02 | 20 | 3.0 | 3 | - | - | students_fail_papers_accepted | after the 2026-11-01 repairs; last student round |
+| michigan | 4 | 2026-11-02 | 30 | 4.0 | 3 | - | - | students_fail_papers_accepted | after the courtesy-title, bio-sentence and other-institution repairs;  |
 
 Round-limit exception (owner, 2026-11-01): cmu, stanford students get rounds 4 and 5 with repairs in place (`round_limit_extended_by_owner: 5` in the acceptance file); after round 5 the work stops. Princeton is not included.

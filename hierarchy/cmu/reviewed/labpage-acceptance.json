@@ -1,19 +1,19 @@
 {
  "school": "cmu",
- "decided_at": "2026-10-31",
+ "decided_at": "2026-11-02",
  "bar": "docs/LAB-PAGES.md, acceptance bar",
  "additions_file": "hierarchy/cmu/reviewed/labpage-additions.json",
- "additions_generated_at": "2026-11-02T16:26:26+00:00",
- "additions_sha256": "f9c125e697cbbf878884e5dd76265670e535d1ca1409e796843c7fa020a9cb43",
+ "additions_generated_at": "2026-11-02T17:29:15+00:00",
+ "additions_sha256": "bd4cea8f8d4646526a58f25c7888399147bdc5cff43c322356296d0aaab2b04b",
  "students": {
   "accepted": false,
-  "round": 3,
-  "reason": "three rounds failed (seeds 61, 82, 3101: 11, 4 and 3 membership errors; bar <= 1): pages of colleagues and co-advisers read as members (Trevor Jones), undated visitors in decades-old labs, and department-wide alumni pages (HCII). CMU student additions are not wired.",
+  "round": 6,
+  "round_limit_extended_by_owner": 6,
+  "sample_size": 30,
+  "reason": "six rounds failed (membership errors 11, 4, 3, 4.0, 2.5 and 8.0 in the last, a 30-row sample against a bar of <= 1.5). The patterns that remain: PIs whose period starts at 2016 treated as new (so older-lab undated alumni and visitors pass), department-wide alumni pages, fellowship names read as people, and co-authors in publication lists. The owner's extension is exhausted; CMU student additions are not wired and no further rounds run without the owner.",
   "counts": {
-   "proposed": 265
-  },
-  "round_limit_extended_by_owner": 5,
-  "round_limit_note": "owner decision 2026-11-01: students get rounds 4 and 5 with repairs in place (recorded exception to the 3-round limit); the kind stays unwired until a round passes"
+   "proposed": 260
+  }
  },
  "papers": {
   "accepted": true,
@@ -26,8 +26,8 @@
   },
   "note": "second paper sample (round 1: 2.5, seed 61)",
   "restamped_from": {
-   "sha256": "45ccae4aab7a4588d64436a998525071d58023ad006f18a08a6e5221592dc706",
-   "generated_at": "2026-11-02T06:48:58+00:00",
+   "sha256": "f9c125e697cbbf878884e5dd76265670e535d1ca1409e796843c7fa020a9cb43",
+   "generated_at": "2026-11-02T16:26:26+00:00",
    "removed": 0,
    "reason": "rows removed by existing rules on regeneration (appointment periods R-PAP-01/03, strict current rule); no row added or changed"
   }

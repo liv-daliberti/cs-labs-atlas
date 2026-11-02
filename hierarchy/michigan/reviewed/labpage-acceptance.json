@@ -7,10 +7,12 @@
  "additions_sha256": "15e66fed134a96b9fb18afd7f0174db05228da77d5d30c1f28a1518ee713342b",
  "students": {
   "accepted": false,
-  "round": 3,
-  "reason": "three rounds failed (seeds 3171, 3221, 4041: 2.5, 4.5 and 3.0 membership errors; bar <= 1): names inside bios of alumni (collaborators and former advisors), students of the PI's previous institution, and adjacent-section role confusion. Michigan student additions are not wired.",
+  "round": 4,
+  "round_limit_extended_by_owner": 4,
+  "sample_size": 30,
+  "reason": "four rounds failed (seeds 3171, 3221, 4041, 6021: 2.5, 4.5, 3.0 and 4.0 membership errors; the last on a 30-row sample against a bar of <= 1.5). Last patterns: pre-window alumni with dates outside a captured list's year, undated employer-carrying alumni of old labs that came through the kept prior evidence, collaborator lists, and visitor tables with pre-2016 years. The owner's extension is exhausted; Michigan student additions are not wired and no further rounds run without the owner.",
   "counts": {
-   "proposed": 603
+   "proposed": 605
   }
  },
  "papers": {
