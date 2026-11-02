@@ -237,3 +237,15 @@ Roles and years in additions are only what the entry states: `role` / `years` ar
 Every school's charter host policy is applied to every fetch (`school_config.host_use`: `none` is refused, live or
 Wayback; `wayback-only` is read from Wayback `id_` captures only). When `pubx` finds no entries on a publications page the
 school's earlier parse of that page (`labpage-pubs.jsonl.gz` rows) stands in, flagged `from_prior_parse`.
+
+## Template readers (ROADMAP P2 #27, 2026-11-02)
+
+`tools/lp_templates.py` reads Google Sites, WordPress and al-folio/Jekyll pages by their DOM: a heading element (or a bold /
+colon-terminated sub-label, or a bare text label such as `Postdocs`) and the entries under it (list item, table row, card,
+column, paragraph). `labpage_audit.apply_template_reader` uses it conservatively: the DOM heading and entry replace the flattened
+reading only when one person has the element, the entry text itself states no role (a role in the entry, `MS Student UM EECS`,
+wins) and the DOM gives a role or the flattened reading gave none. `LP_TEMPLATE_READERS=0` turns it off. Measured on the 156
+template-page rows of the Stanford, CMU and Michigan additions (Berkeley's are role-withheld): the unconstrained DOM reading changed
+the role of 19 rows and was net negative by hand (2 better, 6 worse; it dropped roles stated in sibling text), the conservative
+rule above keeps the 2 gains and none of the losses; membership is unchanged (the readers set section and role, not who is
+listed). Used in further rounds only as part of the normal rule set.

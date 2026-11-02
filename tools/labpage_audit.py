@@ -1189,7 +1189,7 @@ def pm_candidates(kit, school, pi, plan, held):
             if lpauto.wb_from(school, pi, plan) <= y <= plan.get('wb_to', 2026):
                 srcs.append((c, True))
     cands, unreadable = [], []
-    text_cache = {}
+    text_cache, html_cache = {}, {}
     auto_plan = bool(plan.get('strict')) or plan.get('notes', '').startswith('lab-page audit discovery')
     homepage_people = bool(plan.get('homepage_people'))
     coadv, inst_ = {}, {}
@@ -1211,6 +1211,7 @@ def pm_candidates(kit, school, pi, plan, held):
             fn = names.fold(x['name'])
             x['is_cap'] = is_cap
             x['src'] = src
+            apply_template_reader(kit, school, src, x, html_cache)
             x['alumni'] = bool(x.get('alumni') or (x['head'] and kit.autom.ALUMNI_RX.search(x['head']))
                                or src in plan.get('alumni_pages', ()) or (orig is not None and any(
                                    orig.replace('http://', 'https://').rstrip('/') == unwayback(a).replace('http://', 'https://').rstrip('/')
@@ -1803,6 +1804,47 @@ def page_lacks_pi(kit, school, p, best):
         return None
     fam = str(p.get('pi') or '').split()[-1:] or ['']
     return None if (not t or fold(fam[0]).lower() in fold(t).lower()) else ('shared_page_no_adviser', 'the page never names the PI: a department or program page')
+
+
+def apply_template_reader(kit, school, src, x, cache):
+    """ROADMAP P2 #27: on a page built from a known template (Google Sites, WordPress, al-folio/Jekyll) take the candidate's section
+    heading and entry text from the DOM (tools/lp_templates.py), not from the flattened text that runs adjacent one-line sections
+    together. Sets x['head'], x['desc'] and x['template']; leaves the candidate alone when the template is unknown or the name
+    is not found in an entry. LP_TEMPLATE_READERS=0 turns it off."""
+    if os.environ.get('LP_TEMPLATE_READERS', '1') == '0':
+        return
+    import lp_templates
+    if src not in cache:
+        try:
+            row, _ = kit.lpev.cap(school, src)
+            c = row['content']
+            try:
+                import zlib
+                c = zlib.decompress(c)
+            except Exception:  # noqa: BLE001 - stored uncompressed
+                pass
+            h = c.decode('utf-8', 'ignore') if 'html' in (row.get('content_type') or '').lower() else ''
+        except (KeyError, ValueError):
+            h = ''
+        cache[src] = (h, lp_templates.detect(h, src) if h else None, {})
+    h, tmpl, memo = cache[src]
+    if not tmpl:
+        return
+    if 'sections' not in memo:
+        memo['sections'] = lp_templates.sections(h)
+    head, entry = lp_templates.locate_in(memo['sections'], x['name'])
+    if head and entry.lower().startswith(x['name'].lower()[:max(4, len(x['name']) - 6)]):  # one person per element: a run-on paragraph keeps the flattened reading
+        low = entry.lower()
+        j = low.find(x['name'].lower())
+        new_desc = entry[j + len(x['name']):].strip() if j >= 0 else x.get('desc')
+        role_of = kit.autom._role
+        old_r, old_b = entry_role(x.get('desc'), x.get('head'), role_of)
+        new_r = entry_role(new_desc, head, role_of)[0]
+        if old_b == 'entry' or (new_r is None and old_r is not None):
+            return  # the entry itself states the role (MS Student UM EECS), or the DOM states none: keep the flattened reading
+        x['template'] = tmpl
+        x['head'] = head
+        x['desc'] = new_desc
 
 
 def appointed_in(p, year):
