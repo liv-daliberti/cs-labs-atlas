@@ -58,7 +58,7 @@ Status: `open` · `in progress (<who>)` · `done <date> <commit>` · `queued (af
 
 ## 6. Next round (owner-approved 2026-11-01)
 
-Order: **P0** = starts right after the data-layout move (item 10 phase B), in this order. **P1** = next, all before the release (owner 2026-11-01). The rest are open.
+Order: **P0** = starts right after the data-layout move (item 10 phase B), in this order. **P1** = next, all before the release (owner 2026-11-01). **P2** = the ten after P1, also before the release (owner 2026-11-02). The rest are open.
 
 ### Robustness and cleanliness
 
@@ -67,22 +67,22 @@ Order: **P0** = starts right after the data-layout move (item 10 phase B), in th
 | 16 | Agents commit through branches only; Slurm jobs only from a code snapshot | **P0-2** (in progress, refactor agent: CI test `tests/test_slurm_snapshot.py`, collector one-offs retired to archive/fulltext-push, `atlas submit` documented; the enforce switch awaits the coordinator's word) | every agent works in a worktree and lands with `agent_worktree.sh land`; the main-commit hook refuses (enforce mode); CI fails on any `.slurm` that does not source `job_code_snapshot.sh`; `atlas submit` is the documented submit path |
 | 17 | One lease per agent or session | **P1-3** (before the release; owner 2026-11-01) | a lease file per agent, renewed while it works; a second copy refuses to start while the lease is live; restart checklist uses it |
 | 18 | Download loops that restart themselves | **P1-2** (before the release; owner 2026-11-01) | a loop resubmits itself at its time limit on the current pinned commit; no manual restart at 3 days |
-| 19 | `atlas new-school <key>` | open | one command makes the charter, store, folders, catalog schema and receipts, and runs the stage-0 check (no cloning another school's store) |
+| 19 | `atlas new-school <key>` | **P2-5** (before the release; owner 2026-11-02) | one command makes the charter, store, folders, catalog schema and receipts, and runs the stage-0 check (no cloning another school's store) |
 | 20 | No half-covered catalog locks | **P1-5** (before the release; owner 2026-11-01) | the Princeton importer and the two vendored resolvers take the catalog lock and the pre-write backup |
-| 21 | Code as an installed package | open | tools/ installed as a package; no `sys.path` edits in tools, vendor or tests |
+| 21 | Code as an installed package | **P2-7** (before the release; owner 2026-11-02) | tools/ installed as a package; no `sys.path` edits in tools, vendor or tests |
 | 22 | Deterministic generators everywhere | **P1-4** (before the release; owner 2026-11-01); in progress (refactor agent): two-seed tests for the reader export (all its files), the release notes and the coverage counter's resolution; `atlas_paths.gzip_text` writes gzip with a zero header time, used by the package writer, the id writer, the ledger and the reader export (a re-run on unchanged data rewrites identical bytes). Left: the ledger's and the release manifest's deliberate `built_at`/`created` stamps | the two-seed determinism test covers the ledger, reader export, coverage counter and release; a content-neutral re-run changes no file |
-| 23 | Chores | open | CI action versions bumped (Node 20 deprecation); merged branches removed; py310 retired once a studies env exists |
+| 23 | Chores | **P2-10** (before the release; owner 2026-11-02) | CI action versions bumped (Node 20 deprecation); merged branches removed; py310 retired once a studies env exists |
 
 ### Data quality
 
 | # | Item | Status | Done when |
 |---|---|---|---|
 | 24 | OpenAlex bulk snapshot instead of the API | **P0-1** | a filtered local snapshot (our institutions' works and authors), refreshed on a schedule; lookups read it first; the 10k/day API key is a fallback only; no shared-storage I/O hazard (streamed and filtered) |
-| 25 | Better title checks | open (needs 24) | identity matches every known title (OpenAlex, S2, arXiv versions) and the PDF's title metadata; re-measured false-pass and false-reject rates recorded |
-| 26 | Departed-faculty detection | open (needs 24) | a review list of PIs whose OpenAlex/DBLP affiliation moved elsewhere while our build has an open period; Gupta and Platzer resolved or recorded unresolved |
-| 27 | Lab-page template readers | open | structural readers for al-folio/Jekyll, Google Sites and WordPress team pages; membership error rate re-measured |
-| 28 | One entry per paper in the stores | open | DOI/title sibling works collapsed onto the atlas work id in every store; counts and identity checks run on canonical works |
-| 29 | Boundary years settled | open | the dated-capture (transition_side) rule applies to every arrival/departure-year paper; undecided count reported per school |
+| 25 | Better title checks | **P2-1** (before the release; owner 2026-11-02); open (needs 24) | identity matches every known title (OpenAlex, S2, arXiv versions) and the PDF's title metadata; re-measured false-pass and false-reject rates recorded |
+| 26 | Departed-faculty detection | **P2-2** (before the release; owner 2026-11-02); open (needs 24) | a review list of PIs whose OpenAlex/DBLP affiliation moved elsewhere while our build has an open period; Gupta and Platzer resolved or recorded unresolved |
+| 27 | Lab-page template readers | **P2-8** (before the release; owner 2026-11-02) | structural readers for al-folio/Jekyll, Google Sites and WordPress team pages; membership error rate re-measured |
+| 28 | One entry per paper in the stores | **P2-3** (before the release; owner 2026-11-02) | DOI/title sibling works collapsed onto the atlas work id in every store; counts and identity checks run on canonical works |
+| 29 | Boundary years settled | **P2-4** (before the release; owner 2026-11-02) | the dated-capture (transition_side) rule applies to every arrival/departure-year paper; undecided count reported per school |
 | 30 | The site serves only from releases | **P1-1** (before the release; owner 2026-11-01) | the release's reader export is the only source of hosted files; the 5,326 untraceable hosted files are gone |
 | 31 | Open owner decisions | open | publisher TDM access via the Library; Michigan's 171-lab student gap |
 
@@ -91,7 +91,7 @@ Order: **P0** = starts right after the data-layout move (item 10 phase B), in th
 | # | Item | Status | Done when |
 |---|---|---|---|
 | 32 | Per-school parallel equivalence and rebuild | **P0-3** (built, refactor agent: `atlas parallel equivalence|rebuild` = hierarchy/submit-parallel.sh, build-school.slurm array + merge-equivalence.slurm / rebuild stages; the timing and the identical-to-serial proof run after the data move) | one Slurm array task per school plus a merge step; equivalence ≈ 15 min, full rebuild ≈ 45 min |
-| 33 | Rebuild only what changed | open | a dependency-driven rebuild from DATA_FILES inputs/outputs that redoes only stale outputs |
+| 33 | Rebuild only what changed | **P2-6** (before the release; owner 2026-11-02) | a dependency-driven rebuild from DATA_FILES inputs/outputs that redoes only stale outputs |
 | 34 | Script the mechanical work out of agents | **P0-5** (built, refactor agent: `atlas pipeline copies|labpage|reader`, tools/atlas_pipeline.py + hierarchy/pipeline-stage.slurm; the fulltext-push stages (ledger, recount, status) run the downloads agent's tools unchanged - it should read the registry) | submit/poll/recount/restamp/ledger/copies run as a Slurm pipeline with dependencies; agents only for hand checks, design and diagnosis |
 | 35 | Poll less | open (with 34) | jobs chain by Slurm dependencies and output files instead of repeated status checks |
 | 36 | A review page for hand checks | open | a page per sample with each row's quote, capture and a verdict box; rounds recorded from it |
@@ -101,7 +101,7 @@ Order: **P0** = starts right after the data-layout move (item 10 phase B), in th
 | # | Item | Status | Done when |
 |---|---|---|---|
 | 37 | One release command: `atlas release` | **P0-4** (built, refactor agent: tools/atlas_release.py, hierarchy/release.slurm, tests; the first real run is the next release) | rebuild → validate → regression → reader export → release notes → release → GitHub export → HF upload → Codex handoff note, in order, stopping at any failure |
-| 38 | One decision log | open | docs/DECISIONS.md, dated, each decision linked to the rule or file it changed |
+| 38 | One decision log | **P2-9** (before the release; owner 2026-11-02) | docs/DECISIONS.md, dated, each decision linked to the rule or file it changed |
 | 39 | Adding a school runs itself to the review steps | open (with 19) | `atlas new-school` + `atlas stage-gate` per stage; the protocol's checks as code |
 | 40 | Restart checklist in the runbook | open | other sessions, agent handover, auto-resume check, no job on live code |
 | 41 | One report shape for agents | open | done / counts / commits / open, in CONTRIBUTING.md |
