@@ -2491,9 +2491,38 @@ def restamp(school, root=None, repo=None, old=None, apply=True):
     return rep
 
 
+def record_round(spec):
+    """Record one hand-check round (docs/LAB-PAGES.md, acceptance bar) in the school's labpage-handcheck.json, and, when the spec
+    carries `acceptance` ({kind: decision}), in labpage-acceptance.json stamped with the current additions file's sha256.
+    spec: school, round, label, result, membership_score, paper_score, students / papers (sampled, seed, errors, items...)."""
+    school = spec['school']
+    hp, ap, add = P.data_w('labpage-handcheck.json', school), P.data_w('labpage-acceptance.json', school), P.data('labpage-additions.json', school)
+    d = json.loads(hp.read_text(encoding='utf-8')) if hp.exists() else {'school': school, 'bar': 'docs/LAB-PAGES.md, acceptance bar (2026-10-31)', 'rounds': []}
+    raw = add.read_bytes()
+    a = json.loads(raw.decode('utf-8'))
+    st, pa = spec.get('students'), spec.get('papers')
+    rnd = {'round': spec['round'], 'date': spec.get('date') or TODAY, 'label': spec['label'], 'additions_generated_at': a['generated_at'],
+           'students': st and {k: v for k, v in st.items() if k != 'items'}, 'papers': pa and {k: v for k, v in pa.items() if k != 'items'},
+           'items': {**(st or {}).get('items', {}), **{('papers_' + k if k != 'papers' else 'papers'): v for k, v in (pa or {}).get('items', {}).items()}},
+           'membership_score': spec.get('membership_score'), 'role_year_errors': (st or {}).get('role_or_year_errors'),
+           'paper_score': spec.get('paper_score'), 'result': spec['result']}
+    if spec.get('note'):
+        rnd['note'] = spec['note']
+    d['rounds'] = [r for r in d['rounds'] if r['round'] != spec['round']] + [rnd]
+    hp.write_text(json.dumps(d, indent=1, ensure_ascii=False) + '\n', encoding='utf-8')
+    if spec.get('acceptance'):
+        acc = json.loads(ap.read_text(encoding='utf-8')) if ap.exists() else {}
+        acc.update({'school': school, 'decided_at': spec.get('date') or TODAY, 'bar': 'docs/LAB-PAGES.md, acceptance bar',
+                    'additions_file': f'hierarchy/{school}/labpage-additions.json', 'additions_generated_at': a['generated_at'],
+                    'additions_sha256': hashlib.sha256(raw).hexdigest()})
+        acc.update(spec['acceptance'])
+        ap.write_text(json.dumps(acc, indent=1, ensure_ascii=False) + '\n', encoding='utf-8')
+    return rnd
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('cmd', choices=['discover', 'recover', 'audit', 'recover-audit', 'all', 'summary', 'sample', 'restamp'])
+    ap.add_argument('cmd', choices=['discover', 'recover', 'audit', 'recover-audit', 'all', 'summary', 'sample', 'restamp', 'record'])
     ap.add_argument('--kind', choices=['students', 'papers'], default='students')
     ap.add_argument('--n', type=int, default=20)
     ap.add_argument('--seed', type=int, default=0)
@@ -2518,6 +2547,8 @@ def main():
         cmd_sample(a.school, a.kind, a.n, a.seed)
     if a.cmd == 'summary':
         cmd_summary()
+    if a.cmd == 'record':
+        print(record_round(json.load(open(a.school)))['result'])  # school = the spec file path
     if a.cmd == 'restamp':
         for s_ in ([a.school] if a.school else list(SCHOOLS)):
             print(json.dumps(restamp(s_), ensure_ascii=False))
