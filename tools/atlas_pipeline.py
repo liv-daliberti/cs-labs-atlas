@@ -35,7 +35,7 @@ PIPELINES = {
         ('summary', 'once', 'PY $TOOLS/labpage_audit.py summary', 'project', 1, '8G', '00:30:00'),
     ],
     'reader': [
-        ('reader', 'once', 'PY $TOOLS/reader_export.py {schools} --site-local-papers "$CS_ATLAS_SITE/atlas/data/local-papers.json"', 'project', 2, '40G', '03:00:00'),
+        ('reader', 'once', 'PY $TOOLS/reader_export.py {schools} --site-local-papers "$CS_ATLAS_SITE/atlas/data/local-papers.json" --site-reader-objects "$CS_ATLAS_SITE/atlas/data/reader-objects.json"', 'project', 2, '40G', '03:00:00'),
     ],
 }
 
