@@ -441,8 +441,8 @@ only a paper with neither stays not readable. A candidate-only link is never hos
 
 ## How a candidate URL becomes a link (no network)
 Strongest first: `arxiv_id_doi` (the candidate is an arXiv URL and the Semantic Scholar / OpenAlex DOI to arXiv mapping the identity rule uses ties it to the
-paper's DOI, and the arXiv record's own title shares half the words of the paper's title), `openalex_location` (the URL, normalised, is a listed location of
-the same OpenAlex work), `arxiv_metadata` (the arXiv record's title matches the paper's by the identity rule's 80% rule, both ways, and the first author's
+paper's DOI, and the arXiv record's own title shares three quarters of the shorter title's words, and a Zenodo/Figshare/Dryad/OSF deposit DOI never counts), `openalex_location` (the URL, normalised, is a listed location of
+the same OpenAlex work), `arxiv_metadata` (the arXiv record's title matches the paper's, both ways, at 90% of at least four significant words, and the first author's
 family name matches), `landing_page_metadata` (a verdict file entry). A candidate the catalog found to be another document never counts.
 
 ## How the site shows readable (Codex)

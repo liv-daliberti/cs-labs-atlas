@@ -4,7 +4,7 @@ paper becomes readable, wherever the candidate is confirmed to be this paper. Ne
 Confirmation, strongest first, recorded per paper as `link_basis` (all from files already on disk; no network):
   arxiv_id_doi      the candidate is an arXiv URL and the cached Semantic Scholar / OpenAlex DOI -> arXiv mapping that
                     fulltext-push/identity_rule.mapped_arxiv uses ties that arXiv id to one of this work's DOIs, and the arXiv record's
-                    own title (local OAI index) shares at least half of the shorter title's words (a hand check found the mapping alone
+                    own title (local OAI index) shares at least three quarters of the shorter title's words (a hand check found the mapping alone
                     wrong for about 12% of the papers: datasets, software and companion papers); an id the index lacks is not accepted;
   openalex_location the candidate URL (normalised: scheme, www, trailing slash, arXiv abs/pdf/version, doi.org, handle forms) is listed
                     as a location of this same OpenAlex work (or one of its editions) in the OpenAlex records on disk;
@@ -89,7 +89,9 @@ def title_overlap(a, b):
     return len(wa & wb) / min(len(wa), len(wb)) if wa and wb else 0.0
 
 
-MAPPING_MIN_OVERLAP = 0.5   # the DOI -> arXiv mapping must not be contradicted by the arXiv record's own title
+MAPPING_MIN_OVERLAP = 0.75   # the DOI -> arXiv mapping must be confirmed by the arXiv record's own title (a hand check of 20 at 0.5 found 3 wrong)
+METADATA_MIN = 0.9           # arxiv_metadata: both ways, on at least four significant words
+DEPOSIT_DOI_PREFIXES = ('10.5281/', '10.6084/', '10.5061/', '10.17605/', '10.7910/', '10.4230/artifacts')   # Zenodo, Figshare, Dryad, OSF, Dataverse, LIPIcs artifacts: a dataset or software record, not the paper
 
 
 class ArxivIndex:
@@ -136,11 +138,13 @@ def confirm(paper, urls, locs, mapped_arxiv, arx_index, verdicts=None):
             arx.setdefault(a.lower(), []).append(u)
     # 1. a DOI -> arXiv mapping ties the candidate's arXiv id to this work
     for doi in paper['doi']:
+        if doi.startswith(DEPOSIT_DOI_PREFIXES):
+            continue   # the mapping ties a deposit to its paper; the deposit is not the paper
         m = mapped_arxiv(doi)
         m = re.sub(r'v\d+$', '', m).lower() if m else None
         if m and m in arx:
             # the S2 / OpenAlex mapping also ties datasets, software and companion papers to a paper (a hand check of 208 found ~12% wrong):
-            # it counts only when the arXiv record's own title, where the local index holds it, shares half of the title's words
+            # it counts only when the arXiv record's own title, where the local index holds it, shares three quarters of the shorter title's words
             rec = arx_index.lookup([m]).get(m)
             if rec and title_overlap(paper['title'], rec[0]) >= MAPPING_MIN_OVERLAP:
                 return 'arxiv_id_doi', arx[m]
@@ -155,7 +159,7 @@ def confirm(paper, urls, locs, mapped_arxiv, arx_index, verdicts=None):
     if arx:
         found = arx_index.lookup(list(arx))
         for a, (t, fams) in found.items():
-            if title_match(paper['title'], t) and fams and paper['first_author'] and fam(fams[0]) == paper['first_author']:
+            if title_match(paper['title'], t, min_words=4, frac=METADATA_MIN) and fams and paper['first_author'] and fam(fams[0]) == paper['first_author']:
                 return 'arxiv_metadata', arx[a]
     # 4. a polite landing-page check by the downloads agent said so
     for u, _ in urls:

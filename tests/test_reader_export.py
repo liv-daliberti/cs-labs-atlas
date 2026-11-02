@@ -192,6 +192,8 @@ def test_confirm_bases_in_order():
     assert RL.confirm(PAPER, urls, {}, lambda d: None, other_author)[0] is None                                          # first author must match
     other_title = FakeArxiv({'1111.1111': ('Quantum error correction with surface codes', ['Lovelace'])})
     assert RL.confirm(PAPER, urls, {}, lambda d: None, other_title)[0] is None
+    deposit = dict(PAPER, doi=['10.5281/zenodo.123'])
+    assert RL.confirm(deposit, urls, {}, lambda d: '1111.1111', same)[0] is None                                         # a deposit's DOI mapping is not the paper
     longer = FakeArxiv({'1111.1111': ('Learning sparse representations of graph data and many more unrelated additional words', ['Lovelace'])})
     assert RL.confirm(PAPER, urls, {}, lambda d: None, longer)[0] is None                                                # both ways 80%
     assert RL.confirm(PAPER, urls, {}, lambda d: None, no_arx, {('k', RL.norm_url(urls[1][0])): 'match'})[0] == 'landing_page_metadata'
