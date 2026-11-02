@@ -1677,6 +1677,8 @@ WEAK_PROFILE_LABEL = re.compile(r"Doctoral Dissertation Reader|Reader \(AC\)|\(P
 CITATION_CONTEXT = re.compile(r"\bpp\.\s*\d|\bPDF\s*\||\bView details for\b|\bProceedings of\b|\bTrans\. on\b|(?i:\bbibtex\b)|\bSupplemental\b|\bproject page\b|\[Link\]|\b(?:Journal|Transactions|Review|Letters|Conference) (?:on|of|in)\b[^.]{0,80}\((?:19|20)\d\d\)")
 
 
+ADMIN_DESC = re.compile(r"\b(?:Secretary|Administrative\s+(?:Assistant|Specialist|Associate|Staff)|Group\s+Administrator|Office\s+Manager|Executive\s+Assistant)\b", re.I)
+AFFILIATE_DESC = re.compile(r"^\W{0,3}(?:Research\s+|Senior\s+)?(?:Affiliate|Partner|Collaborator|Consulting\s+Professor|Adjunct)\b", re.I)
 NAME_NOISE = re.compile(r"\b(?:Oral'?s?|Orals?\s+Chair|Chair|Reader|Committee|Evaluator|Examiner|Moderator|Panelist)\b", re.I)
 PAREN_TAIL = re.compile(r'\s*\(([^()]{1,40})\)\s*$')
 COADVISER_BEFORE = re.compile(r"(?:co-?advis(?:ed|ors?|ing|e)|co-?supervis\w*|jointly\s+\w+|joint(?:ly)?)\s*(?:with|w/|by|:)\s*$|\(\s*with\s+$|\bw/\s*$|\bwith\s+Prof\.?\s+$", re.I)
@@ -1725,6 +1727,11 @@ def repair_reason(kit, school, name, best, start, pi=None):
     cm = re.search(r'/web/(\d{4})', best.get('capture_url') or '')
     if cm and int(cm.group(1)) < WINDOW[0] and not best.get('years'):
         return 'outside_2016_2026', f'listed on a {cm.group(1)} capture, before the window, and undated'
+    ds = (best.get('desc') or '')[:90]
+    if ADMIN_DESC.search(ds):
+        return 'not_a_student', 'administrative staff (secretary, administrative assistant): not a lab member in the study'
+    if AFFILIATE_DESC.search(ds):
+        return 'not_a_student', 'an affiliate, partner or collaborator of the group, not a member'
     if NAME_NOISE.search(name or ''):
         return 'name_unresolved', 'the name carries a committee or honorific word (Oral\'s Chair, Reader, Committee)'
     q = best.get('quote') or ''

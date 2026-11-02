@@ -434,3 +434,11 @@ def test_collaborator_prose_and_pre_window_capture():
     assert A.COLLAB_PROSE.search('I have had wonderful opportunities to collaborate with the PhD students (some current and some former): Lingqing')
     assert not A.COLLAB_PROSE.search('I advise the following PhD students: Alex Wang')
     assert A.WINDOW[0] == 2016
+
+
+def test_admin_staff_and_affiliates_are_not_members():
+    assert A.ADMIN_DESC.search('Position Secretary Office ME C2 389')
+    assert A.ADMIN_DESC.search('Chris Downey Administrative Assistant')
+    assert not A.ADMIN_DESC.search('Position Scientist Office ME C2')
+    assert A.AFFILIATE_DESC.search('Research Affiliate, Berkman Klein Center')
+    assert not A.AFFILIATE_DESC.search('Research Scientist, ICSI')
