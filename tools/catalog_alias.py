@@ -141,7 +141,8 @@ def apply(store, groups, now=None):
     n = 0
     for i in range(0, len(rows), BATCH):
         with CL.catalog_lock(store):
-            db = sqlite3.connect(str(Path(store) / 'catalog.sqlite'), timeout=60)
+            db = sqlite3.connect(str(Path(store) / 'catalog.sqlite'), timeout=900)   # writers that do not take the file lock (vendored importers) may hold sqlite's own lock
+            db.execute('PRAGMA busy_timeout=900000')
             try:
                 db.executescript(SCHEMA)
                 part = rows[i:i + BATCH]
