@@ -98,6 +98,9 @@ For such unaffiliated bylines, in a PI's arrival or departure year a listing pro
 date: Thomas Griffiths's last Berkeley listing is April 2018 and he moved to Princeton that July, so an unaffiliated
 September 2018 preprint is not a Berkeley lab paper (an affiliated one still is). The window's first year (2016) is no
 arrival and the current year no departure. `transition_side`.
+The build counts every paper a transition-year listing admitted by its side of the capture (ROADMAP #29, `report.json` counts
+`transition_year_{unaffiliated,affiliated}_{inside,outside,undecided,no_capture}`; `undecided` is a date range that straddles the
+capture date, `transition_status`). The count is reported; affiliated papers stay in as before.
 
 ### R-PAP-14 (2026-10-28, build) — namesake PIs
 When two PIs claim one paper through the same byline name, the PI holding that author id as a reviewed id keeps it; else

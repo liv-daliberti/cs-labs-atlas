@@ -8,7 +8,7 @@ import atlas_paths as P  # data paths (DATA_FILES)
 import school_config as _S  # the school charters (R-PAP-15's foreign-title exception)
 from .common import OWN_UNITS, SCHOOL_LOOSE, TODAY, WINDOW_START, accepted_additions, ndoi, norm_title
 from .names import NICK, _nick_pairs, byline_name, full_pair, toks
-from .periods import contains, same_year, transition_side
+from .periods import contains, same_year, transition_side, transition_status
 from . import identity
 
 # Recovered lab-paper rows as (kind, identity label): hierarchy/<school>/<kind>-recovered.jsonl.gz (tools/dblp_recover.py,
@@ -484,6 +484,12 @@ def rows_from_hits(ctx):
             # Griffiths's last Berkeley listing is April 2018 and he moved to Princeton that July, so an unaffiliated
             # September 2018 preprint is not a Berkeley lab paper (an affiliated one still is)
             n['unaffiliated_transition_year_outside'] += 1; funnel[pi]['transition_year_outside'] += 1; continue
+        if per is None and lst is not None:
+            # ROADMAP #29: every paper admitted by a transition-year listing is counted by its side of the dated capture (reported, not decided
+            # here for affiliated papers: R-PAP-13 keeps them); 'undecided' is a date range that straddles the capture
+            ts = transition_status(p, lst, date)
+            if ts:
+                n[f"transition_year_{'unaffiliated' if unaffiliated else 'affiliated'}_{ts}"] += 1
         funnel[pi]['in_appointment'] += 1
         k = (pi, cw or w['id'])
         if k in seen:

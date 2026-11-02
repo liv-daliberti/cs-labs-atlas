@@ -92,6 +92,20 @@ def test_R_PAP_13_transition_side_griffiths(fixture_json):
     assert h.transition_side(p, by_year[2016], '2016-01-02') == 'inside'   # the window's first year is no arrival
 
 
+def test_R_PAP_29_transition_status_keeps_undecided_apart():
+    p = {'listings': [{'year': 2018, 'url': 'https://web.archive.org/web/20180405000000/x'}, {'year': 2019, 'url': 'u'}]}
+    dep, arr = {'year': 2019, 'url': 'https://web.archive.org/web/20190915000000/x'}, p['listings'][0]
+    q = {'listings': [{'year': 2016, 'url': 'a'}, {'year': 2017, 'url': 'b'}, {'year': 2018, 'url': 'https://web.archive.org/web/20180405000000/x'}]}
+    last = q['listings'][2]
+    assert h.transition_status(q, last, '2018-03-23') == 'inside' and h.transition_status(q, last, '2018-04-25') == 'outside'
+    assert h.transition_status(q, last, '2018') == 'undecided' and h.transition_status(q, last, '2018-04') == 'undecided'
+    assert h.transition_status(q, q['listings'][1], '2017') is None            # no transition year
+    assert h.transition_status(q, {'year': 2018, 'url': 'no capture'}, '2018-03-23') == 'no_capture'
+    r = {'listings': [{'year': 2019, 'url': 'https://web.archive.org/web/20190915000000id_/x'}, {'year': 2020, 'url': 'u'}]}
+    assert h.transition_status(r, r['listings'][0], '2019-10-01') == 'inside' and h.transition_status(r, r['listings'][0], '2019-03-01') == 'outside'
+    assert h.transition_status(r, r['listings'][0], '2019-09') == 'undecided'
+
+
 def test_R_PAP_13_transition_side_arrival_year():
     p = {'listings': [{'year': 2019, 'url': 'https://web.archive.org/web/20190915000000id_/x'}, {'year': 2020, 'url': 'u'}]}
     lst = p['listings'][0]

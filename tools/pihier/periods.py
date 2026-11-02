@@ -67,6 +67,28 @@ def transition_side(p, lst, date):
     return 'inside'
 
 
+def transition_status(p, lst, date):
+    """R-PAP-13's dated-capture rule with the undecided case kept apart (ROADMAP #29): None when the listing's year is no transition
+    year; else 'inside' or 'outside' when every possible date of the work is on one side of the capture date, 'undecided' when the work's
+    date range straddles the capture (a bare year, or a month containing it), 'no_capture' when the listing has no dated capture or the
+    work no usable date. Departure year: the school's side is on or before the capture; arrival year: on or after it."""
+    ys = sorted(l['year'] for l in p.get('listings') or [])
+    y = lst['year']
+    departing = y == ys[-1] and y < int(TODAY[:4])
+    arriving = y == ys[0] and y > 2016
+    if not departing and not arriving:
+        return None
+    m = re.search(r'/web/(\d{4})(\d{2})(\d{2})', lst.get('url') or '')
+    cap = f'{m.group(1)}-{m.group(2)}-{m.group(3)}' if m else None
+    pb = datebounds(date)
+    if not cap or not pb:
+        return 'no_capture'
+    lo, hi = pb
+    if departing:
+        return 'inside' if hi <= cap else 'outside' if lo > cap else 'undecided'
+    return 'inside' if lo >= cap else 'outside' if hi < cap else 'undecided'
+
+
 def _year(v):
     return int(str(v)[:4]) if str(v or '')[:4].isdigit() else None
 

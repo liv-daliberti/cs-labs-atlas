@@ -39,7 +39,7 @@ from pihier.names import (NICK, _nick_pairs, nick_ok, LETTERS, toks, given, SUFF
                           clean_person_name, _fold, names_full_form, Name, same_student, hyphen_half, byline_name,
                           name_variants, student_on_byline, one_edit, EAST_ASIAN_FAMILY, strict_name_one, strict_name,
                           _words, name_conflict, full_pair, all_initials, gwords, given_conflict, dedupe_tokens)
-from pihier.periods import (SEASON, datebounds, contains, same_year, transition_side, _year, listings_after_move,  # noqa: E402,F401
+from pihier.periods import (SEASON, datebounds, contains, same_year, transition_side, transition_status, _year, listings_after_move,  # noqa: E402,F401
                             NOT_FACULTY, INCOMING, not_faculty_row)
 from pihier.census import COLLECTIVE  # noqa: E402,F401
 from pihier.students import (ADV_RX, ADVISING_LABEL, WEAK_LABEL, advising_label, ADVISER_NAMED,  # noqa: E402,F401
