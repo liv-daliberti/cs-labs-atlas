@@ -34,10 +34,12 @@ run it before anything else (2026-10-31: a store created without `sources/` fail
 
   Each hold is one short transaction (a batch of at most 200 rows, or one work). A writer that cannot get the lock within
   30 minutes refuses with `CatalogBusy` instead of writing beside another.
-- **Writers that do not take the lock yet** (code outside `fulltext-push/`): the Princeton package importer
-  (`import_all_when_free.py`) and the vendored Infoscience and DSpace resolvers. They write only candidates and are run
-  from `run_steps.sh` and the import step. Until they take the lock, run them only while that store's loop is stopped, or
-  through `run_steps.sh`.
+- **Vendored writers take it too** (ROADMAP #20, 2026-11-02): the Princeton package importers (`import_all_when_free.py` runs each
+  package import in a child under `catalog_lock`; `import_when_free.py` the same) and the Infoscience and DSpace resolvers
+  (`epfl_infoscience_rest.py`, `mit_dspace_rest.py`: the candidate insert holds the lock). The importers take
+  `backup_catalog(store, 'before-import')` once before their first package; the resolvers back up first when they add more than
+  1,000 candidates. An import holds the lock for its whole package, so the collector's writers wait (up to 30 minutes) while it
+  runs; the importers already wait for a non-collecting phase. Tests: `tests/test_vendored_writers_take_the_lock.py`.
 
 ## Backup and retention policy
 

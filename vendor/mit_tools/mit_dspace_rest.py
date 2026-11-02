@@ -24,6 +24,8 @@ import sys as _sys  # noqa: E402
 from pathlib import Path as _Path  # noqa: E402
 _sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
 import atlas_paths as P  # noqa: E402
+_sys.path.append(str(P.FULLTEXT_PUSH))
+import catalog_lock as CL  # noqa: E402  (one writer per catalog, and a locked backup before a bulk write: docs/STORES.md)
 import json, re, sqlite3, sys, time
 from collections import Counter
 from datetime import datetime, timezone
@@ -134,12 +136,16 @@ def add(handles, known):
     ev = OUT / 'discovery' / 'claude-mit-catalog' / 'evidence' / f'dspace-ore-{stamp}.json'
     ev.parent.mkdir(parents=True, exist_ok=True)
     ev.write_text(json.dumps(dict(rule=__doc__, created_at=datetime.now(timezone.utc).isoformat(), records=used)))
+    if len(rows) > 1000:
+        CL.backup_catalog(OUT, 'before-dspace')  # a bulk write: locked snapshot first
     db = sqlite3.connect(str(OUT / 'catalog.sqlite'), timeout=300)
     added = 0
     for attempt in range(20):  # the collector writes to the same catalog: wait out its locks
         try:
-            added = sum(db.execute('INSERT OR IGNORE INTO candidates VALUES (?,?,?,?,?,?)', (w, u, land, None, None, str(ev))).rowcount for w, u, land in rows)
-            db.commit(); break
+            with CL.catalog_lock(OUT):  # one writer per catalog
+                added = sum(db.execute('INSERT OR IGNORE INTO candidates VALUES (?,?,?,?,?,?)', (w, u, land, None, None, str(ev))).rowcount for w, u, land in rows)
+                db.commit()
+            break
         except sqlite3.OperationalError:
             db.rollback(); time.sleep(30)
     print(json.dumps(dict(candidates_added=added, works=len({r[0] for r in rows}), evidence=str(ev), **n)), flush=True)

@@ -14,6 +14,8 @@ import fcntl, importlib, json, sys, time
 from datetime import datetime, timezone
 from pathlib import Path
 
+sys.path.append(str(P.FULLTEXT_PUSH))
+import catalog_lock as CL  # noqa: E402  (one writer per catalog, and a locked backup before a bulk write: docs/STORES.md)
 STAGE = P.SWEEPS / 'claude-princeton-20261015'  # vendored: the data root (was Path(__file__).resolve().parents[1])
 FULLTEXT = P.STORES / 'princeton'
 SAFE_PHASES = {'verifying', 'exporting_atlas', 'exporting_focus', 'exporting_cs', 'exporting_page2', 'complete'}
@@ -26,8 +28,15 @@ def log(**kw):
         f.write(json.dumps(dict(at=datetime.now(timezone.utc).isoformat(), **kw)) + '\n')
 
 
+def import_locked(name):
+    """One package import under the catalog write lock (the collector's writers wait for it)."""
+    with CL.catalog_lock(FULLTEXT):
+        importlib.import_module(name).import_catalog()
+
+
 def main(modules):
     pending = list(modules)
+    backed_up = False
     while pending:
         try:
             state = json.loads((FULLTEXT / 'run-state.json').read_text())
@@ -43,9 +52,12 @@ def main(modules):
                 except BlockingIOError:
                     free = False
             if free:
+                if not backed_up:
+                    CL.backup_catalog(FULLTEXT, 'before-import')  # a bulk write: locked snapshot first
+                    backed_up = True
                 for name in list(pending):
                     try:
-                        importlib.import_module(name).import_catalog()
+                        import_locked(name)
                         log(imported=name, phase=state.get('phase'), status=state.get('status'))
                         pending.remove(name)
                     except BlockingIOError:

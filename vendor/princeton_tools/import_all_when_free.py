@@ -13,6 +13,8 @@ import fcntl, importlib, json, sqlite3, sys, time
 from datetime import datetime, timezone
 from pathlib import Path
 
+sys.path.append(str(P.FULLTEXT_PUSH))
+import catalog_lock as CL  # noqa: E402  (one writer per catalog, and a locked backup before a bulk write: docs/STORES.md)
 STAGE = P.SWEEPS / 'claude-princeton-20261015'  # vendored: the data root (was Path(__file__).resolve().parents[1])
 FULLTEXT = P.STORES / 'princeton'
 DISC = FULLTEXT / 'discovery'
@@ -42,10 +44,13 @@ def run(module, package):
     import subprocess
     code = (f"import sys; sys.path.insert(0, {str(Path(__file__).resolve().parent)!r}); import {module} as m; from pathlib import Path; "
             f"m.PACKAGE = Path({str(DISC / package)!r}) if hasattr(m, 'PACKAGE') else None; "
-            + ("m.EVID = m.PACKAGE / 'evidence'; " if module == 'cs_open_copies' else '') + "m.import_catalog()")
+            + ("m.EVID = m.PACKAGE / 'evidence'; " if module == 'cs_open_copies' else '')
+            + f"sys.path.insert(0, {str(P.FULLTEXT_PUSH)!r}); import catalog_lock as CL\n"
+            + f"with CL.catalog_lock({str(FULLTEXT)!r}):  # the import runs under the catalog write lock\n    m.import_catalog()")
+
     r = subprocess.run([sys.executable, '-c', code], capture_output=True, text=True, timeout=1800)
     if r.returncode != 0:
-        if 'BlockingIOError' in r.stderr or 'database is locked' in r.stderr:
+        if 'BlockingIOError' in r.stderr or 'database is locked' in r.stderr or 'CatalogBusy' in r.stderr:
             raise BlockingIOError(r.stderr.strip().splitlines()[-1][:200])
         raise RuntimeError(r.stderr.strip()[-300:])
 
@@ -54,6 +59,7 @@ def main():
     steps = [tuple(a.split(':')) if ':' in a else ('cs_open_copies', a) for a in sys.argv[1:]] or STEPS  # [module:]package on the command line
     pending = [s for s in steps if not imported(s[1])]
     deadline = time.time() + 36 * 3600
+    backed_up = False
     while pending and time.time() < deadline:
         try:
             state = json.loads((FULLTEXT / 'run-state.json').read_text())
@@ -63,6 +69,9 @@ def main():
             for module, package in list(pending):
                 if not (DISC / package / 'summary.json').exists():
                     break  # not built yet: later packages depend on the order
+                if not backed_up:
+                    CL.backup_catalog(FULLTEXT, 'before-import')  # a bulk write: locked snapshot first
+                    backed_up = True
                 try:
                     run(module, package)
                     log(imported=package, phase=state.get('phase'), status=state.get('status'))
