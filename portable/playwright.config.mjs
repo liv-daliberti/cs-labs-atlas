@@ -1,4 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
+import { fileURLToPath } from 'node:url';
 
 export default defineConfig({
   testDir: './browser',
@@ -7,7 +8,7 @@ export default defineConfig({
   workers: 1,
   retries: 0,
   reporter: [['list'], ['html', { outputFolder: 'outputs/browser-report', open: 'never' }]],
-  outputDir: 'outputs/browser-results',
+  outputDir: fileURLToPath(new URL('../outputs/browser-results', import.meta.url)),
   use: {
     baseURL: process.env.ATLAS_BASE_URL || 'http://127.0.0.1:8787',
     screenshot: 'only-on-failure',

@@ -27,7 +27,7 @@ def export(output):
               p.suffix in ('.html', '.js', '.css', '.LICENSE') and not p.relative_to(ROOT / 'atlas').parts[0] in ('papers', 'data', 'downloads')]
     files += [ROOT / 'lib' / name for name in ('atlas-storage.mjs', 'atlas-update-auth.mjs', 'chunked-graph.mjs',
                                              'princeton-release.mjs', 'atlas-release.json', 'atlas-bootstrap.json')]
-    files += [p for p in (ROOT / 'portable').rglob('*') if p.is_file() and 'node_modules' not in p.parts]
+    files += [p for p in (ROOT / 'portable').rglob('*') if p.is_file() and not any(part in ('node_modules', 'outputs', '__pycache__') for part in p.parts)]
     files += [ROOT / name for name in ('AGENTS.md', 'CLAUDE.md', '.prettierrc.json', '.dockerignore',
                                      'requirements-publishing.txt', 'deployment/asset-manifest.json')]
     for source in files:

@@ -92,11 +92,13 @@ test('downloads work and the mobile page stays within the viewport', async ({ pa
     .locator('.csd-depts')
     .evaluate((el) => getComputedStyle(el).color);
   expect(headingColor).toBe(sidebarColor);
-  const countsFit = await page
-    .locator('.csd-depts li button span')
-    .evaluateAll((elements) =>
-      elements.every((el) => el.scrollHeight <= parseFloat(getComputedStyle(el).lineHeight) + 1),
-    );
+  const countsFit = await page.locator('.csd-depts li button span').evaluateAll((elements) =>
+    elements.every((el) => {
+      const text = document.createRange();
+      text.selectNodeContents(el);
+      return text.getClientRects().length === 1;
+    }),
+  );
   expect(countsFit).toBe(true);
   const href = await page.getByRole('link', { name: 'Labs · CSV' }).getAttribute('href');
   const response = await request.get('/' + href);
