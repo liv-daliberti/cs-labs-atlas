@@ -64,3 +64,14 @@ def test_a_challenge_page_is_not_read(server):
 def test_the_never_used_hosts_are_not_asked():
     r = L.Checker(gap=0.0).check(row('https://deepblue.lib.umich.edu/handle/2027.42/1'))
     assert r['verdict'] == 'unreachable' and r['reason'] == 'never_used_host'
+
+
+def test_a_site_title_is_not_a_mismatch_and_a_bot_page_is_not_read(server, tmp_path):
+    srv = tmp_path / 'www'
+    (srv / 'person.html').write_text('<html><head><title>Howie Choset - The Robotics Institute - CMU</title></head></html>')
+    (srv / 'bot.html').write_text("<html><head><title>Making sure you're not a bot!</title></head></html>")
+    c = L.Checker(gap=0.0)
+    r = c.check(row(server + '/person.html'))
+    assert r['verdict'] == 'unreachable' and r['reason'] == 'page_title_not_bibliographic'
+    r = c.check(row(server + '/bot.html'))
+    assert r['verdict'] == 'unreachable' and r['reason'] == 'bot_challenge'

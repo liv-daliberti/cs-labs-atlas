@@ -37,7 +37,8 @@ UA = 'HomogenizingScienceResearch/0.2 (academic metadata inventory)'
 AI_AGENTS = ('ClaudeBot', 'anthropic-ai', 'Claude-Web', 'Claude-User', 'Claude-SearchBot')
 NEVER = {'deepblue.lib.umich.edu', 'news.umich.edu', 'record.umich.edu', 'dblp.org', 'www.dblp.org', 'dblp.uni-trier.de'}
 CHALLENGE = re.compile(r'(cf-chl-|challenge-platform|<title>Just a moment|Attention Required! \| Cloudflare|verify you are a human|hcaptcha|'
-                       r'Checking your browser|px-captcha|perfdrive|Access Denied</title>)', re.I)
+                       r'Checking your browser|px-captcha|perfdrive|Access Denied</title>|not a bot|Verifying your browser|Are you a robot|Pardon our interruption)', re.I)
+BIBLIO = ('citation_title', 'dc.title', 'dcterms.title', 'eprints.title')  # tags that carry the paper's own title (not a site or section title)
 MAX_HTML, MAX_PDF = 2_000_000, 25_000_000
 
 
@@ -75,12 +76,13 @@ def page_meta(html):
     except Exception:
         pass
     m = p.m
-    title = next((m[k][0] for k in ('citation_title', 'dc.title', 'dcterms.title', 'og:title', 'twitter:title', 'eprints.title') if m.get(k)), '') or ' '.join(p.title.split())
+    biblio = next((m[k][0] for k in BIBLIO if m.get(k)), '')
+    title = biblio or next((m[k][0] for k in ('og:title', 'twitter:title') if m.get(k)), '') or ' '.join(p.title.split())
     authors = [a for k in ('citation_author', 'dc.creator', 'dcterms.creator', 'eprints.creators_name', 'author') for a in m.get(k, [])]
-    return ' '.join(title.split()), authors[:30]
+    return ' '.join(title.split()), authors[:30], bool(biblio)
 
 
-def judge_page(title_seen, authors_seen, title, first):
+def judge_page(title_seen, authors_seen, title, first, bibliographic=True):
     """(verdict, why). The title rule is identity_rule's: significant words, letters only."""
     tw = [x for x in R.norm_words(title) if len(x) >= 3 and x not in R.STOP]
     sw = set(R.norm_words(title_seen))
@@ -96,6 +98,8 @@ def judge_page(title_seen, authors_seen, title, first):
     if title_ok and author_ok:
         return 'match', 'title_and_author' if authors_seen else 'title_only'
     if frac < 0.5:
+        if not bibliographic:  # a site, section or person page title says nothing about this paper
+            return 'unreachable', 'page_title_not_bibliographic'
         return 'mismatch', f'title words {frac:.2f}'
     return 'unreachable', 'title_partly_matched' if title_ok is False else 'first_author_not_among_authors_seen'
 
@@ -231,8 +235,8 @@ class Checker:
         if CHALLENGE.search(text[:20000]):
             self.host((urlsplit(final).hostname or '').lower()).fails += 1
             return dict(base, verdict='unreachable', title_seen=None, authors_seen=[], reason='bot_challenge')
-        title_seen, authors_seen = page_meta(text)
-        v, why = judge_page(title_seen, authors_seen, row['title'], row['first_author_family'])
+        title_seen, authors_seen, biblio = page_meta(text)
+        v, why = judge_page(title_seen, authors_seen, row['title'], row['first_author_family'], biblio)
         return dict(base, verdict=v, title_seen=title_seen or None, authors_seen=authors_seen, how='html_meta', reason=why)
 
 
