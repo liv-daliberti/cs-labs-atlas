@@ -158,6 +158,40 @@
    "additionalProperties": {
     "type": "integer"
    }
+  },
+  "site_sync": {
+   "description": "The sync of the site's hosted files with this release (present when the export was run against the site's local-papers.json): the site serves only from releases.",
+   "type": "object",
+   "properties": {
+    "site_files": {
+     "type": "integer",
+     "minimum": 0,
+     "description": "Files the site hosts today."
+    },
+    "keep": {
+     "type": "integer",
+     "minimum": 0,
+     "description": "Of those, files this release hosts too."
+    },
+    "unpublish": {
+     "type": "integer",
+     "minimum": 0,
+     "description": "Files to unpublish (unpublish.tsv)."
+    },
+    "unpublish_by_reason": {
+     "type": "object",
+     "additionalProperties": {
+      "type": "integer"
+     },
+     "description": "Unpublish count by reason."
+    },
+    "upload": {
+     "type": "integer",
+     "minimum": 0,
+     "description": "Files to add (upload.tsv)."
+    }
+   },
+   "additionalProperties": false
   }
  },
  "additionalProperties": false

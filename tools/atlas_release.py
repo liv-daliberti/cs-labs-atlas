@@ -103,7 +103,7 @@ def check_notes(c):
     if not rid:
         return False, 'no release'
     d = Path(P.RELEASES) / rid
-    need = ['CHANGES.md', 'MANIFEST.json', 'reader/SUMMARY.json', 'reader/README.md']
+    need = ['CHANGES.md', 'MANIFEST.json', 'reader/SUMMARY.json', 'reader/README.md', 'reader/unpublish.tsv', 'reader/upload.tsv']
     miss = [n for n in need if not (d / n).exists()]
     return (not miss), (f'release {rid}: ' + ('CHANGES.md and reader/ present' if not miss else f'missing {miss}'))
 
@@ -139,6 +139,15 @@ def render_handoff(rid, d):
               f"{t.get('not_readable')} not readable. `reader/README.md` says exactly how the site marks a paper readable (a works entry in local-papers.json; link entries have "
               f"`link: true` and no `path`), `reader/hosted-files.tsv` lists the files to upload and `reader/currently-hosted-not-permitted.tsv` the {rd.get('currently_hosted_not_permitted')} files to unpublish.",
               f"Candidate links wait for a landing-page check where unconfirmed: `reader/link-check-requests.tsv` ({rd.get('link_check_request_urls')} URLs).", '']
+    ss = rd.get('site_sync')
+    if ss:
+        by = ', '.join(f'{k} {v}' for k, v in (ss.get('unpublish_by_reason') or {}).items())
+        L += ['## Site sync: the site serves only from releases', '',
+              f"From this release on the site's hosted files are exactly `reader/hosted-files.tsv`; nothing else may be served. The site hosted {ss.get('site_files')} files when this "
+              f"release was made: keep {ss.get('keep')}, **unpublish {ss.get('unpublish')}** (`reader/unpublish.tsv`, with the reason per file: {by}), and upload {ss.get('upload')} "
+              "(`reader/upload.tsv`). After the sync `data/local-papers.json` `files` and `reader-objects.json` must equal hosted-files.tsv, and every `works` entry must come from a "
+              "`reader/<school>.jsonl.gz` row (host rows with a path, link rows without one). Untraceable files (`not_in_stores`) are removed too: a file with no store record "
+              "has no licence we can show.", '']
     L += ['## Where', '', f"- Release: `{d}` (MANIFEST.json lists every file with its sha256).",
           f"- GitHub export: tag `release-{rid}` on the export repository's main.", '- Hugging Face: the private dataset, releases/<id>/ (HF-UPLOAD.json in the release records the verified upload).', '']
     return '\n'.join(L)

@@ -165,6 +165,8 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `reader-SUMMARY.json` | derived | `hierarchy/reader/SUMMARY.json` | `hierarchy/derived/reader/SUMMARY.json` | - | <100MB |
 | `reader-hosted-files.tsv` | derived | `hierarchy/reader/hosted-files.tsv` | `hierarchy/derived/reader/hosted-files.tsv` | - | <100MB |
 | `reader-not-permitted.tsv` | derived | `hierarchy/reader/currently-hosted-not-permitted.tsv` | `hierarchy/derived/reader/currently-hosted-not-permitted.tsv` | - | <100MB |
+| `reader-unpublish.tsv` | derived | `hierarchy/reader/unpublish.tsv` | `hierarchy/derived/reader/unpublish.tsv` | - | <100MB |
+| `reader-upload.tsv` | derived | `hierarchy/reader/upload.tsv` | `hierarchy/derived/reader/upload.tsv` | - | <100MB |
 | `reader-README.md` | derived | `hierarchy/reader/README.md` | `hierarchy/derived/reader/README.md` | - | <100MB |
 | `sweep.log` | work | `hierarchy/sweep-{school}.log` | `hierarchy/work/sweep-{school}.log` | - | <100MB |
 | `tmp` | work | `hierarchy/{school}/tmp` | `hierarchy/{school}/work/tmp` | - | <100MB |

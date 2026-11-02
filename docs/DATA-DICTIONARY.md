@@ -1032,6 +1032,13 @@ Counts of the reader export per school and in total.
 | `link_check_request_urls` | integer | no | Rows in link-check-requests.tsv. | at least 0 |  |
 | `link_check_request_hosts` | map | no | The 25 hosts with most request rows. |  |  |
 | `link_check_request_hosts.<key>` | integer | — |  |  |  |
+| `site_sync` | object | no | The sync of the site's hosted files with this release (present when the export was run against the site's local-papers.json): the site serves only from releases. | no other keys |  |
+| `site_sync.site_files` | integer | no | Files the site hosts today. | at least 0 |  |
+| `site_sync.keep` | integer | no | Of those, files this release hosts too. | at least 0 |  |
+| `site_sync.unpublish` | integer | no | Files to unpublish (unpublish.tsv). | at least 0 |  |
+| `site_sync.unpublish_by_reason` | map | no | Unpublish count by reason. |  |  |
+| `site_sync.unpublish_by_reason.<key>` | integer | — |  |  |  |
+| `site_sync.upload` | integer | no | Files to add (upload.tsv). | at least 0 |  |
 
 ## `hierarchy/student-audit.json`
 

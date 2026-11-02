@@ -65,7 +65,7 @@ Order: **P0** = starts right after the data-layout move (item 10 phase B), in th
 | # | Item | Status | Done when |
 |---|---|---|---|
 | 16 | Agents commit through branches only; Slurm jobs only from a code snapshot | **P0-2** (in progress, refactor agent: CI test `tests/test_slurm_snapshot.py`, collector one-offs retired to archive/fulltext-push, `atlas submit` documented; the enforce switch awaits the coordinator's word) | every agent works in a worktree and lands with `agent_worktree.sh land`; the main-commit hook refuses (enforce mode); CI fails on any `.slurm` that does not source `job_code_snapshot.sh`; `atlas submit` is the documented submit path |
-| 17 | One lease per agent or session | **P1-3** (before the release; owner 2026-11-01) | a lease file per agent, renewed while it works; a second copy refuses to start while the lease is live; restart checklist uses it |
+| 17 | One lease per agent or session | **P1-3** (done, refactor agent: tools/agent_lease.py + `atlas lease`, tests, RUNBOOK restart checklist) | a lease file per agent, renewed while it works; a second copy refuses to start while the lease is live; restart checklist uses it |
 | 18 | Download loops that restart themselves | **P1-2** (before the release; owner 2026-11-01) | a loop resubmits itself at its time limit on the current pinned commit; no manual restart at 3 days |
 | 19 | `atlas new-school <key>` | **P2-5** (before the release; owner 2026-11-02) | one command makes the charter, store, folders, catalog schema and receipts, and runs the stage-0 check (no cloning another school's store) |
 | 20 | No half-covered catalog locks | **P1-5** (before the release; owner 2026-11-01) | the Princeton importer and the two vendored resolvers take the catalog lock and the pre-write backup |
@@ -83,7 +83,7 @@ Order: **P0** = starts right after the data-layout move (item 10 phase B), in th
 | 27 | Lab-page template readers | **P2-8** (before the release; owner 2026-11-02) | structural readers for al-folio/Jekyll, Google Sites and WordPress team pages; membership error rate re-measured |
 | 28 | One entry per paper in the stores | **P2-3** (before the release; owner 2026-11-02) | DOI/title sibling works collapsed onto the atlas work id in every store; counts and identity checks run on canonical works |
 | 29 | Boundary years settled | **P2-4** (before the release; owner 2026-11-02) | the dated-capture (transition_side) rule applies to every arrival/departure-year paper; undecided count reported per school |
-| 30 | The site serves only from releases | **P1-1** (before the release; owner 2026-11-01) | the release's reader export is the only source of hosted files; the 5,326 untraceable hosted files are gone |
+| 30 | The site serves only from releases | **P1-1** (done in the release tooling, refactor agent: reader/unpublish.tsv + upload.tsv + SUMMARY site_sync, the handoff note text, `atlas release` checks them; the site-side removal is Codex's) | the release's reader export is the only source of hosted files; the 5,326 untraceable hosted files are gone |
 | 31 | Open owner decisions | open | publisher TDM access via the Library; Michigan's 171-lab student gap |
 
 ### Speed and efficiency

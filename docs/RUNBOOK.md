@@ -70,6 +70,19 @@ cuts just the release). Agents do not push; the coordinator confirms the externa
 | Ids changed | they must not: `hierarchy/ids/registry.sqlite` travels with every release; restore it from the last release (docs/IDS.md) |
 | Moved files, old paths | `archive/migrations/*.jsonl` records every move of the project relocation; `tools/relocate_project.py` and `tools/relocate_data.py` are dry runs by default |
 
+## Starting or restarting an agent (leases and the restart checklist; ROADMAP #17, #40)
+
+Every agent holds one lease while it works (`atlas lease`, tools/agent_lease.py; files in `<root>/leases/`). A second copy of the same agent refuses to start
+while the lease is live, so a restarted session cannot run beside a forgotten one. In this order:
+1. `atlas lease status`: is the agent's lease live? A live lease of another session means that session is still working: stop and ask the coordinator.
+   An expired lease (renewed more than 30 min ago) is free.
+2. `atlas lease acquire <name> --note "<what I am doing>"` (exit 3 = refused). Renew on every report: `atlas lease renew <name> --note "<step>"`.
+3. Read the hand-off: `docs/ROADMAP.md` for your rows, the memory index, and the last report.
+4. Find your own state, not someone else's: `tools/agent_worktree.sh ls` (your worktree and branch, with uncommitted changes), `git -C <worktree> status`, `squeue -u $USER`
+   (your jobs and the download loops; never cancel what is not yours) and `hierarchy/COLLECTORS-STATUS.md`.
+5. Work in your worktree, land with `tools/agent_worktree.sh land <name>`; submit jobs with `atlas submit` / `atlas pipeline`; never commit on main (enforce is on).
+6. At a clean stop, hand the work over (a note, branch names, job ids) and `atlas lease release <name>`. A crashed agent needs nothing: its lease expires.
+
 ## Housekeeping
 
 `tools/scratch.py clean` (dry run) / `--apply` removes scratch entries, old rebuild snapshots and old `.equiv/` reports older than 14

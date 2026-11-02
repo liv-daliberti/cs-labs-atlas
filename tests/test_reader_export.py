@@ -226,3 +226,20 @@ def test_candidate_links_in_school_rows(tmp_path, monkeypatch):
     assert [r[2] for r in reqs] == ['w_q3'] and reqs[0][0] == 'unknown.example.com'
     assert stats['newly_readable_from_candidates'] == 2 and stats['link_basis:arxiv_id_doi'] == 1 and stats['link_basis:openalex_location'] == 1
     assert all(r['decision'] == 'link' for r in recs if not r['stored_copy'])      # never hosted
+
+
+def test_site_sync_lists_what_to_unpublish_and_upload(tmp_path, monkeypatch):
+    papers = make_store(tmp_path, monkeypatch)
+    A = R.ArxivLicenses()
+    A.add_body(dict(id='https://openalex.org/W1', locations=[dict(id='pmh:oai:arXiv.org:2222.2222', landing_page_url='https://arxiv.org/abs/2222.2222', license=None),
+                                                           dict(id='pmh:oai:arXiv.org:1111.1111', landing_page_url='https://arxiv.org/abs/1111.1111', license='cc-by')]))
+    site = {R_sha: dict(bytes=1000, path=f'papers/{R_sha}.pdf') for R_sha in (SHA(1), SHA(3), SHA(5), SHA(77))}   # cc-by (kept), arXiv non-exclusive, quarantined, unknown
+    recs, stats, chk, reqs = R.school_rows('mit', papers, A, frozenset(site))
+    notp = R.hosted_not_permitted(site, {'mit': chk})
+    out = tmp_path / 'o'
+    summ = R.write_outputs({'mit': recs}, {'mit': stats}, notp, out, '2026-11-01T00:00:00Z', None, requests={'mit': reqs}, site_files=site)
+    rows = {l.split('\t')[0]: l.split('\t') for l in (out / 'unpublish.tsv').read_text().splitlines()[1:]}
+    assert SHA(1) not in rows and rows[SHA(3)][3] == 'license' and rows[SHA(5)][3] == 'no_confirmed_copy' and rows[SHA(77)][3] == 'not_in_stores'
+    up = {l.split('\t')[0] for l in (out / 'upload.tsv').read_text().splitlines()[1:]}
+    assert SHA(1) not in up and SHA(2) in up                       # w_arx_lic's cc-by arXiv copy is to be added, the kept one is already there
+    assert summ['site_sync']['unpublish'] == 3 and summ['site_sync']['keep'] == 1

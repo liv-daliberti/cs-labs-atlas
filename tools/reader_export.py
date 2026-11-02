@@ -434,6 +434,9 @@ only a paper with neither stays not readable. A candidate-only link is never hos
   without a stored copy -, `lookup_keys` (the keys the site looks a work up by: the paper key, the atlas id, `doi:<doi>`, `arxiv:<id>`).
 - `hosted-files.tsv`: sha256, bytes, school, path, for the uploader. One row per file to HOST (deduplicated by sha256).
 - `currently-hosted-not-permitted.tsv`: files in site/atlas/data/local-papers.json `files` today that this rule would NOT host (unpublish them).
+- `unpublish.tsv` and `upload.tsv` (written when the export is run against the site's local-papers.json): THE site sync. The site serves ONLY from releases: its
+  hosted files must be exactly `hosted-files.tsv`. `unpublish.tsv` lists every file the site hosts today that is not in it, with the reason (`not_in_stores` =
+  untraceable to any store, `license`, `no_confirmed_copy`, `outside_release`); `upload.tsv` lists the files to add.
 - `link-check-requests.tsv`: candidate URLs of papers not yet confirmed, grouped by host, for the polite landing-page check (below).
 - `link-verdicts.jsonl` (input, written by the downloads agent): one JSON object per checked URL: `key`, `url`, `verdict` (`match` | `mismatch` |
   `unreachable`), `title_seen`, `authors_seen`, `fetched_at`, `robots_ok`. A `match` makes the paper a link with basis `landing_page_metadata` at the next run.
@@ -463,7 +466,7 @@ Mapping to local-papers.json fields: sha256 -> sha256; bytes -> bytes; path -> `
 """
 
 
-def write_outputs(school_recs, per_school_stats, hosted_not, outdir, built_at, lab_counts, extra=None, requests=None):
+def write_outputs(school_recs, per_school_stats, hosted_not, outdir, built_at, lab_counts, extra=None, requests=None, site_files=None):
     outdir = Path(outdir)
     outdir.mkdir(parents=True, exist_ok=True)
     seen, hosted = set(), []
@@ -476,6 +479,17 @@ def write_outputs(school_recs, per_school_stats, hosted_not, outdir, built_at, l
                 seen.add(r['sha256'])
                 hosted.append((r['sha256'], r['bytes'], school, r['path']))
     (outdir / 'hosted-files.tsv').write_text('sha256\tbytes\tschool\tpath\n' + ''.join('\t'.join(str(x) for x in row) + '\n' for row in sorted(hosted)))
+    sync = None
+    if site_files is not None:   # the site serves ONLY from releases: its hosted files must be exactly hosted-files.tsv (ROADMAP #30)
+        keep = {r[0] for r in hosted}
+        notp = {r[0]: r for r in hosted_not}
+        unpub = [(sha, f.get('bytes'), f.get('path')) + ((notp[sha][3], notp[sha][4], notp[sha][5], notp[sha][6], notp[sha][7]) if sha in notp else ('outside_release', '', '', '', ''))
+                 for sha, f in sorted(site_files.items()) if sha not in keep]
+        upload = [row for row in sorted(hosted) if row[0] not in site_files]
+        (outdir / 'unpublish.tsv').write_text('sha256\tbytes\tpath\treason\tlicense\tbasis\tschools\tworks\n' + ''.join('\t'.join('' if x is None else str(x) for x in row) + '\n' for row in unpub))
+        (outdir / 'upload.tsv').write_text('sha256\tbytes\tschool\tpath\n' + ''.join('\t'.join(str(x) for x in row) + '\n' for row in upload))
+        sync = dict(site_files=len(site_files), keep=len(keep & set(site_files)), unpublish=len(unpub), unpublish_by_reason=dict(collections.Counter(r[3] for r in unpub).most_common()),
+                    upload=len(upload))
     reqs = sorted((r for rows in (requests or {}).values() for r in rows), key=lambda r: (r[0], r[1], r[2], r[6]))
     (outdir / 'link-check-requests.tsv').write_text('host\tschool\tkey\ttitle\tdoi\tfirst_author_family\turl\turl_kind\n' + ''.join(
         '\t'.join(str(x).replace('\t', ' ').replace('\n', ' ') for x in row) + '\n' for row in reqs))
@@ -503,6 +517,8 @@ def write_outputs(school_recs, per_school_stats, hosted_not, outdir, built_at, l
     hosts = collections.Counter(r[0] for r in reqs)
     summ['link_check_request_urls'] = len(reqs)
     summ['link_check_request_hosts'] = dict(hosts.most_common(25))
+    if sync:
+        summ['site_sync'] = sync
     summ.update(extra or {})
     (outdir / 'SUMMARY.json').write_text(json.dumps(summ, indent=1, sort_keys=True))
     (outdir / 'README.md').write_text(README)
@@ -530,7 +546,7 @@ def main(argv=None):
         print(s, json.dumps({k: v for k, v in stats[s].items() if not k.startswith(('license:', 'basis:', 'source_kind:'))}), flush=True)
     hosted_not = hosted_not_permitted(hosted_files, checks) if hosted_files else []
     built = max((json.load(open(P.data('report.json', s_))).get('builtAt') or '' for s_ in schools), default='')   # the packages' own build time: a re-run on the same packages writes the same bytes
-    summ = write_outputs(recs, stats, hosted_not, a.out, built, None, requests=requests,
+    summ = write_outputs(recs, stats, hosted_not, a.out, built, None, requests=requests, site_files=hosted_files if a.site_local_papers else None,
                          extra=dict(arxiv_licences=dict(with_licence=len(arxiv_lic.lic), ids_seen=len(arxiv_lic.seen))))
     print(json.dumps(summ['totals']), 'not permitted:', len(hosted_not))
     return 0

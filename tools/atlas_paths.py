@@ -78,6 +78,7 @@ _SPEC = [
     ('PY', 'atlas/bin/python', 'ENV'),              # THE project interpreter (env/environment.yml)
     ('HF_HOME', 'hf-cache', 'ENV'),
     ('CACHE', 'cache', 'ROOT'),                     # API caches (never in git)
+    ('LEASES', 'leases', 'ROOT'),                   # one lease file per agent or session (tools/agent_lease.py; ROADMAP #17)
     ('SCRATCH', 'scratch', 'ROOT'),                 # throw-away working files outside the code tree; tools/scratch.py cleans it (ROADMAP item 13)
     ('RATE_STAMPS', 'rate-stamps', 'CACHE'),        # flock'd per-host request stamps shared by every node (NFS locks, local_lock=none)
     ('LOCKS', '/tmp/cs-atlas-locks', None),         # node-local mutexes (one host only); rate stamps go in RATE_STAMPS
@@ -157,6 +158,7 @@ EXTERNAL = _P['EXTERNAL']; DBLP_DUMP = _P['DBLP_DUMP']; RESEARCH_LIBRARY = _P['R
 SWEEPS = _P['SWEEPS']; SITE_HISTORY = _P['SITE_HISTORY']; SITE_ROOT = _P['SITE_ROOT']; MIGRATIONS = _P['MIGRATIONS']
 WORLD_ATLAS = HOMOGENIZING = _P['WORLD_ATLAS']; ENV_PY = _P['ENV_PY']; ENV_LIB = _P['ENV_LIB']
 COLLECTOR_PY = _P['COLLECTOR_PY']
+LEASES = _P['LEASES']
 FT_DATA = _P['FT_DATA']; FT_RAW = _P['FT_RAW']; FT_CHECKS = _P['FT_CHECKS']; FT_LOGS = _P['FT_LOGS']; FT_LOCAL_REUSE = _P['FT_LOCAL_REUSE']
 SITE_DATA = SITE_ROOT / 'atlas/data'               # collection-<school>.json.gz, universities/
 DBLP_DUMP_XML = DBLP_DUMP / DBLP_DUMP_FILE
@@ -353,6 +355,8 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('cs-related-home-departments.json', 'reviewed', 'hierarchy/{school}/cs-related-home-departments.json', 'hierarchy/{school}/reviewed/cs-related-home-departments.json'),
     ('departures-20261031.json', 'reviewed', 'hierarchy/{school}/departures-20261031.json', 'hierarchy/{school}/reviewed/departures-20261031.json'),
     ('pubs-fetch.log', 'work', 'hierarchy/{school}/pubs-fetch.log', 'hierarchy/{school}/work/pubs-fetch.log'),
+    ('reader-unpublish.tsv', 'derived', 'hierarchy/reader/unpublish.tsv', 'hierarchy/derived/reader/unpublish.tsv'),
+    ('reader-upload.tsv', 'derived', 'hierarchy/reader/upload.tsv', 'hierarchy/derived/reader/upload.tsv'),
 ]
 _DATA = {n: (k, a, b) for n, k, a, b in DATA_FILES}
 
