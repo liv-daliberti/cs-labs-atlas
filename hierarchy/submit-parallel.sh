@@ -14,6 +14,7 @@ kind=${1:?equivalence|rebuild}; shift
 test_only=; extra=()
 for a in "$@"; do case $a in --test-only) test_only=--test-only ;; *=*) export "$a" ;; *) echo "unknown argument $a"; exit 2 ;; esac; done
 SCHOOLS=${SCHOOLS:-$CS_ATLAS_SCHOOLS}
+SCHOOLS=$(printf '%s\n' $SCHOOLS | tac | xargs)   # newest school first (owner 2026-11-03): array task 0 is the newest school
 n=$(wc -w <<< "$SCHOOLS")
 export SCHOOL_LIST="$SCHOOLS" CS_ATLAS_SNAPSHOT_COMMIT=${CS_ATLAS_SNAPSHOT_COMMIT:-$(git rev-parse HEAD)} NEW_CODE=$PWD
 ARR=0-$((n-1)); [ -z "${ARRAY_THROTTLE:-}" ] || ARR=$ARR%$ARRAY_THROTTLE   # ARRAY_THROTTLE=3: at most 3 school tasks at once (fits beside other jobs)

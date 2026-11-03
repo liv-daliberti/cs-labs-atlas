@@ -70,7 +70,10 @@ if has snapshot; then
 fi
 if has build; then
   $CS_ATLAS_PY -c "import sys; sys.path.insert(0, '$CS_ATLAS_TOOLS'); import atlas_paths as P; [P.data('link-diagnosis.json', s).unlink(missing_ok=True) for s in P.SCHOOL_IDS]"  # stale diagnoses would hide open items from the re-diagnosis
-  for s in $SCHOOLS; do echo "== $s $(date +%T)"; $PY $CS_ATLAS_TOOLS/pi_hierarchy.py $s || { echo "FAILED $s"; fail=1; }; done
+  # newest school first (owner 2026-11-03): a school still settling in breaks soonest; the builds are independent, and ids and
+  # every later stage keep the charter order
+  BUILD_ORDER=$(printf '%s\n' $SCHOOLS | tac | tr '\n' ' ')
+  for s in $BUILD_ORDER; do echo "== $s $(date +%T)"; $PY $CS_ATLAS_TOOLS/pi_hierarchy.py $s || { echo "FAILED $s"; fail=1; }; done
 fi
 if has zero_paper; then
   # (2026-11-03) the site's build requires a zero-paper ledger row per hidden lab (hierarchy/derived/zero-paper-labs.json), so the ledger is
