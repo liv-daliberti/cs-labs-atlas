@@ -292,6 +292,7 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('cs-venues.json', 'reviewed', 'hierarchy/cs-venues.json', 'hierarchy/reviewed/cs-venues.json'),
     ('nicknames', 'reviewed', 'hierarchy/nicknames', 'hierarchy/reviewed/nicknames'),
     ('dblp-dump-persons.json.gz', 'raw', 'hierarchy/dblp-dump-persons.json.gz', 'hierarchy/raw/dblp-dump-persons.json.gz'),
+    ('dblp-dump-pages.json.gz', 'raw', 'hierarchy/dblp-dump-pages.json.gz', 'hierarchy/raw/dblp-dump-pages.json.gz'),
     ('chain-audit.json', 'derived', 'hierarchy/chain-audit.json', 'hierarchy/derived/chain-audit.json'),
     ('student-audit.json', 'derived', 'hierarchy/student-audit.json', 'hierarchy/derived/student-audit.json'),
     ('EVIDENCE-CHECK.json', 'derived', 'hierarchy/EVIDENCE-CHECK.json', 'hierarchy/derived/EVIDENCE-CHECK.json'),

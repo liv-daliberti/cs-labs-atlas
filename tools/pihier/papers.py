@@ -10,6 +10,7 @@ from .common import OWN_UNITS, SCHOOL_LOOSE, TODAY, WINDOW_START, accepted_addit
 from .names import NICK, _nick_pairs, byline_name, full_pair, toks
 from .periods import contains, same_year, transition_side, transition_status
 from . import identity
+from dblp_dump_pages import page_count  # noqa: E402  (DBLP's `pages` string -> number of pages; R-PAP-27)
 
 # Recovered lab-paper rows as (kind, identity label): hierarchy/<school>/<kind>-recovered.jsonl.gz (tools/dblp_recover.py,
 # tools/labpage_recover.py), and the accepted lab-page additions (labpage-additions.json `papers`, LP-PAP-01, gated by
@@ -144,14 +145,46 @@ ABSTRACT_JOURNALS = re.compile(r'(?i)^(cancer research|circulation|blood|stroke|
 THESIS_REPOSITORY_DOI = re.compile(r'^10\.25740/')  # Stanford Digital Repository (purl.stanford.edu): theses, honors theses, capstones
 
 
-def not_a_paper(r):
+# ---- commentaries, columns and short invited abstracts (R-PAP-27; 2026-11-02, owner: accuracy pass) --------------------
+# The Michigan sample (2026-11-02) found a CACM 'Technical perspective' (one page), a CACM Viewpoint (3 pages) and a two-page
+# SIGCSE keynote abstract. A title or venue catches the first; the other two need the record's page count, which OpenAlex's
+# sweep works do not carry: DBLP's `<pages>` (tools/dblp_dump_pages.py -> hierarchy/dblp-dump-pages.json.gz) does.
+COMMENTARY_TITLE = re.compile(r'(?i)^\s*technical perspective\b')
+COLUMN_VENUE = re.compile(r'(?i)^(?:communications of the acm|ieee micro|computer|ieee computer|ieee security (?:&|and) privacy|ieee software|'
+                          r'ieee pervasive computing|ieee internet computing|ieee design (?:&|and) test(?: of computers)?|ieee annals of the history of computing|'
+                          r'acm queue|queue|xrds|ieee intelligent systems|ieee network|ieee communications magazine|ieee spectrum|'
+                          r'ieee solid-state circuits magazine|ieee potentials|ieee consumer electronics magazine|ieee cloud computing)\s*$')  # exact: 'Computer Networks' is a journal
+COLUMN_MAX_PAGES = 3      # a magazine piece of this length or less is a column (Viewpoint, Inside Risks, Kode Vicious), not a paper
+INVITED_MAX_PAGES = 2     # a single-author conference record of this length is a keynote or invited-talk abstract
+
+
+def short_piece(r, pages, bare=False):
+    """R-PAP-27 by page count: `pages` is the largest page count DBLP gives the record (None: unknown, so no signal). A magazine
+    piece of 3 pages or less is a column; a single-author conference-paper record of 2 pages or less is a keynote or invited-talk
+    abstract (SIGCSE 2019, 502-503). `bare`: DBLP gave a single number, no range. In a magazine that is a one-page piece only in
+    CACM (ACM Queue's is an article number: 'Troubling Trends in Machine Learning Scholarship' is '80'); a conference record with
+    one number is a keynote abstract in the sample (ICAART 2016 '5', IWASI 2019 '1')."""
+    if not pages:
+        return None
+    v = str(r.get('venue') or ''); ty = r.get('type') or ''
+    if COLUMN_VENUE.search(v) and ty in ('article', 'other', 'editorial', 'paratext') and pages <= COLUMN_MAX_PAGES \
+            and not (bare and not re.match(r'(?i)communications of the acm', v)):
+        return 'column'
+    if ty == 'conference-paper' and len(r.get('byline') or []) == 1 and pages <= INVITED_MAX_PAGES:
+        return 'invited_abstract'
+    return None
+
+
+def not_a_paper(r, pages=None, bare=False):
     """Why a lab-paper row is not a paper, or None (2026-10-29, owner: accuracy sample). `r` is a lab-paper row (title,
     venue, type, doi, byline, authorship.position). The tags:
       R-PAP-18 (R1) software_record, repository_supplement (incl. protocols.io), erratum, machine_translation,
                dagstuhl_report, oberwolfach_report, editorial, award_announcement, workshop_proposal, highlights_column,
                tribute
       R-PAP-19 (R2) meeting_abstract:<venue|doi|title|journal|single_author|keynote>
-      R-PAP-22 (R5) dissertation (the PI is the adviser, not the author)."""
+      R-PAP-22 (R5) dissertation (the PI is the adviser, not the author).
+      R-PAP-27      commentary (a 'Technical perspective'), column (a magazine piece of 3 pages or less), invited_abstract (a
+                    single-author conference record of 2 pages or less); `pages` is the DBLP page count when known (`bare`: a single number)."""
     t = str(r.get('title') or '').strip(); v = str(r.get('venue') or ''); d = ndoi(r.get('doi')); ty = r.get('type') or ''
     nb = len(r.get('byline') or [])
     pos = (r.get('authorship') or {}).get('position')
@@ -186,6 +219,12 @@ def not_a_paper(r):
     if TRIBUTE_TITLE.search(t) or person_name_title(t) or (life and len(life) <= 4 and all(w[:1].isupper() for w in life)
                                                             and life[0].lower() in given_names()):
         return 'tribute'
+    # R-PAP-27: commentaries by title, columns and short invited abstracts by page count (`pages`: the record's DBLP page count)
+    if COMMENTARY_TITLE.search(t):
+        return 'commentary'
+    sp = short_piece(r, pages, bare)
+    if sp:
+        return sp
     # R2: meeting abstracts (owner: abstracts are not papers)
     if ABSTRACT_VENUE.search(v):
         return 'meeting_abstract:venue'
@@ -372,6 +411,26 @@ def venue_tables(ctx):
                     if t_ and (t_ not in dblp_venue[p['pi']] or r_['year'] < dblp_venue[p['pi']][t_][0]):
                         dblp_venue[p['pi']][t_] = (int(r_['year']), r_['key'])
     ctx.dblp_venue, ctx.dblp_nauth = dblp_venue, dblp_nauth
+    # R-PAP-27: the largest page count DBLP gives each of the PI's records, by normalized title and by DOI (the sidecar
+    # hierarchy/dblp-dump-pages.json.gz; without it no page signal, only titles)
+    dblp_pages = dict(title=collections.defaultdict(dict), doi=collections.defaultdict(dict))
+    pf = P.data('dblp-dump-pages.json.gz', root=ctx.here)
+    if DUMP_PERSONS is not None and pf.exists():
+        pg = json.loads(gzip.decompress(pf.read_bytes()))['pages']
+        for p in pis:
+            for q in p['dblp']:
+                for r_ in (DUMP_PERSONS['persons'].get(q) or {}).get('pubs') or []:
+                    c_ = page_count(pg.get(r_.get('key')))
+                    if c_ is None:
+                        continue
+                    b_ = not re.search(r'[-\u2013]', str(pg.get(r_.get('key'))))  # a single number, no range
+                    t_ = norm_title(html.unescape(r_.get('title') or '').rstrip('.'))
+                    if t_:
+                        dblp_pages['title'][p['pi']][t_] = max((c_, b_), dblp_pages['title'][p['pi']].get(t_, (0, True)))
+                    for d_ in r_.get('dois') or []:
+                        dblp_pages['doi'][p['pi']][ndoi(d_)] = max((c_, b_), dblp_pages['doi'][p['pi']].get(ndoi(d_), (0, True)))
+        ctx.n['dblp_page_counts_titles'] = sum(len(v) for v in dblp_pages['title'].values())
+    ctx.dblp_pages = dblp_pages
 
 
 def school_basis(ctx, pi, w, a, ident, page1):
@@ -596,7 +655,7 @@ def drop_namesakes(rows, pis, reviewed_oa, n):
     return rows
 
 
-def drop_not_papers(rows, dblp_nauth, n):
+def drop_not_papers(rows, dblp_nauth, n, dblp_pages=None):
     """R-PAP-17 .. R-PAP-19, R-PAP-22, R-PAP-23: rows that are not papers leave the lab, counted per tag with samples.
     Returns (rows kept, samples)."""
     # not papers (R-PAP-18/19/22, 2026-10-29, owner: accuracy sample): repository records, paratext, seminar and workshop
@@ -604,8 +663,11 @@ def drop_not_papers(rows, dblp_nauth, n):
     # record whose DOI belongs to another work (R-PAP-23, doi_year_conflict). Counted per tag, with samples, in the report.
     kept_, not_paper_samples = [], collections.defaultdict(list)
     for r in rows:
-        why = not_a_paper(r) or ('doi_year_conflict' if doi_year_conflict(r) else None)
-        if why == 'meeting_abstract:single_author' and dblp_nauth[r['pi']].get(norm_title(r.get('title')), 0) >= 2:
+        pg_, bare_ = None, False
+        if dblp_pages:  # R-PAP-27: the DBLP page count of this record (by DOI, else title), None when DBLP has none
+            pg_, bare_ = dblp_pages['doi'][r['pi']].get(ndoi(r.get('doi'))) or dblp_pages['title'][r['pi']].get(norm_title(r.get('title'))) or (None, False)
+        why = not_a_paper(r, pg_, bare_) or ('doi_year_conflict' if doi_year_conflict(r) else None)
+        if why in ('meeting_abstract:single_author', 'invited_abstract') and dblp_nauth[r['pi']].get(norm_title(r.get('title')), 0) >= 2:
             why = None  # OpenAlex cut the byline: the PI's DBLP page has the paper with co-authors, so it is no keynote
             n['single_author_abstract_kept_dblp_coauthors'] += 1
         if why:
@@ -654,7 +716,7 @@ def lab_papers(ctx):
     rows, seen = rows_from_hits(ctx)
     recovered_rows(ctx, rows, seen)
     rows = drop_namesakes(rows, pis, ctx.reviewed_oa, n)
-    rows, not_paper_samples = drop_not_papers(rows, ctx.dblp_nauth, n)
+    rows, not_paper_samples = drop_not_papers(rows, ctx.dblp_nauth, n, ctx.dblp_pages)
     # books are one work, and a translation is not new work (2026-10-29, owner: best judgement): fold_books
     nv0 = sum(r.get('type') == 'book-chapter' and not r.get('venue') for r in rows)
     rows, n['book_chapters_folded'], translated = fold_books(rows, school)

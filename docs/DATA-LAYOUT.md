@@ -26,7 +26,7 @@ hierarchy/
                 unavailable*.json*, link-diagnosis.json, sweep-check.json, census-faculty*.json, collection.json.gz
     work/       *-recover.sqlite, *-recovered.jsonl.gz, labpage-pubs.jsonl.gz, tmp/
     reports/    STAGE-*.md, REQUESTS-FOR-BUILDER.md
-  raw/         dblp-dump-persons.json.gz
+  raw/         dblp-dump-persons.json.gz, dblp-dump-pages.json.gz
   reviewed/    census-overrides.json, student-corrections.json, student-identity-review.json, student-name-candidates.json, home-departments.json,
                chain-reasons.json, zero-paper-review.json, cs-venues.json, nicknames/
   derived/     chain-audit.json, student-audit.json, EVIDENCE-CHECK.json, BUILD-REGRESSION.json, VALIDATION.json,
@@ -128,6 +128,7 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `cs-venues.json` | reviewed | `hierarchy/cs-venues.json` | `hierarchy/reviewed/cs-venues.json` | 1/1 | <1MB |
 | `nicknames` | reviewed | `hierarchy/nicknames` | `hierarchy/reviewed/nicknames` | 0/1 | dir |
 | `dblp-dump-persons.json.gz` | raw | `hierarchy/dblp-dump-persons.json.gz` | `hierarchy/raw/dblp-dump-persons.json.gz` | 0/1 | <100MB |
+| `dblp-dump-pages.json.gz` | raw | `hierarchy/dblp-dump-pages.json.gz` | `hierarchy/raw/dblp-dump-pages.json.gz` | 0/1 | <100MB |
 | `chain-audit.json` | derived | `hierarchy/chain-audit.json` | `hierarchy/derived/chain-audit.json` | 0/1 | <100MB |
 | `student-audit.json` | derived | `hierarchy/student-audit.json` | `hierarchy/derived/student-audit.json` | 0/1 | <1MB |
 | `EVIDENCE-CHECK.json` | derived | `hierarchy/EVIDENCE-CHECK.json` | `hierarchy/derived/EVIDENCE-CHECK.json` | 0/1 | <1MB |

@@ -200,6 +200,18 @@ Engelhardt's ML4H 2023 paper had only its October 2021 arXiv record; Sandholm's 
 deposit. A venue version from before the atlas window (2016) takes the row out (`dated_before_window`): a later deposit
 or preprint of an older paper is not a lab paper of 2016-2026. `venue_version_date`.
 
+### R-PAP-27 (2026-11-02, owner: accuracy pass) — commentaries, columns and short invited abstracts
+The Michigan stage-9 sample found a CACM 'Technical perspective' (one page), a CACM Viewpoint (3 pages) and a two-page SIGCSE
+keynote abstract. Dropped (`not_a_paper`, tags `commentary`, `column`, `invited_abstract`): a title that opens 'Technical
+perspective'; a magazine piece of 3 pages or less (`COLUMN_VENUE`: Communications of the ACM, IEEE Micro, Computer, IEEE
+Security & Privacy, IEEE Software, IEEE Pervasive Computing, ... exact venue names, so 'Computer Networks' stays); a
+single-author conference-paper record of 2 pages or less (keynotes, invited talks, new-faculty highlights, tutorial abstracts)
+unless the PI's DBLP page lists the title with co-authors (OpenAlex cut the byline). The page count is DBLP's `<pages>`
+(`tools/dblp_dump_pages.py` -> `hierarchy/dblp-dump-pages.json.gz`, joined by DOI, else title, the largest count when a title has
+several records); without a page count only the title rule applies. A bare page number (no range) counts as one page in CACM
+and for a conference record (keynote abstracts: ICAART 2016 '5', IWASI 2019 '1'), never for another magazine (ACM Queue's is an
+article number). `short_piece`, `page_count`.
+
 ## Students
 
 ### R-STU-01 (2026-10-21, owner)

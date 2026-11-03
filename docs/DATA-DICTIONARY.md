@@ -408,7 +408,7 @@ The build's report: counters, exclusions, samples of what the rules dropped, and
 | `counts.pis_complete_chain` | integer | yes | PIs with lab papers, students and links. | at least 0 |  |
 | `counts.<key ~ /^identity:/>` | integer | — | Lab papers by identity label (lab_papers identity). | at least 0 | R-PAP-04 |
 | `counts.<key ~ /^student_link:/>` | integer | — | Links by basis (student_papers basis). | at least 0 | R-LNK-01 |
-| `counts.<key ~ /^not_paper:/>` | integer | — | Rows dropped as not papers, by reason tag. | at least 0 | R-PAP-17, R-PAP-18, R-PAP-19, R-PAP-22 |
+| `counts.<key ~ /^not_paper:/>` | integer | — | Rows dropped as not papers, by reason tag. | at least 0 | R-PAP-17, R-PAP-18, R-PAP-19, R-PAP-22, R-PAP-27 |
 | `counts.<key ~ /^students_dropped_why:/>` | integer | — | Students dropped, by reason. | at least 0 | R-STU-02, R-STU-09, R-STU-10 |
 | `counts.<key ~ /^link_guard_/>` | integer | — | Given-name guard outcomes. | at least 0 | R-LNK-02, R-LNK-02a |
 | `counts.<key ~ /^relation_evidence_/>` | integer | — | Re-captured relation evidence outcomes. | at least 0 | R-STU-08 |

@@ -53,7 +53,8 @@ from pihier.papers import (EN_WORDS, FOREIGN_WORDS, foreign_title, fold_books, d
                            person_name_title, ABSTRACT_VENUE, ABSTRACT_DOI, ABSTRACT_TITLE, ABSTRACT_JOURNALS,
                            THESIS_REPOSITORY_DOI, not_a_paper, doi_year_conflict, norm_unit, PLACE, units_in,
                            DISCIPLINE_WORDS, generic_unit, page1_head, AFFILIATION_MARK, page1_elsewhere, OTHER_INST,
-                           names_other_inst, venue_version_date, bare_unit_school)
+                           names_other_inst, venue_version_date, bare_unit_school, COMMENTARY_TITLE, COLUMN_VENUE,
+                           COLUMN_MAX_PAGES, INVITED_MAX_PAGES, short_piece)
 from pihier.links import near_relation, relation_source  # noqa: E402,F401
 from pihier.build import build  # noqa: E402,F401
 

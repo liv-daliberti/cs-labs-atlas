@@ -116,7 +116,8 @@ atlas stage-gate <key> [n ...]                 # only the gates (0-10), from the
     every reader drops (`pi_hierarchy.NOT_PAPERS`). A tool that reads the sweep must drop them too:
     `cs_related_candidates.py` did not.
   - The DBLP part needs `pis.json`, so run the check again after the first build of stage 3 or 7. Regenerate
-    `hierarchy/dblp-dump-persons.json.gz` (`tools/dblp_dump_persons.py`) after the PI set changes.
+    `hierarchy/dblp-dump-persons.json.gz` (`tools/dblp_dump_persons.py`) after the PI set changes, then its page counts
+    `hierarchy/dblp-dump-pages.json.gz` (`tools/dblp_dump_pages.py`, R-PAP-27).
 
 ## Stage 1: sources and captures
 - **Do:**
@@ -261,7 +262,7 @@ atlas stage-gate <key> [n ...]                 # only the gates (0-10), from the
 
     The evidence is the dump record's sha256 and the quote (the note, the `<url>` or the name). The tool also counts each candidate's records in the window, which the CS-related review uses.
   - Add ORCIDs from the DBLP person's URLs. `census_build.py` folds both into the census.
-  - Run `tools/dblp_dump_persons.py`. It includes onboarding schools.
+  - Run `tools/dblp_dump_persons.py`, then `tools/dblp_dump_pages.py` (the page counts R-PAP-27 reads). They include onboarding schools.
 - **Gate:** every PI has at least one anchor: a reviewed OpenAlex id, an ORCID or a DBLP page. Namesakes are reviewed.
 - **Learned from Michigan (2026-10-29):**
   - With the affiliation note and the strict unique-name rule alone, 27% of PIs got no DBLP id (45 of 164 in the first run). With the listing's homepage URL, the exact-name rule and the relaxed unique-name rule, 9% got none (19 of 211), before any OpenAlex review.
