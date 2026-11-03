@@ -38,6 +38,7 @@ from pathlib import Path
 
 import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
+import census_overrides as CO  # noqa: E402
 
 
 def read(p, default=None):
@@ -145,7 +146,7 @@ def span_gaps(x):
 
 def g4(key):
     per = read(P.data('faculty-periods.json', key), [])
-    ov = (read(P.data('census-overrides.json'), {}) or {}).get(key, {})
+    ov = CO.section(key)
     have = {p['name'] for p in per} | {k for k, v in ov.items() if isinstance(v, dict) and v.get('periods')}
     bad, n = [], collections.Counter()
     for x in pis_of(key):
@@ -168,7 +169,7 @@ def g4(key):
 
 
 def g5(key):
-    ov = (read(P.data('census-overrides.json'), {}) or {}).get(key, {})
+    ov = CO.section(key)
     bad, n = [], collections.Counter()
     for x in pis_of(key):
         o = ov.get(x['name']) or {}

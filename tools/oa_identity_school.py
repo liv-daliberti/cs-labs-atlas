@@ -16,6 +16,7 @@ import hashlib, json, sqlite3, sys, zlib
 
 import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
+import census_overrides as CO  # noqa: E402
 from pi_hierarchy import NOT_PAPERS  # noqa: E402
 from cs_related_candidates import school_test  # noqa: E402
 
@@ -65,8 +66,7 @@ def evidence(key, ids):
 def main(key, dry=False):
     want = wanted(key)
     ev = evidence(key, {a for d in want.values() for a in d['openalex']})
-    f = P.data('census-overrides.json'); txt = f.read_text(); ov = json.loads(txt)
-    sec = ov.setdefault(key, {}); n = {'reviewed': 0, 'share_test': 0, 'no_evidence': 0}
+    sec, save = CO.open_section(key); n = {'reviewed': 0, 'share_test': 0, 'no_evidence': 0}
     for name, d in want.items():
         ids = [a for a in d['openalex'] if a in ev]
         n['no_evidence'] += len(d['openalex']) - len(ids)
@@ -80,7 +80,7 @@ def main(key, dry=False):
         n[d['basis']] += 1
     print(json.dumps(dict(n, people=len(want))))
     if not dry:
-        f.write_text(json.dumps(ov, indent=1, ensure_ascii='\\u' in txt) + ('\n' if txt.endswith('\n') else ''))
+        save()
 
 
 if __name__ == '__main__':

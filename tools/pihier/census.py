@@ -4,6 +4,7 @@ are not labs: COLLECTIVE)."""
 import collections, re
 
 import atlas_paths as P  # data paths (DATA_FILES)
+import census_overrides as CO  # reviewed overrides: shared file + an onboarding school's own
 
 from .common import AFF, INST, as_list, collection_work_matcher, read
 from .names import Name, nick_ok, toks
@@ -48,8 +49,8 @@ def reviewed_inputs(ctx):
     for r in (read(lf) if lf.exists() else []):
         if not r.get('future_start_note') and r.get('sha256') and r.get('quote'):
             yearly[r['pi']].append(r)
-    ov_f, ge_f = P.data('census-overrides.json', root=HERE), P.data('gap-evidence.json', school, root=HERE)
-    ov = read(ov_f).get(school, {}) if ov_f.exists() else {}
+    ge_f = P.data('gap-evidence.json', school, root=HERE)
+    ov = CO.section(school, lambda n, s=None: P.data(n, s, root=HERE))
     ge = {r['pi']: r for r in read(ge_f)} if ge_f.exists() else {}
     for pi_, r in ge.items():  # researched gap labs: status, identity, the PI's collection person
         o = ov.setdefault(pi_, {})

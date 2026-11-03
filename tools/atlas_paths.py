@@ -272,6 +272,7 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('cs-related-review.json', 'reviewed', 'hierarchy/{school}/cs-related-review.json', 'hierarchy/{school}/reviewed/cs-related-review.json'),
     ('missing-pi-review.json', 'reviewed', 'hierarchy/{school}/missing-pi-review.json', 'hierarchy/{school}/reviewed/missing-pi-review.json'),
     ('openalex-identity-review.json', 'reviewed', 'hierarchy/{school}/openalex-identity-review.json', 'hierarchy/{school}/reviewed/openalex-identity-review.json'),
+    ('census-overrides-school.json', 'reviewed', 'hierarchy/{school}/census-overrides-school.json', 'hierarchy/{school}/reviewed/census-overrides-school.json'),
     ('census-additions.json', 'reviewed', 'census/{school}-additions.json', 'hierarchy/{school}/reviewed/census-additions.json'),
     ('faculty-periods.json', 'reviewed', 'periods/{school}-faculty-periods.json', 'hierarchy/{school}/reviewed/faculty-periods.json'),
     # per school: recovered rows and tool state (rebuildable from raw + reviewed)

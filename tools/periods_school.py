@@ -22,6 +22,7 @@ import collections, json, re, sys, zlib
 
 import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
+import census_overrides as CO  # noqa: E402
 import school_web as W  # noqa: E402
 import faculty_periods as FP  # noqa: E402
 
@@ -47,7 +48,7 @@ def targets(key):
     out = []
     dpf = P.data('dblp-dump-persons.json.gz')
     dp = json.load(__import__('gzip').open(dpf, 'rt'))['persons'] if dpf.exists() else {}
-    ov = json.loads((P.data('census-overrides.json')).read_text()).get(key, {}) if (P.data('census-overrides.json')).exists() else {}
+    ov = CO.section(key)
     for x in census + add:
         if not x.get('is_pi'):
             continue
@@ -202,7 +203,7 @@ def gaps(key, write=True):
     if not write:
         return out
     rows = json.loads((P.data('rows.json', key)).read_text())
-    f = P.data('census-overrides.json'); txt = f.read_text(); ov = json.loads(txt); sec = ov.setdefault(key, {})
+    sec, save = CO.open_section(key)
     for name, g in out.items():
         if not g['closed']:
             continue
@@ -220,7 +221,7 @@ def gaps(key, write=True):
                                                          "Start is a lower bound (the first listing in the window); no end is claimed.",
                                                     reviewed='periods_school_gaps_20261030')]
         sec[name]['why_periods'] = 'Gap years closed by dated captures (tools/periods_school.py gaps).'
-    f.write_text(json.dumps(ov, indent=1, ensure_ascii='\\u' in txt) + ('\n' if txt.endswith('\n') else ''))
+    save()
 
 
 def extend(key, write=True):
@@ -284,7 +285,7 @@ def extend(key, write=True):
     P.data_w('profile-year-evidence.json', key).write_text(json.dumps(out, indent=1, ensure_ascii=False))
     if not write:
         return out
-    f = P.data('census-overrides.json'); txt = f.read_text(); ov = json.loads(txt); sec = ov.setdefault(key, {})
+    sec, save = CO.open_section(key)
     for name, g in out.items():
         if not g['profile_years']:
             continue
@@ -308,7 +309,7 @@ def extend(key, write=True):
         e = sec.setdefault(name, {})
         e['periods'] = [q for q in e.get('periods') or [] if not str(q.get('reviewed', '')).startswith(('periods_school_gaps', 'periods_school_extend'))] + pers
         e['why_periods'] = 'Years proven by dated unit profile captures and listings (tools/periods_school.py extend).'
-    f.write_text(json.dumps(ov, indent=1, ensure_ascii='\\u' in txt) + ('\n' if txt.endswith('\n') else ''))
+    save()
 
 
 if __name__ == '__main__':

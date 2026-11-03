@@ -40,6 +40,7 @@ import collections, json, re, sys, urllib.parse, zlib
 
 import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
+import census_overrides as CO  # noqa: E402
 import school_web as W  # noqa: E402
 import periods_school as PS  # noqa: E402
 from pi_hierarchy import Name, toks  # noqa: E402
@@ -187,7 +188,7 @@ def previous_school_students(key):
     """{PI name at this school: (released school, [Name of a student of the same PI there])}. The same PI is a released
     school's PI with a shared DBLP pid or ORCID (census, additions, census-overrides). Learned 2026-10-30: Stella Yu's
     Michigan homepage lists her Berkeley advisees; Berkeley's package already holds them under her Berkeley lab."""
-    ov = json.loads((P.data('census-overrides.json')).read_text()).get(key, {})
+    ov = CO.section(key)
     ids = {}
     for x in json.loads((P.data('census-faculty.json', key)).read_text())['faculty'] + \
             (json.loads((P.data('census-additions.json', key)).read_text()) if (P.data('census-additions.json', key)).exists() else []):

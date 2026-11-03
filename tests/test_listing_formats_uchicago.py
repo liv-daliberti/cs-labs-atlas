@@ -1,5 +1,16 @@
 """UChicago listing formats (CS Drupal table, CS/Statistics people list, CS WordPress cards, TTIC media and table)."""
+import importlib.util
+from pathlib import Path
+
 import listing_formats as L
+
+
+def tools_listing_rows():
+    """tools/listing_rows.py by path: another test puts archive/.../listing_rows.py first on sys.path."""
+    spec = importlib.util.spec_from_file_location('tools_listing_rows', Path(L.__file__).with_name('listing_rows.py'))
+    m = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(m)
+    return m
 
 CS_TABLE = '''<table><tbody><tr class="odd views-row-first"><td >
   Aaron  Elmore </td><td > Assistant Professor, <br />
@@ -59,14 +70,14 @@ def test_galton_cells_strong_around_the_link():
 
 
 def test_uchicago_rank_words():
-    import listing_rows as R
+    R = tools_listing_rows()
     assert R.rank_of(['Assistant Instructional Professor of Computer Science']) == 'teaching'
     assert R.rank_of(['Adjoint Professor']) == 'adjunct' and R.rank_of(['Resident Adjoint Professor']) == 'adjunct'
     assert R.rank_of(['Neubauer Professor of Computer Science']) == 'ladder' and R.rank_of(['Professor Emeritus']) == 'emeritus'
 
 
 def test_charter_rank_words_join_the_shared_patterns():
-    import listing_rows as R
+    R = tools_listing_rows()
     assert R.rank_of(['Professor of Basket Weaving']) == 'ladder'
     assert R.rank_of(['Professor of Basket Weaving'], {'teaching': r'basket weaving'}) == 'teaching'
     assert R.rank_of(['Assistant Professor'], {'teaching': r'basket weaving'}) == 'ladder'
@@ -76,9 +87,8 @@ PAGED = '<div class="pager"><a href="?page=1">2</a></div><li><a href="/p/a">Ann 
 
 
 def test_a_paged_capture_is_flagged_and_plan_fetch_rejects_it(monkeypatch):
-    import sys
     from pathlib import Path
-    sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'listings' / 'scripts'))
+    monkeypatch.syspath_prepend(str(Path(__file__).resolve().parents[1] / 'listings' / 'scripts'))  # route-ok: tracked code, not data
     import plan_fetch as PF
     import listing_formats as LF
     assert LF.is_paged(PAGED) and not LF.is_paged('<ul><li>Ann Lee Professor</li></ul>')

@@ -45,6 +45,7 @@ def captures(school):
 
 
 import school_config as S  # noqa: E402  (the school charters: [census].computing_departments; empty = every listed department)
+import census_overrides as CO  # noqa: E402
 COMPUTING = {k: S.computing(k) for k in S.keys()}
 INSTITUTIONAL = re.compile(r"\b(University|Career|Distinguished|Research|Founders|Group|Family|Development|Service|Alumni|Electronics|America|Seminar|"
                            r"Series|Intranet|Department|Chairs?|Schweiz|Equality|Professorship|Foundation|Fund|Institute|Center|Centre|Lab|Program|Fellow)\b")
@@ -99,7 +100,7 @@ def run(school):
     cf = P.data('census-faculty-hierarchy.json', school)
     census = json.loads((cf if cf.exists() else P.data('census-faculty.json', school)).read_text())
     census = census.get('faculty', census) if isinstance(census, dict) else census
-    ov = json.loads((P.data('census-overrides.json')).read_text()).get(school, {}) if (P.data('census-overrides.json')).exists() else {}
+    ov = CO.section(school)
     known = [Name([x['name']] + list(x.get('aliases') or []) + list(ov.get(x['name'], {}).get('aliases') or [])) for x in census]
     by_sur = collections.defaultdict(list)
     for k in known:

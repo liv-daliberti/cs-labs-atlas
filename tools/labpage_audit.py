@@ -51,6 +51,7 @@ from urllib.parse import urlsplit
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
+import census_overrides as CO  # noqa: E402
 
 H = P.HIERARCHY
 WINDOW = (2016, 2026)
@@ -933,8 +934,7 @@ def load_ctx(school, kit=None, plan=True):
     ctx['pis'] = read(P.data('pis.json', school))
     # reviewed departures not yet in a rebuilt pis.json (R-PAP-03): the audit reads census-overrides.json's faculty_end_moved
     # periods directly, so after_pi_left applies before the coordinator's rebuild lands
-    ovp = P.data('census-overrides.json')
-    ovs = (read(ovp).get(school) or {}) if ovp.exists() else {}
+    ovs = CO.section(school)
     for p_ in ctx['pis']:
         o_ = ovs.get(p_['pi']) or {}
         pers = [q for q in o_.get('periods') or [] if q.get('end') and any(e.get('kind') == 'faculty_end_moved' for e in q.get('evidence') or [])]

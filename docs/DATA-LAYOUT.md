@@ -118,6 +118,7 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `dblp-recover.sqlite` | work | `hierarchy/{school}/dblp-recover.sqlite` | `hierarchy/{school}/work/dblp-recover.sqlite` | 0/7 | <100MB |
 | `labpage-recover.sqlite` | work | `hierarchy/{school}/labpage-recover.sqlite` | `hierarchy/{school}/work/labpage-recover.sqlite` | 0/5 | <100MB |
 | `census-overrides.json` | reviewed | `hierarchy/census-overrides.json` | `hierarchy/reviewed/census-overrides.json` | 1/1 | <100MB |
+| `census-overrides-school.json` | reviewed | `hierarchy/{school}/census-overrides-school.json` | `hierarchy/{school}/reviewed/census-overrides-school.json` | - | <100MB |
 | `student-corrections.json` | reviewed | `hierarchy/student-corrections.json` | `hierarchy/reviewed/student-corrections.json` | 1/1 | <10KB |
 | `student-identity-review.json` | reviewed | `hierarchy/student-identity-review.json` | `hierarchy/reviewed/student-identity-review.json` | 1/1 | <1MB |
 | `student-name-candidates.json` | reviewed | `hierarchy/student-name-candidates.json` | `hierarchy/reviewed/student-name-candidates.json` | 1/1 | <1MB |
@@ -153,6 +154,7 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `labpage-parts` | work | `hierarchy/{school}/labpage-parts` | `hierarchy/{school}/work/labpage-parts` | - | <100MB |
 | `labpage-input.json` | reviewed | `hierarchy/{school}/labpage-input.json` | `hierarchy/{school}/reviewed/labpage-input.json` | - | <100MB |
 | `labpage-pubs-report.json` | derived | `hierarchy/{school}/labpage-pubs-report.json` | `hierarchy/{school}/derived/labpage-pubs-report.json` | - | <100MB |
+| `labpage-audit-summary-school.json` | derived | `hierarchy/{school}/labpage-audit-summary-school.json` | `hierarchy/{school}/derived/labpage-audit-summary-school.json` | - | <100MB |
 | `labpage-audit.jsonl.gz` | derived | `hierarchy/{school}/labpage-audit.jsonl.gz` | `hierarchy/{school}/derived/labpage-audit.jsonl.gz` | - | <100MB |
 | `labpage-audit-discovery.jsonl` | raw | `hierarchy/{school}/labpage-audit-discovery.jsonl` | `hierarchy/{school}/raw/labpage-audit-discovery.jsonl` | - | <100MB |
 | `labpage-audit-recover` | work | `hierarchy/{school}/labpage-audit-recover` | `hierarchy/{school}/work/labpage-audit-recover` | - | <100MB |

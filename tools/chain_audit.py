@@ -24,6 +24,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402  (every path in one place)
+import census_overrides as CO  # noqa: E402
 HERE = P.WORK; H = P.HIERARCHY   # tests point H at a flat fixture tree; hfile follows the layout for the live one
 SCHOOLS = list(P.SCHOOL_IDS)  # the released schools (schools/<key>.toml); an onboarding school is named on the command line
 CHECKS = ['coverage', 'pi', 'students', 'papers', 'links', 'copies', 'one_person']
@@ -123,7 +124,7 @@ def audit(school):
     report = load(D / 'report.json', {}) or {}
     ledger = (load(P.hfile(H, 'chain-reasons.json'), {}) or {}).get(school, {})
     zero = (load(P.hfile(H, 'zero-paper-review.json'), {}) or {}).get(school, {})
-    ov_school = (load(P.hfile(H, 'census-overrides.json'), {}) or {}).get(school, {})
+    ov_school = CO.section(school, lambda n, s=None: P.hfile(H, n, s))
     overrides = json.dumps(ov_school)
     # an exclusion with revisit_after (a new arrival with no group or advisee yet) is decided only until that date
     # (2026-10-29, owner: best judgement); after it the person is open again for a fresh coverage review

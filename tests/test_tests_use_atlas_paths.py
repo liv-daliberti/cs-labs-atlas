@@ -6,7 +6,7 @@ from pathlib import Path
 TESTS = Path(__file__).resolve().parent
 ALLOWED = {'test_relocate_data.py', 'test_data_routing.py', 'test_labpage_audit_roots.py', 'test_script_map.py', 'test_slurm_snapshot.py',
            'test_vendor_and_paths.py', 'test_tests_use_atlas_paths.py', 'test_protocol_rules_michigan.py', 'test_job_code_snapshot.py',
-           'test_atlas_paths.py', 'test_schemas.py', 'test_ft_data_slots.py', 'test_atlas_release.py'}
+           'test_atlas_paths.py', 'test_schemas.py', 'test_ft_data_slots.py', 'test_atlas_release.py', 'test_sync_school_files.py'}
 HAND_JOIN = re.compile(r"/\s*'(hierarchy|census|listings|periods)'\s*/|(tmp_path|root|WORK|HERE)\s*/\s*'(hierarchy|census|periods)'|[(,]\s*'hierarchy/")
 
 
