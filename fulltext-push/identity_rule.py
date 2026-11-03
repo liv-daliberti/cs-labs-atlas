@@ -54,6 +54,14 @@ def pdf_meta_title(path):
     return m.group(1).strip() if m else ''
 
 
+def meta_describes_page(meta, p1):
+    """The PDF's metadata title must describe the document that is on page 1 (hand check 2026-11-02: a template or reused metadata title equal to
+    the catalog title sat on a different paper): at least 80% of its significant words are in page 1's first 1,200 characters."""
+    mw = [x for x in norm_words(meta) if len(x) >= 3 and x not in STOP]
+    head = set(norm_words(re.sub(r'\s+', ' ', p1 or '')[:1200]))
+    return len(mw) >= 4 and sum(x in head for x in mw) / len(mw) >= 0.8
+
+
 def judge_meta(meta, titles, p1, first, doi):
     """A pass from the PDF's own title metadata (ROADMAP #25): the metadata title and one of the work's known titles agree (at least 4
     significant words; 90% of the known title's words are in the metadata title and 70% of the metadata title's words are in the
@@ -63,6 +71,8 @@ def judge_meta(meta, titles, p1, first, doi):
     mw = sig(meta)
     if len(mw) < 4:
         return 'undecided', dict(why='no usable PDF metadata title')
+    if not meta_describes_page(meta, p1):
+        return 'undecided', dict(why='the PDF metadata title is not the title on page 1', meta_title=meta)
     letters1 = re.sub(r'[^a-z]', '', unicodedata.normalize('NFKD', (p1 or '')[:4000]).encode('ascii', 'ignore').decode().lower())
     first = first or ''
     author_ok = len(first) >= 3 and first in letters1

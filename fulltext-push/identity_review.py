@@ -242,6 +242,9 @@ def apply_alt(school, scope='pending'):
     db.execute('PRAGMA busy_timeout=120000')
     n = Counter()
     for x in rows:
+        if x['verdict'] == 'pass_meta' and not R.meta_describes_page(x.get('meta_title') or '', x.get('page1') or ''):
+            n['pass_meta_rejected_not_on_page1'] += 1  # re-checked at apply: the plan predates this rule
+            continue
         if x['verdict'] in TAG:
             with F.catalog_lock(store):  # one writer per catalog
                 n['confirmed'] += db.execute('UPDATE works SET identity_check=? WHERE id=? AND identity_check=?', (TAG[x['verdict']], x['work'], PENDING)).rowcount
