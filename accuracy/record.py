@@ -4,12 +4,14 @@ Coverage items carry extra fields: true_lab_paper (bool) and in_build (bool); ve
 with the truth (a true lab paper present, or a non-lab paper absent), and only true lab papers enter the coverage
 denominator. Student-coverage items carry has_coauthored_paper and linked.
 <ref> is the row index (lab/student samples) or the item key (coverage samples).
+(ACCURACY_ROUND=r2 writes the round's own verdicts-<school>.jsonl; the 2026-10-29 files are not touched)
 usage: record.py <school> <lab_precision|student_precision|lab_coverage|student_coverage>
 """
-import datetime, json, sys
+import datetime, json, os, sys
 from pathlib import Path
 
 ACC = Path(__file__).parent
+sys.path.insert(0, str(ACC))
 FAIL = {'namesake', 'not_at_school', 'outside_appointment', 'not_a_paper', 'wrong_student', 'other', 'missing_from_build',
         'student_not_linked'}
 
@@ -17,8 +19,21 @@ FAIL = {'namesake', 'not_at_school', 'outside_appointment', 'not_a_paper', 'wron
 RELEASED = ('princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford')
 
 
+def round_dir():
+    """The directory of the active round (env ACCURACY_ROUND=r2), or None for the 2026-10-29 files."""
+    r = os.environ.get('ACCURACY_ROUND')
+    if not r:
+        return None
+    from sample import ROUNDS
+    return ACC / ROUNDS[r]['dir']
+
+
 def files(school):
-    """(draw file, verdict file): the released schools share sample.json and verdicts.jsonl; any other school has its own."""
+    """(draw file, verdict file): in a round (ACCURACY_ROUND=r2) every school has its own pair in the round's directory; for the
+    2026-10-29 measurement the released schools share sample.json and verdicts.jsonl and any other school has its own."""
+    rd = round_dir()
+    if rd:
+        return rd / f'sample-{school}.json', rd / f'verdicts-{school}.jsonl'
     return (ACC / 'sample.json', ACC / 'verdicts.jsonl') if school in RELEASED else (ACC / f'sample-{school}.json', ACC / f'verdicts-{school}.jsonl')
 
 

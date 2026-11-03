@@ -309,3 +309,23 @@ These problems are recorded in the reasons and flags but were not scored as erro
 | stanford | `student_papers.jsonl.gz` | `1f70b7a89e3d0094534d7d2760824f9688bee4e357d4b596b14250aa072dbe23` |
 | stanford | `copies.json` | `4faa6ca02a91dd494dc8a3cdc058b96d200ed4e3f11b4e607487ff719b0f9987` |
 | (all) | `hierarchy/dblp-dump-persons.json.gz` | `6e86d6a14d0086adbb3a9085d1029a5204bf240709a6b14f6349a32913591831` |
+
+## Round r2 (2026-11-02): 50-row spot-checks for every school
+
+The owner asked for 50 judged rows per school and measure. The 2026-10-29 draws, verdicts and figures above are history and stay
+as they are; the round has its own seed, its own directory and its own files.
+
+- **Seed.** 20261102, `random.Random(20261102)` reset for each school (`ROUNDS['r2']` in `sample.py`). The 2026-10-29 seed
+  (20261029) is `LEGACY`.
+- **Sizes per school.** Lab precision: 50 uniform rows plus the three risky strata (5 rows each: advisee on an unaffiliated byline,
+  appointment by listing, identity not a reviewed OpenAlex id). Student precision: 50 uniform rows plus its three strata (5 each, a
+  short stratum filled uniformly). Lab coverage: 50 DBLP person-page records. Student coverage: up to 200 shuffled candidates are
+  kept, and the judge takes the first 50 confirmed PhD students; a school with fewer candidates, or fewer confirmed ones, is judged
+  as far as it goes, and its summary says how many it judged (`round.judged`) against the pool (`population`).
+- **Schools.** The seven released schools (princeton, cmu, epfl, mit, berkeley, stanford, michigan). UChicago joins at its stage 9.
+- **Build.** Drawn from the build after the 2026-11-02 accuracy-pass rules (R-PAP-27..29) landed and a rebuild ran, hashed per school
+  in `sample-<school>.json` → `files`.
+- **Files.** `accuracy/round-r2/sample-<school>.json`, `verdicts-<school>.jsonl`, `screened-<school>.jsonl`, `summary-<school>.json`
+  and the pooled `summary.json`. Commands: `sample.py --round r2 [--school k]` (never overwrites a draw), `ACCURACY_ROUND=r2
+  evidence.py|record.py|oalookup.py <school> ...`, `summarize.py --round r2`, `split.py r2 --agents N` (judgments per school and a
+  balanced grouping of schools for judging agents).

@@ -18,7 +18,11 @@ Per school, one random.Random(20261029), consumed in this fixed order:
                        form the sample (candidates screened out, e.g. a master's thesis, go to screened.jsonl).
 Rows are addressed by their position in the file and by a key; the package files' sha256 are recorded with the draw.
 -> work/accuracy/sample.json
-usage: sample.py [--school <key>]
+usage: sample.py [--school <key>] | --round <id> [--school <key>]
+  --round r2      the 2026-11-02 round: seed 20261102, 50 uniform rows per school for lab precision, student precision and lab
+                  coverage (+ the 5-row risky strata), up to 200 shuffled student-coverage candidates (the judge takes the first 50
+                  confirmed PhD students); accuracy/round-r2/sample-<school>.json for the seven released schools. The sizes are
+                  ROUNDS in this file; the 2026-10-29 draw (LEGACY, seed 20261029) and its verdicts are history.
   --school <key>  draw one school (any charter, released or onboarding) with the same seed and method into
                   accuracy/sample-<key>.json; sample.json and the six released draws are untouched (tests/test_accuracy_sample_school.py).
 """
@@ -32,6 +36,16 @@ SEED = 20261029
 ROOT = P.CODE
 OUT = ROOT / 'accuracy' / 'sample.json'
 SCHOOLS = ['princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford']
+# The draw's sizes. LEGACY is the 2026-10-29 measurement (25 uniform rows per precision sample, 5 per risky stratum, 15 coverage
+# records, the first 40 shuffled student-coverage candidates kept). ROUNDS holds the later ones: r2 (owner 2026-11-02) draws 50
+# uniform rows per school for lab precision, student precision and lab coverage, keeps the 5-row risky strata on top of them, and
+# keeps up to 200 shuffled student-coverage candidates, of which the judge takes the first 50 confirmed PhD students (a school with
+# fewer candidates, or fewer confirmed ones, is judged as far as it goes and reported with its smaller n). A round has its own seed
+# and its own files (accuracy/round-<id>/); the 2026-10-29 draws and verdicts are history and are never rewritten.
+ACC_DIR = _Path(__file__).resolve().parent
+LEGACY = dict(seed=SEED, uniform=25, stratum=5, cov=15, cands=40, schools=SCHOOLS, dir=None)
+ROUNDS = {'r2': dict(seed=20261102, uniform=50, stratum=5, cov=50, cands=200,
+                     schools=['princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford', 'michigan'], dir='round-r2')}
 FILES = ['pis.json', 'students.json', 'lab_papers.jsonl.gz', 'student_papers.jsonl.gz', 'copies.json']
 
 
@@ -120,10 +134,13 @@ def alumni_relation(rel, roles):
     return max(ys) if ys else None
 
 
-def main(schools=None, out_path=None, date='2026-10-29'):
-    out = {'seed': SEED, 'date': date, 'schools': {}, 'files': {}}
-    for school in schools or SCHOOLS:
-        rng = random.Random(SEED)
+def main(schools=None, out_path=None, date='2026-10-29', cfg=None):
+    cfg = cfg or LEGACY
+    out = {'seed': cfg['seed'], 'date': date, 'sizes': {k: cfg[k] for k in ('uniform', 'stratum', 'cov', 'cands')}, 'schools': {}, 'files': {}}
+    if cfg is LEGACY:
+        del out['sizes']  # the 2026-10-29 files never carried it
+    for school in schools or cfg['schools']:
+        rng = random.Random(cfg['seed'])
         d = P.SchoolDir(school)
         out['files'][school] = {f: sha(d / f) for f in FILES}
         # 1. lab papers
@@ -134,11 +151,11 @@ def main(schools=None, out_path=None, date='2026-10-29'):
             meta.append(dict(i=i, key=f"{r['pi']}|{r['work']}|{r['oa']}", adv=via.startswith('advisee on an unaffiliated byline'),
                              listing='listing' in (r.get('appointment') or {}), nonrev=r.get('identity') != 'reviewed_openalex_author_id'))
         lab = []
-        taken = set(rng.sample(range(len(meta)), 25))
+        taken = set(rng.sample(range(len(meta)), min(cfg['uniform'], len(meta))))
         lab += [dict(stratum='uniform', i=i, key=meta[i]['key']) for i in sorted(taken)]
         for st, f in (('advisee_unaffiliated', 'adv'), ('listing', 'listing'), ('identity_not_reviewed', 'nonrev')):
             pool = [m['i'] for m in meta if m[f] and m['i'] not in taken]
-            pick = rng.sample(pool, min(5, len(pool)))
+            pick = rng.sample(pool, min(cfg['stratum'], len(pool)))
             taken |= set(pick)
             lab += [dict(stratum=st, i=i, key=meta[i]['key']) for i in sorted(pick)]
         # 2. student papers
@@ -147,13 +164,13 @@ def main(schools=None, out_path=None, date='2026-10-29'):
             r = json.loads(line)
             sm.append(dict(i=i, key=f"{r['pi']}|{r['student']}|{r['oa']}", basis=r.get('basis')))
         stu = []
-        taken = set(rng.sample(range(len(sm)), 25))
+        taken = set(rng.sample(range(len(sm)), min(cfg['uniform'], len(sm))))
         stu += [dict(stratum='uniform', i=i, key=sm[i]['key']) for i in sorted(taken)]
         short = 0
         for st in ('within_lab_byline_match', 'advisee_name_on_lab_paper_byline', 'full_name_on_lab_paper_byline'):
             pool = [m['i'] for m in sm if m['basis'] == st and m['i'] not in taken]
-            pick = rng.sample(pool, min(5, len(pool)))
-            short += 5 - len(pick)
+            pick = rng.sample(pool, min(cfg['stratum'], len(pool)))
+            short += cfg['stratum'] - len(pick)
             taken |= set(pick)
             stu += [dict(stratum=st, i=i, key=sm[i]['key']) for i in sorted(pick)]
         if short:
@@ -176,7 +193,7 @@ def main(schools=None, out_path=None, date='2026-10-29'):
                     continue
                 seen.add((p['pi'], r['key']))
                 pool.append(dict(pi=p['pi'], key=f"{p['pi']}|{r['key']}", dblp=r))
-        cov = [dict(stratum='dblp_person_page', **pool[i]) for i in sorted(rng.sample(range(len(pool)), min(15, len(pool))))]
+        cov = [dict(stratum='dblp_person_page', **pool[i]) for i in sorted(rng.sample(range(len(pool)), min(cfg['cov'], len(pool))))]
         del pages
         # 4. student coverage candidates
         stj = json.load(open(d / 'students.json'))
@@ -191,18 +208,36 @@ def main(schools=None, out_path=None, date='2026-10-29'):
         rng.shuffle(cands)
         out['schools'][school] = dict(n_lab_papers=len(meta), n_student_papers=len(sm), n_coverage_pool=len(pool),
                                       n_student_candidates=len(cands), lab_precision=lab, student_precision=stu,
-                                      lab_coverage=cov, student_coverage_order=cands[:40])
+                                      lab_coverage=cov, student_coverage_order=cands[:cfg['cands']])
         del stj, pis, meta, sm, pool
         print(school, len(lab), len(stu), len(cov), len(cands), flush=True)
     (out_path or OUT).write_text(json.dumps(out, indent=1))
     return out
 
 
+def draw_round(rnd, schools=None):
+    """Draw the schools of round `rnd` (ROUNDS) into accuracy/round-<id>/sample-<school>.json, one file per school (the seed is
+    reset per school, so a school's draw does not depend on which others are drawn). An existing draw file is never
+    overwritten: a draw is the record the verdicts refer to."""
+    import datetime
+    cfg = ROUNDS[rnd]
+    d = ACC_DIR / cfg['dir']  # beside this file: a worktree's own accuracy/, not the main checkout's
+    d.mkdir(exist_ok=True)
+    for school in schools or cfg['schools']:
+        f = d / f'sample-{school}.json'
+        if f.exists():
+            _sys.exit(f'{f} exists: a round draw is never overwritten (move it aside by hand to redraw)')
+        main([school], f, datetime.date.today().isoformat(), cfg)
+
+
 if __name__ == '__main__':
-    if len(_sys.argv) == 3 and _sys.argv[1] == '--school':
+    a = _sys.argv[1:]
+    if a[:1] == ['--round'] and len(a) in (2, 4) and a[1] in ROUNDS and (len(a) == 2 or a[2] == '--school'):
+        draw_round(a[1], a[3:] or None)
+    elif len(a) == 2 and a[0] == '--school':
         import datetime
-        main([_sys.argv[2]], _Path(__file__).resolve().parent / f'sample-{_sys.argv[2]}.json', datetime.date.today().isoformat())
-    elif len(_sys.argv) == 1:
+        main([a[1]], _Path(__file__).resolve().parent / f'sample-{a[1]}.json', datetime.date.today().isoformat())
+    elif not a:
         main()
     else:
         _sys.exit(__doc__)

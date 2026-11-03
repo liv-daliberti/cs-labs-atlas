@@ -4,14 +4,19 @@ Precision = correct / (correct + incorrect); 'unclear' items stay out of every d
 Lab-paper coverage = in_build share of the coverage items judged true lab papers.
 Student coverage = linked share of the sampled thesis advisees who have a co-authored paper with the PI.
 'meeting_abstract' marks conference/meeting abstracts judged not_a_paper; the alternative figures count them correct.
-usage: summarize.py [--school <key>]
+usage: summarize.py [--school <key>] | --round <id>   (ACCURACY_ROUND=<id> routes --school to the round's files)
 """
-import collections, json, math, sys
+import collections, json, math, os, sys
 from pathlib import Path
 
 ACC = Path(__file__).parent
 sys.path.insert(0, str(ACC))
 SCHOOLS = ['princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford']
+
+
+def round_dir_():
+    from record import round_dir
+    return round_dir()
 
 
 def wilson(k, n, z=1.959964):
@@ -35,7 +40,7 @@ def prec(rows, abstracts_ok=False):
 def one_school(school):
     """The four measures of a school outside the six released ones (draw sample-<school>.json, verdicts-<school>.jsonl) into
     summary-<school>.json; nothing is pooled and the released figures are not touched."""
-    from record import files
+    from record import files, round_dir
     from sample import FILES, P, sha
     sf, vf = files(school)
     S = json.load(open(sf))
@@ -64,10 +69,39 @@ def one_school(school):
              incorrect=[dict(sample=r['sample'], stratum=r['stratum'], item=r['item'], failure_type=r['failure_type'], reason=r['reason'],
                              policy=r.get('policy')) for r in V if r['verdict'] == 'incorrect'],
              unclear=[dict(sample=r['sample'], item=r['item'], reason=r['reason']) for r in V if r['verdict'] == 'unclear'],
-             screened=[json.loads(l) for l in open(ACC / f'screened-{school}.jsonl')] if (ACC / f'screened-{school}.jsonl').exists() else [])
-    (ACC / f'summary-{school}.json').write_text(json.dumps(d, indent=1, ensure_ascii=False))
+             screened=[json.loads(l) for l in open((round_dir() or ACC) / f'screened-{school}.jsonl')] if ((round_dir() or ACC) / f'screened-{school}.jsonl').exists() else [])
+    d['population'] = {k: S['schools'][school][k] for k in ('n_lab_papers', 'n_student_papers', 'n_coverage_pool', 'n_student_candidates')}
+    rd = round_dir()
+    if rd:  # a round: the sizes drawn against the sizes judged (student coverage is judged as far as the candidates go)
+        d['round'] = dict(id=os.environ['ACCURACY_ROUND'], sizes=S.get('sizes'), judged={k: sum(r['sample'] == k for r in V) for k in
+                          ('lab_precision', 'student_precision', 'lab_coverage', 'student_coverage')})
+    ((rd or ACC) / f'summary-{school}.json').write_text(json.dumps(d, indent=1, ensure_ascii=False))
     f = lambda x: f"{x['p']:.3f} [{x['lo']:.3f},{x['hi']:.3f}] k={x['k']} n={x['n']}" if x else '-'
     print(school, '| lab', f(d['lab_precision_uniform']), '| stu', f(d['student_precision_uniform']), '| cov', f(d['lab_coverage']), '| scov', f(d['student_coverage']))
+
+
+def pooled_round(rnd):
+    """Pool a round's per-school verdicts (ACCURACY_ROUND=<rnd>) into the round's summary.json: every school weighted equally
+    (50 uniform rows each) and the Wilson interval on the pooled counts."""
+    from record import round_dir
+    from sample import ROUNDS
+    rd = round_dir()
+    schools = [s for s in ROUNDS[rnd]['schools'] if (rd / f'verdicts-{s}.jsonl').exists()]
+    V = [json.loads(l) for s in schools for l in open(rd / f'verdicts-{s}.jsonl')]
+    lab = [r for r in V if r['sample'] == 'lab_precision']
+    stu = [r for r in V if r['sample'] == 'student_precision']
+    cov = [r for r in V if r['sample'] == 'lab_coverage' and r.get('true_lab_paper') is True]
+    sc = [r for r in V if r['sample'] == 'student_coverage' and r.get('has_coauthored_paper')]
+    d = dict(round=rnd, seed=ROUNDS[rnd]['seed'], schools=schools, n_verdicts=len(V),
+             lab_precision_uniform=prec([r for r in lab if r['stratum'] == 'uniform']),
+             lab_precision_uniform_if_abstracts_count=prec([r for r in lab if r['stratum'] == 'uniform'], True),
+             student_precision_uniform=prec([r for r in stu if r['stratum'] == 'uniform']),
+             lab_coverage=wilson(sum(bool(r.get('in_build')) for r in cov), len(cov)),
+             student_coverage=wilson(sum(bool(r.get('linked')) for r in sc), len(sc)),
+             per_school={s: json.loads((rd / f'summary-{s}.json').read_text()) for s in schools if (rd / f'summary-{s}.json').exists()},
+             failures=dict(collections.Counter(r['failure_type'] for r in V if r['verdict'] == 'incorrect')))
+    (rd / 'summary.json').write_text(json.dumps(d, indent=1, ensure_ascii=False))
+    print(json.dumps({k: d[k] for k in ('lab_precision_uniform', 'student_precision_uniform', 'lab_coverage', 'student_coverage')}))
 
 
 def main():
@@ -134,5 +168,12 @@ def main():
 if __name__ == '__main__':
     if len(sys.argv) == 3 and sys.argv[1] == '--school':
         one_school(sys.argv[2])
+    elif len(sys.argv) == 3 and sys.argv[1] == '--round':  # ACCURACY_ROUND=<id> summarize.py --round <id>: every school, then the pool
+        os.environ['ACCURACY_ROUND'] = sys.argv[2]
+        from sample import ROUNDS
+        for sc_ in ROUNDS[sys.argv[2]]['schools']:
+            if (round_dir_() / f'verdicts-{sc_}.jsonl').exists():
+                one_school(sc_)
+        pooled_round(sys.argv[2])
     else:
         main()
