@@ -70,7 +70,8 @@ def lab_rows(key):
     """One dict per lab (see the module docstring): pi, department, title, students, student_sources, papers, reasons {students|papers: {code, why, ...}}."""
     pis = read(P.data('pis.json', key), [])
     stu = read(P.data('students.json', key), {})
-    cen = {x['name']: x for x in read(P.data('census-faculty.json', key), {}).get('faculty', [])}
+    cf = read(P.data('census-faculty.json', key), {})
+    cen = {x['name']: x for x in (cf if isinstance(cf, list) else cf.get('faculty', []))}
     cen.update({x['name']: x for x in read(P.data('census-additions.json', key), [])})
     ov = CO.section(key)
     manual = read(P.data('lab-coverage-reasons.json', key), {}) or {}
