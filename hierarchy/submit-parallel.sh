@@ -4,7 +4,7 @@
 #       builds old and new for every school side by side (targets about 15 min: the slowest school), then diffs, validates, lists wired papers
 #   (either form) ARRAY_THROTTLE=N limits how many school tasks run at once
 #   hierarchy/submit-parallel.sh rebuild [SCHOOLS="a b"] [ALLOW_SWINGS=1] [--test-only]
-#       snapshot stage -> one build task per school -> the rest of the rebuild (ids, copies, ledger, reader, audits, evidence, tests,
+#       snapshot stage -> one build task per school -> the rest of the rebuild (zero_paper, ids, copies, ledger, reader, audits, evidence, tests,
 #       regression, validate, release, tree, housekeeping) with the same TAG (target about 45 min instead of the serial rebuild's ~2 h)
 # The code is main's HEAD now (CS_ATLAS_SNAPSHOT_COMMIT is pinned for every job); run it from the code root or a worktree. Jobs on mltheory, not on node302.
 set -eu
@@ -32,7 +32,7 @@ case $kind in
     j1=$(STAGES=snapshot sub --output="$PWD/hierarchy/logs/rebuild-snapshot-%j.out" hierarchy/rebuild-all.slurm)
     [ -z "$test_only" ] || { echo "test-only: the snapshot job passes ($j1); the array and the rest depend on it and are checked when submitted"; exit 0; }
     j2=$(sub --dependency=afterok:$j1 --array=$ARR --output="$PWD/hierarchy/logs/build-school-%A_%a.out" hierarchy/build-school.slurm)
-    j3=$(STAGES="ids copies ledger reader audits evidence tests regression validate release tree housekeeping" sub --dependency=afterok:$j2 \
+    j3=$(STAGES="zero_paper ids copies ledger reader audits evidence tests regression validate release tree housekeeping" sub --dependency=afterok:$j2 \
          --output="$PWD/hierarchy/logs/rebuild-rest-%j.out" hierarchy/rebuild-all.slurm)
     echo "rebuild $TAG: snapshot $j1 -> build array $j2 ($n schools: $SCHOOLS) -> rest $j3" ;;
   *) echo "equivalence|rebuild"; exit 2 ;;

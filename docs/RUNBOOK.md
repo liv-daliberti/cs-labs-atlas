@@ -51,11 +51,38 @@ in `PIPELINES` in tools/atlas_pipeline.py. The hand checks, the design and the d
 
 ## Release
 
-`atlas release` runs the whole chain and stops at the first failure: preflight, rebuild, validate, regression, reader export, release (with the generated
-CHANGES.md), notes check, organized tree, GitHub export (written and committed locally), then the two steps that publish outside this host, `export-push`
-(tag `release-<id>` and push) and `hf-upload`, and last the Codex handoff note (SITE-HANDOFF.md, added to the release). The two external steps need
-`--yes-push` / `--yes-hf` (or a "y" at the terminal); without them the run stops with exit status 3 and `--resume` continues after you confirm. As a job:
-`atlas release --wait` (submits that job from main's HEAD and blocks on it with one `sacct` call per 120 s or more) or `atlas submit hierarchy/release.slurm` (`RELEASE_ARGS="--yes-push --yes-hf"` in the environment to confirm in advance). `atlas release --dry-run` prints the steps.
+`atlas release` runs the whole chain and stops at the first failure: **preflight**, rebuild, **regression, then validate** (validate reads the file the regression
+writes), reader export, release (with the generated CHANGES.md), notes check, organized tree, GitHub export (written and committed locally), then the two steps
+that publish outside this host, `export-push` (tag `release-<id>` and push) and `hf-upload`, and last the Codex handoff note (SITE-HANDOFF.md, added to the
+release). The two external steps need `--yes-push` / `--yes-hf` (or a "y" at the terminal); without them the run stops with exit status 3 and `--resume`
+continues after you confirm. `atlas release --dry-run` prints the steps.
+
+**It runs on Slurm by default** (ROADMAP #37 v2, 2026-11-03): `atlas release [options]` submits `hierarchy/release.slurm` from main's HEAD (`sbatch --test-only`
+first, refused on `Preempts:`) and blocks on it with one `sacct` call per 120 s or more (`--wait` is accepted and means the same; `atlas submit
+hierarchy/release.slurm` with `RELEASE_ARGS` in the environment is the same job). `--local` runs it in your own process on the login host: opt-in only, because the
+login host's memory budget is shared (the job asks 4 CPUs, 32 GB). Run dir and state: `<scratch>/release-<jobid>/run.json`.
+
+**Before any build, the fast preflight** (about as long as the test suite: measured below) fails everything that used to fail after a 35-60 minute rebuild,
+all at once, in parallel: main clean; the full test suite inside a `git archive` snapshot with the release's own environment (`STAGES`, `TAG`, `RELEASE_ARGS`,
+`CS_ATLAS_SNAPSHOT_COMMIT` exported, the same `rebuild.sh STAGES=tests` the rebuild runs); `validate` and the evidence check on the current files (outputs
+`preflight-*` in the run dir, the live files untouched); the regression check of the current files against the last release; and an `sbatch --test-only` of the
+build array. **Swings are signed off up front**: the preflight prints every regression swing with its id (`kind|school|pi-or-count`) and fails on any that is
+not approved. Approve with `--allow-swings` (all), or `--swings-file FILE`, a JSON file `{"signed_by": "...", "signed_at": "YYYY-MM-DD", "swings": ["<id>", ...]}`
+listing the ids you read (an unsigned file approves nothing). The regression step after the build accepts the same approval, so a swing never first fails at
+minute 70. `atlas release --preflight-only` runs just this (nothing is built or frozen).
+
+**The rebuild is recorded stage by stage** (snapshot, build, zero_paper, ids, copies, ledger, audits, evidence, tests): each is written to `rebuild_stages` in
+run.json when it ends, and `--resume --tag <tag>` starts at the failed stage, not at the top. A commit that changed since the failed run may resume only when it
+touched nothing outside `tests/` and `docs/`: the run prints and records a `NOTE: resuming across commits ...` (a changed `tests/` also re-runs the tests stage and
+the preflight); any other change is refused, start a new tag. **The build stage is the per-school Slurm array** (`hierarchy/build-school.slurm`, newest school
+first, `sbatch --test-only` first; `--array-throttle N` limits tasks at once, ~15 min instead of ~35); `--serial-build` builds the schools one after another in the
+release job. `zero_paper` (tools/zero_paper_ledger.py) is a rebuild stage right after the build: the site's build needs a ledger row per hidden lab.
+
+**One release at a time**: the run takes the lease `atlas-release` (`atlas lease status atlas-release` shows holder, host, job; a heartbeat renews it, it is released
+on exit and on `scancel`). A second release, from any host, is refused with the holder's name; if the holder is certainly gone, `atlas lease release atlas-release --force`.
+
+`hierarchy/rebuild.sh` takes `STAGES=... SCHOOLS=... TAG=... BEFORE=... ALLOW_SWINGS=...` as arguments as well as environment variables, `--list` prints the resolved
+stages and schools, and any other argument or unknown stage name is refused (exit 2); it never silently runs a full rebuild.
 A release is `releases/<date>[.N]/`, read-only, with `MANIFEST.json` (hashes, code commit, rules, counts, regression, ledger, ids, reader) and `CHANGES.md`;
 `releases/latest` points at the newest. Releases are never overwritten or edited; notes are added only with `make_release.py add-note` (`atlas make-release`
 cuts just the release). Agents do not push; the coordinator confirms the external steps.

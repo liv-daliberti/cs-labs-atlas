@@ -2,6 +2,7 @@
 # The full rebuild, locally (the Slurm equivalent is hierarchy/rebuild-all.slurm, which runs this script):
 #   snapshot    back up the current packages and record their counts (<SCRATCH>/pkg-before-<tag>/, outside the tree)
 #   build       tools/pi_hierarchy.py for every school
+#   zero_paper  tools/zero_paper_ledger.py: why each PI lab with no lab papers has none -> hierarchy/derived/zero-paper-labs.json (the site needs a row per hidden lab)
 #   ids         tools/atlas_ids.py: stable atlas ids (atl:p:/atl:w:/atl:l:) into the packages, the registry and the
 #               cross-reference table (hierarchy/ids/; docs/IDS.md); always over every released school
 #   copies      tools/lab_paper_copies.py (copies.json from the full-text stores, with access-review causes)
@@ -22,18 +23,37 @@
 # Code: the tools run from a snapshot of one commit (CS_ATLAS_SNAPSHOT_COMMIT, default HEAD now), data from the main checkout.
 # usage: hierarchy/rebuild.sh                       (all stages, all schools; run under nohup or in tmux, ~1 h)
 #        STAGES="build audits" SCHOOLS="mit" hierarchy/rebuild.sh
+#        hierarchy/rebuild.sh STAGES=tests SCHOOLS=mit      (NAME=value arguments are the same as the environment variables; 2026-11-03)
 #        TAG=<name> sets the snapshot name (default local-<timestamp>); BEFORE=<dir> compares against another snapshot
+#        hierarchy/rebuild.sh --list                        (prints the resolved stages and schools, runs nothing)
+# Arguments: only STAGES= SCHOOLS= TAG= BEFORE= ALLOW_SWINGS= and --list; anything else, and any unknown stage name, is refused with exit status 2
+# (before 2026-11-03 `rebuild.sh STAGES=tests` silently ran a FULL rebuild: the argument was ignored).
 # Exit status: 0 all good, 1 a stage failed, 2 regression swings blocked the release.
 set -u -o pipefail
+KNOWN_STAGES="snapshot build zero_paper ids copies ledger reader audits evidence tests regression validate release tree housekeeping"
+list_only=0
+for _a in "$@"; do
+  case $_a in
+    STAGES=*|SCHOOLS=*|TAG=*|BEFORE=*|ALLOW_SWINGS=*) export "${_a%%=*}=${_a#*=}" ;;
+    --list) list_only=1 ;;
+    *) echo "rebuild.sh: unknown argument '$_a' (accepted: STAGES=... SCHOOLS=... TAG=... BEFORE=... ALLOW_SWINGS=... --list)" >&2; exit 2 ;;
+  esac
+done
+if [ "${STAGES:-auto}" != auto ]; then
+  for _s in $STAGES; do
+    case " $KNOWN_STAGES " in *" $_s "*) ;; *) echo "rebuild.sh: unknown stage '$_s' (known: $KNOWN_STAGES)" >&2; exit 2 ;; esac
+  done
+fi
 . "$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)/paths.sh" || exit 1  # every path in one place (tools/atlas_paths.py)
 cd "$CS_ATLAS_WORK" || exit 1   # the data: always the main checkout
+if [ "$list_only" = 1 ]; then echo "stages: ${STAGES:-<default: every stage>}"; echo "schools: ${SCHOOLS:-$CS_ATLAS_SCHOOLS}"; exit 0; fi
 if [ -z "${CS_ATLAS_SNAPSHOT:-}" ]; then  # run from a code snapshot of one commit (docs/CONTRIBUTING.md, tools/job_code_snapshot.sh)
   . "$CS_ATLAS_CODE/tools/job_code_snapshot.sh" || exit 1
-  bash "$CS_ATLAS_SNAPSHOT/hierarchy/rebuild.sh" "$@"; rc=$?; snapshot_remove; exit $rc
+  bash "$CS_ATLAS_SNAPSHOT/hierarchy/rebuild.sh"; rc=$?   # the arguments are already in the environment; snapshot_remove; exit $rc
 fi
 PY="nice -n10 $CS_ATLAS_PY -u"  # the project interpreter (env/atlas; tools/atlas_paths.py PY)
 SCHOOLS=${SCHOOLS:-$CS_ATLAS_SCHOOLS}
-STAGES=${STAGES:-snapshot build ids copies ledger reader audits evidence tests regression validate release tree housekeeping}
+STAGES=${STAGES:-snapshot build zero_paper ids copies ledger reader audits evidence tests regression validate release tree housekeeping}
 if [ "$STAGES" = auto ]; then STAGES=$($CS_ATLAS_PY "$CS_ATLAS_TOOLS/stale_stages.py" --stages $SCHOOLS); fi   # ROADMAP #33: only the stale stages, then the checks (tools/stale_stages.py)
 TAG=${TAG:-local-$(date +%Y%m%d-%H%M%S)}
 BEFORE=${BEFORE:-$CS_ATLAS_SCRATCH/pkg-before-$TAG}   # scratch, outside the tree (tools/scratch.py)
@@ -51,6 +71,11 @@ fi
 if has build; then
   $CS_ATLAS_PY -c "import sys; sys.path.insert(0, '$CS_ATLAS_TOOLS'); import atlas_paths as P; [P.data('link-diagnosis.json', s).unlink(missing_ok=True) for s in P.SCHOOL_IDS]"  # stale diagnoses would hide open items from the re-diagnosis
   for s in $SCHOOLS; do echo "== $s $(date +%T)"; $PY $CS_ATLAS_TOOLS/pi_hierarchy.py $s || { echo "FAILED $s"; fail=1; }; done
+fi
+if has zero_paper; then
+  # (2026-11-03) the site's build requires a zero-paper ledger row per hidden lab (hierarchy/derived/zero-paper-labs.json), so the ledger is
+  # part of the rebuild, right after the build (it reads pis.json only; docs/UNAVAILABLE.md is a different ledger)
+  echo "== zero-paper ledger $(date +%T)"; $PY $CS_ATLAS_TOOLS/zero_paper_ledger.py > /dev/null || { echo "FAILED zero_paper"; fail=1; }
 fi
 if has ids; then
   # after the build, before every consumer (2026-10-29): ids never change once issued (hierarchy/ids/registry.sqlite)
@@ -87,7 +112,7 @@ if has evidence; then
   echo "== evidence check $(date +%T)"; $PY $CS_ATLAS_TOOLS/evidence_check.py || { echo "FAILED evidence check"; fail=1; }
 fi
 if has tests; then
-  echo "== tests $(date +%T)"; $PY -m pytest "$CS_ATLAS_TESTS" -q -p no:cacheprovider 2>&1 | tail -3; [ "${PIPESTATUS[0]}" = 0 ] || { echo "FAILED tests"; fail=1; }
+  echo "== tests $(date +%T)"; $PY -m pytest "$CS_ATLAS_TESTS" -q -rf -p no:cacheprovider 2>&1 | tail -15; [ "${PIPESTATUS[0]}" = 0 ] || { echo "FAILED tests"; fail=1; }
 fi
 if has regression; then
   echo "== regression $(date +%T)"
