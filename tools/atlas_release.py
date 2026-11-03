@@ -219,6 +219,8 @@ def run_step(step, c, runner=subprocess.run):
             return False, 'Freeze succeeded without one exact release receipt; inspect release.log before resuming'
         c.release_id = receipts[0]['release']
     tail = log.read_text().splitlines()[-3:]
+    if step == 'regression' and r.returncode == 2 and c.a.allow_swings:   # rebuild.sh exits 2 for swings only (1 = a failure)
+        return True, f'swings allowed (--allow-swings); log {log}: ' + ' | '.join(tail)
     return r.returncode == 0, f'exit {r.returncode}; log {log}' + (': ' + ' | '.join(tail) if r.returncode else '')
 
 

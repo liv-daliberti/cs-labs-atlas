@@ -130,3 +130,17 @@ def test_resume_rechecks_preflight(env, monkeypatch):
     with pytest.raises(SystemExit) as error:
         AR.main(['--tag', 'dirty-resume', '--only', 'preflight', '--resume'], runner=Runner())
     assert error.value.code == 2
+
+
+def test_regression_swings_pass_only_with_allow_swings(env):
+    class Swings(Runner):
+        def __call__(self, argv, env=None, stdout=None, stderr=None, cwd=None):
+            stage = (env or {}).get('STAGES') or argv[1].rsplit('/', 1)[-1]
+            self.calls.append(stage)
+            class R:
+                returncode = 2 if stage == 'regression' else 0
+            return R()
+    assert AR.main(['--tag', 's1', '--from', 'regression', '--only', 'regression'], runner=Swings()) == 1
+    assert AR.main(['--tag', 's2', '--from', 'regression', '--only', 'regression', '--allow-swings'], runner=Swings()) == 0
+    st = json.loads((AR.P.SCRATCH / 's2' / 'run.json').read_text())
+    assert st['regression']['ok'] and 'swings allowed' in st['regression']['message']
