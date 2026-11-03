@@ -156,3 +156,28 @@ own date.
   when an entry's `checked_at` is older than the school's `lab_papers.jsonl.gz` (`unavailable_stale`), or when
   `incomplete_check` exceeds its whitelisted count in `docs/evidence-whitelist.json` (`unavailable_incomplete`, each
   entry with a stated reason). `tools/build_regression.py` flags large swings in the reason-code counts.
+
+## Better title checks (ROADMAP #25, 2026-11-03): rates measured by hand
+`identity_review.py plan|apply <school> --alt-titles` judges every copy still pending against every title known for the work: the catalog's own
+OpenAlex record, the **OpenAlex bulk snapshot** (tools/oa_snapshot.py), the cached OpenAlex and Semantic Scholar records, and the arXiv title of every
+arXiv id those map the DOI to, plus **the PDF's own title metadata** (`pdfinfo`). `--reverted` runs the same over copies a review reverted. A pass needs,
+as always, the title words in page 1's title region and the authoritative first author (or the DOI) on page 1; the metadata path additionally needs the
+metadata title to be the title printed on page 1. Tags: `auto_alt_title_20261031` (known title) and `auto_pdf_meta_title_20261102` (metadata title).
+Apply rejects, with counts printed: a metadata title that is not on page 1; an arXiv-mapped title for a work with no DOI of its own; and a deposit record
+(Zenodo, Figshare, OSF, Dryad, Dataverse DOI), whose PDF is a paper but whose record is not. A locked catalog backup precedes every apply.
+
+Plan over all pending copies (princeton 811, cmu 615, epfl 230, mit 186, berkeley 137, stanford 122, michigan 37 = 2,138): pass_alt 122 and pass_meta 34
+before the apply rules; **172 confirmed** (cmu 66, mit 29, stanford 27, epfl 26, berkeley 24, princeton 0, michigan 0); 222 undecided; the rest have no
+alternative title to test.
+
+Hand checks (first 20 of fresh random samples per type, the page-1 text read against the catalog title):
+| pass type | sampled | wrong or doubtful before the apply rules | measured false-pass rate |
+|---|---|---|---|
+| pass_alt (known title) | 20 + 20 | 3: Pure pairs (arXiv id reached without the work's own DOI: a different paper), GSR baselines (a Zenodo deposit), Earning Sans Learning (probably another paper) | 3 of 40 = 7.5% before the rules; the first two are now excluded by them, so 1 of 40 = 2.5% (95% interval about 0.1-13%) |
+| pass_meta (metadata title) | 20 + 8 | 3: the same Formality Style Transfer file twice (reused template metadata), a Zenodo deposit | 3 of 28 = 11% before the rules; all three are excluded by them, so 0 of 28 after |
+The rule that the metadata title must be on page 1 also drops 8 of the 31 passes it would otherwise take, 6 of them correct (retitled or footnoted titles): a
+false-reject cost on the safe side.
+False rejects: a copy stays pending (never counted) unless one of the two paths confirms it. In a random sample of 15 of the 222 `undecided` copies, 13 were the
+right paper (retitled, abbreviated, or titled differently in the catalog and with no alternative title on record), so most of the pending copies are true papers that
+the rule cannot confirm: the false-reject rate among pending copies is about 85% (13 of 15; 95% interval about 60-97%). The rule stays strict by design
+(a pass without evidence never counts); the remaining pending copies need a title source we do not have, or a human check.
