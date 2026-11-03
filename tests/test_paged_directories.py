@@ -59,3 +59,7 @@ def test_a_page_not_archived_in_the_half_year_is_reported_missing(monkeypatch):
     con, cap0, page0 = _fixture(monkeypatch, {1: '20240420000000', 2: '20240301000000', 4: '20240415000000'})
     got, missing = PF.fetch_pages(con, {'dept': 'CS'}, cap0, page0, '20240101', '20240630', 'CS')
     assert missing == [3] and sorted(got) == [1, 2, 4]
+
+
+def test_page_links_drop_the_default_port_of_an_old_capture_url():
+    assert F.page_links(D7, 'http://www.scs.gatech.edu:80/people/faculty')[1] == 'http://www.scs.gatech.edu/people/faculty?title=&page=1'

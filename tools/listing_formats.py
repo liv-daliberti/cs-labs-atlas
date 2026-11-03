@@ -271,6 +271,7 @@ def page_links(html, base_url):
     only elides ('1 2 3 ... last') are filled in from the largest linked number by substituting it into a linked URL, so the result covers 1..last.
     Used by plan_fetch to fetch every page of a paged slot (R3, Georgia Tech friction 10: the pipeline took one page for a whole half-year)."""
     import urllib.parse
+    base_url = re.sub(r'^(https?://[^/]+?):(?:80|443)(?=/|$)', r'\1', base_url)   # Wayback keeps ':80' in the original of old captures; its CDX does not match it
     base = urllib.parse.urlsplit(base_url)
     found = {}
     for href in re.findall(r'href="([^"]*[?&;]page=\d+[^"]*)"', html):
