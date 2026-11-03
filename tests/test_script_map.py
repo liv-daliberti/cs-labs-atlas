@@ -13,7 +13,12 @@ SCHOOLS = 'princeton|cmu|epfl|mit|berkeley|stanford|michigan'
 
 
 def tracked():
-    return set(subprocess.run(['git', '-C', str(CODE), 'ls-files'], capture_output=True, text=True, check=True).stdout.split())
+    """The tracked files. A job's code snapshot (tools/job_code_snapshot.sh) is a `git archive` of one commit, so it has no
+    .git but holds exactly the tracked files: there the files on disk are the list."""
+    r = subprocess.run(['git', '-C', str(CODE), 'rev-parse', '--show-toplevel'], capture_output=True, text=True)
+    if r.returncode == 0 and Path(r.stdout.strip()).resolve() == CODE.resolve():
+        return set(subprocess.run(['git', '-C', str(CODE), 'ls-files'], capture_output=True, text=True, check=True).stdout.split())
+    return {str(p.relative_to(CODE)) for p in CODE.rglob('*') if p.is_file() and '__pycache__' not in p.parts and '.pytest_cache' not in p.parts}
 
 
 def test_retired_scripts_are_in_archive():
