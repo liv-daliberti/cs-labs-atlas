@@ -39,3 +39,15 @@ def test_package_diff_ignores_the_same_stamps_by_default(tmp_path):
     assert {r['status'] for r in res.values()} == {'identical'}
     (tmp_path / 'new' / 'mit' / 'copies.json').write_text(json.dumps(dict(summary=dict(counted_at='t', local=3), papers={})))
     assert PD.compare_dir(tmp_path / 'old' / 'mit', tmp_path / 'new' / 'mit', PD.DEFAULT_IGNORE)['copies.json']['status'] == 'differs'
+
+
+def test_package_diff_always_ignores_the_transition_year_counts_whatever_ignore_says(tmp_path, capsys):
+    for n, counts in (('old', dict(papers=5)), ('new', dict(papers=5, transition_year_affiliated_listing=2, transition_year_unaffiliated_outside=1))):
+        d = tmp_path / n / 'mit'
+        d.mkdir(parents=True)
+        (d / 'report.json').write_text(json.dumps(dict(builtAt=n, counts=counts)))
+    args = [str(tmp_path / 'old'), str(tmp_path / 'new'), '--schools', 'mit', '--ignore', 'report.json:builtAt']   # the slurm scripts pass their own list
+    assert PD.main(args) == 0
+    assert 'counts.transition_year_*' in capsys.readouterr().out
+    (tmp_path / 'new' / 'mit' / 'report.json').write_text(json.dumps(dict(builtAt='n', counts=dict(papers=6, transition_year_x=1))))
+    assert PD.main(args) == 1                                                                  # a real count still differs

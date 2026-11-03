@@ -3,13 +3,14 @@
 Each file present in either tree is compared after decoding: `.gz` is decompressed; JSON is parsed and compared as data
 (object key order ignored, list order kept); JSON lines are compared line by line as data; other files byte for byte.
 Only the fields named by --ignore are skipped (dotted paths into a JSON file, `<file>:<path>`); by default the two build
-timestamps, report.json `builtAt` and `provenance.at`. Every other difference is reported with its path.
+timestamps, report.json `builtAt` and `provenance.at`; report.json `counts.transition_year_*` (new in the NEW builder, #29) is always ignored. A last key with a glob (`*`) drops every match. Every other difference is reported with its path.
 
 usage: package_diff.py <old root> <new root> [--schools a b ...] [--ignore report.json:builtAt ...] [--json out.json]
        (a root holds <school>/ package directories, as PI_HIERARCHY_OUT writes them)
 exit 0 when every compared file is identical, 1 otherwise
 """
 import argparse
+import fnmatch
 import gzip
 import json
 import sys
@@ -17,6 +18,11 @@ from pathlib import Path
 
 from content_hash import VOLATILE  # noqa: E402  (the stamps that are not content: tools/content_hash.py)
 DEFAULT_IGNORE = [f'{fn}:{p}' for fn in ('report.json', 'unavailable-summary.json', 'unavailable.jsonl.gz', 'copies.json') for p in VOLATILE[fn]]   # timestamps, nothing else
+
+
+# counts the OLD builder cannot have (new in the NEW one) and that are not a build result: report.json `counts.transition_year_*` (#29, the transition-year
+# funnel of pihier/papers.py). Always ignored, like the build timestamps, whatever --ignore names; the glob applies to the last key of the path.
+ALWAYS_IGNORE = ['report.json:counts.transition_year_*']
 
 
 def _load(p):
@@ -38,7 +44,14 @@ def _drop(d, path):
         if not isinstance(d, dict) or k not in d:
             return False
         d = d[k]
-    return isinstance(d, dict) and d.pop(keys[-1], None) is not None
+    if not isinstance(d, dict):
+        return False
+    if any(c in keys[-1] for c in '*?['):
+        hit = [k for k in d if fnmatch.fnmatchcase(str(k), keys[-1])]
+        for k in hit:
+            del d[k]
+        return bool(hit)
+    return d.pop(keys[-1], None) is not None
 
 
 def diff_paths(a, b, path='', out=None, limit=20):
@@ -97,6 +110,7 @@ def main(argv=None):
     ap.add_argument('--ignore', nargs='*', default=DEFAULT_IGNORE)
     ap.add_argument('--json', type=Path)
     a = ap.parse_args(argv)
+    a.ignore = list(a.ignore) + [x for x in ALWAYS_IGNORE if x not in a.ignore]
     schools = a.schools or sorted({p.name for p in a.old.iterdir() if p.is_dir()} | {p.name for p in a.new.iterdir() if p.is_dir()})
     rep, ok = {}, True
     for s in schools:
