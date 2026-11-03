@@ -73,12 +73,12 @@ def keep_work(w, inst, excl, authors):
     hit_i, hit_a, ships = set(), set(), []
     for a in w.get('authorships') or []:
         aid = short((a.get('author') or {}).get('id'))
-        insts = a.get('institutions') or []
-        ids = set()
-        for x in insts:
-            ids |= {short(l) for l in (x.get('lineage') or [])} | {short(x.get('id'))}
-        if not (ids & excl):
-            hit_i |= ids & inst
+        for x in a.get('institutions') or []:
+            # exclusion is per affiliation: an author with UChicago AND an excluded Argonne affiliation keeps the UChicago hit
+            # (the whole authorship used to be dropped: UChicago PROTOCOL-FRICTION 20)
+            ids = {short(l) for l in (x.get('lineage') or [])} | {short(x.get('id'))}
+            if not (ids & excl):
+                hit_i |= ids & inst
         if aid in authors:
             hit_a.add(aid)
         ships.append(a)

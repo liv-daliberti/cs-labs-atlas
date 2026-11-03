@@ -90,3 +90,17 @@ def test_a_missing_part_stops_the_merge(served):
     S.cmd_filter(0, 2, tmp=served)
     with pytest.raises(SystemExit):
         S.cmd_merge(date, of=2, parts=parts)
+
+
+def test_exclusion_is_per_affiliation_not_per_authorship():
+    """UChicago PROTOCOL-FRICTION 20: an authorship with a school institution AND an excluded one keeps the school hit; an
+    authorship touching only the excluded institution (whose lineage reaches the school) is still dropped."""
+    inst, excl = {'I1'}, {'I9'}
+    joint = {'id': OA + 'I8', 'lineage': [OA + 'I8', OA + 'I1']}
+    argonne = {'id': OA + 'I9', 'lineage': [OA + 'I9', OA + 'I1']}
+    def w(*institutions):
+        return {'id': OA + 'W1', 'type': 'article', 'authorships': [{'author': {'id': OA + 'A1'}, 'institutions': list(institutions)},
+                                                                     {'author': {'id': OA + 'A2'}, 'institutions': [argonne]}]}
+    assert S.keep_work(w(joint, argonne), inst, excl, set())[1] == {'I1'}
+    assert S.keep_work(w(argonne), inst, excl, set()) is None
+    assert S.keep_work(w(argonne, joint), inst, excl, set())[1] == {'I1'}
