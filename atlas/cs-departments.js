@@ -102,6 +102,10 @@
     $('csd-error').textContent =
       'The CS department data could not load. ' + ((e && e.message) || e);
     $('csd-count').textContent = '';
+    const retry = document.createElement('button');
+    retry.textContent = 'Retry loading';
+    retry.onclick = () => selectSchool(state.school);
+    $('csd-error').append(retry);
   }
   async function loadSchool(id) {
     if (!cache[id]) cache[id] = await readResearchJSON('data/cs-hierarchy/' + id + '.json.gz');
@@ -126,7 +130,7 @@
     const pend = (index.pending || [])
       .map(
         (id) =>
-          '<button type="button" role="tab" disabled title="Being built">' +
+          '<button type="button"  disabled title="Being built">' +
           esc(PENDING_NAMES[id] || id) +
           ' · building</button>',
       )
@@ -135,9 +139,9 @@
       index.schools
         .map(
           (s) =>
-            '<button type="button" role="tab" data-school="' +
+            '<button type="button"  data-school="' +
             esc(s.id) +
-            '" aria-selected="' +
+            '" aria-pressed="' +
             (s.id === state.school) +
             '">' +
             esc(s.name) +
@@ -268,7 +272,7 @@
           return (
             '<tr data-i="' +
             i +
-            '" tabindex="0" aria-selected="' +
+            '" tabindex="0" aria-current="' +
             (state.lab === l.id) +
             '"><td><b>' +
             esc(l.name) +
@@ -321,7 +325,7 @@
     setURL();
     $('csd-rows')
       .querySelectorAll('tr[data-i]')
-      .forEach((tr) => tr.setAttribute('aria-selected', String(+tr.dataset.i === i)));
+      .forEach((tr) => tr.setAttribute('aria-current', String(+tr.dataset.i === i)));
     const byPaper = new Map(),
       bySt = new Map();
     for (const [s, p, st] of l.links) {
@@ -575,6 +579,8 @@
     }
     state.school = id;
     $('csd-lab').hidden = true;
+    $('csd-rows').replaceChildren();
+    $('csd-error').hidden = true;
     renderSchools();
     $('csd-count').textContent = 'Loading ' + id + '…';
     try {

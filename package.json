@@ -3,18 +3,25 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=22.13.0" },
+  "engines": {
+    "node": ">=22.13.0"
+  },
   "scripts": {
     "start": "node portable/server.mjs",
     "build": "node portable/build.mjs",
     "bundle": "python3 scripts/bundle-site.py",
     "release": "python3 scripts/release.py",
-    "test": "node --test portable/server.test.mjs && node scripts/test-paper-reader.mjs && python3 scripts/test-release.py && python3 scripts/test-reader-release.py && python3 scripts/test-bundle.py",
+    "test": "node --test portable/*.test.mjs && node scripts/test-paper-reader.mjs && python3 scripts/test-release.py && python3 scripts/test-reader-release.py && python3 scripts/test-bundle.py && python3 scripts/test-publication.py",
     "test:browser": "playwright test --config portable/playwright.config.mjs",
     "fixture": "node portable/create-fixture.mjs",
-    "format:check": "prettier --check atlas/cs-departments.js atlas/assets/paper-reader.js lib/atlas-storage.mjs portable/*.mjs portable/browser/*.mjs"
+    "format:check": "prettier --check atlas/app.js atlas/modules/*.js atlas/cs-departments.js atlas/assets/paper-reader.js lib/atlas-storage.mjs portable/*.mjs portable/browser/*.mjs",
+    "dev": "node portable/dev.mjs",
+    "bootstrap": "python3 scripts/bootstrap.py",
+    "publish": "python3 scripts/publish.py",
+    "smoke": "node portable/smoke.mjs"
   },
   "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
     "@playwright/test": "1.64.1",
     "prettier": "3.9.10"
   }

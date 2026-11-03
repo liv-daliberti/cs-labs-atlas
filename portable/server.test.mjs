@@ -127,3 +127,9 @@ test('health endpoint identifies the bundle without exposing host details', asyn
   });
   assert.equal(await (await fetch(f.base + '/healthz', { method: 'HEAD' })).text(), '');
 });
+
+test('readiness rejects missing required datasets even while liveness succeeds', async (t) => {
+  const f = await fixture(t);
+  assert.equal((await fetch(f.base + '/healthz')).status, 200);
+  assert.equal((await fetch(f.base + '/readyz')).status, 503);
+});

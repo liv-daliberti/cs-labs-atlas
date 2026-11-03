@@ -7,7 +7,16 @@ export default defineConfig({
   expect: { timeout: 30_000 },
   workers: 1,
   retries: 0,
-  reporter: [['list'], ['html', { outputFolder: 'outputs/browser-report', open: 'never' }]],
+  reporter: [
+    ['list'],
+    [
+      'html',
+      {
+        outputFolder: fileURLToPath(new URL('../outputs/browser-report', import.meta.url)),
+        open: 'never',
+      },
+    ],
+  ],
   outputDir: fileURLToPath(new URL('../outputs/browser-results', import.meta.url)),
   use: {
     baseURL: process.env.ATLAS_BASE_URL || 'http://127.0.0.1:8787',
@@ -16,6 +25,8 @@ export default defineConfig({
   },
   projects: [
     { name: 'desktop', use: { ...devices['Desktop Chrome'] } },
+    { name: 'firefox', use: { ...devices['Desktop Firefox'] } },
+    { name: 'webkit', use: { ...devices['Desktop Safari'] } },
     { name: 'mobile', use: { ...devices['iPhone 13'], defaultBrowserType: 'chromium' } },
   ],
 });

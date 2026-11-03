@@ -1,10 +1,11 @@
 import { createServer } from 'node:http';
-import { readFile } from 'node:fs/promises';
+import { readFile, realpath } from 'node:fs/promises';
 import path from 'node:path';
 import { Readable } from 'node:stream';
 import { pipeline } from 'node:stream/promises';
 import { fileURLToPath } from 'node:url';
 import { serveAtlas } from '../lib/atlas-storage.mjs';
+import { readiness } from './readiness.mjs';
 import { FileBucket } from './file-bucket.mjs';
 
 /** Node equivalent of workerd's bounded stream; no buffering of entire papers. */
@@ -26,7 +27,7 @@ export class FixedLengthStream extends TransformStream {
 
 export async function createAtlasServer(dataDirectory, { onError = console.error } = {}) {
   globalThis.FixedLengthStream ??= FixedLengthStream;
-  const directory = path.resolve(dataDirectory);
+  const directory = await realpath(dataDirectory);
   const config = JSON.parse(await readFile(path.join(directory, 'config.json'), 'utf8'));
   if (config.schema !== 1 || !/^[a-f0-9]{64}$/.test(config.manifestSha256)) {
     throw new Error('Invalid publication bundle configuration');
@@ -37,11 +38,33 @@ export async function createAtlasServer(dataDirectory, { onError = console.error
 
   return createServer(async (incoming, outgoing) => {
     try {
+      const started = performance.now();
       const url = new URL(incoming.url, 'http://localhost');
+      outgoing.on('finish', () => {
+        if (process.env.ATLAS_ACCESS_LOG === '1')
+          console.log(
+            JSON.stringify({
+              event: 'request',
+              method: incoming.method,
+              path: url.pathname,
+              status: outgoing.statusCode,
+              durationMs: Math.round(performance.now() - started),
+            }),
+          );
+      });
       let response;
       if (url.pathname.startsWith('/api/')) {
         // Portable publications are read-only. Deploy a new bundle to update.
         response = new Response('Not found', { status: 404 });
+      } else if (url.pathname === '/readyz') {
+        if (!['GET', 'HEAD'].includes(incoming.method))
+          response = new Response(null, { status: 405 });
+        else {
+          const state = await readiness(bucket, config);
+          response = new Response(incoming.method === 'HEAD' ? null : JSON.stringify(state), {
+            headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' },
+          });
+        }
       } else if (url.pathname === '/healthz') {
         response = new Response(
           incoming.method === 'HEAD'
@@ -66,7 +89,8 @@ export async function createAtlasServer(dataDirectory, { onError = console.error
       onError('Atlas request failed: ' + error.message);
       if (!outgoing.headersSent)
         outgoing.writeHead(503, { 'Content-Type': 'text/plain', 'Cache-Control': 'no-store' });
-      outgoing.end('Atlas data is temporarily unavailable.');
+      if (outgoing.headersSent && outgoing.statusCode !== 503) outgoing.destroy();
+      else outgoing.end('Atlas data is temporarily unavailable.');
     }
   });
 }

@@ -22,19 +22,28 @@ jobs:
       - run: npm test
       - run: npm run format:check
       - run: npm run build
-      - run: npx playwright install --with-deps chromium
+      - run: npx playwright install --with-deps chromium firefox webkit
       - run: |
           npm run fixture
           ATLAS_DATA_DIR=outputs/fixture node portable/server.mjs > /tmp/atlas-server.log 2>&1 &
           for attempt in $(seq 1 30); do
-            if curl --fail --silent http://127.0.0.1:8787/healthz; then break; fi
+            if curl --fail --silent http://127.0.0.1:8787/readyz; then break; fi
             sleep 1
           done
-          curl --fail http://127.0.0.1:8787/healthz
+          npm run smoke -- http://127.0.0.1:8787
           ATLAS_FIXTURE=1 npm run test:browser -- --grep 'synthetic fixture'
+      - run: |
+          docker build -t atlas-check -f portable/Dockerfile .
+          docker run -d --name atlas-check -p 8789:8787 -v "$PWD/outputs/fixture:/data:ro" atlas-check
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:8789/readyz; then break; fi
+            sleep 1
+          done
+          npm run smoke -- http://127.0.0.1:8789
+          docker stop atlas-check
       - uses: actions/upload-artifact@v4
-        if: failure()
+        if: always()
         with:
-          name: browser-failure-report
+          name: website-test-report
           path: outputs/
-      - run: docker build -f portable/Dockerfile .
+          retention-days: 14

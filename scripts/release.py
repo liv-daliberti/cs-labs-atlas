@@ -105,6 +105,7 @@ def selected_release(args):
 
 def check_commands():
     return [
+        ('contract-check', [sys.executable, 'scripts/validate-data.py']),
         ('hierarchy-check', [sys.executable, 'scripts/test-cs-hierarchy.py']),
         ('scope-check', [sys.executable, 'scripts/test-cs-scope.py']),
         ('pages-check', [sys.executable, 'scripts/test-site-pages.py']),
@@ -144,7 +145,7 @@ def verify_assets():
 
 def prepare(args):
     require(shutil.which('node') and shutil.which('npm'), 'Node and npm must be on PATH (see package.json engines)')
-    require((ROOT / 'node_modules').is_dir(), 'Install dependencies with npm run install:ci first')
+    require((ROOT / 'node_modules').is_dir(), 'Install dependencies with npm ci first')
     directory, manifest = selected_release(args)
     rid = manifest['release']
     out = REPORTS / rid

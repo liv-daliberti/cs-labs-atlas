@@ -8,7 +8,7 @@ const els = new Map(); let url = '';
 const attrs = s => Object.fromEntries([...s.matchAll(/data-([a-z]+)="([^"]*)"/g)].map(m => [m[1], m[2].replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>')]));
 function el(id) {
   if (!els.has(id)) els.set(id, { id, innerHTML: '', textContent: '', hidden: false, value: '', _q: {},
-    setAttribute() {}, scrollIntoView() {},
+    setAttribute() {}, scrollIntoView() {}, replaceChildren() { this.innerHTML=""; }, append() {},
     querySelectorAll(sel) {
       const re = sel === 'tr[data-i]' ? /<tr data-i="[^"]*"[^>]*>/g : sel === '[data-school]' ? /<button[^>]*data-school="[^"]*"[^>]*>/g :
         sel === '[data-reader]' ? /<div[^>]*data-reader="[^"]*"[^>]*>/g : sel === '[data-abstract]' ? /<details[^>]*data-abstract="[^"]*"[^>]*>/g : sel === '[data-st]' ? /<button[^>]*data-st="[^"]*"[^>]*>/g : sel === 'button' ? /<button[^>]*>/g : null;
@@ -19,7 +19,7 @@ function el(id) {
 }
 const ctx = { console, URLSearchParams, setTimeout, Promise,
   location: { get search() { return url; } }, history: { replaceState(_, __, u) { url = u; } },
-  document: { getElementById: el }, fetch: null,
+  document: { getElementById: el, createElement: tag => ({tagName:tag,textContent:"",onclick:null}) }, fetch: null,
   PaperReader: {append(box,work){box.readerWork=work;}} };
 ctx.window = ctx;
 ctx.readResearchJSON = async p => { const b = fs.readFileSync(path.join(root, p)); return JSON.parse(p.endsWith('.gz') ? zlib.gunzipSync(b) : b); };

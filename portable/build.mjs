@@ -8,6 +8,7 @@ await rm(output, { recursive: true, force: true });
 for (const filename of [
   'portable/server.mjs',
   'portable/file-bucket.mjs',
+  'portable/readiness.mjs',
   'lib/atlas-storage.mjs',
   'lib/chunked-graph.mjs',
 ]) {

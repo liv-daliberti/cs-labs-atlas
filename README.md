@@ -1,135 +1,87 @@
 # Homogenizing Science website
 
-The public website source for the CS research atlas: two HTML/JavaScript pages,
-a small Node server, and a verified publication bundle. **No ChatGPT account,
-AI assistant, Sites plugin, React framework, or runtime npm dependency is
-required to run or publish this version.**
+Two research pages, a dependency-free Node runtime, and an independently verified
+publication bundle. This `website` branch is the **authoritative website source**.
+People, CI, ChatGPT and Claude use the same commands. No assistant account is required.
 
-Anyone with the source, a permitted data bundle and access to their own hosting
-can publish a copy. Access to the existing owner's domain is still controlled
-by its hosting account. This repository does not grant that access.
+## Fresh checkout → both pages
 
-## Run an existing publication
+Requires Node 22.13+ and Python 3.11+. Run:
 
 ```sh
 git clone --branch website https://github.com/liv-daliberti/cs-labs-atlas.git
 cd cs-labs-atlas
-ATLAS_DATA_DIR=/absolute/path/to/publication-bundle node portable/server.mjs
-```
-
-Open `http://127.0.0.1:8787`. Node 22.13+ is required. Change the listening
-address with `HOST` and `PORT`. `/healthz` reports the loaded release ID.
-
-The bundle contains `config.json`, `bundle.json`, and `objects/<sha256>` files.
-It includes site assets and **only the paper files admitted by a frozen research
-release**. The current complete library is about 84 GB, so data is distributed
-separately from Git source. Obtain a verified bundle from the dataset maintainer
-or build one from the accepted research release and stores below. The small CI
-fixture is synthetic test data; it is not the research atlas.
-
-## Publish using Docker and your hosting account
-
-```sh
-export ATLAS_DATA_DIR=/absolute/path/to/publication-bundle
-docker compose -f portable/compose.yaml up --build -d
-```
-
-The container runs as an unprivileged user, mounts data read-only, and exposes
-port 8787 on host loopback. Put your normal HTTPS reverse proxy in front of it;
-`portable/Caddyfile.example` shows the three-line Caddy configuration. Point
-your own domain at that server. Ensure the container user can read the bundle.
-HTTPS is needed for the browser's checksum APIs outside localhost.
-
-You can instead run the Node server under your existing process supervisor,
-container platform or VM. `npm run build` creates a small `dist/` with the
-runtime code; run `node dist/portable/server.mjs` with `ATLAS_DATA_DIR` set.
-The Docker image contains code only; a publication bundle is mounted separately.
-
-Updates are immutable bundle deployments: build a new directory, verify it,
-change `ATLAS_DATA_DIR`, and restart. Keep the prior bundle for rollback, but
-review its paper permissions before re-exposing older files. There are no
-public maintenance/upload endpoints in this server, and no shared write token
-is needed to publish. Use normal SSH/container/platform access to deploy.
-
-## Build a publication from accepted research
-
-Research code lives on the repository's `dev` branch. Its `atlas release
---target site` command freezes accepted research without deploying it. Never
-publish active working packages or bypass the evidence and attribution gates.
-
-The website authoring checkout needs the retained atlas data plus the exact
-frozen release and paper stores. Large data is not in this Git branch. With
-those inputs available:
-
-```sh
 npm ci
-python3 scripts/release.py prepare --release 2026-11-02 \
-  --releases-dir /data/releases --stores /data/stores
-python3 scripts/bundle-site.py \
-  --release-dir /data/releases/2026-11-02 --stores /data/stores \
-  --output /data/publications/2026-11-02 --verify-papers
+npm run dev
 ```
 
-Preparation checks release hashes, hierarchy, scope, reader decisions,
-authentication/transport regressions and the build. The bundler requires the
-exact prepared asset bytes and frozen reader allowlist, then creates a new
-directory atomically. It refuses to replace an existing publication.
+Open http://127.0.0.1:8787. This uses a small, clearly labeled synthetic dataset,
+including the atlas, department, lab, student, paper and reader interactions.
+It is test data, not scientific evidence. No research files or credentials are needed.
 
-`--verify-papers` checks every paper hash while building; the server also checks
-each object before serving it and rechecks changed files. Copy mode is the
-default and gives an independent bundle. `--mode link` is a space-saving,
-same-filesystem preview option: it shares source inodes, so do not edit those
-files or use it as an independent archival copy. No paper files are added to Git.
-
-The original Sites deployment remains supported in the maintainer's authoring
-checkout. `upload` and `ready` in `scripts/release.py` belong to that adapter;
-they are not needed for the Node/Docker deployment described here. The portable
-server uses the same allowlist, range and checksum implementation.
-
-## Develop and test
+## Obtain and run the published research
 
 ```sh
-npm ci
+npm run bootstrap -- --without-papers
+ATLAS_DATA_DIR=outputs/publication npm start
+```
+
+The checked-in `deployment/bootstrap.json` pins a versioned catalogue by SHA-256.
+Metadata downloads are split into verified parts. `--without-papers` gets the
+atlas and records; stored paper buttons need the next step. For a full publication:
+
+```sh
+npm run bootstrap
+```
+
+The full paper library is approximately 84 GB. Downloads resume at verified object
+boundaries; unchanged files are reused. Every object and archive part is checked
+against the pinned checksum. Only currently admitted public paper copies are
+retrievable; a later withdrawal can prevent restoring that paper from the host.
+Keep an independent permitted archive if you need historical reproducibility.
+The downloader never changes attribution decisions or substitutes different bytes.
+
+## Develop and verify
+
+```sh
 npm test
 npm run format:check
-npx playwright install chromium
-```
-
-For browser tests against a complete publication, start the server with its
-bundle and run `npm run test:browser`. `ATLAS_BASE_URL` selects a different
-server. Tests cover desktop/mobile navigation, six-school switching, search,
-keyboard lab selection, deep links, student filters, reader opening, downloads
-and viewport overflow. The full suite requires the six-school dataset.
-
-CI needs no research data or credentials:
-
-```sh
-npm run fixture
-ATLAS_DATA_DIR=outputs/fixture node portable/server.mjs
-# In another terminal:
+npx playwright install chromium firefox webkit
+npm run dev
+# another terminal
 ATLAS_FIXTURE=1 npm run test:browser -- --grep 'synthetic fixture'
 ```
 
-The synthetic test uses the actual department page and reader code, including
-hidden-lab rules and XML rendering. HTTP tests cover ranges, caching, withdrawn
-papers, checksum tampering, traversal, and the absence of write endpoints.
-Reports and failure screenshots/traces go under `outputs/` and are ignored by Git.
+CI checks both real pages with synthetic data, Chromium desktop/mobile, Firefox,
+WebKit, accessibility, failure/retry paths, and visual baselines. It builds **and
+runs** the Docker image, then checks readiness and a stored paper. Browser traces,
+screenshots and reports go under ignored `outputs/`. Update screenshot baselines
+only after inspecting the intended UI change (`--update-snapshots`).
 
-| Path | Responsibility |
+The six-school full-data suite also runs before release; synthetic CI is not a
+substitute for the research evidence, scope and reader checks.
+
+## Publish or operate
+
+See [the publishing runbook](docs/PUBLISHING.md) for preparation, the test gate,
+versioned downloads, staging, Docker deployment, smoke verification and rollback.
+Anyone with a permitted data bundle and their own hosting access can publish a
+copy. The existing public domain remains controlled by its hosting account.
+
+| Source | Responsibility |
 | --- | --- |
-| `atlas/` | The two pages and their browser code/styles |
-| `lib/atlas-storage.mjs` | Release admission, HTTP caching, byte ranges and paper serving |
-| `lib/chunked-graph.mjs` | Bounded streaming of verified storage chunks |
-| `portable/file-bucket.mjs` | Read-only filesystem adapter with SHA-256 verification |
-| `portable/server.mjs` | Node HTTP adapter; no framework or platform authentication |
-| `scripts/` | Release preparation, bundling and regression checks |
-| `deployment/` | Pinned research ID and asset manifest; no credentials |
+| `atlas/app.js` | Shared state, CS policy presentation, application initialization |
+| `atlas/modules/` | Data loading, metrics, visualization, record rendering, navigation |
+| `atlas/cs-departments.js` | Department browsing and evidence details |
+| `lib/` | Content-addressed admission, checksums and byte-range transport |
+| `portable/` | Node/Docker adapter, fixtures, readiness, smoke and browser tests |
+| `scripts/` | Frozen research preparation, bootstrap, release gate and host synchronization |
+| `schemas/` | Website data contract and compatibility rules |
 
-The `website` branch is exported from the maintained website checkout using
-`scripts/export-website.py`. The exporter selects current code explicitly and
-excludes old collection/import scripts, provider scaffolding, runtime data,
-credentials and private deployment receipts. It does not push or deploy.
+Research code is maintained on `dev`. Hosting adapters consume this branch via
+`scripts/sync-host.py`; do not edit a host and export it back over GitHub.
+The existing Sites checkout retains only its platform-specific package, routes
+and hosting configuration. Its publication uses the same tested website bytes.
 
-Preserve attribution rules in `AGENTS.md`. The research dataset, publication
-licenses and third-party code notices retain their own terms; source access
-does not grant additional rights to redistribute papers.
+Keep the attribution rules in `AGENTS.md`. Dataset, source, third-party code and
+paper licenses retain their existing terms; access does not expand redistribution rights.

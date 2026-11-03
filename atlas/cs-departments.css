@@ -4,7 +4,7 @@
 .csd-head h1{margin:6px 0 10px}
 .csd-schools{display:flex;gap:6px;flex-wrap:wrap;margin:26px 0 18px;border-bottom:1px solid var(--border)}
 .csd-schools button{border:0;border-bottom:2px solid transparent;background:none;padding:10px 12px;color:var(--muted);font-size:13px}
-.csd-schools button[aria-selected=true]{color:var(--ink);border-bottom-color:var(--green)}
+.csd-schools button[aria-pressed=true]{color:var(--ink);border-bottom-color:var(--green)}
 .csd-schools button:disabled{cursor:default;opacity:.55}
 .csd-stats{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:22px}
 .csd-stats div{background:#fafaf7;border:1px solid var(--border);border-radius:7px;padding:12px 14px}
@@ -28,7 +28,7 @@
 .csd-table-wrap td,.csd-table-wrap th{padding:10px 14px}
 .csd-table-wrap .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 .csd-table-wrap tbody tr{cursor:pointer}
-.csd-table-wrap tbody tr:hover,.csd-table-wrap tbody tr[aria-selected=true]{background:#eaf0e9}
+.csd-table-wrap tbody tr:hover,.csd-table-wrap tbody tr[aria-current=true]{background:#eaf0e9}
 .csd-table-wrap td b{font-weight:600}
 .csd-tag{display:inline-block;font-size:10px;padding:1px 6px;border-radius:3px;background:#eeefea;color:var(--muted);margin-left:6px;vertical-align:1px}
 .csd-tag.warn{background:#f6ecdc;color:#87602a}

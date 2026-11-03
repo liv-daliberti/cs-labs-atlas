@@ -41,12 +41,12 @@ async function fetchStub(target){
 }
 async function readResearchJSON(p){for(const rel of p.endsWith('.gz')?[p]:[p,p+'.gz']){if(fs.existsSync(path.join(S,rel)))return readJSON(rel);}throw Error('Could not load '+p);}
 
-const CODE=['assets/d3.min.js','assets/atlas-sizing.js','assets/atlas-affiliations.js','assets/cs-scope.js','assets/advisor-attribution.js','assets/lab-map-records.js','assets/research-unit-kinds.js','assets/cs-pi-labs.js'].map(f=>[f,fs.readFileSync(path.join(S,f),'utf8')]);
+const CODE=['assets/d3.min.js','assets/atlas-sizing.js','assets/atlas-affiliations.js','assets/cs-scope.js','assets/advisor-attribution.js','assets/lab-map-records.js','assets/research-unit-kinds.js','assets/cs-pi-labs.js','modules/data.js','modules/metrics.js','modules/map.js','modules/records.js','modules/navigation.js'].map(f=>[f,fs.readFileSync(path.join(S,f),'utf8')]);
 const APP=fs.readFileSync(path.join(S,'app.js'),'utf8');assert(/\ninit\(\);\s*$/.test(APP),'app.js must end with init();');
 // index.html loads exactly these scripts, in this order, plus three browser-only helpers stubbed below.
 {const page=fs.readFileSync(path.join(S,'index.html'),'utf8'),src=[...page.matchAll(/<script[^>]*src="([^"]+)"/g)].map(m=>m[1]);
  assert.deepEqual(src.filter(f=>CODE.some(([c])=>c===f)),CODE.map(([f])=>f),'index.html script order');
- assert.deepEqual(src.filter(f=>!CODE.some(([c])=>c===f)),['assets/dataset-updates.js','research-data.js','assets/paper-reader.js','app.js'],'index.html scripts');}
+ assert.deepEqual(src.filter(f=>!CODE.some(([c])=>c===f)),['assets/dataset-updates.js','research-data.js','assets/paper-reader.js','app.js','assets/publication.js'],'index.html scripts');}
 
 async function boot(search='',hash=''){
  const els=new Map(),get=s=>{if(!els.has(s))els.set(s,new E('div',s.startsWith('#')?s.slice(1):''));return els.get(s);};
