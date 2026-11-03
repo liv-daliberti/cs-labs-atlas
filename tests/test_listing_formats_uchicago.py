@@ -56,3 +56,10 @@ def test_galton_cells_drops_email_and_office():
 def test_galton_cells_strong_around_the_link():
     h = '<td><strong><a name="c"></a><a href="/faculty/c.shtml">Linda Brant Collins</a></strong><br>\n<span class="text"><script>x</script><br>Office: E 1<br>Associate Professor</span></td>'
     assert L.parse(h)[1][0]['name_listed'] == 'Linda Brant Collins' and L.parse(h)[1][0]['titles'] == ['Associate Professor']
+
+
+def test_uchicago_rank_words():
+    import listing_rows as R
+    assert R.rank_of(['Assistant Instructional Professor of Computer Science']) == 'teaching'
+    assert R.rank_of(['Adjoint Professor']) == 'adjunct' and R.rank_of(['Resident Adjoint Professor']) == 'adjunct'
+    assert R.rank_of(['Neubauer Professor of Computer Science']) == 'ladder' and R.rank_of(['Professor Emeritus']) == 'emeritus'

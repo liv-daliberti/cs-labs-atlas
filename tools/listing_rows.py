@@ -21,9 +21,9 @@ import school_config as S  # noqa: E402
 import listing_formats as LF  # noqa: E402
 from school_web import body as wb_body  # noqa: E402  (stored capture bytes, gunzipped)
 
-RANKS = [('emeritus', r'emerit'), ('courtesy', r'courtesy|\baffiliate\s+faculty'), ('adjunct', r'\badjunct\b'), ('visiting', r'\bvisiting\b'),
+RANKS = [('emeritus', r'emerit'), ('courtesy', r'courtesy|\baffiliate\s+faculty'), ('adjunct', r'\badjunct\b|\badjoint\b'), ('visiting', r'\bvisiting\b'),
          ('lecturer', r'\blecturer\b|\binstructor\b'), ('research', r'\bresearch\s+(?:scientist|investigator|professor|fellow|faculty)|\bresearch\s+assistant\s+professor'),
-         ('teaching', r'\bteaching\s+professor|\bclinical\s+(?:assistant\s+|associate\s+)?professor|professor\s+of\s+(?:the\s+)?practice'),
+         ('teaching', r'\bteaching\s+professor|\binstructional\s+professor|\bclinical\s+(?:assistant\s+|associate\s+)?professor|professor\s+of\s+(?:the\s+)?practice'),
          ('ladder', r'\bprofessor\b')]
 NOT_NAME = re.compile(r'\s*\((?:video|website|web|on leave|he/him|she/her|they/them)\)', re.I)  # page furniture after a name ('Mars, Jason (Video)')
 SUFFIX = re.compile(r',?\s*\b(Jr|Sr|II|III|IV)\.?$')
