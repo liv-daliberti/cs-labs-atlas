@@ -7,6 +7,7 @@ verification hashes site assets and checks paper lengths; --verify-papers also
 hashes all paper bytes up front (potentially many GB).
 """
 import argparse
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import csv
 import hashlib
 import json
@@ -74,13 +75,23 @@ def build(release, stores, output, mode='copy', verify_papers=False):
         rows = list(csv.DictReader(handle, delimiter='\t'))
     if compact['files'] != {row['sha256']: int(row['bytes']) for row in rows}:
         raise ValueError('Reader allowlist differs from frozen release')
+    paper_checks = []
     for row in rows:
         sha, size = row['sha256'], int(row['bytes'])
         if compact.get('chunks', {}).get(sha):
             for chunk in compact['chunks'][sha]:
                 admit(chunk['sha256'], ROOT / 'atlas-storage/chunks' / chunk['sha256'], chunk['size'])
         else:
-            admit(sha, contained(stores, row['school'] + '/' + row['path']), size, verify=verify_papers)
+            source = contained(stores, row['school'] + '/' + row['path'])
+            admit(sha, source, size, verify=False)
+            if verify_papers: paper_checks.append((sha, source, size))
+    if paper_checks:
+        print(json.dumps({'verifyingPaperObjects': len(paper_checks), 'workers': 8}), flush=True)
+        with ThreadPoolExecutor(max_workers=8) as pool:
+            futures = [pool.submit(admit, sha, source, size, True) for sha, source, size in paper_checks]
+            for count, future in enumerate(as_completed(futures), 1):
+                future.result()
+                if count % 500 == 0: print(json.dumps({'verifiedPaperObjects': count, 'total': len(futures)}), flush=True)
     manifest_sha = digest(asset_manifest)
     admit(manifest_sha, asset_manifest, asset_manifest.stat().st_size)
     if output.exists():
