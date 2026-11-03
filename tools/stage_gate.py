@@ -5,7 +5,7 @@ wired into pi_hierarchy.py / chain_audit.py. Prints one JSON line per stage and 
               lists every host of the charter; the OpenAlex snapshot holds the school's primary lineage id (main store or an
               ext-<key>.sqlite extension: tools/oa_snapshot.py filter|merge --ext <key>, docs/OPENALEX-SNAPSHOT.md)
   1 sources   every department of the charter has an ok listing capture in every window year (listings/<key>/coverage.json);
-              a missing year must carry a plan reason
+              a missing year must carry a plan reason and, to pass, a reviewed `listing_gaps` entry (year = reason) in the charter's department
   2 census    every CS-related candidate has a decision other than pending_openalex (hierarchy/<key>/cs-related-review.json),
               and every candidate is in the review
   3 pis       every census PI (and addition) has a PI basis with url + sha256 + quote, and an accepted home department
@@ -84,9 +84,10 @@ def g1(key):
     for d in S.get(key).get('departments') or []:
         for y in range(lo, hi + 1):
             v = (cov.get(d['code']) or {}).get(str(y)) or {}
-            if not any(s == 'ok' for s in v.values()):
+            gap = (d.get('listing_gaps') or {}).get(str(y))   # reviewed: searched, no archived listing (reason in the charter)
+            if not any(s == 'ok' for s in v.values()) and not gap:
                 bad.append(f"{d['code']} {y}: " + ('; '.join(sorted(set(v.values()))) or 'never planned'))
-    return bad, dict(departments=len(S.get(key).get('departments') or []))
+    return bad, dict(departments=len(S.get(key).get('departments') or []), reviewed_gap_years=sum(len(d.get('listing_gaps') or {}) for d in S.get(key).get('departments') or []))
 
 
 def sweep_gate(key):

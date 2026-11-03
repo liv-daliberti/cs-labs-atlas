@@ -18,6 +18,8 @@ formats
                (only 'faculty'-bearing tokens are kept: Statistics lists students, staff and visitors on the same page), name in h3 (a link or
                span), title in <small> or <b>, the department profile as `profile`
   uc_card      UChicago CS WordPress 2022- (people/uchicago-faculty/...): div.card--person, h3.card__title, div.card__position, a.card__url (profile)
+  galton_cells Statistics 2016-2019 (galton.uchicago.edu/people/faculty.shtml, emeriti.shtml): table cells with <a href="/faculty/x.shtml"><strong>Name</strong></a>,
+               then a span with a script-written email (dropped), 'Office: ...' (dropped) and the title lines
   ttic_media   TTIC 2017- (www.ttic.edu/faculty/): div.media-body, h2.media-heading name, h3 title(s), the 'Home Page' link
   ttic_table   TTIC 2016-2017 (www.ttic.edu/faculty.php): <td><strong>Name</strong>, Title<br />, the 'Home Page' link
 """
@@ -133,12 +135,22 @@ def ttic_table(h):
     return out
 
 
+def galton_cells(h):
+    out = []
+    for m in re.finditer(r'<strong>((?:(?!</strong>).)*)</strong>(?:</a>)?\s*<br\s*/?>\s*<span class="text">(.*?)</span>\s*</td>', h, re.S | re.I):
+        body = re.sub(r'<script.*?</script>', ' ', m.group(2), flags=re.S | re.I)
+        titles = [t for t in _ln(body) if not re.match(r'(?:office|phone|fax)\b', t, re.I)]
+        out.append(dict(name_listed=clean(m.group(1)), titles=titles, homepage=None, division=None))
+    return out
+
+
 FORMATS = {
     'eecs_table': (eecs_table, re.compile(r'<b>Division:</b>', re.I)),
     'eecs_wp': (eecs_wp, re.compile(r"class=['\"]eecs_person_wrapper['\"]")),
     'uc_cs_table': (uc_cs_table, re.compile(r'<tr class="(?:odd|even)[^"]*">.*?(?:Personal website|Research Interests)', re.S)),
     'uc_people_li': (uc_people_li, re.compile(r'<li class="mix ')),
     'uc_card': (uc_card, re.compile(r'card card--person')),
+    'galton_cells': (galton_cells, re.compile(r'</strong>(?:</a>)?\s*<br\s*/?>\s*<span class="text">')),
     'ttic_media': (ttic_media, re.compile(r'class="media-heading"')),
     'ttic_table': (ttic_table, re.compile(r'<td><strong>')),
 }

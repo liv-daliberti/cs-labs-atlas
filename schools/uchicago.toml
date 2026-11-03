@@ -184,15 +184,23 @@ url = "https://stat.uchicago.edu/"
   [[departments.listings]]
   slot = "STAT faculty"
   kind = "main"
-  url = "galton.uchicago.edu/faculty/"
+  url = "galton.uchicago.edu/people/faculty.shtml"
   from = "20160101"
   to = "20190919"
+  format = "galton_cells"
   [[departments.listings]]
   slot = "STAT faculty"
   url = "stat.uchicago.edu/people/"
   from = "20190920"
   to = "20261231"
   format = "uc_people_li"
+  [[departments.listings]]
+  slot = "STAT emeritus faculty"
+  kind = "emeritus"
+  url = "galton.uchicago.edu/people/emeriti.shtml"
+  from = "20160101"
+  to = "20190919"
+  format = "galton_cells"
 
 # --- other units searched for computing-related faculty (stage 2) ------------------------------------------------------
 # Units are added when the OpenAlex candidate rule (tools/cs_related_candidates.py) names their people. First guesses (stage 0):

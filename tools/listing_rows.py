@@ -63,7 +63,7 @@ def quote_of(flat, e):
 def main(key):
     cfg = S.get(key)
     tm = {d['code']: re.compile(d.get('title_match') or r'.', re.I) for d in cfg.get('departments') or []}
-    fmt_of = {s['slot']: s.get('format') for d in cfg.get('departments') or [] for s in d.get('listings') or []}
+    eras = [(s['slot'], s.get('from') or '0', s.get('to') or '9', s.get('format')) for d in cfg.get('departments') or [] for s in d.get('listings') or []]
     kind_of = {s['slot']: s['kind'] for s in S.listing_slots(key)}
     db = P.data('listings-captures.sqlite', key)
     c = sqlite3.connect(f'file:{db}?mode=ro', uri=True)
@@ -76,11 +76,19 @@ def main(key):
         raw, sha, txt, ts = c.execute('select raw_zlib, sha256, text, wayback_timestamp from captures where capture_url=?', (cap,)).fetchone()
         h = wb_body(raw).decode('utf-8', 'replace')  # gunzipped when Wayback served it gzip-encoded
         flat = ' '.join((txt or '').split())
-        fmt, es = LF.parse(h, fmt_of.get(slot))
+        m = re.search(r'/web/(\d{14})id_/', cap); obs = m.group(1) if m else ts
+        # one slot can have several URL eras with different page formats: the era that holds the capture date names the format; a named
+        # format that finds nobody falls back to detection (era boundaries overlap; UChicago friction #13: the last era's format won for the whole slot)
+        named = [f for sl, a, b, f in eras if sl == slot and f and a <= obs[:8] <= b]
+        fmt, es = LF.parse(h, named[0] if named else None)
+        if not es and named:
+            fmt, es = LF.parse(h)
         n[f'captures_{fmt}'] += 1
+        if re.search(r'class="pager"|class="pagination"', h) and re.search(r'[?&]page=[1-9]', h) and es:
+            # a paged directory: this capture holds one page of several (UChicago CS 2017: 5 of ~45 people); the next pages may not be archived
+            n['captures_paged'] += 1; print(json.dumps(dict(paged_listing=cap, entries=len(es))), flush=True)
         if not es:
             n['captures_without_entries'] += 1; print(json.dumps(dict(no_entries=cap, fmt=fmt)), flush=True)
-        m = re.search(r'/web/(\d{14})id_/', cap); obs = m.group(1) if m else ts
         for e in es:
             q = quote_of(flat, e)
             if not q:
@@ -91,6 +99,7 @@ def main(key):
                              homepage=e.get('homepage'), **({'profile': e['profile']} if e.get('profile') else {}), capture_url=cap, sha256=sha, quote=q))
             n['rows'] += 1
     out = P.data('rows.json', key)
+    out.parent.mkdir(parents=True, exist_ok=True)  # listings/<key>/derived does not exist for a new school (UChicago friction #12)
     out.write_text(json.dumps(rows, indent=0, ensure_ascii=False))
     P.data_w('coverage.json', key).write_text(json.dumps({d: {str(y): v for y, v in sorted(ys.items())} for d, ys in cov.items()}, indent=1))
     people = collections.defaultdict(set)

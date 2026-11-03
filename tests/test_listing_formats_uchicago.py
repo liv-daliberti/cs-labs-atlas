@@ -40,3 +40,19 @@ def test_uc_card_ttic_media_and_ttic_table():
     assert fmt == 'ttic_media' and es[0]['name_listed'] == 'Avrim Blum' and es[0]['titles'] == ['Professor and Chief Academic Officer'] and es[0]['homepage'] == 'http://www.ttic.edu/blum'
     fmt, es = L.parse(TTIC_TABLE)
     assert fmt == 'ttic_table' and es[0]['name_listed'] == 'Mohit Bansal' and es[0]['titles'] == ['Research Assistant Professor'] and es[0]['homepage'] == 'http://www.ttic.edu/bansal'
+
+
+GALTON = '''<tr valign="top"><td><a name="amit"></a><a href="/faculty/amit.shtml" title="Yali Amit" target="_self"><strong>Yali Amit</strong></a><br>
+<span class="text"><script language=JavaScript>var contact = "amit@galton.uchicago.edu"</script><br>Office: Eckhart 103 <br>Professor and Chair</span></td><td>&nbsp;</td></tr>
+<tr><td><a href="/faculty/a.shtml"><strong>Mihai
+ Anitescu</strong></a><br><span class="text"><br>Office: Eckhart 2 <br>Professor</span></td></tr>'''
+
+
+def test_galton_cells_drops_email_and_office():
+    fmt, es = L.parse(GALTON)
+    assert fmt == 'galton_cells' and [(e['name_listed'], e['titles']) for e in es] == [('Yali Amit', ['Professor and Chair']), ('Mihai Anitescu', ['Professor'])]
+
+
+def test_galton_cells_strong_around_the_link():
+    h = '<td><strong><a name="c"></a><a href="/faculty/c.shtml">Linda Brant Collins</a></strong><br>\n<span class="text"><script>x</script><br>Office: E 1<br>Associate Professor</span></td>'
+    assert L.parse(h)[1][0]['name_listed'] == 'Linda Brant Collins' and L.parse(h)[1][0]['titles'] == ['Associate Professor']

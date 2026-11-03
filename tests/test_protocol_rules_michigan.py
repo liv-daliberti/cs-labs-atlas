@@ -59,3 +59,13 @@ def test_ladder_title_core():
     assert ev and ev[0]['ladder']
     pages = [('UMSI', 'u', 's', '20260101', 'Mustafa Naseem Clinical Associate Professor of Information Send Email')]
     assert not C.faculty_evidence(pages, ['Mustafa Naseem'])[0]['ladder']
+
+
+def test_stage1_gate_accepts_a_reviewed_listing_gap(monkeypatch):
+    import stage_gate as G
+    cfg = {'window': [2016, 2017], 'departments': [{'code': 'D', 'listing_gaps': {'2016': 'no archived listing'}}]}
+    monkeypatch.setattr(G.S, 'get', lambda k: cfg)
+    monkeypatch.setattr(G, 'read', lambda p, d=None: {'D': {'2017': {'a H1': 'ok'}, '2016': {'a H1': 'nocapture: x'}}})
+    assert G.g1('k')[0] == []
+    cfg['departments'][0]['listing_gaps'] = {}
+    assert G.g1('k')[0] == ['D 2016: nocapture: x']

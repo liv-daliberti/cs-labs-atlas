@@ -151,6 +151,11 @@ atlas stage-gate <key> [n ...]                 # only the gates (0-10), from the
     in the 2016 homepage or people-page capture (`/directories/table/faculty` was found that way; guessing found nothing), then check each with it.
   - A department site changes platform two or three times in ten years (UChicago CS: Drupal table, a `li.mix` list, WordPress cards). Write one
     format per era in `tools/listing_formats.py` (with a fixture test) and name it in the slot's `format`, before running `run_school.sh`.
+  - After a parser fix, `listings/scripts/replan.py <key> <slot substring>` forgets the `unusable`/`nocapture` plan rows (captures stay), then rerun
+    `run_school.sh <key>` and `tools/listing_rows.py <key>`. `listing_rows.py` prints `paged_listing` for a capture that is one page of a paged
+    directory (it passes the 5-people usability rule but is partial): look for the other pages with `discover_listings.py` (`...?page=1`), else record the
+    year as partial in the stage report (UChicago CS 2017: 5 of about 45 people; pages 2+ are archived only from 2019).
+  - A department whose year has no archived listing at all passes the gate with a reviewed `listing_gaps = {2017 = "reason"}` in its charter table.
   - Listings that mix groups (Statistics' people page lists students and staff) are filtered in the format by the page's own group classes.
 - **Output:**
   - `listings/<key>/captures.sqlite`: the listing captures, in the listings-pipeline schema that the period tools read.
