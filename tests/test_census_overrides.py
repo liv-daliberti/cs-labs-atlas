@@ -97,7 +97,7 @@ def test_roster_alone_or_coauthorship_alone_is_not_evidence(tmp_path, monkeypatc
     monkeypatch.setattr(L.W, 'con', lambda k: None)
     monkeypatch.setattr(L.W, 'cdx_rows', lambda c, d, collapse=None: [dict(timestamp='20260101000000', original=d)])
     monkeypatch.setattr(L.W, 'capture', lambda c, ts, o, d, dept: ('cap', 200, 'sha', []))
-    monkeypatch.setattr(L.W, 'flat', lambda b: '2022 Sam Roe, Googler 2021 Ann Only, Meta 2020 Zed Zero')   # Tom Poe: co-author, not on the roster; Ann Only: roster, no paper
+    monkeypatch.setattr(L.W, 'flat', lambda b: '2022 Sam Roe, Googler 2021 Ann Only, Meta 2020 Zed Zero 2010 Old Timer')   # Tom Poe: co-author, not on the roster; Ann Only: roster, no paper
     rows = L.roster_coauthor_students('u', [('Pia Lee', 'Pia Lee')])
     assert [(r['student'], r['pi'], r['years']) for r in rows] == [('Sam Roe', 'Pia Lee', [None, 2022])] and rows[0]['quote'].startswith('Sam Roe')
 
@@ -107,3 +107,34 @@ def test_alumni_entry_line_names_student_year_and_advisers():
     t = 'Pedro Savarese PhD - 2025 Advisors - David McAllester and Michael Maire (University of Chicago) Research Interests - ML Employment at time of graduation - X Old Person PhD - 2010 Advisor - Z Q Research Interests'
     ms = [m.groups() for m in L.ALUMNI_ENTRY.finditer(t)]
     assert ms[0] == ('Pedro Savarese', '2025', 'David McAllester and Michael Maire (University of Chicago)') and ms[1][1] == '2010'
+
+
+def test_student_audit_writes_an_onboarding_school_to_its_own_file(tmp_path, monkeypatch):
+    SA = by_path('student_audit')
+    written = {}
+    monkeypatch.setattr(SA, 'audit', lambda s: {'school': s, 'counts': {'n': 1}})
+    monkeypatch.setattr(SA.P, 'data_w', lambda name, school=None, **k: tmp_path / f'{school}-{name}')
+    monkeypatch.setattr(SA.P, 'hfile_w', lambda H, name, school=None: tmp_path / name)
+    monkeypatch.setattr('census_overrides.onboarding', lambda k: k == 'newu')
+    SA.main(['newu', 'old'])
+    assert json.loads((tmp_path / 'newu-student-audit-school.json').read_text())['school'] == 'newu'
+    assert [r['school'] for r in json.loads((tmp_path / 'student-audit.json').read_text())] == ['old'] and not written
+
+
+def test_roster_drops_pre_window_graduates_and_late_namesake_papers(tmp_path, monkeypatch):
+    import gzip
+    L = by_path('labpage_students_school')
+    lp = tmp_path / 'lab_papers.jsonl.gz'
+    with gzip.open(lp, 'wt') as f:
+        for who, yr in (('Old Timer', '2016'), ('Sam Roe', '2024'), ('Ann Only', '2021')):
+            f.write(json.dumps({'pi': 'Pia Lee', 'year': yr, 'title': 'T ' + who, 'byline': ['Pia Lee', who]}) + '\n')
+    monkeypatch.setattr(L.P, 'data', lambda name, school=None, **k: lp)
+    monkeypatch.setattr(L.S, 'field', lambda cfg, f, d=None: [{'url': 'r/alumni/', 'kind': 'alumni_by_year'}])
+    monkeypatch.setattr(L.S, 'get', lambda k: {})
+    monkeypatch.setattr(L.W, 'con', lambda k: None)
+    monkeypatch.setattr(L.W, 'cdx_rows', lambda c, d, collapse=None: [dict(timestamp='20260101000000', original=d)])
+    monkeypatch.setattr(L.W, 'capture', lambda c, ts, o, d, dept: ('cap', 200, 'sha', []))
+    monkeypatch.setattr(L.W, 'flat', lambda b: '2022 Sam Roe, Googler 2021 Ann Only, Meta 2010 Old Timer')
+    rows = L.roster_coauthor_students('u', [('Pia Lee', 'Pia Lee')])
+    # Old Timer graduated 2010 (before 2016): dropped; Sam Roe graduated 2022 but the paper is 2024: dropped; Ann Only 2021 with a 2021 paper: kept
+    assert [(r['student'], r['years']) for r in rows] == [('Ann Only', [None, 2021])]

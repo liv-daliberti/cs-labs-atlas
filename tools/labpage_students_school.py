@@ -307,7 +307,7 @@ def adviser_alumni(key, forms):
                 continue
             flat = W.flat(b)
             for m in ALUMNI_ENTRY.finditer(flat):
-                nm, yr, adv = m.group(1), int(m.group(2)), m.group(3)
+                nm, yr, adv = re.sub(r'^(?:Student Alumni|Alumni|Home)\s+', '', m.group(1)), int(m.group(2)), m.group(3)
                 if yr < 2016:
                     continue
                 for pi, f in forms:
@@ -355,15 +355,23 @@ def roster_coauthor_students(key, forms):
                     continue
                 if kind == 'students' and not re.search(r'Ph\.?\s?D', flat[m.end():m.end() + 40], re.I):
                     continue  # a student list also holds postdocs and visitors: the entry itself must say PhD
+                y = None
+                if kind == 'alumni_by_year':
+                    ys = re.findall(r'(?<!\d)(20[0-2]\d)(?!\d)', flat[max(0, m.start() - 700):m.start()])
+                    y = int(ys[-1]) if ys else None
+                    if y is not None and y < 2016:
+                        continue  # graduated before the window (stage 6 round 3)
+                cy = int(r['timestamp'][:4])
                 for pi in {x[0] for x in ps}:
-                    yrs = {int(str(x[1])) for x in ps if x[0] == pi and x[1]}
+                    # the co-authored paper must fall within the roster years (alumni: up to graduation + 1; a student list: the capture year +- 1),
+                    # or a namesake's later paper would link them (round 3: an Ang Li of 2017 and a 2024 architecture paper)
+                    ok = [x for x in ps if x[0] == pi and x[1] and (int(str(x[1])) <= (y or cy) + 1 if kind == 'alumni_by_year' else abs(int(str(x[1])) - cy) <= 1)]
+                    if not ok:
+                        continue
+                    yrs = {int(str(x[1])) for x in ok}
                     e = by.setdefault((k, pi), dict(display=None, years=set(), first=None, papers=[]))
-                    y = None
-                    if kind == 'alumni_by_year':
-                        ys = re.findall(r'(?<!\d)(20[0-2]\d)(?!\d)', flat[max(0, m.start() - 700):m.start()])
-                        y = int(ys[-1]) if ys else None
                     e['years'].add(y if y else int(r['timestamp'][:4])); e['kind'] = kind
-                    e['papers'] = sorted({x[2] for x in ps if x[0] == pi})[:3]
+                    e['papers'] = sorted({x[2] for x in ok})[:3]
                     if not e['first'] or r['timestamp'] < e['first'][0]:
                         e['first'] = (r['timestamp'], cap, sha, url, flat[m.start():m.end() + 120], m.group(0))
     rows = []

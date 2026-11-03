@@ -297,6 +297,7 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('dblp-dump-persons.json.gz', 'raw', 'hierarchy/dblp-dump-persons.json.gz', 'hierarchy/raw/dblp-dump-persons.json.gz'),
     ('dblp-dump-pages.json.gz', 'raw', 'hierarchy/dblp-dump-pages.json.gz', 'hierarchy/raw/dblp-dump-pages.json.gz'),
     ('chain-audit.json', 'derived', 'hierarchy/chain-audit.json', 'hierarchy/derived/chain-audit.json'),
+    ('student-audit-school.json', 'derived', 'hierarchy/{school}/student-audit-school.json', 'hierarchy/{school}/derived/student-audit-school.json'),
     ('student-audit.json', 'derived', 'hierarchy/student-audit.json', 'hierarchy/derived/student-audit.json'),
     ('EVIDENCE-CHECK.json', 'derived', 'hierarchy/EVIDENCE-CHECK.json', 'hierarchy/derived/EVIDENCE-CHECK.json'),
     ('BUILD-REGRESSION.json', 'derived', 'hierarchy/BUILD-REGRESSION.json', 'hierarchy/derived/BUILD-REGRESSION.json'),

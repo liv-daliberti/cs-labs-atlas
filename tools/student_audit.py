@@ -14,7 +14,7 @@ missed_link  a lab paper of the student's own lab, within three years of their r
              link was made (a name form the matcher rejected). Also students with no link at all although the lab has
              papers in their years.
 -> hierarchy/student-audit.json
-usage: student_audit.py [school ...]
+usage: student_audit.py [school ...]   (an onboarding school writes hierarchy/<key>/student-audit-school.json; the shared file only for released schools)
 """
 import collections, gzip, json, sys
 
@@ -103,8 +103,14 @@ def audit(s):
 
 
 def main(schools):
+    import census_overrides as CO
+    local = [s for s in schools if CO.onboarding(s)]
     res = [audit(s) for s in schools]
-    json.dump(res, open(P.hfile_w(H, 'student-audit.json'), 'w'), indent=1, ensure_ascii=False)
+    for s in local:  # an onboarding school's audit stays in its own file: the shared one is tracked and written only for released schools (friction 42, R12)
+        json.dump(next(r for r in res if r['school'] == s), open(P.data_w('student-audit-school.json', s), 'w'), indent=1, ensure_ascii=False)
+    shared = [r for r in res if r['school'] not in local]
+    if shared:
+        json.dump(shared, open(P.hfile_w(H, 'student-audit.json'), 'w'), indent=1, ensure_ascii=False)
     for r in res:
         print(json.dumps(dict(school=r['school'], **r['counts'])))
 

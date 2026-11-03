@@ -65,7 +65,8 @@ def derived_reason(kind, p, cen, ov):
     return None
 
 
-def main(key):
+def lab_rows(key):
+    """One dict per lab (see the module docstring): pi, department, title, students, student_sources, papers, reasons {students|papers: {code, why, ...}}."""
     pis = read(P.data('pis.json', key), [])
     stu = read(P.data('students.json', key), {})
     cen = {x['name']: x for x in read(P.data('census-faculty.json', key), {}).get('faculty', [])}
@@ -90,6 +91,11 @@ def main(key):
             else:
                 row['reasons'][kind] = dict(code='open', why='no recorded reason yet')
         rows.append(row)
+    return rows
+
+
+def main(key):
+    rows = lab_rows(key)
     out = CODE / 'hierarchy' / key / 'reports'
     out.mkdir(parents=True, exist_ok=True)
     summ = dict(labs=len(rows), with_students=sum(1 for r in rows if r['students']), with_papers=sum(1 for r in rows if r['papers']),

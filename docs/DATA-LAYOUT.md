@@ -133,6 +133,7 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `dblp-dump-persons.json.gz` | raw | `hierarchy/dblp-dump-persons.json.gz` | `hierarchy/raw/dblp-dump-persons.json.gz` | 0/1 | <100MB |
 | `dblp-dump-pages.json.gz` | raw | `hierarchy/dblp-dump-pages.json.gz` | `hierarchy/raw/dblp-dump-pages.json.gz` | 0/1 | <100MB |
 | `chain-audit.json` | derived | `hierarchy/chain-audit.json` | `hierarchy/derived/chain-audit.json` | 0/1 | <100MB |
+| `student-audit-school.json` | derived | `hierarchy/{school}/student-audit-school.json` | `hierarchy/{school}/derived/student-audit-school.json` | - | <100MB |
 | `student-audit.json` | derived | `hierarchy/student-audit.json` | `hierarchy/derived/student-audit.json` | 0/1 | <1MB |
 | `EVIDENCE-CHECK.json` | derived | `hierarchy/EVIDENCE-CHECK.json` | `hierarchy/derived/EVIDENCE-CHECK.json` | 0/1 | <1MB |
 | `BUILD-REGRESSION.json` | derived | `hierarchy/BUILD-REGRESSION.json` | `hierarchy/derived/BUILD-REGRESSION.json` | 0/1 | <10KB |

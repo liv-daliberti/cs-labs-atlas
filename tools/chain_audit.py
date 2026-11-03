@@ -25,6 +25,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402  (every path in one place)
 import census_overrides as CO  # noqa: E402
+import lab_coverage as LC  # noqa: E402
 HERE = P.WORK; H = P.HIERARCHY   # tests point H at a flat fixture tree; hfile follows the layout for the live one
 SCHOOLS = list(P.SCHOOL_IDS)  # the released schools (schools/<key>.toml); an onboarding school is named on the command line
 CHECKS = ['coverage', 'pi', 'students', 'papers', 'links', 'copies', 'one_person']
@@ -186,6 +187,8 @@ def audit(school):
                  'with_pi_outside_appointment': "co-wrote with the PI only outside the PI's evidenced appointment at the school, or only non-paper outputs (OpenAlex sweep)",
                  'with_pi_at_other_institution': "co-wrote with the PI only on works where the PI's own authorship names another institution (or outside the appointment, or non-papers) (OpenAlex sweep)"}
     thesis = by_pi(load(D / 'thesis-evidence.json', []))
+    # an onboarding school's labs may carry a recorded lab-coverage reason (docs/DECISIONS.md 2026-11-03, tools/lab_coverage.py); released schools are not touched
+    cov = {r['pi']: r['reasons'] for r in LC.lab_rows(school)} if CO.onboarding(school) else {}
 
     for p in pis:
         name, k = p['pi'], norm(p['pi'])
@@ -197,12 +200,14 @@ def audit(school):
         # 2 students
         studs = students.get(name) or []
         item('students', name, bool(studs),
-             'researched: few-students evidence' if k in few else ('researched: thesis evidence' if k in thesis else None),
+             'researched: few-students evidence' if k in few else ('researched: thesis evidence' if k in thesis else
+             ('lab-coverage reason: ' + cov[name]['students']['code'] if (cov.get(name) or {}).get('students', {}).get('code', 'open') != 'open' else None)),
              {'why': 'lab has no students'})
         # 3 papers
         z = zero.get(name) or {}
         item('papers', name, bool(papers_by_pi.get(k)),
-             'reviewed: ' + z.get('reason', '')[:60] if z.get('verdict') == 'zero_is_right' else None,
+             'reviewed: ' + z.get('reason', '')[:60] if z.get('verdict') == 'zero_is_right' else
+             ('lab-coverage reason: ' + cov[name]['papers']['code'] if (cov.get(name) or {}).get('papers', {}).get('code', 'open') != 'open' else None),
              {'why': 'lab has no papers', **({'fix': z['reason']} if z.get('verdict') == 'fix' else {})})
         # 4 links
         pyears = collections.Counter(int(str(r.get('year'))[:4]) for r in papers_by_pi.get(k, []) if str(r.get('year'))[:4].isdigit())
@@ -248,6 +253,8 @@ def audit(school):
 
     # 6 one person per lab
     sa = {x['school']: x for x in load(P.hfile(H, 'student-audit.json'), []) or []}.get(school)
+    if sa is None and CO.onboarding(school):
+        sa = load(P.hfile(H, 'student-audit-school.json', school), None)   # an onboarding school's own audit (student_audit.py <key>)
     if sa is None:
         res['one_person']['unexplained'].append({'key': 'student-audit.json', 'why': 'student_audit.py has no entry for this school'})
         res['one_person']['total'] += 1
