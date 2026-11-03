@@ -30,7 +30,6 @@ Run it in a Slurm job (hierarchy/release.slurm) or a terminal multiplexer: the r
 import argparse, datetime, json, os, re, subprocess, sys, time
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
 
 CODE = Path(__file__).resolve().parents[1]

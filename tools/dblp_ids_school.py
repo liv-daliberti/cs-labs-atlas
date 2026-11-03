@@ -26,9 +26,7 @@ targets     the census PIs and additions, and the ladder faculty of affiliated d
 usage: dblp_ids_school.py <key>        (one streamed pass over the dump, ~2 min; nice)
 """
 import collections, hashlib, json, re, sys, time
-from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
 from pi_hierarchy import Name, toks  # noqa: E402

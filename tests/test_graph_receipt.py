@@ -1,13 +1,9 @@
 """A catalog without a 'graph' receipt must not stop the collector's export (Michigan, 2026-11-01)."""
 import json
 import sqlite3
-import sys
 from pathlib import Path
 
 CODE = Path(__file__).resolve().parents[1]
-for d in (CODE / 'fulltext-push', CODE / 'vendor' / 'homogenizing_scripts'):
-    if str(d) not in sys.path:
-        sys.path.append(str(d))
 import add_works as A  # noqa: E402
 import collect_princeton_fulltext as C  # noqa: E402
 

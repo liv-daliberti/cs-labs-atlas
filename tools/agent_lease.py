@@ -14,7 +14,6 @@ flock on <ROOT>/leases/.lock, so two copies starting together cannot both win.
 import argparse, contextlib, datetime, fcntl, json, os, socket, sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
 
 TTL = 1800

@@ -35,7 +35,6 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-sys.path.insert(0, str(HERE))
 import atlas_paths as P  # noqa: E402
 
 EXTRAS = HERE.parent / 'docs' / 'relocation' / 'map-extra.tsv'

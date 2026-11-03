@@ -37,7 +37,6 @@ import argparse, collections, gzip, json, re, sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402  (every path in one place)
 
 BYLINE_BASES = {'within_lab_byline_match', 'byline_name_with_school_affiliation', 'advisee_name_on_lab_paper_byline', 'full_name_on_lab_paper_byline'}

@@ -10,10 +10,8 @@ usage: oa_sweep.py <school> [<school> ...]       (OPENALEX_API_KEY from the envi
        2026-10-27): set OPENALEX_FLOOR low (e.g. 40) and rerun after the budget resets (00:00 UTC) to resume.
 """
 import json, os, sqlite3, sys, time, zlib
-from pathlib import Path
 import requests
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402  (every path in one place)
 HERE = P.WORK
 import school_config as S  # noqa: E402  (the school charters schools/<key>.toml)

@@ -1,8 +1,5 @@
 """tools/lp_templates.py: template detection and the structural heading / entry reader."""
-import sys
-from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
 import lp_templates as T  # noqa: E402
 
 GOOGLE = ('<html><head><meta name="generator" content="Google Sites"></head><body>'

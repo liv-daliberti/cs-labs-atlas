@@ -14,7 +14,6 @@ everything; the stage-0 gate itself passes only when the charter is filled in an
 import argparse, datetime, json, re, sqlite3, sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
 import catalog_alias  # noqa: E402
 import school_config as S  # noqa: E402

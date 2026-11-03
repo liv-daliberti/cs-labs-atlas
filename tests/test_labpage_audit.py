@@ -1,11 +1,9 @@
 """tools/labpage_audit.py: paper matching (DOI, arXiv id, title, citation) and the reason assignment for listed students
 and papers (docs/LAB-PAGES.md)."""
 import sys
-from pathlib import Path
 
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
 import labpage_audit as A  # noqa: E402
 
 LAB = [

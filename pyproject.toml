@@ -43,7 +43,16 @@ dev = ["pytest>=8", "ruff>=0.6"]
 atlas = "atlas_cli:main"
 
 [tool.setuptools]
-packages = ["atlas_cli"]
+# `pip install -e .` for interactive use: the flat modules of tools/ (import atlas_paths, import reader_export ...), the pihier package and the
+# `atlas` command. Code snapshots and jobs do not use the install: they put their own tools/ on PYTHONPATH (tools/job_code_snapshot.sh).
+# tests/test_imports_and_sys_path.py keeps py-modules equal to tools/*.py.
+packages = ["atlas_cli", "pihier"]
+py-modules = ["agent_lease", "atlas_ids", "atlas_paths", "atlas_pipeline", "atlas_release", "build_regression", "catalog_alias", "census_build", "chain_audit", "content_hash", "cs_related_candidates", "cs_related_school", "data_dictionary", "dblp_affiliated", "dblp_dump_index", "dblp_dump_persons", "dblp_ids_school", "dblp_recover", "diagnose_gaps", "evidence_check", "export_release", "faculty_periods", "hf_upload_release", "home_departments_school", "homepage_links_school", "lab_paper_copies", "labpage_audit", "labpage_recover", "labpage_students_school", "link_check", "link_diagnosis", "link_sweep", "listed_not_in_census", "listing_formats", "listing_rows", "lp_templates", "make_release", "missing_papers_audit", "mpcap", "new_school", "oa_identity_school", "oa_snapshot", "oa_snapshot_compare", "oa_sweep", "organize_tree", "package_diff", "periods_school", "pi_fulltext_affiliation", "pi_hierarchy", "provenance", "reader_export", "reader_links", "relation_recapture", "release_notes", "relocate_data", "relocate_project", "route_ft_data", "route_paths", "schema_check", "school_config", "school_hosts", "school_profiles", "school_web", "scratch", "secret_scan", "stage_gate", "stale_stages", "student_audit", "sweep_check", "sweep_school", "validate", "vendor_sync", "wire_charters", "wired_additions_report", "zero_paper_ledger"]
+
+[tool.setuptools.package-dir]
+atlas_cli = "atlas_cli"
+pihier = "tools/pihier"
+"" = "tools"
 
 # ---------------------------------------------------------------------------------------------------------------- ruff
 [tool.ruff]
@@ -73,6 +82,8 @@ ignore = [
 # -------------------------------------------------------------------------------------------------------------- pytest
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+# the code directories tests import from (no sys.path edits in tests/ or tools/; docs/CONTRIBUTING.md "Imports and sys.path")
+pythonpath = ["tools", "fulltext-push", "listings/scripts", "vendor/cmu_tools", "vendor/homogenizing_scripts", "vendor/princeton_tools"]
 addopts = "-q -p no:cacheprovider"
 markers = [
   "nfs: needs the project data on /n/fs (packages, stores, sweeps); CI skips these (-m 'not nfs' or CS_ATLAS_CI=1)",

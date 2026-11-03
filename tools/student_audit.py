@@ -17,9 +17,7 @@ missed_link  a lab paper of the student's own lab, within three years of their r
 usage: student_audit.py [school ...]
 """
 import collections, gzip, json, sys
-from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).parent))
 from pi_hierarchy import Name, toks, given, nick_ok, strict_name_one, near_relation, EAST_ASIAN_FAMILY  # noqa: F401,E402
 
 import atlas_paths as P  # noqa: E402  (every path in one place)

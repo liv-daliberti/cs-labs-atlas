@@ -99,6 +99,20 @@ $CS_ATLAS_PY -u "$CS_ATLAS_TOOLS/some_tool.py" ...           # the code: "$CS_AT
 - Adopted by `hierarchy/rebuild.sh`, `rebuild-all.slurm`, `organize-tree.slurm` and `build-equivalence.slurm`. Other
   scripts: source the helper after `paths.sh` and replace `tools/` in the command lines.
 
+## Imports and `sys.path` (ROADMAP #21, option B)
+
+- **No new `sys.path` edits.** `tests/test_imports_and_sys_path.py` fails on a tracked `.py` file that edits `sys.path` and is not in
+  `tests/sys_path_allowlist.json` (with its reason), and on an allowlisted file that no longer has an edit, so the list only shrinks.
+  A tool in `tools/` run as a script finds its siblings (the script's directory is `sys.path[0]`); tests find `tools/`, `fulltext-push/`,
+  `listings/scripts/` and the vendored directories through `pythonpath` in `pyproject.toml`; `pip install -e .` installs the flat modules of
+  `tools/`, the `pihier` package and the `atlas` command for interactive use (its `py-modules` list is checked against `tools/*.py`).
+- **`python -I` stays on every entry point that handles downloaded or untrusted files: that is a security property, not clutter.**
+  The collectors and download loops, `identify`, `identity_review`, `link_check`, the lab-page fetch tools and the ledger run isolated:
+  `-I` ignores `PYTHON*` variables and the working directory and leaves the script's directory off `sys.path`, so a stray or planted module
+  cannot be imported. Those scripts, and the helpers they import, keep their explicit `sys.path` edit (the allowlist says which and why).
+  Do not "clean up" such an edit, and do not drop `-I` to make an import work.
+- **Vendored code is never edited** (`tools/vendor_sync.py` hashes it); where it needs a directory on the path, the importing script adds it.
+
 ## Checks run by CI (`.github/workflows/ci.yml`, on pushes and pull requests to `dev` and `main`)
 - The env is built from `env/conda-linux-64.lock`.
 - `ruff check .`

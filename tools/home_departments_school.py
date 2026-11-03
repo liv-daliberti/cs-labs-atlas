@@ -14,9 +14,7 @@ status    accepted when one unit results; hold when none does (written, never a 
 usage: home_departments_school.py <key> [--write-shared]
 """
 import collections, json, re, sys
-from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
 

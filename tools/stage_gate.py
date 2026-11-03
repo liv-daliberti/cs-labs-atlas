@@ -19,7 +19,6 @@ usage: stage_gate.py <key> [stage ...]
 import collections, json, sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
 

@@ -35,7 +35,6 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 CODE_ROOT = HERE.parent   # the checkout this tool belongs to: its code is what the readiness check reads
-sys.path.insert(0, str(HERE))
 import atlas_paths as P  # noqa: E402
 import relocate_project as R  # noqa: E402  (busy_processes, store_locks, record, _dev)
 import school_config  # noqa: E402

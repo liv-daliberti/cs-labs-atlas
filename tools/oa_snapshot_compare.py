@@ -6,11 +6,9 @@ counts            per school and year 2016-2026: works in hierarchy/<school>/raw
 fields <school>   a sample of N works (default 1000) present in both: every projected field the sweeps read is compared
 usage: oa_snapshot_compare.py counts [--schools a,b] | fields <school> [--n 1000]
 """
-import argparse, json, random, sqlite3, sys, zlib
+import argparse, json, random, sqlite3, zlib
 from collections import Counter, defaultdict
-from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
 import oa_snapshot as S  # noqa: E402
 import school_config as SC  # noqa: E402

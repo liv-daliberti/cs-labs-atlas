@@ -84,7 +84,6 @@ from urllib.parse import quote as urlquote, urlsplit
 
 import requests
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
 from evidence_check import BYLINE_BASES, sourced  # noqa: E402
 

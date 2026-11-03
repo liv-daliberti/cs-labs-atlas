@@ -29,9 +29,7 @@ usage: cs_related_candidates.py [--no-venues] [--stats] [--out NAME] [school ...
        and is left alone, and tools/cs_related_school.py candidates merges the OpenAlex candidates with its own.
 """
 import collections, gzip, json, sqlite3, sys, zlib
-from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).parent))
 from pi_hierarchy import Name, NOT_PAPERS  # noqa: E402
 import atlas_paths as P  # noqa: E402  (every path in one place)
 from dblp_dump_index import Index  # noqa: E402

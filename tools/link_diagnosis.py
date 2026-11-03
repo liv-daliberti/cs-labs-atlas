@@ -31,9 +31,7 @@ The first two are work to do; the others are reasons. Evidence: OpenAlex work id
 usage: link_diagnosis.py <school> ...
 """
 import collections, gzip, json, re, sqlite3, sys, unicodedata
-from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).parent))
 from pi_hierarchy import sweep_works, contains, same_year, NOT_PAPERS, TODAY, INST, AFF  # noqa: E402
 
 import atlas_paths as P  # noqa: E402  (every path in one place)

@@ -1,8 +1,6 @@
 """tools/sweep_check.py: a synthetic sweep with a 20x year and a duplicated page must fail; exceptions need a reason."""
-import json, sqlite3, sys, zlib
-from pathlib import Path
+import json, sqlite3, zlib
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
 import sweep_check as SC  # noqa: E402
 
 INST = 'I1'

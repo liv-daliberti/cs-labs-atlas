@@ -19,10 +19,8 @@ see tools/dblp_dump_index.py), never the bot-walled dblp.org site.
     authors: [[name, orcid]]}]}}, by_name: {normalized PI name: [pid_url, ...]}}
 usage: dblp_dump_persons.py
 """
-import gzip, html, json, re, sys
-from pathlib import Path
+import gzip, html, json, re
 
-sys.path.insert(0, str(Path(__file__).parent))
 from pi_hierarchy import toks  # noqa: E402
 
 import atlas_paths as P  # noqa: E402  (every path in one place)

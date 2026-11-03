@@ -1,15 +1,12 @@
 """A store's layout before a collector runs (fulltext-push/store_layout.py), and the status page's alarm for attempts
 without downloads (fulltext-push/collectors_status.py); 2026-10-31, Michigan's missing sources/."""
 import sqlite3
-import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
 import pytest
 
 FTP = Path(__file__).resolve().parents[1] / 'fulltext-push'
-if str(FTP) not in sys.path:
-    sys.path.append(str(FTP))
 import store_layout as SL  # noqa: E402
 
 

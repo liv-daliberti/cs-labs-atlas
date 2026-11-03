@@ -11,10 +11,8 @@ measures PIs (core computing departments vs CS-related additions), home departme
 -> hierarchy/school-profiles.json, hierarchy/SCHOOL-PROFILES.md
 usage: school_profiles.py
 """
-import collections, gzip, importlib.util, json, sys
-from pathlib import Path
+import collections, gzip, importlib.util, json
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
 import atlas_paths as AP  # noqa: E402  (main() has a local P)  (every path in one place)
 HERE = P.WORK

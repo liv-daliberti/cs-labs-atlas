@@ -1,6 +1,5 @@
 """tools/link_check.py: the polite landing-page check, against a local server."""
 import http.server
-import sys
 import threading
 from functools import partial
 from pathlib import Path
@@ -8,8 +7,6 @@ from pathlib import Path
 import pytest
 
 CODE = Path(__file__).resolve().parents[1]
-if str(CODE / 'tools') not in sys.path:
-    sys.path.insert(0, str(CODE / 'tools'))
 import link_check as L  # noqa: E402
 
 PAGE = '<html><head><title>x</title><meta name="citation_title" content="Efficient Estimation of Word Representations in Vector Space"><meta name="citation_author" content="Mikolov, Tomas"><meta name="citation_author" content="Chen, Kai"></head></html>'

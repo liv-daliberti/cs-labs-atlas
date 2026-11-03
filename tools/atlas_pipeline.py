@@ -17,7 +17,6 @@ the lab-page rounds, the diagnosis of a failed stage) are not here and never wil
 import argparse, datetime, json, os, subprocess, sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
 
 CODE = Path(__file__).resolve().parents[1]

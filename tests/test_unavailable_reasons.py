@@ -1,8 +1,6 @@
 """The ledger's reason codes (docs/UNAVAILABLE.md): one fixture paper per code through unavailable_ledger.decide()."""
-import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'fulltext-push'))
 import unavailable_ledger as U  # noqa: E402
 
 ALL = ['openalex', 'arxiv', 's2', 'dblp', 'proceedings', 'repository', 'labpages', 'core']

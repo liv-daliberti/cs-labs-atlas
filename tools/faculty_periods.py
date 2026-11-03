@@ -20,9 +20,7 @@ usage: faculty_periods.py fetch|extract <school>
 import gzip, hashlib, json, re, sqlite3, subprocess, sys, time, unicodedata, urllib.parse, urllib.robotparser
 from collections import defaultdict
 from datetime import datetime, timezone
-from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402  (every path in one place)
 HERE = P.WORK
 ATLAS = P.SITE_DATA

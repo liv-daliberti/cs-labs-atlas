@@ -12,9 +12,7 @@ One streamed pass over atlas_paths.DBLP_DUMP_XML (two when --pubs):
 usage: dblp_affiliated.py <key> [--pubs]     (nice; ~15 min per pass, memory: the person set only)
 """
 import collections, json, re, sys, time
-from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
 from dblp_dump_persons import records, text, AUTH, NOTE, URL, YEAR  # noqa: E402

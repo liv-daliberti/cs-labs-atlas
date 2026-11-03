@@ -11,7 +11,6 @@ previous release's, and the code commits between the two builds. The same inputs
 import argparse, json, subprocess, sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
 
 TOP_PIS = 8

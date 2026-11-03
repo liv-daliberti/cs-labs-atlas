@@ -2,15 +2,11 @@
 wrapper (vendor/cmu_tools/collector_wrapper.py check_identity): pass, reject and undecided (2026-10-31)."""
 import json
 import sqlite3
-import sys
 from pathlib import Path
 
 import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
-for p in (ROOT / 'fulltext-push', ROOT / 'vendor' / 'cmu_tools'):
-    if str(p) not in sys.path:
-        sys.path.append(str(p))
 import identity_rule as IR  # noqa: E402
 
 TITLE = 'Learning Fixture Representations for Channel Plugins'

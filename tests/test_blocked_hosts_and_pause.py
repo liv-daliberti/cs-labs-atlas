@@ -1,12 +1,8 @@
 """A host that refuses every request is recorded without being asked (Wiley), and a source pause is cleared by the pass-start requeue."""
 import sqlite3
-import sys
 from pathlib import Path
 
 CODE = Path(__file__).resolve().parents[1]
-for d in (CODE / 'fulltext-push', CODE / 'vendor' / 'cmu_tools'):
-    if str(d) not in sys.path:
-        sys.path.append(str(d))
 import collector_wrapper as W  # noqa: E402
 import review_access as R  # noqa: E402
 

@@ -27,7 +27,6 @@ usage: census_build.py <key>
 import collections, datetime, gzip, json, re, sys, unicodedata
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
 from pi_hierarchy import Name, toks, nick_ok, EAST_ASIAN_FAMILY  # noqa: F401,E402

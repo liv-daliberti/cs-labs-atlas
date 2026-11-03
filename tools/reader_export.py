@@ -29,7 +29,6 @@ usage: reader_export.py [school ...] [--site-local-papers FILE] [--out DIR]     
 import argparse, collections, gzip, json, re, sqlite3, sys, time, zlib
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402  (every path in one place)
 import lab_paper_copies as LPC  # noqa: E402  (the coverage counter's rule)
 import reader_links as RL  # noqa: E402  (candidate URLs confirmed as this paper become source links)

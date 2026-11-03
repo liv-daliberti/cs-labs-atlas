@@ -1,4 +1,4 @@
-"""Shared setup: the tools directory on sys.path, the fixtures directory, and the `nfs` marker.
+"""Shared setup: the fixtures directory, and the `nfs` marker.
 
 Run (from the code root): bin/atlas test    (= <env>/bin/python -m pytest; pyproject.toml holds the pytest config)
 Tests marked @pytest.mark.nfs need the project data on /n/fs (packages, stores, sweeps). They run locally and are
@@ -6,14 +6,11 @@ skipped in CI (CS_ATLAS_CI=1, or `atlas test --ci`, or -m 'not nfs'); a test tha
 """
 import json
 import os
-import sys
 from pathlib import Path
 
 import pytest
 
-TOOLS = Path(__file__).resolve().parents[1] / 'tools'
-if str(TOOLS) not in sys.path:
-    sys.path.insert(0, str(TOOLS))
+TOOLS = Path(__file__).resolve().parents[1] / 'tools'   # on sys.path through pyproject.toml [tool.pytest.ini_options] pythonpath
 FIXTURES = Path(__file__).resolve().parent / 'fixtures'
 
 

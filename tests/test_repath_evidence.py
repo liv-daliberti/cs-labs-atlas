@@ -1,11 +1,8 @@
 """repath_evidence: old evidence prefixes map to the store, and only when the mapped file exists."""
 import sqlite3
-import sys
 from pathlib import Path
 
 FTP = Path(__file__).resolve().parents[1] / 'fulltext-push'
-if str(FTP) not in sys.path:
-    sys.path.append(str(FTP))
 import ftp_common as F  # noqa: E402
 import repath_evidence as R  # noqa: E402
 

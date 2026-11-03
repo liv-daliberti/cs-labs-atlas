@@ -11,8 +11,4 @@ every name, so `tools/pi_hierarchy.py <school>` and `from pi_hierarchy import ..
   links      student-paper links (R-LNK-*)
   build      the stages in order, and the package files written (Ctx carries the state between stages)
 """
-import sys
-from pathlib import Path
 
-if str(Path(__file__).resolve().parent.parent) not in sys.path:  # tools/: atlas_paths, provenance, school_config
-    sys.path.append(str(Path(__file__).resolve().parent.parent))

@@ -19,7 +19,6 @@ import argparse, collections, gzip, hashlib, json, subprocess, sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402  (every path in one place)
 
 SCHOOL_PCT, SCHOOL_MIN = 0.05, 5

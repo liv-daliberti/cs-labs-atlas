@@ -19,9 +19,7 @@ extend    the window years a unit directory misses, from dated unit profile capt
 usage: periods_school.py fetch|extract|gaps|extend <key>
 """
 import collections, json, re, sys, zlib
-from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
 import school_web as W  # noqa: E402

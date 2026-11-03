@@ -14,8 +14,6 @@ DBLP type 'Informal' (CoRR preprints) is reported separately, since a preprint o
 usage: missing_papers_audit.py <school> ...
 """
 import collections, gzip, json, sqlite3, sys, zlib
-from pathlib import Path
-sys.path.insert(0, str(Path(__file__).parent))
 from pi_hierarchy import read, HERE, DBLP, ndoi, norm_title  # noqa: E402
 import atlas_paths as P  # noqa: E402  (every path in one place)
 

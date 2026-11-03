@@ -10,9 +10,7 @@ decision one distinct DBLP pid (or ORCID) across the PI's pages is the PI's; sev
 usage: homepage_links_school.py <key>
 """
 import collections, json, re, sys, zlib
-from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
 import school_web as W  # noqa: E402
 import periods_school as PS  # noqa: E402

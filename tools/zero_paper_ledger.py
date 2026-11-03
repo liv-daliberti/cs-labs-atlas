@@ -13,10 +13,8 @@ verdict is 'zero_is_right' (with the reason) or 'fix' (what still has to change)
 -> hierarchy/zero-paper-labs.json
 usage: zero_paper_ledger.py
 """
-import collections, json, sys
-from pathlib import Path
+import collections, json
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402  (every path in one place)
 HERE = P.WORK; H = P.HIERARCHY  # export_release re-points H at a release's hierarchy/ (flat); hfile follows the layout for the live one
 SCHOOLS = list(P.SCHOOL_IDS)  # the released schools (schools/<key>.toml status)

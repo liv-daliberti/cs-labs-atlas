@@ -30,7 +30,6 @@ import argparse, gzip, hashlib, json, os, re, shutil, sqlite3, subprocess, sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402  (every path in one place)
 import provenance  # noqa: E402  (report.json -> provenance, required)
 import content_hash  # noqa: E402  (content hashes without the clock)

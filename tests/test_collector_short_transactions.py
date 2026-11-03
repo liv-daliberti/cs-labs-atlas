@@ -2,7 +2,6 @@
 write lock, and export() reads with fetchall() so no cursor stays open while files are written (an open cursor keeps the shared lock and
 makes every other writer fail with 'database is locked')."""
 import re
-import sys
 from pathlib import Path
 
 CODE = Path(__file__).resolve().parents[1]
@@ -31,8 +30,5 @@ def test_export_does_not_iterate_open_cursors():
 
 
 def test_the_expanded_collector_still_imports():
-    for d in (V, CODE / 'tools'):
-        if str(d) not in sys.path:
-            sys.path.insert(0, str(d))
     import collect_princeton_fulltext_expanded as c  # noqa: E402
     assert hasattr(c, 'CL') and hasattr(c.CL, 'catalog_lock')

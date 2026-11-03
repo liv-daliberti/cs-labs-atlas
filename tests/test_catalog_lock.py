@@ -1,14 +1,11 @@
 """One writer per catalog (fulltext-push/catalog_lock.py; ROADMAP item 11): a second writer waits, then refuses."""
 import sqlite3
-import sys
 import threading
 from pathlib import Path
 
 import pytest
 
 FTP = Path(__file__).resolve().parents[1] / 'fulltext-push'
-if str(FTP) not in sys.path:
-    sys.path.append(str(FTP))
 import catalog_lock as CL  # noqa: E402
 
 

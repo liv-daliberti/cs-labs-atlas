@@ -33,7 +33,6 @@ import argparse, collections, csv, gzip, hashlib, io, json, re, shutil, sqlite3,
 from datetime import datetime, timezone
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402  (every path in one place)
 
 RANK = {'orcid': 0, 'openalex': 1, 'dblp': 2, 'coll': 3, 'name': 4,                                   # people

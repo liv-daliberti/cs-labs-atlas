@@ -13,8 +13,6 @@ window    the paper's year within [first year - 2, last year + 6] of the student
 usage: link_sweep.py [school ...]
 """
 import collections, gzip, json, re, sys, unicodedata
-from pathlib import Path
-sys.path.insert(0, str(Path(__file__).parent))
 from pi_hierarchy import nick_ok, byline_name  # noqa: E402
 
 import atlas_paths as P  # noqa: E402  (every path in one place)

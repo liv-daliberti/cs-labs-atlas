@@ -13,7 +13,6 @@ import argparse, hashlib, json, os, subprocess, sys, tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402  (every path in one place)
 
 REPO = 'hamlab-princeton/homogenizing-science-research'

@@ -1,12 +1,9 @@
 """The labpages channel reads page roots from labpage-evidence.json and from labpage-audit.jsonl.gz (2026-11-01)."""
 import gzip
 import json
-import sys
 from pathlib import Path
 
 CODE = Path(__file__).resolve().parents[1]
-if str(CODE / 'fulltext-push') not in sys.path:
-    sys.path.append(str(CODE / 'fulltext-push'))
 import labpage_channel as L  # noqa: E402
 
 

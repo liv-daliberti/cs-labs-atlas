@@ -2,7 +2,6 @@
 import gzip
 import http.server
 import json
-import sys
 import threading
 from functools import partial
 from pathlib import Path
@@ -10,8 +9,6 @@ from pathlib import Path
 import pytest
 
 CODE = Path(__file__).resolve().parents[1]
-if str(CODE / 'tools') not in sys.path:
-    sys.path.insert(0, str(CODE / 'tools'))
 import atlas_paths as P  # noqa: E402
 import oa_snapshot as S  # noqa: E402
 

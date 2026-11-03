@@ -13,9 +13,7 @@ Only this school's entries change; other schools' sections and the file layout a
 usage: oa_identity_school.py <key> [--dry-run]
 """
 import hashlib, json, sqlite3, sys, zlib
-from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
 from pi_hierarchy import NOT_PAPERS  # noqa: E402

@@ -33,7 +33,6 @@ usage: export_release.py <repo dir> [--release ID|DIR] [--from-working] [--skip-
 import collections, csv, gzip, hashlib, importlib.util, io, json, os, pickle, re, shutil, subprocess, sys, time, zlib
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as AP  # noqa: E402  (every path in one place)
 
 HERE = AP.WORK                       # the code repository (/n/fs/resemble/homogenizing-science/code; was .research-sweeps/claude-schools-20261021)

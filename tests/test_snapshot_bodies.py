@@ -1,11 +1,7 @@
 """ftp_common.oa_bodies reads the OpenAlex snapshot first and leaves the rest to the older stores (ROADMAP #24)."""
-import sys
 from pathlib import Path
 
 CODE = Path(__file__).resolve().parents[1]
-for d in (CODE / 'fulltext-push', CODE / 'tools'):
-    if str(d) not in sys.path:
-        sys.path.append(str(d))
 import ftp_common as F  # noqa: E402
 import oa_snapshot as OS  # noqa: E402
 

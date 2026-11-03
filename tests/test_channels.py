@@ -1,6 +1,5 @@
 """Discovery channel plugins (fulltext-push/channels/, channel_runner.py; docs/CHANNELS.md; 2026-10-30): the interface of
 every plugin on fixture papers, the legacy adapter's Results, and the runner's known-URL filtering and dry run."""
-import sys
 import types
 from collections import defaultdict
 from pathlib import Path
@@ -8,8 +7,6 @@ from pathlib import Path
 import pytest
 
 FTP = Path(__file__).resolve().parents[1] / 'fulltext-push'
-if str(FTP) not in sys.path:
-    sys.path.append(str(FTP))
 import channels as CH  # noqa: E402
 import channel_runner as R  # noqa: E402
 import lab_channels as L  # noqa: E402

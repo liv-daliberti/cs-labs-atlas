@@ -21,9 +21,7 @@ exceptions a test that trips fails the check unless the charter's [sweep_check].
 usage: sweep_check.py <school> [<school> ...]
 """
 import collections, gzip, json, sqlite3, statistics, sys, zlib
-from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
 

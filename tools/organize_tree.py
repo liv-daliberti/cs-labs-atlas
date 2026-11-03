@@ -29,11 +29,10 @@ copies' source. Rerunnable: links that already point at the right file are kept,
 papers/ that are no longer a lab paper with a copy are unlinked (only inside this tree).
 usage: organize_tree.py [--release ID|DIR] [--fresh-copies] [school ...]          (default: all six)
 """
-import argparse, csv, gzip, json, os, re, sqlite3, sys, time, unicodedata
+import argparse, csv, gzip, json, os, re, sqlite3, time, unicodedata
 from collections import defaultdict
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402  (every path in one place)
 
 HERE = P.WORK; H = P.HIERARCHY  # H is re-pointed at <release>/hierarchy by main()

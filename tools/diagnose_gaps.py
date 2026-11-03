@@ -10,8 +10,6 @@ students no_advising_records (no advising context mentions the surname) | advise
 usage: diagnose_gaps.py <school> [...]
 """
 import collections, json, sys
-from pathlib import Path
-sys.path.insert(0, str(Path(__file__).parent))
 from pi_hierarchy import read, toks, SITE  # noqa: E402
 import atlas_paths as P  # noqa: E402  (every path in one place)
 

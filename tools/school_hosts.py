@@ -14,9 +14,7 @@ nothing about a Cloudflare challenge in front of it (cse/ece.engin.umich.edu), s
 usage: school_hosts.py <key> [--refresh]
 """
 import json, sys, time
-from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
 import school_web as W  # noqa: E402

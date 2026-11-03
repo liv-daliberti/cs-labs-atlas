@@ -12,7 +12,6 @@ usage: listed_not_in_census.py <school> ...
 import collections, json, re, sqlite3, sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402  (every path in one place)
 HERE = P.WORK
 sys.path.insert(0, str(HERE / 'listings/scripts')); sys.path.insert(0, str(Path(__file__).parent))

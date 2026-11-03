@@ -1,10 +1,7 @@
 """identity_rule.judge_meta: the PDF's own title metadata as identity evidence (ROADMAP #25)."""
-import sys
 from pathlib import Path
 
 CODE = Path(__file__).resolve().parents[1]
-if str(CODE / 'fulltext-push') not in sys.path:
-    sys.path.append(str(CODE / 'fulltext-push'))
 import identity_rule as R  # noqa: E402
 
 TITLE = 'Efficient Estimation of Word Representations in Vector Space'

@@ -21,7 +21,6 @@ usage: scratch.py path <name>                    create and print <SCRATCH>/<nam
 import argparse, shutil, subprocess, sys, time
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
 
 DAY = 86400

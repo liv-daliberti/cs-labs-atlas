@@ -15,9 +15,7 @@ coverage listings/<key>/coverage.json: department x year -> slots with an ok cap
 usage: listing_rows.py <key>
 """
 import collections, json, re, sqlite3, sys
-from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
 import listing_formats as LF  # noqa: E402

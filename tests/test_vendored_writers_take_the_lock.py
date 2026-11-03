@@ -2,15 +2,11 @@
 with a locked backup first for a bulk write (ROADMAP #20, docs/STORES.md)."""
 import fcntl
 import os
-import sys
 from pathlib import Path
 
 import pytest
 
 CODE = Path(__file__).resolve().parents[1]
-for d in (CODE / 'fulltext-push', CODE / 'vendor' / 'princeton_tools'):
-    if str(d) not in sys.path:
-        sys.path.append(str(d))
 import catalog_lock as CL  # noqa: E402
 import import_all_when_free as IA  # noqa: E402
 

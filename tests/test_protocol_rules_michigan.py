@@ -1,11 +1,10 @@
 """Rules learned onboarding Michigan (2026-10-30): gzip captures, strict names, alumni markers, span gaps, adviser phrases."""
-import gzip, sys, zlib
+import gzip, zlib
 
 import pytest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / 'tools')); sys.path.insert(0, str(ROOT / 'listings' / 'scripts'))
 
 
 def test_wb_body_gunzips_stored_captures():
