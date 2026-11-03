@@ -21,3 +21,10 @@ def test_an_onboarding_school_summary_is_school_local(monkeypatch):
     # the school-local summary has its own data name; the shared one stays a different (tracked, release-written) file
     assert 'labpage-audit-summary-school.json' in str(P.data('labpage-audit-summary-school.json', 'newu'))
     assert P.data('labpage-audit-summary-school.json', 'newu') != P.data('labpage-audit-summary.json')
+
+
+def test_a_stated_end_year_makes_the_entry_an_alumnus():
+    f = L.entry_years_end_the_stay
+    assert f([None, 2024], 'stated_in_entry') and f([2022, 2025], 'stated_in_entry') and f([None, 2026], 'stated_in_entry')
+    assert not f([2022, 2026], 'stated_in_entry') and not f([2022, None], 'stated_in_entry') and not f(None, 'none')
+    assert not f([None, 2020], 'section_year_heading')

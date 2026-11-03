@@ -1115,6 +1115,14 @@ def coadvisers(kit, school, src):
 YEAR_ = r'(?:19[89]\d|20[0-2]\d)'
 
 
+def entry_years_end_the_stay(years, basis, this_year=2026):
+    """True when the years an entry states close the stay: a degree or end year with no start ([None, y], y <= this year), or a closed
+    range that ended before this year. An open range ([a, None]) and a range ending this year stay current."""
+    if basis != 'stated_in_entry' or not years or years[1] is None:
+        return False
+    return years[0] is None and years[1] <= this_year or years[0] is not None and years[1] < this_year
+
+
 def entry_years(desc, head):
     """(years, basis) stated by the entry itself; never a neighbour's dates or a bio's degree dates.
       '(Postdoc, 2010-2014)' -> [2010, 2014]; '(PhD student, MIT ORC, 2022 -)' -> [2022, None] (an open range is a start);
@@ -1254,6 +1262,8 @@ def pm_candidates(kit, school, pi, plan, held):
                 x['years'], x['years_basis'] = yrs[fn], 'reviewer'
             else:
                 x['years'], x['years_basis'] = entry_years(x.get('desc'), x.get('head'))
+                if entry_years_end_the_stay(x['years'], x['years_basis']):
+                    x['alumni'] = True  # '(PhD 2024, co-advised with ...)' on a current page: the entry itself says the stay ended (UChicago stage 6, round 1)
             x['role'], x['role_basis'] = entry_role(x.get('desc'), x.get('head'), kit.autom._role)
             if fn in roles_:
                 x['role'], x['role_basis'] = roles_[fn], 'reviewer'
