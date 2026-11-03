@@ -248,6 +248,22 @@ by institution was tried first and rejected: it dropped 8 of 17 true lab papers 
 with no institution at all (pi-0) and a credit to another university are untouched. `school_basis`, `STRONG_IDENTITY`,
 `CROSS_KINDS`; counter `school_via_cross_affiliation`.
 
+### R-PAP-30 (2026-11-02, owner: accuracy pass) — listings OpenAlex contradicts go to review
+Michigan's sample credited Ziyou Song's SSRN preprint to Michigan through a Wayback ECE listing while OpenAlex places his
+works of those years at the National University of Singapore. Two signals, built before the rows from the PI's identified
+works (identity as R-PAP-04): (1) a listing-only year (a department listing, no period covering the year, and neither the PI's first listing year after 2016
+nor the last before the current year: arrival and departure years belong to R-PAP-13) in which the PI's
+identified works credit another institution (2+ works) and none credits the school is not an appointment by itself: the papers
+that year admits through the weak routes (advisee, unaffiliated byline) are withheld, never the PI's school-affiliated ones
+(there are none in such a year); (2) an advisee-route or unaffiliated-byline record whose twin (same normalized title, same PI) credits the PI only to other
+institutions goes to the review list, and is withheld when that twin is dated earlier and falls in a year of kind (1) (Song's
+SSRN preprint is dated 2025-01-01; its National University of Singapore record 2024-12; his 2024 listing is a visiting page).
+Only the advisee routes are ever withheld: a paper naming the school itself, or tied by its first page, stays. Everything
+goes to the review list `report.json` -> `staleListingReview` (`kind` `listing_year` with the listing, the other institutions
+and the withheld papers, or `twin_record`); no period is closed (R-PAP-03's listing-drop rule of 2026-11-02 stays the owner's
+decision). Counters `stale_listing_pi_years`, `stale_listing_withheld`, `twin_record_credits_elsewhere`, `twin_record_withheld`.
+`listing_review_prepass`.
+
 ## Students
 
 ### R-STU-01 (2026-10-21, owner)

@@ -528,6 +528,7 @@ The build's report: counters, exclusions, samples of what the rules dropped, and
 | `droppedWithoutHashedSource[].pi` | string | yes | The lab's PI. |  |  |
 | `droppedWithoutHashedSource[].student` | string | yes | The student record id. |  |  |
 | `droppedWithoutHashedSource[].name` | string | yes | The student's name. |  |  |
+| `staleListingReview` | array of object | no | R-PAP-30 review list: PI-years whose department listing is contradicted by OpenAlex (works at another institution, none at the school; kind listing_year, with the papers withheld) and records whose twin credits the PI elsewhere only (kind twin_record). Nothing here closes a period; the owner reviews it. |  | R-PAP-30 |
 
 ## `hierarchy/<school>/student_papers.jsonl.gz`
 

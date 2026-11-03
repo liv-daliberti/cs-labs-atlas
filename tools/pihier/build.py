@@ -39,7 +39,7 @@ def write(ctx):
                pisWithoutStudents=sorted(p['pi'] for p in pis if not stu[p['pi']]), censusNicknameMerges=nick_merges,
                droppedProgramOrReaderOnly=weak_dropped, pisListedAsOwnStudent=self_listed, linkGuardSamples=guard_samples,
                linkGuardKeptVariantSamples=guard_kept_samples, notPaperSamples=dict(not_paper_samples),
-               page1ElsewhereSamples=page1_samples, droppedWithoutHashedSource=ctx.unevidenced, labpageAdditionsSetAside=ctx.labpage_set_aside,
+               page1ElsewhereSamples=page1_samples, staleListingReview=ctx.listing_review, droppedWithoutHashedSource=ctx.unevidenced, labpageAdditionsSetAside=ctx.labpage_set_aside,
                provenance=provenance.block(school),
                studentInitialsMerges=ctx.initials_merges, studentSurnameTypoCandidates=students.typo_candidate_rows(ctx))  # what this package was built from (tools/provenance.py; make_release requires it)
     json.dump(rep, open(out / 'report.json', 'w'), indent=1, ensure_ascii=False)

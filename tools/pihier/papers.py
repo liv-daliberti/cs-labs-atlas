@@ -8,7 +8,7 @@ import atlas_paths as P  # data paths (DATA_FILES)
 import school_config as _S  # the school charters (R-PAP-15's foreign-title exception)
 from .common import OWN_UNITS, SCHOOL_LOOSE, TODAY, WINDOW_START, accepted_additions, ndoi, norm_title
 from .names import NICK, _nick_pairs, byline_name, full_pair, toks
-from .periods import bridge_periods, contains, same_year, transition_side, transition_status
+from .periods import _year, bridge_periods, contains, same_year, transition_side, transition_status
 from . import identity
 from dblp_dump_pages import page_count  # noqa: E402  (DBLP's `pages` string -> number of pages; R-PAP-27)
 
@@ -594,6 +594,29 @@ def rows_from_hits(ctx):
             # (Rosenholtz, 2024) has no observed arrival or departure, only thin captures. And only when the PI's identified works of the
             # year credit other institutions more often than the school (Smola 2017: Amazon 7, CMU 1; Turitsyn 2019, MIT 11 vs D. E. Shaw 2, stays).
             n['cross_affiliation_transition_outside'] += 1; funnel[pi]['cross_affiliation_transition_outside'] += 1; continue
+        if via[0].startswith('cross-affiliated') and per is None and ctx.other_years[pi][int(w.get('publication_year') or 0)] > ctx.direct_years[pi][int(w.get('publication_year') or 0)]:
+            # R-PAP-29 guard (2026-11-03; Smola's 2017 Amazon paper under a stale CMU listing: Amazon 7 of 18 works, CMU 1): admitted only by a
+            # listing, and the PI's identified works of that year credit other institutions more often than the school
+            n['cross_affiliation_listing_contradicted'] += 1; funnel[pi]['cross_affiliation_listing_contradicted'] += 1; continue
+        weak = unaffiliated or via[0].startswith('advisee at the school')
+        if weak and per is None and lst is not None and lst['year'] in ctx.stale_years[pi]:
+            # R-PAP-30: the listing of a year in which OpenAlex puts the PI's works at another institution and none at the school
+            # proves nothing by itself: a paper that only an advisee or an unaffiliated byline ties to the school goes to the review
+            # list instead of the lab (a paper naming the school itself, or tied by its first page, is never withheld)
+            ctx.stale_years[pi][lst['year']]['withheld'].append(dict(oa=w['id'], title=w.get('title'), date=date))
+            n['stale_listing_withheld'] += 1; funnel[pi]['stale_listing_withheld'] += 1; continue
+        if weak:
+            tw_ = [t_ for t_ in ctx.twin_records.get((pi, norm_title(w.get('title'))), []) if t_[0] != w['id'] and not t_[1] and t_[2]]
+            if tw_:
+                # the same paper's other record credits the PI to another institution only: always a review item; the paper is
+                # withheld when that record is dated earlier, in a listing year the PI's works contradict (Song's SSRN preprint
+                # dated 2025-01-01, its National University of Singapore record 2024-12, his 2024 listing a visiting page)
+                early = [t_ for t_ in tw_ if t_[3] and str(t_[3]) < str(date) and _year(t_[3]) in ctx.stale_years[pi]]
+                ctx.listing_review.append(dict(pi=pi, kind='twin_record', year=w.get('publication_year'), oa=w['id'], title=w.get('title'),
+                                               twin=[dict(oa=t_[0], institutions=t_[2][:2], date=t_[3]) for t_ in tw_[:2]], withheld=bool(early)))
+                n['twin_record_credits_elsewhere'] += 1
+                if early:
+                    n['twin_record_withheld'] += 1; funnel[pi]['twin_record_elsewhere'] += 1; continue
         if unaffiliated and per is None and transition_side(p, lst, date) == 'outside':
             # (2026-10-29, owner: best judgement) a byline with no affiliations says nothing about where the work was done,
             # so in a PI's arrival or departure year a listing proves only its own side of the capture date: Thomas
@@ -635,6 +658,7 @@ def rows_from_hits(ctx):
                          **({'page1_check': page1_check} if page1_check else {}),
                          **({'flags': ['page1_unchecked']} if page1_check and page1_check['status'] == 'page1_unchecked' else {})))
     ctx.page1_samples = page1_samples
+    ctx.listing_review += [dict(v, withheld_n=len(v['withheld'])) for per_ in ctx.stale_years.values() for v in per_.values()]  # R-PAP-30
     return rows, seen
 
 
@@ -788,6 +812,52 @@ def continuity_bridges(ctx):
     ctx.direct_years, ctx.other_years = years, other
 
 
+def listing_review_prepass(ctx):
+    """R-PAP-30 (2026-11-02, owner: accuracy pass; Ziyou Song at Michigan). Two review signals from OpenAlex, built before rows.
+    (1) stale listing years: a year the PI has a department listing but no period, in which the PI's identified works credit
+        another institution and none credits the school (2+ works). The listing may be a stale or visiting page (R-PAP-03's
+        reasoning without an evidenced departure): the school is not credited from that listing; the year goes to the review list.
+    (2) twin records: an advisee-route or unaffiliated-byline record whose twin (same normalized title, same PI) credits the PI
+        to another institution and never to the school. The work was done elsewhere (Song's SSRN preprint, whose published
+        record credits the National University of Singapore); the school is not credited; the work goes to the review list.
+    Periods are never closed by this."""
+    pis, inst, aff, blocked, anchored = ctx.pis, ctx.inst, ctx.aff, ctx.blocked, ctx.anchored
+    year_ = collections.defaultdict(lambda: collections.defaultdict(lambda: dict(school=0, other=collections.Counter())))
+    twin = collections.defaultdict(list)
+    for pi, w, a, cw, ident, page1 in ctx.hits:
+        aid = (a.get('author') or {}).get('id')
+        if aid in blocked[pi] or not (ident or (aid and anchored[pi].get(aid))):
+            continue
+
+        insts = a.get('institutions') or []
+        school = any(inst == i.get('id') or inst in (i.get('lineage') or []) for i in insts) or any(aff.search(z) for z in a.get('raw_affiliation_strings') or [])
+        names = [i.get('display_name') for i in insts]
+        y = w.get('publication_year')
+        if y:
+            if school:
+                year_[pi][int(y)]['school'] += 1
+            elif insts:
+                year_[pi][int(y)]['other'].update(names[:1])
+        t = norm_title(w.get('title'))
+        if t:
+            twin[(pi, t)].append((w['id'], school, names, w.get('publication_date') or str(w.get('publication_year') or '')))
+    stale = collections.defaultdict(dict)
+    for p in pis:
+        lys = sorted(l['year'] for l in p.get('listings') or [])
+        for l in p.get('listings') or []:
+            y = l['year']
+            if (y == lys[0] and y > 2016) or (y == lys[-1] and y < int(TODAY[:4])):
+                continue  # an arrival or departure year: R-PAP-13's transition rules decide it (Tulsiani 2021, Mankoff 2019)
+            covered = any(contains(q['start'], q['end'], f'{y}-06-30', q['asof'] or TODAY) != 'outside' for q in p['periods'])
+            c = year_[p['pi']].get(y)
+            if not covered and c and c['school'] == 0 and sum(c['other'].values()) >= 2:
+                stale[p['pi']][y] = dict(pi=p['pi'], kind='listing_year', year=y, listing=dict(url=l.get('url'), quote=l.get('quote'), kind=l.get('kind')),
+                                         works_at_other_institutions=dict(c['other'].most_common(3)), works_at_school=0, withheld=[])
+    ctx.stale_years, ctx.twin_records, ctx.listing_review = stale, twin, []
+    n = ctx.n
+    n['stale_listing_pi_years'] = sum(len(v) for v in stale.values())
+
+
 def lab_papers(ctx):
     """Every lab paper of the school: ctx.rows (with `_bylines` until the package is written)."""
     school, n, pis = ctx.school, ctx.n, ctx.pis
@@ -796,6 +866,7 @@ def lab_papers(ctx):
     unit_tables(ctx)
     venue_tables(ctx)
     continuity_bridges(ctx)
+    listing_review_prepass(ctx)
     rows, seen = rows_from_hits(ctx)
     recovered_rows(ctx, rows, seen)
     rows = drop_namesakes(rows, pis, ctx.reviewed_oa, n)
