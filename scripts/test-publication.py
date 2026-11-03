@@ -6,6 +6,46 @@ import bootstrap, publish
 
 
 class PublicationTests(unittest.TestCase):
+    def test_release_label_and_authoring_restore_preserve_local_code(self):
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            bundle = root / "bundle"
+            (bundle / "objects").mkdir(parents=True)
+            atlas = root / "atlas"
+            atlas.mkdir()
+            (atlas / "app.js").write_text("local edit")
+            raw = b'{"fixture":true}'
+            sha = hashlib.sha256(raw).hexdigest()
+            (bundle / "objects" / sha).write_bytes(raw)
+            m = json.dumps(
+                {
+                    "files": {
+                        "data.json": {"sha256": sha, "size": len(raw)},
+                        "app.js": {"sha256": sha, "size": len(raw)},
+                    }
+                }
+            ).encode()
+            key = hashlib.sha256(m).hexdigest()
+            (bundle / "objects" / key).write_bytes(m)
+            (bundle / "config.json").write_text(json.dumps({"manifestSha256": key}))
+            bootstrap.restore_authoring(bundle, atlas)
+            self.assertEqual((atlas / "app.js").read_text(), "local edit")
+            self.assertEqual((atlas / "data.json").read_bytes(), raw)
+            old = publish.ROOT
+            publish.ROOT = root
+            try:
+                publish.write_publication_label(
+                    "2026-11-02", "new-edition", bundle / "objects" / key
+                )
+                self.assertEqual(
+                    json.loads((atlas / "data/publication.json").read_text())[
+                        "release"
+                    ],
+                    "new-edition",
+                )
+            finally:
+                publish.ROOT = old
+
     def test_failed_activation_restores_previous_release(self):
         with tempfile.TemporaryDirectory() as d:
             root = Path(d)

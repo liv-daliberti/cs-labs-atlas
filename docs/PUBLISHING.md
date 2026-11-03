@@ -10,9 +10,9 @@ underlying frozen research release.
 
 From a clean `website` checkout, install `npm ci` and
 `python3 -m pip install -r requirements-publishing.txt`. Bootstrap metadata using
-`npm run bootstrap -- --without-papers` to run an existing publication. To build
+`npm run bootstrap -- --without-papers --authoring` to run an existing publication. To build
 new research, retain the atlas authoring data plus the frozen release and paper
-stores. They are research inputs, not fetched from arbitrary working directories.
+stores. The bootstrap restores the published atlas inputs without replacing local code; the exact accepted research release and stores are separate research inputs.
 
 ```sh
 python3 scripts/release.py prepare --release 2026-11-02 \

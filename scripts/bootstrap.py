@@ -129,12 +129,47 @@ def bootstrap(pin, output, papers=True, workers=4):
     return receipt
 
 
+def restore_authoring(bundle, atlas):
+    """Restore editable data inputs without replacing the contributor's source code."""
+    config = json.loads((bundle / "config.json").read_text())
+    manifest_path = bundle / "objects" / config["manifestSha256"]
+    if digest(manifest_path) != config["manifestSha256"]:
+        raise ValueError("Manifest checksum mismatch")
+    manifest = json.loads(manifest_path.read_text())
+    for name, entry in manifest["files"].items():
+        if name != "data.json" and not name.startswith(("data/", "downloads/")):
+            continue
+        target = (atlas / name).resolve()
+        if not target.is_relative_to(atlas.resolve()):
+            raise ValueError("Authoring path escapes atlas")
+        target.parent.mkdir(parents=True, exist_ok=True)
+        temp = target.with_name(target.name + ".restore-tmp")
+        try:
+            with temp.open("wb") as output:
+                for part in entry.get("chunks") or [entry]:
+                    source = bundle / "objects" / part["sha256"]
+                    if digest(source) != part["sha256"]:
+                        raise ValueError("Authoring object checksum mismatch")
+                    with source.open("rb") as handle:
+                        shutil.copyfileobj(handle, output)
+            if digest(temp) != entry["sha256"] or temp.stat().st_size != entry["size"]:
+                raise ValueError("Restored asset checksum mismatch")
+            temp.replace(target)
+        finally:
+            temp.unlink(missing_ok=True)
+
+
 if __name__ == "__main__":
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--pin", type=Path, default=ROOT / "deployment/bootstrap.json")
     p.add_argument("--output", type=Path, default=ROOT / "outputs/publication")
     p.add_argument("--without-papers", action="store_true")
     p.add_argument("--workers", type=int, choices=range(1, 17), default=4)
+    p.add_argument(
+        "--authoring",
+        action="store_true",
+        help="Restore atlas data inputs while preserving local code",
+    )
     a = p.parse_args()
     bootstrap(
         json.loads(a.pin.read_text()),
@@ -142,3 +177,6 @@ if __name__ == "__main__":
         not a.without_papers,
         a.workers,
     )
+
+    if a.authoring:
+        restore_authoring(a.output.resolve(), ROOT / "atlas")

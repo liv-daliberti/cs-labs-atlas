@@ -64,6 +64,21 @@ def fingerprint(bundle):
     }
 
 
+def write_publication_label(release, edition, manifest):
+    value = {
+        "schema": 1,
+        "release": edition,
+        "researchRelease": release,
+        "coverage": "Incomplete inventory; source evidence accompanies each record",
+        "researchManifestSha256": sha(manifest),
+    }
+    path = ROOT / "atlas/data/publication.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_suffix(".tmp")
+    temporary.write_text(json.dumps(value, indent=2) + "\n")
+    temporary.replace(path)
+
+
 def run(args, env=None):
     subprocess.run(args, cwd=ROOT, env=env, check=True)
 
@@ -244,6 +259,20 @@ if __name__ == "__main__":
                 p.error(
                     "release requires --bundle, --release, --releases-dir, --stores, --edition and --origin"
                 )
+            run(
+                [
+                    sys.executable,
+                    "scripts/release.py",
+                    "plan",
+                    "--release",
+                    a.release,
+                    "--releases-dir",
+                    str(a.releases_dir),
+                ]
+            )
+            write_publication_label(
+                a.release, a.edition, a.releases_dir / a.release / "MANIFEST.json"
+            )
             run(
                 [
                     sys.executable,
