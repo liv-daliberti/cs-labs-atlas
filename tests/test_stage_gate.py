@@ -189,3 +189,13 @@ def test_every_collector_stage_tool_imports_under_python_dash_I():
     for name in sorted(scripts):
         r = subprocess.run([sys.executable, '-I', str(Path(G.__file__).with_name(name))], capture_output=True, text=True, timeout=120)
         assert 'ModuleNotFoundError' not in r.stderr and 'ImportError' not in r.stderr, (name, r.stderr[-300:])
+
+
+def test_a_local_step_after_a_queued_step_waits_for_it(tree, monkeypatch):
+    """Stage 1: `rows` reads the captures the queued `captures` job writes; it must not run (and fail) before them."""
+    import atlas_pipeline as AP
+    monkeypatch.setattr(AP, 'submit', lambda name, schools, **k: {'captures': '5'})
+    calls = []
+    status, log = G.run_stage('u', 1, submit=True, run=lambda argv, cwd=None: calls.append(argv) or SimpleNamespace(returncode=0))
+    assert not calls and status == 'submitted'
+    assert [e['result'] for e in log[:2]] == ['queued', 'waits for the queued steps']

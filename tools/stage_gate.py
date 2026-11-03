@@ -375,6 +375,10 @@ def run_stage(key, stage, dry=False, submit=False, force=False, allow_shared=Fal
             log.append(dict(step=n, result='skipped: writes a shared file, needs --allow-shared'))
             continue
         if st['kind'] == 'local':
+            if slurm and not dry:  # a local step after a queued one reads its output (stage 1: rows need the captures): run it on the next pass
+                log.append(dict(step=n, result='waits for the queued steps'))
+                status = 'submitted'
+                break
             interp = [sys.executable, '-u'] if st['py'] == 'project' else [P.COLLECTOR_PY, '-I', '-u']
             argv = interp + [str(CODE / st['script'])] + [expand(a, key) for a in st['args']]
             if dry:
@@ -396,6 +400,10 @@ def run_stage(key, stage, dry=False, submit=False, force=False, allow_shared=Fal
         status = 'submitted'
     elif slurm and status == 'complete':
         status = 'submitted' if submit and not dry else 'review'
+    elif slurm and status == 'failed':  # nothing was queued: say so instead of the 'queued' entries above
+        for e in log:
+            if e.get('result') == 'queued':
+                e['result'] = 'not submitted (a step failed)'
     return status, log
 
 
