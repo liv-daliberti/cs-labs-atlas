@@ -1,0 +1,62 @@
+{
+ "school": "uchicago",
+ "bar": "docs/LAB-PAGES.md, acceptance bar (2026-10-31)",
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-11-03",
+   "label": "first UChicago audit (hand check by Claude against each row's own capture)",
+   "additions_generated_at": "2026-11-03T18:40:14+00:00",
+   "students": {
+    "sampled": 20,
+    "seed": 20261103,
+    "membership_errors": 0,
+    "doubtful_count": 5,
+    "role_or_year_errors": 2.5
+   },
+   "papers": null,
+   "items": {
+    "membership": [],
+    "doubtful": [
+     "Barber: Wanrong Zhu (PhD 2024) listed alumni=False",
+     "Barber: Yuetian Luo (DSI postdoc 2022-2025) alumni=False",
+     "Shan Lu: Chengcheng Wan (Ph.D. 2022) alumni=False",
+     "Barber: Jake Soloff (postdoc 2022-2025) alumni=False",
+     "Barber: Aabesh Bhattacharyya (PhD 2026, now Cubist) alumni=False"
+    ],
+    "role_or_year": []
+   },
+   "membership_score": 0,
+   "role_year_errors": 2.5,
+   "paper_score": null,
+   "result": "fail",
+   "note": "All 20 are members of the PI named on the page (Barber, Shan Lu, Casillas, Doiron); roles and years stated correctly. The 5 doubtful rows carry a stated end year (degree or closed range) but alumni=False: rule fix entry_years_end_the_stay, then a NEW sample. Aaron Liu (Doiron) checked: his name starts the next descriptor block of the people page."
+  },
+  {
+   "round": 2,
+   "date": "2026-11-03",
+   "label": "second UChicago audit after the alumni rules (hand check by Claude against each row's own capture)",
+   "additions_generated_at": "2026-11-03T19:29:40+00:00",
+   "students": {
+    "sampled": 20,
+    "seed": 20261105,
+    "membership_errors": 0,
+    "doubtful_count": 0,
+    "role_or_year_errors": 1
+   },
+   "papers": null,
+   "items": {
+    "membership": [],
+    "doubtful": [],
+    "role_or_year": [
+     "Shan Lu: Bogdan Stoica 'Ph.D. 2025, Post Doc @ Univ. of Illinois' read as postdoc; he is a Ph.D. graduate (the postdoc is his current post)"
+    ]
+   },
+   "membership_score": 0,
+   "role_year_errors": 1,
+   "paper_score": null,
+   "result": "pass",
+   "note": "Every sampled row is a member of the PI named on the page. One role error: 'Ph.D. YYYY, Post Doc @' (employment after the PhD) read as role postdoc; request to read the first degree token, not the employer."
+  }
+ ]
+}
