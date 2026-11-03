@@ -6,6 +6,13 @@ import atlas_release as AR
 import slurm_wait as W
 
 
+@pytest.fixture(autouse=True)
+def no_live_release_lock(monkeypatch):
+    """submit_and_wait refuses while a real release holds the atlas-release lease (2026-11-03: a live release made this file fail);
+    the tests are about the submit/wait protocol, so they never read the live lease."""
+    monkeypatch.setattr(AR, 'lock_holder', lambda root=None: None)
+
+
 class Sacct:
     """Scripted sacct: each call returns the next listing (or fails)."""
     def __init__(self, *listings):
