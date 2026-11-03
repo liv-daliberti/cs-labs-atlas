@@ -14,9 +14,8 @@ Date: 2026-11-03. Gate (`atlas stage-gate uchicago 2`): **pass** (347 candidates
 ## Reading the result
 - `not_faculty_listed` is mostly Argonne staff (D3: the lineage stays whole; non-PI Argonne staff never become PIs) and people of other universities whose DBLP
   record names Chicago (Kalai, Ahmed, Dahua Lin). Four names appear in a searched unit page without a faculty title only before the Mathematics URL was added.
-- Accepted additions include Booth (Birge, Chintagunta, Dube, Budish, ...), Statistics (Gao, Ma, Liang, Wu), Medical Imaging (Giger), applied mathematics and
-  computational science (Anitescu, Weare, Khoo, Hoskins), Mathematics (Hirschfeldt, Malliaris, Weinberger), 
-  Imaging (Giger) and Computational Science (Anitescu, Weare, Khoo, Hoskins). Whether logic and topology count as "computing as object" rests on the DBLP and
-  share tests; the owner may drop them in stage 3 review.
+- Accepted additions include Booth (Birge, Chintagunta, Dube, Budish, ...), Statistics (Gao, Ma, Liang, Wu), Mathematics (Hirschfeldt, Malliaris, Weinberger),
+  Medical Imaging (Giger) and applied mathematics / computational science (Anitescu, Weare, Khoo, Hoskins). Whether logic and topology count as "computing as object"
+  rests on the DBLP and share tests; the owner may drop them in stage 3 review.
 - Units not searched: Physics, Economics, Harris, Pritzker Molecular Engineering, Psychology, Linguistics. Their computing people appear only through the DBLP and
   OpenAlex rules; a person listed only there with a professor title elsewhere is `not_faculty_listed`. Candidate for an extra round if the owner wants it.
