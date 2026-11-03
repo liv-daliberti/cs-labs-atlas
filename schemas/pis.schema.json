@@ -408,6 +408,22 @@
        "x-rules": [
         "R-PAP-29"
        ]
+      },
+      "stale_listing_withheld": {
+       "description": "Advisee-route or unaffiliated papers withheld in a listing year OpenAlex contradicts (review list).",
+       "type": "integer",
+       "minimum": 0,
+       "x-rules": [
+        "R-PAP-30"
+       ]
+      },
+      "twin_record_elsewhere": {
+       "description": "Papers withheld because their twin record, dated earlier in a contradicted listing year, credits the PI elsewhere.",
+       "type": "integer",
+       "minimum": 0,
+       "x-rules": [
+        "R-PAP-30"
+       ]
       }
      },
      "patternProperties": {

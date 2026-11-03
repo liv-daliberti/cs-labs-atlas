@@ -594,10 +594,6 @@ def rows_from_hits(ctx):
             # (Rosenholtz, 2024) has no observed arrival or departure, only thin captures. And only when the PI's identified works of the
             # year credit other institutions more often than the school (Smola 2017: Amazon 7, CMU 1; Turitsyn 2019, MIT 11 vs D. E. Shaw 2, stays).
             n['cross_affiliation_transition_outside'] += 1; funnel[pi]['cross_affiliation_transition_outside'] += 1; continue
-        if via[0].startswith('cross-affiliated') and per is None and ctx.other_years[pi][int(w.get('publication_year') or 0)] > ctx.direct_years[pi][int(w.get('publication_year') or 0)]:
-            # R-PAP-29 guard (2026-11-03; Smola's 2017 Amazon paper under a stale CMU listing: Amazon 7 of 18 works, CMU 1): admitted only by a
-            # listing, and the PI's identified works of that year credit other institutions more often than the school
-            n['cross_affiliation_listing_contradicted'] += 1; funnel[pi]['cross_affiliation_listing_contradicted'] += 1; continue
         weak = unaffiliated or via[0].startswith('advisee at the school')
         if weak and per is None and lst is not None and lst['year'] in ctx.stale_years[pi]:
             # R-PAP-30: the listing of a year in which OpenAlex puts the PI's works at another institution and none at the school
