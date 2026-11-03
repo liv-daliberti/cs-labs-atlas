@@ -29,7 +29,7 @@ legacy ids), redirects.tsv, persons-cross-school.json, IDS-REPORT.json.
 A missing registry is seeded from releases/latest/hierarchy/ids/registry.sqlite.
 usage: atlas_ids.py [--registry PATH] [--dir HIERARCHY] [--no-sweep] [school ...]   (default: every released school)
 """
-import argparse, collections, csv, gzip, hashlib, io, json, re, shutil, sqlite3, sys, unicodedata, zlib
+import argparse, collections, csv, gzip, hashlib, io, json, os, re, shutil, sqlite3, sys, tempfile, unicodedata, zlib
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -563,9 +563,26 @@ def main(argv=None):
     ap.add_argument('--registry', default=str(P.data('ids') / 'registry.sqlite'))
     ap.add_argument('--no-sweep', action='store_true', help='skip the OpenAlex byline author ids (student -> PI elsewhere)')
     a = ap.parse_args(argv)
-    db = open_registry(a.registry)
-    res = run(a.schools or list(P.SCHOOL_IDS), a.dir, db, use_sweep=not a.no_sweep)
-    db.close()
+    # The registry lives on NFS, where every SQLite lock change drops the page cache: a run re-read the 56 MB file ~150
+    # times (8.5 GB) and three runs on 2026-11-03 hung for good inside a lock call. So the run works on a copy on local
+    # disk and the result replaces the registry in one rename; a failed run leaves the registry as it was.
+    reg = Path(a.registry)
+    work = Path(tempfile.mkdtemp(prefix='atlas-ids-', dir=os.environ.get('ATLAS_IDS_LOCAL_DIR') or tempfile.gettempdir()))
+    try:
+        local = work / 'registry.sqlite'
+        if reg.exists():
+            shutil.copy2(reg, local)
+        else:
+            open_registry(reg).close()  # seed from the latest release (or empty) at the real path, then copy it
+            shutil.copy2(reg, local)
+        db = open_registry(local, seed=False)
+        res = run(a.schools or list(P.SCHOOL_IDS), a.dir, db, use_sweep=not a.no_sweep)
+        db.close()
+        tmp = reg.with_name(f'.{reg.name}.{os.getpid()}.tmp')
+        shutil.copy2(local, tmp); tmp.chmod(0o644)
+        os.replace(tmp, reg)
+    finally:
+        shutil.rmtree(work, ignore_errors=True)
     r = res['report']
     print(json.dumps({k: v for k, v in r.items() if k != 'conflicts'}, indent=1))
     return 0

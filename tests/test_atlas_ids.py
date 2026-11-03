@@ -219,3 +219,28 @@ def test_R_ID_05_every_package_row_carries_its_id(tmp_path):
         assert all(json.loads(l)['atlasWorkId'].startswith('atl:w:') for l in gzip.open(D / 'lab_papers.jsonl.gz', 'rt'))
     src = open(A.__file__.replace('atlas_ids.py', 'make_release.py')).read()       # and the release refuses a package without them
     assert "atlas ids missing; run tools/atlas_ids.py" in src
+
+
+def test_main_works_on_a_local_copy_and_replaces_the_registry_in_one_step(tmp_path, monkeypatch):
+    """2026-11-03: SQLite locking on the NFS registry hung three release runs; main() runs on a local copy, then renames."""
+    write(tmp_path / 'a', fixture())
+    reg = tmp_path / 'ids' / 'registry.sqlite'
+    reg.parent.mkdir()
+    local = tmp_path / 'local'; local.mkdir()
+    monkeypatch.setenv('ATLAS_IDS_LOCAL_DIR', str(local))
+    assert A.main(['berkeley', 'princeton', '--dir', str(tmp_path / 'a'), '--registry', str(reg)]) == 0
+    assert reg.exists() and sorted(p.name for p in reg.parent.iterdir()) == ['registry.sqlite']   # no temp file left
+    assert list(local.iterdir()) == []                                                          # local copy cleaned up
+    first = sqlite3.connect(str(reg)).execute('select count(*) from ids').fetchone()[0]
+    assert first > 0
+    before = reg.read_bytes()
+
+    def boom(*a, **k):
+        raise RuntimeError('fail mid-run')
+    monkeypatch.setattr(A, 'run', boom)
+    try:
+        A.main(['berkeley', 'princeton', '--dir', str(tmp_path / 'a'), '--registry', str(reg)])
+    except RuntimeError:
+        pass
+    assert reg.read_bytes() == before                                                           # a failed run changes nothing
+    assert sorted(p.name for p in reg.parent.iterdir()) == ['registry.sqlite'] and list(local.iterdir()) == []
