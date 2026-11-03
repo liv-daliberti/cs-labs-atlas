@@ -8,8 +8,11 @@ Verdicts are kept in the browser's localStorage while you work (a convenience; t
 
   review_page.py labpage <school> --kind students|papers [--n 20] --seed S [--out DIR]
         the same random.sample(additions, n) under random.seed(S) that `labpage_audit.py sample` prints, as <out>/review-<school>-<kind>-<seed>.{json,html}
-  review_page.py accuracy <school> [--sample lab_precision|student_precision|lab_coverage ...] [--out DIR]
-        the rows of accuracy/sample[-<school>].json (the released schools share sample.json), one page per sample
+  review_page.py accuracy <school> [--sample lab_precision|student_precision|lab_coverage|student_coverage ...] [--round r2] [--out DIR]
+        the rows of accuracy/sample[-<school>].json (the released schools share sample.json), one page per sample; --round r2 reads the
+        round's own accuracy/round-r2/sample-<school>.json (every school has its own) and adds the student_coverage page (candidates
+        in the draw's order; the export keeps the first 50 confirmed). Judge it, Export, then `export <verdicts.json>` prints the
+        `ACCURACY_ROUND=r2 accuracy/record.py` line that records it into the round's verdicts-<school>.jsonl
   review_page.py build <review set .json> [--out FILE.html]      a page from a review set (`format: review-set/1`)
   review_page.py serve <page.html> [--port 8765]                 serve its folder on 127.0.0.1 only
   review_page.py export <verdicts.json> --round N --label TEXT [--date D] [--out DIR]
@@ -42,6 +45,8 @@ CONTROLS = {
                          dict(name='role_year', label='Role / years', options=['ok', 'error'])],
     'labpage_papers': [dict(name='paper', label='Paper', options=['ok', 'error', 'doubtful'])],
     'accuracy_precision': [dict(name='verdict', label='Verdict', options=['correct', 'incorrect', 'unclear'])],
+    'accuracy_student_coverage': [dict(name='has_coauthored_paper', label='Co-authored paper with the advisor', options=['yes', 'no']),
+                                  dict(name='linked', label='Linked in the build', options=['yes', 'no'])],
     'accuracy_lab_coverage': [dict(name='true_lab_paper', label='A true lab paper', options=['yes', 'no']),
                               dict(name='in_build', label='In the build', options=['yes', 'no'])],
 }
@@ -94,13 +99,17 @@ def labpage_set(school, kind, n, seed, rows=None, context=None):
                 title=f'{school}: lab-page {kind}, seed {seed}', controls=CONTROLS[f'labpage_{kind}'], optional=[], rows=out)
 
 
-def accuracy_files(school):
+def accuracy_files(school, rnd=None):
+    """(draw file, verdict file). In a round (`--round r2`, accuracy/sample.py ROUNDS) every school has its own pair in accuracy/round-<id>/."""
+    if rnd:
+        d = ACC / f'round-{rnd}'
+        return d / f'sample-{school}.json', d / f'verdicts-{school}.jsonl'
     return (ACC / 'sample.json', ACC / 'verdicts.jsonl') if school in RELEASED else (ACC / f'sample-{school}.json', ACC / f'verdicts-{school}.jsonl')
 
 
-def accuracy_sets(school, samples=('lab_precision', 'student_precision', 'lab_coverage'), sample_file=None, lab=None, stu=None):
+def accuracy_sets(school, samples=('lab_precision', 'student_precision', 'lab_coverage'), sample_file=None, lab=None, stu=None, rnd=None):
     """One review set per accuracy sample (docs/ADDING-A-SCHOOL.md stage 9). Rows come from the package files by the draw's row index."""
-    sf = Path(sample_file) if sample_file else accuracy_files(school)[0]
+    sf = Path(sample_file) if sample_file else accuracy_files(school, rnd)[0]
     S = json.loads(sf.read_text(encoding='utf-8'))['schools'][school]
     sets = {}
     for name in samples:
@@ -133,10 +142,16 @@ def accuracy_sets(school, samples=('lab_precision', 'student_precision', 'lab_co
                 rows.append(dict(id=it['key'], key=it['key'], heading=f"{d.get('title') or it['key']}  (PI {it.get('pi')})",
                                  fields=[['type', d.get('type')], ['year', d.get('year')], ['venue', d.get('venue')], ['DBLP key', d.get('key')], ['dois', ', '.join(d.get('dois') or [])]],
                                  quote='', links=[]))
+        elif name == 'student_coverage':
+            # the shuffled candidates in the draw's order: judge them in order, the export keeps the first 50 with a co-authored paper
+            for it in S.get('student_coverage_order') or []:
+                rows.append(dict(id=it['key'], key=it['key'], heading=f"{it.get('name')}  (advisor {it.get('pi')})",
+                                 fields=[['PhD year (thesis relation)', it.get('phd_year')], ['person', it.get('person')]], quote='', links=[]))
         else:
             continue
-        kind = 'accuracy_lab_coverage' if name == 'lab_coverage' else 'accuracy_precision'
-        sets[name] = dict(format='review-set/1', kind=kind, school=school, sample=name, seed=None, n=len(rows), title=f'{school}: accuracy {name}',
+        kind = {'lab_coverage': 'accuracy_lab_coverage', 'student_coverage': 'accuracy_student_coverage'}.get(name, 'accuracy_precision')
+        sets[name] = dict(format='review-set/1', kind=kind, school=school, sample=name, seed=None, round=rnd, n=len(rows),
+                          title=f'{school}: accuracy {name}' + (f' (round {rnd})' if rnd else ''),
                           controls=CONTROLS[kind], optional=OPTIONAL.get(kind, []), rows=rows)
     return sets
 
@@ -163,7 +178,7 @@ a{color:var(--acc)}.tag{font-size:12px;color:var(--mut);border:1px solid var(--l
 JS = '''
 const SET = JSON.parse(document.getElementById('set').textContent);
 const ALL = SET.controls.concat(SET.optional || []);
-const KEY = 'review:' + SET.school + ':' + SET.sample + ':' + SET.seed;
+const KEY = 'review:' + SET.school + ':' + SET.sample + ':' + SET.seed + ':' + (SET.round || '');
 let V = {};
 try { V = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { V = {}; }
 function save() { try { localStorage.setItem(KEY, JSON.stringify(V)); } catch (e) {} }
@@ -179,11 +194,11 @@ SET.rows.forEach((r, k) => {
   const note = document.getElementById('n-' + k); note.value = v.note || ''; note.oninput = () => setv(r.id, 'note', note.value);
 });
 document.getElementById('export').onclick = () => {
-  const out = { format: 'review-verdicts/1', kind: SET.kind, school: SET.school, sample: SET.sample, seed: SET.seed, exported_at: new Date().toISOString(),
+  const out = { format: 'review-verdicts/1', kind: SET.kind, school: SET.school, sample: SET.sample, seed: SET.seed, round: SET.round || null, exported_at: new Date().toISOString(),
     verdicts: SET.rows.map(r => Object.assign({ id: r.id, key: r.key || null, stratum: r.stratum || null }, V[r.id] || {})) };
   const a = document.createElement('a');
   a.href = URL.createObjectURL(new Blob([JSON.stringify(out, null, 1)], { type: 'application/json' }));
-  a.download = 'verdicts-' + SET.school + '-' + SET.sample + (SET.seed != null ? '-' + SET.seed : '') + '.json'; a.click();
+  a.download = 'verdicts-' + SET.school + '-' + SET.sample + (SET.round ? '-' + SET.round : '') + (SET.seed != null ? '-' + SET.seed : '') + '.json'; a.click();
 };
 document.getElementById('clear').onclick = () => { if (confirm('Forget every verdict on this page?')) { V = {}; save(); location.reload(); } };
 progress();
@@ -247,6 +262,7 @@ def labpage_spec(v, round_, label, date=None):
 def accuracy_tsv(v):
     """Lines for accuracy/record.py: <ref> <verdict> <failure_type or -> <reason> [<evidence>] [<extra JSON>]; <ref> is the row index or the item key."""
     lines = []
+    kept = 0
     for r in v['verdicts']:
         note = (r.get('note') or '-').replace('\t', ' ').replace('\n', ' ')
         if v['sample'] == 'lab_coverage':
@@ -255,6 +271,20 @@ def accuracy_tsv(v):
             truth, built = r['true_lab_paper'] == 'yes', r['in_build'] == 'yes'
             verdict = 'correct' if truth == built else 'incorrect'
             lines.append('\t'.join([r['id'], verdict, '-' if verdict == 'correct' else 'missing_from_build', note, '', json.dumps(dict(true_lab_paper=truth, in_build=built))]))
+        elif v['sample'] == 'student_coverage':
+            if not r.get('has_coauthored_paper'):
+                continue                      # not judged yet (the judge stops at 50 confirmed students)
+            has = r['has_coauthored_paper'] == 'yes'
+            if has and not r.get('linked'):
+                raise SystemExit(f"row {r['id']}: linked is needed when a co-authored paper exists")
+            linked = r.get('linked') == 'yes'
+            if has:
+                kept += 1
+                if kept > 50:
+                    break
+            verdict = 'correct' if (linked or not has) else 'incorrect'
+            lines.append('\t'.join([r['id'], verdict, 'student_not_linked' if verdict == 'incorrect' else '-', note, '',
+                                    json.dumps(dict(has_coauthored_paper=has, linked=linked))]))
         else:
             if not r.get('verdict'):
                 raise SystemExit(f"unjudged row {r['id']}")
@@ -282,7 +312,7 @@ def scratch_dir():
 
 
 def write_set(rs, out):
-    stem = f"review-{rs['school']}-{rs['sample']}" + (f"-{rs['seed']}" if rs.get('seed') is not None else '')
+    stem = f"review-{rs['school']}-{rs['sample']}" + (f"-{rs['round']}" if rs.get('round') else '') + (f"-{rs['seed']}" if rs.get('seed') is not None else '')
     (out / f'{stem}.json').write_text(json.dumps(rs, indent=1, ensure_ascii=False) + '\n', encoding='utf-8')
     (out / f'{stem}.html').write_text(page(rs), encoding='utf-8')
     print(out / f'{stem}.html')
@@ -311,7 +341,7 @@ def main(argv=None):
     sub = ap.add_subparsers(dest='cmd', required=True)
     s = sub.add_parser('labpage'); s.add_argument('school'); s.add_argument('--kind', choices=['students', 'papers'], default='students')
     s.add_argument('--n', type=int, default=20); s.add_argument('--seed', type=int, required=True); s.add_argument('--out')
-    s = sub.add_parser('accuracy'); s.add_argument('school'); s.add_argument('--sample', nargs='*'); s.add_argument('--out')
+    s = sub.add_parser('accuracy'); s.add_argument('school'); s.add_argument('--sample', nargs='*'); s.add_argument('--round'); s.add_argument('--out')
     s = sub.add_parser('build'); s.add_argument('set'); s.add_argument('--out')
     s = sub.add_parser('serve'); s.add_argument('page'); s.add_argument('--port', type=int, default=8765)
     s = sub.add_parser('export'); s.add_argument('verdicts'); s.add_argument('--round'); s.add_argument('--label', default=''); s.add_argument('--date'); s.add_argument('--out')
@@ -322,7 +352,8 @@ def main(argv=None):
     if a.cmd == 'labpage':
         write_set(labpage_set(a.school, a.kind, a.n, a.seed, context=page_context(a.school) if a.kind == 'students' else None), out)
     elif a.cmd == 'accuracy':
-        for rs in accuracy_sets(a.school, tuple(a.sample or ('lab_precision', 'student_precision', 'lab_coverage'))).values():
+        default = ('lab_precision', 'student_precision', 'lab_coverage') + (('student_coverage',) if a.round else ())
+        for rs in accuracy_sets(a.school, tuple(a.sample or default), rnd=a.round).values():
             write_set(rs, out)
     elif a.cmd == 'build':
         rs = json.loads(Path(a.set).read_text(encoding='utf-8'))
@@ -344,7 +375,8 @@ def main(argv=None):
         else:
             f = out / f"record-{v['school']}-{v['sample']}.tsv"
             f.write_text(accuracy_tsv(v), encoding='utf-8')
-            print(f'{f}\nrecord it: accuracy/record.py {v["school"]} {v["sample"]} < {f}')
+            env = f'ACCURACY_ROUND={v["round"]} ' if v.get('round') else ''
+            print(f'{f}\nrecord it: {env}accuracy/record.py {v["school"]} {v["sample"]} < {f}')
     return 0
 
 

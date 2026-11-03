@@ -94,3 +94,37 @@ def test_accuracy_sets_use_the_draw_row_index(tmp_path):
 def test_serve_binds_only_the_loopback_interface():
     import inspect
     assert "('127.0.0.1', port)" in inspect.getsource(R.serve)
+
+
+def test_round_files_and_student_coverage(tmp_path, monkeypatch):
+    monkeypatch.setattr(R, 'ACC', tmp_path)
+    assert R.accuracy_files('michigan', 'r2') == (tmp_path / 'round-r2' / 'sample-michigan.json', tmp_path / 'round-r2' / 'verdicts-michigan.jsonl')
+    assert R.accuracy_files('cmu', 'r2')[0].name == 'sample-cmu.json'        # a round gives every school its own files
+    f = tmp_path / 's.json'
+    cands = [dict(key=f'P|p{i}', pi='P', person=f'p{i}', name=f'N{i}', phd_year=2020) for i in range(60)]
+    f.write_text(json.dumps({'schools': {'u': {'student_coverage_order': cands}}}))
+    rs = R.accuracy_sets('u', ('student_coverage',), sample_file=f, rnd='r2')['student_coverage']
+    assert rs['round'] == 'r2' and rs['n'] == 60 and rs['rows'][0]['id'] == 'P|p0' and [c['name'] for c in rs['controls']] == ['has_coauthored_paper', 'linked']
+    assert 'round r2' in rs['title'] and "SET.round" in R.page(rs)
+    rows = [dict(id=f'P|p{i}', has_coauthored_paper='yes', linked='yes' if i else 'no') for i in range(55)] + [dict(id='P|p57', has_coauthored_paper='no')]
+    rows.insert(3, dict(id='P|x'))                                            # unjudged: skipped
+    lines = R.accuracy_tsv(verdicts('accuracy_student_coverage', rows, sample='student_coverage')).splitlines()
+    assert len(lines) == 50                                                   # the first 50 confirmed students only
+    a = lines[0].split('\t')
+    assert a[1] == 'incorrect' and a[2] == 'student_not_linked' and json.loads(a[5]) == dict(has_coauthored_paper=True, linked=False)
+    with pytest.raises(SystemExit):
+        R.accuracy_tsv(verdicts('accuracy_student_coverage', [dict(id='P|p1', has_coauthored_paper='yes')], sample='student_coverage'))
+
+
+def test_student_coverage_tsv_is_what_record_py_reads(tmp_path, monkeypatch):
+    spec = importlib.util.spec_from_file_location('acc_record', CODE / 'accuracy' / 'record.py')
+    rec = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(rec)
+    f = tmp_path / 's.json'
+    f.write_text(json.dumps({'schools': {'u': {'student_coverage_order': [dict(key='P|a', pi='P', person='a', name='A', phd_year=2020), dict(key='P|b', pi='P', person='b', name='B', phd_year=2021)]}}}))
+    monkeypatch.setattr(rec, 'files', lambda school: (f, tmp_path / 'v.jsonl'))
+    v = verdicts('accuracy_student_coverage', [dict(id='P|a', has_coauthored_paper='yes', linked='no'), dict(id='P|b', has_coauthored_paper='no')], sample='student_coverage')
+    monkeypatch.setattr('sys.stdin', io.StringIO(R.accuracy_tsv(v)))
+    rec.main('u', 'student_coverage')
+    got = [json.loads(x) for x in (tmp_path / 'v.jsonl').read_text().splitlines()]
+    assert [(g['item'], g['verdict'], g['has_coauthored_paper'], g['linked']) for g in got] == [('P|a', 'incorrect', True, False), ('P|b', 'correct', False, False)]

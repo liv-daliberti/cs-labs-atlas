@@ -189,7 +189,9 @@ list), `no_lab_page`, `page_not_captured`, `page_unparseable`.
    `random.sample` as `labpage_audit.py sample` and writes a local HTML page (no external resource) with each row's facts, verbatim quote,
    capture link and a verdict box; its Export button downloads the verdicts, and `atlas review-page export <verdicts.json> --round N --label ...`
    turns them into the round spec (scores and result by this bar, scaled by sample size / 20) that `labpage_audit.py record` writes into
-   `labpage-handcheck.json`. Accuracy samples work the same way (`atlas review-page accuracy <school>`, export -> `accuracy/record.py` input).
+   `labpage-handcheck.json`. Accuracy samples work the same way (`atlas review-page accuracy <school>`, export -> `accuracy/record.py` input). A round's draw has its own files: `atlas review-page accuracy <school> --round r2` reads
+   `accuracy/round-r2/sample-<school>.json`, adds the student-coverage page (candidates in the draw's order, the export keeps the first 50
+   confirmed) and the export prints the `ACCURACY_ROUND=r2 accuracy/record.py` line that records into `verdicts-<school>.jsonl`.
    Open the file in a browser, or `atlas review-page serve <page.html>` (127.0.0.1 only). The judgement stays the checker's.
 5. After 3 failed rounds at a school the work stops and the error patterns are reported, rather than patched further
    (Princeton was given a fourth and last round under the stricter undated-name rule; if it fails, its students are not wired).
