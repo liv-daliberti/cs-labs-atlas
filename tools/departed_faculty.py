@@ -16,10 +16,9 @@ exclude S), `dblp_affiliation_elsewhere` (DBLP notes exist and none matches S). 
 `--include` forces named PIs (e.g. Gupta, Platzer) into the list whatever their signals.
 usage: departed_faculty.py [--schools a,b] [--include "Platzer,Gupta"] [--out FILE]
 """
-import argparse, collections, gzip, json, sys
+import argparse, collections, gzip, json
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
 import oa_snapshot as S  # noqa: E402
 import school_config as SC  # noqa: E402

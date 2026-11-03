@@ -1,7 +1,7 @@
 """ROADMAP #21: no NEW sys.path edits. The edits that remain are in tests/sys_path_allowlist.json with the reason: entry points that run
 under `python -I` (which ignores PYTHONPATH and leaves the script directory off sys.path), the helpers they import, vendored code (never
 edited) and a few cross-directory imports. An allowlisted file that loses its edit must leave the list, so the list only shrinks.
-The packaging list (pyproject py-modules) must name every module of tools/."""
+setup.py discovers the modules of tools/ for `pip install -e .`."""
 import json
 import re
 import subprocess
@@ -26,9 +26,8 @@ def test_no_new_sys_path_edits_outside_the_allowlist():
     assert all(allow.values())
 
 
-def test_pyproject_py_modules_match_tools():
+def test_packaging_discovers_every_tools_module():
     cfg = tomllib.loads((CODE / 'pyproject.toml').read_text())
-    listed = set(cfg['tool']['setuptools']['py-modules'])
-    assert listed == {p.stem for p in (CODE / 'tools').glob('*.py')}
-    assert cfg['tool']['setuptools']['package-dir']['pihier'] == 'tools/pihier'
+    assert 'py-modules' not in cfg['tool']['setuptools'] and cfg['tool']['setuptools']['package-dir']['pihier'] == 'tools/pihier'
     assert 'tools' in cfg['tool']['pytest']['ini_options']['pythonpath']
+    assert "glob('*.py')" in (CODE / 'setup.py').read_text()   # py-modules = tools/*.py, discovered at build time
