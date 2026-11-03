@@ -34,7 +34,7 @@ def student_sources(rels):
         for r in s.get('relations') or []:
             for src in r.get('sources') or []:
                 q, u = src.get('quote') or '', src.get('url') or ''
-                if 'PhD roster' in (r.get('section') or '') or r.get('years_basis') == 'roster_years':
+                if 'PhD roster' in (r.get('section') or '') or r.get('years_basis') == 'roster_years' or re.search(r'/alumni/phd-alumni|/people/students', u):
                     kinds.add('roster+co-author')
                 elif 'ttic.edu/students' in u or 'ttic.edu/student-alumni' in u or re.search(r'Advisors?\s*[:-]', q):
                     kinds.add('adviser list')

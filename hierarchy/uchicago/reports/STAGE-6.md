@@ -1,6 +1,6 @@
 # University of Chicago, stage 6: students
 
-Date: 2026-11-03. Gate (`atlas stage-gate uchicago 6`): **fail, 2 open**: chain-audit `students` 114 of 138 labs unexplained (24 have students), `one_person` 1 (student-audit has no entry for the school). The lab-page students acceptance is **accepted** (round 2).
+Date: 2026-11-03. Gate (`atlas stage-gate uchicago 6`): **pass** after the second pass below (the first pass left 114 labs without students; see the second pass). Per-lab table: `LAB-COVERAGE.md` / `.json`.
 
 ## Sources, in the protocol's order
 1. **Thesis repository: Knowledge@UChicago probed, skipped.** robots.txt (2026-11-03) has only a `*` group (no AI-agent rules), Crawl-delay 10, and disallows `/search`, `/api`, `/administration`, `/uploads`. It is allowed, but not usable: the only listing is the sitemap (16,089 record pages), search and API are off limits, so reading the advisor field is one record page per 10 s (about 45 hours) with no way to select computer-science dissertations.
@@ -18,3 +18,25 @@ Date: 2026-11-03. Gate (`atlas stage-gate uchicago 6`): **fail, 2 open**: chain-
 - **114 labs without students.** Options: wire the accepted additions (Barber, Casillas, Doiron, Shan Lu, Tulsiani, Willett, ...), then a researched few-students pass over the remaining labs (Michigan was source-limited the same way, 116 of 288). Owner call: how much of that pass, and whether Statistics/Booth labs without a lab page may carry the reason "no group page; advisees only in the program directories".
 - **one_person:** `student_audit.py` must run with every school and rewrites the shared TRACKED `hierarchy/student-audit.json`; not run while a release rebuilds the main checkout. Request R12: a school-local audit output for an onboarding school (as the lab-page summary).
 - One known rule defect: "Ph.D. YYYY, Post Doc @ ..." reads as postdoc (request R13: read the first degree token, not the employer).
+
+## Second pass (owner rule 2026-11-03: every lab needs students, a PI identity and papers, or a really good recorded reason)
+Rule recorded in docs/DECISIONS.md. Per-lab table: `reports/LAB-COVERAGE.md` and `.json`, from the general `tools/lab_coverage.py <school>`.
+
+**Why 64 labs had 0 papers.** The shared DBLP persons file (`dblp-dump-persons.json.gz`) had no UChicago PIs because stage 5's step writing it is shared and was skipped; the builder then found no DBLP titles for anyone without an OpenAlex id. `dblp_dump_persons.py <school>` now writes a school-local file the builder reads next to the shared one (the shared file feeds release builds and is never rewritten). Labs with papers: 74 -> 124 of 134.
+
+**Four people are not UChicago faculty** (Ionides, Nobel, Pourahmadi, Radchenko: the Statistics listing titles them with another university): excluded by review (school overrides). 134 labs remain.
+
+**Labs with students:** 24 before wiring the accepted additions, 27 after wiring, **62 after the fill** (of 134).
+Student sources now: TTIC current-student list with `Advisor:` lines (176 relations), TTIC alumni list with advisers (graduation year), names-only PhD rosters (Statistics PhD alumni, CS student list 2018-2022) accepted only with co-authorship (R-STU-02; the PI last author on one paper or two papers together; 235 relations), lab pages. Student rows per primary source: adviser lists 123, rosters + co-authorship 216, lab pages 76 (counted once, by the first source that holds them).
+Reasons recorded (`lab-coverage-reasons.json`, derived from the census row or researched): 0 students: {'sources_exhausted': 60, 'appointment_ended_early': 4, 'new_hire_2025_or_later': 8}; 0 papers: {'no_identity': 1, 'appointment_ended_early': 1, 'no_school_affiliated_works': 4, 'new_hire_2025_or_later': 4}. Median papers per lab 20.
+The 60 `sources_exhausted` labs list every source checked (TTIC lists, the two rosters with co-authorship, the lab page status and URLs, Knowledge@UChicago skipped by owner decision); they are the weakest reasons and the next place to dig (Booth and Statistics faculty have no PhD roster page we could find; Booth `/phd` paths have no Wayback captures).
+Papers without a reason before: Todd Dupont and Anne Rogers (no identity, evidence in the overrides), Ukita, Simon, Kurtz, O'Donnell (no work with the school on the byline passes identity and appointment), Ignatiadis and Xinran Li fixed by reviewed OpenAlex ids.
+
+**Hand rounds (standard bar).** Round 1 fail, round 2 pass (lab-page additions). Round 3 (new sources, seed 20261106): fail, 3 membership errors (a namesake's 2024 paper linking a 2017 Statistics alumnus; two roster graduates from 2013 and 2005). Rules added: graduation years before 2016 dropped, the co-authored paper must fall in the roster years, alumni name prefixes. Round 4 (a new sample of 20 from 411 rows, seed 20261108): the roster rows first needed one more rule (the PI last author or two papers together) to be precise; final sample **passes**: 0 membership errors, 1 doubtful (0.5), 0 role/year. Four rounds used; recorded in `labpage-handcheck.json`, accepted in `labpage-acceptance.json`.
+
+**R12 done:** `student_audit.py <key>` writes `hierarchy/<key>/student-audit-school.json` for an onboarding school (never the shared tracked file); chain_audit reads it; `one_person` passes (0 within-lab pairs, 1 across-lab person).
+**Also:** chain_audit counts a recorded lab-coverage reason as an explanation for an onboarding school only (released schools unchanged).
+
+## Open
+- 60 labs at 0 students rest on `sources_exhausted`; the owner may want a researched few-students pass on the Booth, Statistics and Mathematics faculty (PI CVs and homepages named by hand), or accept.
+- Wired additions: 44 lab-page students are in the build (round 2 acceptance stays valid); the directory rows reach the build through `labpage-evidence.json` (extract), not through additions.

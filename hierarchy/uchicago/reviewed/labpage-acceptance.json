@@ -3,24 +3,16 @@
  "decided_at": "2026-11-03",
  "bar": "docs/LAB-PAGES.md, acceptance bar",
  "additions_file": "hierarchy/uchicago/reviewed/labpage-additions.json",
- "additions_generated_at": "2026-11-03T19:47:34+00:00",
- "additions_sha256": "922ab2ad40f2ddff2e5bc498df29a746afb1e0474056e5189b8a0abb57e94899",
+ "additions_generated_at": "2026-11-03T20:34:11+00:00",
+ "additions_sha256": "7918beb52c83cce63b56d6821bf27e1ce441dd6d3b07c908f6026023b5b133d3",
  "students": {
   "accepted": true,
-  "round": 2,
+  "round": 4,
   "sample_size": 20,
-  "seed": 20261105,
+  "seed": 20261108,
   "membership_errors": 0,
-  "role_or_year_errors": 1,
-  "reason": "round 2 passes the bar (membership 0 <= 1, role/year 1 <= 2); round 1 (seed 20261103) failed on 5 alumni rows read as current, fixed by entry_years_end_the_stay and the newest-capture alumni reading",
-  "restamped_from": {
-   "sha256": "642c8fa770a0c5f2dfc9cffc080acc3434294c122b6dc65dfe3c3a66c25fcff7",
-   "generated_at": "2026-11-03T19:29:40+00:00",
-   "removed": 44,
-   "reason": "rows removed by existing rules on regeneration (appointment periods R-PAP-01/03, strict current rule); no row added or changed"
-  },
-  "counts": {
-   "proposed": 0
-  }
+  "role_or_year_errors": 0,
+  "doubtful": 1,
+  "reason": "round 4 passes on the new sources (TTIC adviser lists, PhD rosters + co-authorship with the PI last author or two papers); round 2 (lab-page additions) passed earlier; rounds 1 and 3 failed and led to the alumni, graduation-year, namesake and last-author rules"
  }
 }
