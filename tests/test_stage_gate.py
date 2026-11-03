@@ -199,3 +199,13 @@ def test_a_local_step_after_a_queued_step_waits_for_it(tree, monkeypatch):
     status, log = G.run_stage('u', 1, submit=True, run=lambda argv, cwd=None: calls.append(argv) or SimpleNamespace(returncode=0))
     assert not calls and status == 'submitted'
     assert [e['result'] for e in log[:2]] == ['queued', 'waits for the queued steps']
+
+
+def test_stage1_captures_are_done_when_the_plan_check_passes(tree):
+    """coverage.json is written by the NEXT step (rows), so it can not prove the captures ran: the step has a check command instead."""
+    st = G.STEPS['1'][0]
+    assert st['name'] == 'captures' and st['check'][:1] == ['listings/scripts/plan_fetch.py']
+    seen = []
+    assert G.step_done('u', st, run=lambda argv, **k: seen.append(argv) or SimpleNamespace(returncode=0)) is True
+    assert seen[0][-2:] == ['u', '--check'] and seen[0][1] == '-I'
+    assert G.step_done('u', st, run=lambda argv, **k: SimpleNamespace(returncode=1)) is False

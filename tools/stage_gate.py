@@ -282,8 +282,8 @@ def L(name, script, *args, done=(), shared=False, py='project'):
     return dict(name=name, kind='local', script=script, args=list(args), done=list(done), shared=shared, py=py)
 
 
-def Q(name, cmd, cpus=2, mem='16G', time='04:00:00', py='project', done=(), shared=False):
-    return dict(name=name, kind='slurm', cmd=cmd, cpus=cpus, mem=mem, time=time, py=py, done=list(done), shared=shared)
+def Q(name, cmd, cpus=2, mem='16G', time='04:00:00', py='project', done=(), shared=False, check=None):
+    return dict(name=name, kind='slurm', cmd=cmd, cpus=cpus, mem=mem, time=time, py=py, done=list(done), shared=shared, check=check)
 
 
 def H(name, todo):
@@ -294,7 +294,7 @@ STEPS = {
     '0': [L('hosts', 'tools/school_hosts.py', '{key}', done=['hosts.json']),
           Q('sweep', 'PY $TOOLS/sweep_school.py {school}', cpus=1, mem='8G', time='1-00:00:00', done=['sweep-check.json']),
           H('charter', 'fill schools/{key}.toml (TEMPLATE.toml documents every field), atlas charters, review and commit it')],
-    '1': [Q('captures', 'bash $TOOLS/../listings/scripts/run_school.sh {school}', cpus=1, mem='4G', time='12:00:00', done=['coverage.json']),
+    '1': [Q('captures', 'bash $TOOLS/../listings/scripts/run_school.sh {school}', cpus=1, mem='4G', time='12:00:00', check=['listings/scripts/plan_fetch.py', '{key}', '--check']),
           L('rows', 'tools/listing_rows.py', '{key}'),
           H('coverage', 'each department-year without an ok capture needs a plan reason (nocapture, unusable, out_of_scope); fix format drift in tools/listing_formats.py')],
     '2': [L('census', 'tools/census_build.py', '{key}', done=['census-faculty.json']),
@@ -342,7 +342,13 @@ def expand(s, key):
     return s.replace('{key}', key).replace('{school}', key)
 
 
-def step_done(key, st):
+def step_done(key, st, run=None):
+    """A step is done when its output files exist, or (`check`: a script of this checkout, run isolated) when the check exits 0 (stage 1's captures:
+    `plan_fetch.py <key> --check`, because the file the next step writes, coverage.json, can not be the proof that the captures ran)."""
+    if st.get('check'):
+        import subprocess
+        argv = [P.COLLECTOR_PY, '-I', '-u', str(CODE / st['check'][0])] + [expand(a, key) for a in st['check'][1:]]
+        return (run or subprocess.run)(argv, cwd=str(CODE), capture_output=True).returncode == 0
     return bool(st.get('done')) and all(Path(P.data(n, key)).exists() for n in st['done'])
 
 
