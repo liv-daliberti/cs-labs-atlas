@@ -1494,7 +1494,8 @@ def audit_students(kit, ctx, p, lab, plan, auto_plan=False):
                 miss['reason_code'] = 'name_unresolved'
                 miss['note'] = f'quote check failed: {str(e)[:120]}'
                 continue
-            row.update(pi=pi, alumni=alumni, rule='LP-STU-01', auto=True, pi_first_year=pi_start_year(p),
+            # alumni: the best (newest) capture's reading; an older capture that listed the person as current must not keep a graduate 'current'
+            row.update(pi=pi, alumni=bool(best.get('alumni', alumni)), rule='LP-STU-01', auto=True, pi_first_year=pi_start_year(p),
                        role=best.get('role') if best.get('role') in ROLE_OK else None, role_basis=best.get('role_basis') or 'none',
                        years=years, years_basis=ybasis if years else 'none')
             adds.append(row)
