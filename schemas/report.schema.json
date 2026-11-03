@@ -1091,6 +1091,26 @@
    "x-rules": [
     "R-PAP-30"
    ]
+  },
+  "studentInitialsMerges": {
+   "description": "R-STU-13: student records of one lab merged because their names differ only by initial-only tokens or a second surname (kept and merged: [person id, name]).",
+   "type": "array",
+   "items": {
+    "type": "object"
+   },
+   "x-rules": [
+    "R-STU-13"
+   ]
+  },
+  "studentSurnameTypoCandidates": {
+   "description": "R-STU-13: same-lab student pairs whose surnames differ by one edit; never merged by the build, queued for review (hierarchy/reviewed/student-name-candidates.json; only a reviewed same_person verdict merges).",
+   "type": "array",
+   "items": {
+    "type": "object"
+   },
+   "x-rules": [
+    "R-STU-13"
+   ]
   }
  },
  "required": [

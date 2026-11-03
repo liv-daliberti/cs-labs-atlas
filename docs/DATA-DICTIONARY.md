@@ -531,6 +531,8 @@ The build's report: counters, exclusions, samples of what the rules dropped, and
 | `droppedWithoutHashedSource[].student` | string | yes | The student record id. |  |  |
 | `droppedWithoutHashedSource[].name` | string | yes | The student's name. |  |  |
 | `staleListingReview` | array of object | no | R-PAP-30 review list: PI-years whose department listing is contradicted by OpenAlex (works at another institution, none at the school; kind listing_year, with the papers withheld) and records whose twin credits the PI elsewhere only (kind twin_record). Nothing here closes a period; the owner reviews it. |  | R-PAP-30 |
+| `studentInitialsMerges` | array of object | no | R-STU-13: student records of one lab merged because their names differ only by initial-only tokens or a second surname (kept and merged: [person id, name]). |  | R-STU-13 |
+| `studentSurnameTypoCandidates` | array of object | no | R-STU-13: same-lab student pairs whose surnames differ by one edit; never merged by the build, queued for review (hierarchy/reviewed/student-name-candidates.json; only a reviewed same_person verdict merges). |  | R-STU-13 |
 
 ## `hierarchy/<school>/student_papers.jsonl.gz`
 
