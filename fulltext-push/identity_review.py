@@ -246,7 +246,10 @@ def apply_alt(school, scope='pending'):
             n['pass_meta_rejected_not_on_page1'] += 1  # re-checked at apply: the plan predates this rule
             continue
         if x['verdict'] in ('pass_alt', 'pass_meta'):
-            dd = db.execute('SELECT doi FROM works WHERE id=?', (x['work'],)).fetchone()
+            dd = db.execute('SELECT doi, title FROM works WHERE id=?', (x['work'],)).fetchone()
+            if dd and not R.own_doi_title_ok(dd[0], dd[1], x.get('alt_title')):
+                n['rejected_title_too_different_without_arxiv_doi'] += 1
+                continue
             if dd and str(dd[0] or '').lower().startswith(('10.5281/', '10.6084/', '10.17605/', '10.5061/', '10.7910/')):
                 n['rejected_deposit_record'] += 1  # a Zenodo / Figshare / OSF / Dryad / Dataverse deposit is not the paper whose PDF sits in it (hand check 2026-11-02)
                 continue

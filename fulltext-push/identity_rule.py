@@ -62,6 +62,19 @@ def meta_describes_page(meta, p1):
     return len(mw) >= 4 and sum(x in head for x in mw) / len(mw) >= 0.8
 
 
+def own_doi_title_ok(doi, catalog_title, matched_title):
+    """The extra bar for an alternative-title pass (hand check 2026-11-03, 20 fresh copies plus a full audit of the 67 passes whose DOI is not
+    an arXiv DOI: 7 clearly and 4 probably another paper, all found through an OpenAlex record the work was attached to, not through the work's own
+    DOI). When the work's DOI is an arXiv DOI (10.48550/arxiv.<id>) the page-1 stamp of that id is itself the proof and nothing more is asked;
+    otherwise the matched title must share at least 80% of the shorter title's significant words with the catalog title, so a retitle through a
+    wrong record cannot pass. A retitled paper with a publisher DOI stays pending: a false reject, on the safe side."""
+    if str(doi or '').lower().startswith('10.48550/'):
+        return True
+    a = {x for x in norm_words(catalog_title) if len(x) >= 3 and x not in STOP}
+    b = {x for x in norm_words(matched_title) if len(x) >= 3 and x not in STOP}
+    return bool(a and b) and len(a & b) / min(len(a), len(b)) >= 0.8
+
+
 def judge_meta(meta, titles, p1, first, doi):
     """A pass from the PDF's own title metadata (ROADMAP #25): the metadata title and one of the work's known titles agree (at least 4
     significant words; 90% of the known title's words are in the metadata title and 70% of the metadata title's words are in the

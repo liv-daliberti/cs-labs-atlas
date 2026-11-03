@@ -33,3 +33,12 @@ def test_the_metadata_title_must_be_the_title_on_page_one():
     assert R.judge_meta(meta, [meta], p1, 'etinger', None)[0] == 'undecided'
     ok = 'Ten Simple Rules for AI-Assisted Coding in Science'
     assert R.meta_describes_page(ok, ok + ' arXiv:2510.22254v2 Eric Bridgeford')
+
+
+def test_a_retitle_without_an_arxiv_doi_needs_nearly_the_same_title():
+    ok = R.own_doi_title_ok
+    assert ok('10.48550/arxiv.1905.05049', 'Learning to Search Efficiently Using Comparisons', 'Scalable and Efficient Comparison-based Search without Features')
+    assert ok('10.1109/tsg.2021.3138615', 'Smoothed Least-Laxity-First Algorithm for Electric Vehicle Charging', 'Smoothed Least-Laxity-First Algorithm for EV Charging')
+    assert not ok('10.4230/lipics.stacs.2022.17', 'On Testing Decision Tree', 'Properly learning decision trees in almost polynomial time')
+    assert not ok('10.2139/ssrn.3934640', 'Earning Sans Learning: Noisy Decision-Making and Labor Supply', 'Fair Incentives for Repeated Engagement')
+    assert not ok(None, 'Distribution-Free Testing of Linear Functions', 'Is your function low-dimensional?')
