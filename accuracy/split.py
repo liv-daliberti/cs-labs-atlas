@@ -10,8 +10,7 @@ import json
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).parent))
-from sample import ACC_DIR, ROUNDS  # noqa: E402
+from sample import ACC_DIR, ROUNDS
 
 
 def counts(rnd):

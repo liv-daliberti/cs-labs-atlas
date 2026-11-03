@@ -11,7 +11,6 @@ import datetime, json, os, sys
 from pathlib import Path
 
 ACC = Path(__file__).parent
-sys.path.insert(0, str(ACC))
 FAIL = {'namesake', 'not_at_school', 'outside_appointment', 'not_a_paper', 'wrong_student', 'other', 'missing_from_build',
         'student_not_linked'}
 

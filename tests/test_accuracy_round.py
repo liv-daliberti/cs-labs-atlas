@@ -13,10 +13,13 @@ ACC = Path(__file__).resolve().parents[1] / 'accuracy'
 def load(name):
     spec = importlib.util.spec_from_file_location('acc_' + name, ACC / f'{name}.py')
     m = importlib.util.module_from_spec(spec)
-    import sys
-    sys.path.insert(0, str(ACC))
     spec.loader.exec_module(m)
     return m
+
+
+@pytest.fixture(autouse=True)
+def accuracy_on_path(monkeypatch):
+    monkeypatch.syspath_prepend(str(ACC))     # record.py imports sample (the scripts run from their own directory)
 
 
 S = load('sample')
