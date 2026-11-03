@@ -222,8 +222,80 @@ listings = ["math.gatech.edu/people"]
 [[affiliated_units]]
 code = "BME"
 name = "Wallace H. Coulter Department of Biomedical Engineering"
-url = "https://bme.gatech.edu/"
-listings = ["bme.gatech.edu/"]   # placeholder: the faculty directory URL is found at stage 2 if the OpenAlex rule names BME people (no /people or /faculty: 404, 2026-11-03)
+url = "https://bme.gatech.edu/bme/faculty"
+listings = ["bme.gatech.edu/bme/faculty"]
+
+[[affiliated_units]]
+code = "ME"
+name = "George W. Woodruff School of Mechanical Engineering"
+url = "https://me.gatech.edu/faculty"
+listings = ["me.gatech.edu/faculty"]
+
+[[affiliated_units]]
+code = "AE"
+name = "Daniel Guggenheim School of Aerospace Engineering"
+url = "https://ae.gatech.edu/academic-faculty-1"
+listings = ["ae.gatech.edu/people", "ae.gatech.edu/academic-faculty-1"]
+
+[[affiliated_units]]
+code = "CEE"
+name = "School of Civil and Environmental Engineering"
+url = "https://ce.gatech.edu/people"
+listings = ["ce.gatech.edu/people"]
+
+[[affiliated_units]]
+code = "CHBE"
+name = "School of Chemical and Biomolecular Engineering"
+url = "https://chbe.gatech.edu/directory1"
+listings = ["chbe.gatech.edu/directory1"]
+
+[[affiliated_units]]
+code = "MSE"
+name = "School of Materials Science and Engineering"
+url = "https://www.mse.gatech.edu/people"
+listings = ["www.mse.gatech.edu/people"]
+
+[[affiliated_units]]
+code = "BIOS"
+name = "School of Biological Sciences"
+url = "https://biosciences.gatech.edu/people"
+listings = ["biosciences.gatech.edu/people"]
+
+[[affiliated_units]]
+code = "PSYC"
+name = "School of Psychology"
+url = "https://psychology.gatech.edu/people/all-faculty"
+listings = ["psychology.gatech.edu/people/all-faculty"]
+
+[[affiliated_units]]
+code = "PHYS"
+name = "School of Physics"
+url = "https://physics.gatech.edu/people/faculty"
+listings = ["physics.gatech.edu/people/faculty"]
+
+[[affiliated_units]]
+code = "LMC"
+name = "School of Literature, Media, and Communication"
+url = "https://lmc.gatech.edu/people/faculty"
+listings = ["lmc.gatech.edu/people/faculty"]
+
+[[affiliated_units]]
+code = "SPP"
+name = "School of Public Policy"
+url = "https://spp.gatech.edu/people/faculty"
+listings = ["spp.gatech.edu/people/faculty"]
+
+[[affiliated_units]]
+code = "EAS"
+name = "School of Earth and Atmospheric Sciences"
+url = "https://eas.gatech.edu/people"
+listings = ["eas.gatech.edu/people"]
+
+[[affiliated_units]]
+code = "SCHELLER"
+name = "Scheller College of Business"
+url = "https://www.scheller.gatech.edu/directory/index.html"
+listings = ["www.scheller.gatech.edu/directory/index.html"]
 
 # --- students ----------------------------------------------------------------------------------------------------------------
 [thesis]
@@ -329,3 +401,75 @@ purpose = "OpenAlex (snapshot first; the shared 10k/day key)"
 host = "api.ror.org"
 use = "live"
 purpose = "ROR verification"
+
+[[hosts]]
+host = "me.gatech.edu"
+use = "live"
+purpose = "ME faculty (unit searched for computing-related faculty: the OpenAlex rule names its people)"
+probe = "https://me.gatech.edu/faculty"
+
+[[hosts]]
+host = "ae.gatech.edu"
+use = "live"
+purpose = "AE faculty (unit searched for computing-related faculty: the OpenAlex rule names its people)"
+probe = "https://ae.gatech.edu/academic-faculty-1"
+
+[[hosts]]
+host = "ce.gatech.edu"
+use = "live"
+purpose = "CEE people (unit searched for computing-related faculty: the OpenAlex rule names its people)"
+probe = "https://ce.gatech.edu/people"
+
+[[hosts]]
+host = "chbe.gatech.edu"
+use = "live"
+purpose = "ChBE directory (unit searched for computing-related faculty: the OpenAlex rule names its people)"
+probe = "https://chbe.gatech.edu/directory1"
+
+[[hosts]]
+host = "www.mse.gatech.edu"
+use = "live"
+purpose = "MSE people (unit searched for computing-related faculty: the OpenAlex rule names its people)"
+probe = "https://www.mse.gatech.edu/people"
+
+[[hosts]]
+host = "biosciences.gatech.edu"
+use = "live"
+purpose = "Biological Sciences people (unit searched for computing-related faculty: the OpenAlex rule names its people)"
+probe = "https://biosciences.gatech.edu/people"
+
+[[hosts]]
+host = "psychology.gatech.edu"
+use = "live"
+purpose = "Psychology faculty (unit searched for computing-related faculty: the OpenAlex rule names its people)"
+probe = "https://psychology.gatech.edu/people/all-faculty"
+
+[[hosts]]
+host = "physics.gatech.edu"
+use = "live"
+purpose = "Physics faculty (unit searched for computing-related faculty: the OpenAlex rule names its people)"
+probe = "https://physics.gatech.edu/people/faculty"
+
+[[hosts]]
+host = "lmc.gatech.edu"
+use = "live"
+purpose = "LMC faculty (unit searched for computing-related faculty: the OpenAlex rule names its people)"
+probe = "https://lmc.gatech.edu/people/faculty"
+
+[[hosts]]
+host = "spp.gatech.edu"
+use = "live"
+purpose = "Public Policy faculty (unit searched for computing-related faculty: the OpenAlex rule names its people)"
+probe = "https://spp.gatech.edu/people/faculty"
+
+[[hosts]]
+host = "eas.gatech.edu"
+use = "live"
+purpose = "EAS people (unit searched for computing-related faculty: the OpenAlex rule names its people)"
+probe = "https://eas.gatech.edu/people"
+
+[[hosts]]
+host = "www.scheller.gatech.edu"
+use = "live"
+purpose = "Scheller directory (unit searched for computing-related faculty: the OpenAlex rule names its people)"
+probe = "https://www.scheller.gatech.edu/directory/index.html"
