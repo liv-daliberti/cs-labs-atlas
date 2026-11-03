@@ -14,12 +14,24 @@ TOOLS = Path(__file__).resolve().parents[1] / 'tools'   # on sys.path through py
 FIXTURES = Path(__file__).resolve().parent / 'fixtures'
 
 
+# Source-tree hygiene tests read the git index. A job's code snapshot (tools/job_code_snapshot.sh: a `git archive` of one
+# commit, as the release's tests stage runs) has no .git, so there they skip; CI and `agent_worktree.sh land` run them on
+# the full checkout before any commit reaches main.
+NEEDS_GIT = {'test_script_map.py', 'test_imports_and_sys_path.py', 'test_pi_hierarchy_exports.py', 'test_job_code_snapshot.py'}
+CODE = Path(__file__).resolve().parents[1]
+
+
 def pytest_collection_modifyitems(config, items):
     if os.environ.get('CS_ATLAS_CI') == '1':
         skip = pytest.mark.skip(reason='needs the NFS project data (CS_ATLAS_CI=1)')
         for item in items:
             if 'nfs' in item.keywords:
                 item.add_marker(skip)
+    if not (CODE / '.git').exists():
+        skip_git = pytest.mark.skip(reason='source-tree hygiene test: needs the git checkout, not a code snapshot')
+        for item in items:
+            if Path(str(item.fspath)).name in NEEDS_GIT:
+                item.add_marker(skip_git)
 
 
 @pytest.fixture
