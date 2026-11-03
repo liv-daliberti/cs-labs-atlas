@@ -317,7 +317,7 @@ STEPS = {
     '5': [Q('dblp-ids', 'PY $TOOLS/dblp_ids_school.py {school}', mem='24G', time='01:00:00'),
           Q('homepage-links', 'PY $TOOLS/homepage_links_school.py {school}', time='04:00:00'),
           H('openalex-identity', 'first re-run tools/census_build.py <key> (it folds dblp-ids.json into the census; the gate reads the census), then write hierarchy/<key>/openalex-identity-review.json, then tools/oa_identity_school.py <key>; review namesakes and cross-school PIs'),
-          Q('dblp-dump-persons', 'PY $TOOLS/dblp_dump_persons.py', mem='24G', time='01:00:00', shared=True)],
+          Q('dblp-dump-persons', 'PY $TOOLS/dblp_dump_persons.py {school}', mem='24G', time='01:00:00', done=['dblp-dump-persons-school.json.gz'])],   # school-local: the shared file feeds release builds (friction 43)
     '6': [Q('labpage-links', 'PY $TOOLS/labpage_students_school.py links {school}', time='06:00:00', py='collector'),
           Q('labpage-extract', 'PY $TOOLS/labpage_students_school.py extract {school}', time='04:00:00', py='collector'),
           Q('student-directories', 'PY $TOOLS/labpage_students_school.py directory {school}', time='06:00:00', py='collector'),

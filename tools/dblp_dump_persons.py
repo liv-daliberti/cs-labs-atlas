@@ -17,7 +17,9 @@ see tools/dblp_dump_index.py), never the bot-walled dblp.org site.
 -> hierarchy/dblp-dump-persons.json.gz
    {dump, persons: {pid_url: {names, urls, orcid, affiliations, disambiguation, pubs: [{key, type, title, year, dois,
     authors: [[name, orcid]]}]}}, by_name: {normalized PI name: [pid_url, ...]}}
-usage: dblp_dump_persons.py
+usage: dblp_dump_persons.py [<school>]
+  with a school key (an onboarding school) only that school's PIs, written to hierarchy/<key>/dblp-dump-persons-school.json.gz and read by the
+  builder next to the shared file; the shared file (which a release build reads) is never rewritten (UChicago PROTOCOL-FRICTION 43).
 """
 import gzip, html, json, re
 
@@ -26,9 +28,11 @@ from pi_hierarchy import toks  # noqa: E402
 import atlas_paths as P  # noqa: E402  (every path in one place)
 HERE = P.WORK
 DUMP = P.DBLP_DUMP_XML
-OUT = P.data('dblp-dump-persons.json.gz')
+import sys  # noqa: E402
 import school_config as S  # noqa: E402  (the school charters)
-SCHOOLS = S.keys()  # released and onboarding schools: a new school's PIs get their DBLP pages before its first release
+ONE = sys.argv[1] if len(sys.argv) > 1 else None
+OUT = P.data_w('dblp-dump-persons-school.json.gz', ONE) if ONE else P.data('dblp-dump-persons.json.gz')
+SCHOOLS = [ONE] if ONE else S.keys()  # released and onboarding schools: a new school's PIs get their DBLP pages before its first release
 REC = re.compile(r'<(article|inproceedings|proceedings|book|incollection|phdthesis|mastersthesis|www|data) ([^>]*?)key="([^"]+)"[^>]*>(.*?)</\1>', re.S)
 AUTH = re.compile(r'<(?:author|editor)([^>]*)>(.*?)</(?:author|editor)>', re.S)
 ORC = re.compile(r'orcid="([0-9X-]{19})"')
