@@ -20,6 +20,16 @@ import school_config as S  # noqa: E402
 import school_web as W  # noqa: E402
 
 
+def urls_on_host(cfg, host):
+    """Listing URLs of the charter's departments and affiliated units that sit on `host` (a moved department site: UChicago friction 25)."""
+    out = []
+    for grp in (cfg.get('departments') or []) + (cfg.get('affiliated_units') or []):
+        for u in [s.get('url') for s in grp.get('listings') or [] if isinstance(s, dict)] + [x for x in grp.get('listings') or [] if isinstance(x, str)]:
+            if u and host in u and u not in out:
+                out.append(u)
+    return out
+
+
 def main(key, refresh=False):
     cfg = S.get(key); c = W.con(key); out = []
     for h in cfg.get('hosts') or []:
@@ -36,6 +46,9 @@ def main(key, refresh=False):
             pr = 'disallowed' if res is None else ('challenge' if res[0] == 999 else ('ok' if res[0] == 200 else f'http {res[0]}'))
             if res is not None and res[0] == 310:  # an off-host redirect (a moved department site): say where, the charter then names the new host
                 pr = 'http 310 ' + W.live_html(c, probe).replace('redirected off host to ', '->').strip()
+                mine = urls_on_host(cfg, host)
+                if mine:
+                    pr += f'; the charter has {len(mine)} listing URL(s) on {host} to move or add on the new host: ' + ', '.join(mine[:4])
         elif probe and robots != 'allowed':
             pr = 'disallowed'
         problems = []

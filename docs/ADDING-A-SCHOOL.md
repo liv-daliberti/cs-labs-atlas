@@ -224,6 +224,9 @@ atlas stage-gate <key> [n ...]                 # only the gates (0-10), from the
     (hand decisions) and from the accepted people's share-test ids. They go into the school's section of
     `census-overrides.json` with sweep-work evidence.
 
+- **Re-run `census_build.py` at three points (UChicago 2026-11-03, friction 28, 34):** after `cs_related_school.py review` (the additions get their person records only then), after the stage-5 `dblp_ids_school.py` (it folds `dblp-ids.json` into the census), and after any change of the accepted candidates. Then `oa_identity_school.py` and `home_departments_school.py <key>` (school-local; `--write-shared` only when the owner says).
+- **An onboarding school never writes a tracked shared file in the main checkout** (friction 30, 31): its census overrides are `hierarchy/<key>/reviewed/census-overrides-school.json` (`tools/census_overrides.py`) and its lab-page summary `derived/labpage-audit-summary-school.json`; both are committed on the school's branch. The release freeze refuses dirty tracked inputs.
+
 ## Stage 3: PIs and labs
 - **Do:**
   - Decide each PI's basis (`census_build.py`):
@@ -238,6 +241,8 @@ atlas stage-gate <key> [n ...]                 # only the gates (0-10), from the
   a reason code from `docs/LAB-PAGES.md`, and dated checks of the school profile, DBLP, ORCID and homepage sources. A lab
   whose only site is at another institution is never audited as this school's lab.
 - **Learned from Michigan (2026-10-29):** a PI's home department comes from the same listing row that proves the appointment. No separate profile crawl is needed when the listing carries every title.
+
+- **Stage 3 order (friction 26, 27, 29):** `census-refresh` -> `homes` -> `build` (pi_hierarchy: the lab-page audit reads `pis.json`) -> `labpage-discover` -> `labpage-audit`; submit with `atlas stage-gate <key> 3 --run --submit --from-worktree` while the charter is not on main.
 
 ## Stage 4: appointment periods
 - **Do:**
@@ -315,6 +320,8 @@ atlas stage-gate <key> [n ...]                 # only the gates (0-10), from the
   - **Cross-school PIs** (Stella Yu: Berkeley to Michigan in 2022; Jia Deng, Matthew Johnson-Roberson, Pei Zhang,
     Michael Cafarella, Leia Stirling, Prabal Dutta, Mert Pilanci) should carry the same DBLP id or ORCID in both
     schools. Stage 6 and the atlas ids rely on it.
+
+- **A PI nothing identifies** (no DBLP id, ORCID or OpenAlex id after the DBLP, share-test and homepage/CV searches) gets `no_identity` + `why_no_identity` (with the evidence searched) in the overrides; the gate passes and no papers are attributed.
 
 ## Stage 6: students
 Use sources in this order of preference:

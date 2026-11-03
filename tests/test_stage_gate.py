@@ -159,3 +159,14 @@ def test_gate2_fails_until_the_candidates_file_exists(tree):
     assert r['gate'] == 'fail' and 'cs-related-candidates.json missing' in r['items'][0]
     tree.put('cs-related-candidates.json', [])
     assert G.evaluate('u', 2)['gate'] == 'pass'
+
+
+def test_gate5_accepts_a_reviewed_no_identity(tree, monkeypatch):
+    import census_overrides
+    pis = [{'name': 'Ann', 'is_pi': True}, {'name': 'Bo', 'is_pi': True, 'dblp': ['x']}]
+    monkeypatch.setattr(G, 'pis_of', lambda key: pis)
+    monkeypatch.setattr(G.CO, 'section', lambda key: {})
+    assert G.evaluate('u', 5)['gate'] == 'fail'
+    monkeypatch.setattr(G.CO, 'section', lambda key: {'Ann': {'no_identity': True, 'why_no_identity': 'searched'}})
+    r = G.evaluate('u', 5)
+    assert r['gate'] == 'pass' and r['reviewed_no_identity'] == 1

@@ -16,7 +16,8 @@ wired into pi_hierarchy.py / chain_audit.py. Prints one JSON line per stage and 
   4 also      a span gap passes when census-overrides names it in unproven_years with why_unproven (searched, no
               dated evidence; papers of those years stay outside the appointment)
   2 also      the bulk-pull sanity check passes (tools/sweep_check.py -> hierarchy/<key>/sweep-check.json)
-  5 identity  every PI has an anchor: a DBLP id, an ORCID or a reviewed OpenAlex id (census, additions, census-overrides)
+  5 identity  every PI has an anchor: a DBLP id, an ORCID or a reviewed OpenAlex id (census, additions, census-overrides), or a reviewed
+              `no_identity` + `why_no_identity` in the overrides (the person is a PI, no papers are attributed)
   0 charter   school_config check passes and every host of the charter is consistent (hosts.json)
   6 students  the lab-page students acceptance is accepted, and the chain audit's students and one_person checks are explained
   7 papers    the lab-page papers acceptance is accepted, and the chain audit's papers and links checks are explained
@@ -177,6 +178,8 @@ def g5(key):
                             ('openalex', x.get('openalex') or o.get('openalex'))) if v]
         if a:
             n['+'.join(a)] += 1
+        elif o.get('no_identity') and o.get('why_no_identity'):   # reviewed: searched ORCID, homepage and CV, nothing attributable; no papers are attributed
+            n['reviewed_no_identity'] += 1
         else:
             bad.append(f"{x['name']}: no DBLP id, ORCID or reviewed OpenAlex id")
     return bad, dict(n)

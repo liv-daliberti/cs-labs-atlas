@@ -97,7 +97,7 @@ home_units = {"Computer Science" = '^(?:Department of )?Computer Science$', "Sta
 exceptions = []
 
 [cs_related]
-share_test_settles = []
+share_test_settles = ["Denis R. Hirschfeldt", "Maryanthe Malliaris", "Shmuel Weinberger"]   # owner 2026-11-03: decided by the computing-share test, no hand judgement
 
 [site]
 depts = {CS = "Computer Science", TTIC = "Toyota Technological Institute at Chicago", STAT = "Statistics"}
@@ -228,6 +228,42 @@ name = "Center for Data and Computing"
 url = "https://cdac.uchicago.edu/"
 listings = ["cdac.uchicago.edu/"]
 
+[[affiliated_units]]
+code = "PHYS"
+name = "Physics"
+url = "https://physics.uchicago.edu/people/"
+listings = ["physics.uchicago.edu/people/"]
+
+[[affiliated_units]]
+code = "ECON"
+name = "Economics"
+url = "https://economics.uchicago.edu/people/faculty/"
+listings = ["economics.uchicago.edu/people/faculty/"]
+
+[[affiliated_units]]
+code = "HARRIS"
+name = "Harris School of Public Policy"
+url = "https://harris.uchicago.edu/directory/faculty"
+listings = ["harris.uchicago.edu/directory/faculty"]
+
+[[affiliated_units]]
+code = "PME"
+name = "Pritzker School of Molecular Engineering"
+url = "https://pme.uchicago.edu/people/"
+listings = ["pme.uchicago.edu/people/"]
+
+[[affiliated_units]]
+code = "PSYCH"
+name = "Psychology"
+url = "https://psychology.uchicago.edu/people/faculty"
+listings = ["psychology.uchicago.edu/people/faculty"]
+
+[[affiliated_units]]
+code = "LING"
+name = "Linguistics"
+url = "https://linguistics.uchicago.edu/people"
+listings = ["linguistics.uchicago.edu/people"]
+
 # --- students ----------------------------------------------------------------------------------------------------
 [thesis]
 kind = "none"
@@ -297,6 +333,36 @@ host = "linguistics.uchicago.edu"
 use = "live"
 purpose = "Linguistics people, only if the OpenAlex rule names a Linguistics person. robots.txt names ClaudeBot in a Crawl-delay group (10 s, no Disallow): allowed, at 10 s per request"
 probe = "https://linguistics.uchicago.edu/"
+
+[[hosts]]
+host = "physics.uchicago.edu"
+use = "live"
+purpose = "Physics people (affiliated-unit search, stage 2 extra round 2026-11-03)"
+probe = "https://physics.uchicago.edu/people/"
+
+[[hosts]]
+host = "economics.uchicago.edu"
+use = "live"
+purpose = "Economics faculty (affiliated-unit search)"
+probe = "https://economics.uchicago.edu/people/faculty/"
+
+[[hosts]]
+host = "harris.uchicago.edu"
+use = "live"
+purpose = "Harris School of Public Policy faculty (affiliated-unit search)"
+probe = "https://harris.uchicago.edu/directory/faculty"
+
+[[hosts]]
+host = "pme.uchicago.edu"
+use = "wayback-only"
+purpose = "Pritzker School of Molecular Engineering people (affiliated-unit search); the live probe served a bot challenge on 2026-11-03, so Wayback id_ captures only"
+probe = "https://pme.uchicago.edu/people/"
+
+[[hosts]]
+host = "psychology.uchicago.edu"
+use = "live"
+purpose = "Psychology faculty (affiliated-unit search)"
+probe = "https://psychology.uchicago.edu/people/faculty"
 
 [[hosts]]
 host = "api.openalex.org"

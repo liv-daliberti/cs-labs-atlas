@@ -19,3 +19,10 @@ Date: 2026-11-03. Gate (`atlas stage-gate uchicago 2`): **pass** (347 candidates
   rests on the DBLP and share tests; the owner may drop them in stage 3 review.
 - Units not searched: Physics, Economics, Harris, Pritzker Molecular Engineering, Psychology, Linguistics. Their computing people appear only through the DBLP and
   OpenAlex rules; a person listed only there with a professor title elsewhere is `not_faculty_listed`. Candidate for an extra round if the owner wants it.
+
+## Owner follow-ups (2026-11-03) and results
+- **Share test for the Mathematics people** (`share_test_settles`, no hand judgement): Hirschfeldt computing (14 of 18 school works DBLP-indexed, share 0.78), Malliaris computing (8 of 24, 0.33),
+  **Weinberger not computing** (7 of 37, 0.19 < 0.2): faculty_not_computing, so he is out of the PI list.
+- **Extra unit round:** Physics, Economics, Harris, Pritzker (Wayback only: the live probe served a bot challenge), Psychology and Linguistics added as `[[affiliated_units]]` with their hosts (robots allowed;
+  Harris Crawl-delay 20 s, Linguistics names ClaudeBot at 10 s). Result: 51 accepted of 347 (15 more than before: 14 Statistics faculty decided by the DBLP ids of stage 5 and one Psychology
+  professor, Marisa Casillas, accepted by the share test); no accepted person from Physics, Economics, Harris, Pritzker or Linguistics. The census now holds **139 PIs** (116 census + 23 additions).

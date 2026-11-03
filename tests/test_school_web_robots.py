@@ -25,3 +25,10 @@ def test_star_group_delay_and_floor():
 def test_ai_agent_disallow_is_detected_by_name():
     ours, ai, _ = W.robots_decision(200, 'User-agent: ClaudeBot\nDisallow: /\n\nUser-agent: *\nDisallow:\n', '/x')
     assert ours and not ai
+
+
+def test_urls_on_host_lists_department_and_unit_slots():
+    import school_hosts as H
+    cfg = {'departments': [{'listings': [{'url': 'https://old.edu/people/'}, {'url': 'https://new.edu/p'}]}],
+           'affiliated_units': [{'listings': ['old.edu/people/faculty/', 'x.edu/y']}]}
+    assert H.urls_on_host(cfg, 'old.edu') == ['https://old.edu/people/', 'old.edu/people/faculty/']

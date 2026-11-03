@@ -68,3 +68,10 @@ def test_atlas_paths_follow_the_snapshot_and_provenance_records_it(tmp_path, mon
     monkeypatch.setenv('CS_ATLAS_SNAPSHOT_COMMIT', 'a' * 40)
     st = provenance.code_state()
     assert st['commit'] == 'a' * 40 and st['snapshot'] is True
+
+
+def test_a_full_tmp_falls_back_to_dev_shm(tmp_path):
+    r = repo_with_code(tmp_path)
+    out = run(r, 'echo "$CS_ATLAS_SNAPSHOT"', {'SNAPSHOT_MIN_KB': '999999999999'})
+    assert out.returncode == 0 and out.stdout.splitlines()[-1].startswith('/dev/shm/atlas-code-') and 'fallback' in out.stderr
+    assert run(r, 'echo "$CS_ATLAS_SNAPSHOT"').stdout.splitlines()[-1].startswith(str(tmp_path))

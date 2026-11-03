@@ -17,7 +17,13 @@ _how=submit
 [ -n "$_c" ] || { _c=HEAD; _how=job-start; }
 _c=$(git -C "${SNAPSHOT_REPO:-$CS_ATLAS_CODE}" rev-parse --verify "$_c^{commit}" 2>/dev/null) || { echo "job_code_snapshot: no such commit '${CS_ATLAS_SNAPSHOT_COMMIT:-HEAD}' in ${SNAPSHOT_REPO:-$CS_ATLAS_CODE}" >&2; return 1; }
 _own=
-if [ -z "${SNAPSHOT_DIR:-}" ]; then SNAPSHOT_DIR=${TMPDIR:-/tmp}/atlas-code-${USER:-u}-${SLURM_JOB_ID:-$$}; _own=1; fi
+if [ -z "${SNAPSHOT_DIR:-}" ]; then
+  _base=${TMPDIR:-/tmp}
+  # a node whose /tmp is full (node805, 2026-10-30 and 2026-11-03) would fail every job on it: fall back to /dev/shm below SNAPSHOT_MIN_KB free
+  _avail=$(df --output=avail -k "$_base" 2>/dev/null | tail -1 | tr -d ' ')
+  if [ "${_avail:-0}" -lt "${SNAPSHOT_MIN_KB:-1000000}" ] && [ -d /dev/shm ]; then _base=/dev/shm; echo "job_code_snapshot: $_base fallback, ${TMPDIR:-/tmp} has ${_avail:-?} kB free" >&2; fi
+  SNAPSHOT_DIR=$_base/atlas-code-${USER:-u}-${SLURM_JOB_ID:-$$}; _own=1; unset _base _avail
+fi
 snapshot_remove() { [ -n "${CS_ATLAS_SNAPSHOT:-}" ] && rm -rf "$CS_ATLAS_SNAPSHOT"; }
 mkdir -p "$SNAPSHOT_DIR" && git -C "${SNAPSHOT_REPO:-$CS_ATLAS_CODE}" archive "$_c" | tar -x -C "$SNAPSHOT_DIR" || { echo "job_code_snapshot: could not extract $_c" >&2; return 1; }
 [ -z "$_own" ] || [ -n "$(trap -p EXIT)" ] || trap snapshot_remove EXIT

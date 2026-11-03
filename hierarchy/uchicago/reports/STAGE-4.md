@@ -10,3 +10,7 @@ Date: 2026-11-03. Gate (`atlas stage-gate uchicago 4`): **pass** (124 PIs: 102 c
 
 ## For the owner
 - The 2017 gap is the main judgement: these eleven were listed in 2016 and 2018 and plausibly were faculty in 2017, but the project never infers appointments from roster years. Alternatives: accept as recorded, or find 2017 evidence (FPO lists, news).
+
+## Owner decision (2026-11-03): the 2017 gap
+No hand work. The 11 CS PIs keep `unproven_years` for 2017. The accuracy pass's rule R-PAP-28 (branch `agent/missing-papers`: bridge two open captures when the PI has school-affiliated works in every
+year between) lands after the release and covers this case; **re-check the gate and these entries after it lands.** Stage 4 re-evaluated for the 139-PI census: gate pass (118 contiguous, 10 reviewed periods, 11 unproven gaps; Weinberger left the list).
