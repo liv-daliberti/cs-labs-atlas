@@ -28,7 +28,7 @@ Date: 2026-11-03. Protocol: `docs/ADDING-A-SCHOOL.md` v2.3. Branch `agent/gatech
 | CTRN (GT/Emory/GSU centre) | 1,376 | 216 |
 | Georgia Space Grant Consortium | 1 | 1 |
 
-## Owner decisions needed (nothing below is applied beyond the recommended draft in the charter)
+## Owner decisions (2026-11-03: D1-D4 all approved as recommended; applied in the charter, Georgia Tech-Europe dropped from `openalex_related`, `openalex_excluded` = CTRN, Space Grant Consortium)
 - **D1 departments.** In: the four College of Computing schools (CS, IC, CSE, CSP) as full-coverage departments; ECE and ISyE as `affiliated` (computing faculty by the share test); ML Center, Math, BME
   as searched units. Cybersecurity and Privacy has no pre-2022 listing by construction (founded 2022-23; its faculty sat in CS/ECE before), so it needs `listing_gaps` for 2016-2021 and stage 4 periods from the
   other schools' listings. Recommendation: yes as drafted.

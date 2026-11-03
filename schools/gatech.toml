@@ -19,13 +19,14 @@ window = [2016, 2026]
 
 [ids]
 openalex = ["I130701444"]
-# Stage-0 scope decisions are PENDING (hierarchy/gatech/reports/STAGE-0.md, D1-D5). This is the recommended setting, which is also a superset for
-# the snapshot extension: GTRI and Georgia Tech-Europe are swept so the data can inform D2.
+# Owner decisions 2026-11-03, all four as recommended (hierarchy/gatech/reports/STAGE-0.md): D1 four College of Computing schools full, ECE/ISyE affiliated, ML/Math/BME searched;
+# D2 GTRI, Georgia Tech-Europe and Georgia Tech-CNRS are out of PI scope unless a person holds a GT faculty listing (kept in the lineage sweep; decide exclusion at stage 7);
+# D3 keep I130701444 and Coulter BME, exclude CTRN and the Space Grant Consortium, Georgia Tech-Europe dropped from related; D4 the regex does not match 'Georgia Tech Shenzhen'.
 # Georgia Institute of Technology's lineage holds GTRI I4388482740, Georgia Tech-CNRS Laboratory I4210089931 (Metz), the Wallace H. Coulter BME
 # Department I2802612298 (joint with Emory), the Center for Translational Research in Neuroimaging and Data Science I4210133909 and the Georgia
 # Space Grant Consortium I4210101104. Georgia Tech-Europe I1288283403 is 'related' only (not lineage).
-openalex_related = ["I1288283403"]
-openalex_excluded = []
+openalex_related = []
+openalex_excluded = ["I4210133909", "I4210101104"]   # owner D3 2026-11-03: CTRN (tri-university centre) and the Space Grant Consortium
 ror = "https://ror.org/01zkghx44"
 ids_note = """OpenAlex institutions table of the 2026-10-14 snapshot (no API credits; checked 2026-11-03): I130701444 'Georgia Institute of Technology', ROR 01zkghx44,
 country US, lineage [I130701444] (no parent; associated parent University System of Georgia I1289702989 is not lineage). Children whose lineage holds it (and ROR
