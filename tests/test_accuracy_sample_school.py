@@ -1,13 +1,14 @@
 """accuracy/sample.py --school: a school outside the six released ones is drawn with the same seed and method into its own
 file, and the released draws are unchanged (the 2026-11-02 Michigan stage 9)."""
+import importlib.util
 import json
-import sys
 from pathlib import Path
 
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'accuracy'))
-import sample as S  # noqa: E402
+_spec = importlib.util.spec_from_file_location('accuracy_sample', Path(__file__).resolve().parents[1] / 'accuracy' / 'sample.py')
+S = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(S)
 
 
 def test_alumni_fallback_rules():
