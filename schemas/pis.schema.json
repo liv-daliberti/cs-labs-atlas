@@ -400,6 +400,14 @@
        "x-rules": [
         "R-PAP-28"
        ]
+      },
+      "cross_affiliation_transition_outside": {
+       "description": "Cross-affiliated papers dropped: admitted only by an arrival or departure year's listing and dated after (departure) or before (arrival) its capture date.",
+       "type": "integer",
+       "minimum": 0,
+       "x-rules": [
+        "R-PAP-29"
+       ]
       }
      },
      "patternProperties": {

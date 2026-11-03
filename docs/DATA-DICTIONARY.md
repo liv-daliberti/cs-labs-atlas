@@ -279,6 +279,7 @@ One PI: the merged census rows, reviewed corrections, identity, appointment evid
 | `funnel.dblpDois` | integer | yes | DOIs on the PI's DBLP lists. | at least 0 |  |
 | `funnel.verifiedWorks` | integer | yes | The PI's verified collection works. | at least 0 |  |
 | `funnel.period_boundary_affiliated` | integer | no | Papers kept in a period whose boundary the date cannot be placed against, by the paper's own school affiliation. | at least 0 | R-PAP-28 |
+| `funnel.cross_affiliation_transition_outside` | integer | no | Cross-affiliated papers dropped: admitted only by an arrival or departure year's listing and dated after (departure) or before (arrival) its capture date. | at least 0 | R-PAP-29 |
 | `funnel.<key ~ /^outside_appointment_\d{4}$/>` | integer | — | Hits outside the appointment, by publication year. | at least 0 | R-PAP-01 |
 | `counts` | object | yes | Per-PI totals of the package. | no other keys |  |
 | `counts.verifiedWorks` | integer | yes | Verified collection works of the PI. | at least 0 |  |

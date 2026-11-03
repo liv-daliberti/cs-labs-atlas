@@ -108,3 +108,25 @@ def test_R_PAP_29_nonprimary_appointment_does_not_take_a_company_paper(tmp_path,
     ctx = school(tmp_path, monkeypatch, cross(), [per])
     assert 'Selective Caches for Hybrid Memory' not in T.rows_of(ctx, 'Ada Lovelace')
     assert ctx.n['cross_affiliation_nonprimary_appointment'] == 1
+
+
+def smola(date, elsewhere):
+    """Grace Hopper (listings 2020, captured 2020-03-01): two Princeton-credited works, `elsewhere` works credited to a company, and a
+    company-credited paper with a Princeton co-author dated `date` (Smola's 2017 Amazon papers under his last CMU listing: Amazon 7, CMU 1)."""
+    paper = work('W70', 'Canopy Style Paper', 2020, [au_at('Grace Hopper', 'A2', 'I99', 'Amazon', 'company', pos='last'), au('Dave Danskin', 'A55')], doi='10.5/w70')
+    paper['publication_date'] = date
+    own = [work(f'W5{i}', f'Grace At School {i}', 2020, [au('Grace Hopper', 'A2', pos='first')]) for i in range(2)]
+    away = [work(f'W6{i}', f'Grace At Company {i}', 2020, [au_at('Grace Hopper', 'A2', 'I99', 'Amazon', 'company', pos='first')]) for i in range(elsewhere)]
+    return own + away + [paper]
+
+
+@pytest.mark.parametrize('extra_listing,elsewhere,kept', [(True, 2, False), (True, 0, True), (False, 2, True)])
+def test_R_PAP_29_cross_affiliated_paper_on_the_far_side_of_a_transition_listing(tmp_path, monkeypatch, extra_listing, elsewhere, kept):
+    """2026-11-03: Grace's last listing (2020, captured 2020-03-01) is a departure year; a company-credited paper dated after the capture is
+    dropped when her works of the year credit elsewhere more often than the school (3 vs 2). Kept when they do not (Turitsyn), and with one
+    captured listing only there is no observed departure (Rosenholtz)."""
+    if extra_listing:
+        monkeypatch.setattr(T, 'LISTINGS', [dict(T.LISTINGS[0], year=2019, capture_url=T.LISTINGS[0]['capture_url'].replace('2020', '2019'))] + list(T.LISTINGS))
+    ctx = school(tmp_path, monkeypatch, smola('2020-05-01', elsewhere), [A])
+    assert bool(T.rows_of(ctx, 'Grace Hopper').get('Canopy Style Paper')) is kept
+    assert ctx.n['cross_affiliation_transition_outside'] == (0 if kept else 1)

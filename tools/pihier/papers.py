@@ -583,6 +583,17 @@ def rows_from_hits(ctx):
             n['outside_appointment'] += 1; funnel[pi]['outside_appointment_' + str(w.get('publication_year'))] += 1; continue
         if via[0].startswith('cross-affiliated') and NONPRIMARY.search(' '.join([(q_.get('quote') or '') for q_ in (per or {}).get('evidence') or []] + [(lst or {}).get('quote') or '', (lst or {}).get('kind') or ''])):
             n['cross_affiliation_nonprimary_appointment'] += 1; continue
+        if via[0].startswith('cross-affiliated') and per is None and len({l_['year'] for l_ in p['listings']}) >= 2 \
+                and lst['year'] <= int(TODAY[:4]) - 3 and transition_side(p, lst, date) == 'outside' \
+                and ctx.other_years[pi][int(w.get('publication_year') or 0)] > ctx.direct_years[pi][int(w.get('publication_year') or 0)]:
+            # R-PAP-29 guard (2026-11-03; Smola's 2017 Amazon papers under his last CMU listing, April 2017): a byline crediting the PI to a
+            # company says nothing about where the work was done, so in the PI's arrival or departure year the listing proves only its own
+            # side of the capture date, as for an unaffiliated byline (R-PAP-13). A count of the PI's works by institution does not
+            # separate the cases: dual-role faculty (Freeman, Yang, Xiong) have more company-credited works than school-credited ones. Only with 2+
+            # listing years and a listing at least 3 years old: a PI with one captured listing (Turitsyn) or whose last capture is recent
+            # (Rosenholtz, 2024) has no observed arrival or departure, only thin captures. And only when the PI's identified works of the
+            # year credit other institutions more often than the school (Smola 2017: Amazon 7, CMU 1; Turitsyn 2019, MIT 11 vs D. E. Shaw 2, stays).
+            n['cross_affiliation_transition_outside'] += 1; funnel[pi]['cross_affiliation_transition_outside'] += 1; continue
         if unaffiliated and per is None and transition_side(p, lst, date) == 'outside':
             # (2026-10-29, owner: best judgement) a byline with no affiliations says nothing about where the work was done,
             # so in a PI's arrival or departure year a listing proves only its own side of the capture date: Thomas
@@ -756,7 +767,7 @@ def continuity_bridges(ctx):
     """R-PAP-28: add each PI's continuity periods (periods.bridge_periods) before the rows are made. The years that count are those
     of the PI's identified works whose own authorship names the school (institution lineage or raw affiliation)."""
     n, pis, inst, aff, blocked, anchored = ctx.n, ctx.pis, ctx.inst, ctx.aff, ctx.blocked, ctx.anchored
-    years = collections.defaultdict(collections.Counter)
+    years, other = collections.defaultdict(collections.Counter), collections.defaultdict(collections.Counter)
     for pi, w, a, cw, ident, page1 in ctx.hits:
         aid = (a.get('author') or {}).get('id')
         if aid in blocked[pi] or not (ident or (aid and anchored[pi].get(aid))):
@@ -766,13 +777,15 @@ def continuity_bridges(ctx):
             y = w.get('publication_year')
             if y:
                 years[pi][int(y)] += 1
+        elif a.get('institutions') and w.get('publication_year'):
+            other[pi][int(w['publication_year'])] += 1  # R-PAP-29 guard: the PI's works of that year credited elsewhere
     for p in pis:
         moved = bool(p.get('listingsAfterMove')) or any('end_moved' in (e.get('kind') or '') for q in p['periods'] for e in q.get('evidence') or [])
         new = bridge_periods(p['periods'], years[p['pi']], moved)
         if new:
             p['periods'] = p['periods'] + new
             n['continuity_bridge_periods'] += len(new)
-    ctx.direct_years = years
+    ctx.direct_years, ctx.other_years = years, other
 
 
 def lab_papers(ctx):

@@ -238,7 +238,13 @@ of the same year, takes the school as `cross-affiliated byline: ...`. The appoin
 leave, consulting, visiting, courtesy, affiliate, emeritus, part-time in the listing quote or the period's evidence quotes). Those were
 company papers of an adjunct or leave-taker with one co-author credited to the school (Savarese/Salesforce under a Stanford adjunct
 listing, Metze/Meta 'Associate Research Professor (On Leave)', Kalai/Microsoft 'Adjunct Associate Professor'). Counter
-`cross_affiliation_nonprimary_appointment`. A byline
+`cross_affiliation_nonprimary_appointment`.
+Also not when the paper is admitted only by a listing (no period) in the PI's arrival or departure year and falls on the far side of the
+capture date (R-PAP-13's transition rule, applied as for an unaffiliated byline: a company credit says nothing about where the work was done;
+Smola's 2017 Amazon papers under his last CMU listing, April 2017). Only for a PI with 2+ listing years whose listing is 3+ years old (one captured listing, or a last capture of the past two years, shows no observed
+arrival or departure: Turitsyn 2019, Rosenholtz 2024 were wrongly dropped without this). And only when the PI's identified works of that year credit other institutions more often than the school (Smola 2017: Amazon 7, CMU 1; Turitsyn
+2019, MIT 11 vs D. E. Shaw 2, stays). Counter `cross_affiliation_transition_outside`. A count of the PI's works
+by institution was tried first and rejected: it dropped 8 of 17 true lab papers of dual-role faculty (Freeman, Yang, Xiong, De la Torre). A byline
 with no institution at all (pi-0) and a credit to another university are untouched. `school_basis`, `STRONG_IDENTITY`,
 `CROSS_KINDS`; counter `school_via_cross_affiliation`.
 
