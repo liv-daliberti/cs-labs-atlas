@@ -162,7 +162,6 @@ def test_gate2_fails_until_the_candidates_file_exists(tree):
 
 
 def test_gate5_accepts_a_reviewed_no_identity(tree, monkeypatch):
-    import census_overrides
     pis = [{'name': 'Ann', 'is_pi': True}, {'name': 'Bo', 'is_pi': True, 'dblp': ['x']}]
     monkeypatch.setattr(G, 'pis_of', lambda key: pis)
     monkeypatch.setattr(G.CO, 'section', lambda key: {})
