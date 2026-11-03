@@ -150,3 +150,11 @@ def test_run_submits_the_slurm_steps_as_one_chain(tree, monkeypatch):
     status, log = G.run_stage('u', 0, submit=True, run=lambda *a, **k: SimpleNamespace(returncode=0))
     assert status == 'submitted' and got['name'] == 'stage0-u' and got['schools'] == ['u'] and got['guard_preempt'] is True
     assert got['stages'][0][:3] == ('sweep', 'school', 'PY $TOOLS/sweep_school.py {school}')
+
+
+def test_gate2_fails_until_the_candidates_file_exists(tree):
+    tree.put('sweep-check.json', {'status': 'pass', 'failed': []})
+    r = G.evaluate('u', 2)
+    assert r['gate'] == 'fail' and 'cs-related-candidates.json missing' in r['items'][0]
+    tree.put('cs-related-candidates.json', [])
+    assert G.evaluate('u', 2)['gate'] == 'pass'

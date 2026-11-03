@@ -100,7 +100,9 @@ def sweep_gate(key):
 
 
 def g2(key):
-    cands = read(P.data('cs-related-candidates.json', key), [])
+    cands = read(P.data('cs-related-candidates.json', key))
+    if cands is None:  # a missing file read as "no candidates" and passed the gate before the candidates step had run (UChicago friction 23)
+        return ['candidates: hierarchy/<key>/cs-related-candidates.json missing (tools/cs_related_school.py candidates <key>)'.replace('<key>', key)] + sweep_gate(key), {}
     rev = read(P.data('cs-related-review.json', key), {}) or {}
     dec = {d['name']: d for d in rev.get('decisions', [])}
     bad = [f"{c['name']}: no decision" for c in cands if c['name'] not in dec and not any(a in dec for a in c.get('aliases') or [])]
