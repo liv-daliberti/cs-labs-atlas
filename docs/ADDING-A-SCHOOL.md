@@ -165,6 +165,7 @@ atlas stage-gate <key> [n ...]                 # only the gates (0-10), from the
     archived in that half-year leaves a gap, which needs a reviewed `listing_gaps` entry. Check `is_paged` against the page's real pager markup.
   - **Truncated titles:** a card layout may cut long titles with an ellipsis, which loses the word "Professor"; count them (`…` in titles) before stage 2.
   - The stage's `captures` step is done when `plan_fetch.py <key> --check` passes.
+  - Stages 0 and 2 never use the API sweep for a snapshot school: stage 0 ends with the `snapshot-ext` pipeline, and `atlas stage-gate <key> 2 --run --submit --from-worktree` queues the DBLP pass, the sweep from the extension, the sweep check and the OpenAlex candidates (= `atlas pipeline onboard-data`).
 - **Output:**
   - `listings/<key>/captures.sqlite`: the listing captures, in the listings-pipeline schema that the period tools read.
   - `captures/<key>.sqlite`: every other capture, plus robots files, probes and the `blocked` hosts.

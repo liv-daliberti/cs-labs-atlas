@@ -292,14 +292,18 @@ def H(name, todo):
 
 STEPS = {
     '0': [L('hosts', 'tools/school_hosts.py', '{key}', done=['hosts.json']),
-          Q('sweep', 'PY $TOOLS/sweep_school.py {school}', cpus=1, mem='8G', time='1-00:00:00', done=['sweep-check.json']),
+          H('snapshot', 'extend the OpenAlex snapshot for the school (no API credits): OA_DATE=<snapshot date> atlas pipeline snapshot-ext SCHOOLS={key} --from-worktree --wait; the charter must be committed first'),
           H('charter', 'fill schools/{key}.toml (TEMPLATE.toml documents every field), atlas charters, review and commit it')],
     '1': [Q('captures', 'bash $TOOLS/../listings/scripts/run_school.sh {school}', cpus=1, mem='4G', time='12:00:00', check=['listings/scripts/plan_fetch.py', '{key}', '--check']),
           L('rows', 'tools/listing_rows.py', '{key}'),
           H('coverage', 'each department-year without an ok capture needs a plan reason (nocapture, unusable, out_of_scope); fix format drift in tools/listing_formats.py')],
     '2': [L('census', 'tools/census_build.py', '{key}', done=['census-faculty.json']),
+          # the school's data from its snapshot extension and the DBLP dump, no API credit (what `atlas pipeline onboard-data` runs; UChicago friction 22):
+          Q('dblp', 'PY $TOOLS/dblp_affiliated.py {school} --pubs', cpus=2, mem='16G', time='03:00:00', done=['dblp-affiliated.json']),
+          Q('sweep', 'PY $TOOLS/sweep_from_snapshot.py {school} --replace', cpus=2, mem='24G', time='02:00:00', done=['openalex-sweep.sqlite']),
+          Q('sweepcheck', 'PY $TOOLS/sweep_check.py {school}', cpus=2, mem='24G', time='01:00:00', done=['sweep-check.json']),
+          Q('openalex-candidates', 'PY $TOOLS/cs_related_candidates.py --no-venues --stats --out cs-related-candidates-openalex.json {school}', mem='24G', time='02:00:00', done=['cs-related-candidates-openalex.json']),
           L('candidates', 'tools/cs_related_school.py', 'candidates', '{key}'),
-          Q('openalex-candidates', 'PY $TOOLS/cs_related_candidates.py --no-venues --stats --out cs-related-candidates-openalex.json {school}', mem='24G', time='02:00:00'),
           L('cross-check', 'tools/listed_not_in_census.py', '{key}', done=['listed-not-in-census.json']),
           H('review', 'search the affiliated units (cs_related_school.py units), then decide every candidate (cs_related_school.py review) with its evidence')],
     '3': [L('census-refresh', 'tools/census_build.py', '{key}'),   # the review's additions get their person records only on a re-run (UChicago friction 28)

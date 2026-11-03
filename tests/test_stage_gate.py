@@ -115,8 +115,7 @@ def test_run_stops_at_the_first_review_step_and_skips_finished_steps(tree):
     tree.put('hosts.json', {'hosts': []})   # stage 0's first step already ran
     status, log = G.run_stage('u', 0, run=fake)
     assert [e['result'] for e in log][:1] == ['done (output exists)']
-    assert status == 'submitted' or status == 'review'
-    assert log[1]['step'] == 'sweep' and log[1]['result'].startswith('slurm (not submitted')
+    assert status == 'review' and log[1]['step'] == 'snapshot' and log[1]['result'] == 'review' and 'snapshot-ext' in log[1]['todo']   # no API sweep in stage 0
     assert not calls   # nothing local was left to run
 
 
@@ -127,8 +126,8 @@ def test_run_runs_local_steps_in_order_and_stops_on_failure(tree):
     def fake(argv, cwd=None):
         seen.append(argv[2].rsplit('/', 1)[-1])
         return SimpleNamespace(returncode=next(rcs))
-    status, log = G.run_stage('u', 2, run=fake)   # census, candidates, (slurm), cross-check, hand
-    assert seen == ['census_build.py', 'cs_related_school.py'] and status == 'failed' and log[-1]['result'] == 'failed rc=3'
+    status, log = G.run_stage('u', 3, run=fake)   # census-refresh, homes (local), then the shared and lab-page steps
+    assert seen[0] == 'census_build.py' and len(seen) == 2 and status == 'failed' and log[-1]['result'] == 'failed rc=3'
 
 
 def test_shared_writers_need_allow_shared(tree):
@@ -147,10 +146,11 @@ def test_run_submits_the_slurm_steps_as_one_chain(tree, monkeypatch):
     import atlas_pipeline as AP
     got = {}
     monkeypatch.setattr(AP, 'submit', lambda name, schools, **k: got.update(name=name, schools=schools, **k) or {'sweep': '11'})
-    (tree.root / 'u' / 'hosts.json').write_text('{"hosts": []}')
-    status, log = G.run_stage('u', 0, submit=True, run=lambda *a, **k: SimpleNamespace(returncode=0))
-    assert status == 'submitted' and got['name'] == 'stage0-u' and got['schools'] == ['u'] and got['guard_preempt'] is True
-    assert got['stages'][0][:3] == ('sweep', 'school', 'PY $TOOLS/sweep_school.py {school}')
+    tree.put('census-faculty.json', {})   # stage 2's census step already ran
+    status, log = G.run_stage('u', 2, submit=True, run=lambda *a, **k: SimpleNamespace(returncode=0))
+    assert status == 'submitted' and got['name'] == 'stage2-u' and got['schools'] == ['u'] and got['guard_preempt'] is True
+    assert [x[0] for x in got['stages']] == ['dblp', 'sweep', 'sweepcheck', 'openalex-candidates']   # from the snapshot extension and the dump: no API sweep
+    assert log[-2]['step'] == 'candidates' and log[-2]['result'] == 'waits for the queued steps'
 
 
 def test_gate2_fails_until_the_candidates_file_exists(tree):
