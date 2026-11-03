@@ -197,4 +197,4 @@ pending** (cmu 11, epfl 5, mit 15, berkeley 6, stanford 13, including Earning Sa
 read one by one (title overlap 80% or more): 0 wrong. Final measured false-pass rate of what ships: 0 wrong in the 17 audited non-arXiv-DOI passes and 1 wrong (before
 the rule; the rule removes it) in 20 holdout copies, 0 wrong in about 60 arXiv-DOI passes read in total; about 5% on the holdout draw before the last rule, 0% after
 on every copy read (95% upper bound of 3 in 100 for the arXiv-DOI stratum, and the non-arXiv stratum fully audited). The cost is the false rejects: the 50 reverted
-include correct retitled papers (about two thirds of them), which stay pending and uncounted.
+include correct retitled papers (by my reading about 39 of the 50), which stay pending and uncounted.
