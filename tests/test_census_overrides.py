@@ -89,7 +89,7 @@ def test_roster_alone_or_coauthorship_alone_is_not_evidence(tmp_path, monkeypatc
     L = by_path('labpage_students_school')
     lp = tmp_path / 'lab_papers.jsonl.gz'
     with gzip.open(lp, 'wt') as f:
-        f.write(json.dumps({'pi': 'Pia Lee', 'year': '2021', 'title': 'A paper', 'byline': ['Pia Lee', 'Sam Roe']}) + '\n')
+        f.write(json.dumps({'pi': 'Pia Lee', 'year': '2021', 'title': 'A paper', 'byline': ['Sam Roe', 'Pia Lee']}) + '\n')
         f.write(json.dumps({'pi': 'Pia Lee', 'year': '2021', 'title': 'B paper', 'byline': ['Pia Lee', 'Tom Poe']}) + '\n')
     monkeypatch.setattr(L.P, 'data', lambda name, school=None, **k: lp)
     monkeypatch.setattr(L.S, 'field', lambda cfg, f, d=None: [{'url': 'r/alumni/', 'kind': 'alumni_by_year'}])
@@ -127,7 +127,7 @@ def test_roster_drops_pre_window_graduates_and_late_namesake_papers(tmp_path, mo
     lp = tmp_path / 'lab_papers.jsonl.gz'
     with gzip.open(lp, 'wt') as f:
         for who, yr in (('Old Timer', '2016'), ('Sam Roe', '2024'), ('Ann Only', '2021')):
-            f.write(json.dumps({'pi': 'Pia Lee', 'year': yr, 'title': 'T ' + who, 'byline': ['Pia Lee', who]}) + '\n')
+            f.write(json.dumps({'pi': 'Pia Lee', 'year': yr, 'title': 'T ' + who, 'byline': [who, 'Pia Lee']}) + '\n')
     monkeypatch.setattr(L.P, 'data', lambda name, school=None, **k: lp)
     monkeypatch.setattr(L.S, 'field', lambda cfg, f, d=None: [{'url': 'r/alumni/', 'kind': 'alumni_by_year'}])
     monkeypatch.setattr(L.S, 'get', lambda k: {})
@@ -138,3 +138,21 @@ def test_roster_drops_pre_window_graduates_and_late_namesake_papers(tmp_path, mo
     rows = L.roster_coauthor_students('u', [('Pia Lee', 'Pia Lee')])
     # Old Timer graduated 2010 (before 2016): dropped; Sam Roe graduated 2022 but the paper is 2024: dropped; Ann Only 2021 with a 2021 paper: kept
     assert [(r['student'], r['years']) for r in rows] == [('Ann Only', [None, 2021])]
+
+
+def test_a_single_paper_where_the_pi_is_not_last_is_not_advising(tmp_path, monkeypatch):
+    import gzip
+    L = by_path('labpage_students_school')
+    lp = tmp_path / 'lab_papers.jsonl.gz'
+    with gzip.open(lp, 'wt') as f:
+        f.write(json.dumps({'pi': 'Pia Lee', 'year': '2021', 'title': 'A', 'byline': ['Pia Lee', 'Sam Roe', 'Zed Last']}) + '\n')
+        f.write(json.dumps({'pi': 'Pia Lee', 'year': '2021', 'title': 'B', 'byline': ['Ann Only', 'Pia Lee']}) + '\n')
+    monkeypatch.setattr(L.P, 'data', lambda name, school=None, **k: lp)
+    monkeypatch.setattr(L.S, 'field', lambda cfg, f, d=None: [{'url': 'r/', 'kind': 'students'}])
+    monkeypatch.setattr(L.S, 'get', lambda k: {})
+    monkeypatch.setattr(L.W, 'con', lambda k: None)
+    monkeypatch.setattr(L.W, 'cdx_rows', lambda c, d, collapse=None: [dict(timestamp='20210101000000', original=d)])
+    monkeypatch.setattr(L.W, 'capture', lambda c, ts, o, d, dept: ('cap', 200, 'sha', []))
+    monkeypatch.setattr(L.W, 'flat', lambda b: 'Sam Roe PhD Student Ann Only PhD Student')
+    rows = L.roster_coauthor_students('u', [('Pia Lee', 'Pia Lee')])
+    assert [r['student'] for r in rows] == ['Ann Only']

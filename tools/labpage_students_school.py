@@ -307,7 +307,7 @@ def adviser_alumni(key, forms):
                 continue
             flat = W.flat(b)
             for m in ALUMNI_ENTRY.finditer(flat):
-                nm, yr, adv = re.sub(r'^(?:Student Alumni|Alumni|Home)\s+', '', m.group(1)), int(m.group(2)), m.group(3)
+                nm, yr, adv = re.sub(r'^(?:(?:Student Alumni|Alumni|Home|Distinction|With Distinction)\s+)+', '', m.group(1)), int(m.group(2)), m.group(3)
                 if yr < 2016:
                     continue
                 for pi, f in forms:
@@ -337,7 +337,7 @@ def roster_coauthor_students(key, forms):
         for nm in r.get('byline') or []:
             k = ' '.join(toks(nm))
             if len(k.split()) >= 2 and k not in faculty and nm != r['pi']:
-                papers[k].append((r['pi'], r.get('year'), r.get('title')))
+                papers[k].append((r['pi'], r.get('year'), r.get('title'), (r.get('byline') or [''])[-1] == r['pi']))
     c = W.con(key); by = {}
     for ro in rosters:
         url, kind = ro['url'], ro.get('kind') or 'students'
@@ -366,8 +366,8 @@ def roster_coauthor_students(key, forms):
                     # the co-authored paper must fall within the roster years (alumni: up to graduation + 1; a student list: the capture year +- 1),
                     # or a namesake's later paper would link them (round 3: an Ang Li of 2017 and a 2024 architecture paper)
                     ok = [x for x in ps if x[0] == pi and x[1] and (int(str(x[1])) <= (y or cy) + 1 if kind == 'alumni_by_year' else abs(int(str(x[1])) - cy) <= 1)]
-                    if not ok:
-                        continue
+                    if not ok or not (len(ok) >= 2 or any(x[3] for x in ok)):
+                        continue  # one co-authored paper where the PI is not last author is a collaboration, not advising (stage 6 round 4)
                     yrs = {int(str(x[1])) for x in ok}
                     e = by.setdefault((k, pi), dict(display=None, years=set(), first=None, papers=[]))
                     e['years'].add(y if y else int(r['timestamp'][:4])); e['kind'] = kind
