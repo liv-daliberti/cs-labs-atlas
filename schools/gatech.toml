@@ -1,0 +1,312 @@
+# schools/<key>.toml: one school's charter (docs/ADDING-A-SCHOOL.md, stage 0). Copy this file to schools/<key>.toml,
+# fill every field, run `python tools/school_config.py --check <key>` and `python tools/school_hosts.py <key>`, then
+# commit it. Every stage tool reads the school from here; nothing else needs a school list (see the protocol's
+# "files that must learn a new school" for the few that still do).
+#
+# Facts in this file are decisions about where to look, not evidence: evidence (url + sha256 + verbatim quote) lives in
+# the captures and the stage outputs. Say how each identifier was verified in the *_note fields.
+
+
+key = "gatech"
+name = "Georgia Institute of Technology"
+short = "Georgia Tech"
+site_uni = ""
+status = "onboarding"     # onboarding until the owner says otherwise
+order = 9
+stage = 0
+started = "2026-11-03"
+window = [2016, 2026]
+
+[ids]
+openalex = ["I130701444"]
+# Stage-0 scope decisions are PENDING (hierarchy/gatech/reports/STAGE-0.md, D1-D5). This is the recommended setting, which is also a superset for
+# the snapshot extension: GTRI and Georgia Tech-Europe are swept so the data can inform D2.
+# Georgia Institute of Technology's lineage holds GTRI I4388482740, Georgia Tech-CNRS Laboratory I4210089931 (Metz), the Wallace H. Coulter BME
+# Department I2802612298 (joint with Emory), the Center for Translational Research in Neuroimaging and Data Science I4210133909 and the Georgia
+# Space Grant Consortium I4210101104. Georgia Tech-Europe I1288283403 is 'related' only (not lineage).
+openalex_related = ["I1288283403"]
+openalex_excluded = []
+ror = "https://ror.org/01zkghx44"
+ids_note = """OpenAlex institutions table of the 2026-10-14 snapshot (no API credits; checked 2026-11-03): I130701444 'Georgia Institute of Technology', ROR 01zkghx44,
+country US, lineage [I130701444] (no parent; associated parent University System of Georgia I1289702989 is not lineage). Children whose lineage holds it (and ROR
+children): Georgia Tech Research Institute I4388482740, Georgia Tech-CNRS Laboratory I4210089931, The Wallace H. Coulter Department of Biomedical Engineering
+I2802612298, Center for Translational Research in Neuroimaging and Data Science I4210133909, Georgia Space Grant Consortium I4210101104. Related (not lineage):
+Georgia Tech-Europe I1288283403 (ROR 02m5dy175, Metz), Moorea Coral Reef LTER, MSEE University Research Alliance. Not in the lineage and not swept: Georgia Tech
+Foundation I4405270240, Georgia Tech Tools for Life I4210160906. Other Georgia institutions have their own lineages (Georgia State I181565077, University of Georgia,
+Emory, Kennesaw State, Georgia Southern, Georgia Gwinnett). OpenAlex has no institution for the Georgia Tech Shenzhen Institute (a Tianjin University entity)."""
+
+[web]
+domains = ["gatech.edu"]
+email_domains = ["gatech.edu", "cc.gatech.edu", "ece.gatech.edu", "isye.gatech.edu", "gtri.gatech.edu"]
+wayback_only_suffixes = []
+excluded_hosts = ["gsu.edu", "uga.edu", "emory.edu", "kennesaw.edu"]
+
+[affiliation]
+# 'Georgia Institute of Technology' (any spelling of Institute/Inst.), 'Georgia Tech' (not the Shenzhen institute, a Tianjin University entity: D4), 'Ga Tech',
+# the gatech.edu domain, 'GTRI'. Never a bare 'Georgia' (Georgia State, University of Georgia, Georgia Southern, Georgia Gwinnett, Kennesaw State).
+regex = '''georgia\s+inst\w*\.?\s+of\s+tech\w*|georgia\s+tech(?:nology)?\b(?!\W+shenzhen)|\bga\.?\s+tech\b|gatech\.edu|\bGTRI\b'''
+own_units = '''\b(?:robotics\s+and\s+intelligent\s+machines|data\s+engineering\s+and\s+science|electronics\s+and\s+nanotechnology|people\s+and\s+technology|bioengineering\s+and\s+bioscience|sustainable\s+systems|research)\s+institute\b|\bgvu\s+center\b|\bmachine\s+learning\s+center\b'''
+loose = '''georgia\s+(?:inst\w*\.?\s+of\s+)?tech\w*|gatech\.edu|atlanta,?\s+ga\b'''
+must_match = [
+  "Georgia Institute of Technology, Atlanta, GA 30332, USA",
+  "School of Computer Science, Georgia Institute of Technology",
+  "Georgia Inst. of Technology",
+  "Georgia Tech, Atlanta",
+  "College of Computing, Georgia Tech",
+  "Georgia Tech Research Institute",
+  "GTRI, Atlanta, GA",
+  "jdoe@cc.gatech.edu",
+  "Emory University and Georgia Institute of Technology",
+  "Ga Tech",
+]
+must_not_match = [
+  "Georgia State University, Atlanta, GA",
+  "University of Georgia, Athens, GA",
+  "Georgia Southern University",
+  "Georgia Gwinnett College",
+  "Kennesaw State University, Marietta, GA",
+  "Emory University, Atlanta, GA 30322",
+  "Georgia College & State University",
+  "Georgia Tech Shenzhen Institute, Tianjin University",
+  "Georgia Southwestern State University",
+  "Southern Polytechnic State University",
+  "Morehouse School of Medicine, Atlanta",
+  "jdoe@gsu.edu",
+  "Georgia Department of Transportation",
+]
+
+[dblp]
+affiliation_strings = ["Georgia Institute of Technology", "Georgia Tech"]
+legacy_sweep = ""
+
+[rules]
+foreign_title_exception = false
+
+[census]
+computing_departments = ["CS", "IC", "CSE", "CSP"]
+home_units = {"Computer Science" = '^(?:School of )?Computer Science$', "Interactive Computing" = '^(?:School of )?Interactive Computing$', "Computational Science and Engineering" = '^(?:School of )?Computational Science (?:and|&) Engineering$', "Cybersecurity and Privacy" = '^(?:School of )?Cybersecurity (?:and|&) Privacy$', "Electrical and Computer Engineering" = '^(?:School of )?Electrical (?:and|&) Computer Engineering$', "Industrial and Systems Engineering" = '^(?:H\. Milton Stewart )?School of Industrial (?:and|&) Systems Engineering$', "Mathematics" = '^(?:School of )?Mathematics$', "Biomedical Engineering" = '^(?:The )?(?:Wallace H\. Coulter )?(?:Department of )?Biomedical Engineering$'}
+
+[sweep_check]
+exceptions = []
+
+[cs_related]
+share_test_settles = []
+
+[site]
+depts = {CS = "School of Computer Science", IC = "School of Interactive Computing", CSE = "School of Computational Science and Engineering", CSP = "School of Cybersecurity and Privacy"}
+full_codes = ["CS", "IC", "CSE", "CSP"]
+
+[periods]
+school_regex = ''
+profile_patterns = ["www.cc.gatech.edu/people/{first}-{last}", "scs.gatech.edu/people/{first}-{last}", "ic.gatech.edu/people/{first}-{last}", "cse.gatech.edu/people/{first}-{last}", "scp.cc.gatech.edu/people/{first}-{last}"]
+
+# --- departments (College of Computing: four schools) ----------------------------------------------------------------------
+# Listing URLs below are the CURRENT ones (probed live 2026-11-03); stage 1 finds the URL eras with tools/discover_listings.py. Cybersecurity and
+# Privacy was founded 2022-23, so its slot has no 2016-2021 capture by construction (a reviewed listing_gaps entry will say so).
+[[departments]]
+code = "CS"
+name = "School of Computer Science"
+unit = "College of Computing"
+title_match = '''Computer Science'''
+coverage = "full"
+url = "https://scs.gatech.edu/"
+  [[departments.listings]]
+  slot = "SCS faculty"
+  kind = "main"
+  url = "scs.gatech.edu/people/faculty"
+  from = "20160101"
+  to = "20261231"
+
+[[departments]]
+code = "IC"
+name = "School of Interactive Computing"
+unit = "College of Computing"
+title_match = '''Interactive Computing'''
+coverage = "full"
+url = "https://ic.gatech.edu/"
+  [[departments.listings]]
+  slot = "IC faculty"
+  kind = "main"
+  url = "ic.gatech.edu/people/faculty"
+  from = "20160101"
+  to = "20261231"
+
+[[departments]]
+code = "CSE"
+name = "School of Computational Science and Engineering"
+unit = "College of Computing"
+title_match = '''Computational Science'''
+coverage = "full"
+url = "https://cse.gatech.edu/"
+  [[departments.listings]]
+  slot = "CSE faculty"
+  kind = "main"
+  url = "cse.gatech.edu/people/faculty"
+  from = "20160101"
+  to = "20261231"
+
+[[departments]]
+code = "CSP"
+name = "School of Cybersecurity and Privacy"
+unit = "College of Computing"
+title_match = '''Cybersecurity'''
+coverage = "full"
+url = "https://scp.cc.gatech.edu/"
+  [[departments.listings]]
+  slot = "SCP faculty"
+  kind = "main"
+  url = "scp.cc.gatech.edu/people/faculty"
+  from = "20220101"
+  to = "20261231"
+
+[[departments]]
+code = "ECE"
+name = "School of Electrical and Computer Engineering"
+unit = "College of Engineering"
+title_match = '''Electrical and Computer Engineering'''
+coverage = "affiliated"
+url = "https://ece.gatech.edu/"
+  [[departments.listings]]
+  slot = "ECE faculty"
+  kind = "main"
+  url = "ece.gatech.edu/directory"
+  from = "20160101"
+  to = "20261231"
+
+[[departments]]
+code = "ISYE"
+name = "H. Milton Stewart School of Industrial and Systems Engineering"
+unit = "College of Engineering"
+title_match = '''Industrial and Systems Engineering'''
+coverage = "affiliated"
+url = "https://www.isye.gatech.edu/"
+  [[departments.listings]]
+  slot = "ISYE faculty"
+  kind = "main"
+  url = "www.isye.gatech.edu/people/faculty"
+  from = "20160101"
+  to = "20261231"
+
+# --- other units searched for computing-related faculty (stage 2); first guesses, added to when the OpenAlex rule names their people ---------
+[[affiliated_units]]
+code = "ML"
+name = "Machine Learning Center at Georgia Tech"
+url = "https://ml.gatech.edu/people"
+listings = ["ml.gatech.edu/people"]
+
+[[affiliated_units]]
+code = "MATH"
+name = "School of Mathematics"
+url = "https://math.gatech.edu/people"
+listings = ["math.gatech.edu/people"]
+
+[[affiliated_units]]
+code = "BME"
+name = "Wallace H. Coulter Department of Biomedical Engineering"
+url = "https://bme.gatech.edu/"
+listings = ["bme.gatech.edu/"]   # placeholder: the faculty directory URL is found at stage 2 if the OpenAlex rule names BME people (no /people or /faculty: 404, 2026-11-03)
+
+# --- students ----------------------------------------------------------------------------------------------------------------
+[thesis]
+kind = "none"
+base_url = ""
+endpoints = []
+robots = ""
+note = "Georgia Tech's dissertations are in SMARTech (smartech.gatech.edu, DSpace); not probed yet (stage 6): robots.txt for AI-agent rules first."
+
+[students]
+directories = []
+sources = [
+  "College of Computing PhD defense announcements (Wayback)",
+  "lab member pages and PI homepages (live where robots allows, else Wayback)",
+]
+
+[labpages]
+hints = ["<name>.cc.gatech.edu", "www.cc.gatech.edu/~<name>/", "<lab>.gatech.edu", "sites.gatech.edu/<lab>", "sites.google.com/view/<lab>", "github.io"]
+
+[store]
+path = "/n/fs/resemble/homogenizing-science/stores/gatech"
+
+# --- hosts (stage-0 gate: tools/school_hosts.py gatech) -----------------------------------------------------------------------
+
+[[hosts]]
+host = "web.archive.org"
+use = "live"
+purpose = "Wayback id_ captures and CDX (listings 2016-2026, lab pages)"
+probe = "https://web.archive.org/web/2020id_/https://www.cc.gatech.edu/"
+
+[[hosts]]
+host = "scs.gatech.edu"
+use = "live"
+purpose = "School of Computer Science faculty"
+probe = "https://scs.gatech.edu/people/faculty"
+
+[[hosts]]
+host = "ic.gatech.edu"
+use = "live"
+purpose = "School of Interactive Computing faculty"
+probe = "https://ic.gatech.edu/people/faculty"
+
+[[hosts]]
+host = "cse.gatech.edu"
+use = "live"
+purpose = "School of Computational Science and Engineering faculty"
+probe = "https://cse.gatech.edu/people/faculty"
+
+[[hosts]]
+host = "scp.cc.gatech.edu"
+use = "live"
+purpose = "School of Cybersecurity and Privacy faculty"
+probe = "https://scp.cc.gatech.edu/people/faculty"
+
+[[hosts]]
+host = "www.cc.gatech.edu"
+use = "live"
+purpose = "College of Computing (all schools; pre-2020 sites and personal pages)"
+probe = "https://www.cc.gatech.edu/people/faculty"
+
+[[hosts]]
+host = "ece.gatech.edu"
+use = "live"
+purpose = "ECE directory"
+probe = "https://ece.gatech.edu/directory"
+
+[[hosts]]
+host = "www.isye.gatech.edu"
+use = "live"
+purpose = "ISyE people (isye.gatech.edu redirects here)"
+probe = "https://www.isye.gatech.edu/people/faculty"
+
+[[hosts]]
+host = "ml.gatech.edu"
+use = "live"
+purpose = "Machine Learning Center people"
+probe = "https://ml.gatech.edu/people"
+
+[[hosts]]
+host = "math.gatech.edu"
+use = "live"
+purpose = "School of Mathematics people; robots.txt Crawl-delay 10 for *"
+probe = "https://math.gatech.edu/people"
+
+[[hosts]]
+host = "bme.gatech.edu"
+use = "live"
+purpose = "Coulter BME faculty"
+probe = "https://bme.gatech.edu/"
+
+[[hosts]]
+host = "gtri.gatech.edu"
+use = "live"
+purpose = "Georgia Tech Research Institute (D2 evidence only)"
+probe = "https://gtri.gatech.edu/"
+
+[[hosts]]
+host = "api.openalex.org"
+use = "live"
+purpose = "OpenAlex (snapshot first; the shared 10k/day key)"
+
+[[hosts]]
+host = "api.ror.org"
+use = "live"
+purpose = "ROR verification"
