@@ -28,7 +28,11 @@ def test_ai_agent_disallow_is_detected_by_name():
 
 
 def test_urls_on_host_lists_department_and_unit_slots():
-    import school_hosts as H
+    import importlib.util
+    from pathlib import Path
+    spec = importlib.util.spec_from_file_location('sh_by_path', Path(__file__).resolve().parents[1] / 'tools' / 'school_hosts.py')
+    H = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(H)
     cfg = {'departments': [{'listings': [{'url': 'https://old.edu/people/'}, {'url': 'https://new.edu/p'}]}],
            'affiliated_units': [{'listings': ['old.edu/people/faculty/', 'x.edu/y']}]}
     assert H.urls_on_host(cfg, 'old.edu') == ['https://old.edu/people/', 'old.edu/people/faculty/']

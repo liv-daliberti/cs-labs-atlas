@@ -4,6 +4,15 @@ import json
 import atlas_paths as P
 import census_overrides as CO
 
+def by_path(name):
+    """tools/<name>.py by path: an earlier test may have left another checkout's copy of the module in sys.modules."""
+    import importlib.util
+    from pathlib import Path
+    spec = importlib.util.spec_from_file_location('by_path_' + name, Path(__file__).resolve().parents[1] / 'tools' / (name + '.py'))
+    m = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(m)
+    return m
+
 
 def setup(tmp_path, monkeypatch, status):
     monkeypatch.setattr(P, 'data', lambda name, school=None, root=None, **k: tmp_path / ((school or '_') + '-' + name))
@@ -37,7 +46,7 @@ def test_a_released_school_still_edits_the_shared_file(tmp_path, monkeypatch):
 
 
 def test_oa_identity_review_file_is_optional(tmp_path, monkeypatch):
-    import oa_identity_school as O
+    O = by_path('oa_identity_school')
     monkeypatch.setattr(O.P, 'data', lambda name, school=None, **k: tmp_path / name)
     (tmp_path / 'census-faculty.json').write_text(json.dumps({'faculty': []}))
     (tmp_path / 'cs-related-review.json').write_text(json.dumps({'decisions': []}))
