@@ -392,6 +392,14 @@
        "description": "The PI's verified collection works.",
        "type": "integer",
        "minimum": 0
+      },
+      "period_boundary_affiliated": {
+       "description": "Papers kept in a period whose boundary the date cannot be placed against, by the paper's own school affiliation.",
+       "type": "integer",
+       "minimum": 0,
+       "x-rules": [
+        "R-PAP-28"
+       ]
       }
      },
      "patternProperties": {
