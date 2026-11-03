@@ -302,7 +302,8 @@ STEPS = {
           L('homes', 'tools/home_departments_school.py', '{key}'),   # school-local file; always re-run (the census changed)
           L('homes-shared', 'tools/home_departments_school.py', '{key}', '--write-shared', shared=True),
           Q('build', 'PY $TOOLS/pi_hierarchy.py {school}', cpus=3, mem='40G', time='02:00:00', done=['pis.json']),   # the lab-page audit reads pis.json (Michigan built at stage 3: UChicago friction 27)
-          Q('labpage-discover', 'PY $TOOLS/labpage_audit.py discover {school}', time='12:00:00', done=['labpage-audit.jsonl.gz']),
+          Q('labpage-discover', 'PY $TOOLS/labpage_audit.py discover {school}', time='12:00:00', done=['labpage-audit-discovery.jsonl']),
+          Q('labpage-audit', 'PY $TOOLS/labpage_audit.py audit {school}', cpus=2, mem='16G', time='02:00:00', done=['labpage-audit.jsonl.gz']),   # discover alone writes labpage-audit-discovery.jsonl; the gate reads the audit's file (friction 29)
           H('pi-basis', 'research and teaching faculty need reviewed evidence of a group or advisees (pi-basis-evidence.json)')],
     '4': [Q('periods-fetch', 'PY $TOOLS/periods_school.py fetch {school}', cpus=1, mem='8G', time='08:00:00'),
           Q('periods-extract', 'PY $TOOLS/periods_school.py extract {school}', time='02:00:00'),
