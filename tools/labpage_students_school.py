@@ -538,16 +538,23 @@ def roster_coauthor_students(key, forms):
                     # the co-authored paper must fall within the roster years (alumni: up to graduation + 1; a student list: the capture year +- 1),
                     # or a namesake's later paper would link them (round 3: an Ang Li of 2017 and a 2024 architecture paper)
                     ok = [x for x in ps if x[0] == pi and x[1] and (int(str(x[1])) <= (y or cy) + 1 if kind == 'alumni_by_year' else abs(int(str(x[1])) - cy) <= 1)]
-                    if not ok or not (len(ok) >= 2 or any(x[3] for x in ok)):
+                    strict = S.field(S.get(key), 'students.roster_rule') == 'two_and_last'  # Michigan (round 6): at least two papers in the roster years AND the PI last author on one
+                    if not ok or not ((len(ok) >= 2 and any(x[3] for x in ok)) if strict else (len(ok) >= 2 or any(x[3] for x in ok))):
                         continue  # one co-authored paper where the PI is not last author is a collaboration, not advising (stage 6 round 4)
                     yrs = {int(str(x[1])) for x in ok}
                     e = by.setdefault((k, pi), dict(display=None, years=set(), first=None, papers=[]))
                     e['years'].add(y if y else int(r['timestamp'][:4])); e['kind'] = kind
                     e['papers'] = sorted({x[2] for x in ok})[:3]
+                    e['score'] = max(e.get('score', (0, 0)), (sum(1 for x in ok if x[3]), len(ok)))  # (papers with the PI last, papers)
                     if not e['first'] or r['timestamp'] < e['first'][0]:
                         e['first'] = (r['timestamp'], cap, sha, url, flat[m.start():m.end() + 120], m.group(0))
     rows = []
+    best = {}  # a student on several PIs' papers is linked to the PI(s) with the most last-author, then co-authored, papers (stage 6, Michigan round 5)
+    for (k, pi), e in by.items():
+        best[k] = max(best.get(k, (0, 0)), e['score'])
     for (k, pi), e in sorted(by.items()):
+        if e['score'] < best[k]:
+            continue
         ts, cap, sha, url, q, disp = e['first']
         ys = sorted(e['years'])
         years = [None, ys[-1]] if e['kind'] == 'alumni_by_year' else [ys[0], ys[-1]]
