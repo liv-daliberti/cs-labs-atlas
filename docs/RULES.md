@@ -233,7 +233,12 @@ Wenisch's HPCA 2016 paper: OpenAlex credits him to NVIDIA only, while a co-autho
 and his own works of that year name Michigan. A work whose PI authorship names only companies, agencies or other non-university
 institutions (OpenAlex type company, nonprofit, government, facility, archive, other), whose byline names the school for another
 author, whose PI identity is strong (reviewed id, ORCID, DBLP, institutional list), and with 2+ school-affiliated identified works
-of the same year, takes the school as `cross-affiliated byline: ...`. The appointment and paper-type checks still apply. A byline
+of the same year, takes the school as `cross-affiliated byline: ...`. The appointment and paper-type checks still apply.
+2026-11-03 (fresh hand check: 3 of 20 wrong): not when the appointment that admits the paper is a non-primary one (`NONPRIMARY`: adjunct, on
+leave, consulting, visiting, courtesy, affiliate, emeritus, part-time in the listing quote or the period's evidence quotes). Those were
+company papers of an adjunct or leave-taker with one co-author credited to the school (Savarese/Salesforce under a Stanford adjunct
+listing, Metze/Meta 'Associate Research Professor (On Leave)', Kalai/Microsoft 'Adjunct Associate Professor'). Counter
+`cross_affiliation_nonprimary_appointment`. A byline
 with no institution at all (pi-0) and a credit to another university are untouched. `school_basis`, `STRONG_IDENTITY`,
 `CROSS_KINDS`; counter `school_via_cross_affiliation`.
 

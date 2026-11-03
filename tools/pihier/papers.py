@@ -444,6 +444,10 @@ def venue_tables(ctx):
 
 STRONG_IDENTITY = ('reviewed_openalex_author_id', 'pi_orcid', 'dblp_verified_collection_work', 'dblp_person_page_doi', 'dblp_person_page_title',
                    'pi_institutional_publication_list', 'lab_publication_page')
+# R-PAP-29 (2026-11-03): a cross-affiliated byline does not count when the PI's appointment at the school is not a primary one: an adjunct's,
+# consultant's or leave-taker's company paper was not done at the school (fresh hand check, 3 of 20 wrong: Savarese's Salesforce paper under a
+# Stanford adjunct listing, Metze's Meta paper under 'Associate Research Professor (On Leave)', Kalai's Microsoft paper under 'Adjunct Associate Professor')
+NONPRIMARY = re.compile(r'\b(adjunct|on leave|consulting|visiting|courtesy|affiliate|emerit|part[- ]time)', re.I)
 CROSS_KINDS = {'company', 'nonprofit', 'government', 'facility', 'other', 'archive'}  # R-PAP-29: not another university
 
 
@@ -577,6 +581,8 @@ def rows_from_hits(ctx):
                 n['period_boundary_affiliated'] += 1; funnel[pi]['period_boundary_affiliated'] += 1
         if per is None and lst is None:
             n['outside_appointment'] += 1; funnel[pi]['outside_appointment_' + str(w.get('publication_year'))] += 1; continue
+        if via[0].startswith('cross-affiliated') and NONPRIMARY.search(' '.join([(q_.get('quote') or '') for q_ in (per or {}).get('evidence') or []] + [(lst or {}).get('quote') or '', (lst or {}).get('kind') or ''])):
+            n['cross_affiliation_nonprimary_appointment'] += 1; continue
         if unaffiliated and per is None and transition_side(p, lst, date) == 'outside':
             # (2026-10-29, owner: best judgement) a byline with no affiliations says nothing about where the work was done,
             # so in a PI's arrival or departure year a listing proves only its own side of the capture date: Thomas

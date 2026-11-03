@@ -98,3 +98,13 @@ def test_R_PAP_29_cross_affiliated_byline(tmp_path, monkeypatch, kw, kept):
         assert row['authorship']['school_via'][0].startswith('cross-affiliated byline') and ctx.n['school_via_cross_affiliation'] == 1
     else:
         assert ctx.n['school_via_cross_affiliation'] == 0
+
+
+@pytest.mark.parametrize('quote', ['Ada Lovelace, Adjunct Professor (captured 2015-08-07)', 'Ada Lovelace, Associate Research Professor (On Leave)'])
+def test_R_PAP_29_nonprimary_appointment_does_not_take_a_company_paper(tmp_path, monkeypatch, quote):
+    """2026-11-03: the same byline under an adjunct listing or an 'on leave' period is the company's paper, not the lab's."""
+    per = copy.deepcopy(T.OVERRIDES[T.SCHOOL]['Ada Lovelace']['periods'][0])
+    per['evidence'] = ev(quote)
+    ctx = school(tmp_path, monkeypatch, cross(), [per])
+    assert 'Selective Caches for Hybrid Memory' not in T.rows_of(ctx, 'Ada Lovelace')
+    assert ctx.n['cross_affiliation_nonprimary_appointment'] == 1
