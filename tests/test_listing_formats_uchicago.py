@@ -63,3 +63,32 @@ def test_uchicago_rank_words():
     assert R.rank_of(['Assistant Instructional Professor of Computer Science']) == 'teaching'
     assert R.rank_of(['Adjoint Professor']) == 'adjunct' and R.rank_of(['Resident Adjoint Professor']) == 'adjunct'
     assert R.rank_of(['Neubauer Professor of Computer Science']) == 'ladder' and R.rank_of(['Professor Emeritus']) == 'emeritus'
+
+
+def test_charter_rank_words_join_the_shared_patterns():
+    import listing_rows as R
+    assert R.rank_of(['Professor of Basket Weaving']) == 'ladder'
+    assert R.rank_of(['Professor of Basket Weaving'], {'teaching': r'basket weaving'}) == 'teaching'
+    assert R.rank_of(['Assistant Professor'], {'teaching': r'basket weaving'}) == 'ladder'
+
+
+PAGED = '<div class="pager"><a href="?page=1">2</a></div><li><a href="/p/a">Ann Lee</a> Professor</li>' * 6
+
+
+def test_a_paged_capture_is_flagged_and_plan_fetch_rejects_it(monkeypatch):
+    import sys
+    from pathlib import Path
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'listings' / 'scripts'))
+    import plan_fetch as PF
+    import listing_formats as LF
+    assert LF.is_paged(PAGED) and not LF.is_paged('<ul><li>Ann Lee Professor</li></ul>')
+    monkeypatch.setattr(LF, 'parse', lambda h, f=None: ('x', [{'name': str(i)} for i in range(9)]))
+    monkeypatch.setattr(PF.wb, 'body', lambda raw: raw)
+
+    class Con:
+        def __init__(self, h): self.h = h
+        def execute(self, q, a): return type('C', (), {'fetchone': lambda me: (self.h.encode(),)})()
+    ok, why = PF.charter_usable(Con(PAGED), 'u', {})
+    assert not ok and 'paged directory' in why
+    assert PF.charter_usable(Con(PAGED), 'u', {'prefix': True})[0]
+    assert PF.charter_usable(Con('<ul></ul>'), 'u', {})[0]

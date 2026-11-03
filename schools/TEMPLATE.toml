@@ -47,6 +47,7 @@ legacy_sweep = ""         # pre-protocol schools only: the base sweep holding ca
 [census]
 computing_departments = []   # department codes listed_not_in_census.py treats as computing; [] = every listed department
 home_units = {}              # canonical home-unit name = regex over the spellings the listings use
+rank_words = {}              # this school's title words per rank, added to tools/listing_rows.py RANKS: {teaching = '\\binstructional\\s+professor', adjunct = '\\badjoint\\b'}
 
 [sweep_check]
 exceptions = []           # reviewed exceptions to tools/sweep_check.py: {test, year?, reason, verify? = "papers_normal"}

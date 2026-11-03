@@ -40,9 +40,13 @@ def given_first(n):
     return core + (f' {suf.group(1)}.' if suf else '')
 
 
-def rank_of(titles):
+def rank_of(titles, extra=None):
+    """The rank a title list reads as. `extra` = the charter's [census].rank_words ({rank = regex}): title words of one school that
+    join the shared RANKS patterns for that rank (UChicago PROTOCOL-FRICTION 17, R3), so a new school never edits the shared table."""
     t = ' | '.join(titles)
     for r, rx in RANKS:
+        if extra and extra.get(r):
+            rx = f'(?:{rx})|(?:{extra[r]})'
         if re.search(rx, t, re.I):
             return r
     return 'other'
@@ -62,6 +66,7 @@ def quote_of(flat, e):
 
 def main(key):
     cfg = S.get(key)
+    rw = (cfg.get('census') or {}).get('rank_words') or {}
     tm = {d['code']: re.compile(d.get('title_match') or r'.', re.I) for d in cfg.get('departments') or []}
     eras = [(s['slot'], s.get('from') or '0', s.get('to') or '9', s.get('format')) for d in cfg.get('departments') or [] for s in d.get('listings') or []]
     kind_of = {s['slot']: s['kind'] for s in S.listing_slots(key)}
@@ -84,7 +89,7 @@ def main(key):
         if not es and named:
             fmt, es = LF.parse(h)
         n[f'captures_{fmt}'] += 1
-        if re.search(r'class="pager"|class="pagination"', h) and re.search(r'[?&]page=[1-9]', h) and es:
+        if LF.is_paged(h) and es:
             # a paged directory: this capture holds one page of several (UChicago CS 2017: 5 of ~45 people); the next pages may not be archived
             n['captures_paged'] += 1; print(json.dumps(dict(paged_listing=cap, entries=len(es))), flush=True)
         if not es:
@@ -95,7 +100,7 @@ def main(key):
                 n['entries_without_quote'] += 1; continue
             dt = [t for t in e['titles'] if tm.get(dept, re.compile('.')).search(t)]
             rows.append(dict(name=given_first(e['name_listed']), name_listed=e['name_listed'], dept=dept, slot=slot, kind=kind_of.get(slot), year=int(obs[:4]),
-                             half=half, observed=obs, titles=e['titles'], dept_title=dt, rank=(rank_of(dt) if dt and rank_of(dt) != 'other' else rank_of(e['titles'])), division=e.get('division'),
+                             half=half, observed=obs, titles=e['titles'], dept_title=dt, rank=(rank_of(dt, rw) if dt and rank_of(dt, rw) != 'other' else rank_of(e['titles'], rw)), division=e.get('division'),
                              homepage=e.get('homepage'), **({'profile': e['profile']} if e.get('profile') else {}), capture_url=cap, sha256=sha, quote=q))
             n['rows'] += 1
     out = P.data('rows.json', key)

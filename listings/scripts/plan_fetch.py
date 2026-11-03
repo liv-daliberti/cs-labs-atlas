@@ -52,7 +52,10 @@ def charter_usable(con, cap, s, floor=5):
     2026-10-29); they were gzip-encoded full lists read undecoded (learned 2026-10-30), so the bytes go through wb.body."""
     import listing_formats
     raw = con.execute("select raw_zlib from captures where capture_url=?", (cap,)).fetchone()[0]
-    fmt, es = listing_formats.parse(wb.body(raw).decode("utf-8", "replace") if raw else "", s.get("format"))
+    html = wb.body(raw).decode("utf-8", "replace") if raw else ""
+    fmt, es = listing_formats.parse(html, s.get("format"))
+    if es and listing_formats.is_paged(html) and not s.get("prefix"):  # one page of several: a partial list passes the floor (UChicago CS 2017)
+        return False, f"paged directory: this capture holds {len(es)} entries of one page (a listing_gaps entry records the year)"
     if len(es) < floor:
         return False, f"listing format {fmt} parses {len(es)} person entries (< {floor})"
     return True, None
