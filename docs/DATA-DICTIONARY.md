@@ -414,7 +414,7 @@ The build's report: counters, exclusions, samples of what the rules dropped, and
 | `counts.<key ~ /^relation_evidence_/>` | integer | — | Re-captured relation evidence outcomes. | at least 0 | R-STU-08 |
 | `counts.<key ~ /^student_corrections_/>` | integer | — | Reviewed corrections applied, by action. | at least 0 | R-STU-04 |
 | `counts.<key ~ /^(dblp\|labpage)_recovered_/>` | integer | — | Recovered rows (kept, or outside the appointment). | at least 0 | R-PAP-24 |
-| `counts.<key ~ /^(unaffiliated\|school_via)_/>` | integer | — | School-basis route counters. | at least 0 | R-PAP-11, R-PAP-12, R-PAP-20, R-PAP-25 |
+| `counts.<key ~ /^(unaffiliated\|school_via)_/>` | integer | — | School-basis route counters. | at least 0 | R-PAP-11, R-PAP-12, R-PAP-20, R-PAP-25, R-PAP-29 |
 | `counts.<key>` | integer | — |  | at least 0 |  |
 | `excluded` | array of object | yes | PIs removed by a reviewed exclusion (census-overrides.json exclude, gap-evidence not_pi_in_window). |  |  |
 | `excluded[]` | object | — | A sample. | no other keys |  |

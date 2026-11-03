@@ -8,7 +8,7 @@ import atlas_paths as P  # data paths (DATA_FILES)
 import school_config as _S  # the school charters (R-PAP-15's foreign-title exception)
 from .common import OWN_UNITS, SCHOOL_LOOSE, TODAY, WINDOW_START, accepted_additions, ndoi, norm_title
 from .names import NICK, _nick_pairs, byline_name, full_pair, toks
-from .periods import contains, same_year, transition_side, transition_status
+from .periods import bridge_periods, contains, same_year, transition_side, transition_status
 from . import identity
 from dblp_dump_pages import page_count  # noqa: E402  (DBLP's `pages` string -> number of pages; R-PAP-27)
 
@@ -442,6 +442,11 @@ def venue_tables(ctx):
     ctx.dblp_pages = dblp_pages
 
 
+STRONG_IDENTITY = ('reviewed_openalex_author_id', 'pi_orcid', 'dblp_verified_collection_work', 'dblp_person_page_doi', 'dblp_person_page_title',
+                   'pi_institutional_publication_list', 'lab_publication_page')
+CROSS_KINDS = {'company', 'nonprofit', 'government', 'facility', 'other', 'archive'}  # R-PAP-29: not another university
+
+
 def school_basis(ctx, pi, w, a, ident, page1):
     """Why authorship `a` of `w` ties the PI to the school, as `via` (empty: no basis), and the page-1 tie used: the
     institution lineage or raw string; page 1 (R-PAP-10); a bare unit name (R-PAP-25); an advisee at the school on the
@@ -490,7 +495,25 @@ def school_basis(ctx, pi, w, a, ident, page1):
               and full_pair(byline_name(x['raw_author_name'])) in adv_full[pi]]
         if co:
             via = [f'advisee on an unaffiliated byline: {co[0]}']; n['school_via_unaffiliated_byline_advisee'] += 1
+    if not via and ident in STRONG_IDENTITY and a.get('institutions') and ctx.direct_years[pi].get(int(w.get('publication_year') or 0), 0) >= 2:
+        # R-PAP-29 (2026-11-02, owner: accuracy pass; Wenisch's HPCA 2016 paper): OpenAlex credits the PI to a company or agency
+        # only, while the byline also names the school (a co-author's institution, or a shifted position) and the PI's own works of
+        # that year name the school at least twice. Strong identity, the appointment check below and the paper-type checks still
+        # apply. Not the unaffiliated route: a byline with no institution at all (pi-0) is not touched.
+        kinds_ = {i.get('type') for i in a['institutions']}
+        school_co = any(x is not a and (any(inst == i.get('id') or inst in (i.get('lineage') or []) for i in x.get('institutions') or [])
+                                        or any(aff.search(z) for z in x.get('raw_affiliation_strings') or [])) for x in w.get('authorships') or [])
+        if kinds_ <= CROSS_KINDS and school_co:
+            via = ['cross-affiliated byline: PI credited to ' + ', '.join(i.get('display_name') or '?' for i in a['institutions'][:2])
+                   + '; a co-author is credited to the school']
+            n['school_via_cross_affiliation'] += 1
     return via, page1
+
+
+def direct_via(via):
+    """The school basis is the PI's own authorship naming the school (an institution or a raw affiliation string), not an
+    advisee, a unit name, a first page or a cross-affiliation."""
+    return bool(via) and not via[0].startswith(('advisee', 'school unit', 'page 1', 'cross-affiliated'))
 
 
 def rows_from_hits(ctx):
@@ -544,6 +567,14 @@ def rows_from_hits(ctx):
         lst = None
         if per is None:
             y = same_year(date); lst = next((l for l in p['listings'] if l['year'] == y), None) if y else None
+        if per is None and lst is None and direct_via(via):
+            # R-PAP-28 (2026-11-02, owner: accuracy pass; Klasnja's IMWUT 2020 paper): a period whose boundary the date cannot be
+            # placed against ('boundary_unresolved': a year-precision start, or a paper dated by its year only) does not turn
+            # away a paper whose own authorship names the school: the affiliation is the dated statement the period lacks, as in
+            # R-PAP-13's transition years. Only the PI's own affiliation counts (not an advisee, unit-name or page-1 route).
+            per = next((q for q in p['periods'] if contains(q['start'], q['end'], date, q['asof'] or TODAY) == 'boundary_unresolved'), None)
+            if per is not None:
+                n['period_boundary_affiliated'] += 1; funnel[pi]['period_boundary_affiliated'] += 1
         if per is None and lst is None:
             n['outside_appointment'] += 1; funnel[pi]['outside_appointment_' + str(w.get('publication_year'))] += 1; continue
         if unaffiliated and per is None and transition_side(p, lst, date) == 'outside':
@@ -715,6 +746,29 @@ def merge_editions(rows, n):
     return rows
 
 
+def continuity_bridges(ctx):
+    """R-PAP-28: add each PI's continuity periods (periods.bridge_periods) before the rows are made. The years that count are those
+    of the PI's identified works whose own authorship names the school (institution lineage or raw affiliation)."""
+    n, pis, inst, aff, blocked, anchored = ctx.n, ctx.pis, ctx.inst, ctx.aff, ctx.blocked, ctx.anchored
+    years = collections.defaultdict(collections.Counter)
+    for pi, w, a, cw, ident, page1 in ctx.hits:
+        aid = (a.get('author') or {}).get('id')
+        if aid in blocked[pi] or not (ident or (aid and anchored[pi].get(aid))):
+            continue
+        if any(inst == i.get('id') or inst in (i.get('lineage') or []) for i in a.get('institutions') or []) \
+                or any(aff.search(z) for z in a.get('raw_affiliation_strings') or []):
+            y = w.get('publication_year')
+            if y:
+                years[pi][int(y)] += 1
+    for p in pis:
+        moved = bool(p.get('listingsAfterMove')) or any('end_moved' in (e.get('kind') or '') for q in p['periods'] for e in q.get('evidence') or [])
+        new = bridge_periods(p['periods'], years[p['pi']], moved)
+        if new:
+            p['periods'] = p['periods'] + new
+            n['continuity_bridge_periods'] += len(new)
+    ctx.direct_years = years
+
+
 def lab_papers(ctx):
     """Every lab paper of the school: ctx.rows (with `_bylines` until the package is written)."""
     school, n, pis = ctx.school, ctx.n, ctx.pis
@@ -722,6 +776,7 @@ def lab_papers(ctx):
     ctx.funnel = funnel
     unit_tables(ctx)
     venue_tables(ctx)
+    continuity_bridges(ctx)
     rows, seen = rows_from_hits(ctx)
     recovered_rows(ctx, rows, seen)
     rows = drop_namesakes(rows, pis, ctx.reviewed_oa, n)

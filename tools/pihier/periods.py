@@ -155,3 +155,34 @@ def pi_periods(mine, o):
                  evidence=best_sources(p.get('evidence'))) for p in mine] \
         + [dict(q, **{k: iso_date(q[k]) for k in ('start', 'end') if q.get(k)},
                 asof=iso_date(q.get('asof')) or (None if q.get('end') else TODAY)) for q in o.get('periods') or []]  # reviewed periods (census-overrides.json)
+
+
+def bridge_periods(periods, direct_years, moved=False):
+    """R-PAP-28 (2026-11-02, owner: accuracy pass; Klasnja at Michigan). The continuity periods between two of one PI's school
+    periods: the gap from the last confirmation of an open period A (its `asof`) to the start of the next period B. Reviewed
+    periods built from dated captures say only that the person was there on the capture date ('start is a lower bound, no end is
+    claimed'), so the years between two such captures held no paper at all (Klasnja: UMSI profile 2020-08 and directory 2026-01;
+    his 2021-2025 papers, 12 a year, all credit Michigan). A gap is bridged when A is open (no end), no period or listing of the
+    PI carries departure evidence (`moved`), and in every full calendar year of the gap the PI's identified works name the school
+    in their own authorship (`direct_years`: {year: count}). Returns the new periods, each citing both captures."""
+    ps = sorted((q for q in periods if q.get('start')), key=lambda q: datebounds(q['start'])[0] if datebounds(q['start']) else '')
+    out = []
+    if moved:
+        return out
+    for a, b in zip(ps, ps[1:]):
+        ea = a.get('asof') if not a.get('end') else None
+        da, db = datebounds(ea), datebounds(b['start'])
+        if not ea or not da or not db or any('end_moved' in (e.get('kind') or '') for q in (a, b) for e in q.get('evidence') or []):
+            continue
+        if da[1] >= db[0]:  # no gap
+            continue
+        full = range(int(da[0][:4]) + 1, int(db[0][:4]))
+        if not full or not all(direct_years.get(y, 0) >= 1 for y in full):
+            continue
+        out.append(dict(id=f"bridge_{a.get('id') or 'period'}__{b.get('id') or 'period'}", start=ea, end=b['start'], asof=None,
+                        evidence=list((a.get('evidence') or [])[:1]) + list((b.get('evidence') or [])[:1]),
+                        datePrecision='day', endPrecision=b.get('datePrecision') or 'year', reviewed='R-PAP-28 continuity bridge',
+                        note=f"Both periods are open lower bounds at the school (last confirmed {ea}; next period starts {b['start']}), the "
+                             f"PI has no departure evidence, and the PI's identified works name the school in every full year between: "
+                             f"{full[0]}-{full[-1]}."))
+    return out

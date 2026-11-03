@@ -216,6 +216,27 @@ ordinal or a year (whole volumes: SAT Race 2019, MOBICOM 2021); and (`supplement
 opens with a number ('203. ...', '(338) ...': abstracts of Biological Psychiatry, Journal of Pain, Journal of Adolescent Health
 supplements). Book chapters and records with no venue keep their numbers.
 
+### R-PAP-28 (2026-11-02, owner: accuracy pass) — period boundaries and continuity
+Two causes behind Klasnja's missing 2020-2025 papers (Michigan; 12 school-affiliated papers a year). (a) A reviewed period
+with a year-precision start ('2020') cannot place a paper dated inside that year against its boundary (`boundary_unresolved`):
+a paper whose own authorship names the school (institution lineage or raw affiliation, not the advisee, unit-name, page-1 or
+cross-affiliation routes) is kept in the period, the affiliation being the dated statement the period lacks, as in R-PAP-13's
+transition years (`period_boundary_affiliated`). (b) A reviewed period built from one dated capture is an open lower bound
+that ends at its last confirmation (`asof`), so the years between two such captures held nothing. A continuity period
+(`bridge_<a>__<b>`, `reviewed: R-PAP-28 continuity bridge`, citing both captures) covers the gap from the first period's
+`asof` to the second's start when the first is open, neither period nor the PI's listings carry departure evidence
+(`faculty_end_moved`, `listingsAfterMove`), and the PI's identified works name the school in every full calendar year of the
+gap (`continuity_bridge_periods`). `periods.bridge_periods`, `papers.continuity_bridges`, `direct_via`.
+
+### R-PAP-29 (2026-11-02, owner: accuracy pass) — cross-affiliated bylines
+Wenisch's HPCA 2016 paper: OpenAlex credits him to NVIDIA only, while a co-author is credited to Michigan (a shifted position)
+and his own works of that year name Michigan. A work whose PI authorship names only companies, agencies or other non-university
+institutions (OpenAlex type company, nonprofit, government, facility, archive, other), whose byline names the school for another
+author, whose PI identity is strong (reviewed id, ORCID, DBLP, institutional list), and with 2+ school-affiliated identified works
+of the same year, takes the school as `cross-affiliated byline: ...`. The appointment and paper-type checks still apply. A byline
+with no institution at all (pi-0) and a credit to another university are untouched. `school_basis`, `STRONG_IDENTITY`,
+`CROSS_KINDS`; counter `school_via_cross_affiliation`.
+
 ## Students
 
 ### R-STU-01 (2026-10-21, owner)
