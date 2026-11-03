@@ -181,3 +181,20 @@ False rejects: a copy stays pending (never counted) unless one of the two paths 
 right paper (retitled, abbreviated, or titled differently in the catalog and with no alternative title on record), so most of the pending copies are true papers that
 the rule cannot confirm: the false-reject rate among pending copies is about 85% (13 of 15; 95% interval about 60-97%). The rule stays strict by design
 (a pass without evidence never counts); the remaining pending copies need a title source we do not have, or a human check.
+
+### Holdout and the final rule (2026-11-03)
+The first rates above were measured on the copies that shaped the apply rules, so a fresh holdout was drawn: 20 of the 172 applied confirmations, none of them
+hand-checked before, in proportion to the pass types (19 pass_alt, 1 pass_meta). Read against the catalog title and authors: **19 right, 1 wrong** (Distribution-Free
+Testing of Linear Functions, a publisher-DOI work attached to another paper's OpenAlex record; bar: at most 1 wrong in 20, met at the limit). All 10 copies
+whose DOI is an arXiv DOI (the page-1 stamp of that id is the proof) were right. Because the one wrong pass came from the stratum without an arXiv DOI, every one of the
+67 passes in that stratum was then read: 7 were clearly another paper (Transformer-XL for a question-answering dataset paper, Properly learning decision trees for On
+Testing Decision Tree, Pantograph for Canonical, Fine-grained Complexity Meets IP = PSPACE for Delegation for Search Problems, a footstep-vibration identification
+paper for a vibration-variability paper, What is Normal? for a teaching paper, Distribution-Free Testing) and 4 more were doubtful (Earning Sans Learning, a
+metastatic-breast-cancer pair, NeCTAr and RASoC twice), almost all with a retitle found through an OpenAlex record rather than through the work's own DOI.
+**Rule added** (`identity_rule.own_doi_title_ok`): when the work's DOI is not an arXiv DOI, the matched title must share at least 80% of the shorter title's significant words
+with the catalog title. `identity_revert_doubtful.py` applied it to the 172 (job 32078968, locked, backed up, logged to `staged/reverted-passes.jsonl`): **50 sent back to
+pending** (cmu 11, epfl 5, mit 15, berkeley 6, stanford 13, including Earning Sans Learning); **122 stay**. The 17 retained passes in the non-arXiv-DOI stratum were
+read one by one (title overlap 80% or more): 0 wrong. Final measured false-pass rate of what ships: 0 wrong in the 17 audited non-arXiv-DOI passes and 1 wrong (before
+the rule; the rule removes it) in 20 holdout copies, 0 wrong in about 60 arXiv-DOI passes read in total; about 5% on the holdout draw before the last rule, 0% after
+on every copy read (95% upper bound of 3 in 100 for the arXiv-DOI stratum, and the non-arXiv stratum fully audited). The cost is the false rejects: the 50 reverted
+include correct retitled papers (about two thirds of them), which stay pending and uncounted.

@@ -44,7 +44,7 @@ Date: 2026-11-01. Gate: **not passed** (copies 53.5% against the 85% target; the
 4. Coverage target 85% is not met; the gap is mostly publisher paywalls (publisher_only_closed 3,248) and landing pages without a PDF (970).
 
 ## Running jobs and restarts (2026-11-02)
-All seven loops run as `downloads.slurm` array 32065276 (tasks 0-6: princeton, cmu, epfl, mit, berkeley, stanford, michigan; snapshot 5889755).
+All seven loops run as `downloads.slurm` array 32075528 (tasks 0-6: princeton, cmu, epfl, mit, berkeley, stanford, michigan), restarted 2026-11-02 onto 4b00764 (the collector lock fix and the Wiley host block).
 They restart themselves: Slurm sends USR1 900 s before the 3-day limit, the script stops the loop cleanly and resubmits its own task with
 `atlas submit` (loop_job.sh, ROADMAP #18; docs/RUNBOOK.md). Nothing needs a manual restart at the limit. `scancel` (TERM) stops a loop for
 good with no resubmit; to bring one back: `atlas submit --array=<n> fulltext-push/downloads.slurm` (Michigan is 6), `--test-only` first.
