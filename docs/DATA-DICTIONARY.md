@@ -1431,8 +1431,8 @@ A proposed lab member (LP-STU-01): the labpage-evidence row shape plus pi, alumn
 | `rule` | string | yes | Rule. | always `LP-STU-01` |  |
 | `auto` | boolean | yes | Automatic. | always `true` |  |
 | `pi_first_year` | integer \| null | no | The PI's first year here. |  |  |
-| `role_basis` | string | no | Where the role comes from. | one of `section_heading`, `entry`, `reviewer`, `none` |  |
-| `years_basis` | string | no | Where the years come from. | one of `stated_in_entry`, `section_year_heading`, `reviewer`, `none` |  |
+| `role_basis` | string | no | Where the role comes from. entry_parenthetical: a role in a parenthesis after the name ('(PhD student)'); withheld_role_round_failed: the membership-only wiring withheld it (docs/LAB-PAGES.md). | one of `section_heading`, `entry`, `entry_parenthetical`, `reviewer`, `withheld_role_round_failed`, `none` |  |
+| `years_basis` | string | no | Where the years come from. withheld_role_round_failed: the membership-only wiring withheld them (docs/LAB-PAGES.md). | one of `stated_in_entry`, `section_year_heading`, `reviewer`, `withheld_role_round_failed`, `none` |  |
 
 ### labpage-additions: shape `paper`
 

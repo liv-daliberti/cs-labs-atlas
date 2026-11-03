@@ -90,3 +90,27 @@ def test_validate_root_reads_flat_names_in_either_layout(tmp_path, layout):
     (tmp_path / 'hierarchy' / 'mit').mkdir(parents=True)
     (tmp_path / 'hierarchy' / 'mit' / 'pis.json').write_text('[]')
     assert V.paths_for('hierarchy/<school>/pis.json', 'mit', tmp_path) == [tmp_path / 'hierarchy' / 'mit' / 'pis.json']
+
+
+def test_labpage_additions_schema_admits_every_basis_the_writer_emits():
+    """2026-11-02 (ROADMAP #35-40 validation findings): labpage_audit.py wrote role_basis 'withheld_role_round_failed' (membership-only wiring) and
+    'entry_parenthetical' (clean_parenthetical_name), which the schema's enums lacked, so `atlas validate --reviewed` reported 325 violations in
+    berkeley and michigan labpage-additions.json. The schema follows the writer: every literal the writer assigns is in the enum."""
+    sch = schema('labpage-additions')
+    shape = sch['$defs']['student']['properties']
+    src = (CODE / 'tools' / 'labpage_audit.py').read_text()
+    emitted_role = set(re.findall(r"role_basis='(\w+)'", src)) | set(re.findall(r"r\['role_basis'\] = None, '(\w+)'", src)) | set(re.findall(r"x\['role'\], x\['role_basis'\] = [\w\[\]]+, '(\w+)'", src))
+    emitted_years = set(re.findall(r"r\['years_basis'\] = None, '(\w+)'", src)) | set(re.findall(r"x\['years_basis'\] = yrs\[fn\], '(\w+)'", src))
+    assert {'withheld_role_round_failed', 'entry_parenthetical', 'reviewer'} <= emitted_role     # the scan still finds the writers
+    assert emitted_role <= set(shape['role_basis']['enum']) and emitted_years <= set(shape['years_basis']['enum'])
+
+
+def test_withheld_rows_validate_against_the_schema():
+    import labpage_audit as LA
+    row = dict(name='A B', role='phd', years=[2020, 2021], url='https://example.edu/p', sha256='0' * 64, quote='A B', pi='P', alumni=False,
+               rule='LP-STU-01', auto=True, pi_first_year=None, role_basis='entry', years_basis='stated_in_entry')
+    sch = schema('labpage-additions')
+    for years in (False, True):
+        out = LA.withhold_roles([row], years=years)
+        errs = S.validate({'school': 'x', 'generated_at': 't', 'tool': 't', 'standard': 's', 'status': 'ok', 'rules': {}, 'students': out, 'papers': []}, sch)
+        assert not [e for e in errs if 'role_basis' in str(e) or 'years_basis' in str(e)], errs

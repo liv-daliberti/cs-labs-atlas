@@ -160,22 +160,25 @@
      ]
     },
     "role_basis": {
-     "description": "Where the role comes from.",
+     "description": "Where the role comes from. entry_parenthetical: a role in a parenthesis after the name ('(PhD student)'); withheld_role_round_failed: the membership-only wiring withheld it (docs/LAB-PAGES.md).",
      "type": "string",
      "enum": [
       "section_heading",
       "entry",
+      "entry_parenthetical",
       "reviewer",
+      "withheld_role_round_failed",
       "none"
      ]
     },
     "years_basis": {
-     "description": "Where the years come from.",
+     "description": "Where the years come from. withheld_role_round_failed: the membership-only wiring withheld them (docs/LAB-PAGES.md).",
      "type": "string",
      "enum": [
       "stated_in_entry",
       "section_year_heading",
       "reviewer",
+      "withheld_role_round_failed",
       "none"
      ]
     }
