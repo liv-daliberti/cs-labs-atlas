@@ -66,7 +66,7 @@ def activity(school, names):
         for f, l in Name([n]).forms:
             idx[l].append(n)
     cnt = collections.Counter()
-    c = sqlite3.connect(f'file:{HERE}/hierarchy/{school}/openalex-sweep.sqlite?mode=ro', uri=True)
+    c = sqlite3.connect(f'file:{P.data("openalex-sweep.sqlite", school)}?mode=ro', uri=True)   # the layout-aware path (raw/), not <work>/hierarchy/<school>/ (Georgia Tech friction 15)
     for (b,) in c.execute('select body from pages'):
         for w in json.loads(zlib.decompress(b)):
             for a in w.get('authorships') or []:
