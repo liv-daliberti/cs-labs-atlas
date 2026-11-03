@@ -128,8 +128,13 @@ url = "https://ic.gatech.edu/"
   [[departments.listings]]
   slot = "IC faculty"
   kind = "main"
-  url = "ic.gatech.edu/people/faculty"
+  url = "www.ic.gatech.edu/person/faculty"
   from = "20160101"
+  to = "20230630"
+  [[departments.listings]]
+  slot = "IC faculty"
+  url = "ic.gatech.edu/people/faculty"
+  from = "20230701"
   to = "20261231"
 
 [[departments]]
@@ -152,6 +157,7 @@ name = "School of Cybersecurity and Privacy"
 unit = "College of Computing"
 title_match = '''Cybersecurity'''
 coverage = "full"
+listing_gaps = {2016 = "school not yet founded (2022-23)", 2017 = "school not yet founded (2022-23)", 2018 = "school not yet founded (2022-23)", 2019 = "school not yet founded (2022-23)", 2020 = "school not yet founded (2022-23)", 2021 = "school not yet founded (2022-23)", 2022 = "no archived faculty page before 2023-12 (founded 2022-23)"}
 url = "https://scp.cc.gatech.edu/"
   [[departments.listings]]
   slot = "SCP faculty"
@@ -170,8 +176,13 @@ url = "https://ece.gatech.edu/"
   [[departments.listings]]
   slot = "ECE faculty"
   kind = "main"
-  url = "ece.gatech.edu/directory"
+  url = "www.ece.gatech.edu/faculty-staff-directory"
   from = "20160101"
+  to = "20230331"
+  [[departments.listings]]
+  slot = "ECE faculty"
+  url = "ece.gatech.edu/directory"
+  from = "20230401"
   to = "20261231"
 
 [[departments]]
@@ -184,8 +195,13 @@ url = "https://www.isye.gatech.edu/"
   [[departments.listings]]
   slot = "ISYE faculty"
   kind = "main"
-  url = "www.isye.gatech.edu/people/faculty"
+  url = "www.isye.gatech.edu/people"
   from = "20160101"
+  to = "20230430"
+  [[departments.listings]]
+  slot = "ISYE faculty"
+  url = "www.isye.gatech.edu/people/faculty"
+  from = "20230501"
   to = "20261231"
 
 # --- other units searched for computing-related faculty (stage 2); first guesses, added to when the OpenAlex rule names their people ---------
