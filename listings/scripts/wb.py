@@ -57,6 +57,9 @@ def db(school):
         slot text, dept text, year integer, half text, page_url text, capture_url text,
         wayback_timestamp text, status text, reason text, tried text,
         primary key(slot, year, half))""")
+    con.execute("""create table if not exists plan_pages(
+        slot text, year integer, half text, page integer, page_url text, capture_url text, wayback_timestamp text,
+        primary key(slot, year, half, page))""")  # the other pages of a paged directory capture (R3); page 0 is the plan row's own capture
     con.execute("create table if not exists meta(k text primary key, v text)")
     return con
 

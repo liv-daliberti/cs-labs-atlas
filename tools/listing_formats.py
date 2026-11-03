@@ -264,3 +264,24 @@ def is_paged(html):
     """A capture of one page of a paged directory (pager markers and a ?page=N link): it parses to a few people while the rest sit on pages
     the archive may not hold (UChicago CS 2017: 5 of about 45). listing_rows.py reports it and plan_fetch.charter_usable rejects it."""
     return bool(re.search(r'class="pager"|class="pagination"', html) and re.search(r'(?:[?&]|&amp;)page=[1-9]', html))
+
+
+def page_links(html, base_url):
+    """{n: absolute url} of the other pages a paged directory links (`?page=N`, `?title=&amp;page=N`), n >= 1, same path as `base_url`. Pages the pager
+    only elides ('1 2 3 ... last') are filled in from the largest linked number by substituting it into a linked URL, so the result covers 1..last.
+    Used by plan_fetch to fetch every page of a paged slot (R3, Georgia Tech friction 10: the pipeline took one page for a whole half-year)."""
+    import urllib.parse
+    base = urllib.parse.urlsplit(base_url)
+    found = {}
+    for href in re.findall(r'href="([^"]*[?&;]page=\d+[^"]*)"', html):
+        u = urllib.parse.urljoin(base_url, H.unescape(href))
+        sp = urllib.parse.urlsplit(u)
+        if sp.path.rstrip('/') != base.path.rstrip('/') or sp.netloc.lower().split(':')[0] != base.netloc.lower().split(':')[0]:
+            continue
+        m = re.search(r'(?:^|&)page=(\d+)', sp.query)
+        if m and int(m.group(1)) >= 1:
+            found.setdefault(int(m.group(1)), u)
+    if not found:
+        return {}
+    tmpl = found[min(found)]
+    return {n: found.get(n) or re.sub(r'(^|[?&])page=\d+', lambda m: f'{m.group(1)}page={n}', tmpl, count=1) for n in range(1, max(found) + 1)}

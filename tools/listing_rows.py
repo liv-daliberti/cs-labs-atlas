@@ -72,37 +72,41 @@ def main(key):
     kind_of = {s['slot']: s['kind'] for s in S.listing_slots(key)}
     db = P.data('listings-captures.sqlite', key)
     c = sqlite3.connect(f'file:{db}?mode=ro', uri=True)
+    has_pages = bool(c.execute("select 1 from sqlite_master where name='plan_pages'").fetchone())
     rows, n = [], collections.Counter()
     cov = collections.defaultdict(lambda: collections.defaultdict(dict))
     for slot, dept, year, half, cap, status, reason in c.execute('select slot, dept, year, half, capture_url, status, reason from plan order by slot, year, half'):
         cov[dept][year][f'{slot} {half}'] = status if status == 'ok' else f'{status}: {reason}'
         if status != 'ok':
             continue
-        raw, sha, txt, ts = c.execute('select raw_zlib, sha256, text, wayback_timestamp from captures where capture_url=?', (cap,)).fetchone()
-        h = wb_body(raw).decode('utf-8', 'replace')  # gunzipped when Wayback served it gzip-encoded
-        flat = ' '.join((txt or '').split())
-        m = re.search(r'/web/(\d{14})id_/', cap); obs = m.group(1) if m else ts
-        # one slot can have several URL eras with different page formats: the era that holds the capture date names the format; a named
-        # format that finds nobody falls back to detection (era boundaries overlap; UChicago friction #13: the last era's format won for the whole slot)
-        named = [f for sl, a, b, f in eras if sl == slot and f and a <= obs[:8] <= b]
-        fmt, es = LF.parse(h, named[0] if named else None)
-        if not es and named:
-            fmt, es = LF.parse(h)
-        n[f'captures_{fmt}'] += 1
-        if LF.is_paged(h) and es:
-            # a paged directory: this capture holds one page of several (UChicago CS 2017: 5 of ~45 people); the next pages may not be archived
-            n['captures_paged'] += 1; print(json.dumps(dict(paged_listing=cap, entries=len(es))), flush=True)
-        if not es:
-            n['captures_without_entries'] += 1; print(json.dumps(dict(no_entries=cap, fmt=fmt)), flush=True)
-        for e in es:
-            q = quote_of(flat, e)
-            if not q:
-                n['entries_without_quote'] += 1; continue
-            dt = [t for t in e['titles'] if tm.get(dept, re.compile('.')).search(t)]
-            rows.append(dict(name=given_first(e['name_listed']), name_listed=e['name_listed'], dept=dept, slot=slot, kind=kind_of.get(slot), year=int(obs[:4]),
-                             half=half, observed=obs, titles=e['titles'], dept_title=dt, rank=(rank_of(dt, rw) if dt and rank_of(dt, rw) != 'other' else rank_of(e['titles'], rw)), division=e.get('division'),
-                             homepage=e.get('homepage'), **({'profile': e['profile']} if e.get('profile') else {}), capture_url=cap, sha256=sha, quote=q))
-            n['rows'] += 1
+        # a paged directory (R3, Georgia Tech friction 10) is one listing: the plan row's capture is page 0, plan_pages holds the other pages' captures
+        pages = [r[0] for r in c.execute('select capture_url from plan_pages where slot=? and year=? and half=? order by page', (slot, year, half))] if has_pages else []
+        for cap in [cap] + pages:
+            raw, sha, txt, ts = c.execute('select raw_zlib, sha256, text, wayback_timestamp from captures where capture_url=?', (cap,)).fetchone()
+            h = wb_body(raw).decode('utf-8', 'replace')  # gunzipped when Wayback served it gzip-encoded
+            flat = ' '.join((txt or '').split())
+            m = re.search(r'/web/(\d{14})id_/', cap); obs = m.group(1) if m else ts
+            # one slot can have several URL eras with different page formats: the era that holds the capture date names the format; a named
+            # format that finds nobody falls back to detection (era boundaries overlap; UChicago friction #13: the last era's format won for the whole slot)
+            named = [f for sl, a, b, f in eras if sl == slot and f and a <= obs[:8] <= b]
+            fmt, es = LF.parse(h, named[0] if named else None)
+            if not es and named:
+                fmt, es = LF.parse(h)
+            n[f'captures_{fmt}'] += 1
+            if LF.is_paged(h) and es and not pages:
+                # a paged directory: this capture holds one page of several (UChicago CS 2017: 5 of ~45 people); the next pages may not be archived
+                n['captures_paged'] += 1; print(json.dumps(dict(paged_listing=cap, entries=len(es))), flush=True)
+            if not es:
+                n['captures_without_entries'] += 1; print(json.dumps(dict(no_entries=cap, fmt=fmt)), flush=True)
+            for e in es:
+                q = quote_of(flat, e)
+                if not q:
+                    n['entries_without_quote'] += 1; continue
+                dt = [t for t in e['titles'] if tm.get(dept, re.compile('.')).search(t)]
+                rows.append(dict(name=given_first(e['name_listed']), name_listed=e['name_listed'], dept=dept, slot=slot, kind=kind_of.get(slot), year=int(obs[:4]),
+                                 half=half, observed=obs, titles=e['titles'], dept_title=dt, rank=(rank_of(dt, rw) if dt and rank_of(dt, rw) != 'other' else rank_of(e['titles'], rw)), division=e.get('division'),
+                                 homepage=e.get('homepage'), **({'profile': e['profile']} if e.get('profile') else {}), capture_url=cap, sha256=sha, quote=q))
+                n['rows'] += 1
     out = P.data('rows.json', key)
     out.parent.mkdir(parents=True, exist_ok=True)  # listings/<key>/derived does not exist for a new school (UChicago friction #12)
     out.write_text(json.dumps(rows, indent=0, ensure_ascii=False))

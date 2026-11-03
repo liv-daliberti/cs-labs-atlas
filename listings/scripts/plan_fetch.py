@@ -61,6 +61,38 @@ def charter_usable(con, cap, s, floor=5):
     return True, None
 
 
+def fetch_pages(con, s, cap, html, lo, hi, dept, min_entries=1):
+    """The other pages of a paged directory capture (R3). Page links come from the capture (listing_formats.page_links); each page is the archived
+    capture of that exact URL nearest in time to `cap` within the half-year [lo, hi] (the slot's own date window). -> ({n: (url, capture_url, ts)}, [missing n]).
+    A page counts only when it is a 200 that parses to at least one entry."""
+    import listing_formats
+    base = con.execute("select page_url from captures where capture_url=?", (cap,)).fetchone()[0]
+    m = re.match(r"https://web\.archive\.org/web/(\d{14})id_/(.*)", cap)
+    ts0, original = m.group(1), m.group(2)
+    links = listing_formats.page_links(html, original)
+    got, missing = {}, []
+    for n, u in links.items():
+        want = u.split("://", 1)[-1]
+        rows = wb.cdx({"url": want, "from": lo, "to": hi, "output": "json", "fl": "timestamp,original,statuscode,digest", "limit": "200"}, con)
+        if rows is None:
+            raise RuntimeError(f"CDX failed for {want}")
+        rows = [r for r in rows if r["statuscode"] in ("200", "-") and lo <= r["timestamp"][:8] <= hi]
+        rows.sort(key=lambda r: abs(days(r["timestamp"]) - days(ts0)))
+        ok = None
+        for r in rows[:2]:
+            pc = wb.fetch_capture(r["timestamp"], r["original"], base, dept, con)
+            st, _ = ensure_extracted(con, pc)
+            raw = con.execute("select raw_zlib from captures where capture_url=?", (pc,)).fetchone()[0]
+            if st == 200 and raw and len(listing_formats.parse(wb.body(raw).decode("utf-8", "replace"), s.get("format"))[1]) >= min_entries:
+                ok = (u, pc, r["timestamp"])
+                break
+        if ok:
+            got[n] = ok
+        else:
+            missing.append(n)
+    return got, missing
+
+
 def load(school):
     try:
         cfg = importlib.import_module(f"config_{school}")
@@ -183,8 +215,19 @@ def run_slot(school, s, con, pis, max_tries=2):
                 cap = wb.fetch_capture(r["timestamp"], r["original"], u, s["dept"], con)
                 st, b = ensure_extracted(con, cap)
                 good, why = usable(b, st, pis, school)
+                pages = {}
                 if good and getattr(_CFG.get(school), "CHARTER", False):
                     good, why = charter_usable(con, cap, s)
+                    if not good and why and why.startswith("paged directory"):
+                        # R3: a paged directory is one listing: fetch every page of the same half-year and keep the plan row only when all are archived
+                        html = wb.body(con.execute("select raw_zlib from captures where capture_url=?", (cap,)).fetchone()[0]).decode("utf-8", "replace")
+                        pages, miss = fetch_pages(con, s, cap, html, lo, hi, s["dept"])
+                        if not pages and not miss:
+                            good, why = False, "paged directory: no page links found"
+                        elif miss:
+                            good, why = False, f"paged directory: pages {miss} of {len(pages) + len(miss) + 1} not archived in this half-year"
+                        else:
+                            good, why = True, None
                 fu = con.execute("select final_url from captures where capture_url=?", (cap,)).fetchone()[0] or cap
                 m = re.match(r"https://web\.archive\.org/web/(\d{14})id_/", fu)
                 fts = m.group(1) if m else r["timestamp"]
@@ -201,6 +244,9 @@ def run_slot(school, s, con, pis, max_tries=2):
             if okcap:
                 con.execute("insert or replace into plan values(?,?,?,?,?,?,?,?,?,?)",
                             (s["slot"], s["dept"], y, half, okcap[1], okcap[0], okcap[2], "ok", None, json.dumps(tried)))
+                con.execute("delete from plan_pages where slot=? and year=? and half=?", (s["slot"], y, half))
+                for n, (pu, pc, pts) in pages.items():
+                    con.execute("insert into plan_pages values(?,?,?,?,?,?,?)", (s["slot"], y, half, n, pu, pc, pts))
             elif any(t["status"] in (-1, 429) for t in tried):  # a capture still 5xx after back-off counts as broken
                 print(f"  {y}{half} transient failure; left unplanned for a re-run", flush=True)
                 continue
