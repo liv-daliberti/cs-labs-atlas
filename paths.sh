@@ -57,6 +57,6 @@ export CS_ATLAS_HOMOGENIZING="$CS_ATLAS_WORLD_ATLAS"
 export CS_ATLAS_SITE_DATA="$CS_ATLAS_SITE_ROOT/atlas/data"
 export CS_ATLAS_DBLP_DUMP_XML="$CS_ATLAS_DBLP_DUMP/dblp-2026-09-01.xml.gz"
 export CS_ATLAS_HOMOGENIZING_SCRIPTS="$CS_ATLAS_WORLD_ATLAS/scripts"
-export CS_ATLAS_SCHOOLS="princeton cmu epfl mit berkeley stanford"
+export CS_ATLAS_SCHOOLS="princeton cmu epfl mit berkeley stanford michigan"
 cs_atlas_sweep() { printf "%s/%s\n" "$CS_ATLAS_SWEEPS" "$1"; }
 cs_atlas_vendor() { printf "%s/%s\n" "$CS_ATLAS_VENDOR" "$1"; }
