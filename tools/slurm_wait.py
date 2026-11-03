@@ -60,3 +60,21 @@ def wait(ids, interval=MIN_INTERVAL, run=subprocess.run, sleep=time.sleep, out=s
 
 def table(st):
     return '\n'.join(f'{k:>14} {n:<24} {s:<14} {e}' for k, (n, s, e) in sorted(st.items()))
+
+
+def main(argv=None):
+    """`slurm_wait.py <jobid> [<jobid> ...] [--interval S]`: block until the jobs end (one sacct call per interval, at least 120 s); print the table.
+    Exit 0 when every job completed, 1 when one failed. Run it as a background command, never in a poll loop."""
+    import argparse
+    ap = argparse.ArgumentParser(description=main.__doc__)
+    ap.add_argument('ids', nargs='+')
+    ap.add_argument('--interval', type=int, default=MIN_INTERVAL)
+    a = ap.parse_args(argv)
+    v, st = wait(a.ids, interval=a.interval)
+    print(table(st), flush=True)
+    print(v, flush=True)
+    return 0 if v == 'ok' else 1
+
+
+if __name__ == '__main__':
+    sys.exit(main())

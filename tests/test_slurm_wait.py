@@ -99,3 +99,13 @@ def test_release_wait_refuses_on_preempts():
 def test_release_wait_with_dry_run_does_not_submit(monkeypatch):
     monkeypatch.setattr(AR, 'submit_and_wait', lambda *a, **k: pytest.fail('submitted'))
     assert AR.main(['--wait', '--dry-run', '--tag', 'tdry']) == 0
+
+
+def test_cli_prints_the_table_and_exits_nonzero_on_failure(monkeypatch, capsys):
+    import slurm_wait as W
+    monkeypatch.setattr(W, 'wait', lambda ids, interval=120: ('failed', {'7': ('job', 'FAILED', '1:0')}))
+    assert W.main(['7']) == 1
+    out = capsys.readouterr().out
+    assert 'FAILED' in out and out.strip().endswith('failed')
+    monkeypatch.setattr(W, 'wait', lambda ids, interval=120: ('ok', {'7': ('job', 'COMPLETED', '0:0')}))
+    assert W.main(['7']) == 0
