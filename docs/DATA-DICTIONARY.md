@@ -43,6 +43,7 @@ Paths: `a.b` a key inside an object, `[]` an array item, `<key>` any key of a ma
 - [`hierarchy/home-departments.json`](#hierarchyhome-departmentsjson)
 - [`hierarchy/student-corrections.json`](#hierarchystudent-correctionsjson)
 - [`hierarchy/student-identity-review.json`](#hierarchystudent-identity-reviewjson)
+- [`hierarchy/student-name-candidates.json`](#hierarchystudent-name-candidatesjson)
 - [`hierarchy/zero-paper-labs.json`](#hierarchyzero-paper-labsjson)
 - [`docs/evidence-whitelist.json`](#docsevidence-whitelistjson)
 
@@ -1773,6 +1774,32 @@ An evidence item (url, sha256, verbatim quote; free-form extras).
 | `quote` | string \| null | no | Verbatim quote. |  |  |
 | `capture_url` | string \| null | no | The capture. |  |  |
 | `observed` | string \| null | no | When seen. |  |  |
+
+## `hierarchy/student-name-candidates.json`
+
+Queue of same-lab record pairs with one-letter surname typos (R-STU-13), student-identity-review.json shape with the verdict empty; a same_person verdict is written to student-identity-review.json, which is what merges.
+
+- schema: `schemas/student-name-candidates.schema.json`
+- kind: reviewed (a decision file, tracked in git)
+- format: JSON
+- writer: tools/student_name_candidates.py (from the builds' report.json)
+- readers: hand review
+- rules: R-STU-13
+
+The file is an array of items.
+
+| Field | Type | Required | Meaning | Allowed values | Rules |
+|---|---|---|---|---|---|
+| `[]` | object | — | A candidate pair. |  |  |
+| `[].school` | string | yes | School key. | pattern `^[a-z]+$` |  |
+| `[].pi` | string | yes | The lab. |  |  |
+| `[].a` | array of string | yes | [record id, name]. | at least 2 item(s) |  |
+| `[].b` | array of string | yes | [record id, name]. | at least 2 item(s) |  |
+| `[].verdict` | string | yes | Empty until reviewed. | one of `` |  |
+| `[].canonical_name` | string \| null | no | Empty until reviewed. |  |  |
+| `[].reason` | string | no | Empty until reviewed. |  |  |
+| `[].evidence` | array | no | Evidence items, empty until reviewed. |  |  |
+| `[].signals` | array of object | no | Supporting signals found by the build (shared_source_url, alias_of_other, shared_paper). |  |  |
 
 ## `hierarchy/zero-paper-labs.json`
 

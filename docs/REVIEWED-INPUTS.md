@@ -13,6 +13,7 @@ reviewed inputs, even when a reviewed verdict is folded into them.
 | `hierarchy/chain-reasons.json` | `chain_audit.py` | `explained` / `fix` verdicts for open chain-audit items |
 | `hierarchy/student-corrections.json` | `pi_hierarchy.py` | drop, rename or re-source one student record |
 | `hierarchy/student-identity-review.json` | `pi_hierarchy.py`, `chain_audit.py` | same-person / different-people verdicts within a lab |
+| `hierarchy/student-name-candidates.json` | `tools/student_name_candidates.py` (writer) | queue of one-letter surname typos within a lab, `verdict` empty; a `same_person` verdict goes into `student-identity-review.json` (R-STU-13) |
 | `hierarchy/cs-venues.json` | CS-related candidate tools | the computing venue list |
 | `hierarchy/<school>/missing-pi-review.json` | `chain_audit.py` | decisions for listed faculty the census lacks |
 | `hierarchy/<school>/cs-related-review.json` | `chain_audit.py`, `export_release.py` | decisions for CS-related candidates in other departments |

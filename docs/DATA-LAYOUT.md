@@ -27,7 +27,7 @@ hierarchy/
     work/       *-recover.sqlite, *-recovered.jsonl.gz, labpage-pubs.jsonl.gz, tmp/
     reports/    STAGE-*.md, REQUESTS-FOR-BUILDER.md
   raw/         dblp-dump-persons.json.gz
-  reviewed/    census-overrides.json, student-corrections.json, student-identity-review.json, home-departments.json,
+  reviewed/    census-overrides.json, student-corrections.json, student-identity-review.json, student-name-candidates.json, home-departments.json,
                chain-reasons.json, zero-paper-review.json, cs-venues.json, nicknames/
   derived/     chain-audit.json, student-audit.json, EVIDENCE-CHECK.json, BUILD-REGRESSION.json, VALIDATION.json,
                zero-paper-labs.json, ids/
@@ -120,6 +120,7 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `census-overrides.json` | reviewed | `hierarchy/census-overrides.json` | `hierarchy/reviewed/census-overrides.json` | 1/1 | <100MB |
 | `student-corrections.json` | reviewed | `hierarchy/student-corrections.json` | `hierarchy/reviewed/student-corrections.json` | 1/1 | <10KB |
 | `student-identity-review.json` | reviewed | `hierarchy/student-identity-review.json` | `hierarchy/reviewed/student-identity-review.json` | 1/1 | <1MB |
+| `student-name-candidates.json` | reviewed | `hierarchy/student-name-candidates.json` | `hierarchy/reviewed/student-name-candidates.json` | 1/1 | <1MB |
 | `home-departments.json` | reviewed | `hierarchy/home-departments.json` | `hierarchy/reviewed/home-departments.json` | 1/1 | <1MB |
 | `chain-reasons.json` | reviewed | `hierarchy/chain-reasons.json` | `hierarchy/reviewed/chain-reasons.json` | 1/1 | <1MB |
 | `zero-paper-review.json` | reviewed | `hierarchy/zero-paper-review.json` | `hierarchy/reviewed/zero-paper-review.json` | 1/1 | <1MB |

@@ -1,0 +1,27 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "hierarchy/student-name-candidates.json",
+ "description": "Queue of same-lab record pairs with one-letter surname typos (R-STU-13), student-identity-review.json shape with the verdict empty; a same_person verdict is written to student-identity-review.json, which is what merges.",
+ "x-file": "hierarchy/student-name-candidates.json",
+ "x-kind": "reviewed",
+ "x-writer": "tools/student_name_candidates.py (from the builds' report.json)",
+ "x-readers": ["hand review"],
+ "x-rules": ["R-STU-13"],
+ "type": "array",
+ "items": {
+  "description": "A candidate pair.",
+  "type": "object",
+  "properties": {
+   "school": {"description": "School key.", "type": "string", "pattern": "^[a-z]+$"},
+   "pi": {"description": "The lab.", "type": "string"},
+   "a": {"description": "[record id, name].", "type": "array", "items": {"type": "string"}, "minItems": 2},
+   "b": {"description": "[record id, name].", "type": "array", "items": {"type": "string"}, "minItems": 2},
+   "verdict": {"description": "Empty until reviewed.", "type": "string", "enum": [""]},
+   "canonical_name": {"description": "Empty until reviewed.", "type": ["string", "null"]},
+   "reason": {"description": "Empty until reviewed.", "type": "string"},
+   "evidence": {"description": "Evidence items, empty until reviewed.", "type": "array"},
+   "signals": {"description": "Supporting signals found by the build (shared_source_url, alias_of_other, shared_paper).", "type": "array", "items": {"type": "object"}}
+  },
+  "required": ["school", "pi", "a", "b", "verdict"]
+ }
+}

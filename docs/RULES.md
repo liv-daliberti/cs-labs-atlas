@@ -275,6 +275,19 @@ students); MIT 9 (9 relations, 2 students). Record years are integers in 1950 ..
 4-digit years, others are dropped (`as_years`); reviewed period dates written as Wayback timestamps are read as ISO
 dates (`iso_date`). `drop_hashless_sources`.
 
+### R-STU-13 (2026-11-03, owner) — one student under two names in a lab
+Within one lab (never across labs, R-HIER-03), initial-only tokens ('E.D.', 'V.', 'J') are optional wherever they appear,
+trailing ones too: 'Alejandro Cuevas' (publishing name) and 'Alejandro E.D. Cuevas V.' (thesis name, the trailing 'V.' a
+second-surname initial) are one record. A second surname on one side only ('Maria Gonzalez' / 'Maria Gonzalez Escamilla')
+matches the single-surname form, except when both surnames are East Asian family names. The words left must be two or
+more with the same first given name; initials on both sides must not conflict; a bare initial plus surname ('J. Smith')
+never matches. `initials_optional` (counted as `student_records_merged_initials_optional`, listed in the report's
+`studentInitialsMerges`). A same-lab pair with the same given name and family names one edit apart (4+ letters, not both East Asian
+family names: 'Alexander Swerdlow' / 'Alexander Swerlow') is never merged by the build: it is queued in the report's
+`studentSurnameTypoCandidates` (`surname_typo`, review-file shape, empty `verdict`, with the signals found: shared source
+URL, one name the other's alias, a shared linked paper) and `tools/student_name_candidates.py` writes the queue to
+`hierarchy/reviewed/student-name-candidates.json`. Only a `same_person` verdict in `student-identity-review.json` merges them.
+
 ## Student–paper links
 
 ### R-LNK-01 — link bases

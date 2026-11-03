@@ -284,6 +284,7 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('census-overrides.json', 'reviewed', 'hierarchy/census-overrides.json', 'hierarchy/reviewed/census-overrides.json'),
     ('student-corrections.json', 'reviewed', 'hierarchy/student-corrections.json', 'hierarchy/reviewed/student-corrections.json'),
     ('student-identity-review.json', 'reviewed', 'hierarchy/student-identity-review.json', 'hierarchy/reviewed/student-identity-review.json'),
+    ('student-name-candidates.json', 'reviewed', 'hierarchy/student-name-candidates.json', 'hierarchy/reviewed/student-name-candidates.json'),
     ('home-departments.json', 'reviewed', 'hierarchy/home-departments.json', 'hierarchy/reviewed/home-departments.json'),
     ('chain-reasons.json', 'reviewed', 'hierarchy/chain-reasons.json', 'hierarchy/reviewed/chain-reasons.json'),
     ('zero-paper-review.json', 'reviewed', 'hierarchy/zero-paper-review.json', 'hierarchy/reviewed/zero-paper-review.json'),
