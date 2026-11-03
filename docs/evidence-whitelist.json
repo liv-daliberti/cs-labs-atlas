@@ -36,16 +36,16 @@
  },
  "student_relation_student_only": {
   "cmu": {
-   "max": 3040,
+   "max": 3050,
    "of": 19049,
-   "decided": "2026-10-29",
-   "why": "Re-captured 2026-10-29 (R-STU-08) with url, sha256 and a verbatim quote, but the page names the student and not the PI or the PI's lab (department rosters such as the EDIC student lists, CSD/HCII/LTI profiles, SCS report abstracts, lab pages without the PI): the adviser rests on the site collection's advising context. Fix: a page that names both (thesis record, adviser roster) per relation."
+   "decided": "2026-11-02",
+   "why": "2026-11-02 release reconciliation (owner rule: never raise without a reason): the increase is relabelling, not new relationships. Checked against release 2026-10-29.4: every current student_relation_student_only relation at cmu (3,050), epfl (1,212) and mit (668) exists there with the same PI, student name and relation type (0 new triples, 0 new PI-student pairs). The 10-31 evidence fixes (f646ec6 hashless sources dropped; f69aa4b R-STU-08 evidence per lab) reclassified existing relations as student-only; the links follow their relations."
   },
   "epfl": {
-   "max": 1195,
+   "max": 1212,
    "of": 9542,
-   "decided": "2026-10-29",
-   "why": "Re-captured 2026-10-29 (R-STU-08) with url, sha256 and a verbatim quote, but the page names the student and not the PI or the PI's lab (department rosters such as the EDIC student lists, CSD/HCII/LTI profiles, SCS report abstracts, lab pages without the PI): the adviser rests on the site collection's advising context. Fix: a page that names both (thesis record, adviser roster) per relation."
+   "decided": "2026-11-02",
+   "why": "2026-11-02 release reconciliation (owner rule: never raise without a reason): the increase is relabelling, not new relationships. Checked against release 2026-10-29.4: every current student_relation_student_only relation at cmu (3,050), epfl (1,212) and mit (668) exists there with the same PI, student name and relation type (0 new triples, 0 new PI-student pairs). The 10-31 evidence fixes (f646ec6 hashless sources dropped; f69aa4b R-STU-08 evidence per lab) reclassified existing relations as student-only; the links follow their relations."
   },
   "mit": {
    "max": 668,
@@ -56,10 +56,10 @@
  },
  "link_relation_source_student_only": {
   "cmu": {
-   "max": 365,
+   "max": 369,
    "of": 14807,
-   "decided": "2026-10-29",
-   "why": "Byline links whose student's best roster source is a re-captured student-only quote (student_relation_student_only above); they clear with those relations."
+   "decided": "2026-11-02",
+   "why": "2026-11-02 release reconciliation (owner rule: never raise without a reason): the increase is relabelling, not new relationships. Checked against release 2026-10-29.4: every current student_relation_student_only relation at cmu (3,050), epfl (1,212) and mit (668) exists there with the same PI, student name and relation type (0 new triples, 0 new PI-student pairs). The 10-31 evidence fixes (f646ec6 hashless sources dropped; f69aa4b R-STU-08 evidence per lab) reclassified existing relations as student-only; the links follow their relations."
   },
   "epfl": {
    "max": 2,
@@ -68,10 +68,10 @@
    "why": "Byline links whose student's best roster source is a re-captured student-only quote (student_relation_student_only above); they clear with those relations."
   },
   "mit": {
-   "max": 483,
+   "max": 485,
    "of": 19832,
-   "decided": "2026-10-29",
-   "why": "Byline links whose student's best roster source is a re-captured student-only quote (student_relation_student_only above); they clear with those relations."
+   "decided": "2026-11-02",
+   "why": "2026-11-02 release reconciliation (owner rule: never raise without a reason): the increase is relabelling, not new relationships. Checked against release 2026-10-29.4: every current student_relation_student_only relation at cmu (3,050), epfl (1,212) and mit (668) exists there with the same PI, student name and relation type (0 new triples, 0 new PI-student pairs). The 10-31 evidence fixes (f646ec6 hashless sources dropped; f69aa4b R-STU-08 evidence per lab) reclassified existing relations as student-only; the links follow their relations."
   }
  }
 }
