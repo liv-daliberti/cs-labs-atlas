@@ -12,6 +12,14 @@ formats
   eecs_wp      Michigan EECS WordPress 2019-2026 (cse/ece.engin.umich.edu people pages): div.eecs_person_wrapper, the
                name in <h4> ('Ackerman, Mark S.'; from 2025 <p class=eecs_person_name>), each title in span.person_title_section (several titles may share one
                span, '; '-separated), the homepage as a.person_web
+  uc_cs_table  UChicago CS Drupal site 2016-2018 (www.cs.uchicago.edu/directories/table/{faculty,Other-Academic-Appointments}): tr.odd/even, name in
+               the first cell, the titles as <br>-separated lines of the second up to 'Research Interests:', the homepage as the 'Personal website' link
+  uc_people_li UChicago CS 2018-2022 (people/faculty/) and Statistics 2019- (stat.uchicago.edu/people/): li.mix, the class tokens name the group
+               (only 'faculty'-bearing tokens are kept: Statistics lists students, staff and visitors on the same page), name in h3 (a link or
+               span), title in <small> or <b>, the department profile as `profile`
+  uc_card      UChicago CS WordPress 2022- (people/uchicago-faculty/...): div.card--person, h3.card__title, div.card__position, a.card__url (profile)
+  ttic_media   TTIC 2017- (www.ttic.edu/faculty/): div.media-body, h2.media-heading name, h3 title(s), the 'Home Page' link
+  ttic_table   TTIC 2016-2017 (www.ttic.edu/faculty.php): <td><strong>Name</strong>, Title<br />, the 'Home Page' link
 """
 import html as H
 import re
@@ -54,9 +62,85 @@ def eecs_wp(h):
     return out
 
 
+def _ln(h):
+    return [clean(x).strip(' ,') for x in re.split(r'<br\s*/?>', h, flags=re.I) if clean(x).strip(' ,')]
+
+
+def uc_cs_table(h):
+    out = []
+    for m in re.finditer(r'<tr class="(?:odd|even)[^"]*">(.*?)</tr>', h, re.S | re.I):
+        tds = re.findall(r'<td[^>]*>(.*?)</td>', m.group(1), re.S | re.I)
+        if len(tds) < 2 or not clean(tds[0]):
+            continue
+        titles = []
+        for t in _ln(tds[1]):
+            if t.lower().startswith('research interests'):
+                break
+            titles.append(t.rstrip(' ,'))
+        web = re.search(r'<a href="([^"]+)"[^>]*>\s*Personal website', ''.join(tds[2:]), re.I)
+        out.append(dict(name_listed=clean(tds[0]), titles=[t for t in titles if t], homepage=web.group(1) if web else None, division=None))
+    return out
+
+
+def uc_people_li(h):
+    out = []
+    for m in re.finditer(r'<li class="mix ([^"]*)">(.*?)</li>', h, re.S | re.I):
+        toks, body = m.group(1).split(), m.group(2)
+        if not any('faculty' in t for t in toks):
+            continue
+        hh = re.search(r'<h3[^>]*>(.*?)</h3>', body, re.S | re.I)
+        if not hh:
+            continue
+        nm = re.search(r'<(?:a|span)[^>]*>(.*?)</(?:a|span)>', hh.group(1), re.S | re.I)
+        tl = re.search(r'<(?:small|b)>(.*?)</(?:small|b)>', hh.group(1), re.S | re.I)
+        prof = re.search(r'<a href="([^"]*/people/profile/[^"]*)"', body, re.I)
+        if nm and clean(nm.group(1)):
+            out.append(dict(name_listed=clean(nm.group(1)), titles=_ln(tl.group(1)) if tl else [], homepage=None, division=None,
+                            profile=prof.group(1) if prof else None, groups=toks))
+    return out
+
+
+def uc_card(h):
+    out = []
+    for p in re.split(r'<div class="card card--person[^"]*"[^>]*>', h)[1:]:
+        nm = re.search(r'<h3 class="card__title">(.*?)</h3>', p, re.S)
+        if not nm:
+            continue
+        pos = re.search(r'<div class="card__position">(.*?)</div>', p, re.S)
+        url = re.search(r'<a class="card__url" href="([^"]+)"', p)
+        out.append(dict(name_listed=clean(nm.group(1)), titles=_ln(pos.group(1)) if pos else [], homepage=None, division=None, profile=url.group(1) if url else None))
+    return out
+
+
+def ttic_media(h):
+    out = []
+    for p in re.split(r'<div class="media-body">', h)[1:]:
+        nm = re.search(r'<h2 class="media-heading">(.*?)</h2>', p, re.S)
+        if not nm:
+            continue
+        head = p[:p.find('</div>')] if '</div>' in p else p
+        web = re.search(r'<a href="([^"]+)"[^>]*>\s*Home Page', head, re.I)
+        out.append(dict(name_listed=clean(nm.group(1)), titles=[clean(t) for t in re.findall(r'<h3[^>]*>(.*?)</h3>', head, re.S) if clean(t)],
+                        homepage=web.group(1) if web else None, division=None))
+    return out
+
+
+def ttic_table(h):
+    out = []
+    for m in re.finditer(r'<td><strong>(.*?)</strong>,?\s*(.*?)<br\s*/?>(.*?)</td>', h, re.S | re.I):
+        web = re.search(r'<a href="([^"]+)"[^>]*>\s*Home Page', m.group(3), re.I)
+        out.append(dict(name_listed=clean(m.group(1)), titles=[clean(m.group(2))] if clean(m.group(2)) else [], homepage=web.group(1) if web else None, division=None))
+    return out
+
+
 FORMATS = {
     'eecs_table': (eecs_table, re.compile(r'<b>Division:</b>', re.I)),
     'eecs_wp': (eecs_wp, re.compile(r"class=['\"]eecs_person_wrapper['\"]")),
+    'uc_cs_table': (uc_cs_table, re.compile(r'<tr class="(?:odd|even)[^"]*">.*?(?:Personal website|Research Interests)', re.S)),
+    'uc_people_li': (uc_people_li, re.compile(r'<li class="mix ')),
+    'uc_card': (uc_card, re.compile(r'card card--person')),
+    'ttic_media': (ttic_media, re.compile(r'class="media-heading"')),
+    'ttic_table': (ttic_table, re.compile(r'<td><strong>')),
 }
 
 

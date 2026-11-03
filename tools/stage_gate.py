@@ -1,6 +1,9 @@
 """Check a protocol school's stage gates (docs/ADDING-A-SCHOOL.md) from the files the stages wrote, before the school is
 wired into pi_hierarchy.py / chain_audit.py. Prints one JSON line per stage and the items that fail.
 
+  0 charter   schools/<key>.toml passes school_config.check; hierarchy/<key>/hosts.json (tools/school_hosts.py) has its gate true and
+              lists every host of the charter; the OpenAlex snapshot holds the school's primary lineage id (main store or an
+              ext-<key>.sqlite extension: tools/oa_snapshot.py filter|merge --ext <key>, docs/OPENALEX-SNAPSHOT.md)
   1 sources   every department of the charter has an ok listing capture in every window year (listings/<key>/coverage.json);
               a missing year must carry a plan reason
   2 census    every CS-related candidate has a decision other than pending_openalex (hierarchy/<key>/cs-related-review.json),
@@ -46,6 +49,33 @@ def pis_of(key):
     cen = read(P.data('census-faculty.json', key), {}).get('faculty', [])
     add = read(P.data('census-additions.json', key), [])
     return [x for x in cen + add if x.get('is_pi')]
+
+
+def snapshot_count(key, root=None):
+    """Works of the school's primary lineage id in the OpenAlex snapshot (main store and extensions); None when there is no snapshot."""
+    import oa_snapshot as O
+    try:
+        db, d = O.conn(root)
+    except FileNotFoundError:
+        return None
+    i = O.short(S.inst(key))
+    return sum(c.execute('select count(*) from work_inst where inst=?', (i,)).fetchone()[0] for c, _ in [(db, d)] + O.exts(root))
+
+
+def g0(key, root=None):
+    bad = list(S.check(key))
+    h = read(P.data('hosts.json', key))
+    if not h:
+        bad.append('hosts: hierarchy/<key>/hosts.json missing (run tools/school_hosts.py <key>)'.replace('<key>', key))
+    else:
+        done = {x['host']: x for x in h.get('hosts') or []}
+        want = {x['host'] for x in S.get(key).get('hosts') or []}
+        bad += [f'hosts: {m} is in the charter but not in hosts.json (rerun school_hosts.py)' for m in sorted(want - set(done))]
+        bad += [f"hosts: {x['host']}: {', '.join(x['problems'])}" for x in done.values() if not x.get('consistent')]
+    n = snapshot_count(key, root)
+    if not n:
+        bad.append('openalex snapshot: no works of ' + S.inst(key) + ' (extend it: atlas submit tools/oa_snapshot.slurm with OA_EXT=' + key + ')')
+    return bad, dict(hosts=len((h or {}).get('hosts') or []), snapshot_works=n)
 
 
 def g1(key):
@@ -153,16 +183,6 @@ CODE = Path(__file__).resolve().parents[1]
 ACCURACY_DIR = CODE / 'accuracy'
 COPIES_TARGET = 0.85
 ACCURACY_BARS = (('lab_precision_uniform', 0.95), ('student_precision_uniform', 0.97), ('lab_coverage', 0.90))
-
-
-def g0(key):
-    bad = [f'charter: {p}' for p in S.check(key)]
-    hosts = read(P.data('hosts.json', key))
-    if hosts is None:
-        bad.append(f'hosts: hierarchy/{key}/hosts.json missing (run tools/school_hosts.py {key})')
-    else:
-        bad += [f"host {h['host']}: " + '; '.join(h.get('problems') or ['inconsistent']) for h in hosts.get('hosts', []) if not h.get('consistent')]
-    return bad, dict(hosts=len((hosts or {}).get('hosts', [])))
 
 
 def audit_open(key, checks):

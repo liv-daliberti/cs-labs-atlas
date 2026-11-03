@@ -34,6 +34,8 @@ def main(key, refresh=False):
         elif use == 'live' and probe and robots == 'allowed':
             res = W.live(c, probe, refresh=refresh)
             pr = 'disallowed' if res is None else ('challenge' if res[0] == 999 else ('ok' if res[0] == 200 else f'http {res[0]}'))
+            if res is not None and res[0] == 310:  # an off-host redirect (a moved department site): say where, the charter then names the new host
+                pr = 'http 310 ' + W.live_html(c, probe).replace('redirected off host to ', '->').strip()
         elif probe and robots != 'allowed':
             pr = 'disallowed'
         problems = []

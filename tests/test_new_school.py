@@ -22,6 +22,7 @@ def test_makes_charter_folders_and_an_empty_store(tmp_path):
     assert rc == 0
     t = (sd / 'testu.toml').read_text()
     assert 'key = "testu"' in t and 'name = "University of Testland"' in t and 'short = "Testland"' in t and 'order = 8' in t and 'status = "onboarding"' in t
+    assert f'started = "{__import__("datetime").date.today().isoformat()}"' in t   # the local day, not UTC
     assert all((tmp_path / 'h' / 'testu' / d).is_dir() for d in N.SUBDIRS)
     store = tmp_path / 's' / 'testu'
     assert all((store / d).is_dir() for d in N.STORE_DIRS) and (store / 'summary.json').exists()

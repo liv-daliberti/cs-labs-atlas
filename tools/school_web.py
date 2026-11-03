@@ -121,7 +121,8 @@ def robots_decision(status, body, url='/'):
     rp = urllib.robotparser.RobotFileParser(); rp.parse((body or '').splitlines() if status == 200 else [])
     ours = rp.can_fetch(UA, url)
     ai = all(rp.can_fetch(a, url) for a in AI_AGENTS)
-    delay = max(2.0, float(rp.crawl_delay(UA) or rp.crawl_delay('*') or 0))
+    # a Crawl-delay in a group that names one of Claude's agents (UChicago Linguistics: 'ClaudeBot ... Crawl-delay: 10') binds this project too
+    delay = max([2.0] + [float(rp.crawl_delay(a) or 0) for a in (UA, '*', *AI_AGENTS)])
     return ours, ai, delay
 
 

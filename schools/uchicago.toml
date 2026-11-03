@@ -124,28 +124,33 @@ url = "https://cs.uchicago.edu/"
   url = "www.cs.uchicago.edu/directories/table/faculty"
   from = "20160101"
   to = "20181031"
+  format = "uc_cs_table"
   [[departments.listings]]
   slot = "CS faculty"
   url = "www.cs.uchicago.edu/people/faculty/"
   from = "20181101"
   to = "20220228"
+  format = "uc_people_li"
   [[departments.listings]]
   slot = "CS faculty"
   url = "cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/"
   from = "20220201"
   to = "20261231"
+  format = "uc_card"
   [[departments.listings]]
   slot = "CS emeritus faculty"
   kind = "emeritus"
   url = "cs.uchicago.edu/people/uchicago-faculty/emeritus-faculty/"
   from = "20220201"
   to = "20261231"
+  format = "uc_card"
   [[departments.listings]]
   slot = "CS other academic appointments"
-  kind = "courtesy"
+  kind = "adjunct"
   url = "www.cs.uchicago.edu/directories/table/Other-Academic-Appointments"
   from = "20160101"
   to = "20250831"
+  format = "uc_cs_table"
 
 # TTIC (pending owner decision D2): a separate institution on the university's campus; its faculty list is complete for TTIC.
 [[departments]]
@@ -161,11 +166,13 @@ url = "https://www.ttic.edu/faculty/"
   url = "www.ttic.edu/faculty.php"
   from = "20160101"
   to = "20170120"
+  format = "ttic_table"
   [[departments.listings]]
   slot = "TTIC faculty"
   url = "www.ttic.edu/faculty/"
   from = "20170121"
   to = "20261231"
+  format = "ttic_media"
 
 [[departments]]
 code = "STAT"
@@ -185,6 +192,7 @@ url = "https://stat.uchicago.edu/"
   url = "stat.uchicago.edu/people/"
   from = "20190920"
   to = "20261231"
+  format = "uc_people_li"
 
 # --- other units searched for computing-related faculty (stage 2) ------------------------------------------------------
 # Units are added when the OpenAlex candidate rule (tools/cs_related_candidates.py) names their people. First guesses (stage 0):
@@ -271,15 +279,15 @@ purpose = "Booth faculty directory"
 probe = "https://www.chicagobooth.edu/faculty/directory"
 
 [[hosts]]
-host = "math.uchicago.edu"
+host = "mathematics.uchicago.edu"
 use = "live"
-purpose = "Mathematics faculty"
-probe = "https://math.uchicago.edu/people/faculty/"
+purpose = "Mathematics faculty (math.uchicago.edu redirects here since 2019-09; Wayback keys stay math.uchicago.edu)"
+probe = "https://mathematics.uchicago.edu/people/"
 
 [[hosts]]
 host = "linguistics.uchicago.edu"
-use = "none"
-purpose = "named in robots.txt (ClaudeBot: Crawl-delay group); decided in stage 0 (see STAGE-0.md)"
+use = "live"
+purpose = "Linguistics people, only if the OpenAlex rule names a Linguistics person. robots.txt names ClaudeBot in a Crawl-delay group (10 s, no Disallow): allowed, at 10 s per request"
 probe = "https://linguistics.uchicago.edu/"
 
 [[hosts]]

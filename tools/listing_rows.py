@@ -8,7 +8,7 @@ row      name (given-first, as the page spells it), name_listed ('Last, First M.
          slot, kind (the slot's kind), year, observed (capture timestamp), titles (as listed), dept_title (the title lines
          that name the department, by the charter's [[departments]].title_match), rank (classified from dept_title, else
          from every title: emeritus | courtesy | adjunct | visiting | lecturer | research | teaching | ladder | other),
-         homepage, capture_url, sha256 (of the capture body as stored), quote (the person's name through their last
+         homepage, profile (the department's own profile page, when the listing links one instead of a homepage), capture_url, sha256 (of the capture body as stored), quote (the person's name through their last
          title, a substring of the capture's whitespace-collapsed text; never the contact lines)
 coverage listings/<key>/coverage.json: department x year -> slots with an ok capture, and the plan's reason for each
          half-year without one (nocapture | unusable | out_of_scope)
@@ -88,7 +88,7 @@ def main(key):
             dt = [t for t in e['titles'] if tm.get(dept, re.compile('.')).search(t)]
             rows.append(dict(name=given_first(e['name_listed']), name_listed=e['name_listed'], dept=dept, slot=slot, kind=kind_of.get(slot), year=int(obs[:4]),
                              half=half, observed=obs, titles=e['titles'], dept_title=dt, rank=(rank_of(dt) if dt and rank_of(dt) != 'other' else rank_of(e['titles'])), division=e.get('division'),
-                             homepage=e.get('homepage'), capture_url=cap, sha256=sha, quote=q))
+                             homepage=e.get('homepage'), **({'profile': e['profile']} if e.get('profile') else {}), capture_url=cap, sha256=sha, quote=q))
             n['rows'] += 1
     out = P.data('rows.json', key)
     out.write_text(json.dumps(rows, indent=0, ensure_ascii=False))

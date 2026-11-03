@@ -101,7 +101,7 @@ def main(argv=None):
     if taken:
         raise SystemExit('refused: already exists: ' + ', '.join(taken))
     now = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
-    text = charter_text(a.key, a.name, a.short or a.name.replace('University of ', ''), a.order or next_order(schools), a.site_uni, now[:10], schools / 'TEMPLATE.toml')
+    text = charter_text(a.key, a.name, a.short or a.name.replace('University of ', ''), a.order or next_order(schools), a.site_uni, datetime.date.today().isoformat(), schools / 'TEMPLATE.toml')
     plan = [f'charter  {charter}', f'folders  {hier}/{{{",".join(SUBDIRS)}}}', f'store    {stores} (empty catalog.sqlite, never a copy of another school\'s)']
     print('\n'.join(plan))
     if a.dry_run:
