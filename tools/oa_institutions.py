@@ -1,10 +1,11 @@
 """Stage 0 id verification from the OpenAlex snapshot's institutions table (all 143k institutions, no API credits).
 
-  oa_institutions.py search <text> [--country US]    institutions whose name contains the text (case-insensitive): id, name, ROR, type, lineage
+  oa_institutions.py search <text> [--country US] [--type education]
+                                                     institutions whose name contains the text (case-insensitive), names starting with it first: id, name, ROR, type, lineage
   oa_institutions.py lineage <id|key>                the institution, its parent lineage, every institution whose lineage holds it (children), and its
                                                      associated institutions with their relationship (related | child | parent): what the charter's
                                                      `openalex`, `openalex_related` and `openalex_excluded` are decided from
-Never prints more than 60 rows. ROR ids are verified separately (api.ror.org/v2/organizations/<id>).
+Never prints more than 60 rows. Run it as `atlas run tools/oa_institutions.py ...` (not `python -I`: it imports its siblings; it handles no downloads). ROR ids are verified separately (api.ror.org/v2/organizations/<id>).
 """
 import argparse, json, sys
 
@@ -21,10 +22,13 @@ def short_lineage(b):
     return [O.short(x) for x in b.get('lineage') or []]
 
 
-def search(text, country=None, root=None):
+def search(text, country=None, root=None, type_=None):
+    """Name hits, best first: names that start with the text, then shorter names (a bare 'georgia' has 100+ hits, the school is not first in
+    snapshot order)."""
     t = text.lower()
-    return [(O.short(i), n, r, b.get('type'), b.get('country_code'), short_lineage(b)) for i, n, r, b in rows(root)
-            if t in (n or '').lower() and (not country or b.get('country_code') == country)]
+    hits = [(O.short(i), n, r, b.get('type'), b.get('country_code'), short_lineage(b)) for i, n, r, b in rows(root)
+            if t in (n or '').lower() and (not country or b.get('country_code') == country) and (not type_ or b.get('type') == type_)]
+    return sorted(hits, key=lambda h: (not (h[1] or '').lower().startswith(t), len(h[1] or ''), h[1] or ''))
 
 
 def lineage(iid, root=None):
@@ -44,12 +48,15 @@ def lineage(iid, root=None):
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest='cmd', required=True)
-    s = sub.add_parser('search'); s.add_argument('text'); s.add_argument('--country')
+    s = sub.add_parser('search'); s.add_argument('text'); s.add_argument('--country'); s.add_argument('--type', dest='type_', help='institution type: education, facility, healthcare, ...')
     g = sub.add_parser('lineage'); g.add_argument('id')
     a = ap.parse_args(argv)
     if a.cmd == 'search':
-        for r in search(a.text, a.country)[:60]:
+        hits = search(a.text, a.country, type_=a.type_)
+        for r in hits[:60]:
             print(json.dumps(r, ensure_ascii=False))
+        if len(hits) > 60:
+            print(f'... {len(hits) - 60} more (add --country, --type or a longer text)')
         return 0
     me, kids = lineage(a.id)
     if not me:

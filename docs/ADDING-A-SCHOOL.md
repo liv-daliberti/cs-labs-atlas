@@ -130,7 +130,7 @@ atlas stage-gate <key> [n ...]                 # only the gates (0-10), from the
     the merge with `--dependency=afterok:<id>` (`tools/oa_snapshot_merge.slurm`, same `OA_EXT`). It writes `ext-<key>.sqlite` next to the main
     store, which is not touched; the reader consults it. About 25 minutes on 16 tasks. The next quarterly refresh folds the school in. Commit the
     charter first: the job runs a code snapshot of a commit (`--from-worktree` pins the worktree's, for unlanded onboarding code).
-  - **Verify ids from the snapshot, not the API:** `tools/oa_institutions.py search <name>` and `lineage <id|key>` (children, associated
+  - **Verify ids from the snapshot, not the API:** `atlas run tools/oa_institutions.py search <name> [--country US] [--type education]` and `lineage <id|key>` (not `python -I`: it imports its siblings) (children, associated
     institutions). **Read the children before deciding `openalex_excluded`.** UChicago's lineage holds Argonne National Laboratory and four of its
     facilities, Evanston Hospital and Chan Zuckerberg Biohub Chicago; a lineage sweep takes every one of them. Medical centres and affiliated
     institutes are 'related', not children. Verify the ROR id and its relationships at `api.ror.org/v2/organizations/<id>`.

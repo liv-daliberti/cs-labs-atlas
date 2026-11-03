@@ -16,6 +16,9 @@ def test_search_and_lineage(tmp_path, monkeypatch):
     db.commit(); db.close()
     (tmp_path / 'current').symlink_to('2026-10-14')
     monkeypatch.setattr(O, '_conns', {})
-    assert [r[0] for r in I.search('x', root=tmp_path)] == ['I1', 'I2']
+    assert [r[0] for r in I.search('x', root=tmp_path)] == ['I2', 'I1']   # starts with 'x' first
     me, kids = I.lineage('I1', root=tmp_path)
     assert me[1] == 'University of X' and kids == [('I2', 'X National Laboratory', 'facility')]
+    assert [r[0] for r in I.search('univ', root=tmp_path, type_='education')] == ['I1', 'I3']
+    assert [r[0] for r in I.search('national', root=tmp_path)] == ['I2']
+    assert [r[0] for r in I.search('x', root=tmp_path, type_='facility')] == ['I2']
