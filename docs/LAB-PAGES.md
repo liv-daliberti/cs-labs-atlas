@@ -185,6 +185,12 @@ list), `no_lab_page`, `page_not_captured`, `page_unparseable`.
    sample sizes, errors by type, the items, the result) and in the hand-check table of `hierarchy/LABPAGE-AUDIT.md`. The
    accepted round is written to `hierarchy/<school>/labpage-acceptance.json` (the round, the additions file's
    `generated_at` and sha256, the counts), which is checked before wiring.
+   **The review page** (ROADMAP #36, `tools/review_page.py`): `atlas review-page labpage <school> --kind students|papers --seed S` draws the same
+   `random.sample` as `labpage_audit.py sample` and writes a local HTML page (no external resource) with each row's facts, verbatim quote,
+   capture link and a verdict box; its Export button downloads the verdicts, and `atlas review-page export <verdicts.json> --round N --label ...`
+   turns them into the round spec (scores and result by this bar, scaled by sample size / 20) that `labpage_audit.py record` writes into
+   `labpage-handcheck.json`. Accuracy samples work the same way (`atlas review-page accuracy <school>`, export -> `accuracy/record.py` input).
+   Open the file in a browser, or `atlas review-page serve <page.html>` (127.0.0.1 only). The judgement stays the checker's.
 5. After 3 failed rounds at a school the work stops and the error patterns are reported, rather than patched further
    (Princeton was given a fourth and last round under the stricter undated-name rule; if it fails, its students are not wired).
 
