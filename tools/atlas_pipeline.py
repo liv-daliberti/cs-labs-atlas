@@ -44,12 +44,13 @@ def schools_arg(env=None):
     return (env.get('SCHOOLS') or env.get('CS_ATLAS_SCHOOLS') or ' '.join(P.SCHOOL_IDS)).split()
 
 
-def plan(name, schools):
-    """The sbatch argument lists of a pipeline, in order: [(stage, [args])] (dependencies are added at submit time)."""
-    if name not in PIPELINES:
+def plan(name, schools, stages=None):
+    """The sbatch argument lists of a pipeline, in order: [(stage, [args])] (dependencies are added at submit time).
+    `stages` replaces the registry's list for an ad-hoc chain (tools/stage_gate.py --run submits a protocol stage's heavy steps so)."""
+    if stages is None and name not in PIPELINES:
         raise SystemExit(f'unknown pipeline {name!r}; atlas pipeline --list')
     out = []
-    for stage, kind, cmd, py, cpus, mem, tm in PIPELINES[name]:
+    for stage, kind, cmd, py, cpus, mem, tm in (stages if stages is not None else PIPELINES[name]):
         args = [f'--job-name=cs-{name}-{stage}', f'--cpus-per-task={cpus}', f'--mem={mem}', f'--time={tm}',
                 f'--output={P.data("logs")}/pipeline-{name}-{stage}-%A' + ('_%a' if kind == 'school' else '') + '.out']
         if kind == 'school':
@@ -58,11 +59,19 @@ def plan(name, schools):
     return out
 
 
-def submit(name, schools, run=subprocess.run, test_only=False, commit=None):
-    """Submit every stage with afterok dependencies; returns {stage: job id}. With test_only only the first stage is checked (a dependency needs a real id)."""
+def submit(name, schools, run=subprocess.run, test_only=False, commit=None, stages=None, guard_preempt=False):
+    """Submit every stage with afterok dependencies; returns {stage: job id}. With test_only only the first stage is checked (a dependency needs a real id).
+    guard_preempt: `sbatch --test-only` the first stage first and refuse to submit when it would preempt another job (standing rule)."""
     commit = commit or subprocess.run(['git', '-C', str(P.CODE), 'rev-parse', 'HEAD'], capture_output=True, text=True).stdout.strip()
     jobs, prev = {}, None
-    for stage, args, env, cmd in plan(name, schools):
+    steps = plan(name, schools, stages)
+    if guard_preempt and not test_only:
+        first = steps[0]
+        probe = run(['sbatch', '--parsable', '--test-only'] + first[1] + ['--export=ALL', str(CODE / 'hierarchy' / 'pipeline-stage.slurm')],  # route-ok: code that stays in hierarchy/
+                    capture_output=True, text=True, env=dict(os.environ, PIPE_CMD=first[3], CS_ATLAS_SNAPSHOT_COMMIT=commit, **first[2]), cwd=str(CODE))
+        if probe.returncode or 'Preempts:' in (probe.stderr or '') + (probe.stdout or ''):
+            raise SystemExit(f'not submitted ({first[0]}): ' + ((probe.stderr or probe.stdout or '').strip()[:300] or 'sbatch --test-only failed'))
+    for stage, args, env, cmd in steps:
         argv = ['sbatch', '--parsable'] + (['--test-only'] if test_only else []) + args
         if prev:
             argv.append(f'--dependency=afterok:{prev}')
@@ -101,7 +110,7 @@ def main(argv=None, run=subprocess.run):
             k, v = x.split('=', 1)
             env[k] = v
     schools = schools_arg(env)
-    jobs = submit(a.name, schools, run=run, test_only=a.test_only)
+    jobs = submit(a.name, schools, run=run, test_only=a.test_only, guard_preempt=True)
     if a.test_only:
         return 0
     d = Path(P.SCRATCH) / f"pipeline-{a.name}-{datetime.datetime.now().strftime('%Y%m%d-%H%M%S')}"

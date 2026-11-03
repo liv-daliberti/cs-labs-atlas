@@ -113,7 +113,7 @@ def main(argv=None):
     make_store(stores, a.key, now)
     (hier / 'reports' / 'new-school.json').write_text(json.dumps(dict(school=a.key, name=a.name, at=now, charter=str(charter), store=str(stores), stage=0), indent=1) + '\n')
     probs = S.check(a.key) if schools.resolve() == Path(P.SCHOOL_CONFIGS).resolve() else []
-    print(f'made {a.key}. Stage 0 is open: fill {charter.name} (TEMPLATE.toml documents every field), then atlas charters and school_hosts.py {a.key}.')
+    print(f'made {a.key}. Stage 0 is open: fill {charter.name} (TEMPLATE.toml documents every field), then `atlas charters`, and run the stage with `atlas stage-gate {a.key} 0 --run` (docs/ADDING-A-SCHOOL.md: each stage runs to its first review step).')
     for p in probs:
         print('  to do: ' + p)
     return 0

@@ -336,6 +336,7 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('labpage-audit-discovery.jsonl', 'raw', 'hierarchy/{school}/labpage-audit-discovery.jsonl', 'hierarchy/{school}/raw/labpage-audit-discovery.jsonl'),
     ('labpage-audit-recover', 'work', 'hierarchy/{school}/labpage-audit-recover', 'hierarchy/{school}/work/labpage-audit-recover'),
     ('labpage-handcheck.json', 'reviewed', 'hierarchy/{school}/labpage-handcheck.json', 'hierarchy/{school}/reviewed/labpage-handcheck.json'),
+    ('gate-exceptions.json', 'reviewed', 'hierarchy/{school}/gate-exceptions.json', 'hierarchy/{school}/reviewed/gate-exceptions.json'),
     ('labpage-departure-review.json', 'reviewed', 'hierarchy/labpage-departure-review.json', 'hierarchy/reviewed/labpage-departure-review.json'),
     ('labpage-audit-summary.json', 'derived', 'hierarchy/labpage-audit-summary.json', 'hierarchy/derived/labpage-audit-summary.json'),
     ('tobagi-review.json', 'reviewed', 'hierarchy/{school}/tobagi-review.json', 'hierarchy/{school}/reviewed/tobagi-review.json'),

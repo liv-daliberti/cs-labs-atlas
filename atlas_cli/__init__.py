@@ -31,7 +31,7 @@ COMMANDS = {
     'sweep':      ('py', 'tools/sweep_school.py', 'a school\'s OpenAlex sweep + sweep check: atlas sweep <school> [--daily] [--print]'),
     'new-school': ('py', 'tools/new_school.py', 'stage 0 of a new school in one command: atlas new-school <key> --name "University of X" [--dry-run]'),
     'stale':      ('py', 'tools/stale_stages.py', 'which rebuild stages are stale: atlas stale [school ...] [--json | --stages]; STAGES=auto hierarchy/rebuild.sh runs only those'),
-    'stage-gate': ('py', 'tools/stage_gate.py', 'a protocol school\'s stage gates: atlas stage-gate <school> [stage ...]'),
+    'stage-gate': ('py', 'tools/stage_gate.py', 'a protocol school\'s stage gates 0-10: atlas stage-gate <school> [stage ...] [--run [--submit] [--dry-run]] (--run does the stage up to its first review step)'),
     'charters':   ('py', 'tools/school_config.py --check', 'validate every school charter (schools/*.toml)'),
     'collect':    ('special', 'fulltext-push/lab_first_loop.py', 'the lab-first download loop: atlas collect <school> [...]'),
     'test':       ('special', 'pytest', 'the test suite: atlas test [pytest args]; --ci skips tests needing NFS data'),

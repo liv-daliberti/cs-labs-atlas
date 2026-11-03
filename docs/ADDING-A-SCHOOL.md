@@ -51,6 +51,18 @@ The protocol is config-driven. A school is a charter, `schools/<key>.toml`, and 
   - Local runs use `nice`. One heavy builder runs at a time.
   - Temporary files go in `hierarchy/<key>/tmp/` (ignored by git), never in login `/tmp`.
 
+## Running a stage: `atlas stage-gate` (ROADMAP #39)
+`atlas new-school <key> --name "..."` makes stage 0's scaffolding. After that every stage is one command:
+```
+atlas stage-gate <key> <n> --run [--submit]    # the stage's mechanical steps, up to its first review step; then the gate
+atlas stage-gate <key> [n ...]                 # only the gates (0-10), from the files the stages wrote
+```
+- `--run` runs the light steps here, queues the heavy ones as one Slurm chain (`--submit`: `afterok` dependencies from a code snapshot, `sbatch --test-only` first, refused on `Preempts:`; read the output files when the jobs end, or `atlas pipeline ... --wait`), skips a step whose output exists (`--force` re-runs), and stops at a failed step or at a **hand step**, printing what to review. Re-run the stage after the review: it continues and checks the gate.
+- It refuses a released school, and a step that writes a shared file (home departments, the DBLP dump persons) needs `--allow-shared`.
+- It writes `hierarchy/<key>/reports/stage-<n>-gate.json` (steps, result). The hand-written `STAGE-<n>.md` report stays yours.
+- The step table is `STEPS` in `tools/stage_gate.py`; a stage's checks are its `g<n>` function. A rule learned in a stage becomes a check there (stage 4 refuses compact dates like `20261029`).
+- A gate the owner waives is recorded in `hierarchy/<key>/reviewed/gate-exceptions.json` as `{"6": {"reason": "...", "by": "owner", "decided": "2026-11-02"}}`; the gate then reports `waived`, with the open items still listed.
+
 ## Stage 0: charter and config
 - **Do:**
   - **`atlas new-school <key> --name "University of X"`** (`tools/new_school.py`) does the next two bullets' scaffolding in one step: the charter from `TEMPLATE.toml`, `hierarchy/<key>/` (raw, reviewed, derived, work, reports, tmp), the store with an EMPTY `catalog.sqlite` of the standard schema (never a copy of another school's store), the folders a collector needs and a receipts row; it refuses an existing school and lists what the charter still lacks. Then fill the charter in.
