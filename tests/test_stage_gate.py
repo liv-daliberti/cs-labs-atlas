@@ -133,7 +133,8 @@ def test_run_runs_local_steps_in_order_and_stops_on_failure(tree):
 
 def test_shared_writers_need_allow_shared(tree):
     status, log = G.run_stage('u', 3, run=lambda *a, **k: SimpleNamespace(returncode=0))
-    assert log[0]['step'] == 'homes' and 'allow-shared' in log[0]['result']
+    shared = [x for x in log if x['step'] == 'homes-shared']
+    assert [x['step'] for x in log[:2]] == ['census-refresh', 'homes'] and shared and 'allow-shared' in shared[0]['result']
 
 
 def test_dry_run_runs_nothing_and_writes_no_receipt(tree, capsys):
