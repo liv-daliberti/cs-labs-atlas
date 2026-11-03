@@ -286,3 +286,18 @@ def page_links(html, base_url):
         return {}
     tmpl = found[min(found)]
     return {n: found.get(n) or re.sub(r'(^|[?&])page=\d+', lambda m: f'{m.group(1)}page={n}', tmpl, count=1) for n in range(1, max(found) + 1)}
+
+
+def letter_links(html, base_url):
+    """{letter: absolute url} of an A-Z index under the listing's own path (`/people/faculty/a`, one link per letter that has people): the other way a
+    Drupal 9 directory is paged. Georgia Tech's `?page=N` pages are mostly unarchived but its letter pages are, so plan_fetch falls back to them."""
+    import urllib.parse
+    base_url = re.sub(r'^(https?://[^/]+?):(?:80|443)(?=/|$)', r'\1', base_url)
+    base = urllib.parse.urlsplit(base_url)
+    out = {}
+    for href in re.findall(r'href="([^"]+)"', html):
+        sp = urllib.parse.urlsplit(urllib.parse.urljoin(base_url, H.unescape(href)))
+        m = re.fullmatch(re.escape(base.path.rstrip('/')) + r'/([A-Za-z])/?', sp.path)
+        if m and sp.netloc.lower() == base.netloc.lower() and not sp.query:
+            out.setdefault(m.group(1).lower(), f'{sp.scheme}://{sp.netloc}{sp.path}')
+    return out

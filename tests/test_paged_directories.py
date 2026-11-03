@@ -63,3 +63,24 @@ def test_a_page_not_archived_in_the_half_year_is_reported_missing(monkeypatch):
 
 def test_page_links_drop_the_default_port_of_an_old_capture_url():
     assert F.page_links(D7, 'http://www.scs.gatech.edu:80/people/faculty')[1] == 'http://www.scs.gatech.edu/people/faculty?title=&page=1'
+
+
+LETTERS = '<span><a href="/people/faculty/a">A</a></span><span><a href="/people/faculty/b">B</a></span><span>C</span><a href="/people/faculty/b/">dup</a><a href="/people/faculty?page=1">2</a>'
+
+
+def test_letter_links_are_the_az_index_under_the_listing_path():
+    assert F.letter_links(LETTERS, 'https://scs.gatech.edu/people/faculty') == {'a': 'https://scs.gatech.edu/people/faculty/a', 'b': 'https://scs.gatech.edu/people/faculty/b'}
+
+
+def test_unarchived_page_numbers_fall_back_to_the_letter_pages(monkeypatch):
+    con, cap0, page0 = _fixture(monkeypatch, {})   # no ?page=N is archived
+    page0 = page0.replace('</body>', LETTERS + '</body>')
+    con.execute('update captures set raw_zlib=? where capture_url=?', (zlib.compress(page0.encode()), cap0))
+    arch = {'scs.gatech.edu/people/faculty/a': '20240420000000', 'scs.gatech.edu/people/faculty/b': '20240301000000'}
+
+    def cdx(params, con_, refresh=False):
+        u = params['url']
+        return [dict(timestamp=arch[u], original='https://' + u, statuscode='200', digest='d')] if u in arch else []
+    monkeypatch.setattr(wb, 'cdx', cdx)
+    got, missing = PF.fetch_pages(con, {'dept': 'CS'}, cap0, page0, '20240101', '20240630', 'CS')
+    assert missing == [] and sorted(got) == ['a', 'b']

@@ -69,27 +69,38 @@ def fetch_pages(con, s, cap, html, lo, hi, dept, min_entries=1):
     base = con.execute("select page_url from captures where capture_url=?", (cap,)).fetchone()[0]
     m = re.match(r"https://web\.archive\.org/web/(\d{14})id_/(.*)", cap)
     ts0, original = m.group(1), m.group(2)
-    links = listing_formats.page_links(html, original)
-    got, missing = {}, []
-    for n, u in links.items():
-        want = u.split("://", 1)[-1]
-        rows = wb.cdx({"url": want, "from": lo, "to": hi, "output": "json", "fl": "timestamp,original,statuscode,digest", "limit": "200"}, con)
-        if rows is None:
-            raise RuntimeError(f"CDX failed for {want}")
-        rows = [r for r in rows if r["statuscode"] in ("200", "-") and lo <= r["timestamp"][:8] <= hi]
-        rows.sort(key=lambda r: abs(days(r["timestamp"]) - days(ts0)))
-        ok = None
-        for r in rows[:2]:
-            pc = wb.fetch_capture(r["timestamp"], r["original"], base, dept, con)
-            st, _ = ensure_extracted(con, pc)
-            raw = con.execute("select raw_zlib from captures where capture_url=?", (pc,)).fetchone()[0]
-            if st == 200 and raw and len(listing_formats.parse(wb.body(raw).decode("utf-8", "replace"), s.get("format"))[1]) >= min_entries:
-                ok = (u, pc, r["timestamp"])
-                break
-        if ok:
-            got[n] = ok
-        else:
-            missing.append(n)
+    def collect(links):
+        got, missing = {}, []
+        for n, u in links.items():
+            want = u.split("://", 1)[-1]
+            rows = wb.cdx({"url": want, "from": lo, "to": hi, "output": "json", "fl": "timestamp,original,statuscode,digest", "limit": "200"}, con)
+            if rows is None:
+                raise RuntimeError(f"CDX failed for {want}")
+            rows = [r for r in rows if r["statuscode"] in ("200", "-") and lo <= r["timestamp"][:8] <= hi]
+            rows.sort(key=lambda r: abs(days(r["timestamp"]) - days(ts0)))
+            ok = None
+            for r in rows[:2]:
+                pc = wb.fetch_capture(r["timestamp"], r["original"], base, dept, con)
+                st, _ = ensure_extracted(con, pc)
+                raw = con.execute("select raw_zlib from captures where capture_url=?", (pc,)).fetchone()[0]
+                if st == 200 and raw and len(listing_formats.parse(wb.body(raw).decode("utf-8", "replace"), s.get("format"))[1]) >= min_entries:
+                    ok = (u, pc, r["timestamp"])
+                    break
+            if ok:
+                got[n] = ok
+            else:
+                missing.append(n)
+        return got, missing
+
+    got, missing = collect(listing_formats.page_links(html, original))
+    if missing:  # `?page=N` pages are often unarchived where the A-Z letter pages are: the union of every linked letter is the whole directory
+        letters = listing_formats.letter_links(html, original)
+        if letters:
+            lgot, lmiss = collect(letters)
+            if not lmiss:
+                return lgot, []
+            if len(lmiss) < len(missing):
+                return lgot, lmiss
     return got, missing
 
 
@@ -225,7 +236,7 @@ def run_slot(school, s, con, pis, max_tries=2):
                         if not pages and not miss:
                             good, why = False, "paged directory: no page links found"
                         elif miss:
-                            good, why = False, f"paged directory: pages {miss} of {len(pages) + len(miss) + 1} not archived in this half-year"
+                            good, why = False, f"paged directory: pages {miss} of {len(pages) + len(miss) + 1} not archived in this half-year (page numbers or A-Z letters)"
                         else:
                             good, why = True, None
                 fu = con.execute("select final_url from captures where capture_url=?", (cap,)).fetchone()[0] or cap
