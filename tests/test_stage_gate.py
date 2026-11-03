@@ -149,7 +149,7 @@ def test_run_submits_the_slurm_steps_as_one_chain(tree, monkeypatch):
     tree.put('census-faculty.json', {})   # stage 2's census step already ran
     status, log = G.run_stage('u', 2, submit=True, run=lambda *a, **k: SimpleNamespace(returncode=0))
     assert status == 'submitted' and got['name'] == 'stage2-u' and got['schools'] == ['u'] and got['guard_preempt'] is True
-    assert [x[0] for x in got['stages']] == ['dblp', 'sweep', 'sweepcheck', 'openalex-candidates']   # from the snapshot extension and the dump: no API sweep
+    assert [x[0] for x in got['stages']] == ['dblp', 'sweep', 'sweepcheck', 'openalex-candidates', 'units']   # from the snapshot extension and the dump: no API sweep
     assert log[-2]['step'] == 'candidates' and log[-2]['result'] == 'waits for the queued steps'
 
 

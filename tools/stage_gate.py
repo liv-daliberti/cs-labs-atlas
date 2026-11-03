@@ -303,6 +303,7 @@ STEPS = {
           Q('sweep', 'PY $TOOLS/sweep_from_snapshot.py {school} --replace', cpus=2, mem='24G', time='02:00:00', done=['openalex-sweep.sqlite']),
           Q('sweepcheck', 'PY $TOOLS/sweep_check.py {school}', cpus=2, mem='24G', time='01:00:00', done=['sweep-check.json']),
           Q('openalex-candidates', 'PY $TOOLS/cs_related_candidates.py --no-venues --stats --out cs-related-candidates-openalex.json {school}', mem='24G', time='02:00:00', done=['cs-related-candidates-openalex.json']),
+          Q('units', 'PY $TOOLS/cs_related_school.py units {school}', cpus=1, mem='4G', time='06:00:00'),   # unit listings by Wayback incl. their pages; resumable (cached), so it runs on every pass
           L('candidates', 'tools/cs_related_school.py', 'candidates', '{key}'),
           L('cross-check', 'tools/listed_not_in_census.py', '{key}', done=['listed-not-in-census.json']),
           H('review', 'search the affiliated units (cs_related_school.py units), then decide every candidate (cs_related_school.py review) with its evidence')],

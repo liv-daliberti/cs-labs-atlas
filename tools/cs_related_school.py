@@ -185,8 +185,31 @@ def units(key):
             for r in rows:
                 cap, st, sha, b = W.capture(c, r['timestamp'], r['original'], url, u['code'])
                 n[f'wayback_{st}'] += 1
-                print(json.dumps(dict(unit=u['code'], ts=r['timestamp'], status=st, blocks=len(b))), flush=True)
+                print(json.dumps(dict(unit=u['code'], ts=r['timestamp'], status=st, blocks=len(b), shell=len(b) < 5)), flush=True)
+                if st == 200:
+                    n['paged_pages'] += unit_pages_of(c, cap, r, u['code'], url)
+        n['unit_years_without_blocks'] = sum(1 for _ in c.execute("select 1 from captures where department=? and http_status=200 and (text is null or length(text) < 500)", (u['code'],)))
     print(json.dumps(dict(n)))
+
+
+def unit_pages_of(c, cap, r, code, url):
+    """The other pages of a paged unit directory (`?page=N`, A-Z letter pages; Georgia Tech friction 10/18): each page's capture nearest in time within
+    the same calendar year, stored under the unit's code so unit_pages() reads it like the first page. -> pages captured."""
+    import listing_formats as LF
+    h = W.raw_html(c, cap)
+    if not LF.is_paged(h):
+        return 0
+    links = LF.page_links(h, r['original']) or LF.letter_links(h, r['original'])
+    got, ts0 = 0, r['timestamp']
+    for _, u in links.items():
+        want = re.sub(r'^https?://', '', u)
+        rows = [x for x in W.cdx_rows(c, want, frm=ts0[:4], to=ts0[:4], collapse=None) if x['timestamp'].startswith(ts0[:4])]
+        if not rows:
+            continue
+        x = min(rows, key=lambda z: abs(int(z['timestamp'][:8]) - int(ts0[:8])))
+        W.capture(c, x['timestamp'], x['original'], url, code)
+        got += 1
+    return got
 
 
 def unit_pages(key):
