@@ -22,6 +22,14 @@ formats
                then a span with a script-written email (dropped), 'Office: ...' (dropped) and the title lines
   ttic_media   TTIC 2017- (www.ttic.edu/faculty/): div.media-body, h2.media-heading name, h3 title(s), the 'Home Page' link
   ttic_table   TTIC 2016-2017 (www.ttic.edu/faculty.php): <td><strong>Name</strong>, Title<br />, the 'Home Page' link
+  gt_people    Georgia Tech College of Computing Drupal 7 sites 2016-2023 (scs/ic/cse.gatech.edu people/faculty): div.gt-person-box, name in h4.name.fn, the
+               titles ';'-separated in div.gt-people-content up to the first <br> (Research Areas and the e-mail link are dropped). 2016 captures are page 1 of 4
+  gt_card      Georgia Tech Drupal 9 sites 2023- (scs/ic/cse/scp, ECE-style profile-card): h4.card-block__title name, h6.card-block__subtitle title(s). IC and CSE
+               list everyone on one page; SCS and SCP page it 12 per page (?page=N), so a capture is partial there
+  ece_old      Georgia Tech ECE 2016-2023-03 (www.ece.gatech.edu/faculty-staff-directory): div.field-full-name link, div.field-jobtitle
+  ece_new      Georgia Tech ECE 2023-04- (ece.gatech.edu/directory): field-person-name item and field-person-official-job-title item; paged (partial)
+  isye_old     Georgia Tech ISyE 2016-2023 (www.isye.gatech.edu/people): h4.name link, div.field-content under field-emp-title; every category of person
+  isye_card    Georgia Tech ISyE 2023- (www.isye.gatech.edu/people/faculty): div.person-name link, div.person-type
 """
 import html as H
 import re
@@ -144,6 +152,86 @@ def galton_cells(h):
     return out
 
 
+def _titles(t):
+    """Title lines of a cell: split on <br> first, then on ';' of the decoded text ('Regents&#039; Professor' holds an entity ';'); the 'E-Mail' link text is dropped."""
+    out = []
+    for part in re.split(r'<br\s*/?>', t, flags=re.I):
+        for x in clean(part).split(';'):
+            x = re.sub(r'\s*\bE-?mail\b\s*$', '', x.strip(), flags=re.I)
+            if x:
+                out.append(x)
+    return out
+
+
+def gt_people(h):
+    out = []
+    for p in re.split(r'<div class="gt-person-box', h)[1:]:
+        nm = re.search(r"<h4 class=['\"]name fn['\"]>(.*?)</h4>", p, re.S)
+        if not nm:
+            continue
+        body = re.search(r"<div class=['\"]gt-people-content[^'\"]*['\"]>(.*?)</div>", p, re.S)
+        first = re.split(r'<br\s*/?>|<strong>', body.group(1), maxsplit=1, flags=re.I)[0] if body else ''
+        link = re.search(r'href="([^"]+)"', nm.group(1))
+        out.append(dict(name_listed=clean(nm.group(1)), titles=_titles(first), homepage=link.group(1) if link else None, division=None))
+    return out
+
+
+def gt_card(h):
+    out = []
+    for p in re.split(r'<div class="row profile-card__content', h)[1:]:
+        nm = re.search(r'<h4 class="card-block__title">(.*?)</h4>', p, re.S)
+        if not nm:
+            continue
+        sub = re.search(r'<h6 class="card-block__subtitle[^"]*">(.*?)</h6>', p, re.S)
+        link = re.search(r'href="([^"]+)"', nm.group(1))
+        out.append(dict(name_listed=clean(nm.group(1)), titles=_titles(sub.group(1)) if sub else [], homepage=link.group(1) if link else None, division=None))
+    return out
+
+
+def ece_old(h):
+    out = []
+    for p in re.split(r'<div class="faculty-staff-information">', h)[1:]:
+        nm = re.search(r'<div class="field-full-name">(.*?)</div>', p, re.S)
+        if not nm:
+            continue
+        jt = re.search(r'<div class="field-jobtitle">(.*?)</div>', p, re.S)
+        link = re.search(r'href="([^"]+)"', nm.group(1))
+        out.append(dict(name_listed=clean(nm.group(1)), titles=_titles(jt.group(1)) if jt else [], homepage=link.group(1) if link else None, division=None))
+    return out
+
+
+def ece_new(h):
+    out = []
+    for p in re.split(r'<div data-history-node-id=', h)[1:]:
+        nm = re.search(r'field--name-field-person-name[^>]*>\s*<div class="field__item">(.*?)</div>', p, re.S)
+        if not nm:
+            continue
+        jt = re.search(r'field--name-field-person-official-job-title[^>]*>\s*<div class="field__item">(.*?)</div>', p, re.S)
+        link = re.search(r'<a href="(/directory/[^"]+)"', p)
+        out.append(dict(name_listed=clean(nm.group(1)), titles=_titles(jt.group(1)) if jt else [], homepage=link.group(1) if link else None, division=None))
+    return out
+
+
+def isye_old(h):
+    out = []
+    for p in re.split(r'<!-- Person -->', h)[1:]:
+        nm = re.search(r'<h4 class="(?:field-content )?name">(.*?)</h4>', p, re.S)
+        if not nm:
+            continue
+        jt = re.search(r'views-field-field-emp-title">\s*<div class="field-content">(.*?)</div>', p, re.S)
+        link = re.search(r'href="([^"]+)"', nm.group(1))
+        out.append(dict(name_listed=clean(nm.group(1)), titles=_titles(jt.group(1)) if jt else [], homepage=link.group(1) if link else None, division=None))
+    return out
+
+
+def isye_card(h):
+    out = []
+    for m in re.finditer(r'<div class="w-100 px-0 pt-0 person-name">(.*?)</div>\s*<div class="person-type[^"]*">(.*?)</div>', h, re.S):
+        link = re.search(r'href="([^"]+)"', m.group(1))
+        out.append(dict(name_listed=clean(m.group(1)), titles=_titles(m.group(2)), homepage=link.group(1) if link else None, division=None))
+    return out
+
+
 FORMATS = {
     'eecs_table': (eecs_table, re.compile(r'<b>Division:</b>', re.I)),
     'eecs_wp': (eecs_wp, re.compile(r"class=['\"]eecs_person_wrapper['\"]")),
@@ -153,6 +241,12 @@ FORMATS = {
     'galton_cells': (galton_cells, re.compile(r'</strong>(?:</a>)?\s*<br\s*/?>\s*<span class="text">')),
     'ttic_media': (ttic_media, re.compile(r'class="media-heading"')),
     'ttic_table': (ttic_table, re.compile(r'<td><strong>')),
+    'gt_people': (gt_people, re.compile(r'class="gt-person-box')),
+    'gt_card': (gt_card, re.compile(r'class="card-block__title"')),
+    'ece_old': (ece_old, re.compile(r'class="field-full-name"')),
+    'ece_new': (ece_new, re.compile(r'field--name-field-person-official-job-title')),
+    'isye_old': (isye_old, re.compile(r'<!-- Person -->')),
+    'isye_card': (isye_card, re.compile(r'class="w-100 px-0 pt-0 person-name"')),
 }
 
 
@@ -169,4 +263,4 @@ def parse(h, fmt=None):
 def is_paged(html):
     """A capture of one page of a paged directory (pager markers and a ?page=N link): it parses to a few people while the rest sit on pages
     the archive may not hold (UChicago CS 2017: 5 of about 45). listing_rows.py reports it and plan_fetch.charter_usable rejects it."""
-    return bool(re.search(r'class="pager"|class="pagination"', html) and re.search(r'[?&]page=[1-9]', html))
+    return bool(re.search(r'class="pager"|class="pagination"', html) and re.search(r'(?:[?&]|&amp;)page=[1-9]', html))
