@@ -29,6 +29,7 @@ usage: cs_related_candidates.py [--no-venues] [--stats] [--out NAME] [school ...
        and is left alone, and tools/cs_related_school.py candidates merges the OpenAlex candidates with its own.
 """
 import collections, gzip, json, sqlite3, sys, zlib
+from pathlib import Path
 
 from pi_hierarchy import Name, NOT_PAPERS  # noqa: E402
 import atlas_paths as P  # noqa: E402  (every path in one place)
@@ -94,13 +95,23 @@ def venues():
     print(json.dumps(dict(cs_venues=len(cs_venues), lab_papers_in_cs_venues=sum(lab[s] for s in cs_venues))), flush=True)
 
 
+def school_pis(s):
+    """The school's PIs as pis.json rows. A school being onboarded has no pis.json before stage 7 (the build), so its census PIs stand in:
+    name and aliases for the name match, no author ids yet (UChicago PROTOCOL-FRICTION 22: this crashed the onboard-data pipeline)."""
+    f = Path(P.data('pis.json', s))
+    if f.exists():
+        return json.load(open(f))
+    import stage_gate
+    return [dict(pi=x['name'], names=[x['name']] + list(x.get('aliases') or [])) for x in stage_gate.pis_of(s)]
+
+
 def main(schools, do_venues=True, stats=False, out_name='cs-related-candidates.json'):
     if do_venues:
         venues()
     dblp = Index()
     for s in schools:
         at_school = school_test(s); skipped = collections.Counter()
-        pis = json.load(open(P.data('pis.json', s)))
+        pis = school_pis(s)
         pi_ids = {a for p in pis for a in (p.get('oaAuthorIds') or []) + (p.get('reviewedOpenAlex') or [])}
         pi_names = [(p['pi'], Name(p.get('names') or [p['pi']])) for p in pis]
         A = collections.defaultdict(lambda: dict(n=0, cs=0, last=0, years=set(), raw=collections.Counter(), venues=collections.Counter(),
