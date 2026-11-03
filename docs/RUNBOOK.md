@@ -83,6 +83,43 @@ while the lease is live, so a restarted session cannot run beside a forgotten on
 5. Work in your worktree, land with `tools/agent_worktree.sh land <name>`; submit jobs with `atlas submit` / `atlas pipeline`; never commit on main (enforce is on).
 6. At a clean stop, hand the work over (a note, branch names, job ids) and `atlas lease release <name>`. A crashed agent needs nothing: its lease expires.
 
+## Restart checklist (ROADMAP #40)
+
+Run it at every restart of a session or agent (usage limit, crash, host reconnect, handover), in this order, before touching anything. Each line says
+what to look at and what not to do.
+
+1. **Other sessions.** The host runs several sessions and agents at once, in separate worktrees, all against one data tree.
+   - `atlas lease status` (live = another session is working: stop and ask the coordinator), `tools/agent_worktree.sh ls` and `git worktree list` (whose branch
+     is whose, which have uncommitted changes), `squeue -u $USER` and `pgrep -u $USER -af 'python|atlas|rebuild'` on this host (what is running; an agent's loop or
+     job may belong to a session that is gone or to one that is still alive).
+   - Never cancel, kill or "clean up" what you did not start; never `git stash`, commit or reset in another agent's worktree or in the main checkout. Local processes
+     die with their host: on a different login node the list above is not the whole picture (`hostname`; the collectors run on Slurm, not on a login node).
+2. **Agent handover.** Read the previous agent's note first: `docs/ROADMAP.md` rows, the coordinator's last message, and the branch it names. A good note has the branch and worktree,
+   uncommitted files (or a `WIP:` commit, docs/CONTRIBUTING.md "Handing off uncommitted work"), job ids, locks held, and what must not be touched until a job ends.
+   If a note is missing, reconstruct from `git log <branch>`, the job logs and `hierarchy/COLLECTORS-STATUS.md`; do not re-run a step whose output exists.
+   Take a lease (`atlas lease acquire <name> --note ...`) only after step 1 shows nobody holds it. At a clean stop write the handover and `atlas lease release <name>`.
+3. **Re-create the auto-resume check.** It is session-only: the recurring check that wakes an agent after a usage limit (every 30 minutes, DECISIONS 2026-11-01) lives
+   in the session that made it, and a new session, a reconnect or a host restart starts without it. So: look at what the session already has scheduled (do not add a second one),
+   and if there is none, create it again with `/loop 30m <prompt>`. The prompt does one cheap thing: `atlas lease renew <name>`, ONE `squeue -u $USER` (or `sacct -j <ids>`), read the
+   output files of the jobs it waits for, and continue the next item of the handover note; it never submits, cancels or restarts anything by itself, and it stops itself when the work
+   is done. Cancel it at a clean stop. Never let two checks run for one agent.
+4. **Never run a job on live code.** A landing rewrites many files in the main checkout in one go; a process that imports from it can see half a commit
+   (2026-10-31, docs/CONTRIBUTING.md). Slurm jobs run from a snapshot of one commit: submit with `atlas submit`, `atlas pipeline` or `atlas release --wait`, never bare `sbatch` on a
+   script that does not source `tools/job_code_snapshot.sh` (`tests/test_slurm_snapshot.py`). Local runs: from your own worktree (`bin/atlas ...`, `$CS_ATLAS_PY tools/x.py`), never from the main checkout while
+   a landing may happen, and nothing long (a build, a collector) on a login node. The job log's first lines name the commit (`code snapshot: commit ...`).
+5. **Loops stopped or restarted on the current commit.** A download loop keeps the code it loaded until it restarts. After a restart:
+   - `git -C <code root> rev-parse --short HEAD` against each loop's log line `code snapshot: commit <sha>` (`hierarchy/COLLECTORS-STATUS.md`, `<store>/loop.log`). A loop on an older commit that the landing did not touch
+     can stay; one whose commit lacks a fix you rely on is restarted: `scancel <jobid>` (TERM, no resubmit), wait for the lock to free (`flock -n <store>/.loop.lock true`), then
+     `atlas submit --test-only fulltext-push/downloads.slurm --array=<n>`, and `atlas submit` it unless it prints `Preempts:`. A loop that restarts itself (USR1 at 900 s before its limit) already pins the then-current HEAD.
+   - A loop that is down and was not stopped on purpose is resubmitted the same way, one array task at a time, after the lock and the status page say it is down. Never start a second loop for a store.
+6. **Locks and journals.** Locks are `flock`s: they free themselves when the process dies, so a lock file that exists proves nothing; test it (`flock -n <file> true`) and never delete one.
+   The ones to know: `<store>/.loop.lock` (one loop per store), `<store>/.catalog-write.lock` (a writer waits up to 30 minutes), the node-local `$CS_ATLAS_LOCKS` (gone with a reboot), the lease lock, per-channel locks in `FT_LOGS`.
+   Journals: a SQLite `-journal`/`-wal` next to a catalog means a writer died mid-transaction; do not remove it and do not copy the database without it: open the file once for writing so SQLite rolls it back
+   (`tools/relocate_data.py --settle-journals` does this for the project's files), then check `PRAGMA integrity_check` on a copy for anything large. Progress journals are kept: a release's
+   `<scratch>/release-<tag>/run.json` (resume with `atlas release --resume --tag ...`, same options), a pipeline's `jobs.json` (`atlas pipeline status`), the requeue and revert logs under `staged/`. Read them before redoing a step.
+7. **Tools on the PATH.** A restarted shell has nothing on its PATH: `. paths.sh` first (`$CS_ATLAS_PY`), and for the site `PATH=$CS_ATLAS_NODE/bin:$PATH` before `npm` (Node 22 in `env/site-node`, docs/ENVIRONMENT.md); never `conda install` anything.
+8. Only then pick up the work, in your own worktree, and report.
+
 ## Housekeeping
 
 `tools/scratch.py clean` (dry run) / `--apply` removes scratch entries, old rebuild snapshots and old `.equiv/` reports older than 14

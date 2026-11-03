@@ -1,5 +1,14 @@
 # The Python environment, the entry point, and the switch-over
 
+## Node.js for the site tooling
+| | |
+|---|---|
+| Path | `/n/fs/resemble/homogenizing-science/env/site-node` (= `$CS_ATLAS_NODE`, `atlas_paths.NODE`) |
+| What | the official `node-v22.23.4-linux-x64` tarball from nodejs.org, unpacked there, with npm 10.9.9. The site needs Node 22.13 or newer |
+| How it was installed | the tarball's sha256 was checked against nodejs.org's `SHASUMS256.txt`, then it was extracted into `env/site-node` (coordinator, 2026-11-02). Not conda: conda tries to write to the shared Anaconda install and to the 5 GB home quota |
+| Use | `. paths.sh; PATH=$CS_ATLAS_NODE/bin:$PATH npm ...` (from `site/`); `node --version` should print v22.x. Nothing else puts it on PATH |
+| Upgrade | a new tarball into a new directory (`site-node-<version>`), checksum first, then point `NODE` in `tools/atlas_paths.py` at it and regenerate `paths.sh`; never edit the installed tree in place |
+
 ## One environment
 | | |
 |---|---|

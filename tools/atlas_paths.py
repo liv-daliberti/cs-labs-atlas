@@ -77,6 +77,7 @@ _SPEC = [
     ('ENV', 'env', 'ROOT'),
     ('PY', 'atlas/bin/python', 'ENV'),              # THE project interpreter (env/environment.yml)
     ('HF_HOME', 'hf-cache', 'ENV'),
+    ('NODE', 'site-node', 'ENV'),                   # Node.js for the site tooling (official tarball, docs/ENVIRONMENT.md); put $CS_ATLAS_NODE/bin on PATH before npm
     ('CACHE', 'cache', 'ROOT'),                     # API caches (never in git)
     ('LEASES', 'leases', 'ROOT'),                   # one lease file per agent or session (tools/agent_lease.py; ROADMAP #17)
     ('SCRATCH', 'scratch', 'ROOT'),                 # throw-away working files outside the code tree; tools/scratch.py cleans it (ROADMAP item 13)
