@@ -17,16 +17,16 @@ Date: 2026-11-03. Protocol: `docs/ADDING-A-SCHOOL.md` v2.3. Branch `agent/gatech
   `scp.cc.gatech.edu` starts 2023-12 (the school was founded 2022-23); ECE `/directory` is patchy before 2023; ISyE `/people/faculty` starts 2023.
 - **Snapshot extension done** (2026-11-03, 17 jobs COMPLETED, merge 41 s): `ext-gatech.sqlite`, 202,525 works. `atlas stage-gate gatech 0`: **pass** (14 hosts, 202,471 snapshot works).
 
-## Evidence for the owner decisions (works in ext-gatech.sqlite, 2016-2026; authorship-level institution tags)
-| institution | works tagged | of which GT's own id absent from the work |
+## Evidence for the owner decisions (`atlas run tools/oa_institutions.py children-counts gatech`: works 2016-2026 in the snapshot + extension)
+| institution | works tagged | of which the work lacks Georgia Tech's own id |
 |---|---|---|
-| Georgia Tech (I130701444) | 199,901 | - |
-| GTRI | 3,941 | 1,576 |
-| Coulter BME dept | 7,020 | 231 |
-| Georgia Tech-CNRS Lab (Metz) | 1,362 | 548 |
-| Georgia Tech-Europe (related) | 1,105 | 510 |
-| CTRN (GT/Emory/GSU centre) | 1,376 | 216 |
-| Georgia Space Grant Consortium | 1 | 1 |
+| Georgia Tech (I130701444) | 92,454 | - |
+| Coulter BME dept | 4,876 | 167 |
+| GTRI | 1,297 | 651 |
+| CTRN | 1,375 | 215 |
+| Georgia Tech-CNRS Lab (Metz) | 712 | 267 |
+| Space Grant Consortium | 1 | 1 |
+(An earlier table in this report counted all years of the extension: 199,901 GT works; Georgia Tech-Europe, a related not lineage id, had 1,105 works, 510 without GT's id.)
 
 ## Owner decisions (2026-11-03: D1-D4 all approved as recommended; applied in the charter, Georgia Tech-Europe dropped from `openalex_related`, `openalex_excluded` = CTRN, Space Grant Consortium)
 - **D1 departments.** In: the four College of Computing schools (CS, IC, CSE, CSP) as full-coverage departments; ECE and ISyE as `affiliated` (computing faculty by the share test); ML Center, Math, BME

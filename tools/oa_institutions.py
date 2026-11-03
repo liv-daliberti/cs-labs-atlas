@@ -2,6 +2,7 @@
 
   oa_institutions.py search <text> [--country US] [--type education]
                                                      institutions whose name contains the text (case-insensitive), names starting with it first: id, name, ROR, type, lineage
+  oa_institutions.py children-counts <id|key>        works 2016-2026 per lineage child, and how many lack the school's own id (decide `openalex_excluded` from it)
   oa_institutions.py lineage <id|key>                the institution, its parent lineage, every institution whose lineage holds it (children), and its
                                                      associated institutions with their relationship (related | child | parent): what the charter's
                                                      `openalex`, `openalex_related` and `openalex_excluded` are decided from
@@ -45,11 +46,40 @@ def lineage(iid, root=None):
     return me, kids
 
 
+def children_counts(iid, root=None, years=(2016, 2026)):
+    """{id: (name, works, works without the school's own id)} for the school and each lineage child, over the stored works of the window
+    (main store, then extensions). One pass over the works: the evidence for 'which children to keep' (openalex_excluded)."""
+    import school_config as SC
+    if iid in SC.keys():
+        iid = SC.inst(iid)
+    iid = O.short(iid)
+    me, kids = lineage(iid, root)
+    names = {iid: me[1]} if me else {iid: iid}
+    names.update({k[0]: k[1] for k in kids})
+    n = dict.fromkeys(names, 0)
+    alone = dict.fromkeys(names, 0)
+    seen = set()
+    for db, _ in [O.conn(root)] + O.exts(root):
+        for wid, body in db.execute('select w.id, w.body from work_inst i join works w on w.id = i.work_id where i.inst = ? and w.year between ? and ?', (iid,) + tuple(years)):
+            if wid in seen:
+                continue
+            seen.add(wid)
+            w = O.unpack(body)
+            ids = {O.short(i.get('id')) for a in w.get('authorships') or [] for i in a.get('institutions') or []}
+            for k in names:
+                if k in ids:
+                    n[k] += 1
+                    if k != iid and iid not in ids:
+                        alone[k] += 1
+    return {k: (names[k], n[k], alone[k]) for k in names}
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest='cmd', required=True)
     s = sub.add_parser('search'); s.add_argument('text'); s.add_argument('--country'); s.add_argument('--type', dest='type_', help='institution type: education, facility, healthcare, ...')
     g = sub.add_parser('lineage'); g.add_argument('id')
+    c = sub.add_parser('children-counts', help='works per lineage child, and those lacking the school\'s own id'); c.add_argument('id')
     a = ap.parse_args(argv)
     if a.cmd == 'search':
         hits = search(a.text, a.country, type_=a.type_)
@@ -57,6 +87,10 @@ def main(argv=None):
             print(json.dumps(r, ensure_ascii=False))
         if len(hits) > 60:
             print(f'... {len(hits) - 60} more (add --country, --type or a longer text)')
+        return 0
+    if a.cmd == 'children-counts':
+        for k, (nm, n, alone) in children_counts(a.id).items():
+            print(f'{k:<14} {n:>8} works  {alone:>7} without the school id  {nm}')
         return 0
     me, kids = lineage(a.id)
     if not me:
