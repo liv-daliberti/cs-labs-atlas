@@ -1,7 +1,7 @@
 /** Shared readiness check for the Node and hosted storage adapters. */
 export async function readiness(bucket, config) {
   const read = async (entry) => {
-    const object = await bucket.get('objects/' + entry.sha256);
+    const object = await bucket.head('objects/' + entry.sha256);
     if (!object || object.size !== entry.size) throw new Error('Required object unavailable');
     const actual = [...new Uint8Array(object.checksums?.sha256 || [])]
       .map((x) => x.toString(16).padStart(2, '0'))
@@ -27,7 +27,10 @@ export async function readiness(bucket, config) {
     if (!manifest.files?.[name]) throw new Error('Required asset missing: ' + name);
     await read(manifest.files[name]);
   }
-  const schools = await (await read(manifest.files['data/cs-hierarchy/index.json'])).json();
+  // Consume the one JSON body we need; readiness probes must not leave R2 streams open.
+  const schools = await (
+    await bucket.get('objects/' + manifest.files['data/cs-hierarchy/index.json'].sha256)
+  ).json();
   for (const school of schools.schools || []) {
     const entry = manifest.files['data/cs-hierarchy/' + school.id + '.json.gz'];
     if (!entry) throw new Error('School asset missing');
