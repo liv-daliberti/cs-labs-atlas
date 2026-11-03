@@ -4,7 +4,7 @@ Precision = correct / (correct + incorrect); 'unclear' items stay out of every d
 Lab-paper coverage = in_build share of the coverage items judged true lab papers.
 Student coverage = linked share of the sampled thesis advisees who have a co-authored paper with the PI.
 'meeting_abstract' marks conference/meeting abstracts judged not_a_paper; the alternative figures count them correct.
-usage: summarize.py
+usage: summarize.py [--school <key>]
 """
 import collections, json, math, sys
 from pathlib import Path
@@ -30,6 +30,44 @@ def prec(rows, abstracts_ok=False):
     out = wilson(ok, n) or {}
     out['unclear'] = sum(r['verdict'] == 'unclear' for r in rows)
     return out
+
+
+def one_school(school):
+    """The four measures of a school outside the six released ones (draw sample-<school>.json, verdicts-<school>.jsonl) into
+    summary-<school>.json; nothing is pooled and the released figures are not touched."""
+    from record import files
+    from sample import FILES, P, sha
+    sf, vf = files(school)
+    S = json.load(open(sf))
+    V = [json.loads(l) for l in open(vf)]
+    lab = [r for r in V if r['sample'] == 'lab_precision']
+    stu = [r for r in V if r['sample'] == 'student_precision']
+    cov = [r for r in V if r['sample'] == 'lab_coverage']
+    sc = [r for r in V if r['sample'] == 'student_coverage']
+    true_lab = [r for r in cov if r.get('true_lab_paper') is True]
+    d = dict(school=school, date=S['date'], seed=S['seed'], n_verdicts=len(V), files=S['files'][school],
+             files_now={f: sha(P.SchoolDir(school) / f) for f in FILES},
+             lab_precision_uniform=prec([r for r in lab if r['stratum'] == 'uniform']),
+             lab_precision_uniform_if_abstracts_count=prec([r for r in lab if r['stratum'] == 'uniform'], True),
+             lab_precision_strata={st: prec([r for r in lab if r['stratum'] == st]) for st in ('advisee_unaffiliated', 'listing', 'identity_not_reviewed')},
+             lab_precision_all40=prec(lab),
+             student_precision_uniform=prec([r for r in stu if r['stratum'] == 'uniform']),
+             student_precision_strata={st: prec([r for r in stu if r['stratum'] == st]) for st in sorted({r['stratum'] for r in stu} - {'uniform'})},
+             student_precision_all40=prec(stu),
+             lab_coverage=wilson(sum(bool(r.get('in_build')) for r in true_lab), len(true_lab)),
+             lab_coverage_items=dict(drawn=len(cov), true_lab_papers=len(true_lab),
+                                     not_lab_papers_absent=sum(r.get('true_lab_paper') is False and not r.get('in_build') for r in cov),
+                                     not_lab_papers_in_build=sum(r.get('true_lab_paper') is False and bool(r.get('in_build')) for r in cov)),
+             student_coverage=wilson(sum(bool(r.get('linked')) for r in sc if r.get('has_coauthored_paper')), sum(bool(r.get('has_coauthored_paper')) for r in sc)),
+             student_coverage_items=dict(drawn=len(sc), no_coauthored_paper=sum(not r.get('has_coauthored_paper') for r in sc)),
+             failures=dict(collections.Counter(r['failure_type'] for r in V if r['verdict'] == 'incorrect')),
+             incorrect=[dict(sample=r['sample'], stratum=r['stratum'], item=r['item'], failure_type=r['failure_type'], reason=r['reason'],
+                             policy=r.get('policy')) for r in V if r['verdict'] == 'incorrect'],
+             unclear=[dict(sample=r['sample'], item=r['item'], reason=r['reason']) for r in V if r['verdict'] == 'unclear'],
+             screened=[json.loads(l) for l in open(ACC / f'screened-{school}.jsonl')] if (ACC / f'screened-{school}.jsonl').exists() else [])
+    (ACC / f'summary-{school}.json').write_text(json.dumps(d, indent=1, ensure_ascii=False))
+    f = lambda x: f"{x['p']:.3f} [{x['lo']:.3f},{x['hi']:.3f}] k={x['k']} n={x['n']}" if x else '-'
+    print(school, '| lab', f(d['lab_precision_uniform']), '| stu', f(d['student_precision_uniform']), '| cov', f(d['lab_coverage']), '| scov', f(d['student_coverage']))
 
 
 def main():
@@ -78,8 +116,8 @@ def main():
                              reason=r['reason'], policy=r.get('policy'), evidence=r['evidence']) for r in V if r['verdict'] == 'incorrect']
     out['unclear'] = [dict(school=r['school'], sample=r['sample'], item=r['item'], reason=r['reason']) for r in V if r['verdict'] == 'unclear']
     out['screened'] = [json.loads(l) for l in open(ACC / 'screened.jsonl')] if (ACC / 'screened.jsonl').exists() else []
-    from sample import sha, H, FILES
-    later = {sc: {f: h for f in FILES for h in [sha(H / sc / f)] if h != S['files'][sc][f]} for sc in SCHOOLS}
+    from sample import sha, P, FILES
+    later = {sc: {f: h for f in FILES for h in [sha(P.SchoolDir(sc) / f)] if h != S['files'][sc][f]} for sc in SCHOOLS}
     out['notes'] = dict(measured_build='the sha256 in files (the 13:40 build, hashed when the sample was drawn)',
                         rebuilt_after_draw={sc: v for sc, v in later.items() if v},
                         rebuilt_after_draw_note='package files whose hash differs from the measured build when summarize.py ran; '
@@ -94,4 +132,7 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    if len(sys.argv) == 3 and sys.argv[1] == '--school':
+        one_school(sys.argv[2])
+    else:
+        main()

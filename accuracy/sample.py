@@ -18,7 +18,9 @@ Per school, one random.Random(20261029), consumed in this fixed order:
                        form the sample (candidates screened out, e.g. a master's thesis, go to screened.jsonl).
 Rows are addressed by their position in the file and by a key; the package files' sha256 are recorded with the draw.
 -> work/accuracy/sample.json
-usage: sample.py
+usage: sample.py [--school <key>]
+  --school <key>  draw one school (any charter, released or onboarding) with the same seed and method into
+                  accuracy/sample-<key>.json; sample.json and the six released draws are untouched (tests/test_accuracy_sample_school.py).
 """
 import sys as _sys  # noqa: E402
 from pathlib import Path as _Path  # noqa: E402
@@ -107,9 +109,20 @@ def thesis_relation(rel, school, roles=()):
     return None
 
 
-def main():
-    out = {'seed': SEED, 'date': '2026-10-29', 'schools': {}, 'files': {}}
-    for school in SCHOOLS:
+def alumni_relation(rel, roles):
+    """Fallback for a school onboarded under the protocol whose build holds no thesis-database source (Michigan: Deep Blue is
+    never used, so a relation comes from the lab's own alumni page, a student's homepage or a defense listing): the student's
+    recorded role is PhD alumnus, and the relation's last year is returned. Used only for schools outside SCHOOLS, so the six
+    released draws cannot change."""
+    if not any(r == 'phd_alumnus' for r in roles) or rel.get('type') not in ('researched_advising', 'thesis_adviser'):
+        return None
+    ys = [int(y) for y in rel.get('years') or [] if str(y).isdigit()]
+    return max(ys) if ys else None
+
+
+def main(schools=None, out_path=None, date='2026-10-29'):
+    out = {'seed': SEED, 'date': date, 'schools': {}, 'files': {}}
+    for school in schools or SCHOOLS:
         rng = random.Random(SEED)
         d = P.SchoolDir(school)
         out['files'][school] = {f: sha(d / f) for f in FILES}
@@ -171,6 +184,8 @@ def main():
         for p in pis:
             for s in stj.get(p['pi']) or []:
                 ys = [y for rel in s.get('relations') or [] for y in [thesis_relation(rel, school, s.get('roles') or [])] if y]
+                if not ys and school not in SCHOOLS:
+                    ys = [y for rel in s.get('relations') or [] for y in [alumni_relation(rel, s.get('roles') or [])] if y]
                 if ys and max(ys) >= 2018:
                     cands.append(dict(key=f"{p['pi']}|{s['person']}", pi=p['pi'], person=s['person'], name=s['name'], phd_year=max(ys)))
         rng.shuffle(cands)
@@ -179,8 +194,15 @@ def main():
                                       lab_coverage=cov, student_coverage_order=cands[:40])
         del stj, pis, meta, sm, pool
         print(school, len(lab), len(stu), len(cov), len(cands), flush=True)
-    OUT.write_text(json.dumps(out, indent=1))
+    (out_path or OUT).write_text(json.dumps(out, indent=1))
+    return out
 
 
 if __name__ == '__main__':
-    main()
+    if len(_sys.argv) == 3 and _sys.argv[1] == '--school':
+        import datetime
+        main([_sys.argv[2]], _Path(__file__).resolve().parent / f'sample-{_sys.argv[2]}.json', datetime.date.today().isoformat())
+    elif len(_sys.argv) == 1:
+        main()
+    else:
+        _sys.exit(__doc__)

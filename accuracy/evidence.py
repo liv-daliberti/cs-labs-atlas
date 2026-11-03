@@ -7,6 +7,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 from sample import P, dblp_persons  # noqa: E402
+from record import files  # noqa: E402
 
 ACC = Path(__file__).parent
 
@@ -32,7 +33,7 @@ def short(x, n):
 
 
 def main(school, what):
-    S = json.load(open(ACC / 'sample.json'))['schools'][school]
+    S = json.load(open(files(school)[0]))['schools'][school]
     pis = {p['pi']: p for p in json.load(open(P.data('pis.json', school)))}
     if what in ('lab', 'coverage'):
         pages = dblp_persons({q for p in pis.values() for q in p.get('dblp') or []})

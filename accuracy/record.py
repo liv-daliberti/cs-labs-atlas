@@ -14,14 +14,22 @@ FAIL = {'namesake', 'not_at_school', 'outside_appointment', 'not_a_paper', 'wron
         'student_not_linked'}
 
 
+RELEASED = ('princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford')
+
+
+def files(school):
+    """(draw file, verdict file): the released schools share sample.json and verdicts.jsonl; any other school has its own."""
+    return (ACC / 'sample.json', ACC / 'verdicts.jsonl') if school in RELEASED else (ACC / f'sample-{school}.json', ACC / f'verdicts-{school}.jsonl')
+
+
 def main(school, sample):
-    S = json.load(open(ACC / 'sample.json'))['schools'][school]
+    sf, vf = files(school)
+    S = json.load(open(sf))['schools'][school]
     if sample == 'student_coverage':
         items = {c['key']: dict(c, stratum='thesis_advisee_phd_ge_2018') for c in S['student_coverage_order']}
     else:
         items = {(str(it['i']) if 'i' in it else it['key']): it for it in S[sample]}
     done = set()
-    vf = ACC / 'verdicts.jsonl'
     if vf.exists():
         for line in open(vf):
             d = json.loads(line); done.add((d['school'], d['sample'], d['item']))

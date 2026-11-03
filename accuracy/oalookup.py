@@ -9,11 +9,12 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 from evidence import nt, short  # noqa: E402
+from record import files  # noqa: E402
 
 ACC = Path(__file__).parent
 CACHE = ACC / 'cache' / 'openalex.jsonl'
 AFF = {'princeton': r'princeton', 'cmu': r'carnegie|cmu', 'epfl': r'epfl|lausanne|polytechnique f', 'mit': r'massachusetts inst|\bmit\b|csail',
-       'berkeley': r'berkeley', 'stanford': r'stanford'}
+       'berkeley': r'berkeley', 'stanford': r'stanford', 'michigan': r'michigan|umich'}
 SEL = 'id,doi,display_name,publication_date,type,authorships,primary_location'
 
 
@@ -68,7 +69,7 @@ def main(school):
     if CACHE.exists():
         for line in open(CACHE):
             d = json.loads(line); cache[d['url']] = d['body']
-    S = json.load(open(ACC / 'sample.json'))['schools'][school]
+    S = json.load(open(files(school)[0]))['schools'][school]
     for it in S['lab_coverage']:
         d = it['dblp']
         print(f"* {it['key']}")
