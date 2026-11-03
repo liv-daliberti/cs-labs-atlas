@@ -24593,6 +24593,44 @@
     2022
    ],
    "why_unproven": "2026-10-30 (Michigan stage 4): the CSE faculty list names him in every capture 2016-2021 H1 and 2023-2026, but in none from 2021-09 to 2022-09 (captures 20210919074514, 20220327223352, 20220925141719; 144-149 entries each, parsed completely). His homepage web.eecs.umich.edu/~pmchen/ has Wayback captures in 2021-01 and from 2023-01, none in 2022, and states no dates. No other dated source was found (tools/periods_school.py gaps, hierarchy/michigan/gap-year-evidence.json). 2022 proves no appointment; his 2022 papers stay outside it. Possibly a leave; not inferred."
+  },
+  "Matthew Johnson-Roberson": {
+   "periods": [
+    {
+     "id": "override_period_michigan_matthew_johnson_roberson",
+     "start": "2013",
+     "end": "2021-12",
+     "asof": "2026-11-02",
+     "datePrecision": "year",
+     "datePrecisionEnd": "month",
+     "evidence": [
+      {
+       "url": "https://www.cmu.edu/news/stories/archives/2021/november/johnson-roberson-robotics-institute.html",
+       "sha256": "430d67c326dd009d5bbe35a566c0e3557d94ac0cfbf703a7326a2f07f75f8c8d",
+       "quote": "Johnson-Roberson joined the faculty at Michigan in 2013 and taught courses related to underwater vehicle design and autonomy, computer vision, and self-driving cars.",
+       "observed": "2026-11-02",
+       "kind": "faculty_start"
+      },
+      {
+       "url": "https://web.archive.org/web/20210411183138id_/https://cse.engin.umich.edu/people/faculty/",
+       "sha256": "01e532060f612e44f5d146e3afde7fe3f3a6442e24a1073870107cc8ae8591c7",
+       "quote": "Johnson-Roberson, Matthew Associate Professor, Naval Architecture and Marine EngineeringAssociate Professor (courtesy), Electrical Engineering and Computer Science",
+       "observed": "2021-04-11",
+       "kind": "dept_listing:CSE"
+      },
+      {
+       "url": "https://www.cmu.edu/news/stories/archives/2021/november/johnson-roberson-robotics-institute.html",
+       "sha256": "430d67c326dd009d5bbe35a566c0e3557d94ac0cfbf703a7326a2f07f75f8c8d",
+       "quote": "will have a chance to shape the next generation of robotics and roboticists when he returns to campus in January as the new director of the Robotics Institute.",
+       "observed": "2021-11-11",
+       "kind": "faculty_end_moved"
+      }
+     ],
+     "note": "CMU news item dated 2021-11-11 (Last-Modified 2021-11-11, archive path 2021/november): he leaves Michigan to direct CMU's Robotics Institute from January 2022. End = 2021-12 (month before the January start; bounded by the announcement 2021-11-11). Michigan's 2022 CSE listing is stale (R-PAP-03). Accessed 2026-11-02; robots.txt allows the page.",
+     "reviewed": "departed_faculty_review_20261102"
+    }
+   ],
+   "note_20261102": "ROADMAP #26 departures follow-up: departure recorded from a dated university news item (faculty_end_moved); R-PAP-03 sets later department listings aside."
   }
  }
 }
