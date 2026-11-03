@@ -104,3 +104,27 @@ def test_exclusion_is_per_affiliation_not_per_authorship():
     assert S.keep_work(w(joint, argonne), inst, excl, set())[1] == {'I1'}
     assert S.keep_work(w(argonne), inst, excl, set()) is None
     assert S.keep_work(w(argonne, joint), inst, excl, set())[1] == {'I1'}
+
+
+def test_an_extension_adds_a_school_without_touching_the_main_store(served, monkeypatch):
+    """`filter --ext KEY` / `merge --ext KEY` (a school onboarded after the snapshot was filtered): ext-<key>.sqlite beside the main store."""
+    date, parts = S.all_parts()
+    monkeypatch.setattr(S, 'targets', lambda only=None: ({'I10'}, set(), set()) if not only else ({'I99'}, set(), set()))
+    for t in range(2):
+        S.cmd_filter(t, 2, tmp=served)
+    S.cmd_merge(date, of=2, parts=parts)
+    main = served / 'snap' / '2026-10-14' / 'openalex.sqlite'
+    before = (main.stat().st_size, main.stat().st_mtime_ns)
+    assert S.work('W2') is None and list(S.works_by_lineage('I99')) == []
+    for t in range(2):
+        S.cmd_filter(t, 2, tmp=served, ext='newu')
+    S.cmd_merge(date, of=2, parts=parts, ext='newu')
+    assert (main.stat().st_size, main.stat().st_mtime_ns) == before and S.snapshot_date() == '2026-10-14'
+    ext = served / 'snap' / '2026-10-14' / 'ext-newu.sqlite'
+    assert ext.exists() and json.loads((ext.parent / 'ext-newu.manifest.json').read_text())['extension'] == 'newu'
+    assert not list((served / 'scratch').glob('openalex-*/*'))
+    S._conns.clear()
+    assert S.work('W2')['id'].endswith('W2') and S.work('10.1/c')['id'].endswith('W3')
+    assert {w['id'].rsplit('/', 1)[-1] for w in S.works_by_lineage('I99')} == {'W2', 'W3'}
+    assert {w['id'].rsplit('/', 1)[-1] for w in S.works_by_lineage('I10')} == {'W1', 'W6'}   # main rows still come from the main store
+    assert S.institution('I10') is not None   # institutions are not repeated in an extension

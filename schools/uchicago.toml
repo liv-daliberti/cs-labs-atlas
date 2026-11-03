@@ -1,0 +1,293 @@
+# schools/<key>.toml: one school's charter (docs/ADDING-A-SCHOOL.md, stage 0). Copy this file to schools/<key>.toml,
+# fill every field, run `python tools/school_config.py --check <key>` and `python tools/school_hosts.py <key>`, then
+# commit it. Every stage tool reads the school from here; nothing else needs a school list (see the protocol's
+# "files that must learn a new school" for the few that still do).
+#
+# Facts in this file are decisions about where to look, not evidence: evidence (url + sha256 + verbatim quote) lives in
+# the captures and the stage outputs. Say how each identifier was verified in the *_note fields.
+
+key = "uchicago"                  # lower-case, [a-z0-9]+; the folder name everywhere (hierarchy/<key>, stores/<key>, schools/<key>)
+name = "University of Chicago"                 # full official name ("University of Michigan")
+short = "Chicago"                # display name ("Michigan")
+site_uni = ""             # the 300-university atlas id (SITE_DATA/universities/<site_uni>.json.gz), if any
+status = "onboarding"     # onboarding | released. Only released schools are in atlas_paths.SCHOOL_IDS (the build,
+                          # the release, the tree); flip it at stage 10, never earlier
+order = 8                 # display and build order (released schools are listed in this order)
+stage = 0                 # the last stage whose gate passed (hierarchy/<key>/STAGE-<n>.md)
+started = "2026-11-02"              # YYYY-MM-DD the onboarding started
+window = [2016, 2026]     # the study window (owner rule; do not change per school)
+
+[ids]
+openalex = ["I40347166"]
+# The University of Chicago Medical Center (UChicago Medicine, 'related' both ways in ROR and OpenAlex) and TTIC are not in the
+# university's lineage, so authors tagged only with them are not found by the lineage filter. Both are swept; such an authorship counts
+# for Chicago only when its raw affiliation string matches [affiliation].regex (most read "University of Chicago Medicine" or
+# "Toyota Technological Institute at Chicago"). PENDING owner decisions (hierarchy/uchicago/reports/STAGE-0.md): D1 Medical Center
+# (Michigan Medicine precedent, decided 2026-10-30), D2 TTIC in or out of scope.
+openalex_related = ["I4210087865", "I160992636"]
+# Nothing is excluded yet. The university's lineage contains institutions that are not its faculty's departments: Argonne National Laboratory
+# I1282105669 (and Advanced Photon Source I4387156069, Center for Nanoscale Materials I4390039281, Argonne Leadership Computing Facility
+# I4390039261, ATLAS linac I4390039288), Evanston Hospital I4210119687, Chan Zuckerberg Biohub Chicago I4396570630, CLEAR I4210087539 and two
+# CNRS international laboratories. PENDING owner decision D3: keep them in the lineage (an Argonne byline of a UChicago PI is also tagged
+# with the university) or list them here.
+openalex_excluded = []
+ror = "https://ror.org/024mw5h28"
+ids_note = """OpenAlex institutions table of the 2026-10-14 snapshot (no API credits; checked 2026-11-02): I40347166 'University of Chicago',
+ROR 024mw5h28, country US, lineage [I40347166] (no parent). Children whose lineage holds it: Argonne National Laboratory and four Argonne facilities,
+Evanston Hospital, Chan Zuckerberg Biohub Chicago, CLEAR, UChicago-CNRS HumanitiesPlus, the CNRS particle-physics IRL. Related (not lineage):
+University of Chicago Medical Center I4210087865 (ROR 0076kfe04; its child UChicago Medicine Comprehensive Cancer Center I4390039251),
+Toyota Technological Institute at Chicago I160992636 (ROR 02sn5gb64, its own lineage, 'related' only to Toyota Technological Institute Japan),
+Fermilab I1314696892, NORC I4210117923, Marine Biological Laboratory I1338920048 (not swept). Other 'Chicago' institutions (University of Illinois Chicago
+I39422238, Loyola I1925986, Chicago State I74234424, Concordia University Chicago I19406000, IIT, Northwestern) have their own lineages."""
+
+[web]
+domains = ["uchicago.edu", "chicagobooth.edu", "ttic.edu"]
+email_domains = ["uchicago.edu", "cs.uchicago.edu", "chicagobooth.edu", "ttic.edu", "uchospitals.edu"]
+wayback_only_suffixes = []   # no host probed behind a challenge on 2026-11-02 (stage 0); [[hosts]] entries decide
+excluded_hosts = ["uic.edu", "uchicagomedicine.org"]   # Illinois Chicago; the health system's public site (not a faculty source)
+
+[affiliation]
+# 'University of Chicago' (any spelling of University; 'of' required: 'Loyola University Chicago' and 'Concordia University Chicago' are other schools), the uchicago.edu domain, 'UChicago', 'Chicago Booth', and (pending
+# owner decision D2) TTIC. Never a bare 'Chicago' (Illinois Chicago, Loyola, Chicago State, DePaul, IIT, Northwestern's Chicago campus,
+# the Art Institute) and never 'University of Illinois at Chicago'.
+regex = '''univ\w*\.?\s+of\s+chicago\b|\buchicago\b|uchicago\.edu|\bchicago\s+booth\b|\buchospitals\.edu|toyota\s+technological\s+institute\s+(?:at|in)\s+chicago|\bttic\b'''
+own_units = '''\b(?:data\s+science|becker\s+friedman|computation|molecular\s+engineering|enrico\s+fermi|james\s+franck|institute\s+for\s+genomics\s+and\s+systems\s+biology|institute\s+for\s+mind\s+and\s+biology|oriental|kavli\s+institute\s+for\s+cosmological\s+physics|human\s+genetics)\s+institute\b|\bknowledge\s+lab\b'''
+loose = '''univ\w*\.?\s+(?:of\s+)?chicago|\buchicago\b|uchicago\.edu|chicago,?\s+il\b'''
+must_match = [
+  "University of Chicago, Chicago, IL 60637, USA",
+  "Department of Computer Science, The University of Chicago",
+  "Univ. of Chicago",
+  "Booth School of Business, University of Chicago",
+  "Chicago Booth School of Business",
+  "Toyota Technological Institute at Chicago",
+  "TTIC, Chicago, IL",
+  "jdoe@cs.uchicago.edu",
+  "UChicago Medicine, Section of Hematology/Oncology",
+  "University of Chicago Medical Center",
+]
+must_not_match = [
+  "University of Illinois at Chicago",
+  "University of Illinois Chicago, Chicago, IL",
+  "University of Illinois at Urbana-Champaign",
+  "Loyola University Chicago",
+  "Chicago State University",
+  "Concordia University Chicago",
+  "DePaul University, Chicago, IL",
+  "Northwestern University, Chicago, IL",
+  "Illinois Institute of Technology, Chicago, IL 60616",
+  "Rush University Medical Center, Chicago",
+  "School of the Art Institute of Chicago",
+  "jdoe@uic.edu",
+  "Argonne National Laboratory, Lemont, IL",
+]
+
+[dblp]
+# DBLP <note type="affiliation"> values are matched with [affiliation].regex (dump only; dblp.org is never fetched)
+affiliation_strings = ["University of Chicago", "Toyota Technological Institute at Chicago"]
+legacy_sweep = ""
+
+[rules]
+foreign_title_exception = false
+
+[census]
+computing_departments = ["CS", "TTIC"]
+home_units = {"Computer Science" = '^(?:Department of )?Computer Science$', "Statistics" = '^(?:Department of )?Statistics$', "Toyota Technological Institute at Chicago" = '^(?:Toyota Technological Institute at Chicago|TTIC)$', "Data Science" = '^(?:Data Science Institute|Department of Data Science|Data Science)$', "Mathematics" = '^(?:Department of )?Mathematics$', "Booth School of Business" = '^(?:Booth School of Business|Chicago Booth)'}
+
+[sweep_check]
+exceptions = []
+
+[cs_related]
+share_test_settles = []
+
+[site]
+depts = {CS = "Computer Science", TTIC = "Toyota Technological Institute at Chicago", STAT = "Statistics"}
+full_codes = ["CS", "TTIC"]
+
+[periods]
+school_regex = ''
+profile_patterns = ["cs.uchicago.edu/people/{first}-{last}/", "www.ttic.edu/faculty/{first}-{last}/", "stat.uchicago.edu/people/profile/{first}-{last}/"]
+
+# --- departments ---------------------------------------------------------------------------------------------------
+# URL eras found with exact-URL CDX (tools/discover_listings.py, 2026-11-02). CS: the Drupal site's directory table (2016-2018), the
+# 2018 'people/faculty' page (to Feb 2022), the WordPress site's full-time-faculty list (2022-). No capture of the CS faculty page
+# exists for 2017 H1 and 2018 H1/H2 under any of these URLs.
+[[departments]]
+code = "CS"
+name = "Computer Science"
+unit = "Physical Sciences Division"
+title_match = '''Computer Science'''
+coverage = "full"
+url = "https://cs.uchicago.edu/"
+  [[departments.listings]]
+  slot = "CS faculty"
+  kind = "main"
+  url = "www.cs.uchicago.edu/directories/table/faculty"
+  from = "20160101"
+  to = "20181031"
+  [[departments.listings]]
+  slot = "CS faculty"
+  url = "www.cs.uchicago.edu/people/faculty/"
+  from = "20181101"
+  to = "20220228"
+  [[departments.listings]]
+  slot = "CS faculty"
+  url = "cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/"
+  from = "20220201"
+  to = "20261231"
+  [[departments.listings]]
+  slot = "CS emeritus faculty"
+  kind = "emeritus"
+  url = "cs.uchicago.edu/people/uchicago-faculty/emeritus-faculty/"
+  from = "20220201"
+  to = "20261231"
+  [[departments.listings]]
+  slot = "CS other academic appointments"
+  kind = "courtesy"
+  url = "www.cs.uchicago.edu/directories/table/Other-Academic-Appointments"
+  from = "20160101"
+  to = "20250831"
+
+# TTIC (pending owner decision D2): a separate institution on the university's campus; its faculty list is complete for TTIC.
+[[departments]]
+code = "TTIC"
+name = "Toyota Technological Institute at Chicago"
+unit = "Toyota Technological Institute at Chicago (independent institution; OpenAlex I160992636)"
+title_match = '''Toyota Technological Institute at Chicago|\bTTIC\b|Professor|Faculty'''
+coverage = "full"
+url = "https://www.ttic.edu/faculty/"
+  [[departments.listings]]
+  slot = "TTIC faculty"
+  kind = "main"
+  url = "www.ttic.edu/faculty.php"
+  from = "20160101"
+  to = "20170120"
+  [[departments.listings]]
+  slot = "TTIC faculty"
+  url = "www.ttic.edu/faculty/"
+  from = "20170121"
+  to = "20261231"
+
+[[departments]]
+code = "STAT"
+name = "Statistics"
+unit = "Physical Sciences Division"
+title_match = '''Statistics'''
+coverage = "affiliated"   # listed faculty count when computing is the object or method of their work (stage 2)
+url = "https://stat.uchicago.edu/"
+  [[departments.listings]]
+  slot = "STAT faculty"
+  kind = "main"
+  url = "galton.uchicago.edu/faculty/"
+  from = "20160101"
+  to = "20190919"
+  [[departments.listings]]
+  slot = "STAT faculty"
+  url = "stat.uchicago.edu/people/"
+  from = "20190920"
+  to = "20261231"
+
+# --- other units searched for computing-related faculty (stage 2) ------------------------------------------------------
+# Units are added when the OpenAlex candidate rule (tools/cs_related_candidates.py) names their people. First guesses (stage 0):
+[[affiliated_units]]
+code = "DSI"
+name = "Data Science Institute"
+url = "https://datascience.uchicago.edu/people/affiliated-faculty/"
+listings = ["datascience.uchicago.edu/people/affiliated-faculty/", "datascience.uchicago.edu/people/"]
+
+[[affiliated_units]]
+code = "BOOTH"
+name = "Booth School of Business"
+url = "https://www.chicagobooth.edu/faculty/directory"
+listings = ["www.chicagobooth.edu/faculty/directory"]
+
+[[affiliated_units]]
+code = "MATH"
+name = "Mathematics"
+url = "https://math.uchicago.edu/people/faculty/"
+listings = ["math.uchicago.edu/people/faculty/"]
+
+[[affiliated_units]]
+code = "CDAC"
+name = "Center for Data and Computing"
+url = "https://cdac.uchicago.edu/"
+listings = ["cdac.uchicago.edu/"]
+
+# --- students ----------------------------------------------------------------------------------------------------
+[thesis]
+kind = "none"
+base_url = ""
+endpoints = []
+robots = ""
+note = "UChicago's dissertations are in ProQuest and Knowledge@UChicago (knowledge.uchicago.edu, a Voyager/DSpace-like site); not probed yet (stage 6)."
+
+[students]
+directories = []
+sources = [
+  "CS and TTIC PhD defence announcements and graduation lists (Wayback)",
+  "lab member pages and PI homepages (live where robots allows, else Wayback)",
+]
+
+[labpages]
+hints = ["people.cs.uchicago.edu/~<name>/", "<lab>.cs.uchicago.edu", "<lab>.uchicago.edu", "sites.google.com/view/<lab>", "github.io"]
+
+[store]
+path = "/n/fs/resemble/homogenizing-science/stores/uchicago"
+
+# --- hosts (stage-0 gate: tools/school_hosts.py uchicago) -------------------------------------------------------------
+[[hosts]]
+host = "web.archive.org"
+use = "live"
+purpose = "Wayback id_ captures and CDX (listings 2016-2026, lab pages)"
+probe = "https://web.archive.org/web/2020id_/https://cs.uchicago.edu/"
+
+[[hosts]]
+host = "cs.uchicago.edu"
+use = "live"
+purpose = "CS faculty listing, profiles, news"
+probe = "https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/"
+
+[[hosts]]
+host = "datascience.uchicago.edu"
+use = "live"
+purpose = "Data Science Institute people"
+probe = "https://datascience.uchicago.edu/people/affiliated-faculty/"
+
+[[hosts]]
+host = "stat.uchicago.edu"
+use = "live"
+purpose = "Statistics people"
+probe = "https://stat.uchicago.edu/people/"
+
+[[hosts]]
+host = "www.ttic.edu"
+use = "live"
+purpose = "TTIC faculty"
+probe = "https://www.ttic.edu/faculty/"
+
+[[hosts]]
+host = "www.chicagobooth.edu"
+use = "live"
+purpose = "Booth faculty directory"
+probe = "https://www.chicagobooth.edu/faculty/directory"
+
+[[hosts]]
+host = "math.uchicago.edu"
+use = "live"
+purpose = "Mathematics faculty"
+probe = "https://math.uchicago.edu/people/faculty/"
+
+[[hosts]]
+host = "linguistics.uchicago.edu"
+use = "none"
+purpose = "named in robots.txt (ClaudeBot: Crawl-delay group); decided in stage 0 (see STAGE-0.md)"
+probe = "https://linguistics.uchicago.edu/"
+
+[[hosts]]
+host = "api.openalex.org"
+use = "live"
+purpose = "OpenAlex (snapshot first; the shared 10k/day key)"
+
+[[hosts]]
+host = "api.ror.org"
+use = "live"
+purpose = "ROR verification"

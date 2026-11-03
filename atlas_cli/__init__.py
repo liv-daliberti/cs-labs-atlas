@@ -40,7 +40,7 @@ COMMANDS = {
     'vendor':     ('py', 'tools/vendor_sync.py', 'vendored code: atlas vendor check|sync|list'),
     'paths':      ('py', 'tools/atlas_paths.py', 'every path, or one: atlas paths [NAME]'),
     'relocate':   ('py', 'tools/relocate_project.py', 'the project move (dry run by default)'),
-    'submit':     ('special', 'sbatch', 'sbatch with the code pinned: atlas submit [sbatch options] script.slurm (CS_ATLAS_SNAPSHOT_COMMIT = main\'s HEAD now)'),
+    'submit':     ('special', 'sbatch', 'sbatch with the code pinned: atlas submit [--from-worktree] [sbatch options] script.slurm (CS_ATLAS_SNAPSHOT_COMMIT = main\'s HEAD now; --from-worktree: this worktree\'s committed HEAD)'),
     'release':    ('py', 'tools/atlas_release.py', 'the whole release chain, stopping at the first failure: atlas release [--dry-run] [--yes-push] [--yes-hf] [--resume] [--from STEP] [--wait: run as a Slurm job and block, one sacct call per 120 s]'),
     'pipeline':   ('py', 'tools/atlas_pipeline.py', 'the mechanical chains as Slurm pipelines: atlas pipeline copies|labpage|reader [SCHOOLS="a b"] [--test-only] [--wait] | --list | status'),
     'review-page': ('py', 'tools/review_page.py', 'a local review page for hand checks: atlas review-page labpage|accuracy|build|serve|export (docs/LAB-PAGES.md)'),
@@ -67,6 +67,24 @@ def _usage():
 def _run(argv, cwd=CODE):
     print('+ ' + ' '.join(shlex.quote(str(a)) for a in argv), file=sys.stderr, flush=True)
     return subprocess.call([str(a) for a in argv], cwd=str(cwd))
+
+
+def submit_pins(this_checkout, main_checkout, args):
+    """(env pins, remaining args) for `atlas submit`: main's HEAD, or with --from-worktree this checkout's own HEAD (a worktree's
+    committed, not yet landed code: SNAPSHOT_REPO points job_code_snapshot.sh at it). Uncommitted changes are not in the snapshot."""
+    own = '--from-worktree' in args
+    args = [a for a in args if a != '--from-worktree']
+    repo = Path(this_checkout) if own else Path(main_checkout)
+    r = subprocess.run(['git', '-C', str(repo), 'rev-parse', 'HEAD'], capture_output=True, text=True)
+    if r.returncode:
+        return None, args
+    pins = {'CS_ATLAS_SNAPSHOT_COMMIT': r.stdout.strip()}
+    if own and repo.resolve() != Path(main_checkout).resolve():
+        pins['SNAPSHOT_REPO'] = str(repo)
+        dirty = subprocess.run(['git', '-C', str(repo), 'status', '--porcelain', '--untracked-files=no'], capture_output=True, text=True).stdout.strip()
+        if dirty:
+            print('atlas submit: warning: uncommitted changes in ' + str(repo) + ' are not in the job code snapshot', file=sys.stderr)
+    return pins, args
 
 
 def main(argv=None):
@@ -97,11 +115,11 @@ def main(argv=None):
     if kind == 'sh':
         return _run(['bash', CODE / target, *args])
     if cmd == 'submit':  # the job runs the code of THIS commit, whatever lands before it starts (tools/job_code_snapshot.sh)
-        r = subprocess.run(['git', '-C', str(_paths().CODE), 'rev-parse', 'HEAD'], capture_output=True, text=True)
-        if r.returncode:
-            print('atlas submit: cannot read HEAD of ' + str(_paths().CODE), file=sys.stderr)
+        pins, args = submit_pins(CODE, Path(_paths().CODE), args)
+        if pins is None:
+            print('atlas submit: cannot read HEAD of the pinned checkout', file=sys.stderr)
             return 1
-        return _run(['sbatch', f'--export=ALL,CS_ATLAS_SNAPSHOT_COMMIT={r.stdout.strip()}', *args], cwd=os.getcwd())
+        return _run(['sbatch', '--export=ALL,' + ','.join(f'{k}={v}' for k, v in pins.items()), *args], cwd=os.getcwd())
     if cmd == 'test':
         env_ci = '--ci' in args
         args = [a for a in args if a != '--ci']

@@ -9,10 +9,16 @@ openalex_excluded), or an authorship by one of our people (oaAuthorIds + reviewe
 with DOI prefix 10.17989 (ENCODE records) are dropped. Kept authors: our people and authors affiliated with a charter
 institution. Institutions: all (0.2 GB).
 
+Extension for a school added after the snapshot was built (docs/ADDING-A-SCHOOL.md stage 0; the filtered snapshot only knows the
+charters that existed when it was filtered): `filter ... --ext <key>` keeps only that school's ids (and its PIs' author ids, when its
+pis.json exists), `merge --ext <key>` writes OA_SNAPSHOT/<date>/ext-<key>.sqlite NEXT TO the main store (which is never touched, so
+readers of released schools are unaffected), and the reader below consults every ext-*.sqlite after the main store. The next quarterly
+refresh folds the school in (it is a charter then) and the ext file is deleted.
+
 usage:
-  oa_snapshot.py filter <task> <of> [--date D]   one array task: streams its share of the parts (balanced by size), writes a part
+  oa_snapshot.py filter <task> <of> [--date D] [--ext KEY]   one array task: streams its share of the parts (balanced by size), writes a part
                                                  file to OA_SNAPSHOT-scratch (job-local /tmp first, one sequential copy after)
-  oa_snapshot.py merge [--date D] [--keep-parts] [--no-promote]  attaches the parts into OA_SNAPSHOT/<date>/openalex.sqlite, checks counts,
+  oa_snapshot.py merge [--date D] [--keep-parts] [--no-promote] [--ext KEY]  attaches the parts into OA_SNAPSHOT/<date>/openalex.sqlite, checks counts,
                                                  removes the parts, writes manifest.json, points `current` at it
   oa_snapshot.py status [--date D]                what is stored
 Reader (import oa_snapshot): work(id_or_doi), works_by_lineage(inst, year=None), works_by_author(author_id), author(id),
@@ -51,11 +57,11 @@ def short(i):
 
 
 # ---------------------------------------------------------------- what to keep
-def targets():
-    """(lineage ids to keep, ids to exclude, our author ids) from the charters and the PI lists."""
+def targets(only=None):
+    """(lineage ids to keep, ids to exclude, our author ids) from the charters and the PI lists; `only` = school keys to restrict to."""
     import school_config as SC
     inst, excl, authors = set(), set(), set()
-    for k in SC.keys():
+    for k in (only or SC.keys()):
         cfg = SC.get(k)
         inst |= set(SC.sweep_ids(k)); excl |= set(cfg['ids'].get('openalex_excluded') or [])
         try:
@@ -213,8 +219,13 @@ def write_part(db, ent, url, size, rows):
     db.commit()
 
 
-def scratch_dir(date):
-    return P.SCRATCH / f'openalex-{date}'
+def scratch_dir(date, ext=None):
+    return P.SCRATCH / (f'openalex-{date}-ext-{ext}' if ext else f'openalex-{date}')
+
+
+def ext_parts(parts):
+    """An extension keeps works and authors; institutions are in the main store already."""
+    return [p for p in parts if p[0] != 'institutions']
 
 
 def sha(path):
@@ -225,11 +236,13 @@ def sha(path):
     return h.hexdigest()
 
 
-def cmd_filter(task, of, date=None, parts=None, tmp=None):
+def cmd_filter(task, of, date=None, parts=None, tmp=None, ext=None):
     d, allp = (date, parts) if parts is not None else all_parts(date)
-    inst, excl, authors = targets()
+    inst, excl, authors = targets([ext]) if ext else targets()
+    if ext:
+        allp = ext_parts(allp)
     mine = share(allp, task, of)
-    tmp = Path(tmp or os.environ.get('TMPDIR') or '/tmp') / f'oa-part-{d}-{task:02d}.sqlite'
+    tmp = Path(tmp or os.environ.get('TMPDIR') or '/tmp') / f'oa-part-{d}{"-ext-" + ext if ext else ""}-{task:02d}.sqlite'
     tmp.unlink(missing_ok=True)
     db = sqlite3.connect(str(tmp))
     db.executescript(SCHEMA)
@@ -249,7 +262,7 @@ def cmd_filter(task, of, date=None, parts=None, tmp=None):
         print(json.dumps(dict(task=task, parts_done=done, of=len(mine), url=url.rsplit('/', 2)[-2:], records=rows[0], kept=len(rows[1]) + len(rows[4]) + len(rows[5]),
                               seconds=int(time.time() - t0))), flush=True)
     db.close()
-    out = scratch_dir(d)
+    out = scratch_dir(d, ext)
     out.mkdir(parents=True, exist_ok=True)
     dest = out / f'part-{task:02d}.sqlite'
     shutil.copyfile(tmp, str(dest) + '.part')  # one sequential write of the finished part
@@ -259,14 +272,14 @@ def cmd_filter(task, of, date=None, parts=None, tmp=None):
     print(json.dumps(dict(task=task, finished=str(dest), bytes=dest.stat().st_size)), flush=True)
 
 
-def cmd_merge(date, of=None, keep_parts=False, parts=None, promote=True):
-    out = scratch_dir(date)
+def cmd_merge(date, of=None, keep_parts=False, parts=None, promote=True, ext=None):
+    out = scratch_dir(date, ext)
     dones = sorted(out.glob('part-*.done'))
     if not dones or (of and len(dones) != of):
         raise SystemExit(f'expected {of} finished parts in {out}, found {len(dones)}')
     final_dir = P.OA_SNAPSHOT / date
     final_dir.mkdir(parents=True, exist_ok=True)
-    final = final_dir / 'openalex.sqlite'
+    final = final_dir / (f'ext-{ext}.sqlite' if ext else 'openalex.sqlite')
     tmp = Path(str(final) + '.part')
     tmp.unlink(missing_ok=True)
     db = sqlite3.connect(str(tmp))
@@ -286,6 +299,8 @@ def cmd_merge(date, of=None, keep_parts=False, parts=None, promote=True):
     db.executescript(INDEXES)
     got = {t: db.execute(f'SELECT COUNT(*) FROM {t}').fetchone()[0] for t in expect}
     nparts = got['parts']
+    if ext and parts is not None:
+        parts = ext_parts(parts)
     if parts is not None and nparts != len(parts):
         raise SystemExit(f'the parts table holds {nparts} manifest parts, expected {len(parts)}')
     db.execute('PRAGMA optimize')
@@ -293,8 +308,11 @@ def cmd_merge(date, of=None, keep_parts=False, parts=None, promote=True):
     os.replace(tmp, final)
     man = dict(snapshot_date=date, built_at=time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()), counts=got, rows_before_dedup=expect,
                parts_files=len(dones), source=BASE, store_bytes=final.stat().st_size)
-    (final_dir / 'manifest.json').write_text(json.dumps(man, indent=1))
-    if promote:  # a refresh builds a new dated store and leaves `current` alone (oa_snapshot_refresh.py promote switches it)
+    man_path = final_dir / (f'ext-{ext}.manifest.json' if ext else 'manifest.json')
+    if ext:
+        man['extension'] = ext
+    man_path.write_text(json.dumps(man, indent=1))
+    if promote and not ext:  # a refresh builds a new dated store and leaves `current` alone (oa_snapshot_refresh.py promote switches it); an extension never moves `current`
         cur = P.OA_SNAPSHOT / 'current'
         if cur.is_symlink() or cur.exists():
             cur.unlink()
@@ -307,7 +325,7 @@ def cmd_merge(date, of=None, keep_parts=False, parts=None, promote=True):
         except OSError:
             pass
         man['parts_removed'] = len(dones)
-        (final_dir / 'manifest.json').write_text(json.dumps(man, indent=1))
+        man_path.write_text(json.dumps(man, indent=1))
     print(json.dumps(man), flush=True)
 
 
@@ -331,6 +349,18 @@ def conn(root=None, date=None):
     return _conns[key]
 
 
+def exts(root=None, date=None):
+    """[(connection, date)] of the extension stores ext-<key>.sqlite next to the main store, in key order (none for most dates)."""
+    root = Path(root or P.OA_SNAPSHOT)
+    d = date or snapshot_date(root)
+    if d is None:
+        return []
+    key = (str(root), d, 'ext')
+    if key not in _conns:
+        _conns[key] = [(sqlite3.connect(f'file:{f}?mode=ro', uri=True, timeout=60), d) for f in sorted((root / d).glob('ext-*.sqlite'))]
+    return _conns[key]
+
+
 def _w(row, d):
     w = unpack(row[0])
     w['snapshot_date'] = d
@@ -338,38 +368,47 @@ def _w(row, d):
 
 
 def work(key, root=None):
-    """A work by OpenAlex id (W..., URL or short) or DOI; None when absent (the caller then asks the API)."""
-    db, d = conn(root)
+    """A work by OpenAlex id (W..., URL or short) or DOI; None when absent (the caller then asks the API). Main store first, then extensions."""
     k = key.strip()
     if k.lower().startswith('10.'):
         k = 'https://doi.org/' + k
-    if k.lower().startswith('http') and 'doi.org' in k.lower():
-        r = db.execute('SELECT body FROM works WHERE doi=? COLLATE NOCASE', (k,)).fetchone()
-    else:
-        r = db.execute('SELECT body FROM works WHERE id=?', (k if k.startswith('http') else 'https://openalex.org/' + k,)).fetchone()
-    return _w(r, d) if r else None
+    for db, d in [conn(root)] + exts(root):
+        if k.lower().startswith('http') and 'doi.org' in k.lower():
+            r = db.execute('SELECT body FROM works WHERE doi=? COLLATE NOCASE', (k,)).fetchone()
+        else:
+            r = db.execute('SELECT body FROM works WHERE id=?', (k if k.startswith('http') else 'https://openalex.org/' + k,)).fetchone()
+        if r:
+            return _w(r, d)
+    return None
+
+
+def _union(queries, root, args):
+    """Rows of the main store, then of each extension for ids not yet seen (one work, one row)."""
+    seen = set()
+    for db, d in [conn(root)] + exts(root):
+        for r in db.execute(queries, args):
+            if r[1] in seen:
+                continue
+            seen.add(r[1])
+            yield _w(r, d)
 
 
 def works_by_lineage(inst, year=None, root=None):
-    db, d = conn(root)
-    q = 'SELECT w.body FROM work_inst i JOIN works w ON w.id=i.work_id WHERE i.inst=?' + (' AND w.year=?' if year else '') + ' ORDER BY w.id'
-    for r in db.execute(q, (short(inst), year) if year else (short(inst),)):
-        yield _w(r, d)
+    q = 'SELECT w.body, w.id FROM work_inst i JOIN works w ON w.id=i.work_id WHERE i.inst=?' + (' AND w.year=?' if year else '') + ' ORDER BY w.id'
+    yield from _union(q, root, (short(inst), year) if year else (short(inst),))
 
 
 def works_by_author(author_id, root=None):
-    db, d = conn(root)
-    for r in db.execute('SELECT w.body FROM work_author a JOIN works w ON w.id=a.work_id WHERE a.author_id=? ORDER BY w.id', (short(author_id),)):
-        yield _w(r, d)
+    yield from _union('SELECT w.body, w.id FROM work_author a JOIN works w ON w.id=a.work_id WHERE a.author_id=? ORDER BY w.id', root, (short(author_id),))
 
 
 def author(aid, root=None):
-    db, d = conn(root)
-    r = db.execute('SELECT body FROM authors WHERE id=?', (aid if aid.startswith('http') else 'https://openalex.org/' + aid,)).fetchone()
-    if not r:
-        return None
-    a = unpack(r[0]); a['snapshot_date'] = d
-    return a
+    for db, d in [conn(root)] + exts(root):
+        r = db.execute('SELECT body FROM authors WHERE id=?', (aid if aid.startswith('http') else 'https://openalex.org/' + aid,)).fetchone()
+        if r:
+            a = unpack(r[0]); a['snapshot_date'] = d
+            return a
+    return None
 
 
 def institution(iid, root=None):
@@ -381,14 +420,14 @@ def institution(iid, root=None):
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest='cmd', required=True)
-    f = sub.add_parser('filter'); f.add_argument('task', type=int); f.add_argument('of', type=int); f.add_argument('--date')
-    m = sub.add_parser('merge'); m.add_argument('--date', required=True); m.add_argument('--of', type=int); m.add_argument('--keep-parts', action='store_true'); m.add_argument('--no-promote', action='store_true', help='do not point `current` at the new store')
+    f = sub.add_parser('filter'); f.add_argument('task', type=int); f.add_argument('of', type=int); f.add_argument('--date'); f.add_argument('--ext')
+    m = sub.add_parser('merge'); m.add_argument('--date', required=True); m.add_argument('--of', type=int); m.add_argument('--keep-parts', action='store_true'); m.add_argument('--no-promote', action='store_true', help='do not point `current` at the new store'); m.add_argument('--ext')
     s = sub.add_parser('status'); s.add_argument('--date')
     a = ap.parse_args(argv)
     if a.cmd == 'filter':
-        cmd_filter(a.task, a.of, a.date)
+        cmd_filter(a.task, a.of, a.date, ext=a.ext)
     elif a.cmd == 'merge':
-        cmd_merge(a.date, a.of, a.keep_parts, promote=not a.no_promote)
+        cmd_merge(a.date, a.of, a.keep_parts, promote=not a.no_promote, ext=a.ext)
     else:
         d = a.date or snapshot_date()
         print(json.dumps(json.load(open(P.OA_SNAPSHOT / d / 'manifest.json'))) if d else 'no snapshot')
