@@ -48,6 +48,9 @@ def targets(key):
     out = []
     dpf = P.data('dblp-dump-persons.json.gz')
     dp = json.load(__import__('gzip').open(dpf, 'rt'))['persons'] if dpf.exists() else {}
+    dsf = P.data('dblp-dump-persons-school.json.gz', key)   # an onboarding school's own persons (dblp_dump_persons.py <key>)
+    if dsf.exists():
+        dp = {**dp, **json.load(__import__('gzip').open(dsf, 'rt'))['persons']}
     ov = CO.section(key)
     for x in census + add:
         if not x.get('is_pi'):

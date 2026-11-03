@@ -292,6 +292,91 @@ def adviser_directory(key, forms):
     return rows
 
 
+ALUMNI_ENTRY = re.compile(r"([A-Z][\w.'\u2019-]+(?: [A-Z][\w.'\u2019-]+){1,3}) Ph\.?D\.? - (20\d\d) Advisors? - (.*?)(?= Research Interests| Employment| Thesis| After graduating|$)")
+
+
+def adviser_alumni(key, forms):
+    """PhD alumni lists that give the graduation year and the adviser text in one line ('Name PhD - 2025 Advisors - A and B (University of
+    Chicago)': TTIC /student-alumni/, charter `[students].adviser_alumni`). A PI named in the adviser text gets the student with years
+    [None, graduation year]; graduations before 2016 are not read. The quote is the line from the name through the adviser text."""
+    c = W.con(key); by = {}
+    for d in S.field(S.get(key), 'students.adviser_alumni') or []:
+        for r in W.cdx_rows(c, d, collapse='timestamp:4'):
+            cap, st, sha, b = W.capture(c, r['timestamp'], r['original'], d, 'student-directory')
+            if st != 200:
+                continue
+            flat = W.flat(b)
+            for m in ALUMNI_ENTRY.finditer(flat):
+                nm, yr, adv = m.group(1), int(m.group(2)), m.group(3)
+                if yr < 2016:
+                    continue
+                for pi, f in forms:
+                    if re.search(re.escape(f) + r'(?![\w-])', adv) and (nm, pi) not in by:
+                        by[(nm, pi)] = dict(student=nm, pi=pi, years=[None, yr], url=re.sub(r'^https?://web\.archive\.org/web/\d+(?:id_)?/', '', cap),
+                                            capture_url=cap if 'web.archive.org' in cap else None, sha256=sha, quote=flat[m.start():m.end()].strip(),
+                                            directory_evidence=[dict(url=cap, sha256=sha, quote=nm, observed=r['timestamp'][:8], directory=d)],
+                                            section='adviser-bearing alumni list (' + d + ')', years_basis='graduation_year')
+    return list(by.values())
+
+
+def roster_coauthor_students(key, forms):
+    """R-STU-02 source 4 (owner rule 2026-10-28, restated 2026-11-03): a PhD roster (names only; charter `[students].rosters` = [{url, kind}]) names a
+    student's lab only together with a co-authorship: the roster name also stands on the byline of one of the PI's lab papers
+    (hierarchy/<key>/lab_papers.jsonl.gz, full-name match). A roster alone or a co-authorship alone is never evidence. Years: a roster of
+    alumni by graduation year (`alumni_by_year`) gives [None, that year]; a student list (`students`) the years of the captures listing the name.
+    The quote is the roster text from the name onward (verbatim)."""
+    import gzip
+    rosters = S.field(S.get(key), 'students.rosters') or []
+    lp = P.data('lab_papers.jsonl.gz', key)
+    if not rosters or not lp.exists():
+        return []
+    faculty = {' '.join(toks(f)) for _, f in forms}
+    papers = collections.defaultdict(list)  # normalized co-author name -> [(pi, year, title)]
+    for line in gzip.open(lp, 'rt'):
+        r = json.loads(line)
+        for nm in r.get('byline') or []:
+            k = ' '.join(toks(nm))
+            if len(k.split()) >= 2 and k not in faculty and nm != r['pi']:
+                papers[k].append((r['pi'], r.get('year'), r.get('title')))
+    c = W.con(key); by = {}
+    for ro in rosters:
+        url, kind = ro['url'], ro.get('kind') or 'students'
+        for r in W.cdx_rows(c, url, collapse='timestamp:4'):
+            cap, st, sha, b = W.capture(c, r['timestamp'], r['original'], url, 'student-roster')
+            if st != 200:
+                continue
+            flat = W.flat(b); low = ' '.join(toks(flat))
+            for k, ps in papers.items():
+                if (' ' + k + ' ') not in (' ' + low + ' '):
+                    continue
+                # the display form of the name on the roster, for the verbatim quote
+                m = re.search(r'\b' + r'\W+'.join(re.escape(t) for t in k.split()) + r'\b', flat, re.I)
+                if not m:
+                    continue
+                if kind == 'students' and not re.search(r'Ph\.?\s?D', flat[m.end():m.end() + 40], re.I):
+                    continue  # a student list also holds postdocs and visitors: the entry itself must say PhD
+                for pi in {x[0] for x in ps}:
+                    yrs = {int(str(x[1])) for x in ps if x[0] == pi and x[1]}
+                    e = by.setdefault((k, pi), dict(display=None, years=set(), first=None, papers=[]))
+                    y = None
+                    if kind == 'alumni_by_year':
+                        ys = re.findall(r'(?<!\d)(20[0-2]\d)(?!\d)', flat[max(0, m.start() - 700):m.start()])
+                        y = int(ys[-1]) if ys else None
+                    e['years'].add(y if y else int(r['timestamp'][:4])); e['kind'] = kind
+                    e['papers'] = sorted({x[2] for x in ps if x[0] == pi})[:3]
+                    if not e['first'] or r['timestamp'] < e['first'][0]:
+                        e['first'] = (r['timestamp'], cap, sha, url, flat[m.start():m.end() + 120], m.group(0))
+    rows = []
+    for (k, pi), e in sorted(by.items()):
+        ts, cap, sha, url, q, disp = e['first']
+        ys = sorted(e['years'])
+        years = [None, ys[-1]] if e['kind'] == 'alumni_by_year' else [ys[0], ys[-1]]
+        rows.append(dict(student=disp, pi=pi, years=years, url=re.sub(r'^https?://web\.archive\.org/web/\d+(?:id_)?/', '', cap), capture_url=cap if 'web.archive.org' in cap else None,
+                         sha256=sha, quote=q, directory_evidence=[dict(url=cap, sha256=sha, quote=disp, observed=ts[:8], directory=url, coauthored=e['papers'])],
+                         section='PhD roster + co-authored lab paper (' + url + ')', years_basis='roster_years'))
+    return rows
+
+
 def directory(key):
     """Students from the program directories' student websites (protocol stage 6, learned 2026-10-30 at Michigan): the
     student's own page, fetched like a lab page (live where robots and the charter allow, else Wayback), counts when it
@@ -342,7 +427,10 @@ def directory(key):
                 if got:
                     break
     out += adviser_directory(key, forms)
-    n['adviser_directory_relations'] = sum(1 for r in out if r.get('section'))
+    out += adviser_alumni(key, forms)
+    out += roster_coauthor_students(key, forms)
+    n['adviser_directory_relations'] = sum(1 for r in out if str(r.get('section')).startswith('adviser'))   # adviser-bearing lists (current and alumni)
+    n['roster_coauthor_relations'] = sum(1 for r in out if str(r.get('section')).startswith('PhD roster'))
     P.data_w('directory-evidence.json', key).write_text(json.dumps(out, indent=1, ensure_ascii=False))
     print(json.dumps(dict(n, students_with_adviser=len({r['student'] for r in out}), labs=len({r['pi'] for r in out}))))
 

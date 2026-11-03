@@ -82,3 +82,28 @@ def test_adviser_directory_second_markup(monkeypatch):
     monkeypatch.setattr(L.W, 'raw_html', lambda c, cap: html)
     monkeypatch.setattr(L.W, 'flat', lambda b: flat)
     assert [(r['student'], r['pi']) for r in L.adviser_directory('u', [('Nati Srebro', 'Nati Srebro')])] == [('Ann Lee', 'Nati Srebro')]
+
+
+def test_roster_alone_or_coauthorship_alone_is_not_evidence(tmp_path, monkeypatch):
+    import gzip
+    L = by_path('labpage_students_school')
+    lp = tmp_path / 'lab_papers.jsonl.gz'
+    with gzip.open(lp, 'wt') as f:
+        f.write(json.dumps({'pi': 'Pia Lee', 'year': '2021', 'title': 'A paper', 'byline': ['Pia Lee', 'Sam Roe']}) + '\n')
+        f.write(json.dumps({'pi': 'Pia Lee', 'year': '2021', 'title': 'B paper', 'byline': ['Pia Lee', 'Tom Poe']}) + '\n')
+    monkeypatch.setattr(L.P, 'data', lambda name, school=None, **k: lp)
+    monkeypatch.setattr(L.S, 'field', lambda cfg, f, d=None: [{'url': 'r/alumni/', 'kind': 'alumni_by_year'}])
+    monkeypatch.setattr(L.S, 'get', lambda k: {})
+    monkeypatch.setattr(L.W, 'con', lambda k: None)
+    monkeypatch.setattr(L.W, 'cdx_rows', lambda c, d, collapse=None: [dict(timestamp='20260101000000', original=d)])
+    monkeypatch.setattr(L.W, 'capture', lambda c, ts, o, d, dept: ('cap', 200, 'sha', []))
+    monkeypatch.setattr(L.W, 'flat', lambda b: '2022 Sam Roe, Googler 2021 Ann Only, Meta 2020 Zed Zero')   # Tom Poe: co-author, not on the roster; Ann Only: roster, no paper
+    rows = L.roster_coauthor_students('u', [('Pia Lee', 'Pia Lee')])
+    assert [(r['student'], r['pi'], r['years']) for r in rows] == [('Sam Roe', 'Pia Lee', [None, 2022])] and rows[0]['quote'].startswith('Sam Roe')
+
+
+def test_alumni_entry_line_names_student_year_and_advisers():
+    L = by_path('labpage_students_school')
+    t = 'Pedro Savarese PhD - 2025 Advisors - David McAllester and Michael Maire (University of Chicago) Research Interests - ML Employment at time of graduation - X Old Person PhD - 2010 Advisor - Z Q Research Interests'
+    ms = [m.groups() for m in L.ALUMNI_ENTRY.finditer(t)]
+    assert ms[0] == ('Pedro Savarese', '2025', 'David McAllester and Michael Maire (University of Chicago)') and ms[1][1] == '2010'
