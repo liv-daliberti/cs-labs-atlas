@@ -269,9 +269,8 @@ CSE/ECE PhD defence and graduation pages (Wayback), lab member pages and the PIs
 [students]
 # program PhD directories (name + the student's own website; no adviser): tools/labpage_students_school.py directory
 directories = ["cse.engin.umich.edu/people/phd-students/", "ece.engin.umich.edu/people/directory/phd-students/"]
-roster_rule = "two_and_last"   # stricter than the default (UChicago): round 6 of the default rule had 3 membership errors in 30
 adviser_flat_lists = ["robotics.umich.edu/people/students/"]   # '<Name> PhD Student ... Advisor <PI> Research Interests' (Wayback captures 2019-2026)
-rosters = [{url = "cse.engin.umich.edu/people/phd-students/", kind = "phd_students"}, {url = "ece.engin.umich.edu/people/directory/phd-students/", kind = "phd_students"}]   # names-only PhD rosters: evidence only together with a co-authored lab paper (R-STU-02): PI last author on one paper or the pair co-authors two, within the roster years (the unrestricted version failed round 5: 3 membership errors, 5 doubtful in 30)
+# rosters (CSE/ECE phd-students lists + co-authorship, R-STU-02): tried 2026-11-03 under the UChicago rule and a stricter two_and_last rule; re-judged on evidence only, 7 of 30 rows have an independent page (lab members list) and 23 have only the roster+co-authorship itself, so they are not kept (STAGE-6 update)
 sources = [
   "CSE and ECE dissertation defence announcements (cse.engin.umich.edu/event/..., Wayback): 'Chair: Prof. X'",
   "CSE and ECE PhD graduate / alumni lists (Wayback)",

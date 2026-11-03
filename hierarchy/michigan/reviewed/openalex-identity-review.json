@@ -1,6 +1,6 @@
 {
  "school": "michigan",
- "reviewed": "2026-10-30",
+ "reviewed": "2026-11-03",
  "rule": "An OpenAlex author id is a PI's when (a) it carries the PI's ORCID, or (b) its school works (hierarchy/michigan/oa-author-stats.json.gz, papers only) are under the PI's full name, at the University of Michigan, in years the department listing names the PI, in venues of the PI's listed field, and no other id at the school carries that name with another field. Namesakes seen and set aside are listed. Evidence: one sweep work per id, quoting the authorship's raw name and raw affiliation string (tools/oa_identity_school.py).",
  "decisions": {
   "Long Nguyen": {
@@ -80,6 +80,19 @@
     "A5065366930"
    ],
    "why": "ORCID 0000-0002-2736-7641; 58 school works 2016-2024 as 'Satinder Singh' (AAAI, IJCAI, LNCS: reinforcement learning), the census alias of the CSE listing's 'Satinder Singh Baveja' (census-overrides aliases, 2026-10-29). Added 2026-10-30: the first Michigan build found 74 school-affiliated name hits and no identity."
+  },
+  "Steven Abney": {
+   "openalex": [
+    "A5021488280",
+    "A5141753835"
+   ],
+   "why": "Computational linguistics, University of Michigan: A5021488280 (3 school works) signs 'Abney, Steven' at 'University of Michigan-Ann Arbor' on the 2020 Workshop on Language Technology for Language Documentation and Revitalization summary (W3021720060); A5141753835 signs 'Abney, Steven', 'University of Michigan' on 'Informational Antilocality and the Locality Bias in LLMs' (W7204852140, 2026). Same field as his DBLP person (pid 98/5756) and his Linguistics / CSE-affiliate listing 2016-2023. The only 'Abney' ids at the school in the sweep (reviewed 2026-11-03)."
+  },
+  "Kevin J. Compton": {
+   "openalex": [
+    "A5015848236"
+   ],
+   "why": "A5015848236 signs 'Compton, Kevin J.' with the raw affiliation 'Computer Science and Engineering Division University of Michigan - Ann Arbor' on 'Conditional Expectation Bounds with Applications in Cryptography' (W2740323009, 2017; 3 school works), in his theory field (DBLP person pid 07/1484, CSE listings 2016-2026). The only 'Compton' id at the school with that initial in the sweep; the other Comptons seen (Katharine Compton Abruzzi, Brandeis; Kimberly S. Compton, VCU) are set aside (reviewed 2026-11-03)."
   }
  }
 }

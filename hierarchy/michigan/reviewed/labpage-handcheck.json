@@ -162,29 +162,29 @@
   {
    "round": 6,
    "date": "2026-11-03",
-   "label": "CSE/ECE PhD roster + co-authorship, stricter rule (>=2 co-authored papers within the roster years AND the PI last author on one); fresh 30-row sample, seed 9341",
+   "label": "CSE/ECE PhD roster + co-authorship, stricter rule; seed 9341 re-judged on evidence only (stored pages), 30 rows",
    "additions_generated_at": "2026-11-02T16:49:43+00:00",
    "students": {
     "sampled": 30,
     "sample_size": 30,
     "seed": 9341,
     "membership_errors": 0,
-    "doubtful_count": 1,
+    "doubtful_count": 23,
     "role_or_year_errors": 0,
-    "note": "Pool 503 roster relations (360 not already in the build). Each row: the roster capture (name in the program PhD directory), the co-authored lab papers within +-1 year of the capture, PI last author on at least one. Judged on the row evidence plus the checker's knowledge of the advising pairs; the capture alone shows only the roster name. Default rule (UChicago: last author once OR two papers) failed seed 8211: Mondal-Di Liang and Zhe Liu-Fessler wrong, Di Jin-Dreslinski and Tabatabavakili-Dreslinski doubtful (3.0 vs 1.5), and is not used."
+    "note": "Independent evidence found for 7 of 30 (lab member pages: Qing Qu/Yaras, Qing Qu/Shi, Owens/Dou, Omar/Blinn, Mahdavifar/Soleymani, Tsang/Huang, Chowdhury/Yu). The earlier judgement used the checker's own knowledge of advising pairs and is withdrawn. Not wired."
    },
    "papers": null,
    "items": {
     "membership": [
-     "doubtful 0.5: Flynn <- Seung Hwan Lee (a CMOS-RRAM paper shared with another PI; adviser not confirmable)"
+     "23 of 30 rows have no independent page naming the student with the PI (the roster capture shows only the name; the co-authored papers are the rule's own evidence): unconfirmed, 0.5 each"
     ],
     "role_or_year": []
    },
-   "membership_score": 0.5,
+   "membership_score": 11.5,
    "role_year_errors": 0,
    "paper_score": null,
-   "result": "students_pass_roster_strict",
-   "note": "round 5 (unrestricted roster) failed: 3 membership errors, 5 doubtful in 30 (seed 7131); round 6 strict rule passes."
+   "result": "students_fail_roster_strict_on_evidence",
+   "note": "round 6 withdrawn and re-judged on evidence: fails; roster+co-authorship is not wired. Only the 29 Robotics adviser-list relations are added."
   }
  ]
 }

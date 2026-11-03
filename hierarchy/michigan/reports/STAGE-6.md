@@ -105,3 +105,9 @@ What would close the gap, in order of yield:
 3. an owner decision on Deep Blue metadata.
 
 - Build 4 (2026-10-30 ~15:00, after the profile years): 661 students, 683 pairs, 117 labs with students; `one_person` 683/683.
+
+## Update, 2026-11-03 (every-lab pass, branch agent/michigan-labs)
+- 129 of 287 labs have students (was 117): +29 relations from the Robotics adviser-bearing student list (robotics.umich.edu/people/students/, hand round 5, 29 of 29 judged on the capture).
+- PhD roster + co-authorship (CSE/ECE phd-students lists) tried under UChicago's rule (seed 8211: 3.0 membership errors) and a stricter two-papers-and-PI-last rule (seed 9341); re-judged on evidence only, 23 of 30 rows have no independent page: not kept, not wired (round 6 recorded as failed).
+- Papers: Abney (2), Compton (3) got reviewed OpenAlex ids; Ulsoy (4) a faculty period from the dated ME profile captures 2017-2019 (Professor Emeritus, same-year listing). Labs with 0 papers: none open.
+- The 119 labs still without students carry `sources_exhausted` with the checked sources per lab (reviewed/lab-coverage-reasons.json, from the lab-page audit's dated checks plus this pass's directory, Robotics, defence and roster sources). That is a record of what was checked, not proof the lab has no students; 17 of them have proposed lab-page additions that failed the hand rounds.
