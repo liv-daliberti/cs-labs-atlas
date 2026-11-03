@@ -7,11 +7,12 @@ reads the result and judges. A stage is one job, or an array with one task per s
   atlas pipeline --list
   atlas pipeline copies   [SCHOOLS="a b"] [--test-only] [--wait]   lab_paper_copies per school (array) -> unavailability ledger -> coverage recount -> collectors status
   atlas pipeline labpage  [SCHOOLS="a b"] [--test-only] [--wait]   lab-page audit per school (array) -> restamp the acceptance files -> the audit summary
+  atlas pipeline onboard-data SCHOOLS=<key> [--from-worktree]   a school being onboarded: DBLP affiliation pass -> sweep from its snapshot extension -> sweep check -> OpenAlex candidates
   atlas pipeline reader   [--test-only] [--wait]                   the reader export (licence -> host or link) after fresh copies
   atlas pipeline snapshot-refresh [--dry-run] [--promote] [--date D]   a newer OpenAlex snapshot -> NEW dated store -> per-school count compare (`current` moves only with --promote)
   atlas pipeline status [<run dir>]                                states of a run's jobs (one sacct call)
 
-Each run writes <scratch>/pipeline-<name>-<time>/jobs.json (stage -> job id). Every stage runs from a code snapshot of main's HEAD at submit time
+Each run writes <scratch>/pipeline-<name>-<time>/jobs.json (stage -> job id). Every stage runs from a code snapshot of main's HEAD at submit time (--from-worktree: this worktree's committed HEAD, for onboarding code not landed yet)
 (hierarchy/pipeline-stage.slurm). The commands live in PIPELINES below: a new chain is a new entry, not a new script. The judgement steps (the hand checks of
 the lab-page rounds, the diagnosis of a failed stage) are not here and never will be.
 """
@@ -33,6 +34,14 @@ PIPELINES = {
         ('audit', 'school', 'PY $TOOLS/labpage_audit.py all {school}', 'project', 2, '16G', '12:00:00'),
         ('restamp', 'once', 'PY $TOOLS/labpage_audit.py restamp {schools}', 'project', 1, '8G', '00:30:00'),
         ('summary', 'once', 'PY $TOOLS/labpage_audit.py summary', 'project', 1, '8G', '00:30:00'),
+    ],
+    # a school being onboarded (docs/ADDING-A-SCHOOL.md stage 2): SCHOOLS="<key>". The sweep comes from the school's snapshot extension (stage 0), so the
+    # extension merge must have finished; the DBLP pass and the OpenAlex candidate rule need no API credit.
+    'onboard-data': [
+        ('dblp', 'school', 'PY $TOOLS/dblp_affiliated.py {school} --pubs', 'project', 2, '16G', '03:00:00'),
+        ('sweep', 'school', 'PY $TOOLS/sweep_from_snapshot.py {school} --replace', 'project', 2, '24G', '02:00:00'),
+        ('sweepcheck', 'school', 'PY $TOOLS/sweep_check.py {school}', 'project', 2, '24G', '01:00:00'),
+        ('candidates', 'school', 'PY $TOOLS/cs_related_candidates.py --no-venues --stats --out cs-related-candidates-openalex.json {school}', 'project', 2, '24G', '02:00:00'),
     ],
     'reader': [
         ('reader', 'once', 'PY $TOOLS/reader_export.py {schools} --site-local-papers "$CS_ATLAS_SITE/atlas/data/local-papers.json" --site-reader-objects "$CS_ATLAS_SITE/atlas/data/reader-objects.json"', 'project', 2, '40G', '03:00:00'),
@@ -60,16 +69,17 @@ def plan(name, schools, stages=None):
     return out
 
 
-def submit(name, schools, run=subprocess.run, test_only=False, commit=None, stages=None, guard_preempt=False):
+def submit(name, schools, run=subprocess.run, test_only=False, commit=None, stages=None, guard_preempt=False, repo=None):
     """Submit every stage with afterok dependencies; returns {stage: job id}. With test_only only the first stage is checked (a dependency needs a real id).
-    guard_preempt: `sbatch --test-only` the first stage first and refuse to submit when it would preempt another job (standing rule)."""
-    commit = commit or subprocess.run(['git', '-C', str(P.CODE), 'rev-parse', 'HEAD'], capture_output=True, text=True).stdout.strip()
+    guard_preempt: `sbatch --test-only` the first stage first and refuse to submit when it would preempt another job (standing rule).
+    repo: a worktree whose HEAD is pinned instead of main's (atlas pipeline --from-worktree)."""
+    commit = commit or subprocess.run(['git', '-C', str(repo or P.CODE), 'rev-parse', 'HEAD'], capture_output=True, text=True).stdout.strip()
     jobs, prev = {}, None
     steps = plan(name, schools, stages)
     if guard_preempt and not test_only:
         first = steps[0]
         probe = run(['sbatch', '--parsable', '--test-only'] + first[1] + ['--export=ALL', str(CODE / 'hierarchy' / 'pipeline-stage.slurm')],  # route-ok: code that stays in hierarchy/
-                    capture_output=True, text=True, env=dict(os.environ, PIPE_CMD=first[3], CS_ATLAS_SNAPSHOT_COMMIT=commit, **first[2]), cwd=str(CODE))
+                    capture_output=True, text=True, env=dict(os.environ, PIPE_CMD=first[3], CS_ATLAS_SNAPSHOT_COMMIT=commit, **first[2], **({'SNAPSHOT_REPO': str(repo)} if repo else {})), cwd=str(CODE))
         if probe.returncode or 'Preempts:' in (probe.stderr or '') + (probe.stdout or ''):
             raise SystemExit(f'not submitted ({first[0]}): ' + ((probe.stderr or probe.stdout or '').strip()[:300] or 'sbatch --test-only failed'))
     for stage, args, env, cmd in steps:
@@ -77,7 +87,7 @@ def submit(name, schools, run=subprocess.run, test_only=False, commit=None, stag
         if prev:
             argv.append(f'--dependency=afterok:{prev}')
         # the command contains spaces and quotes: everything travels in the environment (--export=ALL), not in a comma list
-        e = dict(os.environ, PIPE_CMD=cmd, CS_ATLAS_SNAPSHOT_COMMIT=commit, **env)
+        e = dict(os.environ, PIPE_CMD=cmd, CS_ATLAS_SNAPSHOT_COMMIT=commit, **env, **({'SNAPSHOT_REPO': str(repo)} if repo else {}))
         argv += ['--export=ALL', str(CODE / 'hierarchy' / 'pipeline-stage.slurm')]  # route-ok: code that stays in hierarchy/
         r = run(argv, capture_output=True, text=True, env=e, cwd=str(CODE))
         if r.returncode:
@@ -97,7 +107,7 @@ def main(argv=None, run=subprocess.run):
         return oa_snapshot_refresh.main(args[1:] or ['submit'], run=run)
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('name', nargs='?'); ap.add_argument('rest', nargs='*')
-    ap.add_argument('--list', action='store_true'); ap.add_argument('--test-only', action='store_true'); ap.add_argument('--wait', action='store_true')
+    ap.add_argument('--list', action='store_true'); ap.add_argument('--test-only', action='store_true'); ap.add_argument('--wait', action='store_true'); ap.add_argument('--from-worktree', action='store_true')
     a = ap.parse_args(argv)
     if a.list or not a.name:
         for n, st in PIPELINES.items():
@@ -115,7 +125,7 @@ def main(argv=None, run=subprocess.run):
             k, v = x.split('=', 1)
             env[k] = v
     schools = schools_arg(env)
-    jobs = submit(a.name, schools, run=run, test_only=a.test_only, guard_preempt=True)
+    jobs = submit(a.name, schools, run=run, test_only=a.test_only, guard_preempt=True, repo=CODE if a.from_worktree and CODE.resolve() != Path(P.CODE).resolve() else None)
     if a.test_only:
         return 0
     d = Path(P.SCRATCH) / f"pipeline-{a.name}-{datetime.datetime.now().strftime('%Y%m%d-%H%M%S')}"

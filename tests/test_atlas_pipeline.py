@@ -39,3 +39,10 @@ def test_registry_is_well_formed():
         for stage, kind, cmd, py, cpus, mem, tm in stages:
             assert kind in ('school', 'once') and py in ('project', 'collector') and cmd.startswith('PY ')
             assert ('{school}' in cmd) == (kind == 'school'), (name, stage)
+
+
+def test_onboard_data_chain_and_a_worktree_snapshot_repo(tmp_path):
+    run = FakeRun()
+    jobs = AP.submit('onboard-data', ['newu'], run=run, commit='c' * 40, repo=tmp_path)
+    assert list(jobs) == ['dblp', 'sweep', 'sweepcheck', 'candidates'] and all('--array=0-0' in c[0] for c in run.calls)
+    assert run.calls[1][1]['SNAPSHOT_REPO'] == str(tmp_path) and run.calls[1][1]['PIPE_CMD'] == 'PY $TOOLS/sweep_from_snapshot.py newu --replace'.replace('newu', '{school}')

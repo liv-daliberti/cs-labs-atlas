@@ -28,3 +28,9 @@ def test_print_shows_both_steps_for_a_charter_school(capsys):
 def test_unknown_school_is_refused():
     with pytest.raises(SystemExit):
         SW.main(['atlantis', '--print'])
+
+
+def test_from_snapshot_swaps_only_the_first_step():
+    import sweep_school as W
+    api, snap = W.commands('newu'), W.commands('newu', snapshot=True)
+    assert api[1] == snap[1] and 'oa_sweep.py' in ' '.join(api[0][0]) and 'sweep_from_snapshot.py' in ' '.join(snap[0][0]) and '--replace' in snap[0][0]

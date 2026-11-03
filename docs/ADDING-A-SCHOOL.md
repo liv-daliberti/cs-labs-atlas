@@ -1,6 +1,6 @@
 # Adding a school: the standard protocol
 
-**Version 2.2, 2026-10-30.**
+**Version 2.3, 2026-11-02.**
 - Version 1 was drafted from how Princeton, CMU, EPFL, MIT, Berkeley and Stanford were built.
 - Version 2 is version 1 corrected by its first run, on the University of Michigan, the seventh school (`hierarchy/michigan/STAGE-*.md`).
 - Version 2.1 adds what Michigan's stages 2–8 taught on 2026-10-30, marked **Learned from Michigan (2026-10-30)**:
@@ -13,6 +13,8 @@
   - the unavailability ledger.
 - Version 2.2 adds the lab-page audit gates to stages 3, 6 and 7 (`tools/labpage_audit.py`, `docs/LAB-PAGES.md`), marked
   **Lab-page audit (v2.2)**.
+- Version 2.3 adds what the University of Chicago, the eighth school, taught in stages 0-1 (`hierarchy/uchicago/reports/PROTOCOL-FRICTION.md`),
+  marked **Learned from UChicago (2026-11-02)**.
 - Each change is marked **Learned from Michigan (2026-10-29)** or **(2026-10-30)**.
 
 Each stage has inputs, tools, outputs, a gate (what must be true before the next stage starts) and a stage report. A school is "in" only when every gate passes and it ships in a release.
@@ -119,12 +121,37 @@ atlas stage-gate <key> [n ...]                 # only the gates (0-10), from the
     `hierarchy/dblp-dump-persons.json.gz` (`tools/dblp_dump_persons.py`) after the PI set changes, then its page counts
     `hierarchy/dblp-dump-pages.json.gz` (`tools/dblp_dump_pages.py`, R-PAP-27).
 
+- **Learned from UChicago (2026-11-02):**
+  - **Work in a worktree** (`tools/agent_worktree.sh new <school>`); `bin/atlas` there reads the worktree's own `schools/`. A raw
+    `$CS_ATLAS_PY tools/x.py` run needs `export CS_ATLAS_SCHOOL_CONFIGS=$PWD/schools`. Tools write reports and reviewed inputs into the main
+    checkout's data tree; `tools/sync_school_files.py <key>` copies what git admits into the worktree before a commit.
+  - **Extend the OpenAlex snapshot for the new school (no API credits).** The filtered snapshot only holds the charters that existed when it
+    was filtered. After the charter has its ids: `OA_DATE=<snapshot date> OA_EXT=<key> atlas submit [--from-worktree] tools/oa_snapshot.slurm`, then
+    the merge with `--dependency=afterok:<id>` (`tools/oa_snapshot_merge.slurm`, same `OA_EXT`). It writes `ext-<key>.sqlite` next to the main
+    store, which is not touched; the reader consults it. About 25 minutes on 16 tasks. The next quarterly refresh folds the school in. Commit the
+    charter first: the job runs a code snapshot of a commit (`--from-worktree` pins the worktree's, for unlanded onboarding code).
+  - **Verify ids from the snapshot, not the API:** `tools/oa_institutions.py search <name>` and `lineage <id|key>` (children, associated
+    institutions). **Read the children before deciding `openalex_excluded`.** UChicago's lineage holds Argonne National Laboratory and four of its
+    facilities, Evanston Hospital and Chan Zuckerberg Biohub Chicago; a lineage sweep takes every one of them. Medical centres and affiliated
+    institutes are 'related', not children. Verify the ROR id and its relationships at `api.ror.org/v2/organizations/<id>`.
+  - **Crawl-delay counts for the groups that name Claude's agents** (`ClaudeBot`, `anthropic-ai`, ...), not only for `*`: `school_web` takes the
+    maximum. A group that names them with only a Crawl-delay is allowed, at that delay.
+  - **A moved department** shows in the host gate as `http 310 ->https://new.host/...`: put the new host in the charter and keep the old one's
+    Wayback keys in the slots.
+  - `atlas stage-gate <key> 0` checks the charter, `hosts.json` and the snapshot.
+
 ## Stage 1: sources and captures
 - **Do:**
   - Find each department's faculty listing URL eras. Use exact-URL Wayback CDX queries with `collapse=timestamp:4`. Prefix queries on a large host time out (503/504).
   - Write the eras into the charter as `[[departments.listings]]`. Entries that share a slot name are URL eras of one slot.
   - Capture one listing per slot and half-year, 2016–2026, with `listings/scripts/run_school.sh <key>`. `plan_fetch.py` takes a charter school's slots from the charter.
   - Parse the captures with `tools/listing_rows.py <key>`. It uses the formats in `tools/listing_formats.py`; add a format there when a page matches none. Contact lines are never kept.
+- **Learned from UChicago (2026-11-02):**
+  - `tools/discover_listings.py <key> <url>...` prints one line per URL (captures and the half-years that have one). To find URL eras, read the links
+    in the 2016 homepage or people-page capture (`/directories/table/faculty` was found that way; guessing found nothing), then check each with it.
+  - A department site changes platform two or three times in ten years (UChicago CS: Drupal table, a `li.mix` list, WordPress cards). Write one
+    format per era in `tools/listing_formats.py` (with a fixture test) and name it in the slot's `format`, before running `run_school.sh`.
+  - Listings that mix groups (Statistics' people page lists students and staff) are filtered in the format by the page's own group classes.
 - **Output:**
   - `listings/<key>/captures.sqlite`: the listing captures, in the listings-pipeline schema that the period tools read.
   - `captures/<key>.sqlite`: every other capture, plus robots files, probes and the `blocked` hosts.

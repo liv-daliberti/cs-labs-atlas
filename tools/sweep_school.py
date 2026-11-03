@@ -37,9 +37,11 @@ def env_file(p):
     return out
 
 
-def commands(key):
-    """The two steps, as (argv, extra env)."""
-    return [(['nice', '-n', '10', str(P.PY), '-I', '-u', str(TOOLS / 'oa_sweep.py'), key], {}),
+def commands(key, snapshot=False):
+    """The two steps, as (argv, extra env). With `snapshot` the first is tools/sweep_from_snapshot.py (no API credits; a school's own
+    snapshot extension, ADDING-A-SCHOOL stage 0) instead of the API sweep."""
+    first = (['nice', '-n', '10', str(P.PY), '-u', str(TOOLS / 'sweep_from_snapshot.py'), key, '--replace'], {}) if snapshot else None
+    return [first or (['nice', '-n', '10', str(P.PY), '-I', '-u', str(TOOLS / 'oa_sweep.py'), key], {}),
             (['nice', '-n', '10', str(P.PY), '-u', str(TOOLS / 'sweep_check.py'), key], {})]
 
 
@@ -49,11 +51,11 @@ def complete(log, year=None):
     return Path(log).exists() and f'"year": {year}, "works"' in Path(log).read_text(errors='replace')
 
 
-def run_once(key, log, floor, show=False):
+def run_once(key, log, floor, show=False, snapshot=False):
     env = dict(os.environ, **env_file(KEY_FILE), OPENALEX_FLOOR=str(floor))
     stamp = lambda: datetime.datetime.now().astimezone().isoformat(timespec='seconds')
     rc = 0
-    for i, (argv, extra) in enumerate(commands(key)):
+    for i, (argv, extra) in enumerate(commands(key, snapshot)):
         if show:
             print(' '.join(argv)); continue
         with open(log, 'a') as f:
@@ -69,13 +71,14 @@ def main(argv=None):
     ap.add_argument('key')
     ap.add_argument('--daily', action='store_true', help='repeat after each 00:00 UTC credit reset until the window is stored')
     ap.add_argument('--floor', type=int, default=1500, help='OPENALEX_FLOOR: stop when the key has this many credits left')
+    ap.add_argument('--from-snapshot', action='store_true', help='build the sweep from the local OpenAlex snapshot (main store + extensions), no API credits; replaces the sweep file')
     ap.add_argument('--print', dest='show', action='store_true', help='print the commands and exit')
     a = ap.parse_args(argv)
     if a.key not in school_config.keys():
         raise SystemExit(f'no charter schools/{a.key}.toml')
     log = P.data('sweep.log', a.key)
     if a.show or not a.daily:
-        return run_once(a.key, log, a.floor, a.show)
+        return run_once(a.key, log, a.floor, a.show, a.from_snapshot)
     tmp = P.data('tmp', a.key)
     tmp.mkdir(parents=True, exist_ok=True)
     (tmp / 'sweep_daily.pid').write_text(str(os.getpid()))
