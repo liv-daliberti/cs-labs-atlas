@@ -299,6 +299,7 @@ STEPS = {
           L('cross-check', 'tools/listed_not_in_census.py', '{key}', done=['listed-not-in-census.json']),
           H('review', 'search the affiliated units (cs_related_school.py units), then decide every candidate (cs_related_school.py review) with its evidence')],
     '3': [L('homes', 'tools/home_departments_school.py', '{key}', '--write-shared', shared=True, done=['home-departments-school.json']),
+          Q('build', 'PY $TOOLS/pi_hierarchy.py {school}', cpus=3, mem='40G', time='02:00:00', done=['pis.json']),   # the lab-page audit reads pis.json (Michigan built at stage 3: UChicago friction 27)
           Q('labpage-discover', 'PY $TOOLS/labpage_audit.py discover {school}', time='12:00:00', done=['labpage-audit.jsonl.gz']),
           H('pi-basis', 'research and teaching faculty need reviewed evidence of a group or advisees (pi-basis-evidence.json)')],
     '4': [Q('periods-fetch', 'PY $TOOLS/periods_school.py fetch {school}', cpus=1, mem='8G', time='08:00:00'),
