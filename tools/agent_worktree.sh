@@ -30,7 +30,8 @@ case "$cmd" in
     b=$(branch_of "$dir"); [ -n "$b" ] || { echo "no worktree at $dir"; exit 1; }
     git -C "$dir" diff --quiet && git -C "$dir" diff --cached --quiet || { echo "$dir has uncommitted changes"; exit 1; }
     git -C "$dir" rebase main
-    (cd "$dir" && CS_ATLAS_VENDOR="$dir/vendor" bin/atlas test) || { echo "tests failed: main unchanged"; exit 1; }
+    # charters (schools/*.toml) are code: test the branch's own, not main's (a status change would fail test_paths_sh_is_current)
+    (cd "$dir" && CS_ATLAS_VENDOR="$dir/vendor" CS_ATLAS_SCHOOL_CONFIGS="$dir/schools" bin/atlas test) || { echo "tests failed: main unchanged"; exit 1; }
     "$dir/bin/atlas" scan --staged >/dev/null 2>&1 || true
     git -C "$main_top" merge --ff-only "$b" || { echo "main moved or has local changes in these files: rebase again and retry"; exit 1; }
     echo "main fast-forwarded to $b ($(git -C "$main_top" rev-parse --short HEAD))" ;;
