@@ -11,10 +11,12 @@ import stage_gate as G
 @pytest.fixture
 def tree(tmp_path, monkeypatch):
     """Every P.data(name, key) goes under tmp_path/<key>/<name>; S.get returns a per-test charter."""
-    cfg = {'status': 'onboarding', 'window': [2016, 2026], 'departments': []}
+    cfg = {'status': 'onboarding', 'window': [2016, 2026], 'departments': [], 'hosts': [{'host': 'a'}]}
     monkeypatch.setattr(P, 'data', lambda name, school=None, **k: tmp_path / (school or '_') / name)
     monkeypatch.setattr(G.S, 'get', lambda key: cfg)
     monkeypatch.setattr(G.S, 'check', lambda key: [])
+    monkeypatch.setattr(G.S, 'inst', lambda key: 'I1')
+    monkeypatch.setattr(G, 'snapshot_count', lambda key, root=None: 1)   # stage 0 also needs the snapshot (tests/test_stage_gate_stage0.py)
     monkeypatch.setattr(P, 'HIERARCHY', tmp_path)
     (tmp_path / 'u').mkdir()
     (tmp_path / '_').mkdir()
