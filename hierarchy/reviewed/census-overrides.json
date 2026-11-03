@@ -9672,6 +9672,60 @@
    ],
    "orcid": "0000-0002-5138-7255",
    "why_identity": "2026-10-29 (atlas ids, cross-school persons): DBLP person 34/4472 (DBLP dump 2026-09-01, hierarchy/dblp-dump-persons.json.gz) is 'Thomas L. Griffiths 0001' / 'Tom Griffiths 0001' with affiliations 'Princeton University, Department of Psychology, NJ, USA' and 'University of California, Berkeley, Department of Psychology, USA' and ORCID 0000-0002-5138-7255; the Berkeley PI 'Thomas Griffiths' carries the same DBLP id and ORCID, and its reviewed basis says he moved to Princeton in 2018 and is the same person."
+  },
+  "Mark Zhandry": {
+   "periods": [
+    {
+     "id": "override_period_princeton_mark_zhandry",
+     "start": "2016",
+     "end": "2022-09",
+     "asof": "2026-11-02",
+     "datePrecision": "year",
+     "datePrecisionEnd": "month",
+     "evidence": [
+      {
+       "url": "https://www.cs.princeton.edu/news/cs-adds-four-world-class-faculty-members",
+       "sha256": "5ee3b76c79f8f6e37c67429ce467ab8e9f7fb84bd839a28aebda206b3891dc71",
+       "quote": "CS Adds Four World-Class Faculty Members September 29, 2016 News Body Four new faculty members are bringing exciting new ideas to Princeton’s Computer Science Department — professor Benjamin Raphael and assistant professors Zachary Kincaid, Gillat Kol, and Mark Zhandry.",
+       "kind": "faculty_start",
+       "observed": "2016-09-29"
+      },
+      {
+       "url": "https://web.archive.org/web/20160924230336id_/http://www.cs.princeton.edu:80/people/faculty?",
+       "sha256": "183e3db393b8b51e2592f5b1a9f6bc199eedc530fe420e7cf2f609a44eabcd55",
+       "quote": "Mark Zhandry Assistant Professor",
+       "observed": "2016-09-24",
+       "kind": "dept_listing:Computer Science"
+      },
+      {
+       "url": "https://web.archive.org/web/20220320001030id_/https://www.cs.princeton.edu/people/faculty",
+       "sha256": "e246fdb10f22d3cadc252069b361b63d3e8886cd70b6fa538dfb65a9bd2010e4",
+       "quote": "Mark Zhandry (on leave) Assistant Professor",
+       "observed": "2022-03-20",
+       "kind": "dept_listing:Computer Science"
+      },
+      {
+       "url": "https://web.archive.org/web/20220916042410id_/https://www.cs.princeton.edu/people/faculty",
+       "sha256": "40d6354bcfb6e106a6308a0894b917c694827829beed4ae9bbd4e122adcaafe3",
+       "quote": "Zachary Kincaid Assistant Professor",
+       "observed": "2022-09-16",
+       "kind": "faculty_end_moved",
+       "note": "first dated Princeton CS faculty-list capture without Mark Zhandry (the full list: the quoted row is another faculty member's, no row for him); last capture that lists him: 2022-03-20 ('Mark Zhandry (on leave) Assistant Professor'). Owner ruling 2026-11-02: being dropped from the school's own listing closes the period; end = month of the first listing without him."
+      },
+      {
+       "url": "https://mzhandry.github.io",
+       "sha256": "b724435c16e445979e6c4ab3cb097921357388b1cfa55222a2da48df2329112d",
+       "quote": "Previously, I was an Assistant Professor at Princeton University before becoming a Senior Scientist at NTT Research.",
+       "observed": "2026-11-02",
+       "kind": "faculty_end_moved",
+       "note": "homepage, Last-Modified 2026-08-15, undated; supporting only"
+      }
+     ],
+     "note": "Owner ruling 2026-11-02: a PI dropped from the school's own faculty listing is no longer an appointment; the end is bounded between the last dated listing that has him (2022-03-20, on leave) and the first dated listing without him (2022-09-16) and is recorded as the month of the first listing without him (2022-09). Start 2016 from the CS faculty announcement of 2016-09-29.",
+     "reviewed": "departed_faculty_review_20261102"
+    }
+   ],
+   "note_20261102": "ROADMAP #26 departures follow-up (owner ruling 2026-11-02, listing-drop rule, docs/RULES.md R-PAP-03); bounded end, see the period note."
   }
  },
  "epfl": {
@@ -13420,8 +13474,8 @@
     {
      "id": "override_period_berkeley_alessandro_chiesa",
      "start": "2016-01-04",
-     "end": null,
-     "asof": "2025-04-25",
+     "end": "2025-10",
+     "asof": "2026-11-02",
      "datePrecision": "day",
      "evidence": [
       {
@@ -13453,12 +13507,30 @@
        "quote": "Alessandro Chiesa Adjunct Associate Professor",
        "observed": "2025-04-25",
        "kind": "dept_listing:EECS"
+      },
+      {
+       "url": "https://web.archive.org/web/20251012212055id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+       "sha256": "a46a988939daad22b885c5890ec6b100ac08031b707867ef45569e446ebbcc4a",
+       "quote": "Satish Rao Professor",
+       "observed": "2025-10-12",
+       "kind": "faculty_end_moved",
+       "note": "first dated Berkeley EECS faculty-list capture without Alessandro Chiesa (the capture has the list's other rows, e.g. the quoted row, but no row for him); last capture that lists him: 2025-04-25. Owner ruling 2026-11-02: being dropped from the school's own listing closes the period; end = month of the first listing without him."
+      },
+      {
+       "url": "https://actu.epfl.ch/news/appointments-of-epfl-professors-3",
+       "sha256": "d470ca238c08363869ea03336d42260136eadfe5be460ab7046f5599b8dbe9df",
+       "quote": "Professor Alessandro Chiesa currently Assistant Professor at the University of California, USA, as Associate Professor of Computer Science and Communication Systems in the School of Computer and Communication Sciences (IC)",
+       "observed": "2021-07-16",
+       "kind": "faculty_end_moved",
+       "note": "EPFL appointments item dated 16.07.21; he stayed on Berkeley's list as Adjunct Associate Professor until 2025-04-25, so the listing drop, not this item, bounds the end."
       }
      ],
-     "note": "Bridged from dated faculty listings: listed as faculty in 2016, 2017, 2019, 2020, 2021, 2022, 2023, 2024, 2025; no department listing or profile capture exists for 2018 and no evidence of a break. Start is a LOWER BOUND (the first dated faculty listing in the 2016-2026 window); the period stops at the last dated faculty listing (asof), no end is claimed.",
-     "reviewed": "appointment_period_review_20261026"
+     "note": "Owner ruling 2026-11-02: a PI dropped from the school's own faculty listing is no longer an appointment; the end is bounded between the last dated listing that has him (2025-04-25) and the first dated listing without him (2025-10-12) and is recorded as the month of the first listing without him (2025-10). Start is a LOWER BOUND (first dated faculty listing in the 2016-2026 window).",
+     "reviewed": "departed_faculty_review_20261102",
+     "datePrecisionEnd": "month"
     }
-   ]
+   ],
+   "note_20261102": "ROADMAP #26 departures follow-up (owner ruling 2026-11-02, listing-drop rule, docs/RULES.md R-PAP-03); bounded end, see the period note."
   },
   "David E. Culler": {
    "periods": [
@@ -13824,8 +13896,8 @@
     {
      "id": "override_period_berkeley_moritz_hardt",
      "start": "2016-09-18",
-     "end": null,
-     "asof": "2025-04-25",
+     "end": "2025-10",
+     "asof": "2026-11-02",
      "datePrecision": "day",
      "evidence": [
       {
@@ -13856,12 +13928,30 @@
        "quote": "Moritz Hardt Adjunct Associate Professor",
        "observed": "2025-04-25",
        "kind": "dept_listing:EECS"
+      },
+      {
+       "url": "https://web.archive.org/web/20251012212055id_/https://www2.eecs.berkeley.edu/Faculty/Lists/faculty.html",
+       "sha256": "a46a988939daad22b885c5890ec6b100ac08031b707867ef45569e446ebbcc4a",
+       "quote": "Satish Rao Professor",
+       "observed": "2025-10-12",
+       "kind": "faculty_end_moved",
+       "note": "first dated Berkeley EECS faculty-list capture without Moritz Hardt (the capture has the list's other rows, e.g. the quoted row, but no row for him); last capture that lists him: 2025-04-25. Owner ruling 2026-11-02: being dropped from the school's own listing closes the period; end = month of the first listing without him."
+      },
+      {
+       "url": "https://idw-online.de/en/news777259",
+       "sha256": "15d43ef47859ce3b00dde7a71ceedb192a03bea8700c47c5b322017dbc29efc1",
+       "quote": "He joined the institute part-time in July 2021, and will start working full-time in Tübingen as of January 2022.",
+       "observed": "2026-11-02",
+       "kind": "faculty_end_moved",
+       "note": "Max Planck press release (dated 2021-10-11 or 2021-11-10, format ambiguous); he stayed on Berkeley's list as Adjunct Associate Professor until 2025-04-25, so the listing drop bounds the end."
       }
      ],
-     "note": "Bridged from dated faculty listings: listed as faculty in 2016, 2017, 2019, 2020, 2021, 2022, 2023, 2024, 2025; no department listing or profile capture exists for 2018 and no evidence of a break. Start is a LOWER BOUND (the first dated faculty listing in the 2016-2026 window); the period stops at the last dated faculty listing (asof), no end is claimed.",
-     "reviewed": "appointment_period_review_20261026"
+     "note": "Owner ruling 2026-11-02: a PI dropped from the school's own faculty listing is no longer an appointment; the end is bounded between the last dated listing that has him (2025-04-25) and the first dated listing without him (2025-10-12) and is recorded as the month of the first listing without him (2025-10). Start is a LOWER BOUND (first dated faculty listing in the 2016-2026 window).",
+     "reviewed": "departed_faculty_review_20261102",
+     "datePrecisionEnd": "month"
     }
-   ]
+   ],
+   "note_20261102": "ROADMAP #26 departures follow-up (owner ruling 2026-11-02, listing-drop rule, docs/RULES.md R-PAP-03); bounded end, see the period note."
   },
   "Björn Hartmann": {
    "periods": [
@@ -14647,8 +14737,8 @@
     {
      "id": "override_period_berkeley_jonathan_ragan_kelley",
      "start": "2016-09-18",
-     "end": null,
-     "asof": "2022-04-15",
+     "end": "2022-09",
+     "asof": "2026-11-02",
      "datePrecision": "day",
      "evidence": [
       {
@@ -14679,12 +14769,30 @@
        "quote": "Jonathan Ragan-Kelley Assistant Professor",
        "observed": "2022-04-15",
        "kind": "dept_listing:EECS"
+      },
+      {
+       "url": "https://web.archive.org/web/20220924170630id_/https://www2.eecs.berkeley.edu/Faculty/Lists/CS/faculty.html",
+       "sha256": "5784c424f849e7aaf3dbcba6da396d114e5f38d20448618790e9403463ddb930",
+       "quote": "Satish Rao Professor",
+       "observed": "2022-09-24",
+       "kind": "faculty_end_moved",
+       "note": "first dated Berkeley EECS faculty-list capture without Jonathan Ragan-Kelley (the capture has the list's other rows, e.g. the quoted row, but no row for him); last capture that lists him: 2022-04-15. Owner ruling 2026-11-02: being dropped from the school's own listing closes the period; end = month of the first listing without him."
+      },
+      {
+       "url": "https://people.csail.mit.edu/jrk/",
+       "sha256": "85fd41ab3633d0cfe406694791761cef049993ced2e05d07a4275fcffdbc8979",
+       "quote": "I am an associate professor of Electrical Engineering & Computer Science at MIT . I was previously an assistant professor of EECS at UC Berkeley",
+       "observed": "2026-11-02",
+       "kind": "faculty_end_moved",
+       "note": "homepage, Last-Modified 2026-03-02, undated move; supporting only"
       }
      ],
-     "note": "Bridged from dated faculty listings: listed as faculty in 2016, 2017, 2019, 2020, 2021, 2022; no department listing or profile capture exists for 2018 and no evidence of a break. Start is a LOWER BOUND (the first dated faculty listing in the 2016-2026 window); the period stops at the last dated faculty listing (asof), no end is claimed.",
-     "reviewed": "appointment_period_review_20261026"
+     "note": "Owner ruling 2026-11-02: a PI dropped from the school's own faculty listing is no longer an appointment; the end is bounded between the last dated listing that has him (2022-04-15) and the first dated listing without him (2022-09-24) and is recorded as the month of the first listing without him (2022-09). Start is a LOWER BOUND (first dated faculty listing in the 2016-2026 window).",
+     "reviewed": "departed_faculty_review_20261102",
+     "datePrecisionEnd": "month"
     }
-   ]
+   ],
+   "note_20261102": "ROADMAP #26 departures follow-up (owner ruling 2026-11-02, listing-drop rule, docs/RULES.md R-PAP-03); bounded end, see the period note."
   },
   "Prasad Raghavendra": {
    "periods": [

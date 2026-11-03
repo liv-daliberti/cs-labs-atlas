@@ -51,6 +51,7 @@ kept Mung Chiang (left 2017) and Yuxin Chen (left 2021) on its list through 2026
 `listings_after_move`. Since 2026-10-29 a reviewed period (census-overrides.json) whose evidence has kind
 `faculty_end_moved` counts as the departure too (Cynthia Rudin, MIT Sloan to Duke in 2016: MIT CSAIL's PI listing still
 named her in 2026; Sharad Goel, Stanford MS&E to Harvard Kennedy School in July 2021).
+Since 2026-11-02 (owner) a PI dropped from the school's own faculty listing (adjunct, courtesy or emeritus rows count while the row exists) has left: a reviewed period closes at the month of the first dated listing without them, bounded by the last dated listing that has them; both captures are cited in the override's evidence (`faculty_end_moved`).
 
 ### R-PAP-04 — identity of the authorship
 In order: never an author id reviewed as someone else's (`notOpenAlex`), or another PI's reviewed id (2026-10-28: Simon
