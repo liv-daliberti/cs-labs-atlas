@@ -51,6 +51,14 @@ PIPELINES = {
         ('build', 'school', 'PY $TOOLS/pi_hierarchy.py {school}', 'project', 3, '40G', '02:00:00'),
         ('audit', 'school', 'PY $TOOLS/labpage_audit.py audit {school}', 'project', 2, '16G', '02:00:00'),
     ],
+    # lab-page discovery for some PIs only (LABPI_ARGS='--pi "Name One" "Name Two"'), then the students from their pages and the rebuild
+    'labpage-some': [
+        ('discover', 'school', 'PY $TOOLS/labpage_audit.py discover {school} --redo $LABPI_ARGS', 'project', 2, '16G', '04:00:00'),
+        ('links', 'school', 'PY $TOOLS/labpage_students_school.py links {school}', 'collector', 2, '16G', '06:00:00'),
+        ('extract', 'school', 'PY $TOOLS/labpage_students_school.py extract {school}', 'collector', 2, '16G', '02:00:00'),
+        ('build', 'school', 'PY $TOOLS/pi_hierarchy.py {school}', 'project', 3, '40G', '02:00:00'),
+        ('audit', 'school', 'PY $TOOLS/labpage_audit.py audit {school}', 'project', 2, '16G', '02:00:00'),
+    ],
     # the OpenAlex snapshot extension for a school added after the snapshot was built (stage 0): OA_DATE=<snapshot date> SCHOOLS=<key>.
     # 16 filter tasks -> merge (ext-<key>.sqlite beside the main store). `array:16` = 16 tasks of one school ({task} is the task index).
     'snapshot-ext': [

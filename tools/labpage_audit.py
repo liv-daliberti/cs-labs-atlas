@@ -985,6 +985,9 @@ def load_dblp(ctx):
     if not ctx['dblp_persons']:
         want = {pid for p in ctx['pis'] for pid in p.get('dblp') or []}
         d = read(P.data('dblp-dump-persons.json.gz'))['persons']
+        own = P.data('dblp-dump-persons-school.json.gz', ctx['school'])   # an onboarding school's own persons (UChicago friction 43/44)
+        if own.exists():
+            d = {**d, **read(own)['persons']}
         ctx['dblp_persons'] = {k: v for k, v in d.items() if k in want}
     return ctx['dblp_persons']
 
