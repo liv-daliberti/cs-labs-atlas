@@ -39,6 +39,15 @@ writes a pinned `deployment/bootstrap.json`. Preserve old versioned download
 parts when preparing subsequent editions. These are ordinary static assets
 served by either hosting adapter; they require no platform-specific download API.
 
+For a single command covering preparation, packaging and the release gate:
+
+```sh
+python3 scripts/publish.py release --release 2026-11-02 \
+  --releases-dir /data/releases --stores /data/stores \
+  --edition web-2026-11-03.1 --origin https://YOUR-HOST \
+  --bundle /data/publications/web-2026-11-03.1
+```
+
 ## Validate the exact publication
 
 ```sh

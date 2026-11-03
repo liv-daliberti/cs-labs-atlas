@@ -18,6 +18,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - run: python -m pip install -r requirements-dev.txt
+      - run: black --check scripts/bootstrap.py scripts/data-package.py scripts/publish.py scripts/sync-host.py scripts/test-publication.py scripts/validate-data.py scripts/bundle-site.py
       - run: npm ci
       - run: npm test
       - run: npm run format:check

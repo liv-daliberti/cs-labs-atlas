@@ -44,6 +44,7 @@ The downloader never changes attribution decisions or substitutes different byte
 ## Develop and verify
 
 ```sh
+python3 -m pip install -r requirements-dev.txt
 npm test
 npm run format:check
 npx playwright install chromium firefox webkit
