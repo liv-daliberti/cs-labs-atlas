@@ -20,6 +20,8 @@ class Runner:
 
 @pytest.fixture
 def env(tmp_path, monkeypatch):
+    for k in ('STAGES', 'TAG', 'RELEASE_ARGS', 'SCHOOLS'):   # a real release runs this suite with these exported (rebuild tests stage)
+        monkeypatch.delenv(k, raising=False)
     monkeypatch.setattr(AR.P, 'SCRATCH', tmp_path / 'scratch')
     monkeypatch.setattr(AR, 'preflight', lambda c: (True, 'clean'))
     monkeypatch.setattr(AR, 'check_notes', lambda c: (True, 'notes ok'))
