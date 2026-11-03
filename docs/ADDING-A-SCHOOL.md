@@ -158,10 +158,11 @@ atlas stage-gate <key> [n ...]                 # only the gates (0-10), from the
   - A department whose year has no archived listing at all passes the gate with a reviewed `listing_gaps = {2017 = "reason"}` in its charter table.
   - Listings that mix groups (Statistics' people page lists students and staff) are filtered in the format by the page's own group classes.
 - **Learned from Georgia Tech (2026-11-03):**
-  - **Write the formats before the captures.** Fetch one capture per era (`discover_listings.py`, or one `curl` of the Wayback `id_` URL), write the era's format in `tools/listing_formats.py` with a fixture test, then run `run_school.sh`.
+  - **Write the formats before the captures.** Fetch one capture per era (`discover_listings.py <key> <url>... --sample 2016,2020,2024 --out <dir>` saves them and prints each one's format, entry count and paging), write the era's format in `tools/listing_formats.py` with a fixture test, then run `run_school.sh`.
     A first run with no format stores every capture as `unusable` and needs `replan.py` and a second pass.
   - **Paged directories are the common case, not the exception.** Georgia Tech's Drupal 7 pages show 9 people and its Drupal 9 pages 12 per page; `plan_fetch` takes one capture per half-year, so such a year
-    needs a reviewed `listing_gaps` entry (21 at Georgia Tech) and stage 2's candidate rules and stage 4's profile bridging must cover it. Check `is_paged` against the page's real pager markup.
+    **is fetched page by page since R3** (`plan_fetch.fetch_pages`: every `?page=N` of the same half-year, nearest in time, recorded in `plan_pages` and merged by `listing_rows`); only a page that is not
+    archived in that half-year leaves a gap, which needs a reviewed `listing_gaps` entry. Check `is_paged` against the page's real pager markup.
   - **Truncated titles:** a card layout may cut long titles with an ellipsis, which loses the word "Professor"; count them (`…` in titles) before stage 2.
   - The stage's `captures` step is done when `plan_fetch.py <key> --check` passes.
 - **Output:**
