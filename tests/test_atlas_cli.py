@@ -33,3 +33,12 @@ def test_submit_pins_main_or_the_worktrees_own_commit(tmp_path):
     assert pins == {'CS_ATLAS_SNAPSHOT_COMMIT': head(main)} and rest == ['--time=1', 'x.slurm']       # the default is unchanged
     pins, rest = A.submit_pins(wt, main, ['--from-worktree', 'x.slurm'])
     assert pins == {'CS_ATLAS_SNAPSHOT_COMMIT': head(wt), 'SNAPSHOT_REPO': str(wt)} and rest == ['x.slurm'] and head(wt) != head(main)
+
+
+def test_bin_atlas_uses_its_own_atlas_cli_whatever_the_cwd(tmp_path):
+    """`atlas` run from another checkout's directory must not import that directory's atlas_cli (python -m puts cwd first)."""
+    (tmp_path / 'atlas_cli').mkdir()
+    (tmp_path / 'atlas_cli' / '__init__.py').write_text('raise SystemExit("imported the caller\'s atlas_cli")\n')
+    (tmp_path / 'atlas_cli' / '__main__.py').write_text('')
+    out = subprocess.run([str(CODE / 'bin' / 'atlas'), 'help'], cwd=tmp_path, capture_output=True, text=True)
+    assert out.returncode == 0 and 'usage: atlas' in out.stdout

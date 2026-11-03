@@ -5,4 +5,6 @@ HERE=$(cd "$(dirname "$(readlink -f "$0")")/.." && pwd)
 # charters are code: a worktree reads its own schools/ (a charter made there is invisible to the shared default otherwise)
 export CS_ATLAS_SCHOOL_CONFIGS="${CS_ATLAS_SCHOOL_CONFIGS:-$HERE/schools}"
 . "$HERE/paths.sh"
-PYTHONPATH="$HERE${PYTHONPATH:+:$PYTHONPATH}" exec "$CS_ATLAS_PY" -m atlas_cli "$@"
+# `python -m` would put the CALLER's cwd first on sys.path, so `atlas` run from the main checkout's directory (where jobs are submitted
+# from) imported the main checkout's atlas_cli instead of this worktree's: drop '' and put this checkout first.
+PYTHONPATH="$HERE${PYTHONPATH:+:$PYTHONPATH}" exec "$CS_ATLAS_PY" -c 'import runpy, sys; sys.path[:] = [p for p in sys.path if p not in ("", ".")]; runpy.run_module("atlas_cli", run_name="__main__", alter_sys=True)' "$@"
