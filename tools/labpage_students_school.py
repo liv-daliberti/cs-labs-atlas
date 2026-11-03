@@ -240,6 +240,58 @@ def directory_entries(key):
     return out
 
 
+STUDENT_BLOCK = re.compile(r"<p>\s*<strong>([^<]{3,80})</strong>\s*<br\s*/?>(.*?)</p>|<h3[^>]*media-heading[^>]*>([^<]{3,80})</h3>\s*<p>(.*?)</p>", re.S | re.I)
+ADVISER_LINE = re.compile(r"<strong>\s*(?:Co-)?Advis[eo]rs?:?\s*</strong>:?\s*(.*?)(?:<br|$)", re.S | re.I)
+
+
+def adviser_directory_entries(key):
+    """[(student, adviser text, capture url, sha256, observed, directory url, flat text)] from every stored capture of the charter's
+    [students].adviser_directories: student lists that name each student's adviser themselves (TTIC /students/ and /student-alumni/:
+    `<strong>Name</strong> ... <strong>Advisor:</strong> X`). No contact data is read."""
+    import html as H
+    c = W.con(key); out = []
+    for d in S.field(S.get(key), 'students.adviser_directories') or []:
+        for r in W.cdx_rows(c, d, collapse='timestamp:4'):
+            cap, st, sha, b = W.capture(c, r['timestamp'], r['original'], d, 'student-directory')
+            if st != 200:
+                continue
+            h = W.raw_html(c, cap); flat = W.flat(b)
+            for m in STUDENT_BLOCK.finditer(h):
+                a = ADVISER_LINE.search(m.group(2) or m.group(4) or '')
+                if not a:
+                    continue
+                nm = ' '.join(H.unescape(m.group(1) or m.group(3)).split())
+                adv = ' '.join(H.unescape(re.sub(r'<[^>]+>', ' ', a.group(1))).split())
+                if 2 <= len(nm.split()) <= 5 and nm in flat and adv:
+                    out.append((nm, adv, cap, sha, r['timestamp'], d, flat))
+    return out
+
+
+def adviser_directory(key, forms):
+    """Student-adviser relations from adviser_directory_entries: an adviser text that holds a PI's full-name form (forms = [(pi, form)])
+    gives one relation per (student, PI); years = the years of the captures that list the pair; the quote runs from the student's name
+    through the adviser's name in the capture text (verbatim). -> rows of directory-evidence.json."""
+    by = {}
+    for nm, adv, cap, sha, ts, d, flat in adviser_directory_entries(key):
+        for pi, f in forms:
+            if re.search(re.escape(f) + r'(?![\w-])', adv):
+                i = flat.find(nm)
+                j = flat.find(f, i) if i >= 0 else -1
+                if i < 0 or j < 0 or j - i > 500:
+                    continue
+                e = by.setdefault((nm, pi), dict(years=set(), first=None))
+                e['years'].add(int(ts[:4]))
+                if not e['first'] or ts < e['first'][0]:
+                    e['first'] = (ts, cap, sha, d, flat[i:j + len(f)])
+    rows = []
+    for (nm, pi), e in sorted(by.items()):
+        ts, cap, sha, d, q = e['first']
+        rows.append(dict(student=nm, pi=pi, years=[min(e['years']), max(e['years'])], url=re.sub(r'^https?://web\.archive\.org/web/\d+(?:id_)?/', '', cap), capture_url=cap if 'web.archive.org' in cap else None,
+                         sha256=sha, quote=q, directory_evidence=[dict(url=cap, sha256=sha, quote=nm, observed=ts[:8], directory=d)],
+                         section='adviser-bearing student list (' + d + ')', years_basis='directory_years'))
+    return rows
+
+
 def directory(key):
     """Students from the program directories' student websites (protocol stage 6, learned 2026-10-30 at Michigan): the
     student's own page, fetched like a lab page (live where robots and the charter allow, else Wayback), counts when it
@@ -289,6 +341,8 @@ def directory(key):
                         break
                 if got:
                     break
+    out += adviser_directory(key, forms)
+    n['adviser_directory_relations'] = sum(1 for r in out if r.get('section'))
     P.data_w('directory-evidence.json', key).write_text(json.dumps(out, indent=1, ensure_ascii=False))
     print(json.dumps(dict(n, students_with_adviser=len({r['student'] for r in out}), labs=len({r['pi'] for r in out}))))
 
@@ -376,7 +430,7 @@ def extract(key):
         if any(Name([s_['name']]).match(d['student']) for s_ in e['students']):
             rep['directory_student_already_listed'] += 1
         e['students'].append(dict(name=d['student'], role='phd', years=d['years'], years_basis='directory_years', alumni=False,
-                                  section="student's own page (program PhD directory website)", url=d['url'], capture_url=d['capture_url'],
+                                  section=d.get('section') or "student's own page (program PhD directory website)", url=d['url'], capture_url=d['capture_url'],
                                   sha256=d['sha256'], quote=d['quote'], directory_evidence=d['directory_evidence'], auto=True))
         rep['directory_students'] += 1
     P.data_w('labpage-evidence.json', key).write_text(json.dumps(ev, indent=1, ensure_ascii=False))

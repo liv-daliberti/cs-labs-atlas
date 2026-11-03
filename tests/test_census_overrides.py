@@ -51,3 +51,34 @@ def test_oa_identity_review_file_is_optional(tmp_path, monkeypatch):
     (tmp_path / 'census-faculty.json').write_text(json.dumps({'faculty': []}))
     (tmp_path / 'cs-related-review.json').write_text(json.dumps({'decisions': []}))
     assert O.wanted('u') == {}
+
+
+def test_adviser_directory_reads_student_and_adviser_from_the_page(monkeypatch):
+    L = by_path('labpage_students_school')
+    html = ('<p><strong>Ann Lee</strong><br /><strong>B.S.:</strong> X<br /><strong>Advisor:</strong> Yury Makarychev, Nati Srebro<br />'
+            '<a href="mailto:a@b.c">Email</a></p><p><strong>No Adviser</strong><br /><strong>B.S.:</strong> Y<br /></p>')
+    flat = 'Ann Lee B.S.: X Advisor: Yury Makarychev, Nati Srebro Email No Adviser B.S.: Y'
+    monkeypatch.setattr(L.S, 'field', lambda cfg, f, d=None: ['ttic.test/students/'])
+    monkeypatch.setattr(L.S, 'get', lambda k: {})
+    monkeypatch.setattr(L.W, 'con', lambda k: None)
+    monkeypatch.setattr(L.W, 'cdx_rows', lambda c, d, collapse=None: [dict(timestamp='20240101000000', original=d)])
+    monkeypatch.setattr(L.W, 'capture', lambda c, ts, o, d, dept: ('cap-' + ts, 200, 'sha', []))
+    monkeypatch.setattr(L.W, 'raw_html', lambda c, cap: html)
+    monkeypatch.setattr(L.W, 'flat', lambda b: flat)
+    rows = L.adviser_directory('u', [('Yury Makarychev', 'Yury Makarychev'), ('Nati Srebro', 'Nati Srebro'), ('Other PI', 'Other PI')])
+    assert [(r['student'], r['pi']) for r in rows] == [('Ann Lee', 'Nati Srebro'), ('Ann Lee', 'Yury Makarychev')]
+    assert rows[0]['quote'].startswith('Ann Lee') and rows[0]['quote'].endswith('Nati Srebro') and rows[0]['years'] == [2024, 2024]
+
+
+def test_adviser_directory_second_markup(monkeypatch):
+    L = by_path('labpage_students_school')
+    html = '<h3 class="media-heading">Ann Lee</h3>\n<p><strong>B.S.:</strong> X<br />\n<strong>Advisor:</strong> Nati Srebro<br />\n<a href="mailto:a@b.c">Email</a></p>'
+    flat = 'Ann Lee B.S.: X Advisor: Nati Srebro Email'
+    for k, v in (('field', lambda cfg, f, d=None: ['t/']), ('get', lambda k: {})):
+        monkeypatch.setattr(L.S, k, v)
+    monkeypatch.setattr(L.W, 'con', lambda k: None)
+    monkeypatch.setattr(L.W, 'cdx_rows', lambda c, d, collapse=None: [dict(timestamp='20220101000000', original=d)])
+    monkeypatch.setattr(L.W, 'capture', lambda c, ts, o, d, dept: ('cap', 200, 'sha', []))
+    monkeypatch.setattr(L.W, 'raw_html', lambda c, cap: html)
+    monkeypatch.setattr(L.W, 'flat', lambda b: flat)
+    assert [(r['student'], r['pi']) for r in L.adviser_directory('u', [('Nati Srebro', 'Nati Srebro')])] == [('Ann Lee', 'Nati Srebro')]

@@ -8,6 +8,7 @@ reads the result and judges. A stage is one job, or an array with one task per s
   atlas pipeline copies   [SCHOOLS="a b"] [--test-only] [--wait]   lab_paper_copies per school (array) -> unavailability ledger -> coverage recount -> collectors status
   atlas pipeline labpage  [SCHOOLS="a b"] [--test-only] [--wait]   lab-page audit per school (array) -> restamp the acceptance files -> the audit summary
   atlas pipeline onboard-data SCHOOLS=<key> [--from-worktree]   a school being onboarded: DBLP affiliation pass -> sweep from its snapshot extension -> sweep check -> OpenAlex candidates
+  atlas pipeline build-audit SCHOOLS=<key> [--from-worktree] [--wait]  builder -> lab-page audit (after the students evidence changed)
   atlas pipeline snapshot-ext OA_DATE=<date> SCHOOLS=<key> [--wait]  the OpenAlex snapshot extension of a new school: 16 filter tasks -> merge
   atlas pipeline reader   [--test-only] [--wait]                   the reader export (licence -> host or link) after fresh copies
   atlas pipeline snapshot-refresh [--dry-run] [--promote] [--date D]   a newer OpenAlex snapshot -> NEW dated store -> per-school count compare (`current` moves only with --promote)
@@ -44,6 +45,11 @@ PIPELINES = {
         ('sweep', 'school', 'PY $TOOLS/sweep_from_snapshot.py {school} --replace', 'project', 2, '24G', '02:00:00'),
         ('sweepcheck', 'school', 'PY $TOOLS/sweep_check.py {school}', 'project', 2, '24G', '01:00:00'),
         ('candidates', 'school', 'PY $TOOLS/cs_related_candidates.py --no-venues --stats --out cs-related-candidates-openalex.json {school}', 'project', 2, '24G', '02:00:00'),
+    ],
+    # a school being onboarded, after its labpage evidence or census changed: the builder, then the lab-page audit (offline) that proposes additions from it
+    'build-audit': [
+        ('build', 'school', 'PY $TOOLS/pi_hierarchy.py {school}', 'project', 3, '40G', '02:00:00'),
+        ('audit', 'school', 'PY $TOOLS/labpage_audit.py audit {school}', 'project', 2, '16G', '02:00:00'),
     ],
     # the OpenAlex snapshot extension for a school added after the snapshot was built (stage 0): OA_DATE=<snapshot date> SCHOOLS=<key>.
     # 16 filter tasks -> merge (ext-<key>.sqlite beside the main store). `array:16` = 16 tasks of one school ({task} is the task index).

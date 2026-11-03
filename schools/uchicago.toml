@@ -267,13 +267,15 @@ listings = ["linguistics.uchicago.edu/people"]
 # --- students ----------------------------------------------------------------------------------------------------
 [thesis]
 kind = "none"
-base_url = ""
+base_url = "https://knowledge.uchicago.edu/"
 endpoints = []
-robots = ""
-note = "UChicago's dissertations are in ProQuest and Knowledge@UChicago (knowledge.uchicago.edu, a Voyager/DSpace-like site); not probed yet (stage 6)."
+robots = "allowed"
+note = """Knowledge@UChicago (InvenioRDM). robots.txt 2026-11-03: '*' only, no AI-agent rules, Crawl-delay 10, Disallow /search /api /administration /uploads. It is allowed but not usable: the only listing is the sitemap (16,089 record pages) and
+search and API are disallowed, so reading the advisor field means one record page per 10 s (about 45 hours) with no way to select computer-science dissertations. Skipped (stage 6, 2026-11-03); students come from the TTIC adviser list, lab pages and the PIs' own pages."""
 
 [students]
 directories = []
+adviser_directories = ["www.ttic.edu/students/"]   # TTIC lists every PhD student with an `Advisor:` line (2017-2026 Wayback captures); the alumni page is not used (its years are not membership years)
 sources = [
   "CS and TTIC PhD defence announcements and graduation lists (Wayback)",
   "lab member pages and PI homepages (live where robots allows, else Wayback)",
@@ -363,6 +365,12 @@ host = "psychology.uchicago.edu"
 use = "live"
 purpose = "Psychology faculty (affiliated-unit search)"
 probe = "https://psychology.uchicago.edu/people/faculty"
+
+[[hosts]]
+host = "knowledge.uchicago.edu"
+use = "live"
+purpose = "Knowledge@UChicago, the thesis repository (stage 6 source 1: advisor field). robots.txt 2026-11-03: '*' only (no AI-agent rules), Crawl-delay 10, Disallow /search /api /administration /uploads: record pages only, never search or API"
+probe = "https://knowledge.uchicago.edu/"
 
 [[hosts]]
 host = "api.openalex.org"

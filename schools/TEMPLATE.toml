@@ -100,6 +100,8 @@ robots = ""               # allowed | disallowed | disallowed-for-ai-agents | un
 note = ""
 
 [students]
+directories = []          # program PhD directories that list each student's website (no adviser): tools/labpage_students_school.py directory
+adviser_directories = []  # current-student lists that name each student's adviser themselves (TTIC /students/): URL without scheme, Wayback captures
 sources = []              # in the protocol's order of preference: thesis repository, defence / graduation lists, lab pages
 
 [labpages]
