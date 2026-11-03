@@ -63,6 +63,12 @@ def test_pipeline_wait_uses_slurm_wait_not_scontrol(monkeypatch, tmp_path, capsy
     assert got['ids'] == ['77'] and not any('scontrol' in c for c in calls)
 
 
+@pytest.fixture(autouse=True)
+def private_release_lock(tmp_path, monkeypatch):
+    """A release job running these tests holds the REAL atlas-release lease (the preflight caught this, 2026-11-03): look at a private lease directory."""
+    monkeypatch.setattr(AR, 'LEASE_ROOT', tmp_path / 'leases')
+
+
 def test_release_wait_submits_the_job_pinned_and_waits(monkeypatch):
     calls = []
 
