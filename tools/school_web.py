@@ -23,7 +23,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))  # python -I leaves the script's directory off sys.path (docs/CONTRIBUTING.md, Imports and sys.path)
 import atlas_paths as P  # noqa: E402
 
-sys.path.insert(0, str(P.LISTINGS / 'scripts'))  # route-ok: code (listings/scripts), not data
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'listings' / 'scripts'))  # this checkout's code: the data root is the main checkout, whose older wb.py a worktree or snapshot job then imported (Georgia Tech friction 17)
 import wb  # noqa: E402
 import extract  # noqa: E402
 

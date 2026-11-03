@@ -13,8 +13,7 @@ import collections, json, re, sqlite3, sys
 from pathlib import Path
 
 import atlas_paths as P  # noqa: E402  (every path in one place)
-HERE = P.WORK
-sys.path.insert(0, str(HERE / 'listings/scripts')); sys.path.insert(0, str(Path(__file__).parent))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'listings/scripts')); sys.path.insert(0, str(Path(__file__).parent))   # this checkout's code, not P.WORK (the main checkout): a worktree imported the main checkout's older wb/plan_fetch (Georgia Tech friction 17)
 import match  # noqa: E402  (the listings' own title patterns)
 from pi_hierarchy import Name, toks  # noqa: E402
 
