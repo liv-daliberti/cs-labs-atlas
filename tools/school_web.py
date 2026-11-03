@@ -18,7 +18,9 @@ usage (CLI)   school_web.py <key> cdx <url> [prefix]       list Wayback 200 capt
               school_web.py <key> robots <host>            print the stored robots decision
 """
 import hashlib, json, os, re, sys, time, urllib.parse, urllib.robotparser, zlib
+from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))  # python -I leaves the script's directory off sys.path (docs/CONTRIBUTING.md, Imports and sys.path)
 import atlas_paths as P  # noqa: E402
 
 sys.path.insert(0, str(P.LISTINGS / 'scripts'))  # route-ok: code (listings/scripts), not data
@@ -185,6 +187,8 @@ def sha_of_text(s):
 
 if __name__ == '__main__':
     a = sys.argv[1:]
+    if len(a) < 3 or a[1] not in ('cdx', 'live', 'robots'):
+        sys.exit('usage' + __doc__.split('usage', 2)[-1].rstrip())
     c = con(a[0])
     if a[1] == 'cdx':
         for r in cdx_rows(c, a[2], exact=len(a) < 4):
