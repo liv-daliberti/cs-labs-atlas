@@ -155,6 +155,7 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `labpage-audit-discovery.jsonl` | raw | `hierarchy/{school}/labpage-audit-discovery.jsonl` | `hierarchy/{school}/raw/labpage-audit-discovery.jsonl` | - | <100MB |
 | `labpage-audit-recover` | work | `hierarchy/{school}/labpage-audit-recover` | `hierarchy/{school}/work/labpage-audit-recover` | - | <100MB |
 | `labpage-handcheck.json` | reviewed | `hierarchy/{school}/labpage-handcheck.json` | `hierarchy/{school}/reviewed/labpage-handcheck.json` | - | <100MB |
+| `gate-exceptions.json` | reviewed | `hierarchy/{school}/gate-exceptions.json` | `hierarchy/{school}/reviewed/gate-exceptions.json` | - | <1MB |
 | `labpage-departure-review.json` | reviewed | `hierarchy/labpage-departure-review.json` | `hierarchy/reviewed/labpage-departure-review.json` | - | <100MB |
 | `labpage-audit-summary.json` | derived | `hierarchy/labpage-audit-summary.json` | `hierarchy/derived/labpage-audit-summary.json` | - | <100MB |
 | `tobagi-review.json` | reviewed | `hierarchy/{school}/tobagi-review.json` | `hierarchy/{school}/reviewed/tobagi-review.json` | - | <100MB |
