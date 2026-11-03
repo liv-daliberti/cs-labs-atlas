@@ -8,9 +8,10 @@ reads the result and judges. A stage is one job, or an array with one task per s
   atlas pipeline copies   [SCHOOLS="a b"] [--test-only] [--wait]   lab_paper_copies per school (array) -> unavailability ledger -> coverage recount -> collectors status
   atlas pipeline labpage  [SCHOOLS="a b"] [--test-only] [--wait]   lab-page audit per school (array) -> restamp the acceptance files -> the audit summary
   atlas pipeline onboard-data SCHOOLS=<key> [--from-worktree]   a school being onboarded: DBLP affiliation pass -> sweep from its snapshot extension -> sweep check -> OpenAlex candidates
+  atlas pipeline snapshot-ext OA_DATE=<date> SCHOOLS=<key> [--wait]  the OpenAlex snapshot extension of a new school: 16 filter tasks -> merge
   atlas pipeline reader   [--test-only] [--wait]                   the reader export (licence -> host or link) after fresh copies
   atlas pipeline snapshot-refresh [--dry-run] [--promote] [--date D]   a newer OpenAlex snapshot -> NEW dated store -> per-school count compare (`current` moves only with --promote)
-  atlas pipeline status [<run dir>]                                states of a run's jobs (one sacct call)
+  atlas pipeline status [<run dir>]                                states of a run's jobs and the current dependency of each queued one (one sacct call, one squeue call)
 
 Each run writes <scratch>/pipeline-<name>-<time>/jobs.json (stage -> job id). Every stage runs from a code snapshot of main's HEAD at submit time (--from-worktree: this worktree's committed HEAD, for onboarding code not landed yet)
 (hierarchy/pipeline-stage.slurm). The commands live in PIPELINES below: a new chain is a new entry, not a new script. The judgement steps (the hand checks of
@@ -43,6 +44,12 @@ PIPELINES = {
         ('sweepcheck', 'school', 'PY $TOOLS/sweep_check.py {school}', 'project', 2, '24G', '01:00:00'),
         ('candidates', 'school', 'PY $TOOLS/cs_related_candidates.py --no-venues --stats --out cs-related-candidates-openalex.json {school}', 'project', 2, '24G', '02:00:00'),
     ],
+    # the OpenAlex snapshot extension for a school added after the snapshot was built (stage 0): OA_DATE=<snapshot date> SCHOOLS=<key>.
+    # 16 filter tasks -> merge (ext-<key>.sqlite beside the main store). `array:16` = 16 tasks of one school ({task} is the task index).
+    'snapshot-ext': [
+        ('filter', 'array:16', 'PY $TOOLS/oa_snapshot.py filter {task} 16 --date "${OA_DATE:?set OA_DATE to the snapshot date}" --ext {school}', 'project', 1, '8G', '06:00:00'),
+        ('merge', 'once', 'PY $TOOLS/oa_snapshot.py merge --date "${OA_DATE:?set OA_DATE}" --of 16 --ext {schools}', 'project', 1, '16G', '02:00:00'),
+    ],
     'reader': [
         ('reader', 'once', 'PY $TOOLS/reader_export.py {schools} --site-local-papers "$CS_ATLAS_SITE/atlas/data/local-papers.json" --site-reader-objects "$CS_ATLAS_SITE/atlas/data/reader-objects.json"', 'project', 2, '40G', '03:00:00'),
     ],
@@ -65,7 +72,9 @@ def plan(name, schools, stages=None):
                 f'--output={P.data("logs")}/pipeline-{name}-{stage}-%A' + ('_%a' if kind == 'school' else '') + '.out']
         if kind == 'school':
             args.append(f'--array=0-{len(schools) - 1}')
-        out.append((stage, args, dict(PIPE_STAGE=stage, PIPE_PY=py, SCHOOL_LIST=' '.join(schools)), cmd))
+        elif kind.startswith('array:'):
+            args.append(f'--array=0-{int(kind[6:]) - 1}')
+        out.append((stage, args, dict(PIPE_STAGE=stage, PIPE_PY=py, SCHOOL_LIST=' '.join(schools), PIPE_KIND=kind), cmd))
     return out
 
 
@@ -100,6 +109,12 @@ def submit(name, schools, run=subprocess.run, test_only=False, commit=None, stag
     return jobs
 
 
+def dependency_lines(ids, run=subprocess.run):
+    """Each still-queued job's CURRENT dependency, one squeue call (PROTOCOL-FRICTION 18: another session rewired a job's dependency and nothing showed it)."""
+    r = run(['squeue', '-h', '-j', ','.join(map(str, ids)), '-o', '%i %T dependency=%E'], capture_output=True, text=True)
+    return (r.stdout or '').strip() or '(no queued jobs)'
+
+
 def main(argv=None, run=subprocess.run):
     args = sys.argv[1:] if argv is None else list(argv)
     if args and args[0] == 'snapshot-refresh':  # the OpenAlex snapshot refresh (ROADMAP #24): its own planner, docs/OPENALEX-SNAPSHOT.md section 14
@@ -118,6 +133,7 @@ def main(argv=None, run=subprocess.run):
         jobs = json.loads((d / 'jobs.json').read_text())['jobs']
         ids = ','.join(jobs.values())
         print(run(['sacct', '-j', ids, '-X', '-n', '-o', 'JobID,JobName,State,Elapsed,ExitCode'], capture_output=True, text=True).stdout)
+        print(dependency_lines(list(jobs.values()), run))
         return 0
     env = dict(os.environ)
     for x in a.rest:

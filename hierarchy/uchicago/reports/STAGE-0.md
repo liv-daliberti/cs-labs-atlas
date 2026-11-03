@@ -15,14 +15,10 @@ Date: 2026-11-02. Protocol: `docs/ADDING-A-SCHOOL.md` v2.3. Branch `agent/uchica
 - **OpenAlex snapshot extension** for UChicago (`OA_EXT=uchicago`, jobs 32079155 array + 32079156 merge) writes `ext-uchicago.sqlite` beside the main store.
 - **Gate** `atlas stage-gate uchicago 0`: charter ok, hosts ok; snapshot part pending the merge job.
 
-## Owner decisions requested
-- **D1 Medical Center as related** (Michigan Medicine precedent, decided 2026-10-30): authorships tagged only with UChicago Medical Center count when the raw
-  string matches the regex ("University of Chicago Medicine/Medical Center", "UChicago Medicine"). Recommended: yes.
-- **D2 TTIC in scope?** Evidence: TTIC is a separate, philanthropically endowed institution on the university's campus (about page; ROR/OpenAlex: no relation
-  to UChicago); every faculty member is computing (coverage "full"); its faculty and the CS department share people (overlap measured in stage 1 report).
-  Charter currently includes TTIC as department + related id + regex alternative, marked pending. Recommended: in scope as its own department; if declined,
-  remove the `I160992636` related id, the TTIC department, host and regex alternative.
-- **D3 Argonne and the other lineage children.** The lineage sweep returns every Argonne authorship (tens of thousands of works). Options: (a) keep the lineage
-  whole (an Argonne byline of a UChicago PI is also tagged UChicago; non-PI Argonne staff never become PIs); (b) list I1282105669, I4387156069,
-  I4390039281, I4390039261, I4390039288, I4210119687, I4396570630 as `openalex_excluded` (note the snapshot filter drops an authorship that touches any
-  excluded id, which would also drop joint UChicago+Argonne bylines like Ian Foster's). Recommended: (a) for the sweep, and decide at stage 7.
+## Owner decisions (2026-11-03, all three as recommended)
+- **D1 yes:** UChicago Medical Center (`I4210087865`) is a related institution (Michigan Medicine precedent): an authorship tagged only with it counts when its raw
+  affiliation names the university (the charter regex).
+- **D2 yes:** TTIC is in scope as its own department; the pending mark is cleared (charter department, related id `I160992636`, host and regex alternative stay).
+- **D3 yes:** Argonne (and its four facilities), Evanston Hospital and CZ Biohub Chicago stay in the lineage for the sweep (`openalex_excluded = []`).
+  Decide again at stage 7. If excluded then, the snapshot filter now drops only the excluded affiliation, not the whole authorship (PROTOCOL-FRICTION 20), so
+  a joint UChicago + Argonne byline (Ian Foster) keeps its UChicago hit.

@@ -126,7 +126,7 @@ atlas stage-gate <key> [n ...]                 # only the gates (0-10), from the
     `$CS_ATLAS_PY tools/x.py` run needs `export CS_ATLAS_SCHOOL_CONFIGS=$PWD/schools`. Tools write reports and reviewed inputs into the main
     checkout's data tree; `tools/sync_school_files.py <key>` copies what git admits into the worktree before a commit.
   - **Extend the OpenAlex snapshot for the new school (no API credits).** The filtered snapshot only holds the charters that existed when it
-    was filtered. After the charter has its ids: `OA_DATE=<snapshot date> OA_EXT=<key> atlas submit [--from-worktree] tools/oa_snapshot.slurm`, then
+    was filtered. After the charter has its ids: `OA_DATE=<snapshot date> atlas pipeline snapshot-ext SCHOOLS=<key> --from-worktree --wait` (16 filter tasks, then the merge), or by hand: `OA_DATE=<snapshot date> OA_EXT=<key> atlas submit [--from-worktree] tools/oa_snapshot.slurm`, then
     the merge with `--dependency=afterok:<id>` (`tools/oa_snapshot_merge.slurm`, same `OA_EXT`). It writes `ext-<key>.sqlite` next to the main
     store, which is not touched; the reader consults it. About 25 minutes on 16 tasks. The next quarterly refresh folds the school in. Commit the
     charter first: the job runs a code snapshot of a commit (`--from-worktree` pins the worktree's, for unlanded onboarding code).

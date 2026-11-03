@@ -128,3 +128,17 @@ def test_an_extension_adds_a_school_without_touching_the_main_store(served, monk
     assert {w['id'].rsplit('/', 1)[-1] for w in S.works_by_lineage('I99')} == {'W2', 'W3'}
     assert {w['id'].rsplit('/', 1)[-1] for w in S.works_by_lineage('I10')} == {'W1', 'W6'}   # main rows still come from the main store
     assert S.institution('I10') is not None   # institutions are not repeated in an extension
+
+
+def test_exclusion_is_per_affiliation_not_per_authorship():
+    """UChicago PROTOCOL-FRICTION 20: an authorship with a school institution AND an excluded one keeps the school hit; an
+    authorship touching only the excluded institution (whose lineage reaches the school) is still dropped."""
+    inst, excl = {'I1'}, {'I9'}
+    joint = {'id': OA + 'I8', 'lineage': [OA + 'I8', OA + 'I1']}
+    argonne = {'id': OA + 'I9', 'lineage': [OA + 'I9', OA + 'I1']}
+    def w(*institutions):
+        return {'id': OA + 'W1', 'type': 'article', 'authorships': [{'author': {'id': OA + 'A1'}, 'institutions': list(institutions)},
+                                                                     {'author': {'id': OA + 'A2'}, 'institutions': [argonne]}]}
+    assert S.keep_work(w(joint, argonne), inst, excl, set())[1] == {'I1'}
+    assert S.keep_work(w(argonne), inst, excl, set()) is None
+    assert S.keep_work(w(argonne, joint), inst, excl, set())[1] == {'I1'}

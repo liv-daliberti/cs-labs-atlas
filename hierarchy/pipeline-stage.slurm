@@ -18,8 +18,8 @@ case $PIPE_PY in project) PY="nice -n 5 $CS_ATLAS_PY -u" ;; collector) PY="nice 
 PY() { $PY "$@"; }   # the registry's commands start with PY
 TOOLS=$CS_ATLAS_TOOLS; FTP=$CS_ATLAS_FULLTEXT_PUSH
 read -r -a _S <<< "$SCHOOL_LIST"
-school=${_S[${SLURM_ARRAY_TASK_ID:-0}]:-}
-cmd=${PIPE_CMD//\{school\}/$school}; cmd=${cmd//\{schools\}/$SCHOOL_LIST}
+case ${PIPE_KIND:-school} in array:*) school=${_S[0]:-} ;; *) school=${_S[${SLURM_ARRAY_TASK_ID:-0}]:-} ;; esac  # array:N = N tasks of the first school
+cmd=${PIPE_CMD//\{school\}/$school}; cmd=${cmd//\{schools\}/$SCHOOL_LIST}; cmd=${cmd//\{task\}/${SLURM_ARRAY_TASK_ID:-0}}
 echo "== pipeline stage ${PIPE_STAGE:-?}: $cmd ($(date +%F\ %T))"
 eval "$cmd"; rc=$?
 echo "== rc=$rc $(date +%F\ %T)"

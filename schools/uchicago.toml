@@ -22,14 +22,15 @@ openalex = ["I40347166"]
 # The University of Chicago Medical Center (UChicago Medicine, 'related' both ways in ROR and OpenAlex) and TTIC are not in the
 # university's lineage, so authors tagged only with them are not found by the lineage filter. Both are swept; such an authorship counts
 # for Chicago only when its raw affiliation string matches [affiliation].regex (most read "University of Chicago Medicine" or
-# "Toyota Technological Institute at Chicago"). PENDING owner decisions (hierarchy/uchicago/reports/STAGE-0.md): D1 Medical Center
-# (Michigan Medicine precedent, decided 2026-10-30), D2 TTIC in or out of scope.
+# "Toyota Technological Institute at Chicago"). Owner decisions 2026-11-03 (hierarchy/uchicago/reports/STAGE-0.md): D1 yes, the Medical Center
+# is a related institution (Michigan Medicine precedent, 2026-10-30): an authorship tagged only with it counts when its raw affiliation names
+# the university; D2 yes, TTIC is in scope as its own department.
 openalex_related = ["I4210087865", "I160992636"]
-# Nothing is excluded yet. The university's lineage contains institutions that are not its faculty's departments: Argonne National Laboratory
+# Nothing is excluded (owner decision D3, 2026-11-03: keep the lineage whole for the sweep, decide again at stage 7). The university's lineage contains institutions that are not its faculty's departments: Argonne National Laboratory
 # I1282105669 (and Advanced Photon Source I4387156069, Center for Nanoscale Materials I4390039281, Argonne Leadership Computing Facility
 # I4390039261, ATLAS linac I4390039288), Evanston Hospital I4210119687, Chan Zuckerberg Biohub Chicago I4396570630, CLEAR I4210087539 and two
-# CNRS international laboratories. PENDING owner decision D3: keep them in the lineage (an Argonne byline of a UChicago PI is also tagged
-# with the university) or list them here.
+# CNRS international laboratories. D3 (2026-11-03): they stay in the lineage (an Argonne byline of a UChicago PI is also tagged
+# with the university); non-PI Argonne staff never become PIs. Argonne, Evanston Hospital and CZ Biohub Chicago are revisited at stage 7.
 openalex_excluded = []
 ror = "https://ror.org/024mw5h28"
 ids_note = """OpenAlex institutions table of the 2026-10-14 snapshot (no API credits; checked 2026-11-02): I40347166 'University of Chicago',
@@ -47,8 +48,7 @@ wayback_only_suffixes = []   # no host probed behind a challenge on 2026-11-02 (
 excluded_hosts = ["uic.edu", "uchicagomedicine.org"]   # Illinois Chicago; the health system's public site (not a faculty source)
 
 [affiliation]
-# 'University of Chicago' (any spelling of University; 'of' required: 'Loyola University Chicago' and 'Concordia University Chicago' are other schools), the uchicago.edu domain, 'UChicago', 'Chicago Booth', and (pending
-# owner decision D2) TTIC. Never a bare 'Chicago' (Illinois Chicago, Loyola, Chicago State, DePaul, IIT, Northwestern's Chicago campus,
+# 'University of Chicago' (any spelling of University; 'of' required: 'Loyola University Chicago' and 'Concordia University Chicago' are other schools), the uchicago.edu domain, 'UChicago', 'Chicago Booth', and (owner decision D2, 2026-11-03) TTIC. Never a bare 'Chicago' (Illinois Chicago, Loyola, Chicago State, DePaul, IIT, Northwestern's Chicago campus,
 # the Art Institute) and never 'University of Illinois at Chicago'.
 regex = '''univ\w*\.?\s+of\s+chicago\b|\buchicago\b|uchicago\.edu|\bchicago\s+booth\b|\buchospitals\.edu|toyota\s+technological\s+institute\s+(?:at|in)\s+chicago|\bttic\b'''
 own_units = '''\b(?:data\s+science|becker\s+friedman|computation|molecular\s+engineering|enrico\s+fermi|james\s+franck|institute\s+for\s+genomics\s+and\s+systems\s+biology|institute\s+for\s+mind\s+and\s+biology|oriental|kavli\s+institute\s+for\s+cosmological\s+physics|human\s+genetics)\s+institute\b|\bknowledge\s+lab\b'''
@@ -152,7 +152,7 @@ url = "https://cs.uchicago.edu/"
   to = "20250831"
   format = "uc_cs_table"
 
-# TTIC (pending owner decision D2): a separate institution on the university's campus; its faculty list is complete for TTIC.
+# TTIC (in scope, owner decision D2, 2026-11-03): a separate institution on the university's campus; its faculty list is complete for TTIC.
 [[departments]]
 code = "TTIC"
 name = "Toyota Technological Institute at Chicago"

@@ -37,8 +37,8 @@ def test_registry_is_well_formed():
     for name, stages in AP.PIPELINES.items():
         assert len({s[0] for s in stages}) == len(stages), name
         for stage, kind, cmd, py, cpus, mem, tm in stages:
-            assert kind in ('school', 'once') and py in ('project', 'collector') and cmd.startswith('PY ')
-            assert ('{school}' in cmd) == (kind == 'school'), (name, stage)
+            assert (kind in ('school', 'once') or kind.startswith('array:')) and py in ('project', 'collector') and cmd.startswith('PY ')
+            assert ('{school}' in cmd) == (kind == 'school' or kind.startswith('array:')), (name, stage)
 
 
 def test_onboard_data_chain_and_a_worktree_snapshot_repo(tmp_path):
@@ -46,3 +46,18 @@ def test_onboard_data_chain_and_a_worktree_snapshot_repo(tmp_path):
     jobs = AP.submit('onboard-data', ['newu'], run=run, commit='c' * 40, repo=tmp_path)
     assert list(jobs) == ['dblp', 'sweep', 'sweepcheck', 'candidates'] and all('--array=0-0' in c[0] for c in run.calls)
     assert run.calls[1][1]['SNAPSHOT_REPO'] == str(tmp_path) and run.calls[1][1]['PIPE_CMD'] == 'PY $TOOLS/sweep_from_snapshot.py newu --replace'.replace('newu', '{school}')
+
+
+def test_snapshot_ext_is_a_16_task_array_then_a_merge_and_status_shows_dependencies():
+    run = FakeRun()
+    jobs = AP.submit('snapshot-ext', ['newu'], run=run, commit='d' * 40)
+    assert list(jobs) == ['filter', 'merge'] and '--array=0-15' in run.calls[0][0] and run.calls[0][1]['PIPE_KIND'] == 'array:16'
+    assert '--dependency=afterok:1001' in run.calls[1][0] and '--ext {schools}' in run.calls[1][1]['PIPE_CMD']
+    assert '{task}' in run.calls[0][1]['PIPE_CMD'] and '--array' not in ' '.join(run.calls[1][0])
+
+    def squeue(argv, capture_output=None, text=None):
+        class R:
+            returncode, stdout, stderr = 0, '32079156 PENDING dependency=afterany:32079275(unfulfilled)\n', ''
+        assert argv[0] == 'squeue'
+        return R()
+    assert 'dependency=afterany:32079275' in AP.dependency_lines(['32079156'], squeue)
