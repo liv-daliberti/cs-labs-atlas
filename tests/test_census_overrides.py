@@ -34,3 +34,11 @@ def test_a_released_school_still_edits_the_shared_file(tmp_path, monkeypatch):
     save()
     ov = json.loads(shared.read_text())
     assert set(ov['mit']) == {'Bo', 'Di'} and 'u' in ov and not (tmp_path / 'mit-census-overrides-school.json').exists()
+
+
+def test_oa_identity_review_file_is_optional(tmp_path, monkeypatch):
+    import oa_identity_school as O
+    monkeypatch.setattr(O.P, 'data', lambda name, school=None, **k: tmp_path / name)
+    (tmp_path / 'census-faculty.json').write_text(json.dumps({'faculty': []}))
+    (tmp_path / 'cs-related-review.json').write_text(json.dumps({'decisions': []}))
+    assert O.wanted('u') == {}

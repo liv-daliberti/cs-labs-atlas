@@ -1,5 +1,5 @@
 """Reviewed OpenAlex author ids for a protocol school's PIs (protocol stage 5), written into the school's section of the
-shared hierarchy/census-overrides.json (keys openalex, why_openalex, openalex_evidence, aliases), which the builder and
+census overrides (hierarchy/<key>/census-overrides-school.json while onboarding; keys openalex, why_openalex, openalex_evidence, aliases), which the builder and
 tools/stage_gate.py read.
 
 inputs  hierarchy/<key>/openalex-identity-review.json: hand-reviewed decisions {name: {openalex: [ids], why, aliases?}}
@@ -28,7 +28,8 @@ def full(a):
 
 
 def wanted(key):
-    rev = json.loads((P.data('openalex-identity-review.json', key)).read_text())['decisions']
+    rf = P.data('openalex-identity-review.json', key)
+    rev = json.loads(rf.read_text())['decisions'] if rf.exists() else {}   # the hand review is optional (a school may need none)
     out = {n: dict(openalex=[full(a) for a in d['openalex']], why=d['why'], aliases=d.get('aliases') or [], basis='reviewed') for n, d in rev.items()}
     cen = {x['name']: x for x in json.loads((P.data('census-faculty.json', key)).read_text())['faculty']}
     add = {x['name']: x for x in json.loads((P.data('census-additions.json', key)).read_text())} if (P.data('census-additions.json', key)).exists() else {}

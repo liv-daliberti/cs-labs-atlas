@@ -313,7 +313,7 @@ STEPS = {
           H('holds', 'review periods/<key>-holds.json; a departure the page states is faculty_end_moved evidence; periods use ISO dates')],
     '5': [Q('dblp-ids', 'PY $TOOLS/dblp_ids_school.py {school}', mem='24G', time='01:00:00'),
           Q('homepage-links', 'PY $TOOLS/homepage_links_school.py {school}', time='04:00:00'),
-          H('openalex-identity', 'write hierarchy/<key>/openalex-identity-review.json, then tools/oa_identity_school.py <key>; review namesakes and cross-school PIs'),
+          H('openalex-identity', 'first re-run tools/census_build.py <key> (it folds dblp-ids.json into the census; the gate reads the census), then write hierarchy/<key>/openalex-identity-review.json, then tools/oa_identity_school.py <key>; review namesakes and cross-school PIs'),
           Q('dblp-dump-persons', 'PY $TOOLS/dblp_dump_persons.py', mem='24G', time='01:00:00', shared=True)],
     '6': [Q('labpage-links', 'PY $TOOLS/labpage_students_school.py links {school}', time='06:00:00', py='collector'),
           Q('labpage-extract', 'PY $TOOLS/labpage_students_school.py extract {school}', time='04:00:00', py='collector'),
