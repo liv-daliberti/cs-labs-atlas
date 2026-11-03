@@ -61,3 +61,13 @@ def test_snapshot_ext_is_a_16_task_array_then_a_merge_and_status_shows_dependenc
         assert argv[0] == 'squeue'
         return R()
     assert 'dependency=afterany:32079275' in AP.dependency_lines(['32079156'], squeue)
+
+
+def test_only_runs_the_named_stage(monkeypatch):
+    run = FakeRun()
+    monkeypatch.setattr(AP, 'submit', lambda name, schools, **k: (run.calls.append(k), {'candidates': '1'})[1])
+    monkeypatch.setattr(AP.P, 'SCRATCH', '/tmp')
+    monkeypatch.setattr(AP.Path, 'mkdir', lambda *a, **k: None)
+    monkeypatch.setattr(AP.Path, 'write_text', lambda *a, **k: 0)
+    AP.main(['onboard-data', 'SCHOOLS=newu', '--only', 'candidates'], run=run)
+    assert [st[0] for st in run.calls[0]['stages']] == ['candidates']

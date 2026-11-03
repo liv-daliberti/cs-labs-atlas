@@ -11,6 +11,7 @@ reads the result and judges. A stage is one job, or an array with one task per s
   atlas pipeline snapshot-ext OA_DATE=<date> SCHOOLS=<key> [--wait]  the OpenAlex snapshot extension of a new school: 16 filter tasks -> merge
   atlas pipeline reader   [--test-only] [--wait]                   the reader export (licence -> host or link) after fresh copies
   atlas pipeline snapshot-refresh [--dry-run] [--promote] [--date D]   a newer OpenAlex snapshot -> NEW dated store -> per-school count compare (`current` moves only with --promote)
+  atlas pipeline <name> ... --only <stage>                         just that stage (repeatable), after a diagnosed failure of one step
   atlas pipeline status [<run dir>]                                states of a run's jobs and the current dependency of each queued one (one sacct call, one squeue call)
 
 Each run writes <scratch>/pipeline-<name>-<time>/jobs.json (stage -> job id). Every stage runs from a code snapshot of main's HEAD at submit time (--from-worktree: this worktree's committed HEAD, for onboarding code not landed yet)
@@ -123,6 +124,7 @@ def main(argv=None, run=subprocess.run):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('name', nargs='?'); ap.add_argument('rest', nargs='*')
     ap.add_argument('--list', action='store_true'); ap.add_argument('--test-only', action='store_true'); ap.add_argument('--wait', action='store_true'); ap.add_argument('--from-worktree', action='store_true')
+    ap.add_argument('--only', action='append', default=[], help='run only this stage (repeatable), e.g. after a diagnosed failure of one step')
     a = ap.parse_args(argv)
     if a.list or not a.name:
         for n, st in PIPELINES.items():
@@ -141,7 +143,10 @@ def main(argv=None, run=subprocess.run):
             k, v = x.split('=', 1)
             env[k] = v
     schools = schools_arg(env)
-    jobs = submit(a.name, schools, run=run, test_only=a.test_only, guard_preempt=True, repo=CODE if a.from_worktree and CODE.resolve() != Path(P.CODE).resolve() else None)
+    stages = [st for st in PIPELINES.get(a.name, []) if st[0] in a.only] if a.only else None
+    if a.only and not stages:
+        raise SystemExit(f'--only {a.only}: no such stage in {a.name}; atlas pipeline --list')
+    jobs = submit(a.name, schools, run=run, test_only=a.test_only, stages=stages, guard_preempt=True, repo=CODE if a.from_worktree and CODE.resolve() != Path(P.CODE).resolve() else None)
     if a.test_only:
         return 0
     d = Path(P.SCRATCH) / f"pipeline-{a.name}-{datetime.datetime.now().strftime('%Y%m%d-%H%M%S')}"
