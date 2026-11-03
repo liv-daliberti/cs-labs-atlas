@@ -47,7 +47,7 @@ The protocol is config-driven. A school is a charter, `schools/<key>.toml`, and 
   - API keys live in `~/.config/cs-atlas/*.env` and are never printed. The owner's email is never sent anywhere.
 - **Compute.**
   - Follow `/etc/claude-code/CLAUDE.md`.
-  - Slurm jobs carry mem, time and cpus. Run `sbatch --test-only` first, use `--exclude=node302`, and leave 60 s or more between polls.
+  - Slurm jobs carry mem, time and cpus. Run `sbatch --test-only` first, use `--exclude=node302`, and do not poll: chain jobs with dependencies and read their output files (`atlas pipeline ... --wait` makes one `sacct` call per 120 s or more).
   - Local runs use `nice`. One heavy builder runs at a time.
   - Temporary files go in `hierarchy/<key>/tmp/` (ignored by git), never in login `/tmp`.
 

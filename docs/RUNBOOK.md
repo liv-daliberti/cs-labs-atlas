@@ -1,7 +1,7 @@
 # Runbook: rebuild, collectors, release, recovery
 
 Read /etc/motd and the host rules first (shared login node: heavy work goes to Slurm, `mltheory`, `--exclude=node302`, explicit
-`--mem`, `--time`, `--cpus-per-task`; `sbatch --test-only` before submitting; wait 60 s or more between `squeue` checks).
+`--mem`, `--time`, `--cpus-per-task`; `sbatch --test-only` before submitting; do not poll the controller: chain jobs with `--dependency=afterok:` and read their output files, or use `atlas pipeline ... --wait` / `atlas release --wait`, which make one `sacct` call per 120 s or more; a manual `squeue`/`sacct` check is never more often than every 120 s).
 Set up a shell: `. /n/fs/resemble/homogenizing-science/code/paths.sh` (gives `$CS_ATLAS_PY` and every path).
 
 ## Rebuild
@@ -43,7 +43,7 @@ Set up a shell: `. /n/fs/resemble/homogenizing-science/code/paths.sh` (gives `$C
 `atlas pipeline --list` shows them. `atlas pipeline copies` runs lab_paper_copies per school (a Slurm array), then the unavailability ledger, the coverage recount and
 the collectors status page; `atlas pipeline labpage` runs the lab-page audit per school, restamps the acceptance files and writes the summary; `atlas pipeline reader`
 the reader export. Each stage is submitted `afterok` the one before, from a code snapshot of main's HEAD, so nothing is polled and nothing is typed between stages;
-`--test-only` checks the first stage, `--wait` blocks once (scontrol wait_job) and prints the states, `atlas pipeline status` shows a run. A new chain is a new entry
+`--test-only` checks the first stage, `--wait` blocks until the chain ends with one `sacct` call per 120 s or more (tools/slurm_wait.py; it stops at the first failed job) and prints the states, `atlas pipeline status` shows a run. A new chain is a new entry
 in `PIPELINES` in tools/atlas_pipeline.py. The hand checks, the design and the diagnosis of a failed stage stay with the agent.
 
 ## Release
@@ -52,7 +52,7 @@ in `PIPELINES` in tools/atlas_pipeline.py. The hand checks, the design and the d
 CHANGES.md), notes check, organized tree, GitHub export (written and committed locally), then the two steps that publish outside this host, `export-push`
 (tag `release-<id>` and push) and `hf-upload`, and last the Codex handoff note (SITE-HANDOFF.md, added to the release). The two external steps need
 `--yes-push` / `--yes-hf` (or a "y" at the terminal); without them the run stops with exit status 3 and `--resume` continues after you confirm. As a job:
-`atlas submit hierarchy/release.slurm` (`RELEASE_ARGS="--yes-push --yes-hf"` in the environment to confirm in advance). `atlas release --dry-run` prints the steps.
+`atlas release --wait` (submits that job from main's HEAD and blocks on it with one `sacct` call per 120 s or more) or `atlas submit hierarchy/release.slurm` (`RELEASE_ARGS="--yes-push --yes-hf"` in the environment to confirm in advance). `atlas release --dry-run` prints the steps.
 A release is `releases/<date>[.N]/`, read-only, with `MANIFEST.json` (hashes, code commit, rules, counts, regression, ledger, ids, reader) and `CHANGES.md`;
 `releases/latest` points at the newest. Releases are never overwritten or edited; notes are added only with `make_release.py add-note` (`atlas make-release`
 cuts just the release). Agents do not push; the coordinator confirms the external steps.

@@ -41,7 +41,7 @@ COMMANDS = {
     'paths':      ('py', 'tools/atlas_paths.py', 'every path, or one: atlas paths [NAME]'),
     'relocate':   ('py', 'tools/relocate_project.py', 'the project move (dry run by default)'),
     'submit':     ('special', 'sbatch', 'sbatch with the code pinned: atlas submit [sbatch options] script.slurm (CS_ATLAS_SNAPSHOT_COMMIT = main\'s HEAD now)'),
-    'release':    ('py', 'tools/atlas_release.py', 'the whole release chain, stopping at the first failure: atlas release [--dry-run] [--yes-push] [--yes-hf] [--resume] [--from STEP]'),
+    'release':    ('py', 'tools/atlas_release.py', 'the whole release chain, stopping at the first failure: atlas release [--dry-run] [--yes-push] [--yes-hf] [--resume] [--from STEP] [--wait: run as a Slurm job and block, one sacct call per 120 s]'),
     'pipeline':   ('py', 'tools/atlas_pipeline.py', 'the mechanical chains as Slurm pipelines: atlas pipeline copies|labpage|reader [SCHOOLS="a b"] [--test-only] [--wait] | --list | status'),
     'review-page': ('py', 'tools/review_page.py', 'a local review page for hand checks: atlas review-page labpage|accuracy|build|serve|export (docs/LAB-PAGES.md)'),
     'lease':      ('py', 'tools/agent_lease.py', 'one lease per agent: atlas lease acquire|renew|release|status|check <name>'),

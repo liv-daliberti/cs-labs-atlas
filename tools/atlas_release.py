@@ -19,8 +19,9 @@ The steps that publish outside this host (export-push, hf-upload) never run on t
 the terminal; in a job (no terminal) without the flag the run stops there with exit status 3 and says which flag to add. Everything before
 them is local and rerunnable. Progress is kept in <scratch>/release-<tag>/run.json: `--resume` skips the steps that passed.
 
-usage: atlas release [--tag TAG] [--schools "a b"] [--from STEP] [--only STEP[,STEP]] [--resume] [--dry-run]
+usage: atlas release [--wait] [--tag TAG] [--schools "a b"] [--from STEP] [--only STEP[,STEP]] [--resume] [--dry-run]
                      [--target all|site] [--release-id ID] [--yes-push] [--yes-hf] [--allow-swings] [--export-dir DIR]
+--wait runs the chain as the Slurm job hierarchy/release.slurm and blocks until it ends (one sacct call per 120 s or more; exit 0 = the job completed).
 Use --target site to freeze and write a handoff without GitHub/Hugging Face exports.
 Resume requires the same --tag, source commit and options. The exact frozen release
 is saved in run.json; downstream steps never resolve the moving latest symlink.
@@ -221,7 +222,36 @@ def run_step(step, c, runner=subprocess.run):
     return r.returncode == 0, f'exit {r.returncode}; log {log}' + (': ' + ' | '.join(tail) if r.returncode else '')
 
 
+def submit_and_wait(args, run=subprocess.run, wait=None):
+    """`atlas release --wait`: the chain runs as the Slurm job hierarchy/release.slurm (code pinned to main's HEAD now, `sbatch --test-only` first and
+    refused on `Preempts:`), and this command blocks until it ends with one sacct call per 120 s or more (tools/slurm_wait.py). -> exit status."""
+    import shlex
+    import slurm_wait
+    wait = wait or slurm_wait.wait
+    head = run(['git', '-C', str(P.CODE), 'rev-parse', 'HEAD'], capture_output=True, text=True).stdout.strip()
+    env = dict(os.environ, CS_ATLAS_SNAPSHOT_COMMIT=head, RELEASE_ARGS=' '.join(shlex.quote(x) for x in args))
+    script = str(CODE / 'hierarchy' / 'release.slurm')  # route-ok: code that stays in hierarchy/
+    probe = run(['sbatch', '--parsable', '--test-only', '--export=ALL', script], capture_output=True, text=True, env=env, cwd=str(P.CODE))
+    if probe.returncode or 'Preempts:' in (probe.stderr or '') + (probe.stdout or ''):
+        print('atlas release --wait: not submitted: ' + ((probe.stderr or probe.stdout or '').strip()[:300] or 'sbatch --test-only failed'), file=sys.stderr)
+        return 1
+    r = run(['sbatch', '--parsable', '--export=ALL', script], capture_output=True, text=True, env=env, cwd=str(P.CODE))
+    if r.returncode:
+        print('atlas release --wait: sbatch failed: ' + (r.stderr or '').strip()[:300], file=sys.stderr)
+        return 1
+    job = r.stdout.strip().split(';')[0]
+    print(f'atlas release: job {job} (code commit {head[:7]}); log {P.data("logs")}/release-{job}.out; waiting with one sacct call per {slurm_wait.MIN_INTERVAL} s', flush=True)
+    v, st = wait([job], run=run)
+    print(slurm_wait.table(st))
+    print(f'atlas release: {v}')
+    return 0 if v == 'ok' else 1
+
+
 def main(argv=None, runner=subprocess.run):
+    argv = list(sys.argv[1:] if argv is None else argv)
+    if '--wait' in argv and '--dry-run' not in argv:
+        return submit_and_wait([x for x in argv if x != '--wait'])
+    argv = [x for x in argv if x != '--wait']   # with --dry-run there is no job to wait for
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('--tag'); ap.add_argument('--schools'); ap.add_argument('--export-dir')
     ap.add_argument('--target', choices=['all', 'site'], default='all')

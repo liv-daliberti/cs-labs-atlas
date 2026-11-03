@@ -1,7 +1,7 @@
 """`atlas pipeline <name>`: the mechanical chains as Slurm pipelines with dependencies (ROADMAP #34, 2026-11-01).
 
 An agent used to submit a job, poll it, recount coverage, restamp acceptance files, rebuild the ledger and the copies by hand, one command after another.
-A pipeline submits every stage at once, each `--dependency=afterok:` the one before, so nothing is polled and nothing is typed between the stages; the agent
+A pipeline submits every stage at once, each `--dependency=afterok:` the one before, so nothing is polled (`--wait` makes one sacct call per 120 s or more, tools/slurm_wait.py) and nothing is typed between the stages; the agent
 reads the result and judges. A stage is one job, or an array with one task per school.
 
   atlas pipeline --list
@@ -118,9 +118,11 @@ def main(argv=None, run=subprocess.run):
     (d / 'jobs.json').write_text(json.dumps(dict(pipeline=a.name, schools=schools, jobs=jobs), indent=1))
     print(f'pipeline {a.name}: ' + ' -> '.join(f'{s} {j}' for s, j in jobs.items()) + f'; run dir {d}')
     if a.wait:
-        last = list(jobs.values())[-1]
-        run(['scontrol', 'wait_job', last])   # one blocking call, no polling
-        print(run(['sacct', '-j', ','.join(jobs.values()), '-X', '-n', '-o', 'JobID,JobName,State,Elapsed,ExitCode'], capture_output=True, text=True).stdout)
+        import slurm_wait
+        v, st = slurm_wait.wait(list(jobs.values()), run=run)   # one sacct call per 120 s or more; stops at the first failed job
+        print(slurm_wait.table(st))
+        print(f'pipeline {a.name}: {v}')
+        return 0 if v == 'ok' else 1
     return 0
 
 
