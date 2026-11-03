@@ -13,7 +13,12 @@ It holds data/fulltext/<school>/.loop.lock, the lock claude-berkeley-20261021/to
 two never run together. State -> data/fulltext/<school>/loop-state.json, log -> loop.log (as bk_collect_loop.py).
 --recent-first Y (2026-10-27, Stanford): the lab pass's --work-ids list puts lab papers from year Y on first (the collector
 works through a --work-ids list in its order within each host); without it the order is unchanged.
-usage: lab_first_loop.py <school> [--full-hours H] [--recent-first Y]
+--priority-file F (2026-11-03, owner): F lists work ids (first column; '#' lines skipped), written by priority_file.py from the latest
+release: the link-only papers (the site links an open copy confirmed at the source, we hold no copy) still queued for download. Each
+round first runs the collector on the lab-paper groups that contain one of those ids (phase priority_N), then the lab pass on the
+rest. Only the order changes: robots.txt, pacing, paused hosts, identity checks and catalog locks are the collector's, unchanged,
+and the file never holds a blocked paper (robots_disallow, challenge, login, paywall_only). The file is re-read every round.
+usage: lab_first_loop.py <school> [--full-hours H] [--recent-first Y] [--priority-file F]
 """
 import fcntl, json, os, signal, socket, sqlite3, subprocess, sys, time
 from pathlib import Path
@@ -35,7 +40,8 @@ def state(out, **kw):
     s.update(kw, updated_at=F.now(), loop='fulltext-push/lab_first_loop.py'); p.write_text(json.dumps(s, indent=1))
 
 
-def lab_work_ids(school, recent_first=None):
+def lab_work_ids(school, recent_first=None, priority=None):
+    """Work ids of the lab papers without a copy; with `priority` (a set of work ids) -> (priority ids, other ids)."""
     papers = F.lab_papers(school)
     cs = F.catalog_state(school, with_urls=False)
     ids = []
@@ -51,18 +57,32 @@ def lab_work_ids(school, recent_first=None):
         if len(k) >= 20:
             title_ids.setdefault(k, []).append(i)
     db.close()
-    later = []
+    later, first = [], []
     for r in papers.values():
         if F.is_local(school, r, cs):
             continue
         w = F.match_work(school, r, cs)
         group = ([w] if w else []) + doi_ids.get(F.ndoi(r.get('doi')), []) + title_ids.get(F.nt(r.get('title')), [])
         group = [i for i in dict.fromkeys(al.get(i, i) for i in group) if cs['status'].get(i) not in F.LOCAL]
-        if recent_first and (r.get('year') or 0) < recent_first:
+        if priority and priority.intersection(group):
+            first += group
+        elif recent_first and (r.get('year') or 0) < recent_first:
             later += group
         else:
             ids += group
+    if priority is not None:
+        first = list(dict.fromkeys(first))
+        return first, [i for i in dict.fromkeys(ids + later) if i not in set(first)]
     return list(dict.fromkeys(ids + later))
+
+
+def read_priority(path):
+    """The set of work ids of a --priority-file (priority_file.read_ids); a missing file is an empty set."""
+    import priority_file
+    try:
+        return set(priority_file.read_ids(path))
+    except OSError:
+        return set()
 
 
 # Supervision (ROADMAP item 12, 2026-10-31): the loop runs as a Slurm job (fulltext-push/downloads.slurm). SIGTERM (scancel,
@@ -123,6 +143,7 @@ def main():
     school = sys.argv[1]
     hours = float(sys.argv[sys.argv.index('--full-hours') + 1]) if '--full-hours' in sys.argv else 2.0
     recent = int(sys.argv[sys.argv.index('--recent-first') + 1]) if '--recent-first' in sys.argv else None
+    pri_path = sys.argv[sys.argv.index('--priority-file') + 1] if '--priority-file' in sys.argv else None
     out = F.FT / school
     import store_layout  # the store's directories first: a collector without sources/ fails every attempt (2026-10-31)
     made = store_layout.ensure(out)
@@ -144,7 +165,16 @@ def main():
     while not STOP['flag']:
         rounds += 1
         before = max_attempt(out)
-        ids = lab_work_ids(school, recent)
+        pri = read_priority(pri_path) if pri_path else None
+        if pri is not None:
+            first, ids = lab_work_ids(school, recent, pri)
+            pf = F.P.FT_RAW / f'{school}-priority-run-ids.txt'
+            pf.write_text('\n'.join(first) + '\n')
+            state(out, rounds=rounds, priority_ids=len(first), priority_file=pri_path)
+            if first:
+                run(out, ['--work-ids', str(pf)], f'priority_{len(first)}')
+        else:
+            ids = lab_work_ids(school, recent)
         f = F.P.FT_RAW / f'{school}-lab-work-ids.txt'
         f.write_text('\n'.join(ids) + '\n')
         state(out, rounds=rounds, lab_work_ids=len(ids))
