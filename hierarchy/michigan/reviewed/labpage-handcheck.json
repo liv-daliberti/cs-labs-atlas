@@ -133,6 +133,31 @@
    "role_year_errors": 3,
    "paper_score": null,
    "result": "students_fail_papers_accepted"
+  },
+  {
+   "round": 5,
+   "date": "2026-11-03",
+   "label": "new student relations from the Robotics adviser-bearing student list (robotics.umich.edu/people/students/, capture 2026-01-06, sha256 8c36e272...); every new relation judged (29 of 29, below the 30-row sample size) against its own capture",
+   "additions_generated_at": "2026-11-02T16:49:43+00:00",
+   "students": {
+    "sampled": 29,
+    "sample_size": 29,
+    "seed": null,
+    "membership_errors": 0,
+    "doubtful_count": 0,
+    "role_or_year_errors": 0,
+    "note": "population of new relations = 29 (22 students, 16 labs); every one shows \"<Name> PhD Student ... Advisor(s) <PI>\" in the capture. A CSE/ECE PhD-roster + co-authorship source was tried first and failed a separate 30-row sample (3 membership errors, 5 doubtful) and is not wired."
+   },
+   "papers": null,
+   "items": {
+    "membership": [],
+    "role_or_year": []
+   },
+   "membership_score": 0.0,
+   "role_year_errors": 0,
+   "paper_score": null,
+   "result": "students_pass_new_relations",
+   "note": "co-authorship-only roster rows (1517 relations, sample seed 7131): failed, not wired; adviser-bearing Robotics list: 29/29 correct"
   }
  ]
 }

@@ -341,6 +341,50 @@ def adviser_directory(key, forms):
     return rows
 
 
+ROBOT_ENTRY = re.compile(r"([A-Z][\w.'\u2019-]+(?: [A-Z][\w.'\u2019-]+){1,2}) (PhD Student|PhD Candidate)\b(.*?)(?= Research Interests?\b|$)")
+ROBOT_TAGS = {'Learning', 'Vision', 'Controls', 'Control', 'Robots', 'Interaction', 'Exoskeleton', 'Navigation', 'Perception', 'Optimization', 'Machines', 'Planning', 'Sensing', 'Design', 'Manipulation', 'Medical', 'Human', 'Autonomous', 'Systems', 'Mechatronics', 'Biomechanics', 'Haptics', 'Prosthetics'}
+ADV_LABEL = re.compile(r"\bAdvisors?\b\s*(.*)$")
+
+
+def adviser_flat_lists(key, forms):
+    """Student lists whose page text gives `<Name> PhD Student ... Advisor <PI> Research Interests` per entry (Michigan Robotics /people/students/,
+    charter `[students].adviser_flat_lists`). PhD entries only (an MS entry is no student relation); the adviser text is the entry's own text up to
+    'Research Interests', and a PI is named in it by a full-name form. Years = the years of the captures that list the pair; the quote runs from
+    the student's name through the adviser's name (verbatim)."""
+    c = W.con(key); by = {}
+    for d in S.field(S.get(key), 'students.adviser_flat_lists') or []:
+        for r in W.cdx_rows(c, d, collapse='timestamp:4'):
+            cap, st, sha, b = W.capture(c, r['timestamp'], r['original'], d, 'student-directory')
+            if st != 200:
+                continue
+            flat = W.flat(b)
+            for m in ROBOT_ENTRY.finditer(flat):
+                a = ADV_LABEL.search(m.group(3))
+                if not a:
+                    continue
+                nm, adv = m.group(1), a.group(1)
+                while len(nm.split()) > 2 and nm.split()[0] in ROBOT_TAGS or nm.split()[0] in ('Robotics', 'Institute', 'Alumni'):
+                    nm = nm.split(' ', 1)[1]  # the research-area tag that precedes each entry on the page
+                if len(nm.split()) < 2:
+                    continue
+                for pi, f in forms:
+                    mm = re.search(re.escape(f) + r'(?![\w-])', adv)
+                    if mm:
+                        e = by.setdefault((nm, pi), dict(years=set(), first=None))
+                        e['years'].add(int(r['timestamp'][:4]))
+                        if not e['first'] or r['timestamp'] < e['first'][0]:
+                            q = flat[m.start():m.start(3) + a.start(1) + mm.end()]
+                            e['first'] = (r['timestamp'], cap, sha, d, q)
+    rows = []
+    for (nm, pi), e in sorted(by.items()):
+        ts, cap, sha, d, q = e['first']
+        rows.append(dict(student=nm, pi=pi, years=[min(e['years']), max(e['years'])], url=re.sub(r'^https?://web\.archive\.org/web/\d+(?:id_)?/', '', cap),
+                         capture_url=cap if 'web.archive.org' in cap else None, sha256=sha, quote=q[:600],
+                         directory_evidence=[dict(url=cap, sha256=sha, quote=nm, observed=ts[:8], directory=d)],
+                         section='adviser-bearing student list (' + d + ')', years_basis='directory_years'))
+    return rows
+
+
 ALUMNI_ENTRY = re.compile(r"([A-Z][\w.'\u2019-]+(?: [A-Z][\w.'\u2019-]+){1,3}) Ph\.?D\.? - (20\d\d) Advisors? - (.*?)(?= Research Interests| Employment| Thesis| After graduating|$)")
 
 
@@ -450,6 +494,8 @@ def roster_coauthor_students(key, forms):
     student's lab only together with a co-authorship: the roster name also stands on the byline of one of the PI's lab papers
     (hierarchy/<key>/lab_papers.jsonl.gz, full-name match). A roster alone or a co-authorship alone is never evidence. Years: a roster of
     alumni by graduation year (`alumni_by_year`) gives [None, that year]; a student list (`students`) the years of the captures listing the name.
+    `phd_students` is a student list whose page is itself a PhD-only program directory (Michigan CSE/ECE /people/phd-students/): the entry need not
+    repeat 'PhD'.
     The quote is the roster text from the name onward (verbatim)."""
     import gzip
     rosters = S.field(S.get(key), 'students.rosters') or []
@@ -530,8 +576,11 @@ def directory(key):
             if len(f.split()) >= 2:
                 forms.append((pi, f))
                 t = f.split()
-                if len(t) >= 3 and not t[1].endswith('.'):
+                if len(t) >= 3:  # 'Elliott J. Rouse' is also 'Elliott Rouse' (an initial between given and family name)
                     forms.append((pi, f'{t[0]} {t[-1]}'))
+                fold = ''.join(ch for ch in __import__('unicodedata').normalize('NFD', f) if not __import__('unicodedata').combining(ch))
+                if fold != f:
+                    forms.append((pi, fold))
     forms = sorted(set(forms), key=lambda x: -len(x[1]))
     ents = directory_entries(key)
     n['directory_students'] = len(ents); n['with_website'] = sum(1 for e in ents.values() if e['websites'])
@@ -563,6 +612,7 @@ def directory(key):
     out += adviser_directory(key, forms)
     out += adviser_alumni(key, forms)
     out += defense_lists(key, forms, {t['name']: t['first'] for t in PS.targets(key)})
+    out += adviser_flat_lists(key, forms)
     out += roster_coauthor_students(key, forms)
     n['adviser_directory_relations'] = sum(1 for r in out if str(r.get('section')).startswith('adviser'))   # adviser-bearing lists (current and alumni)
     n['roster_coauthor_relations'] = sum(1 for r in out if str(r.get('section')).startswith('PhD roster'))
