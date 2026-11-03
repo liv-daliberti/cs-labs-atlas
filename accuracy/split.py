@@ -8,7 +8,6 @@ usage: split.py <round id> [--agents N]
 """
 import json
 import sys
-from pathlib import Path
 
 from sample import ACC_DIR, ROUNDS
 
