@@ -36,7 +36,7 @@ from pihier import names as _names, papers as _papers, identity as _identity  # 
 from pihier.common import (HERE, SITE, DBLP, INST, AFF, TODAY, WINDOW_START, NOT_PAPERS, SCHOOL_LOOSE, OWN_UNITS,  # noqa: E402,F401
                            read, norm_title, ndoi, source_year, sweep_works, best_sources, as_list)
 from pihier.names import (NICK, _nick_pairs, nick_ok, LETTERS, toks, given, SUFFIX, nosuffix, DEGREE_JUNK,  # noqa: E402,F401
-                          clean_person_name, _fold, names_full_form, Name, same_student, hyphen_half, byline_name,
+                          clean_person_name, _fold, names_full_form, Name, same_student, initials_optional, surname_typo, hyphen_half, byline_name,
                           name_variants, student_on_byline, one_edit, EAST_ASIAN_FAMILY, strict_name_one, strict_name,
                           _words, name_conflict, full_pair, all_initials, gwords, given_conflict, dedupe_tokens)
 from pihier.periods import (SEASON, datebounds, contains, same_year, transition_side, transition_status, _year, listings_after_move,  # noqa: E402,F401

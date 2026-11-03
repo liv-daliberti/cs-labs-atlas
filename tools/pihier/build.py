@@ -40,7 +40,8 @@ def write(ctx):
                droppedProgramOrReaderOnly=weak_dropped, pisListedAsOwnStudent=self_listed, linkGuardSamples=guard_samples,
                linkGuardKeptVariantSamples=guard_kept_samples, notPaperSamples=dict(not_paper_samples),
                page1ElsewhereSamples=page1_samples, droppedWithoutHashedSource=ctx.unevidenced, labpageAdditionsSetAside=ctx.labpage_set_aside,
-               provenance=provenance.block(school))  # what this package was built from (tools/provenance.py; make_release requires it)
+               provenance=provenance.block(school),
+               studentInitialsMerges=ctx.initials_merges, studentSurnameTypoCandidates=students.typo_candidate_rows(ctx))  # what this package was built from (tools/provenance.py; make_release requires it)
     json.dump(rep, open(out / 'report.json', 'w'), indent=1, ensure_ascii=False)
     print(json.dumps(dict(school=school, **n)))
 

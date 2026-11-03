@@ -9,7 +9,7 @@ from pathlib import Path
 import atlas_paths as P  # data paths (DATA_FILES)
 
 from .common import accepted_additions, as_years, best_sources, read, source_year
-from .names import Name, _fold, clean_person_name, dedupe_tokens, full_pair, names_full_form, nick_ok, same_student, toks
+from .names import Name, _fold, clean_person_name, dedupe_tokens, full_pair, names_full_form, nick_ok, initials_optional, same_student, surname_typo, toks
 
 # Researched student evidence files, hierarchy/<school>/<file>, each a list of {pi, students: [{name, quote, sha256, url,
 # ...}]}. EXTENSION POINT for a new reviewed student source. The lab-page additions (labpage-additions.json `students`)
@@ -410,7 +410,12 @@ def merge_within_lab(ctx, stu):
         keep = []
         for r in recs:
             tgt = next((k for k in keep if Name([k['name']] + k.get('aliases', [])).match(r['name']) or Name([r['name']]).match(k['name'])
-                        or any(same_student(r['name'], q) for q in [k['name']] + k.get('aliases', []))), None)
+                        or any(same_student(r['name'], q, initials=False) for q in [k['name']] + k.get('aliases', []))), None)
+            if tgt is None:  # R-STU-13: the same, with the initial-only tokens optional; counted apart
+                tgt = next((k for k in keep if any(initials_optional(r['name'], q) for q in [k['name']] + k.get('aliases', []))), None)
+                if tgt is not None:
+                    n['student_records_merged_initials_optional'] += 1
+                    ctx.initials_merges.append(dict(pi=p['pi'], kept=[tgt['person'], tgt['name']], merged=[r['person'], r['name']]))
             if tgt is None:
                 keep.append(r)
             else:
@@ -444,6 +449,48 @@ def identity_review(ctx, stu):
         k.setdefault('identityReview', []).append(dict(merged=d['person'], reason=x.get('reason'), evidence=x.get('evidence')))
         merged_students += 1
     return merged_students
+
+
+def queue_surname_typos(ctx, stu):
+    """R-STU-13: two records of one lab with the same given name and family names one edit apart are queued for review
+    (ctx.typo_pairs), never merged. Pairs the review file already judged (either verdict) are not queued again."""
+    rev_f = P.data('student-identity-review.json', root=ctx.here)
+    judged = {frozenset((x['a'][0], x['b'][0])) for x in (read(rev_f) if rev_f.exists() else []) if x.get('school') == ctx.school and x.get('verdict')}
+    for pi, S in stu.items():
+        recs = list(S.values())
+        for i, a in enumerate(recs):
+            for b in recs[i + 1:]:
+                if frozenset((a['person'], b['person'])) in judged:
+                    continue
+                if any(surname_typo(x, y) for x in [a['name']] + list(a.get('aliases') or []) for y in [b['name']] + list(b.get('aliases') or [])):
+                    ctx.typo_pairs.append((pi, a['person'], b['person']))
+    ctx.n['student_surname_typo_candidates'] = len(ctx.typo_pairs)
+
+
+def typo_candidate_rows(ctx):
+    """The queued pairs in the student-identity-review.json shape with `verdict` empty, and the supporting signals found:
+    `shared_source_url` (both records cite the same page), `alias_of_other` (one name is the other's alias, or either
+    name is one of the other's aliases) and `shared_paper` (the same lab paper is linked to both; a coauthor pair as
+    often as a duplicate, so it is a lead, not a verdict)."""
+    papers = collections.defaultdict(set)
+    for x in ctx.sp:
+        papers[(x['pi'], x['student'])].add(x['work'])
+    rows = []
+    for pi, ia, ib in ctx.typo_pairs:
+        a, b = ctx.stu[pi].get(ia), ctx.stu[pi].get(ib)
+        if not a or not b:
+            continue
+        urls = lambda r: {s.get('url') for rel in r['relations'] for s in rel.get('sources') or [] if s.get('url')}
+        sig = []
+        if urls(a) & urls(b):
+            sig.append(dict(signal='shared_source_url', urls=sorted(urls(a) & urls(b))[:3]))
+        if toks(a['name']) in [toks(x) for x in b.get('aliases') or []] or toks(b['name']) in [toks(x) for x in a.get('aliases') or []]:
+            sig.append(dict(signal='alias_of_other'))
+        if papers[(pi, ia)] & papers[(pi, ib)]:
+            sig.append(dict(signal='shared_paper', works=sorted(papers[(pi, ia)] & papers[(pi, ib)])[:3]))
+        rows.append(dict(school=ctx.school, pi=pi, a=[ia, a['name']], b=[ib, b['name']], verdict='', canonical_name=None, reason='', evidence=[],
+                         signals=sig))
+    return rows
 
 
 def corrections(ctx, stu):
@@ -486,6 +533,7 @@ def gather(ctx):
     merged_students = merge_within_lab(ctx, stu)
     merged_students += identity_review(ctx, stu)
     corrections(ctx, stu)
+    queue_surname_typos(ctx, stu)
     n['student_records_merged'] = merged_students
     # re-captured evidence for the site collections' bare-URL relations (R-STU-08, 2026-10-29)
     n.update(apply_relation_evidence(stu, school, HERE))

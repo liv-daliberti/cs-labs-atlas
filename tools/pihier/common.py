@@ -151,4 +151,6 @@ class Ctx:
         self.site = Path(site) if site is not None else SITE
         self.out = out
         self.n = collections.Counter()
+        self.initials_merges = []  # merges only the optional-initials rule made (R-STU-13), for the report
+        self.typo_pairs = []  # (pi, record id, record id): one-letter surname typos left for review (R-STU-13)
         self.labpage_set_aside = []  # accepted lab-page papers the build did not keep, with the reason (report.json)

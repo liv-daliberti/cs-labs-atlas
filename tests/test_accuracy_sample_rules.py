@@ -217,6 +217,52 @@ def test_R_STU_06_hyphenated_family_name_merges_within_a_lab():
     assert not h.same_student('Maria Ortiz-Lampier', 'Pablo Ortiz')
 
 
+def test_R_STU_13_initials_optional_within_a_lab():
+    from pihier.names import Name
+    # Christin's lab: the publishing name and the thesis name (trailing 'V.' is a second-surname initial, not the family name)
+    assert not Name(['Alejandro Cuevas']).match('Alejandro E.D. Cuevas V.')   # the matchers alone still miss it
+    assert h.initials_optional('Alejandro Cuevas', 'Alejandro E.D. Cuevas V.') and h.same_student('Alejandro Cuevas', 'Alejandro E.D. Cuevas V.')
+    assert h.initials_optional('Alejandro E. D. Cuevas', 'Alejandro E.D. Cuevas V.') and h.initials_optional('Carlos R. Ruiz Gomez', 'Carlos Ruiz Gomez')
+    # Hispanic double surnames, and a second surname given only as an initial
+    assert h.initials_optional('Maria Gonzalez', 'Maria Gonzalez Escamilla')
+    assert h.initials_optional('Carlos Ruiz', 'Carlos Ruiz G.')
+    # negatives: conflicting initials, other given names, other surnames, bare initials, East Asian given/family pairs
+    assert not h.initials_optional('Alex L. Wang', 'Alex M. Wang')
+    assert not h.initials_optional('Alex W. Chen', 'Alex Wang') and not h.initials_optional('Alex Wang', 'Alan Wang')
+    assert not h.initials_optional('Wei C.', 'Wei Chen') and not h.initials_optional('J. Smith', 'John Smith')
+    assert not h.initials_optional('Wei Zhang', 'Wei Zhang Li')
+    assert not h.initials_optional('Anna K. Lee', 'Anna Park')
+
+
+def test_R_STU_13_initials_merge_only_within_one_lab():
+    from pihier import students as S
+    from pihier.common import Ctx
+    def run(labs):
+        ctx = Ctx('x'); ctx.pis = [dict(pi=l) for l in labs]
+        stu = {l: {pid: dict(person=pid, name=nm, relations=[]) for pid, nm in recs} for l, recs in labs.items()}
+        return S.merge_within_lab(ctx, stu), stu, ctx
+    n, stu, ctx = run({'Lab A': [('p1', 'Alexander Wang')], 'Lab B': [('p2', 'Alex L. Wang')]})
+    assert n == 0 and len(stu['Lab A']) == len(stu['Lab B']) == 1                      # never across labs (R-HIER-03)
+    n, stu, ctx = run({'Lab A': [('p1', 'Alejandro Cuevas'), ('p2', 'Alejandro E.D. Cuevas V.')]})
+    assert n == 1 and len(stu['Lab A']) == 1 and ctx.n['student_records_merged_initials_optional'] == 1
+    n, stu, ctx = run({'Lab A': [('p1', 'Alex W. Chen'), ('p2', 'Alex Wang'), ]})
+    assert len(stu['Lab A']) == 2                                                       # two people who share a first name and a surname initial stay apart
+
+
+def test_R_STU_13_surname_typos_are_queued_never_merged():
+    from pihier import students as S
+    from pihier.common import Ctx
+    assert h.surname_typo('Alexander Swerdlow', 'Alexander Swerlow') and not h.surname_typo('Wei Wang', 'Wei Wong')
+    assert not h.surname_typo('Alexander Wang', 'Alexander Wong') and not h.surname_typo('Ann Li', 'Ann Lu')
+    ctx = Ctx('x'); ctx.pis = [dict(pi='Lab A')]
+    stu = {'Lab A': {'p1': dict(person='p1', name='Alexander Swerdlow', relations=[]), 'p2': dict(person='p2', name='Alexander Swerlow', relations=[])}}
+    assert S.merge_within_lab(ctx, stu) == 0 and len(stu['Lab A']) == 2
+    ctx.here = Path('/nonexistent'); ctx.stu = stu; ctx.sp = []
+    S.queue_surname_typos(ctx, stu)
+    row, = S.typo_candidate_rows(ctx)
+    assert row['verdict'] == '' and row['a'][0] == 'p1' and row['b'][0] == 'p2'
+
+
 def test_R_STU_07_pi_person_id_is_never_a_student():
     labs = {'Borivoje Nikolic': {'berkeley_fac_john-wright': dict(person='berkeley_fac_john-wright', name='John Wright', relations=[{'type': 'researched_advising'}])}}
     assert h.rekey_pi_person_ids(labs, {'berkeley_fac_john-wright'}, 'berkeley') == 1

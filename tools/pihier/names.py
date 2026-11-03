@@ -1,5 +1,5 @@
 """Names: the readings of a person's name and the matchers every stage uses (toks, Name, nick_ok, byline_name, the
-given-name guard). Rules: R-PAP-07 (all_initials), R-PAP-08 (nosuffix), R-STU-05 (dedupe_tokens), R-STU-06 (hyphen_half),
+given-name guard). Rules: R-PAP-07 (all_initials), R-PAP-08 (nosuffix), R-STU-05 (dedupe_tokens), R-STU-06 (hyphen_half), R-STU-13 (initials_optional, surname_typo),
 R-LNK-02/02a/02b (given_conflict, EAST_ASIAN_FAMILY), R-LNK-04/04a (the nickname tables)."""
 import collections, html, re, unicodedata
 
@@ -149,7 +149,7 @@ class Name:
         return False
 
 
-def same_student(a, b):
+def same_student(a, b, initials=True):
     """Two student records of one lab that Name.match missed but are one person: the same family name and middle names
     with first given names that are nickname-equal or one a prefix (3+ letters) of the other ('Ali'/'Alireza',
     'Theo'/'Théophile', 'Subra'/'Subramanian'), or the same 3+ name tokens reordered ('Tan Nhat Bui'/'Nhat-Tan Bui').
@@ -159,7 +159,7 @@ def same_student(a, b):
         return False
     if len(ta) >= 3 and sorted(ta) == sorted(tb):
         return True
-    if hyphen_half(a, b) or hyphen_half(b, a):
+    if hyphen_half(a, b) or hyphen_half(b, a) or (initials and initials_optional(a, b)):
         return True
     if ta[-1] != tb[-1]:
         return False
@@ -168,6 +168,40 @@ def same_student(a, b):
         return True
     gx, gy = sorted((''.join(ta[:-1]), ''.join(tb[:-1])), key=len)  # 'Amir'/'Amirali Bagher', 'Kyutae'/'Kyu-Tae Thomas'
     return len(gx) >= 4 and gy.startswith(gx)
+
+
+def core_tokens(name):
+    """(core, initials): the name tokens without generational suffix, and its initial-only tokens ('E.D.', 'V.', 'J')
+    split off from the words. 'Alejandro E.D. Cuevas V.' -> (['alejandro', 'cuevas'], ['e', 'd', 'v'])."""
+    t = nosuffix(toks(name))
+    return [x for x in t if len(x) > 1], [x for x in t if len(x) == 1]
+
+
+def initials_optional(a, b):
+    """(R-STU-13, 2026-11-03, owner) Within one lab, initial-only tokens are optional wherever they appear, trailing ones
+    too: 'Alejandro Cuevas' / 'Alejandro E.D. Cuevas V.' (publishing name / thesis name; the trailing 'V.' is a second
+    surname initial, not the family name). The words left must still be two or more with the same first given name (equal
+    or a nickname pair) and the same words after it, or one side adds a second surname ('Gonzalez Escamilla' / 'Gonzalez';
+    not when both are East Asian family names). Initials present on both sides must not conflict (the shorter list a subset
+    of the longer). Used within one lab only (R-HIER-03)."""
+    (ca, ia), (cb, ib) = core_tokens(a), core_tokens(b)
+    if len(ca) < 2 or len(cb) < 2 or (ia and ib and not set(ia) <= set(ib) and not set(ib) <= set(ia)):
+        return False
+    if not nick_ok(ca[0], cb[0]):
+        return False
+    if ca[1:] == cb[1:]:
+        return True
+    x, y = sorted((ca, cb), key=len)  # a second surname on one side only: 'maria gonzalez' / 'maria gonzalez escamilla'
+    return len(y) == len(x) + 1 and len(y) >= 3 and x[1:] == y[1:-1] and not (x[-1] in EAST_ASIAN_FAMILY and y[-1] in EAST_ASIAN_FAMILY)
+
+
+def surname_typo(a, b):
+    """(R-STU-13) Same given name, family names one edit apart (4+ letters, not both East Asian family names): 'Alexander
+    Swerdlow' / 'Alexander Swerlow'. Never merged by the build: a candidate for review."""
+    (ca, _), (cb, _) = core_tokens(a), core_tokens(b)
+    if len(ca) < 2 or len(cb) < 2 or ca[-1] == cb[-1] or not nick_ok(ca[0], cb[0]) or ca[1:-1] != cb[1:-1]:
+        return False
+    return min(len(ca[-1]), len(cb[-1])) >= 4 and one_edit(ca[-1], cb[-1]) and not (ca[-1] in EAST_ASIAN_FAMILY and cb[-1] in EAST_ASIAN_FAMILY)
 
 
 def hyphen_half(a, b):
