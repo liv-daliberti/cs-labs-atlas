@@ -112,7 +112,37 @@ PAPER_REASONS = {
 
 # ---------------------------------------------------------------- schools
 PM = 'labpage-tools-princeton-mit'
-SCHOOLS = {
+class SchoolTable(dict):
+    """The legacy schools' hand tables; any other charter school gets an entry from its charter (protocol schools since Michigan: pages in the
+    school_web container, family 'michigan'), so a new school needs no edit here (UChicago PROTOCOL-FRICTION 26)."""
+    def __missing__(self, key):
+        import school_config
+        try:
+            cfg = school_config.get(key)
+        except KeyError:
+            raise KeyError(key) from None
+        doms = (cfg.get('web') or {}).get('domains') or []
+        return dict(family='michigan', domain='|'.join(re.escape(d) for d in doms) or '^$')
+
+
+def own_names(school, table):
+    """Own-institution spellings of a school: the hand table's, else the key, the name's initials and its long words (charter name)."""
+    if school in table:
+        return table[school]
+    import school_config
+    name = school_config.get(school).get('name') or school
+    words = [w for w in re.findall(r"[A-Za-z]+", name) if w.lower() not in ('of', 'the', 'at', 'and')]
+    return {school.upper(), ''.join(w[0] for w in words).upper()} | {w.upper() for w in words if len(w) >= 5 and w.lower() != 'university'}
+
+
+def school_names_rx(school):
+    if school in SCHOOL_NAMES:
+        return SCHOOL_NAMES[school]
+    import school_config
+    return re.escape(school_config.get(school).get('name') or school) + '|' + re.escape(school)
+
+
+SCHOOLS = SchoolTable({
     'princeton': dict(family='pm', tools=PM, plan='plan_princeton', dossier='dossier_princeton.json', domain=r'princeton\.edu',
                       extra_stores=['gap-captures.sqlite', 'few-students-captures.sqlite', 'thesis-captures.sqlite',
                                     'cs-related-captures.sqlite']),
@@ -123,7 +153,7 @@ SCHOOLS = {
     'berkeley': dict(family='eb', tools='labpage-tools-epfl-berkeley', domain=r'berkeley\.edu'),
     'stanford': dict(family='st', tools='labpage-tools-stanford', domain=r'stanford\.edu'),
     'michigan': dict(family='michigan', domain=r'umich\.edu'),
-}
+})
 SCHOOL_NAMES = dict(princeton=r'Princeton', mit=r'MIT|Massachusetts Institute', cmu=r'CMU|Carnegie Mellon', epfl=r'EPFL|[EÉ]cole Polytechnique',
                     berkeley=r'Berkeley|UCB', stanford=r'Stanford', michigan=r'Michigan|UMich|U-M\b')
 DEGREE_AT_RX = re.compile(r"\b(?i:ph\.?\s?d|m\.?s|b\.?s|m\.?eng|msc|bsc)\.?,?\s*(?:19|20)\d\d\s*\(([A-Z][\w&.' -]{1,40})\)")  # 'PhD 2016 (DTU)'
@@ -1065,7 +1095,7 @@ def page_institution(kit, school, src):
     if _HOST_INST.search(host) and not re.search(dom, host):
         return host
     text = views.get('html') or views.get('raw') or ''
-    if re.search(SCHOOL_NAMES.get(school, '^$'), text):
+    if re.search(school_names_rx(school), text):
         return None  # the school appears somewhere on the page: alumni placements and bios name other schools too
     m_ = re.search(r'<title[^>]*>(.*?)</title>', kit.lpcap.decode(row['content'][:30000]), re.I | re.S)
     head = ((m_.group(1) if m_ else '') + ' ' + text[:400])
@@ -1239,7 +1269,7 @@ def pm_candidates(kit, school, pi, plan, held):
             elif any(names.match_one(x['name'], c) for c in coadv[src]):
                 why, x['detail'] = 'not_a_student', 'named as a co-adviser (joint with / co-advised with)'
             elif auto_plan and (m_el := (ELSEWHERE_RX.search((x.get('desc') or '')[:220]) or DEGREE_AT_RX.search((x.get('desc') or '')[:120]))) and \
-                    not re.search(SCHOOL_NAMES.get(school, '^$'), m_el.group(1)):
+                    not re.search(school_names_rx(school), m_el.group(1)):
                 why, x['detail'] = 'at_previous_school', f"the entry places the person at {m_el.group(1)}"
             elif re.search(r'\brotation', (x.get('head') or '') + ' ' + (x.get('desc') or '')[:60], re.I):
                 why, x['detail'] = 'not_a_student', 'rotation student'
@@ -1759,7 +1789,7 @@ def repair_reason(kit, school, name, best, start, pi=None):
         if tm and (not pre_bio[tm[-1].end():].strip() or BIO_TAIL.match(pre_bio[tm[-1].end():])) and len(re.findall(r'\b[a-z]{3,}\b', pre_bio[:tm[-1].start()])) >= 3:
             return 'not_a_student', 'named in a bio sentence (worked with / advised by ...), not listed as a member'
         om = OTHER_INST_ROLE.search(t[k + len(name): k + len(name) + 40])
-        if om and om.group(1).upper() not in OWN_INST_NAMES.get(school, set()) and not re.search(r'(?:now|next|currently|then|→|->|\bat)\W{0,3}(?:a\s+|an\s+)?$', t[k + len(name): k + len(name) + om.start()][-40:], re.I):
+        if om and om.group(1).upper() not in own_names(school, OWN_INST_NAMES) and not re.search(r'(?:now|next|currently|then|→|->|\bat)\W{0,3}(?:a\s+|an\s+)?$', t[k + len(name): k + len(name) + om.start()][-40:], re.I):
             return 'site_at_other_institution', f'the entry places the person at {om.group(1)}'
         if COADVISER_BEFORE.search(t[max(0, k - 40): k]):
             return 'not_a_student', 'named as the co-adviser of another member (co-advised with / jointly supervised with)'
@@ -1772,7 +1802,7 @@ def repair_reason(kit, school, name, best, start, pi=None):
             return 'name_unresolved', 'the name sits inside a reference block (author list of citations)'
         tail = t[k: k + 90]
         m = OTHER_INST_AT.search(tail)
-        if m and m.group(1).upper() not in OWN_INST.get(school, set()) | {'HOME'} and m.group(1).isupper():
+        if m and m.group(1).upper() not in own_names(school, OWN_INST) | {'HOME'} and m.group(1).isupper():
             return 'site_at_other_institution', f'the entry places the person at another institution (@{m.group(1)})'
     if (start is None or start < 2014) and not best.get('years') and not current_marker(best) and not best.get('alumni_marked_dated'):
         return 'undated_cannot_place', 'an undated entry of a lab older than the window without a current marker in its entry or section heading'
@@ -1995,7 +2025,7 @@ def adapter_plan(kit, ctx, p, prior):
     pages = [prior.get('people_page')] + list(prior.get('people_pages') or [])
     if ctx['cfg']['family'] == 'michigan':  # the Michigan pass's pages live in its school_web container
         pages += sorted({r.get('capture_url') for r in prior.get('students') or [] if r.get('capture_url')})
-        kit.import_school_web(str(P.data('school-captures.sqlite', 'michigan')), [prior.get('people_page'), prior.get('lab_site')] + pages)
+        kit.import_school_web(str(P.data('school-captures.sqlite', ctx['school'])), [prior.get('people_page'), prior.get('lab_site')] + pages)
     man = (ctx.get('manual') or {}).get(pi) or {}
     if 'people' in man:
         pages = list(man['people'])

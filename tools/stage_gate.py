@@ -31,7 +31,7 @@ ones here, heavy ones as one Slurm pipeline of afterok stages, `--submit`), skip
 at a failed step or a hand step and prints what to review, then evaluates the gate and writes hierarchy/<key>/reports/stage-<n>-gate.json.
 It refuses a released school: this command never writes released data. A step that writes a shared file runs only with `--allow-shared`.
 
-usage: stage_gate.py <key> [stage ...] [--run [--dry-run] [--submit] [--force] [--allow-shared]] [--json]
+usage: stage_gate.py <key> [stage ...] [--run [--dry-run] [--submit] [--from-worktree] [--force] [--allow-shared]] [--json]
 """
 import collections, json, re, sys
 from pathlib import Path
@@ -342,7 +342,7 @@ def onboarding_only(key):
         raise SystemExit(f'refused: {key} is {S.get(key).get("status")!r}; stage-gate --run only works on a school that is onboarding (it never writes released data)')
 
 
-def run_stage(key, stage, dry=False, submit=False, force=False, allow_shared=False, run=None):
+def run_stage(key, stage, dry=False, submit=False, force=False, allow_shared=False, run=None, repo=None):
     """Run a stage's steps up to its first review step. -> (status, log) with status: complete (no hand step left) | review (stopped at a
     hand step) | failed (a step failed) | submitted (Slurm stages are queued; read their output files, then run the stage again)."""
     import subprocess
@@ -382,7 +382,7 @@ def run_stage(key, stage, dry=False, submit=False, force=False, allow_shared=Fal
     if slurm and submit and not dry and status in ('complete', 'review', 'submitted'):
         import atlas_pipeline as AP
         stages = [(s['name'], 'school', s['cmd'], s['py'], s['cpus'], s['mem'], s['time']) for s in slurm]
-        jobs = AP.submit(f'stage{stage}-{key}', [key], stages=stages, guard_preempt=True)
+        jobs = AP.submit(f'stage{stage}-{key}', [key], stages=stages, guard_preempt=True, repo=repo)
         log.append(dict(step='slurm', result='submitted', jobs=jobs))
         status = 'submitted'
     elif slurm and status == 'complete':
@@ -395,6 +395,7 @@ def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('key'); ap.add_argument('stages', nargs='*')
     ap.add_argument('--run', action='store_true'); ap.add_argument('--dry-run', action='store_true'); ap.add_argument('--submit', action='store_true')
+    ap.add_argument('--from-worktree', action='store_true', help='Slurm steps run this worktree\'s committed HEAD (a charter not landed on main yet)')
     ap.add_argument('--force', action='store_true'); ap.add_argument('--allow-shared', action='store_true'); ap.add_argument('--json', action='store_true')
     a = ap.parse_args(argv)
     key = a.key
@@ -408,7 +409,8 @@ def main(argv=None):
     for st in stages:
         ran = None
         if a.run:
-            status, log = run_stage(key, st, dry=a.dry_run, submit=a.submit, force=a.force, allow_shared=a.allow_shared)
+            status, log = run_stage(key, st, dry=a.dry_run, submit=a.submit, force=a.force, allow_shared=a.allow_shared,
+                                    repo=CODE if a.from_worktree and CODE.resolve() != Path(P.CODE).resolve() else None)
             ran = dict(status=status, steps=log)
             for e in log:
                 print(f"  step {e['step']}: {e['result']}" + (f" -> {e['todo']}" if e.get('todo') else '') + (f" ({e['cmd']})" if e.get('cmd') else ''))
