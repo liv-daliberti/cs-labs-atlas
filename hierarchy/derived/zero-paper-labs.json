@@ -15,14 +15,15 @@
    "evidence": null,
    "funnel": {
     "name_hits": 190,
-    "school_affiliated": 88,
-    "identity": 1,
-    "dblpTitles": 0,
-    "dblpDois": 0,
+    "school_affiliated": 90,
+    "identity": 2,
+    "dblpTitles": 91,
+    "dblpDois": 101,
     "verifiedWorks": 0
    },
    "outside_appointment_by_year": {
-    "2017": 1
+    "2017": 1,
+    "2021": 1
    },
    "periods": [
     [
@@ -49,14 +50,17 @@
    "evidence": null,
    "funnel": {
     "name_hits": 46,
-    "school_affiliated": 1,
-    "identity": 1,
-    "dblpTitles": 0,
-    "dblpDois": 0,
+    "school_affiliated": 5,
+    "identity": 5,
+    "dblpTitles": 164,
+    "dblpDois": 94,
     "verifiedWorks": 0
    },
    "outside_appointment_by_year": {
-    "2016": 1
+    "2016": 2,
+    "2025": 1,
+    "2023": 1,
+    "2026": 1
    },
    "periods": [],
    "listing_years": [
@@ -117,8 +121,8 @@
    "funnel": {
     "name_hits": 3,
     "school_affiliated": 1,
-    "dblpTitles": 2,
-    "dblpDois": 2,
+    "dblpTitles": 49,
+    "dblpDois": 50,
     "verifiedWorks": 0
    },
    "outside_appointment_by_year": {},
@@ -177,8 +181,8 @@
    "evidence": null,
    "funnel": {
     "name_hits": 1,
-    "dblpTitles": 6,
-    "dblpDois": 6,
+    "dblpTitles": 96,
+    "dblpDois": 92,
     "verifiedWorks": 6
    },
    "outside_appointment_by_year": {},
@@ -214,8 +218,8 @@
     "https://api.openalex.org/works/doi:10.1145/3273905.3273919"
    ],
    "funnel": {
-    "dblpTitles": 12,
-    "dblpDois": 10,
+    "dblpTitles": 46,
+    "dblpDois": 39,
     "verifiedWorks": 0
    },
    "outside_appointment_by_year": {},
@@ -244,13 +248,13 @@
    ],
    "rank": "emeritus",
    "title": "Senior Lecturer (Emeritus) , [CS]",
-   "diagnosis": "no_output_found",
+   "diagnosis": "not_in_school_sweep",
    "verdict": "zero_is_right",
    "reason": "Senior Lecturer (teaching; emeritus later); no 2016-2026 works in DBLP or under his OpenAlex id with MIT.",
    "evidence": null,
    "funnel": {
-    "dblpTitles": 0,
-    "dblpDois": 0,
+    "dblpTitles": 3,
+    "dblpDois": 3,
     "verifiedWorks": 0
    },
    "outside_appointment_by_year": {},
@@ -284,8 +288,8 @@
    "evidence": null,
    "funnel": {
     "name_hits": 7,
-    "dblpTitles": 0,
-    "dblpDois": 0,
+    "dblpTitles": 37,
+    "dblpDois": 41,
     "verifiedWorks": 0
    },
    "outside_appointment_by_year": {},
@@ -313,15 +317,15 @@
    ],
    "rank": "emeritus",
    "title": "Professor Emeritus, Professor in the Graduate School",
-   "diagnosis": "no_output_found",
+   "diagnosis": "not_in_school_sweep",
    "verdict": "zero_is_right",
    "reason": "Advises 86 EECS M.S. reports and 9 undergraduates (EECS tech reports name him advisor) but authored no 2016-2026 work: OpenAlex author A5046623635 has 0 works in 2016-2026 and DBLP has none.",
    "evidence": [
     "https://api.openalex.org/works?filter=author.id:A5046623635,publication_year:2016-2026"
    ],
    "funnel": {
-    "dblpTitles": 0,
-    "dblpDois": 0,
+    "dblpTitles": 61,
+    "dblpDois": 59,
     "verifiedWorks": 0
    },
    "outside_appointment_by_year": {},
@@ -340,13 +344,1682 @@
     2026
    ],
    "students": 99
+  },
+  {
+   "school": "michigan",
+   "pi": "Steven Abney",
+   "departments": [
+    "CSE"
+   ],
+   "rank": "courtesy",
+   "title": "Associate Professor, Linguistics; Affiliate Faculty, Electrical Engineering and Computer Science",
+   "diagnosis": "identity_unanchored",
+   "verdict": "fix",
+   "reason": "Courtesy PI (Linguistics, CSE affiliate, 2016-2023); 5 school-affiliated name hits but no identified authorship: his DBLP person 98/5756 has 21 window titles, none matched. Needs an OpenAlex identity review.",
+   "evidence": null,
+   "funnel": {
+    "name_hits": 5,
+    "school_affiliated": 5,
+    "dblpTitles": 21,
+    "dblpDois": 10,
+    "verifiedWorks": 0
+   },
+   "outside_appointment_by_year": {},
+   "periods": [],
+   "listing_years": [
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023
+   ],
+   "students": 0
+  },
+  {
+   "school": "michigan",
+   "pi": "Kevin J. Compton",
+   "departments": [
+    "CSE"
+   ],
+   "rank": "emeritus",
+   "title": "Associate Professor Emeritus, EECS – Computer Science and Engineering",
+   "diagnosis": "identity_unanchored",
+   "verdict": "zero_is_right",
+   "reason": "Associate Professor Emeritus from 2019 (CSE listing); 3 OpenAlex name hits in 2016-2026, none identified as his school work; DBLP lists no record that the build could tie to the school in his ladder years.",
+   "evidence": null,
+   "funnel": {
+    "name_hits": 3,
+    "school_affiliated": 3,
+    "dblpTitles": 35,
+    "dblpDois": 32,
+    "verifiedWorks": 0
+   },
+   "outside_appointment_by_year": {},
+   "periods": [],
+   "listing_years": [
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+   ],
+   "students": 0
+  },
+  {
+   "school": "michigan",
+   "pi": "Martha Pollack",
+   "departments": [
+    "CSE"
+   ],
+   "rank": "ladder",
+   "title": "Provost and Executive Vice President for Academic Affairs; Professor, Electrical Engineering and Computer Science; Professor, School of Information",
+   "diagnosis": "no_school_affiliation",
+   "verdict": "zero_is_right",
+   "reason": "Listed 2016-2017 as Provost and Professor; she left for Cornell in 2017. 7 OpenAlex name hits, none listing Michigan in 2016-2017.",
+   "evidence": null,
+   "funnel": {
+    "name_hits": 7,
+    "dblpTitles": 86,
+    "dblpDois": 59,
+    "verifiedWorks": 0
+   },
+   "outside_appointment_by_year": {},
+   "periods": [],
+   "listing_years": [
+    2016,
+    2017
+   ],
+   "students": 0
+  },
+  {
+   "school": "michigan",
+   "pi": "Jalani Williams",
+   "departments": [
+    "ECE"
+   ],
+   "rank": "ladder",
+   "title": "Assistant Professor/PostDoctoral/Presidential Fellow, EECS – Electrical and Computer Engineering",
+   "diagnosis": "identity_unanchored",
+   "verdict": "zero_is_right",
+   "reason": "Listed from 2025 ('Assistant Professor/PostDoctoral/Presidential Fellow'); 4 school-affiliated name hits, none with an identified authorship yet. A new appointment.",
+   "evidence": null,
+   "funnel": {
+    "name_hits": 30,
+    "school_affiliated": 4,
+    "dblpTitles": 5,
+    "dblpDois": 5,
+    "verifiedWorks": 0
+   },
+   "outside_appointment_by_year": {},
+   "periods": [],
+   "listing_years": [
+    2025,
+    2026
+   ],
+   "students": 0
+  },
+  {
+   "school": "michigan",
+   "pi": "Seah Kim",
+   "departments": [
+    "ECE"
+   ],
+   "rank": "ladder",
+   "title": "Assistant Professor, EECS – Electrical and Computer Engineering; Coming Fall 2026",
+   "diagnosis": "identity_unanchored",
+   "verdict": "zero_is_right",
+   "reason": "Listed only in 2026 ('Assistant Professor ... Coming Fall 2026'): a future start; no school work yet.",
+   "evidence": null,
+   "funnel": {
+    "name_hits": 72,
+    "school_affiliated": 7,
+    "dblpTitles": 12,
+    "dblpDois": 13,
+    "verifiedWorks": 0
+   },
+   "outside_appointment_by_year": {},
+   "periods": [],
+   "listing_years": [
+    2026
+   ],
+   "students": 0
+  },
+  {
+   "school": "michigan",
+   "pi": "Ankit Goyal",
+   "departments": [
+    "ROB"
+   ],
+   "rank": "ladder",
+   "title": "Ankit Goyal Assistant Professor",
+   "diagnosis": "no_appointment_coverage",
+   "verdict": "zero_is_right",
+   "reason": "Listed only in 2026 (Robotics, Assistant Professor); his 2 identified school works predate the listing.",
+   "evidence": null,
+   "funnel": {
+    "name_hits": 5,
+    "school_affiliated": 2,
+    "identity": 2,
+    "dblpTitles": 24,
+    "dblpDois": 23,
+    "verifiedWorks": 0
+   },
+   "outside_appointment_by_year": {
+    "2018": 1,
+    "2024": 1
+   },
+   "periods": [],
+   "listing_years": [
+    2026
+   ],
+   "students": 0
+  },
+  {
+   "school": "michigan",
+   "pi": "Gary M. Olson",
+   "departments": [
+    "UMSI"
+   ],
+   "rank": "ladder",
+   "title": "Gary Olson Professor",
+   "diagnosis": "no_school_affiliation",
+   "verdict": "zero_is_right",
+   "reason": "UMSI profile captures 2020-2025 and the 2026 listing name him; 3 OpenAlex name hits in the window, none listing Michigan (he is at UC Irvine).",
+   "evidence": null,
+   "funnel": {
+    "name_hits": 3,
+    "dblpTitles": 79,
+    "dblpDois": 75,
+    "verifiedWorks": 0
+   },
+   "outside_appointment_by_year": {},
+   "periods": [
+    [
+     "2020",
+     null
+    ],
+    [
+     "2025",
+     null
+    ]
+   ],
+   "listing_years": [
+    2026
+   ],
+   "students": 0
+  },
+  {
+   "school": "michigan",
+   "pi": "John Leslie King",
+   "departments": [
+    "UMSI"
+   ],
+   "rank": "ladder",
+   "title": "John Leslie King Professor",
+   "diagnosis": "no_appointment_coverage",
+   "verdict": "fix",
+   "reason": "UMSI lists him only in the 2026 capture (the 2021-2025 directory is paginated) and no UMSI profile capture of his names a professor title; his 34 identified school works 2016-2025 fall outside the evidenced years. Needs appointment evidence for 2016-2025.",
+   "evidence": null,
+   "funnel": {
+    "name_hits": 81,
+    "school_affiliated": 45,
+    "identity": 34,
+    "dblpTitles": 101,
+    "dblpDois": 72,
+    "verifiedWorks": 0
+   },
+   "outside_appointment_by_year": {
+    "2016": 6,
+    "2017": 5,
+    "2018": 3,
+    "2019": 4,
+    "2020": 3,
+    "2021": 4,
+    "2022": 3,
+    "2023": 3,
+    "2024": 2,
+    "2025": 1
+   },
+   "periods": [],
+   "listing_years": [
+    2026
+   ],
+   "students": 0
+  },
+  {
+   "school": "michigan",
+   "pi": "A. Galip Ulsoy",
+   "departments": [
+    "ME"
+   ],
+   "rank": "ladder",
+   "title": "A. Galip Ulsoy Distinguished University Professor of Engineering Stephen P",
+   "diagnosis": "no_appointment_coverage",
+   "verdict": "fix",
+   "reason": "Listed 2024-2026 (Robotics/ME, Distinguished University Professor); his 15 identified school works are from 2016-2019, outside the evidenced years. Needs ME or Robotics evidence for 2016-2023 (emeritus status unverified).",
+   "evidence": null,
+   "funnel": {
+    "name_hits": 18,
+    "school_affiliated": 15,
+    "identity": 15,
+    "dblpTitles": 54,
+    "dblpDois": 55,
+    "verifiedWorks": 0
+   },
+   "outside_appointment_by_year": {
+    "2016": 3,
+    "2017": 8,
+    "2018": 1,
+    "2019": 3
+   },
+   "periods": [],
+   "listing_years": [
+    2024,
+    2025,
+    2026
+   ],
+   "students": 0
   }
  ],
- "zero_students": [],
+ "zero_students": [
+  {
+   "school": "berkeley",
+   "pi": "Tapan S. Parikh",
+   "departments": [
+    "School of Information",
+    "EECS"
+   ],
+   "lab_papers": 1
+  },
+  {
+   "school": "michigan",
+   "pi": "Ella M. Atkins",
+   "departments": [
+    "CSE",
+    "ECE"
+   ],
+   "lab_papers": 104
+  },
+  {
+   "school": "michigan",
+   "pi": "Anthony W England",
+   "departments": [
+    "ECE"
+   ],
+   "lab_papers": 3
+  },
+  {
+   "school": "michigan",
+   "pi": "Jeffrey A. Fessler",
+   "departments": [
+    "ECE"
+   ],
+   "lab_papers": 190
+  },
+  {
+   "school": "michigan",
+   "pi": "Michael P. Flynn",
+   "departments": [
+    "ECE"
+   ],
+   "lab_papers": 89
+  },
+  {
+   "school": "michigan",
+   "pi": "James S. Freudenberg",
+   "departments": [
+    "ECE"
+   ],
+   "lab_papers": 7
+  },
+  {
+   "school": "michigan",
+   "pi": "Yogesh B. Gianchandani",
+   "departments": [
+    "ECE"
+   ],
+   "lab_papers": 57
+  },
+  {
+   "school": "michigan",
+   "pi": "Jessy W Grizzle",
+   "departments": [
+    "ECE"
+   ],
+   "lab_papers": 57
+  },
+  {
+   "school": "michigan",
+   "pi": "John P. Hayes",
+   "departments": [
+    "CSE",
+    "ECE"
+   ],
+   "lab_papers": 42
+  },
+  {
+   "school": "michigan",
+   "pi": "Ian A. Hiskens",
+   "departments": [
+    "ECE"
+   ],
+   "lab_papers": 76
+  },
+  {
+   "school": "michigan",
+   "pi": "Heath Hofmann",
+   "departments": [
+    "ECE"
+   ],
+   "lab_papers": 73
+  },
+  {
+   "school": "michigan",
+   "pi": "Stéphane Lafortune",
+   "departments": [
+    "CSE",
+    "ECE"
+   ],
+   "lab_papers": 79
+  },
+  {
+   "school": "michigan",
+   "pi": "Pinaki Mazumder",
+   "departments": [
+    "CSE",
+    "ECE"
+   ],
+   "lab_papers": 75
+  },
+  {
+   "school": "michigan",
+   "pi": "Semyon M. Meerkov",
+   "departments": [
+    "ECE"
+   ],
+   "lab_papers": 13
+  },
+  {
+   "school": "michigan",
+   "pi": "Trevor Mudge",
+   "departments": [
+    "CSE",
+    "ECE"
+   ],
+   "lab_papers": 53
+  },
+  {
+   "school": "michigan",
+   "pi": "David L. Neuhoff",
+   "departments": [
+    "CSE",
+    "ECE"
+   ],
+   "lab_papers": 15
+  },
+  {
+   "school": "michigan",
+   "pi": "Jamie D. Phillips",
+   "departments": [
+    "ECE"
+   ],
+   "lab_papers": 38
+  },
+  {
+   "school": "michigan",
+   "pi": "S. Sandeep Pradhan",
+   "departments": [
+    "ECE"
+   ],
+   "lab_papers": 60
+  },
+  {
+   "school": "michigan",
+   "pi": "Shai Revzen",
+   "departments": [
+    "ECE"
+   ],
+   "lab_papers": 33
+  },
+  {
+   "school": "michigan",
+   "pi": "Karem A. Sakallah",
+   "departments": [
+    "CSE",
+    "ECE"
+   ],
+   "lab_papers": 14
+  },
+  {
+   "school": "michigan",
+   "pi": "Kamal Sarabandi",
+   "departments": [
+    "ECE"
+   ],
+   "lab_papers": 290
+  },
+  {
+   "school": "michigan",
+   "pi": "Dennis Sylvester",
+   "departments": [
+    "ECE"
+   ],
+   "lab_papers": 191
+  },
+  {
+   "school": "michigan",
+   "pi": "Gregory H. Wakefield",
+   "departments": [
+    "CSE",
+    "ECE"
+   ],
+   "lab_papers": 3
+  },
+  {
+   "school": "michigan",
+   "pi": "Steven Abney",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 0
+  },
+  {
+   "school": "michigan",
+   "pi": "Mark S. Ackerman",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 61
+  },
+  {
+   "school": "michigan",
+   "pi": "Eytan Adar",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 69
+  },
+  {
+   "school": "michigan",
+   "pi": "Satinder Singh Baveja",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 61
+  },
+  {
+   "school": "michigan",
+   "pi": "Michael J. Cafarella",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 31
+  },
+  {
+   "school": "michigan",
+   "pi": "Peter M. Chen",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 13
+  },
+  {
+   "school": "michigan",
+   "pi": "Kevyn Collins-Thompson",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 27
+  },
+  {
+   "school": "michigan",
+   "pi": "Kevin J. Compton",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 0
+  },
+  {
+   "school": "michigan",
+   "pi": "Jia Deng",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 24
+  },
+  {
+   "school": "michigan",
+   "pi": "Tawanna Ruth Dillahunt",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 67
+  },
+  {
+   "school": "michigan",
+   "pi": "Edmund H. Durfee",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 21
+  },
+  {
+   "school": "michigan",
+   "pi": "Prabal Dutta",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 17
+  },
+  {
+   "school": "michigan",
+   "pi": "Georg Essl",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 3
+  },
+  {
+   "school": "michigan",
+   "pi": "Ryan M. Eustice",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 36
+  },
+  {
+   "school": "michigan",
+   "pi": "Jason Flinn",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 14
+  },
+  {
+   "school": "michigan",
+   "pi": "Kevin Fu",
+   "departments": [
+    "CSE",
+    "ECE"
+   ],
+   "lab_papers": 27
+  },
+  {
+   "school": "michigan",
+   "pi": "Yuanfang Guan",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 10
+  },
+  {
+   "school": "michigan",
+   "pi": "H.V. Jagadish",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 136
+  },
+  {
+   "school": "michigan",
+   "pi": "Sugih Jamin",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 11
+  },
+  {
+   "school": "michigan",
+   "pi": "David E. Kieras",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 5
+  },
+  {
+   "school": "michigan",
+   "pi": "Danai Koutra",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 140
+  },
+  {
+   "school": "michigan",
+   "pi": "John E. Laird",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 27
+  },
+  {
+   "school": "michigan",
+   "pi": "Harsha Madhyastha",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 29
+  },
+  {
+   "school": "michigan",
+   "pi": "Scott Mahlke",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 43
+  },
+  {
+   "school": "michigan",
+   "pi": "Igor Markov",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 6
+  },
+  {
+   "school": "michigan",
+   "pi": "Jason Mars",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 58
+  },
+  {
+   "school": "michigan",
+   "pi": "Qiaozhu Mei",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 139
+  },
+  {
+   "school": "michigan",
+   "pi": "Barzan Mozafari",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 30
+  },
+  {
+   "school": "michigan",
+   "pi": "Mark W Newman",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 42
+  },
+  {
+   "school": "michigan",
+   "pi": "Brian Noble",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 5
+  },
+  {
+   "school": "michigan",
+   "pi": "Christopher Peikert",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 37
+  },
+  {
+   "school": "michigan",
+   "pi": "Martha Pollack",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 0
+  },
+  {
+   "school": "michigan",
+   "pi": "Dragomir Radev",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 15
+  },
+  {
+   "school": "michigan",
+   "pi": "Daniel Romero",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 59
+  },
+  {
+   "school": "michigan",
+   "pi": "Grant Schoenebeck",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 24
+  },
+  {
+   "school": "michigan",
+   "pi": "Yaoyun Shi",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 9
+  },
+  {
+   "school": "michigan",
+   "pi": "Elliot Soloway",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 12
+  },
+  {
+   "school": "michigan",
+   "pi": "Quentin F. Stout",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 14
+  },
+  {
+   "school": "michigan",
+   "pi": "Martin Strauss",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 4
+  },
+  {
+   "school": "michigan",
+   "pi": "Zeeshan H. Syed",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 2
+  },
+  {
+   "school": "michigan",
+   "pi": "Lingjia Tang",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 48
+  },
+  {
+   "school": "michigan",
+   "pi": "Richmond H. Thomason",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 7
+  },
+  {
+   "school": "michigan",
+   "pi": "Pascal Van Hentenryck",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 45
+  },
+  {
+   "school": "michigan",
+   "pi": "Thomas F. Wenisch",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 61
+  },
+  {
+   "school": "michigan",
+   "pi": "Jieping Ye",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 117
+  },
+  {
+   "school": "michigan",
+   "pi": "Shuheng Zhou",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 4
+  },
+  {
+   "school": "michigan",
+   "pi": "Ehsan Afshari",
+   "departments": [
+    "ECE"
+   ],
+   "lab_papers": 74
+  },
+  {
+   "school": "michigan",
+   "pi": "Manos Kapritsos",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 16
+  },
+  {
+   "school": "michigan",
+   "pi": "Matthew Kay",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 27
+  },
+  {
+   "school": "michigan",
+   "pi": "Michael Nebeling",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 47
+  },
+  {
+   "school": "michigan",
+   "pi": "Florian Schaub",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 88
+  },
+  {
+   "school": "michigan",
+   "pi": "Daniel Genkin",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 21
+  },
+  {
+   "school": "michigan",
+   "pi": "Alanson Sample",
+   "departments": [
+    "CSE",
+    "ECE"
+   ],
+   "lab_papers": 50
+  },
+  {
+   "school": "michigan",
+   "pi": "Robert Gregg",
+   "departments": [
+    "ECE"
+   ],
+   "lab_papers": 82
+  },
+  {
+   "school": "michigan",
+   "pi": "Robin Brewer",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 7
+  },
+  {
+   "school": "michigan",
+   "pi": "Barbara Ericson",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 60
+  },
+  {
+   "school": "michigan",
+   "pi": "Jie Liu",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 19
+  },
+  {
+   "school": "michigan",
+   "pi": "Paramveer Dhillon",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 12
+  },
+  {
+   "school": "michigan",
+   "pi": "Vineet Kamat",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 22
+  },
+  {
+   "school": "michigan",
+   "pi": "Lin Ma",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 2
+  },
+  {
+   "school": "michigan",
+   "pi": "Georgios Tzimpragos",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 5
+  },
+  {
+   "school": "michigan",
+   "pi": "Krisztián Flautner",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 11
+  },
+  {
+   "school": "michigan",
+   "pi": "Jeong Joon Park",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 15
+  },
+  {
+   "school": "michigan",
+   "pi": "Vladimir Dvorkin",
+   "departments": [
+    "ECE"
+   ],
+   "lab_papers": 15
+  },
+  {
+   "school": "michigan",
+   "pi": "Farnaz Jahanbakhsh",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 10
+  },
+  {
+   "school": "michigan",
+   "pi": "Di Liang",
+   "departments": [
+    "ECE"
+   ],
+   "lab_papers": 34
+  },
+  {
+   "school": "michigan",
+   "pi": "Dallas Card",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 13
+  },
+  {
+   "school": "michigan",
+   "pi": "Amrita Roy Chowdhury",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 11
+  },
+  {
+   "school": "michigan",
+   "pi": "Muhammad Shahbaz",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 12
+  },
+  {
+   "school": "michigan",
+   "pi": "Ke Sun",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 14
+  },
+  {
+   "school": "michigan",
+   "pi": "Inigo Incer",
+   "departments": [
+    "ECE"
+   ],
+   "lab_papers": 9
+  },
+  {
+   "school": "michigan",
+   "pi": "Shubhanshu Shekhar",
+   "departments": [
+    "ECE"
+   ],
+   "lab_papers": 10
+  },
+  {
+   "school": "michigan",
+   "pi": "Junyi Zhu",
+   "departments": [
+    "CSE",
+    "ECE"
+   ],
+   "lab_papers": 11
+  },
+  {
+   "school": "michigan",
+   "pi": "Jiayu Zhou",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 28
+  },
+  {
+   "school": "michigan",
+   "pi": "Jalani Williams",
+   "departments": [
+    "ECE"
+   ],
+   "lab_papers": 0
+  },
+  {
+   "school": "michigan",
+   "pi": "Venkatesh Potluri",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 8
+  },
+  {
+   "school": "michigan",
+   "pi": "Yulong Dong",
+   "departments": [
+    "ECE"
+   ],
+   "lab_papers": 8
+  },
+  {
+   "school": "michigan",
+   "pi": "Seah Kim",
+   "departments": [
+    "ECE"
+   ],
+   "lab_papers": 0
+  },
+  {
+   "school": "michigan",
+   "pi": "Sushil Varma",
+   "departments": [
+    "ECE"
+   ],
+   "lab_papers": 3
+  },
+  {
+   "school": "michigan",
+   "pi": "Matthias Wilms",
+   "departments": [
+    "ECE"
+   ],
+   "lab_papers": 9
+  },
+  {
+   "school": "michigan",
+   "pi": "Andrea Forte",
+   "departments": [
+    "UMSI"
+   ],
+   "lab_papers": 4
+  },
+  {
+   "school": "michigan",
+   "pi": "Ankit Goyal",
+   "departments": [
+    "ROB"
+   ],
+   "lab_papers": 0
+  },
+  {
+   "school": "michigan",
+   "pi": "Ben Green",
+   "departments": [
+    "UMSI"
+   ],
+   "lab_papers": 5
+  },
+  {
+   "school": "michigan",
+   "pi": "Brent Gillespie",
+   "departments": [
+    "ROB"
+   ],
+   "lab_papers": 50
+  },
+  {
+   "school": "michigan",
+   "pi": "Carol C. Menassa",
+   "departments": [
+    "ROB"
+   ],
+   "lab_papers": 37
+  },
+  {
+   "school": "michigan",
+   "pi": "Charles P. Friedman",
+   "departments": [
+    "UMSI"
+   ],
+   "lab_papers": 49
+  },
+  {
+   "school": "michigan",
+   "pi": "Christoforos I. Mavrogiannis",
+   "departments": [
+    "ROB"
+   ],
+   "lab_papers": 13
+  },
+  {
+   "school": "michigan",
+   "pi": "Christopher Brooks",
+   "departments": [
+    "UMSI"
+   ],
+   "lab_papers": 53
+  },
+  {
+   "school": "michigan",
+   "pi": "Cliff Lampe",
+   "departments": [
+    "UMSI"
+   ],
+   "lab_papers": 2
+  },
+  {
+   "school": "michigan",
+   "pi": "Dimitra Panagou",
+   "departments": [
+    "ROB"
+   ],
+   "lab_papers": 134
+  },
+  {
+   "school": "michigan",
+   "pi": "Elliott J. Rouse",
+   "departments": [
+    "ROB"
+   ],
+   "lab_papers": 65
+  },
+  {
+   "school": "michigan",
+   "pi": "Erhan Bayraktar",
+   "departments": [
+    "MATH"
+   ],
+   "lab_papers": 116
+  },
+  {
+   "school": "michigan",
+   "pi": "Gary M. Olson",
+   "departments": [
+    "UMSI"
+   ],
+   "lab_papers": 0
+  },
+  {
+   "school": "michigan",
+   "pi": "James M. Balter",
+   "departments": [
+    "BME"
+   ],
+   "lab_papers": 71
+  },
+  {
+   "school": "michigan",
+   "pi": "Jionghua Jin",
+   "departments": [
+    "ROB"
+   ],
+   "lab_papers": 10
+  },
+  {
+   "school": "michigan",
+   "pi": "John Leslie King",
+   "departments": [
+    "UMSI"
+   ],
+   "lab_papers": 0
+  },
+  {
+   "school": "michigan",
+   "pi": "Jun Ni",
+   "departments": [
+    "ME"
+   ],
+   "lab_papers": 56
+  },
+  {
+   "school": "michigan",
+   "pi": "Katherine A. Skinner",
+   "departments": [
+    "ROB"
+   ],
+   "lab_papers": 3
+  },
+  {
+   "school": "michigan",
+   "pi": "Kenn Richard Oldham",
+   "departments": [
+    "ROB"
+   ],
+   "lab_papers": 68
+  },
+  {
+   "school": "michigan",
+   "pi": "Kentaro Toyama",
+   "departments": [
+    "UMSI"
+   ],
+   "lab_papers": 68
+  },
+  {
+   "school": "michigan",
+   "pi": "Leia A. Stirling",
+   "departments": [
+    "ROB"
+   ],
+   "lab_papers": 81
+  },
+  {
+   "school": "michigan",
+   "pi": "Mark S. Daskin",
+   "departments": [
+    "IOE"
+   ],
+   "lab_papers": 5
+  },
+  {
+   "school": "michigan",
+   "pi": "Michaelanne Thomas",
+   "departments": [
+    "UMSI"
+   ],
+   "lab_papers": 13
+  },
+  {
+   "school": "michigan",
+   "pi": "Patrícia Alves-Oliveira",
+   "departments": [
+    "ROB"
+   ],
+   "lab_papers": 13
+  },
+  {
+   "school": "michigan",
+   "pi": "Paul Resnick",
+   "departments": [
+    "UMSI"
+   ],
+   "lab_papers": 24
+  },
+  {
+   "school": "michigan",
+   "pi": "Predrag V. Klasnja",
+   "departments": [
+    "UMSI"
+   ],
+   "lab_papers": 9
+  },
+  {
+   "school": "michigan",
+   "pi": "Ramanarayan Vasudevan",
+   "departments": [
+    "ROB"
+   ],
+   "lab_papers": 127
+  },
+  {
+   "school": "michigan",
+   "pi": "Sarita Yardi Schoenebeck",
+   "departments": [
+    "UMSI"
+   ],
+   "lab_papers": 38
+  },
+  {
+   "school": "michigan",
+   "pi": "Tiffany C. Veinot",
+   "departments": [
+    "UMSI"
+   ],
+   "lab_papers": 85
+  },
+  {
+   "school": "michigan",
+   "pi": "Yan Chen",
+   "departments": [
+    "UMSI"
+   ],
+   "lab_papers": 13
+  },
+  {
+   "school": "michigan",
+   "pi": "Dennis S. Bernstein",
+   "departments": [
+    "AERO"
+   ],
+   "lab_papers": 182
+  },
+  {
+   "school": "michigan",
+   "pi": "Kira Barton",
+   "departments": [
+    "ROB"
+   ],
+   "lab_papers": 215
+  },
+  {
+   "school": "michigan",
+   "pi": "Gábor Orosz",
+   "departments": [
+    "ROB"
+   ],
+   "lab_papers": 73
+  },
+  {
+   "school": "michigan",
+   "pi": "Anouck Girard",
+   "departments": [
+    "ROB"
+   ],
+   "lab_papers": 105
+  },
+  {
+   "school": "michigan",
+   "pi": "Maani Ghaffari",
+   "departments": [
+    "ROB"
+   ],
+   "lab_papers": 90
+  },
+  {
+   "school": "michigan",
+   "pi": "Nazanin Andalibi",
+   "departments": [
+    "UMSI"
+   ],
+   "lab_papers": 54
+  },
+  {
+   "school": "michigan",
+   "pi": "Anthony Bloch",
+   "departments": [
+    "MATH"
+   ],
+   "lab_papers": 71
+  },
+  {
+   "school": "michigan",
+   "pi": "Libby Hemphill",
+   "departments": [
+    "UMSI"
+   ],
+   "lab_papers": 54
+  },
+  {
+   "school": "michigan",
+   "pi": "Joyojeet Pal",
+   "departments": [
+    "UMSI"
+   ],
+   "lab_papers": 20
+  },
+  {
+   "school": "michigan",
+   "pi": "Julie Hui",
+   "departments": [
+    "UMSI"
+   ],
+   "lab_papers": 29
+  },
+  {
+   "school": "michigan",
+   "pi": "Shravan Veerapaneni",
+   "departments": [
+    "MATH"
+   ],
+   "lab_papers": 46
+  },
+  {
+   "school": "michigan",
+   "pi": "Sile O'Modhrain",
+   "departments": [
+    "UMSI"
+   ],
+   "lab_papers": 1
+  },
+  {
+   "school": "michigan",
+   "pi": "Raed Al Kontar",
+   "departments": [
+    "IOE"
+   ],
+   "lab_papers": 58
+  },
+  {
+   "school": "michigan",
+   "pi": "Xiuli Chao",
+   "departments": [
+    "IOE"
+   ],
+   "lab_papers": 16
+  },
+  {
+   "school": "michigan",
+   "pi": "C. David Remy",
+   "departments": [
+    "ME"
+   ],
+   "lab_papers": 29
+  },
+  {
+   "school": "michigan",
+   "pi": "Gabriela Marcu",
+   "departments": [
+    "UMSI"
+   ],
+   "lab_papers": 27
+  },
+  {
+   "school": "michigan",
+   "pi": "Nicole B. Ellison",
+   "departments": [
+    "UMSI"
+   ],
+   "lab_papers": 22
+  },
+  {
+   "school": "michigan",
+   "pi": "Virginia R. Young",
+   "departments": [
+    "MATH"
+   ],
+   "lab_papers": 53
+  },
+  {
+   "school": "michigan",
+   "pi": "Huei Peng",
+   "departments": [
+    "ME"
+   ],
+   "lab_papers": 92
+  },
+  {
+   "school": "michigan",
+   "pi": "James D. Weiland",
+   "departments": [
+    "ROB"
+   ],
+   "lab_papers": 49
+  },
+  {
+   "school": "michigan",
+   "pi": "Jeffrey L. Stein",
+   "departments": [
+    "ROB"
+   ],
+   "lab_papers": 28
+  },
+  {
+   "school": "michigan",
+   "pi": "Brian T. Denton",
+   "departments": [
+    "IOE"
+   ],
+   "lab_papers": 10
+  },
+  {
+   "school": "michigan",
+   "pi": "Nadine Sarter",
+   "departments": [
+    "ROB"
+   ],
+   "lab_papers": 17
+  },
+  {
+   "school": "michigan",
+   "pi": "Sun Young Park",
+   "departments": [
+    "UMSI"
+   ],
+   "lab_papers": 1
+  },
+  {
+   "school": "michigan",
+   "pi": "Eunshin Byon",
+   "departments": [
+    "IOE"
+   ],
+   "lab_papers": 35
+  },
+  {
+   "school": "michigan",
+   "pi": "Elizabeth Yakel",
+   "departments": [
+    "UMSI"
+   ],
+   "lab_papers": 23
+  },
+  {
+   "school": "michigan",
+   "pi": "Selim Esedoḡlu",
+   "departments": [
+    "MATH"
+   ],
+   "lab_papers": 12
+  },
+  {
+   "school": "michigan",
+   "pi": "Liliana Borcea",
+   "departments": [
+    "MATH"
+   ],
+   "lab_papers": 31
+  },
+  {
+   "school": "michigan",
+   "pi": "Robert Krasny",
+   "departments": [
+    "MATH"
+   ],
+   "lab_papers": 21
+  },
+  {
+   "school": "michigan",
+   "pi": "Abigail Z. Jacobs",
+   "departments": [
+    "UMSI"
+   ],
+   "lab_papers": 19
+  },
+  {
+   "school": "michigan",
+   "pi": "Mark Draelos",
+   "departments": [
+    "ROB"
+   ],
+   "lab_papers": 31
+  },
+  {
+   "school": "michigan",
+   "pi": "Noel C. Perkins",
+   "departments": [
+    "ME"
+   ],
+   "lab_papers": 24
+  },
+  {
+   "school": "michigan",
+   "pi": "Talia Y. Moore",
+   "departments": [
+    "ROB"
+   ],
+   "lab_papers": 30
+  },
+  {
+   "school": "michigan",
+   "pi": "James W. Cutler",
+   "departments": [
+    "ROB"
+   ],
+   "lab_papers": 23
+  },
+  {
+   "school": "michigan",
+   "pi": "Sabina Tomkins",
+   "departments": [
+    "UMSI"
+   ],
+   "lab_papers": 23
+  },
+  {
+   "school": "michigan",
+   "pi": "Michael E. Zieve",
+   "departments": [
+    "MATH"
+   ],
+   "lab_papers": 21
+  },
+  {
+   "school": "michigan",
+   "pi": "Roman Vershynin",
+   "departments": [
+    "MATH"
+   ],
+   "lab_papers": 4
+  },
+  {
+   "school": "michigan",
+   "pi": "A. Galip Ulsoy",
+   "departments": [
+    "ME"
+   ],
+   "lab_papers": 0
+  }
+ ],
  "counts": {
   "berkeley:zero_papers:zero_is_right": 1,
+  "berkeley:zero_students": 1,
   "cmu:zero_papers:zero_is_right": 2,
   "epfl:zero_papers:zero_is_right": 2,
+  "michigan:zero_papers:fix": 3,
+  "michigan:zero_papers:zero_is_right": 6,
+  "michigan:zero_students": 170,
   "mit:zero_papers:zero_is_right": 2,
   "princeton:zero_papers:zero_is_right": 3
  }
