@@ -150,6 +150,11 @@ THESIS_REPOSITORY_DOI = re.compile(r'^10\.25740/')  # Stanford Digital Repositor
 # SIGCSE keynote abstract. A title or venue catches the first; the other two need the record's page count, which OpenAlex's
 # sweep works do not carry: DBLP's `<pages>` (tools/dblp_dump_pages.py -> hierarchy/dblp-dump-pages.json.gz) does.
 COMMENTARY_TITLE = re.compile(r'(?i)^\s*technical perspective\b')
+# R-PAP-27 (2026-11-02, coordinator's note on the rule-3 hand check): a whole proceedings volume ('Proceedings of SAT Race 2019',
+# 'Proceedings 8th International Workshop on ...'), and a numbered abstract of a journal supplement ('203. Decoding the Role of ...',
+# '(338) Automatic detection of ...': Biological Psychiatry, Journal of Pain, Journal of Adolescent Health)
+PROCEEDINGS_VOLUME = re.compile(r'(?i)^\s*proceedings\b[:\s]*(?:of\b)?.*(?:\b(?:19|20)\d\d\b|\b\d+(?:st|nd|rd|th)\b|workshop|conference|symposium|race|competition|think tank|annual)')
+SUPPLEMENT_NUMBER = re.compile(r'^\s*(?:\(\d{1,4}\)|\d{1,4}\.)\s+\S')
 COLUMN_VENUE = re.compile(r'(?i)^(?:communications of the acm|ieee micro|computer|ieee computer|ieee security (?:&|and) privacy|ieee software|'
                           r'ieee pervasive computing|ieee internet computing|ieee design (?:&|and) test(?: of computers)?|ieee annals of the history of computing|'
                           r'acm queue|queue|xrds|ieee intelligent systems|ieee network|ieee communications magazine|ieee spectrum|'
@@ -183,7 +188,7 @@ def not_a_paper(r, pages=None, bare=False):
                tribute
       R-PAP-19 (R2) meeting_abstract:<venue|doi|title|journal|single_author|keynote>
       R-PAP-22 (R5) dissertation (the PI is the adviser, not the author).
-      R-PAP-27      commentary (a 'Technical perspective'), column (a magazine piece of 3 pages or less), invited_abstract (a
+      R-PAP-27      proceedings_volume, supplement_abstract (a numbered abstract in a journal), commentary (a 'Technical perspective'), column (a magazine piece of 3 pages or less), invited_abstract (a
                     single-author conference record of 2 pages or less); `pages` is the DBLP page count when known (`bare`: a single number)."""
     t = str(r.get('title') or '').strip(); v = str(r.get('venue') or ''); d = ndoi(r.get('doi')); ty = r.get('type') or ''
     nb = len(r.get('byline') or [])
@@ -222,6 +227,10 @@ def not_a_paper(r, pages=None, bare=False):
     # R-PAP-27: commentaries by title, columns and short invited abstracts by page count (`pages`: the record's DBLP page count)
     if COMMENTARY_TITLE.search(t):
         return 'commentary'
+    if PROCEEDINGS_VOLUME.search(t):
+        return 'proceedings_volume'
+    if SUPPLEMENT_NUMBER.search(t) and ty == 'article' and v.strip():
+        return 'supplement_abstract'
     sp = short_piece(r, pages, bare)
     if sp:
         return sp

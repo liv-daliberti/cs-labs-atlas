@@ -211,6 +211,10 @@ unless the PI's DBLP page lists the title with co-authors (OpenAlex cut the byli
 several records); without a page count only the title rule applies. A bare page number (no range) counts as one page in CACM
 and for a conference record (keynote abstracts: ICAART 2016 '5', IWASI 2019 '1'), never for another magazine (ACM Queue's is an
 article number). `short_piece`, `page_count`.
+Also dropped (`proceedings_volume`): a title opening 'Proceedings' that names a conference, workshop, symposium, race, competition, an
+ordinal or a year (whole volumes: SAT Race 2019, MOBICOM 2021); and (`supplement_abstract`) a journal-article record whose title
+opens with a number ('203. ...', '(338) ...': abstracts of Biological Psychiatry, Journal of Pain, Journal of Adolescent Health
+supplements). Book chapters and records with no venue keep their numbers.
 
 ## Students
 

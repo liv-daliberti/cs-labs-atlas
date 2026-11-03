@@ -66,3 +66,27 @@ def test_R_PAP_27_build_guard_dblp_coauthors():
     assert kept == [r] and n['single_author_abstract_kept_dblp_coauthors'] == 1
     kept, _ = papers.drop_not_papers([r], {'P': {papers.norm_title(r['title']): 1}}, n, pages)
     assert kept == [] and n['not_paper:invited_abstract'] == 1
+
+
+@pytest.mark.parametrize('title', ['Proceedings of SAT Race 2019: Solver and Benchmark Descriptions', 'Proceedings of MOBICOM 2021',
+                                   'Proceedings 8th International Workshop on Verification and Program Transformation',
+                                   'Proceedings of the 12th International Symposium on Software Engineering for Adaptive Systems'])
+def test_R_PAP_27_proceedings_volume(title):                # Heule's SAT Race volume (CMU)
+    assert h.not_a_paper(row(title, venue='')) == 'proceedings_volume'
+
+
+def test_R_PAP_27_proceedings_volume_keeps_papers():
+    assert h.not_a_paper(row('Proceedings of the lazy evaluation: a new semantics for lambda calculus')) is None
+    assert h.not_a_paper(row('Reproducing results in proceedings of science')) is None
+
+
+@pytest.mark.parametrize('title', ['15. Positively Connected For Health (PC4H): Acceptability And Feasibility of A Digital Health Intervention',
+                                   '(338) Automatic detection of nociceptive stimuli and pain intensity from facial expressions'])
+def test_R_PAP_27_supplement_abstract(title):               # Marcu, Journal of Adolescent Health
+    assert h.not_a_paper(row(title, venue='Journal of Adolescent Health')) == 'supplement_abstract'
+
+
+def test_R_PAP_27_supplement_abstract_keeps_chapters_and_papers():
+    assert h.not_a_paper(row('5. Probabilistic driver modeling', typ='book-chapter', venue='De Gruyter eBooks')) is None
+    assert h.not_a_paper(row('3D shape completion', venue='Journal X')) is None
+    assert h.not_a_paper(row('19. Fibonacci-Heaps', venue='')) is None
