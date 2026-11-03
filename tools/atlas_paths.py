@@ -335,6 +335,7 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('link-sweep.json', 'derived', 'hierarchy/link-sweep/{school}.json', 'hierarchy/derived/link-sweep/{school}.json'),
     ('labpage-input.json', 'reviewed', 'hierarchy/{school}/labpage-input.json', 'hierarchy/{school}/reviewed/labpage-input.json'),
     ('labpage-pubs-report.json', 'derived', 'hierarchy/{school}/labpage-pubs-report.json', 'hierarchy/{school}/derived/labpage-pubs-report.json'),
+    ('labpage-audit-summary-school.json', 'derived', 'hierarchy/{school}/labpage-audit-summary-school.json', 'hierarchy/{school}/derived/labpage-audit-summary-school.json'),
     ('labpage-audit.jsonl.gz', 'derived', 'hierarchy/{school}/labpage-audit.jsonl.gz', 'hierarchy/{school}/derived/labpage-audit.jsonl.gz'),
     ('labpage-audit-discovery.jsonl', 'raw', 'hierarchy/{school}/labpage-audit-discovery.jsonl', 'hierarchy/{school}/raw/labpage-audit-discovery.jsonl'),
     ('labpage-audit-recover', 'work', 'hierarchy/{school}/labpage-audit-recover', 'hierarchy/{school}/work/labpage-audit-recover'),

@@ -2313,6 +2313,14 @@ def school_summary(recs, stu_adds, pap_adds):
     )
 
 
+def onboarding(school):
+    import school_config
+    try:
+        return school_config.get(school).get('status') == 'onboarding'
+    except KeyError:
+        return False
+
+
 def cmd_audit(school):
     if SCHOOLS[school].get('read_only'):
         sys.exit(f'{school}: read-only audit from its own outputs is not implemented yet')
@@ -2361,11 +2369,16 @@ def write_audit(school, recs, stu_adds, pap_adds):
                 rules={'LP-STU-01': RULE_TEXT['LP-STU-01'], 'LP-PAP-01': RULE_TEXT['LP-PAP-01']},
                 students=withheld_if_membership_only(school, stu_adds), papers=pap_adds)
     json.dump(adds, open(P.data_w('labpage-additions.json', school), 'w', encoding='utf-8'), indent=1, ensure_ascii=False)
-    sp = P.data('labpage-audit-summary.json')
-    allsum = read(sp) if sp.exists() else {}
-    allsum[school] = dict(summ, audited_at=now())
-    json.dump(allsum, open(sp, 'w', encoding='utf-8'), indent=1, ensure_ascii=False)
-    write_md(allsum)
+    if onboarding(school):
+        # an onboarding school's summary stays in its own file: hierarchy/labpage-audit-summary.json and LABPAGE-AUDIT.md are TRACKED shared build
+        # files that only the release rebuild writes (a stage-3 job rewrote them and blocked the release freeze: UChicago PROTOCOL-FRICTION 30)
+        json.dump(dict(summ, audited_at=now()), open(P.data_w('labpage-audit-summary-school.json', school), 'w', encoding='utf-8'), indent=1, ensure_ascii=False)
+    else:
+        sp = P.data('labpage-audit-summary.json')
+        allsum = read(sp) if sp.exists() else {}
+        allsum[school] = dict(summ, audited_at=now())
+        json.dump(allsum, open(sp, 'w', encoding='utf-8'), indent=1, ensure_ascii=False)
+        write_md(allsum)
     print(json.dumps({school: summ}, indent=1, ensure_ascii=False))
 
 
