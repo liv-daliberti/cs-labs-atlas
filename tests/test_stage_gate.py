@@ -169,3 +169,23 @@ def test_gate5_accepts_a_reviewed_no_identity(tree, monkeypatch):
     monkeypatch.setattr(G.CO, 'section', lambda key: {'Ann': {'no_identity': True, 'why_no_identity': 'searched'}})
     r = G.evaluate('u', 5)
     assert r['gate'] == 'pass' and r['reviewed_no_identity'] == 1
+
+
+def test_every_collector_stage_tool_imports_under_python_dash_I():
+    """Steps run with the collector interpreter as `python -I -u`, which leaves the script's own directory off sys.path
+    (UChicago PROTOCOL-FRICTION 37: labpage_students_school.py died with ModuleNotFoundError: atlas_paths). Run each with no
+    arguments: it may print a usage or fail on the missing argument, never on an import."""
+    import re
+    import subprocess
+    import sys
+    from pathlib import Path
+    scripts = set()
+    for steps in G.STEPS.values():
+        for st in steps:
+            m = re.match(r'PY \$TOOLS/(\w+\.py)', st.get('cmd') or '')
+            if st['kind'] == 'slurm' and st['py'] == 'collector' and m:
+                scripts.add(m.group(1))
+    assert scripts
+    for name in sorted(scripts):
+        r = subprocess.run([sys.executable, '-I', str(Path(G.__file__).with_name(name))], capture_output=True, text=True, timeout=120)
+        assert 'ModuleNotFoundError' not in r.stderr and 'ImportError' not in r.stderr, (name, r.stderr[-300:])

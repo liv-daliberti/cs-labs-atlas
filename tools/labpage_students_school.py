@@ -37,7 +37,9 @@ directory (protocol stage 6) program PhD directories ([students].directories) li
 usage: labpage_students_school.py links|defenses|directory|extract <key>
 """
 import collections, json, re, sys, urllib.parse, zlib
+from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))  # python -I leaves the script's directory off sys.path (docs/CONTRIBUTING.md, Imports and sys.path)
 import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
 import census_overrides as CO  # noqa: E402
