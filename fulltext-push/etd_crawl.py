@@ -134,11 +134,19 @@ PARSERS = dict(dspace7=parse_dspace7, invenio=parse_invenio)
 def sitemap_urls(client, url, rx, tries=4):
     """Item URLs of a sitemap or sitemap index (nested sitemaps followed), in listed order, filtered by regex. A response that ends before its
     closing tag (a 7 MB sitemap cut off on 2026-11-04) is asked again, up to `tries` times, never parsed as complete."""
+    sizes = []
     for attempt in range(tries):
         text = client.get(url).content.decode('utf8', 'replace')
         if re.search(r'</(urlset|sitemapindex)>\s*$', text):
             break
+        sizes.append(len(text))
         print(json.dumps(dict(sitemap_truncated=url, bytes=len(text), attempt=attempt)), flush=True)
+        if len(sizes) >= 2 and sizes[-1] == sizes[-2]:
+            # the same cut twice: the server ends the file there (Georgia Tech sitemap1.xml, 955,812 bytes, 2026-11-04). The complete <loc>
+            # entries before the cut are used; the entries after it are not listed anywhere we may read, and the crawl says so.
+            text = text[:text.rfind('</url>') + 6] if '</url>' in text else text
+            print(json.dumps(dict(sitemap_cut_server_side=url, bytes=len(text))), flush=True)
+            break
         client.sleep(60 * (attempt + 1))
     else:
         raise O.Blocked(f'sitemap {url} stays truncated')

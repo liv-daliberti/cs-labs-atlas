@@ -151,5 +151,7 @@ def test_sitemap_truncated_response_is_asked_again_never_parsed(monkeypatch):
     sess = Sess([Resp(idx), Resp(cut), Resp(full)])
     cl = O.Client(10, session=sess, sleep=lambda s: None, clock=lambda: 0.0)
     assert E.sitemap_urls(cl, 'https://h/sitemap_index.xml', '/entities/publication/') == ['https://h/entities/publication/1']
-    with pytest.raises(O.Blocked):
-        E.sitemap_urls(O.Client(10, session=Sess([Resp(cut)] * 4), sleep=lambda s: None, clock=lambda: 0.0), 'https://h/s.xml', 'x')
+    # the same cut twice = the server ends the file there: the complete entries before it are used
+    cut2 = b'<urlset><url><loc>https://h/entities/publication/1</loc></url><url><loc>https://h/entities/pub'
+    got = E.sitemap_urls(O.Client(10, session=Sess([Resp(cut2)] * 4), sleep=lambda s: None, clock=lambda: 0.0), 'https://h/s.xml', '/entities/publication/')
+    assert got == ['https://h/entities/publication/1']
