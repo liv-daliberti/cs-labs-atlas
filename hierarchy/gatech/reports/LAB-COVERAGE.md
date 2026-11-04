@@ -1,8 +1,8 @@
 # gatech: lab coverage (students, papers, reasons)
 
-Labs 449; with students 73; with papers 419; median papers per lab 30.
+Labs 449; with students 73; with papers 429; median papers per lab 30.
 
-Reasons for 0 students: {'sources_exhausted': 312, 'appointment_ended_early': 38, 'new_hire_2025_or_later': 26}. Reasons for 0 papers: {'open': 13, 'appointment_ended_early': 9, 'no_identity': 2, 'new_hire_2025_or_later': 6}.
+Reasons for 0 students: {'sources_exhausted': 312, 'appointment_ended_early': 38, 'new_hire_2025_or_later': 26}. Reasons for 0 papers: {'emeritus_throughout': 2, 'appointment_ended_early': 10, 'no_identity': 2, 'new_hire_2025_or_later': 6}.
 
 | PI | dept | students | sources | papers | reason (students) | reason (papers) |
 |---|---|---|---|---|---|---|
@@ -10,7 +10,7 @@ Reasons for 0 students: {'sources_exhausted': 312, 'appointment_ended_early': 38
 | Aaron J Young | ECE | 0 | - | 34 | sources_exhausted |  |
 | Abeed Sarker | BME | 0 | - | 4 | new_hire_2025_or_later |  |
 | Abhijit Chatterjee | ECE | 0 | - | 94 | sources_exhausted |  |
-| Alan Erera | ISYE | 0 | - | 0 | sources_exhausted | open |
+| Alan Erera | ISYE | 0 | - | 37 | sources_exhausted |  |
 | Alberto Dainotti | CS | 0 | - | 28 | sources_exhausted |  |
 | Alenka Zajic | ECE | 0 | - | 102 | sources_exhausted |  |
 | Alessandro Orso | CS | 0 | - | 51 | sources_exhausted |  |
@@ -22,14 +22,14 @@ Reasons for 0 students: {'sources_exhausted': 312, 'appointment_ended_early': 38
 | Alexander T Adams | IC | 0 | - | 20 | sources_exhausted |  |
 | Ali Mazalek | LMC | 0 | - | 5 | appointment_ended_early |  |
 | Amy Bruckman | IC | 0 | - | 55 | sources_exhausted |  |
-| Andrea Grimes Parker | IC | 0 | - | 0 | sources_exhausted | open |
+| Andrea Grimes Parker | IC | 0 | - | 46 | sources_exhausted |  |
 | Andrea Thomaz | IC | 0 | - | 8 | appointment_ended_early |  |
 | Andy Sun | ISYE | 0 | - | 26 | sources_exhausted |  |
 | Angelos D Keromytis | ECE | 0 | - | 15 | sources_exhausted |  |
 | Animesh Garg | IC | 0 | - | 22 | sources_exhausted |  |
 | Anirban Mazumdar | ME | 0 | - | 30 | sources_exhausted |  |
 | Anne Sullivan | LMC | 0 | - | 25 | sources_exhausted |  |
-| Annie Antón | IC | 0 | - | 0 | sources_exhausted | open |
+| Annie Antón | IC | 0 | - | 11 | sources_exhausted |  |
 | Anqi Wu | CSE | 0 | - | 13 | sources_exhausted |  |
 | Anthony Joseph Yezzi | ECE | 0 | - | 61 | sources_exhausted |  |
 | Anton Kleywegt | ISYE | 0 | - | 24 | sources_exhausted |  |
@@ -67,9 +67,9 @@ Reasons for 0 students: {'sources_exhausted': 312, 'appointment_ended_early': 38
 | Cedric Pradalier | IC | 0 | - | 66 | sources_exhausted |  |
 | Chaouki Tanios Abdallah | ECE | 0 | - | 23 | sources_exhausted |  |
 | Charles C. Kemp | BME | 0 | - | 52 | sources_exhausted |  |
-| Charles Cauthen Lever Jr. | IC | 0 | - | 0 | sources_exhausted | open |
+| Charles Cauthen Lever Jr. | IC | 0 | - | 22 | sources_exhausted |  |
 | Charles Eastman | IC | 0 | - | 0 | appointment_ended_early | appointment_ended_early |
-| Chelsea White | ISYE | 0 | - | 0 | sources_exhausted | open |
+| Chelsea White | ISYE | 0 | - | 24 | sources_exhausted |  |
 | Chin-Hui Lee | ECE | 0 | - | 142 | sources_exhausted |  |
 | Chris Peikert | CS | 0 | - | 0 | appointment_ended_early | appointment_ended_early |
 | Christopher J. MacLellan | IC | 0 | - | 39 | sources_exhausted |  |
@@ -80,7 +80,7 @@ Reasons for 0 students: {'sources_exhausted': 312, 'appointment_ended_early': 38
 | Cindy Kaiying Lin | IC | 0 | - | 12 | sources_exhausted |  |
 | Claire Arthur | MUSIC | 0 | - | 14 | sources_exhausted |  |
 | Clone of Hadi Esmaeilzadeh | CS | 0 | - | 11 | appointment_ended_early |  |
-| Colin Potts | IC | 0 | - | 0 | sources_exhausted | open |
+| Colin Potts | IC | 0 | - | 0 | sources_exhausted | emeritus_throughout |
 | Concettina Guerra | IC | 0 | - | 5 | sources_exhausted |  |
 | Constantine Dovrolis | CS | 0 | - | 27 | sources_exhausted |  |
 | Craig Tovey | ISYE | 0 | - | 16 | sources_exhausted |  |
@@ -107,7 +107,7 @@ Reasons for 0 students: {'sources_exhausted': 312, 'appointment_ended_early': 38
 | Ellen Do | IC | 0 | - | 6 | appointment_ended_early |  |
 | Ellen Zegura | CS | 0 | - | 71 | sources_exhausted |  |
 | Elliot II Moore | ECE | 0 | - | 1 | sources_exhausted |  |
-| Elliot Moore II. | ECE | 0 | - | 0 | sources_exhausted | open |
+| Elliot Moore II. | ECE | 0 | - | 16 | sources_exhausted |  |
 | Eric Feron | AE | 0 | - | 81 | sources_exhausted |  |
 | Eric Gilbert | IC | 0 | - | 8 | appointment_ended_early |  |
 | Eric Overby | SCHELLER | 0 | - | 1 | new_hire_2025_or_later |  |
@@ -135,7 +135,7 @@ Reasons for 0 students: {'sources_exhausted': 312, 'appointment_ended_early': 38
 | Gee-Kung Chang | ECE | 0 | - | 165 | sources_exhausted |  |
 | Geoffrey Ye Li | ECE | 0 | - | 209 | sources_exhausted |  |
 | George F Riley | ECE | 0 | - | 17 | appointment_ended_early |  |
-| George Nemhauser | ISYE | 0 | - | 0 | sources_exhausted | open |
+| George Nemhauser | ISYE | 0 | - | 23 | sources_exhausted |  |
 | Ghassan AlRegib | ECE | 0 | - | 173 | sources_exhausted |  |
 | Gil Weinberg | IC | 0 | - | 4 | appointment_ended_early |  |
 | Glaucio H. Paulino | CEE | 0 | - | 93 | sources_exhausted |  |
@@ -217,11 +217,11 @@ Reasons for 0 students: {'sources_exhausted': 312, 'appointment_ended_early': 38
 | Lance Fortnow | CS | 0 | - | 8 | sources_exhausted |  |
 | Larry Heck | IC | 0 | - | 35 | sources_exhausted |  |
 | Lauren G. Wilcox | CS | 0 | - | 22 | sources_exhausted |  |
-| Lauren Steimle | ISYE | 0 | - | 0 | sources_exhausted | open |
+| Lauren Steimle | ISYE | 0 | - | 29 | sources_exhausted |  |
 | Le Song | CS | 0 | - | 100 | sources_exhausted |  |
 | Leila Aflatoony | ID | 0 | - | 30 | sources_exhausted |  |
 | Lena H. Ting | BME | 0 | - | 87 | sources_exhausted |  |
-| Leo Mark | CS | 0 | - | 0 | sources_exhausted | open |
+| Leo Mark | CS | 0 | - | 0 | sources_exhausted | appointment_ended_early |
 | Leonid A. Bunimovich | MATH | 0 | - | 39 | sources_exhausted |  |
 | Linda S Milor | ECE | 0 | - | 41 | sources_exhausted |  |
 | Ling Liu | CS | 0 | - | 246 | sources_exhausted |  |
@@ -232,7 +232,7 @@ Reasons for 0 students: {'sources_exhausted': 312, 'appointment_ended_early': 38
 | Manos Antonakakis | ECE | 0 | - | 31 | sources_exhausted |  |
 | Marilyn Claire Wolf | ECE | 0 | - | 32 | sources_exhausted |  |
 | Marius F. Niculescu | SCHELLER | 0 | - | 4 | sources_exhausted |  |
-| Mark Andrew Davenport | ECE | 0 | - | 0 | sources_exhausted | open |
+| Mark Andrew Davenport | ECE | 0 | - | 63 | sources_exhausted |  |
 | Mark Borodovsky | CSE | 0 | - | 25 | sources_exhausted |  |
 | Mark Guzdial | IC | 0 | - | 16 | appointment_ended_early |  |
 | Mark Riedl | IC | 0 | - | 138 | sources_exhausted |  |
@@ -302,14 +302,14 @@ Reasons for 0 students: {'sources_exhausted': 312, 'appointment_ended_early': 38
 | Saibal Mukhopadhyay | ECE | 0 | - | 245 | sources_exhausted |  |
 | Saman Zonouz | CSP | 0 | - | 38 | sources_exhausted |  |
 | Samuel Coogan | ECE | 0 | - | 133 | sources_exhausted |  |
-| Santiago Carlos Grijalva | ECE | 0 | - | 0 | sources_exhausted | open |
+| Santiago Carlos Grijalva | ECE | 0 | - | 153 | sources_exhausted |  |
 | Santosh Pande | CS | 0 | - | 37 | sources_exhausted |  |
 | Sara Fridovich-Keil | ECE | 0 | - | 4 | new_hire_2025_or_later |  |
 | Sashank Varma | IC | 0 | - | 54 | sources_exhausted |  |
 | Sebastian Pokutta | ISYE | 0 | - | 21 | sources_exhausted |  |
 | Seong-Hee Kim | ISYE | 0 | - | 23 | sources_exhausted |  |
 | Seth Hutchinson | IC | 0 | - | 64 | sources_exhausted |  |
-| Seymour Goodman | CS | 0 | - | 0 | sources_exhausted | open |
+| Seymour Goodman | CS | 0 | - | 0 | sources_exhausted | emeritus_throughout |
 | Shabbir Ahmed | ISYE | 0 | - | 47 | sources_exhausted |  |
 | Shamkant Navathe | CS | 0 | - | 20 | sources_exhausted |  |
 | Shaolan Li | ECE | 0 | - | 34 | sources_exhausted |  |

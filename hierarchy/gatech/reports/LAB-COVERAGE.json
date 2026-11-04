@@ -3,15 +3,15 @@
  "summary": {
   "labs": 449,
   "with_students": 73,
-  "with_papers": 419,
+  "with_papers": 429,
   "students_reasoned": {
    "sources_exhausted": 312,
    "appointment_ended_early": 38,
    "new_hire_2025_or_later": 26
   },
   "papers_reasoned": {
-   "open": 13,
-   "appointment_ended_early": 9,
+   "emeritus_throughout": 2,
+   "appointment_ended_early": 10,
    "no_identity": 2,
    "new_hire_2025_or_later": 6
   },
@@ -48,7 +48,7 @@
    "title": "Professor",
    "students": 0,
    "student_sources": {},
-   "papers": 0,
+   "papers": 11,
    "reasons": {
     "students": {
      "code": "sources_exhausted",
@@ -63,10 +63,6 @@
       "thesis repository: dissertations are at repository.gatech.edu (DSpace 7, formerly SMARTech): robots.txt has no AI-agent rules, Crawl-delay 10, OAI, /search, /browse and /full pages are disallowed; item pages (/entities/publication/<uuid>, with an Advisor(s) field) are allowed but there is no allowed way to select computing dissertations (95,212 sitemap items, about 11 days at 10 s). Probed 2026-11-04; the general ETD crawler of the repository agent will supply adviser relations later (owner 2026-11-04), not this onboarding."
      ],
      "by": "review"
-    },
-    "papers": {
-     "code": "open",
-     "why": "no recorded reason yet"
     }
    }
   },
@@ -394,7 +390,7 @@
    "title": "Research Engineer II",
    "students": 0,
    "student_sources": {},
-   "papers": 0,
+   "papers": 22,
    "reasons": {
     "students": {
      "code": "sources_exhausted",
@@ -409,10 +405,6 @@
       "thesis repository: dissertations are at repository.gatech.edu (DSpace 7, formerly SMARTech): robots.txt has no AI-agent rules, Crawl-delay 10, OAI, /search, /browse and /full pages are disallowed; item pages (/entities/publication/<uuid>, with an Advisor(s) field) are allowed but there is no allowed way to select computing dissertations (95,212 sitemap items, about 11 days at 10 s). Probed 2026-11-04; the general ETD crawler of the repository agent will supply adviser relations later (owner 2026-11-04), not this onboarding."
      ],
      "by": "review"
-    },
-    "papers": {
-     "code": "open",
-     "why": "no recorded reason yet"
     }
    }
   },
@@ -551,8 +543,13 @@
      "by": "review"
     },
     "papers": {
-     "code": "open",
-     "why": "no recorded reason yet"
+     "code": "emeritus_throughout",
+     "why": "listed 2016-2024, emeritus; the build found 56 DBLP titles but no work of 2016-2026 with the school on the byline passes the build rule (funnel: name_hits 2, school_affiliated 2, verifiedWorks 0); no OpenAlex author of the school with 1+ works matches the name",
+     "sources_checked": [
+      "hierarchy/gatech/pis.json funnel (DBLP titles, school sweep name hits, verified works)",
+      "oa-author-stats.json.gz (OpenAlex authors of the school): no match by family and first given name"
+     ],
+     "by": "review"
     }
    }
   },
@@ -1615,7 +1612,7 @@
    "title": "Senior Associate Chair; Manhattan Associates/Dabbiere Chair; Professor",
    "students": 0,
    "student_sources": {},
-   "papers": 0,
+   "papers": 37,
    "reasons": {
     "students": {
      "code": "sources_exhausted",
@@ -1630,10 +1627,6 @@
       "thesis repository: dissertations are at repository.gatech.edu (DSpace 7, formerly SMARTech): robots.txt has no AI-agent rules, Crawl-delay 10, OAI, /search, /browse and /full pages are disallowed; item pages (/entities/publication/<uuid>, with an Advisor(s) field) are allowed but there is no allowed way to select computing dissertations (95,212 sitemap items, about 11 days at 10 s). Probed 2026-11-04; the general ETD crawler of the repository agent will supply adviser relations later (owner 2026-11-04), not this onboarding."
      ],
      "by": "review"
-    },
-    "papers": {
-     "code": "open",
-     "why": "no recorded reason yet"
     }
    }
   },
@@ -1846,7 +1839,7 @@
    "title": "Professor Emeritus",
    "students": 0,
    "student_sources": {},
-   "papers": 0,
+   "papers": 23,
    "reasons": {
     "students": {
      "code": "sources_exhausted",
@@ -1861,10 +1854,6 @@
       "thesis repository: dissertations are at repository.gatech.edu (DSpace 7, formerly SMARTech): robots.txt has no AI-agent rules, Crawl-delay 10, OAI, /search, /browse and /full pages are disallowed; item pages (/entities/publication/<uuid>, with an Advisor(s) field) are allowed but there is no allowed way to select computing dissertations (95,212 sitemap items, about 11 days at 10 s). Probed 2026-11-04; the general ETD crawler of the repository agent will supply adviser relations later (owner 2026-11-04), not this onboarding."
      ],
      "by": "review"
-    },
-    "papers": {
-     "code": "open",
-     "why": "no recorded reason yet"
     }
    }
   },
@@ -2099,7 +2088,7 @@
    "title": "Schneider National Chair in Transportation and Logistics; Professor",
    "students": 0,
    "student_sources": {},
-   "papers": 0,
+   "papers": 24,
    "reasons": {
     "students": {
      "code": "sources_exhausted",
@@ -2114,10 +2103,6 @@
       "thesis repository: dissertations are at repository.gatech.edu (DSpace 7, formerly SMARTech): robots.txt has no AI-agent rules, Crawl-delay 10, OAI, /search, /browse and /full pages are disallowed; item pages (/entities/publication/<uuid>, with an Advisor(s) field) are allowed but there is no allowed way to select computing dissertations (95,212 sitemap items, about 11 days at 10 s). Probed 2026-11-04; the general ETD crawler of the repository agent will supply adviser relations later (owner 2026-11-04), not this onboarding."
      ],
      "by": "review"
-    },
-    "papers": {
-     "code": "open",
-     "why": "no recorded reason yet"
     }
    }
   },
@@ -2412,8 +2397,13 @@
      "by": "review"
     },
     "papers": {
-     "code": "open",
-     "why": "no recorded reason yet"
+     "code": "emeritus_throughout",
+     "why": "listed 2016-2026 as emeritus; funnel name_hits 2, school_affiliated 2, verifiedWorks 0; no DBLP titles; no OpenAlex author of the school matches the name",
+     "sources_checked": [
+      "hierarchy/gatech/pis.json funnel (DBLP titles, school sweep name hits, verified works)",
+      "oa-author-stats.json.gz (OpenAlex authors of the school): no match by family and first given name"
+     ],
+     "by": "review"
     }
    }
   },
@@ -2568,8 +2558,13 @@
      "by": "review"
     },
     "papers": {
-     "code": "open",
-     "why": "no recorded reason yet"
+     "code": "appointment_ended_early",
+     "why": "last listed 2019; DBLP lists 49 titles but none with the school on the byline passes the build rule (verifiedWorks 0); no OpenAlex author of the school matches the name",
+     "sources_checked": [
+      "hierarchy/gatech/pis.json funnel (DBLP titles, school sweep name hits, verified works)",
+      "oa-author-stats.json.gz (OpenAlex authors of the school): no match by family and first given name"
+     ],
+     "by": "review"
     }
    }
   },
@@ -3148,7 +3143,7 @@
    "title": "Professor; Associate Chair for Graduate Affairs",
    "students": 0,
    "student_sources": {},
-   "papers": 0,
+   "papers": 63,
    "reasons": {
     "students": {
      "code": "sources_exhausted",
@@ -3163,10 +3158,6 @@
       "thesis repository: dissertations are at repository.gatech.edu (DSpace 7, formerly SMARTech): robots.txt has no AI-agent rules, Crawl-delay 10, OAI, /search, /browse and /full pages are disallowed; item pages (/entities/publication/<uuid>, with an Advisor(s) field) are allowed but there is no allowed way to select computing dissertations (95,212 sitemap items, about 11 days at 10 s). Probed 2026-11-04; the general ETD crawler of the repository agent will supply adviser relations later (owner 2026-11-04), not this onboarding."
      ],
      "by": "review"
-    },
-    "papers": {
-     "code": "open",
-     "why": "no recorded reason yet"
     }
    }
   },
@@ -3320,7 +3311,7 @@
    "title": "Professor",
    "students": 0,
    "student_sources": {},
-   "papers": 0,
+   "papers": 153,
    "reasons": {
     "students": {
      "code": "sources_exhausted",
@@ -3335,10 +3326,6 @@
       "thesis repository: dissertations are at repository.gatech.edu (DSpace 7, formerly SMARTech): robots.txt has no AI-agent rules, Crawl-delay 10, OAI, /search, /browse and /full pages are disallowed; item pages (/entities/publication/<uuid>, with an Advisor(s) field) are allowed but there is no allowed way to select computing dissertations (95,212 sitemap items, about 11 days at 10 s). Probed 2026-11-04; the general ETD crawler of the repository agent will supply adviser relations later (owner 2026-11-04), not this onboarding."
      ],
      "by": "review"
-    },
-    "papers": {
-     "code": "open",
-     "why": "no recorded reason yet"
     }
    }
   },
@@ -3684,7 +3671,7 @@
    "title": "Associate Professor; Assoc Chair for Undergraduate Affairs",
    "students": 0,
    "student_sources": {},
-   "papers": 0,
+   "papers": 16,
    "reasons": {
     "students": {
      "code": "sources_exhausted",
@@ -3699,10 +3686,6 @@
       "thesis repository: dissertations are at repository.gatech.edu (DSpace 7, formerly SMARTech): robots.txt has no AI-agent rules, Crawl-delay 10, OAI, /search, /browse and /full pages are disallowed; item pages (/entities/publication/<uuid>, with an Advisor(s) field) are allowed but there is no allowed way to select computing dissertations (95,212 sitemap items, about 11 days at 10 s). Probed 2026-11-04; the general ETD crawler of the repository agent will supply adviser relations later (owner 2026-11-04), not this onboarding."
      ],
      "by": "review"
-    },
-    "papers": {
-     "code": "open",
-     "why": "no recorded reason yet"
     }
    }
   },
@@ -5039,7 +5022,7 @@
    "title": "Harold R. and Mary Anne Nash Early Career Professor; Assistant Professor",
    "students": 0,
    "student_sources": {},
-   "papers": 0,
+   "papers": 29,
    "reasons": {
     "students": {
      "code": "sources_exhausted",
@@ -5054,10 +5037,6 @@
       "thesis repository: dissertations are at repository.gatech.edu (DSpace 7, formerly SMARTech): robots.txt has no AI-agent rules, Crawl-delay 10, OAI, /search, /browse and /full pages are disallowed; item pages (/entities/publication/<uuid>, with an Advisor(s) field) are allowed but there is no allowed way to select computing dissertations (95,212 sitemap items, about 11 days at 10 s). Probed 2026-11-04; the general ETD crawler of the repository agent will supply adviser relations later (owner 2026-11-04), not this onboarding."
      ],
      "by": "review"
-    },
-    "papers": {
-     "code": "open",
-     "why": "no recorded reason yet"
     }
    }
   },
@@ -5396,7 +5375,7 @@
    "title": "Associate Professor",
    "students": 0,
    "student_sources": {},
-   "papers": 0,
+   "papers": 46,
    "reasons": {
     "students": {
      "code": "sources_exhausted",
@@ -5411,10 +5390,6 @@
       "thesis repository: dissertations are at repository.gatech.edu (DSpace 7, formerly SMARTech): robots.txt has no AI-agent rules, Crawl-delay 10, OAI, /search, /browse and /full pages are disallowed; item pages (/entities/publication/<uuid>, with an Advisor(s) field) are allowed but there is no allowed way to select computing dissertations (95,212 sitemap items, about 11 days at 10 s). Probed 2026-11-04; the general ETD crawler of the repository agent will supply adviser relations later (owner 2026-11-04), not this onboarding."
      ],
      "by": "review"
-    },
-    "papers": {
-     "code": "open",
-     "why": "no recorded reason yet"
     }
    }
   },
