@@ -22,10 +22,10 @@ PARTIAL = 2026
 MIN_LAB = 5
 
 
-def ai_flags(df):
+def ai_flags(df, thr=THRESH):
     """(primary flag, full-text flag, abstract flag) as float series with NaN where not available."""
     dose = df['ai_share_cal'].where(df['ai_share_cal'].notna(), df['ai_share'])
-    ft = (dose >= THRESH).astype(float).where(dose.notna())
+    ft = (dose >= thr).astype(float).where(dose.notna())
     ab = df['flag_abstract']
     return ft.where(ft.notna(), ab), ft, ab
 
@@ -41,16 +41,16 @@ def cell(flags):
     return dict(n=int(n), flagged=int(f.sum()), not_flagged=int(n - f.sum()), share=float(f.mean()) if n else None)
 
 
-def how_much(df, base_years=range(2016, 2022)):
+def how_much(df, base_years=range(2016, 2022), thr=THRESH, schools=None):
     d = df.explode('schools').rename(columns={'schools': 'school'})
     d = d[d['school'].isin(D.SCHOOLS)]
     out = {}
     for name, col in (('primary', 0), ('fulltext', 1), ('abstract', 2)):
-        d = d.assign(_f=ai_flags(d)[col])
+        d = d.assign(_f=ai_flags(d, thr)[col])
         series = {}
-        for s in ['all'] + D.SCHOOLS:
+        for s in ['all'] + (schools or D.SCHOOLS):
             g = df if s == 'all' else d[d['school'] == s]
-            f = ai_flags(g)[col]
+            f = ai_flags(g, thr)[col]
             base_mask = g['year'].isin(base_years) & (~g['trained_on'] if 'trained_on' in g else True)
             b = f[base_mask].dropna()
             bn, bp = len(b), (b.mean() if len(b) else np.nan)
@@ -65,8 +65,8 @@ def how_much(df, base_years=range(2016, 2022)):
                     rows.append(c)
             series[s] = rows
         out[name] = series
-    return dict(definition=dict(primary='ai_share_cal >= 0.25 where full text exists, else the abstract flag', threshold=THRESH, partial_year=PARTIAL,
-                                baseline_years=[2016, 2021]), series=out)
+    return dict(definition=dict(primary='ai_share_cal >= 0.25 where full text exists, else the abstract flag', threshold=thr, partial_year=PARTIAL,
+                                baseline_years=[2016, 2021], false_positive_floor='baseline = the 2016-2021 rate of the same rule: show it as the false-positive floor'), series=out)
 
 
 def given_ai(df, passages):
@@ -117,7 +117,7 @@ def run(out):
     ps = DD.passages(set(df.loc[df['ai_share'].notna(), 'paper_id']))
     _, lp = DD.universe()
     out.mkdir(parents=True, exist_ok=True)
-    for name, obj in (('how_much_ai', how_much(df)), ('given_ai', given_ai(df, ps)), ('labs_ai_amount', labs(df, lp))):
+    for name, obj in (('how_much_ai', dict(how_much(df), sensitivity={str(t): how_much(df, thr=t) for t in (0.10, 0.50)})), ('given_ai', given_ai(df, ps)), ('labs_ai_amount', labs(df, lp))):
         obj['generated'] = D.now()
         (out / f'{name}.json').write_text(json.dumps(obj, separators=(',', ':')))
         D.log(wrote=str(out / f'{name}.json'))

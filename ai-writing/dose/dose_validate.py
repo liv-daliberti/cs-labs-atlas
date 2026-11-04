@@ -118,6 +118,33 @@ def recalibrated_share(df, passages, thr):
     return df['paper_id'].map(share)
 
 
+def rise_table(df):
+    """Where does the 2016-2021 rise of the flagged rates sit? Per group: the 2016-17 and 2020-21 flagged abstract share (v1) and flagged passage share, and the change."""
+    d = df[df['year'].between(2016, 2021)].copy()
+    d['early'] = d['year'] <= 2017
+    rows = []
+    for by in ('school', 'field_grp', 'venue_type', 'text_kind'):
+        dd = explode_schools(d) if by == 'school' else d
+        if by not in dd:
+            continue
+        for k, g in dd.groupby(by):
+            r = dict(by=by, group=str(k))
+            for name, col, w in (('abs', 'flag_abstract', None), ('par', 'n_flagged', 'n_passages')):
+                for part, m in (('early', g['year'] <= 2017), ('late', g['year'] >= 2020)):
+                    x = g[m]
+                    if w is None:
+                        x = x[x[col].notna()]
+                        r[f'{name}_{part}'] = x[col].mean() if len(x) else np.nan
+                        r[f'{name}_{part}_n'] = len(x)
+                    else:
+                        x = x[x[w].notna()]
+                        r[f'{name}_{part}'] = x[col].sum() / x[w].sum() if len(x) and x[w].sum() else np.nan
+                        r[f'{name}_{part}_n'] = len(x)
+                r[f'{name}_change'] = r[f'{name}_late'] - r[f'{name}_early']
+            rows.append(r)
+    return pd.DataFrame(rows)
+
+
 def cross_check(yearly, liang):
     """School-year panel: detector, Kobak and Liang; Pearson correlations over the panel and within school (after removing school means)."""
     panel = yearly.merge(liang.rename(columns={'alpha': 'liang_alpha'})[['school', 'year', 'liang_alpha', 'n']].rename(columns={'n': 'liang_n'}), on=['school', 'year'], how='left')
@@ -152,6 +179,8 @@ def write_figures(yearly, liang, fig_dir):
 def run(recalibrate, fig_dir):
     df = DD.paper_table()
     df['field_grp'] = field_groups(df)
+    if 'source_type' in df:
+        df['venue_type'] = df['source_type'].fillna('unknown').astype(str)
     res = D.RESULTS
     res.mkdir(parents=True, exist_ok=True)
     tabs = {}
@@ -162,6 +191,7 @@ def run(recalibrate, fig_dir):
     tabs['abstract_field'] = abstract_pre_table(df.assign(field_grp=df['field_grp']), 'field_grp')
     yearly = yearly_table(df)
     tabs['yearly'] = yearly
+    tabs['rise'] = rise_table(df)
     liang = pd.read_parquet(res / 'liang_alpha.parquet')
     panel, corr, within = cross_check(yearly, liang[liang['school'] != 'all'])
     tabs['panel'] = panel
