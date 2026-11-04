@@ -225,3 +225,39 @@ def test_center_normalize_gives_unit_rows():
     X = np.random.default_rng(0).normal(size=(10, D)) + 5
     Z, mu = novelty.center_normalize(X)
     assert np.allclose(np.linalg.norm(Z, axis=1), 1, atol=1e-4) and mu.shape == (D,)
+
+
+# ---------------------------------------------------------------- entropy and intervals
+def test_shannon_known_values_and_bias_correction():
+    import measures as M
+    assert M.shannon([1, 1, 1, 1]) == pytest.approx(2.0) and M.shannon([5, 0, 0]) == 0.0 and np.isnan(M.shannon([0, 0]))
+    assert M.miller_madow([1, 1, 1, 1]) == pytest.approx(2.0 + 3 / (2 * 4 * np.log(2)))
+    assert M.miller_madow([10, 0]) == pytest.approx(0.0)           # one occupied topic: no correction
+
+
+def test_rarefied_entropy_is_deterministic_and_size_matched():
+    import measures as M
+    a = M.rarefied([50, 50, 50, 50], 20, reps=40, seed=1)
+    assert a == M.rarefied([50, 50, 50, 50], 20, reps=40, seed=1) and 1.7 < a <= 2.0
+    assert np.isnan(M.rarefied([3, 2], 10))
+    assert M.rarefied([100, 0], 10) == 0.0
+
+
+def test_diff_ci_covers_a_known_shift_and_resamples_clusters():
+    import measures as M
+    rng = np.random.default_rng(0)
+    clusters = np.repeat(np.arange(60), 10)
+    post = np.tile(np.array([0, 0, 0, 0, 0, 1, 1, 1, 1, 1], bool), 60)
+    vals = rng.normal(0, 0.1, 600) + 0.3 * post + np.repeat(rng.normal(0, 0.05, 60), 10)
+    est, lo, hi, n = M.diff_ci(vals, clusters, post, reps=300)
+    assert n == 60 and lo < 0.3 < hi and est == pytest.approx(0.3, abs=0.05) and hi - lo < 0.1
+
+
+def test_mean_by_year_matches_plain_means():
+    import measures as M
+    rng = np.random.default_rng(1)
+    years = np.tile([2020, 2021, 2022], 100); clusters = np.repeat(np.arange(30), 10); vals = rng.normal(size=300) + (years - 2020)
+    out = M.mean_by_year(vals, years, clusters, reps=200)
+    for y in (2020, 2021, 2022):
+        m, lo, hi, n = out[y]
+        assert m == pytest.approx(vals[years == y].mean()) and lo < m < hi and n == 100
