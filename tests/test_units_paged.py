@@ -18,3 +18,12 @@ def test_unit_pages_are_captured_for_the_same_year(monkeypatch):
 def test_an_unpaged_unit_page_adds_nothing(monkeypatch):
     monkeypatch.setattr(C.W, 'raw_html', lambda c, cap: '<ul><li>Ann Lee, Professor</li></ul>')
     assert C.unit_pages_of(None, 'cap0', dict(timestamp='20200401000000', original='https://u.edu/people'), 'X', 'u.edu/people') == 0
+
+
+def test_faculty_evidence_matches_middle_initials_and_initial_first_given_names():
+    pages = [('AE', 'u', 'sha', '20180101', 'Postdoctoral Fellow Montgomery-Knight View Full Profile Karen M Feigh Associate Professor Knight-419 View Full Profile Eric Feron'),
+             ('SB', 'u2', 'sha2', '20180101', 'Todd, Bill Toktay, L. Beril Associate Professor Faculty Turner, Deborah')]
+    ev = C.faculty_evidence(pages, ['Karen M. Feigh'])
+    assert ev and ev[0]['unit'] == 'AE' and ev[0]['quote'].endswith('Associate Professor') and ev[0]['ladder']
+    assert C.faculty_evidence(pages, ['L. Beril Toktay'])[0]['unit'] == 'SB'
+    assert C.faculty_evidence(pages, ['Karen Smith']) == []

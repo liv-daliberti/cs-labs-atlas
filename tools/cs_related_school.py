@@ -250,11 +250,20 @@ def faculty_evidence(pages, names):
         t = n.replace(',', '').split()
         if len(t) >= 2:
             forms |= {n, f'{t[-1]}, {" ".join(t[:-1])}', f'{t[0]} {t[-1]}', f'{t[-1]}, {t[0]}'}
+    # forms with middle names or initials the page spells and the candidate's name does not ('Karen Feigh' / 'Karen M Feigh', 'Toktay, Beril' /
+    # 'Toktay, L. Beril'): regexes, tried after the literal forms (Georgia Tech friction 20)
+    rxs = []
+    for n in names:
+        t = n.replace(',', '').split()
+        given = [x for x in t[:-1] if len(x.strip('.')) >= 3]
+        if len(t) >= 2 and given:
+            f1, la = re.escape(given[0]), re.escape(t[-1])
+            rxs += [rf"{f1}\s+(?:[A-Z][\w.'’-]*\s+){{1,2}}{la}", rf"{la},\s+(?:[A-Z]\.?\s+){{1,2}}{f1}"]
     ev = []
     for unit, url, sha, obs, flat in pages:
-        for f in sorted(forms, key=len, reverse=True):
+        for f in sorted(forms, key=len, reverse=True) + rxs:
             hit = None
-            for m in re.finditer(re.escape(f), flat):
+            for m in re.finditer(f if f in rxs else re.escape(f), flat):
                 nxt = flat[m.end():m.end() + 1]
                 if nxt and (nxt.isalnum() or nxt in "-'"):
                     continue
