@@ -233,7 +233,7 @@ def clean_student_name(name):
     return n
 
 
-def is_department_roster(flat, faculty, n=6):
+def is_department_roster(flat, faculty, n=15):
     """True when a page names `n` or more distinct faculty of the atlas (folded full names): a department or program people page, whose students are
     the department's, not any one PI's (the Mathematics people page had given every Mathematics PI 170 graduate students; extract also skips a page with 60 or more candidate names)."""
     low = ' ' + ' '.join(toks(flat)) + ' '

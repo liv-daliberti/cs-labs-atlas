@@ -220,5 +220,5 @@ def test_a_department_people_page_is_not_a_lab_page():
     L = by_path('labpage_students_school')
     fac = {'ann lee', 'bo wu', 'cy roe', 'di fox', 'ed gray', 'flo hart', 'gus ito'}
     page = 'People Ann Lee Professor Bo Wu Professor Cy Roe Di Fox Ed Gray Flo Hart Graduate students Sam Poe'
-    assert L.is_department_roster(page, fac)
-    assert not L.is_department_roster('Ann Lee group: students Sam Poe, Tia Kim; collaborator Bo Wu', fac)
+    assert L.is_department_roster(page, fac, 6)
+    assert not L.is_department_roster('Ann Lee group: students Sam Poe, Tia Kim; collaborator Bo Wu', fac, 6)
