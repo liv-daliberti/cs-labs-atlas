@@ -1,0 +1,138 @@
+{
+ "school": "gatech",
+ "bar": "docs/LAB-PAGES.md, acceptance bar (2026-10-31)",
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-11-04",
+   "label": "first Georgia Tech audit (hand check by Claude against each row's own capture)",
+   "additions_generated_at": "2026-11-04T02:12:23+00:00",
+   "students": {
+    "sampled": 20,
+    "seed": 20261104,
+    "membership_errors": 2,
+    "doubtful_count": 2,
+    "role_or_year_errors": 0.5
+   },
+   "papers": null,
+   "items": {
+    "membership": [
+     "B. Aditya Prakash: Alex Rodriguez (\"Dr. Alex Rodriguez, CS PhD (Current: Faculty at the University of Michigan)\", undated, alumni=False): a Virginia Tech PhD of a PI who arrived at Georgia Tech in 2020",
+     "B. Aditya Prakash: Liangzhe Chen (\"Dr. Liangzhe Chen, CS PhD (Current: Pinterest)\", undated, alumni=False): same, previous institution"
+    ],
+    "doubtful": [
+     "Kinsey Herrin: Kennedy Kerr (PhD student, Biomedical Engineering, 'Co-advised by Dr. Lena Ting' on a shared center page: advisor named is not the PI)",
+     "Surya Kalidindi: Anthony J. Rozanski (a bare 'Current Position' name list on an alumni page, undated)"
+    ],
+    "role_or_year": [
+     "Prakash: both rows read alumni=False for an entry that names a later position"
+    ]
+   },
+   "membership_score": 3.0,
+   "role_year_errors": 0.5,
+   "paper_score": null,
+   "result": "fail",
+   "note": "The other 16 are members of the PI named on the page with roles and years as stated (Kalidindi's 'Current Members' list of the 2021 matin.gatech.edu capture names Yabansu and Hashemi as current). Fix: moved_in_alumnus (labpage_audit): an undated alumnus or an entry that names a later position on the page of a PI who arrived inside the window cannot be placed (previous institution). Then re-run audit and a NEW sample."
+  },
+  {
+   "round": 2,
+   "date": "2026-11-04",
+   "label": "second Georgia Tech audit, after moved_in_alumnus (hand check by Claude against each row's own capture)",
+   "additions_generated_at": "2026-11-04T08:17:03+00:00",
+   "students": {
+    "sampled": 20,
+    "seed": 20261105,
+    "membership_errors": 3,
+    "doubtful_count": 2,
+    "role_or_year_errors": 0.5
+   },
+   "papers": null,
+   "items": {
+    "membership": [
+     "Umakishore Ramachandran: Mary D. P. Leland ('Known PhD siblings ...': students of the PI's own advisor, not the PI's students)",
+     "Umakishore Ramachandran: Jonathan Kepecs (same 'Known PhD siblings' list)",
+     "Juba Ziani: Patrick Kastner (a dated news sentence 'August 2025: Patrick Kastner and I just received a small seed grant': a collaborator, not a roster entry)"
+    ],
+    "doubtful": [
+     "Surya Kalidindi: Jian Guo (bare 'Current Position' name list on a 2021 page, undated)",
+     "Kinsey Herrin: Theresa Hardin (shared center page: 'Co-advised by Dr. Aaron Young')"
+    ],
+    "role_or_year": [
+     "Alejandro Toriello: Rui Gong read postdoc under 'Current PhD Students and Post-Docs'"
+    ]
+   },
+   "membership_score": 4.0,
+   "role_year_errors": 0.5,
+   "paper_score": null,
+   "result": "fail",
+   "note": "The other 15 are members of the PI named on the page. Fixes: autom.HARD_EXCL_HEAD (kinship lists: siblings, lineage, genealogy) and labpage_audit.news_item (dated news sentences are not roster entries). Then re-run the audit and a NEW sample."
+  },
+  {
+   "round": 3,
+   "date": "2026-11-04",
+   "label": "third Georgia Tech audit (hand check by Claude against each row's own capture)",
+   "additions_generated_at": "2026-11-04T08:30:57+00:00",
+   "students": {
+    "sampled": 20,
+    "seed": 20261106,
+    "membership_errors": 2,
+    "doubtful_count": 3,
+    "role_or_year_errors": 1.5
+   },
+   "papers": null,
+   "items": {
+    "membership": [
+     "Wenjing Liao: Zecheng Zhang (quote 'Zecheng Zhang,': one name of a publication byline)",
+     "Umakishore Ramachandran: William Kalsow ('Known PhD siblings' list: the HARD_EXCL_HEAD fix lived in the toolkit of the main checkout, which the audit job did not read)"
+    ],
+    "doubtful": [
+     "Surya Kalidindi: Ebrahim Shaji (section 'Current Position' = the alumni job column, undated)",
+     "Surya Kalidindi: Anne Hanna (long 'Current Members' list of an alumni page)",
+     "Kinsey Herrin: Vibha Iyer (shared center page: 'Co-advised by Dr. Aaron Young')"
+    ],
+    "role_or_year": [
+     "Toriello: Sebastian Perez-Salazar, Mike Poremba read postdoc under 'Former PhD Students and Post-Docs'",
+     "Qirun Zhang: Tejas Joshi (MS 2024.8 - ) read years [None, 2024], alumni=True"
+    ]
+   },
+   "membership_score": 3.5,
+   "role_year_errors": 1.5,
+   "paper_score": null,
+   "result": "fail",
+   "note": "The other 15 are members of the PI named on the page. Fixes: byline_item, current_position_list, and the toolkit directories (hierarchy/labpage-tools-*) are now read from the running checkout or snapshot, not from the main checkout (friction 29). Round 4 follows with a NEW sample."
+  },
+  {
+   "round": 4,
+   "date": "2026-11-04",
+   "label": "fourth Georgia Tech audit, last round of the normal limit (hand check by Claude against each row's own capture)",
+   "additions_generated_at": "2026-11-04T08:52:28+00:00",
+   "students": {
+    "sampled": 20,
+    "seed": 20261107,
+    "membership_errors": 3,
+    "doubtful_count": 4,
+    "role_or_year_errors": 0.5
+   },
+   "papers": null,
+   "items": {
+    "membership": [
+     "Yingyan (Celine) Lin: Pengfei Xu ('M.S. student, ECE@Rice University, Sept. 2017 - Sept. 2019': the PI's lab at Rice, before her 2023 arrival)",
+     "Yingyan (Celine) Lin: Jyotikrishna Dass ('Postdoctoral researcher, Sept. 2021 - July 2022' on the same team page: Rice era)",
+     "Jesse Thomason: Invited Talk NeurIPS-ViGIL (a CV talk line read as a student)"
+    ],
+    "doubtful": [
+     "Qi Tang: Jamar Sullivan (Postbac, summer 2025, listed under 'Student Interns at LANL')",
+     "Surya Kalidindi: Anthony Coratolo, Joshua Houskamp, Eric Franco (names under the alumni job column 'Current Position', undated; the round-3 fix did not drop them)"
+    ],
+    "role_or_year": [
+     "Toriello: Ignacio Erazo (2024) read postdoc under 'Former PhD Students and Post-Docs'"
+    ]
+   },
+   "membership_score": 5.0,
+   "role_year_errors": 0.5,
+   "paper_score": null,
+   "result": "fail",
+   "note": "The other 13 are members of the PI named on the page. Four rounds failed, the normal limit: per docs/LAB-PAGES.md the students are NOT wired and the error patterns are reported. Rules added AFTER the draw for a round the owner may grant (as for Stanford, CMU, Michigan): other_institution_entry, talk_item, current-position names dropped (no new sample has been drawn)."
+  }
+ ]
+}
