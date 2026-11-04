@@ -50,7 +50,11 @@ review      faculty evidence: a 2016-2026 unit capture whose text has the candid
             -> hierarchy/<key>/cs-related-review.json {school, rule, reviewed, provisional, decisions: [...]}
             -> census/<key>-additions.json: accepted people of other units (census format; is_pi with pi_basis
                ladder_faculty from the unit listing; added = cs_related_review_<date>)
-usage: cs_related_school.py candidates|units|units-check|review <key>
+hand        reviewed/cs-related-hand.json: faculty evidence from a person's own profile page (a unit directory that is a script shell proves nothing):
+            [{name, unit, url, sha256, observed, quote, ladder}]. `cs_related_school.py profile <key> "<Name>" <unit> <url>` fetches the page (the live page where
+            robots allows, else the latest Wayback capture), requires the name followed by a professor title, and appends the entry; `review` reads the file as
+            faculty evidence only when the sha256 is a stored capture whose text holds the quote verbatim. The share test still decides computing.
+usage: cs_related_school.py candidates|units|units-check|review|profile <key> [<Name> <unit> <url>]
 units-check exits 0 when units-done.json covers every unit URL of the charter (a unit added since the last `units` run, or no run, exits 1)
 """
 import collections, datetime, gzip, json, re, sys
@@ -180,8 +184,15 @@ def units(key):
         for url in u.get('listings') or []:
             host = re.sub(r'^https?://', '', url).split('/')[0]
             if S.host_use(key, host) == 'live':
-                res = W.live(c, url if url.startswith('http') else 'https://' + url)
+                lurl = url if url.startswith('http') else 'https://' + url
+                res = W.live(c, lurl)
                 n['live'] += 1
+                if res and res[0] == 200:  # a paged directory live: follow its pages / A-Z letters too (robots and the per-host delay apply in W.live)
+                    import listing_formats as LF
+                    lh = W.live_html(c, lurl) or ''
+                    for _, lu in (LF.page_links(lh, lurl) or LF.letter_links(lh, lurl)).items() if LF.is_paged(lh) else []:
+                        if W.live(c, lu):
+                            n['live_pages'] += 1
             rows = W.cdx_rows(c, re.sub(r'^https?://', '', url), collapse='timestamp:4')
             for r in rows:
                 cap, st, sha, b = W.capture(c, r['timestamp'], r['original'], url, u['code'])
@@ -234,6 +245,12 @@ def unit_pages(key):
     for u in cfg.get('affiliated_units') or []:
         for url in u.get('listings') or []:
             codes[re.sub(r'^https?://(www\.)?', '', url).rstrip('/').lower()] = u['code']
+
+    def code_of(k):  # a live page of the listing itself, one of its ?page=N pages or one of its A-Z letter pages
+        base = k.split('?')[0].rstrip('/')
+        if base in codes:
+            return codes[base]
+        return next((c_ for lk, c_ in codes.items() if base.startswith(lk + '/') and re.fullmatch(r'[a-z]', base[len(lk) + 1:])), None)
     out = []
     for cap, page, dept, ts, st, sha, txt in c.execute('select capture_url, page_url, department, wayback_timestamp, http_status, sha256, text from captures'):
         k = re.sub(r'^https?://(www\.)?', '', page or '').rstrip('/').lower()
@@ -243,10 +260,10 @@ def unit_pages(key):
                 out.append((codes.get(k, dept), cap, sha, str(ts), ' '.join(txt.split())))
     for url, at, st, sha, raw in c.execute('select url, fetched_at, status, sha256, raw_zlib from live'):
         k = re.sub(r'^https?://(www\.)?', '', url).rstrip('/').lower()
-        if st == 200 and k in codes:
+        if st == 200 and code_of(k):
             import zlib
             b = W.extract.blocks(zlib.decompress(raw), 'text/html', url)
-            out.append((codes[k], url, sha, at[:10].replace('-', ''), W.flat(b)))
+            out.append((code_of(k), url, sha, at[:10].replace('-', ''), W.flat(b)))
     return out
 
 
@@ -313,6 +330,59 @@ def census_alias(census, names):
     return None
 
 
+def hand_evidence(key, c=None):
+    """{normalised name: [evidence]} from reviewed/cs-related-hand.json, each entry verified: its sha256 is a stored capture (or live page) whose text holds the quote."""
+    ents = read(P.data('cs-related-hand.json', key), [])
+    if not ents:
+        return {}
+    c = c or W.con(key)
+    out = {}
+    for e in ents:
+        if not all(e.get(k) for k in ('name', 'unit', 'url', 'sha256', 'quote')):
+            raise SystemExit(f"cs-related-hand.json: entry without name/unit/url/sha256/quote: {e.get('name')}")
+        texts = [r[0] for r in c.execute('select text from captures where sha256=?', (e['sha256'],))]
+        for url, raw in c.execute('select url, raw_zlib from live where sha256=?', (e['sha256'],)):
+            import zlib
+            texts.append(W.flat(W.extract.blocks(zlib.decompress(raw), 'text/html', url)))
+        if not any(' '.join(t.split()).find(' '.join(e['quote'].split())) >= 0 for t in texts if t):
+            raise SystemExit(f"cs-related-hand.json: the quote of {e['name']} is not in the stored page {e['sha256'][:12]} (re-run `profile`)")
+        out.setdefault(' '.join(toks(e['name'])), []).append(dict(unit=e['unit'], url=e['url'], sha256=e['sha256'], observed=e.get('observed') or '', quote=e['quote'],
+                                                                   ladder=bool(e.get('ladder', True)), hand=True))
+    return out
+
+
+def profile(key, name, unit, url):
+    """Fetch one profile page and record faculty evidence for `name` in reviewed/cs-related-hand.json (see the module doc)."""
+    c = W.con(key)
+    cands = {' '.join(toks(x['name'])): x for x in read(P.data('cs-related-candidates.json', key), [])}
+    names = [name] + list((cands.get(' '.join(toks(name))) or {}).get('aliases') or [])
+    pages = []
+    full = url if url.startswith('http') else 'https://' + url
+    host = re.sub(r'^https?://', '', full).split('/')[0]
+    if S.host_use(key, host) == 'live':
+        res = W.live(c, full)
+        if res and res[0] == 200:
+            pages.append((unit, full, res[1], datetime.date.today().isoformat().replace('-', ''), W.flat(res[2])))
+    if not pages:
+        rows = W.cdx_rows(c, re.sub(r'^https?://', '', full), collapse='timestamp:4')
+        for r in sorted(rows, key=lambda x: x['timestamp'], reverse=True)[:3]:
+            cap, st, sha, b = W.capture(c, r['timestamp'], r['original'], full, unit)
+            if st == 200:
+                pages.append((unit, cap, sha, r['timestamp'], W.flat(b)))
+                break
+    ev = [e for e in faculty_evidence(pages, names) if e['ladder']]
+    if not ev:
+        print(json.dumps(dict(name=name, result='no professor title after the name', pages=len(pages))))
+        return 1
+    e = ev[0]
+    ents = read(P.data('cs-related-hand.json', key), [])
+    ents = [x for x in ents if not (x['name'] == name and x['url'] == e['url'])] + [dict(name=name, unit=unit, url=e['url'], sha256=e['sha256'], observed=e['observed'], quote=e['quote'], ladder=True)]
+    out = P.data_w('cs-related-hand.json', key); out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(ents, indent=1, ensure_ascii=False))
+    print(json.dumps(dict(name=name, result='recorded', quote=e['quote'], observed=e['observed'])))
+    return 0
+
+
 def review(key):
     if not units_current(key):
         sys.exit(f'review refused: units-done.json is missing or older than the charter\'s [[affiliated_units]]; run `cs_related_school.py units {key}` first (Georgia Tech friction 19)')
@@ -324,6 +394,7 @@ def review(key):
     SH = oa_stats(key)
     SETTLE = list(S.field(S.get(key), 'cs_related.share_test_settles') or [])
     searched = sorted({p[0] for p in pages})
+    hand = hand_evidence(key)
     dec, adds, n = [], [], collections.Counter()
     seen = set()
     for c in cands:
@@ -359,7 +430,7 @@ def review(key):
             src = next(s for s in x['sources'] if s.get('rank') == 'ladder')
             fac = [dict(unit=src['kind'].split(':')[-1], url=src['url'], sha256=src['sha256'], observed=src['observed'], quote=src['quote'], ladder=True)]
         else:
-            fac = faculty_evidence(pages, names)
+            fac = faculty_evidence(pages, names) + hand.get(' '.join(toks(c['name'])), [])
         lad = [e for e in fac if e['ladder']]
         sh = None
         if SH and lad:
@@ -384,47 +455,4 @@ def review(key):
                 d = 'faculty_not_computing'; why = f'faculty ({lad[0]["unit"]}); computing-share test fails: ' + why_s
             elif undecided:
                 d = 'too_few_school_works'; why = f'faculty ({lad[0]["unit"]}); fewer than {SHARE_MIN_N} school works and no pass, no decided DBLP record: ' + why_s
-            elif win >= MIN_DBLP:  # too few school works to measure: the decided DBLP record stands
-                d = 'accepted'; why = f'faculty ({lad[0]["unit"]} listing, professor rank) with {win} DBLP records 2016-2026; share test cannot measure (' + why_s + ')'
-            else:
-                d = 'faculty_not_computing'; why = f'faculty ({lad[0]["unit"]}), {win} DBLP records 2016-2026 (< {MIN_DBLP}); share test cannot measure (' + why_s + ')'
-        elif undecided:
-            d, why = undecided
-        elif c['source'] == 'openalex_rule' and fac:
-            d = 'research_or_other_rank'; why = 'listed by a searched unit only with a research, adjunct, clinical or emeritus title'
-        elif lad and win >= MIN_DBLP:
-            d = 'accepted'; why = f'faculty ({lad[0]["unit"]} listing, professor rank) with {win} DBLP records 2016-2026 naming the school'
-        elif lad:
-            d = 'faculty_not_computing'; why = f'faculty ({lad[0]["unit"]}), {win} DBLP records 2016-2026 (< {MIN_DBLP})'
-        elif fac:
-            d = 'research_or_other_rank'; why = 'listed by a searched unit only with a research, adjunct, clinical or emeritus title'
-        else:
-            d = 'not_faculty_listed'; why = f'no 2016-2026 faculty listing of the searched units ({", ".join(searched)}) names them with a professor title'
-        n[d] += 1
-        row = dict(name=c['name'], aliases=c.get('aliases') or [], source=c['source'], decision=d, reason=why, cs_basis=comp,
-                   faculty_evidence=sorted(fac, key=lambda e: e['observed'])[:3] + (sorted(fac, key=lambda e: e['observed'])[-1:] if len(fac) > 3 else []),
-                   years_listed=sorted({int(e['observed'][:4]) for e in fac}), units_searched=searched)
-        if not SH:
-            row['provisional'] = 'computing share pending the OpenAlex sweep (DBLP-indexed share of school works >= 20%)'
-        dec.append(row)
-        if d == 'accepted' and c['source'] != 'affiliated_department':
-            first, last = lad[0], sorted(lad, key=lambda e: e['observed'])[-1]
-            adds.append(dict(name=c['name'], aliases=row['aliases'], collection_person_id=f'{key}_fac_' + re.sub(r'[^a-z0-9]+', '-', ' '.join(toks(c['name']))).strip('-'),
-                             dblp=comp['dblp'][:1], rank='ladder', title_as_listed=last['quote'], departments=[last['unit']],
-                             years_listed=row['years_listed'], sources=[dict(url=e['url'], sha256=e['sha256'], quote=e['quote'], kind=f"unit_listing:{e['unit']}",
-                                                                          observed=e['observed']) for e in sorted(lad, key=lambda e: e['observed'])],
-                             is_pi=True, pi_basis=dict(kind='ladder_faculty', url=first['url'], sha256=first['sha256'], quote=first['quote'], observed=first['observed'],
-                                                       role='professor title on the unit faculty listing', cs_related=dict(dblp=comp['dblp'], dblp_window=win, openalex=(comp.get('openalex_share') or {}).get('ids'),
-                                                                                 share=(comp.get('openalex_share') or {}).get('share'))),
-                             lab_units=[], added=f'cs_related_review_{TODAY.replace("-", "")}'))
-    doc = dict(school=key, reviewed=TODAY, rule=__doc__.split('\nusage')[0], min_dblp=MIN_DBLP, share_test=dict(min_dblp_indexed=SHARE_MIN_CS, min_share=SHARE_MIN,
-               min_works_for_negative=SHARE_MIN_N, applied=bool(SH)), units_searched=searched, counts=dict(n), decisions=dec)
-    P.data_w('cs-related-review.json', key).write_text(json.dumps(doc, indent=1, ensure_ascii=False))
-    P.data_w('census-additions.json', key).write_text(json.dumps(adds, indent=1, ensure_ascii=False))
-    print(json.dumps(dict(decisions=len(dec), additions=len(adds), **n)))
-
-
-if __name__ == '__main__':
-    if sys.argv[1] == 'units-check':
-        sys.exit(0 if units_current(sys.argv[2]) else 1)
-    {'candidates': candidates, 'units': units, 'review': review}[sys.argv[1]](sys.argv[2])
+            elif win >= MIN_DBLP:  # too few school works to measure

@@ -27,3 +27,17 @@ def test_faculty_evidence_matches_middle_initials_and_initial_first_given_names(
     assert ev and ev[0]['unit'] == 'AE' and ev[0]['quote'].endswith('Associate Professor') and ev[0]['ladder']
     assert C.faculty_evidence(pages, ['L. Beril Toktay'])[0]['unit'] == 'SB'
     assert C.faculty_evidence(pages, ['Karen Smith']) == []
+
+
+def test_live_pages_of_a_paged_unit_listing_count_as_the_unit(monkeypatch):
+    import sqlite3
+    import zlib
+    c = sqlite3.connect(':memory:')
+    c.execute('create table captures(capture_url, page_url, department, wayback_timestamp, http_status, sha256, text)')
+    c.execute('create table live(url, fetched_at, status, sha256, content_type, raw_zlib, note)')
+    for u in ('https://math.gatech.edu/people', 'https://math.gatech.edu/people?page=1', 'https://math.gatech.edu/people/b', 'https://math.gatech.edu/peoplex'):
+        c.execute('insert into live values (?,?,?,?,?,?,?)', (u, '2026-11-03T10:00:00', 200, 's', 'text/html', zlib.compress(b'<p>Wenjing Liao Associate Professor</p>'), None))
+    monkeypatch.setattr(C.W, 'con', lambda key: c)
+    monkeypatch.setattr(C.S, 'get', lambda key: {'affiliated_units': [{'code': 'MATH', 'listings': ['math.gatech.edu/people']}]})
+    got = sorted(p[1] for p in C.unit_pages('k'))
+    assert got == ['https://math.gatech.edu/people', 'https://math.gatech.edu/people/b', 'https://math.gatech.edu/people?page=1']
