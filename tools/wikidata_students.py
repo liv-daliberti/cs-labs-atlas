@@ -103,7 +103,13 @@ def pi_qids(key):
     for f in (P.data('dblp-dump-persons.json.gz'), P.data('dblp-dump-persons-school.json.gz', key)):
         if f.exists():
             dp.update(json.load(gzip.open(f, 'rt'))['persons'])
-    first = {t['name']: t['first'] for t in PS.targets(key)}
+    try:
+        first = {t['name']: t['first'] for t in PS.targets(key)}   # an onboarding school's census
+    except (TypeError, KeyError, FileNotFoundError):
+        first = {}
+    for nm, p in pis.items():   # a released school: the PI's first reviewed period
+        st = [int(x['start']) for x in p.get('periods') or [] if str(x.get('start') or '').isdigit()]
+        first.setdefault(nm, min(st) if st else 2016)
     out = {}
     for nm, p in pis.items():
         qs = []
