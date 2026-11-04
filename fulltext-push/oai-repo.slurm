@@ -16,6 +16,6 @@ export FTP_PY="$CS_ATLAS_PY"
 . "$CS_ATLAS_CODE/fulltext-push/job_snapshot.sh" || exit 1
 cd "$CS_ATLAS_FULLTEXT_PUSH"
 for s in ${SCHOOLS:-uchicago epfl cmu mit}; do
-  "$FTP_PY" -I -u oai_repo.py harvest $s < /dev/null
+  "$FTP_PY" -I -u oai_repo.py ${MODE:-harvest} $s < /dev/null
 done
 echo '{"oai-repo": "done"}'

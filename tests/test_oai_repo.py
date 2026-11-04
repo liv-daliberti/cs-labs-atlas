@@ -295,3 +295,52 @@ def test_charter_verdicts(monkeypatch):
     assert not any('kilthub.cmu.edu' in SC.field(SC.get(k), 'oai_repo.base', '') for k in seen)
     for k in ('princeton', 'berkeley', 'stanford', 'gatech'):
         assert SC.field(SC.get(k), 'oai_repo.reason')
+
+
+def rest_obj(i, title, doi=None, authors=('Lovelace, Ada',), issued='2020-05-01', rights='info:eu-repo/semantics/openAccess'):
+    v = lambda *xs: [dict(value=x) for x in xs]  # noqa: E731
+    md = {'dc.title': v(title), 'dc.contributor.author': v(*authors), 'dc.date.issued': v(issued), 'datacite.rights': v(rights),
+          'dc.type': v('text::journal article')}
+    if doi:
+        md['dc.identifier.doi'] = v(doi)
+    return dict(uuid=f'uuid-{i}', handle=f'20.500.14299/{i}', metadata=md)
+
+
+def rest_page(objs, page, total):
+    return json.dumps(dict(_embedded=dict(searchResult=dict(page=dict(number=page, totalPages=total),
+                                                            _embedded=dict(objects=[dict(_embedded=dict(indexableObject=o)) for o in objs]))))).encode()
+
+
+def test_rest_enumeration_pages_resumes_and_stores_records(store):
+    conf = dict(rest_base='https://repo.example.edu/server/api', scopes=['20.500.14299/7'])
+    r0 = Resp(json.dumps(dict(uuid='col-uuid')).encode())
+    cl, _ = client([r0, Resp(rest_page([rest_obj(1, 'Paper One', '10.1234/one')], 0, 2)), Resp(b'', 403)])
+    with pytest.raises(O.Blocked):
+        O.harvest_rest('r', conf, cl, out=lambda *_: None)
+    assert O.stats('r')['records'] == 1 and cl.s.calls[1]['scope'] == 'col-uuid' and cl.s.calls[1]['page'] == 0
+    cl2, _ = client([Resp(rest_page([rest_obj(2, 'Paper Two')], 1, 2))])
+    st = O.harvest_rest('r', conf, cl2, out=lambda *_: None)
+    assert cl2.s.calls[0]['page'] == 1 and st['records'] == 2 and st['complete_sets'] == 1
+    row = O.connect('r').execute("SELECT oai_id, dois, links, year, rights FROM records WHERE oai_id='rest:uuid-1'").fetchone()
+    assert row[0] == 'rest:uuid-1' and json.loads(row[1]) == ['10.1234/one'] and json.loads(row[2]) == ['https://hdl.handle.net/20.500.14299/1'] and row[3] == 2020
+
+
+def test_rest_record_bundle_files_become_candidates(store, monkeypatch):
+    seeded_rest = O.connect('r')
+    O.store_records(seeded_rest, [O.rest_record(rest_obj(7, LONG, '10.1234/seven'), 'rest:x')], 'rest:x')
+    O.store_records(seeded_rest, [O.rest_record(rest_obj(8, 'A Closed Access Record Of Some Considerable Length', '10.1234/eight',
+                                                        rights='info:eu-repo/semantics/restrictedAccess'), 'rest:x')], 'rest:x')
+    seeded_rest.commit()
+    conf = dict(CONF, enrich='dspace_bundles', enrich_base='https://repo.example.edu/server/api')
+    monkeypatch.setattr(CHN, '_cfg', lambda school: conf)
+    bundles = json.dumps(dict(_embedded=dict(bundles=[
+        dict(name='ORIGINAL', _embedded=dict(bitstreams=dict(_embedded=dict(bitstreams=[
+            dict(uuid='b1', name='paper.pdf', sizeBytes=10), dict(uuid='b2', name='data.zip', sizeBytes=10)])))),
+        dict(name='THUMBNAIL', _embedded=dict(bitstreams=dict(_embedded=dict(bitstreams=[dict(uuid='b3', name='x.pdf', sizeBytes=1)]))))])))
+    asked = []
+    ctx = types.SimpleNamespace(n=Counter(), known=defaultdict(set), dry=True, polite_get=lambda u, d: asked.append(u) or bundles,
+                                result=lambda p, st, urls=(), query=None, detail=None: CH.Result(p.key, p.work_id, st, urls, query, detail))
+    res = {r.work_id: r for r in CH.load('oai_repo').discover('r', [P('a', LONG, doi='10.1234/seven'),
+                                                                    P('b', 'x', doi='10.1234/eight')], ctx)}
+    assert asked == ['https://repo.example.edu/server/api/core/items/uuid-7/bundles?embed=bitstreams']
+    assert [u['url'] for u in res['a'].urls] == ['https://repo.example.edu/server/api/core/bitstreams/b1/content'] and res['b'].status == 'none'

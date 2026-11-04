@@ -48,3 +48,12 @@ base = "https://infoscience.epfl.ch/server/oai/openaire4"   # /server/oai/reques
 prefix = "oai_openaire"                                      # datacite creators, DOIs and oaire:file access URIs
 sets = ["col_20.500.14299_7", "col_20.500.14299_3", "col_20.500.14299_11", "col_20.500.14299_12", "col_20.500.14299_2"]   # journal articles; conferences; preprints; reports; books and parts
 delay = 10
+enrich = "dspace_bundles"                 # records found through the REST enumeration get their ORIGINAL PDFs from /core/items/<uuid>/bundles when they match
+enrich_base = "https://infoscience.epfl.ch/server/api"
+
+# The OAI endpoint answered HTTP 405 at page ~282 of the journal-articles set (2026-11-04, 28,167 records kept); owner: fill the gap through the REST
+# interface the file downloads already use (robots.txt: only /server/opensearch/* and the front-end search paths are disallowed; /server/api is not).
+[oai_repo.rest]
+rest_base = "https://infoscience.epfl.ch/server/api"
+scopes = ["20.500.14299/7", "20.500.14299/3", "20.500.14299/11", "20.500.14299/12", "20.500.14299/2"]   # journal articles; conferences; preprints; reports; books and parts
+delay = 3

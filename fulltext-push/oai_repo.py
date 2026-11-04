@@ -17,7 +17,7 @@ anthropic-ai, and it stops on a 403, a 202 (bot challenge), a non-XML body or an
 The records go to ONE SQLite file per school (raw/oai_repo/<school>.sqlite: tables records, state, sets_resolved); never per-record files.
 Resumable: the resumption token and the per-set 'from' watermark live in `state`, so a re-run continues a half-finished set and a
 finished one is only re-asked for what changed since (incremental harvest).
-usage: oai_repo.py robots <school> | harvest <school> [--max-pages N] | stats <school>
+usage: oai_repo.py robots <school> | harvest <school> [--max-pages N] | harvest-rest <school> [--max-pages N] | stats <school>
 The matching of the records to the lab papers is channels/oai_repo.py (docs/CHANNELS.md).
 """
 import fcntl
@@ -40,10 +40,16 @@ HANDLE_RX = re.compile(r'(?:hdl\.handle\.net/|/handle/|handle:|^|\b)(\d{4,6}\.\d
 NOT_LANDING = re.compile(r'orcid\.org|doi\.org|ror\.org|isni\.org|scopus\.com|issn', re.I)
 YEAR_RX = re.compile(r'\b(19|20)\d\d\b')
 DEFAULT_DELAY = 10.0
+BACKOFF = (60, 300, 900, 1800, 1800, 1800)  # seconds before asking again after a 429/5xx without Retry-After
 
 
 class Blocked(Exception):
     """The host answered with a refusal (403, a challenge, a non-XML page): the harvest stops, it never works around it."""
+
+
+class Transient(Blocked):
+    """The host kept answering 500/502/503/504 or dropping connections through every back-off: not a refusal. A long-running crawl
+    waits and asks again (etd_crawl.crawl); a harvest stops and resumes from its stored token."""
 
 
 def cfg(school):
@@ -234,8 +240,8 @@ class Client:
                 print(json.dumps(dict(error=str(e)[:120], attempt=attempt)), flush=True)
                 self.sleep(60 * (attempt + 1))
                 continue
-            if r.status_code in (429, 503):
-                wait = min(int(r.headers.get('Retry-After') or 300), 1800)
+            if r.status_code in (429, 500, 502, 503, 504):
+                wait = min(int(r.headers.get('Retry-After') or BACKOFF[min(attempt, len(BACKOFF) - 1)]), 1800)
                 print(json.dumps(dict(status=r.status_code, wait=wait, at=F.now())), flush=True)
                 self.sleep(wait)
                 continue
@@ -244,7 +250,7 @@ class Client:
             if r.status_code != 200:
                 raise Blocked(f'HTTP {r.status_code} from {urlsplit(url).netloc}')
             return r
-        raise Blocked('repeated transient failures')
+        raise Transient('repeated transient failures')
 
 
 def resolve_sets(c, conf, client):
@@ -353,6 +359,63 @@ def harvest_oai(school, conf, client, max_pages=None, out=print):
     return stats(school)
 
 
+def md_values(md, key):
+    return [v.get('value') for v in (md.get(key) or []) if v.get('value')]
+
+
+def rest_record(obj, scope):
+    """One DSpace 7 REST discovery object (an item with its metadata) -> the records-table dict. oai_id is rest:<item uuid>."""
+    md = obj.get('metadata') or {}
+    year = next((int(m.group(0)) for d in md_values(md, 'dc.date.issued') for m in [YEAR_RX.search(d)] if m), None)
+    handle = obj.get('handle')
+    return dict(oai_id=f"rest:{obj['uuid']}", datestamp=(md_values(md, 'dc.date.modified') or md_values(md, 'dc.date.accessioned') or [''])[0][:20],
+                deleted=0, sets=[scope], title=(md_values(md, 'dc.title') or [''])[0], creators=md_values(md, 'dc.contributor.author'), year=year,
+                dois=[F.ndoi(d) for d in md_values(md, 'dc.identifier.doi') if DOI_RX.search(d)],
+                links=[f'https://hdl.handle.net/{handle}'] if handle else [], files=[], rights=md_values(md, 'datacite.rights')[:6],
+                rtype=(md_values(md, 'dc.type') or [''])[0], relations=[])
+
+
+def harvest_rest(school, conf, client, max_pages=None, out=print):
+    """DSpace 7 REST enumeration (Infoscience, 2026-11-04: the OAI endpoint answered 405 at page ~282): /server/api/discover/search/objects
+    per collection, 100 items a page, sorted by accession date, resumable by page number (state `page:<scope>`). Collections are named by
+    handle (`scopes`) and resolved through /pid/find. The files of a record come later, only for records that match (channels/oai_repo.py)."""
+    c = connect(school)
+    base = conf['rest_base'].rstrip('/')
+    pages = 0
+    for handle in conf['scopes']:
+        key = f'rest:{handle}'
+        uuid = state_get(c, f'uuid:{handle}')
+        if not uuid:
+            uuid = client.get(f'{base}/pid/find', dict(id=f'hdl:{handle}')).json()['uuid']
+            state_put(c, f'uuid:{handle}', uuid)
+            c.commit()
+        if state_get(c, f'complete:{key}') == '1':
+            continue
+        page = int(state_get(c, f'page:{key}', '0'))
+        while True:
+            r = client.get(f'{base}/discover/search/objects', dict(scope=uuid, dsoType='ITEM', size=100, page=page, sort='dc.date.accessioned,ASC'))
+            try:
+                res = r.json()['_embedded']['searchResult']
+            except (ValueError, KeyError) as e:
+                raise Blocked('unexpected REST answer') from e
+            objs = [o['_embedded']['indexableObject'] for o in res['_embedded']['objects']]
+            store_records(c, [rest_record(o, key) for o in objs], key)
+            pages += 1
+            page += 1
+            state_put(c, f'page:{key}', str(page))
+            last = page >= res['page']['totalPages']
+            if last:
+                state_put(c, f'complete:{key}', '1')
+            c.commit()
+            if pages % 25 == 1 or last:
+                out(json.dumps(dict(scope=handle, page=page, of=res['page']['totalPages'], at=F.now())))
+            if last:
+                break
+            if max_pages and pages >= max_pages:
+                return stats(school)
+    return stats(school)
+
+
 def stats(school):
     c = connect(school)
     n = c.execute('SELECT COUNT(*), SUM(deleted=0) FROM records').fetchone()
@@ -361,18 +424,20 @@ def stats(school):
                 complete_sets=sum(1 for k, v in c.execute("SELECT k, v FROM state WHERE k LIKE 'complete:%'") if v == '1'))
 
 
-def harvest(school, max_pages=None, out=print, client=None):
+def harvest(school, max_pages=None, out=print, client=None, rest=False):
     conf = cfg(school)
+    if rest:
+        conf = dict(conf, **conf.get('rest', {}))
     if conf.get('verdict') != 'harvest':
         out(json.dumps(dict(school=school, skipped=conf.get('verdict') or 'no [oai_repo] section', reason=conf.get('reason'))))
         return None
-    v = robots_verdict(conf['base'])
+    v = robots_verdict(conf['rest_base'] if rest else conf['base'])
     out(json.dumps(dict(school=school, robots=v)))
     if not v['allowed']:
         out(json.dumps(dict(school=school, stop='robots.txt disallows the base path for this client or an AI agent')))
         return None
     delay = max(float(conf.get('delay') or DEFAULT_DELAY), float(v['crawl_delay'] or 0))
-    host = urlsplit(conf['base']).netloc
+    host = urlsplit(conf['rest_base'] if rest else conf['base']).netloc
     lockf = F.P.FT_RAW / 'oai_repo' / f'{host}.lock'
     lockf.parent.mkdir(parents=True, exist_ok=True)
     with open(lockf, 'w') as lk:
@@ -383,7 +448,7 @@ def harvest(school, max_pages=None, out=print, client=None):
             return None
         client = client or Client(delay)
         try:
-            return harvest_oai(school, conf, client, max_pages, out)
+            return (harvest_rest if rest else harvest_oai)(school, conf, client, max_pages, out)
         except Blocked as e:
             out(json.dumps(dict(school=school, blocked=str(e), stats=stats(school))))
             return None
@@ -396,6 +461,9 @@ def main(argv):
     elif cmd == 'harvest':
         mp = int(argv[argv.index('--max-pages') + 1]) if '--max-pages' in argv else None
         print(json.dumps(harvest(school, mp)))
+    elif cmd == 'harvest-rest':
+        mp = int(argv[argv.index('--max-pages') + 1]) if '--max-pages' in argv else None
+        print(json.dumps(harvest(school, mp, rest=True)))
     elif cmd == 'stats':
         print(json.dumps(stats(school)))
 

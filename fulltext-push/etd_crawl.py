@@ -12,7 +12,7 @@ robots.txt (this client, ClaudeBot, anthropic-ai) is checked for every URL befor
 running or a non-HTML body stops the crawl (state kept). Resumable: raw/etd_crawl/<school>.sqlite (queue, pages), one file per school.
 Only the fields we need are stored per page: title, author, degree/type, year, department, advisors, URL, sha256 of the page, and a short
 verbatim quote of the metadata block. Nothing else of the page is kept.
-usage: etd_crawl.py enumerate <school> | crawl <school> [--max N] | evidence <school> [--out FILE] | stats <school>
+usage: etd_crawl.py enumerate <school> | add <school> <urls-or-sitemap file> [--rx R] [--front] | crawl <school> [--max N] | evidence <school> [--out FILE] | stats <school>
 `evidence` matches each dissertation's advisor to the school's PIs (full name, pihier.names.Name) and writes thesis-evidence rows:
 {pi, students: [{name, role, years, url, sha256, quote, note}]} (the format tools/pihier/students.py RESEARCHED_FILES reads).
 """
@@ -32,6 +32,7 @@ import oai_repo as O  # noqa: E402
 
 WINDOW = (2016, 2026)
 LOGIN_STOP = 25
+TRANSIENT_STOP = 12
 DISS_RX = re.compile(r'dissertation|doctoral|ph\.?\s?d|doctor of', re.I)
 
 
@@ -218,7 +219,7 @@ def crawl(school, max_pages=None, out=print, client=None):
         if not c.execute('SELECT 1 FROM queue LIMIT 1').fetchone():
             enumerate_queue(school, conf, client, out)
         parser = PARSERS[conf['parser']]
-        done = logins = 0
+        done = logins = transients = 0
         try:
             while True:
                 row = c.execute("SELECT url, hint FROM queue WHERE status='pending' ORDER BY seq LIMIT 1").fetchone()
@@ -230,7 +231,16 @@ def crawl(school, max_pages=None, out=print, client=None):
                     c.execute("UPDATE queue SET status='robots', at=? WHERE url=?", (F.now(), url))
                     c.commit()
                     continue
-                r = client.get(url, tolerate=(404, 410))
+                try:
+                    r = client.get(url, tolerate=(404, 410))
+                except O.Transient as e:  # the server is ill, not refusing: wait and ask again; the URL stays pending
+                    transients += 1
+                    out(json.dumps(dict(school=school, transient=str(e), wait=1800, in_a_row=transients, at=F.now())))
+                    if transients >= TRANSIENT_STOP:
+                        raise O.Blocked(f'{TRANSIENT_STOP} failed rounds in a row (each after the client\'s own back-offs)') from e
+                    client.sleep(1800)
+                    continue
+                transients = 0
                 st = 'done'
                 if r.status_code in (404, 410):
                     st = 'gone'
@@ -261,6 +271,22 @@ def crawl(school, max_pages=None, out=print, client=None):
             return None
         out(json.dumps(dict(school=school, stats=stats(school))))
         return stats(school)
+
+
+def add_urls(school, urls, front=False):
+    """Queue more URLs (the one paced crawler fetches them; never a second client). front: ahead of everything pending. -> number added."""
+    conf = cfg(school)
+    c = connect(school)
+    lo, hi = c.execute('SELECT COALESCE(MIN(seq), 0), COALESCE(MAX(seq), -1) FROM queue').fetchone()
+    n = 0
+    for u in urls:
+        if urlsplit(u).netloc != conf['host'] or c.execute('SELECT 1 FROM queue WHERE url=?', (u,)).fetchone():
+            continue
+        seq = lo - 1 - n if front else hi + 1 + n
+        c.execute('INSERT INTO queue (url, seq) VALUES (?,?)', (u, seq))
+        n += 1
+    c.commit()
+    return n
 
 
 def stats(school):
@@ -337,6 +363,12 @@ def main(argv):
     elif cmd == 'crawl':
         mx = int(argv[argv.index('--max') + 1]) if '--max' in argv else None
         crawl(school, mx)
+    elif cmd == 'add':  # add <school> <file of URLs, or a saved sitemap> [--rx REGEX] [--front]
+        conf = cfg(school)
+        text = Path(argv[2]).read_text()
+        rx = argv[argv.index('--rx') + 1] if '--rx' in argv else conf.get('url_rx', '.')
+        urls = re.findall(r'<loc>\s*([^<]+?)\s*</loc>', text) if '<loc>' in text else text.split()
+        print(json.dumps(dict(school=school, added=add_urls(school, [u for u in urls if re.search(rx, u)], '--front' in argv))))
     elif cmd == 'stats':
         print(json.dumps(stats(school)))
     elif cmd == 'evidence':

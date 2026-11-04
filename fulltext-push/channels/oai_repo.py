@@ -10,6 +10,8 @@ Match, in this order (a paper takes the first rule that fires, and the record mu
 Candidates: the record's open file URLs (oai_openaire files that are not 'metadata only' or restricted; Figshare files) as
 `acceptedVersion`-agnostic rows, else its landing / handle page (the collector extracts citation_pdf_url from a landing page, as it does for
 MIT handles). Rows go through the catalog lock after a catalog backup (catalog_lock.backup_catalog); known URLs are not written again.
+Infoscience REST enumeration (`oai_repo.py harvest-rest epfl`: /server/api/discover/search/objects per collection, records `rest:<uuid>`): a record
+that matched is asked once for its ORIGINAL bundle (3 s apart) and its PDFs become the candidates.
 Figshare (KiltHub, set portal_231 of Figshare's OAI): the OAI record has creators and the DOI but no files, so a record that matched is
 fetched once from the public API (/v2/articles/<id>, 3 s apart) for its open PDF files (never embargoed or confidential ones).
 """
@@ -151,6 +153,26 @@ def figshare_files(school, ctx, rec, pace=3.0):
     return urls, (j.get('license') or {}).get('name')
 
 
+def bundle_files(school, ctx, rec, pace=3.0):
+    """DSpace 7 REST (Infoscience): a record found through the REST enumeration has no file list. One GET of the item's ORIGINAL bundle
+    (/core/items/<uuid>/bundles?embed=bitstreams); every ORIGINAL *.pdf (<= 500 MiB) becomes the candidate .../core/bitstreams/<uuid>/content,
+    the form the earlier Infoscience REST pass used (files EPFL restricts answer 401/403 there and stay unavailable)."""
+    base = _cfg(school)['enrich_base'].rstrip('/')
+    body = ctx.polite_get(f"{base}/core/items/{rec['oai_id'].split(':', 1)[1]}/bundles?embed=bitstreams", pace)
+    try:
+        j = json.loads(body) if body else {}
+    except ValueError:
+        return []
+    out = []
+    for b in (j.get('_embedded') or {}).get('bundles') or []:
+        if b.get('name') != 'ORIGINAL':
+            continue
+        for bs in (((b.get('_embedded') or {}).get('bitstreams') or {}).get('_embedded') or {}).get('bitstreams') or []:
+            if str(bs.get('name') or '').lower().endswith('.pdf') and (bs.get('sizeBytes') or 0) <= 500 * 1024 * 1024:
+                out.append(dict(url=f"{base}/core/bitstreams/{bs['uuid']}/content", mime='application/pdf', kind='fulltext'))
+    return out
+
+
 def candidate_rows(school, work_id, rec, how, paper_row, license=None):
     if is_closed(rec):
         return []
@@ -175,7 +197,9 @@ def discover(school, papers, ctx):
         if rec.get('needs_authors'):
             ctx.n['oai_title_no_authors'] += 1
             continue
-        if fig:  # the files of a matched record come from the public API (the OAI record has none)
+        if _cfg(school).get('enrich') == 'dspace_bundles' and rec['oai_id'].startswith('rest:') and not is_closed(rec):
+            rec = dict(rec, files=bundle_files(school, ctx, rec))
+        elif fig:  # the files of a matched record come from the public API (the OAI record has none)
             urls, lic = figshare_files(school, ctx, rec)
             rec = dict(rec, files=[dict(url=u, mime='application/pdf', kind='fulltext') for u in urls])
         rows = candidate_rows(school, p.work_id, rec, how, p.r, lic)

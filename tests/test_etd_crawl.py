@@ -155,3 +155,24 @@ def test_sitemap_truncated_response_is_asked_again_never_parsed(monkeypatch):
     cut2 = b'<urlset><url><loc>https://h/entities/publication/1</loc></url><url><loc>https://h/entities/pub'
     got = E.sitemap_urls(O.Client(10, session=Sess([Resp(cut2)] * 4), sleep=lambda s: None, clock=lambda: 0.0), 'https://h/s.xml', '/entities/publication/')
     assert got == ['https://h/entities/publication/1']
+
+
+def test_transient_5xx_waits_and_resumes_instead_of_stopping(store, monkeypatch):
+    monkeypatch.setattr(E, 'cfg', lambda school: dict(host='h', delay=10, parser='dspace7'))
+    c = E.connect('s')
+    c.execute('INSERT INTO queue (url, seq) VALUES (?,?)', ('https://h/entities/publication/1', 0))
+    c.commit()
+    sleeps = []
+    sess = Sess([Resp(b'', 502)] * 6 + [Resp(GT.replace('%s', 'Dissertation').encode())])
+    cl = O.Client(10, session=sess, sleep=sleeps.append, clock=lambda: 0.0)
+    out = []
+    E.crawl('s', out=out.append, client=cl)
+    assert E.stats('s')['dissertations'] == 1 and any('transient' in o for o in out) and 1800 in sleeps and 60 in sleeps
+
+
+def test_add_urls_queues_without_duplicates_and_front(store, monkeypatch):
+    monkeypatch.setattr(E, 'cfg', lambda school: dict(host='h'))
+    assert E.add_urls('s', ['https://h/a', 'https://h/b', 'https://other/c']) == 2
+    assert E.add_urls('s', ['https://h/a', 'https://h/p'], front=True) == 1
+    order = [r[0] for r in E.connect('s').execute('SELECT url FROM queue ORDER BY seq')]
+    assert order == ['https://h/p', 'https://h/a', 'https://h/b']
