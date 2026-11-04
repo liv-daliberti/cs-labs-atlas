@@ -180,7 +180,6 @@ def test_gate_related_takes_the_school_out_of_an_argonne_only_authorship():
 
 def test_pi_works_can_come_from_the_snapshot_without_the_api(tmp_path, monkeypatch):
     import sqlite3
-    import sys
     M = by_path('pi_fulltext_affiliation')
     monkeypatch.setattr(M.P, 'data', lambda name, school=None, **k: tmp_path / name)
     (tmp_path / 'pis.json').write_text(json.dumps([{'pi': 'A', 'oaAuthorIds': ['https://openalex.org/A1', 'https://openalex.org/A2'], 'reviewedOpenAlex': []}]))
