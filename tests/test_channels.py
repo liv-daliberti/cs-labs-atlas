@@ -211,3 +211,10 @@ def test_oa_locations_reads_every_location_and_sibling_records(monkeypatch):
     urls = {u['url'] for u in res.urls}
     assert {'https://repo.example.edu/own.pdf', 'https://lab.example.edu/accepted.pdf', 'https://best.example.edu/b.pdf', 'https://oa.example.edu/x.pdf'} <= urls
     assert OL.siblings.__name__ == 'siblings'
+
+
+def test_wayback_escholarship_applies_only_to_berkeley_papers_known_on_escholarship():
+    from channels import wayback_escholarship as WE
+    ps, known = papers(known=defaultdict(set, {'w1': {'https://escholarship.org/uc/item/1wt3d4vr', 'https://escholarship.org/content/qt1wt3d4vr/qt1wt3d4vr.pdf'}}))
+    assert WE.item_ids(ps[0].known) == ['1wt3d4vr']
+    assert WE.APPLIES('berkeley', ps[0]) and not WE.APPLIES('mit', ps[0]) and not WE.APPLIES('berkeley', ps[1])
