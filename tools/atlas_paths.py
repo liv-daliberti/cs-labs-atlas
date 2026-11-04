@@ -275,6 +275,7 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('openalex-identity-review.json', 'reviewed', 'hierarchy/{school}/openalex-identity-review.json', 'hierarchy/{school}/reviewed/openalex-identity-review.json'),
     ('census-overrides-school.json', 'reviewed', 'hierarchy/{school}/census-overrides-school.json', 'hierarchy/{school}/reviewed/census-overrides-school.json'),
     ('census-additions.json', 'reviewed', 'census/{school}-additions.json', 'hierarchy/{school}/reviewed/census-additions.json'),
+    ('cs-related-hand.json', 'reviewed', 'hierarchy/{school}/cs-related-hand.json', 'hierarchy/{school}/reviewed/cs-related-hand.json'),
     ('faculty-periods.json', 'reviewed', 'periods/{school}-faculty-periods.json', 'hierarchy/{school}/reviewed/faculty-periods.json'),
     # per school: recovered rows and tool state (rebuildable from raw + reviewed)
     ('dblp-recovered.jsonl.gz', 'work', 'hierarchy/{school}/dblp-recovered.jsonl.gz', 'hierarchy/{school}/work/dblp-recovered.jsonl.gz'),

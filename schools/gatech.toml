@@ -315,6 +315,24 @@ name = "School of Music"
 url = "https://music.gatech.edu/people"
 listings = ["music.gatech.edu/people"]
 
+[[affiliated_units]]
+code = "ARCH"
+name = "School of Architecture"
+url = "https://arch.gatech.edu/people"
+listings = ["arch.gatech.edu/people"]
+
+[[affiliated_units]]
+code = "ID"
+name = "School of Industrial Design"
+url = "https://id.gatech.edu/people"
+listings = ["id.gatech.edu/people"]
+
+[[affiliated_units]]
+code = "MUSIC"
+name = "School of Music"
+url = "https://music.gatech.edu/people"
+listings = ["music.gatech.edu/people"]
+
 # --- students ----------------------------------------------------------------------------------------------------------------
 [thesis]
 kind = "none"
@@ -508,4 +526,22 @@ probe = "https://id.gatech.edu/people"
 host = "music.gatech.edu"
 use = "live"
 purpose = "Music people (unit searched for computing-related faculty, stage 2 follow-up)"
+probe = "https://music.gatech.edu/people"
+
+[[hosts]]
+host = "arch.gatech.edu"
+use = "live"
+purpose = "Architecture people (unit searched: the OpenAlex rule names its people)"
+probe = "https://arch.gatech.edu/people"
+
+[[hosts]]
+host = "id.gatech.edu"
+use = "live"
+purpose = "Industrial Design people (unit searched: the OpenAlex rule names its people)"
+probe = "https://id.gatech.edu/people"
+
+[[hosts]]
+host = "music.gatech.edu"
+use = "live"
+purpose = "Music people (unit searched: the OpenAlex rule names its people)"
 probe = "https://music.gatech.edu/people"

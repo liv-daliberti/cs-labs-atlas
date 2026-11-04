@@ -455,4 +455,49 @@ def review(key):
                 d = 'faculty_not_computing'; why = f'faculty ({lad[0]["unit"]}); computing-share test fails: ' + why_s
             elif undecided:
                 d = 'too_few_school_works'; why = f'faculty ({lad[0]["unit"]}); fewer than {SHARE_MIN_N} school works and no pass, no decided DBLP record: ' + why_s
-            elif win >= MIN_DBLP:  # too few school works to measure
+            elif win >= MIN_DBLP:  # too few school works to measure: the decided DBLP record stands
+                d = 'accepted'; why = f'faculty ({lad[0]["unit"]} listing, professor rank) with {win} DBLP records 2016-2026; share test cannot measure (' + why_s + ')'
+            else:
+                d = 'faculty_not_computing'; why = f'faculty ({lad[0]["unit"]}), {win} DBLP records 2016-2026 (< {MIN_DBLP}); share test cannot measure (' + why_s + ')'
+        elif undecided:
+            d, why = undecided
+        elif c['source'] == 'openalex_rule' and fac:
+            d = 'research_or_other_rank'; why = 'listed by a searched unit only with a research, adjunct, clinical or emeritus title'
+        elif lad and win >= MIN_DBLP:
+            d = 'accepted'; why = f'faculty ({lad[0]["unit"]} listing, professor rank) with {win} DBLP records 2016-2026 naming the school'
+        elif lad:
+            d = 'faculty_not_computing'; why = f'faculty ({lad[0]["unit"]}), {win} DBLP records 2016-2026 (< {MIN_DBLP})'
+        elif fac:
+            d = 'research_or_other_rank'; why = 'listed by a searched unit only with a research, adjunct, clinical or emeritus title'
+        else:
+            d = 'not_faculty_listed'; why = f'no 2016-2026 faculty listing of the searched units ({", ".join(searched)}) names them with a professor title'
+        n[d] += 1
+        row = dict(name=c['name'], aliases=c.get('aliases') or [], source=c['source'], decision=d, reason=why, cs_basis=comp,
+                   faculty_evidence=sorted(fac, key=lambda e: e['observed'])[:3] + (sorted(fac, key=lambda e: e['observed'])[-1:] if len(fac) > 3 else []),
+                   years_listed=sorted({int(e['observed'][:4]) for e in fac}), units_searched=searched)
+        if not SH:
+            row['provisional'] = 'computing share pending the OpenAlex sweep (DBLP-indexed share of school works >= 20%)'
+        dec.append(row)
+        if d == 'accepted' and c['source'] != 'affiliated_department':
+            first, last = lad[0], sorted(lad, key=lambda e: e['observed'])[-1]
+            adds.append(dict(name=c['name'], aliases=row['aliases'], collection_person_id=f'{key}_fac_' + re.sub(r'[^a-z0-9]+', '-', ' '.join(toks(c['name']))).strip('-'),
+                             dblp=comp['dblp'][:1], rank='ladder', title_as_listed=last['quote'], departments=[last['unit']],
+                             years_listed=row['years_listed'], sources=[dict(url=e['url'], sha256=e['sha256'], quote=e['quote'], kind=f"unit_listing:{e['unit']}",
+                                                                          observed=e['observed']) for e in sorted(lad, key=lambda e: e['observed'])],
+                             is_pi=True, pi_basis=dict(kind='ladder_faculty', url=first['url'], sha256=first['sha256'], quote=first['quote'], observed=first['observed'],
+                                                       role='professor title on the unit faculty listing', cs_related=dict(dblp=comp['dblp'], dblp_window=win, openalex=(comp.get('openalex_share') or {}).get('ids'),
+                                                                                 share=(comp.get('openalex_share') or {}).get('share'))),
+                             lab_units=[], added=f'cs_related_review_{TODAY.replace("-", "")}'))
+    doc = dict(school=key, reviewed=TODAY, rule=__doc__.split('\nusage')[0], min_dblp=MIN_DBLP, share_test=dict(min_dblp_indexed=SHARE_MIN_CS, min_share=SHARE_MIN,
+               min_works_for_negative=SHARE_MIN_N, applied=bool(SH)), units_searched=searched, counts=dict(n), decisions=dec)
+    P.data_w('cs-related-review.json', key).write_text(json.dumps(doc, indent=1, ensure_ascii=False))
+    P.data_w('census-additions.json', key).write_text(json.dumps(adds, indent=1, ensure_ascii=False))
+    print(json.dumps(dict(decisions=len(dec), additions=len(adds), **n)))
+
+
+if __name__ == '__main__':
+    if sys.argv[1] == 'units-check':
+        sys.exit(0 if units_current(sys.argv[2]) else 1)
+    if sys.argv[1] == 'profile':
+        sys.exit(profile(*sys.argv[2:6]))
+    {'candidates': candidates, 'units': units, 'review': review}[sys.argv[1]](sys.argv[2])

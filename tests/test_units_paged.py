@@ -41,3 +41,25 @@ def test_live_pages_of_a_paged_unit_listing_count_as_the_unit(monkeypatch):
     monkeypatch.setattr(C.S, 'get', lambda key: {'affiliated_units': [{'code': 'MATH', 'listings': ['math.gatech.edu/people']}]})
     got = sorted(p[1] for p in C.unit_pages('k'))
     assert got == ['https://math.gatech.edu/people', 'https://math.gatech.edu/people/b', 'https://math.gatech.edu/people?page=1']
+
+
+def test_hand_evidence_is_read_only_when_the_quote_is_in_the_stored_page(tmp_path, monkeypatch):
+    """R6 (reviewed/cs-related-hand.json): evidence from a profile page counts only if its sha256 is a stored capture holding the quote verbatim."""
+    import json
+    import sqlite3
+    con = sqlite3.connect(':memory:')
+    con.execute('create table captures(sha256 text, text text)'); con.execute('create table live(url text, raw_zlib blob, sha256 text)')
+    con.execute('insert into captures values (?,?)', ('abc', 'Wenjing  Liao Associate Professor School of Mathematics'))
+    f = tmp_path / 'hand.json'
+    monkeypatch.setattr(C.P, 'data', lambda name, key, **k: f)
+    good = dict(name='Wenjing Liao', unit='MATH', url='math.gatech.edu/people/wenjing-liao', sha256='abc', observed='20260101', quote='Wenjing Liao Associate Professor')
+    f.write_text(json.dumps([good]))
+    ev = C.hand_evidence('k', con)
+    assert ev['wenjing liao'][0]['hand'] and ev['wenjing liao'][0]['ladder']
+    f.write_text(json.dumps([dict(good, quote='Wenjing Liao Full Professor')]))
+    import pytest
+    with pytest.raises(SystemExit):
+        C.hand_evidence('k', con)
+    f.write_text(json.dumps([dict(good, sha256='')]))
+    with pytest.raises(SystemExit):
+        C.hand_evidence('k', con)
