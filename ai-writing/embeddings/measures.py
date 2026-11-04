@@ -109,5 +109,5 @@ def entropy_bootstrap(labels, clusters, m, reps=100, seed=0):
     for _ in range(reps):
         rows = np.concatenate([groups[i] for i in rng.integers(0, len(groups), len(groups))])
         vals.append(rarefied(np.bincount(lab[rows], minlength=k), m, reps=1, seed=int(rng.integers(1 << 30))))
-    lo, hi = np.nanpercentile(vals, [2.5, 97.5])
-    return est, float(lo), float(hi)
+    sd = float(np.nanstd(vals, ddof=1))   # resamples repeat clusters, which lowers every resampled entropy a little: the interval is est +- 1.96 sd, not percentiles
+    return est, est - 1.96 * sd, est + 1.96 * sd
