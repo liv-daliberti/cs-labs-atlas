@@ -66,6 +66,7 @@ _SPEC = [
     ('FT_LOCAL_REUSE', 'local-reuse', 'FT_DATA'),   # local-reuse data (inventory.sqlite, ident/, lists/, missing.jsonl.gz, logs/)
     ('AI_WRITING', 'ai-writing', 'CODE'),           # the AI-writing study's code (its data is git-ignored)
     ('EMBEDDINGS', 'ai-writing/data/embeddings', 'CODE'),  # embeddings of every paper: <model>/<school>/<kind>.npz + index (ai-writing/embeddings/README.md; git-ignored)
+    ('AI_SCORES', 'ai-writing/data/ai-scores', 'CODE'),    # per-paper AI-writing scores of every paper (ai-writing/dose/README.md; git-ignored)
     ('RELEASES', 'releases', 'ROOT'),               # immutable dated releases (tools/make_release.py)
     ('SCHOOLS_TREE', 'schools', 'ROOT'),            # the organized school -> lab -> papers tree (tools/organize_tree.py)
     ('STORES', 'stores', 'ROOT'),                   # full-text stores <STORES>/<school>: catalog.sqlite + objects/
@@ -152,7 +153,7 @@ _P = _resolve()
 globals().update(_P)
 ROOT = _P['ROOT']; CODE = WORK = _P['CODE']; TOOLS = _P['TOOLS']; TESTS = _P['TESTS']; VENDOR = _P['VENDOR']
 SCHOOL_CONFIGS = _P['SCHOOL_CONFIGS']; HIERARCHY = _P['HIERARCHY']; CENSUS = _P['CENSUS']; PERIODS = _P['PERIODS']
-LISTINGS = _P['LISTINGS']; CAPTURES = _P['CAPTURES']; FULLTEXT_PUSH = _P['FULLTEXT_PUSH']; AI_WRITING = _P['AI_WRITING']; EMBEDDINGS = _P['EMBEDDINGS']
+LISTINGS = _P['LISTINGS']; CAPTURES = _P['CAPTURES']; FULLTEXT_PUSH = _P['FULLTEXT_PUSH']; AI_WRITING = _P['AI_WRITING']; EMBEDDINGS = _P['EMBEDDINGS']; AI_SCORES = _P['AI_SCORES']
 RELEASES = _P['RELEASES']; SCHOOLS_TREE = _P['SCHOOLS_TREE']; STORES = _P['STORES']; STANFORD_STORE = _P['STANFORD_STORE']
 STUDIES = _P['STUDIES']; HOMOGENIZATION_STUDY = _P['HOMOGENIZATION_STUDY']; FIGURES = _P['FIGURES']; SITE = _P['SITE']
 EXPORT = GITHUB_EXPORT = _P['EXPORT']; ENV = _P['ENV']; PY = _P['PY']; HF_HOME = _P['HF_HOME']; CACHE = _P['CACHE']
