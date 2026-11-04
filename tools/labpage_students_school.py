@@ -47,7 +47,7 @@ import school_web as W  # noqa: E402
 import periods_school as PS  # noqa: E402
 from pi_hierarchy import Name, toks  # noqa: E402
 
-sys.path.insert(0, str(P.HIERARCHY / 'labpage-tools-epfl-berkeley'))  # route-ok: tracked code that stays in hierarchy/
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'hierarchy' / 'labpage-tools-epfl-berkeley'))  # this checkout's toolkit (Georgia Tech friction 29)
 import lpdom  # noqa: E402
 
 PEOPLE = re.compile(r'\b(people|students|group|members|team|lab)\b', re.I)

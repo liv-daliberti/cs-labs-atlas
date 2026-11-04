@@ -20,3 +20,8 @@ def test_news_lines_and_kinship_lists_are_not_rosters():
     src = f.read_text()
     rx = next(l for l in src.splitlines() if l.startswith('HARD_EXCL_HEAD'))
     assert 'siblings?' in rx and 'lineage' in rx and 'progeny' not in rx and spec
+
+
+def test_bylines_and_current_position_lists():
+    assert A.byline_item('Zecheng Zhang,') and A.byline_item(' Ann Lee Smith, ') and not A.byline_item('Zihao He (2024 - ), co-advised with Souvik Dhara')
+    assert A.current_position_list('Current Position') and not A.current_position_list('Current Members')

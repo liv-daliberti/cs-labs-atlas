@@ -54,6 +54,7 @@ import atlas_paths as P  # noqa: E402
 import census_overrides as CO  # noqa: E402
 
 H = P.HIERARCHY
+HT = Path(__file__).resolve().parents[1] / 'hierarchy'   # the tracked lab-page toolkits (hierarchy/labpage-tools-*) of THIS checkout or snapshot, not the main checkout's: a toolkit fix on a branch must be the code that runs (Georgia Tech friction 29)
 WINDOW = (2016, 2026)
 AI_AGENTS = ('ClaudeBot', 'anthropic-ai', 'Claude-Web', 'Claude-User', 'Claude-SearchBot')
 HOST_GAP = 3.0
@@ -261,6 +262,17 @@ ALUMNI_RX = re.compile(r'\b(alumni|alumnae|alumnus|alumna|former|past|previous|a
 NEWS_LINE = re.compile(r'\b(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|june?|july?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\.?\s+20[12]\d\s*[:\-–]', re.I)
 
 
+def byline_item(quote):
+    """A candidate whose whole quote is 'Name,' is one name of a publication byline ('Zhongjie Shi, Wenjing Liao  Generalization ...'), not a roster entry (Georgia Tech round 3)."""
+    q = (quote or '').strip()
+    return bool(q) and q.endswith(',') and len(q.split()) <= 4
+
+
+def current_position_list(head):
+    """A section called 'Current Position' is the alumni's job column ('Ebrahim Shaji  Current Position'): its names are alumni, undated."""
+    return bool(head and re.match(r'\s*current position\b', head, re.I))
+
+
 def news_item(text):
     """A dated news sentence ('August 2025: Patrick Kastner and I just received a seed grant') names a collaborator, not a roster entry (Georgia Tech round 2)."""
     return bool(NEWS_LINE.search(text or ''))
@@ -396,7 +408,7 @@ class Kit:
         if (P.data('labpage-captures.sqlite', school)).exists():
             extra.append(str(P.data('labpage-captures.sqlite', school)))
         os.environ['LPCAP_EXTRA'] = ':'.join(extra)
-        sys.path.insert(0, str(H / PM))  # route-ok: tracked code that stays in hierarchy/
+        sys.path.insert(0, str(HT / PM))
         import lpcap, lpev, autom, pubx, names  # noqa: E401
         self.lpcap, self.lpev, self.autom, self.pubx, self.names = lpcap, lpev, autom, pubx, names
         lpcap.ROOT = pubx.ROOT = str(H)  # the toolkit's own constant predates tools/atlas_paths.py; its file paths now go through atlas_paths.data
@@ -982,7 +994,7 @@ def load_ctx(school, kit=None, plan=True):
             if u and u not in ctx['pubs_rows_pages'][r['pi']]:
                 ctx['pubs_rows_pages'][r['pi']].append(u)
     ctx['manual'] = {}
-    mp = H / 'labpage-tools-epfl-berkeley' / 'manual_pages.json'  # route-ok: tracked code that stays in hierarchy/
+    mp = HT / 'labpage-tools-epfl-berkeley' / 'manual_pages.json'
     if cfg['family'] == 'eb' and mp.exists():
         ctx['manual'] = read(mp).get(school) or {}
     ctx['seeds'] = {}
@@ -1084,7 +1096,7 @@ _plaus = {}
 def plausible(kit, name):
     """lpdom.plausible_person (hierarchy/labpage-tools-epfl-berkeley): the given name occurs in bylines or rosters."""
     if 'f' not in _plaus:
-        sys.path.append(str(H / 'labpage-tools-epfl-berkeley'))  # route-ok: tracked code that stays in hierarchy/
+        sys.path.append(str(HT / 'labpage-tools-epfl-berkeley'))
         import lpdom
         _plaus['f'] = lpdom.plausible_person
     try:
@@ -1369,6 +1381,9 @@ def pm_candidates(kit, school, pi, plan, held):
                                                              "without a current marker in its entry or section heading"
                                                              + ('; it names a later position' if destination else ''))
             x['strict_removed'] = bool(cap_y >= 2025 and not destination and not x['alumni'])
+            continue
+        if fn not in keep and byline_item(x.get('quote')):
+            x['why'], x['detail'] = 'not_a_student', 'the entry is an author byline (a name and a comma), not a roster entry'
             continue
         if fn not in keep and news_item(x.get('quote') or x.get('desc') or ''):
             x['why'], x['detail'] = 'not_a_student', 'the entry is a dated news sentence, not a roster entry'
