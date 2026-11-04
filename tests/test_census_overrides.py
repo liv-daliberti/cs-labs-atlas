@@ -229,3 +229,20 @@ def test_student_decisions_exclude_not_and_unclear_only():
     dec = {'Pia': {'Ann Lee': {'decision': 'not'}, 'Bo Roe': {'decision': 'unclear'}, 'Cy Poe': {'decision': 'uchicago'}}}
     assert SD.excluded(dec, 'Pia', 'ann  LEE') and SD.excluded(dec, 'Pia', 'Bo Roe')
     assert not SD.excluded(dec, 'Pia', 'Cy Poe') and not SD.excluded(dec, 'Pia', 'Dee') and not SD.excluded(dec, 'Other', 'Ann Lee')
+
+
+def test_defense_lists_name_the_chair_and_respect_the_appointment_window(monkeypatch):
+    L = by_path('labpage_students_school')
+    html = ('<table><tr><td>Defense: "T"</td><td>Ann Lee (Finance)</td><td>Monday, June 5, 2023</td><td>Pia Roe (Chair), Bo Wu, and Cy Fox</td></tr>'
+            '<tr><td>Proposal: "U"</td><td>Dee Kim (Statistics)</td><td>Friday, May 6, 2016</td><td>Pia Roe (Chair), Bo Wu</td></tr></table>')
+    flat = 'Defense: "T" Ann Lee (Finance) Monday, June 5, 2023 Pia Roe (Chair), Bo Wu, and Cy Fox Proposal: "U" Dee Kim (Statistics) Friday, May 6, 2016 Pia Roe (Chair), Bo Wu'
+    monkeypatch.setattr(L.S, 'field', lambda cfg, f, d=None: ['x/defenses'])
+    monkeypatch.setattr(L.S, 'get', lambda k: {})
+    monkeypatch.setattr(L.W, 'con', lambda k: None)
+    monkeypatch.setattr(L.W, 'cdx_rows', lambda c, d, collapse=None: [dict(timestamp='20260101000000', original=d)])
+    monkeypatch.setattr(L.W, 'capture', lambda c, ts, o, d, dept: ('cap', 200, 'sha', []))
+    monkeypatch.setattr(L.W, 'raw_html', lambda c, cap: html)
+    monkeypatch.setattr(L.W, 'flat', lambda b: flat)
+    rows = L.defense_lists('u', [('Pia Roe', 'Pia Roe')], {'Pia Roe': 2020})
+    assert [(r['student'], r['years']) for r in rows] == [('Ann Lee', [None, 2023])]      # the 2016 proposal precedes her first listing in 2020
+    assert rows[0]['quote'].startswith('Ann Lee') and rows[0]['quote'].endswith('Pia Roe (Chair') or 'Pia Roe' in rows[0]['quote']

@@ -51,7 +51,7 @@ from pi_hierarchy import Name, toks  # noqa: E402
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'hierarchy' / 'labpage-tools-epfl-berkeley'))  # this checkout's toolkit (Georgia Tech friction 29)
 import lpdom  # noqa: E402
 
-PEOPLE = re.compile(r'\b(people|students|group|members|team|lab)\b', re.I)
+PEOPLE = re.compile(r'\b(people|students|group|members|team|lab|advisees?|alumni|former|ph\.?d|doctoral|supervis\w*|mentees?|researchers)\b', re.I)
 SKIP = re.compile(r'mailto:|\.pdf$|calendar|publication|paper|teaching|course|news|blog|cv|resume|twitter|linkedin|github\.com|scholar\.google', re.I)
 ALUM = lpdom.ALUMNI_RX
 
@@ -105,7 +105,7 @@ def targets_pages(key):
         for u in t['urls']:
             for cited, sha, h, y in stored_pages(c, u):
                 urls += people_links(h, re.sub(r'^https?://web\.archive\.org/web/\d+(?:id_)?/', '', cited) if 'web.archive.org' in cited else cited)
-        out[t['name']] = (t, list(dict.fromkeys(urls))[:3 + len(t['urls'])])
+        out[t['name']] = (t, list(dict.fromkeys(urls))[:8 + len(t['urls'])])
     return out
 
 
@@ -382,6 +382,52 @@ def paged_flat(c, cap, r, url):
     return ' '.join(out)
 
 
+CHAIR_RX = re.compile(r"([A-Z][\w.'\u2019-]+(?: (?:[A-Z][\w.'\u2019-]+|de|van|von|da))+)\s*\((?:Co-?)?[Cc]hair\b")
+
+
+def defense_lists(key, forms, first_year):
+    """Dissertation proposal/defense lists that name each student's committee chair (Booth `/phd/proposals-defenses`: a table of proposal or defense,
+    student and area, date, committee with '(Chair)' / '(Co-chair)'; `/phd/job-market-candidates`: 'Dissertation Committee: A (Chair), ...'). A PI named
+    as chair or co-chair gets the student: a proposal gives [year, year], a defense [None, year]; a row dated before the PI's first listing at the school
+    is not read (appointment window). The quote is the student's cell through the committee cell, from the capture text. Charter
+    `[students].defense_lists` (every Wayback capture 2016-2026 of each URL; the page keeps the recent years)."""
+    import html as H
+    c = W.con(key); by = {}
+    for d in S.field(S.get(key), 'students.defense_lists') or []:
+        for r in W.cdx_rows(c, d, collapse='timestamp:4'):
+            cap, st, sha, b = W.capture(c, r['timestamp'], r['original'], d, 'student-directory')
+            if st != 200:
+                continue
+            h = W.raw_html(c, cap); flat = W.flat(b)
+            items = []
+            for tr in re.findall(r'<tr[^>]*>(.*?)</tr>', h, re.S | re.I):
+                tds = [' '.join(H.unescape(re.sub(r'<[^>]+>', ' ', x)).split()) for x in re.findall(r'<td[^>]*>(.*?)</td>', tr, re.S | re.I)]
+                if len(tds) == 4 and re.match(r'(Proposal|Defense)', tds[0]):
+                    nm = re.sub(r'\s*\(.*$', '', tds[1]).strip()
+                    y = re.search(r'(20[12]\d)', tds[2])
+                    items.append((nm, 'defense' if tds[0].startswith('Defense') else 'proposal', int(y.group(1)) if y else None, tds[3], tds[1]))
+            for m in re.finditer(r'([A-Z][\w.\'\u2019-]+(?: [A-Z][\w.\'\u2019-]+){1,3}) Job Market Paper:.*?Dissertation Committee: (.*?)(?: Research Interests|$)', flat):
+                items.append((m.group(1), 'jobmarket', int(r['timestamp'][:4]), m.group(2), m.group(1)))
+            for nm, kind, y, com, cell in items:
+                chairs = [x.group(1) for x in CHAIR_RX.finditer(com)]
+                for pi, f in forms:
+                    if any(re.fullmatch(re.escape(f), ch) or ch.endswith(f) or f.endswith(ch) for ch in chairs) and y and y >= first_year.get(pi, 2016) and y >= 2016:
+                        i = flat.find(nm); k = flat.find(f, i) if i >= 0 else -1
+                        if i < 0 or k < 0 or k - i > 700:
+                            continue
+                        yrs = [None, y] if kind == 'defense' else [y, y]
+                        e = by.setdefault((nm, pi), dict(years=yrs, first=(r['timestamp'], cap, sha, d, flat[i:k + len(f) + 25], kind)))
+                        a, z = e['years']
+                        e['years'] = [None if (a is None or yrs[0] is None) else min(a, yrs[0]), max(z, yrs[1])]
+    rows = []
+    for (nm, pi), e in sorted(by.items()):
+        ts, cap, sha, d, q, kind = e['first']
+        rows.append(dict(student=nm, pi=pi, years=e['years'], url=re.sub(r'^https?://web\.archive\.org/web/\d+(?:id_)?/', '', cap), capture_url=cap if 'web.archive.org' in cap else None,
+                         sha256=sha, quote=q.strip(), directory_evidence=[dict(url=cap, sha256=sha, quote=nm, observed=ts[:8], directory=d, kind=kind)],
+                         section='dissertation committee chair (' + d + ')', years_basis='defense_list'))
+    return rows
+
+
 def roster_coauthor_students(key, forms):
     """R-STU-02 source 4 (owner rule 2026-10-28, restated 2026-11-03): a PhD roster (names only; charter `[students].rosters` = [{url, kind}]) names a
     student's lab only together with a co-authorship: the roster name also stands on the byline of one of the PI's lab papers
@@ -499,6 +545,7 @@ def directory(key):
                     break
     out += adviser_directory(key, forms)
     out += adviser_alumni(key, forms)
+    out += defense_lists(key, forms, {t['name']: t['first'] for t in PS.targets(key)})
     out += roster_coauthor_students(key, forms)
     n['adviser_directory_relations'] = sum(1 for r in out if str(r.get('section')).startswith('adviser'))   # adviser-bearing lists (current and alumni)
     n['roster_coauthor_relations'] = sum(1 for r in out if str(r.get('section')).startswith('PhD roster'))
