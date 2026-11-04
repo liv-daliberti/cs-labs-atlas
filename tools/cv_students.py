@@ -102,8 +102,8 @@ def parse(text, first_year):
                     yrs = [None, None]
                 else:
                     continue
-                if yrs[1] and yrs[1] < max(first_year, 2016):
-                    continue
+                if (yrs[1] and yrs[1] < max(first_year, 2016)) or (yrs[0] and yrs[0] < first_year):
+                    continue   # appointment window: nothing that starts before the PI's first listing at the school (an earlier institution's students)
                 q = ln + ' ' + blob[:blob.find(nm) + len(nm)][-300:]
                 out.append((nm, yrs, ln, q.strip()))
             i = j
