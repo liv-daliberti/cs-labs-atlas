@@ -1,126 +1,184 @@
-"""Data for the two site pages (owner 2026-11-04, Part D): small JSON files in ai-writing/diversity/site-data/ (README.md there has the schema).
+"""Data for the two site pages (owner 2026-11-04, Part D): the page has a slider t (1%..100% of a paper's paragraphs flagged) and recomputes every number
+in the browser from histograms. Small JSON files in ai-writing/diversity/site-data/ (README.md there has the schema).
 
-  dose_site.py [--out DIR]     needs the container, dose_validate.py --recalibrate already run
-how_much_ai.json       per year x school (and overall): papers, flagged AI / not, shares, baseline-adjusted share with a 95% interval
-given_ai.json          among AI-flagged full-text papers: mean / median / deciles of ai_share, a histogram, the position profile of flagged passages
-labs_ai_amount.json    per lab and year with >= 5 papers: mean ai_share (shrunk toward the school-year mean), n, flags
-Definitions. A paper is "AI" when ai_share_cal >= 0.25 (full text; ai_share_cal is the share of passages flagged at the 1%-FPR threshold, recut for any school or
-field whose 2016-2021 flagged share failed the check) and, when there is no full text, when its v1 abstract flag is set. Both series are also given on their own.
-The baseline is the same definition's 2016-2021 rate in the same school (out-of-sample papers only); adjusted = observed - baseline, interval from the two binomial errors.
-Sections are not recoverable (the stored body is one text from the Introduction to the References); the position profile bins passages by their relative position.
+  dose_site.py [--out DIR]     needs the container and `dose_validate.py --recalibrate` already run
+ai_hist.json         per school ("all" counts each paper once) and year 2016-2026: 101-bin histograms of the dose (count, sum), abstract-only counts, bootstrap bands
+ai_position.json     flagged-passage share by position decile, per paper-dose bin
+labs_ai_hist_<school>.json[.gz]   per lab-year with >= 5 full-text papers: sparse 101-bin histogram (count, sum)
+Binning rule (`dose_bin`): a paper with dose x (ai_share_cal where it exists, else ai_share) is in bin floor(100 x + 1e-9), bin 100 holding exactly 1.0, so bin b
+is [b%, (b+1)%) and "paper is AI at cutoff t percent" (x >= t/100) is exactly "bin >= t". ai_share_cal is the share of passages flagged at the 1%-FPR threshold, recut
+for any school or field whose 2016-2021 flagged share failed the check (the recut groups are listed in the file). Both counts and sums are of full-text papers only.
+Abstract-only papers (no usable full text) are stored apart as (n, flagged by the v1 abstract rule): a page toggle, constant across t.
 """
 import argparse
+import gzip
 import json
 from pathlib import Path
 
 import numpy as np
 
 import dcommon as D
+import dose_stats as S
 
-THRESH = 0.25
+NB = 101
 PARTIAL = 2026
 MIN_LAB = 5
+CI_T = (1, 5, 10, 25, 50, 75, 100)
+YEARS = range(2016, 2027)
 
 
-def ai_flags(df, thr=THRESH):
-    """(primary flag, full-text flag, abstract flag) as float series with NaN where not available."""
-    dose = df['ai_share_cal'].where(df['ai_share_cal'].notna(), df['ai_share'])
-    ft = (dose >= thr).astype(float).where(dose.notna())
-    ab = df['flag_abstract']
-    return ft.where(ft.notna(), ab), ft, ab
+def dose_of(df):
+    return df['ai_share_cal'].where(df['ai_share_cal'].notna(), df['ai_share'])
 
 
-def wilson_se(k, n):
-    p = k / n if n else np.nan
-    return np.sqrt(p * (1 - p) / n) if n else np.nan
+def dose_bin(x):
+    """Bin index 0..100 of dose shares (array-like); NaN stays -1."""
+    x = np.asarray(x, float)
+    b = np.floor(100 * x + 1e-9)
+    return np.where(np.isnan(x), -1, np.minimum(b, 100)).astype(int)
 
 
-def cell(flags):
-    f = flags.dropna()
-    n = len(f)
-    return dict(n=int(n), flagged=int(f.sum()), not_flagged=int(n - f.sum()), share=float(f.mean()) if n else None)
+def hist(dose):
+    """(counts[101], sums[101]) of the dose values."""
+    d = np.asarray(dose, float)
+    d = d[~np.isnan(d)]
+    b = dose_bin(d)
+    return np.bincount(b, minlength=NB), np.bincount(b, weights=d, minlength=NB)
 
 
-def how_much(df, base_years=range(2016, 2022), thr=THRESH, schools=None):
+def at_cutoff(counts, sums, t):
+    """From a histogram: (n >= t, share >= t, mean dose among them, median dose among them) for cutoff t in percent (bin >= t)."""
+    counts, sums = np.asarray(counts), np.asarray(sums)
+    n_all = counts.sum()
+    n = counts[t:].sum()
+    if n == 0:
+        return int(n), (0.0 if n_all else float('nan')), float('nan'), float('nan')
+    cum = np.cumsum(counts[t:])
+    mb = t + int(np.searchsorted(cum, (n + 1) / 2))
+    return int(n), float(n / n_all), float(sums[t:].sum() / n), float(sums[mb] / counts[mb])
+
+
+def explode(df):
     d = df.explode('schools').rename(columns={'schools': 'school'})
-    d = d[d['school'].isin(D.SCHOOLS)]
+    return d[d['school'].isin(D.SCHOOLS)]
+
+
+def cell_bands(g):
+    """Cluster (first lab) bootstrap intervals of the share >= t among full-text papers at CI_T: {t: [lo, hi]}."""
+    if len(g) < 20:
+        return {}
+    bins = dose_bin(dose_of(g))
     out = {}
-    for name, col in (('primary', 0), ('fulltext', 1), ('abstract', 2)):
-        d = d.assign(_f=ai_flags(d, thr)[col])
-        series = {}
-        for s in ['all'] + (schools or D.SCHOOLS):
-            g = df if s == 'all' else d[d['school'] == s]
-            f = ai_flags(g, thr)[col]
-            base_mask = g['year'].isin(base_years) & (~g['trained_on'] if 'trained_on' in g else True)
-            b = f[base_mask].dropna()
-            bn, bp = len(b), (b.mean() if len(b) else np.nan)
-            rows = []
-            for y in range(2016, 2027):
-                c = cell(f[g['year'] == y])
-                if c['n']:
-                    adj = c['share'] - bp
-                    se = float(np.sqrt(wilson_se(c['flagged'], c['n']) ** 2 + (wilson_se(b.sum(), bn) ** 2 if bn else 0)))
-                    c.update(year=y, partial=y == PARTIAL, baseline=float(bp) if bn else None, baseline_n=int(bn),
-                             adjusted=float(adj), adj_lo=float(adj - 1.96 * se), adj_hi=float(adj + 1.96 * se))
-                    rows.append(c)
-            series[s] = rows
-        out[name] = series
-    return dict(definition=dict(primary='ai_share_cal >= 0.25 where full text exists, else the abstract flag', threshold=thr, partial_year=PARTIAL,
-                                baseline_years=[2016, 2021], false_positive_floor='baseline = the 2016-2021 rate of the same rule: show it as the false-positive floor'), series=out)
+    for t in CI_T:
+        _, lo, hi = S.boot_ratio((bins >= t).astype(float), np.ones(len(g)), clusters=g['lab0'].fillna('none').to_numpy(), B=300, seed=t)
+        out[str(t)] = [round(lo, 5), round(hi, 5)]
+    return out
 
 
-def given_ai(df, passages):
-    d = df[df['ai_share'].notna()].copy()
-    d['dose'] = d['ai_share_cal'].where(d['ai_share_cal'].notna(), d['ai_share'])
-    d = d[d['dose'] >= THRESH].explode('schools').rename(columns={'schools': 'school'})
-    d = d[d['school'].isin(D.SCHOOLS)]
-    res = {}
+def histograms(df, bands=True):
+    d = explode(df)
+    out = {}
     for s in ['all'] + D.SCHOOLS:
-        g = d if s == 'all' else d[d['school'] == s]
-        rows = []
-        for y in range(2016, 2027):
-            x = g[g['year'] == y]['dose']
-            if len(x) >= 1:
-                h, _ = np.histogram(x, bins=np.linspace(THRESH, 1.0, 16))
-                rows.append(dict(year=y, n=int(len(x)), partial=y == PARTIAL, mean=float(x.mean()), median=float(x.median()),
-                                 deciles=[float(v) for v in np.quantile(x, np.linspace(0.1, 0.9, 9))], hist_edges=[float(v) for v in np.linspace(THRESH, 1.0, 16)], hist=[int(v) for v in h]))
-        res[s] = rows
-    p = passages.merge(df[['paper_id', 'year']], on='paper_id')
-    p = p[p['year'] >= 2023]
+        g_all = df if s == 'all' else d[d['school'] == s]
+        years = {}
+        for y in YEARS:
+            g = g_all[g_all['year'] == y]
+            if g.empty:
+                continue
+            ft = g[g['ai_share'].notna()]
+            ab = g[g['ai_share'].isna() & g['p_ai_abstract'].notna()]
+            c, sm = hist(dose_of(ft))
+            cell = dict(partial=y == PARTIAL, n_ft=int(len(ft)), hist=c.tolist(), sum=[round(float(v), 4) for v in sm],
+                        abstract_only=dict(n=int(len(ab)), flagged=int(ab['flag_abstract'].sum())), papers=int(len(g)))
+            if y <= 2021:
+                oos = ft[~ft['trained_on']] if 'trained_on' in ft else ft
+                c2, s2 = hist(dose_of(oos))
+                cell['hist_out_of_sample'] = c2.tolist()
+                cell['sum_out_of_sample'] = [round(float(v), 4) for v in s2]
+            if bands:
+                cell['band'] = cell_bands(ft)
+            years[str(y)] = cell
+        out[s] = years
+    return out
+
+
+def position(df, passages, cuts):
+    """Flagged passage share by position decile, per paper-dose bin: {school: {period: {flagged: [101][10], total: [101][10]}}} for 2016-2021 and 2023-2026 papers.
+    A passage is flagged at its paper's own cut (the recalibrated one where a group needed it)."""
+    p = passages.merge(df[['paper_id', 'year', 'schools', 'ai_share', 'ai_share_cal']], on='paper_id')
+    p['dose'] = dose_of(p)
+    p['bin'] = dose_bin(p['dose'])
     n = p.groupby('paper_id')['pidx'].transform('max') + 1
     p['pos'] = np.minimum((p['pidx'] / n * 10).astype(int), 9)
-    thr = D.V2_THRESHOLD
-    prof = p.assign(f=p['p'] >= thr).groupby('pos')['f'].mean()
-    return dict(threshold=THRESH, by_school_year=res, position_profile=dict(note='share of passages flagged by relative position in the body (decile 0 = start), papers of 2023-2026; '
-                                                                                'sections (abstract, intro, ...) are not recoverable from the stored text', deciles=[float(v) for v in prof.reindex(range(10)).fillna(0)]))
+    p['flag'] = p['p'].to_numpy() >= p['paper_id'].map(cuts).to_numpy()
+    out = {}
+    for s in ['all'] + D.SCHOOLS:
+        q = p if s == 'all' else p[p['schools'].map(lambda x, s=s: s in x)]
+        res = {}
+        for name, years in (('pre', range(2016, 2022)), ('post', range(2023, 2027))):
+            z = q[q['year'].isin(years)]
+            tot = np.zeros((NB, 10), int); fl = np.zeros((NB, 10), int)
+            if len(z):
+                np.add.at(tot, (z['bin'].to_numpy(), z['pos'].to_numpy()), 1)
+                np.add.at(fl, (z['bin'].to_numpy(), z['pos'].to_numpy()), z['flag'].to_numpy().astype(int))
+            res[name] = dict(flagged=fl.tolist(), total=tot.tolist())
+        out[s] = res
+    return out
 
 
-def labs(df, lp):
+def lab_hists(df, lp):
     d = lp[['paper_id', 'lab_id', 'school', 'lab_name', 'pi']].merge(df[['paper_id', 'year', 'ai_share', 'ai_share_cal']], on='paper_id')
-    d['dose'] = d['ai_share_cal'].where(d['ai_share_cal'].notna(), d['ai_share'])
+    d['dose'] = dose_of(d)
     d = d.dropna(subset=['dose'])
-    g = d.groupby(['school', 'lab_id', 'lab_name', 'pi', 'year'])['dose'].agg(n='size', mean='mean', median='median').reset_index()
-    sy = d.groupby(['school', 'year'])['dose'].mean().rename('school_mean').reset_index()
-    g = g.merge(sy, on=['school', 'year'])
-    k = 5.0   # shrinkage: weight n / (n + k) on the lab mean, the rest on the school-year mean
-    g['shrunk'] = (g['n'] * g['mean'] + k * g['school_mean']) / (g['n'] + k)
-    g['small'] = g['n'] < MIN_LAB
-    keep = g[~g['small']]
-    return dict(min_papers=MIN_LAB, shrinkage_k=k, note='labs with < 5 scored papers in a year are omitted', rows=[
-        dict(school=r.school, lab_id=r.lab_id, lab=r.lab_name, pi=r.pi, year=int(r.year), n=int(r.n), mean=float(r.mean), median=float(r.median), shrunk=float(r.shrunk))
-        for r in keep.itertuples()])
+    out = {s: [] for s in D.SCHOOLS}
+    for (s, lab, name, pi, y), g in d.groupby(['school', 'lab_id', 'lab_name', 'pi', 'year']):
+        if len(g) < MIN_LAB or s not in out:
+            continue
+        c, sm = hist(g['dose'])
+        nz = np.nonzero(c)[0]
+        out[s].append(dict(lab_id=lab, lab=name, pi=pi, year=int(y), n=int(len(g)), bins=nz.tolist(), counts=c[nz].tolist(), sums=[round(float(v), 4) for v in sm[nz]]))
+    return out
+
+
+def write_json(path, obj):
+    raw = json.dumps(obj, separators=(',', ':'))
+    if len(raw) > 1_500_000:
+        with gzip.open(str(path) + '.gz', 'wt') as f:
+            f.write(raw)
+        Path(str(path)).unlink(missing_ok=True)
+        return str(path) + '.gz'
+    Path(path).write_text(raw)
+    Path(str(path) + '.gz').unlink(missing_ok=True)
+    return str(path)
+
+
+def group_cuts():
+    import sqlite3
+    db = sqlite3.connect(f'file:{D.DB}?mode=ro', uri=True)
+    rows = db.execute("select \"group\", value from thresholds where name = 'paragraph_v2_group'").fetchall()
+    db.close()
+    return {tuple(g.split(':', 1)): v for g, v in rows}
 
 
 def run(out):
     import dose_data as DD
+    import dose_validate as V
     df = DD.paper_table()
+    df['field_grp'] = V.field_groups(df)
+    first = DD.universe()[1].drop_duplicates('paper_id').set_index('paper_id')['lab_id']
+    df['lab0'] = df['paper_id'].map(first)
+    cuts_by_group = group_cuts()
+    cuts = V.paper_cuts(df, cuts_by_group)
     ps = DD.passages(set(df.loc[df['ai_share'].notna(), 'paper_id']))
-    _, lp = DD.universe()
     out.mkdir(parents=True, exist_ok=True)
-    for name, obj in (('how_much_ai', dict(how_much(df), sensitivity={str(t): how_much(df, thr=t) for t in (0.10, 0.50)})), ('given_ai', given_ai(df, ps)), ('labs_ai_amount', labs(df, lp))):
-        obj['generated'] = D.now()
-        (out / f'{name}.json').write_text(json.dumps(obj, separators=(',', ':')))
-        D.log(wrote=str(out / f'{name}.json'))
+    meta = dict(generated=D.now(), bins=NB, bin_rule='bin = floor(100*dose + 1e-9), bin 100 = exactly 1.0; AI at cutoff t percent <=> bin >= t', partial_year=PARTIAL,
+                global_threshold=D.V2_THRESHOLD, recalibrated_groups={f'{k[0]}:{k[1]}': v for k, v in cuts_by_group.items()}, ci_cutoffs=list(CI_T),
+                ci_method='bootstrap over labs (300 draws, 95% percentile) of the share >= t among full-text papers; with abstract-only papers included use Wilson from counts',
+                default_cutoff=25, ticks=[10, 25, 50])
+    D.log(wrote=write_json(out / 'ai_hist.json', dict(meta=meta, series=histograms(df))))
+    D.log(wrote=write_json(out / 'ai_position.json', dict(meta=meta, position_bins=10, series=position(df, ps, cuts))))
+    for s, rows in lab_hists(df, DD.universe()[1]).items():
+        D.log(wrote=write_json(out / f'labs_ai_hist_{s}.json', dict(meta=dict(generated=meta['generated'], min_papers=MIN_LAB, bin_rule=meta['bin_rule']), labs=rows)))
 
 
 if __name__ == '__main__':

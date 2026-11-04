@@ -106,13 +106,18 @@ def group_thresholds(df, passages, school_bad, field_bad, q=0.99):
     return out
 
 
+def paper_cuts(df, thr, default=D.V2_THRESHOLD):
+    """Per-paper passage threshold: the larger of the global cut and the cuts of the paper's home school and field group (`thr` from group_thresholds)."""
+    t = np.full(len(df), default)
+    for (kind, name), val in thr.items():
+        col = 'home_school' if kind == 'school' else 'field_grp'
+        t = np.where(df[col].to_numpy() == name, np.maximum(t, val), t)
+    return pd.Series(t, index=df['paper_id'])
+
+
 def recalibrated_share(df, passages, thr):
     """ai_share_cal per paper: flagged at max(global, school cut, field cut) of the paper's home school and field group."""
-    t = np.full(len(df), D.V2_THRESHOLD)
-    for (kind, name), v in thr.items():
-        col = 'home_school' if kind == 'school' else 'field_grp'
-        t = np.where(df[col].to_numpy() == name, np.maximum(t, v), t)
-    cut = pd.Series(t, index=df['paper_id'])
+    cut = paper_cuts(df, thr)
     p = passages.assign(flag=passages['p'].to_numpy() >= passages['paper_id'].map(cut).to_numpy())
     share = p.groupby('paper_id')['flag'].mean()
     return df['paper_id'].map(share)
