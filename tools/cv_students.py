@@ -89,7 +89,7 @@ def parse(text, first_year):
                 body.append(lines[j]); j += 1
             blob = ' '.join(x for x in body if x)
             for item in re.split(r'[;•]|\s{2,}|(?<=\))\s*,\s*', blob):
-                m = re.match(r"^\W*([A-Z][\w.'’-]+(?: [A-Z][\w.'’-]+){1,3})\b", item.strip())
+                m = re.match(r"^\W*([A-Z][a-z'\u2019-]{2,}(?: [A-Z][\w.'\u2019-]+){1,3})\b", item.strip())   # a full given name: 'T. Papamakarios' cannot be matched to a person
                 if not m:
                     continue
                 nm = m.group(1)
@@ -135,7 +135,7 @@ def main(key, everyone=False):
                     flat = ' '.join(text.split())
                     if q not in flat and q.replace('  ', ' ') not in flat:
                         q = head + ' ' + nm   # a quote the layout split: the heading and the name, each verbatim
-                    rows.append(dict(student=nm, pi=pi, years=yrs, url=url, capture_url=url, sha256=None, quote=q[:400],
+                    rows.append(dict(student=nm, pi=pi, years=yrs, role=('phd' if re.search(r'ph\.?\s?d|doctoral|dissertation', head, re.I) else 'member'), url=url, capture_url=url, sha256=None, quote=q[:400],
                                      directory_evidence=[dict(url=url, observed=when, directory='CV', heading=head)], section='CV: ' + head, years_basis='cv_years'))
                     ent['advising_items'] += 1
             checked[pi].append(ent)

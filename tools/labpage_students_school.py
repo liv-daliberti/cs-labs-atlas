@@ -649,7 +649,7 @@ def extract(key):
             ev.append(e)
         if any(Name([s_['name']]).match(d['student']) for s_ in e['students']):
             rep['directory_student_already_listed'] += 1
-        e['students'].append(dict(name=d['student'], role='phd', years=d['years'], years_basis='directory_years', alumni=False,
+        e['students'].append(dict(name=d['student'], role=d.get('role') or 'phd', years=d['years'], years_basis='directory_years', alumni=False,
                                   section=d.get('section') or "student's own page (program PhD directory website)", url=d['url'], capture_url=d['capture_url'],
                                   sha256=d['sha256'], quote=d['quote'], directory_evidence=d['directory_evidence'], auto=True))
         rep['directory_students'] += 1
