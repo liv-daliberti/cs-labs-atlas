@@ -255,3 +255,12 @@ def test_cv_students_reads_an_advising_section_with_years_and_the_window():
     got = {n: y for n, y, h, q in CVS.parse(text, 2016)}
     assert got['Ann Lee'] == [None, 2019] and 'Wei Zhang' not in got and got['Maria Garcia'] == [None, 2022] and got['John Smith'] == [None, 2024]
     assert got['Eddie Gray'] == [None, None]   # a 'current' heading needs no year
+
+
+def test_people_links_stay_in_the_pis_own_space():
+    L = by_path('labpage_students_school')
+    dh = {'cs.uchicago.edu', 'ttic.edu'}
+    assert not L.in_own_space('https://cs.uchicago.edu/academics/phd/graduate-student-leadership/', 'Ann Lee', dh)
+    assert L.in_own_space('http://people.cs.uchicago.edu/~alee/students.html', 'Ann Lee', dh)
+    assert L.in_own_space('https://cs.uchicago.edu/people/ann-lee-students/', 'Ann Lee', dh)
+    assert L.in_own_space('https://leelab.github.io/people', 'Ann Lee', dh)

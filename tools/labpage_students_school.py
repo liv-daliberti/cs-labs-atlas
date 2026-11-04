@@ -97,14 +97,27 @@ def people_links(html, base):
     return list(dict.fromkeys(out))
 
 
+def in_own_space(url, pi, dept_hosts):
+    """A people link followed from a PI's page counts only when it is in the PI's own space: a host that is not a department's, or a department path with
+    `~user` or the PI's family name. (The broader people-link words had followed 'phd' links from every CS profile page to the department's
+    graduate-student-leadership page and given 24 PIs the same 14 'students': UChicago friction 66.)"""
+    sp = urllib.parse.urlsplit(url)
+    host = sp.netloc.lower().split(':')[0]
+    if not any(host == h or host.endswith('.' + h) for h in dept_hosts):
+        return True
+    fam = re.sub(r'[^a-z]', '', (pi.split() or [''])[-1].lower())
+    return '/~' in sp.path or (len(fam) > 2 and fam in sp.path.lower())
+
+
 def targets_pages(key):
     """{pi: [urls]}: the homepages plus their stored people links (computed from stored pages only)."""
     c = W.con(key); out = {}
+    dept_hosts = {h['host'].lower() for h in S.get(key).get('hosts') or [] if h.get('host', '').endswith(('uchicago.edu', 'ttic.edu', 'chicagobooth.edu'))}
     for t in PS.targets(key):
         urls = list(t['urls'])
         for u in t['urls']:
             for cited, sha, h, y in stored_pages(c, u):
-                urls += people_links(h, re.sub(r'^https?://web\.archive\.org/web/\d+(?:id_)?/', '', cited) if 'web.archive.org' in cited else cited)
+                urls += [x for x in people_links(h, re.sub(r'^https?://web\.archive\.org/web/\d+(?:id_)?/', '', cited) if 'web.archive.org' in cited else cited) if in_own_space(x, t['name'], dept_hosts)]
         out[t['name']] = (t, list(dict.fromkeys(urls))[:8 + len(t['urls'])])
     return out
 
