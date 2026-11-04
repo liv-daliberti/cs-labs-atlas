@@ -46,8 +46,7 @@ Vectors are stored raw (the pooled output, float16); analyses centre on the corp
 | `bge_m3` | BAAI/bge-m3 | the same, plus lexical weights | CLS dense 1024; sparse |
 | `nomic_v15` | nomic-ai/nomic-embed-text-v1.5, prefix `clustering: ` | the same | mean, 768 |
 
-**Qwen3-Embedding-4B is not run:** its fp16 weights are about 8 GB, the whole memory of an RTX 2080 (8 GB), with nothing left for activations.
-Not tried. Abstracts: title [SEP] abstract for SPECTER2 and SciNCL (as `ai-writing/embed.py`), title, blank line, abstract for the others.
+**Qwen3-Embedding-4B (`qwen3_4b`) runs on abstracts only,** one card at a time: fp16 weights are about 8 GB; the cards report 11 GB (RTX 2080 Ti), the peak at an 8k window measured 9.28 GB of 10.58 GB (headroom 1.29 GB < 2 GB), so full text is not run. Abstracts: title [SEP] abstract for SPECTER2 and SciNCL (as `ai-writing/embed.py`), title, blank line, abstract for the others.
 Full text: the stored body (the existing extraction, `vendor/homogenization_tools/fulltext_store.py`: pdftotext 60 pages, Introduction to the last
 References heading, at most 300,000 characters), cut into consecutive token windows (512 for SPECTER2; 8,192 for the others, special tokens included),
 at most 64 / 8 windows per paper (evenly spaced when more), a tail shorter than 64 / 256 tokens dropped unless it is the only window. Full texts are
@@ -67,3 +66,9 @@ c = store.load('qwen3_0p6b', 'cmu', 'fulltext', chunks=True)   # ids, hashes, n,
 store.meta('qwen3_0p6b', 'cmu', 'fulltext')['revision']
 ```
 Tests: `tests/test_embeddings.py` (store, index, resume, merge, chunking, batching, OpenAlex rebuild, entropy, novelty against brute force).
+
+## Finishing and re-running after the packages change (runbook)
+1. Rebuild the paper list once gatech and uchicago are final: `sbatch universe.slurm` (new papers appear, ids stay), then `sbatch texts.slurm abstracts` and `sbatch texts.slurm fulltext` (repeat the full-text job until it logs no `todo`; it resumes).
+2. Embed the delta: `lanes.sh` (full text, 8 lanes) and `submit_embed.sh <model> abstract 1 3` per model; a paper is redone only when its text hash is new.
+3. `merge.slurm <model> <kind> ...` for every model and kind (idempotent; papers whose home school changed move containers), then `analyze.slurm novelty <model> <kind>`, `analyze.slurm bertopic <model>` (about 35 minutes: set `--time=00:59:00`) and `analyze.slurm entropy <model|openalex>` for the topic models, then `EMB_REPORT_DIR=<dir> sbatch analyze.slurm report` and copy the file into `ai-writing/diversity/reports/`.
+Status: `embed.py status` (done / total per model and kind) from a compute node.
