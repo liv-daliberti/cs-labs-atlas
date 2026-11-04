@@ -274,6 +274,7 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('missing-pi-review.json', 'reviewed', 'hierarchy/{school}/missing-pi-review.json', 'hierarchy/{school}/reviewed/missing-pi-review.json'),
     ('openalex-identity-review.json', 'reviewed', 'hierarchy/{school}/openalex-identity-review.json', 'hierarchy/{school}/reviewed/openalex-identity-review.json'),
     ('census-overrides-school.json', 'reviewed', 'hierarchy/{school}/census-overrides-school.json', 'hierarchy/{school}/reviewed/census-overrides-school.json'),
+    ('openalex-identity-proposals.json', 'derived', 'hierarchy/{school}/openalex-identity-proposals.json', 'hierarchy/{school}/derived/openalex-identity-proposals.json'),
     ('person-urls.json', 'reviewed', 'hierarchy/{school}/person-urls.json', 'hierarchy/{school}/reviewed/person-urls.json'),
     ('deep-gap-evidence.json', 'derived', 'hierarchy/{school}/deep-gap-evidence.json', 'hierarchy/{school}/derived/deep-gap-evidence.json'),
     ('census-additions.json', 'reviewed', 'census/{school}-additions.json', 'hierarchy/{school}/reviewed/census-additions.json'),
