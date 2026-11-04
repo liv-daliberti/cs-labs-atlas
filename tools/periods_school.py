@@ -86,6 +86,8 @@ def fetch(key):
     for t in targets(key):
         for u in t['urls']:
             host = re.sub(r'^https?://', '', u).split('/')[0].lower()
+            if c.execute('select 1 from captures where page_url=? and http_status=200 limit 1', (u,)).fetchone() or c.execute('select 1 from live where url=? and status=200 limit 1', (u,)).fetchone():
+                n['already_stored'] += 1; continue   # a rerun after new URLs were added fetches only the new ones (UChicago homepage dive)
             live_ok = S.host_use(key, host) == 'live' and host not in W._blocked
             res = W.live(c, u) if live_ok else None
             if res and res[0] == 200:
