@@ -73,14 +73,14 @@ def merge_sparse(dicts):
 
 # ---------------------------------------------------------------- the model
 class Embedder:
-    def __init__(self, key, dtype='float16'):
+    def __init__(self, key, dtype='float16', device=None):
         import torch
         self.torch = torch
         self.key, self.cfg = key, MODELS[key]
         cfg = self.cfg
         C.use_extras()
         from transformers import AutoModel, AutoTokenizer
-        self.dev = 'cuda' if torch.cuda.is_available() else 'cpu'
+        self.dev = device or ('cuda' if torch.cuda.is_available() else 'cpu')
         self.dtype = getattr(torch, dtype) if self.dev == 'cuda' else torch.float32
         kw = dict(torch_dtype=self.dtype)
         if cfg.get('remote'):
@@ -321,18 +321,27 @@ def selftest(model, long_tokens=9000):
     seqs += wins[:3]
     torch.cuda.reset_peak_memory_stats()
     t0 = time.time()
-    v16, sp = e16.embed(seqs)
+    try:
+        v16, sp = e16.embed(seqs)
+    except torch.cuda.OutOfMemoryError:
+        C.log(selftest=model, oom=True, peak_gb=round(torch.cuda.max_memory_allocated() / 2 ** 30, 2), longest=max(len(s) for s in seqs), ok=False)
+        return
     dt = time.time() - t0
     peak = torch.cuda.max_memory_allocated() / 2 ** 30 if torch.cuda.is_available() else 0
+    total = torch.cuda.get_device_properties(0).total_memory / 2 ** 30 if torch.cuda.is_available() else 0
     ok_shape = v16.shape == (len(seqs), e16.cfg['dim']) and bool(np.isfinite(v16).all())
     rev, tokens = e16.revision, sum(len(s) for s in seqs)
     del e16
     torch.cuda.empty_cache()
-    e32 = Embedder(model, dtype='float32')
+    big = bool(MODELS[model].get('big'))
+    nabs = len(rows)
+    e32 = Embedder(model, dtype='float32', device='cpu' if big else None)   # a 4B model in fp32 does not fit the card: compare the abstracts on the CPU
+    if big:
+        seqs, v16 = seqs[:nabs], v16[:nabs]
     v32, _ = e32.embed(seqs)
     cos = (v16 * v32).sum(1) / (np.linalg.norm(v16, axis=1) * np.linalg.norm(v32, axis=1))
     C.log(selftest=model, revision=rev, items=len(seqs), windows=len(wins), body_tokens=ntok, longest=max(len(s) for s in seqs), min_cos=float(cos.min()),
-          mean_cos=float(cos.mean()), finite_and_shaped=ok_shape, sparse_nnz=(len(sp[0]) if sp and sp[0] else None), tok_per_s=round(tokens / dt), peak_gb=round(peak, 2),
+          mean_cos=float(cos.mean()), finite_and_shaped=ok_shape, sparse_nnz=(len(sp[0]) if sp and sp[0] else None), tok_per_s=round(tokens / dt), peak_gb=round(peak, 2), card_gb=round(total, 2), headroom_gb=round(total - peak, 2),
           ok=bool(cos.min() > 0.99 and ok_shape))
 
 
