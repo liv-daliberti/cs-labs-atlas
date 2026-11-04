@@ -4,14 +4,17 @@ Date: 2026-11-03/04. Jobs 32096413 (fetch of 456 PIs' homepages and Wayback capt
 Gate (`atlas stage-gate gatech 4`): **fail, 28 PIs open** (stop point; no gate waiver recorded, that is the owner's call). 36 PIs have a period, 392 have contiguous listings.
 
 ## The 28 open PIs
+The 28: Polo Chau, Elliot Moore II, Charles C. Kemp, David W. Rosen, John E. Taylor, Julie Linsey, Kinsey Herrin, Nader Sadegh, Nassim Parvin, Roger Jianxin Jiao, Wei Wang, Wei-Chun Wang, William T. Trotter, Yan Wang, Yu (Jeffrey) Hu, Kok-Meng Lee, Molei Tao, Sung Ha Kang, Frank L. Hammond, Anirban Mazumdar, Ilija Uzelac, William Singhose, Sudheer Chava, Young Mi Choi, Shreyas Kousik, Jon Sanford, Alexander Oettl, Roger Ball.
 Every one is a PI of a unit (ME, ISyE, CEE, Design, Math, ...) whose directory is a script shell or paged in alternating years in Wayback, so the listing years have holes (examples: Polo Chau 2016-20, 2022; Charles Kemp 2016-23, 2024, 2026 with 2025 missing;
 David Rosen, Nader Sadegh, Roger Jiao and Julie Linsey 2016-22, 2024, 2026 with 2023 and 2025 missing; William Trotter 2017, 2019-20). `gaps` and `extend` looked for dated profile or homepage captures of the missing years and found none naming a ladder title.
 Options for the owner: (a) accept each as `unit_directory_gap` in `gate-exceptions.json` with the list above and the profile URLs tried (`gap-year-evidence.json`), keeping the PI (the appointment is continuous by neighbouring dated listings but the rule forbids inferring); or (b) supply archived profile URLs per person.
 
 ## Truncated-title PIs (the 8 of stage 2), new tool `periods_school.py truncated`
 For the years a department card cut the title short, dated profile captures of exactly those years must name the person with a ladder title. Result: 8 people with truncated rows examined here (38 in stage 2; 30 are covered by an adjacent ladder year);
-**3 closed** (Aluru and two others: reviewed periods in `census-overrides-school.json`), **5 stay open**: C. David Sherrill (2024-26), Zvi Galil (2024, 2026), Mark Borodovsky (2024) are PIs without a dated profile capture of those years;
+**3 closed** (Srinivas Aluru, Mustaque Ahamad, Melody Jackson: reviewed periods in `census-overrides-school.json`), **5 stay open**: C. David Sherrill (2024-26), Zvi Galil (2024, 2026), Mark Borodovsky (2024) are PIs without a dated profile capture of those years;
 David Joyner and Peter Swire are not PIs (research / other rank in the census) and no profile capture of 2023-26 names either with a professor title: they stay out of the census. Evidence: `hierarchy/gatech/truncated-title-evidence.json`.
+
+The tool only examines people whose rows of a year are ALL unranked cut-off cards; Santosh Vempala, Dana Randall (their rows that year also carry an adjunct rank) and Carrie Bruce (research rank) are not covered and still need a hand look.
 
 ## Home departments (R8) and the ML Center question
 - Homes are no longer read from title text: `Joint with ...` is the OTHER unit of a joint appointment (-> `also`), `Starting Fall'26`, `KUKA Chair of ...` and anything cut off with an ellipsis are not units; the home is then the department of the listing row. `College of Architecture` is a charter home name. The gate now rejects a home that is not a charter department, affiliated unit or `[census].home_units` name (test): the 16 bad homes are gone (456 homes, stage-3 gate passes).
