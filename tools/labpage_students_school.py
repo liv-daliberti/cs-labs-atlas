@@ -233,6 +233,13 @@ def clean_student_name(name):
     return n
 
 
+def is_department_roster(flat, faculty, n=6):
+    """True when a page names `n` or more distinct faculty of the atlas (folded full names): a department or program people page, whose students are
+    the department's, not any one PI's (the Mathematics people page had given every Mathematics PI 170 graduate students; extract also skips a page with 60 or more candidate names)."""
+    low = ' ' + ' '.join(toks(flat)) + ' '
+    return sum(1 for f in faculty if f and (' ' + f + ' ') in low) >= n
+
+
 def all_faculty_names():
     """Folded names of every PI of every school's built pis.json: a person who is faculty somewhere in the atlas is not a student on a lab page."""
     out = set()
@@ -498,6 +505,8 @@ def extract(key):
                     continue
                 flat = ' '.join(lpdom.collapse(x) for x in [re.sub(r'<[^>]+>', ' ', re.sub(r'<(script|style)\b.*?</\1>', ' ', h, flags=re.S | re.I))])
                 flat = ' '.join(__import__('html').unescape(flat).split())
+                if is_department_roster(flat, faculty_anywhere) or len(cands) >= 60:
+                    rep['department_roster_page_skipped'] += 1; continue   # a department people page names many faculty: not this PI's lab page (UChicago homepage dive)
                 for path, name, rest, nxt, idx in cands:
                     name = clean_student_name(name)
                     if (path and any(NOT_STUDENT_HEAD.match(x) for x in path)) or ' '.join(toks(name)) in faculty_anywhere:

@@ -214,3 +214,11 @@ def test_all_faculty_names_reads_every_schools_pis(tmp_path, monkeypatch):
     monkeypatch.setattr(L.P, 'data', lambda name, school=None, **k: tmp_path / f'{school}-pis.json')
     (tmp_path / 'a-pis.json').write_text(json.dumps([{'pi': 'Samir Khuller', 'names': ['S. Khuller']}]))
     assert 'samir khuller' in L.all_faculty_names()
+
+
+def test_a_department_people_page_is_not_a_lab_page():
+    L = by_path('labpage_students_school')
+    fac = {'ann lee', 'bo wu', 'cy roe', 'di fox', 'ed gray', 'flo hart', 'gus ito'}
+    page = 'People Ann Lee Professor Bo Wu Professor Cy Roe Di Fox Ed Gray Flo Hart Graduate students Sam Poe'
+    assert L.is_department_roster(page, fac)
+    assert not L.is_department_roster('Ann Lee group: students Sam Poe, Tia Kim; collaborator Bo Wu', fac)
