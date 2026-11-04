@@ -147,3 +147,13 @@ Four channels that match a bulk source to the lab papers LOCALLY (DOI first, the
   arXiv id the paper names, then the exact normalized title with the same author set.
 - Identity: a record matched by title is only a candidate; the collector's page-1 rule (`identity_rule.py`) decides at download time, and the
   hand check of 20 matched candidates per source is recorded in the report that landed this.
+
+### Bulk open-access sources: results of 2026-11-04
+- Identity hand check (page 1 of 20 downloaded copies per source, `bulk_oa_report.py sample`): `s2_bulk` 0 wrong of 20 (kept); `oa_locations` 2 wrong of 20
+  (a handbook chapter for the handbook through a same-title sibling record; a wrong arXiv link on an OpenAlex record) and `arxiv_bulk` 1 wrong plus 1
+  unconfirmed of 7 (a series Part I matched by the arXiv record's DOI field, which carries Part II's DOI) -> both ROLLED BACK by
+  `bulk_oa_rollback.py` (wrong copies reverted, every candidate of the channel not yet downloaded deleted, copies that passed stay); their code stays in the
+  tree, off the run lists, until the matching is tightened (sibling records only with a matching container type; arXiv ids only from the paper's own
+  record; a DOI match also needs a compatible title). `core_bulk`: no copy downloaded yet, so no check was possible; its candidates stay.
+- eScholarship (Berkeley; escholarship.org blocks us at its CDN): `wayback_escholarship` adds the Internet Archive capture of the item PDF (`id_` URL form,
+  one CDX lookup per 8 s); CORE's hosted copies (`core.ac.uk/download/...`) answer a Cloudflare challenge, so they are not used.
