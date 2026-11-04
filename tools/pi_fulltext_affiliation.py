@@ -44,7 +44,30 @@ def db(school):
     return c
 
 
+def works_from_snapshot(school):
+    """pi-works from the OpenAlex snapshot (the school's extension holds every work of our PIs' author ids, tools/oa_snapshot.py): no API credit.
+    Returns the author ids it found no work for (the caller may ask the API for those only)."""
+    import oa_snapshot as O
+    c = db(school)
+    pis = read(P.data('pis.json', school))
+    ids = sorted({a.rsplit('/', 1)[-1] for p in pis for a in (p.get('oaAuthorIds') or [])[:6] + (p.get('reviewedOpenAlex') or [])})
+    missing = []
+    for a in ids:
+        n = 0
+        for w in O.works_by_author(a):
+            if 2016 <= (w.get('publication_year') or 0) <= 2026:
+                c.execute('insert or replace into works values (?,?)', (w['id'], zlib.compress(json.dumps(w).encode()))); n += 1
+        if not n:
+            missing.append(a)
+    c.commit()
+    print(json.dumps(dict(school=school, source='snapshot', author_ids=len(ids), without_snapshot_works=len(missing), works=c.execute('select count(*) from works').fetchone()[0])))
+    return missing
+
+
 def works(school):
+    if '--from-snapshot' in sys.argv:
+        works_from_snapshot(school)
+        return
     key = os.environ['OPENALEX_API_KEY']; floor = int(os.environ.get('OPENALEX_FLOOR') or 1500)
     c = db(school); s = requests.Session(); s.headers['User-Agent'] = UA
     pis = read(P.data('pis.json', school))

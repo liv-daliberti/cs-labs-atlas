@@ -322,7 +322,7 @@ STEPS = {
           Q('labpage-extract', 'PY $TOOLS/labpage_students_school.py extract {school}', time='04:00:00', py='collector'),
           Q('student-directories', 'PY $TOOLS/labpage_students_school.py directory {school}', time='06:00:00', py='collector'),
           H('rounds', 'the lab-page students rounds (docs/LAB-PAGES.md): a fresh sample of 20, its hand check (atlas review-page), a rule fix and a NEW sample on failure, three failed rounds stop the work; record them in labpage-handcheck.json')],
-    '7': [Q('pi-works', 'PY $TOOLS/pi_fulltext_affiliation.py works {school}', mem='24G', time='06:00:00'),
+    '7': [Q('pi-works', 'PY $TOOLS/pi_fulltext_affiliation.py works {school} --from-snapshot', mem='24G', time='06:00:00'),
           Q('dblp-recover', 'PY $TOOLS/dblp_recover.py {school}', time='06:00:00'),
           Q('labpage-recover', 'PY $TOOLS/labpage_recover.py run {school}', time='08:00:00'),
           Q('build', 'PY $TOOLS/pi_hierarchy.py {school}', cpus=3, mem='40G', time='02:00:00', done=['pis.json']),

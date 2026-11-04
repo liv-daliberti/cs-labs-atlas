@@ -176,3 +176,15 @@ def test_gate_related_takes_the_school_out_of_an_argonne_only_authorship():
     assert 'https://openalex.org/I1' in joint['authorships'][0]['institutions'][0]['lineage']
     both = C.gate_related(w([uc(), arg()], ['x']), gate)
     assert both['authorships'][0]['institutions'][0]['lineage'] == ['https://openalex.org/I1']
+
+
+def test_pi_works_can_come_from_the_snapshot_without_the_api(tmp_path, monkeypatch):
+    import sqlite3
+    import sys
+    M = by_path('pi_fulltext_affiliation')
+    monkeypatch.setattr(M.P, 'data', lambda name, school=None, **k: tmp_path / name)
+    (tmp_path / 'pis.json').write_text(json.dumps([{'pi': 'A', 'oaAuthorIds': ['https://openalex.org/A1', 'https://openalex.org/A2'], 'reviewedOpenAlex': []}]))
+    import oa_snapshot as O
+    monkeypatch.setattr(O, 'works_by_author', lambda a: iter([{'id': 'W1', 'publication_year': 2020}, {'id': 'W0', 'publication_year': 2010}] if a == 'A1' else []))
+    missing = M.works_from_snapshot('u')
+    assert missing == ['A2'] and sqlite3.connect(str(M.db('u').execute('pragma database_list').fetchall()[0][2])).execute('select id from works').fetchall() == [('W1',)]
