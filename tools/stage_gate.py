@@ -326,6 +326,7 @@ STEPS = {
           Q('dblp-recover', 'PY $TOOLS/dblp_recover.py {school}', time='06:00:00'),
           Q('labpage-recover', 'PY $TOOLS/labpage_recover.py run {school}', time='08:00:00'),
           Q('build', 'PY $TOOLS/pi_hierarchy.py {school}', cpus=3, mem='40G', time='02:00:00', done=['pis.json']),
+          Q('link-diagnosis', 'PY $TOOLS/link_diagnosis.py {school}', mem='24G', time='02:00:00', done=['link-diagnosis.json']),
           H('review', 'zero-paper labs need reasons, the links check needs 0 open, the lab-page papers round (a fresh 20, at most 1 error)')],
     '8': [L('add-works', 'fulltext-push/add_works.py', '{key}', py='collector'),
           dict(name='channels', kind='hand', todo='SCHOOL={key} CHANNELS="oa_arxiv openalex proceedings arxiv_title dblp_ee s2 core europepmc pmc figshare labpages" atlas submit fulltext-push/school-channels.slurm, then add the school to the downloads array (docs/RUNBOOK.md)'),

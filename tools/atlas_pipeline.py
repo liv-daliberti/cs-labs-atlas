@@ -59,6 +59,10 @@ PIPELINES = {
         ('build', 'school', 'PY $TOOLS/pi_hierarchy.py {school}', 'project', 3, '40G', '02:00:00'),
         ('audit', 'school', 'PY $TOOLS/labpage_audit.py audit {school}', 'project', 2, '16G', '02:00:00'),
     ],
+    # why each student without a linked paper has none (chain check 4): offline over the school's sweep -> link-diagnosis.json
+    'link-diagnosis': [
+        ('diagnose', 'school', 'PY $TOOLS/link_diagnosis.py {school}', 'project', 2, '24G', '02:00:00'),
+    ],
     # the OpenAlex snapshot extension for a school added after the snapshot was built (stage 0): OA_DATE=<snapshot date> SCHOOLS=<key>.
     # 16 filter tasks -> merge (ext-<key>.sqlite beside the main store). `array:16` = 16 tasks of one school ({task} is the task index).
     'snapshot-ext': [
