@@ -98,7 +98,7 @@ class Embedder:
             except (TypeError, ValueError):
                 kw.pop('attn_implementation', None)
                 self.model = AutoModel.from_pretrained(cfg['hf'], **kw)
-        self.model = self.model.to(self.dev).eval()
+        self.model = self.model.to(self.dev, self.dtype).eval()   # adapter weights load as float32
         self.sparse = None
         if cfg.get('sparse'):
             from huggingface_hub import hf_hub_download
