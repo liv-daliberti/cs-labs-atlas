@@ -127,3 +127,23 @@ year, department, advisors, URL, sha256 and a short quote are kept. Georgia Tech
 `/items/<uuid>` URLs answer the login view to this client), dissertation = Resource Subtype Dissertation/Doctoral. UChicago: the OAI harvest's
 doctoralThesis records. `etd_crawl.py evidence <school>` matches advisors to PIs by full name and writes `thesis-evidence.json` rows (quote + page hash),
 read by `tools/pihier/students.py` like the other researched sources; written only after a 20-row hand round at the standard bar.
+
+## Bulk open-access sources (2026-11-04, owner)
+
+Four channels that match a bulk source to the lab papers LOCALLY (DOI first, then arXiv id, then normalized title plus first author:
+`fulltext-push/bulk_oa.py`, one targets table `raw/bulk-oa/targets.jsonl.gz` of every missing lab paper of every school). Run: `bulk-oa-targets.slurm`
+(table), `s2-bulk.slurm` (the S2 filter jobs), then `bulk-oa-channels.slurm` (channels per school, catalog backup before every write).
+
+| source | terms read 2026-11-04 | verdict (one line) |
+|---|---|---|
+| OpenAlex snapshot (`oa_locations`) | OpenAlex data is CC0; the snapshot is the project's own filtered copy (docs/OPENALEX-SNAPSHOT.md); locations are Unpaywall's data | allowed: read all locations of the paper's records and its same-DOI / same-title records, no network; URLs are fetch candidates under each host's robots.txt |
+| Semantic Scholar Datasets (`s2_bulk`) | dataset README: ODC-BY, cite Kinney et al. 2023 (and Lo et al. 2020 for s2orc); API licence: keyed use, no exceeding rate limits, no redistribution of the API | allowed: file lists with our key (a few requests), each file streamed once on Slurm and filtered to our papers, nothing else stored; PDF URLs only as fetch candidates. `papers` has no PDF URL (only isopenaccess): the URLs come from `s2orc` (content.source.pdfUrls, oaInfo) |
+| CORE (`core_bulk`) | core.ac.uk/terms (read through a search summary; the page itself refuses bots): datasets ODC-BY but downloadable only for users representing registered organisations (individuals go to the API); API free for individuals and public research organisations for unfunded research | dataset: NOT used (no registration). API: used with the owner's key at the documented rate, as the `core` channel always has; owner to confirm that the "unfunded research" clause covers this project (decision 1 of the report) |
+| arXiv (`arxiv_bulk`) | arXiv bulk-access page: metadata openly available; articles mostly under the default arXiv licence (arXiv may distribute, builders of indexes must link back to arXiv) | allowed: metadata from our OAI-PMH harvest (the Kaggle copy needs a login; its mirror in gs://arxiv-dataset/metadata-v5 stops in 2020), PDFs from storage.googleapis.com only, every candidate's landing URL is the arxiv.org abstract page, never arxiv.org fetched |
+
+- `oa_locations`: see its module docstring. `s2_bulk`: reads `raw/bulk-oa/s2/<release>/{papers,s2orc}.jsonl.gz`; ArXiv, PubMedCentral and ACL ids of a
+  matched record become the bulk arXiv copy, the PMC open-data files and aclanthology.org. `core_bulk`: DOI queries through the `core` step's cache, plus
+  title queries (exact normalized title, same first author, year within 2) for papers without a DOI. `arxiv_bulk`: the OAI record's DOI field, then an
+  arXiv id the paper names, then the exact normalized title with the same author set.
+- Identity: a record matched by title is only a candidate; the collector's page-1 rule (`identity_rule.py`) decides at download time, and the
+  hand check of 20 matched candidates per source is recorded in the report that landed this.
