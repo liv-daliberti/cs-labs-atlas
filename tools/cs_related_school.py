@@ -200,11 +200,12 @@ def units(key):
                 print(json.dumps(dict(unit=u['code'], ts=r['timestamp'], status=st, blocks=len(b), shell=len(b) < 5)), flush=True)
                 if st == 200:
                     n['paged_pages'] += unit_pages_of(c, cap, r, u['code'], url)
-        shells = sorted({r[0] for r in c.execute("select substr(wayback_timestamp,1,4) from captures where department=? and http_status=200 and (text is null or length(text) < 500)", (u['code'],))})
+        shells = sorted({ts[:4] for ts, tx in c.execute("select wayback_timestamp, text from captures where department=? and http_status=200", (u['code'],))
+                         if len(tx or '') < 500 or (tx or '').count('Professor') < 3})   # a faculty directory names its professors; a capture that does not is a script shell or a nav page
         n['unit_years_without_blocks'] += len(shells)
         per_unit[u['code']] = dict(listings=list(u.get('listings') or []), captures=c.execute("select count(*) from captures where department=? and http_status=200", (u['code'],)).fetchone()[0], shell_years=shells)
         if shells:  # R5 (Georgia Tech friction 18): a capture with almost no text is a script shell and proves nothing, say so
-            print(json.dumps(dict(unit=u['code'], shell_years=shells, warning='captures of these years hold < 500 characters of text (script shells)')), flush=True)
+            print(json.dumps(dict(unit=u['code'], shell_years=shells, warning='captures of these years hold < 500 characters or name fewer than 3 professors (script shells or nav pages): they prove nothing')), flush=True)
     P.data_w('units-done.json', key).write_text(json.dumps(dict(school=key, built_at=datetime.datetime.now().isoformat(timespec='seconds'), units=per_unit), indent=1))
     print(json.dumps(dict(n)))
 

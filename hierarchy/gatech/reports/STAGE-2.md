@@ -24,8 +24,10 @@ settled 141 OpenAlex-rule candidates as not faculty; `units` now follows the pag
    Melody Jackson (2024-26), David Joyner (2023-26, none), Peter Swire (2025-26, none), Zvi Galil (2024, 2026), Dana Randall (2024), Santosh Vempala (2024, 2026).
 3. **Unit URLs.** 13 units added (BME `bme.gatech.edu/bme/faculty`, ME, AE (two URL eras), CEE, ChBE, MSE, Biological Sciences, Psychology, Physics, LMC, Public Policy, EAS, Scheller); hosts gate: 26 hosts, 0 inconsistent.
 
-## Open for the owner (not blocking the gate)
-- **Evidence-limited faculty.** 106 OpenAlex-rule candidates stay `not_faculty_listed`; most are students, postdocs and GTRI/Emory/GSU staff, but about 25 look like Georgia Tech faculty whose unit pages are script shells in Wayback after 2020-23 (Math, Scheller,
-  ME, CEE, ML) or whose unit is not searched yet: Wenjing Liao, Rose McCarty, Konstantin Tikhomirov, Chi Hoi Yip (Math); L. Beril Toktay, Eric Overby, Karthik Ramachandran, Basak Kalkanci (Scheller); Robert C. Wilson, Anna A. Ivanova (Psychology);
-  Thomas Lodato, Alexander Zook (LMC); Jason Borenstein, Jan Youtie (Public Policy); Joseph M. Le Doux (BME); Hakki Mert Torun (ECE); Athanassios Economou (Architecture); Claire Arthur (Music); Jon Sanford, Leila Aflatoony (Industrial Design/Architecture).
-  Recommendation: decide them from their profile pages in the stage-4 period tool (`[periods].profile_patterns`) rather than the shell captures, and add Architecture, Music and Industrial Design to the searched units; the owner may instead accept them as out of the census.
+## Follow-up of 2026-11-03 (owner: decide the faculty-looking candidates, add units, R5/R6)
+- Units added: Architecture, Industrial Design, Music (`arch/id/music.gatech.edu/people`), 18 units and 29 hosts in all. `units` now also follows the live pages and A-Z letters of a paged directory (35 live pages, 51 Wayback pages) and writes
+  `units-done.json` with the per-unit shell years (R5: a capture of under 500 characters or naming fewer than 3 professors is flagged). `review` refuses to run when the marker is missing or older than the charter's units (R6); the stage step is done when `units-check` passes.
+- Review re-run: **233 accepted** (97 census additions), 78 faculty_not_computing, 61 too_few_school_works, 563 not_faculty_listed. Of the 20 faculty-looking candidates, **6 are now accepted** with dated quotes (Wenjing Liao, Anna Ivanova, Athanassios Economou, Claire Arthur, Jon Sanford, Leila Aflatoony).
+- **14 stay `not_faculty_listed`** (Rose McCarty, Konstantin Tikhomirov, Chi Hoi Yip, L. Beril Toktay, Eric Overby, Karthik Ramachandran, Basak Kalkanci, Robert C. Wilson, Thomas Lodato, Alexander Zook, Jason Borenstein, Jan Youtie, Joseph M. Le Doux,
+  Hakki Mert Torun). The current unit directories (Math, Scheller, LMC, Public Policy, BME, ECE) do not name them with a professor title, and Wayback holds only script shells of those pages after 2020-23, so there is no dated profile page to quote; I did not guess profile URLs.
+  Owner: either accept them as outside the census, or give a source (a Wayback-archived profile URL per person) for the stage-4 period tool.
