@@ -56,7 +56,7 @@ def file_urls(rel, dataset):
     return api(f'/release/{rel}/dataset/{dataset}')['files']
 
 
-def stream_lines(url):
+def stream_lines(url, refresh=None):
     """Lines (bytes) of a gzipped JSONL file, streamed (4 MiB reads), never stored."""
     import requests
     for attempt in range(5):
@@ -74,6 +74,8 @@ def stream_lines(url):
         except Exception as e:
             print(json.dumps(dict(stream_retry=attempt, error=repr(e)[:150])), flush=True)
             time.sleep(30)
+            if refresh is not None:  # the presigned URL expires: ask the file list again
+                url = refresh()
             if attempt == 4:
                 raise
             # restart the file from its beginning: rows already yielded are matched again, which is harmless (dedup at merge)
@@ -95,7 +97,7 @@ def task_papers(task, of):
     with open(tmp, 'w') as f:
         for fi in range(task, len(files), of):
             t0 = time.time()
-            for line in stream_lines(files[fi]):
+            for line in stream_lines(files[fi], lambda fi=fi: file_urls(rel, 'papers')[fi]):
                 n += 1
                 md, ma = DOI_RE.search(line), AX_RE.search(line)
                 doi = md.group(1).decode().lower() if md else None
@@ -147,7 +149,7 @@ def task_s2orc(task, of):
     with open(tmp, 'w') as f:
         for fi in range(task, len(files), of):
             t0 = time.time()
-            for line in stream_lines(files[fi]):
+            for line in stream_lines(files[fi], lambda fi=fi: file_urls(rel, 's2orc')[fi]):
                 n += 1
                 m = CID_RE.match(line)
                 if not m or m.group(1) not in want:
