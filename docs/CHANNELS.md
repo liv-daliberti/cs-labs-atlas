@@ -172,3 +172,12 @@ Four channels that match a bulk source to the lab papers LOCALLY (DOI first, the
   except `core/bitstreams` and `core/mapping`, OAI is disallowed. OpenAlex, CORE and Semantic Scholar list the works but carry no adviser field.
 - **Crawler resilience:** `Client` treats 500/502/503/504 like 429 (back-off 60, 300, 900, 1800 s); after that the etd crawl waits 30 min and asks again
   (12 failed rounds in a row stop it), so a 502 no longer ends the crawl. One crawler per host: new URLs go through `etd_crawl.py add`, never a second client.
+
+### Georgia Tech `/items/` pages: other routes (2026-11-04, owner: "look for other ways")
+- **Old SMARTech in Wayback (route taken):** the CDX API lists 48,951 distinct `smartech.gatech.edu/handle/1853/<n>` item pages with a status-200 capture (13,020 with a
+  `?show=full` capture, which names `dc.contributor.advisor`, `dc.type`, `dc.description.degree`; the others carry the advisor as the first DC.contributor meta tag before DC.creator,
+  read only for a Dissertation or Thesis and quoted as such). `etd_crawl.py crawl gatech@wayback` (charter `[etd_crawl_wayback]`, web.archive.org has no robots.txt, 3 s a request, own queue)
+  fetches them full-first; `evidence gatech` merges its rows after the live crawl's, deduplicated by title and author, with Wayback replay URLs and the capture's sha256.
+- **Not usable:** the Wayback captures of `repository.gatech.edu/items/<uuid>` are the same login view as the live pages; OATD answers a Cloudflare challenge on /robots.txt (not used);
+  NDLTD's search answers 503 "under redevelopment"; WorldCat's robots.txt disallows AI agents; BASE answers 403; the Georgia Tech Primo host does not answer; OpenAlex, CORE and
+  Semantic Scholar list the works but carry no adviser field (they can only identify items, and no `/items/<uuid>` -> handle map exists on any allowed page).
