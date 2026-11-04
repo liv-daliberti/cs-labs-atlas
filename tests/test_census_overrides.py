@@ -102,11 +102,21 @@ def test_roster_alone_or_coauthorship_alone_is_not_evidence(tmp_path, monkeypatc
     assert [(r['student'], r['pi'], r['years']) for r in rows] == [('Sam Roe', 'Pia Lee', [None, 2022])] and rows[0]['quote'].startswith('Sam Roe')
 
 
-def test_alumni_entry_line_names_student_year_and_advisers():
+def test_alumni_blocks_name_the_student_from_their_own_heading(monkeypatch):
     L = by_path('labpage_students_school')
-    t = 'Pedro Savarese PhD - 2025 Advisors - David McAllester and Michael Maire (University of Chicago) Research Interests - ML Employment at time of graduation - X Old Person PhD - 2010 Advisor - Z Q Research Interests'
-    ms = [m.groups() for m in L.ALUMNI_ENTRY.finditer(t)]
-    assert ms[0] == ('Pedro Savarese', '2025', 'David McAllester and Michael Maire (University of Chicago)') and ms[1][1] == '2010'
+    html = ('<h3 class="media-heading">Lingyu Gao</h3><p>PhD - 2024<br />\nAdvisor - Kevin Gimpel<br />\nResearch Interests: NLP<br />\n'
+            'Employment at time of graduation: Microsoft<br />\nThesis: <a href="x">T (August 2024)</a></p>'
+            '<p><strong>Old Person</strong><br />PhD - 2010<br />Advisor - Kevin Gimpel</p>')
+    flat = 'Lingyu Gao PhD - 2024 Advisor - Kevin Gimpel Research Interests: NLP Employment at time of graduation: Microsoft Thesis: T Old Person PhD - 2010 Advisor - Kevin Gimpel'
+    monkeypatch.setattr(L.S, 'field', lambda cfg, f, d=None: ['t/alumni/'])
+    monkeypatch.setattr(L.S, 'get', lambda k: {})
+    monkeypatch.setattr(L.W, 'con', lambda k: None)
+    monkeypatch.setattr(L.W, 'cdx_rows', lambda c, d, collapse=None: [dict(timestamp='20260101000000', original=d)])
+    monkeypatch.setattr(L.W, 'capture', lambda c, ts, o, d, dept: ('cap', 200, 'sha', []))
+    monkeypatch.setattr(L.W, 'raw_html', lambda c, cap: html)
+    monkeypatch.setattr(L.W, 'flat', lambda b: flat)
+    rows = L.adviser_alumni('u', [('Kevin Gimpel', 'Kevin Gimpel')])
+    assert [(r['student'], r['years']) for r in rows] == [('Lingyu Gao', [None, 2024])] and rows[0]['quote'].startswith('Lingyu Gao PhD - 2024')
 
 
 def test_student_audit_writes_an_onboarding_school_to_its_own_file(tmp_path, monkeypatch):
@@ -187,3 +197,20 @@ def test_pi_works_can_come_from_the_snapshot_without_the_api(tmp_path, monkeypat
     monkeypatch.setattr(O, 'works_by_author', lambda a: iter([{'id': 'W1', 'publication_year': 2020}, {'id': 'W0', 'publication_year': 2010}] if a == 'A1' else []))
     missing = M.works_from_snapshot('u')
     assert missing == ['A2'] and sqlite3.connect(str(M.db('u').execute('pragma database_list').fetchall()[0][2])).execute('select id from works').fetchall() == [('W1',)]
+
+
+def test_label_prefixes_and_hiring_sections_are_not_part_of_a_student():
+    L = by_path('labpage_students_school')
+    assert L.clean_student_name('Research Fellowship Lingyu Gao') == 'Lingyu Gao'
+    assert L.clean_student_name('Microsoft Taehwan Kim') == 'Taehwan Kim'
+    assert L.clean_student_name('Structured Prediction Shubhendu Trivedi') == 'Shubhendu Trivedi'
+    assert L.clean_student_name('Ann Lee') == 'Ann Lee' and L.clean_student_name('Google') == 'Google'
+    assert L.NOT_STUDENT_HEAD.match('Hiring') and L.NOT_STUDENT_HEAD.match('Open positions') and not L.NOT_STUDENT_HEAD.match('PhD students')
+
+
+def test_all_faculty_names_reads_every_schools_pis(tmp_path, monkeypatch):
+    L = by_path('labpage_students_school')
+    monkeypatch.setattr(L.S, 'keys', lambda: ['a', 'b'])
+    monkeypatch.setattr(L.P, 'data', lambda name, school=None, **k: tmp_path / f'{school}-pis.json')
+    (tmp_path / 'a-pis.json').write_text(json.dumps([{'pi': 'Samir Khuller', 'names': ['S. Khuller']}]))
+    assert 'samir khuller' in L.all_faculty_names()

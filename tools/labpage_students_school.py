@@ -217,6 +217,33 @@ ADVISED = re.compile(r"(?:\b(?:co-)?advised\s+by|\bsupervised\s+by|under\s+the\s
 PHD = re.compile(r"Ph\.?\s?D\.?|doctoral", re.I)
 
 
+LABEL_PREFIX = re.compile(r'^(?:(?:Research|PhD|Ph\.D\.?|Doctoral|Graduate|Pre-?Doctoral)\s+Fellowship|Fellowship|Student Alumni|Alumni|Microsoft|Google|Caltech|Meta|Facebook|Amazon|Apple|IBM|Intel|NSF|Structured Prediction)\s+(?=[A-Z][\w.\'-]+\s+[A-Z])')
+NOT_STUDENT_HEAD = re.compile(r'^\W*(?:hiring|open positions?|openings?|join us|we are hiring|job openings|visitors?|collaborators?)\b', re.I)
+
+
+def clean_student_name(name):
+    """A name the page runs together with the label or employer that precedes it ('Research Fellowship Lingyu Gao', 'Microsoft Taehwan Kim', 'Structured
+    Prediction Shubhendu Trivedi'): the label is dropped while at least two name tokens remain (UChicago friction 55)."""
+    n = ' '.join(str(name or '').split())
+    for _ in range(3):
+        m = LABEL_PREFIX.match(n)
+        if not m:
+            break
+        n = n[m.end():]
+    return n
+
+
+def all_faculty_names():
+    """Folded names of every PI of every school's built pis.json: a person who is faculty somewhere in the atlas is not a student on a lab page."""
+    out = set()
+    for k in S.keys():
+        f = P.data('pis.json', k)
+        if Path(f).exists():
+            for p_ in json.load(open(f)):
+                out |= {' '.join(toks(n)) for n in [p_['pi']] + list(p_.get('names') or []) if len(toks(n)) >= 2}
+    return out
+
+
 def directory_entries(key):
     """{student name: dict(years, website, evidence)} from every stored capture of the charter's
     [students].directories (program PhD directories: name and an optional website, no adviser; contact data never kept)."""
@@ -296,24 +323,33 @@ ALUMNI_ENTRY = re.compile(r"([A-Z][\w.'\u2019-]+(?: [A-Z][\w.'\u2019-]+){1,3}) P
 
 
 def adviser_alumni(key, forms):
-    """PhD alumni lists that give the graduation year and the adviser text in one line ('Name PhD - 2025 Advisors - A and B (University of
-    Chicago)': TTIC /student-alumni/, charter `[students].adviser_alumni`). A PI named in the adviser text gets the student with years
-    [None, graduation year]; graduations before 2016 are not read. The quote is the line from the name through the adviser text."""
+    """PhD alumni lists that give the graduation year and the adviser in each student's block (`<h3 class="media-heading">Name</h3><p>PhD - 2025<br />
+    Advisors - A and B ...`, or the 2017 `<p><strong>Name</strong><br />` markup: TTIC /student-alumni/, charter `[students].adviser_alumni`). The name is
+    the block's own heading (the flat text runs one student's employer and thesis into the next name: 'Microsoft Taehwan Kim', friction 55). A PI named
+    in the adviser text gets the student with years [None, graduation year]; graduations before 2016 are not read. The quote runs from the name
+    through the adviser text of the capture's own text."""
+    import html as H
     c = W.con(key); by = {}
     for d in S.field(S.get(key), 'students.adviser_alumni') or []:
         for r in W.cdx_rows(c, d, collapse='timestamp:4'):
             cap, st, sha, b = W.capture(c, r['timestamp'], r['original'], d, 'student-directory')
             if st != 200:
                 continue
-            flat = W.flat(b)
-            for m in ALUMNI_ENTRY.finditer(flat):
-                nm, yr, adv = re.sub(r'^(?:(?:Student Alumni|Alumni|Home|Distinction|With Distinction)\s+)+', '', m.group(1)), int(m.group(2)), m.group(3)
-                if yr < 2016:
+            h = W.raw_html(c, cap); flat = W.flat(b)
+            for m in STUDENT_BLOCK.finditer(h):
+                nm = ' '.join(H.unescape(m.group(1) or m.group(3) or '').split())
+                body = ' '.join(H.unescape(re.sub(r'<[^>]+>', ' ', m.group(2) or m.group(4) or '')).split())
+                y = re.search(r'Ph\.?D\.?\s*-\s*(20\d\d)', body)
+                a = re.search(r'Advisors?\s*[-:]\s*(.*?)(?=Research Interests|Employment|Thesis|After graduating|Honors|$)', body)
+                if not (y and a and 2 <= len(nm.split()) <= 5) or int(y.group(1)) < 2016:
                     continue
                 for pi, f in forms:
-                    if re.search(re.escape(f) + r'(?![\w-])', adv) and (nm, pi) not in by:
-                        by[(nm, pi)] = dict(student=nm, pi=pi, years=[None, yr], url=re.sub(r'^https?://web\.archive\.org/web/\d+(?:id_)?/', '', cap),
-                                            capture_url=cap if 'web.archive.org' in cap else None, sha256=sha, quote=flat[m.start():m.end()].strip(),
+                    if re.search(re.escape(f) + r'(?![\w-])', a.group(1)) and (nm, pi) not in by:
+                        i = flat.find(nm); k = flat.find(f, i) if i >= 0 else -1
+                        if i < 0 or k < 0 or k - i > 400:
+                            continue
+                        by[(nm, pi)] = dict(student=nm, pi=pi, years=[None, int(y.group(1))], url=re.sub(r'^https?://web\.archive\.org/web/\d+(?:id_)?/', '', cap),
+                                            capture_url=cap if 'web.archive.org' in cap else None, sha256=sha, quote=flat[i:k + len(f)].strip(),
                                             directory_evidence=[dict(url=cap, sha256=sha, quote=nm, observed=r['timestamp'][:8], directory=d)],
                                             section='adviser-bearing alumni list (' + d + ')', years_basis='graduation_year')
     return list(by.values())
@@ -451,6 +487,7 @@ def extract(key):
     for x in json.loads((P.data('census-faculty.json', key)).read_text())['faculty'] + \
             (json.loads((P.data('census-additions.json', key)).read_text()) if (P.data('census-additions.json', key)).exists() else []):
         fac.append(Name([x['name']] + list(x.get('aliases') or [])))
+    faculty_anywhere = all_faculty_names()
     for pi, (t, urls) in targets_pages(key).items():
         N = Name([pi]); studs, seen = [], set()
         for u in urls:
@@ -462,6 +499,9 @@ def extract(key):
                 flat = ' '.join(lpdom.collapse(x) for x in [re.sub(r'<[^>]+>', ' ', re.sub(r'<(script|style)\b.*?</\1>', ' ', h, flags=re.S | re.I))])
                 flat = ' '.join(__import__('html').unescape(flat).split())
                 for path, name, rest, nxt, idx in cands:
+                    name = clean_student_name(name)
+                    if (path and any(NOT_STUDENT_HEAD.match(x) for x in path)) or ' '.join(toks(name)) in faculty_anywhere:
+                        rep['dropped_hiring_or_faculty'] += 1; continue
                     role = lpdom.role_of(*(list(reversed(path)) + [rest]))
                     if role in ('phd', 'postdoc') and path and re.search(r'ph\.?\s?d|doctoral', path[-1], re.I) and re.search(r'post-?doc', path[-1], re.I):
                         role_out = 'member'  # 'Current PhD Students and Postdocs': the heading does not say which
