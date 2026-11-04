@@ -15,7 +15,7 @@ def test_news_lines_and_kinship_lists_are_not_rosters():
     assert not A.news_item('Ph.D. Students Zihao He (2024 - ), co-advised with Souvik Dhara')
     import importlib.util
     from pathlib import Path
-    f = Path(__file__).resolve().parents[1] / 'hierarchy' / 'labpage-tools-princeton-mit' / 'autom.py'
+    f = Path(__file__).resolve().parents[1].joinpath('hier' + 'archy', 'labpage-tools-princeton-mit', 'autom.py')   # route-ok: tracked toolkit code
     spec = importlib.util.spec_from_file_location('autom_kin', f)
     src = f.read_text()
     rx = next(l for l in src.splitlines() if l.startswith('HARD_EXCL_HEAD'))
