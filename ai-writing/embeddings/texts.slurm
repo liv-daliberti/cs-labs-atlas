@@ -7,7 +7,7 @@
 #SBATCH --exclude=node302,node105
 #SBATCH --cpus-per-task=16
 #SBATCH --mem=24G
-#SBATCH --time=06:00:00
+#SBATCH --time=00:59:00
 #SBATCH --output=ai-writing/logs/emb-texts-%j.out
 set -euo pipefail
 . "${CS_ATLAS_CODE:-${SLURM_SUBMIT_DIR:?}}/paths.sh" || exit 1
