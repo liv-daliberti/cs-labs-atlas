@@ -14,8 +14,6 @@ Beyond the `openalex` channel (the paper's own record, the usual hosts):
 The collectors' identity check (the catalog title in the file, page 1) applies to every candidate; the matching of sibling
 records is the local rule of fulltext-push/bulk_oa.py (title + first author, year within 2).
 """
-import re
-
 NAME = 'oa_locations'
 
 

@@ -143,3 +143,71 @@ def test_oa_publisher_asks_the_publishers_open_location(monkeypatch):
     ctx = R.Ctx('mit', ps, known, dry=True)
     (res,) = list(OP.discover('mit', [ps[0]], ctx))
     assert res.urls[0]['url'] == 'https://www.example-journal.org/a/1' and res.urls[0]['landing_url'] == 'http://www.example-journal.org/a/1'
+
+
+def test_bulk_oa_matching_order_doi_then_arxiv_then_title_author():
+    import bulk_oa as B
+    rows = [dict(school='mit', key='k1', work_id='w1', doi='10.1/abc', arxiv=None, nt='learningfixturerepresentationsforchannelplugins', fam=['lovelace'], year=2021),
+            dict(school='mit', key='k2', work_id='w2', doi=None, arxiv='2101.00002', nt='shorttitle', fam=['hopper'], year=2020)]
+    ix = B.index(rows)
+    assert B.match_record(ix, doi='https://doi.org/10.1/ABC')[0] == 'doi'
+    assert B.match_record(ix, arxiv='2101.00002v3')[0] == 'arxiv'
+    how, hit = B.match_record(ix, title='Learning Fixture Representations for Channel Plugins', first_family='lovelace', year=2020)
+    assert how == 'title_author' and hit[0]['key'] == 'k1'
+    assert B.match_record(ix, title='Learning Fixture Representations for Channel Plugins', first_family='babbage', year=2021)[0] is None  # another first author
+    assert B.match_record(ix, title='Learning Fixture Representations for Channel Plugins', first_family='lovelace', year=2030)[0] is None  # year window
+
+
+def test_s2_bulk_channel_reads_the_local_table(monkeypatch):
+    from channels import s2_bulk as SB
+    import ftp_common as F
+    import s2_key_lookup as s2k
+    rec = dict(corpusid=1, how='doi', doi='10.1145/3000001', arxiv='2101.00001', pmc=None, acl='2021.acl-long.1', targets=[['mit', 'w1', 'w1']],
+               pdfurls=['https://lab.example.edu/w1.pdf', 'https://dl.acm.org/doi/pdf/10.1145/3000001'], oainfo=dict(url='https://repo.example.edu/w1.pdf', license='cc-by'))
+    monkeypatch.setattr(SB, '_T', dict(by={('mit', 'w1'): [rec]}, release='2026-10-27'))
+    monkeypatch.setattr(F, 'bulk_rows', lambda want, src: ([dict(work_id=w, url=f'https://storage.googleapis.com/arxiv-dataset/{a}.pdf', source=src) for w, a in want.items()], 0))
+    monkeypatch.setattr(s2k, 'pmc_files', lambda *a: [])
+    ps, known = papers()
+    ctx = R.Ctx('mit', ps, known, dry=True)
+    chosen = [p for p in ps if SB.APPLIES('mit', p)]
+    assert [p.key for p in chosen] == ['w1']
+    (res,) = list(SB.discover('mit', chosen, ctx))
+    urls = {u['url'] for u in res.urls}
+    assert 'https://lab.example.edu/w1.pdf' in urls and 'https://repo.example.edu/w1.pdf' in urls and 'https://aclanthology.org/2021.acl-long.1.pdf' in urls
+    assert not any('dl.acm.org' in u for u in urls) and any('arxiv-dataset' in u for u in urls)  # ACM refuses automated clients
+
+
+def test_arxiv_bulk_matches_by_doi_then_exact_title_and_authors(monkeypatch):
+    from channels import arxiv_bulk as AB
+    import ftp_common as F
+    t = 'Learning Fixture Representations for Channel Plugins'
+    ix = dict(by_doi={'10.1145/3000001': ('2101.00001', 'A preprint with another title', ('lovelace',), 2020)},
+              by_t={F.nt(t): [('2101.00002', t, ('lovelace', 'babbage'), 2020)]}, n=2)
+    ps, known = papers()
+    assert AB.match(ps[0].r, ix)[0] == 'doi'
+    r = dict(title=t, year=2021, byline=['Ada Lovelace', 'Charles Babbage'], pis=['Ada Lovelace'], doi=None)
+    assert AB.match(r, ix) == ('title_author', ix['by_t'][F.nt(t)][0])
+    assert AB.match(dict(r, byline=['Grace Hopper', 'Charles Babbage']), ix)[0] is None
+    assert AB.match(dict(r, year=2026), ix)[0] is None
+
+
+def test_oa_locations_reads_every_location_and_sibling_records(monkeypatch):
+    from channels import oa_locations as OL
+    import bulk_oa as B
+    import ftp_common as F
+    t = 'A Study of Fixture Papers for Channel Plugins'
+    own = dict(id='https://openalex.org/W1', locations=[dict(pdf_url='https://repo.example.edu/own.pdf', landing_page_url=None, is_oa=True, source=dict(type='repository', display_name='R'), version='publishedVersion')])
+    sib = dict(id='https://openalex.org/W9', publication_year=2020, authorships=[dict(author=dict(display_name='Ada Lovelace'))],
+               locations=[dict(pdf_url='https://lab.example.edu/accepted.pdf', landing_page_url='https://lab.example.edu/p', is_oa=True, version='acceptedVersion', source=dict(type='repository', display_name='L'))],
+               best_oa_location=dict(pdf_url='https://best.example.edu/b.pdf', landing_page_url=None, is_oa=True), open_access=dict(oa_url='https://oa.example.edu/x.pdf'))
+    monkeypatch.setattr(B, 'oa_stores', lambda: [])
+    monkeypatch.setattr(B, 'title_index', lambda: {F.nt(t): ['https://openalex.org/W9']})
+    monkeypatch.setattr(B, 'oa_by_doi', lambda stores, doi: [])
+    monkeypatch.setattr(B, 'oa_by_id', lambda stores, wid: sib)
+    monkeypatch.setattr(F, 'oa_bodies', lambda school, ids: {i: own for i in ids})
+    ps, known = papers()
+    ctx = R.Ctx('mit', ps, known, dry=True)
+    (res,) = [r for r in OL.discover('mit', [ps[0]], ctx)]
+    urls = {u['url'] for u in res.urls}
+    assert {'https://repo.example.edu/own.pdf', 'https://lab.example.edu/accepted.pdf', 'https://best.example.edu/b.pdf', 'https://oa.example.edu/x.pdf'} <= urls
+    assert OL.siblings.__name__ == 'siblings'
