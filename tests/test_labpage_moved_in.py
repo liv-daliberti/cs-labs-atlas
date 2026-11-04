@@ -25,3 +25,10 @@ def test_news_lines_and_kinship_lists_are_not_rosters():
 def test_bylines_and_current_position_lists():
     assert A.byline_item('Zecheng Zhang,') and A.byline_item(' Ann Lee Smith, ') and not A.byline_item('Zihao He (2024 - ), co-advised with Souvik Dhara')
     assert A.current_position_list('Current Position') and not A.current_position_list('Current Members')
+
+
+def test_other_institution_and_cv_lines():
+    assert A.other_institution_entry('M.S. student, ECE@Rice University, Sept. 2017 - Sept. 2019, Next Move: Ph.D. student, CS@UCSB', '', 'gatech')
+    assert not A.other_institution_entry('Ph.D., CS@Georgia Tech, Aug. 2020 - May 2025, Next Move: Research Scientist@NVIDIA', '', 'gatech')
+    assert A.talk_item('Invited Talk NeurIPS-ViGIL', 'x') and A.talk_item('Outreach', 'x') and not A.talk_item('Current Students', 'x')
+    assert not A.talk_item('Ph.D. Students', 'x')

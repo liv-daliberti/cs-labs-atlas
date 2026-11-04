@@ -262,6 +262,25 @@ ALUMNI_RX = re.compile(r'\b(alumni|alumnae|alumnus|alumna|former|past|previous|a
 NEWS_LINE = re.compile(r'\b(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|june?|july?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\.?\s+20[12]\d\s*[:\-–]', re.I)
 
 
+OTHER_INST = re.compile(r'(?:@|\bat\s+|,\s*)(?:the\s+)?(?:University of [A-Z][\w-]+|[A-Z][\w-]+ (?:University|Institute of Technology|College)|MIT|UCSB|UCLA|UCSD|Caltech|CMU)\b')
+
+
+def other_institution_entry(desc, quote, school):
+    """A roster entry whose descriptor says the person is at ANOTHER institution ('M.S. student, ECE@Rice University, Sept. 2017 - Sept. 2019'): the PI's lab at the previous institution
+    (Georgia Tech round 4: Celine Lin's Rice-era students). Georgia Tech itself, and the 'Next Move' destination after it, do not count: only text before 'Next Move' / an arrow is read."""
+    t = re.split(r'next move|→|->|\bnow\b', f'{desc or ""} {quote or ""}', flags=re.I)[0]
+    own = {'michigan': 'michigan', 'gatech': 'georgia', 'uchicago': 'chicago'}.get(school, school.lower())
+    return any(own not in m.group(0).lower() for m in OTHER_INST.finditer(t))
+
+
+TALK_HEAD = re.compile(r'\b(?:invited talks?|keynotes?|talks?|awards?|honors?|service|news|outreach|organizer|new position)\b', re.I)
+
+
+def talk_item(head, quote):
+    """A line under a CV / news heading ('Invited Talk NeurIPS-ViGIL', 'Outreach', 'New Position') is not a roster entry (Georgia Tech round 4: Jesse Thomason)."""
+    return bool(TALK_HEAD.search(head or '') and not re.search(r'student|member|people|advis', head or '', re.I))
+
+
 def byline_item(quote):
     """A candidate whose whole quote is 'Name,' is one name of a publication byline ('Zhongjie Shi, Wenjing Liao  Generalization ...'), not a roster entry (Georgia Tech round 3)."""
     q = (quote or '').strip()
@@ -1381,6 +1400,15 @@ def pm_candidates(kit, school, pi, plan, held):
                                                              "without a current marker in its entry or section heading"
                                                              + ('; it names a later position' if destination else ''))
             x['strict_removed'] = bool(cap_y >= 2025 and not destination and not x['alumni'])
+            continue
+        if fn not in keep and not ys and current_position_list(x.get('head')):
+            x['why'], x['detail'] = 'undated_alumni_cannot_place', "a name in the alumni job column ('Current Position'), undated"
+            continue
+        if fn not in keep and other_institution_entry(x.get('desc'), x.get('quote'), school):
+            x['why'], x['detail'] = 'at_previous_school', 'the entry places the person at another institution (\'@<University>\' or \'at <University>\' in the descriptor)'
+            continue
+        if fn not in keep and talk_item(x.get('head'), x.get('quote')):
+            x['why'], x['detail'] = 'not_a_student', 'the entry is a CV line (a talk, keynote or award), not a roster entry'
             continue
         if fn not in keep and byline_item(x.get('quote')):
             x['why'], x['detail'] = 'not_a_student', 'the entry is an author byline (a name and a comma), not a roster entry'
