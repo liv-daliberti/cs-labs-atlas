@@ -344,6 +344,13 @@ robots = ""
 note = "Georgia Tech's dissertations are in SMARTech (smartech.gatech.edu, DSpace); not probed yet (stage 6): robots.txt for AI-agent rules first."
 
 [students]
+# Names-only PhD rosters (no adviser on the page): a student counts only with a co-authored lab paper of the PI (R-STU-02: the PI last author once or two papers
+# together within the capture year +-1). The College of Computing's PhD list (?page=N, 12 cards a page) is followed page by page (paged); every entry is a PhD student (listed_as_phd).
+# The CoC school sites and ML/ECE/MSE/BIOS/ChBE/ME/AE/CEE student lists have no archived or adviser-bearing page (checked 2026-11-04, discover_listings).
+rosters = [{url = "www.cc.gatech.edu/people/phd", kind = "students", paged = true, listed_as_phd = true},
+           {url = "www.scs.gatech.edu/people/students", kind = "students", paged = true},
+           {url = "www.isye.gatech.edu/people/phd-students", kind = "students", paged = true, listed_as_phd = true},
+           {url = "psychology.gatech.edu/people/all-graduate-students", kind = "students", paged = true, listed_as_phd = true}]
 directories = []
 sources = [
   "College of Computing PhD defense announcements (Wayback)",
