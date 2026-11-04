@@ -73,7 +73,6 @@ def test_client_uses_the_shared_clock_and_records_a_429(tmp_path, monkeypatch):
 
 def test_wayback_client_takes_its_slot_from_the_shared_clock(monkeypatch):
     """listings/scripts/wb.py (every Wayback fetch of the school tools) asks host_throttle for its slot and records a 429 there, not on a stamp file of its own."""
-    sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'listings' / 'scripts'))
     import wb
     calls = []
     monkeypatch.setattr(HT, 'reserve', lambda host, delay, **k: calls.append((host, delay)) or 0.0)
