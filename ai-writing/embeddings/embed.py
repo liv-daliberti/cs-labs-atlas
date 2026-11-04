@@ -290,21 +290,40 @@ def status(models):
             C.log(model=m, kind=kind, total=total, done=len(store.done_map(m, kind)))
 
 
-def selftest(model):
+SYNTH = ('Deep neural networks trained with stochastic gradient descent generalize well although they are heavily overparameterized. '
+         'We study the implicit regularization of the optimizer and relate the flat minima it finds to margin bounds and to the spectrum of the Hessian. '
+         'Experiments on image classification and language modelling show that wider models with careful normalization reach lower loss. ')
+
+
+def selftest(model, long_tokens=9000):
+    """fp16 against fp32 on a few abstracts (from the texts database when it exists, else synthetic), plus one body long enough for two windows of the
+    model's chunk size: cosine must be > 0.99, vectors finite; logs tokens per second and the peak GPU memory of an 8k window."""
     import torch
-    e32 = None
-    db = sqlite3.connect(f'file:{C.TEXTS_DB}?mode=ro', uri=True)
-    rows = db.execute('select title, abstract from abstracts order by paper_id limit 24').fetchall()
-    bodies = [zlib.decompress(b).decode('utf-8', 'ignore')[:60000] for (b,) in db.execute('select body from fulltext where usable=1 limit 3')]
+    rows = [(f'A study of overparameterized networks {i}', SYNTH * (1 + i % 3) + f' Variant {i}.') for i in range(12)]
+    body = ' '.join(f'{SYNTH} Section {i} continues with numbered observations about trial {i}.' for i in range(long_tokens // 40))
+    if C.TEXTS_DB.exists():
+        db = sqlite3.connect(f'file:{C.TEXTS_DB}?mode=ro', uri=True)
+        got = db.execute('select title, abstract from abstracts order by paper_id limit 24').fetchall()
+        rows = got or rows
     e16 = Embedder(model)
-    seqs = [e16.encode_abstract(t, a) for t, a in rows] + [x for b in bodies for x in e16.encode_body(b)[0][:2]]
-    v16, _ = e16.embed(seqs)
+    seqs = [e16.encode_abstract(t, a) for t, a in rows]
+    wins, ntok = e16.encode_body(body)
+    seqs += wins[:3]
+    torch.cuda.reset_peak_memory_stats()
+    t0 = time.time()
+    v16, sp = e16.embed(seqs)
+    dt = time.time() - t0
+    peak = torch.cuda.max_memory_allocated() / 2 ** 30 if torch.cuda.is_available() else 0
+    ok_shape = v16.shape == (len(seqs), e16.cfg['dim']) and bool(np.isfinite(v16).all())
+    rev, tokens = e16.revision, sum(len(s) for s in seqs)
     del e16
     torch.cuda.empty_cache()
     e32 = Embedder(model, dtype='float32')
     v32, _ = e32.embed(seqs)
     cos = (v16 * v32).sum(1) / (np.linalg.norm(v16, axis=1) * np.linalg.norm(v32, axis=1))
-    C.log(selftest=model, items=len(seqs), min_cos=float(cos.min()), mean_cos=float(cos.mean()), ok=bool(cos.min() > 0.99), max_len=max(len(s) for s in seqs))
+    C.log(selftest=model, revision=rev, items=len(seqs), windows=len(wins), body_tokens=ntok, longest=max(len(s) for s in seqs), min_cos=float(cos.min()),
+          mean_cos=float(cos.mean()), finite_and_shaped=ok_shape, sparse_nnz=(len(sp[0]) if sp and sp[0] else None), tok_per_s=round(tokens / dt), peak_gb=round(peak, 2),
+          ok=bool(cos.min() > 0.99 and ok_shape))
 
 
 if __name__ == '__main__':
