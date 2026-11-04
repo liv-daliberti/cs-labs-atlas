@@ -305,8 +305,8 @@ def L(name, script, *args, done=(), shared=False, py='project'):
     return dict(name=name, kind='local', script=script, args=list(args), done=list(done), shared=shared, py=py)
 
 
-def Q(name, cmd, cpus=2, mem='16G', time='04:00:00', py='project', done=(), shared=False, check=None, check_py=None):
-    return dict(name=name, kind='slurm', cmd=cmd, cpus=cpus, mem=mem, time=time, py=py, done=list(done), shared=shared, check=check, check_py=check_py)
+def Q(name, cmd, cpus=2, mem='16G', time='04:00:00', py='project', done=(), shared=False, check=None, check_py=None, newer_than=()):
+    return dict(name=name, kind='slurm', cmd=cmd, cpus=cpus, mem=mem, time=time, py=py, done=list(done), shared=shared, check=check, check_py=check_py, newer_than=list(newer_than))
 
 
 def H(name, todo):
@@ -357,7 +357,7 @@ STEPS = {
           # the lab-page paper pass of a charter school is the audit's own recover + audit (labpage_recover.py needs labpage-pubs.jsonl.gz, which no step produces: UChicago stage 7); no OpenAlex key in the job
           Q('labpage-audit-recover', 'PY $TOOLS/labpage_audit.py recover {school}', time='08:00:00'),
           Q('labpage-audit', 'PY $TOOLS/labpage_audit.py audit {school}', time='02:00:00'),
-          Q('build', 'PY $TOOLS/pi_hierarchy.py {school}', cpus=3, mem='40G', time='02:00:00', done=['pis.json']),
+          Q('build', 'PY $TOOLS/pi_hierarchy.py {school}', cpus=3, mem='40G', time='02:00:00', done=['pis.json'], newer_than=['pi-works.sqlite']),
           Q('link-diagnosis', 'PY $TOOLS/link_diagnosis.py {school}', mem='24G', time='02:00:00', done=['link-diagnosis.json']),
           H('review', 'zero-paper labs need reasons, the links check needs 0 open, the lab-page papers round (a fresh 20, at most 1 error)')],
     '8': [L('add-works', 'fulltext-push/add_works.py', '{key}', py='collector'),
@@ -382,7 +382,11 @@ def step_done(key, st, run=None):
         interp = [sys.executable, '-u'] if st.get('check_py') == 'project' else [P.COLLECTOR_PY, '-I', '-u']   # tools that import their siblings need the project interpreter
         argv = interp + [str(CODE / st['check'][0])] + [expand(a, key) for a in st['check'][1:]]
         return (run or subprocess.run)(argv, cwd=str(CODE), capture_output=True).returncode == 0
-    return bool(st.get('done')) and all(Path(P.data(n, key)).exists() for n in st['done'])
+    if not (st.get('done') and all(Path(P.data(n, key)).exists() for n in st['done'])):
+        return False
+    # R12 (Georgia Tech friction 35): a step is stale when an input it reads was rewritten after its output (the build after pi-works)
+    ins = [Path(P.data(n, key)) for n in st.get('newer_than') or [] if Path(P.data(n, key)).exists()]
+    return not ins or all(Path(P.data(n, key)).stat().st_mtime >= max(i.stat().st_mtime for i in ins) for n in st['done'])
 
 
 def onboarding_only(key):

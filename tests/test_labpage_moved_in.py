@@ -32,3 +32,13 @@ def test_other_institution_and_cv_lines():
     assert not A.other_institution_entry('Ph.D., CS@Georgia Tech, Aug. 2020 - May 2025, Next Move: Research Scientist@NVIDIA', '', 'gatech')
     assert A.talk_item('Invited Talk NeurIPS-ViGIL', 'x') and A.talk_item('Outreach', 'x') and not A.talk_item('Current Students', 'x')
     assert not A.talk_item('Ph.D. Students', 'x')
+
+
+def test_wired_additions_do_not_count_as_in_the_build():
+    """R13: re-running the audit after the accepted students were wired must propose them again, not see them as already in the build."""
+    rec = lambda name, shas: dict(name=name, relations=[dict(sources=[dict(sha256=s) for s in shas])])
+    students = {'Ann PI': [rec('Wired One', ['a1']), rec('Wired Two', ['a1']), rec('Roster Too', ['a1', 'r9']), rec('Roster Only', ['r9'])], 'Bo PI': [rec('Other Lab', ['a1'])]}
+    wired = [dict(pi='Ann PI', name='Wired One', sha256='a1'), dict(pi='Ann PI', name='Wired Two', sha256='a1')]
+    out = A.without_wired_additions(students, 'k', wired=wired)
+    assert [r['name'] for r in out['Ann PI']] == ['Roster Too', 'Roster Only'] and [r['name'] for r in out['Bo PI']] == ['Other Lab']
+    assert A.without_wired_additions(students, 'k', wired=[]) == students   # nothing accepted: the build is compared as it is

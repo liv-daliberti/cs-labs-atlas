@@ -976,6 +976,28 @@ def scan_prior(kit, school, p, ctx):
 
 
 # ---------------------------------------------------------------- context
+def without_wired_additions(students, school, wired=None):
+    """R13 (Georgia Tech friction 36): the build already holds the accepted additions, so an audit run against it saw every wired student as 'in the build' and regenerated the
+    additions without them, which un-wired them at the next build. A student record whose relations ALL come from rows of the currently accepted additions (same PI, same page
+    sha256) is dropped from the build the audit compares against; a record with another source (a roster, an adviser list) stays."""
+    if wired is None:
+        from pihier.common import accepted_additions
+        wired = accepted_additions(school, 'students')
+    shas = collections.defaultdict(set)
+    for r in wired:
+        shas[r['pi']].add(r.get('sha256'))
+    out = {}
+    for pi, recs in students.items():
+        keep = []
+        for r in recs:
+            src = {x.get('sha256') for rel in r.get('relations') or [] for x in rel.get('sources') or []}
+            if src and src <= shas.get(pi, set()):
+                continue
+            keep.append(r)
+        out[pi] = keep
+    return out
+
+
 def load_ctx(school, kit=None, plan=True):
     cfg = SCHOOLS[school]
     ctx = dict(school=school, cfg=cfg)
@@ -989,7 +1011,7 @@ def load_ctx(school, kit=None, plan=True):
         if pers and not any(q.get('end') for q in p_.get('periods') or []):
             p_['periods'] = [dict(q, asof=q.get('asof') or TODAY) for q in pers]
             p_['periods_from_overrides'] = True
-    ctx['students'] = read(P.data('students.json', school))
+    ctx['students'] = without_wired_additions(read(P.data('students.json', school)), school)
     lp = collections.defaultdict(list)
     for r in read(P.data('lab_papers.jsonl.gz', school)):
         lp[r['pi']].append(r)

@@ -222,3 +222,15 @@ def test_gate3_flags_a_build_older_than_the_reviewed_inputs(tree, monkeypatch):
     assert any('stale build' in x for x in G.g3('u')[0])
     os.utime(tree.root / 'u' / 'cs-related-review.json', (old - 60, old - 60))
     assert not any('stale build' in x for x in G.g3('u')[0])
+
+
+def test_a_step_is_stale_when_its_input_is_newer_than_its_output(tree):
+    """R12: the stage-7 build is not done when pi-works rewrote its input after pis.json was built."""
+    import os
+    st = dict(name='build', kind='slurm', done=['census-faculty.json'], newer_than=['dblp-ids.json'])
+    tree.put('census-faculty.json', {}); tree.put('dblp-ids.json', {})
+    out, inp = tree.root / 'u' / 'census-faculty.json', tree.root / 'u' / 'dblp-ids.json'
+    os.utime(out, (100, 100)); os.utime(inp, (200, 200))
+    assert G.step_done('u', st) is False
+    os.utime(out, (300, 300))
+    assert G.step_done('u', st) is True
