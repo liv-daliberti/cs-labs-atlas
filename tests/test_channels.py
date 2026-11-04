@@ -163,7 +163,7 @@ def test_s2_bulk_channel_reads_the_local_table(monkeypatch):
     import ftp_common as F
     import s2_key_lookup as s2k
     rec = dict(corpusid=1, how='doi', doi='10.1145/3000001', arxiv='2101.00001', pmc=None, acl='2021.acl-long.1', targets=[['mit', 'w1', 'w1']],
-               pdfurls=['https://lab.example.edu/w1.pdf', 'https://dl.acm.org/doi/pdf/10.1145/3000001'], oainfo=dict(url='https://repo.example.edu/w1.pdf', license='cc-by'))
+               pdfurls=['https://lab.example.edu/w1.pdf', 'https://dl.acm.org/doi/pdf/10.1145/3000001'], oainfo=dict(openaccessurl='https://repo.example.edu/w1.pdf', license='cc-by'))
     monkeypatch.setattr(SB, '_T', dict(by={('mit', 'w1'): [rec]}, release='2026-10-27'))
     monkeypatch.setattr(F, 'bulk_rows', lambda want, src: ([dict(work_id=w, url=f'https://storage.googleapis.com/arxiv-dataset/{a}.pdf', source=src) for w, a in want.items()], 0))
     monkeypatch.setattr(s2k, 'pmc_files', lambda *a: [])

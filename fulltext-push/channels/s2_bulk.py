@@ -46,8 +46,8 @@ def discover(school, papers, ctx):
             det = json.dumps(dict(matched_by=r['how'], corpusid=r['corpusid'], s2_release=t['release']))
             urls = list(r.get('pdfurls') or [])
             oa = r.get('oainfo') or {}
-            if oa.get('url'):
-                urls.append(oa['url'])
+            if oa.get('openaccessurl') or oa.get('url'):
+                urls.append(oa.get('openaccessurl') or oa.get('url'))
             for u in dict.fromkeys(urls):
                 if u and s2k.ok_pdf(u) and cs.usable(u):
                     rows[p.work_id].append(dict(work_id=p.work_id, url=u, landing_url=None, version=None, license=oa.get('license'), source='s2_bulk', detail=det))

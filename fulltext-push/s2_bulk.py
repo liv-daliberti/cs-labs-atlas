@@ -6,7 +6,7 @@ redistributing the API. We use the key only for the dataset file lists (a few re
 of our works; the raw dump is never stored. PDF URLs are used only as fetch candidates (the collectors check robots.txt and the file's title).
 
 What the datasets hold (probed 2026-11-04, release 2026-10-27): `papers` has ids and titles but no PDF URL (only isopenaccess); `s2orc` has
-content.source.pdfUrls and content.source.oaInfo (Unpaywall's license / url / status) for the papers whose PDF S2 parsed. So:
+content.source.pdfurls and content.source.oainfo (Unpaywall's license / openaccessurl / status; the keys are lower case, pdfurls is often null) for the papers whose PDF S2 parsed. So:
   papers  <task> <of>   corpusid for every target by DOI, then ArXiv id, then normalized title + first author's family name (year within 2)
                         (bulk_oa.match_record); writes FT_RAW/bulk-oa/s2/<release>/papers-<task>.jsonl
   s2orc   <task> <of>   for the corpusids the papers pass found: pdfUrls and oaInfo; writes s2orc-<task>.jsonl
@@ -155,7 +155,7 @@ def task_s2orc(task, of):
                 o = json.loads(line)
                 src = (o.get('content') or {}).get('source') or {}
                 kept += 1
-                f.write(json.dumps(dict(corpusid=o['corpusid'], pdfurls=src.get('pdfUrls') or [], oainfo=src.get('oaInfo'))) + '\n')
+                f.write(json.dumps(dict(corpusid=o['corpusid'], pdfurls=src.get('pdfurls') or src.get('pdfUrls') or [], oainfo=src.get('oainfo') or src.get('oaInfo'))) + '\n')
             print(json.dumps(dict(s2orc_shard=fi, seconds=round(time.time() - t0), rows_seen=n, kept=kept)), flush=True)
     tmp.replace(out / f's2orc-{task}.jsonl')
 
