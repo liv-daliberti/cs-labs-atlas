@@ -1,6 +1,6 @@
 """Embed the study's texts with one model on one GPU: resumable, sharded, parts written atomically.
 
-  embed.py run --model M --kind abstract|fulltext [--shard i --of n] [--budget SECONDS] [--limit N] [--store-name NAME]
+  embed.py run --model M --kind abstract|fulltext [--shard i --of n] [--budget SECONDS] [--limit N] [--store-name NAME] [--texts-db PATH]
   embed.py merge --model M --kind K            parts -> one container per home school (CPU job; store.merge)
   embed.py status [--model M]                  papers todo / done per model and kind
   embed.py selftest --model M                  a few abstracts in fp16 vs fp32 (GPU): cosine must be > 0.99
@@ -210,10 +210,10 @@ class Embedder:
 
 
 # ---------------------------------------------------------------- the todo
-def load_todo(kind, done, shard=None, of=None, limit=None):
+def load_todo(kind, done, shard=None, of=None, limit=None, texts_db=None):
     """[(paper id, text hash, payload)] not yet embedded (hash not in `done`), this shard only, ordered by paper id. Abstract payload:
     (title, abstract). Full-text payload: None until fetch_bodies() reads the bodies of a part (the bodies are most of a 5 GB file)."""
-    db = sqlite3.connect(f'file:{C.TEXTS_DB}?mode=ro', uri=True, timeout=600)
+    db = sqlite3.connect(f'file:{texts_db or C.TEXTS_DB}?mode=ro', uri=True, timeout=600)
     if kind == 'abstract':
         q = 'select paper_id, text_hash, title, abstract from abstracts order by paper_id'
     else:
@@ -242,11 +242,11 @@ def fetch_bodies(pids):
     return out
 
 
-def run(model, kind, shard, of, budget, limit, store_name):
+def run(model, kind, shard, of, budget, limit, store_name, texts_db=None):
     t0 = time.time()
     name = store_name or model
     done = store.done_map(name, kind)
-    todo = load_todo(kind, done, shard, of, limit)
+    todo = load_todo(kind, done, shard, of, limit, texts_db)
     C.log(model=model, kind=kind, shard=shard, of=of, todo=len(todo), already=len(done))
     if not todo:
         return
@@ -352,9 +352,10 @@ if __name__ == '__main__':
     ap.add_argument('--shard', type=int, default=0); ap.add_argument('--of', type=int, default=1)
     ap.add_argument('--budget', type=int, default=int(os.environ.get('EMB_BUDGET', 40000)))
     ap.add_argument('--limit', type=int); ap.add_argument('--store-name')
+    ap.add_argument('--texts-db', help='abstracts table to read instead of EMB/texts.sqlite (the all-AI rewrites: ai-writing/allai/build_texts.py)')
     a = ap.parse_args()
     if a.cmd == 'run':
-        run(a.model, a.kind, a.shard, a.of, a.budget, a.limit, a.store_name)
+        run(a.model, a.kind, a.shard, a.of, a.budget, a.limit, a.store_name, a.texts_db)
     elif a.cmd == 'merge':
         merge(a.model, a.kind, a.store_name)
     elif a.cmd == 'status':
