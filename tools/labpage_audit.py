@@ -258,6 +258,12 @@ def paper_reason(status, junk_reason, year, pi_start):
 ALUMNI_RX = re.compile(r'\b(alumni|alumnae|alumnus|alumna|former|past|previous|alums?|graduates|graduated|completed|emeriti|moved on)\b', re.I)
 
 
+def moved_in_alumnus(start, ys, alumni, destination):
+    """A PI who arrived at the school inside the window (first period / listing year 2016+) lists alumni of their previous institution on the same page: an UNDATED entry that is an
+    alumnus or names a later position ('(Current: Faculty at ...)', '-> Google') cannot be placed at this school (Georgia Tech round 1: Prakash's Virginia Tech PhDs)."""
+    return bool(start and start >= WINDOW[0] and not ys and (alumni or destination))
+
+
 def student_reason(cand, pi_start, alumni_ok):
     """Reason a listed name is not admitted by the lab-page rules (None: admissible). cand: flags, years, alumni (bool),
     is_cap (from an archived capture), under_people_heading, single_token, reviewer_drop, seen_current_2016 (the same
@@ -1355,6 +1361,10 @@ def pm_candidates(kit, school, pi, plan, held):
                                                              "without a current marker in its entry or section heading"
                                                              + ('; it names a later position' if destination else ''))
             x['strict_removed'] = bool(cap_y >= 2025 and not destination and not x['alumni'])
+            continue
+        if fn not in keep and moved_in_alumnus(start, ys, x['alumni'], destination):
+            x['why'], x['detail'] = 'at_previous_school', (f"undated alumnus / entry naming a later position on the page of a PI who arrived in {start}: it may be an advisee of the previous institution, "
+                                                           "so it cannot be placed at this school")
             continue
         if start and start >= WINDOW[0] and last == start and fn not in keep:  # R-PAP-13's transition year, for people
             x['why'], x['detail'] = 'at_previous_school', f"dated only to the PI's arrival year ({start}): cannot place at this school"
