@@ -181,6 +181,23 @@ def title_index():
         return json.load(f)
 
 
+# ---------------------------------------------------------------- title compatibility (2026-11-04 hand check)
+def title_compatible(a, b, min_share=0.6):
+    """A DOI or id match is only accepted when the two titles can be one paper (a retitled preprint passes, another part or another chapter does not):
+    the same numbers and roman numerals (Part I is not Part II), and at least two, and `min_share` of the shorter title's, significant words (>= 3 letters, no
+    stop words) are in the other. Hand check of 20 copies: Part I (arXiv record carrying Part II's DOI) and a handbook chapter for its book were wrong;
+    'Quantum Supremacy and the Complexity of Random Circuit Sampling' for 'On the complexity and verification of quantum random circuit sampling' is right."""
+    import identity_rule as IR
+    from channels.arxiv_loose import _numbers
+    if _numbers(a) != _numbers(b):
+        return False
+    wa = {w for w in IR.norm_words(a) if len(w) >= 3 and w not in IR.STOP}
+    wb = {w for w in IR.norm_words(b) if len(w) >= 3 and w not in IR.STOP}
+    if not wa or not wb:
+        return False
+    return len(wa & wb) >= 2 and len(wa & wb) / min(len(wa), len(wb)) >= min_share
+
+
 if __name__ == '__main__':
     if sys.argv[1] == 'targets':
         print(json.dumps(build(sys.argv[2:])))

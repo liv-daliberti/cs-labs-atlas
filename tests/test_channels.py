@@ -181,7 +181,7 @@ def test_arxiv_bulk_matches_by_doi_then_exact_title_and_authors(monkeypatch):
     from channels import arxiv_bulk as AB
     import ftp_common as F
     t = 'Learning Fixture Representations for Channel Plugins'
-    ix = dict(by_doi={'10.1145/3000001': ('2101.00001', 'A preprint with another title', ('lovelace',), 2020)},
+    ix = dict(by_doi={'10.1145/3000001': ('2101.00001', 'A Study of Fixture Papers: the preprint', ('lovelace',), 2020)},
               by_t={F.nt(t): [('2101.00002', t, ('lovelace', 'babbage'), 2020)]}, n=2)
     ps, known = papers()
     assert AB.match(ps[0].r, ix)[0] == 'doi'
@@ -196,8 +196,8 @@ def test_oa_locations_reads_every_location_and_sibling_records(monkeypatch):
     import bulk_oa as B
     import ftp_common as F
     t = 'A Study of Fixture Papers for Channel Plugins'
-    own = dict(id='https://openalex.org/W1', locations=[dict(pdf_url='https://repo.example.edu/own.pdf', landing_page_url=None, is_oa=True, source=dict(type='repository', display_name='R'), version='publishedVersion')])
-    sib = dict(id='https://openalex.org/W9', publication_year=2020, authorships=[dict(author=dict(display_name='Ada Lovelace'))],
+    own = dict(id='https://openalex.org/W1', type='article', locations=[dict(pdf_url='https://repo.example.edu/own.pdf', landing_page_url=None, is_oa=True, source=dict(type='repository', display_name='R'), version='publishedVersion')])
+    sib = dict(id='https://openalex.org/W9', type='article', publication_year=2020, authorships=[dict(author=dict(display_name='Ada Lovelace'))],
                locations=[dict(pdf_url='https://lab.example.edu/accepted.pdf', landing_page_url='https://lab.example.edu/p', is_oa=True, version='acceptedVersion', source=dict(type='repository', display_name='L'))],
                best_oa_location=dict(pdf_url='https://best.example.edu/b.pdf', landing_page_url=None, is_oa=True), open_access=dict(oa_url='https://oa.example.edu/x.pdf'))
     monkeypatch.setattr(B, 'oa_stores', lambda: [])
@@ -218,3 +218,27 @@ def test_wayback_escholarship_applies_only_to_berkeley_papers_known_on_escholars
     ps, known = papers(known=defaultdict(set, {'w1': {'https://escholarship.org/uc/item/1wt3d4vr', 'https://escholarship.org/content/qt1wt3d4vr/qt1wt3d4vr.pdf'}}))
     assert WE.item_ids(ps[0].known) == ['1wt3d4vr']
     assert WE.APPLIES('berkeley', ps[0]) and not WE.APPLIES('mit', ps[0]) and not WE.APPLIES('berkeley', ps[1])
+
+
+def test_oa_locations_siblings_need_the_same_article_like_type(monkeypatch):
+    from channels import oa_locations as OL
+    import bulk_oa as B
+    import ftp_common as F
+    t = 'A Study of Fixture Papers for Channel Plugins'
+    sib = dict(id='https://openalex.org/W9', type='book-chapter', publication_year=2020, authorships=[dict(author=dict(display_name='Ada Lovelace'))], locations=[])
+    monkeypatch.setattr(B, 'title_index', lambda: {F.nt(t): ['https://openalex.org/W9']})
+    monkeypatch.setattr(B, 'oa_by_doi', lambda stores, doi: [])
+    monkeypatch.setattr(B, 'oa_by_id', lambda stores, wid: sib)
+    ps, known = papers()
+    assert OL.siblings(ps[0], [], B.title_index(), dict(id='https://openalex.org/W1', type='article')) == []      # a chapter is not the article
+    assert OL.siblings(ps[0], [], B.title_index(), dict(id='https://openalex.org/W1', type='book')) == []         # a book has no siblings
+    assert OL.siblings(ps[0], [], B.title_index(), dict(id='https://openalex.org/W1', type='book-chapter')) == []
+    assert OL.siblings(ps[0], [], B.title_index(), None) == []
+
+
+def test_title_compatible_rejects_another_part_and_keeps_a_retitled_preprint():
+    import bulk_oa as B
+    assert not B.title_compatible('Efficient Multiparty Interactive Coding - Part II: Non-Oblivious Noise', 'Efficient Multiparty Interactive Coding for Insertions, Deletions and Substitutions')
+    assert not B.title_compatible('Language, Stapp, and the Mind/Body/World Problem', 'Towards a Science of Mind')
+    assert B.title_compatible('On the complexity and verification of quantum random circuit sampling', 'Quantum Supremacy and the Complexity of Random Circuit Sampling')
+    assert B.title_compatible('Interactive cryptographic proofs of quantumness using mid-circuit measurements', 'Interactive Proofs of Quantumness via Mid-Circuit Measurements')

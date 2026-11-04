@@ -3,14 +3,16 @@ lab paper, from our local OpenAlex snapshot (docs/OPENALEX-SNAPSHOT.md; main sto
 locations are Unpaywall's data, so this is the Unpaywall source at no cost (no API call at all).
 
 Beyond the `openalex` channel (the paper's own record, the usual hosts):
-  - the other OpenAlex records of the same paper: the record with the paper's DOI (a version record under the same DOI key is
-    one work, but the lab-paper row may point at a sibling), and the records with the same normalized title (>= 20 characters)
-    and the same first author's family name published within 2 years (a preprint and its journal version are often two works);
-    every location of each of them is read, not just best_oa_location
+  - the other OpenAlex records of the same paper: the record with the paper's DOI, and the records with the same normalized title
+    (>= 20 characters) and the same first author's family name published within 2 years (a preprint and its journal version are often
+    two works); every location of each of them is read, not just best_oa_location. Tightened after the hand check of 2026-11-04 (a handbook
+    chapter matched for its book): a sibling counts only when its OpenAlex `type` equals the paper's own record's and that type is an article-like
+    one (not book, book-chapter, dataset, report, ...); no own record, no siblings
   - best_oa_location and open_access.oa_url, which `locations` may lack
   - repository versions: a repository location's PDF or landing page even when OpenAlex marks it not open; an accepted or
     submitted manuscript's landing page on any host the collectors may use
-  - arXiv locations (-> arXiv's bulk copy on GCS, never arxiv.org) and PubMed Central locations (-> the PMC open-data files)
+  - arXiv locations of the paper's OWN record only (-> arXiv's bulk copy on GCS, never arxiv.org), and only when the id's title in the local arXiv
+    harvest, if the id is in it, is compatible with the paper's title (bulk_oa.title_compatible) and PubMed Central locations (-> the PMC open-data files)
 The collectors' identity check (the catalog title in the file, page 1) applies to every candidate; the matching of sibling
 records is the local rule of fulltext-push/bulk_oa.py (title + first author, year within 2).
 """
@@ -30,12 +32,17 @@ def _first_family(body):
     return ''
 
 
-def siblings(p, stores, tix):
-    """Other OpenAlex records of the paper: same DOI, or same normalized title + first author's family + year within 2."""
+ARTICLE_LIKE = {'article', 'preprint', 'review', 'letter'}
+
+
+def siblings(p, stores, tix, own=None):
+    """Other OpenAlex records of the paper: same DOI, or same normalized title + first author's family + year within 2; only of the own
+    record's type, which must be article-like (a book and its chapters share titles)."""
+    if not own or own.get('type') not in ARTICLE_LIKE:
+        return []
     import bulk_oa as B
     import ftp_common as F
-    own = p.r.get('oa')
-    out, seen = [], {own}
+    out, seen = [], {p.r.get('oa'), own.get('id')}
     for b in B.oa_by_doi(stores, p.r.get('doi')) if p.r.get('doi') else []:
         if b.get('id') not in seen:
             seen.add(b.get('id')); out.append(('doi', b))
@@ -52,7 +59,7 @@ def siblings(p, stores, tix):
             if y and y0 and abs(int(y) - int(y0)) > 2:
                 continue
             seen.add(wid); out.append(('title_author', b))
-    return out
+    return [(h, b) for h, b in out if b.get('type') == own.get('type')]
 
 
 def extra_locations(body):
@@ -87,11 +94,13 @@ def discover(school, papers, ctx):
     import bulk_oa as B
     import ftp_common as F
     import lab_channels as L
+    from channels import arxiv_bulk as AB
     stores, tix = B.oa_stores(), B.title_index()
     bodies = F.oa_bodies(school, [p.r['oa'] for p in papers])
     rows, arx, pmc = defaultdict(list), {}, {}
     for p in papers:
-        recs = ([('own', bodies[p.r['oa']])] if bodies.get(p.r['oa']) else []) + siblings(p, stores, tix)
+        own = bodies.get(p.r['oa'])
+        recs = ([('own', own)] if own else []) + siblings(p, stores, tix, own)
         ctx.n['oa_locations_sibling_records'] += sum(1 for h, _ in recs if h != 'own')
         for how, b in recs:
             lb = dict(b, locations=list(b.get('locations') or []) + extra_locations(b))
@@ -103,9 +112,13 @@ def discover(school, papers, ctx):
             rows[p.work_id] += rs
             if pm and not any('pmc-oa-opendata' in u for u in p.known):
                 pmc.setdefault(p.work_id, set()).update(pm)
-            a = F.arxiv_of(dict(doi=None), lb)
+            a = F.arxiv_of(dict(doi=None), lb) if how == 'own' else None   # arXiv ids from the paper's own record only
             if a and not L.has_arxiv(p.known):
-                arx.setdefault(p.work_id, a)
+                known_rec = AB.index()['by_id'].get(a)
+                if known_rec is None or B.title_compatible(p.r.get('title') or '', known_rec[1] or ''):
+                    arx.setdefault(p.work_id, a)
+                else:
+                    ctx.n['oa_locations_arxiv_title_incompatible'] += 1
     brows, ctx.n['oa_locations_arxiv_not_in_bulk'] = F.bulk_rows(arx, 'oa_locations_arxiv_bulk') if arx else ([], 0)
     memo, sess = {}, ctx.session()
     prows = [x for w, ids in pmc.items() for x in F.pmc_rows(w, ids, memo, sess)]

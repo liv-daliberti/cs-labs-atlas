@@ -2,10 +2,12 @@
 hand-check sample (2026-11-04). A candidate belongs to a channel when its evidence file is that channel's (`<channel>-<stamp>-NNNN.json`,
 lab_channels.write); a copy is obtained from it when the work is downloaded and its download_url is one of that channel's candidate URLs.
 Read-only on the catalogs (short chunks).
-usage: bulk_oa_report.py report [<school> ...]        counts as JSON lines
-       bulk_oa_report.py sample <channel> <n> [seed]  n downloaded copies from the channel, page-1 text for the identity hand check (all schools)
+usage: bulk_oa_report.py report [<school> ...]        counts as JSON lines (env BULK_OA_SINCE=<UTC stamp YYYYmmddHHMMSS>: only candidates written at or after it)
+       bulk_oa_report.py sample <channel> <n> [seed]  n downloaded copies from the channel, page-1 text for the identity hand check (all schools;
+                                                      BULK_OA_SINCE as above gives fresh draws of a re-run)
 """
 import json
+import os
 import random
 import sqlite3
 import subprocess
@@ -19,6 +21,15 @@ CHANNELS = ['oa_locations', 's2_bulk', 'core_bulk', 'arxiv_bulk', 'wayback_escho
 SCHOOLS = ['princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford', 'michigan', 'uchicago', 'gatech']
 
 
+SINCE = os.environ.get('BULK_OA_SINCE', '00000000000000')
+
+
+def stamp_ok(ch):
+    """SQL condition on candidates c: the evidence file's stamp (`<channel>-<YYYYmmddHHMMSS>-NNNN.json`) is >= SINCE."""
+    m = f'/{ch}-'
+    return f"substr(c.metadata_source, instr(c.metadata_source, '{m}') + {len(m)}, 14) >= '{SINCE}'"
+
+
 def ro(school):
     p = F.FT / school / 'catalog.sqlite'
     return sqlite3.connect(f'file:{p}?mode=ro', uri=True, timeout=120) if p.exists() else None
@@ -30,11 +41,11 @@ def report(schools):
         if db is None:
             continue
         for ch in CHANNELS:
-            like = f'%/{ch}-20261104%'
-            cand = db.execute('SELECT count(*), count(DISTINCT work_id) FROM candidates WHERE metadata_source LIKE ?', (like,)).fetchone()
+            like = f'%/{ch}-20261%'
+            cand = db.execute('SELECT count(*), count(DISTINCT work_id) FROM candidates c WHERE c.metadata_source LIKE ? AND ' + stamp_ok(ch), (like,)).fetchone()
             got = db.execute("SELECT count(*) FROM works w JOIN candidates c ON c.work_id=w.id AND c.url=w.download_url WHERE c.metadata_source LIKE ? "
-                             "AND w.status IN ('downloaded','fulltext_xml')", (like,)).fetchone()[0]
-            tried = db.execute('SELECT count(DISTINCT c.work_id) FROM candidates c JOIN attempts a ON a.work_id=c.work_id AND a.url=c.url WHERE c.metadata_source LIKE ?', (like,)).fetchone()[0]
+                             "AND w.status IN ('downloaded','fulltext_xml') AND " + stamp_ok(ch), (like,)).fetchone()[0]
+            tried = db.execute('SELECT count(DISTINCT c.work_id) FROM candidates c JOIN attempts a ON a.work_id=c.work_id AND a.url=c.url WHERE c.metadata_source LIKE ? AND ' + stamp_ok(ch), (like,)).fetchone()[0]
             print(json.dumps(dict(school=s, channel=ch, candidates=cand[0], works=cand[1], works_attempted=tried, copies=got)), flush=True)
         db.close()
 
@@ -45,9 +56,9 @@ def sample(ch, n, seed=1):
         db = ro(s)
         if db is None:
             continue
-        like = f'%/{ch}-20261104%'
+        like = f'%/{ch}-20261%'
         for w, t, fp, url, idc in db.execute("SELECT w.id, w.title, w.file_path, w.download_url, w.identity_check FROM works w JOIN candidates c ON c.work_id=w.id AND c.url=w.download_url "
-                                              "WHERE c.metadata_source LIKE ? AND w.status IN ('downloaded','fulltext_xml')", (like,)):
+                                              "WHERE c.metadata_source LIKE ? AND w.status IN ('downloaded','fulltext_xml') AND " + stamp_ok(ch), (like,)):
             pool.append((s, w, t, fp, url, idc))
         db.close()
     random.Random(seed).shuffle(pool)

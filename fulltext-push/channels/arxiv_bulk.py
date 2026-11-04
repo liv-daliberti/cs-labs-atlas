@@ -7,7 +7,7 @@ and its mirror in the bucket (metadata-v5/, 4.5 GB) stops in 2020, while the har
 Terms (arXiv bulk access page, read 2026-11-04): metadata is openly available, the PDFs of most articles carry the default arXiv licence
 (arXiv may distribute them; builders of indexes must link back to arXiv: every candidate carries its https://arxiv.org/abs/<id> page as landing URL).
 
-Matching order (bulk_oa-style, local): (1) the record's DOI field equals the paper's DOI (the author-supplied journal DOI of the preprint);
+Matching order (bulk_oa-style, local): (1) the record's DOI field equals the paper's DOI (the author-supplied journal DOI of the preprint) and the titles are compatible (bulk_oa.title_compatible);
 (2) an arXiv id the paper already names (10.48550 DOI); (3) the normalized title equal and the same author set (arxiv_loose.same_authors: every
 byline family of the first 8, long bylines 6 of 8 plus every PI) with the first version from 3 years before to 1 year after the paper's year,
 and no second record that ties. The collector's page-1 identity rule (fulltext-push/identity_rule.py: title and first author, or the arXiv stamp
@@ -27,7 +27,7 @@ def index():
         import ftp_common  # noqa: F401  (puts vendor/cmu_tools on sys.path)
         import arxiv_oai as ao
         import ftp_common as F
-        by_doi, by_t = {}, defaultdict(list)
+        by_doi, by_t, by_id = {}, defaultdict(list), {}
         n = 0
         for f in sorted(ao.RAW.glob('*.jsonl.gz')):
             for line in gzip.decompress(f.read_bytes()).decode().splitlines():
@@ -36,12 +36,13 @@ def index():
                 r = json.loads(line)
                 n += 1
                 rec = (re.sub(r'v\d+$', '', r['id']), r['title'], tuple(r.get('families') or ()), int((r.get('created') or '0')[:4] or 0))
+                by_id[rec[0]] = rec
                 for d in (r.get('doi') or '').lower().split():
                     by_doi.setdefault(F.ndoi(d), rec)
                 k = F.nt(r['title'])
                 if len(k) >= 20:
                     by_t[k].append(rec)
-        _IX.update(by_doi=by_doi, by_t=by_t, n=n)
+        _IX.update(by_doi=by_doi, by_t=by_t, by_id=by_id, n=n)
     return _IX
 
 
@@ -57,7 +58,10 @@ def match(r, ix):
     d = F.ndoi(r.get('doi'))
     if d and d in ix['by_doi']:
         rec = ix['by_doi'][d]
-        return 'doi', rec
+        import bulk_oa as B
+        if B.title_compatible(r.get('title') or '', rec[1] or ''):  # an author may give two parts of a series one DOI (hand check 2026-11-04)
+            return 'doi', rec
+        return None, dict(doi_title_incompatible=rec[0])
     a = F.arxiv_of(r, None)
     if a:
         return 'arxiv_id', (a, None, (), 0)
