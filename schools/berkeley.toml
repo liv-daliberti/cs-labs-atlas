@@ -44,3 +44,9 @@ depts = {EECS = "Electrical Engineering and Computer Sciences"}
 exceptions = [
   {test = "year_outlier", year = 2026, verify = "papers_normal", reason = "36,836 of the 49,645 works of 2026 are DOE Pacific Northwest National Laboratory (PNNL) Repository dataset records (DOI prefix 10.25582; 38,074 datasets in all): OpenAlex type dataset, which every reader drops (pi_hierarchy.NOT_PAPERS, R-PAP-17). Paper-only count of 2026 (11,144) is in line with the other years. Diagnosed 2026-10-30; the release is unaffected."},
 ]
+
+# Institutional-repository harvest (fulltext-push/oai_repo.py; verdicts in docs/CHANNELS.md, "Repository harvests", 2026-11-04)
+[oai_repo]
+verdict = "skip"
+repository = "eScholarship (escholarship.org)"
+reason = "CloudFront answers 403 'Request blocked' to this client for /robots.txt and /oai (2026-11-04): an access block, not a rule we may read, so nothing is fetched and no workaround is tried."

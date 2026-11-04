@@ -38,3 +38,9 @@ computing_departments = ["CS", "EE"]   # listed_not_in_census.py; [] = every lis
 
 [site]
 depts = {CS = "Computer Science", EE = "Electrical Engineering"}
+
+# Institutional-repository harvest (fulltext-push/oai_repo.py; verdicts in docs/CHANNELS.md, "Repository harvests", 2026-11-04)
+[oai_repo]
+verdict = "skip"
+repository = "Stanford Digital Repository / PURL (purl.stanford.edu)"
+reason = "no OAI-PMH endpoint on purl.stanford.edu or searchworks.stanford.edu (HTML 404 pages, 2026-11-04). The robots-listed sitemaps give PURL URLs only, no metadata, so a harvest would be one request per PURL over the whole repository: not a bulk interface. robots.txt has no rule for ClaudeBot/anthropic-ai."

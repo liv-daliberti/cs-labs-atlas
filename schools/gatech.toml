@@ -545,3 +545,9 @@ host = "music.gatech.edu"
 use = "live"
 purpose = "Music people (unit searched: the OpenAlex rule names its people)"
 probe = "https://music.gatech.edu/people"
+
+# Institutional-repository harvest (fulltext-push/oai_repo.py; verdicts in docs/CHANNELS.md, "Repository harvests", 2026-11-04)
+[oai_repo]
+verdict = "skip"
+repository = "SMARTech (repository.gatech.edu, DSpace 7)"
+reason = "robots.txt (2026-11-04) has 'Disallow: /server/oai/*' and 'Disallow: /server/api/*' (only core/bitstreams and core/mapping are allowed) for every agent: the OAI-PMH endpoint is closed to us, so nothing is fetched. Crawl-delay 10. No ClaudeBot/anthropic-ai rule."

@@ -38,3 +38,15 @@ computing_departments = []   # listed_not_in_census.py; [] = every listed depart
 
 [site]
 depts = {CSD = "Computer Science Department", MLD = "Machine Learning Department", RI = "Robotics Institute", HCII = "Human–Computer Interaction Institute", LTI = "Language Technologies Institute", S3D = "Software and Societal Systems Department", CBD = "Computational Biology Department"}
+
+# Institutional-repository harvest (fulltext-push/oai_repo.py; verdicts in docs/CHANNELS.md, "Repository harvests", 2026-11-04)
+[oai_repo]
+verdict = "harvest"
+repository = "KiltHub (Figshare, kilthub.cmu.edu)"
+base = "https://api.figshare.com/v2/oai"    # kilthub.cmu.edu answers a bot challenge (202, empty body): never used. Figshare's own OAI endpoint has no robots rules
+prefix = "oai_dc"
+sets = ["portal_231"]                        # the 'Carnegie Mellon University' portal (found in ListSets 2026-11-04)
+delay = 3
+relation_links = 'figshare\.com/articles/'
+enrich = "figshare"
+enrich_base = "https://api.figshare.com/v2"

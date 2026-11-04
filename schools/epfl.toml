@@ -38,3 +38,13 @@ computing_departments = []   # listed_not_in_census.py; [] = every listed depart
 
 [site]
 depts = {IC = "School of Computer and Communication Sciences (IC)"}
+
+# Institutional-repository harvest (fulltext-push/oai_repo.py; verdicts in docs/CHANNELS.md, "Repository harvests", 2026-11-04)
+[oai_repo]
+verdict = "harvest"
+repository = "Infoscience (DSpace-CRIS 7)"
+kind = "oai"
+base = "https://infoscience.epfl.ch/server/oai/openaire4"   # /server/oai/request answers 400; the OpenAIRE context is the working one
+prefix = "oai_openaire"                                      # datacite creators, DOIs and oaire:file access URIs
+sets = ["col_20.500.14299_7", "col_20.500.14299_3", "col_20.500.14299_11", "col_20.500.14299_12", "col_20.500.14299_2"]   # journal articles; conferences; preprints; reports; books and parts
+delay = 10

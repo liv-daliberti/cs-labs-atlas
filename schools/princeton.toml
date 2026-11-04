@@ -38,3 +38,9 @@ computing_departments = ["Computer Science"]   # listed_not_in_census.py; [] = e
 
 [site]
 depts = {}
+
+# Institutional-repository harvest (fulltext-push/oai_repo.py; verdicts in docs/CHANNELS.md, "Repository harvests", 2026-11-04)
+[oai_repo]
+verdict = "skip"
+repository = "Princeton OAR (oar.princeton.edu, DSpace 5 JSPUI)"
+reason = "no OAI-PMH endpoint: /oai/request and /jspui/oai/request answer 404 (checked 2026-11-04); robots.txt allows the item pages and lists a sitemap, which the earlier OAR item index (cs-structure/raw/oar, matched by the oar channel) already used. No ClaudeBot/anthropic-ai rule."

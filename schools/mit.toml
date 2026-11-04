@@ -38,3 +38,17 @@ computing_departments = ["EECS", "CSAIL"]   # listed_not_in_census.py; [] = ever
 
 [site]
 depts = {EECS = "Electrical Engineering and Computer Science"}
+
+# Institutional-repository harvest (fulltext-push/oai_repo.py; verdicts in docs/CHANNELS.md, "Repository harvests", 2026-11-04)
+[oai_repo]
+verdict = "harvest"
+repository = "MIT Open Scholarship (DSpace 7)"
+kind = "oai"
+base = "https://dspace.mit.edu/server/oai/request"
+prefix = "oai_dc"
+sets = ["col_1721.1_49433", "com_1721.1_29806", "com_1721.1_5459", "com_1721.1_1775", "col_1721.1_3651"]   # OA Articles; CSAIL Digital Archive; AI Lab Publications; LIDS; Computer Science
+seed = "mit_oa_articles"                  # raw/mit_oa_articles.sqlite: the OA Articles collection harvested whole on 2026-10-30, parsed without a request
+seed_set = "col_1721.1_49433"
+delay = 20                                # the pace that avoided 429s on 2026-10-30
+landing = "https://hdl.handle.net/{id}"
+relation_dois = true                      # MIT puts the published version DOI in dc:relation (92 of 100 sampled OA Articles records; dc:identifier has it in 3)

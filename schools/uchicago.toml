@@ -385,3 +385,13 @@ purpose = "OpenAlex (snapshot first; the shared 10k/day key)"
 host = "api.ror.org"
 use = "live"
 purpose = "ROR verification"
+
+# Institutional-repository harvest (fulltext-push/oai_repo.py; verdicts in docs/CHANNELS.md, "Repository harvests", 2026-11-04)
+[oai_repo]
+verdict = "harvest"
+repository = "UChicago Knowledge (InvenioRDM)"
+base = "https://knowledge.uchicago.edu/oai2d"   # robots.txt: Disallow /search /api /administration ...; /oai2d is not disallowed (checked 2026-11-04); Crawl-delay 10; no AI-agent rules
+prefix = "oai_dc"
+sets = ["community-physical-sciences-division", "community-pritzker-school-of-molecular-engineering"]   # the divisions that hold computer science, statistics and molecular engineering
+delay = 10
+landing = "https://knowledge.uchicago.edu/records/{id}"   # the OAI identifier's tail is the record id; oai_dc carries no file URLs, the collector reads citation_pdf_url from the record page

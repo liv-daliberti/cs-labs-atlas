@@ -83,3 +83,38 @@ oa_arxiv 3 = 3). Moving a body into its module is the next step per channel; the
   candidate reaches it (its open location's PDF, else its landing page, else the DOI); not for ACM, IEEE and SSRN,
   which refuse automated clients or serve a challenge. Either the copy, or a recorded reason (robots, challenge,
   paywall) for the ledger.
+
+## Repository harvests: `oai_repo` (2026-11-04, owner)
+
+Owner 2026-11-04: harvest each school's institutional repository over its standard bulk interface (OAI-PMH), politely, because author
+manuscripts often live only there. `fulltext-push/oai_repo.py` is the harvester, `channels/oai_repo.py` the channel, `[oai_repo]` in the
+school's charter the configuration (verdict, base URL, metadataPrefix, sets, delay, landing template).
+
+- **Harvest:** `oai_repo.py harvest <school>` reads robots.txt first (this client's user agent, ClaudeBot and anthropic-ai against the base
+  path; the declared Crawl-delay raises the charter's delay), takes one flock per host, and follows resumption tokens one request at a time.
+  Everything goes into one SQLite file per school, `raw/oai_repo/<school>.sqlite` (records, state, sets_resolved), never per-record files.
+  It is resumable (the token is stored after every page) and incremental (a finished set is asked again with `from=<start of the last harvest>`).
+  A 403, a 202 (bot challenge), a non-XML body or an OAI error stops the harvest; Retry-After is honoured. Slurm: `fulltext-push/oai-repo.slurm`
+  (one job, schools one after another, so one request in flight at a time).
+- **Match:** `run_steps.sh <school> oai_repo` (the runner's usual plan: lab papers without a copy). Rules in order: DOI equal to a DOI the record
+  names as its own; a handle/landing URL of the record already among the paper's known URLs; equal normalized title (>= 25 characters), years
+  within 2, and the identity rule's authors (shared family names >= half of the smaller side, one of the paper's PIs among the creators).
+  No title-only match. Candidates are the record's open file URLs, else its handle/landing page (the collector reads `citation_pdf_url`);
+  records whose rights say restricted, embargoed or metadata-only give none. `catalog_lock.backup_catalog` runs before the write, which
+  goes through `write_candidates` -> `write_batches` under the catalog lock.
+- **Hand check:** after a repository's candidates are downloaded, 20 matched candidates are read on page 1; more than 1 wrong rolls that
+  repository's candidates back (`source = 'oai_repo_<school>'` identifies them).
+
+### Verdicts (robots.txt and terms read 2026-11-04; none of the robots.txt files has a ClaudeBot or anthropic-ai group)
+
+| School | Repository | Verdict | Why |
+|---|---|---|---|
+| MIT | DSpace@MIT `dspace.mit.edu/server/oai/request` | harvest | `/server/oai` is not disallowed (the `/search`, `/browse`, `/admin` rules do not touch it); 20 s pace after the 429 of 2026-10-27. The OA Articles collection harvested whole on 2026-10-30 is seeded from `raw/mit_oa_articles.sqlite` without a request; CSAIL Digital Archive, AI Lab Publications, LIDS and the CS collection are new |
+| EPFL | Infoscience `infoscience.epfl.ch/server/oai/openaire4` | harvest | only `/server/opensearch/*` and the search/admin paths are disallowed; the standard `/server/oai/request` context answers 400 to every verb, the OpenAIRE context works (oai_openaire: datacite creators, DOIs, file URLs) |
+| CMU | KiltHub through Figshare's OAI `api.figshare.com/v2/oai`, set `portal_231` | harvest | `kilthub.cmu.edu` serves a bot challenge (202, empty body): never fetched. `api.figshare.com` has no robots.txt (404). Files of a matched record come from the public API `/v2/articles/<id>` |
+| UChicago | Knowledge `knowledge.uchicago.edu/oai2d` | harvest | robots.txt disallows `/search /api /administration /account /uploads /me /login /logout /records/*/preview`, not `/oai2d`; Crawl-delay 10 kept. oai_dc has no file URLs: the record page is the candidate |
+| Princeton | OAR `oar.princeton.edu` (DSpace 5 JSPUI) | skip | no OAI-PMH endpoint (`/oai/request`, `/jspui/oai/request`: 404). The item pages were already indexed from the robots-listed sitemap (the `oar` channel) |
+| Berkeley | eScholarship `escholarship.org/oai` | skip | CloudFront answers 403 "Request blocked" to this client, for `/robots.txt` too: an access block we do not work around |
+| Stanford | SDR `purl.stanford.edu` / SearchWorks | skip | no OAI endpoint on either host; the robots-listed sitemaps list PURLs only, so a harvest would be one request per PURL over the whole repository, not a bulk interface |
+| Georgia Tech | SMARTech `repository.gatech.edu` | skip | robots.txt: `Disallow: /server/oai/*` and `/server/api/*` (core/bitstreams and core/mapping allowed) |
+| Michigan | Deep Blue | never | owner rule: it disallows AI agents by name |
