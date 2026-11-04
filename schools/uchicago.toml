@@ -279,7 +279,7 @@ search and API are disallowed, so reading the advisor field means one record pag
 directories = []
 adviser_alumni = ["www.ttic.edu/student-alumni/"]   # 'Name PhD - 2025 Advisors - A and B'
 adviser_directories = ["www.ttic.edu/students/"]   # TTIC lists every PhD student with an `Advisor:` line (2017-2026 Wayback captures); the alumni page is not used (its years are not membership years)
-rosters = [{url = "stat.uchicago.edu/alumni/phd-alumni/", kind = "alumni_by_year"}, {url = "www.cs.uchicago.edu/people/students/", kind = "students"}, {url = "stat.uchicago.edu/people/", kind = "students"}, {url = "cam.uchicago.edu/people/", kind = "students"}]   # names-only PhD rosters: evidence only together with a co-authored lab paper (R-STU-02)
+rosters = [{url = "stat.uchicago.edu/alumni/phd-alumni/", kind = "alumni_by_year"}, {url = "www.cs.uchicago.edu/people/students/", kind = "students"}]   # names-only PhD rosters: evidence only together with a co-authored lab paper (R-STU-02). The Statistics (/people/) and CAM (/people/) rosters were tried on 2026-11-03: they added 64 relations and 10 labs, a sample of 20 held 3 doubtful co-authorship-only rows (1.5, over the bar) and the students round limit was already used, so they are NOT wired (owner call)
 sources = [
   "CS and TTIC PhD defence announcements and graduation lists (Wayback)",
   "lab member pages and PI homepages (live where robots allows, else Wayback)",
