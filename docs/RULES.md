@@ -368,8 +368,11 @@ Ph.D. from Tsinghua'; not an earlier stay or the entry's own 'PhD student' state
 visitor title outranks a visiting heading. `labpage_audit.entry_role`, `clean_parenthetical_name`; ELSEWHERE_RX no longer reads 'visiting student at X' as a
 student of X, and the other-institution checks are skipped for a `visiting` row.
 Past decisions: `student-decisions.json` takes `decision: visiting` (passed on like `uchicago`, role forced to `visiting`); `tools/visiting_roles.py` converted
-every researched row whose own evidence (quote after the name, a pure visiting heading, a note opening with the phrase) says visiting student, keeping the quote,
-url and the role it had (`role_was`, `converted_from`); UChicago's two `not` rows were changed by hand and keep `original_decision` / `original_why`.
+every researched row whose evidence SHOWS a visiting student, in its quote or in the stored capture it cites (the phrase directly after the name; or, when the row's
+own section is a pure visiting heading, that heading before the name with no other role heading or title between): 179 rows (Princeton 13, MIT 48, CMU 80,
+EPFL 19, Berkeley 6, Stanford 4, Michigan 9), keeping the quote, url and the role it had (`role_was`, `converted_from`; `role_quote` is the capture span when the
+quote itself does not show it). A hint that nothing shows (a reviewer's note, a section whose heading the capture does not place before the name) converts
+nothing: 47 such rows keep their earlier role; UChicago's two `not` rows were changed by hand and keep `original_decision` / `original_why`.
 `visiting_decided` in `pihier.students.researched`, `role_label` in `tools/export_release.py`.
 
 ## Student–paper links

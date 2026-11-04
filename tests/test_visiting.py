@@ -92,3 +92,14 @@ def test_R_STU_17_release_export_labels_and_relation():
     assert E.role_label(['visiting'], [dict(type='researched_membership', role='visiting')]) == 'Visiting student'
     assert E.role_label(['visiting'], [dict(type='thesis_adviser')]) == 'Visiting student'
     assert E.role_label(['phd', 'visiting'], []) == 'PhD student' and E.role_label(['member'], []) == 'Lab member'
+
+
+def test_R_STU_17_conversion_needs_the_evidence_shown_not_just_hinted():
+    # after-name wording shows it; a label before a name is not read as that name's role unless the row's own section is a visiting heading
+    assert VR.shown('Ann Lee (visiting PhD, ETH) Bo Xu PhD student', 'Ann Lee', False).startswith('Ann Lee (visiting')
+    assert VR.shown('Visiting Masters Student (ETH Zurich) Yuanyuan Gao Masters Student', 'Yuanyuan Gao', False) is None
+    assert VR.shown('Visiting Students Abdel Zaro (Berkeley) - PhD at GT Gargi Sadalgekar (Princeton)', 'Gargi Sadalgekar', True).startswith('Visiting Students')
+    # another role heading, a scientist title, or a mixed heading between the heading and the name stops it
+    assert VR.shown('Visiting Students Abdel Zaro Alumni Gargi Sadalgekar', 'Gargi Sadalgekar', True) is None
+    assert VR.shown('Visiting PhD student Navita Goyal Visiting research scientist Peter Hase', 'Peter Hase', True) is None
+    assert VR.shown('Undergraduate and Visiting Students Cy Wu', 'Cy Wu', True) is None

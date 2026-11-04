@@ -11,7 +11,7 @@ match (tools/visiting.py). The original quote and url are kept; `converted_from`
 The result is merged into hierarchy/<school>/reviewed/student-decisions.json (`decision: visiting`), which the build and labpage_audit read
 (tools/student_decisions.py); nothing in the evidence files is edited.
 
-  visiting_roles.py propose <school> ...          print what would be converted
+  visiting_roles.py propose <school> ...          print what would be converted (reads the stored captures: needs the project environment)
   visiting_roles.py write <school> ... [--root R] merge into R/hierarchy/<school>/reviewed/student-decisions.json (default: this checkout's worktree)
 """
 import argparse
@@ -75,6 +75,47 @@ def signal(row):
     return None
 
 
+_LIST_HEAD = re.compile(r"\b(?:Alum|Alumni|Alumnae|Postdocs?|Postdoctoral|Faculty|Staff|Collaborators?|Current|Past|Former|(?:PhD|Ph\.D\.|Graduate|Undergraduate|Master'?s|MS)\s+(?:Students?|Researchers?))\b")
+_TITLE_WORD = re.compile(r"\b(?:scientists?|professors?|post-?docs?|scholars?|researchers?|staff|engineers?|faculty)\b", re.I)
+_MIXED_BEFORE = re.compile(r"(?:undergrad\w*|graduate|ph\.?\s?d|master\w*|post-?docs?|staff|faculty|researchers?|scholars?|scientists?|collaborators?)\s*(?:and|&|,|/)\s*$", re.I)
+
+
+def shown(text, name, heading_ok):
+    """A verbatim span of `text` that shows the person is a visiting student, else None: the visiting phrase directly after the name ('Name (visiting PhD,
+    ETH)', 'Name Visiting Student 2024'), or, when the row's own section is a visiting heading (`heading_ok`), a visiting-students heading before the name
+    with no other role heading, staff or scientist title between them (400 characters at most). A label before a name is NOT read as the name's role
+    otherwise: pages that put the role after the name would give each name the previous person's label."""
+    start = 0
+    while True:
+        j = text.find(name, start)
+        if j < 0:
+            return None
+        after = text[j + len(name): j + len(name) + 110]
+        m = V.VISITING_RX.search(after)
+        if m and m.start() <= 4 and V.entry_says_visiting(after):
+            return text[j: j + len(name) + m.end()]
+        if heading_ok:
+            before = text[max(0, j - 400): j]
+            ms = list(V.VISITING_RX.finditer(before))
+            if ms:
+                h = ms[-1]
+                between = before[h.end():]
+                if not (_LIST_HEAD.search(between) or _TITLE_WORD.search(between) or V.VISITING_RX.search(between) or _MIXED_BEFORE.search(before[max(0, h.start() - 30): h.start()])
+                        or mini_role_of(after[:45])[0] in ('postdoc', 'other')):
+                    return text[max(0, j - 400) + h.start(): j + len(name)]
+        start = j + 1
+
+
+def capture_text(kit, school, row):
+    for key in (row.get('capture_url'), row.get('sha256')):
+        if key:
+            try:
+                return kit.lpev.text(school, key)
+            except (KeyError, ValueError):
+                continue
+    return None
+
+
 def _heading_fits_role(sec, role):
     """A row whose own role is a degree the heading does not name (a PhD row under 'Visiting Undergraduate Research Assistant') took that role from its own text:
     the heading is not about this person."""
@@ -83,40 +124,62 @@ def _heading_fits_role(sec, role):
     return bool(re.search({'phd': r'ph\.?\s?d|doctoral|(?<!under)graduate', 'masters': r'master|(?<!under)graduate', 'undergraduate': r'undergrad'}.get(role, r'$^'), sec, re.I))
 
 
-def propose(school, root=None):
+def propose(school, root=None, kit=None):
+    """({(pi, name): decision}, mixed, unverified): a row is converted only when its quote, or the stored capture it cites, SHOWS the person as a visiting student
+    (`shown`): the row's own note or section is a hint, never the evidence. `unverified` are hinted rows the quote and capture do not show."""
     rows = rows_of(school, root)
     by = collections.defaultdict(list)
     for fn, pi, r in rows:
         by[(pi, SD.fold(r['name']))].append((fn, r))
-    found, mixed = {}, []
+    found, mixed, unverified = {}, [], []
     for (pi, fn_name), items in by.items():
         sig = [(fn, r, signal(r)) for fn, r in items]
-        hits = [x for x in sig if x[2]]
-        if not hits:
+        hints = [x for x in sig if x[2]]
+        if not hints:
             continue
         if any(not x[2] and x[1].get('role') == 'phd' and not V.says_visiting(x[1].get('quote') or '') and not re.search(r'\(\s*visiting\s*$', x[1].get('quote') or '', re.I) for x in sig):   # a quote cut at '(Visiting' is the same entry
             mixed.append((pi, items[0][1]['name']))
             continue
-        if all(x[1].get('role') == 'postdoc' for x in hits):
+        if all(x[1].get('role') == 'postdoc' for x in hints):
             continue
-        fn, r, (basis, ev) = next(x for x in hits if x[1].get('role') != 'postdoc')
+        done = None
+        for fn, r, (basis, ev) in hints:
+            if r.get('role') == 'postdoc':
+                continue
+            heading_ok = basis == 'section'
+            span = shown(r.get('quote') or '', r['name'], heading_ok)
+            where = 'quote'
+            if not span and kit is not None:
+                t = capture_text(kit, school, r)
+                span = shown(t, r['name'], heading_ok) if t else None
+                where = 'capture'
+            if span:
+                done = (fn, r, basis, ev, span if where == 'capture' else None, where)
+                break
+        if not done:
+            unverified.append((pi, hints[0][1]['name'], hints[0][2][0]))
+            continue
+        fn, r, basis, ev, role_quote, where = done
         found[(pi, r['name'])] = dict(
-            decision='visiting', role_was=sorted({str(x[1].get('role')) for x in sig}), basis=basis, rule='R-STU-17',
-            why=f"visiting student of this lab ({basis}: {ev})", url=r.get('capture_url') or r.get('url'), quote=r.get('quote'), observed=TODAY,
-            converted_from=sorted({x[0] for x in hits}))
-    return found, mixed
+            decision='visiting', role_was=sorted({str(x[1].get('role')) for x in sig}), basis=f'{where} ({basis})', rule='R-STU-17',
+            why=f"visiting student of this lab (shown in the {where}; hint {basis}: {ev})", url=r.get('capture_url') or r.get('url'), quote=r.get('quote'), observed=TODAY,
+            converted_from=sorted({x[0] for x in hints}), **({'role_quote': role_quote, 'sha256': r.get('sha256')} if role_quote else {}))
+    return found, mixed, unverified
 
 
 def merge(school, found, root):
     f = P.data_w('student-decisions.json', school, root=root)
     d = json.loads(f.read_text()) if f.exists() else {}
     n = 0
+    for pi_ in list(d):   # a re-run replaces what an earlier run converted (entries with converted_from); hand decisions stay
+        d[pi_] = {k: v for k, v in d[pi_].items() if not (v.get('decision') == 'visiting' and v.get('converted_from'))}
     for (pi, nm), v in sorted(found.items()):
         cur = (d.setdefault(pi, {})).get(nm)
         if cur and cur.get('decision') in ('not', 'unclear', 'uchicago'):
             continue   # a reviewed decision stands; the converter never overrides it (UChicago's `not` rows are changed by hand with their quote kept)
         d[pi][nm] = v
         n += 1
+    d = {k: v for k, v in d.items() if v}
     f.write_text(json.dumps(d, ensure_ascii=False, indent=1, sort_keys=True) + '\n')
     return n
 
@@ -128,14 +191,17 @@ def main(argv=None):
     ap.add_argument('--root', default=str(Path(__file__).resolve().parents[1]), help='where write puts the reviewed file (default: this checkout)')
     a = ap.parse_args(argv)
     for s in a.schools:
-        found, mixed = propose(s)
+        import labpage_audit as LA
+        found, mixed, unverified = propose(s, kit=LA.Kit(s))
         by = collections.Counter(v['basis'] for v in found.values())
-        print(f'{s}: {len(found)} visiting {dict(by)}; mixed (left alone) {len(mixed)}')
+        print(f'{s}: {len(found)} visiting {dict(by)}; mixed (left alone) {len(mixed)}; hinted but not shown (left alone) {len(unverified)}')
         if a.cmd == 'propose':
             for (pi, nm), v in sorted(found.items()):
-                print(f"  {pi} | {nm} | was {v['role_was']} | {v['basis']} | {v['why'][:110]}")
+                print(f"  {pi} | {nm} | was {v['role_was']} | {v['basis']} | {(v.get('role_quote') or v['why'])[:140]}")
             for pi, nm in mixed:
                 print(f'  MIXED {pi} | {nm}')
+            for pi, nm, b in unverified:
+                print(f'  NOT SHOWN {pi} | {nm} | hint {b}')
         else:
             print(f'  wrote {merge(s, found, a.root)} decisions')
     return 0
