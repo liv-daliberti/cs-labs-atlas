@@ -296,15 +296,11 @@ SYNTH = ('Deep neural networks trained with stochastic gradient descent generali
 
 
 def selftest(model, long_tokens=9000):
-    """fp16 against fp32 on a few abstracts (from the texts database when it exists, else synthetic), plus one body long enough for two windows of the
+    """fp16 against fp32 on a few synthetic abstracts (no database: it may be locked by a writer), plus one body long enough for two windows of the
     model's chunk size: cosine must be > 0.99, vectors finite; logs tokens per second and the peak GPU memory of an 8k window."""
     import torch
     rows = [(f'A study of overparameterized networks {i}', SYNTH * (1 + i % 3) + f' Variant {i}.') for i in range(12)]
     body = ' '.join(f'{SYNTH} Section {i} continues with numbered observations about trial {i}.' for i in range(long_tokens // 40))
-    if C.TEXTS_DB.exists():
-        db = sqlite3.connect(f'file:{C.TEXTS_DB}?mode=ro', uri=True)
-        got = db.execute('select title, abstract from abstracts order by paper_id limit 24').fetchall()
-        rows = got or rows
     e16 = Embedder(model)
     seqs = [e16.encode_abstract(t, a) for t, a in rows]
     wins, ntok = e16.encode_body(body)
