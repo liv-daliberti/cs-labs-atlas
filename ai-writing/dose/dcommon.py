@@ -11,7 +11,7 @@ import atlas_paths as P  # noqa: E402
 import json, re, sys, time  # noqa: E402
 
 AIW = _Path(__file__).resolve().parents[1]   # this checkout's (or snapshot's) ai-writing: the code
-for _d in (AIW / 'detector_v2', AIW / 'diversity'):
+for _d in (AIW / 'detector_v2', AIW / 'diversity', AIW / 'embeddings'):
     if str(_d) not in sys.path:
         sys.path.append(str(_d))   # v2common (the detector's normalizer and passage splitter) and diversity/common
 
