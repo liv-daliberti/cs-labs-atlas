@@ -145,7 +145,15 @@ def test_oa_publisher_asks_the_publishers_open_location(monkeypatch):
     assert res.urls[0]['url'] == 'https://www.example-journal.org/a/1' and res.urls[0]['landing_url'] == 'http://www.example-journal.org/a/1'
 
 
-def test_bulk_oa_matching_order_doi_then_arxiv_then_title_author():
+@pytest.fixture
+def bulk_here(monkeypatch):
+    """This checkout's bulk_oa: another test removes this directory from sys.path, after which a main checkout's older copy can answer the import."""
+    import sys
+    monkeypatch.syspath_prepend(str(FTP))
+    monkeypatch.delitem(sys.modules, 'bulk_oa', raising=False)
+
+
+def test_bulk_oa_matching_order_doi_then_arxiv_then_title_author(bulk_here):
     import bulk_oa as B
     rows = [dict(school='mit', key='k1', work_id='w1', doi='10.1/abc', arxiv=None, nt='learningfixturerepresentationsforchannelplugins', fam=['lovelace'], year=2021),
             dict(school='mit', key='k2', work_id='w2', doi=None, arxiv='2101.00002', nt='shorttitle', fam=['hopper'], year=2020)]
@@ -177,7 +185,7 @@ def test_s2_bulk_channel_reads_the_local_table(monkeypatch):
     assert not any('dl.acm.org' in u for u in urls) and any('arxiv-dataset' in u for u in urls)  # ACM refuses automated clients
 
 
-def test_arxiv_bulk_matches_by_doi_then_exact_title_and_authors(monkeypatch):
+def test_arxiv_bulk_matches_by_doi_then_exact_title_and_authors(monkeypatch, bulk_here):
     from channels import arxiv_bulk as AB
     import ftp_common as F
     t = 'Learning Fixture Representations for Channel Plugins'
@@ -236,7 +244,7 @@ def test_oa_locations_siblings_need_the_same_article_like_type(monkeypatch):
     assert OL.siblings(ps[0], [], B.title_index(), None) == []
 
 
-def test_title_compatible_rejects_another_part_and_keeps_a_retitled_preprint():
+def test_title_compatible_rejects_another_part_and_keeps_a_retitled_preprint(bulk_here):
     import bulk_oa as B
     assert not B.title_compatible('Efficient Multiparty Interactive Coding - Part II: Non-Oblivious Noise', 'Efficient Multiparty Interactive Coding for Insertions, Deletions and Substitutions')
     assert not B.title_compatible('Language, Stapp, and the Mind/Body/World Problem', 'Towards a Science of Mind')
