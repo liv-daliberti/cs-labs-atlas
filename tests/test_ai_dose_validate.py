@@ -59,3 +59,10 @@ def test_cross_check_panel_correlations():
     liang = pd.DataFrame([dict(school=s, year=y, alpha=0.03 * (y - 2016), n=500) for s in ['mit', 'cmu'] for y in range(2016, 2027)])
     panel, corr, within = V.cross_check(pd.DataFrame(rows), liang)
     assert corr.loc['flagged', 'liang_alpha'] > 0.95 and within.loc['kobak_abs', 'liang_alpha'] > 0.95
+
+
+def test_precision_compare():
+    import check_precision as C
+    old = np.array([1e-6, 1e-3, 0.5, 0.9, 1e-9])
+    assert C.compare(old, old, 1e-3)['flag_change'] == 0 and C.compare(old, old * 1.0001, 1e-3)['logit_corr'] > 0.9999
+    assert C.compare(old, np.array([1e-6, 1e-4, 0.5, 0.9, 1e-9]), 1e-3)['flag_change'] == 0.2
