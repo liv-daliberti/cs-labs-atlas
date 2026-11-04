@@ -63,3 +63,12 @@ def use_extras():
     extra = str(P.ENV / 'embeddings-extra')
     if extra not in _sys.path:
         _sys.path.append(extra)
+
+
+def local_tmp(need_bytes=1 << 30):
+    """A node-local directory with room: $TMPDIR or /tmp, else /dev/shm (some nodes' /tmp is full: node805, node014 on 2026-11-04)."""
+    import shutil
+    for d in (os.environ.get('TMPDIR'), '/tmp', '/dev/shm'):
+        if d and os.path.isdir(d) and shutil.disk_usage(d).free > need_bytes:
+            return _Path(d)
+    raise RuntimeError('no node-local directory with free space')

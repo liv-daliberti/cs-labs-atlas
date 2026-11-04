@@ -19,7 +19,6 @@ import shutil
 import sqlite3
 import sys
 import time
-from pathlib import Path
 
 import ecommon as C
 import oa_snapshot as S
@@ -78,7 +77,7 @@ def cmd_filter(task, of):
     date, parts = S.manifest('works')
     want = wanted()
     mine = S.share([('works', u, b, r) for u, b, r in parts], task, of)
-    tmp = Path(os.environ.get('TMPDIR') or '/tmp') / f'oa-fields-{date}-{task:02d}.sqlite'
+    tmp = C.local_tmp() / f'oa-fields-{date}-{task:02d}.sqlite'
     tmp.unlink(missing_ok=True)
     db = sqlite3.connect(str(tmp))
     db.executescript(SCHEMA)
