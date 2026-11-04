@@ -30,7 +30,7 @@ def report(schools):
         if db is None:
             continue
         for ch in CHANNELS:
-            like = f'%/{ch}-%'
+            like = f'%/{ch}-20261104%'
             cand = db.execute('SELECT count(*), count(DISTINCT work_id) FROM candidates WHERE metadata_source LIKE ?', (like,)).fetchone()
             got = db.execute("SELECT count(*) FROM works w JOIN candidates c ON c.work_id=w.id AND c.url=w.download_url WHERE c.metadata_source LIKE ? "
                              "AND w.status IN ('downloaded','fulltext_xml')", (like,)).fetchone()[0]
@@ -45,7 +45,7 @@ def sample(ch, n, seed=1):
         db = ro(s)
         if db is None:
             continue
-        like = f'%/{ch}-%'
+        like = f'%/{ch}-20261104%'
         for w, t, fp, url, idc in db.execute("SELECT w.id, w.title, w.file_path, w.download_url, w.identity_check FROM works w JOIN candidates c ON c.work_id=w.id AND c.url=w.download_url "
                                               "WHERE c.metadata_source LIKE ? AND w.status IN ('downloaded','fulltext_xml')", (like,)):
             pool.append((s, w, t, fp, url, idc))
