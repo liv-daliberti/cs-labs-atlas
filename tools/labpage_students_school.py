@@ -421,6 +421,8 @@ def defense_lists(key, forms, first_year):
                     y = re.search(r'(20[12]\d)', tds[2])
                     items.append((nm, 'defense' if tds[0].startswith('Defense') else 'proposal', int(y.group(1)) if y else None, tds[3], tds[1]))
             for m in re.finditer(r'([A-Z][\w.\'\u2019-]+(?: [A-Z][\w.\'\u2019-]+){1,3}) Job Market Paper:.*?Dissertation Committee: (.*?)(?: Research Interests|$)', flat):
+                if len(AREA_PREFIX.sub('', m.group(1)).split()) > 3:
+                    continue   # two candidates run together ('Zhouyu Shen Boxin Zhao'): round 12; the proposals/defenses list names the student anyway
                 items.append((AREA_PREFIX.sub('', m.group(1)), 'jobmarket', int(r['timestamp'][:4]), m.group(2), AREA_PREFIX.sub('', m.group(1))))
             for nm, kind, y, com, cell in items:
                 chairs = [x.group(1) for x in CHAIR_RX.finditer(com)]
