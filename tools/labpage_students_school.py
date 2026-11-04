@@ -362,6 +362,25 @@ def adviser_alumni(key, forms):
     return list(by.values())
 
 
+def paged_flat(c, cap, r, url):
+    """The text of the other pages of a paged roster capture (`?page=N`, A-Z letters), each page's capture nearest in time within the same calendar year (Georgia Tech:
+    the College of Computing PhD-student lists show 12 per page, so page 0 alone names a fifth of the students). '' when the capture is not paged."""
+    import listing_formats as LF
+    h = W.raw_html(c, cap)
+    if not LF.is_paged(h):
+        return ''
+    out, ts0 = [], r['timestamp']
+    for _, u in (LF.page_links(h, r['original']) or LF.letter_links(h, r['original'])).items():
+        rows = [x for x in W.cdx_rows(c, re.sub(r'^https?://', '', u), frm=ts0[:4], to=ts0[:4], collapse=None) if x['timestamp'].startswith(ts0[:4])]
+        if not rows:
+            continue
+        x = min(rows, key=lambda z: abs(int(z['timestamp'][:8]) - int(ts0[:8])))
+        pc, st, _, pb = W.capture(c, x['timestamp'], x['original'], url, 'student-roster')
+        if st == 200:
+            out.append(W.flat(pb))
+    return ' '.join(out)
+
+
 def roster_coauthor_students(key, forms):
     """R-STU-02 source 4 (owner rule 2026-10-28, restated 2026-11-03): a PhD roster (names only; charter `[students].rosters` = [{url, kind}]) names a
     student's lab only together with a co-authorship: the roster name also stands on the byline of one of the PI's lab papers
@@ -388,7 +407,7 @@ def roster_coauthor_students(key, forms):
             cap, st, sha, b = W.capture(c, r['timestamp'], r['original'], url, 'student-roster')
             if st != 200:
                 continue
-            flat = W.flat(b); low = ' '.join(toks(flat))
+            flat = W.flat(b) + (' ' + paged_flat(c, cap, r, url) if ro.get('paged') else ''); low = ' '.join(toks(flat))
             for k, ps in papers.items():
                 if (' ' + k + ' ') not in (' ' + low + ' '):
                     continue
@@ -396,7 +415,7 @@ def roster_coauthor_students(key, forms):
                 m = re.search(r'\b' + r'\W+'.join(re.escape(t) for t in k.split()) + r'\b', flat, re.I)
                 if not m:
                     continue
-                if kind == 'students' and not re.search(r'Ph\.?\s?D', flat[m.end():m.end() + 40], re.I):
+                if kind == 'students' and not ro.get('listed_as_phd') and not re.search(r'Ph\.?\s?D', flat[m.end():m.end() + 40], re.I):
                     continue  # a student list also holds postdocs and visitors: the entry itself must say PhD
                 y = None
                 if kind == 'alumni_by_year':

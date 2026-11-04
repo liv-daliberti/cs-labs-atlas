@@ -105,7 +105,7 @@ note = ""
 directories = []          # program PhD directories that list each student's website (no adviser): tools/labpage_students_school.py directory
 adviser_directories = []  # current-student lists that name each student's adviser themselves (TTIC /students/): URL without scheme, Wayback captures
 adviser_alumni = []       # PhD alumni lists with 'Name PhD - YYYY Advisors - A and B' lines (TTIC /student-alumni/)
-rosters = []              # names-only PhD rosters [{url, kind = students | alumni_by_year}]: a student counts only when the name is also on the byline of a lab paper of the PI (R-STU-02)
+rosters = []              # names-only PhD rosters [{url, kind = students | alumni_by_year, paged = false, listed_as_phd = false}] (paged: follow ?page=N / A-Z pages of each capture; listed_as_phd: the page IS the PhD list, no 'Ph.D' mark per entry): a student counts only when the name is also on the byline of a lab paper of the PI (R-STU-02)
 sources = []              # in the protocol's order of preference: thesis repository, defence / graduation lists, lab pages
 
 [labpages]

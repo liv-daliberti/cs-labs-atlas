@@ -63,3 +63,15 @@ def test_hand_evidence_is_read_only_when_the_quote_is_in_the_stored_page(tmp_pat
     f.write_text(json.dumps([dict(good, sha256='')]))
     with pytest.raises(SystemExit):
         C.hand_evidence('k', con)
+
+
+def test_paged_roster_captures_add_the_text_of_their_pages(monkeypatch):
+    import labpage_students_school as L
+    html = '<nav class="pager"><a href="?page=1">2</a></nav>'
+    monkeypatch.setattr(L.W, 'raw_html', lambda c, cap: html)
+    monkeypatch.setattr(L.W, 'cdx_rows', lambda c, url, **k: [dict(timestamp='20200301000000', original='https://u.edu/' + url.split('/', 1)[1])])
+    monkeypatch.setattr(L.W, 'capture', lambda c, ts, orig, url, code: ('cap', 200, 's', [('p', 'Page two student')]))
+    monkeypatch.setattr(L.W, 'flat', lambda b: ' '.join(t for _, t in b))
+    assert L.paged_flat(None, 'cap0', dict(timestamp='20200401000000', original='https://u.edu/people/phd'), 'u.edu/people/phd') == 'Page two student'
+    monkeypatch.setattr(L.W, 'raw_html', lambda c, cap: '<ul><li>A B</li></ul>')
+    assert L.paged_flat(None, 'cap0', dict(timestamp='20200401000000', original='https://u.edu/p'), 'u.edu/p') == ''
