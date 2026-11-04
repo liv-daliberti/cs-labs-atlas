@@ -510,6 +510,20 @@ def page1_tie(txt, names, aff, titles):
     return None, [], None
 
 
+def snapshot_title_works(wanted, dbs=None):
+    """Works of the local OpenAlex snapshot's extension stores (ext-<school>.sqlite: every work of an onboarding school's lineage) whose normalised title is in `wanted`
+    (a set of norm_title strings): [(norm title, work dict as the API serves it)]. Free: no API credit (docs/OPENALEX-SNAPSHOT.md). Georgia Tech stage 7: tried before the title search."""
+    import oa_snapshot as O
+    out = []
+    for db in dbs if dbs is not None else [c for c, _ in O.exts()]:
+        for wid, title, body in db.execute('select id, title, body from works where title is not null'):
+            k = norm_title(title)
+            if k in wanted:
+                w = O.unpack(body)
+                out.append((k, w))
+    return out
+
+
 def run(school, workers=6, title_credits=600, floor=4000, dry=False):
     t0 = time.time()
     c = db(school); lock = threading.RLock()  # re-entrant: a revocation records a try while the main loop holds the lock (2026-10-31 deadlock)
@@ -660,6 +674,23 @@ def run(school, workers=6, title_credits=600, floor=4000, dry=False):
     def proc_links(x):
         return [u for l in x['row'].get('links') or [] if open_host(l) for u in [pdf_url(l)] if u]
     bare = [i for i, x in enumerate(cands) if i not in found and len(x['title'].split()) >= 4 and len(x['ct']) >= 25]
+    # 5a. the local snapshot's extension stores first (free): a bare row whose title is a work of the school's lineage
+    snap_hits = 0
+    if bare:
+        wanted = {cands[i]['ct'] for i in bare}
+        by_title = collections.defaultdict(list)
+        for k, w in snapshot_title_works(wanted):
+            by_title[k].append(w)
+        for i in list(bare):
+            for w in by_title.get(cands[i]['ct'], []):
+                if w.get('type') in NOT_PAPERS or w['id'] in found_ids[i]:
+                    continue
+                how = idx.match(norm_title(w.get('title')), w.get('publication_year')).get(i)
+                if how:
+                    found[i].append(('openalex', compact(w), 'snapshot_title_' + how)); found_ids[i].add(w['id']); snap_hits += 1
+        bare = [i for i in bare if i not in found]
+    n['title_snapshot_resolved'] = snap_hits
+    log(stage='snapshot_title', rows_with_works=len(found), works=snap_hits)
     tb = dict(credits=title_credits, floor=floor)
     phrase = lambda t: re.sub(r'\s+', ' ', re.sub(r'[^\w\s\-]', ' ', t)).strip()
     searched = 0
