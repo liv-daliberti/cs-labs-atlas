@@ -218,6 +218,16 @@ def preflight_regression(c, d):
     return rc, flags, f'against {base.parent.name}'
 
 
+def anchor_yield_problems(schools):
+    """ROADMAP #43: a PI whose identity anchors yield 0 papers and who has no recorded reason fails the release (stage_gate.yield_gaps)."""
+    import stage_gate as SG
+    bad = {k: g for k in schools for g in [SG.yield_gaps(k)] if g}
+    if not bad:
+        return ''
+    return 'anchors: PIs whose anchors yield 0 papers without a recorded reason (stage_gate.pi_reasons): ' + '; '.join(
+        f'{k} {len(g)} ({", ".join(n for n, _ in g[:4])}{", ..." if len(g) > 4 else ""})' for k, g in bad.items())
+
+
 def preflight(c):
     """Everything that failed only after a 35-60 minute rebuild, checked first and in parallel (about the time of the slowest check, the test suite)."""
     t0 = time.time()
@@ -253,6 +263,11 @@ def preflight(c):
             problems.append(f'{k}: failed ({took[k]} s): ' + log_tail(d / f'preflight-{k}.log'))
         else:
             notes.append(f'{k} ok ({took[k]} s)')
+    anchors = anchor_yield_problems(c.schools)
+    if anchors:
+        problems.append(anchors)
+    else:
+        notes.append('anchors yield papers ok')
     rc, flags, note = results['regression']
     if rc == 1:
         problems.append('regression: ' + note)

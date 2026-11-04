@@ -17,7 +17,9 @@ wired into pi_hierarchy.py / chain_audit.py. Prints one JSON line per stage and 
               dated evidence; papers of those years stay outside the appointment)
   2 also      the bulk-pull sanity check passes (tools/sweep_check.py -> hierarchy/<key>/sweep-check.json)
   5 identity  every PI has an anchor: a DBLP id, an ORCID or a reviewed OpenAlex id (census, additions, census-overrides), or a reviewed
-              `no_identity` + `why_no_identity` in the overrides (the person is a PI, no papers are attributed)
+              `no_identity` + `why_no_identity` in the overrides (the person is a PI, no papers are attributed); and the anchors yield
+              papers: a PI of the built package (pis.json) with verifiedWorks and labPapers both 0 fails unless the overrides record
+              `no_papers` + `why_no_papers` (or `no_identity`), or lab-coverage-reasons has a `papers` reason (ROADMAP #43)
   0 charter   school_config check passes and every host of the charter is consistent (hosts.json)
   6 students  the lab-page students acceptance is accepted, and the chain audit's students and one_person checks are explained
   7 papers    the lab-page papers acceptance is accepted, and the chain audit's papers and links checks are explained
@@ -205,7 +207,36 @@ def g5(key):
             n['reviewed_no_identity'] += 1
         else:
             bad.append(f"{x['name']}: no DBLP id, ORCID or reviewed OpenAlex id")
-    return bad, dict(n)
+    gaps = yield_gaps(key)   # an anchor that yields no papers is no anchor (ROADMAP #43)
+    bad += [f"{name}: anchors yield 0 papers ({why})" for name, why in (gaps or [])]
+    return bad, dict(n, anchors_yield_checked=gaps is not None)
+
+
+def pi_reasons(key, name):
+    """The recorded reasons a PI may have no papers: census-overrides `no_identity` + `why_no_identity`, or `no_papers` +
+    `why_no_papers` (a reviewed search that found nothing attributable), or a lab-coverage-reasons `papers` reason."""
+    o = CO.section(key).get(name) or {}
+    if o.get('no_identity') and o.get('why_no_identity') or o.get('no_papers') and o.get('why_no_papers'):
+        return True
+    r = (read(P.data('lab-coverage-reasons.json', key), {}) or {}).get(name) or {}
+    return bool((r.get('papers') or {}).get('why'))
+
+
+def yield_gaps(key):
+    """[(PI, anchors)] for the PIs of the built package (pis.json) whose anchors yield no papers (verifiedWorks and labPapers both 0)
+    and that have no recorded reason (pi_reasons); None when the school has no pis.json yet (nothing to measure). Georgia Tech
+    2026-11-04: ten PIs passed stage 5 on a bare DBLP pid that gave no titles and no OpenAlex id."""
+    pis = read(P.data('pis.json', key))
+    if pis is None:
+        return None
+    out = []
+    for p in pis if isinstance(pis, list) else pis.get('pis', []):
+        c = p.get('counts') or {}
+        if c.get('verifiedWorks', 0) or c.get('labPapers', 0) or pi_reasons(key, p['pi']):
+            continue
+        a = [k for k, v in (('DBLP', p.get('dblp')), ('ORCID', p.get('orcid')), ('OpenAlex', p.get('reviewedOpenAlex'))) if v]
+        out.append((p['pi'], '+'.join(a) or 'no anchor'))
+    return out
 
 
 ISO = re.compile(r'^\d{4}(-\d{2}(-\d{2})?)?$')

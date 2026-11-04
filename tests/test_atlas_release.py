@@ -332,6 +332,7 @@ def pf(env, monkeypatch, tmp_path):
             return type('R', (), {'returncode': 0, 'stdout': '', 'stderr': ''})()
         return real(*a, cwd=cwd)
     monkeypatch.setattr(AR, 'git', fake)
+    monkeypatch.setattr(AR, 'anchor_yield_problems', lambda schools: '')   # the real data's flagged PIs are tests/test_stage_gate_anchor_yield.py's business
     rel = tmp_path / 'rel' / 'hierarchy'
     rel.mkdir(parents=True)
     monkeypatch.setattr(AR, 'last_release_hierarchy', lambda: rel)

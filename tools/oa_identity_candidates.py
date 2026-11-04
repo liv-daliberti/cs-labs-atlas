@@ -81,7 +81,7 @@ def propose(pis, authors, min_works=MIN_WORKS):
 def main(key, write=False):
     stats = json.load(gzip.open(P.data('oa-author-stats.json.gz', key), 'rt'))['authors']
     import stage_gate as SG
-    open_names = {b.split(': no DBLP id')[0] for b in SG.g5(key)[0]}
+    open_names = {re.split(r': (?:no DBLP id|anchors yield 0 papers)', b)[0] for b in SG.g5(key)[0]}
     cen = {x['name']: x for x in json.loads(P.data('census-faculty.json', key).read_text())['faculty']}
     add = {x['name']: x for x in json.loads(P.data('census-additions.json', key).read_text())} if P.data('census-additions.json', key).exists() else {}
     pis = [cen.get(n) or add.get(n) for n in sorted(open_names)]
