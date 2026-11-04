@@ -32,7 +32,7 @@ if [ -s "$PRIORITY" ]; then
   ( flock 9; ${CS_ATLAS_COLLECTOR_PY} -I -u channel_runner.py $s ledger_found reader_link ) 9>>"$CS_ATLAS_FT_LOGS/run_steps-ledger_found.lock" >> "$CS_ATLAS_FT_LOGS"/lab_first_loop-$s.out 2>&1 < /dev/null || true
   if [ "$s" = princeton ]; then
     pk=$(ls -d "$CS_ATLAS_STORES"/princeton/discovery/claude-labpapers-*/ 2>/dev/null | grep -v newworks | while read d; do [ -s "$d/cs-open-copies-candidates.jsonl" ] && echo "cs_open_copies:$(basename $d)"; done)
-    [ -n "$pk" ] && ${CS_ATLAS_COLLECTOR_PY} -u "$CS_ATLAS_VENDOR/princeton_tools/import_all_when_free.py" $pk >> "$CS_ATLAS_FT_LOGS"/lab_first_loop-$s.out 2>&1 < /dev/null || true
+    [ -n "$pk" ] && timeout 1800 ${CS_ATLAS_COLLECTOR_PY} -u "$CS_ATLAS_VENDOR/princeton_tools/import_all_when_free.py" $pk >> "$CS_ATLAS_FT_LOGS"/lab_first_loop-$s.out 2>&1 < /dev/null || true
   fi
 fi
 RESTART_LOG="$CS_ATLAS_FT_LOGS/lab_first_loop-$s.out"
