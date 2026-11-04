@@ -108,8 +108,83 @@ def match_record(ix, doi=None, arxiv=None, title=None, first_family=None, year=N
     return None, []
 
 
+# ---------------------------------------------------------------- the OpenAlex snapshot, all stores (main + ext-<school>.sqlite)
+def oa_stores():
+    root = F.P.OA_SNAPSHOT / 'current'
+    import sqlite3
+    out = []
+    for p in [root / 'openalex.sqlite'] + sorted(root.glob('ext-*.sqlite')):
+        if p.exists():
+            out.append(sqlite3.connect(f'file:{p.resolve()}?mode=ro', uri=True, timeout=60))
+    return out
+
+
+def snapshot_date():
+    import os
+    cur = F.P.OA_SNAPSHOT / 'current'
+    return os.readlink(cur) if cur.is_symlink() else None
+
+
+def _unpack(b):
+    import zlib
+    return json.loads(zlib.decompress(b))
+
+
+def oa_by_doi(stores, doi):
+    """Work records with this DOI (exact lower-case, through the doi index; OA's DOIs are lower case)."""
+    out = []
+    for db in stores:
+        for (b,) in db.execute('SELECT body FROM works WHERE doi=?', ('https://doi.org/' + F.ndoi(doi),)):
+            out.append(_unpack(b))
+    return out
+
+
+def oa_by_id(stores, wid):
+    for db in stores:
+        r = db.execute('SELECT body FROM works WHERE id=?', (wid if wid.startswith('http') else 'https://openalex.org/' + wid,)).fetchone()
+        if r:
+            return _unpack(r[0])
+    return None
+
+
+def title_index_path():
+    return DIR / f'oa-title-index-{snapshot_date()}.json.gz'
+
+
+def build_title_index():
+    """{normalized title: [OpenAlex work ids]} for the titles of the targets table (>= 20 characters), one pass over every store's
+    id/title columns. Written next to the targets; rebuilt when the targets are newer."""
+    want = {r['nt'] for r in read_targets() if len(r.get('nt') or '') >= 20}
+    idx = {}
+    for db in oa_stores():
+        for i, t in db.execute('SELECT id, title FROM works WHERE title IS NOT NULL'):
+            if len(t) < 20:
+                continue
+            k = F.nt(t)
+            if k in want:
+                idx.setdefault(k, [])
+                if i not in idx[k]:
+                    idx[k].append(i)
+    p = title_index_path()
+    tmp = p.with_suffix('.tmp')
+    with gzip.open(tmp, 'wt') as f:
+        json.dump(idx, f)
+    tmp.replace(p)
+    return len(idx)
+
+
+def title_index():
+    p = title_index_path()
+    if not p.exists() or (TARGETS.exists() and p.stat().st_mtime < TARGETS.stat().st_mtime):
+        build_title_index()
+    with gzip.open(p, 'rt') as f:
+        return json.load(f)
+
+
 if __name__ == '__main__':
     if sys.argv[1] == 'targets':
         print(json.dumps(build(sys.argv[2:])))
+    elif sys.argv[1] == 'oa-titles':
+        print(build_title_index())
     elif sys.argv[1] == 'survey':
         print(json.dumps(Counter(r['school'] for r in read_targets())))
