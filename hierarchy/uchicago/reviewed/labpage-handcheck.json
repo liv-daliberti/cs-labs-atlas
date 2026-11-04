@@ -314,6 +314,33 @@
    "role_year_errors": 0,
    "paper_score": null,
    "result": "pass"
+  },
+  {
+   "round": 13,
+   "date": "2026-11-04",
+   "label": "Knowledge@UChicago ETD adviser relations (11 rows, all of them: fewer than the 30-row sample); judged from each item page's own quote",
+   "additions_generated_at": null,
+   "students": {
+    "sampled": 11,
+    "seed": null,
+    "membership_errors": 0,
+    "doubtful_count": 3,
+    "role_or_year_errors": 0
+   },
+   "papers": null,
+   "items": {
+    "membership": [],
+    "doubtful": [
+     "Ettinger: Zhou Xing (the item page's Published field is empty; the year 2021 comes from the OAI record)",
+     "James A. Evans: Xiaodi Yang and Ruining He (the advisor field reads 'Evans, James' without the middle initial; matched by the PI's 'James Evans' name form, the only atlas PI of that name; thesis topics fit his Knowledge Lab work)"
+    ],
+    "role_or_year": []
+   },
+   "membership_score": 1.5,
+   "role_year_errors": 0,
+   "paper_score": null,
+   "result": "pass",
+   "note": "Standard pairing: advisor field names the PI (all 11), student, defense year and unit read from the quote. Roles: MAPSS, MACSS, CIR and the other MA programmes are `masters` (the repository types every thesis 'doctoralThesis'); the 4 Computer Science rows are `phd` (unit Computer Science; the page does not state the degree)."
   }
  ]
 }
