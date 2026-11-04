@@ -13,7 +13,7 @@ from datetime import datetime, timezone  # noqa: E402
 EMB = P.EMBEDDINGS                      # <model>/<school>/<kind>.npz + <kind>.index.sqlite; shared tables next to them
 PARTS = EMB / 'parts'                   # <model>/<kind>/part_<job>_<seq>.npz: resumable chunks of a run, merged into the containers
 RESULTS = EMB / 'results'               # analysis tables (Parquet)
-REPORTS = _Path(__file__).resolve().parents[1] / 'diversity' / 'reports'
+REPORTS = _Path(os.environ.get('EMB_REPORT_DIR') or _Path(__file__).resolve().parents[1] / 'diversity' / 'reports')   # jobs run from a snapshot: set EMB_REPORT_DIR to write elsewhere
 UNIVERSE_DB = EMB / 'universe.sqlite'   # papers, lab_papers (this study's paper list)
 OA_FIELDS = EMB / 'oa_fields.sqlite'    # OpenAlex abstract_inverted_index + topics of the universe's works (from the bulk snapshot)
 TEXTS_DB = EMB / 'texts.sqlite'         # abstracts and full-text bodies (zlib) with their hashes, keyed by paper id
