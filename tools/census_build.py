@@ -29,10 +29,30 @@ from pathlib import Path
 
 import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
-from pi_hierarchy import Name, toks, nick_ok, EAST_ASIAN_FAMILY  # noqa: F401,E402
+from pi_hierarchy import Name, toks as _toks, nick_ok, EAST_ASIAN_FAMILY, nosuffix, SUFFIX  # noqa: F401,E402
 
 ORDER = ['ladder', 'research', 'teaching', 'lecturer', 'adjunct', 'visiting', 'courtesy', 'emeritus', 'other']
+# a title or an endowed-chair string is never a person's name or alias (ROADMAP #42)
+TITLE_NAME = re.compile(r'\b(?:Chair|Chaired|Professor|Professorship|Endowed|Distinguished)\b')  # not Dean or Director: given names and surnames
 HOME_PROF = re.compile(r'^(?:[A-Z][\w.\'\- ]+ )?(?:Assistant |Associate )?Professor(?! Emerit)(?: of [^,]+)?, (?!Electrical Engineering and Computer Science)(.+)$')
+
+
+def toks(n):
+    """Name tokens without a generational suffix ('Charles Isbell, Jr.' is charles/isbell). Read with the suffix as the family
+    name, every 'X Jr.' of a school was one 'jr' family and nickname-equal first names merged them (Georgia Tech 2026-11-04:
+    Isbell, Lever and Sutlief became one person)."""
+    return nosuffix(_toks(n))
+
+
+def has_suffix(n):
+    return any(t in SUFFIX for t in _toks(n)[1:])  # at the end ('Moore II.') or inside ('Elliot II Moore'): listing formats differ
+
+
+def display_name(rs, names):
+    """The latest listed spelling; when the person is also listed without the generational suffix, the latest such
+    spelling ('Charles Isbell', not 'Charles Isbell Jr.': ROADMAP #42)."""
+    plain = [r['name'] for r in rs if not has_suffix(r['name'])]
+    return plain[-1] if plain else rs[-1]['name']
 
 
 def slug(s):
@@ -71,7 +91,7 @@ def merge_people(rows):
     groups, by_fam = [], collections.defaultdict(list)
     for r in sorted(rows, key=lambda r: r['observed']):
         t = toks(r['name'])
-        if len(t) < 2:
+        if len(t) < 2 or TITLE_NAME.search(r['name']):
             continue
         g = next((g for g in by_fam[t[-1]] if any(given_compatible(toks(n)[:-1], t[:-1], t[-1]) for n in g['names'])), None)
         if g is None:
@@ -124,7 +144,7 @@ def main(key):
         rs = [r for r in g['rows'] if lo <= r['year'] <= hi]
         if not rs:
             continue
-        name = rs[-1]['name']  # the latest spelling
+        name = display_name(rs, g['names'])  # the latest spelling
         ranks_by_year = collections.defaultdict(set)
         for r in rs:
             ranks_by_year[r['year']].add(r['rank'])
@@ -177,7 +197,7 @@ def main(key):
         n[f'pi:{is_pi}'] += 1; n[f"basis:{(basis or {}).get('kind')}"] += 1
         cid = f'{key}_fac_' + slug(name)
         homepage = next((r['homepage'] for r in reversed(rs) if r.get('homepage')), None)
-        census.append(dict(name=name, aliases=[a for a in g['names'] if a != name], collection_person_id=cid, structure_name=name,
+        census.append(dict(name=name, aliases=[a for a in g['names'] if a != name and not TITLE_NAME.search(a)], collection_person_id=cid, structure_name=name,
                            profile_url=homepage, dblp=[d_['pid']] if (d_ := dblp_ids.get(name) or {}).get('pid') else [],
                            dblp_basis=d_.get('basis'), dblp_evidence={k: d_[k] for k in ('url', 'dump', 'sha256', 'quote') if k in d_} or None,
                            orcid=list(d_.get('orcid') or []), rank=best[max(best)], title_as_listed='; '.join(latest['titles']),
