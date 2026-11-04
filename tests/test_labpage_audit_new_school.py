@@ -40,3 +40,9 @@ def test_an_entry_naming_another_adviser_is_not_this_labs_student():
 def test_a_degree_year_entry_is_a_phd_not_the_postdoc_that_follows():
     assert L.entry_role('Ph.D. 2025, Post Doc @ Univ. of Illinois', None, lambda s: ('postdoc', 0))[0] == 'phd'
     assert L.entry_role('Ph.D. 2024', None, lambda s: ('member', 0))[0] == 'phd'
+
+
+def test_a_master_degree_entry_is_masters_not_the_heading_role():
+    f = lambda d: L.entry_role(d, 'Alumni — undergraduate & master\'s', lambda s: ('undergraduate', 0))[0]
+    assert f(' — MCAM, MS 2022 Tony Zhu — BS 2023') == 'masters' and f(' — MPCS, MS 2020') == 'masters' and f(' — CS, MS 2021') == 'masters'
+    assert f(' — BS 2023') == 'undergraduate'
