@@ -64,6 +64,13 @@ PIPELINES = {
         ('recover', 'school', 'PY $TOOLS/labpage_audit.py recover {school}', 'project', 2, '16G', '12:00:00'),
         ('audit', 'school', 'PY $TOOLS/labpage_audit.py audit {school}', 'project', 2, '16G', '02:00:00'),
     ],
+    # the PI homepage dive (stage 6, owner 2026-11-04): fetch every target page incl. reviewed extra-lab-pages.json (live where the host allows, else Wayback), follow their
+    # people links, extract students under the standard rules -> labpage-evidence.json
+    'homepage-dive': [
+        ('fetch', 'school', 'PY $TOOLS/periods_school.py fetch {school}', 'project', 1, '8G', '12:00:00'),
+        ('links', 'school', 'PY $TOOLS/labpage_students_school.py links {school}', 'project', 1, '8G', '12:00:00'),
+        ('extract', 'school', 'PY $TOOLS/labpage_students_school.py extract {school}', 'project', 2, '16G', '02:00:00'),
+    ],
     # why each student without a linked paper has none (chain check 4): offline over the school's sweep -> link-diagnosis.json
     'link-diagnosis': [
         ('diagnose', 'school', 'PY $TOOLS/link_diagnosis.py {school}', 'project', 2, '24G', '02:00:00'),
