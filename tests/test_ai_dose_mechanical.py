@@ -1,4 +1,9 @@
 """Mechanical-shift measurement on synthetic vectors: a pure style direction moves novelty by a known sign and the pairing is respected."""
+# ruff: noqa: E402
+import pytest
+
+pytest.importorskip('pandas')
+
 import numpy as np
 
 import dose_mechanical as M

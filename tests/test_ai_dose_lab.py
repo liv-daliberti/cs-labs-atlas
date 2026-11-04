@@ -1,4 +1,9 @@
 """Lab-year diversity draws, lab exposure and the DiD / placebo / event-study tables on synthetic labs with a planted effect."""
+# ruff: noqa: E402
+import pytest
+
+pytest.importorskip('pandas')
+
 import numpy as np
 import pandas as pd
 

@@ -1,4 +1,10 @@
 """AI-dose detector-free cross-checks (ai-writing/dose/excess.py) on synthetic documents."""
+# ruff: noqa: E402
+import pytest
+
+pytest.importorskip('pandas')
+pytest.importorskip('scipy')
+
 import numpy as np
 
 import excess as E

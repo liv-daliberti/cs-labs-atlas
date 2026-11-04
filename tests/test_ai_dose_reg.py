@@ -1,4 +1,9 @@
 """Fixed-effects regression of the AI-dose study against synthetic data with known coefficients."""
+# ruff: noqa: E402
+import pytest
+
+pytest.importorskip('pandas')
+
 import numpy as np
 import pandas as pd
 

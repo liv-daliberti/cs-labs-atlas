@@ -1,4 +1,9 @@
 """AI-dose statistics (ai-writing/dose/dose_stats.py) on fixtures with known answers."""
+# ruff: noqa: E402
+import pytest
+
+pytest.importorskip('pandas')
+
 import numpy as np
 import pandas as pd
 

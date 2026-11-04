@@ -1,4 +1,9 @@
 """Site data (dose_site.py): the AI flag definition, baseline adjustment and lab shrinkage on small fixtures."""
+# ruff: noqa: E402
+import pytest
+
+pytest.importorskip('pandas')
+
 import numpy as np
 import pandas as pd
 

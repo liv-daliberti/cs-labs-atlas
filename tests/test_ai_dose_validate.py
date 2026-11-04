@@ -1,4 +1,9 @@
 """Detector validation tables (ai-writing/dose/dose_validate.py) on synthetic scored papers: FPR per group, recalibration, panels."""
+# ruff: noqa: E402
+import pytest
+
+pytest.importorskip('pandas')
+
 import numpy as np
 import pandas as pd
 
