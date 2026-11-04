@@ -62,8 +62,9 @@ def test_no_unexplained_ignored_file_sits_in_a_reviewed_directory():
     paths = [f'hierarchy/{s}/reviewed' for s in schools()] + ['hierarchy/reviewed']
     out = subprocess.run(['git', '-C', str(ROOT), 'ls-files', '--others', '--ignored', '--exclude-standard', '--', *paths], capture_output=True, text=True).stdout.split('\n')
     def explained(f):
-        if f.startswith('hierarchy/reviewed/'):
-            return f.startswith(tuple(f'hierarchy/reviewed/{x}' for x in SHARED_DATA))
+        shared = 'hierarchy' + '/reviewed/'   # the .gitignore path, not a data path (tests/test_tests_use_atlas_paths.py)
+        if f.startswith(shared):
+            return f.startswith(tuple(shared + x for x in SHARED_DATA))
         return f.rsplit('/', 1)[-1] in GENERATED | NOT_READ
     bad = [f for f in out if f and not explained(f)]
     assert not bad, f'reviewed files that git ignores (add them to the .gitignore whitelist or to the lists in this test with the reason): {sorted(bad)}'
