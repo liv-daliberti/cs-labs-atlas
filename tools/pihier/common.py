@@ -61,7 +61,7 @@ def gate_related(w, gate, joint=None):
         cited = (joint or {}).get(who, set())
         for x in a.get('institutions') or []:
             ids = {str(l).rsplit('/', 1)[-1] for l in (x.get('lineage') or [])} | {str(x.get('id')).rsplit('/', 1)[-1]}
-            if (ids & rel) - cited and sch in ids and not any(rx.search(z or '') for z in raws):
+            if ids & rel and not (ids & cited) and sch in ids and not any(rx.search(z or '') for z in raws):   # a cited institution covers its own facilities (their lineage holds it)
                 x['lineage'] = [l for l in (x.get('lineage') or []) if str(l).rsplit('/', 1)[-1] != sch]
                 if str(x.get('id')).rsplit('/', 1)[-1] == sch:
                     x['id'] = None
