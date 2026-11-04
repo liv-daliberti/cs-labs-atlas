@@ -2,7 +2,7 @@
 # Queue a chain of 59-minute embedding tasks for each shard of one (model, kind): task r of a shard starts after task r-1 ends (afterany), so a
 # shard keeps one GPU busy until its todo is empty; tasks that find nothing to do exit at once. Never more than GPUS shards at a time in total:
 # the script refuses when this user already has GPUS or more emb-run tasks running or queued as chain heads.
-#   submit_embed.sh <model> <kind> <shards> <chain-length> [--dry]
+#   [AFTER=<jobid>] submit_embed.sh <model> <kind> <shards> <chain-length> [--dry]
 # --test-only is run first, and nothing is submitted when the scheduler answers "Preempts:".
 set -euo pipefail
 . "$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)/paths.sh" || exit 1
@@ -16,7 +16,7 @@ if [ "$((live + shards))" -gt "$GPUS" ]; then echo "{\"refused\": \"$live GPU ta
 EX=$(sinfo -h -N -p all -o %N | sort -u | grep -vE '^node91[5-7]$' | paste -sd,)
 export OF=$shards MODEL=$model KIND=$kind
 for ((s = 0; s < shards; s++)); do
-  prev=""
+  prev="${AFTER:-}"   # AFTER=<job id>: the chain waits for that job (a lane that runs several things one after another)
   for ((r = 0; r < chain; r++)); do
     dep=(); [ -z "$prev" ] || dep=(--dependency=afterany:$prev)
     t=$(SHARD=$s sbatch --test-only --exclude="$EX" "${dep[@]}" --export=ALL,SHARD=$s "$D/embed.slurm" 2>&1 || true)

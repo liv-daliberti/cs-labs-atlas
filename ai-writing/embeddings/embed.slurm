@@ -7,8 +7,8 @@
 #SBATCH --account=mltheory
 #SBATCH --exclude=node302,node105
 #SBATCH --gres=gpu:rtx_2080:1
-#SBATCH --cpus-per-task=4
-#SBATCH --mem=32G
+#SBATCH --cpus-per-task=2
+#SBATCH --mem=16G
 #SBATCH --time=00:59:00
 #SBATCH --output=ai-writing/logs/emb-run-%A_%a.out
 set -euo pipefail
