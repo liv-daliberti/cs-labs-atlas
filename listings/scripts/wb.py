@@ -64,7 +64,27 @@ def db(school):
     return con
 
 
+def _host_throttle():
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'fulltext-push'))
+    try:
+        import host_throttle as HT
+        return HT
+    except ImportError:
+        return None
+    finally:
+        sys.path.pop(0)
+
+
 def _throttle():
+    """One request slot of web.archive.org. 2026-11-04: the shared clock of fulltext-push/host_throttle.py (5 s slots, shared 429 cooldown) is the only
+    clock for every client; the old per-process stamp file below is the fallback when that module cannot be imported."""
+    HT = _host_throttle()
+    if HT is not None:
+        left = HT.cooldown_left('web.archive.org')
+        if left > 0:
+            print(f"  [web.archive.org cooling down after a 429: {left:.0f}s]", flush=True)
+        time.sleep(HT.reserve('web.archive.org', MIN_GAP))
+        return
     os.makedirs(os.path.dirname(LOCK), exist_ok=True)
     fd = os.open(LOCK, os.O_RDWR | os.O_CREAT, 0o600)
     with os.fdopen(fd, "r+") as f:
@@ -132,6 +152,10 @@ def raw_get(url, max_hops=6, timeout=90):
                 url = nxt
                 hops += 1
                 continue
+            if code == 429:
+                HT = _host_throttle()
+                if HT is not None:
+                    HT.record_429('web.archive.org')   # the cooldown is shared; the next _throttle() waits it out
             if code == 429 or code >= 500:
                 # a capture that keeps failing is usually broken in Wayback: give up sooner than on CDX
                 if backoff > (960 if "/cdx/" in url else 120):

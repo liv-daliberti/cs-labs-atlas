@@ -69,3 +69,14 @@ def test_client_uses_the_shared_clock_and_records_a_429(tmp_path, monkeypatch):
     assert cl.get('https://web.archive.org/web/1/x').status_code == 200
     assert S.calls == 2 and any(w >= 299 for w in slept)       # the 429 started a 300 s cooldown that this client then waited out
     assert HT.cooldown_left('web.archive.org') >= 0
+
+
+def test_wayback_client_takes_its_slot_from_the_shared_clock(monkeypatch):
+    """listings/scripts/wb.py (every Wayback fetch of the school tools) asks host_throttle for its slot and records a 429 there, not on a stamp file of its own."""
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'listings' / 'scripts'))
+    import wb
+    calls = []
+    monkeypatch.setattr(HT, 'reserve', lambda host, delay, **k: calls.append((host, delay)) or 0.0)
+    monkeypatch.setattr(HT, 'cooldown_left', lambda host, **k: 0.0)
+    wb._throttle()
+    assert calls == [('web.archive.org', wb.MIN_GAP)]
