@@ -84,7 +84,7 @@ Reasons for 0 students: {'sources_exhausted': 58, 'appointment_ended_early': 4, 
 | Avrim Blum | TTIC | 8 | adviser list 8 | 60 |  |  |
 | Ben Y. Zhao | CS | 7 | roster+co-author 7 | 58 |  |  |
 | Blase Ur | CS | 7 | roster+co-author 7 | 53 |  |  |
-| Brent Doiron | STAT | 10 | lab page 10 | 29 |  |  |
+| Brent Doiron | STAT | 12 | lab page 12 | 30 |  |  |
 | Bryon Aragam | BOOTH | 1 | roster+co-author 1 | 6 |  |  |
 | Chao Gao | STAT | 3 | roster+co-author 3 | 24 |  |  |
 | Chenhao Tan | CS | 5 | roster+co-author 5 | 76 |  |  |
@@ -108,7 +108,7 @@ Reasons for 0 students: {'sources_exhausted': 58, 'appointment_ended_early': 4, 
 | Kevin Gimpel | CS | 9 | adviser list 9 | 85 |  |  |
 | Kyle Chard | CS | 11 | roster+co-author 11 | 219 |  |  |
 | Madhur Tulsiani | CS | 10 | adviser list 8, lab page 2 | 23 |  |  |
-| Marisa Casillas | PSYCH | 16 | lab page 16 | 8 |  |  |
+| Marisa Casillas | PSYCH | 17 | lab page 17 | 8 |  |  |
 | Marshini Chetty | CS | 2 | roster+co-author 2 | 37 |  |  |
 | Matthew Stephens | STAT | 6 | roster+co-author 6 | 76 |  |  |
 | Matthew Walter | CS | 14 | adviser list 13, roster+co-author 1 | 65 |  |  |
@@ -123,7 +123,7 @@ Reasons for 0 students: {'sources_exhausted': 58, 'appointment_ended_early': 4, 
 | Rebecca Willett | CS | 7 | lab page 4, roster+co-author 3 | 69 |  |  |
 | Rick Stevens | CS | 6 | roster+co-author 6 | 121 |  |  |
 | Rina Foygel Barber | STAT | 7 | roster+co-author 7 | 96 |  |  |
-| Risi Kondor | CS | 6 | lab page 4, roster+co-author 2 | 39 |  |  |
+| Risi Kondor | CS | 6 | lab page 5, roster+co-author 1 | 39 |  |  |
 | Robert Grossman | CS | 2 | roster+co-author 2 | 87 |  |  |
 | Robert Rand | CS | 1 | roster+co-author 1 | 19 |  |  |
 | Ruey S. Tsay | BOOTH | 2 | roster+co-author 2 | 23 |  |  |
@@ -138,5 +138,5 @@ Reasons for 0 students: {'sources_exhausted': 58, 'appointment_ended_early': 4, 
 | Yanjing Li | CS | 5 | roster+co-author 5 | 23 |  |  |
 | Yuehaw Khoo | STAT | 1 | roster+co-author 1 | 39 |  |  |
 | Yury Makarychev | CS | 8 | adviser list 7, lab page 1 | 31 |  |  |
-| Yuxin Chen | CS | 5 | roster+co-author 5 | 59 |  |  |
+| Yuxin Chen | CS | 17 | lab page 14, roster+co-author 3 | 65 |  |  |
 | Zhiyuan Li | TTIC | 5 | adviser list 3, lab page 2 | 15 |  |  |
