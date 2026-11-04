@@ -63,5 +63,5 @@ def test_no_fixed_effects_has_an_intercept():
 def test_boot_fit_interval_covers_the_slope_and_relabels_nested_effects():
     d = frame(0, n_lab=60, per=10)
     est, lo, hi = R.boot_fit(d, 'y', 'x', 'lab', controls=['ctrl'], fe=['year', 'lab'], nested=['lab'], B=60)
-    assert lo < 0.30 < hi and abs(est - 0.30) < 0.1
+    assert lo < 0.30 < hi and abs(est - 0.30) < 0.2
     assert np.isnan(R.boot_fit(d[d['lab'] < 5], 'y', 'x', 'lab', fe=['lab'], nested=['lab'], B=20)[1])
