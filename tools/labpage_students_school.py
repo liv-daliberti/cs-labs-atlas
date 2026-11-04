@@ -495,9 +495,12 @@ def extract(key):
             (json.loads((P.data('census-additions.json', key)).read_text()) if (P.data('census-additions.json', key)).exists() else []):
         fac.append(Name([x['name']] + list(x.get('aliases') or [])))
     faculty_anywhere = all_faculty_names()
+    skip_pages = S.field(S.get(key), 'labpages.skip_pages') or []
     for pi, (t, urls) in targets_pages(key).items():
         N = Name([pi]); studs, seen = [], set()
         for u in urls:
+            if any(re.sub(r'^https?://(www\.)?', '', u).rstrip('/') == re.sub(r'^https?://(www\.)?', '', x['url']).rstrip('/') for x in skip_pages):
+                rep['reviewed_skipped_page'] += 1; continue   # a page a reviewer judged not to list this lab's members at the school ([labpages].skip_pages, with why)
             for cited, sha, h, year in stored_pages(c, u):
                 try:
                     cands, _ = lpdom.member_candidates(h.encode('utf-8', 'replace'), u)

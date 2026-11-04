@@ -1,8 +1,8 @@
 # uchicago: lab coverage (students, papers, reasons)
 
-Labs 134; with students 64; with papers 124; median papers per lab 21.
+Labs 134; with students 65; with papers 124; median papers per lab 21.
 
-Reasons for 0 students: {'sources_exhausted': 59, 'appointment_ended_early': 4, 'new_hire_2025_or_later': 7}. Reasons for 0 papers: {'no_identity': 1, 'appointment_ended_early': 1, 'no_school_affiliated_works': 4, 'new_hire_2025_or_later': 4}.
+Reasons for 0 students: {'sources_exhausted': 58, 'appointment_ended_early': 4, 'new_hire_2025_or_later': 7}. Reasons for 0 papers: {'no_identity': 1, 'appointment_ended_early': 1, 'no_school_affiliated_works': 4, 'new_hire_2025_or_later': 4}.
 
 | PI | dept | students | sources | papers | reason (students) | reason (papers) |
 |---|---|---|---|---|---|---|
@@ -21,7 +21,6 @@ Reasons for 0 students: {'sources_exhausted': 59, 'appointment_ended_early': 4, 
 | Ce Zhang | CS | 0 | - | 16 | sources_exhausted |  |
 | Christopher Thomas Ryan | BOOTH | 0 | - | 7 | sources_exhausted |  |
 | Claire Donnat | STAT | 0 | - | 26 | sources_exhausted |  |
-| Cong Ma | STAT | 0 | - | 21 | sources_exhausted |  |
 | David Cash | CS | 0 | - | 12 | sources_exhausted |  |
 | Denis R. Hirschfeldt | MATH | 0 | - | 11 | sources_exhausted |  |
 | Eric Budish | BOOTH | 0 | - | 17 | sources_exhausted |  |
@@ -81,14 +80,15 @@ Reasons for 0 students: {'sources_exhausted': 59, 'appointment_ended_early': 4, 
 | Aaron Elmore | CS | 9 | roster+co-author 9 | 56 |  |  |
 | Aaron Potechin | CS | 2 | roster+co-author 2 | 31 |  |  |
 | Allyson Ettinger | CS | 1 | roster+co-author 1 | 22 |  |  |
-| Andrew A. Chien | CS | 19 | lab page 9, roster+co-author 10 | 114 |  |  |
-| Avrim Blum | TTIC | 8 | adviser list 8 | 61 |  |  |
+| Andrew A. Chien | CS | 15 | lab page 5, roster+co-author 10 | 114 |  |  |
+| Avrim Blum | TTIC | 8 | adviser list 8 | 60 |  |  |
 | Ben Y. Zhao | CS | 7 | roster+co-author 7 | 58 |  |  |
 | Blase Ur | CS | 7 | roster+co-author 7 | 53 |  |  |
 | Brent Doiron | STAT | 10 | lab page 10 | 29 |  |  |
 | Bryon Aragam | BOOTH | 1 | roster+co-author 1 | 6 |  |  |
 | Chao Gao | STAT | 3 | roster+co-author 3 | 24 |  |  |
 | Chenhao Tan | CS | 5 | roster+co-author 5 | 76 |  |  |
+| Cong Ma | STAT | 1 | lab page 1 | 22 |  |  |
 | Dan Nicolae | STAT | 3 | roster+co-author 3 | 55 |  |  |
 | Daniel Sanz-Alonso | STAT | 1 | roster+co-author 1 | 45 |  |  |
 | David McAllester | CS | 5 | adviser list 4, roster+co-author 1 | 17 |  |  |
@@ -104,7 +104,7 @@ Reasons for 0 students: {'sources_exhausted': 59, 'appointment_ended_early': 4, 
 | John Lafferty | CS | 1 | roster+co-author 1 | 7 |  |  |
 | Julia Chuzhoy | CS | 5 | adviser list 5 | 27 |  |  |
 | Junchen Jiang | CS | 10 | roster+co-author 10 | 76 |  |  |
-| Karen Livescu | CS | 21 | adviser list 20, lab page 1 | 93 |  |  |
+| Karen Livescu | CS | 20 | adviser list 20 | 91 |  |  |
 | Kevin Gimpel | CS | 9 | adviser list 9 | 85 |  |  |
 | Kyle Chard | CS | 11 | roster+co-author 11 | 219 |  |  |
 | Madhur Tulsiani | CS | 10 | adviser list 8, lab page 2 | 23 |  |  |
@@ -123,7 +123,7 @@ Reasons for 0 students: {'sources_exhausted': 59, 'appointment_ended_early': 4, 
 | Rebecca Willett | CS | 7 | lab page 4, roster+co-author 3 | 69 |  |  |
 | Rick Stevens | CS | 6 | roster+co-author 6 | 121 |  |  |
 | Rina Foygel Barber | STAT | 7 | roster+co-author 7 | 96 |  |  |
-| Risi Kondor | CS | 13 | lab page 11, roster+co-author 2 | 42 |  |  |
+| Risi Kondor | CS | 6 | lab page 4, roster+co-author 2 | 39 |  |  |
 | Robert Grossman | CS | 2 | roster+co-author 2 | 87 |  |  |
 | Robert Rand | CS | 1 | roster+co-author 1 | 19 |  |  |
 | Ruey S. Tsay | BOOTH | 2 | roster+co-author 2 | 23 |  |  |

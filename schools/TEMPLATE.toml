@@ -109,6 +109,7 @@ rosters = []              # names-only PhD rosters [{url, kind = students | alum
 sources = []              # in the protocol's order of preference: thesis repository, defence / graduation lists, lab pages
 
 [labpages]
+skip_pages = []           # [{url, why}]: lab pages a reviewer judged not to list this lab's members at the school (the extract step does not read them)
 hints = []                # lab directories and naming patterns ("<x>.engin.umich.edu", "web.eecs.umich.edu/~<uniqname>")
 
 [store]
