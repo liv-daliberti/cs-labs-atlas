@@ -3,8 +3,8 @@
  "decided_at": "2026-11-03",
  "bar": "docs/LAB-PAGES.md, acceptance bar",
  "additions_file": "hierarchy/uchicago/reviewed/labpage-additions.json",
- "additions_generated_at": "2026-11-04T04:08:42+00:00",
- "additions_sha256": "710455ff7d027bafc0b9c2a25a11c2390753fd50dc3ff99e8f324f1dda7a155d",
+ "additions_generated_at": "2026-11-04T04:15:37+00:00",
+ "additions_sha256": "754c8f263460af7adeef6e9da10363c78a13c8039be8771932ffbc0983d5feff",
  "students": {
   "accepted": true,
   "round": 6,
@@ -17,14 +17,14 @@
   },
   "reason": "round 6 passes after the first attempt at this regeneration proposed 158 rows from department rosters (the Statistics alumni page and TTIC's alumni list filed under PIs who are not on them); the page-lacks-PI rule now applies to charter schools and an entry that names another adviser is dropped",
   "restamped_from": {
-   "sha256": "9be1e0a0fa53c465e948e52afce5cdfe72af49109cf3347567e04ba26fb2598f",
-   "generated_at": "2026-11-04T03:43:30+00:00",
+   "sha256": "710455ff7d027bafc0b9c2a25a11c2390753fd50dc3ff99e8f324f1dda7a155d",
+   "generated_at": "2026-11-04T04:08:42+00:00",
    "removed": 32,
    "reason": "rows removed by existing rules on regeneration (appointment periods R-PAP-01/03, strict current rule); no row added or changed"
   }
  },
  "papers": {
-  "accepted": true,
+  "accepted": false,
   "round": 7,
   "sample_size": 20,
   "seed": 20261113,
@@ -32,6 +32,12 @@
   "counts": {
    "proposed": 23
   },
-  "note": "second paper sample (after 44 titles were searched with the OpenAlex key, 9 resolved): every row has the PI on the byline, an appointment year and a page-1 or OpenAlex affiliation naming the university or TTIC; two doubtful rows"
+  "note": "second paper sample (after 44 titles were searched with the OpenAlex key, 9 resolved): every row has the PI on the byline, an appointment year and a page-1 or OpenAlex affiliation naming the university or TTIC; two doubtful rows",
+  "reason": "rows added (2) or changed (0) since round 7: a fresh hand-check round is needed",
+  "restamped_from": {
+   "sha256": "710455ff7d027bafc0b9c2a25a11c2390753fd50dc3ff99e8f324f1dda7a155d",
+   "added": 2,
+   "changed": 0
+  }
  }
 }
