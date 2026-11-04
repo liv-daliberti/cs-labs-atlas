@@ -18,4 +18,4 @@ export HF_HOME=$CS_ATLAS_HF_HOME HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 TOKENIZ
 export TMPDIR=/tmp/allai_${SLURM_JOB_ID}; mkdir -p $TMPDIR; trap 'rm -rf $TMPDIR' EXIT
 cd "$CS_ATLAS_AI_WRITING/allai"
 nvidia-smi --query-gpu=name,memory.total --format=csv,noheader
-$CS_ATLAS_ENV_PY -u rewrite.py run --style "${STYLE:-polish}" --shard "${SHARD:-0}" --of "${OF:-1}" ${SUBSAMPLE:+--subsample} ${LIMIT:+--limit $LIMIT}
+$CS_ATLAS_ENV_PY -u rewrite.py run --style "${STYLE:-polish}" --shard "${SHARD:-0}" --of "${OF:-1}" ${SUBSAMPLE:+--subsample} ${LIMIT:+--limit $LIMIT} --budget "${RW_BUDGET:-1000000000}"
