@@ -139,6 +139,8 @@
  "tools/provenance.py": "launched under python -I, or imported by a script that is (docs/CONTRIBUTING.md, Imports and sys.path)",
  "tools/reader_export.py": "cross-directory import (tools/ reaching fulltext-push/, listings/, vendor/ or labpage-tools): PYTHONPATH does not cover it under -I",
  "tools/reader_links.py": "launched under python -I, or imported by a script that is (docs/CONTRIBUTING.md, Imports and sys.path)",
+ "tools/roster_dive_fetch.py": "entry point that reaches fulltext-push/host_throttle.py (shared web.archive.org clock) beside tools/mpcap.py",
+ "tools/roster_pair_verdicts.py": "entry point run as a script beside tools/atlas_paths.py",
  "tools/route_paths.py": "launched under python -I, or imported by a script that is (docs/CONTRIBUTING.md, Imports and sys.path)",
  "tools/school_config.py": "launched under python -I, or imported by a script that is (docs/CONTRIBUTING.md, Imports and sys.path)",
  "tools/school_web.py": "cross-directory import (tools/ reaching fulltext-push/, listings/, vendor/ or labpage-tools): PYTHONPATH does not cover it under -I",

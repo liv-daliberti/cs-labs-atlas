@@ -16,6 +16,7 @@ Findings beyond the five earlier hand checks:
 - **Namesake pairs**: the four Yuhan Liu pairs (Hoffmann, Jiang, Maire, Lu) pair the Statistics roster's Yuhan Liu (PhD alumnus 2024 on stat.uchicago.edu/alumni/phd-alumni/) with the CS PhD student of the same name (listed on Shan Lu's page and as "Yuhan Liu (with Shan Lu)" on Junchen Jiang's). Any name-based roster rule keeps them.
 - **Settled by own pages**: Park/Veitch is true (kihopark.github.io: "advised by Victor Veitch"), reversing the "unsettled" in ROUND9; June Wu/Tulsiani is true (Tulsiani's page: "June Wu ... co-advised with Shmuel Weinberger. PhD 2025"). Lo/Khoo remains unsettled.
 - Not usable: the Mathematics Genealogy Project answers again, but its robots.txt names ClaudeBot and anthropic-ai with `Disallow: /`, so it was not fetched (a web-search snippet mentioned a Hur/Khoo entry there; not used). Statistics `/events/` is robots-disallowed and was skipped. The UChicago ETD has no Statistics or CAM dissertations (ROUND9).
+- Local full text (texts.sqlite, 2,979 usable UChicago papers): every student-name-near-"advis/thesis/dissertation" hit was a citation context, none an acknowledgement naming an adviser; no pair settled this way.
 - Wikidata: `tools/wikidata_students.py` was not run for these students (no pair depended on it).
 
 ## Rule measurements (56 settled pairs: 41 true, 15 not; Wilson 95% intervals)
