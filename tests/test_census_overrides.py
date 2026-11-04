@@ -222,3 +222,10 @@ def test_a_department_people_page_is_not_a_lab_page():
     page = 'People Ann Lee Professor Bo Wu Professor Cy Roe Di Fox Ed Gray Flo Hart Graduate students Sam Poe'
     assert L.is_department_roster(page, fac, 6)
     assert not L.is_department_roster('Ann Lee group: students Sam Poe, Tia Kim; collaborator Bo Wu', fac, 6)
+
+
+def test_student_decisions_exclude_not_and_unclear_only():
+    import student_decisions as SD
+    dec = {'Pia': {'Ann Lee': {'decision': 'not'}, 'Bo Roe': {'decision': 'unclear'}, 'Cy Poe': {'decision': 'uchicago'}}}
+    assert SD.excluded(dec, 'Pia', 'ann  LEE') and SD.excluded(dec, 'Pia', 'Bo Roe')
+    assert not SD.excluded(dec, 'Pia', 'Cy Poe') and not SD.excluded(dec, 'Pia', 'Dee') and not SD.excluded(dec, 'Other', 'Ann Lee')

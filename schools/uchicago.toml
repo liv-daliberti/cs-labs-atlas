@@ -286,7 +286,7 @@ sources = [
 ]
 
 [labpages]
-skip_pages = [{url = "https://yuxinchen.org/people/", why = "2026-11-04 homepage dive: Yuxin Chen's people page lists alumni (BS/MS, years 2020-2024) of his earlier institution next to UChicago students; 6 of the 7 rows proposed from it end before his UChicago appointment and the page cannot separate them, so the page is not read"}, {url = "https://aisecure.github.io/GROUP/index.html", why = "2026-11-04 homepage dive: Bo Li's group page lists PhD and MS students and a postdoc without saying which institution (the group spans UIUC and UChicago; the heading mixes all roles): 11 rows judged doubtful membership at UChicago, so the page is not read"}]
+skip_pages = []   # per-person decisions replace the blanket skips of 2026-11-04 (hierarchy/uchicago/reviewed/student-decisions.json)
 hints = ["people.cs.uchicago.edu/~<name>/", "<lab>.cs.uchicago.edu", "<lab>.uchicago.edu", "sites.google.com/view/<lab>", "github.io"]
 
 [store]

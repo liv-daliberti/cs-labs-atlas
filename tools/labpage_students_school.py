@@ -43,6 +43,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))  # python -I leaves the
 import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
 import census_overrides as CO  # noqa: E402
+import student_decisions as SD  # noqa: E402
 import school_web as W  # noqa: E402
 import periods_school as PS  # noqa: E402
 from pi_hierarchy import Name, toks  # noqa: E402
@@ -515,6 +516,7 @@ def extract(key):
         fac.append(Name([x['name']] + list(x.get('aliases') or [])))
     faculty_anywhere = all_faculty_names()
     skip_pages = S.field(S.get(key), 'labpages.skip_pages') or []
+    decisions = SD.load(key)
     for pi, (t, urls) in targets_pages(key).items():
         N = Name([pi]); studs, seen = [], set()
         for u in urls:
@@ -531,6 +533,8 @@ def extract(key):
                     rep['department_roster_page_skipped'] += 1; continue   # a department people page names many faculty: not this PI's lab page (UChicago homepage dive)
                 for path, name, rest, nxt, idx in cands:
                     name = clean_student_name(name)
+                    if SD.excluded(decisions, pi, name):
+                        rep['reviewed_decision_dropped'] += 1; continue   # decided not / unclear for this lab (student-decisions.json)
                     if (path and any(NOT_STUDENT_HEAD.match(x) for x in path)) or ' '.join(toks(name)) in faculty_anywhere:
                         rep['dropped_hiring_or_faculty'] += 1; continue
                     role = lpdom.role_of(*(list(reversed(path)) + [rest]))

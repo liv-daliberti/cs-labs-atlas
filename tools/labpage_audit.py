@@ -52,6 +52,7 @@ from urllib.parse import urlsplit
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
 import census_overrides as CO  # noqa: E402
+import student_decisions as SD  # noqa: E402
 
 H = P.HIERARCHY
 HT = Path(__file__).resolve().parents[1] / 'hierarchy'   # the tracked lab-page toolkits (hierarchy/labpage-tools-*) of THIS checkout or snapshot, not the main checkout's: a toolkit fix on a branch must be the code that runs (Georgia Tech friction 29)
@@ -1552,6 +1553,9 @@ def audit_students(kit, ctx, p, lab, plan, auto_plan=False):
                 nm = nm_c
                 if role_c and best.get('role') in (None, 'member', 'other', 'postdoc', 'phd'):
                     best = dict(best, role=role_c, role_basis='entry_parenthetical')
+            if SD.excluded(ctx_decisions(school), pi, nm):
+                miss['reason_code'], miss['detail'] = 'reviewer_excluded', 'decided not / unclear for this lab (student-decisions.json)'
+                continue
             why_ = (not_a_member_context(kit, school, nm, best) or page_lacks_pi(kit, school, p, best) or names_another_adviser(p, best)
                     or repair_reason(kit, school, nm, dict(best, years=years), pi_start_year(p), p.get('pi')))
             if why_:  # a Stanford Profiles reader / program listing, or a name in a citation (Stanford round 1, 2026-11-01)
@@ -1798,7 +1802,7 @@ BIO_TAIL = re.compile(r"^(?:(?:Prof\.?|Professor|Dr\.?)\s+)?(?:[A-Z]\.|[A-Z][\w'
 OTHER_INST_ROLE = re.compile(r"\b(?:MS|M\.S\.|MSc|PhD|Ph\.D\.|BS|B\.S\.|Undergrad(?:uate)?|Master'?s?)\s+(?:Student|Candidate|Researcher)?\s*,?\s*(MIT|Harvard|Caltech|Cornell|Yale|Princeton|Columbia|Oxford|Cambridge|ETH|EPFL|NUS|Tsinghua|Stanford|Berkeley|CMU|UCLA|UCSD|Toronto|Waterloo|Michigan)\b")
 OWN_INST_NAMES = {'michigan': {'MICHIGAN'}, 'stanford': {'STANFORD'}, 'mit': {'MIT'}, 'cmu': {'CMU'}, 'berkeley': {'BERKELEY'}, 'epfl': {'EPFL'}, 'princeton': {'PRINCETON'}}
 FACULTY_HEAD = re.compile(r"\bVisiting\s+(?:Scientists?|Professors?|Faculty|Researchers?\s+at)\b|\bFaculty\b(?!.*student)|\bCollaborators?\b", re.I)
-NAME_NOISE = re.compile(r"\b(?:Fellowship|Scholarship|Award|Prize|Grant|Foundation|Oral'?s?|Orals?\s+Chair|Chair|Reader|Committee|Evaluator|Examiner|Moderator|Panelist)\b", re.I)
+NAME_NOISE = re.compile(r"\b(?:Fellowship|Scholarship|Award|Prize|Grant|Foundation|Oral'?s?|Orals?\s+Chair|Chair|Reader|Committee|Evaluator|Examiner|Moderator|Panelist|Complaint|Policy|Privacy|Accessibility|Transfer|Network|Learning)\b", re.I)
 PAREN_TAIL = re.compile(r'\s*\(([^()]{1,40})\)\s*$')
 COADVISER_BEFORE = re.compile(r"(?:co-?advis(?:ed|ors?|ing|e)|co-?taught|taught|co-?supervis\w*|jointly\s+\w+|joint(?:ly)?)\s*(?:with|w/|by|:)\s*$|\(\s*with\s+$|\bw/\s*$|\bwith\s+Prof\.?\s+$", re.I)
 COLLAB_PROSE = re.compile(r"collaborat\w*\s+with\s+(?:the\s+|some\s+)?(?:\w+\s+){0,3}(?:students|researchers|postdocs)", re.I)
@@ -2406,6 +2410,15 @@ def school_summary(recs, stu_adds, pap_adds):
                     missing_by_reason=dict(p_miss), genuinely_missing=p_miss.get('genuinely_missing', 0),
                     proposed_additions=len(pap_adds)),
     )
+
+
+_DEC = {}
+
+
+def ctx_decisions(school):
+    if school not in _DEC:
+        _DEC[school] = SD.load(school)
+    return _DEC[school]
 
 
 def onboarding(school):
