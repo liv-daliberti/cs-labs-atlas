@@ -196,6 +196,7 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `census-report.md` | derived | `census/{school}-report.md` | `hierarchy/{school}/derived/report.md` | - | <100MB |
 | `dblp-affiliated.json` | derived | `hierarchy/{school}/dblp-affiliated.json` | `hierarchy/{school}/derived/dblp-affiliated.json` | - | <100MB |
 | `units-done.json` | derived | `hierarchy/{school}/units-done.json` | `hierarchy/{school}/derived/units-done.json` | - | <1MB |
+| `truncated-title-evidence.json` | derived | `hierarchy/{school}/truncated-title-evidence.json` | `hierarchy/{school}/derived/truncated-title-evidence.json` | - | <10MB |
 | `cs-related-hand.json` | reviewed | `hierarchy/{school}/cs-related-hand.json` | `hierarchy/{school}/reviewed/cs-related-hand.json` | - | <10MB |
 | `cs-related-candidates-openalex.json` | derived | `hierarchy/{school}/cs-related-candidates-openalex.json` | `hierarchy/{school}/derived/cs-related-candidates-openalex.json` | - | <100MB |
 | `defense-evidence.json` | reviewed | `hierarchy/{school}/defense-evidence.json` | `hierarchy/{school}/reviewed/defense-evidence.json` | - | <100MB |

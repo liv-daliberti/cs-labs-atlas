@@ -335,6 +335,7 @@ STEPS = {
           Q('periods-extract', 'PY $TOOLS/periods_school.py extract {school}', time='02:00:00'),
           Q('periods-gaps', 'PY $TOOLS/periods_school.py gaps {school}', time='04:00:00'),
           Q('periods-extend', 'PY $TOOLS/periods_school.py extend {school}', time='04:00:00'),
+          Q('periods-truncated', 'PY $TOOLS/periods_school.py truncated {school}', time='04:00:00', done=['truncated-title-evidence.json']),
           H('holds', 'review periods/<key>-holds.json; a departure the page states is faculty_end_moved evidence; periods use ISO dates')],
     '5': [Q('dblp-ids', 'PY $TOOLS/dblp_ids_school.py {school}', mem='24G', time='01:00:00', done=['dblp-ids.json']),
           Q('homepage-links', 'PY $TOOLS/homepage_links_school.py {school}', time='04:00:00', done=['homepage-identity.json']),

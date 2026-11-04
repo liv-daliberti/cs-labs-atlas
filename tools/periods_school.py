@@ -16,7 +16,9 @@ accept    the earliest stated faculty start year; a closed range or 'until'/'lef
    periods/<key>-holds.json
 gaps      dated Wayback captures for a PI's listing gap years (see gaps()); closes the gap with a reviewed period
 extend    the window years a unit directory misses, from dated unit profile captures (see extend())
-usage: periods_school.py fetch|extract|gaps|extend <key>
+truncated  the years a department card cut a title short ('Executive Director, Institute for Data…': the word Professor is lost, the row reads unranked): dated
+          profile / homepage captures of exactly those years naming the person with a professor title (see truncated())
+usage: periods_school.py fetch|extract|gaps|extend|truncated <key>
 """
 import collections, json, re, sys, zlib
 
@@ -315,5 +317,83 @@ def extend(key, write=True):
     save()
 
 
+def truncated_years(rows):
+    """{name: [years]}: years in which every row of the person is an unranked (rank 'other') row whose title ends in an ellipsis, i.e. a card that cut the title
+    short; such a row proves no rank (Georgia Tech stage 2: 38 people, 8 not covered by an adjacent ladder year)."""
+    by = collections.defaultdict(lambda: collections.defaultdict(list))
+    for r in rows:
+        by[r['name']][r['year']].append(r)
+    out = {}
+    for n, ys in by.items():
+        yrs = sorted(y for y, rs in ys.items() if all(r['rank'] == 'other' for r in rs) and any('…' in t for r in rs for t in r['titles']))
+        if yrs:
+            out[n] = yrs
+    return out
+
+
+def truncated(key, write=True):
+    """Bridge truncated-title years (Georgia Tech R9). For every person whose card cut the title in some years, fetch the dated captures of those calendar years
+    of the person's profile page (charter [periods].profile_patterns) and homepage; a capture naming the person with a ladder title proves that year. A PI whose
+    truncated years are all proven gets a reviewed period (first ladder listing year to no end, like gaps()); a non-PI is reported, never added.
+    -> hierarchy/<key>/truncated-title-evidence.json"""
+    import cs_related_school as CR
+    c = W.con(key); rx = S.aff_rx(key); out = {}
+    rows = json.loads((P.data('rows.json', key)).read_text())
+    cen = {x['name']: x for x in json.loads((P.data('census-faculty.json', key)).read_text())['faculty']}
+    add = {x['name']: x for x in json.loads((P.data('census-additions.json', key)).read_text())} if (P.data('census-additions.json', key)).exists() else {}
+    tg = {t['name']: t for t in targets(key)}
+    for name, years in sorted(truncated_years(rows).items()):
+        x = cen.get(name) or add.get(name) or {}
+        pi = bool(x.get('is_pi'))
+        t = tg.get(name) or dict(name=name, urls=[])
+        names = [name] + list(x.get('aliases') or [])
+        tk = [w for w in re.sub(r'[^a-z ]', ' ', re.sub(r'\s*\([^)]*\)', '', name).lower().replace(' jr', '')).split() if len(w) > 1]
+        urls = list(t['urls'])
+        for pat in S.field(S.get(key), 'periods.profile_patterns') or []:
+            if len(tk) >= 2:
+                urls.append(pat.format(first=tk[0], last=tk[-1], all='-'.join(tk)))
+        urls = list(dict.fromkeys(urls))
+        ev = {}
+        for y in years:
+            for u in urls:
+                if y in ev:
+                    break
+                for r in W.cdx_rows(c, re.sub(r'^https?://', '', u), frm=str(y), to=str(y), collapse='timestamp:6')[:4]:
+                    cap, st, sha, b = W.capture(c, r['timestamp'], r['original'], u, 'trunc:' + name)
+                    if st != 200:
+                        continue
+                    flat = W.flat(b)
+                    if u in t['urls'] and not rx.search(flat):
+                        continue
+                    hit = [h for h in CR.faculty_evidence([('trunc', cap, sha, r['timestamp'], flat)], names) if h['ladder']]
+                    if hit:
+                        ev[y] = dict(url=cap, sha256=sha, quote=hit[0]['quote'], observed=f"{r['timestamp'][:4]}-{r['timestamp'][4:6]}-{r['timestamp'][6:8]}", kind='profile_capture', page=u)
+                        break
+        out[name] = dict(pi=pi, truncated_years=years, evidence={str(y): e for y, e in ev.items()}, closed=all(y in ev for y in years), urls_tried=urls)
+        print(json.dumps(dict(name=name, pi=pi, years=years, proven=sorted(ev))), flush=True)
+    P.data_w('truncated-title-evidence.json', key).write_text(json.dumps(out, indent=1, ensure_ascii=False))
+    if not write:
+        return out
+    sec, save = CO.open_section(key)
+    for name, g in out.items():
+        if not g['pi'] or not g['closed']:
+            continue
+        x = cen.get(name) or add.get(name) or {}
+        lad = sorted(int(y) for y, rk in (x.get('ranks_by_year') or {}).items() if 'ladder' in rk)
+        if not lad:
+            continue
+        srcs = sorted([s_ for s_ in x.get('sources') or [] if s_.get('quote')], key=lambda s_: s_.get('observed') or '')
+        iso = lambda d: (f'{d[:4]}-{d[4:6]}-{d[6:8]}' if d and re.fullmatch(r'\d{8}(?:\d{2}){0,3}', d) else d)
+        evs = ([dict(url=srcs[0]['url'], sha256=srcs[0]['sha256'], quote=srcs[0]['quote'], observed=iso(srcs[0].get('observed')), kind='dept_listing')] if srcs else []) + \
+              [dict(url=e['url'], sha256=e['sha256'], quote=e['quote'], observed=e['observed'], kind=e['kind']) for _, e in sorted(g['evidence'].items())]
+        per = dict(id=f"override_period_trunc_{key}_{re.sub(r'[^a-z0-9]+', '_', name.lower()).strip('_')}", start=str(lad[0]), end=None, asof=evs[-1]['observed'][:10], datePrecision='year', evidence=evs,
+                   note=f"Ladder listings from {lad[0]}; the years {g['truncated_years']} are listing rows whose title the department card cut short, proven by dated profile captures "
+                        f"(hierarchy/{key}/truncated-title-evidence.json). Start is a lower bound; no end is claimed.", reviewed='periods_school_truncated_20261103')
+        e = sec.setdefault(name, {})
+        e['periods'] = [p_ for p_ in e.get('periods') or [] if not p_.get('id', '').startswith('override_period_trunc_')] + [per]
+        e['why_periods'] = (e.get('why_periods') or '') + ' Truncated-title years closed by dated profile captures (tools/periods_school.py truncated).'
+    save()
+
+
 if __name__ == '__main__':
-    {'fetch': fetch, 'extract': extract, 'gaps': gaps, 'extend': extend}[sys.argv[1]](sys.argv[2])
+    {'fetch': fetch, 'extract': extract, 'gaps': gaps, 'extend': extend, 'truncated': truncated}[sys.argv[1]](sys.argv[2])
