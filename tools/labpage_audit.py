@@ -976,6 +976,11 @@ def scan_prior(kit, school, p, ctx):
 
 
 # ---------------------------------------------------------------- context
+def wired_paper_row(r):
+    """A lab-paper row the build took from the accepted lab-page additions (source 'labpage_addition:<rule>:<basis>')."""
+    return str(r.get('source') or '').startswith('labpage_addition:')
+
+
 def without_wired_additions(students, school, wired=None):
     """R13 (Georgia Tech friction 36): the build already holds the accepted additions, so an audit run against it saw every wired student as 'in the build' and regenerated the
     additions without them, which un-wired them at the next build. A student record whose relations ALL come from rows of the currently accepted additions (same PI, same page
@@ -1014,7 +1019,7 @@ def load_ctx(school, kit=None, plan=True):
     ctx['students'] = without_wired_additions(read(P.data('students.json', school)), school)
     lp = collections.defaultdict(list)
     for r in read(P.data('lab_papers.jsonl.gz', school)):
-        if str(r.get('source') or '').startswith('labpage_addition:'):
+        if wired_paper_row(r):
             continue   # R13 for papers: a paper the build holds only through the accepted additions is not 'already a lab paper' for the audit that regenerates them
         lp[r['pi']].append(r)
     ctx['lab_papers'] = lp
