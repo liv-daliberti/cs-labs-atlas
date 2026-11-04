@@ -123,6 +123,14 @@ def g3(key):
         h = homes.get(x['name'])
         if not h or h.get('status') != 'accepted' or not h.get('home_department'):
             bad.append(f"{x['name']}: no accepted home department")
+    # a build older than the reviewed inputs that feed the census is stale (Georgia Tech friction 22: a stage-3 chain started by a leftover background
+    # command built from the census before the last stage-2 review landed); re-run census-refresh and build with --force
+    pis_f = Path(P.data('pis.json', key))
+    if pis_f.exists():
+        for n in ('cs-related-review.json', 'census-additions.json', 'cs-related-hand.json'):
+            f = Path(P.data(n, key))
+            if f.exists() and f.stat().st_mtime > pis_f.stat().st_mtime + 1:
+                bad.append(f'stale build: pis.json is older than reviewed/{n} (run census-refresh, homes and build again with --force)')
     if not Path(P.data('labpage-audit.jsonl.gz', key)).exists():
         bad.append(f'lab-page audit: labpage-audit.jsonl.gz missing (tools/labpage_audit.py discover {key}; docs/LAB-PAGES.md)')
     return bad, dict(pis=len(pis_of(key)), homes=len(homes))

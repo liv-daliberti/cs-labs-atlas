@@ -209,3 +209,16 @@ def test_stage1_captures_are_done_when_the_plan_check_passes(tree):
     assert G.step_done('u', st, run=lambda argv, **k: seen.append(argv) or SimpleNamespace(returncode=0)) is True
     assert seen[0][-2:] == ['u', '--check'] and seen[0][1] == '-I'
     assert G.step_done('u', st, run=lambda argv, **k: SimpleNamespace(returncode=1)) is False
+
+
+def test_gate3_flags_a_build_older_than_the_reviewed_inputs(tree, monkeypatch):
+    """Georgia Tech friction 22: a stage-3 chain built from the census before the last stage-2 review landed."""
+    import os
+    monkeypatch.setattr(G, 'pis_of', lambda key: [])
+    tree.put('pis.json', {})
+    old = (tree.root / 'u' / 'pis.json').stat().st_mtime
+    tree.put('cs-related-review.json', {})
+    os.utime(tree.root / 'u' / 'cs-related-review.json', (old + 60, old + 60))
+    assert any('stale build' in x for x in G.g3('u')[0])
+    os.utime(tree.root / 'u' / 'cs-related-review.json', (old - 60, old - 60))
+    assert not any('stale build' in x for x in G.g3('u')[0])
