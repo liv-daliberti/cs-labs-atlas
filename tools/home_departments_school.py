@@ -37,6 +37,22 @@ def unit_of(title):
     return of.group(1).strip() if of and SCHOOL_LEVEL.match(u) else u
 
 
+NOT_A_UNIT = re.compile(r"^(?:joint\b|starting\b|effective\b|beginning\b|as of\b)|…|\.\.\.|\b(?:chair|director|dean|head|fellow|professor|emerit\w*|lecturer)\b", re.I)
+JOINT = re.compile(r'^joint\s+(?:with|w/)\s*(?:the\s+)?', re.I)
+
+
+def clean_unit(u):
+    """(home candidate, joint unit) from the text after a title's comma. 'Joint with the School of Math' is the OTHER unit of a joint appointment (-> also),
+    'Starting Fall'26', 'KUKA Chair of Robotics, and Director of IRIM' and anything cut off with an ellipsis are not units at all (Georgia Tech R8: 16 PIs got such
+    strings as their home department). A real unit text ('School of Information') is the home candidate."""
+    if not u:
+        return None, None
+    if JOINT.match(u):
+        j = JOINT.sub('', u).strip()
+        return None, (None if NOT_A_UNIT.search(j) or '…' in j else j)
+    return (None if NOT_A_UNIT.search(u) else u), None
+
+
 def main(key, write_shared=False):
     cfg = S.get(key)
     deps = {d['code']: d for d in cfg.get('departments') or []}
@@ -65,6 +81,7 @@ def main(key, write_shared=False):
                 own[r['dept']] += 1
         b = x.get('pi_basis') or {}
         home, ev, note = None, None, None
+        extra_also = []
         if b.get('kind') == 'courtesy_faculty' and b.get('home_unit'):
             home = b['home_unit']; ev = dict(url=b['url'], sha256=b['sha256'], quote=b['quote']); note = 'courtesy appointment: the home unit of the same listing row'
         elif own:
@@ -76,13 +93,17 @@ def main(key, write_shared=False):
             prof = [(r, t) for r in rs for t in r['titles'] if PROF.search(t) and not re.search('courtesy|affiliate', t, re.I)]
             if prof:
                 r, t = prof[-1]
-                u = unit_of(t)
+                u, joint = clean_unit(unit_of(t))
                 home = deps[r['dept']]['name'] if (not u or tm[r['dept']].search(u)) else u
+                if joint:
+                    extra_also.append(joint)
                 ev = dict(url=r['capture_url'], sha256=r['sha256'], quote=r['quote']); note = 'the last professor title listed (emeritus or adjunct later)'
-        also = []
+        also = list(extra_also)
         if rs:
             for t in rs[-1]['titles']:
-                u = unit_of(t)
+                u, joint = clean_unit(unit_of(t))
+                if joint:
+                    also.append(joint)
                 if u and u != home and not any(tm[c].search(u) for c in tm if deps[c]['name'] == home):
                     also.append(u)
         also += [deps[c]['name'] for c in own if deps[c]['name'] != home]

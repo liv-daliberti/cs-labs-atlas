@@ -113,6 +113,13 @@ def g2(key):
     return bad, dict(candidates=len(cands), **collections.Counter(d['decision'] for d in dec.values()))
 
 
+def known_homes(key):
+    """The home department names a PI may have: the charter's departments, affiliated units and [census].home_units keys. Empty set = nothing to check against."""
+    cfg = S.get(key)
+    return ({d['name'] for d in cfg.get('departments') or []} | {u['name'] for u in cfg.get('affiliated_units') or []}
+            | set((S.field(cfg, 'census.home_units') or {}).keys()))
+
+
 def g3(key):
     homes = {r['name']: r for r in read(P.data('home-departments-school.json', key), [])}
     bad = []
@@ -123,6 +130,8 @@ def g3(key):
         h = homes.get(x['name'])
         if not h or h.get('status') != 'accepted' or not h.get('home_department'):
             bad.append(f"{x['name']}: no accepted home department")
+        elif known_homes(key) and h['home_department'] not in known_homes(key):   # R8: a home must be a department, a searched unit or a charter home_units name
+            bad.append(f"{x['name']}: home department {h['home_department']!r} is not a charter department, affiliated unit or [census].home_units name (title text? fix home_units or hold)")
     # a build older than the reviewed inputs that feed the census is stale (Georgia Tech friction 22: a stage-3 chain started by a leftover background
     # command built from the census before the last stage-2 review landed); re-run census-refresh and build with --force
     pis_f = Path(P.data('pis.json', key))
