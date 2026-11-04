@@ -106,6 +106,7 @@ def heady(txt):
 
 EXCL_HEAD = re.compile(r"\b(collaborators?|faculty|affiliated faculty|co-?pis?|friends|advisors?|committee|sponsors?|"
                        r"funding|partners?|external|other labs?|principal investigators?)\b", re.I)
+HARD_EXCL_HEAD = re.compile(r"\b(?:siblings?|lineage|genealogy|academic (?:family|tree|ancestry)|my advisor'?s students)\b", re.I)   # kinship lists of the PI's own advisor ('Known PhD siblings'): never members, even with a role word in the line
 ROLE_RULES = [
     ("postdoc", r"post-?docs?\b|postdoctoral|post-doctoral|post doc"),
     ("undergraduate", r"undergrad|\burops?\b|superurop|senior thesis|junior (?:paper|iw|independent)|independent work|\breu\b|"
@@ -380,7 +381,7 @@ def extract(school, src, pi=None, held=(), span=None):
         flags = []
         excl = lambda h_: bool(h_ and EXCL_HEAD.search(h_) and not ALUMNI_RX.search(h_) and not _role(h_)[0])
         bare = not head or bool(re.fullmatch(r"\W*(%s)?\W*(%s)?\W*" % (YEAR, YEAR), head or ""))
-        if excl(head) or (bare and excl(role_head)):
+        if excl(head) or (bare and excl(role_head)) or (head and HARD_EXCL_HEAD.search(head)) or (role_head and HARD_EXCL_HEAD.search(role_head)):
             flags.append("excluded-heading")
         if FACULTY_DESC.match(desc) and not (head and ALUMNI_RX.search(head)):
             flags.append("faculty-desc")

@@ -258,6 +258,14 @@ def paper_reason(status, junk_reason, year, pi_start):
 ALUMNI_RX = re.compile(r'\b(alumni|alumnae|alumnus|alumna|former|past|previous|alums?|graduates|graduated|completed|emeriti|moved on)\b', re.I)
 
 
+NEWS_LINE = re.compile(r'\b(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|june?|july?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\.?\s+20[12]\d\s*[:\-–]', re.I)
+
+
+def news_item(text):
+    """A dated news sentence ('August 2025: Patrick Kastner and I just received a seed grant') names a collaborator, not a roster entry (Georgia Tech round 2)."""
+    return bool(NEWS_LINE.search(text or ''))
+
+
 def moved_in_alumnus(start, ys, alumni, destination):
     """A PI who arrived at the school inside the window (first period / listing year 2016+) lists alumni of their previous institution on the same page: an UNDATED entry that is an
     alumnus or names a later position ('(Current: Faculty at ...)', '-> Google') cannot be placed at this school (Georgia Tech round 1: Prakash's Virginia Tech PhDs)."""
@@ -1361,6 +1369,9 @@ def pm_candidates(kit, school, pi, plan, held):
                                                              "without a current marker in its entry or section heading"
                                                              + ('; it names a later position' if destination else ''))
             x['strict_removed'] = bool(cap_y >= 2025 and not destination and not x['alumni'])
+            continue
+        if fn not in keep and news_item(x.get('quote') or x.get('desc') or ''):
+            x['why'], x['detail'] = 'not_a_student', 'the entry is a dated news sentence, not a roster entry'
             continue
         if fn not in keep and moved_in_alumnus(start, ys, x['alumni'], destination):
             x['why'], x['detail'] = 'at_previous_school', (f"undated alumnus / entry naming a later position on the page of a PI who arrived in {start}: it may be an advisee of the previous institution, "
