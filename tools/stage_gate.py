@@ -162,6 +162,12 @@ def span_gaps(x):
     return [y for y in pi_years(x) if y not in have]
 
 
+def proven_years(key, name):
+    """Gap years of a PI that a dated capture of the deep second look (periods_school.py deep) proves with a ladder-title quote."""
+    d = read(P.data('deep-gap-evidence.json', key), {}) or {}
+    return {int(y) for y in ((d.get(name) or {}).get('evidence') or {})}
+
+
 def g4(key):
     per = read(P.data('faculty-periods.json', key), [])
     ov = CO.section(key)
@@ -172,7 +178,7 @@ def g4(key):
             n['period'] += 1; continue
         ys = sorted(set(x.get('years_listed') or []))
         o = ov.get(x['name']) or {}
-        gaps = span_gaps(x)
+        gaps = [y for y in span_gaps(x) if y not in proven_years(key, x['name'])]   # years a dated capture proves count as listed
         if ys and gaps and o.get('unproven_years') and o.get('why_unproven') and set(gaps) <= set(o['unproven_years']):
             n['gap_reviewed_unproven'] += 1; continue  # searched, no dated evidence: those years prove nothing (R-PAP-01)
         if ys and not gaps:

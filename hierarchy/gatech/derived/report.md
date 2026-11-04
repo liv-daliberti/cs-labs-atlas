@@ -1,6 +1,6 @@
 # Georgia Institute of Technology: faculty census
 
-Built 2026-11-03 by `tools/census_build.py gatech` from `listings/gatech/rows.json`.
+Built 2026-11-04 by `tools/census_build.py gatech` from `listings/gatech/rows.json`.
 
 - persons: 1375; PIs: 351
 - listing rows (person, department, year): 6928

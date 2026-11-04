@@ -1,6 +1,6 @@
 {
  "school": "gatech",
- "reviewed": "2026-11-03",
+ "reviewed": "2026-11-04",
  "rule": "CS-related faculty for a protocol school (protocol stage 2; owner rule 2026-10-22/28: computing-related faculty in any\ndepartment, computing being the object or the method of their research; administrative advisers are not PIs).\n\ncandidates  (a) every person a department with coverage \"affiliated\" lists with a professor rank (census rank ladder),\n                whose computing work is to be decided (Michigan ECE)\n            (b) every DBLP person whose dump record names the school (tools/dblp_affiliated.py: affiliation note or a URL\n                on a school domain) with >= MIN_DBLP records 2016-2026 and who is not in the census\n            (c) once the OpenAlex sweep is complete: tools/cs_related_candidates.py's rule on the school's sweep\n                (>= 8 school works, >= 5 DBLP-indexed and >= 20% so, ...), read from\n                hierarchy/<key>/cs-related-candidates-openalex.json (run it with --no-venues --stats --out that name);\n                an author id whose names match a census person or an (a)/(b) candidate is not a new candidate\n            -> hierarchy/<key>/cs-related-candidates.json\nunits       one Wayback capture per year 2016-2026 of every faculty listing URL the charter's [[affiliated_units]] name\n            (`listings`), into captures/<key>.sqlite (live only where the host's charter `use` is live)\nreview      faculty evidence: a 2016-2026 unit capture whose text has the candidate's name followed (within 300\n            characters, before the next person's name) by a professor title; the quote runs from the name through the\n            title. For (a) the department listing itself is the evidence.\n            computing evidence: the person's DBLP record (for (a) the one tools/dblp_ids_school.py decides; for (b) the\n            record that names the school) with its 2016-2026 record count (every DBLP record is a computing venue or a CS\n            preprint); >= MIN_DBLP records is computing as object or method. Learned 2026-10-29: a DBLP record without\n            the school in its notes is not evidence of no computing output (Hun-Seok Kim, Nadakuditi), so (a) is decided\n            negatively only when no DBLP person of the name has a 2016-2026 record.\n            computing-share test (owner decision 2026-10-30, Michigan; once hierarchy/<key>/oa-author-stats.json.gz\n            exists): it decides computing for pending (a) people, OpenAlex-rule (c) candidates, people without >=\n            MIN_DBLP DBLP records, and the acceptances the charter's [cs_related].share_test_settles names. Any other\n            DBLP-decided acceptance stands; its share result is recorded, with share_flag when the test fails. The person's\n            OpenAlex author ids at the school are (1) ids carrying the person's ORCID (census, from DBLP), and (2) ids\n            whose raw name has the person's family name and first spelled-out given name (nicknames allowed; 'Hyungjin\n            Myra Kim' is not Hun-Seok Kim), unless the id carries another ORCID or all its works end more than one year\n            before the person's first listing (a namesake: 'Joyce Wang', infectious diseases 2017-2023, is not Joyce\n            Yan-Ran Wang, listed from 2026). Over these ids' school works (papers only, 2016-2026): computing when >=\n            SHARE_MIN_CS are DBLP-indexed and they are >= SHARE_MIN of the works (the candidate rule's thresholds);\n            not computing when the test fails on >= SHARE_MIN_N works. With fewer works the test cannot fail: the\n            DBLP decision stands (>= MIN_DBLP records of the decided DBLP person: accepted), and a person with no\n            decided DBLP record (pending) is too_few_school_works (new and recent faculty: nothing to place in a lab\n            yet; revisit at the next sweep). When the person has no ORCID and the name-matched ids carry several, the\n            ids of the ORCID with the most school works are kept (with ids that carry none).\n            decision  accepted                 faculty evidence (ladder professor title) and computing evidence\n                      faculty_not_computing    faculty evidence, < MIN_DBLP DBLP records naming the school\n                      not_faculty_listed       no searched unit lists them as faculty in 2016-2026 and the DBLP record\n                                               names the school only as a past or student affiliation (or nothing else\n                                               shows a faculty appointment); `units_searched` says where we looked\n                      research_or_other_rank   listed, but with a research / adjunct / emeritus / clinical title only\n                      pending_openalex         (a) only: DBLP has namesakes and none names the school; decided with the\n                                               OpenAlex sweep (an open coverage item until then)\n                      too_few_school_works     faculty evidence, fewer than SHARE_MIN_N school works and the share\n                                               test does not pass (revisit at the next sweep; not open)\n                      census_alias             the DBLP person is a census person under another name form\n                                               ('Satinder Singh' / 'Satinder Singh Baveja'); recorded for stage 5\n            -> hierarchy/<key>/cs-related-review.json {school, rule, reviewed, provisional, decisions: [...]}\n            -> census/<key>-additions.json: accepted people of other units (census format; is_pi with pi_basis\n               ladder_faculty from the unit listing; added = cs_related_review_<date>)\nhand        reviewed/cs-related-hand.json: faculty evidence from a person's own profile page (a unit directory that is a script shell proves nothing):\n            [{name, unit, url, sha256, observed, quote, ladder}]. `cs_related_school.py profile <key> \"<Name>\" <unit> <url>` fetches the page (the live page where\n            robots allows, else the latest Wayback capture), requires the name followed by a professor title, and appends the entry; `review` reads the file as\n            faculty evidence only when the sha256 is a stored capture whose text holds the quote verbatim. The share test still decides computing.",
  "min_dblp": 5,
  "share_test": {
@@ -30,10 +30,10 @@
   "SPP"
  ],
  "counts": {
-  "accepted": 241,
+  "accepted": 239,
   "faculty_not_computing": 78,
   "too_few_school_works": 61,
-  "not_faculty_listed": 554,
+  "not_faculty_listed": 556,
   "census_alias": 8,
   "duplicate_dblp_record": 12,
   "research_or_other_rank": 3
@@ -5686,13 +5686,13 @@
      "namesake_orcids": false,
      "excluded": [
       {
-       "author": "https://openalex.org/A5100341640",
-       "why": "namesake: ORCID 0000-0003-1604-8108, not the busiest ORCID 0000-0001-6484-1253",
+       "author": "https://openalex.org/A5101639270",
+       "why": "namesake: ORCID 0000-0002-1354-0634, not the busiest ORCID 0000-0001-6484-1253",
        "n": 3
       },
       {
-       "author": "https://openalex.org/A5101639270",
-       "why": "namesake: ORCID 0000-0002-1354-0634, not the busiest ORCID 0000-0001-6484-1253",
+       "author": "https://openalex.org/A5100341640",
+       "why": "namesake: ORCID 0000-0003-1604-8108, not the busiest ORCID 0000-0001-6484-1253",
        "n": 3
       }
      ],
@@ -7103,11 +7103,6 @@
      "namesake_orcids": false,
      "excluded": [
       {
-       "author": "https://openalex.org/A5109592386",
-       "why": "namesake: ORCID 0009-0003-0966-2000, not the busiest ORCID 0000-0002-4991-7851",
-       "n": 21
-      },
-      {
        "author": "https://openalex.org/A5101595500",
        "why": "namesake: ORCID 0000-0002-1536-7302, not the busiest ORCID 0000-0002-4991-7851",
        "n": 17
@@ -7116,6 +7111,11 @@
        "author": "https://openalex.org/A5028930379",
        "why": "namesake: ORCID 0000-0001-6004-8602, not the busiest ORCID 0000-0002-4991-7851",
        "n": 15
+      },
+      {
+       "author": "https://openalex.org/A5109592386",
+       "why": "namesake: ORCID 0009-0003-0966-2000, not the busiest ORCID 0000-0002-4991-7851",
+       "n": 21
       }
      ],
      "authors": [
@@ -26055,11 +26055,6 @@
      "namesake_orcids": false,
      "excluded": [
       {
-       "author": "https://openalex.org/A5100455171",
-       "why": "namesake: ORCID 0000-0001-6522-2446, not the busiest ORCID 0000-0003-3742-0845",
-       "n": 12
-      },
-      {
        "author": "https://openalex.org/A5037159442",
        "why": "namesake: ORCID 0000-0001-6157-3740, not the busiest ORCID 0000-0003-3742-0845",
        "n": 4
@@ -26068,6 +26063,11 @@
        "author": "https://openalex.org/A5100620216",
        "why": "namesake: ORCID 0000-0002-0424-9845, not the busiest ORCID 0000-0003-3742-0845",
        "n": 3
+      },
+      {
+       "author": "https://openalex.org/A5100455171",
+       "why": "namesake: ORCID 0000-0001-6522-2446, not the busiest ORCID 0000-0003-3742-0845",
+       "n": 12
       }
      ],
      "authors": [
@@ -33151,6 +33151,7 @@
     2019,
     2020,
     2021,
+    2022,
     2023,
     2024,
     2025,
@@ -36118,11 +36119,11 @@
      "ladder": true
     },
     {
-     "unit": "BIOS",
-     "url": "https://web.archive.org/web/20250221112801id_/https://biosciences.gatech.edu/people",
-     "sha256": "5aa9b7770666bc550a4f81f08871629f8c438cd1afe0b3fa7d6323edc6632297",
-     "observed": "20250221112801",
-     "quote": "Eberhard Voit Professor",
+     "unit": "BME",
+     "url": "https://web.archive.org/web/20250519142904id_/https://bme.gatech.edu/bme/faculty",
+     "sha256": "3d1095318c3849e37a08fe6f42708e2121e6da893aceb0a253036398664d3829",
+     "observed": "20250519142904",
+     "quote": "Eberhard Voit Regent’s Professor",
      "ladder": true
     }
    ],
@@ -36997,14 +36998,14 @@
      "namesake_orcids": false,
      "excluded": [
       {
-       "author": "https://openalex.org/A5100407242",
-       "why": "namesake: ORCID 0000-0003-3291-7887, not the busiest ORCID 0000-0002-8094-2473",
-       "n": 4
-      },
-      {
        "author": "https://openalex.org/A5102777874",
        "why": "namesake: ORCID 0000-0003-2504-4651, not the busiest ORCID 0000-0002-8094-2473",
        "n": 3
+      },
+      {
+       "author": "https://openalex.org/A5100407242",
+       "why": "namesake: ORCID 0000-0003-3291-7887, not the busiest ORCID 0000-0002-8094-2473",
+       "n": 4
       },
       {
        "author": "https://openalex.org/A5100403518",
@@ -41879,20 +41880,20 @@
      "namesake_orcids": false,
      "excluded": [
       {
+       "author": "https://openalex.org/A5101495322",
+       "why": "works end 2024, before the first listing (2026)",
+       "n": 5,
+       "raw": [
+        "Jingfeng Yang"
+       ]
+      },
+      {
        "author": "https://openalex.org/A5044671587",
        "why": "works end 2021, before the first listing (2026)",
        "n": 4,
        "raw": [
         "Jingfeng Yang",
         "Yang, Jingfeng"
-       ]
-      },
-      {
-       "author": "https://openalex.org/A5101495322",
-       "why": "works end 2024, before the first listing (2026)",
-       "n": 5,
-       "raw": [
-        "Jingfeng Yang"
        ]
       }
      ],
@@ -47859,18 +47860,18 @@
     },
     {
      "unit": "LMC",
-     "url": "https://web.archive.org/web/20190721113230id_/https://www.lmc.gatech.edu/people/faculty",
-     "sha256": "b2786b555419dd2fabde28613345046cb800008d66b994eb893fc9ba45f001f6",
-     "observed": "20190721113230",
+     "url": "https://web.archive.org/web/20181220183642id_/https://www.lmc.gatech.edu/people/faculty",
+     "sha256": "0a14032d878a0fda3db90d716c3bc8a1d49ba1ea27ecf8686d12dfcb7954b912",
+     "observed": "20181220183642",
      "quote": "Nassim Parvin Title: Assistant Professor",
      "ladder": true
     },
     {
      "unit": "LMC",
-     "url": "https://web.archive.org/web/20200106165954id_/https://www.lmc.gatech.edu/people/faculty",
-     "sha256": "b2ce7b187af955df7079371ca538f09a36c5800027337732420d810e8caca9f8",
-     "observed": "20200106165954",
-     "quote": "Nassim Parvin Title: Associate Professor",
+     "url": "https://web.archive.org/web/20190721113230id_/https://www.lmc.gatech.edu/people/faculty",
+     "sha256": "b2786b555419dd2fabde28613345046cb800008d66b994eb893fc9ba45f001f6",
+     "observed": "20190721113230",
+     "quote": "Nassim Parvin Title: Assistant Professor",
      "ladder": true
     },
     {
@@ -47884,6 +47885,7 @@
    ],
    "years_listed": [
     2016,
+    2018,
     2019,
     2020,
     2021,
@@ -53202,14 +53204,14 @@
      "namesake_orcids": false,
      "excluded": [
       {
-       "author": "https://openalex.org/A5020265951",
-       "why": "namesake: ORCID 0000-0003-1788-2727, not the busiest ORCID 0009-0004-5081-1730",
-       "n": 8
-      },
-      {
        "author": "https://openalex.org/A5100391862",
        "why": "namesake: ORCID 0000-0002-0989-4296, not the busiest ORCID 0009-0004-5081-1730",
        "n": 9
+      },
+      {
+       "author": "https://openalex.org/A5020265951",
+       "why": "namesake: ORCID 0000-0003-1788-2727, not the busiest ORCID 0009-0004-5081-1730",
+       "n": 8
       },
       {
        "author": "https://openalex.org/A5059449322",
@@ -53420,6 +53422,15 @@
      "observed": "20261103",
      "quote": "Wei Zhu Assistant Professor",
      "ladder": true
+    },
+    {
+     "unit": "MATH",
+     "url": "https://math.gatech.edu/people/wei-zhu",
+     "sha256": "cc28b913aa30374697afd950da00673e175b8e6c718dc1ac677f229daf0590ce",
+     "observed": "20261104",
+     "quote": "Wei Zhu Assistant Professor",
+     "ladder": true,
+     "hand": true
     }
    ],
    "years_listed": [
@@ -53485,14 +53496,14 @@
      "namesake_orcids": false,
      "excluded": [
       {
-       "author": "https://openalex.org/A5020265951",
-       "why": "namesake: ORCID 0000-0003-1788-2727, not the busiest ORCID 0009-0004-5081-1730",
-       "n": 8
-      },
-      {
        "author": "https://openalex.org/A5100391862",
        "why": "namesake: ORCID 0000-0002-0989-4296, not the busiest ORCID 0009-0004-5081-1730",
        "n": 9
+      },
+      {
+       "author": "https://openalex.org/A5020265951",
+       "why": "namesake: ORCID 0000-0003-1788-2727, not the busiest ORCID 0009-0004-5081-1730",
+       "n": 8
       },
       {
        "author": "https://openalex.org/A5059449322",
@@ -54906,14 +54917,14 @@
      "namesake_orcids": false,
      "excluded": [
       {
-       "author": "https://openalex.org/A5103882057",
-       "why": "namesake: ORCID 0000-0002-0148-2932, not the busiest ORCID 0000-0001-9324-4191",
-       "n": 3
-      },
-      {
        "author": "https://openalex.org/A5062349872",
        "why": "namesake: ORCID 0000-0001-5117-5706, not the busiest ORCID 0000-0001-9324-4191",
        "n": 9
+      },
+      {
+       "author": "https://openalex.org/A5103882057",
+       "why": "namesake: ORCID 0000-0002-0148-2932, not the busiest ORCID 0000-0001-9324-4191",
+       "n": 3
       }
      ],
      "authors": [
@@ -60437,17 +60448,17 @@
     },
     {
      "unit": "LMC",
-     "url": "https://web.archive.org/web/20230128043611id_/https://www.lmc.gatech.edu/people/faculty",
-     "sha256": "071f4c46c7082975624b2a9739d1f9e91f7a786597e499405d4c2f97ebd073b5",
-     "observed": "20230128043611",
+     "url": "https://web.archive.org/web/20220319184210id_/https://www.lmc.gatech.edu/people/faculty",
+     "sha256": "764849f7fb5f95c23e99222d3b7a9a47ace0f003cbb3c97aa9a0aa4cb123cb1f",
+     "observed": "20220319184210",
      "quote": "Noura Howell Title: Assistant Professor",
      "ladder": true
     },
     {
      "unit": "LMC",
-     "url": "https://web.archive.org/web/20240227010633id_/https://www.lmc.gatech.edu/people/faculty",
-     "sha256": "90d6158e07d0972b04a1481a9f1dc910b68be7041c4feac11c00572582f278c1",
-     "observed": "20240227010633",
+     "url": "https://web.archive.org/web/20220512200603id_/https://www.lmc.gatech.edu/people/faculty",
+     "sha256": "2e3df20337d9d1881a8021a22fa8706f03eb9f124b1e0f9c36cf6abedb16f2af",
+     "observed": "20220512200603",
      "quote": "Noura Howell Title: Assistant Professor",
      "ladder": true
     },
@@ -63529,6 +63540,14 @@
    "faculty_evidence": [
     {
      "unit": "LMC",
+     "url": "https://web.archive.org/web/20181220183642id_/https://www.lmc.gatech.edu/people/faculty",
+     "sha256": "0a14032d878a0fda3db90d716c3bc8a1d49ba1ea27ecf8686d12dfcb7954b912",
+     "observed": "20181220183642",
+     "quote": "Anne Sullivan Title: Assistant Professor",
+     "ladder": true
+    },
+    {
+     "unit": "LMC",
      "url": "https://web.archive.org/web/20190721113230id_/https://www.lmc.gatech.edu/people/faculty",
      "sha256": "b2786b555419dd2fabde28613345046cb800008d66b994eb893fc9ba45f001f6",
      "observed": "20190721113230",
@@ -63545,14 +63564,6 @@
     },
     {
      "unit": "LMC",
-     "url": "https://web.archive.org/web/20210205174910id_/https://www.lmc.gatech.edu/people/faculty",
-     "sha256": "15f0b8326c4d3df73842cacdbe7dac92cdf729947da65c6c5b3d2bd94609d1dc",
-     "observed": "20210205174910",
-     "quote": "Anne Sullivan Title: Assistant Professor",
-     "ladder": true
-    },
-    {
-     "unit": "LMC",
      "url": "https://web.archive.org/web/20240227010633id_/https://www.lmc.gatech.edu/people/faculty",
      "sha256": "90d6158e07d0972b04a1481a9f1dc910b68be7041c4feac11c00572582f278c1",
      "observed": "20240227010633",
@@ -63561,6 +63572,7 @@
     }
    ],
    "years_listed": [
+    2018,
     2019,
     2020,
     2021,
@@ -65143,6 +65155,15 @@
      "observed": "20261103",
      "quote": "Sudheer Chava Professor",
      "ladder": true
+    },
+    {
+     "unit": "SCHELLER",
+     "url": "https://www.scheller.gatech.edu/directory/faculty/chava/index.html",
+     "sha256": "fa17d58c8b80a6fdbea80638344cc040109571e904f7c520b1f61a56fb8d2664",
+     "observed": "20261104",
+     "quote": "Sudheer Chava Alton M. Costley Chair Regents' Professor",
+     "ladder": true,
+     "hand": true
     }
    ],
    "years_listed": [
@@ -66622,6 +66643,15 @@
      "observed": "20261103",
      "quote": "Wenjing Liao Assistant Professor",
      "ladder": true
+    },
+    {
+     "unit": "MATH",
+     "url": "https://math.gatech.edu/people/wenjing-liao",
+     "sha256": "b83c7fea63bcd36ce75870023d540335b893ae44d535c40d98bbc8330a749229",
+     "observed": "20261104",
+     "quote": "Wenjing Liao Associate Professor",
+     "ladder": true,
+     "hand": true
     }
    ],
    "years_listed": [
@@ -69554,96 +69584,11 @@
     "Samuel A. Shapero"
    ],
    "source": "openalex_rule",
-   "decision": "accepted",
-   "reason": "faculty (ML listing, professor rank); computing-share test passes: 6 of 9 school works DBLP-indexed (share 0.67; 1 OpenAlex author ids)",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
-    "openalex_share": {
-     "result": "computing",
-     "ids": [
-      "https://openalex.org/A5085487382"
-     ],
-     "school_works": 9,
-     "dblp_indexed": 6,
-     "share": 0.667,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5085487382",
-       "basis": "candidate author id",
-       "works": 9,
-       "dblp_indexed": 6,
-       "years": [
-        2016,
-        2026
-       ],
-       "names": [
-        "Samuel Shapero",
-        "Samuel A. Shapero"
-       ],
-       "orcids": [
-        "0000-0002-7633-0183"
-       ],
-       "venues": [
-        "International Conference on Information Fusion (FUSION)",
-        "Proceedings - IEEE Aerospace Conference",
-        "IEEE Geoscience and Remote Sensing Letters"
-       ],
-       "dblp_examples": [
-        {
-         "oa": "https://openalex.org/W2513524981",
-         "year": 2016,
-         "title": "Adaptive semi-greedy search for multidimensional track assignment",
-         "venue": null
-        },
-        {
-         "oa": "https://openalex.org/W2892302444",
-         "year": 2018,
-         "title": "Identifying Agile Waveforms with Neural Networks",
-         "venue": "International Conference on Information Fusion (FUSION)"
-        }
-       ],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W2800709426",
-         "year": 2018,
-         "title": "An analytic solution to ellipsoid intersections for multistatic radar",
-         "venue": null
-        },
-        {
-         "oa": "https://openalex.org/W2949648412",
-         "year": 2019,
-         "title": "Analytic Emitter Geolocation and Filtering via Time Difference of Arrival",
-         "venue": "Proceedings - IEEE Aerospace Conference"
-        }
-       ]
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
-   },
-   "faculty_evidence": [
-    {
-     "unit": "ML",
-     "url": "https://ml.gatech.edu/people?page=15",
-     "sha256": "7999540f067332b04fda2895d631eeca4bd1b507517f24642f8dae5467ad2c31",
-     "observed": "20261103",
-     "quote": "Samuel Shapero Research Engineer Faculty Humphrey Shi Associate Professor",
-     "ladder": true
-    }
-   ],
-   "years_listed": [
-    2026
-   ],
+   "decision": "not_faculty_listed",
+   "reason": "owner decision (charter [cs_related].not_faculty): GTRI research engineer: the ML Center listing quote ran into the next person's title (owner 2026-11-04)",
+   "cs_basis": {},
+   "faculty_evidence": [],
+   "years_listed": [],
    "units_searched": [
     "AE",
     "ARCH",
@@ -69951,6 +69896,15 @@
      "observed": "20170113125416",
      "quote": "Oettl, Alex Scheller College of Business University of Toronto (2009) Assistant Professor",
      "ladder": true
+    },
+    {
+     "unit": "SCHELLER",
+     "url": "https://web.archive.org/web/20170113125416id_/http://ml.gatech.edu:80/people",
+     "sha256": "f9056ac0df72631119358834b084e71cf2eed98fcd0dfaa7642bb69a42843ad8",
+     "observed": "20170113125416",
+     "quote": "Oettl, Alex Scheller College of Business University of Toronto (2009) Assistant Professor",
+     "ladder": true,
+     "hand": true
     },
     {
      "unit": "ML",
@@ -70693,6 +70647,14 @@
    "faculty_evidence": [
     {
      "unit": "ID",
+     "url": "https://web.archive.org/web/20231211000139id_/https://id.gatech.edu/people",
+     "sha256": "630c255cbb7b253955815eb4110e0c61ba6204ffae9b58906f5b7eb68d5acf2d",
+     "observed": "20231211000139",
+     "quote": "Yixiao Wang Assistant Professor",
+     "ladder": true
+    },
+    {
+     "unit": "ID",
      "url": "https://web.archive.org/web/20240221040928id_/https://id.gatech.edu/people",
      "sha256": "46a11f27356fae8203f38548f75c07bbd7616612fc49de27afe2267c113a8e5c",
      "observed": "20240221040928",
@@ -70701,9 +70663,9 @@
     },
     {
      "unit": "ID",
-     "url": "https://web.archive.org/web/20250124172711id_/https://id.gatech.edu/people",
-     "sha256": "ce8023eed2e5e742656fcbe4949366502decef0e696b38136c0d31ac0c6e3152",
-     "observed": "20250124172711",
+     "url": "https://web.archive.org/web/20240419230454id_/https://id.gatech.edu/people",
+     "sha256": "b7ac77735f873a2d9a21ddd31f2b0cb161bf92e077494b4f02fc54b552cb93ab",
+     "observed": "20240419230454",
      "quote": "Yixiao Wang Assistant Professor",
      "ladder": true
     },
@@ -70717,6 +70679,7 @@
     }
    ],
    "years_listed": [
+    2023,
     2024,
     2025,
     2026
@@ -70785,96 +70748,11 @@
     "Sameni, Reza"
    ],
    "source": "openalex_rule",
-   "decision": "accepted",
-   "reason": "faculty (ML listing, professor rank); computing-share test passes: 6 of 29 school works DBLP-indexed (share 0.21; 1 OpenAlex author ids)",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
-    "openalex_share": {
-     "result": "computing",
-     "ids": [
-      "https://openalex.org/A5069641751"
-     ],
-     "school_works": 29,
-     "dblp_indexed": 6,
-     "share": 0.207,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5069641751",
-       "basis": "candidate author id",
-       "works": 29,
-       "dblp_indexed": 6,
-       "years": [
-        2024,
-        2026
-       ],
-       "names": [
-        "Reza Sameni",
-        "Sameni, Reza"
-       ],
-       "orcids": [
-        "0000-0003-4913-6825"
-       ],
-       "venues": [
-        "Physiological Measurement",
-        "Sensors",
-        "Computing in cardiology"
-       ],
-       "dblp_examples": [
-        {
-         "oa": "https://openalex.org/W4401173961",
-         "year": 2024,
-         "title": "Development of a Tremor Detection Algorithm for Use in an Academic Movement Disorders Center",
-         "venue": "Sensors"
-        },
-        {
-         "oa": "https://openalex.org/W4402125509",
-         "year": 2024,
-         "title": "A Crowdsourced AI Framework for Atrial Fibrillation Detection in Apple Watch and Kardia Mobile ECGs",
-         "venue": "Sensors"
-        }
-       ],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W4395467699",
-         "year": 2024,
-         "title": "An open-access simultaneous electrocardiogram and phonocardiogram database",
-         "venue": "Physiological Measurement"
-        },
-        {
-         "oa": "https://openalex.org/W4396760241",
-         "year": 2024,
-         "title": "ECG-Image-Kit: a synthetic image generation toolbox to facilitate deep learning-based electrocardiogram digitization",
-         "venue": "Physiological Measurement"
-        }
-       ]
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
-   },
-   "faculty_evidence": [
-    {
-     "unit": "ML",
-     "url": "https://ml.gatech.edu/people?page=15",
-     "sha256": "7999540f067332b04fda2895d631eeca4bd1b507517f24642f8dae5467ad2c31",
-     "observed": "20261103",
-     "quote": "Reza Sameni Associate Professor",
-     "ladder": true
-    }
-   ],
-   "years_listed": [
-    2026
-   ],
+   "decision": "not_faculty_listed",
+   "reason": "owner decision (charter [cs_related].not_faculty): held: no academic school of his is evidenced (the ML Center listing names none, his profile page names no GT unit); owner 2026-11-04: hold only those still without evidence",
+   "cs_basis": {},
+   "faculty_evidence": [],
+   "years_listed": [],
    "units_searched": [
     "AE",
     "ARCH",
@@ -71899,6 +71777,15 @@
      "observed": "20261103",
      "quote": "Anna Ivanova Assistant Professor",
      "ladder": true
+    },
+    {
+     "unit": "PSYC",
+     "url": "https://psychology.gatech.edu/people/anna-ivanova",
+     "sha256": "9d6bcf45519728a5be806b4cfc842b2977cc1065f91b58c6b44cbf2b87e463f6",
+     "observed": "20261104",
+     "quote": "Anna Ivanova Anna Ivanova Assistant Professor",
+     "ladder": true,
+     "hand": true
     }
    ],
    "years_listed": [

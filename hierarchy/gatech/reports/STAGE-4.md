@@ -26,3 +26,11 @@ The tool only examines people whose rows of a year are ALL unranked cut-off card
 
 ## Friction and next
 Next: stage 5 (identity) after the owner decides the 28 open PIs. See PROTOCOL-FRICTION.md rows 24-26.
+
+## Owner decisions of 2026-11-04 (recorded in docs/DECISIONS.md) and their result
+- **Second look at the 28 PIs** (`periods_school.py deep`, Slurm 32098735, 1 h 37 min; `deep-gap-evidence.json`): for each gap year, whole-window CDX of the PI's homepages (listing, DBLP), profile-URL variants (`/people/<slug>`, `/directory/<slug>`, `/directory/person/<slug>`, `/person/`, `/users/`, `/faculty/`, `/profile/`, `/people/faculty/`) on the hosts of the PI's home unit and www.cc.gatech.edu, the charter profile patterns and
+  `reviewed/person-urls.json` (person-supplied URLs; none supplied yet). **4 PIs closed with dated quotes** (Wei Wang, Molei Tao, Sung Ha Kang, Young Mi Choi: reviewed periods in `census-overrides-school.json`); Jon Sanford (2017-19) and Roger Ball (2017-19) have partial proof; **24 PIs carry reviewed `unproven_years` with `why_unproven`** (R-PAP-28 bridges their papers at build time).
+  Annual reports and news items were not searched by URL guess; no source of dated appointment text outside the unit and personal pages turned up. Google Scholar and LinkedIn were not used.
+- **ML Center is not a home** (`[census].center_units = ["ML"]`): 14 people now have the evidenced academic school as home and the ML Center as `also` (Mavris, Theodorou, Y. Chen, Feigh: Aerospace; M. Wang, Clifford: BME; Goldman, Skolnick, H. Choi: Biological Sciences (Goldman also Physics); Tao, Kang, Zhu, Liao: Mathematics; Chava, Oettl: Scheller (Oettl from the 2017 ML listing that names Scheller); Boukouvala, Scott: ChBE; Lerch: Music; Ivanova: Psychology).
+  Zhu, Liao, Chava and Ivanova are evidenced by their own live profile pages (2026-11-04, `cs-related-hand.json`). Samuel Shapero is removed (`[cs_related].not_faculty`). **Reza Sameni is held** (no academic school evidenced: his profile page names no GT unit); he is out of the PI set until the owner supplies one.
+- **Gate:** `atlas stage-gate gatech 3`: pass (454 PIs, 454 homes); `atlas stage-gate gatech 4`: **pass** (40 periods, 390 contiguous listings, 24 reviewed unproven gaps).

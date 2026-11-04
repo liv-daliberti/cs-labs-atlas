@@ -14,3 +14,9 @@ def test_open_pis_are_the_gates_no_period_items(monkeypatch):
     import stage_gate as SG
     monkeypatch.setattr(SG, 'g4', lambda key: (['Ann Lee: no period, listing years [2016, 2018]', 'Bo: PI basis x'], {}))
     assert PS.open_pis('k') == ['Ann Lee']
+
+
+def test_a_year_proven_by_the_deep_look_is_not_a_gap_for_the_gate(monkeypatch):
+    import stage_gate as SG
+    monkeypatch.setattr(SG, 'read', lambda p, default=None: {'Ann': {'evidence': {'2018': {}, '2019': {}}}})
+    assert SG.proven_years('k', 'Ann') == {2018, 2019} and SG.proven_years('k', 'Bo') == set()
