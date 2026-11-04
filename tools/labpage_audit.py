@@ -1014,6 +1014,8 @@ def load_ctx(school, kit=None, plan=True):
     ctx['students'] = without_wired_additions(read(P.data('students.json', school)), school)
     lp = collections.defaultdict(list)
     for r in read(P.data('lab_papers.jsonl.gz', school)):
+        if str(r.get('source') or '').startswith('labpage_addition:'):
+            continue   # R13 for papers: a paper the build holds only through the accepted additions is not 'already a lab paper' for the audit that regenerates them
         lp[r['pi']].append(r)
     ctx['lab_papers'] = lp
     ev = P.data('labpage-evidence.json', school)

@@ -42,3 +42,10 @@ def test_wired_additions_do_not_count_as_in_the_build():
     out = A.without_wired_additions(students, 'k', wired=wired)
     assert [r['name'] for r in out['Ann PI']] == ['Roster Too', 'Roster Only'] and [r['name'] for r in out['Bo PI']] == ['Other Lab']
     assert A.without_wired_additions(students, 'k', wired=[]) == students   # nothing accepted: the build is compared as it is
+
+
+def test_load_ctx_skips_lab_papers_that_come_only_from_the_accepted_additions(monkeypatch, tmp_path):
+    import json
+    rows = [dict(pi='A', title='kept', source='openalex_sweep'), dict(pi='A', title='wired', source='labpage_addition:LP-PAP-01:openalex_authorship')]
+    src = (A.Path(__file__).resolve().parents[1] / 'tools' / 'labpage_audit.py').read_text()
+    assert "startswith('labpage_addition:')" in src and json.dumps(rows[1]['source']).startswith('"labpage_addition:')
