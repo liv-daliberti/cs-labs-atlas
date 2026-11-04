@@ -392,8 +392,15 @@ def natural(name):
     return n
 
 
-def role_of(degree):
+MASTERS_UNIT_RX = re.compile(r'MAPSS|MACSS|MA Program|Master|Public Policy Theses|Chicago Studies|Committee on International Relations|Divinity|Humanities', re.I)
+
+
+def role_of(degree, department=''):
+    """phd for a dissertation record; masters when the record's own unit names a master's programme (UChicago's OAI types every thesis
+    'doctoralThesis', its MA communities are named 'MA Program in the Social Sciences', 'MACSS', 'MA Theses')."""
     d = (degree or '').lower()
+    if MASTERS_UNIT_RX.search(department or ''):
+        return 'masters'
     if re.search(r'dissertation|doctoral|ph\.?\s?d|doctor of', d):
         return 'phd'
     return 'other'
@@ -404,7 +411,7 @@ def replay_url(url):
     return re.sub(r'(/web/\d{14})id_/', r'\1/', url)
 
 
-def build_evidence(school, pis, window=WINDOW):
+def build_evidence(school, pis, window=WINDOW, pi_window=None):
     """-> (rows in thesis-evidence.json shape, counts). pis: [{pi, names}] (hierarchy/<school>/derived/pis.json)."""
     if str(F.P.TOOLS) not in sys.path:
         sys.path.insert(0, str(F.P.TOOLS))
@@ -432,6 +439,7 @@ def build_evidence(school, pis, window=WINDOW):
                 counts['outside_window'] += 1
                 continue
             hit = False
+            win_drop = False
             for a in advs:
                 nat = natural(a)
                 pi_hits = [p for p, nm in idx.items() if nm.match(nat)]
@@ -440,8 +448,11 @@ def build_evidence(school, pis, window=WINDOW):
                     continue
                 for p in pi_hits:
                     hit = True
+                    if pi_window and p in pi_window and not (pi_window[p][0] <= year <= pi_window[p][1]):
+                        counts['outside_pi_appointment'] = counts.get('outside_pi_appointment', 0) + 1   # defense year outside the PI's listed years at the school
+                        continue
                     out.setdefault(p, []).append(dict(
-                        name=natural(author), role=role_of(degree), years=[year, year], url=replay_url(url), sha256=sha, quote=quote,
+                        name=natural(author), role=role_of(degree, dep), years=[year, year], url=replay_url(url), sha256=sha, quote=quote,
                         note=f"{school} repository item page{' (Wayback capture of the old SMARTech page)' if '@' in src else ''} ({degree}; {dep}): '{title}'; advisor '{a}' = {p}"))
                     counts['rows'] += 1
             if not hit:
@@ -472,7 +483,11 @@ def main(argv):
         print(json.dumps(stats(school)))
     elif cmd == 'evidence':
         pis = json.loads(F.P.data('pis.json', school).read_text())
-        rows, counts = build_evidence(school, pis)
+        if str(F.P.TOOLS) not in sys.path:
+            sys.path.insert(0, str(F.P.TOOLS))
+        import periods_school as PS
+        pw = {t['name']: (t['first'], max(t['years'] or [2026])) for t in PS.targets(school)}   # listed years at the school
+        rows, counts = build_evidence(school, pis, pi_window=pw)
         outp = Path(argv[argv.index('--out') + 1]) if '--out' in argv else None
         if outp:
             outp.write_text(json.dumps(rows, indent=1, ensure_ascii=False))
