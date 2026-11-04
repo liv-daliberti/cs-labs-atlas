@@ -48,3 +48,20 @@ def test_absorb_two_way_matches_dummy_regression():
 def test_degenerate_input_returns_nan():
     d = pd.DataFrame(dict(y=np.arange(20.), x=np.ones(20)))
     assert np.isnan(R.fit(d, 'y', 'x')['beta'])
+
+
+def test_no_fixed_effects_has_an_intercept():
+    rng = np.random.default_rng(3)
+    x = rng.normal(size=300)
+    d = pd.DataFrame(dict(y=5 + 2 * x + rng.normal(size=300) * 0.1, x=x))
+    r = R.fit(d, 'y', 'x')
+    assert abs(r['beta'] - 2) < 0.05 and abs(r['coefs']['const'] - 5) < 0.05
+    r2 = R.fit(d.assign(x2=x ** 2), 'y', ['x', 'x2'])
+    assert set(r2['ses']) >= {'x', 'x2'}
+
+
+def test_boot_fit_interval_covers_the_slope_and_relabels_nested_effects():
+    d = frame(0, n_lab=60, per=10)
+    est, lo, hi = R.boot_fit(d, 'y', 'x', 'lab', controls=['ctrl'], fe=['year', 'lab'], nested=['lab'], B=60)
+    assert lo < 0.30 < hi and abs(est - 0.30) < 0.1
+    assert np.isnan(R.boot_fit(d[d['lab'] < 5], 'y', 'x', 'lab', fe=['lab'], nested=['lab'], B=20)[1])
