@@ -1,6 +1,6 @@
 {
  "school": "uchicago",
- "generated_at": "2026-11-03T20:34:11+00:00",
+ "generated_at": "2026-11-04T03:25:53+00:00",
  "tool": "tools/labpage_audit.py",
  "standard": "docs/LAB-PAGES.md",
  "status": "proposed, unreviewed: not read by tools/pi_hierarchy.py until wired (docs/LAB-PAGES.md, integration)",
@@ -8,3052 +8,1152 @@
   "LP-STU-01": "A person listed on the PI's own lab page (people, members, alumni section; live page or a Wayback id_ capture), under a people heading, not the PI, not in a faculty/collaborator/staff section, not another PI of the school, whose stated years do not end before 2016 or before the PI's appointment at the school, and who is dated or listed as current on a 2016+ capture (undated alumni only when the lab has only ever been at this school) is a lab member: the same admission the 2026-10-22 lab-page rows had (labpage-evidence.json, R-STU-01 'researched advisees'), with url, sha256 and a verbatim quote naming the person.",
   "LP-PAP-01": "A paper listed on the PI's own lab publications page whose resolved work carries the PI on the byline, falls in the PI's appointment (R-PAP-01) and whose PI authorship lists the school (or page 1 ties the school to the PI) is a lab paper with identity 'labpage_listing' (R-PAP-04: the lab's own publications page), exactly the rows tools/labpage_recover.py accepts into labpage-recovered.jsonl.gz."
  },
- "students": [
-  {
-   "name": "Zhiyong Wang",
-   "role": "phd",
-   "years": [
-    null,
-    2016
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20260114191052id_/https://ttic.edu/student-alumni/",
-   "sha256": "cf3dfd357394fc343c05d1d9d3dc185378c90a9fec6f841f2886810c6b8e6d9a",
-   "quote": "Zhiyong Wang PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni > Hao Tang",
-   "pi": "Karen Livescu",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Behnam Neyshabur",
-   "role": "phd",
-   "years": [
-    null,
-    2017
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20260114191052id_/https://ttic.edu/student-alumni/",
-   "sha256": "cf3dfd357394fc343c05d1d9d3dc185378c90a9fec6f841f2886810c6b8e6d9a",
-   "quote": "Behnam Neyshabur PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni > Hao Tang",
-   "pi": "Karen Livescu",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Payman Yadollahpour",
-   "role": "phd",
-   "years": [
-    null,
-    2017
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20180116012448id_/http://www.ttic.edu:80/student-alumni/",
-   "sha256": "3b8b9dccc4db014a0ad4506089cc5eb23322b87cc612d387bfd4c3cfef0b43b5",
-   "quote": "Payman Yadollahpour PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni > Hao Tang",
-   "pi": "Karen Livescu",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Rachit Nimavat",
-   "role": "phd",
-   "years": [
-    null,
-    2023
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20240227031243id_/https://www.ttic.edu/student-alumni/",
-   "sha256": "010d3abc822d66304c227bc4a71e1c704f141550b237983b3a51a09cd66e739c",
-   "quote": "Rachit Nimavat PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni",
-   "pi": "Karen Livescu",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Lingyu Gao",
-   "role": "phd",
-   "years": [
-    null,
-    2024
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20260114191052id_/https://ttic.edu/student-alumni/",
-   "sha256": "cf3dfd357394fc343c05d1d9d3dc185378c90a9fec6f841f2886810c6b8e6d9a",
-   "quote": "Lingyu Gao PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni",
-   "pi": "Karen Livescu",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Shashank Srivastava",
-   "role": "phd",
-   "years": [
-    null,
-    2024
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20260114191052id_/https://ttic.edu/student-alumni/",
-   "sha256": "cf3dfd357394fc343c05d1d9d3dc185378c90a9fec6f841f2886810c6b8e6d9a",
-   "quote": "Shashank Srivastava PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni",
-   "pi": "Karen Livescu",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Pedro Pamplona Savarese",
-   "role": "phd",
-   "years": [
-    null,
-    2025
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20260114191052id_/https://ttic.edu/student-alumni/",
-   "sha256": "cf3dfd357394fc343c05d1d9d3dc185378c90a9fec6f841f2886810c6b8e6d9a",
-   "quote": "Pedro Pamplona Savarese PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni",
-   "pi": "Karen Livescu",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Mrinalkanti Ghosh",
-   "role": "phd",
-   "years": [
-    null,
-    2025
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20260114191052id_/https://ttic.edu/student-alumni/",
-   "sha256": "cf3dfd357394fc343c05d1d9d3dc185378c90a9fec6f841f2886810c6b8e6d9a",
-   "quote": "Mrinalkanti Ghosh PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni",
-   "pi": "Karen Livescu",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Jiading Fang",
-   "role": "phd",
-   "years": [
-    null,
-    2025
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20260114191052id_/https://ttic.edu/student-alumni/",
-   "sha256": "cf3dfd357394fc343c05d1d9d3dc185378c90a9fec6f841f2886810c6b8e6d9a",
-   "quote": "Jiading Fang PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni",
-   "pi": "Karen Livescu",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Pushkar Shukla",
-   "role": "phd",
-   "years": [
-    null,
-    2025
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20260114191052id_/https://ttic.edu/student-alumni/",
-   "sha256": "cf3dfd357394fc343c05d1d9d3dc185378c90a9fec6f841f2886810c6b8e6d9a",
-   "quote": "Pushkar Shukla PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni",
-   "pi": "Karen Livescu",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Sudarshan Babu",
-   "role": "phd",
-   "years": [
-    null,
-    2025
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20260114191052id_/https://ttic.edu/student-alumni/",
-   "sha256": "cf3dfd357394fc343c05d1d9d3dc185378c90a9fec6f841f2886810c6b8e6d9a",
-   "quote": "Sudarshan Babu PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni",
-   "pi": "Karen Livescu",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Kumar Kshitij Patel",
-   "role": "phd",
-   "years": [
-    null,
-    2025
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20260114191052id_/https://ttic.edu/student-alumni/",
-   "sha256": "cf3dfd357394fc343c05d1d9d3dc185378c90a9fec6f841f2886810c6b8e6d9a",
-   "quote": "Kumar Kshitij Patel PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni",
-   "pi": "Karen Livescu",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Gene Li",
-   "role": "phd",
-   "years": [
-    null,
-    2025
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20260114191052id_/https://ttic.edu/student-alumni/",
-   "sha256": "cf3dfd357394fc343c05d1d9d3dc185378c90a9fec6f841f2886810c6b8e6d9a",
-   "quote": "Gene Li PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni",
-   "pi": "Karen Livescu",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Behnam Neyshabur",
-   "role": "phd",
-   "years": [
-    null,
-    2017
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20260114191052id_/https://ttic.edu/student-alumni/",
-   "sha256": "cf3dfd357394fc343c05d1d9d3dc185378c90a9fec6f841f2886810c6b8e6d9a",
-   "quote": "Behnam Neyshabur PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni > Hao Tang",
-   "pi": "Yury Makarychev",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Heejin Choi",
-   "role": "phd",
-   "years": [
-    null,
-    2018
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20190119092023id_/http://www.ttic.edu:80/student-alumni/",
-   "sha256": "fdb794a67013e0e8caf74e4296fda963d8746ccde7cef74ca0b76729c07d0ac5",
-   "quote": "Heejin Choi PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni",
-   "pi": "Yury Makarychev",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Shubhendu Trivedi",
-   "role": "phd",
-   "years": [
-    null,
-    2018
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20190119092023id_/http://www.ttic.edu:80/student-alumni/",
-   "sha256": "fdb794a67013e0e8caf74e4296fda963d8746ccde7cef74ca0b76729c07d0ac5",
-   "quote": "Shubhendu Trivedi PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni",
-   "pi": "Yury Makarychev",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Payman Yadollahpour",
-   "role": "phd",
-   "years": [
-    null,
-    2017
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20190119092023id_/http://www.ttic.edu:80/student-alumni/",
-   "sha256": "fdb794a67013e0e8caf74e4296fda963d8746ccde7cef74ca0b76729c07d0ac5",
-   "quote": "Payman Yadollahpour PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni",
-   "pi": "Yury Makarychev",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Zhiyong Wang",
-   "role": "phd",
-   "years": [
-    null,
-    2016
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20260114191052id_/https://ttic.edu/student-alumni/",
-   "sha256": "cf3dfd357394fc343c05d1d9d3dc185378c90a9fec6f841f2886810c6b8e6d9a",
-   "quote": "Zhiyong Wang PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni > Hao Tang",
-   "pi": "Yury Makarychev",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Taehwan Kim",
-   "role": "phd",
-   "years": [
-    null,
-    2016
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20260114191052id_/https://ttic.edu/student-alumni/",
-   "sha256": "cf3dfd357394fc343c05d1d9d3dc185378c90a9fec6f841f2886810c6b8e6d9a",
-   "quote": "Taehwan Kim PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni > Hao Tang",
-   "pi": "Yury Makarychev",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Pedro Pamplona Savarese",
-   "role": "phd",
-   "years": [
-    null,
-    2025
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20260114191052id_/https://ttic.edu/student-alumni/",
-   "sha256": "cf3dfd357394fc343c05d1d9d3dc185378c90a9fec6f841f2886810c6b8e6d9a",
-   "quote": "Pedro Pamplona Savarese PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni",
-   "pi": "Yury Makarychev",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Mrinalkanti Ghosh",
-   "role": "phd",
-   "years": [
-    null,
-    2025
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20260114191052id_/https://ttic.edu/student-alumni/",
-   "sha256": "cf3dfd357394fc343c05d1d9d3dc185378c90a9fec6f841f2886810c6b8e6d9a",
-   "quote": "Mrinalkanti Ghosh PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni",
-   "pi": "Yury Makarychev",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Jiading Fang",
-   "role": "phd",
-   "years": [
-    null,
-    2025
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20260114191052id_/https://ttic.edu/student-alumni/",
-   "sha256": "cf3dfd357394fc343c05d1d9d3dc185378c90a9fec6f841f2886810c6b8e6d9a",
-   "quote": "Jiading Fang PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni",
-   "pi": "Yury Makarychev",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Pushkar Shukla",
-   "role": "phd",
-   "years": [
-    null,
-    2025
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20260114191052id_/https://ttic.edu/student-alumni/",
-   "sha256": "cf3dfd357394fc343c05d1d9d3dc185378c90a9fec6f841f2886810c6b8e6d9a",
-   "quote": "Pushkar Shukla PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni",
-   "pi": "Yury Makarychev",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Sudarshan Babu",
-   "role": "phd",
-   "years": [
-    null,
-    2025
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20260114191052id_/https://ttic.edu/student-alumni/",
-   "sha256": "cf3dfd357394fc343c05d1d9d3dc185378c90a9fec6f841f2886810c6b8e6d9a",
-   "quote": "Sudarshan Babu PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni",
-   "pi": "Yury Makarychev",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Kumar Kshitij Patel",
-   "role": "phd",
-   "years": [
-    null,
-    2025
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20260114191052id_/https://ttic.edu/student-alumni/",
-   "sha256": "cf3dfd357394fc343c05d1d9d3dc185378c90a9fec6f841f2886810c6b8e6d9a",
-   "quote": "Kumar Kshitij Patel PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni",
-   "pi": "Yury Makarychev",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Gene Li",
-   "role": "phd",
-   "years": [
-    null,
-    2025
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20260114191052id_/https://ttic.edu/student-alumni/",
-   "sha256": "cf3dfd357394fc343c05d1d9d3dc185378c90a9fec6f841f2886810c6b8e6d9a",
-   "quote": "Gene Li PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni",
-   "pi": "Yury Makarychev",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Lingyu Gao",
-   "role": "phd",
-   "years": [
-    null,
-    2024
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20260114191052id_/https://ttic.edu/student-alumni/",
-   "sha256": "cf3dfd357394fc343c05d1d9d3dc185378c90a9fec6f841f2886810c6b8e6d9a",
-   "quote": "Lingyu Gao PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni",
-   "pi": "Yury Makarychev",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Shashank Srivastava",
-   "role": "phd",
-   "years": [
-    null,
-    2024
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20260114191052id_/https://ttic.edu/student-alumni/",
-   "sha256": "cf3dfd357394fc343c05d1d9d3dc185378c90a9fec6f841f2886810c6b8e6d9a",
-   "quote": "Shashank Srivastava PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni",
-   "pi": "Yury Makarychev",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Charalampos Angelidakis",
-   "role": "phd",
-   "years": [
-    null,
-    2018
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20220107225201id_/https://www.ttic.edu/student-alumni/",
-   "sha256": "8f56c92e752405013504bba5bee7a3b235291fe3cee28551dde440f329fef8b0",
-   "quote": "Charalampos Angelidakis PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni",
-   "pi": "Greg Shakhnarovich",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Heejin Choi",
-   "role": "phd",
-   "years": [
-    null,
-    2018
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20220107225201id_/https://www.ttic.edu/student-alumni/",
-   "sha256": "8f56c92e752405013504bba5bee7a3b235291fe3cee28551dde440f329fef8b0",
-   "quote": "Heejin Choi PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni",
-   "pi": "Greg Shakhnarovich",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Mrinalkanti Ghosh",
-   "role": "phd",
-   "years": [
-    null,
-    2025
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20260114191052id_/https://ttic.edu/student-alumni/",
-   "sha256": "cf3dfd357394fc343c05d1d9d3dc185378c90a9fec6f841f2886810c6b8e6d9a",
-   "quote": "Mrinalkanti Ghosh PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni",
-   "pi": "Greg Shakhnarovich",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Behnam Neyshabur",
-   "role": "phd",
-   "years": [
-    null,
-    2017
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20260114191052id_/https://ttic.edu/student-alumni/",
-   "sha256": "cf3dfd357394fc343c05d1d9d3dc185378c90a9fec6f841f2886810c6b8e6d9a",
-   "quote": "Behnam Neyshabur PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni > Hao Tang",
-   "pi": "Greg Shakhnarovich",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Takeshi Onishi",
-   "role": "phd",
-   "years": [
-    null,
-    2020
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20220107225201id_/https://www.ttic.edu/student-alumni/",
-   "sha256": "8f56c92e752405013504bba5bee7a3b235291fe3cee28551dde440f329fef8b0",
-   "quote": "Takeshi Onishi PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni",
-   "pi": "Greg Shakhnarovich",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Siqi Sun",
-   "role": "phd",
-   "years": [
-    null,
-    2020
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20220107225201id_/https://www.ttic.edu/student-alumni/",
-   "sha256": "8f56c92e752405013504bba5bee7a3b235291fe3cee28551dde440f329fef8b0",
-   "quote": "Siqi Sun PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni",
-   "pi": "Greg Shakhnarovich",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Lifu Tu",
-   "role": "phd",
-   "years": [
-    null,
-    2021
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20220107225201id_/https://www.ttic.edu/student-alumni/",
-   "sha256": "8f56c92e752405013504bba5bee7a3b235291fe3cee28551dde440f329fef8b0",
-   "quote": "Lifu Tu PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni",
-   "pi": "Greg Shakhnarovich",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Hai Wang",
-   "role": "phd",
-   "years": [
-    null,
-    2020
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20220107225201id_/https://www.ttic.edu/student-alumni/",
-   "sha256": "8f56c92e752405013504bba5bee7a3b235291fe3cee28551dde440f329fef8b0",
-   "quote": "Hai Wang PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni",
-   "pi": "Greg Shakhnarovich",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Blake Woodworth",
-   "role": "phd",
-   "years": [
-    null,
-    2021
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20220107225201id_/https://www.ttic.edu/student-alumni/",
-   "sha256": "8f56c92e752405013504bba5bee7a3b235291fe3cee28551dde440f329fef8b0",
-   "quote": "Blake Woodworth PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni",
-   "pi": "Greg Shakhnarovich",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Lingyu Gao",
-   "role": "phd",
-   "years": [
-    null,
-    2024
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20260114191052id_/https://ttic.edu/student-alumni/",
-   "sha256": "cf3dfd357394fc343c05d1d9d3dc185378c90a9fec6f841f2886810c6b8e6d9a",
-   "quote": "Lingyu Gao PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni",
-   "pi": "Greg Shakhnarovich",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Ankita Pasad",
-   "role": "phd",
-   "years": [
-    null,
-    2025
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20260114191052id_/https://ttic.edu/student-alumni/",
-   "sha256": "cf3dfd357394fc343c05d1d9d3dc185378c90a9fec6f841f2886810c6b8e6d9a",
-   "quote": "Ankita Pasad PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni",
-   "pi": "Greg Shakhnarovich",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Pedro Pamplona Savarese",
-   "role": "phd",
-   "years": [
-    null,
-    2025
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20260114191052id_/https://ttic.edu/student-alumni/",
-   "sha256": "cf3dfd357394fc343c05d1d9d3dc185378c90a9fec6f841f2886810c6b8e6d9a",
-   "quote": "Pedro Pamplona Savarese PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni",
-   "pi": "Greg Shakhnarovich",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Jiading Fang",
-   "role": "phd",
-   "years": [
-    null,
-    2025
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20260114191052id_/https://ttic.edu/student-alumni/",
-   "sha256": "cf3dfd357394fc343c05d1d9d3dc185378c90a9fec6f841f2886810c6b8e6d9a",
-   "quote": "Jiading Fang PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni",
-   "pi": "Greg Shakhnarovich",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Shashank Srivastava",
-   "role": "phd",
-   "years": [
-    null,
-    2024
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20260114191052id_/https://ttic.edu/student-alumni/",
-   "sha256": "cf3dfd357394fc343c05d1d9d3dc185378c90a9fec6f841f2886810c6b8e6d9a",
-   "quote": "Shashank Srivastava PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni",
-   "pi": "Greg Shakhnarovich",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Taehwan Kim",
-   "role": "phd",
-   "years": [
-    null,
-    2016
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20260114191052id_/https://ttic.edu/student-alumni/",
-   "sha256": "cf3dfd357394fc343c05d1d9d3dc185378c90a9fec6f841f2886810c6b8e6d9a",
-   "quote": "Taehwan Kim PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni > Hao Tang",
-   "pi": "Greg Shakhnarovich",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Zhiyong Wang",
-   "role": "phd",
-   "years": [
-    null,
-    2016
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20260114191052id_/https://ttic.edu/student-alumni/",
-   "sha256": "cf3dfd357394fc343c05d1d9d3dc185378c90a9fec6f841f2886810c6b8e6d9a",
-   "quote": "Zhiyong Wang PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni > Hao Tang",
-   "pi": "Greg Shakhnarovich",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Gene Li",
-   "role": "phd",
-   "years": [
-    null,
-    2025
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20260114191052id_/https://ttic.edu/student-alumni/",
-   "sha256": "cf3dfd357394fc343c05d1d9d3dc185378c90a9fec6f841f2886810c6b8e6d9a",
-   "quote": "Gene Li PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni",
-   "pi": "Greg Shakhnarovich",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Naren Manoj",
-   "role": "phd",
-   "years": [
-    null,
-    2025
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20260114191052id_/https://ttic.edu/student-alumni/",
-   "sha256": "cf3dfd357394fc343c05d1d9d3dc185378c90a9fec6f841f2886810c6b8e6d9a",
-   "quote": "Naren Manoj PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni",
-   "pi": "Greg Shakhnarovich",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Kshitij Patel",
-   "role": "phd",
-   "years": [
-    null,
-    2025
-   ],
-   "url": "www.ttic.edu/student-alumni/",
-   "capture_url": "https://web.archive.org/web/20260114191052id_/https://ttic.edu/student-alumni/",
-   "sha256": "cf3dfd357394fc343c05d1d9d3dc185378c90a9fec6f841f2886810c6b8e6d9a",
-   "quote": "Kumar Kshitij Patel PhD",
-   "note": "lab-page audit 2026-11-03; section: Student Alumni Home Student Alumni",
-   "pi": "Greg Shakhnarovich",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Zhan Lin",
-   "role": "phd",
-   "years": [
-    2023,
-    2023
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20240425012249id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "d9a26d6656c419e96ca6841c391b108eb3ce9e7c806c313522237857c92c4d68",
-   "quote": "2023 Yonghoon Lee Zhan Lin",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2023",
-   "pi": "Nathan Srebro",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Ahmed Bou-Rabee",
-   "role": "postdoc",
-   "years": [
-    2022,
-    2022
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20240425012249id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "d9a26d6656c419e96ca6841c391b108eb3ce9e7c806c313522237857c92c4d68",
-   "quote": "Ahmed Bou-Rabee, NSF Postdoctoral",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2022",
-   "pi": "Nathan Srebro",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Pinhan Chen",
-   "role": "phd",
-   "years": [
-    2022,
-    2022
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20240425012249id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "d9a26d6656c419e96ca6841c391b108eb3ce9e7c806c313522237857c92c4d68",
-   "quote": "2022 Ahmed Bou-Rabee, NSF Postdoctoral Fellow, Cornell University Pinhan Chen",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2022",
-   "pi": "Nathan Srebro",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Xialiang Dou",
-   "role": "phd",
-   "years": [
-    2022,
-    2022
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20240425012249id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "d9a26d6656c419e96ca6841c391b108eb3ce9e7c806c313522237857c92c4d68",
-   "quote": "2022 Ahmed Bou-Rabee, NSF Postdoctoral Fellow, Cornell University Pinhan Chen , Quantitative Researcher, Citadel Securities Xialiang Dou",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2022",
-   "pi": "Nathan Srebro",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Andrew Goldstein",
-   "role": "other",
-   "years": [
-    2022,
-    2022
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20240425012249id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "d9a26d6656c419e96ca6841c391b108eb3ce9e7c806c313522237857c92c4d68",
-   "quote": "Andrew Goldstein , Applied Scientist",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2022",
-   "pi": "Nathan Srebro",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Yi Liu",
-   "role": "other",
-   "years": [
-    2022,
-    2022
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20240425012249id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "d9a26d6656c419e96ca6841c391b108eb3ce9e7c806c313522237857c92c4d68",
-   "quote": "Yi Liu, Applied Scientist",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2022",
-   "pi": "Nathan Srebro",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Lizhen Nie",
-   "role": "phd",
-   "years": [
-    2022,
-    2022
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20240425012249id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "d9a26d6656c419e96ca6841c391b108eb3ce9e7c806c313522237857c92c4d68",
-   "quote": "2022 Ahmed Bou-Rabee, NSF Postdoctoral Fellow, Cornell University Pinhan Chen , Quantitative Researcher, Citadel Securities Xialiang Dou , Quantitative Researcher, Two Sigma Nathan Gill , Assistant Professor of Preventative Medicine (Biostatistics), Northwestern University Andrew Goldstein , Applied Scientist, Uber Yi Liu, Applied Scientist, Amazon Lizhen Nie",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2022",
-   "pi": "Nathan Srebro",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Abby Stevens",
-   "role": "other",
-   "years": [
-    2022,
-    2022
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20240425012249id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "d9a26d6656c419e96ca6841c391b108eb3ce9e7c806c313522237857c92c4d68",
-   "quote": "Abby Stevens , Computational Data Scientist",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2022",
-   "pi": "Nathan Srebro",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Jiacheng Wang",
-   "role": "phd",
-   "years": [
-    2022,
-    2022
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20240425012249id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "d9a26d6656c419e96ca6841c391b108eb3ce9e7c806c313522237857c92c4d68",
-   "quote": "2022 Ahmed Bou-Rabee, NSF Postdoctoral Fellow, Cornell University Pinhan Chen , Quantitative Researcher, Citadel Securities Xialiang Dou , Quantitative Researcher, Two Sigma Nathan Gill , Assistant Professor of Preventative Medicine (Biostatistics), Northwestern University Andrew Goldstein , Applied Scientist, Uber Yi Liu, Applied Scientist, Amazon Lizhen Nie , Quantitative Researcher, Two Sigma Abby Stevens , Computational Data Scientist, Argonne National Laboratory Jiacheng Wang",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2022",
-   "pi": "Nathan Srebro",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Qing Yan",
-   "role": "phd",
-   "years": [
-    2022,
-    2022
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20240425012249id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "d9a26d6656c419e96ca6841c391b108eb3ce9e7c806c313522237857c92c4d68",
-   "quote": "2022 Ahmed Bou-Rabee, NSF Postdoctoral Fellow, Cornell University Pinhan Chen , Quantitative Researcher, Citadel Securities Xialiang Dou , Quantitative Researcher, Two Sigma Nathan Gill , Assistant Professor of Preventative Medicine (Biostatistics), Northwestern University Andrew Goldstein , Applied Scientist, Uber Yi Liu, Applied Scientist, Amazon Lizhen Nie , Quantitative Researcher, Two Sigma Abby Stevens , Computational Data Scientist, Argonne National Laboratory Jiacheng Wang Qing Yan",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2022",
-   "pi": "Nathan Srebro",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "You-Lin Chen",
-   "role": "phd",
-   "years": [
-    2021,
-    2021
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20240425012249id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "d9a26d6656c419e96ca6841c391b108eb3ce9e7c806c313522237857c92c4d68",
-   "quote": "2021 You-Lin Chen",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2021",
-   "pi": "Nathan Srebro",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Yongrui Chen",
-   "role": "postdoc",
-   "years": [
-    2020,
-    2020
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20240425012249id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "d9a26d6656c419e96ca6841c391b108eb3ce9e7c806c313522237857c92c4d68",
-   "quote": "Yongrui Chen, Postdoctoral",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2020",
-   "pi": "Nathan Srebro",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Ran Dai",
-   "role": "phd",
-   "years": [
-    2020,
-    2020
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20240425012249id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "d9a26d6656c419e96ca6841c391b108eb3ce9e7c806c313522237857c92c4d68",
-   "quote": "2020 Takintayo Akinbiyi Yongrui Chen, Postdoctoral Researcher, Department of Statistics, Rice University Ran Dai",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2020",
-   "pi": "Nathan Srebro",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Jonathan Eskreis-Winkler",
-   "role": "undergraduate",
-   "years": [
-    2020,
-    2020
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20240425012249id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "d9a26d6656c419e96ca6841c391b108eb3ce9e7c806c313522237857c92c4d68",
-   "quote": "Jonathan Eskreis-Winkler , Senior",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2020",
-   "pi": "Nathan Srebro",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Youngseok Kim",
-   "role": "phd",
-   "years": [
-    2020,
-    2020
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20240425012249id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "d9a26d6656c419e96ca6841c391b108eb3ce9e7c806c313522237857c92c4d68",
-   "quote": "2020 Takintayo Akinbiyi Yongrui Chen, Postdoctoral Researcher, Department of Statistics, Rice University Ran Dai Jonathan Eskreis-Winkler , Senior Data Scientist, Etsy Youngseok Kim",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2020",
-   "pi": "Nathan Srebro",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Tae Hyun Kim",
-   "role": "other",
-   "years": [
-    2020,
-    2020
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20240425012249id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "d9a26d6656c419e96ca6841c391b108eb3ce9e7c806c313522237857c92c4d68",
-   "quote": "Tae Hyun Kim , Applied Scientist",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2020",
-   "pi": "Nathan Srebro",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Haoyang Liu",
-   "role": "phd",
-   "years": [
-    2020,
-    2020
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20240425012249id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "d9a26d6656c419e96ca6841c391b108eb3ce9e7c806c313522237857c92c4d68",
-   "quote": "2020 Takintayo Akinbiyi Yongrui Chen, Postdoctoral Researcher, Department of Statistics, Rice University Ran Dai Jonathan Eskreis-Winkler , Senior Data Scientist, Etsy Youngseok Kim , Quantitative Researcher, Two Sigma Investments Tae Hyun Kim , Applied Scientist, Microsoft Haoyang Liu",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2020",
-   "pi": "Nathan Srebro",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Zhipeng Lou",
-   "role": "phd",
-   "years": [
-    2020,
-    2020
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20240425012249id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "d9a26d6656c419e96ca6841c391b108eb3ce9e7c806c313522237857c92c4d68",
-   "quote": "2020 Takintayo Akinbiyi Yongrui Chen, Postdoctoral Researcher, Department of Statistics, Rice University Ran Dai Jonathan Eskreis-Winkler , Senior Data Scientist, Etsy Youngseok Kim , Quantitative Researcher, Two Sigma Investments Tae Hyun Kim , Applied Scientist, Microsoft Haoyang Liu Zhipeng Lou",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2020",
-   "pi": "Nathan Srebro",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Gregory Naisat",
-   "role": "phd",
-   "years": [
-    2020,
-    2020
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20240425012249id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "d9a26d6656c419e96ca6841c391b108eb3ce9e7c806c313522237857c92c4d68",
-   "quote": "Gregory Naisat , Software Developer",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2020",
-   "pi": "Nathan Srebro",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Petr Panov",
-   "role": "phd",
-   "years": [
-    2020,
-    2020
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20240425012249id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "d9a26d6656c419e96ca6841c391b108eb3ce9e7c806c313522237857c92c4d68",
-   "quote": "2020 Takintayo Akinbiyi Yongrui Chen, Postdoctoral Researcher, Department of Statistics, Rice University Ran Dai Jonathan Eskreis-Winkler , Senior Data Scientist, Etsy Youngseok Kim , Quantitative Researcher, Two Sigma Investments Tae Hyun Kim , Applied Scientist, Microsoft Haoyang Liu Zhipeng Lou Gregory Naisat , Software Developer, Rx.Me Petr Panov",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2020",
-   "pi": "Nathan Srebro",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Minzhe Wang",
-   "role": "phd",
-   "years": [
-    2020,
-    2020
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20240425012249id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "d9a26d6656c419e96ca6841c391b108eb3ce9e7c806c313522237857c92c4d68",
-   "quote": "2020 Takintayo Akinbiyi Yongrui Chen, Postdoctoral Researcher, Department of Statistics, Rice University Ran Dai Jonathan Eskreis-Winkler , Senior Data Scientist, Etsy Youngseok Kim , Quantitative Researcher, Two Sigma Investments Tae Hyun Kim , Applied Scientist, Microsoft Haoyang Liu Zhipeng Lou Gregory Naisat , Software Developer, Rx.Me Petr Panov, Quantitative Researcher, Optiver Lei Sun Minzhe Wang",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2020",
-   "pi": "Nathan Srebro",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Fengshuo Zhang",
-   "role": "phd",
-   "years": [
-    2020,
-    2020
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20240425012249id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "d9a26d6656c419e96ca6841c391b108eb3ce9e7c806c313522237857c92c4d68",
-   "quote": "2020 Takintayo Akinbiyi Yongrui Chen, Postdoctoral Researcher, Department of Statistics, Rice University Ran Dai Jonathan Eskreis-Winkler , Senior Data Scientist, Etsy Youngseok Kim , Quantitative Researcher, Two Sigma Investments Tae Hyun Kim , Applied Scientist, Microsoft Haoyang Liu Zhipeng Lou Gregory Naisat , Software Developer, Rx.Me Petr Panov, Quantitative Researcher, Optiver Lei Sun Minzhe Wang , Quantitative Researcher, Jump Operation Changji Xu Fengshuo Zhang",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2020",
-   "pi": "Nathan Srebro",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Bumeng Zhuo",
-   "role": "phd",
-   "years": [
-    2020,
-    2020
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20240425012249id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "d9a26d6656c419e96ca6841c391b108eb3ce9e7c806c313522237857c92c4d68",
-   "quote": "2020 Takintayo Akinbiyi Yongrui Chen, Postdoctoral Researcher, Department of Statistics, Rice University Ran Dai Jonathan Eskreis-Winkler , Senior Data Scientist, Etsy Youngseok Kim , Quantitative Researcher, Two Sigma Investments Tae Hyun Kim , Applied Scientist, Microsoft Haoyang Liu Zhipeng Lou Gregory Naisat , Software Developer, Rx.Me Petr Panov, Quantitative Researcher, Optiver Lei Sun Minzhe Wang , Quantitative Researcher, Jump Operation Changji Xu Fengshuo Zhang , Quantitative Researcher, Two Sigma Investments Bumeng Zhuo",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2020",
-   "pi": "Nathan Srebro",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Mahtiyar Bonakdarpour",
-   "role": "phd",
-   "years": [
-    2019,
-    2019
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20240425012249id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "d9a26d6656c419e96ca6841c391b108eb3ce9e7c806c313522237857c92c4d68",
-   "quote": "2019 Mahtiyar Bonakdarpour",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2019",
-   "pi": "Nathan Srebro",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Yuefeng Han",
-   "role": "phd",
-   "years": [
-    2019,
-    2019
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20240425012249id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "d9a26d6656c419e96ca6841c391b108eb3ce9e7c806c313522237857c92c4d68",
-   "quote": "2019 Mahtiyar Bonakdarpour , Vice President of Data Science, Root Insurance Company Yuefeng Han",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2019",
-   "pi": "Nathan Srebro",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Joelle Mbatchou",
-   "role": "phd",
-   "years": [
-    2019,
-    2019
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20240425012249id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "d9a26d6656c419e96ca6841c391b108eb3ce9e7c806c313522237857c92c4d68",
-   "quote": "Joelle Mbatchou , Senior",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2019",
-   "pi": "Nathan Srebro",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
+ "students": [],
+ "papers": [
+  {
+   "pi": "Julia Chuzhoy",
+   "key": "labpage:9c144394166bb1361592878f3bdb5748992aa24d",
+   "title": "Large Minors in Expanders",
+   "year": 2019,
+   "doi": "10.48550/arxiv.1901.09349",
+   "venue": "arXiv (Cornell University)",
+   "byline": [
+    "Chuzhoy, Julia",
+    "Nimavat, Rachit"
+   ],
+   "arxiv": "1901.09349",
+   "evidence": {
+    "step": "sweep",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W2912649459",
+    "appointment": {
+     "listing": 2019
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "text: Toyota Technological Institute at Chicago,"
+    ],
+    "institutions": [
+     "Toyota Technological Institute at Chicago",
+     "The University of Tokyo"
+    ],
+    "raw_affiliations": [
+     "Toyota Technological Institute at Chicago,"
+    ],
+    "labpage": {
+     "url": "https://cjulia.ttic.edu/publications.html",
+     "capture_url": null,
+     "sha256": "92aab4445c7c3e3b3c2449780f1e51f935e46e840979b14558efb21b22d898ef",
+     "quote": "Julia Chuzhoy and Rachit Nimavat . Large Minors in Expanders , arXiv:1901.09349 , 2019.",
+     "listed_title": "Large Minors in Expanders",
+     "listed_year": 2019
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "aed5e7bceeb13c57"
+  },
+  {
+   "pi": "Julia Chuzhoy",
+   "key": "labpage:9a586b79c9dad49145f65eeb477614e655957c15",
+   "title": "Almost Polynomial Hardness of Node-Disjoint Paths in Grids",
+   "year": 2017,
+   "doi": "10.48550/arxiv.1711.01980",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "1711.01980",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "footnote",
+    "quotes": [
+     "Julia Chuzhoy∗ ",
+     "∗ Toyota Technological Institute at Chicago. Email: cjulia@ttic.edu. Supported in part by NSF grants CCF-1318242 and CCF-1616584."
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1711/1711.01980v1.pdf",
+    "pdf_sha256": "c635bd72f9380dcc1503e96e7868f03411eb97c01c6133ed075fb9832b89b50f",
+    "step": "arxiv",
+    "match": "entry_link",
+    "appointment": {
+     "listing": 2017
+    },
+    "arxiv": "1711.01980",
+    "labpage": {
+     "url": "https://cjulia.ttic.edu/publications.html",
+     "capture_url": null,
+     "sha256": "92aab4445c7c3e3b3c2449780f1e51f935e46e840979b14558efb21b22d898ef",
+     "quote": "Julia Chuzhoy, David H.K. Kim and Rachit Nimavat . Almost Polynomial Hardness for Node-Disjoint Paths in Grids . Theory of Computing , volume 17, pages 1-57, 2021. A preliminary version appeared in Proc. of the 50th Annual ACM SIGACT Symposium on Theory of Computing (STOC) , pages 1220-1233, 2018. Invited to Theory of Computing journal. An Arxiv version , arXiv:1711.01980 .",
+     "listed_title": "Almost Polynomial Hardness for Node-Disjoint Paths in Grids",
+     "listed_year": 2018
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "3d41de3ece2c81a7",
+   "listed_title": "Almost Polynomial Hardness for Node-Disjoint Paths in Grids",
+   "title_basis": "arxiv_oai"
   },
   {
-   "name": "Victor Hugo Almendra-Hernández",
-   "role": null,
-   "years": null,
-   "url": "https://home.ttic.edu/~madhurt/#papers",
-   "sha256": "c490dcc062729ad072c3e38c194d73136a4eeca81a2fae54f9db8cb83103d47e",
-   "quote": "Current Victor Hugo Almendra-Hernández",
-   "note": "lab-page audit 2026-11-03; section: Current",
    "pi": "Madhur Tulsiani",
-   "alumni": false,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "none",
-   "years_basis": "none"
-  },
-  {
-   "name": "Sofia de la Cerda",
-   "role": null,
-   "years": null,
-   "url": "https://home.ttic.edu/~madhurt/#papers",
-   "sha256": "c490dcc062729ad072c3e38c194d73136a4eeca81a2fae54f9db8cb83103d47e",
-   "quote": "Current Victor Hugo Almendra-Hernández U. Chicago, co-advised with Sasha Razborov Keming Ouyang TTIC Omshi Samal TTIC Sofia de la Cerda",
-   "note": "lab-page audit 2026-11-03; section: Current",
-   "pi": "Madhur Tulsiani",
-   "alumni": false,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "none",
-   "years_basis": "none"
-  },
-  {
-   "name": "Kushal Dey",
-   "role": "postdoc",
-   "years": [
-    2018,
-    2018
+   "key": "labpage:42d17ff00ebc1156508e3bd45863f064f5b7ae23",
+   "title": "List Decodable Quantum LDPC Codes",
+   "year": 2024,
+   "doi": "10.48550/arxiv.2411.04306",
+   "venue": "arXiv (Cornell University)",
+   "byline": [
+    "Bergamaschi, Thiago",
+    "Jeronimo, Fernando Granha",
+    "Mittal, Tushant",
+    "Srivastava, Shashank",
+    "Tulsiani, Madhur"
    ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20190920161917id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "b66cde8942e88875508c9bf9e1cbb66ccdd6faeec548e873900c4cdfa7abb3e4",
-   "quote": "Kushal Dey , Postdoctoral",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2018",
-   "pi": "Haryadi Gunawi",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2016,
-   "role_basis": "entry",
-   "years_basis": "section_year_heading"
+   "arxiv": "2411.04306",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "marker",
+    "quotes": [
+     "Madhur Tulsiani¶ ",
+     "¶ Toyota Technological Institute at Chicago. madhurt@ttic.edu. Supported by the NSF grant CCF-"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2411/2411.04306v1.pdf",
+    "pdf_sha256": "9ef5114a3aefc4f779eec5d199c7fcf9fcc1c4945c23d0d5f6b45f54f8ecbe04",
+    "step": "pi_works",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W4404396525",
+    "appointment": {
+     "listing": 2024
+    },
+    "arxiv": "2411.04306",
+    "labpage": {
+     "url": "https://home.ttic.edu/~madhurt/#papers",
+     "capture_url": null,
+     "sha256": "c490dcc062729ad072c3e38c194d73136a4eeca81a2fae54f9db8cb83103d47e",
+     "quote": "List Decodable Quantum LDPC Codes with Thiago Bergamaschi, Fernando Granha Jeronimo, Tushant Mittal and Shashank Srivastava QIP 2025 (poster) · arXiv",
+     "listed_title": "List Decodable Quantum LDPC Codes",
+     "listed_year": 2025
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "0a6ef721451a00f4"
   },
   {
-   "name": "Wooseok Ha",
-   "role": "postdoc",
-   "years": [
-    2018,
-    2018
+   "pi": "Lek-Heng Lim",
+   "key": "labpage:be82c566c14a210ab09a9ae0cae2de6fb4b89df0",
+   "title": "Theoretical and computational aspects of entanglement",
+   "year": 2017,
+   "doi": "10.48550/arxiv.1705.07160",
+   "venue": "arXiv (Cornell University)",
+   "byline": [
+    "Derksen, Harm",
+    "Friedland, Shmuel",
+    "Lim, Lek-Heng",
+    "Wang, Li"
    ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20190920161917id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "b66cde8942e88875508c9bf9e1cbb66ccdd6faeec548e873900c4cdfa7abb3e4",
-   "quote": "Wooseok Ha , Postdoctoral",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2018",
-   "pi": "Haryadi Gunawi",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2016,
-   "role_basis": "entry",
-   "years_basis": "section_year_heading"
+   "arxiv": "1705.07160",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "footnote",
+    "quotes": [
+     "Lek-Heng Lim‡",
+     "‡ Computational and Applied Mathematics Initiative, Department of Statistics, University of Chicago,USA lekheng@galton.uchicago.edu 1"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1705/1705.07160v1.pdf",
+    "pdf_sha256": "46ced041ba8f8b7458b815c50f32b9efa9f5c6bf683c3d9abeeb07aec79c99f0",
+    "step": "pi_works",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W2619715847",
+    "appointment": {
+     "listing": 2017
+    },
+    "arxiv": "1705.07160",
+    "labpage": {
+     "url": "https://www.stat.uchicago.edu/~lekheng/work/reprints.html",
+     "capture_url": null,
+     "sha256": "e81dbbc719f7ab5ad5e24cf4b5f61a604061593f526f7979263140562a67a426",
+     "quote": "H. Derksen, S. Friedland, L.-H. Lim, and L. Wang, \" Theoretical and computational aspects of entanglement ,\" preprint , (2017).",
+     "listed_title": "Theoretical and computational aspects of entanglement",
+     "listed_year": 2017
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "1c6dee59278dffac"
   },
   {
-   "name": "Mengyin Lu",
-   "role": "other",
-   "years": [
-    2018,
-    2018
+   "pi": "Lek-Heng Lim",
+   "key": "labpage:f9f863343663717b690d7f7af49410d6786980b2",
+   "title": "The Spacey Random Walk: A Stochastic Process for Higher-Order Data",
+   "year": 2017,
+   "doi": "10.1137/16m1074023",
+   "venue": "SIAM Review",
+   "byline": [
+    "Austin R. Benson",
+    "David F. Gleich",
+    "Lek-Heng Lim"
    ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20190920161917id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "b66cde8942e88875508c9bf9e1cbb66ccdd6faeec548e873900c4cdfa7abb3e4",
-   "quote": "Mengyin Lu , Research Scientist",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2018",
-   "pi": "Haryadi Gunawi",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2016,
-   "role_basis": "entry",
-   "years_basis": "section_year_heading"
+   "arxiv": "1602.02102",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "footnote",
+    "quotes": [
+     "LEK-HENG LIM§ ",
+     "§ Computational and Applied Mathematics Initiative, Department of Statistics, University of Chicago, 5734 South University Avenue, Chicago, IL 60637, USA (lekheng@"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1602/1602.02102v1.pdf",
+    "pdf_sha256": "e6d91d97cc7a1ed8a7f31d50877d9fee78025880a84c65f6365628accd9f0384",
+    "step": "pi_works",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W2258969095",
+    "appointment": {
+     "listing": 2017
+    },
+    "arxiv": "1602.02102",
+    "labpage": {
+     "url": "https://www.stat.uchicago.edu/~lekheng/work/reprints.html",
+     "capture_url": null,
+     "sha256": "e81dbbc719f7ab5ad5e24cf4b5f61a604061593f526f7979263140562a67a426",
+     "quote": "A. Benson, D. Gleich, and L.-H. Lim, \" The spacey random walk: a stochastic process for higher-order data ,\" SIAM Review , 59 (2017), no. 2, pp. 321–345.",
+     "listed_title": "The spacey random walk: a stochastic process for higher-order data",
+     "listed_year": 2017
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "965aafc646c9cc19"
   },
   {
-   "name": "Subhajit Goswami",
-   "role": "postdoc",
-   "years": [
-    2017,
-    2017
+   "pi": "Wei-Biao Wu",
+   "key": "labpage:ef771486621eeafbdd5d251ec9710a3d70eea54c",
+   "title": "A Network View on Portfolio Risk",
+   "year": 2026,
+   "doi": "10.1080/07350015.2026.2634827",
+   "venue": "Journal of Business and Economic Statistics",
+   "byline": [
+    "Wolfgang Karl Härdle",
+    "Rui Ren",
+    "Zijin Wang",
+    "Wei-Biao Wu"
    ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20190920161917id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "b66cde8942e88875508c9bf9e1cbb66ccdd6faeec548e873900c4cdfa7abb3e4",
-   "quote": "Subhajit Goswami , Postdoctoral",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2017",
-   "pi": "Haryadi Gunawi",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2016,
-   "role_basis": "entry",
-   "years_basis": "section_year_heading"
+   "arxiv": null,
+   "evidence": {
+    "step": "sweep",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W7134119079",
+    "appointment": {
+     "listing": 2026
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "University of Chicago",
+     "text: Department of Statistics, The University of Chicago"
+    ],
+    "institutions": [
+     "University of Chicago"
+    ],
+    "raw_affiliations": [
+     "Department of Statistics, The University of Chicago"
+    ],
+    "labpage": {
+     "url": "http://www.stat.uchicago.edu/~wbwu/papers.html",
+     "capture_url": null,
+     "sha256": "4b20c8e3fbf7ef19d6af5252101b90212a83611d96d9bf908c47c14d086ba555",
+     "quote": "Wolfgang Karl Härdle, Rui Ren, Zijin Wang, Wei Biao Wu . A Network View on Portfolio Risk . Journal of Business & Economic Statistics, 2026 . [ Publisher ] [ Scholar ]",
+     "listed_title": "A Network View on Portfolio Risk",
+     "listed_year": 2026
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "fb760d80ae4224b6"
   },
   {
-   "name": "Ang Li",
-   "role": "other",
-   "years": [
-    2017,
-    2017
+   "pi": "Wei-Biao Wu",
+   "key": "labpage:c7a6ea083e01639297d298f8b63f1922036c7ab0",
+   "title": "Text-term selection and analysis: Frequentist and Bayesian strategies and interpretations",
+   "year": 2025,
+   "doi": "10.1016/j.jeconom.2025.106163",
+   "venue": "Journal of Econometrics",
+   "byline": [
+    "Cathy Yi-Hsuan Chen",
+    "George Kapetanios",
+    "Wei-Biao Wu"
    ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20190920161917id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "b66cde8942e88875508c9bf9e1cbb66ccdd6faeec548e873900c4cdfa7abb3e4",
-   "quote": "Ang Li ,Machine Learning Engineer",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2017",
-   "pi": "Haryadi Gunawi",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2016,
-   "role_basis": "entry",
-   "years_basis": "section_year_heading"
+   "arxiv": null,
+   "evidence": {
+    "step": "sweep",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W7115595808",
+    "appointment": {
+     "listing": 2025
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "University of Chicago",
+     "text: Department of Statistics, University of Chicago, United States"
+    ],
+    "institutions": [
+     "University of Chicago"
+    ],
+    "raw_affiliations": [
+     "Department of Statistics, University of Chicago, United States"
+    ],
+    "labpage": {
+     "url": "http://www.stat.uchicago.edu/~wbwu/papers.html",
+     "capture_url": null,
+     "sha256": "4b20c8e3fbf7ef19d6af5252101b90212a83611d96d9bf908c47c14d086ba555",
+     "quote": "Cathy Yi-Hsuan Chen, George Kapetanios, Wei Biao Wu . Text-Term Selection and Analysis: Frequentist and Bayesian Strategies and Interpretations . Journal of Econometrics 256(B), article 106163, 2026 . [ Publisher ] [ Scholar ]",
+     "listed_title": "Text-Term Selection and Analysis: Frequentist and Bayesian Strategies and Interpretations",
+     "listed_year": 2026
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "b49737b8dc9ebad7"
   },
   {
-   "name": "Yongrui Chen",
-   "role": "phd",
-   "years": [
-    2020,
-    2020
+   "pi": "Wei-Biao Wu",
+   "key": "labpage:21ebb8d28bd091f7ee35c1a8b583c67d2cd7d7e5",
+   "title": "Estimation of grouped time-varying network vector autoregressive models",
+   "year": 2026,
+   "doi": "10.1214/25-aos2580",
+   "venue": "The Annals of Statistics",
+   "byline": [
+    "Degui Li",
+    "Bin Peng",
+    "Songqiao Tang",
+    "Weibiao Wu"
    ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20200923011644id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "1d746698c9ddc7e0331a4f93787dda4db137da31d335a34c48bd3f4f384aac99",
-   "quote": "2020 Yongrui Chen",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2020",
-   "pi": "Risi Kondor",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
+   "arxiv": null,
+   "evidence": {
+    "step": "sweep",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W7148418131",
+    "appointment": {
+     "listing": 2026
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "University of Chicago",
+     "text: Department of Statistics, University of Chicago"
+    ],
+    "institutions": [
+     "University of Chicago"
+    ],
+    "raw_affiliations": [
+     "Department of Statistics, University of Chicago"
+    ],
+    "labpage": {
+     "url": "http://www.stat.uchicago.edu/~wbwu/papers.html",
+     "capture_url": null,
+     "sha256": "4b20c8e3fbf7ef19d6af5252101b90212a83611d96d9bf908c47c14d086ba555",
+     "quote": "Degui Li, Bin Peng, Songqiao Tang, Wei Biao Wu . Estimation of Grouped Time-Varying Network Vector Autoregressive Models . Annals of Statistics 54(2), 621–646, 2026 . [ Publisher ] [ Scholar ]",
+     "listed_title": "Estimation of Grouped Time-Varying Network Vector Autoregressive Models",
+     "listed_year": 2026
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "999b73d8a8d19045"
   },
   {
-   "name": "Ran Dai",
-   "role": "phd",
-   "years": [
-    2020,
-    2020
+   "pi": "Wei-Biao Wu",
+   "key": "labpage:d0158ed51592eb235510f2e252beda243c0ac177",
+   "title": "Simultaneous Inference for Mean Curves of Functional and Longitudinal Data: A Unified Theory",
+   "year": 2024,
+   "doi": "10.5705/ss.202022.0358",
+   "venue": "Statistica Sinica",
+   "byline": [
+    "Zhipeng Lou",
+    "Weibiao Wu"
    ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20200923011644id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "1d746698c9ddc7e0331a4f93787dda4db137da31d335a34c48bd3f4f384aac99",
-   "quote": "2020 Yongrui Chen Ran Dai",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2020",
-   "pi": "Risi Kondor",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
+   "arxiv": null,
+   "evidence": {
+    "step": "sweep",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W4390883255",
+    "appointment": {
+     "listing": 2024
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "University of Chicago",
+     "text: The University of Chicago"
+    ],
+    "institutions": [
+     "University of Pittsburgh",
+     "University of Chicago"
+    ],
+    "raw_affiliations": [
+     "The University of Chicago",
+     "University of Pittsburgh"
+    ],
+    "labpage": {
+     "url": "http://www.stat.uchicago.edu/~wbwu/papers.html",
+     "capture_url": null,
+     "sha256": "4b20c8e3fbf7ef19d6af5252101b90212a83611d96d9bf908c47c14d086ba555",
+     "quote": "Zhipeng Lou, Wei Biao Wu . Simultaneous Inference for Mean Curves of Functional and Longitudinal Data: A Unified Theory . Statistica Sinica 36(1), 79–100, 2026 . [ Publisher ] [ R code ] [ Scholar ]",
+     "listed_title": "Simultaneous Inference for Mean Curves of Functional and Longitudinal Data: A Unified Theory",
+     "listed_year": 2026
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "65111288f04d79f5"
   },
   {
-   "name": "Youngseok Kim",
-   "role": "phd",
-   "years": [
-    2020,
-    2020
+   "pi": "Wei-Biao Wu",
+   "key": "labpage:6e8af771857775869a22bd742a74069f422439eb",
+   "title": "3D patient-derived tumor models to recapitulate pediatric brain tumors In Vitro",
+   "year": 2022,
+   "doi": "10.1016/j.tranon.2022.101407",
+   "venue": "Translational Oncology",
+   "byline": [
+    "Min D. Tang-Schomer",
+    "Harshpreet Chandok",
+    "Wei-Biao Wu",
+    "Ching C. Lau",
+    "Markus J. Bookland",
+    "Joshy George"
    ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20200923011644id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "1d746698c9ddc7e0331a4f93787dda4db137da31d335a34c48bd3f4f384aac99",
-   "quote": "2020 Yongrui Chen Ran Dai Jonathan Eskreis-Winkler , Senior Data Scientist, Etsy Youngseok Kim",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2020",
-   "pi": "Risi Kondor",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
+   "arxiv": null,
+   "evidence": {
+    "step": "sweep",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W4223947242",
+    "appointment": {
+     "listing": 2022
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "University of Chicago",
+     "text: University of Chicago, Department of Statistics, 5747 S.Ellis Avenue, Chicago, IL 60637, USA"
+    ],
+    "institutions": [
+     "University of Chicago"
+    ],
+    "raw_affiliations": [
+     "University of Chicago, Department of Statistics, 5747 S.Ellis Avenue, Chicago, IL 60637, USA"
+    ],
+    "labpage": {
+     "url": "http://www.stat.uchicago.edu/~wbwu/papers.html",
+     "capture_url": null,
+     "sha256": "4b20c8e3fbf7ef19d6af5252101b90212a83611d96d9bf908c47c14d086ba555",
+     "quote": "Min D. Tang-Schomer, Harshpreet Chandok, Wei-Biao Wu, Ching C. Lau, Markus J. Bookland, Joshy George . 3D Patient-Derived Tumor Models to Recapitulate Pediatric Brain Tumors In Vitro . Translational Oncology 20 (June 2022), 101407 . [ Scholar ] . [ Publisher ] [ Scholar ]",
+     "listed_title": "3D Patient-Derived Tumor Models to Recapitulate Pediatric Brain Tumors In Vitro",
+     "listed_year": 2022
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "28bf8412a50b5c44"
   },
   {
-   "name": "Tae Hyun Kim",
-   "role": "phd",
-   "years": [
-    2020,
-    2020
+   "pi": "Wei-Biao Wu",
+   "key": "labpage:4dd710ab7090a2281972b85df176176b4a024505",
+   "title": "Optimal Gaussian Approximation for Multiple Time Series",
+   "year": 2020,
+   "doi": "10.48550/arxiv.2001.10164",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2001.10164",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "marker",
+    "quotes": [
+     "Wei Biao Wu∗ † ",
+     "∗ University of Chicago"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2001/2001.10164v1.pdf",
+    "pdf_sha256": "82ddffbe5e7f4955ecd8cd9d0abe23b3fff6bba49ae4e9cc74532a9ce5a18e7d",
+    "step": "arxiv",
+    "match": "oai_exact_title",
+    "appointment": {
+     "listing": 2020
+    },
+    "arxiv": "2001.10164",
+    "labpage": {
+     "url": "http://www.stat.uchicago.edu/~wbwu/papers.html",
+     "capture_url": null,
+     "sha256": "4b20c8e3fbf7ef19d6af5252101b90212a83611d96d9bf908c47c14d086ba555",
+     "quote": "Sayar Karmakar, Wei Biao Wu . Optimal Gaussian Approximation for Multiple Time Series . Statistica Sinica 30(3), 1399–1417, 2020 . [ Publisher ] [ Scholar ]",
+     "listed_title": "Optimal Gaussian Approximation for Multiple Time Series",
+     "listed_year": 2020
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "03fbf107db827c49",
+   "listed_title": "Optimal Gaussian Approximation for Multiple Time Series",
+   "title_basis": "arxiv_oai"
+  },
+  {
+   "pi": "Wei-Biao Wu",
+   "key": "labpage:b67efa21d44398732bbb75891dfeb41c1d9d814b",
+   "title": "In vitro 3D regeneration-like growth of human patient brain tissue",
+   "year": 2018,
+   "doi": "10.1002/term.2657",
+   "venue": "Journal of Tissue Engineering and Regenerative Medicine",
+   "byline": [
+    "M.D. Tang-Schomer",
+    "W.B. Wu",
+    "D.L. Kaplan",
+    "M.J. Bookland"
    ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20200923011644id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "1d746698c9ddc7e0331a4f93787dda4db137da31d335a34c48bd3f4f384aac99",
-   "quote": "2020 Yongrui Chen Ran Dai Jonathan Eskreis-Winkler , Senior Data Scientist, Etsy Youngseok Kim , Quantitative Researcher, Two Sigma Investments Tae Hyun Kim",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2020",
-   "pi": "Risi Kondor",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
+   "arxiv": null,
+   "evidence": {
+    "step": "sweep",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W2790225213",
+    "appointment": {
+     "listing": 2018
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "University of Chicago",
+     "text: Department of Statistics, University of Chicago, Chicago, IL, USA"
+    ],
+    "institutions": [
+     "University of Chicago"
+    ],
+    "raw_affiliations": [
+     "Department of Statistics, University of Chicago, Chicago, IL, USA"
+    ],
+    "labpage": {
+     "url": "http://www.stat.uchicago.edu/~wbwu/papers.html",
+     "capture_url": null,
+     "sha256": "4b20c8e3fbf7ef19d6af5252101b90212a83611d96d9bf908c47c14d086ba555",
+     "quote": "Tang-Schomer M. D., Wu W. B., Kaplan D. L., Bookland M. J . In Vitro 3D Regeneration-Like Growth of Human Patient Brain Tissue . Journal of Tissue Engineering and Regenerative Medicine, 2018 . [ Scholar ] . [ Publisher ] [ Scholar ]",
+     "listed_title": "In Vitro 3D Regeneration-Like Growth of Human Patient Brain Tissue",
+     "listed_year": 2018
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "018757a9d18fa449"
   },
   {
-   "name": "Haoyang Liu",
-   "role": "phd",
-   "years": [
-    2020,
-    2020
+   "pi": "Wei-Biao Wu",
+   "key": "labpage:50e2a3fd47e73e629a876cfdd5af92b1aa7349a2",
+   "title": "Simultaneous Inference for High Dimensional Mean Vectors",
+   "year": 2017,
+   "doi": "10.48550/arxiv.1704.04806",
+   "venue": "arXiv (Cornell University)",
+   "byline": [
+    "Lou, Zhipeng",
+    "Wu, Wei Biao"
    ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20200923011644id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "1d746698c9ddc7e0331a4f93787dda4db137da31d335a34c48bd3f4f384aac99",
-   "quote": "2020 Yongrui Chen Ran Dai Jonathan Eskreis-Winkler , Senior Data Scientist, Etsy Youngseok Kim , Quantitative Researcher, Two Sigma Investments Tae Hyun Kim Haoyang Liu",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2020",
-   "pi": "Risi Kondor",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
+   "arxiv": "1704.04806",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "near",
+    "quotes": [
+     "Wei Biao Wu Department of Statistics, University of Chicago"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1704/1704.04806v1.pdf",
+    "pdf_sha256": "56b1bfb50edd460e57a726ba27fa2f045851034060868a56a3b17d69c7d5302a",
+    "step": "pi_works",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W2605670822",
+    "appointment": {
+     "listing": 2017
+    },
+    "arxiv": "1704.04806",
+    "labpage": {
+     "url": "http://www.stat.uchicago.edu/~wbwu/papers.html",
+     "capture_url": null,
+     "sha256": "4b20c8e3fbf7ef19d6af5252101b90212a83611d96d9bf908c47c14d086ba555",
+     "quote": "Zhipeng Lou, Wei Biao Wu . Simultaneous Inference for High-Dimensional Mean Vectors . Preprint, arXiv:1704.04806, 2017 . [ arXiv ] [ Scholar ]",
+     "listed_title": "Simultaneous Inference for High-Dimensional Mean Vectors",
+     "listed_year": 2017
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "48db355a82dbb390"
   },
   {
-   "name": "Zhipeng Lou",
-   "role": "phd",
-   "years": [
-    2020,
-    2020
+   "pi": "Wei-Biao Wu",
+   "key": "labpage:b070d59b9bbf05fa638c5c29d06cfad06fef5782",
+   "title": "Simultaneous Confidence Bands in Nonlinear Regression Models with Nonstationarity",
+   "year": 2017,
+   "doi": "10.5705/ss.202015.0219",
+   "venue": "Statistica Sinica",
+   "byline": [
+    "Degui Li",
+    "Weidong Liu",
+    "Qiying Wang",
+    "Weibiao Wu"
    ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20200923011644id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "1d746698c9ddc7e0331a4f93787dda4db137da31d335a34c48bd3f4f384aac99",
-   "quote": "2020 Yongrui Chen Ran Dai Jonathan Eskreis-Winkler , Senior Data Scientist, Etsy Youngseok Kim , Quantitative Researcher, Two Sigma Investments Tae Hyun Kim Haoyang Liu Zhipeng Lou",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2020",
-   "pi": "Risi Kondor",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
+   "arxiv": null,
+   "evidence": {
+    "step": "sweep",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W3125122741",
+    "appointment": {
+     "listing": 2017
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "University of Chicago",
+     "text: The University of Chicago"
+    ],
+    "institutions": [
+     "University of Chicago"
+    ],
+    "raw_affiliations": [
+     "The University of Chicago"
+    ],
+    "labpage": {
+     "url": "http://www.stat.uchicago.edu/~wbwu/papers.html",
+     "capture_url": null,
+     "sha256": "4b20c8e3fbf7ef19d6af5252101b90212a83611d96d9bf908c47c14d086ba555",
+     "quote": "Degui Li, Weidong Liu, Qiying Wang, Wei Biao Wu . Simultaneous Confidence Bands in Nonlinear Regression Models with Nonstationarity . Statistica Sinica, 2016 . [ PDF ] [ Scholar ] . [ PDF ] [ Scholar ]",
+     "listed_title": "Simultaneous Confidence Bands in Nonlinear Regression Models with Nonstationarity",
+     "listed_year": 2016
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "68fbb9f4750e1534"
   },
   {
-   "name": "Gregory Naisat",
-   "role": "phd",
-   "years": [
-    2020,
-    2020
+   "pi": "Wei-Biao Wu",
+   "key": "labpage:ca6b28216fe123c211dbe5870080ee40e837c20b",
+   "title": "Performance bounds for parameter estimates of high-dimensional linear models with correlated errors",
+   "year": 2016,
+   "doi": "10.1214/16-ejs1108",
+   "venue": "Electronic Journal of Statistics",
+   "byline": [
+    "Wei-Biao Wu",
+    "Ying Nian Wu"
    ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20200923011644id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "1d746698c9ddc7e0331a4f93787dda4db137da31d335a34c48bd3f4f384aac99",
-   "quote": "2020 Yongrui Chen Ran Dai Jonathan Eskreis-Winkler , Senior Data Scientist, Etsy Youngseok Kim , Quantitative Researcher, Two Sigma Investments Tae Hyun Kim Haoyang Liu Zhipeng Lou Gregory Naisat",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2020",
-   "pi": "Risi Kondor",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
+   "arxiv": null,
+   "evidence": {
+    "step": "sweep",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W2274029167",
+    "appointment": {
+     "listing": 2016
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "University of Chicago",
+     "text: Department of Statistics The University of Chicago 5734 S University Ave Chicago, IL 60637"
+    ],
+    "institutions": [
+     "University of California, Los Angeles",
+     "University of Chicago"
+    ],
+    "raw_affiliations": [
+     "Department of Statistics The University of Chicago 5734 S University Ave Chicago, IL 60637",
+     "Department of Statistics UCLA 8125 Math Sciences Bldg. Box 951554 Los Angeles, CA"
+    ],
+    "labpage": {
+     "url": "http://www.stat.uchicago.edu/~wbwu/papers.html",
+     "capture_url": null,
+     "sha256": "4b20c8e3fbf7ef19d6af5252101b90212a83611d96d9bf908c47c14d086ba555",
+     "quote": "Wei-Biao Wu, Ying Nian Wu . Performance Bounds for Parameter Estimates of High-Dimensional Linear Models with Correlated Errors . Electronic Journal of Statistics 10(1), 352–379, 2016 . [ PDF ] [ Scholar ] . [ PDF ] [ Scholar ]",
+     "listed_title": "Performance Bounds for Parameter Estimates of High-Dimensional Linear Models with Correlated Errors",
+     "listed_year": 2016
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "983edbc2a53806eb"
   },
   {
-   "name": "Petr Panov",
-   "role": "phd",
-   "years": [
-    2020,
-    2020
+   "pi": "Avrim Blum",
+   "key": "labpage:6ee9b38547fb0c2346d7172bbbaaee344499e8ad",
+   "title": "Random Smoothing Might be Unable to Certify L_infinity Robustness for High-Dimensional Images",
+   "year": 2019,
+   "doi": null,
+   "venue": "any",
+   "byline": [],
+   "arxiv": null,
+   "evidence": {
+    "basis": "page1_open",
+    "how": "near",
+    "quotes": [
+     "Avrim Blum AVRIM @ TTIC"
+    ],
+    "url": "https://jmlr.org/papers/volume21/20-209/20-209.pdf",
+    "pdf_sha256": "536a8f53f994a13e106507966b188ed4d1248e52b8034d5e60aab542dcc7d5c3",
+    "step": "proceedings",
+    "match": "entry_link",
+    "appointment": {
+     "listing": 2019
+    },
+    "labpage": {
+     "url": "https://home.ttic.edu/~avrim/Papers/pubs.html",
+     "capture_url": null,
+     "sha256": "650ac35545aef16eaa76addcec5a646ee33014e016430c46016189a911cca17b",
+     "quote": "Random Smoothing Might be Unable to Certify L_infinity Robustness for High-Dimensional Images",
+     "listed_title": "Random Smoothing Might be Unable to Certify L_infinity Robustness for High-Dimensional Images",
+     "listed_year": 2019
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "1e0409d66c722d70"
+  },
+  {
+   "pi": "Avrim Blum",
+   "key": "labpage:496c0060c773eecbdbda615fc64ca8d3e57feb46",
+   "title": "On preserving non-discrimination when combining expert advice",
+   "year": 2018,
+   "doi": "10.48550/arxiv.1810.11829",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "1810.11829",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "footnote",
+    "quotes": [
+     "Avrim Blum ∗ ",
+     "∗ Toyota Technological Institute at Chicago, avrim@ttic.edu. Work supported under NSF grant CCF-1800317. Toyota Technological Institute at Chicago, suriya@ttic.edu"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1810/1810.11829v1.pdf",
+    "pdf_sha256": "a71e5f5e4c285891b7cc06a9cd53e230403a399ee7cb4510dada953a061509a8",
+    "step": "arxiv",
+    "match": "entry_link",
+    "appointment": {
+     "listing": 2018
+    },
+    "arxiv": "1810.11829",
+    "labpage": {
+     "url": "https://home.ttic.edu/~avrim/Papers/pubs.html",
+     "capture_url": null,
+     "sha256": "650ac35545aef16eaa76addcec5a646ee33014e016430c46016189a911cca17b",
+     "quote": "expert advice fairly? Specifically, given a set of predictors that are individually",
+     "listed_title": "expert advice fairly? Specifically, given a set of predictors that are individually",
+     "listed_year": 2018
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "78baf4a305f3d6d1",
+   "listed_title": "expert advice fairly? Specifically, given a set of predictors that are individually",
+   "title_basis": "arxiv_oai"
+  },
+  {
+   "pi": "Claire Donnat",
+   "key": "labpage:a32128b3068beafa3dfd151e46ad823632a70a52",
+   "title": "Studying the Effect of GNN Spatial Convolutions On The Embedding Space’s Geometry",
+   "year": 2023,
+   "doi": null,
+   "venue": null,
+   "byline": [],
+   "arxiv": null,
+   "evidence": {
+    "basis": "page1_open",
+    "how": "near",
+    "quotes": [
+     "Claire Donnat1 1 Department of Statistics, The University of Chicago"
+    ],
+    "url": "https://proceedings.mlr.press/v216/donnat23a/donnat23a.pdf",
+    "pdf_sha256": "31eaa31a94835c55c563106605dfdf12a739420d283126bbc773a484fa63d2de",
+    "step": "proceedings",
+    "match": "entry_link",
+    "appointment": {
+     "listing": 2023
+    },
+    "labpage": {
+     "url": "https://donnate.github.io/publications/",
+     "capture_url": null,
+     "sha256": "c89170d29ae90eafe3e80e365368424eccc79ce3fe7e4f28b0c8869f8f003c90",
+     "quote": "Uncertainty in Artificial Intelligence (UAI), PMLR 216:539–548 · 2023 Studying the Effect of GNN Spatial Convolutions On The Embedding Space’s Geometry Claire Donnat and So Won Jeong.",
+     "listed_title": "Studying the Effect of GNN Spatial Convolutions On The Embedding Space’s Geometry",
+     "listed_year": 2023
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "791fccdb1e5fe457"
+  },
+  {
+   "pi": "Claire Donnat",
+   "key": "labpage:3640627e733939caf3f71e8110f971450c5f6ddd",
+   "title": "A Bayesian Hierarchical Network for Combining Heterogeneous Data Sources in Medical Diagnoses",
+   "year": 2020,
+   "doi": null,
+   "venue": null,
+   "byline": [],
+   "arxiv": null,
+   "evidence": {
+    "basis": "page1_open",
+    "how": "near",
+    "quotes": [
+     "Claire Donnat cdonnat@uchicago"
+    ],
+    "url": "https://proceedings.mlr.press/v136/donnat20a/donnat20a.pdf",
+    "pdf_sha256": "e8721b3de04fe0d34c00bb22c7907b12185c2a6e745593d5158ce9fdfb955459",
+    "step": "proceedings",
+    "match": "entry_link",
+    "appointment": {
+     "listing": 2020
+    },
+    "labpage": {
+     "url": "https://donnate.github.io/publications/",
+     "capture_url": null,
+     "sha256": "c89170d29ae90eafe3e80e365368424eccc79ce3fe7e4f28b0c8869f8f003c90",
+     "quote": "Machine Learning for Health, PMLR 136:53–84 · 2020 A Bayesian Hierarchical Network for Combining Heterogeneous Data Sources in Medical Diagnoses Claire Donnat , Nina Miolane, Freddy Bunbury, and Jack Kreindler.",
+     "listed_title": "A Bayesian Hierarchical Network for Combining Heterogeneous Data Sources in Medical Diagnoses",
+     "listed_year": 2020
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "67d7117541b3dc91"
+  },
+  {
+   "pi": "Claire Donnat",
+   "key": "labpage:5b349b58257fc5fc399b2cddfaf190bd47455456",
+   "title": "Filtering with Confidence: When Data Augmentation Meets Conformal Prediction",
+   "year": 2025,
+   "doi": "10.48550/arxiv.2509.21479",
+   "venue": "arXiv (Cornell University)",
+   "byline": [
+    "Wu, Zixuan",
+    "Jeong, So Won",
+    "Liu, Yating",
+    "Jung, Yeo Jin",
+    "Donnat, Claire"
    ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20200923011644id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "1d746698c9ddc7e0331a4f93787dda4db137da31d335a34c48bd3f4f384aac99",
-   "quote": "2020 Yongrui Chen Ran Dai Jonathan Eskreis-Winkler , Senior Data Scientist, Etsy Youngseok Kim , Quantitative Researcher, Two Sigma Investments Tae Hyun Kim Haoyang Liu Zhipeng Lou Gregory Naisat Petr Panov",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2020",
-   "pi": "Risi Kondor",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
+   "arxiv": "2509.21479",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "near",
+    "quotes": [
+     "Claire Donnat Department of Statistics University of Chicago"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2509/2509.21479v1.pdf",
+    "pdf_sha256": "9a2ff7a13ee9c2d88bfbfd19a4d867bc0566aac2a48f3c90a9b4ee2e46d4b3ea",
+    "step": "pi_works",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W7083696098",
+    "appointment": {
+     "listing": 2025
+    },
+    "arxiv": "2509.21479",
+    "labpage": {
+     "url": "https://donnate.github.io/publications/",
+     "capture_url": null,
+     "sha256": "c89170d29ae90eafe3e80e365368424eccc79ce3fe7e4f28b0c8869f8f003c90",
+     "quote": "arXiv · 2025, revised 2026 Filtering with Confidence: When Data Augmentation Meets Conformal Prediction Zixuan Wu, So Won Jeong, Yating Liu, Yeo Jin Jung, and Claire Donnat .",
+     "listed_title": "Filtering with Confidence: When Data Augmentation Meets Conformal Prediction",
+     "listed_year": 2026
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "4de9c339f5a3f061"
   },
   {
-   "name": "Minzhe Wang",
-   "role": "phd",
-   "years": [
-    2020,
-    2020
+   "pi": "Claire Donnat",
+   "key": "labpage:975cfd0f11387d293008ad623cbb9ea000a2072d",
+   "title": "LOBSTUR: A Local Bootstrap Framework for Tuning Unsupervised Representations in Graph Neural Networks",
+   "year": 2025,
+   "doi": "10.48550/arxiv.2505.14867",
+   "venue": "arXiv (Cornell University)",
+   "byline": [
+    "Jeong, So Won",
+    "Donnat, Claire"
    ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20200923011644id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "1d746698c9ddc7e0331a4f93787dda4db137da31d335a34c48bd3f4f384aac99",
-   "quote": "2020 Yongrui Chen Ran Dai Jonathan Eskreis-Winkler , Senior Data Scientist, Etsy Youngseok Kim , Quantitative Researcher, Two Sigma Investments Tae Hyun Kim Haoyang Liu Zhipeng Lou Gregory Naisat Petr Panov, Quantitative Researcher, Optiver Lei Sun Minzhe Wang",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2020",
-   "pi": "Risi Kondor",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
+   "arxiv": "2505.14867",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "near",
+    "quotes": [
+     "Claire Donnat Department of Statistics The University of Chicago"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2505/2505.14867v1.pdf",
+    "pdf_sha256": "5bfda76b8ed205b2774dc2908d6bced1ffa1c976872a3c36405a06767afaba42",
+    "step": "pi_works",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W4415326879",
+    "appointment": {
+     "listing": 2025
+    },
+    "arxiv": "2505.14867",
+    "labpage": {
+     "url": "https://donnate.github.io/publications/",
+     "capture_url": null,
+     "sha256": "c89170d29ae90eafe3e80e365368424eccc79ce3fe7e4f28b0c8869f8f003c90",
+     "quote": "arXiv · 2025 LOBSTUR: A Local Bootstrap Framework for Tuning Unsupervised Representations in Graph Neural Networks So Won Jeong and Claire Donnat .",
+     "listed_title": "LOBSTUR: A Local Bootstrap Framework for Tuning Unsupervised Representations in Graph Neural Networks",
+     "listed_year": 2025
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "b7b3ce0b0e651e39"
   },
   {
-   "name": "Fengshuo Zhang",
-   "role": "phd",
-   "years": [
-    2020,
-    2020
+   "pi": "Jeremy Hoskins",
+   "key": "labpage:13ac9edd3c00583c6df93d013201cea7ef5264c2",
+   "title": "Self‐Affine Scaling of Earth's Islands",
+   "year": 2026,
+   "doi": "10.1029/2025gl121272",
+   "venue": "Geophysical Research Letters",
+   "byline": [
+    "Matthew Oline",
+    "Jeremy Hoskins",
+    "David Seekell",
+    "Mary Silber",
+    "B. B. Cael"
    ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20200923011644id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "1d746698c9ddc7e0331a4f93787dda4db137da31d335a34c48bd3f4f384aac99",
-   "quote": "2020 Yongrui Chen Ran Dai Jonathan Eskreis-Winkler , Senior Data Scientist, Etsy Youngseok Kim , Quantitative Researcher, Two Sigma Investments Tae Hyun Kim Haoyang Liu Zhipeng Lou Gregory Naisat Petr Panov, Quantitative Researcher, Optiver Lei Sun Minzhe Wang , Quantitative Researcher, Jump Operation Changji Xu Fengshuo Zhang",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2020",
-   "pi": "Risi Kondor",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
+   "arxiv": null,
+   "evidence": {
+    "step": "sweep",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W4417530930",
+    "appointment": {
+     "listing": 2026
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "University of Chicago",
+     "text: Department of Statistics and Committee on Computational and Applied Mathematics University of Chicago  Chicago IL USA"
+    ],
+    "institutions": [
+     "U.S. National Science Foundation",
+     "University of Chicago"
+    ],
+    "raw_affiliations": [
+     "Department of Statistics and Committee on Computational and Applied Mathematics University of Chicago  Chicago IL USA",
+     "NSF‐Simons National Institute for Theory and Mathematics in Biology  Chicago IL USA"
+    ],
+    "labpage": {
+     "url": "https://www.jghoskins.com/publications",
+     "capture_url": null,
+     "sha256": "36b3b4a0ad575fc898639437b123682c971b74b1a0dc3e4b67cfa013c6c7c51e",
+     "quote": "Oline M, Hoskins JG, Seekell D, Silber M, Cael BB. Self-affine scaling of Earth’s islands. Geophysical Research Letters (2026) - ( arxiv )",
+     "listed_title": "Self-affine scaling of Earth’s islands",
+     "listed_year": 2026
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "71ee76adac63acf0"
   },
   {
-   "name": "Bumeng Zhuo",
-   "role": "phd",
-   "years": [
-    2020,
-    2020
+   "pi": "Jeremy Hoskins",
+   "key": "labpage:ab544b2ac205d0998c1a8c1e500437145ef88517",
+   "title": "Surface layers and linearized water waves: a boundary integral equation framework",
+   "year": 2025,
+   "doi": "10.48550/arxiv.2510.22748",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2510.22748",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "footnote",
+    "quotes": [
+     "JEREMY HOSKINS‡ , ",
+     "‡ Department of Statistics and CCAM, University of Chicago, Chicago, Illinois (jeremyhoskins@uchicago.edu)."
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2510/2510.22748v1.pdf",
+    "pdf_sha256": "4c09195ceaa964da058f9601a2159ad96b891ddf4599845bb068a2e8cf2eb8b1",
+    "step": "arxiv",
+    "match": "entry_link",
+    "appointment": {
+     "listing": 2025
+    },
+    "arxiv": "2510.22748",
+    "labpage": {
+     "url": "https://www.jghoskins.com/publications",
+     "capture_url": null,
+     "sha256": "36b3b4a0ad575fc898639437b123682c971b74b1a0dc3e4b67cfa013c6c7c51e",
+     "quote": "Askham T, Goodwill T, Hoskins JG, Nekrasov P, Rachh M. Surface layers and linearized water waves: a boundary integral equation framework (2025) - ( arxiv )",
+     "listed_title": "Surface layers and linearized water waves: a boundary integral equation framework (2025) - ( arxiv )",
+     "listed_year": 2025
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "a3faed6e9598e26b",
+   "listed_title": "Surface layers and linearized water waves: a boundary integral equation framework (2025) - ( arxiv )",
+   "title_basis": "arxiv_oai"
+  },
+  {
+   "pi": "Jeremy Hoskins",
+   "key": "labpage:8a098451570c24e284ffcad066e5c722608ea530",
+   "title": "Complex scaling for open waveguides",
+   "year": 2025,
+   "doi": "10.48550/arxiv.2506.10263",
+   "venue": "arXiv (Cornell University)",
+   "byline": [
+    "Epstein, Charles L.",
+    "Goodwill, Tristan",
+    "Hoskins, Jeremy",
+    "Quinn, Solomon",
+    "Rachh, Manas"
    ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20200923011644id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "1d746698c9ddc7e0331a4f93787dda4db137da31d335a34c48bd3f4f384aac99",
-   "quote": "2020 Yongrui Chen Ran Dai Jonathan Eskreis-Winkler , Senior Data Scientist, Etsy Youngseok Kim , Quantitative Researcher, Two Sigma Investments Tae Hyun Kim Haoyang Liu Zhipeng Lou Gregory Naisat Petr Panov, Quantitative Researcher, Optiver Lei Sun Minzhe Wang , Quantitative Researcher, Jump Operation Changji Xu Fengshuo Zhang , Quantitative Researcher, Two Sigma Investments Bumeng Zhuo",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2020",
-   "pi": "Risi Kondor",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
+   "arxiv": "2506.10263",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "near",
+    "quotes": [
+     "Jeremy Hoskins Department of Statistics and CCAM University of Chicago"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2506/2506.10263v1.pdf",
+    "pdf_sha256": "68f9d88b50dfef10c7ff3df193b552f670540d6555a1dd30ef2ae73d5c2509f6",
+    "step": "pi_works",
+    "match": "title_in_citation",
+    "oa": "https://openalex.org/W4417349477",
+    "appointment": {
+     "listing": 2025
+    },
+    "arxiv": "2506.10263",
+    "labpage": {
+     "url": "https://www.jghoskins.com/publications",
+     "capture_url": null,
+     "sha256": "36b3b4a0ad575fc898639437b123682c971b74b1a0dc3e4b67cfa013c6c7c51e",
+     "quote": "Epstein C, Goodwill T, Hoskins JG, Quinn S, Rachh M. Complex scaling for open waveguides (2025) - ( arxiv )",
+     "listed_title": "Complex scaling for open waveguides (2025) - ( arxiv )",
+     "listed_year": 2025
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "7e1806171821aca2"
   },
   {
-   "name": "Mahtiyar Bonakdarpour",
-   "role": "phd",
-   "years": [
-    2019,
-    2019
+   "pi": "Jeremy Hoskins",
+   "key": "labpage:fb16dce9ed581ca4aa3530fce7ba56e0d6a474c1",
+   "title": "On the inverse scattering problem for radially-symmetric domains in two dimensions",
+   "year": 2020,
+   "doi": "10.48550/arxiv.2007.15734",
+   "venue": "arXiv (Cornell University)",
+   "byline": [
+    "Gopal, Abinand",
+    "Hoskins, Jeremy",
+    "Rokhlin, Vladimir"
    ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20200923011644id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "1d746698c9ddc7e0331a4f93787dda4db137da31d335a34c48bd3f4f384aac99",
-   "quote": "2019 Mahtiyar Bonakdarpour",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2019",
-   "pi": "Risi Kondor",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
+   "arxiv": "2007.15734",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "footnote",
+    "quotes": [
+     "Jeremy Hoskins∗, ",
+     "∗ Department of Statistics, University of Chicago, Chicago, IL 60637. email: jeremyhoskins@uchicago.edu Department of Mathematics and Department of Computer Scienc"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2007/2007.15734v1.pdf",
+    "pdf_sha256": "08dfae62e20af2ab62c4226c56252c90edd8c0ee4c2c329facae01b23c44420c",
+    "step": "pi_works",
+    "match": "title_in_citation",
+    "oa": "https://openalex.org/W4297827577",
+    "appointment": {
+     "listing": 2020
+    },
+    "arxiv": "2007.15734",
+    "labpage": {
+     "url": "https://www.jghoskins.com/publications",
+     "capture_url": null,
+     "sha256": "36b3b4a0ad575fc898639437b123682c971b74b1a0dc3e4b67cfa013c6c7c51e",
+     "quote": "Hoskins JG, & Rokhlin V. On the inverse scattering problem for radially-symmetric domains in two dimensions (2019) Preprint: Technical report, YALEU/DCS/Tr-1546 - ( link )",
+     "listed_title": "Hoskins JG, & Rokhlin V",
+     "listed_year": 2019
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "089c1956d98f21cc"
   },
   {
-   "name": "Yuefeng Han",
-   "role": "phd",
-   "years": [
-    2019,
-    2019
+   "pi": "Jeremy Hoskins",
+   "key": "labpage:e1bf9043f426d56227d575ca25e8b4321979de73",
+   "title": "A Model-Guided Neural Network Method for the Inverse Scattering Problem",
+   "year": 2025,
+   "doi": "10.48550/arxiv.2512.10123",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2512.10123",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "marker",
+    "quotes": [
+     "Jeremy Hoskins3,6 , ",
+     "6 Computational and Applied Mathematics, Department of Statistics, University of Chicago"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2512/2512.10123v1.pdf",
+    "pdf_sha256": "1b89f7655bb60e04b0f9c3cba21f3ee81203d1588310c3198db5d7f710e68eae",
+    "step": "arxiv",
+    "match": "entry_link",
+    "appointment": {
+     "listing": 2025
+    },
+    "arxiv": "2512.10123",
+    "labpage": {
+     "url": "https://www.jghoskins.com/publications",
+     "capture_url": null,
+     "sha256": "36b3b4a0ad575fc898639437b123682c971b74b1a0dc3e4b67cfa013c6c7c51e",
+     "quote": "Tsang O, Melia O, Charisopoulos V, Hoskins JG, Khoo Y, Willett R. A Model-Guided Neural Network Method for Inverse Scattering Problem (2025) -( arxiv )",
+     "listed_title": "A Model-Guided Neural Network Method for Inverse Scattering Problem (2025) -( arxiv )",
+     "listed_year": 2025
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "03763fbbfb8a1054",
+   "listed_title": "A Model-Guided Neural Network Method for Inverse Scattering Problem (2025) -( arxiv )",
+   "title_basis": "arxiv_oai"
+  },
+  {
+   "pi": "Jeremy Hoskins",
+   "key": "labpage:e0fa15b8354c4519537a5fc5e448715468ff8ca2",
+   "title": "Random Walks in Frequency and the Reconstruction of Obstacles with Cavities from Multi-frequency Data",
+   "year": 2023,
+   "doi": "10.1007/s10915-023-02406-z",
+   "venue": "Journal of Scientific Computing",
+   "byline": [
+    "Travis Askham",
+    "Carlos Borges",
+    "Jeremy Hoskins",
+    "Manas Rachh"
    ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20200923011644id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "1d746698c9ddc7e0331a4f93787dda4db137da31d335a34c48bd3f4f384aac99",
-   "quote": "2019 Mahtiyar Bonakdarpour , Vice President of Data Science, Root Insurance Company Yuefeng Han",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2019",
-   "pi": "Risi Kondor",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
+   "arxiv": "2308.00559",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "footnote",
+    "quotes": [
+     "Jeremy Hoskins‡ ",
+     "‡ Department of Statistics, Chicago, IL, USA. Email: jeremyhoskins@uchicago.edu"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2308/2308.00559v1.pdf",
+    "pdf_sha256": "fcc7d0c76575937078d1a62266aba78a0658d3919e52dda574cd24143891639b",
+    "step": "pi_works",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W4388976807",
+    "appointment": {
+     "listing": 2023
+    },
+    "arxiv": "2308.00559",
+    "labpage": {
+     "url": "https://www.jghoskins.com/publications",
+     "capture_url": null,
+     "sha256": "36b3b4a0ad575fc898639437b123682c971b74b1a0dc3e4b67cfa013c6c7c51e",
+     "quote": "Askham T, Borges C, Hoskins JG, Rachh M. Random walks in frequency and the reconstruction of obstacles with cavities from multi-frequency data. Journal of Scientific Computing (2023)- ( arxiv )",
+     "listed_title": "Random walks in frequency and the reconstruction of obstacles with cavities from multi-frequency data",
+     "listed_year": 2023
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "dc5b60e827a3d93a"
   },
   {
-   "name": "Joelle Mbatchou",
-   "role": "phd",
-   "years": [
-    2019,
-    2019
+   "pi": "Maryanthe Malliaris",
+   "key": "labpage:a6d263579bd07b14971002e5ce3dd2d0253bd56e",
+   "title": "Model theory and agnostic online learning via excellent sets",
+   "year": 2024,
+   "doi": "10.1090/tran/9235",
+   "venue": "Transactions of the American Mathematical Society",
+   "byline": [
+    "M. Malliaris",
+    "S. Moran"
    ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20200923011644id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "1d746698c9ddc7e0331a4f93787dda4db137da31d335a34c48bd3f4f384aac99",
-   "quote": "Joelle Mbatchou , Senior",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2019",
-   "pi": "Risi Kondor",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Jing Yu",
-   "role": "phd",
-   "years": [
-    2019,
-    2019
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20200923011644id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "1d746698c9ddc7e0331a4f93787dda4db137da31d335a34c48bd3f4f384aac99",
-   "quote": "2019 Mahtiyar Bonakdarpour , Vice President of Data Science, Root Insurance Company Yuefeng Han Joelle Mbatchou , Senior Statistical Geneticist, Regenron Pharmaceuticals, Inc Christopher McKennan , Assistant Professor, Department of Statistics, University of Pittsburgh Fan Yang Jing Yu",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2019",
-   "pi": "Risi Kondor",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Kushal Dey",
-   "role": "postdoc",
-   "years": [
-    2018,
-    2018
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20200923011644id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "1d746698c9ddc7e0331a4f93787dda4db137da31d335a34c48bd3f4f384aac99",
-   "quote": "Kushal Dey , Postdoctoral",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2018",
-   "pi": "Risi Kondor",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Wooseok Ha",
-   "role": "postdoc",
-   "years": [
-    2018,
-    2018
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20200923011644id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "1d746698c9ddc7e0331a4f93787dda4db137da31d335a34c48bd3f4f384aac99",
-   "quote": "Wooseok Ha , Postdoctoral",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2018",
-   "pi": "Risi Kondor",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Mohammad Jahangoshahi",
-   "role": "other",
-   "years": [
-    2018,
-    2018
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20200923011644id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "1d746698c9ddc7e0331a4f93787dda4db137da31d335a34c48bd3f4f384aac99",
-   "quote": "2018 Likai Chen , Assistant Professor, Department of Mathematics and Statistics, Washington University in St. Louis Soudeep Deb , Assistant Professor, Department of Decision Sciences, Indian Institute of Management, Bangalore Kushal Dey , Postdoctoral Researcher, Alkes Price Lab, Harvard Scool of Public Health Wooseok Ha , Postdoctoral Scholar, Foundations of Data Analysis Institute, University of California, Berkeley Mohammad Jahangoshahi",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2018",
-   "pi": "Risi Kondor",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Mengyin Lu",
-   "role": "other",
-   "years": [
-    2018,
-    2018
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20200923011644id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "1d746698c9ddc7e0331a4f93787dda4db137da31d335a34c48bd3f4f384aac99",
-   "quote": "Mengyin Lu , Research Scientist",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2018",
-   "pi": "Risi Kondor",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Ulises Pereira",
-   "role": "postdoc",
-   "years": [
-    2018,
-    2018
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20200923011644id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "1d746698c9ddc7e0331a4f93787dda4db137da31d335a34c48bd3f4f384aac99",
-   "quote": "Ulises Pereira, Postdoctoral",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2018",
-   "pi": "Risi Kondor",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Yunfan Tang",
-   "role": "phd",
-   "years": [
-    2018,
-    2018
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20200923011644id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "1d746698c9ddc7e0331a4f93787dda4db137da31d335a34c48bd3f4f384aac99",
-   "quote": "2018 Likai Chen , Assistant Professor, Department of Mathematics and Statistics, Washington University in St. Louis Soudeep Deb , Assistant Professor, Department of Decision Sciences, Indian Institute of Management, Bangalore Kushal Dey , Postdoctoral Researcher, Alkes Price Lab, Harvard Scool of Public Health Wooseok Ha , Postdoctoral Scholar, Foundations of Data Analysis Institute, University of California, Berkeley Mohammad Jahangoshahi , Quantitative Researcher, Susquehanna International Group, LLC Sayar Karmakar , Assistant Professor, Department of Statistics, University of Florida Mengyin Lu , Research Scientist, JD Digits Vivak Patel , Assistant Professor, Department of Statistics, University of Wisconsin Ulises Pereira, Postdoctoral Scholar, Computational Laboratory of Cortical Dynamics, New York University Yunfan Tang",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2018",
-   "pi": "Risi Kondor",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Sze Wai Wong",
-   "role": "phd",
-   "years": [
-    2018,
-    2018
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20200923011644id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "1d746698c9ddc7e0331a4f93787dda4db137da31d335a34c48bd3f4f384aac99",
-   "quote": "Sze Wai Wong , Junior",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2018",
-   "pi": "Risi Kondor",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Subhajit Goswami",
-   "role": "postdoc",
-   "years": [
-    2017,
-    2017
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20200923011644id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "1d746698c9ddc7e0331a4f93787dda4db137da31d335a34c48bd3f4f384aac99",
-   "quote": "Subhajit Goswami , Postdoctoral",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2017",
-   "pi": "Risi Kondor",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Ang Li",
-   "role": "other",
-   "years": [
-    2017,
-    2017
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20200923011644id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "1d746698c9ddc7e0331a4f93787dda4db137da31d335a34c48bd3f4f384aac99",
-   "quote": "Ang Li , Data Scientist",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2017",
-   "pi": "Risi Kondor",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Wei Wang",
-   "role": "phd",
-   "years": [
-    2017,
-    2017
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20200923011644id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "1d746698c9ddc7e0331a4f93787dda4db137da31d335a34c48bd3f4f384aac99",
-   "quote": "2017 Subhajit Goswami , Postdoctoral Fellow, Institut des Hautes Études Scientifiques Ang Li , Data Scientist, Arrowstreet Capital, Limited Partnership Li Li Si Tang , Assistant Professor, Department of Mathematics, Lehigh University Wei Wang",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2017",
-   "pi": "Risi Kondor",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Marc Goessling",
-   "role": "other",
-   "years": [
-    2016,
-    2016
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20200923011644id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "1d746698c9ddc7e0331a4f93787dda4db137da31d335a34c48bd3f4f384aac99",
-   "quote": "Marc Goessling , Data Scientist",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2016",
-   "pi": "Risi Kondor",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Zhe Liu",
-   "role": "other",
-   "years": [
-    2016,
-    2016
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20200923011644id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "1d746698c9ddc7e0331a4f93787dda4db137da31d335a34c48bd3f4f384aac99",
-   "quote": "Zhe Liu , Research Scientist",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2016",
-   "pi": "Risi Kondor",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Zhengrong Xing",
-   "role": "other",
-   "years": [
-    2016,
-    2016
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20200923011644id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "1d746698c9ddc7e0331a4f93787dda4db137da31d335a34c48bd3f4f384aac99",
-   "quote": "Zhengrong Xing , Data Scientist",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2016",
-   "pi": "Risi Kondor",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Yuancheng Zhu",
-   "role": "phd",
-   "years": [
-    2016,
-    2016
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20200923011644id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "1d746698c9ddc7e0331a4f93787dda4db137da31d335a34c48bd3f4f384aac99",
-   "quote": "2016 Marc Goessling , Data Scientist, simMachines Zhe Liu , Research Scientist, Facebook Andrew Poppick , Assistant Professor, Department of Mathematics and Statistics, Carleton College Yoann Potiron , Associate Professor, Faculty of Business and Commerce, Keio University Rishideep Roy , Assistant Professor, Decision Sciences, Indian Institute of Management, Bangalore Zhengrong Xing , Data Scientist, Quora Mengyu Xu , Assistant Professor, Department of Statistics, University of Central Florida Yuancheng Zhu",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2016",
-   "pi": "Risi Kondor",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Bogdan Stoica",
-   "role": "postdoc",
-   "years": [
-    null,
-    2025
-   ],
-   "url": "http://people.cs.uchicago.edu/~shanlu",
-   "capture_url": "https://web.archive.org/web/20260915072208id_/https://people.cs.uchicago.edu/~shanlu/",
-   "sha256": "0062991a8c4e61d08767b18029ccf86ff5208d584db0e2a2c8f226bdd92725b9",
-   "quote": "Bogdan Stoica Ph.D",
-   "note": "lab-page audit 2026-11-03; section: Former Students:",
-   "pi": "Shan Lu",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2016,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Cyrus Zhou",
-   "role": "undergraduate",
-   "years": [
-    null,
-    2024
-   ],
-   "url": "http://people.cs.uchicago.edu/~shanlu",
-   "capture_url": "https://web.archive.org/web/20260915072208id_/https://people.cs.uchicago.edu/~shanlu/",
-   "sha256": "0062991a8c4e61d08767b18029ccf86ff5208d584db0e2a2c8f226bdd92725b9",
-   "quote": "Cyrus Zhou , B.S.",
-   "note": "lab-page audit 2026-11-03; section: Former Students:",
-   "pi": "Shan Lu",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2016,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Yiming Su",
-   "role": "undergraduate",
-   "years": [
-    null,
-    2024
-   ],
-   "url": "http://people.cs.uchicago.edu/~shanlu",
-   "capture_url": "https://web.archive.org/web/20260915072208id_/https://people.cs.uchicago.edu/~shanlu/",
-   "sha256": "0062991a8c4e61d08767b18029ccf86ff5208d584db0e2a2c8f226bdd92725b9",
-   "quote": "Yiming Su , B.S.",
-   "note": "lab-page audit 2026-11-03; section: Former Students:",
-   "pi": "Shan Lu",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2016,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Wanrong Zhu",
-   "role": "phd",
-   "years": [
-    null,
-    2024
-   ],
-   "url": "https://rinafb.github.io/group/",
-   "sha256": "bff3851d0a80deef3edd527a9c5870144d0fced9f723dfe2a4a3bbf41ad40d05",
-   "quote": "Wanrong Zhu (PhD",
-   "note": "lab-page audit 2026-11-03; section: PhD & Postdoc alumni (with current affiliation)",
-   "pi": "Rina Foygel Barber",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Jake Soloff",
-   "role": "postdoc",
-   "years": [
-    2022,
-    2025
-   ],
-   "url": "https://rinafb.github.io/group/",
-   "sha256": "bff3851d0a80deef3edd527a9c5870144d0fced9f723dfe2a4a3bbf41ad40d05",
-   "quote": "Jake Soloff (postdoc",
-   "note": "lab-page audit 2026-11-03; section: PhD & Postdoc alumni (with current affiliation)",
-   "pi": "Rina Foygel Barber",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Yuetian Luo",
-   "role": "postdoc",
-   "years": [
-    2022,
-    2025
-   ],
-   "url": "https://rinafb.github.io/group/",
-   "sha256": "bff3851d0a80deef3edd527a9c5870144d0fced9f723dfe2a4a3bbf41ad40d05",
-   "quote": "Yuetian Luo (DSI postdoc",
-   "note": "lab-page audit 2026-11-03; section: PhD & Postdoc alumni (with current affiliation)",
-   "pi": "Rina Foygel Barber",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Yu Gui",
-   "role": "phd",
-   "years": [
-    null,
-    2025
-   ],
-   "url": "https://rinafb.github.io/group/",
-   "sha256": "bff3851d0a80deef3edd527a9c5870144d0fced9f723dfe2a4a3bbf41ad40d05",
-   "quote": "Yu Gui (PhD 2025, co-advised with Cong Ma), Postdoctoral",
-   "note": "lab-page audit 2026-11-03; section: PhD & Postdoc alumni (with current affiliation)",
-   "pi": "Rina Foygel Barber",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Aabesh Bhattacharyya",
-   "role": "phd",
-   "years": [
-    null,
-    2026
-   ],
-   "url": "https://rinafb.github.io/group/",
-   "sha256": "bff3851d0a80deef3edd527a9c5870144d0fced9f723dfe2a4a3bbf41ad40d05",
-   "quote": "Aabesh Bhattacharyya (PhD",
-   "note": "lab-page audit 2026-11-03; section: PhD & Postdoc alumni (with current affiliation)",
-   "pi": "Rina Foygel Barber",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Chen Cheng",
-   "role": "postdoc",
-   "years": [
-    2025,
-    2026
-   ],
-   "url": "https://rinafb.github.io/group/",
-   "sha256": "bff3851d0a80deef3edd527a9c5870144d0fced9f723dfe2a4a3bbf41ad40d05",
-   "quote": "Chen Cheng (postdoc",
-   "note": "lab-page audit 2026-11-03; section: PhD & Postdoc alumni (with current affiliation)",
-   "pi": "Rina Foygel Barber",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "entry",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Anirban Chatterjee",
-   "role": "postdoc",
-   "years": [
-    2025,
-    2026
-   ],
-   "url": "https://rinafb.github.io/group/",
-   "sha256": "bff3851d0a80deef3edd527a9c5870144d0fced9f723dfe2a4a3bbf41ad40d05",
-   "quote": "Anirban Chatterjee (Kruskal Instructor 2025-2026), Assistant Professor, Department of Mathematics and Statistics, Bost",
-   "note": "lab-page audit 2026-11-03; section: Group > PhD & Postdoc alumni (with current affiliation)",
-   "pi": "Rina Foygel Barber",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": null,
-   "role_basis": "section_heading",
-   "years_basis": "stated_in_entry"
-  },
-  {
-   "name": "Greg Ongie",
-   "role": null,
-   "years": null,
-   "url": "https://voices.uchicago.edu/willett/research/group-members/",
-   "capture_url": "https://web.archive.org/web/20211023171617id_/https://voices.uchicago.edu/willett/research/group-members/",
-   "sha256": "ab35e64c9c978b6d7ba3b7eec9dfb7ca63ff1eec70423cab03dd25254c343ec3",
-   "quote": "Greg Ongie , Applied Math and Statistics Postdoc",
-   "note": "lab-page audit 2026-11-03; section: Group Members > Current members",
-   "pi": "Rebecca Willett",
-   "alumni": false,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2018,
-   "role_basis": "none",
-   "years_basis": "none"
-  },
-  {
-   "name": "Ahmed Bou-Rabee",
-   "role": "postdoc",
-   "years": [
-    2022,
-    2022
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20260123050219id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "08ad58f38d87f023d70269c87d36504ac38a8b2bdc0d2e97b88dffd68afc62ad",
-   "quote": "Ahmed Bou-Rabee, NSF Postdoctoral",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2022",
-   "pi": "Rebecca Willett",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2018,
-   "role_basis": "entry",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Andrew Goldstein",
-   "role": "other",
-   "years": [
-    2022,
-    2022
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20260123050219id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "08ad58f38d87f023d70269c87d36504ac38a8b2bdc0d2e97b88dffd68afc62ad",
-   "quote": "Andrew Goldstein , Applied Scientist",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2022",
-   "pi": "Rebecca Willett",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2018,
-   "role_basis": "entry",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Yi Liu",
-   "role": "other",
-   "years": [
-    2022,
-    2022
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20260123050219id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "08ad58f38d87f023d70269c87d36504ac38a8b2bdc0d2e97b88dffd68afc62ad",
-   "quote": "Yi Liu, Applied Scientist",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2022",
-   "pi": "Rebecca Willett",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2018,
-   "role_basis": "entry",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Yongrui Chen",
-   "role": "postdoc",
-   "years": [
-    2020,
-    2020
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20260123050219id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "08ad58f38d87f023d70269c87d36504ac38a8b2bdc0d2e97b88dffd68afc62ad",
-   "quote": "Yongrui Chen, Postdoctoral",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2020",
-   "pi": "Rebecca Willett",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2018,
-   "role_basis": "entry",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Jonathan Eskreis-Winkler",
-   "role": "undergraduate",
-   "years": [
-    2020,
-    2020
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20260123050219id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "08ad58f38d87f023d70269c87d36504ac38a8b2bdc0d2e97b88dffd68afc62ad",
-   "quote": "Jonathan Eskreis-Winkler , Senior",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2020",
-   "pi": "Rebecca Willett",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2018,
-   "role_basis": "entry",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Tae Hyun Kim",
-   "role": "other",
-   "years": [
-    2020,
-    2020
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20260123050219id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "08ad58f38d87f023d70269c87d36504ac38a8b2bdc0d2e97b88dffd68afc62ad",
-   "quote": "Tae Hyun Kim , Applied Scientist",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2020",
-   "pi": "Rebecca Willett",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2018,
-   "role_basis": "entry",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Wentao Hu",
-   "role": "phd",
-   "years": [
-    2025,
-    2025
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20260123050219id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "08ad58f38d87f023d70269c87d36504ac38a8b2bdc0d2e97b88dffd68afc62ad",
-   "quote": "2025 Melissa Adrian Wentao Hu",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2025",
-   "pi": "Rebecca Willett",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2018,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Yi Wei",
-   "role": "phd",
-   "years": [
-    2025,
-    2025
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20260123050219id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "08ad58f38d87f023d70269c87d36504ac38a8b2bdc0d2e97b88dffd68afc62ad",
-   "quote": "2025 Melissa Adrian Wentao Hu Yi Wei",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2025",
-   "pi": "Rebecca Willett",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2018,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Yuhan Philip Liu",
-   "role": "phd",
-   "years": [
-    2024,
-    2024
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20260123050219id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "08ad58f38d87f023d70269c87d36504ac38a8b2bdc0d2e97b88dffd68afc62ad",
-   "quote": "2024 Angzhi Fan Yuhan Philip Liu",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2024",
-   "pi": "Rebecca Willett",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2018,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Zehao Niu",
-   "role": "phd",
-   "years": [
-    2024,
-    2024
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20260123050219id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "08ad58f38d87f023d70269c87d36504ac38a8b2bdc0d2e97b88dffd68afc62ad",
-   "quote": "Zehao Niu Yi Wang , Machine Learning Engineer",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2024",
-   "pi": "Rebecca Willett",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2018,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Zhan Lin",
-   "role": "phd",
-   "years": [
-    2023,
-    2023
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20260123050219id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "08ad58f38d87f023d70269c87d36504ac38a8b2bdc0d2e97b88dffd68afc62ad",
-   "quote": "2023 Yonghoon Lee Zhan Lin",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2023",
-   "pi": "Rebecca Willett",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2018,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Lijia Zhou",
-   "role": "phd",
-   "years": [
-    2023,
-    2023
-   ],
-   "url": "stat.uchicago.edu/alumni/phd-alumni/",
-   "capture_url": "https://web.archive.org/web/20260123050219id_/https://stat.uchicago.edu/alumni/phd-alumni/",
-   "sha256": "08ad58f38d87f023d70269c87d36504ac38a8b2bdc0d2e97b88dffd68afc62ad",
-   "quote": "2023 Yonghoon Lee Zhan Lin , Quantitative Researcher, Millennium Lijia Zhou",
-   "note": "lab-page audit 2026-11-03; section: PhD Alumni > 2023",
-   "pi": "Rebecca Willett",
-   "alumni": true,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2018,
-   "role_basis": "section_heading",
-   "years_basis": "section_year_heading"
-  },
-  {
-   "name": "Michelle Miller",
-   "role": "phd",
-   "years": null,
-   "url": "https://brainmath.bsd.uchicago.edu/people/",
-   "sha256": "6f4d029f03a3357369483b4379346ebb3aa82a640ea6f2601a986bec9a47026b",
-   "quote": "Michelle Miller Ph.D. Student | Computational Neuroscience M.S.",
-   "note": "lab-page audit 2026-11-03; section: Ph.D., Physics",
-   "pi": "Brent Doiron",
-   "alumni": false,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2020,
-   "role_basis": "entry",
-   "years_basis": "none"
-  },
-  {
-   "name": "Shoshana Chipman",
-   "role": "phd",
-   "years": null,
-   "url": "https://brainmath.bsd.uchicago.edu/people/",
-   "sha256": "6f4d029f03a3357369483b4379346ebb3aa82a640ea6f2601a986bec9a47026b",
-   "quote": "Google Scholar Shoshana Chipman",
-   "note": "lab-page audit 2026-11-03; section: Ph.D., Physics > Google Scholar",
-   "pi": "Brent Doiron",
-   "alumni": false,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2020,
-   "role_basis": "section_heading",
-   "years_basis": "none"
-  },
-  {
-   "name": "Yichao Guan",
-   "role": "phd",
-   "years": null,
-   "url": "https://brainmath.bsd.uchicago.edu/people/",
-   "sha256": "6f4d029f03a3357369483b4379346ebb3aa82a640ea6f2601a986bec9a47026b",
-   "quote": "Ph.D. Student | Computational Neuroscience B.S., Mathematics and Computer Science Focus: 1) Models of brain functions using neural networks, dynamic systems theory, and machine learning. 2) Data science to study the dynamics and variability of neural circuits involved in perception and cognition. Email: dracoxu@uchicago.edu Personal Website Yichao Guan",
-   "note": "lab-page audit 2026-11-03; section: Ph.D. Student | Computational Neuroscience",
-   "pi": "Brent Doiron",
-   "alumni": false,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2020,
-   "role_basis": "section_heading",
-   "years_basis": "none"
-  },
-  {
-   "name": "Peter (Qichen) Xu",
-   "role": "phd",
-   "years": null,
-   "url": "https://brainmath.bsd.uchicago.edu/people/",
-   "sha256": "6f4d029f03a3357369483b4379346ebb3aa82a640ea6f2601a986bec9a47026b",
-   "quote": "Peter (Qichen) Xu Ph.D. Student | Computational and Applied Mathematics B.S.",
-   "note": "lab-page audit 2026-11-03; section: Ph.D. Student | Biophysics",
-   "pi": "Brent Doiron",
-   "alumni": false,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2020,
-   "role_basis": "entry",
-   "years_basis": "none"
-  },
-  {
-   "name": "Juliet Jiang",
-   "role": "phd",
-   "years": null,
-   "url": "https://brainmath.bsd.uchicago.edu/people/",
-   "sha256": "6f4d029f03a3357369483b4379346ebb3aa82a640ea6f2601a986bec9a47026b",
-   "quote": "Juliet Jiang Ph.D. Student | Computational Neuroscience B.S.E.",
-   "note": "lab-page audit 2026-11-03; section: Ph.D. Student | Biophysics",
-   "pi": "Brent Doiron",
-   "alumni": false,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2020,
-   "role_basis": "entry",
-   "years_basis": "none"
-  },
-  {
-   "name": "Yichen Wang",
-   "role": "phd",
-   "years": null,
-   "url": "https://brainmath.bsd.uchicago.edu/people/",
-   "sha256": "6f4d029f03a3357369483b4379346ebb3aa82a640ea6f2601a986bec9a47026b",
-   "quote": "Yichen Wang Ph.D. Student | Computational Neuroscience B.S.",
-   "note": "lab-page audit 2026-11-03; section: Ph.D. Student | Biophysics",
-   "pi": "Brent Doiron",
-   "alumni": false,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2020,
-   "role_basis": "entry",
-   "years_basis": "none"
-  },
-  {
-   "name": "Aaron Liu",
-   "role": "phd",
-   "years": null,
-   "url": "https://brainmath.bsd.uchicago.edu/people/",
-   "sha256": "6f4d029f03a3357369483b4379346ebb3aa82a640ea6f2601a986bec9a47026b",
-   "quote": "Ph.D. Student | Biophysics B.A., Physics Focus: I am studying the dimensionality of neural activities using various tools from statistical mechanics. Email: yichaog@uchicago.edu Peter (Qichen) Xu Ph.D. Student | Computational and Applied Mathematics B.S., Mathematics and Applied Mathematics Focus: Understand the dynamics of plastic E-I neural networks, how Hebbian plasticity influences chaotic behavior, hysteresis phenomena, and memory formation through synaptic-driven states. Email: qichenxu@uchicago.edu Personal Website Juliet Jiang Ph.D. Student | Computational Neuroscience B.S.E., Biomedical Engineering; B.S., Mathematics Focus: I am interested in using stochastic modeling to study how variability in neuronal circuits plays a role in cognition, behavior, or learning at the population level. Email: julietjiang73@uchicago.edu Personal Website Yichen Wang Ph.D. Student | Computational Neuroscience B.S., Mathematics and Physics Focus: Using statistical mechanics to understand how cellular biophysics constrain correlation and variability in neuronal networks. Email: yichenw@uchicago.edu Personal Website Aaron Liu",
-   "note": "lab-page audit 2026-11-03; section: Ph.D. Student | Biophysics",
-   "pi": "Brent Doiron",
-   "alumni": false,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2020,
-   "role_basis": "section_heading",
-   "years_basis": "none"
-  },
-  {
-   "name": "John Gengshuo Tian",
-   "role": "phd",
-   "years": null,
-   "url": "https://brainmath.bsd.uchicago.edu/people/",
-   "capture_url": "https://web.archive.org/web/20260124151833id_/https://brainmath.bsd.uchicago.edu/people/",
-   "sha256": "503b602e3f8e174ccec2cf3816320a4cdbd30e31bfc8c295fb392dbe234165a5",
-   "quote": "John Gengshuo Tian Ph.D. Student | Computational and Applied Mathematics B.S.",
-   "note": "lab-page audit 2026-11-03; section: Peijia Yu, Ph.D. > Postdoctoral Researcher",
-   "pi": "Brent Doiron",
-   "alumni": false,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2020,
-   "role_basis": "entry",
-   "years_basis": "none"
-  },
-  {
-   "name": "Peijia Yu",
-   "role": "phd",
-   "years": null,
-   "url": "https://brainmath.bsd.uchicago.edu/people/",
-   "capture_url": "https://web.archive.org/web/20250324200027id_/https://brainmath.bsd.uchicago.edu/people/",
-   "sha256": "5b82a3a831f0738303b5f3e868bfce3a2a2dfc1d34ff95a8c0623265fc2b1649",
-   "quote": "Peijia Yu Ph.D. Student | Computational Neuroscience B.S.",
-   "note": "lab-page audit 2026-11-03; section: Ph.D., Physics > Google Scholar",
-   "pi": "Brent Doiron",
-   "alumni": false,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2020,
-   "role_basis": "entry",
-   "years_basis": "none"
-  },
-  {
-   "name": "Jeff Dunworth",
-   "role": "phd",
-   "years": null,
-   "url": "https://brainmath.bsd.uchicago.edu/people/",
-   "capture_url": "https://web.archive.org/web/20260124151833id_/https://brainmath.bsd.uchicago.edu/people/",
-   "sha256": "503b602e3f8e174ccec2cf3816320a4cdbd30e31bfc8c295fb392dbe234165a5",
-   "quote": "Google Scholar LinkedIn Jeff Dunworth",
-   "note": "lab-page audit 2026-11-03; section: Danielle Rager, Ph.D. > Google Scholar",
-   "pi": "Brent Doiron",
-   "alumni": false,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2020,
-   "role_basis": "section_heading",
-   "years_basis": "none"
-  },
-  {
-   "name": "Yuchen Jin",
-   "role": "phd",
-   "years": null,
-   "url": "https://chatterlab.uchicago.edu/people/",
-   "sha256": "d330e69e1b1994880836cf15f49a8bafb3fce505c74cebc8b8aa3adb13d0ac10",
-   "quote": "PhD students Yuchen Jin",
-   "note": "lab-page audit 2026-11-03; section: PhD students",
-   "pi": "Marisa Casillas",
-   "alumni": false,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2026,
-   "role_basis": "section_heading",
-   "years_basis": "none"
-  },
-  {
-   "name": "Subin Kim",
-   "role": "phd",
-   "years": null,
-   "url": "https://chatterlab.uchicago.edu/people/",
-   "sha256": "d330e69e1b1994880836cf15f49a8bafb3fce505c74cebc8b8aa3adb13d0ac10",
-   "quote": "PhD students Yuchen Jin Subin Kim",
-   "note": "lab-page audit 2026-11-03; section: PhD students",
-   "pi": "Marisa Casillas",
-   "alumni": false,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2026,
-   "role_basis": "section_heading",
-   "years_basis": "none"
-  },
-  {
-   "name": "Jordyn Martin",
-   "role": "phd",
-   "years": null,
-   "url": "https://chatterlab.uchicago.edu/people/",
-   "sha256": "d330e69e1b1994880836cf15f49a8bafb3fce505c74cebc8b8aa3adb13d0ac10",
-   "quote": "PhD students Yuchen Jin Subin Kim Jordyn Martin",
-   "note": "lab-page audit 2026-11-03; section: PhD students",
-   "pi": "Marisa Casillas",
-   "alumni": false,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2026,
-   "role_basis": "section_heading",
-   "years_basis": "none"
-  },
-  {
-   "name": "Camille Osumah",
-   "role": "phd",
-   "years": null,
-   "url": "https://chatterlab.uchicago.edu/people/",
-   "sha256": "d330e69e1b1994880836cf15f49a8bafb3fce505c74cebc8b8aa3adb13d0ac10",
-   "quote": "PhD students Yuchen Jin Subin Kim Jordyn Martin Camille Osumah",
-   "note": "lab-page audit 2026-11-03; section: PhD students",
-   "pi": "Marisa Casillas",
-   "alumni": false,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2026,
-   "role_basis": "section_heading",
-   "years_basis": "none"
-  },
-  {
-   "name": "Amalia Benghiat",
-   "role": "undergraduate",
-   "years": null,
-   "url": "https://chatterlab.uchicago.edu/people/",
-   "sha256": "d330e69e1b1994880836cf15f49a8bafb3fce505c74cebc8b8aa3adb13d0ac10",
-   "quote": "Undergraduate students Amalia Benghiat",
-   "note": "lab-page audit 2026-11-03; section: Undergraduate students",
-   "pi": "Marisa Casillas",
-   "alumni": false,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2026,
-   "role_basis": "section_heading",
-   "years_basis": "none"
-  },
-  {
-   "name": "Finn Galarneau",
-   "role": "undergraduate",
-   "years": null,
-   "url": "https://chatterlab.uchicago.edu/people/",
-   "sha256": "d330e69e1b1994880836cf15f49a8bafb3fce505c74cebc8b8aa3adb13d0ac10",
-   "quote": "Undergraduate students Amalia Benghiat Finn Galarneau",
-   "note": "lab-page audit 2026-11-03; section: Undergraduate students",
-   "pi": "Marisa Casillas",
-   "alumni": false,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2026,
-   "role_basis": "section_heading",
-   "years_basis": "none"
-  },
-  {
-   "name": "Anushka Guru",
-   "role": "undergraduate",
-   "years": null,
-   "url": "https://chatterlab.uchicago.edu/people/",
-   "sha256": "d330e69e1b1994880836cf15f49a8bafb3fce505c74cebc8b8aa3adb13d0ac10",
-   "quote": "Undergraduate students Amalia Benghiat Finn Galarneau Anushka Guru",
-   "note": "lab-page audit 2026-11-03; section: Undergraduate students",
-   "pi": "Marisa Casillas",
-   "alumni": false,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2026,
-   "role_basis": "section_heading",
-   "years_basis": "none"
-  },
-  {
-   "name": "Franziska Kungys",
-   "role": "undergraduate",
-   "years": null,
-   "url": "https://chatterlab.uchicago.edu/people/",
-   "sha256": "d330e69e1b1994880836cf15f49a8bafb3fce505c74cebc8b8aa3adb13d0ac10",
-   "quote": "Undergraduate students Amalia Benghiat Finn Galarneau Anushka Guru Franziska Kungys",
-   "note": "lab-page audit 2026-11-03; section: Undergraduate students",
-   "pi": "Marisa Casillas",
-   "alumni": false,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2026,
-   "role_basis": "section_heading",
-   "years_basis": "none"
-  },
-  {
-   "name": "Andrea Liu",
-   "role": "undergraduate",
-   "years": null,
-   "url": "https://chatterlab.uchicago.edu/people/",
-   "sha256": "d330e69e1b1994880836cf15f49a8bafb3fce505c74cebc8b8aa3adb13d0ac10",
-   "quote": "Undergraduate students Amalia Benghiat Finn Galarneau Anushka Guru Franziska Kungys Andrea Liu",
-   "note": "lab-page audit 2026-11-03; section: Undergraduate students",
-   "pi": "Marisa Casillas",
-   "alumni": false,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2026,
-   "role_basis": "section_heading",
-   "years_basis": "none"
-  },
-  {
-   "name": "Ruby Swensen",
-   "role": "undergraduate",
-   "years": null,
-   "url": "https://chatterlab.uchicago.edu/people/",
-   "sha256": "d330e69e1b1994880836cf15f49a8bafb3fce505c74cebc8b8aa3adb13d0ac10",
-   "quote": "Undergraduate students Amalia Benghiat Finn Galarneau Anushka Guru Franziska Kungys Andrea Liu Ruby Swensen",
-   "note": "lab-page audit 2026-11-03; section: Undergraduate students",
-   "pi": "Marisa Casillas",
-   "alumni": false,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2026,
-   "role_basis": "section_heading",
-   "years_basis": "none"
-  },
-  {
-   "name": "Ariel Wang",
-   "role": "undergraduate",
-   "years": null,
-   "url": "https://chatterlab.uchicago.edu/people/",
-   "sha256": "d330e69e1b1994880836cf15f49a8bafb3fce505c74cebc8b8aa3adb13d0ac10",
-   "quote": "Undergraduate students Amalia Benghiat Finn Galarneau Anushka Guru Franziska Kungys Andrea Liu Ruby Swensen Ariel Wang",
-   "note": "lab-page audit 2026-11-03; section: Undergraduate students",
-   "pi": "Marisa Casillas",
-   "alumni": false,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2026,
-   "role_basis": "section_heading",
-   "years_basis": "none"
-  },
-  {
-   "name": "Frank Wang",
-   "role": "undergraduate",
-   "years": null,
-   "url": "https://chatterlab.uchicago.edu/people/",
-   "sha256": "d330e69e1b1994880836cf15f49a8bafb3fce505c74cebc8b8aa3adb13d0ac10",
-   "quote": "Undergraduate students Amalia Benghiat Finn Galarneau Anushka Guru Franziska Kungys Andrea Liu Ruby Swensen Ariel Wang Frank Wang",
-   "note": "lab-page audit 2026-11-03; section: Undergraduate students",
-   "pi": "Marisa Casillas",
-   "alumni": false,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2026,
-   "role_basis": "section_heading",
-   "years_basis": "none"
-  },
-  {
-   "name": "Tessa Bracken",
-   "role": "undergraduate",
-   "years": null,
-   "url": "https://chatterlab.uchicago.edu/people/",
-   "capture_url": "https://web.archive.org/web/20260412222256id_/https://chatterlab.uchicago.edu/people/",
-   "sha256": "7ed870d48bc283e8f899d79b83787a281488d275a5de18f0692c50b3d0f2b29d",
-   "quote": "Undergraduate students Tessa Bracken",
-   "note": "lab-page audit 2026-11-03; section: Undergraduate students",
-   "pi": "Marisa Casillas",
-   "alumni": false,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2026,
-   "role_basis": "section_heading",
-   "years_basis": "none"
-  },
-  {
-   "name": "Egheosase (Osa) Odiase",
-   "role": "undergraduate",
-   "years": null,
-   "url": "https://chatterlab.uchicago.edu/people/",
-   "capture_url": "https://web.archive.org/web/20260412222256id_/https://chatterlab.uchicago.edu/people/",
-   "sha256": "7ed870d48bc283e8f899d79b83787a281488d275a5de18f0692c50b3d0f2b29d",
-   "quote": "Undergraduate students Tessa Bracken Finn Galarneau Anushka Guru Bri Kay Franziska Kungys Andrea Liu Egheosase (Osa) Odiase",
-   "note": "lab-page audit 2026-11-03; section: Undergraduate students",
-   "pi": "Marisa Casillas",
-   "alumni": false,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2026,
-   "role_basis": "section_heading",
-   "years_basis": "none"
-  },
-  {
-   "name": "Dalia Querenet",
-   "role": "undergraduate",
-   "years": null,
-   "url": "https://chatterlab.uchicago.edu/people/",
-   "capture_url": "https://web.archive.org/web/20260412222256id_/https://chatterlab.uchicago.edu/people/",
-   "sha256": "7ed870d48bc283e8f899d79b83787a281488d275a5de18f0692c50b3d0f2b29d",
-   "quote": "Undergraduate students Tessa Bracken Finn Galarneau Anushka Guru Bri Kay Franziska Kungys Andrea Liu Egheosase (Osa) Odiase Dalia Querenet",
-   "note": "lab-page audit 2026-11-03; section: Undergraduate students",
-   "pi": "Marisa Casillas",
-   "alumni": false,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2026,
-   "role_basis": "section_heading",
-   "years_basis": "none"
-  },
-  {
-   "name": "Eva Smolen",
-   "role": "undergraduate",
-   "years": null,
-   "url": "https://chatterlab.uchicago.edu/people/",
-   "capture_url": "https://web.archive.org/web/20260412222256id_/https://chatterlab.uchicago.edu/people/",
-   "sha256": "7ed870d48bc283e8f899d79b83787a281488d275a5de18f0692c50b3d0f2b29d",
-   "quote": "Undergraduate students Tessa Bracken Finn Galarneau Anushka Guru Bri Kay Franziska Kungys Andrea Liu Egheosase (Osa) Odiase Dalia Querenet Eva Smolen",
-   "note": "lab-page audit 2026-11-03; section: Undergraduate students",
-   "pi": "Marisa Casillas",
-   "alumni": false,
-   "rule": "LP-STU-01",
-   "auto": true,
-   "pi_first_year": 2026,
-   "role_basis": "section_heading",
-   "years_basis": "none"
+   "arxiv": "2108.05569",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "footnote",
+    "quotes": [
+     "M. Malliaris∗ ",
+     "∗ Department of Mathematics, University of Chicago, mem@math.uchicago.edu. Research partially supported by NSF 1553653 and NSF-BSF 2051825."
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2108/2108.05569v1.pdf",
+    "pdf_sha256": "0d6294fe7dd2a149afc97844c079b7fe57d771e982fc4a42d8c5b188c50ab99c",
+    "step": "pi_works",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W4399846341",
+    "appointment": {
+     "listing": 2024
+    },
+    "arxiv": "2108.05569",
+    "labpage": {
+     "url": "https://math.uchicago.edu/~mem/papers.html",
+     "capture_url": null,
+     "sha256": "840067074e9678c162b7dfc7b26c106b4f2cad9945bc514eab60fd3717cb7153",
+     "quote": "Model theory and agnostic online learning via excellent sets",
+     "listed_title": "Model theory and agnostic online learning via excellent sets",
+     "listed_year": 2024
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "068688c5e2700c0b"
   }
- ],
- "papers": []
+ ]
 }

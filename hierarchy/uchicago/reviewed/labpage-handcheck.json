@@ -113,6 +113,32 @@
    "paper_score": null,
    "result": "pass",
    "note": "Sample drawn from hierarchy/uchicago/reviewed/directory-evidence.json (the lab-page additions sample tool does not cover it)."
+  },
+  {
+   "round": 5,
+   "date": "2026-11-03",
+   "label": "first UChicago paper sample (28 proposed additions, 20 sampled)",
+   "additions_generated_at": "2026-11-04T03:25:53+00:00",
+   "students": null,
+   "papers": {
+    "sampled": 20,
+    "seed": 20261109,
+    "errors": 1.0,
+    "doubtful_count": 2,
+    "metadata_errors": 0
+   },
+   "items": {
+    "papers_membership": [],
+    "papers_doubtful": [
+     "Blum: 'Random Smoothing ...' (2019), page 1 ties TTIC only through 'AVRIM @ TTIC' (the TTIC abbreviation of the charter regex)",
+     "Wu: '3D patient-derived tumor models ...' (2022), a biomedical paper; the byline's affiliation names the Statistics department, the PI is on the byline"
+    ]
+   },
+   "membership_score": null,
+   "role_year_errors": null,
+   "paper_score": 1.0,
+   "result": "papers_pass",
+   "note": "Rows checked against the listed page, the work and its affiliation evidence."
   }
  ]
 }
