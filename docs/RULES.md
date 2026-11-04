@@ -351,6 +351,7 @@ family names: 'Alexander Swerdlow' / 'Alexander Swerlow') is never merged by the
 `studentSurnameTypoCandidates` (`surname_typo`, review-file shape, empty `verdict`, with the signals found: shared source
 URL, one name the other's alias, a shared linked paper) and `tools/student_name_candidates.py` writes the queue to
 `hierarchy/reviewed/student-name-candidates.json`. Only a `same_person` verdict in `student-identity-review.json` merges them.
+2026-11-03: all 30 queued pairs were judged `same_person`, each with hashed capture quotes (both spellings on one page, the same slot in two captures of one page, the same thesis title, or the same adviser, role and years); none was found to be two people and none was left open.
 
 ## Student–paper links
 

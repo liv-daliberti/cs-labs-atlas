@@ -14,7 +14,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import ftp_common as F  # noqa: E402
 import identity_rule as R  # noqa: E402
 
-TAGS = ('auto_alt_title_20261031', 'auto_pdf_meta_title_20261102')
+TAGS = ('auto_alt_title_20261031', 'auto_pdf_meta_title_20261102', 'auto_alt_title_20261103')
 PENDING = R.PENDING
 OUT = F.P.ft_review('20261030')
 

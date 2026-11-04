@@ -198,3 +198,19 @@ read one by one (title overlap 80% or more): 0 wrong. Final measured false-pass 
 the rule; the rule removes it) in 20 holdout copies, 0 wrong in about 60 arXiv-DOI passes read in total; about 5% on the holdout draw before the last rule, 0% after
 on every copy read (95% upper bound of 3 in 100 for the arXiv-DOI stratum, and the non-arXiv stratum fully audited). The cost is the false rejects: the 50 reverted
 include correct retitled papers (by my reading about 39 of the 50), which stay pending and uncounted.
+
+### More title sources (2026-11-03, owner: "let's do these now")
+`fulltext-push/identity_title_sources.py` (`fetch`, `plan`, `apply`, `rollback`) adds titles no cache had, for the 497 lab-paper copies still counted
+`identity_unconfirmed` (copies.json; princeton 35, cmu 150, epfl 74, mit 74, berkeley 39, stanford 88, michigan 37): **Crossref** `works/<doi>` (the work's own
+DOI, one request per second, a user agent without an address; 292 answered, 80 not found, mostly CMU's non-Crossref DOIs), **arXiv** `abs/<id>v1` and `abs/<id>`
+(first and latest title of the id the work's DOI or OpenAlex record maps to; robots.txt allows `/abs` with a 15 s crawl delay, `export.arxiv.org` is disallowed and not
+used; 252 pages) and **Semantic Scholar** `/paper/batch` by DOI for DOIs its cache had no record of (key from the environment, through `s2_key_lookup`'s pacing; 143 DOIs asked, 35 with a record).
+Answers are cached in `fulltext-push/raw/identity_titles.jsonl`. A pass uses the rule unchanged (`identity_rule.judge` on the new title, or `judge_meta`; the
+authoritative first author or the DOI on page 1) and the apply rules of `identity_review.apply_alt` (`own_doi_title_ok`, no deposit DOI, no arXiv title for a work
+without its own DOI). Tag `auto_alt_title_20261103`; `identity_title_sources.py rollback <school>` returns every copy with that tag to pending, and
+`identity_revert_doubtful.py` knows the tag.
+Result: **14 confirmed** (cmu 5, epfl 3, mit 3, stanford 2, princeton 1) and 483 still undecided: 397 have no title that differs from the catalog's (no DOI, a DOI
+Crossref and DataCite do not hold, or a record equal to the catalog title), 86 have a new title that is not on page 1 or lacks the author or the DOI there. The ceiling
+is the rule's own: a retitled paper with a publisher DOI needs a new title that shares 80% of its words with the catalog title, so a title found only on page 1 cannot confirm it.
+Hand check: there were only 14 new confirmations (not 20), so all 14 were read, page 1 against the catalog title and DOI: 14 right (retitled arXiv papers, one published
+version with a later arXiv version of the same project; AmeliaTF/Amelia is the one to watch), 0 wrong; no copy was found to be another paper, so nothing was quarantined.
