@@ -65,6 +65,7 @@ def build(schools=None, out=None):
 
     def write(t):
         db = sqlite3.connect(t)
+        db.execute('pragma temp_store=memory')
         db.execute('create table papers (paper_id text primary key, oa text, doi text, title text, year int, date text, home_school text, schools text, n_labs int)')
         db.execute('create table lab_papers (paper_id text, school text, lab_id text, pi text, lab_name text, dept text, year int)')
         db.execute('create table oa_ids (oa text primary key)')
