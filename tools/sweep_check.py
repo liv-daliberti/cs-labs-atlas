@@ -109,9 +109,13 @@ def check_openalex(db, sweep_ids, lineage_ids, current_year):
 def check_dblp(key, pis_dblp):
     out = dict(dump_expected=P.DBLP_DUMP_FILE)
     f = P.data('dblp-dump-persons.json.gz')
+    fs = P.data('dblp-dump-persons-school.json.gz', key)   # an onboarding school's own persons file (dblp_dump_persons.py <key>)
     trips = []
-    if f.exists() and pis_dblp:
-        d = json.load(gzip.open(f, 'rt'))
+    if (f.exists() or fs.exists()) and pis_dblp:
+        d = json.load(gzip.open(f, 'rt')) if f.exists() else {'dump': None, 'persons': {}}
+        if fs.exists():
+            own = json.load(gzip.open(fs, 'rt'))
+            d = dict(d, dump=own.get('dump') or d.get('dump'), persons={**d['persons'], **own['persons']})
         out['dump'] = d.get('dump')
         if d.get('dump') != P.DBLP_DUMP_FILE:
             trips.append(dict(test='dblp_dump', why=f"dump-persons file is from {d.get('dump')}, not {P.DBLP_DUMP_FILE}"))
