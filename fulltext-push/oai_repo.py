@@ -222,16 +222,27 @@ def store_records(c, parsed, set_spec=None):
 class Client:
     """Sequential, paced GETs with Retry-After; refusals raise Blocked."""
 
-    def __init__(self, delay, session=None, sleep=time.sleep, clock=time.monotonic):
+    def __init__(self, delay, session=None, sleep=time.sleep, clock=time.monotonic, low_priority=False):
         import requests
         self.s = session or requests.Session()
         self.s.headers['User-Agent'] = F.UA
         self.delay, self.last, self.sleep, self.clock = delay, -1e9, sleep, clock
         self.requests = 0
+        self.low = low_priority   # evidence crawls yield to the download loops on a host with a shared clock (host_throttle)
 
     def get(self, url, params=None, tolerate=()):
+        import host_throttle as HT
+        host = urlsplit(url).hostname
+        shared = host in HT.SHARED_INTERVAL
         for attempt in range(6):
-            self.sleep(max(0, self.delay - (self.clock() - self.last)))
+            if shared:   # one request clock and one 429 cooldown for every client of this host (loops included)
+                try:
+                    self.sleep(HT.cooldown_left(host))
+                    self.sleep(HT.reserve(host, self.delay, low=self.low))
+                except OSError:
+                    shared = False
+            if not shared:
+                self.sleep(max(0, self.delay - (self.clock() - self.last)))
             self.last = self.clock()
             self.requests += 1
             try:
@@ -239,6 +250,10 @@ class Client:
             except Exception as e:  # noqa: BLE001
                 print(json.dumps(dict(error=str(e)[:120], attempt=attempt)), flush=True)
                 self.sleep(60 * (attempt + 1))
+                continue
+            if r.status_code == 429 and shared:
+                HT.record_429(host)   # everyone pauses; the next loop turn waits the cooldown out
+                print(json.dumps(dict(status=429, shared_cooldown=round(HT.cooldown_left(host)), at=F.now())), flush=True)
                 continue
             if r.status_code in (429, 500, 502, 503, 504):
                 wait = min(int(r.headers.get('Retry-After') or BACKOFF[min(attempt, len(BACKOFF) - 1)]), 1800)

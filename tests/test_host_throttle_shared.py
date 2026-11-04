@@ -1,0 +1,69 @@
+"""One request budget for web.archive.org across every client (host_throttle.SHARED_INTERVAL, 2026-11-04): slots are 5 s apart across processes whatever
+delay each asks for, a low-priority client (the evidence crawl) yields to the loops, and a 429 recorded by one client cools the host for all."""
+import json
+import subprocess
+import sys
+from pathlib import Path
+
+import host_throttle as HT
+
+FTP = Path(__file__).resolve().parents[1] / 'fulltext-push'
+CHILD = ("import json,sys; sys.path.insert(0, sys.argv[1]); import host_throttle as HT; "
+         "print(json.dumps([HT.reserve('web.archive.org', float(sys.argv[3]), now=1000.0, path=sys.argv[2], low=sys.argv[4]=='1') for _ in range(6)]))")
+
+
+def run_child(state, delay, low):
+    return subprocess.Popen([sys.executable, '-c', CHILD, str(FTP), str(state), str(delay), '1' if low else '0'], stdout=subprocess.PIPE, text=True)
+
+
+def test_slots_are_shared_across_processes_whatever_delay_each_asks(tmp_path):
+    state = tmp_path / 'ht.json'
+    ps = [run_child(state, 6.0, False), run_child(state, 3.0, False)]   # a loop at 6 s and a crawl asking for 3 s
+    waits = sorted(w for p in ps for w in json.loads(p.communicate()[0]))
+    assert len(waits) == 12 and waits[0] == 0.0
+    assert all(b - a >= 5.0 - 1e-9 for a, b in zip(waits, waits[1:])) and waits[-1] == 55.0   # 12 slots, 5 s apart, no overlap
+
+
+def test_low_priority_yields_to_the_loops(tmp_path):
+    path = tmp_path / 'ht.json'
+    HT.reserve('web.archive.org', 6.0, now=1000.0, path=path)                     # a loop was served just now
+    lows = [HT.reserve('web.archive.org', 3.0, now=1000.0, path=path, low=True) for _ in range(3)]
+    assert [round(b - a) for a, b in zip(lows, lows[1:])] == [15, 15]             # one slot in three
+    for _ in range(3):
+        HT.reserve('web.archive.org', 6.0, now=1000.0, path=path)
+    # with no loop in the last minute the crawl gets every slot
+    p2 = tmp_path / 'ht2.json'
+    quiet = [HT.reserve('web.archive.org', 3.0, now=1000.0, path=p2, low=True) for _ in range(3)]
+    assert [round(b - a) for a, b in zip(quiet, quiet[1:])] == [5, 5]
+
+
+def test_other_hosts_keep_the_callers_delay_and_a_429_cools_for_everyone(tmp_path):
+    path = tmp_path / 'ht.json'
+    assert HT.reserve('dspace.mit.edu', 15.0, now=0.0, path=path) == 0.0 and HT.reserve('dspace.mit.edu', 15.0, now=0.0, path=path) == 15.0
+    cool = HT.record_429('web.archive.org', now=100.0, path=path)
+    assert cool == 300.0 and HT.cooldown_left('web.archive.org', now=150.0, path=path) == 250.0
+    assert HT.reserve('web.archive.org', 3.0, now=150.0, path=path) >= 250.0      # a client that did not see the 429 still waits it out
+
+
+def test_client_uses_the_shared_clock_and_records_a_429(tmp_path, monkeypatch):
+    import oai_repo as O
+
+    monkeypatch.setattr(HT, 'state_path', lambda: tmp_path / 'ht.json')
+    slept = []
+
+    class R:
+        def __init__(self, code):
+            self.status_code, self.headers, self.content = code, {}, b'ok'
+
+    class S:
+        headers = {}
+        calls = 0
+
+        def get(self, url, params=None, timeout=None):
+            S.calls += 1
+            return R(429 if S.calls == 1 else 200)
+
+    cl = O.Client(3.0, session=S(), sleep=slept.append, low_priority=True)
+    assert cl.get('https://web.archive.org/web/1/x').status_code == 200
+    assert S.calls == 2 and any(w >= 299 for w in slept)       # the 429 started a 300 s cooldown that this client then waited out
+    assert HT.cooldown_left('web.archive.org') >= 0

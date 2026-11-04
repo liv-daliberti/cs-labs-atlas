@@ -38,7 +38,7 @@ steps (each adds candidates only for works with no copy, and only URLs not alrea
               (repo_index.py)
   wayback_acm DOIs 10.1145/* of works without an arXiv candidate: exact-URL Wayback CDX lookups of dl.acm.org/doi/pdf/<doi> (one per 8 s; 200 + application/pdf
               captures only, no casa_token subscriber links) -> web.archive.org/web/<ts>id_/<url> (the collector asks
-              web.archive.org at most once per 6 s). ACM DL is open access since January 2026 but refuses automated clients.
+              web.archive.org: one shared clock of 5 s for every client, host_throttle.SHARED_INTERVAL (the per-process 6 s is only a floor)). ACM DL is open access since January 2026 but refuses automated clients.
 The collector's identity check (the catalog title in the file, or the arXiv id against an arXiv DOI) applies to every
 candidate, and its title-mismatch rejections stand.
 Candidates go straight into data/fulltext/<school>/catalog.sqlite (CMU, EPFL, MIT, Berkeley; evidence under

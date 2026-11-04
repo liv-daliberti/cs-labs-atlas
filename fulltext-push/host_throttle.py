@@ -24,6 +24,12 @@ BASE_COOLDOWN = 300.0
 MAX_COOLDOWN = 3600.0
 WAIT_MAX = 900.0       # a cooldown up to this long is waited out; longer pauses the host for the pass
 WINDOW = 7200.0
+# 2026-11-04: one request budget per host for ALL our clients (download loops, etd crawl). The interval here is the real limit: reserve() uses it
+# instead of the caller's own delay, so a loop asking at 6 s and a crawl asking at 3 s still share 5 s slots (~12 a minute for web.archive.org,
+# whose playback limit is about 15 a minute; four 429s in two hours on 2026-11-04 came from two clients each keeping its own clock).
+SHARED_INTERVAL = {'web.archive.org': 5.0, 'archive.org': 5.0}
+LOW_GAP_SLOTS = 3      # a low-priority client (the SMARTech crawl: evidence) takes at most one slot in 3 while a loop was served in the last LOW_WINDOW s
+LOW_WINDOW = 60.0
 
 
 def state_path():
@@ -58,17 +64,26 @@ def _prune(state, now):
     for h in list(state):
         s = state[h]
         s['n429'] = [t for t in s.get('n429', []) if now - t < WINDOW]
-        if not s['n429'] and s.get('until', 0) < now and s.get('next', 0) < now:
+        if not s['n429'] and s.get('until', 0) < now and s.get('next', 0) < now and now - s.get('last_hi', -1e12) > LOW_WINDOW:
             del state[h]
 
 
-def reserve(host, delay, now=None, path=None):
-    """Seconds this process must wait before asking `host`: the slot after every slot already handed out (any process)."""
+def reserve(host, delay, now=None, path=None, low=False):
+    """Seconds this process must wait before asking `host`: the slot after every slot already handed out (any process). A host in SHARED_INTERVAL
+    uses that interval whatever `delay` the caller passes. low=True (evidence crawls): the slot is also at least LOW_GAP_SLOTS intervals after the
+    previous low slot while a normal client reserved a slot within LOW_WINDOW seconds, so the download loops keep 2 of every 3 slots."""
     now = time.time() if now is None else now
+    delay = SHARED_INTERVAL.get(host, delay)
     with _Locked(path or state_path()) as st:
         _prune(st, now)
         s = st.setdefault(host, {})
         slot = max(now, s.get('next', 0.0))
+        if low:
+            if now - s.get('last_hi', -1e12) < LOW_WINDOW:
+                slot = max(slot, s.get('last_low', -1e12) + LOW_GAP_SLOTS * delay)
+            s['last_low'] = slot
+        else:
+            s['last_hi'] = now
         s['next'] = slot + delay
         return slot - now
 

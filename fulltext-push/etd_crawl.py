@@ -286,7 +286,7 @@ def crawl(school, max_pages=None, out=print, client=None):
         except OSError:
             out(json.dumps(dict(school=school, stop=f'another crawl of {host} is running')))
             return None
-        client = client or O.Client(max(float(conf.get('delay') or 10), float(conf.get('min_delay', 10))))
+        client = client or O.Client(max(float(conf.get('delay') or 10), float(conf.get('min_delay', 10))), low_priority=True)
         rp, cd = load_robots(host, client)
         client.delay = max(client.delay, float(cd or 0))
         out(json.dumps(dict(school=school, host=host, delay=client.delay, robots=dict(zip(['self', 'ClaudeBot', 'anthropic-ai'],

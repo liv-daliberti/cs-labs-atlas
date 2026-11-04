@@ -181,3 +181,11 @@ Four channels that match a bulk source to the lab papers LOCALLY (DOI first, the
 - **Not usable:** the Wayback captures of `repository.gatech.edu/items/<uuid>` are the same login view as the live pages; OATD answers a Cloudflare challenge on /robots.txt (not used);
   NDLTD's search answers 503 "under redevelopment"; WorldCat's robots.txt disallows AI agents; BASE answers 403; the Georgia Tech Primo host does not answer; OpenAlex, CORE and
   Semantic Scholar list the works but carry no adviser field (they can only identify items, and no `/items/<uuid>` -> handle map exists on any allowed page).
+
+### One request budget for web.archive.org (2026-11-04)
+Two clients (the download loops' Wayback fetches and the SMARTech crawl) each kept their own clock and drew four 429s in two hours. Every client of
+web.archive.org / archive.org now shares `host_throttle.py`'s request clock and 429 cooldown: `SHARED_INTERVAL` (5 s, ~12 a minute against IA's ~15) is the real
+limit whatever delay a caller passes (the collector's per-process 6 s is only a floor); a 429 anywhere starts the cooldown (300 s doubled per 429 in 2 h, cap 1 h) and
+every client waits it out. The evidence crawl (`oai_repo.Client(low_priority=True)`) yields: while a loop was served in the last minute it takes at most one slot in
+three (15 s), the loops keep two; with no loop active it runs at 5 s. The loops run on a pinned commit: the new pace reaches them at their next restart.
+Expected: SMARTech crawl 48.6k pages = 2.8 days alone, up to 8.4 days while loops are active; Berkeley's 270 eScholarship PDFs at ~1-2 requests each = 270-540 slots = 25-45 min of the loops' share.
