@@ -1173,6 +1173,9 @@ def entry_role(desc, head, role_of):
     Student'), else the role its section heading names ('PhD Students', 'Post-doctoral Scholars'), else (None, 'none').
     A role word further into a bio ('received his B.S. ...', 'Ph.D. in Electrical Engineering from ...') never counts."""
     d = (desc or '')[:60]
+    dm = re.match(r'^\W{0,3}(?:Ph\.?\s?D\.?|M\.?S\.?|B\.?S\.?)\s*[,(]?\s*(?:19|20)\d\d\b', d)
+    if dm and re.search(r'ph\.?\s?d', dm.group(0), re.I):
+        return 'phd', 'entry'   # 'Ph.D. 2025, Post Doc @ Univ. of Illinois': the degree is the role, the post after it is the placement (UChicago round 2)
     if ROLE_NEAR.match(d):
         r = role_of(d[:45])[0]
         if r and r != 'member':

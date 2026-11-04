@@ -35,3 +35,8 @@ def test_an_entry_naming_another_adviser_is_not_this_labs_student():
     assert L.names_another_adviser({'pi': 'Greg Shakhnarovich'}, best)[0] == 'shared_page_no_adviser'
     assert L.names_another_adviser({'pi': 'Nati Srebro'}, best) is None
     assert L.names_another_adviser({'pi': 'Greg Shakhnarovich'}, {'desc': 'Ann Lee, PhD student', 'quote': 'q'}) is None
+
+
+def test_a_degree_year_entry_is_a_phd_not_the_postdoc_that_follows():
+    assert L.entry_role('Ph.D. 2025, Post Doc @ Univ. of Illinois', None, lambda s: ('postdoc', 0))[0] == 'phd'
+    assert L.entry_role('Ph.D. 2024', None, lambda s: ('member', 0))[0] == 'phd'
