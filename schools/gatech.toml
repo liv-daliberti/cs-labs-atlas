@@ -341,7 +341,7 @@ kind = "none"
 base_url = ""
 endpoints = []
 robots = ""
-note = "Georgia Tech's dissertations are in SMARTech (smartech.gatech.edu, DSpace); not probed yet (stage 6): robots.txt for AI-agent rules first."
+note = "dissertations are at repository.gatech.edu (DSpace 7, formerly SMARTech): robots.txt has no AI-agent rules, Crawl-delay 10, OAI, /search, /browse and /full pages are disallowed; item pages (/entities/publication/<uuid>, with an Advisor(s) field) are allowed but there is no allowed way to select computing dissertations (95,212 sitemap items, about 11 days at 10 s). Probed 2026-11-04; the general ETD crawler of the repository agent will supply adviser relations later (owner 2026-11-04), not this onboarding."
 
 [students]
 # Names-only PhD rosters (no adviser on the page): a student counts only with a co-authored lab paper of the PI (R-STU-02: the PI last author once or two papers
