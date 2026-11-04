@@ -82,6 +82,7 @@ def run(school):
         A = shared[school]
     else:   # a school being onboarded is not in the release's chain-audit.json: run its audit in-process (nothing is written)
         import chain_audit
+        P.hfile(H, 'link-diagnosis.json', school).unlink(missing_ok=True)   # the audit explains links from the PREVIOUS diagnosis: a rerun would see none open and overwrite it with an empty one (UChicago friction 56)
         A = chain_audit.audit(school)
     pis = {p['pi']: p for p in json.loads((P.hfile(H, 'pis.json', school)).read_text())}
     pi_ids = {k: set(p.get('reviewedOpenAlex') or []) | set(p.get('oaAuthorIds') or []) for k, p in pis.items()}
