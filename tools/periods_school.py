@@ -56,6 +56,8 @@ def targets(key):
     if dsf.exists():
         dp = {**dp, **json.load(__import__('gzip').open(dsf, 'rt'))['persons']}
     ov = CO.section(key)
+    ef = P.data('extra-lab-pages.json', key)
+    extra = json.load(open(ef)) if ef.exists() else {}
     for x in census + add:
         if not x.get('is_pi'):
             continue
@@ -69,6 +71,10 @@ def targets(key):
             for u in (dp.get(d) or {}).get('urls') or []:
                 if not DBLP_URL_SKIP.search(u) and u not in urls and len(urls) < 4:
                     urls.append(u)
+        for e in extra.get(x['name']) or []:   # reviewed extra lab/homepage/CV pages (extra-lab-pages.json: found by hand or from the profile pages, each with why)
+            u = e['url'] if isinstance(e, dict) else e
+            if u not in urls:
+                urls.append(u)
         out.append(dict(name=x['name'], person=x.get('collection_person_id'), urls=urls,
                         first=min(x.get('years_listed') or [2016]), years=sorted(x.get('years_listed') or []), ranks=x.get('ranks_by_year') or {}))
     return out
