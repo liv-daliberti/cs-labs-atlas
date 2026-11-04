@@ -395,6 +395,7 @@ def paged_flat(c, cap, r, url):
     return ' '.join(out)
 
 
+AREA_PREFIX = re.compile(r'^(?:(?:Accounting|Finance|Marketing|Economics|Operations Management|Management Science|Econometrics (?:&|and) Statistics|Behavioral Science|Quantitative Marketing|Strategy|Entrepreneurship|Macroeconomics|Candidates)\s+)+')
 CHAIR_RX = re.compile(r"([A-Z][\w.'\u2019-]+(?: (?:[A-Z][\w.'\u2019-]+|de|van|von|da))+)\s*\((?:Co-?)?[Cc]hair\b")
 
 
@@ -416,11 +417,11 @@ def defense_lists(key, forms, first_year):
             for tr in re.findall(r'<tr[^>]*>(.*?)</tr>', h, re.S | re.I):
                 tds = [' '.join(H.unescape(re.sub(r'<[^>]+>', ' ', x)).split()) for x in re.findall(r'<td[^>]*>(.*?)</td>', tr, re.S | re.I)]
                 if len(tds) == 4 and re.match(r'(Proposal|Defense)', tds[0]):
-                    nm = re.sub(r'\s*\(.*$', '', tds[1]).strip()
+                    nm = re.sub(r'\s*\([^()]*\)\s*$', '', tds[1]).strip()   # only the trailing (area): 'Zi (Elaine) Ling (Management Science)' keeps 'Zi (Elaine) Ling'
                     y = re.search(r'(20[12]\d)', tds[2])
                     items.append((nm, 'defense' if tds[0].startswith('Defense') else 'proposal', int(y.group(1)) if y else None, tds[3], tds[1]))
             for m in re.finditer(r'([A-Z][\w.\'\u2019-]+(?: [A-Z][\w.\'\u2019-]+){1,3}) Job Market Paper:.*?Dissertation Committee: (.*?)(?: Research Interests|$)', flat):
-                items.append((m.group(1), 'jobmarket', int(r['timestamp'][:4]), m.group(2), m.group(1)))
+                items.append((AREA_PREFIX.sub('', m.group(1)), 'jobmarket', int(r['timestamp'][:4]), m.group(2), AREA_PREFIX.sub('', m.group(1))))
             for nm, kind, y, com, cell in items:
                 chairs = [x.group(1) for x in CHAIR_RX.finditer(com)]
                 for pi, f in forms:

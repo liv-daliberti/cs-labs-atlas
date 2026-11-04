@@ -264,3 +264,9 @@ def test_people_links_stay_in_the_pis_own_space():
     assert L.in_own_space('http://people.cs.uchicago.edu/~alee/students.html', 'Ann Lee', dh)
     assert L.in_own_space('https://cs.uchicago.edu/people/ann-lee-students/', 'Ann Lee', dh)
     assert L.in_own_space('https://leelab.github.io/people', 'Ann Lee', dh)
+
+
+def test_defense_student_name_keeps_the_nickname_and_drops_the_area():
+    L = by_path('labpage_students_school')
+    assert L.AREA_PREFIX.sub('', 'Operations Management Ebru Kasikaralar') == 'Ebru Kasikaralar'
+    assert L.AREA_PREFIX.sub('', 'Econometrics & Statistics Ming Gao') == 'Ming Gao'

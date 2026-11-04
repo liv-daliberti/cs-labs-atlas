@@ -95,6 +95,8 @@ def parse(text, first_year):
                 nm = m.group(1)
                 if not (lpdom.looks_like_name(nm) and lpdom.plausible_person(nm)):
                     continue
+                if not re.search(r'ph\.?\s?d|doctoral|dissertation|graduate|students?', ln, re.I):
+                    continue   # a heading such as 'Advising & Mentorship' does not say these are students of the PI (hand round 12: five doubtful rows)
                 ys = [int(y) for y in YEAR.findall(item)]
                 if ys:
                     yrs = [None, max(ys)] if len(ys) == 1 and not cur else [min(ys), max(ys)]
