@@ -1,6 +1,7 @@
 """One request budget for web.archive.org across every client (host_throttle.SHARED_INTERVAL, 2026-11-04): slots are 5 s apart across processes whatever
 delay each asks for, a low-priority client (the evidence crawl) yields to the loops, and a 429 recorded by one client cools the host for all."""
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -8,12 +9,13 @@ from pathlib import Path
 import host_throttle as HT
 
 FTP = Path(__file__).resolve().parents[1] / 'fulltext-push'
-CHILD = ("import json,sys; sys.path.insert(0, sys.argv[1]); import host_throttle as HT; "
-         "print(json.dumps([HT.reserve('web.archive.org', float(sys.argv[3]), now=1000.0, path=sys.argv[2], low=sys.argv[4]=='1') for _ in range(6)]))")
+CHILD = ("import json,sys; import host_throttle as HT; "
+         "print(json.dumps([HT.reserve('web.archive.org', float(sys.argv[2]), now=1000.0, path=sys.argv[1], low=sys.argv[3]=='1') for _ in range(6)]))")
 
 
 def run_child(state, delay, low):
-    return subprocess.Popen([sys.executable, '-c', CHILD, str(FTP), str(state), str(delay), '1' if low else '0'], stdout=subprocess.PIPE, text=True)
+    env = dict(os.environ, PYTHONPATH=os.pathsep.join(filter(None, [str(FTP), os.environ.get('PYTHONPATH', '')])))
+    return subprocess.Popen([sys.executable, '-c', CHILD, str(state), str(delay), '1' if low else '0'], stdout=subprocess.PIPE, text=True, env=env)
 
 
 def test_slots_are_shared_across_processes_whatever_delay_each_asks(tmp_path):
