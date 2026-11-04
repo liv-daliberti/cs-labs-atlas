@@ -157,3 +157,18 @@ Four channels that match a bulk source to the lab papers LOCALLY (DOI first, the
   record; a DOI match also needs a compatible title). `core_bulk`: no copy downloaded yet, so no check was possible; its candidates stay.
 - eScholarship (Berkeley; escholarship.org blocks us at its CDN): `wayback_escholarship` adds the Internet Archive capture of the item PDF (`id_` URL form,
   one CDX lookup per 8 s); CORE's hosted copies (`core.ac.uk/download/...`) answer a Cloudflare challenge, so they are not used.
+
+### Gaps closed and limits found (2026-11-04, later)
+- **EPFL:** the OAI endpoint answered HTTP 405 at page ~282 (28,167 records kept) and is not asked again. `oai_repo.py harvest-rest epfl` enumerates the
+  same collections through the REST API the downloads already use (`/server/api/discover/search/objects?scope=<collection>`, 100 a page, 3 s apart,
+  resumable by page; robots.txt does not disallow `/server/api`). Records are `rest:<item uuid>` in the same table; a matched record is asked once for its
+  ORIGINAL bundle and its PDFs become candidates `.../core/bitstreams/<uuid>/content` (source `oai_repo_epfl`, the form the earlier REST pass wrote, so known URLs dedup).
+- **Georgia Tech enumeration:** the live `sitemap1.xml` is cut off by the server at 955,812 bytes, losing about 38,700 of its ~45,000 entries (not ~5,000).
+  Wayback holds complete captures (`web.archive.org/web/20261001233421id_/https://repository.gatech.edu/sitemap1.xml`, 6.7 MB, 45,062 entries); its 23,819
+  `/entities/publication/` URLs not already queued were added to the crawl queue (`etd_crawl.py add gatech <file>`), so the crawl queue holds ~58,100 publication pages
+  (the full sitemap is 95k entries: 58,135 publications, 24.9k archival materials, 9,865 `/items/<uuid>` pages, 1.3k persons/series/orgunits).
+  **Not reachable:** the 9,865 `/items/<uuid>` pages answer the login view to this client (and Wayback's captures of them are the same login view); their uuids
+  are never `/entities/publication/` uuids (0 of 9,865 overlap; three probes through the crawl queue answered the login view too). The REST API is disallowed
+  except `core/bitstreams` and `core/mapping`, OAI is disallowed. OpenAlex, CORE and Semantic Scholar list the works but carry no adviser field.
+- **Crawler resilience:** `Client` treats 500/502/503/504 like 429 (back-off 60, 300, 900, 1800 s); after that the etd crawl waits 30 min and asks again
+  (12 failed rounds in a row stop it), so a 502 no longer ends the crawl. One crawler per host: new URLs go through `etd_crawl.py add`, never a second client.
