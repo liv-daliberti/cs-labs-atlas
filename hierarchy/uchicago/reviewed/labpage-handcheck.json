@@ -211,6 +211,34 @@
    "role_year_errors": null,
    "paper_score": 0,
    "result": "papers_pass"
+  },
+  {
+   "round": 9,
+   "date": "2026-11-04",
+   "label": "Statistics and CAM people-page rosters under the stricter rule (owner-granted extra round); 51 new relations, 20 sampled",
+   "additions_generated_at": "2026-11-04T04:29:01+00:00",
+   "students": {
+    "sampled": 20,
+    "seed": 20261201,
+    "membership_errors": 0,
+    "doubtful_count": 3,
+    "role_or_year_errors": 0
+   },
+   "papers": null,
+   "items": {
+    "membership": [],
+    "doubtful": [
+     "Donnat: Yating Liu (roster PhD student 2023-2025; the only evidence is one co-authored 2025 paper)",
+     "Haotian Jiang: Jiaheng Chen (listed under Sanz-Alonso's CAM work; one co-authored paper with Jiang)",
+     "Sanz-Alonso: Ruiyi Yang ('Functional Multi-Target Detection via Bispectrum Inversion' alone)"
+    ],
+    "role_or_year": []
+   },
+   "membership_score": 1.5,
+   "role_year_errors": 0,
+   "paper_score": null,
+   "result": "fail",
+   "note": "17 of 20 rows read as members of the PI named (roster PhD student with a paper of the PI inside the roster years). Three rest on a single co-authored paper where the evidence does not say the PI advises; 1.5 doubtful is over the bar of 1. The two rosters are not wired."
   }
  ]
 }
