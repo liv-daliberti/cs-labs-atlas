@@ -354,7 +354,9 @@ STEPS = {
           H('rounds', 'the lab-page students rounds (docs/LAB-PAGES.md): a fresh sample of 20, its hand check (atlas review-page), a rule fix and a NEW sample on failure, three failed rounds stop the work; record them in labpage-handcheck.json')],
     '7': [Q('pi-works', 'PY $TOOLS/pi_fulltext_affiliation.py works {school} --from-snapshot', mem='24G', time='06:00:00'),
           Q('dblp-recover', 'PY $TOOLS/dblp_recover.py {school}', time='06:00:00'),
-          Q('labpage-recover', 'PY $TOOLS/labpage_recover.py run {school}', time='08:00:00'),
+          # the lab-page paper pass of a charter school is the audit's own recover + audit (labpage_recover.py needs labpage-pubs.jsonl.gz, which no step produces: UChicago stage 7); no OpenAlex key in the job
+          Q('labpage-audit-recover', 'PY $TOOLS/labpage_audit.py recover {school}', time='08:00:00'),
+          Q('labpage-audit', 'PY $TOOLS/labpage_audit.py audit {school}', time='02:00:00'),
           Q('build', 'PY $TOOLS/pi_hierarchy.py {school}', cpus=3, mem='40G', time='02:00:00', done=['pis.json']),
           Q('link-diagnosis', 'PY $TOOLS/link_diagnosis.py {school}', mem='24G', time='02:00:00', done=['link-diagnosis.json']),
           H('review', 'zero-paper labs need reasons, the links check needs 0 open, the lab-page papers round (a fresh 20, at most 1 error)')],
