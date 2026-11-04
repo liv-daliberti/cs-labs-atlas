@@ -8,6 +8,7 @@ and, when either is 0, a reason code with its evidence. Reasons come from two pl
              (last listed year before 2019 and no student or paper after), `no_identity` (reviewed no_identity override)
   reviewed   hierarchy/<key>/reviewed/lab-coverage-reasons.json {pi: {students|papers: {code, why, sources_checked?}}}, for the codes a hand
              search establishes (`sources_exhausted` lists every source checked; `all_students_before_2016`)
+Students are counted whatever their role: PhD, masters, undergraduate and `visiting` (R-STU-17, 2026-11-04) members alike, so a lab whose only students are visiting students has students.
 A lab at 0 students or 0 papers with neither is `open`. -> hierarchy/<key>/reports/LAB-COVERAGE.md and .json in this checkout.
 usage: lab_coverage.py <key>
 """
