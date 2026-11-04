@@ -524,3 +524,20 @@ def test_withheld_role_is_a_lab_member_not_a_student(tmp_path):
     assert w['roles'] == ['member'] and w['relations'][0]['role_withheld'] is True and w['relations'][0]['type'] == 'researched_membership'
     assert w['relations'][0]['years'] == [2024] and ctx.n['students_role_withheld'] == 1
     assert r_['roles'] == ['phd'] and 'role_withheld' not in r_['relations'][0]
+
+
+def test_R_STU_17_a_visiting_student_is_a_lab_member_never_an_adviser_relation(tmp_path):
+    """R-STU-17 (2026-11-04, owner): a researched row whose person is decided `visiting` in student-decisions.json (or whose role is `visiting`)
+    is a lab member with role `visiting`: researched_membership, never researched_advising (PhD statistics read advising relations)."""
+    write_school(tmp_path)
+    put(tmp_path, 'few-students-evidence.json').write_text(json.dumps([dict(pi='Grace Hopper', students=[
+        dict(name='Vera Visiting', role='phd', years=[2024], url='https://example.edu/hopper', sha256=SHA, quote='Vera Visiting (visiting PhD, ETH)'),
+        dict(name='Vic Direct', role='visiting', years=[2025], url='https://example.edu/hopper', sha256=SHA, quote='Vic Direct, visiting student from CUHK'),
+        dict(name='Rosa Researched', role='phd', years=[2020], url='https://example.edu/hopper', sha256=SHA, quote='Rosa Researched, PhD student')])]))
+    put(tmp_path, 'student-decisions.json').write_text(json.dumps({'Grace Hopper': {'Vera Visiting': dict(decision='visiting', why='visiting PhD of this lab')}}))
+    ctx = run_stages(tmp_path, upto='students')
+    rec = {r['name']: r for r in ctx.stu['Grace Hopper'].values()}
+    for nm in ('Vera Visiting', 'Vic Direct'):
+        assert rec[nm]['roles'] == ['visiting'] and rec[nm]['relations'][0]['type'] == 'researched_membership' and rec[nm]['relations'][0]['role'] == 'visiting'
+    assert rec['Rosa Researched']['roles'] == ['phd'] and rec['Rosa Researched']['relations'][0]['type'] == 'researched_advising'
+    assert ctx.n['students_role_visiting'] == 2

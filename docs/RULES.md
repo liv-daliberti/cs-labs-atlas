@@ -353,6 +353,25 @@ URL, one name the other's alias, a shared linked paper) and `tools/student_name_
 `hierarchy/reviewed/student-name-candidates.json`. Only a `same_person` verdict in `student-identity-review.json` merges them.
 2026-11-03: of the 30 queued pairs, 13 stay `same_person` (one source showing both spellings, the same thesis title, a DBLP alias record, or the same slot in two captures of one page) and 17 went back to the queue after the owner's strict re-check (same adviser, role and years is not enough); none was found to be two people.
 
+### R-STU-17 (2026-11-04, owner) — the `visiting` student role
+A visiting PhD, master's or undergraduate student, a "visiting student researcher", or an exchange or visiting intern who is a student elsewhere, listed on
+a lab's own page (or in researched evidence), is a member of THAT lab in the capture year, role `visiting`; they are no longer dropped as "a student of
+another institution" (UChicago: Diantong Li and Linus Gan, CUHK, were `not`). Visiting professors, faculty, scientists and scholars stay `not_a_student`; a
+bare "Visitors" heading with no student wording is not decided (role `other`, the doubtful path), and so is a heading that names students among others
+('Undergraduate and Visiting Students', 'Visiting Students, Scholars and Scientists': the entries decide). `visiting` is a non-PhD role like `masters` and
+`undergraduate`: the build gives it `researched_membership`, never `researched_advising`, so it makes no adviser relation for PhD statistics; the release
+export lists it as relation `member`, role label 'Visiting student'; the chain audit excuses it from the thesis-link check (it already named `visiting`);
+lab coverage counts it as a student like any other role (a lab with only visiting students has students). Undated visiting entries take the same
+capture-year dating as other undated members (R-STU-14).
+Extraction: `tools/visiting.py` (`VISITING_RX`, `visiting_role`): the entry's own text first ('visiting student from CUHK', '(visiting, CUHK)', 'Visiting
+Ph.D. from Tsinghua'; not an earlier stay or the entry's own 'PhD student' statement), else the nearest role heading; the entry's own postdoc, staff, scientist or
+visitor title outranks a visiting heading. `labpage_audit.entry_role`, `clean_parenthetical_name`; ELSEWHERE_RX no longer reads 'visiting student at X' as a
+student of X, and the other-institution checks are skipped for a `visiting` row.
+Past decisions: `student-decisions.json` takes `decision: visiting` (passed on like `uchicago`, role forced to `visiting`); `tools/visiting_roles.py` converted
+every researched row whose own evidence (quote after the name, a pure visiting heading, a note opening with the phrase) says visiting student, keeping the quote,
+url and the role it had (`role_was`, `converted_from`); UChicago's two `not` rows were changed by hand and keep `original_decision` / `original_why`.
+`visiting_decided` in `pihier.students.researched`, `role_label` in `tools/export_release.py`.
+
 ## Student–paper links
 
 ### R-LNK-01 — link bases

@@ -624,7 +624,7 @@ One relation tying the student to the PI: an advising context, a lab membership,
 |---|---|---|---|---|---|
 | `type` | string | yes | Relation type: a collection context type containing "advis", direct_lab_membership, researched_advising / researched_membership (researched files), pi_basis_advising (the PI basis quote), or a correction's type. | pattern `^(direct_lab_membership\|researched_membership\|[a-z_]*advis[a-z_]*)$`; e.g. `researched_advising`, `academic_advising`, `source_advising_context`, `direct_lab_membership`, `academic_adviser`, `researched_membership`, `thesis_adviser`, `pi_basis_advising` | R-STU-01 |
 | `years` | array of integer | yes | Years the relation is recorded for (advising years, roster observations). | items: 1900 to 2030 |  |
-| `role` | string \| null | yes | Role as the source states it (open vocabulary). | e.g. `phd`, `masters`, `undergraduate`, `postdoc`, `member` |  |
+| `role` | string \| null | yes | Role as the source states it (open vocabulary); `visiting` (R-STU-17, 2026-11-04) is a visiting student of the lab: a member, never an adviser relation. | e.g. `phd`, `masters`, `undergraduate`, `visiting`, `postdoc`, `member` |  |
 | `sources` | array of `source` | yes | Evidence items (up to two from the collection, complete ones first). |  | R-STU-01, R-LNK-05 |
 | `work` | string \| null | no | The thesis work of an advising context (collection work id). |  |  |
 | `weak` | string | no | program_adviser: a program-wide academic adviser, not research advising. | one of `program_adviser` | R-STU-09 |
@@ -1147,8 +1147,8 @@ The flat lab-student table of the GitHub export: one row per (lab, student).
 | `pi_name` | string | yes | PI name. | non-empty |  |
 | `student_id` | string | yes | ext:<school>:<slug>, else <school>:<record id>. | non-empty |  |
 | `student_name` | string | yes | Name. | non-empty |  |
-| `role_label` | string | yes | Role label (site vocabulary). | e.g. `PhD student`, `Master’s`, `Student`, `Lab member`, `PhD alumnus`, `Undergraduate`, `Postdoc` |  |
-| `relation` | string | yes | member when every relation is direct_lab_membership, else advisee. | one of `advisee`, `member` |  |
+| `role_label` | string | yes | Role label (site vocabulary). | e.g. `PhD student`, `Master’s`, `Student`, `Lab member`, `PhD alumnus`, `Undergraduate`, `Visiting student`, `Postdoc` |  |
+| `relation` | string | yes | member when every relation is direct_lab_membership or a visiting student's (R-STU-17), else advisee. | one of `advisee`, `member` |  |
 | `first_year` | string | yes | First recorded year. | pattern `^(\d{4})?$` |  |
 | `last_year` | string | yes | Last recorded year. | pattern `^(\d{4})?$` |  |
 | `relation_types` | string | yes | Relation types, space-separated, sorted. | pattern `^([a-z_]+( [a-z_]+)*)?$` |  |
@@ -1329,7 +1329,7 @@ A researched student or lab member (with its quote and hash).
 | Field | Type | Required | Meaning | Allowed values | Rules |
 |---|---|---|---|---|---|
 | `name` | string | yes | Name as the source writes it. | non-empty |  |
-| `role` | string \| null | no | Role; 'member' makes a researched_membership relation. | e.g. `phd`, `masters`, `undergraduate`, `postdoc`, `member`, `other` |  |
+| `role` | string \| null | no | Role; 'member' or 'visiting' (R-STU-17) makes a researched_membership relation. | e.g. `phd`, `masters`, `undergraduate`, `visiting`, `postdoc`, `member`, `other` |  |
 | `years` | array of integer \| null \| null | no | Years. |  |  |
 | `url` | string | yes | The page. | non-empty |  |
 | `sha256` | string | yes | sha256 of the captured page. | pattern `^[0-9a-f]{64}$` |  |
@@ -1387,7 +1387,7 @@ A researched student or lab member (with its quote and hash).
 | Field | Type | Required | Meaning | Allowed values | Rules |
 |---|---|---|---|---|---|
 | `name` | string | yes | Name as the source writes it. | non-empty |  |
-| `role` | string \| null | no | Role; 'member' makes a researched_membership relation. | e.g. `phd`, `masters`, `undergraduate`, `postdoc`, `member`, `other` |  |
+| `role` | string \| null | no | Role; 'member' or 'visiting' (R-STU-17) makes a researched_membership relation. | e.g. `phd`, `masters`, `undergraduate`, `visiting`, `postdoc`, `member`, `other` |  |
 | `years` | array of integer \| null \| null | no | Years. |  |  |
 | `url` | string | yes | The page. | non-empty |  |
 | `sha256` | string | yes | sha256 of the captured page. | pattern `^[0-9a-f]{64}$` |  |
@@ -1427,7 +1427,7 @@ A proposed lab member (LP-STU-01): the labpage-evidence row shape plus pi, alumn
 | Field | Type | Required | Meaning | Allowed values | Rules |
 |---|---|---|---|---|---|
 | `name` | string | yes | Name. | non-empty |  |
-| `role` | string \| null | yes | Role stated by the entry, else null. | one of `phd`, `postdoc`, `masters`, `undergraduate`, `member`, `other`, `null` |  |
+| `role` | string \| null | yes | Role stated by the entry, else null. | one of `phd`, `postdoc`, `masters`, `undergraduate`, `visiting`, `member`, `other`, `null` |  |
 | `years` | array of integer \| null \| null | yes | Years stated, else null. |  |  |
 | `url` | string | yes | The page. |  |  |
 | `capture_url` | string \| null | no | The capture. |  |  |

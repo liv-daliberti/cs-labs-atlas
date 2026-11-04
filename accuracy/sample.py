@@ -101,7 +101,7 @@ def thesis_relation(rel, school, roles=()):
     theses are left out; an MIT DSpace thesis (degree not recorded in students.json) passes unless the student's roles
     say undergraduate or master's, and is screened at judgment time."""
     phd_role = any(re.search(r'(?i)phd|doctoral', r) for r in roles)
-    low_role = any(re.search(r'(?i)undergrad|master', r) for r in roles)
+    low_role = any(re.search(r'(?i)undergrad|master|visiting', r) for r in roles)   # a visiting student is no PhD advisee (R-STU-17)
     for so in rel.get('sources') or []:
         kind, url, quote = str(so.get('kind') or ''), str(so.get('url') or ''), str(so.get('quote') or '')
         if MASTER.search(quote) and not PHD.search(quote):

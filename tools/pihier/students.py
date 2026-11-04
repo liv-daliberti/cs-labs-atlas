@@ -2,11 +2,12 @@
 R-HIER-03 (no merges across labs), R-HIER-04 (the PI is not their own student), R-STU-01 (sources), R-STU-02 (program
 advising and readers), R-STU-03 (adviser names), R-STU-04 (reviewed corrections), R-STU-05 (doubled tokens), R-STU-06
 (hyphen halves), R-STU-07 (a PI's person id is never a student), R-STU-08 (re-captured evidence), R-STU-09 (program-wide
-advisers), R-STU-10 (the student's own roster entry), R-STU-11 (a basis record's advisor field)."""
+advisers), R-STU-10 (the student's own roster entry), R-STU-11 (a basis record's advisor field), R-STU-17 (visiting students)."""
 import collections, json, re, unicodedata
 from pathlib import Path
 
 import atlas_paths as P  # data paths (DATA_FILES)
+import student_decisions as SD  # reviewed per-person decisions (R-STU-17 `visiting`)
 
 from .common import accepted_additions, as_years, best_sources, read, source_year
 from .names import Name, _fold, clean_person_name, dedupe_tokens, full_pair, names_full_form, nick_ok, initials_optional, same_student, surname_typo, toks
@@ -344,6 +345,8 @@ def researched(ctx, stu, by_name):
                 fe[r['pi']]['students'] = list(fe[r['pi']]['students']) + list(r.get('students') or [])
     for s_ in accepted_additions(school, 'students', HERE, ctx.n):  # LP-STU-01, accepted (docs/LAB-PAGES.md): one row per student
         fe[s_['pi']]['students'] = list(fe[s_['pi']]['students']) + [s_]
+    dec_f = P.data('student-decisions.json', school, root=HERE)
+    visiting_decided = {(pi_, SD.fold(nm_)) for pi_, d_ in (read(dec_f) if dec_f.exists() else {}).items() for nm_, v_ in d_.items() if v_.get('decision') == 'visiting'}
     for p in pis:  # researched students (gap-evidence.json, few-students-evidence.json): a stated advisee or lab member, with its quote
         for s_ in list((ge.get(p['pi']) or {}).get('students') or []) + list((fe.get(p['pi']) or {}).get('students') or []):
             if not (s_.get('name') and s_.get('quote') and s_.get('sha256')):
@@ -353,13 +356,17 @@ def researched(ctx, stu, by_name):
             sid = match_[0]['id'] if len(match_) == 1 else f"ext:{school}:{re.sub('[^a-z0-9]+', '-', s_['name'].lower()).strip('-')}"
             # a lab-page entry whose role the audit withheld (role null, role_basis withheld_*: Berkeley, 2026-11-01) is a plain lab MEMBER, not a
             # student: it may be a postdoc or a visitor. roles ['member'] shows as 'Lab member' on the site (build-cs-hierarchy.py role_label).
-            withheld = bool(s_.get('role_basis')) and not s_.get('role')
+            role_ = 'visiting' if (p['pi'], SD.fold(s_['name'])) in visiting_decided else s_.get('role')   # R-STU-17: decided `visiting` in student-decisions.json
+            withheld = bool(s_.get('role_basis')) and not role_
             if withheld:
                 n['students_role_withheld'] += 1
+            if role_ == 'visiting':
+                n['students_role_visiting'] += 1
             r = stu[p['pi']].setdefault(sid, dict(person=sid, name=match_[0]['name'] if len(match_) == 1 else s_['name'],
-                                                  roles=['member'] if withheld else [s_.get('role') or 'student'], relations=[]))
-            r['relations'].append(dict(type='researched_' + ('membership' if s_.get('role') == 'member' or withheld else 'advising'), years=as_years(s_.get('years'), n),
-                                       role=s_.get('role'), **({'role_withheld': True} if withheld else {}), sources=[dict(url=s_.get('capture_url') or s_['url'], sha256=s_['sha256'], quote=s_['quote'])]
+                                                  roles=['member'] if withheld else [role_ or 'student'], relations=[]))
+            # a visiting student is a lab member, never an adviser relation (R-STU-17): researched_membership, like `member`
+            r['relations'].append(dict(type='researched_' + ('membership' if role_ in ('member', 'visiting') or withheld else 'advising'), years=as_years(s_.get('years'), n),
+                                       role=role_, **({'role_withheld': True} if withheld else {}), sources=[dict(url=s_.get('capture_url') or s_['url'], sha256=s_['sha256'], quote=s_['quote'])]
                                        # a defense announcement's 'Faculty Host <PI>' line, same page and hash (Michigan request 4)
                                        + ([dict(url=s_.get('capture_url') or s_['url'], sha256=s_['sha256'], quote=s_['host_quote'])] if s_.get('host_quote') else []),
                                        # automatic, unreviewed lab-page students stay marked (Michigan request 6: the accuracy sample stratifies on it)

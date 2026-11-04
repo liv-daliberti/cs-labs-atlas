@@ -61,7 +61,7 @@
      "minLength": 1
     },
     "role": {
-     "description": "Role; 'member' makes a researched_membership relation.",
+     "description": "Role; 'member' or 'visiting' (R-STU-17) makes a researched_membership relation.",
      "type": [
       "string",
       "null"
@@ -70,6 +70,7 @@
       "phd",
       "masters",
       "undergraduate",
+      "visiting",
       "postdoc",
       "member",
       "other"

@@ -53,6 +53,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
 import census_overrides as CO  # noqa: E402
 import student_decisions as SD  # noqa: E402
+import visiting as VIS  # noqa: E402
 
 H = P.HIERARCHY
 HT = Path(__file__).resolve().parents[1] / 'hierarchy'   # the tracked lab-page toolkits (hierarchy/labpage-tools-*) of THIS checkout or snapshot, not the main checkout's: a toolkit fix on a branch must be the code that runs (Georgia Tech friction 29)
@@ -161,7 +162,7 @@ SCHOOLS = SchoolTable({
 SCHOOL_NAMES = dict(princeton=r'Princeton', mit=r'MIT|Massachusetts Institute', cmu=r'CMU|Carnegie Mellon', epfl=r'EPFL|[EÉ]cole Polytechnique',
                     berkeley=r'Berkeley|UCB', stanford=r'Stanford', michigan=r'Michigan|UMich|U-M\b')
 DEGREE_AT_RX = re.compile(r"\b(?i:ph\.?\s?d|m\.?s|b\.?s|m\.?eng|msc|bsc)\.?,?\s*(?:19|20)\d\d\s*\(([A-Z][\w&.' -]{1,40})\)")  # 'PhD 2016 (DTU)'
-ELSEWHERE_RX = re.compile(r"\b(?i:ph\.?\s?d\.?|graduate|doctoral|master'?s|undergraduate|visiting) (?i:student|candidate)"
+ELSEWHERE_RX = re.compile(r"\b(?i:ph\.?\s?d\.?|graduate|doctoral|master'?s|undergraduate) (?i:student|candidate)"
                           r"(?: in [\w &,-]{2,60}?)? at (?:the )?([A-Z][\w.&'-]*(?: (?:of )?[A-Z][\w.&'-]*){0,5})")
 
 
@@ -1089,7 +1090,7 @@ def cmd_discover(school, only=None, redo=False, redo_unrecorded=False):
 
 
 # ---------------------------------------------------------------- students
-ROLE_OK = {'phd', 'postdoc', 'masters', 'undergraduate', 'member', 'other'}
+ROLE_OK = {'phd', 'postdoc', 'masters', 'undergraduate', 'visiting', 'member', 'other'}   # `visiting`: R-STU-17, tools/visiting.py
 
 
 def build_students(ctx, pi):
@@ -1218,6 +1219,9 @@ def entry_role(desc, head, role_of):
     """(role, basis): the role the entry states right after the name ('(PhD student, ...)', ', Postdoc', 'MIT Undergraduate
     Student'), else the role its section heading names ('PhD Students', 'Post-doctoral Scholars'), else (None, 'none').
     A role word further into a bio ('received his B.S. ...', 'Ph.D. in Electrical Engineering from ...') never counts."""
+    vis = VIS.visiting_role(desc, head, role_of)
+    if vis:
+        return vis   # R-STU-17: 'visiting student from CUHK', '(visiting, CUHK)', a 'Visiting Students' heading: a member of this lab, role `visiting`
     d = (desc or '')[:60]
     dm = re.match(r'^\W{0,3}(?:Ph\.?\s?D\.?|M\.?S\.?|B\.?S\.?)\s*[,(]?\s*(?:19|20)\d\d\b', d)
     if dm and re.search(r'ph\.?\s?d', dm.group(0), re.I):
@@ -1322,6 +1326,8 @@ def pm_candidates(kit, school, pi, plan, held):
             x['role'], x['role_basis'] = entry_role(x.get('desc'), x.get('head'), kit.autom._role)
             if fn in roles_:
                 x['role'], x['role_basis'] = roles_[fn], 'reviewer'
+            if SD.visiting(ctx_decisions(school), pi, x['name']):
+                x['role'], x['role_basis'] = 'visiting', 'reviewer'   # decided `visiting` for this lab (student-decisions.json, R-STU-17)
             if src not in coadv:
                 coadv[src] = coadvisers(kit, school, src)
                 inst_[src] = page_institution(kit, school, src)
@@ -1333,7 +1339,7 @@ def pm_candidates(kit, school, pi, plan, held):
                 why, x['detail'] = 'name_unresolved', 'site credit or footer'
             elif any(names.match_one(x['name'], c) for c in coadv[src]):
                 why, x['detail'] = 'not_a_student', 'named as a co-adviser (joint with / co-advised with)'
-            elif auto_plan and (m_el := (ELSEWHERE_RX.search((x.get('desc') or '')[:220]) or DEGREE_AT_RX.search((x.get('desc') or '')[:120]))) and \
+            elif auto_plan and x['role'] != 'visiting' and (m_el := (ELSEWHERE_RX.search((x.get('desc') or '')[:220]) or DEGREE_AT_RX.search((x.get('desc') or '')[:120]))) and \
                     not re.search(school_names_rx(school), m_el.group(1)):
                 why, x['detail'] = 'at_previous_school', f"the entry places the person at {m_el.group(1)}"
             elif re.search(r'\brotation', (x.get('head') or '') + ' ' + (x.get('desc') or '')[:60], re.I):
@@ -1553,11 +1559,13 @@ def audit_students(kit, ctx, p, lab, plan, auto_plan=False):
             nm_c, role_c = clean_parenthetical_name(nm)
             if nm_c != nm:
                 nm = nm_c
-                if role_c and best.get('role') in (None, 'member', 'other', 'postdoc', 'phd'):
+                if role_c and (best.get('role') in (None, 'member', 'other', 'postdoc', 'phd') or (role_c == 'visiting' and best.get('role') != 'postdoc')):
                     best = dict(best, role=role_c, role_basis='entry_parenthetical')
             if SD.excluded(ctx_decisions(school), pi, nm):
                 miss['reason_code'], miss['detail'] = 'reviewer_excluded', 'decided not / unclear for this lab (student-decisions.json)'
                 continue
+            if SD.visiting(ctx_decisions(school), pi, nm):
+                best = dict(best, role='visiting', role_basis='reviewer')
             why_ = (not_a_member_context(kit, school, nm, best) or page_lacks_pi(kit, school, p, best) or names_another_adviser(p, best)
                     or repair_reason(kit, school, nm, dict(best, years=years), pi_start_year(p), p.get('pi')))
             if why_:  # a Stanford Profiles reader / program listing, or a name in a citation (Stanford round 1, 2026-11-01)
@@ -1824,6 +1832,8 @@ def clean_parenthetical_name(name):
         m = PAREN_TAIL.search(nm)
         if not m or len(nm[:m.start()].split()) < 2:
             break
+        if role is None and VIS.says_visiting('(' + m.group(1) + ')'):
+            role = 'visiting'   # 'Ann Lee (visiting, CUHK)', 'Bo Xu (visiting PhD, ETH)' (R-STU-17)
         for k, v in ROLE_PAREN:
             if k in m.group(1).lower() and role is None:
                 role = v
@@ -1876,7 +1886,7 @@ def repair_reason(kit, school, name, best, start, pi=None):
         tm = list(BIO_TRIGGER.finditer(pre_bio))
         if tm and (not pre_bio[tm[-1].end():].strip() or BIO_TAIL.match(pre_bio[tm[-1].end():])) and len(re.findall(r'\b[a-z]{3,}\b', pre_bio[:tm[-1].start()])) >= 3:
             return 'not_a_student', 'named in a bio sentence (worked with / advised by ...), not listed as a member'
-        om = OTHER_INST_ROLE.search(t[k + len(name): k + len(name) + 40])
+        om = None if best.get('role') == 'visiting' else OTHER_INST_ROLE.search(t[k + len(name): k + len(name) + 40])   # a visiting student is a student elsewhere by definition (R-STU-17)
         if om and om.group(1).upper() not in own_names(school, OWN_INST_NAMES) and not re.search(r'(?:now|next|currently|then|→|->|\bat)\W{0,3}(?:a\s+|an\s+)?$', t[k + len(name): k + len(name) + om.start()][-40:], re.I):
             return 'site_at_other_institution', f'the entry places the person at {om.group(1)}'
         if COADVISER_BEFORE.search(t[max(0, k - 40): k]):
@@ -1890,7 +1900,7 @@ def repair_reason(kit, school, name, best, start, pi=None):
             return 'name_unresolved', 'the name sits inside a reference block (author list of citations)'
         tail = t[k: k + 90]
         m = OTHER_INST_AT.search(tail)
-        if m and m.group(1).upper() not in own_names(school, OWN_INST) | {'HOME'} and m.group(1).isupper():
+        if m and best.get('role') != 'visiting' and m.group(1).upper() not in own_names(school, OWN_INST) | {'HOME'} and m.group(1).isupper():
             return 'site_at_other_institution', f'the entry places the person at another institution (@{m.group(1)})'
     if (start is None or start < 2014) and not best.get('years') and not current_marker(best) and not best.get('alumni_marked_dated'):
         return 'undated_cannot_place', 'an undated entry of a lab older than the window without a current marker in its entry or section heading'

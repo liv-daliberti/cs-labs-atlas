@@ -55,6 +55,13 @@ SHARD_AT = 45 * 1024 * 1024
 
 _spec = importlib.util.spec_from_file_location('build_cs_hierarchy', AP.vendor('site_builder') / 'build-cs-hierarchy.py')  # vendored
 SITE = importlib.util.module_from_spec(_spec); _spec.loader.exec_module(SITE)
+
+
+def role_label(roles, rels):
+    """The vendored site builder's label, with `visiting` (R-STU-17, 2026-11-04) shown as 'Visiting student' instead of 'Lab member' / 'Thesis student'
+    (vendor/ is never edited; the site repo carries the same label in its own build-cs-hierarchy.py)."""
+    lab = SITE.role_label(roles, rels)
+    return 'Visiting student' if 'visiting' in roles and lab in ('Thesis student', 'Student', 'Lab member') else lab
 # exported: the built schools the site's department rule knows (a school is ready once it is added to the site builder's
 # SCHOOLS); a package the site does not know yet (e.g. a school still being built) is listed in the manifest as skipped
 EXPORT = [s for s in SCHOOLS if s in SITE.SCHOOLS]
@@ -406,8 +413,8 @@ def export_school(repo, s, homes_all, profiles, zero):
                     x['also_pi'].append(dict(school=a['school'], pi_id=f"{a['school']}:{slug(a['pi'])}", atlas_lab_id=a['labId']))
             x['advisors'].append(dict(
                 pi_id=i, atlas_lab_id=byp[i]['atlas_lab_id'], atlas_id=r.get('atlasId'), pi_name=pi, lab_id=byp[i]['lab']['lab_id'],
-                relation='member' if rels and all(rel['type'] == 'direct_lab_membership' for rel in rels) else 'advisee',
-                role_label=SITE.role_label(r.get('roles') or [], rels), first_year=yrs[0] if yrs else None, last_year=yrs[-1] if yrs else None,
+                relation='member' if rels and all(rel['type'] == 'direct_lab_membership' or rel.get('role') == 'visiting' for rel in rels) else 'advisee',
+                role_label=role_label(r.get('roles') or [], rels), first_year=yrs[0] if yrs else None, last_year=yrs[-1] if yrs else None,
                 relations=[{k: v for k, v in dict(type=rel.get('type'), role=rel.get('role'), years=[y for y in rel.get('years') or [] if y] or None,
                                                   thesis_work=rel.get('work'), sources=[source_row(z) for z in rel.get('sources') or []]).items() if v is not None}
                            for rel in rels]))
@@ -416,7 +423,7 @@ def export_school(repo, s, homes_all, profiles, zero):
         # one legacy student id can hold several atlas people: an ext: id is a name, and the same name in two labs is two
         # people unless one evidence page names both (R-HIER-03; docs/IDS.md)
         x['atlas_ids'].sort(); x['atlas_id'] = x['atlas_ids'][0] if len(x['atlas_ids']) == 1 else None
-        x['role_label'] = SITE.role_label(x['roles'], [rel for a in x['advisors'] for rel in a['relations']])
+        x['role_label'] = role_label(x['roles'], [rel for a in x['advisors'] for rel in a['relations']])
     ST = scrub([S[k] for k in sorted(S)])
     stud = {r['student_id']: r for r in ST}
 

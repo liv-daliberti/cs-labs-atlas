@@ -41,12 +41,13 @@
     "Lab member",
     "PhD alumnus",
     "Undergraduate",
+    "Visiting student",
     "Postdoc"
    ],
    "type": "string"
   },
   "relation": {
-   "description": "member when every relation is direct_lab_membership, else advisee.",
+   "description": "member when every relation is direct_lab_membership or a visiting student's (R-STU-17), else advisee.",
    "enum": [
     "advisee",
     "member"

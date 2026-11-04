@@ -125,7 +125,7 @@ implausible name; the section heading's role outranks a bio's degree words; a st
 counts only when marked current ('current' heading, 'Nth-year', 'candidate').
 
 The build admits every lab-page row with a quote and hash whatever its role (R-STU-01), so postdocs, undergraduates,
-visitors and staff listed on a lab page are lab members here too; their role is kept.
+visitors and staff listed on a lab page are lab members here too; their role is kept. A visiting student (PhD, master's or undergraduate, a student elsewhere; R-STU-17, 2026-11-04) is a member of this lab with role `visiting`, not `at_previous_school`; a visiting professor, scientist or scholar is `not_a_student`.
 
 ### Papers (`papers.pubs_page_status`, `missing[].reason_code`)
 
