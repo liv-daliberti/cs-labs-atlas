@@ -1,7 +1,7 @@
 """Roll a bulk open-access channel back (2026-11-04): the hand check of 20 matched copies per source allowed at most 1 wrong identity.
 For each school: a catalog backup, then (1) the listed wrong downloads are reverted (revert_downloads.revert), (2) every candidate of the channel's
 evidence files (`<channel>-20261104*`) that is not the download_url of a downloaded work is deleted (copies that passed the hand check stay),
-(3) Princeton's discovery packages of the channel are renamed `*.rolledback` so the import path no longer globs them.
+(3) Princeton's discovery packages of the channel are renamed `rolledback-*` so the import path no longer globs them.
 Every change -> raw/bulk-oa/rollback-<channel>.jsonl.
 usage: bulk_oa_rollback.py <channel> <wrong.json>      wrong.json: [{school, work, url, reason}]
 """
@@ -25,7 +25,7 @@ def main(ch, wrong_path):
         if s == 'princeton':
             for d in sorted((store / 'discovery').glob(f'claude-labpapers-{ch}-20261104*')):
                 if d.is_dir():
-                    d.rename(d.with_name(d.name + '.rolledback'))
+                    d.rename(d.with_name('rolledback-' + d.name))  # not claude-*: the import and plan globs must not see it
                     log.write(json.dumps(dict(school=s, renamed=d.name)) + '\n')
         if not (store / 'catalog.sqlite').exists():
             continue
