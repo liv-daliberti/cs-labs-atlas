@@ -16,3 +16,10 @@ Date: 2026-11-04. Gate (`atlas stage-gate gatech 7`): **pass** (0 open: the lab-
 - **Students under the strict `links` check:** 313 of 742 students have no linked lab paper (`student_audit`): mostly lab-page students of 2024-26 and undergraduates; the chain audit's `links` check passes through the lab-coverage reasons.
 
 ## Fixes made here (tests): see PROTOCOL-FRICTION rows 35-37
+
+## Follow-up of 2026-11-04 (coordinator): titles, GTRI/CNRS/Europe, R12, R13
+- **Unresolved titles:** the title lookup now tries the local snapshot's extension stores before the API (`labpage_recover.snapshot_title_works`, test): **62 works resolved free**; then the API title search, **540 credits** (1,256 titles searched; budget 1,500 allowed, floor 6,000, the ledger shows no use on 2026-11-04 UTC before the run). Result: `unresolved_metadata` **1,252 -> 863** (389 resolved), `not_yet_resolved` 3.
+- **Papers:** the regenerated additions hold 305 papers (the 291 of round 6 plus 14 net new after the rules and the resolved titles; 34 rows are new relative to the round-6 file, the rest replaced); **round 7** read all 34 added rows (0 errors, 1 doubtful: Clifford 2020, score 0.5) and the 6 student rows whose role changed on regeneration (Ahmed Saeed's lab: 'MSc'/'MS' alumni now read masters; 0 errors): both accepted. 305 papers and 734 students wired.
+- **GTRI, Georgia Tech-CNRS, Georgia Tech-Europe:** no exclusion (coordinator call, docs/DECISIONS.md).
+- **R13 fixed** (`labpage_audit.without_wired_additions`, `wired_paper_row`, tests): the audit compares the pages with a build WITHOUT the accepted additions, for students and for papers; verified: the re-audit after wiring regenerated the 734 students unchanged and the papers as the 291 plus new rows. **R12 fixed** (`stage_gate.step_done` `newer_than`: the build step is stale when pi-works rewrote its input).
+- Gates 3, 5, 6, 7 pass.

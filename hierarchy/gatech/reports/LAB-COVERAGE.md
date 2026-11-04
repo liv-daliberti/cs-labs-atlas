@@ -18,7 +18,7 @@ Reasons for 0 students: {'sources_exhausted': 312, 'appointment_ended_early': 38
 | Alex Ozdemir | CSP | 0 | - | 0 | new_hire_2025_or_later | new_hire_2025_or_later |
 | Alexander Lerch | ML | 0 | - | 78 | sources_exhausted |  |
 | Alexander Oettl | ML | 0 | - | 4 | sources_exhausted |  |
-| Alexander Shapiro | ISYE | 0 | - | 43 | sources_exhausted |  |
+| Alexander Shapiro | ISYE | 0 | - | 44 | sources_exhausted |  |
 | Alexander T Adams | IC | 0 | - | 21 | sources_exhausted |  |
 | Ali Mazalek | LMC | 0 | - | 5 | appointment_ended_early |  |
 | Amy Bruckman | IC | 0 | - | 55 | sources_exhausted |  |
@@ -67,7 +67,7 @@ Reasons for 0 students: {'sources_exhausted': 312, 'appointment_ended_early': 38
 | Cedric Pradalier | IC | 0 | - | 66 | sources_exhausted |  |
 | Chaouki Tanios Abdallah | ECE | 0 | - | 23 | sources_exhausted |  |
 | Charles C. Kemp | BME | 0 | - | 52 | sources_exhausted |  |
-| Charles Cauthen Lever Jr. | IC | 0 | - | 22 | sources_exhausted |  |
+| Charles Cauthen Lever Jr. | IC | 0 | - | 23 | sources_exhausted |  |
 | Charles Eastman | IC | 0 | - | 0 | appointment_ended_early | appointment_ended_early |
 | Chelsea White | ISYE | 0 | - | 24 | sources_exhausted |  |
 | Chin-Hui Lee | ECE | 0 | - | 142 | sources_exhausted |  |
@@ -297,7 +297,7 @@ Reasons for 0 students: {'sources_exhausted': 312, 'appointment_ended_early': 38
 | Ronald Arkin | IC | 0 | - | 34 | sources_exhausted |  |
 | Rosa Arriaga | IC | 0 | - | 59 | sources_exhausted |  |
 | Rose McCarty | MATH | 0 | - | 5 | new_hire_2025_or_later |  |
-| Roshan Joseph | ISYE | 0 | - | 43 | sources_exhausted |  |
+| Roshan Joseph | ISYE | 0 | - | 44 | sources_exhausted |  |
 | Ryan Shandler | CSP | 0 | - | 2 | new_hire_2025_or_later |  |
 | Saibal Mukhopadhyay | ECE | 0 | - | 245 | sources_exhausted |  |
 | Saman Zonouz | CSP | 0 | - | 38 | sources_exhausted |  |
@@ -314,7 +314,7 @@ Reasons for 0 students: {'sources_exhausted': 312, 'appointment_ended_early': 38
 | Shamkant Navathe | CS | 0 | - | 20 | sources_exhausted |  |
 | Shaolan Li | ECE | 0 | - | 34 | sources_exhausted |  |
 | Shaowen Bardzell | IC | 0 | - | 25 | sources_exhausted |  |
-| Shella Keilholz | BME | 0 | - | 90 | sources_exhausted |  |
+| Shella Keilholz | BME | 0 | - | 92 | sources_exhausted |  |
 | Shihao Yang | ISYE | 0 | - | 38 | sources_exhausted |  |
 | Shimeng Yu | ECE | 0 | - | 337 | sources_exhausted |  |
 | Siddharth Karamcheti | IC | 0 | - | 1 | new_hire_2025_or_later |  |
@@ -341,7 +341,7 @@ Reasons for 0 students: {'sources_exhausted': 312, 'appointment_ended_early': 38
 | Vernelle A.A. Noel | IC | 0 | - | 1 | sources_exhausted |  |
 | Veronica Rivera | CSP | 0 | - | 0 | new_hire_2025_or_later | no_identity |
 | Victor Fung | CSE | 0 | - | 25 | sources_exhausted |  |
-| Vidya Muthukumar | ECE | 0 | - | 30 | sources_exhausted |  |
+| Vidya Muthukumar | ECE | 0 | - | 33 | sources_exhausted |  |
 | Vijay Madisetti | CSP | 0 | - | 57 | sources_exhausted |  |
 | Vijay Vazirani | CS | 0 | - | 0 | appointment_ended_early | appointment_ended_early |
 | Vince D Calhoun | CSE | 0 | - | 952 | sources_exhausted |  |
@@ -363,15 +363,15 @@ Reasons for 0 students: {'sources_exhausted': 312, 'appointment_ended_early': 38
 | Willow Ahrens | CS | 0 | - | 2 | new_hire_2025_or_later |  |
 | Xiaochen Xian | ISYE | 0 | - | 14 | sources_exhausted |  |
 | Xiaoli Ma | ECE | 0 | - | 76 | sources_exhausted |  |
-| Xiaoming Huo | ISYE | 0 | - | 73 | sources_exhausted |  |
+| Xiaoming Huo | ISYE | 0 | - | 75 | sources_exhausted |  |
 | Xin Chen | ISYE | 0 | - | 25 | sources_exhausted |  |
 | Xingxing Yu | MATH | 0 | - | 4 | appointment_ended_early |  |
 | Xiuwei Zhang | CSE | 0 | - | 29 | sources_exhausted |  |
 | Xu Chu | CS | 0 | - | 22 | sources_exhausted |  |
-| Yajun Mei | ISYE | 0 | - | 64 | sources_exhausted |  |
+| Yajun Mei | ISYE | 0 | - | 65 | sources_exhausted |  |
 | Yalong Yang | IC | 0 | - | 28 | sources_exhausted |  |
 | Yan Wang | ME | 0 | - | 97 | sources_exhausted |  |
-| Yao Xie | ECE | 0 | - | 190 | sources_exhausted |  |
+| Yao Xie | ECE | 0 | - | 192 | sources_exhausted |  |
 | Ye-Hwa Chen | ME | 0 | - | 232 | sources_exhausted |  |
 | Ying Zhang | ECE | 0 | - | 83 | sources_exhausted |  |
 | Yong K. Cho | CEE | 0 | - | 108 | sources_exhausted |  |
@@ -391,8 +391,8 @@ Reasons for 0 students: {'sources_exhausted': 312, 'appointment_ended_early': 38
 | Alexey Tumanov | CS | 19 | lab page 19 | 37 |  |  |
 | Anand Padmanabha Iyer | CS | 7 | lab page 7 | 11 |  |  |
 | Anna A. Ivanova | ML | 13 | lab page 13 | 5 |  |  |
-| Ashwin Pananjady | ISYE | 9 | lab page 9 | 29 |  |  |
-| B. Aditya Prakash | CSE | 9 | lab page 9 | 68 |  |  |
+| Ashwin Pananjady | ISYE | 9 | lab page 9 | 30 |  |  |
+| B. Aditya Prakash | CSE | 9 | lab page 9 | 70 |  |  |
 | Calton Pu | CS | 4 | lab page 4 | 89 |  |  |
 | Chao Zhang | CSE | 13 | lab page 13 | 143 |  |  |
 | Cindy Xiong | IC | 8 | lab page 8 | 22 |  |  |
@@ -404,10 +404,10 @@ Reasons for 0 students: {'sources_exhausted': 312, 'appointment_ended_early': 38
 | Diyi Yang | IC | 8 | lab page 7, adviser list 1 | 79 |  |  |
 | Edmond Chow | CSE | 4 | lab page 4 | 67 |  |  |
 | Elizabeth Qian | CSE | 15 | lab page 15 | 11 |  |  |
-| Enlu Zhou | ISYE | 14 | lab page 14 | 80 |  |  |
+| Enlu Zhou | ISYE | 14 | lab page 14 | 81 |  |  |
 | Fan Zhang | ME | 5 | lab page 5 | 37 |  |  |
 | Frank L. Hammond | BME | 4 | lab page 4 | 47 |  |  |
-| Gari D. Clifford | ML | 1 | lab page 1 | 281 |  |  |
+| Gari D. Clifford | ML | 1 | lab page 1 | 283 |  |  |
 | Greg Turk | IC | 4 | lab page 4 | 35 |  |  |
 | Hannah Choi | ML | 10 | lab page 10 | 21 |  |  |
 | Irfan Essa | IC | 1 | lab page 1 | 72 |  |  |
@@ -415,19 +415,19 @@ Reasons for 0 students: {'sources_exhausted': 312, 'appointment_ended_early': 38
 | James Hays | CS | 1 | lab page 1 | 60 |  |  |
 | Jan van den Brand | CS | 1 | lab page 1 | 17 |  |  |
 | Jesse Thomason | IC | 5 | lab page 5 | 4 |  |  |
-| Joy Arulraj | CS | 10 | lab page 10 | 36 |  |  |
-| Juba Ziani | ISYE | 7 | lab page 7 | 34 |  |  |
+| Joy Arulraj | CS | 10 | lab page 10 | 37 |  |  |
+| Juba Ziani | ISYE | 7 | lab page 7 | 36 |  |  |
 | Jun Ueda | BIOS | 10 | lab page 10 | 89 |  |  |
 | Kai Wang | CSE | 18 | lab page 18 | 24 |  |  |
 | Kamran Paynabar | ISYE | 3 | lab page 3 | 90 |  |  |
 | Kinsey Herrin | ME | 19 | lab page 19 | 15 |  |  |
 | Mathieu Dahan | ISYE | 8 | lab page 8 | 26 |  |  |
 | Mohsen Moghaddam | ISYE | 15 | lab page 15 | 13 |  |  |
-| Molei Tao | ML | 8 | lab page 8 | 67 |  |  |
+| Molei Tao | ML | 8 | lab page 8 | 70 |  |  |
 | Mostafa Ammar | CS | 3 | lab page 3 | 45 |  |  |
 | Nagi Gebraeel | ISYE | 5 | lab page 5 | 73 |  |  |
 | Pascal Van Hentenryck | ECE | 13 | adviser list 9, lab page 4 | 195 |  |  |
-| Peng Chen | CSE | 17 | lab page 17 | 31 |  |  |
+| Peng Chen | CSE | 17 | lab page 17 | 32 |  |  |
 | Peng Qiu | ML | 20 | lab page 20 | 92 |  |  |
 | Qi Tang | CSE | 11 | lab page 11 | 13 |  |  |
 | Qirun Zhang | CS | 6 | lab page 6 | 25 |  |  |
@@ -438,7 +438,7 @@ Reasons for 0 students: {'sources_exhausted': 312, 'appointment_ended_early': 38
 | Santosh Vempala | CS | 16 | lab page 16 | 90 |  |  |
 | Sauvik Das | IC | 5 | lab page 5 | 17 |  |  |
 | Sehoon Ha | IC | 9 | lab page 9 | 75 |  |  |
-| Shreyas Kousik | ME | 5 | lab page 5 | 14 |  |  |
+| Shreyas Kousik | ME | 5 | lab page 5 | 16 |  |  |
 | Siva Theja Maguluri | ECE | 13 | lab page 13 | 81 |  |  |
 | Srijan Kumar | CSE | 4 | lab page 4 | 67 |  |  |
 | Srinivas Aluru | CS | 13 | lab page 13 | 73 |  |  |
@@ -448,10 +448,10 @@ Reasons for 0 students: {'sources_exhausted': 312, 'appointment_ended_early': 38
 | Umakishore Ramachandran | CS | 14 | lab page 14 | 44 |  |  |
 | Vassilis Zikas | CSP | 1 | lab page 1 | 15 |  |  |
 | Vijay Ganesh | CS | 2 | lab page 2 | 44 |  |  |
-| Wei Xu | IC | 22 | lab page 22 | 68 |  |  |
+| Wei Xu | IC | 22 | lab page 22 | 69 |  |  |
 | Wei Zhu | ML | 8 | lab page 8 | 6 |  |  |
 | Wenjing Liao | ML | 3 | lab page 3 | 7 |  |  |
 | Yingyan (Celine) Lin | CS | 40 | lab page 40 | 58 |  |  |
 | Yunan Luo | CSE | 10 | lab page 10 | 21 |  |  |
-| Zsolt Kira | IC | 54 | lab page 54 | 113 |  |  |
+| Zsolt Kira | IC | 54 | lab page 54 | 118 |  |  |
 | Ümit V. Çatalyürek | CS | 2 | lab page 2 | 49 |  |  |
