@@ -11961,9 +11961,10 @@
     {
      "id": "override_period_epfl_francois_fleuret",
      "start": "2017-08-01",
-     "end": null,
-     "asof": "2024-09-17",
+     "end": "2025-02",
+     "asof": "2026-11-03",
      "datePrecision": "day",
+     "datePrecisionEnd": "month",
      "evidence": [
       {
        "url": "https://web.archive.org/web/20170801104103id_/https://people.epfl.ch/francois.fleuret",
@@ -11978,10 +11979,25 @@
        "quote": "François Fleuret Edit profile Adjunct Professor",
        "observed": "2020-09-21",
        "kind": "dept_listing:IEM"
+      },
+      {
+       "url": "https://web.archive.org/web/20241105023838id_/https://sti.epfl.ch/faculty-members/",
+       "sha256": "7a0cd3684cf83070cdb5096ef8e471d6aef1d2910068a0b345221ee38551da75",
+       "quote": "Fleuret François Idiap Research Institute",
+       "observed": "2024-11-05",
+       "kind": "dept_listing:STI"
+      },
+      {
+       "url": "https://web.archive.org/web/20250212163717id_/https://sti.epfl.ch/faculty-members/",
+       "sha256": "0a44ee582e4b1631adb38d782e115b67cedc0a3aa88592f028bebc4a79ff9286",
+       "quote": "Frossard Pascal Signal Processing Laboratory 4",
+       "observed": "2025-02-12",
+       "kind": "faculty_end_moved",
+       "note": "first dated STI faculty-list capture without François Fleuret (the full list: the quoted row is another faculty member's, no row for him); last capture that lists him: 2024-11-05 ('Fleuret François Idiap Research Institute'). The IEM list agrees: last with him 2024-10-03 (sha256 e680730e90f7), first without 2025-04-18 (sha256 5bdd814562f7; 'Frossard Pascal Signal Processing Laboratory 4' follows 'Fleury Romain' there too). Owner ruling 2026-11-02: being dropped from the school's own listing closes the period; end = month of the first listing without him."
       }
      ],
-     "note": "Start is a LOWER BOUND: his EPFL profile names him MER (Senior Scientist) in LIDIAP on 2017-08-01 (earlier captures 2014-01 show no title); Senior Scientist 2019, Adjunct Professor from 2020. No stated MER start found, so 2016 and Jan-Jul 2017 papers stay outside. Runs to his last dated listing (2024-09-17, asof).",
-     "reviewed": "appointment_period_review_20261026"
+     "note": "Start is a LOWER BOUND: his EPFL profile names him MER (Senior Scientist) in LIDIAP on 2017-08-01 (earlier captures 2014-01 show no title); Senior Scientist 2019, Adjunct Professor from 2020. No stated MER start found, so 2016 and Jan-Jul 2017 papers stay outside. Closed 2026-11-03 by the listing-drop rule: bounded between the last dated STI listing with him (2024-11-05) and the first without (2025-02-12), end 2025-02.",
+     "reviewed": "departed_faculty_review_20261103"
     }
    ]
   },
