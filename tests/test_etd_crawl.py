@@ -176,3 +176,51 @@ def test_add_urls_queues_without_duplicates_and_front(store, monkeypatch):
     assert E.add_urls('s', ['https://h/a', 'https://h/p'], front=True) == 1
     order = [r[0] for r in E.connect('s').execute('SELECT url FROM queue ORDER BY seq')]
     assert order == ['https://h/p', 'https://h/a', 'https://h/b']
+
+
+FULL = """<html><body><table class="detailtable"><tr><td>dc.contributor.advisor</td><td>Cathcart, J. M.</td><td></td></tr>
+<tr><td>dc.contributor.author</td><td>Prussing, Keith F.</td><td></td></tr><tr><td>dc.date.issued</td><td>2015-05-19</td><td></td></tr>
+<tr><td>dc.title</td><td>An investigation of surface shape effects</td><td></td></tr><tr><td>dc.type</td><td>Dissertation</td><td></td></tr>
+<tr><td>dc.description.degree</td><td>Ph.D.</td><td></td></tr><tr><td>dc.contributor.department</td><td>Physics</td><td></td></tr>
+<tr><td>dc.contributor.committeeMember</td><td>Zangwill, Andrew</td><td></td></tr></table></body></html>"""
+PLAIN = """<html><head><meta name="DC.contributor" content="Cathcart, J. M."><meta name="DC.creator" content="Prussing, Keith F.">
+<meta name="DC.date" content="December 2015"><meta name="DC.title" content="An investigation of surface shape effects"><meta name="DC.type" content="Dissertation">
+<meta name="DC.description" content="Ph.D."><meta name="DC.contributor" content="Physics"><meta name="DC.contributor" content="Zangwill, Andrew"></head><body></body></html>"""
+OLD = """<html><head><meta name="DC.creator" content="Chang, Tina R."><meta name="DC.title" content="Social behavior"><meta name="DC.type" content="Thesis">
+<meta name="DC.description" content="M.S."><meta name="DC.contributor" content="Psychology"><meta name="DC.description" content="Terry Maple"></head></html>"""
+
+
+def test_smartech_parser_full_and_plain_captures():
+    f = E.parse_smartech(FULL, dict(handle='1853/54321'))
+    assert f['advisors'] == ['Cathcart, J. M.'] and f['dissertation'] and f['year'] == 2015 and f['department'] == 'Physics' and f['handle'] == '1853/54321'
+    p = E.parse_smartech(PLAIN)
+    assert p['advisors'] == ['Cathcart, J. M.'] and p['dissertation'] and p['department'] == 'Physics' and p['year'] == 2015
+    assert 'before DC.creator' in p['quote']
+    o = E.parse_smartech(OLD)   # advisor only in a second DC.description: not read as an advisor
+    assert o['advisors'] == [] and not o['dissertation']
+    assert E.parse_smartech('<html><title>Login</title></html>') is None
+
+
+def test_cdx_rows_prefer_full_and_newest():
+    import types as T
+    data = [['original', 'timestamp'], ['https://smartech.gatech.edu/handle/1853/9', '20190101000000'], ['https://smartech.gatech.edu/handle/1853/9', '20200101000000'],
+            ['https://smartech.gatech.edu/handle/1853/9?show=full', '20180101000000'], ['https://smartech.gatech.edu/handle/1853/3', '20210101000000']]
+    client = T.SimpleNamespace(get=lambda url, params=None, tolerate=(): T.SimpleNamespace(json=lambda: data))
+    rows = E.cdx_rows(client, dict(cdx_url='x', cdx_original_rx='.*'))
+    assert rows == [('9', 'full', '20180101000000', 'https://smartech.gatech.edu/handle/1853/9?show=full'),
+                    ('3', 'plain', '20210101000000', 'https://smartech.gatech.edu/handle/1853/3')]
+
+
+def test_wayback_rows_dedupe_against_live_and_use_replay_urls(store, monkeypatch):
+    c = E.connect('s')
+    put(c, 'https://h/entities/publication/1', GT % 'Dissertation', True)   # Chang / 'Study of Things' / advisor Maple, live
+    c.commit()
+    w = E.connect('s@wayback')
+    for url, title, author in (('https://web.archive.org/web/20200101000000id_/https://smartech.gatech.edu/handle/1853/1', 'Study of Things', 'Chang, Tina R.'),
+                               ('https://web.archive.org/web/20200101000000id_/https://smartech.gatech.edu/handle/1853/2', 'Another One Entirely', 'Chang, Tina R.')):
+        w.execute('INSERT INTO pages VALUES (?,?,?,?,?,?,?,?,?,?,?)', (url, 'sha', 'now', 1, title, author, 'Dissertation Ph.D.', 2018, 'CS', json.dumps(['Maple, Terry L.']), 'q'))
+    w.commit()
+    rows, counts = E.build_evidence('s', PIS)
+    urls = [x['url'] for r in rows for x in r['students']]
+    assert counts['duplicate_of_earlier_source'] == 1 and len(urls) == 2
+    assert 'https://web.archive.org/web/20200101000000/https://smartech.gatech.edu/handle/1853/2' in urls

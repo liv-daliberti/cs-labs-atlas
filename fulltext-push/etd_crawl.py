@@ -36,9 +36,15 @@ TRANSIENT_STOP = 12
 DISS_RX = re.compile(r'dissertation|doctoral|ph\.?\s?d|doctor of', re.I)
 
 
+def base_school(school):
+    return school.split('@')[0]
+
+
 def cfg(school):
+    """The charter's [etd_crawl] section; 'gatech@wayback' reads [etd_crawl_wayback] of gatech (its own queue and table, so one crawl per host)."""
     import school_config as SC
-    return dict(SC.field(SC.get(school), 'etd_crawl', {}) or {})
+    base, _, suffix = school.partition('@')
+    return dict(SC.field(SC.get(base), 'etd_crawl' + (f'_{suffix}' if suffix else ''), {}) or {})
 
 
 def db_path(school):
@@ -73,7 +79,7 @@ def _meta(soup, name):
     return [m.get('content', '').strip() for m in soup.find_all('meta', attrs={'name': name}) if m.get('content')]
 
 
-def parse_dspace7(body):
+def parse_dspace7(body, hint=None):
     """Georgia Tech SMARTech (DSpace 7 server-side render): Author(s) / Advisor(s) / Date / Resource Subtype blocks. A page the renderer
     answered with its login view has no item and gives None (counted as 'login')."""
     s = _soup(body)
@@ -98,7 +104,7 @@ def parse_dspace7(body):
                 department='; '.join(units[:3]), advisors=advisors, dissertation=bool(DISS_RX.search(sub)), quote=quote[:400])
 
 
-def parse_invenio(body):
+def parse_invenio(body, hint=None):
     """UChicago Knowledge (InvenioRDM record page): Creators, 'Advisor:' contributors, 'Published <Month> <Year>', Department(s)."""
     s = _soup(body)
     if not _meta(s, 'citation_title'):
@@ -127,7 +133,51 @@ def parse_invenio(body):
                 department=dep, advisors=advisors, dissertation=bool(DISS_RX.search(typ)), quote=quote[:400])
 
 
-PARSERS = dict(dspace7=parse_dspace7, invenio=parse_invenio)
+def parse_smartech(body, hint=None):
+    """The old SMARTech (DSpace 6, smartech.gatech.edu/handle/1853/<n>) as Wayback captured it. A '?show=full' capture has the table dc.contributor.advisor /
+    dc.type / dc.description.degree / dc.contributor.department. A plain capture has no table, but its DC.* meta tags come in the record's field order:
+    the advisor is the DC.contributor that precedes DC.creator (the later DC.contributor values are the department and the committee); it is only
+    taken for a Dissertation or Thesis, and the quote says it came from the meta tags."""
+    s = _soup(body)
+    rows = {}
+    for tr in s.select('table.detailtable tr, table.itemDisplayTable tr'):
+        td = [_text(x) for x in tr.find_all('td')]
+        if len(td) >= 2 and td[0].count('.') >= 1:
+            rows.setdefault(td[0], []).append(td[1])
+    handle = (hint or {}).get('handle', '')
+    if rows.get('dc.title'):
+        advisors = rows.get('dc.contributor.advisor', [])
+        typ = ' '.join(rows.get('dc.type', []))
+        deg = ' '.join(rows.get('dc.description.degree', []) + rows.get('thesis.degree.level', []))
+        date = (rows.get('dc.date.issued') or rows.get('dc.date.submitted') or rows.get('dc.date.created') or [''])[0]
+        dep = '; '.join(rows.get('dc.contributor.department', []))
+        author = (rows.get('dc.contributor.author') or [''])[0]
+        title = rows['dc.title'][0]
+        quote = (f"dc.contributor.advisor {'; '.join(advisors)} | dc.contributor.author {author} | dc.date.issued {date} | dc.type {typ} | "
+                 f"dc.description.degree {deg} | dc.contributor.department {dep}")
+    else:
+        metas = [(m.get('name'), (m.get('content') or '').strip()) for m in s.find_all('meta') if (m.get('name') or '').startswith('DC.')]
+        if not any(n == 'DC.title' for n, _ in metas):
+            return None
+        names = [n for n, _ in metas]
+        typ = next((v for n, v in metas if n == 'DC.type'), '')
+        creator = names.index('DC.creator') if 'DC.creator' in names else -1
+        before = [v for n, v in metas[:creator] if n == 'DC.contributor'] if creator > 0 else []
+        advisors = before[:1] if re.search(r'dissertation|thesis', typ, re.I) else []
+        deg = next((v for n, v in metas if n == 'DC.description' and re.fullmatch(r'(?:Ph\.?\s?D\.?|M\.?S\.?|M\.?\s?Eng\.?|M\.?Arch\.?|[A-Z][A-Za-z.]{1,8})', v)), '')
+        date = next((v for n, v in metas if n == 'DC.date'), '')
+        after = [v for n, v in metas[creator:] if n == 'DC.contributor'] if creator >= 0 else []
+        dep = after[0] if after else ''
+        author = next((v for n, v in metas if n == 'DC.creator'), '')
+        title = next(v for n, v in metas if n == 'DC.title')
+        quote = f"DC.contributor {'; '.join(advisors)} (before DC.creator) | DC.creator {author} | DC.date {date} | DC.type {typ} | DC.description {deg} | DC.contributor {dep}"
+    ym = re.search(r'\b(19|20)\d\d\b', date)
+    typ_full = f"{typ} {deg}".strip()
+    return dict(title=title, author=author, degree=typ_full, year=int(ym.group(0)) if ym else None, department=dep, advisors=advisors,
+                dissertation=bool(re.search(r'dissertation|doctoral|ph\.?\s?d', typ_full, re.I)), quote=quote[:500], handle=handle)
+
+
+PARSERS = dict(dspace7=parse_dspace7, invenio=parse_invenio, smartech=parse_smartech)
 
 
 # ------------------------------------------------------------------------------------------------------------------ enumerate
@@ -157,9 +207,35 @@ def sitemap_urls(client, url, rx, tries=4):
     return [u for u in locs if re.search(rx, u)]
 
 
+def cdx_rows(client, conf):
+    """Wayback CDX listing of the captured item pages (status 200, one row per URL key): (handle, kind, timestamp, original URL), the '?show=full' capture
+    preferred over the plain one, the newest of each. Fetched through the page URL web.archive.org/web/<ts>id_/<original> (the capture as stored)."""
+    r = client.get('https://web.archive.org/cdx/search/cdx', [('url', conf['cdx_url']), ('filter', 'statuscode:200'), ('filter', 'original:' + conf['cdx_original_rx']),
+                                                              ('collapse', 'urlkey'), ('output', 'json'), ('fl', 'original,timestamp')])
+    best = {}
+    for orig, ts in r.json()[1:]:
+        m = re.search(r'handle/1853/(\d+)(\?show=full)?$', orig)
+        if not m:
+            continue
+        kind = 'full' if m.group(2) else 'plain'
+        cur = best.setdefault(m.group(1), {})
+        if kind not in cur or ts > cur[kind][0]:
+            cur[kind] = (ts, orig)
+    rows = []
+    for h, v in best.items():
+        kind = 'full' if 'full' in v else 'plain'
+        ts, orig = v[kind]
+        rows.append((h, kind, ts, orig))
+    rows.sort(key=lambda x: (x[1] != 'full', int(x[0])))
+    return rows
+
+
 def enumerate_queue(school, conf, client=None, out=print):
     c = connect(school)
-    if conf.get('enumerate') == 'oai':
+    if conf.get('enumerate') == 'cdx':
+        rows = [(f'https://web.archive.org/web/{ts}id_/{orig}', json.dumps(dict(handle=f'1853/{h}', kind=kind, ts=ts, original=orig)))
+                for h, kind, ts, orig in cdx_rows(client, conf)]
+    elif conf.get('enumerate') == 'oai':
         src = sqlite3.connect(f'file:{O.db_path(school)}?mode=ro', uri=True)
         rows = []
         for links, rtype, year in src.execute('SELECT links, rtype, year FROM records WHERE deleted=0'):
@@ -210,7 +286,7 @@ def crawl(school, max_pages=None, out=print, client=None):
         except OSError:
             out(json.dumps(dict(school=school, stop=f'another crawl of {host} is running')))
             return None
-        client = client or O.Client(max(float(conf.get('delay') or 10), 10.0))
+        client = client or O.Client(max(float(conf.get('delay') or 10), float(conf.get('min_delay', 10))))
         rp, cd = load_robots(host, client)
         client.delay = max(client.delay, float(cd or 0))
         out(json.dumps(dict(school=school, host=host, delay=client.delay, robots=dict(zip(['self', 'ClaudeBot', 'anthropic-ai'],
@@ -247,11 +323,11 @@ def crawl(school, max_pages=None, out=print, client=None):
                 elif b'<html' not in r.content[:4000].lower() and b'<!doctype' not in r.content[:200].lower():
                     raise O.Blocked('non-HTML body')
                 else:
-                    p = parser(r.content)
+                    p = parser(r.content, hint)
                     if p is None:
-                        st = 'login'
+                        st = 'login' if conf.get('stop_on_unparsed', True) else 'unparsed'
                         logins += 1
-                        if logins >= LOGIN_STOP:
+                        if conf.get('stop_on_unparsed', True) and logins >= LOGIN_STOP:
                             raise O.Blocked(f'{LOGIN_STOP} login views in a row: the host does not serve item pages to this client')
                     else:
                         logins = 0
@@ -315,39 +391,54 @@ def role_of(degree):
     return 'other'
 
 
+def replay_url(url):
+    """The Wayback fetch URL (.../<ts>id_/<orig>) -> the replay URL a reader opens (.../<ts>/<orig>)."""
+    return re.sub(r'(/web/\d{14})id_/', r'\1/', url)
+
+
 def build_evidence(school, pis, window=WINDOW):
     """-> (rows in thesis-evidence.json shape, counts). pis: [{pi, names}] (hierarchy/<school>/derived/pis.json)."""
     if str(F.P.TOOLS) not in sys.path:
         sys.path.insert(0, str(F.P.TOOLS))
     from pihier.names import Name
     idx = {p['pi']: Name(list(dict.fromkeys([p['pi']] + list(p.get('names') or [])))) for p in pis}
-    c = connect(school)
-    out, counts = {}, dict(dissertations=0, no_advisor=0, outside_window=0, no_pi=0, rows=0, ambiguous=0)
-    for url, sha, title, author, degree, year, dep, advisors, quote in c.execute(
-            'SELECT url, sha256, title, author, degree, year, department, advisors, quote FROM pages WHERE dissertation=1 ORDER BY url'):
-        counts['dissertations'] += 1
-        advs = json.loads(advisors)
-        if not advs:
-            counts['no_advisor'] += 1
-            continue
-        if not year or not (window[0] <= year <= window[1]):
-            counts['outside_window'] += 1
-            continue
-        hit = False
-        for a in advs:
-            nat = natural(a)
-            pi_hits = [p for p, nm in idx.items() if nm.match(nat)]
-            if len(pi_hits) > 1:
-                counts['ambiguous'] += 1
+    out, counts = {}, dict(dissertations=0, no_advisor=0, outside_window=0, no_pi=0, rows=0, ambiguous=0, duplicate_of_earlier_source=0)
+    seen = set()  # (normalized title, author family): the live item pages come first, a Wayback copy of the same dissertation is not a second row
+    sources = [school] + ([school + '@wayback'] if db_path(school + '@wayback').exists() else [])
+    for src in sources:
+        c = connect(src)
+        found = set()
+        for url, sha, title, author, degree, year, dep, advisors, quote in c.execute(
+                'SELECT url, sha256, title, author, degree, year, department, advisors, quote FROM pages WHERE dissertation=1 ORDER BY url'):
+            key = (F.nt(title)[:80], F.nt(natural(author).split()[-1] if natural(author) else ''))
+            if key in seen:
+                counts['duplicate_of_earlier_source'] += 1
                 continue
-            for p in pi_hits:
-                hit = True
-                out.setdefault(p, []).append(dict(
-                    name=natural(author), role=role_of(degree), years=[year, year], url=url, sha256=sha, quote=quote,
-                    note=f"{school} repository item page ({degree}; {dep}): '{title}'; advisor '{a}' = {p}"))
-                counts['rows'] += 1
-        if not hit:
-            counts['no_pi'] += 1
+            found.add(key)
+            counts['dissertations'] += 1
+            advs = json.loads(advisors)
+            if not advs:
+                counts['no_advisor'] += 1
+                continue
+            if not year or not (window[0] <= year <= window[1]):
+                counts['outside_window'] += 1
+                continue
+            hit = False
+            for a in advs:
+                nat = natural(a)
+                pi_hits = [p for p, nm in idx.items() if nm.match(nat)]
+                if len(pi_hits) > 1:
+                    counts['ambiguous'] += 1
+                    continue
+                for p in pi_hits:
+                    hit = True
+                    out.setdefault(p, []).append(dict(
+                        name=natural(author), role=role_of(degree), years=[year, year], url=replay_url(url), sha256=sha, quote=quote,
+                        note=f"{school} repository item page{' (Wayback capture of the old SMARTech page)' if '@' in src else ''} ({degree}; {dep}): '{title}'; advisor '{a}' = {p}"))
+                    counts['rows'] += 1
+            if not hit:
+                counts['no_pi'] += 1
+        seen |= found
     rows = [dict(pi=p, students=sorted(v, key=lambda s: (s['years'][0], s['name'])),
                  notes=f'Dissertation item pages crawled {time.strftime("%Y-%m-%d")} (etd_crawl.py): advisor field matched to the PI by full name.')
             for p, v in sorted(out.items())]

@@ -571,3 +571,16 @@ enumerate = "sitemap"
 sitemap = "https://repository.gatech.edu/sitemap_index.xml"
 url_rx = "/entities/publication/"
 parser = "dspace7"
+
+# The old SMARTech (DSpace 6, smartech.gatech.edu/handle/1853/<n>) as Wayback captured it: the item pages whose new repository.gatech.edu /items/<uuid> page is login-gated
+# (owner 2026-11-04). The full record ('?show=full') names dc.contributor.advisor; a plain capture carries it in its DC.contributor meta tags. Fetched from web.archive.org (no robots.txt, 404),
+# one request per 3 s, its own queue and table (school key gatech@wayback).
+[etd_crawl_wayback]
+host = "web.archive.org"
+delay = 3
+min_delay = 3
+enumerate = "cdx"
+cdx_url = "smartech.gatech.edu/handle/1853/*"
+cdx_original_rx = '.*handle/1853/[0-9]+(\?show=full)?$'
+parser = "smartech"
+stop_on_unparsed = false
