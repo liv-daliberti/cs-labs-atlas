@@ -383,7 +383,7 @@ capture that shows them, never earlier or later; the same person on captures of 
 (`years_basis: capture_date`). Applies to the lab-page audit's `undated_cannot_place` entries, through
 `tools/labpage_students_school.py undated <school>` (`undated_capture_rows`, `member_list_quote_ok`; -> `reviewed/undated-capture-evidence.json`,
 a researched-evidence file). Not kept: a member under an alumni / past / former heading (the capture year is not a membership year), any role but
-`phd`, a quote that is not a heading followed by a plain list of names (publication, title, collaborator or e-mail cues, more than two lowercase
+`phd` or `visiting` (R-STU-17; the row keeps its role), a quote that is not a heading followed by a plain list of names (publication, title, collaborator or e-mail cues, more than two lowercase
 words), a PI with a one-letter family name (placeholder row), a page that does not name the PI in its first 400 characters (a centre page listing
 the PI among several leads). Tests: `tests/test_students_capture_surname.py`.
 

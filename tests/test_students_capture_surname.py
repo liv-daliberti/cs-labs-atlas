@@ -1,9 +1,7 @@
 """R-STU-14 (capture-year dating) and R-STU-15 (surname-only advisers) helpers of tools/labpage_students_school.py."""
-import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
-import labpage_students_school as L  # noqa: E402
+import labpage_students_school as L
 
 URL = 'https://web.archive.org/web/{}id_/https://lab.example.edu/people'
 
@@ -13,18 +11,18 @@ def rec(pi, name, ts, section='Graduate Students', quote=None, role='phd', rc='u
         dict(name=name, role=role, reason_code=rc, section=section, url=URL.format(ts), sha256='ab' * 32, quote=quote or f'{section} {name}')]))
 
 
-def test_capture_year():
+def test_R_STU_14_capture_year():
     assert L.capture_year(URL.format('20190615185603')) == 2019
     assert L.capture_year('https://lab.example.edu/people', 2026) == 2026
     assert L.capture_year('https://lab.example.edu/people') is None
 
 
-def test_undated_member_counts_in_the_capture_year_and_spans_captures():
+def test_R_STU_14_undated_member_counts_in_the_capture_year_and_spans_captures():
     rows = L.undated_capture_rows([rec('Ann Lee', 'Bo Chen', '20190101000000'), rec('Ann Lee', 'Bo Chen', '20230101000000')])
     assert len(rows) == 1 and rows[0]['years'] == [2019, 2023] and rows[0]['years_basis'] == 'capture_date'
 
 
-def test_undated_rule_keeps_only_student_heading_phd_members_with_a_member_list_quote():
+def test_R_STU_14_undated_rule_keeps_only_student_heading_phd_members_with_a_member_list_quote():
     ok = rec('Ann Lee', 'Bo Chen', '20200101000000')
     alumni = rec('Ann Lee', 'Cy Diaz', '20200101000000', section='Past Members')
     masters = rec('Ann Lee', 'Di Evans', '20200101000000', role='masters')
@@ -35,7 +33,7 @@ def test_undated_rule_keeps_only_student_heading_phd_members_with_a_member_list_
     assert [r['student'] for r in out] == ['Bo Chen']
 
 
-def test_undated_visiting_members_count_like_phd_students():
+def test_R_STU_14_undated_visiting_members_count_like_phd_students():
     vis = rec('Ann Lee', 'Vi Sit', '20210101000000', role='visiting')
     other = rec('Ann Lee', 'Ot Her', '20210101000000', role='postdoc')
     out = L.undated_capture_rows([vis, other])
@@ -43,7 +41,7 @@ def test_undated_visiting_members_count_like_phd_students():
     assert L.undated_capture_rows([rec('Ann Lee', 'Bo Chen', '20210101000000')])[0]['role'] == 'phd'
 
 
-def test_undated_rule_needs_the_pi_in_the_page_head():
+def test_R_STU_14_undated_rule_needs_the_pi_in_the_page_head():
     r = rec('Ann Lee', 'Bo Chen', '20200101000000')
     assert L.undated_capture_rows([r], lambda sha: 'Center team page: Lead Zed Kim, Ann Lee') != []
     assert L.undated_capture_rows([r], lambda sha: 'Center team page: Lead Zed Kim') == []
@@ -55,13 +53,13 @@ FLAT = ("ME Graduate Students Program Any PhD MSE First Name Last Name Advisor's
         "Mohamadreza Ahmadi mrahmadi PhD Research Advisor: Okwudire")
 
 
-def test_surname_entries_parse_one_adviser_list_per_phd_entry():
+def test_R_STU_15_surname_entries_parse_one_adviser_list_per_phd_entry():
     got = {n: a for n, _, a, _ in L.surname_entries(FLAT)}
     assert got == {'Nassim Abdul Samad': ['Stefanopoulou'], 'Julianna Abel': ['Brei', 'Luntz'], 'Adrian Adames': ['Awtar'], 'Mohamadreza Ahmadi': ['Okwudire']}
     assert all(q.startswith(n) for n, _, _, q in L.surname_entries(FLAT))
 
 
-def test_surname_resolves_only_when_exactly_one_listed_faculty_member_in_that_department_and_year():
+def test_R_STU_15_surname_resolves_only_when_exactly_one_listed_faculty_member_in_that_department_and_year():
     listed = [('Huei Peng', 'Peng', 'ME', 2017), ('Jun Ni', 'Ni', 'ME', 2017), ('Ann Li', 'Li', 'ME', 2017), ('Bo Li', 'Li', 'ME', 2017),
               ('Gábor Orosz', 'Orosz', 'ME', 2017), ('Cy Peng', 'Peng', 'CSE', 2017)]
     assert L.resolve_surname('Peng', 'ME', 2017, listed) == 'Huei Peng'
@@ -71,3 +69,11 @@ def test_surname_resolves_only_when_exactly_one_listed_faculty_member_in_that_de
     assert L.resolve_surname('Peng', 'ECE', 2017, listed) is None       # never across departments
     assert L.resolve_surname('OROSZ', 'ME', 2017, listed) == 'Gábor Orosz'
     assert L.resolve_surname('Orosz', 'ME', 2017, listed) == 'Gábor Orosz'
+
+
+def test_R_STU_16_mathematics_genealogy_is_not_a_wired_source():
+    """The MGP answered only its outage notice on 2026-11-03: no student collector or charter queries it until robots.txt and terms are read again."""
+    root = Path(__file__).resolve().parents[1]
+    for f in [root / 'tools' / 'labpage_students_school.py'] + list((root / 'schools').glob('*.toml')):
+        t = f.read_text().lower()
+        assert 'mathgenealogy.org' not in t and 'genealogy.math.ndsu' not in t, f.name
