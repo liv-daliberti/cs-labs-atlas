@@ -18,7 +18,9 @@ gaps      dated Wayback captures for a PI's listing gap years (see gaps()); clos
 extend    the window years a unit directory misses, from dated unit profile captures (see extend())
 truncated  the years a department card cut a title short ('Executive Director, Institute for Data…': the word Professor is lost, the row reads unranked): dated
           profile / homepage captures of exactly those years naming the person with a professor title (see truncated())
-usage: periods_school.py fetch|extract|gaps|extend|truncated <key>
+deep      the second look at a PI the gaps/extend pass left open (see deep()): profile-URL variants on the PI's home unit hosts across URL eras, the person's own homepages and
+          the reviewed `person-urls.json`; what stays unproven is recorded as `unproven_years` + `why_unproven`
+usage: periods_school.py fetch|extract|gaps|extend|truncated|deep <key>
 """
 import collections, json, re, sys, zlib
 
@@ -395,5 +397,106 @@ def truncated(key, write=True):
     save()
 
 
+DEEP_PATTERNS = ['{h}/people/{all}', '{h}/directory/{all}', '{h}/directory/person/{all}', '{h}/person/{all}', '{h}/users/{all}', '{h}/faculty/{all}', '{h}/profile/{all}', '{h}/people/faculty/{all}']
+
+
+def home_hosts(key, home):
+    """Hosts of the unit a home department name stands for (departments and affiliated units of the charter, matched by name either way round)."""
+    cfg = S.get(key); out = []
+    def host(u):
+        return re.sub(r'^https?://', '', u or '').split('/')[0]
+    for d in (cfg.get('departments') or []) + (cfg.get('affiliated_units') or []):
+        nm = d.get('name') or ''
+        if home and (home.lower() in nm.lower() or nm.lower() in home.lower()):
+            out.append(host(d.get('url')))
+            out += [host(l) for l in d.get('listings') or [] if isinstance(l, str)]
+    return list(dict.fromkeys(h for h in out if h))
+
+
+def open_pis(key):
+    """PIs the stage-4 gate lists as 'no period' (no period, a listing-year gap, and not yet recorded as unproven)."""
+    import stage_gate as SG
+    bad, _ = SG.g4(key)
+    return [b.split(': no period')[0] for b in bad if ': no period' in b]
+
+
+def deep(key, write=True):
+    """The second look (Georgia Tech owner decision 2026-11-04) at the PIs gaps()/extend() left open. For each gap year, dated Wayback captures of: the PI's homepages (listing, DBLP,
+    reviewed person-urls.json), profile-URL variants (DEEP_PATTERNS) on the hosts of the PI's home unit, across URL eras (one whole-window CDX per URL). A capture naming the PI with a ladder
+    title proves that calendar year. A PI whose every gap year is proven gets a reviewed period (like gaps()); otherwise the years that stay unproven go to census-overrides
+    `unproven_years` with `why_unproven` (listing years prove nothing for them: R-PAP-01; the R-PAP-28 bridge rule covers their papers at build time).
+    -> hierarchy/<key>/deep-gap-evidence.json"""
+    import cs_related_school as CR
+    import stage_gate as SG
+    c = W.con(key); rx = S.aff_rx(key); out = {}
+    cen = {x['name']: x for x in json.loads((P.data('census-faculty.json', key)).read_text())['faculty']}
+    add = {x['name']: x for x in json.loads((P.data('census-additions.json', key)).read_text())} if (P.data('census-additions.json', key)).exists() else {}
+    homes = {r['name']: r.get('home_department') for r in json.loads((P.data('home-departments-school.json', key)).read_text())}
+    supplied = json.loads((P.data('person-urls.json', key)).read_text()) if (P.data('person-urls.json', key)).exists() else {}
+    tg = {t['name']: t for t in targets(key)}
+    only = [a for a in sys.argv[3:]] if len(sys.argv) > 3 else None
+    for name in (only or open_pis(key)):
+        x = cen.get(name) or add.get(name) or {}
+        miss = SG.span_gaps(x)
+        if not miss:
+            continue
+        t = tg.get(name) or dict(name=name, urls=[])
+        names = [name] + list(x.get('aliases') or [])
+        tk = [w for w in re.sub(r'[^a-z ]', ' ', re.sub(r'\s*\([^)]*\)', '', name).lower().replace(' jr', '')).split() if len(w) > 1]
+        urls = list(t['urls']) + list(supplied.get(name) or [])
+        for h in home_hosts(key, homes.get(name)) + ['www.cc.gatech.edu']:
+            for pat in DEEP_PATTERNS:
+                if len(tk) >= 2:
+                    urls.append(pat.format(h=h, all='-'.join(tk), first=tk[0], last=tk[-1]))
+        for pat in S.field(S.get(key), 'periods.profile_patterns') or []:
+            if len(tk) >= 2:
+                urls.append(pat.format(first=tk[0], last=tk[-1], all='-'.join(tk)))
+        urls = list(dict.fromkeys(u for u in urls if u))
+        ev = {}
+        for u in urls:
+            if all(y in ev for y in miss):
+                break
+            k = re.sub(r'^https?://', '', u)
+            rows = W.cdx_rows(c, k, frm=str(min(miss)), to=str(max(miss)), collapse='timestamp:6')
+            for y in [y for y in miss if y not in ev]:
+                for r in [r for r in rows if r['timestamp'].startswith(str(y))][:4]:
+                    cap, st, sha, b = W.capture(c, r['timestamp'], r['original'], u, 'deep:' + name)
+                    if st != 200:
+                        continue
+                    flat = W.flat(b)
+                    is_home = u in t['urls'] or u in (supplied.get(name) or [])
+                    if is_home and not rx.search(flat):
+                        continue
+                    hit = [h for h in CR.faculty_evidence([('deep', cap, sha, r['timestamp'], flat)], names) if h['ladder']]
+                    if hit:
+                        ev[y] = dict(url=cap, sha256=sha, quote=hit[0]['quote'], observed=f"{r['timestamp'][:4]}-{r['timestamp'][4:6]}-{r['timestamp'][6:8]}",
+                                     kind='homepage_capture' if is_home else 'unit_page_capture', page=u)
+                        break
+        out[name] = dict(gap_years=miss, evidence={str(y): e for y, e in ev.items()}, closed=all(y in ev for y in miss), unproven=[y for y in miss if y not in ev], urls_tried=len(urls))
+        print(json.dumps(dict(pi=name, gaps=miss, proven=sorted(ev), unproven=out[name]['unproven'], urls=len(urls))), flush=True)
+    P.data_w('deep-gap-evidence.json', key).write_text(json.dumps(out, indent=1, ensure_ascii=False))
+    if not write:
+        return out
+    sec, save = CO.open_section(key)
+    for name, g in out.items():
+        x = cen.get(name) or add.get(name) or {}
+        e = sec.setdefault(name, {})
+        if g['closed']:
+            srcs = sorted([s_ for s_ in x.get('sources') or [] if s_.get('quote')], key=lambda s_: s_.get('observed') or '')
+            iso = lambda d: (f'{d[:4]}-{d[4:6]}-{d[6:8]}' if d and re.fullmatch(r'\d{8}(?:\d{2}){0,3}', d) else d)
+            evs = ([dict(url=srcs[0]['url'], sha256=srcs[0]['sha256'], quote=srcs[0]['quote'], observed=iso(srcs[0].get('observed')), kind='dept_listing')] if srcs else []) + \
+                  [dict(url=v['url'], sha256=v['sha256'], quote=v['quote'], observed=v['observed'], kind=v['kind']) for _, v in sorted(g['evidence'].items())]
+            ys = sorted(set(x.get('years_listed') or []))
+            e['periods'] = [dict(id=f"override_period_deep_{key}_{re.sub(r'[^a-z0-9]+', '_', name.lower()).strip('_')}", start=str(ys[0]), end=None, asof=evs[-1]['observed'][:10], datePrecision='year', evidence=evs,
+                                 note=f"Bridged: listings plus dated captures for the gap years {g['gap_years']} (hierarchy/{key}/deep-gap-evidence.json). Start is a lower bound; no end is claimed.",
+                                 reviewed='periods_school_deep_20261104')]
+            e['why_periods'] = 'Gap years closed by dated captures in the second look (tools/periods_school.py deep).'
+        else:
+            e['unproven_years'] = sorted(set(e.get('unproven_years') or []) | set(g['unproven']))
+            e['why_unproven'] = (f"Second look 2026-11-04: {g['urls_tried']} URLs tried (the PI's homepages, profile-URL variants on the home unit's hosts across URL eras, person-supplied URLs) over the Wayback window; "
+                                 f"no dated capture names the PI with a ladder title in {g['unproven']}. These years prove nothing (R-PAP-01); R-PAP-28 bridges the papers at build time.")
+    save()
+
+
 if __name__ == '__main__':
-    {'fetch': fetch, 'extract': extract, 'gaps': gaps, 'extend': extend, 'truncated': truncated}[sys.argv[1]](sys.argv[2])
+    {'fetch': fetch, 'extract': extract, 'gaps': gaps, 'extend': extend, 'truncated': truncated, 'deep': deep}[sys.argv[1]](sys.argv[2])

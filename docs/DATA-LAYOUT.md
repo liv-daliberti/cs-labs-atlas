@@ -195,6 +195,8 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `homepage-identity.json` | derived | `hierarchy/{school}/homepage-identity.json` | `hierarchy/{school}/derived/homepage-identity.json` | - | <100MB |
 | `census-report.md` | derived | `census/{school}-report.md` | `hierarchy/{school}/derived/report.md` | - | <100MB |
 | `dblp-affiliated.json` | derived | `hierarchy/{school}/dblp-affiliated.json` | `hierarchy/{school}/derived/dblp-affiliated.json` | - | <100MB |
+| `person-urls.json` | reviewed | `hierarchy/{school}/person-urls.json` | `hierarchy/{school}/reviewed/person-urls.json` | - | <1MB |
+| `deep-gap-evidence.json` | derived | `hierarchy/{school}/deep-gap-evidence.json` | `hierarchy/{school}/derived/deep-gap-evidence.json` | - | <10MB |
 | `units-done.json` | derived | `hierarchy/{school}/units-done.json` | `hierarchy/{school}/derived/units-done.json` | - | <1MB |
 | `truncated-title-evidence.json` | derived | `hierarchy/{school}/truncated-title-evidence.json` | `hierarchy/{school}/derived/truncated-title-evidence.json` | - | <10MB |
 | `cs-related-hand.json` | reviewed | `hierarchy/{school}/cs-related-hand.json` | `hierarchy/{school}/reviewed/cs-related-hand.json` | - | <10MB |

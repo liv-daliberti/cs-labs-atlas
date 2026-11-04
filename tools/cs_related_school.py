@@ -384,6 +384,16 @@ def profile(key, name, unit, url):
     return 0
 
 
+def units_by_recency(lad, centers):
+    """The units whose listings prove a ladder appointment, the HOME last: centers (charter [census].center_units, e.g. the ML Center, a center is not an academic department) first, then the
+    other units by the date of their latest evidence, so `departments[-1]` is the most recent academic unit (Georgia Tech owner decision 2026-11-04: the ML Center is `also`, never the home)."""
+    latest = {}
+    for e in lad:
+        latest[e['unit']] = max(latest.get(e['unit'], ''), e['observed'])
+    cen = [u for u in latest if u in centers]
+    return cen + sorted((u for u in latest if u not in centers), key=lambda u: latest[u])
+
+
 def review(key):
     if not units_current(key):
         sys.exit(f'review refused: units-done.json is missing or older than the charter\'s [[affiliated_units]]; run `cs_related_school.py units {key}` first (Georgia Tech friction 19)')
@@ -394,6 +404,8 @@ def review(key):
     ids = read(P.data('dblp-ids.json', key), {})
     SH = oa_stats(key)
     SETTLE = list(S.field(S.get(key), 'cs_related.share_test_settles') or [])
+    CENTERS = set(S.field(S.get(key), 'census.center_units') or [])
+    NOT_FACULTY = S.field(S.get(key), 'cs_related.not_faculty') or {}   # {name = reason}: owner-decided non-faculty (research engineer, staff) whose listing quote a rule misread
     searched = sorted({p[0] for p in pages})
     hand = hand_evidence(key)
     dec, adds, n = [], [], collections.Counter()
@@ -408,6 +420,11 @@ def review(key):
             n['census_alias'] += 1
             dec.append(dict(name=c['name'], aliases=c.get('aliases') or [], source=c['source'], decision='census_alias', census_name=al,
                             reason=f'the census person {al} (a DBLP name form of a listed faculty member)', cs_basis=dict(dblp=[c.get('dblp')])))
+            continue
+        nf = next((r for n_, r in NOT_FACULTY.items() if ' '.join(toks(n_)) == ' '.join(toks(c['name']))), None)
+        if nf:
+            n['not_faculty_listed'] += 1
+            dec.append(dict(name=c['name'], aliases=c.get('aliases') or [], source=c['source'], decision='not_faculty_listed', reason=f'owner decision (charter [cs_related].not_faculty): {nf}', cs_basis={}, faculty_evidence=[], years_listed=[], units_searched=searched))
             continue
         N = Name(names)
         recs = [p for p in dblp if p['pid'] == c.get('dblp')] if c['source'] == 'dblp_affiliation' else []
@@ -482,7 +499,7 @@ def review(key):
         if d == 'accepted' and c['source'] != 'affiliated_department':
             first, last = lad[0], sorted(lad, key=lambda e: e['observed'])[-1]
             adds.append(dict(name=c['name'], aliases=row['aliases'], collection_person_id=f'{key}_fac_' + re.sub(r'[^a-z0-9]+', '-', ' '.join(toks(c['name']))).strip('-'),
-                             dblp=comp['dblp'][:1], rank='ladder', title_as_listed=last['quote'], departments=[last['unit']],
+                             dblp=comp['dblp'][:1], rank='ladder', title_as_listed=last['quote'], departments=units_by_recency(lad, CENTERS),
                              years_listed=row['years_listed'], sources=[dict(url=e['url'], sha256=e['sha256'], quote=e['quote'], kind=f"unit_listing:{e['unit']}",
                                                                           observed=e['observed']) for e in sorted(lad, key=lambda e: e['observed'])],
                              is_pi=True, pi_basis=dict(kind='ladder_faculty', url=first['url'], sha256=first['sha256'], quote=first['quote'], observed=first['observed'],

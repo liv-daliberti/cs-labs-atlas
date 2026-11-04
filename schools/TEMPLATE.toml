@@ -46,6 +46,7 @@ legacy_sweep = ""         # pre-protocol schools only: the base sweep holding ca
 
 [census]
 computing_departments = []   # department codes listed_not_in_census.py treats as computing; [] = every listed department
+center_units = []            # affiliated-unit codes that are centers, never a PI's home (the ML Center): the home is the latest other unit with ladder evidence, the center goes to `also`
 home_units = {}              # canonical home-unit name = regex over the spellings the listings use
 rank_words = {}              # this school's title words per rank, added to tools/listing_rows.py RANKS: {teaching = '\\binstructional\\s+professor', adjunct = '\\badjoint\\b'}
 
@@ -53,6 +54,7 @@ rank_words = {}              # this school's title words per rank, added to tool
 exceptions = []           # reviewed exceptions to tools/sweep_check.py: {test, year?, reason, verify? = "papers_normal"}
 
 [cs_related]
+not_faculty = {}            # {"Name" = "reason"}: owner-decided non-faculty whose unit-listing quote a rule misread (research engineer, staff); decided not_faculty_listed
 share_test_settles = []      # acceptances the owner sent to the OpenAlex computing-share test (pending_openalex people always go to it)
 
 [site]

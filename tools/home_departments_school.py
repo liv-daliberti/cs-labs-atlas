@@ -60,6 +60,7 @@ def main(key, write_shared=False):
     census = json.loads((P.data('census-faculty.json', key)).read_text())['faculty']
     adds = json.loads((P.data('census-additions.json', key)).read_text()) if (P.data('census-additions.json', key)).exists() else []
     units = {u['code']: u['name'] for u in cfg.get('affiliated_units') or []}
+    centers = set(S.field(cfg, 'census.center_units') or [])
     canon = [(re.compile(rx, re.I), name) for name, rx in (S.field(cfg, 'census.home_units') or {}).items()]
 
     def norm(u):
@@ -117,8 +118,9 @@ def main(key, write_shared=False):
             continue
         b = x.get('pi_basis') or {}
         code = (x.get('departments') or [None])[-1]
-        home = norm(units.get(code, code))
-        row = dict(school=key, name=x['name'], home_department=home, also=[], no_academic_department=False, status='accepted' if home else 'hold',
+        home = None if code in centers else norm(units.get(code, code))   # a center is never a home: hold until an academic school is evidenced
+        also = [a_ for a_ in dict.fromkeys(norm(units.get(c_, c_)) for c_ in (x.get('departments') or [])[:-1]) if a_ and a_ != home]   # other units with ladder evidence (the ML Center)
+        row = dict(school=key, name=x['name'], home_department=home, also=also, no_academic_department=False, status='accepted' if home else 'hold',
                    evidence=dict(url=b.get('url'), sha256=b.get('sha256'), quote=b.get('quote')), note=f'the {code} faculty listing (cs-related-review.json)')
         out.append(row); n[row['status']] += 1; n['home:' + str(home)] += 1
     P.data_w('home-departments-school.json', key).write_text(json.dumps(out, indent=1, ensure_ascii=False))

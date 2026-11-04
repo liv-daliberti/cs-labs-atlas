@@ -25,3 +25,9 @@ def test_the_gate_rejects_a_home_that_is_not_a_known_name(monkeypatch):
 
 def test_a_second_title_is_not_a_unit():
     assert H.clean_unit('Professor Emeritus') == (None, None)
+
+
+def test_units_by_recency_puts_the_center_first_and_the_latest_academic_unit_last():
+    import cs_related_school as C
+    lad = [dict(unit='ML', observed='20261103'), dict(unit='AE', observed='20180101'), dict(unit='BME', observed='20250117'), dict(unit='AE', observed='20240101')]
+    assert C.units_by_recency(lad, {'ML'}) == ['ML', 'AE', 'BME'] and C.units_by_recency(lad, set()) == ['AE', 'BME', 'ML']

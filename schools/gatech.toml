@@ -84,6 +84,7 @@ legacy_sweep = ""
 foreign_title_exception = false
 
 [census]
+center_units = ["ML"]   # owner 2026-11-04: the ML Center is not a home
 computing_departments = ["CS", "IC", "CSE", "CSP"]
 home_units = {"Computer Science" = '^(?:School of )?Computer Science$', "Interactive Computing" = '^(?:School of )?Interactive Computing$', "Computational Science and Engineering" = '^(?:School of )?Computational Science (?:and|&) Engineering$', "Cybersecurity and Privacy" = '^(?:School of )?Cybersecurity (?:and|&) Privacy$', "Electrical and Computer Engineering" = '^(?:School of )?Electrical (?:and|&) Computer Engineering$', "Industrial and Systems Engineering" = '^(?:H\. Milton Stewart )?School of Industrial (?:and|&) Systems Engineering$', "Mathematics" = '^(?:School of )?Mathematics$', "Biomedical Engineering" = '^(?:The )?(?:Wallace H\. Coulter )?(?:Department of )?Biomedical Engineering$', "College of Architecture" = '^College of Architecture$'}
 
@@ -92,6 +93,7 @@ exceptions = []
 
 [cs_related]
 share_test_settles = []
+not_faculty = {"Reza Sameni" = "held: no academic school of his is evidenced (the ML Center listing names none, his profile page names no GT unit); owner 2026-11-04: hold only those still without evidence", "Samuel Shapero" = "GTRI research engineer: the ML Center listing quote ran into the next person's title (owner 2026-11-04)"}
 
 [site]
 depts = {CS = "School of Computer Science", IC = "School of Interactive Computing", CSE = "School of Computational Science and Engineering", CSP = "School of Cybersecurity and Privacy"}
