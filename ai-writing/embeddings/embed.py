@@ -211,20 +211,33 @@ class Embedder:
 
 # ---------------------------------------------------------------- the todo
 def load_todo(kind, done, shard=None, of=None, limit=None):
-    """[(paper id, text hash, payload)] not yet embedded (hash not in `done`), this shard only, ordered by paper id."""
+    """[(paper id, text hash, payload)] not yet embedded (hash not in `done`), this shard only, ordered by paper id. Abstract payload:
+    (title, abstract). Full-text payload: None until fetch_bodies() reads the bodies of a part (the bodies are most of a 5 GB file)."""
     db = sqlite3.connect(f'file:{C.TEXTS_DB}?mode=ro', uri=True, timeout=600)
     if kind == 'abstract':
         q = 'select paper_id, text_hash, title, abstract from abstracts order by paper_id'
     else:
-        q = 'select paper_id, text_hash, body from fulltext where usable = 1 and body is not null order by paper_id'
+        q = 'select paper_id, text_hash from fulltext where usable = 1 and body is not null order by paper_id'
     out = []
     for row in db.execute(q):
         pid, h = row[0], row[1]
         if done.get(pid) == h or (of and shard_of(pid, of) != shard):
             continue
-        out.append((pid, h, row[2:] if kind == 'abstract' else zlib.decompress(row[2]).decode('utf-8', 'ignore')))
+        out.append((pid, h, row[2:] if kind == 'abstract' else None))
         if limit and len(out) >= limit:
             break
+    db.close()
+    return out
+
+
+def fetch_bodies(pids):
+    """{paper id: body text} for a part's full-text papers."""
+    db = sqlite3.connect(f'file:{C.TEXTS_DB}?mode=ro', uri=True, timeout=600)
+    out = {}
+    for i in range(0, len(pids), 200):
+        q = pids[i:i + 200]
+        out.update({p: zlib.decompress(b).decode('utf-8', 'ignore') for p, b in db.execute(
+            f'select paper_id, body from fulltext where paper_id in ({",".join("?" * len(q))})', q)})
     db.close()
     return out
 
@@ -249,12 +262,13 @@ def run(model, kind, shard, of, budget, limit, store_name):
             C.log(stopped_for_budget=True, elapsed=round(el), remaining=len(todo) - c0); break
         t1 = time.time()
         chunk = todo[c0:c0 + per]
+        bodies = fetch_bodies([c[0] for c in chunk]) if kind == 'fulltext' else {}
         seqs, owner, ntok = [], [], []
         for i, (pid, h, payload) in enumerate(chunk):
             if kind == 'abstract':
                 s = [emb.encode_abstract(*payload)]; ntok.append(len(s[0]))
             else:
-                s, nt = emb.encode_body(payload); ntok.append(sum(len(x) for x in s))
+                s, nt = emb.encode_body(bodies[pid]); ntok.append(sum(len(x) for x in s))
             seqs += s; owner += [i] * len(s)
         V, SP = emb.embed(seqs)
         n = np.bincount(owner, minlength=len(chunk)).astype(np.int32)
