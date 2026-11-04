@@ -1,0 +1,69 @@
+# Embeddings, topics and novelty for every paper (owner 2026-11-04)
+
+The study's sample (ai-writing/embeddings.npz, 60k texts) extended to **all lab papers**: the 7 released schools (princeton, cmu, epfl, mit,
+berkeley, stanford, michigan) plus the onboarding schools whose packages exist (uchicago, gatech; marked unreleased in the report). One row per
+work (atlas id `atl:w:...`, else `oa:<W id>`), 132,660 works in `universe.sqlite` on 2026-11-04.
+
+## Pipeline
+| step | code | where | output (under `EMB` = `ai-writing/data/embeddings`, slot `EMBEDDINGS`) |
+|---|---|---|---|
+| paper list | `universe.py build` (`universe.slurm`) | CPU, 30 min | `universe.sqlite`: `papers`, `lab_papers` (lab, PI, department per work), `oa_ids` |
+| abstracts + OpenAlex topics | `oa_fields.py filter/merge` (`oa_fields.slurm`, 64 tasks) | CPU, S3 stream, no API | `oa_fields.sqlite`: abstract text rebuilt from `abstract_inverted_index`, primary topic, topics, keywords |
+| texts | `texts.py abstracts / fulltext` (`texts.slurm`) | CPU | `texts.sqlite`: `abstracts`, `fulltext` (body zlib, `usable`, text hash) |
+| models | `download_models.py` | CPU, network | `env/hf-cache` |
+| vectors | `embed.py run` (`embed.slurm`) | 1 RTX 2080 per task | parts, then `embed.py merge` -> containers |
+| topics, novelty | `topics.py`, `novelty_run.py` (`analyze.slurm`) | CPU/GPU | `results/*.parquet` |
+| report | `emb_report.py` | CPU | `ai-writing/diversity/reports/EMBEDDINGS-TOPICS-NOVELTY.md` |
+
+**Why a new OpenAlex pass.** The local filtered snapshot (`external/openalex-snapshot/current`) kept neither `abstract_inverted_index` nor
+`topics` (docs/OPENALEX-SNAPSHOT.md section 2, "Not kept"), and the ext stores of onboarding schools are the same projection. `oa_fields.py` streams
+the works partitions of the same bulk snapshot (2026-10-14, S3, free, no API credits) once more and keeps only the universe's works.
+Abstracts the 2026-10 API pass of `build_corpus.py` cached (`ai-writing/abstracts.sqlite`) fill any work the snapshot has none for.
+
+## Storage layout (no per-paper files)
+```
+EMB/universe.sqlite  oa_fields.sqlite  texts.sqlite
+EMB/parts/<model>/<kind>/part_<job>_<task>_<seq>.npz     a run's finished chunk (atomic rename); merged and removed by `embed.py merge`
+EMB/<model>/<school>/<kind>.npz                          the container, one per model x home school x text kind
+EMB/<model>/<school>/<kind>.index.sqlite                 papers(paper_id PK, row, off, n, ntok, text_hash), meta(key, value)
+EMB/results/*.parquet                                    analysis tables
+```
+`kind` is `abstract` or `fulltext`. Container arrays: `ids`, `hashes` (hash of the exact text embedded), `n` (vectors per paper), `ntok`, `off`
+(offsets into `X`), `M` (float16, papers x dim: the abstract vector, or the mean over a paper's chunks), `X` (full text only: every chunk vector),
+`sp_ptr`/`sp_idx`/`sp_val` (BGE-M3 lexical weights, CSR; full text: max over chunks). A paper is stored once, under its **home school** (the first
+of princeton, cmu, epfl, mit, berkeley, stanford, michigan, uchicago, gatech that has it); `universe.sqlite` `lab_papers` lists all its labs.
+The index `meta` records the model id, the exact Hugging Face revision (snapshot hash), pooling, prefix, dtype, school, kind and merge time.
+Vectors are stored raw (the pooled output, float16); analyses centre on the corpus mean and normalize. `store.py` is the only reader/writer.
+
+## Models (each its own vector set)
+| key | model | text kinds | vector |
+|---|---|---|---|
+| `specter2_base` | allenai/specter2_base | abstract, full text (512-token windows) | CLS, 768 |
+| `specter2_proximity` | allenai/specter2_base + adapter allenai/specter2 (proximity) | the same | CLS, 768 |
+| `scincl` | malteos/scincl | abstract | CLS, 768 |
+| `qwen3_0p6b` | Qwen/Qwen3-Embedding-0.6B | abstract, full text (8k-token chunks) | last token, 1024 |
+| `gte_qwen2_1p5b` | Alibaba-NLP/gte-Qwen2-1.5B-instruct | the same | last token, 1536 |
+| `bge_m3` | BAAI/bge-m3 | the same, plus lexical weights | CLS dense 1024; sparse |
+| `nomic_v15` | nomic-ai/nomic-embed-text-v1.5, prefix `clustering: ` | the same | mean, 768 |
+
+**Qwen3-Embedding-4B is not run:** its fp16 weights are about 8 GB, the whole memory of an RTX 2080 (8 GB), with nothing left for activations.
+Not tried. Abstracts: title [SEP] abstract for SPECTER2 and SciNCL (as `ai-writing/embed.py`), title, blank line, abstract for the others.
+Full text: the stored body (the existing extraction, `vendor/homogenization_tools/fulltext_store.py`: pdftotext 60 pages, Introduction to the last
+References heading, at most 300,000 characters), cut into consecutive token windows (512 for SPECTER2; 8,192 for the others, special tokens included),
+at most 64 / 8 windows per paper (evenly spaced when more), a tail shorter than 64 / 256 tokens dropped unless it is the only window. Full texts are
+the ones `common.usable_text` accepts (>= 1000 words, a PDF must show the paper's title on its first page), as in the diversity battery.
+fp16, sdpa attention (no flash-attention: Turing), batches sized by padded tokens for 8 GB with a split-on-OOM fallback, a non-finite output stops the run.
+
+## Resume and compute
+Jobs are 59-minute tasks (`--partition=mltheory --account=mltheory --gres=gpu:rtx_2080:1 --exclude=node302,node105`; under an hour the cluster routes
+them through the shared pool, which starts at once, while a longer request waits days) that stop starting new parts after a time budget. A paper belongs to
+shard `sha1(id) % n`, so shards stay disjoint while the todo shrinks; the todo is every paper whose text hash is not in a part or a container.
+`submit_embed.sh` queues chains of `afterany` tasks per shard and never more than 8 GPUs at once. `embed.py status` counts what is done.
+
+## Reading the vectors
+```python
+import store
+c = store.load('qwen3_0p6b', 'cmu', 'fulltext', chunks=True)   # ids, hashes, n, off, M, X
+store.meta('qwen3_0p6b', 'cmu', 'fulltext')['revision']
+```
+Tests: `tests/test_embeddings.py` (store, index, resume, merge, chunking, batching, OpenAlex rebuild, entropy, novelty against brute force).

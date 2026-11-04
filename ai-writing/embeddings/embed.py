@@ -25,6 +25,7 @@ import store
 from models import MODELS
 
 PART = {'abstract': 3000, 'fulltext': 200}
+PART_8K = 40   # full-text papers per part for the 8k-token models (a 59-minute task must finish a part)
 
 
 # ---------------------------------------------------------------- pure helpers (tested on fixtures)
@@ -241,7 +242,7 @@ def run(model, kind, shard, of, budget, limit, store_name):
     tag = f'{job}_{os.environ.get("SLURM_ARRAY_TASK_ID", shard if shard is not None else 0)}'
     pdir = store.part_dir(name, kind)
     pdir.mkdir(parents=True, exist_ok=True)
-    per, seq, last = PART[kind], 0, None
+    per, seq, last = (PART_8K if kind == 'fulltext' and emb.cfg['chunk'] > 512 else PART[kind]), 0, None
     for c0 in range(0, len(todo), per):
         el = time.time() - t0
         if last and el + last * 1.25 > budget:
