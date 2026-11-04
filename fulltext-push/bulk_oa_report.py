@@ -15,7 +15,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import ftp_common as F  # noqa: E402
 
-CHANNELS = ['oa_locations', 's2_bulk', 'core_bulk', 'arxiv_bulk']
+CHANNELS = ['oa_locations', 's2_bulk', 'core_bulk', 'arxiv_bulk', 'wayback_escholarship']
 SCHOOLS = ['princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford', 'michigan', 'uchicago', 'gatech']
 
 
