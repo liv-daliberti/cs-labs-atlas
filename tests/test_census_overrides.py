@@ -251,7 +251,7 @@ def test_defense_lists_name_the_chair_and_respect_the_appointment_window(monkeyp
 def test_cv_students_reads_an_advising_section_with_years_and_the_window():
     CVS = by_path('cv_students')
     text = ("EDUCATION\nPhD MIT 2001\n\nPh.D. STUDENTS ADVISED\nAnn Lee (2019); Wei Zhang (2012); Maria Garcia (2022), John Smith (2024)\n\nTEACHING\nCS 101\n"
-            "Current students\nEd Gray, Flo Hart\n")
+            "Current students\nEddie Gray, Flora Hart\n")
     got = {n: y for n, y, h, q in CVS.parse(text, 2016)}
     assert got['Ann Lee'] == [None, 2019] and 'Wei Zhang' not in got and got['Maria Garcia'] == [None, 2022] and got['John Smith'] == [None, 2024]
-    assert got['Ed Gray'] == [None, None]   # a 'current' heading needs no year
+    assert got['Eddie Gray'] == [None, None]   # a 'current' heading needs no year
