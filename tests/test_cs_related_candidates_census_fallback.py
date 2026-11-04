@@ -3,15 +3,15 @@ import json
 
 import atlas_paths as P
 import cs_related_candidates as C
-import stage_gate
 
 
-def test_school_pis_falls_back_to_the_census(tmp_path, monkeypatch):
+def test_school_pis_for_an_onboarding_school_are_the_census_pis_never_the_built_pis_json(tmp_path, monkeypatch):
     monkeypatch.setattr(P, 'data', lambda name, school=None, **k: tmp_path / name)
-    monkeypatch.setattr(stage_gate, 'pis_of', lambda s: [{'name': 'Ann Lee', 'aliases': ['A. Lee']}])
+    monkeypatch.setattr(C.CO if hasattr(C, 'CO') else __import__('census_overrides'), 'onboarding', lambda k: k == 'newu')
+    (tmp_path / 'census-faculty.json').write_text(json.dumps({'faculty': [{'name': 'Ann Lee', 'aliases': ['A. Lee'], 'is_pi': True}, {'name': 'Bo', 'is_pi': False}]}))
+    (tmp_path / 'pis.json').write_text(json.dumps([{'pi': 'Added Person'}]))   # the previous review's additions live here: not read
     assert C.school_pis('newu') == [{'pi': 'Ann Lee', 'names': ['Ann Lee', 'A. Lee']}]
-    (tmp_path / 'pis.json').write_text(json.dumps([{'pi': 'Bo Wu'}]))
-    assert C.school_pis('newu') == [{'pi': 'Bo Wu'}]
+    assert C.school_pis('released') == [{'pi': 'Added Person'}]
 
 
 def test_school_test_gates_a_related_lineage_child(monkeypatch):

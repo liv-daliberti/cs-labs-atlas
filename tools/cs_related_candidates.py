@@ -104,11 +104,14 @@ def venues():
 def school_pis(s):
     """The school's PIs as pis.json rows. A school being onboarded has no pis.json before stage 7 (the build), so its census PIs stand in:
     name and aliases for the name match, no author ids yet (UChicago PROTOCOL-FRICTION 22: this crashed the onboard-data pipeline)."""
+    import census_overrides as CO
     f = Path(P.data('pis.json', s))
-    if f.exists():
+    if f.exists() and not CO.onboarding(s):
         return json.load(open(f))
-    import stage_gate
-    return [dict(pi=x['name'], names=[x['name']] + list(x.get('aliases') or [])) for x in stage_gate.pis_of(s)]
+    # an onboarding school: the census PIs WITHOUT the review's additions, never the built pis.json (which holds the previous review's additions, so a
+    # second run of the review would drop the people it accepted the first time: UChicago friction 50)
+    cen = json.load(open(P.data('census-faculty.json', s))).get('faculty', [])
+    return [dict(pi=x['name'], names=[x['name']] + list(x.get('aliases') or [])) for x in cen if x.get('is_pi') and not x.get('added')]
 
 
 def main(schools, do_venues=True, stats=False, out_name='cs-related-candidates.json'):
