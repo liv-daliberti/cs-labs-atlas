@@ -9,8 +9,9 @@ pool         cls | last (last token; the end-of-text token is appended to every 
 chunk        tokens per full-text window, special tokens included; cap = most windows of one paper (windows are evenly spaced when more exist);
              tail windows shorter than min_tail tokens are dropped unless they are the paper's only window.
 budget       padded tokens per batch (sized for an 8 GB RTX 2080 in fp16; a batch that still runs out of memory is split).
-qwen3_4b (Qwen3-Embedding-4B): fp16 weights are about 8 GB; mltheory's cards report 11 GB (RTX 2080 Ti), so it runs on abstracts only, one card at a time;
-full text only when the measured peak at an 8k window leaves >= 2 GB (embed.py selftest logs peak_gb and headroom_gb). Abstract batches are kept small.
+qwen3_4b (Qwen3-Embedding-4B): fp16 weights are about 8 GB, too much for the 2080 Ti lanes (11 GB) beyond abstracts, so it runs on node105's
+RTX A5000 (24 GB; owner 2026-11-04) through embed-a5000.slurm, abstracts and full text (8k windows, one window per batch); embed.py selftest logs
+peak_gb and headroom_gb on that card first.
 """
 MODELS = {
     'specter2_base': dict(hf='allenai/specter2_base', pool='cls', kinds=('abstract', 'fulltext'), abs_fmt='sep', abs_max=512, chunk=512, cap=64,
@@ -30,6 +31,6 @@ MODELS = {
                       min_tail=256, budget=16384, prefix='clustering: ', dim=768, remote=True,
                       note="mean pooling, task prefix 'clustering: ' (similarity and topic use), rotary_scaling_factor=2 for the 8k context"),
 }
-MODELS['qwen3_4b'] = dict(hf='Qwen/Qwen3-Embedding-4B', pool='last', kinds=('abstract',), abs_fmt='plain', abs_max=8192, chunk=8192, cap=8, min_tail=256,
-                          budget=4096, prefix='', dim=2560, big=True, note='last-token pooling, documents without an instruction; abstracts only (11 GB card)')
+MODELS['qwen3_4b'] = dict(hf='Qwen/Qwen3-Embedding-4B', pool='last', kinds=('abstract', 'fulltext'), abs_fmt='plain', abs_max=8192, chunk=8192, cap=8, min_tail=256,
+                          budget=8192, prefix='', dim=2560, big=True, note='last-token pooling, documents without an instruction; node105 A5000 only (embed-a5000.slurm)')
 ORDER = ['specter2_base', 'specter2_proximity', 'scincl', 'qwen3_0p6b', 'gte_qwen2_1p5b', 'bge_m3', 'nomic_v15', 'qwen3_4b']
