@@ -282,8 +282,8 @@ def L(name, script, *args, done=(), shared=False, py='project'):
     return dict(name=name, kind='local', script=script, args=list(args), done=list(done), shared=shared, py=py)
 
 
-def Q(name, cmd, cpus=2, mem='16G', time='04:00:00', py='project', done=(), shared=False, check=None):
-    return dict(name=name, kind='slurm', cmd=cmd, cpus=cpus, mem=mem, time=time, py=py, done=list(done), shared=shared, check=check)
+def Q(name, cmd, cpus=2, mem='16G', time='04:00:00', py='project', done=(), shared=False, check=None, check_py=None):
+    return dict(name=name, kind='slurm', cmd=cmd, cpus=cpus, mem=mem, time=time, py=py, done=list(done), shared=shared, check=check, check_py=check_py)
 
 
 def H(name, todo):
@@ -303,7 +303,7 @@ STEPS = {
           Q('sweep', 'PY $TOOLS/sweep_from_snapshot.py {school} --replace', cpus=2, mem='24G', time='02:00:00', done=['openalex-sweep.sqlite']),
           Q('sweepcheck', 'PY $TOOLS/sweep_check.py {school}', cpus=2, mem='24G', time='01:00:00', done=['sweep-check.json']),
           Q('openalex-candidates', 'PY $TOOLS/cs_related_candidates.py --no-venues --stats --out cs-related-candidates-openalex.json {school}', mem='24G', time='02:00:00', done=['cs-related-candidates-openalex.json']),
-          Q('units', 'PY $TOOLS/cs_related_school.py units {school}', cpus=1, mem='4G', time='06:00:00'),   # unit listings by Wayback incl. their pages; resumable (cached), so it runs on every pass
+          Q('units', 'PY $TOOLS/cs_related_school.py units {school}', cpus=1, mem='4G', time='06:00:00', check=['tools/cs_related_school.py', 'units-check', '{key}'], check_py='project'),   # unit listings by Wayback incl. their pages; done when units-done.json covers the charter's units
           L('candidates', 'tools/cs_related_school.py', 'candidates', '{key}'),
           L('cross-check', 'tools/listed_not_in_census.py', '{key}', done=['listed-not-in-census.json']),
           H('review', 'search the affiliated units (cs_related_school.py units), then decide every candidate (cs_related_school.py review) with its evidence')],
@@ -352,7 +352,8 @@ def step_done(key, st, run=None):
     `plan_fetch.py <key> --check`, because the file the next step writes, coverage.json, can not be the proof that the captures ran)."""
     if st.get('check'):
         import subprocess
-        argv = [P.COLLECTOR_PY, '-I', '-u', str(CODE / st['check'][0])] + [expand(a, key) for a in st['check'][1:]]
+        interp = [sys.executable, '-u'] if st.get('check_py') == 'project' else [P.COLLECTOR_PY, '-I', '-u']   # tools that import their siblings need the project interpreter
+        argv = interp + [str(CODE / st['check'][0])] + [expand(a, key) for a in st['check'][1:]]
         return (run or subprocess.run)(argv, cwd=str(CODE), capture_output=True).returncode == 0
     return bool(st.get('done')) and all(Path(P.data(n, key)).exists() for n in st['done'])
 

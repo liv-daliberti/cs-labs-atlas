@@ -50,7 +50,8 @@ review      faculty evidence: a 2016-2026 unit capture whose text has the candid
             -> hierarchy/<key>/cs-related-review.json {school, rule, reviewed, provisional, decisions: [...]}
             -> census/<key>-additions.json: accepted people of other units (census format; is_pi with pi_basis
                ladder_faculty from the unit listing; added = cs_related_review_<date>)
-usage: cs_related_school.py candidates|units|review <key>
+usage: cs_related_school.py candidates|units|units-check|review <key>
+units-check exits 0 when units-done.json covers every unit URL of the charter (a unit added since the last `units` run, or no run, exits 1)
 """
 import collections, datetime, gzip, json, re, sys
 from pathlib import Path
@@ -174,7 +175,7 @@ def share_test(S_, names, orcids, first_year, author_ids=()):
 
 def units(key):
     cfg = S.get(key); c = W.con(key)
-    n = collections.Counter()
+    n = collections.Counter(); per_unit = {}
     for u in cfg.get('affiliated_units') or []:
         for url in u.get('listings') or []:
             host = re.sub(r'^https?://', '', url).split('/')[0]
@@ -188,8 +189,22 @@ def units(key):
                 print(json.dumps(dict(unit=u['code'], ts=r['timestamp'], status=st, blocks=len(b), shell=len(b) < 5)), flush=True)
                 if st == 200:
                     n['paged_pages'] += unit_pages_of(c, cap, r, u['code'], url)
-        n['unit_years_without_blocks'] = sum(1 for _ in c.execute("select 1 from captures where department=? and http_status=200 and (text is null or length(text) < 500)", (u['code'],)))
+        shells = sorted({r[0] for r in c.execute("select substr(wayback_timestamp,1,4) from captures where department=? and http_status=200 and (text is null or length(text) < 500)", (u['code'],))})
+        n['unit_years_without_blocks'] += len(shells)
+        per_unit[u['code']] = dict(listings=list(u.get('listings') or []), captures=c.execute("select count(*) from captures where department=? and http_status=200", (u['code'],)).fetchone()[0], shell_years=shells)
+        if shells:  # R5 (Georgia Tech friction 18): a capture with almost no text is a script shell and proves nothing, say so
+            print(json.dumps(dict(unit=u['code'], shell_years=shells, warning='captures of these years hold < 500 characters of text (script shells)')), flush=True)
+    P.data_w('units-done.json', key).write_text(json.dumps(dict(school=key, built_at=datetime.datetime.now().isoformat(timespec='seconds'), units=per_unit), indent=1))
     print(json.dumps(dict(n)))
+
+
+def units_current(key):
+    """True when units-done.json exists and names every listing URL of every charter unit (R6: the review must not read a half-run or stale unit capture set)."""
+    done = read(P.data('units-done.json', key), None)
+    if not done:
+        return False
+    want = {u['code']: sorted(u.get('listings') or []) for u in S.get(key).get('affiliated_units') or []}
+    return all(code in done['units'] and sorted(done['units'][code]['listings']) == ls for code, ls in want.items())
 
 
 def unit_pages_of(c, cap, r, code, url):
@@ -299,6 +314,8 @@ def census_alias(census, names):
 
 
 def review(key):
+    if not units_current(key):
+        sys.exit(f'review refused: units-done.json is missing or older than the charter\'s [[affiliated_units]]; run `cs_related_school.py units {key}` first (Georgia Tech friction 19)')
     cands = read(P.data('cs-related-candidates.json', key), [])
     dblp = read(P.data('dblp-affiliated.json', key), {}).get('persons', [])
     census = {x['name']: x for x in read(P.data('census-faculty.json', key))['faculty']}
@@ -408,4 +425,6 @@ def review(key):
 
 
 if __name__ == '__main__':
+    if sys.argv[1] == 'units-check':
+        sys.exit(0 if units_current(sys.argv[2]) else 1)
     {'candidates': candidates, 'units': units, 'review': review}[sys.argv[1]](sys.argv[2])

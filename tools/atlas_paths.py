@@ -311,6 +311,7 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('homepage-identity.json', 'derived', 'hierarchy/{school}/homepage-identity.json', 'hierarchy/{school}/derived/homepage-identity.json'),
     ('census-report.md', 'derived', 'census/{school}-report.md', 'hierarchy/{school}/derived/report.md'),
     ('dblp-affiliated.json', 'derived', 'hierarchy/{school}/dblp-affiliated.json', 'hierarchy/{school}/derived/dblp-affiliated.json'),
+    ('units-done.json', 'derived', 'hierarchy/{school}/units-done.json', 'hierarchy/{school}/derived/units-done.json'),
     ('cs-related-candidates-openalex.json', 'derived', 'hierarchy/{school}/cs-related-candidates-openalex.json', 'hierarchy/{school}/derived/cs-related-candidates-openalex.json'),
     ('defense-evidence.json', 'reviewed', 'hierarchy/{school}/defense-evidence.json', 'hierarchy/{school}/reviewed/defense-evidence.json'),
     ('directory-evidence.json', 'reviewed', 'hierarchy/{school}/directory-evidence.json', 'hierarchy/{school}/reviewed/directory-evidence.json'),
