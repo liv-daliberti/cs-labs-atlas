@@ -82,7 +82,7 @@ ignore = [
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 # the code directories tests import from (no sys.path edits in tests/ or tools/; docs/CONTRIBUTING.md "Imports and sys.path")
-pythonpath = ["tools", "fulltext-push", "listings/scripts", "vendor/cmu_tools", "vendor/homogenizing_scripts", "vendor/princeton_tools"]
+pythonpath = ["tools", "fulltext-push", "listings/scripts", "vendor/cmu_tools", "vendor/homogenizing_scripts", "vendor/princeton_tools", "ai-writing/embeddings"]
 addopts = "-q -p no:cacheprovider"
 markers = [
   "nfs: needs the project data on /n/fs (packages, stores, sweeps); CI skips these (-m 'not nfs' or CS_ATLAS_CI=1)",

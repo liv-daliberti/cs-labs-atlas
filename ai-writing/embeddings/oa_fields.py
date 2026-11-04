@@ -23,7 +23,7 @@ import time
 import ecommon as C
 import oa_snapshot as S
 
-ID = re.compile(rb'"id":"https://openalex\.org/(W[0-9]+)"')
+ID = re.compile(rb'"id":\s?"https://openalex\.org/(W[0-9]+)"')
 SCHEMA = '''create table if not exists works (id text primary key, title text, year int, type text, language text, updated_date text,
  abstract text, primary_topic text, topics text, keywords text, snapshot_date text);
 create table if not exists parts (url text primary key, records int, kept int)'''
