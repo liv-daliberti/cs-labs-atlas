@@ -34,7 +34,9 @@ defenses (protocol stage 6, source 2) department dissertation-defense announceme
 directory (protocol stage 6) program PhD directories ([students].directories) list students with their own websites;
          a student's page that names the school, says PhD and puts an adviser phrase directly before a PI's full name
          ties the student to that PI (directory(); -> directory-evidence.json, merged by extract)
-usage: labpage_students_school.py links|defenses|directory|extract <key>
+undated  (R-STU-14) undated members of a lab page's PhD heading, set aside by the lab-page audit, count in the year of the capture showing them
+surname  (R-STU-15) surname-only adviser lists ('PhD Research Advisor: Brei') resolve to the one faculty member of that department listed that year
+usage: labpage_students_school.py links|defenses|directory|undated|surname|extract <key>
 """
 import collections, json, re, sys, urllib.parse, zlib
 from pathlib import Path
@@ -627,6 +629,163 @@ def directory(key):
     print(json.dumps(dict(n, students_with_adviser=len({r['student'] for r in out}), labs=len({r['pi'] for r in out}))))
 
 
+# --- R-STU-14 capture-year dating, R-STU-15 surname-only advisers (owner 2026-11-03) ------------------------------------------------------------
+
+def capture_year(url, fallback=None):
+    """The year of the Wayback capture a URL names (/web/YYYYMMDDhhmmss...), else the fallback (a live fetch's year)."""
+    m = re.search(r'/web/(\d{4})\d{0,10}', url or '')
+    return int(m.group(1)) if m else fallback
+
+
+STUDENT_HEAD = re.compile(r'^\W*(?:current\s+)?(?:ph\.?\s?d\.?|doctoral|graduate|grad\b|students?|members?|team|people|research(?:ers| group)|lab members)', re.I)
+NOT_A_LIST = re.compile(r'\b(?:publications?|papers?|arXiv|conference|journal|proceedings|et al|professor|postdoc\w*|alumni|former|past|collaborat\w+|coauthors?|talks?|news|teaching|courses?)\b|@|\bwith\b|[;]', re.I)
+NAME_PARTICLES = {'de', 'van', 'von', 'der', 'da', 'di', 'del', 'la', 'le', 'bin', 'al', 'dos', 'du', 'den'}
+
+
+def member_list_quote_ok(quote, name):
+    """R-STU-14: the verbatim quote must be a heading followed by a plain list of names up to this one: it opens with a student / people heading, holds no
+    publication, title, collaborator or e-mail cue and no more than two lowercase words before the name (a list of paper titles, a citation byline or a
+    sentence is not a member list)."""
+    i = quote.find(name)
+    if i <= 0 or not STUDENT_HEAD.search(quote) or '(' in name or '@' in name:
+        return False
+    pre = quote[:i]
+    if NOT_A_LIST.search(pre) or ':' in pre.replace('Students :', '').replace('Students:', '')[:0]:
+        return False
+    low = [w for w in re.findall(r"[^\W\d_][\w'-]*", pre) if w[0].islower() and w.lower() not in NAME_PARTICLES]
+    return len(low) <= 2
+
+
+def undated_capture_rows(records, page_head=None):
+    """R-STU-14: from lab-page audit records (labpage-audit.jsonl.gz) the members the audit set aside as `undated_cannot_place`: an undated entry under a
+    PhD-student heading of a lab page. Such a member is that lab's student in the year of the capture (Wayback, or live) that shows them, never earlier or
+    later; the same person on captures of several years gets the span of those capture years. Not kept: a member under an alumni / past / former heading
+    (the capture year is not a membership year), any role but `phd`, a name without a verbatim quote and a sha256, a PI whose family name is one letter (a placeholder
+    row), a page that does not name the PI within its first 400 characters (`page_head(sha256)` -> that text; a centre or group page that lists the PI among
+    several leads does not make the PI the members' adviser). -> [{pi, student, years, ...}]."""
+    by = {}
+    for r in records:
+        fb = int(str(r.get('audited_at') or '0')[:4]) or None
+        if len(r['pi'].split()[-1].strip('.')) < 2:
+            continue
+        for x in (r.get('students') or {}).get('missing_from_build') or []:
+            if x.get('reason_code') != 'undated_cannot_place' or x.get('role') != 'phd':
+                continue
+            if ALUM.search(x.get('section') or '') or ALUM.search((x.get('quote') or '')[:200]) or not (x.get('quote') and x.get('sha256') and x.get('url')) \
+                    or not member_list_quote_ok(x['quote'], x['name']):
+                continue
+            y = capture_year(x['url'], fb)
+            if not y or not 2016 <= y <= 2026:
+                continue
+            if page_head is not None and r['pi'].split()[-1].lower() not in (page_head(x['sha256']) or '').lower():
+                continue
+            k = (r['pi'], ' '.join(toks(x['name'])))
+            e = by.setdefault(k, dict(pi=r['pi'], student=x['name'], years=set(), first=None))
+            e['years'].add(y)
+            if not e['first'] or y < e['first'][0]:
+                e['first'] = (y, x)
+    rows = []
+    for (pi, _), e in sorted(by.items()):
+        y, x = e['first']
+        rows.append(dict(pi=pi, student=e['student'], years=[min(e['years']), max(e['years'])], years_basis='capture_date', section=x.get('section'),
+                         url=re.sub(r'^https?://web\.archive\.org/web/\d+(?:id_)?/', '', x['url']), capture_url=x['url'] if 'web.archive.org' in x['url'] else None,
+                         sha256=x['sha256'], quote=x['quote'], auto=True))
+    return rows
+
+
+def undated_capture(key):
+    """R-STU-14 for a school: `labpage_students_school.py undated <key>` -> hierarchy/<key>/reviewed/undated-capture-evidence.json (a RESEARCHED_FILES file)."""
+    import gzip
+    recs = [json.loads(line) for line in gzip.open(P.data('labpage-audit.jsonl.gz', key), 'rt')]
+    import html as H
+    import sqlite3
+    import zlib
+    dbs = [sqlite3.connect(f"file:{P.data(n, key)}?mode=ro", uri=True) for n in ('labpage-audit-captures.sqlite', 'labpage-captures.sqlite') if P.data(n, key).exists()]
+
+    def head(sha):
+        for c_ in dbs:
+            r_ = c_.execute('select content from captures where sha256=? and content is not null limit 1', (sha,)).fetchone()
+            if r_:
+                b = r_[0]
+                try:
+                    b = zlib.decompress(b)
+                except Exception:  # noqa: BLE001 (stored uncompressed)
+                    pass
+                t = b.decode('utf-8', 'replace') if isinstance(b, bytes) else b
+                t = re.sub(r'<(script|style)\b.*?</\1>', ' ', t, flags=re.S | re.I)
+                return ' '.join(H.unescape(re.sub(r'<[^>]+>', ' ', t)).split())[:400]
+        return None
+    rows = undated_capture_rows(recs, head)
+    by = collections.OrderedDict()
+    for r in rows:
+        by.setdefault(r['pi'], []).append({k: v for k, v in r.items() if k not in ('pi', 'student')} | dict(name=r['student'], role='phd', alumni=False))
+    out = [dict(pi=pi, lab_site=None, people_page=None, students=ss) for pi, ss in by.items()]
+    P.data_w('undated-capture-evidence.json', key).write_text(json.dumps(out, indent=1, ensure_ascii=False))
+    print(json.dumps(dict(relations=len(rows), labs=len(out))))
+
+
+SURNAME_ENTRY = re.compile(r"(?P<name>[A-Z][^\s,]*(?: [A-Z][^\s,]*){1,3}) (?P<uid>[a-z][a-z0-9]{2,9}) (?P<prog>PhD|MSE|MS)\b"
+                           r"(?: Research Advis[eo]rs?:? (?P<adv>(?:[A-Z][^\s,]*, )*[A-Z][^\s,]*))?")
+
+
+def surname_entries(flat):
+    """R-STU-15: [(student, program, [adviser surnames], quote)] of a student list that names each PhD student's adviser by surname only
+    ('<First Last> <uniqname> PhD Research Advisor: Brei, Luntz'): the adviser list is the comma-joined surnames, which ends at the first
+    one without a trailing comma. PhD entries with an adviser only."""
+    i = flat.find("Advisor's Last Name")
+    t = flat[i + len("Advisor's Last Name"):] if i >= 0 else flat
+    out = []
+    for m in SURNAME_ENTRY.finditer(t):
+        if m.group('prog') == 'PhD' and m.group('adv'):
+            out.append((m.group('name'), 'PhD', [a.strip(' ,') for a in m.group('adv').split(', ')], t[m.start():m.end()]))
+    return out
+
+
+def resolve_surname(sur, dept, year, listed):
+    """R-STU-15: the one faculty member of `dept` listed in `year` with this family name, else None. `listed` = [(pi, family name, dept, year)] from the
+    school's dated faculty listings. Zero or several faculty with the surname resolve nothing; a department without a listing for the year resolves nothing."""
+    f = lambda s: ''.join(ch for ch in __import__('unicodedata').normalize('NFD', s) if not __import__('unicodedata').combining(ch)).lower()  # noqa: E731
+    hit = {pi for pi, fam, d, y in listed if d == dept and y == year and f(fam) == f(sur)}
+    return next(iter(hit)) if len(hit) == 1 else None
+
+
+def surname_advisers(key):
+    """R-STU-15 for a school: charter `[students].surname_adviser_lists` = [{url, department}] (Wayback captures); a student whose adviser surname
+    resolves (resolve_surname, in the capture's year and the list's department) is that PI's student in the capture years. Quote = the student's own
+    entry through the adviser surnames. -> hierarchy/<key>/reviewed/surname-adviser-evidence.json (a RESEARCHED_FILES file)."""
+    c = W.con(key)
+    listed = []
+    for p in json.loads(P.data('pis.json', key).read_text()):
+        for ln in p.get('listings') or []:
+            if str(ln.get('kind', '')).startswith('unit_listing:') and ln.get('year'):
+                listed.append((p['pi'], p['pi'].split()[-1], ln['kind'].split(':', 1)[1], int(ln['year'])))
+    by = {}; n = collections.Counter()
+    for lst in S.field(S.get(key), 'students.surname_adviser_lists') or []:
+        for r in W.cdx_rows(c, lst['url'], collapse='timestamp:4'):
+            cap, st, sha, b = W.capture(c, r['timestamp'], r['original'], lst['url'], 'student-directory')
+            if st != 200:
+                continue
+            y = int(r['timestamp'][:4])
+            for nm, _, advs, q in surname_entries(W.flat(b)):
+                for a in advs:
+                    pi = resolve_surname(a, lst['department'], y, listed)
+                    n['resolved' if pi else 'skipped'] += 1
+                    if not pi:
+                        continue
+                    e = by.setdefault((nm, pi), dict(years=set(), first=None))
+                    e['years'].add(y)
+                    if not e['first'] or r['timestamp'] < e['first'][0]:
+                        e['first'] = (r['timestamp'], cap, sha, q)
+    out = collections.OrderedDict()
+    for (nm, pi), e in sorted(by.items()):
+        ts, cap, sha, q = e['first']
+        out.setdefault(pi, []).append(dict(name=nm, role='phd', years=[min(e['years']), max(e['years'])], years_basis='directory_years', alumni=False,
+                                           section='surname-only adviser list (' + lst['url'] + ')', url=re.sub(r'^https?://web\.archive\.org/web/\d+(?:id_)?/', '', cap),
+                                           capture_url=cap if 'web.archive.org' in cap else None, sha256=sha, quote=q[:600], auto=True))
+    P.data_w('surname-adviser-evidence.json', key).write_text(json.dumps([dict(pi=pi, lab_site=None, people_page=None, students=ss) for pi, ss in out.items()], indent=1, ensure_ascii=False))
+    print(json.dumps(dict(n, relations=sum(len(v) for v in out.values()), labs=len(out))))
+
+
 def extract(key):
     c = W.con(key); ev, rep = [], collections.Counter()
     prev = previous_school_students(key); dropped_prev = []
@@ -738,4 +897,4 @@ def extract(key):
 
 
 if __name__ == '__main__':
-    {'links': links, 'defenses': defenses, 'directory': directory, 'extract': extract}[sys.argv[1]](sys.argv[2])
+    {'links': links, 'defenses': defenses, 'directory': directory, 'extract': extract, 'undated': undated_capture, 'surname': surname_advisers}[sys.argv[1]](sys.argv[2])

@@ -269,6 +269,7 @@ CSE/ECE PhD defence and graduation pages (Wayback), lab member pages and the PIs
 [students]
 # program PhD directories (name + the student's own website; no adviser): tools/labpage_students_school.py directory
 directories = ["cse.engin.umich.edu/people/phd-students/", "ece.engin.umich.edu/people/directory/phd-students/"]
+surname_adviser_lists = [{url = "www.me.engin.umich.edu/people/students", department = "ME"}]   # "<Name> <uniqname> PhD Research Advisor: <surname>" (ME graduate list 2016-2017); R-STU-15
 adviser_flat_lists = ["robotics.umich.edu/people/students/"]   # '<Name> PhD Student ... Advisor <PI> Research Interests' (Wayback captures 2019-2026)
 # rosters (CSE/ECE phd-students lists + co-authorship, R-STU-02): tried 2026-11-03 under the UChicago rule and a stricter two_and_last rule; re-judged on evidence only, 7 of 30 rows have an independent page (lab members list) and 23 have only the roster+co-authorship itself, so they are not kept (STAGE-6 update)
 sources = [

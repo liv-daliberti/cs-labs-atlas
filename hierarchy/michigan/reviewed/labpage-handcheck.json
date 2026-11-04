@@ -185,6 +185,56 @@
    "paper_score": null,
    "result": "students_fail_roster_strict_on_evidence",
    "note": "round 6 withdrawn and re-judged on evidence: fails; roster+co-authorship is not wired. Only the 29 Robotics adviser-list relations are added."
+  },
+  {
+   "round": 7,
+   "date": "2026-11-03",
+   "label": "R-STU-14 capture-year dating (tools/labpage_students_school.py undated); every output relation judged from its capture (5 of 5, below the 30-row sample size)",
+   "additions_generated_at": "2026-11-02T16:49:43+00:00",
+   "students": {
+    "sampled": 5,
+    "sample_size": 5,
+    "seed": null,
+    "membership_errors": 0,
+    "doubtful_count": 0,
+    "role_or_year_errors": 0,
+    "note": "Output of the rule as committed: Guo/Y. Liu (guoanhong.com 2026, \"PhD Students (mentoring plan)\"), Najarian/Vaidya (lab people page 2026, \"Graduate Students\"), Mahlke/Pan (cccp.eecs.umich.edu people.php 2023, names Faculty Scott Mahlke and \"Graduate Students\"), Yu/Singhal (stellayu page 2026, \"Ph.D. Students\"), Mudge/Beaumont (tnm.engin.umich.edu/students 2019, \"Students and Projects ... Trevor Mudge\"). Each shows the heading, the name and the PI on the page; year = capture year. CAVEAT: the first unfiltered output (150 rows) was wrong in about 9 of the first 15 rows (publication coauthors read as members); the quote filter, the placeholder-PI rule and the page-head rule were added from that and from a 12-row output in which three FASoC-centre rows (Dreslinski listed among several leads) were wrong; the final 5 rows are the filtered set, judged after the filters were fixed, so this round is weak evidence of the rule's precision."
+   },
+   "papers": null,
+   "items": {
+    "membership": [],
+    "role_or_year": []
+   },
+   "membership_score": 0.0,
+   "role_year_errors": 0,
+   "paper_score": null,
+   "result": "students_pass_r_stu_14",
+   "note": "R-STU-14 first run on Michigan: 5 relations in 5 labs, 2 of them labs that had no students (Mahlke, Mudge)."
+  },
+  {
+   "round": 8,
+   "date": "2026-11-03",
+   "label": "R-STU-15 surname-only advisers (ME graduate list, Wayback 2017-05-29); every output relation judged from its capture (2 of 2)",
+   "additions_generated_at": "2026-11-02T16:49:43+00:00",
+   "students": {
+    "sampled": 2,
+    "sample_size": 2,
+    "seed": null,
+    "membership_errors": 0,
+    "doubtful_count": 0,
+    "role_or_year_errors": 0,
+    "note": "Jeremy Brown (PhD, \"Research Advisor: Gillespie\") and Sergei Avedisov (PhD, \"Research Advisor: Orosz\"), capture 20170529174432 of me.engin.umich.edu/people/students; Gillespie and Orosz are the only faculty of those surnames in the 2017 ME listing. 32 adviser surnames were skipped (not a listed ME PI, or several)."
+   },
+   "papers": null,
+   "items": {
+    "membership": [],
+    "role_or_year": []
+   },
+   "membership_score": 0.0,
+   "role_year_errors": 0,
+   "paper_score": null,
+   "result": "students_pass_r_stu_15",
+   "note": "R-STU-15 first run on Michigan: 2 relations in 2 labs, 1 of them a lab with no students (Orosz)."
   }
  ]
 }

@@ -377,6 +377,31 @@ nothing: 52 such rows keep their earlier role; UChicago's two `not` rows were ch
 
 ## Student–paper links
 
+### R-STU-14 (2026-11-03, owner) — capture-year dating of undated lab-page members
+An undated member listed under a PhD-student heading of a lab page counts as that lab's student in the year of the Wayback (or live)
+capture that shows them, never earlier or later; the same person on captures of several years gets the span of those capture years
+(`years_basis: capture_date`). Applies to the lab-page audit's `undated_cannot_place` entries, through
+`tools/labpage_students_school.py undated <school>` (`undated_capture_rows`, `member_list_quote_ok`; -> `reviewed/undated-capture-evidence.json`,
+a researched-evidence file). Not kept: a member under an alumni / past / former heading (the capture year is not a membership year), any role but
+`phd`, a quote that is not a heading followed by a plain list of names (publication, title, collaborator or e-mail cues, more than two lowercase
+words), a PI with a one-letter family name (placeholder row), a page that does not name the PI in its first 400 characters (a centre page listing
+the PI among several leads). Tests: `tests/test_students_capture_surname.py`.
+
+### R-STU-15 (2026-11-03, owner) — surname-only advisers
+A student list that names the adviser by surname only ('PhD Research Advisor: Brei, Luntz', ME graduate list) resolves each surname against the
+school's dated faculty listing for that department and the capture's year (`unit_listing:<dept>` in `pis.json`): exactly one faculty member with
+that family name (accents and case folded) resolves it; zero or several skip it, a department without a listing for the year skips it, and a surname
+is never resolved across departments. The student counts in the capture years; the quote is the student's own entry through the surnames. Charter
+`[students].surname_adviser_lists = [{url, department}]`; `tools/labpage_students_school.py surname <school>` (`surname_entries`,
+`resolve_surname`; -> `reviewed/surname-adviser-evidence.json`). This is an exception to R-STU-03 (full-name adviser fields) that the owner approved
+for surnames the listing resolves uniquely. Tests: `tests/test_students_capture_surname.py`.
+
+### R-STU-16 (2026-11-03, owner) — Mathematics Genealogy Project
+The MGP (mathgenealogy.org, genealogy.math.ndsu.nodak.edu) is a source only when its robots.txt and terms allow and the site answers: robots.txt first
+(including any group naming ClaudeBot or anthropic-ai), polite pacing, one query per PI by MGP id or name, students with a degree from this school,
+year >= 2016 and the PI as advisor; the PI is matched by name plus school plus field, never by name alone. On 2026-11-03 the site served only its
+outage notice (PHP disabled since 21 October 2026), robots.txt answered 404 (no rules) and no terms page was reachable, so no query was made.
+
 ### R-LNK-01 — link bases
 A lab student is linked to a lab paper by the collection's person link; by their name on a school-affiliated
 authorship; by their name on the byline within three years of the recorded advising; by their full name within two
