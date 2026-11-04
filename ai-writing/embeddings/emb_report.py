@@ -35,9 +35,11 @@ def coverage():
     home = dict(uni.execute('select paper_id, home_school from papers'))
     ab, ft = {}, {}
     for (p,) in txt.execute('select paper_id from abstracts'):
-        ab[home[p]] = ab.get(home[p], 0) + 1
+        if p in home:
+            ab[home[p]] = ab.get(home[p], 0) + 1
     for (p,) in txt.execute('select paper_id from fulltext where usable=1'):
-        ft[home[p]] = ft.get(home[p], 0) + 1
+        if p in home:
+            ft[home[p]] = ft.get(home[p], 0) + 1
     rows = [[s + ('' if s in C.RELEASED else ' (unreleased)'), papers.get(s, 0), ab.get(s, 0), ft.get(s, 0)] for s in C.SCHOOLS]
     rows.append(['all', sum(papers.values()), sum(ab.values()), sum(ft.values())])
     emb = []
