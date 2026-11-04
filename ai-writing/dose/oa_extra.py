@@ -37,7 +37,7 @@ def project(w, date):
     auth = w.get('authorships') or []
     refs = [wnum(r) for r in w.get('referenced_works') or [] if wnum(r).isdigit()]
     return (w['id'].rsplit('/', 1)[-1], w.get('publication_year'), w.get('type'), oa.get('oa_status'), int(bool(oa.get('is_oa'))), src.get('type'),
-            src.get('display_name'), len(auth), json.dumps([(a.get('author') or {}).get('id', '').rsplit('/', 1)[-1] for a in auth]), len(refs),
+            src.get('display_name'), len(auth), json.dumps([((a.get('author') or {}).get('id') or '').rsplit('/', 1)[-1] for a in auth]), len(refs),
             zlib.compress(','.join(refs).encode()), w.get('cited_by_count'), date)
 
 
