@@ -163,6 +163,15 @@ def main():
     out.append(table(emb, ['model', 'text', 'papers', 'by school', 'revision']) + '\n')
     topics_section(out)
     novelty_section(out)
+    out.append('## Reading the results (as of 2026-11-04)\n')
+    out.append('- Novelty: the direction of the post-2023 change depends on the embedding model, so there is no model-agnostic trend. The SPECTER2 family (trained on citation structure) shows '
+               'lower novelty after 2022 on abstracts (size-matched 1 - mean-of-5-nearest, k = 3, all papers: SPECTER2 base about -0.02, proximity about -0.01); BGE-M3, Nomic and SciNCL show a '
+               'small rise (about +0.004 to +0.006); gte-Qwen2 and Qwen3 are near zero. EPFL rises under every model; UChicago falls under every model (its 2016-2018 pool is small). '
+               'Full-text vectors move less than abstract vectors. The size-matched and full-pool columns differ because a growing pool lowers 1 - max cosine by itself.\n'
+               '- Topics: entropy over BERTopic topics is flat from 2016 to 2023 and lower in 2025-2026 (2026 is a partial year); per school the post-pre change has opposite signs (CMU and Stanford down, '
+               'EPFL and Princeton up). Labs with >= 20 papers in both periods are slightly more spread over topics after 2022 (interval in the lab table). Topics are model-dependent (309 and 379 topics; '
+               '37-39% of papers are HDBSCAN noise before reassignment), so compare the two models and the OpenAlex rows rather than trust one.\n'
+               '- Full-text vectors of the 8k-token models (Qwen3, GTE-Qwen2, BGE-M3, Nomic) are produced by queued resumable jobs; the coverage table shows what has been merged so far.\n')
     C.REPORTS.mkdir(parents=True, exist_ok=True)
     (C.REPORTS / 'EMBEDDINGS-TOPICS-NOVELTY.md').write_text('\n'.join(out) + '\n')
     C.log(report=str(C.REPORTS / 'EMBEDDINGS-TOPICS-NOVELTY.md'), lines=len(out))
