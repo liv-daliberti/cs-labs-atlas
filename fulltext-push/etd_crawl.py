@@ -131,13 +131,20 @@ PARSERS = dict(dspace7=parse_dspace7, invenio=parse_invenio)
 
 # ------------------------------------------------------------------------------------------------------------------ enumerate
 
-def sitemap_urls(client, url, rx):
-    """Item URLs of a sitemap or sitemap index (nested sitemaps followed), in listed order, filtered by regex."""
-    import xml.etree.ElementTree as ET
-    root = ET.fromstring(client.get(url).content)
-    locs = [e.text.strip() for e in root.iter() if O.local(e.tag) == 'loc' and e.text]
-    if O.local(root.tag) == 'sitemapindex':
-        return [u for sm in locs for u in sitemap_urls(client, sm, rx)]
+def sitemap_urls(client, url, rx, tries=4):
+    """Item URLs of a sitemap or sitemap index (nested sitemaps followed), in listed order, filtered by regex. A response that ends before its
+    closing tag (a 7 MB sitemap cut off on 2026-11-04) is asked again, up to `tries` times, never parsed as complete."""
+    for attempt in range(tries):
+        text = client.get(url).content.decode('utf8', 'replace')
+        if re.search(r'</(urlset|sitemapindex)>\s*$', text):
+            break
+        print(json.dumps(dict(sitemap_truncated=url, bytes=len(text), attempt=attempt)), flush=True)
+        client.sleep(60 * (attempt + 1))
+    else:
+        raise O.Blocked(f'sitemap {url} stays truncated')
+    locs = [u.strip() for u in re.findall(r'<loc>\s*([^<]+?)\s*</loc>', text)]
+    if '<sitemapindex' in text[:2000]:
+        return [u for sm in locs for u in sitemap_urls(client, sm, rx, tries)]
     return [u for u in locs if re.search(rx, u)]
 
 

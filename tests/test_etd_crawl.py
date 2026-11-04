@@ -142,3 +142,14 @@ def test_charters():
         c = SC.field(SC.get(k), 'etd_crawl')
         assert c['parser'] == parser and c['delay'] >= 10 and c['host'] in c.get('sitemap', c['host'] + '/')
     assert 'michigan' not in [k for k in SC.keys() if SC.field(SC.get(k), 'etd_crawl')]
+
+
+def test_sitemap_truncated_response_is_asked_again_never_parsed(monkeypatch):
+    idx = b'<?xml version="1.0"?><sitemapindex><sitemap><loc>https://h/s0.xml</loc></sitemap></sitemapindex>'
+    cut = b'<urlset><url><loc>https://h/entities/publication/1</loc></url><url><loc>https://h/entities/pub'
+    full = (b'<urlset><url><loc>https://h/entities/publication/1</loc></url><url><loc>https://h/entities/person/2</loc></url></urlset>')
+    sess = Sess([Resp(idx), Resp(cut), Resp(full)])
+    cl = O.Client(10, session=sess, sleep=lambda s: None, clock=lambda: 0.0)
+    assert E.sitemap_urls(cl, 'https://h/sitemap_index.xml', '/entities/publication/') == ['https://h/entities/publication/1']
+    with pytest.raises(O.Blocked):
+        E.sitemap_urls(O.Client(10, session=Sess([Resp(cut)] * 4), sleep=lambda s: None, clock=lambda: 0.0), 'https://h/s.xml', 'x')
