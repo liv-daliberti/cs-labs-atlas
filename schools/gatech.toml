@@ -560,3 +560,14 @@ probe = "https://music.gatech.edu/people"
 verdict = "skip"
 repository = "SMARTech (repository.gatech.edu, DSpace 7)"
 reason = "robots.txt (2026-11-04) has 'Disallow: /server/oai/*' and 'Disallow: /server/api/*' (only core/bitstreams and core/mapping are allowed) for every agent: the OAI-PMH endpoint is closed to us, so nothing is fetched. Crawl-delay 10. No ClaudeBot/anthropic-ai rule."
+
+# Dissertation item pages for the adviser field (fulltext-push/etd_crawl.py; owner 2026-11-04). OAI-PMH is disallowed (above), the item pages are not:
+# /entities/publication/<uuid> renders server-side with Author(s), Advisor(s), Date, Resource Subtype. robots.txt: Disallow /search /browse /items/*/full /entities/*/full, Crawl-delay 10.
+# The /items/<uuid> URLs answer the login view to this client (not used). About 30k publication pages, one per 10 s.
+[etd_crawl]
+host = "repository.gatech.edu"
+delay = 10
+enumerate = "sitemap"
+sitemap = "https://repository.gatech.edu/sitemap_index.xml"
+url_rx = "/entities/publication/"
+parser = "dspace7"

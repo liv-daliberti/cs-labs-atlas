@@ -118,3 +118,12 @@ school's charter the configuration (verdict, base URL, metadataPrefix, sets, del
 | Stanford | SDR `purl.stanford.edu` / SearchWorks | skip | no OAI endpoint on either host; the robots-listed sitemaps list PURLs only, so a harvest would be one request per PURL over the whole repository, not a bulk interface |
 | Georgia Tech | SMARTech `repository.gatech.edu` | skip | robots.txt: `Disallow: /server/oai/*` and `/server/api/*` (core/bitstreams and core/mapping allowed) |
 | Michigan | Deep Blue | never | owner rule: it disallows AI agents by name |
+
+### Dissertation item-page crawl for advisers: `etd_crawl.py` (2026-11-04, owner)
+Georgia Tech's OAI is disallowed and UChicago's oai_dc has no contributors, so the adviser field is read from the dissertation item pages,
+politely: one host, one request per >= 10 s (the declared Crawl-delay), robots.txt (this client, ClaudeBot, anthropic-ai) checked for every URL,
+resumable (`raw/etd_crawl/<school>.sqlite`, queue + pages), stopping on a block or 25 login views in a row. Per page only title, author, degree/type,
+year, department, advisors, URL, sha256 and a short quote are kept. Georgia Tech: the `/entities/publication/<uuid>` pages of the sitemap (the
+`/items/<uuid>` URLs answer the login view to this client), dissertation = Resource Subtype Dissertation/Doctoral. UChicago: the OAI harvest's
+doctoralThesis records. `etd_crawl.py evidence <school>` matches advisors to PIs by full name and writes `thesis-evidence.json` rows (quote + page hash),
+read by `tools/pihier/students.py` like the other researched sources; written only after a 20-row hand round at the standard bar.

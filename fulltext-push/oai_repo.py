@@ -223,7 +223,7 @@ class Client:
         self.delay, self.last, self.sleep, self.clock = delay, -1e9, sleep, clock
         self.requests = 0
 
-    def get(self, url, params=None):
+    def get(self, url, params=None, tolerate=()):
         for attempt in range(6):
             self.sleep(max(0, self.delay - (self.clock() - self.last)))
             self.last = self.clock()
@@ -239,6 +239,8 @@ class Client:
                 print(json.dumps(dict(status=r.status_code, wait=wait, at=F.now())), flush=True)
                 self.sleep(wait)
                 continue
+            if r.status_code in tolerate:
+                return r
             if r.status_code != 200:
                 raise Blocked(f'HTTP {r.status_code} from {urlsplit(url).netloc}')
             return r
