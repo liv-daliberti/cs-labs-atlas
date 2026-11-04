@@ -59,6 +59,11 @@ PIPELINES = {
         ('build', 'school', 'PY $TOOLS/pi_hierarchy.py {school}', 'project', 3, '40G', '02:00:00'),
         ('audit', 'school', 'PY $TOOLS/labpage_audit.py audit {school}', 'project', 2, '16G', '02:00:00'),
     ],
+    # the lab-page papers: resolve the listed titles (sweep, pi-works, arXiv, proceedings; no OpenAlex key in this job, so no title-search credit), then the audit
+    'labpage-papers': [
+        ('recover', 'school', 'PY $TOOLS/labpage_audit.py recover {school}', 'project', 2, '16G', '12:00:00'),
+        ('audit', 'school', 'PY $TOOLS/labpage_audit.py audit {school}', 'project', 2, '16G', '02:00:00'),
+    ],
     # why each student without a linked paper has none (chain check 4): offline over the school's sweep -> link-diagnosis.json
     'link-diagnosis': [
         ('diagnose', 'school', 'PY $TOOLS/link_diagnosis.py {school}', 'project', 2, '24G', '02:00:00'),
