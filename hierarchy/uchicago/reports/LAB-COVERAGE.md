@@ -18,7 +18,7 @@ Reasons for 0 students: {'sources_exhausted': 46, 'appointment_ended_early': 4, 
 | Bo Li | CS | 0 | - | 35 | sources_exhausted |  |
 | Ce Zhang | CS | 0 | - | 16 | sources_exhausted |  |
 | Christopher Thomas Ryan | BOOTH | 0 | - | 7 | sources_exhausted |  |
-| Claire Donnat | STAT | 0 | - | 22 | sources_exhausted |  |
+| Claire Donnat | STAT | 0 | - | 26 | sources_exhausted |  |
 | David Cash | CS | 0 | - | 12 | sources_exhausted |  |
 | Denis R. Hirschfeldt | MATH | 0 | - | 11 | sources_exhausted |  |
 | Eric Budish | BOOTH | 0 | - | 17 | sources_exhausted |  |
@@ -31,7 +31,7 @@ Reasons for 0 students: {'sources_exhausted': 46, 'appointment_ended_early': 4, 
 | Haotian Jiang | CS | 0 | - | 11 | sources_exhausted |  |
 | Haozhi Qi | CS | 0 | - | 0 | new_hire_2025_or_later | new_hire_2025_or_later |
 | Janos Simon | CS | 15 | lab page 15 | 0 |  | no_school_affiliated_works |
-| Jeremy Hoskins | STAT | 0 | - | 35 | sources_exhausted |  |
+| Jeremy Hoskins | STAT | 0 | - | 40 | sources_exhausted |  |
 | John Goldsmith | CS | 0 | - | 5 | sources_exhausted |  |
 | Jonathan Weare | STAT | 0 | - | 5 | appointment_ended_early |  |
 | Kanishka Misra | TTIC | 0 | - | 1 | new_hire_2025_or_later |  |
@@ -41,7 +41,7 @@ Reasons for 0 students: {'sources_exhausted': 46, 'appointment_ended_early': 4, 
 | L. Ridgway Scott | CS | 0 | - | 37 | sources_exhausted |  |
 | Lorenzo Orecchia | CS | 0 | - | 6 | sources_exhausted |  |
 | László Babai | CS | 0 | - | 8 | sources_exhausted |  |
-| Maryanthe Malliaris | MATH | 0 | - | 18 | sources_exhausted |  |
+| Maryanthe Malliaris | MATH | 0 | - | 19 | sources_exhausted |  |
 | Maryellen L. Giger | DSI | 0 | - | 27 | new_hire_2025_or_later |  |
 | Matthew Taddy | BOOTH | 0 | - | 10 | appointment_ended_early |  |
 | Michael J. O'Donnell | CS | 0 | - | 0 | sources_exhausted | no_school_affiliated_works |
@@ -95,14 +95,14 @@ Reasons for 0 students: {'sources_exhausted': 46, 'appointment_ended_early': 4, 
 | John H. Reppy | CS | 2 | adviser list 1, roster+co-author 1 | 14 |  |  |
 | John Lafferty | CS | 1 | roster+co-author 1 | 7 |  |  |
 | John R. Birge | BOOTH | 5 | lab page 5 | 42 |  |  |
-| Julia Chuzhoy | CS | 5 | adviser list 5 | 26 |  |  |
+| Julia Chuzhoy | CS | 5 | adviser list 5 | 27 |  |  |
 | Junchen Jiang | CS | 10 | roster+co-author 10 | 76 |  |  |
 | Karen Livescu | CS | 20 | adviser list 20 | 91 |  |  |
 | Kevin Gimpel | CS | 9 | adviser list 9 | 85 |  |  |
 | Kyle Chard | CS | 11 | roster+co-author 11 | 219 |  |  |
-| Lek-Heng Lim | STAT | 11 | lab page 11 | 60 |  |  |
+| Lek-Heng Lim | STAT | 11 | lab page 11 | 63 |  |  |
 | Linwei Xin | BOOTH | 3 | lab page 3 | 14 |  |  |
-| Madhur Tulsiani | CS | 10 | adviser list 8, lab page 2 | 22 |  |  |
+| Madhur Tulsiani | CS | 10 | adviser list 8, lab page 2 | 23 |  |  |
 | Marisa Casillas | PSYCH | 16 | lab page 16 | 8 |  |  |
 | Marshini Chetty | CS | 2 | roster+co-author 2 | 37 |  |  |
 | Matthew Stephens | STAT | 6 | roster+co-author 6 | 76 |  |  |
@@ -131,7 +131,7 @@ Reasons for 0 students: {'sources_exhausted': 46, 'appointment_ended_early': 4, 
 | Shiry Ginosar | TTIC | 5 | adviser list 1, lab page 4 | 7 |  |  |
 | Tengyuan Liang | BOOTH | 1 | roster+co-author 1 | 18 |  |  |
 | Varun Gupta | BOOTH | 3 | lab page 3 | 16 |  |  |
-| Wei-Biao Wu | STAT | 6 | roster+co-author 6 | 77 |  |  |
+| Wei-Biao Wu | STAT | 6 | roster+co-author 6 | 83 |  |  |
 | William Fefferman | CS | 2 | roster+co-author 2 | 52 |  |  |
 | Yali Amit | CS | 1 | roster+co-author 1 | 14 |  |  |
 | Yanjing Li | CS | 5 | roster+co-author 5 | 23 |  |  |

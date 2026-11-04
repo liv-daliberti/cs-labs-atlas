@@ -10,6 +10,8 @@
 # No polling by us: every request waits for host_throttle's shared web.archive.org slot and its 429 cooldown (listings/scripts/wb.py), so the job simply sits out a cooldown.
 # Output (hand read afterwards): hierarchy/uchicago/tmp/etdwork/defense-scan.json; the captures are stored in the school's captures db.
 . "${CS_ATLAS_CODE:-$SLURM_SUBMIT_DIR}/paths.sh" || exit 1
+export FTP_PY="$CS_ATLAS_PY"
+. "$CS_ATLAS_CODE/fulltext-push/job_snapshot.sh" || exit 1
 export PYTHONPATH="$CS_ATLAS_TOOLS:$CS_ATLAS_CODE/listings/scripts:$CS_ATLAS_CODE/fulltext-push"
 cd "$CS_ATLAS_TOOLS"
 OUT="$CS_ATLAS_CODE/hierarchy/uchicago/tmp/etdwork/defense-scan.json"
