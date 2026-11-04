@@ -10,7 +10,7 @@ schools; the Princeton stage's earlier answers are reused, never repeated).
 search  papers missing at princeton, mit, cmu, berkeley (year >= 2015, title >= 30 normalized characters), the paywalled
         publishers first (IEEE, ACM, Springer, Elsevier, Wiley, Optica, SPIE, Cambridge, ...)
 add     candidates for every school from the cached answers (lab_channels.write: catalogs / Princeton packages)
-usage: nsf_par_lab.py search [<school> ...] | add [<school> ...]
+usage: nsf_par_lab.py search [<school> ...] [--limit=N] | add [<school> ...]
 """
 import gzip, json, re, sqlite3, sys, time
 from collections import Counter
@@ -21,6 +21,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import ftp_common as F
 
 SCHOOLS = ['mit', 'cmu', 'berkeley', 'princeton']
+US_MORE = ['stanford', 'michigan', 'uchicago', 'gatech']  # 2026-11-04: NSF-funded US schools not yet searched (nsf-par.slurm)
 DB = F.P.FT_RAW / 'nsf_par.sqlite'
 PRIN_RAW = F.P.archive_sweep('claude-princeton-20261015') / 'cs-structure/raw/nsf_par'
 PAYWALLED = ('10.1109', '10.1145', '10.1007', '10.1016', '10.1002', '10.1111', '10.1364', '10.1117', '10.1017', '10.1080', '10.1137', '10.1287',
@@ -60,13 +61,14 @@ def todo(schools):
     return out
 
 
-def search(schools):
+def search(schools, limit=None):
     import requests
     sys.path.insert(0, str(F.PRIN_TOOLS))
     from cs_nsf_par import parse
     c = db(); seed_from_princeton(c)
     done = {t for (t,) in c.execute("SELECT t FROM searches WHERE status = '200'")}
     want = sorted(((p, t, title) for t, (p, title) in todo(schools).items() if t not in done), key=lambda x: x[0])
+    want = want[:limit] if limit else want
     print(json.dumps(dict(to_search=len(want), cached=len(done))), flush=True)
     s = requests.Session(); s.headers['User-Agent'] = F.UA
     last, hits = 0.0, 0
@@ -115,5 +117,10 @@ def add(schools):
 
 
 if __name__ == '__main__':
-    cmd, schools = sys.argv[1], sys.argv[2:] or SCHOOLS
-    {'search': search, 'add': add}[cmd](schools)
+    cmd, args = sys.argv[1], sys.argv[2:]
+    lim = [a for a in args if a.startswith('--limit=')]
+    schools = [a for a in args if not a.startswith('--')] or SCHOOLS
+    if cmd == 'search':
+        search(schools, int(lim[0].split('=')[1]) if lim else None)
+    else:
+        add(schools)
