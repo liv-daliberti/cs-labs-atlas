@@ -1,8 +1,8 @@
 # uchicago: lab coverage (students, papers, reasons)
 
-Labs 134; with students 64; with papers 124; median papers per lab 21.
+Labs 134; with students 62; with papers 124; median papers per lab 21.
 
-Reasons for 0 students: {'sources_exhausted': 59, 'appointment_ended_early': 4, 'new_hire_2025_or_later': 7}. Reasons for 0 papers: {'no_identity': 1, 'appointment_ended_early': 1, 'no_school_affiliated_works': 4, 'new_hire_2025_or_later': 4}.
+Reasons for 0 students: {'sources_exhausted': 60, 'appointment_ended_early': 4, 'new_hire_2025_or_later': 8}. Reasons for 0 papers: {'no_identity': 1, 'appointment_ended_early': 1, 'no_school_affiliated_works': 4, 'new_hire_2025_or_later': 4}.
 
 | PI | dept | students | sources | papers | reason (students) | reason (papers) |
 |---|---|---|---|---|---|---|
@@ -18,9 +18,10 @@ Reasons for 0 students: {'sources_exhausted': 59, 'appointment_ended_early': 4, 
 | Ariel Feldman | CS | 0 | - | 0 | appointment_ended_early | appointment_ended_early |
 | Baris Ata | BOOTH | 0 | - | 18 | sources_exhausted |  |
 | Bo Li | CS | 0 | - | 35 | sources_exhausted |  |
+| Brent Doiron | STAT | 0 | - | 26 | sources_exhausted |  |
 | Ce Zhang | CS | 0 | - | 16 | sources_exhausted |  |
 | Christopher Thomas Ryan | BOOTH | 0 | - | 7 | sources_exhausted |  |
-| Claire Donnat | STAT | 0 | - | 22 | sources_exhausted |  |
+| Claire Donnat | STAT | 0 | - | 26 | sources_exhausted |  |
 | Cong Ma | STAT | 0 | - | 21 | sources_exhausted |  |
 | David Cash | CS | 0 | - | 12 | sources_exhausted |  |
 | Denis R. Hirschfeldt | MATH | 0 | - | 11 | sources_exhausted |  |
@@ -36,7 +37,7 @@ Reasons for 0 students: {'sources_exhausted': 59, 'appointment_ended_early': 4, 
 | James A. Evans | DSI | 0 | - | 88 | sources_exhausted |  |
 | Janos Simon | CS | 15 | lab page 15 | 0 |  | no_school_affiliated_works |
 | Jean-Pierre H. Dube | BOOTH | 0 | - | 13 | sources_exhausted |  |
-| Jeremy Hoskins | STAT | 0 | - | 35 | sources_exhausted |  |
+| Jeremy Hoskins | STAT | 0 | - | 40 | sources_exhausted |  |
 | John Goldsmith | CS | 0 | - | 5 | sources_exhausted |  |
 | John R. Birge | BOOTH | 0 | - | 42 | sources_exhausted |  |
 | Jonathan Weare | STAT | 0 | - | 5 | appointment_ended_early |  |
@@ -45,11 +46,12 @@ Reasons for 0 students: {'sources_exhausted': 59, 'appointment_ended_early': 4, 
 | Ketan Mulmuley | CS | 0 | - | 2 | sources_exhausted |  |
 | Kexin Pei | CS | 0 | - | 11 | sources_exhausted |  |
 | L. Ridgway Scott | CS | 0 | - | 37 | sources_exhausted |  |
-| Lek-Heng Lim | STAT | 0 | - | 55 | sources_exhausted |  |
+| Lek-Heng Lim | STAT | 0 | - | 57 | sources_exhausted |  |
 | Linwei Xin | BOOTH | 0 | - | 14 | sources_exhausted |  |
 | Lorenzo Orecchia | CS | 0 | - | 6 | sources_exhausted |  |
 | László Babai | CS | 0 | - | 8 | sources_exhausted |  |
-| Maryanthe Malliaris | MATH | 0 | - | 18 | sources_exhausted |  |
+| Marisa Casillas | PSYCH | 0 | - | 7 | new_hire_2025_or_later |  |
+| Maryanthe Malliaris | MATH | 0 | - | 19 | sources_exhausted |  |
 | Maryellen L. Giger | DSI | 0 | - | 27 | new_hire_2025_or_later |  |
 | Matthew Taddy | BOOTH | 0 | - | 10 | appointment_ended_early |  |
 | Michael J. O'Donnell | CS | 0 | - | 0 | sources_exhausted | no_school_affiliated_works |
@@ -82,10 +84,9 @@ Reasons for 0 students: {'sources_exhausted': 59, 'appointment_ended_early': 4, 
 | Aaron Potechin | CS | 2 | roster+co-author 2 | 31 |  |  |
 | Allyson Ettinger | CS | 1 | roster+co-author 1 | 22 |  |  |
 | Andrew A. Chien | CS | 18 | lab page 9, roster+co-author 9 | 114 |  |  |
-| Avrim Blum | TTIC | 8 | adviser list 8 | 60 |  |  |
+| Avrim Blum | TTIC | 8 | adviser list 8 | 61 |  |  |
 | Ben Y. Zhao | CS | 6 | roster+co-author 6 | 57 |  |  |
 | Blase Ur | CS | 7 | roster+co-author 7 | 53 |  |  |
-| Brent Doiron | STAT | 10 | lab page 10 | 29 |  |  |
 | Bryon Aragam | BOOTH | 1 | roster+co-author 1 | 6 |  |  |
 | Chao Gao | STAT | 3 | roster+co-author 3 | 24 |  |  |
 | Chenhao Tan | CS | 5 | roster+co-author 5 | 76 |  |  |
@@ -94,49 +95,48 @@ Reasons for 0 students: {'sources_exhausted': 59, 'appointment_ended_early': 4, 
 | David McAllester | CS | 5 | adviser list 4, roster+co-author 1 | 17 |  |  |
 | Diana Franklin | CS | 5 | roster+co-author 5 | 76 |  |  |
 | Fred Chong | CS | 14 | lab page 4, roster+co-author 10 | 172 |  |  |
-| Greg Shakhnarovich | CS | 43 | adviser list 41, lab page 2 | 47 |  |  |
-| Haryadi Gunawi | CS | 18 | lab page 9, roster+co-author 9 | 48 |  |  |
+| Greg Shakhnarovich | CS | 24 | adviser list 22, lab page 2 | 47 |  |  |
+| Haryadi Gunawi | CS | 13 | lab page 9, roster+co-author 4 | 48 |  |  |
 | Heather Zheng | CS | 1 | roster+co-author 1 | 2 |  |  |
 | Henry Hoffmann | CS | 17 | lab page 1, roster+co-author 16 | 103 |  |  |
 | Ian Foster | CS | 11 | roster+co-author 11 | 409 |  |  |
 | Jinbo Xu | TTIC | 16 | adviser list 16 | 64 |  |  |
 | John H. Reppy | CS | 1 | roster+co-author 1 | 14 |  |  |
 | John Lafferty | CS | 1 | roster+co-author 1 | 7 |  |  |
-| Julia Chuzhoy | CS | 5 | adviser list 5 | 26 |  |  |
+| Julia Chuzhoy | CS | 5 | adviser list 5 | 27 |  |  |
 | Junchen Jiang | CS | 9 | roster+co-author 9 | 76 |  |  |
-| Karen Livescu | CS | 35 | adviser list 33, lab page 2 | 93 |  |  |
+| Karen Livescu | CS | 22 | adviser list 21, lab page 1 | 93 |  |  |
 | Kevin Gimpel | CS | 10 | adviser list 10 | 85 |  |  |
 | Kyle Chard | CS | 11 | roster+co-author 11 | 219 |  |  |
-| Madhur Tulsiani | CS | 10 | adviser list 8, lab page 2 | 22 |  |  |
-| Marisa Casillas | PSYCH | 16 | lab page 16 | 8 |  |  |
+| Madhur Tulsiani | CS | 8 | adviser list 8 | 23 |  |  |
 | Marshini Chetty | CS | 2 | roster+co-author 2 | 37 |  |  |
 | Matthew Stephens | STAT | 4 | roster+co-author 4 | 75 |  |  |
 | Matthew Walter | CS | 15 | adviser list 14, roster+co-author 1 | 65 |  |  |
 | Michael Franklin | CS | 8 | roster+co-author 8 | 40 |  |  |
 | Michael Maire | CS | 5 | adviser list 3, roster+co-author 2 | 42 |  |  |
 | Mihai Anitescu | STAT | 5 | roster+co-author 5 | 82 |  |  |
-| Nathan Srebro | CS | 32 | lab page 4, adviser list 1, roster+co-author 27 | 90 |  |  |
+| Nathan Srebro | CS | 6 | lab page 4, adviser list 1, roster+co-author 1 | 90 |  |  |
 | Nick Feamster | CS | 6 | roster+co-author 6 | 98 |  |  |
 | Pedro Lopes | CS | 7 | roster+co-author 7 | 111 |  |  |
 | Raul Castro Fernandez | CS | 5 | roster+co-author 5 | 48 |  |  |
 | Ravi Chugh | CS | 3 | lab page 2, roster+co-author 1 | 22 |  |  |
-| Rebecca Willett | CS | 18 | lab page 4, roster+co-author 14 | 69 |  |  |
+| Rebecca Willett | CS | 5 | lab page 3, roster+co-author 2 | 68 |  |  |
 | Rick Stevens | CS | 6 | roster+co-author 6 | 121 |  |  |
-| Rina Foygel Barber | STAT | 14 | roster+co-author 7, lab page 7 | 102 |  |  |
-| Risi Kondor | CS | 42 | lab page 11, roster+co-author 31 | 42 |  |  |
+| Rina Foygel Barber | STAT | 7 | roster+co-author 7 | 96 |  |  |
+| Risi Kondor | CS | 13 | lab page 11, roster+co-author 2 | 42 |  |  |
 | Robert Grossman | CS | 1 | roster+co-author 1 | 86 |  |  |
 | Robert Rand | CS | 1 | roster+co-author 1 | 19 |  |  |
 | Ruey S. Tsay | BOOTH | 2 | roster+co-author 2 | 23 |  |  |
 | Sanjay Krishnan | CS | 9 | roster+co-author 9 | 52 |  |  |
 | Sarah Sebo | CS | 2 | roster+co-author 2 | 27 |  |  |
-| Shan Lu | CS | 16 | lab page 9, roster+co-author 7 | 67 |  |  |
+| Shan Lu | CS | 13 | lab page 6, roster+co-author 7 | 67 |  |  |
 | Shiry Ginosar | TTIC | 5 | adviser list 1, lab page 4 | 7 |  |  |
 | Tengyuan Liang | BOOTH | 1 | roster+co-author 1 | 18 |  |  |
-| Wei-Biao Wu | STAT | 5 | roster+co-author 5 | 72 |  |  |
+| Wei-Biao Wu | STAT | 5 | roster+co-author 5 | 82 |  |  |
 | William Fefferman | CS | 2 | roster+co-author 2 | 52 |  |  |
 | Yali Amit | CS | 1 | roster+co-author 1 | 14 |  |  |
 | Yanjing Li | CS | 5 | roster+co-author 5 | 23 |  |  |
 | Yuehaw Khoo | STAT | 1 | roster+co-author 1 | 39 |  |  |
-| Yury Makarychev | CS | 24 | adviser list 19, lab page 5 | 32 |  |  |
+| Yury Makarychev | CS | 9 | adviser list 7, lab page 2 | 31 |  |  |
 | Yuxin Chen | CS | 5 | roster+co-author 5 | 59 |  |  |
 | Zhiyuan Li | TTIC | 5 | adviser list 3, lab page 2 | 15 |  |  |

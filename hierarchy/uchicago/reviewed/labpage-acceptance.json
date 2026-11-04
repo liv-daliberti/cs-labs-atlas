@@ -3,17 +3,19 @@
  "decided_at": "2026-11-03",
  "bar": "docs/LAB-PAGES.md, acceptance bar",
  "additions_file": "hierarchy/uchicago/reviewed/labpage-additions.json",
- "additions_generated_at": "2026-11-04T03:25:53+00:00",
- "additions_sha256": "10f427c1495db1160e48a0d237e820520cb59fdf23840b44eae153dab67def96",
+ "additions_generated_at": "2026-11-04T03:43:30+00:00",
+ "additions_sha256": "9be1e0a0fa53c465e948e52afce5cdfe72af49109cf3347567e04ba26fb2598f",
  "students": {
   "accepted": true,
-  "round": 4,
+  "round": 6,
   "sample_size": 20,
-  "seed": 20261108,
+  "seed": 20261112,
   "membership_errors": 0,
   "role_or_year_errors": 0,
-  "doubtful": 1,
-  "reason": "round 4 passes on the new sources (TTIC adviser lists, PhD rosters + co-authorship with the PI last author or two papers); round 2 (lab-page additions) passed earlier; rounds 1 and 3 failed and led to the alumni, graduation-year, namesake and last-author rules"
+  "counts": {
+   "proposed": 32
+  },
+  "reason": "round 6 passes after the first attempt at this regeneration proposed 158 rows from department rosters (the Statistics alumni page and TTIC's alumni list filed under PIs who are not on them); the page-lacks-PI rule now applies to charter schools and an entry that names another adviser is dropped"
  },
  "papers": {
   "accepted": true,
@@ -24,6 +26,6 @@
   "counts": {
    "proposed": 28
   },
-  "note": "first paper sample at UChicago: every row has the PI on the byline, an appointment year and a page-1 or OpenAlex affiliation naming the university (or TTIC); two doubtful rows"
+  "note": "rows unchanged since round 5; re-stamped to this additions file"
  }
 }
