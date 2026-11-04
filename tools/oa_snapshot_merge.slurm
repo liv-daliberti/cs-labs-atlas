@@ -12,4 +12,4 @@
 . "${CS_ATLAS_CODE:-${SLURM_SUBMIT_DIR:?}}/paths.sh" || exit 1
 . "$CS_ATLAS_CODE/tools/job_code_snapshot.sh" || exit 1
 : "${OA_DATE:?set OA_DATE}"
-exec nice -n 5 "$CS_ATLAS_PY" -u "$CS_ATLAS_TOOLS/oa_snapshot.py" merge --date "$OA_DATE" --of 16
+exec nice -n 5 "$CS_ATLAS_PY" -u "$CS_ATLAS_TOOLS/oa_snapshot.py" merge --date "$OA_DATE" --of 16 ${OA_NO_PROMOTE:+--no-promote}

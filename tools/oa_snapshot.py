@@ -12,7 +12,7 @@ institution. Institutions: all (0.2 GB).
 usage:
   oa_snapshot.py filter <task> <of> [--date D]   one array task: streams its share of the parts (balanced by size), writes a part
                                                  file to OA_SNAPSHOT-scratch (job-local /tmp first, one sequential copy after)
-  oa_snapshot.py merge [--date D] [--keep-parts]  attaches the parts into OA_SNAPSHOT/<date>/openalex.sqlite, checks counts,
+  oa_snapshot.py merge [--date D] [--keep-parts] [--no-promote]  attaches the parts into OA_SNAPSHOT/<date>/openalex.sqlite, checks counts,
                                                  removes the parts, writes manifest.json, points `current` at it
   oa_snapshot.py status [--date D]                what is stored
 Reader (import oa_snapshot): work(id_or_doi), works_by_lineage(inst, year=None), works_by_author(author_id), author(id),
@@ -259,7 +259,7 @@ def cmd_filter(task, of, date=None, parts=None, tmp=None):
     print(json.dumps(dict(task=task, finished=str(dest), bytes=dest.stat().st_size)), flush=True)
 
 
-def cmd_merge(date, of=None, keep_parts=False, parts=None):
+def cmd_merge(date, of=None, keep_parts=False, parts=None, promote=True):
     out = scratch_dir(date)
     dones = sorted(out.glob('part-*.done'))
     if not dones or (of and len(dones) != of):
@@ -294,10 +294,11 @@ def cmd_merge(date, of=None, keep_parts=False, parts=None):
     man = dict(snapshot_date=date, built_at=time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()), counts=got, rows_before_dedup=expect,
                parts_files=len(dones), source=BASE, store_bytes=final.stat().st_size)
     (final_dir / 'manifest.json').write_text(json.dumps(man, indent=1))
-    cur = P.OA_SNAPSHOT / 'current'
-    if cur.is_symlink() or cur.exists():
-        cur.unlink()
-    cur.symlink_to(date)
+    if promote:  # a refresh builds a new dated store and leaves `current` alone (oa_snapshot_refresh.py promote switches it)
+        cur = P.OA_SNAPSHOT / 'current'
+        if cur.is_symlink() or cur.exists():
+            cur.unlink()
+        cur.symlink_to(date)
     if not keep_parts:
         for dn in dones:
             dn.with_suffix('.sqlite').unlink(missing_ok=True); dn.unlink()
@@ -381,13 +382,13 @@ def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest='cmd', required=True)
     f = sub.add_parser('filter'); f.add_argument('task', type=int); f.add_argument('of', type=int); f.add_argument('--date')
-    m = sub.add_parser('merge'); m.add_argument('--date', required=True); m.add_argument('--of', type=int); m.add_argument('--keep-parts', action='store_true')
+    m = sub.add_parser('merge'); m.add_argument('--date', required=True); m.add_argument('--of', type=int); m.add_argument('--keep-parts', action='store_true'); m.add_argument('--no-promote', action='store_true', help='do not point `current` at the new store')
     s = sub.add_parser('status'); s.add_argument('--date')
     a = ap.parse_args(argv)
     if a.cmd == 'filter':
         cmd_filter(a.task, a.of, a.date)
     elif a.cmd == 'merge':
-        cmd_merge(a.date, a.of, a.keep_parts)
+        cmd_merge(a.date, a.of, a.keep_parts, promote=not a.no_promote)
     else:
         d = a.date or snapshot_date()
         print(json.dumps(json.load(open(P.OA_SNAPSHOT / d / 'manifest.json'))) if d else 'no snapshot')

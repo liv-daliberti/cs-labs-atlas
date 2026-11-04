@@ -8,6 +8,7 @@ reads the result and judges. A stage is one job, or an array with one task per s
   atlas pipeline copies   [SCHOOLS="a b"] [--test-only] [--wait]   lab_paper_copies per school (array) -> unavailability ledger -> coverage recount -> collectors status
   atlas pipeline labpage  [SCHOOLS="a b"] [--test-only] [--wait]   lab-page audit per school (array) -> restamp the acceptance files -> the audit summary
   atlas pipeline reader   [--test-only] [--wait]                   the reader export (licence -> host or link) after fresh copies
+  atlas pipeline snapshot-refresh [--dry-run] [--promote] [--date D]   a newer OpenAlex snapshot -> NEW dated store -> per-school count compare (`current` moves only with --promote)
   atlas pipeline status [<run dir>]                                states of a run's jobs (one sacct call)
 
 Each run writes <scratch>/pipeline-<name>-<time>/jobs.json (stage -> job id). Every stage runs from a code snapshot of main's HEAD at submit time
@@ -90,6 +91,10 @@ def submit(name, schools, run=subprocess.run, test_only=False, commit=None, stag
 
 
 def main(argv=None, run=subprocess.run):
+    args = sys.argv[1:] if argv is None else list(argv)
+    if args and args[0] == 'snapshot-refresh':  # the OpenAlex snapshot refresh (ROADMAP #24): its own planner, docs/OPENALEX-SNAPSHOT.md section 14
+        import oa_snapshot_refresh
+        return oa_snapshot_refresh.main(args[1:] or ['submit'], run=run)
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('name', nargs='?'); ap.add_argument('rest', nargs='*')
     ap.add_argument('--list', action='store_true'); ap.add_argument('--test-only', action='store_true'); ap.add_argument('--wait', action='store_true')

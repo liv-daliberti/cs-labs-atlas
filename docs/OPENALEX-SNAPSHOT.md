@@ -184,3 +184,22 @@ pdf, licence, version, is_oa) differ only in license 1, landing 2, source 2, typ
 First code path switched: `ftp_common.oa_bodies` reads the snapshot first (complete `locations` for every lab paper, no API credits), so the
 `openalex` channel turns snapshot OA locations into candidates. Its first run on 2026-11-02 added 485 new candidates (epfl 236, mit 103,
 cmu 77, princeton 41, stanford 13, michigan 11, berkeley 4): earlier channel runs had already harvested most OpenAlex locations.
+
+## 14. Scheduled refresh (2026-11-03)
+`atlas pipeline snapshot-refresh [--dry-run] [--promote] [--date D]` (tool: `tools/oa_snapshot_refresh.py`; tests: `tests/test_oa_snapshot_refresh.py`).
+- **Source and terms.** The same public bucket and streaming filter as the build (section 4): HTTPS, no credentials, no API calls, a bounded 16 streams, the
+  project User-Agent. `plan` makes one manifest request and writes nothing.
+- **Never in place.** The newest manifest date is compared with `current`. Newer: filter (16 tasks, `oa_snapshot.slurm`) -> merge with `--no-promote`
+  (`OA_NO_PROMOTE=1`) into a NEW `<date>/openalex.sqlite` -> compare. A date whose store exists is refused (`status: exists`).
+- **Extensions.** The new filter reads every charter in `schools/*.toml`, so a school that only has an `ext-<key>.sqlite` beside the current store is folded
+  in by its charter. `plan` reports `status: blocked` (and `submit` exits 1) while an extension school has no charter on main: land the charter first.
+  As of 2026-11-03 `gatech` and `uchicago` are such extensions.
+- **Compare.** `refresh-compare.json` next to the new store: distinct works per school (charter `sweep_ids` lineage) in the current store (main + ext files) vs the
+  new one. A school below 95% of its old count sets `ok: false`.
+- **Promotion.** `current` moves only with `--promote` (chained as a last job) or `oa_snapshot_refresh.py promote --date D`, which needs the compare report,
+  refuses `ok: false` unless `--force`, and swaps the symlink atomically. Keep the previous store for rollback (section 5: two stores at most).
+- **Schedule, crontab-free.** `atlas submit tools/oa_snapshot_refresh.slurm` runs the monthly check: it first resubmits itself with `--begin=+1 month`
+  (the `loop_job.sh` `_resubmit` pattern: test-only first, never on "Preempts:"), then runs `auto`, which does nothing when the bucket has no newer date.
+  OpenAlex publishes quarterly (next 2027-01-13), so submit the first one for, say, `--begin=2027-01-15` and it re-checks monthly. It never promotes
+  unless submitted with `OA_REFRESH_PROMOTE=1`.
+- Not run for real yet (only `--dry-run` against the live manifest, and fixture tests); the first real run is the 2027-01 release.
