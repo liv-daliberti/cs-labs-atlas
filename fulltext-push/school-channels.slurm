@@ -10,7 +10,6 @@
 #SBATCH --exclude=node302
 #SBATCH --output=fulltext-push/logs/school-channels-%j.out
 . "${CS_ATLAS_CODE:-${SLURM_SUBMIT_DIR:?}}/paths.sh" || exit 1  # submit from the code root
-export LD_LIBRARY_PATH="$CS_ATLAS_ENV_LIB${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 export CS_ATLAS_COLLECTOR_PY="$CS_ATLAS_PY"
 export FTP_PY="$CS_ATLAS_PY"
 . "$CS_ATLAS_CODE/fulltext-push/job_snapshot.sh" || exit 1

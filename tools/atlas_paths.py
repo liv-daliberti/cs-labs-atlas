@@ -25,9 +25,9 @@ Overrides: any name can be overridden by CS_ATLAS_<NAME> (CS_ATLAS_ROOT, CS_ATLA
 an override of a slot moves the slots derived from it. CS_ATLAS_WORK is the old name of CS_ATLAS_CODE and still works.
 
 Interpreters (2026-10-30): PY is the one project interpreter (env/atlas, built from env/conda-linux-64.lock; no
-LD_LIBRARY_PATH needed). COLLECTOR_PY is what the download loops run: the old Anaconda Python until the loops are
-restarted on the new env (docs/ENVIRONMENT.md, switch-over), then PY. ENV_PY/ENV_LIB are the old py310 env, kept in
-place for the ML studies (torch, transformers) until a [studies] env replaces it (conda envs cannot be moved).
+LD_LIBRARY_PATH needed). COLLECTOR_PY is what the download loops run: the same env/atlas since 2026-11-03 (downloads.slurm already
+set it to PY). ENV_PY/ENV_LIB are the old py310 env, kept in place only for the ML studies in ai-writing/ that need
+torch, transformers, vllm, sklearn, pandas or matplotlib (docs/ENVIRONMENT.md, "Retiring py310").
 """
 import contextlib
 import gzip
@@ -95,7 +95,7 @@ _SPEC = [
     ('WORLD_ATLAS', 'world-atlas', 'ROOT'),         # the 300-university atlas (its scripts/ hold the collector's origin)
     ('ENV_PY', '/n/fs/resemble/cs-atlas-env/py310/bin/python', None),  # old env, ML studies only; LD_LIBRARY_PATH=ENV_LIB
     ('ENV_LIB', '/n/fs/resemble/cs-atlas-env/py310/lib', None),
-    ('COLLECTOR_PY', '/usr/local/anaconda3/2024.02/bin/python', None),  # the download loops' (-I); -> PY at the switch-over
+    ('COLLECTOR_PY', 'atlas/bin/python', 'ENV'),    # the download loops' (-I): the project env since 2026-11-03 (the old Anaconda 3.11 is retired; compute nodes never had it)
 ]
 # Where each slot is before the move (LAYOUT 'legacy'). A slot not listed derives as in the project layout.
 _LEGACY = {

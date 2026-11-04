@@ -12,7 +12,6 @@
 # SCHOOLS overrides the school list; LEDGER_ARGS passes options (e.g. --offline).
 . "${CS_ATLAS_CODE:-${SLURM_SUBMIT_DIR:?}}/paths.sh" || exit 1  # every path in one place (tools/atlas_paths.py); submit from the code root
 # compute nodes have no /usr/local/anaconda3: the project env (requests, no protego/bs4; nothing here needs them)
-export LD_LIBRARY_PATH="$CS_ATLAS_ENV_LIB${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 export FTP_PY="$CS_ATLAS_PY"  # the pinned project env (2026-10-31)
 . "$CS_ATLAS_CODE/fulltext-push/job_snapshot.sh" || exit 1  # code of one commit, data shared (docs/CONTRIBUTING.md); submit with `atlas submit`
 cd "$CS_ATLAS_WORK"

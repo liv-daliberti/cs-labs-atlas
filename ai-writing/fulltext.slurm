@@ -12,7 +12,6 @@
 set -euo pipefail
 . "${CS_ATLAS_CODE:-${SLURM_SUBMIT_DIR:?}}/paths.sh" || exit 1  # every path in one place (tools/atlas_paths.py); submit from the code root
 cd "$CS_ATLAS_AI_WRITING"
-export LD_LIBRARY_PATH="$CS_ATLAS_ENV_LIB${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 echo "{\"node\": \"$(hostname)\", \"start\": \"$(date -u +%FT%TZ)\"}"
-$CS_ATLAS_ENV_PY -u fulltext.py -j "${SLURM_CPUS_PER_TASK:-16}"
+$CS_ATLAS_PY -u fulltext.py -j "${SLURM_CPUS_PER_TASK:-16}"
 echo "{\"end\": \"$(date -u +%FT%TZ)\"}"

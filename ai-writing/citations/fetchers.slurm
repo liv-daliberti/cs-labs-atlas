@@ -11,7 +11,7 @@
 #SBATCH --output=ai-writing/citations/logs/fetchers-%j.out
 . "${CS_ATLAS_CODE:-${SLURM_SUBMIT_DIR:?}}/paths.sh" || exit 1  # every path in one place (tools/atlas_paths.py); submit from the code root
 cd ${CS_ATLAS_AI_WRITING}/citations
-PY=${CS_ATLAS_ENV_PY}
+PY=${CS_ATLAS_PY}   # requests only: the project env (py310 retired for non-ML work, ROADMAP #23)
 nice -n 10 $PY -u fetch.py works >> logs/fetch_works.log 2>&1 &
 nice -n 10 $PY -u s2fetch.py run >> logs/s2fetch.log 2>&1 &
 wait

@@ -55,6 +55,18 @@ The hook does three things:
 Slurm jobs go the same way: submit with `atlas submit [sbatch options] script.slurm`, and every `.slurm` script sources the code-snapshot helper
 (`tests/test_slurm_snapshot.py` fails CI on a script that does not; the ML studies in `ai-writing/` and `archive/` are exempt).
 
+## Agent reports (ROADMAP #41)
+An agent's final report has this shape, in this order, and nothing else (under 40 lines; the coordinator reads many):
+```
+**Result:** one line.
+**Landed:** commit hashes and branch, or "not landed".
+**Numbers:** | what | before | after |   a small table (counts, jobs, tests).
+**Owner decisions:** 1. the question. Recommendation: ...   (numbered; "none" if none)
+**Caveats:** at most 3 bullets.
+**Files:** absolute paths that matter.
+```
+Interim messages stay one or two lines. The `atlas-worker` agent file repeats this template.
+
 ## Handing off uncommitted work
 Never commit another agent's uncommitted files. To pass work to someone else:
 - **Preferred:** commit it on your own branch, even unfinished (`WIP:` in the subject), and name the branch in the

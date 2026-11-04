@@ -7,7 +7,7 @@ that we definitely tried, and that there is a firm reason why it can't be done."
 ## Tool
 
 ```
-/usr/local/anaconda3/2024.02/bin/python -I fulltext-push/unavailable_ledger.py <school> [<school> ...]
+$CS_ATLAS_PY -I fulltext-push/unavailable_ledger.py <school> [<school> ...]
         [--max-age-days N]   reuse recorded checks younger than N days (default 30; OpenAlex records: 7)
         [--offline]          no network: stale or missing checks stay missing (-> incomplete_check)
         [--only <paper key>] one paper, printed (debugging)

@@ -29,13 +29,21 @@ or put it on PATH: `export PATH=$CS_ATLAS_ENV/atlas/bin:$PATH` (then `atlas ...`
 `conda activate /n/fs/resemble/homogenizing-science/env/atlas` also works after `module load anaconda3/2026.07`.
 
 One interpreter is defined in one place: `PY` in `tools/atlas_paths.py`, exported as `$CS_ATLAS_PY` by `paths.sh`.
-`hierarchy/rebuild.sh`, the `*.slurm` scripts and the tools use it. Two others remain, also defined there:
-- `COLLECTOR_PY`: what the download loops run. It stays the old Anaconda Python
-  (`/usr/local/anaconda3/2024.02/bin/python -I`) until the loops are switched over (below), then it becomes `PY`.
-- `ENV_PY`/`ENV_LIB`: the old py310 env (`/n/fs/resemble/cs-atlas-env/py310`, needs `LD_LIBRARY_PATH=$CS_ATLAS_ENV_LIB`).
-  It is kept only for the ML studies in `ai-writing/` (torch, transformers, vllm; SPECTER2 / Pythia). They are the
-  `[studies]` extra in `pyproject.toml`. To retire py310, build a second env, `env/atlas-studies`, from a conda-forge
-  pytorch-cuda spec plus `pip install -e .[studies]`, lock it the same way, and point `ENV_PY` at it.
+`hierarchy/rebuild.sh`, the `*.slurm` scripts and the tools use it. `COLLECTOR_PY` (what the download loops run, with `-I`) is the same
+interpreter since 2026-11-03: `downloads.slurm` and the school collectors already exported `CS_ATLAS_COLLECTOR_PY=$CS_ATLAS_PY` because compute
+nodes have no `/usr/local/anaconda3`. A loop already running keeps what it loaded; the next start takes the slot.
+
+## Retiring py310 (ROADMAP #23, 2026-11-03)
+`ENV_PY`/`ENV_LIB` are the old py310 env (`/n/fs/resemble/cs-atlas-env/py310`, needs `LD_LIBRARY_PATH=$CS_ATLAS_ENV_LIB`).
+- **Moved to env/atlas:** the five `fulltext-push/*.slurm` scripts that exported `ENV_LIB` but ran `$CS_ATLAS_PY` (the export is gone),
+  `tools/make_release.py` (its py310 branch), `hierarchy/labpage-audit.slurm` (no Anaconda fallback), `ai-writing/citations/fetch_new.slurm`,
+  `fetchers.slurm` (requests only) and `ai-writing/fulltext.slurm` (stdlib only), and the `COLLECTOR_PY` slot.
+- **Stays on py310, because the scripts import what env/atlas does not have** (torch, transformers, vllm, scikit-learn, pandas, scipy, matplotlib,
+  pillow, joblib): `ai-writing/` embed, gen, detector, detector_v2, diversity, figlab, citations score/v2score/rerun, `refresh_20261027.sh`,
+  `resume_20261027.sh`. Not touched: they are the `[studies]` extra of `pyproject.toml`. Retiring them needs the `env/atlas-studies` build
+  (conda-forge pytorch-cuda spec, `pip install -e .[studies]`, locked like env/atlas, then `ENV_PY` points at it); that is a GPU-node build and a
+  re-run check of the studies, so it is left open.
+- Historical records keep the old paths on purpose: `archive/`, `hierarchy/*/reports/STAGE-*.md`, the agent briefs under `hierarchy/labpage-tools-*`.
 
 ## Third-party imports (inventory, 2026-10-30, including vendor/)
 | Need | Packages | Where |
@@ -59,7 +67,7 @@ A thin dispatcher (`atlas_cli/`) over the existing tools. Each command runs a sc
 `scan`, `vendor`, `paths`, `relocate`, `run <script>`.
 
 ## Proof (2026-10-30, under the new env)
-- The full test suite passes under `env/atlas`, and still passes under py310.
+- The full test suite passes under `env/atlas`, and passed under py310 at the time.
 - A Michigan-only build in a scratch copy (see the infra report in the commit log): `tools/pi_hierarchy.py michigan`,
   with the overrides `CS_ATLAS_HIERARCHY=<scratch>/hierarchy` (a copy of the reviewed inputs and the Michigan package
   inputs) and `CS_ATLAS_VENDOR=<worktree>/vendor`.

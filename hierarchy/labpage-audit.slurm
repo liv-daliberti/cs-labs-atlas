@@ -27,7 +27,7 @@ df -h "$TMPDIR" | tail -1
 # run the code of ONE commit (docs/CONTRIBUTING.md, "Slurm jobs run from a code snapshot"); submit with `atlas submit` to pin it
 # (the snapshot lives in $TMPDIR, which the trap above removes)
 . "$CS_ATLAS_CODE/tools/job_code_snapshot.sh" || exit 1
-PY="$CS_ATLAS_COLLECTOR_PY"; [ -x "$PY" ] || PY="$CS_ATLAS_PY"   # some nodes have no /usr/local/anaconda3
+PY="$CS_ATLAS_PY"
 for s in "$@"; do
   for st in ${STEPS:-discover recover audit}; do
     echo "== $s $st $(date -Is)"
