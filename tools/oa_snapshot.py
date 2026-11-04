@@ -113,7 +113,8 @@ def keep_work(w, inst, excl, authors, rel=None):
 def project_work(w):
     keep = ('id', 'doi', 'title', 'display_name', 'ids', 'publication_year', 'publication_date', 'type', 'language', 'authorships',
             'primary_location', 'locations', 'best_oa_location', 'open_access', 'biblio', 'cited_by_count', 'is_retracted',
-            'is_paratext', 'created_date', 'updated_date')
+            'is_paratext', 'created_date', 'updated_date',
+            'abstract_inverted_index', 'primary_topic', 'topics')   # added 2026-11-04: the embeddings study needs abstracts and topics (docs/OPENALEX-SNAPSHOT.md)
     out = {k: w.get(k) for k in keep if k in w}
     out['authorships'] = [{k: a.get(k) for k in ('author', 'author_position', 'institutions', 'raw_affiliation_strings', 'raw_author_name', 'is_corresponding') if k in a}
                           for a in w.get('authorships') or []]

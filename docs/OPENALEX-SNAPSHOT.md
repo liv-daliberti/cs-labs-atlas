@@ -22,7 +22,7 @@ Works (the large part) and authors, filtered to what the pipeline reads.
   institutions with ids and lineage, raw affiliation strings), `ids` (doi, pmid, pmcid, mag), `primary_location`, `locations`,
   `best_oa_location`, `open_access` (is_oa, oa_status, oa_url), `biblio`, `language`. The oa_refresh and ledger checks read
   locations (host, version, license, pdf_url, source type); the reader licence lookup reads `locations[].license` and
-  `best_oa_location`. Not kept: abstract_inverted_index, concepts, topics, referenced_works lists, counts_by_year, related works
+  `best_oa_location`. Kept since the refresh after 2026-11-04: `abstract_inverted_index`, `primary_topic`, `topics` (the all-papers embeddings study had to re-stream S3 for them, `ai-writing/embeddings/oa_fields.py`; expect a larger store). Not kept: concepts, referenced_works lists, counts_by_year, related works
   (large, unused). Add a field later by re-running the filter pass; the plan keeps the stream cheap to repeat.
 - **Authors** (small): `id, display_name, orcid, last_known_institutions, affiliations (institution, years), works_count`, only
   authors seen in a kept work's authorships or in our author sets. This feeds the identity checks and the departed-faculty review

@@ -78,7 +78,7 @@ def test_filter_merge_and_reader(served):
     assert S.work('W4') is None and S.work('W5') is None and S.work('W2') is None
     w = S.work('10.1/A')  # a DOI, any case
     assert w['id'].endswith('W1') and w['snapshot_date'] == '2026-10-14'
-    assert 'abstract_inverted_index' not in w  # not projected
+    assert w['abstract_inverted_index'] == {'big': [0]}  # projected since 2026-11-04
     assert S.author('A7')['display_name'] == 'Ours' and S.author('A50') and S.author('A51') is None
     assert S.institution('I10')['ror'] == 'https://ror.org/x'
     man = json.loads((served / 'snap' / '2026-10-14' / 'manifest.json').read_text())
@@ -161,3 +161,11 @@ def test_related_institutions_count_only_with_an_affiliation_string_naming_the_s
     only = S.keep_work(w([argonne], ['Argonne National Laboratory and the University of Chicago']), inst, set(), set(), rel)
     assert only and only[1] == {'I1', 'I7'}
     assert S.keep_work(w([uchi], ['x']), inst, set(), set(), rel)[1] == {'I1'}
+
+
+def test_projection_keeps_abstract_and_topics_and_drops_the_rest():
+    w = dict(work('W9', 2024, [auth('A1', 'I10')]), primary_topic={'id': OA + 'T1', 'display_name': 'x'}, topics=[{'id': OA + 'T1'}],
+             referenced_works=['a'], concepts=[{'id': 'c'}], counts_by_year=[1])
+    p = S.project_work(w)
+    assert p['abstract_inverted_index'] == {'big': [0]} and p['primary_topic']['id'].endswith('T1') and p['topics'][0]['id'].endswith('T1')
+    assert not {'referenced_works', 'concepts', 'counts_by_year'} & set(p)
