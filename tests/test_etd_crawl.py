@@ -209,6 +209,9 @@ def test_cdx_rows_prefer_full_and_newest():
     rows = E.cdx_rows(client, dict(cdx_url='x', cdx_original_rx='.*'))
     assert rows == [('9', 'full', '20180101000000', 'https://smartech.gatech.edu/handle/1853/9?show=full'),
                     ('3', 'plain', '20210101000000', 'https://smartech.gatech.edu/handle/1853/3')]
+    more = data + [['https://smartech.gatech.edu/handle/1853/50?show=full', '20190101000000'], ['https://smartech.gatech.edu/handle/1853/70', '20190101000000']]
+    client2 = T.SimpleNamespace(get=lambda url, params=None, tolerate=(): T.SimpleNamespace(json=lambda: more))
+    assert [r[0] for r in E.cdx_rows(client2, dict(cdx_url='x', cdx_original_rx='.*'))] == ['50', '9', '70', '3']   # full first, high handles first
 
 
 def test_wayback_rows_dedupe_against_live_and_use_replay_urls(store, monkeypatch):
@@ -224,3 +227,26 @@ def test_wayback_rows_dedupe_against_live_and_use_replay_urls(store, monkeypatch
     urls = [x['url'] for r in rows for x in r['students']]
     assert counts['duplicate_of_earlier_source'] == 1 and len(urls) == 2
     assert 'https://web.archive.org/web/20200101000000/https://smartech.gatech.edu/handle/1853/2' in urls
+
+
+def test_offline_and_non_html_bodies_do_not_stop_the_crawl(store, monkeypatch):
+    monkeypatch.setattr(E, 'cfg', lambda school: dict(host='h', delay=10, parser='dspace7'))
+    c = E.connect('s')
+    for i in range(3):
+        c.execute('INSERT INTO queue (url, seq) VALUES (?,?)', (f'https://h/entities/publication/{i}', i))
+    c.commit()
+    off = b'<html><head><title>Internet Archive: Temporarily Offline</title></head></html>'
+    sess = Sess([Resp(off), Resp(b'%PDF-1.4 binary'), Resp(GT.replace('%s', 'Dissertation').encode()), Resp(GT.replace('%s', 'Dissertation').encode())])
+    sleeps = []
+    cl = O.Client(10, session=sess, sleep=sleeps.append, clock=lambda: 0.0)
+    E.crawl('s', out=lambda *_: None, client=cl)
+    st = dict(c.execute('SELECT url, status FROM queue').fetchall())
+    assert st['https://h/entities/publication/0'] == 'nonhtml' or 1800 in sleeps
+    assert 1800 in sleeps and E.stats('s')['pages'] >= 1 and 'pending' not in st.values()
+
+
+def test_real_smartech_full_capture_fixture(tmp_path):
+    from pathlib import Path
+    fx = Path(__file__).parent / 'fixtures' / 'smartech_54321_full.html'
+    p = E.parse_smartech(fx.read_bytes(), dict(handle='1853/54321'))
+    assert p['dissertation'] and p['advisors'] == ['Cathcart, J. M.'] and p['year'] == 2015 and p['department'] == 'Physics'

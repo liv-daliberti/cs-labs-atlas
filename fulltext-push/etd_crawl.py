@@ -226,7 +226,7 @@ def cdx_rows(client, conf):
         kind = 'full' if 'full' in v else 'plain'
         ts, orig = v[kind]
         rows.append((h, kind, ts, orig))
-    rows.sort(key=lambda x: (x[1] != 'full', int(x[0])))
+    rows.sort(key=lambda x: (x[1] != 'full', -int(x[0])))   # explicit advisor first; high handles first (deposited 2016 onwards)
     return rows
 
 
@@ -320,8 +320,16 @@ def crawl(school, max_pages=None, out=print, client=None):
                 st = 'done'
                 if r.status_code in (404, 410):
                     st = 'gone'
+                elif b'Temporarily Offline' in r.content[:6000] or (not r.content.strip() and r.status_code == 200):
+                    # an Internet Archive outage page or an empty answer: the service is ill, not refusing; wait and ask again (the URL stays pending)
+                    transients += 1
+                    out(json.dumps(dict(school=school, transient='offline or empty page', wait=1800, in_a_row=transients, at=F.now())))
+                    if transients >= TRANSIENT_STOP:
+                        raise O.Blocked(f'{TRANSIENT_STOP} offline rounds in a row')
+                    client.sleep(1800)
+                    continue
                 elif b'<html' not in r.content[:4000].lower() and b'<!doctype' not in r.content[:200].lower():
-                    raise O.Blocked('non-HTML body')
+                    st = 'nonhtml'   # a PDF, JSON or other body for this one URL: skipped, never a reason to stop
                 else:
                     p = parser(r.content, hint)
                     if p is None:
