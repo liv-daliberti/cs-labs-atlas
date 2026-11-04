@@ -76,6 +76,11 @@ PIPELINES = {
         ('cv', 'school', 'PY $TOOLS/cv_students.py {school}', 'project', 1, '8G', '06:00:00'),
         ('extract', 'school', 'PY $TOOLS/labpage_students_school.py extract {school}', 'project', 2, '16G', '02:00:00'),
     ],
+    # students other sources name: Wikidata P185 (tools/wikidata_students.py; robots allow only Special:EntityData) -> wikidata-evidence.json, merged by extract
+    'wikidata-students': [
+        ('wikidata', 'school', 'PY $TOOLS/wikidata_students.py {school} --all', 'project', 1, '4G', '06:00:00'),
+        ('extract', 'school', 'PY $TOOLS/labpage_students_school.py extract {school}', 'project', 2, '16G', '02:00:00'),
+    ],
     # why each student without a linked paper has none (chain check 4): offline over the school's sweep -> link-diagnosis.json
     'link-diagnosis': [
         ('diagnose', 'school', 'PY $TOOLS/link_diagnosis.py {school}', 'project', 2, '24G', '02:00:00'),

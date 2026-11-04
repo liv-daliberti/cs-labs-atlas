@@ -107,6 +107,7 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `extra-lab-pages.json` | reviewed | `hierarchy/{school}/extra-lab-pages.json` | `hierarchy/{school}/reviewed/extra-lab-pages.json` | - | <100MB |
 | `student-decisions.json` | reviewed | `hierarchy/{school}/student-decisions.json` | `hierarchy/{school}/reviewed/student-decisions.json` | - | <100MB |
 | `cv-evidence.json` | reviewed | `hierarchy/{school}/cv-evidence.json` | `hierarchy/{school}/reviewed/cv-evidence.json` | - | <100MB |
+| `wikidata-evidence.json` | reviewed | `hierarchy/{school}/wikidata-evidence.json` | `hierarchy/{school}/reviewed/wikidata-evidence.json` | - | <100MB |
 | `lab-coverage-reasons.json` | reviewed | `hierarchy/{school}/lab-coverage-reasons.json` | `hierarchy/{school}/reviewed/lab-coverage-reasons.json` | - | <100MB |
 | `labpage-additions.json` | reviewed | `hierarchy/{school}/labpage-additions.json` | `hierarchy/{school}/reviewed/labpage-additions.json` | 2/4 | <100MB |
 | `relation-evidence.json` | reviewed | `hierarchy/{school}/relation-evidence.json` | `hierarchy/{school}/reviewed/relation-evidence.json` | 3/3 | <100MB |
