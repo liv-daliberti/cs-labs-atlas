@@ -35,6 +35,14 @@ def test_undated_rule_keeps_only_student_heading_phd_members_with_a_member_list_
     assert [r['student'] for r in out] == ['Bo Chen']
 
 
+def test_undated_visiting_members_count_like_phd_students():
+    vis = rec('Ann Lee', 'Vi Sit', '20210101000000', role='visiting')
+    other = rec('Ann Lee', 'Ot Her', '20210101000000', role='postdoc')
+    out = L.undated_capture_rows([vis, other])
+    assert [r['student'] for r in out] == ['Vi Sit'] and out[0]['years'] == [2021, 2021] and out[0]['role'] == 'visiting'
+    assert L.undated_capture_rows([rec('Ann Lee', 'Bo Chen', '20210101000000')])[0]['role'] == 'phd'
+
+
 def test_undated_rule_needs_the_pi_in_the_page_head():
     r = rec('Ann Lee', 'Bo Chen', '20200101000000')
     assert L.undated_capture_rows([r], lambda sha: 'Center team page: Lead Zed Kim, Ann Lee') != []

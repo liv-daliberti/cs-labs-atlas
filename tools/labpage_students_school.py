@@ -660,7 +660,7 @@ def undated_capture_rows(records, page_head=None):
     """R-STU-14: from lab-page audit records (labpage-audit.jsonl.gz) the members the audit set aside as `undated_cannot_place`: an undated entry under a
     PhD-student heading of a lab page. Such a member is that lab's student in the year of the capture (Wayback, or live) that shows them, never earlier or
     later; the same person on captures of several years gets the span of those capture years. Not kept: a member under an alumni / past / former heading
-    (the capture year is not a membership year), any role but `phd`, a name without a verbatim quote and a sha256, a PI whose family name is one letter (a placeholder
+    (the capture year is not a membership year), any role but `phd` or `visiting` (R-STU-17), a name without a verbatim quote and a sha256, a PI whose family name is one letter (a placeholder
     row), a page that does not name the PI within its first 400 characters (`page_head(sha256)` -> that text; a centre or group page that lists the PI among
     several leads does not make the PI the members' adviser). -> [{pi, student, years, ...}]."""
     by = {}
@@ -669,7 +669,7 @@ def undated_capture_rows(records, page_head=None):
         if len(r['pi'].split()[-1].strip('.')) < 2:
             continue
         for x in (r.get('students') or {}).get('missing_from_build') or []:
-            if x.get('reason_code') != 'undated_cannot_place' or x.get('role') != 'phd':
+            if x.get('reason_code') != 'undated_cannot_place' or x.get('role') not in ('phd', 'visiting'):
                 continue
             if ALUM.search(x.get('section') or '') or ALUM.search((x.get('quote') or '')[:200]) or not (x.get('quote') and x.get('sha256') and x.get('url')) \
                     or not member_list_quote_ok(x['quote'], x['name']):
@@ -687,7 +687,7 @@ def undated_capture_rows(records, page_head=None):
     rows = []
     for (pi, _), e in sorted(by.items()):
         y, x = e['first']
-        rows.append(dict(pi=pi, student=e['student'], years=[min(e['years']), max(e['years'])], years_basis='capture_date', section=x.get('section'),
+        rows.append(dict(pi=pi, student=e['student'], years=[min(e['years']), max(e['years'])], years_basis='capture_date', role=x.get('role') or 'phd', section=x.get('section'),
                          url=re.sub(r'^https?://web\.archive\.org/web/\d+(?:id_)?/', '', x['url']), capture_url=x['url'] if 'web.archive.org' in x['url'] else None,
                          sha256=x['sha256'], quote=x['quote'], auto=True))
     return rows
@@ -718,7 +718,7 @@ def undated_capture(key):
     rows = undated_capture_rows(recs, head)
     by = collections.OrderedDict()
     for r in rows:
-        by.setdefault(r['pi'], []).append({k: v for k, v in r.items() if k not in ('pi', 'student')} | dict(name=r['student'], role='phd', alumni=False))
+        by.setdefault(r['pi'], []).append({k: v for k, v in r.items() if k not in ('pi', 'student')} | dict(name=r['student'], alumni=False))
     out = [dict(pi=pi, lab_site=None, people_page=None, students=ss) for pi, ss in by.items()]
     P.data_w('undated-capture-evidence.json', key).write_text(json.dumps(out, indent=1, ensure_ascii=False))
     print(json.dumps(dict(relations=len(rows), labs=len(out))))
