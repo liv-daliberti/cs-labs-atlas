@@ -19,4 +19,5 @@ case "${1:?novelty|bertopic|entropy}" in
   novelty) $CS_ATLAS_ENV_PY -u novelty_run.py --model "${2:?model}" --kind "${3:-abstract}" ;;
   bertopic) $CS_ATLAS_ENV_PY -u topics.py bertopic --model "${2:?model}" ;;
   entropy) $CS_ATLAS_ENV_PY -u topics.py entropy --model "${2:?model}" ;;
+  report) $CS_ATLAS_ENV_PY -u emb_report.py ;;
 esac
