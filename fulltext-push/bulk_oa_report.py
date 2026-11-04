@@ -35,12 +35,12 @@ def ro(school):
     return sqlite3.connect(f'file:{p}?mode=ro', uri=True, timeout=120) if p.exists() else None
 
 
-def report(schools):
+def report(schools, channels=None):
     for s in schools:
         db = ro(s)
         if db is None:
             continue
-        for ch in CHANNELS:
+        for ch in channels or CHANNELS:
             like = f'%/{ch}-20261%'
             cand = db.execute('SELECT count(*), count(DISTINCT work_id) FROM candidates c WHERE c.metadata_source LIKE ? AND ' + stamp_ok(ch), (like,)).fetchone()
             got = db.execute("SELECT count(*) FROM works w JOIN candidates c ON c.work_id=w.id AND c.url=w.download_url WHERE c.metadata_source LIKE ? "
@@ -75,5 +75,7 @@ def sample(ch, n, seed=1):
 if __name__ == '__main__':
     if sys.argv[1] == 'report':
         report(sys.argv[2:] or SCHOOLS)
+    elif sys.argv[1] == 'report-core':   # what the CORE pause costs: candidates written by the `core` and `core_bulk` channels, and their copies
+        report(sys.argv[2:] or SCHOOLS, ['core', 'core_bulk'])
     else:
         sample(sys.argv[2], int(sys.argv[3]), int(sys.argv[4]) if len(sys.argv) > 4 else 1)
