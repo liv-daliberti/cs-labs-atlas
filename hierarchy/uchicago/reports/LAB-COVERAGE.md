@@ -20,7 +20,7 @@ Reasons for 0 students: {'sources_exhausted': 59, 'appointment_ended_early': 4, 
 | Bo Li | CS | 0 | - | 35 | sources_exhausted |  |
 | Ce Zhang | CS | 0 | - | 16 | sources_exhausted |  |
 | Christopher Thomas Ryan | BOOTH | 0 | - | 7 | sources_exhausted |  |
-| Claire Donnat | STAT | 0 | - | 25 | sources_exhausted |  |
+| Claire Donnat | STAT | 0 | - | 26 | sources_exhausted |  |
 | Cong Ma | STAT | 0 | - | 21 | sources_exhausted |  |
 | David Cash | CS | 0 | - | 12 | sources_exhausted |  |
 | Denis R. Hirschfeldt | MATH | 0 | - | 11 | sources_exhausted |  |
@@ -36,7 +36,7 @@ Reasons for 0 students: {'sources_exhausted': 59, 'appointment_ended_early': 4, 
 | James A. Evans | DSI | 0 | - | 88 | sources_exhausted |  |
 | Janos Simon | CS | 15 | lab page 15 | 0 |  | no_school_affiliated_works |
 | Jean-Pierre H. Dube | BOOTH | 0 | - | 13 | sources_exhausted |  |
-| Jeremy Hoskins | STAT | 0 | - | 39 | sources_exhausted |  |
+| Jeremy Hoskins | STAT | 0 | - | 40 | sources_exhausted |  |
 | John Goldsmith | CS | 0 | - | 5 | sources_exhausted |  |
 | John R. Birge | BOOTH | 0 | - | 42 | sources_exhausted |  |
 | Jonathan Weare | STAT | 0 | - | 5 | appointment_ended_early |  |

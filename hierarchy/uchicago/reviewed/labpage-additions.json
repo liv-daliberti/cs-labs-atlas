@@ -1,6 +1,6 @@
 {
  "school": "uchicago",
- "generated_at": "2026-11-04T04:15:37+00:00",
+ "generated_at": "2026-11-04T04:29:01+00:00",
  "tool": "tools/labpage_audit.py",
  "standard": "docs/LAB-PAGES.md",
  "status": "proposed, unreviewed: not read by tools/pi_hierarchy.py until wired (docs/LAB-PAGES.md, integration)",
@@ -9,90 +9,5 @@
   "LP-PAP-01": "A paper listed on the PI's own lab publications page whose resolved work carries the PI on the byline, falls in the PI's appointment (R-PAP-01) and whose PI authorship lists the school (or page 1 ties the school to the PI) is a lab paper with identity 'labpage_listing' (R-PAP-04: the lab's own publications page), exactly the rows tools/labpage_recover.py accepts into labpage-recovered.jsonl.gz."
  },
  "students": [],
- "papers": [
-  {
-   "pi": "Claire Donnat",
-   "key": "labpage:5b349b58257fc5fc399b2cddfaf190bd47455456",
-   "title": "Filtering with Confidence: When Data Augmentation Meets Conformal Prediction",
-   "year": 2025,
-   "doi": "10.48550/arxiv.2509.21479",
-   "venue": "arXiv (Cornell University)",
-   "byline": [
-    "Wu, Zixuan",
-    "Jeong, So Won",
-    "Liu, Yating",
-    "Jung, Yeo Jin",
-    "Donnat, Claire"
-   ],
-   "arxiv": "2509.21479",
-   "evidence": {
-    "basis": "page1_arxiv",
-    "how": "near",
-    "quotes": [
-     "Claire Donnat Department of Statistics University of Chicago"
-    ],
-    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2509/2509.21479v1.pdf",
-    "pdf_sha256": "9a2ff7a13ee9c2d88bfbfd19a4d867bc0566aac2a48f3c90a9b4ee2e46d4b3ea",
-    "step": "pi_works",
-    "match": "exact_title",
-    "oa": "https://openalex.org/W7083696098",
-    "appointment": {
-     "listing": 2025
-    },
-    "arxiv": "2509.21479",
-    "labpage": {
-     "url": "https://donnate.github.io/publications/",
-     "capture_url": null,
-     "sha256": "c89170d29ae90eafe3e80e365368424eccc79ce3fe7e4f28b0c8869f8f003c90",
-     "quote": "arXiv · 2025, revised 2026 Filtering with Confidence: When Data Augmentation Meets Conformal Prediction Zixuan Wu, So Won Jeong, Yating Liu, Yeo Jin Jung, and Claire Donnat .",
-     "listed_title": "Filtering with Confidence: When Data Augmentation Meets Conformal Prediction",
-     "listed_year": 2026
-    }
-   },
-   "rule": "LP-PAP-01",
-   "audit_key": "4de9c339f5a3f061"
-  },
-  {
-   "pi": "Jeremy Hoskins",
-   "key": "labpage:8a098451570c24e284ffcad066e5c722608ea530",
-   "title": "Complex scaling for open waveguides",
-   "year": 2025,
-   "doi": "10.48550/arxiv.2506.10263",
-   "venue": "arXiv (Cornell University)",
-   "byline": [
-    "Epstein, Charles L.",
-    "Goodwill, Tristan",
-    "Hoskins, Jeremy",
-    "Quinn, Solomon",
-    "Rachh, Manas"
-   ],
-   "arxiv": "2506.10263",
-   "evidence": {
-    "basis": "page1_arxiv",
-    "how": "near",
-    "quotes": [
-     "Jeremy Hoskins Department of Statistics and CCAM University of Chicago"
-    ],
-    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2506/2506.10263v1.pdf",
-    "pdf_sha256": "68f9d88b50dfef10c7ff3df193b552f670540d6555a1dd30ef2ae73d5c2509f6",
-    "step": "pi_works",
-    "match": "title_in_citation",
-    "oa": "https://openalex.org/W4417349477",
-    "appointment": {
-     "listing": 2025
-    },
-    "arxiv": "2506.10263",
-    "labpage": {
-     "url": "https://www.jghoskins.com/publications",
-     "capture_url": null,
-     "sha256": "36b3b4a0ad575fc898639437b123682c971b74b1a0dc3e4b67cfa013c6c7c51e",
-     "quote": "Epstein C, Goodwill T, Hoskins JG, Quinn S, Rachh M. Complex scaling for open waveguides (2025) - ( arxiv )",
-     "listed_title": "Complex scaling for open waveguides (2025) - ( arxiv )",
-     "listed_year": 2025
-    }
-   },
-   "rule": "LP-PAP-01",
-   "audit_key": "7e1806171821aca2"
-  }
- ]
+ "papers": []
 }

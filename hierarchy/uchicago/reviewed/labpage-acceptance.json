@@ -3,8 +3,8 @@
  "decided_at": "2026-11-03",
  "bar": "docs/LAB-PAGES.md, acceptance bar",
  "additions_file": "hierarchy/uchicago/reviewed/labpage-additions.json",
- "additions_generated_at": "2026-11-04T04:15:37+00:00",
- "additions_sha256": "754c8f263460af7adeef6e9da10363c78a13c8039be8771932ffbc0983d5feff",
+ "additions_generated_at": "2026-11-04T04:29:01+00:00",
+ "additions_sha256": "7d78baba0e43b166785ae7894c6ef20704aab123b802a9e2a52e196554e013a8",
  "students": {
   "accepted": true,
   "round": 6,
@@ -15,29 +15,29 @@
   "counts": {
    "proposed": 0
   },
-  "reason": "round 6 passes after the first attempt at this regeneration proposed 158 rows from department rosters (the Statistics alumni page and TTIC's alumni list filed under PIs who are not on them); the page-lacks-PI rule now applies to charter schools and an entry that names another adviser is dropped",
+  "note": "the same 32 rows as round 6 (compared by PI and name); acceptance carried over",
   "restamped_from": {
-   "sha256": "710455ff7d027bafc0b9c2a25a11c2390753fd50dc3ff99e8f324f1dda7a155d",
-   "generated_at": "2026-11-04T04:08:42+00:00",
-   "removed": 32,
+   "sha256": "2d88fcbb580987317a69e1e8008720bbb5797924563a77f0163669f7541c280e",
+   "generated_at": "2026-11-04T04:25:11+00:00",
+   "removed": 0,
    "reason": "rows removed by existing rules on regeneration (appointment periods R-PAP-01/03, strict current rule); no row added or changed"
   }
  },
  "papers": {
-  "accepted": false,
-  "round": 7,
-  "sample_size": 20,
-  "seed": 20261113,
-  "errors": 1.0,
+  "accepted": true,
+  "round": 8,
+  "sample_size": 2,
+  "seed": 20261116,
+  "errors": 0,
   "counts": {
-   "proposed": 23
+   "proposed": 0
   },
-  "note": "second paper sample (after 44 titles were searched with the OpenAlex key, 9 resolved): every row has the PI on the byline, an appointment year and a page-1 or OpenAlex affiliation naming the university or TTIC; two doubtful rows",
-  "reason": "rows added (2) or changed (0) since round 7: a fresh hand-check round is needed",
+  "note": "the two additions after round 7 (Donnat 'Filtering with Confidence', Hoskins 'Complex scaling for open waveguides'): page 1 names the Department of Statistics, University of Chicago, PI on the byline, listing year 2025; both were in the round-5 sample",
   "restamped_from": {
-   "sha256": "710455ff7d027bafc0b9c2a25a11c2390753fd50dc3ff99e8f324f1dda7a155d",
-   "added": 2,
-   "changed": 0
+   "sha256": "2d88fcbb580987317a69e1e8008720bbb5797924563a77f0163669f7541c280e",
+   "generated_at": "2026-11-04T04:25:11+00:00",
+   "removed": 2,
+   "reason": "rows removed by existing rules on regeneration (appointment periods R-PAP-01/03, strict current rule); no row added or changed"
   }
  }
 }
