@@ -75,7 +75,7 @@ def signal(row):
     return None
 
 
-_LIST_HEAD = re.compile(r"\b(?:Alum|Alumni|Alumnae|Postdocs?|Postdoctoral|Faculty|Staff|Collaborators?|Current|Past|Former|(?:PhD|Ph\.D\.|Graduate|Undergraduate|Master'?s|MS)\s+(?:Students?|Researchers?))\b")
+_LIST_HEAD = re.compile(r"\b(?:Alum|Alumni|Alumnae|Postdocs?|Postdoctoral|Faculty|Staff|Collaborators?|Current|Past|Former|(?:PhD|Ph\.D\.|Graduate|Undergraduate|Master'?s|MS)\s+(?:Students?|Researchers?)|M\.?\s?Engs?)\b")
 _TITLE_WORD = re.compile(r"\b(?:scientists?|professors?|post-?docs?|scholars?|researchers?|staff|engineers?|faculty)\b", re.I)
 _MIXED_BEFORE = re.compile(r"(?:undergrad\w*|graduate|ph\.?\s?d|master\w*|post-?docs?|staff|faculty|researchers?|scholars?|scientists?|collaborators?)\s*(?:and|&|,|/)\s*$", re.I)
 

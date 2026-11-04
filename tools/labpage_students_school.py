@@ -8,7 +8,7 @@ pages    each PI's homepage pages (tools/periods_school.py fetched them) and, on
          existing Wayback id_ captures (the nearest 2026 capture and the nearest one to the PI's first listed year).
          No source the charter marks `none` (Deep Blue, news.umich.edu, record.umich.edu) is ever used.
 names    hierarchy/labpage-tools-epfl-berkeley/lpdom.member_candidates (sectioned name lines under role headings).
-         Kept: a role of phd or postdoc (lpdom.role_of over the heading path and the line), a plausible person name
+         Kept: a role of phd, postdoc or visiting (R-STU-17) (lpdom.role_of over the heading path and the line), a plausible person name
          that is not the PI. Alumni headings (former, graduated, alumni) give role phd_alumnus / postdoc_alumnus.
 years    a year or range on the line (lpdom.years_in), else the page's capture year (current members; years_basis
          capture_date)
@@ -44,6 +44,7 @@ import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
 import census_overrides as CO  # noqa: E402
 import student_decisions as SD  # noqa: E402
+import visiting as V  # noqa: E402
 import school_web as W  # noqa: E402
 import periods_school as PS  # noqa: E402
 from pi_hierarchy import Name, toks  # noqa: E402
@@ -598,14 +599,15 @@ def extract(key):
                     name = clean_student_name(name)
                     if SD.excluded(decisions, pi, name):
                         rep['reviewed_decision_dropped'] += 1; continue   # decided not / unclear for this lab (student-decisions.json)
-                    if (path and any(NOT_STUDENT_HEAD.match(x) for x in path)) or ' '.join(toks(name)) in faculty_anywhere:
+                    vis = V.visiting_role(rest, ' > '.join(path), lambda t: (lpdom.role_of(t), None))   # R-STU-17: student wording required; visiting faculty, scientists, scholars are not
+                    if (path and any(NOT_STUDENT_HEAD.match(x) and not (vis and V.says_visiting(x)) for x in path)) or ' '.join(toks(name)) in faculty_anywhere:
                         rep['dropped_hiring_or_faculty'] += 1; continue
-                    role = lpdom.role_of(*(list(reversed(path)) + [rest]))
+                    role = 'visiting' if vis else lpdom.role_of(*(list(reversed(path)) + [rest]))
                     if role in ('phd', 'postdoc') and path and re.search(r'ph\.?\s?d|doctoral', path[-1], re.I) and re.search(r'post-?doc', path[-1], re.I):
                         role_out = 'member'  # 'Current PhD Students and Postdocs': the heading does not say which
                     else:
                         role_out = role
-                    if role not in ('phd', 'postdoc') or not lpdom.looks_like_name(name) or not lpdom.plausible_person(name) \
+                    if role not in ('phd', 'postdoc', 'visiting') or not lpdom.looks_like_name(name) or not lpdom.plausible_person(name) \
                             or N.match(name) or len(toks(name)) < 2 or len(toks(name)) > 4 or any(F.match(name) for F in fac):
                         rep['dropped_not_a_student_name'] += 1; continue
                     alum = any(ALUM.search(x) for x in path)  # the section says it, not the person's line ('now Ph.D. student @ ...')
@@ -633,7 +635,7 @@ def extract(key):
                     if k in seen:
                         continue
                     seen.add(k)
-                    studs.append(dict(name=name, role=role_out + ('_alumnus' if alum and role_out != 'member' else ''), years=[min(years), max(years)],
+                    studs.append(dict(name=name, role=role_out + ('_alumnus' if alum and role_out not in ('member', 'visiting') else ''), years=[min(years), max(years)],
                                       years_basis='stated' if ys else 'capture_date', alumni=alum, section=' › '.join(path)[:200],
                                       url=re.sub(r'^https?://web\.archive\.org/web/\d+(?:id_)?/', '', cited), capture_url=cited if 'web.archive.org' in cited else None,
                                       sha256=sha, quote=q, auto=True))

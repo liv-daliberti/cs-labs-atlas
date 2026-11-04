@@ -1,4 +1,6 @@
 """R-STU-17 (2026-11-04, owner): the `visiting` student role (tools/visiting.py, labpage_audit entry_role, student-decisions, conversion)."""
+import re
+
 import pytest
 
 import labpage_audit as L
@@ -11,7 +13,6 @@ NO_ROLE = lambda s: (None, None)
 
 def role_of(s):
     """A stand-in for autom._role: the few words the cases below need."""
-    import re
     for r, rx in (('postdoc', r'post-?doc'), ('undergraduate', r'undergrad'), ('masters', r"master"), ('phd', r'ph\.?\s?d|graduate'), ('other', r'scientist|visit|staff|professor')):
         if re.search(rx, s or '', re.I):
             return r, None
@@ -103,3 +104,18 @@ def test_R_STU_17_conversion_needs_the_evidence_shown_not_just_hinted():
     assert VR.shown('Visiting Students Abdel Zaro Alumni Gargi Sadalgekar', 'Gargi Sadalgekar', True) is None
     assert VR.shown('Visiting PhD student Navita Goyal Visiting research scientist Peter Hase', 'Peter Hase', True) is None
     assert VR.shown('Undergraduate and Visiting Students Cy Wu', 'Cy Wu', True) is None
+
+
+def test_R_STU_17_a_meng_heading_ends_a_visiting_list():
+    assert VR.shown('Visiting Students: Ziyi Guo (Northwestern University) MEngs: Muhammad Abdullah', 'Muhammad Abdullah', True) is None
+    assert VR.shown('Visiting Students: Ziyi Guo (Northwestern University) M.Eng. Muhammad Abdullah', 'Muhammad Abdullah', True) is None
+
+
+def test_R_STU_17_the_directory_extractor_keeps_visiting_students_under_the_same_rules():
+    """labpage_students_school.extract reads the visiting wording through tools/visiting.py: a visiting-students heading is not a `visitors` skip heading, a
+    visiting scholar heading still is no student, and the role filter admits `visiting`."""
+    import labpage_students_school as S
+    src = open(S.__file__).read()
+    assert "role not in ('phd', 'postdoc', 'visiting')" in src and 'V.visiting_role(rest' in src
+    assert S.NOT_STUDENT_HEAD.match('Visitors (students)') and V.says_visiting('Visitors (students)')
+    assert not V.says_visiting('Visiting Scholars')

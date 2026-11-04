@@ -365,14 +365,14 @@ lab coverage counts it as a student like any other role (a lab with only visitin
 capture-year dating as other undated members (R-STU-14).
 Extraction: `tools/visiting.py` (`VISITING_RX`, `visiting_role`): the entry's own text first ('visiting student from CUHK', '(visiting, CUHK)', 'Visiting
 Ph.D. from Tsinghua'; not an earlier stay or the entry's own 'PhD student' statement), else the nearest role heading; the entry's own postdoc, staff, scientist or
-visitor title outranks a visiting heading. `labpage_audit.entry_role`, `clean_parenthetical_name`; ELSEWHERE_RX no longer reads 'visiting student at X' as a
+visitor title outranks a visiting heading. `labpage_audit.entry_role`, `clean_parenthetical_name`, and `labpage_students_school.extract` (a visiting-students heading is not a `visitors` skip heading; the role filter keeps `visiting`); ELSEWHERE_RX no longer reads 'visiting student at X' as a
 student of X, and the other-institution checks are skipped for a `visiting` row.
 Past decisions: `student-decisions.json` takes `decision: visiting` (passed on like `uchicago`, role forced to `visiting`); `tools/visiting_roles.py` converted
 every researched row whose evidence SHOWS a visiting student, in its quote or in the stored capture it cites (the phrase directly after the name; or, when the row's
-own section is a pure visiting heading, that heading before the name with no other role heading or title between): 179 rows (Princeton 13, MIT 48, CMU 80,
-EPFL 19, Berkeley 6, Stanford 4, Michigan 9), keeping the quote, url and the role it had (`role_was`, `converted_from`; `role_quote` is the capture span when the
+own section is a pure visiting heading, that heading before the name with no other role heading or title between): 180 rows (Princeton 13, MIT 45, CMU 80,
+EPFL 19, Berkeley 6, Stanford 4, Michigan 9, Georgia Tech 4), keeping the quote, url and the role it had (`role_was`, `converted_from`; `role_quote` is the capture span when the
 quote itself does not show it). A hint that nothing shows (a reviewer's note, a section whose heading the capture does not place before the name) converts
-nothing: 47 such rows keep their earlier role; UChicago's two `not` rows were changed by hand and keep `original_decision` / `original_why`.
+nothing: 52 such rows keep their earlier role; UChicago's two `not` rows were changed by hand and keep `original_decision` / `original_why`.
 `visiting_decided` in `pihier.students.researched`, `role_label` in `tools/export_release.py`.
 
 ## Student–paper links
