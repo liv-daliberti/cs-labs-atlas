@@ -77,7 +77,12 @@ def name_key(s):
 
 
 def run(school):
-    A = {x['school']: x for x in json.loads((P.hfile(H, 'chain-audit.json')).read_text())['schools']}[school]
+    shared = {x['school']: x for x in json.loads((P.hfile(H, 'chain-audit.json')).read_text())['schools']}
+    if school in shared:
+        A = shared[school]
+    else:   # a school being onboarded is not in the release's chain-audit.json: run its audit in-process (nothing is written)
+        import chain_audit
+        A = chain_audit.audit(school)
     pis = {p['pi']: p for p in json.loads((P.hfile(H, 'pis.json', school)).read_text())}
     pi_ids = {k: set(p.get('reviewedOpenAlex') or []) | set(p.get('oaAuthorIds') or []) for k, p in pis.items()}
     id_to_pi = collections.defaultdict(set)
