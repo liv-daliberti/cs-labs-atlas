@@ -44,8 +44,14 @@ sys.path.insert(0, str(SCRIPTS))
 import collect_princeton_fulltext_expanded as c
 from protego import Protego
 
+# 2026-11-03: dspace.mit.edu (DSpace 7, the same host family as Infoscience) answers /server/api/core/bitstreams/<uuid>/content with a
+# 302 to its signed file store cf003.cdn.4science.cloud/4s-assetstore-prod--mit--dspace/...; the 1,106 copies of 2026-10-21..23 came that
+# way, but this wrapper approved only cf002 (EPFL) and every MIT bitstream failed at 'Redirect or URL outside the evidence-approved
+# public hosts: cf003.cdn.4science.cloud'. The origin's robots.txt (dspace.mit.edu allows /server/api) still governs the first hop; the
+# store gets the same path-limited rule set as the others, so no other tenant of the CDN is reachable.
 DELIVERY = {'s3-eu-west-1.amazonaws.com': '/pstorage-cmu-348901238291901/',
-            'cf002.cdn.4science.cloud': '/4s-assetstore-epfl-prod/'}
+            'cf002.cdn.4science.cloud': '/4s-assetstore-epfl-prod/',
+            'cf003.cdn.4science.cloud': '/4s-assetstore-prod--mit--dspace/'}
 # 2026-10-30: dspace.mit.edu (HTTP 429 at 3 s; Open Access Articles manuscripts of MIT's IEEE / ACM / Springer papers) at
 # one request per 15 s, bioRxiv / medRxiv slowed from 15 s to 30 s (429 again at 15 s); a 429 still pauses the host for the
 # pass and the pass-start requeue asks again next pass
@@ -63,8 +69,53 @@ c.PUBLIC_REDIRECT_HOSTS |= set(DELIVERY)
 _init, _get, _pause = c.PublicClient.__init__, c.PublicClient.get, c.PublicClient.pause
 
 
+RATE_429 = 'HTTP 429; retry later per server guidance'
+
+
+class _Blocked(dict):
+    """The client's paused hosts. An HTTP 429 (the collector's own entry, RATE_429) is a timed cooldown shared by every loop
+    (host_throttle.py), not a pause for the rest of the pass: a cooldown up to WAIT_MAX is waited out inside the host lock and the
+    host is asked again; a longer one (repeated 429s) pauses it as before until it ends. Every other entry is permanent for the
+    pass, as in the collector."""
+
+    def __init__(self):
+        super().__init__()
+        self._cool = set()
+
+    def __setitem__(self, key, value):
+        if value == RATE_429:
+            try:
+                HT.record_429(key)
+            except OSError:
+                pass
+            self._cool.add(key)
+        super().__setitem__(key, value)
+
+    def _drop(self, key):
+        self._cool.discard(key)
+        dict.pop(self, key, None)
+
+    def __contains__(self, key):
+        try:
+            left = HT.cooldown_left(key)   # another process's 429 counts too
+        except OSError:
+            left = 0.0
+        if left > 0 and not dict.__contains__(self, key):
+            dict.__setitem__(self, key, RATE_429)
+            self._cool.add(key)
+        if key in self._cool:
+            if left > HT.WAIT_MAX:
+                return True
+            if left > 0:
+                time.sleep(left + 1)
+            self._drop(key)
+            return False
+        return dict.__contains__(self, key)
+
+
 def __init__(self, out, allowed):
     _init(self, out, allowed)
+    self.blocked = _Blocked()
     for host, prefix in DELIVERY.items():
         self.rules[host] = Protego.parse(f'User-agent: *\nAllow: {prefix}\nDisallow: /\n')
 
@@ -72,6 +123,13 @@ def __init__(self, out, allowed):
 def pause(self, key, delay):
     delay = max(delay, MIN_DELAY.get(key, 0))
     if delay <= MAX_WAIT:
+        if key in MIN_DELAY:   # the hosts that rate-limit us: one request clock for all loops, not one per process
+            try:
+                time.sleep(HT.reserve(key, delay))
+                self.last[key] = time.monotonic()
+                return
+            except OSError:
+                pass
         return _pause(self, key, delay)
     path = self.out / 'staged' / 'slow-host-last.json'
     with self.guard:
@@ -272,6 +330,7 @@ if str(CODE_ROOT / 'fulltext-push') not in sys.path:
     sys.path.append(str(CODE_ROOT / 'fulltext-push'))
 if str(CODE_ROOT / 'tools') not in sys.path:
     sys.path.append(str(CODE_ROOT / 'tools'))
+import host_throttle as HT  # noqa: E402  (pacing and 429 cooldowns shared by the loops)
 import atlas_paths as P  # noqa: E402  (the data slots: FT_RAW is the main checkout's raw/ whatever checkout or snapshot this runs from)
 import identity_rule as IR  # noqa: E402
 REJECT_KEEP = 500
@@ -368,8 +427,10 @@ def requeue(out):
     rows = db.execute("""SELECT a.* FROM attempts a JOIN works w ON w.id=a.work_id
                          WHERE w.status NOT IN ('downloaded','fulltext_xml') AND a.status='unavailable' AND (
                            a.detail LIKE 'source_paused:%'
+                           OR a.detail LIKE '429 Client Error: Too Many Requests for url: %/robots.txt'
                            OR (a.url LIKE '%infoscience.epfl.ch%' AND a.detail='Response is neither a PDF nor an HTML landing page')
                            OR a.detail IN ('Redirect or URL outside the evidence-approved public hosts: cf002.cdn.4science.cloud',
+                                           'Redirect or URL outside the evidence-approved public hosts: cf003.cdn.4science.cloud',
                                            'Redirect or URL outside the evidence-approved public hosts: s3-eu-west-1.amazonaws.com'))""").fetchall()
     if not rows:
         return

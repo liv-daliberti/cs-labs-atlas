@@ -35,6 +35,14 @@ Set up a shell: `. /n/fs/resemble/homogenizing-science/code/paths.sh` (gives `$C
   pins main's HEAD at that moment. The line `{"loop_job": ...}` in `<store>/loop.log`/`lab_first_loop-<school>.out` says what
   happened; a refused or failed resubmit leaves the loop down (the status page alarm). `scancel` (TERM) stops for good: no resubmit.
   Michigan's collector job restarts as `downloads.slurm --array=6`, the loop alone. Proof: `tests/test_loop_job.py`.
+- **Download yield (2026-11-03).** A loop only asks the collector for candidates its catalog holds, once each. Three things keep
+  open copies out of reach and are handled in code: (1) `downloads.slurm` runs the channels `ledger_found` and `reader_link` before the
+  loop, so the release's new open copies and the reader's confirmed links become candidates; (2) a timeout / 500 is asked again for the
+  priority papers (`priority_retry.py`, at most twice per URL, 6 h apart); (3) an HTTP 429 is a timed cooldown shared by all loops
+  (`host_throttle.py`, raw/host-throttle.json: 5 min, doubling per 429 within 2 h, cap 1 h; up to 15 min is waited out, longer pauses the
+  host for the pass) instead of a pause for the rest of the pass, and dspace.mit.edu / infoscience / bioRxiv / medRxiv / Wayback keep one
+  request clock across loops. MIT's DSpace file store (`cf003.cdn.4science.cloud`, path-limited) is an approved delivery host.
+  A change in `collector_wrapper.py` or `lab_first_loop.py` reaches a loop only when it restarts.
 - A second loop for the same store exits at once (`<store>/.loop.lock`); `flock -n <store>/.loop.lock true` tells whether it is free.
 - Never run a writer that does not take the catalog lock (Princeton importer, vendored Infoscience/DSpace resolvers) while that
   store's loop runs (docs/STORES.md). Do not `du` or walk `stores/`; use `df`.

@@ -75,6 +75,10 @@ oa_arxiv 3 = 3). Moving a body into its module is the next step per channel; the
   (fulltext-push/review-20261030/arxiv-loose-sample.json).
 - `ledger_found`: the open copies the unavailability ledger's checks found that are not candidates yet
   (`new_open_urls` in `hierarchy/<school>/unavailable.jsonl.gz`).
+- `reader_link` (2026-11-03): the open-copy link the release's reader confirmed for a link-only paper queued for download
+  (`reader/<school>.jsonl.gz`, ledger `found_awaiting_download` / `pending_retry`; the priority file's rule) when the paper's
+  catalog work does not hold it yet. Hosts the other channels never use (`s2_key_lookup.BAD_HOSTS`) are skipped. `downloads.slurm`
+  runs it with `ledger_found` before each loop starts.
 - `oa_publisher`: the publisher's own open copy of papers OpenAlex marks gold, hybrid, bronze or diamond, when no
   candidate reaches it (its open location's PDF, else its landing page, else the DOI); not for ACM, IEEE and SSRN,
   which refuse automated clients or serve a challenge. Either the copy, or a recorded reason (robots, challenge,

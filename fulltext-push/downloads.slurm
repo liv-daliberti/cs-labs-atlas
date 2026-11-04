@@ -23,6 +23,18 @@ cd "$CS_ATLAS_FULLTEXT_PUSH"
 PRIORITY="$CS_ATLAS_FT_RAW/$s-priority-work-ids.tsv"
 ${CS_ATLAS_COLLECTOR_PY} -I priority_file.py $s >> "$CS_ATLAS_FT_LOGS"/lab_first_loop-$s.out 2>&1 || rm -f "$PRIORITY"
 PRIORITY_ARGS=(); [ -s "$PRIORITY" ] && PRIORITY_ARGS=(--priority-file "$PRIORITY")
+# 2026-11-03 (owner, download yield): the loop only asks the collector for candidates the catalog already holds, so two channels put the
+# release's open copies there first: ledger_found (the ledger's new_open_urls: arXiv ids -> arXiv's bulk copy, PMC ids -> the PMC S3 files,
+# URLs) and reader_link (the reader's confirmed link of each queued link-only paper). Both skip a URL the work already knows; the collector
+# still applies robots.txt, pacing and the title check. Princeton's channel writes a discovery package, imported as princeton_pass.sh does.
+# A failure only loses the new candidates, never the loop.
+if [ -s "$PRIORITY" ]; then
+  ( flock 9; ${CS_ATLAS_COLLECTOR_PY} -I -u channel_runner.py $s ledger_found reader_link ) 9>>"$CS_ATLAS_FT_LOGS/run_steps-ledger_found.lock" >> "$CS_ATLAS_FT_LOGS"/lab_first_loop-$s.out 2>&1 < /dev/null || true
+  if [ "$s" = princeton ]; then
+    pk=$(ls -d "$CS_ATLAS_STORES"/princeton/discovery/claude-labpapers-*/ 2>/dev/null | grep -v newworks | while read d; do [ -s "$d/cs-open-copies-candidates.jsonl" ] && echo "cs_open_copies:$(basename $d)"; done)
+    [ -n "$pk" ] && ${CS_ATLAS_COLLECTOR_PY} -u "$CS_ATLAS_VENDOR/princeton_tools/import_all_when_free.py" $pk >> "$CS_ATLAS_FT_LOGS"/lab_first_loop-$s.out 2>&1 < /dev/null || true
+  fi
+fi
 RESTART_LOG="$CS_ATLAS_FT_LOGS/lab_first_loop-$s.out"
 # the loop runs as a child so USR1 near the time limit can stop it and resubmit this task (loop_job.sh); TERM from scancel stops it for good
 run_restartable "fulltext-push/downloads.slurm" "--array=$SLURM_ARRAY_TASK_ID" -- \

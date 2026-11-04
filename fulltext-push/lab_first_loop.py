@@ -15,8 +15,8 @@ two never run together. State -> data/fulltext/<school>/loop-state.json, log -> 
 works through a --work-ids list in its order within each host); without it the order is unchanged.
 --priority-file F (2026-11-03, owner): F lists work ids (first column; '#' lines skipped), written by priority_file.py from the latest
 release: the link-only papers (the site links an open copy confirmed at the source, we hold no copy) still queued for download. Each
-round first runs the collector on the lab-paper groups that contain one of those ids (phase priority_N), then the lab pass on the
-rest. Only the order changes: robots.txt, pacing, paused hosts, identity checks and catalog locks are the collector's, unchanged,
+round first asks again the priority papers' transient failures (priority_retry.py), then runs the collector on the lab-paper groups
+that contain one of those ids (phase priority_N), then the lab pass on the rest. Only the order changes: robots.txt, pacing, paused hosts, identity checks and catalog locks are the collector's, unchanged,
 and the file never holds a blocked paper (robots_disallow, challenge, login, paywall_only). The file is re-read every round.
 usage: lab_first_loop.py <school> [--full-hours H] [--recent-first Y] [--priority-file F]
 """
@@ -25,6 +25,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import ftp_common as F
+import priority_retry
 
 WRAPPER = str(F.P.vendor('cmu_tools') / 'collector_wrapper.py')  # vendored 2026-10-30 (tools/vendor_sync.py)
 SCRIPTS = str(F.P.vendor('homogenizing_scripts'))  # the collector's directory (its cwd)
@@ -166,6 +167,11 @@ def main():
         rounds += 1
         before = max_attempt(out)
         pri = read_priority(pri_path) if pri_path else None
+        if pri:
+            try:  # 2026-11-03: a timeout / 500 is asked again for the priority papers (priority_retry.py); never stops the loop
+                state(out, priority_transient_requeued=priority_retry.requeue_transient(school, sorted(pri)))
+            except Exception as e:
+                print(json.dumps(dict(at=F.now(), priority_retry_failed=str(e)[:200])), flush=True)
         if pri is not None:
             first, ids = lab_work_ids(school, recent, pri)
             pf = F.P.FT_RAW / f'{school}-priority-run-ids.txt'

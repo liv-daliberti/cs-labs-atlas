@@ -110,6 +110,7 @@
  "tests/test_determinism.py": "test that loads a specific checkout's module or builds a subprocess script (not a pythonpath case)",
  "tests/test_labpage_audit.py": "test that loads a specific checkout's module or builds a subprocess script (not a pythonpath case)",
  "tests/test_priority_file.py": "reaches fulltext-push modules (as the other fulltext-push tests)",
+ "tests/test_download_yield.py": "puts this worktree's fulltext-push and vendor code ahead of the main checkout's (atlas_paths prepends the main checkout's vendor dirs)",
  "tools/atlas_ids.py": "cross-directory import (tools/ reaching fulltext-push/, listings/, vendor/ or labpage-tools): PYTHONPATH does not cover it under -I",
  "tools/atlas_paths.py": "launched under python -I, or imported by a script that is (docs/CONTRIBUTING.md, Imports and sys.path)",
  "tools/catalog_alias.py": "launched under python -I, or imported by a script that is (docs/CONTRIBUTING.md, Imports and sys.path)",
