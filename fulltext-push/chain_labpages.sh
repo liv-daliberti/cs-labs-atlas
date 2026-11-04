@@ -9,7 +9,7 @@ cd "$(dirname "$0")"
 . ../paths.sh  # every path in one place (tools/atlas_paths.py)
 # wait for chain_refresh.sh's channel runs to end (its last one is Princeton's; its final Princeton collector pass may
 # still be running - collectors run beside channel steps as usual)
-[ -n "$1" ] && while kill -0 "$1" 2>/dev/null && ! grep -q '"done": "princeton oa_arxiv openalex proceedings arxiv_title s2 core"' "$CS_ATLAS_FT_LOGS"/steps-princeton.log.since-$1 2>/dev/null; do
+[ -n "$1" ] && while kill -0 "$1" 2>/dev/null && ! grep -q '"done": "princeton oa_arxiv openalex proceedings arxiv_title s2"' "$CS_ATLAS_FT_LOGS"/steps-princeton.log.since-$1 2>/dev/null; do
   awk -v t="2026-10-26T23:30" 'index($0, "\"at\": \"") && substr($0, index($0, "\"at\": \"") + 7, 16) >= t' "$CS_ATLAS_FT_LOGS"/steps-princeton.log > "$CS_ATLAS_FT_LOGS"/steps-princeton.log.since-$1 2>/dev/null
   sleep 60
 done
@@ -20,9 +20,9 @@ nice -n 5 $PY berkeley_catalog.py
 for s in cmu epfl mit princeton; do nice -n 5 $PY add_works.py $s; done
 NW=$(ls -d $CS_ATLAS_STORES/princeton/discovery/claude-labpapers-newworks-*/ | xargs -n1 basename | sed 's/^/cs_pi_works:/')
 (${CS_ATLAS_COLLECTOR_PY} -u "$CS_ATLAS_VENDOR/princeton_tools/import_all_when_free.py" $NW)
-./run_steps.sh berkeley proceedings arxiv_title s2 core techrpt pubpages >> "$CS_ATLAS_FT_LOGS"/steps-berkeley.log 2>&1
-./run_steps.sh cmu oa_arxiv openalex proceedings arxiv_title s2 core >> "$CS_ATLAS_FT_LOGS"/steps-cmu.log 2>&1
-./run_steps.sh epfl oa_arxiv openalex proceedings arxiv_title s2 core >> "$CS_ATLAS_FT_LOGS"/steps-epfl.log 2>&1
+./run_steps.sh berkeley proceedings arxiv_title s2  techrpt pubpages >> "$CS_ATLAS_FT_LOGS"/steps-berkeley.log 2>&1
+./run_steps.sh cmu oa_arxiv openalex proceedings arxiv_title s2  >> "$CS_ATLAS_FT_LOGS"/steps-cmu.log 2>&1
+./run_steps.sh epfl oa_arxiv openalex proceedings arxiv_title s2  >> "$CS_ATLAS_FT_LOGS"/steps-epfl.log 2>&1
 # channels chain_refresh.sh leaves out: Europe PMC by DOI and PMC links (all schools), KiltHub/Figshare (CMU: 10.1184 handles)
 ./run_steps.sh cmu figshare europepmc pmc >> "$CS_ATLAS_FT_LOGS"/steps-cmu.log 2>&1
 for s in berkeley epfl mit princeton; do ./run_steps.sh $s europepmc pmc >> "$CS_ATLAS_FT_LOGS"/steps-$s.log 2>&1; done

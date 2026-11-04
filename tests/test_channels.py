@@ -242,3 +242,14 @@ def test_title_compatible_rejects_another_part_and_keeps_a_retitled_preprint():
     assert not B.title_compatible('Language, Stapp, and the Mind/Body/World Problem', 'Towards a Science of Mind')
     assert B.title_compatible('On the complexity and verification of quantum random circuit sampling', 'Quantum Supremacy and the Complexity of Random Circuit Sampling')
     assert B.title_compatible('Interactive cryptographic proofs of quantumness using mid-circuit measurements', 'Interactive Proofs of Quantumness via Mid-Circuit Measurements')
+
+
+def test_core_api_is_paused_and_the_runner_asks_nothing(monkeypatch, capsys):
+    import ftp_common as F
+    assert F.CORE_PAUSED and set(F.PAUSED_CHANNELS) == {'core', 'core_bulk'}
+    ps, known = papers()
+    def boom(*a, **k):
+        raise AssertionError('a paused channel must not run')
+    monkeypatch.setattr(L, 'write', boom)
+    rows, n = R.run_channel('mit', 'core_bulk', [(r, w) for r, w in ROWS], known, dry=True)
+    assert rows == [] and 'paused' in capsys.readouterr().out

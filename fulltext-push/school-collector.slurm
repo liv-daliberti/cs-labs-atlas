@@ -18,7 +18,7 @@ export CS_ATLAS_COLLECTOR_PY="$CS_ATLAS_PY"
 export FTP_PY="$CS_ATLAS_COLLECTOR_PY"
 . "$CS_ATLAS_CODE/fulltext-push/job_snapshot.sh" || exit 1
 cd "$CS_ATLAS_FULLTEXT_PUSH"
-./run_steps.sh "$SCHOOL" ${CHANNELS:-oa_arxiv openalex proceedings arxiv_title dblp_ee s2 core europepmc pmc figshare labpages pihomes wayback_acm} \
+./run_steps.sh "$SCHOOL" ${CHANNELS:-oa_arxiv openalex proceedings arxiv_title dblp_ee s2  europepmc pmc figshare labpages pihomes wayback_acm} \
     >> "$CS_ATLAS_FT_LOGS/steps-$SCHOOL.log" 2>&1 < /dev/null &
 CH=$!
 trap 'kill $CH 2>/dev/null' TERM INT

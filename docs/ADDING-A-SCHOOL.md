@@ -411,7 +411,7 @@ OpenAlex co-authorship is never on its own evidence of advising.
 ## Stage 8: full texts
 - **Do:**
   - Create the store catalog (stage 0), then add the lab papers (`fulltext-push/add_works.py`).
-  - Run the channels (`run_steps.sh <key> oa_arxiv openalex proceedings arxiv_title dblp_ee s2 core europepmc pmc figshare labpages <school repository>`).
+  - Run the channels (`run_steps.sh <key> oa_arxiv openalex proceedings arxiv_title dblp_ee s2 europepmc pmc figshare labpages <school repository>`).
   - Start the download loop (`downloads.slurm`, adding the school to the array).
   - **Learned from Michigan (2026-10-30):**
     - Compute nodes have no `/usr/local/anaconda3`, while the collector child (`vendor/cmu_tools/collector_wrapper.py`)

@@ -11,4 +11,4 @@
 . "$CS_ATLAS_CODE/tools/job_code_snapshot.sh" || exit 1
 cd "$CS_ATLAS_CODE"
 $CS_ATLAS_PY -I -u "$CS_ATLAS_FULLTEXT_PUSH/bulk_oa_report.py" report
-for c in oa_locations core_bulk arxiv_bulk s2_bulk wayback_escholarship; do echo "== sample $c"; $CS_ATLAS_PY -I -u "$CS_ATLAS_FULLTEXT_PUSH/bulk_oa_report.py" sample $c 20 1; done
+for c in oa_locations arxiv_bulk s2_bulk wayback_escholarship; do echo "== sample $c"; $CS_ATLAS_PY -I -u "$CS_ATLAS_FULLTEXT_PUSH/bulk_oa_report.py" sample $c 20 1; done

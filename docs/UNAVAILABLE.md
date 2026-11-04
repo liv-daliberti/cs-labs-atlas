@@ -42,7 +42,7 @@ store are never written) and outside git.
 | `openalex` | always (every lab paper has an OpenAlex id) | `is_oa`, `oa_status`, every location (host, version, is_oa, pdf_url, source type), whether a usable open location exists; record refreshed when older than 7 days (50 ids per request) |
 | `arxiv` | always | the arXiv id from the DOI, the paper's editions, OpenAlex or S2; else the local arXiv OAI index title match (`arxiv_oai.match_one`), and when there is none the best candidate title and its similarity |
 | `s2` | always: DOI or arXiv id -> `/paper/batch` (500 per request); else title -> `/paper/search/match` | `openAccessPdf`, `externalIds` (ArXiv, PubMedCentral, ACL, PubMed) |
-| `core` | the paper has a DOI (not an arXiv DOI) | CORE repository full-text links (25 DOIs per request) |
+| `core` | the paper has a DOI (not an arXiv DOI) | CORE repository full-text links (25 DOIs per request); PAUSED 2026-11-04 (docs/DECISIONS.md): recorded answers only, no new request |
 | `pmc` | the paper has a PMID / PMCID (OpenAlex, S2, a PubMed link) or a Europe PMC record | PMCID (NCBI ID converter, 200 per request; Europe PMC cache) and the PMC open-data files on S3 |
 | `dblp` | always | the DBLP dump records matched by DOI or title + author + year, with their `ee` links (dump date recorded) |
 | `proceedings` | always (title >= 20 characters) | the open-proceedings index entry with the same title and year within 2 |

@@ -19,7 +19,7 @@ OUT=$CS_ATLAS_STORES/princeton
 for s in princeton cmu epfl mit berkeley stanford; do $PY add_works.py $s; done
 pk=$(ls -d $OUT/discovery/claude-labpapers-newworks-2026102913* $OUT/discovery/claude-labpapers-newworks-2026102914* $OUT/discovery/claude-labpapers-newworks-2026102915* $OUT/discovery/claude-labpapers-newworks-2026102916* $OUT/discovery/claude-labpapers-newworks-2026102917* $OUT/discovery/claude-labpapers-newworks-2026102918* 2>/dev/null | while read d; do echo "cs_pi_works:$(basename $d)"; done)
 [ -n "$pk" ] && (nice -n 5 ${CS_ATLAS_COLLECTOR_PY} -u "$CS_ATLAS_VENDOR/princeton_tools/import_all_when_free.py" $pk)
-COMMON="oa_arxiv openalex proceedings arxiv_title dblp_ee s2 core europepmc pmc figshare labpages"
+COMMON="oa_arxiv openalex proceedings arxiv_title dblp_ee s2  europepmc pmc figshare labpages"
 ./run_steps.sh princeton oar $COMMON >> "$CS_ATLAS_FT_LOGS"/steps-princeton.log 2>&1 < /dev/null &
 ./run_steps.sh cmu $COMMON >> "$CS_ATLAS_FT_LOGS"/steps-cmu.log 2>&1 < /dev/null &
 ./run_steps.sh epfl $COMMON infoscience >> "$CS_ATLAS_FT_LOGS"/steps-epfl.log 2>&1 < /dev/null &

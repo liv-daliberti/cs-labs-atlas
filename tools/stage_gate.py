@@ -361,7 +361,7 @@ STEPS = {
           Q('link-diagnosis', 'PY $TOOLS/link_diagnosis.py {school}', mem='24G', time='02:00:00', done=['link-diagnosis.json']),
           H('review', 'zero-paper labs need reasons, the links check needs 0 open, the lab-page papers round (a fresh 20, at most 1 error)')],
     '8': [L('add-works', 'fulltext-push/add_works.py', '{key}', py='collector'),
-          dict(name='channels', kind='hand', todo='SCHOOL={key} CHANNELS="oa_arxiv openalex proceedings arxiv_title dblp_ee s2 core europepmc pmc figshare labpages" atlas submit fulltext-push/school-channels.slurm, then add the school to the downloads array (docs/RUNBOOK.md)'),
+          dict(name='channels', kind='hand', todo='SCHOOL={key} CHANNELS="oa_arxiv openalex proceedings arxiv_title dblp_ee s2 europepmc pmc figshare labpages" atlas submit fulltext-push/school-channels.slurm, then add the school to the downloads array (docs/RUNBOOK.md)'),
           Q('copies', 'PY $TOOLS/lab_paper_copies.py {school}', done=['copies.json']),
           Q('ledger', 'PY $FTP/unavailable_ledger.py {school}', mem='20G', time='06:00:00', py='collector', done=['unavailable-summary.json'])],
     '9': [L('sample', 'accuracy/sample.py', '--school', '{key}'),
