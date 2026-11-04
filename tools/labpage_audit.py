@@ -143,6 +143,7 @@ def school_names_rx(school):
     return re.escape(school_config.get(school).get('name') or school) + '|' + re.escape(school)
 
 
+LEGACY_SCHOOLS = {'princeton', 'mit', 'cmu', 'epfl', 'berkeley', 'stanford', 'michigan'}   # the hand-table schools: their lab pages legitimately omit the PI's name
 SCHOOLS = SchoolTable({
     'princeton': dict(family='pm', tools=PM, plan='plan_princeton', dossier='dossier_princeton.json', domain=r'princeton\.edu',
                       extra_stores=['gap-captures.sqlite', 'few-students-captures.sqlite', 'thesis-captures.sqlite',
@@ -1484,7 +1485,7 @@ def audit_students(kit, ctx, p, lab, plan, auto_plan=False):
                 nm = nm_c
                 if role_c and best.get('role') in (None, 'member', 'other', 'postdoc', 'phd'):
                     best = dict(best, role=role_c, role_basis='entry_parenthetical')
-            why_ = (not_a_member_context(kit, school, nm, best) or page_lacks_pi(kit, school, p, best)
+            why_ = (not_a_member_context(kit, school, nm, best) or page_lacks_pi(kit, school, p, best) or names_another_adviser(p, best)
                     or repair_reason(kit, school, nm, dict(best, years=years), pi_start_year(p), p.get('pi')))
             if why_:  # a Stanford Profiles reader / program listing, or a name in a citation (Stanford round 1, 2026-11-01)
                 miss['reason_code'], miss['detail'] = why_
@@ -1854,11 +1855,24 @@ def not_a_member_context(kit, school, name, best):
     return None
 
 
+ADVISER_LINE_RX = re.compile(r'\bAdvisors?\s*[-:\u2013]\s*(.*?)(?=Research Interests|Employment|Thesis|After graduating|$)', re.S)
+
+
+def names_another_adviser(p, best):
+    """An entry of a student list that gives each student's adviser ('Gene Li PhD - 2025 Advisor - Nati Srebro') names the adviser itself: a row under
+    another PI of the same page is not this lab's student (UChicago stage 6: TTIC's alumni list under Shakhnarovich). Returns a reason pair or None."""
+    m = ADVISER_LINE_RX.search(' '.join(str(x or '') for x in (best.get('desc'), best.get('quote'))))
+    fam = str(p.get('pi') or '').split()[-1:] or ['']
+    if m and fam[0] and fold(fam[0]).lower() not in fold(m.group(1)).lower():
+        return ('shared_page_no_adviser', 'the entry names another adviser: ' + m.group(1).strip()[:80])
+    return None
+
+
 def page_lacks_pi(kit, school, p, best):
     """Stanford: a page that never names the PI is a department or program page (Journalism's students list under Hancock),
     not the lab's page. Other schools' lab pages legitimately omit the PI's name, so this applies to Stanford only."""
-    if school not in ('stanford', 'berkeley'):
-        return None
+    if school in LEGACY_SCHOOLS and school not in ('stanford', 'berkeley'):
+        return None   # a charter school (UChicago stage 6, 2026-11-03: the Statistics PhD alumni page had become 'the lab page' of three PIs) gets the rule too
     try:
         t = kit.lpev.text(school, best.get('capture_url') or best['sha256'])
     except (KeyError, ValueError):
