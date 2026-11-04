@@ -641,6 +641,8 @@ def extract(key):
                                   quote=d['quote'], host_quote=d['host_quote'], auto=True))
         rep['defense_students'] += 1
     dirs = json.loads((P.data('directory-evidence.json', key)).read_text()) if (P.data('directory-evidence.json', key)).exists() else []
+    cvf = P.data('cv-evidence.json', key)
+    dirs = dirs + (json.loads(cvf.read_text()).get('rows') or [] if cvf.exists() else [])   # students named in the PIs' own CVs (tools/cv_students.py)
     for d in dirs:
         e = by_pi.setdefault(d['pi'], dict(pi=d['pi'], lab_site=None, people_page=None, students=[]))
         if e not in ev:

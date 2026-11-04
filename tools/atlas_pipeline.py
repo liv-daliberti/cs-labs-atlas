@@ -71,6 +71,11 @@ PIPELINES = {
         ('links', 'school', 'PY $TOOLS/labpage_students_school.py links {school}', 'project', 1, '8G', '12:00:00'),
         ('extract', 'school', 'PY $TOOLS/labpage_students_school.py extract {school}', 'project', 2, '16G', '02:00:00'),
     ],
+    # the PIs' own CVs (advised-student sections): cv-evidence.json, merged by the next labpage_students extract
+    'cv-students': [
+        ('cv', 'school', 'PY $TOOLS/cv_students.py {school}', 'project', 1, '8G', '06:00:00'),
+        ('extract', 'school', 'PY $TOOLS/labpage_students_school.py extract {school}', 'project', 2, '16G', '02:00:00'),
+    ],
     # why each student without a linked paper has none (chain check 4): offline over the school's sweep -> link-diagnosis.json
     'link-diagnosis': [
         ('diagnose', 'school', 'PY $TOOLS/link_diagnosis.py {school}', 'project', 2, '24G', '02:00:00'),
