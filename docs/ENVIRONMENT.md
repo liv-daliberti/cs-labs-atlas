@@ -45,6 +45,13 @@ nodes have no `/usr/local/anaconda3`. A loop already running keeps what it loade
   re-run check of the studies, so it is left open.
 - Historical records keep the old paths on purpose: `archive/`, `hierarchy/*/reports/STAGE-*.md`, the agent briefs under `hierarchy/labpage-tools-*`.
 
+## Embeddings study extras (2026-11-04)
+`ai-writing/embeddings/` (all-papers embeddings, topics, novelty) runs on the py310 env plus `env/embeddings-extra`: `adapters` 1.2.0 (the SPECTER2 proximity adapter),
+`bertopic` 0.16.4, `umap-learn` 0.5.7, `pynndescent` 0.5.13, `hdbscan` 0.8.40, `plotly` 5.24.1, installed with `pip install --no-deps --target` (nothing in py310
+itself changes; `ecommon.use_extras()` appends the directory to the END of `sys.path`, so py310's own packages win). The models live in `env/hf-cache` (fetched once by
+`download_models.py`; the GPU jobs run offline). **Qwen3-Embedding-4B is not run:** its fp16 weights are about 8 GB, the whole memory of an RTX 2080 (mltheory), with no room
+for activations; the study uses Qwen3-Embedding-0.6B and gte-Qwen2-1.5B-instruct. RTX 2080 = Turing: fp16 only (no bf16), no flash-attention (sdpa), 8 GB.
+
 ## Third-party imports (inventory, 2026-10-30, including vendor/)
 | Need | Packages | Where |
 |---|---|---|

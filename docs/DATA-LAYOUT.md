@@ -321,3 +321,8 @@ entry of the table: tracked files by `git mv`, the rest by `os.rename`, a sqlite
 whitelist lines; sets `DATA_LAYOUT_DEFAULT = 'split'`; regenerates `paths.sh`; and commits the tracked moves with those three edits as one commit.
 Every action is appended to `archive/migrations/relocate-data-<date>.jsonl`; `--verify` reads it. Nothing is copied or deleted; there are no compat links.
 Not moved: tracked code that lives in hierarchy/ (`rebuild.sh`, `labpage-tools-*`, `gap-tools-*`) and the files the table does not name.
+
+## Embeddings (2026-11-04)
+Slot `EMBEDDINGS` (`CS_ATLAS_EMBEDDINGS`, default `<CODE>/ai-writing/data/embeddings`, git-ignored, derived: rebuilt by `ai-writing/embeddings/`): `universe.sqlite`, `oa_fields.sqlite`,
+`texts.sqlite`, `parts/<model>/<kind>/`, `<model>/<school>/<kind>.npz` with `<kind>.index.sqlite`, `results/*.parquet`. One container per model x home school x text kind (no per-paper files).
+Layout and models: `ai-writing/embeddings/README.md`.
