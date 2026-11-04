@@ -70,9 +70,15 @@ def school_test(key):
 
     def ok(a):
         xs = a.get('institutions') or []
-        if any(lin & set(x.get('lineage') or [x.get('id')]) for x in xs):
-            return True
-        return bool(rel) and any(x.get('id') in rel for x in xs) and any(rx.search(r or '') for r in a.get('raw_affiliation_strings') or [])
+        raws = a.get('raw_affiliation_strings') or []
+        text = any(rx.search(r or '') for r in raws)
+        for x in xs:
+            ids = set(x.get('lineage') or []) | {x.get('id')}
+            if lin & ids and not (rel & ids):
+                return True
+            if (lin | rel) & ids and rel & ids and text:   # a related institution (Medical Center, TTIC, Argonne: UChicago D3) needs a matching raw string
+                return True
+        return False
     return ok
 
 

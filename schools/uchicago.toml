@@ -25,12 +25,14 @@ openalex = ["I40347166"]
 # "Toyota Technological Institute at Chicago"). Owner decisions 2026-11-03 (hierarchy/uchicago/reports/STAGE-0.md): D1 yes, the Medical Center
 # is a related institution (Michigan Medicine precedent, 2026-10-30): an authorship tagged only with it counts when its raw affiliation names
 # the university; D2 yes, TTIC is in scope as its own department.
-openalex_related = ["I4210087865", "I160992636"]
-# Nothing is excluded (owner decision D3, 2026-11-03: keep the lineage whole for the sweep, decide again at stage 7). The university's lineage contains institutions that are not its faculty's departments: Argonne National Laboratory
-# I1282105669 (and Advanced Photon Source I4387156069, Center for Nanoscale Materials I4390039281, Argonne Leadership Computing Facility
-# I4390039261, ATLAS linac I4390039288), Evanston Hospital I4210119687, Chan Zuckerberg Biohub Chicago I4396570630, CLEAR I4210087539 and two
-# CNRS international laboratories. D3 (2026-11-03): they stay in the lineage (an Argonne byline of a UChicago PI is also tagged
-# with the university); non-PI Argonne staff never become PIs. Argonne, Evanston Hospital and CZ Biohub Chicago are revisited at stage 7.
+openalex_related = ["I4210087865", "I160992636", "I1282105669", "I4387156069", "I4390039281", "I4390039261", "I4390039288", "I4210119687", "I4396570630"]
+# Owner decision D3 (2026-11-03): "related". Argonne National Laboratory I1282105669 and its four facilities (Advanced Photon Source I4387156069,
+# Center for Nanoscale Materials I4390039281, Argonne Leadership Computing Facility I4390039261, ATLAS linac I4390039288), Evanston Hospital
+# I4210119687 and Chan Zuckerberg Biohub Chicago I4396570630 are lineage children of the university in OpenAlex but are treated like the Medical
+# Center and Michigan Medicine (listed in openalex_related above): a work credited only to one of them counts for the university only when the
+# author's raw affiliation string names it (the [affiliation] regex), or the PI has a documented joint appointment (census override
+# `joint_appointments`, cited). The filter, the sweep and the builder read an institution whose id or lineage holds a related id as
+# regex-only (tools/oa_snapshot.py keep_work, pihier/papers.py). CLEAR I4210087539 and the two CNRS laboratories stay lineage.
 openalex_excluded = []
 ror = "https://ror.org/024mw5h28"
 ids_note = """OpenAlex institutions table of the 2026-10-14 snapshot (no API credits; checked 2026-11-02): I40347166 'University of Chicago',

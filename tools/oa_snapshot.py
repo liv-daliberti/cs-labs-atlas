@@ -72,8 +72,21 @@ def targets(only=None):
     return inst - excl, excl, {a for a in authors if a}
 
 
-def keep_work(w, inst, excl, authors):
-    """The kept work's projection and its (institution, author) key sets, or None."""
+def related_gates(only=None):
+    """[(related ids, compiled affiliation regex)] per school: an institution whose id or lineage holds a related id counts for the school only
+    when the authorship's raw affiliation string matches the school's regex (D1-D3 of UChicago, the Michigan Medicine precedent)."""
+    import school_config as SC
+    return [(set(SC.get(k)['ids'].get('openalex_related') or []), SC.aff_rx(k)) for k in (only or SC.keys()) if SC.get(k)['ids'].get('openalex_related')]
+
+
+RELATED = []   # set by cmd_filter from the charters; keep_work(rel=...) overrides
+
+
+def keep_work(w, inst, excl, authors, rel=None):
+    """The kept work's projection and its (institution, author) key sets, or None. `rel` = related_gates(): an affiliation holding a related id
+    counts only with a raw affiliation string that matches the school's regex (so a UChicago + Argonne byline keeps the UChicago hit through the
+    UChicago entry, and an Argonne-only authorship needs 'University of Chicago' in its string)."""
+    rel = RELATED if rel is None else rel
     if w.get('type') == 'dataset' and (w.get('doi') or '').startswith(ENCODE_PREFIX):
         return None
     hit_i, hit_a, ships = set(), set(), []
@@ -83,8 +96,12 @@ def keep_work(w, inst, excl, authors):
             # exclusion is per affiliation: an author with UChicago AND an excluded Argonne affiliation keeps the UChicago hit
             # (the whole authorship used to be dropped: UChicago PROTOCOL-FRICTION 20)
             ids = {short(l) for l in (x.get('lineage') or [])} | {short(x.get('id'))}
-            if not (ids & excl):
-                hit_i |= ids & inst
+            if ids & excl:
+                continue
+            gated = [rx for rset, rx in rel if ids & rset]
+            if gated and not any(rx.search(z or '') for z in a.get('raw_affiliation_strings') or [] for rx in gated):
+                continue
+            hit_i |= ids & inst
         if aid in authors:
             hit_a.add(aid)
         ships.append(a)
@@ -239,6 +256,10 @@ def sha(path):
 def cmd_filter(task, of, date=None, parts=None, tmp=None, ext=None):
     d, allp = (date, parts) if parts is not None else all_parts(date)
     inst, excl, authors = targets([ext]) if ext else targets()
+    try:
+        RELATED[:] = related_gates([ext] if ext else None)
+    except KeyError:   # a test or trial key without a charter
+        RELATED[:] = []
     if ext:
         allp = ext_parts(allp)
     mine = share(allp, task, of)

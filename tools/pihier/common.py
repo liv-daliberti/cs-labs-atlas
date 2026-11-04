@@ -42,10 +42,51 @@ def source_year(s):
     return int(o[:4]) if re.match(r'\d{4}', o) else None
 
 
+def related_gate(school):
+    """(related ids, affiliation regex, the school's primary lineage id) from the charter, or None when the school lists no related institution."""
+    rel = set(_S.get(school)['ids'].get('openalex_related') or [])
+    return (rel, _S.aff_rx(school), _S.inst(school)) if rel else None
+
+
+def gate_related(w, gate, joint=None):
+    """D3 of UChicago (2026-11-03): an institution that holds a related id (Argonne: a lineage child of the university, treated like the Medical Center)
+    ties an authorship to the school only when the authorship's raw affiliation string matches the school regex, or the author is a PI with a documented
+    joint appointment (`joint` = {folded author name: related ids cited}). Otherwise the school id is taken out of that institution's lineage on a copy of the
+    authorship, so every lineage test downstream reads it as another institution. Per affiliation: a UChicago entry on the same authorship is untouched."""
+    rel, rx, inst = gate
+    sch = inst.rsplit('/', 1)[-1]
+    for a in w.get('authorships') or []:
+        raws = a.get('raw_affiliation_strings') or []
+        who = ' '.join(re.findall(r'\w+', unicodedata.normalize('NFKD', (a.get('raw_author_name') or (a.get('author') or {}).get('display_name') or '')).lower()))
+        cited = (joint or {}).get(who, set())
+        for x in a.get('institutions') or []:
+            ids = {str(l).rsplit('/', 1)[-1] for l in (x.get('lineage') or [])} | {str(x.get('id')).rsplit('/', 1)[-1]}
+            if (ids & rel) - cited and sch in ids and not any(rx.search(z or '') for z in raws):
+                x['lineage'] = [l for l in (x.get('lineage') or []) if str(l).rsplit('/', 1)[-1] != sch]
+                if str(x.get('id')).rsplit('/', 1)[-1] == sch:
+                    x['id'] = None
+    return w
+
+
+def joint_appointments(school):
+    """{folded PI name: {related ids}} from the school's census overrides (`joint_appointments`: [{institution, url, sha256, quote}])."""
+    import census_overrides as CO
+    out = {}
+    for name, o in CO.section(school).items():
+        ids = {str(j.get('institution')).rsplit('/', 1)[-1] for j in o.get('joint_appointments') or [] if j.get('url') and j.get('quote')}
+        if ids:
+            out[' '.join(re.findall(r'\w+', unicodedata.normalize('NFKD', name).lower()))] = ids
+    return out
+
+
 def sweep_works(school, here=None):
     c = sqlite3.connect(f"file:{P.data('openalex-sweep.sqlite', school, root=here or HERE)}?mode=ro", uri=True)
+    gate, joint = related_gate(school), None
+    if gate:
+        joint = joint_appointments(school)
     for (body,) in c.execute('select body from pages order by year, page'):
-        yield from json.loads(zlib.decompress(body))
+        for w in json.loads(zlib.decompress(body)):
+            yield gate_related(w, gate, joint) if gate else w
 
 
 def best_sources(srcs, k=2):

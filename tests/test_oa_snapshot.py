@@ -142,3 +142,22 @@ def test_exclusion_is_per_affiliation_not_per_authorship():
     assert S.keep_work(w(joint, argonne), inst, excl, set())[1] == {'I1'}
     assert S.keep_work(w(argonne), inst, excl, set()) is None
     assert S.keep_work(w(argonne, joint), inst, excl, set())[1] == {'I1'}
+
+
+def test_related_institutions_count_only_with_an_affiliation_string_naming_the_school():
+    """UChicago D3 (2026-11-03): Argonne is 'related'. A joint UChicago + Argonne byline keeps the UChicago hit (its own entry); an Argonne-only
+    authorship counts only when its raw affiliation string matches the school's regex."""
+    import re
+    inst = {'I1', 'I7'}                      # the school's lineage id and the related Argonne id (swept)
+    rel = [({'I7'}, re.compile(r'University of Chicago|UChicago', re.I))]
+    uchi = {'id': OA + 'I1', 'lineage': [OA + 'I1']}
+    argonne = {'id': OA + 'I7', 'lineage': [OA + 'I7', OA + 'I1']}   # a lineage child of the school
+
+    def w(insts, raws):
+        return {'id': OA + 'W1', 'type': 'article', 'authorships': [{'author': {'id': OA + 'A1'}, 'institutions': insts, 'raw_affiliation_strings': raws}]}
+    joint = S.keep_work(w([uchi, argonne], ['University of Chicago', 'Argonne National Laboratory']), inst, set(), set(), rel)
+    assert joint and joint[1] == {'I1', 'I7'}
+    assert S.keep_work(w([argonne], ['Argonne National Laboratory, Lemont, IL']), inst, set(), set(), rel) is None
+    only = S.keep_work(w([argonne], ['Argonne National Laboratory and the University of Chicago']), inst, set(), set(), rel)
+    assert only and only[1] == {'I1', 'I7'}
+    assert S.keep_work(w([uchi], ['x']), inst, set(), set(), rel)[1] == {'I1'}

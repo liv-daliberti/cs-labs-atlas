@@ -156,3 +156,23 @@ def test_a_single_paper_where_the_pi_is_not_last_is_not_advising(tmp_path, monke
     monkeypatch.setattr(L.W, 'flat', lambda b: 'Sam Roe PhD Student Ann Only PhD Student')
     rows = L.roster_coauthor_students('u', [('Pia Lee', 'Pia Lee')])
     assert [r['student'] for r in rows] == ['Ann Only']
+
+
+def test_gate_related_takes_the_school_out_of_an_argonne_only_authorship():
+    """D3: Argonne (a lineage child) ties an authorship to the school only with a matching raw string, or for a PI with a cited joint appointment."""
+    import re
+    from pihier import common as C
+    gate = ({'I7'}, re.compile(r'University of Chicago', re.I), 'https://openalex.org/I1')
+    arg = lambda: {'id': 'https://openalex.org/I7', 'lineage': ['https://openalex.org/I7', 'https://openalex.org/I1']}
+    uc = lambda: {'id': 'https://openalex.org/I1', 'lineage': ['https://openalex.org/I1']}
+
+    def w(insts, raws, name='Ian Foster'):
+        return {'authorships': [{'raw_author_name': name, 'institutions': insts, 'raw_affiliation_strings': raws}]}
+    only = C.gate_related(w([arg()], ['Argonne National Laboratory']), gate)
+    assert 'https://openalex.org/I1' not in only['authorships'][0]['institutions'][0]['lineage']
+    named = C.gate_related(w([arg()], ['Argonne National Laboratory; University of Chicago']), gate)
+    assert 'https://openalex.org/I1' in named['authorships'][0]['institutions'][0]['lineage']
+    joint = C.gate_related(w([arg()], ['Argonne National Laboratory']), gate, {'ian foster': {'I7'}})
+    assert 'https://openalex.org/I1' in joint['authorships'][0]['institutions'][0]['lineage']
+    both = C.gate_related(w([uc(), arg()], ['x']), gate)
+    assert both['authorships'][0]['institutions'][0]['lineage'] == ['https://openalex.org/I1']

@@ -19,6 +19,5 @@ Date: 2026-11-02. Protocol: `docs/ADDING-A-SCHOOL.md` v2.3. Branch `agent/uchica
 - **D1 yes:** UChicago Medical Center (`I4210087865`) is a related institution (Michigan Medicine precedent): an authorship tagged only with it counts when its raw
   affiliation names the university (the charter regex).
 - **D2 yes:** TTIC is in scope as its own department; the pending mark is cleared (charter department, related id `I160992636`, host and regex alternative stay).
-- **D3 yes:** Argonne (and its four facilities), Evanston Hospital and CZ Biohub Chicago stay in the lineage for the sweep (`openalex_excluded = []`).
-  Decide again at stage 7. If excluded then, the snapshot filter now drops only the excluded affiliation, not the whole authorship (PROTOCOL-FRICTION 20), so
-  a joint UChicago + Argonne byline (Ian Foster) keeps its UChicago hit.
+- **D3 (first 2026-11-03, superseded the same day):** Argonne (and its four facilities), Evanston Hospital and CZ Biohub Chicago stay in the lineage for the sweep; decide at stage 7.
+- **D3 final (2026-11-03): "related".** Argonne National Laboratory and its four facilities, Evanston Hospital and CZ Biohub Chicago are treated like the Medical Center and Michigan Medicine: a work credited only to one of them counts for UChicago only when the author's raw affiliation names the university, or the PI has a documented joint appointment (cited). Charter: the seven ids are in `openalex_related`; filter, sweep and builder read them regex-only (per affiliation).
