@@ -83,7 +83,8 @@ def _throttle():
         left = HT.cooldown_left('web.archive.org')
         if left > 0:
             print(f"  [web.archive.org cooling down after a 429: {left:.0f}s]", flush=True)
-        time.sleep(HT.reserve('web.archive.org', MIN_GAP))
+        # WAYBACK_LOW=1 (owner 2026-11-05, UChicago's pass has priority): a low-priority client takes at most one slot in three while a normal client is active
+        time.sleep(HT.reserve('web.archive.org', MIN_GAP, low=os.environ.get('WAYBACK_LOW') == '1'))
         return
     os.makedirs(os.path.dirname(LOCK), exist_ok=True)
     fd = os.open(LOCK, os.O_RDWR | os.O_CREAT, 0o600)
