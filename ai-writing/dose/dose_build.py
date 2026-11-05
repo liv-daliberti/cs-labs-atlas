@@ -12,6 +12,7 @@ Container tables (one sqlite file, no per-paper files):
   meta     key, value                      detector versions, precision, built time, counts
 Paper-level definitions follow ai-writing/detector_v2/REPORT.md: ai_share = flagged passages / passages, ai_any = at least one flagged passage.
 """
+import os
 import sqlite3
 
 import numpy as np
@@ -60,7 +61,7 @@ def build(thr_par=None, thr_abs=None):
     df['thr_paragraph'] = thr_par
     df = df.drop(columns=['n_passages_part'])
     D.SCORES.mkdir(parents=True, exist_ok=True)
-    tmp = D.DB.with_name('.tmp-' + D.DB.name)
+    tmp = D.local_tmp() / f'ai_scores-{os.getpid()}.sqlite'      # sqlite journals fail on NFS (disk I/O error, 2026-11-04): build locally, copy once
     tmp.unlink(missing_ok=True)
     db = sqlite3.connect(tmp)
     df.to_sql('papers', db, index=False)
@@ -73,7 +74,7 @@ def build(thr_par=None, thr_abs=None):
     db.execute('create index passages_paper on passages(paper_id)')
     db.execute('create unique index papers_id on papers(paper_id)')
     db.commit(); db.close()
-    tmp.replace(D.DB)
+    D.publish(tmp, D.DB)
     df.to_parquet(D.SCORES / 'papers.parquet', index=False)
     D.log(built=str(D.DB), papers=len(df), abstracts=int(df['p_ai_abstract'].notna().sum()), fulltexts=int(df['ai_share'].notna().sum()), passages=len(ps))
 

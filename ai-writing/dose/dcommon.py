@@ -52,3 +52,23 @@ def norm1(t):
 
 def text1(title, abstract):
     return f'{norm1(title)} | {norm1(abstract)}'
+
+
+def local_tmp():
+    """Node-local scratch directory (not NFS) for sqlite files that are written."""
+    import getpass
+    import os
+    import tempfile
+    d = _Path(os.environ.get('TMPDIR') or tempfile.gettempdir()) / f'ai-dose-{getpass.getuser()}'
+    d.mkdir(parents=True, exist_ok=True)
+    return d
+
+
+def publish(src, dest):
+    """Copy a locally written file next to `dest` and rename it into place (atomic for readers); the local copy is removed."""
+    import shutil
+    dest = _Path(dest)
+    part = dest.with_name('.tmp-' + dest.name)
+    shutil.copyfile(src, part)
+    part.replace(dest)
+    _Path(src).unlink(missing_ok=True)
