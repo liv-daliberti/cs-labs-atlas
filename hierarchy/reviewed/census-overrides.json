@@ -3435,6 +3435,39 @@
     }
    ],
    "note_20261029": "period from the 2026-10-29 home-department pass (hierarchy/logs/tmp-ids/homedept/exclusions-proposed.json): MIT Sloan (and CSAIL) Associate Professor of Statistics until 2016, then Duke (Associate Professor from 2016). Her only window year at MIT is 2016; the census has rank 'ladder' with no periods, so every 2016-2026 MIT-affiliated paper currently counts. Keep her in the MIT census only for 2016 (end 2016; the CV gives years only, a Duke start of July 2016 is likely but not evidenced), or exclude if a"
+  },
+  "Christopher Terman": {
+   "no_papers": true,
+   "why_no_papers": "2026-11-04 (reviewed): Senior Lecturer (teaching) listed 2016-2026 ('Christopher Terman Senior Lecturer' in 2016, 'Senior Lecturer (Emeritus)' in 2026). His DBLP person 159/3667 holds 4 records, none dated 2016 or later; his OpenAlex id A5039186317 ('Christopher J. Terman') holds 0 works 2016-2026 (API, 2026-11-04). No work in the window.",
+   "no_papers_evidence": [
+    {
+     "url": "https://web.archive.org/web/20160104094659id_/http://www.eecs.mit.edu/people/faculty-advisors",
+     "sha256": "1db54e06dcfbbbf9e13f0a1fe57d134f61ec37314ca8a64e870a3257861acca8",
+     "quote": "Christopher Terman Senior Lecturer Co-Director of Computer Science and Artificial Intelligence Laboratory",
+     "observed": "2016-01-04",
+     "kind": "eecs_faculty_advisors"
+    },
+    {
+     "url": "https://www.eecs.mit.edu/people/",
+     "sha256": "c6c5828875bf4e52fd4651474a50e548852866697c0d3fcc013f81b32c4e3c26",
+     "quote": "Christopher Terman Senior Lecturer (Emeritus) , [CS]",
+     "observed": "2026",
+     "kind": "eecs_directory_2026"
+    }
+   ]
+  },
+  "Michael Sipser": {
+   "no_papers": true,
+   "why_no_papers": "2026-11-04 (reviewed): Professor, CSAIL, listed 2016-2026. His DBLP person s/MichaelSipser holds 50 records, none dated 2016 or later. His OpenAlex id A5112131750 (the only id of that name with works at MIT) holds six works 2016-2021, none with an institution: the annual 'Report to the President' of the School of Science for 2016-2020 (he was Dean of Science) and a 2021 international edition of his textbook 'Introduction to the Theory of Computation'. None carries an affiliation, so none has a school basis (R-PAP-12 needs an advisee on the byline).",
+   "no_papers_evidence": [
+    {
+     "url": "https://web.archive.org/web/20160329035244id_/https://www.csail.mit.edu/csaildirectoryoutput/pi",
+     "sha256": "fff89ef44e7be3a76704647b2ffb25610f0f8e9be3f6dca17bb971ad0d702a52",
+     "quote": "Michael Sipser Professor",
+     "observed": "2016-03-29",
+     "kind": "dept_listing:CSAIL"
+    }
+   ]
   }
  },
  "cmu": {
@@ -8922,6 +8955,34 @@
     }
    ],
    "note_20261031": "R-PAP-03 (2026-10-29, owner): a reviewed faculty_end_moved period makes later department listings stale (listingsAfterMove). Departure found by the lab-page audit (2026-10-31: the lab's people page is at the new institution while the build had an open period here; coordinator-approved review); end from the dated quote in the faculty_end_moved evidence."
+  },
+  "Randi Williams": {
+   "no_papers": true,
+   "why_no_papers": "2026-11-04 (reviewed): First listed in 2026 (HCII faculty list: 'Randi Williams Assistant Research Professor'), a research, non-ladder title; no earlier listing. Her OpenAlex id A5055884793 (ORCID 0000-0002-7740-5749; DBLP 201/9170, 22 records 2017-2024) holds 24 works 2016-2026, and every affiliated byline credits MIT or the MIT Media Lab (her PhD); the 2026 record (W7134926158, 2026-03-11) carries no affiliation. No work credits CMU.",
+   "no_papers_evidence": [
+    {
+     "url": "https://hcii.cmu.edu/people/faculty",
+     "sha256": "9715c7f429e34522d2d1168c88a33979c83b6b203a2b3f0d02be0b493bc95734",
+     "quote": "Randi Williams Assistant Research Professor",
+     "observed": "2026",
+     "kind": "hcii_listing"
+    }
+   ]
+  },
+  "William L Scherlis": {
+   "openalex": [
+    "https://openalex.org/A5018254610"
+   ],
+   "why_openalex": "2026-11-04 (reviewed, zero-paper PI): A5018254610 'William L. Scherlis' is the PI's author record. The same id carries two works on his DBLP person s/WilliamLScherlis (CMU, the PI's own homepage www.cs.cmu.edu/~wls/): 'Design Dimensions for Software Certification: A Grounded Analysis' (W2946338065, DBLP journals/corr/abs-1905-09760) and 'Formal Methods at Scale' (W4281680857, DBLP journals/ieeesp/MartinLS22); and it signs 'William Scherlis', Carnegie Mellon University on the 2026 report 'Advancing Cybersecurity: A Framework of Cyber Research Priorities' (W7214002343) and, with the Software Engineering Institute, on W7223041291. The sweep's other 'Scherlis' id is Lily Scherlis (Phillips Academy). S3D lists him Professor in every window year (2016-2026).",
+   "openalex_evidence": [
+    {
+     "url": "https://api.openalex.org/works/W7214002343",
+     "sha256": "639f710e804c2efc30758e6c7514b84bb7568fd2cd20aeb2f13cc5db44b6a66d",
+     "quote": "William Scherlis | Carnegie Mellon University",
+     "observed": "2026-09-22",
+     "source": "OpenAlex sweep 2026-10-29 (hierarchy/cmu/openalex-sweep.sqlite)"
+    }
+   ]
   }
  },
  "princeton": {
@@ -9726,6 +9787,59 @@
     }
    ],
    "note_20261102": "ROADMAP #26 departures follow-up (owner ruling 2026-11-02, listing-drop rule, docs/RULES.md R-PAP-03); bounded end, see the period note."
+  },
+  "Abhishek Bhattacharjee": {
+   "no_papers": true,
+   "why_no_papers": "2026-11-04 (reviewed): Joined Princeton CS in 2026: reviewed appointment from 2026-07-01 (cs.princeton.edu news capture 2026-10-20) and one dated listing, the 2026 faculty list; before that Rutgers (to 2018) and Yale (2019-2025). The Princeton sweep holds no work of his inside the appointment: the two Princeton-identified works (2017, 2021) predate it, and his OpenAlex records A5019487275 / A5062250285 / A5122207823 credit Rutgers and Yale 2016-2025. OpenAlex's API (2026-11-04) also lists twelve 2026 chapter records of one book (W7224735642 and eleven others, all dated 2026-01-01) that credit Princeton; they are in neither the Princeton sweep nor the 2026-10-14 snapshot, so the build cannot see them. A sweep refresh will count them (one book, R-PAP-15) and this reason is then moot.",
+   "no_papers_evidence": [
+    {
+     "url": "https://web.archive.org/web/20260305103336id_/https://www.cs.princeton.edu/people/faculty",
+     "sha256": "c79347686ff8ecd6e50ef57da61dd170221a1af68dbc5df9e442e8284403dccf",
+     "quote": "Abhishek Bhattacharjee Professor",
+     "observed": "2026-03-05",
+     "kind": "dept_listing:Computer Science"
+    }
+   ]
+  },
+  "Robert Schapire": {
+   "no_papers": true,
+   "why_no_papers": "2026-11-04 (reviewed): Princeton CS lists him 2018-2021 only, as 'Visiting Lecturer' (2018), 'Lecturer' (2019) and 'Lecturer with Rank of Professor' (2020, 2021), while he is at Microsoft Research (DBLP s/RobertESchapire affiliations: Microsoft Research, Cambridge, MA; Princeton University). His OpenAlex id A5084108666 (ORCID 0000-0001-8616-1611) holds 45 works 2016-2026: every affiliated byline credits Microsoft Research, and Princeton appears in an affiliation string on one 2016 record only (W2411868678, snapshot 2026-10-14), before the first listing. The five Princeton-linked works the build identifies (2016 x2, 2023, 2025, 2026) fall outside the listed years; no listing after 2021 names him. No work inside the appointment credits Princeton.",
+   "no_papers_evidence": [
+    {
+     "url": "https://web.archive.org/web/20180320161828id_/http://www.cs.princeton.edu:80/people/faculty?",
+     "sha256": "9f7539906fd33dc427c83115e6e8e97e1b38bc1fd52eb0e5327b1ec98ac9dd0d",
+     "quote": "Robert Schapire Visiting Lecturer",
+     "observed": "2018-03-20",
+     "kind": "dept_listing:Computer Science"
+    },
+    {
+     "url": "https://web.archive.org/web/20210416233448id_/https://www.cs.princeton.edu/people/faculty",
+     "sha256": "8d4d104b56e2569f722838e26d3c88693c43b91f015e56af117722576d4e2e84",
+     "quote": "Robert Schapire Lecturer with Rank of Professor",
+     "observed": "2021-04-16",
+     "kind": "dept_listing:Computer Science"
+    }
+   ]
+  },
+  "Andrea LaPaugh": {
+   "no_papers": true,
+   "why_no_papers": "2026-11-04 (reviewed): Princeton CS lists her as Professor (2016-2024; 'Professor, Undergraduate Department Representative') and 'Professor Emeritus' in the 2025 capture. No work of hers dated 2016-2026 is in the data: the census holds no DBLP id and the DBLP dump pass finds no person record under her name; the two OpenAlex author records for her name (A5007709732 'Andrea S. LaPaugh', A5066649695 'A.S. LaPaugh') hold 0 works since 2016 (API, 2026-11-04); the Princeton sweep has 0 authorships under 'LaPaugh'. Her six students are advising records only.",
+   "no_papers_evidence": [
+    {
+     "url": "https://web.archive.org/web/20160406151830id_/https://www.cs.princeton.edu/people/faculty",
+     "sha256": "c3e75acaffc01b4615519f1746c473727e81f58077261091b46dc3f712844078",
+     "quote": "Andrea LaPaugh Professor, Undergraduate Department Representative",
+     "observed": "2016-04-06",
+     "kind": "dept_listing:Computer Science"
+    },
+    {
+     "url": "https://web.archive.org/web/20250123195629id_/https://www.cs.princeton.edu/people/faculty",
+     "sha256": "f2b1a2bbad286f708756cbdc6f07ca7ebfab23cda6cb9c379b6ad5af79153c6c",
+     "quote": "Andrea LaPaugh Professor Emeritus",
+     "observed": "2025-01-23",
+     "kind": "dept_listing:Computer Science"
+    }
+   ]
   }
  },
  "epfl": {
@@ -12129,6 +12243,26 @@
      ],
      "note": "Start: appointed professor at EPFL in 2017, building eM+ (her bio; year precision). Ongoing. Covers 2018.",
      "reviewed": "appointment_period_review_20261026"
+    }
+   ]
+  },
+  "Jean-Dominique Decotignie": {
+   "no_papers": true,
+   "why_no_papers": "2026-11-04 (reviewed): Listed by EPFL IC in 2016 among the 'External adjunct Professors' (LAMS) and as 'Professor Emeritus' in the 2026 faculty list. His DBLP person 62/2980 holds 12 records dated 2016-2019 (wireless sensor networks, with C. Rojas and L. Bergamini); his two OpenAlex author records (A5110890572, A5111160270) hold 18 works 2016-2019, every affiliated byline crediting CSEM (Centre Suisse d'Electronique et de Microtechnique, Neuchatel) and the rest carrying no affiliation. None names EPFL.",
+   "no_papers_evidence": [
+    {
+     "url": "https://web.archive.org/web/20161218083132id_/http://ic.epfl.ch:80/professors",
+     "sha256": "aed4d05b26ebad7863ba4db4e975b9c33ca5f980bb7f58706097eadec5d07e39",
+     "quote": "External adjunct Professors Jean-Dominique Decotignie LAMS",
+     "observed": "2016-12-18",
+     "kind": ""
+    },
+    {
+     "url": "https://web.archive.org/web/20260418062144id_/https://www.epfl.ch/schools/ic/about/faculty-members/",
+     "sha256": "1931cc9cd3ff448446fc6241d1960b0a5f67c86332e364adeb4ce2e41cce695b",
+     "quote": "Jean-Dominique Decotignie Professor Emeritus",
+     "observed": "2026-04-18",
+     "kind": ""
     }
    ]
   }
@@ -16398,6 +16532,26 @@
      "quote": "Her areas of interest are trusted and assured microelectronics, trusted autonomy, collaborative autonomy, defense innovation, emerging space capabilities and digital human rights.",
      "observed": "2026-10-29",
      "fetched_at": "2026-10-29"
+    }
+   ]
+  },
+  "Brian A. Barsky": {
+   "no_papers": true,
+   "why_no_papers": "2026-11-04 (reviewed): Berkeley EECS lists him Professor (2016) and 'Professor Emeritus, Professor in the Graduate School' (2026). His DBLP person 47/3169 holds 62 records, none dated 2016 or later; his OpenAlex id A5046623635 holds 0 works 2016-2026 (API, 2026-11-04). He is the named adviser of 99 EECS M.S. reports and undergraduates (students) but authored no work in the window.",
+   "no_papers_evidence": [
+    {
+     "url": "https://web.archive.org/web/20160104002312id_/http://www.eecs.berkeley.edu/Faculty/Lists/faculty.shtml",
+     "sha256": "84d0e40f39a77bd160474fbe6c59393b440ad5e6d15e9b9ccbd3b86e51ef2161",
+     "quote": "Brian A. Barsky Professor",
+     "observed": "2016-01-04",
+     "kind": "dept_listing:EECS-CS"
+    },
+    {
+     "url": "https://web.archive.org/web/20260219033716id_/https://www2.eecs.berkeley.edu/Faculty/Lists/CS/faculty.html",
+     "sha256": "7622676cb797c69fc2ebdf4fc2be5f0463361b6102f4e65a26b81f3b16b1523a",
+     "quote": "Brian A. Barsky Professor Emeritus, Professor in the Graduate School",
+     "observed": "2026-02-19",
+     "kind": "dept_listing:EECS-CS"
     }
    ]
   }
@@ -23949,7 +24103,18 @@
      "note": "Dated evidence for every year 2025-2026: unit listings, and dated Wayback captures of the PI's unit profile page naming the PI with a professor title (hierarchy/michigan/profile-year-evidence.json). Start is a lower bound; no end is claimed."
     }
    ],
-   "why_periods": "Years proven by dated unit profile captures and listings (tools/periods_school.py extend)."
+   "why_periods": "Years proven by dated unit profile captures and listings (tools/periods_school.py extend).",
+   "no_papers": true,
+   "why_no_papers": "2026-11-04 (reviewed): Listed by UMSI as Professor (reviewed periods 2020-2023 and 2025-2026 from profile captures and the 2026 directory), but his own byline never credits Michigan: his OpenAlex id A5054429343 (DBLP o/GaryMOlson) holds 18 works 2016-2026, nine credited to the University of California, Irvine (Department of Informatics) and nine with no affiliation (book chapters and reprints). DBLP lists Michigan only as an old affiliation note (a si.umich.edu faculty-detail page). No work credits Michigan.",
+   "no_papers_evidence": [
+    {
+     "url": "https://web.archive.org/web/20260129025423id_/https://www.si.umich.edu/people/directory/faculty",
+     "sha256": "317d2f54d04f792ed98c927df5ae7dc2d7e49bbe989d30853687d90d7428188a",
+     "quote": "Gary Olson Professor",
+     "observed": "2026-01-29",
+     "kind": "unit_listing:UMSI"
+    }
+   ]
   },
   "Katherine A. Skinner": {
    "periods": [
@@ -24793,6 +24958,187 @@
      "source": "OpenAlex sweep 2026-10-29 (hierarchy/michigan/openalex-sweep.sqlite)"
     }
    ]
+  },
+  "Martha Pollack": {
+   "no_papers": true,
+   "why_no_papers": "2026-11-04 (reviewed): Listed in CSE for 2016 and 2017 only ('Pollack, Martha Provost and Executive Vice President for Academic Affairs Professor, Electrical Engineering and Computer Science'); her 2017 byline (W2775048743) reads 'President, Cornell University, Ithaca, NY 14850, USA'. Her DBLP person p/MEPollack (ORCID 0000-0001-8486-5017) holds no record dated 2016 or later; her OpenAlex id A5109042638 holds 7 works since 2016: one credited to Cornell University (2017), one to the University of Pittsburgh (a 2019 record of an older paper), five 2026 records with no affiliation. None credits Michigan.",
+   "no_papers_evidence": [
+    {
+     "url": "https://web.archive.org/web/20160412034143id_/http://www.eecs.umich.edu:80/eecs/faculty/csefaculty.html",
+     "sha256": "0717204660525e5506f7e4b68fe3b07d695b7a9a50dac400141c19e87b6e05aa",
+     "quote": "Pollack, Martha Provost and Executive Vice President for Academic Affairs Professor, Electrical Engineering and Computer Science Professor, School of Information",
+     "observed": "2016-04-12",
+     "kind": "dept_listing:CSE"
+    },
+    {
+     "url": "https://web.archive.org/web/20170328090313id_/http://www.eecs.umich.edu/eecs/faculty/csefaculty.html",
+     "sha256": "09e92e1f428f047fd2cc3fa692fea9880a5e013a2d854316ef62de89c1a6221e",
+     "quote": "Pollack, Martha Provost and Executive Vice President for Academic Affairs Professor, Electrical Engineering and Computer Science Professor, School of Information",
+     "observed": "2017-03-28",
+     "kind": "dept_listing:CSE"
+    }
+   ]
+  },
+  "Jalani Williams": {
+   "no_papers": true,
+   "why_no_papers": "2026-11-04 (reviewed): Listed in the ECE directory in 2025 and 2026 only ('Williams, Jalani Assistant Professor/PostDoctoral/Presidential Fellow, EECS - Electrical and Computer Engineering'), a new appointment. Her DBLP person 266/7814 (7 records 2020-2025, including the 2024 thesis, doi 10.1184/r1/25901476.v1) and her OpenAlex records (A5049353519 'Jalani K. Williams', ORCID 0000-0002-9528-7651, credited to Carnegie Mellon University 2021-2023; A5044284706, Carnegie Mellon / Caltech 2020-2021) credit no Michigan unit; the 2025 arXiv paper (W4417531166, 2025-12-18) carries no affiliation.",
+   "no_papers_evidence": [
+    {
+     "url": "https://web.archive.org/web/20250401015619id_/https://ece.engin.umich.edu/people/directory/faculty/",
+     "sha256": "48ba51d875921dc5f18c82ec8985bd752ec6c4cfe73178f9be1182de9b7d338d",
+     "quote": "Williams, Jalani Assistant Professor/PostDoctoral/Presidential Fellow, EECS – Electrical and Computer Engineering",
+     "observed": "2025-04-01",
+     "kind": "dept_listing:ECE"
+    },
+    {
+     "url": "https://web.archive.org/web/20260402230914id_/https://ece.engin.umich.edu/people/directory/faculty/",
+     "sha256": "0de4b73c87b651af762365554095c9ce0dbbd59b424c99b122009da96bd8aff0",
+     "quote": "Williams, Jalani Assistant Professor/PostDoctoral/Presidential Fellow, EECS – Electrical and Computer Engineering",
+     "observed": "2026-04-02",
+     "kind": "dept_listing:ECE"
+    }
+   ]
+  },
+  "Seah Kim": {
+   "no_papers": true,
+   "why_no_papers": "2026-11-04 (reviewed): Listed only in the 2026 ECE directory ('Kim, Seah Assistant Professor, EECS - Electrical and Computer EngineeringComing Fall 2026'): the appointment starts after the listing (R-PAP-02, an announced future appointment). Her DBLP person 276/3470 (13 records 2020-2026) and OpenAlex id A5027053870 (ORCID 0000-0002-9581-1222, 28 works) credit UC Berkeley, KAIST, Ewha Womans University and Samsung; the 2026 JSSC paper (W7125482991) credits UC Berkeley. No work credits Michigan.",
+   "no_papers_evidence": [
+    {
+     "url": "https://web.archive.org/web/20260402230914id_/https://ece.engin.umich.edu/people/directory/faculty/",
+     "sha256": "0de4b73c87b651af762365554095c9ce0dbbd59b424c99b122009da96bd8aff0",
+     "quote": "Kim, Seah Assistant Professor, EECS – Electrical and Computer EngineeringComing Fall 2026",
+     "observed": "2026-04-02",
+     "kind": "dept_listing:ECE"
+    }
+   ]
+  },
+  "Ankit Goyal": {
+   "no_papers": true,
+   "why_no_papers": "2026-11-04 (reviewed): Listed only in the 2026 Robotics faculty list ('Ankit Goyal Assistant Professor'); his DBLP person 89/10051-1 gives NVIDIA, Princeton and Michigan CSE as affiliations. The Michigan sweep holds five works under his name: the one Michigan-credited paper is 'Think Visually: Question Answering through Virtual Imagery' (W2963739671, 2018, 'Computer Science and Engineering University of Michigan'), two credit Princeton (2019, 2020), one NVIDIA (2024) and one carries no affiliation (2024); his 2026 work RoboLab (W7154270010, 2026-07-13) carries no affiliation. The 2018 paper predates the 2026 appointment.",
+   "no_papers_evidence": [
+    {
+     "url": "https://robotics.umich.edu/people/faculty/",
+     "sha256": "869f888509fb726771c5817a7e7750632bafa4eef48c6b05b6f5d59e429b0cc0",
+     "quote": "Ankit Goyal Assistant Professor",
+     "observed": "2026",
+     "kind": "unit_listing:ROB"
+    }
+   ]
+  },
+  "Ryan Huang": {
+   "aliases": [
+    "Peng Huang"
+   ],
+   "openalex": [
+    "https://openalex.org/A5078778324"
+   ],
+   "why_openalex": "2026-11-04 (reviewed, zero-paper PI): the CSE listing's 'Huang, Ryan Associate Professor' (profile web.eecs.umich.edu/~ryanph/) publishes under the byline 'Peng Huang': his own homepage lists 'TrainVerify ... Peng Huang SOSP 2025' and 'Operating System Support for Safe and Efficient Auxiliary Execution ... Peng Huang OSDI 2022'. A5078778324 signs 'Peng Huang', University of Michigan on 8 systems papers 2023-2025 including TrainVerify (W4414735796, SOSP 2025); it is the only 'Peng Huang' or 'Ryan Huang' id with Michigan systems work in the sweep. The census DBLP pid 130/2474 ('Ryan Huang') mixes people (it carries 2016-2017 ReRAM circuit papers) and none of its records dated 2016-2025 is one of his 2023-2025 'Peng Huang' systems papers, so it anchored none of them.",
+   "openalex_evidence": [
+    {
+     "url": "https://api.openalex.org/works/W4372260326",
+     "sha256": "6e5afede01fac08c929a3980296ca3472f815e237a64c52ab84631e0bca2fddc",
+     "quote": "Peng Huang | University of Michigan, Ann Arbor, United States of America",
+     "observed": "2023-05-05",
+     "source": "OpenAlex sweep 2026-10-29 (hierarchy/michigan/openalex-sweep.sqlite)"
+    },
+    {
+     "url": "https://web.archive.org/web/20260511155335id_/https://web.eecs.umich.edu/~ryanph/",
+     "sha256": "464883c37a29c344f9f4c093c4b4610a34990f8176d685b6669219426f8363e0",
+     "quote": "TrainVerify: Equivalence-Based Verification for Distributed LLM Training Yunchi Lu, Youshan Miao, Cheng Tan, Peng Huang, Yi Zhu, Xian Zhang, Fan Yang SOSP 2025",
+     "observed": "2026-05-11",
+     "kind": "homepage_capture"
+    }
+   ]
+  },
+  "John Leslie King": {
+   "periods": [
+    {
+     "id": "override_period_profiles_michigan_john_leslie_king_2016",
+     "start": "2016",
+     "end": null,
+     "asof": "2022-12-16",
+     "datePrecision": "year",
+     "evidence": [
+      {
+       "url": "https://web.archive.org/web/20160621194758id_/https://www.si.umich.edu/people/john-king",
+       "sha256": "56df1e442138142efa76e9f6b8ee1a090b3e52cd4832da042e979ee68e18f68b",
+       "quote": "William Warner Bishop Collegiate Professor of Information and Professor of Information, School of Information",
+       "observed": "2016-06-21",
+       "kind": "unit_profile_capture"
+      },
+      {
+       "url": "https://web.archive.org/web/20170701010257id_/https://si.umich.edu/people/john-king",
+       "sha256": "574ddc1b2f410c924eda8484899b3ce07f3f0ef7c3f23658520e2b9c6857eadc",
+       "quote": "William Warner Bishop Collegiate Professor of Information and Professor of Information, School of Information",
+       "observed": "2017-07-01",
+       "kind": "unit_profile_capture"
+      },
+      {
+       "url": "https://web.archive.org/web/20180615210413id_/https://si.umich.edu/people/john-king",
+       "sha256": "7b4801a216104b5fb084988967cedf9f91e8c9591be0bb6b967cf41151b610d0",
+       "quote": "William Warner Bishop Collegiate Professor of Information and Professor of Information, School of Information",
+       "observed": "2018-06-15",
+       "kind": "unit_profile_capture"
+      },
+      {
+       "url": "https://web.archive.org/web/20191015163713id_/https://www.si.umich.edu/people/john-king",
+       "sha256": "9156d5841d69b086124f0692bc1b90bbd365e8c86d8c5a8a5fd09904743ef4ff",
+       "quote": "William Warner Bishop Collegiate Professor of Information and Professor of Information, School of Information",
+       "observed": "2019-10-15",
+       "kind": "unit_profile_capture"
+      },
+      {
+       "url": "https://web.archive.org/web/20200803172214id_/https://www.si.umich.edu/people/directory/faculty/k",
+       "sha256": "eb2ace8ae9161fe17a3e20fd4cd837b65a425e2c7e603db90470d69b52c443b0",
+       "quote": "John Leslie King William Warner Bishop Collegiate Professor of Information and Professor of Information, School of Information",
+       "observed": "2020-08-03",
+       "kind": "unit_listing:UMSI"
+      },
+      {
+       "url": "https://web.archive.org/web/20210616215553id_/https://www.si.umich.edu/people/directory/faculty/k",
+       "sha256": "07419ffdd5b4d917bcd5afe15c0b6002a57223a82cfdb3e23477588848400f6a",
+       "quote": "John Leslie King Professor Emeritus of Information, School of Information",
+       "observed": "2021-06-16",
+       "kind": "unit_listing:UMSI"
+      },
+      {
+       "url": "https://web.archive.org/web/20221216092739id_/https://www.si.umich.edu/people/directory/faculty/k",
+       "sha256": "b98b95d208afccbd8ddd69270e61962aeae6f2362945abe87050a4d58127ba1c",
+       "quote": "John Leslie King Professor Emeritus of Information, School of Information",
+       "observed": "2022-12-16",
+       "kind": "unit_listing:UMSI"
+      }
+     ],
+     "reviewed": "zero_paper_pis_20261104",
+     "note": "Dated evidence for every year 2016-2022: UMSI profile captures of /people/john-king naming him 'William Warner Bishop Collegiate Professor of Information' (2016-2019), the UMSI faculty directory page for K in Wayback (2020-08-03: same title; 2021-06-16 and 2022-12-16: 'Professor Emeritus of Information'; an emeritus row counts while the row exists, R-PAP-03). Start is a lower bound; no end is claimed."
+    },
+    {
+     "id": "override_period_profiles_michigan_john_leslie_king_2025",
+     "start": "2025",
+     "end": null,
+     "asof": "2026-01-29",
+     "datePrecision": "year",
+     "evidence": [
+      {
+       "url": "https://web.archive.org/web/20250730015155id_/https://www.si.umich.edu/people/directory/faculty/k",
+       "sha256": "6c216744c645979fa95cf4a38741299e04cd5c2c0d4583f546e2e89501e22414",
+       "quote": "John Leslie King Professor Emeritus of Information, School of Information",
+       "observed": "2025-07-30",
+       "kind": "unit_listing:UMSI"
+      },
+      {
+       "url": "https://web.archive.org/web/20260129025423id_/https://www.si.umich.edu/people/directory/faculty",
+       "sha256": "317d2f54d04f792ed98c927df5ae7dc2d7e49bbe989d30853687d90d7428188a",
+       "quote": "John Leslie King Professor",
+       "observed": "2026-01-29",
+       "kind": "unit_listing:UMSI"
+      }
+     ],
+     "reviewed": "zero_paper_pis_20261104",
+     "note": "Dated evidence for 2025 and 2026: the UMSI faculty directory page for K (Wayback 2025-07-30, 'Professor Emeritus of Information') and the 2026-01-29 UMSI directory ('John Leslie King Professor'). No dated capture of 2023-2024 exists (his profile page returns 403 after 2019; no directory capture for K between 2022-12-16 and 2025-01-14); R-PAP-28's continuity bridge covers those years because his identified works name Michigan in each of them. Start is a lower bound; no end is claimed."
+    }
+   ],
+   "why_periods": "Years proven by dated UMSI profile captures and directory captures (2026-11-04 review; tools/periods_school.py extend found no 'ladder' title because the title sits after the contact block)."
   }
  }
 }
