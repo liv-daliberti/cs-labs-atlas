@@ -117,6 +117,17 @@
       "R-PAP-04"
      ]
     },
+    "display_name": {
+     "description": "A reviewed real name for a census row whose name is a placeholder (single letters): the PI is built under this name.",
+     "type": "string",
+     "x-rules": [
+      "R-PAP-34"
+     ]
+    },
+    "why_display_name": {
+     "description": "Why the display name is the person (evidence in openalex_evidence).",
+     "type": "string"
+    },
     "blocked_clusters": {
      "description": "Reviewed namesake clusters: a work whose byline carries min_coauthors or more of the coauthors is never this PI's.",
      "type": "array",
