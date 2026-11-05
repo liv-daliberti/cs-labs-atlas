@@ -1,5 +1,5 @@
 #!/bin/bash
-# detect.py score on one GPU (ModernBERT-large, bf16). STYLE=polish sbatch detect.slurm
+# detect.py score (v1 abstract detector) on one GPU. STYLE=polish sbatch detect.slurm
 #SBATCH --job-name=allai-det
 #SBATCH --partition=all
 #SBATCH --account=allcs
@@ -16,4 +16,4 @@ export HF_HOME=$CS_ATLAS_HF_HOME HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 TOKENIZ
 export TMPDIR=/tmp/allai_det_${SLURM_JOB_ID}; mkdir -p $TMPDIR; export TRITON_CACHE_DIR=$TMPDIR/triton; trap 'rm -rf "$TMPDIR"' EXIT
 cd "$CS_ATLAS_AI_WRITING/allai"
 nvidia-smi --query-gpu=name,memory.total --format=csv,noheader
-$CS_ATLAS_ENV_PY -u -B detect.py score --style "${STYLE:-polish}" --originals "${ORIG:-1000}"
+$CS_ATLAS_ENV_PY -u -B detect.py score --style "${STYLE:-polish}"
