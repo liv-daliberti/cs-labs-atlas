@@ -9,7 +9,7 @@ DOI** minted from the public GitHub repository's releases. Not legal advice: the
 | Placeholder | Defined in | Flows to | Status |
 |---|---|---|---|
 | owner name (`Liv d'Aliberti`) | `tools/rights/rights.json` `owner_name`, `given_names`, `family_names` (code repo); `scripts/rights/rights.json` (site repo, same values) | LICENSE, NOTICE, CITATION.cff, .zenodo.json, README "How to cite", HF card, site footer, site terms page | filled |
-| `{{ZENODO_DOI}}` | the same two files, key `zenodo_doi` | the citation, BibTeX and the `# doi:` line of CITATION.cff (becomes `doi:` when real), HF card, site terms page | still a placeholder |
+| `{{ZENODO_DOI}}` | the same two files, key `zenodo_doi` | the citation, BibTeX and the `# doi:` line of CITATION.cff (becomes `doi:` when real), HF card, site terms page | set 2026-11-05: concept DOI 10.5281/zenodo.23988437 (all versions); release 2026-10-29.4 is version DOI 10.5281/zenodo.23988438 |
 | `{{CONTACT}}` | the same two files, key `contact` | NOTICE, README, HF card, site terms page (how to ask for commercial use) | filled: the GitHub issues page |
 | ORCID | none found | left out everywhere | not used |
 

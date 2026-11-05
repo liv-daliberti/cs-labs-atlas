@@ -18,8 +18,8 @@ def test_cff_parses_and_is_a_dataset():
     assert c['cff-version'] == '1.2.0' and c['type'] == 'dataset' and c['version'] == RID
     assert c['license'] == 'CC-BY-NC-4.0'
     assert c['authors'][0]['family-names'] == "d'Aliberti" and c['authors'][0]['given-names'] == 'Liv'
-    assert 'doi' not in c  # commented until the DOI exists
-    assert '# doi: {{ZENODO_DOI}}' in rights.cff(RID)
+    assert c['doi'] == '10.5281/zenodo.23988437'  # the Zenodo concept DOI (all versions)
+    assert 'https://doi.org/10.5281/zenodo.23988437' in rights.citation(RID)
 
 
 def test_zenodo_json():
