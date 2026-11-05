@@ -4,7 +4,7 @@
  "bar": "docs/LAB-PAGES.md, acceptance bar",
  "additions_file": "hierarchy/gatech/reviewed/labpage-additions.json",
  "additions_generated_at": "2026-11-04T18:28:02+00:00",
- "additions_sha256": "9951a3857eec5362e4454bfd4e4b41aafd81809b43eb4873084297b5ce36eee6",
+ "additions_sha256": "d43c4db0e54ffd5fce7a0a0f35ecdd941fa0ac0dd4dc6c678e3b23124424b638",
  "students": {
   "accepted": true,
   "round": 7,
@@ -15,17 +15,28 @@
   "counts": {
    "proposed": 734
   },
-  "note": "the 6 rows whose role changed on regeneration (Ahmed Saeed's lab: 'MSc' / 'MS' alumni entries now read masters, Dhyey Thummar undergraduate -> masters), each read against its page: members, roles now correct; the other 728 rows are unchanged since round 5"
+  "note": "the 6 rows whose role changed on regeneration (Ahmed Saeed's lab: 'MSc' / 'MS' alumni entries now read masters, Dhyey Thummar undergraduate -> masters), each read against its page: members, roles now correct; the other 728 rows are unchanged since round 5",
+  "restamped_from": {
+   "sha256": "9951a3857eec5362e4454bfd4e4b41aafd81809b43eb4873084297b5ce36eee6",
+   "generated_at": "2026-11-04T18:28:02+00:00",
+   "removed": 0,
+   "reason": "rows removed by existing rules on regeneration (appointment periods R-PAP-01/03, strict current rule); no row added or changed"
+  }
  },
  "papers": {
   "accepted": true,
-  "round": 7,
-  "sample_size": 34,
+  "round": 8,
+  "sample_size": 1,
   "seed": 0,
-  "errors": 0.5,
+  "errors": 0,
   "counts": {
    "proposed": 305
   },
-  "note": "all 34 rows added since round 6 (389 titles resolved by the local snapshot and the API) read: PI on the byline through the OpenAlex authorship, Georgia Tech in the affiliation text, year inside the appointment; 1 doubtful (Clifford 2020). The 291 rows of round 6 are unchanged"
+  "note": "2026-11-05: the one row the regeneration carries under a new key is the Isbell lab-page paper 'State Space Decomposition and Subgoal Creation...' (2017, arXiv 1705.08997): the pi field moved from the merged census name 'Charles Cauthen Lever Jr.' to 'Charles Isbell' (ROADMAP #42, 898b353); nothing else in the row changed. Read against its evidence: Isbell on the byline, College of Computing, Georgia Institute of Technology in the affiliation, Isbell listed in 2017: correct (0 errors). The other 304 rows are unchanged since round 7.",
+  "restamped_from": {
+   "sha256": "9951a3857eec5362e4454bfd4e4b41aafd81809b43eb4873084297b5ce36eee6",
+   "added": 1,
+   "changed": 0
+  }
  }
 }

@@ -43,3 +43,11 @@ def test_chair_and_title_strings_are_never_names():
             row('Professor of Practice', '2020-01-01'), row('Dean Pomerleau', '2020-01-01'), row('Victoria Dean', '2020-01-01')]
     names = {n for g in cb.merge_people(rows) for n in g['names']}
     assert names == {'Charles Isbell', 'Dean Pomerleau', 'Victoria Dean'}
+
+
+def test_clone_of_card_is_the_same_person():
+    """Georgia Tech 2016 listed 'Clone of Hadi Esmaeilzadeh' (a cloned Drupal card): one person, named without the prefix."""
+    cb = census_build()
+    rows = [row('Hadi Esmaeilzadeh', '2016-04-12'), row('Clone of Hadi Esmaeilzadeh', '2016-09-27')]
+    groups = cb.merge_people(rows)
+    assert [g['names'] for g in groups] == [['Hadi Esmaeilzadeh']] and len(groups[0]['rows']) == 2

@@ -428,6 +428,16 @@ def open_pis(key):
     return [b.split(': no period')[0] for b in bad if ': no period' in b]
 
 
+def outside_work_years(key, name, x):
+    """Window years in which the build identified school works of the PI outside every listing year (pis.json funnel keys `outside_appointment_<year>`)."""
+    pis = json.loads((P.data('pis.json', key)).read_text())
+    pi = next((p for p in (pis if isinstance(pis, list) else pis.get('pis', [])) if p['pi'] == name), None) or {}
+    lo, hi = S.get(key).get('window') or [2016, 2026]
+    listed = set(x.get('years_listed') or [])
+    return {int(k.rsplit('_', 1)[1]) for k in (pi.get('funnel') or {}) if k.startswith('outside_appointment_')
+            and lo <= int(k.rsplit('_', 1)[1]) <= hi and int(k.rsplit('_', 1)[1]) not in listed}
+
+
 def deep(key, write=True):
     """The second look (Georgia Tech owner decision 2026-11-04) at the PIs gaps()/extend() left open. For each gap year, dated Wayback captures of: the PI's homepages (listing, DBLP,
     reviewed person-urls.json), profile-URL variants (DEEP_PATTERNS) on the hosts of the PI's home unit, across URL eras (one whole-window CDX per URL). A capture naming the PI with a ladder
@@ -442,10 +452,13 @@ def deep(key, write=True):
     homes = {r['name']: r.get('home_department') for r in json.loads((P.data('home-departments-school.json', key)).read_text())}
     supplied = json.loads((P.data('person-urls.json', key)).read_text()) if (P.data('person-urls.json', key)).exists() else {}
     tg = {t['name']: t for t in targets(key)}
-    only = [a for a in sys.argv[3:]] if len(sys.argv) > 3 else None
+    only = [a for a in sys.argv[3:] if not a.startswith('--')] or None
+    work_years = '--work-years' in sys.argv   # ROADMAP #43: also the years of the PI's identified works outside the listing years (a PI listed in one year only has no span gap)
     for name in (only or open_pis(key)):
         x = cen.get(name) or add.get(name) or {}
         miss = SG.span_gaps(x)
+        if work_years:
+            miss = sorted(set(miss) | outside_work_years(key, name, x))
         if not miss:
             continue
         t = tg.get(name) or dict(name=name, urls=[])
@@ -482,13 +495,43 @@ def deep(key, write=True):
                         break
         out[name] = dict(gap_years=miss, evidence={str(y): e for y, e in ev.items()}, closed=all(y in ev for y in miss), unproven=[y for y in miss if y not in ev], urls_tried=len(urls))
         print(json.dumps(dict(pi=name, gaps=miss, proven=sorted(ev), unproven=out[name]['unproven'], urls=len(urls))), flush=True)
-    P.data_w('deep-gap-evidence.json', key).write_text(json.dumps(out, indent=1, ensure_ascii=False))
+    dp = P.data_w('deep-gap-evidence.json', key)
+    if only and dp.exists():   # a run for named PIs adds to the file; it never drops the others' evidence (the stage-4 gate reads it)
+        out = {**json.loads(dp.read_text()), **out}
+    dp.write_text(json.dumps(out, indent=1, ensure_ascii=False))
     if not write:
         return out
     sec, save = CO.open_section(key)
     for name, g in out.items():
+        if only and name not in only:
+            continue
         x = cen.get(name) or add.get(name) or {}
         e = sec.setdefault(name, {})
+        if work_years and g['evidence'] and not g['closed']:   # proven years of a work-years pass: one reviewed period per contiguous run of listing and capture years (as extend())
+            ys = sorted(set(x.get('years_listed') or []) | {int(y) for y in g['evidence']})
+            runs, cur = [], []
+            for y in ys:
+                if cur and y != cur[-1] + 1:
+                    runs.append(cur); cur = []
+                cur.append(y)
+            runs.append(cur)
+            src = {}
+            for s_ in sorted([s_ for s_ in x.get('sources') or [] if s_.get('quote') and s_.get('sha256')], key=lambda s_: s_.get('observed') or ''):
+                src.setdefault(int(str(s_.get('observed') or '0')[:4] or 0), s_)
+            iso_ = lambda d: (f'{d[:4]}-{d[4:6]}-{d[6:8]}' if d and re.fullmatch(r'\d{8}(?:\d{2}){0,3}', d) else d)
+            pers = []
+            for run in runs:
+                evs = []
+                for y in run:
+                    if str(y) in g['evidence']:
+                        v = g['evidence'][str(y)]; evs.append({k_: v[k_] for k_ in ('url', 'sha256', 'quote', 'observed', 'kind')})
+                    elif y in src:
+                        s_ = src[y]; evs.append(dict(url=s_['url'], sha256=s_['sha256'], quote=s_['quote'], observed=iso_(str(s_.get('observed'))[:8]), kind=s_.get('kind') or 'unit_listing'))
+                pers.append(dict(id=f"override_period_workyears_{key}_{re.sub(r'[^a-z0-9]+', '_', name.lower()).strip('_')}_{run[0]}", start=str(run[0]), end=None, asof=evs[-1]['observed'][:10] if evs else None,
+                                 datePrecision='year', evidence=evs, reviewed='periods_school_deep_workyears_20261105',
+                                 note=f"Dated evidence for every year {run[0]}-{run[-1]}: listings and dated Wayback captures naming the PI with a ladder title (hierarchy/{key}/deep-gap-evidence.json, work-years pass). Start is a lower bound; no end is claimed."))
+            e['periods'] = [q for q in e.get('periods') or [] if not str(q.get('reviewed', '')).startswith('periods_school_deep_workyears')] + pers
+            e['why_periods'] = 'Years proven by dated captures and listings for the years of the PI\'s identified works (tools/periods_school.py deep --work-years).'
         if g['closed']:
             srcs = sorted([s_ for s_ in x.get('sources') or [] if s_.get('quote')], key=lambda s_: s_.get('observed') or '')
             iso = lambda d: (f'{d[:4]}-{d[4:6]}-{d[6:8]}' if d and re.fullmatch(r'\d{8}(?:\d{2}){0,3}', d) else d)

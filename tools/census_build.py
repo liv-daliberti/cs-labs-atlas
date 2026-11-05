@@ -33,6 +33,7 @@ from pi_hierarchy import Name, toks as _toks, nick_ok, EAST_ASIAN_FAMILY, nosuff
 
 ORDER = ['ladder', 'research', 'teaching', 'lecturer', 'adjunct', 'visiting', 'courtesy', 'emeritus', 'other']
 # a title or an endowed-chair string is never a person's name or alias (ROADMAP #42)
+CLONE_OF = re.compile(r'^Clone of\s+', re.I)  # Georgia Tech 2016: a cloned Drupal faculty card ('Clone of Hadi Esmaeilzadeh') is the same person, not a new one
 TITLE_NAME = re.compile(r'\b(?:Chair|Chaired|Professor|Professorship|Endowed|Distinguished)\b')  # not Dean or Director: given names and surnames
 HOME_PROF = re.compile(r'^(?:[A-Z][\w.\'\- ]+ )?(?:Assistant |Associate )?Professor(?! Emerit)(?: of [^,]+)?, (?!Electrical Engineering and Computer Science)(.+)$')
 
@@ -89,7 +90,7 @@ def merge_people(rows):
     """Group listing rows into persons: same family name and compatible given names (given_compatible); rows of one
     school only, never across schools."""
     groups, by_fam = [], collections.defaultdict(list)
-    for r in sorted(rows, key=lambda r: r['observed']):
+    for r in sorted((dict(r, name=CLONE_OF.sub('', r['name'])) for r in rows), key=lambda r: r['observed']):   # a Drupal 'Clone of X' card is X
         t = toks(r['name'])
         if len(t) < 2 or TITLE_NAME.search(r['name']):
             continue
