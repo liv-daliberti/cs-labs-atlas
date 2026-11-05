@@ -1,0 +1,301 @@
+# schools/<key>.toml: one school's charter (docs/ADDING-A-SCHOOL.md, stage 0). Copy this file to schools/<key>.toml,
+# fill every field, run `python tools/school_config.py --check <key>` and `python tools/school_hosts.py <key>`, then
+# commit it. Every stage tool reads the school from here; nothing else needs a school list (see the protocol's
+# "files that must learn a new school" for the few that still do).
+#
+# Facts in this file are decisions about where to look, not evidence: evidence (url + sha256 + verbatim quote) lives in
+# the captures and the stage outputs. Say how each identifier was verified in the *_note fields.
+
+key = "harvard"                  # lower-case, [a-z0-9]+; the folder name everywhere (hierarchy/<key>, stores/<key>, schools/<key>)
+name = "Harvard University"                 # full official name ("University of Michigan")
+short = "Harvard"            # display name
+site_uni = ""             # the 300-university atlas id (SITE_DATA/universities/<site_uni>.json.gz), if any
+status = "onboarding"     # onboarding | released. Only released schools are in atlas_paths.SCHOOL_IDS (the build,
+                          # the release, the tree); flip it at stage 10, never earlier
+order = 10                 # display and build order (released schools are listed in this order)
+stage = 0                 # the last stage whose gate passed (hierarchy/<key>/STAGE-<n>.md)
+started = "2026-11-05"              # YYYY-MM-DD the onboarding started
+window = [2016, 2026]     # the study window (owner rule; do not change per school)
+
+[ids]
+# Owner decision 2026-11-05 (coordinator, hierarchy/harvard/STAGE-0.md): keep ONLY labs that do computing. No blanket keep or drop of Harvard Medical School, the hospitals, Broad,
+# Wyss, Kempner or any other unit: a unit counts only through its computing labs, i.e. faculty who meet the CS-related scope rule (docs/RULES.md). Affiliation strings of those units stay
+# in `loose` / `own_units` so papers of in-scope computing PIs who list them are credited; they never add a PI or a lab by themselves. A PI is a Harvard faculty member; research staff of an
+# affiliated institute without a Harvard appointment are not PIs. Which lineage children are swept is a data decision (D1-D4 in STAGE-0.md) still open for the owner.
+openalex = ["I136199984"]
+openalex_related = []     # PROPOSED (owner decision D2): the hospitals and Broad are 'related' (regex-only): MGH I4210087915, Brigham I1283280774, Boston Children's I1288882113, Dana-Farber I4210117453, Broad I107606265, HST I4210092658
+openalex_excluded = []    # PROPOSED (D3): Harvard University Press I2801851002, Real Colegio Complutense I4392738166 (Spain), Harvard Pilgrim Health Care and Harvard Eye Associates/Vanguard (never lineage)
+ror = "https://ror.org/03vek6s52"
+ids_note = """OpenAlex institutions table of the 2026-10-14 snapshot (no API credits; checked 2026-11-05): I136199984 'Harvard University', ROR 03vek6s52, US, lineage [I136199984] (no parent). ROR v2 record
+(api.ror.org, 2026-11-05) agrees: 18 children, 24 related. Lineage children (22 in OpenAlex): Rowland Institute I4387153050, Ragon Institute I2802422659, NSF AI Institute for AI and Fundamental
+Interactions I4210160315, Harvard Global Health Institute I4210156643, Harvard University Press I2801851002, Center for Vascular Biology Research I4210143899, Harvard College Observatory I4210106258,
+Gordon Center for Medical Imaging I4210087356, MIT-Harvard Center for Ultracold Atoms I4210159271, Martinos Center I4210127055, Harvard Stem Cell Institute I4210157861, Smithsonian Astrophysical Observatory
+I153167508, Center for Astrophysics Harvard & Smithsonian I4210124175, Center for Systems Biology I4210155419, Berenson-Allen Center I4210133893, Wyss Institute I44142251, Dana-Farber/Harvard Cancer Center
+I4210134579, Arnold Arboretum I4387154449, Harvard Forest I4387154927, Sleep and Human Health Institute I4210135193, Real Colegio Complutense I4392738166 (Harvard's Spanish study centre). Related, not lineage:
+Massachusetts General Hospital I4210087915, Brigham and Women's I1283280774, Boston Children's I1288882113, Dana-Farber Cancer Institute I4210117453, Beth Israel Deaconess, McLean, Mass Eye and Ear, Joslin,
+Broad Institute I107606265, Harvard-MIT HST I4210092658, Harvard Pilgrim Health Care I4210111543, Massachusetts Green High Performance Computing Center I2803022237, others. NOT in OpenAlex as institutions: Harvard
+Medical School, the Kennedy School, Kempner Institute, Radcliffe, SEAS, Business School (all roll up to Harvard University I136199984). children-counts shows 0 works for every id: the filtered snapshot predates this
+charter (run snapshot-ext after the owner decisions)."""
+
+[web]
+domains = ["harvard.edu"]
+email_domains = ["harvard.edu", "g.harvard.edu", "seas.harvard.edu", "fas.harvard.edu", "hms.harvard.edu", "hsph.harvard.edu", "hks.harvard.edu", "mgh.harvard.edu", "bwh.harvard.edu", "cfa.harvard.edu"]
+wayback_only_suffixes = []
+excluded_hosts = ["harvardpilgrim.org", "hmc.edu", "harvard.k12.il.us"]   # Harvard Pilgrim, Harvey Mudd, Harvard (IL) schools
+
+[affiliation]
+# 'Harvard University' / 'Harvard Univ.' / 'Harvard College', the Harvard-named schools (Medical, Business, Kennedy, Graduate, Public Health/T.H. Chan, SEAS 'Harvard John A. Paulson', Dental, Law, Divinity, Design),
+# the harvard.edu domain. Never a bare 'Harvard' (Harvard Pilgrim, Harvard Bioscience, Harvard Apparatus, Harvard, IL/MA towns) and never 'Harvey Mudd'. 'Harvard-MIT' HST and 'Harvard-Smithsonian' alone do not match
+# (D4); the hospitals and Broad are credited through `loose` only for in-scope computing PIs (owner decision 2026-11-05).
+regex = '''\bharvard\s+(?:univ\w*\.?|college|medical\s+school|business\s+school|kennedy\s+school|graduate\s+school|school\s+of\s+(?:engineering|public\s+health|dental|design)|law\s+school|divinity\s+school|john\s+a\.?\s+paulson|t\.?\s*h\.?\s+chan)|\bharvard\.edu\bs?'''
+own_units = '''\b(?:kempner|wyss|rowland|ragon|broad|martinos|radcliffe|berenson-allen)\s+institute\b|\bcenter\s+for\s+astrophysics\b|\bharvard[-\s–]smithsonian\b|\bharvard[-\s–]mit\b|\bcenter\s+for\s+brain\s+science\b'''
+loose = '''harvard\w*|cambridge,?\s+ma\b|massachusetts\s+general\s+hospital|brigham\s+and\s+women|dana[-\s]farber|boston\s+children|broad\s+institute|\bmgh\b|\bbwh\b|kempner|wyss\s+institute'''
+must_match = [
+  "Harvard University, Cambridge, MA 02138, USA",
+  "John A. Paulson School of Engineering and Applied Sciences, Harvard University",
+  "Harvard Univ., Cambridge MA",
+  "Harvard Medical School, Boston, MA",
+  "Department of Biostatistics, Harvard T.H. Chan School of Public Health",
+  "Harvard TH Chan School of Public Health",
+  "Harvard Kennedy School",
+  "Harvard College",
+  "Harvard John A. Paulson School of Engineering and Applied Sciences",
+  "jdoe@seas.harvard.edu",
+  "Harvard Business School, Boston",
+  "Broad Institute of MIT and Harvard University",
+]
+must_not_match = [
+  "Harvey Mudd College, Claremont, CA",
+  "Harvard Pilgrim Health Care Institute, Boston",
+  "Harvard Bioscience Inc.",
+  "Harvard Apparatus, Holliston, MA",
+  "Harvard, Illinois",
+  "Harvard Community Health Plan",
+  "Harvard Vanguard Medical Associates",
+  "Harvard-Yenching Institute",
+  "Harvard-MIT Division of Health Sciences and Technology",
+  "Harvard-Smithsonian Center for Astrophysics",
+  "Massachusetts Institute of Technology, Cambridge, MA",
+  "Boston University, Boston, MA",
+  "Northeastern University, Boston, MA",
+  "Tufts University, Medford, MA",
+  "jdoe@hmc.edu",
+  "Massachusetts General Hospital, Boston, MA",
+]
+
+[dblp]
+affiliation_strings = ["Harvard University", "Harvard Medical School", "Harvard School of Engineering and Applied Sciences", "Harvard John A. Paulson School of Engineering", "Harvard T.H. Chan School of Public Health", "Harvard Kennedy School", "Harvard Business School", "Harvard College", "Harvard Univ"]
+legacy_sweep = ""
+
+[census]
+computing_departments = ["CS"]
+center_units = ["KEMPNER"]    # PROPOSED: the Kempner Institute is a research institute, never a PI's home
+# Harvard has no Faculty of Computing: Computer Science is a SEAS area (SEAS lists one faculty directory for all areas). Home units are the SEAS areas and the FAS/medical departments named in the charter.
+home_units = {"Computer Science" = '^(?:Area of )?Computer Science$', "Applied Mathematics" = '^(?:Area of )?Applied Mathematics$', "Electrical Engineering" = '^(?:Area of )?Electrical Engineering$', "Bioengineering" = '^(?:Area of )?Bioengineering$', "Applied Physics" = '^(?:Area of )?Applied Physics$', "Statistics" = '^(?:Department of )?Statistics$', "Economics" = '^(?:Department of )?Economics$', "Mathematics" = '^(?:Department of )?Mathematics$', "Biostatistics" = '^(?:Department of )?Biostatistics$', "Biomedical Informatics" = '^(?:Department of )?Biomedical Informatics$', "Psychology" = '^(?:Department of )?Psychology$', "Molecular and Cellular Biology" = '^(?:Department of )?Molecular and Cellular Biology$', "Government" = '^(?:Department of )?Government$', "Kennedy School" = '^Harvard Kennedy School$'}
+rank_words = {teaching = '\bprofessor\s+of\s+the\s+practice\b|\blecturer\s+on\b|\bsenior\s+lecturer\b', adjunct = '\bvisiting\s+(?:professor|lecturer)\b|\bprofessor\s+of\s+(?:\w+\s+)?practice\b'}
+
+[sweep_check]
+exceptions = []
+
+[cs_related]
+not_faculty = {}
+share_test_settles = []
+
+[site]
+depts = {CS = "Computer Science (SEAS)"}
+full_codes = ["CS"]
+
+[periods]
+school_regex = ''
+profile_patterns = ["seas.harvard.edu/person/{first}-{last}"]
+
+[rules]
+foreign_title_exception = false
+
+# --- departments -------------------------------------------------------------------------------------------------------------------
+# Harvard's computing is SEAS (Computer Science area; Applied Mathematics, Electrical Engineering, Bioengineering, Applied Physics are further SEAS areas). SEAS publishes ONE paged
+# faculty directory (seas.harvard.edu/faculty, ?page=,N); the Wayback has it from 2019-10 (CDX 2026-11-05: 82 monthly captures; the older www.seas.harvard.edu forms returned no captures under the guessed URLs,
+# stage 1 finds them with discover_listings.py). Listing slots are first guesses.
+[[departments]]
+code = "CS"
+name = "Computer Science (Harvard SEAS)"
+unit = "John A. Paulson School of Engineering and Applied Sciences"
+title_match = '''Computer Science'''
+coverage = "full"
+url = "https://seas.harvard.edu/computer-science"
+  [[departments.listings]]
+  slot = "SEAS faculty"
+  kind = "main"
+  url = "seas.harvard.edu/faculty"
+  from = "20160101"
+  to = "20261231"
+  prefix = true
+  [[departments.listings]]
+  slot = "SEAS CS people"
+  kind = "main"
+  url = "seas.harvard.edu/computer-science/people"
+  from = "20160101"
+  to = "20261231"
+
+# --- units searched for computing-related faculty (stage 2). Only computing labs count (owner 2026-11-05). -----------------------------
+[[affiliated_units]]
+code = "AM"
+name = "Applied Mathematics (SEAS)"
+url = "https://seas.harvard.edu/applied-mathematics/people"
+listings = ["seas.harvard.edu/applied-mathematics/people"]
+
+[[affiliated_units]]
+code = "DBMI"
+name = "Department of Biomedical Informatics (Harvard Medical School)"
+url = "https://dbmi.hms.harvard.edu/people"
+listings = ["dbmi.hms.harvard.edu/people"]
+
+[[affiliated_units]]
+code = "BIOSTAT"
+name = "Department of Biostatistics (Harvard T.H. Chan School of Public Health)"
+url = "https://hsph.harvard.edu/department/biostatistics/"
+listings = ["hsph.harvard.edu/department/biostatistics"]
+
+[[affiliated_units]]
+code = "KEMPNER"
+name = "Kempner Institute for the Study of Natural and Artificial Intelligence"
+url = "https://kempnerinstitute.harvard.edu/people/"
+listings = ["kempnerinstitute.harvard.edu/people"]
+
+[[affiliated_units]]
+code = "HKS"
+name = "Harvard Kennedy School"
+url = "https://www.hks.harvard.edu/faculty-research"
+listings = ["www.hks.harvard.edu/faculty-research"]
+
+[[affiliated_units]]
+code = "MCB"
+name = "Molecular and Cellular Biology (FAS)"
+url = "https://www.mcb.harvard.edu/faculty/faculty-profiles/"
+listings = ["www.mcb.harvard.edu/faculty/faculty-profiles"]
+
+# Statistics, Economics, Mathematics, Physics, Psychology, Astronomy (FAS hosts *.fas.harvard.edu, math/physics.harvard.edu) answer this client's robots.txt with an Akamai 'Access Denied' 403
+# (2026-11-05): not used, not via Wayback (coordinator's rule); their computing people are still found through the OpenAlex rule and DBLP. Owner decision D5.
+
+# --- students ----------------------------------------------------------------------------------------------------------------------
+[thesis]
+kind = "none"
+base_url = ""
+endpoints = []
+robots = "allowed"
+note = "DASH (dash.harvard.edu, DSpace 7): robots.txt allows /entities/publication/<uuid> and /items (no AI-agent group, no Crawl-delay; Disallow /search /browse /entities/*/*/* /processes ...). Sitemaps hold 103,850 URLs (2,620 publication pages in sitemap2, about 100k items in sitemap0-1). One probe of an item page after five sitemap requests got 'Web Firewall 429 - The service is under heavy load' (2026-11-05): treated as a challenge, not retried, host marked use = none. At 100,000 records and the house 5 s minimum that would be 139 hours; DASH holds few dissertations (Harvard theses go through ProQuest and the departments), so it is not a student source. OAI is not probed."
+
+[collector]
+channels = ["oa_arxiv", "openalex", "s2", "labpages"]
+
+[students]
+directories = []
+adviser_directories = []
+defense_lists = []
+adviser_alumni = []
+rosters = []
+sources = [
+  "lab member pages and PI homepages (live where robots allows, else Wayback)",
+  "SEAS PhD student and alumni directories (seas.harvard.edu), if archived",
+  "ProQuest / OpenAlex / CORE thesis metadata (never DASH crawling)",
+]
+
+[labpages]
+skip_pages = []
+hints = ["<lab>.seas.harvard.edu", "seas.harvard.edu/person/<name>", "scholar.harvard.edu/<name>", "<name>.github.io", "sites.google.com/view/<lab>", "projects.iq.harvard.edu/<lab>"]
+
+[repository]
+name = "DASH (Digital Access to Scholarship at Harvard, dash.harvard.edu): reached through OpenAlex and CORE; direct fetches stopped at a web-firewall 429"
+pattern = '''dash\.harvard\.edu|nrs\.harvard\.edu|Digital Access to Scholarship at Harvard'''
+
+[store]
+path = "/n/fs/resemble/homogenizing-science/stores/harvard"
+
+# --- hosts --------------------------------------------------------------------------------------------------------------------------
+[[hosts]]
+host = "web.archive.org"
+use = "live"
+purpose = "Wayback id_ captures and CDX (listings 2016-2026, lab pages)"
+probe = "https://web.archive.org/web/2020id_/https://seas.harvard.edu/faculty"
+
+[[hosts]]
+host = "seas.harvard.edu"
+use = "live"
+purpose = "SEAS faculty directory, Computer Science and Applied Mathematics people (robots: Drupal defaults, no AI rule)"
+probe = "https://seas.harvard.edu/faculty"
+
+[[hosts]]
+host = "dbmi.hms.harvard.edu"
+use = "live"
+purpose = "HMS Department of Biomedical Informatics people (robots: Drupal defaults)"
+probe = "https://dbmi.hms.harvard.edu/people"
+
+[[hosts]]
+host = "hsph.harvard.edu"
+use = "live"
+purpose = "Chan School Biostatistics (robots names GPTBot and ChatGPT-User only)"
+probe = "https://hsph.harvard.edu/department/biostatistics/"
+
+[[hosts]]
+host = "www.hks.harvard.edu"
+use = "live"
+purpose = "Kennedy School faculty"
+probe = "https://www.hks.harvard.edu/faculty-research"
+
+[[hosts]]
+host = "kempnerinstitute.harvard.edu"
+use = "live"
+purpose = "Kempner Institute people (affiliated institute; computing labs only)"
+probe = "https://kempnerinstitute.harvard.edu/people/"
+
+[[hosts]]
+host = "www.mcb.harvard.edu"
+use = "live"
+purpose = "MCB people (searched for computing-related faculty)"
+probe = "https://www.mcb.harvard.edu/faculty/faculty-profiles/"
+
+[[hosts]]
+host = "dash.harvard.edu"
+use = "none"
+purpose = "DASH repository: item page answered a web-firewall 429 (challenge); not used"
+probe = "https://dash.harvard.edu/"
+
+[[hosts]]
+host = "statistics.fas.harvard.edu"
+use = "none"
+purpose = "Statistics: robots.txt 403 Akamai Access Denied for this client; not used, not via Wayback"
+probe = "https://statistics.fas.harvard.edu/people/faculty"
+
+[[hosts]]
+host = "economics.harvard.edu"
+use = "none"
+purpose = "Economics: robots.txt 403 Akamai Access Denied for this client; not used, not via Wayback"
+probe = "https://economics.harvard.edu/faculty"
+
+[[hosts]]
+host = "www.math.harvard.edu"
+use = "none"
+purpose = "Mathematics: robots.txt 403 Akamai Access Denied; not used"
+probe = "https://www.math.harvard.edu/people/"
+
+[[hosts]]
+host = "www.physics.harvard.edu"
+use = "none"
+purpose = "Physics: robots.txt 403 Akamai Access Denied; not used"
+probe = "https://www.physics.harvard.edu/people/"
+
+[[hosts]]
+host = "psychology.fas.harvard.edu"
+use = "none"
+purpose = "Psychology: robots.txt 403 Akamai Access Denied; not used"
+probe = "https://psychology.fas.harvard.edu/people/"
+
+[[hosts]]
+host = "api.openalex.org"
+use = "live"
+purpose = "OpenAlex (snapshot first; the shared 10k/day key)"
+
+[[hosts]]
+host = "api.ror.org"
+use = "live"
+purpose = "ROR verification"
