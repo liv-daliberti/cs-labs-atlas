@@ -56,3 +56,15 @@ def test_R_PAP_36_arxiv_v1_that_predates_the_record():
     assert not papers.arxiv_predates_record(ev, 2015)
     assert not papers.arxiv_predates_record(dict(basis='page1_open', url='https://jmlr.org/x.pdf'), 2016)
     assert not papers.arxiv_predates_record(dict(basis='page1_arxiv', url='https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2206/2206.01.pdf'), 2022)
+
+
+def test_R_PAP_36_usenix_and_ceur_hosts():
+    assert D.pdf_url('https://www.usenix.org/conference/atc25/presentation/yuan') == 'https://www.usenix.org/system/files/atc25-yuan.pdf'
+    assert D.pdf_url('https://ceur-ws.org/Vol-3994/short4.pdf') == 'https://ceur-ws.org/Vol-3994/short4.pdf'
+    assert D.CRAWL_DELAY['www.usenix.org'] == 10.0
+
+
+def test_R_PAP_36_reviewed_blocked_cluster_stops_recovered_rows():
+    from pihier import identity
+    chen = {'blockedClusters': [{'coauthors': ['Ben Y. Zhao', 'Haitao Zheng'], 'min_coauthors': 2}]}
+    assert identity.in_blocked_cluster(chen, dict(authorships=[dict(raw_author_name=b) for b in ['Yuxin Chen', 'Huiying Li', 'Ben Y. Zhao', 'Haitao Zheng']]))

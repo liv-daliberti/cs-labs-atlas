@@ -29,7 +29,7 @@ from pi_fulltext_affiliation import tie  # noqa: E402
 import atlas_paths as P  # noqa: E402  (every path in one place)
 
 UA = 'HomogenizingScienceResearch/0.2 (academic metadata inventory)'
-OPEN_HOSTS = ('aclanthology.org', 'proceedings.mlr.press', 'openaccess.thecvf.com', 'papers.nips.cc', 'proceedings.neurips.cc',
+OPEN_HOSTS = ('ceur-ws.org', 'aclanthology.org', 'proceedings.mlr.press', 'openaccess.thecvf.com', 'papers.nips.cc', 'proceedings.neurips.cc',
               'www.usenix.org', 'usenix.org', 'www.ijcai.org', 'ojs.aaai.org', 'openreview.net', 'www.isca-speech.org',
               'www.roboticsproceedings.org', 'roboticsproceedings.org', 'jmlr.org', 'www.jmlr.org', 'dl.acm.org/doi/pdf')
 _last = collections.defaultdict(float); _lock = threading.Lock(); _robots = {}
@@ -50,8 +50,12 @@ def _throttle():
     return _HT[0]
 
 
+CRAWL_DELAY = {'www.usenix.org': 10.0}   # robots.txt Crawl-delay of the hosts that state one
+
+
 def polite_get(url, delay=3.0):
     host = urlsplit(url).netloc
+    delay = max(delay, CRAWL_DELAY.get(host, 0))
     if host not in _robots:
         try:
             rb = requests.get(f'https://{host}/robots.txt', headers={'User-Agent': UA}, timeout=20)
@@ -97,6 +101,9 @@ def pdf_url(u):
         return f'https://proceedings.neurips.cc/paper_files/paper/{m.group(1)}/file/{m.group(2)}-{kind}.pdf'
     # IACR ePrint is not asked: eprint.iacr.org answers automated clients with a Cloudflare challenge and its robots.txt states an AI policy against
     # using the PDFs (R-PAP-36, 2026-11-05: Devadas's 2021 ePrint paper stays `dblp_unconfirmed`)
+    m = re.match(r'https://www\.usenix\.org/conference/([a-z]+)(\d{2})/presentation/([\w\-]+)/?$', u)   # R-PAP-36: USENIX presentation page -> its open PDF
+    if m:
+        return f'https://www.usenix.org/system/files/{m.group(1)}{m.group(2)}-{m.group(3)}.pdf'
     m = re.match(r'https://(?:www\.)?jmlr\.org/papers/v(\d+)/([\w\-.]+?)\.html$', u)   # R-PAP-36: JMLR volume page -> its PDF
     if m:
         return f'https://jmlr.org/papers/volume{m.group(1)}/{m.group(2)}/{m.group(2)}.pdf'
@@ -225,7 +232,8 @@ def run(school, workers):
     key = os.environ.get('OPENALEX_API_KEY'); inst = 'https://openalex.org/' + INST[school]; aff = re.compile(AFF[school], re.I)
     c = db(school)
     retry = '--retry' in sys.argv   # R-PAP-36: ask again for the records an earlier run could not confirm (new hosts, a fuller candidate list)
-    done = {(r[0], r[1]) for r in c.execute('select pi, dblp_key, status from tries where accepted is not null') if not (retry and r[2] in ('not_recovered', 'dblp_unconfirmed'))}
+    # a record is done when it was accepted or OpenAlex puts the PI at another institution; --retry asks again for every other (earlier hosts failed or were missing)
+    done = {(r[0], r[1]) for r in c.execute('select pi, dblp_key, status, accepted from tries where accepted is not null') if r[3] == 1 or r[2] == 'other_institution' or not retry}
     todo = [x for x in candidates(school) if (x['pi'], x['dblp_key']) not in done]
     print(json.dumps(dict(school=school, candidates=len(todo))), flush=True)
     wlock = threading.Lock(); acc = collections.Counter()

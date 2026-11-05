@@ -7,6 +7,7 @@ import collections, gzip, html, json, re, unicodedata, zlib
 import atlas_paths as P  # data paths (DATA_FILES)
 import school_config as _S  # the school charters (R-PAP-15's foreign-title exception)
 from .common import OWN_UNITS, SCHOOL_LOOSE, TODAY, WINDOW_START, accepted_additions, ndoi, norm_title
+from .identity import in_blocked_cluster
 from .names import NICK, _nick_pairs, byline_name, full_pair, toks
 from .periods import _year, bridge_periods, contains, same_year, transition_side, transition_status
 from . import identity
@@ -746,6 +747,8 @@ def recovered_rows(ctx, rows, seen):
                 continue
             x = dict(x, pi=p['pi'])
             ev = x['evidence']; date = str(x['year'])
+            if kind == 'dblp' and in_blocked_cluster(p, dict(authorships=[dict(raw_author_name=b_) for b_ in x.get('byline') or []])):
+                n['dblp_recovered_blocked_cluster'] += 1; continue   # R-PAP-32: a reviewed namesake cluster is never the PI's, whatever the DBLP page says
 
             def aside(why, x=x):  # an accepted lab-page paper the build does not keep: named in report.json
                 if kind == 'labpage_addition':
