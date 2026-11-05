@@ -9,8 +9,9 @@ import ecommon as C
 import store
 from models import MODELS
 
-PRE, POST = range(2016, 2023), range(2023, 2027)
-YEARS = range(2016, 2027)
+# owner 2026-11-04: no 2026 (a partial year) in any series or estimate; series end at 2025, post = 2023-2025
+PRE, POST = range(2016, 2023), range(2023, 2026)
+YEARS = range(2016, 2026)
 
 
 def universe():

@@ -3,7 +3,7 @@
   novelty_run.py --model M [--kind abstract|fulltext]
 -> results/novelty_<M>_<kind>.parquet           one row per (scope, scope_id, paper, k): n_ref, nov_max, nov_nn, and the size-matched *_cap columns
    results/novelty_trend_<M>_<kind>.parquet     mean by year with a 95% cluster-bootstrap interval (clusters = the paper's first lab)
-   results/novelty_contrast_<M>_<kind>.parquet  post (2023-2026) minus pre (2017-2022) with the interval
+   results/novelty_contrast_<M>_<kind>.parquet  post (2023-2025) minus pre (2017-2022) with the interval
 Scopes: all papers, each school (a paper counts in every school it belongs to), each department (school|dept), each lab. See novelty.py for the maths.
 Rows enter the trend and contrast tables when the pool holds at least MIN_REF papers (all / school 100, department 20, lab 5): a 2017 paper
 compared with the previous year of a tiny lab says little. Year 2016 has no earlier pool (the packages start in 2016) and stays out.
@@ -65,7 +65,7 @@ def run(model, kind):
                     v = g[meas].to_numpy()
                     for y, (m, lo, hi, n) in M.mean_by_year(v, g['year'].to_numpy(), g['cluster'].to_numpy(), reps=300).items():
                         trend.append(dict(model=model, kind=kind, scope=scope, scope_id=sid, k=int(k), measure=meas, year=y, mean=m, lo=lo, hi=hi, n=n))
-                    sel = g['year'].isin(list(PRE_YEARS) + list(range(2023, 2027))).to_numpy()
+                    sel = g['year'].isin(list(PRE_YEARS) + list(range(2023, 2026))).to_numpy()
                     if sel.sum() > 50:
                         est, lo, hi, nc = M.diff_ci(v[sel], g['cluster'].to_numpy()[sel], (g['year'].to_numpy()[sel] >= 2023), reps=500)
                         contrast.append(dict(model=model, kind=kind, scope=scope, scope_id=sid, k=int(k), measure=meas, diff=est, lo=lo, hi=hi, clusters=nc,

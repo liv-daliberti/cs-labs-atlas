@@ -8,7 +8,7 @@ BERTopic gets the precomputed embeddings (centred and normalized): UMAP (5 dims,
 abstract (English stop words, unigrams and bigrams, min_df 20). Labels are the top-4 c-TF-IDF keywords, no LLM. Outliers (HDBSCAN noise) are
 reassigned to the nearest topic by embedding so that every paper has a topic; `topic_raw` keeps the unreassigned value and the share is reported.
 Entropy (bits): plug-in, Miller-Madow corrected, and rarefied (equal numbers of papers compared at the same m) -- a lab with 80 papers would otherwise
-look more diverse than one with 20. Labs are described per period (2016-2022 / 2023-2026) since lab-years are too small; school, department and
+look more diverse than one with 20. Labs are described per period (2016-2022 / 2023-2025) since lab-years are too small; school, department and
 all-paper entropies are per year.
 """
 import argparse
@@ -81,7 +81,7 @@ def entropy_rows(df, col, cluster_col='cluster', reps=60):
 
 
 def lab_period_rows(df, col):
-    """Per lab and period (pre 2016-2022, post 2023-2026): n, Miller-Madow entropy, entropy rarefied to LAB_M papers (NaN below it)."""
+    """Per lab and period (pre 2016-2022, post 2023-2025): n, Miller-Madow entropy, entropy rarefied to LAB_M papers (NaN below it)."""
     out = []
     d = df[df['scope'] == 'lab'].dropna(subset=[col])
     for (sid, per), g in d.assign(period=np.where(d['year'] >= 2023, 'post', 'pre')).groupby(['scope_id', 'period']):

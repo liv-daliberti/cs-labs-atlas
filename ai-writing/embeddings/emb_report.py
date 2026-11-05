@@ -69,13 +69,13 @@ def novelty_section(out):
     ct = pd.concat([pd.read_parquet(p.with_name(p.name.replace('trend', 'contrast'))) for p in files])
     out.append('### Year by year, all papers (k = 3, size-matched nearest-neighbour novelty `nov_nn_cap`)\n')
     sel = tr[(tr.scope == 'all') & (tr.k == 3) & (tr.measure == 'nov_nn_cap')]
-    years = sorted(sel.year.unique())
+    years = sorted(y for y in sel.year.unique() if y <= 2025)
     rows = []
     for (m, kind), g in sel.groupby(['model', 'kind']):
         d = g.set_index('year')
         rows.append([m, kind] + [ci(d.loc[y, 'mean'], d.loc[y, 'lo'], d.loc[y, 'hi']) if y in d.index else '' for y in years])
     out.append(table(rows, ['model', 'text'] + [str(y) for y in years]) + '\n')
-    out.append('### Post (2023-2026) minus pre (2017-2022), difference in mean novelty, 95% interval\n')
+    out.append('### Post (2023-2025) minus pre (2017-2022), difference in mean novelty, 95% interval\n')
     for meas, label in (('nov_max_cap', '1 - max cosine, size-matched'), ('nov_nn_cap', '1 - mean of 5 nearest, size-matched'), ('nov_max', '1 - max cosine, full pool')):
         out.append(f'**{label}, k = 3**\n')
         rows = []
@@ -114,7 +114,7 @@ def topics_section(out):
             out.append(f'{len(lab)} topics over {len(tp):,} papers; {float((tp.topic_raw == -1).mean()):.1%} were HDBSCAN noise before reassignment. Largest topics: '
                        + '; '.join(f'{r.label} ({r["size"]:,})' for _, r in lab.sort_values('size', ascending=False).head(8).iterrows()) + '.\n')
         for level, g in e.groupby('level'):
-            a = g[(g.scope == 'all') & g.h_rare.notna()].sort_values('year') if 'h_rare' in g else pd.DataFrame()
+            a = g[(g.scope == 'all') & g.h_rare.notna() & (g.year <= 2025)].sort_values('year') if 'h_rare' in g else pd.DataFrame()
             if a.empty:
                 continue
             out.append(f'**All papers, entropy by year ({level}, rarefied to {int(a.rare_m.iloc[0]):,} papers)**\n')
@@ -124,10 +124,10 @@ def topics_section(out):
             if not s.empty:
                 rows = []
                 for sid, gg in s.groupby('scope_id'):
-                    pre, post = gg[gg.year.between(2016, 2022)], gg[gg.year >= 2023]
+                    pre, post = gg[gg.year.between(2016, 2022)], gg[gg.year.between(2023, 2025)]
                     if len(pre) and len(post):
                         rows.append([sid, f(pre.h_rare.mean(), 2), f(post.h_rare.mean(), 2), f(post.h_rare.mean() - pre.h_rare.mean(), 2)])
-                out.append(f'**By school, mean yearly rarefied entropy, pre (2016-2022) and post (2023-2026), {level}**\n')
+                out.append(f'**By school, mean yearly rarefied entropy, pre (2016-2022) and post (2023-2025), {level}**\n')
                 out.append(table(rows, ['school', 'pre', 'post', 'post - pre']) + '\n')
         lp = pd.read_parquet(C.RESULTS / f'topic_entropy_labperiod_{m}.parquet')
         rows = []
@@ -150,7 +150,7 @@ def main():
            'Tables: `ai-writing/data/embeddings/results/*.parquet` (slot `EMBEDDINGS`).\n']
     out.append('## Method\n')
     out.append('- **Papers.** Every lab paper of the seven released schools plus Georgia Tech and UChicago (their packages exist, both unreleased), one row per work (atlas id), '
-               'years 2016-2026 in the analyses. A paper of several labs counts in each of its labs, departments and schools; its vectors are stored once under its home school.\n'
+               'years 2016-2025 in the analyses (2026 is a partial year and stays out of every series and estimate). A paper of several labs counts in each of its labs, departments and schools; its vectors are stored once under its home school.\n'
                '- **Abstracts.** The OpenAlex abstract (rebuilt from `abstract_inverted_index` in the 2026-10-14 bulk snapshot, one more S3 pass: the local filtered snapshot kept no abstracts or topics), '
                'else the cached API abstract; at least 10 words. **Full text.** Every local copy: the existing body-text extraction, usable texts only (>= 1000 words, a PDF must show the title).\n'
                '- **Models.** One vector set each, model id and revision recorded in every container (`index.sqlite` meta): ' + ', '.join(f'`{MODELS[m]["hf"]}`' + (' + proximity adapter' if m == 'specter2_proximity' else '') for m in ORDER) + '. '
@@ -168,7 +168,7 @@ def main():
                'lower novelty after 2022 on abstracts (size-matched 1 - mean-of-5-nearest, k = 3, all papers: SPECTER2 base about -0.02, proximity about -0.01); BGE-M3, Nomic and SciNCL show a '
                'small rise (about +0.004 to +0.006); gte-Qwen2 and Qwen3 are near zero. EPFL rises under every model; UChicago falls under every model (its 2016-2018 pool is small). '
                'Full-text vectors move less than abstract vectors. The size-matched and full-pool columns differ because a growing pool lowers 1 - max cosine by itself.\n'
-               '- Topics: entropy over BERTopic topics is flat from 2016 to 2023 and lower in 2025-2026 (2026 is a partial year); per school the post-pre change has opposite signs (CMU and Stanford down, '
+               '- Topics: entropy over BERTopic topics is flat from 2016 to 2023 and lower in 2025; per school the post-pre change has opposite signs (CMU and Stanford down, '
                'EPFL and Princeton up). Labs with >= 20 papers in both periods are slightly more spread over topics after 2022 (interval in the lab table). Topics are model-dependent (309 and 379 topics; '
                '37-39% of papers are HDBSCAN noise before reassignment), so compare the two models and the OpenAlex rows rather than trust one.\n'
                '- Full-text vectors of the 8k-token models (Qwen3, GTE-Qwen2, BGE-M3, Nomic) are produced by queued resumable jobs; the coverage table shows what has been merged so far.\n')
