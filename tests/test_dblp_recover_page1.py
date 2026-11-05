@@ -20,3 +20,30 @@ def test_R_PAP_36_neurips_and_colt_still_resolve():
 
 def test_R_PAP_36_bare_key():
     assert D.bare_key('https://dblp.org/rec/conf/colt/FreundLW22') == D.bare_key('conf/colt/FreundLW22') == 'conf/colt/FreundLW22'
+
+
+def test_R_PAP_36_requests_take_host_throttle_slots(monkeypatch):
+    calls = []
+
+    class HT:
+        WAIT_MAX = 900
+
+        @staticmethod
+        def cooldown_left(host):
+            return 0
+
+        @staticmethod
+        def reserve(host, delay):
+            calls.append((host, delay)); return 0
+
+        @staticmethod
+        def record_429(host):
+            calls.append(('429', host))
+
+    class R:
+        status_code = 429
+    monkeypatch.setattr(D, '_HT', [HT])
+    monkeypatch.setitem(D._robots, 'proceedings.mlr.press', '')
+    monkeypatch.setattr(D.requests, 'get', lambda *a, **k: R)
+    assert D.polite_get('https://proceedings.mlr.press/v1/x.pdf') is R
+    assert calls == [('proceedings.mlr.press', 3.0), ('429', 'proceedings.mlr.press')]
