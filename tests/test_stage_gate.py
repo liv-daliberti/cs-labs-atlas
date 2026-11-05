@@ -18,6 +18,7 @@ def tree(tmp_path, monkeypatch):
     monkeypatch.setattr(G.S, 'inst', lambda key: 'I1')
     monkeypatch.setattr(G, 'snapshot_count', lambda key, root=None: 1)   # stage 0 also needs the snapshot (tests/test_stage_gate_stage0.py)
     monkeypatch.setattr(P, 'HIERARCHY', tmp_path)
+    monkeypatch.setattr(G, 'traps_for', lambda key, stage: [])   # the trap checks have their own tests (tests/test_onboarding_traps.py)
     (tmp_path / 'u').mkdir()
     (tmp_path / '_').mkdir()
     monkeypatch.setattr(G, 'ACCURACY_DIR', tmp_path / 'acc')
@@ -37,7 +38,8 @@ def test_gate0_needs_hosts_json_and_consistent_hosts(tree):
 def test_gate8_local_share_and_ledger(tree):
     tree.put('copies.json', {'summary': {'lab_papers': 100, 'local': 80}})
     r = G.evaluate('u', 8)
-    assert r['gate'] == 'fail' and r['local_share'] == 0.8 and len(r['items']) == 2
+    assert r['gate'] == 'fail' and r['local_share'] == 0.8 and len(r['items']) == 1   # only the missing ledger: the 85% share is a target, not a gate
+    assert r['copy_target_met'] is False
     tree.put('copies.json', {'summary': {'lab_papers': 100, 'local': 90}})
     tree.put('unavailable-summary.json', {})   # an empty summary is still a missing ledger
     assert G.evaluate('u', 8)['gate'] == 'fail'
@@ -61,7 +63,7 @@ def test_waiver_needs_a_reason_and_keeps_the_items(tree):
     assert G.evaluate('u', 8)['gate'] == 'fail'
     tree.put('gate-exceptions.json', {'8': {'reason': 'owner shipped it 2026-11-02', 'by': 'owner'}})
     r = G.evaluate('u', 8)
-    assert r['gate'] == 'waived' and r['open'] == 2 and r['waiver']['by'] == 'owner'
+    assert r['gate'] == 'waived' and r['open'] == 1 and r['waiver']['by'] == 'owner'
 
 
 def test_gate10_needs_release_status_and_manifest(tree, monkeypatch):
