@@ -44,6 +44,7 @@ def load(prefix):
 def build(out):
     out.mkdir(parents=True, exist_ok=True)
     yr, chg, labs = load('geom_year'), load('geom_change'), load('geom_labsummary')
+    yr, chg = (d[~d['measure'].str.endswith('2000')] for d in (yr, chg))   # the 2,000-paper entropies have no bootstrap interval
     ntr, nco = load('novelty_trend'), load('novelty_contrast')
     ycols = ['year', 'orig', 'orig_lo', 'orig_hi', 'ai', 'ai_lo', 'ai_hi', 'gap', 'gap_lo', 'gap_hi']
     overall = {'scope': 'all papers; each point is a size-matched draw (1,000 papers; 2,000 for the *2000 entropies), interval = 95%, bootstrap over labs',
