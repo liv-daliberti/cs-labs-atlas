@@ -187,6 +187,55 @@ def short_piece(r, pages, bare=False):
     return None
 
 
+# ---- R-PAP-33 (2026-11-05, owner: round-r2 pooled failures and the abstracts decision) ----------------------------------
+# Not research records the round-r2 samples found, each as a general pattern: session and special-section introductions, interviews, eBook
+# editorials, SPIE '(Conference Presentation)' records, repository (Zenodo/Figshare/Dryad) and dataset records, conference highlights and
+# summaries, CACM 'Research for Practice' columns, edited-volume records (a book-level DOI with no chapter suffix), and workshop or session
+# descriptions ('EE2: Workshop on ...' at ISSCC, 'VDS @ KDD 2022'). The owner's decision of the same day: conference abstracts are not papers.
+INTRODUCTION_TITLE = re.compile(r'(?i)^\s*(?:(?:session|special[- ]section|special[- ]issue|minitrack|track|mini[- ]symposium) introduction\b|introduction to the (?:session|minitrack|track)\b)')
+INTERVIEW_TITLE = re.compile(r'(?i)^\s*(?:an )?interview\s*(?::|with\b)')
+PRESENTATION_TITLE = re.compile(r'(?i)\((?:conference|invited|keynote|plenary) (?:presentation|talk)\)\s*$')
+REPOSITORY_DOI = re.compile(r'(?i)^10\.(?:5281/zenodo|6084/m9\.figshare|5061/dryad)\b')   # not OSF (10.17605): those are preprints
+DATASET_TITLE = re.compile(r'(?i)^\s*(?:processed|raw|synthetic|simulation) data\b|^\s*datasets? (?:for|of|from|used in)\b|'
+                           r'\b(?:matlab|csv|json|hdf5?) (?:data )?(?:format|files?)\s*$')
+HIGHLIGHTS_SUMMARY_TITLE = re.compile(r'(?i)\bhighlights (?:from|of) the\b.*\b(?:conference|workshop|symposium|meeting|summit)\b|'
+                                      r'^\s*(?:summary|report|overview) (?:of|on) the\b.*\b(?:workshop|conference|symposium|seminar|meeting|summit)\b|'
+                                      r'^\s*(?:conference|workshop|symposium) (?:summary|report)\b|\b(?:workshop|symposium|conference) (?:summary|report)\s*$')
+RESEARCH_FOR_PRACTICE = re.compile(r'(?i)^\s*research for practice\b')
+BOOK_LEVEL_DOI = re.compile(r'^10\.(?:1007|1002|1016|3233|1201|1142|1017)/97[89][\d-]+$')   # an ISBN-style DOI: the book itself, no chapter suffix
+SESSION_WORKSHOP_TITLE = re.compile(r'^\s*[A-Z]{1,4}\d{1,3}(?:\.\d+)?\s*:\s*(?i:workshop|tutorial|forum|panel|short course|special session|evening session)\b|'
+                                    r'\s@\s*[A-Z][A-Za-z]+\s*\d{4}\s*$|'
+                                    r'^\s*[A-Za-z]+[- ]?\d{4} (?i:international )?(?i:workshop|tutorial) on\b')
+
+
+def non_research_record(r, pages=None):
+    """R-PAP-33: why a record is no research paper (tag), or None."""
+    t = str(r.get('title') or '').strip(); v = str(r.get('venue') or ''); d = ndoi(r.get('doi')); ty = r.get('type') or ''
+    if INTRODUCTION_TITLE.search(t):
+        return 'session_introduction'
+    if INTERVIEW_TITLE.search(t):
+        return 'interview'
+    if ty == 'editorial' and re.match(r'(?i)acm ebooks', v.strip()):
+        return 'editorial'
+    if PRESENTATION_TITLE.search(t):
+        return 'presentation_only'
+    if REPOSITORY_DOI.match(d) and not v.strip():
+        return 'repository_record'
+    if not d and not v.strip() and DATASET_TITLE.search(t):
+        return 'dataset_record'
+    if HIGHLIGHTS_SUMMARY_TITLE.search(t):
+        return 'highlights_column'
+    if RESEARCH_FOR_PRACTICE.search(t):
+        return 'column'
+    if BOOK_LEVEL_DOI.match(d) and ty in ('conference-paper', 'article', 'other', 'proceedings', 'editorial'):
+        return 'edited_volume'
+    if SESSION_WORKSHOP_TITLE.search(t) and ty in ('conference-paper', 'conference-abstract', 'article', 'other'):
+        return 'workshop_proposal'
+    if ty == 'conference-abstract' and pages and pages <= INVITED_MAX_PAGES:   # a one- or two-page abstract record of any byline
+        return 'conference_abstract'
+    return None
+
+
 def not_a_paper(r, pages=None, bare=False):
     """Why a lab-paper row is not a paper, or None (2026-10-29, owner: accuracy sample). `r` is a lab-paper row (title,
     venue, type, doi, byline, authorship.position). The tags:
@@ -244,6 +293,9 @@ def not_a_paper(r, pages=None, bare=False):
     sp = short_piece(r, pages, bare)
     if sp:
         return sp
+    nr = non_research_record(r, pages)   # R-PAP-33 (after the meeting-abstract tags below it keeps their finer names)
+    if nr and nr != 'conference_abstract':
+        return nr
     # R2: meeting abstracts (owner: abstracts are not papers)
     if ABSTRACT_VENUE.search(v):
         return 'meeting_abstract:venue'
@@ -257,7 +309,7 @@ def not_a_paper(r, pages=None, bare=False):
         return 'meeting_abstract:single_author'
     if ty == 'conference-abstract' and re.search(r'(?i)\bkeynote\b|\binvited talk\b', t):
         return 'meeting_abstract:keynote'
-    return None
+    return nr   # R-PAP-33: a conference abstract not tagged above
 
 
 def doi_year_conflict(r):
