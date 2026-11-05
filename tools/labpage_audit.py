@@ -1325,7 +1325,17 @@ def current_marker(x):
     """An explicit current marker in the entry's own text or its own section heading (not a parent heading)."""
     own_head = (x.get('head') or '').split(' > ')[-1]
     mixed = re.search(r'\b(former|past|previous|alumni|alumnae|graduated)\b', own_head, re.I)  # 'Current and Former Students'
-    return bool((CURRENT_HEAD.search(own_head) and not mixed) or CURRENT_ENTRY.search((x.get('desc') or '')[:160]))
+    return bool((CURRENT_HEAD.search(own_head) and not mixed) or CURRENT_ENTRY.search((x.get('desc') or '')[:160]) or current_page_url(x))
+
+
+CURRENT_URL = re.compile(r'/(?:current[-_](?:students?|members?|team|people|group)|(?:students?|members?|people)/current)(?:/|\.html?)?$', re.I)
+
+
+def current_page_url(x):
+    """R-LAB-04 (Georgia Tech round 2, ICSRL): a page whose own address says current students ('.../current-students/') marks its undated entries as current at the capture: the
+    page lists bios under one heading, so no entry or heading carries the word."""
+    u = re.sub(r'^https?://web\.archive\.org/web/\d+(?:id_)?/', '', x.get('capture_url') or x.get('url') or x.get('src') or '')
+    return bool(CURRENT_URL.search(u.split('?')[0].split('#')[0]))
 
 
 def pm_candidates(kit, school, pi, plan, held):

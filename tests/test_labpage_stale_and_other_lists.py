@@ -20,3 +20,9 @@ def test_other_institution_without_the_word_university():
     assert L.other_institution_entry('Taiyuan Zhang (MSCS at Dartmouth)', '', 'gatech')
     assert L.other_institution_entry('Boshen Zhang: Undergraduate researcher, Virginia Tech, August 2021', '', 'gatech')
     assert not L.other_institution_entry('Sinan Wang (Ph.D. of CS at Georgia Tech)', '', 'gatech')
+
+
+def test_current_students_page_address_marks_entries_current():
+    x = dict(head='Post-Doctoral Researchers:', desc='', capture_url='https://web.archive.org/web/20220703140740id_/https://icsrl.ece.gatech.edu/current-students/')
+    assert L.current_marker(x)
+    assert not L.current_marker(dict(x, capture_url='https://icsrl.ece.gatech.edu/alumni/'))
