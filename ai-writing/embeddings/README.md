@@ -46,7 +46,7 @@ Vectors are stored raw (the pooled output, float16); analyses centre on the corp
 | `bge_m3` | BAAI/bge-m3 | the same, plus lexical weights | CLS dense 1024; sparse |
 | `nomic_v15` | nomic-ai/nomic-embed-text-v1.5, prefix `clustering: ` | the same | mean, 768 |
 
-**Qwen3-Embedding-4B (`qwen3_4b`) runs on abstracts only,** one card at a time: fp16 weights are about 8 GB; the cards report 11 GB (RTX 2080 Ti), the peak at an 8k window measured 9.28 GB of 10.58 GB (headroom 1.29 GB < 2 GB), so full text is not run. Abstracts: title [SEP] abstract for SPECTER2 and SciNCL (as `ai-writing/embed.py`), title, blank line, abstract for the others.
+**Qwen3-Embedding-4B (`qwen3_4b`) runs on node105's RTX A5000s (`embed-a5000.slurm`; abstracts done, full text at ~3.5k tokens/s per card).** On the 2080 Ti it ran on abstracts only, one card at a time: fp16 weights are about 8 GB; the cards report 11 GB (RTX 2080 Ti), the peak at an 8k window measured 9.28 GB of 10.58 GB (headroom 1.29 GB < 2 GB), so full text is not run. Abstracts: title [SEP] abstract for SPECTER2 and SciNCL (as `ai-writing/embed.py`), title, blank line, abstract for the others.
 Full text: the stored body (the existing extraction, `vendor/homogenization_tools/fulltext_store.py`: pdftotext 60 pages, Introduction to the last
 References heading, at most 300,000 characters), cut into consecutive token windows (512 for SPECTER2; 8,192 for the others, special tokens included),
 at most 64 / 8 windows per paper (evenly spaced when more), a tail shorter than 64 / 256 tokens dropped unless it is the only window. Full texts are
@@ -72,3 +72,22 @@ Tests: `tests/test_embeddings.py` (store, index, resume, merge, chunking, batchi
 2. Embed the delta: `lanes.sh` (full text, 8 lanes) and `submit_embed.sh <model> abstract 1 3` per model; a paper is redone only when its text hash is new.
 3. `merge.slurm <model> <kind> ...` for every model and kind (idempotent; papers whose home school changed move containers), then `analyze.slurm novelty <model> <kind>`, `analyze.slurm bertopic <model>` (about 35 minutes: set `--time=00:59:00`) and `analyze.slurm entropy <model|openalex>` for the topic models, then `EMB_REPORT_DIR=<dir> sbatch analyze.slurm report` and copy the file into `ai-writing/diversity/reports/`.
 Status: `embed.py status` (done / total per model and kind) from a compute node.
+
+## node105 A5000 lanes (owner 2026-11-04: the mltheory 2080 nodes are out of service)
+`embed-a5000.slurm` is shardable: `SHARD`/`OF` (default 0/1) mean exactly `embed.py --shard/--of` (`sha1(id) % OF`; done work is skipped, shards never overlap), and
+`EMB_BUDGET_SCALE` multiplies the padded-token batch budget of `models.py` (sized for 8 GB; 2 is safe on the 24 GB card, and a batch that still fails is split). Measured
+(A5000, scale 2, 8k-token chunks): Qwen3-0.6B 12.3k tokens/s, gte-Qwen2-1.5B 9.5k, SPECTER2 not measured, Qwen3-4B 3.5k (scale 1; compute-bound). At most 3 of our lanes plus the qwen3_4b job on node105.
+```
+MODEL=gte_qwen2_1p5b KIND=fulltext SHARD=1 OF=3 EMB_BUDGET_SCALE=2 sbatch --export=ALL embed-a5000.slurm     # one lane = one chain of afterany jobs
+sbatch status.slurm [--model M]                                                                           # embed.py status as a CPU job
+```
+Year rule (owner 2026-11-04): no 2026 in any series, table or estimate; series end at 2025, post = 2023-2025 (`emb_load.YEARS/POST`; the report and `novelty_run.py` follow).
+
+### After the embeddings finish (for the AI-dose analysis; run from the code root, another agent owns agent/ai-dose)
+Full text is merged and novelty done for a model when `embed.py status` shows done = total and `results/novelty_trend_<M>_fulltext.parquet` exists. Then, per model M in
+`specter2_base specter2_proximity bge_m3 nomic_v15 qwen3_0p6b gte_qwen2_1p5b` (and `qwen3_4b` once its full text is merged):
+```
+sbatch ai-writing/dose/dose_cpu.slurm dose_analysis.py paper --kind fulltext --model M
+sbatch ai-writing/dose/dose_cpu.slurm dose_analysis.py boot  --kind fulltext --model M     # if the study bootstraps the same model
+```
+(`dose_analysis.py` also takes `--exposure`, `--scope`, `--boot N`; see `ai-writing/dose/README.md` on agent/ai-dose.)
