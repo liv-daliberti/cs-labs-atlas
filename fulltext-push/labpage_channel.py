@@ -367,8 +367,16 @@ def page_owners(url, final, urls, roots):
     return out
 
 
+def captures_db(school):
+    """The school's lab-page capture store: labpage-captures.sqlite (labpage_recover), else the lab-page audit's own
+    labpage-audit-captures.sqlite (same captures columns; the only store of a charter school such as Georgia Tech, whose
+    labpages channel crashed on the missing file 2026-11-04 and whose ledger then called every paper incomplete)."""
+    p = F.P.data('labpage-captures.sqlite', school)
+    return p if p.exists() else F.P.data('labpage-audit-captures.sqlite', school)
+
+
 def iter_captures(school):
-    db = sqlite3.connect(f"file:{F.P.data('labpage-captures.sqlite', school)}?mode=ro", uri=True, timeout=60)
+    db = sqlite3.connect(f"file:{captures_db(school)}?mode=ro", uri=True, timeout=60)
     hi = db.execute('SELECT MAX(id) FROM captures').fetchone()[0] or 0
     for lo in range(0, hi + 1, 200):
         for row in db.execute("SELECT url, final_url, capture_url, content_type, content FROM captures WHERE id >= ? AND id < ? AND status = 200 "

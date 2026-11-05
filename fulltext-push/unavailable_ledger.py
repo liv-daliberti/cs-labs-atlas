@@ -701,7 +701,7 @@ def src_repository(school, papers, oa, core, offline, n):
 def src_labpages(school, papers, n):
     import labpage_channel as lc
     ev_ok = (F.P.data('labpage-evidence.json', school)).exists() or (F.P.data('labpage-pubs-report.json', school)).exists()
-    cap = F.P.data('labpage-captures.sqlite', school)
+    cap = lc.captures_db(school)
     out = {}
     if not ev_ok or not cap.exists():
         for p in papers:
