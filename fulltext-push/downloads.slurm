@@ -27,9 +27,9 @@ PRIORITY_ARGS=(); [ -s "$PRIORITY" ] && PRIORITY_ARGS=(--priority-file "$PRIORIT
 # release's open copies there first: ledger_found (the ledger's new_open_urls: arXiv ids -> arXiv's bulk copy, PMC ids -> the PMC S3 files,
 # URLs) and reader_link (the reader's confirmed link of each queued link-only paper). Both skip a URL the work already knows; the collector
 # still applies robots.txt, pacing and the title check. Princeton's channel writes a discovery package, imported as princeton_pass.sh does.
-# A failure only loses the new candidates, never the loop.
+# 2026-11-04: sonar (SONAR records that known landing links name; 250 EPFL papers, run once by hand, afterwards only new ones). A failure only loses the new candidates, never the loop.
 if [ -s "$PRIORITY" ]; then
-  ( flock 9; ${CS_ATLAS_COLLECTOR_PY} -I -u channel_runner.py $s ledger_found reader_link ) 9>>"$CS_ATLAS_FT_LOGS/run_steps-ledger_found.lock" >> "$CS_ATLAS_FT_LOGS"/lab_first_loop-$s.out 2>&1 < /dev/null || true
+  ( flock 9; ${CS_ATLAS_COLLECTOR_PY} -I -u channel_runner.py $s ledger_found reader_link sonar ) 9>>"$CS_ATLAS_FT_LOGS/run_steps-ledger_found.lock" >> "$CS_ATLAS_FT_LOGS"/lab_first_loop-$s.out 2>&1 < /dev/null || true
   if [ "$s" = princeton ]; then
     pk=$(ls -d "$CS_ATLAS_STORES"/princeton/discovery/claude-labpapers-*/ 2>/dev/null | grep -v newworks | while read d; do [ -s "$d/cs-open-copies-candidates.jsonl" ] && echo "cs_open_copies:$(basename $d)"; done)
     [ -n "$pk" ] && timeout 1800 ${CS_ATLAS_COLLECTOR_PY} -u "$CS_ATLAS_VENDOR/princeton_tools/import_all_when_free.py" $pk >> "$CS_ATLAS_FT_LOGS"/lab_first_loop-$s.out 2>&1 < /dev/null || true
