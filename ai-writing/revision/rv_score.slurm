@@ -19,4 +19,4 @@ export HF_HOME=$CS_ATLAS_HF_HOME HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 TOKENIZ
 export TRITON_CACHE_DIR=/tmp/triton-${SLURM_JOB_ID} OMP_NUM_THREADS=6
 cd "$CS_ATLAS_AI_WRITING/revision"
 nvidia-smi --query-gpu=name,memory.total --format=csv,noheader
-$CS_ATLAS_ENV_PY -u rv_score.py --detector "${DETECTOR:-v2}" --shard "${SLURM_ARRAY_TASK_ID:-0}" --nshards "${1:?nshards}" --tag "${TAG:-r$(date +%Y%m%d)}"
+$CS_ATLAS_ENV_PY -u rv_score.py --detector "${DETECTOR:-v2}" --shard "${SLURM_ARRAY_TASK_ID:-0}" --nshards "${1:?nshards}" --tag "${TAG:-r$(date +%Y%m%d)}" ${SOURCE:+--source $SOURCE}

@@ -58,29 +58,72 @@ def write_atomic(df, path):
     tmp.replace(path)
 
 
+def import_v2(want, a):
+    """Stored copies, detector v2: the dose study's passage scores (AI_SCORES) of the same texts, relabelled with the arXiv id and role `stored`."""
+    import dcommon as D
+    db = sqlite3.connect(f'file:{D.DB}?mode=ro', uri=True)
+    ids = list(want)
+    pas, ab = [], []
+    for i in range(0, len(ids), 500):
+        q = ','.join('?' * len(ids[i:i + 500]))
+        pas.append(pd.read_sql(f'select paper_id, pidx, words, p from passages where paper_id in ({q})', db, params=ids[i:i + 500]))
+        ab.append(pd.read_sql(f'select paper_id, p_ai_abstract as p_abs_v1, p_v2_abstract as p_abs_det, n_passages, body_words from papers where paper_id in ({q})', db, params=ids[i:i + 500]))
+    db.close()
+    pas, ab = pd.concat(pas), pd.concat(ab)
+    pas['arxiv_id'] = pas['paper_id'].map(lambda p: want[p][0]); pas['role'] = 'stored'
+    ab['arxiv_id'] = ab['paper_id'].map(lambda p: want[p][0]); ab['role'] = 'stored'; ab['text_hash'] = 'dose-' + ab['paper_id']
+    d = parts_dir('v2')
+    write_atomic(pas[['arxiv_id', 'role', 'pidx', 'words', 'p']], d / f'{a.tag}-stored.passages.parquet')
+    write_atomic(ab[['arxiv_id', 'role', 'text_hash', 'n_passages', 'body_words', 'p_abs_v1', 'p_abs_det']], d / f'{a.tag}-stored.abstracts.parquet')
+    (d / 'detector.json').write_text(json.dumps(dict(detector='v2', threshold=C.V2_THRESHOLD, strict=0.5, abstain_low=None, v1_threshold=D.V1_THRESHOLD, model=str(C.V2_MODEL))))
+    C.log(step='imported stored v2 scores', papers=len(ab), passages=len(pas))
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--detector', default='v2', choices=['v2', 'v3'])
     ap.add_argument('--shard', type=int, default=0)
     ap.add_argument('--nshards', type=int, default=1)
     ap.add_argument('--tag', default=time.strftime('%Y%m%d'))
+    ap.add_argument('--source', default='versions', choices=['versions', 'stored'],
+                    help='versions: the fetched arXiv v1/final texts; stored: the lab papers\' stored full texts of the kind-S plan (role `stored`)')
+    ap.add_argument('--import-v2', action='store_true', help='stored + v2 only: copy the dose study\'s existing scores instead of scoring again (same detector, same splitter)')
     a = ap.parse_args()
     spec = detector_spec(a.detector)
     import dcommon as D
     import dose_score as DS
     import v2common as V
     seen = done_keys(a.detector)
-    db = sqlite3.connect(f'file:{C.DB}?mode=ro', uri=True, timeout=600)
     rows = []
-    for aid, role, abstract, body, title in db.execute('select t.arxiv_id, t.role, t.abstract, t.body, p.title from texts t join plan p using (arxiv_id)'):
-        if int(hashlib.md5(aid.encode()).hexdigest(), 16) % a.nshards != a.shard:
-            continue
-        b = zlib.decompress(body).decode('utf-8', 'ignore') if body else ''
-        h = hashlib.sha1(((abstract or '') + '|' + b).encode('utf-8', 'ignore')).hexdigest()[:16]
-        if (aid, role, h) in seen:
-            continue
-        rows.append((aid, role, title or '', abstract, b, h))
-    db.close()
+    if a.source == 'stored':
+        import sqlite3 as sq
+        pl = sq.connect(f'file:{C.DB}?mode=ro', uri=True)
+        want = {pid: (aid, title) for aid, pid, title in pl.execute("select arxiv_id, paper_id, title from plan where kind = 'S'")}
+        pl.close()
+        if a.import_v2:
+            return import_v2(want, a)
+        tx = sq.connect(f'file:{C.TEXTS_DB}?mode=ro', uri=True, timeout=600)
+        ab = dict(tx.execute('select paper_id, abstract from abstracts'))
+        for pid, body in tx.execute('select paper_id, body from fulltext where usable = 1'):
+            if pid not in want or int(hashlib.md5(want[pid][0].encode()).hexdigest(), 16) % a.nshards != a.shard:
+                continue
+            b = zlib.decompress(body).decode('utf-8', 'ignore')
+            h = hashlib.sha1(((ab.get(pid) or '') + '|' + b).encode('utf-8', 'ignore')).hexdigest()[:16]
+            if (want[pid][0], 'stored', h) not in seen:
+                rows.append((want[pid][0], 'stored', want[pid][1] or '', ab.get(pid), b, h))
+        tx.close()
+    else:
+        db = sqlite3.connect(f'file:{C.DB}?mode=ro', uri=True, timeout=600)
+        titles = dict(db.execute('select arxiv_id, title from plan'))
+        for aid, role, abstract, body in db.execute('select arxiv_id, role, abstract, body from texts'):
+            if int(hashlib.md5(aid.encode()).hexdigest(), 16) % a.nshards != a.shard:
+                continue
+            b = zlib.decompress(body).decode('utf-8', 'ignore') if body else ''
+            h = hashlib.sha1(((abstract or '') + '|' + b).encode('utf-8', 'ignore')).hexdigest()[:16]
+            if (aid, role, h) in seen:
+                continue
+            rows.append((aid, role, titles.get(aid) or '', abstract, b, h))
+        db.close()
     C.log(step='todo', shard=a.shard, texts=len(rows), already=len(seen), detector=a.detector)
     if not rows:
         return

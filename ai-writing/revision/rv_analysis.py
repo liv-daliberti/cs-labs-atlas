@@ -55,45 +55,62 @@ def build_versions(det):
     v['abs_flag_v1'] = np.where(v['p_abs_v1'].notna(), (v['p_abs_v1'] >= meta['v1_threshold']).astype(float), np.nan)
     db = sqlite3.connect(f'file:{C.DB}?mode=ro', uri=True)
     t = pd.read_sql('select arxiv_id, role, v, stamp_v, date, title_found, abstract, words from texts', db)
-    kw = kobak_words()
-    t['kobak_abs'] = t['abstract'].map(lambda a: E.kobak_rate(a, kw) if a else np.nan)
-    # shingles of the bodies for the same-work check and the revision size
+    plan = pd.read_sql('select * from plan', db)
     sh = {}
     for aid, role, body in db.execute('select arxiv_id, role, body from texts'):
         sh[(aid, role)] = shingles(zlib.decompress(body).decode('utf-8', 'ignore'))
-    plan = pd.read_sql('select * from plan', db)
     db.close()
+    # stored copies (kind S): abstract (OpenAlex) and body from texts.sqlite
+    tx = sqlite3.connect(f'file:{C.TEXTS_DB}?mode=ro', uri=True, timeout=600)
+    s_ids = dict(zip(plan.loc[plan['kind'] == 'S', 'paper_id'], plan.loc[plan['kind'] == 'S', 'arxiv_id']))
+    ab_s = dict(tx.execute('select paper_id, abstract from abstracts'))
+    srows = []
+    for pid, body, words in tx.execute('select paper_id, body, words from fulltext where usable = 1'):
+        if pid in s_ids:
+            sh[(s_ids[pid], 'stored')] = shingles(zlib.decompress(body).decode('utf-8', 'ignore'))
+            srows.append(dict(arxiv_id=s_ids[pid], role='stored', v=None, stamp_v=None, date=None, title_found=1, abstract=ab_s.get(pid), words=words))
+    tx.close()
+    t = pd.concat([t, pd.DataFrame(srows)], ignore_index=True)
+    kw = kobak_words()
+    t['kobak_abs'] = t['abstract'].map(lambda a: E.kobak_rate(a, kw) if a else np.nan)
     v = v.merge(t, on=['arxiv_id', 'role'], how='left')
     return v, plan, sh, meta
 
 
 def pair_table(det):
     v, plan, sh, meta = build_versions(det)
-    a = v[v['role'] == 'v1'].set_index('arxiv_id'); b = v[v['role'] == 'final'].set_index('arxiv_id')
-    ids = sorted(set(a.index) & set(b.index))
+    byrole = {r: v[v['role'] == r].set_index('arxiv_id') for r in ('v1', 'final', 'stored')}
     rows = []
-    for i in ids:
-        x, y = a.loc[i], b.loc[i]
-        s1, s2 = sh.get((i, 'v1'), set()), sh.get((i, 'final'), set())
-        contain = len(s1 & s2) / max(len(s1), 1)
-        rows.append(dict(arxiv_id=i, n_pass1=x['n_pass'], n_pass2=y['n_pass'], words1=x['words'], words2=y['words'], title_found1=x['title_found'], title_found2=y['title_found'],
+    for pr in plan.itertuples():
+        fin = 'final' if pr.kind == 'A' else 'stored'
+        if pr.arxiv_id not in byrole['v1'].index or pr.arxiv_id not in byrole[fin].index:
+            continue
+        x, y = byrole['v1'].loc[pr.arxiv_id], byrole[fin].loc[pr.arxiv_id]
+        s1, s2 = sh.get((pr.arxiv_id, 'v1'), set()), sh.get((pr.arxiv_id, fin), set())
+        rows.append(dict(arxiv_id=pr.arxiv_id, kind=pr.kind, n_pass1=x['n_pass'], n_pass2=y['n_pass'], words1=x['words'], words2=y['words'], title_found1=x['title_found'],
                          date1=x['date'], date2=y['date'], stamp1=x['stamp_v'], stamp2=y['stamp_v'], v_final=y['v'],
                          ai1=x['ai_share'], ai2=y['ai_share'], st1=x['ai_strict'], st2=y['ai_strict'], ab1=x['abstain_share'], ab2=y['abstain_share'],
                          mp1=x['mean_p'], mp2=y['mean_p'], af1=x['abs_flag_v1'], af2=y['abs_flag_v1'], pa1=x['p_abs_det'], pa2=y['p_abs_det'],
-                         ko1=x['kobak_abs'], ko2=y['kobak_abs'], contain=contain, new_share=1 - len(s1 & s2) / max(len(s2), 1)))
-    p = pd.DataFrame(rows).merge(plan[['arxiv_id', 'paper_id', 'created', 'final_created_ub', 'title']], on='arxiv_id')
+                         ko1=x['kobak_abs'], ko2=y['kobak_abs'], contain=len(s1 & s2) / max(len(s1), 1), new_share=1 - len(s1 & s2) / max(len(s2), 1)))
+    p = pd.DataFrame(rows).merge(plan[['arxiv_id', 'kind', 'paper_id', 'created', 'final_created_ub', 'title', 'pub_date']], on=['arxiv_id', 'kind'])
     return p, meta
 
 
 def add_dates_and_filters(p):
     p = p.copy()
     p['d1'] = np.where(p['stamp1'].eq(1) & p['date1'].notna(), p['date1'], p['created'])
-    p['d2'] = np.where(p['stamp2'].eq(p['v_final']) & p['date2'].notna(), p['date2'], np.where(p['final_created_ub'].fillna('9') < C.CHATGPT, p['final_created_ub'], None))
-    p['y1'] = p['d1'].str[:4].astype(float); p['y2'] = pd.to_numeric(p['d2'].str[:4], errors='coerce')
+    a_date = np.where(p['stamp2'].eq(p['v_final']) & p['date2'].notna(), p['date2'], np.where(p['final_created_ub'].fillna('9') < C.CHATGPT, p['final_created_ub'], None))
+    p['d2'] = np.where(p['kind'] == 'S', p['pub_date'], a_date)
+    p['y1'] = p['d1'].str[:4].astype(float); p['y2'] = pd.to_numeric(pd.Series(p['d2']).str[:4], errors='coerce')
     p['lag_m'] = (pd.to_datetime(p['d2'], errors='coerce') - pd.to_datetime(p['d1'], errors='coerce')).dt.days / 30.4
-    p['cell'] = np.where(p['d2'].isna(), None, np.where(p['d1'] < C.CHATGPT, 'pre', 'post') + '_' + np.where(p['d2'].fillna('9') < C.CHATGPT, 'pre', 'post'))
+    d2 = pd.Series(p['d2'])
+    # the stored copy's text is written before its publication date: a 'post' final needs the publication date on or after 1 Jan 2023 (one month after ChatGPT)
+    cut2 = np.where(p['kind'] == 'S', '2023-01-01', C.CHATGPT)
+    p['cell'] = np.where(d2.isna(), None, np.where(p['d1'] < C.CHATGPT, 'pre', 'post') + '_' + np.where(d2.fillna('9') < cut2, 'pre', 'post'))
+    p['final_in_gap'] = (p['kind'] == 'S') & (d2.fillna('9') >= C.CHATGPT) & (d2.fillna('9') < '2023-01-01')   # published in Dec 2022: dropped from the cells
+    p.loc[p['final_in_gap'], 'cell'] = None
     ok = (p['n_pass1'] >= MIN_PASSAGES) & (p['n_pass2'] >= MIN_PASSAGES) & (p['words1'] >= MIN_WORDS) & (p['words2'] >= MIN_WORDS) & p['title_found1'].eq(1) \
-        & (p['contain'] >= 0.2) & p['d2'].notna() & (p['lag_m'] >= 0)
+        & (p['contain'] >= 0.2) & d2.notna() & p['cell'].notna() & (p['lag_m'] >= 0)
     p['valid'] = ok
     return p
 
@@ -213,26 +230,29 @@ def main():
     C.RESULTS.mkdir(parents=True, exist_ok=True)
     p, meta = pair_table(a.detector)
     p = enrich(add_dates_and_filters(p))
-    # funnel
-    funnel = dict(pairs_scored=len(p), title_found_v1=int(p['title_found1'].eq(1).sum()), same_work=int((p['contain'] >= 0.2).sum()), dated=int(p['d2'].notna().sum()), valid=int(p['valid'].sum()))
-    v = p[p['valid']].copy()
-    # score year range: v1 year <= 2025 and final year <= 2025 (owner rule: no 2026)
-    v = v[(v['y1'] <= C.LAST_YEAR) & (v['y2'] <= C.LAST_YEAR)].copy()
-    funnel['valid_to_2025'] = len(v)
     pref = C.RESULTS / f'revision_{a.detector}'
     p.to_parquet(f'{pref}_pairs.parquet', index=False)
-    cell_table(v, a.boot).to_parquet(f'{pref}_cells.parquet', index=False)
-    rows = []
-    for outcome in ('dai', 'dst', 'dab', 'daf', 'dpa', 'dko'):
-        for matched in (False, True):
-            for ctrl in ('pre_pre', 'post_post'):
-                rows.append(contrast(v, outcome, a.boot, ctrl=ctrl, matched=matched))
-    pd.DataFrame(rows).to_parquet(f'{pref}_contrasts.parquet', index=False)
-    pd.concat([regression(v, o) for o in ('dai', 'dst', 'dko')]).to_parquet(f'{pref}_regression.parquet', index=False)
-    pivot_table(v).to_parquet(f'{pref}_pivot.parquet', index=False)
-    added_rates(v, a.boot).to_parquet(f'{pref}_added.parquet', index=False)
-    json.dump(dict(funnel=funnel, detector=meta, cells=v['cell'].value_counts().to_dict()), open(f'{pref}_funnel.json', 'w'), default=str, indent=1)
-    C.log(**funnel, cells=v['cell'].value_counts().to_dict())
+    funnel = {}
+    for kind in ('S', 'A'):
+        k = p[p['kind'] == kind]
+        f = dict(pairs_scored=len(k), title_found_v1=int(k['title_found1'].eq(1).sum()), same_work=int((k['contain'] >= 0.2).sum()), dated=int(k['d2'].notna().sum()), valid=int(k['valid'].sum()))
+        v = k[k['valid']].copy()
+        v = v[(v['y1'] <= C.LAST_YEAR) & (v['y2'] <= C.LAST_YEAR)].copy()   # owner rule: no 2026
+        f['valid_to_2025'] = len(v); f['cells'] = v['cell'].value_counts().to_dict(); funnel[kind] = f
+        cell_table(v, a.boot).assign(kind=kind).to_parquet(f'{pref}_{kind}_cells.parquet', index=False)
+        rows = []
+        for outcome in ('dai', 'dst', 'dab', 'daf', 'dpa', 'dko'):
+            for matched in (False, True):
+                for treat, ctrl in (('pre_post', 'pre_pre'), ('post_post', 'pre_pre'), ('pre_post', 'post_post')):
+                    if (v['cell'] == treat).sum() >= 20 and (v['cell'] == ctrl).sum() >= 20:
+                        rows.append(contrast(v, outcome, a.boot, treat=treat, ctrl=ctrl, matched=matched))
+        pd.DataFrame(rows).assign(kind=kind).to_parquet(f'{pref}_{kind}_contrasts.parquet', index=False)
+        if v['cell'].nunique() >= 2:
+            pd.concat([regression(v, o) for o in ('dai', 'dst', 'dko')]).assign(kind=kind).to_parquet(f'{pref}_{kind}_regression.parquet', index=False)
+        pivot_table(v).assign(kind=kind).to_parquet(f'{pref}_{kind}_pivot.parquet', index=False)
+        added_rates(v, a.boot).assign(kind=kind).to_parquet(f'{pref}_{kind}_added.parquet', index=False)
+    json.dump(dict(funnel=funnel, detector=meta), open(f'{pref}_funnel.json', 'w'), default=str, indent=1)
+    C.log(**{k: v for k, v in funnel.items()})
 
 
 if __name__ == '__main__':
