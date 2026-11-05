@@ -90,6 +90,7 @@ def link(stu_name, relations, byline_rows, extra=()):
     for i, (nm, rel) in enumerate(extra):
         ctx.stu['Lab'][f's{i + 2}'] = dict(person=f's{i + 2}', name=nm, relations=rel)
     ctx.pls = {sid: [] for sid in ctx.stu['Lab']}
+    ctx.pid0 = {'Lab': {'names': ['Lab']}}   # R-STU-19 rule B reads the PI's names
     links.link_students(ctx)
     return {x['work']: (x['basis'], x['byline']) for x in ctx.sp if x['student'] == 's1'}, ctx
 
