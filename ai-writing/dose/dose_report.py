@@ -61,6 +61,29 @@ def dose_tables(paper, mech):
     return out
 
 
+def correction_table(paper, mech):
+    """Dose coefficients without and with the mechanical-shift correction (abstract vectors, scope all, k=3, nov_nn_cap, post-period).
+    corrected = beta - delta, delta = the novelty shift of a fully AI-polished abstract (polish rewrites); its interval adds the two standard errors in quadrature."""
+    if mech is None or paper is None:
+        return None
+    rows = []
+    for expo, label in (('flag_abstract', 'abstract flagged AI (0/1)'), ('ai_share', 'ai_share 0 -> 1 (assumes the abstract is as AI-worded as the body)')):
+        for design in ('pooled', 'withinlab'):
+            for m in sorted(paper['model'].unique()):
+                q = paper[(paper['model'] == m) & (paper['kind'] == 'abstract') & (paper['scope'] == 'all') & (paper['k'] == 3) & (paper['measure'] == 'nov_nn_cap')
+                          & (paper['exposure'] == expo) & (paper['design'] == design) & (paper['period'] == 'post')]
+                mm = mech[(mech['model'] == m) & (mech['kind'] == 'abstract') & (mech['task'] == 'polish') & (mech['gen'] == 'all') & (mech['scope'] == 'all') & (mech['k'] == 3)
+                          & (mech['measure'] == 'nov_nn_cap')]
+                if q.empty or mm.empty:
+                    continue
+                b, se = float(q['beta'].iloc[0]), float((q['hi'].iloc[0] - q['lo'].iloc[0]) / 3.92)
+                d, dse = float(mm['delta'].iloc[0]), float((mm['hi'].iloc[0] - mm['lo'].iloc[0]) / 3.92)
+                c, cse = b - d, float(np.hypot(se, dse))
+                rows.append(dict(exposure=label, design=design, model=m, raw=f'{b:+.4f} [{b - 1.96 * se:+.4f}, {b + 1.96 * se:+.4f}]', mechanical=f'{d:+.4f}',
+                                 corrected=f'{c:+.4f} [{c - 1.96 * cse:+.4f}, {c + 1.96 * cse:+.4f}]'))
+    return pd.DataFrame(rows)
+
+
 def figures(paper, did, fig):
     import matplotlib
     matplotlib.use('Agg')
@@ -142,6 +165,13 @@ def build(out_dir):
         paper.to_csv(res / 'paper_all_fits.csv', index=False)
     else:
         L.append('Not run yet.\n')
+    ct = correction_table(paper, mech)
+    if ct is not None and len(ct):
+        L.append('\n### Dose effect on abstract novelty with and without the mechanical-shift correction\n\nscope all, k=3, nov_nn_cap, 2023-2026 papers; mechanical = shift of a fully AI-polished abstract (same content), measured from rewrites\n\n' + M.md_table(ct))
+    bt = read_all('boot')
+    if bt is not None:
+        L.append('\n### Headline effects with cluster-bootstrap intervals over labs (ai_share 0 -> 1, nov_nn_cap, k=3)\n\n' + M.md_table(
+            bt.assign(est=lambda x: x['beta'].round(4), lo_=lambda x: x['lo'].round(4), hi_=lambda x: x['hi'].round(4))[['model', 'scope', 'period', 'design', 'est', 'lo_', 'hi_', 'n']], floatfmt='{:+.4f}'))
     L.append('\n## 4. Lab level (difference-in-differences, placebos, event study)\n')
     if did is not None:
         t = did[did['spec'].isin(['did', 'placebo2019', 'placebo2020', 'placebo2021', 'within_lab_year']) & (did['dose'].isin(['dose', 'ai_share_lt']))]
