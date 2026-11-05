@@ -241,6 +241,27 @@ def scratch_dir(date, ext=None):
     return P.SCRATCH / (f'openalex-{date}-ext-{ext}' if ext else f'openalex-{date}')
 
 
+def sqlite_tmpdir(need, out, env=None, shm='/dev/shm'):
+    """A directory for SQLite's temporary files (the index sorts of the merge) that is NOT node-local /tmp, which a node can have full (node805: 0 kB free,
+    'database or disk is full' for the JHU and Harvard merges). Order: $OA_MERGE_TMP, /dev/shm when it holds 1.5x `need` bytes, else a directory of the job's
+    scratch (NFS). Exits with a clear message when none has `need` bytes free."""
+    env = os.environ if env is None else env
+    tried = []
+    cands = ([Path(env['OA_MERGE_TMP'])] if env.get('OA_MERGE_TMP') else []) + [Path(shm), Path(out) / '.sqlite-tmp']
+    for c in cands:
+        try:
+            c.mkdir(parents=True, exist_ok=True)
+            free = shutil.disk_usage(c).free
+        except OSError as e:
+            tried.append(f'{c}: {e}')
+            continue
+        want = need * 3 // 2 if str(c) == shm else need
+        if free >= want:
+            return c
+        tried.append(f'{c}: {free >> 20} MiB free, need {want >> 20} MiB')
+    raise SystemExit('merge: no scratch directory with room for the SQLite temporary files (node /tmp is not used): ' + '; '.join(tried) + ' (set OA_MERGE_TMP to a roomy directory)')
+
+
 def ext_parts(parts):
     """An extension keeps works and authors; institutions are in the main store already."""
     return [p for p in parts if p[0] != 'institutions']
@@ -299,12 +320,15 @@ def cmd_merge(date, of=None, keep_parts=False, parts=None, promote=True, ext=Non
     dones = sorted(out.glob('part-*.done'))
     if not dones or (of and len(dones) != of):
         raise SystemExit(f'expected {of} finished parts in {out}, found {len(dones)}')
+    tdir = sqlite_tmpdir(sum(d.with_suffix('.sqlite').stat().st_size for d in dones), out)
+    os.environ['SQLITE_TMPDIR'] = str(tdir)   # read at the first temp file, so before any connection below
     final_dir = P.OA_SNAPSHOT / date
     final_dir.mkdir(parents=True, exist_ok=True)
     final = final_dir / (f'ext-{ext}.sqlite' if ext else 'openalex.sqlite')
     tmp = Path(str(final) + '.part')
     tmp.unlink(missing_ok=True)
     db = sqlite3.connect(str(tmp))
+    db.execute(f"PRAGMA temp_store_directory = '{tdir}'")
     db.executescript(SCHEMA)
     expect = {'works': 0, 'work_inst': 0, 'work_author': 0, 'authors': 0, 'institutions': 0, 'parts': 0}
     for dn in dones:
@@ -328,6 +352,7 @@ def cmd_merge(date, of=None, keep_parts=False, parts=None, promote=True, ext=Non
     db.execute('PRAGMA optimize')
     db.close()
     os.replace(tmp, final)
+    shutil.rmtree(Path(out) / '.sqlite-tmp', ignore_errors=True)
     man = dict(snapshot_date=date, built_at=time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()), counts=got, rows_before_dedup=expect,
                parts_files=len(dones), source=BASE, store_bytes=final.stat().st_size)
     man_path = final_dir / (f'ext-{ext}.manifest.json' if ext else 'manifest.json')
