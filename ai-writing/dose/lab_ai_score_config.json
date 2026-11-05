@@ -1,0 +1,28 @@
+{
+  "method_version": "main-body-1",
+  "year": 2025,
+  "placebo_year": 2019,
+  "detector": "v2",
+  "min_papers": 5,
+  "min_main_words": 1000,
+  "min_scored_passages": 3,
+  "min_passage_words": 100,
+  "bootstrap": 2000,
+  "seed": 20261105,
+  "sections": {"tags": "AI_SCORES/results/lab_ai/tags-*.parquet"},
+  "ipw_weights": null,
+  "detectors": {
+    "v2": {
+      "label": "v2",
+      "passages": "AI_SCORES/ai_scores.sqlite:passages",
+      "threshold": 0.0008531202983449121,
+      "note": "ModernBERT passage model, 1% false-alarm cut on 2016-2021 body passages (detector_v2/results/all/metrics.json)"
+    },
+    "v3": {
+      "label": "v3",
+      "passages": "AI_SCORES/results/passages_v3.parquet",
+      "threshold": null,
+      "note": "Detector v3 (agent/detector-v3). Fill `passages` (parquet or sqlite:table with paper_id, pidx, words, p on the SAME passage cut as the section tags) and `threshold`, then set `detector` to v3; no code change."
+    }
+  }
+}
