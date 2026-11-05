@@ -19,6 +19,8 @@ ids      data/ids/{crossref.tsv.gz, redirects.tsv, persons_cross_school.json}: a
 atlas    princeton-live-20261015/atlas: data.json universities, data/universities/<id>.json.gz units, data/labs/*.json.gz
          unit papers + works, data/lab-people/*.json.gz unit people + their works, pi-groups.json, metrics.json.gz
            -> data/atlas/{universities,units,works,unit_papers,unit_people,unit_person_papers,pi_identities}.jsonl.gz
+rights   LICENSE (CC BY-NC 4.0 legal code), NOTICE, CITATION.cff, .zenodo.json and README.md's "How to cite" section, from
+           tools/rights/rights.json (tools/rights.py)
 code     the tools that build all of it -> code/ (emails redacted: the owner's address becomes you@example.org), taken from
          the code repository's HEAD commit (git -C work), never from uncommitted files; MANIFEST export.code.commit
 Data comes from a dated release (tools/make_release.py; default /n/fs/resemble/homogenizing-science/releases/latest), recorded as
@@ -624,6 +626,7 @@ def export_atlas(repo):
 
 CODE_RULES = [  # (directory in the code repository, max depth, patterns); repo paths mirror it under code/claude-schools-20261021/
     ('tools', 1, ('*.py', '*.slurm')),
+    ('tools/rights', 1, ('*.json', '*.txt')),  # the rights config and the vendored CC BY-NC 4.0 legal code, since 2026-11-05
     ('tools/pihier', 1, ('*.py',)),       # the builder's stages (tools/pi_hierarchy.py is their entry point), since 2026-10-31
     ('hierarchy', 1, ('*.sh', '*.slurm')),
     (AP.data('nicknames', root=Path('.')).as_posix(), 1, ('*.csv',)),   # the repository's own path to the nickname tables (flat or split)
@@ -887,6 +890,8 @@ def main():
         summary['code']['redactions'] = dict(RED - n0)
     summary['redactions'] = dict(sorted(RED.items()))
     readme_coverage(repo, profiles, summary)
+    # LICENSE, NOTICE, CITATION.cff, .zenodo.json and the README "How to cite" section (tools/rights.py, docs/RIGHTS-AND-CITATION.md)
+    summary['rights'] = _load_tool('rights').write_all(repo, (RELEASE or {}).get('id') or 'development', record=lambda n, b: _record(n, b, None))
     methods_student_audit(repo, audit)
     summary['sources'] = dict(hierarchy=str(H), atlas=str(ATLAS), schools=EXPORT, skipped_schools=SKIPPED)
     summary['release'] = RELEASE  # the dated release the school data came from (None: the working root, development only)
