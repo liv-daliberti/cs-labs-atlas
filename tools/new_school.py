@@ -46,6 +46,16 @@ CREATE INDEX IF NOT EXISTS works_slim ON works(id, status, doi, title, year, ide
 '''
 
 
+BEFORE_YOU_START = '''Before you start (docs/ADDING-A-SCHOOL.md, "Before you start"):
+  1. work in your own worktree: tools/agent_worktree.sh new <key>; run `bin/atlas ...` there, and `atlas submit --from-worktree` for unlanded code;
+  2. read docs/ONBOARDING-LESSONS.md (every trap earlier schools hit, with its status) and docs/RULES.md;
+  3. fill the whole charter now, not stage by stage: affiliation regex + cases, [repository] name and pattern, [dblp] strings, [thesis], [collector],
+     every [[hosts]] entry, and decide D-rules about related/excluded institutions BEFORE the first sweep;
+  4. check the OpenAlex key's credits (10k/day, shared) and that the filtered snapshot can be extended (atlas pipeline snapshot-ext);
+  5. nothing of this school is written into a tracked shared file: `atlas stage-gate <key> --traps` checks that after every stage;
+  6. commit after every reviewed-file write and land at each gate (reviewed files resolve to the MAIN checkout, ROADMAP #44: tools/overlay_root.py).'''
+
+
 def charter_text(key, name, short, order, site_uni, today, template):
     t = template.read_text()
     for field, val in (('key', key), ('name', name), ('short', short), ('site_uni', site_uni), ('started', today)):
@@ -116,6 +126,7 @@ def main(argv=None):
     print(f'made {a.key}. Stage 0 is open: fill {charter.name} (TEMPLATE.toml documents every field), then `atlas charters`, and run the stage with `atlas stage-gate {a.key} 0 --run` (docs/ADDING-A-SCHOOL.md: each stage runs to its first review step).')
     for p in probs:
         print('  to do: ' + p)
+    print(BEFORE_YOU_START.replace('<key>', a.key))
     return 0
 
 

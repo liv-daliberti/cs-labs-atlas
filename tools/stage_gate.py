@@ -23,7 +23,7 @@ wired into pi_hierarchy.py / chain_audit.py. Prints one JSON line per stage and 
   0 charter   school_config check passes and every host of the charter is consistent (hosts.json)
   6 students  the lab-page students acceptance is accepted, and the chain audit's students and one_person checks are explained
   7 papers    the lab-page papers acceptance is accepted, and the chain audit's papers and links checks are explained
-  8 texts     copies are measured (local share >= 85% of lab papers), the chain audit's copies check is explained, and the ledger exists
+  8 texts     copies are measured (the 85% local share is a target reported as copy_target_met, not a gate), the chain audit's copies check is explained, and the ledger exists
   9 accuracy  accuracy/summary-<key>.json: lab precision >= .95, student-link precision >= .97, lab coverage >= .90, on the current build
  10 release   the charter says released and the newest release counts the school
 A gate a hand decision waives is recorded in hierarchy/<key>/reviewed/gate-exceptions.json ({"6": {"reason", "by", "decided"}}): it
@@ -34,7 +34,8 @@ ones here, heavy ones as one Slurm pipeline of afterok stages, `--submit`), skip
 at a failed step or a hand step and prints what to review, then evaluates the gate and writes hierarchy/<key>/reports/stage-<n>-gate.json.
 It refuses a released school: this command never writes released data. A step that writes a shared file runs only with `--allow-shared`.
 
-usage: stage_gate.py <key> [stage ...] [--run [--dry-run] [--submit] [--from-worktree] [--force] [--allow-shared]] [--json]
+usage: stage_gate.py <key> --traps   (every onboarding trap check, tools/onboarding_traps.py)
+       stage_gate.py <key> [stage ...] [--run [--dry-run] [--submit] [--from-worktree] [--force] [--allow-shared]] [--json]
 """
 import collections, json, re, sys
 from pathlib import Path
@@ -282,11 +283,11 @@ def g8(key):
     sm = c.get('summary') or {}
     n, loc = sm.get('lab_papers') or 0, sm.get('local') or 0
     share = loc / n if n else 0
-    if share < COPIES_TARGET:
-        bad.append(f'copies: local share {share:.3f} < {COPIES_TARGET} ({loc} of {n})')
+    # the 85% share is a TARGET, not a gate (owner 2026-11-05, after Georgia Tech: ceiling 53.3% under the access rules): the gate needs measured
+    # copies and a ledger reason for every paper without one; a shortfall is reported in the counts (target_met), never failed
     if not read(P.data('unavailable-summary.json', key)):
         bad.append(f'ledger: unavailable-summary.json missing (fulltext-push/unavailable_ledger.py {key})')
-    return bad, dict(lab_papers=n, local=loc, local_share=round(share, 3))
+    return bad, dict(lab_papers=n, local=loc, local_share=round(share, 3), copy_target=COPIES_TARGET, copy_target_met=share >= COPIES_TARGET)
 
 
 def g9(key):
@@ -320,9 +321,19 @@ def exceptions(key):
     return read(P.data('gate-exceptions.json', key), {}) or {}
 
 
+def traps_for(key, stage):
+    """The known onboarding traps of the stage (tools/onboarding_traps.py): findings, or nothing when the charter is missing."""
+    import onboarding_traps as T
+    try:
+        return T.for_stage(key, stage)
+    except KeyError:
+        return []
+
+
 def evaluate(key, stage):
     """-> dict(stage, gate pass|waived|fail, open, counts, items, waiver)."""
     bad, counts = GATES[str(stage)](key)
+    bad = list(bad) + traps_for(key, stage)
     w = exceptions(key).get(str(stage))
     gate = 'pass' if not bad else ('waived' if w and w.get('reason') else 'fail')
     return dict(stage=int(stage), gate=gate, open=len(bad), items=bad, waiver=(w if gate == 'waived' else None), **counts)
@@ -487,9 +498,18 @@ def main(argv=None):
     ap.add_argument('key'); ap.add_argument('stages', nargs='*')
     ap.add_argument('--run', action='store_true'); ap.add_argument('--dry-run', action='store_true'); ap.add_argument('--submit', action='store_true')
     ap.add_argument('--from-worktree', action='store_true', help='Slurm steps run this worktree\'s committed HEAD (a charter not landed on main yet)')
+    ap.add_argument('--traps', action='store_true', help='print every known onboarding trap check (tools/onboarding_traps.py) and exit 1 on a finding')
+    ap.add_argument('--record', action='store_true', help='evaluate the gates and write stage-<n>-gate.json without running any step (refreshes a stale recorded gate)')
     ap.add_argument('--force', action='store_true'); ap.add_argument('--allow-shared', action='store_true'); ap.add_argument('--json', action='store_true')
     a = ap.parse_args(argv)
     key = a.key
+    if a.traps:
+        import onboarding_traps as T
+        found = T.run(key, list(T.CHECKS))
+        for f in found:
+            print(f)
+        print(f'{key}: {len(found)} trap finding(s)')
+        return 1 if found else 0
     stages = a.stages or list(GATES)
     bad_stage = [s for s in stages if s not in GATES]
     if bad_stage:
@@ -514,7 +534,7 @@ def main(argv=None):
             print('    waived: ' + res['waiver']['reason'])
         for b in res['items'][:int(__import__('os').environ.get('SHOW', 15))]:
             print('   ', b)
-        if a.run and not a.dry_run:
+        if (a.run or a.record) and not a.dry_run:
             rep = Path(P.HIERARCHY) / key / 'reports'
             rep.mkdir(parents=True, exist_ok=True)
             (rep / f'stage-{st}-gate.json').write_text(json.dumps(dict(school=key, at=__import__('datetime').datetime.now(__import__('datetime').timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'), run=ran, result=res), indent=1) + '\n')

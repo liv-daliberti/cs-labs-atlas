@@ -48,6 +48,29 @@ REPO = dict(princeton='Princeton OAR', mit='DSpace@MIT Open Access Articles', cm
 REPO_PATTERN = {'berkeley': r'escholarship\.org|escholarship', 'michigan': r'deepblue\.lib\.umich\.edu|deep ?blue',
                 'stanford': r'purl\.stanford\.edu|stacks\.stanford\.edu|searchworks\.stanford\.edu|Stanford Digital Repository',
                 'uchicago': r'knowledge\.uchicago\.edu|Knowledge@UChicago', 'gatech': r'repository\.gatech\.edu|smartech\.gatech\.edu|hdl\.handle\.net/1853/'}
+
+
+def _charter_repo(school):
+    try:
+        import school_config as SC
+        return SC.field(SC.get(school), 'repository', {}) or {}
+    except Exception:  # noqa: BLE001 (no charter, or school_config not importable: the tables above are all there is)
+        return {}
+
+
+def repo_name(school):
+    """The school repository's name: the table above, else the charter's [repository].name (an onboarding school needs no code edit)."""
+    return REPO.get(school) or _charter_repo(school).get('name') or 'the school repository'
+
+
+def repo_pattern(school):
+    """The regex over repository hosts: REPO_PATTERN, else the charter's [repository].pattern; KeyError when neither exists (the stage-0 gate says so first)."""
+    p = REPO_PATTERN.get(school) or _charter_repo(school).get('pattern')
+    if not p:
+        raise KeyError(f'{school}: no repository pattern (set [repository].pattern in schools/{school}.toml)')
+    return p
+
+
 PUBFOLD = [(r'Institute of Electrical and Electronics Engineers|\bIEEE\b', 'IEEE'), (r'Association for Computing Machinery|\bACM\b', 'ACM'),
            (r'Springer|Nature Portfolio|Nature Publishing|BioMed Central|Palgrave', 'Springer Nature'), (r'\bSSRN\b|Social Science Research Network|RELX', 'SSRN (Elsevier)'),
            (r'Elsevier|Cell Press|Academic Press|North-Holland|Pergamon', 'Elsevier'), (r'Wiley|Blackwell', 'Wiley'),
@@ -682,7 +705,7 @@ def src_repository(school, papers, oa, core, offline, n):
     # berkeley, stanford: the repository refuses this client (eScholarship: HTTP 403 on robots.txt and every page,
     # 2026-10-30) or has no harvest interface used here (SDR); their holdings reach us through OpenAlex and CORE
     # michigan: Deep Blue is never used in any form (owner rule 2026-10-30), so only what OpenAlex and CORE list for it counts
-    pat = re.compile(REPO_PATTERN[school], re.I)   # one pattern per school (2026-11-05: uchicago and gatech fell through to Stanford's)
+    pat = re.compile(repo_pattern(school), re.I)   # one pattern per school (2026-11-05: uchicago and gatech fell through to Stanford's)
     for p in papers:
         o, c = oa.get(p['key']) or {}, core.get(p['key']) or {}
         if o.get('result') not in ('found', 'none', 'not_applicable'):
@@ -693,7 +716,7 @@ def src_repository(school, papers, oa, core, offline, n):
         links = [u for u in cd.get('links') or [] if pat.search(u)]
         usable = [] if school == 'michigan' else [l['pdf'] for l in locs if l.get('pdf')] + links  # Deep Blue copies are never fetched
         out[p['key']] = check('repository', p['key'], 'found' if usable else 'none',
-                              dict(repository=REPO[school], records=[l.get('landing') for l in locs][:3], usable=usable[:3],
+                              dict(repository=repo_name(school), records=[l.get('landing') for l in locs][:3], usable=usable[:3],
                                    note=('Deep Blue is never asked (owner rule); ' if school == 'michigan' else 'direct access refused (HTTP 403) or not harvested; ') + 'checked through OpenAlex and CORE'), at=o.get('at'))
     return out
 
@@ -1000,7 +1023,7 @@ def summarize(p, code, missing, new):
     elif ac:
         bc = ad.get('best_candidate')
         s.append('No arXiv version (no arXiv id; ' + (f"best title match {ad.get('similarity')})." if bc else 'no title match).'))
-    checked = [LABEL[x] if x != 'repository' else REPO.get(p['school'], 'the school repository') for x in p['applicable']
+    checked = [LABEL[x] if x != 'repository' else repo_name(p['school']) for x in p['applicable']
                if x != 'arxiv' and (chk.get(x) or {}).get('result') == 'none']
     if checked:
         s.append('No open copy in ' + (', '.join(checked[:-1]) + ' or ' + checked[-1] if len(checked) > 1 else checked[0]) +
