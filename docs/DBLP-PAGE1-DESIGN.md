@@ -39,6 +39,20 @@ Mossel NeurIPS 2022, Shah JMLR 2025, Freund COLT 2022; Berkeley, Michigan, Stanf
 - Dual affiliations: a school named next to a company on the PI's line counts (the paper credits the school); the appointment check still limits the year.
 - The unconfirmed ledger is not a coverage claim: those records are unverified, not wrong. Most are IEEE, ACM or Springer papers with no open copy.
 
-## Measured (scratch, 2026-11-05)
-Per school, records tried and how they ended (confirmed by an OpenAlex authorship at the PI's name that lists the school, by page 1 from arXiv, by page 1 from an open PDF; not confirmed with the reason;
-OpenAlex says another institution): see the report of the 2026-11-05 accuracy-fixes run (`accuracy/FIXES-20261105.md` is not kept; numbers are in the commit message of the rebuild and the coordinator's report).
+## Measured (scratch, 2026-11-05, first retry-less pass over the DBLP candidates of each school)
+| school | tried | OpenAlex authorship names the school | page 1 arXiv | page 1 open PDF | other institution (OpenAlex) | unconfirmed: no open source / fetch failed / school not named |
+|---|---|---|---|---|---|---|
+| Princeton | 792 | 114 | 18 | 24 | 125 | 287 / 75 / 62 |
+| CMU | 2118 | 339 | 27 | 55 | 269 | 894 / 326 / 90 |
+| EPFL | 876 | 159 | 14 | 9 | 186 | 312 / 89 / 44 |
+| MIT | 1457 | 262 | 95 | 53 | 111 | 482 / 247 / 91 |
+| Berkeley | 1178 | 144 | 16 | 36 | 322 | 334 / 175 / 65 |
+| Stanford | 817 | 153 | 4 | 14 | 77 | 362 / 160 / 22 |
+| Michigan | 807 | 115 | 4 | 44 | 19 | 357 / 130 / 60 |
+| UChicago | 63 | 8 | 0 | 4 | 21 | 11 / 11 / 4 |
+| Georgia Tech | 136 | 21 | 0 | 4 | 47 | 19 / 13 / 16 |
+
+Net new lab papers in the packages (by title, scratch rebuild against the 193786b build): Princeton +101, CMU +171, EPFL +86, MIT +237, Berkeley +98, Stanford +62, Michigan +136, UChicago +7, Georgia Tech +16.
+MIT's four named cases: Mossel NeurIPS 2022 (page 1 via arXiv), Freund COLT 2022 (arXiv), Shah JMLR 2025 (open JMLR PDF) are in; Devadas IACR ePrint 2021 stays `dblp_unconfirmed`
+(eprint.iacr.org serves a bot challenge). USENIX (10 s Crawl-delay) and CEUR hosts were added after this pass; `dblp_recover.py <school> --retry` on the unconfirmed records
+(the USENIX queue is the slow part) was started and stopped before it finished, so the unconfirmed counts above are not yet reduced by them.
