@@ -767,7 +767,7 @@ def recovered_rows(ctx, rows, seen):
                 aside('already_a_lab_paper'); continue
             seen.add((x['pi'], cw or oa_id))
             rows.append(dict(pi=x['pi'], work=cw, oa=oa_id, doi=x.get('doi'), title=(x.get('title') or '').rstrip('.'), year=x['year'], date=date, type='article',
-                             venue=x.get('venue'), landing=ev.get('url'), byline=x.get('byline') or [], byline_school=[],
+                             venue=x.get('venue'), landing=ev.get('url'), byline=list(dict.fromkeys(x.get('byline') or [])), byline_school=[],
                              authorship=dict(position=None, raw_name=None, author_id=None, institutions=[], raw_affiliations=[], school_via=via[:3],
                                              page1=dict(url=ev.get('url'), pdf_sha256=ev.get('pdf_sha256'), how=ev.get('how'), quotes=ev.get('quotes'),
                                                        **({'dblp_key': ev['dblp_key'], 'fetched_at': ev['fetched_at']} if ev.get('dblp_key') and ev.get('fetched_at') else {})) if ev.get('how') else None),
