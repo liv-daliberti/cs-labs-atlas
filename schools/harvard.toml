@@ -23,7 +23,10 @@ window = [2016, 2026]     # the study window (owner rule; do not change per scho
 # in `loose` / `own_units` so papers of in-scope computing PIs who list them are credited; they never add a PI or a lab by themselves. A PI is a Harvard faculty member; research staff of an
 # affiliated institute without a Harvard appointment are not PIs. Which lineage children are swept is a data decision (D1-D4 in STAGE-0.md) still open for the owner.
 openalex = ["I136199984"]
-openalex_related = []     # PROPOSED (owner decision D2): the hospitals and Broad are 'related' (regex-only): MGH I4210087915, Brigham I1283280774, Boston Children's I1288882113, Dana-Farber I4210117453, Broad I107606265, HST I4210092658
+# Owner decisions 2026-11-05 (as recommended): D1 sweep every lineage child except D3, the PI rule filters; D2 related = MGH, Brigham, Boston Children's, Dana-Farber, Broad, HST (left out: Beth Israel, McLean, Mass Eye and Ear, Joslin, Harvard Pilgrim, MGHPCC);
+# D3 exclude Harvard University Press and Real Colegio Complutense; D4 regex does not match bare Harvard-MIT/HST, bare Harvard-Smithsonian, Harvard Pilgrim, Harvey Mudd, HBS matches; D5 blocked FAS hosts and DASH are read through Wayback
+# (owner "allowed always"); D6 Kempner and Wyss are center units, only members with a Harvard faculty appointment can be PIs.
+openalex_related = ["I4210087915", "I1283280774", "I1288882113", "I4210117453", "I107606265", "I4210092658"]   # MGH, Brigham, Boston Children's, Dana-Farber, Broad, HST
 openalex_excluded = []    # PROPOSED (D3): Harvard University Press I2801851002, Real Colegio Complutense I4392738166 (Spain), Harvard Pilgrim Health Care and Harvard Eye Associates/Vanguard (never lineage)
 ror = "https://ror.org/03vek6s52"
 ids_note = """OpenAlex institutions table of the 2026-10-14 snapshot (no API credits; checked 2026-11-05): I136199984 'Harvard University', ROR 03vek6s52, US, lineage [I136199984] (no parent). ROR v2 record
@@ -89,7 +92,7 @@ legacy_sweep = ""
 
 [census]
 computing_departments = ["CS"]
-center_units = ["KEMPNER"]    # PROPOSED: the Kempner Institute is a research institute, never a PI's home
+center_units = ["KEMPNER", "WYSS"]    # owner D6 2026-11-05: institutes are never a PI's home; only members with a Harvard faculty appointment are PIs
 # Harvard has no Faculty of Computing: Computer Science is a SEAS area (SEAS lists one faculty directory for all areas). Home units are the SEAS areas and the FAS/medical departments named in the charter.
 home_units = {"Computer Science" = '^(?:Area of )?Computer Science$', "Applied Mathematics" = '^(?:Area of )?Applied Mathematics$', "Electrical Engineering" = '^(?:Area of )?Electrical Engineering$', "Bioengineering" = '^(?:Area of )?Bioengineering$', "Applied Physics" = '^(?:Area of )?Applied Physics$', "Statistics" = '^(?:Department of )?Statistics$', "Economics" = '^(?:Department of )?Economics$', "Mathematics" = '^(?:Department of )?Mathematics$', "Biostatistics" = '^(?:Department of )?Biostatistics$', "Biomedical Informatics" = '^(?:Department of )?Biomedical Informatics$', "Psychology" = '^(?:Department of )?Psychology$', "Molecular and Cellular Biology" = '^(?:Department of )?Molecular and Cellular Biology$', "Government" = '^(?:Department of )?Government$', "Kennedy School" = '^Harvard Kennedy School$'}
 rank_words = {teaching = '\bprofessor\s+of\s+the\s+practice\b|\blecturer\s+on\b|\bsenior\s+lecturer\b', adjunct = '\bvisiting\s+(?:professor|lecturer)\b|\bprofessor\s+of\s+(?:\w+\s+)?practice\b'}
@@ -163,6 +166,12 @@ url = "https://kempnerinstitute.harvard.edu/people/"
 listings = ["kempnerinstitute.harvard.edu/people"]
 
 [[affiliated_units]]
+code = "WYSS"
+name = "Wyss Institute for Biologically Inspired Engineering"
+url = "https://wyss.harvard.edu/team/"
+listings = ["wyss.harvard.edu/team"]
+
+[[affiliated_units]]
 code = "HKS"
 name = "Harvard Kennedy School"
 url = "https://www.hks.harvard.edu/faculty-research"
@@ -175,7 +184,7 @@ url = "https://www.mcb.harvard.edu/faculty/faculty-profiles/"
 listings = ["www.mcb.harvard.edu/faculty/faculty-profiles"]
 
 # Statistics, Economics, Mathematics, Physics, Psychology, Astronomy (FAS hosts *.fas.harvard.edu, math/physics.harvard.edu) answer this client's robots.txt with an Akamai 'Access Denied' 403
-# (2026-11-05): not used, not via Wayback (coordinator's rule); their computing people are still found through the OpenAlex rule and DBLP. Owner decision D5.
+# (2026-11-05): read through Wayback only (owner 2026-11-05 allowed always) (coordinator's rule); their computing people are still found through the OpenAlex rule and DBLP. Owner decision D5.
 
 # --- students ----------------------------------------------------------------------------------------------------------------------
 [thesis]
@@ -183,7 +192,7 @@ kind = "none"
 base_url = ""
 endpoints = []
 robots = "allowed"
-note = "DASH (dash.harvard.edu, DSpace 7): robots.txt allows /entities/publication/<uuid> and /items (no AI-agent group, no Crawl-delay; Disallow /search /browse /entities/*/*/* /processes ...). Sitemaps hold 103,850 URLs (2,620 publication pages in sitemap2, about 100k items in sitemap0-1). One probe of an item page after five sitemap requests got 'Web Firewall 429 - The service is under heavy load' (2026-11-05): treated as a challenge, not retried, host marked use = none. At 100,000 records and the house 5 s minimum that would be 139 hours; DASH holds few dissertations (Harvard theses go through ProQuest and the departments), so it is not a student source. OAI is not probed."
+note = "DASH (dash.harvard.edu, DSpace 7): robots.txt allows /entities/publication/<uuid> and /items (no AI-agent group, no Crawl-delay; Disallow /search /browse /entities/*/*/* /processes ...). Sitemaps hold 103,850 URLs (2,620 publication pages in sitemap2, about 100k items in sitemap0-1). One probe of an item page after five sitemap requests got 'Web Firewall 429 - The service is under heavy load' (2026-11-05): treated as a challenge, not retried, host marked wayback-only (owner D5). At 100,000 records and the house 5 s minimum that would be 139 hours; DASH holds few dissertations (Harvard theses go through ProQuest and the departments), so it is not a student source. OAI is not probed."
 
 [collector]
 channels = ["oa_arxiv", "openalex", "s2", "labpages"]
@@ -255,39 +264,45 @@ purpose = "MCB people (searched for computing-related faculty)"
 probe = "https://www.mcb.harvard.edu/faculty/faculty-profiles/"
 
 [[hosts]]
+host = "wyss.harvard.edu"
+use = "live"
+purpose = "Wyss Institute team (center unit; computing labs only)"
+probe = "https://wyss.harvard.edu/team/"
+
+[[hosts]]
 host = "dash.harvard.edu"
-use = "none"
-purpose = "DASH repository: item page answered a web-firewall 429 (challenge); not used"
+use = "wayback-only"
+purpose = "DASH repository: item page answered a web-firewall 429 (challenge); read through Wayback only"
 probe = "https://dash.harvard.edu/"
 
 [[hosts]]
 host = "statistics.fas.harvard.edu"
-use = "none"
-purpose = "Statistics: robots.txt 403 Akamai Access Denied for this client; not used, not via Wayback"
+use = "wayback-only"
+purpose = "Statistics: robots.txt 403 Akamai Access Denied for this client; read through Wayback only (owner 2026-11-05 allowed always)"
 probe = "https://statistics.fas.harvard.edu/people/faculty"
 
 [[hosts]]
 host = "economics.harvard.edu"
-use = "none"
-purpose = "Economics: robots.txt 403 Akamai Access Denied for this client; not used, not via Wayback"
+use = "wayback-only"
+purpose = "Economics: robots.txt 403 Akamai Access Denied for this client; read through Wayback only (owner 2026-11-05 allowed always)"
 probe = "https://economics.harvard.edu/faculty"
 
 [[hosts]]
 host = "www.math.harvard.edu"
-use = "none"
-purpose = "Mathematics: robots.txt 403 Akamai Access Denied; not used"
+use = "wayback-only"
+purpose = "Mathematics: robots.txt 403 Akamai Access Denied; read through Wayback only"
 probe = "https://www.math.harvard.edu/people/"
 
 [[hosts]]
 host = "www.physics.harvard.edu"
-use = "none"
-purpose = "Physics: robots.txt 403 Akamai Access Denied; not used"
+use = "wayback-only"
+purpose = "Physics: robots.txt 403 Akamai Access Denied; read through Wayback only"
 probe = "https://www.physics.harvard.edu/people/"
 
 [[hosts]]
 host = "psychology.fas.harvard.edu"
-use = "none"
-purpose = "Psychology: robots.txt 403 Akamai Access Denied; not used"
+use = "wayback-only"
+purpose = "Psychology: robots.txt 403 Akamai Access Denied; read through Wayback only"
 probe = "https://psychology.fas.harvard.edu/people/"
 
 [[hosts]]
