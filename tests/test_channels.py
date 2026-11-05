@@ -261,3 +261,14 @@ def test_core_api_is_paused_and_the_runner_asks_nothing(monkeypatch, capsys):
     monkeypatch.setattr(L, 'write', boom)
     rows, n = R.run_channel('mit', 'core_bulk', [(r, w) for r, w in ROWS], known, dry=True)
     assert rows == [] and 'paused' in capsys.readouterr().out
+
+
+def test_sonar_asks_only_ids_named_by_known_urls_and_takes_unrestricted_pdfs():
+    from channels import sonar as SO
+    ps, known = papers(known=defaultdict(set, {'w1': {'https://sonar.ch/global/documents/264649', 'https://folia.unifr.ch/global/documents/202705'}}))
+    assert SO.doc_ids(ps[0].known) == ['202705', '264649']
+    assert SO.APPLIES('epfl', ps[0]) and not SO.APPLIES('epfl', ps[1])
+    rec = dict(metadata=dict(_files=[dict(key='fulltext.pdf', restriction=dict(restricted=False), permissions=dict(read=True)),
+                                     dict(key='fulltext-pdf.jpg'), dict(key='embargoed.pdf', restriction=dict(restricted=True))]))
+    assert SO.open_pdf_keys(rec) == ['fulltext.pdf']
+    assert SO.open_pdf_keys(dict(metadata=dict(_files=[]))) == []
