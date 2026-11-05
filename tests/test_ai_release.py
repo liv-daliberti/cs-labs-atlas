@@ -76,3 +76,14 @@ def test_study_files_are_not_reviewed_inputs(monkeypatch):
     monkeypatch.setattr(provenance, '_git', lambda *a: 'ai-writing/diversity/site-data/all-ai/labs.json\nhierarchy/x.json\n')
     monkeypatch.setattr(provenance, 'onboarding_schools', lambda: [])
     assert provenance.tracked_inputs() == ['hierarchy/x.json']
+
+
+def test_words_folder_is_collected_whole_or_refused(tmp_path):
+    root = folder(tmp_path)
+    (root / 'words').mkdir()
+    (root / 'words' / 'words.json').write_text('{"meta": {"last_year": 2025}}')
+    with pytest.raises(SystemExit):
+        ai_release.collect(root)
+    (root / 'words' / 'word_curves.json').write_text('{}')
+    src = ai_release.collect(root)
+    assert 'ai/words/words.json' in src and 'ai/words/word_curves.json' in src
