@@ -36,7 +36,7 @@ def main(school, what):
     S = json.load(open(files(school)[0]))['schools'][school]
     pis = {p['pi']: p for p in json.load(open(P.data('pis.json', school)))}
     if what in ('lab', 'coverage'):
-        pages = dblp_persons({q for p in pis.values() for q in p.get('dblp') or []})
+        pages = dblp_persons({q for p in pis.values() for q in p.get('dblp') or []}, school)
         dd = {pi: ({ndoi(x) for q in p.get('dblp') or [] for r in pages.get(q, []) for x in r['dois']},
                    {nt(r['title'].rstrip('.')) for q in p.get('dblp') or [] for r in pages.get(q, [])}) for pi, p in pis.items()}
         del pages
@@ -105,7 +105,7 @@ def main(school, what):
         start = int(sys.argv[4]) if len(sys.argv) > 4 else 0
         cands = S['student_coverage_order'][start:start + n]
         need = {c['pi'] for c in cands}
-        pages = dblp_persons({q for pi in need for q in pis[pi].get('dblp') or []})
+        pages = dblp_persons({q for pi in need for q in pis[pi].get('dblp') or []}, school)
         sp = {}
         for line in gzip.open(P.data('student_papers.jsonl.gz', school), 'rt'):
             r = json.loads(line)

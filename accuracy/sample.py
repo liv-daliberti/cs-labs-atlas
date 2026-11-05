@@ -57,10 +57,21 @@ def sha(p):
     return h.hexdigest()
 
 
-def dblp_persons(wanted):
+def dblp_persons(wanted, school=None):
     """Stream the persons map of dblp-dump-persons.json.gz one record at a time (the file is ~95 MB of JSON; only the
-    wanted person pages are kept)."""
-    s = gzip.open(P.data('dblp-dump-persons.json.gz'), 'rt').read()
+    wanted person pages are kept). An onboarding school's PIs are in its own file (hierarchy/<school>/raw/dblp-dump-persons-school.json.gz,
+    tools/dblp_dump_persons.py <school>), read the same way and added; without it a protocol school's lab-coverage pool is empty
+    (UChicago stage 9, 2026-11-05)."""
+    out = _dblp_persons_file(P.data('dblp-dump-persons.json.gz'), wanted)
+    if school:
+        local = P.data('dblp-dump-persons-school.json.gz', school)
+        if local.exists():
+            out.update(_dblp_persons_file(local, wanted - set(out)))
+    return out
+
+
+def _dblp_persons_file(path, wanted):
+    s = gzip.open(path, 'rt').read()
     dec = json.JSONDecoder()
     i = s.index('"persons"'); i = s.index('{', i) + 1
     out = {}
@@ -181,7 +192,7 @@ def main(schools=None, out_path=None, date='2026-10-29', cfg=None):
         # 3. lab coverage from DBLP person pages
         pis = json.load(open(d / 'pis.json'))
         wanted = {q for p in pis for q in p.get('dblp') or []}
-        pages = dblp_persons(wanted)
+        pages = dblp_persons(wanted, school)
         pool, seen = [], set()
         for p in pis:
             ys = years_in(p)

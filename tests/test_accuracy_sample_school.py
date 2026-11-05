@@ -32,3 +32,25 @@ def test_released_draw_independent_of_other_schools(tmp_path):
     assert one == two
     assert json.loads((tmp_path / 'a.json').read_text())['schools']['mit']['lab_precision'] == one['lab_precision']
     assert S.OUT.name == 'sample.json' and S.SCHOOLS == ['princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford']
+
+
+def _persons_file(path, persons):
+    import gzip
+    with gzip.open(path, 'wt') as f:
+        json.dump({'persons': persons}, f)
+
+
+def test_dblp_persons_reads_the_school_local_file(tmp_path, monkeypatch):
+    """An onboarding school's PIs are only in hierarchy/<school>/raw/dblp-dump-persons-school.json.gz: without it the lab-coverage pool of
+    a protocol school was empty (UChicago stage 9)."""
+    rec = lambda k: {'key': k, 'type': 'article', 'title': 'T ' + k, 'year': 2020, 'dois': [], 'authors': [['A', None]]}
+    shared, local = tmp_path / 'shared.json.gz', tmp_path / 'local.json.gz'
+    _persons_file(shared, {'p/1': {'pubs': [rec('k1')]}, 'p/2': {'pubs': [rec('k2')]}})
+    _persons_file(local, {'p/3': {'pubs': [rec('k3')]}})
+    paths = {'dblp-dump-persons.json.gz': shared, 'dblp-dump-persons-school.json.gz': local}
+    monkeypatch.setattr(S.P, 'data', lambda name, school=None, **k: paths[name])
+    assert set(S.dblp_persons({'p/1', 'p/3'})) == {'p/1'}                       # no school: the shared file only (released draws unchanged)
+    assert set(S.dblp_persons({'p/1', 'p/3'}, 'uchicago')) == {'p/1', 'p/3'}
+    assert [r['key'] for r in S.dblp_persons({'p/3'}, 'uchicago')['p/3']] == ['k3']
+    paths['dblp-dump-persons-school.json.gz'] = tmp_path / 'absent.json.gz'     # a school without its own file is as before
+    assert set(S.dblp_persons({'p/1', 'p/3'}, 'uchicago')) == {'p/1'}

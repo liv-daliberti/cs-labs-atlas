@@ -15,6 +15,17 @@ ACC = Path(__file__).parent
 CACHE = ACC / 'cache' / 'openalex.jsonl'
 AFF = {'princeton': r'princeton', 'cmu': r'carnegie|cmu', 'epfl': r'epfl|lausanne|polytechnique f', 'mit': r'massachusetts inst|\bmit\b|csail',
        'berkeley': r'berkeley', 'stanford': r'stanford', 'michigan': r'michigan|umich'}
+
+
+def aff(school):
+    """The affiliation pattern: the table above for the released schools, else the charter's [affiliation].regex (an onboarding school: UChicago stage 9)."""
+    if school in AFF:
+        return AFF[school]
+    sys.path.insert(0, str(ACC.parent / 'tools'))
+    import school_config as SC
+    return SC.get(school)['affiliation']['regex']
+
+
 SEL = 'id,doi,display_name,publication_date,type,authorships,primary_location'
 
 
@@ -85,11 +96,11 @@ def main(school):
             b = get('https://api.openalex.org/works?filter=title.search:' + urllib.parse.quote(t) + '&per_page=5&select=' + SEL, cache, k)
             res = [x for x in b.get('results') or [] if nt(x.get('display_name')) == nt(d['title'].rstrip('.'))]
             for x in res[:2]:
-                show(x, it['pi'], school, AFF[school])
+                show(x, it['pi'], school, aff(school))
             if not res:
                 print('   OA: no match', b.get('error', ''))
             continue
-        show(w, it['pi'], school, AFF[school])
+        show(w, it['pi'], school, aff(school))
 
 
 if __name__ == '__main__':

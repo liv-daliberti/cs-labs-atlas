@@ -329,3 +329,40 @@ as they are; the round has its own seed, its own directory and its own files.
   and the pooled `summary.json`. Commands: `sample.py --round r2 [--school k]` (never overwrites a draw), `ACCURACY_ROUND=r2
   evidence.py|record.py|oalookup.py <school> ...`, `summarize.py --round r2`, `split.py r2 --agents N` (judgments per school and a
   balanced grouping of schools for judging agents).
+
+## University of Chicago (stage 9, 2026-11-05)
+
+Drawn with the 2026-10-29 method and seed (`sample.py --school uchicago`, `random.Random(20261029)`), judged by hand from the
+`evidence.py` sheets (`oalookup.py` for the coverage items; the OpenAlex lookups are cached, no key printed), 102 judgments (the
+student-coverage pool holds 7 PhD advisees with a documented 2018+ PhD year, not 10). Files: `sample-uchicago.json`,
+`verdicts-uchicago.jsonl`, `summary-uchicago.json`. Build: the 2026-11-05 package (5,008 lab papers, 2,250 student-paper links,
+copies.json after the ledger run); `files` equals `files_now`, so a rebuild or a new `lab_paper_copies.py` run makes the gate
+ask for a new draw.
+
+| Measure | Result | n | Bar |
+|---|---|---|---|
+| Lab-paper precision (25 uniform, 1 unclear) | 0.958 [0.798, 0.993] | 23 of 24 | 0.95 |
+| Student-link precision (25 uniform) | 1.000 [0.867, 1.000] | 25 of 25 | 0.97 |
+| Lab-paper coverage (15 DBLP records) | 1.000 [0.741, 1.000] | 11 of 11 true lab papers | 0.90 |
+| Student coverage (7 candidates, 1 without a co-authored paper) | 1.000 [0.610, 1.000] | 6 of 6 | none |
+| Strata, lab (5 each: advisee on an unaffiliated byline, listing, identity not reviewed) | 5/5, 5/5, 5/5 | | |
+| Strata, student (within-lab, advisee name, full name) | 4/5, 5/5, 5/5 | | |
+
+The gate (`atlas stage-gate uchicago 9`) passes; the lab-precision margin is one item (23 of 24; with the unclear item counted
+as an error it would be 0.920). All 40 lab rows 38 of 39 (0.974), all 40 student rows 39 of 40 (0.975).
+
+**Errors and unclear items.**
+- `namesake` (uniform sample, lab): Yuxin Chen, 'Wearable Microphone Jamming' (CHI 2020). The PI's DBLP person page `Yuxin Chen 0001`
+  holds a second cluster of records whose bylines are the Zhao/Lopes/Zheng security-HCI group (6 papers in the build, of 66 of his
+  lab papers: the jammer, 'Et Tu Alexa', the two jamming records, the two electrical-muscle-stimulation records), none with an
+  OpenAlex author id; the build attributes them through the DBLP DOI/title match. Not fixed by a rule: one page-level namesake cluster is below the
+  bar, and a rule would need the DBLP page's own consistency (an owner decision, below).
+- `wrong_student` (student, within_lab_byline_match stratum): Yuhao Zhou matched to four initial-only 'Zhou' authors of a
+  2,938-author ATLAS paper. The uniform sample has no such item; the stratum's rule (a within-lab byline match with no school
+  affiliation on a very long byline) is a candidate for a length cap.
+- Unclear (lab): Hoffmann, 'Combined learned and dynamic control system', a DataCite deposit in the UChicago repository (three
+  records with the same title and authors); two coverage items whose authorship names no school ('Computation Institute' only) or is
+  dated 2015 by OpenAlex and 2016 by DBLP.
+- Coverage: the two non-lab DBLP records (Junchen Jiang at Hohai University, Xinran Li at Liaocheng University) are namesakes
+  that the build rightly leaves out.
+- Noted, not sampled as an error: the student record 'Nick Collins Delta Dictionaries' (Chugh's homepage; the name runs into a thesis title).
