@@ -139,14 +139,36 @@ def run_one(args):
     return len(out)
 
 
+def run_boot(args):
+    """Headline cluster-bootstrap (over labs) intervals: scope all and lab, k=3, nov_nn_cap, ai_share, designs pooled and withinlab, post and the placebo pre-period."""
+    model, kind, B = args
+    df = _FRAME
+    rows = []
+    for scope in ('all', 'lab'):
+        nov = novelty_rows(model, kind, scope, ks=(3,))
+        if nov is None:
+            continue
+        base = df.merge(nov, on='paper_id')
+        base['lab_year'] = np.where(base['scope_id'].astype(str).str.startswith('atl:l:'), base['scope_id'].astype(str), base['lab0'].astype(str)) + '|' + base['year'].astype(str)
+        base['cl'] = np.where(base['scope_id'].astype(str).str.startswith('atl:l:'), base['scope_id'].astype(str), base['lab0'].astype(str))
+        for period, years in PERIODS.items():
+            d = base[base['year'].isin(years) & base['ai_share'].notna() & base['nov_nn_cap'].notna()]
+            for design, fe, nested in (('pooled', ['year', 'school', 'topic'], []), ('withinlab', ['lab_year'], ['lab_year'])):
+                est, lo, hi = R.boot_fit(d, 'nov_nn_cap', 'ai_share', 'cl', controls=CONTROLS, fe=fe, nested=nested, B=B, seed=3)
+                rows.append(dict(model=model, kind=kind, scope=scope, k=3, measure='nov_nn_cap', exposure='ai_share', period=period, design=design, beta=est, lo=lo, hi=hi, n=len(d), method='cluster bootstrap over labs'))
+    pd.DataFrame(rows).to_parquet(D.RESULTS / f'boot_{model}_{kind}.parquet', index=False)
+    D.log(model=model, kind=kind, boot_rows=len(rows))
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('cmd', choices=['paper'])
+    ap.add_argument('cmd', choices=['paper', 'boot'])
     ap.add_argument('--model', action='append')
     ap.add_argument('--kind', default='abstract')
     ap.add_argument('--exposure', action='append')
     ap.add_argument('--scope', action='append')
     ap.add_argument('-j', type=int, default=4)
+    ap.add_argument('--boot', type=int, default=200)
     a = ap.parse_args()
     from models import MODELS, ORDER
     global _FRAME
@@ -156,6 +178,10 @@ def main():
         for kind in ([a.kind] if a.kind != 'both' else ['abstract', 'fulltext']):
             if kind in MODELS[m]['kinds']:
                 jobs.append((m, kind, a.exposure or ['ai_share', 'flag_abstract'], a.scope or list(SCOPES)))
+    if a.cmd == 'boot':
+        for m, kind, _, _ in jobs:
+            run_boot((m, kind, a.boot))
+        return
     with ProcessPoolExecutor(min(a.j, len(jobs))) as ex:
         list(ex.map(run_one, jobs))
 
