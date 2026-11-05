@@ -1,0 +1,308 @@
+# schools/washu.toml: Washington University in St. Louis (charter; docs/ADDING-A-SCHOOL.md stage 0, protocol v3). Filled 2026-11-05.
+# Owner decision 2026-11-05 (coordinator relay): keep ONLY labs that do computing. No blanket keep or drop of the School of Medicine, Barnes-Jewish, St. Louis Children's, Siteman, Olin or any other unit: a unit counts only through its computing labs, i.e. faculty who meet the CS-related scope rule (docs/RULES.md; DBLP-indexed / CS-venue work, e.g. I2DB, biostatistics and informatics faculty who publish in CS venues). Non-computing labs are out. Affiliation strings of those units may stay in `loose` / `own_units` so papers of in-scope PIs who list them are credited; they never add PIs or labs. A PI is a faculty member of the school. The look-alike exclusions are identity, not scope, and always apply.
+
+key = "washu"
+name = "Washington University in St. Louis"
+short = "WashU"
+site_uni = ""
+status = "onboarding"
+order = 10
+stage = 0
+started = "2026-11-05"
+window = [2016, 2026]
+
+[ids]
+openalex = ["I204465549"]
+# Proposed (owner D-decisions pending, hierarchy/washu/STAGE-0.md). Related = regex-only: an authorship tagged only with these counts when its raw string matches the regex.
+openalex_related = ["I1299725459", "I1324021844", "I4390039355", "I4210135078", "I4405268834"]
+openalex_excluded = ["I4402554118", "I4405285522"]   # Taylor Geospatial Institute (multi-university consortium); Washington University of Virginia (a different institution)
+ror = "https://ror.org/01yc7t268"
+ids_note = """OpenAlex institutions table of the filtered snapshot (no API credits; checked 2026-11-05): I204465549 'Washington University in St. Louis', ROR 01yc7t268, US, lineage [I204465549] (no parent).
+Lineage children: Washington University Physicians I4387155636, Tyson Research Center I4405285149, Taylor Family Institute for Innovative Psychiatric Research I4392738227, Children's Discovery Institute I4210122064.
+Associated, not lineage: Barnes-Jewish Hospital I1299725459 (ROR 04wyvkr12; BJC HealthCare I1328499231 is its parent), St. Louis Children's Hospital I1324021844 (00qw1qw03), Alvin J. Siteman Cancer Center I4390039355 (03jrmgg47,
+lineage holds Barnes-Jewish and BJC), Washington University Medical Center I4210135078 (036c27j91), Central Institute for the Deaf I2802002475, Taylor Geospatial Institute I4402554118 (consortium).
+Musculoskeletal Research Center, Washington University in St. Louis I4405268834 has its own lineage (a WashU unit recorded as a separate institution). There is no separate institution for the School of Medicine:
+its authorships carry the university id. Look-alikes with their own lineages (never WashU): Washington University of Virginia I4405285522, George Washington University I193531525, Central/Eastern/Western Washington
+University, Trinity Washington University. ROR relationships still to verify at api.ror.org/v2/organizations/01yc7t268 (no network lookup made in this run)."""
+
+[web]
+domains = ["washu.edu", "wustl.edu"]   # wustl.edu was the domain until 2023-24; wustl.edu hosts now 301 to washu.edu (checked 2026-11-05)
+email_domains = ["wustl.edu", "washu.edu", "cse.wustl.edu", "seas.wustl.edu", "wusm.wustl.edu", "go.wustl.edu"]
+wayback_only_suffixes = []
+excluded_hosts = ["uw.edu", "wsu.edu", "gwu.edu", "wlu.edu", "umsl.edu", "slu.edu"]
+
+[affiliation]
+regex = '''(?<!george\s)(?<!trinity\s)(?<!central\s)(?<!eastern\s)(?<!western\s)\bwashington\s+univ\w*\.?(?:\s*,\s*|\s+)(?:in\s+|at\s+)?(?:st\.?|saint)\s*\.?\s*louis|(?<!george\s)(?<!trinity\s)(?<!central\s)(?<!eastern\s)(?<!western\s)\bwashington\s+university\s+(?:school\s+of\s+(?:medicine|law|dentistry)|medical|physicians)|\bwustl\b|\bwashu\b|\bwash\.?\s*u\.?\s+(?:in\s+)?st\.?\s*louis'''
+own_units = '''\b(?:mcdonnell\s+genome|materials\s+science\s+and\s+engineering|clinical\s+and\s+translational\s+sciences|informatics,\s+data\s+science\s+and\s+biostatistics|public\s+health|taylor\s+family\s+institute\s+for\s+innovative\s+psychiatric\s+research|children.s\s+discovery)\s+institute\b|\bmallinckrodt\s+institute\s+of\s+radiology\b|\binstitute\s+for\s+informatics\b|\bmcdonnell\s+center\s+for\s+systems\s+neuroscience\b'''
+loose = '''washington\s+univ\w*\.?[\s,]+(?:in\s+|at\s+)?(?:st\.?|saint)\s*\.?\s*louis|washington\s+university\s+(?:school\s+of\s+medicine|medical)|\bwustl\b|\bwashu\b|barnes[-\s]jewish|st\.?\s+louis\s+children|siteman\s+cancer'''
+must_match = [
+  "Department of Computer Science and Engineering, Washington University in St. Louis, St. Louis, MO 63130, USA",
+  "Washington University in Saint Louis",
+  "Washington University, St. Louis, MO",
+  "Washington University in St Louis, USA",
+  "Washington University School of Medicine, St. Louis, MO",
+  "Washington University School of Medicine in St. Louis, Institute for Informatics",
+  "Washington Univ. in St. Louis",
+  "Washington University, Saint Louis, Missouri",
+  "WashU, St. Louis",
+  "jdoe@wustl.edu",
+  "McKelvey School of Engineering, Washington University School of Medicine",
+  "Washington University in St. Louis School of Medicine and Barnes-Jewish Hospital",
+  "Washington University School of Law, St. Louis",
+]
+must_not_match = [
+  "University of Washington, Seattle, WA 98195, USA",
+  "Paul G. Allen School of Computer Science & Engineering, University of Washington",
+  "Washington State University, Pullman, WA",
+  "George Washington University, Washington, DC",
+  "George Washington University School of Medicine and Health Sciences",
+  "Washington and Lee University, Lexington, VA",
+  "Central Washington University, Ellensburg",
+  "Eastern Washington University, Cheney",
+  "Western Washington University, Bellingham",
+  "Washington College, Chestertown, MD",
+  "Trinity Washington University",
+  "Washington University of Virginia",
+  "University of Missouri-St. Louis",
+  "Saint Louis University, St. Louis, MO",
+  "Washington University, Seattle",
+  "Seattle Children's Hospital, University of Washington",
+  "jdoe@uw.edu",
+  "jdoe@gwu.edu",
+  "Seattle, Washington",
+  "Maryville University of Saint Louis",
+]
+
+[dblp]
+affiliation_strings = ["Washington University in St. Louis", "Washington University, St. Louis", "Washington University in Saint Louis", "Washington University School of Medicine", "Washington University"]
+legacy_sweep = ""
+
+[rules]
+foreign_title_exception = false
+
+[census]
+center_units = []
+computing_departments = ["CSE"]
+home_units = {"Computer Science and Engineering" = '^(?:Department of )?Computer Science (?:and|&) Engineering$', "Electrical and Systems Engineering" = '^(?:Preston M\. Green )?(?:Department of )?Electrical (?:and|&) Systems Engineering$', "Biomedical Engineering" = '^(?:Department of )?Biomedical Engineering$', "Statistics and Data Science" = '^(?:Department of )?Statistics (?:and|&) Data Science$', "Mathematics and Statistics" = '^(?:Department of )?Mathematics(?: (?:and|&) Statistics)?$', "Olin Business School" = '^(?:Olin Business School|Olin)$', "Psychological and Brain Sciences" = '^(?:Department of )?Psychological (?:and|&) Brain Sciences$', "Institute for Informatics, Data Science and Biostatistics" = '^(?:Institute for Informatics, Data Science (?:and|&) Biostatistics|I2DB)$', "Biostatistics" = '^(?:Division of )?Biostatistics$'}
+rank_words = {teaching = '\bprofessor\s+of\s+practice|\bsenior\s+lecturer', adjunct = '\badjunct\b', research = '\bresearch\s+(?:associate|assistant)\s+professor'}
+
+[sweep_check]
+exceptions = []
+
+[cs_related]
+not_faculty = {}
+share_test_settles = []
+
+[site]
+depts = {CSE = "Department of Computer Science and Engineering"}
+full_codes = ["CSE"]
+
+[periods]
+school_regex = ''
+profile_patterns = ["cse.washu.edu/faculty-research/faculty/{first}-{last}.html", "engineering.washu.edu/faculty/{first}-{last}.html"]
+
+[[departments]]
+code = "CSE"
+name = "Department of Computer Science and Engineering"
+unit = "McKelvey School of Engineering"
+title_match = '''Computer Science'''
+coverage = "full"
+url = "https://cse.washu.edu/"
+  # slots are PROVISIONAL: stage 1 fixes the URL eras from the 2016 homepage links (wustl.edu to washu.edu move, 2023-24)
+  [[departments.listings]]
+  slot = "CSE faculty (wustl.edu)"
+  kind = "main"
+  url = "cse.wustl.edu/faculty-research/directory.html"
+  from = "20160101"
+  to = "20231231"
+  [[departments.listings]]
+  slot = "CSE faculty"
+  kind = "main"
+  url = "cse.washu.edu/faculty-research/directory.html"
+  from = "20240101"
+  to = "20261231"
+
+[[departments]]
+code = "ESE"
+name = "Preston M. Green Department of Electrical and Systems Engineering"
+unit = "McKelvey School of Engineering"
+title_match = '''Electrical (?:and|&) Systems Engineering'''
+coverage = "affiliated"
+url = "https://ese.washu.edu/"
+  [[departments.listings]]
+  slot = "ESE faculty (wustl.edu)"
+  kind = "main"
+  url = "ese.wustl.edu/faculty-research/directory.html"
+  from = "20160101"
+  to = "20231231"
+  [[departments.listings]]
+  slot = "ESE faculty"
+  kind = "main"
+  url = "ese.washu.edu/faculty-research/directory.html"
+  from = "20240101"
+  to = "20261231"
+
+[[departments]]
+code = "BME"
+name = "Department of Biomedical Engineering"
+unit = "McKelvey School of Engineering"
+title_match = '''Biomedical Engineering'''
+coverage = "affiliated"
+url = "https://bme.washu.edu/"
+  [[departments.listings]]
+  slot = "BME faculty (wustl.edu)"
+  kind = "main"
+  url = "bme.wustl.edu/faculty-research/directory.html"
+  from = "20160101"
+  to = "20231231"
+  [[departments.listings]]
+  slot = "BME faculty"
+  kind = "main"
+  url = "bme.washu.edu/faculty-research/directory.html"
+  from = "20240101"
+  to = "20261231"
+
+[[affiliated_units]]
+code = "SDS"
+name = "Department of Statistics and Data Science (Arts & Sciences)"
+url = "https://sds.washu.edu/people"
+listings = ["sds.washu.edu/people", "statistics.wustl.edu/people"]
+
+[[affiliated_units]]
+code = "MATH"
+name = "Department of Mathematics and Statistics"
+url = "https://math.washu.edu/people"
+listings = ["math.washu.edu/people", "math.wustl.edu/people"]
+
+[[affiliated_units]]
+code = "OLIN"
+name = "Olin Business School"
+url = "https://olin.washu.edu/faculty-and-research/faculty-directory/index.php"
+listings = ["olin.wustl.edu/faculty-and-research/faculty-directory/index.php", "olin.washu.edu/faculty-and-research/faculty-directory/index.php"]
+
+[[affiliated_units]]
+code = "PBS"
+name = "Department of Psychological and Brain Sciences"
+url = "https://psych.washu.edu/"
+listings = ["psych.wustl.edu/people/faculty", "psychweb.wustl.edu/people/faculty"]
+
+[[affiliated_units]]
+code = "I2DB"
+name = "Institute for Informatics, Data Science and Biostatistics (School of Medicine)"
+url = "https://i2db.wustl.edu/faculty-staff/"
+listings = ["i2db.wustl.edu/faculty-staff/", "i2db.wustl.edu/people/"]
+
+[[affiliated_units]]
+code = "BIOS"
+name = "Division of Biostatistics (School of Medicine; hosted by I2DB)"
+url = "https://i2db.wustl.edu/faculty-staff/"
+listings = ["biostat.wustl.edu/people/faculty"]
+
+[thesis]
+kind = "none"
+base_url = "https://repository.library.washu.edu/"
+endpoints = []
+robots = "allowed"
+note = """WashU Scholarly Repository (formerly Open Scholarship; bepress Digital Commons; openscholarship.wustl.edu 301s to repository.library.washu.edu). robots.txt 2026-11-05: '*' group only (two named scanner agents allowed, '^Byte' disallowed), no AI-agent rules, NO Crawl-delay; Disallow /do/ (so the OAI-PMH endpoint /do/oai/ is closed to us) and the /cgi/ scripts; record pages and sitemaps allowed.
+ETD records by sitemap: eng_etds 1,366, art_sci_etds 3,472 (the /etd/ umbrella sitemap lists only ~1,180). At our own courtesy delay of 10 s that is 3.8 h for Engineering, 13.4 h with Arts & Sciences.
+Not yet classed usable: stage 6 decides by a 20-record pilot of whether the record page carries an advisor line."""
+
+[collector]
+channels = ["oa_arxiv", "openalex", "proceedings", "arxiv_title", "dblp_ee", "s2", "europepmc", "pmc", "figshare", "labpages", "pihomes", "wayback_acm"]
+
+[students]
+rosters = []
+directories = []
+adviser_directories = []
+sources = [
+  "WashU Scholarly Repository ETD records (advisor field; record pages only, no OAI)",
+  "CSE PhD graduation / defense announcements (Wayback)",
+  "lab member pages and PI homepages (live where robots allows, else Wayback)",
+]
+
+[labpages]
+hints = ["<lab>.cse.wustl.edu", "<lab>.wustl.edu", "sites.wustl.edu/<lab>", "sites.google.com/view/<lab>", "<name>.github.io", "www.cse.wustl.edu/~<name>/"]
+
+[repository]
+name = "WashU Scholarly Repository (formerly Open Scholarship, bepress Digital Commons), through OpenAlex and CORE; record pages by sitemap only, /do/ OAI disallowed"
+pattern = '''repository\.library\.washu\.edu|openscholarship\.wustl\.edu|digitalcommons\.wustl\.edu|Washington University Open Scholarship|WashU Scholarly Repository'''
+
+[store]
+path = "/n/fs/resemble/homogenizing-science/stores/washu"
+
+[[hosts]]
+host = "web.archive.org"
+use = "live"
+purpose = "Wayback id_ captures and CDX (listings 2016-2026, lab pages)"
+probe = "https://web.archive.org/web/2020id_/https://cse.wustl.edu/"
+
+[[hosts]]
+host = "cse.washu.edu"
+use = "live"
+purpose = "Department of Computer Science and Engineering (McKelvey)"
+probe = "https://cse.washu.edu/faculty-research/directory.html"
+
+[[hosts]]
+host = "ese.washu.edu"
+use = "live"
+purpose = "Electrical and Systems Engineering directory"
+probe = "https://ese.washu.edu/faculty-research/directory.html"
+
+[[hosts]]
+host = "bme.washu.edu"
+use = "live"
+purpose = "Biomedical Engineering directory"
+probe = "https://bme.washu.edu/faculty-research/directory.html"
+
+[[hosts]]
+host = "engineering.washu.edu"
+use = "live"
+purpose = "McKelvey School of Engineering (school directory, faculty pages)"
+probe = "https://engineering.washu.edu/about/school-organization/directory.html"
+
+[[hosts]]
+host = "sds.washu.edu"
+use = "live"
+purpose = "Statistics and Data Science people (Drupal; Crawl-delay 1)"
+probe = "https://sds.washu.edu/people"
+
+[[hosts]]
+host = "math.washu.edu"
+use = "live"
+purpose = "Mathematics and Statistics people"
+probe = "https://math.washu.edu/people"
+
+[[hosts]]
+host = "olin.washu.edu"
+use = "live"
+purpose = "Olin Business School faculty directory"
+probe = "https://olin.washu.edu/faculty-and-research/faculty-directory/index.php"
+
+[[hosts]]
+host = "psych.washu.edu"
+use = "live"
+purpose = "Psychological and Brain Sciences people"
+probe = "https://psych.washu.edu/"
+
+[[hosts]]
+host = "i2db.wustl.edu"
+use = "live"
+purpose = "Institute for Informatics, Data Science and Biostatistics (School of Medicine); robots Crawl-delay 30 is the cludo group only"
+probe = "https://i2db.wustl.edu/faculty-staff/"
+
+[[hosts]]
+host = "sites.wustl.edu"
+use = "live"
+purpose = "WordPress lab sites (many WashU labs)"
+probe = "https://sites.wustl.edu/"
+
+[[hosts]]
+host = "repository.library.washu.edu"
+use = "live"
+purpose = "WashU Scholarly Repository (ETD advisor field; record pages only)"
+probe = "https://repository.library.washu.edu/etd/"
+
+[[hosts]]
+host = "api.ror.org"
+use = "live"
+purpose = "ROR verification"
