@@ -1,0 +1,306 @@
+{
+ "school": "michigan",
+ "date": "2026-11-05",
+ "seed": 20261102,
+ "n_verdicts": 230,
+ "files": {
+  "pis.json": "b34cbb0e0dd38161fed910092cdf2bc7f089a4ab83d5b4df484764b48a5c971a",
+  "students.json": "38ad5274d5b08a7819208a3fef35db93e00a8b3c187c7510a2bc0145926cd71d",
+  "lab_papers.jsonl.gz": "d8c1740489150b5a151e16e2aa14d04a408851d2041c8695e2214e8b330fe5f0",
+  "student_papers.jsonl.gz": "74bfbd589772756f56b4a7c14fab5d5de48575bc4d374d275637d31153ad4f7a",
+  "copies.json": "a35ed73c06b03b9acc0e2bf9eb41409d25443f4cc1202b616d54b9d4594b4963"
+ },
+ "files_now": {
+  "pis.json": "b34cbb0e0dd38161fed910092cdf2bc7f089a4ab83d5b4df484764b48a5c971a",
+  "students.json": "38ad5274d5b08a7819208a3fef35db93e00a8b3c187c7510a2bc0145926cd71d",
+  "lab_papers.jsonl.gz": "d8c1740489150b5a151e16e2aa14d04a408851d2041c8695e2214e8b330fe5f0",
+  "student_papers.jsonl.gz": "74bfbd589772756f56b4a7c14fab5d5de48575bc4d374d275637d31153ad4f7a",
+  "copies.json": "a35ed73c06b03b9acc0e2bf9eb41409d25443f4cc1202b616d54b9d4594b4963"
+ },
+ "lab_precision_uniform": {
+  "k": 45,
+  "n": 48,
+  "p": 0.9375,
+  "lo": 0.8316,
+  "hi": 0.9785,
+  "unclear": 2
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 45,
+  "n": 48,
+  "p": 0.9375,
+  "lo": 0.8316,
+  "hi": 0.9785,
+  "unclear": 2
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "k": 4,
+   "n": 4,
+   "p": 1.0,
+   "lo": 0.5101,
+   "hi": 1.0,
+   "unclear": 1
+  },
+  "listing": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "identity_not_reviewed": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "lab_precision_all40": {
+  "k": 59,
+  "n": 62,
+  "p": 0.9516,
+  "lo": 0.8671,
+  "hi": 0.9834,
+  "unclear": 3
+ },
+ "student_precision_uniform": {
+  "k": 50,
+  "n": 50,
+  "p": 1.0,
+  "lo": 0.9287,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "student_precision_strata": {
+  "advisee_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "full_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "within_lab_byline_match": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "student_precision_all40": {
+  "k": 65,
+  "n": 65,
+  "p": 1.0,
+  "lo": 0.9442,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_coverage": {
+  "k": 42,
+  "n": 44,
+  "p": 0.9545,
+  "lo": 0.8487,
+  "hi": 0.9874
+ },
+ "lab_coverage_items": {
+  "drawn": 50,
+  "true_lab_papers": 44,
+  "not_lab_papers_absent": 5,
+  "not_lab_papers_in_build": 0
+ },
+ "student_coverage": {
+  "k": 43,
+  "n": 47,
+  "p": 0.9149,
+  "lo": 0.8007,
+  "hi": 0.9664
+ },
+ "student_coverage_items": {
+  "drawn": 50,
+  "no_coauthored_paper": 3
+ },
+ "failures": {
+  "namesake": 2,
+  "not_a_paper": 1,
+  "missing_from_build": 2,
+  "student_not_linked": 4
+ },
+ "incorrect": [
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "Mark W Newman|None|https://openalex.org/W2375070860",
+   "failure_type": "namesake",
+   "reason": "Byline is M. E. J. Newman of the Physics department (Michigan/Oxford); PI is Mark W Newman, CSE",
+   "policy": null
+  },
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "H.V. Jagadish|None|https://openalex.org/W2789814488",
+   "failure_type": "not_a_paper",
+   "reason": "SSRN highlights/summary of a conference hosted at Michigan, not a research paper",
+   "policy": null
+  },
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "Y Z|None|https://openalex.org/W7165142954",
+   "failure_type": "namesake",
+   "reason": "PI name is unresolved \"Y Z\"; byline Y Z at UIUC/Michigan on a thorium molten-salt materials paper, no sign it is the CSE/ECE PI",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Necmiye Ozay|conf/amcc/KaragulleVO26",
+   "failure_type": "missing_from_build",
+   "reason": "2025-26 preprint by the PI (Michigan listing through 2026) with her student; OpenAlex has the arXiv record but the build lacks it",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Viswanath Nagarajan|conf/fsttcs/EneNS17",
+   "failure_type": "missing_from_build",
+   "reason": "PI period since 2014, OpenAlex affiliation is the bare unit name Industrial and Operations Engineering; arXiv 2016-10 record not in build",
+   "policy": null
+  },
+  {
+   "sample": "student_coverage",
+   "stratum": "thesis_advisee_phd_ge_2018",
+   "item": "Alex A. Gorodetsky|ext:michigan:brian-chen",
+   "failure_type": "student_not_linked",
+   "reason": "PI DBLP lists 2 co-authored papers, lab papers in build, but the student has 0 linked papers",
+   "policy": null
+  },
+  {
+   "sample": "student_coverage",
+   "stratum": "thesis_advisee_phd_ge_2018",
+   "item": "Alex A. Gorodetsky|ext:michigan:doruk-aksoy",
+   "failure_type": "student_not_linked",
+   "reason": "PI DBLP lists 5 co-authored papers, lab papers in build, but the student has 0 linked papers",
+   "policy": null
+  },
+  {
+   "sample": "student_coverage",
+   "stratum": "thesis_advisee_phd_ge_2018",
+   "item": "Samet Oymak|ext:michigan:yahya-sattar",
+   "failure_type": "student_not_linked",
+   "reason": "PI DBLP lists 13 co-authored papers, lab papers in build, but the student has 0 linked papers",
+   "policy": null
+  },
+  {
+   "sample": "student_coverage",
+   "stratum": "thesis_advisee_phd_ge_2018",
+   "item": "Y Z|ext:michigan:kevin-wandke",
+   "failure_type": "student_not_linked",
+   "reason": "PI DBLP lists 4 co-authored papers, lab papers in build, but the student has 0 linked papers",
+   "policy": null
+  }
+ ],
+ "unclear": [
+  {
+   "sample": "lab_precision",
+   "item": "Tawanna Ruth Dillahunt|None|https://openalex.org/W2622792756",
+   "reason": "CACM Research for Practice column item; sheet does not show whether it is a research article"
+  },
+  {
+   "sample": "lab_precision",
+   "item": "Lei Ying|None|https://openalex.org/W3135772224",
+   "reason": "Clinical lung-CT paper from Michigan Medicine radiology group; ORCID match to the ECE PI but topic and affiliation leave identity undecided"
+  },
+  {
+   "sample": "lab_precision",
+   "item": "Mingyan Liu|None|https://openalex.org/W7221657874",
+   "reason": "Advisee route only (Naghizadeh, PhD 2016); no PI affiliation on the book byline, evidence does not decide Michigan work"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Jia Deng|conf/icml/YangD19",
+   "reason": "May 2019 arXiv paper; PI listed at Michigan through 2019 but the record gives no PI institution and the co-author is a Princeton student, so evidence does not decide"
+  }
+ ],
+ "screened": [
+  {
+   "key": "Hun-Seok Kim|ext:michigan:mingyu-yang",
+   "name": "Mingyu Yang",
+   "reason": "listed after the M.S. entries on the alumni page; degree not stated as PhD"
+  },
+  {
+   "key": "Y Z|ext:michigan:yanqin-zhai",
+   "name": "Yanqin Zhai",
+   "reason": "listed among M.S. entries (Luca Murg, Kelsey Luo); PhD not stated, PI name unresolved (Y Z)"
+  },
+  {
+   "key": "Todd Hollon|ext:michigan:alexander-gedeon",
+   "name": "Alexander Gedeon",
+   "reason": "lab page lists Graduate Student (2024), no PhD stated"
+  },
+  {
+   "key": "Todd Hollon|ext:michigan:daniel-li",
+   "name": "Daniel Li",
+   "reason": "lab page lists Graduate Student (2024), no PhD stated"
+  },
+  {
+   "key": "Todd Hollon|ext:michigan:eric-landgraf",
+   "name": "Eric Landgraf",
+   "reason": "lab page lists Graduate Student (2024), no PhD stated"
+  },
+  {
+   "key": "Clayton D Scott|ext:michigan:aditya-gangrade",
+   "name": "Aditya Gangrade",
+   "reason": "page says postdoc 2023; PhD not stated"
+  },
+  {
+   "key": "Todd Hollon|ext:michigan:renly-hou",
+   "name": "Renly Hou",
+   "reason": "lab page lists a post-lab position only; PhD not stated"
+  },
+  {
+   "key": "Cyrus Omar|ext:michigan:david-moon",
+   "name": "David Moon",
+   "reason": "listed as Former Advisee; degree not stated"
+  },
+  {
+   "key": "Clayton D Scott|ext:michigan:han-bao",
+   "name": "Han Bao",
+   "reason": "visitor/postdoc list, PhD not stated"
+  }
+ ],
+ "population": {
+  "n_lab_papers": 14396,
+  "n_student_papers": 3356,
+  "n_coverage_pool": 9951,
+  "n_student_candidates": 82
+ },
+ "round": {
+  "id": "r2",
+  "sizes": {
+   "uniform": 50,
+   "stratum": 5,
+   "cov": 50,
+   "cands": 200
+  },
+  "judged": {
+   "lab_precision": 65,
+   "student_precision": 65,
+   "lab_coverage": 50,
+   "student_coverage": 50
+  }
+ }
+}

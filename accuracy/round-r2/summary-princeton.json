@@ -1,0 +1,219 @@
+{
+ "school": "princeton",
+ "date": "2026-11-05",
+ "seed": 20261102,
+ "n_verdicts": 230,
+ "files": {
+  "pis.json": "384eadf078a96e6f85e80132afbe3095fbde9b82b943935c2f8d391dda0c08e7",
+  "students.json": "e6c4d89e5ac4c0c80c7a213dbfb5192d02c0455fdd2d452f76c601e53896660a",
+  "lab_papers.jsonl.gz": "c9d3ed031f589dd2d06d0261a0a5d39982cab04280176df53357b4abadf8c070",
+  "student_papers.jsonl.gz": "d1529d4d058739f1ba70023a3e72c2b25f0672d0891f2126f20078e447fad8c1",
+  "copies.json": "7aefcdf409c88b90eb9191ca7e1148145d2103448b0c5800bc3a6f682bc4e85c"
+ },
+ "files_now": {
+  "pis.json": "384eadf078a96e6f85e80132afbe3095fbde9b82b943935c2f8d391dda0c08e7",
+  "students.json": "e6c4d89e5ac4c0c80c7a213dbfb5192d02c0455fdd2d452f76c601e53896660a",
+  "lab_papers.jsonl.gz": "c9d3ed031f589dd2d06d0261a0a5d39982cab04280176df53357b4abadf8c070",
+  "student_papers.jsonl.gz": "d1529d4d058739f1ba70023a3e72c2b25f0672d0891f2126f20078e447fad8c1",
+  "copies.json": "7aefcdf409c88b90eb9191ca7e1148145d2103448b0c5800bc3a6f682bc4e85c"
+ },
+ "lab_precision_uniform": {
+  "k": 49,
+  "n": 49,
+  "p": 1.0,
+  "lo": 0.9273,
+  "hi": 1.0,
+  "unclear": 1
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 49,
+  "n": 49,
+  "p": 1.0,
+  "lo": 0.9273,
+  "hi": 1.0,
+  "unclear": 1
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "listing": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "identity_not_reviewed": {
+   "k": 3,
+   "n": 4,
+   "p": 0.75,
+   "lo": 0.3006,
+   "hi": 0.9544,
+   "unclear": 1
+  }
+ },
+ "lab_precision_all40": {
+  "k": 62,
+  "n": 63,
+  "p": 0.9841,
+  "lo": 0.9154,
+  "hi": 0.9972,
+  "unclear": 2
+ },
+ "student_precision_uniform": {
+  "k": 50,
+  "n": 50,
+  "p": 1.0,
+  "lo": 0.9287,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "student_precision_strata": {
+  "advisee_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "full_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "within_lab_byline_match": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "student_precision_all40": {
+  "k": 65,
+  "n": 65,
+  "p": 1.0,
+  "lo": 0.9442,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_coverage": {
+  "k": 41,
+  "n": 41,
+  "p": 1.0,
+  "lo": 0.9143,
+  "hi": 1.0
+ },
+ "lab_coverage_items": {
+  "drawn": 50,
+  "true_lab_papers": 41,
+  "not_lab_papers_absent": 5,
+  "not_lab_papers_in_build": 0
+ },
+ "student_coverage": {
+  "k": 44,
+  "n": 44,
+  "p": 1.0,
+  "lo": 0.9197,
+  "hi": 1.0
+ },
+ "student_coverage_items": {
+  "drawn": 50,
+  "no_coauthored_paper": 6
+ },
+ "failures": {
+  "not_a_paper": 1
+ },
+ "incorrect": [
+  {
+   "sample": "lab_precision",
+   "stratum": "identity_not_reviewed",
+   "item": "Ruth Fong|paper_dc5799fce65912cc4820|https://openalex.org/W4226427511",
+   "failure_type": "not_a_paper",
+   "reason": "Record is the xxAI edited volume itself (volume DOI, no chapter suffix; byline = the six volume editors), not a research paper",
+   "policy": null
+  }
+ ],
+ "unclear": [
+  {
+   "sample": "lab_precision",
+   "item": "Janet Vertesi|paper_0e9125c934190bb68bf3|https://openalex.org/W4408238337",
+   "reason": "Book review of Rahman's 'Inside the Invisible Cage' in Eur. J. Sociology; PI/affiliation fine but evidence does not decide whether a book review counts as a research output"
+  },
+  {
+   "sample": "lab_precision",
+   "item": "Zhuang Liu|None|https://openalex.org/W7164000695",
+   "reason": "Authorship institution is LLNL; raw affiliation string lists many institutions with symbol markers and the sheet cannot show which marker is Liu's; appointment period 2025-07 covers the date but affiliation unresolved"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Felix Heide|conf/cvpr/WaliaWBMJLRH22",
+   "reason": "Heide's only OpenAlex affiliation on this paper is Algolux (no institution); build included it via advisee Bijelic; no page 1 to show Princeton"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Tom Griffiths|conf/cogsci/BourginAG18",
+   "reason": "OpenAlex gives no PI affiliation (eScholarship); Griffiths period starts 2018 (arrival year) so Princeton work is not decided"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Tom Griffiths|conf/cogsci/HarootonianN0H24",
+   "reason": "CogSci paper on Griffiths DBLP page; period 2018- covers it but there is no OpenAlex record or affiliation evidence to show Princeton work (would be missing_from_build if counted as a lab paper)"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Tom Griffiths|conf/cogsci/HawkinsLG021",
+   "reason": "CogSci paper on Griffiths DBLP page; period 2018- covers it but there is no OpenAlex record or affiliation evidence to show Princeton work (would be missing_from_build if counted as a lab paper)"
+  }
+ ],
+ "screened": [
+  {
+   "key": "Amit Levy|member_cs_structure_f257c10d2eb84fc2da58",
+   "name": "Ziyang Xu",
+   "reason": "thesis/lab source names another person as adviser, not this PI (not a confirmed advisee of this PI)"
+  },
+  {
+   "key": "Jennifer Rexford|member_cs_c2a9fc95062bbdbc5c9a",
+   "name": "Ryan Beckett",
+   "reason": "thesis/lab source names another person as adviser, not this PI (not a confirmed advisee of this PI)"
+  },
+  {
+   "key": "Zachary Kincaid|member_b8ec3c00906cc8be0b2a",
+   "name": "Jennifer Lam",
+   "reason": "thesis/lab source names another person as adviser, not this PI (not a confirmed advisee of this PI)"
+  }
+ ],
+ "population": {
+  "n_lab_papers": 9497,
+  "n_student_papers": 7563,
+  "n_coverage_pool": 5413,
+  "n_student_candidates": 583
+ },
+ "round": {
+  "id": "r2",
+  "sizes": {
+   "uniform": 50,
+   "stratum": 5,
+   "cov": 50,
+   "cands": 200
+  },
+  "judged": {
+   "lab_precision": 65,
+   "student_precision": 65,
+   "lab_coverage": 50,
+   "student_coverage": 50
+  }
+ }
+}

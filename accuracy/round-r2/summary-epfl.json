@@ -1,0 +1,204 @@
+{
+ "school": "epfl",
+ "date": "2026-11-05",
+ "seed": 20261102,
+ "n_verdicts": 230,
+ "files": {
+  "pis.json": "0791bb3f345d06525c2286f5102126c10172202bb95bb481107d2ae3594c69c4",
+  "students.json": "c36243e2d4e4b38f1dfff5534f4997e5477eba24132dd117281e2619335ad1bf",
+  "lab_papers.jsonl.gz": "09024f8ed1490ac7e6e2f3ffe3ba98698a126f527cb2ad5950f5e4b451c44018",
+  "student_papers.jsonl.gz": "bf6461ab9aa6805fcf69b9abaf6feb092f6841335bc444f46a62034151e7b4bd",
+  "copies.json": "6b4d19e587e51aa47353113a7c5060444854a3c878bbd03e839d8a2204f422bf"
+ },
+ "files_now": {
+  "pis.json": "0791bb3f345d06525c2286f5102126c10172202bb95bb481107d2ae3594c69c4",
+  "students.json": "c36243e2d4e4b38f1dfff5534f4997e5477eba24132dd117281e2619335ad1bf",
+  "lab_papers.jsonl.gz": "09024f8ed1490ac7e6e2f3ffe3ba98698a126f527cb2ad5950f5e4b451c44018",
+  "student_papers.jsonl.gz": "bf6461ab9aa6805fcf69b9abaf6feb092f6841335bc444f46a62034151e7b4bd",
+  "copies.json": "6b4d19e587e51aa47353113a7c5060444854a3c878bbd03e839d8a2204f422bf"
+ },
+ "lab_precision_uniform": {
+  "k": 48,
+  "n": 50,
+  "p": 0.96,
+  "lo": 0.8654,
+  "hi": 0.989,
+  "unclear": 0
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 48,
+  "n": 50,
+  "p": 0.96,
+  "lo": 0.8654,
+  "hi": 0.989,
+  "unclear": 0
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "listing": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "identity_not_reviewed": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "lab_precision_all40": {
+  "k": 63,
+  "n": 65,
+  "p": 0.9692,
+  "lo": 0.8946,
+  "hi": 0.9915,
+  "unclear": 0
+ },
+ "student_precision_uniform": {
+  "k": 49,
+  "n": 49,
+  "p": 1.0,
+  "lo": 0.9273,
+  "hi": 1.0,
+  "unclear": 1
+ },
+ "student_precision_strata": {
+  "advisee_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "full_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "within_lab_byline_match": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "student_precision_all40": {
+  "k": 64,
+  "n": 64,
+  "p": 1.0,
+  "lo": 0.9434,
+  "hi": 1.0,
+  "unclear": 1
+ },
+ "lab_coverage": {
+  "k": 43,
+  "n": 44,
+  "p": 0.9773,
+  "lo": 0.8819,
+  "hi": 0.996
+ },
+ "lab_coverage_items": {
+  "drawn": 50,
+  "true_lab_papers": 44,
+  "not_lab_papers_absent": 6,
+  "not_lab_papers_in_build": 0
+ },
+ "student_coverage": {
+  "k": 47,
+  "n": 48,
+  "p": 0.9792,
+  "lo": 0.891,
+  "hi": 0.9963
+ },
+ "student_coverage_items": {
+  "drawn": 50,
+  "no_coauthored_paper": 2
+ },
+ "failures": {
+  "not_a_paper": 2,
+  "student_not_linked": 1,
+  "missing_from_build": 1
+ },
+ "incorrect": [
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "Maria Brbic|None|https://openalex.org/W4309849215",
+   "failure_type": "not_a_paper",
+   "reason": "PSB session introduction (editorial), not a research paper",
+   "policy": null
+  },
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "Alexander Mathis|epfl_54fee81f2fa6c5d3685e|https://openalex.org/W4392270717",
+   "failure_type": "not_a_paper",
+   "reason": "Zenodo dataset record (processed data and trained models), not a paper",
+   "policy": null
+  },
+  {
+   "sample": "student_coverage",
+   "stratum": "thesis_advisee_phd_ge_2018",
+   "item": "Andrei Popescu-Belis|epfl_person_9ec466a15fb1e82d5b2f",
+   "failure_type": "student_not_linked",
+   "reason": "PI DBLP lists 8 co-authored papers, lab papers in build, but the student has 0 linked papers",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Tanja Käser|conf/genaila/TashkovskaNMK25",
+   "failure_type": "missing_from_build",
+   "reason": "2025 ML4ED workshop paper on the PI DBLP page, PI period open since 2020 at EPFL; OpenAlex has no record, so absent from build",
+   "policy": null
+  }
+ ],
+ "unclear": [
+  {
+   "sample": "student_precision",
+   "item": "Volkan Cevher|epfl_person_ae4858afd46606a78722|labpage:afa08852ec46c04ebdddeb6cd172707cc7337ad9",
+   "reason": "Lab-paper record has no byline (n=0); evidence cannot show the student is an author"
+  }
+ ],
+ "screened": [],
+ "population": {
+  "n_lab_papers": 13908,
+  "n_student_papers": 15259,
+  "n_coverage_pool": 7924,
+  "n_student_candidates": 571
+ },
+ "round": {
+  "id": "r2",
+  "sizes": {
+   "uniform": 50,
+   "stratum": 5,
+   "cov": 50,
+   "cands": 200
+  },
+  "judged": {
+   "lab_precision": 65,
+   "student_precision": 65,
+   "lab_coverage": 50,
+   "student_coverage": 50
+  }
+ }
+}

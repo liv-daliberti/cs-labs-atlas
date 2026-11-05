@@ -1,0 +1,254 @@
+{
+ "school": "berkeley",
+ "date": "2026-11-05",
+ "seed": 20261102,
+ "n_verdicts": 230,
+ "files": {
+  "pis.json": "70255b78293c3bf49e45b5f845df20af50008d45ca92bbdc5a6a3f5818ed82cf",
+  "students.json": "e0bf0ca736ea3cdf397160aaa1094c965bc369321ffd4c58b25ef86d83430fc7",
+  "lab_papers.jsonl.gz": "97f482152841922de267aa08997a76c813f2227e88de6397387758d4f5a8cace",
+  "student_papers.jsonl.gz": "022fd5de685f6c1fca2d646655c95a86535264e8d7649a18495e9a3d7c900bec",
+  "copies.json": "7b4b88ffecaf0155893ff167e4ec0f2497982ac25d2d0a0e73ba0db6ce0ab538"
+ },
+ "files_now": {
+  "pis.json": "70255b78293c3bf49e45b5f845df20af50008d45ca92bbdc5a6a3f5818ed82cf",
+  "students.json": "e0bf0ca736ea3cdf397160aaa1094c965bc369321ffd4c58b25ef86d83430fc7",
+  "lab_papers.jsonl.gz": "97f482152841922de267aa08997a76c813f2227e88de6397387758d4f5a8cace",
+  "student_papers.jsonl.gz": "022fd5de685f6c1fca2d646655c95a86535264e8d7649a18495e9a3d7c900bec",
+  "copies.json": "7b4b88ffecaf0155893ff167e4ec0f2497982ac25d2d0a0e73ba0db6ce0ab538"
+ },
+ "lab_precision_uniform": {
+  "k": 48,
+  "n": 49,
+  "p": 0.9796,
+  "lo": 0.8931,
+  "hi": 0.9964,
+  "unclear": 1
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 49,
+  "n": 49,
+  "p": 1.0,
+  "lo": 0.9273,
+  "hi": 1.0,
+  "unclear": 1
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "k": 4,
+   "n": 5,
+   "p": 0.8,
+   "lo": 0.3755,
+   "hi": 0.9638,
+   "unclear": 0
+  },
+  "listing": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "identity_not_reviewed": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "lab_precision_all40": {
+  "k": 62,
+  "n": 64,
+  "p": 0.9688,
+  "lo": 0.893,
+  "hi": 0.9914,
+  "unclear": 1
+ },
+ "student_precision_uniform": {
+  "k": 50,
+  "n": 50,
+  "p": 1.0,
+  "lo": 0.9287,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "student_precision_strata": {
+  "advisee_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "full_name_on_lab_paper_byline": {
+   "k": 4,
+   "n": 4,
+   "p": 1.0,
+   "lo": 0.5101,
+   "hi": 1.0,
+   "unclear": 1
+  },
+  "within_lab_byline_match": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "student_precision_all40": {
+  "k": 64,
+  "n": 64,
+  "p": 1.0,
+  "lo": 0.9434,
+  "hi": 1.0,
+  "unclear": 1
+ },
+ "lab_coverage": {
+  "k": 40,
+  "n": 42,
+  "p": 0.9524,
+  "lo": 0.8421,
+  "hi": 0.9868
+ },
+ "lab_coverage_items": {
+  "drawn": 50,
+  "true_lab_papers": 42,
+  "not_lab_papers_absent": 3,
+  "not_lab_papers_in_build": 1
+ },
+ "student_coverage": {
+  "k": 46,
+  "n": 48,
+  "p": 0.9583,
+  "lo": 0.8602,
+  "hi": 0.9885
+ },
+ "student_coverage_items": {
+  "drawn": 50,
+  "no_coauthored_paper": 2
+ },
+ "failures": {
+  "not_a_paper": 2,
+  "missing_from_build": 2,
+  "outside_appointment": 1,
+  "student_not_linked": 2
+ },
+ "incorrect": [
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "Laura Waller|None|https://openalex.org/W2343736079",
+   "failure_type": "not_a_paper",
+   "reason": "SPIE '(Conference Presentation)' record: presentation-only item with abstract, single author; meeting-abstract type",
+   "policy": "meeting_abstract"
+  },
+  {
+   "sample": "lab_precision",
+   "stratum": "advisee_unaffiliated",
+   "item": "Alexandra von Meier|None|https://openalex.org/W3123443617",
+   "failure_type": "not_a_paper",
+   "reason": "Title 'PGE Models - PL0001 - Opal-RT format ... in MATLAB data format' with no venue: a dataset deposit, not a paper",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Ion Stoica|conf/fccm/HuangHMXSAW19",
+   "failure_type": "missing_from_build",
+   "reason": "Stoica on the byline with Berkeley coauthors Asanovic and Wawrzynek (in the build under their labs) in a listing year; OpenAlex wrongly parses his affiliation as Universidad Tecnica de Ambato, so Stoica's lab lacks it",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Bernd Sturmfels|journals/focm/DraismaHOST16",
+   "failure_type": "outside_appointment",
+   "reason": "OpenAlex dates the work 2015-01-05 (online), before Sturmfels's first evidenced listing year 2016; the build dates it 2016 from the print issue (date convention, same as the Moura case of the earlier round)",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Matei Zaharia|conf/sp/KangLSGZH24",
+   "failure_type": "missing_from_build",
+   "reason": "OpenAlex credits Zaharia to 'Berkeley' with Stoica a school co-author, listing 2023-2026 covers 2024; the build lacks it (affiliation string has no institution id)",
+   "policy": null
+  },
+  {
+   "sample": "student_coverage",
+   "stratum": "thesis_advisee_phd_ge_2018",
+   "item": "Alistair Sinclair|berkeley_stu_fotios-iliopoulos",
+   "failure_type": "student_not_linked",
+   "reason": "Bylines of two lab papers read Fotis Iliopoulos (Fotis for Fotios, not in the nickname table); student not linked",
+   "policy": null
+  },
+  {
+   "sample": "student_coverage",
+   "stratum": "thesis_advisee_phd_ge_2018",
+   "item": "Bin Yu|berkeley_stu_robert-netzorg",
+   "failure_type": "student_not_linked",
+   "reason": "Robert Netzorg is on the byline of the lab COVID-19 data repository paper (exact name) and Robin Netzorg on an ICML lab paper; student has no link",
+   "policy": null
+  }
+ ],
+ "unclear": [
+  {
+   "sample": "lab_precision",
+   "item": "Nir Yosef|None|https://openalex.org/W2600145630",
+   "reason": "eLife 'A new way to build cell lineages' (2 authors, no affiliation parse showing Berkeley beyond raw text); sheet cannot show whether this is a research article or a commentary piece; OA institutions list Harvard/MIT for Yosef though raw affiliation is Berkeley EECS"
+  },
+  {
+   "sample": "student_precision",
+   "item": "Pieter Abbeel|ext:berkeley:yilin-wu|https://openalex.org/W4401415287",
+   "reason": "Student record is a thin lab-page row (Abbeel undergraduate 2020, then Stanford MS); byline of the 279-author Open X-Embodiment paper has a Yilin Wu with no affiliation, so same-person is undecided"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Jitendra Malik|conf/iccv/Gkioxari0M19",
+   "reason": "Build row comes through advisee Gkioxari with no PI affiliation; the published OpenAlex record credits Malik to Meta/FAIR only; Berkeley work is undecided"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Ion Stoica|conf/icml/DuanLDLZLS024",
+   "reason": "OpenAlex gives Stoica no affiliation and no school co-author; the record gives no evidence for or against Berkeley work"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Mark Mueller|journals/fr/TranzattoDBCKMPWZKRCHPO24",
+   "reason": "Build row comes through an advisee on an unaffiliated byline; OpenAlex credits Mueller to Flyability only; Berkeley work is undecided"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Irfan Siddiqi|conf/qce/VoraXHFNLBRNJWSNH24",
+   "reason": "Siddiqi is credited to Lawrence Berkeley National Laboratory only, kept by the cross-affiliated rule via a school co-author; whether LBNL counts as the school is undecided"
+  }
+ ],
+ "screened": [],
+ "population": {
+  "n_lab_papers": 16341,
+  "n_student_papers": 17392,
+  "n_coverage_pool": 10395,
+  "n_student_candidates": 591
+ },
+ "round": {
+  "id": "r2",
+  "sizes": {
+   "uniform": 50,
+   "stratum": 5,
+   "cov": 50,
+   "cands": 200
+  },
+  "judged": {
+   "lab_precision": 65,
+   "student_precision": 65,
+   "lab_coverage": 50,
+   "student_coverage": 50
+  }
+ }
+}
