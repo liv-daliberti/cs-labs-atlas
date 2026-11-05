@@ -32,7 +32,9 @@ torch, transformers, vllm, sklearn, pandas or matplotlib (docs/ENVIRONMENT.md, "
 import contextlib
 import gzip
 import io
+import json
 import os
+import shutil
 import re
 import sys
 from pathlib import Path
@@ -412,11 +414,31 @@ def data(name, school=None, root=None, layout=None):
     return base / rest if base is not None else CODE / rel
 
 
+def overlay_main(code=None):
+    """The main checkout an overlay code root (tools/overlay_root.py) stands in for, or None when CODE is not an overlay (no .overlay.json)."""
+    marker = Path(code or CODE) / '.overlay.json'
+    try:
+        return Path(json.loads(marker.read_text())['main'])
+    except (OSError, ValueError, KeyError):
+        return None
+
+
 def data_w(name, school=None, root=None, layout=None):
     """data(), for a file about to be written: its directory is created first (the split layout has directories the flat one
-    does not)."""
+    does not). In an overlay code root a 'work' file is the overlay's own copy (its work/ is a real directory, never main's): the first
+    write seeds it from main's file when main has one, so a resumable work file (dblp-recover.sqlite) continues and main stays untouched."""
     p = data(name, school, root=root, layout=layout)
     p.parent.mkdir(parents=True, exist_ok=True)
+    main = overlay_main() if root is None and _DATA[name][0] == 'work' else None
+    if main is not None and not p.exists() and not p.is_symlink():
+        try:
+            q = main / p.relative_to(CODE)
+        except ValueError:
+            return p
+        if q.is_file():
+            for suffix in ('', '-wal', '-shm'):   # an SQLite store brings its journal files along
+                if Path(str(q) + suffix).is_file():
+                    shutil.copy2(str(q) + suffix, str(p) + suffix)
     return p
 
 

@@ -6,13 +6,19 @@ The overlay is a directory of symlinks that looks like the main code root, excep
   - the code directories (tools, atlas_cli, bin, schools, tests, vendor, docs, accuracy) are the WORKTREE's;
   - hierarchy/<school>/reviewed and reports hold a symlink per file: the worktree's file where the branch tracks one (so branch edits are live,
     and a writer's output lands in the worktree, ready to commit), else main's file;
-  - hierarchy/<school>/derived, raw, work and tmp are main's (build outputs stay where the release and the other tools read them);
+  - hierarchy/reviewed (the shared reviewed files: census-overrides.json, ...) is overlaid the same way, per file, recursively (a branch's override was
+    silently dropped when the overlay linked main's directory);
+  - hierarchy/<school>/work is a REAL, empty directory of the overlay (fixed 2026-11-05): a run wrote main's hierarchy/michigan/work/dblp-recover.sqlite through
+    the old symlink. `atlas_paths.data()` resolves work files into it, and `data_w()` seeds a copy of main's file there when the file is first written
+    (the marker .overlay.json at the overlay root names main). Main's work files are never opened for writing;
+  - hierarchy/<school>/derived, raw and tmp are main's (build outputs stay where the release and the other tools read them);
   - everything else in the main root is a symlink to main.
 Run any tool against it with `CS_ATLAS_CODE=<out> bin/atlas <command>` (from the worktree). Nothing in main's tracked files is touched.
 
   overlay_root.py <school> --out <dir> [--worktree <dir>]      (<dir> under hierarchy/<school>/tmp/, which git ignores; rebuilt if it exists)
 """
 import argparse
+import json
 import shutil
 import subprocess
 import sys
@@ -21,7 +27,9 @@ from pathlib import Path
 import atlas_paths as P  # noqa: E402
 
 CODE_DIRS = ('tools', 'atlas_cli', 'bin', 'schools', 'tests', 'vendor', 'docs', 'accuracy')
-SCHOOL_REAL = ('reviewed', 'reports')
+SCHOOL_REAL = ('reviewed', 'reports', 'work')   # work: real but empty (seeded on first write); reviewed, reports: a link per file
+SEEDED_EMPTY = ('work',)
+SHARED_REVIEWED = 'reviewed'   # hierarchy/reviewed/: shared reviewed files
 
 
 def tracked(worktree, rel):
@@ -34,6 +42,25 @@ def link(dst, src):
     if dst.is_symlink() or dst.exists():
         dst.unlink()
     dst.symlink_to(Path(src).resolve())
+
+
+def overlay_dir(d, src, worktree, rel_dir):
+    """Fill the real directory d with a symlink per file: main's files under src (recursively), then the branch's tracked files of rel_dir over them.
+    Returns the number of branch files linked."""
+    d.mkdir(parents=True, exist_ok=True)
+
+    def walk(s, t):
+        for f in sorted(s.iterdir()) if s.is_dir() else []:
+            if f.is_dir():
+                walk(f, t / f.name)
+            else:
+                link(t / f.name, f)
+    walk(src, d)
+    n = 0
+    for rel in tracked(worktree, rel_dir):   # the branch's tracked file wins over main's copy
+        link(d / rel.relative_to(rel_dir), worktree / rel)
+        n += 1
+    return n
 
 
 def build(school, out, worktree=None, main=None):
@@ -53,8 +80,9 @@ def build(school, out, worktree=None, main=None):
     hier = out / 'hierarchy'
     hier.mkdir()
     for e in sorted((main / 'hierarchy').iterdir()):
-        if e.name != school:
+        if e.name not in (school, SHARED_REVIEWED):
             link(hier / e.name, e)
+    n_shared = overlay_dir(hier / SHARED_REVIEWED, main / 'hierarchy' / SHARED_REVIEWED, worktree, f'hierarchy/{SHARED_REVIEWED}')
     sch = hier / school
     sch.mkdir()
     for e in sorted((main / 'hierarchy' / school).iterdir()):
@@ -64,13 +92,11 @@ def build(school, out, worktree=None, main=None):
     for part in SCHOOL_REAL:
         d = sch / part
         d.mkdir()
-        src = main / 'hierarchy' / school / part
-        for f in sorted(src.iterdir()) if src.is_dir() else []:
-            link(d / f.name, f)
-        for rel in tracked(worktree, f'hierarchy/{school}/{part}'):   # the branch's tracked file wins over main's copy
-            link(d / rel.name, worktree / rel)
-            n_branch += 1
-    return out, n_branch
+        if part in SEEDED_EMPTY:
+            continue
+        n_branch += overlay_dir(d, main / 'hierarchy' / school / part, worktree, f'hierarchy/{school}/{part}')
+    (out / '.overlay.json').write_text(json.dumps(dict(main=str(main), school=school, worktree=str(worktree))))
+    return out, n_branch + n_shared
 
 
 def main(argv=None):
