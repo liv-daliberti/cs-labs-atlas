@@ -11,6 +11,7 @@
     CHANGES.md         what moved since the previous build, generated from the regression (tools/release_notes.py)
     hierarchy/{CHAIN-AUDIT.md, chain-audit.json, student-audit.json, BUILD-REGRESSION.md, BUILD-REGRESSION.json}
     docs/RULES.md                                                   the rules this build applied
+    ai/{ai_hist,ai_position,labs_ai_hist_<school>}.json, ai/all-ai/*.json, ai/manifest.json   the AI-writing pages' data, only with --ai-site-data (tools/ai_release.py)
     MANIFEST.json      sha256 and bytes per file, the code commit, rule ids, counts per school, build and audit times,
                        upstream versions (OpenAlex sweep dates, the DBLP dump, the site collections), tests, regression,
                        and per school the ledger's built_at, papers and counts by reason_code (`ledger`; null without one)
@@ -23,7 +24,7 @@ tools/pi_hierarchy.py through tools/provenance.py; 2026-10-29), or was rewritten
 has uncommitted changes to tracked build files (--allow-dirty records it instead; collectors' files are recorded only), or the regression check is older than the packages or
 flagged swings (--allow-swings records them instead).
 
-usage: make_release.py [--before counts.json] [--allow-dirty] [--allow-swings] [--dry-run]
+usage: make_release.py [--before counts.json] [--allow-dirty] [--allow-swings] [--dry-run] [--ai-site-data DIR]
        make_release.py add-note <release id> <SITE-HANDOFF.md|HF-UPLOAD.json> <file>   (add one note file, never a manifest file)
 """
 import argparse, gzip, hashlib, json, os, re, shutil, sqlite3, subprocess, sys
@@ -34,6 +35,7 @@ import atlas_paths as P  # noqa: E402  (every path in one place)
 import provenance  # noqa: E402  (report.json -> provenance, required)
 import content_hash  # noqa: E402  (content hashes without the clock)
 import release_notes  # noqa: E402  (CHANGES.md, generated from the build regression)
+import ai_release  # noqa: E402  (ai/: the AI-writing pages' data, opt-in; docs in tools/ai_release.py)
 
 PACKAGE = ['pis.json', 'students.json', 'report.json', 'lab_papers.jsonl.gz', 'student_papers.jsonl.gz', 'copies.json']
 SCHOOL_EXTRA = ['link-diagnosis.json',  # audit output per school (the reviewed per-school inputs come from git)
@@ -90,7 +92,7 @@ def rel_of(name, school=None):
     return (P.data(head, school, root=Path('.'), layout='flat') / rest).as_posix()
 
 
-def release_sources():
+def release_sources(ai_dir=None):
     """{release path: source file} of everything a release copies: the packages and audits per school, the shared derived files, the
     tracked reviewed inputs (under their flat names) and docs/RULES.md. Only files that exist."""
     src = {}
@@ -112,6 +114,10 @@ def release_sources():
             if p.is_file():
                 src[f'reader/{p.name}'] = p
     src['docs/RULES.md'] = P.WORK / 'docs/RULES.md'
+    if ai_dir:  # the AI-writing pages' data (owner 2026-11-04); the manifest ai/manifest.json is written by make()
+        ai = ai_release.collect(ai_dir)
+        ai_release.check_years(ai)
+        src.update(ai)
     return src
 
 
@@ -184,6 +190,7 @@ def point_latest(rid):
 
 
 def make(a):
+    ai_dir = a.ai_site_data or os.environ.get('CS_ATLAS_AI_SITE_DATA')
     head, dirty, other_dirty = code_state()
     if dirty and not a.allow_dirty:
         raise SystemExit(f'uncommitted changes to tracked files (commit first, or --allow-dirty): {dirty[:10]}')
@@ -216,7 +223,7 @@ def make(a):
     ev = json.loads(ev_p.read_text()) if ev_p.exists() else None
     if not ev or ev_p.stat().st_mtime < newest or ev.get('mode') != 'strict' or not ev.get('ok'):
         raise SystemExit('EVIDENCE-CHECK.json is missing, older than the packages, not strict, or failed: run tools/evidence_check.py')
-    sources = release_sources()
+    sources = release_sources(ai_dir)
     files = sorted(sources)
     day = datetime.now().strftime('%Y-%m-%d')
     P.RELEASES.mkdir(parents=True, exist_ok=True)
@@ -239,6 +246,10 @@ def make(a):
         if now != built[s] or sha256(P.data('lab_papers.jsonl.gz', s)) != entries[rel_of('lab_papers.jsonl.gz', s)]['sha256']:
             shutil.rmtree(tmp)
             raise SystemExit(f'{s}: package rewritten while copying; rerun')
+    if ai_dir:  # ai/manifest.json: bytes and sha256 of every ai/ file (the site's release step re-verifies them)
+        (tmp / 'ai').mkdir(exist_ok=True)
+        (tmp / ai_release.MANIFEST_NAME).write_text(json.dumps(ai_release.manifest(rid, head, entries), indent=1) + '\n')
+        entries[ai_release.MANIFEST_NAME] = dict(bytes=(tmp / ai_release.MANIFEST_NAME).stat().st_size, sha256=sha256(tmp / ai_release.MANIFEST_NAME))
     if reg:  # CHANGES.md (ROADMAP item 14): generated from the regression, the rule ids and the commits; a manifest file
         prev = (P.RELEASES / 'latest').resolve() if (P.RELEASES / 'latest').exists() else None
         prev_rules = json.loads((prev / 'MANIFEST.json').read_text()).get('rules') if prev and (prev / 'MANIFEST.json').exists() else None
@@ -265,6 +276,8 @@ def make(a):
                                           before=(reg or {}).get('before'), allowed=bool(a.allow_swings),
                                           identical_to_before={s: r.get('identical') for s, r in ((reg or {}).get('schools') or {}).items()})),
                reader=(json.loads((tmp / 'reader/SUMMARY.json').read_text()) if (tmp / 'reader/SUMMARY.json').exists() else None),  # the reader export (tools/reader_export.py)
+               ai=(dict(manifest=ai_release.MANIFEST_NAME, last_year=ai_release.LAST_YEAR, files=sum(1 for k in entries if k.startswith('ai/')))
+                   if ai_dir else None),  # the AI-writing pages' data (tools/ai_release.py); null: not included
                counts=counts, upstream=upstream(),
                ledger={s: ledger_counts(tmp / REL_HIERARCHY / s) for s in P.SCHOOL_IDS},  # docs/UNAVAILABLE.md (2026-10-30)
                ids=({k: v for k, v in json.loads((tmp / REL_HIERARCHY / 'ids/IDS-REPORT.json').read_text()).items() if k != 'conflicts'}
@@ -312,6 +325,7 @@ def main(argv=None):
     ap.add_argument('--allow-dirty', action='store_true')
     ap.add_argument('--allow-swings', action='store_true')
     ap.add_argument('--dry-run', action='store_true')
+    ap.add_argument('--ai-site-data', help='folder with ai_hist.json ... and all-ai/ (ai-writing/diversity/site-data); the release then carries ai/')
     ap.add_argument('--id', help=argparse.SUPPRESS)  # tests only
     make(ap.parse_args(argv))
 

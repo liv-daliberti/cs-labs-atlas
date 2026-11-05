@@ -105,7 +105,7 @@ def tracked_inputs():
     """The reviewed inputs: every tracked JSON/CSV file outside tests/, accuracy/ and schemas/ (the schemas are build code,
     BUILD_CODE; the .gitignore whitelist names the inputs)."""
     keys = onboarding_schools()
-    return [f for f in _git('ls-files', '*.json', '*.csv').split('\n') if f and not f.startswith(('tests/', 'accuracy/', 'schemas/'))
+    return [f for f in _git('ls-files', '*.json', '*.csv').split('\n') if f and not f.startswith(('tests/', 'accuracy/', 'schemas/', 'ai-writing/'))  # ai-writing/ ships as ai/ (ai_release.py)
             and not of_onboarding_school(f, keys)]
 
 
