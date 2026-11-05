@@ -127,6 +127,10 @@ def submit(date, do_promote=False, dry_run=False, run=subprocess.run, root=None,
     if do_promote:
         chain.append(('promote', [atlas, 'submit', '--parsable', '--dependency=afterok:{prev}', str(CODE / 'tools' / 'oa_snapshot_refresh.slurm'), 'promote']))
     jobs, prev, shown = {}, None, []
+    if not dry_run:   # standing rule: `sbatch --test-only` of the first stage first, never submit when it would preempt another job
+        probe = run(chain[0][1][:2] + ['--test-only'] + chain[0][1][2:], capture_output=True, text=True, env=dict(env, OA_REFRESH_DATE=d), cwd=str(CODE))
+        if probe.returncode or 'Preempts:' in (probe.stderr or '') + (probe.stdout or ''):
+            raise SystemExit('not submitted (filter): ' + ((probe.stderr or probe.stdout or '').strip()[:300] or 'sbatch --test-only failed'))
     for name, argv in chain:
         argv = [a.replace('{prev}', prev or '') for a in argv]
         shown.append((name, argv))

@@ -25,6 +25,38 @@ from pathlib import Path
 import atlas_paths as P  # noqa: E402
 
 CODE = Path(__file__).resolve().parents[1]
+# Standing Slurm rules: partition all, account mltheory, nodes 302 and 014 excluded, <= 59 min. They are passed on the sbatch command line (which beats
+# every #SBATCH header), each overridable by the matching SBATCH_* variable (SBATCH_PARTITION, SBATCH_ACCOUNT, SBATCH_EXCLUDE, SBATCH_TIMELIMIT), which
+# `atlas pipeline ... --partition/--account/--exclude/--time` set too. Stage times above the cap in PIPELINES are long stages that are not resumable: kept, and named by long_stages().
+DEFAULTS = dict(partition='all', account='mltheory', exclude='node302,node014')
+TIME_CAP = '00:59:00'
+
+
+def minutes(t):
+    """Slurm time (MM, MM:SS, HH:MM:SS, D-HH[:MM[:SS]]) in minutes."""
+    days, _, rest = t.rpartition('-')
+    f = [int(x) for x in rest.split(':')]
+    if days:
+        f += [0] * (3 - len(f))
+        return int(days) * 1440 + f[0] * 60 + f[1] + f[2] / 60
+    return [f[0], f[0] + f[1] / 60 if len(f) > 1 else 0, f[0] * 60 + f[1] + f[2] / 60 if len(f) > 2 else 0][len(f) - 1]
+
+
+def slurm_defaults(env=None):
+    """[--partition=..., --account=..., --exclude=...] from the standing rules, each replaced by its SBATCH_* variable when that is set."""
+    env = os.environ if env is None else env
+    return [f'--{k}={env.get("SBATCH_" + k.upper()) or v}' for k, v in DEFAULTS.items()]
+
+
+def stage_time(tm, env=None):
+    """The --time of a stage: SBATCH_TIMELIMIT when set, else the registry's time."""
+    env = os.environ if env is None else env
+    return env.get('SBATCH_TIMELIMIT') or tm
+
+
+def long_stages(name, stages=None, env=None):
+    """[(stage, time)] of a pipeline whose time exceeds the 59-minute rule (printed as a warning at submit)."""
+    return [(s[0], stage_time(s[6], env)) for s in (stages if stages is not None else PIPELINES.get(name, [])) if minutes(stage_time(s[6], env)) > minutes(TIME_CAP)]
 # stage = (name, 'school' | 'once', command, interpreter, cpus, mem, time)   {school}/{schools} are filled by hierarchy/pipeline-stage.slurm
 PIPELINES = {
     'copies': [
@@ -88,8 +120,8 @@ PIPELINES = {
     # the OpenAlex snapshot extension for a school added after the snapshot was built (stage 0): OA_DATE=<snapshot date> SCHOOLS=<key>.
     # 16 filter tasks -> merge (ext-<key>.sqlite beside the main store). `array:16` = 16 tasks of one school ({task} is the task index).
     'snapshot-ext': [
-        ('filter', 'array:16', 'PY $TOOLS/oa_snapshot.py filter {task} 16 --date "${OA_DATE:?set OA_DATE to the snapshot date}" --ext {school}', 'project', 1, '8G', '06:00:00'),
-        ('merge', 'once', 'PY $TOOLS/oa_snapshot.py merge --date "${OA_DATE:?set OA_DATE}" --of 16 --ext {schools}', 'project', 1, '16G', '02:00:00'),
+        ('filter', 'array:16', 'PY $TOOLS/oa_snapshot.py filter {task} 16 --date "${OA_DATE:?set OA_DATE to the snapshot date}" --ext {school}', 'project', 1, '8G', TIME_CAP),
+        ('merge', 'once', 'PY $TOOLS/oa_snapshot.py merge --date "${OA_DATE:?set OA_DATE}" --of 16 --ext {schools}', 'project', 1, '16G', TIME_CAP),
     ],
     'reader': [
         ('reader', 'once', 'PY $TOOLS/reader_export.py {schools} --site-local-papers "$CS_ATLAS_SITE/atlas/data/local-papers.json" --site-reader-objects "$CS_ATLAS_SITE/atlas/data/reader-objects.json"', 'project', 2, '40G', '03:00:00'),
@@ -109,7 +141,7 @@ def plan(name, schools, stages=None):
         raise SystemExit(f'unknown pipeline {name!r}; atlas pipeline --list')
     out = []
     for stage, kind, cmd, py, cpus, mem, tm in (stages if stages is not None else PIPELINES[name]):
-        args = [f'--job-name=cs-{name}-{stage}', f'--cpus-per-task={cpus}', f'--mem={mem}', f'--time={tm}',
+        args = [f'--job-name=cs-{name}-{stage}', *slurm_defaults(), f'--cpus-per-task={cpus}', f'--mem={mem}', f'--time={stage_time(tm)}',
                 f'--output={P.data("logs")}/pipeline-{name}-{stage}-%A' + ('_%a' if kind == 'school' else '') + '.out']
         if kind == 'school':
             args.append(f'--array=0-{len(schools) - 1}')
@@ -164,6 +196,8 @@ def main(argv=None, run=subprocess.run):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('name', nargs='?'); ap.add_argument('rest', nargs='*')
     ap.add_argument('--list', action='store_true'); ap.add_argument('--test-only', action='store_true'); ap.add_argument('--wait', action='store_true'); ap.add_argument('--from-worktree', action='store_true')
+    for k in ('partition', 'account', 'exclude', 'time'):
+        ap.add_argument('--' + k, help=f'sets SBATCH_{"TIMELIMIT" if k == "time" else k.upper()} for every stage of this run (default: {DEFAULTS.get(k, TIME_CAP + " cap, else the stage time")})')
     ap.add_argument('--only', action='append', default=[], help='run only this stage (repeatable), e.g. after a diagnosed failure of one step')
     a = ap.parse_args(argv)
     if a.list or not a.name:
@@ -178,14 +212,21 @@ def main(argv=None, run=subprocess.run):
         print(dependency_lines(list(jobs.values()), run))
         return 0
     env = dict(os.environ)
+    for k in ('partition', 'account', 'exclude', 'time'):
+        if getattr(a, k):
+            os.environ['SBATCH_' + ('TIMELIMIT' if k == 'time' else k.upper())] = env['SBATCH_' + ('TIMELIMIT' if k == 'time' else k.upper())] = getattr(a, k)
     for x in a.rest:
         if '=' in x:
             k, v = x.split('=', 1)
             env[k] = v
+            if k.startswith('SBATCH_'):   # `atlas pipeline x SBATCH_TIMELIMIT=00:30:00` works like the flags
+                os.environ[k] = v
     schools = schools_arg(env)
     stages = [st for st in PIPELINES.get(a.name, []) if st[0] in a.only] if a.only else None
     if a.only and not stages:
         raise SystemExit(f'--only {a.only}: no such stage in {a.name}; atlas pipeline --list')
+    for st, tm in long_stages(a.name, stages):
+        print(f'warning: stage {st} asks {tm}, over the 59-minute rule (partition all routes it to the account partition); it is not resumable here', file=sys.stderr)
     jobs = submit(a.name, schools, run=run, test_only=a.test_only, stages=stages, guard_preempt=True, repo=CODE if a.from_worktree and CODE.resolve() != Path(P.CODE).resolve() else None)
     if a.test_only:
         return 0

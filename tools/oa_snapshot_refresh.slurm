@@ -6,12 +6,12 @@
 #  - a chain step (the argument `compare` or `promote`, with OA_REFRESH_DATE), submitted by oa_snapshot_refresh.py.
 # Light: one manifest request and a few sbatch calls (compare reads two SQLite stores).
 #SBATCH --job-name=oa-snapshot-refresh
-#SBATCH --partition=mltheory
+#SBATCH --partition=all
 #SBATCH --account=mltheory
-#SBATCH --exclude=node302
+#SBATCH --exclude=node302,node014
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=12G
-#SBATCH --time=02:00:00
+#SBATCH --time=00:59:00
 #SBATCH --output=fulltext-push/logs/oa-snapshot-refresh-%j.out
 . "${CS_ATLAS_CODE:-${SLURM_SUBMIT_DIR:?}}/paths.sh" || exit 1
 . "$CS_ATLAS_CODE/tools/job_code_snapshot.sh" || exit 1
