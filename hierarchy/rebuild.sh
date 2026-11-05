@@ -93,9 +93,15 @@ if has ledger; then
   # unavailability ledger, run with the collectors' interpreter; it also writes the reasons onto copies.json
   # (lab_paper_copies.attach_ledger). Onboarding schools (school charters) get their ledger before their first release.
   onb=$($CS_ATLAS_PY -c 'import sys; sys.path.insert(0, __import__("os").environ["CS_ATLAS_TOOLS"]); import school_config as c; print(" ".join(c.onboarding()))') || { echo "FAILED ledger: onboarding schools"; fail=1; onb=""; }
-  ledger_schools=$(echo $SCHOOLS $onb | tr ' ' '\n' | awk 'NF && !seen[$0]++' | tr '\n' ' ')
-  echo "== ledger $(date +%T) schools: $ledger_schools"
-  nice -n10 $CS_ATLAS_COLLECTOR_PY -I -u "$CS_ATLAS_FULLTEXT_PUSH/unavailable_ledger.py" $ledger_schools || { echo "FAILED ledger"; fail=1; }
+  # (2026-11-05) the released schools get the full ledger; onboarding schools are refreshed OFFLINE here (cached checks only, no network):
+  # their network ledger is their own stage-8 step, and Georgia Tech's 12k uncopied papers mid-collection kept the release's 59-minute
+  # ledger job from finishing (release 20261105d).
+  onb_only=$(for s in $onb; do case " $SCHOOLS " in *" $s "*) ;; *) echo -n "$s ";; esac; done)
+  echo "== ledger $(date +%T) schools: $SCHOOLS; offline: ${onb_only:-none}"
+  nice -n10 $CS_ATLAS_COLLECTOR_PY -I -u "$CS_ATLAS_FULLTEXT_PUSH/unavailable_ledger.py" $SCHOOLS || { echo "FAILED ledger"; fail=1; }
+  if [ -n "$onb_only" ]; then
+    nice -n10 $CS_ATLAS_COLLECTOR_PY -I -u "$CS_ATLAS_FULLTEXT_PUSH/unavailable_ledger.py" --offline $onb_only || { echo "FAILED ledger (onboarding, offline)"; fail=1; }
+  fi
 fi
 if has reader; then
   # (2026-11-01, owner) which confirmed copies the site may host (licence allows redistribution) and a source link for the rest;
