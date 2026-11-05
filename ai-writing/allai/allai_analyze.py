@@ -16,6 +16,7 @@ embeddings report). The draws are paired: the same paper indices are drawn from 
 percentiles of BOOT replicates, each resampling whole labs (a paper's first lab) with replacement and drawing once.
 """
 import argparse
+import glob
 import json
 import os
 import sys
@@ -54,6 +55,9 @@ def load_pair(model, style):
         papers = papers[papers['paper_id'].isin({r[0] for r in db.execute('select paper_id from abstracts')})].reset_index(drop=True)
     ids_o, Xo, meta_o = L.vectors(model, 'abstract')
     ids_a, Xa, meta_a = L.vectors(model + STYLE_SUFFIX[style], 'abstract')
+    if os.environ.get('ALLAI_UNFILTERED'):   # the rewrites the preservation filter dropped sit in <model>__allaix: add them back (all ok rewrites)
+        ids_x, Xx, _ = L.vectors(model + '__allaix', 'abstract')
+        ids_a, Xa = ids_a + ids_x, np.vstack([Xa, Xx])
     ro, ra = {p: i for i, p in enumerate(ids_o)}, {p: i for i, p in enumerate(ids_a)}
     papers = papers[papers['paper_id'].isin(ro) & papers['paper_id'].isin(ra)].reset_index(drop=True)
     io = [ro[p] for p in papers['paper_id']]; ia = [ra[p] for p in papers['paper_id']]
@@ -115,12 +119,12 @@ def gram_geometry_nov(U):
     return d, p
 
 
-def year_tables(model, papers, Zo, Za, labs_sets, cl, groups, school_mask, rng):
+def year_tables(model, papers, Zo, Za, labs_sets, cl, groups, school_mask, rng, do_point=True, part=0):
     years = papers['year'].to_numpy()
     scopes = [('all', 'all', np.ones(len(papers), bool))] + [('school', s, school_mask[s]) for s in SCHOOLS]
     rows = []
     # point estimates: DRAWS paired draws per (scope, year)
-    for scope, sid, mask in scopes:
+    for scope, sid, mask in (scopes if do_point else []):
         for y in YEARS:
             pool = np.nonzero(mask & (years == y))[0]
             m = M_ALL if scope == 'all' else M_SCHOOL
@@ -138,9 +142,10 @@ def year_tables(model, papers, Zo, Za, labs_sets, cl, groups, school_mask, rng):
             for (c, meas), v in acc.items():
                 rows.append(dict(scope=scope, scope_id=sid, year=y, corpus=c, measure=meas, value=float(np.mean(v)), n_pool=int(len(pool)), m=m, point=1))
     pt = pd.DataFrame(rows)
+    rep0 = part * BOOT
     # bootstrap replicates over labs: one paired draw per (scope, year) per replicate
     boot = []
-    brng = np.random.default_rng(C.SEED + 7)
+    brng = np.random.default_rng(C.SEED + 7 + 1000 * part)
     for b in range(BOOT):
         pick = brng.integers(0, len(groups), len(groups))
         idx_all = np.concatenate([groups[i] for i in pick])
@@ -153,7 +158,7 @@ def year_tables(model, papers, Zo, Za, labs_sets, cl, groups, school_mask, rng):
                 if len(pool) < m:
                     continue
                 for (c, meas), v in measure_set(Zo, Za, labs_sets, draw(brng, pool, m)).items():
-                    boot.append((scope, sid, y, c, meas, b, v))
+                    boot.append((scope, sid, y, c, meas, rep0 + b, v))
         del yb
         if b % 5 == 0:
             C.log(model=model, boot=b)
@@ -240,7 +245,15 @@ def lab_summary(df, lab_school):
     return pd.DataFrame(out)
 
 
+def tag_of(model, style):
+    return f'{style}{"-sub" if os.environ.get("ALLAI_RESTRICT") else ""}{"-unf" if os.environ.get("ALLAI_UNFILTERED") else ""}_{model}'
+
+
 def run_geom(model, style):
+    """ALLAI_PART unset: everything in one job. ALLAI_PART=k: bootstrap replicates k*BOOT .. (k+1)*BOOT-1 only (part 0 also does the point estimates, the
+    lab tables and the info file); `combine` then merges the parts (one 59-minute task cannot hold 250 replicates)."""
+    part_env = os.environ.get('ALLAI_PART')
+    part = int(part_env) if part_env is not None else 0
     papers, lp, Xo, Xa, meta_o, meta_a = load_pair(model, style)
     C.log(model=model, style=style, papers=len(papers))
     labs_sets = label_sets(model, papers, Xo, Xa)
@@ -249,14 +262,20 @@ def run_geom(model, style):
     rng = np.random.default_rng(C.SEED)
     if not len(papers):
         raise SystemExit('no papers')
-    pt, bt = year_tables(model, papers, Zo, Za, labs_sets, cl, groups, school_mask, rng)
-    if not len(pt):
-        raise SystemExit('no scope-year reaches the draw size: set ALLAI_M_ALL / ALLAI_M_SCHOOL lower')
-    yr, chg = summarize_year(pt, bt)
-    tag = f'{style}{"-sub" if os.environ.get("ALLAI_RESTRICT") else ""}_{model}'
+    pt, bt = year_tables(model, papers, Zo, Za, labs_sets, cl, groups, school_mask, rng, do_point=(part == 0), part=part)
+    tag = tag_of(model, style)
     RES.mkdir(parents=True, exist_ok=True)
-    yr.assign(model=model, style=style).to_parquet(RES / f'geom_year_{tag}.parquet', index=False)
-    chg.assign(model=model, style=style).to_parquet(RES / f'geom_change_{tag}.parquet', index=False)
+    if part_env is not None:
+        bt.to_parquet(RES / f'geom_boot_{tag}_p{part}.parquet', index=False)
+        if part > 0:
+            C.log(done=f'boot part {part}', rows=len(bt)); return
+        pt.to_parquet(RES / f'geom_pt_{tag}.parquet', index=False)
+    if part_env is None and not len(pt):
+        raise SystemExit('no scope-year reaches the draw size: set ALLAI_M_ALL / ALLAI_M_SCHOOL lower')
+    if part_env is None:
+        yr, chg = summarize_year(pt, bt)
+        yr.assign(model=model, style=style).to_parquet(RES / f'geom_year_{tag}.parquet', index=False)
+        chg.assign(model=model, style=style).to_parquet(RES / f'geom_change_{tag}.parquet', index=False)
     lab_school = lp.drop_duplicates('lab_id').set_index('lab_id')['school'].to_dict()
     ld = lab_tables(papers, Zo, Za, labs_sets, labs, rng)
     ls = lab_summary(ld, lab_school)
@@ -269,7 +288,18 @@ def run_geom(model, style):
     info['cos_centred'] = dict(mean=float(cs.mean()), p05=float(np.percentile(cs, 5)), median=float(np.median(cs)))
     (RES / f'geom_info_{tag}.json').write_text(json.dumps(dict(model=model, style=style, papers=len(papers), orig_revision=(meta_o or {}).get('revision'),
                                                               ai_revision=(meta_a or {}).get('revision'), **info), default=str))
-    C.log(done=tag, year_rows=len(yr), labs=int(ls[ls.scope == 'all']['labs'].max()) if len(ls) else 0)
+    C.log(done=tag, labs=int(ls[ls.scope == 'all']['labs'].max()) if len(ls) else 0)
+
+
+def combine(model, style):
+    tag = tag_of(model, style)
+    pt = pd.read_parquet(RES / f'geom_pt_{tag}.parquet')
+    files = sorted(glob.glob(str(RES / f'geom_boot_{tag}_p*.parquet')))
+    bt = pd.concat([pd.read_parquet(f) for f in files], ignore_index=True)
+    yr, chg = summarize_year(pt, bt)
+    yr.assign(model=model, style=style, reps=int(bt['rep'].nunique())).to_parquet(RES / f'geom_year_{tag}.parquet', index=False)
+    chg.assign(model=model, style=style, reps=int(bt['rep'].nunique())).to_parquet(RES / f'geom_change_{tag}.parquet', index=False)
+    C.log(combined=tag, parts=len(files), reps=int(bt['rep'].nunique()))
 
 
 # ---------------------------------------------------------------- novelty
@@ -316,7 +346,7 @@ def run_novelty(model, style):
                     # the part of the original's change that the AI corpus does not show: orig change - ai change (paired per paper)
                     contrast.append(row)
     RES.mkdir(parents=True, exist_ok=True)
-    tag = f'{style}{"-sub" if os.environ.get("ALLAI_RESTRICT") else ""}_{model}'
+    tag = tag_of(model, style)
     pd.DataFrame(trend).to_parquet(RES / f'novelty_trend_{tag}.parquet', index=False)
     pd.DataFrame(contrast).to_parquet(RES / f'novelty_contrast_{tag}.parquet', index=False)
     C.log(done=f'novelty_{tag}', trend=len(trend), contrast=len(contrast))
@@ -324,8 +354,8 @@ def run_novelty(model, style):
 
 if __name__ == '__main__':
     ap = argparse.ArgumentParser()
-    ap.add_argument('cmd', choices=['geom', 'novelty'])
+    ap.add_argument('cmd', choices=['geom', 'novelty', 'combine'])
     ap.add_argument('--model', required=True); ap.add_argument('--style', default='polish', choices=list(STYLE_SUFFIX))
     a = ap.parse_args()
-    (run_geom if a.cmd == 'geom' else run_novelty)(a.model, a.style)
+    {'geom': run_geom, 'novelty': run_novelty, 'combine': combine}[a.cmd](a.model, a.style)
     sys.stdout.flush()

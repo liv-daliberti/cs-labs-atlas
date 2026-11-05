@@ -18,7 +18,7 @@ set -euo pipefail
 export LD_LIBRARY_PATH="$CS_ATLAS_ENV_LIB${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 export HF_HOME=$CS_ATLAS_HF_HOME HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 TOKENIZERS_PARALLELISM=true
 cd "$CS_ATLAS_AI_WRITING/embeddings"
-STYLE=${STYLE:-polish}; SUF=__allai; [ "$STYLE" = polish ] || SUF=__para
+STYLE=${STYLE:-polish}; case "$STYLE" in polish) SUF=__allai;; polish_dropped) SUF=__allaix;; *) SUF=__para;; esac
 nvidia-smi --query-gpu=name,memory.total --format=csv,noheader
 $CS_ATLAS_ENV_PY -u embed.py run --model "${MODEL:?}" --kind abstract --shard "${SHARD:-0}" --of "${OF:-1}" --budget "${EMB_BUDGET:-3150}" \
   --store-name "${MODEL}${SUF}" --texts-db "$CS_ATLAS_EMBEDDINGS/allai/texts_${STYLE}.sqlite"

@@ -12,5 +12,5 @@ set -euo pipefail
 . "$CS_ATLAS_CODE/tools/job_code_snapshot.sh" || exit 1
 export LD_LIBRARY_PATH="$CS_ATLAS_ENV_LIB${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 cd "$CS_ATLAS_AI_WRITING/embeddings"
-style=$1; shift; suf=__allai; [ "$style" = polish ] || suf=__para
+style=$1; shift; case "$style" in polish) suf=__allai;; polish_dropped) suf=__allaix;; *) suf=__para;; esac
 for m in "$@"; do $CS_ATLAS_ENV_PY -u embed.py merge --model "$m" --kind abstract --store-name "${m}${suf}"; done
