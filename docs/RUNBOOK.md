@@ -95,6 +95,25 @@ A release is `releases/<date>[.N]/`, read-only, with `MANIFEST.json` (hashes, co
 `releases/latest` points at the newest. Releases are never overwritten or edited; notes are added only with `make_release.py add-note` (`atlas make-release`
 cuts just the release). Agents do not push; the coordinator confirms the external steps.
 
+## Refresh the recent OpenAlex works (ROADMAP #24; before each release)
+
+The sweeps (`hierarchy/<school>/raw/openalex-sweep.sqlite`) and `pi-works.sqlite` are API snapshots of the day they were pulled; OpenAlex then creates, changes and
+merges records (2026-11-04: Princeton's API held 7,804 works of 2026, the sweep 7,506). Refresh the current year (and last year) before a release. This key has no
+`from_updated_date` / `from_created_date` filter and no updated/created sort (HTTP 429 "Plan upgrade required"), so a refresh re-pulls the years under the sweep's own filter.
+1. Budget: the shared key is 10,000 credits a day (`fulltext-push/raw/openalex_budget.jsonl` is the ledger; one list request = 1 credit, 200 works). One year of all
+   schools is about 900 credits papers-only; datasets (20-75% of a school's 2026 records, not papers) are skipped with `type:!dataset`, their stored rows stay. Plan at most 2 UTC days.
+   `tools/oa_api.py` is the only client: it masks the key in every message and traceback, appends the ledger line, stops at the run's `--cap` or the shared `--floor`.
+2. Fetch (Slurm, one stream, ~1.2 s a request, resumable): `sbatch --export=ALL,SNAPSHOT_REPO=<worktree>,CS_ATLAS_SNAPSHOT_COMMIT=<sha>,OA_ARGS="fetch <schools> --years 2026 --cap N" tools/oa_refresh_works.slurm`
+   (or `atlas submit` from main once landed). Output: `<SCRATCH>/oa-refresh-<tag>/<school>.sqlite`. `--years 2025,2026` adds last year; PI author ids come from `pis.json`.
+3. Scratch rebuild BEFORE: `tools/oa_refresh_build.slurm` (array over the schools, `OUT=<scratch>/build-before`): the builder on the unchanged stores.
+4. Merge, dry run then `--apply` (local, a few minutes; backups of every replaced row go to `<stage>/backup-<school>.sqlite`):
+   `$CS_ATLAS_PY tools/oa_refresh_works.py merge <schools> --years 2026 [--apply]`. The report per school: API count (all types, papers) vs ours before/after,
+   new, changed, dropped (merged ids: the same DOI under a fresh id, else `--lookups N` singleton lookups follow the redirect), new PI-credited works, pi-works rows.
+5. Scratch rebuild AFTER (`OUT=<scratch>/build-after`), then count `lab_papers.jsonl.gz` per school and read ten new lab papers (right PI, school, appointment).
+6. Copies: `add_works.py <school>` for each school, then Princeton's package through `vendor/princeton_tools/import_all_when_free.py`, then the channel run
+   (`fulltext-push/addworks-<date>.slurm`; CORE stays paused). The next release rebuilds from the refreshed stores.
+Snapshot-swept schools (uchicago, gatech: their sweep meta says `snapshot:<date>`) get the snapshot's own keep rule applied to the API records (per-affiliation exclusion, related-id gate).
+
 ## Recovery
 
 | what went wrong | what to do |

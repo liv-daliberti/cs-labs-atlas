@@ -35,7 +35,7 @@ def test_merge_reconciles(tmp_path, monkeypatch):
     st = sqlite3.connect(stage / 'x.sqlite')
     st.execute('insert into pages values ("inst","2026",0,null,3,3,"x",?)', (R.pack(fresh_inst),))
     st.execute('insert into pages values ("pi","A9",0,null,1,1,"x",?)', (R.pack([work(5, au='A9')]),))
-    st.execute('insert into counts values ("all:2026",5,"x")'); st.commit(); st.close()
+    st.execute('insert into counts values ("all:2026",5,"x")'); st.execute('insert into done values ("inst","2026",3)'); st.commit(); st.close()
     rep = R.merge('x', [2026], 'T', apply=True)
     y = rep['years']['2026']
     assert y['new'] == 2 and y['changed'] == 1 and y['dropped'] == 1 and y['new_pi_credited'] == 1

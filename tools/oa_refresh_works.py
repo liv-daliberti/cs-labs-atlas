@@ -175,6 +175,8 @@ def merge(school, years, tag=TAG, apply=False, cl=None, lookups=0):
     stc = sqlite3.connect(str(stage_dir(tag) / f'{school}.sqlite'))
     sweep_path = P.data_w('openalex-sweep.sqlite', school)
     sc = sqlite3.connect(str(sweep_path), timeout=120)
+    done_years = {int(k) for (k,) in stc.execute("select key from done where kind='inst'")}
+    years = [y for y in years if y in done_years]   # a year that was never fetched must not look like 'everything was removed'
     snap = sweep_source(sc)
     ok = keeper(school) if snap else (lambda w: True)
     pis = set(pi_author_ids(school))
