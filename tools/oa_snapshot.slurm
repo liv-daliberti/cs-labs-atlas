@@ -4,12 +4,12 @@
 # (tools/oa_snapshot_merge.slurm). For a school added after the snapshot was built add OA_EXT=<key> to both (an extension store
 # ext-<key>.sqlite beside the main one; tools/oa_snapshot_extend.sh does the submission). Plan and sizes: docs/OPENALEX-SNAPSHOT.md.
 #SBATCH --job-name=oa-snapshot-filter
-#SBATCH --partition=mltheory
+#SBATCH --partition=all
 #SBATCH --account=mltheory
-#SBATCH --exclude=node302
+#SBATCH --exclude=node302,node014
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=8G
-#SBATCH --time=06:00:00
+#SBATCH --time=00:59:00
 #SBATCH --array=0-15
 #SBATCH --output=fulltext-push/logs/oa-snapshot-%A_%a.out
 . "${CS_ATLAS_CODE:-${SLURM_SUBMIT_DIR:?}}/paths.sh" || exit 1

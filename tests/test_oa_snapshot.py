@@ -2,6 +2,7 @@
 import gzip
 import http.server
 import json
+import os
 import threading
 from functools import partial
 from pathlib import Path
@@ -169,3 +170,29 @@ def test_projection_keeps_abstract_and_topics_and_drops_the_rest():
     p = S.project_work(w)
     assert p['abstract_inverted_index'] == {'big': [0]} and p['primary_topic']['id'].endswith('T1') and p['topics'][0]['id'].endswith('T1')
     assert not {'referenced_works', 'concepts', 'counts_by_year'} & set(p)
+
+
+def test_merge_temp_dir_avoids_node_tmp_and_fails_early(tmp_path, monkeypatch):
+    shm = tmp_path / 'shm'
+    out = tmp_path / 'out'
+    big = 1 << 62
+    assert S.sqlite_tmpdir(1000, out, env={}, shm=str(shm)) == shm                       # room in shm: used
+    monkeypatch.setattr(S.shutil, 'disk_usage', lambda p: type('U', (), dict(free=0 if str(p) == str(shm) else big))())
+    assert S.sqlite_tmpdir(1000, out, env={}, shm=str(shm)) == out / '.sqlite-tmp'        # shm full: the job's scratch (NFS)
+    assert S.sqlite_tmpdir(1000, out, env={'OA_MERGE_TMP': str(tmp_path / 'mine')}, shm=str(shm)) == tmp_path / 'mine'
+    monkeypatch.setattr(S.shutil, 'disk_usage', lambda p: type('U', (), dict(free=10))())
+    with pytest.raises(SystemExit, match='no scratch directory with room'):
+        S.sqlite_tmpdir(1000, out, env={}, shm=str(shm))
+
+
+def test_merge_points_sqlite_temp_files_away_from_tmp(served, monkeypatch):
+    date, parts = S.all_parts()
+    for t in range(2):
+        S.cmd_filter(t, 2, tmp=served)
+    seen = []
+    real = S.sqlite_tmpdir
+    monkeypatch.setattr(S, 'sqlite_tmpdir', lambda need, out, **k: (seen.append(need), real(need, out, env={'OA_MERGE_TMP': str(served / 'mt')}))[1])
+    monkeypatch.delenv('SQLITE_TMPDIR', raising=False)
+    S.cmd_merge(date, of=2, parts=parts)
+    assert seen and seen[0] > 0 and os.environ['SQLITE_TMPDIR'] == str(served / 'mt')
+    monkeypatch.delenv('SQLITE_TMPDIR', raising=False)

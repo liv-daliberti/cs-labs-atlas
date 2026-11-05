@@ -79,4 +79,15 @@ def test_submit_chain_pins_dependencies(root):
         got.append(argv)
         return type('R', (), dict(returncode=0, stdout=f'{100 + len(got)}\n', stderr=''))()
     pl, _ = R.submit(None, True, False, run=fake, root=root, manifest=man('2027-01-13'), charters=['a', 'newu'])
-    assert [a for a in got[1] if a.startswith('--dependency')] == ['--dependency=afterok:101'] and len(got) == 4 and pl['jobs']['promote'] == '104'
+    assert '--test-only' in got[0] and not any('--test-only' in g for g in got[1:])   # the probe comes first, then the real chain
+    assert [a for a in got[2] if a.startswith('--dependency')] == ['--dependency=afterok:102'] and len(got) == 5 and pl['jobs']['promote'] == '105'
+
+
+def test_submit_refuses_when_the_probe_preempts(root):
+    got = []
+    def fake(argv, **k):
+        got.append(argv)
+        return type('R', (), dict(returncode=0, stdout='', stderr='sbatch: Preempts: 123'))()
+    with pytest.raises(SystemExit, match='not submitted'):
+        R.submit(None, False, False, run=fake, root=root, manifest=man('2027-01-13'), charters=['a', 'newu'])
+    assert len(got) == 1

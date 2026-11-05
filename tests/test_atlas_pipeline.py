@@ -71,3 +71,49 @@ def test_only_runs_the_named_stage(monkeypatch):
     monkeypatch.setattr(AP.Path, 'write_text', lambda *a, **k: 0)
     AP.main(['onboard-data', 'SCHOOLS=newu', '--only', 'candidates'], run=run)
     assert [st[0] for st in run.calls[0]['stages']] == ['candidates']
+
+
+def argv_of(run, i=0):
+    return run.calls[i][0]
+
+
+def test_stages_follow_the_standing_slurm_rules(monkeypatch):
+    for k in ('SBATCH_PARTITION', 'SBATCH_ACCOUNT', 'SBATCH_EXCLUDE', 'SBATCH_TIMELIMIT'):
+        monkeypatch.delenv(k, raising=False)
+    run = FakeRun()
+    AP.submit('snapshot-ext', ['newu'], run=run, commit='e' * 40)
+    for i in (0, 1):
+        a = argv_of(run, i)
+        assert '--partition=all' in a and '--account=mltheory' in a and '--exclude=node302,node014' in a and '--time=00:59:00' in a, a
+    assert AP.long_stages('snapshot-ext') == []
+
+
+def test_sbatch_variables_override_the_defaults(monkeypatch):
+    monkeypatch.setenv('SBATCH_PARTITION', 'lowprio'); monkeypatch.setenv('SBATCH_EXCLUDE', 'node302'); monkeypatch.setenv('SBATCH_TIMELIMIT', '01:30:00')
+    run = FakeRun()
+    AP.submit('snapshot-ext', ['newu'], run=run, commit='e' * 40)
+    a = argv_of(run)
+    assert '--partition=lowprio' in a and '--exclude=node302' in a and '--time=01:30:00' in a and '--account=mltheory' in a
+    assert [s for s, _ in AP.long_stages('snapshot-ext')] == ['filter', 'merge']
+
+
+def test_every_chain_gets_the_node_and_partition_rules_and_long_stages_are_named(monkeypatch):
+    monkeypatch.delenv('SBATCH_TIMELIMIT', raising=False)
+    for name in AP.PIPELINES:
+        for stage, args, env, cmd in AP.plan(name, ['newu']):
+            assert {'--partition=all', '--account=mltheory', '--exclude=node302,node014'} <= set(args), (name, stage)
+    assert ('audit', '12:00:00') in AP.long_stages('labpage')
+    assert AP.minutes('00:59:00') == 59 and AP.minutes('1-00:00:00') == 1440 and AP.minutes('30') == 30
+
+
+def test_flags_set_the_sbatch_variables(monkeypatch):
+    for k in ('SBATCH_PARTITION', 'SBATCH_ACCOUNT', 'SBATCH_EXCLUDE', 'SBATCH_TIMELIMIT'):
+        monkeypatch.setenv(k, '')   # registers the restore; empty means "use the default"
+    run = FakeRun()
+    monkeypatch.setattr(AP.P, 'SCRATCH', '/tmp')
+    monkeypatch.setattr(AP.Path, 'mkdir', lambda *a, **k: None)
+    monkeypatch.setattr(AP.Path, 'write_text', lambda *a, **k: 0)
+    monkeypatch.setattr(AP.subprocess, 'run', lambda *a, **k: type('R', (), dict(stdout='x' * 40, stderr='', returncode=0))())
+    AP.main(['snapshot-ext', 'SCHOOLS=newu', 'OA_DATE=2026-10-14', 'SBATCH_EXCLUDE=node1', '--time', '00:40:00', '--partition', 'lowprio'], run=run)
+    probe = run.calls[0][0]
+    assert '--time=00:40:00' in probe and '--partition=lowprio' in probe and '--exclude=node1' in probe and '--test-only' in probe

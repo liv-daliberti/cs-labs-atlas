@@ -243,6 +243,9 @@ def test_R_PAP_05_dblp_dump():
     assert pis[1]['dblp'] == ['p/sm'] and pis[1]['orcid'] == ['0000-0001-0000-0001'] and '10.1/mf' in doi['Song Mei']
     assert title['Song Mei'][common.norm_title('Mean-field Theory of Two-Layers Networks')] == 2019
     assert pis[2]['dblp'] == []                                                              # a disambiguation page is no person
+    n0 = collections.Counter()                                                               # nothing dropped: the counter is still reported (as 0)
+    identity.apply_dump([dict(pi='Song Mei', names=['Song Mei'], dblp=['p/sm'], orcid=[])], dump, collections.defaultdict(set), collections.defaultdict(dict), n0)
+    assert 'dblp_ids_dropped_name_mismatch' in n0 and n0['dblp_ids_dropped_name_mismatch'] == 0
 
 
 def test_R_PAP_06_mixed_ids_neither_anchor_nor_block(built):

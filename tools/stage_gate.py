@@ -505,7 +505,7 @@ def main(argv=None):
     key = a.key
     if a.traps:
         import onboarding_traps as T
-        found = T.run(key, list(T.CHECKS))
+        found = T.run(key, T.checks_upto(max(map(int, a.stages)) if a.stages else None))   # only the checks the stage can have work for
         for f in found:
             print(f)
         print(f'{key}: {len(found)} trap finding(s)')

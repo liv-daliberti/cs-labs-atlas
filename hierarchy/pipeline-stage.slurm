@@ -3,12 +3,12 @@
 # it sets PIPE_CMD (from the pipeline registry), PIPE_PY (project | collector), SCHOOL_LIST, and for a per-school stage an --array over SCHOOL_LIST.
 # In PIPE_CMD, {school} is this array task's school and {schools} the whole list; PY is the interpreter, TOOLS and FTP the snapshot's code directories.
 #SBATCH --job-name=cs-pipeline
-#SBATCH --partition=mltheory
+#SBATCH --partition=all
 #SBATCH --account=mltheory
-#SBATCH --exclude=node302
+#SBATCH --exclude=node302,node014
 #SBATCH --cpus-per-task=2
 #SBATCH --mem=16G
-#SBATCH --time=04:00:00
+#SBATCH --time=00:59:00
 set -u -o pipefail
 : "${PIPE_CMD:?}" "${PIPE_PY:?}" "${SCHOOL_LIST:?}"
 . "${CS_ATLAS_CODE:-${SLURM_SUBMIT_DIR:?}}/paths.sh" || exit 1  # submit from the code root
