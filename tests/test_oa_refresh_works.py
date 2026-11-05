@@ -1,9 +1,7 @@
 """tools/oa_refresh_works.py merge: new records inserted, changed ones updated, a merged id replaced (not duplicated), datasets untouched, backup written."""
 import json
 import sqlite3
-import sys
 import zlib
-from pathlib import Path
 
 import oa_refresh_works as R  # noqa: E402
 

@@ -1,7 +1,5 @@
 """tools/oa_api.py: the key never shows in a message, an exception or a traceback (2026-11-04 incident), and the ledger line has no key."""
 import json
-import sys
-from pathlib import Path
 
 import oa_api  # noqa: E402
 
