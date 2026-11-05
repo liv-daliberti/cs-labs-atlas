@@ -1,0 +1,221 @@
+{
+ "school": "mit",
+ "date": "2026-11-05",
+ "seed": 20261102,
+ "n_verdicts": 230,
+ "files": {
+  "pis.json": "e068680d6aecbb18e6952731830965e68f007c712007b014bf46814639ce5b29",
+  "students.json": "7fc755397b939eb91ecf1418efce78ef4e8b775598bbac0d3c7785aa01e8d5d4",
+  "lab_papers.jsonl.gz": "1ce09faab63bcb57c3742240e89919a78742ddff88d09d91ac2d7b3e8d9f1370",
+  "student_papers.jsonl.gz": "d91d58f06e76a83729cb25f308b35d626f525bd8db27690df2adec5740726361",
+  "copies.json": "6ea05392b5820731472e56395a294ae04a62d375f88ff4089c3c2208caa46668"
+ },
+ "files_now": {
+  "pis.json": "e068680d6aecbb18e6952731830965e68f007c712007b014bf46814639ce5b29",
+  "students.json": "7fc755397b939eb91ecf1418efce78ef4e8b775598bbac0d3c7785aa01e8d5d4",
+  "lab_papers.jsonl.gz": "1ce09faab63bcb57c3742240e89919a78742ddff88d09d91ac2d7b3e8d9f1370",
+  "student_papers.jsonl.gz": "d91d58f06e76a83729cb25f308b35d626f525bd8db27690df2adec5740726361",
+  "copies.json": "6ea05392b5820731472e56395a294ae04a62d375f88ff4089c3c2208caa46668"
+ },
+ "lab_precision_uniform": {
+  "k": 49,
+  "n": 49,
+  "p": 1.0,
+  "lo": 0.9273,
+  "hi": 1.0,
+  "unclear": 1
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 49,
+  "n": 49,
+  "p": 1.0,
+  "lo": 0.9273,
+  "hi": 1.0,
+  "unclear": 1
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "listing": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "identity_not_reviewed": {
+   "k": 3,
+   "n": 4,
+   "p": 0.75,
+   "lo": 0.3006,
+   "hi": 0.9544,
+   "unclear": 1
+  }
+ },
+ "lab_precision_all40": {
+  "k": 62,
+  "n": 63,
+  "p": 0.9841,
+  "lo": 0.9154,
+  "hi": 0.9972,
+  "unclear": 2
+ },
+ "student_precision_uniform": {
+  "k": 50,
+  "n": 50,
+  "p": 1.0,
+  "lo": 0.9287,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "student_precision_strata": {
+  "advisee_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "full_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "within_lab_byline_match": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "student_precision_all40": {
+  "k": 65,
+  "n": 65,
+  "p": 1.0,
+  "lo": 0.9442,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_coverage": {
+  "k": 45,
+  "n": 49,
+  "p": 0.9184,
+  "lo": 0.8081,
+  "hi": 0.9678
+ },
+ "lab_coverage_items": {
+  "drawn": 50,
+  "true_lab_papers": 49,
+  "not_lab_papers_absent": 0,
+  "not_lab_papers_in_build": 0
+ },
+ "student_coverage": {
+  "k": 48,
+  "n": 48,
+  "p": 1.0,
+  "lo": 0.9259,
+  "hi": 1.0
+ },
+ "student_coverage_items": {
+  "drawn": 50,
+  "no_coauthored_paper": 2
+ },
+ "failures": {
+  "not_a_paper": 1,
+  "missing_from_build": 4
+ },
+ "incorrect": [
+  {
+   "sample": "lab_precision",
+   "stratum": "identity_not_reviewed",
+   "item": "Vivienne Sze|mit_eef4c058fac408816fde|https://openalex.org/W2790362196",
+   "failure_type": "not_a_paper",
+   "reason": "ISSCC 2018 session \"EE2: Workshop on circuits for social good\", a 10-person workshop/session entry in the Digest, not a research paper",
+   "policy": "workshop_session"
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Srini Devadas|journals/iacr/Servan-Schreiber21a",
+   "failure_type": "missing_from_build",
+   "reason": "IACR ePrint 2021 with Devadas (period 1988-); OpenAlex gives him no institution and the build has no row (type: no affiliation on OpenAlex authorship)",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Devavrat Shah|journals/jmlr/AgarwalSS25",
+   "failure_type": "missing_from_build",
+   "reason": "JMLR 2025 article, Shah listed 2016-2026; OpenAlex has no record, build has no row (type: DBLP work with no OpenAlex match)",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Elchanan Mossel|conf/nips/KoehlerM22",
+   "failure_type": "missing_from_build",
+   "reason": "NeurIPS 2022 with Mossel (period 2016-); OpenAlex gives him no institution, build has no row (type: no affiliation on OpenAlex authorship)",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Daniel Freund|conf/colt/FreundLW22",
+   "failure_type": "missing_from_build",
+   "reason": "COLT 2022 with Freund (period 2020-); OpenAlex has no record, build has no row (type: DBLP work with no OpenAlex match)",
+   "policy": null
+  }
+ ],
+ "unclear": [
+  {
+   "sample": "lab_precision",
+   "item": "William Freeman|mit_dspace_4f92c2e1-9c6b-4f92-9ab0-5b20a101a6fb|https://openalex.org/W2798841107",
+   "reason": "Freeman is credited to Google Research on this CVPR 2018 byline; only co-author Chuang Gan is credited to MIT; 2018 listing year but the sheet does not show the work was done at MIT"
+  },
+  {
+   "sample": "lab_precision",
+   "item": "Devavrat Shah|mit_69776ff918d04c686587|https://openalex.org/W2895885046",
+   "reason": "page-1 snippet gives Shah no MIT affiliation (next to CityU HK / UC); only the 2018 listing year and a name-anchored id support the row"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Marzyeh Ghassemi|conf/amia/SariaGOSHT21",
+   "reason": "AMIA 2021 title looks like a panel/session description and OpenAlex has no record; the evidence does not decide whether it is a paper"
+  }
+ ],
+ "screened": [],
+ "population": {
+  "n_lab_papers": 22205,
+  "n_student_papers": 20950,
+  "n_coverage_pool": 13305,
+  "n_student_candidates": 2651
+ },
+ "round": {
+  "id": "r2",
+  "sizes": {
+   "uniform": 50,
+   "stratum": 5,
+   "cov": 50,
+   "cands": 200
+  },
+  "judged": {
+   "lab_precision": 65,
+   "student_precision": 65,
+   "lab_coverage": 50,
+   "student_coverage": 50
+  }
+ }
+}
