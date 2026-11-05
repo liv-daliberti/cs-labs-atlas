@@ -76,3 +76,15 @@ def test_study_files_are_not_reviewed_inputs(monkeypatch):
     monkeypatch.setattr(provenance, '_git', lambda *a: 'ai-writing/diversity/site-data/all-ai/labs.json\nhierarchy/x.json\n')
     monkeypatch.setattr(provenance, 'onboarding_schools', lambda: [])
     assert provenance.tracked_inputs() == ['hierarchy/x.json']
+
+
+def test_lab_score_file_is_optional_and_year_checked(tmp_path):
+    root = folder(tmp_path)
+    assert 'ai/lab_ai_scores_2025.json' not in ai_release.collect(root)
+    (root / 'lab_ai_scores_2025.json').write_text(json.dumps({'meta': {'year': 2025}, 'labs': {'lab-a': {'score': 1.0}}}))
+    src = ai_release.collect(root)
+    assert 'ai/lab_ai_scores_2025.json' in src
+    ai_release.check_years(src)
+    (root / 'lab_ai_scores_2025.json').write_text(json.dumps({'meta': {'year': 2026}, 'labs': {}}))
+    with pytest.raises(SystemExit, match='2026'):
+        ai_release.check_years(ai_release.collect(root))

@@ -4,6 +4,7 @@ the JSON files the three site pages read, and `ai/manifest.json` with their hash
 
   ai/ai_hist.json, ai/ai_position.json, ai/labs_ai_hist_<school>.json[.gz]     page "How much AI" and "Given AI, how much"
                                                                                (ai-writing/dose/dose_site.py; git-ignored)
+  ai/lab_ai_scores_2025.json                                                   optional: each lab's 2025 AI-use score (Data page and CS departments page)
   ai/all-ai/{labs,methods,novelty,overall,preservation,schools,trend}.json     page "All papers AI-written" (tracked)
   ai/manifest.json   schema, release, source commit, last year, bytes and sha256 per file
 
@@ -19,6 +20,7 @@ from pathlib import Path
 
 LAST_YEAR = 2025
 DOSE_FILES = ['ai_hist.json', 'ai_position.json']
+LAB_SCORE_FILE = 'lab_ai_scores_2025.json'
 LAB_FILE = re.compile(r'^labs_ai_hist_[a-z0-9_-]+\.json(\.gz)?$')
 ALL_AI_FILES = ['labs.json', 'methods.json', 'novelty.json', 'overall.json', 'preservation.json', 'schools.json', 'trend.json']
 MANIFEST_NAME = 'ai/manifest.json'
@@ -45,6 +47,8 @@ def collect(root):
         raise SystemExit(f'AI site data incomplete: no labs_ai_hist_<school>.json in {root}')
     for p in labs:
         src[f'ai/{p.name}'] = p
+    if (root / LAB_SCORE_FILE).is_file():    # optional: the per-lab 2025 AI-use scores (ai-writing/dose/lab_ai_score.py, site/ copy)
+        src[f'ai/{LAB_SCORE_FILE}'] = root / LAB_SCORE_FILE
     for n in ALL_AI_FILES:
         if not (root / 'all-ai' / n).is_file():
             raise SystemExit(f'AI site data incomplete: {root / "all-ai" / n} is missing (ai-writing/allai/site_data.py build)')
