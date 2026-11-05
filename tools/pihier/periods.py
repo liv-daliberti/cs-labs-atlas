@@ -188,12 +188,12 @@ def bridge_periods(periods, direct_years, moved=False):
     return out
 
 
-LISTING_BRIDGE = 'R-PAP-33 listing continuity'
+LISTING_BRIDGE = 'R-PAP-37 listing continuity'
 NONPRIMARY_ROW = re.compile(r'\b(adjunct|on leave|consulting|visiting|courtesy|affiliate|emerit|part[- ]time)', re.I)
 
 
 def listing_bridge_periods(p, direct_years, other_years, covered, moved=False, today=None):
-    """R-PAP-33 (2026-11-05, owner task: Michigan student-paper gaps; Gorodetsky's 2021-2026 papers). Continuity periods built from a PI's
+    """R-PAP-37 (2026-11-05, owner task: Michigan student-paper gaps; Gorodetsky's 2021-2026 papers). Continuity periods built from a PI's
     dated listings alone. A listing proves its own calendar year only, so a PI whose school listing is captured in some years (Gorodetsky:
     AERO unit listing 2018-2020; the later captures are filter or hub pages with no names) has no appointment for the years after it, and
     every paper of those years that names the school in its own byline is `outside_appointment`. The R-PAP-28 continuity argument covers

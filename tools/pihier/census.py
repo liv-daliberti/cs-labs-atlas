@@ -49,7 +49,7 @@ def reviewed_inputs(ctx):
     for r in (read(lf) if lf.exists() else []):
         if not r.get('future_start_note') and r.get('sha256') and r.get('quote'):
             yearly[r['pi']].append(r)
-    # R-PAP-33: the years each department's listing was captured and read (listings/<school>/coverage.json); a PI absent from a covered
+    # R-PAP-37: the years each department's listing was captured and read (listings/<school>/coverage.json); a PI absent from a covered
     # year was dropped from that listing. Emeritus slots do not count (an emeritus page never lists the active faculty).
     cov_f = P.data('coverage.json', school, root=HERE)
     covered = {}  # {department: {years}}; only the per-department format (Michigan, Georgia Tech, UChicago); the per-person coverage files of the older schools say nothing about a department's years

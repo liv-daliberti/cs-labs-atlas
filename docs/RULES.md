@@ -280,6 +280,32 @@ name the namesake's group by coauthors: a work whose byline carries `min_coautho
 `authorship_identity` before any identity). Applies to every school's overrides; a cluster needs a reviewed reason and the works it removes.
 Tests: `tests/test_blocked_cluster_and_link_rules.py`.
 
+### R-PAP-37 (2026-11-05, owner task: Michigan student-paper gaps) — listing continuity
+Four Michigan `student_not_linked` findings of accuracy round r2 (Chen, Aksoy, Sattar, Wandke) were checked paper by paper. Two (Chen, Aksoy, both
+Gorodetsky's students) are real lab-paper gaps: Gorodetsky's only dated appointment evidence is the AERO unit listing of 2018-2020 (the later AERO
+captures are filter or hub pages that name no one), so his 2021-2026 papers, 6-15 a year, every one crediting Michigan Aerospace Engineering in his
+own byline, were `outside_appointment`. A listing proves its own calendar year only, so nothing could extend it. The R-PAP-28 argument (no departure
+evidence, the PI's own works name the school in every year) now also builds continuity periods from listings alone (`periods.listing_bridge_periods`,
+`LISTING_BRIDGE`, `papers.continuity_bridges`): (a) interior, from listing year A's capture date to the next listing year B's, when every year
+between qualifies; (b) tail, from the last listing's capture date through the longest run of qualifying years after it (open when the run reaches
+today). A year qualifies when the PI's identified works name the school in their own authorship at least once and credit no other institution more
+often. Never a head: the years before the first listing are the arrival side (R-PAP-13). Only for a PI with no period at all (R-PAP-28's), no
+departure evidence (`listingsAfterMove`, an end_moved period), and no non-primary listing row (adjunct, courtesy, visiting, emeritus, on leave,
+part-time). A listing drop closes the period (R-PAP-03, 2026-11-02): a department whose listing was captured and read in a gap year
+(`listings/<school>/coverage.json`, per-department format; emeritus slots do not count) and omits the PI stops the run there, and a PI listed in a
+department with no coverage data is bridged nowhere (the per-person coverage files of Berkeley, CMU, EPFL, MIT and Stanford say nothing about
+department years). The period admits only a paper whose own byline names the school (`direct_via`: not an advisee, unit-name, first-page or
+cross-affiliation route) and a first-page-proved DBLP or lab-page addition. Evidence is the listing capture; `reviewed: R-PAP-37 listing continuity`.
+Switched on per school by the charter (`[rules] listing_continuity`, TEMPLATE default false): Michigan only. Measured on all nine schools, the others wait
+for the owner (docs/DECISIONS.md). Counters `listing_bridge_periods`.
+The other two cases are correct non-links, not gaps. Sattar's co-authored papers (2019-2022, arXiv, TSP, ACC, CDC) name the University of California,
+Riverside for both authors: Oymak joined Michigan in fall 2023 (his first listing reads 'starting Fall 23'); the one 2021 arXiv record that
+carries 'U Michigan' tokens is a co-author's shifted affiliation string. Wandke's papers are UIUC work: the PI row 'Y Z' (Yang Zhang; R-PAP-34 on agent/accuracy-fixes-1105 resolves the placeholder name) is first listed at Michigan in
+2024; his 2023 RoboSoft and IEEE Access bylines name Michigan NERS beside UIUC (a prospective affiliation: the NERS people page of October 2023 does
+not yet list the PI), and the 2024-2025 bylines name UIUC only. Wayback captures 20230615164134, 20230922051505, 20231003085706 of
+ners.engin.umich.edu/people/. Brian Chen's Morressier record (2021, type other, no byline affiliation) is an abstract, not a paper.
+Tests: `tests/test_listing_continuity.py`.
+
 ## Students
 
 ### R-STU-01 (2026-10-21, owner)
