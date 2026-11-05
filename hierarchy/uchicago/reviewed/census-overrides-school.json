@@ -747,5 +747,99 @@
     "why": "2026-11-03 (owner D3): documented joint appointment with Argonne National Laboratory in the department listing"
    }
   ]
+ },
+ "Haozhi Qi": {
+  "openalex": [
+   "https://openalex.org/A5113868571"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): 2026-11-05 (stage-5 yield gap, ROADMAP #43): OpenAlex author A5113868571 'Haozhi Qi' has 40 works in the OpenAlex API and 34 of them match titles of the DBLP person page pid/190/7802, whose ORCID is the PI's 0009-0006-3271-3728 (the id's newest are 2026-10 robotics preprints: GOTT with authorship 'University of Chicago', 2026-10-02). Without this id the school-affiliated GOTT preprint had no identity route (the DBLP dump predates it).",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7220869612",
+    "sha256": "7b47e75c7737c31f842403c1965214010187bc01900c2f7b4b389e2ab7caf1c7",
+    "quote": "Qi, Haozhi | University of Chicago ,",
+    "observed": "2026-10-02",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uchicago/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Nicholas Tomlin": {
+  "openalex": [
+   "https://openalex.org/A5013447238"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): 2026-11-05 (stage-5 yield gap, ROADMAP #43): OpenAlex author A5013447238 'Nicholas Tomlin' has 19 works in the OpenAlex API and 14 of them match titles of the DBLP person page pid/249/7195, whose ORCID is the PI's 0000-0001-7322-808X; its 2026-10-16 preprint 'Analyzing Repetition and Interference Effects in Memory-Constrained Users' carries the authorship 'Toyota Technological Institute at Chicago'. Without this id that preprint had no identity route (the DBLP dump predates it).",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7223050712",
+    "sha256": "f6caffc5cdda89419d10cd9a5a54e6cbfc17d2d488fbff03ab2c95f18c220d86",
+    "quote": "Tomlin, Nicholas | Toyota Technological Institute at Chicago",
+    "observed": "2026-10-16",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/uchicago/openalex-sweep.sqlite)"
+   }
+  ],
+  "periods": [
+   {
+    "id": "override_period_yield_gap_uchicago_tomlin",
+    "start": "2026",
+    "end": null,
+    "asof": "2026-11-05",
+    "datePrecision": "year",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20260715194838id_/https://www.ttic.edu/faculty/",
+      "sha256": "e17c19a22194f6cd6f916497aa557a06da601006e35d8672491b33ed06f1cb49",
+      "quote": "Nicholas Tomlin Assistant Professor (starting Fall 2026)",
+      "observed": "2026-07-15",
+      "kind": "dept_listing"
+     },
+     {
+      "url": "https://www.ttic.edu/faculty/tomlin/",
+      "sha256": "77742d8dea87e3a7e4914463fd8c7cd7d4ce3381844e5d7142e2beea46bcbaf1",
+      "quote": "Dr. Nicholas Tomlin Assistant Professor PhD - University of California, Berkeley Nicholas Tomlin is an assistant professor at TTIC.",
+      "observed": "2026-11-05",
+      "kind": "unit_page_capture"
+     }
+    ]
+   }
+  ],
+  "why_periods": "2026-11-05 (stage-5 yield gap, ROADMAP #43): the TTIC faculty listing of 2026-07-15 titles the person 'Assistant Professor (starting Fall 2026)' (R-PAP-02: not yet an appointment); the TTIC profile page read live on 2026-11-05 (robots.txt of www.ttic.edu allows it; sha256 of the page body in captures/school-captures) gives the present-tense title, so the appointment began in Fall 2026. The start is year-precision: a paper whose own authorship names the school is admitted through R-PAP-28."
+ },
+ "William Merrill": {
+  "periods": [
+   {
+    "id": "override_period_yield_gap_uchicago_merrill",
+    "start": "2026",
+    "end": null,
+    "asof": "2026-11-05",
+    "datePrecision": "year",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20260715194838id_/https://www.ttic.edu/faculty/",
+      "sha256": "e17c19a22194f6cd6f916497aa557a06da601006e35d8672491b33ed06f1cb49",
+      "quote": "William Merrill Assistant Professor (starting Fall 2026)",
+      "observed": "2026-07-15",
+      "kind": "dept_listing"
+     },
+     {
+      "url": "https://www.ttic.edu/faculty/merrill/",
+      "sha256": "9fdfa45b912972908733561f53687b7d61c74e1a12fced2d243a8b275546aa9f",
+      "quote": "Dr. William Merrill Assistant Professor PhD - New York University Will Merrill is an Assistant Professor at the Toyota Technological Institute at Chicago",
+      "observed": "2026-11-05",
+      "kind": "unit_page_capture"
+     }
+    ]
+   }
+  ],
+  "why_periods": "2026-11-05 (stage-5 yield gap, ROADMAP #43): the TTIC faculty listing of 2026-07-15 titles the person 'Assistant Professor (starting Fall 2026)' (R-PAP-02: not yet an appointment); the TTIC profile page read live on 2026-11-05 (robots.txt of www.ttic.edu allows it; sha256 of the page body in captures/school-captures) gives the present-tense title, so the appointment began in Fall 2026. The start is year-precision: a paper whose own authorship names the school is admitted through R-PAP-28.",
+  "no_papers": true,
+  "why_no_papers": "2026-11-05: no school-affiliated work under the name exists yet. The OpenAlex sweep of UChicago and TTIC works (2016-2026, sweep of 2026-11-03) has no authorship of William Merrill; the OpenAlex author A5109946254 (DBLP pid/19/3512, 38 of 40 works match its titles) lists New York University and the Allen Institute for AI on every 2026 work (the newest, 2026-11-02, names no institution), and his TTIC profile says he is also a part-time researcher at the Allen Institute. He started at TTIC in Fall 2026 (period above), so a TTIC-affiliated paper is expected only from later preprints."
+ },
+ "Yossi Gandelsman": {
+  "no_papers": true,
+  "why_no_papers": "2026-11-05: the appointment has not begun. The TTIC faculty page and his profile page read live on 2026-11-05 (robots.txt allows; profile sha256 11c87fe7066705818c3338b0ec5d124b39289020fd36eec65a5b436841feece6) title him 'Assistant Professor (starting Fall 2027)' (earlier captures of 2025-09-13, 2026-04-14 and 2026-07-15 said 'starting Fall 2026'), so under R-PAP-02 he has no appointment and his three 2026 works with a TTIC or UChicago authorship (W7160203706 2026-05-01, W7163370823 2026-06-02, W7170136498 2026-07-22; OpenAlex author A5051101769, 38 of 39 works match DBLP pid/232/1765) fall outside it (funnel outside_appointment_2026: 3)."
+ },
+ "Ariel Feldman": {
+  "no_papers": true,
+  "why_no_papers": "2026-11-05: no paper falls inside an evidenced appointment. He is listed as Assistant Professor, Department of Computer Science in the CS directory captures of 2016-04-06 and 2016-11-04 and in no later listing: the 2017-08-29 capture of the same directory is page 1 of a paged list (5 names, Amit to Chugh; later pages are not archived), the 2018-11-19 capture of cs.uchicago.edu/people/faculty/ lists 53 faculty (Elmore, Drucker, Franklin, Gunawi, Foster among the D-G names) and not him. His homepage people.cs.uchicago.edu/~arielfeldman/ has no Wayback capture (CDX of the exact URL and its prefix answered nothing; stage-4 holds: 'no page captured'), and no unit profile page of his is archived. His works that name the University of Chicago (OpenAlex author A5061039165, 'Lemonade from Lemons' 2017-06 (two records), 'StrongBox' 2018-03 (two records), 'Using Differential Privacy to Efficiently Mitigate Side Channels' 2018-03; his DBLP pid/161/0107 lists 4 titles) are dated after his last listing and before a complete listing that omits him, so R-PAP-01 keeps them outside the appointment (funnel outside_appointment_2017: 2, _2018: 3). Unproven: whether he was on the faculty through 2017 and part of 2018."
  }
 }
