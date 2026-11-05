@@ -62,16 +62,53 @@
    "why": "2026-11-02 release reconciliation (owner rule: never raise without a reason): the increase is relabelling, not new relationships. Checked against release 2026-10-29.4: every current student_relation_student_only relation at cmu (3,050), epfl (1,212) and mit (668) exists there with the same PI, student name and relation type (0 new triples, 0 new PI-student pairs). The 10-31 evidence fixes (f646ec6 hashless sources dropped; f69aa4b R-STU-08 evidence per lab) reclassified existing relations as student-only; the links follow their relations."
   },
   "epfl": {
-   "max": 2,
+   "max": 3,
    "of": 9553,
-   "decided": "2026-10-29",
-   "why": "Byline links whose student's best roster source is a re-captured student-only quote (student_relation_student_only above); they clear with those relations."
+   "decided": "2026-11-05",
+   "why": "Byline links whose student's best roster source is a re-captured student-only quote (student_relation_student_only above); they clear with those relations. 2026-11-05: 2 -> 3: today's student work (visiting role R-STU-17, R-STU-14..16) added relations whose only quoted source is the student's own page."
   },
   "mit": {
-   "max": 485,
+   "max": 488,
    "of": 19832,
-   "decided": "2026-11-02",
-   "why": "2026-11-02 release reconciliation (owner rule: never raise without a reason): the increase is relabelling, not new relationships. Checked against release 2026-10-29.4: every current student_relation_student_only relation at cmu (3,050), epfl (1,212) and mit (668) exists there with the same PI, student name and relation type (0 new triples, 0 new PI-student pairs). The 10-31 evidence fixes (f646ec6 hashless sources dropped; f69aa4b R-STU-08 evidence per lab) reclassified existing relations as student-only; the links follow their relations."
+   "decided": "2026-11-05",
+   "why": "2026-11-02 release reconciliation (owner rule: never raise without a reason): the increase is relabelling, not new relationships. Checked against release 2026-10-29.4: every current student_relation_student_only relation at cmu (3,050), epfl (1,212) and mit (668) exists there with the same PI, student name and relation type (0 new triples, 0 new PI-student pairs). The 10-31 evidence fixes (f646ec6 hashless sources dropped; f69aa4b R-STU-08 evidence per lab) reclassified existing relations as student-only; the links follow their relations. 2026-11-05: 485 -> 488: today's student work (visiting role R-STU-17, R-STU-14..16) added relations whose only quoted source is the student's own page."
+  }
+ },
+ "unavailable_incomplete": {
+  "princeton": {
+   "max": 9,
+   "why": "2026-11-05: every one of these ledger records is incomplete only because CORE was not checked; the CORE API is paused since 2026-11-04 pending a licence (docs/CHANNELS.md, docs/DECISIONS.md), so the ledger reads its cache only. Lower to 0 when CORE resumes and the ledger is re-run.",
+   "decided": "2026-11-05"
+  },
+  "cmu": {
+   "max": 29,
+   "why": "2026-11-05: every one of these ledger records is incomplete only because CORE was not checked; the CORE API is paused since 2026-11-04 pending a licence (docs/CHANNELS.md, docs/DECISIONS.md), so the ledger reads its cache only. Lower to 0 when CORE resumes and the ledger is re-run.",
+   "decided": "2026-11-05"
+  },
+  "epfl": {
+   "max": 16,
+   "why": "2026-11-05: every one of these ledger records is incomplete only because CORE was not checked; the CORE API is paused since 2026-11-04 pending a licence (docs/CHANNELS.md, docs/DECISIONS.md), so the ledger reads its cache only. Lower to 0 when CORE resumes and the ledger is re-run.",
+   "decided": "2026-11-05"
+  },
+  "mit": {
+   "max": 39,
+   "why": "2026-11-05: every one of these ledger records is incomplete only because CORE was not checked; the CORE API is paused since 2026-11-04 pending a licence (docs/CHANNELS.md, docs/DECISIONS.md), so the ledger reads its cache only. Lower to 0 when CORE resumes and the ledger is re-run.",
+   "decided": "2026-11-05"
+  },
+  "berkeley": {
+   "max": 16,
+   "why": "2026-11-05: every one of these ledger records is incomplete only because CORE was not checked; the CORE API is paused since 2026-11-04 pending a licence (docs/CHANNELS.md, docs/DECISIONS.md), so the ledger reads its cache only. Lower to 0 when CORE resumes and the ledger is re-run.",
+   "decided": "2026-11-05"
+  },
+  "stanford": {
+   "max": 18,
+   "why": "2026-11-05: every one of these ledger records is incomplete only because CORE was not checked; the CORE API is paused since 2026-11-04 pending a licence (docs/CHANNELS.md, docs/DECISIONS.md), so the ledger reads its cache only. Lower to 0 when CORE resumes and the ledger is re-run.",
+   "decided": "2026-11-05"
+  },
+  "michigan": {
+   "max": 67,
+   "why": "2026-11-05: every one of these ledger records is incomplete only because CORE was not checked; the CORE API is paused since 2026-11-04 pending a licence (docs/CHANNELS.md, docs/DECISIONS.md), so the ledger reads its cache only. Lower to 0 when CORE resumes and the ledger is re-run.",
+   "decided": "2026-11-05"
   }
  }
 }
