@@ -404,7 +404,7 @@ a researched-evidence file (`RESEARCHED_FILES`, so R-STU-01/R-STU-12 apply: no q
 the data: among the 2,606 byline links of the nine packages that match on a name the paper does not spell in full, 540 are on papers with 10+ authors, 147 with 20+,
 74 with 30+, 37 with 50+ and 11 with 100+, while a lab paper's median byline is 5. UChicago's case: four initial-only 'Zhou' authors of a 2,938-author ATLAS paper
 linked to one CS student.
-**B. The full-name route.** A `full_name_on_lab_paper_byline` link needs the person to hold a student role (`student_role_ok`: phd, doctoral, masters,
+**B. The wide-window routes.** A `full_name_on_lab_paper_byline` or `within_lab_byline_match` link (the routes outside the narrow window; the three Georgia Tech errors were within-lab matches on the full name) needs the person to hold a student role (`student_role_ok`: phd, doctoral, masters,
 undergraduate, student, alumnus or intern, not only research scientist, visitor, postdoc, staff or other) and no relation whose quotes name other advisers only
 (`pi_is_adviser`, R-STU-03's test). Georgia Tech's draw: a research scientist (Anderson, Batra), a visiting researcher (Elola, Clifford) and a student of two other
 advisers (Basciftci, Van Hentenryck) had entered by full name. Tests: `tests/test_blocked_cluster_and_link_rules.py`.

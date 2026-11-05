@@ -64,3 +64,9 @@ def test_R_STU_19_B_the_pi_is_among_the_advisers():
     assert not links.pi_is_adviser(s, ['Pascal Van Hentenryck'])    # Basciftci's advisers are Ahmed and Gebraeel
     assert links.pi_is_adviser(s, ['Shabbir Ahmed'])
     assert links.pi_is_adviser(student(['phd'], 'Jane Doe, PhD student'), ['Pascal Van Hentenryck'])   # no adviser named: stays
+
+
+def test_R_STU_19_B_applies_to_the_within_lab_route():
+    import inspect
+    src = inspect.getsource(links.link_students)
+    assert src.count('student_role_ok(') == 2 and src.count('pi_is_adviser(') == 2   # full-name route and within-lab route

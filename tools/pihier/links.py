@@ -9,7 +9,7 @@ from .students import relation_names_other_adviser
 # a hyper-authored paper. Over the 2,606 byline links of the nine packages that match on a name the paper does not spell out in full, the
 # byline sizes run: 540 with 10+ authors, 147 with 20+, 74 with 30+, 37 with 50+, 11 with 100+; a lab paper's median byline is 5, so 50 is
 # far outside the lab-paper range and keeps every collaboration-scale byline out (UChicago: four 'Zhou' initials on a 2,938-author ATLAS
-# paper linked to one student). Rule B: the full-name route needs the person to hold a student role and no source quote naming other
+# paper linked to one student). Rule B: the wide-window routes (full-name and within-lab byline matches) need the person to hold a student role and no source quote naming other
 # advisers only (Georgia Tech: a research scientist, a visiting researcher and a student of two other advisers entered by full name).
 HYPER_AUTHORS = 50
 STUDENT_ROLE = re.compile(r'phd|doctoral|master|undergrad|student|alumn|intern')
@@ -186,6 +186,7 @@ def link_students(ctx):
             cand_ = {sid for f2, _ in sw_forms(bt, False) for sid in sw_index.get(r['pi'], {}).get(f2, ())}
             hits_ = [sid for sid in cand_ if sw_same(sid, bt)]
             if len(hits_) == 1 and hits_[0] not in done_ and wide_relation(S[hits_[0]], r['year']) and not student_given_conflict(hits_[0], raw) \
+                    and student_role_ok(S[hits_[0]]) and pi_is_adviser(S[hits_[0]], ctx.pid0[r['pi']]['names']) \
                     and not (hyper_authored(r) and initials_only(raw)):
                 sid = hits_[0]; done_.add(sid)
                 sp.append(dict(pi=r['pi'], student=sid, name=S[sid]['name'], work=r['work'], oa=r['oa'], status='candidate', basis='within_lab_byline_match', byline=raw))
