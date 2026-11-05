@@ -2727,23 +2727,81 @@
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/gatech/openalex-sweep.sqlite)"
    }
   ],
-  "unproven_years": [
-   2018,
-   2019,
-   2020,
-   2021,
-   2022
-  ],
-  "why_unproven": "Second look 2026-11-04: 20 URLs tried (the PI's homepages, profile-URL variants on the home unit's hosts across URL eras, person-supplied URLs) over the Wayback window; no dated capture names the PI with a ladder title in [2018, 2019, 2020, 2021, 2022]. These years prove nothing (R-PAP-01); R-PAP-28 bridges the papers at build time.",
-  "no_papers": true,
-  "why_no_papers": "2026-11-05 reviewed (ROADMAP #43): the only dated evidence of Warnke's appointment is the Mathematics people page of 2017-02-17 ('Lutz Warnke Assistant Professor'); his 11 identified school works (OpenAlex A5016879120, ORCID 0000-0002-1109-3957) are dated 2018-2022, outside it. The deep second look (tools/periods_school.py deep --work-years, 20 profile URLs across the home unit and College of Computing hosts, 2018-2022) found no archived dated page naming him, so those years prove nothing (R-PAP-01) and no paper is attributed. Owner decision recorded in the report: accept, or supply a dated page.",
-  "no_papers_evidence": [
+  "periods": [
    {
-    "url": "https://web.archive.org/web/20170217064411id_/http://www.math.gatech.edu:80/people?",
-    "sha256": "363f1a5be417d2a4e245efc006b91d1c4029d311e045a561d97c86ac3fd45bf9",
-    "quote": "Lutz Warnke Assistant Professor",
-    "observed": "20170217064411",
-    "kind": "unit_listing:MATH"
+    "id": "override_period_gatech_lutz_warnke",
+    "start": "2016",
+    "end": "2022-10",
+    "asof": "2026-11-05",
+    "datePrecision": "year",
+    "datePrecisionEnd": "month",
+    "evidence": [
+     {
+      "url": "https://hg.gatech.edu/node/647983",
+      "sha256": "e5e5b9bb62a5e65725195a4bfaeb398ef5b1fa92692013bb8dede36f55ebc4f8",
+      "quote": "Before Dr. Lutz Warnke joined GT in 2016, he received his undergraduate degree from ETH Zurich (2009), and his PhD from University of Oxford (2012).",
+      "observed": "2026-11-05",
+      "kind": "faculty_start"
+     },
+     {
+      "url": "https://hg.gatech.edu/node/590108",
+      "sha256": "ccaec656a941e9a6c0396703056162823a3472c21ecebb29f0fee71fa0411a1d",
+      "quote": "Lutz Warnke, who is soon joining the School of Mathematics faculty, is receiving the 2016 Dénes König Prize",
+      "observed": "2026-11-05",
+      "kind": "faculty_start"
+     },
+     {
+      "url": "https://web.archive.org/web/20170217064411id_/http://www.math.gatech.edu:80/people?",
+      "sha256": "363f1a5be417d2a4e245efc006b91d1c4029d311e045a561d97c86ac3fd45bf9",
+      "quote": "Lutz Warnke Assistant Professor",
+      "observed": "2017-02-17",
+      "kind": "unit_listing:MATH"
+     },
+     {
+      "url": "https://web.archive.org/web/20180603185342id_/http://www.math.gatech.edu:80/people?field_job_type_tid=11",
+      "sha256": "bf878353b1fe69d7fd6ecb074f6e5227176532e2f5904f61cd0f350a1d7ff329",
+      "quote": "Lutz Warnke Assistant Professor warnke@math.gatech.edu Skiles 266 404-894-5367",
+      "observed": "2018-06-03",
+      "kind": "unit_listing:MATH"
+     },
+     {
+      "url": "https://web.archive.org/web/20190518154156id_/https://math.gatech.edu/people?field_job_type_tid=11",
+      "sha256": "d63991c530adc36b7c1ee711e1d6357fe4169d80a59bc1788aa76dff59770c8c",
+      "quote": "Lutz Warnke Assistant Professor warnke@math.gatech.edu Skiles 266 404-894-5367",
+      "observed": "2019-05-18",
+      "kind": "unit_listing:MATH"
+     },
+     {
+      "url": "https://web.archive.org/web/20200804062333id_/https://math.gatech.edu/people?field_job_type_tid=11",
+      "sha256": "a38b51809dc645b33003aac17295dae4cd82275bfc38101e4e1187ffc36fedf4",
+      "quote": "Lutz Warnke Assistant Professor warnke@math.gatech.edu Skiles 266 404-894-5367",
+      "observed": "2020-08-04",
+      "kind": "unit_listing:MATH"
+     },
+     {
+      "url": "https://web.archive.org/web/20211207170130id_/https://math.gatech.edu/people?field_job_type_tid=11",
+      "sha256": "1ace7ecff0b2fb10fa1f1ab74ad8d492e93a2b520747d33634548a56f0245241",
+      "quote": "Lutz Warnke Associate Professor warnke@math.gatech.edu Skiles 266 404-894-5367",
+      "observed": "2021-12-07",
+      "kind": "unit_listing:MATH"
+     },
+     {
+      "url": "https://web.archive.org/web/20220524093546id_/https://math.gatech.edu/people?field_job_type_tid=11",
+      "sha256": "9680c56aec7d59cfa7c1d199aadf36ff360fc6ab7ff0d813bf1c566d25b4c9da",
+      "quote": "Lutz Warnke Associate Professor warnke@math.gatech.edu Skiles 266 404-894-5367",
+      "observed": "2022-05-24",
+      "kind": "unit_listing:MATH"
+     },
+     {
+      "url": "https://web.archive.org/web/20221007195013id_/https://math.gatech.edu/people?field_job_type_tid=11",
+      "sha256": "04e61d3c55ca32c7642dcceb8040a85fb3166b23810ef29f580d26d823d84713",
+      "quote": "Konstantin Tikhomirov Assistant Professor konstantin.tikhomirov@math.gatech.edu Skiles 224 404-894-6509 Michael Wolf Chair",
+      "observed": "2022-10-07",
+      "kind": "faculty_end_moved"
+     }
+    ],
+    "note": "2026-11-05 (owner: recheck Warnke). Dated evidence of every year: the faculty-filtered directory of the School of Mathematics (math.gatech.edu/people?field_job_type_tid=11, not the unfiltered /people and /people/faculty views the earlier searches read) lists him in Wayback captures of 2017-02, 2018-06, 2019-05, 2020-08, 2021-12 (Associate Professor, tenure news 2021-06) and 2022-05-24; the 2022-10-07 capture of the same page lists no Warnke (R-PAP-03 listing-drop rule: the period closes at the month of the first dated listing without him, 2022-10, bounded by the last listing with him, 2022-05-24; he joined UC San Diego in 2022). Start: Georgia Tech's own news says he joined in 2016 (year precision; R-PAP-28 keeps a paper whose authorship names the school in the boundary year).",
+    "reviewed": "warnke_recheck_20261105"
    }
   ]
  },
