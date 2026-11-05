@@ -157,3 +157,15 @@ def test_boilerplate_sources_exhausted_reasons_are_a_finding(tmp_path):
     assert any('fewer than 2' in x for x in f) and any('6 of 10' in x for x in f)
     ok = {f'P{i}': entry(T.BOILERPLATE + '.', 3) for i in range(2)}
     assert T.reasons_traps('newu', reasons=put(tmp_path / 'r.json', ok), n_pis=10) == []
+
+
+def test_traps_flag_is_stage_scoped_so_stage_zero_can_pass(monkeypatch):
+    assert set(T.CHECK_FROM) == set(T.CHECKS)                       # every check declares its first stage
+    assert 'captures' not in T.checks_upto(0) and 'captures' not in T.checks_upto(2) and 'captures' in T.checks_upto(3)
+    assert 'additions' not in T.checks_upto(5) and set(T.checks_upto()) == set(T.CHECKS)
+    import stage_gate as G
+    seen = []
+    monkeypatch.setattr(T, 'run', lambda key, names: (seen.append(list(names)), [])[1])
+    assert G.main(['newu', '0', '--traps']) == 0 and 'captures' not in seen[0] and 'charter' in seen[0]
+    G.main(['newu', '--traps'])
+    assert 'captures' in seen[1]

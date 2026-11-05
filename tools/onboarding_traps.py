@@ -210,6 +210,16 @@ CHECKS = dict(charter=charter_traps, collectors=lambda key: collector_traps(), c
               additions=additions_traps, stale=stale_traps, reasons=reasons_traps)
 
 
+# the first stage whose work a check can demand (`stage-gate <key> <n> --traps` runs the checks of stages <= n only; with no stage, all).
+# captures: the lab-page capture store is created by stage 3's labpage-discover step, so a stage-0 school cannot have it yet.
+CHECK_FROM = dict(charter=0, collectors=0, shared=3, ignored=3, captures=3, stale=2, additions=6, reasons=6)
+
+
+def checks_upto(stage=None):
+    """Names of the checks that apply at `stage` (every one when None)."""
+    return [n for n in CHECKS if stage is None or CHECK_FROM[n] <= int(stage)]
+
+
 def run(key, names):
     out = []
     for n in names:
