@@ -280,6 +280,17 @@ name the namesake's group by coauthors: a work whose byline carries `min_coautho
 `authorship_identity` before any identity). Applies to every school's overrides; a cluster needs a reviewed reason and the works it removes.
 Tests: `tests/test_blocked_cluster_and_link_rules.py`.
 
+### R-PAP-33 (2026-11-05, owner: round-r2 pooled failures; abstracts decision) — more non-research records
+Dropped (`not_a_paper`, `non_research_record`; tests `tests/test_not_paper_non_research_records.py`, each on the real failing rows): a title that opens 'Session Introduction',
+'Special-section Introduction' or 'Introduction to the Minitrack/Session' (`session_introduction`); 'Interview:' / 'An interview with' (`interview`); OpenAlex type `editorial` in
+ACM eBooks; a title ending '(Conference Presentation)', '(Invited Talk)', '(Keynote Presentation)' (`presentation_only`, SPIE and LIPIcs invited-talk records); a Zenodo, Figshare or Dryad DOI
+with no venue (`repository_record`: datasets, software, artifacts; OSF DOIs are preprints and stay); a record with no DOI and no venue whose title is a data file ('... in MATLAB data format',
+'Processed data ...', 'Dataset for ...'; `dataset_record`); a conference highlights, report, overview or summary ('Highlights from the ... Conference', 'Report on the ... Workshop', '... Workshop Summary';
+`highlights_column`); a title that opens 'Research for Practice' (CACM columns; `column`); an edited-volume record: a book-level ISBN DOI with no chapter suffix on a conference-paper, article or
+editorial record (LNCS volumes whose byline is the editors; type `book` stays, R-PAP-15; `edited_volume`); a workshop or session description ('EE2: Workshop on ...' at ISSCC, 'VDS @ KDD 2022',
+'KDD-2023 Workshop on ...'; `workshop_proposal`; 'KIT@IWSLT2022' stays). **Conference abstracts are not papers (owner, 2026-11-05):** besides R-PAP-19's meeting abstracts and the '(Conference Presentation)' records,
+a `conference-abstract` record of 2 pages or less in DBLP is dropped whatever its byline (`conference_abstract`); one without a page count, or of 3+ pages (ACM EC, PES General Meeting papers OpenAlex types as abstracts), stays.
+
 ## Students
 
 ### R-STU-01 (2026-10-21, owner)
