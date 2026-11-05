@@ -186,3 +186,67 @@ def bridge_periods(periods, direct_years, moved=False):
                              f"PI has no departure evidence, and the PI's identified works name the school in every full year between: "
                              f"{full[0]}-{full[-1]}."))
     return out
+
+
+LISTING_BRIDGE = 'R-PAP-33 listing continuity'
+NONPRIMARY_ROW = re.compile(r'\b(adjunct|on leave|consulting|visiting|courtesy|affiliate|emerit|part[- ]time)', re.I)
+
+
+def listing_bridge_periods(p, direct_years, other_years, covered, moved=False, today=None):
+    """R-PAP-33 (2026-11-05, owner task: Michigan student-paper gaps; Gorodetsky's 2021-2026 papers). Continuity periods built from a PI's
+    dated listings alone. A listing proves its own calendar year only, so a PI whose school listing is captured in some years (Gorodetsky:
+    AERO unit listing 2018-2020; the later captures are filter or hub pages with no names) has no appointment for the years after it, and
+    every paper of those years that names the school in its own byline is `outside_appointment`. The R-PAP-28 continuity argument covers
+    it: the gap after a listing year is bridged when
+      - the PI has no period of any kind (periods are reviewed; a PI with one is R-PAP-28's), no departure evidence (`moved`: listings after
+        a move, or an end_moved period) and no non-primary listing row (adjunct, courtesy, visiting, emeritus, on leave);
+      - in every calendar year of the gap the PI's identified works name the school in their own authorship and credit no other
+        institution more often (`direct_years`, `other_years`: {year: count});
+      - no listing capture of a department the PI was listed in covers a gap year and omits the PI: a listing drop closes the period
+        (R-PAP-03, 2026-11-02). `covered`: {department: {years}} from the school's listing coverage; a department listing the PI
+        with no coverage data bridges nothing.
+    Two shapes: (a) interior, from listing year A's capture to the next listing year B's capture, every year between qualifying;
+    (b) tail, from the last listing's capture through the longest run of qualifying years after it (open when the run reaches today).
+    Never a head (before the first listing: the arrival side is R-PAP-13's). The period admits only a paper whose own byline names
+    the school (`direct_via`), or a page-1-proved DBLP/lab-page addition. Returns the new periods, each citing the listing."""
+    today = today or TODAY
+    ls = sorted((l for l in p.get('listings') or [] if l.get('year')), key=lambda l: l['year'])
+    if moved or not ls or p.get('periods') or p.get('listingsAfterMove'):
+        return []
+    if any(NONPRIMARY_ROW.search(' '.join(str(l.get(k) or '') for k in ('quote', 'kind', 'rank'))) or l.get('emeritus') or l.get('visiting') for l in ls):
+        return []
+    depts = {(l.get('kind') or '').split(':', 1)[1] for l in ls if (l.get('kind') or '').startswith('dept_listing:')}
+
+    def blocked(y):
+        return any(y in (covered or {}).get(d, ()) if d in (covered or {}) else True for d in depts)
+
+    def qualifies(y):
+        return direct_years.get(y, 0) >= 1 and direct_years.get(y, 0) >= other_years.get(y, 0) and not blocked(y)
+
+    def cap(l):
+        m = re.search(r'/web/(\d{4})(\d{2})(\d{2})', l.get('url') or '')
+        return f'{m.group(1)}-{m.group(2)}-{m.group(3)}' if m else f"{l['year']}-12-31"
+
+    def make(a, end, asof, years, shape):
+        ev = [dict(url=a['url'], sha256=a['sha256'], quote=a['quote'], kind=a.get('kind') or 'listing')]
+        return dict(id=f"listing_bridge_{a['year']}_{shape}", start=cap(a), end=end, asof=asof, evidence=ev, datePrecision='day', endPrecision='day' if end else None,
+                    reviewed=LISTING_BRIDGE, years=[years[0], years[-1]],
+                    note=f"The PI's dated listing of {a['year']} is the last evidence of the appointment; the PI has no departure evidence, no listing capture "
+                         f"that covers {years[0]}-{years[-1]} omits the PI, and the PI's identified works name the school in their own authorship in every "
+                         f"year from {years[0]} to {years[-1]}.")
+
+    out, cy = [], int(today[:4])
+    for a, b in zip(ls, ls[1:]):
+        gap = list(range(a['year'] + 1, b['year']))
+        if gap and all(qualifies(y) for y in gap):
+            out.append(make(a, cap(b), None, gap, 'interior'))
+            out[-1]['id'] += f"_{b['year']}"
+    last = ls[-1]
+    run = []
+    for y in range(last['year'] + 1, cy + 1):
+        if not qualifies(y):
+            break
+        run.append(y)
+    if run:
+        out.append(make(last, None if run[-1] == cy else f'{run[-1]}-12-31', today if run[-1] == cy else None, run, 'tail'))
+    return out

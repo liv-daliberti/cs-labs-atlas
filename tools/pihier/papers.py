@@ -8,7 +8,7 @@ import atlas_paths as P  # data paths (DATA_FILES)
 import school_config as _S  # the school charters (R-PAP-15's foreign-title exception)
 from .common import OWN_UNITS, SCHOOL_LOOSE, TODAY, WINDOW_START, accepted_additions, ndoi, norm_title
 from .names import NICK, _nick_pairs, byline_name, full_pair, toks
-from .periods import _year, bridge_periods, contains, same_year, transition_side, transition_status
+from .periods import _year, LISTING_BRIDGE, bridge_periods, listing_bridge_periods, contains, same_year, transition_side, transition_status
 from . import identity
 from dblp_dump_pages import page_count  # noqa: E402  (DBLP's `pages` string -> number of pages; R-PAP-27)
 
@@ -577,7 +577,9 @@ def rows_from_hits(ctx):
                 # the venue version predates the atlas window (2016-2026): a later deposit or preprint of an older paper
                 # is not a lab paper of the window (Sandholm's IJCAI 2009 paper, a 2018 KiltHub deposit)
                 n['dated_before_window'] += 1; funnel[pi]['dated_before_window'] += 1; continue
-        per = next((q for q in p['periods'] if contains(q['start'], q['end'], date, q['asof'] or TODAY) == 'supported'), None)
+        # R-PAP-33: a listing-continuity period admits only a paper whose own byline names the school
+        per = next((q for q in p['periods'] if contains(q['start'], q['end'], date, q['asof'] or TODAY) == 'supported'
+                    and (q.get('reviewed') != LISTING_BRIDGE or direct_via(via))), None)
         lst = None
         if per is None:
             y = same_year(date); lst = next((l for l in p['listings'] if l['year'] == y), None) if y else None
@@ -815,6 +817,10 @@ def continuity_bridges(ctx):
         if new:
             p['periods'] = p['periods'] + new
             n['continuity_bridge_periods'] += len(new)
+        lb = listing_bridge_periods(p, years[p['pi']], other[p['pi']], getattr(ctx, 'listing_covered', {}), moved)  # R-PAP-33
+        if lb:
+            p['periods'] = p['periods'] + lb
+            n['listing_bridge_periods'] += len(lb)
     ctx.direct_years, ctx.other_years = years, other
 
 
