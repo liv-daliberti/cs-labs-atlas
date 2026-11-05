@@ -9,11 +9,11 @@
 key = "uchicago"                  # lower-case, [a-z0-9]+; the folder name everywhere (hierarchy/<key>, stores/<key>, schools/<key>)
 name = "University of Chicago"                 # full official name ("University of Michigan")
 short = "Chicago"                # display name ("Michigan")
-site_uni = ""             # the 300-university atlas id (SITE_DATA/universities/<site_uni>.json.gz), if any
-status = "onboarding"     # onboarding | released. Only released schools are in atlas_paths.SCHOOL_IDS (the build,
+site_uni = "university-of-chicago"             # the 300-university atlas id (SITE_DATA/universities/<site_uni>.json.gz), if any
+status = "released"     # onboarding | released. Only released schools are in atlas_paths.SCHOOL_IDS (the build,
                           # the release, the tree); flip it at stage 10, never earlier
 order = 8                 # display and build order (released schools are listed in this order)
-stage = 0                 # the last stage whose gate passed (hierarchy/<key>/STAGE-<n>.md)
+stage = 10                # the last stage whose gate passed (hierarchy/<key>/STAGE-<n>.md)
 started = "2026-11-02"              # YYYY-MM-DD the onboarding started
 window = [2016, 2026]     # the study window (owner rule; do not change per school)
 
