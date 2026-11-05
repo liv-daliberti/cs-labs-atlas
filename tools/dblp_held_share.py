@@ -23,7 +23,7 @@ def run(school):
     for p in pis:
         for q in p.get('dblp') or []:
             owner[q].append(p)
-    per = collections.defaultdict(lambda: dict(listed=0, held=0, missing=[]))
+    per = collections.defaultdict(lambda: dict(listed=0, held=0, missing=[]))  # outside: not held, year outside the appointment, by kind (R-PAP-37 bridges interior_gap and tail_after_last_listing when bylines name the school)
     for k, rec in pubs.items():
         y = rec.get('year')
         if not y or not (2016 <= int(y) <= 2026) or 'journals/corr' in k:
@@ -33,6 +33,10 @@ def run(school):
             for p in owner.get(q, []):
                 years = {l['year'] for l in p['listings']}
                 if int(y) not in years and not any((x['start'] or '9999')[:4] < str(y) < (x['end'] or '9999')[:4] for x in p['periods']):
+                    if not (t in have[p['pi']] or (rec.get('doi') and ndoi(rec['doi']) in have[p['pi']])) and years:
+                        d = per[p['pi']]
+                        kind = 'interior_gap' if min(years) < int(y) < max(years) else 'tail_after_last_listing' if int(y) > max(years) else 'before_first_listing'
+                        d.setdefault('outside', collections.Counter())[kind] += 1
                     continue
                 d = per[p['pi']]; d['listed'] += 1
                 if t in have[p['pi']] or (rec.get('doi') and ndoi(rec['doi']) in have[p['pi']]):
@@ -40,7 +44,8 @@ def run(school):
                 else:
                     d['missing'].append(dict(key=k, title=rec.get('title'), year=int(y), doi=rec.get('doi'), venue=rec.get('venue')))
     L = sum(d['listed'] for d in per.values()); H = sum(d['held'] for d in per.values())
-    return dict(school=school, pis_with_listed=len(per), listed=L, held=H, share=round(H / L, 4) if L else None, per_pi=per)
+    out = collections.Counter(); [out.update(d.get('outside') or {}) for d in per.values()]
+    return dict(outside_appointment_not_held=dict(out), school=school, pis_with_listed=len(per), listed=L, held=H, share=round(H / L, 4) if L else None, per_pi=per)
 
 
 if __name__ == '__main__':
