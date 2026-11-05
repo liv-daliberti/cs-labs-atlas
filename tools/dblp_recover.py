@@ -35,6 +35,21 @@ OPEN_HOSTS = ('aclanthology.org', 'proceedings.mlr.press', 'openaccess.thecvf.co
 _last = collections.defaultdict(float); _lock = threading.Lock(); _robots = {}
 
 
+_HT = []
+
+
+def _throttle():
+    """fulltext-push/host_throttle.py (shared pacing state in the collectors' raw directory), loaded by path; None when it is not there."""
+    if not _HT:
+        import importlib.util
+        f = Path(P.FULLTEXT_PUSH) / 'host_throttle.py'
+        mod = None
+        if f.exists():
+            spec = importlib.util.spec_from_file_location('host_throttle', f); mod = importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
+        _HT.append(mod)
+    return _HT[0]
+
+
 def polite_get(url, delay=3.0):
     host = urlsplit(url).netloc
     if host not in _robots:
@@ -47,14 +62,23 @@ def polite_get(url, delay=3.0):
     dis = [l.split(':', 1)[1].strip() for l in _robots[host].splitlines() if l.lower().startswith('disallow:')]
     if any(d and path.startswith(d) for d in dis):  # crude but conservative: any Disallow prefix, for any agent
         return None
-    with _lock:
-        wait = _last[host] + delay - time.time(); _last[host] = max(time.time(), _last[host] + delay)
+    ht = _throttle()
+    if ht is not None:   # R-PAP-36: one request budget per host for every client (the download loops and parallel recovery jobs): host_throttle's slots and 429 cooldowns
+        if ht.cooldown_left(host) > ht.WAIT_MAX:
+            return None
+        wait = ht.reserve(host, delay)
+    else:
+        with _lock:
+            wait = _last[host] + delay - time.time(); _last[host] = max(time.time(), _last[host] + delay)
     if wait > 0:
         time.sleep(wait)
     try:
-        return requests.get(url, headers={'User-Agent': UA}, timeout=90)
+        r = requests.get(url, headers={'User-Agent': UA}, timeout=90)
     except requests.RequestException:
         return None
+    if r.status_code == 429 and ht is not None:
+        ht.record_429(host)
+    return r
 
 
 def pdf_url(u):
