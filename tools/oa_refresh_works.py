@@ -214,7 +214,6 @@ def merge(school, years, tag=TAG, apply=False, cl=None, lookups=0):
                 why['alive'] += 1
         new_ids = sorted(set(fresh) - set(old))
         changed = sum(1 for i in fresh if i in old and project(old[i]) != project(fresh[i]))
-        merged_into_store = {i for i in drop if merged_map.get(i) in fresh}
         new_store = {i: w for i, w in old.items() if i not in drop}
         for i, w in fresh.items():
             new_store[i] = project(w)
@@ -224,7 +223,7 @@ def merge(school, years, tag=TAG, apply=False, cl=None, lookups=0):
         api_np = stc.execute("select max(count) from pages where kind='inst' and key=?", (str(y),)).fetchone()
         new_pi = len([i for i in new_ids if any(short((a.get('author') or {}).get('id')) in pis for a in fresh[i].get('authorships') or [])])
         rep['years'][y] = dict(api_all=api_all and api_all[0], api_papers=api_np and api_np[0], fetched=len(fresh), ours_before=ours_before, ours_after=ours_after,
-                               papers_before=np_before, papers_after=np_after, new=len(new_ids), changed=changed, dropped=len(drop), merged_ids=len(merged_into_store) or len({i for i in drop if i in merged_map}),
+                               papers_before=np_before, papers_after=np_after, new=len(new_ids), changed=changed, dropped=len(drop), merged_ids=len([i for i in drop if i in merged_map]),
                                not_returned_reasons=why, new_pi_credited=new_pi)
         new_pages[y] = (new_store, old)
     # pi works
