@@ -1,11 +1,13 @@
 # Data license
 
-The data in `data/` and the documentation in `docs/` are licensed under the
-**Creative Commons Attribution 4.0 International License (CC BY 4.0)**:
-https://creativecommons.org/licenses/by/4.0/ (legal code: https://creativecommons.org/licenses/by/4.0/legalcode).
+© 2026 Liv d'Aliberti. From this version on, the data in `data/` and the documentation in `docs/` are licensed under
+**Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)**:
+https://creativecommons.org/licenses/by-nc/4.0/ (legal code: https://creativecommons.org/licenses/by-nc/4.0/legalcode;
+full text in the repository's LICENSE).
 
-You may share and adapt the data for any purpose, including commercially, as long as you give appropriate credit
-(see `CITATION.cff`), link to the license, and indicate if changes were made.
+You may share and adapt the data for non-commercial purposes, as long as you give appropriate credit (cite it: see
+`CITATION.cff` and the README section "How to cite"), link to the license, and indicate if changes were made.
+Commercial use needs permission (open an issue). Earlier versions remain under the licence they were published with.
 
 ## Third-party material
 

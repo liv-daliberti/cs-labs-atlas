@@ -167,10 +167,39 @@ See [CITATION.cff](CITATION.cff).
 
 ## Licenses
 
-- **Code** (`code/`, `tests/`): MIT, see [LICENSE](LICENSE). `code/claude-schools-20261021/hierarchy/nicknames/names.csv`
-  is the public carltonnorthern/nicknames table (Apache-2.0), kept with its own license terms.
-- **Data** (`data/`, `docs/`): Creative Commons Attribution 4.0 International (CC BY 4.0), see
-  [data/LICENSE.md](data/LICENSE.md).
+© 2026 Liv d'Aliberti. From this version on, the atlas data (`data/`), its documentation (`docs/`) and the code that
+builds it (`code/`, `tests/`) are licensed under **Creative Commons Attribution-NonCommercial 4.0 International
+(CC BY-NC 4.0)**: see [LICENSE](LICENSE) and [NOTICE](NOTICE). Attribution is required, use is non-commercial only,
+and commercial use needs permission (open an issue). Earlier versions of this repository remain under the licences
+they were published with.
+
+- `code/claude-schools-20261021/hierarchy/nicknames/names.csv` is the public carltonnorthern/nicknames table
+  (Apache-2.0), kept with its own license terms.
 - Bibliographic metadata from **OpenAlex** and **DBLP** is CC0; it is redistributed here under their terms.
 - **Quoted evidence snippets** (the `quote` fields) are short verbatim excerpts of public web pages, kept only so that each
   claim can be verified against its source. They remain the property of their publishers and are not relicensed.
+- The papers themselves are their authors' or publishers' copyright and are not relicensed.
+
+<!-- cite:start -->
+## How to cite
+
+This dataset is © 2026 Liv d'Aliberti and licensed under [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/): attribution is required and use is non-commercial. Papers keep their own licences. Please cite:
+
+> d'Aliberti, L. (2026). CS Labs Atlas (Release 2026-10-29.4) [Data set]. https://github.com/liv-daliberti/cs-labs-atlas (a Zenodo DOI follows with the first archived release)
+
+```bibtex
+@dataset{daliberti2026csatlas,
+  author    = {d'Aliberti, Liv},
+  title     = {CS Labs Atlas},
+  year      = {2026},
+  version   = {2026-10-29.4},
+  publisher = {Zenodo},
+  url       = {https://github.com/liv-daliberti/cs-labs-atlas},
+  license   = {CC-BY-NC-4.0}
+}
+```
+
+GitHub's "Cite this repository" button reads `CITATION.cff`; the DOI comes from the Zenodo record of each GitHub release.
+
+**Terms of use.** Automated scraping or bulk download of the CS Labs Atlas website for AI or machine-learning training, or for building datasets, is not permitted except by permission. Use the bulk data in this repository (or the Hugging Face release) under the licence instead. The text-and-data-mining rights are expressly reserved under Article 4(3) of EU Directive 2019/790. Commercial use needs permission: open an issue at https://github.com/liv-daliberti/cs-labs-atlas/issues.
+<!-- cite:end -->
