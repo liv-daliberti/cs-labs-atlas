@@ -41,7 +41,7 @@ def write(ctx):
                linkGuardKeptVariantSamples=guard_kept_samples, notPaperSamples=dict(not_paper_samples),
                page1ElsewhereSamples=page1_samples, staleListingReview=ctx.listing_review, droppedWithoutHashedSource=ctx.unevidenced, labpageAdditionsSetAside=ctx.labpage_set_aside,
                provenance=provenance.block(school),
-               studentInitialsMerges=ctx.initials_merges, studentSurnameTypoCandidates=students.typo_candidate_rows(ctx))  # what this package was built from (tools/provenance.py; make_release requires it)
+               studentInitialsMerges=ctx.initials_merges, studentSurnameTypoCandidates=students.typo_candidate_rows(ctx), labpageStudentsCorroborated=getattr(ctx, 'corroborated', []))  # what this package was built from (tools/provenance.py; make_release requires it)
     json.dump(rep, open(out / 'report.json', 'w'), indent=1, ensure_ascii=False)
     print(json.dumps(dict(school=school, **n)))
 
@@ -59,6 +59,7 @@ def build(school):
     identity.anchors(ctx)
     identity.hits(ctx)
     papers.lab_papers(ctx)
+    students.add_corroborated(ctx)  # R-STU-20
     links.link_students(ctx)
     students.drop_weak(ctx, ctx.sp)
     n, pis, stu, sp = ctx.n, ctx.pis, ctx.stu, ctx.sp

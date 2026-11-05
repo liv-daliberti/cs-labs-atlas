@@ -2,7 +2,7 @@
 guard, names.given_conflict), R-LNK-03 (within-lab byline matching), R-LNK-05 (links carry their evidence)."""
 import collections, re, unicodedata
 
-from .names import LETTERS, Name, byline_name, clean_person_name, given_conflict, gwords, name_variants, nick_ok, student_on_byline, toks
+from .names import EAST_ASIAN_FAMILY, LETTERS, Name, one_edit, byline_name, clean_person_name, given_conflict, gwords, name_variants, nick_ok, student_on_byline, toks
 from .students import relation_names_other_adviser
 
 # R-STU-19 (2026-11-05, owner: UChicago/Georgia Tech stage-9 samples). Rule A: an initials-only name match ('Y. Zhou') cannot link a student to
@@ -44,6 +44,29 @@ def near_relation(s, year):
     return not ys or not year or min(ys) - 3 <= int(year) <= max(ys) + 3
 
 
+DISSERTATION_BEFORE = 6   # R-LNK-06: a PhD takes up to six years; the dissertation year is the END of the student's years with the lab
+MAX_AUTHORS = 15          # R-LNK-06/07: the extensions below never apply to a hyper-authored paper
+
+
+def vowel_edit(a, b):
+    """R-LNK-07: one insertion, deletion, adjacent transposition or vowel-for-vowel substitution ('Aiden'/'Aidan', 'Connor'/'Conor', 'Makena'/
+    'Maken'); a consonant substituted for another ('Kavin'/'Navin', 'Anna'/'Anja') makes a different name, not a spelling."""
+    if not one_edit(a, b):
+        return False
+    if len(a) == len(b):
+        d = [i for i in range(len(a)) if a[i] != b[i]]
+        return len(d) == 2 or (a[d[0]] in 'aeiouy' and b[d[0]] in 'aeiouy')
+    return True
+
+
+def dissertation_only(s):
+    """R-LNK-06: every relation of the PhD student is a dissertation record (a DSpace record whose `dc.contributor.advisor` names the
+    adviser) and so dates the END of the student's work with the lab: the recorded year is the degree year."""
+    rels = s.get('relations') or []
+    return bool(rels) and all(any('contributor' in (q.get('quote') or '') and 'advisor' in (q.get('quote') or '') for q in rel.get('sources') or [])
+                              and (rel.get('role') or 'phd') == 'phd' for rel in rels)
+
+
 def relation_source(student):
     """The student's roster evidence for a link: the first relation source with url, sha256 and quote (with the relation's
     type), else the first source at all (the evidence check reports it), else None."""
@@ -78,10 +101,15 @@ def link_students(ctx):
         t = toks(byline_name(b))
         return len(t) >= 2 and any(len(tk_) >= 2 and len(tk_[0]) > 1 and t[0] == tk_[0] and t[-1] == tk_[-1] for _, tk_ in snm[sid])
 
-    def wide_relation(s, year):
-        """Two years before to six after the recorded advising: recorded years are often a single roster observation."""
+    def wide_relation(s, year, full=False, nauthors=0):
+        """Two years before to six after the recorded advising: recorded years are often a single roster observation.
+        R-LNK-06 (2026-11-05): a PhD student known only from dissertation records is dated by the degree year, the END of the work:
+        a full-name byline on a paper of at most MAX_AUTHORS authors counts from DISSERTATION_BEFORE years before it."""
         ys = [int(y) for rel in s.get('relations') or [] for y in rel.get('years') or [] if str(y).isdigit()]
-        return not ys or not year or min(ys) - 2 <= int(year) <= max(ys) + 6
+        if not ys or not year:
+            return True
+        before = DISSERTATION_BEFORE if full and 0 < nauthors <= MAX_AUTHORS and dissertation_only(s) else 2
+        return min(ys) - before <= int(year) <= max(ys) + 6
     # (2026-10-29, owner) every byline link passes a given-name guard: a byline whose first given name is a full word that
     # differs from every full given-name reading of the student is someone else ('Wei-Ning Chen' had been linked via
     # 'Wei-Chen Chen'). A middle name used as the preferred given name ('Xiang Lisa Li' / 'Lisa Li'), hyphen/space
@@ -139,6 +167,21 @@ def link_students(ctx):
                     ix[f_].add(sid)
         sw_index[pi_] = ix
 
+    def sw_variant(sid, bt):
+        """R-LNK-07 (2026-11-05): the family name written the same way (read as the family name, never through the order swap, which
+        would turn a family-name typo into a match: 'Dor Mintzer' / 'Dor Minzer', 'Swarup Sahoo' / 'Swarun Kumar') and a first given name
+        of 5+ letters one vowel substitution, insertion, deletion or transposition apart: a spelling or transliteration variant ('Aiden'/'Aidan', 'Connor'/'Conor').
+        Not under an East Asian family name ('Yue'/'Yuan' are different people)."""
+        if len(bt) < 2:
+            return False
+        fam, g2 = bt[-1].replace('-', ''), bt[0].replace('-', '')
+        for st in sw_names[sid]:
+            if len(st) >= 2 and st[-1].replace('-', '') == fam and fam not in EAST_ASIAN_FAMILY:
+                g1 = st[0].replace('-', '')
+                if min(len(g1), len(g2)) >= 5 and g1 != g2 and vowel_edit(g1, g2):
+                    return True
+        return False
+
     def sw_same(sid, bt):
         return any(f1 == f2 and sw_given(g1, g2) for st in sw_names[sid] for f1, g1 in sw_forms(st, True) for f2, g2 in sw_forms(bt, False))
 
@@ -159,8 +202,8 @@ def link_students(ctx):
                 # the PI's own advisee named on the PI's lab paper (an authorship without affiliations, e.g. an ACL
                 # Anthology record), within three years of the recorded advising
                 done_.add(sid); sp.append(dict(pi=r['pi'], student=sid, name=s['name'], work=r['work'], oa=r['oa'], status='candidate', basis='advisee_name_on_lab_paper_byline', byline=b_))
-            elif wide_relation(s, r['year']) and student_role_ok(s) and pi_is_adviser(s, ctx.pid0[r['pi']]['names']) \
-                    and (b_ := next((b for bl, _ in r['_bylines'] for b in bl if byline_ok(sid, b, full_name_on, r['pi'])), None)) is not None:
+            elif wide_relation(s, r['year'], True, len(r['byline'])) and student_role_ok(s) and pi_is_adviser(s, ctx.pid0[r['pi']]['names']) \
+                    and (b_ := next((b for bl, _ in r['_bylines'] for b in bl if byline_ok(sid, b, full_name_on, r['pi'], r)), None)) is not None:
                 # the lab's own student by full name on the lab's own paper, outside the narrow window (2026-10-28:
                 # recorded years are often one roster observation; alumni keep publishing with the lab)
                 done_.add(sid); sp.append(dict(pi=r['pi'], student=sid, name=s['name'], work=r['work'], oa=r['oa'], status='candidate', basis='full_name_on_lab_paper_byline', byline=b_))
@@ -185,10 +228,18 @@ def link_students(ctx):
             bt = sw_toks(raw)
             cand_ = {sid for f2, _ in sw_forms(bt, False) for sid in sw_index.get(r['pi'], {}).get(f2, ())}
             hits_ = [sid for sid in cand_ if sw_same(sid, bt)]
+            plain_ = len(hits_) == 1
+            if not hits_ and 0 < len(r['byline']) <= MAX_AUTHORS:  # R-LNK-07: no exact reading; a one-edit given-name variant of exactly one student
+                hits_ = [sid for sid in cand_ if sw_variant(sid, bt)]
+                # never when the student's own spelling is on the same paper (two people), nor for an initial or a second variant of the lab
+                if hits_ and any(sw_same(hits_[0], sw_toks(o)) for o in r['byline']):
+                    hits_ = []
             if len(hits_) == 1 and hits_[0] not in done_ and wide_relation(S[hits_[0]], r['year']) and not student_given_conflict(hits_[0], raw) \
                     and student_role_ok(S[hits_[0]]) and pi_is_adviser(S[hits_[0]], ctx.pid0[r['pi']]['names']) \
                     and not (hyper_authored(r) and initials_only(raw)):
                 sid = hits_[0]; done_.add(sid)
+                if not plain_:
+                    n['link_within_lab_spelling_variant'] += 1
                 sp.append(dict(pi=r['pi'], student=sid, name=S[sid]['name'], work=r['work'], oa=r['oa'], status='candidate', basis='within_lab_byline_match', byline=raw))
     n.update({'link_guard_' + k: v for k, v in guard_n.items()})
     # every byline link carries its evidence (2026-10-29, build-time evidence check): the work, the exact byline string
