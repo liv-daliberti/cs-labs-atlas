@@ -56,3 +56,8 @@ def test_R_PAP_35_census_dblp_id_of_the_namesake_is_dropped():
 def test_R_PAP_35_mark_w_newman_override_names_his_page():
     ov = json.loads((HIER / 'reviewed/census-overrides.json').read_text())['michigan']['Mark W Newman']
     assert ov['dblp'] == ['https://dblp.org/pid/03/6629'] and ov['why_dblp']
+
+
+def test_R_PAP_34_files_keyed_by_the_census_name_reach_the_renamed_pi():
+    from pihier import students
+    assert students.renamed_pis([dict(pi='Yang Zhang', censusName='Y Z'), dict(pi='Mark W Newman')]) == {'Y Z': 'Yang Zhang'}

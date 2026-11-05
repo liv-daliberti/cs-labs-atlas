@@ -283,7 +283,7 @@ Tests: `tests/test_blocked_cluster_and_link_rules.py`.
 ### R-PAP-34 (2026-11-05, owner: round-r2 Michigan verdict) — placeholder PI names
 A PI whose name is made only of single letters ('Y Z': the university directory lists a Nuclear Engineering professor by initials) names no one a matcher can tell
 from a namesake and anchors no paper (`placeholder_name`). `pi_records` excludes such a census row (`excluded`, reason 'placeholder name') unless the reviewed overrides give a
-`display_name` with its evidence; the PI is then built under that name (`censusName` keeps the census spelling, `displayNameBasis` the reason). Michigan's 'Y Z' is Yang Zhang, from the
+`display_name` with its evidence; the PI is then built under that name (`censusName` keeps the census spelling, `displayNameBasis` the reason; researched, lab-page and decision files that key the person by the census name still reach the PI, `renamed_pis`). Michigan's 'Y Z' is Yang Zhang, from the
 ORCID 0000-0002-7339-8342 and the OpenAlex author A5113215889 that carries it (the molten-salt paper the sample doubted is his). All nine schools were checked: 'Y Z' is the only placeholder
 (names such as 'Weinan E', 'H.V. Jagadish', 'R. Ravi' have a word of two letters or more). Tests: `tests/test_namesake_guard_and_placeholder_pi.py`.
 
