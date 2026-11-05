@@ -4,7 +4,8 @@
   event_study.py control          lab-year geometry on the original and all-AI rewritten abstracts (wording control)  -> OUT/event/control_geometry.parquet
   event_study.py outcomes         lab-year outcome panel (long)                                                -> OUT/event/outcomes.parquet
   event_study.py estimate [--headline-only] [-j N]   Callaway-Sant'Anna event studies, pre-trend tests, permutation placebo, TWFE comparison -> OUT/event/results.parquet
-  event_study.py all              the four steps in order
+  event_study.py run              outcomes + estimate + diagnostics (adoption and control already built)
+  event_study.py all              every step in order
 Adoption rule, thresholds, outcomes and estimator are fixed in preregistration.json (read here, never edited by a run). Lab bootstrap B (default 300).
 """
 import argparse
@@ -408,7 +409,7 @@ def diagnostics():
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('cmd', choices=['adoption', 'control', 'outcomes', 'estimate', 'diagnostics', 'all', 'report'])
+    ap.add_argument('cmd', choices=['adoption', 'control', 'outcomes', 'estimate', 'diagnostics', 'run', 'all', 'report'])
     ap.add_argument('--headline-only', action='store_true')
     ap.add_argument('--boot', type=int, default=BOOT)
     ap.add_argument('--perm', type=int, default=200)
@@ -418,11 +419,11 @@ def main():
         build_adoption()
     if a.cmd in ('control', 'all'):
         control_geometry()
-    if a.cmd in ('outcomes', 'all'):
+    if a.cmd in ('outcomes', 'run', 'all'):
         build_outcomes()
-    if a.cmd in ('estimate', 'all'):
+    if a.cmd in ('estimate', 'run', 'all'):
         estimate(a.headline_only, a.j, a.boot, a.perm)
-    if a.cmd in ('diagnostics', 'all'):
+    if a.cmd in ('diagnostics', 'run', 'all'):
         diagnostics()
     if a.cmd == 'report':
         import event_report
