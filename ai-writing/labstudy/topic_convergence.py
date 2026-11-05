@@ -206,7 +206,7 @@ def fe_break(ly, y='dist_centroid', tag=None):
         else:
             x = d[d['year'].isin(L.PRE)].copy()
             x['post'] = (x['year'] >= br).astype(float)
-        r = R.fit(x, y, 'post', fe=['lab_id', 'year'] if False else ['lab_id'], cluster='lab_id')
+        r = R.fit(x, y, 'post', fe=['lab_id'], cluster='lab_id')
         rows.append(dict(tag or {}, measure=y, spec=f'fe_post_{br}', est=r['beta'], lo=r['lo'], hi=r['hi'], n=r['n'], labs=r['clusters']))
     return pd.DataFrame(rows)
 
@@ -298,8 +298,8 @@ def run_all(levels, variants, control, boot, jobs):
             INFO.append(dict(level=level + ':control', topics=len(present), valid_papers=len(sub), agree_with_bertopic=info.get('agree_with_bertopic')))
             L.log(step='topic_control', level=level, papers=len(sub), agree=info.get('agree_with_bertopic'))
     d = L.out('topics')
-    tag_files = '_'.join(levels) if len(levels) < 4 else 'all'
-    suffix = ('_control' if control else '') + ('' if len(variants) > 1 else '_' + variants[0])
+    tag_files = '_'.join(levels) if len(levels) < len(LEVELS) else 'all'
+    suffix = ('' if tag_files == 'all' else '_' + tag_files) + ('_control' if control else '') + ('_' + variants[0] if len(variants) == 1 else '')
     for name, parts in (('series', S_all), ('trend', T_all), ('fe', FE_all)):
         L.write_atomic(pd.concat([p for p in parts if len(p)], ignore_index=True), d / f'{name}{suffix}.parquet')
     L.write_atomic(pd.concat(LY_all, ignore_index=True), d / f'labyear{suffix}.parquet')
@@ -320,7 +320,7 @@ def main():
         import topic_report
         topic_report.main()
         return
-    run_all(a.levels.split(','), a.variants.split(','), a.control, a.boot, a.j)
+    run_all(a.levels.split(','), [v for v in a.variants.split(',') if v and v != 'none'], a.control, a.boot, a.j)
 
 
 if __name__ == '__main__':
