@@ -263,9 +263,9 @@ def preflight(c):
             problems.append(f'{k}: failed ({took[k]} s): ' + log_tail(d / f'preflight-{k}.log'))
         else:
             notes.append(f'{k} ok ({took[k]} s)')
-    anchors = anchor_yield_problems(c.schools)
-    if anchors:
-        problems.append(anchors)
+    anchors = anchor_yield_problems(c.schools)   # reads the CURRENT (pre-rebuild) outputs: a fix landed since the last build shows here until the
+    if anchors:                                  # rebuild, so the preflight only reports it; the gate is the check after the rebuild (run_step 'regression')
+        notes.append('pre-build ' + anchors + ' (rechecked after the rebuild, which must pass)')
     else:
         notes.append('anchors yield papers ok')
     rc, flags, note = results['regression']
@@ -482,6 +482,10 @@ def run_step(step, c, runner=subprocess.run):
             return False, 'Freeze succeeded without one exact release receipt; inspect release.log before resuming'
         c.release_id = receipts[0]['release']
     tail = log.read_text().splitlines()[-3:]
+    if step == 'regression' and r.returncode in (0, 2):   # ROADMAP #43 on the REBUILT outputs: a PI whose anchors yield 0 papers without a reason fails here
+        anchors = anchor_yield_problems(c.schools)
+        if anchors:
+            return False, anchors + f'; log {log}'
     if step == 'regression' and r.returncode == 2:   # rebuild.sh exits 2 for swings only (1 = a failure)
         if c.a.allow_swings:
             return True, f'swings allowed (--allow-swings); log {log}: ' + ' | '.join(tail)

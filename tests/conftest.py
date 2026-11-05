@@ -17,7 +17,7 @@ FIXTURES = Path(__file__).resolve().parent / 'fixtures'
 # Source-tree hygiene tests read the git index. A job's code snapshot (tools/job_code_snapshot.sh: a `git archive` of one
 # commit, as the release's tests stage runs) has no .git, so there they skip; CI and `agent_worktree.sh land` run them on
 # the full checkout before any commit reaches main.
-NEEDS_GIT = {'test_script_map.py', 'test_imports_and_sys_path.py', 'test_pi_hierarchy_exports.py', 'test_job_code_snapshot.py'}
+NEEDS_GIT = {'test_script_map.py', 'test_imports_and_sys_path.py', 'test_pi_hierarchy_exports.py', 'test_job_code_snapshot.py', 'test_gitignore_reviewed_inputs.py'}
 CODE = Path(__file__).resolve().parents[1]
 
 

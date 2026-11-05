@@ -436,3 +436,24 @@ def test_dry_run_shows_the_rebuild_stages_and_build_mode(env, capsys):
     assert go(['--tag', 'dr', '--dry-run'], runner=Runner()) == 0
     line = next(ln for ln in capsys.readouterr().out.splitlines() if ln.startswith('rebuild'))
     assert 'zero_paper' in line and 'build[array, newest first]' in line
+
+
+@pytest.fixture(autouse=True)
+def _no_live_anchor_check(monkeypatch):
+    """The regression step now gates on anchor_yield_problems over the real data; tests of the chain stub it (its own tests set it)."""
+    monkeypatch.setattr(AR, 'anchor_yield_problems', lambda schools: '')
+
+
+def test_anchor_check_is_a_preflight_note_and_a_post_rebuild_gate(monkeypatch, tmp_path):
+    """The preflight reads pre-rebuild outputs, so a zero-paper PI fixed since the last build only shows there as a note; the rebuilt outputs are
+    gated after the regression step (2026-11-05: six already-fixed PIs failed the preflight)."""
+    import types
+    msg = 'anchors: PIs whose anchors yield 0 papers without a recorded reason (stage_gate.pi_reasons): u 1 (Bo)'
+    monkeypatch.setattr(AR, 'anchor_yield_problems', lambda schools: msg)
+    monkeypatch.setattr(AR, 'cmd_for', lambda step, c: (['true'], {}))
+    c = types.SimpleNamespace(dir=tmp_path, schools=['u'], a=types.SimpleNamespace(allow_swings=True), state={})
+    ok, out = AR.run_step('regression', c, runner=lambda *a, **k: types.SimpleNamespace(returncode=0))
+    assert not ok and out.startswith('anchors:')
+    monkeypatch.setattr(AR, 'anchor_yield_problems', lambda schools: '')
+    ok, _ = AR.run_step('regression', c, runner=lambda *a, **k: types.SimpleNamespace(returncode=0))
+    assert ok
