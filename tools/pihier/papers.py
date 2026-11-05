@@ -795,6 +795,12 @@ def merge_editions(rows, n):
     return rows
 
 
+def listing_continuity_on(school):
+    """R-PAP-33 is switched on per school by the charter ([rules].listing_continuity): Michigan since 2026-11-05; the other schools
+    were measured and wait for the owner (docs/DECISIONS.md)."""
+    return bool(_S.field(_S.get(school), 'rules.listing_continuity'))
+
+
 def continuity_bridges(ctx):
     """R-PAP-28: add each PI's continuity periods (periods.bridge_periods) before the rows are made. The years that count are those
     of the PI's identified works whose own authorship names the school (institution lineage or raw affiliation)."""
@@ -817,7 +823,7 @@ def continuity_bridges(ctx):
         if new:
             p['periods'] = p['periods'] + new
             n['continuity_bridge_periods'] += len(new)
-        lb = listing_bridge_periods(p, years[p['pi']], other[p['pi']], getattr(ctx, 'listing_covered', {}), moved)  # R-PAP-33
+        lb = listing_bridge_periods(p, years[p['pi']], other[p['pi']], getattr(ctx, 'listing_covered', {}), moved) if listing_continuity_on(ctx.school) else []  # R-PAP-33
         if lb:
             p['periods'] = p['periods'] + lb
             n['listing_bridge_periods'] += len(lb)

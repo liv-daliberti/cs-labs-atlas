@@ -66,6 +66,7 @@ school_regex = ''         # the school as appointment statements name it (tools/
 
 [rules]
 foreign_title_exception = false   # R-PAP-15: true where non-English book titles are originals, not translations (EPFL)
+listing_continuity = false        # R-PAP-33: true to bridge the years after a PI's last dated listing (and between listings) when the PI's own bylines name the school every year
 
 # One table per department. coverage: full (every listed faculty member is a census candidate, as for the CS
 # departments) | affiliated (only members whose computing work is the object or method of their research).
