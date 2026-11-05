@@ -39,13 +39,18 @@ def main(style):
     out['numbers_lost_share_of_numbers'] = float(has_n['num_lost'].sum() / has_n['n_num'].sum()); out['terms_lost_share_of_terms'] = float(has_t['term_lost'].sum() / has_t['n_term'].sum())
     out['papers_with_numbers'] = int(len(has_n)); out['papers_with_terms'] = int(len(has_t))
     out['len_ratio_median'] = float(ok['len_ratio'].median())
-    dp = ALLAI / f'detect_{style}.parquet'
+    dp = ALLAI / f'detect_v1_{style}.parquet'   # the v1 ABSTRACT detector (the v2 paragraph detector must not be used on abstracts)
     if dp.exists():
         d = pd.read_parquet(dp)
-        out['detector'] = {k: dict(n=int(len(g)), flagged=float(g['flagged'].mean())) for k, g in d.groupby('kind')}
-        o = d[d['kind'] == 'original']
-        out['detector']['original_pre2023'] = dict(n=int((o.year < 2023).sum()), flagged=float(o[o.year < 2023]['flagged'].mean()))
-        out['detector']['original_post2023'] = dict(n=int((o.year >= 2023).sum()), flagged=float(o[o.year >= 2023]['flagged'].mean()))
+        d = d[d['year'] <= 2025]   # 2026 is a partial year
+        out['detector'] = {'detector': 'v1 abstract detector (ai-writing/detector.py), 1% false-positive threshold on validation human abstracts, title | abstract'}
+        out['detector'].update({k: dict(n=int(len(g)), flagged=float(g['flagged'].mean())) for k, g in d.groupby('kind')})
+        o = d[d['kind'] == 'original']; r = d[d['kind'] == 'rewrite']
+        for name, g in (('original_pre2023', o[o.year < 2023]), ('original_post2023', o[o.year >= 2023]), ('rewrite_pre2023', r[r.year < 2023]), ('rewrite_post2023', r[r.year >= 2023])):
+            out['detector'][name] = dict(n=int(len(g)), flagged=float(g['flagged'].mean()))
+        kept = set(fl[fl['keep'] == 1]['paper_id'])
+        out['detector']['original_kept_papers'] = dict(n=int(o['paper_id'].isin(kept).sum()), flagged=float(o[o['paper_id'].isin(kept)]['flagged'].mean()))
+        out['detector']['rewrite_kept_papers'] = dict(n=int(r['paper_id'].isin(kept).sum()), flagged=float(r[r['paper_id'].isin(kept)]['flagged'].mean()))
     rng = np.random.default_rng(C.SEED)
     for m in ORDER:
         try:

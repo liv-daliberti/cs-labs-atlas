@@ -1,7 +1,7 @@
 """Diversity and novelty of the original corpus against the all-AI corpus (every abstract rewritten), same papers, same models.
 
   allai_analyze.py geom    --model M [--style polish]   dispersion, mean pairwise distance, Vendi, topic entropy: per year (all papers, each school) with a
-                                                   lab-cluster bootstrap, and per lab and period (pre 2016-2022, post 2023-2026)
+                                                   lab-cluster bootstrap, and per lab and period (pre 2016-2022, post 2023-2025)
   allai_analyze.py novelty --model M [--style polish]   novelty k = 1, 3, 5 (ai-writing/embeddings/novelty.py) on both corpora, paired per paper
 Outputs under EMB/allai/results/ (parquet): geom_year_<tag>, geom_lab_<tag>, novelty_trend_<tag>, novelty_contrast_<tag> with tag = <style>_<model>.
 
@@ -36,8 +36,9 @@ from allai_math import draw, entropy_bits, gram_geometry, nearest_centroid  # no
 ALLAI = C.EMB / 'allai'
 RES = ALLAI / 'results'
 STYLE_SUFFIX = {'polish': '__allai', 'paraphrase': '__para'}
-YEARS = list(range(2016, 2027))
-PRE, POST = list(range(2016, 2023)), list(range(2023, 2027))
+LAST_YEAR = 2025   # 2026 is a partial year: dropped from every series and trend (owner 2026-11-04)
+YEARS = list(range(2016, LAST_YEAR + 1))
+PRE, POST = list(range(2016, 2023)), list(range(2023, LAST_YEAR + 1))
 M_ALL, M_ALL_TOPIC, M_SCHOOL, M_LAB = (int(os.environ.get(k, v)) for k, v in (('ALLAI_M_ALL', 1000), ('ALLAI_M_ALL_TOPIC', 2000), ('ALLAI_M_SCHOOL', 500), ('ALLAI_M_LAB', 20)))
 DRAWS, BOOT, LAB_DRAWS = int(os.environ.get('ALLAI_DRAWS', 30)), int(os.environ.get('ALLAI_BOOT', 100)), 50
 SCHOOLS = C.RELEASED + ['uchicago', 'gatech']
@@ -48,6 +49,8 @@ BT_MODELS = ('specter2_proximity', 'qwen3_0p6b')
 # ---------------------------------------------------------------- data
 def load_pair(model, style):
     papers, lp = L.universe()
+    papers = papers[papers['year'] <= LAST_YEAR].reset_index(drop=True)
+    lp = lp[lp['paper_id'].isin(set(papers['paper_id']))].reset_index(drop=True)
     restrict = os.environ.get('ALLAI_RESTRICT')   # a style whose kept papers define the set (the paraphrase subsample), to run polish on the same papers
     if restrict:
         import sqlite3
@@ -185,7 +188,7 @@ def summarize_year(pt, bt):
     yr = pw.merge(sds, on=key + ['year'], how='left')
     for v in ('orig', 'ai', 'gap'):
         yr[v + '_lo'] = yr[v] - 1.96 * yr[v + '_sd']; yr[v + '_hi'] = yr[v] + 1.96 * yr[v + '_sd']
-    # post minus pre (2023-2026 mean minus 2016-2022 mean), per replicate for the intervals
+    # post minus pre (2023-2025 mean minus 2016-2022 mean), per replicate for the intervals
     def period_change(w):
         pre = w[w['year'].isin(PRE)].groupby(key + (['rep'] if 'rep' in w else []))[['orig', 'ai', 'gap']].mean()
         post = w[w['year'].isin(POST)].groupby(key + (['rep'] if 'rep' in w else []))[['orig', 'ai', 'gap']].mean()

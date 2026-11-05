@@ -30,14 +30,15 @@ def main():
     fl = pd.read_parquet(ALLAI / 'flags_polish.parquet')
     fl = fl[fl['ok'] == 1].assign(dropped=lambda d: 1 - d['keep'])
     papers, _ = L.universe()
+    papers = papers[papers['year'] <= 2025]   # 2026 is a partial year
     papers = L.oa_topics(papers)
-    df = fl.merge(papers[['paper_id', 'year', 'home_school', 'oa_field']], on='paper_id', how='left')
+    df = fl.merge(papers[['paper_id', 'year', 'home_school', 'oa_field']], on='paper_id', how='inner')
     tx = sqlite3.connect(f'file:{C.TEXTS_DB}?mode=ro', uri=True, timeout=600)
     words = pd.DataFrame(tx.execute('select paper_id, words from abstracts').fetchall(), columns=['paper_id', 'src_words'])
     tx.close()
     df = df.merge(words, on='paper_id', how='left')
     df['has_numbers'] = df['n_num'] > 0; df['has_terms'] = df['n_term'] > 0
-    df['period'] = (df['year'] >= 2023).map({True: 'post (2023-2026)', False: 'pre (2016-2022)'})
+    df['period'] = (df['year'] >= 2023).map({True: 'post (2023-2025)', False: 'pre (2016-2022)'})
     out = dict(papers=int(len(df)), dropped_share=float(df['dropped'].mean()),
                by_school=table(df, 'home_school'), by_year=table(df.dropna(subset=['year']).assign(year=lambda d: d['year'].astype(int)), 'year'),
                by_period=table(df, 'period'),

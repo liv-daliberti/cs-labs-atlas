@@ -55,13 +55,13 @@ def build(out):
     for (sid, meas), g in yr[yr['scope'] == 'school'].groupby(['scope_id', 'measure']):
         schools['schools'].setdefault(sid, {})[meas] = {m: rows(h.sort_values('year'), ycols) for m, h in g.groupby('model')}
     ccols = ['orig', 'orig_lo', 'orig_hi', 'ai', 'ai_lo', 'ai_hi', 'gap', 'gap_lo', 'gap_hi']
-    trend = {'definition': 'mean of 2023-2026 minus mean of 2016-2022; orig = original abstracts, ai = every abstract rewritten, gap = orig - ai (the part of the change due to wording)', 'rows': []}
+    trend = {'definition': 'mean of 2023-2025 minus mean of 2016-2022; orig = original abstracts, ai = every abstract rewritten, gap = orig - ai (the part of the change due to wording)', 'rows': []}
     for r in chg.itertuples(index=False):
         trend['rows'].append(dict(model=r.model, scope=r.scope, scope_id=r.scope_id, measure=r.measure, **{c: num(getattr(r, c)) for c in ccols}))
     lcols = ['orig_change', 'orig_lo', 'orig_hi', 'ai_change', 'ai_lo', 'ai_hi', 'gap_change', 'gap_lo', 'gap_hi', 'orig_pre', 'orig_post', 'ai_pre', 'ai_post']
-    labs_out = {'definition': 'labs with >= 20 papers in both periods (pre 2016-2022, post 2023-2026); 20-paper draws; change = post - pre averaged over labs, 95% interval by bootstrap over labs',
+    labs_out = {'definition': 'labs with >= 20 papers in both periods (pre 2016-2022, post 2023-2025); 20-paper draws; change = post - pre averaged over labs, 95% interval by bootstrap over labs',
                 'rows': [dict(model=r.model, measure=r.measure, scope=r.scope, labs=int(r.labs), **{c: num(getattr(r, c)) for c in lcols}) for r in labs.itertuples(index=False)]}
-    nov = {'definition': 'novelty = 1 - mean cosine to the 5 nearest papers of the previous k years (size-matched pool of 2,000), paired per paper; trend by year and post (2023-2026) minus pre (2017-2022)',
+    nov = {'definition': 'novelty = 1 - mean cosine to the 5 nearest papers of the previous k years (size-matched pool of 2,000), paired per paper; trend by year and post (2023-2025) minus pre (2017-2022)',
            'trend': [], 'contrast': []}
     if len(ntr):
         t = ntr[(ntr['measure'] == 'nov_nn_cap') & (ntr['scope'].isin(['all', 'school'])) & (ntr['k'] == 3)]
