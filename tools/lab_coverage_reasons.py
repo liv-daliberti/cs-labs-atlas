@@ -29,6 +29,26 @@ def school_sources(key):
     return out
 
 
+def thesis_facts(key):
+    """The repository crawl's own counts (fulltext-push/etd_crawl.py, read-only): pages read, dissertations 2016-2026 with an advisor field, and the
+    advisor family names seen, so each lab's reason can say how many dissertations name its family name without matching the PI (None without a crawl)."""
+    import re
+    import sqlite3
+    db = P.FT_RAW / 'etd_crawl' / f'{key}.sqlite'
+    if not db.exists():
+        return None
+    c = sqlite3.connect(f'file:{db}?mode=ro', uri=True)
+    total = c.execute('select count(*) from queue').fetchone()[0]
+    done = c.execute('select count(*) from pages').fetchone()[0]
+    fam, n = {}, 0
+    for adv, in c.execute('select advisors from pages where dissertation=1 and year between 2016 and 2026'):
+        n += 1
+        for a in json.loads(adv or '[]'):
+            f = re.sub(r'[^a-z]', '', a.split(',')[0].lower())
+            fam[f] = fam.get(f, 0) + 1
+    return dict(total=total, done=done, dissertations=n, fam=fam)
+
+
 def lab_facts(rec):
     lp, stu = rec.get('lab_page') or {}, rec.get('students') or {}
     site = (lp.get('urls') or {}).get('lab_site') or (lp.get('urls') or {}).get('people_page')
@@ -47,17 +67,27 @@ def main(key):
     rf = P.data_w('lab-coverage-reasons.json', key)
     cur = json.loads(rf.read_text()) if rf.exists() else {}
     base = school_sources(key)
+    th = thesis_facts(key)
     n = 0
     for row in LC.lab_rows(key):
         rs = row['reasons'].get('students')
-        if not rs or rs['code'] != 'open':
+        old = (cur.get(row['pi']) or {}).get('students') or {}
+        refresh = old.get('code') == 'sources_exhausted' and not row.get('students')   # a generated reason is rewritten with the current facts
+        if not refresh and (not rs or rs['code'] != 'open'):
+            if old.get('code') == 'sources_exhausted' and row.get('students'):   # the lab has students now: a generated reason is stale
+                cur[row['pi']].pop('students')
             continue
         e = cur.setdefault(row['pi'], {})
-        if 'students' in e:
+        if 'students' in e and e['students'].get('code') != 'sources_exhausted':   # hand-written reasons stay; generated ones are refreshed
             continue
         rec = audit.get(row['pi']) or {}
+        extra = []
+        if th:
+            fam = ''.join(ch for ch in row['pi'].split()[-1].lower() if ch.isalpha())
+            extra.append(f"thesis repository crawl 2026-11-05: {th['done']} of {th['total']} item pages read, {th['dissertations']} dissertations of 2016-2026 with an advisor field; "
+                         f"{th['fam'].get(fam, 0)} of them name the family name '{fam}' as an advisor, none of which became a relation of this PI (no full-name match or outside the PI's listed years); the crawl continues, rerun etd_crawl.py evidence")
         e['students'] = dict(code='sources_exhausted', why=f"No student of this PI in any allowed source checked ({row['title']}).",
-                             sources_checked=[lab_facts(rec)] + base)
+                             sources_checked=[lab_facts(rec)] + extra + base)
         n += 1
     rf.parent.mkdir(parents=True, exist_ok=True)
     rf.write_text(json.dumps(cur, indent=1, ensure_ascii=False))

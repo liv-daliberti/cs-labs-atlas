@@ -37,3 +37,11 @@ Zero-paper labs: 10 DBLP-only PIs (Antón, Erera, Nemhauser, White, Davenport, G
 
 ## Data issue for the owner
 The CoC census row **'Charles Cauthen Lever Jr.' is Charles Isbell, Jr.** (DBLP i/LCIsbell; quote 'Charles Isbell, Jr. Senior Associate Dean and Professor'): the name field kept an endowed-chair string and two other chair strings as aliases ('Charles Austin Sutlief Jr.'). The display name should be Charles Isbell; the census builder's suffix-name merge ('...Jr.') is the cause (request R10).
+
+## Round 2 (2026-11-05, owner: "another round of searching for papers + students"), branch agent/gatech-round2
+- **Thesis repository advisers** (`etd_crawl.py evidence gatech`, crawl 7.7k of 58.2k item pages, 2,119 dissertations): 270 advisor rows -> `reviewed/thesis-evidence.json`. Hand round (20 rows, seed 20261105): 0 errors, 1 doubtful (Cassie Mitchell, Wayback SMARTech co-advisor). A name audit found 3 namesake rows (Kai Wang vs C.-K. Chris Wang x2, Karen Liu vs Cathy Yang Liu), removed: 267 rows. Labs with students 73 -> 201.
+- **Hand check of the added student rows** (30 of 253, seed 20261105): 29 correct, 1 error (the Kai Wang namesake, removed).
+- **DBLP page-1 recovery**: `dblp_recover` read only the shared persons file (13 of 421 PIs); it now also reads `raw/dblp-dump-persons-school.json.gz`. 2,187 candidates, 540 accepted. DBLP-held share of non-preprint papers in appointment years 83.0% -> 85.7% (11,328 -> 11,710 of 13,661).
+- **Lab-site discovery redone** for the 167 labs with no site or profile only (the first pass ran before the PIs had DBLP ids): 66 sites found (0 before). The regenerated additions (94 new student rows in 12 labs, 16 new papers) were hand-checked on 30 student rows (seed 20261106): 6 membership errors (stale homepage lists, other-institution lists: Ahamad, Xie, Bo Zhu's Dartmouth students, Delarue), 1 role error, 2 doubtful: FAIL. Not wired; the accepted additions file stays as it was.
+- **CV advisees** (`cv_students.py`): 0 CV links, because for a charter school the tool reads the unit-page store, not the homepages the audit found. Not usable until it reads the audit captures (open).
+- Generated `sources_exhausted` reasons for the 188 labs still without students now carry the thesis-crawl counts and the discovery result.
