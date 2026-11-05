@@ -37,7 +37,8 @@ STYLE_SUFFIX = {'polish': '__allai', 'paraphrase': '__para'}
 YEARS = list(range(2016, 2027))
 PRE, POST = list(range(2016, 2023)), list(range(2023, 2027))
 M_ALL, M_ALL_TOPIC, M_SCHOOL, M_LAB = 1000, 2000, 500, 20
-DRAWS, BOOT, LAB_DRAWS = 30, 100, 50
+import os  # noqa: E402
+DRAWS, BOOT, LAB_DRAWS = int(os.environ.get('ALLAI_DRAWS', 30)), int(os.environ.get('ALLAI_BOOT', 100)), 50
 SCHOOLS = C.RELEASED + ['uchicago', 'gatech']
 KM_K = 100
 BT_MODELS = ('specter2_proximity', 'qwen3_0p6b')
