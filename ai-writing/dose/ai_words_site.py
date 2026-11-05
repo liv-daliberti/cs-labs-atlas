@@ -50,10 +50,22 @@ DETECTOR = Path(os.environ.get('CS_ATLAS_AI_DETECTOR_FRAME', D.RESULTS / 'ai_pag
 DETECTOR_COLS = dict(dose='ai_share', dose_cal='ai_share_cal', abstract_flag='flag_abstract', abstract_p='p_ai_abstract')
 CUTOFFS = [10, 25, 50]
 CORE_RATIO = 3.0
+FAMILIES = {   # inflections of one word, as the list spells them; a family counts abstracts containing ANY of its forms (not a sum of the forms)
+    'delve': ['delve', 'delved', 'delves', 'delving'], 'showcase': ['showcased', 'showcases', 'showcasing'],
+    'underscore': ['underscore', 'underscored', 'underscores', 'underscoring'], 'intricate': ['intricate', 'intricately', 'intricacies'],
+    'pivotal': ['pivotal'], 'unveil': ['unveil', 'unveiled', 'unveiling', 'unveils'], 'meticulous': ['meticulous', 'meticulously'],
+    'emphasize': ['emphasise', 'emphasises', 'emphasising', 'emphasize', 'emphasizes', 'emphasizing'], 'highlight': ['highlight', 'highlighting', 'highlights'],
+    'leverage': ['leverages', 'leveraging'], 'enhance': ['enhance', 'enhanced', 'enhancements', 'enhances', 'enhancing'],
+    'elucidate': ['elucidate', 'elucidates', 'elucidating'], 'pinpoint': ['pinpoint', 'pinpointed', 'pinpointing'],
+    'surpass': ['surpass', 'surpassed', 'surpasses', 'surpassing'], 'exhibit': ['exhibit', 'exhibited', 'exhibiting', 'exhibits'],
+    'harness': ['harness', 'harnesses', 'harnessing'], 'foster': ['fostering', 'fosters'], 'bolster': ['bolster', 'bolstered', 'bolstering'],
+}
 MIN_TOK = 40
 
 URL = re.compile(r'(?:https?://|ftp://|www\.)\S+|\b[\w.+-]+@[\w-]+\.[\w.-]+|\b(?:doi|arxiv)\s*:\s*\S+|\b10\.\d{4,9}/\S+', re.I)
-REFHEAD = re.compile(r'(?im)^\s*(?:\d+\.?\s*)?(?:references|bibliography|literature cited|works cited)\s*:?\s*$')
+REFHEAD = re.compile(r'\b(?:R\s?EFERENCES|References|REFERENCES|Bibliography|BIBLIOGRAPHY|Literature Cited|Works Cited)\b')
+REFLIST = re.compile(r'\[1\]\s+[A-Z][^\[]{20,400}\[2\]')
+REFWHY = re.compile(r'\[1\]|\b(?:19|20)\d\d\b|arXiv|et al')
 
 
 def clean_abstract(t):
@@ -63,13 +75,19 @@ def clean_abstract(t):
 
 
 def clean_fulltext(body):
+    """The body without its reference list. Bodies are single-line extracted text, so a heading is a capitalised "References"-like word in the
+    back 70% that is followed within 400 characters by a year, "[1]", "arXiv" or "et al"; with no heading, the first "[1] Name ... [2]" run."""
+    n = len(body)
     cut = None
     for m in REFHEAD.finditer(body):
-        if m.start() > 0.4 * len(body):
-            cut = m.start()          # the last such heading in the back 60% of the text
+        if m.start() > 0.3 * n and REFWHY.search(body, m.end(), m.end() + 400):
+            cut = m.start()
+    if cut is None:
+        m = REFLIST.search(body, int(0.3 * n))
+        cut = m.start() if m else None
     if cut is not None:
         body = body[:cut]
-    return URL.sub(' ', body)
+    return URL.sub(' ', body), cut is not None
 
 
 def toks(text):
@@ -95,8 +113,7 @@ def paper_meta():
     fr = fr[fr['year'].between(YEARS[0], YEARS[-1])]
     cols = ['paper_id', 'year', 'schools'] + [c for c in DETECTOR_COLS.values() if c in fr.columns]
     fr = fr[cols].copy()
-    fr['schools'] = fr['schools'].map(lambda s: [x for x in (json.loads(s) if isinstance(s, str) and s.startswith('[') else
-                                                          (list(s) if not isinstance(s, str) else [s])) if x in D.SCHOOLS])
+    fr['schools'] = fr['schools'].map(lambda v: [x for x in str(v).split(',') if x in D.SCHOOLS])    # comma-joined, as ai_pages.py frame writes it
     return fr.reset_index(drop=True)
 
 
@@ -109,9 +126,13 @@ def _count_chunk(args):
     db = sqlite3.connect(f'file:{D.TEXTS_DB}?mode=ro', uri=True, timeout=600)
     rows = []
     for pid, body in db.execute('select paper_id, body from fulltext where usable = 1 and rowid >= ? and rowid < ?', (lo, hi)):
-        t = toks(clean_fulltext(zlib.decompress(body).decode('utf-8', 'ignore'))) if body else []
+        if body:
+            txt, cutf = clean_fulltext(zlib.decompress(body).decode('utf-8', 'ignore'))
+            t = toks(txt)
+        else:
+            t, cutf = [], False
         c = Counter(w for w in t if w in idx)
-        rows.append((pid, len(t), sum(c.values()), [(idx[w], k) for w, k in c.items()]))
+        rows.append((pid, len(t), sum(c.values()), [(idx[w], k) for w, k in c.items()], cutf))
     return rows
 
 
@@ -133,13 +154,14 @@ def run_count(jobs):
     db.close()
     D.log(abstracts=len(ab), words=len(all379), core=len(core))
     step = 500
-    ft = {}
+    ft, ncut = {}, 0
     with ProcessPoolExecutor(jobs) as ex:
         for part in ex.map(_count_chunk, [(lo, lo + step) for lo in range(0, hi + 1, step)]):
-            for pid, n, k, items in part:
+            for pid, n, k, items, cutf in part:
                 if pid in keep:
                     ft[pid] = (n, items)
-    D.log(fulltexts=len(ft))
+                    ncut += cutf
+    D.log(fulltexts=len(ft), reference_list_cut=ncut)
     ids = meta['paper_id'].tolist()
 
     def matrix(src):
@@ -296,6 +318,11 @@ def run_assemble():
     for w in all379:
         col = Cb[:, idx[w]].toarray().ravel()
         curves[w] = {g: [int((col[has_a & sch[g] & (yr == y)]).sum()) for y in YEARS] for g in GROUPS}
+    fam = {}
+    for f, members in FAMILIES.items():
+        assert all(m in idx for m in members), f
+        col = (Cb[:, [idx[m] for m in members]].sum(axis=1).A1 > 0)
+        fam[f] = dict(words=members, df={g: [int(col[has_a & sch[g] & (yr == y)].sum()) for y in YEARS] for g in GROUPS})
     # word table, all schools and each school: baseline document share 2016-2022, last-year share, excess ratio (smoothed by 0.5 counts)
     py = [YEARS.index(y) for y in PRE]
     ly = len(YEARS) - 1
@@ -388,7 +415,7 @@ def run_assemble():
                       detector_vs_words=dict(correlation=corr, correlation_by_year=by_year_corr, flagged=flagged, reconciliation=recon, reconciliation_cells=['both', 'detector_only', 'words_only', 'neither'],
                                              agreement=agree, detector_check=det_check, detector_n=det_n))
     curves_json = dict(meta=dict(generated=meta_out['generated'], years=[YEARS[0], YEARS[-1]], groups=GROUPS, note='df[word][group][year index] = abstracts containing the word; docs[group] = abstracts counted'),
-                       docs=docs, df=curves, core=core)
+                       docs=docs, df=curves, families=fam, core=core)
     o = OUT / 'words'
     o.mkdir(parents=True, exist_ok=True)
     for name, obj in (('words.json', words_json), ('word_curves.json', curves_json)):
