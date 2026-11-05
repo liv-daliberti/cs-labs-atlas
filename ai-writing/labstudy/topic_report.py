@@ -206,7 +206,7 @@ def main():
         A(R.md_table(rows, ['level', 'measure', 'dev_2023, original wording', 'dev_2023, all-AI wording', 'gap in dev_2023 (ai - orig)', 'gap in post-pre']))
         A('\nA gap interval around 0 means the change is carried by content, not by wording; a gap that is not 0 is the part wording can move.\n')
     A('## Not done and caveats\n')
-    A('- Topic assignments are model-dependent (309 / 379 BERTopic topics, 37-39% of abstracts were HDBSCAN noise reassigned to the nearest topic); the two BERTopic models and OpenAlex are shown side by side, none is privileged.\n'
+    A('- Topic assignments are model-dependent (309 / 379 BERTopic topics, 37-39%% of abstracts were HDBSCAN noise reassigned to the nearest topic); the two BERTopic models and OpenAlex are shown side by side, none is privileged.\n'
       '- Lab composition changes with the minimum-papers rule (about 1,100-1,250 labs are eligible in some year, 300-500 in the fixed panel); table 5 shows the dependence.\n'
       '- Pair JSDs are computed on a uniform sample of up to %d lab pairs per scope-year (all pairs when fewer); the lab bootstrap resamples labs, not pairs.\n'
       '- Wording control for OpenAlex levels is undefined (metadata). Full-text-based topics were not built (abstract embeddings only).\n' % TCFG_PAIRS())
