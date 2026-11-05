@@ -8,7 +8,7 @@ The page has a **cutoff slider t, 1%..100% of a paper's paragraphs flagged** (de
 `x = ai_share_cal` (share of the paper's body passages flagged at the passage detector's 1%-FPR threshold, recut on the school's or field's own 2016-2021 text where validation needed it; listed in `meta.recalibrated_groups` as `school:<name>` / `field:<name>` with the cut), else `ai_share`. **bin = floor(100*x + 1e-9), bin 100 holds exactly x = 1.0**, so bin b is [b%, (b+1)%) and **"AI at t" is exactly "bin >= t"** (t integer 1..100). Papers with zero flagged passages are bin 0. Full-text papers only; arrays have 101 entries.
 
 ## ai_hist.json
-`{meta, series: {all|<school>: {"<year>": cell}}}`, years 2016-2026 (`all` counts each paper once; a school counts every paper of its labs; 2026 has `partial: true`). A cell:
+`{meta, series: {all|<school>: {"<year>": cell}}}`, years 2016-2025 (`all` counts each paper once; a school counts every paper of its labs; 2026 is a partial year and is dropped everywhere, owner 2026-11-04). A cell:
 - `hist[101]` counts and `sum[101]` sum of x per bin, for full-text papers; `n_ft` their number; `papers` all papers of the cell.
 - From these, for any t: share = sum(hist[t:])/n_ft; mean among AI = sum(sum[t:])/sum(hist[t:]); median among AI: the bin where the cumulative count from t reaches half, valued at that bin's mean (sum/hist), so within 1 percentage point.
 - `abstract_only: {n, flagged}`: papers with an abstract score but **no usable full text**, and how many the v1 abstract rule (1% FPR) flags. On the page: toggle "include abstract-only papers (abstract flag)", default on; the flag does not depend on t, so these counts are constant across the slider (add flagged to the AI count and n to the denominator).

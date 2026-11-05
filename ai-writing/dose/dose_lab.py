@@ -7,9 +7,9 @@ Lab-year outcomes (size-matched: `reps` random draws of `m` papers of the lab-ye
   disp   mean distance of the draw's papers to its centroid          mpd   mean pairwise cosine distance          vendi  Vendi score (q = 1) of the cosine kernel
   h_oa   Shannon entropy (bits) of OpenAlex primary topics            h_bt   of the model's BERTopic topics (specter2_proximity, qwen3_0p6b only)
   nov_all, nov_lab   mean size-matched nearest-neighbour novelty (k = 3) of the lab-year's papers against all papers / the lab's own history
-Exposure: Dose_l = the lab's mean ai_share over its scored 2023-2026 papers (at least `min_scored` of them); AbsDose_l the same with flag_abstract (no full-text
+Exposure: Dose_l = the lab's mean ai_share over its scored 2023-2025 papers (at least `min_scored` of them); AbsDose_l the same with flag_abstract (no full-text
 selection). Lab-year ai_share_lt = mean over that year's scored papers (>= 2).
-DiD: y_lt = lab FE + year FE + b * Post_t * Dose_l (Post = 2023-2026; 2022 is dropped as the transition year), cluster bootstrap over labs.
+DiD: y_lt = lab FE + year FE + b * Post_t * Dose_l (Post = 2023-2025; 2022 is dropped as the transition year), cluster bootstrap over labs.
 Placebo: the same on 2016/17-2021 with the break at 2019, 2020 and 2021 (Post_p = year >= break). Event study: Dose_l x year dummies, 2021 as the base.
 """
 import argparse
@@ -20,7 +20,7 @@ import pandas as pd
 import dcommon as D
 import dose_reg as R
 
-POST = range(2023, 2027)
+POST = D.POST_YEARS
 BREAKS = (2019, 2020, 2021)
 
 
@@ -150,6 +150,7 @@ def build_panel(model, kind, m, reps):
         panel = panel.merge(n[n['k'] == 3].groupby(['scope_id', 'year'])['nov_nn_cap'].mean().rename('nov_lab').reset_index().rename(columns={'scope_id': 'lab_id'}),
                             on=['lab_id', 'year'], how='left')
     D.RESULTS.mkdir(parents=True, exist_ok=True)
+    panel = panel[panel['year'] <= D.LAST_FULL_YEAR].reset_index(drop=True)
     panel.to_parquet(D.RESULTS / f'labyear_{model}_{kind}.parquet', index=False)
     D.log(model=model, kind=kind, lab_years=len(panel), labs=panel['lab_id'].nunique(), with_dose=int(panel['dose'].notna().sum()))
 

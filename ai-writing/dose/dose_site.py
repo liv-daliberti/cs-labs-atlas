@@ -2,7 +2,7 @@
 in the browser from histograms. Small JSON files in ai-writing/diversity/site-data/ (README.md there has the schema).
 
   dose_site.py [--out DIR]     needs the container and `dose_validate.py --recalibrate` already run
-ai_hist.json         per school ("all" counts each paper once) and year 2016-2026: 101-bin histograms of the dose (count, sum), abstract-only counts, bootstrap bands
+ai_hist.json         per school ("all" counts each paper once) and year 2016-2025: 101-bin histograms of the dose (count, sum), abstract-only counts, bootstrap bands
 ai_position.json     flagged-passage share by position decile, per paper-dose bin
 labs_ai_hist_<school>.json[.gz]   per lab-year with >= 5 full-text papers: sparse 101-bin histogram (count, sum)
 Binning rule (`dose_bin`): a paper with dose x (ai_share_cal where it exists, else ai_share) is in bin floor(100 x + 1e-9), bin 100 holding exactly 1.0, so bin b
@@ -21,10 +21,9 @@ import dcommon as D
 import dose_stats as S
 
 NB = 101
-PARTIAL = 2026
 MIN_LAB = 5
 CI_T = (1, 5, 10, 25, 50, 75, 100)
-YEARS = range(2016, 2027)
+YEARS = range(2016, D.LAST_FULL_YEAR + 1)
 
 
 def dose_of(df):
@@ -88,7 +87,7 @@ def histograms(df, bands=True):
             ft = g[g['ai_share'].notna()]
             ab = g[g['ai_share'].isna() & g['p_ai_abstract'].notna()]
             c, sm = hist(dose_of(ft))
-            cell = dict(partial=y == PARTIAL, n_ft=int(len(ft)), hist=c.tolist(), sum=[round(float(v), 4) for v in sm],
+            cell = dict(n_ft=int(len(ft)), hist=c.tolist(), sum=[round(float(v), 4) for v in sm],
                         abstract_only=dict(n=int(len(ab)), flagged=int(ab['flag_abstract'].sum())), papers=int(len(g)))
             if y <= 2021:
                 oos = ft[~ft['trained_on']] if 'trained_on' in ft else ft
@@ -103,7 +102,7 @@ def histograms(df, bands=True):
 
 
 def position(df, passages, cuts):
-    """Flagged passage share by position decile, per paper-dose bin: {school: {period: {flagged: [101][10], total: [101][10]}}} for 2016-2021 and 2023-2026 papers.
+    """Flagged passage share by position decile, per paper-dose bin: {school: {period: {flagged: [101][10], total: [101][10]}}} for 2016-2021 and 2023-2025 papers.
     A passage is flagged at its paper's own cut (the recalibrated one where a group needed it)."""
     p = passages.merge(df[['paper_id', 'year', 'schools', 'ai_share', 'ai_share_cal']], on='paper_id')
     p['dose'] = dose_of(p)
@@ -115,7 +114,7 @@ def position(df, passages, cuts):
     for s in ['all'] + D.SCHOOLS:
         q = p if s == 'all' else p[p['schools'].map(lambda x, s=s: s in x)]
         res = {}
-        for name, years in (('pre', range(2016, 2022)), ('post', range(2023, 2027))):
+        for name, years in (('pre', range(2016, 2022)), ('post', range(2023, D.LAST_FULL_YEAR + 1))):
             z = q[q['year'].isin(years)]
             tot = np.zeros((NB, 10), int); fl = np.zeros((NB, 10), int)
             if len(z):
@@ -171,7 +170,7 @@ def run(out):
     cuts = V.paper_cuts(df, cuts_by_group)
     ps = DD.passages(set(df.loc[df['ai_share'].notna(), 'paper_id']))
     out.mkdir(parents=True, exist_ok=True)
-    meta = dict(generated=D.now(), bins=NB, bin_rule='bin = floor(100*dose + 1e-9), bin 100 = exactly 1.0; AI at cutoff t percent <=> bin >= t', partial_year=PARTIAL,
+    meta = dict(generated=D.now(), bins=NB, bin_rule='bin = floor(100*dose + 1e-9), bin 100 = exactly 1.0; AI at cutoff t percent <=> bin >= t', last_year=D.LAST_FULL_YEAR,
                 global_threshold=D.V2_THRESHOLD, recalibrated_groups={f'{k[0]}:{k[1]}': v for k, v in cuts_by_group.items()}, ci_cutoffs=list(CI_T),
                 ci_method='bootstrap over labs (300 draws, 95% percentile) of the share >= t among full-text papers; with abstract-only papers included use Wilson from counts',
                 default_cutoff=25, ticks=[10, 25, 50])

@@ -31,7 +31,8 @@ V2_THRESHOLD = 0.0008531202983449121     # detector_v2/results/all/metrics.json:
 DETECTOR_VERSION = 'v1abs+v2par'
 SCHOOLS = ['princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford', 'michigan', 'uchicago', 'gatech']
 PRE_YEARS = range(2016, 2022)               # the placebo window: before ChatGPT (30 Nov 2022), so the "dose" there is detector noise
-POST_YEARS = range(2023, 2027)
+LAST_FULL_YEAR = 2025                       # owner 2026-11-04: 2026 is a partial year, so it appears in no plot and in no post-period estimate (it stays in the containers)
+POST_YEARS = range(2023, LAST_FULL_YEAR + 1)
 
 
 def log(**kw):

@@ -14,7 +14,7 @@ Designs (every one clusters by the paper's first lab):
   withinlab lab x year FE (the same lab's high- against low-AI papers in the same year)
   author    first-author FE + year FE (the writer held fixed; OpenAlex author ids)
   bins      pooled with dose-bin dummies (0-5% is the base)
-Periods: post (2023-2026) and pre (2017-2021, the placebo: there the "dose" is detector noise).
+Periods: post (2023-2025) and pre (2017-2021, the placebo: there the "dose" is detector noise).
 """
 import argparse
 import json
@@ -35,7 +35,7 @@ LLM_RE = re.compile(r'large language model|\bLLMs?\b|\bGPT[- ]?\d?|ChatGPT|langu
 CONTROLS = ['team_log', 'venue_type', 'oa_status']
 MIN_REF = {'all': 100, 'school': 100, 'dept': 20, 'lab': 5}
 MEASURES = ('nov_nn_cap', 'nov_max_cap')
-PERIODS = {'post': range(2023, 2027), 'pre': range(2017, 2022)}
+PERIODS = {'post': D.POST_YEARS, 'pre': range(2017, 2022)}
 SCOPES = ('all', 'school', 'dept', 'lab')
 KS = (1, 3, 5)
 BIN_LABELS = ('5-25%', '25-50%', '50-100%')

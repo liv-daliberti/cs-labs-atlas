@@ -100,7 +100,7 @@ def figures(paper, did, fig):
                 a.errorbar(x, b['beta'], yerr=[b['beta'] - b['lo'], b['hi'] - b['beta']], fmt='o-', ms=3, capsize=2)
                 a.axhline(0, color='0.6', lw=0.7); a.set_title(m, fontsize=8)
                 a.set_xticks(x); a.set_xticklabels(b['design'].str.replace('bin ', ''), fontsize=7)
-            f.suptitle('Novelty (size-matched, k=3, all papers) by ai_share bin, relative to 0-5% (2023-2026; year, school, topic FE and controls)', fontsize=9)
+            f.suptitle('Novelty (size-matched, k=3, all papers) by ai_share bin, relative to 0-5% (2023-2025; year, school, topic FE and controls)', fontsize=9)
             f.tight_layout(); f.savefig(fig / 'dose_bins_by_model.png', dpi=120); plt.close(f)
         w = paper[(paper['kind'] == 'abstract') & (paper['scope'] == 'all') & (paper['k'] == 3) & (paper['measure'] == 'nov_nn_cap') & (paper['exposure'] == 'ai_share') & paper['design'].isin(['pooled', 'withinlab'])]
         if len(w):
@@ -167,7 +167,7 @@ def build(out_dir):
         L.append('Not run yet.\n')
     ct = correction_table(paper, mech)
     if ct is not None and len(ct):
-        L.append('\n### Dose effect on abstract novelty with and without the mechanical-shift correction\n\nscope all, k=3, nov_nn_cap, 2023-2026 papers; mechanical = shift of a fully AI-polished abstract (same content), measured from rewrites\n\n' + M.md_table(ct))
+        L.append('\n### Dose effect on abstract novelty with and without the mechanical-shift correction\n\nscope all, k=3, nov_nn_cap, 2023-2025 papers; mechanical = shift of a fully AI-polished abstract (same content), measured from rewrites\n\n' + M.md_table(ct))
     bt = read_all('boot')
     if bt is not None:
         L.append('\n### Headline effects with cluster-bootstrap intervals over labs (ai_share 0 -> 1, nov_nn_cap, k=3)\n\n' + M.md_table(

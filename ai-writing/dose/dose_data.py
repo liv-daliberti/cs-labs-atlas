@@ -1,6 +1,6 @@
 """Loaders for the AI-dose analyses (pandas): the paper table (scores + universe + OpenAlex fields + controls) and lab membership.
 
-paper_table()     one row per universe paper 2016-2026 with the scores, school(s), OpenAlex primary topic (topic, subfield, field, domain), type, team size,
+paper_table()     one row per universe paper 2016-2025 with the scores, school(s), OpenAlex primary topic (topic, subfield, field, domain), type, team size,
                   venue type, open-access status (oa_extra.sqlite, when it exists), the PI's OpenAlex author id per lab (hier_pairs), and `trained_on`
                   (True for a 2016-2021 paper of the five detector-v2 schools whose old key falls in the detector's training split: its passages were
                   negatives in training, so its false-positive rate is not an out-of-sample figure)
@@ -25,7 +25,7 @@ def universe():
     lp = pd.read_sql('select * from lab_papers', db)
     db.close()
     papers['schools'] = papers['schools'].map(json.loads)
-    papers = papers[papers['year'].between(2016, 2026)].reset_index(drop=True)
+    papers = papers[papers['year'].between(2016, D.LAST_FULL_YEAR)].reset_index(drop=True)
     return papers, lp[lp['paper_id'].isin(set(papers['paper_id']))].reset_index(drop=True)
 
 

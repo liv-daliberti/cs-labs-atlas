@@ -8,7 +8,7 @@ Checks
   1. Flagged passage share in 2016-2021 papers (design FPR 1%) per school and per broad field, from all papers and from the out-of-sample subset
      (not `trained_on`). 95% intervals are bootstrap over papers.
   2. The same for the v1 abstract detector (flagged abstract share).
-  3. Yearly flagged passage share, mean ai_share and flagged abstract share per school, 2016-2026.
+  3. Yearly flagged passage share, mean ai_share and flagged abstract share per school, 2016-2025.
   4. Agreement with the detector-free measures (Kobak style-word rate, Liang alpha) per school and year.
 A group is "well above" the design rate when the lower end of its interval exceeds 1.5%; its threshold is then recut at the 99th percentile of its own
 out-of-sample 2016-2021 passages (a school's papers use their home school's cut, a field's papers the field's; the larger of the two applies).
@@ -77,7 +77,7 @@ def abstract_pre_table(df, by):
 
 
 def yearly_table(df):
-    d = explode_schools(df)
+    d = explode_schools(df[df['year'] <= D.LAST_FULL_YEAR])     # 2026 is a partial year: never in a table or plot
     rows = []
     for (s, y), g in d.groupby(['school', 'year']):
         sc = g[g['ai_share'].notna()]

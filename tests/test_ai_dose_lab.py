@@ -27,7 +27,7 @@ def test_lab_exposure_needs_min_scored():
     pl = pd.DataFrame(dict(lab_id=['a'] * 5 + ['b'] * 2, year=[2023, 2024, 2025, 2025, 2026, 2024, 2025], ai_share=[.1, .2, .3, .4, .5, .9, .9],
                            flag_abstract=[0, 1, 0, 1, 1, 1, 1]))
     t = L.lab_exposure(pl, min_scored=4).set_index('lab_id')
-    assert abs(t.loc['a', 'dose'] - 0.3) < 1e-9 and np.isnan(t.loc['b', 'dose']) and abs(t.loc['a', 'abs_dose'] - 0.6) < 1e-9
+    assert abs(t.loc['a', 'dose'] - 0.25) < 1e-9 and np.isnan(t.loc['b', 'dose']) and abs(t.loc['a', 'abs_dose'] - 0.5) < 1e-9
 
 
 def panel(effect, seed=0, n_lab=120):
