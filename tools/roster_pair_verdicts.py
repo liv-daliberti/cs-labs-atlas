@@ -49,6 +49,8 @@ S = {
                'Graduate Students Yeo Jin Jung PhD Student ... Yating Liu PhD Student Topic Modeling with sparsity. Zixuan Wu PhD Student Efficient sparse CCA ...'),
     'kondor': ('http://people.cs.uchicago.edu/~risi/', '2026-08-20 (Wayback capture, stored 2026-11-03)',
                'Su Hyeong Lee (CCAM PhD, 4th year)  [on Risi Kondor group page, not on Tian Li\'s]'),
+    'wang': ('https://sites.google.com/view/yuguanwang/home', '2026-11-04',
+             'I was extremely fortunate to have Yuehaw Khoo and Jeremy Hoskins as my Ph.D. advisors.'),
     'park': ('https://kihopark.github.io/', '2026-11-04',
              'I recently received my PhD in Statistics from the University of Chicago, where I was advised by Victor Veitch .'),
     'nek': ('https://peter-nekrasov.github.io/', '2026-11-04',
@@ -152,6 +154,16 @@ V = {
     74: ('unsettled', 'none', [], 'no Wu student list; Wu\'s papers page only'),
 }
 
+# Co-adviser halves (owner 2026-11-04 follow-up, "co-advised counts under both PIs"): pairs NOT among the 75 roster pairs, true because the page that
+# confirms the first adviser names this PI as an adviser too. Only where the co-adviser is an atlas PI at UChicago inside the appointment (Kolar, MacAyeal
+# and Weinberger are not atlas PIs: Byol Kim/Kolar, Sen Na/Kolar, Nekrasov/MacAyeal and June Wu/Weinberger stay unwired).
+CO_ADVISER_BASIS = 'co-adviser named on the same page'
+CO_ADVISERS = [
+    ('Wanrong Zhu', 'Rina Foygel Barber', [2019, 2024], 'barber', 'Barber\'s own group page lists her (PhD 2024, co-advised with Wei-Biao Wu)'),
+    ('Raphael Rossellini', 'Rina Foygel Barber', [2023, 2025], 'barber', 'Barber\'s own group page lists him as her PhD student (co-advised with Rebecca Willett)'),
+    ('Yuguan Wang', 'Jeremy Hoskins', [2024, 2025], 'wang', 'his page names Khoo and Hoskins as his Ph.D. advisors'),
+]
+
 
 def wilson(k, n, z=1.96):
     if n == 0:
@@ -203,9 +215,13 @@ def metrics(out):
 
 if __name__ == '__main__':
     out = build()
+    m = metrics(out)   # the rule table is measured on the 75 roster pairs only
+    cnt75 = {k: sum(1 for r in out if r['verdict'] == k) for k in ('true', 'not', 'unsettled')}
+    for n_, (st, pi, yrs, key, note) in enumerate(CO_ADVISERS):
+        out.append(dict(index=75 + n_, student=st, pi=pi, roster_years=yrs, joint_papers=None, pi_last=None, old_rule=None, r_star=None, verdict='true',
+                        basis=CO_ADVISER_BASIS, in_original_75=False, note=note, sources=[dict(url=S[key][0], captured=S[key][1], quote=S[key][2])]))
     cnt = {k: sum(1 for r in out if r['verdict'] == k) for k in ('true', 'not', 'unsettled')}
-    m = metrics(out)
-    OUT.write_text(json.dumps(dict(date='2026-11-04', counts=cnt, rules_note=__doc__.split('\n')[7:9], pairs=out, metrics=m), indent=1, ensure_ascii=False))
+    OUT.write_text(json.dumps(dict(date='2026-11-04', counts=cnt, counts_original_75=cnt75, rules_note=__doc__.split('\n')[7:9], pairs=out, metrics=m), indent=1, ensure_ascii=False))
     print(cnt)
     for scope, d in m.items():
         print('##', scope, 'n', d['n'], 'true', d['true'])

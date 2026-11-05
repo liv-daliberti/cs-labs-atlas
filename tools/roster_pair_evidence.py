@@ -28,6 +28,12 @@ RAW = Path(P.HIERARCHY) / 'uchicago' / 'raw'
 DBS = ['roster-dive-captures.sqlite', 'labpage-audit-captures.sqlite']
 ALIASES = {'Rong Jiang': ['Hugh (Rong) Jiang', 'Rong) Jiang'], 'Suzanna Parkinson': ['Sue Parkinson']}  # the verdict file's own alias notes
 
+# Years: the roster years, narrowed where the cited page gives an earlier graduation (owner 2026-11-04). (pi, student) -> (end year, the text that must sit in the
+# quote). A page date never extends the roster years, and every PI here is listed through 2026, so the years stay inside the appointment.
+PAGE_END = {('Daniel Sanz-Alonso', 'Ruiyi Yang'): (2022, 'graduated Spring 2022'), ('Daniel Sanz-Alonso', 'Yuming Chen'): (2023, 'graduated Spring 2023'),
+            ('Daniel Sanz-Alonso', 'Hwanwoo Kim'): (2024, 'graduated Spring 2024'),
+            ('Lek-Heng Lim', 'Zehua Lai'): (2023, '2018–2023'), ('Lek-Heng Lim', 'Zhen Dai'): (2023, '2018–2023')}
+
 
 def fold(s):
     return re.sub(r'\s+', ' ', unicodedata.normalize('NFKD', s).encode('ascii', 'ignore').decode())
@@ -82,7 +88,7 @@ def build(d=None, get_captures=None):
         for s in p['sources']:
             caps = cache.setdefault(s['url'], get_captures(s['url']))
             for cu, sha, text in caps:
-                q = window(text, ([s['quote']] if len(s['quote']) < 200 else []) + names)  # a person's own page may not repeat their name next to the statement
+                q = window(text, [g for g in [s['quote']] + s['quote'].split(' ... ') if 30 <= len(g) < 200 and (g == s['quote'] or any(fold(n).lower() in fold(g).lower() for n in names + [p['pi'].split()[-1]]))] + names)  # a person's own page may not repeat their name next to the statement
                 if q and sha:
                     found = dict(url=s['url'], capture_url=cu, sha256=sha, quote=q, note=f"roster pair verdict {p['basis']}: {p['note']}".strip(': '))
                     break
@@ -91,7 +97,13 @@ def build(d=None, get_captures=None):
         if not found:
             miss.append((p['student'], p['pi']))
             continue
-        row = dict(name=p['student'], role='phd', years=[min(p['roster_years']), max(p['roster_years'])], **found)
+        y0, y1 = min(p['roster_years']), max(p['roster_years'])
+        if (p['pi'], p['student']) in PAGE_END:
+            end, token = PAGE_END[(p['pi'], p['student'])]
+            assert token in found['quote'], (p['student'], token)
+            y1 = min(y1, end); y0 = min(y0, y1)
+            found['note'] += f'; years end at {end}: page says {token!r}'
+        row = dict(name=p['student'], role='phd', years=[y0, y1], **found)
         by_pi.setdefault(p['pi'], []).append(row)
     out = [dict(pi=pi, students=sorted(rows, key=lambda r: r['name']), notes='Evidence-confirmed Statistics and CAM roster pairs (roster-pair-verdicts.json verdict true), quote cut from the stored capture.')
            for pi, rows in sorted(by_pi.items())]

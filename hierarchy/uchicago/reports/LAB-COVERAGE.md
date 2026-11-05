@@ -89,7 +89,7 @@ Reasons for 0 students: {'sources_exhausted': 43, 'appointment_ended_early': 4, 
 | Ian Foster | CS | 11 | roster+co-author 11 | 409 |  |  |
 | James A. Evans | DSI | 3 | adviser list 3 | 88 |  |  |
 | Jean-Pierre H. Dube | BOOTH | 3 | lab page 3 | 13 |  |  |
-| Jeremy Hoskins | STAT | 1 | lab page 1 | 40 |  |  |
+| Jeremy Hoskins | STAT | 2 | lab page 2 | 41 |  |  |
 | Jinbo Xu | TTIC | 15 | adviser list 15 | 64 |  |  |
 | John H. Reppy | CS | 2 | adviser list 1, roster+co-author 1 | 14 |  |  |
 | John Lafferty | CS | 1 | roster+co-author 1 | 7 |  |  |
@@ -108,7 +108,7 @@ Reasons for 0 students: {'sources_exhausted': 43, 'appointment_ended_early': 4, 
 | Matthew Walter | CS | 14 | adviser list 13, roster+co-author 1 | 65 |  |  |
 | Michael Franklin | CS | 8 | roster+co-author 8 | 40 |  |  |
 | Michael Maire | CS | 7 | adviser list 3, roster+co-author 4 | 42 |  |  |
-| Mihai Anitescu | STAT | 5 | lab page 1, roster+co-author 4 | 82 |  |  |
+| Mihai Anitescu | STAT | 5 | adviser list 1, roster+co-author 4 | 82 |  |  |
 | Nathan Srebro | CS | 6 | lab page 5, adviser list 1 | 90 |  |  |
 | Nick Feamster | CS | 6 | roster+co-author 6 | 98 |  |  |
 | Ozan Candogan | BOOTH | 2 | adviser list 1, lab page 1 | 25 |  |  |
@@ -119,7 +119,7 @@ Reasons for 0 students: {'sources_exhausted': 43, 'appointment_ended_early': 4, 
 | Rebecca Willett | CS | 9 | lab page 7, roster+co-author 2 | 71 |  |  |
 | Rene Caldentey | BOOTH | 2 | lab page 2 | 9 |  |  |
 | Rick Stevens | CS | 6 | roster+co-author 6 | 121 |  |  |
-| Rina Foygel Barber | STAT | 11 | lab page 8, roster+co-author 3 | 99 |  |  |
+| Rina Foygel Barber | STAT | 13 | lab page 10, roster+co-author 3 | 100 |  |  |
 | Risi Kondor | CS | 7 | lab page 5, roster+co-author 2 | 39 |  |  |
 | Robert Grossman | CS | 2 | roster+co-author 2 | 87 |  |  |
 | Robert Rand | CS | 1 | roster+co-author 1 | 19 |  |  |

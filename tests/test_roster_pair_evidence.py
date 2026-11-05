@@ -37,10 +37,20 @@ def test_R_STU_18_the_wired_rows_are_exactly_the_true_verdicts():
     true = collections.Counter((p['pi'], p['student']) for p in d['pairs'] if p['verdict'] == 'true')
     ev = json.load(open(R.OUT))
     wired = collections.Counter((o['pi'], s['name']) for o in ev for s in o['students'])
-    assert wired == true and sum(true.values()) == d['counts']['true'] == 41
+    assert wired == true and sum(true.values()) == d['counts']['true'] == 44 and d['counts_original_75']['true'] == 41
     for student, pis in (('Haoyang Liu', {'Rina Foygel Barber', 'Chao Gao'}), ('Yu Gui', {'Rina Foygel Barber', 'Cong Ma'})):  # Zhu/Barber and Wang/Hoskins are not among the 75 roster pairs, so no verdict exists: not wired
         assert {pi for pi, n in wired if n == student} == pis
-    assert {pi for pi, n in wired if n == 'Wanrong Zhu'} == {'Wei-Biao Wu'}
+    # co-adviser halves (not among the 75): both advisers wired, flagged, and only where the co-adviser is an atlas PI (Kolar, MacAyeal, Weinberger are not)
+    for student, pis in (('Wanrong Zhu', {'Rina Foygel Barber', 'Wei-Biao Wu'}), ('Yuguan Wang', {'Yuehaw Khoo', 'Jeremy Hoskins'}), ('Raphael Rossellini', {'Rina Foygel Barber', 'Rebecca Willett'})):
+        assert {pi for pi, n in wired if n == student} == pis
+    extra = [p for p in d['pairs'] if p['index'] >= 75]
+    assert len(extra) == 3 and all(p['verdict'] == 'true' and p['basis'] == 'co-adviser named on the same page' and p['in_original_75'] is False for p in extra)
+    assert not {pi for pi, _ in wired} & {'Mladen Kolar', 'Douglas MacAyeal', 'Shmuel Weinberger'}
+    # years: narrowed to the page's graduation date, never extended past the roster years
+    yrs = {(o['pi'], s['name']): s['years'] for o in ev for s in o['students']}
+    assert yrs[('Daniel Sanz-Alonso', 'Hwanwoo Kim')] == [2021, 2024] and yrs[('Daniel Sanz-Alonso', 'Ruiyi Yang')] == [2020, 2022]
+    roster = {(p['pi'], p['student']): p['roster_years'] for p in d['pairs']}
+    assert all(yrs[k][0] >= min(roster[k]) and yrs[k][1] <= max(roster[k]) for k in yrs)
     assert all(s['sha256'] and s['quote'] and s['url'] for o in ev for s in o['students'])
 
 
