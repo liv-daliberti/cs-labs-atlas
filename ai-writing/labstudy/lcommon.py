@@ -54,6 +54,11 @@ SEED = 20261105
 MODELS_ABS = ['specter2_base', 'specter2_proximity', 'scincl', 'qwen3_0p6b', 'gte_qwen2_1p5b', 'bge_m3', 'nomic_v15']
 
 
+def now():
+    import time
+    return time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())
+
+
 def log(**kw):
     print(json.dumps(kw, default=str), flush=True)
 
@@ -137,7 +142,7 @@ def load_weights(col='w_ft'):
     return pd.read_parquet(IPW_TABLE).set_index('paper_id')[col]
 
 
-# ---- LLM topics (from topic labels; reported separately everywhere)
-LLM_LABEL_RE = re.compile(r'language model|\bllms?\b|\bgpt|chatgpt|\bprompt|in-?context|instruction[- ]?(tun|follow)|\brlhf|chatbot|generative ai|large language|'
-                          r'foundation model|\bagents?\b.*\b(llm|language)|retrieval[- ]augmented|\brag\b|hallucinat|chain[- ]of[- ]thought|\bvlms?\b|diffusion models', re.I)
-LLM_STRICT_RE = re.compile(r'language model|\bllms?\b|\bgpt|chatgpt|\bprompt|in-?context|instruction[- ]?(tun|follow)|\brlhf|chatbot|generative ai|large language|hallucinat|chain[- ]of[- ]thought', re.I)
+# ---- LLM topics: defined from the topic LABELS (c-TF-IDF terms for BERTopic, the name for OpenAlex topics); reported separately everywhere
+LLM_RE = re.compile(r"\bllms?\b|\blms\b|language models?|\bgpt|chatgpt|\bprompt|in-?context|rlhf|human feedback|preference optimization|chatbot|generative ai|\bgenai\b|"
+                    r"agentic|ai agents|\brag\b|hallucinat|\bcot\b|chain.of.thought|instruction.(tun|follow)|text generation", re.I)
+GENAI_RE = re.compile(LLM_RE.pattern + r"|diffusion models?|\bvlms?\b|foundation models?|texttoimage|generative models?", re.I)
