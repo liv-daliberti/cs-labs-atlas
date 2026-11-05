@@ -43,11 +43,37 @@ Wrong first guesses fixed: `malone.jhu.edu` and `dsai.jhu.edu` do not resolve (t
 **Thesis repository:** JScholarship is not used in any form (records x crawl delay = 0 h, nothing fetched); `[thesis].kind = "none"`, `robots = "disallowed-for-ai-agents"`, `[repository]` says it is reached only through OpenAlex/CORE.
 **Consequence:** the challenged hosts are read from Wayback only (stage 1 plan in the report); Biostatistics and JScholarship are never read.
 
+## Snapshot extension (no OpenAlex credits)
+Filter array 32116414 (16 tasks, `--partition=all --account=mltheory --time=00:59:00 --exclude=node302,node014`, `sbatch --test-only` showed no "Preempts:") COMPLETED in about 38 min. Merge 32116432 FAILED at 1:50 on node805 (`database or disk is full` while indexing: node-local /tmp had 0 kB free, the /dev/shm fallback was used); the 16 parts were intact, so the merge alone was resubmitted as 32116883 with `node805` excluded: COMPLETED in 2:31 on node808. Result `ext-jhu.sqlite`: 535,172 works. (Harvard's `.part` sat on the same node; the sibling merge failure mode is the same.) The pipeline `snapshot-ext` command was not used because the stage scripts ask for 6 h on partition mltheory; the by-hand route (`OA_DATE=2026-10-14 OA_EXT=jhu atlas submit --from-worktree ...`) applies the standing Slurm rules.
+
+## Per-child works 2016-2026 (`oa_institutions.py children-counts jhu`; works tagged with the id, of which lacking the JHU root id)
+| institution | works | lacking JHU id | decision |
+|---|---|---|---|
+| Johns Hopkins University I145311948 | 245,741 | - | primary |
+| APL I2802946424 | 11,905 | 6,416 | kept |
+| Berman Bioethics I4210092215 | 1,295 | 0 | excluded |
+| HEMI I4391012584 | 504 | 4 | kept |
+| Communication Programs I4210151848 | 422 | 0 | excluded |
+| PARADIM I4387152773 | 136 | 122 | kept |
+| SAIS Bologna I4210131961 | 125 | 0 | excluded |
+| CFAR I4389425327 | 41 | 0 | excluded |
+| JHU-Nanjing I4210162165 | 40 | 0 | excluded |
+| Materials Facility I4405260374 | 11 | 0 | kept |
+| JHU Press I4394709191 | 10 | 0 | excluded |
+| Packard Center I4392738135 | 4 | 0 | excluded |
+| MSEE URA I4388891755 | 2 | 2 | kept |
+| Maryland Space Grant I4210120405 | 0 | 0 | excluded |
+APL and JHU academic affiliation: 11,905 - 6,416 = 5,489 APL-tagged works also carry the JHU root id on the same work. An author-level count is not available (the extension stores no authorship rows: `work_author` = 0); the APL PI question (people with a JHU faculty appointment) is answered at stage 2 from the unit listings.
+
 ## Gate
-`atlas stage-gate jhu 0`: **fail, one open item**: "openalex snapshot: no works of I145311948". That is the snapshot extension, deliberately not run (owner D-decisions first; no credits needed, 25 minutes on 16 tasks).
-Everything else passes (charter, 16 hosts consistent). `atlas stage-gate jhu --traps`: one finding, `captures` (no lab-page capture store yet), which is a stage 6-8 artefact and not a stage-0 item.
+`atlas stage-gate jhu 0`: **pass** (open 0, 16 hosts, 527,765 snapshot works). It first failed only for the missing snapshot extension, run after the owner's answers. `atlas stage-gate jhu --traps`: one finding, `captures` (no lab-page capture store yet), a stage 6-8 artefact (the lab-page audit store) that no stage-0 step writes; recorded, not fixable in stage 0.
 Main checkout: `git -C /n/fs/resemble/homogenizing-science/code status --short` shows nothing of this run (it shows `hierarchy/uchicago/tmp/` and `scratch/`, not mine). Untracked data files written by the tools: `hierarchy/jhu/{derived/hosts.json,raw/school-captures.sqlite,reports/new-school.json}` in the main data tree, plus the empty store `stores/jhu`.
 Jobs: none submitted.
 
+## Stage-1 fetch plan (not started; the coordinator sets the Wayback turn order)
+Hosts read from Wayback: www.cs.jhu.edu (live too), ece.jhu.edu, engineering.jhu.edu (AMS), ams.jhu.edu, bme.jhu.edu, www.clsp.jhu.edu, lcsr.jhu.edu, cogsci.jhu.edu, www.math.jhu.edu, ai.jhu.edu (10 s delay applies to live fetches only). Not read: publichealth, jscholarship.
+Eras to find (`discover_listings.py`, from the 2016 homepage links): CS `/faculty/` (also emeritus/research/teaching pages), ECE `/people/` or `/faculty/`, AMS `ams.jhu.edu` to `engineering.jhu.edu/ams` (move date), BME, CLSP, LCSR; CS PhD student/alumni lists and CLSP student lists for stage 6.
+Estimated Wayback requests at the shared 5 s clock: discovery about 30 CDX/page requests per slot x 5 slots, then 22 half-year captures per slot (5 department slots, about 110) plus 7 searched units x 11 = 77 for stage 2; about 350 requests (30 min) if the directories are single pages. Paged or A-Z directories (Georgia Tech: 26 letters x 22 half-years per slot) can multiply this by 10-25 for the slots affected: worst case about 2,500 requests (3.5 h). Wayback shells after 2020 are common; write formats from one sample per era first.
+
 ## Remaining decisions for the owner (see the report)
-D1 challenged hosts; D2 related ids; D3 lineage children to exclude; D4 SAIS Bologna/Nanjing; D5 borderline departments; D6 `order`. All listed with recommendations in the coordinator report.
+None open from stage 0. Open for later stages: which APL researchers hold JHU faculty appointments (stage 2); `center_units` (CLSP, Malone, LCSR, DSAI) confirmed at stage 3; `order` at landing.
