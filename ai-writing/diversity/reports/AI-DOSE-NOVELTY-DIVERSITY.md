@@ -1,15 +1,15 @@
 # AI amount in papers, and novelty and diversity (the dose question)
 
-Generated 2026-11-05T01:28:02Z by `ai-writing/dose/dose_report.py`; all numbers come from the tables in `ai-writing/data/ai-scores/results`.
+Generated 2026-11-05T01:52:33Z by `ai-writing/dose/dose_report.py`; all numbers come from the tables in `ai-writing/data/ai-scores/results`.
 
 ## Summary (plain language)
 
 **What the detectors say.** The passage detector (v2) flags 0.97-1.24% of passages in 2016-2021 papers at every school with enough text (design rate 1%), measured on papers it never trained on; Computer Science, Engineering and Mathematics are at 0.90-0.99%. Georgia Tech's full-text curve is built on very few papers (its 2025 dip in the figure is sampling noise; use its abstract series). Two fields fail the check, Medicine and Biochemistry/Genetics/Molecular Biology (1.75%, lower bound above 1.5%), so their papers use a field-specific threshold (`ai_share_cal`). Georgia Tech has only 4 out-of-sample full texts before 2022, so its pre-2022 floor rests on almost nothing (UChicago has 1,218). The v1 abstract detector runs above its 1% design at five schools (1.2-2.4% before 2022): it is used as a flag with the school's own 2016-2021 rate subtracted, never as an absolute rate. Before ChatGPT the flagged rates creep up slightly (passages 0.9% in 2016 to 1.25% in 2021; abstracts +0.5 to +1.5 points at Michigan, Georgia Tech and Berkeley, none at CMU, MIT, Princeton, Stanford, UChicago): we report it, we do not remove it.
-**How much AI.** Papers with at least a quarter of their passages flagged: 0.1% in 2016-2022, 2.9% in 2023, 11.0% in 2024, 24.2% in 2025, 17.5% in 2026 (a partial year). Two detector-free measures track the same rise by school and year (Liang et al. fraction against flagged abstracts r = 0.97, against flagged passages 0.90; Kobak style words in abstracts against Liang 0.95; style words in full text are weaker, 0.68-0.77).
-**Does AI wording alone move embeddings?** Yes, but little for novelty. A fully AI-polished abstract moves the embedding by 0.02-0.12 in cosine distance (Qwen3-0.6B the most), but changes the size-matched novelty score by only -0.005 to +0.003 for six of the seven models (Qwen3-0.6B +0.017). The correction changes the reading for two models. For SPECTER2-base the abstract-flag effect on novelty (-0.0057) is the size of its mechanical shift (-0.0052), so the corrected effect is about zero. For Qwen3-0.6B the mechanical shift is positive (+0.017: AI-polished text looks more novel to this model), so the raw flag effect of -0.003 becomes -0.019 after correction (about 0.3 of a standard deviation of novelty); BGE-M3 and GTE move from about zero to -0.003. SciNCL (+0.003) and Nomic and SPECTER2-proximity (about 0) are unchanged. The full-text mechanical shift is only approximated (a mean passage shift added to the full-text vector; it does not reproduce the abstract rewrites, whose sign it gets wrong), so full-text corrections are indicative.
-**Does more AI go with more or less novel papers?** Mostly not distinguishably; the corrected abstract-flag estimates are small negatives for three models (Qwen3-0.6B -0.019, BGE-M3 and GTE -0.003) and about zero for the other four. After 2022, going from no flagged passages to all of them changes a paper's novelty by between -0.014 and +0.014 depending on the model (the novelty score has a standard deviation of 0.07), with signs that disagree across models, and about the same inside one lab and year. SPECTER2 and BGE-M3 show small negatives (-0.007 to -0.014); SciNCL a small positive. The 2017-2021 placebo, where the "dose" is detector noise, is not a clean zero: its estimates are as large or larger (up to +0.057 within lab), with wide intervals. No post-2022 coefficient stands out from that placebo spread.
-**Lab level.** Labs with more AI use after 2023 became, relative to their own history, more dispersed (mean pairwise distance, dispersion, Vendi) in the abstract embeddings: positive in all seven models, outside the 2019-2021 placebo breaks in four or five of them. The same labs were already drifting that way before 2022 (placebo effects of the same sign, smaller), and inside a lab across its own years the relation is about zero. So the data give no support for "more AI, less diverse research"; they also do not show AI causing diversification, because labs that adopt AI differ from those that do not.
-**Not supported, not done.** There is no evidence here of a homogenizing effect of AI wording at the paper or lab level in these embeddings. Reference-based novelty and inverse-probability weights for full-text selection are not run; the selection check is the abstract-flag exposure, which covers all papers. Full-text novelty exists for two models (SPECTER2 base and proximity: post-period dose coefficient +0.017 and +0.027 pooled, +0.011 and +0.017 within lab, against placebo within-lab +0.045 and +0.058). Qwen3-Embedding-4B and the full-text vectors of the other models wait for the embedding chains.
+**How much AI.** Papers with at least a quarter of their passages flagged: 0.1% in 2016-2022, 2.9% in 2023, 11.0% in 2024, 24.2% in 2025. Two detector-free measures track the same rise by school and year (Liang et al. fraction against flagged abstracts r = 0.98, against flagged passages 0.92; Kobak style words in abstracts against Liang 0.95; style words in full text are weaker, 0.66-0.76), over school-years 2016-2025.
+**Does AI wording alone move embeddings?** Yes, but little for novelty. A fully AI-polished abstract moves the embedding by 0.02-0.12 in cosine distance (Qwen3-0.6B the most), but changes the size-matched novelty score by only -0.005 to +0.003 for six of the seven models (Qwen3-0.6B +0.017). The correction changes the reading for two models. For SPECTER2-base the abstract-flag effect on novelty (-0.0047, 2023-2025 papers) is the size of its mechanical shift (-0.0052), so the corrected effect is about zero. For Qwen3-0.6B the mechanical shift is positive (+0.017: AI-polished text looks more novel to this model), so the raw flag effect of -0.001 becomes -0.017 after correction (about a quarter of a standard deviation of novelty); BGE-M3 and GTE move from about zero to -0.002. SciNCL (+0.004) and Nomic and SPECTER2-proximity (about 0) are unchanged. The full-text mechanical shift is only approximated (a mean passage shift added to the full-text vector; it does not reproduce the abstract rewrites, whose sign it gets wrong), so full-text corrections are indicative.
+**Does more AI go with more or less novel papers?** Mostly not distinguishably; the corrected abstract-flag estimates are small negatives for three models (Qwen3-0.6B -0.017, BGE-M3 and GTE -0.002) and about zero for the other four, except SciNCL (+0.004). In 2023-2025 papers, going from no flagged passages to all of them changes a paper's novelty by between -0.008 and +0.018 depending on the model (pooled and within-lab designs; the novelty score has a standard deviation of 0.07), with signs that disagree across models, and about the same inside one lab and year. SPECTER2-base shows a small negative (-0.008); SciNCL and Nomic small positives (+0.008 to +0.018). The 2017-2021 placebo, where the "dose" is detector noise, is not a clean zero: its estimates are as large or larger (up to +0.057 within lab), with wide intervals. No post-2022 coefficient stands out from that placebo spread.
+**Lab level.** Labs with more AI use after 2023 became, relative to their own history, more dispersed (mean pairwise distance, dispersion, Vendi) in the abstract embeddings: positive in all seven models, and larger than all three placebo breaks (2019-2021) in six of seven models for dispersion and mean pairwise distance and five of seven for Vendi. The same labs were already drifting that way before 2022 (placebo effects of the same sign, smaller), and inside a lab across its own years the relation is about zero or slightly negative. So the data give no support for "more AI, less diverse research"; they also do not show AI causing diversification, because labs that adopt AI differ from those that do not.
+**Not supported, not done.** There is no evidence here of a homogenizing effect of AI wording at the paper or lab level in these embeddings. Reference-based novelty and inverse-probability weights for full-text selection are not run; the selection check is the abstract-flag exposure, which covers all papers. Full-text novelty exists for two models (SPECTER2 base and proximity: post-period dose coefficient +0.019 and +0.029 pooled, +0.020 and +0.023 within lab, against placebo within-lab +0.045 and +0.058). Qwen3-Embedding-4B and the full-text vectors of the other models wait for the embedding chains.
 
 
 ## 1. Detector validation
@@ -150,7 +150,6 @@ Generated 2026-11-05T01:28:02Z by `ai-writing/dose/dose_report.py`; all numbers 
 | berkeley | 2023 | 868 | 996 | 3.75 | 3.16 | 4.39 | 3.75 | 3.27 | 4.29 | 2.88 | 8.33 | 6.63 | 10.14 | 48.445 | 29.351 |
 | berkeley | 2024 | 937 | 1070 | 7.67 | 6.83 | 8.42 | 8.07 | 7.17 | 8.78 | 9.93 | 19.81 | 17.61 | 22.24 | 52.555 | 32.271 |
 | berkeley | 2025 | 1124 | 1260 | 13.44 | 12.55 | 14.43 | 13.82 | 12.91 | 14.65 | 21.62 | 34.44 | 31.35 | 37.18 | 58.118 | 34.204 |
-| berkeley | 2026 | 946 | 971 | 10.81 | 9.94 | 11.57 | 11.59 | 10.72 | 12.44 | 15.12 | 25.64 | 23.12 | 28.48 | 50.358 | 31.388 |
 | cmu | 2016 | 1062 | 1358 | 0.85 | 0.75 | 0.97 | 0.79 | 0.65 | 0.95 | 0.09 | 1.69 | 0.96 | 2.40 | 43.152 | 28.843 |
 | cmu | 2017 | 1172 | 1480 | 0.81 | 0.70 | 0.95 | 0.71 | 0.62 | 0.83 | 0.00 | 1.89 | 1.25 | 2.64 | 43.809 | 28.441 |
 | cmu | 2018 | 1825 | 2101 | 0.86 | 0.76 | 0.96 | 0.79 | 0.70 | 0.89 | 0.16 | 1.19 | 0.76 | 1.62 | 43.561 | 28.835 |
@@ -161,7 +160,6 @@ Generated 2026-11-05T01:28:02Z by `ai-writing/dose/dose_report.py`; all numbers 
 | cmu | 2023 | 1735 | 2019 | 3.60 | 3.19 | 3.99 | 3.82 | 3.47 | 4.26 | 3.46 | 8.57 | 7.53 | 9.73 | 49.612 | 31.112 |
 | cmu | 2024 | 1869 | 2120 | 8.59 | 7.83 | 9.37 | 9.25 | 8.58 | 9.96 | 12.31 | 20.42 | 18.58 | 22.22 | 57.510 | 35.108 |
 | cmu | 2025 | 1991 | 2289 | 15.37 | 14.55 | 16.21 | 16.80 | 15.92 | 17.58 | 26.97 | 38.05 | 36.00 | 40.02 | 62.520 | 38.088 |
-| cmu | 2026 | 1930 | 2091 | 12.97 | 12.30 | 13.69 | 14.01 | 13.30 | 14.61 | 20.00 | 31.32 | 29.67 | 33.31 | 53.863 | 35.359 |
 | epfl | 2016 | 647 | 858 | 0.98 | 0.70 | 1.33 | 0.84 | 0.59 | 1.18 | 0.31 | 0.70 | 0.23 | 1.28 | 40.122 | 26.018 |
 | epfl | 2017 | 637 | 895 | 0.76 | 0.62 | 0.90 | 0.70 | 0.56 | 0.85 | 0.00 | 1.23 | 0.56 | 2.01 | 41.116 | 25.775 |
 | epfl | 2018 | 622 | 852 | 0.89 | 0.70 | 1.21 | 0.75 | 0.61 | 0.91 | 0.00 | 1.41 | 0.70 | 2.23 | 39.936 | 25.583 |
@@ -172,7 +170,6 @@ Generated 2026-11-05T01:28:02Z by `ai-writing/dose/dose_report.py`; all numbers 
 | epfl | 2023 | 847 | 1062 | 3.81 | 3.20 | 4.50 | 3.83 | 3.26 | 4.42 | 3.78 | 9.70 | 7.91 | 11.54 | 47.261 | 28.618 |
 | epfl | 2024 | 975 | 1134 | 9.24 | 8.44 | 10.27 | 9.66 | 8.71 | 10.73 | 13.33 | 25.49 | 22.88 | 27.91 | 56.739 | 33.148 |
 | epfl | 2025 | 1047 | 1230 | 17.09 | 15.71 | 18.43 | 17.32 | 16.23 | 18.55 | 27.13 | 43.01 | 40.45 | 45.49 | 63.752 | 36.812 |
-| epfl | 2026 | 1018 | 1019 | 14.16 | 13.16 | 15.16 | 14.41 | 13.43 | 15.46 | 21.41 | 35.53 | 32.63 | 38.52 | 53.645 | 33.959 |
 | gatech | 2016 | 0 | 1144 |  |  |  |  |  |  |  | 1.66 | 0.96 | 2.45 | 43.617 |  |
 | gatech | 2017 | 1 | 1275 | 1.89 |  |  | 1.89 |  |  | 0.00 | 1.49 | 0.94 | 2.20 | 44.069 | 34.236 |
 | gatech | 2018 | 2 | 1374 | 1.16 | 0.00 | 2.00 | 1.00 | 0.00 | 2.00 | 0.00 | 2.33 | 1.46 | 3.09 | 44.261 | 31.461 |
@@ -183,7 +180,6 @@ Generated 2026-11-05T01:28:02Z by `ai-writing/dose/dose_report.py`; all numbers 
 | gatech | 2023 | 2 | 1677 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 10.97 | 9.51 | 12.28 | 50.654 | 32.658 |
 | gatech | 2024 | 2 | 1810 | 7.50 | 0.00 | 13.64 | 6.82 | 0.00 | 13.64 | 0.00 | 26.46 | 24.53 | 28.40 | 60.121 | 48.985 |
 | gatech | 2025 | 2 | 1635 | 3.23 | 0.00 | 4.11 | 2.05 | 0.00 | 4.11 | 0.00 | 44.16 | 41.92 | 46.52 | 66.523 | 29.563 |
-| gatech | 2026 | 2 | 1057 | 6.96 | 0.00 | 11.76 | 5.88 | 0.00 | 11.76 | 0.00 | 37.09 | 34.29 | 40.11 | 56.204 | 42.677 |
 | michigan | 2016 | 385 | 752 | 1.08 | 0.87 | 1.32 | 1.17 | 0.91 | 1.41 | 0.00 | 1.60 | 0.66 | 2.53 | 42.720 | 27.938 |
 | michigan | 2017 | 448 | 873 | 0.82 | 0.67 | 1.00 | 0.78 | 0.63 | 0.99 | 0.00 | 1.60 | 0.80 | 2.63 | 42.223 | 28.292 |
 | michigan | 2018 | 460 | 842 | 1.09 | 0.90 | 1.30 | 1.11 | 0.89 | 1.36 | 0.00 | 2.14 | 1.31 | 3.27 | 41.446 | 28.689 |
@@ -194,7 +190,6 @@ Generated 2026-11-05T01:28:02Z by `ai-writing/dose/dose_report.py`; all numbers 
 | michigan | 2023 | 648 | 961 | 3.83 | 3.19 | 4.58 | 3.85 | 3.26 | 4.58 | 3.24 | 6.76 | 5.36 | 8.22 | 48.291 | 30.809 |
 | michigan | 2024 | 757 | 1026 | 9.34 | 8.30 | 10.39 | 9.59 | 8.48 | 10.64 | 12.55 | 20.27 | 18.23 | 22.47 | 55.689 | 34.852 |
 | michigan | 2025 | 843 | 1136 | 16.14 | 14.87 | 17.39 | 16.66 | 15.42 | 17.99 | 27.05 | 34.95 | 32.44 | 37.81 | 58.566 | 36.387 |
-| michigan | 2026 | 717 | 869 | 14.20 | 13.28 | 15.35 | 14.75 | 13.76 | 16.00 | 21.62 | 34.06 | 30.66 | 37.05 | 54.780 | 35.249 |
 | mit | 2016 | 834 | 1126 | 0.92 | 0.79 | 1.08 | 0.90 | 0.74 | 1.05 | 0.00 | 1.42 | 0.80 | 2.13 | 41.125 | 27.351 |
 | mit | 2017 | 919 | 1214 | 0.96 | 0.81 | 1.10 | 1.06 | 0.88 | 1.28 | 0.11 | 2.47 | 1.60 | 3.38 | 41.541 | 27.209 |
 | mit | 2018 | 1019 | 1356 | 1.18 | 0.99 | 1.41 | 1.09 | 0.94 | 1.25 | 0.10 | 1.99 | 1.29 | 2.80 | 41.823 | 27.018 |
@@ -205,7 +200,6 @@ Generated 2026-11-05T01:28:02Z by `ai-writing/dose/dose_report.py`; all numbers 
 | mit | 2023 | 1355 | 1621 | 2.84 | 2.52 | 3.24 | 2.92 | 2.58 | 3.26 | 2.21 | 6.29 | 5.15 | 7.53 | 45.072 | 28.931 |
 | mit | 2024 | 1303 | 1560 | 6.28 | 5.66 | 6.92 | 7.12 | 6.48 | 7.80 | 8.29 | 18.46 | 16.50 | 20.51 | 54.168 | 32.140 |
 | mit | 2025 | 1387 | 1642 | 12.05 | 11.29 | 12.95 | 12.83 | 12.04 | 13.61 | 18.82 | 31.00 | 28.87 | 33.47 | 56.244 | 33.792 |
-| mit | 2026 | 1367 | 1515 | 10.58 | 9.89 | 11.23 | 11.06 | 10.37 | 11.76 | 13.17 | 28.45 | 25.94 | 30.69 | 51.021 | 32.288 |
 | princeton | 2016 | 343 | 461 | 1.23 | 0.98 | 1.50 | 1.24 | 0.97 | 1.52 | 0.00 | 1.95 | 0.87 | 3.47 | 37.682 | 24.401 |
 | princeton | 2017 | 367 | 508 | 1.04 | 0.84 | 1.24 | 0.99 | 0.77 | 1.22 | 0.00 | 2.95 | 1.57 | 4.33 | 39.166 | 25.927 |
 | princeton | 2018 | 395 | 491 | 1.07 | 0.88 | 1.28 | 1.18 | 0.94 | 1.43 | 0.00 | 2.65 | 1.43 | 4.07 | 39.926 | 24.606 |
@@ -216,7 +210,6 @@ Generated 2026-11-05T01:28:02Z by `ai-writing/dose/dose_report.py`; all numbers 
 | princeton | 2023 | 595 | 695 | 2.44 | 2.05 | 2.98 | 2.45 | 2.06 | 2.88 | 1.01 | 5.04 | 3.60 | 6.62 | 43.336 | 26.059 |
 | princeton | 2024 | 673 | 778 | 7.19 | 6.25 | 8.28 | 7.13 | 6.23 | 8.00 | 8.47 | 18.64 | 15.94 | 21.47 | 50.901 | 28.875 |
 | princeton | 2025 | 751 | 830 | 12.26 | 11.07 | 13.44 | 12.66 | 11.62 | 13.83 | 20.51 | 28.43 | 25.78 | 31.63 | 54.125 | 32.212 |
-| princeton | 2026 | 674 | 705 | 10.72 | 9.68 | 11.62 | 10.40 | 9.57 | 11.28 | 13.80 | 24.54 | 21.49 | 27.80 | 48.647 | 30.389 |
 | stanford | 2016 | 621 | 886 | 1.12 | 0.94 | 1.27 | 1.10 | 0.91 | 1.30 | 0.16 | 2.93 | 1.69 | 4.06 | 40.644 | 28.288 |
 | stanford | 2017 | 792 | 1038 | 1.06 | 0.93 | 1.22 | 1.02 | 0.87 | 1.18 | 0.00 | 2.41 | 1.54 | 3.23 | 42.134 | 28.878 |
 | stanford | 2018 | 820 | 1084 | 1.11 | 0.96 | 1.28 | 1.15 | 0.98 | 1.31 | 0.12 | 2.21 | 1.38 | 3.14 | 41.115 | 28.133 |
@@ -227,7 +220,6 @@ Generated 2026-11-05T01:28:02Z by `ai-writing/dose/dose_report.py`; all numbers 
 | stanford | 2023 | 1341 | 1525 | 3.38 | 2.97 | 3.80 | 3.75 | 3.27 | 4.23 | 3.21 | 8.52 | 7.21 | 9.94 | 46.637 | 30.339 |
 | stanford | 2024 | 1481 | 1629 | 8.33 | 7.66 | 9.05 | 8.52 | 7.85 | 9.29 | 11.01 | 19.15 | 17.46 | 20.93 | 53.127 | 33.350 |
 | stanford | 2025 | 1631 | 1768 | 15.43 | 14.62 | 16.24 | 16.46 | 15.40 | 17.37 | 25.94 | 35.24 | 32.97 | 37.33 | 58.498 | 37.247 |
-| stanford | 2026 | 1577 | 1692 | 12.21 | 11.48 | 12.90 | 12.60 | 11.87 | 13.32 | 17.31 | 28.72 | 26.65 | 30.76 | 52.449 | 33.372 |
 | uchicago | 2016 | 129 | 182 | 0.79 | 0.52 | 1.11 | 0.73 | 0.43 | 1.04 | 0.00 | 2.20 | 0.26 | 4.40 | 39.897 | 26.351 |
 | uchicago | 2017 | 100 | 130 | 0.79 | 0.51 | 1.13 | 0.87 | 0.45 | 1.28 | 0.00 | 3.08 | 0.77 | 5.79 | 36.137 | 25.347 |
 | uchicago | 2018 | 186 | 219 | 1.09 | 0.66 | 1.80 | 0.95 | 0.64 | 1.30 | 0.00 | 1.37 | 0.00 | 2.74 | 43.697 | 29.118 |
@@ -238,7 +230,6 @@ Generated 2026-11-05T01:28:02Z by `ai-writing/dose/dose_report.py`; all numbers 
 | uchicago | 2023 | 319 | 397 | 2.78 | 2.20 | 3.33 | 2.84 | 2.29 | 3.42 | 0.94 | 6.55 | 4.03 | 8.82 | 47.218 | 29.829 |
 | uchicago | 2024 | 350 | 410 | 7.88 | 6.48 | 9.39 | 7.95 | 6.67 | 9.59 | 9.71 | 19.76 | 15.73 | 23.30 | 52.873 | 33.010 |
 | uchicago | 2025 | 352 | 412 | 10.68 | 9.27 | 12.15 | 11.09 | 9.75 | 12.60 | 16.19 | 27.18 | 22.82 | 31.31 | 55.635 | 33.784 |
-| uchicago | 2026 | 323 | 403 | 8.76 | 7.64 | 10.00 | 8.85 | 7.57 | 10.19 | 10.84 | 19.85 | 16.25 | 23.57 | 50.599 | 29.694 |
 
 
 ![yearly](figures-ai-dose/yearly_ai_amount_by_school.png)
@@ -248,24 +239,24 @@ Generated 2026-11-05T01:28:02Z by `ai-writing/dose/dose_report.py`; all numbers 
 
 |  | flagged | mean_ai_share | abs_flagged | kobak_abs | kobak_ft | liang_alpha |
 |---|---|---|---|---|---|---|
-| flagged | 1.00 | 1.00 | 0.92 | 0.84 | 0.68 | 0.90 |
-| mean_ai_share | 1.00 | 1.00 | 0.91 | 0.83 | 0.67 | 0.90 |
-| abs_flagged | 0.92 | 0.91 | 1.00 | 0.93 | 0.70 | 0.97 |
-| kobak_abs | 0.84 | 0.83 | 0.93 | 1.00 | 0.76 | 0.95 |
-| kobak_ft | 0.68 | 0.67 | 0.70 | 0.76 | 1.00 | 0.71 |
-| liang_alpha | 0.90 | 0.90 | 0.97 | 0.95 | 0.71 | 1.00 |
+| flagged | 1.00 | 1.00 | 0.91 | 0.86 | 0.69 | 0.92 |
+| mean_ai_share | 1.00 | 1.00 | 0.90 | 0.84 | 0.68 | 0.91 |
+| abs_flagged | 0.91 | 0.90 | 1.00 | 0.95 | 0.66 | 0.98 |
+| kobak_abs | 0.86 | 0.84 | 0.95 | 1.00 | 0.74 | 0.95 |
+| kobak_ft | 0.69 | 0.68 | 0.66 | 0.74 | 1.00 | 0.68 |
+| liang_alpha | 0.92 | 0.91 | 0.98 | 0.95 | 0.68 | 1.00 |
 
 
 ### The same within school (school means removed)
 
 |  | flagged | mean_ai_share | abs_flagged | kobak_abs | kobak_ft | liang_alpha |
 |---|---|---|---|---|---|---|
-| flagged | 1.00 | 1.00 | 0.94 | 0.89 | 0.77 | 0.92 |
-| mean_ai_share | 1.00 | 1.00 | 0.93 | 0.88 | 0.76 | 0.91 |
-| abs_flagged | 0.94 | 0.93 | 1.00 | 0.95 | 0.72 | 0.98 |
-| kobak_abs | 0.89 | 0.88 | 0.95 | 1.00 | 0.73 | 0.97 |
-| kobak_ft | 0.77 | 0.76 | 0.72 | 0.73 | 1.00 | 0.73 |
-| liang_alpha | 0.92 | 0.91 | 0.98 | 0.97 | 0.73 | 1.00 |
+| flagged | 1.00 | 1.00 | 0.92 | 0.90 | 0.76 | 0.93 |
+| mean_ai_share | 1.00 | 1.00 | 0.91 | 0.89 | 0.75 | 0.92 |
+| abs_flagged | 0.92 | 0.91 | 1.00 | 0.97 | 0.68 | 0.99 |
+| kobak_abs | 0.90 | 0.89 | 0.97 | 1.00 | 0.71 | 0.98 |
+| kobak_ft | 0.76 | 0.75 | 0.68 | 0.71 | 1.00 | 0.70 |
+| liang_alpha | 0.93 | 0.92 | 0.99 | 0.98 | 0.70 | 1.00 |
 
 
 ### Liang et al. estimator on synthetic mixtures
@@ -397,13 +388,13 @@ scope all, k=3, nov_nn_cap; effect of ai_share going 0 -> 1, 95% interval (clust
 
 | model | raw | pooled | topicyear | nollm | withinlab | author | mechanical shift (AI wording alone) | pooled minus mechanical |
 |---|---|---|---|---|---|---|---|---|
-| bge_m3 | -0.0162 [-0.0219, -0.0106] | -0.0071 [-0.0111, -0.0030] | -0.0071 [-0.0114, -0.0029] | -0.0028 [-0.0075, +0.0019] | -0.0067 [-0.0115, -0.0019] | -0.0130 [-0.0217, -0.0043] | +0.0009 | -0.0079 |
-| gte_qwen2_1p5b | +0.0021 [-0.0092, +0.0133] | +0.0013 [-0.0052, +0.0078] | +0.0004 [-0.0060, +0.0068] | +0.0133 [+0.0061, +0.0205] | -0.0006 [-0.0079, +0.0067] | -0.0094 [-0.0200, +0.0012] | +0.0026 | -0.0013 |
-| nomic_v15 | +0.0033 [-0.0049, +0.0114] | +0.0051 [-0.0001, +0.0104] | +0.0049 [-0.0004, +0.0102] | +0.0082 [+0.0019, +0.0145] | +0.0034 [-0.0028, +0.0096] | -0.0032 [-0.0125, +0.0060] | +0.0003 | +0.0049 |
-| qwen3_0p6b | -0.0214 [-0.0313, -0.0116] | -0.0045 [-0.0106, +0.0017] | -0.0040 [-0.0101, +0.0021] | -0.0014 [-0.0087, +0.0059] | -0.0023 [-0.0098, +0.0051] | -0.0041 [-0.0159, +0.0077] | +0.0166 | -0.0211 |
-| scincl | +0.0210 [+0.0086, +0.0335] | +0.0138 [+0.0071, +0.0205] | +0.0123 [+0.0056, +0.0190] | +0.0176 [+0.0093, +0.0259] | +0.0052 [-0.0026, +0.0130] | -0.0047 [-0.0165, +0.0072] | +0.0002 | +0.0136 |
-| specter2_base | -0.0419 [-0.0547, -0.0290] | -0.0120 [-0.0188, -0.0052] | -0.0132 [-0.0199, -0.0064] | -0.0128 [-0.0207, -0.0048] | -0.0144 [-0.0219, -0.0069] | -0.0193 [-0.0300, -0.0086] | -0.0052 | -0.0068 |
-| specter2_proximity | -0.0265 [-0.0394, -0.0136] | -0.0018 [-0.0083, +0.0046] | -0.0032 [-0.0096, +0.0033] | +0.0012 [-0.0066, +0.0090] | -0.0117 [-0.0186, -0.0048] | -0.0164 [-0.0271, -0.0058] | -0.0015 | -0.0003 |
+| bge_m3 | -0.0094 [-0.0153, -0.0035] | -0.0033 [-0.0080, +0.0014] | -0.0022 [-0.0070, +0.0027] | -0.0009 [-0.0065, +0.0047] | -0.0013 [-0.0070, +0.0043] | -0.0070 [-0.0178, +0.0038] | +0.0009 | -0.0042 |
+| gte_qwen2_1p5b | +0.0057 [-0.0057, +0.0171] | +0.0048 [-0.0023, +0.0120] | +0.0062 [-0.0008, +0.0131] | +0.0165 [+0.0085, +0.0246] | +0.0062 [-0.0018, +0.0142] | -0.0037 [-0.0160, +0.0086] | +0.0026 | +0.0022 |
+| nomic_v15 | +0.0099 [+0.0015, +0.0183] | +0.0080 [+0.0024, +0.0137] | +0.0091 [+0.0035, +0.0147] | +0.0103 [+0.0032, +0.0174] | +0.0086 [+0.0021, +0.0152] | +0.0017 [-0.0098, +0.0132] | +0.0003 | +0.0077 |
+| qwen3_0p6b | -0.0123 [-0.0226, -0.0020] | +0.0012 [-0.0056, +0.0081] | +0.0045 [-0.0022, +0.0112] | +0.0039 [-0.0045, +0.0122] | +0.0067 [-0.0018, +0.0152] | -0.0004 [-0.0156, +0.0147] | +0.0166 | -0.0154 |
+| scincl | +0.0263 [+0.0137, +0.0388] | +0.0177 [+0.0105, +0.0250] | +0.0169 [+0.0098, +0.0240] | +0.0212 [+0.0121, +0.0303] | +0.0108 [+0.0021, +0.0195] | -0.0026 [-0.0176, +0.0124] | +0.0002 | +0.0175 |
+| specter2_base | -0.0350 [-0.0479, -0.0222] | -0.0081 [-0.0154, -0.0008] | -0.0085 [-0.0156, -0.0014] | -0.0090 [-0.0178, -0.0001] | -0.0084 [-0.0167, -0.0001] | -0.0173 [-0.0304, -0.0041] | -0.0052 | -0.0029 |
+| specter2_proximity | -0.0235 [-0.0363, -0.0106] | +0.0008 [-0.0064, +0.0079] | +0.0001 [-0.0068, +0.0071] | +0.0038 [-0.0050, +0.0126] | -0.0082 [-0.0160, -0.0004] | -0.0178 [-0.0305, -0.0051] | -0.0015 | +0.0023 |
 
 
 ### abstract vectors, pre-period papers (placebo: the dose is detector noise)
@@ -427,8 +418,8 @@ scope all, k=3, nov_nn_cap; effect of ai_share going 0 -> 1, 95% interval (clust
 
 | model | raw | pooled | topicyear | nollm | withinlab | author | mechanical shift (AI wording alone) | pooled minus mechanical |
 |---|---|---|---|---|---|---|---|---|
-| specter2_base | +0.0168 [+0.0034, +0.0303] | +0.0166 [+0.0100, +0.0232] | +0.0168 [+0.0101, +0.0236] | +0.0139 [+0.0062, +0.0216] | +0.0111 [+0.0033, +0.0189] | +0.0001 [-0.0109, +0.0112] | +0.0044 | +0.0122 |
-| specter2_proximity | +0.0417 [+0.0278, +0.0556] | +0.0265 [+0.0195, +0.0334] | +0.0268 [+0.0197, +0.0340] | +0.0257 [+0.0175, +0.0339] | +0.0166 [+0.0084, +0.0249] | +0.0064 [-0.0048, +0.0176] | +0.0046 | +0.0219 |
+| specter2_base | +0.0252 [+0.0117, +0.0388] | +0.0192 [+0.0122, +0.0263] | +0.0206 [+0.0134, +0.0279] | +0.0149 [+0.0066, +0.0233] | +0.0203 [+0.0117, +0.0289] | +0.0082 [-0.0049, +0.0213] | +0.0044 | +0.0148 |
+| specter2_proximity | +0.0485 [+0.0343, +0.0627] | +0.0289 [+0.0214, +0.0364] | +0.0298 [+0.0223, +0.0374] | +0.0262 [+0.0174, +0.0350] | +0.0230 [+0.0138, +0.0323] | +0.0086 [-0.0055, +0.0228] | +0.0046 | +0.0243 |
 
 
 ### fulltext vectors, pre-period papers (placebo: the dose is detector noise)
@@ -448,150 +439,150 @@ scope all, k=3, nov_nn_cap; effect of ai_share going 0 -> 1, 95% interval (clust
 
 ### Dose effect on abstract novelty with and without the mechanical-shift correction
 
-scope all, k=3, nov_nn_cap, 2023-2026 papers; mechanical = shift of a fully AI-polished abstract (same content), measured from rewrites
+scope all, k=3, nov_nn_cap, 2023-2025 papers; mechanical = shift of a fully AI-polished abstract (same content), measured from rewrites
 
 | exposure | design | model | raw | mechanical | corrected |
 |---|---|---|---|---|---|
-| abstract flagged AI (0/1) | pooled | bge_m3 | -0.0017 [-0.0029, -0.0005] | +0.0009 | -0.0026 [-0.0038, -0.0013] |
-| abstract flagged AI (0/1) | pooled | gte_qwen2_1p5b | -0.0002 [-0.0018, +0.0014] | +0.0026 | -0.0028 [-0.0045, -0.0012] |
-| abstract flagged AI (0/1) | pooled | nomic_v15 | +0.0003 [-0.0011, +0.0017] | +0.0003 | +0.0000 [-0.0015, +0.0015] |
-| abstract flagged AI (0/1) | pooled | qwen3_0p6b | -0.0026 [-0.0042, -0.0009] | +0.0166 | -0.0192 [-0.0213, -0.0171] |
-| abstract flagged AI (0/1) | pooled | scincl | +0.0028 [+0.0010, +0.0045] | +0.0002 | +0.0026 [+0.0007, +0.0044] |
-| abstract flagged AI (0/1) | pooled | specter2_base | -0.0057 [-0.0074, -0.0041] | -0.0052 | -0.0005 [-0.0023, +0.0012] |
-| abstract flagged AI (0/1) | pooled | specter2_proximity | -0.0013 [-0.0028, +0.0003] | -0.0015 | +0.0002 [-0.0014, +0.0019] |
-| abstract flagged AI (0/1) | withinlab | bge_m3 | -0.0013 [-0.0026, -0.0000] | +0.0009 | -0.0022 [-0.0036, -0.0008] |
-| abstract flagged AI (0/1) | withinlab | gte_qwen2_1p5b | -0.0007 [-0.0024, +0.0009] | +0.0026 | -0.0034 [-0.0051, -0.0016] |
-| abstract flagged AI (0/1) | withinlab | nomic_v15 | -0.0005 [-0.0021, +0.0011] | +0.0003 | -0.0008 [-0.0024, +0.0009] |
-| abstract flagged AI (0/1) | withinlab | qwen3_0p6b | -0.0015 [-0.0034, +0.0004] | +0.0166 | -0.0182 [-0.0204, -0.0159] |
-| abstract flagged AI (0/1) | withinlab | scincl | +0.0007 [-0.0013, +0.0027] | +0.0002 | +0.0005 [-0.0016, +0.0026] |
-| abstract flagged AI (0/1) | withinlab | specter2_base | -0.0056 [-0.0075, -0.0038] | -0.0052 | -0.0005 [-0.0024, +0.0015] |
-| abstract flagged AI (0/1) | withinlab | specter2_proximity | -0.0030 [-0.0047, -0.0012] | -0.0015 | -0.0015 [-0.0033, +0.0004] |
-| ai_share 0 -> 1 (assumes the abstract is as AI-worded as the body) | pooled | bge_m3 | -0.0071 [-0.0111, -0.0030] | +0.0009 | -0.0079 [-0.0120, -0.0039] |
-| ai_share 0 -> 1 (assumes the abstract is as AI-worded as the body) | pooled | gte_qwen2_1p5b | +0.0013 [-0.0052, +0.0078] | +0.0026 | -0.0013 [-0.0079, +0.0052] |
-| ai_share 0 -> 1 (assumes the abstract is as AI-worded as the body) | pooled | nomic_v15 | +0.0051 [-0.0001, +0.0104] | +0.0003 | +0.0049 [-0.0004, +0.0101] |
-| ai_share 0 -> 1 (assumes the abstract is as AI-worded as the body) | pooled | qwen3_0p6b | -0.0045 [-0.0106, +0.0017] | +0.0166 | -0.0211 [-0.0274, -0.0148] |
-| ai_share 0 -> 1 (assumes the abstract is as AI-worded as the body) | pooled | scincl | +0.0138 [+0.0071, +0.0205] | +0.0002 | +0.0136 [+0.0069, +0.0203] |
-| ai_share 0 -> 1 (assumes the abstract is as AI-worded as the body) | pooled | specter2_base | -0.0120 [-0.0188, -0.0052] | -0.0052 | -0.0068 [-0.0136, -0.0000] |
-| ai_share 0 -> 1 (assumes the abstract is as AI-worded as the body) | pooled | specter2_proximity | -0.0018 [-0.0083, +0.0046] | -0.0015 | -0.0003 [-0.0068, +0.0062] |
-| ai_share 0 -> 1 (assumes the abstract is as AI-worded as the body) | withinlab | bge_m3 | -0.0067 [-0.0115, -0.0019] | +0.0009 | -0.0076 [-0.0124, -0.0027] |
-| ai_share 0 -> 1 (assumes the abstract is as AI-worded as the body) | withinlab | gte_qwen2_1p5b | -0.0006 [-0.0079, +0.0067] | +0.0026 | -0.0032 [-0.0105, +0.0040] |
-| ai_share 0 -> 1 (assumes the abstract is as AI-worded as the body) | withinlab | nomic_v15 | +0.0034 [-0.0028, +0.0096] | +0.0003 | +0.0031 [-0.0031, +0.0093] |
-| ai_share 0 -> 1 (assumes the abstract is as AI-worded as the body) | withinlab | qwen3_0p6b | -0.0023 [-0.0098, +0.0051] | +0.0166 | -0.0189 [-0.0265, -0.0114] |
-| ai_share 0 -> 1 (assumes the abstract is as AI-worded as the body) | withinlab | scincl | +0.0052 [-0.0026, +0.0130] | +0.0002 | +0.0050 [-0.0028, +0.0128] |
-| ai_share 0 -> 1 (assumes the abstract is as AI-worded as the body) | withinlab | specter2_base | -0.0144 [-0.0219, -0.0069] | -0.0052 | -0.0092 [-0.0168, -0.0017] |
-| ai_share 0 -> 1 (assumes the abstract is as AI-worded as the body) | withinlab | specter2_proximity | -0.0117 [-0.0186, -0.0048] | -0.0015 | -0.0102 [-0.0171, -0.0033] |
+| abstract flagged AI (0/1) | pooled | bge_m3 | -0.0007 [-0.0021, +0.0008] | +0.0009 | -0.0016 [-0.0031, -0.0000] |
+| abstract flagged AI (0/1) | pooled | gte_qwen2_1p5b | +0.0012 [-0.0007, +0.0030] | +0.0026 | -0.0015 [-0.0034, +0.0004] |
+| abstract flagged AI (0/1) | pooled | nomic_v15 | +0.0012 [-0.0004, +0.0028] | +0.0003 | +0.0009 [-0.0008, +0.0026] |
+| abstract flagged AI (0/1) | pooled | qwen3_0p6b | -0.0008 [-0.0028, +0.0012] | +0.0166 | -0.0174 [-0.0198, -0.0151] |
+| abstract flagged AI (0/1) | pooled | scincl | +0.0042 [+0.0021, +0.0064] | +0.0002 | +0.0041 [+0.0019, +0.0062] |
+| abstract flagged AI (0/1) | pooled | specter2_base | -0.0047 [-0.0066, -0.0028] | -0.0052 | +0.0005 [-0.0015, +0.0025] |
+| abstract flagged AI (0/1) | pooled | specter2_proximity | -0.0007 [-0.0025, +0.0011] | -0.0015 | +0.0008 [-0.0011, +0.0028] |
+| abstract flagged AI (0/1) | withinlab | bge_m3 | -0.0001 [-0.0017, +0.0016] | +0.0009 | -0.0009 [-0.0026, +0.0007] |
+| abstract flagged AI (0/1) | withinlab | gte_qwen2_1p5b | +0.0008 [-0.0012, +0.0028] | +0.0026 | -0.0018 [-0.0039, +0.0002] |
+| abstract flagged AI (0/1) | withinlab | nomic_v15 | +0.0007 [-0.0012, +0.0026] | +0.0003 | +0.0004 [-0.0015, +0.0024] |
+| abstract flagged AI (0/1) | withinlab | qwen3_0p6b | +0.0009 [-0.0014, +0.0033] | +0.0166 | -0.0157 [-0.0183, -0.0130] |
+| abstract flagged AI (0/1) | withinlab | scincl | +0.0018 [-0.0006, +0.0042] | +0.0002 | +0.0016 [-0.0009, +0.0040] |
+| abstract flagged AI (0/1) | withinlab | specter2_base | -0.0048 [-0.0070, -0.0025] | -0.0052 | +0.0004 [-0.0019, +0.0027] |
+| abstract flagged AI (0/1) | withinlab | specter2_proximity | -0.0027 [-0.0048, -0.0007] | -0.0015 | -0.0012 [-0.0034, +0.0009] |
+| ai_share 0 -> 1 (assumes the abstract is as AI-worded as the body) | pooled | bge_m3 | -0.0033 [-0.0080, +0.0014] | +0.0009 | -0.0042 [-0.0089, +0.0005] |
+| ai_share 0 -> 1 (assumes the abstract is as AI-worded as the body) | pooled | gte_qwen2_1p5b | +0.0048 [-0.0023, +0.0120] | +0.0026 | +0.0022 [-0.0050, +0.0094] |
+| ai_share 0 -> 1 (assumes the abstract is as AI-worded as the body) | pooled | nomic_v15 | +0.0080 [+0.0024, +0.0137] | +0.0003 | +0.0077 [+0.0021, +0.0134] |
+| ai_share 0 -> 1 (assumes the abstract is as AI-worded as the body) | pooled | qwen3_0p6b | +0.0012 [-0.0056, +0.0081] | +0.0166 | -0.0154 [-0.0223, -0.0084] |
+| ai_share 0 -> 1 (assumes the abstract is as AI-worded as the body) | pooled | scincl | +0.0177 [+0.0105, +0.0250] | +0.0002 | +0.0175 [+0.0102, +0.0248] |
+| ai_share 0 -> 1 (assumes the abstract is as AI-worded as the body) | pooled | specter2_base | -0.0081 [-0.0154, -0.0008] | -0.0052 | -0.0029 [-0.0103, +0.0044] |
+| ai_share 0 -> 1 (assumes the abstract is as AI-worded as the body) | pooled | specter2_proximity | +0.0008 [-0.0064, +0.0079] | -0.0015 | +0.0023 [-0.0049, +0.0094] |
+| ai_share 0 -> 1 (assumes the abstract is as AI-worded as the body) | withinlab | bge_m3 | -0.0013 [-0.0070, +0.0043] | +0.0009 | -0.0022 [-0.0079, +0.0035] |
+| ai_share 0 -> 1 (assumes the abstract is as AI-worded as the body) | withinlab | gte_qwen2_1p5b | +0.0062 [-0.0018, +0.0142] | +0.0026 | +0.0036 [-0.0045, +0.0116] |
+| ai_share 0 -> 1 (assumes the abstract is as AI-worded as the body) | withinlab | nomic_v15 | +0.0086 [+0.0021, +0.0152] | +0.0003 | +0.0083 [+0.0018, +0.0149] |
+| ai_share 0 -> 1 (assumes the abstract is as AI-worded as the body) | withinlab | qwen3_0p6b | +0.0067 [-0.0018, +0.0152] | +0.0166 | -0.0099 [-0.0185, -0.0013] |
+| ai_share 0 -> 1 (assumes the abstract is as AI-worded as the body) | withinlab | scincl | +0.0108 [+0.0021, +0.0195] | +0.0002 | +0.0106 [+0.0019, +0.0193] |
+| ai_share 0 -> 1 (assumes the abstract is as AI-worded as the body) | withinlab | specter2_base | -0.0084 [-0.0167, -0.0001] | -0.0052 | -0.0032 [-0.0115, +0.0051] |
+| ai_share 0 -> 1 (assumes the abstract is as AI-worded as the body) | withinlab | specter2_proximity | -0.0082 [-0.0160, -0.0004] | -0.0015 | -0.0066 [-0.0144, +0.0011] |
 
 
 ### Headline effects with cluster-bootstrap intervals over labs (ai_share 0 -> 1, nov_nn_cap, k=3)
 
 | model | scope | period | design | est | lo_ | hi_ | n |
 |---|---|---|---|---|---|---|---|
-| bge_m3 | all | post | pooled | -0.0071 | -0.0120 | -0.0027 | 29392 |
-| bge_m3 | all | post | withinlab | -0.0067 | -0.0119 | -0.0023 | 29392 |
-| bge_m3 | all | pre | pooled | +0.0137 | -0.0069 | +0.0339 | 26657 |
-| bge_m3 | all | pre | withinlab | +0.0208 | +0.0007 | +0.0446 | 26657 |
-| bge_m3 | lab | post | pooled | +0.0226 | +0.0140 | +0.0356 | 33830 |
-| bge_m3 | lab | post | withinlab | +0.0282 | +0.0199 | +0.0369 | 33830 |
-| bge_m3 | lab | pre | pooled | +0.0016 | -0.0497 | +0.0532 | 28004 |
-| bge_m3 | lab | pre | withinlab | +0.0244 | -0.0156 | +0.0713 | 28004 |
-| gte_qwen2_1p5b | all | post | pooled | +0.0013 | -0.0072 | +0.0067 | 29392 |
-| gte_qwen2_1p5b | all | post | withinlab | -0.0006 | -0.0075 | +0.0076 | 29392 |
-| gte_qwen2_1p5b | all | pre | pooled | +0.0146 | -0.0140 | +0.0441 | 26657 |
-| gte_qwen2_1p5b | all | pre | withinlab | +0.0287 | -0.0084 | +0.0610 | 26657 |
-| gte_qwen2_1p5b | lab | post | pooled | +0.0394 | +0.0271 | +0.0542 | 33830 |
-| gte_qwen2_1p5b | lab | post | withinlab | +0.0388 | +0.0288 | +0.0513 | 33830 |
-| gte_qwen2_1p5b | lab | pre | pooled | -0.0027 | -0.0607 | +0.0600 | 28004 |
-| gte_qwen2_1p5b | lab | pre | withinlab | +0.0461 | -0.0118 | +0.1126 | 28004 |
-| nomic_v15 | all | post | pooled | +0.0051 | -0.0008 | +0.0109 | 29392 |
-| nomic_v15 | all | post | withinlab | +0.0034 | -0.0024 | +0.0103 | 29392 |
-| nomic_v15 | all | pre | pooled | +0.0449 | +0.0132 | +0.0668 | 26657 |
-| nomic_v15 | all | pre | withinlab | +0.0479 | +0.0201 | +0.0675 | 26657 |
-| nomic_v15 | lab | post | pooled | +0.0359 | +0.0254 | +0.0514 | 33830 |
-| nomic_v15 | lab | post | withinlab | +0.0371 | +0.0249 | +0.0496 | 33830 |
-| nomic_v15 | lab | pre | pooled | +0.0171 | -0.0420 | +0.0783 | 28004 |
-| nomic_v15 | lab | pre | withinlab | +0.0647 | -0.0003 | +0.1323 | 28004 |
-| qwen3_0p6b | all | post | pooled | -0.0045 | -0.0109 | +0.0018 | 29392 |
-| qwen3_0p6b | all | post | withinlab | -0.0023 | -0.0083 | +0.0058 | 29392 |
-| qwen3_0p6b | all | pre | pooled | +0.0394 | +0.0053 | +0.0628 | 26657 |
-| qwen3_0p6b | all | pre | withinlab | +0.0567 | +0.0222 | +0.0883 | 26657 |
-| qwen3_0p6b | lab | post | pooled | +0.0195 | +0.0092 | +0.0337 | 33830 |
-| qwen3_0p6b | lab | post | withinlab | +0.0288 | +0.0192 | +0.0410 | 33830 |
-| qwen3_0p6b | lab | pre | pooled | -0.0050 | -0.0711 | +0.0499 | 28004 |
-| qwen3_0p6b | lab | pre | withinlab | +0.0587 | -0.0075 | +0.1190 | 28004 |
-| scincl | all | post | pooled | +0.0138 | +0.0061 | +0.0195 | 29392 |
-| scincl | all | post | withinlab | +0.0052 | -0.0020 | +0.0111 | 29392 |
-| scincl | all | pre | pooled | -0.0007 | -0.0344 | +0.0313 | 26657 |
-| scincl | all | pre | withinlab | +0.0343 | -0.0089 | +0.0644 | 26657 |
-| scincl | lab | post | pooled | +0.0555 | +0.0416 | +0.0745 | 33830 |
-| scincl | lab | post | withinlab | +0.0495 | +0.0365 | +0.0649 | 33830 |
-| scincl | lab | pre | pooled | -0.0374 | -0.1029 | +0.0493 | 28004 |
-| scincl | lab | pre | withinlab | +0.0431 | -0.0187 | +0.1194 | 28004 |
-| specter2_base | all | post | pooled | -0.0120 | -0.0190 | -0.0047 | 29392 |
-| specter2_base | all | post | withinlab | -0.0144 | -0.0212 | -0.0058 | 29392 |
-| specter2_base | all | pre | pooled | +0.0048 | -0.0183 | +0.0275 | 26657 |
-| specter2_base | all | pre | withinlab | +0.0332 | -0.0085 | +0.0675 | 26657 |
-| specter2_base | lab | post | pooled | +0.0299 | +0.0163 | +0.0482 | 33830 |
-| specter2_base | lab | post | withinlab | +0.0315 | +0.0196 | +0.0463 | 33830 |
-| specter2_base | lab | pre | pooled | +0.0008 | -0.0597 | +0.0793 | 28004 |
-| specter2_base | lab | pre | withinlab | +0.0620 | -0.0036 | +0.1279 | 28004 |
-| specter2_proximity | all | post | pooled | -0.0018 | -0.0083 | +0.0043 | 29392 |
-| specter2_proximity | all | post | withinlab | -0.0117 | -0.0172 | -0.0042 | 29392 |
-| specter2_proximity | all | pre | pooled | +0.0220 | -0.0008 | +0.0428 | 26657 |
-| specter2_proximity | all | pre | withinlab | +0.0528 | +0.0148 | +0.0913 | 26657 |
-| specter2_proximity | lab | post | pooled | +0.0411 | +0.0280 | +0.0584 | 33830 |
-| specter2_proximity | lab | post | withinlab | +0.0353 | +0.0252 | +0.0494 | 33830 |
-| specter2_proximity | lab | pre | pooled | +0.0085 | -0.0498 | +0.0809 | 28004 |
-| specter2_proximity | lab | pre | withinlab | +0.0662 | +0.0061 | +0.1328 | 28004 |
+| bge_m3 | all | post | pooled | -0.0033 | -0.0075 | +0.0015 | 22069 |
+| bge_m3 | all | post | withinlab | -0.0013 | -0.0068 | +0.0043 | 22069 |
+| bge_m3 | all | pre | pooled | +0.0137 | -0.0076 | +0.0326 | 26657 |
+| bge_m3 | all | pre | withinlab | +0.0208 | -0.0019 | +0.0446 | 26657 |
+| bge_m3 | lab | post | pooled | +0.0359 | +0.0254 | +0.0477 | 25300 |
+| bge_m3 | lab | post | withinlab | +0.0409 | +0.0297 | +0.0507 | 25300 |
+| bge_m3 | lab | pre | pooled | +0.0016 | -0.0512 | +0.0472 | 28004 |
+| bge_m3 | lab | pre | withinlab | +0.0244 | -0.0203 | +0.0675 | 28004 |
+| gte_qwen2_1p5b | all | post | pooled | +0.0048 | -0.0018 | +0.0116 | 22069 |
+| gte_qwen2_1p5b | all | post | withinlab | +0.0062 | -0.0007 | +0.0136 | 22069 |
+| gte_qwen2_1p5b | all | pre | pooled | +0.0146 | -0.0138 | +0.0452 | 26657 |
+| gte_qwen2_1p5b | all | pre | withinlab | +0.0287 | -0.0058 | +0.0619 | 26657 |
+| gte_qwen2_1p5b | lab | post | pooled | +0.0555 | +0.0381 | +0.0710 | 25300 |
+| gte_qwen2_1p5b | lab | post | withinlab | +0.0556 | +0.0419 | +0.0671 | 25300 |
+| gte_qwen2_1p5b | lab | pre | pooled | -0.0027 | -0.0628 | +0.0596 | 28004 |
+| gte_qwen2_1p5b | lab | pre | withinlab | +0.0461 | -0.0170 | +0.1119 | 28004 |
+| nomic_v15 | all | post | pooled | +0.0080 | +0.0024 | +0.0133 | 22069 |
+| nomic_v15 | all | post | withinlab | +0.0086 | +0.0024 | +0.0151 | 22069 |
+| nomic_v15 | all | pre | pooled | +0.0449 | +0.0184 | +0.0695 | 26657 |
+| nomic_v15 | all | pre | withinlab | +0.0479 | +0.0187 | +0.0724 | 26657 |
+| nomic_v15 | lab | post | pooled | +0.0514 | +0.0359 | +0.0646 | 25300 |
+| nomic_v15 | lab | post | withinlab | +0.0525 | +0.0389 | +0.0642 | 25300 |
+| nomic_v15 | lab | pre | pooled | +0.0171 | -0.0491 | +0.0794 | 28004 |
+| nomic_v15 | lab | pre | withinlab | +0.0647 | +0.0024 | +0.1296 | 28004 |
+| qwen3_0p6b | all | post | pooled | +0.0012 | -0.0057 | +0.0082 | 22069 |
+| qwen3_0p6b | all | post | withinlab | +0.0067 | -0.0018 | +0.0153 | 22069 |
+| qwen3_0p6b | all | pre | pooled | +0.0394 | +0.0108 | +0.0691 | 26657 |
+| qwen3_0p6b | all | pre | withinlab | +0.0567 | +0.0231 | +0.0891 | 26657 |
+| qwen3_0p6b | lab | post | pooled | +0.0401 | +0.0261 | +0.0541 | 25300 |
+| qwen3_0p6b | lab | post | withinlab | +0.0488 | +0.0355 | +0.0604 | 25300 |
+| qwen3_0p6b | lab | pre | pooled | -0.0050 | -0.0721 | +0.0526 | 28004 |
+| qwen3_0p6b | lab | pre | withinlab | +0.0587 | -0.0102 | +0.1207 | 28004 |
+| scincl | all | post | pooled | +0.0177 | +0.0104 | +0.0252 | 22069 |
+| scincl | all | post | withinlab | +0.0108 | +0.0028 | +0.0197 | 22069 |
+| scincl | all | pre | pooled | -0.0007 | -0.0361 | +0.0329 | 26657 |
+| scincl | all | pre | withinlab | +0.0343 | -0.0129 | +0.0683 | 26657 |
+| scincl | lab | post | pooled | +0.0741 | +0.0542 | +0.0890 | 25300 |
+| scincl | lab | post | withinlab | +0.0686 | +0.0524 | +0.0821 | 25300 |
+| scincl | lab | pre | pooled | -0.0374 | -0.1084 | +0.0436 | 28004 |
+| scincl | lab | pre | withinlab | +0.0431 | -0.0249 | +0.1117 | 28004 |
+| specter2_base | all | post | pooled | -0.0081 | -0.0147 | -0.0004 | 22069 |
+| specter2_base | all | post | withinlab | -0.0084 | -0.0163 | -0.0007 | 22069 |
+| specter2_base | all | pre | pooled | +0.0048 | -0.0188 | +0.0313 | 26657 |
+| specter2_base | all | pre | withinlab | +0.0332 | -0.0087 | +0.0680 | 26657 |
+| specter2_base | lab | post | pooled | +0.0489 | +0.0305 | +0.0640 | 25300 |
+| specter2_base | lab | post | withinlab | +0.0507 | +0.0355 | +0.0630 | 25300 |
+| specter2_base | lab | pre | pooled | +0.0008 | -0.0621 | +0.0787 | 28004 |
+| specter2_base | lab | pre | withinlab | +0.0620 | -0.0043 | +0.1259 | 28004 |
+| specter2_proximity | all | post | pooled | +0.0008 | -0.0057 | +0.0079 | 22069 |
+| specter2_proximity | all | post | withinlab | -0.0082 | -0.0157 | -0.0007 | 22069 |
+| specter2_proximity | all | pre | pooled | +0.0220 | -0.0017 | +0.0485 | 26657 |
+| specter2_proximity | all | pre | withinlab | +0.0528 | +0.0132 | +0.0899 | 26657 |
+| specter2_proximity | lab | post | pooled | +0.0580 | +0.0383 | +0.0735 | 25300 |
+| specter2_proximity | lab | post | withinlab | +0.0529 | +0.0382 | +0.0654 | 25300 |
+| specter2_proximity | lab | pre | pooled | +0.0085 | -0.0566 | +0.0764 | 28004 |
+| specter2_proximity | lab | pre | withinlab | +0.0662 | +0.0005 | +0.1297 | 28004 |
 
 
 ## 4. Lab level (difference-in-differences, placebos, event study)
 
 | model | outcome | did | placebo2019 | placebo2020 | placebo2021 | within_lab_year |
 |---|---|---|---|---|---|---|
-| bge_m3 | disp | +0.036 | +0.008 | +0.027 | +0.027 | -0.001 |
-| bge_m3 | h_oa | +0.245 | +0.003 | +0.162 | +0.523 | +0.032 |
-| bge_m3 | mpd | +0.073 | +0.015 | +0.052 | +0.055 | -0.001 |
-| bge_m3 | nov_all | -0.004 | +0.020 | +0.002 | -0.006 | +0.002 |
-| bge_m3 | nov_lab | +0.106 | +0.073 | +0.095 | +0.098 | +0.020 |
-| bge_m3 | vendi | +0.144 | +0.077 | +0.221 | +0.107 | -0.069 |
-| gte_qwen2_1p5b | disp | +0.032 | -0.019 | +0.023 | +0.024 | +0.000 |
-| gte_qwen2_1p5b | h_oa | +0.245 | +0.003 | +0.162 | +0.523 | +0.032 |
-| gte_qwen2_1p5b | mpd | +0.057 | -0.033 | +0.041 | +0.046 | +0.003 |
-| gte_qwen2_1p5b | nov_all | -0.028 | -0.003 | -0.011 | -0.021 | -0.007 |
-| gte_qwen2_1p5b | nov_lab | +0.080 | +0.013 | +0.055 | +0.055 | +0.036 |
-| gte_qwen2_1p5b | vendi | +0.204 | -0.141 | +0.153 | +0.058 | -0.086 |
-| nomic_v15 | disp | +0.068 | +0.008 | +0.047 | +0.045 | +0.004 |
-| nomic_v15 | h_oa | +0.245 | +0.003 | +0.162 | +0.523 | +0.032 |
-| nomic_v15 | mpd | +0.123 | +0.013 | +0.084 | +0.084 | +0.009 |
-| nomic_v15 | nov_all | +0.018 | +0.017 | +0.003 | -0.015 | +0.003 |
-| nomic_v15 | nov_lab | +0.155 | +0.048 | +0.093 | +0.091 | +0.034 |
-| nomic_v15 | vendi | +0.411 | +0.071 | +0.334 | +0.219 | -0.048 |
-| qwen3_0p6b | disp | +0.015 | -0.005 | +0.031 | +0.019 | -0.021 |
-| qwen3_0p6b | h_bt | +0.311 | +0.134 | +0.184 | -0.025 | -0.050 |
-| qwen3_0p6b | h_oa | +0.245 | +0.003 | +0.162 | +0.523 | +0.032 |
-| qwen3_0p6b | mpd | +0.026 | -0.008 | +0.059 | +0.039 | -0.039 |
-| qwen3_0p6b | nov_all | -0.038 | -0.006 | -0.018 | -0.026 | -0.018 |
-| qwen3_0p6b | nov_lab | +0.084 | +0.052 | +0.094 | +0.082 | +0.007 |
-| qwen3_0p6b | vendi | +0.053 | +0.049 | +0.251 | +0.045 | -0.221 |
-| scincl | disp | +0.084 | -0.003 | +0.051 | +0.059 | +0.013 |
-| scincl | h_oa | +0.245 | +0.003 | +0.162 | +0.523 | +0.032 |
-| scincl | mpd | +0.137 | -0.004 | +0.081 | +0.103 | +0.024 |
-| scincl | nov_all | +0.021 | +0.022 | +0.009 | -0.004 | +0.008 |
-| scincl | nov_lab | +0.162 | +0.024 | +0.085 | +0.096 | +0.050 |
-| scincl | vendi | +0.549 | -0.038 | +0.312 | +0.204 | +0.028 |
-| specter2_base | disp | +0.083 | -0.020 | +0.024 | +0.041 | +0.008 |
-| specter2_base | h_oa | +0.245 | +0.003 | +0.162 | +0.523 | +0.032 |
-| specter2_base | mpd | +0.142 | -0.032 | +0.040 | +0.075 | +0.019 |
-| specter2_base | nov_all | -0.023 | -0.006 | -0.007 | -0.026 | -0.006 |
-| specter2_base | nov_lab | +0.120 | +0.002 | +0.046 | +0.070 | +0.033 |
-| specter2_base | vendi | +0.453 | -0.173 | +0.141 | +0.114 | -0.036 |
-| specter2_proximity | disp | +0.067 | -0.011 | +0.032 | +0.034 | +0.010 |
-| specter2_proximity | h_bt | +0.841 | -0.384 | -0.113 | -0.280 | +0.034 |
-| specter2_proximity | h_oa | +0.245 | +0.003 | +0.162 | +0.523 | +0.032 |
-| specter2_proximity | mpd | +0.118 | -0.019 | +0.054 | +0.063 | +0.022 |
-| specter2_proximity | nov_all | -0.011 | +0.004 | +0.009 | -0.025 | -0.006 |
-| specter2_proximity | nov_lab | +0.108 | +0.004 | +0.054 | +0.060 | +0.039 |
-| specter2_proximity | vendi | +0.389 | -0.076 | +0.219 | +0.055 | -0.025 |
+| bge_m3 | disp | +0.035 | +0.009 | +0.023 | +0.023 | -0.004 |
+| bge_m3 | h_oa | +0.258 | -0.048 | +0.047 | +0.460 | +0.112 |
+| bge_m3 | mpd | +0.070 | +0.018 | +0.042 | +0.046 | -0.006 |
+| bge_m3 | nov_all | -0.001 | +0.013 | -0.005 | -0.016 | -0.000 |
+| bge_m3 | nov_lab | +0.111 | +0.075 | +0.092 | +0.090 | +0.023 |
+| bge_m3 | vendi | +0.152 | +0.074 | +0.222 | +0.106 | -0.090 |
+| gte_qwen2_1p5b | disp | +0.027 | -0.017 | +0.010 | +0.018 | -0.004 |
+| gte_qwen2_1p5b | h_oa | +0.258 | -0.048 | +0.047 | +0.460 | +0.112 |
+| gte_qwen2_1p5b | mpd | +0.048 | -0.027 | +0.019 | +0.034 | -0.005 |
+| gte_qwen2_1p5b | nov_all | -0.029 | -0.016 | -0.028 | -0.038 | -0.015 |
+| gte_qwen2_1p5b | nov_lab | +0.081 | +0.017 | +0.041 | +0.046 | +0.037 |
+| gte_qwen2_1p5b | vendi | +0.183 | -0.167 | +0.078 | +0.025 | -0.108 |
+| nomic_v15 | disp | +0.061 | +0.013 | +0.036 | +0.037 | +0.001 |
+| nomic_v15 | h_oa | +0.258 | -0.048 | +0.047 | +0.460 | +0.112 |
+| nomic_v15 | mpd | +0.110 | +0.027 | +0.064 | +0.068 | +0.005 |
+| nomic_v15 | nov_all | +0.020 | +0.013 | -0.004 | -0.024 | +0.001 |
+| nomic_v15 | nov_lab | +0.151 | +0.057 | +0.083 | +0.089 | +0.040 |
+| nomic_v15 | vendi | +0.372 | +0.066 | +0.269 | +0.181 | -0.066 |
+| qwen3_0p6b | disp | +0.017 | -0.001 | +0.024 | +0.022 | -0.022 |
+| qwen3_0p6b | h_bt | +0.353 | +0.154 | +0.174 | +0.095 | -0.067 |
+| qwen3_0p6b | h_oa | +0.258 | -0.048 | +0.047 | +0.460 | +0.112 |
+| qwen3_0p6b | mpd | +0.030 | +0.001 | +0.046 | +0.043 | -0.042 |
+| qwen3_0p6b | nov_all | -0.023 | -0.007 | -0.019 | -0.030 | -0.019 |
+| qwen3_0p6b | nov_lab | +0.092 | +0.068 | +0.094 | +0.090 | +0.016 |
+| qwen3_0p6b | vendi | +0.092 | +0.048 | +0.218 | +0.069 | -0.218 |
+| scincl | disp | +0.075 | +0.007 | +0.043 | +0.055 | +0.003 |
+| scincl | h_oa | +0.258 | -0.048 | +0.047 | +0.460 | +0.112 |
+| scincl | mpd | +0.121 | +0.019 | +0.072 | +0.097 | +0.005 |
+| scincl | nov_all | +0.020 | +0.014 | -0.002 | -0.022 | +0.002 |
+| scincl | nov_lab | +0.158 | +0.034 | +0.081 | +0.092 | +0.038 |
+| scincl | vendi | +0.500 | -0.003 | +0.254 | +0.168 | +0.005 |
+| specter2_base | disp | +0.075 | -0.005 | +0.019 | +0.038 | +0.004 |
+| specter2_base | h_oa | +0.258 | -0.048 | +0.047 | +0.460 | +0.112 |
+| specter2_base | mpd | +0.126 | -0.003 | +0.032 | +0.070 | +0.010 |
+| specter2_base | nov_all | -0.021 | -0.009 | -0.014 | -0.033 | -0.012 |
+| specter2_base | nov_lab | +0.118 | +0.008 | +0.038 | +0.061 | +0.026 |
+| specter2_base | vendi | +0.406 | -0.129 | +0.087 | +0.083 | -0.037 |
+| specter2_proximity | disp | +0.062 | +0.003 | +0.026 | +0.030 | +0.007 |
+| specter2_proximity | h_bt | +0.883 | -0.323 | -0.069 | -0.171 | +0.125 |
+| specter2_proximity | h_oa | +0.258 | -0.048 | +0.047 | +0.460 | +0.112 |
+| specter2_proximity | mpd | +0.109 | +0.009 | +0.045 | +0.055 | +0.017 |
+| specter2_proximity | nov_all | -0.011 | +0.001 | +0.001 | -0.031 | -0.012 |
+| specter2_proximity | nov_lab | +0.107 | +0.015 | +0.050 | +0.053 | +0.037 |
+| specter2_proximity | vendi | +0.365 | -0.024 | +0.182 | +0.046 | -0.027 |
 
 ![event](figures-ai-dose/event_study.png)
 
