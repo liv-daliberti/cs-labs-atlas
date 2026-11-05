@@ -22,16 +22,44 @@ are credited; they never add a PI or lab alone. A PI is a Harvard faculty member
 | dbmi.hms.harvard.edu | allowed | none | ok | live |
 | hsph.harvard.edu | allowed (names GPTBot, ChatGPT-User only) | none | ok | live |
 | www.hks.harvard.edu, www.mcb.harvard.edu, kempnerinstitute.harvard.edu | allowed | none | ok | live |
-| dash.harvard.edu | allowed, no AI group | none | item page: Web Firewall 429 after 5 sitemap requests | none |
-| statistics.fas, economics, www.physics, psychology.fas | robots.txt 403 Akamai Access Denied | n/a | not probed | none |
-| www.math.harvard.edu | 200 for the project client, 403 for a bare curl (flaky) | n/a | not probed | none |
+| dash.harvard.edu | allowed, no AI group | none | item page: Web Firewall 429 after 5 sitemap requests | wayback-only |
+| statistics.fas, economics, www.physics, psychology.fas | robots.txt 403 Akamai Access Denied | n/a | not probed | wayback-only |
+| www.math.harvard.edu | 200 for the project client, 403 for a bare curl (flaky) | n/a | not probed | wayback-only |
 DASH thesis repository: ~103,850 sitemap URLs (about 100k items); no Crawl-delay, house 5 s minimum would be ~139 h; not a student source (see `[thesis].note`).
 
+## Owner decisions applied (2026-11-05, as recommended)
+D1 sweep every lineage child except D3 (the PI rule filters); D2 `openalex_related` = MGH I4210087915, Brigham I1283280774, Boston Children's I1288882113, Dana-Farber I4210117453, Broad I107606265, HST I4210092658
+(left out: Beth Israel, McLean, Mass Eye and Ear, Joslin, Harvard Pilgrim, MGHPCC); D3 `openalex_excluded` = Harvard University Press I2801851002, Real Colegio Complutense I4392738166; D4 regex does not match bare Harvard-MIT/HST,
+bare Harvard-Smithsonian, Harvard Pilgrim, Harvey Mudd; HBS matches; D5 Statistics, Economics, Physics, Psychology, Mathematics and DASH are `wayback-only` (owner "allowed always"; none names an AI agent in robots.txt);
+D6 Kempner and Wyss are `center_units`, only members with a Harvard faculty appointment are PIs. Wyss added as an affiliated unit and host (robots allowed). `school_hosts`: 16 hosts, 0 inconsistent.
+
+## Snapshot extension (no API credits)
+`OA_DATE=2026-10-14`, submitted by hand with the standing Slurm flags (partition all, account mltheory, 59 min, exclude node302,node014) because `atlas pipeline snapshot-ext` follows the scripts' own mltheory/6 h directives:
+filter array 32116398 (16 tasks, all COMPLETED, about 45 min), merge 32116415 FAILED (`database or disk is full`: node805's /tmp had 0 kB free), merge 32116873 (excluding node805) COMPLETED:
+`ext-harvard.sqlite`, 1,146,096 works, 1,590,408 work_inst rows, 630,958 authors.
+
+## Per-child works 2016-2026 (children-counts; 'alone' = lacking I136199984)
+| child | works | alone | note |
+|---|---|---|---|
+| Harvard University (I136199984) | 555,668 | 0 | |
+| Center for Astrophysics Harvard & Smithsonian | 42,716 | 39,696 | SURPRISE: 93% carry no Harvard id; astrophysics, almost no computing; PI rule filters (swept, large) |
+| Dana-Farber/Harvard Cancer Center | 6,623 | 568 | |
+| Martinos Center | 5,701 | 48 | |
+| Wyss Institute | 3,381 | 61 | |
+| Harvard Stem Cell Institute | 3,140 | 23 | |
+| Smithonian Astrophysical Observatory | 2,616 | 2,130 | same astrophysics tail as CfA |
+| Ragon Institute | 2,217 | 366 | |
+| Center for Systems Biology | 1,647 | 20 | |
+| Harvard University Press (EXCLUDED) | 1,266 | 888 | |
+| Gordon Center for Medical Imaging | 1,017 | 18 | |
+| NSF AI Institute for AI and Fundamental Interactions | 708 | 622 | kept: computing-adjacent, 88% id-less |
+| Berenson-Allen 638, MIT-Harvard Ultracold Atoms 433, Rowland 429, Global Health 368, Vascular Biology 317, Arnold Arboretum 307, Observatory 59, Complutense (EXCLUDED) 47, Sleep 26, Harvard Forest 8 | | | small |
+Counts that surprise: CfA/SAO (a Smithsonian-shared astrophysics body, mostly outside the Harvard-id); excluding them was not decided by the owner, so they are swept. Recommendation: keep (they cost nothing extra and the PI rule drops non-computing people).
+
 ## Gate
-`atlas stage-gate harvard 0`: FAIL, one open item: the OpenAlex snapshot holds no works of I136199984 (needs `snapshot-ext` after the charter is committed and D1-D3 are decided; ~25 min, no credits).
+`atlas stage-gate harvard 0`: PASS (rc 0) after the snapshot extension.
 `--traps`: one finding, `captures` (no labpage captures store yet), a stage-8 artefact that the trap check already raises at stage 0; not a charter problem.
 Charter traps (affiliation cases, `[repository]`, `[dblp]`, `[thesis]`) pass.
 
 ## Exceptions and open decisions
-See the report to the coordinator: D1 children to sweep, D2 related set, D3 exclusions, D4 HBS/HST/CfA, D5 blocked FAS hosts, D6 Kempner/Wyss/CfA computing coverage.
-`openalex_related` / `openalex_excluded` are left EMPTY in the charter until the owner answers (proposals are in comments).
+`--traps` keeps one finding: no labpage captures store yet (a stage-8 artefact; it is written by `labpage_audit discover`, which fetches and is not a stage-0 step). Not a charter problem.
