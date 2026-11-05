@@ -75,6 +75,9 @@ def cue_role(text, quote, name):
 LOCAL_CUES = [('other', re.compile(r"medical\s+students?|\bm\.?d\.?\s+students?|\bresidents?\b|post-?doc|\bvisiting\b|\bresearch(?:er|\s+scientist|\s+engineer|\s+assistant)\b|\bengineer\b|\bstaff\b", re.I))] + [(k, re.compile(rx.pattern + (r"|\(\s*master\b|\(\s*m\.?s\.?\b" if k == 'masters' else ''), re.I)) for k, rx in CUES[:3]]
 
 
+STAFF_AFTER = re.compile(r"^\W*(?:ph\.?d\.?\W*(?:\([^)]*\)\W*)?)?(?:research\s+(?:investigator|engineer|scientist|associate|fellow)|scientist|lecturer|professor|postdoc)\b", re.I)
+
+
 def local_cue(text, quote, name):
     """R-STU-20 (Michigan 2026-11-05): the role the entry ITSELF states right after the name ('Zihan Zhou (Master, Winter 2025)', 'Theodor
     Chakhachiro MS Student', 'Rachel Gologorsky : Medical Student (2024)'), within 25 characters. It beats the cue before the name, which in an
@@ -129,7 +132,10 @@ def corroborated_rows(school, papers_by_pi, existing, dbs, here=None, n=None):
         text, fetched = page_text(s_['sha256'], dbs)
         basis = s_.get('role_basis')
         local = local_cue(text, s_['quote'], name) if text else None
-        if local == 'other':
+        after = ' '.join((text or '').split())
+        k_ = after.find(' '.join(s_['quote'].split())) if text else -1
+        staff_after = bool(text and k_ >= 0 and STAFF_AFTER.search(after[k_ + len(' '.join(s_['quote'].split())):][:70]))
+        if local == 'other' or staff_after:   # 'Gray Thomas , Ph.D. (UT Austin) Research Investigator': a degree, then a staff title
             n['labpage_students_corroborated_skipped:role'] += 1   # the entry says medical student, resident, visiting, researcher...
             continue
         if local and local != role:
@@ -137,6 +143,11 @@ def corroborated_rows(school, papers_by_pi, existing, dbs, here=None, n=None):
         elif role is None and s_.get('alumni'):
             n['labpage_students_corroborated_skipped:no_student_cue'] += 1   # an alumni row whose entry states no degree: the cue before it is the previous entry's
             continue
+        elif text and not local and role in STUDENT_KINDS and basis != 'page_cue':
+            heading = cue_role(text, s_['quote'], name)
+            if heading in STUDENT_KINDS and heading != role:
+                n['labpage_students_corroborated_skipped:role_conflict'] += 1   # the section the name sits in says another student kind and the entry says nothing: not confirmed
+                continue
         if role not in STUDENT_KINDS:
             role = cue_role(text, s_['quote'], name) if text else None
             basis = 'page_cue'
