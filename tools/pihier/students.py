@@ -2,7 +2,7 @@
 R-HIER-03 (no merges across labs), R-HIER-04 (the PI is not their own student), R-STU-01 (sources), R-STU-02 (program
 advising and readers), R-STU-03 (adviser names), R-STU-04 (reviewed corrections), R-STU-05 (doubled tokens), R-STU-06
 (hyphen halves), R-STU-07 (a PI's person id is never a student), R-STU-08 (re-captured evidence), R-STU-09 (program-wide
-advisers), R-STU-10 (the student's own roster entry), R-STU-11 (a basis record's advisor field), R-STU-17 (visiting students)."""
+advisers), R-STU-10 (the student's own roster entry), R-STU-11 (a basis record's advisor field), R-STU-17 (visiting students), R-STU-18 (evidence-confirmed roster pairs)."""
 import collections, json, re, unicodedata
 from pathlib import Path
 
@@ -15,7 +15,7 @@ from .names import Name, _fold, clean_person_name, dedupe_tokens, full_pair, nam
 # Researched student evidence files, hierarchy/<school>/<file>, each a list of {pi, students: [{name, quote, sha256, url,
 # ...}]}. EXTENSION POINT for a new reviewed student source. The lab-page additions (labpage-additions.json `students`)
 # come in through common.accepted_additions, gated by labpage-acceptance.json (2026-10-31).
-RESEARCHED_FILES = ['few-students-evidence.json', 'undated-capture-evidence.json', 'surname-adviser-evidence.json', 'thesis-evidence.json', 'labpage-evidence.json', 'thesis-held-years-evidence.json']
+RESEARCHED_FILES = ['few-students-evidence.json', 'undated-capture-evidence.json', 'surname-adviser-evidence.json', 'thesis-evidence.json', 'labpage-evidence.json', 'thesis-held-years-evidence.json', 'roster-evidence.json']
 
 ADV_RX = [re.compile(r'(?i:advis[eo]rs?)(?:\(s\))?(?!\s*\(AC\))\s*:?\s*([^;|]+?)(?=\s*(?:Degree:|Research Area|Readers?|Examiners?|;|\||$))'),
           re.compile(r'([A-Z][\w.\- ]+?)\s*\((?:Primary )?Advis[eo]r\)')]  # named adviser fields only, never readers or examiners

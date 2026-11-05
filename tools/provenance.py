@@ -141,7 +141,7 @@ def pi_works(school):
 def school_inputs(school):
     D = lambda name: P.data(name, school)  # noqa: E731  (atlas_paths.DATA_FILES)
     cands = [D('census-faculty-hierarchy.json'), D('census-faculty.json'), D('collection.json.gz'),
-             P.SITE_DATA / f'collection-{school}.json.gz', D('listings.json'), D('thesis-evidence.json'),
+             P.SITE_DATA / f'collection-{school}.json.gz', D('listings.json'), D('thesis-evidence.json'), D('roster-evidence.json'),
              D('labpage-evidence.json'), D('thesis-held-years-evidence.json'), D('dblp-recovered.jsonl.gz'),
              D('labpage-recovered.jsonl.gz'), D('pi-publication-lists.json'), D('labpage-pubs.jsonl.gz'), D('dblp_pubs.json.gz'),
              D('dblp-dump-pages.json.gz')]  # R-PAP-27's page counts (tools/dblp_dump_pages.py)

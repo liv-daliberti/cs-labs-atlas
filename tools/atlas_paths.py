@@ -266,6 +266,7 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('undated-capture-evidence.json', 'reviewed', 'hierarchy/{school}/undated-capture-evidence.json', 'hierarchy/{school}/reviewed/undated-capture-evidence.json'),
     ('surname-adviser-evidence.json', 'reviewed', 'hierarchy/{school}/surname-adviser-evidence.json', 'hierarchy/{school}/reviewed/surname-adviser-evidence.json'),
     ('thesis-evidence.json', 'reviewed', 'hierarchy/{school}/thesis-evidence.json', 'hierarchy/{school}/reviewed/thesis-evidence.json'),
+    ('roster-evidence.json', 'reviewed', 'hierarchy/{school}/roster-evidence.json', 'hierarchy/{school}/reviewed/roster-evidence.json'),
     ('thesis-held-years-evidence.json', 'reviewed', 'hierarchy/{school}/thesis-held-years-evidence.json', 'hierarchy/{school}/reviewed/thesis-held-years-evidence.json'),
     ('labpage-evidence.json', 'reviewed', 'hierarchy/{school}/labpage-evidence.json', 'hierarchy/{school}/reviewed/labpage-evidence.json'),
     ('extra-lab-pages.json', 'reviewed', 'hierarchy/{school}/extra-lab-pages.json', 'hierarchy/{school}/reviewed/extra-lab-pages.json'),

@@ -103,6 +103,7 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `undated-capture-evidence.json` | reviewed | `hierarchy/{school}/undated-capture-evidence.json` | `hierarchy/{school}/reviewed/undated-capture-evidence.json` | 1/9 | <100MB |
 | `surname-adviser-evidence.json` | reviewed | `hierarchy/{school}/surname-adviser-evidence.json` | `hierarchy/{school}/reviewed/surname-adviser-evidence.json` | 1/9 | <100MB |
 | `thesis-evidence.json` | reviewed | `hierarchy/{school}/thesis-evidence.json` | `hierarchy/{school}/reviewed/thesis-evidence.json` | 0/6 | <100MB |
+| `roster-evidence.json` | reviewed | `hierarchy/{school}/roster-evidence.json` | `hierarchy/{school}/reviewed/roster-evidence.json` | 0/1 | <100MB |
 | `thesis-held-years-evidence.json` | reviewed | `hierarchy/{school}/thesis-held-years-evidence.json` | `hierarchy/{school}/reviewed/thesis-held-years-evidence.json` | 0/1 | <100MB |
 | `labpage-evidence.json` | reviewed | `hierarchy/{school}/labpage-evidence.json` | `hierarchy/{school}/reviewed/labpage-evidence.json` | 0/6 | <100MB |
 | `labpage-acceptance.json` | reviewed | `hierarchy/{school}/labpage-acceptance.json` | `hierarchy/{school}/reviewed/labpage-acceptance.json` | 1/1 | <10KB |

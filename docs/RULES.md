@@ -375,6 +375,13 @@ quote itself does not show it). A hint that nothing shows (a reviewer's note, a 
 nothing: 52 such rows keep their earlier role; UChicago's two `not` rows were changed by hand and keep `original_decision` / `original_why`.
 `visiting_decided` in `pihier.students.researched`, `role_label` in `tools/export_release.py`.
 
+### R-STU-18 (2026-11-04, owner: "yes") — evidence-confirmed roster pairs
+The UChicago Statistics and CAM people-page rosters stay unwired as a source (no name-and-paper-count rule, old or R*). Only the pairs whose hand
+verdict in `reviewed/roster-pair-verdicts.json` is `true` (the student listed or stated as this PI's, or co-advised with this PI, on a stored page) become
+student relations: `tools/roster_pair_evidence.py` cuts a verbatim quote and the sha256 from the stored capture and writes `reviewed/roster-evidence.json`,
+a researched-evidence file (`RESEARCHED_FILES`, so R-STU-01/R-STU-12 apply: no quote or hash, no relation). Role `phd`, years the pair's roster years.
+`unsettled` and `not` pairs are never written. A co-advised student appears under each PI whose own pair is `true`.
+
 ## Student–paper links
 
 ### R-STU-14 (2026-11-03, owner) — capture-year dating of undated lab-page members
