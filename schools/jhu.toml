@@ -1,0 +1,344 @@
+# schools/jhu.toml: Johns Hopkins University's charter (docs/ADDING-A-SCHOOL.md, v3 stage 0), filled whole on 2026-11-05.
+# Facts here are decisions about where to look, not evidence. The lineage / related / excluded ids are DRAFTS until the owner answers D1-D6
+# (hierarchy/jhu/STAGE-0.md): nothing below is swept or extended into the snapshot before that.
+
+key = "jhu"
+name = "Johns Hopkins University"
+short = "Johns Hopkins"
+site_uni = ""
+status = "onboarding"
+order = 10                 # Harvard and WashU draft 11 and 12 in parallel; the coordinator settles the order at landing
+stage = 0
+started = "2026-11-05"
+window = [2016, 2026]
+
+[ids]
+openalex = ["I145311948"]
+# OWNER DECISION 2026-11-05 (relayed by the coordinator): keep ONLY labs that do computing; anything that is not computing is not needed. APL, JHU Medicine / Hospital, the Bloomberg School,
+# the SAIS campuses and Carey have no blanket keep or drop: a unit counts only through its computing labs, i.e. faculty who meet the CS-related scope rule (docs/RULES.md). APL staff are not JHU
+# faculty and the PI rule is unchanged (a PI is a faculty member of the school), so APL adds PIs only through computing researchers with a JHU faculty appointment (e.g. a Whiting joint appointment);
+# APL strings stay in the regex / own_units so in-scope PIs' papers that list APL are credited, and never add PIs or labs by themselves.
+# The lineage of I145311948 holds the Applied Physics Laboratory I2802946424 and 12 smaller units (ids_note). Johns Hopkins Medicine I2799853436, the Hospital I4210150714, Bayview I2802697821 and
+# Children's Center I4210129832 are NOT in the lineage (associated 'related'; Medicine is its own lineage root). Still open (STAGE-0.md): which ids go to openalex_related / openalex_excluded.
+openalex_related = []
+openalex_excluded = []
+ror = "https://ror.org/00za53h95"
+ids_note = """OpenAlex institutions table of the 2026-10-14 snapshot (no API credits; checked 2026-11-05, atlas run tools/oa_institutions.py search/lineage): I145311948 'Johns Hopkins University',
+ROR 00za53h95, country US, type education, lineage [I145311948]. Lineage children (also ROR children): Applied Physics Laboratory I2802946424, Berman Institute of Bioethics I4210092215,
+Center for Communication Programs I4210151848, SAIS Bologna Center I4210131961 (lineage also holds the SAIS root I4390039338), JHU-Nanjing University Center for Chinese and American Studies I4210162165
+(lineage also holds Nanjing University I881766915), Maryland Space Grant Consortium I4210120405, PARADIM I4387152773, Materials Science in Extreme Environments URA I4388891755, Center for AIDS Research I4389425327,
+Hopkins Extreme Materials Institute I4391012584, Packard Center I4392738135, Johns Hopkins University Press I4394709191, Materials Characterization and Processing Facility I4405260374.
+Associated 'related', not lineage: Johns Hopkins Medicine I2799853436, Hospital I4210150714 (lineage Medicine + itself), Bayview Medical Center I2802697821, Children's Center I4210129832,
+All Children's Hospital I4210098865 (St. Petersburg FL), Howard County General Hospital, Peninsula Regional Medical Center, Hospital Punta Pacifica, Tawam Hospital, Saudi Aramco Medical Services,
+Konza Prairie LTER. Not JHU: Hopkins Marine Station I4405266016 (Stanford), Hopkins Architects, Pitt Hopkins Research Foundation, Hopkins Memorial Forest (Williams College).
+ROR record read at api.ror.org/v2 on 2026-11-05 (13 children, 9 related, same list)."""
+
+[web]
+domains = ["jhu.edu"]
+email_domains = ["jhu.edu", "cs.jhu.edu", "jhmi.edu", "jhuapl.edu", "hopkinsmedicine.org"]
+wayback_only_suffixes = []
+excluded_hosts = []   # hopkinsmedicine.org and jhuapl.edu are separate domains of Medicine and APL; no host of them is used until D2/D3 are decided
+
+[affiliation]
+# 'Johns Hopkins' (also 'John Hopkins', 'Johns-Hopkins'; not All Children's Hospital, a Florida hospital: owner instruction 2026-11-05), the jhu.edu, jhmi.edu, jhuapl.edu, jhsph.edu and
+# hopkinsmedicine.org domains, 'JHU'. Never a bare 'Hopkins' (Hopkins Marine Station is Stanford's; Hopkins School, Pitt Hopkins, Gowland Hopkins) and never 'JHU' inside a longer word.
+# The regex matches the Applied Physics Laboratory, the Hospital and the SAIS centres by name: whether those authorships count is D2/D3/D5 (the ids decide, not this regex).
+regex = '''johns?[\s\-]+hopkins\b(?!\W+all\s+children)|\bjhu\b|\bjhu\.edu|jhmi\.edu|jhuapl\.edu|jhsph\.edu|hopkinsmedicine\.org'''
+own_units = '''\b(?:hopkins\s+extreme\s+materials\s+institute|institute\s+for\s+assured\s+autonomy|data\s+science\s+and\s+ai\s+institute|institute\s+for\s+data\s+intensive\s+engineering\s+and\s+science|kavli\s+neuroscience\s+discovery\s+institute|mathematical\s+institute\s+for\s+data\s+science|institute\s+for\s+computational\s+medicine|malone\s+center|berman\s+institute\s+of\s+bioethics|center\s+for\s+language\s+and\s+speech\s+processing|laboratory\s+for\s+computational\s+sensing\s+and\s+robotics|human\s+language\s+technology\s+center\s+of\s+excellence)\b|\bhltcoe\b|\bidies\b'''
+loose = '''johns?[\s\-]+hopkins|\bjhu\b|jhu\.edu|jhmi\.edu|jhuapl\.edu|baltimore,?\s+md\b'''
+must_match = [
+  "Johns Hopkins University, Baltimore, MD 21218, USA",
+  "Department of Computer Science, Johns Hopkins University",
+  "The Johns Hopkins University, 3400 N. Charles Street, Baltimore",
+  "Center for Language and Speech Processing, Johns Hopkins University",
+  "Whiting School of Engineering, Johns Hopkins",
+  "John Hopkins University",
+  "Johns-Hopkins University, Baltimore",
+  "JHU, Baltimore, MD",
+  "jdoe@jhu.edu",
+  "Department of Biostatistics, Bloomberg School of Public Health, Johns Hopkins University",
+  "Johns Hopkins University School of Medicine, Baltimore, MD",
+  "Johns Hopkins University Applied Physics Laboratory, Laurel, MD",
+  "Johns Hopkins University School of Advanced International Studies, Washington, DC",
+]
+must_not_match = [
+  "Johns Hopkins All Children's Hospital, St. Petersburg, FL",
+  "Johns Hopkins All Children's Hospital",
+  "Hopkins Marine Station, Stanford University, Pacific Grove, CA",
+  "Hopkins School, New Haven, CT",
+  "Frederick Gowland Hopkins Laboratory, University of Cambridge",
+  "Pitt Hopkins Research Foundation",
+  "Mount Hopkins Observatory, Arizona",
+  "Hopkins, MN 55343",
+  "Morgan State University, Baltimore, MD",
+  "University of Maryland, Baltimore County",
+  "University of Maryland, College Park",
+  "Loyola University Maryland",
+  "jdoe@umd.edu",
+  "Towson University",
+  "Notre Dame of Maryland University",
+  "Peabody Institute of Music",
+]
+
+[dblp]
+affiliation_strings = ["Johns Hopkins University", "Johns Hopkins", "JHU"]
+legacy_sweep = ""
+
+[rules]
+foreign_title_exception = false
+
+[census]
+computing_departments = ["CS"]
+center_units = ["CLSP", "MALONE", "LCSR", "DSAI"]   # draft: centres, institutes and laboratories are never a PI's home (the ML Center rule, Georgia Tech); confirm at stage 3
+home_units = {"Computer Science" = '^(?:Department of )?Computer Science$', "Electrical and Computer Engineering" = '^(?:Department of )?Electrical (?:and|&) Computer Engineering$', "Applied Mathematics and Statistics" = '^(?:Department of )?Applied Mathematics (?:and|&) Statistics$', "Biomedical Engineering" = '^(?:Department of )?Biomedical Engineering$', "Civil and Systems Engineering" = '^(?:Department of )?(?:Civil|Civil and Systems|Systems) Engineering$', "Mechanical Engineering" = '^(?:Department of )?Mechanical Engineering$', "Materials Science and Engineering" = '^(?:Department of )?Materials Science (?:and|&) Engineering$', "Chemical and Biomolecular Engineering" = '^(?:Department of )?Chemical (?:and|&) Biomolecular Engineering$', "Biostatistics" = '^(?:Department of )?Biostatistics$', "Cognitive Science" = '^(?:Department of )?Cognitive Science$', "Mathematics" = '^(?:Department of )?Mathematics$', "Biomedical Informatics" = '^(?:Division of )?(?:Health Sciences )?(?:Biomedical )?(?:Informatics|Data Science)$', "Psychological and Brain Sciences" = '^(?:Department of )?Psychological (?:and|&) Brain Sciences$', "Economics" = '^(?:Department of )?Economics$', "Linguistics" = '^(?:Department of )?Linguistics$', "Neuroscience" = '^(?:The Solomon H\. Snyder )?(?:Department of )?Neuroscience$', "Physics and Astronomy" = '^(?:Department of )?Physics (?:and|&) Astronomy$', "Applied Physics Laboratory" = '^(?:Johns Hopkins )?(?:University )?Applied Physics Laboratory$'}
+# JHU title words: 'Professor of the Practice' and 'Teaching Professor' are shared RANKS already; add the research-faculty and secondary-appointment forms JHU pages use.
+rank_words = {research = '\bprofessional\s+staff|\bresearch\s+faculty|\bassociate\s+research\s+scientist|\bprincipal\s+research\s+scientist', courtesy = '\bsecondary\s+(?:appointment|faculty)|\bdepartment\s+affiliate', teaching = '\bassistant\s+teaching|\bassociate\s+teaching|\bsenior\s+teaching|\bprincipal\s+senior\s+lecturer'}
+
+[sweep_check]
+exceptions = []
+
+[cs_related]
+not_faculty = {}
+share_test_settles = []
+
+[site]
+depts = {CS = "Department of Computer Science"}
+full_codes = ["CS"]
+
+[periods]
+school_regex = ''
+profile_patterns = ["www.cs.jhu.edu/~{first}{last}", "www.cs.jhu.edu/~{last}", "www.cs.jhu.edu/faculty/{first}-{last}", "www.cs.jhu.edu/faculty/{first}-{last}/"]
+
+# --- departments -------------------------------------------------------------------------------------------------------------
+# Computing sits in the Whiting School of Engineering's Department of Computer Science (full coverage). ECE, Applied Mathematics and Statistics and Biomedical Engineering are
+# affiliated departments (computing faculty by the share test). The CLSP, Malone, LCSR, Biostatistics (Bloomberg School), Cognitive Science, Mathematics and DSAI are searched units.
+# Listing URLs below are the CURRENT ones; stage 1 finds the URL eras with tools/discover_listings.py (no Wayback fetching in stage 0). D6: borderline departments.
+[[departments]]
+code = "CS"
+name = "Department of Computer Science"
+unit = "Whiting School of Engineering"
+title_match = '''Computer Science'''
+coverage = "full"
+url = "https://www.cs.jhu.edu/"
+  [[departments.listings]]
+  slot = "CS faculty"
+  kind = "main"
+  url = "www.cs.jhu.edu/faculty/"
+  from = "20160101"
+  to = "20261231"
+
+[[departments]]
+code = "ECE"
+name = "Department of Electrical and Computer Engineering"
+unit = "Whiting School of Engineering"
+title_match = '''Electrical and Computer Engineering'''
+coverage = "affiliated"
+url = "https://ece.jhu.edu/"
+  [[departments.listings]]
+  slot = "ECE faculty"
+  kind = "main"
+  url = "ece.jhu.edu/people/"
+  from = "20160101"
+  to = "20261231"
+
+[[departments]]
+code = "AMS"
+name = "Department of Applied Mathematics and Statistics"
+unit = "Whiting School of Engineering"
+title_match = '''Applied Mathematics'''
+coverage = "affiliated"
+url = "https://engineering.jhu.edu/ams/"
+  [[departments.listings]]
+  slot = "AMS faculty"
+  kind = "main"
+  url = "engineering.jhu.edu/ams/people/"
+  from = "20230101"
+  to = "20261231"
+  [[departments.listings]]
+  slot = "AMS faculty"
+  url = "ams.jhu.edu/people/"
+  from = "20160101"
+  to = "20221231"
+
+[[departments]]
+code = "BME"
+name = "Department of Biomedical Engineering"
+unit = "Whiting School of Engineering and School of Medicine"
+title_match = '''Biomedical Engineering'''
+coverage = "affiliated"
+url = "https://bme.jhu.edu/"
+  [[departments.listings]]
+  slot = "BME faculty"
+  kind = "main"
+  url = "bme.jhu.edu/people/faculty/"
+  from = "20160101"
+  to = "20261231"
+
+# --- other units searched for computing-related faculty (stage 2); first guesses, added to when the OpenAlex rule names their people ---------
+[[affiliated_units]]
+code = "CLSP"
+name = "Center for Language and Speech Processing"
+url = "https://www.clsp.jhu.edu/faculty/"
+listings = ["www.clsp.jhu.edu/faculty/"]
+
+[[affiliated_units]]
+code = "MALONE"
+name = "Malone Center for Engineering in Healthcare"
+url = "https://malonecenter.jhu.edu/people/"
+listings = ["malonecenter.jhu.edu/people/"]
+
+[[affiliated_units]]
+code = "LCSR"
+name = "Laboratory for Computational Sensing and Robotics"
+url = "https://lcsr.jhu.edu/people/faculty/"
+listings = ["lcsr.jhu.edu/people/faculty/"]
+
+[[affiliated_units]]
+code = "BIOSTAT"
+name = "Department of Biostatistics, Bloomberg School of Public Health"
+url = "https://publichealth.jhu.edu/departments/biostatistics/faculty"
+listings = ["publichealth.jhu.edu/departments/biostatistics/faculty"]
+
+[[affiliated_units]]
+code = "COGSCI"
+name = "Department of Cognitive Science"
+url = "https://cogsci.jhu.edu/people/"
+listings = ["cogsci.jhu.edu/people/"]
+
+[[affiliated_units]]
+code = "MATH"
+name = "Department of Mathematics"
+url = "https://www.math.jhu.edu/people/"
+listings = ["www.math.jhu.edu/people/"]
+
+[[affiliated_units]]
+code = "DSAI"
+name = "Data Science and AI Institute"
+url = "https://ai.jhu.edu/people/"
+listings = ["ai.jhu.edu/people/"]
+
+# --- students ----------------------------------------------------------------------------------------------------------------
+[thesis]
+kind = "none"
+base_url = "https://jscholarship.library.jhu.edu/"
+endpoints = []
+robots = "disallowed-for-ai-agents"
+note = "JScholarship (DSpace) robots.txt, read 2026-11-05: 'User-agent: ClaudeBot / anthropic-ai / Claude-Web: Disallow: /' (the Cloudflare managed block, Content-Signal ai-train=no). Not used in any form, not through Wayback either (Michigan's Deep Blue rule, L-67): crawl hours = 0 because nothing is fetched. JHU dissertations reach us only through OpenAlex (and CORE once it resumes); student relations come from lab pages and the CS/CLSP lists."
+
+[students]
+rosters = []
+directories = []
+sources = [
+    "CS and CLSP PhD student / alumni lists (Wayback)",
+  "lab member pages and PI homepages (live where robots allows, else Wayback)",
+]
+
+[labpages]
+hints = ["<lab>.cs.jhu.edu", "www.cs.jhu.edu/~<name>/", "<name>.cs.jhu.edu", "<lab>.jhu.edu", "sites.google.com/view/<lab>", "github.io", "www.clsp.jhu.edu"]
+
+[collector]
+# the script's default list; no repository channel ('dspace' / 'oai_repo' would ask JScholarship, which disallows AI agents)
+channels = ["oa_arxiv", "openalex", "proceedings", "arxiv_title", "dblp_ee", "s2", "europepmc", "pmc", "figshare", "labpages", "pihomes", "wayback_acm"]
+
+[repository]
+name = "JScholarship (Johns Hopkins University Libraries; never asked directly: its robots.txt disallows ClaudeBot and anthropic-ai; reached only through OpenAlex and CORE)"
+pattern = '''jscholarship\.library\.jhu\.edu|\bjscholarship\b|handle\.net/1774\.2|hdl\.handle\.net/1774\.2'''
+
+[store]
+path = "/n/fs/resemble/homogenizing-science/stores/jhu"
+
+# --- hosts (stage-0 gate: tools/school_hosts.py jhu) -------------------------------------------------------------------------
+
+[[hosts]]
+host = "web.archive.org"
+use = "live"
+purpose = "Wayback id_ captures and CDX (listings 2016-2026, lab pages)"
+probe = "https://web.archive.org/web/2020id_/https://www.cs.jhu.edu/"
+
+[[hosts]]
+host = "www.cs.jhu.edu"
+use = "live"
+purpose = "Department of Computer Science (Whiting School of Engineering): faculty, students, labs"
+probe = "https://www.cs.jhu.edu/faculty/"
+
+[[hosts]]
+host = "ece.jhu.edu"
+use = "none"
+purpose = "Electrical and Computer Engineering people (bot challenge 2026-11-05)"
+probe = "https://ece.jhu.edu/people/"
+
+[[hosts]]
+host = "engineering.jhu.edu"
+use = "none"
+purpose = "Whiting School department sites, AMS under /ams/ (bot challenge 2026-11-05)"
+probe = "https://engineering.jhu.edu/ams/people/"
+
+[[hosts]]
+host = "ams.jhu.edu"
+use = "none"
+purpose = "Applied Mathematics and Statistics, older host (bot challenge 2026-11-05)"
+probe = "https://ams.jhu.edu/people/"
+
+[[hosts]]
+host = "bme.jhu.edu"
+use = "none"
+purpose = "Biomedical Engineering faculty (bot challenge 2026-11-05)"
+probe = "https://bme.jhu.edu/people/faculty/"
+
+[[hosts]]
+host = "www.clsp.jhu.edu"
+use = "none"
+purpose = "Center for Language and Speech Processing faculty (bot challenge 2026-11-05)"
+probe = "https://www.clsp.jhu.edu/faculty/"
+
+[[hosts]]
+host = "malonecenter.jhu.edu"
+use = "live"
+purpose = "Malone Center for Engineering in Healthcare people"
+probe = "https://malonecenter.jhu.edu/people/"
+
+[[hosts]]
+host = "lcsr.jhu.edu"
+use = "none"
+purpose = "Laboratory for Computational Sensing and Robotics faculty (bot challenge 2026-11-05)"
+probe = "https://lcsr.jhu.edu/people/faculty/"
+
+[[hosts]]
+host = "publichealth.jhu.edu"
+use = "none"
+purpose = "Bloomberg School of Public Health, Biostatistics (robots disallow ClaudeBot/anthropic-ai 2026-11-05)"
+probe = "https://publichealth.jhu.edu/departments/biostatistics/faculty"
+
+[[hosts]]
+host = "cogsci.jhu.edu"
+use = "none"
+purpose = "Department of Cognitive Science people (bot challenge 2026-11-05)"
+probe = "https://cogsci.jhu.edu/people/"
+
+[[hosts]]
+host = "www.math.jhu.edu"
+use = "none"
+purpose = "Department of Mathematics people (bot challenge 2026-11-05)"
+probe = "https://www.math.jhu.edu/people/"
+
+[[hosts]]
+host = "ai.jhu.edu"
+use = "none"
+purpose = "Data Science and AI Institute people (searched unit)"
+probe = "https://ai.jhu.edu/people/"
+
+[[hosts]]
+host = "jscholarship.library.jhu.edu"
+use = "none"
+purpose = "JScholarship repository (robots disallow ClaudeBot/anthropic-ai 2026-11-05: never used)"
+probe = "https://jscholarship.library.jhu.edu/"
+
+[[hosts]]
+host = "api.openalex.org"
+use = "live"
+purpose = "OpenAlex (snapshot first; the shared 10k/day key)"
+
+[[hosts]]
+host = "api.ror.org"
+use = "live"
+purpose = "ROR verification"
