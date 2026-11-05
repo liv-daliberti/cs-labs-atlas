@@ -7,7 +7,7 @@ robots.txt bars PDFs, Booth's, is never fetched). A section whose heading names 
 heading; every item with a plausible person name and a year (or a 'current' heading) becomes a relation: role phd, years [None, year] for a degree year,
 [year, None] for 'current'; a year before the PI's first listing at the school is dropped (appointment window). The quote is the heading through the
 name, verbatim from the CV text. -> hierarchy/<key>/reviewed/cv-evidence.json {rows, checked}; labpage_students_school.extract merges the rows.
-usage: cv_students.py <key> [--all]
+usage: cv_students.py <key> [--all] [--max-seconds N]   (N: stop after N seconds, a rerun resumes from the written file)
 """
 import collections, html as H, json, re, subprocess, sys, tempfile, urllib.parse as U, zlib
 from pathlib import Path
@@ -114,7 +114,9 @@ def parse(text, first_year):
     return out
 
 
-def main(key, everyone=False):
+def main(key, everyone=False, max_seconds=None):
+    import time
+    t0 = time.time()
     c = W.con(key)
     tg = {t['name']: t for t in PS.targets(key)}
     cov = P.data('lab-coverage-reasons.json', key)
@@ -122,10 +124,16 @@ def main(key, everyone=False):
     pis = list(tg) if everyone else [pi for pi, v in reasons.items() if (v.get('students') or {}).get('code') == 'sources_exhausted']
     dec = SD.load(key)
     rows, checked = [], {}
+    prev = P.data('cv-evidence.json', key)
+    if max_seconds and Path(prev).exists():  # resumable (a 59-minute job): PIs already checked keep their rows
+        old = json.loads(Path(prev).read_text())
+        rows, checked = list(old.get('rows') or []), dict(old.get('checked') or {})
     for pi in pis:
         t = tg.get(pi)
-        if not t:
+        if not t or pi in checked:
             continue
+        if max_seconds and time.time() - t0 > max_seconds:
+            break
         checked[pi] = []
         for url, label in list(cv_urls(c, t['urls']).items())[:4]:
             text, when, note = cv_text(c, key, url)
@@ -147,4 +155,4 @@ def main(key, everyone=False):
 
 
 if __name__ == '__main__':
-    main(sys.argv[1], '--all' in sys.argv)
+    main(sys.argv[1], '--all' in sys.argv, float(sys.argv[sys.argv.index('--max-seconds') + 1]) if '--max-seconds' in sys.argv else None)
