@@ -66,8 +66,14 @@ def link_students(ctx):
     rows, stu, pls, n = ctx.rows, ctx.stu, ctx.pls, ctx.n
     sp = []
     # every reading of a student's name: the name, its aliases, and parenthesized forms ('Fatma Imamoglu (Deniz)')
-    forms = {sid: [f for f in dict.fromkeys([s['name']] + list(s.get('aliases') or []) + [v_ for x_ in [s['name']] + list(s.get('aliases') or []) for v_ in name_variants(x_)])
-                   if '(' not in f] or [s['name']] for v in stu.values() for sid, s in v.items()}
+    # one person under two labs (Netzorg: Bin Yu and Anumanchipalli) is one entry: the readings of every lab's record, so a reviewed alias in one lab (Robin)
+    # is not lost to the other lab's record of the same person (2026-11-05, round-r2 Berkeley verdict)
+    forms = {}
+    for v in stu.values():
+        for sid, s in v.items():
+            fs = [f for f in dict.fromkeys([s['name']] + list(s.get('aliases') or []) + [v_ for x_ in [s['name']] + list(s.get('aliases') or []) for v_ in name_variants(x_)])
+                  if '(' not in f] or [s['name']]
+            forms[sid] = list(dict.fromkeys(forms.get(sid, []) + fs))
     snm = {sid: [(Name([f]), toks(f)) for f in fs] for sid, fs in forms.items()}
 
     def on_byline(sid, b):

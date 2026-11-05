@@ -32,3 +32,10 @@ def test_R_LNK_04b_netzorg_is_a_reviewed_same_person_decision():
     rev = json.loads(P.data('student-identity-review.json', root=ROOT).read_text())
     x = next(r for r in rev if r['pi'] == 'Bin Yu' and 'Netzorg' in r['a'][1])
     assert x['verdict'] == 'same_person' and x['b'][1] == 'Robin Netzorg' and all(len(e['sha256']) == 64 for e in x['evidence'])
+
+
+def test_R_LNK_04b_one_person_under_two_labs_keeps_every_alias():
+    import inspect
+    from pihier import links
+    src = inspect.getsource(links.link_students)
+    assert "forms[sid] = list(dict.fromkeys(forms.get(sid, []) + fs))" in src   # Netzorg's alias Robin (Bin Yu) survives the Anumanchipalli record
