@@ -128,6 +128,8 @@ One row per unique paper and lab (JSON lines, gzip): an OpenAlex work by the PI,
 | `authorship.page1.pdf_sha256` | string \| null | yes | sha256 of the PDF. | pattern `^[0-9a-f]{64}$` |  |
 | `authorship.page1.how` | string | yes | How page 1 ties the school to the PI. | one of `near`, `marker`, `single`, `footnote` |  |
 | `authorship.page1.quotes` | array of string | yes | Verbatim page-1 text. |  |  |
+| `authorship.page1.dblp_key` | string | no | The DBLP record the page was read for (R-PAP-36, school_via page1_dblp). |  | R-PAP-36 |
+| `authorship.page1.fetched_at` | string | no | When the page was fetched (R-PAP-36). |  |  |
 | `identity` | string | yes | What makes the authorship the PI (first that applies). | one of `reviewed_openalex_author_id`, `pi_orcid`, `dblp_verified_collection_work`, `dblp_person_page_doi`, `dblp_person_page_title`, `pi_institutional_publication_list`, `lab_publication_page`, `advisee_coauthor`, `anchored_author_id`, `advisee_anchored_author_id`, `dblp_person_page`, `labpage_listing` | R-PAP-04, R-PAP-05, R-PAP-06, R-PAP-07 |
 | `appointment` | object | yes | The appointment the paper falls in: a reviewed period (periodId) or a same-year listing. |  | R-PAP-01, R-PAP-13 |
 | `appointment.periodId` | string | yes | pis.json periods[].id of a period that contains every possible date. |  |  |

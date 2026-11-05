@@ -200,7 +200,8 @@ DATASET_TITLE = re.compile(r'(?i)^\s*(?:processed|raw|synthetic|simulation) data
                            r'\b(?:matlab|csv|json|hdf5?) (?:data )?(?:format|files?)\s*$')
 HIGHLIGHTS_SUMMARY_TITLE = re.compile(r'(?i)\bhighlights (?:from|of) the\b.*\b(?:conference|workshop|symposium|meeting|summit)\b|'
                                       r'^\s*(?:summary|report|overview) (?:of|on) the\b.*\b(?:workshop|conference|symposium|seminar|meeting|summit)\b|'
-                                      r'^\s*(?:conference|workshop|symposium) (?:summary|report)\b|\b(?:workshop|symposium|conference) (?:summary|report)\s*$')
+                                      r'^\s*(?:conference|workshop|symposium) (?:summary|report)\b')
+SUMMARY_SUFFIX = re.compile(r'(?i)\b(?:workshop|symposium|conference) (?:summary|report)\s*$')   # 'SECM 2017 Workshop Summary' (8 words or fewer: a long title is a paper)
 RESEARCH_FOR_PRACTICE = re.compile(r'(?i)^\s*research for practice\b')
 BOOK_LEVEL_DOI = re.compile(r'^10\.(?:1007|1002|1016|3233|1201|1142|1017)/97[89][\d-]+$')   # an ISBN-style DOI: the book itself, no chapter suffix
 SESSION_WORKSHOP_TITLE = re.compile(r'^\s*[A-Z]{1,4}\d{1,3}(?:\.\d+)?\s*:\s*(?i:workshop|tutorial|forum|panel|short course|special session|evening session)\b|'
@@ -223,7 +224,7 @@ def non_research_record(r, pages=None):
         return 'repository_record'
     if not d and not v.strip() and DATASET_TITLE.search(t):
         return 'dataset_record'
-    if HIGHLIGHTS_SUMMARY_TITLE.search(t):
+    if HIGHLIGHTS_SUMMARY_TITLE.search(t) or (SUMMARY_SUFFIX.search(t) and len(t.split()) <= 8):
         return 'highlights_column'
     if RESEARCH_FOR_PRACTICE.search(t):
         return 'column'
