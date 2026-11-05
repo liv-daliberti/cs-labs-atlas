@@ -38,7 +38,12 @@ SKIP_HOSTS = ('dl.acm.org', 'ieeexplore.ieee.org', 'www.sciencedirect.com', 'onl
 
 def missing_works(school):
     p = F.P.FT_LOCAL_REUSE / 'missing.jsonl.gz'
-    return {r['work_id'] for l in gzip.open(p, 'rt') if (r := json.loads(l))['school'] == school and r['work_id']}
+    have = {r['work_id'] for l in gzip.open(p, 'rt') if (r := json.loads(l))['school'] == school and r['work_id']}
+    if have:
+        return have
+    # a school the 2026-10-29 inventory does not know (onboarding schools: Georgia Tech, UChicago): the missing papers are the unavailability ledger's rows
+    led = F.P.data('unavailable.jsonl.gz', school)
+    return {r['work_id'] for l in gzip.open(led, 'rt') if (r := json.loads(l)).get('work_id')} if led.exists() else set()
 
 
 def run(school, dry):
