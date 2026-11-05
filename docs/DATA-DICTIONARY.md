@@ -243,6 +243,8 @@ One PI: the merged census rows, reviewed corrections, identity, appointment evid
 | `reviewedOpenAlex` | array of string | yes | Reviewed OpenAlex author ids of the PI (census + census-overrides + gap-evidence identity). | items: pattern `^https://openalex\.org/A\d+$` | R-PAP-04 |
 | `orcid` | array of string | yes | The PI's ORCIDs (bare, without https://orcid.org/), including those added from the DBLP dump. | items: pattern `^\d{4}-\d{4}-\d{4}-\d{3}[\dX]$` | R-PAP-04, R-PAP-05 |
 | `notOpenAlex` | array of string | yes | Reviewed namesake author ids: never this PI (census-overrides not_openalex). | items: pattern `^https://openalex\.org/A\d+$` | R-PAP-04 |
+| `censusName` | string | no | The census name when a reviewed display_name renamed a placeholder-named PI (R-PAP-34). |  |  |
+| `displayNameBasis` | string \| null | no | Why the reviewed display name is the person. |  |  |
 | `blockedClusters` | array of object | no | Reviewed namesake clusters (census-overrides blocked_clusters): works whose byline carries the cluster's coauthors are never this PI's. |  | R-PAP-32 |
 | `mixedOpenAlex` | array of string | yes | Reviewed mixed author ids: another person's record that also holds some of the PI's works; neither anchors nor blocks. | items: pattern `^https://openalex\.org/A\d+$` | R-PAP-06 |
 | `mergedCensusRows` | array of string | yes | Names of the further census rows merged into this PI (duplicate pairs, nickname-equal given names). |  |  |
@@ -1588,6 +1590,8 @@ Reviewed corrections for one person (keys the build does not know are kept as re
 | `orcid` | array \| string | no | ORCID(s), bare or as urls. |  | R-PAP-04 |
 | `openalex` | array \| string | no | Reviewed OpenAlex author id(s). |  | R-PAP-04 |
 | `not_openalex` | array of string | no | Namesake author ids: never this PI. | items: pattern `^https://openalex\.org/A\d+$` | R-PAP-04 |
+| `display_name` | string | no | A reviewed real name for a census row whose name is a placeholder (single letters): the PI is built under this name. |  | R-PAP-34 |
+| `why_display_name` | string | no | Why the display name is the person (evidence in openalex_evidence). |  |  |
 | `blocked_clusters` | array of object | no | Reviewed namesake clusters: a work whose byline carries min_coauthors or more of the coauthors is never this PI's. |  | R-PAP-32 |
 | `mixed_openalex` | array of string | no | Mixed author ids holding some of the PI's works. | items: pattern `^https://openalex\.org/A\d+$` | R-PAP-06 |
 | `pi_basis` | object | no | A reviewed PI basis (wins over the census). |  | R-HIER-01 |
