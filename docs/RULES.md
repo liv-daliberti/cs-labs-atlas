@@ -470,6 +470,11 @@ student, publishes as Izabel Aguiar).
 ### R-LNK-04a (2026-10-29, owner: link-gap sample) — more nickname pairs
 `extras.csv`: Manolis/Emmanouil (Zampetakis), Robbie/Robert, Dima/Dmitry and Dmitri, Ági/Agnes, Lily/Lillian.
 
+### R-LNK-04b (2026-11-05, owner: round-r2 pooled failures) — Greek short forms; Robin Netzorg
+`extras.csv`: Fotis/Fotios (Iliopoulos, Sinclair's student: two lab papers read 'Fotis') and Giorgos/Georgios. Robin is not a nickname of Robert, so no table pair is
+added; Netzorg (Bin Yu's lab: the dissertation list says Robert, the roster and the ICML paper say Robin) is one reviewed `same_person` decision in
+`student-identity-review.json` (R-STU-04). Izzy was added on 2026-10-29 (R-LNK-04). Tests: `tests/test_nicknames_round_r2.py`.
+
 ### R-LNK-05 (2026-10-29, owner) — links carry their evidence
 Every byline link (`within_lab_byline_match`, `byline_name_with_school_affiliation`, `advisee_name_on_lab_paper_byline`,
 `full_name_on_lab_paper_byline`) carries the work id, the exact byline string matched (`byline`) and the student's own
