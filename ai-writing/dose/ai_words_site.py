@@ -54,7 +54,7 @@ FAMILIES = {   # inflections of one word, as the list spells them; a family coun
     'delve': ['delve', 'delved', 'delves', 'delving'], 'showcase': ['showcased', 'showcases', 'showcasing'],
     'underscore': ['underscore', 'underscored', 'underscores', 'underscoring'], 'intricate': ['intricate', 'intricately', 'intricacies'],
     'pivotal': ['pivotal'], 'unveil': ['unveil', 'unveiled', 'unveiling', 'unveils'], 'meticulous': ['meticulous', 'meticulously'],
-    'emphasize': ['emphasise', 'emphasises', 'emphasising', 'emphasize', 'emphasizes', 'emphasizing'], 'highlight': ['highlight', 'highlighting', 'highlights'],
+    'emphasize': ['emphasises', 'emphasising', 'emphasize', 'emphasizes', 'emphasizing'], 'highlight': ['highlight', 'highlighting', 'highlights'],
     'leverage': ['leverages', 'leveraging'], 'enhance': ['enhance', 'enhanced', 'enhancements', 'enhances', 'enhancing'],
     'elucidate': ['elucidate', 'elucidates', 'elucidating'], 'pinpoint': ['pinpoint', 'pinpointed', 'pinpointing'],
     'surpass': ['surpass', 'surpassed', 'surpasses', 'surpassing'], 'exhibit': ['exhibit', 'exhibited', 'exhibiting', 'exhibits'],
