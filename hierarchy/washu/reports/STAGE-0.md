@@ -35,6 +35,10 @@ credited; they never add PIs or labs. A PI is a faculty member of the school. Th
 it is the coordinator's to schedule next, not run here (no Slurm in this run). Not waived.
 `atlas stage-gate washu 0 --traps`: one finding, `captures: neither raw/labpage-captures.sqlite nor ... exists`: a stage-8 file that cannot exist at stage 0 (proposed tool fix: run `captures_traps` from stage 8, not at stage 0).
 
-## Decisions for the owner (before the first sweep)
-D1 lineage children; D2 related institutions; D3 excluded ids / look-alikes; D4 Washington University School of Law; D5 borderline departments; D6 thesis repository. Recommendations are in the coordinator report.
-Under the scope decision above no blanket unit keep/drop is needed; what remains is which institution ids the sweep reads.
+## Owner decisions (2026-11-05, all as recommended by the agent; applied in the charter comments)
+1. D1: the four lineage children are swept (Washington University Physicians, Tyson Research Center, Taylor Family Institute, Children's Discovery Institute).
+2. D2: `openalex_related` = Barnes-Jewish I1299725459, St. Louis Children's I1324021844, Siteman I4390039355, WU Medical Center I4210135078, Musculoskeletal Research Center I4405268834; Central Institute for the Deaf stays unswept.
+3. D3: `openalex_excluded` = Taylor Geospatial Institute I4402554118, Washington University of Virginia I4405285522.
+4. D4: the School of Law matches the regex (out of computing scope anyway).
+5. D5: CSE is the department; ESE and BME affiliated departments; SDS, MATH, OLIN, PBS, I2DB, BIOS affiliated units under the CS-related rule.
+6. D6: `[thesis].kind = "none"` until a 20-record pilot in stage 6 shows advisor lines.

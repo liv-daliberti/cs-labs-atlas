@@ -13,7 +13,10 @@ window = [2016, 2026]
 
 [ids]
 openalex = ["I204465549"]
-# Proposed (owner D-decisions pending, hierarchy/washu/STAGE-0.md). Related = regex-only: an authorship tagged only with these counts when its raw string matches the regex.
+# Owner decisions 2026-11-05, all as recommended (hierarchy/washu/reports/STAGE-0.md): D1 the four lineage children are swept (Physicians, Tyson, Taylor Family Institute, Children's Discovery Institute);
+# D2 related = Barnes-Jewish, St. Louis Children's, Siteman, WU Medical Center, Musculoskeletal Research Center (regex-only: an authorship tagged only with these counts when its raw string matches the regex); Central Institute for the Deaf stays unswept;
+# D3 excluded = Taylor Geospatial Institute, Washington University of Virginia; D4 the School of Law matches (out of computing scope anyway); D5 CSE is the department, ESE and BME affiliated departments, the rest affiliated units under the CS-related rule;
+# D6 [thesis] stays kind = none until a 20-record pilot in stage 6 shows advisor lines.
 openalex_related = ["I1299725459", "I1324021844", "I4390039355", "I4210135078", "I4405268834"]
 openalex_excluded = ["I4402554118", "I4405285522"]   # Taylor Geospatial Institute (multi-university consortium); Washington University of Virginia (a different institution)
 ror = "https://ror.org/01yc7t268"
