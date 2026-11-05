@@ -457,3 +457,14 @@ def test_anchor_check_is_a_preflight_note_and_a_post_rebuild_gate(monkeypatch, t
     monkeypatch.setattr(AR, 'anchor_yield_problems', lambda schools: '')
     ok, _ = AR.run_step('regression', c, runner=lambda *a, **k: types.SimpleNamespace(returncode=0))
     assert ok
+
+
+def test_release_outputs_do_not_block_a_resume(monkeypatch):
+    """2026-11-05: the zero_paper stage rewrites a tracked file; neither the clean check nor the source-commit check may treat it as an outside change."""
+    import types
+    monkeypatch.setattr(AR, 'git', lambda *a: types.SimpleNamespace(returncode=0, stdout=' M hierarchy/derived/zero-paper-labs.json\n M tools/x.py\n', stderr=''))
+    assert AR.dirty_tracked() == [' M tools/x.py']
+    monkeypatch.setattr(AR, 'git', lambda *a: types.SimpleNamespace(returncode=0, stdout='hierarchy/derived/zero-paper-labs.json\ndocs/RUNBOOK.md\n', stderr=''))
+    assert AR.classify_commit_change('a', 'b')[0] is True
+    monkeypatch.setattr(AR, 'git', lambda *a: types.SimpleNamespace(returncode=0, stdout='hierarchy/derived/zero-paper-labs.json\ntools/x.py\n', stderr=''))
+    assert AR.classify_commit_change('a', 'b')[0] is False

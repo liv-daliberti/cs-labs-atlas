@@ -235,7 +235,7 @@ def preflight(c):
     problems, notes = [], []
     if br != 'main':
         problems.append(f'clean: run it from the main checkout on main (this is {br})')
-    dirty = [ln for ln in git('status', '--porcelain', '--untracked-files=no').stdout.splitlines() if ln.strip()]
+    dirty = dirty_tracked()
     if dirty:
         problems.append(f'clean: uncommitted tracked changes (commit or land them first): {dirty[:5]}')
     c.dir.mkdir(parents=True, exist_ok=True)
@@ -296,7 +296,7 @@ def check_clean(c):
     br = git('rev-parse', '--abbrev-ref', 'HEAD').stdout.strip()
     if br != 'main':
         return False, f'run it from the main checkout on main (this is {br})'
-    dirty = [ln for ln in git('status', '--porcelain', '--untracked-files=no').stdout.splitlines() if ln.strip()]
+    dirty = dirty_tracked()
     if dirty:
         return False, f'uncommitted tracked changes (commit or land them first): {dirty[:5]}'
     return True, f'main at {git("rev-parse", "--short", "HEAD").stdout.strip()}, clean'
@@ -576,13 +576,29 @@ def submit_and_wait(args, run=subprocess.run, wait=None):
     return 0 if v == 'ok' else 1
 
 
+# Tracked files the rebuild itself regenerates (hierarchy/rebuild.sh stages zero_paper, audits). A release run leaves them modified in main, so the
+# resume's clean check and its source-commit check treat them as the run's own output, not as outside changes (2026-11-05: release 20261105a
+# could not resume after its zero_paper stage rewrote zero-paper-labs.json, and committing it changed the source commit).
+RELEASE_OUTPUTS = ('hierarchy/derived/zero-paper-labs.json', 'hierarchy/derived/LABPAGE-AUDIT.md', 'hierarchy/derived/SCHOOL-PROFILES.md',
+                   'hierarchy/derived/labpage-audit-summary.json')
+
+
+def dirty_tracked():
+    """Tracked files with uncommitted changes, other than the rebuild's own outputs (RELEASE_OUTPUTS)."""
+    out = []
+    for ln in git('status', '--porcelain', '--untracked-files=no').stdout.splitlines():
+        if ln.strip() and ln[3:].strip() not in RELEASE_OUTPUTS:
+            out.append(ln)
+    return out
+
+
 def classify_commit_change(old, new):
-    """-> (safe, files). A resume across commits is safe only when every changed file is under tests/ or docs/."""
+    """-> (safe, files). A resume across commits is safe only when every changed file is under tests/ or docs/, or is a RELEASE_OUTPUTS file."""
     r = git('diff', '--name-only', old, new)
     if r.returncode:
         return False, [f'cannot diff {old[:10]}..{new[:10]}: ' + (r.stderr or '').strip()[:100]]
     files = [f for f in r.stdout.splitlines() if f]
-    return bool(files) and all(f.startswith(SAFE_RESUME_DIRS) for f in files) or not files, files
+    return bool(files) and all(f.startswith(SAFE_RESUME_DIRS) or f in RELEASE_OUTPUTS for f in files) or not files, files
 
 
 def main(argv=None, runner=subprocess.run):
