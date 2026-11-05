@@ -149,9 +149,11 @@ def utc_today(now=None):
     return (now or dt.datetime.now(dt.timezone.utc)).strftime('%Y-%m-%d')
 
 
-def estimate_credits(papers, n_pi_ids):
-    """A chunk's credits: one count, one request per 200 papers, the PI queries (25 ids each, about a third of the papers again)."""
-    return 1 + math.ceil(papers / R.PAGE) + math.ceil(n_pi_ids / 25) + math.ceil(0.35 * papers / R.PAGE)
+def estimate_credits(stored, n_pi_ids):
+    """A chunk's credits from the stored rows (datasets, about 10%, are not fetched): one count, one request per 200 papers, the PI queries
+    (25 ids per query plus a few pages). Measured: Stanford 2024, 25,016 stored rows, 134 credits (120 + 14)."""
+    papers = 0.9 * stored
+    return 1 + math.ceil(papers / R.PAGE) + math.ceil(n_pi_ids / 25) + math.ceil(0.05 * papers / R.PAGE)
 
 
 def days_to_finish(estimates, cap=DAILY_CAP):
@@ -303,7 +305,7 @@ def sweep_papers(school, year):
     p = P.data_w('openalex-sweep.sqlite', school)
     try:
         c = sqlite3.connect(f'file:{p}?mode=ro', uri=True, timeout=60)
-        r = c.execute('select max(count) from pages where year=?', (year,)).fetchone()
+        r = c.execute('select sum(n) from pages where year=?', (year,)).fetchone()
         c.close()
         return int(r[0] or 0)
     except sqlite3.Error:

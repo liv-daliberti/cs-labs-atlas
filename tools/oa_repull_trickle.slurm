@@ -9,7 +9,7 @@
 #SBATCH --exclude=node302
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=16G
-#SBATCH --time=06:00:00
+#SBATCH --time=10:00:00
 #SBATCH --output=fulltext-push/logs/oa-repull-trickle-%j.out
 . "${CS_ATLAS_CODE:-${SLURM_SUBMIT_DIR:?}}/paths.sh" || exit 1
 . "$CS_ATLAS_CODE/tools/job_code_snapshot.sh" || exit 1

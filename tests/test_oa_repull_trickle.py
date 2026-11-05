@@ -54,6 +54,7 @@ def test_cap_arithmetic(tmp_path):
 
 def test_estimates_and_days():
     assert T.estimate_credits(0, 0) == 1 and T.estimate_credits(400, 50) == 1 + 2 + 2 + 1
+    assert 120 <= T.estimate_credits(25016, 280) <= 160                    # measured: Stanford 2024 cost 134
     assert T.days_to_finish([1000] * 5, 2000) == 3 and T.days_to_finish([], 2000) == 0
 
 
