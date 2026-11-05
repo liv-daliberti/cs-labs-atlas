@@ -150,27 +150,31 @@ def year_tables(model, papers, Zo, Za, labs_sets, cl, groups, school_mask, rng):
                 for (c, meas), v in measure_set(Zo, Za, labs_sets, draw(brng, pool, m)).items():
                     boot.append((scope, sid, y, c, meas, b, v))
         del yb
-        if b % 10 == 0:
+        if b % 5 == 0:
             C.log(model=model, boot=b)
     bt = pd.DataFrame(boot, columns=['scope', 'scope_id', 'year', 'corpus', 'measure', 'rep', 'value'])
     return pt, bt
 
 
+def ci(est, samples):
+    """est +- 1.96 sd of the replicates: resampling labs repeats papers, which lowers every resampled diversity a little, so percentiles
+    of the replicates do not bracket the point estimate (the entropy_bootstrap convention of embeddings/measures.py)."""
+    sd = float(np.std(samples, ddof=1)) if len(samples) > 2 else float('nan')
+    return est - 1.96 * sd, est + 1.96 * sd
+
+
 def summarize_year(pt, bt):
     """Per (scope, id, measure, year): orig, ai, gap = orig - ai with intervals; and per (scope, id, measure): post-minus-pre change for each corpus and the gap."""
-    out, chg = [], []
+    chg = []
     key = ['scope', 'scope_id', 'measure']
     wide_b = bt.pivot_table(index=key + ['year', 'rep'], columns='corpus', values='value').reset_index()
     wide_b['gap'] = wide_b['orig'] - wide_b['ai']
-    for k, g in wide_b.groupby(key + ['year']):
-        row = dict(zip(key + ['year'], k))
-        for v in ('orig', 'ai', 'gap'):
-            row[v + '_lo'], row[v + '_hi'] = np.percentile(g[v], [2.5, 97.5])
-        out.append(row)
-    ints = pd.DataFrame(out)
     pw = pt.pivot_table(index=key + ['year'], columns='corpus', values='value').reset_index()
     pw['gap'] = pw['orig'] - pw['ai']
-    yr = pw.merge(ints, on=key + ['year'], how='left')
+    sds = wide_b.groupby(key + ['year'])[['orig', 'ai', 'gap']].std(ddof=1).reset_index().rename(columns={c: c + '_sd' for c in ('orig', 'ai', 'gap')})
+    yr = pw.merge(sds, on=key + ['year'], how='left')
+    for v in ('orig', 'ai', 'gap'):
+        yr[v + '_lo'] = yr[v] - 1.96 * yr[v + '_sd']; yr[v + '_hi'] = yr[v] + 1.96 * yr[v + '_sd']
     # post minus pre (2023-2026 mean minus 2016-2022 mean), per replicate for the intervals
     def period_change(w):
         pre = w[w['year'].isin(PRE)].groupby(key + (['rep'] if 'rep' in w else []))[['orig', 'ai', 'gap']].mean()
@@ -183,7 +187,7 @@ def summarize_year(pt, bt):
         r = dict(zip(key, k))
         for v in ('orig', 'ai', 'gap'):
             r[v] = float(row[v])
-            r[v + '_lo'], r[v + '_hi'] = (np.percentile(g[v], [2.5, 97.5]) if len(g) > 5 else (np.nan, np.nan))
+            r[v + '_lo'], r[v + '_hi'] = ci(float(row[v]), g[v].to_numpy()) if len(g) > 5 else (np.nan, np.nan)
         chg.append(r)
     return yr, pd.DataFrame(chg)
 
