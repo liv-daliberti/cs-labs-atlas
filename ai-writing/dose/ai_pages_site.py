@@ -52,7 +52,7 @@ def reader_keys():
 def build_map(fr):
     um = pd.read_parquet(A.RES / 'umap.parquet')
     d = fr.merge(um, on='paper_id')
-    d = d[d['school'].isin(RELEASED)].reset_index(drop=True)      # released schools only (the stage tables keep all nine)
+    d = d.reset_index(drop=True)
     labs = pd.read_parquet(A.RES / 'labs.parquet').set_index('lab_id')
     lo_x, hi_x, lo_y, hi_y = float(d['ux'].min()), float(d['ux'].max()), float(d['uy'].min()), float(d['uy'].max())
     q = lambda v, lo, hi, n=GRID: np.clip(np.floor((v - lo) / (hi - lo) * n), 0, n - 1).astype(int)   # noqa: E731
@@ -67,7 +67,7 @@ def build_map(fr):
     readable = reader_keys()
     sizes = {}
     shards = {}
-    for s in RELEASED:
+    for s in D.SCHOOLS:
         g = d[d['school'] == s].sort_values(['year', 'paper_id'])
         if g.empty:
             continue
@@ -101,8 +101,8 @@ def build_map(fr):
                   abf='1/0 = the abstract detector flags the abstract, -1 = no abstract score', lab='index into labs (the paper\'s first lab)',
                   topic='index into topics (BERTopic on the proximity vectors, outliers reassigned to the nearest topic), -1 = none', field='index into fields (OpenAlex primary field), -1 = none',
                   sizes=sizes),
-        schools=RELEASED, fields=fields, topics=ti,
-        labs=[dict(id=l, site=(labs.loc[l, 'site_lab'] if isinstance(labs.loc[l, 'site_lab'], str) else None), pi=labs.loc[l, 'pi'], name=labs.loc[l, 'lab_name'], school=labs.loc[l, 'school']) for l in used_labs])
+        schools=D.SCHOOLS, released={s: s in RELEASED for s in D.SCHOOLS}, fields=fields, topics=ti,
+        labs=[dict(id=l, released=bool(labs.loc[l, 'school'] in RELEASED), site=(labs.loc[l, 'site_lab'] if isinstance(labs.loc[l, 'site_lab'], str) else None), pi=labs.loc[l, 'pi'], name=labs.loc[l, 'lab_name'], school=labs.loc[l, 'school']) for l in used_labs])
     sizes['map_index.json'] = dump(index, 'map_index.json')
     index['meta']['sizes'] = sizes
     dump(index, 'map_index.json')
@@ -115,8 +115,6 @@ def build_lab_scatter():
     lm = pd.read_parquet(A.RES / 'lab_measures.parquet')
     ex = pd.read_parquet(A.RES / 'lab_exposure.parquet')
     labs_all = pd.read_parquet(A.RES / 'labs.parquet')
-    rel = set(labs_all.loc[labs_all['school'].isin(RELEASED), 'lab_id'])      # the site shows released schools only
-    lm = lm[lm['lab_id'].isin(rel)]
     labs = labs_all.set_index('lab_id')
     base_t = ex.merge(labs_all[['lab_id', 'school']], on='lab_id').merge(lm.drop_duplicates('lab_id')[['lab_id', 'n_pre', 'n_post']], on='lab_id')
     sl = pd.DataFrame(A.slopes_from(lm, base_t, 500))
@@ -130,7 +128,7 @@ def build_lab_scatter():
     rows = []
     for lab in ids:
         e = exi.loc[lab] if lab in exi.index else None
-        rows.append(dict(lab_id=lab, site_lab=(labs.loc[lab, 'site_lab'] if isinstance(labs.loc[lab, 'site_lab'], str) else None), pi=labs.loc[lab, 'pi'], lab=labs.loc[lab, 'lab_name'],
+        rows.append(dict(lab_id=lab, released=bool(labs.loc[lab, 'school'] in RELEASED), site_lab=(labs.loc[lab, 'site_lab'] if isinstance(labs.loc[lab, 'site_lab'], str) else None), pi=labs.loc[lab, 'pi'], lab=labs.loc[lab, 'lab_name'],
                          school=labs.loc[lab, 'school'], n_pre=int(base.loc[lab, 'n_pre']) if lab in base.index else None, n_post=int(base.loc[lab, 'n_post']) if lab in base.index else None,
                          m=int(base.loc[lab, 'm']) if lab in base.index else None, n_scored_post=int(e['n_scored_post']) if e is not None else 0,
                          dose=r(e['dose']) if e is not None else None, share25=r(e['share25']) if e is not None else None,

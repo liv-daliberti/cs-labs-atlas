@@ -86,9 +86,11 @@ def test_map_ids_are_reader_keys_and_labs_link():
         assert max(sh['lab']) < len(idx['labs'])
     released = [l for l in idx['labs'] if l['school'] in ('princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford', 'michigan')]
     assert sum(l['site'] is not None for l in released) / len(released) > 0.95
-    assert all(l['school'] in ('princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford', 'michigan') for l in idx['labs'])
-    assert not (V2 / 'map_gatech.json.gz').exists() and not (V2 / 'map_uchicago.json.gz').exists()
-    assert all(l['school'] not in ('gatech', 'uchicago') for l in read(V2 / 'lab_scatter.json.gz')['labs'])
+    assert idx['meta']['shards'].keys() == idx['released'].keys() and len(idx['released']) == 9
+    assert all(l['site'] is None and not l['released'] for l in idx['labs'] if l['school'] in ('gatech', 'uchicago'))
+    assert all(l['released'] for l in released)
+    labs = read(V2 / 'lab_scatter.json.gz')['labs']
+    assert any(l['school'] == 'gatech' and not l['released'] and l['site_lab'] is None for l in labs)
     assert read(V2 / 'matched_test.json')['wording']
 
 
