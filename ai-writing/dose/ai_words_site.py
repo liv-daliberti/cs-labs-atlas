@@ -439,6 +439,7 @@ def run_spot(n, seed):
     db = sqlite3.connect(f'file:{D.TEXTS_DB}?mode=ro', uri=True, timeout=600)
     lines = []
     row = pa.set_index('paper_id')
+    pick += [p for p in ids if row.at[p, 'kcore'] >= 2 and p not in pick][:n // 2]   # plus papers that do use marker words
     for p in pick:
         a = db.execute('select abstract from abstracts where paper_id = ?', (p,)).fetchone()[0]
         t = toks(clean_abstract(a))
