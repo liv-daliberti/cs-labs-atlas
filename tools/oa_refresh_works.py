@@ -172,7 +172,7 @@ def lookup_redirect(cl, wid):
     return ('merged', j['id']) if j.get('id') and short(j['id']) != short(wid) else ('alive', None)
 
 
-def merge(school, years, tag=TAG, apply=False, cl=None, lookups=0):
+def merge(school, years, tag=TAG, apply=False, cl=None, lookups=0, guard=None):
     stc = sqlite3.connect(str(stage_dir(tag) / f'{school}.sqlite'))
     sweep_path = P.data_w('openalex-sweep.sqlite', school)
     sc = sqlite3.connect(str(sweep_path), timeout=120)
@@ -244,6 +244,8 @@ def merge(school, years, tag=TAG, apply=False, cl=None, lookups=0):
                      new_pi_credited_in_sweep=sum(v['new_pi_credited'] for v in rep['years'].values()))
     rep['years'] = {str(k): v for k, v in rep['years'].items()}
     if apply:
+        if guard:
+            guard()   # raises when the stores must not be written now (tools/oa_repull_trickle.py: a release build is running)
         bk = sqlite3.connect(str(stage_dir(tag) / f'backup-{school}.sqlite'))
         bk.execute('create table if not exists sweep_pages (year int, page int, cursor text, next_cursor text, n int, count int, fetched_at text, body blob)')
         bk.execute('create table if not exists pi_works (id text, body blob)')
