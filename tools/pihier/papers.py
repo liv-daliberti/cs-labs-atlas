@@ -739,19 +739,22 @@ def recovered_rows(ctx, rows, seen):
             if not WINDOW_START <= int(x['year']) <= int(TODAY[:4]):  # the atlas window, as the sweep's (2026-10-31: EPFL 2015 row)
                 n[f'{kind}_recovered_outside_window'] += 1; aside('outside_window'); continue
             via = ev.get('school_via') or [f"page 1 ({ev.get('how')}): " + ' … '.join(ev.get('quotes') or [])]
+            if kind == 'dblp' and ev.get('how'):  # R-PAP-36: the DBLP-listed work confirmed by its own first page
+                via = ['page1_dblp: ' + str(x.get('dblp_key') or '')] + via
             per = next((q for q in p['periods'] if contains(q['start'], q['end'], date, q['asof'] or TODAY) == 'supported'), None)
             lst = None if per else next((l for l in p['listings'] if l['year'] == int(x['year'])), None)
             if per is None and lst is None:
                 n[f'{kind}_recovered_outside_appointment'] += 1; aside('outside_appointment'); continue
             cw = cwork(dict(doi=x.get('doi'), title=(x.get('title') or '').rstrip('.'), publication_year=x['year'])) or None
-            oa_id = ev.get('oa') or (f"https://dblp.org/rec/{x['dblp_key']}" if kind == 'dblp' else x['key'])
+            oa_id = ev.get('oa') or (f"https://dblp.org/rec/{re.sub('^https?://dblp[.]org/rec/', '', str(x['dblp_key']))}" if kind == 'dblp' else x['key'])
             if (x['pi'], cw or oa_id) in seen:
                 aside('already_a_lab_paper'); continue
             seen.add((x['pi'], cw or oa_id))
             rows.append(dict(pi=x['pi'], work=cw, oa=oa_id, doi=x.get('doi'), title=(x.get('title') or '').rstrip('.'), year=x['year'], date=date, type='article',
                              venue=x.get('venue'), landing=ev.get('url'), byline=x.get('byline') or [], byline_school=[],
                              authorship=dict(position=None, raw_name=None, author_id=None, institutions=[], raw_affiliations=[], school_via=via[:3],
-                                             page1=dict(url=ev.get('url'), pdf_sha256=ev.get('pdf_sha256'), how=ev.get('how'), quotes=ev.get('quotes')) if ev.get('how') else None),
+                                             page1=dict(url=ev.get('url'), pdf_sha256=ev.get('pdf_sha256'), how=ev.get('how'), quotes=ev.get('quotes'),
+                                                       **({'dblp_key': ev['dblp_key'], 'fetched_at': ev['fetched_at']} if ev.get('dblp_key') and ev.get('fetched_at') else {})) if ev.get('how') else None),
                              identity=label, appointment=dict(periodId=per['id']) if per else dict(listing=lst),
                              source=(f'{kind}_recover:' if kind != 'labpage_addition' else f"labpage_addition:{x.get('rule')}:") + ev['basis']))
             n[f'{kind}_recovered_lab_papers'] += 1
