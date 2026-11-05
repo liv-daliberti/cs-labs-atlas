@@ -2,10 +2,9 @@
 import dblp_recover as D
 
 
-def test_R_PAP_36_iacr_eprint_pdf():
-    assert D.pdf_url('https://eprint.iacr.org/2021/1234') == 'https://eprint.iacr.org/2021/1234.pdf'
-    assert D.pdf_url('http://eprint.iacr.org/2021/1234.pdf') == 'https://eprint.iacr.org/2021/1234.pdf'
-    assert 'eprint.iacr.org' in D.OPEN_HOSTS
+def test_R_PAP_36_iacr_eprint_is_not_asked():
+    # eprint.iacr.org serves a bot challenge and an AI policy against its PDFs: no fetch
+    assert D.pdf_url('https://eprint.iacr.org/2021/1157') is None and 'eprint.iacr.org' not in D.OPEN_HOSTS
 
 
 def test_R_PAP_36_jmlr_pdf():
