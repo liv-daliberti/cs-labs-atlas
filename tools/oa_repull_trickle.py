@@ -206,6 +206,7 @@ def submit(argv, cwd, run=None, retries=6):
     """sbatch --test-only first; a plan that preempts a running job ('Preempts:') is never submitted: push --begin two hours and test again."""
     run = run or (lambda cmd, cwd: subprocess.run(cmd, capture_output=True, text=True, cwd=cwd, timeout=120))
     argv = list(argv)
+    out = ''
     for k in range(retries):
         t = run([argv[0], '--test-only', *argv[1:]], cwd)
         out = (t.stdout or '') + (t.stderr or '')
@@ -217,7 +218,7 @@ def submit(argv, cwd, run=None, retries=6):
         later = (dt.datetime.now() + dt.timedelta(hours=2 * (k + 1))).strftime('%Y-%m-%dT%H:%M:%S')
         argv = [a for a in argv if not a.startswith('--begin=')]
         argv.insert(1, f'--begin={later}')
-    raise RuntimeError('sbatch: no submittable plan (Preempts: or errors)')
+    raise RuntimeError('sbatch: no submittable plan (Preempts: or errors): ' + oa_api.redact(out.strip()[-300:]))
 
 
 # ------------------------------------------------------------------ progress and status
@@ -376,27 +377,33 @@ def run_day(args, state=None, ledger=oa_api.LEDGER, resubmit=True):
         fcntl.flock(lock, fcntl.LOCK_UN)
     left = len(pending_chunks(chunks, state.events()))
     nxt = None
-    if resubmit and left:
-        cwd = os.environ.get('CS_ATLAS_CODE', str(Path.cwd()))
-        exp = {k: os.environ[k] for k in ('CS_ATLAS_SNAPSHOT_COMMIT', 'REPULL_ARGS') if os.environ.get(k)}
-        if why == 'release':
-            ids = [j for j in jobs if str(j).isdigit()]
-            soon = None if ids else (dt.datetime.now() + dt.timedelta(minutes=30)).strftime('%Y-%m-%dT%H:%M:%S')
-            nxt = submit(sbatch_argv(SLURM, after=ids or None, begin=soon, export=exp), cwd)
-        else:
-            nxt = submit(sbatch_argv(SLURM, begin=next_utc_day_begin(), export=exp), cwd)
-    if n_new_by_school and resubmit:
-        schools = '+'.join(sorted(n_new_by_school))
-        try:
-            guard_jobs = release_jobs()
-        except Deferred as e:
-            guard_jobs = [j for j in e.jobs if str(j).isdigit()]
-        exp = {'SCHOOLS': schools, 'DAY': today}
-        if os.environ.get('CS_ATLAS_SNAPSHOT_COMMIT'):
-            exp['CS_ATLAS_SNAPSHOT_COMMIT'] = os.environ['CS_ATLAS_SNAPSHOT_COMMIT']
-        aj = submit(sbatch_argv(ADDWORKS, after=guard_jobs or None, export=exp, singleton=True),
-                    os.environ.get('CS_ATLAS_CODE', str(Path.cwd())))
-        state.log('addworks_queued', schools=schools, addworks_job=aj)
+    try:
+        if resubmit and left:
+            cwd = os.environ.get('CS_ATLAS_CODE', str(Path.cwd()))
+            exp = {k: os.environ[k] for k in ('CS_ATLAS_SNAPSHOT_COMMIT', 'REPULL_ARGS') if os.environ.get(k)}
+            if why == 'release':
+                ids = [j for j in jobs if str(j).isdigit()]
+                soon = None if ids else (dt.datetime.now() + dt.timedelta(minutes=30)).strftime('%Y-%m-%dT%H:%M:%S')
+                nxt = submit(sbatch_argv(SLURM, after=ids or None, begin=soon, export=exp), cwd)
+            else:
+                nxt = submit(sbatch_argv(SLURM, begin=next_utc_day_begin(), export=exp), cwd)
+        if n_new_by_school and resubmit:
+            schools = '+'.join(sorted(n_new_by_school))
+            try:
+                guard_jobs = release_jobs()
+            except Deferred as e:
+                guard_jobs = [j for j in e.jobs if str(j).isdigit()]
+            exp = {'SCHOOLS': schools, 'DAY': today}
+            if os.environ.get('CS_ATLAS_SNAPSHOT_COMMIT'):
+                exp['CS_ATLAS_SNAPSHOT_COMMIT'] = os.environ['CS_ATLAS_SNAPSHOT_COMMIT']
+            aj = submit(sbatch_argv(ADDWORKS, after=guard_jobs or None, export=exp, singleton=True),
+                        os.environ.get('CS_ATLAS_CODE', str(Path.cwd())))
+            state.log('addworks_queued', schools=schools, addworks_job=aj)
+    except Exception as e:  # noqa: BLE001  (a failed resubmit must be visible, not a bare traceback)
+        state.log('stalled', reason=oa_api.redact(f'resubmit failed: {type(e).__name__}: {e}')[:500])
+        state.write_status(chunks, ledger)
+        print(oa_api.redact(f'resubmit failed: {e}'), file=sys.stderr)
+        return 1
     state.log('day_end' if left else 'all_done', reason=why, left=left, next=nxt, credits_today=credits_today(ledger, today))
     state.write_status(chunks, ledger)
     return 0
