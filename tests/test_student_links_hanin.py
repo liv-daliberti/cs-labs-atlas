@@ -157,7 +157,7 @@ def test_R_STU_20_entry_text_role_beats_heading_and_preceding_cue(tmp_path):
     previous entry's 'Next Position: PhD Student' heading, 'Rachel Gologorsky : Medical Student (2024)' in a lab-alumni list, 'Ross Cortino Ph.D.
     student' under a masters role: the entry's own words right after the name decide."""
     page = ('<p>Alumni Ava Old (Ph.D., 2021), now at Google Zihan Zhou (Master, Winter 2025) Next Position: PhD Student, MIT Theodor Chakhachiro MS Student, '
-            'Robotics Lab Alumni Rachel Gologorsky : Medical Student (2024) Graduate Students Ross Cortino Ph.D. student (ROB) Pat Lee Staff Gray Thomas , Ph.D. (UT Austin) Research Investigator Curt Laub Current Graduate Students Emma Treadway received her B.S. in Engineering Science</p>')
+            'Robotics Lab Alumni Rachel Gologorsky : Medical Student (2024) Graduate Students Ross Cortino Ph.D. student (ROB) Pat Lee Staff Gray Thomas , Ph.D. (UT Austin) Research Investigator Curt Laub Current Graduate Students Emma Treadway received her B.S. in Engineering Science Staff Mengyan Wu Software Developer Collaborators Zhengxu Tang , (Summer 2023 – Fall 2024), UG in MATH &amp; CS, Next: PhD in EECS</p>')
     text = ' '.join(__import__('re').sub(r'<[^>]+>', ' ', page).split())
     P.data_w('labpage-additions.json', 'x', root=tmp_path).write_text(json.dumps(dict(students=[
         dict(name='Zihan Zhou', role=None, years=[2025, 2025], alumni=True, url='https://h.example', sha256=SHA, quote=text[:text.index('Zihan Zhou') + 10], pi='Boris Hanin'),
@@ -165,11 +165,13 @@ def test_R_STU_20_entry_text_role_beats_heading_and_preceding_cue(tmp_path):
         dict(name='Rachel Gologorsky', role=None, years=[2024, 2024], alumni=True, url='https://h.example', sha256=SHA, quote=text[:text.index('Rachel Gologorsky') + 17], pi='Boris Hanin'),
         dict(name='Ross Cortino', role='masters', years=[2024, 2024], alumni=False, url='https://h.example', sha256=SHA, quote=text[:text.index('Ross Cortino') + 12], pi='Boris Hanin'),
         dict(name='Gray Thomas', role='phd', years=[2023, 2023], alumni=False, url='https://h.example', sha256=SHA, quote=text[:text.index('Gray Thomas') + 11], pi='Boris Hanin'),
+        dict(name='Mengyan Wu', role='phd', years=[2025, 2025], alumni=False, url='https://h.example', sha256=SHA, quote=text[:text.index('Mengyan Wu') + 10], pi='Boris Hanin'),
+        dict(name='Zhengxu Tang', role='phd', years=[2024, 2024], alumni=False, url='https://h.example', sha256=SHA, quote=text[:text.index('Zhengxu Tang') + 12], pi='Boris Hanin'),
         dict(name='Emma Treadway', role='undergraduate', years=[2025, 2025], alumni=False, url='https://h.example', sha256=SHA, quote=text[:text.index('Emma Treadway') + 13], pi='Boris Hanin')])))
     db = sqlite3.connect(str(P.data_w('labpage-audit-captures.sqlite', 'x', root=tmp_path)))
     db.execute('create table captures (id integer primary key, url text, sha256 text, content blob, fetched_at text)')
     db.execute('insert into captures (url, sha256, content, fetched_at) values (?, ?, ?, ?)', ('https://h.example', SHA, gzip.compress(page.encode()), '2026-10-30T18:05:40+00:00'))
     db.commit(); db.close()
-    papers = {'Boris Hanin': [paper('w1', 2025, ['Hanin, Boris', 'Zhou, Zihan', 'Chakhachiro, Theodor', 'Gologorsky, Rachel', 'Cortino, Ross', 'Thomas, Gray', 'Treadway, Emma'])]}
+    papers = {'Boris Hanin': [paper('w1', 2025, ['Hanin, Boris', 'Zhou, Zihan', 'Chakhachiro, Theodor', 'Gologorsky, Rachel', 'Cortino, Ross', 'Thomas, Gray', 'Treadway, Emma', 'Wu, Mengyan', 'Tang, Zhengxu'])]}
     out = CO.corroborated_rows('x', papers, {'Boris Hanin': []}, CO.open_capture_dbs('x', tmp_path), tmp_path, collections.Counter())
-    assert {r['name']: r['role'] for r, _ in out} == {'Zihan Zhou': 'masters', 'Theodor Chakhachiro': 'masters', 'Ross Cortino': 'phd'}   # no medical student, no staff title after a degree (Gray Thomas), no role the section contradicts (Treadway)
+    assert {r['name']: r['role'] for r, _ in out} == {'Zihan Zhou': 'masters', 'Theodor Chakhachiro': 'masters', 'Ross Cortino': 'phd', 'Zhengxu Tang': 'undergraduate'}   # no software developer (Wu), no medical student, no staff title after a degree (Gray Thomas), no role the section contradicts (Treadway)

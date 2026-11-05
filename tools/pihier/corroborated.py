@@ -72,7 +72,7 @@ def cue_role(text, quote, name):
     return best[1] if best and best[1] != 'not' else None
 
 
-LOCAL_CUES = [('other', re.compile(r"medical\s+students?|\bm\.?d\.?\s+students?|\bresidents?\b|post-?doc|\bvisiting\b|\bresearch(?:er|\s+scientist|\s+engineer|\s+assistant)\b|\bengineer\b|\bstaff\b", re.I))] + [(k, re.compile(rx.pattern + (r"|\(\s*master\b|\(\s*m\.?s\.?\b" if k == 'masters' else ''), re.I)) for k, rx in CUES[:3]]
+LOCAL_CUES = [('other', re.compile(r"medical\s+students?|\bm\.?d\.?\s+students?|\bresidents?\b|post-?doc|\bvisiting\b|\bresearch(?:er|\s+scientist|\s+engineer|\s+assistant)\b|\bengineer\b|\bstaff\b|\bdevelopers?\b", re.I))] + [(k, re.compile(rx.pattern + (r"|\(\s*master\b|\(\s*m\.?s\.?\b" if k == 'masters' else (r"|\bug\b" if k == 'undergraduate' else '')), re.I)) for k, rx in CUES[:3]]
 
 
 STAFF_AFTER = re.compile(r"^\W*(?:ph\.?d\.?\W*(?:\([^)]*\)\W*)?)?(?:research\s+(?:investigator|engineer|scientist|associate|fellow)|scientist|lecturer|professor|postdoc)\b", re.I)
@@ -80,7 +80,7 @@ STAFF_AFTER = re.compile(r"^\W*(?:ph\.?d\.?\W*(?:\([^)]*\)\W*)?)?(?:research\s+(
 
 def local_cue(text, quote, name):
     """R-STU-20 (Michigan 2026-11-05): the role the entry ITSELF states right after the name ('Zihan Zhou (Master, Winter 2025)', 'Theodor
-    Chakhachiro MS Student', 'Rachel Gologorsky : Medical Student (2024)'), within 25 characters. It beats the cue before the name, which in an
+    Chakhachiro MS Student', 'Rachel Gologorsky : Medical Student (2024)'), within 40 characters. It beats the cue before the name, which in an
     alumni or next-position list belongs to the previous entry. 'other' = a role that is not a student role; None = the entry states none."""
     nq = ' '.join((quote or '').split())
     i = text.find(nq) if nq else -1
@@ -88,7 +88,7 @@ def local_cue(text, quote, name):
         return None
     j = text.rfind(name, i, i + len(nq))
     end = (j + len(name)) if j >= 0 else i + len(nq)
-    after = text[end:end + 25]
+    after = text[end:end + 40]
     best = None
     for kind, rx in LOCAL_CUES:
         m = rx.search(after)
