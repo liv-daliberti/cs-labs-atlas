@@ -150,3 +150,24 @@ def test_R_STU_20_capture_year_is_the_wayback_timestamp_not_the_fetch_date(tmp_p
     papers = {'Boris Hanin': [paper('w2', 2020, ['Hanin, Boris', 'Jiang, Tianze']), paper('w9', 2026, ['Hanin, Boris', 'Jiang, Tianze'])]}
     out = CO.corroborated_rows('x', papers, {'Boris Hanin': []}, dbs, tmp_path, collections.Counter())
     assert [(r['years'], w) for r, w in out] == [([2020], ['w2'])]
+
+
+def test_R_STU_20_entry_text_role_beats_heading_and_preceding_cue(tmp_path):
+    """Michigan 2026-11-05 hand check: 'Zihan Zhou (Master, Winter 2025)' sat in a Ph.D. alumni list, 'Theodor Chakhachiro MS Student' under the
+    previous entry's 'Next Position: PhD Student' heading, 'Rachel Gologorsky : Medical Student (2024)' in a lab-alumni list, 'Ross Cortino Ph.D.
+    student' under a masters role: the entry's own words right after the name decide."""
+    page = ('<p>Alumni Ava Old (Ph.D., 2021), now at Google Zihan Zhou (Master, Winter 2025) Next Position: PhD Student, MIT Theodor Chakhachiro MS Student, '
+            'Robotics Lab Alumni Rachel Gologorsky : Medical Student (2024) Graduate Students Ross Cortino Ph.D. student (ROB) Pat Lee</p>')
+    text = ' '.join(__import__('re').sub(r'<[^>]+>', ' ', page).split())
+    P.data_w('labpage-additions.json', 'x', root=tmp_path).write_text(json.dumps(dict(students=[
+        dict(name='Zihan Zhou', role=None, years=[2025, 2025], alumni=True, url='https://h.example', sha256=SHA, quote=text[:text.index('Zihan Zhou') + 10], pi='Boris Hanin'),
+        dict(name='Theodor Chakhachiro', role='phd', years=[2024, 2024], alumni=False, url='https://h.example', sha256=SHA, quote=text[:text.index('Theodor Chakhachiro') + 19], pi='Boris Hanin'),
+        dict(name='Rachel Gologorsky', role=None, years=[2024, 2024], alumni=True, url='https://h.example', sha256=SHA, quote=text[:text.index('Rachel Gologorsky') + 17], pi='Boris Hanin'),
+        dict(name='Ross Cortino', role='masters', years=[2024, 2024], alumni=False, url='https://h.example', sha256=SHA, quote=text[:text.index('Ross Cortino') + 12], pi='Boris Hanin')]))) 
+    db = sqlite3.connect(str(P.data_w('labpage-audit-captures.sqlite', 'x', root=tmp_path)))
+    db.execute('create table captures (id integer primary key, url text, sha256 text, content blob, fetched_at text)')
+    db.execute('insert into captures (url, sha256, content, fetched_at) values (?, ?, ?, ?)', ('https://h.example', SHA, gzip.compress(page.encode()), '2026-10-30T18:05:40+00:00'))
+    db.commit(); db.close()
+    papers = {'Boris Hanin': [paper('w1', 2025, ['Hanin, Boris', 'Zhou, Zihan', 'Chakhachiro, Theodor', 'Gologorsky, Rachel', 'Cortino, Ross'])]}
+    out = CO.corroborated_rows('x', papers, {'Boris Hanin': []}, CO.open_capture_dbs('x', tmp_path), tmp_path, collections.Counter())
+    assert {r['name']: r['role'] for r, _ in out} == {'Zihan Zhou': 'masters', 'Theodor Chakhachiro': 'masters', 'Ross Cortino': 'phd'}   # the medical student is no student role
