@@ -70,19 +70,20 @@ def fake_run(out='', rc=0):
 
 def test_release_guard_defers_on_any_release_and_on_unknowns(monkeypatch):
     kw = dict(clock=lambda: 1e9, sleep=lambda s: None)
+    gk = dict(kw, lease=lambda: None)   # the squeue signal alone; a real release holding the lease must not leak in
     T._last_squeue[0] = 0.0
     assert T.release_jobs(fake_run(''), **kw) == []
-    T.guard_no_release(fake_run(''), **kw)
+    T.guard_no_release(fake_run(''), **gk)
     with pytest.raises(T.Deferred) as e:
-        T.guard_no_release(fake_run('32110109\n'), **kw)
+        T.guard_no_release(fake_run('32110109\n'), **gk)
     assert e.value.jobs == ['32110109']
     with pytest.raises(T.Deferred):                                 # squeue failing = unknown = no write
-        T.guard_no_release(fake_run('', rc=1), **kw)
+        T.guard_no_release(fake_run('', rc=1), **gk)
 
     def boom(cmd):
         raise OSError('no squeue')
     with pytest.raises(T.Deferred):
-        T.guard_no_release(boom, **kw)
+        T.guard_no_release(boom, **gk)
 
 
 def test_release_lease_defers_even_when_no_release_job_is_queued():
