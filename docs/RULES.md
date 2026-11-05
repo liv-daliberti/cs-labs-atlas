@@ -290,7 +290,7 @@ ORCID 0000-0002-7339-8342 and the OpenAlex author A5113215889 that carries it (t
 ### R-PAP-35 (2026-11-05, owner: round-r2 Michigan namesake) — middle names against name-only identities
 An identity that rests on the name through a DBLP person page (DOI or title) or a publication list does not stand when the byline writes middle names and the PI's own names write middle
 names and they share no initial (`middle_conflict`, `NAME_ONLY_IDENTITY`; ORCID, author-id, verified-collection and advisee identities are not touched). The Michigan paper by M. E. J. Newman
-(Physics) was credited to Mark W Newman (CSE) through a census DBLP id that is the physicist's page. The affiliation half of the owner's wording (department match) is not added: a middle-name
+(Physics) was credited to Mark W Newman (CSE) through a census DBLP id that is the physicist's page. A census DBLP id whose person names all contradict the PI's middle name is dropped like a name mismatch (R-PAP-05; Mark W Newman's census id was the physicist's page, so the anchored author id and every Newman paper followed it; his own page, pid/03/6629, is a reviewed override). The affiliation half of the owner's wording (department match) is not added: a middle-name
 contradiction alone settled every case in the packages; the count per school is `namesake_middle_name_conflicts` in `report.json`.
 
 ### R-PAP-33 (2026-11-05, owner: round-r2 pooled failures; abstracts decision) — more non-research records
