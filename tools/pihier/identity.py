@@ -52,6 +52,7 @@ def apply_dump(pis, dump, dblp_doi, dblp_title, n):
     drop an id, a PI still without one takes the unique person of exactly that name (no disambiguation record), every
     record anchors by DOI and title, and the person's ORCIDs join the PI's."""
     DP, DN = dump['persons'], dump['by_name']
+    n.setdefault('dblp_ids_dropped_name_mismatch', 0)  # report.schema requires the counter even when nothing is dropped (protocol schools skip apply_cached_lists)
     for p in pis:
         keep = [q for q in p['dblp'] if q not in DP or any(not name_conflict(p['names'], re.sub(r'\s+\d{4}$', '', dn)) for dn in DP[q]['names'])]
         if len(keep) < len(p['dblp']):
