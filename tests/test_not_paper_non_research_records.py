@@ -54,3 +54,9 @@ def test_R_PAP_33_conference_abstract_by_pages():
     r = row('Some abstract', 'conference-abstract', 'ACM EC', byline=('A', 'B', 'C'), doi='10.1145/9')
     assert papers.not_a_paper(r, pages=2) == 'conference_abstract'
     assert papers.not_a_paper(r, pages=8) is None and papers.not_a_paper(r) is None
+
+
+def test_R_PAP_33_conference_volume_titles():
+    assert papers.not_a_paper(row('Conference on Health, Inference, and Learning (CHIL) 2022', 'article', 'CHIL', doi='')) == 'proceedings_volume'
+    assert papers.not_a_paper(row('Workshop on Internet Economics (WIE2016) Final Report.', 'article', 'x', doi='')) is not None
+    assert papers.not_a_paper(row('Conference on the Mathematics of Learning: A Survey', 'article', 'x', doi='10.1/q')) is None

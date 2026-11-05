@@ -47,3 +47,12 @@ def test_R_PAP_36_requests_take_host_throttle_slots(monkeypatch):
     monkeypatch.setattr(D.requests, 'get', lambda *a, **k: R)
     assert D.polite_get('https://proceedings.mlr.press/v1/x.pdf') is R
     assert calls == [('proceedings.mlr.press', 3.0), ('429', 'proceedings.mlr.press')]
+
+
+def test_R_PAP_36_arxiv_v1_that_predates_the_record():
+    from pihier import papers
+    ev = dict(basis='page1_arxiv', url='https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1211/1211.1001v1.pdf')
+    assert papers.arxiv_predates_record(ev, 2016)            # Mossel's Majority is Stablest: v1 2012, journal 2016
+    assert not papers.arxiv_predates_record(ev, 2015)
+    assert not papers.arxiv_predates_record(dict(basis='page1_open', url='https://jmlr.org/x.pdf'), 2016)
+    assert not papers.arxiv_predates_record(dict(basis='page1_arxiv', url='https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2206/2206.01.pdf'), 2022)

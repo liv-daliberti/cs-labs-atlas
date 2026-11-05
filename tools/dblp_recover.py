@@ -210,7 +210,7 @@ def candidates(school, skip_have=True):
                     continue
                 ax = corr[q].get(t) or next((re.search(r'arxiv\.org/abs/(\d{4}\.\d{4,5})', e).group(1) for e in rec.get('ee') or [] if re.search(r'arxiv\.org/abs/(\d{4}\.\d{4,5})', e)), None)
                 out.append(dict(pi=p['pi'], names=p['names'], dblp_key=k, title=rec.get('title'), year=int(y), doi=ndoi(rec.get('doi')) or None,
-                                venue=rec.get('venue'), byline=list((rec.get('authors') or {}).values()), arxiv=ax, ee=rec.get('ee') or []))
+                                venue=rec.get('venue'), byline=list(dict.fromkeys((rec.get('authors') or {}).values())), arxiv=ax, ee=rec.get('ee') or []))
     return out
 
 
