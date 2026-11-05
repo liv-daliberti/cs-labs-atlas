@@ -25,6 +25,7 @@ Repeat before each release: `atlas pipeline`-less, see docs/RUNBOOK.md "Refresh 
 """
 import argparse
 import json
+import re
 import sqlite3
 import sys
 import time
@@ -288,7 +289,7 @@ def main(argv=None):
     m.add_argument('--cap', type=int, default=100)
     r = sub.add_parser('report'); r.add_argument('schools', nargs='+'); r.add_argument('--tag', default=TAG)
     a = ap.parse_args(argv)
-    years = [int(y) for y in getattr(a, 'years', '2026').split(',')]
+    years = [int(y) for y in re.split(r'[,+]', getattr(a, 'years', '2026'))]  # '+' because sbatch --export splits values on commas
     if a.cmd == 'fetch':
         cl = oa_api.Client(cap=a.cap, kind='refresh2026', floor=a.floor)
         for s in a.schools:
