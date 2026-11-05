@@ -220,6 +220,17 @@
        "items": {
         "type": "string"
        }
+      },
+      "dblp_key": {
+       "description": "The DBLP record the page was read for (R-PAP-36, school_via page1_dblp).",
+       "type": "string",
+       "x-rules": [
+        "R-PAP-36"
+       ]
+      },
+      "fetched_at": {
+       "description": "When the page was fetched (R-PAP-36).",
+       "type": "string"
       }
      },
      "required": [

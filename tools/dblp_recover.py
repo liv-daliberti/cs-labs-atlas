@@ -29,7 +29,7 @@ from pi_fulltext_affiliation import tie  # noqa: E402
 import atlas_paths as P  # noqa: E402  (every path in one place)
 
 UA = 'HomogenizingScienceResearch/0.2 (academic metadata inventory)'
-OPEN_HOSTS = ('aclanthology.org', 'proceedings.mlr.press', 'openaccess.thecvf.com', 'papers.nips.cc', 'proceedings.neurips.cc',
+OPEN_HOSTS = ('eprint.iacr.org', 'aclanthology.org', 'proceedings.mlr.press', 'openaccess.thecvf.com', 'papers.nips.cc', 'proceedings.neurips.cc',
               'www.usenix.org', 'usenix.org', 'www.ijcai.org', 'ojs.aaai.org', 'openreview.net', 'www.isca-speech.org',
               'www.roboticsproceedings.org', 'roboticsproceedings.org', 'jmlr.org', 'www.jmlr.org', 'dl.acm.org/doi/pdf')
 _last = collections.defaultdict(float); _lock = threading.Lock(); _robots = {}
@@ -71,6 +71,12 @@ def pdf_url(u):
     if m:
         kind = 'Paper-Conference' if 'Conference' in u else 'Paper'
         return f'https://proceedings.neurips.cc/paper_files/paper/{m.group(1)}/file/{m.group(2)}-{kind}.pdf'
+    m = re.match(r'https://eprint\.iacr\.org/(\d{4})/(\d+)(?:\.pdf)?/?$', u)   # R-PAP-36: IACR ePrint, an open archive
+    if m:
+        return f'https://eprint.iacr.org/{m.group(1)}/{m.group(2)}.pdf'
+    m = re.match(r'https://(?:www\.)?jmlr\.org/papers/v(\d+)/([\w\-.]+?)\.html$', u)   # R-PAP-36: JMLR volume page -> its PDF
+    if m:
+        return f'https://jmlr.org/papers/volume{m.group(1)}/{m.group(2)}/{m.group(2)}.pdf'
     m = re.match(r'https://openreview\.net/forum\?id=([\w\-]+)', u)
     if m:
         return f'https://openreview.net/pdf?id={m.group(1)}'
@@ -107,13 +113,47 @@ def dump_pubs(pis):
     return out
 
 
+def now():
+    return time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())
+
+
+def bare_key(k):
+    """'https://dblp.org/rec/conf/colt/FreundLW22' and 'conf/colt/FreundLW22' are one record."""
+    return re.sub(r'^https?://dblp\.org/rec/', '', str(k or ''))
+
+
+_EE_CACHE = {}
+
+
+def dump_ee(keys):
+    """{bare key: [ee URLs]} of the given records from DBLP's own dump XML (never dblp.org: a challenge page answers there)."""
+    from dblp_dump_pages import records
+    import html as html_
+    want = {bare_key(k) for k in keys}
+    if want <= set(_EE_CACHE):
+        return {k: _EE_CACHE[k] for k in want}
+    for key, body in records(P.DBLP_DUMP_XML):
+        if key in want:
+            _EE_CACHE[key] = [re.sub(r'\s+', '', html_.unescape(m)) for m in re.findall(r'<ee[^>]*>([^<]*)</ee>', body)]
+    for k in want - set(_EE_CACHE):
+        _EE_CACHE[k] = []
+    return {k: _EE_CACHE[k] for k in want}
+
+
 def candidates(school, skip_have=True):
     pis = read(P.data('pis.json', school))
     own = P.data('dblp_pubs.json.gz', school)
+    legacy = {}
     if own.exists() or school in DBLP:
-        pubs = read(own if own.exists() else P.archive_sweep(DBLP[school]) / 'raw/dblp_pubs.json.gz')['pubs']
-    else:  # a protocol school has no legacy DBLP sweep (Michigan request 1, 2026-10-29): the PIs' pages from the dump
-        pubs = dump_pubs(pis)
+        legacy = read(own if own.exists() else P.archive_sweep(DBLP[school]) / 'raw/dblp_pubs.json.gz')['pubs']
+    # R-PAP-36 (2026-11-05): the cached lists hold only what the census queries returned (MIT's Mossel NeurIPS 2022 and Freund COLT 2022 were never
+    # candidates); the PI's full DBLP person page from the dump adds every record the lists lack. A pre-protocol school keeps its cached records
+    # (they carry `ee`); a record only the dump has gets its `ee` from the dump XML (`dump_ee`).
+    pubs = dict(legacy)
+    bare_have = {bare_key(k) for k in legacy}
+    for k, rec in dump_pubs(pis).items():
+        if bare_key(k) not in bare_have:
+            pubs[k] = rec
     rows = [json.loads(l) for l in gzip.open(P.data('lab_papers.jsonl.gz', school), 'rt')]
     have = collections.defaultdict(set)
     for r in rows:
@@ -129,7 +169,11 @@ def candidates(school, skip_have=True):
             for q in rec.get('authors') or {}:
                 corr[q][norm_title((rec.get('title') or '').rstrip('.'))] = f'{m.group(1)}.{m.group(2)}'
     out = []
+    need_ee = [k for k, rec in pubs.items() if not rec.get('ee') and rec.get('year') and 2016 <= int(rec['year']) <= 2026 and 'journals/corr' not in k and Y0 <= int(rec['year']) <= Y1]
+    ee_of = dump_ee(need_ee) if need_ee and os.environ.get('DBLP_RECOVER_NO_EE') != '1' else {}
     for k, rec in pubs.items():
+        if not rec.get('ee') and bare_key(k) in ee_of:
+            rec['ee'] = ee_of[bare_key(k)]
         y = rec.get('year')
         if not y or not (2016 <= int(y) <= 2026) or 'journals/corr' in k or not (Y0 <= int(y) <= Y1):
             continue
@@ -156,7 +200,9 @@ def db(school):
 
 def run(school, workers):
     key = os.environ.get('OPENALEX_API_KEY'); inst = 'https://openalex.org/' + INST[school]; aff = re.compile(AFF[school], re.I)
-    c = db(school); done = {(r[0], r[1]) for r in c.execute('select pi, dblp_key from tries where accepted is not null')}
+    c = db(school)
+    retry = '--retry' in sys.argv   # R-PAP-36: ask again for the records an earlier run could not confirm (new hosts, a fuller candidate list)
+    done = {(r[0], r[1]) for r in c.execute('select pi, dblp_key, status from tries where accepted is not null') if not (retry and r[2] in ('not_recovered', 'dblp_unconfirmed'))}
     todo = [x for x in candidates(school) if (x['pi'], x['dblp_key']) not in done]
     print(json.dumps(dict(school=school, candidates=len(todo))), flush=True)
     wlock = threading.Lock(); acc = collections.Counter()
@@ -168,6 +214,7 @@ def run(school, workers):
             c.commit()
 
     def one(x):
+        read_pages = []
         nm = Name(x['names']); names = sorted({(given(t[0]), t[-1]) for n in x['names'] for t in [toks(n)] if len(t) >= 2})
         if x['doi'] and key:  # 1. OpenAlex by DOI
             try:
@@ -197,9 +244,9 @@ def run(school, workers):
             except requests.RequestException:
                 r = None
             if r is not None and r.status_code == 200 and r.content.startswith(b'%PDF'):
-                txt = page1_text(r.content); how, quotes = tie(re.sub(r'\s+', ' ', txt), names, aff)
+                txt = page1_text(r.content); how, quotes = tie(re.sub(r'\s+', ' ', txt), names, aff); read_pages.append(url)
                 record(x, 'arxiv', url, 'ok', hashlib.sha256(r.content).hexdigest(), txt, int(bool(how)),
-                       dict(basis='page1_arxiv', how=how, quotes=quotes, url=url, pdf_sha256=hashlib.sha256(r.content).hexdigest(), arxiv=x['arxiv']) if how else None)
+                       dict(basis='page1_arxiv', how=how, quotes=quotes, url=url, pdf_sha256=hashlib.sha256(r.content).hexdigest(), arxiv=x['arxiv'], dblp_key=bare_key(x['dblp_key']), fetched_at=now()) if how else None)
                 if how:
                     return 'arxiv'
         for e in x['ee']:  # 3. an open proceedings PDF
@@ -208,12 +255,14 @@ def run(school, workers):
                 continue
             r = polite_get(u)
             if r is not None and r.status_code == 200 and r.content[:4] == b'%PDF':
-                txt = page1_text(r.content); how, quotes = tie(re.sub(r'\s+', ' ', txt), names, aff)
+                txt = page1_text(r.content); how, quotes = tie(re.sub(r'\s+', ' ', txt), names, aff); read_pages.append(u)
                 record(x, 'open:' + urlsplit(u).netloc, u, 'ok', hashlib.sha256(r.content).hexdigest(), txt, int(bool(how)),
-                       dict(basis='page1_open', how=how, quotes=quotes, url=u, pdf_sha256=hashlib.sha256(r.content).hexdigest()) if how else None)
+                       dict(basis='page1_open', how=how, quotes=quotes, url=u, pdf_sha256=hashlib.sha256(r.content).hexdigest(), dblp_key=bare_key(x['dblp_key']), fetched_at=now()) if how else None)
                 if how:
                     return 'open'
-        record(x, 'none', None, 'not_recovered', ok=0)
+        # R-PAP-36: no page-1 evidence, so not added; the reason is kept for later (a ledger of what could not be confirmed)
+        why = ('page1_read_school_not_named' if read_pages else 'no_open_page1_source' if not x['arxiv'] and not any(h in e for e in x['ee'] for h in OPEN_HOSTS) else 'page1_fetch_failed')
+        record(x, 'none', None, 'dblp_unconfirmed', ok=0, ev=dict(reason=why, dblp_key=bare_key(x['dblp_key']), ee=x['ee'][:4]))
         return 'none'
 
     with ThreadPoolExecutor(workers) as ex:
