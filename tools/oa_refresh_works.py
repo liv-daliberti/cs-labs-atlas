@@ -25,12 +25,10 @@ Repeat before each release: `atlas pipeline`-less, see docs/RUNBOOK.md "Refresh 
 """
 import argparse
 import json
-import re
 import sqlite3
 import sys
 import time
 import zlib
-from pathlib import Path
 
 import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
