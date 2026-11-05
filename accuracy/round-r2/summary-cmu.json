@@ -1,0 +1,189 @@
+{
+ "school": "cmu",
+ "date": "2026-11-05",
+ "seed": 20261102,
+ "n_verdicts": 230,
+ "files": {
+  "pis.json": "13e3a3edbc6b9b9f6a9e5aaf3c03b58d6624b76932964bb597cdeab927f28c5b",
+  "students.json": "d090294954a97a268a689e6cd2b1786655a5e8c59b4c8dadeb8c6fc17c81bb7f",
+  "lab_papers.jsonl.gz": "b929dab547d0d1e4e033675966e705c53023a464807338f8d2580eb26c392e5c",
+  "student_papers.jsonl.gz": "fda378da128928457eab3b59328ee1ce4770b598dae201f383010e8bae6540b3",
+  "copies.json": "fc9809735a03a12f4747f5a2f1661b0a9b5cc6a18fc35cf974cd02c066ec97a0"
+ },
+ "files_now": {
+  "pis.json": "13e3a3edbc6b9b9f6a9e5aaf3c03b58d6624b76932964bb597cdeab927f28c5b",
+  "students.json": "d090294954a97a268a689e6cd2b1786655a5e8c59b4c8dadeb8c6fc17c81bb7f",
+  "lab_papers.jsonl.gz": "b929dab547d0d1e4e033675966e705c53023a464807338f8d2580eb26c392e5c",
+  "student_papers.jsonl.gz": "fda378da128928457eab3b59328ee1ce4770b598dae201f383010e8bae6540b3",
+  "copies.json": "fc9809735a03a12f4747f5a2f1661b0a9b5cc6a18fc35cf974cd02c066ec97a0"
+ },
+ "lab_precision_uniform": {
+  "k": 49,
+  "n": 50,
+  "p": 0.98,
+  "lo": 0.895,
+  "hi": 0.9965,
+  "unclear": 0
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 49,
+  "n": 50,
+  "p": 0.98,
+  "lo": 0.895,
+  "hi": 0.9965,
+  "unclear": 0
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "listing": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "identity_not_reviewed": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "lab_precision_all40": {
+  "k": 64,
+  "n": 65,
+  "p": 0.9846,
+  "lo": 0.9179,
+  "hi": 0.9973,
+  "unclear": 0
+ },
+ "student_precision_uniform": {
+  "k": 50,
+  "n": 50,
+  "p": 1.0,
+  "lo": 0.9287,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "student_precision_strata": {
+  "advisee_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "full_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "within_lab_byline_match": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "student_precision_all40": {
+  "k": 65,
+  "n": 65,
+  "p": 1.0,
+  "lo": 0.9442,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_coverage": {
+  "k": 44,
+  "n": 45,
+  "p": 0.9778,
+  "lo": 0.8843,
+  "hi": 0.9961
+ },
+ "lab_coverage_items": {
+  "drawn": 50,
+  "true_lab_papers": 45,
+  "not_lab_papers_absent": 4,
+  "not_lab_papers_in_build": 1
+ },
+ "student_coverage": {
+  "k": 48,
+  "n": 48,
+  "p": 1.0,
+  "lo": 0.9259,
+  "hi": 1.0
+ },
+ "student_coverage_items": {
+  "drawn": 50,
+  "no_coauthored_paper": 2
+ },
+ "failures": {
+  "not_a_paper": 2,
+  "missing_from_build": 1
+ },
+ "incorrect": [
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "Brad A Myers|None|https://openalex.org/W4392984528",
+   "failure_type": "not_a_paper",
+   "reason": "ACM eBooks interview (\"Interview: Chris Harrison\"), single-author editorial-type item, not a research output",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Adam Perer|conf/kdd/PlantHSOGMPLC22",
+   "failure_type": "not_a_paper",
+   "reason": "Workshop overview \"Visualization in Data Science VDS @ KDD 2022\", a workshop description, in the build",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Ruslan Salakhutdinov|conf/nips/LiangCFLNCDAAMS23",
+   "failure_type": "missing_from_build",
+   "reason": "PI has no institution in OA; byline holds his advisee Paul Pu Liang (his student list) and CMU co-authors; build keeps it only in the Morency lab",
+   "policy": null
+  }
+ ],
+ "unclear": [],
+ "screened": [],
+ "population": {
+  "n_lab_papers": 31031,
+  "n_student_papers": 29237,
+  "n_coverage_pool": 22877,
+  "n_student_candidates": 1018
+ },
+ "round": {
+  "id": "r2",
+  "sizes": {
+   "uniform": 50,
+   "stratum": 5,
+   "cov": 50,
+   "cands": 200
+  },
+  "judged": {
+   "lab_precision": 65,
+   "student_precision": 65,
+   "lab_coverage": 50,
+   "student_coverage": 50
+  }
+ }
+}

@@ -1,0 +1,183 @@
+{
+ "school": "stanford",
+ "date": "2026-11-05",
+ "seed": 20261102,
+ "n_verdicts": 230,
+ "files": {
+  "pis.json": "2bbcb74b1a09725d5805cc3f25227283916c843bcd16179b10c426494edbd114",
+  "students.json": "76f1760687b69b609b3fcd69ca653d708160cf42a39d7db5c0d9b567470576a7",
+  "lab_papers.jsonl.gz": "4fc28a7324e1419bc95e0b3dc23b8f2a7f96b72fedac17905cb8dec511a7ac86",
+  "student_papers.jsonl.gz": "65abede5727d25cb4909168ca7cdef5569547c9b381c5f1fceaba83d79fa962d",
+  "copies.json": "9377b28265b09ae378dd35783d631f928f2da315c2bd10b0d95526d42bf85430"
+ },
+ "files_now": {
+  "pis.json": "2bbcb74b1a09725d5805cc3f25227283916c843bcd16179b10c426494edbd114",
+  "students.json": "76f1760687b69b609b3fcd69ca653d708160cf42a39d7db5c0d9b567470576a7",
+  "lab_papers.jsonl.gz": "4fc28a7324e1419bc95e0b3dc23b8f2a7f96b72fedac17905cb8dec511a7ac86",
+  "student_papers.jsonl.gz": "65abede5727d25cb4909168ca7cdef5569547c9b381c5f1fceaba83d79fa962d",
+  "copies.json": "9377b28265b09ae378dd35783d631f928f2da315c2bd10b0d95526d42bf85430"
+ },
+ "lab_precision_uniform": {
+  "k": 50,
+  "n": 50,
+  "p": 1.0,
+  "lo": 0.9287,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 50,
+  "n": 50,
+  "p": 1.0,
+  "lo": 0.9287,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "listing": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "identity_not_reviewed": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "lab_precision_all40": {
+  "k": 65,
+  "n": 65,
+  "p": 1.0,
+  "lo": 0.9442,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "student_precision_uniform": {
+  "k": 50,
+  "n": 50,
+  "p": 1.0,
+  "lo": 0.9287,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "student_precision_strata": {
+  "advisee_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "full_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "within_lab_byline_match": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "student_precision_all40": {
+  "k": 65,
+  "n": 65,
+  "p": 1.0,
+  "lo": 0.9442,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_coverage": {
+  "k": 44,
+  "n": 45,
+  "p": 0.9778,
+  "lo": 0.8843,
+  "hi": 0.9961
+ },
+ "lab_coverage_items": {
+  "drawn": 50,
+  "true_lab_papers": 45,
+  "not_lab_papers_absent": 3,
+  "not_lab_papers_in_build": 0
+ },
+ "student_coverage": {
+  "k": 48,
+  "n": 48,
+  "p": 1.0,
+  "lo": 0.9259,
+  "hi": 1.0
+ },
+ "student_coverage_items": {
+  "drawn": 50,
+  "no_coauthored_paper": 2
+ },
+ "failures": {
+  "missing_from_build": 1
+ },
+ "incorrect": [
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Keith Winstein|conf/usenix/YuanRW25",
+   "failure_type": "missing_from_build",
+   "reason": "USENIX ATC 2025 page credits all three authors to Stanford; no OpenAlex record, build lacks it",
+   "policy": null
+  }
+ ],
+ "unclear": [
+  {
+   "sample": "lab_coverage",
+   "item": "Mykel Kochenderfer|journals/tmlr/MossYABCK26",
+   "reason": "No OpenAlex match and no affiliation evidence found for the 2026 TMLR paper"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Daniel Yamins|conf/cogsci/SanoFHY20",
+   "reason": "No OpenAlex match and no affiliation evidence found for the CogSci 2020 paper"
+  }
+ ],
+ "screened": [],
+ "population": {
+  "n_lab_papers": 21620,
+  "n_student_papers": 17794,
+  "n_coverage_pool": 11897,
+  "n_student_candidates": 1592
+ },
+ "round": {
+  "id": "r2",
+  "sizes": {
+   "uniform": 50,
+   "stratum": 5,
+   "cov": 50,
+   "cands": 200
+  },
+  "judged": {
+   "lab_precision": 65,
+   "student_precision": 65,
+   "lab_coverage": 50,
+   "student_coverage": 50
+  }
+ }
+}
