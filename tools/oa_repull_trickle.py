@@ -181,7 +181,21 @@ def release_jobs(run=None, clock=time.monotonic, sleep=time.sleep):
     return [x for x in r.stdout.split() if x]
 
 
-def guard_no_release(run=None, **kw):
+def release_lease_holder():
+    """The live `atlas-release` lease (tools/atlas_release.py lock_holder), held for the whole release chain, also between two 59-minute jobs. An
+    unreadable lease counts as held (never write on an unknown)."""
+    try:
+        import atlas_release
+        return atlas_release.lock_holder()
+    except Exception as e:  # noqa: BLE001
+        return {'note': f'lease unreadable: {type(e).__name__}'}
+
+
+def guard_no_release(run=None, lease=None, **kw):
+    """Defer while the release lease is held, or a cs-release job is queued or running (two signals; either one defers)."""
+    cur = (lease or release_lease_holder)()
+    if cur:
+        raise Deferred(['lease:atlas-release ' + str(cur.get('note') or cur.get('session') or '')])
     jobs = release_jobs(run, **kw)
     if jobs:
         raise Deferred(jobs)

@@ -85,6 +85,24 @@ def test_release_guard_defers_on_any_release_and_on_unknowns(monkeypatch):
         T.guard_no_release(boom, **kw)
 
 
+def test_release_lease_defers_even_when_no_release_job_is_queued():
+    kw = dict(clock=lambda: 2e9, sleep=lambda s: None)
+    T._last_squeue[0] = 0.0
+    T.guard_no_release(fake_run(''), lease=lambda: None, **kw)                       # lease free, no job: go
+    with pytest.raises(T.Deferred) as e:
+        T.guard_no_release(fake_run(''), lease=lambda: {'note': 'release 1105', 'session': 's'}, **kw)   # the gap between two chain jobs
+    assert 'atlas-release' in e.value.jobs[0] and not any(str(j).isdigit() for j in e.value.jobs)
+
+
+def test_real_lease_reader_defers_on_a_live_lease(tmp_path, monkeypatch):
+    import agent_lease
+    import atlas_release as AR
+    monkeypatch.setattr(AR, 'LEASE_ROOT', tmp_path)
+    assert T.release_lease_holder() is None
+    agent_lease.acquire(AR.LOCK_NAME, session='x', ttl=600, note='release test', root=tmp_path)
+    assert T.release_lease_holder() is not None
+
+
 def test_squeue_calls_are_60s_apart():
     t = [100.0]
     slept = []
