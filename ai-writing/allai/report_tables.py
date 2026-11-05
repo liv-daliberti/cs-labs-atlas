@@ -95,7 +95,27 @@ def main():
                     r = r.iloc[0]
                     rows.append([tag, meas, m, iv(r.orig, r.orig_lo, r.orig_hi, 2), iv(r.ai, r.ai_lo, r.ai_hi, 2), iv(r.gap, r.gap_lo, r.gap_hi, 2)])
     out.append('### robustness\n' + md(rows, ['rewrite', 'measure', 'model', 'original post - pre', 'rewrite post - pre', 'gap']))
+    rows = []
+    for m in ('specter2_proximity', 'qwen3_0p6b', 'nomic_v15'):
+        for meas in ('vendi', 'H_bt', 'H_km'):
+            a = chg[(chg.scope == 'all') & (chg.measure == meas) & (chg.model == m)]
+            b = ld('geom_change', 'polish-unf')
+            b = b[(b.scope == 'all') & (b.measure == meas) & (b.model == m)]
+            if len(a) and len(b):
+                a, b = a.iloc[0], b.iloc[0]
+                rows.append([meas, m, iv(a.orig, a.orig_lo, a.orig_hi, 2), iv(a.ai, a.ai_lo, a.ai_hi, 2), iv(a.gap, a.gap_lo, a.gap_hi, 2), iv(b.orig, b.orig_lo, b.orig_hi, 2), iv(b.ai, b.ai_lo, b.ai_hi, 2), iv(b.gap, b.gap_lo, b.gap_hi, 2)])
+    out.append('### unfiltered\n' + md(rows, ['measure', 'model', 'filtered: original', 'filtered: all-AI', 'filtered: gap', 'unfiltered: original', 'unfiltered: all-AI', 'unfiltered: gap']))
+    kd = json.load(open(R / 'kept_dropped.json'))
+    rows = [[r['group'], r['papers'], f"{r['dropped_share']:.1%}", f"{r['vs_overall']:+.1%}"] for r in kd['by_school']]
+    out.append('### kd school\n' + md(rows, ['school', 'papers', 'dropped', 'vs overall']))
+    rows = [[r['group'], r['papers'], f"{r['dropped_share']:.1%}"] for r in kd['by_year']]
+    out.append('### kd year\n' + md(rows, ['year', 'papers', 'dropped']))
+    rows = [[r['group'], r['papers'], f"{r['dropped_share']:.1%}", f"{r['vs_overall']:+.1%}"] for r in kd['by_field']]
+    out.append('### kd field\n' + md(rows, ['field', 'papers', 'dropped', 'vs overall']))
+    rows = [[k, v['papers'], f"{v['dropped_share']:.1%}"] for k, v in kd['by_content'].items()]
+    out.append('### kd content\n' + md(rows, ['abstracts', 'papers', 'dropped']))
     print('\n'.join(out))
+    print('overall dropped', kd['dropped_share'], 'source words', kd['source_words'], file=sys.stderr)
 
 
 if __name__ == '__main__':
