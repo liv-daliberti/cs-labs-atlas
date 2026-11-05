@@ -729,9 +729,10 @@ def recovered_rows(ctx, rows, seen):
     # publications page lists (tools/labpage_recover.py -> hierarchy/<school>/labpage-recovered.jsonl.gz, key 'labpage:<sha1>')
     for kind, label in RECOVERED_KINDS:
         for x in recovered_source(ctx, kind):
-            p = pid0.get(x['pi'])
+            p = pid0.get(x['pi']) or next((q for q in pid0.values() if q.get('censusName') == x['pi']), None)   # R-PAP-34: rows made under a census placeholder name
             if not p:
                 continue
+            x = dict(x, pi=p['pi'])
             ev = x['evidence']; date = str(x['year'])
 
             def aside(why, x=x):  # an accepted lab-page paper the build does not keep: named in report.json
