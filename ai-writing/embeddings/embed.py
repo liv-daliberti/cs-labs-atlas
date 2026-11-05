@@ -76,7 +76,10 @@ class Embedder:
     def __init__(self, key, dtype='float16', device=None):
         import torch
         self.torch = torch
-        self.key, self.cfg = key, MODELS[key]
+        self.key, self.cfg = key, dict(MODELS[key])
+        # EMB_BUDGET_SCALE (float, default 1): multiplies the per-batch padded-token budget, which models.py sizes for an 8 GB RTX 2080; node105's
+        # 24 GB A5000 runs 2-3x. An env override so the 2080 defaults stay as they are; a batch that still runs out of memory is split.
+        self.cfg['budget'] = int(self.cfg['budget'] * float(os.environ.get('EMB_BUDGET_SCALE', 1)))
         cfg = self.cfg
         C.use_extras()
         from transformers import AutoModel, AutoTokenizer
