@@ -2520,7 +2520,93 @@
     "observed": "2026-03-03",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/gatech/openalex-sweep.sqlite)"
    }
-  ]
+  ],
+  "periods": [
+   {
+    "id": "override_period_workyears_gatech_josephine_yu_2017",
+    "start": "2017",
+    "end": null,
+    "asof": "2022-01-18",
+    "datePrecision": "year",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20170217064411id_/http://www.math.gatech.edu:80/people?",
+      "sha256": "363f1a5be417d2a4e245efc006b91d1c4029d311e045a561d97c86ac3fd45bf9",
+      "quote": "Josephine Yu Assistant Professor",
+      "observed": "2017-02-17",
+      "kind": "unit_listing:MATH"
+     },
+     {
+      "url": "https://web.archive.org/web/20180109081501id_/http://www.math.gatech.edu/people/josephine-yu",
+      "sha256": "f0133af44c6ee369a97e194064e88dd6066387bee16355ff174c10e5593ba1ec",
+      "quote": "Josephine Yu Josephine Yu Associate Professor",
+      "observed": "2018-01-09",
+      "kind": "unit_page_capture"
+     },
+     {
+      "url": "https://web.archive.org/web/20190126150045id_/http://math.gatech.edu:80/people/josephine-yu",
+      "sha256": "cbeb1280a81f6a875ecaafff2869f70d9e8f87ef3c832acdc7b31646f9a320dd",
+      "quote": "Josephine Yu Josephine Yu Associate Professor",
+      "observed": "2019-01-26",
+      "kind": "unit_page_capture"
+     },
+     {
+      "url": "https://web.archive.org/web/20200923094928id_/https://math.gatech.edu/people/josephine-yu",
+      "sha256": "9b8af359227abce9e2c564590071a160125b62096b5a847bd1f3e48cd934b1f3",
+      "quote": "Josephine Yu Associate Professor",
+      "observed": "2020-09-23",
+      "kind": "unit_page_capture"
+     },
+     {
+      "url": "https://web.archive.org/web/20210128081228id_/https://math.gatech.edu/people/josephine-yu",
+      "sha256": "9ae79e6d9c552af8287d589a6fe691d6504fbb6e7eb737e19d9da914cd269e82",
+      "quote": "Josephine Yu Associate Professor",
+      "observed": "2021-01-28",
+      "kind": "unit_page_capture"
+     },
+     {
+      "url": "https://web.archive.org/web/20220118215724id_/https://math.gatech.edu/people/josephine-yu",
+      "sha256": "870b3ba50bc5c6cc42c631b4dea135e9dddaf54802b2e02835f1db841d21bd8f",
+      "quote": "Josephine Yu Associate Professor",
+      "observed": "2022-01-18",
+      "kind": "unit_page_capture"
+     }
+    ],
+    "reviewed": "periods_school_deep_workyears_20261105",
+    "note": "Dated evidence for every year 2017-2022: listings and dated Wayback captures naming the PI with a ladder title (hierarchy/gatech/deep-gap-evidence.json, work-years pass). Start is a lower bound; no end is claimed."
+   },
+   {
+    "id": "override_period_workyears_gatech_josephine_yu_2024",
+    "start": "2024",
+    "end": null,
+    "asof": "2025-08-04",
+    "datePrecision": "year",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20240419082357id_/https://math.gatech.edu/people/josephine-yu",
+      "sha256": "c63cc3c68d9c702a6dd4cc8e6845c9dbdacc3b456bd6c9bebeab25c6954be7a4",
+      "quote": "Josephine Yu Professor",
+      "observed": "2024-04-19",
+      "kind": "unit_page_capture"
+     },
+     {
+      "url": "https://web.archive.org/web/20250804153331id_/https://math.gatech.edu/people/josephine-yu",
+      "sha256": "6bcde1ced08ff4daa61e1c089769464f199f7246a2c09badb7360c340427af1d",
+      "quote": "Josephine Yu Professor",
+      "observed": "2025-08-04",
+      "kind": "unit_page_capture"
+     }
+    ],
+    "reviewed": "periods_school_deep_workyears_20261105",
+    "note": "Dated evidence for every year 2024-2025: listings and dated Wayback captures naming the PI with a ladder title (hierarchy/gatech/deep-gap-evidence.json, work-years pass). Start is a lower bound; no end is claimed."
+   }
+  ],
+  "why_periods": "Years proven by dated captures and listings for the years of the PI's identified works (tools/periods_school.py deep --work-years).",
+  "unproven_years": [
+   2016,
+   2026
+  ],
+  "why_unproven": "Second look 2026-11-04: 20 URLs tried (the PI's homepages, profile-URL variants on the home unit's hosts across URL eras, person-supplied URLs) over the Wayback window; no dated capture names the PI with a ladder title in [2016, 2026]. These years prove nothing (R-PAP-01); R-PAP-28 bridges the papers at build time."
  },
  "Julia Melkers": {
   "openalex": [
@@ -2639,6 +2725,25 @@
     "quote": "Lutz Warnke | School of Mathematics Georgia Institute of Technology  Atlanta USA",
     "observed": "2022-02-25",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/gatech/openalex-sweep.sqlite)"
+   }
+  ],
+  "unproven_years": [
+   2018,
+   2019,
+   2020,
+   2021,
+   2022
+  ],
+  "why_unproven": "Second look 2026-11-04: 20 URLs tried (the PI's homepages, profile-URL variants on the home unit's hosts across URL eras, person-supplied URLs) over the Wayback window; no dated capture names the PI with a ladder title in [2018, 2019, 2020, 2021, 2022]. These years prove nothing (R-PAP-01); R-PAP-28 bridges the papers at build time.",
+  "no_papers": true,
+  "why_no_papers": "2026-11-05 reviewed (ROADMAP #43): the only dated evidence of Warnke's appointment is the Mathematics people page of 2017-02-17 ('Lutz Warnke Assistant Professor'); his 11 identified school works (OpenAlex A5016879120, ORCID 0000-0002-1109-3957) are dated 2018-2022, outside it. The deep second look (tools/periods_school.py deep --work-years, 20 profile URLs across the home unit and College of Computing hosts, 2018-2022) found no archived dated page naming him, so those years prove nothing (R-PAP-01) and no paper is attributed. Owner decision recorded in the report: accept, or supply a dated page.",
+  "no_papers_evidence": [
+   {
+    "url": "https://web.archive.org/web/20170217064411id_/http://www.math.gatech.edu:80/people?",
+    "sha256": "363f1a5be417d2a4e245efc006b91d1c4029d311e045a561d97c86ac3fd45bf9",
+    "quote": "Lutz Warnke Assistant Professor",
+    "observed": "20170217064411",
+    "kind": "unit_listing:MATH"
    }
   ]
  },
@@ -2985,7 +3090,73 @@
     "observed": "2026-10-01",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/gatech/openalex-sweep.sqlite)"
    }
-  ]
+  ],
+  "unproven_years": [
+   2019,
+   2020,
+   2021,
+   2022,
+   2023,
+   2024,
+   2026
+  ],
+  "why_unproven": "Second look 2026-11-04: 22 URLs tried (the PI's homepages, profile-URL variants on the home unit's hosts across URL eras, person-supplied URLs) over the Wayback window; no dated capture names the PI with a ladder title in [2019, 2026]. These years prove nothing (R-PAP-01); R-PAP-28 bridges the papers at build time.",
+  "periods": [
+   {
+    "id": "override_period_workyears_gatech_babak_mahmoudi_2020",
+    "start": "2020",
+    "end": null,
+    "asof": "2025-02-08",
+    "datePrecision": "year",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20200106210742id_/https://www.bme.gatech.edu/bme/faculty/Babak-Mahmoudi",
+      "sha256": "298af97f4b5d6bd46bb57a8022f4a0952592714240276b7817a71cece5d6320c",
+      "quote": "Babak Mahmoudi Babak Mahmoudi Assistant Professor",
+      "observed": "2020-01-06",
+      "kind": "homepage_capture"
+     },
+     {
+      "url": "https://web.archive.org/web/20210718162745id_/https://www.bme.gatech.edu/bme/faculty/Babak-Mahmoudi",
+      "sha256": "0b86ab29ff9a27dc82e21ebdb53be24e3b26eb22e63100101306236935798ab1",
+      "quote": "Babak Mahmoudi Babak Mahmoudi Assistant Professor",
+      "observed": "2021-07-18",
+      "kind": "homepage_capture"
+     },
+     {
+      "url": "https://web.archive.org/web/20220201115125id_/https://bme.gatech.edu/bme/faculty/Babak-Mahmoudi",
+      "sha256": "834fcace759e771083ffd7010b52c31536967304acd20fb969a16d223c27e26f",
+      "quote": "Babak Mahmoudi Assistant Professor",
+      "observed": "2022-02-01",
+      "kind": "homepage_capture"
+     },
+     {
+      "url": "https://web.archive.org/web/20230202131951id_/https://bme.gatech.edu/bme/faculty/Babak-Mahmoudi",
+      "sha256": "fb01cfae56c00cb7770d70f61b03e897c1103e63a8c9eb88faffdc61914667b1",
+      "quote": "Babak Mahmoudi Assistant Professor",
+      "observed": "2023-02-02",
+      "kind": "homepage_capture"
+     },
+     {
+      "url": "https://web.archive.org/web/20240222211427id_/https://www.bme.gatech.edu/bme/faculty/Babak-Mahmoudi",
+      "sha256": "fd9a84df644c0ae6ad8488f7567206d7fdccabba4fd6a173b9efde4fa4fb2a48",
+      "quote": "Babak Mahmoudi Assistant Professor",
+      "observed": "2024-02-22",
+      "kind": "homepage_capture"
+     },
+     {
+      "url": "https://web.archive.org/web/20250208202338id_/https://www.bme.gatech.edu/bme/faculty/Babak-Mahmoudi",
+      "sha256": "7ccbd789cb4ebb15d623a6bfc6cbc29b1c24e417e4619719f9ec9d1e966bf679",
+      "quote": "Babak Mahmoudi Assistant Professor",
+      "observed": "2025-02-08",
+      "kind": "unit_listing:BME"
+     }
+    ],
+    "reviewed": "periods_school_deep_workyears_20261105",
+    "note": "Dated evidence for every year 2020-2025: listings and dated Wayback captures naming the PI with a ladder title (hierarchy/gatech/deep-gap-evidence.json, work-years pass). Start is a lower bound; no end is claimed."
+   }
+  ],
+  "why_periods": "Years proven by dated captures and listings for the years of the PI's identified works (tools/periods_school.py deep --work-years)."
  },
  "Ken Brown": {
   "openalex": [
