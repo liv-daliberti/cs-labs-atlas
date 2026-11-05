@@ -189,3 +189,42 @@ limit whatever delay a caller passes (the collector's per-process 6 s is only a 
 every client waits it out. The evidence crawl (`oai_repo.Client(low_priority=True)`) yields: while a loop was served in the last minute it takes at most one slot in
 three (15 s), the loops keep two; with no loop active it runs at 5 s. The loops run on a pinned commit: the new pace reaches them at their next restart.
 Expected: SMARTech crawl 48.6k pages = 2.8 days alone, up to 8.4 days while loops are active; Berkeley's 270 eScholarship PDFs at ~1-2 requests each = 270-540 slots = 25-45 min of the loops' share.
+
+## Download-yield survey (2026-11-04, branch agent/yield-1104)
+
+`fulltext-push/missing_breakdown.py` reprints the numbers below from the ledgers (`hierarchy/<school>/derived/unavailable.jsonl.gz`, built
+2026-11-03T21:22Z, seven released schools; it is older than the 2026-11-04 `oai_repo` and bulk-OA writes, so `queued` over-counts). Missing lab-paper
+copies: 32,707 = publisher_only_closed 14,298, landing_page_without_pdf 7,651, open_copy_robots_disallowed 3,675, found_awaiting_download 1,692,
+paywall_only 1,557, no_doi_no_match 930, open_copy_unusable 846, found_not_in_catalog 701, pending_retry 634, bot_challenge 492, behind_login 207, other 24.
+
+What the measurement says about the open sources of the task:
+- **Open-proceedings venues are exhausted.** CVF, PMLR, NeurIPS, ICLR, ACL, USENIX, AAAI, IJCAI, JMLR, LIPIcs, VLDB and SIGPLAN venues hold only ~400
+  missing papers in all (CVF 78, AAAI 100, NeurIPS 48, ICLR 30, PMLR 28, USENIX 28, VLDB 32), and the `proceedings` index (235,069 entries, CVPR
+  22.8k, ACL 90.8k, NeurIPS 18.8k, PMLR, ECCV, WACV, ...) already gives their exact-title PDFs. A Jaccard >= 0.8 near-title pass over the index (year
+  within 2) finds 114 exact and 42 near matches among the missing papers; 97 of the exact ones are `found_not_in_catalog` (works the catalog lacked
+  until `add_works.py`, now ~220 left across the schools), the rest already have candidates. CVF's 59 `publisher_only_closed` are workshop papers
+  (CVPRW / ICCVW, not in the index) and WACV 2016-2019 (not on CVF). The 14.3k publisher-only papers are IEEE (8.5k: ACC, ICRA, IROS, JSSC, IGARSS,
+  CDC, ISIT, ICASSP), Springer LNCS, Elsevier, ACM: no open proceedings host exists for them.
+- **Landing pages without a PDF are mostly real no-file records.** Of the 7,651: Infoscience record pages 2,555 (`policy_skip`, handled by the REST
+  `oai_repo` harvest), PubMed pages 2,115 (no PMCID), `hdl.handle.net` 656, SSRN 603 (bot-hostile), OSF/PsyArXiv ~200, Zenodo 133 (datasets and code, no
+  article), HICSS ~70. 45 landing pages of 15 repository hosts sampled (3 each, robots.txt checked): no `citation_pdf_url` or PDF link on 41; the other 4
+  are not articles (zenodo data zips, a site-wide VPAT PDF). The collector already follows `citation_pdf_url`, `<link type=application/pdf>` and
+  `/bitstream/`, `/retrieve/` links (vendor/cmu_tools/collector_wrapper.py `Links`); scholarspace.manoa.hawaii.edu (HICSS) serves a DSpace-7 app shell for
+  `/bitstream/...` URLs, so those need the REST bitstream route (~70 papers, not built).
+- **Stale redirect failures:** `www.psyarxiv.com` (71 papers, pending_retry), `www.rero.ch` (177: the SONAR privacy PDF, correctly refused), `idp.*` /
+  `linkinghub.elsevier.com` / `validate.perfdrive.com` (logins and challenges, correctly refused). The psyarxiv same-site rule is already in code; loops
+  started before it still run the old collector.
+- **Queued papers wait on pacing, not on discovery:** the 1,692 + 634 queued papers sit behind `dspace.mit.edu` (762 known URLs, 15 s clock, five 429s in
+  the last two hours) and `hdl.handle.net` (782, mostly the same MIT handles).
+
+### `sonar` (native channel)
+SONAR (sonar.ch, also folia.unifr.ch) serves Swiss repositories' open full texts. Its pages are a JavaScript app, so 283 lab papers (262 EPFL) whose known
+URLs name a SONAR document ended at 'no unambiguous primary PDF link'. `channels/sonar.py` reads the public JSON record of each named id
+(`/api/documents/<id>`, robots.txt `Allow: /`, checked for this client and the Anthropic groups, 3 s apart) and, for an unrestricted PDF in `_files`,
+adds `https://sonar.ch/api/documents/<id>/files/<key>` (HTTP 200 straight from sonar.ch). No title or DOI discovery: the API's search matched 0 of 80
+random missing papers. Dry run on EPFL: 250 papers asked, 68 open files, 67 new candidates. Run: `bulk-oa-channels.slurm` with `CHANNELS=sonar`.
+
+### NSF PAR for the other US schools: measured, not scaled
+`nsf_par_lab.py search stanford --limit=400` (paywalled publishers first): 1 exact-title hit in 400 searches (0.25%; the earlier four-school run: 265 of
+12,718). The remaining ~17.9k unsearched paywalled titles (stanford 2,864, michigan 4,127, uchicago 757, gatech 10,132) would cost ~15 h of requests for
+~45 papers: `nsf-par.slurm` stays in the tree, not on the run lists.
