@@ -766,6 +766,9 @@ def discover_lab(kit, school, p, ctx, full=True):
                 for href, txt in site_links(kit, r, base):
                     if txt and len(txt) < 60 and any(kit.names.match_one(txt, n) for n in names_) and not social(href):
                         profiles.append(unwayback(href))
+                    elif profile_slug_hit(href, names_) and not social(href):
+                        # R-LAB-01 (2026-11-05): a directory card whose link text is 'Learn more about <name>' (ECE) matches no name, but its path ends in the PI's name slug
+                        profiles.append(unwayback(href))
         for e in [e for q in p.get('periods') or [] for e in q.get('evidence') or []] + [p.get('piBasis') or {}]:
             u = unwayback(e.get('url') or '')
             if re.search(dom, urlsplit(u).hostname or '') and re.search(r'/(people|faculty|profile|directory)/', u) and \
@@ -1082,6 +1085,20 @@ def read_discovery(school):
                 r = json.loads(line)
                 out[r['pi']] = r  # the latest record per PI wins
     return out
+
+
+def profile_slug_hit(href, names):
+    """The last path segment of a directory card's link is the PI's name slug ('/directory/arijit-raychowdhury', '/people/gregory-abowd-0'), a numeric suffix allowed.
+    A slug needs at least a given and a family token, so a bare surname never matches."""
+    seg = [x for x in urlsplit(href).path.split('/') if x][-1:]
+    if not seg:
+        return False
+    s = seg[0].lower()
+    for n in names:
+        tk = [x for x in re.sub(r'[^a-z ]', ' ', fold(n)).split() if x]
+        if len(tk) >= 2 and re.fullmatch(re.escape('-'.join(tk)) + r'(-\d+)?', s):
+            return True
+    return False
 
 
 def cmd_discover(school, only=None, redo=False, redo_unrecorded=False):
