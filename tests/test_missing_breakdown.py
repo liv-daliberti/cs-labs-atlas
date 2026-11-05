@@ -1,9 +1,5 @@
 """fulltext-push/missing_breakdown.py: reasons per school, venue and host groups, open-archive prefixes."""
-import sys
-from pathlib import Path
-
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'fulltext-push'))
-import missing_breakdown as M  # noqa: E402
+import missing_breakdown as M
 
 
 def rec(school, reason, venue='', doi='', publisher='IEEE', url=None):

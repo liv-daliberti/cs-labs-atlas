@@ -5,13 +5,12 @@ by reason. Read-only: it reads hierarchy/<school>/derived/unavailable.jsonl.gz (
 docs/UNAVAILABLE.md) and writes nothing unless --json is given.
 usage: missing_breakdown.py [--schools a,b,...] [--top 30] [--json out.json]
 """
-import argparse, gzip, json, re, sys
+import argparse, gzip, json, re
 from collections import Counter, defaultdict
 from pathlib import Path
 from urllib.parse import urlsplit
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
-import atlas_paths as P  # noqa: E402
+import ftp_common as F  # run as a script (no -I: read-only, nothing downloaded), so its directory is on sys.path
 
 SCHOOLS = ['berkeley', 'cmu', 'epfl', 'mit', 'michigan', 'princeton', 'stanford']
 BIG = ('publisher_only_closed', 'landing_page_without_pdf')
@@ -31,7 +30,7 @@ PREFIXES = {'10.5281': 'Zenodo', '10.31234': 'PsyArXiv', '10.31219': 'OSF Prepri
 
 def load(schools):
     for s in schools:
-        f = P.HIERARCHY / s / 'derived' / 'unavailable.jsonl.gz'
+        f = F.P.HIERARCHY / s / 'derived' / 'unavailable.jsonl.gz'
         if not f.exists():
             continue
         with gzip.open(f, 'rt') as fh:
