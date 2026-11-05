@@ -411,12 +411,26 @@ def replay_url(url):
     return re.sub(r'(/web/\d{14})id_/', r'\1/', url)
 
 
+def given_ok(advisor, pi_names):
+    """The advisor string names a given name (a token of more than one letter before the family name) that the PI's own names share by the first three letters
+    (Georgia Tech round 2: 'Wang, C.-K. Chris' matched the PI Kai Wang, 'Liu, Cathy Yang' matched Karen Liu). An advisor with initials only passes."""
+    toks = [x for x in re.sub(r'[^a-z ]', ' ', F.nt(advisor)).split()]
+    if len(toks) < 2:
+        return True
+    given = [x for x in toks[:-1] if len(x) > 1]
+    if not given:
+        return True
+    mine = {x[:3] for n in pi_names for x in re.sub(r'[^a-z ]', ' ', F.nt(n)).split()[:-1] if len(x) > 1}
+    return any(g[:3] in mine for g in given)
+
+
 def build_evidence(school, pis, window=WINDOW, pi_window=None):
     """-> (rows in thesis-evidence.json shape, counts). pis: [{pi, names}] (hierarchy/<school>/derived/pis.json)."""
     if str(F.P.TOOLS) not in sys.path:
         sys.path.insert(0, str(F.P.TOOLS))
     from pihier.names import Name
     idx = {p['pi']: Name(list(dict.fromkeys([p['pi']] + list(p.get('names') or [])))) for p in pis}
+    names_of = {p['pi']: list(dict.fromkeys([p['pi']] + list(p.get('names') or []))) for p in pis}
     out, counts = {}, dict(dissertations=0, no_advisor=0, outside_window=0, no_pi=0, rows=0, ambiguous=0, duplicate_of_earlier_source=0)
     seen = set()  # (normalized title, author family): the live item pages come first, a Wayback copy of the same dissertation is not a second row
     sources = [school] + ([school + '@wayback'] if db_path(school + '@wayback').exists() else [])
@@ -442,7 +456,7 @@ def build_evidence(school, pis, window=WINDOW, pi_window=None):
             win_drop = False
             for a in advs:
                 nat = natural(a)
-                pi_hits = [p for p, nm in idx.items() if nm.match(nat)]
+                pi_hits = [p for p, nm in idx.items() if nm.match(nat) and given_ok(nat, [q for q in names_of[p]])]
                 if len(pi_hits) > 1:
                     counts['ambiguous'] += 1
                     continue
