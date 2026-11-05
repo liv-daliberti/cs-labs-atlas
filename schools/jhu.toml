@@ -20,8 +20,12 @@ openalex = ["I145311948"]
 # APL strings stay in the regex / own_units so in-scope PIs' papers that list APL are credited, and never add PIs or labs by themselves.
 # The lineage of I145311948 holds the Applied Physics Laboratory I2802946424 and 12 smaller units (ids_note). Johns Hopkins Medicine I2799853436, the Hospital I4210150714, Bayview I2802697821 and
 # Children's Center I4210129832 are NOT in the lineage (associated 'related'; Medicine is its own lineage root). Still open (STAGE-0.md): which ids go to openalex_related / openalex_excluded.
-openalex_related = []
-openalex_excluded = []
+# OWNER DECISIONS 2026-11-05 (D2-D4, as recommended): related = Johns Hopkins Medicine only (the Hospital and Bayview carry Medicine in their lineage; an authorship tagged only with Medicine counts
+# only when its raw string matches the regex, and under the computing rule only through computing PIs). Excluded (per-affiliation filter, joint JHU bylines unaffected): Maryland Space Grant, JHU Press, Center for
+# Communication Programs, Center for AIDS Research, Packard Center, Berman Bioethics, SAIS Bologna, JHU-Nanjing Center. Kept in the sweep: APL, HEMI, PARADIM, MSEE URA, Materials Facility (APL adds PIs only via JHU faculty appointments).
+# jhmi.edu / hopkinsmedicine.org stay in the regex. 'order' is set by the coordinator at landing.
+openalex_related = ["I2799853436"]
+openalex_excluded = ["I4210120405", "I4394709191", "I4210151848", "I4389425327", "I4392738135", "I4210092215", "I4210131961", "I4210162165"]
 ror = "https://ror.org/00za53h95"
 ids_note = """OpenAlex institutions table of the 2026-10-14 snapshot (no API credits; checked 2026-11-05, atlas run tools/oa_institutions.py search/lineage): I145311948 'Johns Hopkins University',
 ROR 00za53h95, country US, type education, lineage [I145311948]. Lineage children (also ROR children): Applied Physics Laboratory I2802946424, Berman Institute of Bioethics I4210092215,
@@ -111,7 +115,8 @@ profile_patterns = ["www.cs.jhu.edu/~{first}{last}", "www.cs.jhu.edu/~{last}", "
 
 # --- departments -------------------------------------------------------------------------------------------------------------
 # Computing sits in the Whiting School of Engineering's Department of Computer Science (full coverage). ECE, Applied Mathematics and Statistics and Biomedical Engineering are
-# affiliated departments (computing faculty by the share test). The CLSP, Malone, LCSR, Biostatistics (Bloomberg School), Cognitive Science, Mathematics and DSAI are searched units.
+# affiliated departments (computing faculty by the share test). The CLSP, Malone, LCSR, Cognitive Science, Mathematics and DSAI are searched units.
+# Biostatistics (Bloomberg School) is out: its host disallows ClaudeBot/anthropic-ai (never used, Wayback included) and the department is not computing (owner 2026-11-05).
 # Listing URLs below are the CURRENT ones; stage 1 finds the URL eras with tools/discover_listings.py (no Wayback fetching in stage 0). D6: borderline departments.
 [[departments]]
 code = "CS"
@@ -194,12 +199,6 @@ url = "https://lcsr.jhu.edu/people/faculty/"
 listings = ["lcsr.jhu.edu/people/faculty/"]
 
 [[affiliated_units]]
-code = "BIOSTAT"
-name = "Department of Biostatistics, Bloomberg School of Public Health"
-url = "https://publichealth.jhu.edu/departments/biostatistics/faculty"
-listings = ["publichealth.jhu.edu/departments/biostatistics/faculty"]
-
-[[affiliated_units]]
 code = "COGSCI"
 name = "Department of Cognitive Science"
 url = "https://cogsci.jhu.edu/people/"
@@ -263,31 +262,31 @@ probe = "https://www.cs.jhu.edu/faculty/"
 
 [[hosts]]
 host = "ece.jhu.edu"
-use = "none"
+use = "wayback-only"
 purpose = "Electrical and Computer Engineering people (bot challenge 2026-11-05)"
 probe = "https://ece.jhu.edu/people/"
 
 [[hosts]]
 host = "engineering.jhu.edu"
-use = "none"
+use = "wayback-only"
 purpose = "Whiting School department sites, AMS under /ams/ (bot challenge 2026-11-05)"
 probe = "https://engineering.jhu.edu/ams/people/"
 
 [[hosts]]
 host = "ams.jhu.edu"
-use = "none"
+use = "wayback-only"
 purpose = "Applied Mathematics and Statistics, older host (bot challenge 2026-11-05)"
 probe = "https://ams.jhu.edu/people/"
 
 [[hosts]]
 host = "bme.jhu.edu"
-use = "none"
+use = "wayback-only"
 purpose = "Biomedical Engineering faculty (bot challenge 2026-11-05)"
 probe = "https://bme.jhu.edu/people/faculty/"
 
 [[hosts]]
 host = "www.clsp.jhu.edu"
-use = "none"
+use = "wayback-only"
 purpose = "Center for Language and Speech Processing faculty (bot challenge 2026-11-05)"
 probe = "https://www.clsp.jhu.edu/faculty/"
 
@@ -299,7 +298,7 @@ probe = "https://malonecenter.jhu.edu/people/"
 
 [[hosts]]
 host = "lcsr.jhu.edu"
-use = "none"
+use = "wayback-only"
 purpose = "Laboratory for Computational Sensing and Robotics faculty (bot challenge 2026-11-05)"
 probe = "https://lcsr.jhu.edu/people/faculty/"
 
@@ -311,19 +310,19 @@ probe = "https://publichealth.jhu.edu/departments/biostatistics/faculty"
 
 [[hosts]]
 host = "cogsci.jhu.edu"
-use = "none"
+use = "wayback-only"
 purpose = "Department of Cognitive Science people (bot challenge 2026-11-05)"
 probe = "https://cogsci.jhu.edu/people/"
 
 [[hosts]]
 host = "www.math.jhu.edu"
-use = "none"
+use = "wayback-only"
 purpose = "Department of Mathematics people (bot challenge 2026-11-05)"
 probe = "https://www.math.jhu.edu/people/"
 
 [[hosts]]
 host = "ai.jhu.edu"
-use = "none"
+use = "wayback-only"
 purpose = "Data Science and AI Institute people (searched unit)"
 probe = "https://ai.jhu.edu/people/"
 

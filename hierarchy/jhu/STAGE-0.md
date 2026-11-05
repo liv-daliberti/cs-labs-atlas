@@ -12,13 +12,19 @@ Scope of this run: the "Before you start" checklist and stage 0 only. No OpenAle
   HEMI `I4391012584`, Packard Center `I4392738135`, JHU Press `I4394709191`, Materials Characterization Facility `I4405260374`. Not in the lineage (associated, "related"): Johns Hopkins Medicine `I2799853436` (its own lineage root),
   Hospital `I4210150714`, Bayview `I2802697821`, Children's Center `I4210129832`, All Children's Hospital `I4210098865`. Not JHU: Hopkins Marine Station `I4405266016` (Stanford). No OpenAlex institution matches the Carey Business School or the
   Bloomberg School separately (they sit inside I145311948 by name only).
-- `openalex_related` and `openalex_excluded` are left EMPTY in the charter until the owner answers D2-D4 below; no snapshot extension is submitted yet (it needs the ids).
+- `openalex_related` and `openalex_excluded` were filled after the owner's answers (below).
 - Per-child work counts (`oa_institutions.py children-counts jhu`) are all 0: the filtered snapshot holds no JHU works until `snapshot-ext` runs, so the APL-faculty headcount the coordinator asked for was not cheap and is not reported. It follows the extension.
 
 ## Owner decision recorded (2026-11-05, relayed by the coordinator)
 Keep ONLY labs that do computing; anything that is not computing is not needed. APL, JHU Medicine / Hospital, Bloomberg, the SAIS campuses and Carey have no blanket keep or drop: a unit counts only through its computing labs, i.e. faculty who
 meet the CS-related scope rule (`docs/RULES.md`). APL staff are not JHU faculty, the PI rule is unchanged (a PI is a faculty member of the school), so APL contributes PIs only through computing researchers holding a JHU faculty appointment
 (e.g. a Whiting joint appointment). APL strings stay in the regex so in-scope PIs' papers that list APL are credited; they never add PIs or labs. Written into the charter's `[ids]` comment.
+
+## Owner decisions applied (2026-11-05)
+- Wayback for blocked sites is allowed always: the eight challenged .jhu.edu hosts (ece, engineering/AMS, ams, bme, www.clsp, lcsr, cogsci, www.math) and ai.jhu.edu (Crawl-delay 10 kept) are `wayback-only`. publichealth.jhu.edu and jscholarship.library.jhu.edu name ClaudeBot/anthropic-ai: `none`, Wayback included. Biostatistics is out (disallows AI agents; not computing): its affiliated unit was removed from the charter.
+- `openalex_related` = Johns Hopkins Medicine I2799853436 only.
+- `openalex_excluded` = Maryland Space Grant I4210120405, JHU Press I4394709191, Communication Programs I4210151848, CFAR I4389425327, Packard Center I4392738135, Berman Bioethics I4210092215, SAIS Bologna I4210131961, JHU-Nanjing I4210162165.
+- Kept in the sweep: APL, HEMI, PARADIM, MSEE URA, Materials Facility; APL adds PIs only via JHU faculty appointments. jhmi.edu / hopkinsmedicine.org stay in the regex. `order` is the coordinator's at landing.
 
 ## Access check (v3 item 5; `tools/school_hosts.py jhu`, 2026-11-05, generic client name, no e-mail)
 Result: 16 hosts, 0 inconsistent. Crawl-delay 2.0 is the tool's default where robots names none; only ai.jhu.edu states one (10 s).
@@ -29,13 +35,13 @@ Result: 16 hosts, 0 inconsistent. Crawl-delay 2.0 is the tool's default where ro
 | web.archive.org | 404 (none) | ok | live |
 | api.openalex.org | allowed | skipped | live |
 | api.ror.org | 403 to the tool's client (a generic API fetch worked) | skipped | live |
-| ece.jhu.edu, engineering.jhu.edu (AMS), ams.jhu.edu, bme.jhu.edu, www.clsp.jhu.edu, lcsr.jhu.edu, cogsci.jhu.edu, www.math.jhu.edu | robots 403 | bot challenge | none |
-| ai.jhu.edu | allowed, Crawl-delay 10 | bot challenge | none |
+| ece.jhu.edu, engineering.jhu.edu (AMS), ams.jhu.edu, bme.jhu.edu, www.clsp.jhu.edu, lcsr.jhu.edu, cogsci.jhu.edu, www.math.jhu.edu | robots 403 | bot challenge | wayback-only (owner) |
+| ai.jhu.edu | allowed, Crawl-delay 10 | bot challenge | wayback-only (owner) |
 | publichealth.jhu.edu | names ClaudeBot, anthropic-ai, Claude-Web: Disallow / | not probed | none |
 | jscholarship.library.jhu.edu | names ClaudeBot, anthropic-ai, Claude-Web: Disallow / (Cloudflare managed block) | not probed | none |
 Wrong first guesses fixed: `malone.jhu.edu` and `dsai.jhu.edu` do not resolve (the sites are `malonecenter.jhu.edu` and `ai.jhu.edu`). Math Genealogy and academictree.org were not touched.
 **Thesis repository:** JScholarship is not used in any form (records x crawl delay = 0 h, nothing fetched); `[thesis].kind = "none"`, `robots = "disallowed-for-ai-agents"`, `[repository]` says it is reached only through OpenAlex/CORE.
-**Consequence:** ten department and unit hosts (ECE, AMS on two hosts, BME, CLSP, LCSR, Cognitive Science, Math, DSAI, Biostatistics) are `none`: v3 says challenged hosts are not used, not through Wayback either. Their listing slots stay in the charter for the record only.
+**Consequence:** the challenged hosts are read from Wayback only (stage 1 plan in the report); Biostatistics and JScholarship are never read.
 
 ## Gate
 `atlas stage-gate jhu 0`: **fail, one open item**: "openalex snapshot: no works of I145311948". That is the snapshot extension, deliberately not run (owner D-decisions first; no credits needed, 25 minutes on 16 tasks).
