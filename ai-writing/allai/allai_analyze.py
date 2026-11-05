@@ -17,6 +17,7 @@ percentiles of BOOT replicates, each resampling whole labs (a paper's first lab)
 """
 import argparse
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -36,8 +37,7 @@ RES = ALLAI / 'results'
 STYLE_SUFFIX = {'polish': '__allai', 'paraphrase': '__para'}
 YEARS = list(range(2016, 2027))
 PRE, POST = list(range(2016, 2023)), list(range(2023, 2027))
-M_ALL, M_ALL_TOPIC, M_SCHOOL, M_LAB = 1000, 2000, 500, 20
-import os  # noqa: E402
+M_ALL, M_ALL_TOPIC, M_SCHOOL, M_LAB = (int(os.environ.get(k, v)) for k, v in (('ALLAI_M_ALL', 1000), ('ALLAI_M_ALL_TOPIC', 2000), ('ALLAI_M_SCHOOL', 500), ('ALLAI_M_LAB', 20)))
 DRAWS, BOOT, LAB_DRAWS = int(os.environ.get('ALLAI_DRAWS', 30)), int(os.environ.get('ALLAI_BOOT', 100)), 50
 SCHOOLS = C.RELEASED + ['uchicago', 'gatech']
 KM_K = 100
@@ -47,6 +47,11 @@ BT_MODELS = ('specter2_proximity', 'qwen3_0p6b')
 # ---------------------------------------------------------------- data
 def load_pair(model, style):
     papers, lp = L.universe()
+    restrict = os.environ.get('ALLAI_RESTRICT')   # a style whose kept papers define the set (the paraphrase subsample), to run polish on the same papers
+    if restrict:
+        import sqlite3
+        db = sqlite3.connect(f'file:{ALLAI / f"texts_{restrict}.sqlite"}?mode=ro', uri=True)
+        papers = papers[papers['paper_id'].isin({r[0] for r in db.execute('select paper_id from abstracts')})].reset_index(drop=True)
     ids_o, Xo, meta_o = L.vectors(model, 'abstract')
     ids_a, Xa, meta_a = L.vectors(model + STYLE_SUFFIX[style], 'abstract')
     ro, ra = {p: i for i, p in enumerate(ids_o)}, {p: i for i, p in enumerate(ids_a)}
@@ -242,9 +247,13 @@ def run_geom(model, style):
     Zo, _ = N.center_normalize(Xo); Za, _ = N.center_normalize(Xa)
     cl, groups, school_mask, labs = lab_structure(papers, lp)
     rng = np.random.default_rng(C.SEED)
+    if not len(papers):
+        raise SystemExit('no papers')
     pt, bt = year_tables(model, papers, Zo, Za, labs_sets, cl, groups, school_mask, rng)
+    if not len(pt):
+        raise SystemExit('no scope-year reaches the draw size: set ALLAI_M_ALL / ALLAI_M_SCHOOL lower')
     yr, chg = summarize_year(pt, bt)
-    tag = f'{style}_{model}'
+    tag = f'{style}{"-sub" if os.environ.get("ALLAI_RESTRICT") else ""}_{model}'
     RES.mkdir(parents=True, exist_ok=True)
     yr.assign(model=model, style=style).to_parquet(RES / f'geom_year_{tag}.parquet', index=False)
     chg.assign(model=model, style=style).to_parquet(RES / f'geom_change_{tag}.parquet', index=False)
@@ -307,7 +316,7 @@ def run_novelty(model, style):
                     # the part of the original's change that the AI corpus does not show: orig change - ai change (paired per paper)
                     contrast.append(row)
     RES.mkdir(parents=True, exist_ok=True)
-    tag = f'{style}_{model}'
+    tag = f'{style}{"-sub" if os.environ.get("ALLAI_RESTRICT") else ""}_{model}'
     pd.DataFrame(trend).to_parquet(RES / f'novelty_trend_{tag}.parquet', index=False)
     pd.DataFrame(contrast).to_parquet(RES / f'novelty_contrast_{tag}.parquet', index=False)
     C.log(done=f'novelty_{tag}', trend=len(trend), contrast=len(contrast))
