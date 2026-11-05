@@ -30,7 +30,7 @@ credited; they never add PIs or labs. A PI is a faculty member of the school. Th
   and 13.4 h. Pilot of an advisor line is stage 6's.
 
 ## Gate
-`atlas stage-gate washu 0`: **fail, one open item**: `openalex snapshot: no works of I204465549`. Everything else passes (charter, 13 hosts). The snapshot extension
+(superseded by the update below) `atlas stage-gate washu 0`: fail, one open item: `openalex snapshot: no works of I204465549`. Everything else passes (charter, 13 hosts). The snapshot extension
 (`atlas pipeline snapshot-ext SCHOOLS=washu --from-worktree`, 16 filter tasks + merge, about 25 min, no credits) needs the committed charter and the owner D-decisions below (the related and excluded ids change what it filters);
 it is the coordinator's to schedule next, not run here (no Slurm in this run). Not waived.
 `atlas stage-gate washu 0 --traps`: one finding, `captures: neither raw/labpage-captures.sqlite nor ... exists`: a stage-8 file that cannot exist at stage 0 (proposed tool fix: run `captures_traps` from stage 8, not at stage 0).
@@ -42,3 +42,19 @@ it is the coordinator's to schedule next, not run here (no Slurm in this run). N
 4. D4: the School of Law matches the regex (out of computing scope anyway).
 5. D5: CSE is the department; ESE and BME affiliated departments; SDS, MATH, OLIN, PBS, I2DB, BIOS affiliated units under the CS-related rule.
 6. D6: `[thesis].kind = "none"` until a 20-record pilot in stage 6 shows advisor lines.
+
+## Snapshot extension and final gate (2026-11-05)
+Jobs (partition all, account mltheory, 59 min, `--exclude=node302,node014`, `sbatch --test-only` showed no Preempts): filter array **32116375** (16 tasks, `OA_EXT=washu`, `OA_DATE=2026-10-14`, `--from-worktree`, commit 97838e8),
+merge **32116393**; all COMPLETED (exit 0:0). Submitted by hand with `atlas submit` (not `atlas pipeline snapshot-ext`) because the pipeline hardcodes `--time=06:00:00`, which routes to mltheory with a start estimate of the next day and has no `--exclude`. No OpenAlex credits.
+`atlas stage-gate washu 0`: **pass** (13 hosts, 284,817 snapshot works). `atlas stage-gate washu 0 --traps`: exit 1, one finding only: `captures: neither raw/labpage-captures.sqlite nor raw/labpage-audit-captures.sqlite exists`
+(a stage-8 file that cannot exist at stage 0; shared-tool fix proposed in the coordinator report, not made here).
+
+### `oa_institutions.py children-counts washu` (works 2016-2026 in snapshot + extension)
+| institution | works tagged | of which the work lacks WashU's own id |
+|---|---|---|
+| WashU (I204465549) | 128,548 | - |
+| Washington University Physicians (I4387155636) | 24 | 15 |
+| Tyson Research Center (I4405285149) | 83 | 5 |
+| Taylor Family Institute (I4392738227) | 243 | 4 |
+| Children's Discovery Institute (I4210122064) | 1 | 0 |
+The related ids are not in this table (regex-only, not lineage). Surprises: none large. WashU Physicians is a clinical-practice entity with 24 works, 15 of them lacking the university id: negligible, and any author on them is a medical faculty member who needs CS-related evidence to count.
