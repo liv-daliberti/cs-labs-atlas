@@ -43,7 +43,11 @@ LABEL = dict(openalex='OpenAlex', arxiv='arXiv', s2='Semantic Scholar', core='CO
              wayback_acm='the Wayback Machine (ACM PDF)')
 REPO = dict(princeton='Princeton OAR', mit='DSpace@MIT Open Access Articles', cmu='KiltHub', epfl='Infoscience',
             berkeley='eScholarship (through OpenAlex and CORE)', stanford='the Stanford Digital Repository (through OpenAlex and CORE)',
-            michigan='Deep Blue Documents (never asked; through OpenAlex and CORE)')
+            michigan='Deep Blue Documents (never asked; through OpenAlex and CORE)',
+            uchicago='Knowledge@UChicago (through OpenAlex and CORE)', gatech='the Georgia Tech repository, formerly SMARTech (through OpenAlex and CORE)')
+REPO_PATTERN = {'berkeley': r'escholarship\.org|escholarship', 'michigan': r'deepblue\.lib\.umich\.edu|deep ?blue',
+                'stanford': r'purl\.stanford\.edu|stacks\.stanford\.edu|searchworks\.stanford\.edu|Stanford Digital Repository',
+                'uchicago': r'knowledge\.uchicago\.edu|Knowledge@UChicago', 'gatech': r'repository\.gatech\.edu|smartech\.gatech\.edu|hdl\.handle\.net/1853/'}
 PUBFOLD = [(r'Institute of Electrical and Electronics Engineers|\bIEEE\b', 'IEEE'), (r'Association for Computing Machinery|\bACM\b', 'ACM'),
            (r'Springer|Nature Portfolio|Nature Publishing|BioMed Central|Palgrave', 'Springer Nature'), (r'\bSSRN\b|Social Science Research Network|RELX', 'SSRN (Elsevier)'),
            (r'Elsevier|Cell Press|Academic Press|North-Holland|Pergamon', 'Elsevier'), (r'Wiley|Blackwell', 'Wiley'),
@@ -678,8 +682,7 @@ def src_repository(school, papers, oa, core, offline, n):
     # berkeley, stanford: the repository refuses this client (eScholarship: HTTP 403 on robots.txt and every page,
     # 2026-10-30) or has no harvest interface used here (SDR); their holdings reach us through OpenAlex and CORE
     # michigan: Deep Blue is never used in any form (owner rule 2026-10-30), so only what OpenAlex and CORE list for it counts
-    pat = re.compile({'berkeley': r'escholarship\.org|escholarship', 'michigan': r'deepblue\.lib\.umich\.edu|deep ?blue'}.get(
-        school, r'purl\.stanford\.edu|stacks\.stanford\.edu|searchworks\.stanford\.edu|Stanford Digital Repository'), re.I)
+    pat = re.compile(REPO_PATTERN[school], re.I)   # one pattern per school (2026-11-05: uchicago and gatech fell through to Stanford's)
     for p in papers:
         o, c = oa.get(p['key']) or {}, core.get(p['key']) or {}
         if o.get('result') not in ('found', 'none', 'not_applicable'):
