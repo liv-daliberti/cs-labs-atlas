@@ -7,7 +7,7 @@ import atlas_paths as P  # data paths (DATA_FILES)
 import census_overrides as CO  # reviewed overrides: shared file + an onboarding school's own
 
 from .common import AFF, INST, as_list, collection_work_matcher, read
-from .names import Name, nick_ok, toks
+from .names import Name, nick_ok, placeholder_name, toks
 from .periods import listings_after_move, pi_listings, pi_mine, pi_periods
 
 COLLECTIVE = re.compile(r'\b(cent(?:er|re)|initiative|consortium|program(?:me)?|project|cluster|institute)\b', re.I)  # not labs (owner, 2026-10-21)
@@ -127,6 +127,9 @@ def pi_records(ctx):
         x['collection_person_id'] = next((g['collection_person_id'] for g in group if g.get('collection_person_id') in Pid), None)
         x['mergedCensusRows'] = [g['name'] for g in group[1:]]
         o = ov.get(x['name'], {})  # reviewed corrections: aliases, person, identity (hierarchy/census-overrides.json)
+        shown = o.get('display_name')  # R-PAP-34: a reviewed real name for a placeholder census name ('Y Z' is Yang Zhang)
+        if placeholder_name(x['name']) and not shown:  # a placeholder name anchors no paper: excluded unless review names the person
+            excluded.append(dict(pi=x['name'], why='placeholder name (R-PAP-34): single letters only, no reviewed display_name')); continue
         if o.get('collection_person_id'):
             x['collection_person_id'] = o['collection_person_id']
         x['aliases'] = list(x.get('aliases') or []) + list(o.get('aliases') or [])
@@ -134,18 +137,21 @@ def pi_records(ctx):
         x['openalex'] = list(dict.fromkeys(as_list(x.get('openalex')) + as_list(o.get('openalex'))))
         x['orcid'] = list(dict.fromkeys(re.sub(r'^https?://orcid\.org/', '', z) for z in as_list(x.get('orcid')) + as_list(o.get('orcid'))))  # additions give one ORCID as a string
         ids = [i for i in [x.get('collection_person_id')] + list(x.get('collection_person_candidates') or []) if i and i in Pid][:1]
-        names = [x['name']] + list(x.get('aliases') or []) + [Pid[i]['name'] for i in ids]
+        names = ([shown] if shown else []) + [x['name']] + list(x.get('aliases') or []) + [Pid[i]['name'] for i in ids]
         listings = pi_listings(x, yearly, n)
         mine = pi_mine(periods, ids, x['name'])
         after_move = listings_after_move(listings, mine, o.get('periods'))  # stale listings after an evidenced move
         n['listing_years_after_move'] += len(after_move)
         lab = choose_lab(x, units, Pid, ids, names)
-        pis.append(dict(pi=x['name'], personIds=ids, names=list(dict.fromkeys(names)), dblp=x['dblp'], reviewedOpenAlex=x['openalex'], orcid=x['orcid'],
+        if shown and lab.get('name') == f"{x['name']} group":
+            lab['name'] = f'{shown} group'
+        pis.append(dict(pi=shown or x['name'], personIds=ids, names=list(dict.fromkeys(names)), dblp=x['dblp'], reviewedOpenAlex=x['openalex'], orcid=x['orcid'],
                         notOpenAlex=list(o.get('not_openalex') or []),  # reviewed namesake author ids: never this PI
                         # reviewed mixed author ids (2026-10-29): OpenAlex records of another person that also hold some of the
                         # PI's works (Song Mei's Berkeley papers sit in five Chinese namesakes' records); such an id neither
                         # anchors nor blocks: each of its authorships needs per-work evidence (DBLP page, ORCID, advisee)
                         mixedOpenAlex=list(o.get('mixed_openalex') or []),
+                        **({'censusName': x['name'], 'displayNameBasis': o.get('why_display_name')} if shown else {}),
                         # reviewed blocked clusters (R-PAP-32, 2026-11-05): a namesake's works that sit on the PI's DBLP person page under no author id
                         blockedClusters=list(o.get('blocked_clusters') or []),
                         mergedCensusRows=x['mergedCensusRows'], rank=x.get('rank'), title=x.get('title_as_listed'),
