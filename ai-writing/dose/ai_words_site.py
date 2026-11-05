@@ -347,15 +347,16 @@ def run_assemble():
     calib = [dict(true=r4(a), hat=r4(h), err=r4(h - a)) for a, h in zip(lcal['alpha_true'], lcal['alpha_hat'])]
 
     # --- marker words versus detector, paper level
-    ok = has_a & (na >= MIN_TOK)
+    ok_all = has_a & (na >= MIN_TOK)
+    ok = ok_all & (has_ft | ab_only)        # papers the detector scored (full text, or abstract-only with the abstract flag)
     rate_c = np.where(na > 0, 1000.0 * kc / np.maximum(na, 1), np.nan)
     rate_a = np.where(na > 0, 1000.0 * ka / np.maximum(na, 1), np.nan)
     rate_fc = np.where(nf > 0, 1000.0 * kfc / np.maximum(nf, 1), np.nan)
     dosev = dose.to_numpy()
     # words flag: the smallest number of core words in the abstract whose 2016-2021 rate is at most 5%
-    pre21 = ok & np.isin(yr, range(2016, 2022))
+    pre21 = ok_all & np.isin(yr, range(2016, 2022))
     k_flag = next((k for k in (1, 2, 3, 4) if (kc[pre21] >= k).mean() <= 0.05), 4)
-    wflag = ok & (kc >= k_flag)
+    wflag = ok_all & (kc >= k_flag)
     corr = {}
     for label, yrs in (('2016-2022', PRE), ('2023-2025', POST)):
         m = ok & has_ft & np.isin(yr, yrs) & np.isfinite(dosev)
@@ -401,7 +402,7 @@ def run_assemble():
                                                        phi=r4((n11 * n00 - n10 * n01) / phi_den if phi_den else None),
                                                        p_words_given_detector=r4(n11 / (n11 + n10)) if n11 + n10 else None, p_words_given_not=r4(n01 / (n01 + n00)) if n01 + n00 else None)
     # detector flagged share by year (all schools) at the stored cutoffs, from the frame the AI pages use: the page cross-checks it against ai_hist.json
-    det_check = {str(t): {str(y): r4(float(flags[t][(yr == y)].mean())) for y in YEARS} for t in CUTOFFS}
+    det_check = {str(t): {str(y): r4(float(flags[t][(yr == y) & (has_ft | ab_only)].mean())) for y in YEARS} for t in CUTOFFS}
     det_n = {str(y): int(((yr == y) & (has_ft | ab_only)).sum()) for y in YEARS}
 
     meta_out = dict(generated=D.now(), last_year=D.LAST_FULL_YEAR, years=[YEARS[0], YEARS[-1]], groups=GROUPS, cutoffs=CUTOFFS,
