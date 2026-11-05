@@ -101,6 +101,11 @@ endpoints = []            # OAI-PMH / REST endpoints, when robots allows them
 robots = ""               # allowed | disallowed | disallowed-for-ai-agents | unreachable  (from tools/school_hosts.py)
 note = ""
 
+[collector]
+# Stage 8 (fulltext-push/school-collector.slurm, SCHOOL=<key>): which discovery channels the school's collector runs. Empty = the script's default list.
+# The script restarts itself (--signal=B:USR1@900 + loop_job.sh); a school-specific copy must keep both.
+channels = []             # subset of fulltext-push/channels/ names, e.g. ["oa_arxiv", "openalex", "s2", "labpages"]; add the school repository channel only if one exists
+
 [students]
 directories = []          # program PhD directories that list each student's website (no adviser): tools/labpage_students_school.py directory
 adviser_directories = []  # current-student lists that name each student's adviser themselves (TTIC /students/): URL without scheme, Wayback captures
@@ -112,6 +117,12 @@ sources = []              # in the protocol's order of preference: thesis reposi
 [labpages]
 skip_pages = []           # [{url, why}]: lab pages a reviewer judged not to list this lab's members at the school (the extract step does not read them)
 hints = []                # lab directories and naming patterns ("<x>.engin.umich.edu", "web.eecs.umich.edu/~<uniqname>")
+
+[repository]
+# The school's own repository as the unavailability ledger (stage 8) names and recognises it. Both are required before stage 8; without
+# them fulltext-push/unavailable_ledger.py has no entry for the school (it crashed that way on UChicago, 2026-11-05).
+name = ""                 # "Knowledge@UChicago (through OpenAlex and CORE)": say how it is reached ("never asked" where robots disallows AI agents)
+pattern = ''              # regex over a record's host / landing / pdf URL: 'knowledge\\.uchicago\\.edu|Knowledge@UChicago'
 
 [store]
 path = ""                 # <STORES>/<key> (atlas_paths.store(key)); the organized root links stores/<key> to it

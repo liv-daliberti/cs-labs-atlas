@@ -46,3 +46,20 @@ def test_refuses_an_existing_school_and_dry_run_makes_nothing(tmp_path):
 def test_key_must_be_lowercase_letters_and_digits(tmp_path):
     with pytest.raises(SystemExit):
         run(tmp_path, key='Bad-Key')
+
+
+def test_charter_template_carries_every_config_the_later_stages_read():
+    import tomllib
+    t = tomllib.loads((CODE / 'schools' / 'TEMPLATE.toml').read_text())
+    # the sections later stages needed and the protocol had to add by hand: ledger repository (stage 8), collector (stage 8), affiliation cases,
+    # DBLP strings, thesis, students sources, lab-page hints, rank words, home units (stages 2-9)
+    assert {'name', 'pattern'} <= set(t['repository']) and 'channels' in t['collector']
+    assert {'regex', 'loose', 'own_units', 'must_match', 'must_not_match'} <= set(t['affiliation'])
+    assert 'affiliation_strings' in t['dblp'] and {'rank_words', 'home_units', 'center_units'} <= set(t['census'])
+    assert {'adviser_directories', 'rosters', 'directories'} <= set(t['students']) and 'skip_pages' in t['labpages'] and 'kind' in t['thesis']
+
+
+def test_new_school_prints_the_before_you_start_checklist(tmp_path, capsys):
+    run(tmp_path)
+    out = capsys.readouterr().out
+    assert 'Before you start' in out and 'agent_worktree.sh new testu' in out and '--traps' in out
