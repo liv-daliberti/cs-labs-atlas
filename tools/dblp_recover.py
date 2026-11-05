@@ -117,11 +117,14 @@ def page1_text(content):
 Y0, Y1 = (int(v) for v in (os.environ.get('DBLP_RECOVER_YEARS') or '2016-2026').split('-'))
 
 
-def dump_pubs(pis):
+def dump_pubs(pis, school=None):
     """The PIs' DBLP records from DBLP's own dump (hierarchy/dblp-dump-persons.json.gz, tools/dblp_dump_persons.py) in the
     cached-list shape {key: {title, year, doi, venue, ee, authors: {pid or 'n<i>': name}}}; the PI's own byline entry is
     keyed by the PI's pid."""
-    persons = read(P.data('dblp-dump-persons.json.gz')).get('persons') or {}
+    persons = dict(read(P.data('dblp-dump-persons.json.gz')).get('persons') or {})
+    own = P.data('dblp-dump-persons-school.json.gz', school) if school else None
+    if own is not None and own.exists():   # an onboarding school's own persons (dblp_dump_persons.py <key>): the shared file holds the pre-protocol schools only
+        persons.update(read(own).get('persons') or {})
     out = {}
     for p in pis:
         for q in p.get('dblp') or []:
@@ -174,7 +177,7 @@ def candidates(school, skip_have=True):
     # (they carry `ee`); a record only the dump has gets its `ee` from the dump XML (`dump_ee`).
     pubs = dict(legacy)
     bare_have = {bare_key(k) for k in legacy}
-    for k, rec in dump_pubs(pis).items():
+    for k, rec in dump_pubs(pis, school).items():
         if bare_key(k) not in bare_have:
             pubs[k] = rec
     rows = [json.loads(l) for l in gzip.open(P.data('lab_papers.jsonl.gz', school), 'rt')]
