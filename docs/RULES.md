@@ -296,7 +296,7 @@ comes from the dump XML, and the JMLR host was added (Shah JMLR 2025). IACR ePri
 `dblp-recover.sqlite` with status `dblp_unconfirmed` and a reason (`no_open_page1_source`, `page1_fetch_failed`, `page1_read_school_not_named`) for later. The rows carry
 `school_via: ['page1_dblp: <DBLP key>', 'page 1 (<how>): ...']`, `authorship.page1` with the PDF url, its sha256, the quotes, the DBLP key and the fetch time, identity `dblp_person_page`,
 source `dblp_recover:page1_arxiv|page1_open` and enter the normal flow (appointment, editions, dedup against the sweep's works, copies). `dblp_recover.py <school> --retry` asks again for the
-unconfirmed. Not used: the publisher's landing text (no open source parsed there). Tests: `tests/test_dblp_recover_page1.py`.
+unconfirmed. A page-1 read from an arXiv v1 posted 4 or more years before the DBLP record's year is not accepted at build time (`arxiv_predates_record`: Mossel's 2016 TOC paper, v1 2012, names Berkeley), and a byline lists each name once. Not used: the publisher's landing text (no open source parsed there). Tests: `tests/test_dblp_recover_page1.py`.
 
 ### R-PAP-35 (2026-11-05, owner: round-r2 Michigan namesake) — middle names against name-only identities
 An identity that rests on the name through a DBLP person page (DOI or title) or a publication list does not stand when the byline writes middle names and the PI's own names write middle
@@ -312,7 +312,7 @@ with no venue (`repository_record`: datasets, software, artifacts; OSF DOIs are 
 'Processed data ...', 'Dataset for ...'; `dataset_record`); a conference highlights, report, overview or summary ('Highlights from the ... Conference', 'Report on the ... Workshop', '... Workshop Summary';
 `highlights_column`); a title that opens 'Research for Practice' (CACM columns; `column`); an edited-volume record: a book-level ISBN DOI with no chapter suffix on a conference-paper, article or
 editorial record (LNCS volumes whose byline is the editors; type `book` stays, R-PAP-15; `edited_volume`); a workshop or session description ('EE2: Workshop on ...' at ISSCC, 'VDS @ KDD 2022',
-'KDD-2023 Workshop on ...'; `workshop_proposal`; 'KIT@IWSLT2022' stays). **Conference abstracts are not papers (owner, 2026-11-05):** besides R-PAP-19's meeting abstracts and the '(Conference Presentation)' records,
+'KDD-2023 Workshop on ...'; `workshop_proposal`; 'KIT@IWSLT2022' stays); a proceedings-volume title ('Conference on Health, Inference, and Learning (CHIL) 2022': 'Conference|Symposium|Workshop on ...' ending in a year; `proceedings_volume`). **Conference abstracts are not papers (owner, 2026-11-05):** besides R-PAP-19's meeting abstracts and the '(Conference Presentation)' records,
 a `conference-abstract` record of 2 pages or less in DBLP is dropped whatever its byline (`conference_abstract`); one without a page count, or of 3+ pages (ACM EC, PES General Meeting papers OpenAlex types as abstracts), stays.
 
 ## Students

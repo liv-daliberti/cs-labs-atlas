@@ -202,6 +202,7 @@ HIGHLIGHTS_SUMMARY_TITLE = re.compile(r'(?i)\bhighlights (?:from|of) the\b.*\b(?
                                       r'^\s*(?:summary|report|overview) (?:of|on) the\b.*\b(?:workshop|conference|symposium|seminar|meeting|summit)\b|'
                                       r'^\s*(?:conference|workshop|symposium) (?:summary|report)\b')
 SUMMARY_SUFFIX = re.compile(r'(?i)\b(?:workshop|symposium|conference) (?:summary|report)\s*$')   # 'SECM 2017 Workshop Summary' (8 words or fewer: a long title is a paper)
+CONFERENCE_VOLUME_TITLE = re.compile(r'(?i)^\s*(?:the )?(?:\d+(?:st|nd|rd|th)\s+)?(?:annual |international |joint )?(?:conference|symposium|workshop)\s+on\b[^:]{0,110}?\s*(?:\([^)]{2,25}\)\s*)?(?:19|20)\d\d\.?\s*$')   # 'Conference on Health, Inference, and Learning (CHIL) 2022': a proceedings volume
 RESEARCH_FOR_PRACTICE = re.compile(r'(?i)^\s*research for practice\b')
 BOOK_LEVEL_DOI = re.compile(r'^10\.(?:1007|1002|1016|3233|1201|1142|1017)/97[89][\d-]+$')   # an ISBN-style DOI: the book itself, no chapter suffix
 SESSION_WORKSHOP_TITLE = re.compile(r'^\s*[A-Z]{1,4}\d{1,3}(?:\.\d+)?\s*:\s*(?i:workshop|tutorial|forum|panel|short course|special session|evening session)\b|'
@@ -228,6 +229,8 @@ def non_research_record(r, pages=None):
         return 'highlights_column'
     if RESEARCH_FOR_PRACTICE.search(t):
         return 'column'
+    if CONFERENCE_VOLUME_TITLE.search(t):
+        return 'proceedings_volume'
     if BOOK_LEVEL_DOI.match(d) and ty in ('conference-paper', 'article', 'other', 'proceedings', 'editorial'):
         return 'edited_volume'
     if SESSION_WORKSHOP_TITLE.search(t) and ty in ('conference-paper', 'conference-abstract', 'article', 'other'):
@@ -721,6 +724,15 @@ def rows_from_hits(ctx):
     return rows, seen
 
 
+ARXIV_PRE_YEARS = 4   # a DBLP record this many years after its arXiv v1: the v1's affiliation is not where the published version was done (Mossel 2016, v1 2012)
+
+
+def arxiv_predates_record(ev, year):
+    """R-PAP-36: the arXiv v1 an accepted page-1 read came from (id YYMM.NNNNN) was posted ARXIV_PRE_YEARS or more years before the DBLP record's year."""
+    m = re.search(r'/pdf/(\d{2})\d{2}/', ev.get('url') or '') if ev.get('basis') == 'page1_arxiv' else None
+    return bool(m and year and int(year) - (2000 + int(m.group(1))) >= ARXIV_PRE_YEARS)
+
+
 def recovered_rows(ctx, rows, seen):
     """Rows from RECOVERED_KINDS: inside the appointment, one per (PI, work); appended to `rows`."""
     HERE, school, n, pid0, cwork = ctx.here, ctx.school, ctx.n, ctx.pid0, ctx.cwork
@@ -740,6 +752,8 @@ def recovered_rows(ctx, rows, seen):
                     ctx.labpage_set_aside.append(dict(pi=x['pi'], year=int(x['year']), title=x.get('title'), key=x.get('key'), reason=why))
             if not WINDOW_START <= int(x['year']) <= int(TODAY[:4]):  # the atlas window, as the sweep's (2026-10-31: EPFL 2015 row)
                 n[f'{kind}_recovered_outside_window'] += 1; aside('outside_window'); continue
+            if kind == 'dblp' and arxiv_predates_record(ev, x.get('year')):   # R-PAP-36: page 1 of a v1 posted 4+ years before the record says where it was done then
+                n['dblp_recovered_arxiv_v1_predates_record'] += 1; continue
             via = ev.get('school_via') or [f"page 1 ({ev.get('how')}): " + ' … '.join(ev.get('quotes') or [])]
             if kind == 'dblp' and ev.get('how'):  # R-PAP-36: the DBLP-listed work confirmed by its own first page
                 via = ['page1_dblp: ' + str(x.get('dblp_key') or '')] + via
