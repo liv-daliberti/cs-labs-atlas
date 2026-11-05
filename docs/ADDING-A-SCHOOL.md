@@ -1,6 +1,6 @@
 # Adding a school: the standard protocol
 
-**Version 2.3, 2026-11-02.**
+**Version 3.0, 2026-11-05.**
 - Version 1 was drafted from how Princeton, CMU, EPFL, MIT, Berkeley and Stanford were built.
 - Version 2 is version 1 corrected by its first run, on the University of Michigan, the seventh school (`hierarchy/michigan/STAGE-*.md`).
 - Version 2.1 adds what Michigan's stages 2–8 taught on 2026-10-30, marked **Learned from Michigan (2026-10-30)**:
@@ -16,6 +16,11 @@
 - Version 2.3 adds what the University of Chicago, the eighth school, taught in stages 0-1 (`hierarchy/uchicago/reports/PROTOCOL-FRICTION.md`),
   marked **Learned from UChicago (2026-11-02)**.
 - Each change is marked **Learned from Michigan (2026-10-29)** or **(2026-10-30)**.
+- **Version 3.0 merges the lessons of Michigan, the University of Chicago and Georgia Tech** (89 lessons, `docs/ONBOARDING-LESSONS.md`, ids `L-nn`)
+  before Harvard, Johns Hopkins and WashU start. Each stage ends with a **v3** block: what is **automated** (a command or a gate does it), what is
+  still **manual** (a person or agent decides), and the pitfalls with their lesson ids. New: the "Before you start" checklist, the trap checks
+  (`atlas stage-gate <key> --traps`, also run inside each stage gate), "Reviewed files and the overlay root", "Running three schools in
+  parallel", and "Before you land".
 
 Each stage has inputs, tools, outputs, a gate (what must be true before the next stage starts) and a stage report. A school is "in" only when every gate passes and it ships in a release.
 
@@ -52,6 +57,31 @@ The protocol is config-driven. A school is a charter, `schools/<key>.toml`, and 
   - Slurm jobs carry mem, time and cpus. Run `sbatch --test-only` first, use `--exclude=node302`, and do not poll: chain jobs with dependencies and read their output files (`atlas pipeline ... --wait` makes one `sacct` call per 120 s or more).
   - Local runs use `nice`. One heavy builder runs at a time.
   - Temporary files go in `hierarchy/<key>/tmp/` (ignored by git), never in login `/tmp`.
+
+## Before you start (v3)
+Do these before `atlas new-school`; each one was a day lost at least once (lesson ids in brackets).
+1. **Worktree.** `tools/agent_worktree.sh new <key>`; run `bin/atlas ...` from it. Commit before every `--from-worktree` submit: jobs run the committed HEAD [L-01, L-08, L-09].
+2. **Read** `docs/ONBOARDING-LESSONS.md`, `docs/RULES.md` (R-STU-13..18, R-PAP) and the newest school's `reports/PROTOCOL-FRICTION.md`.
+3. **Owner decisions that change data, before the first sweep:** which lineage children stay (Argonne-like national labs, hospitals), which institutions are
+   `openalex_related` (regex-only), same-name campuses to exclude [L-06]. Changing them later cost UChicago 120 minutes and a re-run of three layers.
+4. **Budgets.** The shared OpenAlex key has 10k credits a day; check what is left. A snapshot school needs none (`snapshot-ext`, 25 minutes) [L-04].
+   The release may be running: never modify tracked files in the main checkout; `git -C <main> status --short` after each stage while one runs [L-48].
+5. **Access.** For every host: robots.txt incl. rules naming ClaudeBot / anthropic-ai (a Crawl-delay counts), a probe fetch for a challenge, and for the thesis
+   repository records x crawl delay in hours. A host that challenges or refuses automated clients (bot challenge, a 403 on robots.txt) is read through Wayback: `use = wayback-only`, always allowed (owner 2026-11-05). A host whose robots.txt disallows AI agents by name (ClaudeBot, anthropic-ai, Claude-Web) is not used in any form, not through Wayback either; its holdings reach us only through OpenAlex and CORE [L-12, L-13, L-66, L-67, L-68].
+6. **Fill the whole charter now.** `atlas new-school` starts from a TEMPLATE that holds every section later stages read: affiliation regex with
+   `must_match` / `must_not_match` cases (include DBLP notes, other campuses, medical centres), `loose`, `own_units`, `[dblp].affiliation_strings`,
+   `[repository]` (name and link pattern, for the stage-8 ledger), `[collector].channels`, `[thesis]`, `[students]` sources, `[census].home_units` and
+   `rank_words`, every `[[hosts]]` entry. The stage-0 gate fails on the ones a later stage would crash on [L-11, L-76].
+7. **Branch hygiene for the data tree.** Know which files are tracked: reviewed inputs and reports are tracked, built packages are not. A new reviewed file
+   name needs its `.gitignore` line in the same commit [L-59].
+8. **One driver per branch.** One session submits stages; background waits (`slurm_wait.py` under `run_in_background`) never submit; record job ids in the stage report [L-16, L-17].
+9. **Schedule.** Stage 1 (formats, paged directories) and the stage-2 unit search took Georgia Tech 600 of its first 900 minutes; budget a day for them,
+   and four hand rounds for each of students and papers.
+
+## Automation legend
+**automated** = one command or a gate does it and a test covers it; **manual** = a person or agent decides (the tool prints what to review); **debt** = open (ROADMAP #52-#56).
+`atlas stage-gate <key> --traps` runs every trap check of `tools/onboarding_traps.py` (charter completeness, collector restart, capture store, school-local
+outputs, git-ignored reviewed files, additions vs acceptance, `sources_exhausted` reasons, stale gate files). Each stage's gate also runs its own.
 
 ## Running a stage: `atlas stage-gate` (ROADMAP #39)
 `atlas new-school <key> --name "..."` makes stage 0's scaffolding. After that every stage is one command:
@@ -140,6 +170,14 @@ atlas stage-gate <key> [n ...]                 # only the gates (0-10), from the
     Wayback keys in the slots.
   - `atlas stage-gate <key> 0` checks the charter, `hosts.json` and the snapshot.
 
+- **v3 (2026-11-05).**
+  - *Automated:* `new-school` (charter, folders, empty store, checklist); `school_config --check`; `school_hosts` (robots incl. named AI agents, probe, 310 redirect naming the
+    moved slots); `snapshot-ext`; the stage-0 gate (charter, hosts, snapshot, **charter traps**: affiliation cases, `[repository]`, `[dblp]`, `[thesis]`).
+  - *Manual:* every lineage / related / excluded decision (needs the owner once per school), the affiliation regex cases, host `use`, the thesis `robots` value.
+  - *Pitfalls:* a worktree charter is invisible to raw `$CS_ATLAS_PY` runs without `CS_ATLAS_SCHOOL_CONFIGS=$PWD/schools` [L-01]; `python -I` for download
+    tools only, `atlas run` for the rest [L-07, L-19]; record job ids in `reports/STAGE-0.md` [L-17]; D-rules before the first sweep [L-06].
+  - *Debt:* `new-school --like <released key>` and live URL probes (ROADMAP #54) [L-11].
+
 ## Stage 1: sources and captures
 - **Do:**
   - Find each department's faculty listing URL eras. Use exact-URL Wayback CDX queries with `collapse=timestamp:4`. Prefix queries on a large host time out (503/504).
@@ -183,6 +221,14 @@ atlas stage-gate <key> [n ...]                 # only the gates (0-10), from the
     bytes as served.
   - `school_web.repair_gzip(con)` re-derives blocks and text for stored rows. Before calling a capture unusable, check
     `zlib.decompress(raw)[:2] == b'\x1f\x8b'`.
+
+- **v3 (2026-11-05).**
+  - *Automated:* `discover_listings.py` (`--sample` saves one capture per era), formats with `is_paged`, paged and A-Z page fetching (`plan_fetch.fetch_pages`),
+    gzip bodies, `captures` step done = `plan_fetch.py --check`, a local step waits for queued steps, reviewed `listing_gaps`, `listing_rows` merging paged slots and
+    counting `paged_listing`, the Wayback shared clock and 429 cooldown.
+  - *Manual:* the page formats (one fixture test per era), `listing_gaps` reasons, the check that truncated titles ("...") are counted before stage 2.
+  - *Pitfalls:* sample one capture per era and write the formats FIRST, otherwise every capture is `unusable` and a replan costs a second pass [L-25]; a department site
+    changes template two or three times in ten years and pages its lists [L-24]; Wayback originals keep `:80` [L-24]; only one fetching stage runs at a time [L-28].
 
 ## Stage 2: faculty census
 - **Do:**
@@ -236,6 +282,15 @@ atlas stage-gate <key> [n ...]                 # only the gates (0-10), from the
 - **Re-run `census_build.py` at three points (UChicago 2026-11-03, friction 28, 34):** after `cs_related_school.py review` (the additions get their person records only then), after the stage-5 `dblp_ids_school.py` (it folds `dblp-ids.json` into the census), and after any change of the accepted candidates. Then `oa_identity_school.py` and `home_departments_school.py <key>` (school-local; `--write-shared` only when the owner says).
 - **An onboarding school never writes a tracked shared file in the main checkout** (friction 30, 31): its census overrides are `hierarchy/<key>/reviewed/census-overrides-school.json` (`tools/census_overrides.py`) and its lab-page summary `derived/labpage-audit-summary-school.json`; both are committed on the school's branch. The release freeze refuses dirty tracked inputs.
 
+- **v3 (2026-11-05).**
+  - *Automated:* the `census-refresh` step, school-local `homes`, `units` (follows pages, letters and live pages, flags shells, writes `units-done.json`), the
+    candidates rule from the snapshot extension and DBLP dump, the sweep check (also reading the school-local persons file), the share test, `rank_words`, `CLONE_OF`,
+    the suffix-safe merge (#42), stage-2 gate (candidates file present, no `pending_openalex`).
+  - *Manual:* the review decisions (`accepted`, `faculty_not_computing`, ...), `exclude` for faculty of other universities (a title like "Professor; University of X") [L-37], `[cs_related].not_faculty`.
+  - *Pitfalls:* search every unit the OpenAlex candidates come from, and find each unit's list by reading its homepage links, not by guessing [L-33]; match names with middle
+    initials and comma forms [L-34]; never re-run `candidates` + `review` on a census that already holds the additions unless the PI list is the census without additions [L-35];
+    re-run `census_build` after the review, after `dblp-ids`, after accepted candidates change [L-36]; look for a row named "Clone of ..." or "Jr." merging title strings [L-38, L-39].
+
 ## Stage 3: PIs and labs
 - **Do:**
   - Decide each PI's basis (`census_build.py`):
@@ -252,6 +307,14 @@ atlas stage-gate <key> [n ...]                 # only the gates (0-10), from the
 - **Learned from Michigan (2026-10-29):** a PI's home department comes from the same listing row that proves the appointment. No separate profile crawl is needed when the listing carries every title.
 
 - **Stage 3 order (friction 26, 27, 29):** `census-refresh` -> `homes` -> `build` (pi_hierarchy: the lab-page audit reads `pis.json`) -> `labpage-discover` -> `labpage-audit`; submit with `atlas stage-gate <key> 3 --run --submit --from-worktree` while the charter is not on main.
+
+- **v3 (2026-11-05).**
+  - *Automated:* `census-refresh` -> `homes` -> `build` -> `labpage-discover` -> `labpage-audit` (stage-3 steps in that order), the stale-build check (a `pis.json` older than
+    the reviewed inputs fails), `known_homes` (a home is a charter department, unit or `home_units` name; titles are not homes), `center_units`, the **shared-file and
+    git-ignored trap checks** (no school section in a shared tracked file; no ignored reviewed file).
+  - *Manual:* PI basis for research/teaching faculty, held homes, `skip_pages`-style judgements of department rosters.
+  - *Pitfalls:* the builder runs at stage 3, before periods and identity, because the lab-page audit reads `pis.json` [L-44]; a background command must not start the next stage
+    while a review is still being written [L-17, L-45]; the home department never comes from title text [L-46].
 
 ## Stage 4: appointment periods
 - **Do:**
@@ -297,6 +360,14 @@ atlas stage-gate <key> [n ...]                 # only the gates (0-10), from the
     'Lionel P. Robert Jr.' is listed as 'Lionel Robert'.
   - **Wayback shells.** Robotics' 2025 directory captures are 2.4 KB script shells; 2025 needs the per-person profiles.
 
+- **v3 (2026-11-05).**
+  - *Automated:* `periods_school.py fetch` (incremental: only URLs without a stored page; reviewed `extra-lab-pages.json`, `person-urls.json`), `gaps`, `extend`, `truncated`,
+    `deep --work-years`, `proven_years`, ISO dates, `homepage-dive` pipeline.
+  - *Manual:* `unproven_years` + `why_unproven` for a gap searched and not closed (**debt**: the tool should write it, ROADMAP #55) [L-52]; a year-precision period from a live
+    page for a new hire ("Fall 2026", R-PAP-02) [L-53]; `faculty_end_moved` readings.
+  - *Pitfalls:* truncated titles hide span gaps [L-29]; a PI listed in one year with works in others never reaches `deep` without `--work-years` [L-51]; homepage fetching is hours, start it
+    when the census exists; Wayback refuses concurrent fetchers [L-28, L-49].
+
 ## Stage 5: identity
 - **Do:**
   - Review each PI's OpenAlex author ids, recording them as `reviewedOpenAlex`, `not_openalex` or `mixed_openalex` with evidence. This needs the sweep.
@@ -331,6 +402,13 @@ atlas stage-gate <key> [n ...]                 # only the gates (0-10), from the
     schools. Stage 6 and the atlas ids rely on it.
 
 - **A PI nothing identifies** (no DBLP id, ORCID or OpenAlex id after the DBLP, share-test and homepage/CV searches) gets `no_identity` + `why_no_identity` (with the evidence searched) in the overrides; the gate passes and no papers are attributed.
+
+- **v3 (2026-11-05).**
+  - *Automated:* `dblp_ids_school.py` (four rules), school-local `dblp_dump_persons.py` (default step, before the hand step), `oa_identity_candidates.py` (proposals; **read them before
+    `--write`**), `oa_identity_school.py`, the `no_identity` pass, **the yield gate** (ROADMAP #43: a PI of the build with 0 verified works and 0 lab papers fails without a reason).
+  - *Manual:* ambiguous OpenAlex ids (venues and years against the field), `no_identity` / `no_papers` reasons with the evidence searched, cross-school PIs carrying the same id.
+  - *Pitfalls:* the shared persons file does not contain a new school: without the local file 64 of 138 UChicago labs had no papers [L-47]; a bare DBLP pid is not enough [L-55];
+    first-given-name matches admit namesakes [L-56]; the OpenAlex identity matcher once flagged every candidate a namesake; read proposals first [L-88].
 
 ## Stage 6: students
 Use sources in this order of preference:
@@ -392,6 +470,18 @@ OpenAlex co-authorship is never on its own evidence of advising.
   failed rounds the work stops and is reported. Every round is recorded (`labpage-handcheck.json`, `LABPAGE-AUDIT.md`); the
   accepted one is `labpage-acceptance.json`. After any rule change, 10 students are re-sampled at every accepted school.
 
+- **v3 (2026-11-05).**
+  - *Automated:* sources in order (thesis list with advisers, rosters, lab pages, directories, CVs), `adviser_directories`, `is_department_roster`, `in_own_space`, `visiting` role,
+    `lab_coverage.py` + `lab_coverage_reasons.py`, `student_audit.py` school-local, **traps at the gate:** school-local outputs, ignored reviewed files, `labpage-additions.json` not
+    shrunk below the acceptance (R13), `sources_exhausted` reasons backed by 2+ sources and boilerplate on at most 25% of PIs.
+  - *Manual:* the hand rounds (20 students, 20 papers; at most 1 / 2 / 1 errors; four rounds a kind, three failures stop the work), roster-rule pilots, per-PI decisions with evidence, the researched pass for labs left `open`.
+  - *Pitfalls:* **draw a 100-row sample before round 1 and batch rule fixes**; each round of 20 finds only the next 3-5 idioms [L-62]; pilot a roster rule on 20 rows [L-63]; look at new rows by PI before
+    counting a jump in labs with students [L-62, L-88]; a department's people page is not a lab page [L-64]; check the PI's first listing year before calling a page "pre-joining" [L-63];
+    **never run `labpage_audit audit` after wiring without the R13 filter**, and commit the additions in the same commit as the acceptance that stamps them (restamp after any regeneration) [L-60, L-61];
+    estimate records x crawl delay before crawling a thesis repository; sitemaps arrive truncated; `/items/*/full` and `/entities/*/full` are disallowed [L-66]; a repository that disallows AI agents is
+    not used in any form [L-67]; Math Genealogy, OpenReview and CORE are not available [L-68]; the owner rejects `sources_exhausted` without real search effort [L-69].
+  - *Debt:* acceptance keyed on the accepted rows, `restamp` refusing a shrink, round counter (ROADMAP #52) [L-61].
+
 ## Stage 7: papers and links
 - **Do:**
   - Run the OpenAlex institution sweep (`tools/oa_sweep.py`) and the PI works (`tools/pi_fulltext_affiliation.py works <key>`).
@@ -407,6 +497,14 @@ OpenAlex co-authorship is never on its own evidence of advising.
     papers has at most 1 error (doubtful = half, wrong metadata = an error) before they are wired, under the same rounds rule
     as stage 6.
 - **Debt:** `dblp_recover.py` reads a pre-protocol school's cached DBLP lists (`pi_hierarchy.DBLP`). A protocol school needs it to read `hierarchy/dblp-dump-persons.json.gz` instead, or a `hierarchy/<key>/raw/dblp_pubs.json.gz` written from it.
+
+- **v3 (2026-11-05).**
+  - *Automated:* `labpage_audit recover` + `audit` (snapshot title lookup first), `link_diagnosis` (idempotent; in-process chain audit), `atlas pipeline build-audit` / `link-diagnosis`,
+    the zero-paper and yield checks on the rebuilt outputs, the stale-gate trap (`stage-gate <key> <n> --record`).
+  - *Manual:* the hand rounds for papers, zero-paper reasons, link diagnosis review.
+  - *Pitfalls:* order is recover -> hand round -> accept -> build -> audit -> restamp -> link diagnosis -> student audit [L-70, L-71]; `build` reruns only with `--force` (or when `pis.json` is deleted) [L-70];
+    a recorded gate is not the truth: compare its time with the newest reviewed file before diagnosing a rule problem [L-71, L-83]; the lab-page additions must not shrink after wiring [L-60].
+  - *Debt:* `build-audit` ending with the diagnosis and the student audit, naming a failed stage's log (ROADMAP #53) [L-74].
 
 ## Stage 8: full texts
 - **Do:**
@@ -430,14 +528,29 @@ OpenAlex co-authorship is never on its own evidence of advising.
     `--offline`, `--only <paper key>`, `--no-network-sources s2,s2_title,core,dblp,wayback_acm`. The release step is
     `ledger`, after `copies`, in `hierarchy/rebuild.sh`.
 - **Gate:**
-  - copies are measured. The target is 85% of lab papers.
+  - copies are measured. The 85% of lab papers is a **target, not a gate** (v3: reported as `copy_target_met`).
   - every non-local lab paper has a ledger entry, and `incomplete_check` is at most the whitelisted threshold
     (`docs/evidence-whitelist.json`; the evidence check's categories `unavailable_missing`, `unavailable_stale` and
     `unavailable_incomplete`).
 
+- **v3 (2026-11-05).**
+  - *Automated:* `school-collector.slurm` (SCHOOL=<key>; channels from `[collector].channels`; restarts itself with `--signal=B:USR1@900` + `loop_job.sh`), `lab_paper_copies.py`, `unavailable_ledger.py`
+    (repository name and pattern from `[repository]`; reads `labpage-captures.sqlite` or the audit's `labpage-audit-captures.sqlite`), the release ledger offline for onboarding schools, **traps at the gate:**
+    collector scripts restart, a capture store exists.
+  - *Manual:* the access-review of `needs_access_review` copies, whitelist entries for `incomplete_check` while CORE is paused.
+  - *Pitfalls:* compute nodes lack `/usr/local/anaconda3` (use `CS_ATLAS_PY`) [L-58]; a collector without `loop_job` ends at its limit and stays down [L-78]; after `scancel` a catalog may have a hot journal: open it once for
+    writing, never delete it (`docs/RUNBOOK.md`) [L-79]; the ledger step needs a 59-minute slice only.
+  - **The 85% copy share is a target, not a gate** (owner 2026-11-05; Georgia Tech reached 42.1% against a ceiling of 53.3%): `stage_gate.g8` reports `copy_target_met` and fails only on unmeasured copies or a missing ledger [L-80].
+
 ## Stage 9: accuracy
 - **Do:** run the hand-checked sample (`accuracy/sample.py`, 105 judgments per school).
 - **Gate:** lab-paper precision ≥ 0.95, student-link precision ≥ 0.97, and lab-paper coverage ≥ 0.90. Below a threshold, add a general rule with a test, never a one-off fix.
+
+- **v3 (2026-11-05).**
+  - *Automated:* `accuracy/sample.py` (reads the school-local DBLP persons file; `oalookup.aff()` falls back to the charter regex), the g9 check that the build has not changed since the draw.
+  - *Manual:* the 105 judgments (or 50-row spot check), the rule for any failing measure (a general rule with a test, R-PAP-31 style).
+  - *Pitfalls:* **the draw binds the build and `copies.json`**; draw once, after the last rebuild, or redo it (Georgia Tech needed draw 2) [L-81]; the 50-row spot-checks are the FIRST go/no-go gate after the rebuild, before
+    freeze, export and site steps (owner 2026-11-05) [L-85].
 
 ## Stage 10: release
 - **Do:**
@@ -473,6 +586,51 @@ the one-school runners (`hierarchy/michigan/run_sweep.sh`, `sweep_daily.sh`, `hi
 - `tools/faculty_periods.py`: `STAGES` and `SCHOOL`, for the pre-protocol schools. Protocol schools use `tools/periods_school.py`.
 - The site builder's `SCHOOLS`, `FULL_CODES` and `CORE` tables (Codex's checkout).
 - `ai-writing/*` school tuples. They are the study's scope, and the owner decides whether a new school enters it.
+
+## Stage 10 additions (v3)
+- **Refresh before release.** Sweeps and captures end before the release date (new hires and 2026 preprints: Qi, Tomlin): run the 2026 refresh (ROADMAP #51 trickle, or the stage-7 title lookup) before the spot-checks [L-84].
+- **Release-time gates.** The zero-paper and yield checks run on the REBUILT outputs; every `reviewed/` file of the school is committed and landed first (the freeze refuses dirty tracked inputs) [L-75, L-86];
+  the release ledger runs offline for onboarding schools, so run the stage-8 network ledger before [L-76].
+
+## Reviewed files and the overlay root (ROADMAP #44, v3)
+**Problem.** `atlas_paths.data()` resolves `hierarchy/<school>/reviewed/...` (and `reports/`) under `CS_ATLAS_CODE`, the MAIN checkout. A worktree build or a Slurm snapshot therefore
+reads main's copy of the reviewed files, and every writer (`labpage_audit record|audit`, `oa_identity_school`, `cs_related_school review`, `lab_coverage_reasons`, census overrides) writes
+there; main shows them modified until the branch lands, and a branch edit is invisible to a build [L-21].
+**Rules while #44 is open.**
+1. After every reviewed-file write: `tools/sync_school_files.py <key>` (copies what git admits into the worktree, keeps newer worktree files), then commit in the worktree. Land at each gate.
+2. Never `git add` or edit tracked files inside the main checkout; check `git -C <main> status --short` after each stage while a release runs. A dirty tracked file for the school is restored from the branch, not committed from main.
+3. When a build or audit must read the BRANCH's reviewed files (the acceptance, the additions, student decisions), run it in an overlay code root:
+   ```
+   tools/overlay_root.py <key> --out hierarchy/<key>/tmp/overlay       # tmp/ is git-ignored; rebuilt each time
+   CS_ATLAS_CODE=$PWD/hierarchy/<key>/tmp/overlay bin/atlas build-audit <key>    # or any other command
+   ```
+   The overlay is a directory of symlinks: code (`tools`, `atlas_cli`, `bin`, `schools`, `tests`, `vendor`, `docs`, `accuracy`) from the worktree; `hierarchy/<key>/reviewed` and `reports` per file, the
+   worktree's tracked file where the branch has one and main's otherwise (a writer's output lands in the worktree, ready to commit); `derived`, `raw`, `work`, `tmp` and every other entry from main.
+   Run it from the worktree; `CS_ATLAS_CODE` must be absolute. A tracked file the branch has not committed yet is main's copy: commit first.
+4. Slurm: `atlas submit --from-worktree` pins the committed HEAD but data paths still resolve against main; a job that needs branch-only reviewed files needs the overlay path in its environment (the pipeline stages inherit `CS_ATLAS_CODE`).
+**Why not fixed in code on this branch.** The conversion has to route the explicit-root call sites (`HERE = P.WORK` in `pihier/common.py`, `pi_hierarchy`, `labpage_audit`, 20-odd modules) through one resolver and
+split `reviewed` from `derived` under one `root`; a half-converted tree reads reviewed files from one checkout and the packages from another, and the release was running. It is ROADMAP #44 (and #56 for the resolver design).
+
+## Running three schools in parallel (Harvard, Johns Hopkins, WashU)
+**Per school (never shared):** one worktree and branch (`tools/agent_worktree.sh new harvard`, `jhu`, `washu`; keys are lower-case letters and digits), one charter, one `hierarchy/<key>/`, one store `stores/<key>`,
+one `listings/<key>`, one collector job (`school-collector.slurm SCHOOL=<key>`), one driver session, one `STAGE-<n>.md` and `PROTOCOL-FRICTION.md` per school, one `reviewed/` set, one OpenAlex snapshot extension (`ext-<key>.sqlite`).
+**Shared (take turns, never write twice):**
+| Resource | Rule |
+|---|---|
+| OpenAlex key (10k credits a day) | snapshot extension first (no credits); API only for named checks; one agent at a time on credits, record the spend in the stage report |
+| Wayback (shared 5 s clock, 429 cooldown) | one fetching stage at a time ACROSS the three schools; stagger stage 1 and 4 fetch jobs; every client uses `host_throttle` |
+| Slurm | partition `all`, account `mltheory`, jobs of 59 minutes or less, `--exclude=node302,node014`, `sbatch --test-only` first; never submit on `Preempts:`; no polling (`slurm_wait.py` in the background) |
+| Shared tracked files (`hierarchy/reviewed/census-overrides.json`, `home-departments.json`, the audit summary, `student-audit.json`, `.gitignore`, `schools/TEMPLATE.toml`, `tools/`) | an onboarding school writes only school-local files; a change to a shared tool or file is its own commit on its own `fix/` branch landed by the coordinator, then the other branches rebase |
+| `DBLP dump persons`, `paths.sh`, `atlas_paths.SCHOOL_IDS` | not touched before stage 10; the school-local persons file stands in |
+| The release | landing is frozen while a release runs; branches wait; reviewed files stay in the worktree |
+**Landing at gates.** Each school lands when a stage gate passes: `bin/atlas test` (exit code), lint, `tools/secret_scan.py --staged`, `git rebase main`, then the coordinator fast-forwards. Charter first (stage 0) so jobs can run from main;
+code fixes that all three need land as soon as they pass (they change nothing for released schools); the school's reviewed files land with the gate commit. Rebase the other two branches after every landing, and re-run
+`atlas stage-gate <key> --traps` there. Three drivers, one coordinator: the coordinator owns landings, the OpenAlex budget and the Wayback turn order; the drivers own their schools.
+**Order of work.** Stages 0 (together, the owner D-decisions batched in one message), then stages 1-2 staggered by one day, stage 6 rounds and stage 8 collectors are the long poles; stage 9 draws after the last rebuild.
+
+## Before you land (v3)
+`bin/atlas test` (read its EXIT CODE, not the last line; a subset is not enough: tests leave other checkouts' tool modules in `sys.modules`), `bin/atlas lint`, `bin/atlas charters`, `tools/secret_scan.py --staged`,
+then `atlas stage-gate <key> --traps` for the school. Stage explicit paths. Commit messages end with the Co-Authored-By line. Never push [L-87].
 
 ## Stage reports
 After each stage, write `hierarchy/<key>/STAGE-<n>.md`: what was done, the counts, the gate result, and every exception with its reason. These reports are how a school's onboarding is reviewed.

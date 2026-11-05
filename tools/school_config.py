@@ -143,6 +143,16 @@ def check(key):
             re.compile(rx)
         except re.error as e:
             out.append(f'{key}: census.rank_words.{r} does not compile: {e}')
+    pat = field(cfg, 'repository.pattern', '')
+    if pat:
+        try:
+            re.compile(pat)
+        except re.error as e:
+            out.append(f'{key}: repository.pattern does not compile: {e}')
+    chans = Path(__file__).resolve().parents[1] / 'fulltext-push' / 'channels'
+    for c in field(cfg, 'collector.channels', []) or []:
+        if chans.is_dir() and not (chans / f'{c}.py').exists():
+            out.append(f'{key}: collector.channels names {c!r}, which is not a module of fulltext-push/channels/')
     if cfg.get('status') == 'onboarding':
         deps = cfg.get('departments') or []
         if not any(d.get('coverage') == 'full' for d in deps):
