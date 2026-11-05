@@ -29,7 +29,7 @@ from pi_fulltext_affiliation import tie  # noqa: E402
 import atlas_paths as P  # noqa: E402  (every path in one place)
 
 UA = 'HomogenizingScienceResearch/0.2 (academic metadata inventory)'
-OPEN_HOSTS = ('eprint.iacr.org', 'aclanthology.org', 'proceedings.mlr.press', 'openaccess.thecvf.com', 'papers.nips.cc', 'proceedings.neurips.cc',
+OPEN_HOSTS = ('aclanthology.org', 'proceedings.mlr.press', 'openaccess.thecvf.com', 'papers.nips.cc', 'proceedings.neurips.cc',
               'www.usenix.org', 'usenix.org', 'www.ijcai.org', 'ojs.aaai.org', 'openreview.net', 'www.isca-speech.org',
               'www.roboticsproceedings.org', 'roboticsproceedings.org', 'jmlr.org', 'www.jmlr.org', 'dl.acm.org/doi/pdf')
 _last = collections.defaultdict(float); _lock = threading.Lock(); _robots = {}
@@ -71,9 +71,8 @@ def pdf_url(u):
     if m:
         kind = 'Paper-Conference' if 'Conference' in u else 'Paper'
         return f'https://proceedings.neurips.cc/paper_files/paper/{m.group(1)}/file/{m.group(2)}-{kind}.pdf'
-    m = re.match(r'https://eprint\.iacr\.org/(\d{4})/(\d+)(?:\.pdf)?/?$', u)   # R-PAP-36: IACR ePrint, an open archive
-    if m:
-        return f'https://eprint.iacr.org/{m.group(1)}/{m.group(2)}.pdf'
+    # IACR ePrint is not asked: eprint.iacr.org answers automated clients with a Cloudflare challenge and its robots.txt states an AI policy against
+    # using the PDFs (R-PAP-36, 2026-11-05: Devadas's 2021 ePrint paper stays `dblp_unconfirmed`)
     m = re.match(r'https://(?:www\.)?jmlr\.org/papers/v(\d+)/([\w\-.]+?)\.html$', u)   # R-PAP-36: JMLR volume page -> its PDF
     if m:
         return f'https://jmlr.org/papers/volume{m.group(1)}/{m.group(2)}/{m.group(2)}.pdf'

@@ -290,9 +290,9 @@ ORCID 0000-0002-7339-8342 and the OpenAlex author A5113215889 that carries it (t
 ### R-PAP-36 (2026-11-05, owner: "yes", the DBLP page-1 extension of R8) — DBLP-listed works confirmed by page 1
 A work on the PI's own DBLP person page (the dump or a reviewed pid) that the build lacks, in a year inside a dated appointment (a period, or a listing year), where OpenAlex has no record
 or gives the PI no school, is added only when page 1 of the paper (arXiv v1 from the public GCS bulk copy, or an open PDF on a proceedings host: PMLR, NeurIPS, ACL, CVF, USENIX,
-IJCAI, AAAI, OpenReview, JMLR, IACR ePrint; robots.txt honoured, 3 s per host) names the school for the PI (`tie`). `tools/dblp_recover.py` (`candidates`, `dump_ee`, `pdf_url`): the candidates
+IJCAI, AAAI, OpenReview, JMLR; robots.txt honoured, 3 s per host) names the school for the PI (`tie`). `tools/dblp_recover.py` (`candidates`, `dump_ee`, `pdf_url`): the candidates
 are now the cached lists plus the PI's full DBLP person page from the dump (the cached lists lacked MIT's Mossel NeurIPS 2022 and Freund COLT 2022), `ee` for a record only the dump has
-comes from the dump XML, and the IACR ePrint and JMLR hosts were added (Devadas ePrint 2021, Shah JMLR 2025). A record with no page-1 evidence is not added: it is kept in
+comes from the dump XML, and the JMLR host was added (Shah JMLR 2025). IACR ePrint is not asked: eprint.iacr.org answers with a Cloudflare challenge and its robots.txt carries an AI policy against the PDFs, so Devadas's 2021 ePrint paper stays `dblp_unconfirmed`. A record with no page-1 evidence is not added: it is kept in
 `dblp-recover.sqlite` with status `dblp_unconfirmed` and a reason (`no_open_page1_source`, `page1_fetch_failed`, `page1_read_school_not_named`) for later. The rows carry
 `school_via: ['page1_dblp: <DBLP key>', 'page 1 (<how>): ...']`, `authorship.page1` with the PDF url, its sha256, the quotes, the DBLP key and the fetch time, identity `dblp_person_page`,
 source `dblp_recover:page1_arxiv|page1_open` and enter the normal flow (appointment, editions, dedup against the sweep's works, copies). `dblp_recover.py <school> --retry` asks again for the
