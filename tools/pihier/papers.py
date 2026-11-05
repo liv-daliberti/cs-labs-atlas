@@ -231,7 +231,10 @@ def non_research_record(r, pages=None):
         return 'column'
     if CONFERENCE_VOLUME_TITLE.search(t):
         return 'proceedings_volume'
-    if BOOK_LEVEL_DOI.match(d) and ty in ('conference-paper', 'article', 'other', 'proceedings', 'editorial'):
+    # an authored monograph OpenAlex types 'article' (no venue, at most three authors: Rojo and Bloch, The Principle of Least Action, Cambridge 2018) is a
+    # book, which R-PAP-15 keeps; an edited volume is typed conference-paper/proceedings/editorial or lists its editors
+    authored_monograph = ty == 'article' and not v.strip() and 1 <= len(r.get('byline') or []) <= 3
+    if BOOK_LEVEL_DOI.match(d) and ty in ('conference-paper', 'article', 'other', 'proceedings', 'editorial') and not authored_monograph:
         return 'edited_volume'
     if SESSION_WORKSHOP_TITLE.search(t) and ty in ('conference-paper', 'conference-abstract', 'article', 'other'):
         return 'workshop_proposal'

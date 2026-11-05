@@ -140,3 +140,13 @@ def test_R_LNK_07_spelling_variant_within_lab():
     assert got == {}
     got, _ = link('Swarup Kumar Sahoo', rel3, [('w6', 2021, ['Swarun Kumar'], [])])
     assert got == {}
+
+
+def test_R_STU_20_capture_year_is_the_wayback_timestamp_not_the_fetch_date(tmp_path):
+    """Michigan 2026-11-05 (Kira Barton's 2020 lab page): the row's `url` is the live address, `capture_url` carries the Wayback timestamp; the
+    undated row takes the CAPTURE's year (R-STU-14), never the year our fetch of that capture ran (2026)."""
+    cap = 'https://web.archive.org/web/20200807150555id_/https://h.example'
+    dbs = _school(tmp_path, [dict(row('Tianze Jiang'), capture_url=cap)])
+    papers = {'Boris Hanin': [paper('w2', 2020, ['Hanin, Boris', 'Jiang, Tianze']), paper('w9', 2026, ['Hanin, Boris', 'Jiang, Tianze'])]}
+    out = CO.corroborated_rows('x', papers, {'Boris Hanin': []}, dbs, tmp_path, collections.Counter())
+    assert [(r['years'], w) for r, w in out] == [([2020], ['w2'])]

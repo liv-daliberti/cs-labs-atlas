@@ -38,6 +38,7 @@ def test_R_PAP_33_failing_rows_drop(tag, r):
     row('Predicting the impact of dataset composition on model performance', 'article', None, doi=''),
     row('Large-scale Cloze Test Dataset Designed by Teachers', 'article', None, doi=''),
     row('Introduction to Algorithms for Session Types', 'article', 'JACM'),
+    row('The Principle of Least Action: History and Physics', 'article', None, byline=('Alberto Rojo', 'Anthony Bloch'), doi='10.1017/9781139021029'),   # an authored monograph typed article (Michigan 2026-11-05): a book, kept (R-PAP-15)
     row('Interview Study of Developers Debugging Practice', 'article', 'CHI', doi='10.1145/1'),
     row('An interview study of data scientists', 'article', 'CHI', doi='10.1145/2'),
     row('Two-Timescale Q-Learning with Function Approximation in Zero-Sum Stochastic Games', 'conference-abstract', 'ACM EC', doi='10.1145/3670865.3673491'),

@@ -113,7 +113,8 @@ def corroborated_rows(school, papers_by_pi, existing, dbs, here=None, n=None):
                 n['labpage_students_corroborated_skipped:no_student_cue'] += 1
                 continue
         if not years:
-            m = re.search(r'/web/(\d{4})', s_['url'])
+            # R-STU-14: the capture's own year (the Wayback timestamp of capture_url, else of url); the fetch date is when WE read it, never a membership year
+            m = re.search(r'/web/(\d{4})', s_.get('capture_url') or '') or re.search(r'/web/(\d{4})', s_['url'])
             cy = int(m.group(1)) if m else int(str(fetched or '0')[:4]) or None
             if not cy:
                 continue
