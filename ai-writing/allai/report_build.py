@@ -5,7 +5,6 @@ import json
 import sys
 from pathlib import Path
 
-import pandas as pd
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent / 'embeddings'))
