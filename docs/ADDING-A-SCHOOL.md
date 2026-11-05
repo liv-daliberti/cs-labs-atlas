@@ -67,7 +67,7 @@ Do these before `atlas new-school`; each one was a day lost at least once (lesso
 4. **Budgets.** The shared OpenAlex key has 10k credits a day; check what is left. A snapshot school needs none (`snapshot-ext`, 25 minutes) [L-04].
    The release may be running: never modify tracked files in the main checkout; `git -C <main> status --short` after each stage while one runs [L-48].
 5. **Access.** For every host: robots.txt incl. rules naming ClaudeBot / anthropic-ai (a Crawl-delay counts), a probe fetch for a challenge, and for the thesis
-   repository records x crawl delay in hours. Blocked or challenged hosts are not used, not through Wayback either [L-12, L-13, L-66, L-67, L-68].
+   repository records x crawl delay in hours. A host that challenges or refuses automated clients (bot challenge, a 403 on robots.txt) is read through Wayback: `use = wayback-only`, always allowed (owner 2026-11-05). A host whose robots.txt disallows AI agents by name (ClaudeBot, anthropic-ai, Claude-Web) is not used in any form, not through Wayback either; its holdings reach us only through OpenAlex and CORE [L-12, L-13, L-66, L-67, L-68].
 6. **Fill the whole charter now.** `atlas new-school` starts from a TEMPLATE that holds every section later stages read: affiliation regex with
    `must_match` / `must_not_match` cases (include DBLP notes, other campuses, medical centres), `loose`, `own_units`, `[dblp].affiliation_strings`,
    `[repository]` (name and link pattern, for the stage-8 ledger), `[collector].channels`, `[thesis]`, `[students]` sources, `[census].home_units` and
