@@ -27,7 +27,7 @@ def apply_cached_lists(pis, pubs, dblp_doi, dblp_title, n):
             dname[q].add(re.sub(r'\s+\d{4}$', '', dn or ''))
     n['dblp_ids_dropped_name_mismatch'] = 0
     for p in pis:  # a census DBLP id whose person never carries the PI's name is someone else's (e.g. 'Jun Zhu' for Jun-Yan Zhu)
-        keep = [q for q in p['dblp'] if q not in dname or any(not name_conflict(p['names'], dn) for dn in dname[q])]
+        keep = [q for q in p['dblp'] if q not in dname or any(not name_conflict(p['names'], dn) and not middle_conflict(p['names'], dn) for dn in dname[q])]
         if len(keep) < len(p['dblp']):
             n['dblp_ids_dropped_name_mismatch'] += len(p['dblp']) - len(keep); p['dblpDropped'] = sorted(set(p['dblp']) - set(keep)); p['dblp'] = keep
     for p in pis:
@@ -54,7 +54,7 @@ def apply_dump(pis, dump, dblp_doi, dblp_title, n):
     DP, DN = dump['persons'], dump['by_name']
     n.setdefault('dblp_ids_dropped_name_mismatch', 0)  # report.schema requires the counter even when nothing is dropped (protocol schools skip apply_cached_lists)
     for p in pis:
-        keep = [q for q in p['dblp'] if q not in DP or any(not name_conflict(p['names'], re.sub(r'\s+\d{4}$', '', dn)) for dn in DP[q]['names'])]
+        keep = [q for q in p['dblp'] if q not in DP or any(not name_conflict(p['names'], re.sub(r'\s+\d{4}$', '', dn)) and not middle_conflict(p['names'], re.sub(r'\s+\d{4}$', '', dn)) for dn in DP[q]['names'])]
         if len(keep) < len(p['dblp']):
             n['dblp_ids_dropped_name_mismatch'] += len(p['dblp']) - len(keep)
             p['dblpDropped'] = sorted(set(p.get('dblpDropped') or []) | (set(p['dblp']) - set(keep))); p['dblp'] = keep

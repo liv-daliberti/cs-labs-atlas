@@ -40,3 +40,19 @@ def test_R_PAP_34_michigan_y_z_is_named_from_evidence():
     ov = json.loads((HIER / 'reviewed/census-overrides.json').read_text())['michigan']['Y Z']
     assert ov['display_name'] == 'Yang Zhang' and 'https://openalex.org/A5113215889' in ov['openalex']
     assert ov['why_display_name'] and all(e.get('sha256') for e in ov['openalex_evidence'])
+
+
+def test_R_PAP_35_census_dblp_id_of_the_namesake_is_dropped():
+    import collections
+    pis = [dict(pi='Mark W Newman', names=['Mark W Newman', 'Mark W. Newman', 'Mark Newman'], orcid=[],
+                dblp=['https://dblp.org/pid/n/MEJNewman', 'https://dblp.org/pid/03/6629'])]
+    dump = dict(persons={'https://dblp.org/pid/n/MEJNewman': dict(names=['Mark E. J. Newman', 'M. E. J. Newman'], pubs=[], orcid=[]),
+                         'https://dblp.org/pid/03/6629': dict(names=['Mark W. Newman', 'Mark Wah Newman'], pubs=[], orcid=[])}, by_name={})
+    n = collections.Counter()
+    identity.apply_dump(pis, dump, collections.defaultdict(set), collections.defaultdict(dict), n)
+    assert pis[0]['dblp'] == ['https://dblp.org/pid/03/6629'] and pis[0]['dblpDropped'] == ['https://dblp.org/pid/n/MEJNewman']
+
+
+def test_R_PAP_35_mark_w_newman_override_names_his_page():
+    ov = json.loads((HIER / 'reviewed/census-overrides.json').read_text())['michigan']['Mark W Newman']
+    assert ov['dblp'] == ['https://dblp.org/pid/03/6629'] and ov['why_dblp']
