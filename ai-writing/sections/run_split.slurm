@@ -7,6 +7,7 @@
 #SBATCH --exclude=node302,node014,node805,node808
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=16G
+#SBATCH --tmp=8G
 #SBATCH --time=00:59:00
 #SBATCH --output=ai-writing/logs/sections-%A_%a.out
 set -euo pipefail
