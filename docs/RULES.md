@@ -264,6 +264,15 @@ and the withheld papers, or `twin_record`); no period is closed (R-PAP-03's list
 decision). Counters `stale_listing_pi_years`, `stale_listing_withheld`, `twin_record_credits_elsewhere`, `twin_record_withheld`.
 `listing_review_prepass`.
 
+### R-PAP-31 (2026-11-05, build: Georgia Tech stage-9 sample) — replies to discussions and special-issue prefaces
+The Georgia Tech lab-paper sample (4 errors of 25 uniform rows) found a 'Closure to "..."' (reply to a discussion of a paper in the Journal
+of Structural Engineering) and two guest-editor prefaces typed article/editorial ('Special Topic on Monolithic 3-D Integration ...', IEEE Micro
+'Special Issue on Top Picks ...'). Dropped (`not_a_paper`): a title that opens 'Closure to', 'Discussion of/on/to', "Authors' reply/response/closure", or
+'Comment(s) on / Reply to / Response to' followed by a quotation mark (the quoted title of the work answered) is a `commentary`; a title that opens
+'Special Issue/Topic/Section/Collection/Feature ...' or 'Top Picks from ...' is an `editorial`. `REPLY_COMMENTARY_TITLE`, `SPECIAL_ISSUE_TITLE`
+(tests/test_not_paper_replies_and_special_issues.py). The rule applies to every school at its next rebuild (about 100 lab-paper rows of the eight
+packages match; each release's count of dropped records moves by the same few).
+
 ## Students
 
 ### R-STU-01 (2026-10-21, owner)

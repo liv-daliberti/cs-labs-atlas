@@ -14,7 +14,7 @@ from record import files  # noqa: E402
 ACC = Path(__file__).parent
 CACHE = ACC / 'cache' / 'openalex.jsonl'
 AFF = {'princeton': r'princeton', 'cmu': r'carnegie|cmu', 'epfl': r'epfl|lausanne|polytechnique f', 'mit': r'massachusetts inst|\bmit\b|csail',
-       'berkeley': r'berkeley', 'stanford': r'stanford', 'michigan': r'michigan|umich'}
+       'berkeley': r'berkeley', 'stanford': r'stanford', 'michigan': r'michigan|umich', 'gatech': r'georgia (?:inst|tech)|gatech'}
 
 
 def aff(school):

@@ -1,11 +1,8 @@
 """Georgia Tech 2026-11-04/05: a charter school has only the lab-page audit's capture store (labpage-audit-captures.sqlite). The
 labpages channel crashed on the missing labpage-captures.sqlite and the ledger marked every paper incomplete_check."""
 import sqlite3
-import sys
-from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'fulltext-push'))
-import labpage_channel as lc  # noqa: E402
+import labpage_channel as lc
 
 
 def test_audit_captures_are_the_fallback(tmp_path, monkeypatch):

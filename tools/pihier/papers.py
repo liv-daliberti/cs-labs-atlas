@@ -150,6 +150,13 @@ THESIS_REPOSITORY_DOI = re.compile(r'^10\.25740/')  # Stanford Digital Repositor
 # SIGCSE keynote abstract. A title or venue catches the first; the other two need the record's page count, which OpenAlex's
 # sweep works do not carry: DBLP's `<pages>` (tools/dblp_dump_pages.py -> hierarchy/dblp-dump-pages.json.gz) does.
 COMMENTARY_TITLE = re.compile(r'(?i)^\s*technical perspective\b')
+# R-PAP-31 (2026-11-05, owner standard: general rule from the Georgia Tech stage-9 sample): a reply to a discussion or comment is a
+# commentary ('Closure to "Macroelement and Macropatch Approaches ..."', 'Discussion of "..."', "Authors' reply to the Discussion of ...",
+# 'Comment on "..."' / 'Reply to "..."' with the quoted title of the work answered), and a special-issue preface ('Special Topic on ...',
+# 'Special Issue on ...', 'Special Section on ...', 'Top Picks from ...') is an editorial: a guest-editor's introduction, not research.
+REPLY_COMMENTARY_TITLE = re.compile(r"(?i)^\s*(?:closure to\b|discussion (?:of|on|to)\b|authors?['’] ?(?:reply|response|closure)\b|"
+                                    r"(?:reply|response|comments?) (?:to|on)\s*[“‘\"'])")
+SPECIAL_ISSUE_TITLE = re.compile(r'(?i)^\s*(?:special (?:issue|topic|section|collection|feature)\b|top picks from\b)')
 # R-PAP-27 (2026-11-02, coordinator's note on the rule-3 hand check): a whole proceedings volume ('Proceedings of SAT Race 2019',
 # 'Proceedings 8th International Workshop on ...'), and a numbered abstract of a journal supplement ('203. Decoding the Role of ...',
 # '(338) Automatic detection of ...': Biological Psychiatry, Journal of Pain, Journal of Adolescent Health)
@@ -188,6 +195,7 @@ def not_a_paper(r, pages=None, bare=False):
                tribute
       R-PAP-19 (R2) meeting_abstract:<venue|doi|title|journal|single_author|keynote>
       R-PAP-22 (R5) dissertation (the PI is the adviser, not the author).
+      R-PAP-31      commentary (a closure, discussion or quoted comment/reply), editorial (a 'Special Issue/Topic/Section on ...' preface)
       R-PAP-27      proceedings_volume, supplement_abstract (a numbered abstract in a journal), commentary (a 'Technical perspective'), column (a magazine piece of 3 pages or less), invited_abstract (a
                     single-author conference record of 2 pages or less); `pages` is the DBLP page count when known (`bare`: a single number)."""
     t = str(r.get('title') or '').strip(); v = str(r.get('venue') or ''); d = ndoi(r.get('doi')); ty = r.get('type') or ''
@@ -225,8 +233,10 @@ def not_a_paper(r, pages=None, bare=False):
                                                             and life[0].lower() in given_names()):
         return 'tribute'
     # R-PAP-27: commentaries by title, columns and short invited abstracts by page count (`pages`: the record's DBLP page count)
-    if COMMENTARY_TITLE.search(t):
+    if COMMENTARY_TITLE.search(t) or REPLY_COMMENTARY_TITLE.search(t):
         return 'commentary'
+    if SPECIAL_ISSUE_TITLE.search(t):
+        return 'editorial'
     if PROCEEDINGS_VOLUME.search(t):
         return 'proceedings_volume'
     if SUPPLEMENT_NUMBER.search(t) and ty == 'article' and v.strip():
