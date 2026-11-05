@@ -3,6 +3,40 @@ guard, names.given_conflict), R-LNK-03 (within-lab byline matching), R-LNK-05 (l
 import collections, re, unicodedata
 
 from .names import LETTERS, Name, byline_name, clean_person_name, given_conflict, gwords, name_variants, nick_ok, student_on_byline, toks
+from .students import relation_names_other_adviser
+
+# R-STU-19 (2026-11-05, owner: UChicago/Georgia Tech stage-9 samples). Rule A: an initials-only name match ('Y. Zhou') cannot link a student to
+# a hyper-authored paper. Over the 2,606 byline links of the nine packages that match on a name the paper does not spell out in full, the
+# byline sizes run: 540 with 10+ authors, 147 with 20+, 74 with 30+, 37 with 50+, 11 with 100+; a lab paper's median byline is 5, so 50 is
+# far outside the lab-paper range and keeps every collaboration-scale byline out (UChicago: four 'Zhou' initials on a 2,938-author ATLAS
+# paper linked to one student). Rule B: the full-name route needs the person to hold a student role and no source quote naming other
+# advisers only (Georgia Tech: a research scientist, a visiting researcher and a student of two other advisers entered by full name).
+HYPER_AUTHORS = 50
+STUDENT_ROLE = re.compile(r'phd|doctoral|master|undergrad|student|alumn|intern')
+NON_STUDENT_ROLE = re.compile(r'postdoc|visit|research_?(?:staff|scientist)|scientist|staff|faculty|professor|other')
+
+
+def initials_only(raw):
+    """The byline spells no given name out: every token before the family name is one letter ('Y. Zhou', 'Zhou, Y. H.')."""
+    t = toks(byline_name(raw))
+    return len(t) >= 2 and all(len(x) == 1 for x in t[:-1])
+
+
+def hyper_authored(r):
+    return len(r.get('byline') or []) >= HYPER_AUTHORS
+
+
+def student_role_ok(s):
+    """R-STU-19 rule B: some role is a student role (phd, masters, undergraduate, student, alumnus, intern), not only research
+    scientist, visitor, postdoc, staff or other."""
+    roles = [str(x).lower() for x in s.get('roles') or [] if x] or [str(rel.get('role') or '').lower() for rel in s.get('relations') or []]
+    return any(STUDENT_ROLE.search(x) and not NON_STUDENT_ROLE.search(x) for x in roles)
+
+
+def pi_is_adviser(s, pi_names):
+    """R-STU-19 rule B: no relation of the student names other advisers only (the student's own roster line)."""
+    rels = s.get('relations') or []
+    return not (rels and all(relation_names_other_adviser(rel, pi_names) for rel in rels))
 
 def near_relation(s, year):
     """The paper's year is within three years of the student's recorded advising or membership (no years: any)."""
@@ -64,8 +98,8 @@ def link_students(ctx):
             recur[(r_['pi'], key)] += 1
     lab_names = {pi_: {' '.join(gwords(clean_person_name(f))) for sid in S_ for f in forms[sid]} for pi_, S_ in stu.items()}
 
-    def byline_ok(sid, raw, how, pi=None):
-        return how(sid, raw) and not student_given_conflict(sid, raw, pi=pi)
+    def byline_ok(sid, raw, how, pi=None, r=None):
+        return how(sid, raw) and not student_given_conflict(sid, raw, pi=pi) and not (r is not None and hyper_authored(r) and initials_only(raw))
     guard_samples, guard_kept_samples = [], []
 
     # (2026-10-29, owner) within-lab byline matching (the link_sweep.py measurement as a rule): a byline author who is
@@ -118,14 +152,15 @@ def link_students(ctx):
             if l:
                 done_.add(sid); linked_by_collection[sid] = True
                 sp.append(dict(pi=r['pi'], student=sid, name=s['name'], work=r['work'], oa=r['oa'], status=l.get('status'), basis='collection_person_link'))
-            elif (b_ := next((b for _, bs in r['_bylines'] for b in bs if byline_ok(sid, b, on_byline, r['pi'])), None)) is not None:
+            elif (b_ := next((b for _, bs in r['_bylines'] for b in bs if byline_ok(sid, b, on_byline, r['pi'], r)), None)) is not None:
                 # the student's name on this lab paper's byline, on an authorship that lists the school
                 done_.add(sid); sp.append(dict(pi=r['pi'], student=sid, name=s['name'], work=r['work'], oa=r['oa'], status='candidate', basis='byline_name_with_school_affiliation', byline=b_))
-            elif near_relation(s, r['year']) and (b_ := next((b for bl, _ in r['_bylines'] for b in bl if byline_ok(sid, b, on_byline, r['pi'])), None)) is not None:
+            elif near_relation(s, r['year']) and (b_ := next((b for bl, _ in r['_bylines'] for b in bl if byline_ok(sid, b, on_byline, r['pi'], r)), None)) is not None:
                 # the PI's own advisee named on the PI's lab paper (an authorship without affiliations, e.g. an ACL
                 # Anthology record), within three years of the recorded advising
                 done_.add(sid); sp.append(dict(pi=r['pi'], student=sid, name=s['name'], work=r['work'], oa=r['oa'], status='candidate', basis='advisee_name_on_lab_paper_byline', byline=b_))
-            elif wide_relation(s, r['year']) and (b_ := next((b for bl, _ in r['_bylines'] for b in bl if byline_ok(sid, b, full_name_on, r['pi'])), None)) is not None:
+            elif wide_relation(s, r['year']) and student_role_ok(s) and pi_is_adviser(s, ctx.pid0[r['pi']]['names']) \
+                    and (b_ := next((b for bl, _ in r['_bylines'] for b in bl if byline_ok(sid, b, full_name_on, r['pi'])), None)) is not None:
                 # the lab's own student by full name on the lab's own paper, outside the narrow window (2026-10-28:
                 # recorded years are often one roster observation; alumni keep publishing with the lab)
                 done_.add(sid); sp.append(dict(pi=r['pi'], student=sid, name=s['name'], work=r['work'], oa=r['oa'], status='candidate', basis='full_name_on_lab_paper_byline', byline=b_))
@@ -150,7 +185,8 @@ def link_students(ctx):
             bt = sw_toks(raw)
             cand_ = {sid for f2, _ in sw_forms(bt, False) for sid in sw_index.get(r['pi'], {}).get(f2, ())}
             hits_ = [sid for sid in cand_ if sw_same(sid, bt)]
-            if len(hits_) == 1 and hits_[0] not in done_ and wide_relation(S[hits_[0]], r['year']) and not student_given_conflict(hits_[0], raw):
+            if len(hits_) == 1 and hits_[0] not in done_ and wide_relation(S[hits_[0]], r['year']) and not student_given_conflict(hits_[0], raw) \
+                    and not (hyper_authored(r) and initials_only(raw)):
                 sid = hits_[0]; done_.add(sid)
                 sp.append(dict(pi=r['pi'], student=sid, name=S[sid]['name'], work=r['work'], oa=r['oa'], status='candidate', basis='within_lab_byline_match', byline=raw))
     n.update({'link_guard_' + k: v for k, v in guard_n.items()})

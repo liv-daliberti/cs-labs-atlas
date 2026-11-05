@@ -98,6 +98,16 @@
       "R-PAP-04"
      ]
     },
+    "blockedClusters": {
+     "description": "Reviewed namesake clusters (census-overrides blocked_clusters): works whose byline carries the cluster's coauthors are never this PI's.",
+     "type": "array",
+     "items": {
+      "type": "object"
+     },
+     "x-rules": [
+      "R-PAP-32"
+     ]
+    },
     "mixedOpenAlex": {
      "description": "Reviewed mixed author ids: another person's record that also holds some of the PI's works; neither anchors nor blocks.",
      "type": "array",

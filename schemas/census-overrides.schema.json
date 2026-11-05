@@ -117,6 +117,16 @@
       "R-PAP-04"
      ]
     },
+    "blocked_clusters": {
+     "description": "Reviewed namesake clusters: a work whose byline carries min_coauthors or more of the coauthors is never this PI's.",
+     "type": "array",
+     "items": {
+      "type": "object"
+     },
+     "x-rules": [
+      "R-PAP-32"
+     ]
+    },
     "mixed_openalex": {
      "description": "Mixed author ids holding some of the PI's works.",
      "type": "array",

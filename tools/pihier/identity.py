@@ -131,6 +131,27 @@ def anchors(ctx):
     ctx.advisee_names, ctx.adv_full = advisee_names, adv_full
 
 
+def _cluster_key(raw):
+    """'Zhao, Ben Y.' / 'Ben Y. Zhao' -> 'ben zhao': first given name and family name."""
+    t = nosuffix(toks(byline_name(raw)))
+    return f'{t[0]} {t[-1]}' if len(t) >= 2 else ''
+
+
+def in_blocked_cluster(pid, w):
+    """R-PAP-32 (2026-11-05, owner: UChicago stage-9 sample): a reviewed blocked cluster (census-overrides `blocked_clusters`:
+    `coauthors`, `min_coauthors`, `why`, `evidence`) names a namesake's group. A work whose byline carries `min_coauthors` or more of
+    the cluster's coauthors is the namesake's, whatever the PI's DBLP person page says: Yuxin Chen's DBLP page 'Yuxin Chen 0001' mixes
+    in a security-HCI namesake whose coauthors are Ben Zhao, Haitao Zheng and Pedro Lopes."""
+    cl = pid.get('blockedClusters') or []
+    if not cl:
+        return None
+    names = {_cluster_key(x.get('raw_author_name') or (x.get('author') or {}).get('display_name') or '') for x in w.get('authorships') or []}
+    for c in cl:
+        if len(names & {_cluster_key(x) for x in c.get('coauthors') or []}) >= int(c.get('min_coauthors') or 2):
+            return c
+    return None
+
+
 def authorship_identity(ctx, pi, w, a, cw):
     """R-PAP-04, R-PAP-07: the identity that makes authorship `a` of work `w` (collection work `cw`) the PI's, in order,
     or None. An id reviewed as someone else's (or another PI's reviewed id) is never the PI."""
@@ -138,6 +159,8 @@ def authorship_identity(ctx, pi, w, a, cw):
     dblp_doi, dblp_title, own_list, lab_page = ctx.dblp_doi, ctx.dblp_title, ctx.own_list, ctx.lab_page
     advisee_names, pid0 = ctx.advisee_names, ctx.pid0
     if (a.get('author') or {}).get('id') in blocked[pi]:
+        return None
+    if in_blocked_cluster(pid0[pi], w):
         return None
     if (a.get('author') or {}).get('id') in reviewed_oa[pi]:
         return 'reviewed_openalex_author_id'

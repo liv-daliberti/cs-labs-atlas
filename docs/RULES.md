@@ -273,6 +273,13 @@ of Structural Engineering) and two guest-editor prefaces typed article/editorial
 (tests/test_not_paper_replies_and_special_issues.py). The rule applies to every school at its next rebuild (about 100 lab-paper rows of the eight
 packages match; each release's count of dropped records moves by the same few).
 
+### R-PAP-32 (2026-11-05, owner: UChicago stage-9 sample) — reviewed blocked clusters
+A DBLP person page can mix in a namesake: Yuxin Chen's page `Yuxin Chen 0001` carries a security-HCI namesake whose works (6 of the PI's 66 lab
+papers) have no OpenAlex author id, so no id can be blocked. The reviewed overrides (`census-overrides` `blocked_clusters`, with `why` and evidence)
+name the namesake's group by coauthors: a work whose byline carries `min_coauthors` or more of them is never the PI's (`in_blocked_cluster`, checked in
+`authorship_identity` before any identity). Applies to every school's overrides; a cluster needs a reviewed reason and the works it removes.
+Tests: `tests/test_blocked_cluster_and_link_rules.py`.
+
 ## Students
 
 ### R-STU-01 (2026-10-21, owner)
@@ -390,6 +397,17 @@ verdict in `reviewed/roster-pair-verdicts.json` is `true` (the student listed or
 student relations: `tools/roster_pair_evidence.py` cuts a verbatim quote and the sha256 from the stored capture and writes `reviewed/roster-evidence.json`,
 a researched-evidence file (`RESEARCHED_FILES`, so R-STU-01/R-STU-12 apply: no quote or hash, no relation). Role `phd`, years the pair's roster years.
 `unsettled` and `not` pairs are never written. A co-advised student appears under each PI whose own pair is `true`.
+
+### R-STU-19 (2026-11-05, owner: UChicago and Georgia Tech stage-9 samples) — two guards on the byline routes
+**A. Hyper-authored papers.** An initials-only byline match ('Y. Zhou', 'Zhou, Y. H.': no given name spelled out) cannot link a student to a paper with
+50 or more authors (`HYPER_AUTHORS`, `initials_only`, `hyper_authored`), on every byline route (the collection's person link is unaffected). The threshold is from
+the data: among the 2,606 byline links of the nine packages that match on a name the paper does not spell in full, 540 are on papers with 10+ authors, 147 with 20+,
+74 with 30+, 37 with 50+ and 11 with 100+, while a lab paper's median byline is 5. UChicago's case: four initial-only 'Zhou' authors of a 2,938-author ATLAS paper
+linked to one CS student.
+**B. The full-name route.** A `full_name_on_lab_paper_byline` link needs the person to hold a student role (`student_role_ok`: phd, doctoral, masters,
+undergraduate, student, alumnus or intern, not only research scientist, visitor, postdoc, staff or other) and no relation whose quotes name other advisers only
+(`pi_is_adviser`, R-STU-03's test). Georgia Tech's draw: a research scientist (Anderson, Batra), a visiting researcher (Elola, Clifford) and a student of two other
+advisers (Basciftci, Van Hentenryck) had entered by full name. Tests: `tests/test_blocked_cluster_and_link_rules.py`.
 
 ## Student–paper links
 

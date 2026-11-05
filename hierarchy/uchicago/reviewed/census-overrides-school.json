@@ -841,5 +841,64 @@
  "Ariel Feldman": {
   "no_papers": true,
   "why_no_papers": "2026-11-05: no paper falls inside an evidenced appointment. He is listed as Assistant Professor, Department of Computer Science in the CS directory captures of 2016-04-06 and 2016-11-04 and in no later listing: the 2017-08-29 capture of the same directory is page 1 of a paged list (5 names, Amit to Chugh; later pages are not archived), the 2018-11-19 capture of cs.uchicago.edu/people/faculty/ lists 53 faculty (Elmore, Drucker, Franklin, Gunawi, Foster among the D-G names) and not him. His homepage people.cs.uchicago.edu/~arielfeldman/ has no Wayback capture (CDX of the exact URL and its prefix answered nothing; stage-4 holds: 'no page captured'), and no unit profile page of his is archived. His works that name the University of Chicago (OpenAlex author A5061039165, 'Lemonade from Lemons' 2017-06 (two records), 'StrongBox' 2018-03 (two records), 'Using Differential Privacy to Efficiently Mitigate Side Channels' 2018-03; his DBLP pid/161/0107 lists 4 titles) are dated after his last listing and before a complete listing that omits him, so R-PAP-01 keeps them outside the appointment (funnel outside_appointment_2017: 2, _2018: 3). Unproven: whether he was on the faculty through 2017 and part of 2018."
+ },
+ "Yuxin Chen": {
+  "blocked_clusters": [
+   {
+    "id": "chen_security_hci_namesake",
+    "coauthors": [
+     "Ben Y. Zhao",
+     "Haitao Zheng",
+     "Heather Zheng",
+     "Pedro Lopes"
+    ],
+    "min_coauthors": 2,
+    "why": "2026-11-05 (owner-approved, stage-9 sample): the DBLP person page 'Yuxin Chen 0001' mixes in a security/HCI namesake (Zhao-Zheng-Lopes group: ultrasonic microphone jammer, wearable microphone jamming, 'Et Tu Alexa', electrical-muscle-stimulation authentication; 6 of the PI's 66 lab papers, W2937519505 W2980064241 W3030359475 W3032676127 W3161983576 W3162050433). The PI's own works on that page carry ORCID 0009-0002-3320-0159 and the yuxinchen.org homepage (teaching and active-learning machine learning, per the judge's sheet); the PI's own works are not by this group. A work whose byline carries two or more of them is the namesake's.",
+    "evidence": [
+     {
+      "url": "https://api.openalex.org/works/W2937519505",
+      "sha256": "44ad694dc10c2cde5f2d15e009d0bcc6179ded875a2f165dea66a515db62fda4",
+      "quote": "Understanding the Effectiveness of Ultrasonic Microphone Jammer | Chen, Yuxin; Li, Huiying; Nagels, Steven; Li, Zhijing; Lopes, Pedro; Zhao, Ben Y.; Zheng, Haitao",
+      "observed": "2026-10-29",
+      "source": "OpenAlex sweep 2026-10-29 (hierarchy/uchicago/openalex-sweep.sqlite), sha256 of the stored record as sorted-key JSON"
+     },
+     {
+      "url": "https://api.openalex.org/works/W2980064241",
+      "sha256": "bed678387ed3dd442afad8cf6b58b9b7c0a17ef0d55f6f355b417b11a09d50b5",
+      "quote": "Et Tu Alexa? When Commodity WiFi Devices Turn into Adversarial Motion Sensors | Yanzi Zhu; Zhujun Xiao; Yuxin Chen; Zhijing Li; Max Liu; Ben Y. Zhao; Heather Zheng",
+      "observed": "2026-10-29",
+      "source": "OpenAlex sweep 2026-10-29 (hierarchy/uchicago/openalex-sweep.sqlite), sha256 of the stored record as sorted-key JSON"
+     },
+     {
+      "url": "https://api.openalex.org/works/W3030359475",
+      "sha256": "39f5fb78a95ccbf372bd91f2496aa171dc304da4711d1fc8e34d697c46286502",
+      "quote": "Wearable Microphone Jamming | Yuxin Chen; Huiying Li; Shan-Yuan Teng; Steven Nagels; Zhijing Li; Pedro Lopes; Ben Y. Zhao; Haitao Zheng",
+      "observed": "2026-10-29",
+      "source": "OpenAlex sweep 2026-10-29 (hierarchy/uchicago/openalex-sweep.sqlite), sha256 of the stored record as sorted-key JSON"
+     },
+     {
+      "url": "https://api.openalex.org/works/W3032676127",
+      "sha256": "f910c7cb9a53888f6e6a67a24f7c653730b532b7b63ce8214a2a6ad6ad066a5f",
+      "quote": "Demonstrating Wearable Microphone Jamming | Yuxin Chen; Huiying Li; Shan-Yuan Teng; Steven Nagels; Zhijing Li; Pedro Lopes; Haitao Zheng; Ben Y. Zhao",
+      "observed": "2026-10-29",
+      "source": "OpenAlex sweep 2026-10-29 (hierarchy/uchicago/openalex-sweep.sqlite), sha256 of the stored record as sorted-key JSON"
+     },
+     {
+      "url": "https://api.openalex.org/works/W3161983576",
+      "sha256": "8b5ac319318cd9ba091c62e742ad13897c6eda7cc6aa626f9ae8e87df680fae2",
+      "quote": "User Authentication via Electrical Muscle Stimulation | Yuxin Chen; Zhuolin Yang; Ruben Abbou; Pedro Lopes; Ben Y. Zhao; Haitao Zheng",
+      "observed": "2026-10-29",
+      "source": "OpenAlex sweep 2026-10-29 (hierarchy/uchicago/openalex-sweep.sqlite), sha256 of the stored record as sorted-key JSON"
+     },
+     {
+      "url": "https://api.openalex.org/works/W3162050433",
+      "sha256": "fa45081d5e30b26f08f6e9f1082e0831bf847590f3a13453aaeca0b8b7cc8da4",
+      "quote": "Demonstrating User Authentication via Electrical Muscle Stimulation | Yuxin Chen; Zhuolin Yang; Ruben Abbou; Pedro Lopes; Ben Y. Zhao; Haitao Zheng",
+      "observed": "2026-10-29",
+      "source": "OpenAlex sweep 2026-10-29 (hierarchy/uchicago/openalex-sweep.sqlite), sha256 of the stored record as sorted-key JSON"
+     }
+    ]
+   }
+  ]
  }
 }
