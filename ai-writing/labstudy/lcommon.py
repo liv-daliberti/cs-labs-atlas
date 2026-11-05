@@ -74,6 +74,7 @@ def write_atomic(df, path):
 
 # ---- department types (the dept string of lab_papers is the PI's first listed department; 226 spellings across schools)
 _DEPT_RULES = [
+    ('social_business', r'^(Sloan|BOOTH|Tepper|Heinz|Operations, Information|Business Analytics|Marketing)'),
     ('eecs', r'^EECS|/ EECS|^Physics / EECS'),
     ('ee', r'^(ECE|EE|Electrical|Distributed Electrical|Signal Processing|Communication Theory|STI/IEL)\b|^Electrical|^STI/IEL|Information and Inference'),
     ('cs', r'^(CS|CSE|CSD|CSAIL|IC|HCII|RI|MLD|ML|LTI|ROB|TTIC|CBD|S3D|UMSI|DSI|LMC|CSP|ID|CHILI)\b|Computer|Computing|Machine Learning|Machine learning|Robot|'
