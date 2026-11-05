@@ -59,7 +59,7 @@ def paper(work, year, byline):
 
 def test_R_STU_20_corroborated_rows(tmp_path):
     dbs = _school(tmp_path, [row('Boris Shigida'), row('Alex Negron'), row('Tianze Jiang'), row('Shaunak Bhandarkar', 'Shaunak Bhandarkar'),
-                             row('Gage DeZoort'), row('Paolo Baglioni'), row('Samy Jelassi', 'Samy Jelassi', alumni=True)])
+                             row('Gage DeZoort'), row('Paolo Baglioni'), row('Samy Jelassi', 'Samy Jelassi', alumni=True), row('Boris Shigida', note='lab-page audit; section: Recent Lab Alumni')])
     papers = {'Boris Hanin': [paper('w1', 2026, ['Shigida, Boris', 'Hanin, Boris', 'Gromov, Andrey']),
                               paper('w2', 2025, ['Hanin, Boris', 'Jiang, Tianze']),
                               paper('w3', 2026, ['Bhandarkar, Shaunak', 'Hanin, Boris']),
@@ -73,7 +73,7 @@ def test_R_STU_20_corroborated_rows(tmp_path):
     assert got['Tianze Jiang'] == ('phd', [2026], ['w2'])                         # capture-year dating (R-STU-14): 2025 is within three years of 2026
     assert 'Alex Negron' not in got and n['labpage_students_corroborated_skipped:no_byline'] >= 1   # a roster alone is never evidence; nor a hyper-authored paper
     assert 'Gage DeZoort' not in got and 'Paolo Baglioni' not in got                # postdocs, even on the byline (DeZoort is)
-    assert n['labpage_students_corroborated_skipped:alumni_without_years'] == 1       # a capture year is not a membership year
+    assert n['labpage_students_corroborated_skipped:alumni_without_years'] == 2       # a capture year is not a membership year (flagged alumni, and an alumni section)
     # a student the lab already holds is left to the existing records
     out = CO.corroborated_rows('x', papers, {'Boris Hanin': ['Tianze Jiang']}, dbs, tmp_path, collections.Counter())
     assert 'Tianze Jiang' not in {r['name'] for r, _ in out}

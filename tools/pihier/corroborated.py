@@ -8,7 +8,7 @@ not-accepted additions row is wired when, and only when, all of these hold:
   1. the row names a student: its role is phd, masters, undergraduate or visiting; or the role is empty and the stored capture
      (sha256) shows a student cue nearest before the name (`cue_role`: 'supervise several excellent PhD students: A, B, C' is a
      prose list the audit's heading reader cannot see; a postdoc, staff, collaborator or alumni cue nearer to the name rejects it);
-  2. an alumni row carries stated years (a capture year is not a membership year, R-STU-14);
+  2. an alumni row (flagged, or under an alumni / former / past section of the page) carries stated years (a capture year is not a membership year, R-STU-14);
   3. the student's full first given name and family name (no initials) stand on the byline of a lab paper of that PI, the
      given-name guard passes, the paper has at most MAX_AUTHORS authors, and its year is within three years of the row's years
      (stated years, else the capture year, R-STU-14);
@@ -31,6 +31,7 @@ CUES = [('phd', re.compile(r"\bph\.?\s?d\.?(?:\s+(?:students?|candidates?))?|\bd
         ('undergraduate', re.compile(r"\bundergrad(?:uate)?s?(?:\s+students?)?|\bbachelor'?s", re.I)),
         ('not', re.compile(r"\bpost-?docs?\b|\bpostdoctoral|\bresearch(?:ers| scientists?| associates?| staff| fellows?)\b|\bscientists?\b|\bstaff\b|\bengineers?\b|\bvisitors?\b|\bfaculty\b|\bcollaborat\w+|\bco-?authors?\b"
                            r"|\balumni\b|\bformer\b|\bpast\b|\bgraduated\b|\bformerly\b|\bprevious\b|\bplacements?\b|\bpublications?\b|\bpapers?\b", re.I))]
+ALUMNI = re.compile(r"\b(alumn\w+|former|past|previous|prior|emerit\w+|graduated|recent lab)\b", re.I)  # R-STU-14: an alumni section's capture year is not a membership year
 WINDOW = 700  # characters of page text before the name that are searched for the nearest cue
 
 
@@ -99,7 +100,8 @@ def corroborated_rows(school, papers_by_pi, existing, dbs, here=None, n=None):
             n['labpage_students_corroborated_skipped:role'] += 1
             continue
         years = as_years(s_.get('years'))
-        if not years and s_.get('alumni'):
+        section = (re.search(r'section: (.*)$', s_.get('note') or '') or [None, ''])[1]
+        if not years and (s_.get('alumni') or ALUMNI.search(section) or ALUMNI.search((s_.get('quote') or '')[:200])):
             n['labpage_students_corroborated_skipped:alumni_without_years'] += 1
             continue
         text, fetched = page_text(s_['sha256'], dbs)
