@@ -604,8 +604,11 @@ there; main shows them modified until the branch lands, and a branch edit is inv
    tools/overlay_root.py <key> --out hierarchy/<key>/tmp/overlay       # tmp/ is git-ignored; rebuilt each time
    CS_ATLAS_CODE=$PWD/hierarchy/<key>/tmp/overlay bin/atlas build-audit <key>    # or any other command
    ```
-   The overlay is a directory of symlinks: code (`tools`, `atlas_cli`, `bin`, `schools`, `tests`, `vendor`, `docs`, `accuracy`) from the worktree; `hierarchy/<key>/reviewed` and `reports` per file, the
-   worktree's tracked file where the branch has one and main's otherwise (a writer's output lands in the worktree, ready to commit); `derived`, `raw`, `work`, `tmp` and every other entry from main.
+   The overlay is a directory of symlinks: code (`tools`, `atlas_cli`, `bin`, `schools`, `tests`, `vendor`, `docs`, `accuracy`) from the worktree; `hierarchy/<key>/reviewed`, `hierarchy/<key>/reports` and the
+   shared `hierarchy/reviewed/` (census-overrides.json, home-departments.json, ...) per file, the worktree's tracked file where the branch has one and main's otherwise (a writer's output lands in the
+   worktree, ready to commit; a branch's census override is no longer dropped); `hierarchy/<key>/work` is a real directory of the overlay, empty at first: `atlas_paths.data()` resolves work files into it,
+   and `data_w()` copies main's file in when the file is first written (so a resumable `dblp-recover.sqlite` continues, and main's copy is never written; overlay root marker `.overlay.json`). Work files
+   the overlay has not written yet read as absent through `data()`. `derived`, `raw`, `tmp` and every other entry come from main. Without an overlay nothing changes.
    Run it from the worktree; `CS_ATLAS_CODE` must be absolute. A tracked file the branch has not committed yet is main's copy: commit first.
 4. Slurm: `atlas submit --from-worktree` pins the committed HEAD but data paths still resolve against main; a job that needs branch-only reviewed files needs the overlay path in its environment (the pipeline stages inherit `CS_ATLAS_CODE`).
 **Why not fixed in code on this branch.** The conversion has to route the explicit-root call sites (`HERE = P.WORK` in `pihier/common.py`, `pi_hierarchy`, `labpage_audit`, 20-odd modules) through one resolver and
