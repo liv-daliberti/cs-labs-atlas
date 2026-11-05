@@ -1,4 +1,4 @@
-"""R-STU-19 (2026-11-05, owner: Hanin deep dive): lab-page students corroborated by the PI's byline.
+"""R-STU-20 (2026-11-05, owner: Hanin deep dive): lab-page students corroborated by the PI's byline.
 
 A school whose lab-page student additions are not accepted (labpage-acceptance.json, `students.accepted` false: the hand rounds
 failed) wires none of them. That leaves a PI's own PhD students off the lab although they are on the PI's byline (Hanin: Tianze
@@ -80,7 +80,7 @@ def full_name_on(name_toks, byline, forms):
 
 
 def corroborated_rows(school, papers_by_pi, existing, dbs, here=None, n=None):
-    """The not-accepted additions rows that pass R-STU-19: [(row with role, years and role_basis filled in, [work ids])]."""
+    """The not-accepted additions rows that pass R-STU-20: [(row with role, years and role_basis filled in, [work ids])]."""
     add_f = P.data('labpage-additions.json', school, root=here)
     if not add_f.exists():
         return []
@@ -98,6 +98,10 @@ def corroborated_rows(school, papers_by_pi, existing, dbs, here=None, n=None):
         if role in ('postdoc', 'other', 'staff', 'member'):
             n['labpage_students_corroborated_skipped:role'] += 1
             continue
+        years = as_years(s_.get('years'))
+        if not years and s_.get('alumni'):
+            n['labpage_students_corroborated_skipped:alumni_without_years'] += 1
+            continue
         text, fetched = page_text(s_['sha256'], dbs)
         basis = s_.get('role_basis')
         if role not in STUDENT_KINDS:
@@ -106,11 +110,7 @@ def corroborated_rows(school, papers_by_pi, existing, dbs, here=None, n=None):
             if role is None:
                 n['labpage_students_corroborated_skipped:no_student_cue'] += 1
                 continue
-        years = as_years(s_.get('years'))
         if not years:
-            if s_.get('alumni'):
-                n['labpage_students_corroborated_skipped:alumni_without_years'] += 1
-                continue
             m = re.search(r'/web/(\d{4})', s_['url'])
             cy = int(m.group(1)) if m else int(str(fetched or '0')[:4]) or None
             if not cy:
@@ -123,7 +123,7 @@ def corroborated_rows(school, papers_by_pi, existing, dbs, here=None, n=None):
             if len(r['byline']) > MAX_AUTHORS:
                 continue
             if any(full_name_on(nt, b, [name]) for bl, _ in r['_bylines'] for b in bl):
-                works.append(r['work'])
+                works.append(r.get('work') or r.get('oa'))
         if not works:
             n['labpage_students_corroborated_skipped:no_byline'] += 1
             continue

@@ -122,14 +122,23 @@ def link_students(ctx):
                     ix[f_].add(sid)
         sw_index[pi_] = ix
 
-    def sw_variant(f, g1, g2):
-        """R-LNK-07 (2026-11-05): the same family name (not an East Asian one: 'Yue'/'Yuan', 'Xin'/'Xiu' are different people) with given
-        names of 4+ letters one edit apart: a spelling or transliteration variant ('Aiden'/'Aidan', 'Connor'/'Conor', 'Ilija'/'Ilia')."""
-        a, b = g1.replace('-', ''), g2.replace('-', '')
-        return len(a) >= 4 and len(b) >= 4 and a != b and one_edit(a, b) and f not in EAST_ASIAN_FAMILY
+    def sw_variant(sid, bt):
+        """R-LNK-07 (2026-11-05): the family name written the same way (read as the family name, never through the order swap, which
+        would turn a family-name typo into a match: 'Dor Mintzer' / 'Dor Minzer', 'Swarup Sahoo' / 'Swarun Kumar') and a first given name
+        of 4+ letters one edit apart: a spelling or transliteration variant ('Aiden'/'Aidan', 'Connor'/'Conor', 'Ilija'/'Ilia').
+        Not under an East Asian family name ('Yue'/'Yuan' are different people)."""
+        if len(bt) < 2:
+            return False
+        fam, g2 = bt[-1].replace('-', ''), bt[0].replace('-', '')
+        for st in sw_names[sid]:
+            if len(st) >= 2 and st[-1].replace('-', '') == fam and fam not in EAST_ASIAN_FAMILY:
+                g1 = st[0].replace('-', '')
+                if len(g1) >= 4 and len(g2) >= 4 and g1 != g2 and one_edit(g1, g2):
+                    return True
+        return False
 
-    def sw_same(sid, bt, variant=False):
-        return any(f1 == f2 and (sw_given(g1, g2) or (variant and sw_variant(f1, g1, g2))) for st in sw_names[sid] for f1, g1 in sw_forms(st, True) for f2, g2 in sw_forms(bt, False))
+    def sw_same(sid, bt):
+        return any(f1 == f2 and sw_given(g1, g2) for st in sw_names[sid] for f1, g1 in sw_forms(st, True) for f2, g2 in sw_forms(bt, False))
 
     for r in rows:
         S = stu.get(r['pi']) or {}
@@ -175,9 +184,9 @@ def link_students(ctx):
             hits_ = [sid for sid in cand_ if sw_same(sid, bt)]
             plain_ = len(hits_) == 1
             if not hits_ and 0 < len(r['byline']) <= MAX_AUTHORS:  # R-LNK-07: no exact reading; a one-edit given-name variant of exactly one student
-                hits_ = [sid for sid in cand_ if sw_same(sid, bt, True)]
+                hits_ = [sid for sid in cand_ if sw_variant(sid, bt)]
                 # never when the student's own spelling is on the same paper (two people), nor for an initial or a second variant of the lab
-                if any(sw_same(hits_[0], sw_toks(o)) and ' '.join(sw_toks(o)) != ' '.join(bt) for o in r['byline'] for _ in hits_[:1]):
+                if hits_ and any(sw_same(hits_[0], sw_toks(o)) for o in r['byline']):
                     hits_ = []
             if len(hits_) == 1 and hits_[0] not in done_ and wide_relation(S[hits_[0]], r['year']) and not student_given_conflict(hits_[0], raw):
                 sid = hits_[0]; done_.add(sid)

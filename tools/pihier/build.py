@@ -59,7 +59,7 @@ def build(school):
     identity.anchors(ctx)
     identity.hits(ctx)
     papers.lab_papers(ctx)
-    students.add_corroborated(ctx)  # R-STU-19
+    students.add_corroborated(ctx)  # R-STU-20
     links.link_students(ctx)
     students.drop_weak(ctx, ctx.sp)
     n, pis, stu, sp = ctx.n, ctx.pis, ctx.stu, ctx.sp

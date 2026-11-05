@@ -376,7 +376,7 @@ def researched(ctx, stu, by_name):
 
 
 def add_corroborated(ctx):
-    """R-STU-19: lab-page student rows the acceptance gate did not wire, kept when the PI's own byline corroborates them (tools/pihier/
+    """R-STU-20: lab-page student rows the acceptance gate did not wire, kept when the PI's own byline corroborates them (tools/pihier/
     corroborated.py). Runs after the lab papers are built and before the links; the student then links through the usual bases."""
     from . import corroborated as CO
     school, pis, stu, n = ctx.school, ctx.pis, ctx.stu, ctx.n
