@@ -14,6 +14,17 @@ DISSERTATION_BEFORE = 6   # R-LNK-06: a PhD takes up to six years; the dissertat
 MAX_AUTHORS = 15          # R-LNK-06/07: the extensions below never apply to a hyper-authored paper
 
 
+def vowel_edit(a, b):
+    """R-LNK-07: one insertion, deletion, adjacent transposition or vowel-for-vowel substitution ('Aiden'/'Aidan', 'Connor'/'Conor', 'Makena'/
+    'Maken'); a consonant substituted for another ('Kavin'/'Navin', 'Anna'/'Anja') makes a different name, not a spelling."""
+    if not one_edit(a, b):
+        return False
+    if len(a) == len(b):
+        d = [i for i in range(len(a)) if a[i] != b[i]]
+        return len(d) == 2 or (a[d[0]] in 'aeiouy' and b[d[0]] in 'aeiouy')
+    return True
+
+
 def dissertation_only(s):
     """R-LNK-06: every relation of the PhD student is a dissertation record (a DSpace record whose `dc.contributor.advisor` names the
     adviser) and so dates the END of the student's work with the lab: the recorded year is the degree year."""
@@ -125,7 +136,7 @@ def link_students(ctx):
     def sw_variant(sid, bt):
         """R-LNK-07 (2026-11-05): the family name written the same way (read as the family name, never through the order swap, which
         would turn a family-name typo into a match: 'Dor Mintzer' / 'Dor Minzer', 'Swarup Sahoo' / 'Swarun Kumar') and a first given name
-        of 4+ letters one edit apart: a spelling or transliteration variant ('Aiden'/'Aidan', 'Connor'/'Conor', 'Ilija'/'Ilia').
+        of 5+ letters one vowel substitution, insertion, deletion or transposition apart: a spelling or transliteration variant ('Aiden'/'Aidan', 'Connor'/'Conor').
         Not under an East Asian family name ('Yue'/'Yuan' are different people)."""
         if len(bt) < 2:
             return False
@@ -133,7 +144,7 @@ def link_students(ctx):
         for st in sw_names[sid]:
             if len(st) >= 2 and st[-1].replace('-', '') == fam and fam not in EAST_ASIAN_FAMILY:
                 g1 = st[0].replace('-', '')
-                if len(g1) >= 4 and len(g2) >= 4 and g1 != g2 and one_edit(g1, g2):
+                if min(len(g1), len(g2)) >= 5 and g1 != g2 and vowel_edit(g1, g2):
                     return True
         return False
 

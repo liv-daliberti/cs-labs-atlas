@@ -1,7 +1,7 @@
 """R-STU-20, R-LNK-06 and R-LNK-07 (2026-11-05, owner: Boris Hanin's lab deep dive). The fixtures are the shapes found in Hanin's
 lab (hanin.princeton.edu, ORFE): a prose list of PhD students with postdocs after it, his students on his bylines, and the cases
 the guards must refuse."""
-import collections, gzip, json, sqlite3, zlib
+import collections, gzip, json, sqlite3
 
 import atlas_paths as P
 from pihier import corroborated as CO
@@ -124,6 +124,12 @@ def test_R_LNK_07_spelling_variant_within_lab():
     rel2 = [dict(type='researched_advising', years=[2021, 2021], role='phd', sources=[dict(url='u', sha256='b' * 64, quote='Yuan Li, PhD student')])]
     got, _ = link('Yuan Li', rel2, [('w3', 2021, ['Yuen Li', 'Leslie Kaelbling'], [])])
     assert got == {}
+    # a consonant for a consonant ('Kavin'/'Navin', 'Anna'/'Anja') and short names ('Yong'/'Yang') are different names
+    rel4 = [dict(type='researched_advising', years=[2026, 2026], role='phd', sources=[dict(url='u', sha256='b' * 64, quote='Kavin Ravie, member')])]
+    got, _ = link('Kavin Ravie', rel4, [('w7', 2026, ['Navin Ravie', 'Sebastian Scherer'], [])])
+    assert got == {}
+    got, _ = link('Connor Igoe', rel4, [('w8', 2026, ['Conor Igoe', 'Stephen Smith'], [])])
+    assert got == {'w8': ('within_lab_byline_match', 'Conor Igoe')}
     # a lab student who owns the variant spelling is that author, not this one
     got, _ = link('Aiden Curtis', rel, [('w4', 2021, ['Aidan Curtis'], [])], extra=[('Aidan Curtis', rel)])
     assert 'w4' not in got
