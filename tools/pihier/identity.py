@@ -7,7 +7,7 @@ import collections, gzip, html, json, re, sqlite3, zlib
 
 import atlas_paths as P  # every path in one place
 from .common import DBLP, NOT_PAPERS, ndoi, norm_title, read, sweep_works
-from .names import Name, all_initials, byline_name, clean_person_name, full_pair, name_conflict, nosuffix, toks
+from .names import Name, all_initials, byline_name, clean_person_name, full_pair, middle_conflict, name_conflict, nosuffix, toks
 
 DUMP_PERSONS = None  # hierarchy/dblp-dump-persons.json.gz, read once per process
 
@@ -152,7 +152,23 @@ def in_blocked_cluster(pid, w):
     return None
 
 
+NAME_ONLY_IDENTITY = {'dblp_person_page_doi', 'dblp_person_page_title', 'pi_institutional_publication_list', 'lab_publication_page'}
+
+
 def authorship_identity(ctx, pi, w, a, cw):
+    """R-PAP-35 (2026-11-05, owner: round-r2 Michigan namesake): an identity that rests on the name through a DBLP person page or a publication list
+    (not an author id, an ORCID, a verified collection work or an advisee) does not stand when the byline's middle names contradict the PI's.
+    Mark W Newman's DBLP id in the census was the physicist M. E. J. Newman's page, which credited a Physics paper to him."""
+    ident = _authorship_identity(ctx, pi, w, a, cw)
+    if ident in NAME_ONLY_IDENTITY:
+        raw = a.get('raw_author_name') or (a.get('author') or {}).get('display_name') or ''
+        if middle_conflict(ctx.pid0[pi].get('names') or [pi], raw):
+            ctx.n['namesake_middle_name_conflicts'] += 1
+            return None
+    return ident
+
+
+def _authorship_identity(ctx, pi, w, a, cw):
     """R-PAP-04, R-PAP-07: the identity that makes authorship `a` of work `w` (collection work `cw`) the PI's, in order,
     or None. An id reviewed as someone else's (or another PI's reviewed id) is never the PI."""
     blocked, reviewed_oa, orcids, verified = ctx.blocked, ctx.reviewed_oa, ctx.orcids, ctx.verified

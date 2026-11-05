@@ -280,6 +280,19 @@ name the namesake's group by coauthors: a work whose byline carries `min_coautho
 `authorship_identity` before any identity). Applies to every school's overrides; a cluster needs a reviewed reason and the works it removes.
 Tests: `tests/test_blocked_cluster_and_link_rules.py`.
 
+### R-PAP-34 (2026-11-05, owner: round-r2 Michigan verdict) — placeholder PI names
+A PI whose name is made only of single letters ('Y Z': the university directory lists a Nuclear Engineering professor by initials) names no one a matcher can tell
+from a namesake and anchors no paper (`placeholder_name`). `pi_records` excludes such a census row (`excluded`, reason 'placeholder name') unless the reviewed overrides give a
+`display_name` with its evidence; the PI is then built under that name (`censusName` keeps the census spelling, `displayNameBasis` the reason). Michigan's 'Y Z' is Yang Zhang, from the
+ORCID 0000-0002-7339-8342 and the OpenAlex author A5113215889 that carries it (the molten-salt paper the sample doubted is his). All nine schools were checked: 'Y Z' is the only placeholder
+(names such as 'Weinan E', 'H.V. Jagadish', 'R. Ravi' have a word of two letters or more). Tests: `tests/test_namesake_guard_and_placeholder_pi.py`.
+
+### R-PAP-35 (2026-11-05, owner: round-r2 Michigan namesake) — middle names against name-only identities
+An identity that rests on the name through a DBLP person page (DOI or title) or a publication list does not stand when the byline writes middle names and the PI's own names write middle
+names and they share no initial (`middle_conflict`, `NAME_ONLY_IDENTITY`; ORCID, author-id, verified-collection and advisee identities are not touched). The Michigan paper by M. E. J. Newman
+(Physics) was credited to Mark W Newman (CSE) through a census DBLP id that is the physicist's page. The affiliation half of the owner's wording (department match) is not added: a middle-name
+contradiction alone settled every case in the packages; the count per school is `namesake_middle_name_conflicts` in `report.json`.
+
 ### R-PAP-33 (2026-11-05, owner: round-r2 pooled failures; abstracts decision) — more non-research records
 Dropped (`not_a_paper`, `non_research_record`; tests `tests/test_not_paper_non_research_records.py`, each on the real failing rows): a title that opens 'Session Introduction',
 'Special-section Introduction' or 'Introduction to the Minitrack/Session' (`session_introduction`); 'Interview:' / 'An interview with' (`interview`); OpenAlex type `editorial` in
