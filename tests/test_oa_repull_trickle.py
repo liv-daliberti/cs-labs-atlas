@@ -95,18 +95,29 @@ def test_squeue_calls_are_60s_apart():
     assert slept == [50.0]
 
 
-def test_submit_refuses_preempts_and_pushes_begin():
+def test_submit_refuses_preempts_and_tries_the_next_place():
     calls = []
 
     def run(cmd, cwd):
         calls.append(cmd)
         if '--test-only' in cmd:
-            bad = len([c for c in calls if '--test-only' in c]) == 1
+            bad = '--partition=cs' in cmd
             return subprocess.CompletedProcess(cmd, 0, '', 'Preempts: 123' if bad else 'would start')
         return subprocess.CompletedProcess(cmd, 0, 'Submitted batch job 77\n', '')
     assert T.submit(T.sbatch_argv('x.slurm', begin='2026-11-07T00:10:00'), '.', run) == '77'
     real = [c for c in calls if '--test-only' not in c]
-    assert len(real) == 1 and not any('--begin=2026-11-07T00:10:00' in c for c in real)   # the preempting plan was never submitted
+    assert len(real) == 1 and '--partition=mltheory' in real[0]            # the preempting plan was never submitted
+
+
+def test_submit_pushes_begin_when_every_place_preempts_and_gives_up():
+    calls = []
+
+    def run(cmd, cwd):
+        calls.append(cmd)
+        return subprocess.CompletedProcess(cmd, 0, '', 'Preempts: 1')
+    with pytest.raises(RuntimeError, match='Preempts'):
+        T.submit(T.sbatch_argv('x.slurm'), '.', run, retries=2)
+    assert all('--test-only' in c for c in calls) and len(calls) == 6      # nothing was ever submitted
 
 
 def test_sbatch_argv_dependencies_and_exclude():

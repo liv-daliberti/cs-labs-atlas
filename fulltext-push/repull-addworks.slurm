@@ -5,8 +5,8 @@
 # hierarchy root of symlinks to the live dirs plus that file, and the open-copy channels run for the touched released schools. CORE stays paused.
 #   SCHOOLS=princeton+cmu (the schools with new works that day), DAY=2026-11-06
 #SBATCH --job-name=cs-repull-addworks
-#SBATCH --partition=mltheory
-#SBATCH --account=mltheory
+#SBATCH --partition=cs
+#SBATCH --account=allcs
 #SBATCH --exclude=node302
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=40G

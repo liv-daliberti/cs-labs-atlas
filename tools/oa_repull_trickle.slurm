@@ -4,8 +4,8 @@
 #   first run:  sbatch --dependency=afterany:<release job> --export=ALL,CS_ATLAS_SNAPSHOT_COMMIT=<sha> tools/oa_repull_trickle.slurm   (from the main checkout)
 # One network-bound stream (~1.2 s a request): 1 CPU. Merge holds one school-year of works in memory.
 #SBATCH --job-name=cs-repull
-#SBATCH --partition=mltheory
-#SBATCH --account=mltheory
+#SBATCH --partition=cs
+#SBATCH --account=allcs
 #SBATCH --exclude=node302
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=16G

@@ -202,19 +202,25 @@ def sbatch_argv(script, *, begin=None, after=None, export=None, extra=(), single
     return argv
 
 
-def submit(argv, cwd, run=None, retries=6):
-    """sbatch --test-only first; a plan that preempts a running job ('Preempts:') is never submitted: push --begin two hours and test again."""
+PLACES = [('cs', 'allcs'), ('mltheory', 'mltheory'), ('all', 'allcs')]   # mltheory is full and its plans preempt other jobs (seen from compute nodes 2026-11-05)
+
+
+def submit(argv, cwd, run=None, retries=6, places=PLACES):
+    """sbatch --test-only on each (partition, account) in turn; a plan that preempts a running job ('Preempts:') is never submitted. When every place
+    would preempt, --begin moves two hours later and the places are tried again."""
     run = run or (lambda cmd, cwd: subprocess.run(cmd, capture_output=True, text=True, cwd=cwd, timeout=120))
     argv = list(argv)
     out = ''
     for k in range(retries):
-        t = run([argv[0], '--test-only', *argv[1:]], cwd)
-        out = (t.stdout or '') + (t.stderr or '')
-        if t.returncode == 0 and 'Preempts:' not in out:
-            r = run(argv, cwd)
-            if r.returncode != 0:
-                raise RuntimeError(f'sbatch failed: {oa_api.redact(r.stderr.strip()[:200])}')
-            return r.stdout.strip().split()[-1]
+        for part, acct in places:
+            av = [argv[0], f'--partition={part}', f'--account={acct}', *argv[1:]]
+            t = run([av[0], '--test-only', *av[1:]], cwd)
+            out = (t.stdout or '') + (t.stderr or '')
+            if t.returncode == 0 and 'Preempts:' not in out:
+                r = run(av, cwd)
+                if r.returncode != 0:
+                    raise RuntimeError(f'sbatch failed: {oa_api.redact(r.stderr.strip()[:200])}')
+                return r.stdout.strip().split()[-1]
         later = (dt.datetime.now() + dt.timedelta(hours=2 * (k + 1))).strftime('%Y-%m-%dT%H:%M:%S')
         argv = [a for a in argv if not a.startswith('--begin=')]
         argv.insert(1, f'--begin={later}')
