@@ -43,6 +43,21 @@ def main():
     P(f'Generated {time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())} by `ai-writing/revision/rv_report.py`. Detector {a.detector}: flagged passage = P(AI) >= {fun["detector"]["threshold"]:.3g} '
       f'(1% passage false-positive rate by design on pre-ChatGPT text), strict = P(AI) >= {fun["detector"]["strict"]}; passages between the two cuts are the abstain band. '
       'All intervals: cluster bootstrap over first labs. Years end at 2025.\n')
+    P('## Summary\n')
+    for kind in ('S', 'A'):
+        try:
+            ct = pd.read_parquet(f'{pref}_{kind}_contrasts.parquet'); cl = pd.read_parquet(f'{pref}_{kind}_cells.parquet')
+        except FileNotFoundError:
+            continue
+        r = ct[(ct['outcome'] == 'dai') & (ct['treat'] == 'pre_post') & (ct['ctrl'] == 'pre_pre') & (~ct['matched'].astype(bool))]
+        m = ct[(ct['outcome'] == 'dai') & (ct['treat'] == 'pre_post') & (ct['ctrl'] == 'pre_pre') & (ct['matched'].astype(bool))]
+        c = cl[(cl['outcome'] == 'dai') & (cl['cell'] == 'pre_post')]
+        if len(r) and len(c):
+            r, c = r.iloc[0], c.iloc[0]
+            P(f'**Kind {kind}, v1 before Dec 2022 and later text after:** {int(c["n"])} pairs; mean change in flagged-passage share {fmt(c["mean"], c["lo"], c["hi"], 4)} '
+              f'(v1 level {c["v1_mean"]:.3f}); against the pre_pre baseline {fmt(r["diff"], r["lo"], r["hi"], 4)}'
+              + (f', matched {fmt(m.iloc[0]["diff"], m.iloc[0]["lo"], m.iloc[0]["hi"], 4)} ({int(m.iloc[0]["treat_kept"])} of {int(m.iloc[0]["treat_total"])} pairs kept)' if len(m) else '') + '. Shares are fractions of passages (0.01 = one point).')
+    P('Every difference is a fraction of passages; the detector flags about 1% of human passages by design, so effects of a few tenths of a point are near its floor. Details, strict cut, abstract and Kobak rows below.\n')
     P('## 1. Pairs\n')
     P('Pair kinds: **S** = arXiv v1 (public cloud-mirror copy) against the lab paper\'s stored full text (the version our stores captured), dated by its publication date; '
       '**A** = arXiv v1 against the latest arXiv version in the mirror (dated by the margin stamp). The mirror does not hold late revisions of old arXiv papers (a 2022 paper\'s latest mirrored '

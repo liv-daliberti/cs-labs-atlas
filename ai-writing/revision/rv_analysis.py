@@ -103,10 +103,12 @@ def add_dates_and_filters(p):
     p['d2'] = np.where(p['kind'] == 'S', p['pub_date'], a_date)
     p['y1'] = p['d1'].str[:4].astype(float); p['y2'] = pd.to_numeric(pd.Series(p['d2']).str[:4], errors='coerce')
     p['lag_m'] = (pd.to_datetime(p['d2'], errors='coerce') - pd.to_datetime(p['d1'], errors='coerce')).dt.days / 30.4
-    d2 = pd.Series(p['d2'])
+    d2 = pd.Series(p['d2'].to_numpy(), index=p.index)
     # the stored copy's text is written before its publication date: a 'post' final needs the publication date on or after 1 Jan 2023 (one month after ChatGPT)
     cut2 = np.where(p['kind'] == 'S', '2023-01-01', C.CHATGPT)
-    p['cell'] = np.where(d2.isna(), None, np.where(p['d1'] < C.CHATGPT, 'pre', 'post') + '_' + np.where(d2.fillna('9') < cut2, 'pre', 'post'))
+    a1 = pd.Series(np.where(p['d1'].to_numpy() < C.CHATGPT, 'pre', 'post'), index=p.index)
+    a2 = pd.Series(np.where(d2.fillna('9').to_numpy() < cut2, 'pre', 'post'), index=p.index)
+    p['cell'] = (a1 + '_' + a2).where(d2.notna().to_numpy(), None)
     p['final_in_gap'] = (p['kind'] == 'S') & (d2.fillna('9') >= C.CHATGPT) & (d2.fillna('9') < '2023-01-01')   # published in Dec 2022: dropped from the cells
     p.loc[p['final_in_gap'], 'cell'] = None
     ok = (p['n_pass1'] >= MIN_PASSAGES) & (p['n_pass2'] >= MIN_PASSAGES) & (p['words1'] >= MIN_WORDS) & (p['words2'] >= MIN_WORDS) & p['title_found1'].eq(1) \
@@ -173,22 +175,25 @@ def contrast(v, outcome, B, seed=0, treat='pre_post', ctrl='pre_pre', matched=Tr
     d = pd.concat([t.assign(tr=1), c.assign(tr=0)], ignore_index=True).dropna(subset=[outcome])
     d['cl'] = d['lab0'].fillna(d['arxiv_id']).astype(str)
 
-    def est(x):
-        a = x[x['tr'] == 1]; b = x[x['tr'] == 0]
-        if a.empty or b.empty or b['w'].sum() == 0:
-            return np.nan
-        return np.average(a[outcome], weights=a['w']) - np.average(b[outcome], weights=b['w'])
-    e = est(d)
-    groups = {k: g for k, g in d.groupby('cl')}
-    keys_l = list(groups)
+    d['wy'] = d['w'] * d[outcome]
+    cl_codes, cl_names = pd.factorize(d['cl'])
+    G = len(cl_names)
+    cols = {}
+    for tr in (1, 0):
+        m = (d['tr'] == tr).to_numpy()
+        cols[tr] = (np.bincount(cl_codes[m], d.loc[m, 'wy'], minlength=G), np.bincount(cl_codes[m], d.loc[m, 'w'], minlength=G))
+
+    def est_idx(idx):
+        out = []
+        for tr in (1, 0):
+            sy, sw = cols[tr][0][idx].sum(), cols[tr][1][idx].sum()
+            if sw <= 0:
+                return np.nan
+            out.append(sy / sw)
+        return out[0] - out[1]
+    e = est_idx(np.arange(G))
     rng = np.random.default_rng(seed)
-    bs = []
-    for _ in range(B):
-        pick = rng.integers(0, len(keys_l), len(keys_l))
-        x = pd.concat([groups[keys_l[i]] for i in pick], ignore_index=True)
-        r = est(x)
-        if np.isfinite(r):
-            bs.append(r)
+    bs = [r for r in (est_idx(rng.integers(0, G, G)) for _ in range(B)) if np.isfinite(r)]
     lo, hi = np.percentile(bs, [2.5, 97.5]) if len(bs) > 20 else (np.nan, np.nan)
     return dict(outcome=outcome, treat=treat, ctrl=ctrl, matched=matched, diff=float(e), lo=float(lo), hi=float(hi), n_treat=int((d['tr'] == 1).sum()), n_ctrl=int((d['tr'] == 0).sum()),
                 treat_kept=kept, treat_total=tot)
