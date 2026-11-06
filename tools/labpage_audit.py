@@ -2531,7 +2531,6 @@ def cmd_audit(school):
     disc = read_discovery(school)
     verdicts = recover_verdicts(school)
     recs, stu_adds, pap_adds, _ = assemble(kit, ctx, disc, verdicts)
-    stu_adds = [withhold_bio_degree_role(r) for r in stu_adds]
     write_audit(school, recs, stu_adds, pap_adds)
 
 
@@ -2582,7 +2581,7 @@ def write_audit(school, recs, stu_adds, pap_adds):
     adds = dict(school=school, generated_at=now(), tool='tools/labpage_audit.py', standard='docs/LAB-PAGES.md',
                 status='proposed, unreviewed: not read by tools/pi_hierarchy.py until wired (docs/LAB-PAGES.md, integration)',
                 rules={'LP-STU-01': RULE_TEXT['LP-STU-01'], 'LP-PAP-01': RULE_TEXT['LP-PAP-01']},
-                students=withheld_if_membership_only(school, stu_adds), papers=pap_adds)
+                students=[withhold_bio_degree_role(r) for r in withheld_if_membership_only(school, stu_adds)], papers=pap_adds)
     json.dump(adds, open(P.data_w('labpage-additions.json', school), 'w', encoding='utf-8'), indent=1, ensure_ascii=False)
     if onboarding(school):
         # an onboarding school's summary stays in its own file: hierarchy/labpage-audit-summary.json and LABPAGE-AUDIT.md are TRACKED shared build
