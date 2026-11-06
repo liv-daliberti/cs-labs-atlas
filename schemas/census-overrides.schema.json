@@ -128,6 +128,16 @@
      "description": "Why the display name is the person (evidence in openalex_evidence).",
      "type": "string"
     },
+    "not_papers": {
+     "description": "Reviewed records that are no papers (a guest editors' editorial whose byline is the editors): doi or oa, why, evidence.",
+     "type": "array",
+     "items": {
+      "type": "object"
+     },
+     "x-rules": [
+      "R-PAP-39"
+     ]
+    },
     "blocked_clusters": {
      "description": "Reviewed namesake clusters: a work whose byline carries min_coauthors or more of the coauthors is never this PI's.",
      "type": "array",

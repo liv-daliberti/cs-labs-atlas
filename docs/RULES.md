@@ -298,6 +298,18 @@ comes from the dump XML, and the JMLR host was added (Shah JMLR 2025). IACR ePri
 source `dblp_recover:page1_arxiv|page1_open` and enter the normal flow (appointment, editions, dedup against the sweep's works, copies). `dblp_recover.py <school> --retry` asks again for the
 unconfirmed. A page-1 read from an arXiv v1 posted 4 or more years before the DBLP record's year is not accepted at build time (`arxiv_predates_record`: Mossel's 2016 TOC paper, v1 2012, names Berkeley), and a byline lists each name once. Not used: the publisher's landing text (no open source parsed there). Tests: `tests/test_dblp_recover_page1.py`.
 
+### R-PAP-38 (2026-11-06, owner) — book-chapter reprints of older papers
+ACM Books and other anthologies reprint older papers as chapters (Essa's 'Video Textures', SIGGRAPH 2000, appears as a 2023 ACM Books chapter; 39 such chapters over the nine
+schools, most of 'Seminal Graphics Papers', 'Making Databases Work', 'Providing Sound Foundations for Cryptography'). R-PAP-26 dated a preprint or repository deposit by the PI's DBLP
+record of the same title; a record of type `book-chapter` now is dated the same way (`venue_version_date`): the original's year is the work's year, and one before 2016 leaves the lab
+(`dated_before_window`). A chapter with no DBLP record of the same title, or new chapters of a handbook, are untouched. Tests: `tests/test_not_paper_non_research_records.py`.
+
+### R-PAP-39 (2026-11-06, owner) — editorials whose byline is the guest editors (reviewed records)
+Georgia Tech's FITEE special-issue editorial (Fumin Zhang, seven authors who are the guest editors) carries no stored signal: OpenAlex types it article, the sweep keeps no abstract or
+references, DBLP has no page count, the DOI is opaque. So the rule is a reviewed entry in the PI's census overrides (`not_papers`: `doi` or `oa`, `why`, `evidence`), applied at the
+lab-paper stage (`reviewed_not_paper`, tag `reviewed_not_paper`). A record is such an editorial when its byline is the special issue's editors, as the hand check read it. Tests:
+`tests/test_not_paper_non_research_records.py`.
+
 ### R-PAP-35 (2026-11-05, owner: round-r2 Michigan namesake) — middle names against name-only identities
 An identity that rests on the name through a DBLP person page (DOI or title) or a publication list does not stand when the byline writes middle names and the PI's own names write middle
 names and they share no initial (`middle_conflict`, `NAME_ONLY_IDENTITY`; ORCID, author-id, verified-collection and advisee identities are not touched). The Michigan paper by M. E. J. Newman
@@ -439,7 +451,7 @@ a researched-evidence file (`RESEARCHED_FILES`, so R-STU-01/R-STU-12 apply: no q
 the data: among the 2,606 byline links of the nine packages that match on a name the paper does not spell in full, 540 are on papers with 10+ authors, 147 with 20+,
 74 with 30+, 37 with 50+ and 11 with 100+, while a lab paper's median byline is 5. UChicago's case: four initial-only 'Zhou' authors of a 2,938-author ATLAS paper
 linked to one CS student.
-**B. The wide-window routes.** A `full_name_on_lab_paper_byline` or `within_lab_byline_match` link (the routes outside the narrow window; the three Georgia Tech errors were within-lab matches on the full name) needs the person to hold a student role (`student_role_ok`: phd, doctoral, masters,
+**B. The wide-window routes.** (Owner 2026-11-06: a visiting STUDENT counts, role `visiting` of R-STU-17, unless the entry says visiting scholar, professor, faculty or researcher; a `visitor` row only when the entry says visiting student or PhD; a `member` row counts when the entry's own words after the name, else its heading, say student: `pihier/role_cues.py`, the cues of R-STU-20. Effect on the 592 removed links of the 2026-11-05 scratch build: 17 come back, because the rest are postdocs, visitors and `other` staff by an explicit role.) A `full_name_on_lab_paper_byline` or `within_lab_byline_match` link (the routes outside the narrow window; the three Georgia Tech errors were within-lab matches on the full name) needs the person to hold a student role (`student_role_ok`: phd, doctoral, masters,
 undergraduate, student, alumnus or intern, not only research scientist, visitor, postdoc, staff or other) and no relation whose quotes name other advisers only
 (`pi_is_adviser`, R-STU-03's test). Georgia Tech's draw: a research scientist (Anderson, Batra), a visiting researcher (Elola, Clifford) and a student of two other
 advisers (Basciftci, Van Hentenryck) had entered by full name. Tests: `tests/test_blocked_cluster_and_link_rules.py`.

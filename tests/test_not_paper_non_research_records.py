@@ -60,3 +60,27 @@ def test_R_PAP_33_conference_volume_titles():
     assert papers.not_a_paper(row('Conference on Health, Inference, and Learning (CHIL) 2022', 'article', 'CHIL', doi='')) == 'proceedings_volume'
     assert papers.not_a_paper(row('Workshop on Internet Economics (WIE2016) Final Report.', 'article', 'x', doi='')) is not None
     assert papers.not_a_paper(row('Conference on the Mathematics of Learning: A Survey', 'article', 'x', doi='10.1/q')) is None
+
+
+def test_R_PAP_38_book_chapters_are_dated_by_the_original_paper():
+    chapter = dict(id='https://openalex.org/W4385489965', doi='https://doi.org/10.1145/3596711.3596769', title='Video Textures', type='book-chapter', publication_year=2023,
+                   publication_date='2023-06-01', primary_location=dict(source=dict(display_name='ACM eBooks', type='book series')))
+    date, by = papers.venue_version_date(chapter, {papers.norm_title('Video Textures'): (2000, 'conf/siggraph/SchodlSSE00')})
+    assert date == '2000' and by['venue_year'] == 2000 and by['dblp_key'] == 'conf/siggraph/SchodlSSE00'   # before 2016: dropped by the build (dated_before_window)
+    article = dict(chapter, type='article')
+    assert papers.venue_version_date(article, {papers.norm_title('Video Textures'): (2000, 'k')})[1] is None   # an article is not re-dated
+    assert papers.venue_version_date(chapter, {})[1] is None
+
+
+def test_R_PAP_39_reviewed_not_paper_records():
+    p = dict(notPapers=[dict(doi='10.1631/fitee.1820000', oa='https://openalex.org/W2894741214')])
+    r = dict(doi='10.1631/fitee.1820000', oa='https://openalex.org/W2894741214')
+    assert papers.reviewed_not_paper(p, r) and not papers.reviewed_not_paper(p, dict(doi='10.1631/fitee.1700001', oa='x')) and not papers.reviewed_not_paper(None, r)
+
+
+def test_R_PAP_39_the_georgia_tech_entry_has_evidence():
+    import json
+    from pathlib import Path
+    f = Path(__file__).resolve().parents[1] / 'hierarchy/gatech/reviewed/census-overrides-school.json'
+    e = json.loads(f.read_text())['Fumin Zhang']['not_papers'][0]
+    assert e['doi'] == '10.1631/fitee.1820000' and e['why'] and len(e['evidence'][0]['sha256']) == 64

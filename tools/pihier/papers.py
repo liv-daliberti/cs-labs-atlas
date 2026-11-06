@@ -422,7 +422,9 @@ def venue_version_date(w, venues):
     record; Sandholm's IJCAI 2009 paper was a 2018 KiltHub deposit."""
     date = w.get('publication_date') or str(w.get('publication_year') or '')
     src = (w.get('primary_location') or {}).get('source') or {}
-    deposit = w.get('type') == 'preprint' or ndoi(w.get('doi')).startswith('10.48550/') or src.get('type') == 'repository'
+    # R-PAP-38 (2026-11-06, owner): a book chapter is dated like a deposit: ACM Books and other anthologies reprint older papers as chapters ('Video Textures',
+    # SIGGRAPH 2000, as a 2023 ACM Books chapter), so the PI's own DBLP record of the same title gives the work's year (and takes it out of the window when older)
+    deposit = w.get('type') in ('preprint', 'book-chapter') or ndoi(w.get('doi')).startswith('10.48550/') or src.get('type') == 'repository'
     vy = venues.get(norm_title(w.get('title'))) if deposit else None
     if vy and vy[0] != w.get('publication_year'):
         return str(vy[0]), dict(oa_date=date, venue_year=vy[0], dblp_key=vy[1])
@@ -816,7 +818,15 @@ def drop_namesakes(rows, pis, reviewed_oa, n):
     return rows
 
 
-def drop_not_papers(rows, dblp_nauth, n, dblp_pages=None):
+def reviewed_not_paper(p, r):
+    """R-PAP-39: a reviewed `not_papers` entry of the PI (census overrides: doi or OpenAlex id, why, evidence) names this row."""
+    for e in (p or {}).get('notPapers') or []:
+        if (e.get('doi') and ndoi(e['doi']) == ndoi(r.get('doi'))) or (e.get('oa') and e['oa'] == r.get('oa')):
+            return e
+    return None
+
+
+def drop_not_papers(rows, dblp_nauth, n, dblp_pages=None, pid0=None):
     """R-PAP-17 .. R-PAP-19, R-PAP-22, R-PAP-23: rows that are not papers leave the lab, counted per tag with samples.
     Returns (rows kept, samples)."""
     # not papers (R-PAP-18/19/22, 2026-10-29, owner: accuracy sample): repository records, paratext, seminar and workshop
@@ -828,6 +838,8 @@ def drop_not_papers(rows, dblp_nauth, n, dblp_pages=None):
         if dblp_pages:  # R-PAP-27: the DBLP page count of this record (by DOI, else title), None when DBLP has none
             pg_, bare_ = dblp_pages['doi'][r['pi']].get(ndoi(r.get('doi'))) or dblp_pages['title'][r['pi']].get(norm_title(r.get('title'))) or (None, False)
         why = not_a_paper(r, pg_, bare_) or ('doi_year_conflict' if doi_year_conflict(r) else None)
+        if not why and reviewed_not_paper((pid0 or {}).get(r['pi']), r):
+            why = 'reviewed_not_paper'
         if why in ('meeting_abstract:single_author', 'invited_abstract') and dblp_nauth[r['pi']].get(norm_title(r.get('title')), 0) >= 2:
             why = None  # OpenAlex cut the byline: the PI's DBLP page has the paper with co-authors, so it is no keynote
             n['single_author_abstract_kept_dblp_coauthors'] += 1
@@ -950,7 +962,7 @@ def lab_papers(ctx):
     rows, seen = rows_from_hits(ctx)
     recovered_rows(ctx, rows, seen)
     rows = drop_namesakes(rows, pis, ctx.reviewed_oa, n)
-    rows, not_paper_samples = drop_not_papers(rows, ctx.dblp_nauth, n, ctx.dblp_pages)
+    rows, not_paper_samples = drop_not_papers(rows, ctx.dblp_nauth, n, ctx.dblp_pages, ctx.pid0)
     # books are one work, and a translation is not new work (2026-10-29, owner: best judgement): fold_books
     nv0 = sum(r.get('type') == 'book-chapter' and not r.get('venue') for r in rows)
     rows, n['book_chapters_folded'], translated = fold_books(rows, school)
