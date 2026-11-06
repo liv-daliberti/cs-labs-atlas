@@ -232,6 +232,19 @@ def isye_card(h):
     return out
 
 
+def seas_directory(h):
+    """Harvard SEAS people directory (Drupal 10, 2019-): one `h2.person__detailed-name` per person, the name in span.person__name--person-directory, the title lines in div.person__primary-title."""
+    out = []
+    for p in re.split(r'<h2 class="node-title[^"]*person__detailed-name', h)[1:]:
+        nm = re.search(r'<span class="person__name[^"]*">(.*?)</span>', p, re.S)
+        if not nm:
+            continue
+        tt = re.search(r'class="person__primary-title[^"]*".*?<div class="field-item">(.*?)</div>', p, re.S)
+        link = re.search(r'href="([^"]+)"', p)
+        out.append(dict(name_listed=clean(nm.group(1)), titles=_titles(tt.group(1)) if tt else [], homepage=link.group(1) if link else None, division=None))
+    return out
+
+
 FORMATS = {
     'eecs_table': (eecs_table, re.compile(r'<b>Division:</b>', re.I)),
     'eecs_wp': (eecs_wp, re.compile(r"class=['\"]eecs_person_wrapper['\"]")),
@@ -246,6 +259,7 @@ FORMATS = {
     'ece_old': (ece_old, re.compile(r'class="field-full-name"')),
     'ece_new': (ece_new, re.compile(r'field--name-field-person-official-job-title')),
     'isye_old': (isye_old, re.compile(r'<!-- Person -->')),
+    'seas_directory': (seas_directory, re.compile(r'person__detailed-name')),
     'isye_card': (isye_card, re.compile(r'class="w-100 px-0 pt-0 person-name"')),
 }
 
@@ -263,7 +277,7 @@ def parse(h, fmt=None):
 def is_paged(html):
     """A capture of one page of a paged directory (pager markers and a ?page=N link): it parses to a few people while the rest sit on pages
     the archive may not hold (UChicago CS 2017: 5 of about 45). listing_rows.py reports it and plan_fetch.charter_usable rejects it."""
-    return bool(re.search(r'class="pager"|class="pagination"', html) and re.search(r'(?:[?&]|&amp;)page=[1-9]', html))
+    return bool(re.search(r'class="pager"|class="pagination"', html) and re.search(r'(?:[?&]|&amp;)page=(?:%2C|,)?[1-9]', html))
 
 
 def page_links(html, base_url):
@@ -274,18 +288,18 @@ def page_links(html, base_url):
     base_url = re.sub(r'^(https?://[^/]+?):(?:80|443)(?=/|$)', r'\1', base_url)   # Wayback keeps ':80' in the original of old captures; its CDX does not match it
     base = urllib.parse.urlsplit(base_url)
     found = {}
-    for href in re.findall(r'href="([^"]*[?&;]page=\d+[^"]*)"', html):
+    for href in re.findall(r'href="([^"]*[?&;]page=(?:%2C|,)?\d+[^"]*)"', html):
         u = urllib.parse.urljoin(base_url, H.unescape(href))
         sp = urllib.parse.urlsplit(u)
         if sp.path.rstrip('/') != base.path.rstrip('/') or sp.netloc.lower().split(':')[0] != base.netloc.lower().split(':')[0]:
             continue
-        m = re.search(r'(?:^|&)page=(\d+)', sp.query)
+        m = re.search(r'(?:^|&)page=(?:%2C|,)?(\d+)', sp.query)
         if m and int(m.group(1)) >= 1:
             found.setdefault(int(m.group(1)), u)
     if not found:
         return {}
     tmpl = found[min(found)]
-    return {n: found.get(n) or re.sub(r'(^|[?&])page=\d+', lambda m: f'{m.group(1)}page={n}', tmpl, count=1) for n in range(1, max(found) + 1)}
+    return {n: found.get(n) or re.sub(r'(^|[?&])page=((?:%2C|,)?)\d+', lambda m: f'{m.group(1)}page={m.group(2)}{n}', tmpl, count=1) for n in range(1, max(found) + 1)}
 
 
 def letter_links(html, base_url):
