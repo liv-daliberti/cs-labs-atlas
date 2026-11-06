@@ -823,6 +823,8 @@ def extract(key):
     faculty_anywhere = all_faculty_names()
     skip_pages = S.field(S.get(key), 'labpages.skip_pages') or []
     decisions = SD.load(key)
+    ef_ = P.data('extra-lab-pages.json', key)
+    reviewed_pages = {pi_: [re.sub(r'^https?://(www\.)?', '', x['url']) for x in l_] for pi_, l_ in (json.loads(ef_.read_text()) if ef_.exists() else {}).items()}
     for pi, (t, urls) in targets_pages(key).items():
         N = Name([pi]); studs, seen = [], set()
         for u in urls:
@@ -835,7 +837,7 @@ def extract(key):
                     continue
                 flat = ' '.join(lpdom.collapse(x) for x in [re.sub(r'<[^>]+>', ' ', re.sub(r'<(script|style)\b.*?</\1>', ' ', h, flags=re.S | re.I))])
                 flat = ' '.join(__import__('html').unescape(flat).split())
-                if is_department_roster(flat, faculty_anywhere) or len(cands) >= 60:
+                if is_department_roster(flat, faculty_anywhere) or (len(cands) >= 60 and not any(u.rstrip('/').endswith(e.rstrip('/')) for e in reviewed_pages.get(pi, ()))):   # a reviewed lab page may be long (AxLab's 140 members)
                     rep['department_roster_page_skipped'] += 1; continue   # a department people page names many faculty: not this PI's lab page (UChicago homepage dive)
                 for path, name, rest, nxt, idx in cands:
                     name = clean_student_name(name)
