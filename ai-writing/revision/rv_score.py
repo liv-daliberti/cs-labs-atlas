@@ -24,6 +24,7 @@ import pandas as pd
 import rv_common as C
 
 PASSAGE_CAP = 100
+_CACHE = {}
 CHUNK = int(os.environ.get('RV_CHUNK', '250'))      # texts per written part (a timed-out shard keeps its finished chunks)
 
 
@@ -191,11 +192,13 @@ def score_rows(rows, a, spec, part):
         from transformers import AutoModelForSequenceClassification, AutoTokenizer
         sp = importlib.util.spec_from_file_location('detector_v2_predict', str(C.MAIN_AIW / 'detector_v2' / 'detector.py'))
         D2 = importlib.util.module_from_spec(sp); sp.loader.exec_module(D2)
-        tok = AutoTokenizer.from_pretrained(spec['model'])
-        det = AutoModelForSequenceClassification.from_pretrained(spec['model']).cuda().eval()
+        if 'det' not in _CACHE:      # loaded once per process, reused by every chunk
+            _CACHE['det'] = (AutoTokenizer.from_pretrained(spec['model']), AutoModelForSequenceClassification.from_pretrained(spec['model']).cuda().eval())
+            _CACHE['v1'] = DS.load_models([('v1', D.V1_MODEL / 'model')])
+        tok, det = _CACHE['det']
         pp = D2.predict(det, tok, ptext, bs=128) if ptext else np.zeros(0)
         p = np.log(np.clip(pp, 1e-300, None)) - np.log(np.clip(1 - pp, 1e-300, None))      # z, as score_sections.py
-        m, dtype = DS.load_models([('v1', D.V1_MODEL / 'model')])
+        m, dtype = _CACHE['v1']
         p_v1 = DS.predict_v1(*m['v1'], dtype, [D.text1(r[2], r[3]) for _, r in ab]) if ab else np.zeros(0)
         p_det = np.full(len(ab), np.nan)
     else:
