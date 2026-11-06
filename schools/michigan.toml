@@ -277,7 +277,8 @@ adviser_flat_lists = ["robotics.umich.edu/people/students/"]   # '<Name> PhD Stu
 # Tried 2026-11-03 under the UChicago rule and two_and_last (7 of 30 rows had an independent page): re-run 2026-11-05 as a 20-row pilot before any write.
 rosters = [{url = "cse.engin.umich.edu/people/phd-students/", kind = "students", listed_as_phd = true},
            {url = "ece.engin.umich.edu/people/directory/phd-students/", kind = "students", listed_as_phd = true},
-           {url = "www.si.umich.edu/people/directory/phd-students", kind = "students", listed_as_phd = true}]
+           {url = "www.si.umich.edu/people/directory/phd-student", kind = "students", listed_as_phd = true}]
+# 2026-11-06 deep dive: the UMSI roster URL above was www.si.umich.edu/people/directory/phd-students (a 404; no capture was ever made), so no UMSI roster pair existed before; the live directory is /people/directory/phd-student (names only, no adviser). Archived 2019-2025 captures: slow-lane stage q-mi-dd.
 sources = [
   "CSE and ECE dissertation defence announcements (cse.engin.umich.edu/event/..., Wayback): 'Chair: Prof. X'",
   "CSE and ECE PhD graduate / alumni lists (Wayback)",
