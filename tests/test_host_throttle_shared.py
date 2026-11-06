@@ -1,6 +1,7 @@
 """One request budget for web.archive.org across every client (host_throttle.SHARED_INTERVAL, 2026-11-04): slots are 15 s apart (2026-11-06 slow lane; 8 s, 5 s before) across processes whatever
 delay each asks for, a low-priority client (the evidence crawl) yields to the loops, and a 429 recorded by one client cools the host for all."""
 import json
+import pytest
 import os
 import subprocess
 import sys
@@ -148,3 +149,26 @@ def test_each_429_is_logged_with_the_client(tmp_path, monkeypatch):
     HT.record_429('web.archive.org', now=1010.0, path=path)
     rows = [json.loads(l) for l in (tmp_path / 'host-throttle-429.jsonl').read_text().splitlines()]
     assert [(r['job'], r['job_name'], r['burst']) for r in rows] == [('4242', 'lane.sh', False), ('4242', 'lane.sh', True)]
+
+
+def test_first_slot_after_a_cooldown_is_a_lone_probe(tmp_path):
+    """2026-11-06: after a cooldown only one client asks; the others wait PROBE_HOLD s after the probe, so a 429 on the probe stops them."""
+    path = tmp_path / 'ht.json'
+    HT.record_429('web.archive.org', now=1000.0, path=path)
+    end = 1000.0 + HT.BASE_BY_HOST['web.archive.org']
+    probe = HT.reserve('web.archive.org', 6.0, now=end + 1, path=path)
+    other = HT.reserve('web.archive.org', 6.0, now=end + 1, path=path, low=True)
+    assert probe == 0.0 and other >= HT.PROBE_HOLD - 1
+    HT.record_429('web.archive.org', now=end + 2, path=path)             # the probe drew a 429: a new, longer cooldown
+    assert HT.cooldown_left('web.archive.org', now=end + other, path=path) > 0
+    again = HT.reserve('web.archive.org', 6.0, now=end + 3, path=path)  # the next cooldown gets its own probe
+    assert again >= HT.cooldown_left('web.archive.org', now=end + 3, path=path)
+
+
+def test_probe_that_passes_opens_the_host(tmp_path):
+    path = tmp_path / 'ht.json'
+    HT.record_429('web.archive.org', now=1000.0, path=path)
+    end = 1000.0 + HT.BASE_BY_HOST['web.archive.org']
+    HT.reserve('web.archive.org', 6.0, now=end, path=path)                # the probe, no 429 follows
+    waits = [HT.reserve('web.archive.org', 6.0, now=end + HT.PROBE_HOLD + 1, path=path) for _ in range(3)]
+    assert waits[0] == 0.0 and waits[1] == pytest.approx(15.0) and waits[2] == pytest.approx(30.0)   # back to the shared 15 s slots

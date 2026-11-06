@@ -29,12 +29,14 @@ WINDOW = 7200.0
 # instead of the caller's own delay, so a loop asking at 6 s and a crawl asking at 3 s still share 5 s slots (~12 a minute for web.archive.org,
 # whose playback limit is about 15 a minute; four 429s in two hours on 2026-11-04 came from two clients each keeping its own clock).
 # 2026-11-05: 8 s (7.5 a minute). At 5 s the clients still drew 429s in bursts of three or four (slots reserved before a 429 fired into the
-# cooldown), and each burst 429 doubled the cooldown up to the 1-hour cap; see wait_slot() and BURST below.
+# cooldown), and each burst 429 doubled the cooldown up to the 1-hour cap; see wait_slot() and BURST below. 2026-11-06: the first slot after a
+# cooldown is a lone probe (PROBE_HOLD), see reserve().
 SHARED_INTERVAL = {'web.archive.org': 15.0, 'archive.org': 15.0}   # 2026-11-06 slow lane (owner): 4 a minute; 8 s still drew 429s
 BASE_BY_HOST = {'web.archive.org': 900.0, 'archive.org': 900.0}     # first cooldown after a 429: 15 min for the archive (others BASE_COOLDOWN)
 BURST = 60.0           # a 429 within this many seconds of the previous one (or inside a running cooldown) is the same event: no doubling
 LOW_GAP_SLOTS = 3      # a low-priority client (the SMARTech crawl: evidence) takes at most one slot in 3 while a loop was served in the last LOW_WINDOW s
 LOW_WINDOW = 60.0
+PROBE_HOLD = 120.0     # after a cooldown ends, one client probes; every other slot waits this long for the probe's 429 (owner 2026-11-06: one request per cooldown)
 
 
 def state_path():
@@ -87,6 +89,15 @@ def reserve(host, delay, now=None, path=None, low=False):
         _prune(st, now)
         s = st.setdefault(host, {})
         slot = max(now, s.get('next', 0.0))
+        until = s.get('until', 0.0)
+        if until > 0 and slot >= until:
+            # 2026-11-06: the first slot after a cooldown is a probe. Three loops fired within 45 s of a cooldown ending (14:55 local) and the
+            # archive refused all three, restarting the 1-hour cooldown. Every later slot waits PROBE_HOLD s after the probe, so a 429 on the
+            # probe (record_429 moves `until`) reaches the others before they ask.
+            if s.get('probed_for', 0.0) < until:
+                s['probed_for'], s['probe_at'] = until, slot
+            else:
+                slot = max(slot, s.get('probe_at', 0.0) + PROBE_HOLD)
         if low:
             if now - s.get('last_hi', -1e12) < LOW_WINDOW:
                 slot = max(slot, s.get('last_low', -1e12) + LOW_GAP_SLOTS * delay)
