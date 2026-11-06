@@ -1,6 +1,6 @@
 # Advisor-student lineage: do students' papers converge on their advisor's and on each other's?
 
-Generated 2026-11-06 by `ai-writing/lineage/` (`lineage_build.py`, `lineage_run.py`, `lineage_report.py`; tables in `/n/fs/resemble/homogenizing-science/scratch/lineage-style/out/20261105-v3`). Link snapshot: `/n/fs/resemble/homogenizing-science/scratch/lineage-style/hier`, taken 2026-11-05T22:44:09Z; a release was rebuilding the packages at that time. Detector table: `papers.parquet` (v1 abstract + v2 passage detector). **Years 2017-2025 only (no 2026); post = 2023-2025, 2022 dropped from the pre/post contrast as the transition year.**
+Generated 2026-11-06 by `ai-writing/lineage/` (`lineage_build.py`, `lineage_run.py`, `lineage_report.py`; tables in `/n/fs/resemble/homogenizing-science/scratch/lineage-style/out/20261105-v3`). Link snapshot: `/n/fs/resemble/homogenizing-science/scratch/lineage-style/hier`, taken 2026-11-05T22:44:09Z; a release was rebuilding the packages at that time. Detector table: `papers.parquet` (v1 abstract + detector-v3 main-body passages, 0.3% threshold, abstained excluded: ai-scores-v3 container). **Years 2017-2025 only (no 2026); post = 2023-2025, 2022 dropped from the pre/post contrast as the transition year.**
 
 ## Answer (plain language)
 
