@@ -83,7 +83,7 @@ def _throttle():
         left = HT.cooldown_left('web.archive.org')
         if left > 0:
             print(f"  [web.archive.org cooling down after a 429: {left:.0f}s]", flush=True)
-        time.sleep(HT.reserve('web.archive.org', MIN_GAP))
+        HT.wait_slot('web.archive.org', MIN_GAP)   # re-checks the shared cooldown after the slot (2026-11-05)
         return
     os.makedirs(os.path.dirname(LOCK), exist_ok=True)
     fd = os.open(LOCK, os.O_RDWR | os.O_CREAT, 0o600)

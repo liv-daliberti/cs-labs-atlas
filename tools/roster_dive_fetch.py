@@ -11,7 +11,6 @@ names ClaudeBot/anthropic-ai with Disallow is skipped here too), the bot-challen
 """
 import re
 import sys
-import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -27,17 +26,8 @@ ARCHIVE = 'web.archive.org'
 
 def _wait(host):
     if host.endswith('archive.org'):
-        while True:
-            left = HT.cooldown_left(ARCHIVE)
-            if left > 0:
-                if left > HT.WAIT_MAX:
-                    raise RuntimeError(f'web.archive.org cooling down for {left:.0f}s')
-                time.sleep(left + 1)
-                continue
-            s = HT.reserve(ARCHIVE, 5.0)
-            if s > 0:
-                time.sleep(s)
-            return
+        HT.wait_slot(ARCHIVE, 8.0)   # waits out a cooldown up to WAIT_MAX, raises above it, re-checks after the slot (2026-11-05)
+        return
     _orig_wait(host)
 
 

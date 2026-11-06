@@ -237,8 +237,7 @@ class Client:
         for attempt in range(6):
             if shared:   # one request clock and one 429 cooldown for every client of this host (loops included)
                 try:
-                    self.sleep(HT.cooldown_left(host))
-                    self.sleep(HT.reserve(host, self.delay, low=self.low))
+                    HT.wait_slot(host, self.delay, low=self.low, sleep=self.sleep, max_cooldown=float('inf'))
                 except OSError:
                     shared = False
             if not shared:
