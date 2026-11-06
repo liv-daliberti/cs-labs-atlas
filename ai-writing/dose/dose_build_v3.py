@@ -22,6 +22,7 @@ import numpy as np
 import pandas as pd
 
 import dcommon as D
+import v3ids
 
 V3 = D.MAIN_AIW / 'detector_v3' / 'results'
 OUT = Path(os.environ.get('AI_SCORES_V3_DIR') or (D.P.CODE / 'ai-writing' / 'data' / 'ai-scores-v3'))
@@ -29,13 +30,14 @@ OUT = Path(os.environ.get('AI_SCORES_V3_DIR') or (D.P.CODE / 'ai-writing' / 'dat
 
 def main(condition):
     op = json.load(open(V3 / 'operating_point.json'))
-    pa = pd.read_parquet(V3 / 'paper_ai_v3.parquet')
+    pa = v3ids.v3_table()
     v2 = sqlite3.connect(f"file:{D.P.CODE / 'ai-writing' / 'data' / 'ai-scores' / 'ai_scores.sqlite'}?mode=ro", uri=True)
     old = pd.read_sql('select * from papers', v2)
     v2.close()
     keep = ['paper_id', 'home_school', 'year', 'abs_hash', 'p_ai_abstract', 'p_v2_abstract', 'flag_abstract', 'kobak_abs', 'kobak_ft', 'thr_abstract']
     df = old[keep].copy()
-    pa = pa.drop_duplicates('paper_id')
+    D.log(v3_papers=int(pa['paper_id_v3'].nunique()), kept=len(pa), remapped=int((pa['paper_id'] != pa['paper_id_v3']).sum()))
+    back = dict(zip(pa['paper_id_v3'], pa['paper_id']))        # v3 id -> universe id of the kept rows
     sec_main = condition == 'main'
     n_sc = pa['n_main_scored'] if sec_main else pa['n_scored']
     n_fl = pa['n_main_flagged'] if sec_main else pa['n_main_flagged'] + pa['n_app_flagged']
@@ -62,6 +64,7 @@ def main(condition):
     ps = pd.concat(parts, ignore_index=True)
     if sec_main:
         ps = ps[ps['section'] == 'main']
+    ps['paper_id'] = ps['paper_id'].map(back)
     ps = ps[ps['paper_id'].isin(set(df.loc[df['ai_share'].notna(), 'paper_id']))].drop(columns='section')
     OUT.mkdir(parents=True, exist_ok=True)
     tmp = D.local_tmp() / f'ai_scores_v3-{os.getpid()}.sqlite'

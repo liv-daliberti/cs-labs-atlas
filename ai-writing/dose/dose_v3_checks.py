@@ -17,6 +17,7 @@ import pandas as pd
 
 import dcommon as D
 import dose_stats as S
+import v3ids
 
 V3 = D.MAIN_AIW / 'detector_v3' / 'results'
 IPW = D.P.CODE / 'ai-writing' / 'data' / 'labstudy' / 'ipw' / 'ipw_weights.parquet'
@@ -25,7 +26,7 @@ YEARS = list(range(2016, D.LAST_FULL_YEAR + 1))
 
 
 def appendix_check():
-    pa = pd.read_parquet(V3 / 'paper_ai_v3.parquet')
+    pa = v3ids.v3_table()
     pre = pa[pa['year'].between(2016, 2021) & ~pa['trained_on_v3']]
     out = {}
     for name, sc, fl in (('appendix', 'n_app_scored', 'n_app_flagged'), ('main', 'n_main_scored', 'n_main_flagged')):
@@ -45,7 +46,7 @@ def appendix_check():
 
 
 def yearly(df, ipw):
-    pa = pd.read_parquet(V3 / 'paper_ai_v3.parquet')
+    pa = v3ids.v3_table()
     df = df.merge(pa[['paper_id', 'ai_share_main_appendix', 'n_main_flagged', 'n_main_scored', 'n_main_abstained', 'n_app_flagged', 'n_app_scored']].drop_duplicates('paper_id'), on='paper_id', how='left', suffixes=('', '_pa'))
     df = df[df['year'].between(2016, D.LAST_FULL_YEAR)]
     ex = df.explode('schools').rename(columns={'schools': 'school'})
