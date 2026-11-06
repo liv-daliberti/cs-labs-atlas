@@ -34,10 +34,28 @@ def test_page_that_does_not_name_the_candidate_is_no_statement():
 
 
 def test_stale_undated_page_gets_no_capture_year():
-    assert not st('Jane Doe\nPhD student at Georgia Tech, advisor: Magnus Egerstedt. Last updated 2014')
+    assert all(x['years_basis'] == 'undated_alumnus' for x in st('Jane Doe\nPhD student at Georgia Tech, advisor: Magnus Egerstedt. Last updated 2014'))
 
 
 def test_bare_family_name_needs_a_title_and_a_unique_family():
     c = dict(C, pi_family_unique=False)
     assert not st('Jane Doe\nPhD student at Georgia Tech, advised by Prof. Egerstedt. 2026', c)
     assert st('Jane Doe\nPhD student at Georgia Tech, advised by Prof. Egerstedt. 2026')
+
+
+def test_institution_after_the_cue_sentence_does_not_decide():
+    c = dict(C, name='Yu Huang', key='yu huang', pi='Westley Weimer', pi_names=['Westley Weimer'])
+    r = st('Yu Huang\nI received my PhD in Computer Science at Georgia Tech in 2021. My advisor was Prof. Westley Weimer. I received my MS at University of Virginia in 2016.', c)
+    assert r and r[0]['years'] == [2021] and 'Georgia Tech' in r[0]['quote']
+
+
+def test_the_school_in_the_line_above_counts_for_an_advisor_line():
+    r = st('Jane Doe\nEducation\nGeorgia Institute of Technology, PhD in Robotics, 2018-2023\nAdvisor: Magnus Egerstedt')
+    assert r and r[0]['years'] == [2018, 2023]
+
+
+def test_alumnus_without_a_year_is_listed_apart_and_a_year_next_to_the_school_dates_it():
+    r = st('Jane Doe\nI received my PhD from Georgia Tech, advised by Prof. Magnus Egerstedt.')
+    assert r and r[0]['years'] is None and r[0]['years_basis'] == 'undated_alumnus'
+    r = st("Jane Doe\nI'm a final-year PhD at Georgia Tech, advised by Magnus Egerstedt. (c) 2026")
+    assert r and r[0]['years_basis'] == 'capture_date'

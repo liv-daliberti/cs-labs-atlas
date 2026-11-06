@@ -163,8 +163,38 @@ def homepages(schools):
                             for p in by_str.get(a, []):
                                 hit[p['pid']] = p
             if len(hit) == 1:   # exactly one DBLP person: otherwise two homonyms share the lab papers' title set
-                res[(s, c['pi'], c['key'])] = list(hit.values())[0]
+                res[(s, c['pi'], c['key'])] = dict(list(hit.values())[0])
+            hp = rd(OUT / f'hop-{s}.json', {}).get(c['key'])
+            if hp:   # a link on a stored lab page whose text is the candidate's full name
+                p = res.setdefault((s, c['pi'], c['key']), dict(pid=None, names=[c['name']], urls=[], affiliations=[], orcid=[]))
+                p['urls'] = list(p['urls']) + [u for u in hp if u not in p['urls']]
     return res
+
+
+def hop(school):
+    """Homepage links on the stored lab pages (the lab-page audit's captures): an anchor whose text is a candidate's full name and whose target is
+    not a profile host. -> hop-<school>.json {name key: [urls]}"""
+    want = {c['key'] for c in rd(OUT / f'candidates-{school}.json')['rows']}
+    db = sqlite3.connect(f"file:{P.data('labpage-audit-captures.sqlite', school)}?mode=ro", uri=True)
+    found = collections.defaultdict(set)
+    for url, ctype, blob in db.execute("select url, content_type, content from captures where status=200"):
+        if 'html' not in (ctype or ''):
+            continue
+        try:
+            h = zlib.decompress(blob).decode('utf8', 'replace')
+        except Exception:  # noqa: BLE001
+            continue
+        for href, label in LINKS.findall(h):
+            k = ' '.join(toks(html.unescape(re.sub(r'<[^>]+>', ' ', label))))
+            if k not in want:
+                continue
+            m = re.search(r'/web/\d+(?:id_|im_|if_)?/(https?://.*)', href)
+            u = m.group(1) if m else href
+            if u.startswith('http') and not SKIP_HOSTS.search(U.urlsplit(u).netloc) and not re.search(r'\.(pdf|jpe?g|png)$', u, re.I):
+                found[k].add(u)
+    out = {k: sorted(v)[:3] for k, v in found.items()}
+    (OUT / f'hop-{school}.json').write_text(json.dumps(out))
+    print(school, 'hop names', len(out))
 
 
 def page_urls(p):
@@ -297,14 +327,14 @@ BAD = re.compile(r"(post-?\s?doc|postdoctoral|research\s+scientist|research\s+as
 OTHER = re.compile(r"(\buniversity\s+of\s+[A-Z][a-z]+(?:\s+[A-Z][a-z]+)?|\b[A-Z][a-z]+(?:\s+[A-Z][a-z]+)?\s+University\b|institute\s+of\s+technology|\bMIT\b|\bcaltech\b|"
                    r"\bstanford\b|\bberkeley\b|\bCMU\b|carnegie\s+mellon|\bharvard\b|\bprinceton\b|\bepfl\b|\beth\s+zurich\b|\btsinghua\b|\bpeking\b|\bIIT\s+\w+|\bUCLA\b|\bUCSD\b|\bUCSB\b|\bNYU\b)")
 PAST = re.compile(r"\b(graduated|received|earned|defended|former|alumn\w*|obtained|completed|was\s+a|were|class\s+of|joined\s+\w+\s+as|now\s+(?:a|an|at)|currently\s+(?:a|an)\s+(?:assistant|associate|professor|postdoc|research|software|engineer|scientist))\b", re.I)
-NOW = re.compile(r"\b(currently|i\s+am\s+a|i'?m\s+a|is\s+a|am\s+a|expected|expecting|candidate|present|ongoing)\b|\b(?:19|20)\d\d\s*[-\u2013\u2014]+\s*(?:present|now|current|ongoing)", re.I)
+NOW = re.compile(r"\b(currently|final[- ]year|(?:first|second|third|fourth|fifth|sixth|\d(?:st|nd|rd|th))[- ]year|rising|incoming|i\s+am\s+a|i'?m\s+a|is\s+a|am\s+a|expected|expecting|candidate|present|ongoing)\b|\b(?:19|20)\d\d\s*[-\u2013\u2014]+\s*(?:present|now|current|ongoing)", re.I)
 RANGE = re.compile(r"((?:19|20)\d\d)\s*[-\u2013\u2014to]+\s*((?:19|20)\d\d|present|now|current|ongoing)", re.I)
 YR = re.compile(r"(?<!\d)((?:19|20)\d\d)(?!\d)")
 CAPTURE_YEAR = int(time.strftime('%Y'))
 
 
 def fold(s):
-    s = unicodedata.normalize('NFKD', s or '')
+    s = unicodedata.normalize('NFKD', (s or '').replace('\u2019', "'").replace('\u2018', "'"))
     return ''.join(c for c in s if not unicodedata.combining(c))
 
 
@@ -328,8 +358,17 @@ def cand_regex(c):
     return re.compile(r'\b' + re.escape(t[0]) + r"(?:\s+[a-z]+\.?){0,2}\s+" + re.escape(t[-1]) + r'\b', re.I)
 
 
+def sentences(ln):
+    """A line split into sentences; 'Prof.', 'Dr.' and single-letter initials ('H. V. Jagadish') do not end one."""
+    t = re.sub(r'\b(Prof|Dr|Mr|Ms|Mrs|St|vs|etc|e\.g|i\.e)\.', lambda m: m.group(1) + '\x00', ln)
+    t = re.sub(r'\b([A-Z])\.', lambda m: m.group(1) + '\x00', t)
+    return [x.replace('\x00', '.') for x in re.split(r'(?<=[a-z0-9\)\]])[.!?]\s+(?=[A-Z])', t) if x.strip()]
+
+
 def statements(c, text, rx_school):
-    """The explicit advisee statements of one page for one (PI, candidate): [{quote, role, years, years_basis, alumni, why}]"""
+    """The explicit advisee statements of one page for one (PI, candidate): [{quote, role, years, years_basis, alumni}].
+    The sentence with the adviser cue must name the PI right after the cue; the institution nearest before the cue (this sentence, else the one
+    before, else the lines above) must be the school; a student cue is in the scope; a postdoc / collaborator cue near the cue rejects."""
     prx, crx = pi_regex(c), cand_regex(c)
     if not prx or not crx.search(fold(text)):    # namesake guard: the page must name the candidate in full (given + family)
         return []
@@ -338,57 +377,61 @@ def statements(c, text, rx_school):
     ys_ = [int(y) for y in YR.findall(text) if int(y) <= CAPTURE_YEAR]
     fresh = bool(ys_) and max(ys_) >= CAPTURE_YEAR - 3     # R-LAB-02: a page whose newest year is old is a stale undated list: no capture-year inference
     for i, ln in enumerate(lines):
-        for m in CUE.finditer(fold(ln)):
-            seg = fold(ln)[m.start():m.end() + 140]
-            seg = re.split(r'(?<=[a-z0-9])\.\s+[A-Z]', re.sub(r'\b(Prof|Dr|Mr|Ms|Mrs)\.', r'\1', seg))[0]   # not across a sentence break
-            pm = prx.search(seg)
-            if not pm:
-                continue
-            ctx = ' '.join(lines[max(0, i - 2):i + 2])
-            win = fold(ln + ' ' + ' '.join(lines[max(0, i - 1):i]) + ' ' + ' '.join(lines[i + 1:i + 2]))[:700]
-            if BAD.search(fold(ln)[max(0, m.start() - 120):m.end() + 160]):
-                continue
-            if not STUDENT.search(win):
-                continue
-            # the school must be the nearest institution to the cue
-            masked = rx_school.sub(lambda x: 'SCHOOLMENTION' + ' ' * (len(x.group(0)) - 13) if len(x.group(0)) >= 13 else 'SCHOOLMENTION', win)
-            sch = [x.start() for x in re.finditer('SCHOOLMENTION', masked)]
-            oth = [x.start() for x in OTHER.finditer(masked)]
-            cue_pos = win.find(fold(ln)[m.start():m.end()])
-            if not sch:
-                continue
-            d_s = min(abs(x - cue_pos) for x in sch)
-            d_o = min([abs(x - cue_pos) for x in oth] or [10 ** 6])
-            if d_o < d_s:
-                continue
-            near = fold(ln)[max(0, m.start() - 200):m.end() + 200]
-            role = ('visiting' if re.search(r'visiting\s+(?:ph\.?d\.?\s+|graduate\s+|master\S*\s+|undergraduate\s+)?student|exchange\s+student', win, re.I) else
-                    'phd' if re.search(r'ph\.?\s?d|doctoral|doctorate|graduate\s+student|grad\s+student', win, re.I) else
-                    'masters' if re.search(r"\bm\.?\s?s\.?\b|master'?s|masters", win, re.I) else
-                    'undergraduate' if re.search(r'undergraduate|\bb\.?\s?s\.?\b|bachelor', win, re.I) else None)
-            if not role:
-                continue
-            now = (bool(NOW.search(near)) or bool(STUDENT.search(near))) and not PAST.search(near) and fresh
-            rg = RANGE.search(near)
-            years, basis = None, None
-            if rg:
-                a = int(rg.group(1)); b = rg.group(2).lower()
-                b = CAPTURE_YEAR if not b.isdigit() else int(b)
-                if a <= b:
-                    years, basis = [a, b], 'stated'
-            if years is None and now:
-                years, basis = [CAPTURE_YEAR, CAPTURE_YEAR], 'capture_date'
-            if years is None:
-                ys = [int(y) for y in YR.findall(near)]
-                if len(ys) == 1 and re.search(r'ph\.?\s?d|m\.?\s?s\b|b\.?\s?s\b|degree|graduat|defen|thesis|dissertation', near, re.I):
-                    years, basis = [ys[0]], 'stated_degree_year'
-            if years is None:
-                continue
-            if years[-1] < YEARS[0] or years[0] > CAPTURE_YEAR:
-                continue
-            q = ln if len(ln) >= 60 or i == 0 else lines[i - 1] + ' ' + ln
-            q = re.sub(r'\s+', ' ', q).strip()[:420]
-            out.append(dict(quote=q, role=role, years=years, years_basis=basis, alumni=not now, school_nearest=True))
+        osents = sentences(ln)
+        sents = [fold(x) for x in osents]
+        for j, sent in enumerate(sents):
+            for m in CUE.finditer(sent):
+                seg = sent[m.start():m.end() + 140]
+                if not prx.search(seg):
+                    continue
+                pre = sents[j - 1] if j else fold(' '.join(lines[max(0, i - 2):i]))
+                nxt = sents[j + 1] if j + 1 < len(sents) else (fold(lines[i + 1]) if i + 1 < len(lines) else '')
+                scope = pre + ' ' + sent + ' ' + nxt
+                cue_pos = len(pre) + 1 + m.start()
+                if BAD.search(sent[max(0, m.start() - 120):m.end() + 160]):
+                    continue
+                mk = lambda t: rx_school.sub('SCHOOLMENTION', t)  # noqa: E731
+                mpre, msent = mk(pre), mk(sent)
+                masked = mpre + ' ' + msent
+                cp = len(mpre) + 1 + len(mk(sent[:m.start()]))      # the cue's position in the masked text
+                marks = [(x.start(), True) for x in re.finditer('SCHOOLMENTION', masked)] + [(x.start(), False) for x in OTHER.finditer(masked)]
+                before = [x for x in marks if x[0] < cp]
+                after = [x for x in marks if x[0] >= cp and x[0] > len(mpre)]
+                near = max(before) if before else (min(after) if after else None)   # the institution the cue's clause belongs to
+                if near is None or not near[1]:
+                    continue
+                if not STUDENT.search(scope):
+                    continue
+                role = ('visiting' if re.search(r'visiting\s+(?:ph\.?d\.?\s+|graduate\s+|master\S*\s+|undergraduate\s+)?student|exchange\s+student', scope, re.I) else
+                        'phd' if re.search(r'ph\.?\s?d|doctoral|doctorate|graduate\s+student|grad\s+student', scope, re.I) else
+                        'masters' if re.search(r"\bm\.?\s?s\.?\b|master'?s|masters", scope, re.I) else
+                        'undergraduate' if re.search(r'undergraduate|\bb\.?\s?s\.?\b|bachelor', scope, re.I) else None)
+                if not role:
+                    continue
+                now = (bool(NOW.search(pre + ' ' + sent)) or bool(STUDENT.search(sent))) and not PAST.search(pre + ' ' + sent) and fresh
+                rg = RANGE.search(scope)
+                years, basis = None, None
+                if rg:
+                    a_ = int(rg.group(1)); b_ = rg.group(2).lower()
+                    b_ = CAPTURE_YEAR if not b_.isdigit() else int(b_)
+                    if a_ <= b_:
+                        years, basis = [a_, b_], 'stated'
+                if years is None and now:
+                    years, basis = [CAPTURE_YEAR, CAPTURE_YEAR], 'capture_date'
+                if years is None:   # a degree year written next to the school mention (within 120 characters), the nearest one
+                    ys = sorted((abs(x.start() - near[0]), int(x.group(1))) for x in YR.finditer(masked) if abs(x.start() - near[0]) <= 120)
+                    if ys and re.search(r'ph\.?\s?d|m\.?\s?s\b|b\.?\s?s\b|degree|graduat|defen|thesis|dissertation|received|earned|doctor', pre + ' ' + sent, re.I):
+                        years, basis = [ys[0][1]], 'stated_degree_year'
+                if years is None and not now:
+                    years, basis = None, 'undated_alumnus'    # an explicit statement, no year on the page: listed apart, never evidence (R-STU-14)
+                years_in_sent = bool(YR.search(sent))
+                if years is None and basis != 'undated_alumnus':
+                    continue
+                if years and (years[-1] < YEARS[0] or years[0] > CAPTURE_YEAR):
+                    continue
+                oq = ((osents[j - 1] if j else ' '.join(lines[max(0, i - 2):i])) + ' ') if (near[0] < len(mpre) or (not years_in_sent and len(sent) < 80)) else ''
+                q = re.sub(r'\s+', ' ', oq + osents[j]).strip()[:520]
+                out.append(dict(quote=q, role=role, years=years, years_basis=basis, alumni=not now, school_nearest=True))
     return out
 
 
@@ -416,11 +459,12 @@ def extract(school):
     best = {}
     for r in rows:
         k = (r['pi'], r['key'])
-        if k not in best or (best[k]['years_basis'] == 'capture_date' and r['years_basis'] != 'capture_date'):
+        rank = lambda x: {'stated': 0, 'stated_degree_year': 1, 'capture_date': 2, 'undated_alumnus': 3}[x['years_basis']]  # noqa: E731
+        if k not in best or rank(r) < rank(best[k]):
             best[k] = r
     rows = sorted(best.values(), key=lambda r: (r['pi'], r['name']))
     (OUT / f'proposals-{school}.json').write_text(json.dumps(dict(school=school, stats=dict(stat), rows=rows), ensure_ascii=False, indent=1))
-    print(school, dict(stat), 'rows', len(rows), 'pis', len({r['pi'] for r in rows}))
+    print(school, dict(stat), 'rows', len(rows), 'pis', len({r['pi'] for r in rows}), 'dated', sum(r['years_basis'] != 'undated_alumnus' for r in rows), 'undated alumni', sum(r['years_basis'] == 'undated_alumnus' for r in rows))
 
 
 def evidence(school, pilot=None, write=False, seed=20261106):
@@ -430,7 +474,7 @@ def evidence(school, pilot=None, write=False, seed=20261106):
     wt = Path(__file__).resolve().parents[1] / 'hierarchy' / school / 'reviewed' / 'few-students-evidence.json'
     cur = rd(wt, []) if wt.exists() else []
     have = {(r['pi'], ' '.join(toks(x['name']))) for r in cur for x in r.get('students') or []}
-    rows = [r for r in prop if (r['pi'], ' '.join(toks(r['name']))) not in have]
+    rows = [r for r in prop if (r['pi'], ' '.join(toks(r['name']))) not in have and r['years_basis'] != 'undated_alumnus']   # R-STU-14: no year, no evidence
     if pilot:
         random.Random(seed).shuffle(rows)
         rows = rows[:pilot]
@@ -458,6 +502,9 @@ if __name__ == '__main__':
         if '--pilot' in args:
             pl = int(args[args.index('--pilot') + 1])
         evidence(args[0], pl, '--write' in args)
+    elif cmd == 'hop':
+        for s_ in args:
+            hop(s_)
     elif cmd == 'extract':
         extract(args[0])
     elif cmd == 'dblp':
