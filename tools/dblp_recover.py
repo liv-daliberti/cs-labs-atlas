@@ -234,6 +234,10 @@ def run(school, workers):
     retry = '--retry' in sys.argv   # R-PAP-36: ask again for the records an earlier run could not confirm (new hosts, a fuller candidate list)
     # a record is done when it was accepted or OpenAlex puts the PI at another institution; --retry asks again for every other (earlier hosts failed or were missing)
     done = {(r[0], r[1]) for r in c.execute('select pi, dblp_key, status, accepted from tries where accepted is not null') if r[3] == 1 or r[2] == 'other_institution' or not retry}
+    # a chain of jobs (59 minutes each) shares one retry: a record asked again since DBLP_RETRY_SINCE (an ISO time, set once for the chain) is done
+    since = os.environ.get('DBLP_RETRY_SINCE')
+    if retry and since:
+        done |= {(r[0], r[1]) for r in c.execute('select pi, dblp_key from tries where at >= ?', (since,))}
     todo = [x for x in candidates(school) if (x['pi'], x['dblp_key']) not in done]
     print(json.dumps(dict(school=school, candidates=len(todo))), flush=True)
     wlock = threading.Lock(); acc = collections.Counter()

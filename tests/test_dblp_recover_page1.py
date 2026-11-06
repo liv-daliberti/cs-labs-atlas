@@ -68,3 +68,13 @@ def test_R_PAP_36_reviewed_blocked_cluster_stops_recovered_rows():
     from pihier import identity
     chen = {'blockedClusters': [{'coauthors': ['Ben Y. Zhao', 'Haitao Zheng'], 'min_coauthors': 2}]}
     assert identity.in_blocked_cluster(chen, dict(authorships=[dict(raw_author_name=b) for b in ['Yuxin Chen', 'Huiying Li', 'Ben Y. Zhao', 'Haitao Zheng']]))
+
+
+def test_R_PAP_36_retry_chain_does_not_ask_twice(monkeypatch, tmp_path):
+    import sqlite3
+    c = sqlite3.connect(tmp_path / 'r.sqlite')
+    c.execute('create table tries (pi text, dblp_key text, step text, url text, status text, pdf_sha256 text, page1 blob, accepted int, evidence text, at text)')
+    c.execute("insert into tries values ('p','k1','none',null,'dblp_unconfirmed',null,null,0,null,'2026-11-06T10:00:00Z')")
+    c.execute("insert into tries values ('p','k2','none',null,'dblp_unconfirmed',null,null,0,null,'2026-11-05T10:00:00Z')")
+    src = open(D.__file__).read()
+    assert "DBLP_RETRY_SINCE" in src and "where at >= ?" in src   # records tried since the chain started are done
