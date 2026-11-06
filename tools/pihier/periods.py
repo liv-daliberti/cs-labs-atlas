@@ -198,7 +198,7 @@ def listing_bridge_periods(p, direct_years, other_years, covered, moved=False, t
     AERO unit listing 2018-2020; the later captures are filter or hub pages with no names) has no appointment for the years after it, and
     every paper of those years that names the school in its own byline is `outside_appointment`. The R-PAP-28 continuity argument covers
     it: the gap after a listing year is bridged when
-      - the PI has no period of any kind (periods are reviewed; a PI with one is R-PAP-28's), no departure evidence (`moved`: listings after
+      - the PI has listings in two or more calendar years (a single capture shows no span), no period of any kind (periods are reviewed; a PI with one is R-PAP-28's), no departure evidence (`moved`: listings after
         a move, or an end_moved period) and no non-primary listing row (adjunct, courtesy, visiting, emeritus, on leave);
       - in every calendar year of the gap the PI's identified works name the school in their own authorship and credit no other
         institution more often (`direct_years`, `other_years`: {year: count});
@@ -213,6 +213,8 @@ def listing_bridge_periods(p, direct_years, other_years, covered, moved=False, t
     ls = sorted((l for l in p.get('listings') or [] if l.get('year')), key=lambda l: l['year'])
     if moved or not ls or p.get('periods') or p.get('listingsAfterMove'):
         return []
+    if len({l['year'] for l in ls}) < 2:
+        return []  # one listing year shows no observed span: a PI seen once (a 2016 capture) may have left before the paper (Mossel 2017, Browning 2018)
     if any(NONPRIMARY_ROW.search(' '.join(str(l.get(k) or '') for k in ('quote', 'kind', 'rank'))) or l.get('emeritus') or l.get('visiting') for l in ls):
         return []
     depts = {(l.get('kind') or '').split(':', 1)[1] for l in ls if (l.get('kind') or '').startswith('dept_listing:')}
