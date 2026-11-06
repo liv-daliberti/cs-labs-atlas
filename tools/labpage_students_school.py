@@ -216,6 +216,8 @@ def previous_school_students(key):
         ids[x['name']] = {('dblp', d) for d in dl(o.get('dblp')) or dl(x.get('dblp'))} | {('orcid', q) for q in dl(x.get('orcid')) + dl(o.get('orcid'))}
     out = {}
     for s in S.released():
+        if s == key:   # a school is not its own previous school (Michigan 2026-11-05: once its package existed, every wired lab-page student was dropped as 'already held')
+            continue
         pf, sf = P.data('pis.json', s), P.data('students.json', s)
         if not (pf.exists() and sf.exists()):
             continue
