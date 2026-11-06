@@ -2538,10 +2538,16 @@ DEGREE_SENTENCE = re.compile(r'\b(?:received|obtained|earned|holds|graduated wit
 
 
 def withhold_bio_degree_role(r):
-    """R-LAB-05 (Georgia Tech round 2, ICSRL): in a page of member bios ('X received the B.S. ...') the role was read from the first degree sentence (a PhD student read as an undergraduate,
-    a postdoc as a PhD). Such an entry's role is withheld (a lab member) unless its own text says student, candidate or joined."""
+    """R-LAB-05 (Georgia Tech round 2): (a) in a page of member bios ('X received the B.S. ...') the role was read from the first degree sentence (a PhD student read as an
+    undergraduate, a postdoc as a PhD): withheld (a lab member) unless the entry's own text says student, candidate or joined; (b) a degree suffix glued to the name by a
+    table cell ('Danielle Generous MS', 'Rahul Tauro-Padival BS') is cut from the name; (c) a role whose quote does not hold the person's family name was read from a
+    neighbour's cell: withheld."""
     q = r.get('quote') or ''
-    if r.get('role') and DEGREE_SENTENCE.search(q) and not re.search(r'student|candidate|joined|postdoc', q, re.I):
+    nm = re.sub(r'\s+(?:MS|BS|MSc|BSc|M\.S\.|B\.S\.|PhD|Ph\.D\.)$', '', r.get('name') or '').strip()
+    if nm != r.get('name'):
+        r = dict(r, name=nm)
+    fam = fold(nm.split()[-1]) if nm else ''
+    if r.get('role') and ((DEGREE_SENTENCE.search(q) and not re.search(r'student|candidate|joined|postdoc', q, re.I)) or (fam and fam not in fold(q))):
         r = dict(r, role=None, role_basis='withheld_bio_degree_sentence')
     return r
 

@@ -33,3 +33,9 @@ def test_bio_degree_sentence_withholds_the_role():
     assert r['role'] is None and r['role_basis'] == 'withheld_bio_degree_sentence'
     assert L.withhold_bio_degree_role(dict(role='phd', quote='Hua Chen received his M.S. ... joined ICSRL as a PhD student'))['role'] == 'phd'
     assert L.withhold_bio_degree_role(dict(role='phd', quote='Jane Doe, PhD student'))['role'] == 'phd'
+
+
+def test_degree_suffix_cut_and_foreign_quote_role_withheld():
+    r = L.withhold_bio_degree_role(dict(name='Danielle Generous MS', role='phd', quote='PhD, Robotics sdoda3@gatech.edu Alagappan Swaminathan PhD'))
+    assert r['name'] == 'Danielle Generous' and r['role'] is None
+    assert L.withhold_bio_degree_role(dict(name='Teerthaa Parakh', role='phd', quote='Teerthaa Parakh PhD'))['role'] == 'phd'
