@@ -15,6 +15,7 @@ field needed a recut, else ai_share (as the dose pages); full-text papers only f
 import argparse
 import gzip
 import json
+import os
 import time
 from pathlib import Path
 
@@ -34,8 +35,8 @@ MODEL_LABEL = {'specter2_proximity': 'SPECTER2 (proximity)', 'specter2_base': 'S
                'gte_qwen2_1p5b': 'GTE-Qwen2-1.5B', 'bge_m3': 'BGE-M3', 'nomic_v15': 'Nomic v1.5'}
 SEED = 20261104
 RES = D.SCORES / 'results' / 'ai_pages'
-OUT = Path(__file__).resolve().parents[1] / 'diversity' / 'site-data' / 'v2'
-FIG = Path(__file__).resolve().parents[1] / 'diversity' / 'reports' / 'figures-ai-pages'
+OUT = Path(os.environ.get('AI_SITE_OUT') or (Path(__file__).resolve().parents[1] / 'diversity' / 'site-data' / 'v2'))      # AI_SITE_OUT: a new site-data directory (the v3 rerun)
+FIG = Path(os.environ.get('AI_SITE_FIG') or (Path(__file__).resolve().parents[1] / 'diversity' / 'reports' / 'figures-ai-pages'))
 MEASURES = ['dispersion', 'mpd', 'vendi', 'topic_entropy', 'effective_topics', 'extent', 'dist_field', 'new_topics']
 MEASURE_LABEL = {'dispersion': 'Dispersion', 'mpd': 'Mean pairwise distance', 'vendi': 'Vendi score', 'topic_entropy': 'Topic entropy (bits)',
                  'effective_topics': 'Effective topics', 'extent': 'Knowledge extent', 'dist_field': 'Distance to field (novelty)', 'new_topics': 'New topics'}
@@ -44,6 +45,15 @@ LLM_RE = (r'\bllms?\b|language model|\bgpt|chatgpt|in-?context|\bprompt|instruct
 ML_RE = (r'(?<!social )learning|neural|\bdeep\b|gradient descent|reinforcement|classification|adversarial|\bgnns?\b|\bdnn|generalization|embedding|classifier|supervised|bandit|'
          r'optimization problems|nonconvex|convex optim|bayesian|causal|fairness|\brl\b|imitation|domain adaptation|transfer learning|federated|explainab|interpretab|\bxai\b|'
          r'computer vision|object detection|anomaly detection|outlier|speech|recognition|machine translation|autonomous driving|slam|segmentation|diffusion models|\bgans?\b|\brnns?\b|contrastive')
+
+
+def detector_note():
+    """meta.detector of every v3 site JSON (None for v2): the one-paragraph method note; the full error table is detector.json beside the files."""
+    if not D.DETECTOR_VERSION.startswith('v3'):
+        return None
+    return dict(version='v3', file='detector.json', condition='main body only; abstained passages excluded (share shown on the how-much page)',
+                note='Detector v3 (0.3% operating point). Human passages wrongly flagged: 0.30% (0.27-0.32%); unseen-family misses 0.9-6.6%; partial edits are reported separately in detector.json. '
+                     'Shares are not comparable with the earlier (v2, 1% threshold) pages.')
 
 
 def ensure_dirs():
@@ -92,7 +102,7 @@ def stage_frame():
     ensure_dirs()
     import dose_data as DD
     import emb_load as L
-    df = DD.paper_table(with_split=False)
+    df = DD.paper_table(with_split=True)
     _, lp = DD.universe()
     lp = lp[lp['year'].between(2016, LAST)]
     first = lp.drop_duplicates('paper_id').set_index('paper_id')['lab_id']

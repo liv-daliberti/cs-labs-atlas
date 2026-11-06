@@ -143,7 +143,7 @@ def run_model(model, procs):
     for s in D.SCHOOLS:
         member[s] = sc.map(lambda z, s=s: s in z).to_numpy()
     post = scored & np.isin(yr, A.POST)
-    pre = scored & np.isin(yr, A.PLACEBO)
+    pre = scored & np.isin(yr, A.PLACEBO) & ~fr['trained_on'].fillna(False).to_numpy(bool)      # detector-training papers are no false-positive floor
     cuts = {}
     for t in TS:
         share = float((x[post] >= t / 100 - 1e-12).mean())

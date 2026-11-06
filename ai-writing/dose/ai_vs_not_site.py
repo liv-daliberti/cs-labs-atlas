@@ -120,6 +120,8 @@ def assemble():
                   placebo_cut={str(r.t): rnd(r.cut, 5) for r in cuts.itertuples()}, novelty='paper-level novelty k = 3 against the papers of the previous 3 years (pool capped at 2,000), computed separately on each version'),
         sentences=dict(note='headline model, cutoff 25%, year 2025, all schools; regenerated from the cells by ai_vs_not_site.sentence()', text=sentences),
         summary_t25_2025=summary, models=models, labs=labs)
+    if A.detector_note():
+        doc['meta']['detector'] = A.detector_note()
     raw = json.dumps(doc, separators=(',', ':'), allow_nan=False).encode()
     big = len(raw) > 2 * 1024 * 1024
     p = A.OUT / ('ai_vs_not.json.gz' if big else 'ai_vs_not.json')

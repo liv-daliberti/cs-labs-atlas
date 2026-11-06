@@ -89,6 +89,10 @@ def histograms(df, bands=True):
             c, sm = hist(dose_of(ft))
             cell = dict(n_ft=int(len(ft)), hist=c.tolist(), sum=[round(float(v), 4) for v in sm],
                         abstract_only=dict(n=int(len(ab)), flagged=int(ab['flag_abstract'].sum())), papers=int(len(g)))
+            if 'n_main_abstained' in ft:      # detector v3: main-body passages scored vs abstained (excluded); the page shows the abstained share beside the shares
+                sc, ab_n = int(ft['n_passages'].sum()), int(ft['n_main_abstained'].sum())
+                cell['passages_scored'], cell['passages_abstained'] = sc, ab_n
+                cell['abstained_share'] = round(ab_n / (sc + ab_n), 5) if sc + ab_n else None
             if y <= 2021:
                 oos = ft[~ft['trained_on']] if 'trained_on' in ft else ft
                 c2, s2 = hist(dose_of(oos))
@@ -159,6 +163,17 @@ def group_cuts():
     return {tuple(g.split(':', 1)): v for g, v in rows}
 
 
+def v3_meta():
+    """Method-note block of the v3 pages: operating point, the error table (partial edits separate), the appendix false-alarm check, what the shares count."""
+    et = json.loads((D.RESULTS / 'v3_error_table.json').read_text())
+    ck = json.loads((D.RESULTS / 'v3_checks.json').read_text())['appendix_check']
+    return dict(version='v3', condition='main body only (appendix excluded); abstained passages excluded, their share shown beside every share',
+                shares='dose = flagged / scored main-body passages (passages of 100+ words that are not heading- or interleaving-heavy are scored); not comparable with v2 shares (threshold and abstain rule differ)',
+                error_table=et, appendix_check=dict(flagged=ck['appendix']['flagged'], lo=ck['appendix']['lo'], hi=ck['appendix']['hi'], limit=ck['limit'], passes=ck['passes'],
+                                                    note='main + appendix may be shown only when passes is true'),
+                false_positive_floor='2016-2021 papers in the detector training split (trained_on_v3) are excluded from every false-positive/placebo floor; hist_out_of_sample is the floor population')
+
+
 def run(out):
     import dose_data as DD
     import dose_validate as V
@@ -174,6 +189,10 @@ def run(out):
                 global_threshold=D.V2_THRESHOLD, recalibrated_groups={f'{k[0]}:{k[1]}': v for k, v in cuts_by_group.items()}, ci_cutoffs=list(CI_T),
                 ci_method='bootstrap over labs (300 draws, 95% percentile) of the share >= t among full-text papers; with abstract-only papers included use Wilson from counts',
                 default_cutoff=25, ticks=[10, 25, 50])
+    if D.DETECTOR_VERSION.startswith('v3'):
+        meta['detector'] = v3_meta()
+    if D.DETECTOR_VERSION.startswith('v3'):
+        D.log(wrote=write_json(out / 'detector.json', meta['detector']))
     D.log(wrote=write_json(out / 'ai_hist.json', dict(meta=meta, series=histograms(df))))
     D.log(wrote=write_json(out / 'ai_position.json', dict(meta=meta, position_bins=10, series=position(df, ps, cuts))))
     for s, rows in lab_hists(df, DD.universe()[1]).items():

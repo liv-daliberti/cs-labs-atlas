@@ -6,7 +6,7 @@ so the dose, ai_pages, ai_vs_not and lab scripts run unchanged against it with  
   ai_share / n_passages / n_flagged  main-body passages (condition `main`, the headline) or main + appendix, abstained passages excluded; NULL when none scored or the main
                                      body is under 1,000 words (`usable`)
   passages(paper_id, pidx, words, p) p = the detector-v3 score z (flag = z >= thr_z); the abstained passages are not stored
-  extra papers columns  abstained_share, ai_share_main_appendix, trained_on_v3 (training-split papers: kept out of every false-positive/placebo floor), n_abstained
+  extra papers columns  n_main_abstained, abstained_share_main (main body), n_app_*, abstained_share (main + appendix), ai_share_main_appendix, trained_on_v3 (training-split papers: kept out of every false-positive/placebo floor), n_abstained
 Abstract-level columns (p_ai_abstract, flag_abstract: the v1 abstract detector; kobak_*) are carried over unchanged: v3 scores body passages only.
 v3 shares are NOT comparable with v2's (threshold 0.3% vs 1%, abstain rule): never mix the two containers in one series.
 """
@@ -41,7 +41,9 @@ def main(condition):
     n_fl = pa['n_main_flagged'] if sec_main else pa['n_main_flagged'] + pa['n_app_flagged']
     ok = pa['usable'] & (n_sc > 0)
     t = pd.DataFrame({'paper_id': pa['paper_id'], 'ft_hash': pa['key'], 'text_kind': pa['kind'], 'n_passages': n_sc.where(ok), 'n_flagged': n_fl.where(ok),
-                      'ai_share': (n_fl / n_sc).where(ok), 'abstained_share': pa['abstained_share'], 'n_abstained': pa['n_abstained'],
+                      'ai_share': (n_fl / n_sc).where(ok), 'abstained_share': pa['abstained_share'], 'n_abstained': pa['n_abstained'], 'n_main_abstained': pa['n_main_abstained'],
+                      'n_main_scored': pa['n_main_scored'], 'n_app_scored': pa['n_app_scored'], 'n_app_flagged': pa['n_app_flagged'], 'n_app_abstained': pa['n_app_abstained'],
+                      'abstained_share_main': (pa['n_main_abstained'] / (pa['n_main_scored'] + pa['n_main_abstained'])).where((pa['n_main_scored'] + pa['n_main_abstained']) > 0),
                       'ai_share_main_appendix': pa['ai_share_main_appendix'], 'ai_share_main': pa['ai_share_main'].where(pa['usable']),
                       'trained_on_v3': pa['trained_on_v3'], 'split_v3': pa['split_v3'], 'appendix_found': pa['appendix_found']})
     t['ai_any'] = np.where(t['ai_share'].notna(), (t['n_flagged'] > 0).astype(float), np.nan)
