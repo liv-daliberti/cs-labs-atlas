@@ -144,5 +144,5 @@ def load_weights(col='w_ft'):
 
 # ---- LLM topics: defined from the topic LABELS (c-TF-IDF terms for BERTopic, the name for OpenAlex topics); reported separately everywhere
 LLM_RE = re.compile(r"\bllms?\b|\blms\b|language models?|\bgpt|chatgpt|\bprompt|in-?context|rlhf|human feedback|preference optimization|chatbot|generative ai|\bgenai\b|"
-                    r"agentic|ai agents|\brag\b|hallucinat|\bcot\b|chain.of.thought|instruction.(tun|follow)|text generation", re.I)
+                    r"agentic|ai agents|\brag\b|\bcot\b|chain.of.thought|instruction.(tun|follow)|text generation", re.I)
 GENAI_RE = re.compile(LLM_RE.pattern + r"|diffusion models?|\bvlms?\b|foundation models?|texttoimage|generative models?", re.I)

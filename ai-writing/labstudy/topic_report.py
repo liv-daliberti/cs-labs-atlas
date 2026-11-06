@@ -64,6 +64,11 @@ def main():
         bl.append(f'- **{LEVEL_NAME[level]}**: mean pairwise JSD {R.f(x.loc["mean_pre"].est)} (2016-21) to {R.f(x.loc["mean_post"].est)} (2023-25); the post-2022 deviation from the 2016-21 trend is '
                   f'{R.ci(d.est, d.lo, d.hi)}; placebo breaks: {pl}. Beyond the placebos: **{"yes" if b else "no"}**.')
     A('\n'.join(bl) + '\n')
+    cells = [(lv_, sc_, beyond(dev_cells(tr, lv_, 'main', 'jsd', sc_))) for lv_ in ('bt_qwen3_0p6b', 'bt_specter2_proximity', 'oa_topic', 'oa_subfield') for sc_ in ('all', 'within_school', 'within_dept')]
+    nb = sum(1 for c in cells if c[2])
+    A(f'**Bottom line.** Pairwise topic divergence between labs falls beyond the placebo breaks in {nb} of {len(cells)} level x scope cells (' + ', '.join(f'{LEVEL_NAME[c[0]]} / {SCOPE_NAME[c[1]]}' for c in cells if c[2]) + '); '
+      'the finding depends on the topic system, so it is reported as system-specific, not as a general convergence. The rise of LLM topics is large and unambiguous in both BERTopic systems (section 3). '
+      'Section 4 removes LLM-topic papers; section 7 re-assigns topics on all-AI wording.\n')
     cen = []
     for level in ('bt_qwen3_0p6b', 'bt_specter2_proximity', 'oa_topic', 'oa_subfield'):
         x = dev_cells(tr, level, 'main', 'dist_centroid', 'all')
@@ -133,7 +138,7 @@ def main():
     A('\n`top_llm` = share of labs whose most frequent topic in the draw is an LLM topic; `mass_llm` = mean share of a lab\'s papers on LLM topics. '
       'LLM topic = BERTopic topic whose label (four c-TF-IDF terms) matches `lcommon.LLM_RE` (llm/language model/GPT/prompt/in-context/RLHF/chatbot/generative AI/agentic/RAG/hallucination/chain-of-thought/instruction tuning/text generation); '
       'OpenAlex topics are matched by name, OpenAlex subfields have no LLM category (not defined).\n')
-    A(R.md_table([[r.level, r.topics, r.valid_papers, r.llm_topics, r.llm_papers, (r.llm_labels or '')[:1200]] for r in lv.itertuples() if ':' not in r.level],
+    A(R.md_table([[r.level, r.topics, r.valid_papers, r.llm_topics, r.llm_papers, (r.llm_labels or '').replace(' | ', '; ')[:1200]] for r in lv.itertuples() if ':' not in r.level],
                  ['level', 'topics', 'papers with a topic', 'LLM topics', 'papers in LLM topics', 'LLM topic labels']))
     A('')
     # table 4 LLM excluded
@@ -176,6 +181,9 @@ def main():
             if not len(a):
                 continue
             nl = ml[(ml.level == level) & (ml.dtype == dt)]['lab_id'].nunique()
+            if nl < 40:
+                rows.append([LEVEL_NAME[level], dt, nl, 'not reported (fewer than 40 labs ever eligible)', '', '', ''])
+                continue
             pm = max(abs(a.loc[k].est) for k in a.index if k.startswith('placebo'))
             rows.append([LEVEL_NAME[level], dt, nl, R.ci(a.loc['dev_2023'].est, a.loc['dev_2023'].lo, a.loc['dev_2023'].hi), R.f(pm),
                          R.ci(b.loc['dev_2023'].est, b.loc['dev_2023'].lo, b.loc['dev_2023'].hi) if len(b) else 'n/a',
@@ -207,11 +215,11 @@ def main():
         A('\nA gap interval around 0 means the change is carried by content, not by wording; a gap that is not 0 is the part wording can move.\n')
     A('## Not done and caveats\n')
     A('- Topic assignments are model-dependent (309 / 379 BERTopic topics, 37-39%% of abstracts were HDBSCAN noise reassigned to the nearest topic); the two BERTopic models and OpenAlex are shown side by side, none is privileged.\n'
-      '- Lab composition changes with the minimum-papers rule (about 1,100-1,250 labs are eligible in some year, 300-500 in the fixed panel); table 5 shows the dependence.\n'
+      '- Lab composition changes with the minimum-papers rule and over the years (labs need m papers in a year); section 5 gives the number of labs ever eligible per variant and the fixed-panel result.\n'
       '- Pair JSDs are computed on a uniform sample of up to %d lab pairs per scope-year (all pairs when fewer); the lab bootstrap resamples labs, not pairs.\n'
       '- Wording control for OpenAlex levels is undefined (metadata). Full-text-based topics were not built (abstract embeddings only).\n' % TCFG_PAIRS())
     A('## Re-run\n')
-    A('```\nbin/atlas ...  # none: run from a worktree or main\nai-writing/labstudy/run_all.sh topics        # frame -> topic runs (all levels, variants) -> control -> report; configured by ai-writing/labstudy/config.json\n```')
+    A('```\nai-writing/labstudy/run_all.sh frame topics reports     # frame -> topic runs (all levels and variants) + wording control -> this report\n```\nConfigured by `ai-writing/labstudy/config.json` and `LABSTUDY_*` paths (final paper set, detector scores); about 6 minutes of 16 CPUs for the topic run, 3 for the control.')
     p = L.REPORTS / 'TOPIC-CONVERGENCE.md'
     p.write_text('\n'.join(out) + '\n')
     L.log(step='topic_report', path=str(p))

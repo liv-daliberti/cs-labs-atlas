@@ -59,7 +59,7 @@ def main():
     A('## 1. Adoption definitions (pre-registered) and what they select\n')
     rows = []
     for r in info.itertuples():
-        rows.append([r.spec, r.metric, r.k, r.sustain, R.f(r.floor, 4), R.f(r.sd, 4), R.f(r.threshold, 4), int(getattr(r, 'adopter', 0) or 0), int(getattr(r, 'never', 0) or 0), int(getattr(r, 'never_unsustained', 0) or 0), int(getattr(r, 'censored', 0) or 0), r.cohorts])
+        rows.append([r.spec, r.metric, r.k, r.sustain, R.f(r.floor, 4), R.f(r.sd, 4), R.f(r.threshold, 4), int(np.nan_to_num(getattr(r, 'adopter', 0))), int(np.nan_to_num(getattr(r, 'never', 0))), int(np.nan_to_num(getattr(r, 'never_unsustained', 0))), int(np.nan_to_num(getattr(r, 'censored', 0))), r.cohorts])
     A(R.md_table(rows, ['spec', 'metric', 'k SD', 'years sustained', 'floor (2016-21)', 'SD', 'threshold', 'adopters', 'never', 'exceeded, unsustained', 'censored (2025 only)', 'cohorts (year: labs)']))
     A('\nGeorgia Tech has no full text, so it has no adoption year in specs using full-text scores (S6 uses the abstract flag and covers it). A lab-year needs >= 3 scored papers (>= 3 abstracts for S6). The floor window precedes ChatGPT, so adoptions dated before 2023 are detector noise (reported, not removed; `post2022` sample drops them).\n')
     # --- headline
