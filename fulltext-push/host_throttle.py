@@ -29,7 +29,8 @@ WINDOW = 7200.0
 # whose playback limit is about 15 a minute; four 429s in two hours on 2026-11-04 came from two clients each keeping its own clock).
 # 2026-11-05: 8 s (7.5 a minute). At 5 s the clients still drew 429s in bursts of three or four (slots reserved before a 429 fired into the
 # cooldown), and each burst 429 doubled the cooldown up to the 1-hour cap; see wait_slot() and BURST below.
-SHARED_INTERVAL = {'web.archive.org': 8.0, 'archive.org': 8.0}
+SHARED_INTERVAL = {'web.archive.org': 15.0, 'archive.org': 15.0}   # 2026-11-06 slow lane (owner): 4 a minute; 8 s still drew 429s
+BASE_BY_HOST = {'web.archive.org': 900.0, 'archive.org': 900.0}     # first cooldown after a 429: 15 min for the archive (others BASE_COOLDOWN)
 BURST = 60.0           # a 429 within this many seconds of the previous one (or inside a running cooldown) is the same event: no doubling
 LOW_GAP_SLOTS = 3      # a low-priority client (the SMARTech crawl: evidence) takes at most one slot in 3 while a loop was served in the last LOW_WINDOW s
 LOW_WINDOW = 60.0
@@ -139,7 +140,7 @@ def record_429(host, now=None, path=None):
             s['next'] = max(s.get('next', 0.0), s.get('until', 0.0))
             return max(0.0, s.get('until', 0.0) - now)
         n = len(prev)
-        cool = min(BASE_COOLDOWN * 2 ** n, MAX_COOLDOWN)
+        cool = min(BASE_BY_HOST.get(host, BASE_COOLDOWN) * 2 ** n, MAX_COOLDOWN)
         s['n429'] = s.get('n429', []) + [now]
         s['until'] = max(s.get('until', 0.0), now + cool)
         s['next'] = max(s.get('next', 0.0), s['until'])

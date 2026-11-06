@@ -1,4 +1,4 @@
-"""One request budget for web.archive.org across every client (host_throttle.SHARED_INTERVAL, 2026-11-04): slots are 8 s apart (2026-11-05; 5 s before) across processes whatever
+"""One request budget for web.archive.org across every client (host_throttle.SHARED_INTERVAL, 2026-11-04): slots are 15 s apart (2026-11-06 slow lane; 8 s, 5 s before) across processes whatever
 delay each asks for, a low-priority client (the evidence crawl) yields to the loops, and a 429 recorded by one client cools the host for all."""
 import json
 import os
@@ -23,27 +23,27 @@ def test_slots_are_shared_across_processes_whatever_delay_each_asks(tmp_path):
     ps = [run_child(state, 6.0, False), run_child(state, 3.0, False)]   # a loop at 6 s and a crawl asking for 3 s
     waits = sorted(w for p in ps for w in json.loads(p.communicate()[0]))
     assert len(waits) == 12 and waits[0] == 0.0
-    assert all(b - a >= 8.0 - 1e-9 for a, b in zip(waits, waits[1:])) and waits[-1] == 88.0   # 12 slots, 8 s apart, no overlap
+    assert all(b - a >= 15.0 - 1e-9 for a, b in zip(waits, waits[1:])) and waits[-1] == 165.0   # 12 slots, 15 s apart, no overlap
 
 
 def test_low_priority_yields_to_the_loops(tmp_path):
     path = tmp_path / 'ht.json'
     HT.reserve('web.archive.org', 6.0, now=1000.0, path=path)                     # a loop was served just now
     lows = [HT.reserve('web.archive.org', 3.0, now=1000.0, path=path, low=True) for _ in range(3)]
-    assert [round(b - a) for a, b in zip(lows, lows[1:])] == [24, 24]             # one slot in three
+    assert [round(b - a) for a, b in zip(lows, lows[1:])] == [45, 45]             # one slot in three
     for _ in range(3):
         HT.reserve('web.archive.org', 6.0, now=1000.0, path=path)
     # with no loop in the last minute the crawl gets every slot
     p2 = tmp_path / 'ht2.json'
     quiet = [HT.reserve('web.archive.org', 3.0, now=1000.0, path=p2, low=True) for _ in range(3)]
-    assert [round(b - a) for a, b in zip(quiet, quiet[1:])] == [8, 8]
+    assert [round(b - a) for a, b in zip(quiet, quiet[1:])] == [15, 15]
 
 
 def test_other_hosts_keep_the_callers_delay_and_a_429_cools_for_everyone(tmp_path):
     path = tmp_path / 'ht.json'
     assert HT.reserve('dspace.mit.edu', 15.0, now=0.0, path=path) == 0.0 and HT.reserve('dspace.mit.edu', 15.0, now=0.0, path=path) == 15.0
     cool = HT.record_429('web.archive.org', now=100.0, path=path)
-    assert cool == 300.0 and HT.cooldown_left('web.archive.org', now=150.0, path=path) == 250.0
+    assert cool == 900.0 and HT.cooldown_left('web.archive.org', now=150.0, path=path) == 850.0   # the archive's first cooldown is 15 min
     assert HT.reserve('web.archive.org', 3.0, now=150.0, path=path) >= 250.0      # a client that did not see the 429 still waits it out
 
 
@@ -87,10 +87,10 @@ def test_a_429_burst_counts_once(tmp_path):
     path = tmp_path / 'ht.json'
     first = HT.record_429('web.archive.org', now=1000.0, path=path)
     again = [HT.record_429('web.archive.org', now=1000.0 + 5 * i, path=path) for i in (1, 2, 3)]
-    assert first == 300.0 and all(a <= 300.0 for a in again)
-    assert HT.cooldown_left('web.archive.org', now=1100.0, path=path) == 200.0
+    assert first == 900.0 and all(a <= 900.0 for a in again)
+    assert HT.cooldown_left('web.archive.org', now=1100.0, path=path) == 800.0
     later = HT.record_429('web.archive.org', now=1000.0 + 1800, path=path)   # a new event after the cooldown: doubles once
-    assert later == 600.0
+    assert later == 1800.0
 
 
 def test_wait_slot_rechecks_the_cooldown_after_the_slot(tmp_path):
