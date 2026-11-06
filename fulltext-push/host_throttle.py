@@ -17,6 +17,7 @@ by the pass-start requeue). Nothing here asks a host more often than before, and
 import fcntl
 import json
 import os
+import sys
 import time
 from pathlib import Path
 
@@ -133,8 +134,22 @@ def cooldown_left(host, now=None, path=None):
     return max(0.0, s.get('until', 0.0) - now)
 
 
+def _log_429(host, now, path, burst):
+    """2026-11-06: one JSON line per 429 beside the state file (host-throttle-429.jsonl), naming the client (Slurm job, job name, pid,
+    command), so a cooldown that stops every client can be attributed. Never raises."""
+    try:
+        state = Path(path or state_path())
+        rec = {'at': now, 'host': host, 'burst': burst, 'job': os.environ.get('SLURM_JOB_ID'), 'array': os.environ.get('SLURM_ARRAY_JOB_ID'),
+               'task': os.environ.get('SLURM_ARRAY_TASK_ID'), 'job_name': os.environ.get('SLURM_JOB_NAME'), 'pid': os.getpid(),
+               'cmd': ' '.join(sys.argv[:3])[:200]}
+        with open(state.with_name(state.stem + '-429.jsonl'), 'a') as f:
+            f.write(json.dumps(rec) + '\n')
+    except OSError:
+        pass
+
+
 def record_429(host, now=None, path=None):
-    """A 429 from `host`: start (or extend) its cooldown. -> cooldown seconds."""
+    """A 429 from `host`: start (or extend) its cooldown, and log who drew it. -> cooldown seconds."""
     now = time.time() if now is None else now
     with _Locked(path or state_path()) as st:
         _prune(st, now)
@@ -142,10 +157,12 @@ def record_429(host, now=None, path=None):
         prev = s.get('n429', [])
         if prev and (now - prev[-1] < BURST or now < s.get('until', 0.0)):   # same burst: slots reserved before the first 429 fired into it
             s['next'] = max(s.get('next', 0.0), s.get('until', 0.0))
+            _log_429(host, now, path, True)
             return max(0.0, s.get('until', 0.0) - now)
         n = len(prev)
         cool = min(BASE_BY_HOST.get(host, BASE_COOLDOWN) * 2 ** n, MAX_COOLDOWN)
         s['n429'] = s.get('n429', []) + [now]
         s['until'] = max(s.get('until', 0.0), now + cool)
         s['next'] = max(s.get('next', 0.0), s['until'])
+        _log_429(host, now, path, False)
         return cool

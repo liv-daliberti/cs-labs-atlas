@@ -137,3 +137,14 @@ def test_state_path_env_override_keeps_overlays_on_one_clock(tmp_path, monkeypat
     assert HT.state_path() == f
     HT.record_429('web.archive.org', now=1000.0)
     assert HT.cooldown_left('web.archive.org', now=1001.0, path=f) > 0
+
+
+def test_each_429_is_logged_with_the_client(tmp_path, monkeypatch):
+    """2026-11-06: host-throttle-429.jsonl names the client of every 429 (first of a burst and the rest), so cooldowns can be attributed."""
+    path = tmp_path / 'host-throttle.json'
+    monkeypatch.setenv('SLURM_JOB_ID', '4242')
+    monkeypatch.setenv('SLURM_JOB_NAME', 'lane.sh')
+    HT.record_429('web.archive.org', now=1000.0, path=path)
+    HT.record_429('web.archive.org', now=1010.0, path=path)
+    rows = [json.loads(l) for l in (tmp_path / 'host-throttle-429.jsonl').read_text().splitlines()]
+    assert [(r['job'], r['job_name'], r['burst']) for r in rows] == [('4242', 'lane.sh', False), ('4242', 'lane.sh', True)]
