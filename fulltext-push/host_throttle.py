@@ -37,6 +37,10 @@ LOW_WINDOW = 60.0
 
 
 def state_path():
+    """The one shared clock file. CS_ATLAS_THROTTLE_STATE overrides it (a scratch tree or overlay must point at main's file so no copy of the clock forks:
+    an overlay's own raw/host-throttle.json hid a running cooldown on 2026-11-06)."""
+    if os.environ.get('CS_ATLAS_THROTTLE_STATE'):
+        return Path(os.environ['CS_ATLAS_THROTTLE_STATE'])
     import atlas_paths as P
     return Path(P.FT_RAW) / 'host-throttle.json'
 

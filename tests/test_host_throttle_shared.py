@@ -129,3 +129,11 @@ def test_wayback_client_low_lane_from_env(monkeypatch):
     monkeypatch.delenv('WAYBACK_LOW')
     wb._throttle()
     assert calls == [('web.archive.org', True), ('web.archive.org', False)]
+
+
+def test_state_path_env_override_keeps_overlays_on_one_clock(tmp_path, monkeypatch):
+    f = tmp_path / 'main' / 'host-throttle.json'
+    monkeypatch.setenv('CS_ATLAS_THROTTLE_STATE', str(f))
+    assert HT.state_path() == f
+    HT.record_429('web.archive.org', now=1000.0)
+    assert HT.cooldown_left('web.archive.org', now=1001.0, path=f) > 0
