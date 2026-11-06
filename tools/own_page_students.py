@@ -372,7 +372,8 @@ OTHER = re.compile(r"(\buniversity\s+of\s+[A-Z][a-z]+(?:\s+[A-Z][a-z]+)?|\b[A-Z]
                    r"\bstanford\b|\bberkeley\b|\bCMU\b|carnegie\s+mellon|\bharvard\b|\bprinceton\b|\bepfl\b|\beth\s+zurich\b|\btsinghua\b|\bpeking\b|\bIIT\s+\w+|\bUCLA\b|\bUCSD\b|\bUCSB\b|\bNYU\b)")
 PAST = re.compile(r"\b(previously|prior\s+to|got\s+my|finished|did\s+my|where\s+i\s+(?:was|worked)|(?:co-?)?advised\s+by.{0,80}\bwhere|was\s+(?:co-?)?advised|were\s+(?:co-?)?advised|worked\s+under|(?:i|he|she)\s+(?:was|were)\b|graduated|received|earned|defended|former|alumn\w*|obtained|completed|was\s+a|were|class\s+of|joined\s+\w+\s+as|now\s+(?:a|an|at)|currently\s+(?:a|an)\s+(?:assistant|associate|professor|postdoc|research|software|engineer|scientist))\b", re.I)
 NOW = re.compile(r"\b(currently|final[- ]year|(?:first|second|third|fourth|fifth|sixth|\d(?:st|nd|rd|th))[- ]year|rising|incoming|i\s+am\s+a|i'?m\s+a|is\s+a|am\s+a|expected|expecting|candidate|present|ongoing)\b|\b(?:19|20)\d\d\s*[-\u2013\u2014]+\s*(?:present|now|current|ongoing)", re.I)
-RANGE = re.compile(r"((?:19|20)\d\d)\s*[-\u2013\u2014to]+\s*((?:19|20)\d\d|present|now|current|ongoing)", re.I)
+MONTH = r"(?:(?:jan|feb|mar|apr|may|jun|jul|aug|sep|sept|oct|nov|dec)[a-z]*\.?\s+)?"
+RANGE = re.compile(r"((?:19|20)\d\d)\s*(?:[-\u2013\u2014]+|to)\s*" + MONTH + r"((?:19|20)\d\d|present|now|current|ongoing)", re.I)
 SINCE = re.compile(r"\b(?:since|starting(?:\s+from)?|started(?:\s+in)?|joined\s+(?:\w+\s+){0,3}in)\s+(?:(?:the\s+)?(?:spring|summer|fall|autumn|winter)\s+(?:of\s+)?)?((?:19|20)\d\d)", re.I)
 YR = re.compile(r"(?<!\d)((?:19|20)\d\d)(?!\d)")
 CAPTURE_YEAR = int(time.strftime('%Y'))
@@ -478,8 +479,8 @@ def statements(c, text, rx_school):
                 role = role_near(pre + ' ' + sent, len(pre) + 1 + m.start())
                 if not role:
                     continue
-                now = (bool(NOW.search(pre + ' ' + sent)) or bool(STUDENT.search(sent))) and not PAST.search(pre + ' ' + sent) and fresh
-                rgs = sorted((abs(x.start() - near[0]), x) for x in RANGE.finditer(masked) if abs(x.start() - near[0]) <= 150)
+                now = (bool(NOW.search(pre + ' ' + sent)) or bool(re.search(r'student|candidate', sent, re.I))) and not PAST.search(pre + ' ' + sent) and fresh
+                rgs = sorted((abs(x.start() - near[0]), x) for x in RANGE.finditer(masked) if abs(x.start() - near[0]) <= 150 and (x.start() < len(mpre)) == (near[0] < len(mpre)))
                 rg = rgs[0][1] if rgs else None   # a range written next to the school mention, in this sentence or the one before
                 years, basis = None, None
                 if rg:
@@ -491,7 +492,8 @@ def statements(c, text, rx_school):
                     sm = SINCE.search(pre + ' ' + sent)
                     years, basis = ([int(sm.group(1)), CAPTURE_YEAR], 'stated') if sm and int(sm.group(1)) <= CAPTURE_YEAR else ([CAPTURE_YEAR, CAPTURE_YEAR], 'capture_date')
                 if years is None:   # a degree year written next to the school mention (within 120 characters), the nearest one
-                    ys = sorted((abs(x.start() - near[0]), int(x.group(1))) for x in YR.finditer(masked) if abs(x.start() - near[0]) <= 120)
+                    lo, hi = (0, len(mpre)) if near[0] < len(mpre) else (len(mpre) + 1, len(masked))   # only the sentence that holds the school mention
+                    ys = sorted((abs(x.start() - near[0]), int(x.group(1))) for x in YR.finditer(masked) if lo <= x.start() < hi and abs(x.start() - near[0]) <= 120)
                     if ys and re.search(r'ph\.?\s?d|m\.?\s?s\b|b\.?\s?s\b|degree|graduat|defen|thesis|dissertation|received|earned|doctor', pre + ' ' + sent, re.I):
                         years, basis = [ys[0][1]], 'stated_degree_year'
                 if years is None and not now:
