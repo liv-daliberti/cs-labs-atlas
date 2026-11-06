@@ -116,3 +116,16 @@ def test_wait_slot_raises_on_a_long_cooldown(tmp_path):
         assert 'cooling down' in str(e)
     else:
         raise AssertionError('expected RuntimeError')
+
+
+def test_wayback_client_low_lane_from_env(monkeypatch):
+    """WAYBACK_LOW=1 puts listings/scripts/wb.py on the low-priority lane of the shared clock (2026-11-06)."""
+    import wb
+    calls = []
+    monkeypatch.setattr(HT, 'wait_slot', lambda host, delay, low=False, **k: calls.append((host, low)) or 0.0)
+    monkeypatch.setattr(HT, 'cooldown_left', lambda host, **k: 0.0)
+    monkeypatch.setenv('WAYBACK_LOW', '1')
+    wb._throttle()
+    monkeypatch.delenv('WAYBACK_LOW')
+    wb._throttle()
+    assert calls == [('web.archive.org', True), ('web.archive.org', False)]
