@@ -471,6 +471,14 @@ The MGP (mathgenealogy.org, genealogy.math.ndsu.nodak.edu) is a source only when
 year >= 2016 and the PI as advisor; the PI is matched by name plus school plus field, never by name alone. On 2026-11-03 the site served only its
 outage notice (PHP disabled since 21 October 2026), robots.txt answered 404 (no rules) and no terms page was reachable, so no query was made.
 
+### R-STU-21 (2026-11-05, owner: "we really need more UChicago students") — lab-page extraction fixes (`tools/labpage_students_school.py extract`)
+1. **`previous_school_students` never reads the school's own package.** Once a school is released it is in `S.released()`; a rerun of `extract` after a build then matched every PI with themself and dropped every student the build already held as a "previous school" student (56 accepted lab-page rows vanished). Test `tests/test_previous_school_students_self.py`.
+2. **Plain student headings.** A lab page whose members sit under 'Students', 'Current Students', 'Advisees', 'Advising', 'Graduate Members' or 'Undergraduate Members' gives role `student` (a lab member; no degree level stated), not a dropped row. Any heading with a degree or a non-student word keeps lpdom's reading (`generic_student_role`).
+3. **Mixed headings** ('PhD students & postdocs', 'Alumni (PhDs and Postdocs)'): the entry's own words decide, the first of PhD or postdoc in its first 60 characters ('Ph.D. 2025, Post Doc @ UIUC' is a PhD); an entry that states neither is a `member`, never a dropped postdoc (`mixed_heading_role`). Postdoc rows are not students and are not written (`dropped_postdoc`).
+4. **Alumnus before arrival.** An alumnus whose stated end year is at or before the PI's first listed year here, and whose entry does not name Chicago, was the PI's student elsewhere (Zhang's ETH PhDs 2022-2023, Tomlin's Berkeley advisees, Zhao's UCSB PhDs 2016-2017) and is dropped (`dropped_alumnus_before_arrival`).
+5. **A reviewed extra lab page is not skipped for its length** (the 60-candidate department-roster guard still applies to every other page).
+`tools/etd_crawl.py role_of`: a repository record typed only `doctoralThesis` (UChicago types master's theses so) has role `student`; only 'Dissertation' or a PhD word gives `phd`.
+
 ### R-STU-20 (2026-11-05, owner: Boris Hanin deep dive) — lab-page students corroborated by the PI's byline
 A school whose lab-page student additions are not accepted (`labpage-acceptance.json` students `accepted: false`: Princeton, CMU, Stanford, Michigan, after the
 extended hand rounds failed) wired none of them, so a PI's own PhD students were off the lab although they stand on the PI's byline (Hanin: 6 current PhD
