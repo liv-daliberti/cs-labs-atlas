@@ -788,6 +788,18 @@ def surname_advisers(key):
     print(json.dumps(dict(n, relations=sum(len(v) for v in out.values()), labs=len(out))))
 
 
+GENERIC_STUDENT_HEAD = re.compile(r"^\W*(?:(?:current|former|past|my|our)\s+)?(?:students|student\s+members|advisees|advising|mentees)\W*(?:\(.*\))?\W*$", re.I)
+
+
+def generic_student_role(role, path):
+    """A lab page whose members sit under a plain 'Students' / 'Advisees' / 'Advising' heading names students without a degree level (Qi: 'Students', Hoza:
+    'Advising'): the role is 'student' (a member of the lab, R-STU-19 B's student role), not a dropped row. A heading that names a degree or a non-student
+    group keeps lpdom's reading (UChicago round 2)."""
+    if role is None and path and GENERIC_STUDENT_HEAD.match(path[-1].strip()):
+        return 'student'
+    return role
+
+
 def mixed_heading_role(role, path, rest):
     """(role, role as written) of a member under a heading that names PhD students AND postdocs ('Alumni (PhDs and Postdocs)'): the entry's own words decide
     when they state it ('Fan Yao (PhD, 2025 ...)', 'Andrzej Kaczmarczyk (postdoc, 2025)'); only an entry that says neither stays 'member' (UChicago round 2, Xu's
@@ -833,8 +845,9 @@ def extract(key):
                     if (path and any(NOT_STUDENT_HEAD.match(x) and not (vis and V.says_visiting(x)) for x in path)) or ' '.join(toks(name)) in faculty_anywhere:
                         rep['dropped_hiring_or_faculty'] += 1; continue
                     role = 'visiting' if vis else lpdom.role_of(*(list(reversed(path)) + [rest]))
+                    role = generic_student_role(role, path)
                     role, role_out = mixed_heading_role(role, path, rest)
-                    if role not in ('phd', 'postdoc', 'visiting') or not lpdom.looks_like_name(name) or not lpdom.plausible_person(name) \
+                    if role not in ('phd', 'postdoc', 'visiting', 'student') or not lpdom.looks_like_name(name) or not lpdom.plausible_person(name) \
                             or N.match(name) or len(toks(name)) < 2 or len(toks(name)) > 4 or any(F.match(name) for F in fac):
                         rep['dropped_not_a_student_name'] += 1; continue
                     alum = any(ALUM.search(x) for x in path)  # the section says it, not the person's line ('now Ph.D. student @ ...')

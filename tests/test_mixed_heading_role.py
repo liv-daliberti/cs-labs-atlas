@@ -16,3 +16,12 @@ def test_entry_says_phd_or_postdoc():
 def test_entry_saying_neither_stays_member_and_other_headings_are_untouched():
     assert L.mixed_heading_role('phd', HEAD, 'Next stop : scientist')[1] == 'member'
     assert L.mixed_heading_role('phd', ['PhD students'], '(2025)') == ('phd', 'phd')
+
+
+def test_generic_students_heading_gives_the_student_role():
+    assert L.generic_student_role(None, ['Students']) == 'student'
+    assert L.generic_student_role(None, ['Group', 'Current Students']) == 'student'
+    assert L.generic_student_role(None, ['Advising']) == 'student'
+    assert L.generic_student_role(None, ['Members']) is None
+    assert L.generic_student_role(None, ['Students in the news']) is None
+    assert L.generic_student_role('phd', ['Students']) == 'phd'
