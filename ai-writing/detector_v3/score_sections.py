@@ -28,7 +28,7 @@ def main():
     ap.add_argument('--limit', type=int)
     a = ap.parse_args()
     t0 = time.time()
-    op = json.load(open(C.RESULTS / 'operating_point.json'))
+    op = json.load(open(C.RESULTS / ('operating_point.json' if a.tag == 'all' else f'operating_point-{a.tag}.json')))
     thr, cut = op['thr_z'], op['midcap_cut']
     out = C.RESULTS / f'sections-{a.tag}'; out.mkdir(parents=True, exist_ok=True)
     tok = AutoTokenizer.from_pretrained(C.MODELS / a.tag / 'model')

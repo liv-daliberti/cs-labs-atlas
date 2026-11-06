@@ -13,7 +13,7 @@ from sklearn.linear_model import LogisticRegression
 import v3common as C
 import eval3 as E
 
-TAGS = ['v2', 'all', 'lofo-llama', 'lofo-gemma', 'lofo-qwen']
+TAGS = ['v2', 'all', 'lofo-llama', 'lofo-gemma', 'lofo-qwen', 'v31-all', 'v31-lofo-llama', 'v31-lofo-gemma', 'v31-lofo-qwen']
 ALPHAS = (0.003, 0.01)
 
 
@@ -57,8 +57,8 @@ def main():
         run = E.Run(tag)
         for a in ALPHAS:
             res[f'{tag}@{a}'] = run.evaluate(a)
-        if have_bino and tag != 'v2':
-            hold = tag.split('-', 1)[1] if tag.startswith('lofo-') else None
+        if have_bino and tag != 'v2' and not tag.startswith('v31'):
+            hold = tag.split('lofo-', 1)[1] if 'lofo-' in tag else None
             if len(bino['ai']) == len(run.za) and len(bino['test_real']) == len(run.zt):
                 en = ensemble(run, bino, hold)
                 for a in ALPHAS:
@@ -85,10 +85,10 @@ def main():
             for y, v in r['fpr_by_year'].items():
                 L.append(f"| {y} | {E.fmt(v)} | {v['n']} |")
             L.append('')
-    for tag in ('lofo-llama', 'lofo-gemma', 'lofo-qwen'):
+    for tag in ('lofo-llama', 'lofo-gemma', 'lofo-qwen', 'v31-lofo-llama', 'v31-lofo-gemma', 'v31-lofo-qwen'):
         key = f'{tag}@{ALPHAS[0]}'
         if key in res:
-            f = tag.split('-', 1)[1]
+            f = tag.split('lofo-', 1)[1]
             L += [f'## {tag}: held-out family {f}, per task miss rate', '', '| task | miss (95% CI) | n |', '|---|---|---|']
             for t in E.CLAIM_TASKS + ('claim', 'partial'):
                 v = res[key]['family'].get(f'{f}/{t}')

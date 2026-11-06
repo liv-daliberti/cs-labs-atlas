@@ -139,6 +139,7 @@ def operating_point(tag='all', alpha=0.003):
 
 
 if __name__ == '__main__' and sys.argv[1:2] == ['op']:
-    op = operating_point()
-    json.dump(op, open(C.RESULTS / 'operating_point.json', 'w'), indent=1)
+    t = sys.argv[2] if len(sys.argv) > 2 else 'all'
+    op = operating_point(t)
+    json.dump(op, open(C.RESULTS / ('operating_point.json' if t == 'all' else f'operating_point-{t}.json'), 'w'), indent=1)
     print(json.dumps(op))
