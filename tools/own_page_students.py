@@ -15,7 +15,7 @@ student of this PI at this school becomes evidence (verbatim quote, URL, capture
 ORCID: pub.orcid.org/robots.txt answers `User-agent: * / Disallow: /` (checked 2026-11-06), so the ORCID public API is not read (no education
 records are fetched); the ORCID id DBLP lists for a person is kept only as an identity hint.
 """
-import collections, gzip, hashlib, html, json, re, sqlite3, sys, time, urllib.parse as U, urllib.request as R
+import collections, glob, zlib, gzip, hashlib, html, json, random, re, sqlite3, sys, time, unicodedata, urllib.parse as U, urllib.request as R
 import urllib.robotparser as RP
 from pathlib import Path
 
@@ -253,7 +253,7 @@ def fetch(school, shard=(0, 1), limit=None):
     rb = Robots()
     people = homepages([school])
     todo = [(k, p) for k, p in sorted(people.items()) if page_urls(p)]
-    todo = [x for i, x in enumerate(todo) if i % shard[1] == shard[0]][:limit]
+    todo = [x for x in todo if zlib.crc32(U.urlsplit(page_urls(x[1])[0]).netloc.encode()) % shard[1] == shard[0]][:limit]   # a host belongs to one shard: its pacing holds
     db = sqlite3.connect(OUT / f'captures-{school}.{shard[0]}.sqlite')
     db.execute('create table if not exists page (cand text, pi text, url text primary key, final text, status text, fetched text, raw_sha256 text, text_sha256 text, text text)')
     db.execute('create table if not exists done (cand text primary key, n integer)')
@@ -287,11 +287,179 @@ def fetch(school, shard=(0, 1), limit=None):
           'ok', db.execute("select count(*) from page where status='200'").fetchone()[0], 'robots', db.execute("select count(*) from page where status='robots'").fetchone()[0])
 
 
+# ---------------------------------------------------------------- extraction: an explicit statement only
+CUE = re.compile(r"(co-?\s?advis(?:ed|or|er)s?|advis(?:ed|or|er)s?|supervis(?:ed|or|ors)|(?:under|with)\s+(?:the\s+)?(?:guidance|supervision|direction|mentorship)\s+of|"
+                 r"thesis\s+committee\s+chair|my\s+(?:phd\s+)?(?:advisor|adviser|supervisor))", re.I)
+STUDENT = re.compile(r"(ph\.?\s?d\.?|doctoral|doctorate|graduate\s+student|grad\s+student|m\.?\s?s\.?\b|master'?s|masters|undergraduate|b\.?\s?s\.?\b|bachelor|"
+                     r"student|candidate)", re.I)
+BAD = re.compile(r"(post-?\s?doc|postdoctoral|research\s+scientist|research\s+associate|visiting\s+(?:professor|scholar|researcher|faculty)|collaborat|co-author|joint\s+work|"
+                 r"spent\s+(?:a\s+)?(?:summer|semester)|intern(?:ed|ship)\s+(?:at|with))", re.I)
+OTHER = re.compile(r"(\buniversity\s+of\s+[A-Z][a-z]+(?:\s+[A-Z][a-z]+)?|\b[A-Z][a-z]+(?:\s+[A-Z][a-z]+)?\s+University\b|institute\s+of\s+technology|\bMIT\b|\bcaltech\b|"
+                   r"\bstanford\b|\bberkeley\b|\bCMU\b|carnegie\s+mellon|\bharvard\b|\bprinceton\b|\bepfl\b|\beth\s+zurich\b|\btsinghua\b|\bpeking\b|\bIIT\s+\w+|\bUCLA\b|\bUCSD\b|\bUCSB\b|\bNYU\b)")
+PAST = re.compile(r"\b(graduated|received|earned|defended|former|alumn\w*|obtained|completed|was\s+a|were|class\s+of|joined\s+\w+\s+as|now\s+(?:a|an|at)|currently\s+(?:a|an)\s+(?:assistant|associate|professor|postdoc|research|software|engineer|scientist))\b", re.I)
+NOW = re.compile(r"\b(currently|i\s+am\s+a|i'?m\s+a|is\s+a|am\s+a|expected|expecting|candidate|present|ongoing)\b|\b(?:19|20)\d\d\s*[-\u2013\u2014]+\s*(?:present|now|current|ongoing)", re.I)
+RANGE = re.compile(r"((?:19|20)\d\d)\s*[-\u2013\u2014to]+\s*((?:19|20)\d\d|present|now|current|ongoing)", re.I)
+YR = re.compile(r"(?<!\d)((?:19|20)\d\d)(?!\d)")
+CAPTURE_YEAR = int(time.strftime('%Y'))
+
+
+def fold(s):
+    s = unicodedata.normalize('NFKD', s or '')
+    return ''.join(c for c in s if not unicodedata.combining(c))
+
+
+def pi_regex(c):
+    """The PI's written forms: given name (or a nickname) + family name, optional middle initials; a bare family name only with a title and when no other
+    faculty member of the school has it."""
+    forms = []
+    for n in c['pi_names']:
+        t = toks(n)
+        if len(t) >= 2:
+            forms.append(r'\b' + re.escape(t[0]) + r"(?:\s+[a-z]\.?){0,2}\s+" + re.escape(t[-1]) + r'\b')
+            forms.append(r'\b' + re.escape(t[0][0]) + r'\.?\s*(?:[a-z]\.?\s*){0,2}' + re.escape(t[-1]) + r'\b')
+    fam = toks(c['pi_names'][0])[-1] if c['pi_names'] else ''
+    if c.get('pi_family_unique') and fam:
+        forms.append(r'\b(?:prof(?:essor)?|dr)\.?\s+(?:[a-z]+\s+)?' + re.escape(fam) + r'\b')
+    return re.compile('|'.join(forms), re.I) if forms else None
+
+
+def cand_regex(c):
+    t = toks(c['name'])
+    return re.compile(r'\b' + re.escape(t[0]) + r"(?:\s+[a-z]+\.?){0,2}\s+" + re.escape(t[-1]) + r'\b', re.I)
+
+
+def statements(c, text, rx_school):
+    """The explicit advisee statements of one page for one (PI, candidate): [{quote, role, years, years_basis, alumni, why}]"""
+    prx, crx = pi_regex(c), cand_regex(c)
+    if not prx or not crx.search(fold(text)):    # namesake guard: the page must name the candidate in full (given + family)
+        return []
+    lines = text.split('\n')
+    out = []
+    ys_ = [int(y) for y in YR.findall(text) if int(y) <= CAPTURE_YEAR]
+    fresh = bool(ys_) and max(ys_) >= CAPTURE_YEAR - 3     # R-LAB-02: a page whose newest year is old is a stale undated list: no capture-year inference
+    for i, ln in enumerate(lines):
+        for m in CUE.finditer(fold(ln)):
+            seg = fold(ln)[m.start():m.end() + 140]
+            seg = re.split(r'(?<=[a-z0-9])\.\s+[A-Z]', re.sub(r'\b(Prof|Dr|Mr|Ms|Mrs)\.', r'\1', seg))[0]   # not across a sentence break
+            pm = prx.search(seg)
+            if not pm:
+                continue
+            ctx = ' '.join(lines[max(0, i - 2):i + 2])
+            win = fold(ln + ' ' + ' '.join(lines[max(0, i - 1):i]) + ' ' + ' '.join(lines[i + 1:i + 2]))[:700]
+            if BAD.search(fold(ln)[max(0, m.start() - 120):m.end() + 160]):
+                continue
+            if not STUDENT.search(win):
+                continue
+            # the school must be the nearest institution to the cue
+            masked = rx_school.sub(lambda x: 'SCHOOLMENTION' + ' ' * (len(x.group(0)) - 13) if len(x.group(0)) >= 13 else 'SCHOOLMENTION', win)
+            sch = [x.start() for x in re.finditer('SCHOOLMENTION', masked)]
+            oth = [x.start() for x in OTHER.finditer(masked)]
+            cue_pos = win.find(fold(ln)[m.start():m.end()])
+            if not sch:
+                continue
+            d_s = min(abs(x - cue_pos) for x in sch)
+            d_o = min([abs(x - cue_pos) for x in oth] or [10 ** 6])
+            if d_o < d_s:
+                continue
+            near = fold(ln)[max(0, m.start() - 200):m.end() + 200]
+            role = ('visiting' if re.search(r'visiting\s+(?:ph\.?d\.?\s+|graduate\s+|master\S*\s+|undergraduate\s+)?student|exchange\s+student', win, re.I) else
+                    'phd' if re.search(r'ph\.?\s?d|doctoral|doctorate|graduate\s+student|grad\s+student', win, re.I) else
+                    'masters' if re.search(r"\bm\.?\s?s\.?\b|master'?s|masters", win, re.I) else
+                    'undergraduate' if re.search(r'undergraduate|\bb\.?\s?s\.?\b|bachelor', win, re.I) else None)
+            if not role:
+                continue
+            now = (bool(NOW.search(near)) or bool(STUDENT.search(near))) and not PAST.search(near) and fresh
+            rg = RANGE.search(near)
+            years, basis = None, None
+            if rg:
+                a = int(rg.group(1)); b = rg.group(2).lower()
+                b = CAPTURE_YEAR if not b.isdigit() else int(b)
+                if a <= b:
+                    years, basis = [a, b], 'stated'
+            if years is None and now:
+                years, basis = [CAPTURE_YEAR, CAPTURE_YEAR], 'capture_date'
+            if years is None:
+                ys = [int(y) for y in YR.findall(near)]
+                if len(ys) == 1 and re.search(r'ph\.?\s?d|m\.?\s?s\b|b\.?\s?s\b|degree|graduat|defen|thesis|dissertation', near, re.I):
+                    years, basis = [ys[0]], 'stated_degree_year'
+            if years is None:
+                continue
+            if years[-1] < YEARS[0] or years[0] > CAPTURE_YEAR:
+                continue
+            q = ln if len(ln) >= 60 or i == 0 else lines[i - 1] + ' ' + ln
+            q = re.sub(r'\s+', ' ', q).strip()[:420]
+            out.append(dict(quote=q, role=role, years=years, years_basis=basis, alumni=not now, school_nearest=True))
+    return out
+
+
+def extract(school):
+    cands = {(c['pi'], c['key']): c for c in rd(OUT / f'candidates-{school}.json')['rows']}
+    rx = S.aff_rx(school)
+    rows = []
+    stat = collections.Counter()
+    for f in sorted(glob.glob(str(OUT / f'captures-{school}.*.sqlite'))):
+        db = sqlite3.connect(f)
+        by = collections.defaultdict(list)
+        for ck, pi, url, final, status, fetched, rsha, tsha, txt in db.execute("select cand,pi,url,final,status,fetched,raw_sha256,text_sha256,text from page where status='200'"):
+            by[ck].append((url, final, fetched, rsha, tsha, txt))
+        for ck, pages in by.items():
+            pi, key = ck.split('|', 1)
+            c = cands.get((pi, key))
+            if not c:
+                continue
+            stat['candidates_with_pages'] += 1
+            for url, final, fetched, rsha, tsha, txt in pages:
+                for st in statements(c, txt, rx):
+                    rows.append(dict(pi=pi, name=c['name'], key=key, n_papers=c['n'], paper_years=c['years'], url=final or url, fetched=fetched, sha256=tsha, raw_sha256=rsha, **st))
+                    stat['statements'] += 1
+    # one row per (pi, name): the first statement; a student named on two pages keeps the page with stated years
+    best = {}
+    for r in rows:
+        k = (r['pi'], r['key'])
+        if k not in best or (best[k]['years_basis'] == 'capture_date' and r['years_basis'] != 'capture_date'):
+            best[k] = r
+    rows = sorted(best.values(), key=lambda r: (r['pi'], r['name']))
+    (OUT / f'proposals-{school}.json').write_text(json.dumps(dict(school=school, stats=dict(stat), rows=rows), ensure_ascii=False, indent=1))
+    print(school, dict(stat), 'rows', len(rows), 'pis', len({r['pi'] for r in rows}))
+
+
+def evidence(school, pilot=None, write=False, seed=20261106):
+    """Proposals -> evidence rows (R-STU-22). --pilot N prints N random rows for reading; --write merges all rows into the branch's
+    reviewed/few-students-evidence.json (the tracked file of the worktree)."""
+    prop = rd(OUT / f'proposals-{school}.json')['rows']
+    wt = Path(__file__).resolve().parents[1] / 'hierarchy' / school / 'reviewed' / 'few-students-evidence.json'
+    cur = rd(wt, []) if wt.exists() else []
+    have = {(r['pi'], ' '.join(toks(x['name']))) for r in cur for x in r.get('students') or []}
+    rows = [r for r in prop if (r['pi'], ' '.join(toks(r['name']))) not in have]
+    if pilot:
+        random.Random(seed).shuffle(rows)
+        rows = rows[:pilot]
+        print(json.dumps(rows, ensure_ascii=False, indent=1))
+        return
+    by = {r['pi']: r for r in cur}
+    for r in rows:
+        e = by.setdefault(r['pi'], dict(pi=r['pi'], students=[]))
+        e['students'] = [x for x in e['students'] if not (x.get('rule') == 'R-STU-22' and ' '.join(toks(x['name'])) == ' '.join(toks(r['name'])))]
+        e['students'].append(dict(name=r['name'], role=r['role'], years=r['years'], years_basis=r['years_basis'], alumni=r['alumni'],
+                                  section="student's own page names the PI as adviser (R-STU-22)", url=r['url'], capture_url=r['url'], captured=r['fetched'],
+                                  sha256=r['sha256'], raw_sha256=r['raw_sha256'], quote=r['quote'], auto=True, rule='R-STU-22', source='own_page'))
+    if write:
+        wt.write_text(json.dumps(sorted(by.values(), key=lambda e: e['pi']), ensure_ascii=False, indent=1) + '\n')
+    print(school, 'rows', len(rows), 'pis', len({r['pi'] for r in rows}), 'written' if write else 'dry run')
+
+
 if __name__ == '__main__':
     cmd, args = sys.argv[1], sys.argv[2:]
     if cmd == 'candidates':
         for s in args:
             candidates(s)
+    elif cmd == 'evidence':
+        pl = None
+        if '--pilot' in args:
+            pl = int(args[args.index('--pilot') + 1])
+        evidence(args[0], pl, '--write' in args)
+    elif cmd == 'extract':
+        extract(args[0])
     elif cmd == 'dblp':
         dblp(args)
     elif cmd == 'fetch':
