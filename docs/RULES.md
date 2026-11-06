@@ -342,8 +342,12 @@ part-time). A listing drop closes the period (R-PAP-03, 2026-11-02): a departmen
 department with no coverage data is bridged nowhere (the per-person coverage files of Berkeley, CMU, EPFL, MIT and Stanford say nothing about
 department years). The period admits only a paper whose own byline names the school (`direct_via`: not an advisee, unit-name, first-page or
 cross-affiliation route) and a first-page-proved DBLP or lab-page addition. Evidence is the listing capture; `reviewed: R-PAP-37 listing continuity`.
-Switched on per school by the charter (`[rules] listing_continuity`, TEMPLATE default false): Michigan only. Measured on all nine schools, the others wait
-for the owner (docs/DECISIONS.md). Counters `listing_bridge_periods`.
+A PI needs listings in two or more calendar years (2026-11-06: a single capture shows no span; Mossel's 2017 Berkeley and Browning's 2017-2018 CMU
+papers followed a lone 2016 listing, after both had left). Switched on per school by the charter (`[rules] listing_continuity`, TEMPLATE default false):
+Michigan (2026-11-05), and Georgia Tech, UChicago, MIT and CMU (owner 2026-11-06, each after a 30-paper hand check: at most 1 error). Berkeley stays off: with
+the two-year guard the rule adds nothing there. Per-person coverage schools (Berkeley, CMU, MIT, Stanford, EPFL) bridge only PIs whose listings are not
+per-department dept_listing rows (unit listings, census sources); a PI listed in a department with no per-department coverage is never bridged.
+Known miss: a PI who moved while naming both institutions (Paulino, Georgia Tech to Princeton 2020: one 2022 paper). Counters `listing_bridge_periods`.
 The other two cases are correct non-links, not gaps. Sattar's co-authored papers (2019-2022, arXiv, TSP, ACC, CDC) name the University of California,
 Riverside for both authors: Oymak joined Michigan in fall 2023 (his first listing reads 'starting Fall 23'); the one 2021 arXiv record that
 carries 'U Michigan' tokens is a co-author's shifted affiliation string. Wandke's papers are UIUC work: the PI row 'Y Z' (Yang Zhang; R-PAP-34 on agent/accuracy-fixes-1105 resolves the placeholder name) is first listed at Michigan in

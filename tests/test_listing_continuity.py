@@ -122,4 +122,4 @@ def test_R_PAP_37_charters():
     import school_config as S
     root = pathlib.Path(__file__).resolve().parents[1] / 'schools'
     on = {f.stem for f in root.glob('*.toml') if f.stem != 'TEMPLATE' and S.field(S._toml.loads(f.read_text()), 'rules.listing_continuity')}
-    assert 'michigan' in on and on <= {'michigan', 'gatech', 'uchicago', 'mit', 'cmu', 'berkeley'}
+    assert on == {'michigan', 'gatech', 'uchicago', 'mit', 'cmu'}   # Berkeley: the rule fires on nothing there (see R-PAP-37)
