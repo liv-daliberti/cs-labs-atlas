@@ -30,6 +30,8 @@ formats
   ece_new      Georgia Tech ECE 2023-04- (ece.gatech.edu/directory): field-person-name item and field-person-official-job-title item; paged (partial)
   isye_old     Georgia Tech ISyE 2016-2023 (www.isye.gatech.edu/people): h4.name link, div.field-content under field-emp-title; every category of person
   isye_card    Georgia Tech ISyE 2023- (www.isye.gatech.edu/people/faculty): div.person-name link, div.person-type
+  wu_teaser    WashU McKelvey School of Engineering sites 2023/24- (cse/ese/bme.washu.edu/faculty-research/directory.html): article.faculty-directory__teaser,
+               h3.faculty-directory__teaser-name, p.faculty-directory__teaser-title, the profile on engineering.washu.edu as the link (data-shortdept names the department)
 """
 import html as H
 import re
@@ -258,6 +260,18 @@ def wse_entity(h):
     return out
 
 
+def wu_teaser(h):
+    out = []
+    for p in re.split(r'<article [^>]*class="faculty-directory__teaser"', h)[1:]:
+        nm = re.search(r'<h3 class="faculty-directory__teaser-name"[^>]*>(.*?)</h3>', p, re.S)
+        if not nm:
+            continue
+        tt = re.search(r'<p class="faculty-directory__teaser-title">(.*?)</p>', p, re.S)
+        link = re.search(r'href="([^"]+)"', p)
+        out.append(dict(name_listed=clean(nm.group(1)), titles=_titles(tt.group(1)) if tt else [], homepage=link.group(1) if link else None, division=None))
+    return out
+
+
 FORMATS = {
     'eecs_table': (eecs_table, re.compile(r'<b>Division:</b>', re.I)),
     'eecs_wp': (eecs_wp, re.compile(r"class=['\"]eecs_person_wrapper['\"]")),
@@ -274,6 +288,7 @@ FORMATS = {
     'isye_old': (isye_old, re.compile(r'<!-- Person -->')),
     'seas_directory': (seas_directory, re.compile(r'person__detailed-name')),
     'wse_entity': (wse_entity, re.compile(r'class="entity_list_item"')),
+    'wu_teaser': (wu_teaser, re.compile(r'class="faculty-directory__teaser"')),
     'isye_card': (isye_card, re.compile(r'class="w-100 px-0 pt-0 person-name"')),
 }
 
