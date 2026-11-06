@@ -45,7 +45,7 @@ def test_natural_and_roles():
     assert E.natural('Maple, Terry L.') == 'Terry L. Maple' and E.natural('Terry Maple') == 'Terry Maple'
     assert E.role_of('Dissertation') == 'phd' and E.role_of('Thesis') == 'other'
     assert E.role_of('Thesis (OAI type doctoralThesis)', 'MA Program in the Social Sciences (MAPSS)') == 'masters'   # UChicago types MA theses 'doctoralThesis'
-    assert E.role_of('Thesis (OAI type doctoralThesis)', 'Computer Science') == 'phd'
+    assert E.role_of('Thesis (OAI type doctoralThesis)', 'Computer Science') == 'student'   # the degree is not stated: a CS 'Thesis' may be a master's
 
 
 @pytest.fixture
