@@ -124,6 +124,8 @@ def estimate(d, ycols, tag, extra):
         for expo in ('ai_share', 'flag_abstract'):
             for dsg, lo, hi in (('dose_post', L.POST[0], L.POST[1]), ('dose_pre', 2017, 2021)):
                 s = d[d['year'].between(lo, hi) & d[expo].notna()].copy()
+                if dsg == 'dose_pre' and 'trained_on_v3' in s:      # the placebo window is a false-alarm floor: detector-training papers are out of it
+                    s = s[~s['trained_on_v3'].fillna(False).astype(bool)]
                 s['x'] = s[expo].astype(float)
                 rows.append(_one(s, ycol, 'x', f'{dsg}:{expo}', yname, tag, extra, has_student, year_fe=True))
     return rows
@@ -176,7 +178,8 @@ def main():
         pos = {p: i for i, p in enumerate(vid)}
         Zs[name] = L.unit(VX[[pos[p] for p in order]])        # centred on the common set, so original and rewrite are compared on the same papers
     L.log(model=a.model, kind=a.kind, papers=len(order), variants=list(Zs), secs=round(time.time() - t0))
-    ai = pd.read_parquet(L.AI_TABLE)[['paper_id', 'ai_share', 'flag_abstract']].drop_duplicates('paper_id')
+    ai = pd.read_parquet(L.AI_TABLE)
+    ai = ai[['paper_id', 'ai_share', 'flag_abstract'] + [c for c in ('trained_on_v3',) if c in ai]].drop_duplicates('paper_id')      # trained_on_v3 (detector v3): kept out of the placebo window
     pm = pair_measures(sp, pp, stu, Zs, idx)
     pm = pm.merge(ai, on='paper_id', how='left').merge(stu.drop_duplicates('student')[['student', 'role']], on='student', how='left')
     L.log(pair_rows=len(pm), secs=round(time.time() - t0))

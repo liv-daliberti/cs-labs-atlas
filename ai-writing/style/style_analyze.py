@@ -31,7 +31,8 @@ def load_inputs(kind, model, tag_allai=True):
     papers, lp = EL.universe()
     papers = EL.oa_topics(papers)
     feats = pd.read_parquet(S.RUN / f'features_{kind}.parquet')
-    ai = pd.read_parquet(S.AI_TABLE)[['paper_id', 'ai_share', 'flag_abstract']].drop_duplicates('paper_id')
+    ai = pd.read_parquet(S.AI_TABLE)
+    ai = ai[['paper_id', 'ai_share', 'flag_abstract'] + [c for c in ('trained_on_v3',) if c in ai]].drop_duplicates('paper_id')      # trained_on_v3 (detector v3): kept out of the placebo years
     d = papers.merge(feats, on='paper_id').merge(ai, on='paper_id', how='left')
     ids, X = LC.load_vectors(model, 'abstract')
     pos = {p: i for i, p in enumerate(ids)}
@@ -175,11 +176,13 @@ def main():
     # 3. AI link: detector-flagged vs not flagged papers of the same year (flagged = flag_abstract for abstracts, ai_share >= 0.25 for full text)
     flag = (d['flag_abstract'] == 1).to_numpy() if a.kind == 'abstract' else (d['ai_share'] >= 0.25).to_numpy()
     scored = d['flag_abstract'].notna().to_numpy() if a.kind == 'abstract' else d['ai_share'].notna().to_numpy()
+    trained = d['trained_on_v3'].fillna(False).astype(bool).to_numpy() if 'trained_on_v3' in d else None
     for sp, V in spaces.items():
         draws = {}
         for y in YEARS:
             for nm, m in (('flagged', flag & scored), ('not_flagged', ~flag & scored)):
-                pool = np.flatnonzero(m & (years == y))
+                mm = m & ~(trained & (years <= 2021)) if trained is not None else m      # detector-training papers are out of the 2016-2021 false-alarm floor
+                pool = np.flatnonzero(mm & (years == y))
                 if len(pool) < 60:
                     continue
                 st = draw_stats({'x': V}, cpre[sp], 60, R, rng, pool)['x']
