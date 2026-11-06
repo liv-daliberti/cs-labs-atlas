@@ -84,3 +84,11 @@ def test_R_PAP_39_the_georgia_tech_entry_has_evidence():
     f = Path(__file__).resolve().parents[1] / 'hierarchy/gatech/reviewed/census-overrides-school.json'
     e = json.loads(f.read_text())['Fumin Zhang']['not_papers'][0]
     assert e['doi'] == '10.1631/fitee.1820000' and e['why'] and len(e['evidence'][0]['sha256']) == 64
+
+
+def test_R_PAP_38_a_springer_chapter_one_year_after_its_conference_is_no_reprint():
+    chapter = dict(id='x', doi='https://doi.org/10.1007/978-3-319-1_5', title='Robust Adaptive Coverage for Robotic Sensor Networks', type='book-chapter',
+                   publication_year=2016, publication_date='2016-03-01', primary_location=dict(source=dict(display_name='Springer tracts in advanced robotics', type='book series')))
+    v = {papers.norm_title(chapter['title']): (2015, 'conf/isrr/X15')}
+    assert papers.venue_version_date(chapter, v)[1] is None                              # 2016 chapter, 2015 conference: stays
+    assert papers.venue_version_date(dict(chapter, publication_year=2019, publication_date='2019-03-01'), v)[1] is not None   # four years on: a reprint

@@ -302,7 +302,7 @@ unconfirmed. A page-1 read from an arXiv v1 posted 4 or more years before the DB
 ACM Books and other anthologies reprint older papers as chapters (Essa's 'Video Textures', SIGGRAPH 2000, appears as a 2023 ACM Books chapter; 39 such chapters over the nine
 schools, most of 'Seminal Graphics Papers', 'Making Databases Work', 'Providing Sound Foundations for Cryptography'). R-PAP-26 dated a preprint or repository deposit by the PI's DBLP
 record of the same title; a record of type `book-chapter` now is dated the same way (`venue_version_date`): the original's year is the work's year, and one before 2016 leaves the lab
-(`dated_before_window`). A chapter with no DBLP record of the same title, or new chapters of a handbook, are untouched. Tests: `tests/test_not_paper_non_research_records.py`.
+(`dated_before_window`). Only a chapter dated 4 or more years after that record (`REPRINT_YEARS`) is re-dated: a Springer Tracts chapter a year or two after its conference is no reprint. A chapter with no DBLP record of the same title, or new chapters of a handbook, are untouched. Tests: `tests/test_not_paper_non_research_records.py`.
 
 ### R-PAP-39 (2026-11-06, owner) — editorials whose byline is the guest editors (reviewed records)
 Georgia Tech's FITEE special-issue editorial (Fumin Zhang, seven authors who are the guest editors) carries no stored signal: OpenAlex types it article, the sweep keeps no abstract or

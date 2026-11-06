@@ -414,6 +414,9 @@ def names_other_inst(z, school):
     return bool(OTHER_INST.search(u.sub(' ', z) if u else z))
 
 
+REPRINT_YEARS = 4   # R-PAP-38: a book chapter this many years after the PI's DBLP record of the same title is a reprint of that older paper
+
+
 def venue_version_date(w, venues):
     """R9 (R-PAP-26, 2026-10-29, owner: accuracy sample): (date for the appointment check, dated_by or None). A preprint or
     repository deposit (type preprint, an arXiv DOI, or a repository as the primary source) whose title is on the PI's
@@ -426,6 +429,8 @@ def venue_version_date(w, venues):
     # SIGGRAPH 2000, as a 2023 ACM Books chapter), so the PI's own DBLP record of the same title gives the work's year (and takes it out of the window when older)
     deposit = w.get('type') in ('preprint', 'book-chapter') or ndoi(w.get('doi')).startswith('10.48550/') or src.get('type') == 'repository'
     vy = venues.get(norm_title(w.get('title'))) if deposit else None
+    if vy and w.get('type') == 'book-chapter' and w.get('type') != 'preprint' and not (int(w.get('publication_year') or 0) - int(vy[0]) >= REPRINT_YEARS):
+        vy = None   # R-PAP-38: a chapter of a proceedings-type series a year or two after its conference (Springer Tracts, LNCS) is no reprint
     if vy and vy[0] != w.get('publication_year'):
         return str(vy[0]), dict(oa_date=date, venue_year=vy[0], dblp_key=vy[1])
     return date, None
