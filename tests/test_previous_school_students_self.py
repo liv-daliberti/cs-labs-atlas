@@ -3,14 +3,11 @@
 S.released(), and a rerun of `extract` after a build took every student the build already held for a 'previous school' student and
 dropped it (56 accepted lab-page students vanished)."""
 import json
-import sys
-from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
 import labpage_students_school as L  # noqa: E402
 
 
-def test_own_package_is_not_a_previous_school(tmp_path, monkeypatch):
+def test_R_STU_21_own_package_is_not_a_previous_school(tmp_path, monkeypatch):
     def put(name, obj):
         (tmp_path / name).write_text(json.dumps(obj))
         return tmp_path / name
