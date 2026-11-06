@@ -230,7 +230,7 @@ def build(cfg_path=None, out_dir=None):
     ipw = None
     if cfg.get('ipw_weights'):
         w = pd.read_parquet(slot(cfg['ipw_weights']))
-        ipw = dict(zip(w['paper_id'], w['w']))
+        ipw = dict(zip(w['paper_id'], w[cfg.get('ipw_column', 'w')]))
     D.log(stage='floor', floor=f, legacy_floor=float(leg), abstract_flag_floor=ab_floor, floor_boot_sd=float(fboot.std()))
     res = {}
     for year in (cfg['year'], cfg['placebo_year']):

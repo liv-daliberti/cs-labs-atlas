@@ -73,6 +73,30 @@ def targets():
     D.log(stage='targets', papers=len(out), by_year=out['year'].value_counts().sort_index().to_dict(), trained_on=int(out['trained_on'].sum()))
 
 
+def from_sections():
+    """Final tags: the full run of the splitter (AI_SCORES/../sections/sections.sqlite, ai-writing/sections/SCHEMA.md) for the target papers.
+    Main passages = passage_tags(src='ai_scores', section='main') (they join to ai_scores.sqlite.passages(paper_id, pidx)); unknown, appendix and
+    references are left out. -> OUT/tags-final.parquet with the columns of the provisional files."""
+    t = pd.read_parquet(OUT / 'targets.parquet')
+    ids = set(t['paper_id'])
+    db = sqlite3.connect(f"file:{D.SCORES.parent / 'sections' / 'sections.sqlite'}?mode=ro", uri=True, timeout=600)
+    sec = pd.read_sql('select paper_id, main_words, split_error, appendix_found, appendix_position, truncated, n_main_passages, n_old_passages from sections', db)
+    sec = sec[sec['paper_id'].isin(ids)]
+    pt = pd.read_sql("select id as paper_id, pidx from passage_tags where src = 'ai_scores' and section = 'main'", db)
+    db.close()
+    pt = pt[pt['paper_id'].isin(ids)]
+    main = pt.groupby('paper_id')['pidx'].agg(lambda x: ','.join(map(str, sorted(x))))
+    sec['main_pidx'] = sec['paper_id'].map(main).fillna('')
+    sec['error'] = sec['split_error']
+    sec['n_main'] = sec['n_main_passages']
+    sec['n_old'] = sec['n_old_passages']
+    sec['n_matched'] = [len(x.split(',')) if x else 0 for x in sec['main_pidx']]
+    sec['refs_found'] = None
+    sec = sec.drop(columns=['split_error', 'n_main_passages', 'n_old_passages'])
+    sec.to_parquet(OUT / 'tags-final.parquet', index=False)
+    D.log(stage='from_sections', targets=len(ids), tagged=len(sec), with_main=int((sec['main_pidx'] != '').sum()), errors=int(sec['error'].notna().sum()))
+
+
 def one(job):
     paper_id, path, kind, body_z = job
     import fulltext_sections as S
@@ -121,10 +145,10 @@ def run(shard, nshards, tag):
 
 if __name__ == '__main__':
     ap = argparse.ArgumentParser()
-    ap.add_argument('cmd', choices=['targets', 'run'])
+    ap.add_argument('cmd', choices=['targets', 'run', 'from-sections'])
     ap.add_argument('--shard', type=int, default=0)
     ap.add_argument('--nshards', type=int, default=1)
     ap.add_argument('--tag', default='v1')
     a = ap.parse_args()
     sys.path.insert(0, os.environ.get('AIW_SECTIONS_DIR', str(D.AIW)))
-    targets() if a.cmd == 'targets' else run(a.shard, a.nshards, a.tag)
+    {'targets': targets, 'from-sections': from_sections}.get(a.cmd, lambda: run(a.shard, a.nshards, a.tag))()
