@@ -9,7 +9,7 @@ Terms (arXiv bulk access page, read 2026-11-04): metadata is openly available, t
 
 Matching order (bulk_oa-style, local): (1) the record's DOI field equals the paper's DOI (the author-supplied journal DOI of the preprint) and the titles are compatible (bulk_oa.title_compatible);
 (2) an arXiv id the paper already names (10.48550 DOI); (3) the normalized title equal and the same author set (arxiv_loose.same_authors: every
-byline family of the first 8, long bylines 6 of 8 plus every PI) with the first version from 3 years before to 1 year after the paper's year,
+byline family of the first 8, long bylines 6 of 8 plus every PI) with the first version from 8 years before to 1 year after the paper's year (journal versions lag),
 and no second record that ties. The collector's page-1 identity rule (fulltext-push/identity_rule.py: title and first author, or the arXiv stamp
 against the DOI) still applies to the downloaded file.
 """
@@ -19,6 +19,7 @@ import re
 from collections import defaultdict
 
 NAME = 'arxiv_bulk'
+MAX_LAG = 8  # the journal or proceedings year may trail the first arXiv version by years (Vempala: 2017 -> 2022/2024); exact title + same authors still required
 _IX = {}
 
 
@@ -35,7 +36,9 @@ def index():
                     continue
                 r = json.loads(line)
                 n += 1
-                rec = (re.sub(r'v\d+$', '', r['id']), r['title'], tuple(r.get('families') or ()), int((r.get('created') or '0')[:4] or 0))
+                # families normalized like same_authors() normalizes the byline (ao.fam: ASCII, lower case); the raw 'Lee' never equalled 'lee',
+                # so the title+author match returned nothing for every school (2026-11-06)
+                rec = (re.sub(r'v\d+$', '', r['id']), r['title'], tuple(ao.fam(x) for x in r.get('families') or ()), int((r.get('created') or '0')[:4] or 0))
                 by_id[rec[0]] = rec
                 for d in (r.get('doi') or '').lower().split():
                     by_doi.setdefault(F.ndoi(d), rec)
@@ -70,7 +73,7 @@ def match(r, ix):
     hits = []
     for rec in ix['by_t'].get(k, []):
         aid, title, fams, y = rec
-        if y0 and y and not -1 <= int(y0) - y <= 3:
+        if y0 and y and not -1 <= int(y0) - y <= MAX_LAG:
             continue
         if not same_authors(r.get('byline') or [], r.get('pis') or [], fams):
             continue
