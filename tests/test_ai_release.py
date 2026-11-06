@@ -76,3 +76,23 @@ def test_study_files_are_not_reviewed_inputs(monkeypatch):
     monkeypatch.setattr(provenance, '_git', lambda *a: 'ai-writing/diversity/site-data/all-ai/labs.json\nhierarchy/x.json\n')
     monkeypatch.setattr(provenance, 'onboarding_schools', lambda: [])
     assert provenance.tracked_inputs() == ['hierarchy/x.json']
+
+
+def test_optional_words_and_lab_scores_are_carried(tmp_path):
+    """2026-11-06: the AI words page data (words/) and the per-lab 2025 AI-use scores travel in the release when present."""
+    root = folder(tmp_path)
+    (root / 'words').mkdir()
+    for n in ai_release.WORDS_FILES:
+        (root / 'words' / n).write_text(json.dumps({'trend': {'2025': 1.0}}))
+    (root / ai_release.LAB_SCORE_FILE).write_text(json.dumps({'labs': [{'lab': 'x', 'score': 3.4}]}))
+    src = ai_release.collect(root)
+    assert {'ai/words/words.json', 'ai/words/word_curves.json', 'ai/lab_ai_scores_2025.json'} <= set(src)
+    ai_release.check_years(src)
+
+
+def test_a_words_folder_needs_both_files(tmp_path):
+    root = folder(tmp_path)
+    (root / 'words').mkdir()
+    (root / 'words' / 'words.json').write_text('{}')
+    with pytest.raises(SystemExit, match='word_curves'):
+        ai_release.collect(root)
