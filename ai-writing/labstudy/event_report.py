@@ -52,7 +52,7 @@ def main():
     allp = prim[(prim.source == 'main') & (prim.kind == 'stat') & (prim.stat == 'pretrend_wald')]
     rej = int((allp.lo < 0.05).sum())
     A(f'- **Pre-trends.** The joint test that the leads (e = -5..-2) are zero rejects at 5% for {rej} of {len(allp)} outcomes (main source, primary spec); with that many tests about {0.05 * len(allp):.0f} would reject by chance. Details per outcome in the grid below. '
-      'Timing is not exogenous: see the diagnostics section (labs that already published on LLM topics before 2023 adopt first), so every ATT here is an association with adoption timing, not a causal effect of AI wording.')
+      f'Timing is not exogenous: adopters are larger labs (pre-2023 papers SMD {R.f(diagf.iloc[0].smd, 2, True)}) and more LLM-active before 2023 (LLM-text share 2021-22 SMD {R.f(diagf.iloc[1].smd, 2, True)}) than never-adopters, although among 2023+ adopters the year is unrelated to that share (rho {R.f(diagf.iloc[3].adopters, 2, True)}); every ATT here is an association with adoption, not a causal effect of AI wording.')
     A('- CTL_PLACEHOLDER')
     A('')
     # --- adoption table
