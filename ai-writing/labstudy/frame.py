@@ -37,7 +37,7 @@ def oa_extra():
 def build():
     papers, lp = L.universe()
     sc = L.scores()
-    keep = [c for c in ('paper_id', 'ai_share', 'ai_any', 'flag_abstract', 'p_ai_abstract', 'kobak_abs', 'kobak_ft', 'ai_share_cal', 'body_words', 'n_passages') if c in sc]
+    keep = [c for c in ('paper_id', 'ai_share', 'ai_any', 'flag_abstract', 'p_ai_abstract', 'kobak_abs', 'kobak_ft', 'ai_share_cal', 'body_words', 'n_passages', 'trained_on_v3', 'abstained_share_main') if c in sc]
     df = papers.merge(sc[keep], on='paper_id', how='left')
     df['oa_id'] = df['oa'].fillna('').str.rsplit('/', n=1).str[-1]
     df = df.merge(oa_fields(), on='oa_id', how='left').merge(oa_extra(), on='oa_id', how='left')

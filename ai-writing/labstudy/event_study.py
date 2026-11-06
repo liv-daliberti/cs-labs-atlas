@@ -31,13 +31,18 @@ BOOT = 300
 # ------------------------------------------------------------------ doses and adoption
 def lab_year_dose(df, lp):
     w = L.load_weights('w_ft')
-    d = lp[['paper_id', 'lab_id', 'year']].merge(df[['paper_id', 'ai_share', 'flag_abstract', 'has_abstract']], on='paper_id', how='left')
+    cols = ['paper_id', 'ai_share', 'flag_abstract', 'has_abstract'] + (['trained_on_v3'] if 'trained_on_v3' in df else [])
+    d = lp[['paper_id', 'lab_id', 'year']].merge(df[cols], on='paper_id', how='left')
     d['w'] = d['paper_id'].map(w) if w is not None else np.nan
     sc = d[d['ai_share'].notna()].copy()
     sc['ge25'] = (sc['ai_share'] >= 0.25).astype(float)
     sc['ge10'] = (sc['ai_share'] >= 0.10).astype(float)
     g = sc.groupby(['lab_id', 'year'])
     t = g.agg(n_scored=('ai_share', 'size'), share_ge25=('ge25', 'mean'), share_ge10=('ge10', 'mean'), mean_share=('ai_share', 'mean')).reset_index()
+    if 'trained_on_v3' in sc:      # detector v3: papers in the detector's training split are no false-positive floor: the floor is read from the `_oos` columns (all 2016-2021 cells without them)
+        oos = sc[~sc['trained_on_v3'].fillna(False).astype(bool)].groupby(['lab_id', 'year']).agg(n_scored_oos=('ai_share', 'size'), share_ge25_oos=('ge25', 'mean'),
+                                                                                                    share_ge10_oos=('ge10', 'mean'), mean_share_oos=('ai_share', 'mean')).reset_index()
+        t = t.merge(oos, on=['lab_id', 'year'], how='left')
     sw = sc[sc['w'].notna()].copy()
     sw['wx'] = sw['w'] * sw['ge25']
     gw = sw.groupby(['lab_id', 'year']).agg(sw=('w', 'sum'), swx=('wx', 'sum')).reset_index()
@@ -56,7 +61,11 @@ def adoption_spec(dose, spec, cfg):
     valid = d[nmin_col].fillna(0) >= MIN_SCORED
     d['m'] = np.where(valid, d[metric], np.nan)
     fl = PRE['adoption']['floor_window']
-    base = d[d['year'].between(*fl)]['m'].dropna()
+    if f'{metric}_oos' in d:      # floor and SD from out-of-sample papers only (detector v3: trained_on_v3 excluded)
+        v_oos = d['n_scored_oos'].fillna(0) >= MIN_SCORED
+        base = d[d['year'].between(*fl) & v_oos][f'{metric}_oos'].dropna()
+    else:
+        base = d[d['year'].between(*fl)]['m'].dropna()
     floor, sd = float(base.mean()), float(base.std())
     thr = floor + k * sd
     d['exceed'] = d['m'] > thr
