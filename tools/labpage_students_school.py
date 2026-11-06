@@ -865,6 +865,8 @@ def extract(key):
                     years = [y for y in (ys or []) if y] or [year]
                     if max(years) < 2016:
                         rep['dropped_before_window'] += 1; continue
+                    if alum and ys and max(years) <= first_year.get(pi, 0) and not re.search(r'chicago|uchicago|ttic', rest, re.I):
+                        rep['dropped_alumnus_before_arrival'] += 1; continue   # an alumnus who left in or before the PI's first year here was the PI's student elsewhere (Zhang's ETH PhDs, Tomlin's Berkeley advisees)
                     if j < 0 or i < 0 or j - i > 600:  # the quote must run from the section heading to the name
                         rep['dropped_no_heading_quote'] += 1; continue
                     if a_at is not None and a_at < i and j - a_at <= 600:
