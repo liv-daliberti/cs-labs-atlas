@@ -410,6 +410,8 @@ GAP_WORDS = {'by', 'and', 'is', 'are', 'was', 'were', 'of', 'the', 'prof', 'prof
 
 def gap_ok(gap):
     """The text between the adviser cue and the PI's name holds names, titles and 'and' only: 'advised by A, and worked closely with <PI>' does not make the PI an adviser."""
+    if re.search(r'committee|reader|member|collaborat|examiner', gap, re.I):   # 'Adviser: A Committee: <PI>' names the PI as a committee member
+        return False
     words = re.findall(r"[A-Za-z][A-Za-z'\-]*", re.sub(r'\b[A-Z][\w\-\'.]*', ' ', gap))   # capitalized words (names, titles) removed
     return all(w.lower() in GAP_WORDS for w in words)
 
@@ -419,16 +421,23 @@ ROLES = [('visiting', r'visiting\s+(?:ph\.?d\.?\s+|graduate\s+|master\S*\s+|unde
 
 
 def role_near(t, pos):
-    """The role cue before the adviser cue, the nearest one ('PhD ... 2017 where I was advised by X. I also received a Masters' is a PhD); none before: the nearest after."""
-    before, after = None, None
+    """The role cue before the adviser cue; cues within 60 characters of the nearest one compete by rank ('Ph.D. and M.S.' is a PhD); none before: the nearest after."""
+    found = [(x.start(), i, role) for i, (role, rx) in enumerate(ROLES) for x in re.finditer(rx, t, re.I)]
+    before = [f for f in found if f[0] < pos]
+    if before:
+        last = max(f[0] for f in before)
+        return min((f for f in before if last - f[0] <= 60), key=lambda f: f[1])[2]
+    after = sorted(f for f in found if f[0] >= pos)
+    return after[0][2] if after else None
+
+
+def role_in(sent, pos):
+    """The role cues before the adviser cue in its own sentence; the highest one wins ('Ph.D. and M.S. at X, advised by Y' is a PhD)."""
+    t = sent[:pos]
     for role, rx in ROLES:
-        for x in re.finditer(rx, t, re.I):
-            if x.start() < pos:
-                if before is None or x.start() > before[0]:
-                    before = (x.start(), role)
-            elif after is None or x.start() < after[0]:
-                after = (x.start(), role)
-    return (before or after or (0, None))[1]
+        if re.search(rx, t, re.I):
+            return role
+    return None
 
 
 def sentences(ln):
@@ -476,7 +485,7 @@ def statements(c, text, rx_school):
                     continue
                 if not STUDENT.search(scope):
                     continue
-                role = role_near(pre + ' ' + sent, len(pre) + 1 + m.start())
+                role = role_in(sent, m.start()) or role_near(pre + ' ' + sent, len(pre) + 1 + m.start())
                 if not role:
                     continue
                 now = (bool(NOW.search(pre + ' ' + sent)) or bool(re.search(r'student|candidate', sent, re.I))) and not PAST.search(pre + ' ' + sent) and fresh
@@ -536,7 +545,7 @@ def extract(school):
     best = {}
     for r in rows:
         k = (r['pi'], r['key'])
-        rank = lambda x: {'stated': 0, 'stated_degree_year': 1, 'capture_date': 2, 'undated_alumnus': 3}[x['years_basis']]  # noqa: E731
+        rank = lambda x: ({'stated': 0, 'stated_degree_year': 1, 'capture_date': 2, 'undated_alumnus': 3}[x['years_basis']], ['phd', 'visiting', 'masters', 'undergraduate'].index(x['role']))  # noqa: E731
         if k not in best or rank(r) < rank(best[k]):
             best[k] = r
     rows = sorted(best.values(), key=lambda r: (r['pi'], r['name']))
@@ -551,7 +560,16 @@ def evidence(school, pilot=None, write=False, seed=20261106):
     wt = Path(__file__).resolve().parents[1] / 'hierarchy' / school / 'reviewed' / 'few-students-evidence.json'
     cur = rd(wt, []) if wt.exists() else []
     have = {(r['pi'], ' '.join(toks(x['name']))) for r in cur for x in r.get('students') or []}
-    rows = [r for r in prop if (r['pi'], ' '.join(toks(r['name']))) not in have and r['years_basis'] != 'undated_alumnus']   # R-STU-14: no year, no evidence
+    rows = []
+    for r in prop:
+        if (r['pi'], ' '.join(toks(r['name']))) in have:
+            continue
+        if r['years_basis'] == 'undated_alumnus':   # owner 2026-11-06: years of the co-authored lab papers with this PI (2016-2025); none, no row
+            py = [y for y in r.get('paper_years') or [] if YEARS[0] <= y <= YEARS[1]]
+            if not py:
+                continue
+            r = dict(r, years=[min(py), max(py)], years_basis='coauthored_lab_papers')
+        rows.append(r)
     if pilot:
         random.Random(seed).shuffle(rows)
         rows = rows[:pilot]

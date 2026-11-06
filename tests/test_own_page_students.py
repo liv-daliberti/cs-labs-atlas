@@ -102,3 +102,9 @@ def test_R_STU_22_cv_line_with_month_years_is_a_stated_range_and_a_bare_degree_l
     assert r and r[0]['years'] == [2019, 2024] and r[0]['years_basis'] == 'stated'
     r = st('Jane Doe\nPh.D in Computer Science, Georgia Institute of Technology. Advisor: Prof. Magnus Egerstedt. (c) 2026')
     assert r and r[0]['years_basis'] == 'undated_alumnus'
+
+
+def test_R_STU_22_committee_member_after_the_adviser_is_no_adviser_and_phd_beats_ms_in_a_sentence():
+    assert not st('Jane Doe\nPh.D. at Georgia Tech. Adviser: Polo Chau Committee: Magnus Egerstedt, X (2019)')
+    r = st('Jane Doe\nPh.D. and M.S. in ECE at Georgia Institute of Technology, advised by Magnus Egerstedt')
+    assert r and r[0]['role'] == 'phd'
