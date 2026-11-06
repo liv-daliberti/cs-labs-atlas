@@ -517,7 +517,7 @@ The row builds a record like an accepted one (relation `researched_advising`, `a
 Interaction with agent/accuracy-fixes-1105's R-STU-19 B (the wide-window routes need a student role and the PI as adviser): the wired rows carry a student role and a quote
 from the PI's own page. Tests: `tests/test_student_links_hanin.py`.
 
-### R-STU-22 (2026-11-06, PROPOSED by the round-2 agent; owner decision pending) — a student's own page or ORCID education record
+### R-STU-22 (2026-11-06, owner approved) — a student's own page or ORCID education record
 A co-author of a PI who has no lab record of being the PI's student can state it on their own page. **Own-page form** (the evidence standard of the UChicago deep dive: "the student's own page
 or CV names the student as this PI's advisee"; `tools/own_page_students.py`, tests `tests/test_own_page_students.py`):
 1. **Candidates:** the school-affiliated authors (`byline_school`) of the lab papers of a PI with fewer than three students, 2016-2025, papers of at most 15 authors, at least two co-authored papers, not in the census.
@@ -530,11 +530,11 @@ or CV names the student as this PI's advisee"; `tools/own_page_students.py`, tes
    'worked closely with' collaborator is not an adviser), where the institution nearest before the cue (this sentence, else the sentence or lines before) is the school, a student cue (PhD, doctoral, graduate student, MS, undergraduate) is in scope
    and no postdoc, research scientist, visiting-faculty, intern or collaborator cue is within the cue's clause. The page must name the candidate in full (namesake guard, R-STU-19/20; the given name is spelled out). The role is the role cue nearest to the adviser cue.
    Years: a range written next to the school ('2017-2022', 'present' = the capture year), a degree year next to the school mention, or, for a person described in the present tense on a page whose newest year is within three years of the capture
-   (R-LAB-02), the capture year (R-STU-14). A past-tense statement with no year is NOT evidence (R-STU-14); it is listed apart in the proposals file (`undated_alumnus`) for the owner.
+   (R-LAB-02), the capture year (R-STU-14). A past-tense statement with no year on the page (owner approved 2026-11-06): the years are the span, first to last, of the student's co-authored lab papers with that PI within 2016-2025, `years_basis: coauthored_lab_papers`; no co-authored lab paper in the window, no row (a span can run past the degree year: papers continue after graduation). The sentence also may not call the PI a committee member, reader or collaborator, and in a sentence the PhD cue outranks MS/BS ('Ph.D. and M.S. at X').
 5. Row: `reviewed/few-students-evidence.json`, `rule: R-STU-22`, `source: own_page`, verbatim `quote`, `url`, `captured` (UTC), `sha256` of the extracted page text (and `raw_sha256` of the bytes). Role phd/masters/undergraduate/visiting (R-STU-17).
 **ORCID form (proposed, not run):** an ORCID education record of a PhD (or MS/BS) at the school in the window, held by a co-author of the PI, would count only with the PI on the byline of at least one co-authored lab paper in those years
 (R-STU-02's logic; ORCID names no advisor). It was not executed: `pub.orcid.org/robots.txt` answers `User-agent: * / Disallow: /` (read 2026-11-06), so the public API is barred to automated clients under the standing robots rule. The sanctioned bulk channel is ORCID's annual public data file (CC0);
-whether to fetch it (tens of GB) is an owner decision.
+whether to fetch it (tens of GB) is an owner decision (not asked for; no ORCID row exists).
 **Effect on this branch (2026-11-06 scratch build, overlay root, main untouched):** labs with students 146 -> 149 of 287 (CSE 88 -> 90, UMSI 8 -> 9); 7 new students and 36 student-paper links of those students (8 new lab-student pairs); of 5,299 co-author candidates 824 had a homepage URL (DBLP 768 incl. lab-page links, Semantic Scholar 43), 605 pages read, 79 robots-barred, 150 queued for Wayback (403); 37 advisee statements, 11 dated (written), 18 past-tense statements without a year listed apart. Hand check of all 11 written rows: 10 correct, 1 doubtful (Yonathan Fisseha: 'advised by Prof. Austin', a bare family name unique among the census faculty and co-authored with Todd Austin).
 
 ### R-LNK-06 (2026-11-05, owner: Hanin deep dive) — a dissertation year is the END of the student's work
