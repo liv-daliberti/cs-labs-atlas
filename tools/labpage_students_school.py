@@ -852,6 +852,8 @@ def extract(key):
                     if role not in ('phd', 'postdoc', 'visiting', 'student') or not lpdom.looks_like_name(name) or not lpdom.plausible_person(name) \
                             or N.match(name) or len(toks(name)) < 2 or len(toks(name)) > 4 or any(F.match(name) for F in fac):
                         rep['dropped_not_a_student_name'] += 1; continue
+                    if role == 'postdoc':
+                        rep['dropped_postdoc'] += 1; continue   # a postdoc is not a student (R-STU-19 B); mixed 'PhDs and Postdocs' headings now give the entry's own role
                     alum = any(ALUM.search(x) for x in path)  # the section says it, not the person's line ('now Ph.D. student @ ...')
                     head = path[-1] if path else ''
                     j = flat.find(name)
