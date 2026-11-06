@@ -125,6 +125,8 @@ def run_one(args):
             bk = base[base['k'] == k]
             for period, years in PERIODS.items():
                 bp = bk[bk['year'].isin(years)]
+                if period == 'pre' and 'trained_on_v3' in bp:      # detector v3: the placebo window is a false-alarm floor, so detector-training papers are out of it
+                    bp = bp[~bp['trained_on']]
                 for expo in exposures:
                     be = bp[bp[expo].notna()]
                     if len(be) < 200:

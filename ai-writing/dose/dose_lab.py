@@ -135,6 +135,8 @@ def build_panel(model, kind, m, reps):
         codes = pd.factorize(pd.Series(ids).map(t).fillna(-1))[0]
         pb = lab_year_panel(Z, ids, lp, codes, m, reps)[['lab_id', 'year', 'h_labels']].rename(columns={'h_labels': 'h_bt'})
         panel = panel.merge(pb, on=['lab_id', 'year'], how='left')
+    if 'trained_on_v3' in df:      # detector v3: 2016-2021 papers of the detector's training split are no false-alarm floor: their dose is left out of the lab-year pre-period
+        df = df.assign(ai_share=df['ai_share'].where(~df['trained_on'], np.nan))
     pl = lp[['paper_id', 'lab_id', 'year']].merge(df[['paper_id', 'ai_share', 'flag_abstract', 'ai_share_cal']], on='paper_id', how='left')
     lt = pl.groupby(['lab_id', 'year']).agg(ai_share_lt=('ai_share', 'mean'), n_scored=('ai_share', 'count'), flag_abs_lt=('flag_abstract', 'mean'), n_papers=('paper_id', 'size')).reset_index()
     lt.loc[lt['n_scored'] < 2, 'ai_share_lt'] = np.nan
