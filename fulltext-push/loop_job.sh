@@ -19,6 +19,7 @@ RESUBMIT_OPTS=(--partition=all --account=mltheory --time=00:59:00 --exclude=node
 # (script, school, array index) refuses a second resubmission while the job it recorded is still pending or running.
 _resubmit() {
   local code=${CS_ATLAS_CODE:?} out script=$1; shift
+  local me="${SLURM_JOB_ID:-}" me_arr="${SLURM_ARRAY_JOB_ID:-}"   # captured before the subshell unsets SLURM_*
   local key="$(basename "$script")-${SCHOOL:-none}-${SLURM_ARRAY_TASK_ID:-none}"
   local sentinel="${CS_ATLAS_FT_LOGS:-$code/fulltext-push/logs}/.resubmitted-$key"
   (
@@ -27,7 +28,9 @@ _resubmit() {
     cd "$code" || exit 1
     exec 8>"$sentinel.lock"; flock 8
     prev=$(cat "$sentinel" 2>/dev/null)
-    if [ -n "$prev" ] && [ -n "$(squeue -h -j "$prev" 2>/dev/null)" ]; then _restart_log "\"resubmit refused: $key already resubmitted as job $prev (still queued or running)\""; exit 1; fi
+    # 2026-11-06: the sentinel holds the id of the job that is resubmitting now (its predecessor wrote it), so without this test every chain
+    # stopped after one generation (all 9 loops died at 18:09 UTC); only ANOTHER live job counts as "already resubmitted".
+    if [ -n "$prev" ] && [ "$prev" != "$me" ] && [ "$prev" != "$me_arr" ] && [ -n "$(squeue -h -j "$prev" 2>/dev/null)" ]; then _restart_log "\"resubmit refused: $key already resubmitted as job $prev (still queued or running)\""; exit 1; fi
     out=$("$code/bin/atlas" submit --test-only "${RESUBMIT_OPTS[@]}" "$@" "$script" 2>&1) || { _restart_log "\"resubmit refused: test-only failed\""; exit 1; }
     case $out in *Preempts:*) _restart_log "\"resubmit refused: Preempts\""; exit 1;; esac
     out=$("$code/bin/atlas" submit "${RESUBMIT_OPTS[@]}" "$@" "$script" 2>&1 | tail -1) || { _restart_log "\"resubmit failed\""; exit 1; }
