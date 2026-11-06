@@ -40,9 +40,16 @@ def main():
     L, P = [], None
     P = L.append
     P(f'# AI added in revision: arXiv v1 against the later version (Experiment B, detector {a.detector})\n')
-    P(f'Generated {time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())} by `ai-writing/revision/rv_report.py`. Detector {a.detector}: flagged passage = P(AI) >= {fun["detector"]["threshold"]:.3g} '
-      f'(1% passage false-positive rate by design on pre-ChatGPT text), strict = P(AI) >= {fun["detector"]["strict"]}; passages between the two cuts are the abstain band. '
-      'All intervals: cluster bootstrap over first labs. Years end at 2025.\n')
+    dj = fun["detector"]
+    if a.detector == 'v3':
+        P(f'Generated {time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())} by `ai-writing/revision/rv_report.py`. Detector v3 (main body only, `fulltext_sections.split_text` for the arXiv texts and the v3 container for the stored copies; '
+          f'abstained passages excluded): flagged passage = v3 score z >= {dj["threshold"]:.2f} (0.3% false-alarm rate on calibration passages; human passages wrongly flagged 0.30%, 0.27-0.32%), '
+          f'strict = z >= {dj["strict"]} (P(AI) >= 0.5); passages between the two cuts are the abstain band (flagged, not confident). '
+          'All intervals: cluster bootstrap over first labs. Years end at 2025. v3 shares are not comparable in level with the v2 report.\n')
+    else:
+        P(f'Generated {time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())} by `ai-writing/revision/rv_report.py`. Detector {a.detector}: flagged passage = P(AI) >= {dj["threshold"]:.3g} '
+          f'(1% passage false-positive rate by design on pre-ChatGPT text), strict = P(AI) >= {dj["strict"]}; passages between the two cuts are the abstain band. '
+          'All intervals: cluster bootstrap over first labs. Years end at 2025.\n')
     P('## Summary\n')
     for kind in ('S', 'A'):
         try:
@@ -57,7 +64,7 @@ def main():
             P(f'**Kind {kind}, v1 before Dec 2022 and later text after:** {int(c["n"])} pairs; mean change in flagged-passage share {fmt(c["mean"], c["lo"], c["hi"], 4)} '
               f'(v1 level {c["v1_mean"]:.3f}); against the pre_pre baseline {fmt(r["diff"], r["lo"], r["hi"], 4)}'
               + (f', matched {fmt(m.iloc[0]["diff"], m.iloc[0]["lo"], m.iloc[0]["hi"], 4)} ({int(m.iloc[0]["treat_kept"])} of {int(m.iloc[0]["treat_total"])} pairs kept)' if len(m) else '') + '. Shares are fractions of passages (0.01 = one point).')
-    P('Every difference is a fraction of passages; the detector flags about 1% of human passages by design, so effects of a few tenths of a point are near its floor. Details, strict cut, abstract and Kobak rows below.\n')
+    P(f'Every difference is a fraction of passages; the detector flags about {"0.3" if a.detector == "v3" else "1"}% of human passages by design, so effects of a few tenths of a point are near its floor. Details, strict cut, abstract and Kobak rows below.\n')
     P('## 1. Pairs\n')
     P('Pair kinds: **S** = arXiv v1 (public cloud-mirror copy) against the lab paper\'s stored full text (the version our stores captured), dated by its publication date; '
       '**A** = arXiv v1 against the latest arXiv version in the mirror (dated by the margin stamp). The mirror does not hold late revisions of old arXiv papers (a 2022 paper\'s latest mirrored '
@@ -123,7 +130,7 @@ def main():
       'For kind S the later text is the stored (usually published) version, whose extraction differs from the arXiv PDF\'s; `pre_pre` carries the same mismatch, so the contrast removes it to first order.')
     P('- v1 of a post-2022 paper may already contain AI wording, so `post_post` changes understate use; `pre_post` begins from human v1 texts and is the cleaner contrast, but its pairs sit mostly in 2022-2023 '
       '(the earliest months of use), where the flagged-share rise is small.')
-    P('- The passage detector flags about 1% of human passages by design; with roughly 60 passages per paper a single paper\'s change is noisy, so conclusions rest on cell means and the share of pairs, not on single papers.')
+    P(f'- The passage detector flags about {"0.3" if a.detector == "v3" else "1"}% of human passages by design; with roughly 60 passages per paper a single paper\'s change is noisy, so conclusions rest on cell means and the share of pairs, not on single papers.')
     P('- Kobak style words in abstracts are detector-free; for kind S the later abstract is OpenAlex\'s (the published abstract), for A the arXiv PDF\'s, extracted by a heading rule (`Abstract` ... `Introduction`).')
     C.REPORTS.mkdir(parents=True, exist_ok=True)
     open(a.out, 'w').write('\n'.join(L) + '\n')

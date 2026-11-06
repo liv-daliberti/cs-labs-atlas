@@ -31,11 +31,13 @@ def detector_spec(name):
         return dict(model=C.V2_MODEL, threshold=C.V2_THRESHOLD, strict=0.5, abstain_low=None)
     if name == 'v3':
         model = os.environ.get('RV_V3_MODEL') or str(C.V3_DIR / 'models' / 'all' / 'model')
-        mj = os.environ.get('RV_V3_METRICS') or str(C.V3_DIR / 'results' / 'all' / 'metrics.json')
+        mj = os.environ.get('RV_V3_METRICS') or str(C.V3_DIR / 'results' / 'operating_point.json')
         if not (os.path.isdir(model) and os.path.exists(mj)):
             raise SystemExit(f'detector v3 not available: need {model} and {mj} (or RV_V3_MODEL / RV_V3_METRICS)')
         m = json.load(open(mj))
-        return dict(model=model, threshold=m['threshold'], strict=m.get('strict', 0.5), abstain_low=m.get('abstain_low'))
+        # v3 passage score = z (log-odds, detector_v3/score_sections.py); flag = z >= thr_z (0.3% calibration false-alarm rate); strict = z >= 0 (P(AI) >= 0.5);
+        # passages that abstain (under `abstain_words` words or mid-sentence-capital share above `midcap_cut`) are neither stored nor counted.
+        return dict(model=model, threshold=m['thr_z'], strict=0.0, abstain_low=None, abstain_words=m['abstain_words'], midcap_cut=m['midcap_cut'], score='z')
     raise SystemExit(f'unknown detector {name}')
 
 
@@ -79,6 +81,41 @@ def import_v2(want, a):
     C.log(step='imported stored v2 scores', papers=len(ab), passages=len(pas))
 
 
+def import_v3(want, a, spec):
+    """Stored copies, detector v3: the v3 container's MAIN-body passage scores (AI_SCORES = the v3 container, dose/dose_build_v3.py) of the same texts, relabelled with the arXiv id."""
+    import dcommon as D
+    db = sqlite3.connect(f'file:{D.DB}?mode=ro', uri=True)
+    ids = list(want)
+    pas, ab = [], []
+    for i in range(0, len(ids), 500):
+        q = ','.join('?' * len(ids[i:i + 500]))
+        pas.append(pd.read_sql(f'select paper_id, pidx, words, p from passages where paper_id in ({q})', db, params=ids[i:i + 500]))
+        ab.append(pd.read_sql(f'select paper_id, p_ai_abstract as p_abs_v1, n_passages, body_words from papers where paper_id in ({q})', db, params=ids[i:i + 500]))
+    db.close()
+    pas, ab = pd.concat(pas), pd.concat(ab)
+    ab = ab[ab['n_passages'].notna()]
+    pas = pas[pas['paper_id'].isin(set(ab['paper_id']))]
+    pas['arxiv_id'] = pas['paper_id'].map(lambda p: want[p][0]); pas['role'] = 'stored'
+    ab['arxiv_id'] = ab['paper_id'].map(lambda p: want[p][0]); ab['role'] = 'stored'; ab['text_hash'] = 'dose3-' + ab['paper_id']; ab['p_abs_det'] = np.nan
+    d = parts_dir('v3')
+    write_atomic(pas[['arxiv_id', 'role', 'pidx', 'words', 'p']], d / f'{a.tag}-stored.passages.parquet')
+    write_atomic(ab[['arxiv_id', 'role', 'text_hash', 'n_passages', 'body_words', 'p_abs_v1', 'p_abs_det']], d / f'{a.tag}-stored.abstracts.parquet')
+    (d / 'detector.json').write_text(json.dumps(dict(detector='v3', threshold=spec['threshold'], strict=spec['strict'], abstain_low=None, v1_threshold=D.V1_THRESHOLD, model=str(spec['model']),
+                                                     score='z', condition='main body only, abstained passages excluded')))
+    C.log(step='imported stored v3 scores', papers=len(ab), passages=len(pas))
+
+
+def sections_main(text):
+    """Main body of an arXiv full text for detector v3 (fulltext_sections.split_text: Introduction to references/appendix); the text itself when the split finds nothing."""
+    import importlib.util
+    path = os.environ.get('RV_SECTIONS_PY') or '/n/fs/resemble/homogenizing-science/worktrees/fulltext-sections/ai-writing/fulltext_sections.py'
+    spec = importlib.util.spec_from_file_location('fulltext_sections', path)
+    m = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(m)
+    main = m.split_text(text)['main']
+    return main if len(main.split()) >= 200 else text
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--detector', default='v2', choices=['v2', 'v3'])
@@ -102,6 +139,8 @@ def main():
         pl.close()
         if a.import_v2:
             return import_v2(want, a)
+        if a.detector == 'v3':
+            return import_v3(want, a, spec)
         tx = sq.connect(f'file:{C.TEXTS_DB}?mode=ro', uri=True, timeout=600)
         ab = dict(tx.execute('select paper_id, abstract from abstracts'))
         for pid, body in tx.execute('select paper_id, body from fulltext where usable = 1'):
@@ -128,20 +167,41 @@ def main():
     if not rows:
         return
     pid, prole, pidx, words, ptext = [], [], [], [], []
+    n_abst = {}
+    v3 = a.detector == 'v3'
     for aid, role, _t, _a, b, _h in rows:
-        for i, t in enumerate(V.passages(b, cap=PASSAGE_CAP) if b else []):
-            pid.append(aid); prole.append(role); pidx.append(i); words.append(len(t.split())); ptext.append(V.norm(t))
-    m, dtype = DS.load_models([('det', spec['model']), ('v1', D.V1_MODEL / 'model')])
+        body = sections_main(b) if (v3 and b) else b
+        for i, t in enumerate(V.passages(body, cap=PASSAGE_CAP) if body else []):
+            w = len(t.split())
+            if v3 and (w < spec['abstain_words'] or V.quality(t)['midcap'] > spec['midcap_cut']):      # the v3 abstain rule: not scored, not counted
+                n_abst[(aid, role)] = n_abst.get((aid, role), 0) + 1
+                continue
+            pid.append(aid); prole.append(role); pidx.append(i); words.append(w); ptext.append(V.norm(t))
     t0 = time.time()
-    p = DS.predict_v2(*m['det'], dtype, ptext) if ptext else np.zeros(0)
     ab = [(i, r) for i, r in enumerate(rows) if r[3]]
-    p_v1 = DS.predict_v1(*m['v1'], dtype, [D.text1(r[2], r[3]) for _, r in ab]) if ab else np.zeros(0)
-    p_det = DS.predict_v2(*m['det'], dtype, [V.norm(r[3]) for _, r in ab]) if ab else np.zeros(0)
+    if v3:
+        import importlib.util
+        from transformers import AutoModelForSequenceClassification, AutoTokenizer
+        sp = importlib.util.spec_from_file_location('detector_v2_predict', str(C.MAIN_AIW / 'detector_v2' / 'detector.py'))
+        D2 = importlib.util.module_from_spec(sp); sp.loader.exec_module(D2)
+        tok = AutoTokenizer.from_pretrained(spec['model'])
+        det = AutoModelForSequenceClassification.from_pretrained(spec['model']).cuda().eval()
+        pp = D2.predict(det, tok, ptext, bs=128) if ptext else np.zeros(0)
+        p = np.log(np.clip(pp, 1e-300, None)) - np.log(np.clip(1 - pp, 1e-300, None))      # z, as score_sections.py
+        m, dtype = DS.load_models([('v1', D.V1_MODEL / 'model')])
+        p_v1 = DS.predict_v1(*m['v1'], dtype, [D.text1(r[2], r[3]) for _, r in ab]) if ab else np.zeros(0)
+        p_det = np.full(len(ab), np.nan)
+    else:
+        m, dtype = DS.load_models([('det', spec['model']), ('v1', D.V1_MODEL / 'model')])
+        p = DS.predict_v2(*m['det'], dtype, ptext) if ptext else np.zeros(0)
+        p_v1 = DS.predict_v1(*m['v1'], dtype, [D.text1(r[2], r[3]) for _, r in ab]) if ab else np.zeros(0)
+        p_det = DS.predict_v2(*m['det'], dtype, [V.norm(r[3]) for _, r in ab]) if ab else np.zeros(0)
     pas = pd.DataFrame(dict(arxiv_id=pid, role=prole, pidx=np.array(pidx, np.int32), words=np.array(words, np.int32), p=p))
     absd = pd.DataFrame(dict(arxiv_id=[r[0] for r in rows], role=[r[1] for r in rows], text_hash=[r[5] for r in rows]))
     npass = pd.Series([f'{x}|{y}' for x, y in zip(pid, prole)]).value_counts()
     absd['n_passages'] = [int(npass.get(f'{r[0]}|{r[1]}', 0)) for r in rows]
     absd['body_words'] = [len(r[4].split()) for r in rows]
+    absd['n_abstained'] = [int(n_abst.get((r[0], r[1]), 0)) for r in rows]
     absd['p_abs_v1'] = np.nan; absd['p_abs_det'] = np.nan
     for (i, _), v1, dt in zip(ab, p_v1, p_det):
         absd.loc[i, 'p_abs_v1'] = v1; absd.loc[i, 'p_abs_det'] = dt
@@ -149,7 +209,8 @@ def main():
     write_atomic(pas, d / f'{a.tag}-{a.shard}.passages.parquet')
     write_atomic(absd, d / f'{a.tag}-{a.shard}.abstracts.parquet')   # last: its hashes mark the shard done
     (d / 'detector.json').write_text(json.dumps(dict(detector=a.detector, threshold=spec['threshold'], strict=spec['strict'], abstain_low=spec['abstain_low'],
-                                                     v1_threshold=D.V1_THRESHOLD, model=str(spec['model']))))
+                                                     v1_threshold=D.V1_THRESHOLD, model=str(spec['model']),
+                                                     **({'score': 'z', 'condition': 'main body only (fulltext_sections.split_text), abstained passages excluded'} if v3 else {}))))
     C.log(step='done', shard=a.shard, texts=len(rows), passages=len(ptext), minutes=round((time.time() - t0) / 60, 1))
 
 
