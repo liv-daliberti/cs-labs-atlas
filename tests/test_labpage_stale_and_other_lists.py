@@ -26,3 +26,10 @@ def test_current_students_page_address_marks_entries_current():
     x = dict(head='Post-Doctoral Researchers:', desc='', capture_url='https://web.archive.org/web/20220703140740id_/https://icsrl.ece.gatech.edu/current-students/')
     assert L.current_marker(x)
     assert not L.current_marker(dict(x, capture_url='https://icsrl.ece.gatech.edu/alumni/'))
+
+
+def test_bio_degree_sentence_withholds_the_role():
+    r = L.withhold_bio_degree_role(dict(name='Zishen Wan', role='undergraduate', quote='Zishen Wan received his B.S. degree from Harbin Institute of Technology'))
+    assert r['role'] is None and r['role_basis'] == 'withheld_bio_degree_sentence'
+    assert L.withhold_bio_degree_role(dict(role='phd', quote='Hua Chen received his M.S. ... joined ICSRL as a PhD student'))['role'] == 'phd'
+    assert L.withhold_bio_degree_role(dict(role='phd', quote='Jane Doe, PhD student'))['role'] == 'phd'

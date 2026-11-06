@@ -2531,7 +2531,20 @@ def cmd_audit(school):
     disc = read_discovery(school)
     verdicts = recover_verdicts(school)
     recs, stu_adds, pap_adds, _ = assemble(kit, ctx, disc, verdicts)
+    stu_adds = [withhold_bio_degree_role(r) for r in stu_adds]
     write_audit(school, recs, stu_adds, pap_adds)
+
+
+DEGREE_SENTENCE = re.compile(r'\b(?:received|obtained|earned|holds|graduated with)\b[^.]{0,50}\b(?:B\.?\s?S\.?|M\.?\s?S\.?|Ph\.?\s?D\.?|Bachelor|Master|degree)', re.I)
+
+
+def withhold_bio_degree_role(r):
+    """R-LAB-05 (Georgia Tech round 2, ICSRL): in a page of member bios ('X received the B.S. ...') the role was read from the first degree sentence (a PhD student read as an undergraduate,
+    a postdoc as a PhD). Such an entry's role is withheld (a lab member) unless its own text says student, candidate or joined."""
+    q = r.get('quote') or ''
+    if r.get('role') and DEGREE_SENTENCE.search(q) and not re.search(r'student|candidate|joined|postdoc', q, re.I):
+        r = dict(r, role=None, role_basis='withheld_bio_degree_sentence')
+    return r
 
 
 def refinish(recs, keep, verdicts):
