@@ -4,7 +4,7 @@
   lab_ai_score.py handread [--n 5] [--min-scored 8]     the papers behind the highest and lowest scored labs (stdout), for the hand check
 
 Formula (method_version main-body-1)
-  paper share   s_p = flagged main-body passages / scored main-body passages. A passage is flagged when the detector's P(AI) is >= its 1% false-alarm
+  paper share   s_p = flagged main-body passages / scored main-body passages. A passage is flagged when the detector score is >= its calibrated false-alarm (v2: 1%, v3: 0.3%)
                 threshold. Main body = the passages the section tags mark (references and appendix passages are excluded: tags come from
                 fulltext_sections.py); passages under `min_passage_words` (the short tail passage, 8% false alarms) are dropped. A paper is usable when
                 its main text has >= `min_main_words` words and >= `min_scored_passages` scored main passages.
@@ -20,6 +20,7 @@ import argparse
 import glob
 import gzip
 import json
+import os
 import sqlite3
 from pathlib import Path
 
@@ -44,7 +45,7 @@ def load_config(path=None):
 def slot(path):
     """'AI_SCORES/x' style path -> real path (the container slot, from atlas_paths)."""
     head, _, rest = path.partition('/')
-    base = {'AI_SCORES': D.SCORES}.get(head)
+    base = {'AI_SCORES': D.SCORES, 'AI_SCORES_V3': Path(os.environ.get('AI_SCORES_V3_DIR') or (D.P.CODE / 'ai-writing' / 'data' / 'ai-scores-v3'))}.get(head)
     return (base / rest) if base else Path(path)
 
 
@@ -59,8 +60,8 @@ def load_passages(det):
     return pd.read_parquet(slot(spec), columns=['paper_id', 'pidx', 'words', 'p'])
 
 
-def load_tags(cfg):
-    files = sorted(glob.glob(str(slot(cfg['sections']['tags']))))
+def load_tags(cfg, det):
+    files = sorted(glob.glob(str(slot(det.get('tags') or cfg['sections']['tags']))))
     if not files:
         raise SystemExit(f"no section tags at {cfg['sections']['tags']} (run lab_ai_main_tags.py)")
     return pd.concat([pd.read_parquet(f) for f in files], ignore_index=True)
@@ -68,8 +69,8 @@ def load_tags(cfg):
 
 def paper_table(cfg, det):
     """One row per tagged paper: n_scored, n_flag, share, usable, plus the legacy and abstract measures."""
-    tags = load_tags(cfg)
-    tg = pd.read_parquet(D.RESULTS / 'lab_ai' / 'targets.parquet')[['paper_id', 'year', 'home_school', 'trained_on']]
+    tags = load_tags(cfg, det)
+    tg = pd.read_parquet(slot(det['targets']) if det.get('targets') else D.RESULTS / 'lab_ai' / 'targets.parquet')[['paper_id', 'year', 'home_school', 'trained_on']]
     tags = tags.merge(tg, on='paper_id')
     ok = tags[tags['error'].isna() & tags['main_pidx'].astype(bool)]
     main = ok[['paper_id', 'main_pidx']].copy()
@@ -286,9 +287,9 @@ def build(cfg_path=None, out_dir=None):
     print(json.dumps(val, indent=1, default=float))
 
 
-def handread(n, min_scored, cfg_path=None):
+def handread(n, min_scored, cfg_path=None, out_dir=None):
     cfg, det = load_config(cfg_path)
-    d = json.loads((OUT / 'lab_ai_scores_2025.json').read_text())['labs']
+    d = json.loads((Path(out_dir or OUT) / 'lab_ai_scores_2025.json').read_text())['labs']
     df = pd.DataFrame.from_dict(d, orient='index')
     df = df[df['n_scored'] >= min_scored].dropna(subset=['score'])
     df = df.sort_values('score')
@@ -316,4 +317,4 @@ if __name__ == '__main__':
     ap.add_argument('--n', type=int, default=5)
     ap.add_argument('--min-scored', type=int, default=8)
     a = ap.parse_args()
-    build(a.config, a.out) if a.cmd == 'build' else handread(a.n, a.min_scored, a.config)
+    build(a.config, a.out) if a.cmd == 'build' else handread(a.n, a.min_scored, a.config, a.out)
