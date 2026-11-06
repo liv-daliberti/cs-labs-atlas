@@ -22,6 +22,7 @@ def test_generic_students_heading_gives_the_student_role():
     assert L.generic_student_role(None, ['Students']) == 'student'
     assert L.generic_student_role(None, ['Group', 'Current Students']) == 'student'
     assert L.generic_student_role(None, ['Advising']) == 'student'
+    assert L.generic_student_role(None, ['People', 'GRADUATE MEMBERS']) == 'student'
     assert L.generic_student_role(None, ['Members']) is None
     assert L.generic_student_role(None, ['Students in the news']) is None
     assert L.generic_student_role('phd', ['Students']) == 'phd'

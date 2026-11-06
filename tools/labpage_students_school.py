@@ -788,7 +788,7 @@ def surname_advisers(key):
     print(json.dumps(dict(n, relations=sum(len(v) for v in out.values()), labs=len(out))))
 
 
-GENERIC_STUDENT_HEAD = re.compile(r"^\W*(?:(?:current|former|past|my|our)\s+)?(?:students|student\s+members|advisees|advising|mentees)\W*(?:\(.*\))?\W*$", re.I)
+GENERIC_STUDENT_HEAD = re.compile(r"^\W*(?:(?:current|former|past|my|our)\s+)?(?:students|student\s+members|advisees|advising|mentees|(?:under)?graduate\s+(?:members|researchers))\W*(?:\(.*\))?\W*$", re.I)
 
 
 def generic_student_role(role, path):
