@@ -27,6 +27,7 @@ def fmt(b, lo, hi, d=3):
 
 def md(df, cols=None):
     cols = cols or list(df.columns)
+    df = df.rename(columns=str); cols = [str(c) for c in cols]
     out = ['| ' + ' | '.join(cols) + ' |', '|' + '---|' * len(cols)]
     for r in df[cols].itertuples(index=False):
         out.append('| ' + ' | '.join(str(x) for x in r) + ' |')
@@ -52,6 +53,20 @@ def main():
     P('# Citation-based novelty and diversity of lab papers (Experiment A)\n')
     P(f'Generated {time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())} by `ai-writing/citnovelty/cn_report.py`; data: OpenAlex bulk snapshot {info.get("snapshot_date")} (S3, no API credits), '
       f'{nmeta:,} referenced works characterised; sampling factor for n_k = {info.get("sample_mod")}. Years 2016-2025 only (owner rule); 2026 is in no table.\n')
+    # ---- summary (computed)
+    P('## Summary\n')
+    a_ = cov[cov['school'] == 'all'].set_index('year')
+    P(f'**Coverage.** {a_.loc[2016:2021, "refs5"].mean() * 100:.0f}% of 2016-2021 lab papers have >= 5 references in the snapshot, {a_.loc[2023:2025, "refs5"].mean() * 100:.0f}% of 2023-2025 papers '
+      f'(2025: {a_.loc[2025, "refs5"] * 100:.0f}%); Uzzi z exists for {a_.loc[2016:2021, "z"].mean() * 100:.0f}% / {a_.loc[2023:2025, "z"].mean() * 100:.0f}%; CD1 for {a_.loc[2016:2021, "cd1"].mean() * 100:.0f}% / {a_.loc[2023:2024, "cd1"].mean() * 100:.0f}% (2023-2024); CD5 only for 2016-2020.')
+    if pre is not None:
+        g = lambda o, sp: pre[(pre['outcome'] == o) & (pre['spec'] == sp)].iloc[0]
+        for o, nm in (('rs_sub', 'Rao-Stirling diversity'), ('h_venue', 'cited-venue entropy'), ('z_p10', 'Uzzi z p10'), ('cos', 'within-lab reference overlap (cosine)')):
+            r, p19 = g(o, 'post2023_vs_2016_21'), g(o, 'placebo2019')
+            P(f'**{nm}.** Within labs, 2023-2025 against 2016-2021: {fmt(r["beta"], r["lo"], r["hi"])}; the placebo break at 2019 within 2016-2021 gives {fmt(p19["beta"], p19["lo"], p19["hi"])}.')
+    if pboot is not None:
+        t = pboot[(pboot['period'] == 'post') & (pboot['design'] == 'withinlab')]
+        P('**AI dose, within lab x year (2023-2025, per unit of ai_share):** ' + '; '.join(f'{NAMES.get(r.measure, r.measure)} {fmt(r.beta, r.lo, r.hi)}' for r in t.itertuples()) + '.')
+    P('Read with the placebo rows: where the post-period interval does not lie beyond the 2016-2021 placebo spread there is no evidence of an AI-related change.\n')
     # ---- coverage
     P('## 1. Data coverage\n')
     al = cov[cov['school'] == 'all'].set_index('year')

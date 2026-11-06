@@ -23,6 +23,7 @@ def fmt(b, lo, hi, d=3):
 
 def md(df, cols=None):
     cols = cols or list(df.columns)
+    df = df.rename(columns=str); cols = [str(c) for c in cols]
     out = ['| ' + ' | '.join(cols) + ' |', '|' + '---|' * len(cols)]
     for r in df[cols].itertuples(index=False):
         out.append('| ' + ' | '.join(str(x) for x in r) + ' |')
