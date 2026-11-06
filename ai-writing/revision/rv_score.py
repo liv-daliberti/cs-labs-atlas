@@ -24,6 +24,7 @@ import pandas as pd
 import rv_common as C
 
 PASSAGE_CAP = 100
+CHUNK = int(os.environ.get('RV_CHUNK', '250'))      # texts per written part (a timed-out shard keeps its finished chunks)
 
 
 def detector_spec(name):
@@ -127,9 +128,6 @@ def main():
     ap.add_argument('--import-v2', action='store_true', help='stored + v2 only: copy the dose study\'s existing scores instead of scoring again (same detector, same splitter)')
     a = ap.parse_args()
     spec = detector_spec(a.detector)
-    import dcommon as D
-    import dose_score as DS
-    import v2common as V
     seen = done_keys(a.detector)
     rows = []
     if a.source == 'stored':
@@ -166,6 +164,15 @@ def main():
     C.log(step='todo', shard=a.shard, texts=len(rows), already=len(seen), detector=a.detector)
     if not rows:
         return
+    for k in range(0, len(rows), CHUNK):
+        score_rows(rows[k:k + CHUNK], a, spec, f'{a.tag}-{a.shard}-c{k // CHUNK}')
+
+
+def score_rows(rows, a, spec, part):
+    """Score a chunk of texts and write it as one part (resumable: a finished chunk's text hashes are skipped on re-run)."""
+    import dcommon as D
+    import dose_score as DS
+    import v2common as V
     pid, prole, pidx, words, ptext = [], [], [], [], []
     n_abst = {}
     v3 = a.detector == 'v3'
@@ -206,12 +213,12 @@ def main():
     for (i, _), v1, dt in zip(ab, p_v1, p_det):
         absd.loc[i, 'p_abs_v1'] = v1; absd.loc[i, 'p_abs_det'] = dt
     d = parts_dir(a.detector)
-    write_atomic(pas, d / f'{a.tag}-{a.shard}.passages.parquet')
-    write_atomic(absd, d / f'{a.tag}-{a.shard}.abstracts.parquet')   # last: its hashes mark the shard done
+    write_atomic(pas, d / f'{part}.passages.parquet')
+    write_atomic(absd, d / f'{part}.abstracts.parquet')   # last: its hashes mark the shard done
     (d / 'detector.json').write_text(json.dumps(dict(detector=a.detector, threshold=spec['threshold'], strict=spec['strict'], abstain_low=spec['abstain_low'],
                                                      v1_threshold=D.V1_THRESHOLD, model=str(spec['model']),
                                                      **({'score': 'z', 'condition': 'main body only (fulltext_sections.split_text), abstained passages excluded'} if v3 else {}))))
-    C.log(step='done', shard=a.shard, texts=len(rows), passages=len(ptext), minutes=round((time.time() - t0) / 60, 1))
+    C.log(step='done', part=part, shard=a.shard, texts=len(rows), passages=len(ptext), minutes=round((time.time() - t0) / 60, 1))
 
 
 if __name__ == '__main__':
