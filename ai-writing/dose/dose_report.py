@@ -130,7 +130,7 @@ V3_BANNER = '''
 '''
 
 
-def build(out_dir, name='AI-DOSE-NOVELTY-DIVERSITY.md'):
+def build(out_dir, fname='AI-DOSE-NOVELTY-DIVERSITY.md'):
     out_dir = Path(out_dir)
     fig = out_dir / FIGDIR
     res = D.RESULTS
@@ -191,8 +191,8 @@ def build(out_dir, name='AI-DOSE-NOVELTY-DIVERSITY.md'):
         L.append('Not run yet.\n')
     L.append('\n## Method notes\n\nSee `ai-writing/dose/README.md` and the module docstrings (dose_analysis.py, dose_lab.py, dose_mechanical.py, dose_validate.py).\n')
     out_dir.mkdir(parents=True, exist_ok=True)
-    (out_dir / name).write_text('\n'.join(L))
-    D.log(report=str(out_dir / name), json=json.dumps(dict(paper=paper is not None, did=did is not None, mech=mech is not None)))
+    (out_dir / fname).write_text('\n'.join(L))
+    D.log(report=str(out_dir / fname), json=json.dumps(dict(paper=paper is not None, did=did is not None, mech=mech is not None)))
 
 
 if __name__ == '__main__':
