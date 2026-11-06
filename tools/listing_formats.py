@@ -245,6 +245,19 @@ def seas_directory(h):
     return out
 
 
+def wse_entity(h):
+    """Johns Hopkins Whiting School WordPress theme ('wse'): <li class="entity_list_item"> with entity_name(_link) and entity_title (CS 2021-, other Whiting sites)."""
+    out = []
+    for p in re.split(r'<li class="entity_list_item">', h)[1:]:
+        nm = re.search(r'<h\d class="entity_name"[^>]*>(.*?)</h\d>', p, re.S)
+        if not nm:
+            continue
+        jt = re.search(r'<div class="entity_title">(.*?)</div>', p, re.S)
+        link = re.search(r'href="([^"]+)"', nm.group(1))
+        out.append(dict(name_listed=clean(nm.group(1)), titles=_titles(jt.group(1)) if jt else [], homepage=link.group(1) if link else None, division=None))
+    return out
+
+
 FORMATS = {
     'eecs_table': (eecs_table, re.compile(r'<b>Division:</b>', re.I)),
     'eecs_wp': (eecs_wp, re.compile(r"class=['\"]eecs_person_wrapper['\"]")),
@@ -260,6 +273,7 @@ FORMATS = {
     'ece_new': (ece_new, re.compile(r'field--name-field-person-official-job-title')),
     'isye_old': (isye_old, re.compile(r'<!-- Person -->')),
     'seas_directory': (seas_directory, re.compile(r'person__detailed-name')),
+    'wse_entity': (wse_entity, re.compile(r'class="entity_list_item"')),
     'isye_card': (isye_card, re.compile(r'class="w-100 px-0 pt-0 person-name"')),
 }
 
