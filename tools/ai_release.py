@@ -21,6 +21,7 @@ LAST_YEAR = 2025
 DOSE_FILES = ['ai_hist.json', 'ai_position.json']
 LAB_FILE = re.compile(r'^labs_ai_hist_[a-z0-9_-]+\.json(\.gz)?$')
 ALL_AI_FILES = ['labs.json', 'methods.json', 'novelty.json', 'overall.json', 'preservation.json', 'schools.json', 'trend.json']
+WORDS_FILES = ['words.json', 'word_curves.json']   # ai-writing/dose/ai_words_site.py; optional, but a words/ folder must hold both
 MANIFEST_NAME = 'ai/manifest.json'
 
 
@@ -49,6 +50,11 @@ def collect(root):
         if not (root / 'all-ai' / n).is_file():
             raise SystemExit(f'AI site data incomplete: {root / "all-ai" / n} is missing (ai-writing/allai/site_data.py build)')
         src[f'ai/all-ai/{n}'] = root / 'all-ai' / n
+    if (root / 'words').is_dir():
+        for n in WORDS_FILES:
+            if not (root / 'words' / n).is_file():
+                raise SystemExit(f'AI site data incomplete: {root / "words" / n} is missing (ai-writing/dose/ai_words_site.py assemble)')
+            src[f'ai/words/{n}'] = root / 'words' / n
     return src
 
 
