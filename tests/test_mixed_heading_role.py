@@ -1,4 +1,4 @@
-"""A heading that names PhD students and postdocs does not decide the role: the entry's own words do (UChicago round 2)."""
+"""R-STU-21: a heading that names PhD students and postdocs does not decide the role: the entry's own words do (UChicago round 2)."""
 import sys
 from pathlib import Path
 

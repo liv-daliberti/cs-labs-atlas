@@ -1,3 +1,4 @@
+# R-STU-21
 """previous_school_students never reads the school's own package (UChicago, 2026-11-05): once a school is released its package is among
 S.released(), and a rerun of `extract` after a build took every student the build already held for a 'previous school' student and
 dropped it (56 accepted lab-page students vanished)."""
