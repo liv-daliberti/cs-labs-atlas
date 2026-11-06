@@ -89,3 +89,19 @@ def test_resubmission_records_its_job_id_and_a_finished_one_does_not_block(tmp_p
     run_and_signal(script, child_log, signal.SIGUSR1)
     assert 'resubmitted: Submitted batch job 4242' in rlog.read_text()
     assert (tmp_path / 'logs' / '.resubmitted-downloads.slurm-none-3').read_text().strip() == '4242'
+
+
+def test_sentinel_naming_the_running_job_itself_does_not_block_the_resubmit(tmp_path):
+    """2026-11-06: the sentinel holds the id of the job that is resubmitting (its predecessor wrote it); that must not count as 'already resubmitted'."""
+    script, calls, child_log, rlog = make(tmp_path)
+    (tmp_path / 'logs').mkdir(exist_ok=True)
+    (tmp_path / 'logs' / '.resubmitted-downloads.slurm-none-3').write_text('7\n')  # SLURM_JOB_ID of the fake job
+    env = dict(os.environ, FAKE_QUEUED='7')
+    p = subprocess.Popen(['bash', str(script)], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, env=env)
+    for _ in range(100):
+        if child_log.exists() and 'started' in child_log.read_text():
+            break
+        time.sleep(0.1)
+    os.kill(p.pid, signal.SIGUSR1)
+    p.wait(timeout=30)
+    assert 'resubmitted: Submitted batch job 4242' in rlog.read_text()
