@@ -15,6 +15,7 @@ set -euo pipefail
 cd ${SLURM_SUBMIT_DIR}/ai-writing/detector_v4
 export LD_LIBRARY_PATH="${CS_ATLAS_ENV_LIB}${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 export HF_HOME=${CS_ATLAS_HF_HOME} HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 TOKENIZERS_PARALLELISM=false PYTHONDONTWRITEBYTECODE=1
+export PYTHONUTF8=1 LC_ALL=C.UTF-8
 export OMP_NUM_THREADS=${SLURM_CPUS_PER_TASK:-8}
 echo "{\"node\": \"$(hostname)\", \"args\": \"$*\", \"gpus\": \"${CUDA_VISIBLE_DEVICES:-}\"}"
 ${CS_ATLAS_ENV_PY} -u -B detector4.py "$@" $([ "$1" = train ] && echo --budget 44) 2>&1 | { grep --line-buffered -v -E "tensorflow|cudart|dso_loader" || true; }

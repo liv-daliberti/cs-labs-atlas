@@ -6,9 +6,10 @@
   pair  route 2, paired/contrastive: each light-edit AI passage is trained together with its human source (adjacent in the batch)
         under CE plus a margin loss softplus(MARGIN - (z_ai - z_src)), z = logit1 - logit0. The paired sources replace the same
         number of random human negatives, so the number of sequences and steps equals v3's.
+  drop  route 1b: AI edits (polish, paraphrase, humanize, partial) are removed from the training set; positives are AI-written only (notes, continue).
   base  v3 itself (control: same code path, for checking that the harness reproduces v3).
   Selection among variants uses the unseen family's TRAIN-split outputs (never the test split).
-usage: detector4.py train --tag T --variant tri|pair|base [--holdout FAMILY] [--budget MIN] | detector4.py score --tag T --variant V
+usage: detector4.py train --tag T --variant tri|pair|drop|base [--holdout FAMILY] [--budget MIN] | detector4.py score --tag T --variant V
 """
 import argparse, gzip, json, os, random, time
 import numpy as np, torch
@@ -61,11 +62,13 @@ def build(holdout, variant):
     neg = [dict(text=V.norm(h['text']), y=0) for h in hard + rest[:D3.HUMAN_RANDOM]]
     arows = [r for r in D3.ai_rows(False) if r['split'] == 'train' and r['family'] != holdout and (r['task'] != 'partial' or r['ai_frac'] >= 0.5)]
     pos = [dict(text=V.norm(r['text']), y=1, task=r['task'], sid=r['sid']) for r in arows]
+    if variant == 'drop':  # route 1b: AI edits leave the positive class (and training) altogether; only AI-written text is positive
+        pos = [p for p in pos if p['task'] in K.WRITTEN_TASKS]
     if variant == 'tri':
         for p in pos:
             p['y'] = 1 if p['task'] in K.WRITTEN_TASKS else 2
     log(variant=variant, train_human=len(neg), train_ai=len(pos), holdout=holdout, edits=sum(p['task'] in K.EDIT_TASKS for p in pos))
-    if variant in ('base', 'tri'):
+    if variant in ('base', 'tri', 'drop'):
         rows = neg + pos * D3.AI_REPEAT
         units = [dict(seqs=[(r['text'], r['y'])], pair=False) for r in rows]
     else:
