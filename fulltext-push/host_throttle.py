@@ -27,7 +27,10 @@ WINDOW = 7200.0
 # 2026-11-04: one request budget per host for ALL our clients (download loops, etd crawl). The interval here is the real limit: reserve() uses it
 # instead of the caller's own delay, so a loop asking at 6 s and a crawl asking at 3 s still share 5 s slots (~12 a minute for web.archive.org,
 # whose playback limit is about 15 a minute; four 429s in two hours on 2026-11-04 came from two clients each keeping its own clock).
-SHARED_INTERVAL = {'web.archive.org': 5.0, 'archive.org': 5.0}
+# 2026-11-05: 8 s (7.5 a minute). At 5 s the clients still drew 429s in bursts of three or four (slots reserved before a 429 fired into the
+# cooldown), and each burst 429 doubled the cooldown up to the 1-hour cap; see wait_slot() and BURST below.
+SHARED_INTERVAL = {'web.archive.org': 8.0, 'archive.org': 8.0}
+BURST = 60.0           # a 429 within this many seconds of the previous one (or inside a running cooldown) is the same event: no doubling
 LOW_GAP_SLOTS = 3      # a low-priority client (the SMARTech crawl: evidence) takes at most one slot in 3 while a loop was served in the last LOW_WINDOW s
 LOW_WINDOW = 60.0
 
@@ -88,6 +91,34 @@ def reserve(host, delay, now=None, path=None, low=False):
         return slot - now
 
 
+def _until(host, path=None):
+    try:
+        return float((json.loads(Path(path or state_path()).read_text()).get(host) or {}).get('until', 0.0))
+    except (OSError, ValueError):
+        return 0.0
+
+
+def wait_slot(host, delay, low=False, sleep=time.sleep, path=None, max_cooldown=WAIT_MAX):
+    """Wait for this process's next request slot of `host`, then re-check the shared cooldown: a 429 recorded by another client while this one
+    waited starts (or extends) a cooldown that the slot does not know about, so wait that out and reserve again rather than firing into it.
+    Only a cooldown that ends later than the one already waited out sends it round again. Raises RuntimeError when a cooldown longer than
+    `max_cooldown` is running (the caller pauses the host, as before). -> seconds waited."""
+    waited, seen = 0.0, 0.0
+    while True:
+        until, left = _until(host, path), cooldown_left(host, path=path)
+        if left > max_cooldown:
+            raise RuntimeError(f'{host} cooling down for {left:.0f}s')
+        if left > 0 and until > seen:
+            sleep(left + 1.0)
+            waited += left + 1.0
+        seen = max(seen, until)
+        w = reserve(host, delay, path=path, low=low)
+        sleep(w)
+        waited += w
+        if _until(host, path) <= seen:      # no new 429 while this client waited for its slot
+            return waited
+
+
 def cooldown_left(host, now=None, path=None):
     now = time.time() if now is None else now
     try:
@@ -103,7 +134,11 @@ def record_429(host, now=None, path=None):
     with _Locked(path or state_path()) as st:
         _prune(st, now)
         s = st.setdefault(host, {})
-        n = len(s.get('n429', []))
+        prev = s.get('n429', [])
+        if prev and (now - prev[-1] < BURST or now < s.get('until', 0.0)):   # same burst: slots reserved before the first 429 fired into it
+            s['next'] = max(s.get('next', 0.0), s.get('until', 0.0))
+            return max(0.0, s.get('until', 0.0) - now)
+        n = len(prev)
         cool = min(BASE_COOLDOWN * 2 ** n, MAX_COOLDOWN)
         s['n429'] = s.get('n429', []) + [now]
         s['until'] = max(s.get('until', 0.0), now + cool)

@@ -39,11 +39,12 @@ def test_429_cooldown_doubles_and_is_capped(tmp_path):
     assert HT.cooldown_left('h', now=0, path=p) == 0.0
     assert HT.record_429('h', now=100.0, path=p) == 300.0
     assert HT.cooldown_left('h', now=150.0, path=p) == 250.0
-    assert HT.record_429('h', now=200.0, path=p) == 600.0
-    assert HT.record_429('h', now=300.0, path=p) == 1200.0
-    assert HT.record_429('h', now=400.0, path=p) == 2400.0
-    assert HT.record_429('h', now=500.0, path=p) == 3600.0                   # capped
-    assert HT.record_429('h', now=500.0 + HT.WINDOW + 4000, path=p) == 300.0 # old 429s are forgotten
+    assert HT.record_429('h', now=200.0, path=p) == 200.0                    # inside the running cooldown: the same event, no doubling (2026-11-05)
+    assert HT.record_429('h', now=401.0, path=p) == 600.0                    # a new event after it ends: doubles
+    assert HT.record_429('h', now=1002.0, path=p) == 1200.0
+    assert HT.record_429('h', now=2203.0, path=p) == 2400.0
+    assert HT.record_429('h', now=4604.0, path=p) == 3600.0                  # capped
+    assert HT.record_429('h', now=4604.0 + HT.WINDOW + 4000, path=p) == 300.0  # old 429s are forgotten
 
 
 def test_a_short_cooldown_is_waited_out_and_the_host_asked_again(tmp_path, monkeypatch):
@@ -68,18 +69,19 @@ def test_a_long_cooldown_pauses_the_host_until_it_ends(tmp_path, monkeypatch):
     slept = []
     monkeypatch.setattr(W.time, 'sleep', lambda s: slept.append(s))
     b = W._Blocked()
-    for _ in range(3):
-        b['h.example'] = W.RATE_429              # a third 429 within two hours: 1,200 s, longer than WAIT_MAX
-    assert 'h.example' in b and not slept        # paused as before (the pass's remaining works fail as source_paused)
+    for i in range(3):                           # separate events, each after the previous cooldown ended: 300, 600, then 1,200 s
+        b['h.example'] = W.RATE_429
+        if i < 2:
+            now[0] += HT.cooldown_left('h.example') + 1
+    assert 'h.example' in b                      # a 1,200 s cooldown is longer than WAIT_MAX: paused as before
     now[0] += 1300
     assert 'h.example' not in b
 
 
 def test_another_process_429_is_honoured(tmp_path, monkeypatch):
     monkeypatch.setattr(HT, 'state_path', lambda: tmp_path / 'ht.json')
-    HT.record_429('shared.example')              # a different loop's 429
-    for _ in range(2):
-        HT.record_429('shared.example')
+    import json as _j, time as _t                # a different loop's 429 escalated the host to a long cooldown
+    (tmp_path / 'ht.json').write_text(_j.dumps({'shared.example': {'until': _t.time() + 2400, 'next': _t.time() + 2400, 'n429': [_t.time()]}}))
     b = W._Blocked()
     assert 'shared.example' in b
 
