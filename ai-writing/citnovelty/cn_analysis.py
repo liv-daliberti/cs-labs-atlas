@@ -66,6 +66,8 @@ def cmd_trends(df):
 def lab_panel(df):
     _, lp = C.universe_papers()
     lp = lp[lp['year'].between(C.FIRST_YEAR, C.LAST_YEAR)]
+    if 'trained_on_v3' in df:      # detector v3: 2016-2021 papers of the detector's training split are no false-alarm floor: left out of the lab-year pre-period dose
+        df = df.assign(ai_share=df['ai_share'].where(~df['trained_on'].fillna(False).astype(bool), np.nan))
     cols = ['paper_id', 'ai_share', 'flag_abstract', *[m for m in LAB_Y if m in df]]
     pl = lp[['paper_id', 'lab_id', 'year']].merge(df[cols], on='paper_id', how='left')
     g = pl.groupby(['lab_id', 'year'])

@@ -117,6 +117,9 @@ def paper_table(with_split=True):
     if with_split:
         sp = split_of_old_keys()
         df['old_split'] = df['paper_id'].map(sp)
+        if 'trained_on_v3' in df:      # detector-v3 container: the v3 training split (carries the OpenAlex-id fix, all schools)
+            df['trained_on'] = df['trained_on_v3'].fillna(False).astype(bool) & df['ai_share'].notna()
+            return df
         df['trained_on'] = df['old_split'].eq('train') & df['year'].between(2016, 2021) & df['home_school'].isin(ORIGINAL) & df['ai_share'].notna()
     return df
 
