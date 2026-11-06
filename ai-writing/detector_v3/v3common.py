@@ -33,9 +33,17 @@ GEN = {
     'gemma3-12b': ('gemma', 'unsloth/gemma-3-12b-it', 'v3'),
     'olmo2-7b': ('olmo', 'allenai/OLMo-2-1124-7B-Instruct', 'v3'),
     'granite33-8b': ('granite', 'ibm-granite/granite-3.3-8b-instruct', 'v3'),
+    # v3.1: more families like the hardest one (Qwen) and light-edit tasks; train/cal-side only, the v3 test sets stay as they are
+    'yi9b': ('yi', '01-ai/Yi-1.5-9B-Chat', 'v31'),
+    'falcon3-10b': ('falcon', 'tiiuae/Falcon3-10B-Instruct', 'v31'),
+    'internlm3-8b': ('internlm', 'internlm/internlm3-8b-instruct', 'v31'),
+    'qwen3b': ('qwen', 'Qwen/Qwen2.5-3B-Instruct', 'v31'),
+    'phi35mini': ('phi', 'microsoft/Phi-3.5-mini-instruct', 'v31'),
 }
 FAMILY = {g: v[0] for g, v in GEN.items()}
 V3GENS = [g for g, v in GEN.items() if v[2] == 'v3']
+V31NEW = [g for g, v in GEN.items() if v[2] == 'v31']
+V31LIGHT = ['qwen14b', 'llama31-8b', 'llama32-3b', 'mistral7b', 'phi4', 'gemma2-9b', 'nemo', 'olmo2-7b']  # extra light-edit round on existing generators
 FAMILIES = sorted(set(FAMILY.values()))
 HELD = ('llama', 'gemma', 'qwen')  # families held out, one leave-one-family-out model each
 NEXT_BASE = 'answerdotai/ModernBERT-large'

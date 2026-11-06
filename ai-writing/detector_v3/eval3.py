@@ -117,7 +117,9 @@ def fmtm(r):
     return f"{100 * r['miss_rate']:.2f}% ({100 * r['miss_ci'][0]:.2f}-{100 * r['miss_ci'][1]:.2f}) n={r['n']}"
 
 
-if __name__ == '__main__':
+if __name__ == '__main__' and sys.argv[1:2] == ['op']:
+    pass
+elif __name__ == '__main__':
     tag, alpha = sys.argv[1], float(sys.argv[2])
     r = Run(tag).evaluate(alpha)
     print(json.dumps({k: v for k, v in r.items() if k in ('thr_z', 'abstain_share_test', 'abstain_share_ai')}))
@@ -125,3 +127,18 @@ if __name__ == '__main__':
     for k, v in r['family'].items():
         if k.endswith('/claim'):
             print(k, fmtm(v))
+
+
+def operating_point(tag='all', alpha=0.003):
+    """The deployed rule, fixed on cal only: threshold z (cal 1 - alpha quantile of non-abstained passages), abstain = words < ABST_WORDS or
+    mid-sentence-capital share > cal 95th percentile. Written to results/operating_point.json by `eval3.py op`."""
+    r = Run(tag)
+    ev = r.evaluate(alpha)
+    return dict(tag=tag, alpha=alpha, thr_z=ev['thr_z'], midcap_cut=ev['midcap_cut'], abstain_words=ABST_WORDS, cal_passages=ev['cal_passages'],
+                test_fpr=ev['fpr'], test_abstain_share=ev['abstain_share_test'])
+
+
+if __name__ == '__main__' and sys.argv[1:2] == ['op']:
+    op = operating_point()
+    json.dump(op, open(C.RESULTS / 'operating_point.json', 'w'), indent=1)
+    print(json.dumps(op))

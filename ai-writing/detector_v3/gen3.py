@@ -14,11 +14,14 @@ starting parts after --budget minutes (Slurm limit 59), so resubmitting the same
 usage: gen3.py generate <gen> [--tp N] [--budget MIN] | gen3.py selftest
 """
 import argparse, gzip, json, re, time
+import os
 import v3common as C
 import gen as G2  # detector_v2/gen.py: clean, prompt (polish / paraphrase), KEEP
 
 V = C.V
 PART = 500
+SRC = os.environ.get('AIW3_SRC', 'sources3.jsonl')  # v3.1: sources31.jsonl
+OUTD = os.environ.get('AIW3_OUT', 'gen3')      # v3.1: gen31
 SENT = re.compile(r'(?<=[.!?])\s+(?=[A-Z(\[])')
 HUMAN = ("Rewrite the passage below, from the body of a computer science research paper titled \"{title}\", so that it does not read as "
          "AI-generated: use plain, direct wording, vary the sentence lengths, avoid stock phrases such as 'delve', 'moreover', 'crucial', "
@@ -29,6 +32,9 @@ CONT = ("Here is the beginning of a paragraph from the body of a computer scienc
 NOTES1 = "List the key points of this passage from a computer science research paper as 3 to 6 short bullet points. Return only the bullet points.\n\n{text}"
 NOTES2 = ("Write a passage of about {n} words for the body of a computer science research paper titled \"{title}\" that covers these points:\n{pts}\n\n"
           "Write continuous academic prose as a single paragraph, without headings or bullet points. Return only the passage.")
+MINIMAL = ("Here is a passage from the body of a computer science research paper titled \"{title}\". Make only the smallest edits needed: fix "
+           "grammar, typos and clumsy phrasing and change nothing else, so that most of the original wording stays. Keep all content and about {n} words. "
+           + G2.KEEP + " Return only the edited passage, as plain text in a single paragraph.\n\n{text}")
 SENTP = ("Rewrite this sentence from a computer science research paper to improve its clarity and style, keeping its meaning and any citation "
          "markers, numbers and symbols. It sits in this passage:\n\n{text}\n\nSentence to rewrite: {sent}\n\nReturn only the rewritten sentence.")
 
@@ -57,8 +63,14 @@ def run_part(llm, tok, SP, src):
     def emit(k, s, raw, fin, text_override=None, ai_frac=1.0, points=None):
         out[k] = (s, raw, fin, text_override, ai_frac, points)
 
-    direct = [(s['sid'], s, None) for s in src if s['task'] in ('polish', 'paraphrase', 'humanize')]
-    mk = lambda s, x: (HUMAN.format(title=s['title'], n=len(s['text'].split()), text=s['text']) if s['task'] == 'humanize' else G2.prompt(s))  # noqa: E731
+    direct = [(s['sid'], s, None) for s in src if s['task'] in ('polish', 'paraphrase', 'humanize', 'minimal')]
+    def mk(s, x):
+        n = len(s['text'].split())
+        if s['task'] == 'humanize':
+            return HUMAN.format(title=s['title'], n=n, text=s['text'])
+        if s['task'] == 'minimal':
+            return MINIMAL.format(title=s['title'], n=n, text=s['text'])
+        return G2.prompt(s)
     for k, s, x, raw, fin in stage(direct, mk):
         emit(k, s, raw, fin)
     notes = [(s['sid'], s, None) for s in src if s['task'] == 'notes']
@@ -119,15 +131,15 @@ def run_part(llm, tok, SP, src):
 def generate(gen, tp, budget):
     t0 = time.time()
     from vllm import LLM, SamplingParams
-    src = [json.loads(l) for l in open(C.DATA / 'sources3.jsonl')]
+    src = [json.loads(l) for l in open(C.DATA / SRC)]
     src = [s for s in src if s['gen'] == gen]
-    (C.DATA / 'gen3').mkdir(exist_ok=True)
+    (C.DATA / OUTD).mkdir(exist_ok=True)
     parts = [src[i:i + PART] for i in range(0, len(src), PART)]
-    todo = [i for i in range(len(parts)) if not (C.DATA / 'gen3' / f'{gen}-{i}.jsonl.gz').exists()]
+    todo = [i for i in range(len(parts)) if not (C.DATA / OUTD / f'{gen}-{i}.jsonl.gz').exists()]
     print(json.dumps(dict(gen=gen, sources=len(src), parts=len(parts), todo=len(todo))), flush=True)
     if not todo:
         return
-    kw = dict(limit_mm_per_prompt={'image': 0}) if gen.startswith('gemma3') else {}
+    kw = dict(limit_mm_per_prompt={'image': 0}) if gen.startswith('gemma3') else dict(trust_remote_code=True) if gen.startswith('internlm') else {}
     llm = LLM(V.snapshot(C.GEN[gen][1]), tensor_parallel_size=tp, max_model_len=4096, gpu_memory_utilization=0.92, disable_custom_all_reduce=True,
               seed=V.SEED, enforce_eager=False, **kw)
     tok = llm.get_tokenizer()
@@ -137,11 +149,11 @@ def generate(gen, tp, budget):
             print('budget reached; resubmit to continue', flush=True); return
         p = [s for s in parts[i] if len(tok(s['text'])['input_ids']) <= G2.MAX_SRC_TOKENS]
         recs, n = run_part(llm, tok, SamplingParams, p)
-        tmp = C.DATA / 'gen3' / f'tmp-{gen}-{i}.jsonl.gz'
+        tmp = C.DATA / OUTD / f'tmp-{gen}-{i}.jsonl.gz'
         with gzip.open(tmp, 'wt') as f:
             for r in recs:
                 f.write(json.dumps(r, ensure_ascii=False) + '\n')
-        tmp.replace(C.DATA / 'gen3' / f'{gen}-{i}.jsonl.gz')
+        tmp.replace(C.DATA / OUTD / f'{gen}-{i}.jsonl.gz')
         print(json.dumps(dict(part=i, sources=len(parts[i]), kept=len(recs), minutes=round((time.time() - t0) / 60, 1))), flush=True)
 
 
