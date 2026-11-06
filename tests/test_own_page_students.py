@@ -59,3 +59,20 @@ def test_alumnus_without_a_year_is_listed_apart_and_a_year_next_to_the_school_da
     assert r and r[0]['years'] is None and r[0]['years_basis'] == 'undated_alumnus'
     r = st("Jane Doe\nI'm a final-year PhD at Georgia Tech, advised by Magnus Egerstedt. (c) 2026")
     assert r and r[0]['years_basis'] == 'capture_date'
+
+
+def test_a_collaborator_after_the_adviser_is_no_adviser():
+    c = dict(C, pi='Devi Parikh', pi_names=['Devi Parikh'])
+    assert not st('Jane Doe\nI received a Master\'s degree from Georgia Tech in 2021, where I was advised by Dhruv Batra, and worked closely with Devi Parikh.', c)
+    assert st('Jane Doe\nI received a Master\'s degree from Georgia Tech in 2021, where I was advised by Dhruv Batra and Devi Parikh.', c)
+
+
+def test_an_intern_is_no_student_and_the_role_is_the_nearest_cue():
+    assert not st('Jane Doe\nI am a senior at Nanjing University, currently an intern at Georgia Tech, supervised by Prof. Magnus Egerstedt. 2026')
+    r = st("Jane Doe\nI'm a PhD student at Stanford. Previously, I was an undergrad at Georgia Tech, advised by Magnus Egerstedt.")
+    assert r and r[0]['role'] == 'undergraduate' and r[0]['years_basis'] == 'undated_alumnus'
+
+
+def test_a_range_must_sit_next_to_the_school_mention():
+    r = st('Jane Doe\nHe obtained the PhD from Georgia Tech in 2018, advised by Prof. Magnus Egerstedt. From 2019 to 2021, he worked at Acme.')
+    assert r and r[0]['years'] == [2018]

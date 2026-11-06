@@ -62,7 +62,7 @@ def candidates(school):
     fam = collections.Counter(toks(n)[-1] for p in pis for n in p['names'][:1] if toks(n))
     targets = {p['pi'] for p in pis if len({' '.join(toks(x['name'])) for x in stu.get(p['pi']) or []} | {' '.join(toks(x)) for x in ev.get(p['pi'], set())}) < FEW} | set(reasons)
     pi_names = {p['pi']: p['names'] for p in pis}
-    co = collections.defaultdict(lambda: collections.defaultdict(lambda: dict(name=None, n=0, years=set(), titles=set(), forms=set())))
+    co = collections.defaultdict(lambda: collections.defaultdict(lambda: dict(name=None, n=0, years=set(), titles=set(), forms=set(), dois=set())))
     for line in gzip.open(d('lab_papers.jsonl.gz'), 'rt'):
         r = json.loads(line)
         if r['pi'] not in targets or not (YEARS[0] <= (r.get('year') or 0) <= YEARS[1]) or len(r.get('byline') or []) > MAX_AUTHORS:
@@ -75,11 +75,13 @@ def candidates(school):
             c['name'] = c['name'] or n; c['n'] += 1; c['years'].add(r['year']); c['forms'].add(n)
             if r.get('title'):
                 c['titles'].add(norm_title(r['title']))
+            if r.get('doi'):
+                c['dois'].add(r['doi'].lower())
     out = []
     for pi, cs in co.items():
         for k, c in cs.items():
             out.append(dict(pi=pi, pi_names=pi_names.get(pi, [pi]), pi_family_unique=fam[toks(pi_names[pi][0])[-1]] == 1 if pi_names.get(pi) else False,
-                            name=c['name'], key=k, n=c['n'], years=sorted(c['years']), titles=sorted(c['titles'])))
+                            name=c['name'], key=k, n=c['n'], years=sorted(c['years']), titles=sorted(c['titles']), dois=sorted(c['dois'])))
     out.sort(key=lambda x: (-x['n'], x['pi'], x['name']))
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / f'candidates-{school}.json').write_text(json.dumps(dict(school=school, targets=sorted(targets), rows=out)))
@@ -164,7 +166,7 @@ def homepages(schools):
                                 hit[p['pid']] = p
             if len(hit) == 1:   # exactly one DBLP person: otherwise two homonyms share the lab papers' title set
                 res[(s, c['pi'], c['key'])] = dict(list(hit.values())[0])
-            hp = rd(OUT / f'hop-{s}.json', {}).get(c['key'])
+            hp = (rd(OUT / f'hop-{s}.json', {}).get(c['key']) or []) + (rd(OUT / f's2-{s}.json', {}).get(c['key']) or [])
             if hp:   # a link on a stored lab page whose text is the candidate's full name
                 p = res.setdefault((s, c['pi'], c['key']), dict(pid=None, names=[c['name']], urls=[], affiliations=[], orcid=[]))
                 p['urls'] = list(p['urls']) + [u for u in hp if u not in p['urls']]
@@ -195,6 +197,49 @@ def hop(school):
     out = {k: sorted(v)[:3] for k, v in found.items()}
     (OUT / f'hop-{school}.json').write_text(json.dumps(out))
     print(school, 'hop names', len(out))
+
+
+def s2_homepages(school):
+    """Semantic Scholar's paper batch (graph API, the project's key from ~/.config/cs-atlas/s2.env, never printed; 1 request a second, 500 papers a request):
+    the authors of the lab papers with the homepage their S2 profile lists; an author is the candidate when the name matches in full.
+    -> s2-<school>.json {name key: [homepage urls]}"""
+    import os
+    env = Path.home() / '.config' / 'cs-atlas' / 's2.env'
+    key = dict(x.split('=', 1) for x in env.read_text().split('\n') if '=' in x).get('S2_API_KEY', '').strip()
+    rows = [c for c in rd(OUT / f'candidates-{school}.json')['rows'] if c['n'] >= 2]
+    by_doi = collections.defaultdict(list)
+    for c in rows:
+        for d in c['dois']:
+            by_doi[d].append(c)
+    dois = sorted(by_doi)
+    out = rd(OUT / f's2-{school}.json', {})
+    for i in range(0, len(dois), 500):
+        chunk = dois[i:i + 500]
+        req = R.Request('https://api.semanticscholar.org/graph/v1/paper/batch?fields=authors.name,authors.homepage',
+                        data=json.dumps(dict(ids=['DOI:' + d for d in chunk])).encode(), headers={'Content-Type': 'application/json', 'x-api-key': key, 'User-Agent': UA})
+        for attempt in range(8):   # the key is shared with the other agents: a 429 backs off a minute at a time
+            try:
+                with R.urlopen(req, timeout=120) as r:
+                    res = json.loads(r.read())
+                break
+            except Exception as e:  # noqa: BLE001
+                if attempt == 7:
+                    raise
+                time.sleep(60 * (attempt + 1) if getattr(e, 'code', 0) == 429 else 10)
+        for d, paper in zip(chunk, res):
+            for a in (paper or {}).get('authors') or []:
+                hp = (a.get('homepage') or '').strip()
+                if not hp.startswith('http') or SKIP_HOSTS.search(U.urlsplit(hp).netloc):
+                    continue
+                k = ' '.join(toks(a.get('name') or ''))
+                for c in by_doi[d]:
+                    if c['key'] == k:
+                        out.setdefault(k, [])
+                        if hp not in out[k]:
+                            out[k].append(hp)
+        time.sleep(1.2)
+    (OUT / f's2-{school}.json').write_text(json.dumps(out))
+    print(school, 'papers', len(dois), 's2 homepages', len(out))
 
 
 def page_urls(p):
@@ -322,11 +367,11 @@ CUE = re.compile(r"(co-?\s?advis(?:ed|or|er)s?|advis(?:ed|or|er)s?|supervis(?:ed
                  r"thesis\s+committee\s+chair|my\s+(?:phd\s+)?(?:advisor|adviser|supervisor))", re.I)
 STUDENT = re.compile(r"(ph\.?\s?d\.?|doctoral|doctorate|graduate\s+student|grad\s+student|m\.?\s?s\.?\b|master'?s|masters|undergraduate|b\.?\s?s\.?\b|bachelor|"
                      r"student|candidate)", re.I)
-BAD = re.compile(r"(post-?\s?doc|postdoctoral|research\s+scientist|research\s+associate|visiting\s+(?:professor|scholar|researcher|faculty)|collaborat|co-author|joint\s+work|"
+BAD = re.compile(r"(\bintern\b|post-?\s?doc|postdoctoral|research\s+scientist|research\s+associate|visiting\s+(?:professor|scholar|researcher|faculty)|collaborat|co-author|joint\s+work|"
                  r"spent\s+(?:a\s+)?(?:summer|semester)|intern(?:ed|ship)\s+(?:at|with))", re.I)
 OTHER = re.compile(r"(\buniversity\s+of\s+[A-Z][a-z]+(?:\s+[A-Z][a-z]+)?|\b[A-Z][a-z]+(?:\s+[A-Z][a-z]+)?\s+University\b|institute\s+of\s+technology|\bMIT\b|\bcaltech\b|"
                    r"\bstanford\b|\bberkeley\b|\bCMU\b|carnegie\s+mellon|\bharvard\b|\bprinceton\b|\bepfl\b|\beth\s+zurich\b|\btsinghua\b|\bpeking\b|\bIIT\s+\w+|\bUCLA\b|\bUCSD\b|\bUCSB\b|\bNYU\b)")
-PAST = re.compile(r"\b(graduated|received|earned|defended|former|alumn\w*|obtained|completed|was\s+a|were|class\s+of|joined\s+\w+\s+as|now\s+(?:a|an|at)|currently\s+(?:a|an)\s+(?:assistant|associate|professor|postdoc|research|software|engineer|scientist))\b", re.I)
+PAST = re.compile(r"\b(previously|prior\s+to|got\s+my|finished|did\s+my|where\s+i\s+(?:was|worked)|(?:co-?)?advised\s+by.{0,80}\bwhere|was\s+(?:co-?)?advised|were\s+(?:co-?)?advised|worked\s+under|(?:i|he|she)\s+(?:was|were)\b|graduated|received|earned|defended|former|alumn\w*|obtained|completed|was\s+a|were|class\s+of|joined\s+\w+\s+as|now\s+(?:a|an|at)|currently\s+(?:a|an)\s+(?:assistant|associate|professor|postdoc|research|software|engineer|scientist))\b", re.I)
 NOW = re.compile(r"\b(currently|final[- ]year|(?:first|second|third|fourth|fifth|sixth|\d(?:st|nd|rd|th))[- ]year|rising|incoming|i\s+am\s+a|i'?m\s+a|is\s+a|am\s+a|expected|expecting|candidate|present|ongoing)\b|\b(?:19|20)\d\d\s*[-\u2013\u2014]+\s*(?:present|now|current|ongoing)", re.I)
 RANGE = re.compile(r"((?:19|20)\d\d)\s*[-\u2013\u2014to]+\s*((?:19|20)\d\d|present|now|current|ongoing)", re.I)
 YR = re.compile(r"(?<!\d)((?:19|20)\d\d)(?!\d)")
@@ -358,6 +403,31 @@ def cand_regex(c):
     return re.compile(r'\b' + re.escape(t[0]) + r"(?:\s+[a-z]+\.?){0,2}\s+" + re.escape(t[-1]) + r'\b', re.I)
 
 
+GAP_WORDS = {'by', 'and', 'is', 'are', 'was', 'were', 'of', 'the', 'prof', 'professor', 'professors', 'dr', 'drs', 'advisors', 'advisor', 'adviser', 'advisers',
+             'co', 'include', 'includes', 'my', 'at', 'in', 'a', 'her', 'his', 'their', 'been', 'be', 'to', 'fortunate', 'lucky', 'luckily', 'currently', 'jointly', 'supervisor', 'supervisors', 'phd'}
+
+
+def gap_ok(gap):
+    """The text between the adviser cue and the PI's name holds names, titles and 'and' only: 'advised by A, and worked closely with <PI>' does not make the PI an adviser."""
+    words = re.findall(r"[A-Za-z][A-Za-z'\-]*", re.sub(r'\b[A-Z][\w\-\'.]*', ' ', gap))   # capitalized words (names, titles) removed
+    return all(w.lower() in GAP_WORDS for w in words)
+
+
+ROLES = [('visiting', r'visiting\s+(?:ph\.?d\.?\s+|graduate\s+|master\S*\s+|undergraduate\s+)?student|exchange\s+student'), ('phd', r'ph\.?\s?d|doctoral|doctorate|graduate\s+student|grad\s+student'),
+         ('masters', r"\bm\.?\s?s\.?\b|master'?s|masters"), ('undergraduate', r'undergrad\w*|\bb\.?\s?s\.?\b|bachelor')]
+
+
+def role_near(t, pos):
+    """The role cue nearest to the adviser cue (an undergraduate year at the school, then a PhD elsewhere, is an undergraduate)."""
+    best = None
+    for role, rx in ROLES:
+        for x in re.finditer(rx, t, re.I):
+            d = abs(x.start() - pos)
+            if best is None or d < best[0]:
+                best = (d, role)
+    return best[1] if best else None
+
+
 def sentences(ln):
     """A line split into sentences; 'Prof.', 'Dr.' and single-letter initials ('H. V. Jagadish') do not end one."""
     t = re.sub(r'\b(Prof|Dr|Mr|Ms|Mrs|St|vs|etc|e\.g|i\.e)\.', lambda m: m.group(1) + '\x00', ln)
@@ -382,7 +452,8 @@ def statements(c, text, rx_school):
         for j, sent in enumerate(sents):
             for m in CUE.finditer(sent):
                 seg = sent[m.start():m.end() + 140]
-                if not prx.search(seg):
+                pm = prx.search(seg)
+                if not pm or not gap_ok(seg[m.end() - m.start():pm.start()]):
                     continue
                 pre = sents[j - 1] if j else fold(' '.join(lines[max(0, i - 2):i]))
                 nxt = sents[j + 1] if j + 1 < len(sents) else (fold(lines[i + 1]) if i + 1 < len(lines) else '')
@@ -402,14 +473,12 @@ def statements(c, text, rx_school):
                     continue
                 if not STUDENT.search(scope):
                     continue
-                role = ('visiting' if re.search(r'visiting\s+(?:ph\.?d\.?\s+|graduate\s+|master\S*\s+|undergraduate\s+)?student|exchange\s+student', scope, re.I) else
-                        'phd' if re.search(r'ph\.?\s?d|doctoral|doctorate|graduate\s+student|grad\s+student', scope, re.I) else
-                        'masters' if re.search(r"\bm\.?\s?s\.?\b|master'?s|masters", scope, re.I) else
-                        'undergraduate' if re.search(r'undergraduate|\bb\.?\s?s\.?\b|bachelor', scope, re.I) else None)
+                role = role_near(pre + ' ' + sent, len(pre) + 1 + m.start())
                 if not role:
                     continue
                 now = (bool(NOW.search(pre + ' ' + sent)) or bool(STUDENT.search(sent))) and not PAST.search(pre + ' ' + sent) and fresh
-                rg = RANGE.search(scope)
+                rgs = sorted((abs(x.start() - near[0]), x) for x in RANGE.finditer(masked) if abs(x.start() - near[0]) <= 150)
+                rg = rgs[0][1] if rgs else None   # a range written next to the school mention, in this sentence or the one before
                 years, basis = None, None
                 if rg:
                     a_ = int(rg.group(1)); b_ = rg.group(2).lower()
@@ -430,7 +499,10 @@ def statements(c, text, rx_school):
                 if years and (years[-1] < YEARS[0] or years[0] > CAPTURE_YEAR):
                     continue
                 oq = ((osents[j - 1] if j else ' '.join(lines[max(0, i - 2):i])) + ' ') if (near[0] < len(mpre) or (not years_in_sent and len(sent) < 80)) else ''
-                q = re.sub(r'\s+', ' ', oq + osents[j]).strip()[:520]
+                q = re.sub(r'\s+', ' ', oq + osents[j]).strip()
+                if len(q) > 520:
+                    ci = len(oq) + m.start()
+                    q = q[max(0, ci - 320):ci + 200]
                 out.append(dict(quote=q, role=role, years=years, years_basis=basis, alumni=not now, school_nearest=True))
     return out
 
@@ -502,6 +574,9 @@ if __name__ == '__main__':
         if '--pilot' in args:
             pl = int(args[args.index('--pilot') + 1])
         evidence(args[0], pl, '--write' in args)
+    elif cmd == 's2':
+        for s_ in args:
+            s2_homepages(s_)
     elif cmd == 'hop':
         for s_ in args:
             hop(s_)
