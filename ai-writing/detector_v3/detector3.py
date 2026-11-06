@@ -22,6 +22,8 @@ MAXLEN = 512
 BS, EPOCHS, LR = 16, 2, 2e-5
 HUMAN_RANDOM, HARD_N, AI_REPEAT = 95000, 22000, 2
 SMOKE = os.environ.get('AIW3_SMOKE') == '1'
+V31 = os.environ.get('AIW3_V31') == '1'  # v3.1: gen31 outputs added, light-edit tasks repeated, tags v31-*
+LIGHT = ('polish', 'paraphrase', 'humanize', 'minimal', 'partial')
 
 
 def log(**kw):
@@ -40,8 +42,8 @@ def v2_scores():
     return d
 
 
-def ai_rows():
-    """Every AI passage: dict(text, split, gen, family, task, key, sid, ai_frac)."""
+def ai_rows(include31=False):
+    """Every AI passage: dict(text, split, gen, family, task, key, sid, ai_frac). include31: also the v3.1 outputs (train split only)."""
     src = {s['sid']: s for s in jl(C.V2DATA / 'sources.jsonl')}
     rows = []
     for g in ('qwen72b', 'qwen7b', 'llama70b'):
@@ -55,6 +57,14 @@ def ai_rows():
                 break
             for r in jl(p):
                 rows.append(dict(text=r['text'], split=r['split'], gen=g, family=r['family'], task=r['task'], key=r['key'], sid=r['sid'], ai_frac=r['ai_frac']))
+    if include31:
+        for g in C.V31NEW + C.V31LIGHT:
+            for i in range(0, 40):
+                p = C.DATA / 'gen31' / f'{g}-{i}.jsonl.gz'
+                if not p.exists():
+                    break
+                for r in jl(p):
+                    rows.append(dict(text=r['text'], split=r['split'], gen=g, family=r['family'], task=r['task'], key=r['key'], sid='v31-' + r['sid'], ai_frac=r['ai_frac']))
     return rows
 
 
@@ -68,10 +78,10 @@ def train_rows(holdout):
     hard, rest = hum[:HARD_N], hum[HARD_N:]
     rng.shuffle(rest)
     neg = [dict(text=V.norm(h['text']), y=0) for h in hard + rest[:HUMAN_RANDOM]]
-    pos = [dict(text=V.norm(r['text']), y=1) for r in ai_rows()
+    pos = [dict(text=V.norm(r['text']), y=1, light=r['task'] in LIGHT) for r in ai_rows(V31)
            if r['split'] == 'train' and r['family'] != holdout and (r['task'] != 'partial' or r['ai_frac'] >= 0.5)]
     log(train_human=len(neg), hard=len(hard), hard_p_min=hard[-1]['v2p'], train_ai=len(pos), holdout=holdout)
-    rows = neg + pos * AI_REPEAT
+    rows = neg + ([x for x in pos for _ in range(2 if x['light'] else 1)] if V31 else pos * AI_REPEAT)
     if SMOKE:
         rows = rows[::400] + pos[:200]
     return rows
