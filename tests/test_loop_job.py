@@ -41,8 +41,9 @@ def test_usr1_stops_the_child_then_resubmits_with_a_clean_environment(tmp_path):
     run_and_signal(script, child_log, signal.SIGUSR1)
     assert 'child-got-TERM' in child_log.read_text()
     lines = calls.read_text().splitlines()
-    assert lines[0].endswith(':: submit --test-only fulltext-push/downloads.slurm --array=3')
-    assert lines[2].endswith(':: submit fulltext-push/downloads.slurm --array=3')
+    opts = '--partition=all --account=mltheory --time=00:59:00 --exclude=node302,node014,node805,node808'
+    assert lines[0].endswith(f':: submit --test-only {opts} fulltext-push/downloads.slurm --array=3')   # standing options on the command line
+    assert lines[2].endswith(f':: submit {opts} fulltext-push/downloads.slurm --array=3')
     assert lines[0].startswith(str(tmp_path / 'code'))  # from the code root
     assert lines[1] == '0' and lines[3] == '0'  # no SLURM_* leaks into the new submission
     assert 'resubmitted: Submitted batch job 4242' in rlog.read_text()

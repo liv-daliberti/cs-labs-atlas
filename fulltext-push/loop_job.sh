@@ -10,15 +10,19 @@
 # RESTART_LOG is the file the restart lines go to (default: stdout).
 _restart_log() { printf '{"at": "%s", "loop_job": %s}\n' "$(date -u +%FT%TZ)" "$1" >> "${RESTART_LOG:-/dev/stdout}"; }
 
+# 2026-11-06: the resubmission carries the standing options on the sbatch command line (a script's #SBATCH directives lose to it, and an SBATCH_* variable
+# loses to the directives): partition all, account mltheory, 59 minutes (the loop restarts itself 15 min before), the bad-node excludes.
+RESUBMIT_OPTS=(--partition=all --account=mltheory --time=00:59:00 --exclude=node302,node014,node805,node808)
+
 _resubmit() {
   local code=${CS_ATLAS_CODE:?} out
   (
     for v in $(env | grep -o '^SLURM_[A-Z_0-9]*'); do unset "$v"; done   # a fresh submission, not a child step of this job
     unset CS_ATLAS_SNAPSHOT CS_ATLAS_SNAPSHOT_COMMIT CS_ATLAS_TOOLS CS_ATLAS_TESTS CS_ATLAS_VENDOR CS_ATLAS_SCHOOL_CONFIGS CS_ATLAS_FULLTEXT_PUSH CS_ATLAS_AI_WRITING
     cd "$code" || exit 1
-    out=$("$code/bin/atlas" submit --test-only "$@" 2>&1) || { _restart_log "\"resubmit refused: test-only failed\""; exit 1; }
+    out=$("$code/bin/atlas" submit --test-only "${RESUBMIT_OPTS[@]}" "$@" 2>&1) || { _restart_log "\"resubmit refused: test-only failed\""; exit 1; }
     case $out in *Preempts:*) _restart_log "\"resubmit refused: Preempts\""; exit 1;; esac
-    out=$("$code/bin/atlas" submit "$@" 2>&1 | tail -1) || { _restart_log "\"resubmit failed\""; exit 1; }
+    out=$("$code/bin/atlas" submit "${RESUBMIT_OPTS[@]}" "$@" 2>&1 | tail -1) || { _restart_log "\"resubmit failed\""; exit 1; }
     _restart_log "\"resubmitted: ${out//\"/}\""
   )
 }
