@@ -14,5 +14,8 @@ set -euo pipefail
 export CS_ATLAS_AI_SCORES="${AI_SCORES_V3_DIR:-$CS_ATLAS_CODE/ai-writing/data/ai-scores-v3}" AI_DETECTOR=v3
 export LD_LIBRARY_PATH="$CS_ATLAS_ENV_LIB${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}" HF_HOME=$CS_ATLAS_HF_HOME OMP_NUM_THREADS=16 PYTHONDONTWRITEBYTECODE=1 MPLBACKEND=Agg
 cd "$CS_ATLAS_AI_WRITING/dose"
+PY=$CS_ATLAS_ENV_PY
+if [ -n "${CMD:-}" ]; then eval "$CMD"; exit; fi    # CMD="py a.py x; py b.py y": $PY is the study interpreter
 S=${1:?script}; shift
+PY=$CS_ATLAS_ENV_PY
 $CS_ATLAS_ENV_PY -u "$S" "$@"
