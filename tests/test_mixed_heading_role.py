@@ -13,6 +13,11 @@ def test_entry_says_phd_or_postdoc():
     assert L.mixed_heading_role('phd', HEAD, '(postdoc, 2025) Next stop : postdoc at Czech Technical University')[1] == 'postdoc'
 
 
+def test_degree_before_employer_postdoc():
+    assert L.mixed_heading_role('postdoc', HEAD, '(Ph.D. 2025, Post Doc @ Univ. of Illinois)')[1] == 'phd'
+    assert L.mixed_heading_role('postdoc', HEAD, '')[1] == 'member'
+
+
 def test_entry_saying_neither_stays_member_and_other_headings_are_untouched():
     assert L.mixed_heading_role('phd', HEAD, 'Next stop : scientist')[1] == 'member'
     assert L.mixed_heading_role('phd', ['PhD students'], '(2025)') == ('phd', 'phd')

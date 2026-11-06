@@ -805,10 +805,12 @@ def mixed_heading_role(role, path, rest):
     when they state it ('Fan Yao (PhD, 2025 ...)', 'Andrzej Kaczmarczyk (postdoc, 2025)'); only an entry that says neither stays 'member' (UChicago round 2, Xu's
     SIGMA alumni: five PhDs and one postdoc were all read as 'member')."""
     if role in ('phd', 'postdoc') and path and re.search(r'ph\.?\s?d|doctoral', path[-1], re.I) and re.search(r'post-?doc', path[-1], re.I):
-        own = lpdom.role_of((rest or '')[:60])
-        if own in ('phd', 'postdoc'):
+        r60 = (rest or '')[:60]
+        m_phd, m_post = re.search(r'ph\.?\s?d|doctoral', r60, re.I), re.search(r'post-?doc', r60, re.I)
+        own = None if not (m_phd or m_post) else 'phd' if (m_phd and (not m_post or m_phd.start() < m_post.start())) else 'postdoc'   # 'Ph.D. 2025, Post Doc @ UIUC': the degree first, the employer after
+        if own:
             return own, own
-        return role, 'member'
+        return 'phd', 'member'   # neither is stated: a member (the heading names both kinds), never dropped as a postdoc
     return role, role
 
 
@@ -852,7 +854,7 @@ def extract(key):
                     if role not in ('phd', 'postdoc', 'visiting', 'student') or not lpdom.looks_like_name(name) or not lpdom.plausible_person(name) \
                             or N.match(name) or len(toks(name)) < 2 or len(toks(name)) > 4 or any(F.match(name) for F in fac):
                         rep['dropped_not_a_student_name'] += 1; continue
-                    if role == 'postdoc':
+                    if role_out == 'postdoc':
                         rep['dropped_postdoc'] += 1; continue   # a postdoc is not a student (R-STU-19 B); mixed 'PhDs and Postdocs' headings now give the entry's own role
                     alum = any(ALUM.search(x) for x in path)  # the section says it, not the person's line ('now Ph.D. student @ ...')
                     head = path[-1] if path else ''
