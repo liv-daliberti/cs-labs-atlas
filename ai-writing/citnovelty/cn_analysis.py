@@ -140,6 +140,8 @@ def cmd_paper(df, boot):
     for period, years in periods.items():
         for expo in ('ai_share', 'flag_abstract'):
             d0 = df[df['year'].isin(years) & df[expo].notna()]
+            if period == 'pre':
+                d0 = d0[~d0['trained_on'].fillna(False).astype(bool)]   # detector-v2 training negatives are not out-of-sample
             for y in HEAD:
                 d = d0[d0[y].notna()]
                 if len(d) < 300:
@@ -150,6 +152,8 @@ def cmd_paper(df, boot):
     hb = []
     for period, years in periods.items():
         d0 = df[df['year'].isin(years) & df['ai_share'].notna()].copy()
+        if period == 'pre':
+            d0 = d0[~d0['trained_on'].fillna(False).astype(bool)]
         d0['lab_year'] = d0['lab0'].astype(str) + '|' + d0['year'].astype(str)
         for y in HEAD:
             d = d0[d0[y].notna()]

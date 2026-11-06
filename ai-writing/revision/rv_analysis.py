@@ -117,8 +117,10 @@ def add_dates_and_filters(p):
 
 def enrich(p):
     import dose_analysis as A
-    df = A.build_frame()[['paper_id', 'school', 'field_grp', 'lab0', 'topic']]
+    df = A.build_frame()[['paper_id', 'school', 'field_grp', 'lab0', 'topic', 'trained_on']]
     p = p.merge(df, on='paper_id', how='left')
+    p['trained_on'] = p['trained_on'].fillna(False).astype(bool)
+    p['valid_pre'] = ~((p['kind'] == 'S') & p['trained_on'])   # a stored 2016-2021 copy the detector trained on is not an out-of-sample final
     p['dai'] = p['ai2'] - p['ai1']; p['dst'] = p['st2'] - p['st1']; p['dab'] = p['ab2'] - p['ab1']; p['dko'] = p['ko2'] - p['ko1']
     p['daf'] = p['af2'] - p['af1']; p['dpa'] = p['pa2'] - p['pa1']
     p['dwords'] = np.log(p['words2'] / p['words1'])
@@ -236,7 +238,7 @@ def main():
     for kind in ('S', 'A'):
         k = p[p['kind'] == kind]
         f = dict(pairs_scored=len(k), title_found_v1=int(k['title_found1'].eq(1).sum()), same_work=int((k['contain'] >= 0.2).sum()), dated=int(k['d2'].notna().sum()), valid=int(k['valid'].sum()))
-        v = k[k['valid']].copy()
+        v = k[k['valid'] & k['valid_pre']].copy()
         v = v[(v['y1'] <= C.LAST_YEAR) & (v['y2'] <= C.LAST_YEAR)].copy()   # owner rule: no 2026
         f['valid_to_2025'] = len(v); f['cells'] = v['cell'].value_counts().to_dict(); funnel[kind] = f
         cell_table(v, a.boot).assign(kind=kind).to_parquet(f'{pref}_{kind}_cells.parquet', index=False)
