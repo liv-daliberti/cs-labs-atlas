@@ -76,3 +76,15 @@ def test_an_intern_is_no_student_and_the_role_is_the_nearest_cue():
 def test_a_range_must_sit_next_to_the_school_mention():
     r = st('Jane Doe\nHe obtained the PhD from Georgia Tech in 2018, advised by Prof. Magnus Egerstedt. From 2019 to 2021, he worked at Acme.')
     assert r and r[0]['years'] == [2018]
+
+
+def test_role_is_the_cue_before_the_adviser_and_a_start_year_dates_a_current_student():
+    r = st('Jane Doe\nI received my PhD from Georgia Tech in 2017 where I was advised by Prof. Magnus Egerstedt. I also received a Masters in Math.')
+    assert r and r[0]['role'] == 'phd' and r[0]['years'] == [2017]
+    r = st("Jane Doe\nI'm a PhD student at Georgia Tech (since Autumn 2024) advised by Magnus Egerstedt . My research focus. (c) 2026")
+    assert r and r[0]['years'] == [2024, O.CAPTURE_YEAR]
+
+
+def test_space_before_the_period_still_ends_the_sentence():
+    r = st('Jane Doe\nI am currently a 4th-year PhD student at Georgia Tech and luckily advised by Prof. Magnus Egerstedt . I was at INSAIT in Fall 2024 as a visiting student. 2026')
+    assert r and r[0]['role'] == 'phd' and r[0]['years_basis'] == 'capture_date'

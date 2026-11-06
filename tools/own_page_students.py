@@ -22,7 +22,7 @@ from pathlib import Path
 import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
 from pihier.common import norm_title  # noqa: E402
-from pihier.names import nick_ok, toks  # noqa: E402
+from pihier.names import toks  # noqa: E402
 
 OUT = P.SCRATCH / 'own-pages'
 YEARS = (2016, 2025)
@@ -203,7 +203,6 @@ def s2_homepages(school):
     """Semantic Scholar's paper batch (graph API, the project's key from ~/.config/cs-atlas/s2.env, never printed; 1 request a second, 500 papers a request):
     the authors of the lab papers with the homepage their S2 profile lists; an author is the candidate when the name matches in full.
     -> s2-<school>.json {name key: [homepage urls]}"""
-    import os
     env = Path.home() / '.config' / 'cs-atlas' / 's2.env'
     key = dict(x.split('=', 1) for x in env.read_text().split('\n') if '=' in x).get('S2_API_KEY', '').strip()
     rows = [c for c in rd(OUT / f'candidates-{school}.json')['rows'] if c['n'] >= 2]
@@ -374,6 +373,7 @@ OTHER = re.compile(r"(\buniversity\s+of\s+[A-Z][a-z]+(?:\s+[A-Z][a-z]+)?|\b[A-Z]
 PAST = re.compile(r"\b(previously|prior\s+to|got\s+my|finished|did\s+my|where\s+i\s+(?:was|worked)|(?:co-?)?advised\s+by.{0,80}\bwhere|was\s+(?:co-?)?advised|were\s+(?:co-?)?advised|worked\s+under|(?:i|he|she)\s+(?:was|were)\b|graduated|received|earned|defended|former|alumn\w*|obtained|completed|was\s+a|were|class\s+of|joined\s+\w+\s+as|now\s+(?:a|an|at)|currently\s+(?:a|an)\s+(?:assistant|associate|professor|postdoc|research|software|engineer|scientist))\b", re.I)
 NOW = re.compile(r"\b(currently|final[- ]year|(?:first|second|third|fourth|fifth|sixth|\d(?:st|nd|rd|th))[- ]year|rising|incoming|i\s+am\s+a|i'?m\s+a|is\s+a|am\s+a|expected|expecting|candidate|present|ongoing)\b|\b(?:19|20)\d\d\s*[-\u2013\u2014]+\s*(?:present|now|current|ongoing)", re.I)
 RANGE = re.compile(r"((?:19|20)\d\d)\s*[-\u2013\u2014to]+\s*((?:19|20)\d\d|present|now|current|ongoing)", re.I)
+SINCE = re.compile(r"\b(?:since|starting(?:\s+from)?|started(?:\s+in)?|joined\s+(?:\w+\s+){0,3}in)\s+(?:(?:the\s+)?(?:spring|summer|fall|autumn|winter)\s+(?:of\s+)?)?((?:19|20)\d\d)", re.I)
 YR = re.compile(r"(?<!\d)((?:19|20)\d\d)(?!\d)")
 CAPTURE_YEAR = int(time.strftime('%Y'))
 
@@ -418,21 +418,23 @@ ROLES = [('visiting', r'visiting\s+(?:ph\.?d\.?\s+|graduate\s+|master\S*\s+|unde
 
 
 def role_near(t, pos):
-    """The role cue nearest to the adviser cue (an undergraduate year at the school, then a PhD elsewhere, is an undergraduate)."""
-    best = None
+    """The role cue before the adviser cue, the nearest one ('PhD ... 2017 where I was advised by X. I also received a Masters' is a PhD); none before: the nearest after."""
+    before, after = None, None
     for role, rx in ROLES:
         for x in re.finditer(rx, t, re.I):
-            d = abs(x.start() - pos)
-            if best is None or d < best[0]:
-                best = (d, role)
-    return best[1] if best else None
+            if x.start() < pos:
+                if before is None or x.start() > before[0]:
+                    before = (x.start(), role)
+            elif after is None or x.start() < after[0]:
+                after = (x.start(), role)
+    return (before or after or (0, None))[1]
 
 
 def sentences(ln):
     """A line split into sentences; 'Prof.', 'Dr.' and single-letter initials ('H. V. Jagadish') do not end one."""
     t = re.sub(r'\b(Prof|Dr|Mr|Ms|Mrs|St|vs|etc|e\.g|i\.e)\.', lambda m: m.group(1) + '\x00', ln)
     t = re.sub(r'\b([A-Z])\.', lambda m: m.group(1) + '\x00', t)
-    return [x.replace('\x00', '.') for x in re.split(r'(?<=[a-z0-9\)\]])[.!?]\s+(?=[A-Z])', t) if x.strip()]
+    return [x.replace('\x00', '.') for x in re.split(r'(?<=[a-z0-9\)\]])\s?[.!?]\s+(?=[A-Z])', t) if x.strip()]
 
 
 def statements(c, text, rx_school):
@@ -486,7 +488,8 @@ def statements(c, text, rx_school):
                     if a_ <= b_:
                         years, basis = [a_, b_], 'stated'
                 if years is None and now:
-                    years, basis = [CAPTURE_YEAR, CAPTURE_YEAR], 'capture_date'
+                    sm = SINCE.search(pre + ' ' + sent)
+                    years, basis = ([int(sm.group(1)), CAPTURE_YEAR], 'stated') if sm and int(sm.group(1)) <= CAPTURE_YEAR else ([CAPTURE_YEAR, CAPTURE_YEAR], 'capture_date')
                 if years is None:   # a degree year written next to the school mention (within 120 characters), the nearest one
                     ys = sorted((abs(x.start() - near[0]), int(x.group(1))) for x in YR.finditer(masked) if abs(x.start() - near[0]) <= 120)
                     if ys and re.search(r'ph\.?\s?d|m\.?\s?s\b|b\.?\s?s\b|degree|graduat|defen|thesis|dissertation|received|earned|doctor', pre + ' ' + sent, re.I):
@@ -556,11 +559,12 @@ def evidence(school, pilot=None, write=False, seed=20261106):
     for r in rows:
         e = by.setdefault(r['pi'], dict(pi=r['pi'], students=[]))
         e['students'] = [x for x in e['students'] if not (x.get('rule') == 'R-STU-22' and ' '.join(toks(x['name'])) == ' '.join(toks(r['name'])))]
-        e['students'].append(dict(name=r['name'], role=r['role'], years=r['years'], years_basis=r['years_basis'], alumni=r['alumni'],
+        disp = ' '.join(reversed([x.strip() for x in r['name'].split(',', 1)])) if ',' in r['name'] else r['name']   # 'Nief, Todd' -> 'Todd Nief'
+        e['students'].append(dict(name=disp, role=r['role'], years=r['years'], years_basis=r['years_basis'], alumni=r['alumni'],
                                   section="student's own page names the PI as adviser (R-STU-22)", url=r['url'], capture_url=r['url'], captured=r['fetched'],
                                   sha256=r['sha256'], raw_sha256=r['raw_sha256'], quote=r['quote'], auto=True, rule='R-STU-22', source='own_page'))
     if write:
-        wt.write_text(json.dumps(sorted(by.values(), key=lambda e: e['pi']), ensure_ascii=False, indent=1) + '\n')
+        wt.write_text(json.dumps(list(by.values()), ensure_ascii=False, indent=1))   # the file's own style: indent 1, no trailing newline, existing order
     print(school, 'rows', len(rows), 'pis', len({r['pi'] for r in rows}), 'written' if write else 'dry run')
 
 
