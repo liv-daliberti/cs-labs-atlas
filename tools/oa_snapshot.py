@@ -430,18 +430,32 @@ def work(key, root=None):
 
 
 def _union(queries, root, args):
-    """Rows of the main store, then of each extension for ids not yet seen (one work, one row)."""
+    """Rows of the main store, then of each extension for ids not yet seen (one work, one row). `queries` may be a pair (preferred, fallback): a hand-made store
+    without the preferred query's index (a test fixture) is read with the fallback."""
     seen = set()
     for db, d in [conn(root)] + exts(root):
-        for r in db.execute(queries, args):
+        if isinstance(queries, tuple):
+            try:
+                rows = db.execute(queries[0], args)   # a missing index fails here, at prepare time
+            except sqlite3.OperationalError:
+                rows = db.execute(queries[1], args)
+        else:
+            rows = db.execute(queries, args)
+        for r in rows:
             if r[1] in seen:
                 continue
             seen.add(r[1])
             yield _w(r, d)
 
 
+LINEAGE_Q = ('SELECT w.body, w.id FROM work_inst i INDEXED BY work_inst_inst JOIN works w ON w.id=i.work_id WHERE i.inst=?')
+
+
 def works_by_lineage(inst, year=None, root=None):
-    q = 'SELECT w.body, w.id FROM work_inst i JOIN works w ON w.id=i.work_id WHERE i.inst=?' + (' AND w.year=?' if year else '') + ' ORDER BY w.id'
+    """Works with an authorship at institution `inst`, in id order. INDEXED BY work_inst_inst: without it SQLite reads the works_year index and probes
+    work_inst once per work of the year (JHU: 100 s a query, 59 min and no year finished); this reads the institution's rows once, then filters the year."""
+    tail = (' AND w.year=?' if year else '') + ' ORDER BY w.id'
+    q = (LINEAGE_Q + tail, LINEAGE_Q.replace(' INDEXED BY work_inst_inst', '') + tail)
     yield from _union(q, root, (short(inst), year) if year else (short(inst),))
 
 
