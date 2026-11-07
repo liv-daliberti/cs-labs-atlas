@@ -169,6 +169,16 @@ def step(school, miss, known, n, has_arxiv):
     by_paper = defaultdict(list)
     for l in gzip.open(CACHE, 'rt'):
         x = json.loads(l); by_paper[x['paper']].append(x)
+    # 2026-11-06: the step's cache (2026-10-29) holds the six old schools' papers only, so Georgia Tech, Michigan and UChicago saw 12-52 DBLP records
+    # (the old schools 1,100-3,500). The unavailability ledger scans every school's papers into raw/ledger_dblp_<school>.jsonl.gz (same row format):
+    # union it, so the ee links and the CoRR arXiv ids of those papers reach the candidates.
+    side = F.P.FT_RAW / f'ledger_dblp_{school}.jsonl.gz'
+    if side.exists():
+        seen = {(x['paper'], x['dblp_key']) for xs in by_paper.values() for x in xs}
+        for l in gzip.open(side, 'rt'):
+            x = json.loads(l)
+            if (x['paper'], x['dblp_key']) not in seen:
+                by_paper[x['paper']].append(x)
     rows, arx = [], {}
     for r, w in miss:
         for x in by_paper.get(r['work'] or r['oa'], []):
