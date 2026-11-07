@@ -141,17 +141,18 @@ def stated_student_start(stu):
     return min(starts) if starts else None
 
 
-def audit(school):
-    D = P.SchoolDir(school, H)
+def audit(school, *, include_link_diagnosis=True, hierarchy=None):
+    root = H if hierarchy is None else hierarchy
+    D = P.SchoolDir(school, root)
     pis = load(D / 'pis.json', [])
     students = load(D / 'students.json', {})
     lab_papers = load(D / 'lab_papers.jsonl.gz', [])
     links = load(D / 'student_papers.jsonl.gz', [])
     copies = (load(D / 'copies.json', {}) or {}).get('papers', {})
     report = load(D / 'report.json', {}) or {}
-    ledger = (load(P.hfile(H, 'chain-reasons.json'), {}) or {}).get(school, {})
-    zero = (load(P.hfile(H, 'zero-paper-review.json'), {}) or {}).get(school, {})
-    ov_school = CO.section(school, lambda n, s=None: P.hfile(H, n, s))
+    ledger = (load(P.hfile(root, 'chain-reasons.json'), {}) or {}).get(school, {})
+    zero = (load(P.hfile(root, 'zero-paper-review.json'), {}) or {}).get(school, {})
+    ov_school = CO.section(school, lambda n, s=None: P.hfile(root, n, s))
     overrides = json.dumps(ov_school)
     # an exclusion with revisit_after (a new arrival with no group or advisee yet) is decided only until that date
     # (2026-10-29, owner: best judgement); after it the person is open again for a fresh coverage review
@@ -204,7 +205,7 @@ def audit(school):
         linked[norm(r['pi'])].add(r['student'])
     few = by_pi(load(D / 'few-students-evidence.json', []))
     # tools/link_diagnosis.py: each open student checked against the school's OpenAlex sweep
-    diag = (load(D / 'link-diagnosis.json', {}) or {}).get('students', {})
+    diag = (load(D / 'link-diagnosis.json', {}) or {}).get('students', {}) if include_link_diagnosis else {}
     DIAG_REASON = {'no_school_work': 'no school-affiliated work under their name in their years (OpenAlex sweep)',
                    'publishes_without_pi': 'publishes at the school in their years, never with this PI (OpenAlex sweep)',
                    'ambiguous_name': 'name matches 4+ distinct school authors in their years: cannot be told apart',
@@ -285,9 +286,9 @@ def audit(school):
               'pi': r['pi'], 'year': r.get('year'), 'doi': r.get('doi'), 'title': (r.get('title') or '')[:100]})
 
     # 6 one person per lab
-    sa = {x['school']: x for x in load(P.hfile(H, 'student-audit.json'), []) or []}.get(school)
+    sa = {x['school']: x for x in load(P.hfile(root, 'student-audit.json'), []) or []}.get(school)
     if sa is None and CO.onboarding(school):
-        sa = load(P.hfile(H, 'student-audit-school.json', school), None)   # an onboarding school's own audit (student_audit.py <key>)
+        sa = load(P.hfile(root, 'student-audit-school.json', school), None)   # an onboarding school's own audit (student_audit.py <key>)
     if sa is None:
         res['one_person']['unexplained'].append({'key': 'student-audit.json', 'why': 'student_audit.py has no entry for this school'})
         res['one_person']['total'] += 1

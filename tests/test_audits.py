@@ -61,6 +61,7 @@ def test_R_AUD_08_link_diagnosis_counts_school_authorships_only(tmp_path, monkey
     H = tmp_path
     (H / 'princeton').mkdir()
     open_item = dict(pi='Ada Lovelace', student='Qian Yu', id='p_qy', years=[2019, 2020], roles=['phd'])
+    monkeypatch.setattr(chain_audit, 'audit', lambda *args, **kwargs: dict(checks=dict(links=dict(unexplained=[open_item]))))
     (H / 'chain-audit.json').write_text(json.dumps(dict(schools=[dict(school='princeton', checks=dict(links=dict(unexplained=[open_item])))])))
     (H / 'princeton' / 'pis.json').write_text(json.dumps([dict(pi='Ada Lovelace', reviewedOpenAlex=['A1'], periods=[], listings=[])]))
     (H / 'princeton' / 'students.json').write_text(json.dumps({'Ada Lovelace': [dict(person='p_qy', name='Qian Yu')]}))
