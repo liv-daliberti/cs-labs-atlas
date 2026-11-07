@@ -1,0 +1,4954 @@
+{
+ "school": "toronto",
+ "tool": "tools/lab_websites.py entry schema",
+ "review_status": "Partial homepage review for current-only provisional PI census. Campus/appointment review and historical discovery remain open. No new-school student extraction.",
+ "source": "official directory + school-captures.sqlite",
+ "labs": [
+  {
+   "pi": "Ishtiaque Ahmed",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:36:25",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.ishtiaque.net/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.ishtiaque.net/",
+     "at": "2026-11-07T16:36:25",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "a55d07b454ac849df3f965adc3c66d7d66e6d2f14691cdf63b762f7fc3ccdd16"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:36:25",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.ishtiaque.net/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "a55d07b454ac849df3f965adc3c66d7d66e6d2f14691cdf63b762f7fc3ccdd16",
+   "evidence": {
+    "url": "https://www.ishtiaque.net/",
+    "sha256": "a55d07b454ac849df3f965adc3c66d7d66e6d2f14691cdf63b762f7fc3ccdd16",
+    "captured_at": "2026-11-07T16:36:25"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.ishtiaque.net/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Ashton Anderson",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:33:15",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~ashton/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~ashton/",
+     "at": "2026-11-07T16:33:15",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "c362bd8c925c49ce61cb89524941e206651c3f898e96336269e8de1e840b412d"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:33:15",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~ashton/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "c362bd8c925c49ce61cb89524941e206651c3f898e96336269e8de1e840b412d",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~ashton/",
+    "sha256": "c362bd8c925c49ce61cb89524941e206651c3f898e96336269e8de1e840b412d",
+    "captured_at": "2026-11-07T16:33:15"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~ashton/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Alán Aspuru-Guzik",
+   "status": "pending",
+   "coverage": "pending",
+   "reason": "Observed redirect remains to resolve and review without bypassing host policy.",
+   "candidate_url": "https://matter.toronto.edu/",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://matter.toronto.edu/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://matter.toronto.edu/",
+     "at": "2026-11-07T16:36:26",
+     "result": "http_301",
+     "via": "school_profile_link",
+     "sha256": "87a9323ac85ce28867d5d7ce590c8f29b8d1a999961fca71bb33adef48683691"
+    }
+   ],
+   "checked_at": "2026-11-07T16:36:26",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "evidence_gaps": [
+    "eligible_website_not_yet_established"
+   ]
+  },
+  {
+   "pi": "Jimmy Ba",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:36:27",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://jimmylba.github.io/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://jimmylba.github.io/",
+     "at": "2026-11-07T16:36:27",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "2ff365df07e7be8367627c5aa208bd31e8f19927378cec165e804940c045e3a3"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:36:27",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://jimmylba.github.io/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "2ff365df07e7be8367627c5aa208bd31e8f19927378cec165e804940c045e3a3",
+   "evidence": {
+    "url": "https://jimmylba.github.io/",
+    "sha256": "2ff365df07e7be8367627c5aa208bd31e8f19927378cec165e804940c045e3a3",
+    "captured_at": "2026-11-07T16:36:27"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://jimmylba.github.io/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Ravin Balakrishnan",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:36:27",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.dgp.toronto.edu/~ravin/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.dgp.toronto.edu/~ravin/",
+     "at": "2026-11-07T16:36:27",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "39c30f18050231d90ae58a3aa9be22e68209a2f5cff3a23cfe7fa8397af28db6"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:36:27",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.dgp.toronto.edu/~ravin/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "39c30f18050231d90ae58a3aa9be22e68209a2f5cff3a23cfe7fa8397af28db6",
+   "evidence": {
+    "url": "https://www.dgp.toronto.edu/~ravin/",
+    "sha256": "39c30f18050231d90ae58a3aa9be22e68209a2f5cff3a23cfe7fa8397af28db6",
+    "captured_at": "2026-11-07T16:36:27"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.dgp.toronto.edu/~ravin/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Varinia Bernales",
+   "status": "pending",
+   "coverage": "pending",
+   "reason": "Observed redirect remains to resolve and review without bypassing host policy.",
+   "candidate_url": "https://bernales.matter.toronto.edu/",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://bernales.matter.toronto.edu/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://bernales.matter.toronto.edu/",
+     "at": "2026-11-07T16:36:27",
+     "result": "http_301",
+     "via": "school_profile_link",
+     "sha256": "2e04a18ff185ba5b16f762a0538339bc4049aceaef9738edd43af77d2ceb788b"
+    }
+   ],
+   "checked_at": "2026-11-07T16:36:27",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "evidence_gaps": [
+    "eligible_website_not_yet_established"
+   ]
+  },
+  {
+   "pi": "Anthony Bonner",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:36:27",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~bonner/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~bonner/",
+     "at": "2026-11-07T16:36:27",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "c4da1d3fcc3f5dfedfddcae775a1f85f47b03dbb94a1694134df5612056e0418"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:36:27",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~bonner/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "c4da1d3fcc3f5dfedfddcae775a1f85f47b03dbb94a1694134df5612056e0418",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~bonner/",
+    "sha256": "c4da1d3fcc3f5dfedfddcae775a1f85f47b03dbb94a1694134df5612056e0418",
+    "captured_at": "2026-11-07T16:36:27"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~bonner/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Allan Borodin",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:36:29",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~bor/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~bor/",
+     "at": "2026-11-07T16:36:29",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "865f1e029fc17e419e16bdebef611a19db58700ccbf0ee5b1f0d6da415a019d6"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:36:29",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~bor/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "865f1e029fc17e419e16bdebef611a19db58700ccbf0ee5b1f0d6da415a019d6",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~bor/",
+    "sha256": "865f1e029fc17e419e16bdebef611a19db58700ccbf0ee5b1f0d6da415a019d6",
+    "captured_at": "2026-11-07T16:36:29"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~bor/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Angela Brown",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:36:32",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~demke/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~demke/",
+     "at": "2026-11-07T16:36:32",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "2016a056c55f561935a032eac2582e20ea8b23f630fdca4ab5b7e78998050441"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:36:32",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~demke/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "2016a056c55f561935a032eac2582e20ea8b23f630fdca4ab5b7e78998050441",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~demke/",
+    "sha256": "2016a056c55f561935a032eac2582e20ea8b23f630fdca4ab5b7e78998050441",
+    "captured_at": "2026-11-07T16:36:32"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~demke/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Michael Brudno",
+   "status": "pending",
+   "coverage": "pending",
+   "reason": "Captured landing page is a redirect stub; target still needs robots/access/content review.",
+   "candidate_url": "https://www.cs.toronto.edu/~brudno/public/",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~brudno/public/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~brudno/public/",
+     "at": "2026-11-07T16:36:34",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "ec2441bd805bde1868f52bb3120da3d02b3578c2f5b4debc21b8ac6b46289d6a"
+    }
+   ],
+   "checked_at": "2026-11-07T16:36:34",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "evidence_gaps": [
+    "eligible_website_not_yet_established"
+   ]
+  },
+  {
+   "pi": "Jessica Burgner-Kahrs",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:36:36",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~jbk/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~jbk/",
+     "at": "2026-11-07T16:36:36",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "0f1bebf3955cd78149209baa19db930b20f09acb0ce7864405deae917a3d9702"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:36:36",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~jbk/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "0f1bebf3955cd78149209baa19db930b20f09acb0ce7864405deae917a3d9702",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~jbk/",
+    "sha256": "0f1bebf3955cd78149209baa19db930b20f09acb0ce7864405deae917a3d9702",
+    "captured_at": "2026-11-07T16:36:36"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~jbk/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Marsha Chechik",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:36:38",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~chechik/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~chechik/",
+     "at": "2026-11-07T16:36:38",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "0a4c9244b5b6f5a6484485892c0afec3a60dfa62a6a4e1837afb8834ffe45200"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:36:38",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~chechik/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "0a4c9244b5b6f5a6484485892c0afec3a60dfa62a6a4e1837afb8834ffe45200",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~chechik/",
+    "sha256": "0a4c9244b5b6f5a6484485892c0afec3a60dfa62a6a4e1837afb8834ffe45200",
+    "captured_at": "2026-11-07T16:36:38"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~chechik/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Fanny Chevalier",
+   "status": "pending",
+   "coverage": "pending",
+   "reason": "Captured landing page is a frame shell; framed homepage content needs review.",
+   "candidate_url": "http://fannychevalier.net/",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://fannychevalier.net/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://fannychevalier.net/",
+     "at": "2026-11-07T16:36:38",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "7d85505402bb955b1b4d5de094a8d1659de253afd16f8fa63ddce53b4a083523"
+    }
+   ],
+   "checked_at": "2026-11-07T16:36:38",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "evidence_gaps": [
+    "eligible_website_not_yet_established"
+   ]
+  },
+  {
+   "pi": "Christina Christara",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:36:40",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~ccc/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~ccc/",
+     "at": "2026-11-07T16:36:40",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "2c5ada2a78e1f46f71b484f12812c97deb3f3c63a6c9e05bb8bd31c2c063b882"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:36:40",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~ccc/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "2c5ada2a78e1f46f71b484f12812c97deb3f3c63a6c9e05bb8bd31c2c063b882",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~ccc/",
+    "sha256": "2c5ada2a78e1f46f71b484f12812c97deb3f3c63a6c9e05bb8bd31c2c063b882",
+    "captured_at": "2026-11-07T16:36:40"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~ccc/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Niv Dayan",
+   "status": "pending",
+   "coverage": "pending",
+   "reason": "Observed redirect remains to resolve and review without bypassing host policy.",
+   "candidate_url": "https://nivdayan.net",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://nivdayan.net",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "website_search",
+     "url": "https://nivdayan.net",
+     "at": "2026-11-07T16:36:40",
+     "result": "http_301"
+    }
+   ],
+   "checked_at": "2026-11-07T16:36:40",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "evidence_gaps": [
+    "eligible_website_not_yet_established"
+   ]
+  },
+  {
+   "pi": "Eyal de Lara",
+   "status": "pending",
+   "coverage": "pending",
+   "reason": "Captured landing page is a redirect stub; target still needs robots/access/content review.",
+   "candidate_url": "https://www.cs.toronto.edu/~delara/",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~delara/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~delara/",
+     "at": "2026-11-07T16:36:42",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "445eed21171daab22e6256523f87fdda6d1563741236f9132908a1f999733512"
+    }
+   ],
+   "checked_at": "2026-11-07T16:36:42",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "evidence_gaps": [
+    "eligible_website_not_yet_established"
+   ]
+  },
+  {
+   "pi": "Sven Dickinson",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:36:44",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~sven/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~sven/",
+     "at": "2026-11-07T16:36:44",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "d4227376a36272f75aa5db8c4668aa65b64defdc41ef703483835b2d416a0583"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:36:44",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~sven/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "d4227376a36272f75aa5db8c4668aa65b64defdc41ef703483835b2d416a0583",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~sven/",
+    "sha256": "d4227376a36272f75aa5db8c4668aa65b64defdc41ef703483835b2d416a0583",
+    "captured_at": "2026-11-07T16:36:44"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~sven/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "David Duvenaud",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:36:46",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~duvenaud/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~duvenaud/",
+     "at": "2026-11-07T16:36:46",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "ffebf0b703e32be7da4421525ed4fef9324f7da8983dee34b8fddb14100453be"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:36:46",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~duvenaud/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "ffebf0b703e32be7da4421525ed4fef9324f7da8983dee34b8fddb14100453be",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~duvenaud/",
+    "sha256": "ffebf0b703e32be7da4421525ed4fef9324f7da8983dee34b8fddb14100453be",
+    "captured_at": "2026-11-07T16:36:46"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~duvenaud/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Steve Easterbrook",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:36:48",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~sme/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~sme/",
+     "at": "2026-11-07T16:36:48",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "08402fb74e960f1dada8b8234d0e3517fc09be1856ca44c8a25099f2b0917ad3"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:36:48",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~sme/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "08402fb74e960f1dada8b8234d0e3517fc09be1856ca44c8a25099f2b0917ad3",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~sme/",
+    "sha256": "08402fb74e960f1dada8b8234d0e3517fc09be1856ca44c8a25099f2b0917ad3",
+    "captured_at": "2026-11-07T16:36:48"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~sme/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Faith Ellen",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:36:50",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~faith/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~faith/",
+     "at": "2026-11-07T16:36:50",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "0af14cdd26395e7cdcdcbf6d8532627c4df407d60608d42caad116ec603b381f"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:36:50",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~faith/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "0af14cdd26395e7cdcdcbf6d8532627c4df407d60608d42caad116ec603b381f",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~faith/",
+    "sha256": "0af14cdd26395e7cdcdcbf6d8532627c4df407d60608d42caad116ec603b381f",
+    "captured_at": "2026-11-07T16:36:50"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~faith/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Murat Erdogdu",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:36:52",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~erdogdu/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~erdogdu/",
+     "at": "2026-11-07T16:36:52",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "cd75524c8cc08564969a92a686141b62d5c171003f38aa5c40abe7277d1c145b"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:36:52",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~erdogdu/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "cd75524c8cc08564969a92a686141b62d5c171003f38aa5c40abe7277d1c145b",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~erdogdu/",
+    "sha256": "cd75524c8cc08564969a92a686141b62d5c171003f38aa5c40abe7277d1c145b",
+    "captured_at": "2026-11-07T16:36:52"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~erdogdu/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Azadeh Farzan",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:36:55",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~azadeh/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~azadeh/",
+     "at": "2026-11-07T16:36:55",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "8ef05a70f283349de87623a4f930b7e5532efcc9bea98fe14e2d51df1fa44443"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:36:55",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~azadeh/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "8ef05a70f283349de87623a4f930b7e5532efcc9bea98fe14e2d51df1fa44443",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~azadeh/",
+    "sha256": "8ef05a70f283349de87623a4f930b7e5532efcc9bea98fe14e2d51df1fa44443",
+    "captured_at": "2026-11-07T16:36:55"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~azadeh/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Sanja Fidler",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:36:55",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.utoronto.ca/~fidler/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.utoronto.ca/~fidler/",
+     "at": "2026-11-07T16:36:55",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "485f43f0309257b7499ca4e2d6e854e8f84eeeac86d74ec36c31d371272851cd"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:36:55",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.utoronto.ca/~fidler/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "485f43f0309257b7499ca4e2d6e854e8f84eeeac86d74ec36c31d371272851cd",
+   "evidence": {
+    "url": "https://www.cs.utoronto.ca/~fidler/",
+    "sha256": "485f43f0309257b7499ca4e2d6e854e8f84eeeac86d74ec36c31d371272851cd",
+    "captured_at": "2026-11-07T16:36:55"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.utoronto.ca/~fidler/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "David Fleet",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:36:57",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~fleet/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~fleet/",
+     "at": "2026-11-07T16:36:57",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "fb56e832c16c770153ccd9169f6b2f21a95c3ae812aaf89b27e4f9262f282b03"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:36:57",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~fleet/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "fb56e832c16c770153ccd9169f6b2f21a95c3ae812aaf89b27e4f9262f282b03",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~fleet/",
+    "sha256": "fb56e832c16c770153ccd9169f6b2f21a95c3ae812aaf89b27e4f9262f282b03",
+    "captured_at": "2026-11-07T16:36:57"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~fleet/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Yashar Ganjali",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:36:59",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~yganjali/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~yganjali/",
+     "at": "2026-11-07T16:36:59",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "bb698f5b22314734d127a4ed9bb429b554d119d7ef9de602eb4c79c3e9fe9e69"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:36:59",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~yganjali/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "bb698f5b22314734d127a4ed9bb429b554d119d7ef9de602eb4c79c3e9fe9e69",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~yganjali/",
+    "sha256": "bb698f5b22314734d127a4ed9bb429b554d119d7ef9de602eb4c79c3e9fe9e69",
+    "captured_at": "2026-11-07T16:36:59"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~yganjali/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Igor Gilitschenski",
+   "status": "reviewed",
+   "reason_code": "lab_site",
+   "reason": "Captured lab/group website.",
+   "audited_at": "2026-11-07T16:36:59",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://tisl.cs.toronto.edu/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://tisl.cs.toronto.edu/",
+     "at": "2026-11-07T16:36:59",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "1e24d14871c8ce81ab286bd72624202ff84cfe304eebc5e1d5b5b58af73cef24"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:36:59",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://tisl.cs.toronto.edu/",
+   "kind": "lab_site",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "1e24d14871c8ce81ab286bd72624202ff84cfe304eebc5e1d5b5b58af73cef24",
+   "evidence": {
+    "url": "https://tisl.cs.toronto.edu/",
+    "sha256": "1e24d14871c8ce81ab286bd72624202ff84cfe304eebc5e1d5b5b58af73cef24",
+    "captured_at": "2026-11-07T16:36:59"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://tisl.cs.toronto.edu/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Uma Girish",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:37:01",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~ugirish/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~ugirish/",
+     "at": "2026-11-07T16:37:01",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "717ed7810f25a15a7d564b270d6867e9d1a22ce66cdfb89c7dcb23bae15b44a9"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:37:01",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~ugirish/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "717ed7810f25a15a7d564b270d6867e9d1a22ce66cdfb89c7dcb23bae15b44a9",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~ugirish/",
+    "sha256": "717ed7810f25a15a7d564b270d6867e9d1a22ce66cdfb89c7dcb23bae15b44a9",
+    "captured_at": "2026-11-07T16:37:01"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~ugirish/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Anna Goldenberg",
+   "status": "pending",
+   "coverage": "pending",
+   "reason": "Captured page is a SickKids institutional profile; follow explicit lab/homepage links before declaring website coverage.",
+   "candidate_url": "https://www.sickkids.ca/en/staff/g/anna-goldenberg/",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.sickkids.ca/en/staff/g/anna-goldenberg/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.sickkids.ca/en/staff/g/anna-goldenberg/",
+     "at": "2026-11-07T16:37:02",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "5632106e0ddad8e24e4b491324fadcb7b6997fedf96bc3bc23eeb75e43facf38"
+    }
+   ],
+   "checked_at": "2026-11-07T16:37:02",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "evidence_gaps": [
+    "eligible_website_not_yet_established"
+   ]
+  },
+  {
+   "pi": "Eitan Grinspun",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:37:02",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.dgp.toronto.edu/~eitan/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.dgp.toronto.edu/~eitan/",
+     "at": "2026-11-07T16:37:02",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "0e4f2d4a3f2b83a0ab665452281eca670dbdccdd0d1b0ff6eb4c9f575a4d142a"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:37:02",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.dgp.toronto.edu/~eitan/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "0e4f2d4a3f2b83a0ab665452281eca670dbdccdd0d1b0ff6eb4c9f575a4d142a",
+   "evidence": {
+    "url": "https://www.dgp.toronto.edu/~eitan/",
+    "sha256": "0e4f2d4a3f2b83a0ab665452281eca670dbdccdd0d1b0ff6eb4c9f575a4d142a",
+    "captured_at": "2026-11-07T16:37:02"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.dgp.toronto.edu/~eitan/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Roger Grosse",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:37:03",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~rgrosse/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~rgrosse/",
+     "at": "2026-11-07T16:37:03",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "bbff7f52182b190af4125048ef39ba5fdc5b44418a1af1c1d1d1134425bb171b"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:37:03",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~rgrosse/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "bbff7f52182b190af4125048ef39ba5fdc5b44418a1af1c1d1d1134425bb171b",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~rgrosse/",
+    "sha256": "bbff7f52182b190af4125048ef39ba5fdc5b44418a1af1c1d1d1134425bb171b",
+    "captured_at": "2026-11-07T16:37:03"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~rgrosse/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Tovi Grossman",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:37:04",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.tovigrossman.com/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.tovigrossman.com/",
+     "at": "2026-11-07T16:37:04",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "ba8fafa1a91be0f5281d20c9a14ab554463842b3ea2e66183defca24e3bdd24c"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:37:04",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.tovigrossman.com/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "ba8fafa1a91be0f5281d20c9a14ab554463842b3ea2e66183defca24e3bdd24c",
+   "evidence": {
+    "url": "https://www.tovigrossman.com/",
+    "sha256": "ba8fafa1a91be0f5281d20c9a14ab554463842b3ea2e66183defca24e3bdd24c",
+    "captured_at": "2026-11-07T16:37:04"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.tovigrossman.com/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Arvind Gupta",
+   "status": "pending",
+   "coverage": "pending",
+   "reason": "Official directory does not provide a homepage link; targeted official-profile search remains open.",
+   "candidate_url": null,
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "website_search",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "no_homepage_in_official_listing"
+    }
+   ],
+   "checked_at": "2026-11-07T15:40:55",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "evidence_gaps": [
+    "eligible_website_not_yet_established"
+   ]
+  },
+  {
+   "pi": "Vassos Hadzilacos",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:37:05",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~vassos/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~vassos/",
+     "at": "2026-11-07T16:37:05",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "760131af873f7c7c3c9666096d7f54dd779c62f666b74887672ce324a9774666"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:37:05",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~vassos/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "760131af873f7c7c3c9666096d7f54dd779c62f666b74887672ce324a9774666",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~vassos/",
+    "sha256": "760131af873f7c7c3c9666096d7f54dd779c62f666b74887672ce324a9774666",
+    "captured_at": "2026-11-07T16:37:05"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~vassos/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Anwar Hithnawi",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:37:06",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://pps-lab.com/people/anwarhithnawi/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://pps-lab.com/people/anwarhithnawi/",
+     "at": "2026-11-07T16:37:06",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "8f31f451a10978f7c9a143d2b8d59f4d451de4a69419cfa1d61585f583ca8389"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:37:06",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://pps-lab.com/people/anwarhithnawi/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "8f31f451a10978f7c9a143d2b8d59f4d451de4a69419cfa1d61585f583ca8389",
+   "evidence": {
+    "url": "https://pps-lab.com/people/anwarhithnawi/",
+    "sha256": "8f31f451a10978f7c9a143d2b8d59f4d451de4a69419cfa1d61585f583ca8389",
+    "captured_at": "2026-11-07T16:37:06"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://pps-lab.com/people/anwarhithnawi/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Alec Jacobson",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:37:07",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~jacobson/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~jacobson/",
+     "at": "2026-11-07T16:37:07",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "8022c96e715daa8dac81a185aa8aeabf2cca4287faea5065cc77e78cd4bae159"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:37:07",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~jacobson/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "8022c96e715daa8dac81a185aa8aeabf2cca4287faea5065cc77e78cd4bae159",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~jacobson/",
+    "sha256": "8022c96e715daa8dac81a185aa8aeabf2cca4287faea5065cc77e78cd4bae159",
+    "captured_at": "2026-11-07T16:37:07"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~jacobson/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Zhijing Jin",
+   "status": "pending",
+   "coverage": "pending",
+   "reason": "Observed redirect remains to resolve and review without bypassing host policy.",
+   "candidate_url": "https://zhijing-jin.com/fantasy/",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://zhijing-jin.com/fantasy/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://zhijing-jin.com/fantasy/",
+     "at": "2026-11-07T16:37:10",
+     "result": "http_301",
+     "via": "school_profile_link",
+     "sha256": "35031dfeac888d706ae87c9f5bddcb916c6e337fbceecc80b511e11c917fb718"
+    }
+   ],
+   "checked_at": "2026-11-07T16:37:10",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "evidence_gaps": [
+    "eligible_website_not_yet_established"
+   ]
+  },
+  {
+   "pi": "Swastik Kopparty",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:33:16",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.math.toronto.edu/swastik/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.math.toronto.edu/swastik/",
+     "at": "2026-11-07T16:33:16",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "dca4f99d601856d83d769cecd54d672c12de961f43faad9ead80e763c1288be2"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:33:16",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.math.toronto.edu/swastik/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "dca4f99d601856d83d769cecd54d672c12de961f43faad9ead80e763c1288be2",
+   "evidence": {
+    "url": "https://www.math.toronto.edu/swastik/",
+    "sha256": "dca4f99d601856d83d769cecd54d672c12de961f43faad9ead80e763c1288be2",
+    "captured_at": "2026-11-07T16:33:16"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.math.toronto.edu/swastik/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Nick Koudas",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:37:10",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~koudas/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~koudas/",
+     "at": "2026-11-07T16:37:10",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "416d3390ba5b5f39d9cc4368c01aa0be6f352477cca9699c93f925277e92de27"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:37:10",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~koudas/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "416d3390ba5b5f39d9cc4368c01aa0be6f352477cca9699c93f925277e92de27",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~koudas/",
+    "sha256": "416d3390ba5b5f39d9cc4368c01aa0be6f352477cca9699c93f925277e92de27",
+    "captured_at": "2026-11-07T16:37:10"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~koudas/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Rahul G. Krishnan",
+   "status": "pending",
+   "coverage": "pending",
+   "reason": "Official directory does not provide a homepage link; targeted official-profile search remains open.",
+   "candidate_url": null,
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "website_search",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "no_homepage_in_official_listing"
+    }
+   ],
+   "checked_at": "2026-11-07T15:40:55",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "evidence_gaps": [
+    "eligible_website_not_yet_established"
+   ]
+  },
+  {
+   "pi": "Kyros Kutulakos",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:37:12",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~kyros/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~kyros/",
+     "at": "2026-11-07T16:37:12",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "d02cd8a68515ecc824a2cac10742d7420af9c8499f22b90de38a3f01bb769b00"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:37:12",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~kyros/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "d02cd8a68515ecc824a2cac10742d7420af9c8499f22b90de38a3f01bb769b00",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~kyros/",
+    "sha256": "d02cd8a68515ecc824a2cac10742d7420af9c8499f22b90de38a3f01bb769b00",
+    "captured_at": "2026-11-07T16:37:12"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~kyros/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "David Levin",
+   "status": "pending",
+   "coverage": "pending",
+   "reason": "Captured landing page is a redirect stub; target still needs robots/access/content review.",
+   "candidate_url": "https://www.cs.toronto.edu/~diwlevin/",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~diwlevin/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~diwlevin/",
+     "at": "2026-11-07T16:37:14",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "673db39e3d878e53c2a25bd0e95c16d499451bb3f50fc88e9c1d820c0c5f5e9c"
+    }
+   ],
+   "checked_at": "2026-11-07T16:37:14",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "evidence_gaps": [
+    "eligible_website_not_yet_established"
+   ]
+  },
+  {
+   "pi": "Aviad Levis",
+   "status": "pending",
+   "coverage": "pending",
+   "reason": "Observed redirect remains to resolve and review without bypassing host policy.",
+   "candidate_url": "http://aviadlevis.info/",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://aviadlevis.info/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://aviadlevis.info/",
+     "at": "2026-11-07T16:37:15",
+     "result": "http_301",
+     "via": "school_profile_link",
+     "sha256": "9e17cb15dd75bbbd5dbb984eda674863c3b10ab72613cf8a39a00c3e11a8492a"
+    }
+   ],
+   "checked_at": "2026-11-07T16:37:15",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "evidence_gaps": [
+    "eligible_website_not_yet_established"
+   ]
+  },
+  {
+   "pi": "David Lindell",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:37:16",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://davidlindell.com/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://davidlindell.com/",
+     "at": "2026-11-07T16:37:16",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "1c9d676e31d2fba392db95ffeafbb9c8d9a547351b06ce8cf0252abae679b675"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:37:16",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://davidlindell.com/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "1c9d676e31d2fba392db95ffeafbb9c8d9a547351b06ce8cf0252abae679b675",
+   "evidence": {
+    "url": "https://davidlindell.com/",
+    "sha256": "1c9d676e31d2fba392db95ffeafbb9c8d9a547351b06ce8cf0252abae679b675",
+    "captured_at": "2026-11-07T16:37:16"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://davidlindell.com/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Fan Long",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:37:16",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~fanl/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~fanl/",
+     "at": "2026-11-07T16:37:16",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "19d50e282c1154dc63060265b7968b545887bccf97206ad022da83ce2cef6c05"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:37:16",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~fanl/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "19d50e282c1154dc63060265b7968b545887bccf97206ad022da83ce2cef6c05",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~fanl/",
+    "sha256": "19d50e282c1154dc63060265b7968b545887bccf97206ad022da83ce2cef6c05",
+    "captured_at": "2026-11-07T16:37:16"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~fanl/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Peter Love",
+   "status": "pending",
+   "coverage": "pending",
+   "reason": "Captured page is a Physics institutional profile; explicit external homepage link remains to review.",
+   "candidate_url": "https://www.physics.utoronto.ca/members/love-peter/",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.physics.utoronto.ca/members/love-peter/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.physics.utoronto.ca/members/love-peter/",
+     "at": "2026-11-07T16:37:17",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "797b930f8e2ed3fb6dfa286272663868a70506b72933a3a7b734acee7353ae66"
+    }
+   ],
+   "checked_at": "2026-11-07T16:37:17",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "evidence_gaps": [
+    "eligible_website_not_yet_established"
+   ]
+  },
+  {
+   "pi": "Chris Maddison",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:37:18",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~cmaddis/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~cmaddis/",
+     "at": "2026-11-07T16:37:18",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "ddcb122cff7aab009ec0e04a3f1911ed97393d6ab92ef05a02b39ade8f802555"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:37:18",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~cmaddis/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "ddcb122cff7aab009ec0e04a3f1911ed97393d6ab92ef05a02b39ade8f802555",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~cmaddis/",
+    "sha256": "ddcb122cff7aab009ec0e04a3f1911ed97393d6ab92ef05a02b39ade8f802555",
+    "captured_at": "2026-11-07T16:37:18"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~cmaddis/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Peter Marbach",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:37:20",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~marbach/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~marbach/",
+     "at": "2026-11-07T16:37:20",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "47f5c31a3fa1914fc7050beefe8169eb158b9689b3d5284e556c0f1e56c81635"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:37:20",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~marbach/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "47f5c31a3fa1914fc7050beefe8169eb158b9689b3d5284e556c0f1e56c81635",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~marbach/",
+    "sha256": "47f5c31a3fa1914fc7050beefe8169eb158b9689b3d5284e556c0f1e56c81635",
+    "captured_at": "2026-11-07T16:37:20"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~marbach/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Alex Mariakakis",
+   "status": "pending",
+   "coverage": "pending",
+   "reason": "Official directory does not provide a homepage link; targeted official-profile search remains open.",
+   "candidate_url": null,
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "website_search",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "no_homepage_in_official_listing"
+    }
+   ],
+   "checked_at": "2026-11-07T15:40:55",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "evidence_gaps": [
+    "eligible_website_not_yet_established"
+   ]
+  },
+  {
+   "pi": "Sheila McIlraith",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:37:22",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~sheila/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~sheila/",
+     "at": "2026-11-07T16:37:22",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "678cdd088d3eab16022e4f9a39cd0bafa68c218a7585ff4a452694898349dd5b"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:37:22",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~sheila/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "678cdd088d3eab16022e4f9a39cd0bafa68c218a7585ff4a452694898349dd5b",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~sheila/",
+    "sha256": "678cdd088d3eab16022e4f9a39cd0bafa68c218a7585ff4a452694898349dd5b",
+    "captured_at": "2026-11-07T16:37:22"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~sheila/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Kuldeep Meel",
+   "status": "reviewed",
+   "reason_code": "site_at_other_institution",
+   "reason": "No eligible website established for this school from the recorded checks (other_institution): school_profile https://web.cs.toronto.edu/people/faculty-directory: ok; school_profile_link https://www.cs.toronto.edu/~meel/: listed; candidate_site https://www.cs.toronto.edu/~meel/: ok.",
+   "audited_at": "2026-11-07T16:37:24",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~meel/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~meel/",
+     "at": "2026-11-07T16:37:24",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "789622f13d0cf1f31c794ec1e7ee345bf09b089503a36d07923f4392228311ee"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:37:24",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~meel/",
+   "kind": "other_institution_site",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "789622f13d0cf1f31c794ec1e7ee345bf09b089503a36d07923f4392228311ee",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~meel/",
+    "sha256": "789622f13d0cf1f31c794ec1e7ee345bf09b089503a36d07923f4392228311ee",
+    "captured_at": "2026-11-07T16:37:24"
+   },
+   "coverage": "reason",
+   "upstream_audit_reason": "Captured homepage foregrounds Georgia Institute of Technology and explicitly labels the Toronto appointment on leave; no Toronto-specific lab site established in this pass.",
+   "reason_type": "other_institution",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations.",
+   "classification_evidence_quote": "School of Computer Science Georgia Institute of Technology (On leave: Associate Professor, University of Toronto )"
+  },
+  {
+   "pi": "Maryam Mehri Dehnavi",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:37:27",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~mmehride/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~mmehride/",
+     "at": "2026-11-07T16:37:27",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "c76d0231b33e732159f45fd66c1f5806041e6afff046f7369f7dbcbf047dc81e"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:37:27",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~mmehride/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "c76d0231b33e732159f45fd66c1f5806041e6afff046f7369f7dbcbf047dc81e",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~mmehride/",
+    "sha256": "c76d0231b33e732159f45fd66c1f5806041e6afff046f7369f7dbcbf047dc81e",
+    "captured_at": "2026-11-07T16:37:27"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~mmehride/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Michael Molloy",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:37:29",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~molloy/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~molloy/",
+     "at": "2026-11-07T16:37:29",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "9c7b19131be0697c8cfc8a784b0963d9c903e66449a9de893d3660dd7eead14f"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:37:29",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~molloy/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "9c7b19131be0697c8cfc8a784b0963d9c903e66449a9de893d3660dd7eead14f",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~molloy/",
+    "sha256": "9c7b19131be0697c8cfc8a784b0963d9c903e66449a9de893d3660dd7eead14f",
+    "captured_at": "2026-11-07T16:37:29"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~molloy/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Aleksandar Nikolov",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:37:31",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~anikolov/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~anikolov/",
+     "at": "2026-11-07T16:37:31",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "dd537e21f3bf79d9418941056511a60e6d8edd88cc95a2bdf01a21bfa198e7c1"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:37:31",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~anikolov/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "dd537e21f3bf79d9418941056511a60e6d8edd88cc95a2bdf01a21bfa198e7c1",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~anikolov/",
+    "sha256": "dd537e21f3bf79d9418941056511a60e6d8edd88cc95a2bdf01a21bfa198e7c1",
+    "captured_at": "2026-11-07T16:37:31"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~anikolov/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Carolina Nobre",
+   "status": "pending",
+   "coverage": "pending",
+   "reason": "Observed redirect remains to resolve and review without bypassing host policy.",
+   "candidate_url": "https://www.cs.toronto.edu/~cnobre",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~cnobre",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~cnobre",
+     "at": "2026-11-07T16:37:33",
+     "result": "http_301",
+     "via": "school_profile_link",
+     "sha256": "9bdc14bca72c616597d3b3110d710a0cacd5294a16cfa74ded2de0aba9ed3dee"
+    }
+   ],
+   "checked_at": "2026-11-07T16:37:33",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "evidence_gaps": [
+    "eligible_website_not_yet_established"
+   ]
+  },
+  {
+   "pi": "Gennady Pekhimenko",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:37:35",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~pekhimenko/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~pekhimenko/",
+     "at": "2026-11-07T16:37:35",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "c66f67749a989ed5ed973d8d0807debe9139b0edf7e889c1a729de55b27c550d"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:37:35",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~pekhimenko/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "c66f67749a989ed5ed973d8d0807debe9139b0edf7e889c1a729de55b27c550d",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~pekhimenko/",
+    "sha256": "c66f67749a989ed5ed973d8d0807debe9139b0edf7e889c1a729de55b27c550d",
+    "captured_at": "2026-11-07T16:37:35"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~pekhimenko/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Gerald Penn",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:37:37",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~gpenn/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~gpenn/",
+     "at": "2026-11-07T16:37:37",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "081694ebb9acb58dae36959bc8902371a6316da91e46fd4892a413a128129c4a"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:37:37",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~gpenn/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "081694ebb9acb58dae36959bc8902371a6316da91e46fd4892a413a128129c4a",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~gpenn/",
+    "sha256": "081694ebb9acb58dae36959bc8902371a6316da91e46fd4892a413a128129c4a",
+    "captured_at": "2026-11-07T16:37:37"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~gpenn/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Toniann Pitassi",
+   "status": "pending",
+   "coverage": "pending",
+   "reason": "Captured landing page is a frame shell; framed homepage content needs review.",
+   "candidate_url": "https://www.cs.toronto.edu/~toni/",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~toni/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~toni/",
+     "at": "2026-11-07T16:37:39",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "45015165f1103ca1c9df25c2d3164eadbaade347359b596e618d72a7ce5fba7e"
+    }
+   ],
+   "checked_at": "2026-11-07T16:37:39",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "evidence_gaps": [
+    "eligible_website_not_yet_established"
+   ]
+  },
+  {
+   "pi": "Colin Raffel",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:37:40",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://colinraffel.com/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://colinraffel.com/",
+     "at": "2026-11-07T16:37:40",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "8e6fcda1eafa426575baaf1069e5e6a7aa8becdf4e420737c42182b3e15aa718"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:37:40",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://colinraffel.com/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "8e6fcda1eafa426575baaf1069e5e6a7aa8becdf4e420737c42182b3e15aa718",
+   "evidence": {
+    "url": "https://colinraffel.com/",
+    "sha256": "8e6fcda1eafa426575baaf1069e5e6a7aa8becdf4e420737c42182b3e15aa718",
+    "captured_at": "2026-11-07T16:37:40"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://colinraffel.com/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Thomas Ristenpart",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:37:41",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~ristenpart/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~ristenpart/",
+     "at": "2026-11-07T16:37:41",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "acb6ee3a22c7a4924c359a66b1a7c31356d8d0391c1f910166478111fdcf9f23"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:37:41",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~ristenpart/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "acb6ee3a22c7a4924c359a66b1a7c31356d8d0391c1f910166478111fdcf9f23",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~ristenpart/",
+    "sha256": "acb6ee3a22c7a4924c359a66b1a7c31356d8d0391c1f910166478111fdcf9f23",
+    "captured_at": "2026-11-07T16:37:41"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~ristenpart/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Sushant Sachdeva",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:37:42",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://sachdevasushant.github.io/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://sachdevasushant.github.io/",
+     "at": "2026-11-07T16:37:42",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "52d895e4c0b64f9f34a1adfbad64e68c5e066db1e19eea7adec70652a554ed47"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:37:42",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://sachdevasushant.github.io/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "52d895e4c0b64f9f34a1adfbad64e68c5e066db1e19eea7adec70652a554ed47",
+   "evidence": {
+    "url": "https://sachdevasushant.github.io/",
+    "sha256": "52d895e4c0b64f9f34a1adfbad64e68c5e066db1e19eea7adec70652a554ed47",
+    "captured_at": "2026-11-07T16:37:42"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://sachdevasushant.github.io/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Gururaj Saileshwar",
+   "status": "pending",
+   "coverage": "pending",
+   "reason": "Official directory does not provide a homepage link; targeted official-profile search remains open.",
+   "candidate_url": null,
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "website_search",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "no_homepage_in_official_listing"
+    }
+   ],
+   "checked_at": "2026-11-07T15:40:55",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "evidence_gaps": [
+    "eligible_website_not_yet_established"
+   ]
+  },
+  {
+   "pi": "Shubhangi Saraf",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:37:42",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.math.toronto.edu/ssaraf/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.math.toronto.edu/ssaraf/",
+     "at": "2026-11-07T16:37:42",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "9b08c06cf61762c67a6ed35f9a619ef6f887fb0d42944b20790b2c30098dc438"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:37:42",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.math.toronto.edu/ssaraf/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "9b08c06cf61762c67a6ed35f9a619ef6f887fb0d42944b20790b2c30098dc438",
+   "evidence": {
+    "url": "https://www.math.toronto.edu/ssaraf/",
+    "sha256": "9b08c06cf61762c67a6ed35f9a619ef6f887fb0d42944b20790b2c30098dc438",
+    "captured_at": "2026-11-07T16:37:42"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.math.toronto.edu/ssaraf/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Bianca Schroeder",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:37:43",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~bianca/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~bianca/",
+     "at": "2026-11-07T16:37:43",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "5e4727778768f4f44effc75a9cbec0fa0d3bd826d082d6454c4db5d4355f2dd4"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:37:43",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~bianca/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "5e4727778768f4f44effc75a9cbec0fa0d3bd826d082d6454c4db5d4355f2dd4",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~bianca/",
+    "sha256": "5e4727778768f4f44effc75a9cbec0fa0d3bd826d082d6454c4db5d4355f2dd4",
+    "captured_at": "2026-11-07T16:37:43"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~bianca/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Kirill Serkh",
+   "status": "pending",
+   "coverage": "pending",
+   "reason": "Observed redirect remains to resolve and review without bypassing host policy.",
+   "candidate_url": "https://www.cs.toronto.edu/~kserkh/",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~kserkh/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~kserkh/",
+     "at": "2026-11-07T16:37:45",
+     "result": "http_301",
+     "via": "school_profile_link",
+     "sha256": "86b5efcd1cc67a7e8ba7c9fe7917214b14b3f00a101f391a3d2b0cd93d0b2cf1"
+    }
+   ],
+   "checked_at": "2026-11-07T16:37:45",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "evidence_gaps": [
+    "eligible_website_not_yet_established"
+   ]
+  },
+  {
+   "pi": "Nisarg Shah",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:37:47",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~nisarg/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~nisarg/",
+     "at": "2026-11-07T16:37:47",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "55a5432d8be220b2c8a344e9f3bbffb0d71e246cdc388e5808d768b5390b8a5b"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:37:47",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~nisarg/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "55a5432d8be220b2c8a344e9f3bbffb0d71e246cdc388e5808d768b5390b8a5b",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~nisarg/",
+    "sha256": "55a5432d8be220b2c8a344e9f3bbffb0d71e246cdc388e5808d768b5390b8a5b",
+    "captured_at": "2026-11-07T16:37:47"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~nisarg/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Ohad Shamir",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:37:50",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~oshamir/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~oshamir/",
+     "at": "2026-11-07T16:37:50",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "593ba2797ad165f4b2dcf638bd49a00b9f6dcff2e8560f650f73cee0aaf001ab"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:37:50",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~oshamir/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "593ba2797ad165f4b2dcf638bd49a00b9f6dcff2e8560f650f73cee0aaf001ab",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~oshamir/",
+    "sha256": "593ba2797ad165f4b2dcf638bd49a00b9f6dcff2e8560f650f73cee0aaf001ab",
+    "captured_at": "2026-11-07T16:37:50"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~oshamir/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Florian Shkurti",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:37:52",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~florian/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~florian/",
+     "at": "2026-11-07T16:37:52",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "789e7a849f28e8bc4ddcdf588b23c740c22068d04958b6d3c8b8befc5902b90d"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:37:52",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~florian/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "789e7a849f28e8bc4ddcdf588b23c740c22068d04958b6d3c8b8befc5902b90d",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~florian/",
+    "sha256": "789e7a849f28e8bc4ddcdf588b23c740c22068d04958b6d3c8b8befc5902b90d",
+    "captured_at": "2026-11-07T16:37:52"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~florian/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Xujie Si",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:37:54",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~six/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~six/",
+     "at": "2026-11-07T16:37:54",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "afc198026f4c48b57c617f235ac7c0f4d7a1d6247c75e9c7b5869a6afe59d052"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:37:54",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~six/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "afc198026f4c48b57c617f235ac7c0f4d7a1d6247c75e9c7b5869a6afe59d052",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~six/",
+    "sha256": "afc198026f4c48b57c617f235ac7c0f4d7a1d6247c75e9c7b5869a6afe59d052",
+    "captured_at": "2026-11-07T16:37:54"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~six/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Karan Singh",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:37:54",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.dgp.toronto.edu/~karan/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.dgp.toronto.edu/~karan/",
+     "at": "2026-11-07T16:37:54",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "9d263d20580de1717938c1ba9c391571c6aa9de02569d49e166b5d96a5321555"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:37:54",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.dgp.toronto.edu/~karan/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "9d263d20580de1717938c1ba9c391571c6aa9de02569d49e166b5d96a5321555",
+   "evidence": {
+    "url": "https://www.dgp.toronto.edu/~karan/",
+    "sha256": "9d263d20580de1717938c1ba9c391571c6aa9de02569d49e166b5d96a5321555",
+    "captured_at": "2026-11-07T16:37:54"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.dgp.toronto.edu/~karan/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Robert Soden",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:37:55",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://robertsoden.io/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://robertsoden.io/",
+     "at": "2026-11-07T16:37:55",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "7d10901a9c46929877430e200a75cb03c4b2e0756f77e9aa349eba7f0ea1bb68"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:37:55",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "http://robertsoden.io/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "7d10901a9c46929877430e200a75cb03c4b2e0756f77e9aa349eba7f0ea1bb68",
+   "evidence": {
+    "url": "http://robertsoden.io/",
+    "sha256": "7d10901a9c46929877430e200a75cb03c4b2e0756f77e9aa349eba7f0ea1bb68",
+    "captured_at": "2026-11-07T16:37:55"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://robertsoden.io/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Akshayaram Srinivasan",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:37:56",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~akshayaram/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~akshayaram/",
+     "at": "2026-11-07T16:37:56",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "3b389dc318b8c49a11eef9f06cb974e6d6b736494f0f7985590dee36a92450bc"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:37:56",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~akshayaram/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "3b389dc318b8c49a11eef9f06cb974e6d6b736494f0f7985590dee36a92450bc",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~akshayaram/",
+    "sha256": "3b389dc318b8c49a11eef9f06cb974e6d6b736494f0f7985590dee36a92450bc",
+    "captured_at": "2026-11-07T16:37:56"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~akshayaram/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Suzanne Stevenson",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:37:58",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~suzanne/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~suzanne/",
+     "at": "2026-11-07T16:37:58",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "4a45d43e0ca4f12c822e0f1360bc783df206b8e689e5ae62f70361313ec6e628"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:37:58",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~suzanne/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "4a45d43e0ca4f12c822e0f1360bc783df206b8e689e5ae62f70361313ec6e628",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~suzanne/",
+    "sha256": "4a45d43e0ca4f12c822e0f1360bc783df206b8e689e5ae62f70361313ec6e628",
+    "captured_at": "2026-11-07T16:37:58"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~suzanne/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Lisa Strug",
+   "status": "pending",
+   "coverage": "pending",
+   "reason": "Live access deferred by host policy; permitted archive evidence remains outstanding.",
+   "candidate_url": "https://www.statistics.utoronto.ca/people/directories/all-faculty/lisa-strug",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.statistics.utoronto.ca/people/directories/all-faculty/lisa-strug",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "website_search",
+     "url": "https://www.statistics.utoronto.ca/people/directories/all-faculty/lisa-strug",
+     "at": "2026-11-07T15:40:55",
+     "result": "host_wayback-only"
+    }
+   ],
+   "checked_at": "2026-11-07T15:40:55",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "evidence_gaps": [
+    "eligible_website_not_yet_established"
+   ]
+  },
+  {
+   "pi": "Roei Tell",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:37:59",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://sites.google.com/site/roeitell/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://sites.google.com/site/roeitell/",
+     "at": "2026-11-07T16:37:59",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "36749cd12f4666f17395e6f98cb66d29b936dced933421696627624648ab8fd8"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:37:59",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://sites.google.com/site/roeitell/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "36749cd12f4666f17395e6f98cb66d29b936dced933421696627624648ab8fd8",
+   "evidence": {
+    "url": "https://sites.google.com/site/roeitell/",
+    "sha256": "36749cd12f4666f17395e6f98cb66d29b936dced933421696627624648ab8fd8",
+    "captured_at": "2026-11-07T16:37:59"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://sites.google.com/site/roeitell/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Sam Toueg",
+   "status": "pending",
+   "coverage": "pending",
+   "reason": "Official directory does not provide a homepage link; targeted official-profile search remains open.",
+   "candidate_url": null,
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "website_search",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "no_homepage_in_official_listing"
+    }
+   ],
+   "checked_at": "2026-11-07T15:40:55",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "evidence_gaps": [
+    "eligible_website_not_yet_established"
+   ]
+  },
+  {
+   "pi": "Khai Truong",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:38:00",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~khai/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~khai/",
+     "at": "2026-11-07T16:38:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "4d0d05db377495d56f79a66bca63180b61b73cfc305adfd05f840c569d654ae5"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:38:00",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~khai/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "4d0d05db377495d56f79a66bca63180b61b73cfc305adfd05f840c569d654ae5",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~khai/",
+    "sha256": "4d0d05db377495d56f79a66bca63180b61b73cfc305adfd05f840c569d654ae5",
+    "captured_at": "2026-11-07T16:38:00"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~khai/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Raquel Urtasun",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:38:02",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~urtasun/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~urtasun/",
+     "at": "2026-11-07T16:38:02",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "fe9c27dc93e0fafc8880b21519ca904c28f8ad16b270e5c563541622f6a2829e"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:38:02",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~urtasun/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "fe9c27dc93e0fafc8880b21519ca904c28f8ad16b270e5c563541622f6a2829e",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~urtasun/",
+    "sha256": "fe9c27dc93e0fafc8880b21519ca904c28f8ad16b270e5c563541622f6a2829e",
+    "captured_at": "2026-11-07T16:38:02"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~urtasun/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Nandita Vijaykumar",
+   "status": "pending",
+   "coverage": "pending",
+   "reason": "Captured landing page is a redirect stub; target still needs robots/access/content review.",
+   "candidate_url": "https://www.cs.toronto.edu/~nandita/",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~nandita/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~nandita/",
+     "at": "2026-11-07T16:38:04",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "53dbdf9ba93ea19e24a0f5e073eaea79fca7b5481aba475db65ec40fcf0e35fc"
+    }
+   ],
+   "checked_at": "2026-11-07T16:38:04",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "evidence_gaps": [
+    "eligible_website_not_yet_established"
+   ]
+  },
+  {
+   "pi": "Bo Wang",
+   "status": "pending",
+   "coverage": "pending",
+   "reason": "Observed redirect remains to resolve and review without bypassing host policy.",
+   "candidate_url": "https://www.lmp.utoronto.ca/faculty/bo-wang",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.lmp.utoronto.ca/faculty/bo-wang",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "website_search",
+     "url": "https://www.lmp.utoronto.ca/faculty/bo-wang",
+     "at": "2026-11-07T16:38:04",
+     "result": "http_301"
+    }
+   ],
+   "checked_at": "2026-11-07T16:38:04",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "evidence_gaps": [
+    "eligible_website_not_yet_established"
+   ]
+  },
+  {
+   "pi": "Nathan Wiebe",
+   "status": "pending",
+   "coverage": "pending",
+   "reason": "Official directory does not provide a homepage link; targeted official-profile search remains open.",
+   "candidate_url": null,
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "website_search",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "no_homepage_in_official_listing"
+    }
+   ],
+   "checked_at": "2026-11-07T15:40:55",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "evidence_gaps": [
+    "eligible_website_not_yet_established"
+   ]
+  },
+  {
+   "pi": "Daniel Wigdor",
+   "status": "pending",
+   "coverage": "pending",
+   "reason": "Observed redirect remains to resolve and review without bypassing host policy.",
+   "candidate_url": "https://www.dgp.toronto.edu/~dwigdor/",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.dgp.toronto.edu/~dwigdor/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.dgp.toronto.edu/~dwigdor/",
+     "at": "2026-11-07T16:38:04",
+     "result": "http_301",
+     "via": "school_profile_link",
+     "sha256": "7805caf54c102b16e1128460acc2436b8c5d382edc3ac5b4f669719bc3463ce2"
+    }
+   ],
+   "checked_at": "2026-11-07T16:38:04",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "evidence_gaps": [
+    "eligible_website_not_yet_established"
+   ]
+  },
+  {
+   "pi": "Ningning Xie",
+   "status": "pending",
+   "coverage": "pending",
+   "reason": "Official directory does not provide a homepage link; targeted official-profile search remains open.",
+   "candidate_url": null,
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "website_search",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "no_homepage_in_official_listing"
+    }
+   ],
+   "checked_at": "2026-11-07T15:40:55",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "evidence_gaps": [
+    "eligible_website_not_yet_established"
+   ]
+  },
+  {
+   "pi": "Yang Xu",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:38:06",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~yangxu/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~yangxu/",
+     "at": "2026-11-07T16:38:06",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "aa9b80699141ad2449219e86daf3498632dbde35334903bc4a047b8e84ec2ec8"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:38:06",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~yangxu/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "aa9b80699141ad2449219e86daf3498632dbde35334903bc4a047b8e84ec2ec8",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~yangxu/",
+    "sha256": "aa9b80699141ad2449219e86daf3498632dbde35334903bc4a047b8e84ec2ec8",
+    "captured_at": "2026-11-07T16:38:06"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~yangxu/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Richard Zemel",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:38:08",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~zemel/inquiry/home.php",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~zemel/inquiry/home.php",
+     "at": "2026-11-07T16:38:08",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "96a3e66b154be5b3b040cc99f1ef34fa15508b84db2acd4a56a6d01a786dbe35"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:38:08",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://www.cs.toronto.edu/~zemel/inquiry/home.php",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "96a3e66b154be5b3b040cc99f1ef34fa15508b84db2acd4a56a6d01a786dbe35",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~zemel/inquiry/home.php",
+    "sha256": "96a3e66b154be5b3b040cc99f1ef34fa15508b84db2acd4a56a6d01a786dbe35",
+    "captured_at": "2026-11-07T16:38:08"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~zemel/inquiry/home.php",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  },
+  {
+   "pi": "Qizhen Zhang",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:38:09",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "ok",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://qizhenzhang.me",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://qizhenzhang.me",
+     "at": "2026-11-07T16:38:09",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "d35e3c40f9058a1f3417bb0c6c6ed39200994c88457201f00ee87d59e225cc8c"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T16:38:09",
+   "students_page_status": "deferred_by_scope",
+   "papers_page_status": "deferred_by_scope",
+   "url": "https://qizhenzhang.me",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "d35e3c40f9058a1f3417bb0c6c6ed39200994c88457201f00ee87d59e225cc8c",
+   "evidence": {
+    "url": "https://qizhenzhang.me",
+    "sha256": "d35e3c40f9058a1f3417bb0c6c6ed39200994c88457201f00ee87d59e225cc8c",
+    "captured_at": "2026-11-07T16:38:09"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://qizhenzhang.me",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T15:40:55",
+     "result": "listed",
+     "sha256": "ab4fff5fca74192a963b7a39ee58ac698b8e46d7a1179317d230f8163a8b5337"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Content reviewed: PI-authored homepage or research-group page; retains actual official directory link and captured body hash.",
+   "evidence_gaps": [],
+   "classification_review": "Visible homepage/research content manually inspected 2026-11-07. This establishes website identity, not campus eligibility or student relations."
+  }
+ ]
+}
