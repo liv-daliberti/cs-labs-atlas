@@ -330,7 +330,18 @@ def cambridge_directory(h):
     return out
 
 
+def cambridge_profile(h):
+    """The department's own profile heading and explicit job titles, without biographical guesses."""
+    name = re.search(r'<h1[^>]*class="campl-sub-title"[^>]*>(.*?)</h1>', h, re.S)
+    box = re.search(r'<div[^>]*class="cst-job-titles[^"]*"[^>]*>(.*?)</div>', h, re.S)
+    if not name or not box:
+        return []
+    titles = [clean(x) for x in re.findall(r'<li\b[^>]*>(.*?)</li>', box.group(1), re.S)]
+    return [dict(name_listed=clean(name.group(1)), titles=titles, homepage=None, division=None)] if titles else []
+
+
 FORMATS = {
+    'cambridge_profile': (cambridge_profile, re.compile(r'class="cst-job-titles')),
     'oxford_person_index': (oxford_person_index, re.compile(r'class="personIndex"')),
     'cambridge_directory': (cambridge_directory, re.compile(r'views-field-field-sd-classifications-ref')),
     'eecs_table': (eecs_table, re.compile(r'<b>Division:</b>', re.I)),

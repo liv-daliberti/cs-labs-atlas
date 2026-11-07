@@ -23,3 +23,10 @@ def test_cambridge_keeps_literal_roles_and_discards_contacts():
     assert rows[1]['titles'] == ['PhD students']
     assert rank_of(['Faculty']) == 'other'
     assert '0123456789' not in str(rows)
+
+
+def test_cambridge_profile_uses_explicit_title_field_only():
+    html = '<h1 class="campl-sub-title">Cecilia Mascolo </h1><div class="cst-job-titles campl-no-top-padding"><ul><li>Professor of Mobile Systems</li></ul></div><p>Former professor somewhere else; contact details here.</p>'
+    _, rows = parse(html, 'cambridge_profile')
+    assert rows == [dict(name_listed='Cecilia Mascolo', titles=['Professor of Mobile Systems'], homepage=None, division=None)]
+    assert parse('<h1 class="campl-sub-title">Someone</h1><p>My adviser is a Professor.</p>', 'cambridge_profile')[1] == []

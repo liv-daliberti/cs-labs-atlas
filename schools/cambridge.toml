@@ -82,6 +82,18 @@ url = "https://www.cst.cam.ac.uk/people/directory"
   format = "cambridge_directory"
   title_filter = ''
 
+  # Current profile supplement; partial source group, never complete historical-directory coverage.
+  [[departments.listings]]
+  slot = "profiles"
+  kind = "main"
+  url = "www.cst.cam.ac.uk/people/"
+  from = "20260101"
+  to = "20261231"
+  prefix = true
+  match = '^https?://www\.cst\.cam\.ac\.uk/people/[a-z]+[0-9]+/?$'
+  format = "cambridge_profile"
+  title_filter = ''
+
 [[affiliated_units]]
 code = "ENG"
 name = "Engineering"
