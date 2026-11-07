@@ -10,7 +10,9 @@ Current roster: 30 included PIs have current CSE ladder rows; two have other cur
 
 Owner decision: “lets add what we have / release what we have for washington university, harvard, and JHU (and then keep working on improving them)?”
 
-Exact completeness exceptions retain all open items: stage 1 has 28 missing department-years; stage 2 has 155 undecided CS-related candidates; stage 3 lacks the exhaustive lab-page audit; stage 4 has nine PIs with sourced listing years but no continuous period; stage 6 lacks exhaustive acceptance and has 31 unexplained student-coverage cases; stage 7 lacks exhaustive acceptance and has two snapshot-limited zero-paper cases. None admits an unsupported record or appointment year.
+Exact completeness exceptions retain all open items: stage 1 has 28 missing department-years; stage 2 has 155 undecided CS-related candidates; stage 3 lacks the exhaustive lab-page audit; stage 4 has nine PIs with sourced listing years but no continuous period; stage 6 lacks exhaustive acceptance and has 32 unexplained student-coverage cases; stage 7 lacks exhaustive acceptance and has two snapshot-limited zero-paper cases. None admits an unsupported record or appointment year.
+
+The student-gap count is 32 of 37: five labs have supported student records. The earlier count of 31 included an automatic new-hire inference for Gregory Kehne from a live-only 2026 listing; withdrawal of that inference leaves his advising coverage unresolved. All 33 sourced pairs and 32 distinct student identities are unchanged.
 
 Gates 5 (identity), 8 (copies/ledger/capture store) and 9 (accuracy) pass without exceptions. Stages 1/2/3/4/6/7 use exact finding allowlists, with zero unmatched findings. Stage 10 remains the coordinator's release step.
 
