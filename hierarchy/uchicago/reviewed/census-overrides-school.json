@@ -317,7 +317,51 @@
   "unproven_years": [
    2017
   ],
-  "why_unproven": "Searched 2026-11-03 (tools/periods_school.py gaps): 11 dated Wayback captures of the person's pages and the department listings were tried; none is dated 2017 and names the person with a professor title; the only 2017 capture of the CS directory is page 1 of a paged list (5 of about 45 people) and later pages are archived only from 2019. Papers of those years stay outside the appointment (R-PAP-01)."
+  "why_unproven": "Searched 2026-11-03 (tools/periods_school.py gaps): 11 dated Wayback captures of the person's pages and the department listings were tried; none is dated 2017 and names the person with a professor title; the only 2017 capture of the CS directory is page 1 of a paged list (5 of about 45 people) and later pages are archived only from 2019. Papers of those years stay outside the appointment (R-PAP-01).",
+  "not_papers": [
+   {
+    "doi": "10.6082/hpd02-pj941",
+    "oa": "https://openalex.org/W4287180442",
+    "why": "Reviewed 2026-11-06: patent application, not a research paper. The university repository identifies the exact title and inventors Hoffmann, Lafferty and Mishra as a Patent. OpenAlex mislabeled this repository edition as article; the three editions were merged in the trial build. Exclude the underlying patent from lab papers and coauthorship evidence.",
+    "evidence": [
+     {
+      "url": "https://knowledge.uchicago.edu/records/nvqwm-c9680",
+      "sha256": "ea91c79b0cc51cc3b4e5ab84ea881383e3ae7579862a0a3e2022a33b2a2d4808",
+      "quote": "Patent Open Apparatus and Method for Optimizing Quantifiable Behavior in Configurable Devices and Systems",
+      "observed": "2026-11-06",
+      "source": "Knowledge@UChicago primary repository record; Patent resource type"
+     }
+    ]
+   },
+   {
+    "doi": "10.6082/tbp47-yb112",
+    "oa": "https://openalex.org/W7162996541",
+    "why": "Reviewed 2026-11-06: patent application, not a research paper. The university repository identifies the exact title and inventors Hoffmann, Lafferty and Mishra as a Patent. OpenAlex mislabeled this repository edition as article; the three editions were merged in the trial build. Exclude the underlying patent from lab papers and coauthorship evidence.",
+    "evidence": [
+     {
+      "url": "https://knowledge.uchicago.edu/records/nvqwm-c9680",
+      "sha256": "ea91c79b0cc51cc3b4e5ab84ea881383e3ae7579862a0a3e2022a33b2a2d4808",
+      "quote": "Patent Open Apparatus and Method for Optimizing Quantifiable Behavior in Configurable Devices and Systems",
+      "observed": "2026-11-06",
+      "source": "Knowledge@UChicago primary repository record; Patent resource type"
+     }
+    ]
+   },
+   {
+    "doi": "10.6082/1kztq-apb04",
+    "oa": "https://openalex.org/W7163023021",
+    "why": "Reviewed 2026-11-06: patent application, not a research paper. The university repository identifies the exact title and inventors Hoffmann, Lafferty and Mishra as a Patent. OpenAlex mislabeled this repository edition as article; the three editions were merged in the trial build. Exclude the underlying patent from lab papers and coauthorship evidence.",
+    "evidence": [
+     {
+      "url": "https://knowledge.uchicago.edu/records/nvqwm-c9680",
+      "sha256": "ea91c79b0cc51cc3b4e5ab84ea881383e3ae7579862a0a3e2022a33b2a2d4808",
+      "quote": "Patent Open Apparatus and Method for Optimizing Quantifiable Behavior in Configurable Devices and Systems",
+      "observed": "2026-11-06",
+      "source": "Knowledge@UChicago primary repository record; Patent resource type"
+     }
+    ]
+   }
+  ]
  },
  "Stuart Kurtz": {
   "unproven_years": [
@@ -946,6 +990,52 @@
       "quote": "Demonstrating User Authentication via Electrical Muscle Stimulation | Yuxin Chen; Zhuolin Yang; Ruben Abbou; Pedro Lopes; Ben Y. Zhao; Haitao Zheng",
       "observed": "2026-10-29",
       "source": "OpenAlex sweep 2026-10-29 (hierarchy/uchicago/openalex-sweep.sqlite), sha256 of the stored record as sorted-key JSON"
+     }
+    ]
+   }
+  ]
+ },
+ "John Lafferty": {
+  "not_papers": [
+   {
+    "doi": "10.6082/hpd02-pj941",
+    "oa": "https://openalex.org/W4287180442",
+    "why": "Reviewed 2026-11-06: patent application, not a research paper. The university repository identifies the exact title and inventors Hoffmann, Lafferty and Mishra as a Patent. OpenAlex mislabeled this repository edition as article; the three editions were merged in the trial build. Exclude the underlying patent from lab papers and coauthorship evidence.",
+    "evidence": [
+     {
+      "url": "https://knowledge.uchicago.edu/records/nvqwm-c9680",
+      "sha256": "ea91c79b0cc51cc3b4e5ab84ea881383e3ae7579862a0a3e2022a33b2a2d4808",
+      "quote": "Patent Open Apparatus and Method for Optimizing Quantifiable Behavior in Configurable Devices and Systems",
+      "observed": "2026-11-06",
+      "source": "Knowledge@UChicago primary repository record; Patent resource type"
+     }
+    ]
+   },
+   {
+    "doi": "10.6082/tbp47-yb112",
+    "oa": "https://openalex.org/W7162996541",
+    "why": "Reviewed 2026-11-06: patent application, not a research paper. The university repository identifies the exact title and inventors Hoffmann, Lafferty and Mishra as a Patent. OpenAlex mislabeled this repository edition as article; the three editions were merged in the trial build. Exclude the underlying patent from lab papers and coauthorship evidence.",
+    "evidence": [
+     {
+      "url": "https://knowledge.uchicago.edu/records/nvqwm-c9680",
+      "sha256": "ea91c79b0cc51cc3b4e5ab84ea881383e3ae7579862a0a3e2022a33b2a2d4808",
+      "quote": "Patent Open Apparatus and Method for Optimizing Quantifiable Behavior in Configurable Devices and Systems",
+      "observed": "2026-11-06",
+      "source": "Knowledge@UChicago primary repository record; Patent resource type"
+     }
+    ]
+   },
+   {
+    "doi": "10.6082/1kztq-apb04",
+    "oa": "https://openalex.org/W7163023021",
+    "why": "Reviewed 2026-11-06: patent application, not a research paper. The university repository identifies the exact title and inventors Hoffmann, Lafferty and Mishra as a Patent. OpenAlex mislabeled this repository edition as article; the three editions were merged in the trial build. Exclude the underlying patent from lab papers and coauthorship evidence.",
+    "evidence": [
+     {
+      "url": "https://knowledge.uchicago.edu/records/nvqwm-c9680",
+      "sha256": "ea91c79b0cc51cc3b4e5ab84ea881383e3ae7579862a0a3e2022a33b2a2d4808",
+      "quote": "Patent Open Apparatus and Method for Optimizing Quantifiable Behavior in Configurable Devices and Systems",
+      "observed": "2026-11-06",
+      "source": "Knowledge@UChicago primary repository record; Patent resource type"
      }
     ]
    }
