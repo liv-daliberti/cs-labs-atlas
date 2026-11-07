@@ -1,0 +1,434 @@
+{
+ "school": "harvard",
+ "generated_at": "2026-11-07T21:51:08+00:00",
+ "tool": "tools/labpage_audit.py; cache-only source-byte manual curation 2026-11-07",
+ "standard": "docs/LAB-PAGES.md",
+ "status": "reviewed; acceptance requires matching file hash",
+ "rules": {
+  "LP-STU-01": "A person listed on the PI's own lab page (people, members, alumni section; live page or a Wayback id_ capture), under a people heading, not the PI, not in a faculty/collaborator/staff section, not another PI of the school, whose stated years do not end before 2016 or before the PI's appointment at the school, and who is dated or listed as current on a 2016+ capture (undated alumni only when the lab has only ever been at this school) is a lab member: the same admission the 2026-10-22 lab-page rows had (labpage-evidence.json, R-STU-01 'researched advisees'), with url, sha256 and a verbatim quote naming the person.",
+  "LP-PAP-01": "A paper listed on the PI's own lab publications page whose resolved work carries the PI on the byline, falls in the PI's appointment (R-PAP-01) and whose PI authorship lists the school (or page 1 ties the school to the PI) is a lab paper with identity 'labpage_listing' (R-PAP-04: the lab's own publications page), exactly the rows tools/labpage_recover.py accepts into labpage-recovered.jsonl.gz."
+ },
+ "students": [
+  {
+   "name": "Gustaf Ahdritz",
+   "role": "member",
+   "years": [
+    2026,
+    2026
+   ],
+   "url": "https://www.boazbarak.org/",
+   "capture_url": null,
+   "sha256": "3438db8f5dc3e2199072088c0c08bc3c10eec186b75ce153311520d8f5851fc2",
+   "quote": "Current students: Gustaf Ahdritz , Depen Morwani , Rosie Zhao , Natalie Abreu",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Current students: Current-member observation in 2026 capture; point year does not imply enrollment start or completion. Explicit Current students section; degree not stated.",
+   "pi": "Boaz Barak",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "reviewer",
+   "years_basis": "reviewer"
+  },
+  {
+   "name": "Rosie Zhao",
+   "role": "member",
+   "years": [
+    2026,
+    2026
+   ],
+   "url": "https://www.boazbarak.org/",
+   "capture_url": null,
+   "sha256": "3438db8f5dc3e2199072088c0c08bc3c10eec186b75ce153311520d8f5851fc2",
+   "quote": "Current students: Gustaf Ahdritz , Depen Morwani , Rosie Zhao , Natalie Abreu",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Current students: Current-member observation in 2026 capture; point year does not imply enrollment start or completion. Explicit Current students section; degree not stated.",
+   "pi": "Boaz Barak",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "reviewer",
+   "years_basis": "reviewer"
+  },
+  {
+   "name": "Natalie Abreu",
+   "role": "member",
+   "years": [
+    2026,
+    2026
+   ],
+   "url": "https://www.boazbarak.org/",
+   "capture_url": null,
+   "sha256": "3438db8f5dc3e2199072088c0c08bc3c10eec186b75ce153311520d8f5851fc2",
+   "quote": "Current students: Gustaf Ahdritz , Depen Morwani , Rosie Zhao , Natalie Abreu",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Current students: Current-member observation in 2026 capture; point year does not imply enrollment start or completion. Explicit Current students section; degree not stated.",
+   "pi": "Boaz Barak",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "reviewer",
+   "years_basis": "reviewer"
+  },
+  {
+   "name": "Nikhil Vyas",
+   "role": "postdoc",
+   "years": [
+    2026,
+    2026
+   ],
+   "url": "https://www.boazbarak.org/",
+   "capture_url": null,
+   "sha256": "3438db8f5dc3e2199072088c0c08bc3c10eec186b75ce153311520d8f5851fc2",
+   "quote": "Current postdocs: Nikhil Vyas , Samy Jelassi",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Current postdocs: Current-member observation in 2026 capture; point year does not imply enrollment start or completion.",
+   "pi": "Boaz Barak",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "section_heading",
+   "years_basis": "reviewer"
+  },
+  {
+   "name": "Samy Jelassi",
+   "role": "postdoc",
+   "years": [
+    2026,
+    2026
+   ],
+   "url": "https://www.boazbarak.org/",
+   "capture_url": null,
+   "sha256": "3438db8f5dc3e2199072088c0c08bc3c10eec186b75ce153311520d8f5851fc2",
+   "quote": "Current postdocs: Nikhil Vyas , Samy Jelassi",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Current postdocs: Current-member observation in 2026 capture; point year does not imply enrollment start or completion.",
+   "pi": "Boaz Barak",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "section_heading",
+   "years_basis": "reviewer"
+  },
+  {
+   "name": "Safwan Hossain",
+   "role": "phd",
+   "years": [
+    2026,
+    2026
+   ],
+   "url": "https://yiling.seas.harvard.edu/people/",
+   "sha256": "463f2f3d6da42c96dedcdf5c0474d80c3133b446be1b5be31790842f259edfb2",
+   "quote": "Safwan Hossain (G4)",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: PhD Students Current-member observation in 2026 capture; point year does not imply enrollment start or completion.",
+   "pi": "Yiling Chen",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "section_heading",
+   "years_basis": "reviewer",
+   "capture_url": null
+  },
+  {
+   "name": "Shi Feng",
+   "role": "phd",
+   "years": [
+    2026,
+    2026
+   ],
+   "url": "https://yiling.seas.harvard.edu/people/",
+   "sha256": "463f2f3d6da42c96dedcdf5c0474d80c3133b446be1b5be31790842f259edfb2",
+   "quote": "Shi Feng (G3)",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: PhD Students Current-member observation in 2026 capture; point year does not imply enrollment start or completion.",
+   "pi": "Yiling Chen",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "section_heading",
+   "years_basis": "reviewer",
+   "capture_url": null
+  },
+  {
+   "name": "Sadie Zhao",
+   "role": "phd",
+   "years": [
+    2026,
+    2026
+   ],
+   "url": "https://yiling.seas.harvard.edu/people/",
+   "sha256": "463f2f3d6da42c96dedcdf5c0474d80c3133b446be1b5be31790842f259edfb2",
+   "quote": "Sadie Zhao (G3)",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: PhD Students Current-member observation in 2026 capture; point year does not imply enrollment start or completion.",
+   "pi": "Yiling Chen",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "section_heading",
+   "years_basis": "reviewer",
+   "capture_url": null
+  },
+  {
+   "name": "Jenny Kaufmann",
+   "role": "member",
+   "years": [
+    2026,
+    2026
+   ],
+   "url": "https://madhu.seas.harvard.edu/students/",
+   "sha256": "4132c797b1323cdf80978ae615fac0f03dcb464b6fcbee7d34b1ce4442dfb710",
+   "quote": "Current Students Jenny Kaufmann (co-advised with Virginia Williams)",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Current Students Current-member observation in 2026 capture; point year does not imply enrollment start or completion. Current Students section links her own page on people.math.harvard.edu; degree not stated.",
+   "pi": "Madhu Sudan",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2015,
+   "role_basis": "reviewer",
+   "years_basis": "reviewer",
+   "capture_url": null
+  },
+  {
+   "name": "Elad Haramaty",
+   "role": "postdoc",
+   "years": [
+    2016,
+    2017
+   ],
+   "url": "https://madhu.seas.harvard.edu/students/",
+   "sha256": "4132c797b1323cdf80978ae615fac0f03dcb464b6fcbee7d34b1ce4442dfb710",
+   "quote": "Elad Haramaty (2016-2017)",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Postdocs Dated Postdocs entry after 2015 Harvard arrival; retained as postdoc, not PhD.",
+   "pi": "Madhu Sudan",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2015,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry",
+   "capture_url": null
+  },
+  {
+   "name": "Mrinal Kumar",
+   "role": "postdoc",
+   "years": [
+    2017,
+    2018
+   ],
+   "url": "https://madhu.seas.harvard.edu/students/",
+   "sha256": "4132c797b1323cdf80978ae615fac0f03dcb464b6fcbee7d34b1ce4442dfb710",
+   "quote": "Mrinal Kumar (2017-2018)",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Postdocs Dated Postdocs entry after 2015 Harvard arrival; retained as postdoc, not PhD.",
+   "pi": "Madhu Sudan",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2015,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry",
+   "capture_url": null
+  },
+  {
+   "name": "Huacheng Yu",
+   "role": "postdoc",
+   "years": [
+    2017,
+    2019
+   ],
+   "url": "https://madhu.seas.harvard.edu/students/",
+   "sha256": "4132c797b1323cdf80978ae615fac0f03dcb464b6fcbee7d34b1ce4442dfb710",
+   "quote": "Huacheng Yu (2017-2019)",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Postdocs Dated Postdocs entry after 2015 Harvard arrival; retained as postdoc, not PhD.",
+   "pi": "Madhu Sudan",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2015,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry",
+   "capture_url": null
+  },
+  {
+   "name": "Omri Ben-Eliezer",
+   "role": "postdoc",
+   "years": [
+    2020,
+    2021
+   ],
+   "url": "https://madhu.seas.harvard.edu/students/",
+   "sha256": "4132c797b1323cdf80978ae615fac0f03dcb464b6fcbee7d34b1ce4442dfb710",
+   "quote": "Omri Ben-Eliezer (2020-2021)",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Postdocs Dated Postdocs entry after 2015 Harvard arrival; retained as postdoc, not PhD.",
+   "pi": "Madhu Sudan",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2015,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry",
+   "capture_url": null
+  },
+  {
+   "name": "Amirbehshad Shahrasbi",
+   "role": "postdoc",
+   "years": [
+    2020,
+    2021
+   ],
+   "url": "https://madhu.seas.harvard.edu/students/",
+   "sha256": "4132c797b1323cdf80978ae615fac0f03dcb464b6fcbee7d34b1ce4442dfb710",
+   "quote": "Amirbehshad Shahrasbi (2020-2021)",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Postdocs Dated Postdocs entry after 2015 Harvard arrival; retained as postdoc, not PhD.",
+   "pi": "Madhu Sudan",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2015,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry",
+   "capture_url": null
+  },
+  {
+   "name": "Sumegha Garg",
+   "role": "postdoc",
+   "years": [
+    2020,
+    2022
+   ],
+   "url": "https://madhu.seas.harvard.edu/students/",
+   "sha256": "4132c797b1323cdf80978ae615fac0f03dcb464b6fcbee7d34b1ce4442dfb710",
+   "quote": "Sumegha Garg (2020-2022)",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Postdocs Dated Postdocs entry after 2015 Harvard arrival; retained as postdoc, not PhD.",
+   "pi": "Madhu Sudan",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2015,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry",
+   "capture_url": null
+  },
+  {
+   "name": "Roy Rinberg",
+   "role": "phd",
+   "years": [
+    2026,
+    2026
+   ],
+   "url": "https://salil.seas.harvard.edu/people",
+   "capture_url": "https://web.archive.org/web/20260110091606id_/https://salil.seas.harvard.edu/people",
+   "sha256": "e0ee6d4c9d7575e0dbad4ef3fe9f28f12338a701648a3efa06e7901d8a77f31a",
+   "quote": "Roy Rinberg Ph.D. Student (co-advised with Seth Neel)",
+   "note": "Source-byte hand review 2026-11-07. Current Group Members, January 2026 Harvard page; co-adviser Seth Neel belongs to this entry.",
+   "pi": "Salil P. Vadhan",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "entry",
+   "years_basis": "reviewer"
+  },
+  {
+   "name": "Jake Ruotolo",
+   "role": "phd",
+   "years": [
+    2026,
+    2026
+   ],
+   "url": "https://salil.seas.harvard.edu/people",
+   "capture_url": "https://web.archive.org/web/20260110091606id_/https://salil.seas.harvard.edu/people",
+   "sha256": "e0ee6d4c9d7575e0dbad4ef3fe9f28f12338a701648a3efa06e7901d8a77f31a",
+   "quote": "Jake Ruotolo Ph.D. Student",
+   "note": "Source-byte hand review 2026-11-07. Current Group Members, January 2026 Harvard page; no co-adviser stated in this entry.",
+   "pi": "Salil P. Vadhan",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "entry",
+   "years_basis": "reviewer"
+  },
+  {
+   "name": "Jinkun Lin",
+   "role": "postdoc",
+   "years": [
+    2026,
+    2026
+   ],
+   "url": "http://minlanyu.seas.harvard.edu/student.html",
+   "sha256": "887a7230d647dbb79edcb96fb8af754f5099dfaec6cafd169eca49a86e73e588",
+   "quote": "Current postdoc Yanying Lin Jinkun Lin (affiliated with Meta)",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Students > Current postdoc Current-member observation in 2026 capture; point year does not imply enrollment start or completion. Affiliated with Meta is preserved; page lists a current postdoc in this Harvard group.",
+   "pi": "Minlan Yu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "section_heading",
+   "years_basis": "reviewer",
+   "capture_url": null
+  },
+  {
+   "name": "Chonlam Lao",
+   "role": "member",
+   "years": [
+    2026,
+    2026
+   ],
+   "url": "http://minlanyu.seas.harvard.edu/student.html",
+   "capture_url": "https://web.archive.org/web/20260313145656id_/http://minlanyu.seas.harvard.edu/student.html",
+   "sha256": "b505ae83dd41939933d7effe0de818c8535f292ce047ad1d3fcb4003d594813e",
+   "quote": "Current graduate student Weifan Jiang Chonlam Lao (co-advised with Aditya Akella) Minghao Li",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Students > Current graduate student Current-member observation in 2026 capture; point year does not imply enrollment start or completion. Graduate degree level not stated; March 2026 current snapshot, later live alumni status does not extend the observation.",
+   "pi": "Minlan Yu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "reviewer",
+   "years_basis": "reviewer"
+  },
+  {
+   "name": "Minghao Li",
+   "role": "member",
+   "years": [
+    2026,
+    2026
+   ],
+   "url": "http://minlanyu.seas.harvard.edu/student.html",
+   "capture_url": "https://web.archive.org/web/20260313145656id_/http://minlanyu.seas.harvard.edu/student.html",
+   "sha256": "b505ae83dd41939933d7effe0de818c8535f292ce047ad1d3fcb4003d594813e",
+   "quote": "Current graduate student Weifan Jiang Chonlam Lao (co-advised with Aditya Akella) Minghao Li",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Students > Current graduate student Current-member observation in 2026 capture; point year does not imply enrollment start or completion. Graduate degree level not stated; March 2026 current snapshot, later live alumni status does not extend the observation.",
+   "pi": "Minlan Yu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "reviewer",
+   "years_basis": "reviewer"
+  },
+  {
+   "name": "Rana Shahout",
+   "role": "postdoc",
+   "years": [
+    2026,
+    2026
+   ],
+   "url": "http://minlanyu.seas.harvard.edu/student.html",
+   "capture_url": "https://web.archive.org/web/20260313145656id_/http://minlanyu.seas.harvard.edu/student.html",
+   "sha256": "b505ae83dd41939933d7effe0de818c8535f292ce047ad1d3fcb4003d594813e",
+   "quote": "Current postdoc Rana Shahout (co-advised with Michael Mitzenmacher)",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Students > Current postdoc Current-member observation in 2026 capture; point year does not imply enrollment start or completion.",
+   "pi": "Minlan Yu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "section_heading",
+   "years_basis": "reviewer"
+  }
+ ],
+ "papers": []
+}

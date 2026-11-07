@@ -1,0 +1,834 @@
+{
+ "school": "washu",
+ "generated_at": "2026-11-07T21:51:08+00:00",
+ "tool": "tools/labpage_audit.py; cache-only source-byte manual curation 2026-11-07",
+ "standard": "docs/LAB-PAGES.md",
+ "status": "reviewed; acceptance requires matching file hash",
+ "rules": {
+  "LP-STU-01": "A person listed on the PI's own lab page (people, members, alumni section; live page or a Wayback id_ capture), under a people heading, not the PI, not in a faculty/collaborator/staff section, not another PI of the school, whose stated years do not end before 2016 or before the PI's appointment at the school, and who is dated or listed as current on a 2016+ capture (undated alumni only when the lab has only ever been at this school) is a lab member: the same admission the 2026-10-22 lab-page rows had (labpage-evidence.json, R-STU-01 'researched advisees'), with url, sha256 and a verbatim quote naming the person.",
+  "LP-PAP-01": "A paper listed on the PI's own lab publications page whose resolved work carries the PI on the byline, falls in the PI's appointment (R-PAP-01) and whose PI authorship lists the school (or page 1 ties the school to the PI) is a lab paper with identity 'labpage_listing' (R-PAP-04: the lab's own publications page), exactly the rows tools/labpage_recover.py accepts into labpage-recovered.jsonl.gz."
+ },
+ "students": [
+  {
+   "name": "Ruiqi Wang",
+   "role": "phd",
+   "years": [
+    null,
+    2026
+   ],
+   "url": "http://www.cse.wustl.edu/~lu/#Papers",
+   "capture_url": null,
+   "sha256": "f62a55c7573f95edafbc6d311fe608509e8ac6e8ea17e54f95935aeca25591a3",
+   "quote": "Ruiqi Wang (PhD 2026): Google.",
+   "note": "Source-byte hand review 2026-11-07. Replaced news-derived candidate with explicit Graduated PhD Students and Postdocs entry in cached November 2026 page; not inferred from news or fetch time.",
+   "pi": "Chenyang Lu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2020,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Peiqi Gao",
+   "role": "phd",
+   "years": [
+    2026,
+    2026
+   ],
+   "url": "http://www.cse.wustl.edu/~lu/#Papers",
+   "sha256": "f62a55c7573f95edafbc6d311fe608509e8ac6e8ea17e54f95935aeca25591a3",
+   "quote": "Current PhD Students Peiqi Gao Hangyue Li Patrick Lynch Claire Najjuuko Sizhe Wang Zichen Wang Ben Warner Jiazhong Xiao Ziqi Xu Daoyi Zhu",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Current PhD Students Current-member observation in 2026 capture; point year does not imply enrollment start or completion.",
+   "pi": "Chenyang Lu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2020,
+   "role_basis": "section_heading",
+   "years_basis": "reviewer",
+   "capture_url": null
+  },
+  {
+   "name": "Hangyue Li",
+   "role": "phd",
+   "years": [
+    2026,
+    2026
+   ],
+   "url": "http://www.cse.wustl.edu/~lu/#Papers",
+   "sha256": "f62a55c7573f95edafbc6d311fe608509e8ac6e8ea17e54f95935aeca25591a3",
+   "quote": "Current PhD Students Peiqi Gao Hangyue Li Patrick Lynch Claire Najjuuko Sizhe Wang Zichen Wang Ben Warner Jiazhong Xiao Ziqi Xu Daoyi Zhu",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Current PhD Students Current-member observation in 2026 capture; point year does not imply enrollment start or completion.",
+   "pi": "Chenyang Lu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2020,
+   "role_basis": "section_heading",
+   "years_basis": "reviewer",
+   "capture_url": null
+  },
+  {
+   "name": "Patrick Lynch",
+   "role": "phd",
+   "years": [
+    2026,
+    2026
+   ],
+   "url": "http://www.cse.wustl.edu/~lu/#Papers",
+   "sha256": "f62a55c7573f95edafbc6d311fe608509e8ac6e8ea17e54f95935aeca25591a3",
+   "quote": "Current PhD Students Peiqi Gao Hangyue Li Patrick Lynch Claire Najjuuko Sizhe Wang Zichen Wang Ben Warner Jiazhong Xiao Ziqi Xu Daoyi Zhu",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Current PhD Students Current-member observation in 2026 capture; point year does not imply enrollment start or completion.",
+   "pi": "Chenyang Lu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2020,
+   "role_basis": "section_heading",
+   "years_basis": "reviewer",
+   "capture_url": null
+  },
+  {
+   "name": "Claire Najjuuko",
+   "role": "phd",
+   "years": [
+    2026,
+    2026
+   ],
+   "url": "http://www.cse.wustl.edu/~lu/#Papers",
+   "sha256": "f62a55c7573f95edafbc6d311fe608509e8ac6e8ea17e54f95935aeca25591a3",
+   "quote": "Current PhD Students Peiqi Gao Hangyue Li Patrick Lynch Claire Najjuuko Sizhe Wang Zichen Wang Ben Warner Jiazhong Xiao Ziqi Xu Daoyi Zhu",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Current PhD Students Current-member observation in 2026 capture; point year does not imply enrollment start or completion.",
+   "pi": "Chenyang Lu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2020,
+   "role_basis": "section_heading",
+   "years_basis": "reviewer",
+   "capture_url": null
+  },
+  {
+   "name": "Sizhe Wang",
+   "role": "phd",
+   "years": [
+    2026,
+    2026
+   ],
+   "url": "http://www.cse.wustl.edu/~lu/#Papers",
+   "sha256": "f62a55c7573f95edafbc6d311fe608509e8ac6e8ea17e54f95935aeca25591a3",
+   "quote": "Current PhD Students Peiqi Gao Hangyue Li Patrick Lynch Claire Najjuuko Sizhe Wang Zichen Wang Ben Warner Jiazhong Xiao Ziqi Xu Daoyi Zhu",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Current PhD Students Current-member observation in 2026 capture; point year does not imply enrollment start or completion.",
+   "pi": "Chenyang Lu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2020,
+   "role_basis": "section_heading",
+   "years_basis": "reviewer",
+   "capture_url": null
+  },
+  {
+   "name": "Zichen Wang",
+   "role": "phd",
+   "years": [
+    2026,
+    2026
+   ],
+   "url": "http://www.cse.wustl.edu/~lu/#Papers",
+   "sha256": "f62a55c7573f95edafbc6d311fe608509e8ac6e8ea17e54f95935aeca25591a3",
+   "quote": "Current PhD Students Peiqi Gao Hangyue Li Patrick Lynch Claire Najjuuko Sizhe Wang Zichen Wang Ben Warner Jiazhong Xiao Ziqi Xu Daoyi Zhu",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Current PhD Students Current-member observation in 2026 capture; point year does not imply enrollment start or completion.",
+   "pi": "Chenyang Lu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2020,
+   "role_basis": "section_heading",
+   "years_basis": "reviewer",
+   "capture_url": null
+  },
+  {
+   "name": "Jiazhong Xiao",
+   "role": "phd",
+   "years": [
+    2026,
+    2026
+   ],
+   "url": "http://www.cse.wustl.edu/~lu/#Papers",
+   "sha256": "f62a55c7573f95edafbc6d311fe608509e8ac6e8ea17e54f95935aeca25591a3",
+   "quote": "Current PhD Students Peiqi Gao Hangyue Li Patrick Lynch Claire Najjuuko Sizhe Wang Zichen Wang Ben Warner Jiazhong Xiao Ziqi Xu Daoyi Zhu",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Current PhD Students Current-member observation in 2026 capture; point year does not imply enrollment start or completion.",
+   "pi": "Chenyang Lu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2020,
+   "role_basis": "section_heading",
+   "years_basis": "reviewer",
+   "capture_url": null
+  },
+  {
+   "name": "Ziqi Xu",
+   "role": "phd",
+   "years": [
+    2026,
+    2026
+   ],
+   "url": "http://www.cse.wustl.edu/~lu/#Papers",
+   "sha256": "f62a55c7573f95edafbc6d311fe608509e8ac6e8ea17e54f95935aeca25591a3",
+   "quote": "Current PhD Students Peiqi Gao Hangyue Li Patrick Lynch Claire Najjuuko Sizhe Wang Zichen Wang Ben Warner Jiazhong Xiao Ziqi Xu Daoyi Zhu",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Current PhD Students Current-member observation in 2026 capture; point year does not imply enrollment start or completion.",
+   "pi": "Chenyang Lu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2020,
+   "role_basis": "section_heading",
+   "years_basis": "reviewer",
+   "capture_url": null
+  },
+  {
+   "name": "Daoyi Zhu",
+   "role": "phd",
+   "years": [
+    2026,
+    2026
+   ],
+   "url": "http://www.cse.wustl.edu/~lu/#Papers",
+   "sha256": "f62a55c7573f95edafbc6d311fe608509e8ac6e8ea17e54f95935aeca25591a3",
+   "quote": "Current PhD Students Peiqi Gao Hangyue Li Patrick Lynch Claire Najjuuko Sizhe Wang Zichen Wang Ben Warner Jiazhong Xiao Ziqi Xu Daoyi Zhu",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Current PhD Students Current-member observation in 2026 capture; point year does not imply enrollment start or completion.",
+   "pi": "Chenyang Lu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2020,
+   "role_basis": "section_heading",
+   "years_basis": "reviewer",
+   "capture_url": null
+  },
+  {
+   "name": "Ruixuan Dai",
+   "role": "phd",
+   "years": [
+    2020,
+    2020
+   ],
+   "url": "https://www.cse.wustl.edu/~lu/",
+   "capture_url": "https://web.archive.org/web/20200310185244id_/https://www.cse.wustl.edu/~lu/",
+   "sha256": "36250cd0cc55045149c8db4512a73a9435bfeed762a95b8449cdb0c53e5f2c79",
+   "quote": "Ruixuan Dai (PhD)",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Current Current-member observation in 2020 capture; point year does not imply enrollment start or completion. Current PhD Students on March 2020 archived page, not a current 2026 claim.",
+   "pi": "Chenyang Lu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2020,
+   "role_basis": "entry",
+   "years_basis": "reviewer"
+  },
+  {
+   "name": "Chong Li",
+   "role": "phd",
+   "years": [
+    2020,
+    2020
+   ],
+   "url": "https://www.cse.wustl.edu/~lu/",
+   "capture_url": "https://web.archive.org/web/20200310185244id_/https://www.cse.wustl.edu/~lu/",
+   "sha256": "36250cd0cc55045149c8db4512a73a9435bfeed762a95b8449cdb0c53e5f2c79",
+   "quote": "Chong Li (PhD)",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Current Current-member observation in 2020 capture; point year does not imply enrollment start or completion. Current PhD Students on March 2020 archived page, not a current 2026 claim.",
+   "pi": "Chenyang Lu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2020,
+   "role_basis": "entry",
+   "years_basis": "reviewer"
+  },
+  {
+   "name": "Dingwen Li",
+   "role": "phd",
+   "years": [
+    2020,
+    2020
+   ],
+   "url": "https://www.cse.wustl.edu/~lu/",
+   "capture_url": "https://web.archive.org/web/20200310185244id_/https://www.cse.wustl.edu/~lu/",
+   "sha256": "36250cd0cc55045149c8db4512a73a9435bfeed762a95b8449cdb0c53e5f2c79",
+   "quote": "Dingwen Li (PhD)",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Current Current-member observation in 2020 capture; point year does not imply enrollment start or completion. Current PhD Students on March 2020 archived page, not a current 2026 claim.",
+   "pi": "Chenyang Lu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2020,
+   "role_basis": "entry",
+   "years_basis": "reviewer"
+  },
+  {
+   "name": "Haoran Li",
+   "role": "phd",
+   "years": [
+    2020,
+    2020
+   ],
+   "url": "https://www.cse.wustl.edu/~lu/",
+   "capture_url": "https://web.archive.org/web/20200310185244id_/https://www.cse.wustl.edu/~lu/",
+   "sha256": "36250cd0cc55045149c8db4512a73a9435bfeed762a95b8449cdb0c53e5f2c79",
+   "quote": "Haoran Li (PhD)",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Current Current-member observation in 2020 capture; point year does not imply enrollment start or completion. Current PhD Students on March 2020 archived page, not a current 2026 claim.",
+   "pi": "Chenyang Lu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2020,
+   "role_basis": "entry",
+   "years_basis": "reviewer"
+  },
+  {
+   "name": "Jiangnan Liu",
+   "role": "phd",
+   "years": [
+    2020,
+    2020
+   ],
+   "url": "https://www.cse.wustl.edu/~lu/",
+   "capture_url": "https://web.archive.org/web/20200310185244id_/https://www.cse.wustl.edu/~lu/",
+   "sha256": "36250cd0cc55045149c8db4512a73a9435bfeed762a95b8449cdb0c53e5f2c79",
+   "quote": "Jiangnan Liu (PhD, with Roch Guerin)",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Current Current-member observation in 2020 capture; point year does not imply enrollment start or completion. Current PhD Students on March 2020 archived page, not a current 2026 claim.",
+   "pi": "Chenyang Lu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2020,
+   "role_basis": "entry",
+   "years_basis": "reviewer"
+  },
+  {
+   "name": "Bing Xue",
+   "role": "phd",
+   "years": [
+    2020,
+    2020
+   ],
+   "url": "https://www.cse.wustl.edu/~lu/",
+   "capture_url": "https://web.archive.org/web/20200310185244id_/https://www.cse.wustl.edu/~lu/",
+   "sha256": "36250cd0cc55045149c8db4512a73a9435bfeed762a95b8449cdb0c53e5f2c79",
+   "quote": "Bing Xue (PhD)",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Current Current-member observation in 2020 capture; point year does not imply enrollment start or completion. Current PhD Students on March 2020 archived page, not a current 2026 claim.",
+   "pi": "Chenyang Lu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2020,
+   "role_basis": "entry",
+   "years_basis": "reviewer"
+  },
+  {
+   "name": "Jaehwan Jeong",
+   "role": "phd",
+   "years": [
+    2023,
+    2023
+   ],
+   "url": "https://www.cse.wustl.edu/~lu/",
+   "capture_url": "https://web.archive.org/web/20230327142700id_/https://www.cse.wustl.edu/~lu/",
+   "sha256": "daf4fb861947827b3ade40cf0cefb32db0b123676789b1ea586f391d80787c86",
+   "quote": "PhD Students Current Rahav Dor: Edge Computing Jaehwan Jeong Hangyue Li",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Current Current-member observation in 2023 capture; point year does not imply enrollment start or completion. March 2023 archived PhD Students / Current heading.",
+   "pi": "Chenyang Lu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2020,
+   "role_basis": "section_heading",
+   "years_basis": "reviewer"
+  },
+  {
+   "name": "Aobo Liu",
+   "role": "phd",
+   "years": [
+    2024,
+    null
+   ],
+   "url": "https://sites.wustl.edu/ravivlab/lab/",
+   "sha256": "8932db55de68e4490e9bad816c76b029e534a7b6cbd0f5b4c19e697ffe844418",
+   "quote": "Aobo Liu (started 2024, joint advising with Prof. Andrew Clark).",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Ph.D. students Stated start only; no 2024 completion inferred.",
+   "pi": "Netanel Raviv",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2019,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry",
+   "capture_url": null
+  },
+  {
+   "name": "Bahram Yaghooti",
+   "role": "phd",
+   "years": [
+    2023,
+    2026
+   ],
+   "url": "https://sites.wustl.edu/ravivlab/lab/",
+   "sha256": "8932db55de68e4490e9bad816c76b029e534a7b6cbd0f5b4c19e697ffe844418",
+   "quote": "Bahram Yaghooti (PhD 2023-2026, joint advising with Prof. Bruno Sinopoli)",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Alumni:",
+   "pi": "Netanel Raviv",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2019,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry",
+   "capture_url": null
+  },
+  {
+   "name": "Ashwin Kumar",
+   "role": "phd",
+   "years": [
+    null,
+    2025
+   ],
+   "url": "https://yeoh-lab.wustl.edu/people/",
+   "sha256": "01bebdf14220dc159a1e9759ea6eeb6166a74669af704b4de0c5481e77949d35",
+   "quote": "Ashwin Kumar (Ph.D., 2025)",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: former phd students + postdocs Explicit dated degree in own alumni entry; date follows PI school appointment.",
+   "pi": "William Yeoh",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2017,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry",
+   "capture_url": null
+  },
+  {
+   "name": "Stylianos Vasileiou",
+   "role": "phd",
+   "years": [
+    null,
+    2025
+   ],
+   "url": "https://yeoh-lab.wustl.edu/people/",
+   "sha256": "01bebdf14220dc159a1e9759ea6eeb6166a74669af704b4de0c5481e77949d35",
+   "quote": "Stylianos Vasileiou (Ph.D., 2025)",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: former phd students + postdocs Explicit dated degree in own alumni entry; date follows PI school appointment.",
+   "pi": "William Yeoh",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2017,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry",
+   "capture_url": null
+  },
+  {
+   "name": "Khoi Hoang",
+   "role": "phd",
+   "years": [
+    null,
+    2022
+   ],
+   "url": "https://yeoh-lab.wustl.edu/people/",
+   "sha256": "01bebdf14220dc159a1e9759ea6eeb6166a74669af704b4de0c5481e77949d35",
+   "quote": "Khoi Hoang (Ph.D., 2022)",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: former phd students + postdocs Explicit dated degree in own alumni entry; date follows PI school appointment.",
+   "pi": "William Yeoh",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2017,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry",
+   "capture_url": null
+  },
+  {
+   "name": "Zijie Liu",
+   "role": "masters",
+   "years": [
+    null,
+    2024
+   ],
+   "url": "https://yeoh-lab.wustl.edu/people/",
+   "sha256": "01bebdf14220dc159a1e9759ea6eeb6166a74669af704b4de0c5481e77949d35",
+   "quote": "Zijie Liu (M.S., 2024; co-advised with Chien-Ju Ho)",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: former ms students Explicit dated degree in own alumni entry; date follows PI school appointment.",
+   "pi": "William Yeoh",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2017,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry",
+   "capture_url": null
+  },
+  {
+   "name": "Yuchuan Wang",
+   "role": "masters",
+   "years": [
+    null,
+    2024
+   ],
+   "url": "https://yeoh-lab.wustl.edu/people/",
+   "sha256": "01bebdf14220dc159a1e9759ea6eeb6166a74669af704b4de0c5481e77949d35",
+   "quote": "Yuchuan Wang (M.S., 2024; co-advised with Chien-Ju Ho)",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: former ms students Explicit dated degree in own alumni entry; date follows PI school appointment.",
+   "pi": "William Yeoh",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2017,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry",
+   "capture_url": null
+  },
+  {
+   "name": "Zachary Zhao",
+   "role": "masters",
+   "years": [
+    null,
+    2023
+   ],
+   "url": "https://yeoh-lab.wustl.edu/people/",
+   "sha256": "01bebdf14220dc159a1e9759ea6eeb6166a74669af704b4de0c5481e77949d35",
+   "quote": "Zachary Zhao (M.S., 2023)",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: former ms students Explicit dated degree in own alumni entry; date follows PI school appointment.",
+   "pi": "William Yeoh",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2017,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry",
+   "capture_url": null
+  },
+  {
+   "name": "Ruoyao Yang",
+   "role": "masters",
+   "years": [
+    null,
+    2021
+   ],
+   "url": "https://yeoh-lab.wustl.edu/people/",
+   "sha256": "01bebdf14220dc159a1e9759ea6eeb6166a74669af704b4de0c5481e77949d35",
+   "quote": "Ruoyao Yang (M.S., 2021)",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: former ms students Explicit dated degree in own alumni entry; date follows PI school appointment.",
+   "pi": "William Yeoh",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2017,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry",
+   "capture_url": null
+  },
+  {
+   "name": "Tiancheng He",
+   "role": "masters",
+   "years": [
+    null,
+    2020
+   ],
+   "url": "https://yeoh-lab.wustl.edu/people/",
+   "sha256": "01bebdf14220dc159a1e9759ea6eeb6166a74669af704b4de0c5481e77949d35",
+   "quote": "Tiancheng He (M.S., 2020; co-advised with Chien-Ju Ho)",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: former ms students Explicit dated degree in own alumni entry; date follows PI school appointment.",
+   "pi": "William Yeoh",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2017,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry",
+   "capture_url": null
+  },
+  {
+   "name": "Yuanming Xiao",
+   "role": "masters",
+   "years": [
+    null,
+    2020
+   ],
+   "url": "https://yeoh-lab.wustl.edu/people/",
+   "sha256": "01bebdf14220dc159a1e9759ea6eeb6166a74669af704b4de0c5481e77949d35",
+   "quote": "Yuanming Xiao (M.S., 2020)",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: former ms students Explicit dated degree in own alumni entry; date follows PI school appointment.",
+   "pi": "William Yeoh",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2017,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry",
+   "capture_url": null
+  },
+  {
+   "name": "Jinyuan Li",
+   "role": "phd",
+   "years": [
+    2025,
+    null
+   ],
+   "url": "https://teapot123.github.io/group/",
+   "sha256": "8530144f11f0fdda84d8c4d50b066f278e59ef9c9a6f7547a67a3c233744623e",
+   "quote": "Jinyuan Li (2025-current)",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: PhD Students",
+   "pi": "Jiaxin Huang",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2024,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry",
+   "capture_url": null
+  },
+  {
+   "name": "Chen Yang",
+   "role": "phd",
+   "years": [
+    2025,
+    null
+   ],
+   "url": "https://umariqbal.com/pages/students.html",
+   "sha256": "e30d8c2662a3a3dd98e5cb947e4da51bef57294eae58a1d6268b4f1ecb179b18",
+   "quote": "PhD students Chen Yang (2025-)",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: PhD students",
+   "pi": "Umar Iqbal",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2023,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry",
+   "capture_url": null
+  },
+  {
+   "name": "Ke Yang",
+   "role": "masters",
+   "years": [
+    2024,
+    null
+   ],
+   "url": "https://www.umariqbal.com/pages/students.html",
+   "capture_url": "https://web.archive.org/web/20250808035022id_/https://www.umariqbal.com/pages/students.html",
+   "sha256": "87b96c94086f4cc1eacc8fd9917c04ed4f11f4a9c96ba52f8c45d4b972de8dc7",
+   "quote": "Masters students Ke Yang (2024-current)",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Masters students Archived August 2025 list; start stated 2024, no open-ended 2026 current claim.",
+   "pi": "Umar Iqbal",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2023,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Stuart Aldrich",
+   "role": "phd",
+   "years": [
+    2024,
+    null
+   ],
+   "url": "https://www.umariqbal.com/pages/students.html",
+   "capture_url": "https://web.archive.org/web/20250808035022id_/https://www.umariqbal.com/pages/students.html",
+   "sha256": "87b96c94086f4cc1eacc8fd9917c04ed4f11f4a9c96ba52f8c45d4b972de8dc7",
+   "quote": "PhD students Stuart Aldrich (2024-current)",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: PhD students Archived August 2025 list; start stated 2024, no open-ended 2026 current claim.",
+   "pi": "Umar Iqbal",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2023,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Rowan Sandvig",
+   "role": "undergraduate",
+   "years": [
+    2026,
+    2026
+   ],
+   "url": "https://mvrl.cse.wustl.edu/people/",
+   "capture_url": "https://web.archive.org/web/20260521135717id_/https://mvrl.cse.wustl.edu/people/",
+   "sha256": "523e977288f6ac5ac75db2a26bdeffc8b0000ab6a40d526790488db67f59c525",
+   "quote": "Rowan Sandvig REU/Undergraduate Researcher",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: PhD student in Computational & Data Sciences Current-member observation in 2026 capture; point year does not imply enrollment start or completion. Current Members heading; own REU/Undergraduate entry outranks neighboring PhD text.",
+   "pi": "Nathan Jacobs",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2024,
+   "role_basis": "entry",
+   "years_basis": "reviewer"
+  },
+  {
+   "name": "Phoenix Jarosz",
+   "role": "undergraduate",
+   "years": [
+    2024,
+    2025
+   ],
+   "url": "https://mvrl.cse.wustl.edu/people/",
+   "capture_url": "https://web.archive.org/web/20260521135717id_/https://mvrl.cse.wustl.edu/people/",
+   "sha256": "523e977288f6ac5ac75db2a26bdeffc8b0000ab6a40d526790488db67f59c525",
+   "quote": "Phoenix Jarosz REU/Undergraduate Researcher 2024 - 2025",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Alumni",
+   "pi": "Nathan Jacobs",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2024,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Mohammad Rouie Miab",
+   "role": "masters",
+   "years": [
+    2026,
+    2026
+   ],
+   "url": "https://mvrl.cse.wustl.edu/people/",
+   "capture_url": "https://web.archive.org/web/20260521135717id_/https://mvrl.cse.wustl.edu/people/",
+   "sha256": "523e977288f6ac5ac75db2a26bdeffc8b0000ab6a40d526790488db67f59c525",
+   "quote": "Mohammad Rouie Miab MS Computer Science",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: PhD student in Computational & Data Sciences Current-member observation in 2026 capture; point year does not imply enrollment start or completion. Current Members heading; own MS label.",
+   "pi": "Nathan Jacobs",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2024,
+   "role_basis": "entry",
+   "years_basis": "reviewer"
+  },
+  {
+   "name": "Vinh Pham",
+   "role": "masters",
+   "years": [
+    null,
+    2025
+   ],
+   "url": "https://mvrl.cse.wustl.edu/people/",
+   "capture_url": "https://web.archive.org/web/20260521135717id_/https://mvrl.cse.wustl.edu/people/",
+   "sha256": "523e977288f6ac5ac75db2a26bdeffc8b0000ab6a40d526790488db67f59c525",
+   "quote": "Vinh Pham MS Engineering Data Analytics & Statistics 2025",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Alumni",
+   "pi": "Nathan Jacobs",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2024,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Jack McCall",
+   "role": "masters",
+   "years": [
+    null,
+    2025
+   ],
+   "url": "https://mvrl.cse.wustl.edu/people/",
+   "capture_url": "https://web.archive.org/web/20260521135717id_/https://mvrl.cse.wustl.edu/people/",
+   "sha256": "523e977288f6ac5ac75db2a26bdeffc8b0000ab6a40d526790488db67f59c525",
+   "quote": "Jack McCall MS student in Computer Science 2025",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Alumni",
+   "pi": "Nathan Jacobs",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2024,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Ethan Weilheimer",
+   "role": "masters",
+   "years": [
+    null,
+    2025
+   ],
+   "url": "https://mvrl.cse.wustl.edu/people/",
+   "capture_url": "https://web.archive.org/web/20260521135717id_/https://mvrl.cse.wustl.edu/people/",
+   "sha256": "523e977288f6ac5ac75db2a26bdeffc8b0000ab6a40d526790488db67f59c525",
+   "quote": "Ethan Weilheimer MS student in Computer Science 2025",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Alumni",
+   "pi": "Nathan Jacobs",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2024,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Shuhan Zhang",
+   "role": "masters",
+   "years": [
+    null,
+    2025
+   ],
+   "url": "https://mvrl.cse.wustl.edu/people/",
+   "capture_url": "https://web.archive.org/web/20260521135717id_/https://mvrl.cse.wustl.edu/people/",
+   "sha256": "523e977288f6ac5ac75db2a26bdeffc8b0000ab6a40d526790488db67f59c525",
+   "quote": "Shuhan Zhang MS Computer Science 2025",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Alumni",
+   "pi": "Nathan Jacobs",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2024,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Jonathan Lin",
+   "role": "other",
+   "years": [
+    2026,
+    2026
+   ],
+   "url": "https://mvrl.cse.wustl.edu/people/",
+   "capture_url": "https://web.archive.org/web/20260521135717id_/https://mvrl.cse.wustl.edu/people/",
+   "sha256": "523e977288f6ac5ac75db2a26bdeffc8b0000ab6a40d526790488db67f59c525",
+   "quote": "Jonathan Lin Post-Bacc Research Assistant",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: PhD student in Computational & Data Sciences Current-member observation in 2026 capture; point year does not imply enrollment start or completion. Current Members section; retained as post-bacc research assistant, not a degree student.",
+   "pi": "Nathan Jacobs",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2024,
+   "role_basis": "entry",
+   "years_basis": "reviewer"
+  },
+  {
+   "name": "Dev Gupta",
+   "role": "undergraduate",
+   "years": [
+    null,
+    2025
+   ],
+   "url": "https://mvrl.cse.wustl.edu/people/",
+   "capture_url": "https://web.archive.org/web/20260521135717id_/https://mvrl.cse.wustl.edu/people/",
+   "sha256": "523e977288f6ac5ac75db2a26bdeffc8b0000ab6a40d526790488db67f59c525",
+   "quote": "Dev Gupta BS student in Computer Science 2025",
+   "note": "Source-byte hand review 2026-11-07. lab-page audit 2026-11-07; section: Alumni",
+   "pi": "Nathan Jacobs",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2024,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  }
+ ],
+ "papers": []
+}
