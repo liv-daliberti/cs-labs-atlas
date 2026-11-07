@@ -803,7 +803,8 @@ def link_base(row, url):
 
 def is_profile(url, dom):
     h = urlsplit(url or '').hostname or ''
-    return bool(re.search(dom, h) and PROFILE_RX.search(urlsplit(url).path or '') and '~' not in (url or ''))
+    return bool(re.search(dom, h) and (PROFILE_RX.search(urlsplit(url).path or '') or re.match(r'^profiles?\.', h))
+                and '~' not in (url or ''))
 
 
 def site_links(kit, row, base):

@@ -19,7 +19,8 @@ import atlas_paths as P
 FOUND_RESULTS = ('ok', 'ok_wayback', 'does_not_name_pi_kept_strong_source')
 WEBSITE_REASONS = ('lab_site', 'pi_homepage_only_no_lab_site')
 OFFICIAL_LINK_SOURCES = ('school_profile_link', 'department_listing_link')
-RESEARCH_OUTPUT_PATH = re.compile(r'/(?:publications?|papers|reports|news|blog)/[12][0-9]{3}/', re.I)
+RESEARCH_OUTPUT_PATH = re.compile(r'/(?:publications?|papers?|reports?)(?:/|\.|$)|/(?:news|blog)/[12][0-9]{3}(?:/|$)', re.I)
+IDENTITY_INDEX_HOST = re.compile(r'(?:^|\.)(?:orcid\.org|dblp\.org|openalex\.org|researchgate\.net|scholar\.google\.[a-z.]+)$', re.I)
 ABSENCE_REASONS = {
     'profile_only_no_homepage', 'no_web_presence_found', 'site_dead_no_wayback',
     'host_blocked_by_robots', 'host_challenge_no_wayback', 'pi_left_school_site_moved',
@@ -42,6 +43,19 @@ def dated_checks(checks):
     """A schema note or empty list is not evidence that a website was searched."""
     return [c for c in checks if c.get('url') and c.get('at') and c.get('result')
             and c.get('source') != 'openalex_author']
+
+
+def selection_gaps(url):
+    """Obvious non-homepage selections; personal/group people pages remain eligible."""
+    parsed = urlsplit(url)
+    gaps = []
+    if re.match(r'^profiles?\.', parsed.hostname or '') or IDENTITY_INDEX_HOST.search(parsed.hostname or ''):
+        gaps.append('selected_url_is_profile_card')
+    if RESEARCH_OUTPUT_PATH.search(parsed.path):
+        gaps.append('selected_url_is_research_output')
+    if re.search(r'\.(?:pdf|ps|docx?)$', parsed.path, re.I):
+        gaps.append('selected_url_is_document')
+    return gaps
 
 
 def entry(rec):
@@ -68,8 +82,7 @@ def entry(rec):
                    pubs_page=urls.get('pubs_page'), found_via=via, listed_on=on,
                    sha256=ev.get('sha256') or (chk or {}).get('sha256'), evidence=ev)
         if lp.get('reason_code') in WEBSITE_REASONS:
-            if RESEARCH_OUTPUT_PATH.search(urlsplit(urls['lab_site']).path):
-                gaps.append('selected_url_is_research_output')
+            gaps.extend(selection_gaps(urls['lab_site']))
             if not re.fullmatch(r'[a-fA-F0-9]{64}', out.get('sha256') or ''):
                 gaps.append('page_capture_hash_missing')
             if not via:
@@ -137,7 +150,7 @@ def refresh_records(school, recs):
         d = disc[p['pi']]
         chosen = (d.get('chosen') or {}).get('lab_site')
         review_needed = None
-        invalid = lambda u: L.is_profile(u, ctx['cfg']['domain']) or RESEARCH_OUTPUT_PATH.search(urlsplit(u).path)
+        invalid = lambda u: L.is_profile(u, ctx['cfg']['domain']) or selection_gaps(u)
         if chosen and invalid(chosen):
             verified = {c.get('url') for c in d.get('checks') or [] if c.get('source') == 'candidate_site' and c.get('result') in FOUND_RESULTS}
             replacement = next((s for s in d.get('sites') or [] if s.get('url') in verified and not invalid(s['url'])), None)
@@ -298,8 +311,11 @@ def gate(doc, expected_pis, require_official=True):
         if not dated_checks(r.get('checks') or []):
             bad.append(f'{pi}: website audit lacks a dated source check')
         if r.get('url') and r.get('reason_code') in WEBSITE_REASONS:
-            if RESEARCH_OUTPUT_PATH.search(urlsplit(r['url']).path):
-                bad.append(f'{pi}: selected website is a dated research-output page')
+            for problem in selection_gaps(r['url']):
+                description = {'selected_url_is_profile_card': 'an institutional profile card or identity index',
+                               'selected_url_is_research_output': 'a research-output page',
+                               'selected_url_is_document': 'a document, not a lab/home webpage'}[problem]
+                bad.append(f'{pi}: selected website is {description}')
             if not re.fullmatch(r'[a-fA-F0-9]{64}', r.get('sha256') or '') or not r.get('found_via'):
                 bad.append(f'{pi}: website capture hash or discovery provenance missing')
             if require_official and not any(c.get('source') in OFFICIAL_LINK_SOURCES and c.get('url') == r['url'] and c.get('on')

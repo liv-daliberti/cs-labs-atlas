@@ -165,6 +165,24 @@ def test_dated_publication_page_is_not_a_lab_website():
     assert any('research-output' in b for b in W.gate({'labs': [row]}, ['Ada Example']))
 
 
+def test_institutional_profile_hostname_is_not_a_lab_homepage():
+    import labpage_audit as L
+    url = 'https://profiles.stanford.edu/ada-example'
+    assert L.is_profile(url, r'stanford\.edu')
+    row = W.entry(record(url=url))
+    assert any('institutional profile card' in b for b in W.gate({'labs': [row]}, ['Ada Example']))
+    assert not L.is_profile('https://ada.stanford.edu/', r'stanford\.edu')
+
+
+def test_identity_indices_cv_documents_and_publication_indexes_remain_gaps():
+    for url in ['https://orcid.org/0000-0000-0000-0001', 'https://ada.example/cv.pdf',
+                'https://lab.school.edu/publications/2024', 'https://lab.school.edu/publications/']:
+        row = W.entry(record(url=url))
+        assert row['coverage'] == 'pending'
+        assert W.gate({'labs': [row]}, ['Ada Example'], require_official=False)
+    assert W.entry(record(url='https://lab.school.edu/people/'))['coverage'] == 'website'
+
+
 def test_refresh_imports_landing_cache_without_transferring_old_review(monkeypatch):
     import labpage_audit as L
     imported = []
