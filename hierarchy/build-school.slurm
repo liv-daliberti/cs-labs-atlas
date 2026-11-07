@@ -9,10 +9,10 @@
 #SBATCH --job-name=cs-build-school
 #SBATCH --partition=mltheory
 #SBATCH --account=mltheory
-#SBATCH --exclude=node302
+#SBATCH --exclude=node302,node014,node805,node808
 #SBATCH --cpus-per-task=3
 #SBATCH --mem=40G
-#SBATCH --time=02:00:00
+#SBATCH --time=00:59:00
 set -u -o pipefail
 : "${MODE:?MODE=build|equiv}" "${SCHOOL_LIST:?SCHOOL_LIST}"
 NEW_CODE=${NEW_CODE:-${SLURM_SUBMIT_DIR:?}}

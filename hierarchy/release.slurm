@@ -6,10 +6,10 @@
 #SBATCH --job-name=cs-release
 #SBATCH --partition=mltheory
 #SBATCH --account=mltheory
-#SBATCH --exclude=node302
+#SBATCH --exclude=node302,node014,node805,node808
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=32G
-#SBATCH --time=06:00:00
+#SBATCH --time=00:59:00
 #SBATCH --output=hierarchy/logs/release-%j.out
 set -u
 . "${CS_ATLAS_CODE:-${SLURM_SUBMIT_DIR:?}}/paths.sh" || exit 1  # submit from the code root
