@@ -43,3 +43,7 @@ Three redirect destinations challenged the collector (Alán Aspuru-Guzik, Niv Da
 ## Local-data continuation queued
 
 The standard local-data pipeline is afterok-chained to snapshot merge `32142786`, pinned to `258c96b`: DBLP affiliated-person pass `32142868`, local snapshot sweep `32142869`, sweep sanity check `32142870`, and outside-CS candidate generation `32142871`. Each stage is explicitly capped at 59 minutes (two CPUs; 16 GB for DBLP, 24 GB for the other stages), with the standard excluded nodes and a successful no-preemption test-only probe. No second remote snapshot pass or OpenAlex API request is involved. Job manifest: `scratch/pipeline-onboard-data-20261107-165004-606753/jobs.json`. Candidate output remains provisional until source/scope/identity review; jobs do not admit students.
+
+## Explicit appointment starts recovered from cached homepages
+
+Five reviewed starts now carry exact captured quotes and the independent official rank listing: Eyal de Lara (2002), Toniann Pitassi (fall 2001), Thomas Ristenpart (January 2026), Ohad Shamir (August 2026), and Khai Truong (2006). Month/season precision is preserved; no lab foundation or departure date is invented. Every quote and body hash was rechecked against the cached bytes. The automatic scanner's two other suggestions were administrative chair terms (Marsha Chechik, David Fleet); neither was accepted as a faculty start/end interval. This is appointment evidence for five current candidates, not complete historical census coverage.
