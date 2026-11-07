@@ -186,6 +186,15 @@ def test_R_PAP_03_listings_after_move_needs_move_evidence(fixture_json):
     assert h.listings_after_move(listings, periods, []) == {}
 
 
+def test_memorial_listings_after_documented_death_do_not_extend_appointment():
+    listings = {y: {'year': y} for y in (2021, 2022, 2023, 2026)}
+    evidence = [dict(kind='faculty_end_deceased', quote='passed away in 2022')]
+    reviewed = [dict(start='2017', end='2022', evidence=evidence)]
+    assert set(h.listings_after_move(listings, [], reviewed)) == {2023, 2026}
+    collected = [dict(facultyStart='2017', facultyEnd='2022', evidence=evidence)]
+    assert set(h.listings_after_move(listings, collected, [])) == {2023, 2026}
+
+
 # ---- small helpers the rules lean on --------------------------------------------------------------------------------
 
 def test_full_pair_and_gwords():

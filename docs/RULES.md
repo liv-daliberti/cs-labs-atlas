@@ -723,3 +723,7 @@ work (they join only through their own lead record).
 The ids are written by the rebuild stage `ids` into the packages, copied into every release with the registry and the
 cross-reference table, and carried by the tree, the GitHub export and the site handoff; `make_release.py` refuses a
 package without them.
+
+### 2026-11-06: documented death ends an appointment
+
+R-PAP-03 also recognizes `faculty_end_deceased` evidence. Later memorial or stale faculty listings are kept aside as `listingsAfterMove` and do not extend the appointment. Huei Peng’s reviewed end is 2022, supported by the captured ASME DSCD Winter 2022 memorial. ASME and Michigan Engineering disagree by one day, so only year precision is asserted.

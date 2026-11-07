@@ -98,11 +98,14 @@ def listings_after_move(listings, mine, reviewed_periods):
     is a stale page, not an appointment (Princeton ECE kept Mung Chiang, left 2017, and Yuxin Chen, left 2021, on its
     faculty list through 2026); kept aside as listingsAfterMove. A later period (collection or reviewed) that covers the
     year keeps the listing. `mine` are the PI's collection faculty periods (facultyStart/facultyEnd/evidence), and
-    `reviewed_periods` the census-overrides periods (start/end)."""
-    moved = [_year(q['facultyEnd']) for q in mine if _year(q.get('facultyEnd')) and any('end_moved' in (e.get('kind') or '') for e in q.get('evidence') or [])]
+    `reviewed_periods` the census-overrides periods (start/end). Documented death also ends an appointment;
+    later memorial/profile listings do not prove continued employment."""
+    def ended(q):
+        return any(any(k in (e.get('kind') or '') for k in ('end_moved', 'end_deceased')) for e in q.get('evidence') or [])
+    moved = [_year(q['facultyEnd']) for q in mine if _year(q.get('facultyEnd')) and ended(q)]
     # a reviewed period that ends with a move counts too (2026-10-29: Cynthia Rudin, MIT to Duke in 2016; MIT's CSAIL PI
     # listing still named her in 2026)
-    moved += [_year(q['end']) for q in reviewed_periods or [] if _year(q.get('end')) and any('end_moved' in (e.get('kind') or '') for e in q.get('evidence') or [])]
+    moved += [_year(q['end']) for q in reviewed_periods or [] if _year(q.get('end')) and ended(q)]
     spans = [(_year(q.get('facultyStart')), _year(q.get('facultyEnd'))) for q in mine] + [(_year(q.get('start')), _year(q.get('end'))) for q in reviewed_periods or []]
 
     def covered(y):
