@@ -128,3 +128,12 @@ def test_snapshot_cli_date_reaches_probe_filter_and_merge(monkeypatch, tmp_path)
     assert all(env['OA_DATE'] == '2026-10-14' for _, env in run.calls)
     assert all('%A_%a.out' in next(x for x in args if x.startswith('--output=')) for args, _ in run.calls[:2])
     assert '%A.out' in next(x for x in run.calls[2][0] if x.startswith('--output='))
+
+
+def test_external_dependency_applies_to_probe_and_first_stage_only():
+    run = FakeRun()
+    AP.submit('snapshot-ext', ['newu'], run=run, commit='a' * 40, guard_preempt=True, dependency='afterok:987')
+    assert '--dependency=afterok:987' in run.calls[0][0]
+    assert '--dependency=afterok:987' in run.calls[1][0]
+    assert '--dependency=afterok:1002' in run.calls[2][0]
+    assert '--dependency=afterok:987' not in run.calls[2][0]
