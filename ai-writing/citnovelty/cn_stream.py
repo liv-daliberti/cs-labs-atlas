@@ -93,7 +93,7 @@ def cmd_filter(task, of, date, parts):
                         continue
                     wid = int(m.group(1))
                     if wid in rset:
-                        rows.append(meta_row(json.loads(line), wid)); 
+                        rows.append(meta_row(json.loads(line), wid));
                     ym = YEAR.search(line, 0, 4000) or YEAR.search(line)
                     if not ym:
                         continue

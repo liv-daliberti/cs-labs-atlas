@@ -178,4 +178,3 @@ IPW dose against unweighted dose: sign differs in 0 of 35 model-outcome cells; i
 - IPW corrects selection on the listed covariates only (missing at random given them). Selection on unobservables (a paper whose PDF exists because its authors put it on arXiv *because* it is machine-friendly) is not addressed; the balance check cannot see it.
 - The weights are held fixed in the bootstrap (weight-estimation error is not propagated); the intervals are therefore slightly too narrow for the weighted columns.
 - Georgia Tech (no full text) is outside every weighted result. Full-text embeddings for Qwen3-Embedding-4B were not built, so it is absent.
-
