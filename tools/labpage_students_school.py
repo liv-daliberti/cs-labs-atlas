@@ -936,4 +936,8 @@ def extract(key):
 
 
 if __name__ == '__main__':
-    {'links': links, 'defenses': defenses, 'directory': directory, 'extract': extract, 'undated': undated_capture, 'surname': surname_advisers}[sys.argv[1]](sys.argv[2])
+    if sys.argv[1] == 'sources':
+        import student_source_discovery
+        student_source_discovery.main(sys.argv[2], sys.argv[3:])
+    else:
+        {'links': links, 'defenses': defenses, 'directory': directory, 'extract': extract, 'undated': undated_capture, 'surname': surname_advisers}[sys.argv[1]](sys.argv[2])
