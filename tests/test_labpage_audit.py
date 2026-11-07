@@ -485,3 +485,43 @@ def test_report_and_recruiting_sections_cannot_supply_members(name, heading):
 ])
 def test_current_member_rosters_survive_nonperson_filter(name, heading):
     assert A.nonmember_candidate(name, heading) is None
+
+
+def test_archive_host_policy_uses_original_cdx_target():
+    assert A.archive_original_url('https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fblocked.edu%2Fpeople%2F*') == 'https://blocked.edu/people/'
+    assert A.archive_original_url('https://web.archive.org/web/20200101000000id_/https://blocked.edu/people/a') == 'https://blocked.edu/people/a'
+    assert A.archive_original_url('https://school.edu/people/a') is None
+
+
+def test_live_first_archive_miss_is_pending_not_a_request():
+    class Cache:
+        @staticmethod
+        def cached(school, url):
+            return None
+
+    pending = set()
+    url = 'https://web.archive.org/cdx/search/cdx?url=https://school.edu/lab'
+    out = A.cached_archive_only(Cache(), 'u', url, pending)
+    assert A.result_of(out) == 'wayback_deferred' and pending == {url}
+
+
+def test_live_first_archive_hit_reuses_captured_bytes():
+    class Cache:
+        @staticmethod
+        def cached(school, url):
+            return {'status': 200, 'content': b'captured', 'sha256': 'known'}
+
+    pending = set()
+    assert A.cached_archive_only(Cache(), 'u', 'archive-url', pending)['content'] == b'captured'
+    assert not pending
+
+
+def test_live_first_transport_also_blocks_redirects_to_archive():
+    from types import SimpleNamespace
+    sent, pending = [], set()
+    send = lambda request, **kw: sent.append(request.url)
+    with pytest.raises(RuntimeError, match='archive network disabled'):
+        A.live_only_send(send, pending, SimpleNamespace(url='https://web.archive.org/web/2020id_/https://u.edu/'))
+    assert not sent and pending
+    A.live_only_send(send, pending, SimpleNamespace(url='https://u.edu/'))
+    assert sent == ['https://u.edu/']

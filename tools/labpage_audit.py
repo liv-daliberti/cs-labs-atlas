@@ -47,7 +47,7 @@ import sys
 import unicodedata
 import zlib
 from pathlib import Path
-from urllib.parse import urlsplit
+from urllib.parse import parse_qs, urlsplit
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
@@ -429,6 +429,31 @@ def pi_end_year(p):
 
 
 # ---------------------------------------------------------------- the lab-page toolkit (fetch + parse), patched
+
+def archive_original_url(url):
+    """Original host policy also applies to CDX lookups and playback URLs."""
+    if (urlsplit(url).hostname or '') not in ('web.archive.org', 'archive.org'):
+        return None
+    if '/cdx/' in urlsplit(url).path:
+        return (parse_qs(urlsplit(url).query).get('url') or [''])[0].rstrip('*')
+    return unwayback(url)
+
+
+
+def live_only_send(send, deferred, request, **kwargs):
+    """Also stop archive redirects at the transport boundary, before any socket call."""
+    if (urlsplit(request.url).hostname or '') in ('web.archive.org', 'archive.org'):
+        deferred.add(request.url)
+        raise RuntimeError('archive network disabled by live-first mode')
+    return send(request, **kwargs)
+
+def cached_archive_only(lpcap, school, url, deferred):
+    hit = lpcap.cached(school, url)
+    if hit:
+        return hit
+    deferred.add(url)
+    return {'url': url, 'capture_url': None, 'status': None, 'error': 'archive-deferred-live-first', 'content': b''}
+
 class Kit:
     """hierarchy/labpage-tools-princeton-mit loaded for one school: lpcap (fetch + store), lpev (capture lookup and quote
     checks), autom (member extraction), pubx (publication extraction), names (matching). New captures go to
@@ -438,6 +463,7 @@ class Kit:
     def __init__(self, school):
         cfg = SCHOOLS[school]
         self.school = school
+        self.deferred_archive_urls = set()
         self.store = P.data('labpage-audit-captures.sqlite', school)
         os.environ['LPCAP_LOCAL'] = str(self.store)
         extra = [str(P.data(f, school)) for f in cfg.get('extra_stores', [])]
@@ -447,6 +473,9 @@ class Kit:
         sys.path.insert(0, str(HT / PM))
         import lpcap, lpev, autom, pubx, names  # noqa: E401
         self.lpcap, self.lpev, self.autom, self.pubx, self.names = lpcap, lpev, autom, pubx, names
+        if os.environ.get('CS_ATLAS_LABPAGE_LIVE_ONLY') == '1':
+            send = lpcap._sess.send
+            lpcap._sess.send = lambda request, **kw: live_only_send(send, self.deferred_archive_urls, request, **kw)
         lpcap.ROOT = pubx.ROOT = str(H)  # the toolkit's own constant predates tools/atlas_paths.py; its file paths now go through atlas_paths.data
         for k_ in list(lpcap.DBS) + [school]:
             lpcap.DBS[k_] = str(P.data('labpage-captures.sqlite', k_))
@@ -479,7 +508,12 @@ class Kit:
         ofetch = lpcap.fetch
 
         def fetch(school_, url, **kw):
-            use = self.host_use(lpcap.host_of(url) or '')
+            original = archive_original_url(url)
+            use = self.host_use(urlsplit(original).hostname or '') if original else self.host_use(lpcap.host_of(url) or '')
+            if original and (use == 'none' or not self._ai_allowed(original)):
+                return {'url': url, 'capture_url': None, 'status': None, 'error': 'off-limits-host', 'content': b''}
+            if original and os.environ.get('CS_ATLAS_LABPAGE_LIVE_ONLY') == '1':
+                return cached_archive_only(lpcap, school_, url, self.deferred_archive_urls)
             if use == 'none':
                 return {'url': url, 'capture_url': None, 'status': None, 'error': 'off-limits-host', 'content': b''}
             if use == 'wayback-only' and not lpcap.WAYBACK_RX.match(url) and 'web.archive.org/cdx/' not in url:
@@ -590,6 +624,8 @@ def result_of(r):
         return 'bot_challenge'
     if r.get('error') == 'off-limits-host':
         return 'off_limits'
+    if r.get('error') == 'archive-deferred-live-first':
+        return 'wayback_deferred'
     if r.get('error') == 'wayback-only-host':
         return 'wayback_only_host'
     if r.get('status') == 200 and r.get('content'):
@@ -1132,6 +1168,7 @@ def cmd_discover(school, only=None, redo=False, redo_unrecorded=False):
         if p['pi'] in done and not redo and not (redo_unrecorded and unrec):
             continue
         kit.robots_log.clear()
+        kit.deferred_archive_urls.clear()
         prior = ctx['prior'].get(p['pi'])
         try:
             rec = discover_lab(kit, school, p, ctx, full=True)
@@ -1140,6 +1177,8 @@ def cmd_discover(school, only=None, redo=False, redo_unrecorded=False):
         except Exception as e:  # noqa: BLE001 (one lab's failure is recorded and the run goes on; --redo retries it)
             rec = dict(pi=p['pi'], checked_at=now(), checks=[dict(source='discovery_error', url=None, at=now(), result=repr(e)[:300])],
                        chosen=dict(lab_site=None), sites=[], wayback={}, error=repr(e)[:300])
+        rec['checks'].extend(dict(source='wayback_pending', url=u, at=now(), result='wayback_deferred')
+                             for u in sorted(kit.deferred_archive_urls))
         rec['had_prior_record'] = bool(prior)
         out.write(json.dumps(rec, ensure_ascii=False) + '\n')
         out.flush()
@@ -2881,9 +2920,12 @@ def main():
     ap.add_argument('school', nargs='?')
     ap.add_argument('--pi', nargs='*')
     ap.add_argument('--redo', action='store_true')
+    ap.add_argument('--live-first', action='store_true', help='Live discovery with cached-only Wayback; uncached archive requests remain pending')
     ap.add_argument('--redo-unrecorded', action='store_true', help='discover again every lab the 2026-10-22 pass did not record')
     ap.add_argument('--title-credits', type=int, default=600)
     a = ap.parse_args()
+    if a.live_first:
+        os.environ['CS_ATLAS_LABPAGE_LIVE_ONLY'] = '1'
     if a.cmd in ('recover', 'recover-audit', 'all'):  # where a stalled run waits (2026-10-31: Princeton and MIT stalled twice)
         import faulthandler
         faulthandler.dump_traceback_later(900, repeat=True)

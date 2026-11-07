@@ -309,3 +309,9 @@ access-limited outcomes. Registers older than the PI build must be refreshed.
 `--enrich-official-links` recovers exact outgoing links from cached official
 profile HTML, preserving its hash and check date; it performs no requests.
 Archive-dependent outcomes remain documented but incomplete, and fail stage 3.
+
+For bounded live-first discovery, pass `--live-first` to `labpage_audit.py discover`.
+Both archive CDX and playback use cached bytes only; missing archive requests
+are recorded as `wayback_deferred`. A transport guard also stops live redirects
+to archive.org before sending them. Named-agent robot restrictions and charter
+`none` policies apply to the original target of CDX/playback as well.
