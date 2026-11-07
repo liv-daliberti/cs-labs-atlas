@@ -264,7 +264,14 @@ ALUMNI_RX = re.compile(r'\b(alumni|alumnae|alumnus|alumna|former|past|previous|a
 NEWS_LINE = re.compile(r'\b(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|june?|july?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\.?\s+20[12]\d\s*[:\-–]', re.I)
 
 
-OTHER_INST = re.compile(r'(?:@|\bat\s+|,\s*)(?:the\s+)?(?:University of [A-Z][\w-]+|[A-Z][\w-]+ (?:University|Institute of Technology|College)|MIT|UCSB|UCLA|UCSD|Caltech|CMU)\b')
+OTHER_INST = re.compile(r'(?:@|\bat\s+|,\s*|\(\s*)(?:the\s+)?(?:University of [A-Z][\w-]+|[A-Z][\w-]+ (?:University|Institute of Technology|College)|MIT|UCSB|UCLA|UCSD|Caltech|CMU|'
+                        r'Dartmouth|Virginia Tech|Purdue|Rice|Brown|Cornell|Yale|Harvard|Columbia|Duke|Emory|Vanderbilt|Northwestern|NYU|UIUC|Berkeley|Stanford|Penn State|Texas A&M|Ohio State|Wisconsin)\b')
+
+
+def advised_by_other(desc, quote, pi):
+    """R-LAB-03 (Georgia Tech round 2): 'Shriya Karam (MIT ORC PhD, advised by Alexandre Jacquillat)' under 'Other students': the entry names its own adviser and the PI is not one of them."""
+    m = re.search(r'advised by\s+([^;)\]]{3,80})', f'{desc or ""} {quote or ""}', re.I)
+    return bool(m) and fold(family(pi)) not in fold(m.group(1))
 
 
 def other_institution_entry(desc, quote, school):
@@ -273,6 +280,14 @@ def other_institution_entry(desc, quote, school):
     t = re.split(r'next move|→|->|\bnow\b', f'{desc or ""} {quote or ""}', flags=re.I)[0]
     own = {'michigan': 'michigan', 'gatech': 'georgia', 'uchicago': 'chicago'}.get(school, school.lower())
     return any(own not in m.group(0).lower() for m in OTHER_INST.finditer(t))
+
+
+def stale_list(x, page_alumni):
+    """R-LAB-02: an undated current entry on a page whose newest dated alumnus left at least 8 years before the page's capture year (Georgia Tech round 2: Ahamad's 2024 capture
+    lists 2000s students as 'Current Graduate Students' above 'Former Ph.D. Students (2001)')."""
+    last = page_alumni.get(x.get('capture_url'))
+    m = re.search(r'/web/(\d{4})', x.get('capture_url') or '')
+    return bool(last and m and int(m.group(1)) - last >= 8)
 
 
 TALK_HEAD = re.compile(r'\b(?:invited talks?|keynotes?|talks?|awards?|honors?|service|news|outreach|organizer|new position)\b', re.I)
@@ -766,6 +781,9 @@ def discover_lab(kit, school, p, ctx, full=True):
                 for href, txt in site_links(kit, r, base):
                     if txt and len(txt) < 60 and any(kit.names.match_one(txt, n) for n in names_) and not social(href):
                         profiles.append(unwayback(href))
+                    elif profile_slug_hit(href, names_) and not social(href):
+                        # R-LAB-01 (2026-11-05): a directory card whose link text is 'Learn more about <name>' (ECE) matches no name, but its path ends in the PI's name slug
+                        profiles.append(unwayback(href))
         for e in [e for q in p.get('periods') or [] for e in q.get('evidence') or []] + [p.get('piBasis') or {}]:
             u = unwayback(e.get('url') or '')
             if re.search(dom, urlsplit(u).hostname or '') and re.search(r'/(people|faculty|profile|directory)/', u) and \
@@ -1084,6 +1102,20 @@ def read_discovery(school):
     return out
 
 
+def profile_slug_hit(href, names):
+    """The last path segment of a directory card's link is the PI's name slug ('/directory/arijit-raychowdhury', '/people/gregory-abowd-0'), a numeric suffix allowed.
+    A slug needs at least a given and a family token, so a bare surname never matches."""
+    seg = [x for x in urlsplit(href).path.split('/') if x][-1:]
+    if not seg:
+        return False
+    s = seg[0].lower()
+    for n in names:
+        tk = [x for x in re.sub(r'[^a-z ]', ' ', fold(n)).split() if x]
+        if len(tk) >= 2 and re.fullmatch(re.escape('-'.join(tk)) + r'(-\d+)?', s):
+            return True
+    return False
+
+
 def cmd_discover(school, only=None, redo=False, redo_unrecorded=False):
     if SCHOOLS[school].get('read_only'):
         sys.exit(f'{school} is read-only here: audit it from its own lab-page outputs')
@@ -1293,7 +1325,17 @@ def current_marker(x):
     """An explicit current marker in the entry's own text or its own section heading (not a parent heading)."""
     own_head = (x.get('head') or '').split(' > ')[-1]
     mixed = re.search(r'\b(former|past|previous|alumni|alumnae|graduated)\b', own_head, re.I)  # 'Current and Former Students'
-    return bool((CURRENT_HEAD.search(own_head) and not mixed) or CURRENT_ENTRY.search((x.get('desc') or '')[:160]))
+    return bool((CURRENT_HEAD.search(own_head) and not mixed) or CURRENT_ENTRY.search((x.get('desc') or '')[:160]) or current_page_url(x))
+
+
+CURRENT_URL = re.compile(r'/(?:current[-_](?:students?|members?|team|people|group)|(?:students?|members?|people)/current)(?:/|\.html?)?$', re.I)
+
+
+def current_page_url(x):
+    """R-LAB-04 (Georgia Tech round 2, ICSRL): a page whose own address says current students ('.../current-students/') marks its undated entries as current at the capture: the
+    page lists bios under one heading, so no entry or heading carries the word."""
+    u = re.sub(r'^https?://web\.archive\.org/web/\d+(?:id_)?/', '', x.get('capture_url') or x.get('url') or x.get('src') or '')
+    return bool(CURRENT_URL.search(u.split('?')[0].split('#')[0]))
 
 
 def pm_candidates(kit, school, pi, plan, held):
@@ -1406,6 +1448,10 @@ def pm_candidates(kit, school, pi, plan, held):
             x['why'] = why
             cands.append(x)
     start = plan.get('pi_start')
+    page_alumni = {}
+    for x in cands:
+        if x['alumni'] and x['years'] and x['years'][1]:
+            page_alumni[x.get('capture_url')] = max(page_alumni.get(x.get('capture_url'), 0), int(x['years'][1]))
     for x in cands:
         if x['why']:
             continue
@@ -1441,6 +1487,13 @@ def pm_candidates(kit, school, pi, plan, held):
             continue
         if fn not in keep and not ys and current_position_list(x.get('head')):
             x['why'], x['detail'] = 'undated_alumni_cannot_place', "a name in the alumni job column ('Current Position'), undated"
+            continue
+        if fn not in keep and not ys and not x['alumni'] and stale_list(x, page_alumni):
+            x['why'], x['detail'] = 'undated_cannot_place', ('R-LAB-02: the page lists dated alumni only up to ' + str(page_alumni.get(x.get('capture_url')))
+                                                             + ', long before its capture: its undated current list is an old list')
+            continue
+        if fn not in keep and advised_by_other(x.get('desc'), x.get('quote'), pi):
+            x['why'], x['detail'] = 'at_previous_school', 'R-LAB-03: the entry names its own adviser, and the PI is not one of them'
             continue
         if fn not in keep and other_institution_entry(x.get('desc'), x.get('quote'), school):
             x['why'], x['detail'] = 'at_previous_school', 'the entry places the person at another institution (\'@<University>\' or \'at <University>\' in the descriptor)'
@@ -2481,6 +2534,24 @@ def cmd_audit(school):
     write_audit(school, recs, stu_adds, pap_adds)
 
 
+DEGREE_SENTENCE = re.compile(r'\b(?:received|obtained|earned|holds|graduated with)\b[^.]{0,50}\b(?:B\.?\s?S\.?|M\.?\s?S\.?|Ph\.?\s?D\.?|Bachelor|Master|degree)', re.I)
+
+
+def withhold_bio_degree_role(r):
+    """R-LAB-05 (Georgia Tech round 2): (a) in a page of member bios ('X received the B.S. ...') the role was read from the first degree sentence (a PhD student read as an
+    undergraduate, a postdoc as a PhD): withheld (a lab member) unless the entry's own text says student, candidate or joined; (b) a degree suffix glued to the name by a
+    table cell ('Danielle Generous MS', 'Rahul Tauro-Padival BS') is cut from the name; (c) a role whose quote does not hold the person's family name was read from a
+    neighbour's cell: withheld."""
+    q = r.get('quote') or ''
+    nm = re.sub(r'\s+(?:MS|BS|MSc|BSc|M\.S\.|B\.S\.|PhD|Ph\.D\.)$', '', r.get('name') or '').strip()
+    if nm != r.get('name'):
+        r = dict(r, name=nm)
+    fam = fold(nm.split()[-1]) if nm else ''
+    if r.get('role') and ((DEGREE_SENTENCE.search(q) and not re.search(r'student|candidate|joined|postdoc', q, re.I)) or (fam and fam not in fold(q))):
+        r = dict(r, role=None, role_basis='withheld_bio_degree_sentence')
+    return r
+
+
 def refinish(recs, keep, verdicts):
     """The papers sections and paper additions again under new recovery verdicts, from the sections kept before
     finish_papers ran (the students sections and lab pages do not depend on the recovery)."""
@@ -2516,7 +2587,7 @@ def write_audit(school, recs, stu_adds, pap_adds):
     adds = dict(school=school, generated_at=now(), tool='tools/labpage_audit.py', standard='docs/LAB-PAGES.md',
                 status='proposed, unreviewed: not read by tools/pi_hierarchy.py until wired (docs/LAB-PAGES.md, integration)',
                 rules={'LP-STU-01': RULE_TEXT['LP-STU-01'], 'LP-PAP-01': RULE_TEXT['LP-PAP-01']},
-                students=withheld_if_membership_only(school, stu_adds), papers=pap_adds)
+                students=[withhold_bio_degree_role(r) for r in withheld_if_membership_only(school, stu_adds)], papers=pap_adds)
     json.dump(adds, open(P.data_w('labpage-additions.json', school), 'w', encoding='utf-8'), indent=1, ensure_ascii=False)
     if onboarding(school):
         # an onboarding school's summary stays in its own file: hierarchy/labpage-audit-summary.json and LABPAGE-AUDIT.md are TRACKED shared build

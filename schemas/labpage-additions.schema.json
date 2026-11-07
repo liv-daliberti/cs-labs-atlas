@@ -161,7 +161,7 @@
      ]
     },
     "role_basis": {
-     "description": "Where the role comes from. entry_parenthetical: a role in a parenthesis after the name ('(PhD student)'); withheld_role_round_failed: the membership-only wiring withheld it (docs/LAB-PAGES.md).",
+     "description": "Where the role comes from. entry_parenthetical: a role in a parenthesis after the name ('(PhD student)'); withheld_role_round_failed: the membership-only wiring withheld it (docs/LAB-PAGES.md); withheld_bio_degree_sentence: the role was read from a bio's degree sentence or a neighbour's cell (R-LAB-05).",
      "type": "string",
      "enum": [
       "section_heading",
@@ -169,6 +169,7 @@
       "entry_parenthetical",
       "reviewer",
       "withheld_role_round_failed",
+      "withheld_bio_degree_sentence",
       "none"
      ]
     },

@@ -1,42 +1,31 @@
 {
  "school": "gatech",
- "decided_at": "2026-11-04",
+ "decided_at": "2026-11-05",
  "bar": "docs/LAB-PAGES.md, acceptance bar",
  "additions_file": "hierarchy/gatech/reviewed/labpage-additions.json",
- "additions_generated_at": "2026-11-04T18:28:02+00:00",
- "additions_sha256": "d43c4db0e54ffd5fce7a0a0f35ecdd941fa0ac0dd4dc6c678e3b23124424b638",
+ "additions_generated_at": "2026-11-05T23:15:11+00:00",
+ "additions_sha256": "2aa840ef6a8dcda992acfc163ad5276b48b0715a0340a655d52190ebc2c58c39",
  "students": {
   "accepted": true,
-  "round": 7,
-  "sample_size": 6,
+  "round": 10,
+  "sample_size": 18,
   "seed": 0,
   "membership_errors": 0,
   "role_or_year_errors": 0,
   "counts": {
-   "proposed": 734
+   "proposed": 819
   },
-  "note": "the 6 rows whose role changed on regeneration (Ahmed Saeed's lab: 'MSc' / 'MS' alumni entries now read masters, Dhyey Thummar undergraduate -> masters), each read against its page: members, roles now correct; the other 728 rows are unchanged since round 5",
-  "restamped_from": {
-   "sha256": "9951a3857eec5362e4454bfd4e4b41aafd81809b43eb4873084297b5ce36eee6",
-   "generated_at": "2026-11-04T18:28:02+00:00",
-   "removed": 0,
-   "reason": "rows removed by existing rules on regeneration (appointment periods R-PAP-01/03, strict current rule); no row added or changed"
-  }
+  "note": "round 10 on top of round 9 (35 rows), see labpage-handcheck.json"
  },
  "papers": {
   "accepted": true,
-  "round": 8,
-  "sample_size": 1,
+  "round": 10,
+  "sample_size": 0,
   "seed": 0,
   "errors": 0,
   "counts": {
-   "proposed": 305
+   "proposed": 223
   },
-  "note": "2026-11-05: the one row the regeneration carries under a new key is the Isbell lab-page paper 'State Space Decomposition and Subgoal Creation...' (2017, arXiv 1705.08997): the pi field moved from the merged census name 'Charles Cauthen Lever Jr.' to 'Charles Isbell' (ROADMAP #42, 898b353); nothing else in the row changed. Read against its evidence: Isbell on the byline, College of Computing, Georgia Institute of Technology in the affiliation, Isbell listed in 2017: correct (0 errors). The other 304 rows are unchanged since round 7.",
-  "restamped_from": {
-   "sha256": "9951a3857eec5362e4454bfd4e4b41aafd81809b43eb4873084297b5ce36eee6",
-   "added": 1,
-   "changed": 0
-  }
+  "note": "subset of round 9's accepted rows"
  }
 }
