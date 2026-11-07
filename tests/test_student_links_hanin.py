@@ -2,10 +2,12 @@
 lab (hanin.princeton.edu, ORFE): a prose list of PhD students with postdocs after it, his students on his bylines, and the cases
 the guards must refuse."""
 import collections, gzip, json, sqlite3
+from pathlib import Path
 
 import atlas_paths as P
+import schema_check
 from pihier import corroborated as CO
-from pihier import links
+from pihier import links, students
 from pihier.common import Ctx
 
 PAGE = ('<html><body><h2>Research Group</h2><p>I am fortunate to supervise several excellent PhD students: <a>Boris Shigida</a> (joint with '
@@ -80,6 +82,23 @@ def test_R_STU_20_corroborated_rows(tmp_path):
     # an explicit postdoc role is never read as a student, whatever the page says
     P.data_w('labpage-additions.json', 'x', root=tmp_path).write_text(json.dumps(dict(students=[dict(row('Tianze Jiang'), role='postdoc')])))
     assert CO.corroborated_rows('x', papers, {'Boris Hanin': []}, dbs, tmp_path, collections.Counter()) == []
+
+
+def test_corroborated_student_output_conforms_to_schema(tmp_path):
+    for db in _school(tmp_path, [row('Tianze Jiang')]):
+        db.close()
+    ctx = Ctx('x', here=tmp_path)
+    ctx.n['labpage_additions_students_not_wired:not_accepted'] = 1
+    ctx.pis = [dict(pi='Boris Hanin')]
+    ctx.stu = {'Boris Hanin': {}}
+    ctx.people = []
+    ctx.rows = [paper('w1', 2025, ['Hanin, Boris', 'Jiang, Tianze'])]
+    students.add_corroborated(ctx)
+    output = {pi: list(rows.values()) for pi, rows in ctx.stu.items()}
+    assert len(output['Boris Hanin']) == 1
+    assert output['Boris Hanin'][0]['relations'][0]['corroborated'] is True
+    schema = json.loads((Path(__file__).resolve().parents[1] / 'schemas/students.schema.json').read_text())
+    assert schema_check.validate(output, schema) == []
 
 
 def link(stu_name, relations, byline_rows, extra=()):
