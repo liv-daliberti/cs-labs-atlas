@@ -37,10 +37,21 @@ def student_role_ok(s):
         return True
     quotes = [q.get('quote') or '' for rel in s.get('relations') or [] for q in rel.get('sources') or []]
     names = [n for n in [s.get('name')] + list(s.get('aliases') or []) if n]
+    def nearest_visiting(q):   # the nearest visiting cue before the name decides: 'Visiting scholar (2019) from Purdue Alvaro X' is a scholar
+        best = None
+        for n in names:
+            j = q.rfind(n)
+            if j < 0:
+                continue
+            for kind, rx in (('student', VISITING_STUDENT), ('not', VISITING_NOT_STUDENT)):
+                for m in rx.finditer(q[:j]):
+                    if best is None or m.end() > best[0]:
+                        best = (m.end(), kind)
+        return best[1] if best else None
     if 'visiting' in roles:
-        return not any(VISITING_NOT_STUDENT.search(q) for q in quotes if any(n in q for n in names)) or any(VISITING_STUDENT.search(q) for q in quotes)
-    if 'visitor' in roles:   # a visitors' list is not a student heading: only the entry saying 'visiting student / PhD' counts
-        return any(VISITING_STUDENT.search(q) and any(n in q for n in names) for q in quotes)
+        return not any(nearest_visiting(q) == 'not' for q in quotes)
+    if 'visitor' in roles:   # a visitors' list is not a student heading: only a visiting-student cue nearest to the name counts
+        return any(nearest_visiting(q) == 'student' for q in quotes)
     if 'member' in roles:
         return any(student_by_entry(q, names) for q in quotes)
     return False

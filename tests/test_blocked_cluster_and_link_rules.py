@@ -82,6 +82,7 @@ def test_R_STU_19_B_visiting_students_count_visiting_scholars_do_not():
     assert not links.student_role_ok(named(['visiting'], 'Visiting scholar Sikai Chen (2019-2022) from Purdue University', 'Sikai Chen'))
     assert not links.student_role_ok(named(['visitor'], 'Visiting Researchers Johannes Krug (2013-2015) Andoni Elola', 'Andoni Elola'))
     assert links.student_role_ok(named(['visitor'], 'Visiting PhD student Ana Pop (2022)', 'Ana Pop'))
+    assert not links.student_role_ok(named(['visitor'], 'Ryo Fujii : Visiting PhD (2025) Sikai Chen : Visiting scholar (2019-2022) from Purdue University Alvaro Castro-Gonzales', 'Alvaro Castro-Gonzales'))
     assert not links.student_role_ok(named(['visitor'], 'PhD Students: A B Visitors: Alvaro Castro-Gonzales', 'Alvaro Castro-Gonzales'))   # a visitors list is not a student heading
 
 
