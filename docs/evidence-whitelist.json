@@ -76,58 +76,58 @@
  },
  "unavailable_incomplete": {
   "uchicago": {
-   "max": 177,
-   "of": 1352,
+   "max": 176,
+   "of": 1286,
    "decided": "2026-11-07",
-   "why": "Updated release with currently supported data: the cache-only ledger measured 177 incomplete copy searches among 1352 nonlocal papers. 164 incomplete records have an OpenAlex record missing or outside its unchanged 7-day freshness limit. Missing checks within incomplete records: core=145, dblp=137, openalex=164, repository=136, s2=134, wayback_acm=3. CORE remains paused and new paper records also need source checks. Preserve original source timestamps and incomplete_check; do not declare these papers unavailable or publisher-only. This finite exception covers only copy-search completeness, never attribution, identity, evidence, schema, missing-ledger or stale-ledger checks. Known local copies remain counted. Previous cap=8."
+   "why": "Final cache-only measurement at 2026-11-07T07:11:25.323465+00:00: 176 incomplete copy searches among 1286 nonlocal papers (previous interim cap 177). Missing checks within incomplete records: core=144, dblp=135, openalex=163, repository=134, s2=132, wayback_acm=1. OpenAlex retains its unchanged 7-day freshness limit; CORE remains paused. Active collectors also change candidate and attempt states between measurements; 2 currently incomplete records have later attempts than the initial measurement. Preserve original source timestamps and incomplete_check; do not declare these papers unavailable or publisher-only. This finite exception covers only copy-search completeness, never attribution, identity, evidence, schema, missing-ledger or stale-ledger checks. Known local copies remain counted. Measurement ledger SHA-256: e2918f951d4c5a4eae451d3ea6d2cd439afbd80611374feae502a15f0766c526."
   },
   "princeton": {
-   "max": 2057,
+   "max": 2052,
    "of": 2280,
    "decided": "2026-11-07",
-   "why": "Updated release with currently supported data: the cache-only ledger measured 2057 incomplete copy searches among 2280 nonlocal papers. 2039 incomplete records have an OpenAlex record missing or outside its unchanged 7-day freshness limit. Missing checks within incomplete records: core=42, dblp=37, openalex=2039, s2=31. CORE remains paused and new paper records also need source checks. Preserve original source timestamps and incomplete_check; do not declare these papers unavailable or publisher-only. This finite exception covers only copy-search completeness, never attribution, identity, evidence, schema, missing-ledger or stale-ledger checks. Known local copies remain counted. Previous cap=9."
+   "why": "Final cache-only measurement at 2026-11-07T07:11:25.323465+00:00: 2052 incomplete copy searches among 2280 nonlocal papers (previous interim cap 2057). Missing checks within incomplete records: core=37, dblp=32, openalex=2034, s2=26. OpenAlex retains its unchanged 7-day freshness limit; CORE remains paused. Active collectors also change candidate and attempt states between measurements; 0 currently incomplete records have later attempts than the initial measurement. Preserve original source timestamps and incomplete_check; do not declare these papers unavailable or publisher-only. This finite exception covers only copy-search completeness, never attribution, identity, evidence, schema, missing-ledger or stale-ledger checks. Known local copies remain counted. Measurement ledger SHA-256: e02996c42a9de5906260780b8fd0725515790c1646add2dc7505b4cc9f4c26b9."
   },
   "cmu": {
    "max": 5885,
    "of": 6442,
    "decided": "2026-11-07",
-   "why": "Updated release with currently supported data: the cache-only ledger measured 5885 incomplete copy searches among 6442 nonlocal papers. 5851 incomplete records have an OpenAlex record missing or outside its unchanged 7-day freshness limit. Missing checks within incomplete records: core=62, dblp=58, openalex=5851, s2=36, wayback_acm=1. CORE remains paused and new paper records also need source checks. Preserve original source timestamps and incomplete_check; do not declare these papers unavailable or publisher-only. This finite exception covers only copy-search completeness, never attribution, identity, evidence, schema, missing-ledger or stale-ledger checks. Known local copies remain counted. Previous cap=29."
+   "why": "Final cache-only measurement at 2026-11-07T07:11:25.323465+00:00: 5885 incomplete copy searches among 6442 nonlocal papers (previous interim cap 5885). Missing checks within incomplete records: core=62, dblp=58, openalex=5851, s2=36. OpenAlex retains its unchanged 7-day freshness limit; CORE remains paused. Active collectors also change candidate and attempt states between measurements; 0 currently incomplete records have later attempts than the initial measurement. Preserve original source timestamps and incomplete_check; do not declare these papers unavailable or publisher-only. This finite exception covers only copy-search completeness, never attribution, identity, evidence, schema, missing-ledger or stale-ledger checks. Known local copies remain counted. Measurement ledger SHA-256: 336f745dc0ddc7c2e78133993c06a9b8a1bdc3eca6fbb9ca144b1f34f6919df4."
   },
   "epfl": {
-   "max": 1379,
-   "of": 3515,
+   "max": 1480,
+   "of": 3513,
    "decided": "2026-11-07",
-   "why": "Updated release with currently supported data: the cache-only ledger measured 1379 incomplete copy searches among 3515 nonlocal papers. 1357 incomplete records have an OpenAlex record missing or outside its unchanged 7-day freshness limit. Missing checks within incomplete records: core=23, dblp=13, openalex=1357, s2=8. CORE remains paused and new paper records also need source checks. Preserve original source timestamps and incomplete_check; do not declare these papers unavailable or publisher-only. This finite exception covers only copy-search completeness, never attribution, identity, evidence, schema, missing-ledger or stale-ledger checks. Known local copies remain counted. Previous cap=16."
+   "why": "Final cache-only measurement at 2026-11-07T07:11:25.323465+00:00: 1480 incomplete copy searches among 3513 nonlocal papers (previous interim cap 1379). Missing checks within incomplete records: core=21, dblp=13, openalex=1460, s2=8. OpenAlex retains its unchanged 7-day freshness limit; CORE remains paused. Active collectors also change candidate and attempt states between measurements; 100 currently incomplete records have later attempts than the initial measurement. Preserve original source timestamps and incomplete_check; do not declare these papers unavailable or publisher-only. This finite exception covers only copy-search completeness, never attribution, identity, evidence, schema, missing-ledger or stale-ledger checks. Known local copies remain counted. Measurement ledger SHA-256: 08ade8facc1f9cda256c942e7c837f15da9df29bca6c07985eaa9792e4d41018. Of those later attempts,100 report transient HTTP429/source_paused; retry guidance remains respected."
   },
   "mit": {
-   "max": 4227,
-   "of": 5623,
+   "max": 4232,
+   "of": 5622,
    "decided": "2026-11-07",
-   "why": "Updated release with currently supported data: the cache-only ledger measured 4227 incomplete copy searches among 5623 nonlocal papers. 4185 incomplete records have an OpenAlex record missing or outside its unchanged 7-day freshness limit. Missing checks within incomplete records: core=107, dblp=109, openalex=4185, pmc=1, s2=87. CORE remains paused and new paper records also need source checks. Preserve original source timestamps and incomplete_check; do not declare these papers unavailable or publisher-only. This finite exception covers only copy-search completeness, never attribution, identity, evidence, schema, missing-ledger or stale-ledger checks. Known local copies remain counted. Previous cap=39."
+   "why": "Final cache-only measurement at 2026-11-07T07:11:25.323465+00:00: 4232 incomplete copy searches among 5622 nonlocal papers (previous interim cap 4227). Missing checks within incomplete records: core=107, dblp=110, openalex=4190, pmc=1, s2=87. OpenAlex retains its unchanged 7-day freshness limit; CORE remains paused. Active collectors also change candidate and attempt states between measurements; 19 currently incomplete records have later attempts than the initial measurement. Preserve original source timestamps and incomplete_check; do not declare these papers unavailable or publisher-only. This finite exception covers only copy-search completeness, never attribution, identity, evidence, schema, missing-ledger or stale-ledger checks. Known local copies remain counted. Measurement ledger SHA-256: 770a1107a5d035120ef9afe5fcae5ece5198795c15d9215df9f4ce89614436b3."
   },
   "berkeley": {
-   "max": 3404,
-   "of": 3812,
+   "max": 3194,
+   "of": 3811,
    "decided": "2026-11-07",
-   "why": "Updated release with currently supported data: the cache-only ledger measured 3404 incomplete copy searches among 3812 nonlocal papers. 3384 incomplete records have an OpenAlex record missing or outside its unchanged 7-day freshness limit. Missing checks within incomplete records: core=37, dblp=31, openalex=3384, pmc=2, repository=27, s2=24. CORE remains paused and new paper records also need source checks. Preserve original source timestamps and incomplete_check; do not declare these papers unavailable or publisher-only. This finite exception covers only copy-search completeness, never attribution, identity, evidence, schema, missing-ledger or stale-ledger checks. Known local copies remain counted. Previous cap=16."
+   "why": "Final cache-only measurement at 2026-11-07T07:11:25.323465+00:00: 3194 incomplete copy searches among 3811 nonlocal papers (previous interim cap 3404). Missing checks within incomplete records: core=37, dblp=34, openalex=3174, pmc=2, repository=30, s2=24. OpenAlex retains its unchanged 7-day freshness limit; CORE remains paused. Active collectors also change candidate and attempt states between measurements; 0 currently incomplete records have later attempts than the initial measurement. Preserve original source timestamps and incomplete_check; do not declare these papers unavailable or publisher-only. This finite exception covers only copy-search completeness, never attribution, identity, evidence, schema, missing-ledger or stale-ledger checks. Known local copies remain counted. Measurement ledger SHA-256: 133e21e17a9498f8bbaefcff3882737db988376cfed72fc04046dd58ede3f3db."
   },
   "stanford": {
-   "max": 4326,
-   "of": 4939,
+   "max": 4332,
+   "of": 4886,
    "decided": "2026-11-07",
-   "why": "Updated release with currently supported data: the cache-only ledger measured 4326 incomplete copy searches among 4939 nonlocal papers. 4287 incomplete records have an OpenAlex record missing or outside its unchanged 7-day freshness limit. Missing checks within incomplete records: core=56, dblp=64, openalex=4287, pmc=1, repository=43, s2=55. CORE remains paused and new paper records also need source checks. Preserve original source timestamps and incomplete_check; do not declare these papers unavailable or publisher-only. This finite exception covers only copy-search completeness, never attribution, identity, evidence, schema, missing-ledger or stale-ledger checks. Known local copies remain counted. Previous cap=18."
+   "why": "Final cache-only measurement at 2026-11-07T07:11:25.323465+00:00: 4332 incomplete copy searches among 4886 nonlocal papers (previous interim cap 4326). Missing checks within incomplete records: core=57, dblp=66, openalex=4292, pmc=1, repository=44, s2=56. OpenAlex retains its unchanged 7-day freshness limit; CORE remains paused. Active collectors also change candidate and attempt states between measurements; 15 currently incomplete records have later attempts than the initial measurement. Preserve original source timestamps and incomplete_check; do not declare these papers unavailable or publisher-only. This finite exception covers only copy-search completeness, never attribution, identity, evidence, schema, missing-ledger or stale-ledger checks. Known local copies remain counted. Measurement ledger SHA-256: d6383a9603f2900e8250df3a4935bdefaac0d5aec5dfd3343e86f204634a7ae2."
   },
   "michigan": {
-   "max": 400,
-   "of": 5854,
+   "max": 413,
+   "of": 5675,
    "decided": "2026-11-07",
-   "why": "Updated release with currently supported data: the cache-only ledger measured 400 incomplete copy searches among 5854 nonlocal papers. 316 incomplete records have an OpenAlex record missing or outside its unchanged 7-day freshness limit. Missing checks within incomplete records: core=242, dblp=202, openalex=316, repository=191, s2=195, wayback_acm=23. CORE remains paused and new paper records also need source checks. Preserve original source timestamps and incomplete_check; do not declare these papers unavailable or publisher-only. This finite exception covers only copy-search completeness, never attribution, identity, evidence, schema, missing-ledger or stale-ledger checks. Known local copies remain counted. Previous cap=69."
+   "why": "Final cache-only measurement at 2026-11-07T07:11:25.323465+00:00: 413 incomplete copy searches among 5675 nonlocal papers (previous interim cap 400). Missing checks within incomplete records: core=247, dblp=215, openalex=328, pmc=8, repository=203, s2=206, wayback_acm=1. OpenAlex retains its unchanged 7-day freshness limit; CORE remains paused. Active collectors also change candidate and attempt states between measurements; 23 currently incomplete records have later attempts than the initial measurement. Preserve original source timestamps and incomplete_check; do not declare these papers unavailable or publisher-only. This finite exception covers only copy-search completeness, never attribution, identity, evidence, schema, missing-ledger or stale-ledger checks. Known local copies remain counted. Measurement ledger SHA-256: 9665952f6f31e40ac718de4773624f59ed43415b5835665e8574d59a72154112."
   },
   "gatech": {
-   "max": 686,
-   "of": 12105,
+   "max": 647,
+   "of": 11765,
    "decided": "2026-11-07",
-   "why": "Updated release with currently supported data: the cache-only ledger measured 686 incomplete copy searches among 12105 nonlocal papers. 627 incomplete records have an OpenAlex record missing or outside its unchanged 7-day freshness limit. Missing checks within incomplete records: core=551, dblp=537, openalex=627, repository=534, s2=531, wayback_acm=23. CORE remains paused and new paper records also need source checks. Preserve original source timestamps and incomplete_check; do not declare these papers unavailable or publisher-only. This finite exception covers only copy-search completeness, never attribution, identity, evidence, schema, missing-ledger or stale-ledger checks. Known local copies remain counted. Previous cap=66."
+   "why": "Final cache-only measurement at 2026-11-07T07:11:25.323465+00:00: 647 incomplete copy searches among 11765 nonlocal papers (previous interim cap 686). Missing checks within incomplete records: core=527, dblp=500, openalex=588, repository=497, s2=494, wayback_acm=23. OpenAlex retains its unchanged 7-day freshness limit; CORE remains paused. Active collectors also change candidate and attempt states between measurements; 18 currently incomplete records have later attempts than the initial measurement. Preserve original source timestamps and incomplete_check; do not declare these papers unavailable or publisher-only. This finite exception covers only copy-search completeness, never attribution, identity, evidence, schema, missing-ledger or stale-ledger checks. Known local copies remain counted. Measurement ledger SHA-256: b5efffc174250abe4cdd02f689f8015848da8e40f48c07ccc42dab08ab9f0f03."
   },
   "washu": {
    "max": 732,
@@ -147,7 +147,7 @@
    "max": 164,
    "of": 469,
    "decided": "2026-11-07",
-   "why": "Owner-authorized partial publication: \u201clets add what we have / release what we have for washington university, harvard, and JHU (and then keep working on improving them)?\u201d After two primary-source paper recoveries, the offline ledger measures164 incomplete_check and305 found_not_in_catalog among469 nonlocal papers. The original sample and corrected fixed panel remain recorded. These are unresolved copy-discovery checks, never unavailable or exhausted. Missing and stale ledger counts remain zero; attribution, identity and evidence requirements are unchanged."
+   "why": "Owner-authorized partial publication: “lets add what we have / release what we have for washington university, harvard, and JHU (and then keep working on improving them)?” After two primary-source paper recoveries, the offline ledger measures164 incomplete_check and305 found_not_in_catalog among469 nonlocal papers. The original sample and corrected fixed panel remain recorded. These are unresolved copy-discovery checks, never unavailable or exhausted. Missing and stale ledger counts remain zero; attribution, identity and evidence requirements are unchanged."
   }
  }
 }
