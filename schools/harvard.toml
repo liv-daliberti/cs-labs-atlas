@@ -627,6 +627,30 @@ use = "live"
 purpose = "Partial-package source review 2026-11-06: faculty-linked public source; robots and successful capture saved in school raw store"
 probe = "https://yilundu.github.io/"
 
+[[hosts]]
+host = "drops.dagstuhl.de"
+use = "live"
+purpose = "Accuracy source review 2026-11-07: Publisher PDF robots200/AIallowed and content200; first-page affiliation evidence saved."
+probe = "https://drops.dagstuhl.de/storage/00lipics/lipics-vol080-icalp2017/LIPIcs.ICALP.2017.49/LIPIcs.ICALP.2017.49.pdf"
+
+[[hosts]]
+host = "jmlr.org"
+use = "live"
+purpose = "Accuracy source review 2026-11-07: Primary accepted-paper listing robots404 and content200; source saved."
+probe = "https://jmlr.org/tmlr/papers/"
+
+[[hosts]]
+host = "arxiv.org"
+use = "live"
+purpose = "Accuracy source review 2026-11-07: Author-linked public PDF robots200/AIallowed, Crawl-delay15, shared cooldown/reservation respected; content200 saved."
+probe = "https://arxiv.org/pdf/2506.20752"
+
+[[hosts]]
+host = "openreview.net"
+use = "wayback-only"
+purpose = "Accuracy source review 2026-11-07: Primary accepted PDF content403; stopped without retry or archive fallback. A separate author-linked public preprint was reviewed."
+probe = "https://openreview.net/pdf?id=I5bxWT7Xfw"
+
 [release]
 ledger_mode = "offline"
 owner_quote = "lets add what we have / release what we have for washington university, harvard, and JHU (and then keep working on improving them)?"
