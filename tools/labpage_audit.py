@@ -622,7 +622,7 @@ STUDENT_HEAD = re.compile(r'\b(students?|advisees?|ph\.?\s?d|postdocs?|group mem
                           r'researchers|visitors|former|current|doctoral|masters?|interns?|staff)\b', re.I)
 GENERIC_PAGE_RX = re.compile(r'/(undergraduate|graduate|admissions?|visit|apply|news|events?|students|academics|programs?|'
                              r'giving|calendar|directory|about-us|contact)\b', re.I)
-PROFILE_RX = re.compile(r'/(people|faculty|directory|profiles?|person|staff|our-people|bios?)/(profile/|faculty/)?[^/?#]+'
+PROFILE_RX = re.compile(r'/(people|faculty|directory|profiles?|persons?|staff|our-people|bios?)/(profile/|faculty/)?[^/?#]+'
                         r'(/(overview|bio|about|profile|research|publications))?/?$', re.I)
 NOT_HOME = re.compile(r'/news/|/events?/|/article|wikipedia|/\d{4}/\d{2}/|people-list|/people/?$|/faculty/?$|/directory|'
                       r'/oai/|dataspace|/courses?/|\.pdf$|cv\.html?$|/cv/?$|resume', re.I)

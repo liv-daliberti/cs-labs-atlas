@@ -11,3 +11,8 @@ def test_slug_needs_given_and_family_name():
     assert not L.profile_slug_hit('https://ece.gatech.edu/directory/raychowdhury', ['Arijit Raychowdhury'])
     assert not L.profile_slug_hit('https://ece.gatech.edu/directory/arijit-chowdhury', ['Arijit Raychowdhury'])
     assert not L.profile_slug_hit('https://ece.gatech.edu/directory/', ['Arijit Raychowdhury'])
+
+
+def test_pure_institutional_profile_is_not_a_lab_website():
+    assert L.is_profile('https://profiles.wustl.edu/en/persons/fuhai-li', r'wustl\.edu')
+    assert not L.is_profile('https://www.cse.wustl.edu/~kunal/', r'wustl\.edu')

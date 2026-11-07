@@ -280,3 +280,32 @@ The lab-page work stops here for the November release. Two repairs remain open f
    treated as new and their undated alumni and visitors pass (CMU round 6).
 2. **Stale-page footer year.** A page whose latest year is before 2016 (a footer such as `Copyright 2012`) is a stale page even when
    captured later; its 'current' students are pre-window (Stanford round 6, Olukotun).
+
+## Per-PI website register
+
+`tools/lab_websites.py build <school> --out <file>` consolidates the audit into
+one record for every current `pis.json` PI. Missing audits remain `pending`;
+an empty check list is not an absence reason. Websites need a capture hash,
+a discovery source and dated source checks. Sites at another institution count
+as a documented reason, not as this school's website. Each record preserves
+actual check URLs, dates and results. Absence reasons describe the recorded
+search/access outcome and do not prove that a website does not exist.
+
+`--refresh-discovery` uses already-captured discovery pages to refresh only the
+website fields. It makes no network requests and does not approve students or
+papers; these retain their previous review status, or `pending_review`.
+`--require-complete` exits nonzero if any PI still lacks a documented website or
+reason. `--require-official-provenance` also requires a recorded official profile
+link to each selected website. A DBLP/ORCID lead or older prior-pass label remains
+visible as `official_link_status: not_recorded` until that link is documented.
+Generated registers are audit outputs, not student-admission evidence.
+
+Stage 3 checks the register (or consolidates an existing audit) against every
+census PI, not just rows already in the register. It requires an official
+profile-to-website link for website records and dated evidence for negative or
+access-limited outcomes. Registers older than the PI build must be refreshed.
+`reason_type` distinguishes `pending_archive`, `access_blocked`,
+`site_unavailable`, `other_institution`, and `search_no_eligible_site`.
+`--enrich-official-links` recovers exact outgoing links from cached official
+profile HTML, preserving its hash and check date; it performs no requests.
+Archive-dependent outcomes remain documented but incomplete, and fail stage 3.

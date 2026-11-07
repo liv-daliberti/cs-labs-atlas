@@ -16,6 +16,8 @@ def test_clean_unit_separates_joint_appointments_and_drops_non_units():
 
 def test_the_gate_rejects_a_home_that_is_not_a_known_name(monkeypatch):
     import stage_gate as G
+    import lab_websites
+    monkeypatch.setattr(lab_websites, 'gate', lambda *a, **kw: [])  # this test isolates the home-department gate
     monkeypatch.setattr(G, 'known_homes', lambda key: {'Computer Science'})
     monkeypatch.setattr(G, 'pis_of', lambda key: [{'name': 'Ann', 'pi_basis': {'url': 'u', 'sha256': 's', 'quote': 'q'}}, {'name': 'Bo', 'pi_basis': {'url': 'u', 'sha256': 's', 'quote': 'q'}}])
     monkeypatch.setattr(G, 'read', lambda p, default=None: [dict(name='Ann', status='accepted', home_department='Computer Science'), dict(name='Bo', status='accepted', home_department="Starting Fall'26")])
