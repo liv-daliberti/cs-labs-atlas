@@ -54,3 +54,6 @@ fast-forward `main`: docs/CONTRIBUTING.md. The remote is the public repository
 `git push origin main:dev` after the tests and the scan), `main` holds the release exports, and releases are tagged
 `release-<id>`. Install the hooks once (`tools/install_hooks.sh`): secret scan and ruff on staged files, and a warning
 on direct commits to main. Commit before a release: `make_release.py` refuses uncommitted changes to tracked files.
+
+## Rights and how to cite
+The atlas data and site content are © 2026 Liv d'Aliberti, CC BY-NC 4.0; citation is by Zenodo DOI. `tools/rights.py` renders LICENSE, NOTICE, CITATION.cff, `.zenodo.json`, the README "How to cite" section and the Hugging Face card from `tools/rights/rights.json`; `tools/export_release.py` and `tools/hf_upload_release.py` call it. Placeholders, the owner's Zenodo steps and what is and is not enforced: `docs/RIGHTS-AND-CITATION.md`.
