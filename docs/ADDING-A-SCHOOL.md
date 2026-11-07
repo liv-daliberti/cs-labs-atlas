@@ -202,6 +202,10 @@ atlas stage-gate <key> [n ...]                 # only the gates (0-10), from the
 - **Learned from UChicago (2026-11-02):**
   - `tools/discover_listings.py <key> <url>...` prints one line per URL (captures and the half-years that have one). To find URL eras, read the links
     in the 2016 homepage or people-page capture (`/directories/table/faculty` was found that way; guessing found nothing), then check each with it.
+    `--offline --report <file>` checks saved exact-query CDX responses and sample bodies without network requests or cache writes, even during a
+    host cooldown. `--report` records each requested sample separately. Exit 3 means evidence is pending (missing cache, failed request, empty body,
+    or challenge), never that no capture exists. Only a successful empty index establishes an empty exact query. After a live failure the remaining
+    URLs/samples are cache-only for that invocation. Exit 0 is completed **discovery**, not faculty-year acceptance or proof that a paged roster is complete.
   - A department site changes platform two or three times in ten years (UChicago CS: Drupal table, a `li.mix` list, WordPress cards). Write one
     format per era in `tools/listing_formats.py` (with a fixture test) and name it in the slot's `format`, before running `run_school.sh`.
   - After a parser fix, `listings/scripts/replan.py <key> <slot substring>` forgets the `unusable`/`nocapture` plan rows (captures stay), then rerun
