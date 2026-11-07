@@ -40,7 +40,14 @@ SITE_FALLBACK = {'stanford': dict(name='Stanford University', uni='stanford-univ
 
 def dept(s, p, homes):
     """The PI's department exactly as the site places it (the site builder's own department())."""
-    return SITE.department(s, SITE.SCHOOLS.get(s) or SITE_FALLBACK[s], p, homes[s])[0]
+    cfg = SITE.SCHOOLS.get(s) or SITE_FALLBACK.get(s)
+    if cfg is None:
+        # New charters can enter a release before the historical vendored site
+        # builder is refreshed. Reviewed homes still take precedence over codes.
+        charter = S.get(s)
+        cfg = dict(name=charter['name'], uni=charter.get('site_uni'), full=None,
+                   depts=charter.get('site', {}).get('depts', {}))
+    return SITE.department(s, cfg, p, homes[s])[0]
 
 
 def profile(s, homes, audit, zero):
