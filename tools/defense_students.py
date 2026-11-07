@@ -8,8 +8,9 @@ An event page counts for a PI only when
   3. the name is the PI's by the build's full-name rule (pihier.names.Name) and its given name is spelled out (etd_crawl.given_ok: a namesake
      such as 'Wang, C.-K. Chris' is not Kai Wang); a name two PIs share is ambiguous and dropped;
   4. the announcement year (the listing date, or a full date in the text) is inside the PI's listed years at the school and 2016-2026.
-Row (reviewed/defense-evidence.json, the shape of thesis-evidence.json): role phd, years [y, y] (the defense year, R-LNK-06 widens the link window),
-quote = the listing title | the page's own words from the adviser entry (verbatim), url, sha256 of the fetched bytes. A student the candidate
+The legacy defense-evidence.json holds per-student extraction intermediates and is not a grouped builder input.
+Row (reviewed/defense-adviser-evidence.json, the shape of thesis-evidence.json): role phd, years [y, y] (the defense year, R-LNK-06 widens the link window),
+quote = the candidate's name as printed in the fetched page; host_quote = the page's own adviser-entry text (verbatim), url, sha256 of the fetched bytes. A student the candidate
 has no other record of is a new student of the lab; co-advised candidates are rows under every PI marked.
 
 usage: defense_students.py evidence <school> [--out FILE]      (default: print the counts)
@@ -122,6 +123,16 @@ def advisor_mentions(text):
     return res
 
 
+def source_quotes(candidate, text, adviser_start, adviser_end):
+    """Both quotes must come from the hashed event page, never from a separate listing."""
+    hit = re.search(r'(?<![\w-])' + re.escape(candidate) + r'(?![\w-])', text, re.I)
+    if hit is None:
+        return None
+    lo = max(0, adviser_start - 40)
+    # Keep the entire adviser cue even in long unit labels (e.g. ECE, Chair, Advisor).
+    return hit.group(0), text[lo:adviser_end + 130].strip()
+
+
 def defense_year(listed, text):
     m = re.search(r'\b(?:January|February|March|April|May|June|July|August|September|October|November|December)\.?\s+\d{1,2}(?:st|nd|rd|th)?,?\s+(20\d\d)\b', text)
     return int(m.group(1)) if m else int(listed[:4])
@@ -137,7 +148,7 @@ def build(school, pis, pi_window=None):
     idx = {p['pi']: Name(list(dict.fromkeys([p['pi']] + list(p.get('names') or [])))) for p in pis}
     names_of = {p['pi']: list(dict.fromkeys([p['pi']] + list(p.get('names') or []))) for p in pis}
     c = connect_ro()
-    counts = dict(pages=0, no_candidate=0, no_advisor_cue=0, outside_window=0, no_pi=0, ambiguous=0, outside_pi_appointment=0, rows=0, duplicate=0)
+    counts = dict(pages=0, no_candidate=0, no_source_candidate=0, no_advisor_cue=0, outside_window=0, no_pi=0, ambiguous=0, outside_pi_appointment=0, rows=0, duplicate=0)
     out, detail, seen = {}, [], {}
     for url, sha, text, listed, ltitle in c.execute(
             'SELECT p.url, p.sha256, p.text, q.listed, q.title FROM pages p JOIN queue q ON q.url = p.url ORDER BY q.listed, p.url'):
@@ -165,21 +176,22 @@ def build(school, pis, pi_window=None):
                 if pi_window and p in pi_window and not (pi_window[p][0] <= year <= pi_window[p][1]):
                     counts['outside_pi_appointment'] += 1
                     continue
+                source = source_quotes(cand, text, s, e)
+                if source is None:
+                    counts['no_source_candidate'] += 1
+                    continue
                 key = (p, F.nt(cand))
                 if key in seen:   # the proposal and the defense of one candidate: one row, the years span both announcements
                     counts['duplicate'] += 1
                     r = seen[key]
                     r['years'] = [min(r['years'][0], year), max(r['years'][1], year)]
                     continue
-                lo = max(0, s - 40)
-                frag = text[lo:e + 20].strip()
-                frag = frag[frag.find(' ') + 1:] if lo > 0 and ' ' in frag[:40] else frag
-                quote = f'{ltitle} | {frag}'
-                row = dict(name=cand, role='phd', years=[year, year], url=url, sha256=sha, quote=quote,
+                quote, host_quote = source
+                row = dict(name=cand, role='phd', years=[year, year], url=url, sha256=sha, quote=quote, host_quote=host_quote,
                            note=f"hg.gatech.edu PhD announcement listed {listed} ({'proposal' if re.search('(?i)proposal', ltitle) else 'defense'}): adviser '{adv}' = {p} (R-STU-23, defense_students.py)")
                 seen[key] = row
                 out.setdefault(p, []).append(row)
-                detail.append(dict(pi=p, student=cand, url=url, listed=listed, year=year, quote=quote, text=text))
+                detail.append(dict(pi=p, student=cand, url=url, listed=listed, year=year, quote=quote, host_quote=host_quote, text=text))
                 counts['rows'] += 1
         if not hit_any:
             counts['no_pi'] += 1

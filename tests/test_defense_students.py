@@ -31,3 +31,32 @@ def test_chair_without_cue_and_committee_members_are_not_advisers():
 def test_defense_year_prefers_a_full_date():
     assert D.defense_year('2022-12-20', 'Date: January 9, 2023 Time: 2 PM') == 2023
     assert D.defense_year('2022-12-20', 'Date: Friday, January 9th Time: 2 PM') == 2022
+
+
+def test_source_quotes_bind_candidate_and_complete_adviser_cue_to_event_page():
+    text = 'Dissertation Defense: ADA STUDENT Committee Dr. Ann Lee, ECE, Chair, Advisor Dr. Bo Chen, Reader'
+    lo = text.index('Ann Lee'); hi = lo + len('Ann Lee')
+    candidate, adviser = D.source_quotes('Ada Student', text, lo, hi)
+    assert candidate == 'ADA STUDENT' and candidate in text
+    assert adviser in text and 'Ann Lee, ECE, Chair, Advisor' in adviser
+    assert D.source_quotes('Different Student', text, lo, hi) is None
+    assert D.source_quotes('Ada Student', 'Nada Student. Advisor Ann Lee', 22, 29) is None
+
+
+def test_legacy_defense_extracts_are_not_grouped_researched_inputs(tmp_path, monkeypatch):
+    import collections
+    import json
+    from types import SimpleNamespace
+    import pihier.students as S
+    (tmp_path / 'defense-evidence.json').write_text(json.dumps([{'student': 'Legacy Student', 'host': 'Ann Lee'}]))
+    (tmp_path / 'defense-adviser-evidence.json').write_text(json.dumps([
+        {'pi': 'Ann Lee', 'students': [{'name': 'Ada Student', 'role': 'phd', 'years': [2024, 2024],
+         'quote': 'Ada Student', 'host_quote': 'Advisor Ann Lee', 'sha256': 'abc', 'url': 'https://example.edu/defense'}]}]))
+    monkeypatch.setattr(S.P, 'data', lambda name, *a, **kw: tmp_path / name)
+    monkeypatch.setattr(S, 'accepted_additions', lambda *a: [])
+    ctx = SimpleNamespace(here=tmp_path, school='example', pis=[{'pi': 'Ann Lee'}], ge={}, n=collections.Counter())
+    students = collections.defaultdict(dict)
+    S.researched(ctx, students, {})
+    row = next(iter(students['Ann Lee'].values()))
+    assert row['name'] == 'Ada Student'
+    assert [source['quote'] for source in row['relations'][0]['sources']] == ['Ada Student', 'Advisor Ann Lee']
