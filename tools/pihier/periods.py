@@ -234,7 +234,8 @@ def listing_bridge_periods(p, direct_years, other_years, covered, moved=False, t
 
     def make(a, end, asof, years, shape):
         ev = [dict(url=a['url'], sha256=a['sha256'], quote=a['quote'], kind=a.get('kind') or 'listing')]
-        return dict(id=f"listing_bridge_{a['year']}_{shape}", start=cap(a), end=end, asof=asof, evidence=ev, datePrecision='day', endPrecision='day' if end else None,
+        return dict(id=f"listing_bridge_{a['year']}_{shape}", start=cap(a), end=end, asof=asof, evidence=ev, datePrecision='day',
+                    **({'endPrecision': 'day'} if end else {}),
                     reviewed=LISTING_BRIDGE, years=[years[0], years[-1]],
                     note=f"The PI's dated listing of {a['year']} is the last evidence of the appointment; the PI has no departure evidence, no listing capture "
                          f"that covers {years[0]}-{years[-1]} omits the PI, and the PI's identified works name the school in their own authorship in every "

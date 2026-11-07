@@ -32,6 +32,16 @@ def test_R_PAP_37_tail_runs_from_the_last_listing_to_today():
     assert t['evidence'][0]['sha256'] == L20['sha256'] and t['years'] == [2021, 2026]
 
 
+@pytest.mark.parametrize('direct', [{2021: 1}, {y: 1 for y in range(2021, 2027)}])
+def test_closed_and_ongoing_bridges_conform_to_the_period_schema(direct):
+    import schema_check
+    from test_schemas import schema
+    root = schema('pis')
+    period_schema = dict(root['$defs']['period'], **{'$defs': root['$defs']})
+    (period,) = tail(P0, direct, {}, {}, today='2026-11-05')
+    assert schema_check.validate(period, period_schema) == []
+
+
 def test_R_PAP_37_tail_stops_at_the_first_year_without_a_school_named_work():
     (t,) = tail(P0, {2021: 2, 2022: 1, 2024: 3}, {}, {}, today='2026-11-05')
     assert (t['end'], t['years']) == ('2022-12-31', [2021, 2022])        # 2023 names nothing: the run ends, 2024 is not reached
