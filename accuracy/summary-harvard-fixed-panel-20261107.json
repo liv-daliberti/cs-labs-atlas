@@ -1,0 +1,147 @@
+{
+ "school": "harvard",
+ "date": "2026-11-07",
+ "seed": 20261029,
+ "n_verdicts": 90,
+ "files": {
+  "pis.json": "b053e56d115b94792f5e84e5278a6259c047ed11acc4e85a420fdb3682c714f9",
+  "students.json": "5f5c18e6740525c8c36d32c1ea5546a8a89659fc286bbed95bd9649c568dff43",
+  "lab_papers.jsonl.gz": "d693c8c874ae324cbb13340d71ac1e904243c192ff4103768e01c8534cca0154",
+  "student_papers.jsonl.gz": "11f11af6607a50b88b45e31800eeef98f6412802fac807e15047ae4af50825f8",
+  "copies.json": "348709bd3dc900de78b115dec2d082ba82a60749dc9f52bb5021a811c28567e2"
+ },
+ "files_now": {
+  "pis.json": "b053e56d115b94792f5e84e5278a6259c047ed11acc4e85a420fdb3682c714f9",
+  "students.json": "5f5c18e6740525c8c36d32c1ea5546a8a89659fc286bbed95bd9649c568dff43",
+  "lab_papers.jsonl.gz": "d693c8c874ae324cbb13340d71ac1e904243c192ff4103768e01c8534cca0154",
+  "student_papers.jsonl.gz": "11f11af6607a50b88b45e31800eeef98f6412802fac807e15047ae4af50825f8",
+  "copies.json": "348709bd3dc900de78b115dec2d082ba82a60749dc9f52bb5021a811c28567e2"
+ },
+ "lab_precision_uniform": {
+  "k": 25,
+  "n": 25,
+  "p": 1.0,
+  "lo": 0.8668,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 25,
+  "n": 25,
+  "p": 1.0,
+  "lo": 0.8668,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "unclear": 0
+  },
+  "listing": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "identity_not_reviewed": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "lab_precision_all40": {
+  "k": 35,
+  "n": 35,
+  "p": 1.0,
+  "lo": 0.9011,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "student_precision_uniform": {
+  "k": 25,
+  "n": 25,
+  "p": 1.0,
+  "lo": 0.8668,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "student_precision_strata": {
+  "advisee_name_on_lab_paper_byline": {
+   "k": 4,
+   "n": 4,
+   "p": 1.0,
+   "lo": 0.5101,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "fill_uniform": {
+   "k": 11,
+   "n": 11,
+   "p": 1.0,
+   "lo": 0.7412,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "student_precision_all40": {
+  "k": 40,
+  "n": 40,
+  "p": 1.0,
+  "lo": 0.9124,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_coverage": {
+  "k": 14,
+  "n": 15,
+  "p": 0.9333,
+  "lo": 0.7018,
+  "hi": 0.9881
+ },
+ "lab_coverage_items": {
+  "drawn": 15,
+  "true_lab_papers": 15,
+  "not_lab_papers_absent": 0,
+  "not_lab_papers_in_build": 0
+ },
+ "student_coverage": null,
+ "student_coverage_items": {
+  "drawn": 0,
+  "no_coauthored_paper": 0
+ },
+ "failures": {
+  "missing_from_build": 1
+ },
+ "incorrect": [
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Ariel Procaccia|journals/ior/GolzPP26",
+   "failure_type": "missing_from_build",
+   "reason": "Genuine missing benchmark record: DBLP formal record year2026 and the exact DOI snapshot authorship names Ariel D. Procaccia at Harvard. Snapshot online date2025-03-27 falls outside this partial package's currently evidenced2026-only listing scope. Keep the date/scope limitation visible; do not reclassify the Harvard paper to pass.",
+   "policy": null
+  }
+ ],
+ "unclear": [],
+ "screened": [],
+ "population": {
+  "n_lab_papers": 493,
+  "n_student_papers": 112,
+  "n_coverage_pool": 327,
+  "n_student_candidates": 0
+ },
+ "files_before": {
+  "pis.json": "f9ded2cae0e5bdba6de432315f5327b4eba2415ae9ac080309981425ef39de39",
+  "students.json": "5f5c18e6740525c8c36d32c1ea5546a8a89659fc286bbed95bd9649c568dff43",
+  "lab_papers.jsonl.gz": "66b0a9064c94051633ed6b771ca74f5d02fdf05a4815bb9a87cf0e889f245752",
+  "student_papers.jsonl.gz": "11f11af6607a50b88b45e31800eeef98f6412802fac807e15047ae4af50825f8",
+  "copies.json": "91e045bb92a81aaa89f7c002d97cb6cec3522d8a8e044ef93a381fab84d6adc6"
+ },
+ "panel": "Original fixed panel: all75 precision claim hashes unchanged, two independently sourced generic recoveries added, Procaccia date/scope miss retained.",
+ "revalidated_at": "2026-11-07T06:11:29+00:00"
+}

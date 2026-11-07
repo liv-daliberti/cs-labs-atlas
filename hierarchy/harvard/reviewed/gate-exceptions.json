@@ -52,5 +52,46 @@
     "remaining_items": [
       "Complete the broader lab-page discovery and audit under the recorded host policies; current manual sources cover only the admitted subset."
     ]
+  },
+  "6": {
+    "reason": "Only the manually sourced current-roster subset is included. Full automatic lab-page acceptance rounds and current students for 27 remaining supported PIs have not been completed. This exception covers incomplete roster coverage and the missing acceptance artifact only; student identity, one-person integrity, role/evidence validity and existing relation claims remain hard requirements.",
+    "by": "owner",
+    "decided": "2026-11-07",
+    "owner_quote": "lets add what we have / release what we have for washington university, harvard, and JHU (and then keep working on improving them)?",
+    "allow_items": [
+      "lab-page students acceptance: labpage-acceptance.json missing (docs/LAB-PAGES.md rounds)",
+      "students: 27 unexplained of 38"
+    ],
+    "remaining_items": [
+      "Review current and historical students for the 27 uncovered labs.",
+      "Complete the automatic student-parser acceptance rounds; do not label unsearched labs source-exhausted."
+    ]
+  },
+  "7": {
+    "reason": "Existing lab papers and student links must pass evidence/schema/identity and manual precision checks. The automatic publication-page acceptance artifact and 14 remaining unexplained student-to-paper link gaps are incomplete coverage in this supported partial package, not claims that these students have no papers.",
+    "by": "owner",
+    "decided": "2026-11-07",
+    "owner_quote": "lets add what we have / release what we have for washington university, harvard, and JHU (and then keep working on improving them)?",
+    "allow_items": [
+      "lab-page papers acceptance: labpage-acceptance.json missing (docs/LAB-PAGES.md rounds)",
+      "links: 14 unexplained of 58"
+    ],
+    "remaining_items": [
+      "Complete publication-page acceptance rounds.",
+      "Investigate the 14 unexplained student-to-paper gaps without inferring joining dates from current-roster captures."
+    ]
+  },
+  "8": {
+    "reason": "The current manual sources are preserved in raw/school-captures.sqlite with hashes. The additional labpage-channel capture store has not been collected, so that source remains unchecked in the honest offline ledger. This exception covers that missing channel coverage only. It does not waive missing/stale ledger records, source hashes, paper attribution or copy identity.",
+    "by": "owner",
+    "decided": "2026-11-07",
+    "owner_quote": "lets add what we have / release what we have for washington university, harvard, and JHU (and then keep working on improving them)?",
+    "allow_items": [
+      "captures: neither raw/labpage-captures.sqlite nor raw/labpage-audit-captures.sqlite exists for harvard (run `tools/labpage_audit.py discover` first; the ledger and the labpages channel read it)"
+    ],
+    "remaining_items": [
+      "Collect the separate lab-page publication/copy channel under the recorded host policies.",
+      "Continue full-text discovery; the ledger retains incomplete_check where applicable sources remain unchecked."
+    ]
   }
 }

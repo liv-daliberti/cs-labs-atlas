@@ -12,7 +12,7 @@ Eleven lab rosters supply 58 manually reviewed student relations (50 explicit Ph
 
 The local OpenAlex snapshot sweep contains 598,232 works across 2016–2026. Its sanity check passes, with zero duplicate work identifiers, duplicate DOI rate 0.000752, and institution share 1.0. A sweep is a candidate pool, not a claim that every work belongs to a supported CS lab.
 
-Raw official captures are saved in `hierarchy/harvard/raw/school-captures.sqlite`; admitted evidence preserves source URLs, SHA-256 hashes, and verbatim quotations. Access receipts cover 66 faculty-linked hosts. Blocked robots/challenge responses were respected. No archive request or external API budget was used for this partial build.
+Raw official captures are saved in `hierarchy/harvard/raw/school-captures.sqlite`; admitted evidence preserves source URLs, SHA-256 hashes, and verbatim quotations. Access receipts cover 70 faculty-linked and publication-source hosts. Blocked robots/challenge responses were respected. No archive request or external API budget was used for this partial build.
 
 ## Remaining historical work
 
@@ -22,4 +22,42 @@ Historical discovery, broader CS-related faculty discovery, complete lab roster 
 
 ## Build and review
 
-Snapshot job 32137357 completed successfully. Metadata job 32137992 and its dependent offline quality job 32138100 perform the identity scan, school-local DBLP publication extraction, package build, copy measurement, offline unavailability ledger, schema/evidence/student checks and reproducible accuracy draw. The final measured package counts and manual accuracy results will be recorded after those jobs finish.
+The supported package contains 38 PIs, 56 unique students in 58 lab-student pairs, and 112 student-paper links. The initial 493 lab-paper rows represented 467 distinct papers. The first manual accuracy review checked 35 lab-paper claims, 40 student-paper claims and 15 independent DBLP coverage records: all precision claims were correct, while only 12/15 coverage records were present (0.800). The complete initial draw, judgments and summary are preserved in `accuracy/*-harvard-initial-20261107.*`.
+
+That review found two recoverable affiliation/metadata misses. A 2017 ICALP publisher PDF explicitly ties Madhu Sudan's name marker to Harvard, contradicting the snapshot's Microsoft affiliation. A 2026 TMLR record for Stephanie Gil is tied to a Harvard first page through the primary TMLR accepted-paper listing and the official REACT lab's citation of its earlier-title author preprint. The accepted OpenReview PDF returned 403 and was not retried; the independently author-linked arXiv PDF allowed this use, with its 15-second crawl delay and shared host reservation respected. Both PDF byte hashes and the version-linking sources are preserved under immutable raw filenames.
+
+These are curated source records for the existing generic DBLP first-page recovery rule, not hardcoded builder exceptions. `materialize_recoveries.py` verifies every saved source hash and materializes `reviewed/paper-recovery-review.json` into the generic `dblp-recovered.jsonl.gz` input before a build. It has been run for both the branch overlay and the canonical data root. The recovered package has 495 lab-paper rows representing 469 distinct papers. Procaccia's sampled journal article remains a known date/scope gap: DBLP's formal year is 2026, while the snapshot online publication date is 2025 and this partial package currently has only his 2026 directory observation.
+
+The student audit found zero duplicate records within labs, across-lab identity conflicts, duplicate links on one paper, or detectable missed byline matches. Fifteen current student records have no linked paper; fourteen of those remain unexplained coverage gaps. Current roster observation alone is never used as a joining date or a reason to close such a gap.
+
+Snapshot job 32137357 and metadata job 32137992 completed. Initial offline quality job 32138100 checked 17 schema-covered files with zero violations. Every claim-level evidence category passed; its ledger had zero missing/stale entries, 304 found-not-in-catalog records and 163 incomplete checks among 467 nonlocal papers. Recovery quality job 32138462 completed its build and offline checks after the two recoveries. The final package has 17 schema-covered files with zero violations and zero claim-level evidence, missing-ledger or stale-ledger failures.
+
+The finite gate exceptions cover only the exact remaining listing, broader-discovery, roster/link and separate lab-page copy-channel completeness findings. All open findings remain visible. Stage 9 accuracy is not waived. Publication and final canonical-build/ID revalidation are coordinator actions.
+
+## Final measured accuracy and copy completeness
+
+| Measure | Initial panel | Original fixed panel and fresh draw |
+|---|---:|---:|
+| Uniform lab-paper precision | 25/25 | 25/25 |
+| All lab-paper precision strata | 35/35 | 35/35 |
+| Uniform student-link precision | 25/25 | 25/25 |
+| All student-link precision strata | 40/40 | 40/40 |
+| DBLP lab-paper coverage | 12/15 (0.800) | 14/15 (0.9333) |
+
+The fresh same-seed draw selected the same 90 stable keys. Every one of the 75 original precision row hashes was rechecked and remained identical. The two genuine coverage failures changed only after their independent sources were admitted; the Procaccia failure remains in the final judgments. The initial, fixed-panel and current draw/summary/verdict files are saved separately under `accuracy/`. The current five package hashes match the final draw and summary. There are no documented thesis/alumni candidates in this supported current-roster subset, so thesis-advisee student coverage is unmeasured rather than zero or complete. Stage 9 passes without an exception.
+
+The final catalog measurement is **0/469 local copies**. Two PDFs retained as raw affiliation evidence are not yet catalogued reader copies. The offline ledger records **305 found-not-in-catalog** papers and **164 incomplete checks**, with **zero missing or stale ledger records**. Unknown checks remain incomplete; no unqueried source is labelled absent.
+
+| Source | Incomplete records missing this check |
+|---|---:|
+| OpenAlex | 160 |
+| Semantic Scholar | 157 |
+| DBLP | 164 |
+| Institutional repository | 160 |
+| Lab pages | 164 |
+| CORE | 152 |
+| ACM Wayback PDF discovery | 28 |
+
+The source counts overlap. Exact combinations are 124 missing OpenAlex/Semantic Scholar/DBLP/repository/lab pages/CORE; 28 with those plus ACM Wayback; four missing OpenAlex/Semantic Scholar/DBLP/repository/lab pages; four missing OpenAlex/DBLP/repository/lab pages; three missing DBLP/lab pages; and one missing Semantic Scholar/DBLP/lab pages. The coordinator owns the finite school/category copy-completeness whitelist entry; no attribution, identity, missing-ledger or stale-ledger exception was added here.
+
+Final branch gates 0, 4, 5 and 9 pass. Gates 1, 2, 3, 6, 7 and 8 have only their exact owner-authorized completeness findings waived, with all remaining items visible and no unmatched findings. The recovery build's actual provenance is preserved: snapshot commit `8b21f2e`, `dirty: false`, with the then-uncommitted gate exception listed under `other_dirty_paths`. The coordinator must perform the final clean canonical build, stable Atlas ID assignment, copy-clock refresh and explicit stable-key/source revalidation before release; neither provenance flags nor scientific judgments were manually cleared.
