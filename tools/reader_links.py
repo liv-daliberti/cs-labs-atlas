@@ -95,23 +95,32 @@ DEPOSIT_DOI_PREFIXES = ('10.5281/', '10.6084/', '10.5061/', '10.17605/', '10.791
 
 
 class ArxivIndex:
-    """id -> (title, [author family names]) from the local arXiv OAI index (archive sweep raw/arxiv_oai), read once for the ids asked for."""
+    """id -> (title, author families), loading the local OAI snapshot once per run.
+
+    Individual paper lookups must not rescan every compressed shard. Keep the
+    compact matching fields, including negative lookup results, in memory.
+    """
 
     def __init__(self, directory=None):
         self.dir = Path(directory) if directory else P.archive_sweep('claude-cmu-20261017') / 'raw' / 'arxiv_oai'
         self.rec, self.scanned = {}, set()
+        self._loaded = False
 
     def lookup(self, ids):
+        ids = tuple(ids)
         need = {i for i in ids if i not in self.scanned}
-        if need and self.dir.is_dir():
+        if need and not self._loaded and self.dir.is_dir():
+            records = {}
             for f in sorted(self.dir.glob('*.jsonl.gz')):
                 with gzip.open(f, 'rt') as fh:
                     for line in fh:
                         if '"id"' not in line:
                             continue
                         d = json.loads(line)
-                        if d['id'] in need:
-                            self.rec[d['id']] = (d.get('title'), d.get('families') or [])
+                        records[d['id']] = (d.get('title'), d.get('families') or [])
+            self.rec = records
+            self._loaded = True
+        if self._loaded:
             self.scanned |= need
         return {i: self.rec[i] for i in ids if i in self.rec}
 
