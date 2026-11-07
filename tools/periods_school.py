@@ -93,15 +93,20 @@ def fetch(key):
             if res and res[0] == 200:
                 n['live_200'] += 1; continue
             key_url = re.sub(r'^https?://', '', u)
-            rows = W.cdx_rows(c, key_url, frm='2016', to='2026', collapse='timestamp:6')
-            if not rows:
-                n['no_capture'] += 1; continue
-            picks = {min(rows, key=lambda r: abs(int(r['timestamp'][:6]) - 202607))['timestamp']}
-            picks.add(min(rows, key=lambda r: abs(int(r['timestamp'][:6]) - (t['first'] * 100 + 7)))['timestamp'])
-            for r in rows:
-                if r['timestamp'] in picks:
-                    cap, st, sha, b = W.capture(c, r['timestamp'], r['original'], u, 'homepage:' + t['name'])
-                    n[f'wayback_{st}'] += 1
+            try:
+                rows = W.cdx_rows(c, key_url, frm='2016', to='2026', collapse='timestamp:6')
+                if not rows:
+                    n['no_capture'] += 1; continue
+                picks = {min(rows, key=lambda r: abs(int(r['timestamp'][:6]) - 202607))['timestamp']}
+                picks.add(min(rows, key=lambda r: abs(int(r['timestamp'][:6]) - (t['first'] * 100 + 7)))['timestamp'])
+                for r in rows:
+                    if r['timestamp'] in picks:
+                        cap, st, sha, b = W.capture(c, r['timestamp'], r['original'], u, 'homepage:' + t['name'])
+                        n[f'wayback_{st}'] += 1
+            except RuntimeError as e:   # the shared Wayback clock is cooling down after a 429: pending, rerun later
+                if 'cooling down' not in str(e):
+                    raise
+                n['wayback_cooling_pending'] += 1
         print(json.dumps(dict(pi=t['name'], **n)), flush=True)
     print(json.dumps(dict(n)))
 

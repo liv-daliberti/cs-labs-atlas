@@ -15,7 +15,7 @@ student of this PI at this school becomes evidence (verbatim quote, URL, capture
 ORCID: pub.orcid.org/robots.txt answers `User-agent: * / Disallow: /` (checked 2026-11-06), so the ORCID public API is not read (no education
 records are fetched); the ORCID id DBLP lists for a person is kept only as an identity hint.
 """
-import collections, glob, zlib, gzip, hashlib, html, json, random, re, sqlite3, sys, time, unicodedata, urllib.parse as U, urllib.request as R
+import collections, glob, os, zlib, gzip, hashlib, html, json, random, re, sqlite3, sys, time, unicodedata, urllib.parse as U, urllib.request as R
 import urllib.robotparser as RP
 from pathlib import Path
 
@@ -24,7 +24,7 @@ import school_config as S  # noqa: E402
 from pihier.common import norm_title  # noqa: E402
 from pihier.names import toks  # noqa: E402
 
-OUT = P.SCRATCH / 'own-pages'
+OUT = Path(os.environ.get('OWN_PAGES_OUT') or P.SCRATCH / 'own-pages')   # OWN_PAGES_OUT: a separate working directory (a run for new schools must not overwrite dblp-people.json.gz of the earlier ones)
 YEARS = (2016, 2025)
 MAX_AUTHORS = 15
 FEW = 3                                  # a lab with fewer students than this is a target

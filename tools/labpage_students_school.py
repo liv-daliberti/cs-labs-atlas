@@ -77,25 +77,37 @@ def fetch(key, c, url, first):
         res = W.live(c, url)
         if res and res[0] == 200:
             return
-    rows = W.cdx_rows(c, re.sub(r'^https?://', '', url), collapse='timestamp:6')
-    if not rows:
-        return
-    picks = {min(rows, key=lambda r: abs(int(r['timestamp'][:6]) - 202607))['timestamp'],
-             min(rows, key=lambda r: abs(int(r['timestamp'][:6]) - (first * 100 + 7)))['timestamp']}
-    for r in rows:
-        if r['timestamp'] in picks:
-            W.capture(c, r['timestamp'], r['original'], url, 'labpage')
+    try:
+        rows = W.cdx_rows(c, re.sub(r'^https?://', '', url), collapse='timestamp:6')
+        if not rows:
+            return
+        picks = {min(rows, key=lambda r: abs(int(r['timestamp'][:6]) - 202607))['timestamp'],
+                 min(rows, key=lambda r: abs(int(r['timestamp'][:6]) - (first * 100 + 7)))['timestamp']}
+        for r in rows:
+            if r['timestamp'] in picks:
+                W.capture(c, r['timestamp'], r['original'], url, 'labpage')
+    except RuntimeError as e:   # the shared Wayback clock is cooling down after a 429: the page stays pending, never retried here
+        if 'cooling down' not in str(e):
+            raise
+        print('wayback_cooling_pending', url, flush=True)
 
 
 def people_links(html, base):
     out = []
     for m in re.finditer(r'<a\s[^>]*href=["\']([^"\'#]+)["\'][^>]*>(.*?)</a>', html, re.S | re.I):
         href, text = m.group(1), re.sub(r'<[^>]+>', ' ', m.group(2))
-        u = urllib.parse.urljoin(base, href)
+        try:
+            u = urllib.parse.urljoin(base, href)
+        except ValueError:   # a malformed href ('http://[x', an IPv6-looking typo) is no link
+            continue
         orig = re.sub(r'^https?://web\.archive\.org/web/\d+(?:id_)?/', '', u)
         if SKIP.search(orig) or not orig.startswith('http'):
             continue
-        if PEOPLE.search(' '.join(text.split())[:60]) or PEOPLE.search(urllib.parse.urlsplit(orig).path):
+        try:
+            path = urllib.parse.urlsplit(orig).path
+        except ValueError:
+            continue
+        if PEOPLE.search(' '.join(text.split())[:60]) or PEOPLE.search(path):
             out.append(orig)
     return list(dict.fromkeys(out))
 
@@ -341,6 +353,70 @@ def adviser_directory(key, forms):
         ts, cap, sha, d, q = e['first']
         rows.append(dict(student=nm, pi=pi, years=[min(e['years']), max(e['years'])], url=re.sub(r'^https?://web\.archive\.org/web/\d+(?:id_)?/', '', cap), capture_url=cap if 'web.archive.org' in cap else None,
                          sha256=sha, quote=q, directory_evidence=[dict(url=cap, sha256=sha, quote=nm, observed=ts[:8], directory=d)],
+                         section='adviser-bearing student list (' + d + ')', years_basis='directory_years'))
+    return rows
+
+
+H4_ENTRY = re.compile(r"<h[34][^>]*>\s*(?:<[^>]+>\s*)*([^<]{3,80}?)\s*(?:</[^>]+>\s*)*</h[34]>\s*<p>(.*?)</p>", re.S | re.I)
+H4_ADVISER = re.compile(r"(?:^|<br\s*/?>|\n)\s*((?:Co-)?Advis[eo]rs?\s*:)\s*(.*?)(?=<br|$)", re.S | re.I)
+
+
+def adviser_h4_lists(key, forms):
+    """PhD lists whose entries are `<h4>Name</h4><p>... Advisor(s): A, B<br/> ...</p>` (JHU CS /phd-students/, charter `[students].adviser_h4_lists`).
+    Pages read: the stored live page (a live host: the year of its fetch) and the Wayback captures the CDX lists (one per year; a cooling Wayback clock leaves
+    them pending, never retried). A PI named in the adviser text by a full-name form gets the student, once per PI (a co-advised student is under each);
+    years = the years of the pages that list the pair. The quote is the student's name; host_quote is the adviser line, both verbatim in the page text;
+    the entry's e-mail and links are never read into the evidence."""
+    import html as H
+    c = W.con(key); by = {}
+    pi_names = {pi: Name([pi]) for pi, _ in forms}
+    for d in S.field(S.get(key), 'students.adviser_h4_lists') or []:
+        pages = []
+        url = 'https://' + d
+        row = c.execute('select fetched_at from live where url=? and status=200', (url,)).fetchone()
+        if row is None and S.host_use(key, urllib.parse.urlsplit(url).netloc.lower()) == 'live':
+            W.live(c, url)
+            row = c.execute('select fetched_at from live where url=? and status=200', (url,)).fetchone()
+        if row:
+            pages.append((url, int(row[0][:4]), W.live_html(c, url), c.execute('select sha256 from live where url=?', (url,)).fetchone()[0], W.flat(W.live(c, url)[2]), row[0][:10]))
+        try:
+            for r in W.cdx_rows(c, d, collapse='timestamp:4'):
+                cap, st, sha, b = W.capture(c, r['timestamp'], r['original'], d, 'student-directory')
+                if st == 200:
+                    pages.append((cap, int(r['timestamp'][:4]), W.raw_html(c, cap), sha, W.flat(b), r['timestamp'][:8]))
+        except RuntimeError as e:
+            if 'cooling down' not in str(e):
+                raise
+            print('wayback_cooling_pending', d, flush=True)
+        for cap, y, h, sha, flat, obs in pages:
+            for m in H4_ENTRY.finditer(h):
+                a = H4_ADVISER.search(m.group(2))
+                if not a:
+                    continue
+                nm = ' '.join(H.unescape(m.group(1)).split())
+                adv = ' '.join(H.unescape(re.sub(r'<[^>]+>', ' ', a.group(2))).split())
+                lab = ' '.join(H.unescape(re.sub(r'<[^>]+>', ' ', a.group(1))).split())
+                hq = f'{lab} {adv}'
+                if not (2 <= len(nm.split()) <= 5 and nm in flat and hq in flat and adv):
+                    continue
+                hit = {pi for pi, f in forms if re.search(re.escape(f) + r'(?![\w-])', adv)}
+                for tok_ in re.split(r'\s*(?:,|;|\band\b|&)\s*', adv):   # 'Greg Hager' is Gregory D. Hager, 'Anqi “Angie” Liu' is Anqi Liu: the PI whose Name matches the one adviser token
+                    tok_ = re.sub(r'[“"”][^“"”]*[“"”]', ' ', tok_).strip()
+                    if len(tok_.split()) >= 2:
+                        m_ = [pi for pi, N_ in pi_names.items() if N_.match(tok_)]
+                        if len(m_) == 1:
+                            hit.add(m_[0])
+                for pi in sorted(hit):
+                    e = by.setdefault((nm, pi), dict(years=set(), first=None))
+                    e['years'].add(y)
+                    if not e['first'] or obs < e['first'][0]:
+                        e['first'] = (obs, cap, sha, d, hq)
+    rows = []
+    for (nm, pi), e in sorted(by.items()):
+        obs, cap, sha, d, hq = e['first']
+        rows.append(dict(student=nm, pi=pi, years=[min(e['years']), max(e['years'])], url=re.sub(r'^https?://web\.archive\.org/web/\d+(?:id_)?/', '', cap),
+                         capture_url=cap if 'web.archive.org' in cap else None, sha256=sha, quote=nm, host_quote=hq,
+                         directory_evidence=[dict(url=cap, sha256=sha, quote=nm, observed=obs, directory=d)],
                          section='adviser-bearing student list (' + d + ')', years_basis='directory_years'))
     return rows
 
@@ -631,6 +707,7 @@ def directory(key):
     out += adviser_alumni(key, forms)
     out += defense_lists(key, forms, {t['name']: t['first'] for t in PS.targets(key)})
     out += adviser_flat_lists(key, forms)
+    out += adviser_h4_lists(key, forms)
     out += roster_coauthor_students(key, forms)
     n['adviser_directory_relations'] = sum(1 for r in out if str(r.get('section')).startswith('adviser'))   # adviser-bearing lists (current and alumni)
     n['roster_coauthor_relations'] = sum(1 for r in out if str(r.get('section')).startswith('PhD roster'))
@@ -899,6 +976,22 @@ def extract(key):
             rep['labs_with_students'] += 1; rep['students'] += len(studs)
         else:
             rep['labs_without'] += 1
+    # a page that yields students for five or more PIs is a department's page, not any one PI's lab page ('current graduate students' linked from every
+    # profile gave all JHU labs the same staff member; HJW 2026-11-07): its rows go, unless a reviewer listed it for that PI (extra-lab-pages.json)
+    page_pis = collections.defaultdict(set)
+    for e in ev:
+        for s_ in e['students']:
+            page_pis[s_['sha256']].add(e['pi'])
+    shared = {h for h, v in page_pis.items() if len(v) >= 5}
+    if shared:
+        keep = []
+        for e in ev:
+            ok = [s_ for s_ in e['students'] if s_['sha256'] not in shared or any(s_['url'].rstrip('/').endswith(x.rstrip('/')) for x in reviewed_pages.get(e['pi'], ()))]
+            rep['shared_page_students_dropped'] += len(e['students']) - len(ok)
+            if ok:
+                keep.append(dict(e, students=ok))
+        ev = keep
+        rep['labs_with_students'] = len(ev); rep['students'] = sum(len(e['students']) for e in ev)
     dfs = json.loads((P.data('defense-evidence.json', key)).read_text()) if (P.data('defense-evidence.json', key)).exists() else []
     by_pi = {e['pi']: e for e in ev}
     pis = {t['name']: Name([t['name']]) for t in PS.targets(key)}
@@ -927,7 +1020,8 @@ def extract(key):
             rep['directory_student_already_listed'] += 1
         e['students'].append(dict(name=d['student'], role=d.get('role') or 'phd', years=d['years'], years_basis='directory_years', alumni=False,
                                   section=d.get('section') or "student's own page (program PhD directory website)", url=d['url'], capture_url=d['capture_url'],
-                                  sha256=d['sha256'], quote=d['quote'], directory_evidence=d['directory_evidence'], auto=True))
+                                  sha256=d['sha256'], quote=d['quote'], directory_evidence=d['directory_evidence'], auto=True,
+                                  **({'host_quote': d['host_quote']} if d.get('host_quote') else {})))
         rep['directory_students'] += 1
     P.data_w('labpage-evidence.json', key).write_text(json.dumps(ev, indent=1, ensure_ascii=False))
     P.data_w('labpage-students-report.json', key).write_text(json.dumps(dict(rep, previous_school_pis={k: v[0] for k, v in prev.items()},
