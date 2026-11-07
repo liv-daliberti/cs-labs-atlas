@@ -28,6 +28,10 @@ def test_ai_agent_disallow_is_detected_by_name():
     assert ours and not ai
 
 
+def test_html_instead_of_robots_is_unresolved_permission():
+    assert W.robots_decision(200, '<html><title>Access denied</title></html>', '/faculty')[:2] == (False, False)
+
+
 @pytest.mark.parametrize('status', [204, 301, 302, 307, 308, 401, 403, 429, 500, -1])
 def test_refused_or_unavailable_robots_never_authorizes_fetch(status):
     assert W.robots_decision(status, '', '/faculty')[:2] == (False, False)
@@ -102,6 +106,59 @@ def test_robots_redirect_does_not_contact_target_or_authorize_page(tmp_path, mon
         assert kwargs['allow_redirects'] is False
         calls.append(url)
         return SimpleNamespace(status_code=302)
+    monkeypatch.setattr(requests, 'get', get)
+    c = W.con('fixture')
+    assert W.robots_ok(c, 'https://start.edu/person')[0] is False
+    assert calls == ['https://start.edu/robots.txt']
+    c.close()
+
+
+def test_same_origin_robots_file_redirect_preserves_named_agent_restrictions(tmp_path, monkeypatch):
+    from types import SimpleNamespace
+    import requests
+    monkeypatch.setattr(W.wb, 'db_path', W.wb.db_path)
+    monkeypatch.setattr(W, 'db_path', lambda key: tmp_path / 'captures.sqlite')
+    calls = []
+    def get(url, **kwargs):
+        assert kwargs['allow_redirects'] is False
+        calls.append(url)
+        if url.endswith('/content/dam/robots.txt'):
+            return SimpleNamespace(status_code=200, headers={}, text='User-agent: ClaudeBot\nDisallow: /\n')
+        return SimpleNamespace(status_code=301, headers={'Location': '/content/dam/robots.txt'})
+    monkeypatch.setattr(requests, 'get', get)
+    c = W.con('fixture')
+    assert W.robots_ok(c, 'https://start.edu/person')[0] is False
+    assert calls == ['https://start.edu/robots.txt', 'https://start.edu/content/dam/robots.txt']
+    assert c.execute('select target_url from robots_redirects').fetchone()[0] == calls[-1]
+    c.close()
+
+
+@pytest.mark.parametrize('target', ['https://other.edu/robots.txt', '/private/faculty', 'http://start.edu/robots.txt'])
+def test_robots_redirect_never_fetches_other_origin_or_ordinary_content(tmp_path, monkeypatch, target):
+    from types import SimpleNamespace
+    import requests
+    monkeypatch.setattr(W.wb, 'db_path', W.wb.db_path)
+    monkeypatch.setattr(W, 'db_path', lambda key: tmp_path / 'captures.sqlite')
+    calls = []
+    def get(url, **kwargs):
+        calls.append(url)
+        return SimpleNamespace(status_code=302, headers={'Location': target})
+    monkeypatch.setattr(requests, 'get', get)
+    c = W.con('fixture')
+    assert W.robots_ok(c, 'https://start.edu/person')[0] is False
+    assert calls == ['https://start.edu/robots.txt']
+    c.close()
+
+
+def test_robots_redirect_loop_stops_without_repeating_request(tmp_path, monkeypatch):
+    from types import SimpleNamespace
+    import requests
+    monkeypatch.setattr(W.wb, 'db_path', W.wb.db_path)
+    monkeypatch.setattr(W, 'db_path', lambda key: tmp_path / 'captures.sqlite')
+    calls = []
+    def get(url, **kwargs):
+        calls.append(url)
+        return SimpleNamespace(status_code=301, headers={'Location': '/robots.txt'})
     monkeypatch.setattr(requests, 'get', get)
     c = W.con('fixture')
     assert W.robots_ok(c, 'https://start.edu/person')[0] is False

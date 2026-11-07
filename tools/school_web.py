@@ -106,10 +106,27 @@ def robots_row(c, host, refresh=False):
     row = c.execute('select status, body from robots where host=?', (host,)).fetchone()
     if row is None or refresh:
         try:
-            r = requests.get(f'https://{host}/robots.txt', headers={'User-Agent': UA}, timeout=30, allow_redirects=False)
+            url = f'https://{host}/robots.txt'
+            seen = {url}
+            for hop in range(4):
+                r = requests.get(url, headers={'User-Agent': UA}, timeout=30, allow_redirects=False)
+                location = getattr(r, 'headers', {}).get('Location')
+                if r.status_code not in (301, 302, 303, 307, 308) or not location or hop == 3:
+                    break
+                target = urllib.parse.urljoin(url, location)
+                parsed = urllib.parse.urlsplit(target)
+                # A few official sites place robots.txt under /content/dam/.
+                # Only same-origin HTTPS policy files may be followed; never
+                # fetch another host or ordinary site content before permission.
+                if (parsed.scheme != 'https' or parsed.netloc != host or
+                        not parsed.path.endswith('/robots.txt') or parsed.query or parsed.fragment or target in seen):
+                    break
+                c.execute('create table if not exists robots_redirects (host text, source_url text primary key, target_url text, status int, fetched_at text)')
+                c.execute('insert or replace into robots_redirects values (?,?,?,?,?)',
+                          (host, url, target, r.status_code, time.strftime('%Y-%m-%dT%H:%M:%S')))
+                url = target
+                seen.add(url)
             body = r.text if r.status_code == 200 else ''
-            if r.status_code == 200 and re.search(r'<html', body[:2000], re.I):
-                body = ''  # an HTML page served for robots.txt (a single-page app): no rules
             row = (r.status_code, body)
         except Exception as e:  # noqa: BLE001 (network errors of any kind: unreachable)
             row = (-1, repr(e)[:300])
@@ -121,7 +138,7 @@ def robots_decision(status, body, url='/'):
     """(allowed for us, allowed for AI agents by name, crawl delay).
     Missing robots (404/410) has no rules; access refusals and outages never authorize a page request.
     """
-    if status not in (200, 404, 410):
+    if status not in (200, 404, 410) or (status == 200 and re.search(r'<html', (body or '')[:2000], re.I)):
         return False, False, 2.0
     rp = urllib.robotparser.RobotFileParser(); rp.parse((body or '').splitlines() if status == 200 else [])
     ours = rp.can_fetch(UA, url)
