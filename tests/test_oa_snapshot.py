@@ -196,3 +196,52 @@ def test_merge_points_sqlite_temp_files_away_from_tmp(served, monkeypatch):
     S.cmd_merge(date, of=2, parts=parts)
     assert seen and seen[0] > 0 and os.environ['SQLITE_TMPDIR'] == str(served / 'mt')
     monkeypatch.delenv('SQLITE_TMPDIR', raising=False)
+
+
+def test_author_only_extension_keeps_exact_authors_and_records_filter(served, monkeypatch):
+    date, parts = S.all_parts()
+    authors_file = served / 'pi-ids.json'
+    authors_file.write_text(json.dumps(['https://openalex.org/A7']))
+    monkeypatch.setattr(S, 'targets', lambda *args: pytest.fail('author-only extension must not load charters'))
+    for task in range(2):
+        S.cmd_filter(task, 2, date=date, parts=parts, tmp=served, ext='cohort', authors_file=authors_file)
+    S.cmd_merge(date, of=2, parts=parts, ext='cohort')
+    import sqlite3
+    with sqlite3.connect(served / 'snap' / date / 'ext-cohort.sqlite') as db:
+        assert {r[0] for r in db.execute('SELECT id FROM works')} == {OA + 'W3', OA + 'W6'}
+        assert {r[0] for r in db.execute('SELECT id FROM authors')} == {OA + 'A7'}
+    manifest = json.loads((served / 'snap' / date / 'ext-cohort.manifest.json').read_text())
+    assert manifest['authors_file_sha256'] == S.sha(authors_file)
+    assert manifest['authors'] == 1
+    assert not (served / 'snap' / 'current').exists()
+
+
+def test_author_filter_cli_is_forwarded(monkeypatch):
+    calls = []
+    monkeypatch.setattr(S, 'cmd_filter', lambda *args, **kwargs: calls.append((args, kwargs)))
+    S.main(['filter', '0', '2', '--ext', 'cohort', '--authors-file', 'pi-ids.json'])
+    assert calls[0][1]['authors_file'] == 'pi-ids.json'
+
+
+def test_invalid_author_filter_does_not_fetch_manifest(tmp_path, monkeypatch):
+    monkeypatch.setattr(S, 'all_parts', lambda *args: pytest.fail('invalid filter must fail before network'))
+    f = tmp_path / 'ids.json'
+    f.write_text('[]')
+    with pytest.raises(SystemExit, match='needs --ext'):
+        S.cmd_filter(0, 1, authors_file=f)
+    with pytest.raises(SystemExit, match='no author ids'):
+        S.cmd_filter(0, 1, ext='cohort', authors_file=f)
+    f.write_text('42')
+    with pytest.raises(SystemExit, match='JSON list'):
+        S.load_author_ids(f)
+
+
+def test_merge_rejects_mixed_author_filters(served):
+    date, parts = S.all_parts()
+    f = served / 'ids.txt'
+    for task, aid in enumerate(('A7', 'A9')):
+        f.write_text(aid)
+        S.cmd_filter(task, 2, date=date, parts=parts, tmp=served, ext='cohort', authors_file=f)
+    with pytest.raises(SystemExit, match='different author filters'):
+        S.cmd_merge(date, of=2, parts=parts, ext='cohort')
+    assert not (served / 'snap' / date / 'ext-cohort.sqlite').exists()
