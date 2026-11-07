@@ -106,7 +106,7 @@ def robots_row(c, host, refresh=False):
     row = c.execute('select status, body from robots where host=?', (host,)).fetchone()
     if row is None or refresh:
         try:
-            r = requests.get(f'https://{host}/robots.txt', headers={'User-Agent': UA}, timeout=30)
+            r = requests.get(f'https://{host}/robots.txt', headers={'User-Agent': UA}, timeout=30, allow_redirects=False)
             body = r.text if r.status_code == 200 else ''
             if r.status_code == 200 and re.search(r'<html', body[:2000], re.I):
                 body = ''  # an HTML page served for robots.txt (a single-page app): no rules
@@ -121,7 +121,7 @@ def robots_decision(status, body, url='/'):
     """(allowed for us, allowed for AI agents by name, crawl delay).
     Missing robots (404/410) has no rules; access refusals and outages never authorize a page request.
     """
-    if status == -1 or status in (401, 403, 429) or status >= 500:
+    if status not in (200, 404, 410):
         return False, False, 2.0
     rp = urllib.robotparser.RobotFileParser(); rp.parse((body or '').splitlines() if status == 200 else [])
     ours = rp.can_fetch(UA, url)
@@ -159,10 +159,14 @@ def live(c, url, refresh=False):
         if w > 0:
             time.sleep(w)
         try:
-            r = requests.get(url, headers={'User-Agent': UA}, timeout=60)
+            r = requests.get(url, headers={'User-Agent': UA}, timeout=60, allow_redirects=False)
             body, st, ct = r.content, r.status_code, r.headers.get('Content-Type')
-            if r.history and urllib.parse.urlsplit(r.url).netloc != host:
-                body, st = f'redirected off host to {r.url}'.encode(), 310
+            if 300 <= st < 400:
+                # Even a same-host redirect may enter a disallowed path. A reviewer
+                # must approve the exact target and check its policy before fetching.
+                body = json.dumps({'requested_url': url, 'location': r.headers.get('Location'),
+                                   'status': 'redirect_requires_policy_review'}).encode()
+                ct = 'application/json'
         except Exception as e:  # noqa: BLE001
             body, st, ct = repr(e).encode(), -1, None
         _last[host] = time.time()

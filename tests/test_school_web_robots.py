@@ -28,7 +28,7 @@ def test_ai_agent_disallow_is_detected_by_name():
     assert ours and not ai
 
 
-@pytest.mark.parametrize('status', [401, 403, 429, 500, -1])
+@pytest.mark.parametrize('status', [204, 301, 302, 307, 308, 401, 403, 429, 500, -1])
 def test_refused_or_unavailable_robots_never_authorizes_fetch(status):
     assert W.robots_decision(status, '', '/faculty')[:2] == (False, False)
 
@@ -64,6 +64,48 @@ def test_plain_refusal_persists_host_stop(tmp_path, monkeypatch):
     assert W.live(c, 'https://refused.edu/two') is None
     assert len(calls) == 1
     assert c.execute('select host from blocked').fetchone()[0] == 'refused.edu'
+    c.close()
+
+
+@pytest.mark.parametrize('target', ['https://other.edu/private', '/private'])
+def test_live_redirect_is_recorded_without_contacting_target(tmp_path, monkeypatch, target):
+    import json
+    import zlib
+    from types import SimpleNamespace
+    import requests
+    monkeypatch.setattr(W.wb, 'db_path', W.wb.db_path)
+    monkeypatch.setattr(W, '_blocked', set())
+    monkeypatch.setattr(W, '_last', {})
+    monkeypatch.setattr(W, 'db_path', lambda key: tmp_path / 'captures.sqlite')
+    monkeypatch.setattr(W, 'robots_ok', lambda *args: (True, 0))
+    calls = []
+    def get(url, **kwargs):
+        assert kwargs['allow_redirects'] is False
+        calls.append(url)
+        return SimpleNamespace(content=b'', status_code=302, headers={'Location': target})
+    monkeypatch.setattr(requests, 'get', get)
+    c = W.con('fixture')
+    assert W.live(c, 'https://start.edu/person')[0] == 302
+    assert calls == ['https://start.edu/person']
+    raw = c.execute('select raw_zlib from live').fetchone()[0]
+    assert json.loads(zlib.decompress(raw))['location'] == target
+    c.close()
+
+
+def test_robots_redirect_does_not_contact_target_or_authorize_page(tmp_path, monkeypatch):
+    from types import SimpleNamespace
+    import requests
+    monkeypatch.setattr(W.wb, 'db_path', W.wb.db_path)
+    monkeypatch.setattr(W, 'db_path', lambda key: tmp_path / 'captures.sqlite')
+    calls = []
+    def get(url, **kwargs):
+        assert kwargs['allow_redirects'] is False
+        calls.append(url)
+        return SimpleNamespace(status_code=302)
+    monkeypatch.setattr(requests, 'get', get)
+    c = W.con('fixture')
+    assert W.robots_ok(c, 'https://start.edu/person')[0] is False
+    assert calls == ['https://start.edu/robots.txt']
     c.close()
 
 
