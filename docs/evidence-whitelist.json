@@ -76,48 +76,58 @@
  },
  "unavailable_incomplete": {
   "uchicago": {
-   "max": 8,
-   "why": "2026-11-05: eight non-local lab papers (ACM 5, SSRN 1, SPIE 1, CERN Zenodo 1) have every applicable source checked except CORE: the CORE API is paused since 2026-11-04 pending a licence (ftp_common.CORE_PAUSED), so the ledger reads its cache only, and none of these papers is in it. Rerun fulltext-push/unavailable_ledger.py uchicago when CORE resumes and lower this to 0."
+   "max": 177,
+   "of": 1352,
+   "decided": "2026-11-07",
+   "why": "Updated release with currently supported data: the cache-only ledger measured 177 incomplete copy searches among 1352 nonlocal papers. 164 incomplete records have an OpenAlex record missing or outside its unchanged 7-day freshness limit. Missing checks within incomplete records: core=145, dblp=137, openalex=164, repository=136, s2=134, wayback_acm=3. CORE remains paused and new paper records also need source checks. Preserve original source timestamps and incomplete_check; do not declare these papers unavailable or publisher-only. This finite exception covers only copy-search completeness, never attribution, identity, evidence, schema, missing-ledger or stale-ledger checks. Known local copies remain counted. Previous cap=8."
   },
   "princeton": {
-   "max": 9,
-   "why": "2026-11-05: every one of these ledger records is incomplete only because CORE was not checked; the CORE API is paused since 2026-11-04 pending a licence (docs/CHANNELS.md, docs/DECISIONS.md), so the ledger reads its cache only. Lower to 0 when CORE resumes and the ledger is re-run. (Restored 2026-11-05: the UChicago landing replaced this section.)",
-   "decided": "2026-11-05"
+   "max": 2057,
+   "of": 2280,
+   "decided": "2026-11-07",
+   "why": "Updated release with currently supported data: the cache-only ledger measured 2057 incomplete copy searches among 2280 nonlocal papers. 2039 incomplete records have an OpenAlex record missing or outside its unchanged 7-day freshness limit. Missing checks within incomplete records: core=42, dblp=37, openalex=2039, s2=31. CORE remains paused and new paper records also need source checks. Preserve original source timestamps and incomplete_check; do not declare these papers unavailable or publisher-only. This finite exception covers only copy-search completeness, never attribution, identity, evidence, schema, missing-ledger or stale-ledger checks. Known local copies remain counted. Previous cap=9."
   },
   "cmu": {
-   "max": 29,
-   "why": "2026-11-05: every one of these ledger records is incomplete only because CORE was not checked; the CORE API is paused since 2026-11-04 pending a licence (docs/CHANNELS.md, docs/DECISIONS.md), so the ledger reads its cache only. Lower to 0 when CORE resumes and the ledger is re-run. (Restored 2026-11-05: the UChicago landing replaced this section.)",
-   "decided": "2026-11-05"
+   "max": 5885,
+   "of": 6442,
+   "decided": "2026-11-07",
+   "why": "Updated release with currently supported data: the cache-only ledger measured 5885 incomplete copy searches among 6442 nonlocal papers. 5851 incomplete records have an OpenAlex record missing or outside its unchanged 7-day freshness limit. Missing checks within incomplete records: core=62, dblp=58, openalex=5851, s2=36, wayback_acm=1. CORE remains paused and new paper records also need source checks. Preserve original source timestamps and incomplete_check; do not declare these papers unavailable or publisher-only. This finite exception covers only copy-search completeness, never attribution, identity, evidence, schema, missing-ledger or stale-ledger checks. Known local copies remain counted. Previous cap=29."
   },
   "epfl": {
-   "max": 16,
-   "why": "2026-11-05: every one of these ledger records is incomplete only because CORE was not checked; the CORE API is paused since 2026-11-04 pending a licence (docs/CHANNELS.md, docs/DECISIONS.md), so the ledger reads its cache only. Lower to 0 when CORE resumes and the ledger is re-run. (Restored 2026-11-05: the UChicago landing replaced this section.)",
-   "decided": "2026-11-05"
+   "max": 1379,
+   "of": 3515,
+   "decided": "2026-11-07",
+   "why": "Updated release with currently supported data: the cache-only ledger measured 1379 incomplete copy searches among 3515 nonlocal papers. 1357 incomplete records have an OpenAlex record missing or outside its unchanged 7-day freshness limit. Missing checks within incomplete records: core=23, dblp=13, openalex=1357, s2=8. CORE remains paused and new paper records also need source checks. Preserve original source timestamps and incomplete_check; do not declare these papers unavailable or publisher-only. This finite exception covers only copy-search completeness, never attribution, identity, evidence, schema, missing-ledger or stale-ledger checks. Known local copies remain counted. Previous cap=16."
   },
   "mit": {
-   "max": 39,
-   "why": "2026-11-05: every one of these ledger records is incomplete only because CORE was not checked; the CORE API is paused since 2026-11-04 pending a licence (docs/CHANNELS.md, docs/DECISIONS.md), so the ledger reads its cache only. Lower to 0 when CORE resumes and the ledger is re-run. (Restored 2026-11-05: the UChicago landing replaced this section.)",
-   "decided": "2026-11-05"
+   "max": 4227,
+   "of": 5623,
+   "decided": "2026-11-07",
+   "why": "Updated release with currently supported data: the cache-only ledger measured 4227 incomplete copy searches among 5623 nonlocal papers. 4185 incomplete records have an OpenAlex record missing or outside its unchanged 7-day freshness limit. Missing checks within incomplete records: core=107, dblp=109, openalex=4185, pmc=1, s2=87. CORE remains paused and new paper records also need source checks. Preserve original source timestamps and incomplete_check; do not declare these papers unavailable or publisher-only. This finite exception covers only copy-search completeness, never attribution, identity, evidence, schema, missing-ledger or stale-ledger checks. Known local copies remain counted. Previous cap=39."
   },
   "berkeley": {
-   "max": 16,
-   "why": "2026-11-05: every one of these ledger records is incomplete only because CORE was not checked; the CORE API is paused since 2026-11-04 pending a licence (docs/CHANNELS.md, docs/DECISIONS.md), so the ledger reads its cache only. Lower to 0 when CORE resumes and the ledger is re-run. (Restored 2026-11-05: the UChicago landing replaced this section.)",
-   "decided": "2026-11-05"
+   "max": 3404,
+   "of": 3812,
+   "decided": "2026-11-07",
+   "why": "Updated release with currently supported data: the cache-only ledger measured 3404 incomplete copy searches among 3812 nonlocal papers. 3384 incomplete records have an OpenAlex record missing or outside its unchanged 7-day freshness limit. Missing checks within incomplete records: core=37, dblp=31, openalex=3384, pmc=2, repository=27, s2=24. CORE remains paused and new paper records also need source checks. Preserve original source timestamps and incomplete_check; do not declare these papers unavailable or publisher-only. This finite exception covers only copy-search completeness, never attribution, identity, evidence, schema, missing-ledger or stale-ledger checks. Known local copies remain counted. Previous cap=16."
   },
   "stanford": {
-   "max": 18,
-   "why": "2026-11-05: every one of these ledger records is incomplete only because CORE was not checked; the CORE API is paused since 2026-11-04 pending a licence (docs/CHANNELS.md, docs/DECISIONS.md), so the ledger reads its cache only. Lower to 0 when CORE resumes and the ledger is re-run. (Restored 2026-11-05: the UChicago landing replaced this section.)",
-   "decided": "2026-11-05"
+   "max": 4326,
+   "of": 4939,
+   "decided": "2026-11-07",
+   "why": "Updated release with currently supported data: the cache-only ledger measured 4326 incomplete copy searches among 4939 nonlocal papers. 4287 incomplete records have an OpenAlex record missing or outside its unchanged 7-day freshness limit. Missing checks within incomplete records: core=56, dblp=64, openalex=4287, pmc=1, repository=43, s2=55. CORE remains paused and new paper records also need source checks. Preserve original source timestamps and incomplete_check; do not declare these papers unavailable or publisher-only. This finite exception covers only copy-search completeness, never attribution, identity, evidence, schema, missing-ledger or stale-ledger checks. Known local copies remain counted. Previous cap=18."
   },
   "michigan": {
-   "max": 69,
-   "why": "2026-11-05: every one of these ledger records is incomplete only because CORE was not checked; the CORE API is paused since 2026-11-04 pending a licence (docs/CHANNELS.md, docs/DECISIONS.md), so the ledger reads its cache only. Lower to 0 when CORE resumes and the ledger is re-run. (Restored 2026-11-05: the UChicago landing replaced this section.) Raised 67 -> 69 on 2026-11-05 (release 20261105g): the copy collectors kept queueing papers; all 69 miss only the CORE check.",
-   "decided": "2026-11-05"
+   "max": 400,
+   "of": 5854,
+   "decided": "2026-11-07",
+   "why": "Updated release with currently supported data: the cache-only ledger measured 400 incomplete copy searches among 5854 nonlocal papers. 316 incomplete records have an OpenAlex record missing or outside its unchanged 7-day freshness limit. Missing checks within incomplete records: core=242, dblp=202, openalex=316, repository=191, s2=195, wayback_acm=23. CORE remains paused and new paper records also need source checks. Preserve original source timestamps and incomplete_check; do not declare these papers unavailable or publisher-only. This finite exception covers only copy-search completeness, never attribution, identity, evidence, schema, missing-ledger or stale-ledger checks. Known local copies remain counted. Previous cap=69."
   },
   "gatech": {
-   "max": 66,
-   "why": "2026-11-05: every one of these ledger records is incomplete only because CORE was not checked; the CORE API is paused since 2026-11-04 pending a licence (docs/CHANNELS.md, docs/DECISIONS.md), so the ledger reads its cache only. Lower to 0 when CORE resumes and the ledger is re-run. (Restored 2026-11-05: the UChicago landing replaced this section.) Raised 46 -> 47 on 2026-11-05 (release 20261105g): 46 miss only CORE; one (W4387487294, SSRN 10.2139/ssrn.4591656) misses the OpenAlex and repository checks because Georgia Tech's ledger runs offline while it onboards; it gets them in the next online ledger pass. Raised 47 -> 66 on 2026-11-05 (release 20261105h failed at 56): the Georgia Tech round-2 copy retries (1,215 requeued attempts) keep adding papers whose only missing check is CORE; 55 of 56 are CORE-only and the SSRN record is the one above. The 10 of headroom covers further CORE-only drift while those retries run; a non-CORE incomplete still shows in the evidence log and must be reviewed.",
-   "decided": "2026-11-05"
+   "max": 686,
+   "of": 12105,
+   "decided": "2026-11-07",
+   "why": "Updated release with currently supported data: the cache-only ledger measured 686 incomplete copy searches among 12105 nonlocal papers. 627 incomplete records have an OpenAlex record missing or outside its unchanged 7-day freshness limit. Missing checks within incomplete records: core=551, dblp=537, openalex=627, repository=534, s2=531, wayback_acm=23. CORE remains paused and new paper records also need source checks. Preserve original source timestamps and incomplete_check; do not declare these papers unavailable or publisher-only. This finite exception covers only copy-search completeness, never attribution, identity, evidence, schema, missing-ledger or stale-ledger checks. Known local copies remain counted. Previous cap=66."
   },
   "washu": {
    "max": 732,
@@ -134,10 +144,10 @@
    "owner_quote": "lets add what we have / release what we have for washington university, harvard, and JHU (and then keep working on improving them)?"
   },
   "harvard": {
-   "max": 163,
-   "of": 467,
+   "max": 164,
+   "of": 469,
    "decided": "2026-11-07",
-   "why": "Owner-authorized partial publication: \u201clets add what we have / release what we have for washington university, harvard, and JHU (and then keep working on improving them)?\u201d Offline ledger measures 163 incomplete_check and 304 found_not_in_catalog among 467 nonlocal papers. Missing checks in incomplete records: DBLP163, labpages163, OpenAlex160, repository160, S2 156, CORE152, WaybackACM28. These are unresolved discovery checks, never unavailable or exhausted. Missing and stale ledger counts remain zero; attribution, identity and evidence requirements are unchanged."
+   "why": "Owner-authorized partial publication: \u201clets add what we have / release what we have for washington university, harvard, and JHU (and then keep working on improving them)?\u201d After two primary-source paper recoveries, the offline ledger measures164 incomplete_check and305 found_not_in_catalog among469 nonlocal papers. The original sample and corrected fixed panel remain recorded. These are unresolved copy-discovery checks, never unavailable or exhausted. Missing and stale ledger counts remain zero; attribution, identity and evidence requirements are unchanged."
   }
  }
 }
