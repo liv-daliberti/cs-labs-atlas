@@ -235,13 +235,13 @@ def isye_card(h):
 
 
 def seas_directory(h):
-    """Harvard SEAS people directory (Drupal 10, 2019-): one `h2.person__detailed-name` per person, the name in span.person__name--person-directory, the title lines in div.person__primary-title."""
+    """Harvard SEAS directory (2019-): older Drupal markup prefixes field classes with `field-wrapper`."""
     out = []
     for p in re.split(r'<h2 class="node-title[^"]*person__detailed-name', h)[1:]:
-        nm = re.search(r'<span class="person__name[^"]*">(.*?)</span>', p, re.S)
+        nm = re.search(r'<span class="[^"]*\bperson__name\b[^"]*">(.*?)</span>', p, re.S)
         if not nm:
             continue
-        tt = re.search(r'class="person__primary-title[^"]*".*?<div class="field-item">(.*?)</div>', p, re.S)
+        tt = re.search(r'class="[^"]*\bperson__primary-title\b[^"]*".*?<div class="field-item">(.*?)</div>', p, re.S)
         link = re.search(r'href="([^"]+)"', p)
         out.append(dict(name_listed=clean(nm.group(1)), titles=_titles(tt.group(1)) if tt else [], homepage=link.group(1) if link else None, division=None))
     return out

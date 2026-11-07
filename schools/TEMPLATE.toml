@@ -87,6 +87,7 @@ url = ""
   prefix = false          # CDX matchType=prefix (paged listings)
   match = ""              # regex the capture's original URL must match (with prefix)
   format = ""             # tools/listing_formats.py format name; empty = detect
+  title_filter = ''       # optional regex: keep only rows with a matching title, after capture/page completeness checks (school-wide directory feeding one department)
 
 # Units outside the full-coverage departments where computing-related faculty are looked for (stage 2).
 [[affiliated_units]]

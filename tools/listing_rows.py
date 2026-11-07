@@ -69,6 +69,7 @@ def main(key):
     rw = (cfg.get('census') or {}).get('rank_words') or {}
     tm = {d['code']: re.compile(d.get('title_match') or r'.', re.I) for d in cfg.get('departments') or []}
     eras = [(s['slot'], s.get('from') or '0', s.get('to') or '9', s.get('format')) for d in cfg.get('departments') or [] for s in d.get('listings') or []]
+    title_filters = {s['slot']: re.compile(s['title_filter'], re.I) for d in cfg.get('departments') or [] for s in d.get('listings') or [] if s.get('title_filter')}
     kind_of = {s['slot']: s['kind'] for s in S.listing_slots(key)}
     db = P.data('listings-captures.sqlite', key)
     c = sqlite3.connect(f'file:{db}?mode=ro', uri=True)
@@ -99,6 +100,12 @@ def main(key):
             if not es:
                 n['captures_without_entries'] += 1; print(json.dumps(dict(no_entries=cap, fmt=fmt)), flush=True)
             for e in es:
+                # A school-wide listing can supply one department's rows without
+                # making every other discipline ladder faculty in that department.
+                # Filter here, after capture usability and all-page completeness.
+                if slot in title_filters and not any(title_filters[slot].search(t) for t in e['titles']):
+                    n['entries_outside_title_filter'] += 1
+                    continue
                 q = quote_of(flat, e)
                 if not q:
                     n['entries_without_quote'] += 1; continue

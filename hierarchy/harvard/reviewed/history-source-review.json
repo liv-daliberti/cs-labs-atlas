@@ -1,0 +1,1094 @@
+{
+  "schema": "harvard-history-source-review-v1",
+  "school": "harvard",
+  "reviewed_on": "2026-11-06",
+  "window": [
+    2016,
+    2026
+  ],
+  "raw_store": "hierarchy/harvard/raw/school-captures.sqlite",
+  "purpose": "Reviewed source inventory and historical-date leads; does not automatically add PIs, periods, listings coverage, or gate exceptions.",
+  "date_policy": [
+    "A dated live listing proves its capture calendar year only.",
+    "An announced future appointment is not proof that the appointment had already begun on the publication date.",
+    "Preserve stated year, month, day or season precision; no invented appointment dates.",
+    "Academic-year reports do not supply specific calendar-year listing dates without further evidence."
+  ],
+  "sources": [
+    {
+      "url": "https://seas.harvard.edu/news/leading-silicon-valley-computer-scientist-join-harvard-faculty",
+      "sha256": "4dc5d576957a501386fb0049739d8ce56062f4670507e381f76409ef7ca2ac3c",
+      "raw_table": "live",
+      "fetched_at_stored": "2026-11-06T22:27:37",
+      "published": "2016-02-19",
+      "kind": "official_appointment_news",
+      "quotes": [
+        "Cynthia Dwork will join Harvard in January 2017 as the Gordon McKay Professor of Computer Science at SEAS"
+      ],
+      "findings": [
+        {
+          "person": "Cynthia Dwork",
+          "stated_start": "2017-01",
+          "status": "announced_future_appointment"
+        }
+      ]
+    },
+    {
+      "url": "https://seas.harvard.edu/news/six-distinguished-researchers-join-seas-faculty",
+      "sha256": "f9004b25220167767b511e9daf6bfc15fbd1ad7c8f89cc6105a2986d1a9aa0b5",
+      "raw_table": "live",
+      "fetched_at_stored": "2026-11-06T22:27:40",
+      "published": "2017-09-27",
+      "kind": "official_appointment_news",
+      "quotes": [
+        "Minlan Yu, Associate Professor of Computer Science",
+        "She will start at SEAS in January 2018."
+      ],
+      "findings": [
+        {
+          "person": "Minlan Yu",
+          "stated_start": "2018-01",
+          "status": "announced_future_appointment",
+          "context": "Start sentence is in Minlan Yu section, after her Princeton degree history."
+        }
+      ]
+    },
+    {
+      "url": "https://seas.harvard.edu/news/five-new-faculty-join-seas",
+      "sha256": "5453e81cd4ceb8739e6bba141dab5eba68b035869e14498efb9458916e1cb1c4",
+      "raw_table": "live",
+      "fetched_at_stored": "2026-11-06T22:27:42",
+      "published": "2018-10-09",
+      "kind": "official_appointment_news",
+      "quotes": [
+        "Elena Glassman, Assistant Professor of Computer Science (January 2019)",
+        "Vijay Janapa Reddi, Associate Professor in Electrical Engineering (as of January 1, 2019)."
+      ],
+      "findings": [
+        {
+          "person": "Elena Glassman",
+          "stated_start": "2019-01",
+          "status": "announced_future_appointment"
+        },
+        {
+          "person": "Vijay Janapa Reddi",
+          "stated_start": "2019-01-01",
+          "status": "announced_future_appointment",
+          "scope": "Electrical Engineering; stage-2 computing review required"
+        }
+      ]
+    },
+    {
+      "url": "https://seas.harvard.edu/news/ai-expert-milind-tambe-joins-harvard-university",
+      "sha256": "3b0601927e6240acf0518a5edca809fa51551c367ef3d395f205def57c667922",
+      "raw_table": "live",
+      "fetched_at_stored": "2026-11-06T22:27:44",
+      "published": "2019-08-06",
+      "kind": "official_appointment_news",
+      "quotes": [
+        "Milind Tambe, a leader in applying Artificial Intelligence to address pressing societal challenges, has joined the faculty"
+      ],
+      "findings": [
+        {
+          "person": "Milind Tambe",
+          "status": "joined_by_publication",
+          "asof": "2019-08-06",
+          "exact_start": null
+        }
+      ]
+    },
+    {
+      "url": "https://seas.harvard.edu/news/milind-tambe-honored-international-ai-society",
+      "sha256": "cb6f4cbed0b1045c3c9967cc5234607ce087039ec121021770f090d387b8c919",
+      "raw_table": "live",
+      "fetched_at_stored": "2026-11-06T22:30:54",
+      "published": "2023-02-03",
+      "kind": "official_appointment_news",
+      "quotes": [
+        "Tambe joined SEAS in 2019 following 25 years in the computer science department of the University of Southern California."
+      ],
+      "findings": [
+        {
+          "person": "Milind Tambe",
+          "stated_start": "2019",
+          "status": "explicit_retrospective_start_year"
+        }
+      ]
+    },
+    {
+      "url": "https://seas.harvard.edu/news/trailblazing-visualization-experts-join-harvard-faculty",
+      "sha256": "d031077b203d0b49dac987d2f9b5cc42352a5476c3ca9b8407dc00527db107f6",
+      "raw_table": "live",
+      "fetched_at_stored": "2026-11-06T22:30:49",
+      "published": "2020-11-02",
+      "kind": "official_appointment_news",
+      "quotes": [
+        "Martin Wattenberg and Fernanda Viégas will join Harvard in fall 2021 and spring 2022 respectively"
+      ],
+      "findings": [
+        {
+          "person": "Martin Wattenberg",
+          "stated_start": "fall 2021",
+          "precision": "season",
+          "status": "announced_future_appointment"
+        },
+        {
+          "person": "Fernanda Viégas",
+          "stated_start": "spring 2022",
+          "precision": "season",
+          "status": "announced_future_appointment"
+        }
+      ]
+    },
+    {
+      "url": "https://seas.harvard.edu/news/2021/10/seven-join-harvard-computer-science-faculty",
+      "sha256": "7d41286fb5d7a0ba358c41479f7388fa247d4c4e860578e0e641d1b85520ec41",
+      "raw_table": "live",
+      "fetched_at_stored": "2026-11-06T22:27:46",
+      "published": "2021-10-18",
+      "kind": "official_appointment_news",
+      "quotes": [
+        "Sham Kakade, an expert in statistical machine learning, will join Harvard in January as the Gordon McKay Professor of Computer Science"
+      ],
+      "findings": [
+        {
+          "person": "Sham Kakade",
+          "stated_start": "January",
+          "contextual_year": 2022,
+          "year_inferred_from_publication_context": true,
+          "status": "announced_future_appointment",
+          "review": "Confirm the year from CV or retrospective source before writing a period."
+        }
+      ]
+    },
+    {
+      "url": "https://seas.harvard.edu/news/seas-welcomes-new-faculty-computer-science-applied-math",
+      "sha256": "5de2246d8eda8ffdae3f1c6c6398f9e5fe0fec80c96ad1c3788b805466487fb5",
+      "raw_table": "live",
+      "fetched_at_stored": "2026-11-06T22:27:48",
+      "published": "2024-07-25",
+      "kind": "official_appointment_news",
+      "quotes": [
+        "Kianté Brantley joined SEAS July 1, 2024",
+        "Yilun Du will join SEAS in July 2025",
+        "Michael Albergo will join SEAS in July 2026"
+      ],
+      "findings": [
+        {
+          "person": "Kianté Brantley",
+          "stated_start": "2024-07-01",
+          "status": "explicit_actual_start_date"
+        },
+        {
+          "person": "Yilun Du",
+          "stated_start": "2025-07",
+          "status": "announced_future_appointment"
+        },
+        {
+          "person": "Michael Albergo",
+          "stated_start": "2026-07",
+          "status": "announced_future_appointment",
+          "scope": "Applied Mathematics; stage-2 computing review required"
+        }
+      ]
+    },
+    {
+      "url": "https://seas.harvard.edu/news/qianqian-wang-joins-seas-faculty",
+      "sha256": "57cb878755073a72da4f462dee4a17afd13d4e757e9f349d889ec3178bee3a42",
+      "raw_table": "live",
+      "fetched_at_stored": "2026-11-06T22:30:52",
+      "published": "2025-08-14",
+      "kind": "official_appointment_news",
+      "quotes": [
+        "Computer scientist Qianqian Wang",
+        "in Fall 2026 as an Assistant Professor of Computer Science and Investigator with the Kempner Institute."
+      ],
+      "findings": [
+        {
+          "person": "Qianqian Wang",
+          "stated_start": "Fall 2026",
+          "precision": "season",
+          "status": "announced_future_appointment"
+        }
+      ]
+    },
+    {
+      "url": "https://seas.harvard.edu/media/91022/download?attachment=",
+      "sha256": "ee2ea163641081ea646c24b33b0056b85671ec98f0ad017f78d57d4595f08042",
+      "raw_table": "live",
+      "fetched_at_stored": "2026-11-06T22:27:52",
+      "kind": "official_historical_research_brochure",
+      "quotes": [
+        "RESEARCH 2023-24",
+        "FACULTY BY RESEARCH AREA"
+      ],
+      "extraction": "pdftotext -layout, whitespace normalized; source is application/pdf",
+      "date_basis": "academic_year_label_only",
+      "review": "Supports discovery of historical faculty and research areas. Do not assign a specific calendar-year listing or appointment interval from this academic-year label. No brochure rows imported into census."
+    },
+    {
+      "url": "https://seas.harvard.edu/person/martin-wattenberg",
+      "sha256": "06d079237c0b922bdbbbc7e7a18dc4f69711c417aa9b07c58fcfd039222bf4a6",
+      "raw_table": "live",
+      "fetched_at_stored": "2026-11-06T22:30:58",
+      "kind": "official_current_rank_profile",
+      "quotes": [
+        "Martin Wattenberg Associate in Computer Science"
+      ],
+      "date_basis": "live_capture_calendar_year_only",
+      "review": "Current Associate title; do not infer a departure date or retroactively extend the earlier professor appointment."
+    },
+    {
+      "url": "https://seas.harvard.edu/person/jonathan-frankle",
+      "sha256": "0870811bda4260ba94cdc8d35caec8a4ee3ca839e8485f7063b9f6acba3adf2c",
+      "raw_table": "live",
+      "fetched_at_stored": "2026-11-06T22:29:58",
+      "kind": "official_current_rank_profile",
+      "quotes": [
+        "Jonathan Frankle Associate in Computer Science"
+      ],
+      "date_basis": "live_capture_calendar_year_only",
+      "review": "Current Associate title; do not infer a departure date or retroactively extend the earlier professor appointment."
+    }
+  ],
+  "current_cs_listing": {
+    "complete_pagination": true,
+    "pages": [
+      {
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46",
+        "sha256": "5b6a0d04862fd23f9375bd8be776c27ed2258df0a76033cea5e36ad1d005ac2c",
+        "entries": 20,
+        "fetched_at_stored": "2026-11-06T22:27:58"
+      },
+      {
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C1",
+        "sha256": "6bc54f4174a7b115b7c201e556005c65f6ef912f1b6461cd88e18e5f8d95a096",
+        "entries": 20,
+        "fetched_at_stored": "2026-11-06T22:29:37"
+      },
+      {
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C2",
+        "sha256": "2e336a3150c693cb7ea0c59465f3ad1b321978fb6ea9fbede943c5926988c768",
+        "entries": 18,
+        "fetched_at_stored": "2026-11-06T22:29:42"
+      }
+    ],
+    "entries": 58,
+    "rows": [
+      {
+        "name": "David Alvarez-Melis",
+        "titles": [
+          "Assistant Professor of Computer Science"
+        ],
+        "rank": "ladder",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46",
+        "sha256": "5b6a0d04862fd23f9375bd8be776c27ed2258df0a76033cea5e36ad1d005ac2c",
+        "quote": "David Alvarez-Melis Assistant Professor of Computer Science",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/david-alvarez-melis"
+      },
+      {
+        "name": "Nada Amin",
+        "titles": [
+          "Associate Professor of Computer Science"
+        ],
+        "rank": "ladder",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46",
+        "sha256": "5b6a0d04862fd23f9375bd8be776c27ed2258df0a76033cea5e36ad1d005ac2c",
+        "quote": "Nada Amin Associate Professor of Computer Science",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/nada-amin"
+      },
+      {
+        "name": "Anurag Anshu",
+        "titles": [
+          "Associate Professor of Computer Science"
+        ],
+        "rank": "ladder",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46",
+        "sha256": "5b6a0d04862fd23f9375bd8be776c27ed2258df0a76033cea5e36ad1d005ac2c",
+        "quote": "Anurag Anshu Associate Professor of Computer Science",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/anurag-anshu"
+      },
+      {
+        "name": "Boaz Barak",
+        "titles": [
+          "Catalyst Professor of Computer Science"
+        ],
+        "rank": "ladder",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46",
+        "sha256": "5b6a0d04862fd23f9375bd8be776c27ed2258df0a76033cea5e36ad1d005ac2c",
+        "quote": "Boaz Barak Catalyst Professor of Computer Science",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/boaz-barak"
+      },
+      {
+        "name": "Kianté Brantley",
+        "titles": [
+          "Assistant Professor of Computer Science"
+        ],
+        "rank": "ladder",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46",
+        "sha256": "5b6a0d04862fd23f9375bd8be776c27ed2258df0a76033cea5e36ad1d005ac2c",
+        "quote": "Kianté Brantley Assistant Professor of Computer Science",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/kiante-brantley"
+      },
+      {
+        "name": "Karen Brennan",
+        "titles": [
+          "Timothy E. Wirth Professor of Practice in Learning Technologies",
+          "Affiliate in Computer Science"
+        ],
+        "rank": "teaching",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46",
+        "sha256": "5b6a0d04862fd23f9375bd8be776c27ed2258df0a76033cea5e36ad1d005ac2c",
+        "quote": "Karen Brennan Timothy E. Wirth Professor of Practice in Learning Technologies; Affiliate in Computer Science",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/karen-brennan"
+      },
+      {
+        "name": "David Brooks",
+        "titles": [
+          "Haley Family Professor of Computer Science"
+        ],
+        "rank": "ladder",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46",
+        "sha256": "5b6a0d04862fd23f9375bd8be776c27ed2258df0a76033cea5e36ad1d005ac2c",
+        "quote": "David Brooks Haley Family Professor of Computer Science",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/david-brooks"
+      },
+      {
+        "name": "Stephen Casper",
+        "titles": [
+          "Assistant Professor of Public Policy"
+        ],
+        "rank": "ladder",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46",
+        "sha256": "5b6a0d04862fd23f9375bd8be776c27ed2258df0a76033cea5e36ad1d005ac2c",
+        "quote": "Stephen Casper Assistant Professor of Public Policy",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "mailto:scasper@hks.harvard.edu"
+      },
+      {
+        "name": "Sitan Chen",
+        "titles": [
+          "Assistant Professor of Computer Science"
+        ],
+        "rank": "ladder",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46",
+        "sha256": "5b6a0d04862fd23f9375bd8be776c27ed2258df0a76033cea5e36ad1d005ac2c",
+        "quote": "Sitan Chen Assistant Professor of Computer Science",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/sitan-chen"
+      },
+      {
+        "name": "Yiling Chen",
+        "titles": [
+          "Gordon McKay Professor of Computer Science"
+        ],
+        "rank": "ladder",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46",
+        "sha256": "5b6a0d04862fd23f9375bd8be776c27ed2258df0a76033cea5e36ad1d005ac2c",
+        "quote": "Yiling Chen Gordon McKay Professor of Computer Science",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/yiling-chen"
+      },
+      {
+        "name": "Stephen Chong",
+        "titles": [
+          "Gordon McKay Professor of Computer Science"
+        ],
+        "rank": "ladder",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46",
+        "sha256": "5b6a0d04862fd23f9375bd8be776c27ed2258df0a76033cea5e36ad1d005ac2c",
+        "quote": "Stephen Chong",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/stephen-chong"
+      },
+      {
+        "name": "Forrester Hardenbergh Cole",
+        "titles": [
+          "Visiting Lecturer on Computer Science"
+        ],
+        "rank": "visiting",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46",
+        "sha256": "5b6a0d04862fd23f9375bd8be776c27ed2258df0a76033cea5e36ad1d005ac2c",
+        "quote": "Forrester Hardenbergh Cole Visiting Lecturer on Computer Science",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "mailto:forrester_cole@seas.harvard.edu"
+      },
+      {
+        "name": "Kelly Ding",
+        "titles": [
+          "Preceptor"
+        ],
+        "rank": "other",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46",
+        "sha256": "5b6a0d04862fd23f9375bd8be776c27ed2258df0a76033cea5e36ad1d005ac2c",
+        "quote": "Kelly Ding Preceptor",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": null
+      },
+      {
+        "name": "Finale Doshi-Velez",
+        "titles": [
+          "Herchel Smith Professor of Computer Science"
+        ],
+        "rank": "ladder",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46",
+        "sha256": "5b6a0d04862fd23f9375bd8be776c27ed2258df0a76033cea5e36ad1d005ac2c",
+        "quote": "Finale Doshi-Velez Herchel Smith Professor of Computer Science",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/finale-doshi-velez"
+      },
+      {
+        "name": "Yilun Du",
+        "titles": [
+          "Assistant Professor of Computer Science"
+        ],
+        "rank": "ladder",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46",
+        "sha256": "5b6a0d04862fd23f9375bd8be776c27ed2258df0a76033cea5e36ad1d005ac2c",
+        "quote": "Yilun Du Assistant Professor of Computer Science",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/yilun-du"
+      },
+      {
+        "name": "Cynthia Dwork",
+        "titles": [
+          "Gordon McKay Professor of Computer Science"
+        ],
+        "rank": "ladder",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46",
+        "sha256": "5b6a0d04862fd23f9375bd8be776c27ed2258df0a76033cea5e36ad1d005ac2c",
+        "quote": "Cynthia Dwork Gordon McKay Professor of Computer Science",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/cynthia-dwork"
+      },
+      {
+        "name": "Jonathan Frankle",
+        "titles": [
+          "Associate in Computer Science"
+        ],
+        "rank": "other",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46",
+        "sha256": "5b6a0d04862fd23f9375bd8be776c27ed2258df0a76033cea5e36ad1d005ac2c",
+        "quote": "Jonathan Frankle Associate in Computer Science",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/jonathan-frankle"
+      },
+      {
+        "name": "Krzysztof Z Gajos",
+        "titles": [
+          "Yahn W. Bernier and N. Elizabeth McCaw Professor of Computer Science"
+        ],
+        "rank": "ladder",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46",
+        "sha256": "5b6a0d04862fd23f9375bd8be776c27ed2258df0a76033cea5e36ad1d005ac2c",
+        "quote": "Krzysztof Z Gajos Yahn W. Bernier and N. Elizabeth McCaw Professor of Computer Science",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/krzysztof-gajos"
+      },
+      {
+        "name": "Stephanie Gil",
+        "titles": [
+          "John L. Loeb Associate Professor of Engineering and Applied Sciences"
+        ],
+        "rank": "ladder",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46",
+        "sha256": "5b6a0d04862fd23f9375bd8be776c27ed2258df0a76033cea5e36ad1d005ac2c",
+        "quote": "Stephanie Gil John L. Loeb Associate Professor of Engineering and Applied Sciences",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/stephanie-gil"
+      },
+      {
+        "name": "Elena Leah Glassman",
+        "titles": [
+          "Assistant Professor of Computer Science"
+        ],
+        "rank": "ladder",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46",
+        "sha256": "5b6a0d04862fd23f9375bd8be776c27ed2258df0a76033cea5e36ad1d005ac2c",
+        "quote": "Elena Leah Glassman Assistant Professor of Computer Science",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/elena-glassman"
+      },
+      {
+        "name": "Yannai A. Gonczarowski",
+        "titles": [
+          "Assistant Professor of Economics and of Computer Science"
+        ],
+        "rank": "ladder",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C1",
+        "sha256": "6bc54f4174a7b115b7c201e556005c65f6ef912f1b6461cd88e18e5f8d95a096",
+        "quote": "Yannai A. Gonczarowski Assistant Professor of Economics and of Computer Science",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/yannai-gonczarowski"
+      },
+      {
+        "name": "Steven J. Gortler",
+        "titles": [
+          "Robert I. Goldman Professor of Computer Science"
+        ],
+        "rank": "ladder",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C1",
+        "sha256": "6bc54f4174a7b115b7c201e556005c65f6ef912f1b6461cd88e18e5f8d95a096",
+        "quote": "Steven J. Gortler Robert I. Goldman Professor of Computer Science",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/steven-gortler"
+      },
+      {
+        "name": "Barbara J. Grosz",
+        "titles": [
+          "Higgins Professor of Natural Sciences, Emerita"
+        ],
+        "rank": "emeritus",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C1",
+        "sha256": "6bc54f4174a7b115b7c201e556005c65f6ef912f1b6461cd88e18e5f8d95a096",
+        "quote": "Barbara J. Grosz Higgins Professor of Natural Sciences, Emerita",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/barbara-grosz"
+      },
+      {
+        "name": "Adam C. Hesterberg",
+        "titles": [
+          "Associate Director of Undergraduate Studies in Computer Science"
+        ],
+        "rank": "other",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C1",
+        "sha256": "6bc54f4174a7b115b7c201e556005c65f6ef912f1b6461cd88e18e5f8d95a096",
+        "quote": "Adam C. Hesterberg",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "mailto:ahesterberg@seas.harvard.edu"
+      },
+      {
+        "name": "Stratos Idreos",
+        "titles": [
+          "Gordon McKay Professor of Computer Science"
+        ],
+        "rank": "ladder",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C1",
+        "sha256": "6bc54f4174a7b115b7c201e556005c65f6ef912f1b6461cd88e18e5f8d95a096",
+        "quote": "Stratos Idreos Gordon McKay Professor of Computer Science",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/stratos-idreos"
+      },
+      {
+        "name": "Sham Kakade",
+        "titles": [
+          "Rampell Family Professor of Computer Science and Professor of Statistics"
+        ],
+        "rank": "ladder",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C1",
+        "sha256": "6bc54f4174a7b115b7c201e556005c65f6ef912f1b6461cd88e18e5f8d95a096",
+        "quote": "Sham Kakade Rampell Family Professor of Computer Science and Professor of Statistics",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/sham-kakade"
+      },
+      {
+        "name": "Eddie Kohler",
+        "titles": [
+          "Microsoft Professor of Computer Science"
+        ],
+        "rank": "ladder",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C1",
+        "sha256": "6bc54f4174a7b115b7c201e556005c65f6ef912f1b6461cd88e18e5f8d95a096",
+        "quote": "Eddie Kohler",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/eddie-kohler"
+      },
+      {
+        "name": "H.T. Kung",
+        "titles": [
+          "William H. Gates Professor of Computer Science and Electrical Engineering and Vinton Hayes Senior Research Fellow in Electrical Engineering"
+        ],
+        "rank": "research",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C1",
+        "sha256": "6bc54f4174a7b115b7c201e556005c65f6ef912f1b6461cd88e18e5f8d95a096",
+        "quote": "H.T. Kung William H. Gates Professor of Computer Science and Electrical Engineering and Vinton Hayes Senior Research Fellow in Electrical Engineering",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/ht-kung"
+      },
+      {
+        "name": "Hima Lakkaraju",
+        "titles": [
+          "Assistant Professor, Harvard Business School",
+          "Affiliate in Computer Science"
+        ],
+        "rank": "ladder",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C1",
+        "sha256": "6bc54f4174a7b115b7c201e556005c65f6ef912f1b6461cd88e18e5f8d95a096",
+        "quote": "Hima Lakkaraju Assistant Professor, Harvard Business School; Affiliate in Computer Science",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/hima-lakkaraju"
+      },
+      {
+        "name": "Liliya Lavitas",
+        "titles": [
+          "Visiting Lecturer on Computer Science"
+        ],
+        "rank": "visiting",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C1",
+        "sha256": "6bc54f4174a7b115b7c201e556005c65f6ef912f1b6461cd88e18e5f8d95a096",
+        "quote": "Liliya Lavitas Visiting Lecturer on Computer Science",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "mailto:liliya_lavitas@seas.harvard.edu"
+      },
+      {
+        "name": "Harry R. Lewis",
+        "titles": [
+          "Gordon McKay Professor of Computer Science, Emeritus"
+        ],
+        "rank": "emeritus",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C1",
+        "sha256": "6bc54f4174a7b115b7c201e556005c65f6ef912f1b6461cd88e18e5f8d95a096",
+        "quote": "Harry R. Lewis Gordon McKay Professor of Computer Science, Emeritus",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/harry-lewis"
+      },
+      {
+        "name": "Rongxin Liu",
+        "titles": [
+          "Senior Preceptor"
+        ],
+        "rank": "other",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C1",
+        "sha256": "6bc54f4174a7b115b7c201e556005c65f6ef912f1b6461cd88e18e5f8d95a096",
+        "quote": "Rongxin Liu Senior Preceptor",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "mailto:rongxinliu@g.harvard.edu"
+      },
+      {
+        "name": "David J. Malan",
+        "titles": [
+          "Gordon McKay Professor of the Practice of Computer Science"
+        ],
+        "rank": "teaching",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C1",
+        "sha256": "6bc54f4174a7b115b7c201e556005c65f6ef912f1b6461cd88e18e5f8d95a096",
+        "quote": "David J. Malan Gordon McKay Professor of the Practice of Computer Science",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/david-malan"
+      },
+      {
+        "name": "James Mickens",
+        "titles": [
+          "Gordon McKay Professor of Computer Science"
+        ],
+        "rank": "ladder",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C1",
+        "sha256": "6bc54f4174a7b115b7c201e556005c65f6ef912f1b6461cd88e18e5f8d95a096",
+        "quote": "James Mickens Gordon McKay Professor of Computer Science",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/james-mickens"
+      },
+      {
+        "name": "Michael D. Mitzenmacher",
+        "titles": [
+          "Thomas J. Watson, Sr. Professor of Computer Science"
+        ],
+        "rank": "ladder",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C1",
+        "sha256": "6bc54f4174a7b115b7c201e556005c65f6ef912f1b6461cd88e18e5f8d95a096",
+        "quote": "Michael D. Mitzenmacher Thomas J. Watson, Sr. Professor of Computer Science",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/michael-mitzenmacher"
+      },
+      {
+        "name": "Susan A Murphy",
+        "titles": [
+          "Mallinckrodt Professor of Statistics and of Computer Science"
+        ],
+        "rank": "ladder",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C1",
+        "sha256": "6bc54f4174a7b115b7c201e556005c65f6ef912f1b6461cd88e18e5f8d95a096",
+        "quote": "Susan A Murphy Mallinckrodt Professor of Statistics and of Computer Science",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/susan-murphy"
+      },
+      {
+        "name": "Rebecca Nancy Nesson",
+        "titles": [
+          "Executive Director, Derek Bok Center for Teaching and Learning"
+        ],
+        "rank": "other",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C1",
+        "sha256": "6bc54f4174a7b115b7c201e556005c65f6ef912f1b6461cd88e18e5f8d95a096",
+        "quote": "Rebecca Nancy Nesson Executive Director, Derek Bok Center for Teaching and Learning",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": null
+      },
+      {
+        "name": "David Parkes",
+        "titles": [
+          "John A. Paulson Dean of the Harvard John A. Paulson School of Engineering and Applied Sciences"
+        ],
+        "rank": "other",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C1",
+        "sha256": "6bc54f4174a7b115b7c201e556005c65f6ef912f1b6461cd88e18e5f8d95a096",
+        "quote": "David Parkes John A. Paulson Dean of the Harvard John A. Paulson School of Engineering and Applied Sciences",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/david-parkes"
+      },
+      {
+        "name": "Hanspeter Pfister",
+        "titles": [
+          "An Wang Professor of Computer Science"
+        ],
+        "rank": "ladder",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C1",
+        "sha256": "6bc54f4174a7b115b7c201e556005c65f6ef912f1b6461cd88e18e5f8d95a096",
+        "quote": "Hanspeter Pfister An Wang Professor of Computer Science",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/hanspeter-pfister"
+      },
+      {
+        "name": "Ariel Procaccia",
+        "titles": [
+          "Alfred and Rebecca Lin Professor of Computer Science"
+        ],
+        "rank": "ladder",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C1",
+        "sha256": "6bc54f4174a7b115b7c201e556005c65f6ef912f1b6461cd88e18e5f8d95a096",
+        "quote": "Ariel Procaccia Alfred and Rebecca Lin Professor of Computer Science",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/ariel-procaccia"
+      },
+      {
+        "name": "Pavlos Protopapas",
+        "titles": [
+          "Scientific Program Director and Lecturer"
+        ],
+        "rank": "lecturer",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C2",
+        "sha256": "2e336a3150c693cb7ea0c59465f3ad1b321978fb6ea9fbede943c5926988c768",
+        "quote": "Pavlos Protopapas Scientific Program Director and Lecturer",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/pavlos-protopapas"
+      },
+      {
+        "name": "Max Scherr",
+        "titles": [
+          "Preceptor in Continuing Education and Univ. Exten."
+        ],
+        "rank": "other",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C2",
+        "sha256": "2e336a3150c693cb7ea0c59465f3ad1b321978fb6ea9fbede943c5926988c768",
+        "quote": "Max Scherr Preceptor in Continuing Education and Univ. Exten.",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "mailto:max@cs50.harvard.edu"
+      },
+      {
+        "name": "Stuart M. Shieber",
+        "titles": [
+          "James O. Welch, Jr. and Virginia B. Welch Professor of Computer Science"
+        ],
+        "rank": "ladder",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C2",
+        "sha256": "2e336a3150c693cb7ea0c59465f3ad1b321978fb6ea9fbede943c5926988c768",
+        "quote": "Stuart M. Shieber James O. Welch, Jr. and Virginia B. Welch Professor of Computer Science",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/stuart-shieber"
+      },
+      {
+        "name": "Michael D. Smith",
+        "titles": [
+          "John H. Finley, Jr. Professor of Engineering and Applied Sciences",
+          "Harvard University Distinguished Service Professor"
+        ],
+        "rank": "ladder",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C2",
+        "sha256": "2e336a3150c693cb7ea0c59465f3ad1b321978fb6ea9fbede943c5926988c768",
+        "quote": "Michael D. Smith John H. Finley, Jr. Professor of Engineering and Applied Sciences; Harvard University Distinguished Service Professor",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/michael-smith"
+      },
+      {
+        "name": "Madhu Sudan",
+        "titles": [
+          "Gordon McKay Professor of Computer Science"
+        ],
+        "rank": "ladder",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C2",
+        "sha256": "2e336a3150c693cb7ea0c59465f3ad1b321978fb6ea9fbede943c5926988c768",
+        "quote": "Madhu Sudan",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/madhu-sudan"
+      },
+      {
+        "name": "Deqing Sun",
+        "titles": [
+          "Visiting Lecturer on Computer Science"
+        ],
+        "rank": "visiting",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C2",
+        "sha256": "2e336a3150c693cb7ea0c59465f3ad1b321978fb6ea9fbede943c5926988c768",
+        "quote": "Deqing Sun Visiting Lecturer on Computer Science",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "mailto:deqing_sun@seas.harvard.edu"
+      },
+      {
+        "name": "Milind Tambe",
+        "titles": [
+          "Gordon McKay Professor of Computer Science"
+        ],
+        "rank": "ladder",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C2",
+        "sha256": "2e336a3150c693cb7ea0c59465f3ad1b321978fb6ea9fbede943c5926988c768",
+        "quote": "Milind Tambe Gordon McKay Professor of Computer Science",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/milind-tambe"
+      },
+      {
+        "name": "Christopher Thorpe",
+        "titles": [
+          "Visiting Lecturer on Applied Computation"
+        ],
+        "rank": "visiting",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C2",
+        "sha256": "2e336a3150c693cb7ea0c59465f3ad1b321978fb6ea9fbede943c5926988c768",
+        "quote": "Christopher Thorpe Visiting Lecturer on Applied Computation",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "mailto:cat@seas.harvard.edu"
+      },
+      {
+        "name": "Salil P. Vadhan",
+        "titles": [
+          "Vicky Joseph Professor of Computer Science and Applied Mathematics"
+        ],
+        "rank": "ladder",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C2",
+        "sha256": "2e336a3150c693cb7ea0c59465f3ad1b321978fb6ea9fbede943c5926988c768",
+        "quote": "Salil P. Vadhan",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/salil-vadhan"
+      },
+      {
+        "name": "Leslie G. Valiant",
+        "titles": [
+          "T. Jefferson Coolidge Professor of Computer Science and Applied Mathematics"
+        ],
+        "rank": "ladder",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C2",
+        "sha256": "2e336a3150c693cb7ea0c59465f3ad1b321978fb6ea9fbede943c5926988c768",
+        "quote": "Leslie G. Valiant T. Jefferson Coolidge Professor of Computer Science and Applied Mathematics",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/leslie-valiant"
+      },
+      {
+        "name": "Fernanda Viegas",
+        "titles": [
+          "Sally Starling Seaver Professor"
+        ],
+        "rank": "ladder",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C2",
+        "sha256": "2e336a3150c693cb7ea0c59465f3ad1b321978fb6ea9fbede943c5926988c768",
+        "quote": "Fernanda Viegas Sally Starling Seaver Professor",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/fernanda-viegas"
+      },
+      {
+        "name": "Jim Waldo",
+        "titles": [
+          "Gordon McKay Professor of the Practice of Computer Science"
+        ],
+        "rank": "teaching",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C2",
+        "sha256": "2e336a3150c693cb7ea0c59465f3ad1b321978fb6ea9fbede943c5926988c768",
+        "quote": "Jim Waldo Gordon McKay Professor of the Practice of Computer Science",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/jim-waldo"
+      },
+      {
+        "name": "Qianqian Wang",
+        "titles": [
+          "Assistant Professor of Computer Science"
+        ],
+        "rank": "ladder",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C2",
+        "sha256": "2e336a3150c693cb7ea0c59465f3ad1b321978fb6ea9fbede943c5926988c768",
+        "quote": "Qianqian Wang Assistant Professor of Computer Science",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/qianqian-wang"
+      },
+      {
+        "name": "Zi Wang",
+        "titles": [
+          "Visiting Lecturer on Computer Science"
+        ],
+        "rank": "visiting",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C2",
+        "sha256": "2e336a3150c693cb7ea0c59465f3ad1b321978fb6ea9fbede943c5926988c768",
+        "quote": "Zi Wang Visiting Lecturer on Computer Science",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "mailto:ziwang@seas.harvard.edu"
+      },
+      {
+        "name": "Juncheng Yang",
+        "titles": [
+          "Assistant Professor of Computer Science"
+        ],
+        "rank": "ladder",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C2",
+        "sha256": "2e336a3150c693cb7ea0c59465f3ad1b321978fb6ea9fbede943c5926988c768",
+        "quote": "Juncheng Yang Assistant Professor of Computer Science",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/juncheng-yang"
+      },
+      {
+        "name": "Minlan Yu",
+        "titles": [
+          "Gordon McKay Professor of Computer Science"
+        ],
+        "rank": "ladder",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C2",
+        "sha256": "2e336a3150c693cb7ea0c59465f3ad1b321978fb6ea9fbede943c5926988c768",
+        "quote": "Minlan Yu Gordon McKay Professor of Computer Science",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/minlan-yu"
+      },
+      {
+        "name": "Lily Hong Zhang",
+        "titles": [
+          "Visiting Lecturer on Computer Science"
+        ],
+        "rank": "visiting",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C2",
+        "sha256": "2e336a3150c693cb7ea0c59465f3ad1b321978fb6ea9fbede943c5926988c768",
+        "quote": "Lily Hong Zhang Visiting Lecturer on Computer Science",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": null
+      },
+      {
+        "name": "Jonathan Zittrain",
+        "titles": [
+          "George Bemis Professor of Law"
+        ],
+        "rank": "ladder",
+        "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C2",
+        "sha256": "2e336a3150c693cb7ea0c59465f3ad1b321978fb6ea9fbede943c5926988c768",
+        "quote": "Jonathan Zittrain George Bemis Professor of Law",
+        "observed_on": "2026-11-06",
+        "date_basis": "live_capture_calendar_year_only",
+        "profile": "/person/jonathan-zittrain"
+      }
+    ],
+    "review": "Faculty role filter includes affiliates, visitors, emeriti, lecturers, preceptors and Associates. These 58 entries are candidates, not 58 approved PIs; computing/home/rank review remains required."
+  },
+  "historical_parser_sample": {
+    "url": "https://web.archive.org/web/2020id_/https://seas.harvard.edu/faculty",
+    "sha256": "50e6c59497b54687ecd554911a3b6087f8594fc3125e872ea17ec733a4cd2dd0",
+    "entries_after_fix": 20,
+    "entries_before_fix": 0,
+    "scope": "Markup fixture only: nonexact 2020id_ selector has no persisted resolved archive timestamp; no listing calendar year credited.",
+    "page_links": {
+      "1": "https://seas.harvard.edu/faculty?search=&sort_by=field_last_name&page=%2C1",
+      "2": "https://seas.harvard.edu/faculty?search=&sort_by=field_last_name&page=%2C2",
+      "3": "https://seas.harvard.edu/faculty?search=&sort_by=field_last_name&page=%2C3",
+      "4": "https://seas.harvard.edu/faculty?search=&sort_by=field_last_name&page=%2C4",
+      "5": "https://seas.harvard.edu/faculty?search=&sort_by=field_last_name&page=%2C5",
+      "6": "https://seas.harvard.edu/faculty?search=&sort_by=field_last_name&page=%2C6",
+      "7": "https://seas.harvard.edu/faculty?search=&sort_by=field_last_name&page=%2C7",
+      "8": "https://seas.harvard.edu/faculty?search=&sort_by=field_last_name&page=%2C8"
+    }
+  },
+  "blocked_discovery": [
+    {
+      "host": "crcs.seas.harvard.edu",
+      "robots_status": 403,
+      "use": "wayback-only",
+      "page_requested": false,
+      "review": "403 robots: stopped before content request; not evidence of absence."
+    },
+    {
+      "host": "toc.seas.harvard.edu",
+      "robots_status": 403,
+      "use": "wayback-only",
+      "page_requested": false,
+      "review": "403 robots: stopped before content request; not evidence of absence."
+    }
+  ],
+  "remaining": {
+    "stage_1_open_department_years": [
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+    ],
+    "reason": "No exact-timestamp historical captures in the school capture table or listing plan. Shared archive discovery controlled by coordinator; cooldown respected.",
+    "pending_urls": [
+      "www.seas.harvard.edu/",
+      "www.seas.harvard.edu/faculty",
+      "seas.harvard.edu/faculty",
+      "seas.harvard.edu/computer-science/people",
+      "seas.harvard.edu/computer-science/people?role%5B46%5D=46"
+    ]
+  }
+}

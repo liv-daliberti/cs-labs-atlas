@@ -117,8 +117,9 @@ foreign_title_exception = false
 
 # --- departments -------------------------------------------------------------------------------------------------------------------
 # Harvard's computing is SEAS (Computer Science area; Applied Mathematics, Electrical Engineering, Bioengineering, Applied Physics are further SEAS areas). SEAS publishes ONE paged
-# faculty directory (seas.harvard.edu/faculty, ?page=,N); the Wayback has it from 2019-10 (CDX 2026-11-05: 82 monthly captures; the older www.seas.harvard.edu forms returned no captures under the guessed URLs,
-# stage 1 finds them with discover_listings.py). Listing slots are first guesses.
+# faculty directory (seas.harvard.edu/faculty, ?page=,N). Exact historical URL eras remain under review: the earlier claimed 82 monthly captures have no saved CDX response in the school store.
+# A saved nonexact 2020id_ host probe establishes the older field-wrapper markup, not a calendar-year appointment. Stage 1 must fetch exact timestamps and every page.
+# The CS people page mixes faculty, students, research appointees and staff; the live faculty checkbox submits role[46]=46 (observed 2026-11-06, three pages).
 [[departments]]
 code = "CS"
 name = "Computer Science (Harvard SEAS)"
@@ -132,13 +133,24 @@ url = "https://seas.harvard.edu/computer-science"
   url = "seas.harvard.edu/faculty"
   from = "20160101"
   to = "20261231"
-  prefix = true
+  prefix = false
+  # The school-wide directory includes all SEAS disciplines. title_match alone does not filter rows out of the CS census.
+  title_filter = '''\bComputer Science\b'''
+  format = "seas_directory"
   [[departments.listings]]
   slot = "SEAS CS people"
   kind = "main"
   url = "seas.harvard.edu/computer-science/people"
   from = "20160101"
   to = "20261231"
+  format = "seas_directory"
+  [[departments.listings]]
+  slot = "SEAS CS faculty filtered"
+  kind = "main"
+  url = "seas.harvard.edu/computer-science/people?role%5B46%5D=46"
+  from = "20260101"
+  to = "20261231"
+  format = "seas_directory"
 
 # --- units searched for computing-related faculty (stage 2). Only computing labs count (owner 2026-11-05). -----------------------------
 [[affiliated_units]]
@@ -238,6 +250,18 @@ host = "dbmi.hms.harvard.edu"
 use = "live"
 purpose = "HMS Department of Biomedical Informatics people (robots: Drupal defaults)"
 probe = "https://dbmi.hms.harvard.edu/people"
+
+[[hosts]]
+host = "crcs.seas.harvard.edu"
+use = "wayback-only"
+purpose = "Historical CRCS year-in-review faculty evidence; robots.txt returned 403 on 2026-11-06, stopped before PDF fetch (D5)"
+probe = "https://crcs.seas.harvard.edu/sites/g/files/omnuum6171/files/crcs/files/crcs_annual_report.pdf"
+
+[[hosts]]
+host = "toc.seas.harvard.edu"
+use = "wayback-only"
+purpose = "Historical theory faculty profiles and appointment leads; robots.txt returned 403 on 2026-11-06, stopped before profile fetch (D5)"
+probe = "https://toc.seas.harvard.edu/people/yaron-singer"
 
 [[hosts]]
 host = "hsph.harvard.edu"
