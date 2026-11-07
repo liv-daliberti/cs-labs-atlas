@@ -56,6 +56,27 @@ def onboarding():
     return [k for k in keys() if get(k).get('status') == 'onboarding']
 
 
+def ledger_groups(selected):
+    """Separate normal copy searches from explicitly partial, cached-only searches.
+
+    Newly started schools without a package cannot have a copy ledger yet.
+    Missing inputs of selected release schools remain errors in the ledger itself.
+    """
+    online, offline = [], []
+    for key in selected:
+        policy = get(key).get('release', {})
+        if policy.get('ledger_mode') == 'offline':
+            if not policy.get('owner_quote') or not policy.get('reason'):
+                raise ValueError(f'{key}: offline release ledger requires documented authorization and reason')
+            offline.append(key)
+        else:
+            online.append(key)
+    for key in onboarding():
+        if key not in selected and all(P.data(name, key).exists() for name in ('copies.json', 'lab_papers.jsonl.gz')):
+            offline.append(key)
+    return online, offline
+
+
 def field(cfg, dotted, default=None):
     x = cfg
     for part in dotted.split('.'):
