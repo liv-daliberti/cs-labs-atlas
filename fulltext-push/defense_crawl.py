@@ -6,7 +6,7 @@ newest first). An event page carries the candidate's name in its title and the c
 ClaudeBot or anthropic-ai; read 2026-11-07 and again before every run). Pages are public HTML; nothing behind a login is read. One host, one flock,
 generic User-Agent, no e-mail address, one request every 3 s.
 
-  defense_crawl.py index [--max-pages N]    the listing pages -> queue (url, listing date, title)
+  defense_crawl.py index [--kind defense|proposal] [--max-pages N]    the listing pages -> queue (url, listing date, title)
   defense_crawl.py crawl [--max N]           the event pages of the queue -> pages (sha256 of the bytes, the page's main text)
   defense_crawl.py stats
 
@@ -28,7 +28,9 @@ import ftp_common as F  # noqa: E402
 import oai_repo as O  # noqa: E402
 
 HOST = 'hg.gatech.edu'
-LISTING = f'https://{HOST}/taxonomy/term/100811'
+LISTINGS = {'defense': (f'https://{HOST}/taxonomy/term/100811', None, 0),
+            # 'Other/Miscellaneous' holds the Ph.D. proposal oral exams (ECE, CS 'PhD Proposal by <name>'); only those titles are queued
+            'proposal': (f'https://{HOST}/taxonomy/term/1788', re.compile(r'(?i)proposal'), 1_000_000)}
 DELAY = 3.0
 NODE_RX = re.compile(r'^/node/\d+$')
 MAIN_RX = re.compile(r'Primary tabs\s*View\s*XML\s*JSON', re.I)
@@ -87,7 +89,9 @@ def _open():
     return client, rp, conf
 
 
-def index(max_pages=450, out=print, client=None):
+def index(max_pages=450, out=print, client=None, kind='defense'):
+    listing, keep, seq_base = LISTINGS[kind]
+    skey = 'index_next' if kind == 'defense' else f'index_next_{kind}'
     lockf = F.P.FT_RAW / 'defense_crawl' / f'{HOST}.lock'
     lockf.parent.mkdir(parents=True, exist_ok=True)
     with open(lockf, 'w') as lk:
@@ -104,24 +108,27 @@ def index(max_pages=450, out=print, client=None):
             return None
         client.delay = max(client.delay, float(cd or 0))
         c = connect()
-        page = int(c.execute("SELECT v FROM state WHERE k='index_next'").fetchone()[0]) if c.execute("SELECT 1 FROM state WHERE k='index_next'").fetchone() else 0
+        row = c.execute('SELECT v FROM state WHERE k=?', (skey,)).fetchone()
+        page = int(row[0]) if row else 0
         n = 0
         while page < max_pages:
-            url = LISTING + (f'?page={page}' if page else '')
+            url = listing + (f'?page={page}' if page else '')
             if not E.url_allowed(rp, url):
                 out(json.dumps(dict(robots_bars=url)))
                 break
             r = client.get(url, tolerate=(404,))
             rows = listing_rows(r.content) if r.status_code == 200 else []
             if not rows:
-                c.execute("INSERT OR REPLACE INTO state VALUES ('index_done', ?)", (str(page),))
+                c.execute('INSERT OR REPLACE INTO state VALUES (?, ?)', (f'index_done_{kind}', str(page)))
                 c.commit()
                 break
             for k, (path, title, d) in enumerate(rows):
+                if keep and not keep.search(title):
+                    continue
                 u = f'https://{HOST}{path}'
-                c.execute('INSERT OR IGNORE INTO queue (url, seq, listed, title) VALUES (?,?,?,?)', (u, page * 100 + k, d, title))
+                c.execute('INSERT OR IGNORE INTO queue (url, seq, listed, title) VALUES (?,?,?,?)', (u, seq_base + page * 100 + k, d, title))
             page += 1
-            c.execute("INSERT OR REPLACE INTO state VALUES ('index_next', ?)", (str(page),))
+            c.execute('INSERT OR REPLACE INTO state VALUES (?, ?)', (skey, str(page)))
             c.commit()
             n += len(rows)
         out(json.dumps(dict(index_pages=page, rows_this_run=n, stats=stats())))
@@ -189,7 +196,8 @@ def stats():
 def main(argv):
     cmd = argv[0]
     if cmd == 'index':
-        index(int(argv[argv.index('--max-pages') + 1]) if '--max-pages' in argv else 450)
+        index(int(argv[argv.index('--max-pages') + 1]) if '--max-pages' in argv else 450,
+              kind=argv[argv.index('--kind') + 1] if '--kind' in argv else 'defense')
     elif cmd == 'crawl':
         crawl(int(argv[argv.index('--max') + 1]) if '--max' in argv else None)
     elif cmd == 'stats':
