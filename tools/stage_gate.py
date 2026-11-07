@@ -143,8 +143,18 @@ def g3(key):
             f = Path(P.data(n, key))
             if f.exists() and f.stat().st_mtime > pis_f.stat().st_mtime + 1:
                 bad.append(f'stale build: pis.json is older than reviewed/{n} (run census-refresh, homes and build again with --force)')
-    if not Path(P.data('labpage-audit.jsonl.gz', key)).exists():
-        bad.append(f'lab-page audit: labpage-audit.jsonl.gz missing (tools/labpage_audit.py discover {key}; docs/LAB-PAGES.md)')
+    import lab_websites
+    register = Path(P.data('lab-websites.json', key))
+    if register.exists():
+        website_doc = read(register, {})
+        if pis_f.exists() and register.stat().st_mtime + 1 < pis_f.stat().st_mtime:
+            bad.append('website register is older than pis.json (refresh lab_websites.py build)')
+    elif pis_f.exists() and Path(P.data('labpage-audit.jsonl.gz', key)).exists():
+        website_doc = lab_websites.build(key)
+    else:
+        website_doc = {}
+        bad.append(f'lab-page audit: register/audit missing (tools/lab_websites.py build {key}; docs/LAB-PAGES.md)')
+    bad += lab_websites.gate(website_doc, [p['name'] for p in pis_of(key)])
     return bad, dict(pis=len(pis_of(key)), homes=len(homes))
 
 
