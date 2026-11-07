@@ -1,5 +1,6 @@
 """school_web.robots_decision: allowed-for-us, allowed-for-AI-agents-by-name, and the crawl delay that binds this project."""
 import school_web as W
+import pytest
 
 ROBOTS_NAMED_DELAY = """User-agent: PerplexityBot
 User-agent: ClaudeBot
@@ -25,6 +26,45 @@ def test_star_group_delay_and_floor():
 def test_ai_agent_disallow_is_detected_by_name():
     ours, ai, _ = W.robots_decision(200, 'User-agent: ClaudeBot\nDisallow: /\n\nUser-agent: *\nDisallow:\n', '/x')
     assert ours and not ai
+
+
+@pytest.mark.parametrize('status', [401, 403, 429, 500, -1])
+def test_refused_or_unavailable_robots_never_authorizes_fetch(status):
+    assert W.robots_decision(status, '', '/faculty')[:2] == (False, False)
+
+
+def test_cached_plain_refusal_blocks_other_urls_on_same_host(tmp_path, monkeypatch):
+    monkeypatch.setattr(W.wb, 'db_path', W.wb.db_path)
+    monkeypatch.setattr(W, '_blocked', set())
+    monkeypatch.setattr(W, 'db_path', lambda key: tmp_path / 'captures.sqlite')
+    c = W.con('fixture')
+    c.execute('insert into live (url,status) values (?,?)', ('https://example.edu/old', 403))
+    c.commit()
+    c.close()
+    c = W.con('fixture')
+    monkeypatch.setattr(W, 'robots_ok', lambda *args: pytest.fail('cached refusal must stop before any request'))
+    assert W.live(c, 'https://example.edu/new') is None
+    c.close()
+
+
+def test_plain_refusal_persists_host_stop(tmp_path, monkeypatch):
+    from types import SimpleNamespace
+    import requests
+    monkeypatch.setattr(W.wb, 'db_path', W.wb.db_path)
+    monkeypatch.setattr(W, '_blocked', set())
+    monkeypatch.setattr(W, 'db_path', lambda key: tmp_path / 'captures.sqlite')
+    monkeypatch.setattr(W, 'robots_ok', lambda *args: (True, 0))
+    calls = []
+    def get(url, **kwargs):
+        calls.append(url)
+        return SimpleNamespace(content=b'Forbidden', status_code=403, headers={'Content-Type': 'text/plain'}, history=[])
+    monkeypatch.setattr(requests, 'get', get)
+    c = W.con('fixture')
+    assert W.live(c, 'https://refused.edu/one')[0] == 403
+    assert W.live(c, 'https://refused.edu/two') is None
+    assert len(calls) == 1
+    assert c.execute('select host from blocked').fetchone()[0] == 'refused.edu'
+    c.close()
 
 
 def test_urls_on_host_lists_department_and_unit_slots():

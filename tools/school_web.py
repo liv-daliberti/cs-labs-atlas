@@ -50,6 +50,10 @@ def con(key):
     c.commit()
     for (h,) in c.execute('select host from blocked'):
         _blocked.add(h)
+    # Old collectors did not persist plain access refusals as host blocks.
+    # Reuse their receipts so a new URL cannot silently retry the same host.
+    for url, in c.execute('select url from live where status in (401,403,429,999)'):
+        _blocked.add(urllib.parse.urlsplit(url).netloc)
     return c
 
 
@@ -114,9 +118,10 @@ def robots_row(c, host, refresh=False):
 
 
 def robots_decision(status, body, url='/'):
-    """(allowed for us, allowed for AI agents by name, crawl delay). A 4xx robots.txt means no rules (allowed); an
-    unreachable host or a 5xx is not fetched."""
-    if status == -1 or status >= 500:
+    """(allowed for us, allowed for AI agents by name, crawl delay).
+    Missing robots (404/410) has no rules; access refusals and outages never authorize a page request.
+    """
+    if status == -1 or status in (401, 403, 429) or status >= 500:
         return False, False, 2.0
     rp = urllib.robotparser.RobotFileParser(); rp.parse((body or '').splitlines() if status == 200 else [])
     ours = rp.can_fetch(UA, url)
@@ -161,6 +166,8 @@ def live(c, url, refresh=False):
         except Exception as e:  # noqa: BLE001
             body, st, ct = repr(e).encode(), -1, None
         _last[host] = time.time()
+        if st in (401, 403, 429):
+            block(c, host, f'HTTP {st} access refusal at {url}')
         if st in (200, 403, 429, 503) and CHALLENGE.search(body[:20000].decode('utf-8', 'replace')):
             st = 999  # a bot challenge: recorded, never worked around; the host is not used again
             block(c, host, f'challenge at {url}')
