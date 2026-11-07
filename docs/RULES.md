@@ -358,6 +358,8 @@ Tests: `tests/test_listing_continuity.py`.
 
 ## Students
 
+Roster/co-author follow-up (owner, 2026-11-06): retain every independently qualifying PI–student pair. Do not rank competing PIs by their last-author or paper count and discard the weaker pair. Existing roster-year, student-role, co-authorship and single-paper namesake guards still apply; co-authorship alone does not establish advising. `tests/test_roster_namesake_guard.py` checks unequal co-adviser counts and ambiguous single-paper cases.
+
 ### R-STU-01 (2026-10-21, owner)
 Students are people whose advising context names the PI (by person id, or by name through the PI's full-name forms), the
 direct members of a reused lab unit, researched advisees with a quote and hash (gap, few-students, thesis, lab-page

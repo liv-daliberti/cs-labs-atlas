@@ -553,9 +553,8 @@ def roster_coauthor_students(key, forms):
                     if not e['first'] or r['timestamp'] < e['first'][0]:
                         e['first'] = (r['timestamp'], cap, sha, url, flat[m.start():m.end() + 120], m.group(0))
     rows = []
-    best = {}  # a student on several PIs' papers is linked to the PI(s) with the most last-author, then co-authored, papers (stage 6, Michigan round 5)
-    for (k, pi), e in by.items():
-        best[k] = max(best.get(k, (0, 0)), e['score'])
+    # Keep every independently qualifying roster/PI pair. A stronger co-author
+    # count for another PI does not disprove co-advising (owner, 2026-11-06).
     pis_of = collections.defaultdict(set)   # name -> every PI whose lab papers carry it (a namesake or a collaboration), whatever the roster says
     for (k, pi), e in by.items():
         pis_of[k].add(pi)
@@ -563,8 +562,6 @@ def roster_coauthor_students(key, forms):
         for x in ps_:
             pis_of[k_].add(x[0])
     for (k, pi), e in sorted(by.items()):
-        if e['score'] < best[k]:
-            continue
         # Michigan 2026-11-06 hand check (Yuhan Liu lesson): one co-authored paper is thin evidence, so when the same name also stands on another PI's lab papers the pair is
         # ambiguous (a namesake, or a collaborator of two labs) and is not written; two or more papers, or the PI last on several, keep it
         if e['score'][1] <= 1 and len(pis_of[k]) > 1:
