@@ -116,6 +116,6 @@ def test_R_STU_17_the_directory_extractor_keeps_visiting_students_under_the_same
     visiting scholar heading still is no student, and the role filter admits `visiting`."""
     import labpage_students_school as S
     src = open(S.__file__).read()
-    assert "role not in ('phd', 'postdoc', 'visiting')" in src and 'V.visiting_role(rest' in src
+    assert "role not in ('phd', 'postdoc', 'visiting', 'student')" in src and 'V.visiting_role(rest' in src
     assert S.NOT_STUDENT_HEAD.match('Visitors (students)') and V.says_visiting('Visitors (students)')
     assert not V.says_visiting('Visiting Scholars')

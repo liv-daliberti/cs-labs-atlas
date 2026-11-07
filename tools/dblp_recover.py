@@ -129,11 +129,9 @@ def dump_pubs(pis, school=None):
     cached-list shape {key: {title, year, doi, venue, ee, authors: {pid or 'n<i>': name}}}; the PI's own byline entry is
     keyed by the PI's pid."""
     persons = dict(read(P.data('dblp-dump-persons.json.gz')).get('persons') or {})
-    if school:  # an onboarding school's PIs are only in its own persons file (hierarchy/<school>/raw/dblp-dump-persons-school.json.gz)
-        own = P.data('dblp-dump-persons-school.json.gz', school)
-        if own.exists():
-            for q, per in (read(own).get('persons') or {}).items():
-                persons.setdefault(q, per)
+    own = P.data('dblp-dump-persons-school.json.gz', school) if school else None
+    if own is not None and own.exists():   # an onboarding school's own persons (dblp_dump_persons.py <key>): the shared file holds the pre-protocol schools only
+        persons.update(read(own).get('persons') or {})
     out = {}
     for p in pis:
         for q in p.get('dblp') or []:

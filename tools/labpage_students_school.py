@@ -798,6 +798,32 @@ def surname_advisers(key):
     print(json.dumps(dict(n, relations=sum(len(v) for v in out.values()), labs=len(out))))
 
 
+GENERIC_STUDENT_HEAD = re.compile(r"^\W*(?:(?:current|former|past|my|our)\s+)?(?:students|student\s+members|advisees|advising|mentees|(?:under)?graduate\s+(?:members|researchers))\W*(?:\(.*\))?\W*$", re.I)
+
+
+def generic_student_role(role, path):
+    """A lab page whose members sit under a plain 'Students' / 'Advisees' / 'Advising' heading names students without a degree level (Qi: 'Students', Hoza:
+    'Advising'): the role is 'student' (a member of the lab, R-STU-19 B's student role), not a dropped row. A heading that names a degree or a non-student
+    group keeps lpdom's reading (UChicago round 2)."""
+    if role is None and path and GENERIC_STUDENT_HEAD.match(path[-1].strip()):
+        return 'student'
+    return role
+
+
+def mixed_heading_role(role, path, rest):
+    """(role, role as written) of a member under a heading that names PhD students AND postdocs ('Alumni (PhDs and Postdocs)'): the entry's own words decide
+    when they state it ('Fan Yao (PhD, 2025 ...)', 'Andrzej Kaczmarczyk (postdoc, 2025)'); only an entry that says neither stays 'member' (UChicago round 2, Xu's
+    SIGMA alumni: five PhDs and one postdoc were all read as 'member')."""
+    if role in ('phd', 'postdoc') and path and re.search(r'ph\.?\s?d|doctoral', path[-1], re.I) and re.search(r'post-?doc', path[-1], re.I):
+        r60 = (rest or '')[:60]
+        m_phd, m_post = re.search(r'ph\.?\s?d|doctoral', r60, re.I), re.search(r'post-?doc', r60, re.I)
+        own = None if not (m_phd or m_post) else 'phd' if (m_phd and (not m_post or m_phd.start() < m_post.start())) else 'postdoc'   # 'Ph.D. 2025, Post Doc @ UIUC': the degree first, the employer after
+        if own:
+            return own, own
+        return 'phd', 'member'   # neither is stated: a member (the heading names both kinds), never dropped as a postdoc
+    return role, role
+
+
 def extract(key):
     c = W.con(key); ev, rep = [], collections.Counter()
     prev = previous_school_students(key); dropped_prev = []
@@ -809,6 +835,8 @@ def extract(key):
     faculty_anywhere = all_faculty_names()
     skip_pages = S.field(S.get(key), 'labpages.skip_pages') or []
     decisions = SD.load(key)
+    ef_ = P.data('extra-lab-pages.json', key)
+    reviewed_pages = {pi_: [re.sub(r'^https?://(www\.)?', '', x['url']) for x in l_] for pi_, l_ in (json.loads(ef_.read_text()) if ef_.exists() else {}).items()}
     for pi, (t, urls) in targets_pages(key).items():
         N = Name([pi]); studs, seen = [], set()
         for u in urls:
@@ -821,7 +849,7 @@ def extract(key):
                     continue
                 flat = ' '.join(lpdom.collapse(x) for x in [re.sub(r'<[^>]+>', ' ', re.sub(r'<(script|style)\b.*?</\1>', ' ', h, flags=re.S | re.I))])
                 flat = ' '.join(__import__('html').unescape(flat).split())
-                if is_department_roster(flat, faculty_anywhere) or len(cands) >= 60:
+                if is_department_roster(flat, faculty_anywhere) or (len(cands) >= 60 and not any(u.rstrip('/').endswith(e.rstrip('/')) for e in reviewed_pages.get(pi, ()))):   # a reviewed lab page may be long (AxLab's 140 members)
                     rep['department_roster_page_skipped'] += 1; continue   # a department people page names many faculty: not this PI's lab page (UChicago homepage dive)
                 for path, name, rest, nxt, idx in cands:
                     name = clean_student_name(name)
@@ -831,13 +859,13 @@ def extract(key):
                     if (path and any(NOT_STUDENT_HEAD.match(x) and not (vis and V.says_visiting(x)) for x in path)) or ' '.join(toks(name)) in faculty_anywhere:
                         rep['dropped_hiring_or_faculty'] += 1; continue
                     role = 'visiting' if vis else lpdom.role_of(*(list(reversed(path)) + [rest]))
-                    if role in ('phd', 'postdoc') and path and re.search(r'ph\.?\s?d|doctoral', path[-1], re.I) and re.search(r'post-?doc', path[-1], re.I):
-                        role_out = 'member'  # 'Current PhD Students and Postdocs': the heading does not say which
-                    else:
-                        role_out = role
-                    if role not in ('phd', 'postdoc', 'visiting') or not lpdom.looks_like_name(name) or not lpdom.plausible_person(name) \
+                    role = generic_student_role(role, path)
+                    role, role_out = mixed_heading_role(role, path, rest)
+                    if role not in ('phd', 'postdoc', 'visiting', 'student') or not lpdom.looks_like_name(name) or not lpdom.plausible_person(name) \
                             or N.match(name) or len(toks(name)) < 2 or len(toks(name)) > 4 or any(F.match(name) for F in fac):
                         rep['dropped_not_a_student_name'] += 1; continue
+                    if role_out == 'postdoc':
+                        rep['dropped_postdoc'] += 1; continue   # a postdoc is not a student (R-STU-19 B); mixed 'PhDs and Postdocs' headings now give the entry's own role
                     alum = any(ALUM.search(x) for x in path)  # the section says it, not the person's line ('now Ph.D. student @ ...')
                     head = path[-1] if path else ''
                     j = flat.find(name)
@@ -851,6 +879,8 @@ def extract(key):
                     years = [y for y in (ys or []) if y] or [year]
                     if max(years) < 2016:
                         rep['dropped_before_window'] += 1; continue
+                    if alum and ys and max(years) <= first_year.get(pi, 0) and not re.search(r'chicago|uchicago|ttic', rest, re.I):
+                        rep['dropped_alumnus_before_arrival'] += 1; continue   # an alumnus who left in or before the PI's first year here was the PI's student elsewhere (Zhang's ETH PhDs, Tomlin's Berkeley advisees)
                     if j < 0 or i < 0 or j - i > 600:  # the quote must run from the section heading to the name
                         rep['dropped_no_heading_quote'] += 1; continue
                     if a_at is not None and a_at < i and j - a_at <= 600:

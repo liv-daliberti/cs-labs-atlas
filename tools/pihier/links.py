@@ -57,6 +57,12 @@ def student_role_ok(s):
     return False
 
 
+def pi_names_of(ctx, pi):
+    """The PI's names for the R-STU-19 adviser test (none known: the test then passes)."""
+    pid0 = getattr(ctx, 'pid0', None) or {}
+    return (pid0.get(pi) or {}).get('names') or []
+
+
 def pi_is_adviser(s, pi_names):
     """R-STU-19 rule B: no relation of the student names other advisers only (the student's own roster line)."""
     rels = s.get('relations') or []
@@ -232,7 +238,7 @@ def link_students(ctx):
                 # the PI's own advisee named on the PI's lab paper (an authorship without affiliations, e.g. an ACL
                 # Anthology record), within three years of the recorded advising
                 done_.add(sid); sp.append(dict(pi=r['pi'], student=sid, name=s['name'], work=r['work'], oa=r['oa'], status='candidate', basis='advisee_name_on_lab_paper_byline', byline=b_))
-            elif wide_relation(s, r['year'], True, len(r['byline'])) and student_role_ok(s) and pi_is_adviser(s, ctx.pid0[r['pi']]['names']) \
+            elif wide_relation(s, r['year'], True, len(r['byline'])) and student_role_ok(s) and pi_is_adviser(s, pi_names_of(ctx, r['pi'])) \
                     and (b_ := next((b for bl, _ in r['_bylines'] for b in bl if byline_ok(sid, b, full_name_on, r['pi'], r)), None)) is not None:
                 # the lab's own student by full name on the lab's own paper, outside the narrow window (2026-10-28:
                 # recorded years are often one roster observation; alumni keep publishing with the lab)
@@ -265,7 +271,7 @@ def link_students(ctx):
                 if hits_ and any(sw_same(hits_[0], sw_toks(o)) for o in r['byline']):
                     hits_ = []
             if len(hits_) == 1 and hits_[0] not in done_ and wide_relation(S[hits_[0]], r['year']) and not student_given_conflict(hits_[0], raw) \
-                    and student_role_ok(S[hits_[0]]) and pi_is_adviser(S[hits_[0]], ctx.pid0[r['pi']]['names']) \
+                    and student_role_ok(S[hits_[0]]) and pi_is_adviser(S[hits_[0]], pi_names_of(ctx, r['pi'])) \
                     and not (hyper_authored(r) and initials_only(raw)):
                 sid = hits_[0]; done_.add(sid)
                 if not plain_:

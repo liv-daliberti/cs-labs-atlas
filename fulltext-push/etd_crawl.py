@@ -401,8 +401,10 @@ def role_of(degree, department=''):
     d = (degree or '').lower()
     if MASTERS_UNIT_RX.search(department or ''):
         return 'masters'
-    if re.search(r'dissertation|doctoral|ph\.?\s?d|doctor of', d):
+    if re.search(r'dissertation|ph\.?\s?d|doctor of', d):
         return 'phd'
+    if 'doctoral' in d:   # only the repository's OAI type says so ('Thesis (OAI type doctoralThesis)': UChicago types master's theses so): the degree is not stated
+        return 'student'
     return 'other'
 
 
