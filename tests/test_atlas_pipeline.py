@@ -117,3 +117,14 @@ def test_flags_set_the_sbatch_variables(monkeypatch):
     AP.main(['snapshot-ext', 'SCHOOLS=newu', 'OA_DATE=2026-10-14', 'SBATCH_EXCLUDE=node1', '--time', '00:40:00', '--partition', 'lowprio'], run=run)
     probe = run.calls[0][0]
     assert '--time=00:40:00' in probe and '--partition=lowprio' in probe and '--exclude=node1' in probe and '--test-only' in probe
+
+
+def test_snapshot_cli_date_reaches_probe_filter_and_merge(monkeypatch, tmp_path):
+    run = FakeRun()
+    monkeypatch.setattr(AP.P, 'SCRATCH', tmp_path)
+    monkeypatch.setattr(AP.subprocess, 'run', lambda *a, **k: type('R', (), dict(stdout='f' * 40, stderr='', returncode=0))())
+    AP.main(['snapshot-ext', 'SCHOOLS=newu', 'OA_DATE=2026-10-14'], run=run)
+    assert len(run.calls) == 3
+    assert all(env['OA_DATE'] == '2026-10-14' for _, env in run.calls)
+    assert all('%A_%a.out' in next(x for x in args if x.startswith('--output=')) for args, _ in run.calls[:2])
+    assert '%A.out' in next(x for x in run.calls[2][0] if x.startswith('--output='))

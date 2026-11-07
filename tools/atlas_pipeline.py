@@ -142,7 +142,7 @@ def plan(name, schools, stages=None):
     out = []
     for stage, kind, cmd, py, cpus, mem, tm in (stages if stages is not None else PIPELINES[name]):
         args = [f'--job-name=cs-{name}-{stage}', *slurm_defaults(), f'--cpus-per-task={cpus}', f'--mem={mem}', f'--time={stage_time(tm)}',
-                f'--output={P.data("logs")}/pipeline-{name}-{stage}-%A' + ('_%a' if kind == 'school' else '') + '.out']
+                f'--output={P.data("logs")}/pipeline-{name}-{stage}-%A' + ('_%a' if kind == 'school' or kind.startswith('array:') else '') + '.out']
         if kind == 'school':
             args.append(f'--array=0-{len(schools) - 1}')
         elif kind.startswith('array:'):
@@ -151,17 +151,19 @@ def plan(name, schools, stages=None):
     return out
 
 
-def submit(name, schools, run=subprocess.run, test_only=False, commit=None, stages=None, guard_preempt=False, repo=None):
+def submit(name, schools, run=subprocess.run, test_only=False, commit=None, stages=None, guard_preempt=False, repo=None, overrides=None):
     """Submit every stage with afterok dependencies; returns {stage: job id}. With test_only only the first stage is checked (a dependency needs a real id).
     guard_preempt: `sbatch --test-only` the first stage first and refuse to submit when it would preempt another job (standing rule).
     repo: a worktree whose HEAD is pinned instead of main's (atlas pipeline --from-worktree)."""
     commit = commit or subprocess.run(['git', '-C', str(repo or P.CODE), 'rev-parse', 'HEAD'], capture_output=True, text=True).stdout.strip()
     jobs, prev = {}, None
+    base_env = dict(os.environ)
+    base_env.update(overrides or {})
     steps = plan(name, schools, stages)
     if guard_preempt and not test_only:
         first = steps[0]
         probe = run(['sbatch', '--parsable', '--test-only'] + first[1] + ['--export=ALL', str(CODE / 'hierarchy' / 'pipeline-stage.slurm')],  # route-ok: code that stays in hierarchy/
-                    capture_output=True, text=True, env=dict(os.environ, PIPE_CMD=first[3], CS_ATLAS_SNAPSHOT_COMMIT=commit, **first[2], **({'SNAPSHOT_REPO': str(repo)} if repo else {})), cwd=str(CODE))
+                    capture_output=True, text=True, env=dict(base_env, PIPE_CMD=first[3], CS_ATLAS_SNAPSHOT_COMMIT=commit, **first[2], **({'SNAPSHOT_REPO': str(repo)} if repo else {})), cwd=str(CODE))
         if probe.returncode or 'Preempts:' in (probe.stderr or '') + (probe.stdout or ''):
             raise SystemExit(f'not submitted ({first[0]}): ' + ((probe.stderr or probe.stdout or '').strip()[:300] or 'sbatch --test-only failed'))
     for stage, args, env, cmd in steps:
@@ -169,7 +171,7 @@ def submit(name, schools, run=subprocess.run, test_only=False, commit=None, stag
         if prev:
             argv.append(f'--dependency=afterok:{prev}')
         # the command contains spaces and quotes: everything travels in the environment (--export=ALL), not in a comma list
-        e = dict(os.environ, PIPE_CMD=cmd, CS_ATLAS_SNAPSHOT_COMMIT=commit, **env, **({'SNAPSHOT_REPO': str(repo)} if repo else {}))
+        e = dict(base_env, PIPE_CMD=cmd, CS_ATLAS_SNAPSHOT_COMMIT=commit, **env, **({'SNAPSHOT_REPO': str(repo)} if repo else {}))
         argv += ['--export=ALL', str(CODE / 'hierarchy' / 'pipeline-stage.slurm')]  # route-ok: code that stays in hierarchy/
         r = run(argv, capture_output=True, text=True, env=e, cwd=str(CODE))
         if r.returncode:
@@ -227,7 +229,7 @@ def main(argv=None, run=subprocess.run):
         raise SystemExit(f'--only {a.only}: no such stage in {a.name}; atlas pipeline --list')
     for st, tm in long_stages(a.name, stages):
         print(f'warning: stage {st} asks {tm}, over the 59-minute rule (partition all routes it to the account partition); it is not resumable here', file=sys.stderr)
-    jobs = submit(a.name, schools, run=run, test_only=a.test_only, stages=stages, guard_preempt=True, repo=CODE if a.from_worktree and CODE.resolve() != Path(P.CODE).resolve() else None)
+    jobs = submit(a.name, schools, run=run, test_only=a.test_only, stages=stages, guard_preempt=True, overrides=env, repo=CODE if a.from_worktree and CODE.resolve() != Path(P.CODE).resolve() else None)
     if a.test_only:
         return 0
     d = Path(P.SCRATCH) / f"pipeline-{a.name}-{datetime.datetime.now().strftime('%Y%m%d-%H%M%S')}"
