@@ -270,3 +270,12 @@ def test_a_step_is_stale_when_its_input_is_newer_than_its_output(tree):
     assert G.step_done('u', st) is False
     os.utime(out, (300, 300))
     assert G.step_done('u', st) is True
+
+
+def test_identity_stage_extracts_pages_after_school_persons():
+    steps = G.STEPS['5']
+    names = [s['name'] for s in steps]
+    assert names.index('dblp-dump-persons') < names.index('dblp-dump-pages') < names.index('openalex-identity')
+    pages = steps[names.index('dblp-dump-pages')]
+    assert pages['cmd'] == 'PY $TOOLS/dblp_dump_pages.py {school}'
+    assert pages['done'] == ['dblp-dump-pages-school.json.gz']

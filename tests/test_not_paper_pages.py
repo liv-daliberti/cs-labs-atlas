@@ -135,3 +135,16 @@ def test_school_page_extraction_writes_only_local_sidecar(tmp_path, monkeypatch)
     D.main('oxford')
     assert json.loads(gzip.decompress(dest.read_bytes()))['pages'] == {'wanted': '5-7'}
     assert calls == [('dblp-dump-persons-school.json.gz', 'oxford'), ('dblp-dump-pages-school.json.gz', 'oxford')]
+
+
+def test_school_page_sidecar_is_a_recorded_input(tmp_path, monkeypatch):
+    import hashlib
+    import provenance
+    local = tmp_path / 'dblp-dump-pages-school.json.gz'
+    local.write_bytes(b'local page source')
+    monkeypatch.setattr(provenance.P, 'data', lambda name, school=None: tmp_path / name)
+    monkeypatch.setattr(provenance.P, 'SITE_DATA', tmp_path)
+    inputs = provenance.school_inputs('oxford')
+    assert inputs[str(local)]['sha256'] == hashlib.sha256(local.read_bytes()).hexdigest()
+    local.write_bytes(b'corrected local page source')
+    assert provenance.school_inputs('oxford')[str(local)]['sha256'] != inputs[str(local)]['sha256']
