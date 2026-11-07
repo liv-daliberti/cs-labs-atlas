@@ -873,10 +873,18 @@ def merge_editions(rows, n):
         return (0 if d and not d.startswith('10.48550') else 1, 0 if r['work'] else 1, -(int(r['year'] or 0)))
     grouped = collections.defaultdict(list)
     for r in rows:
-        grouped[(r['pi'], norm_title(r.get('title'))[:150] or r['oa'])].append(r)
+        title = str(r.get('title') or '')
+        wip = re.sub(r'^\s*work[- ]in[- ]progress\s*:\s*|\s*:\s*work[- ]in[- ]progress\s*$', '', title, flags=re.I)
+        # Catalogues move this label between title and subtitle. Only merge those
+        # marked records when the year and the complete, ordered byline agree.
+        if wip != title and r.get('year') and r.get('byline'):
+            key = ('wip', r['pi'], norm_title(wip), r['year'], tuple(norm_title(a) for a in r['byline']))
+        else:
+            key = (r['pi'], norm_title(title)[:150] or r['oa'])
+        grouped[key].append(r)
     rows = []
     for g in grouped.values():
-        g.sort(key=rank); lead = dict(g[0])
+        g.sort(key=lambda r: (bool((r.get('doi') or '').startswith('10.5555/')), rank(r))); lead = dict(g[0])
         dups = [d for x in g for d in x.get('_dups') or []]
         lead['editions'] = [dict(oa=x['oa'], work=x['work'], doi=x.get('doi'), year=x['year'], venue=x.get('venue')) for x in g[1:]] \
             + [{k_: d[k_] for k_ in ('oa', 'work', 'doi', 'year', 'venue')} for d in dups]

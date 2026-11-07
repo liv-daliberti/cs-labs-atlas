@@ -318,6 +318,24 @@ def test_R_PAP_16_one_record_per_paper_and_lab(built):
     assert len(merged) == 1 and merged[0]['oa'] == 'b' and merged[0]['editions'][0]['oa'] == 'a' and len(merged[0]['_bylines']) == 2
 
 
+def test_R_PAP_16_work_in_progress_subtitle_requires_same_byline_and_year():
+    row = dict(pi='X', oa='mirror', work=None, doi='10.5555/mirror',
+               title='Hierarchical control: work-in-progress', year=2018,
+               byline=['Roger D. Chamberlain', 'Christopher Gill'], byline_school=[])
+    ieee = dict(row, oa='ieee', doi='10.1109/paper', title='Work-in-Progress: Hierarchical Control')
+    n = collections.Counter()
+    merged = papers.merge_editions([row, ieee], n)
+    assert len(merged) == 1 and merged[0]['oa'] == 'ieee'
+    assert merged[0]['editions'][0]['oa'] == 'mirror'
+    assert len(merged[0]['_bylines']) == 2 and n['edition_records_merged'] == 1
+    for change in (dict(year=2019), dict(byline=['Roger D. Chamberlain']),
+                   dict(byline=['Christopher Gill', 'Roger D. Chamberlain']), dict(pi='Y')):
+        assert len(papers.merge_editions([row, dict(ieee, **change)], collections.Counter())) == 2
+    # An unmarked later full paper is not the marked preliminary contribution.
+    full = dict(ieee, title='Hierarchical Control')
+    assert len(papers.merge_editions([row, full], collections.Counter())) == 2
+
+
 def test_R_PAP_17_not_paper_types(built):
     assert {'dataset', 'paratext', 'peer-review', 'erratum', 'supplementary-materials', 'grant', 'standard', 'retraction',
             'reference-entry', 'libguides', 'other'} == common.NOT_PAPERS
