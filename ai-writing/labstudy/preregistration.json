@@ -1,0 +1,40 @@
+{
+  "_doc": "Pre-registration of the lab event study (owner decision 2026-11-05). Written and committed BEFORE the event study was run on any data; event_study.py reads the adoption specifications from here, so a re-run on the final paper set or detector v3 uses exactly these thresholds. Changing this file after seeing results is a protocol change and must be reported as such.",
+  "registered": "2026-11-05",
+  "adoption": {
+    "unit": "lab (strict membership: the PI is on the byline)",
+    "min_scored_per_lab_year": 3,
+    "floor_window": [2016, 2021],
+    "floor": "pooled mean over lab-years in the floor window (lab-years with at least min_scored scored papers)",
+    "sd": "pooled standard deviation of the same lab-year metric in the floor window",
+    "rule": "adoption year = first year t <= last_year-1 in which the lab-year metric exceeds floor + k*SD in t and in t+1 (sustained for sustain_years consecutive years, each with at least min_scored scored papers); never-adopters = no such year; a lab whose only exceedance is the last year cannot be confirmed as sustained: censored, left out of the primary comparison",
+    "specs": {
+      "S1_primary": {"metric": "share_ge25", "doc": "share of scored full-text papers with ai_share >= 0.25", "k": 3, "sustain_years": 2},
+      "S2_k2": {"metric": "share_ge25", "k": 2, "sustain_years": 2},
+      "S3_k5": {"metric": "share_ge25", "k": 5, "sustain_years": 2},
+      "S4_ge10": {"metric": "share_ge10", "doc": "share with ai_share >= 0.10", "k": 3, "sustain_years": 2},
+      "S5_mean": {"metric": "mean_share", "doc": "mean ai_share", "k": 3, "sustain_years": 2},
+      "S6_abstract": {"metric": "abs_flag", "doc": "share of papers whose abstract is flagged (every paper with an abstract; no full-text selection)", "k": 3, "sustain_years": 2},
+      "S7_ipw": {"metric": "share_ge25_ipw", "doc": "S1 with the stabilised full-text IPW weights (Hajek mean per lab-year)", "k": 3, "sustain_years": 2},
+      "S8_one_year": {"metric": "share_ge25", "k": 3, "sustain_years": 1}
+    },
+    "post_chatgpt_only_variant": "adoption years before 2023 are detector noise (the floor window is pre-ChatGPT); the primary keeps them as pre-registered, a variant drops those labs"
+  },
+  "outcomes": {
+    "geometry_models": ["specter2_base", "specter2_proximity", "scincl", "qwen3_0p6b", "gte_qwen2_1p5b", "bge_m3", "nomic_v15"],
+    "geometry": ["disp", "mpd", "vendi"],
+    "novelty": {"measure": "nov_nn_cap", "scope": "all", "k": [1, 3, 5], "min_papers_per_lab_year": 3, "doc": "mean over the lab-year's papers"},
+    "topic": ["h_oa", "h_bt", "dist_centroid(bt_qwen3_0p6b)", "dist_centroid(oa_topic)", "mass_llm(bt_qwen3_0p6b)"],
+    "headline": ["mpd(specter2_proximity)", "disp(specter2_proximity)", "vendi(specter2_proximity)", "nov3(specter2_proximity)", "h_oa", "dist_centroid(bt_qwen3_0p6b)"],
+    "wording_control": "geometry and topic outcomes recomputed on the all-AI (polish) rewritten abstracts of the same papers; the event study is run on original, on rewritten, and on rewritten minus original (paired lab-years)"
+  },
+  "estimator": {
+    "primary": "Callaway-Sant'Anna group-time ATT(g,t), universal base period g-1, never-treated controls, no covariates; aggregated to event time with cohort-size weights; overall ATT = mean of post cells (e >= 0)",
+    "sensitivity": ["not-yet-treated controls", "two-way fixed effects event study (lab and year FE, lab-clustered), shown to expose heterogeneity bias", "post-2022 adopters only"],
+    "inference": "bootstrap over labs (resample labs with replacement, recompute everything), B = 300, percentile 95% intervals",
+    "pretrend": "leads e = -5..-2 (base e = -1): each lead with its interval, a joint Wald test from the bootstrap covariance, and a linear pre-trend slope; reported whatever the result",
+    "placebo": "permutation of the adoption cohorts among adopters and never-adopters (200 permutations): where the actual overall ATT falls in the permutation distribution",
+    "endogeneity": "adopters vs never-adopters and early vs late adopters on pre-period features (size, school, department type, share of LLM-text papers up to 2022, pre-trend); a Spearman test of adoption year against the pre-2023 LLM-text share"
+  },
+  "years": {"first": 2016, "last": 2025, "no_2026": true}
+}

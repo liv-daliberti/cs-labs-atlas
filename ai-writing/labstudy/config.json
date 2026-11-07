@@ -1,0 +1,28 @@
+{
+  "_doc": "Configuration of the lab-level study (topic convergence, lab event study, full-text IPW). Every key can be overridden from the environment as LABSTUDY_<KEY upper-case> (paths) or with --config <file>; a re-run on the final paper set or on detector v3 changes only the paths below.",
+  "scores_db": null,
+  "universe_db": null,
+  "paper_set": null,
+  "ipw_table": null,
+  "out_dir": null,
+  "first_year": 2016,
+  "last_year": 2025,
+  "pre_end": 2021,
+  "post_start": 2023,
+  "placebo_breaks": [2019, 2020, 2021],
+  "topic": {
+    "min_papers": 10,
+    "min_papers_sensitivity": [5, 20],
+    "reps": 8,
+    "alpha": 1.0,
+    "max_pairs": 40000,
+    "boot": 300,
+    "levels": ["bt_qwen3_0p6b", "bt_specter2_proximity", "oa_subfield", "oa_topic"]
+  },
+  "ipw": {
+    "trim_quantiles": [0.01, 0.99],
+    "folds": 5,
+    "smd_target": 0.1,
+    "exclude_schools": ["gatech"]
+  }
+}
