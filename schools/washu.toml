@@ -87,7 +87,7 @@ foreign_title_exception = false
 center_units = []
 computing_departments = ["CSE"]
 home_units = {"Computer Science and Engineering" = '^(?:Department of )?Computer Science (?:and|&) Engineering$', "Electrical and Systems Engineering" = '^(?:Preston M\. Green )?(?:Department of )?Electrical (?:and|&) Systems Engineering$', "Biomedical Engineering" = '^(?:Department of )?Biomedical Engineering$', "Statistics and Data Science" = '^(?:Department of )?Statistics (?:and|&) Data Science$', "Mathematics and Statistics" = '^(?:Department of )?Mathematics(?: (?:and|&) Statistics)?$', "Olin Business School" = '^(?:Olin Business School|Olin)$', "Psychological and Brain Sciences" = '^(?:Department of )?Psychological (?:and|&) Brain Sciences$', "Institute for Informatics, Data Science and Biostatistics" = '^(?:Institute for Informatics, Data Science (?:and|&) Biostatistics|I2DB)$', "Biostatistics" = '^(?:Division of )?Biostatistics$'}
-rank_words = {teaching = '\bprofessor\s+of\s+practice|\bsenior\s+lecturer', adjunct = '\badjunct\b', research = '\bresearch\s+(?:associate|assistant)\s+professor'}
+rank_words = {teaching = '\bprofessor\s+of\s+practice|\bsenior\s+lecturer', adjunct = '\badjunct\b', research = '\bresearch\s+(?:associate|assistant)\s+professor', courtesy = '\baffiliate\s*,'}
 
 [sweep_check]
 exceptions = []
@@ -135,7 +135,9 @@ title_match = '''Electrical (?:and|&) Systems Engineering'''
 coverage = "affiliated"
 url = "https://ese.washu.edu/"
   [[departments.listings]]
-  slot = "ESE faculty (wustl.edu)"
+  # Both URL eras belong to one faculty slot; domain moves are not separate lists.
+  # Bounds remain provisional until the shared exact-URL archive discovery completes.
+  slot = "ESE faculty"
   kind = "main"
   url = "ese.wustl.edu/faculty-research/directory.html"
   from = "20160101"
@@ -146,6 +148,7 @@ url = "https://ese.washu.edu/"
   url = "ese.washu.edu/faculty-research/directory.html"
   from = "20240101"
   to = "20261231"
+  format = "wu_teaser"  # verified against 75 cards in the cached 2026 live directory, including affiliates
 
 [[departments]]
 code = "BME"
@@ -155,7 +158,8 @@ title_match = '''Biomedical Engineering'''
 coverage = "affiliated"
 url = "https://bme.washu.edu/"
   [[departments.listings]]
-  slot = "BME faculty (wustl.edu)"
+  # Bounds remain provisional until the shared exact-URL archive discovery completes.
+  slot = "BME faculty"
   kind = "main"
   url = "bme.wustl.edu/faculty-research/directory.html"
   from = "20160101"
@@ -166,6 +170,7 @@ url = "https://bme.washu.edu/"
   url = "bme.washu.edu/faculty-research/directory.html"
   from = "20240101"
   to = "20261231"
+  format = "wu_teaser"  # verified against all 36 cards in the cached 2026 live directory
 
 [[affiliated_units]]
 code = "SDS"
@@ -311,3 +316,9 @@ probe = "https://repository.library.washu.edu/etd/"
 host = "api.ror.org"
 use = "live"
 purpose = "ROR verification"
+
+[[hosts]]
+host = "bulletin.wustl.edu"
+use = "live"
+purpose = "Official historical engineering faculty catalogs: /about/prior/ index and linked PDFs allowed; /prior/ HTML disallowed. Academic edition and printed date kept separately in reviewed/historical-source-review.json; no appointment interval inferred."
+probe = "https://bulletin.wustl.edu/about/prior/"
