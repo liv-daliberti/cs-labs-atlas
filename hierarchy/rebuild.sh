@@ -49,7 +49,9 @@ cd "$CS_ATLAS_WORK" || exit 1   # the data: always the main checkout
 if [ "$list_only" = 1 ]; then echo "stages: ${STAGES:-<default: every stage>}"; echo "schools: ${SCHOOLS:-$CS_ATLAS_SCHOOLS}"; exit 0; fi
 if [ -z "${CS_ATLAS_SNAPSHOT:-}" ]; then  # run from a code snapshot of one commit (docs/CONTRIBUTING.md, tools/job_code_snapshot.sh)
   . "$CS_ATLAS_CODE/tools/job_code_snapshot.sh" || exit 1
-  bash "$CS_ATLAS_SNAPSHOT/hierarchy/rebuild.sh"; rc=$?   # the arguments are already in the environment; snapshot_remove; exit $rc
+  bash "$CS_ATLAS_SNAPSHOT/hierarchy/rebuild.sh"; rc=$?   # the arguments are already in the environment
+  snapshot_remove
+  exit "$rc"
 fi
 PY="nice -n10 $CS_ATLAS_PY -u"  # the project interpreter (env/atlas; tools/atlas_paths.py PY)
 SCHOOLS=${SCHOOLS:-$CS_ATLAS_SCHOOLS}

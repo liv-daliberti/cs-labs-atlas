@@ -196,6 +196,31 @@ def test_rebuild_sh_takes_stages_as_an_argument_and_refuses_the_rest():
         assert r.returncode == 2 and 'rebuild.sh:' in r.stderr and 'stages:' not in r.stdout, bad
 
 
+@pytest.mark.parametrize('child_rc', [0, 17])
+def test_rebuild_exits_after_snapshot_child_and_preserves_its_status(tmp_path, child_rc):
+    import os
+    for directory in ('hierarchy', 'tools', 'snapshot/hierarchy'):
+        (tmp_path / directory).mkdir(parents=True, exist_ok=True)
+    script = tmp_path / 'hierarchy/rebuild.sh'
+    script.write_text(REBUILD_SH.read_text())
+    (tmp_path / 'paths.sh').write_text(
+        'CS_ATLAS_WORK="$TEST_ROOT"\nCS_ATLAS_CODE="$TEST_ROOT"\n'
+        'CS_ATLAS_TOOLS="$TEST_ROOT/tools"\nCS_ATLAS_PY=/bin/true\n'
+        'CS_ATLAS_SCRATCH="$TEST_ROOT"\nCS_ATLAS_SCHOOLS=mit\n')
+    (tmp_path / 'tools/job_code_snapshot.sh').write_text(
+        'export CS_ATLAS_SNAPSHOT="$TEST_ROOT/snapshot"\n'
+        'snapshot_remove() { echo cleanup >> "$TEST_ROOT/trace"; }\n')
+    (tmp_path / 'snapshot/hierarchy/rebuild.sh').write_text(
+        'echo child >> "$TEST_ROOT/trace"\nexit "$CHILD_RC"\n')
+    env = dict(os.environ, TEST_ROOT=str(tmp_path), CHILD_RC=str(child_rc))
+    env.pop('CS_ATLAS_SNAPSHOT', None)
+    result = subprocess.run(['bash', str(script), 'STAGES=zero_paper'], env=env,
+                            capture_output=True, text=True, timeout=10)
+    assert result.returncode == child_rc
+    assert (tmp_path / 'trace').read_text().splitlines() == ['child', 'cleanup']
+    assert '== rebuild' not in result.stdout  # the parent must not start another build
+
+
 def test_build_is_a_per_school_array_newest_school_first(env):
     r = Runner()
     assert go(['--tag', 'arr', '--only', 'rebuild'], runner=r) == 0
