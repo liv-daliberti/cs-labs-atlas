@@ -296,7 +296,43 @@ def wu_teaser(h):
     return out
 
 
+def oxford_person_index(h):
+    """Oxford's semantic person list; retain written titles and no contact fields."""
+    out = []
+    for block in re.findall(r'<li\b[^>]*class="personIndex"[^>]*>(.*?)</li>', h, re.S):
+        name = re.search(r'<span[^>]*itemprop="name"[^>]*>(.*?)</span>', block, re.S)
+        title = re.search(r'<span[^>]*class="list-unbulleted-extra"[^>]*>(.*?)</span>', block, re.S)
+        link = re.search(r'<a[^>]*href="([^"]+)"', block)
+        if name:
+            out.append(dict(name_listed=clean(name.group(1)), titles=_titles(title.group(1)) if title else [],
+                            homepage=H.unescape(link.group(1)) if link else None, division=None))
+    return out
+
+
+def cambridge_directory(h):
+    """CST's public directory: role classifications stay literal; Faculty is not a guessed rank."""
+    out = []
+    for row in re.findall(r'<tr\b[^>]*>(.*?)</tr>', h, re.S):
+        name = re.search(r'<td[^>]*class="views-field views-field-title"[^>]*>(.*?)</td>', row, re.S)
+        role = re.search(r'<td[^>]*class="views-field views-field-field-sd-classifications-ref"[^>]*>(.*?)</td>', row, re.S)
+        if not name or not role:
+            continue
+        link = re.search(r'<a[^>]*href="([^"]+)"', name.group(1))
+        nm = clean(name.group(1))
+        titles = [clean(x) for x in re.findall(r'<a\b[^>]*>(.*?)</a>', role.group(1), re.S)]
+        if not titles and clean(role.group(1)):
+            titles = [clean(role.group(1))]
+        if re.search(r'\(emeritus\)', nm, re.I):
+            nm = re.sub(r'\s*\(emeritus\)', '', nm, flags=re.I)
+            titles.append('emeritus')
+        if nm:
+            out.append(dict(name_listed=nm, titles=titles, homepage=H.unescape(link.group(1)) if link else None, division=None))
+    return out
+
+
 FORMATS = {
+    'oxford_person_index': (oxford_person_index, re.compile(r'class="personIndex"')),
+    'cambridge_directory': (cambridge_directory, re.compile(r'views-field-field-sd-classifications-ref')),
     'eecs_table': (eecs_table, re.compile(r'<b>Division:</b>', re.I)),
     'eecs_wp': (eecs_wp, re.compile(r"class=['\"]eecs_person_wrapper['\"]")),
     'uc_cs_table': (uc_cs_table, re.compile(r'<tr class="(?:odd|even)[^"]*">.*?(?:Personal website|Research Interests)', re.S)),
