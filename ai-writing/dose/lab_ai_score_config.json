@@ -1,0 +1,35 @@
+{
+  "method_version": "main-body-2-v3",
+  "year": 2025,
+  "placebo_year": 2019,
+  "detector": "v3",
+  "min_papers": 5,
+  "min_main_words": 1000,
+  "min_scored_passages": 3,
+  "min_passage_words": 100,
+  "bootstrap": 2000,
+  "seed": 20261105,
+  "sections": {
+    "tags": "AI_SCORES/results/lab_ai/tags-final.parquet"
+  },
+  "ipw_weights": "AI_SCORES/../labstudy/ipw/ipw_weights.parquet",
+  "ipw_column": "w_ft",
+  "detectors": {
+    "v2": {
+      "label": "v2",
+      "passages": "AI_SCORES/ai_scores.sqlite:passages",
+      "threshold": 0.0008531202983449121,
+      "note": "ModernBERT passage model, 1% false-alarm cut on 2016-2021 body passages (detector_v2/results/all/metrics.json)",
+      "tags": "AI_SCORES/results/lab_ai/tags-final.parquet",
+      "targets": "AI_SCORES/results/lab_ai/targets.parquet"
+    },
+    "v3": {
+      "label": "v3",
+      "passages": "AI_SCORES_V3/results/lab_ai/passages_v3.parquet",
+      "threshold": -6.122996381759635,
+      "tags": "AI_SCORES_V3/results/lab_ai/tags-v3.parquet",
+      "targets": "AI_SCORES_V3/results/lab_ai/targets-v3.parquet",
+      "note": "Detector v3, the `all` model at the 0.3% calibration false-alarm threshold on z (detector_v3/results/operating_point.json), main-body passages only; passages under 100 words or heading/interleaving-heavy abstain and are not scored. Inputs: lab_ai_v3_inputs.py. The legacy/abstract/Kobak cross-checks still read the v2 container (an independent detector)."
+    }
+  }
+}
