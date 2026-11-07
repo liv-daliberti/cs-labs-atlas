@@ -1,0 +1,292 @@
+{
+  "evaluated_at": "2026-11-07T05:24:16.118121+00:00",
+  "scoring_complete": true,
+  "evaluation_job": 32138116,
+  "source_code_commit": "b1ae199bdb38735f611135e856d02ff567a29fce",
+  "evaluation_sha256": "2797ea0844d9ab6552ade7990b83518329f8274f9a7ecc1cb9956208fdf17f05",
+  "calibration_fpr_target": 0.003,
+  "selection_basis": "Unseen-family outputs from the training split; test results are reported separately and not used to choose a candidate.",
+  "production_model": "Existing v3 retained",
+  "decision": "Do not promote v4 candidates: tri/pair/drop fail to improve held-out Qwen selection miss; DeBERTa Llama-holdout training completed but selection miss is 99.70%. Investigation remains a separate research task.",
+  "runs": {
+    "v3:lofo-qwen": {
+      "fpr": {
+        "n": 182154,
+        "k": 530,
+        "rate": 0.0029096259209240535,
+        "ci": [
+          0.002655281569145569,
+          0.003180464094696202
+        ],
+        "papers": 5061
+      },
+      "held_out_family": "qwen",
+      "selection_miss": {
+        "n": 10137,
+        "miss": 677,
+        "miss_rate": 0.06678504488507447,
+        "miss_ci": [
+          0.062000847513479763,
+          0.0718199021085283
+        ]
+      },
+      "test_miss": {
+        "n": 3398,
+        "miss": 224,
+        "miss_rate": 0.0659211300765156,
+        "miss_ci": [
+          0.05780699870465492,
+          0.07479153950683978
+        ]
+      }
+    },
+    "v3:lofo-llama": {
+      "fpr": {
+        "n": 182154,
+        "k": 599,
+        "rate": 0.003288426276666996,
+        "ci": [
+          0.0029904825224349885,
+          0.003596594975951475
+        ],
+        "papers": 5061
+      },
+      "held_out_family": "llama",
+      "selection_miss": {
+        "n": 8415,
+        "miss": 118,
+        "miss_rate": 0.014022578728461082,
+        "miss_ci": [
+          0.011620247414749998,
+          0.01676949521792015
+        ]
+      },
+      "test_miss": {
+        "n": 3348,
+        "miss": 57,
+        "miss_rate": 0.017025089605734768,
+        "miss_ci": [
+          0.01291948269479794,
+          0.02200233553689041
+        ]
+      }
+    },
+    "v3:lofo-gemma": {
+      "fpr": {
+        "n": 182154,
+        "k": 464,
+        "rate": 0.0025472951458655863,
+        "ci": [
+          0.00228530242914632,
+          0.002827423897955564
+        ],
+        "papers": 5061
+      },
+      "held_out_family": "gemma",
+      "selection_miss": {
+        "n": 4147,
+        "miss": 30,
+        "miss_rate": 0.007234145165179648,
+        "miss_ci": [
+          0.004886015305703996,
+          0.010311209822805915
+        ]
+      },
+      "test_miss": {
+        "n": 2068,
+        "miss": 19,
+        "miss_rate": 0.00918762088974855,
+        "miss_ci": [
+          0.005540352867130803,
+          0.01431057514513283
+        ]
+      }
+    },
+    "lofo-qwen-drop": {
+      "fpr": {
+        "n": 182154,
+        "k": 535,
+        "rate": 0.002937075222064846,
+        "ci": [
+          0.0026365292132686084,
+          0.003253399206945756
+        ],
+        "papers": 5061
+      },
+      "held_out_family": "qwen",
+      "selection_miss": {
+        "n": 10137,
+        "miss": 3339,
+        "miss_rate": 0.32938739271973955,
+        "miss_ci": [
+          0.32023896006981073,
+          0.3386339328141904
+        ]
+      },
+      "test_miss": {
+        "n": 3398,
+        "miss": 1141,
+        "miss_rate": 0.33578575632725133,
+        "miss_ci": [
+          0.31990660397060516,
+          0.35194795652681254
+        ]
+      }
+    },
+    "lofo-qwen-tri": {
+      "fpr": {
+        "n": 182154,
+        "k": 527,
+        "rate": 0.0028931563402395774,
+        "ci": [
+          0.0026301468479447815,
+          0.003146533187184256
+        ],
+        "papers": 5061
+      },
+      "held_out_family": "qwen",
+      "selection_miss": {
+        "n": 10137,
+        "miss": 713,
+        "miss_rate": 0.07033639143730887,
+        "miss_ci": [
+          0.06543313808761973,
+          0.07548817237189323
+        ]
+      },
+      "test_miss": {
+        "n": 3398,
+        "miss": 226,
+        "miss_rate": 0.06650971159505592,
+        "miss_ci": [
+          0.05836055459794942,
+          0.07541405152557974
+        ]
+      }
+    },
+    "lofo-qwen-pair": {
+      "fpr": {
+        "n": 182154,
+        "k": 488,
+        "rate": 0.0026790517913413926,
+        "ci": [
+          0.0024198563082784797,
+          0.002938927271724246
+        ],
+        "papers": 5061
+      },
+      "held_out_family": "qwen",
+      "selection_miss": {
+        "n": 10137,
+        "miss": 699,
+        "miss_rate": 0.06895531222255105,
+        "miss_ci": [
+          0.06409790750390379,
+          0.07406207285465465
+        ]
+      },
+      "test_miss": {
+        "n": 3398,
+        "miss": 230,
+        "miss_rate": 0.06768687463213655,
+        "miss_ci": [
+          0.059468229099200465,
+          0.07665851620829386
+        ]
+      }
+    },
+    "lofo-qwen-deb": {
+      "fpr": {
+        "n": 182154,
+        "k": 580,
+        "rate": 0.003184118932331983,
+        "ci": [
+          0.0029230607652117758,
+          0.003476129828505108
+        ],
+        "papers": 5061
+      },
+      "held_out_family": "qwen",
+      "selection_miss": {
+        "n": 10137,
+        "miss": 530,
+        "miss_rate": 0.05228371313011739,
+        "miss_ci": [
+          0.04803026019506248,
+          0.05679662961478918
+        ]
+      },
+      "test_miss": {
+        "n": 3398,
+        "miss": 163,
+        "miss_rate": 0.0479693937610359,
+        "miss_ci": [
+          0.04102871091111514,
+          0.055700466675309195
+        ]
+      }
+    },
+    "lofo-llama-deb": {
+      "fpr": {
+        "n": 182154,
+        "k": 546,
+        "rate": 0.0029974636845745907,
+        "ci": [
+          0.002745533691104343,
+          0.003249137831332019
+        ],
+        "papers": 5061
+      },
+      "held_out_family": "llama",
+      "selection_miss": {
+        "n": 8415,
+        "miss": 8390,
+        "miss_rate": 0.9970291146761735,
+        "miss_ci": [
+          0.9956174901390664,
+          0.9980765052118689
+        ]
+      },
+      "test_miss": {
+        "n": 3348,
+        "miss": 3341,
+        "miss_rate": 0.9979091995221028,
+        "miss_ci": [
+          0.9956969260191169,
+          0.9991589895034741
+        ]
+      }
+    },
+    "lofo-gemma-deb": {
+      "fpr": {
+        "n": 182154,
+        "k": 558,
+        "rate": 0.0030633420073124936,
+        "ci": [
+          0.0027889193833752195,
+          0.0033492735332197247
+        ],
+        "papers": 5061
+      },
+      "held_out_family": "gemma",
+      "selection_miss": {
+        "n": 4147,
+        "miss": 34,
+        "miss_rate": 0.008198697853870267,
+        "miss_ci": [
+          0.00568432732954548,
+          0.011438178145554109
+        ]
+      },
+      "test_miss": {
+        "n": 2068,
+        "miss": 14,
+        "miss_rate": 0.006769825918762089,
+        "miss_ci": [
+          0.0037059234148372343,
+          0.011332555189324163
+        ]
+      }
+    }
+  }
+}
