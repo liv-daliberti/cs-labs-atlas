@@ -450,7 +450,7 @@ def transport_policy_denied(host_use, host):
     return host_use(host) in ('none', 'wayback-only')
 
 
-def live_only_send(send, deferred, request, denied=None, record_denial=None, **kwargs):
+def live_only_send(send, deferred, request, denied=None, record_denial=None, record_redirect=None, **kwargs):
     """Also stop archive redirects at the transport boundary, before any socket call."""
     if (urlsplit(request.url).hostname or '') in ('web.archive.org', 'archive.org'):
         deferred.add(request.url)
@@ -458,10 +458,25 @@ def live_only_send(send, deferred, request, denied=None, record_denial=None, **k
     host = urlsplit(request.url).hostname or ''
     if denied and denied(host):
         raise RuntimeError(f'live host previously refused access: {host}')
+    # A redirect destination has not passed its own robots/source checks.
+    # Return the 3xx response for recorded follow-up; never automatically visit it.
+    kwargs['allow_redirects'] = False
     response = send(request, **kwargs)
+    if record_redirect and getattr(response, 'status_code', None) in (301, 302, 303, 307, 308):
+        record_redirect(request.url, response.status_code, response.headers.get('Location'))
     if record_denial and getattr(response, 'status_code', None) in (403, 429):
         record_denial(host, response.status_code)
     return response
+
+
+def remember_live_redirect(school, url, status, location):
+    """Keep held destinations reviewable without treating them as fetched pages."""
+    path = P.RATE_STAMPS / 'labpage-held-redirects.jsonl'
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open('a') as out:
+        fcntl.flock(out, fcntl.LOCK_EX)
+        out.write(json.dumps(dict(school=school, url=url, status=status, location=location,
+                                  checked_at=now(), result='redirect_held_unchecked_destination')) + '\n')
 
 
 def live_denials(path=None):
@@ -515,7 +530,8 @@ class Kit:
             lpcap._sess.send = lambda request, **kw: live_only_send(
                 send, self.deferred_archive_urls, request,
                 denied=lambda host: live_denials().get(host) or (hasattr(self, 'host_use') and transport_policy_denied(self.host_use, host)),
-                record_denial=remember_live_denial, **kw)
+                record_denial=remember_live_denial,
+                record_redirect=lambda url, status, location: remember_live_redirect(school, url, status, location), **kw)
         lpcap.ROOT = pubx.ROOT = str(H)  # the toolkit's own constant predates tools/atlas_paths.py; its file paths now go through atlas_paths.data
         for k_ in list(lpcap.DBS) + [school]:
             lpcap.DBS[k_] = str(P.data('labpage-captures.sqlite', k_))
@@ -585,19 +601,22 @@ class Kit:
         import urllib.robotparser
         sp = urlsplit(url)
         bases = (f'http://{sp.netloc}/robots.txt', f'https://{sp.netloc}/robots.txt')
-        body, st = '', None
+        body, st, recorded = '', None, False
         for path in [str(self.store), self.lpcap.DBS[self.school]]:
             if not os.path.exists(path):
                 continue
             c = sqlite3.connect(f'file:{path}?mode=ro', uri=True, timeout=60)
-            row = c.execute('SELECT status, content FROM captures WHERE url IN (?,?) AND capture_url IS NULL AND error IS NULL '
+            row = c.execute('SELECT status, content FROM captures WHERE url IN (?,?) AND capture_url IS NULL '
                             'ORDER BY id DESC LIMIT 1', bases).fetchone()
             c.close()
             if row:
+                recorded = True
                 st, body = row[0], (zlib.decompress(row[1]).decode('utf-8', 'replace') if row[1] else '')
                 break
+        if not recorded:
+            return True  # caller's robots fetch has not occurred yet
         if st != 200 or '<html' in body[:500].lower():
-            return st not in (401, 403)
+            return st in (404, 410)  # redirects/errors/HTML are not usable permission
         if os.environ.get('CS_ATLAS_LABPAGE_LIVE_ONLY') == '1' and names_project_agents(body):
             return False  # the top-25/source policy excludes hosts naming these agents entirely
         rp = urllib.robotparser.RobotFileParser()

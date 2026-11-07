@@ -527,6 +527,37 @@ def test_live_first_transport_also_blocks_redirects_to_archive():
     assert sent == ['https://u.edu/']
 
 
+def test_live_first_holds_redirect_before_unchecked_destination():
+    from types import SimpleNamespace
+    sent = []
+    def send(request, **options):
+        sent.append(request.url)
+        assert options['allow_redirects'] is False
+        return SimpleNamespace(status_code=302, headers={'Location': 'https://new-host.edu/private'})
+    held = []
+    response = A.live_only_send(send, set(), SimpleNamespace(url='https://u.edu/profile'), allow_redirects=True,
+                               record_redirect=lambda *args: held.append(args))
+    assert response.status_code == 302
+    assert response.headers['Location'] == 'https://new-host.edu/private'
+    assert sent == ['https://u.edu/profile']
+    assert held == [('https://u.edu/profile', 302, 'https://new-host.edu/private')]
+
+
+@pytest.mark.parametrize('status,body,allowed', [(302, b'', False), (429, b'', False), (None, b'', False),
+                                               (200, b'<html>challenge</html>', False), (404, b'', True)])
+def test_robots_redirect_failure_or_html_is_not_permission(tmp_path, status, body, allowed):
+    import sqlite3
+    import zlib
+    from types import SimpleNamespace
+    path = tmp_path/'cache.sqlite'
+    with sqlite3.connect(path) as db:
+        db.execute('CREATE TABLE captures (id INTEGER, url TEXT, capture_url TEXT, error TEXT, status INTEGER, content BLOB)')
+        db.execute('INSERT INTO captures VALUES (1,?,NULL,?,?,?)', ('https://u.edu/robots.txt', 'timeout' if status is None else None,
+                                                                 status, zlib.compress(body)))
+    kit = SimpleNamespace(store=path, school='u', lpcap=SimpleNamespace(DBS={'u': str(path)}))
+    assert A.Kit._ai_allowed(kit, 'https://u.edu/profile') is allowed
+
+
 def test_live_refusal_is_shared_and_blocks_later_requests(tmp_path):
     from types import SimpleNamespace
     path = tmp_path / 'denials.json'
