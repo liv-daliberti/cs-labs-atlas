@@ -1,0 +1,71 @@
+{
+  "canonical_commit": "3fa32f7a8d1a24ae50a30af6a62081fb27065951",
+  "item_keys": {
+    "lab_precision": {
+      "count": 35,
+      "ordered_keys_equal": true
+    },
+    "student_precision": {
+      "count": 40,
+      "ordered_keys_equal": true
+    },
+    "lab_coverage": {
+      "count": 15,
+      "ordered_keys_equal": true
+    },
+    "student_coverage_order": {
+      "count": 0,
+      "ordered_keys_equal": true
+    }
+  },
+  "semantic_package": {
+    "pis.json": {
+      "equal": true,
+      "old_count": 37,
+      "new_count": 37
+    },
+    "students.json": {
+      "equal": true,
+      "old_count": 37,
+      "new_count": 37
+    },
+    "lab_papers.jsonl.gz": {
+      "equal": true,
+      "old_count": 1351,
+      "new_count": 1351
+    },
+    "student_papers.jsonl.gz": {
+      "equal": true,
+      "old_count": 77,
+      "new_count": 77
+    }
+  },
+  "source_hashes": {
+    "pis.json": "00c2e16051e9b212e92cd26c9f0975d2df4c0c21d400fc5b50b3aeb3b6a7afd9",
+    "students.json": "b3f4a3a2d814d951ccd8c54f3e9c350c5e399c4191faed94514ec56e218a2fa5",
+    "lab_papers.jsonl.gz": "0db5f55043c04c869e00f93dbfa15d4d62f2d2ba6f37bd8d57b7c2d5e2b06092",
+    "student_papers.jsonl.gz": "9d20eac8bbeed8b634ca2ab1621ad3d27a3c96c3e7075cdd6861ba68c1f2b0a1",
+    "copies.json": "93526ab5c9761a054d20855e1a16f6833e8b34102243aa14bbaaf5d295703307"
+  },
+  "code_provenance": {
+    "commit": "3fa32f7a8d1a24ae50a30af6a62081fb27065951",
+    "dirty": false,
+    "dirty_paths": [],
+    "other_dirty_paths": [],
+    "snapshot": true
+  },
+  "comparison_note": "All 35 lab-precision keys, 40 student-precision keys and 15 coverage keys are identical in order. Parsed complete PI, student, lab-paper and student-paper files are equal to the previously hand-reviewed package, including all appointment/listing, identity, byline and relation evidence fields. The original 90 manual verdicts and judgment dates are retained; only the reproducible draw/summary source hashes are updated.",
+  "job": {
+    "id": 32138219,
+    "state": "COMPLETED",
+    "exit_code": "0:0",
+    "elapsed": "00:01:00",
+    "max_rss_kib": 2688960
+  },
+  "strict_evidence": {
+    "ok": true,
+    "availability_incomplete": 732,
+    "availability_allowance": 732,
+    "other_violations": 0
+  }
+}
