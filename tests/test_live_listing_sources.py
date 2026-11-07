@@ -81,6 +81,14 @@ def test_live_partial_keeps_evidenced_rows_but_not_ok_coverage(live_setup):
     assert json.loads(paths['coverage.json'].read_text())['CS']['2025']['CS faculty live H2'].startswith('partial:')
 
 
+def test_contact_href_never_becomes_a_homepage(live_setup):
+    paths, _, _, source = live_setup
+    source([card('Alice Example', href='mailto:contact@example.edu')], expected=1)
+    R.main('test')
+    row = json.loads(paths['rows.json'].read_text())[0]
+    assert row['homepage'] is None and 'profile' not in row
+
+
 def test_live_respects_title_filter_and_courtesy_context(live_setup):
     paths, cfg, _, source = live_setup
     cfg['departments'][0]['listings'][0].update(kind='courtesy', title_filter='Computer Science')

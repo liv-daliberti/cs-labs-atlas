@@ -140,6 +140,7 @@ def live_listing_rows(key, cfg, rw, tm, title_filters, kind_of):
                     titles = entry['titles']
                     dt = [t for t in titles if tm[dept].search(t)]
                     links = {f: urllib.parse.urljoin(url, entry[f]) for f in ('homepage', 'profile') if entry.get(f)}
+                    links = {f: u for f, u in links.items() if urllib.parse.urlsplit(u).scheme in ('http', 'https')}
                     group_rows.append(dict(name=given_first(entry['name_listed']), name_listed=entry['name_listed'], dept=dept,
                                            slot=slot, kind=kind_of[slot], year=year, half=half, observed=observed.strftime('%Y%m%d%H%M%S'),
                                            titles=titles, dept_title=dt, rank=listing_rank(titles, dt, kind_of[slot], rw), division=entry.get('division'),
