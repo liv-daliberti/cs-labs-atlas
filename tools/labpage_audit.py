@@ -446,6 +446,10 @@ def archive_original_url(url):
 
 
 
+def transport_policy_denied(host_use, host):
+    return host_use(host) in ('none', 'wayback-only')
+
+
 def live_only_send(send, deferred, request, denied=None, record_denial=None, **kwargs):
     """Also stop archive redirects at the transport boundary, before any socket call."""
     if (urlsplit(request.url).hostname or '') in ('web.archive.org', 'archive.org'):
@@ -510,7 +514,7 @@ class Kit:
             send = lpcap._sess.send
             lpcap._sess.send = lambda request, **kw: live_only_send(
                 send, self.deferred_archive_urls, request,
-                denied=lambda host: live_denials().get(host) or (hasattr(self, 'host_use') and self.host_use(host) == 'none'),
+                denied=lambda host: live_denials().get(host) or (hasattr(self, 'host_use') and transport_policy_denied(self.host_use, host)),
                 record_denial=remember_live_denial, **kw)
         lpcap.ROOT = pubx.ROOT = str(H)  # the toolkit's own constant predates tools/atlas_paths.py; its file paths now go through atlas_paths.data
         for k_ in list(lpcap.DBS) + [school]:
@@ -2274,7 +2278,14 @@ def finish_papers(sec, ents, p, verdicts):
 
 # ---------------------------------------------------------------- the lab record
 def page_evidence(kit, url, names_):
+    url = url.strip() if url else url
+    if url and getattr(kit, 'host_use', lambda host: 'live')(urlsplit(unwayback(url)).hostname or '') == 'none':
+        return None, ''
     row, views = kit.stored(url) if url else (None, None)
+    if not row and url:
+        source = kit.src_of(url)  # cached archive lookup only; never fetch here
+        if source != url:
+            row, views = kit.stored(source)
     if not row:
         return None, ''
     txt = views.get('html') or views.get('pdf') or views.get('raw') or ''

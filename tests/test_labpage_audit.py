@@ -572,3 +572,33 @@ def test_named_agent_exclusion_survives_http_https_archive_variant(tmp_path, mon
     monkeypatch.setenv('CS_ATLAS_LABPAGE_LIVE_ONLY', '1')
     kit = SimpleNamespace(store=path, school='u', lpcap=SimpleNamespace(DBS={'u': str(path)}))
     assert not A.Kit._ai_allowed(kit, 'http://u.edu/lab/')
+
+
+def test_page_evidence_uses_an_existing_archive_when_live_bytes_are_absent():
+    from types import SimpleNamespace
+    url = 'https://u.edu/ada/'
+    capture = 'https://web.archive.org/web/20250101000000id_/' + url
+    row = {'url': url, 'capture_url': capture, 'sha256': 'a' * 64,
+           'content': b'<title>Ada Example</title>'}
+    kit = SimpleNamespace(
+        stored=lambda source: (row, {'html': 'Ada Example research group'}) if source == capture else (None, None),
+        src_of=lambda source: capture,
+        lpcap=SimpleNamespace(decode=lambda b: b.decode(), collapse=lambda s: ' '.join(s.split())))
+    evidence, title = A.page_evidence(kit, url, ['Ada Example'])
+    assert evidence['sha256'] == 'a' * 64 and evidence['capture_url'] == capture
+    assert title == 'Ada Example'
+    kit.host_use = lambda host: 'none'
+    assert A.page_evidence(kit, url, ['Ada Example']) == (None, '')
+
+
+def test_live_redirect_cannot_reach_a_wayback_only_host():
+    from types import SimpleNamespace
+    sent = []
+    policy = lambda host: 'wayback-only' if host == 'restricted.edu' else 'live'
+    with pytest.raises(RuntimeError, match='previously refused'):
+        A.live_only_send(lambda request, **kw: sent.append(request.url), set(),
+                         SimpleNamespace(url='https://restricted.edu/redirected-page'),
+                         denied=lambda host: A.transport_policy_denied(policy, host))
+    assert sent == []
+    assert A.transport_policy_denied(lambda h: 'none', 'blocked.edu')
+    assert not A.transport_policy_denied(lambda h: 'live', 'allowed.edu')
