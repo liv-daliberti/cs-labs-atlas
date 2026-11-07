@@ -22,5 +22,59 @@
       }
     ],
     "why_home_department": "Official current faculty profile identifies the home school; preserve the CS listing as an additional computing appointment."
+  },
+  "Michael D. Smith": {
+    "dblp": [
+      "https://dblp.org/pid/163/1790-1"
+    ],
+    "why_dblp": "Reviewed exact middle-name homonym: DBLP Michael D. Smith 0001 names Harvard University and links the legacy official SEAS directory /directory/mikesmith; the current SEAS profile names Michael D. Smith with Harvard faculty rank. Other Michael Smith and Michael D. Smith records are not combined. The automatic broad given/family matcher had 155 candidates, including three school-name matches.",
+    "identity_reviewed_at": "2026-11-07",
+    "identity_evidence": [
+      {
+        "url": "https://dblp.org/pid/163/1790-1",
+        "sha256": "64779dea697ec00014cc5c71e50e60ef8efe9a4eb046071750fc87fd62755425",
+        "quote": "Harvard University, Cambridge, MA, USA",
+        "artifact": "hierarchy/raw/dblp-dump-persons.json.gz",
+        "hash_basis": "Exact saved compressed school-independent DBLP persons cache, derived from official dblp-2026-09-01.xml.gz; quote in its decompressed JSON record.",
+        "person_record_name": "Michael D. Smith 0001",
+        "person_record_url": "https://www.seas.harvard.edu/directory/mikesmith"
+      },
+      {
+        "url": "https://seas.harvard.edu/person/michael-smith",
+        "sha256": "983002d12e966984da2395b6f1cc1e92244ca0ed5af3b23c608253ca836aba91",
+        "quote": "Michael D. Smith"
+      }
+    ]
+  },
+  "Qianqian Wang": {
+    "dblp": [
+      "https://dblp.org/pid/118/6735-2"
+    ],
+    "orcid": [
+      "0009-0002-9000-2386"
+    ],
+    "why_dblp": "Reviewed DBLP Qianqian Wang 0002 links exactly the personal homepage linked by her current official SEAS profile. Its DynIBaR, Tracking Everything Everywhere All at Once, IBRNet and Shape of Motion publications match her own CV. Her Berkeley/Cornell affiliation notes predate the current Harvard appointment and do not make these other Qianqian Wang homonyms. ORCID is from this same DBLP record.",
+    "identity_reviewed_at": "2026-11-07",
+    "identity_evidence": [
+      {
+        "url": "https://dblp.org/pid/118/6735-2",
+        "sha256": "4644eb84f067f17088b2dcf872581eec89c2a962ef4341501cfce1605c51b626",
+        "quote": "https://qianqianwang68.github.io/",
+        "artifact": "hierarchy/harvard/raw/dblp-dump-persons-school.json.gz",
+        "hash_basis": "Exact saved compressed school-local person extraction from official dblp-2026-09-01.xml.gz; quote in its decompressed JSON record.",
+        "person_record_name": "Qianqian Wang 0002"
+      },
+      {
+        "url": "https://seas.harvard.edu/person/qianqian-wang",
+        "sha256": "71c69f0f1ee0108647c20ea1de558d0e4213438577d46449791c10684a0890eb",
+        "quote": "qianqianwang68.github.io"
+      },
+      {
+        "url": "https://qianqianwang68.github.io/data/qianqianwang_cv.pdf",
+        "sha256": "b51610ba0618eb6262b87408d2733ee64488d0aec5ad36351fb90ec516cf2d2f",
+        "quote": "Tracking Everything Everywhere All at Once",
+        "quote_basis": "pdftotext -layout extraction from saved PDF bytes"
+      }
+    ]
   }
 }
