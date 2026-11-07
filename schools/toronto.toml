@@ -1,0 +1,316 @@
+# University of Toronto: top-25 push onboarding (coordinator brief scratch/top25-brief.md, 2026-11-07). Computing labs only; CS department full, other units through the CS-related-faculty rule.
+key = "toronto"
+name = "University of Toronto"
+short = "Toronto"
+site_uni = "university-of-toronto"
+status = "onboarding"
+order = 15
+stage = 0
+started = "2026-11-07"
+window = [2016, 2026]
+
+[ids]
+# Stage-0 owner decisions pending (hierarchy/toronto/reports/STAGE-0.md D1-D5); defaults below follow the Harvard/UChicago precedent and the brief: St. George computing labs only, PI rule filters sweeps.
+openalex = ["I185261750"]
+openalex_related = ["I4210127509", "I2801317318", "I1325899441"]
+openalex_excluded = ["I530967"]
+ror = "https://ror.org/03dbr7087"
+ids_note = "tools/oa_institutions.py search/lineage on the local OpenAlex institutions snapshot (no API credits), 2026-11-07: I185261750 'University of Toronto' ROR 03dbr7087, lineage [I185261750]. Lineage children: University of Toronto Scarborough I4405278283, Fields Institute I9267121, Canadian Institute for Theoretical Astrophysics I4210110940, Sunnybrook Research Institute I4391768120, Ted Rogers Centre for Heart Research I4210091032, AGE-WELL I4388891821. Related, not lineage: Vector Institute I4210127509, Hospital for Sick Children I2801317318, University Health Network I1325899441 (swept; credited only when the raw string matches); left out: Unity Health, Sunnybrook Hospital, Baycrest, Creative Destruction Lab and the other hospitals. Excluded: Toronto Metropolitan University I530967 (different university). UTM (Mississauga) has no OpenAlex institution of its own and rolls into I185261750."
+
+[web]
+domains = ["utoronto.ca", "toronto.edu"]
+email_domains = ["utoronto.ca", "toronto.edu"]
+wayback_only_suffixes = ["www.statistics.utoronto.ca"]
+excluded_hosts = []
+
+[affiliation]
+regex = '''\b(?:the\s+)?(?:university\s+of\s+toronto|univ\.?\s+of\s+toronto|toronto\s+univ(?:ersity)?\.?)\b(?!\s+(?:press|metropolitan))|\butoronto\.ca\b|\b[\w-]+\.toronto\.edu\b'''
+loose = '''toronto|utoronto\.ca|vector\s+institute|sickkids|hospital\s+for\s+sick\s+children|university\s+health\s+network'''
+own_units = '''\bvector\s+institute\b|\bfields\s+institute\b|\bschwartz\s+reisman\s+institute\b|\bacceleration\s+consortium\b'''
+must_match = [
+  "University of Toronto, Toronto, ON, Canada",
+  "Department of Computer Science, University of Toronto",
+  "Univ. of Toronto, Canada",
+  "The University of Toronto Scarborough",
+  "jdoe@cs.toronto.edu",
+  "Vector Institute and University of Toronto",
+  "University of Toronto Mississauga"
+]
+must_not_match = [
+  "Toronto Metropolitan University, Toronto",
+  "Ryerson University, Toronto",
+  "York University, Toronto, Canada",
+  "University of Toronto Press",
+  "University of Waterloo, Waterloo, ON",
+  "University Health Network, Toronto",
+  "Vector Institute, Toronto, ON, Canada",
+  "Toronto Western Hospital"
+]
+
+[dblp]
+affiliation_strings = ["University of Toronto", "Univ. of Toronto", "Vector Institute"]
+legacy_sweep = ""
+
+[census]
+computing_departments = ["CS"]
+center_units = ["VECTOR", "ROBOTICS"]
+home_units = {"Computer Science" = 'computer science', "Electrical and Computer Engineering" = 'electrical\s+(?:and|&)\s+computer\s+engineering', "Mechanical and Industrial Engineering" = 'mechanical\s+(?:and|&)\s+industrial', "Statistical Sciences" = 'statistical\s+sciences', "Information" = 'faculty\s+of\s+information|ischool'}
+rank_words = {teaching = '\bprofessor,?\s+teaching\s+stream\b|\blecturer\b', adjunct = '\bstatus[-\s]only\b|\badjunct\b'}
+
+[sweep_check]
+exceptions = []
+
+[cs_related]
+not_faculty = {}
+share_test_settles = []
+
+[site]
+depts = {CS = "Computer Science"}
+full_codes = ["CS"]
+
+[periods]
+school_regex = '''\b(?:the\s+)?(?:university\s+of\s+toronto|univ\.?\s+of\s+toronto|toronto\s+univ(?:ersity)?\.?)\b(?!\s+(?:press|metropolitan))|\butoronto\.ca\b|\b[\w-]+\.toronto\.edu\b'''
+
+[rules]
+foreign_title_exception = false
+listing_continuity = false
+
+[[departments]]
+code = "CS"
+name = "Computer Science"
+unit = "Department of Computer Science, Faculty of Arts & Science"
+title_match = 'computer science'
+coverage = "full"
+url = "https://web.cs.toronto.edu/people/faculty-directory"
+  [[departments.listings]]
+  slot = "main"
+  kind = "main"
+  url = "web.cs.toronto.edu/people/faculty-directory"
+  from = "20160101"
+  to = "20261231"
+  prefix = false
+  match = ""
+  format = "toronto_research"
+  title_filter = ''
+
+  [[departments.listings]]
+  slot = "teaching"
+  kind = "main"
+  url = "web.cs.toronto.edu/people/faculty-directory"
+  from = "20160101"
+  to = "20261231"
+  prefix = false
+  match = ""
+  format = "toronto_teaching"
+  title_filter = ''
+
+  [[departments.listings]]
+  slot = "emeriti"
+  kind = "main"
+  url = "web.cs.toronto.edu/people/faculty-directory"
+  from = "20160101"
+  to = "20261231"
+  prefix = false
+  match = ""
+  format = "toronto_emeriti"
+  title_filter = ''
+
+  [[departments.listings]]
+  slot = "cross"
+  kind = "courtesy"
+  url = "web.cs.toronto.edu/people/faculty-directory"
+  from = "20160101"
+  to = "20261231"
+  prefix = false
+  match = ""
+  format = "toronto_cross"
+  title_filter = ''
+
+  [[departments.listings]]
+  slot = "status"
+  kind = "adjunct"
+  url = "web.cs.toronto.edu/people/faculty-directory"
+  from = "20160101"
+  to = "20261231"
+  prefix = false
+  match = ""
+  format = "toronto_status"
+  title_filter = ''
+
+  [[departments.listings]]
+  slot = "adjunct"
+  kind = "adjunct"
+  url = "web.cs.toronto.edu/people/faculty-directory"
+  from = "20160101"
+  to = "20261231"
+  prefix = false
+  match = ""
+  format = "toronto_adjunct"
+  title_filter = ''
+
+[[affiliated_units]]
+code = "ECE"
+name = "Electrical and Computer Engineering"
+url = "https://www.ece.utoronto.ca/faculty/faculty-directory/"
+listings = ["www.ece.utoronto.ca/faculty/faculty-directory"]
+
+[[affiliated_units]]
+code = "MIE"
+name = "Mechanical and Industrial Engineering"
+url = "https://www.mie.utoronto.ca/faculty-staff/faculty/"
+listings = ["www.mie.utoronto.ca/faculty-staff/faculty"]
+
+[[affiliated_units]]
+code = "UTIAS"
+name = "Aerospace Studies"
+url = "https://www.utias.utoronto.ca/faculty/"
+listings = ["www.utias.utoronto.ca/faculty"]
+
+[[affiliated_units]]
+code = "STAT"
+name = "Statistical Sciences"
+url = "https://www.statistics.utoronto.ca/people/directories/all-faculty"
+listings = ["www.statistics.utoronto.ca/people/directories/all-faculty"]
+
+[[affiliated_units]]
+code = "INFO"
+name = "Faculty of Information"
+url = "https://ischool.utoronto.ca/faculty-directory/"
+listings = ["ischool.utoronto.ca/faculty-directory"]
+
+[[affiliated_units]]
+code = "MATH"
+name = "Mathematics"
+url = "https://www.math.toronto.edu/people/faculty"
+listings = ["www.math.toronto.edu/people/faculty"]
+
+[[affiliated_units]]
+code = "UTSC"
+name = "Computer and Mathematical Sciences, Scarborough"
+url = "https://www.utsc.utoronto.ca/cms/people"
+listings = ["www.utsc.utoronto.ca/cms/people"]
+
+[[affiliated_units]]
+code = "UTM"
+name = "Mathematical and Computational Sciences, Mississauga"
+url = "https://www.utm.utoronto.ca/mcs/people"
+listings = ["www.utm.utoronto.ca/mcs/people"]
+
+[[affiliated_units]]
+code = "VECTOR"
+name = "Vector Institute (centre)"
+url = "https://vectorinstitute.ai/team/"
+listings = ["vectorinstitute.ai/team"]
+
+[[affiliated_units]]
+code = "ROBOTICS"
+name = "Robotics Institute (centre)"
+url = "https://robotics.utoronto.ca/people/"
+listings = ["robotics.utoronto.ca/people"]
+
+[thesis]
+kind = "dspace"
+base_url = "https://tspace.library.utoronto.ca/"
+endpoints = []
+robots = "disallowed-for-ai-agents"
+note = "TSpace robots.txt names AI agents (checked 2026-11-07): never used in any form; theses reach us only through OpenAlex. Collect explicit supervisor statements only elsewhere."
+
+[collector]
+channels = ["oa_arxiv", "openalex", "s2", "labpages"]
+
+[students]
+directories = []
+adviser_directories = []
+defense_lists = []
+adviser_alumni = []
+rosters = []
+sources = ["thesis repository with explicit supervisor metadata", "dated official defence and graduation lists", "PI-owned lab member and alumni pages"]
+
+[labpages]
+skip_pages = []
+hints = ["https://web.cs.toronto.edu/research/research-groups", "https://web.cs.toronto.edu/people/faculty-directory", "https://www.ece.utoronto.ca/research/"]
+
+[repository]
+name = "TSpace (never asked: robots.txt disallows AI agents; reached through OpenAlex and CORE only)"
+pattern = 'tspace\.library\.utoronto\.ca|TSpace'
+
+[store]
+path = "stores/toronto"
+
+[[hosts]]
+host = "web.cs.toronto.edu"
+use = "live"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://web.cs.toronto.edu/people/faculty-directory"
+
+[[hosts]]
+host = "www.cs.toronto.edu"
+use = "live"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://www.cs.toronto.edu/~ashton/"
+
+[[hosts]]
+host = "www.ece.utoronto.ca"
+use = "live"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://www.ece.utoronto.ca/faculty/faculty-directory/"
+
+[[hosts]]
+host = "www.mie.utoronto.ca"
+use = "live"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://www.mie.utoronto.ca/faculty_staff/eldan-cohen/"
+
+[[hosts]]
+host = "tspace.library.utoronto.ca"
+use = "none"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://tspace.library.utoronto.ca/"
+
+[[hosts]]
+host = "www.utias.utoronto.ca"
+use = "live"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://www.utias.utoronto.ca/faculty/"
+
+[[hosts]]
+host = "www.statistics.utoronto.ca"
+use = "wayback-only"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://www.statistics.utoronto.ca/people/directories/all-faculty"
+
+[[hosts]]
+host = "ischool.utoronto.ca"
+use = "live"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://ischool.utoronto.ca/faculty-directory/"
+
+[[hosts]]
+host = "www.math.toronto.edu"
+use = "live"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://www.math.toronto.edu/swastik/"
+
+[[hosts]]
+host = "www.utsc.utoronto.ca"
+use = "live"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://www.utsc.utoronto.ca/cms/daniel-roy"
+
+[[hosts]]
+host = "www.utm.utoronto.ca"
+use = "live"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://www.utm.utoronto.ca/math-cs-stats/people/daniel-zingaro"
+
+[[hosts]]
+host = "vectorinstitute.ai"
+use = "live"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://vectorinstitute.ai/team/"
+
+[[hosts]]
+host = "robotics.utoronto.ca"
+use = "live"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://robotics.utoronto.ca/people/"
