@@ -213,8 +213,15 @@ def audit(school):
                  'with_pi_outside_appointment': "co-wrote with the PI only outside the PI's evidenced appointment at the school, or only non-paper outputs (OpenAlex sweep)",
                  'with_pi_at_other_institution': "co-wrote with the PI only on works where the PI's own authorship names another institution (or outside the appointment, or non-papers) (OpenAlex sweep)"}
     thesis = by_pi(load(D / 'thesis-evidence.json', []))
-    # an onboarding school's labs may carry a recorded lab-coverage reason (docs/DECISIONS.md 2026-11-03, tools/lab_coverage.py); released schools are not touched
-    cov = {r['pi']: r['reasons'] for r in LC.lab_rows(school)} if CO.onboarding(school) else {}
+    # Releasing a partial school must not discard its explicit reviewed gaps.
+    # Census-derived heuristics remain limited to the onboarding workflow.
+    if CO.onboarding(school):
+        cov = {r['pi']: r['reasons'] for r in LC.lab_rows(school)}
+    else:
+        cov = load(D / 'lab-coverage-reasons.json', {}) or {}
+        for name, override in ov_school.items():
+            if override.get('no_identity') and override.get('why_no_identity'):
+                cov.setdefault(name, {}).setdefault('papers', dict(code='no_identity', why=override['why_no_identity']))
 
     for p in pis:
         name, k = p['pi'], norm(p['pi'])
