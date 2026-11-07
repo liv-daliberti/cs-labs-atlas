@@ -1,7 +1,7 @@
 {
  "school": "toronto",
  "tool": "tools/lab_websites.py entry schema",
- "review_status": "Partial homepage review for current-only provisional PI census. Campus/appointment review and historical discovery remain open. No new-school student extraction.",
+ "review_status": "71 content-verified PI/lab websites, one documented other-institution/on-leave site, 13 pending targets; provisional PI campus scope and historical coverage remain open; students deferred.",
  "source": "official directory + school-captures.sqlite",
  "labs": [
   {
@@ -144,7 +144,7 @@
    "pi": "Alán Aspuru-Guzik",
    "status": "pending",
    "coverage": "pending",
-   "reason": "Observed redirect remains to resolve and review without bypassing host policy.",
+   "reason": "Recorded bot challenge at the explicit redirect target. Live host stopped; permitted archive evidence or another official link remains to review.",
    "candidate_url": "https://matter.toronto.edu/",
    "checks": [
     {
@@ -169,6 +169,14 @@
      "result": "http_301",
      "via": "school_profile_link",
      "sha256": "87a9323ac85ce28867d5d7ce590c8f29b8d1a999961fca71bb33adef48683691"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.matter.toronto.edu/",
+     "at": "2026-11-07T16:44:15",
+     "result": "bot_challenge",
+     "via": "http_redirect",
+     "sha256": "0f4bd86bcb5276ac0ba6767b7e30c22448c60dd1a9f1aeb3da3d5d237de22b84"
     }
    ],
    "checked_at": "2026-11-07T16:36:26",
@@ -176,7 +184,37 @@
    "papers_page_status": "deferred_by_scope",
    "evidence_gaps": [
     "eligible_website_not_yet_established"
-   ]
+   ],
+   "provenance_chain": [
+    {
+     "pi": "Alán Aspuru-Guzik",
+     "source_url": "https://matter.toronto.edu/",
+     "url": "https://www.matter.toronto.edu/",
+     "via": "http_redirect",
+     "redirect_receipt": {
+      "pi": "Alán Aspuru-Guzik",
+      "url": "https://matter.toronto.edu/",
+      "status": 301,
+      "headers": {
+       "Date": "Sat, 07 Nov 2026 21:43:16 GMT",
+       "Content-Type": "text/html",
+       "Location": "https://www.matter.toronto.edu/"
+      },
+      "at": "2026-11-07T21:43:16.092290+00:00"
+     },
+     "result": "http_999",
+     "fetched_at": "2026-11-07T16:44:15",
+     "status": 999,
+     "sha256": "0f4bd86bcb5276ac0ba6767b7e30c22448c60dd1a9f1aeb3da3d5d237de22b84",
+     "headers": {
+      "date": "Sat, 07 Nov 2026 21:44:15 GMT",
+      "content-type": "text/html; charset=utf-8"
+     },
+     "source_fetched_at": "2026-11-07T16:43:16",
+     "source_sha256": "87a9323ac85ce28867d5d7ce590c8f29b8d1a999961fca71bb33adef48683691"
+    }
+   ],
+   "reason_type": "pending_archive"
   },
   {
    "pi": "Jimmy Ba",
@@ -316,10 +354,10 @@
   },
   {
    "pi": "Varinia Bernales",
-   "status": "pending",
-   "coverage": "pending",
-   "reason": "Observed redirect remains to resolve and review without bypassing host policy.",
-   "candidate_url": "https://bernales.matter.toronto.edu/",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:45:21",
    "checks": [
     {
      "source": "school_profile",
@@ -343,13 +381,286 @@
      "result": "http_301",
      "via": "school_profile_link",
      "sha256": "2e04a18ff185ba5b16f762a0538339bc4049aceaef9738edd43af77d2ceb788b"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://bernales.org//",
+     "at": "2026-11-07T16:44:17",
+     "result": "http_308",
+     "via": "http_redirect",
+     "sha256": null
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://bernales.org/",
+     "at": "2026-11-07T16:45:21",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "4e8c50b717fe6ba397b41612ab31389a9f6e3a3ca0a9b26d8213474c622c6fec"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://bernales.org/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T16:45:21",
+     "result": "listed_via_recorded_chain",
+     "original_link": "https://bernales.matter.toronto.edu/",
+     "provenance_chain": [
+      {
+       "pi": "Varinia Bernales",
+       "source_url": "https://bernales.matter.toronto.edu/",
+       "url": "https://bernales.org//",
+       "via": "http_redirect",
+       "redirect_receipt": {
+        "pi": "Varinia Bernales",
+        "url": "https://bernales.matter.toronto.edu/",
+        "status": 301,
+        "headers": {
+         "Date": "Sat, 07 Nov 2026 21:43:16 GMT",
+         "Content-Type": "text/html",
+         "Location": "https://bernales.org//"
+        },
+        "at": "2026-11-07T21:43:16.215537+00:00"
+       },
+       "result": "http_308",
+       "fetched_at": "2026-11-07T16:44:17",
+       "status": 308,
+       "sha256": null,
+       "headers": {
+        "date": "Sat, 07 Nov 2026 21:44:17 GMT",
+        "location": "https://bernales.org/"
+       },
+       "source_fetched_at": "2026-11-07T16:43:16",
+       "source_sha256": "2e04a18ff185ba5b16f762a0538339bc4049aceaef9738edd43af77d2ceb788b"
+      },
+      {
+       "pi": "Varinia Bernales",
+       "source_url": "https://bernales.org//",
+       "url": "https://bernales.org/",
+       "via": "http_redirect",
+       "redirect_receipt": {
+        "pi": "Varinia Bernales",
+        "source_url": "https://bernales.matter.toronto.edu/",
+        "url": "https://bernales.org//",
+        "via": "http_redirect",
+        "redirect_receipt": {
+         "pi": "Varinia Bernales",
+         "url": "https://bernales.matter.toronto.edu/",
+         "status": 301,
+         "headers": {
+          "Date": "Sat, 07 Nov 2026 21:43:16 GMT",
+          "Content-Type": "text/html",
+          "Location": "https://bernales.org//"
+         },
+         "at": "2026-11-07T21:43:16.215537+00:00"
+        },
+        "result": "http_308",
+        "fetched_at": "2026-11-07T16:44:17",
+        "status": 308,
+        "sha256": null,
+        "headers": {
+         "date": "Sat, 07 Nov 2026 21:44:17 GMT",
+         "location": "https://bernales.org/"
+        },
+        "source_fetched_at": "2026-11-07T16:43:16",
+        "source_sha256": "2e04a18ff185ba5b16f762a0538339bc4049aceaef9738edd43af77d2ceb788b"
+       },
+       "result": "http_200",
+       "fetched_at": "2026-11-07T16:45:21",
+       "status": 200,
+       "sha256": "4e8c50b717fe6ba397b41612ab31389a9f6e3a3ca0a9b26d8213474c622c6fec",
+       "headers": {
+        "date": "Sat, 07 Nov 2026 21:45:21 GMT",
+        "content-type": "text/html; charset=utf-8"
+       },
+       "source_fetched_at": "2026-11-07T16:44:17",
+       "source_sha256": null
+      }
+     ]
     }
    ],
-   "checked_at": "2026-11-07T16:36:27",
+   "places_checked": [
+    "candidate_site:http_301",
+    "candidate_site:http_308",
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "school_profile_link:listed_via_recorded_chain"
+   ],
+   "checked_at": "2026-11-07T16:45:21",
    "students_page_status": "deferred_by_scope",
    "papers_page_status": "deferred_by_scope",
-   "evidence_gaps": [
-    "eligible_website_not_yet_established"
+   "url": "https://bernales.org/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "4e8c50b717fe6ba397b41612ab31389a9f6e3a3ca0a9b26d8213474c622c6fec",
+   "evidence": {
+    "url": "https://bernales.org/",
+    "sha256": "4e8c50b717fe6ba397b41612ab31389a9f6e3a3ca0a9b26d8213474c622c6fec",
+    "captured_at": "2026-11-07T16:45:21"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://bernales.org/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T16:45:21",
+     "result": "listed_via_recorded_chain",
+     "original_link": "https://bernales.matter.toronto.edu/",
+     "provenance_chain": [
+      {
+       "pi": "Varinia Bernales",
+       "source_url": "https://bernales.matter.toronto.edu/",
+       "url": "https://bernales.org//",
+       "via": "http_redirect",
+       "redirect_receipt": {
+        "pi": "Varinia Bernales",
+        "url": "https://bernales.matter.toronto.edu/",
+        "status": 301,
+        "headers": {
+         "Date": "Sat, 07 Nov 2026 21:43:16 GMT",
+         "Content-Type": "text/html",
+         "Location": "https://bernales.org//"
+        },
+        "at": "2026-11-07T21:43:16.215537+00:00"
+       },
+       "result": "http_308",
+       "fetched_at": "2026-11-07T16:44:17",
+       "status": 308,
+       "sha256": null,
+       "headers": {
+        "date": "Sat, 07 Nov 2026 21:44:17 GMT",
+        "location": "https://bernales.org/"
+       },
+       "source_fetched_at": "2026-11-07T16:43:16",
+       "source_sha256": "2e04a18ff185ba5b16f762a0538339bc4049aceaef9738edd43af77d2ceb788b"
+      },
+      {
+       "pi": "Varinia Bernales",
+       "source_url": "https://bernales.org//",
+       "url": "https://bernales.org/",
+       "via": "http_redirect",
+       "redirect_receipt": {
+        "pi": "Varinia Bernales",
+        "source_url": "https://bernales.matter.toronto.edu/",
+        "url": "https://bernales.org//",
+        "via": "http_redirect",
+        "redirect_receipt": {
+         "pi": "Varinia Bernales",
+         "url": "https://bernales.matter.toronto.edu/",
+         "status": 301,
+         "headers": {
+          "Date": "Sat, 07 Nov 2026 21:43:16 GMT",
+          "Content-Type": "text/html",
+          "Location": "https://bernales.org//"
+         },
+         "at": "2026-11-07T21:43:16.215537+00:00"
+        },
+        "result": "http_308",
+        "fetched_at": "2026-11-07T16:44:17",
+        "status": 308,
+        "sha256": null,
+        "headers": {
+         "date": "Sat, 07 Nov 2026 21:44:17 GMT",
+         "location": "https://bernales.org/"
+        },
+        "source_fetched_at": "2026-11-07T16:43:16",
+        "source_sha256": "2e04a18ff185ba5b16f762a0538339bc4049aceaef9738edd43af77d2ceb788b"
+       },
+       "result": "http_200",
+       "fetched_at": "2026-11-07T16:45:21",
+       "status": 200,
+       "sha256": "4e8c50b717fe6ba397b41612ab31389a9f6e3a3ca0a9b26d8213474c622c6fec",
+       "headers": {
+        "date": "Sat, 07 Nov 2026 21:45:21 GMT",
+        "content-type": "text/html; charset=utf-8"
+       },
+       "source_fetched_at": "2026-11-07T16:44:17",
+       "source_sha256": null
+      }
+     ]
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Visible PI/group homepage content manually reviewed after checking each explicit redirect or embedded-page target.",
+   "evidence_gaps": [],
+   "classification_review": "Visible PI/group research content manually checked. Provenance chain records the original official directory href plus explicit HTTP Location, HTML redirect, embedded frame, or official-profile homepage link; it is not a claimed direct href to the final URL.",
+   "provenance_chain": [
+    {
+     "pi": "Varinia Bernales",
+     "source_url": "https://bernales.matter.toronto.edu/",
+     "url": "https://bernales.org//",
+     "via": "http_redirect",
+     "redirect_receipt": {
+      "pi": "Varinia Bernales",
+      "url": "https://bernales.matter.toronto.edu/",
+      "status": 301,
+      "headers": {
+       "Date": "Sat, 07 Nov 2026 21:43:16 GMT",
+       "Content-Type": "text/html",
+       "Location": "https://bernales.org//"
+      },
+      "at": "2026-11-07T21:43:16.215537+00:00"
+     },
+     "result": "http_308",
+     "fetched_at": "2026-11-07T16:44:17",
+     "status": 308,
+     "sha256": null,
+     "headers": {
+      "date": "Sat, 07 Nov 2026 21:44:17 GMT",
+      "location": "https://bernales.org/"
+     },
+     "source_fetched_at": "2026-11-07T16:43:16",
+     "source_sha256": "2e04a18ff185ba5b16f762a0538339bc4049aceaef9738edd43af77d2ceb788b"
+    },
+    {
+     "pi": "Varinia Bernales",
+     "source_url": "https://bernales.org//",
+     "url": "https://bernales.org/",
+     "via": "http_redirect",
+     "redirect_receipt": {
+      "pi": "Varinia Bernales",
+      "source_url": "https://bernales.matter.toronto.edu/",
+      "url": "https://bernales.org//",
+      "via": "http_redirect",
+      "redirect_receipt": {
+       "pi": "Varinia Bernales",
+       "url": "https://bernales.matter.toronto.edu/",
+       "status": 301,
+       "headers": {
+        "Date": "Sat, 07 Nov 2026 21:43:16 GMT",
+        "Content-Type": "text/html",
+        "Location": "https://bernales.org//"
+       },
+       "at": "2026-11-07T21:43:16.215537+00:00"
+      },
+      "result": "http_308",
+      "fetched_at": "2026-11-07T16:44:17",
+      "status": 308,
+      "sha256": null,
+      "headers": {
+       "date": "Sat, 07 Nov 2026 21:44:17 GMT",
+       "location": "https://bernales.org/"
+      },
+      "source_fetched_at": "2026-11-07T16:43:16",
+      "source_sha256": "2e04a18ff185ba5b16f762a0538339bc4049aceaef9738edd43af77d2ceb788b"
+     },
+     "result": "http_200",
+     "fetched_at": "2026-11-07T16:45:21",
+     "status": 200,
+     "sha256": "4e8c50b717fe6ba397b41612ab31389a9f6e3a3ca0a9b26d8213474c622c6fec",
+     "headers": {
+      "date": "Sat, 07 Nov 2026 21:45:21 GMT",
+      "content-type": "text/html; charset=utf-8"
+     },
+     "source_fetched_at": "2026-11-07T16:44:17",
+     "source_sha256": null
+    }
    ]
   },
   {
@@ -558,10 +869,10 @@
   },
   {
    "pi": "Michael Brudno",
-   "status": "pending",
-   "coverage": "pending",
-   "reason": "Captured landing page is a redirect stub; target still needs robots/access/content review.",
-   "candidate_url": "https://www.cs.toronto.edu/~brudno/public/",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:45:24",
    "checks": [
     {
      "source": "school_profile",
@@ -585,13 +896,213 @@
      "result": "ok",
      "via": "school_profile_link",
      "sha256": "ec2441bd805bde1868f52bb3120da3d02b3578c2f5b4debc21b8ac6b46289d6a"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://brudno.uhndata.io",
+     "at": "2026-11-07T16:44:22",
+     "result": "http_301",
+     "via": "html_redirect",
+     "sha256": null
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://brudno.uhndata.io/",
+     "at": "2026-11-07T16:45:24",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "e75cba8db153e15ff67398ee31a44125f81cda9e565a5cb551d0aa7e8067b595"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://brudno.uhndata.io/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T16:45:24",
+     "result": "listed_via_recorded_chain",
+     "original_link": "https://www.cs.toronto.edu/~brudno/public/",
+     "provenance_chain": [
+      {
+       "pi": "Michael Brudno",
+       "source_url": "https://www.cs.toronto.edu/~brudno/public/",
+       "url": "http://brudno.uhndata.io",
+       "via": "html_redirect",
+       "result": "http_301",
+       "fetched_at": "2026-11-07T16:44:22",
+       "status": 301,
+       "sha256": null,
+       "headers": {
+        "location": "https://brudno.uhndata.io/"
+       },
+       "source_fetched_at": "2026-11-07T16:36:34",
+       "source_sha256": "ec2441bd805bde1868f52bb3120da3d02b3578c2f5b4debc21b8ac6b46289d6a"
+      },
+      {
+       "pi": "Michael Brudno",
+       "source_url": "http://brudno.uhndata.io",
+       "url": "https://brudno.uhndata.io/",
+       "via": "http_redirect",
+       "redirect_receipt": {
+        "pi": "Michael Brudno",
+        "source_url": "https://www.cs.toronto.edu/~brudno/public/",
+        "url": "http://brudno.uhndata.io",
+        "via": "html_redirect",
+        "result": "http_301",
+        "fetched_at": "2026-11-07T16:44:22",
+        "status": 301,
+        "sha256": null,
+        "headers": {
+         "location": "https://brudno.uhndata.io/"
+        },
+        "source_fetched_at": "2026-11-07T16:36:34",
+        "source_sha256": "ec2441bd805bde1868f52bb3120da3d02b3578c2f5b4debc21b8ac6b46289d6a"
+       },
+       "result": "http_200",
+       "fetched_at": "2026-11-07T16:45:24",
+       "status": 200,
+       "sha256": "e75cba8db153e15ff67398ee31a44125f81cda9e565a5cb551d0aa7e8067b595",
+       "headers": {
+        "date": "Sat, 07 Nov 2026 21:45:23 GMT",
+        "content-type": "text/html; charset=UTF-8"
+       },
+       "source_fetched_at": "2026-11-07T16:44:22",
+       "source_sha256": null
+      }
+     ]
     }
    ],
-   "checked_at": "2026-11-07T16:36:34",
+   "places_checked": [
+    "candidate_site:http_301",
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "school_profile_link:listed_via_recorded_chain"
+   ],
+   "checked_at": "2026-11-07T16:45:24",
    "students_page_status": "deferred_by_scope",
    "papers_page_status": "deferred_by_scope",
-   "evidence_gaps": [
-    "eligible_website_not_yet_established"
+   "url": "https://brudno.uhndata.io/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "e75cba8db153e15ff67398ee31a44125f81cda9e565a5cb551d0aa7e8067b595",
+   "evidence": {
+    "url": "https://brudno.uhndata.io/",
+    "sha256": "e75cba8db153e15ff67398ee31a44125f81cda9e565a5cb551d0aa7e8067b595",
+    "captured_at": "2026-11-07T16:45:24"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://brudno.uhndata.io/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T16:45:24",
+     "result": "listed_via_recorded_chain",
+     "original_link": "https://www.cs.toronto.edu/~brudno/public/",
+     "provenance_chain": [
+      {
+       "pi": "Michael Brudno",
+       "source_url": "https://www.cs.toronto.edu/~brudno/public/",
+       "url": "http://brudno.uhndata.io",
+       "via": "html_redirect",
+       "result": "http_301",
+       "fetched_at": "2026-11-07T16:44:22",
+       "status": 301,
+       "sha256": null,
+       "headers": {
+        "location": "https://brudno.uhndata.io/"
+       },
+       "source_fetched_at": "2026-11-07T16:36:34",
+       "source_sha256": "ec2441bd805bde1868f52bb3120da3d02b3578c2f5b4debc21b8ac6b46289d6a"
+      },
+      {
+       "pi": "Michael Brudno",
+       "source_url": "http://brudno.uhndata.io",
+       "url": "https://brudno.uhndata.io/",
+       "via": "http_redirect",
+       "redirect_receipt": {
+        "pi": "Michael Brudno",
+        "source_url": "https://www.cs.toronto.edu/~brudno/public/",
+        "url": "http://brudno.uhndata.io",
+        "via": "html_redirect",
+        "result": "http_301",
+        "fetched_at": "2026-11-07T16:44:22",
+        "status": 301,
+        "sha256": null,
+        "headers": {
+         "location": "https://brudno.uhndata.io/"
+        },
+        "source_fetched_at": "2026-11-07T16:36:34",
+        "source_sha256": "ec2441bd805bde1868f52bb3120da3d02b3578c2f5b4debc21b8ac6b46289d6a"
+       },
+       "result": "http_200",
+       "fetched_at": "2026-11-07T16:45:24",
+       "status": 200,
+       "sha256": "e75cba8db153e15ff67398ee31a44125f81cda9e565a5cb551d0aa7e8067b595",
+       "headers": {
+        "date": "Sat, 07 Nov 2026 21:45:23 GMT",
+        "content-type": "text/html; charset=UTF-8"
+       },
+       "source_fetched_at": "2026-11-07T16:44:22",
+       "source_sha256": null
+      }
+     ]
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Visible PI/group homepage content manually reviewed after checking each explicit redirect or embedded-page target.",
+   "evidence_gaps": [],
+   "classification_review": "Visible PI/group research content manually checked. Provenance chain records the original official directory href plus explicit HTTP Location, HTML redirect, embedded frame, or official-profile homepage link; it is not a claimed direct href to the final URL.",
+   "provenance_chain": [
+    {
+     "pi": "Michael Brudno",
+     "source_url": "https://www.cs.toronto.edu/~brudno/public/",
+     "url": "http://brudno.uhndata.io",
+     "via": "html_redirect",
+     "result": "http_301",
+     "fetched_at": "2026-11-07T16:44:22",
+     "status": 301,
+     "sha256": null,
+     "headers": {
+      "location": "https://brudno.uhndata.io/"
+     },
+     "source_fetched_at": "2026-11-07T16:36:34",
+     "source_sha256": "ec2441bd805bde1868f52bb3120da3d02b3578c2f5b4debc21b8ac6b46289d6a"
+    },
+    {
+     "pi": "Michael Brudno",
+     "source_url": "http://brudno.uhndata.io",
+     "url": "https://brudno.uhndata.io/",
+     "via": "http_redirect",
+     "redirect_receipt": {
+      "pi": "Michael Brudno",
+      "source_url": "https://www.cs.toronto.edu/~brudno/public/",
+      "url": "http://brudno.uhndata.io",
+      "via": "html_redirect",
+      "result": "http_301",
+      "fetched_at": "2026-11-07T16:44:22",
+      "status": 301,
+      "sha256": null,
+      "headers": {
+       "location": "https://brudno.uhndata.io/"
+      },
+      "source_fetched_at": "2026-11-07T16:36:34",
+      "source_sha256": "ec2441bd805bde1868f52bb3120da3d02b3578c2f5b4debc21b8ac6b46289d6a"
+     },
+     "result": "http_200",
+     "fetched_at": "2026-11-07T16:45:24",
+     "status": 200,
+     "sha256": "e75cba8db153e15ff67398ee31a44125f81cda9e565a5cb551d0aa7e8067b595",
+     "headers": {
+      "date": "Sat, 07 Nov 2026 21:45:23 GMT",
+      "content-type": "text/html; charset=UTF-8"
+     },
+     "source_fetched_at": "2026-11-07T16:44:22",
+     "source_sha256": null
+    }
    ]
   },
   {
@@ -732,10 +1243,10 @@
   },
   {
    "pi": "Fanny Chevalier",
-   "status": "pending",
-   "coverage": "pending",
-   "reason": "Captured landing page is a frame shell; framed homepage content needs review.",
-   "candidate_url": "http://fannychevalier.net/",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:44:22",
    "checks": [
     {
      "source": "school_profile",
@@ -759,13 +1270,114 @@
      "result": "ok",
      "via": "school_profile_link",
      "sha256": "7d85505402bb955b1b4d5de094a8d1659de253afd16f8fa63ddce53b4a083523"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~fanny/",
+     "at": "2026-11-07T16:44:22",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "fb3a20df72ec9100d2214c09c1cf3a055ffc6be2c38b9fabdaddddc36fe44403"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~fanny/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T16:44:22",
+     "result": "listed_via_recorded_chain",
+     "original_link": "http://fannychevalier.net/",
+     "provenance_chain": [
+      {
+       "pi": "Fanny Chevalier",
+       "source_url": "http://fannychevalier.net/",
+       "url": "https://www.cs.toronto.edu/~fanny/",
+       "via": "html_frame",
+       "result": "http_200",
+       "fetched_at": "2026-11-07T16:44:22",
+       "status": 200,
+       "sha256": "fb3a20df72ec9100d2214c09c1cf3a055ffc6be2c38b9fabdaddddc36fe44403",
+       "headers": {
+        "date": "Sat, 07 Nov 2026 21:44:22 GMT",
+        "content-type": "text/html"
+       },
+       "source_fetched_at": "2026-11-07T16:36:38",
+       "source_sha256": "7d85505402bb955b1b4d5de094a8d1659de253afd16f8fa63ddce53b4a083523"
+      }
+     ]
     }
    ],
-   "checked_at": "2026-11-07T16:36:38",
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "school_profile_link:listed_via_recorded_chain"
+   ],
+   "checked_at": "2026-11-07T16:44:22",
    "students_page_status": "deferred_by_scope",
    "papers_page_status": "deferred_by_scope",
-   "evidence_gaps": [
-    "eligible_website_not_yet_established"
+   "url": "https://www.cs.toronto.edu/~fanny/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "fb3a20df72ec9100d2214c09c1cf3a055ffc6be2c38b9fabdaddddc36fe44403",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~fanny/",
+    "sha256": "fb3a20df72ec9100d2214c09c1cf3a055ffc6be2c38b9fabdaddddc36fe44403",
+    "captured_at": "2026-11-07T16:44:22"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~fanny/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T16:44:22",
+     "result": "listed_via_recorded_chain",
+     "original_link": "http://fannychevalier.net/",
+     "provenance_chain": [
+      {
+       "pi": "Fanny Chevalier",
+       "source_url": "http://fannychevalier.net/",
+       "url": "https://www.cs.toronto.edu/~fanny/",
+       "via": "html_frame",
+       "result": "http_200",
+       "fetched_at": "2026-11-07T16:44:22",
+       "status": 200,
+       "sha256": "fb3a20df72ec9100d2214c09c1cf3a055ffc6be2c38b9fabdaddddc36fe44403",
+       "headers": {
+        "date": "Sat, 07 Nov 2026 21:44:22 GMT",
+        "content-type": "text/html"
+       },
+       "source_fetched_at": "2026-11-07T16:36:38",
+       "source_sha256": "7d85505402bb955b1b4d5de094a8d1659de253afd16f8fa63ddce53b4a083523"
+      }
+     ]
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Visible PI/group homepage content manually reviewed after checking each explicit redirect or embedded-page target.",
+   "evidence_gaps": [],
+   "classification_review": "Visible PI/group research content manually checked. Provenance chain records the original official directory href plus explicit HTTP Location, HTML redirect, embedded frame, or official-profile homepage link; it is not a claimed direct href to the final URL.",
+   "provenance_chain": [
+    {
+     "pi": "Fanny Chevalier",
+     "source_url": "http://fannychevalier.net/",
+     "url": "https://www.cs.toronto.edu/~fanny/",
+     "via": "html_frame",
+     "result": "http_200",
+     "fetched_at": "2026-11-07T16:44:22",
+     "status": 200,
+     "sha256": "fb3a20df72ec9100d2214c09c1cf3a055ffc6be2c38b9fabdaddddc36fe44403",
+     "headers": {
+      "date": "Sat, 07 Nov 2026 21:44:22 GMT",
+      "content-type": "text/html"
+     },
+     "source_fetched_at": "2026-11-07T16:36:38",
+     "source_sha256": "7d85505402bb955b1b4d5de094a8d1659de253afd16f8fa63ddce53b4a083523"
+    }
    ]
   },
   {
@@ -840,7 +1452,7 @@
    "pi": "Niv Dayan",
    "status": "pending",
    "coverage": "pending",
-   "reason": "Observed redirect remains to resolve and review without bypassing host policy.",
+   "reason": "Recorded bot challenge at the explicit redirect target. Live host stopped; permitted archive evidence or another official link remains to review.",
    "candidate_url": "https://nivdayan.net",
    "checks": [
     {
@@ -863,6 +1475,14 @@
      "url": "https://nivdayan.net",
      "at": "2026-11-07T16:36:40",
      "result": "http_301"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.nivdayan.net/",
+     "at": "2026-11-07T16:44:17",
+     "result": "bot_challenge",
+     "via": "http_redirect",
+     "sha256": "ca86c07382cec6cefff70ed5932ea6b4bdc45aeb61c2f2b23d98321715265f98"
     }
    ],
    "checked_at": "2026-11-07T16:36:40",
@@ -870,14 +1490,43 @@
    "papers_page_status": "deferred_by_scope",
    "evidence_gaps": [
     "eligible_website_not_yet_established"
-   ]
+   ],
+   "provenance_chain": [
+    {
+     "pi": "Niv Dayan",
+     "source_url": "https://nivdayan.net",
+     "url": "https://www.nivdayan.net/",
+     "via": "http_redirect",
+     "redirect_receipt": {
+      "pi": "Niv Dayan",
+      "url": "https://nivdayan.net",
+      "status": 301,
+      "headers": {
+       "Date": "Sat, 07 Nov 2026 21:43:16 GMT",
+       "location": "https://www.nivdayan.net/"
+      },
+      "at": "2026-11-07T21:43:16.352116+00:00"
+     },
+     "result": "http_999",
+     "fetched_at": "2026-11-07T16:44:17",
+     "status": 999,
+     "sha256": "ca86c07382cec6cefff70ed5932ea6b4bdc45aeb61c2f2b23d98321715265f98",
+     "headers": {
+      "date": "Sat, 07 Nov 2026 21:44:17 GMT",
+      "content-type": "text/html; charset=UTF-8"
+     },
+     "source_fetched_at": "2026-11-07T16:43:16",
+     "source_sha256": null
+    }
+   ],
+   "reason_type": "pending_archive"
   },
   {
    "pi": "Eyal de Lara",
-   "status": "pending",
-   "coverage": "pending",
-   "reason": "Captured landing page is a redirect stub; target still needs robots/access/content review.",
-   "candidate_url": "https://www.cs.toronto.edu/~delara/",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:44:22",
    "checks": [
     {
      "source": "school_profile",
@@ -901,13 +1550,114 @@
      "result": "ok",
      "via": "school_profile_link",
      "sha256": "445eed21171daab22e6256523f87fdda6d1563741236f9132908a1f999733512"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://delara.github.io/",
+     "at": "2026-11-07T16:44:22",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "bfcdf6e2044f7e001cd2d35ae5d249ae4b569825ccff3ef3aa3b6a79abc2866e"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://delara.github.io/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T16:44:22",
+     "result": "listed_via_recorded_chain",
+     "original_link": "https://www.cs.toronto.edu/~delara/",
+     "provenance_chain": [
+      {
+       "pi": "Eyal de Lara",
+       "source_url": "https://www.cs.toronto.edu/~delara/",
+       "url": "https://delara.github.io/",
+       "via": "html_redirect",
+       "result": "http_200",
+       "fetched_at": "2026-11-07T16:44:22",
+       "status": 200,
+       "sha256": "bfcdf6e2044f7e001cd2d35ae5d249ae4b569825ccff3ef3aa3b6a79abc2866e",
+       "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "date": "Sat, 07 Nov 2026 21:44:22 GMT"
+       },
+       "source_fetched_at": "2026-11-07T16:36:42",
+       "source_sha256": "445eed21171daab22e6256523f87fdda6d1563741236f9132908a1f999733512"
+      }
+     ]
     }
    ],
-   "checked_at": "2026-11-07T16:36:42",
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "school_profile_link:listed_via_recorded_chain"
+   ],
+   "checked_at": "2026-11-07T16:44:22",
    "students_page_status": "deferred_by_scope",
    "papers_page_status": "deferred_by_scope",
-   "evidence_gaps": [
-    "eligible_website_not_yet_established"
+   "url": "https://delara.github.io/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "bfcdf6e2044f7e001cd2d35ae5d249ae4b569825ccff3ef3aa3b6a79abc2866e",
+   "evidence": {
+    "url": "https://delara.github.io/",
+    "sha256": "bfcdf6e2044f7e001cd2d35ae5d249ae4b569825ccff3ef3aa3b6a79abc2866e",
+    "captured_at": "2026-11-07T16:44:22"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://delara.github.io/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T16:44:22",
+     "result": "listed_via_recorded_chain",
+     "original_link": "https://www.cs.toronto.edu/~delara/",
+     "provenance_chain": [
+      {
+       "pi": "Eyal de Lara",
+       "source_url": "https://www.cs.toronto.edu/~delara/",
+       "url": "https://delara.github.io/",
+       "via": "html_redirect",
+       "result": "http_200",
+       "fetched_at": "2026-11-07T16:44:22",
+       "status": 200,
+       "sha256": "bfcdf6e2044f7e001cd2d35ae5d249ae4b569825ccff3ef3aa3b6a79abc2866e",
+       "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "date": "Sat, 07 Nov 2026 21:44:22 GMT"
+       },
+       "source_fetched_at": "2026-11-07T16:36:42",
+       "source_sha256": "445eed21171daab22e6256523f87fdda6d1563741236f9132908a1f999733512"
+      }
+     ]
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Visible PI/group homepage content manually reviewed after checking each explicit redirect or embedded-page target.",
+   "evidence_gaps": [],
+   "classification_review": "Visible PI/group research content manually checked. Provenance chain records the original official directory href plus explicit HTTP Location, HTML redirect, embedded frame, or official-profile homepage link; it is not a claimed direct href to the final URL.",
+   "provenance_chain": [
+    {
+     "pi": "Eyal de Lara",
+     "source_url": "https://www.cs.toronto.edu/~delara/",
+     "url": "https://delara.github.io/",
+     "via": "html_redirect",
+     "result": "http_200",
+     "fetched_at": "2026-11-07T16:44:22",
+     "status": 200,
+     "sha256": "bfcdf6e2044f7e001cd2d35ae5d249ae4b569825ccff3ef3aa3b6a79abc2866e",
+     "headers": {
+      "content-type": "text/html; charset=utf-8",
+      "date": "Sat, 07 Nov 2026 21:44:22 GMT"
+     },
+     "source_fetched_at": "2026-11-07T16:36:42",
+     "source_sha256": "445eed21171daab22e6256523f87fdda6d1563741236f9132908a1f999733512"
+    }
    ]
   },
   {
@@ -2134,10 +2884,10 @@
   },
   {
    "pi": "Zhijing Jin",
-   "status": "pending",
-   "coverage": "pending",
-   "reason": "Observed redirect remains to resolve and review without bypassing host policy.",
-   "candidate_url": "https://zhijing-jin.com/fantasy/",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:45:23",
    "checks": [
     {
      "source": "school_profile",
@@ -2161,13 +2911,291 @@
      "result": "http_301",
      "via": "school_profile_link",
      "sha256": "35031dfeac888d706ae87c9f5bddcb916c6e337fbceecc80b511e11c917fb718"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://zhijing-jin.com/home",
+     "at": "2026-11-07T16:44:19",
+     "result": "http_301",
+     "via": "http_redirect",
+     "sha256": "529e07fd5fbe90380251d4c290ecda14322150db862d08bea8b34613d2bdc1e4"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://zhijing-jin.com/home/",
+     "at": "2026-11-07T16:45:23",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "28fab94192e4e96d78f464c54415458bb87ff9ca4e75e6bc974dd7d3538d00c6"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://zhijing-jin.com/home/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T16:45:23",
+     "result": "listed_via_recorded_chain",
+     "original_link": "https://zhijing-jin.com/fantasy/",
+     "provenance_chain": [
+      {
+       "pi": "Zhijing Jin",
+       "source_url": "https://zhijing-jin.com/fantasy/",
+       "url": "https://zhijing-jin.com/home",
+       "via": "http_redirect",
+       "redirect_receipt": {
+        "pi": "Zhijing Jin",
+        "url": "https://zhijing-jin.com/fantasy/",
+        "status": 301,
+        "headers": {
+         "Date": "Sat, 07 Nov 2026 21:43:16 GMT",
+         "Location": "https://zhijing-jin.com/home",
+         "Content-Type": "text/html; charset=iso-8859-1"
+        },
+        "at": "2026-11-07T21:43:17.024473+00:00"
+       },
+       "result": "http_301",
+       "fetched_at": "2026-11-07T16:44:19",
+       "status": 301,
+       "sha256": "529e07fd5fbe90380251d4c290ecda14322150db862d08bea8b34613d2bdc1e4",
+       "headers": {
+        "date": "Sat, 07 Nov 2026 21:44:19 GMT",
+        "location": "https://zhijing-jin.com/home/",
+        "content-type": "text/html; charset=iso-8859-1"
+       },
+       "source_fetched_at": "2026-11-07T16:43:17",
+       "source_sha256": "35031dfeac888d706ae87c9f5bddcb916c6e337fbceecc80b511e11c917fb718"
+      },
+      {
+       "pi": "Zhijing Jin",
+       "source_url": "https://zhijing-jin.com/home",
+       "url": "https://zhijing-jin.com/home/",
+       "via": "http_redirect",
+       "redirect_receipt": {
+        "pi": "Zhijing Jin",
+        "source_url": "https://zhijing-jin.com/fantasy/",
+        "url": "https://zhijing-jin.com/home",
+        "via": "http_redirect",
+        "redirect_receipt": {
+         "pi": "Zhijing Jin",
+         "url": "https://zhijing-jin.com/fantasy/",
+         "status": 301,
+         "headers": {
+          "Date": "Sat, 07 Nov 2026 21:43:16 GMT",
+          "Location": "https://zhijing-jin.com/home",
+          "Content-Type": "text/html; charset=iso-8859-1"
+         },
+         "at": "2026-11-07T21:43:17.024473+00:00"
+        },
+        "result": "http_301",
+        "fetched_at": "2026-11-07T16:44:19",
+        "status": 301,
+        "sha256": "529e07fd5fbe90380251d4c290ecda14322150db862d08bea8b34613d2bdc1e4",
+        "headers": {
+         "date": "Sat, 07 Nov 2026 21:44:19 GMT",
+         "location": "https://zhijing-jin.com/home/",
+         "content-type": "text/html; charset=iso-8859-1"
+        },
+        "source_fetched_at": "2026-11-07T16:43:17",
+        "source_sha256": "35031dfeac888d706ae87c9f5bddcb916c6e337fbceecc80b511e11c917fb718"
+       },
+       "result": "http_200",
+       "fetched_at": "2026-11-07T16:45:23",
+       "status": 200,
+       "sha256": "28fab94192e4e96d78f464c54415458bb87ff9ca4e75e6bc974dd7d3538d00c6",
+       "headers": {
+        "date": "Sat, 07 Nov 2026 21:45:22 GMT",
+        "content-type": "text/html; charset=UTF-8"
+       },
+       "source_fetched_at": "2026-11-07T16:44:19",
+       "source_sha256": "529e07fd5fbe90380251d4c290ecda14322150db862d08bea8b34613d2bdc1e4"
+      }
+     ]
     }
    ],
-   "checked_at": "2026-11-07T16:37:10",
+   "places_checked": [
+    "candidate_site:http_301",
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "school_profile_link:listed_via_recorded_chain"
+   ],
+   "checked_at": "2026-11-07T16:45:23",
    "students_page_status": "deferred_by_scope",
    "papers_page_status": "deferred_by_scope",
-   "evidence_gaps": [
-    "eligible_website_not_yet_established"
+   "url": "https://zhijing-jin.com/home/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "28fab94192e4e96d78f464c54415458bb87ff9ca4e75e6bc974dd7d3538d00c6",
+   "evidence": {
+    "url": "https://zhijing-jin.com/home/",
+    "sha256": "28fab94192e4e96d78f464c54415458bb87ff9ca4e75e6bc974dd7d3538d00c6",
+    "captured_at": "2026-11-07T16:45:23"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://zhijing-jin.com/home/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T16:45:23",
+     "result": "listed_via_recorded_chain",
+     "original_link": "https://zhijing-jin.com/fantasy/",
+     "provenance_chain": [
+      {
+       "pi": "Zhijing Jin",
+       "source_url": "https://zhijing-jin.com/fantasy/",
+       "url": "https://zhijing-jin.com/home",
+       "via": "http_redirect",
+       "redirect_receipt": {
+        "pi": "Zhijing Jin",
+        "url": "https://zhijing-jin.com/fantasy/",
+        "status": 301,
+        "headers": {
+         "Date": "Sat, 07 Nov 2026 21:43:16 GMT",
+         "Location": "https://zhijing-jin.com/home",
+         "Content-Type": "text/html; charset=iso-8859-1"
+        },
+        "at": "2026-11-07T21:43:17.024473+00:00"
+       },
+       "result": "http_301",
+       "fetched_at": "2026-11-07T16:44:19",
+       "status": 301,
+       "sha256": "529e07fd5fbe90380251d4c290ecda14322150db862d08bea8b34613d2bdc1e4",
+       "headers": {
+        "date": "Sat, 07 Nov 2026 21:44:19 GMT",
+        "location": "https://zhijing-jin.com/home/",
+        "content-type": "text/html; charset=iso-8859-1"
+       },
+       "source_fetched_at": "2026-11-07T16:43:17",
+       "source_sha256": "35031dfeac888d706ae87c9f5bddcb916c6e337fbceecc80b511e11c917fb718"
+      },
+      {
+       "pi": "Zhijing Jin",
+       "source_url": "https://zhijing-jin.com/home",
+       "url": "https://zhijing-jin.com/home/",
+       "via": "http_redirect",
+       "redirect_receipt": {
+        "pi": "Zhijing Jin",
+        "source_url": "https://zhijing-jin.com/fantasy/",
+        "url": "https://zhijing-jin.com/home",
+        "via": "http_redirect",
+        "redirect_receipt": {
+         "pi": "Zhijing Jin",
+         "url": "https://zhijing-jin.com/fantasy/",
+         "status": 301,
+         "headers": {
+          "Date": "Sat, 07 Nov 2026 21:43:16 GMT",
+          "Location": "https://zhijing-jin.com/home",
+          "Content-Type": "text/html; charset=iso-8859-1"
+         },
+         "at": "2026-11-07T21:43:17.024473+00:00"
+        },
+        "result": "http_301",
+        "fetched_at": "2026-11-07T16:44:19",
+        "status": 301,
+        "sha256": "529e07fd5fbe90380251d4c290ecda14322150db862d08bea8b34613d2bdc1e4",
+        "headers": {
+         "date": "Sat, 07 Nov 2026 21:44:19 GMT",
+         "location": "https://zhijing-jin.com/home/",
+         "content-type": "text/html; charset=iso-8859-1"
+        },
+        "source_fetched_at": "2026-11-07T16:43:17",
+        "source_sha256": "35031dfeac888d706ae87c9f5bddcb916c6e337fbceecc80b511e11c917fb718"
+       },
+       "result": "http_200",
+       "fetched_at": "2026-11-07T16:45:23",
+       "status": 200,
+       "sha256": "28fab94192e4e96d78f464c54415458bb87ff9ca4e75e6bc974dd7d3538d00c6",
+       "headers": {
+        "date": "Sat, 07 Nov 2026 21:45:22 GMT",
+        "content-type": "text/html; charset=UTF-8"
+       },
+       "source_fetched_at": "2026-11-07T16:44:19",
+       "source_sha256": "529e07fd5fbe90380251d4c290ecda14322150db862d08bea8b34613d2bdc1e4"
+      }
+     ]
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Visible PI/group homepage content manually reviewed after checking each explicit redirect or embedded-page target.",
+   "evidence_gaps": [],
+   "classification_review": "Visible PI/group research content manually checked. Provenance chain records the original official directory href plus explicit HTTP Location, HTML redirect, embedded frame, or official-profile homepage link; it is not a claimed direct href to the final URL.",
+   "provenance_chain": [
+    {
+     "pi": "Zhijing Jin",
+     "source_url": "https://zhijing-jin.com/fantasy/",
+     "url": "https://zhijing-jin.com/home",
+     "via": "http_redirect",
+     "redirect_receipt": {
+      "pi": "Zhijing Jin",
+      "url": "https://zhijing-jin.com/fantasy/",
+      "status": 301,
+      "headers": {
+       "Date": "Sat, 07 Nov 2026 21:43:16 GMT",
+       "Location": "https://zhijing-jin.com/home",
+       "Content-Type": "text/html; charset=iso-8859-1"
+      },
+      "at": "2026-11-07T21:43:17.024473+00:00"
+     },
+     "result": "http_301",
+     "fetched_at": "2026-11-07T16:44:19",
+     "status": 301,
+     "sha256": "529e07fd5fbe90380251d4c290ecda14322150db862d08bea8b34613d2bdc1e4",
+     "headers": {
+      "date": "Sat, 07 Nov 2026 21:44:19 GMT",
+      "location": "https://zhijing-jin.com/home/",
+      "content-type": "text/html; charset=iso-8859-1"
+     },
+     "source_fetched_at": "2026-11-07T16:43:17",
+     "source_sha256": "35031dfeac888d706ae87c9f5bddcb916c6e337fbceecc80b511e11c917fb718"
+    },
+    {
+     "pi": "Zhijing Jin",
+     "source_url": "https://zhijing-jin.com/home",
+     "url": "https://zhijing-jin.com/home/",
+     "via": "http_redirect",
+     "redirect_receipt": {
+      "pi": "Zhijing Jin",
+      "source_url": "https://zhijing-jin.com/fantasy/",
+      "url": "https://zhijing-jin.com/home",
+      "via": "http_redirect",
+      "redirect_receipt": {
+       "pi": "Zhijing Jin",
+       "url": "https://zhijing-jin.com/fantasy/",
+       "status": 301,
+       "headers": {
+        "Date": "Sat, 07 Nov 2026 21:43:16 GMT",
+        "Location": "https://zhijing-jin.com/home",
+        "Content-Type": "text/html; charset=iso-8859-1"
+       },
+       "at": "2026-11-07T21:43:17.024473+00:00"
+      },
+      "result": "http_301",
+      "fetched_at": "2026-11-07T16:44:19",
+      "status": 301,
+      "sha256": "529e07fd5fbe90380251d4c290ecda14322150db862d08bea8b34613d2bdc1e4",
+      "headers": {
+       "date": "Sat, 07 Nov 2026 21:44:19 GMT",
+       "location": "https://zhijing-jin.com/home/",
+       "content-type": "text/html; charset=iso-8859-1"
+      },
+      "source_fetched_at": "2026-11-07T16:43:17",
+      "source_sha256": "35031dfeac888d706ae87c9f5bddcb916c6e337fbceecc80b511e11c917fb718"
+     },
+     "result": "http_200",
+     "fetched_at": "2026-11-07T16:45:23",
+     "status": 200,
+     "sha256": "28fab94192e4e96d78f464c54415458bb87ff9ca4e75e6bc974dd7d3538d00c6",
+     "headers": {
+      "date": "Sat, 07 Nov 2026 21:45:22 GMT",
+      "content-type": "text/html; charset=UTF-8"
+     },
+     "source_fetched_at": "2026-11-07T16:44:19",
+     "source_sha256": "529e07fd5fbe90380251d4c290ecda14322150db862d08bea8b34613d2bdc1e4"
+    }
    ]
   },
   {
@@ -2404,10 +3432,10 @@
   },
   {
    "pi": "David Levin",
-   "status": "pending",
-   "coverage": "pending",
-   "reason": "Captured landing page is a redirect stub; target still needs robots/access/content review.",
-   "candidate_url": "https://www.cs.toronto.edu/~diwlevin/",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:45:24",
    "checks": [
     {
      "source": "school_profile",
@@ -2431,21 +3459,233 @@
      "result": "ok",
      "via": "school_profile_link",
      "sha256": "673db39e3d878e53c2a25bd0e95c16d499451bb3f50fc88e9c1d820c0c5f5e9c"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.diwlevin.com/researchdb/",
+     "at": "2026-11-07T16:44:23",
+     "result": "http_301",
+     "via": "html_redirect",
+     "sha256": "95e1144ae5faba1d6ea1ac58b29b1e8d0399125e4dbc6a17d50d0bf5cf3bdcf8"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.diwlevin.com/researchdb/",
+     "at": "2026-11-07T16:45:24",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "26f8cef451f7edfdf4257b52b6519096d09a6069086f6e52bec90ddde8595d5f"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.diwlevin.com/researchdb/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T16:45:24",
+     "result": "listed_via_recorded_chain",
+     "original_link": "https://www.cs.toronto.edu/~diwlevin/",
+     "provenance_chain": [
+      {
+       "pi": "David Levin",
+       "source_url": "https://www.cs.toronto.edu/~diwlevin/",
+       "url": "http://www.diwlevin.com/researchdb/",
+       "via": "html_redirect",
+       "result": "http_301",
+       "fetched_at": "2026-11-07T16:44:23",
+       "status": 301,
+       "sha256": "95e1144ae5faba1d6ea1ac58b29b1e8d0399125e4dbc6a17d50d0bf5cf3bdcf8",
+       "headers": {
+        "date": "Sat, 07 Nov 2026 21:44:23 GMT",
+        "content-type": "text/html",
+        "location": "https://www.diwlevin.com/researchdb/"
+       },
+       "source_fetched_at": "2026-11-07T16:37:14",
+       "source_sha256": "673db39e3d878e53c2a25bd0e95c16d499451bb3f50fc88e9c1d820c0c5f5e9c"
+      },
+      {
+       "pi": "David Levin",
+       "source_url": "http://www.diwlevin.com/researchdb/",
+       "url": "https://www.diwlevin.com/researchdb/",
+       "via": "http_redirect",
+       "redirect_receipt": {
+        "pi": "David Levin",
+        "source_url": "https://www.cs.toronto.edu/~diwlevin/",
+        "url": "http://www.diwlevin.com/researchdb/",
+        "via": "html_redirect",
+        "result": "http_301",
+        "fetched_at": "2026-11-07T16:44:23",
+        "status": 301,
+        "sha256": "95e1144ae5faba1d6ea1ac58b29b1e8d0399125e4dbc6a17d50d0bf5cf3bdcf8",
+        "headers": {
+         "date": "Sat, 07 Nov 2026 21:44:23 GMT",
+         "content-type": "text/html",
+         "location": "https://www.diwlevin.com/researchdb/"
+        },
+        "source_fetched_at": "2026-11-07T16:37:14",
+        "source_sha256": "673db39e3d878e53c2a25bd0e95c16d499451bb3f50fc88e9c1d820c0c5f5e9c"
+       },
+       "result": "http_200",
+       "fetched_at": "2026-11-07T16:45:24",
+       "status": 200,
+       "sha256": "26f8cef451f7edfdf4257b52b6519096d09a6069086f6e52bec90ddde8595d5f",
+       "headers": {
+        "date": "Sat, 07 Nov 2026 21:45:24 GMT",
+        "content-type": "text/html"
+       },
+       "source_fetched_at": "2026-11-07T16:44:23",
+       "source_sha256": "95e1144ae5faba1d6ea1ac58b29b1e8d0399125e4dbc6a17d50d0bf5cf3bdcf8"
+      }
+     ]
     }
    ],
-   "checked_at": "2026-11-07T16:37:14",
+   "places_checked": [
+    "candidate_site:http_301",
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "school_profile_link:listed_via_recorded_chain"
+   ],
+   "checked_at": "2026-11-07T16:45:24",
    "students_page_status": "deferred_by_scope",
    "papers_page_status": "deferred_by_scope",
-   "evidence_gaps": [
-    "eligible_website_not_yet_established"
+   "url": "https://www.diwlevin.com/researchdb/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "26f8cef451f7edfdf4257b52b6519096d09a6069086f6e52bec90ddde8595d5f",
+   "evidence": {
+    "url": "https://www.diwlevin.com/researchdb/",
+    "sha256": "26f8cef451f7edfdf4257b52b6519096d09a6069086f6e52bec90ddde8595d5f",
+    "captured_at": "2026-11-07T16:45:24"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.diwlevin.com/researchdb/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T16:45:24",
+     "result": "listed_via_recorded_chain",
+     "original_link": "https://www.cs.toronto.edu/~diwlevin/",
+     "provenance_chain": [
+      {
+       "pi": "David Levin",
+       "source_url": "https://www.cs.toronto.edu/~diwlevin/",
+       "url": "http://www.diwlevin.com/researchdb/",
+       "via": "html_redirect",
+       "result": "http_301",
+       "fetched_at": "2026-11-07T16:44:23",
+       "status": 301,
+       "sha256": "95e1144ae5faba1d6ea1ac58b29b1e8d0399125e4dbc6a17d50d0bf5cf3bdcf8",
+       "headers": {
+        "date": "Sat, 07 Nov 2026 21:44:23 GMT",
+        "content-type": "text/html",
+        "location": "https://www.diwlevin.com/researchdb/"
+       },
+       "source_fetched_at": "2026-11-07T16:37:14",
+       "source_sha256": "673db39e3d878e53c2a25bd0e95c16d499451bb3f50fc88e9c1d820c0c5f5e9c"
+      },
+      {
+       "pi": "David Levin",
+       "source_url": "http://www.diwlevin.com/researchdb/",
+       "url": "https://www.diwlevin.com/researchdb/",
+       "via": "http_redirect",
+       "redirect_receipt": {
+        "pi": "David Levin",
+        "source_url": "https://www.cs.toronto.edu/~diwlevin/",
+        "url": "http://www.diwlevin.com/researchdb/",
+        "via": "html_redirect",
+        "result": "http_301",
+        "fetched_at": "2026-11-07T16:44:23",
+        "status": 301,
+        "sha256": "95e1144ae5faba1d6ea1ac58b29b1e8d0399125e4dbc6a17d50d0bf5cf3bdcf8",
+        "headers": {
+         "date": "Sat, 07 Nov 2026 21:44:23 GMT",
+         "content-type": "text/html",
+         "location": "https://www.diwlevin.com/researchdb/"
+        },
+        "source_fetched_at": "2026-11-07T16:37:14",
+        "source_sha256": "673db39e3d878e53c2a25bd0e95c16d499451bb3f50fc88e9c1d820c0c5f5e9c"
+       },
+       "result": "http_200",
+       "fetched_at": "2026-11-07T16:45:24",
+       "status": 200,
+       "sha256": "26f8cef451f7edfdf4257b52b6519096d09a6069086f6e52bec90ddde8595d5f",
+       "headers": {
+        "date": "Sat, 07 Nov 2026 21:45:24 GMT",
+        "content-type": "text/html"
+       },
+       "source_fetched_at": "2026-11-07T16:44:23",
+       "source_sha256": "95e1144ae5faba1d6ea1ac58b29b1e8d0399125e4dbc6a17d50d0bf5cf3bdcf8"
+      }
+     ]
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Visible PI/group homepage content manually reviewed after checking each explicit redirect or embedded-page target.",
+   "evidence_gaps": [],
+   "classification_review": "Visible PI/group research content manually checked. Provenance chain records the original official directory href plus explicit HTTP Location, HTML redirect, embedded frame, or official-profile homepage link; it is not a claimed direct href to the final URL.",
+   "provenance_chain": [
+    {
+     "pi": "David Levin",
+     "source_url": "https://www.cs.toronto.edu/~diwlevin/",
+     "url": "http://www.diwlevin.com/researchdb/",
+     "via": "html_redirect",
+     "result": "http_301",
+     "fetched_at": "2026-11-07T16:44:23",
+     "status": 301,
+     "sha256": "95e1144ae5faba1d6ea1ac58b29b1e8d0399125e4dbc6a17d50d0bf5cf3bdcf8",
+     "headers": {
+      "date": "Sat, 07 Nov 2026 21:44:23 GMT",
+      "content-type": "text/html",
+      "location": "https://www.diwlevin.com/researchdb/"
+     },
+     "source_fetched_at": "2026-11-07T16:37:14",
+     "source_sha256": "673db39e3d878e53c2a25bd0e95c16d499451bb3f50fc88e9c1d820c0c5f5e9c"
+    },
+    {
+     "pi": "David Levin",
+     "source_url": "http://www.diwlevin.com/researchdb/",
+     "url": "https://www.diwlevin.com/researchdb/",
+     "via": "http_redirect",
+     "redirect_receipt": {
+      "pi": "David Levin",
+      "source_url": "https://www.cs.toronto.edu/~diwlevin/",
+      "url": "http://www.diwlevin.com/researchdb/",
+      "via": "html_redirect",
+      "result": "http_301",
+      "fetched_at": "2026-11-07T16:44:23",
+      "status": 301,
+      "sha256": "95e1144ae5faba1d6ea1ac58b29b1e8d0399125e4dbc6a17d50d0bf5cf3bdcf8",
+      "headers": {
+       "date": "Sat, 07 Nov 2026 21:44:23 GMT",
+       "content-type": "text/html",
+       "location": "https://www.diwlevin.com/researchdb/"
+      },
+      "source_fetched_at": "2026-11-07T16:37:14",
+      "source_sha256": "673db39e3d878e53c2a25bd0e95c16d499451bb3f50fc88e9c1d820c0c5f5e9c"
+     },
+     "result": "http_200",
+     "fetched_at": "2026-11-07T16:45:24",
+     "status": 200,
+     "sha256": "26f8cef451f7edfdf4257b52b6519096d09a6069086f6e52bec90ddde8595d5f",
+     "headers": {
+      "date": "Sat, 07 Nov 2026 21:45:24 GMT",
+      "content-type": "text/html"
+     },
+     "source_fetched_at": "2026-11-07T16:44:23",
+     "source_sha256": "95e1144ae5faba1d6ea1ac58b29b1e8d0399125e4dbc6a17d50d0bf5cf3bdcf8"
+    }
    ]
   },
   {
    "pi": "Aviad Levis",
-   "status": "pending",
-   "coverage": "pending",
-   "reason": "Observed redirect remains to resolve and review without bypassing host policy.",
-   "candidate_url": "http://aviadlevis.info/",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:44:19",
    "checks": [
     {
      "source": "school_profile",
@@ -2469,13 +3709,148 @@
      "result": "http_301",
      "via": "school_profile_link",
      "sha256": "9e17cb15dd75bbbd5dbb984eda674863c3b10ab72613cf8a39a00c3e11a8492a"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.aviadlevis.info/",
+     "at": "2026-11-07T16:44:19",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "68bca2d4d375ac37944ca31b03dab8fe51478f00ed5a5746217990a7b8f53c6c"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.aviadlevis.info/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T16:44:19",
+     "result": "listed_via_recorded_chain",
+     "original_link": "http://aviadlevis.info/",
+     "provenance_chain": [
+      {
+       "pi": "Aviad Levis",
+       "source_url": "http://aviadlevis.info/",
+       "url": "https://www.aviadlevis.info/",
+       "via": "http_redirect",
+       "redirect_receipt": {
+        "pi": "Aviad Levis",
+        "url": "http://aviadlevis.info/",
+        "status": 301,
+        "headers": {
+         "Content-Type": "text/html",
+         "Location": "https://www.aviadlevis.info/",
+         "Date": "Sat, 07 Nov 2026 21:43:17 GMT"
+        },
+        "at": "2026-11-07T21:43:17.083020+00:00"
+       },
+       "result": "http_200",
+       "fetched_at": "2026-11-07T16:44:19",
+       "status": 200,
+       "sha256": "68bca2d4d375ac37944ca31b03dab8fe51478f00ed5a5746217990a7b8f53c6c",
+       "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "date": "Sat, 07 Nov 2026 21:44:19 GMT"
+       },
+       "source_fetched_at": "2026-11-07T16:43:17",
+       "source_sha256": "9e17cb15dd75bbbd5dbb984eda674863c3b10ab72613cf8a39a00c3e11a8492a"
+      }
+     ]
     }
    ],
-   "checked_at": "2026-11-07T16:37:15",
+   "places_checked": [
+    "candidate_site:http_301",
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "school_profile_link:listed_via_recorded_chain"
+   ],
+   "checked_at": "2026-11-07T16:44:19",
    "students_page_status": "deferred_by_scope",
    "papers_page_status": "deferred_by_scope",
-   "evidence_gaps": [
-    "eligible_website_not_yet_established"
+   "url": "https://www.aviadlevis.info/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "68bca2d4d375ac37944ca31b03dab8fe51478f00ed5a5746217990a7b8f53c6c",
+   "evidence": {
+    "url": "https://www.aviadlevis.info/",
+    "sha256": "68bca2d4d375ac37944ca31b03dab8fe51478f00ed5a5746217990a7b8f53c6c",
+    "captured_at": "2026-11-07T16:44:19"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.aviadlevis.info/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T16:44:19",
+     "result": "listed_via_recorded_chain",
+     "original_link": "http://aviadlevis.info/",
+     "provenance_chain": [
+      {
+       "pi": "Aviad Levis",
+       "source_url": "http://aviadlevis.info/",
+       "url": "https://www.aviadlevis.info/",
+       "via": "http_redirect",
+       "redirect_receipt": {
+        "pi": "Aviad Levis",
+        "url": "http://aviadlevis.info/",
+        "status": 301,
+        "headers": {
+         "Content-Type": "text/html",
+         "Location": "https://www.aviadlevis.info/",
+         "Date": "Sat, 07 Nov 2026 21:43:17 GMT"
+        },
+        "at": "2026-11-07T21:43:17.083020+00:00"
+       },
+       "result": "http_200",
+       "fetched_at": "2026-11-07T16:44:19",
+       "status": 200,
+       "sha256": "68bca2d4d375ac37944ca31b03dab8fe51478f00ed5a5746217990a7b8f53c6c",
+       "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "date": "Sat, 07 Nov 2026 21:44:19 GMT"
+       },
+       "source_fetched_at": "2026-11-07T16:43:17",
+       "source_sha256": "9e17cb15dd75bbbd5dbb984eda674863c3b10ab72613cf8a39a00c3e11a8492a"
+      }
+     ]
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Visible PI/group homepage content manually reviewed after checking each explicit redirect or embedded-page target.",
+   "evidence_gaps": [],
+   "classification_review": "Visible PI/group research content manually checked. Provenance chain records the original official directory href plus explicit HTTP Location, HTML redirect, embedded frame, or official-profile homepage link; it is not a claimed direct href to the final URL.",
+   "provenance_chain": [
+    {
+     "pi": "Aviad Levis",
+     "source_url": "http://aviadlevis.info/",
+     "url": "https://www.aviadlevis.info/",
+     "via": "http_redirect",
+     "redirect_receipt": {
+      "pi": "Aviad Levis",
+      "url": "http://aviadlevis.info/",
+      "status": 301,
+      "headers": {
+       "Content-Type": "text/html",
+       "Location": "https://www.aviadlevis.info/",
+       "Date": "Sat, 07 Nov 2026 21:43:17 GMT"
+      },
+      "at": "2026-11-07T21:43:17.083020+00:00"
+     },
+     "result": "http_200",
+     "fetched_at": "2026-11-07T16:44:19",
+     "status": 200,
+     "sha256": "68bca2d4d375ac37944ca31b03dab8fe51478f00ed5a5746217990a7b8f53c6c",
+     "headers": {
+      "content-type": "text/html; charset=utf-8",
+      "date": "Sat, 07 Nov 2026 21:44:19 GMT"
+     },
+     "source_fetched_at": "2026-11-07T16:43:17",
+     "source_sha256": "9e17cb15dd75bbbd5dbb984eda674863c3b10ab72613cf8a39a00c3e11a8492a"
+    }
    ]
   },
   {
@@ -2616,10 +3991,10 @@
   },
   {
    "pi": "Peter Love",
-   "status": "pending",
-   "coverage": "pending",
-   "reason": "Captured page is a Physics institutional profile; explicit external homepage link remains to review.",
-   "candidate_url": "https://www.physics.utoronto.ca/members/love-peter/",
+   "status": "reviewed",
+   "reason_code": "lab_site",
+   "reason": "Captured lab/group website.",
+   "audited_at": "2026-11-07T16:44:24",
    "checks": [
     {
      "source": "school_profile",
@@ -2643,13 +4018,114 @@
      "result": "ok",
      "via": "school_profile_link",
      "sha256": "797b930f8e2ed3fb6dfa286272663868a70506b72933a3a7b734acee7353ae66"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://sites.google.com/view/lovegroupqa3",
+     "at": "2026-11-07T16:44:24",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "cc597eac1d2d03a2f3cecae05f39ffaf8f824a93cbf5962264ab38c3dd9c7733"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://sites.google.com/view/lovegroupqa3",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T16:44:24",
+     "result": "listed_via_recorded_chain",
+     "original_link": "https://www.physics.utoronto.ca/members/love-peter/",
+     "provenance_chain": [
+      {
+       "pi": "Peter Love",
+       "source_url": "https://www.physics.utoronto.ca/members/love-peter/",
+       "url": "https://sites.google.com/view/lovegroupqa3",
+       "via": "profile_homepage_link",
+       "result": "http_200",
+       "fetched_at": "2026-11-07T16:44:24",
+       "status": 200,
+       "sha256": "cc597eac1d2d03a2f3cecae05f39ffaf8f824a93cbf5962264ab38c3dd9c7733",
+       "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "date": "Sat, 07 Nov 2026 21:44:24 GMT"
+       },
+       "source_fetched_at": "2026-11-07T16:37:17",
+       "source_sha256": "797b930f8e2ed3fb6dfa286272663868a70506b72933a3a7b734acee7353ae66"
+      }
+     ]
     }
    ],
-   "checked_at": "2026-11-07T16:37:17",
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "school_profile_link:listed_via_recorded_chain"
+   ],
+   "checked_at": "2026-11-07T16:44:24",
    "students_page_status": "deferred_by_scope",
    "papers_page_status": "deferred_by_scope",
-   "evidence_gaps": [
-    "eligible_website_not_yet_established"
+   "url": "https://sites.google.com/view/lovegroupqa3",
+   "kind": "lab_site",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "cc597eac1d2d03a2f3cecae05f39ffaf8f824a93cbf5962264ab38c3dd9c7733",
+   "evidence": {
+    "url": "https://sites.google.com/view/lovegroupqa3",
+    "sha256": "cc597eac1d2d03a2f3cecae05f39ffaf8f824a93cbf5962264ab38c3dd9c7733",
+    "captured_at": "2026-11-07T16:44:24"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://sites.google.com/view/lovegroupqa3",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T16:44:24",
+     "result": "listed_via_recorded_chain",
+     "original_link": "https://www.physics.utoronto.ca/members/love-peter/",
+     "provenance_chain": [
+      {
+       "pi": "Peter Love",
+       "source_url": "https://www.physics.utoronto.ca/members/love-peter/",
+       "url": "https://sites.google.com/view/lovegroupqa3",
+       "via": "profile_homepage_link",
+       "result": "http_200",
+       "fetched_at": "2026-11-07T16:44:24",
+       "status": 200,
+       "sha256": "cc597eac1d2d03a2f3cecae05f39ffaf8f824a93cbf5962264ab38c3dd9c7733",
+       "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "date": "Sat, 07 Nov 2026 21:44:24 GMT"
+       },
+       "source_fetched_at": "2026-11-07T16:37:17",
+       "source_sha256": "797b930f8e2ed3fb6dfa286272663868a70506b72933a3a7b734acee7353ae66"
+      }
+     ]
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Visible PI/group homepage content manually reviewed after checking each explicit redirect or embedded-page target.",
+   "evidence_gaps": [],
+   "classification_review": "Visible PI/group research content manually checked. Provenance chain records the original official directory href plus explicit HTTP Location, HTML redirect, embedded frame, or official-profile homepage link; it is not a claimed direct href to the final URL.",
+   "provenance_chain": [
+    {
+     "pi": "Peter Love",
+     "source_url": "https://www.physics.utoronto.ca/members/love-peter/",
+     "url": "https://sites.google.com/view/lovegroupqa3",
+     "via": "profile_homepage_link",
+     "result": "http_200",
+     "fetched_at": "2026-11-07T16:44:24",
+     "status": 200,
+     "sha256": "cc597eac1d2d03a2f3cecae05f39ffaf8f824a93cbf5962264ab38c3dd9c7733",
+     "headers": {
+      "content-type": "text/html; charset=utf-8",
+      "date": "Sat, 07 Nov 2026 21:44:24 GMT"
+     },
+     "source_fetched_at": "2026-11-07T16:37:17",
+     "source_sha256": "797b930f8e2ed3fb6dfa286272663868a70506b72933a3a7b734acee7353ae66"
+    }
    ]
   },
   {
@@ -3150,10 +4626,10 @@
   },
   {
    "pi": "Carolina Nobre",
-   "status": "pending",
-   "coverage": "pending",
-   "reason": "Observed redirect remains to resolve and review without bypassing host policy.",
-   "candidate_url": "https://www.cs.toronto.edu/~cnobre",
+   "status": "reviewed",
+   "reason_code": "lab_site",
+   "reason": "Captured lab/group website.",
+   "audited_at": "2026-11-07T16:44:19",
    "checks": [
     {
      "source": "school_profile",
@@ -3177,13 +4653,148 @@
      "result": "http_301",
      "via": "school_profile_link",
      "sha256": "9bdc14bca72c616597d3b3110d710a0cacd5294a16cfa74ded2de0aba9ed3dee"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~cnobre/",
+     "at": "2026-11-07T16:44:19",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "ccea402931fce636ca1f2b86c91a495769e6c2e63032dce97c6477759b619004"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~cnobre/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T16:44:19",
+     "result": "listed_via_recorded_chain",
+     "original_link": "https://www.cs.toronto.edu/~cnobre",
+     "provenance_chain": [
+      {
+       "pi": "Carolina Nobre",
+       "source_url": "https://www.cs.toronto.edu/~cnobre",
+       "url": "https://www.cs.toronto.edu/~cnobre/",
+       "via": "http_redirect",
+       "redirect_receipt": {
+        "pi": "Carolina Nobre",
+        "url": "https://www.cs.toronto.edu/~cnobre",
+        "status": 301,
+        "headers": {
+         "Date": "Sat, 07 Nov 2026 21:43:17 GMT",
+         "Location": "https://www.cs.toronto.edu/~cnobre/",
+         "Content-Type": "text/html; charset=iso-8859-1"
+        },
+        "at": "2026-11-07T21:43:17.208301+00:00"
+       },
+       "result": "http_200",
+       "fetched_at": "2026-11-07T16:44:19",
+       "status": 200,
+       "sha256": "ccea402931fce636ca1f2b86c91a495769e6c2e63032dce97c6477759b619004",
+       "headers": {
+        "date": "Sat, 07 Nov 2026 21:44:19 GMT",
+        "content-type": "text/html"
+       },
+       "source_fetched_at": "2026-11-07T16:43:17",
+       "source_sha256": "9bdc14bca72c616597d3b3110d710a0cacd5294a16cfa74ded2de0aba9ed3dee"
+      }
+     ]
     }
    ],
-   "checked_at": "2026-11-07T16:37:33",
+   "places_checked": [
+    "candidate_site:http_301",
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "school_profile_link:listed_via_recorded_chain"
+   ],
+   "checked_at": "2026-11-07T16:44:19",
    "students_page_status": "deferred_by_scope",
    "papers_page_status": "deferred_by_scope",
-   "evidence_gaps": [
-    "eligible_website_not_yet_established"
+   "url": "https://www.cs.toronto.edu/~cnobre/",
+   "kind": "lab_site",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "ccea402931fce636ca1f2b86c91a495769e6c2e63032dce97c6477759b619004",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~cnobre/",
+    "sha256": "ccea402931fce636ca1f2b86c91a495769e6c2e63032dce97c6477759b619004",
+    "captured_at": "2026-11-07T16:44:19"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~cnobre/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T16:44:19",
+     "result": "listed_via_recorded_chain",
+     "original_link": "https://www.cs.toronto.edu/~cnobre",
+     "provenance_chain": [
+      {
+       "pi": "Carolina Nobre",
+       "source_url": "https://www.cs.toronto.edu/~cnobre",
+       "url": "https://www.cs.toronto.edu/~cnobre/",
+       "via": "http_redirect",
+       "redirect_receipt": {
+        "pi": "Carolina Nobre",
+        "url": "https://www.cs.toronto.edu/~cnobre",
+        "status": 301,
+        "headers": {
+         "Date": "Sat, 07 Nov 2026 21:43:17 GMT",
+         "Location": "https://www.cs.toronto.edu/~cnobre/",
+         "Content-Type": "text/html; charset=iso-8859-1"
+        },
+        "at": "2026-11-07T21:43:17.208301+00:00"
+       },
+       "result": "http_200",
+       "fetched_at": "2026-11-07T16:44:19",
+       "status": 200,
+       "sha256": "ccea402931fce636ca1f2b86c91a495769e6c2e63032dce97c6477759b619004",
+       "headers": {
+        "date": "Sat, 07 Nov 2026 21:44:19 GMT",
+        "content-type": "text/html"
+       },
+       "source_fetched_at": "2026-11-07T16:43:17",
+       "source_sha256": "9bdc14bca72c616597d3b3110d710a0cacd5294a16cfa74ded2de0aba9ed3dee"
+      }
+     ]
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Visible PI/group homepage content manually reviewed after checking each explicit redirect or embedded-page target.",
+   "evidence_gaps": [],
+   "classification_review": "Visible PI/group research content manually checked. Provenance chain records the original official directory href plus explicit HTTP Location, HTML redirect, embedded frame, or official-profile homepage link; it is not a claimed direct href to the final URL.",
+   "provenance_chain": [
+    {
+     "pi": "Carolina Nobre",
+     "source_url": "https://www.cs.toronto.edu/~cnobre",
+     "url": "https://www.cs.toronto.edu/~cnobre/",
+     "via": "http_redirect",
+     "redirect_receipt": {
+      "pi": "Carolina Nobre",
+      "url": "https://www.cs.toronto.edu/~cnobre",
+      "status": 301,
+      "headers": {
+       "Date": "Sat, 07 Nov 2026 21:43:17 GMT",
+       "Location": "https://www.cs.toronto.edu/~cnobre/",
+       "Content-Type": "text/html; charset=iso-8859-1"
+      },
+      "at": "2026-11-07T21:43:17.208301+00:00"
+     },
+     "result": "http_200",
+     "fetched_at": "2026-11-07T16:44:19",
+     "status": 200,
+     "sha256": "ccea402931fce636ca1f2b86c91a495769e6c2e63032dce97c6477759b619004",
+     "headers": {
+      "date": "Sat, 07 Nov 2026 21:44:19 GMT",
+      "content-type": "text/html"
+     },
+     "source_fetched_at": "2026-11-07T16:43:17",
+     "source_sha256": "9bdc14bca72c616597d3b3110d710a0cacd5294a16cfa74ded2de0aba9ed3dee"
+    }
    ]
   },
   {
@@ -3324,10 +4935,10 @@
   },
   {
    "pi": "Toniann Pitassi",
-   "status": "pending",
-   "coverage": "pending",
-   "reason": "Captured landing page is a frame shell; framed homepage content needs review.",
-   "candidate_url": "https://www.cs.toronto.edu/~toni/",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:44:24",
    "checks": [
     {
      "source": "school_profile",
@@ -3351,13 +4962,114 @@
      "result": "ok",
      "via": "school_profile_link",
      "sha256": "45015165f1103ca1c9df25c2d3164eadbaade347359b596e618d72a7ce5fba7e"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~toni/toni.html",
+     "at": "2026-11-07T16:44:24",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "7a6faa00396bfb2ea106f87e9ecea4c225a0496b662ba4e738f6390ffd981883"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~toni/toni.html",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T16:44:24",
+     "result": "listed_via_recorded_chain",
+     "original_link": "https://www.cs.toronto.edu/~toni/",
+     "provenance_chain": [
+      {
+       "pi": "Toniann Pitassi",
+       "source_url": "https://www.cs.toronto.edu/~toni/",
+       "url": "https://www.cs.toronto.edu/~toni/toni.html",
+       "via": "html_frame",
+       "result": "http_200",
+       "fetched_at": "2026-11-07T16:44:24",
+       "status": 200,
+       "sha256": "7a6faa00396bfb2ea106f87e9ecea4c225a0496b662ba4e738f6390ffd981883",
+       "headers": {
+        "date": "Sat, 07 Nov 2026 21:44:24 GMT",
+        "content-type": "text/html"
+       },
+       "source_fetched_at": "2026-11-07T16:37:39",
+       "source_sha256": "45015165f1103ca1c9df25c2d3164eadbaade347359b596e618d72a7ce5fba7e"
+      }
+     ]
     }
    ],
-   "checked_at": "2026-11-07T16:37:39",
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "school_profile_link:listed_via_recorded_chain"
+   ],
+   "checked_at": "2026-11-07T16:44:24",
    "students_page_status": "deferred_by_scope",
    "papers_page_status": "deferred_by_scope",
-   "evidence_gaps": [
-    "eligible_website_not_yet_established"
+   "url": "https://www.cs.toronto.edu/~toni/toni.html",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "7a6faa00396bfb2ea106f87e9ecea4c225a0496b662ba4e738f6390ffd981883",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~toni/toni.html",
+    "sha256": "7a6faa00396bfb2ea106f87e9ecea4c225a0496b662ba4e738f6390ffd981883",
+    "captured_at": "2026-11-07T16:44:24"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~toni/toni.html",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T16:44:24",
+     "result": "listed_via_recorded_chain",
+     "original_link": "https://www.cs.toronto.edu/~toni/",
+     "provenance_chain": [
+      {
+       "pi": "Toniann Pitassi",
+       "source_url": "https://www.cs.toronto.edu/~toni/",
+       "url": "https://www.cs.toronto.edu/~toni/toni.html",
+       "via": "html_frame",
+       "result": "http_200",
+       "fetched_at": "2026-11-07T16:44:24",
+       "status": 200,
+       "sha256": "7a6faa00396bfb2ea106f87e9ecea4c225a0496b662ba4e738f6390ffd981883",
+       "headers": {
+        "date": "Sat, 07 Nov 2026 21:44:24 GMT",
+        "content-type": "text/html"
+       },
+       "source_fetched_at": "2026-11-07T16:37:39",
+       "source_sha256": "45015165f1103ca1c9df25c2d3164eadbaade347359b596e618d72a7ce5fba7e"
+      }
+     ]
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Visible PI/group homepage content manually reviewed after checking each explicit redirect or embedded-page target.",
+   "evidence_gaps": [],
+   "classification_review": "Visible PI/group research content manually checked. Provenance chain records the original official directory href plus explicit HTTP Location, HTML redirect, embedded frame, or official-profile homepage link; it is not a claimed direct href to the final URL.",
+   "provenance_chain": [
+    {
+     "pi": "Toniann Pitassi",
+     "source_url": "https://www.cs.toronto.edu/~toni/",
+     "url": "https://www.cs.toronto.edu/~toni/toni.html",
+     "via": "html_frame",
+     "result": "http_200",
+     "fetched_at": "2026-11-07T16:44:24",
+     "status": 200,
+     "sha256": "7a6faa00396bfb2ea106f87e9ecea4c225a0496b662ba4e738f6390ffd981883",
+     "headers": {
+      "date": "Sat, 07 Nov 2026 21:44:24 GMT",
+      "content-type": "text/html"
+     },
+     "source_fetched_at": "2026-11-07T16:37:39",
+     "source_sha256": "45015165f1103ca1c9df25c2d3164eadbaade347359b596e618d72a7ce5fba7e"
+    }
    ]
   },
   {
@@ -3730,10 +5442,10 @@
   },
   {
    "pi": "Kirill Serkh",
-   "status": "pending",
-   "coverage": "pending",
-   "reason": "Observed redirect remains to resolve and review without bypassing host policy.",
-   "candidate_url": "https://www.cs.toronto.edu/~kserkh/",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:44:20",
    "checks": [
     {
      "source": "school_profile",
@@ -3757,13 +5469,148 @@
      "result": "http_301",
      "via": "school_profile_link",
      "sha256": "86b5efcd1cc67a7e8ba7c9fe7917214b14b3f00a101f391a3d2b0cd93d0b2cf1"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.math.utoronto.ca/kserkh/index.html",
+     "at": "2026-11-07T16:44:20",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "e0f5d095c3931ff5389691e66cf9c203f2905d546db547afe4c8a627d7732776"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.math.utoronto.ca/kserkh/index.html",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T16:44:20",
+     "result": "listed_via_recorded_chain",
+     "original_link": "https://www.cs.toronto.edu/~kserkh/",
+     "provenance_chain": [
+      {
+       "pi": "Kirill Serkh",
+       "source_url": "https://www.cs.toronto.edu/~kserkh/",
+       "url": "https://www.math.utoronto.ca/kserkh/index.html",
+       "via": "http_redirect",
+       "redirect_receipt": {
+        "pi": "Kirill Serkh",
+        "url": "https://www.cs.toronto.edu/~kserkh/",
+        "status": 301,
+        "headers": {
+         "Date": "Sat, 07 Nov 2026 21:43:19 GMT",
+         "Location": "https://www.math.utoronto.ca/kserkh/index.html",
+         "Content-Type": "text/html; charset=iso-8859-1"
+        },
+        "at": "2026-11-07T21:43:19.306665+00:00"
+       },
+       "result": "http_200",
+       "fetched_at": "2026-11-07T16:44:20",
+       "status": 200,
+       "sha256": "e0f5d095c3931ff5389691e66cf9c203f2905d546db547afe4c8a627d7732776",
+       "headers": {
+        "date": "Sat, 07 Nov 2026 21:44:20 GMT",
+        "content-type": "text/html"
+       },
+       "source_fetched_at": "2026-11-07T16:43:19",
+       "source_sha256": "86b5efcd1cc67a7e8ba7c9fe7917214b14b3f00a101f391a3d2b0cd93d0b2cf1"
+      }
+     ]
     }
    ],
-   "checked_at": "2026-11-07T16:37:45",
+   "places_checked": [
+    "candidate_site:http_301",
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "school_profile_link:listed_via_recorded_chain"
+   ],
+   "checked_at": "2026-11-07T16:44:20",
    "students_page_status": "deferred_by_scope",
    "papers_page_status": "deferred_by_scope",
-   "evidence_gaps": [
-    "eligible_website_not_yet_established"
+   "url": "https://www.math.utoronto.ca/kserkh/index.html",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "e0f5d095c3931ff5389691e66cf9c203f2905d546db547afe4c8a627d7732776",
+   "evidence": {
+    "url": "https://www.math.utoronto.ca/kserkh/index.html",
+    "sha256": "e0f5d095c3931ff5389691e66cf9c203f2905d546db547afe4c8a627d7732776",
+    "captured_at": "2026-11-07T16:44:20"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.math.utoronto.ca/kserkh/index.html",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T16:44:20",
+     "result": "listed_via_recorded_chain",
+     "original_link": "https://www.cs.toronto.edu/~kserkh/",
+     "provenance_chain": [
+      {
+       "pi": "Kirill Serkh",
+       "source_url": "https://www.cs.toronto.edu/~kserkh/",
+       "url": "https://www.math.utoronto.ca/kserkh/index.html",
+       "via": "http_redirect",
+       "redirect_receipt": {
+        "pi": "Kirill Serkh",
+        "url": "https://www.cs.toronto.edu/~kserkh/",
+        "status": 301,
+        "headers": {
+         "Date": "Sat, 07 Nov 2026 21:43:19 GMT",
+         "Location": "https://www.math.utoronto.ca/kserkh/index.html",
+         "Content-Type": "text/html; charset=iso-8859-1"
+        },
+        "at": "2026-11-07T21:43:19.306665+00:00"
+       },
+       "result": "http_200",
+       "fetched_at": "2026-11-07T16:44:20",
+       "status": 200,
+       "sha256": "e0f5d095c3931ff5389691e66cf9c203f2905d546db547afe4c8a627d7732776",
+       "headers": {
+        "date": "Sat, 07 Nov 2026 21:44:20 GMT",
+        "content-type": "text/html"
+       },
+       "source_fetched_at": "2026-11-07T16:43:19",
+       "source_sha256": "86b5efcd1cc67a7e8ba7c9fe7917214b14b3f00a101f391a3d2b0cd93d0b2cf1"
+      }
+     ]
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Visible PI/group homepage content manually reviewed after checking each explicit redirect or embedded-page target.",
+   "evidence_gaps": [],
+   "classification_review": "Visible PI/group research content manually checked. Provenance chain records the original official directory href plus explicit HTTP Location, HTML redirect, embedded frame, or official-profile homepage link; it is not a claimed direct href to the final URL.",
+   "provenance_chain": [
+    {
+     "pi": "Kirill Serkh",
+     "source_url": "https://www.cs.toronto.edu/~kserkh/",
+     "url": "https://www.math.utoronto.ca/kserkh/index.html",
+     "via": "http_redirect",
+     "redirect_receipt": {
+      "pi": "Kirill Serkh",
+      "url": "https://www.cs.toronto.edu/~kserkh/",
+      "status": 301,
+      "headers": {
+       "Date": "Sat, 07 Nov 2026 21:43:19 GMT",
+       "Location": "https://www.math.utoronto.ca/kserkh/index.html",
+       "Content-Type": "text/html; charset=iso-8859-1"
+      },
+      "at": "2026-11-07T21:43:19.306665+00:00"
+     },
+     "result": "http_200",
+     "fetched_at": "2026-11-07T16:44:20",
+     "status": 200,
+     "sha256": "e0f5d095c3931ff5389691e66cf9c203f2905d546db547afe4c8a627d7732776",
+     "headers": {
+      "date": "Sat, 07 Nov 2026 21:44:20 GMT",
+      "content-type": "text/html"
+     },
+     "source_fetched_at": "2026-11-07T16:43:19",
+     "source_sha256": "86b5efcd1cc67a7e8ba7c9fe7917214b14b3f00a101f391a3d2b0cd93d0b2cf1"
+    }
    ]
   },
   {
@@ -4344,7 +6191,8 @@
    "papers_page_status": "deferred_by_scope",
    "evidence_gaps": [
     "eligible_website_not_yet_established"
-   ]
+   ],
+   "reason_type": "pending_archive"
   },
   {
    "pi": "Roei Tell",
@@ -4580,10 +6428,10 @@
   },
   {
    "pi": "Nandita Vijaykumar",
-   "status": "pending",
-   "coverage": "pending",
-   "reason": "Captured landing page is a redirect stub; target still needs robots/access/content review.",
-   "candidate_url": "https://www.cs.toronto.edu/~nandita/",
+   "status": "reviewed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T16:44:27",
    "checks": [
     {
      "source": "school_profile",
@@ -4607,20 +6455,121 @@
      "result": "ok",
      "via": "school_profile_link",
      "sha256": "53dbdf9ba93ea19e24a0f5e073eaea79fca7b5481aba475db65ec40fcf0e35fc"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://sites.google.com/view/nanditacs/",
+     "at": "2026-11-07T16:44:27",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "3b1a343d2af98365363f9be588ca7fbd1c305a453097cd60c08f320066e23cc1"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://sites.google.com/view/nanditacs/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T16:44:27",
+     "result": "listed_via_recorded_chain",
+     "original_link": "https://www.cs.toronto.edu/~nandita/",
+     "provenance_chain": [
+      {
+       "pi": "Nandita Vijaykumar",
+       "source_url": "https://www.cs.toronto.edu/~nandita/",
+       "url": "https://sites.google.com/view/nanditacs/",
+       "via": "html_redirect",
+       "result": "http_200",
+       "fetched_at": "2026-11-07T16:44:27",
+       "status": 200,
+       "sha256": "3b1a343d2af98365363f9be588ca7fbd1c305a453097cd60c08f320066e23cc1",
+       "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "date": "Sat, 07 Nov 2026 21:44:26 GMT"
+       },
+       "source_fetched_at": "2026-11-07T16:38:04",
+       "source_sha256": "53dbdf9ba93ea19e24a0f5e073eaea79fca7b5481aba475db65ec40fcf0e35fc"
+      }
+     ]
     }
    ],
-   "checked_at": "2026-11-07T16:38:04",
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "school_profile_link:listed_via_recorded_chain"
+   ],
+   "checked_at": "2026-11-07T16:44:27",
    "students_page_status": "deferred_by_scope",
    "papers_page_status": "deferred_by_scope",
-   "evidence_gaps": [
-    "eligible_website_not_yet_established"
+   "url": "https://sites.google.com/view/nanditacs/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.cs.toronto.edu/people/faculty-directory",
+   "sha256": "3b1a343d2af98365363f9be588ca7fbd1c305a453097cd60c08f320066e23cc1",
+   "evidence": {
+    "url": "https://sites.google.com/view/nanditacs/",
+    "sha256": "3b1a343d2af98365363f9be588ca7fbd1c305a453097cd60c08f320066e23cc1",
+    "captured_at": "2026-11-07T16:44:27"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://sites.google.com/view/nanditacs/",
+     "on": "https://web.cs.toronto.edu/people/faculty-directory",
+     "at": "2026-11-07T16:44:27",
+     "result": "listed_via_recorded_chain",
+     "original_link": "https://www.cs.toronto.edu/~nandita/",
+     "provenance_chain": [
+      {
+       "pi": "Nandita Vijaykumar",
+       "source_url": "https://www.cs.toronto.edu/~nandita/",
+       "url": "https://sites.google.com/view/nanditacs/",
+       "via": "html_redirect",
+       "result": "http_200",
+       "fetched_at": "2026-11-07T16:44:27",
+       "status": 200,
+       "sha256": "3b1a343d2af98365363f9be588ca7fbd1c305a453097cd60c08f320066e23cc1",
+       "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "date": "Sat, 07 Nov 2026 21:44:26 GMT"
+       },
+       "source_fetched_at": "2026-11-07T16:38:04",
+       "source_sha256": "53dbdf9ba93ea19e24a0f5e073eaea79fca7b5481aba475db65ec40fcf0e35fc"
+      }
+     ]
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "Visible PI/group homepage content manually reviewed after checking each explicit redirect or embedded-page target.",
+   "evidence_gaps": [],
+   "classification_review": "Visible PI/group research content manually checked. Provenance chain records the original official directory href plus explicit HTTP Location, HTML redirect, embedded frame, or official-profile homepage link; it is not a claimed direct href to the final URL.",
+   "provenance_chain": [
+    {
+     "pi": "Nandita Vijaykumar",
+     "source_url": "https://www.cs.toronto.edu/~nandita/",
+     "url": "https://sites.google.com/view/nanditacs/",
+     "via": "html_redirect",
+     "result": "http_200",
+     "fetched_at": "2026-11-07T16:44:27",
+     "status": 200,
+     "sha256": "3b1a343d2af98365363f9be588ca7fbd1c305a453097cd60c08f320066e23cc1",
+     "headers": {
+      "content-type": "text/html; charset=utf-8",
+      "date": "Sat, 07 Nov 2026 21:44:26 GMT"
+     },
+     "source_fetched_at": "2026-11-07T16:38:04",
+     "source_sha256": "53dbdf9ba93ea19e24a0f5e073eaea79fca7b5481aba475db65ec40fcf0e35fc"
+    }
    ]
   },
   {
    "pi": "Bo Wang",
    "status": "pending",
    "coverage": "pending",
-   "reason": "Observed redirect remains to resolve and review without bypassing host policy.",
+   "reason": "Recorded bot challenge at the explicit redirect target. Live host stopped; permitted archive evidence or another official link remains to review.",
    "candidate_url": "https://www.lmp.utoronto.ca/faculty/bo-wang",
    "checks": [
     {
@@ -4643,6 +6592,14 @@
      "url": "https://www.lmp.utoronto.ca/faculty/bo-wang",
      "at": "2026-11-07T16:38:04",
      "result": "http_301"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://lmp.utoronto.ca/faculty/bo-wang",
+     "at": "2026-11-07T16:44:20",
+     "result": "bot_challenge",
+     "via": "http_redirect",
+     "sha256": "eac18496b1220c1bedd3aa2cf96c5ffbc34fbc9c54ce2a22a3920bc715418258"
     }
    ],
    "checked_at": "2026-11-07T16:38:04",
@@ -4650,7 +6607,36 @@
    "papers_page_status": "deferred_by_scope",
    "evidence_gaps": [
     "eligible_website_not_yet_established"
-   ]
+   ],
+   "provenance_chain": [
+    {
+     "pi": "Bo Wang",
+     "source_url": "https://www.lmp.utoronto.ca/faculty/bo-wang",
+     "url": "https://lmp.utoronto.ca/faculty/bo-wang",
+     "via": "http_redirect",
+     "redirect_receipt": {
+      "pi": "Bo Wang",
+      "url": "https://www.lmp.utoronto.ca/faculty/bo-wang",
+      "status": 301,
+      "headers": {
+       "Location": "https://lmp.utoronto.ca/faculty/bo-wang",
+       "Date": "Sat, 07 Nov 2026 21:43:19 GMT"
+      },
+      "at": "2026-11-07T21:43:19.421148+00:00"
+     },
+     "result": "http_999",
+     "fetched_at": "2026-11-07T16:44:20",
+     "status": 999,
+     "sha256": "eac18496b1220c1bedd3aa2cf96c5ffbc34fbc9c54ce2a22a3920bc715418258",
+     "headers": {
+      "content-type": "text/html; charset=UTF-8",
+      "date": "Sat, 07 Nov 2026 21:44:20 GMT"
+     },
+     "source_fetched_at": "2026-11-07T16:43:19",
+     "source_sha256": null
+    }
+   ],
+   "reason_type": "pending_archive"
   },
   {
    "pi": "Nathan Wiebe",
@@ -4684,7 +6670,7 @@
    "pi": "Daniel Wigdor",
    "status": "pending",
    "coverage": "pending",
-   "reason": "Observed redirect remains to resolve and review without bypassing host policy.",
+   "reason": "Officially linked redirect target serves the Apache default installation page, not a PI/lab homepage. Alternate official links or permitted archived evidence remain to review.",
    "candidate_url": "https://www.dgp.toronto.edu/~dwigdor/",
    "checks": [
     {
@@ -4709,13 +6695,50 @@
      "result": "http_301",
      "via": "school_profile_link",
      "sha256": "7805caf54c102b16e1128460acc2436b8c5d382edc3ac5b4f669719bc3463ce2"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.danielwigdor.com/",
+     "at": "2026-11-07T16:44:20",
+     "result": "ok",
+     "via": "http_redirect",
+     "sha256": "6faef4d5d777fdcaa653766b0ac8b9ed32d0fd87f7dcd79f02ff524dd1b0eb69"
     }
    ],
    "checked_at": "2026-11-07T16:38:04",
    "students_page_status": "deferred_by_scope",
    "papers_page_status": "deferred_by_scope",
    "evidence_gaps": [
-    "eligible_website_not_yet_established"
+    "redirect_target_is_server_default_page"
+   ],
+   "provenance_chain": [
+    {
+     "pi": "Daniel Wigdor",
+     "source_url": "https://www.dgp.toronto.edu/~dwigdor/",
+     "url": "http://www.danielwigdor.com/",
+     "via": "http_redirect",
+     "redirect_receipt": {
+      "pi": "Daniel Wigdor",
+      "url": "https://www.dgp.toronto.edu/~dwigdor/",
+      "status": 301,
+      "headers": {
+       "Date": "Sat, 07 Nov 2026 21:43:19 GMT",
+       "Location": "http://www.danielwigdor.com/",
+       "Content-Type": "text/html; charset=iso-8859-1"
+      },
+      "at": "2026-11-07T21:43:19.542201+00:00"
+     },
+     "result": "http_200",
+     "fetched_at": "2026-11-07T16:44:20",
+     "status": 200,
+     "sha256": "6faef4d5d777fdcaa653766b0ac8b9ed32d0fd87f7dcd79f02ff524dd1b0eb69",
+     "headers": {
+      "date": "Sat, 07 Nov 2026 21:44:20 GMT",
+      "content-type": "text/html"
+     },
+     "source_fetched_at": "2026-11-07T16:43:19",
+     "source_sha256": "7805caf54c102b16e1128460acc2436b8c5d382edc3ac5b4f669719bc3463ce2"
+    }
    ]
   },
   {
