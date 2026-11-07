@@ -86,6 +86,14 @@ foreign_title_exception = false
 [census]
 center_units = []
 computing_departments = ["CSE"]
+# Temporary partial-package identity holds under the owner's 2026-11-06
+# "release what we have ... then keep working on improving them" decision.
+# Faculty evidence stays in the census; these are not negative PI/scope decisions.
+not_pi = [
+  {name = "Andrew Witt", reason = "Temporary partial-package identity hold: official 2026 professor appointment is supported, but the local bibliographic candidates have not yet been sufficiently tied to this faculty member. Preserve the faculty rows; attribute no papers pending review."},
+  {name = "William Richard", reason = "Temporary partial-package identity hold: dated CSE professor rows are supported, but five compatible DBLP candidates remain unresolved and the local OpenAlex author-stat pass found no qualifying identity. Preserve the faculty evidence; this does not decide PI eligibility."},
+  {name = "Jerome Cox Jr.", reason = "Temporary partial-package identity hold: dated CSE professor row is supported, but compatible DBLP candidates remain unresolved and no qualifying identity was found in the local OpenAlex author-stat pass. Preserve the faculty evidence; this does not decide PI eligibility."},
+]
 home_units = {"Computer Science and Engineering" = '^(?:Department of )?Computer Science (?:and|&) Engineering$', "Electrical and Systems Engineering" = '^(?:Preston M\. Green )?(?:Department of )?Electrical (?:and|&) Systems Engineering$', "Biomedical Engineering" = '^(?:Department of )?Biomedical Engineering$', "Statistics and Data Science" = '^(?:Department of )?Statistics (?:and|&) Data Science$', "Mathematics and Statistics" = '^(?:Department of )?Mathematics(?: (?:and|&) Statistics)?$', "Olin Business School" = '^(?:Olin Business School|Olin)$', "Psychological and Brain Sciences" = '^(?:Department of )?Psychological (?:and|&) Brain Sciences$', "Institute for Informatics, Data Science and Biostatistics" = '^(?:Institute for Informatics, Data Science (?:and|&) Biostatistics|I2DB)$', "Biostatistics" = '^(?:Division of )?Biostatistics$'}
 rank_words = {teaching = '\bprofessor\s+of\s+practice|\bsenior\s+lecturer', adjunct = '\badjunct\b', research = '\bresearch\s+(?:associate|assistant)\s+professor', courtesy = '\baffiliate\s*,'}
 
