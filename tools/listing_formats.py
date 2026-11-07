@@ -337,7 +337,9 @@ def cambridge_profile(h):
     if not name or not box:
         return []
     titles = [clean(x) for x in re.findall(r'<li\b[^>]*>(.*?)</li>', box.group(1), re.S)]
-    return [dict(name_listed=clean(name.group(1)), titles=titles, homepage=None, division=None)] if titles else []
+    nm = re.sub(r'^(?:Dr|Prof(?:essor)?)\.?\s+', '', clean(name.group(1)), flags=re.I)
+    nm = re.sub(r'(?:\s+(?:FRS|FACM))+$', '', nm)
+    return [dict(name_listed=nm, titles=titles, homepage=None, division=None)] if titles else []
 
 
 FORMATS = {
