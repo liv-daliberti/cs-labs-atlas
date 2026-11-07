@@ -11,7 +11,7 @@ def test_candidate_name_from_listing_titles():
     assert D.candidate_name('PhD Defense by Wenyu Tang') == 'Wenyu Tang'
     assert D.candidate_name('Ph.D. Dissertation Defense - Nahid Shazon') == 'Nahid Shazon'
     assert D.candidate_name('PhD Defense by VISWA SRI RUPA ANNE') == 'Viswa Sri Rupa Anne'
-    assert D.candidate_name('Ph.D. Proposal Oral Exam - Yuheng He') is None or True   # proposals are a separate listing
+    assert D.candidate_name('Ph.D. Proposal Oral Exam - Yuheng He') == 'Yuheng He'
     assert D.candidate_name('Spring Seminar') is None
 
 

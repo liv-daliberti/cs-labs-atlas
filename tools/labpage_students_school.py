@@ -399,7 +399,7 @@ def adviser_h4_lists(key, forms):
                 hq = f'{lab} {adv}'
                 if not (2 <= len(nm.split()) <= 5 and nm in flat and hq in flat and adv):
                     continue
-                hit = {pi for pi, f in forms if re.search(re.escape(f) + r'(?![\w-])', adv)}
+                hit = {pi for pi, f in forms if re.search(r'(?<![\w-])' + re.escape(f) + r'(?![\w-])', adv)}
                 for tok_ in re.split(r'\s*(?:,|;|\band\b|&)\s*', adv):   # 'Greg Hager' is Gregory D. Hager, 'Anqi “Angie” Liu' is Anqi Liu: the PI whose Name matches the one adviser token
                     tok_ = re.sub(r'[“"”][^“"”]*[“"”]', ' ', tok_).strip()
                     if len(tok_.split()) >= 2:

@@ -9,14 +9,16 @@ usage: washu_etd.py crawl|parse [--coll eng_etds] [--delay 5] [--limit N] [--out
 """
 import argparse
 import html
+import importlib.util
 import json
 import re
-import sys
 import time
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))  # python -I leaves the script's directory off sys.path
-import school_web as W  # noqa: E402
+# Load the trusted sibling explicitly; preserve python -I for fetched input handling.
+_spec = importlib.util.spec_from_file_location('school_web', Path(__file__).resolve().with_name('school_web.py'))
+W = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(W)
 
 KEY = 'washu'
 BASE = 'https://repository.library.washu.edu'

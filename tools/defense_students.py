@@ -15,6 +15,7 @@ has no other record of is a new student of the lab; co-advised candidates are ro
 usage: defense_students.py evidence <school> [--out FILE]      (default: print the counts)
        defense_students.py sample <school> --seed N --n 30      (the rows to hand-check, with their full page text)
 """
+import importlib.util
 import json
 import random
 import re
@@ -22,10 +23,11 @@ import sqlite3
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'fulltext-push'))
+# Load trusted repository code explicitly so python -I never adds a downloaded-file directory.
+_spec = importlib.util.spec_from_file_location('etd_crawl', Path(__file__).resolve().parents[1] / 'fulltext-push' / 'etd_crawl.py')
+E = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(E)
 import atlas_paths as P  # noqa: E402
-import etd_crawl as E  # noqa: E402
 import ftp_common as F  # noqa: E402
 from pihier.names import Name  # noqa: E402
 

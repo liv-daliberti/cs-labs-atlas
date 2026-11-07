@@ -14,6 +14,7 @@ Store: raw/defense_crawl/hg.gatech.edu.sqlite (resumable). Evidence rows are cut
 """
 import fcntl
 import hashlib
+import importlib.util
 import json
 import re
 import sqlite3
@@ -22,8 +23,10 @@ import time
 from pathlib import Path
 from urllib.parse import urlsplit
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-import etd_crawl as E  # noqa: E402
+# Explicit sibling loading keeps the isolated entrypoint independent of sys.path.
+_spec = importlib.util.spec_from_file_location('etd_crawl', Path(__file__).resolve().with_name('etd_crawl.py'))
+E = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(E)
 import ftp_common as F  # noqa: E402
 import oai_repo as O  # noqa: E402
 
