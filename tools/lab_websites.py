@@ -9,13 +9,16 @@ import gzip
 import json
 import re
 import sys
+import unicodedata
+import zlib
 from pathlib import Path
-from urllib.parse import urlsplit
+from urllib.parse import urljoin, urlsplit
 
 import atlas_paths as P
 
 FOUND_RESULTS = ('ok', 'ok_wayback', 'does_not_name_pi_kept_strong_source')
 WEBSITE_REASONS = ('lab_site', 'pi_homepage_only_no_lab_site')
+OFFICIAL_LINK_SOURCES = ('school_profile_link', 'department_listing_link')
 RESEARCH_OUTPUT_PATH = re.compile(r'/(?:publications?|papers|reports|news|blog)/[12][0-9]{3}/', re.I)
 ABSENCE_REASONS = {
     'profile_only_no_homepage', 'no_web_presence_found', 'site_dead_no_wayback',
@@ -73,7 +76,7 @@ def entry(rec):
                 gaps.append('discovery_source_missing')
             # An index is a useful lead, but does not establish the official link
             # required by the top-25 brief. Keep this visible for follow-up.
-            official = [c for c in checks if c.get('source') == 'school_profile_link'
+            official = [c for c in checks if c.get('source') in OFFICIAL_LINK_SOURCES
                         and c.get('url') == urls['lab_site'] and c.get('on')]
             out['official_link_status'] = 'recorded' if official else 'not_recorded'
             out['official_link_evidence'] = official
@@ -196,31 +199,82 @@ def normalized_link(url):
     return p.netloc.lower(), p.path.rstrip('/'), p.query
 
 
+def listing_link_context(content, base, target, pi):
+    """An exact homepage link in this PI's named card, never a page-wide match."""
+    from bs4 import BeautifulSoup
+
+    def normalized_name(text):
+        text = ''.join(c for c in unicodedata.normalize('NFKD', text) if not unicodedata.combining(c))
+        return ' '.join(re.findall(r'\w+', text.casefold()))
+
+    name = normalized_name(pi)
+    parts = name.split()
+    if len([p for p in parts if len(p) > 1]) < 2:
+        return None  # initials need an explicit reviewed identity mapping
+    names = {name, ' '.join(parts[-1:] + parts[:-1])}
+    try:
+        content = zlib.decompress(content)
+    except (zlib.error, TypeError):
+        pass
+    soup = BeautifulSoup(content, 'html.parser')
+    for anchor in soup.find_all('a', href=True):
+        url = urljoin(base, anchor['href'])
+        url = re.sub(r'^https?://web\.archive\.org/web/[^/]+/(https?://)', r'\1', url)
+        if normalized_link(url) != target:
+            continue
+        if normalized_name(anchor.get_text(' ', strip=True)) in names:
+            return url, anchor.get_text(' ', strip=True), anchor.get_text(' ', strip=True)
+        for card in list(anchor.parents)[:5]:
+            if card.name in ('body', 'html', '[document]'):
+                break
+            text = card.get_text(' ', strip=True)
+            if len(text) > 1200:
+                break
+            headings = card.find_all(re.compile(r'^h[1-6]$'))
+            # A container with several headings can span several PI cards.
+            if len(headings) == 1 and normalized_name(headings[0].get_text(' ', strip=True)) in names:
+                return url, anchor.get_text(' ', strip=True), text
+    return None
+
+
 def enrich_official_links(school, doc):
-    """Recover exact official-profile links from stored HTML, with no network."""
+    """Recover exact official profile/card links from cached HTML, with no network."""
     import labpage_audit as L
     kit = L.Kit(school)
     domain = L.SCHOOLS[school]['domain']
+    pages = {}
     for r in doc['labs']:
         if r.get('coverage') != 'website' or r.get('official_link_status') == 'recorded':
             continue
         target = normalized_link(r['url'])
         for c in list(r.get('checks') or []):
             source_url = c.get('url') or ''
-            if c.get('source') != 'school_profile' and not L.is_profile(source_url, domain):
+            listing = c.get('source') == 'department_listing'
+            if not listing and c.get('source') != 'school_profile' and not L.is_profile(source_url, domain):
                 continue
-            if not re.search(domain, urlsplit(source_url).hostname or ''):
+            if not re.search(r'(?:^|\.)(?:' + domain + r')$', urlsplit(source_url).hostname or ''):
                 continue
-            page, _ = kit.stored(source_url)
+            if source_url not in pages:
+                page, _ = kit.stored(source_url)
+                if not page:
+                    page, _ = kit.stored(kit.src_of(source_url))
+                pages[source_url] = page
+            page = pages[source_url]
             if not page or page.get('status') != 200 or not page.get('sha256') or not page.get('content'):
                 continue
-            links = L.site_links(kit, page, L.link_base(page, source_url))
-            match = next(((url, text) for url, text in links if normalized_link(url) == target), None)
+            if listing:
+                match = listing_link_context(page['content'], L.link_base(page, source_url), target, r['pi'])
+            else:
+                links = L.site_links(kit, page, L.link_base(page, source_url))
+                match = next(((url, text) for url, text in links if normalized_link(url) == target), None)
             if match:
-                check = dict(source='school_profile_link', url=r['url'], on=source_url,
+                check = dict(source='department_listing_link' if listing else 'school_profile_link', url=r['url'], on=source_url,
                              at=c.get('at') or page.get('fetched_at'), result='listed',
                              anchor=match[1], linked_url=match[0], source_sha256=page['sha256'],
-                             provenance='recovered_from_cached_profile_html')
+                             source_capture_url=page.get('capture_url'),
+                             provenance='recovered_from_cached_listing_card' if listing else 'recovered_from_cached_profile_html')
+                if listing:
+                    check['source_quote'] = match[2]
                 r['checks'].append(check)
                 r['official_link_status'] = 'recorded'
                 r['official_link_evidence'] = [check]
@@ -248,7 +302,7 @@ def gate(doc, expected_pis, require_official=True):
                 bad.append(f'{pi}: selected website is a dated research-output page')
             if not re.fullmatch(r'[a-fA-F0-9]{64}', r.get('sha256') or '') or not r.get('found_via'):
                 bad.append(f'{pi}: website capture hash or discovery provenance missing')
-            if require_official and not any(c.get('source') == 'school_profile_link' and c.get('url') == r['url'] and c.get('on')
+            if require_official and not any(c.get('source') in OFFICIAL_LINK_SOURCES and c.get('url') == r['url'] and c.get('on')
                                             for c in r.get('checks') or []):
                 bad.append(f'{pi}: website official discovery link not recorded')
         elif r.get('reason_code') not in ABSENCE_REASONS or not r.get('reason'):
@@ -257,7 +311,7 @@ def gate(doc, expected_pis, require_official=True):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument('cmd', choices=['build', 'summary'])
+    ap.add_argument('cmd', choices=['build', 'summary', 'enrich'])
     ap.add_argument('schools', nargs='+')
     ap.add_argument('--out')
     ap.add_argument('--refresh-discovery', action='store_true', help='Refresh website evidence from cached discovery (no network; no student admissions)')
@@ -267,13 +321,17 @@ def main():
     a = ap.parse_args()
     if a.out and len(a.schools) != 1:
         ap.error('--out requires exactly one school (avoid overwriting its register)')
+    if a.cmd == 'enrich' and (not a.out or a.refresh_discovery):
+        ap.error('enrich requires an existing --out register and cannot refresh discovery')
     failed = False
     for s in a.schools:
-        doc = build(s, refresh=a.refresh_discovery)
-        if a.enrich_official_links:
+        doc = json.loads(Path(a.out).read_text()) if a.cmd == 'enrich' else build(s, refresh=a.refresh_discovery)
+        if doc.get('school') != s:
+            ap.error('existing register school does not match requested school')
+        if a.enrich_official_links or a.cmd == 'enrich':
             doc = enrich_official_links(s, doc)
         summary = counts(doc)
-        if a.cmd == 'build':
+        if a.cmd in ('build', 'enrich'):
             out = Path(a.out) if a.out else P.data_w('lab-websites.json', s)
             out.parent.mkdir(parents=True, exist_ok=True)
             tmp = out.with_name(out.name + '.tmp')

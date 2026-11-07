@@ -107,6 +107,49 @@ def test_exact_cached_official_link_provenance(monkeypatch):
     assert W.normalized_link('https://other.school.edu/lab/') != W.normalized_link('https://school.edu/lab/')
 
 
+def test_listing_link_requires_the_pi_named_card_not_another_card_or_page():
+    html = b'''<html><body><article><h3>Ada Example</h3><a href="https://lab.example/">Website</a></article>
+      <article><h3>Other Person</h3><a href="https://other.example/">Website</a></article></body></html>'''
+    hit = W.listing_link_context(html, 'https://school.edu/faculty/', W.normalized_link('https://lab.example/'), 'Ada Example')
+    assert hit == ('https://lab.example/', 'Website', 'Ada Example Website')
+    assert not W.listing_link_context(html, 'https://school.edu/faculty/', W.normalized_link('https://other.example/'), 'Ada Example')
+    assert not W.listing_link_context(b'<body>Ada Example <a href="https://lab.example/">Website</a></body>',
+                                     'https://school.edu/', W.normalized_link('https://lab.example/'), 'Ada Example')
+    assert not W.listing_link_context(b'<div><h3>Y Z</h3><a href="https://lab.example/">Website</a></div>',
+                                     'https://school.edu/', W.normalized_link('https://lab.example/'), 'Y Z')
+
+
+def test_cached_archive_listing_link_is_valid_official_provenance(monkeypatch):
+    import labpage_audit as L
+    import zlib
+    rec = record()
+    rec['lab_page']['checks'][0].update(source='department_listing', url='https://school.edu/faculty/')
+    doc = {'labs': [W.entry(rec)]}
+    page = {'url': 'https://school.edu/faculty/', 'status': 200, 'sha256': 'b' * 64,
+            'capture_url': 'https://web.archive.org/web/20200101id_/https://school.edu/faculty/',
+            'content': zlib.compress(b'<article><h3>Example, Ada</h3><a href="/lab/">Website</a></article>')}
+
+    class Kit:
+        def __init__(self, school):
+            pass
+
+        def stored(self, url):
+            return (page if url.startswith('https://web.archive.org/') else None), {}
+
+        def src_of(self, url):
+            return page['capture_url']
+
+    monkeypatch.setattr(L, 'Kit', Kit)
+    monkeypatch.setattr(L, 'SCHOOLS', {'u': {'domain': r'school\.edu'}})
+    out = W.enrich_official_links('u', doc)['labs'][0]
+    assert out['official_link_status'] == 'recorded'
+    check = out['official_link_evidence'][0]
+    assert check['source'] == 'department_listing_link'
+    assert check['source_quote'] == 'Example, Ada Website'
+    assert check['source_capture_url'] == page['capture_url']
+    assert not W.gate(doc, ['Ada Example'])
+
+
 def test_archive_pending_is_unresolved_at_gate():
     rec = record('no_web_presence_found', None)
     rec['lab_page']['checks'][0]['result'] = 'wayback_only_host'
