@@ -1,0 +1,245 @@
+# University-wide discovery; full computing department, affiliated review elsewhere.
+# Legacy site inventories are discovery leads, never accepted PI/paper links without current attribution checks.
+key = "cambridge"
+name = "University of Cambridge"
+short = "Cambridge"
+site_uni = "university-of-cambridge"
+status = "onboarding"
+order = 14
+stage = 0
+started = "2026-11-06"
+window = [2016, 2026]
+
+[ids]
+openalex = ["I241749"]
+openalex_related = []
+openalex_excluded = ["I4210135132"]
+ror = "https://ror.org/013meh722"
+ids_note = "Verified local OpenAlex institutions snapshot and lineage, plus official ROR v2 API (HTTP200), 2026-11-06. Sweep all university lineage children except publishing companies. Related hospitals and trusts are not automatically university appointments; no related-only expansion initially. Every PI still needs a faculty appointment and computing scope. Colleges alone establish neither university employment nor lab membership."
+
+[web]
+domains = ["cam.ac.uk"]
+email_domains = ["cam.ac.uk"]
+wayback_only_suffixes = []
+excluded_hosts = []
+
+[affiliation]
+regex = '\b(?:university\s+of\s+cambridge|cambridge\s+univ(?:ersity)?\.?)(?!\s+press)\b|\b(?:[\w-]+\.)*cam\.ac\.uk\b'
+loose = 'cambridge|cam\.ac\.uk'
+own_units = ''
+must_match = ["University of Cambridge, United Kingdom", "Cambridge University, UK", "Department of Computer Science and Technology, University of Cambridge", "person@cam.ac.uk"]
+must_not_match = ["Cambridge University Press", "Cambridge College, USA", "Cambridge, Massachusetts, USA", "Harvard University, Cambridge, MA", "Miami University, Oxford, Ohio"]
+
+[dblp]
+affiliation_strings = ["University of Cambridge", "Cambridge University"]
+legacy_sweep = ""
+
+[census]
+computing_departments = ["CST"]
+center_units = ["CBSU", "BSU", "DH"]
+home_units = { "Computer Science and Technology" = 'computer science and technology' }
+rank_words = { ladder = '\b(?:reader|senior lecturer|university lecturer)\b' }
+
+[sweep_check]
+exceptions = []
+[cs_related]
+not_faculty = {}
+share_test_settles = []
+[site]
+depts = { CST = "Computer Science and Technology" }
+full_codes = ["CST"]
+[periods]
+school_regex = '\b(?:university\s+of\s+cambridge|cambridge\s+univ(?:ersity)?\.?)(?!\s+press)\b|\b(?:[\w-]+\.)*cam\.ac\.uk\b'
+[rules]
+foreign_title_exception = false
+listing_continuity = false
+
+[[departments]]
+code = "CST"
+name = "Computer Science and Technology"
+unit = "Department of Computer Science and Technology"
+title_match = 'computer science|computer laboratory'
+coverage = "full"
+url = "https://www.cst.cam.ac.uk/people/directory"
+  [[departments.listings]]
+  slot = "main"
+  kind = "main"
+  url = "www.cst.cam.ac.uk/people/directory"
+  from = "20160101"
+  to = "20261231"
+  prefix = false
+  match = ""
+  format = ""
+  title_filter = ''
+  [[departments.listings]]
+  slot = "legacy"
+  kind = "main"
+  url = "www.cl.cam.ac.uk/people/"
+  from = "20160101"
+  to = "20261231"
+  prefix = false
+  match = ""
+  format = ""
+  title_filter = ''
+
+[[affiliated_units]]
+code = "ENG"
+name = "Engineering"
+url = "https://www.eng.cam.ac.uk/people"
+listings = ["www.eng.cam.ac.uk/people"]
+
+[[affiliated_units]]
+code = "DAMTP"
+name = "Applied Mathematics and Theoretical Physics"
+url = "https://www.damtp.cam.ac.uk/people"
+listings = ["www.damtp.cam.ac.uk/people"]
+
+[[affiliated_units]]
+code = "DPMMS"
+name = "Pure Mathematics and Mathematical Statistics"
+url = "https://www.dpmms.cam.ac.uk/people"
+listings = ["www.dpmms.cam.ac.uk/people"]
+
+[[affiliated_units]]
+code = "PHYS"
+name = "Physics"
+url = "https://www.phy.cam.ac.uk/people"
+listings = ["www.phy.cam.ac.uk/people"]
+
+[[affiliated_units]]
+code = "PSY"
+name = "Psychology"
+url = "https://www.psychol.cam.ac.uk/people"
+listings = ["www.psychol.cam.ac.uk/people"]
+
+[[affiliated_units]]
+code = "CBSU"
+name = "MRC Cognition and Brain Sciences Unit"
+url = "https://www.mrc-cbu.cam.ac.uk/people/"
+listings = ["www.mrc-cbu.cam.ac.uk/people/"]
+
+[[affiliated_units]]
+code = "BSU"
+name = "MRC Biostatistics Unit"
+url = "https://www.mrc-bsu.cam.ac.uk/people/"
+listings = ["www.mrc-bsu.cam.ac.uk/people/"]
+
+[[affiliated_units]]
+code = "ECON"
+name = "Economics"
+url = "https://www.econ.cam.ac.uk/people"
+listings = ["www.econ.cam.ac.uk/people"]
+
+[[affiliated_units]]
+code = "SOC"
+name = "Sociology"
+url = "https://www.sociology.cam.ac.uk/people"
+listings = ["www.sociology.cam.ac.uk/people"]
+
+[[affiliated_units]]
+code = "DH"
+name = "Cambridge Digital Humanities"
+url = "https://www.cdh.cam.ac.uk/about/people/"
+listings = ["www.cdh.cam.ac.uk/about/people/"]
+
+[thesis]
+kind = "dspace"
+base_url = "https://www.repository.cam.ac.uk/"
+endpoints = []
+robots = "unreachable"
+note = "Pending host and endpoint verification. Collect explicit thesis supervisor statements only; repository authorship alone is not advising."
+[collector]
+channels = ["oa_arxiv", "openalex", "s2", "labpages"]
+[students]
+directories = []
+adviser_directories = []
+defense_lists = []
+adviser_alumni = []
+rosters = []
+sources = ["thesis repository with explicit supervisor metadata", "dated official defence and graduation lists", "PI-owned lab member and alumni pages"]
+[labpages]
+skip_pages = []
+hints = ["https://www.cst.cam.ac.uk/people/directory", "https://www.cst.cam.ac.uk/research", "https://www.eng.cam.ac.uk/research"]
+[repository]
+name = "Apollo University of Cambridge Repository (through permitted repository metadata, OpenAlex and CORE)"
+pattern = 'repository\.cam\.ac\.uk'
+[store]
+path = "stores/cambridge"
+
+[[hosts]]
+host = "www.cst.cam.ac.uk"
+use = "live"
+purpose = "Faculty, research groups, students or thesis evidence; initial probe"
+probe = "https://www.cst.cam.ac.uk/people/directory"
+
+[[hosts]]
+host = "www.repository.cam.ac.uk"
+use = "live"
+purpose = "Faculty, research groups, students or thesis evidence; initial probe"
+probe = "https://www.repository.cam.ac.uk/"
+
+[[hosts]]
+host = "www.eng.cam.ac.uk"
+use = "live"
+purpose = "Faculty, research groups, students or thesis evidence; initial probe"
+probe = "https://www.eng.cam.ac.uk/people"
+
+[[hosts]]
+host = "www.damtp.cam.ac.uk"
+use = "live"
+purpose = "Faculty, research groups, students or thesis evidence; initial probe"
+probe = "https://www.damtp.cam.ac.uk/people"
+
+[[hosts]]
+host = "www.dpmms.cam.ac.uk"
+use = "wayback-only"
+purpose = "Faculty, research groups, students or thesis evidence; initial probe"
+probe = "https://www.dpmms.cam.ac.uk/people"
+
+[[hosts]]
+host = "www.phy.cam.ac.uk"
+use = "live"
+purpose = "Faculty, research groups, students or thesis evidence; initial probe"
+probe = "https://www.phy.cam.ac.uk/people"
+
+[[hosts]]
+host = "www.psychol.cam.ac.uk"
+use = "live"
+purpose = "Faculty, research groups, students or thesis evidence; initial probe"
+probe = "https://www.psychol.cam.ac.uk/people"
+
+[[hosts]]
+host = "www.mrc-cbu.cam.ac.uk"
+use = "live"
+purpose = "Faculty, research groups, students or thesis evidence; initial probe"
+probe = "https://www.mrc-cbu.cam.ac.uk/people/"
+
+[[hosts]]
+host = "www.mrc-bsu.cam.ac.uk"
+use = "wayback-only"
+purpose = "Faculty, research groups, students or thesis evidence; initial probe"
+probe = "https://www.mrc-bsu.cam.ac.uk/people/"
+
+[[hosts]]
+host = "www.econ.cam.ac.uk"
+use = "live"
+purpose = "Faculty, research groups, students or thesis evidence; initial probe"
+probe = "https://www.econ.cam.ac.uk/people"
+
+[[hosts]]
+host = "www.sociology.cam.ac.uk"
+use = "live"
+purpose = "Faculty, research groups, students or thesis evidence; initial probe"
+probe = "https://www.sociology.cam.ac.uk/people"
+
+[[hosts]]
+host = "www.cdh.cam.ac.uk"
+use = "live"
+purpose = "Faculty, research groups, students or thesis evidence; initial probe"
+probe = "https://www.cdh.cam.ac.uk/about/people/"
+
+[[hosts]]
+host = "www.cl.cam.ac.uk"
+use = "wayback-only"
+purpose = "Faculty, research groups, students or thesis evidence; initial probe"
+probe = "https://www.cl.cam.ac.uk/people/"

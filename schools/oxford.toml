@@ -1,0 +1,229 @@
+# University-wide discovery; full computing department, affiliated review elsewhere.
+# Legacy site inventories are discovery leads, never accepted PI/paper links without current attribution checks.
+key = "oxford"
+name = "University of Oxford"
+short = "Oxford"
+site_uni = "university-of-oxford"
+status = "onboarding"
+order = 13
+stage = 0
+started = "2026-11-06"
+window = [2016, 2026]
+
+[ids]
+openalex = ["I40120149"]
+openalex_related = []
+openalex_excluded = ["I2802626578", "I4210162602"]
+ror = "https://ror.org/052gg0110"
+ids_note = "Verified local OpenAlex institutions snapshot and lineage, plus official ROR v2 API (HTTP200), 2026-11-06. Sweep all university lineage children except publishing companies. Related hospitals and trusts are not automatically university appointments; no related-only expansion initially. Every PI still needs a faculty appointment and computing scope. Colleges alone establish neither university employment nor lab membership."
+
+[web]
+domains = ["ox.ac.uk"]
+email_domains = ["ox.ac.uk"]
+wayback_only_suffixes = []
+excluded_hosts = []
+
+[affiliation]
+regex = '\b(?:university\s+of\s+oxford|oxford\s+univ(?:ersity)?\.?)(?!\s+press)\b|\b(?:[\w-]+\.)*ox\.ac\.uk\b'
+loose = 'oxford|ox\.ac\.uk'
+own_units = ''
+must_match = ["University of Oxford, United Kingdom", "Oxford University, UK", "Department of Computer Science, University of Oxford", "person@ox.ac.uk"]
+must_not_match = ["Oxford University Press", "Oxford College, USA", "Oxford Brookes University", "Harvard University, Cambridge, MA", "Miami University, Oxford, Ohio"]
+
+[dblp]
+affiliation_strings = ["University of Oxford", "Oxford University"]
+legacy_sweep = ""
+
+[census]
+computing_departments = ["CS"]
+center_units = ["BDI", "OERC"]
+home_units = { "Computer Science" = 'computer science' }
+rank_words = { ladder = '\b(?:reader|senior lecturer|university lecturer)\b' }
+
+[sweep_check]
+exceptions = []
+[cs_related]
+not_faculty = {}
+share_test_settles = []
+[site]
+depts = { CS = "Computer Science" }
+full_codes = ["CS"]
+[periods]
+school_regex = '\b(?:university\s+of\s+oxford|oxford\s+univ(?:ersity)?\.?)(?!\s+press)\b|\b(?:[\w-]+\.)*ox\.ac\.uk\b'
+[rules]
+foreign_title_exception = false
+listing_continuity = false
+
+[[departments]]
+code = "CS"
+name = "Computer Science"
+unit = "Department of Computer Science"
+title_match = 'computer science|computer laboratory'
+coverage = "full"
+url = "https://www.cs.ox.ac.uk/people/faculty.html"
+  [[departments.listings]]
+  slot = "main"
+  kind = "main"
+  url = "www.cs.ox.ac.uk/people/faculty.html"
+  from = "20160101"
+  to = "20261231"
+  prefix = false
+  match = ""
+  format = ""
+  title_filter = ''
+
+[[affiliated_units]]
+code = "ENG"
+name = "Engineering Science"
+url = "https://eng.ox.ac.uk/people?c=ac"
+listings = ["eng.ox.ac.uk/people?c=ac"]
+
+[[affiliated_units]]
+code = "STAT"
+name = "Statistics"
+url = "https://www.stats.ox.ac.uk/people"
+listings = ["www.stats.ox.ac.uk/people"]
+
+[[affiliated_units]]
+code = "MATH"
+name = "Mathematical Institute"
+url = "https://www.maths.ox.ac.uk/people"
+listings = ["www.maths.ox.ac.uk/people"]
+
+[[affiliated_units]]
+code = "PHYS"
+name = "Physics"
+url = "https://www.physics.ox.ac.uk/our-people"
+listings = ["www.physics.ox.ac.uk/our-people"]
+
+[[affiliated_units]]
+code = "BDI"
+name = "Big Data Institute"
+url = "https://www.bdi.ox.ac.uk/Team"
+listings = ["www.bdi.ox.ac.uk/Team"]
+
+[[affiliated_units]]
+code = "PSY"
+name = "Experimental Psychology"
+url = "https://www.psy.ox.ac.uk/team"
+listings = ["www.psy.ox.ac.uk/team"]
+
+[[affiliated_units]]
+code = "INTERNET"
+name = "Oxford Internet Institute"
+url = "https://www.oii.ox.ac.uk/people/"
+listings = ["www.oii.ox.ac.uk/people/"]
+
+[[affiliated_units]]
+code = "SOC"
+name = "Sociology"
+url = "https://www.sociology.ox.ac.uk/people"
+listings = ["www.sociology.ox.ac.uk/people"]
+
+[[affiliated_units]]
+code = "ECON"
+name = "Economics"
+url = "https://www.economics.ox.ac.uk/people"
+listings = ["www.economics.ox.ac.uk/people"]
+
+[[affiliated_units]]
+code = "OERC"
+name = "Oxford e-Research Centre"
+url = "https://oerc.ox.ac.uk/people/"
+listings = ["oerc.ox.ac.uk/people/"]
+
+[thesis]
+kind = "datacite"
+base_url = "https://ora.ox.ac.uk/"
+endpoints = []
+robots = "unreachable"
+note = "Pending host and endpoint verification. Collect explicit thesis supervisor statements only; repository authorship alone is not advising."
+[collector]
+channels = ["oa_arxiv", "openalex", "s2", "labpages"]
+[students]
+directories = []
+adviser_directories = []
+defense_lists = []
+adviser_alumni = []
+rosters = []
+sources = ["thesis repository with explicit supervisor metadata", "dated official defence and graduation lists", "PI-owned lab member and alumni pages"]
+[labpages]
+skip_pages = []
+hints = ["https://www.cs.ox.ac.uk/people/faculty.html", "https://www.cs.ox.ac.uk/research/", "https://eng.ox.ac.uk/research/"]
+[repository]
+name = "Oxford University Research Archive (through permitted repository metadata, OpenAlex and CORE)"
+pattern = 'ora\.ox\.ac\.uk'
+[store]
+path = "stores/oxford"
+
+[[hosts]]
+host = "www.cs.ox.ac.uk"
+use = "live"
+purpose = "Faculty, research groups, students or thesis evidence; initial probe"
+probe = "https://www.cs.ox.ac.uk/people/faculty.html"
+
+[[hosts]]
+host = "ora.ox.ac.uk"
+use = "wayback-only"
+purpose = "Faculty, research groups, students or thesis evidence; initial probe"
+probe = "https://ora.ox.ac.uk/"
+
+[[hosts]]
+host = "eng.ox.ac.uk"
+use = "live"
+purpose = "Faculty, research groups, students or thesis evidence; initial probe"
+probe = "https://eng.ox.ac.uk/people?c=ac"
+
+[[hosts]]
+host = "www.stats.ox.ac.uk"
+use = "live"
+purpose = "Faculty, research groups, students or thesis evidence; initial probe"
+probe = "https://www.stats.ox.ac.uk/people"
+
+[[hosts]]
+host = "www.maths.ox.ac.uk"
+use = "wayback-only"
+purpose = "Faculty, research groups, students or thesis evidence; initial probe"
+probe = "https://www.maths.ox.ac.uk/people"
+
+[[hosts]]
+host = "www.physics.ox.ac.uk"
+use = "live"
+purpose = "Faculty, research groups, students or thesis evidence; initial probe"
+probe = "https://www.physics.ox.ac.uk/our-people"
+
+[[hosts]]
+host = "www.bdi.ox.ac.uk"
+use = "wayback-only"
+purpose = "Faculty, research groups, students or thesis evidence; initial probe"
+probe = "https://www.bdi.ox.ac.uk/Team"
+
+[[hosts]]
+host = "www.psy.ox.ac.uk"
+use = "wayback-only"
+purpose = "Faculty, research groups, students or thesis evidence; initial probe"
+probe = "https://www.psy.ox.ac.uk/team"
+
+[[hosts]]
+host = "www.oii.ox.ac.uk"
+use = "live"
+purpose = "Faculty, research groups, students or thesis evidence; initial probe"
+probe = "https://www.oii.ox.ac.uk/people/"
+
+[[hosts]]
+host = "www.sociology.ox.ac.uk"
+use = "live"
+purpose = "Faculty, research groups, students or thesis evidence; initial probe"
+probe = "https://www.sociology.ox.ac.uk/people"
+
+[[hosts]]
+host = "www.economics.ox.ac.uk"
+use = "live"
+purpose = "Faculty, research groups, students or thesis evidence; initial probe"
+probe = "https://www.economics.ox.ac.uk/people"
+
+[[hosts]]
+host = "oerc.ox.ac.uk"
+use = "live"
+purpose = "Faculty, research groups, students or thesis evidence; initial probe"
+probe = "https://oerc.ox.ac.uk/people/"
