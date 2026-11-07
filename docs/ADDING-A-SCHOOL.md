@@ -153,8 +153,8 @@ atlas stage-gate <key> [n ...]                 # only the gates (0-10), from the
     every reader drops (`pi_hierarchy.NOT_PAPERS`). A tool that reads the sweep must drop them too:
     `cs_related_candidates.py` did not.
   - The DBLP part needs `pis.json`, so run the check again after the first build of stage 3 or 7. Regenerate
-    `hierarchy/dblp-dump-persons.json.gz` (`tools/dblp_dump_persons.py`) after the PI set changes, then its page counts
-    `hierarchy/dblp-dump-pages.json.gz` (`tools/dblp_dump_pages.py`, R-PAP-27).
+    school-local persons (`tools/dblp_dump_persons.py <key>`) after the PI set changes, then their page counts
+    (`tools/dblp_dump_pages.py <key>`, R-PAP-27). These write school-local sidecars and preserve shared metadata. Without the school page-count sidecar, new schools miss the existing short-column/abstract filters.
 
 - **Learned from UChicago (2026-11-02):**
   - **Work in a worktree** (`tools/agent_worktree.sh new <school>`); `bin/atlas` there reads the worktree's own `schools/`. A raw

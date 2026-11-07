@@ -90,3 +90,48 @@ def test_R_PAP_27_supplement_abstract_keeps_chapters_and_papers():
     assert h.not_a_paper(row('5. Probabilistic driver modeling', typ='book-chapter', venue='De Gruyter eBooks')) is None
     assert h.not_a_paper(row('3D shape completion', venue='Journal X')) is None
     assert h.not_a_paper(row('19. Fibonacci-Heaps', venue='')) is None
+
+
+def test_school_local_page_ranges_preserve_shared_and_short_research(tmp_path, monkeypatch):
+    import gzip, json
+    from types import SimpleNamespace
+    shared = tmp_path / 'shared.json.gz'
+    local = tmp_path / 'oxford.json.gz'
+    shared.write_bytes(gzip.compress(json.dumps({'pages': {'old': '1-8'}}).encode()))
+    local.write_bytes(gzip.compress(json.dumps({'pages': {'journals/expert/MichalakW17': '5-7', 'conf/test/Short': '1-3'}}).encode()))
+    monkeypatch.setattr(D.P, 'data', lambda name, school=None, root=None: local if school else shared)
+    before = shared.read_bytes()
+    monkeypatch.setattr(papers.identity, 'DUMP_PERSONS', {'persons': {'pi': {'pubs': [
+        {'key': 'journals/expert/MichalakW17', 'year': 2017, 'title': 'AI and Economics.', 'dois': ['10.1109/mis.2017.10'], 'authors': [['A'], ['B']]},
+        {'key': 'conf/test/Short', 'year': 2026, 'title': 'A short research paper', 'dois': ['10.1/short'], 'authors': [['A'], ['B']]},
+    ]}}})
+    ctx = SimpleNamespace(pis=[{'pi': 'P', 'dblp': ['pi']}], school='oxford', here=tmp_path, n=collections.Counter())
+    papers.venue_tables(ctx)
+    assert ctx.dblp_pages['doi']['P']['10.1109/mis.2017.10'] == (3, False)
+    assert ctx.n['dblp_page_counts_titles'] == 2
+    assert papers.not_a_paper(row('AI and Economics', venue='IEEE Intelligent Systems', byline=('A', 'B')), 3) == 'column'
+    assert papers.not_a_paper(row('A short research paper', typ='conference-paper', venue='ICML', byline=('A', 'B')), 3) is None
+    assert papers.not_a_paper(row('A short research paper', venue='Nature'), 3) is None
+    assert D.load_page_ranges('oxford')['old'] == '1-8'
+    assert shared.read_bytes() == before
+    local.unlink()
+    assert D.load_page_ranges('oxford') == {'old': '1-8'}
+
+
+def test_school_page_extraction_writes_only_local_sidecar(tmp_path, monkeypatch):
+    import gzip, json
+    source = tmp_path / 'persons.json.gz'
+    dest = tmp_path / 'school-pages.json.gz'
+    dump = tmp_path / 'dump.xml.gz'
+    source.write_bytes(gzip.compress(json.dumps({'persons': {'pi': {'pubs': [{'key': 'wanted'}]}}}).encode()))
+    dump.write_bytes(gzip.compress(b'<dblp><article key="wanted"><pages>5-7</pages></article><article key="other"><pages>1-9</pages></article></dblp>'))
+    calls = []
+    def path(name, school=None, **kwargs):
+        calls.append((name, school))
+        return source if name == 'dblp-dump-persons-school.json.gz' else dest
+    monkeypatch.setattr(D.P, 'data', path)
+    monkeypatch.setattr(D.P, 'data_w', path)
+    monkeypatch.setattr(D.P, 'DBLP_DUMP_XML', dump)
+    D.main('oxford')
+    assert json.loads(gzip.decompress(dest.read_bytes()))['pages'] == {'wanted': '5-7'}
+    assert calls == [('dblp-dump-persons-school.json.gz', 'oxford'), ('dblp-dump-pages-school.json.gz', 'oxford')]

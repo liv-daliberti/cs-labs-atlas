@@ -11,7 +11,7 @@ from .identity import in_blocked_cluster
 from .names import NICK, _nick_pairs, byline_name, full_pair, toks
 from .periods import _year, LISTING_BRIDGE, bridge_periods, listing_bridge_periods, contains, same_year, transition_side, transition_status
 from . import identity
-from dblp_dump_pages import page_count  # noqa: E402  (DBLP's `pages` string -> number of pages; R-PAP-27)
+from dblp_dump_pages import page_count, load_page_ranges  # noqa: E402  (DBLP's `pages` string -> number of pages; R-PAP-27)
 
 # Recovered lab-paper rows as (kind, identity label): hierarchy/<school>/<kind>-recovered.jsonl.gz (tools/dblp_recover.py,
 # tools/labpage_recover.py), and the accepted lab-page additions (labpage-additions.json `papers`, LP-PAP-01, gated by
@@ -508,9 +508,8 @@ def venue_tables(ctx):
     # R-PAP-27: the largest page count DBLP gives each of the PI's records, by normalized title and by DOI (the sidecar
     # hierarchy/dblp-dump-pages.json.gz; without it no page signal, only titles)
     dblp_pages = dict(title=collections.defaultdict(dict), doi=collections.defaultdict(dict))
-    pf = P.data('dblp-dump-pages.json.gz', root=ctx.here)
-    if DUMP_PERSONS is not None and pf.exists():
-        pg = json.loads(gzip.decompress(pf.read_bytes()))['pages']
+    pg = load_page_ranges(ctx.school, root=ctx.here) if DUMP_PERSONS is not None else {}
+    if pg:
         for p in pis:
             for q in p['dblp']:
                 for r_ in (DUMP_PERSONS['persons'].get(q) or {}).get('pubs') or []:
