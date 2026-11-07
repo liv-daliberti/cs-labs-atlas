@@ -15,3 +15,21 @@ Ten faculty appointment starts were verified on official profiles and saved in r
 Slurm 32142511 uses code 24c9395 and the isolated Oxford evidence overlay to run local DBLP identity, census refresh, PI build, school-specific DBLP pages and a final build. No OpenAlex API credits or remote bulk snapshot streams are used. Historical directory discovery remains in the existing shared low-priority queue; this checkpoint issues no Wayback requests.
 
 Validation: parser commit passed 1,391 tests; the evidence branch with website-register support passed 1,404 tests (15 skipped), lint and charters. The school trap check reports zero findings. All 10 appointment records passed raw-hash and verbatim-quote verification; all 23 selected website capture hashes verified. The website gate correctly retains 48 open PI cases. The 35 engineering quotes passed the existing hand_evidence verifier. Detailed receipts and the seeded handcheck are in scratch/top25-resume-1107/. Staged secret scan runs at commit. Historical coverage, affiliated-unit review, identity handcheck, paper-link review and complete website search remain outstanding; no completeness exception is asserted here.
+
+## Final local PI-paper build and bounded review
+
+The completed local build (job 32142511) produced 762 PI-paper rows for 714 unique works across 55 of 71 core-CS labs. All 67 requested DBLP person IDs were present in the local dump, yielding 10,241 publication records; this measures extraction completeness, not identity accuracy. Four PIs have unresolved identities: Jonathan Barrett, Ronnie Clark, Jim Davies and Shan Luo. Students were not extracted.
+
+The deterministic 30-of-67 identity sample (seed 20261107) has 20 independently corroborated identities and 10 still needing corroboration. No false identity was found, but this is not a passed precision gate. Open sample cases: Blanca Rodriguez, Bartek Klin, Varun Kanade, Jonathan Whiteley, Andrew Martin, Christian Rupprecht, Andrzej Murawski, Andrew Simpson, Misha Sra and Hamed Haddadi. The full set of 67 automatic matches remains proposals pending the prescribed review.
+
+The deterministic 30-of-762 paper sample (same seed) has 29 rows supported by source metadata and appointment evidence and one explicit dataset deposit incorrectly admitted as an article: Andrew Markham, STARCOP dataset, OpenAlex W6968916784, DOI 10.5281/zenodo.7863342, repository venue Zenodo. This sample fails; it does not certify stage 7. A narrow repository-DOI + repository-venue + explicit dataset-title filter fixes that pattern while preserving repository manuscripts and journal papers about datasets. The failed sample is retained; rebuilding and a fresh source-bound review remain required after the fix lands. This review did not inspect fulltext authorship.
+
+Source bindings for reproducibility:
+
+- Final lab_papers.jsonl.gz SHA-256: `308490d23f6532c8ab1fe16d6f24a22e9c619b95de6472700a6caa140fc8e18b`.
+- Final pis.json SHA-256: `538c1e2aa82c0a8a935c1b1a03061ae9e5779a708f0075c41972606f767d36f2`.
+- DBLP identity proposals SHA-256: `7f4de71f0fe77e2bfd9c6965b618538355ad9545e74a36e1c2c31a8307d515ad`.
+- Local DBLP person extraction SHA-256: `4920fff7a17c324f229288331c87153d9560e4ebfc8c04caf4ba401694d3a40a`.
+- Private audit details: `scratch/top25-resume-1107/oxford-identity-sample.json` and `oxford-paper-sample.json`, with source capture/page hashes and exact evidence.
+
+Open requirements: historical listing completeness; 48 unresolved lab-website entries (46 search pending, two archive pending); the remaining appointment intervals; outside-CS candidate identity/scope review; unresolved DBLP identities and identity precision review; the failed paper sample and rebuilt precision review. Keep Oxford onboarding rather than reporting stages 3–5 or 7 passed. Next: independently corroborate the ten sampled identities, finish remaining websites/CVs, and review the 35 source-supported Engineering candidates before any admission.

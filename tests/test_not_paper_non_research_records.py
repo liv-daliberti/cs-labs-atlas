@@ -93,3 +93,14 @@ def test_R_PAP_38_a_springer_chapter_one_year_after_its_conference_is_no_reprint
     v = {papers.norm_title(chapter['title']): (2015, 'conf/isrr/X15')}
     assert papers.venue_version_date(chapter, v)[1] is None                              # 2016 chapter, 2015 conference: stays
     assert papers.venue_version_date(dict(chapter, publication_year=2019, publication_date='2019-03-01'), v)[1] is not None   # four years on: a reprint
+
+
+def test_named_repository_dataset_with_venue_is_not_a_paper():
+    title = 'STARCOP dataset: Semantic Segmentation of Methane Plumes with Hyperspectral Machine Learning Models'
+    assert papers.not_a_paper(row(title, venue='Zenodo', doi='10.5281/zenodo.7863342')) == 'dataset_record'
+    assert papers.not_a_paper(row('Benchmark dataset: measurements', venue='figshare', doi='10.6084/m9.figshare.123')) == 'dataset_record'
+    assert papers.not_a_paper(row('Dataset for methane detection', venue='Dryad', doi='10.5061/dryad.123')) == 'dataset_record'
+    # A research paper describing a dataset, and repository preprints, still need normal paper review.
+    assert papers.not_a_paper(row(title, venue='Scientific Data', doi='10.1038/s41597-1')) is None
+    assert papers.not_a_paper(row(title, venue='Scientific Data', doi='10.5281/zenodo.7863342')) is None
+    assert papers.not_a_paper(row('Learning from datasets', venue='Zenodo', doi='10.5281/zenodo.9')) is None
