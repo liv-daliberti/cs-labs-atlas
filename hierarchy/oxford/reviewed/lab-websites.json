@@ -1,0 +1,2794 @@
+{
+  "school": "oxford",
+  "tool": "tools/lab_websites.py",
+  "source": "labpage-audit.jsonl.gz",
+  "source_exists": false,
+  "refreshed_from_cached_discovery": true,
+  "review_status": "Partial website discovery; 3 PI-authored homepage classifications checked manually. New-school student phase deferred. Pending searches remain open.",
+  "labs": [
+    {
+      "pi": "Alessandro Abate",
+      "status": "none_found",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+      "audited_at": "2026-11-07T16:03:51",
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Alessandro.Abate",
+          "at": "2026-11-07T15:55:09",
+          "result": "ok",
+          "sha256": "1f1df834deca97f9d44dd31e7f6cd3390262b048701bba8767f82f2739422d8e"
+        },
+        {
+          "source": "school_profile_link",
+          "url": "https://oxcav.site.ox.ac.uk/home",
+          "on": "https://www.cs.ox.ac.uk/people/Alessandro.Abate",
+          "at": "2026-11-07T15:55:09",
+          "result": "listed_via_observed_redirect",
+          "anchor": "OXCAV group webpage",
+          "source_sha256": "1f1df834deca97f9d44dd31e7f6cd3390262b048701bba8767f82f2739422d8e",
+          "linked_url": "https://oxcav.web.ox.ac.uk",
+          "redirect_evidence": {
+            "from": "https://oxcav.web.ox.ac.uk",
+            "to": "https://oxcav.site.ox.ac.uk/home",
+            "sha256": "f7634f193c5b4a072d7a485e390a104e6f21dcbf37e9c4d6f1041afc450a3f99",
+            "at": "2026-11-07T16:02:03"
+          }
+        },
+        {
+          "source": "candidate_site",
+          "url": "https://oxcav.site.ox.ac.uk/home",
+          "at": "2026-11-07T16:03:51",
+          "result": "ok",
+          "via": "school_profile_link",
+          "sha256": "843b68bb597818da808532281b3d6d89dfe00224d601adac1b68838dab5bf50b"
+        }
+      ],
+      "places_checked": [
+        "candidate_site:ok",
+        "school_profile:ok",
+        "school_profile_link:listed_via_observed_redirect"
+      ],
+      "checked_at": "2026-11-07T16:03:51",
+      "students_page_status": "deferred_by_scope",
+      "papers_page_status": "pending_review",
+      "url": "https://oxcav.site.ox.ac.uk/home",
+      "kind": "pi_homepage",
+      "people_page": null,
+      "alumni_page": null,
+      "pubs_page": null,
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.ox.ac.uk/people/Alessandro.Abate",
+      "sha256": "843b68bb597818da808532281b3d6d89dfe00224d601adac1b68838dab5bf50b",
+      "evidence": {
+        "url": "https://oxcav.site.ox.ac.uk/home",
+        "sha256": "843b68bb597818da808532281b3d6d89dfe00224d601adac1b68838dab5bf50b",
+        "quote": "at the University of Oxford, and is led by Prof. Alessandro Abate . We tackle scientific challenges in the area of safe AI an"
+      },
+      "official_link_status": "recorded",
+      "official_link_evidence": [
+        {
+          "source": "school_profile_link",
+          "url": "https://oxcav.site.ox.ac.uk/home",
+          "on": "https://www.cs.ox.ac.uk/people/Alessandro.Abate",
+          "at": "2026-11-07T15:55:09",
+          "result": "listed_via_observed_redirect",
+          "anchor": "OXCAV group webpage",
+          "source_sha256": "1f1df834deca97f9d44dd31e7f6cd3390262b048701bba8767f82f2739422d8e",
+          "linked_url": "https://oxcav.web.ox.ac.uk",
+          "redirect_evidence": {
+            "from": "https://oxcav.web.ox.ac.uk",
+            "to": "https://oxcav.site.ox.ac.uk/home",
+            "sha256": "f7634f193c5b4a072d7a485e390a104e6f21dcbf37e9c4d6f1041afc450a3f99",
+            "at": "2026-11-07T16:02:03"
+          }
+        }
+      ],
+      "coverage": "website",
+      "evidence_gaps": []
+    },
+    {
+      "pi": "Mahmoud Abo Khamis",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Mahmoud.AboKhamis",
+          "at": "2026-11-07T15:55:12",
+          "result": "ok",
+          "sha256": "e4a049eec2f2cf9632b86473c786441f4fa5ce218ea83161a0fac8fa0680be6e"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:55:12",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Jonathan Barrett",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Jonathan.Barrett",
+          "at": "2026-11-07T15:55:14",
+          "result": "ok",
+          "sha256": "3efd83449d8772c02239ef092c193f64320a85126d38d6805a49165483cdea68"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:55:14",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Michael Benedikt",
+      "status": "none_found",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+      "audited_at": "2026-11-07T16:02:03",
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Michael.Benedikt",
+          "at": "2026-11-07T15:55:17",
+          "result": "ok",
+          "sha256": "9cecb13fc10fd85770878d7ac99fa456d17e9a80a87c59652d888acfaf3839fc"
+        },
+        {
+          "source": "school_profile_link",
+          "url": "http://www.cs.ox.ac.uk/oucl/work/michael.benedikt/home.html",
+          "on": "https://www.cs.ox.ac.uk/people/Michael.Benedikt",
+          "at": "2026-11-07T15:55:17",
+          "result": "listed",
+          "anchor": "My personal homepage",
+          "source_sha256": "9cecb13fc10fd85770878d7ac99fa456d17e9a80a87c59652d888acfaf3839fc",
+          "linked_url": "http://www.cs.ox.ac.uk/oucl/work/michael.benedikt/home.html"
+        },
+        {
+          "source": "candidate_site",
+          "url": "http://www.cs.ox.ac.uk/oucl/work/michael.benedikt/home.html",
+          "at": "2026-11-07T16:02:03",
+          "result": "ok",
+          "via": "school_profile_link",
+          "sha256": "d8f107a120e3f0fd62b757d34243077e83fc61a01f0b5a0d775cf69dc855cc7a"
+        }
+      ],
+      "places_checked": [
+        "candidate_site:ok",
+        "school_profile:ok",
+        "school_profile_link:listed"
+      ],
+      "checked_at": "2026-11-07T16:02:03",
+      "students_page_status": "deferred_by_scope",
+      "papers_page_status": "pending_review",
+      "url": "http://www.cs.ox.ac.uk/oucl/work/michael.benedikt/home.html",
+      "kind": "pi_homepage",
+      "people_page": null,
+      "alumni_page": null,
+      "pubs_page": null,
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.ox.ac.uk/people/Michael.Benedikt",
+      "sha256": "d8f107a120e3f0fd62b757d34243077e83fc61a01f0b5a0d775cf69dc855cc7a",
+      "evidence": {
+        "url": "http://www.cs.ox.ac.uk/oucl/work/michael.benedikt/home.html",
+        "sha256": "d8f107a120e3f0fd62b757d34243077e83fc61a01f0b5a0d775cf69dc855cc7a",
+        "quote": "Michael Benedikt: Home Page Michael Benedikt Professor of Computer Science D"
+      },
+      "official_link_status": "recorded",
+      "official_link_evidence": [
+        {
+          "source": "school_profile_link",
+          "url": "http://www.cs.ox.ac.uk/oucl/work/michael.benedikt/home.html",
+          "on": "https://www.cs.ox.ac.uk/people/Michael.Benedikt",
+          "at": "2026-11-07T15:55:17",
+          "result": "listed",
+          "anchor": "My personal homepage",
+          "source_sha256": "9cecb13fc10fd85770878d7ac99fa456d17e9a80a87c59652d888acfaf3839fc",
+          "linked_url": "http://www.cs.ox.ac.uk/oucl/work/michael.benedikt/home.html"
+        }
+      ],
+      "coverage": "website",
+      "evidence_gaps": []
+    },
+    {
+      "pi": "Sara Bernardini",
+      "status": "none_found",
+      "reason_code": "new_arrival_no_site_yet",
+      "reason": "joined in 2026; no school lab site yet",
+      "audited_at": "2026-11-07T16:02:04",
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Sara.Bernardini",
+          "at": "2026-11-07T15:55:19",
+          "result": "ok",
+          "sha256": "bc0b7a5f4b671bca5526b680ae7d8fd7bfe9e8b01a4873ac6c94ac119236fd9e"
+        },
+        {
+          "source": "school_profile_link",
+          "url": "https://www.sara-bernardini.com/",
+          "on": "https://www.cs.ox.ac.uk/people/Sara.Bernardini",
+          "at": "2026-11-07T15:55:19",
+          "result": "listed",
+          "anchor": "External Website",
+          "source_sha256": "bc0b7a5f4b671bca5526b680ae7d8fd7bfe9e8b01a4873ac6c94ac119236fd9e",
+          "linked_url": "https://www.sara-bernardini.com/"
+        },
+        {
+          "source": "candidate_site",
+          "url": "https://www.sara-bernardini.com/",
+          "at": "2026-11-07T16:02:04",
+          "result": "bot_challenge",
+          "via": "school_profile_link",
+          "sha256": "0753d079b8e5f092ace625715cabc3b010c69a22422ba90e140c274f6d257d57"
+        },
+        {
+          "source": "search_continuation",
+          "url": "https://www.sara-bernardini.com/",
+          "at": "2026-11-07T16:02:04",
+          "result": "wayback_deferred",
+          "note": "No archive request made in live-first pass; failure is an access reason, not absence of a site."
+        }
+      ],
+      "places_checked": [
+        "candidate_site:bot_challenge",
+        "school_profile:ok",
+        "school_profile_link:listed",
+        "search_continuation:wayback_deferred"
+      ],
+      "checked_at": "2026-11-07T16:02:04",
+      "students_page_status": "pending_review",
+      "papers_page_status": "pending_review",
+      "coverage": "reason",
+      "reason_type": "pending_archive",
+      "reason_scope": "Recorded search/access outcome; not proof no website exists.",
+      "evidence_gaps": []
+    },
+    {
+      "pi": "Reuben Binns",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Reuben.Binns",
+          "at": "2026-11-07T15:55:22",
+          "result": "ok",
+          "sha256": "012547b5e7cdff2d03d4fa90d1acbcf6248e75e0aac01a1f5e1ad2cdd095847e"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:55:22",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Markus Brill",
+      "status": "none_found",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+      "audited_at": "2026-11-07T16:03:51",
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Markus.Brill",
+          "at": "2026-11-07T15:55:24",
+          "result": "ok",
+          "sha256": "cb6106f5dbbd1ec9e7ed150d5e7329c4be9162ab9fc974e45b9ffccda47005c9"
+        },
+        {
+          "source": "school_profile_link",
+          "url": "https://markus-brill.de/",
+          "on": "https://www.cs.ox.ac.uk/people/Markus.Brill",
+          "at": "2026-11-07T15:55:24",
+          "result": "listed_via_observed_redirect",
+          "anchor": "Personal website",
+          "source_sha256": "cb6106f5dbbd1ec9e7ed150d5e7329c4be9162ab9fc974e45b9ffccda47005c9",
+          "linked_url": "https://www.markus-brill.de",
+          "redirect_evidence": {
+            "from": "https://www.markus-brill.de",
+            "to": "https://markus-brill.de/",
+            "sha256": "70bb0de14cb7063aae789bfb29f6e7f678d2eb2883a0e3d84a177390f7496776",
+            "at": "2026-11-07T16:02:05"
+          }
+        },
+        {
+          "source": "candidate_site",
+          "url": "https://markus-brill.de/",
+          "at": "2026-11-07T16:03:51",
+          "result": "ok",
+          "via": "school_profile_link",
+          "sha256": "35bfe52cb05bc5bc3d20fc59d4daebef7e900200fcf7cfc2caa3beed6dcf6d1f"
+        }
+      ],
+      "places_checked": [
+        "candidate_site:ok",
+        "school_profile:ok",
+        "school_profile_link:listed_via_observed_redirect"
+      ],
+      "checked_at": "2026-11-07T16:03:51",
+      "students_page_status": "deferred_by_scope",
+      "papers_page_status": "pending_review",
+      "url": "https://markus-brill.de/",
+      "kind": "pi_homepage",
+      "people_page": null,
+      "alumni_page": null,
+      "pubs_page": null,
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.ox.ac.uk/people/Markus.Brill",
+      "sha256": "35bfe52cb05bc5bc3d20fc59d4daebef7e900200fcf7cfc2caa3beed6dcf6d1f",
+      "evidence": {
+        "url": "https://markus-brill.de/",
+        "sha256": "35bfe52cb05bc5bc3d20fc59d4daebef7e900200fcf7cfc2caa3beed6dcf6d1f",
+        "quote": "Markus Brill — University of Oxford Home Group Join News Publications Ma"
+      },
+      "official_link_status": "recorded",
+      "official_link_evidence": [
+        {
+          "source": "school_profile_link",
+          "url": "https://markus-brill.de/",
+          "on": "https://www.cs.ox.ac.uk/people/Markus.Brill",
+          "at": "2026-11-07T15:55:24",
+          "result": "listed_via_observed_redirect",
+          "anchor": "Personal website",
+          "source_sha256": "cb6106f5dbbd1ec9e7ed150d5e7329c4be9162ab9fc974e45b9ffccda47005c9",
+          "linked_url": "https://www.markus-brill.de",
+          "redirect_evidence": {
+            "from": "https://www.markus-brill.de",
+            "to": "https://markus-brill.de/",
+            "sha256": "70bb0de14cb7063aae789bfb29f6e7f678d2eb2883a0e3d84a177390f7496776",
+            "at": "2026-11-07T16:02:05"
+          }
+        }
+      ],
+      "coverage": "website",
+      "evidence_gaps": []
+    },
+    {
+      "pi": "Michael Bronstein",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Michael.Bronstein",
+          "at": "2026-11-07T15:55:27",
+          "result": "ok",
+          "sha256": "01120b7706189be5be403b4dc0714b1458ffcbed3a8a7d33be4e7765d5646532"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:55:27",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Alfonso Bueno-Orovio",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Alfonso.Bueno-Orovio",
+          "at": "2026-11-07T15:55:29",
+          "result": "ok",
+          "sha256": "ba50cba1f45b75e83f29b73606b7a2d15eeae43d4feb1fefbae2db4bb0666336"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:55:29",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Anisoara Calinescu",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Ani.Calinescu",
+          "at": "2026-11-07T15:55:32",
+          "result": "ok",
+          "sha256": "26e8f1f242628153dd3a8dffab40b1fea0f6e15cd426676dcc484966628cd146"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:55:32",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Alessandra Cavarra",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Alessandra.Cavarra",
+          "at": "2026-11-07T15:55:34",
+          "result": "ok",
+          "sha256": "1b7a3c5b6ce7294ffe9d38220e98aa8b350a82507a83871b9b28afa2ff5d2823"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:55:34",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Vincent Cheval",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Vincent.Cheval",
+          "at": "2026-11-07T15:55:37",
+          "result": "ok",
+          "sha256": "e71072cd0d92bdd95a8eefe3b5d170781b3bfe5a9e5ed90a3698c6d50372a047"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:55:37",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Ronnie Clark",
+      "status": "none_found",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+      "audited_at": "2026-11-07T16:02:06",
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Ronnie.Clark",
+          "at": "2026-11-07T15:55:39",
+          "result": "ok",
+          "sha256": "5b57c57c0d49902958606ea1040515b8b18b4d45faab66a4bab7d15a7db8d728"
+        },
+        {
+          "source": "school_profile_link",
+          "url": "https://pixl.cs.ox.ac.uk",
+          "on": "https://www.cs.ox.ac.uk/people/Ronnie.Clark",
+          "at": "2026-11-07T15:55:39",
+          "result": "listed",
+          "anchor": "Oxford Perceptual Intelligence and Extended Reality Lab (PIXL)",
+          "source_sha256": "5b57c57c0d49902958606ea1040515b8b18b4d45faab66a4bab7d15a7db8d728",
+          "linked_url": "https://pixl.cs.ox.ac.uk"
+        },
+        {
+          "source": "candidate_site",
+          "url": "https://pixl.cs.ox.ac.uk",
+          "at": "2026-11-07T16:02:06",
+          "result": "ok",
+          "via": "school_profile_link",
+          "sha256": "5eb3e2dde60ce88657039ec581f99c0eea750181d5cd5f19e425b2611398ee40"
+        }
+      ],
+      "places_checked": [
+        "candidate_site:ok",
+        "school_profile:ok",
+        "school_profile_link:listed"
+      ],
+      "checked_at": "2026-11-07T16:02:06",
+      "students_page_status": "deferred_by_scope",
+      "papers_page_status": "pending_review",
+      "url": "https://pixl.cs.ox.ac.uk",
+      "kind": "pi_homepage",
+      "people_page": null,
+      "alumni_page": null,
+      "pubs_page": null,
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.ox.ac.uk/people/Ronnie.Clark",
+      "sha256": "5eb3e2dde60ce88657039ec581f99c0eea750181d5cd5f19e425b2611398ee40",
+      "evidence": {
+        "url": "https://pixl.cs.ox.ac.uk",
+        "sha256": "5eb3e2dde60ce88657039ec581f99c0eea750181d5cd5f19e425b2611398ee40",
+        "quote": "geometric vision with generative AI . PIXL is led by Ronald Clark, Associate Professor in the Department of Computer Science"
+      },
+      "official_link_status": "recorded",
+      "official_link_evidence": [
+        {
+          "source": "school_profile_link",
+          "url": "https://pixl.cs.ox.ac.uk",
+          "on": "https://www.cs.ox.ac.uk/people/Ronnie.Clark",
+          "at": "2026-11-07T15:55:39",
+          "result": "listed",
+          "anchor": "Oxford Perceptual Intelligence and Extended Reality Lab (PIXL)",
+          "source_sha256": "5b57c57c0d49902958606ea1040515b8b18b4d45faab66a4bab7d15a7db8d728",
+          "linked_url": "https://pixl.cs.ox.ac.uk"
+        }
+      ],
+      "coverage": "website",
+      "evidence_gaps": []
+    },
+    {
+      "pi": "Christian Coester",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Christian.Coester",
+          "at": "2026-11-07T15:55:42",
+          "result": "ok",
+          "sha256": "d088949fdac9bfe6110d671c7f94186e64e08259b63244d3728f0ede2899bef9"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:55:42",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Sadie Creese",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Sadie.Creese",
+          "at": "2026-11-07T15:55:45",
+          "result": "ok",
+          "sha256": "97b92725c3ec0ef380d332d71b715a564122a7c587f9b0114b1bd92cdb60f789"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:55:45",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Bernardo Cuenca Grau",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Bernardo.CuencaGrau",
+          "at": "2026-11-07T15:55:47",
+          "result": "ok",
+          "sha256": "c04810bee772675adfa16c39f9353cb6ecd8bf08c5d5747b44eca1f2a3d76f6c"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:55:47",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Jim Davies",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Jim.Davies",
+          "at": "2026-11-07T15:55:50",
+          "result": "ok",
+          "sha256": "d2fde6e415df53b23dd5a93b958594eba52ad83143e6a9f33b1eed30dd558655"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:55:50",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Giuseppe De Giacomo",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Giuseppe.DeGiacomo",
+          "at": "2026-11-07T15:55:52",
+          "result": "ok",
+          "sha256": "ad5665026750ff1ab63b3d988baf935e0f3b92f6cbcd54bb242e4753d5e17dd2"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:55:52",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Ivan Flechais",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Ivan.Flechais",
+          "at": "2026-11-07T15:55:55",
+          "result": "ok",
+          "sha256": "95ab45fa704979611e9d3590fb78319861a753e7450774527024806350968dc3"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:55:55",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Yarin Gal",
+      "status": "found",
+      "reason_code": "lab_site",
+      "reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
+      "audited_at": "2026-11-07T16:02:06",
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Yarin.Gal",
+          "at": "2026-11-07T15:55:57",
+          "result": "ok",
+          "sha256": "3487674fd6f7a74daf3248366c37968e9a8369a7f7a2ce16c4225b86d20df9f1"
+        },
+        {
+          "source": "school_profile_link",
+          "url": "https://www.cs.ox.ac.uk/oatml/",
+          "on": "https://www.cs.ox.ac.uk/people/Yarin.Gal",
+          "at": "2026-11-07T15:55:57",
+          "result": "listed",
+          "anchor": "Group page",
+          "source_sha256": "3487674fd6f7a74daf3248366c37968e9a8369a7f7a2ce16c4225b86d20df9f1",
+          "linked_url": "https://www.cs.ox.ac.uk/oatml/"
+        },
+        {
+          "source": "candidate_site",
+          "url": "https://www.cs.ox.ac.uk/oatml/",
+          "at": "2026-11-07T16:02:06",
+          "result": "ok",
+          "via": "school_profile_link",
+          "sha256": "5d2e997359c405e5af71c1884018a0344afcb0f1e15a5c553206d00a62c6edf7"
+        }
+      ],
+      "places_checked": [
+        "candidate_site:ok",
+        "school_profile:ok",
+        "school_profile_link:listed"
+      ],
+      "checked_at": "2026-11-07T16:02:06",
+      "students_page_status": "deferred_by_scope",
+      "papers_page_status": "pending_review",
+      "url": "https://www.cs.ox.ac.uk/oatml/",
+      "kind": "lab_site",
+      "people_page": null,
+      "alumni_page": null,
+      "pubs_page": null,
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.ox.ac.uk/people/Yarin.Gal",
+      "sha256": "5d2e997359c405e5af71c1884018a0344afcb0f1e15a5c553206d00a62c6edf7",
+      "evidence": {
+        "url": "https://www.cs.ox.ac.uk/oatml/",
+        "sha256": "5d2e997359c405e5af71c1884018a0344afcb0f1e15a5c553206d00a62c6edf7",
+        "quote": "TML Pragmatic Approaches to Fundamental Research News Yarin Gal one of five Samsung AI Researchers of the Year 06 Nov 2021"
+      },
+      "official_link_status": "recorded",
+      "official_link_evidence": [
+        {
+          "source": "school_profile_link",
+          "url": "https://www.cs.ox.ac.uk/oatml/",
+          "on": "https://www.cs.ox.ac.uk/people/Yarin.Gal",
+          "at": "2026-11-07T15:55:57",
+          "result": "listed",
+          "anchor": "Group page",
+          "source_sha256": "3487674fd6f7a74daf3248366c37968e9a8369a7f7a2ce16c4225b86d20df9f1",
+          "linked_url": "https://www.cs.ox.ac.uk/oatml/"
+        }
+      ],
+      "coverage": "website",
+      "evidence_gaps": []
+    },
+    {
+      "pi": "Andreas Galanis",
+      "status": "none_found",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+      "audited_at": "2026-11-07T16:02:08",
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Andreas.Galanis",
+          "at": "2026-11-07T15:56:00",
+          "result": "ok",
+          "sha256": "290b666c9315e6ad9a0f59d4cd7c68426f0d29dab40193e264aaf3506ad77e96"
+        },
+        {
+          "source": "school_profile_link",
+          "url": "http://www.cs.ox.ac.uk/people/andreas.galanis/myindex.html",
+          "on": "https://www.cs.ox.ac.uk/people/Andreas.Galanis",
+          "at": "2026-11-07T15:56:00",
+          "result": "listed",
+          "anchor": "personal webpage",
+          "source_sha256": "290b666c9315e6ad9a0f59d4cd7c68426f0d29dab40193e264aaf3506ad77e96",
+          "linked_url": "http://www.cs.ox.ac.uk/people/andreas.galanis/myindex.html"
+        },
+        {
+          "source": "candidate_site",
+          "url": "http://www.cs.ox.ac.uk/people/andreas.galanis/myindex.html",
+          "at": "2026-11-07T16:02:08",
+          "result": "ok",
+          "via": "school_profile_link",
+          "sha256": "93413accff08132ed5be3fcde814c958ab9cc089a248eadf0adb62ea77d151f5"
+        }
+      ],
+      "places_checked": [
+        "candidate_site:ok",
+        "school_profile:ok",
+        "school_profile_link:listed"
+      ],
+      "checked_at": "2026-11-07T16:02:08",
+      "students_page_status": "deferred_by_scope",
+      "papers_page_status": "pending_review",
+      "url": "http://www.cs.ox.ac.uk/people/andreas.galanis/myindex.html",
+      "kind": "pi_homepage",
+      "people_page": null,
+      "alumni_page": null,
+      "pubs_page": null,
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.ox.ac.uk/people/Andreas.Galanis",
+      "sha256": "93413accff08132ed5be3fcde814c958ab9cc089a248eadf0adb62ea77d151f5",
+      "evidence": {
+        "url": "http://www.cs.ox.ac.uk/people/andreas.galanis/myindex.html",
+        "sha256": "93413accff08132ed5be3fcde814c958ab9cc089a248eadf0adb62ea77d151f5",
+        "quote": "Andreas Galanis Andreas Galanis Department of Computer Science , University"
+      },
+      "official_link_status": "recorded",
+      "official_link_evidence": [
+        {
+          "source": "school_profile_link",
+          "url": "http://www.cs.ox.ac.uk/people/andreas.galanis/myindex.html",
+          "on": "https://www.cs.ox.ac.uk/people/Andreas.Galanis",
+          "at": "2026-11-07T15:56:00",
+          "result": "listed",
+          "anchor": "personal webpage",
+          "source_sha256": "290b666c9315e6ad9a0f59d4cd7c68426f0d29dab40193e264aaf3506ad77e96",
+          "linked_url": "http://www.cs.ox.ac.uk/people/andreas.galanis/myindex.html"
+        }
+      ],
+      "coverage": "website",
+      "evidence_gaps": []
+    },
+    {
+      "pi": "David Gavaghan",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/David.Gavaghan",
+          "at": "2026-11-07T15:56:02",
+          "result": "ok",
+          "sha256": "bd95668ee1677e1f0b4b45e8184461e00eae19d09da544f887e99c5fa0a0bb6b"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:56:02",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Jeremy Gibbons",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Jeremy.Gibbons",
+          "at": "2026-11-07T15:56:05",
+          "result": "ok",
+          "sha256": "4ce3f12669d24fdc1357fa3b1042676f0e955612e99189e7ef2f626d9b7cf2d0"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:56:05",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Leslie Ann Goldberg",
+      "status": "none_found",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "The official faculty-directory link resolves to a PI-authored research homepage, with personal navigation and publications; manually reviewed content establishes this is a homepage, not an institutional profile card.",
+      "audited_at": "2026-11-07T15:56:07",
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/faculty.html",
+          "at": "2026-11-06T23:42:35",
+          "result": "ok",
+          "sha256": "1336e1303fae2f95e46926860596178a2bd983cd898b188ce5756b336db12f39"
+        },
+        {
+          "source": "school_profile_link",
+          "url": "https://www.cs.ox.ac.uk/people/LeslieAnn.Goldberg",
+          "on": "https://www.cs.ox.ac.uk/people/faculty.html",
+          "at": "2026-11-06T23:42:35",
+          "result": "listed",
+          "anchor": "Leslie Ann Goldberg",
+          "source_sha256": "1336e1303fae2f95e46926860596178a2bd983cd898b188ce5756b336db12f39",
+          "source_kind": "official_faculty_listing"
+        },
+        {
+          "source": "candidate_site",
+          "url": "https://www.cs.ox.ac.uk/people/LeslieAnn.Goldberg",
+          "at": "2026-11-07T15:56:07",
+          "result": "ok",
+          "via": "school_profile_link",
+          "sha256": "a08af143584ebb517d4bcdca603c60e83c9d715515f25ae6836134c885bb9fb1"
+        }
+      ],
+      "places_checked": [
+        "candidate_site:ok",
+        "school_profile:ok",
+        "school_profile_link:listed"
+      ],
+      "checked_at": "2026-11-07T15:56:07",
+      "students_page_status": "deferred_by_scope",
+      "papers_page_status": "pending_review",
+      "url": "https://www.cs.ox.ac.uk/people/LeslieAnn.Goldberg",
+      "kind": "pi_homepage",
+      "people_page": null,
+      "alumni_page": null,
+      "pubs_page": null,
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.ox.ac.uk/people/faculty.html",
+      "sha256": "a08af143584ebb517d4bcdca603c60e83c9d715515f25ae6836134c885bb9fb1",
+      "evidence": {
+        "url": "https://www.cs.ox.ac.uk/people/LeslieAnn.Goldberg",
+        "sha256": "a08af143584ebb517d4bcdca603c60e83c9d715515f25ae6836134c885bb9fb1",
+        "quote": "Leslie Ann Goldberg Home Publications Projects & PhD Students Thoughts about Maths & AI Photo: John Cairns Professor Leslie Ann Goldberg Head of Department of Computer Science, Senior Research Fellow at St Edmund Hall, University of Oxford."
+      },
+      "official_link_status": "recorded",
+      "official_link_evidence": [
+        {
+          "source": "school_profile_link",
+          "url": "https://www.cs.ox.ac.uk/people/LeslieAnn.Goldberg",
+          "on": "https://www.cs.ox.ac.uk/people/faculty.html",
+          "at": "2026-11-06T23:42:35",
+          "result": "listed",
+          "anchor": "Leslie Ann Goldberg",
+          "source_sha256": "1336e1303fae2f95e46926860596178a2bd983cd898b188ce5756b336db12f39",
+          "source_kind": "official_faculty_listing"
+        }
+      ],
+      "coverage": "website",
+      "evidence_gaps": [],
+      "reviewed_content_classification": "pi_homepage",
+      "classification_note": "Content-reviewed exception to URL-only profile heuristic: personal homepage at official /people/<name> URL. Preserve this reviewed classification when refreshing discovery."
+    },
+    {
+      "pi": "Paul Goldberg",
+      "status": "none_found",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+      "audited_at": "2026-11-07T16:02:11",
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Paul.Goldberg",
+          "at": "2026-11-07T15:56:10",
+          "result": "ok",
+          "sha256": "312bd4d1e0bf79599817f6d9fd7c86115b5856e92afe33ff28f49812ef1352da"
+        },
+        {
+          "source": "school_profile_link",
+          "url": "http://www.cs.ox.ac.uk/people/paul.goldberg/index1.html",
+          "on": "https://www.cs.ox.ac.uk/people/Paul.Goldberg",
+          "at": "2026-11-07T15:56:10",
+          "result": "listed",
+          "anchor": "Personal home page",
+          "source_sha256": "312bd4d1e0bf79599817f6d9fd7c86115b5856e92afe33ff28f49812ef1352da",
+          "linked_url": "http://www.cs.ox.ac.uk/people/paul.goldberg/index1.html"
+        },
+        {
+          "source": "candidate_site",
+          "url": "http://www.cs.ox.ac.uk/people/paul.goldberg/index1.html",
+          "at": "2026-11-07T16:02:11",
+          "result": "ok",
+          "via": "school_profile_link",
+          "sha256": "273677a242c8000990af30b809de64304670c250b055cf8efda08c22393a1410"
+        }
+      ],
+      "places_checked": [
+        "candidate_site:ok",
+        "school_profile:ok",
+        "school_profile_link:listed"
+      ],
+      "checked_at": "2026-11-07T16:02:11",
+      "students_page_status": "deferred_by_scope",
+      "papers_page_status": "pending_review",
+      "url": "http://www.cs.ox.ac.uk/people/paul.goldberg/index1.html",
+      "kind": "pi_homepage",
+      "people_page": null,
+      "alumni_page": null,
+      "pubs_page": null,
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.ox.ac.uk/people/Paul.Goldberg",
+      "sha256": "273677a242c8000990af30b809de64304670c250b055cf8efda08c22393a1410",
+      "evidence": {
+        "url": "http://www.cs.ox.ac.uk/people/paul.goldberg/index1.html",
+        "sha256": "273677a242c8000990af30b809de64304670c250b055cf8efda08c22393a1410",
+        "quote": "Paul Goldberg's home page Paul W. Goldberg professor of Computer Science"
+      },
+      "official_link_status": "recorded",
+      "official_link_evidence": [
+        {
+          "source": "school_profile_link",
+          "url": "http://www.cs.ox.ac.uk/people/paul.goldberg/index1.html",
+          "on": "https://www.cs.ox.ac.uk/people/Paul.Goldberg",
+          "at": "2026-11-07T15:56:10",
+          "result": "listed",
+          "anchor": "Personal home page",
+          "source_sha256": "312bd4d1e0bf79599817f6d9fd7c86115b5856e92afe33ff28f49812ef1352da",
+          "linked_url": "http://www.cs.ox.ac.uk/people/paul.goldberg/index1.html"
+        }
+      ],
+      "coverage": "website",
+      "evidence_gaps": []
+    },
+    {
+      "pi": "Christoph Haase",
+      "status": "none_found",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+      "audited_at": "2026-11-07T16:02:13",
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Christoph.Haase",
+          "at": "2026-11-07T15:56:13",
+          "result": "ok",
+          "sha256": "d816c7cf985e6ff2e3a3c5adf651b7b024b808b5ce3566804f868705b67afdd9"
+        },
+        {
+          "source": "school_profile_link",
+          "url": "http://www.cs.ox.ac.uk/people/christoph.haase/home/",
+          "on": "https://www.cs.ox.ac.uk/people/Christoph.Haase",
+          "at": "2026-11-07T15:56:13",
+          "result": "listed",
+          "anchor": "personal webpage",
+          "source_sha256": "d816c7cf985e6ff2e3a3c5adf651b7b024b808b5ce3566804f868705b67afdd9",
+          "linked_url": "http://www.cs.ox.ac.uk/people/christoph.haase/home/"
+        },
+        {
+          "source": "candidate_site",
+          "url": "http://www.cs.ox.ac.uk/people/christoph.haase/home/",
+          "at": "2026-11-07T16:02:13",
+          "result": "ok",
+          "via": "school_profile_link",
+          "sha256": "a875b99a499295ce21f33f71052a4cebbaea50d715bf1694c155948db7afc2bf"
+        }
+      ],
+      "places_checked": [
+        "candidate_site:ok",
+        "school_profile:ok",
+        "school_profile_link:listed"
+      ],
+      "checked_at": "2026-11-07T16:02:13",
+      "students_page_status": "deferred_by_scope",
+      "papers_page_status": "pending_review",
+      "url": "http://www.cs.ox.ac.uk/people/christoph.haase/home/",
+      "kind": "pi_homepage",
+      "people_page": null,
+      "alumni_page": null,
+      "pubs_page": null,
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.ox.ac.uk/people/Christoph.Haase",
+      "sha256": "a875b99a499295ce21f33f71052a4cebbaea50d715bf1694c155948db7afc2bf",
+      "evidence": {
+        "url": "http://www.cs.ox.ac.uk/people/christoph.haase/home/",
+        "sha256": "a875b99a499295ce21f33f71052a4cebbaea50d715bf1694c155948db7afc2bf",
+        "quote": "Christoph Haase Search Christoph Haase Home Biography Publications Students"
+      },
+      "official_link_status": "recorded",
+      "official_link_evidence": [
+        {
+          "source": "school_profile_link",
+          "url": "http://www.cs.ox.ac.uk/people/christoph.haase/home/",
+          "on": "https://www.cs.ox.ac.uk/people/Christoph.Haase",
+          "at": "2026-11-07T15:56:13",
+          "result": "listed",
+          "anchor": "personal webpage",
+          "source_sha256": "d816c7cf985e6ff2e3a3c5adf651b7b024b808b5ce3566804f868705b67afdd9",
+          "linked_url": "http://www.cs.ox.ac.uk/people/christoph.haase/home/"
+        }
+      ],
+      "coverage": "website",
+      "evidence_gaps": []
+    },
+    {
+      "pi": "Hamed Haddadi",
+      "status": "none_found",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+      "audited_at": "2026-11-07T16:02:13",
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Hamed.Haddadi",
+          "at": "2026-11-07T15:56:15",
+          "result": "ok",
+          "sha256": "bc9c37195778f2637d8ff4780ca0a7a8c67d9002107c6d241fe2528346a6c93d"
+        },
+        {
+          "source": "school_profile_link",
+          "url": "https://haddadi.github.io/about/",
+          "on": "https://www.cs.ox.ac.uk/people/Hamed.Haddadi",
+          "at": "2026-11-07T15:56:15",
+          "result": "listed",
+          "anchor": "Personal Page",
+          "source_sha256": "bc9c37195778f2637d8ff4780ca0a7a8c67d9002107c6d241fe2528346a6c93d",
+          "linked_url": "https://haddadi.github.io/about/"
+        },
+        {
+          "source": "candidate_site",
+          "url": "https://haddadi.github.io/about/",
+          "at": "2026-11-07T16:02:13",
+          "result": "ok",
+          "via": "school_profile_link",
+          "sha256": "e1e03e10d3da330135b7414440c097b0bacef8588c7c37fdde73e4cfd278b86d"
+        }
+      ],
+      "places_checked": [
+        "candidate_site:ok",
+        "school_profile:ok",
+        "school_profile_link:listed"
+      ],
+      "checked_at": "2026-11-07T16:02:13",
+      "students_page_status": "deferred_by_scope",
+      "papers_page_status": "pending_review",
+      "url": "https://haddadi.github.io/about/",
+      "kind": "pi_homepage",
+      "people_page": null,
+      "alumni_page": null,
+      "pubs_page": null,
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.ox.ac.uk/people/Hamed.Haddadi",
+      "sha256": "e1e03e10d3da330135b7414440c097b0bacef8588c7c37fdde73e4cfd278b86d",
+      "evidence": {
+        "url": "https://haddadi.github.io/about/",
+        "sha256": "e1e03e10d3da330135b7414440c097b0bacef8588c7c37fdde73e4cfd278b86d",
+        "quote": "Hamed Haddadi – Hamed Haddadi – University of Oxford & Brave Hamed Haddad"
+      },
+      "official_link_status": "recorded",
+      "official_link_evidence": [
+        {
+          "source": "school_profile_link",
+          "url": "https://haddadi.github.io/about/",
+          "on": "https://www.cs.ox.ac.uk/people/Hamed.Haddadi",
+          "at": "2026-11-07T15:56:15",
+          "result": "listed",
+          "anchor": "Personal Page",
+          "source_sha256": "bc9c37195778f2637d8ff4780ca0a7a8c67d9002107c6d241fe2528346a6c93d",
+          "linked_url": "https://haddadi.github.io/about/"
+        }
+      ],
+      "coverage": "website",
+      "evidence_gaps": []
+    },
+    {
+      "pi": "Matty Hoban",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Matty.Hoban",
+          "at": "2026-11-07T15:56:18",
+          "result": "ok",
+          "sha256": "64e3dae1875ae85fd0f932254fe7fe5f1fc23d855852a61909bfca4b4bd48059"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:56:18",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Ian Horrocks",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Ian.Horrocks",
+          "at": "2026-11-07T15:56:20",
+          "result": "ok",
+          "sha256": "59146be31a5077ddbd3c75a29e9ee118aef78a84454e38251f23ae341601b97f"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:56:20",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Marina Jirotka",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Marina.Jirotka",
+          "at": "2026-11-07T15:56:23",
+          "result": "ok",
+          "sha256": "bcb9241bf85e4b452479059ec13f472761a1f697952ea31ac51c539e2e0d4e4f"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:56:23",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Varun Kanade",
+      "status": "none_found",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+      "audited_at": "2026-11-07T16:03:52",
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Varun.Kanade",
+          "at": "2026-11-07T15:56:25",
+          "result": "ok",
+          "sha256": "12808c2beca7b6ccb5fa9e9e09a94e04855f14f8d2057091d1c4ef96a9a3e2cf"
+        },
+        {
+          "source": "school_profile_link",
+          "url": "https://www.cs.ox.ac.uk/people/varun.kanade/website/",
+          "on": "https://www.cs.ox.ac.uk/people/Varun.Kanade",
+          "at": "2026-11-07T15:56:25",
+          "result": "listed_via_observed_redirect",
+          "anchor": "Personal Webpage",
+          "source_sha256": "12808c2beca7b6ccb5fa9e9e09a94e04855f14f8d2057091d1c4ef96a9a3e2cf",
+          "linked_url": "http://www.cs.ox.ac.uk/people/varun.kanade/myindex.html",
+          "redirect_evidence": {
+            "from": "http://www.cs.ox.ac.uk/people/varun.kanade/myindex.html",
+            "to": "https://www.cs.ox.ac.uk/people/varun.kanade/website/",
+            "sha256": "210eec66842397fc03bd7d3aefadbbbbd1d0eb9d6b66117a9f4ba73918177eee",
+            "at": "2026-11-07T16:02:15"
+          }
+        },
+        {
+          "source": "candidate_site",
+          "url": "https://www.cs.ox.ac.uk/people/varun.kanade/website/",
+          "at": "2026-11-07T16:03:52",
+          "result": "ok",
+          "via": "school_profile_link",
+          "sha256": "1532f219d682b744dfe27fcc2cafd6bb70db7ff1ed25b9e8b7963262a04fb78c"
+        }
+      ],
+      "places_checked": [
+        "candidate_site:ok",
+        "school_profile:ok",
+        "school_profile_link:listed_via_observed_redirect"
+      ],
+      "checked_at": "2026-11-07T16:03:52",
+      "students_page_status": "deferred_by_scope",
+      "papers_page_status": "pending_review",
+      "url": "https://www.cs.ox.ac.uk/people/varun.kanade/website/",
+      "kind": "pi_homepage",
+      "people_page": null,
+      "alumni_page": null,
+      "pubs_page": null,
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.ox.ac.uk/people/Varun.Kanade",
+      "sha256": "1532f219d682b744dfe27fcc2cafd6bb70db7ff1ed25b9e8b7963262a04fb78c",
+      "evidence": {
+        "url": "https://www.cs.ox.ac.uk/people/varun.kanade/website/",
+        "sha256": "1532f219d682b744dfe27fcc2cafd6bb70db7ff1ed25b9e8b7963262a04fb78c",
+        "quote": "Home Varun Kanade Home Research Teaching Blog Associate Professor Department"
+      },
+      "official_link_status": "recorded",
+      "official_link_evidence": [
+        {
+          "source": "school_profile_link",
+          "url": "https://www.cs.ox.ac.uk/people/varun.kanade/website/",
+          "on": "https://www.cs.ox.ac.uk/people/Varun.Kanade",
+          "at": "2026-11-07T15:56:25",
+          "result": "listed_via_observed_redirect",
+          "anchor": "Personal Webpage",
+          "source_sha256": "12808c2beca7b6ccb5fa9e9e09a94e04855f14f8d2057091d1c4ef96a9a3e2cf",
+          "linked_url": "http://www.cs.ox.ac.uk/people/varun.kanade/myindex.html",
+          "redirect_evidence": {
+            "from": "http://www.cs.ox.ac.uk/people/varun.kanade/myindex.html",
+            "to": "https://www.cs.ox.ac.uk/people/varun.kanade/website/",
+            "sha256": "210eec66842397fc03bd7d3aefadbbbbd1d0eb9d6b66117a9f4ba73918177eee",
+            "at": "2026-11-07T16:02:15"
+          }
+        }
+      ],
+      "coverage": "website",
+      "evidence_gaps": []
+    },
+    {
+      "pi": "David Kay",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/David.Kay",
+          "at": "2026-11-07T15:56:28",
+          "result": "ok",
+          "sha256": "d7c6c7ebbc5c5779bd8a9fc331a74e778a0e76315442b361d66e4d73a4bed5ce"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:56:28",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Andrew D. Ker",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Andrew.Ker",
+          "at": "2026-11-07T15:56:30",
+          "result": "ok",
+          "sha256": "b02d55efbfbbe0d90aa3b7ecabfb70614afe6d4d6845cfa8915b8a891d4b62a1"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:56:30",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Sandra Kiefer",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Sandra.Kiefer",
+          "at": "2026-11-07T15:56:33",
+          "result": "ok",
+          "sha256": "f7901dc0455433202367ac6339ec10cdeb3c826d3b4f761ebd8512637a9a76ba"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:56:33",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Stefan Kiefer",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Stefan.Kiefer",
+          "at": "2026-11-07T15:56:35",
+          "result": "ok",
+          "sha256": "ac6af8deafae416e55e5a58a7ac05663ea3e471f4a363d36ead353ef7d470321"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:56:35",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Aleks Kissinger",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Aleks.Kissinger",
+          "at": "2026-11-07T15:56:38",
+          "result": "ok",
+          "sha256": "0ec7e3ca053b91a06fe5a6e389b66957e72b634a0e4e315b8e55e536002331ab"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:56:38",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Bartek Klin",
+      "status": "none_found",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+      "audited_at": "2026-11-07T16:02:17",
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Bartek.Klin",
+          "at": "2026-11-07T15:56:40",
+          "result": "ok",
+          "sha256": "c901af15466eba2396bfe7dba5a4e81d14deba631f3a2d769d535f4cfe425114"
+        },
+        {
+          "source": "school_profile_link",
+          "url": "https://www.cs.ox.ac.uk/people/bartek.klin/main.html",
+          "on": "https://www.cs.ox.ac.uk/people/Bartek.Klin",
+          "at": "2026-11-07T15:56:40",
+          "result": "listed",
+          "anchor": "Personal page",
+          "source_sha256": "c901af15466eba2396bfe7dba5a4e81d14deba631f3a2d769d535f4cfe425114",
+          "linked_url": "https://www.cs.ox.ac.uk/people/bartek.klin/main.html"
+        },
+        {
+          "source": "candidate_site",
+          "url": "https://www.cs.ox.ac.uk/people/bartek.klin/main.html",
+          "at": "2026-11-07T16:02:17",
+          "result": "ok",
+          "via": "school_profile_link",
+          "sha256": "66047b29c94cb4f2c1e942c4e662ee3a9bf56711cd8b4aa1c3584d405312373a"
+        }
+      ],
+      "places_checked": [
+        "candidate_site:ok",
+        "school_profile:ok",
+        "school_profile_link:listed"
+      ],
+      "checked_at": "2026-11-07T16:02:17",
+      "students_page_status": "deferred_by_scope",
+      "papers_page_status": "pending_review",
+      "url": "https://www.cs.ox.ac.uk/people/bartek.klin/main.html",
+      "kind": "pi_homepage",
+      "people_page": null,
+      "alumni_page": null,
+      "pubs_page": null,
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.ox.ac.uk/people/Bartek.Klin",
+      "sha256": "66047b29c94cb4f2c1e942c4e662ee3a9bf56711cd8b4aa1c3584d405312373a",
+      "evidence": {
+        "url": "https://www.cs.ox.ac.uk/people/bartek.klin/main.html",
+        "sha256": "66047b29c94cb4f2c1e942c4e662ee3a9bf56711cd8b4aa1c3584d405312373a",
+        "quote": "Bartek Klin - home page Bartek Klin Home Publications I am: an Associat"
+      },
+      "official_link_status": "recorded",
+      "official_link_evidence": [
+        {
+          "source": "school_profile_link",
+          "url": "https://www.cs.ox.ac.uk/people/bartek.klin/main.html",
+          "on": "https://www.cs.ox.ac.uk/people/Bartek.Klin",
+          "at": "2026-11-07T15:56:40",
+          "result": "listed",
+          "anchor": "Personal page",
+          "source_sha256": "c901af15466eba2396bfe7dba5a4e81d14deba631f3a2d769d535f4cfe425114",
+          "linked_url": "https://www.cs.ox.ac.uk/people/bartek.klin/main.html"
+        }
+      ],
+      "coverage": "website",
+      "evidence_gaps": []
+    },
+    {
+      "pi": "Elias Koutsoupias",
+      "status": "none_found",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+      "audited_at": "2026-11-07T16:02:19",
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Elias.Koutsoupias",
+          "at": "2026-11-07T15:56:43",
+          "result": "ok",
+          "sha256": "ddc178e9f8b97a484058adfb533cc9f115021dfd35deecf7fb695ae075f34438"
+        },
+        {
+          "source": "school_profile_link",
+          "url": "http://www.cs.ox.ac.uk/people/elias.koutsoupias/Personal/",
+          "on": "https://www.cs.ox.ac.uk/people/Elias.Koutsoupias",
+          "at": "2026-11-07T15:56:43",
+          "result": "listed",
+          "anchor": "Personal web page",
+          "source_sha256": "ddc178e9f8b97a484058adfb533cc9f115021dfd35deecf7fb695ae075f34438",
+          "linked_url": "http://www.cs.ox.ac.uk/people/elias.koutsoupias/Personal/"
+        },
+        {
+          "source": "candidate_site",
+          "url": "http://www.cs.ox.ac.uk/people/elias.koutsoupias/Personal/",
+          "at": "2026-11-07T16:02:19",
+          "result": "ok",
+          "via": "school_profile_link",
+          "sha256": "50e9bb379f25b98800d978118db0d6e84954ca09a29834401c2301ba88e2c418"
+        }
+      ],
+      "places_checked": [
+        "candidate_site:ok",
+        "school_profile:ok",
+        "school_profile_link:listed"
+      ],
+      "checked_at": "2026-11-07T16:02:19",
+      "students_page_status": "deferred_by_scope",
+      "papers_page_status": "pending_review",
+      "url": "http://www.cs.ox.ac.uk/people/elias.koutsoupias/Personal/",
+      "kind": "pi_homepage",
+      "people_page": null,
+      "alumni_page": null,
+      "pubs_page": null,
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.ox.ac.uk/people/Elias.Koutsoupias",
+      "sha256": "50e9bb379f25b98800d978118db0d6e84954ca09a29834401c2301ba88e2c418",
+      "evidence": {
+        "url": "http://www.cs.ox.ac.uk/people/elias.koutsoupias/Personal/",
+        "sha256": "50e9bb379f25b98800d978118db0d6e84954ca09a29834401c2301ba88e2c418",
+        "quote": "Elias Koutsoupias Elias Koutsoupias Professor of Computer Science University"
+      },
+      "official_link_status": "recorded",
+      "official_link_evidence": [
+        {
+          "source": "school_profile_link",
+          "url": "http://www.cs.ox.ac.uk/people/elias.koutsoupias/Personal/",
+          "on": "https://www.cs.ox.ac.uk/people/Elias.Koutsoupias",
+          "at": "2026-11-07T15:56:43",
+          "result": "listed",
+          "anchor": "Personal web page",
+          "source_sha256": "ddc178e9f8b97a484058adfb533cc9f115021dfd35deecf7fb695ae075f34438",
+          "linked_url": "http://www.cs.ox.ac.uk/people/elias.koutsoupias/Personal/"
+        }
+      ],
+      "coverage": "website",
+      "evidence_gaps": []
+    },
+    {
+      "pi": "Shan Luo",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Shan.Luo",
+          "at": "2026-11-07T15:56:45",
+          "result": "ok",
+          "sha256": "663d9462e6f6c8382d8338dd0e73085ebfd52fd283b287a768ab0c262281ec93"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:56:45",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Andrew Markham",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Andrew.Markham",
+          "at": "2026-11-07T15:56:48",
+          "result": "ok",
+          "sha256": "bd0b2e3c4c7dffb59f2cb33286356470c2471c3ee504dec154a3a7a6fed2180e"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:56:48",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Andrew Martin",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Andrew.Martin",
+          "at": "2026-11-07T15:56:50",
+          "result": "ok",
+          "sha256": "4b5bc0e0909341ac5927a5ca57a21058984092df800209d6d6d98e2ade684ec9"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:56:50",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Ivan Martinovic",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Ivan.Martinovic",
+          "at": "2026-11-07T15:56:53",
+          "result": "ok",
+          "sha256": "0b30b171735b21cd43dd2bf55ce679406c58b9e7e7e52e56ad6cd56fab919e93"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:56:53",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Tom Melham",
+      "status": "none_found",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+      "audited_at": "2026-11-07T16:02:22",
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Tom.Melham",
+          "at": "2026-11-07T15:56:55",
+          "result": "ok",
+          "sha256": "41d2c8551cb1082ee43c20c086d4b935f9b24c572f61c4d4d761937305257ab5"
+        },
+        {
+          "source": "school_profile_link",
+          "url": "http://www.cs.ox.ac.uk/tom.melham/home.html",
+          "on": "https://www.cs.ox.ac.uk/people/Tom.Melham",
+          "at": "2026-11-07T15:56:55",
+          "result": "listed",
+          "anchor": "Personal Web Pages",
+          "source_sha256": "41d2c8551cb1082ee43c20c086d4b935f9b24c572f61c4d4d761937305257ab5",
+          "linked_url": "http://www.cs.ox.ac.uk/tom.melham/home.html"
+        },
+        {
+          "source": "candidate_site",
+          "url": "http://www.cs.ox.ac.uk/tom.melham/home.html",
+          "at": "2026-11-07T16:02:22",
+          "result": "ok",
+          "via": "school_profile_link",
+          "sha256": "5b571615ac5b60628671bf97fe473d66ae846bb0f5980fcb045a28586a236183"
+        }
+      ],
+      "places_checked": [
+        "candidate_site:ok",
+        "school_profile:ok",
+        "school_profile_link:listed"
+      ],
+      "checked_at": "2026-11-07T16:02:22",
+      "students_page_status": "deferred_by_scope",
+      "papers_page_status": "pending_review",
+      "url": "http://www.cs.ox.ac.uk/tom.melham/home.html",
+      "kind": "pi_homepage",
+      "people_page": null,
+      "alumni_page": null,
+      "pubs_page": null,
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.ox.ac.uk/people/Tom.Melham",
+      "sha256": "5b571615ac5b60628671bf97fe473d66ae846bb0f5980fcb045a28586a236183",
+      "evidence": {
+        "url": "http://www.cs.ox.ac.uk/tom.melham/home.html",
+        "sha256": "5b571615ac5b60628671bf97fe473d66ae846bb0f5980fcb045a28586a236183",
+        "quote": "Professor Tom Melham - University of Oxford Professor Tom Melham, FREng FRSE FBC"
+      },
+      "official_link_status": "recorded",
+      "official_link_evidence": [
+        {
+          "source": "school_profile_link",
+          "url": "http://www.cs.ox.ac.uk/tom.melham/home.html",
+          "on": "https://www.cs.ox.ac.uk/people/Tom.Melham",
+          "at": "2026-11-07T15:56:55",
+          "result": "listed",
+          "anchor": "Personal Web Pages",
+          "source_sha256": "41d2c8551cb1082ee43c20c086d4b935f9b24c572f61c4d4d761937305257ab5",
+          "linked_url": "http://www.cs.ox.ac.uk/tom.melham/home.html"
+        }
+      ],
+      "coverage": "website",
+      "evidence_gaps": []
+    },
+    {
+      "pi": "Peter Minary",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Peter.Minary",
+          "at": "2026-11-07T15:56:58",
+          "result": "ok",
+          "sha256": "d18a9f41e4b18aedd150eead344524708ea6ec92035b9595ce01961129354b74"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:56:58",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Boris Motik",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Boris.Motik",
+          "at": "2026-11-07T15:57:00",
+          "result": "ok",
+          "sha256": "ec0c4a314e29a9864d336254c2a991f2468fea21974274f601c61c958d9ff625"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:57:00",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Andrzej Murawski",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Andrzej.Murawski",
+          "at": "2026-11-07T15:57:03",
+          "result": "ok",
+          "sha256": "6c2945857e290190e6ad8b80109b671d117d9827835502efb2c9976888964f73"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:57:03",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Ana Namburete",
+      "status": "found",
+      "reason_code": "lab_site",
+      "reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
+      "audited_at": "2026-11-07T16:03:52",
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Ana.Namburete",
+          "at": "2026-11-07T15:57:05",
+          "result": "ok",
+          "sha256": "3ad46d85b91815d16a32429d2abdd234614b59acd8c04ff70050e7a906ac7cf8"
+        },
+        {
+          "source": "school_profile_link",
+          "url": "https://oxford-omni-lab.github.io/",
+          "on": "https://www.cs.ox.ac.uk/people/Ana.Namburete",
+          "at": "2026-11-07T15:57:05",
+          "result": "listed_via_observed_redirect",
+          "anchor": "Oxford Machine Learning in NeuroImaging (OMNI) Lab",
+          "source_sha256": "3ad46d85b91815d16a32429d2abdd234614b59acd8c04ff70050e7a906ac7cf8",
+          "linked_url": "https://omni.cs.ox.ac.uk/",
+          "redirect_evidence": {
+            "from": "https://omni.cs.ox.ac.uk/",
+            "to": "https://oxford-omni-lab.github.io/",
+            "sha256": "fecd98f2bdde6322936b208252da823fc3ff22ee2fa59d5a851aaba1cb238dac",
+            "at": "2026-11-07T16:02:23"
+          }
+        },
+        {
+          "source": "candidate_site",
+          "url": "https://oxford-omni-lab.github.io/",
+          "at": "2026-11-07T16:03:52",
+          "result": "ok",
+          "via": "school_profile_link",
+          "sha256": "890d632a1ae3cea381b4bc2fb76b684c952af3debc6de9610148a798df494ae1"
+        }
+      ],
+      "places_checked": [
+        "candidate_site:ok",
+        "school_profile:ok",
+        "school_profile_link:listed_via_observed_redirect"
+      ],
+      "checked_at": "2026-11-07T16:03:52",
+      "students_page_status": "deferred_by_scope",
+      "papers_page_status": "pending_review",
+      "url": "https://oxford-omni-lab.github.io/",
+      "kind": "lab_site",
+      "people_page": null,
+      "alumni_page": null,
+      "pubs_page": null,
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.ox.ac.uk/people/Ana.Namburete",
+      "sha256": "890d632a1ae3cea381b4bc2fb76b684c952af3debc6de9610148a798df494ae1",
+      "evidence": {
+        "url": "https://oxford-omni-lab.github.io/",
+        "sha256": "890d632a1ae3cea381b4bc2fb76b684c952af3debc6de9610148a798df494ae1",
+        "quote": null
+      },
+      "official_link_status": "recorded",
+      "official_link_evidence": [
+        {
+          "source": "school_profile_link",
+          "url": "https://oxford-omni-lab.github.io/",
+          "on": "https://www.cs.ox.ac.uk/people/Ana.Namburete",
+          "at": "2026-11-07T15:57:05",
+          "result": "listed_via_observed_redirect",
+          "anchor": "Oxford Machine Learning in NeuroImaging (OMNI) Lab",
+          "source_sha256": "3ad46d85b91815d16a32429d2abdd234614b59acd8c04ff70050e7a906ac7cf8",
+          "linked_url": "https://omni.cs.ox.ac.uk/",
+          "redirect_evidence": {
+            "from": "https://omni.cs.ox.ac.uk/",
+            "to": "https://oxford-omni-lab.github.io/",
+            "sha256": "fecd98f2bdde6322936b208252da823fc3ff22ee2fa59d5a851aaba1cb238dac",
+            "at": "2026-11-07T16:02:23"
+          }
+        }
+      ],
+      "coverage": "website",
+      "evidence_gaps": []
+    },
+    {
+      "pi": "David Parker",
+      "status": "none_found",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+      "audited_at": "2026-11-07T16:02:24",
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/David.Parker",
+          "at": "2026-11-07T15:57:08",
+          "result": "ok",
+          "sha256": "aa6801d8dd99fe11504af6fcd437706ffc0f9a21334f6c12edeef89295f78f07"
+        },
+        {
+          "source": "school_profile_link",
+          "url": "https://www.cs.ox.ac.uk/people/David.Parker/home.html",
+          "on": "https://www.cs.ox.ac.uk/people/David.Parker",
+          "at": "2026-11-07T15:57:08",
+          "result": "listed",
+          "anchor": "Personal webpage",
+          "source_sha256": "aa6801d8dd99fe11504af6fcd437706ffc0f9a21334f6c12edeef89295f78f07",
+          "linked_url": "https://www.cs.ox.ac.uk/people/David.Parker/home.html"
+        },
+        {
+          "source": "candidate_site",
+          "url": "https://www.cs.ox.ac.uk/people/David.Parker/home.html",
+          "at": "2026-11-07T16:02:24",
+          "result": "ok",
+          "via": "school_profile_link",
+          "sha256": "8a03a152f5bc8ef3455da46abc10b8a5f05782f800b0da48b0d83c43d5092dab"
+        }
+      ],
+      "places_checked": [
+        "candidate_site:ok",
+        "school_profile:ok",
+        "school_profile_link:listed"
+      ],
+      "checked_at": "2026-11-07T16:02:24",
+      "students_page_status": "deferred_by_scope",
+      "papers_page_status": "pending_review",
+      "url": "https://www.cs.ox.ac.uk/people/David.Parker/home.html",
+      "kind": "pi_homepage",
+      "people_page": null,
+      "alumni_page": null,
+      "pubs_page": null,
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.ox.ac.uk/people/David.Parker",
+      "sha256": "8a03a152f5bc8ef3455da46abc10b8a5f05782f800b0da48b0d83c43d5092dab",
+      "evidence": {
+        "url": "https://www.cs.ox.ac.uk/people/David.Parker/home.html",
+        "sha256": "8a03a152f5bc8ef3455da46abc10b8a5f05782f800b0da48b0d83c43d5092dab",
+        "quote": "David Parker - University of Oxford David Parker Professor of Computer S"
+      },
+      "official_link_status": "recorded",
+      "official_link_evidence": [
+        {
+          "source": "school_profile_link",
+          "url": "https://www.cs.ox.ac.uk/people/David.Parker/home.html",
+          "on": "https://www.cs.ox.ac.uk/people/David.Parker",
+          "at": "2026-11-07T15:57:08",
+          "result": "listed",
+          "anchor": "Personal webpage",
+          "source_sha256": "aa6801d8dd99fe11504af6fcd437706ffc0f9a21334f6c12edeef89295f78f07",
+          "linked_url": "https://www.cs.ox.ac.uk/people/David.Parker/home.html"
+        }
+      ],
+      "coverage": "website",
+      "evidence_gaps": []
+    },
+    {
+      "pi": "Thomas Pasquier",
+      "status": "none_found",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+      "audited_at": "2026-11-07T16:02:25",
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Thomas.Pasquier",
+          "at": "2026-11-07T15:57:10",
+          "result": "ok",
+          "sha256": "1d364f42bc6d36f36f472df11fe16ddaccdcc76ee5e1aa0242a9b7d108ede439"
+        },
+        {
+          "source": "school_profile_link",
+          "url": "https://tfjmp.org/",
+          "on": "https://www.cs.ox.ac.uk/people/Thomas.Pasquier",
+          "at": "2026-11-07T15:57:10",
+          "result": "listed",
+          "anchor": "Personal Page",
+          "source_sha256": "1d364f42bc6d36f36f472df11fe16ddaccdcc76ee5e1aa0242a9b7d108ede439",
+          "linked_url": "https://tfjmp.org/"
+        },
+        {
+          "source": "candidate_site",
+          "url": "https://tfjmp.org/",
+          "at": "2026-11-07T16:02:25",
+          "result": "ok",
+          "via": "school_profile_link",
+          "sha256": "27a34623c0996626fa048de1ccce02e5549c0d9d437d72994bc11bfdfbb3e5fb"
+        }
+      ],
+      "places_checked": [
+        "candidate_site:ok",
+        "school_profile:ok",
+        "school_profile_link:listed"
+      ],
+      "checked_at": "2026-11-07T16:02:25",
+      "students_page_status": "deferred_by_scope",
+      "papers_page_status": "pending_review",
+      "url": "https://tfjmp.org/",
+      "kind": "pi_homepage",
+      "people_page": null,
+      "alumni_page": null,
+      "pubs_page": null,
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.ox.ac.uk/people/Thomas.Pasquier",
+      "sha256": "27a34623c0996626fa048de1ccce02e5549c0d9d437d72994bc11bfdfbb3e5fb",
+      "evidence": {
+        "url": "https://tfjmp.org/",
+        "sha256": "27a34623c0996626fa048de1ccce02e5549c0d9d437d72994bc11bfdfbb3e5fb",
+        "quote": "Thomas Pasquier | University of Oxford Thomas Pasquier Open Menu Close Menu"
+      },
+      "official_link_status": "recorded",
+      "official_link_evidence": [
+        {
+          "source": "school_profile_link",
+          "url": "https://tfjmp.org/",
+          "on": "https://www.cs.ox.ac.uk/people/Thomas.Pasquier",
+          "at": "2026-11-07T15:57:10",
+          "result": "listed",
+          "anchor": "Personal Page",
+          "source_sha256": "1d364f42bc6d36f36f472df11fe16ddaccdcc76ee5e1aa0242a9b7d108ede439",
+          "linked_url": "https://tfjmp.org/"
+        }
+      ],
+      "coverage": "website",
+      "evidence_gaps": []
+    },
+    {
+      "pi": "Joe Pitt-Francis",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Joe.Pitt-Francis",
+          "at": "2026-11-07T15:57:13",
+          "result": "ok",
+          "sha256": "632ce3060fb85554b8180aa7e3abc09a70f32d015b56f0cecb9f462e5f185c13"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:57:13",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Christopher Pulte",
+      "status": "none_found",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+      "audited_at": "2026-11-07T16:02:27",
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Christopher.Pulte",
+          "at": "2026-11-07T15:57:15",
+          "result": "ok",
+          "sha256": "c6e19d2748aff66b40404cdd9d0ae8d71d61f16fb90078f6dc35a86656416c1d"
+        },
+        {
+          "source": "school_profile_link",
+          "url": "https://www.cs.ox.ac.uk/people/Christopher.Pulte/home.html",
+          "on": "https://www.cs.ox.ac.uk/people/Christopher.Pulte",
+          "at": "2026-11-07T15:57:15",
+          "result": "listed",
+          "anchor": "Personal homepage",
+          "source_sha256": "c6e19d2748aff66b40404cdd9d0ae8d71d61f16fb90078f6dc35a86656416c1d",
+          "linked_url": "https://www.cs.ox.ac.uk/people/Christopher.Pulte/home.html"
+        },
+        {
+          "source": "candidate_site",
+          "url": "https://www.cs.ox.ac.uk/people/Christopher.Pulte/home.html",
+          "at": "2026-11-07T16:02:27",
+          "result": "ok",
+          "via": "school_profile_link",
+          "sha256": "eaa0bca0c67ab238b877b653e2524a8b42bfaaa80a6b9ca9a45b175c86331359"
+        }
+      ],
+      "places_checked": [
+        "candidate_site:ok",
+        "school_profile:ok",
+        "school_profile_link:listed"
+      ],
+      "checked_at": "2026-11-07T16:02:27",
+      "students_page_status": "deferred_by_scope",
+      "papers_page_status": "pending_review",
+      "url": "https://www.cs.ox.ac.uk/people/Christopher.Pulte/home.html",
+      "kind": "pi_homepage",
+      "people_page": null,
+      "alumni_page": null,
+      "pubs_page": null,
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.ox.ac.uk/people/Christopher.Pulte",
+      "sha256": "eaa0bca0c67ab238b877b653e2524a8b42bfaaa80a6b9ca9a45b175c86331359",
+      "evidence": {
+        "url": "https://www.cs.ox.ac.uk/people/Christopher.Pulte/home.html",
+        "sha256": "eaa0bca0c67ab238b877b653e2524a8b42bfaaa80a6b9ca9a45b175c86331359",
+        "quote": "Christopher Pulte Christopher Pulte Christopher Pulte Christopher Pulte Assoc"
+      },
+      "official_link_status": "recorded",
+      "official_link_evidence": [
+        {
+          "source": "school_profile_link",
+          "url": "https://www.cs.ox.ac.uk/people/Christopher.Pulte/home.html",
+          "on": "https://www.cs.ox.ac.uk/people/Christopher.Pulte",
+          "at": "2026-11-07T15:57:15",
+          "result": "listed",
+          "anchor": "Personal homepage",
+          "source_sha256": "c6e19d2748aff66b40404cdd9d0ae8d71d61f16fb90078f6dc35a86656416c1d",
+          "linked_url": "https://www.cs.ox.ac.uk/people/Christopher.Pulte/home.html"
+        }
+      ],
+      "coverage": "website",
+      "evidence_gaps": []
+    },
+    {
+      "pi": "Kasper Rasmussen",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Kasper.Rasmussen",
+          "at": "2026-11-07T15:57:18",
+          "result": "ok",
+          "sha256": "164b8084a081fa0e2d473512684e126e33437633562f5121503bbca87e19d36c"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:57:18",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Blanca Rodriguez",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Blanca.Rodriguez",
+          "at": "2026-11-07T15:57:20",
+          "result": "ok",
+          "sha256": "702796042b2e685437ef05ac4eb430b17a2d0f77c871f19d82a97a7e8c8f33b0"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:57:20",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Alex Rogers",
+      "status": "none_found",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "The official faculty-directory link resolves to a PI-authored research homepage, with personal navigation and publications; manually reviewed content establishes this is a homepage, not an institutional profile card.",
+      "audited_at": "2026-11-07T15:57:23",
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/faculty.html",
+          "at": "2026-11-06T23:42:35",
+          "result": "ok",
+          "sha256": "1336e1303fae2f95e46926860596178a2bd983cd898b188ce5756b336db12f39"
+        },
+        {
+          "source": "school_profile_link",
+          "url": "https://www.cs.ox.ac.uk/people/Alex.Rogers",
+          "on": "https://www.cs.ox.ac.uk/people/faculty.html",
+          "at": "2026-11-06T23:42:35",
+          "result": "listed",
+          "anchor": "Alex Rogers",
+          "source_sha256": "1336e1303fae2f95e46926860596178a2bd983cd898b188ce5756b336db12f39",
+          "source_kind": "official_faculty_listing"
+        },
+        {
+          "source": "candidate_site",
+          "url": "https://www.cs.ox.ac.uk/people/Alex.Rogers",
+          "at": "2026-11-07T15:57:23",
+          "result": "ok",
+          "via": "school_profile_link",
+          "sha256": "ef3533fa4e224d988d39f5617e1e3c7c056ae1d063dae845ac87cee45d60f954"
+        }
+      ],
+      "places_checked": [
+        "candidate_site:ok",
+        "school_profile:ok",
+        "school_profile_link:listed"
+      ],
+      "checked_at": "2026-11-07T15:57:23",
+      "students_page_status": "deferred_by_scope",
+      "papers_page_status": "pending_review",
+      "url": "https://www.cs.ox.ac.uk/people/Alex.Rogers",
+      "kind": "pi_homepage",
+      "people_page": null,
+      "alumni_page": null,
+      "pubs_page": null,
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.ox.ac.uk/people/faculty.html",
+      "sha256": "ef3533fa4e224d988d39f5617e1e3c7c056ae1d063dae845ac87cee45d60f954",
+      "evidence": {
+        "url": "https://www.cs.ox.ac.uk/people/Alex.Rogers",
+        "sha256": "ef3533fa4e224d988d39f5617e1e3c7c056ae1d063dae845ac87cee45d60f954",
+        "quote": "Prof Alex Rogers University of Oxford Publications Systems Blog Prof. Alex Rogers I am a Professor of Computer Science at the University of Oxford and a Tutorial Fellow at St. Anne’s College. I am currently the Director of the Autonomous Intelligent "
+      },
+      "official_link_status": "recorded",
+      "official_link_evidence": [
+        {
+          "source": "school_profile_link",
+          "url": "https://www.cs.ox.ac.uk/people/Alex.Rogers",
+          "on": "https://www.cs.ox.ac.uk/people/faculty.html",
+          "at": "2026-11-06T23:42:35",
+          "result": "listed",
+          "anchor": "Alex Rogers",
+          "source_sha256": "1336e1303fae2f95e46926860596178a2bd983cd898b188ce5756b336db12f39",
+          "source_kind": "official_faculty_listing"
+        }
+      ],
+      "coverage": "website",
+      "evidence_gaps": [],
+      "reviewed_content_classification": "pi_homepage",
+      "classification_note": "Content-reviewed exception to URL-only profile heuristic: personal homepage at official /people/<name> URL. Preserve this reviewed classification when refreshing discovery."
+    },
+    {
+      "pi": "Christian Rupprecht",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Christian.Rupprecht",
+          "at": "2026-11-07T15:57:26",
+          "result": "ok",
+          "sha256": "44d832dc90d1a83d7004fd88206633a3e81a2ad05714db58548953cae339d7f0"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:57:26",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Rahul Santhanam",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Rahul.Santhanam",
+          "at": "2026-11-07T15:57:28",
+          "result": "ok",
+          "sha256": "4946973689fd4ed2304677448972ce539aa4dc23ba6644af96202692ffad2389"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:57:28",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Nigel Shadbolt",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Nigel.Shadbolt",
+          "at": "2026-11-07T15:57:31",
+          "result": "ok",
+          "sha256": "94145a35c2970c896c745cc4f0a05674c911fc6b74cd47c82b6f627e31f6f809"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:57:31",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Andrew Simpson",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Andrew.Simpson",
+          "at": "2026-11-07T15:57:33",
+          "result": "ok",
+          "sha256": "de1d37347063767bc41826d5ade879b67e9b079eb0e5303b1b644d2d6d75c18e"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:57:33",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Misha Sra",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Misha.Sra",
+          "at": "2026-11-07T15:57:36",
+          "result": "ok",
+          "sha256": "ea115eafb3c5acc63e9045d708e85c4d1c046dfece1a2b1d24d0e067ec760dcc"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:57:36",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Sam Staton",
+      "status": "none_found",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+      "audited_at": "2026-11-07T16:02:29",
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Sam.Staton",
+          "at": "2026-11-07T15:57:38",
+          "result": "ok",
+          "sha256": "f55045b09f485f1baa9b865ff360a938e95b09780de3bab19b407a190e7d7ce8"
+        },
+        {
+          "source": "school_profile_link",
+          "url": "https://www.cs.ox.ac.uk/people/samuel.staton/main.html",
+          "on": "https://www.cs.ox.ac.uk/people/Sam.Staton",
+          "at": "2026-11-07T15:57:38",
+          "result": "listed",
+          "anchor": "personal webpage",
+          "source_sha256": "f55045b09f485f1baa9b865ff360a938e95b09780de3bab19b407a190e7d7ce8",
+          "linked_url": "https://www.cs.ox.ac.uk/people/samuel.staton/main.html"
+        },
+        {
+          "source": "candidate_site",
+          "url": "https://www.cs.ox.ac.uk/people/samuel.staton/main.html",
+          "at": "2026-11-07T16:02:29",
+          "result": "ok",
+          "via": "school_profile_link",
+          "sha256": "57ce7a48b9bcbca4498196a80df44401b022a6c7f923b9894334419e4851a5fb"
+        }
+      ],
+      "places_checked": [
+        "candidate_site:ok",
+        "school_profile:ok",
+        "school_profile_link:listed"
+      ],
+      "checked_at": "2026-11-07T16:02:29",
+      "students_page_status": "deferred_by_scope",
+      "papers_page_status": "pending_review",
+      "url": "https://www.cs.ox.ac.uk/people/samuel.staton/main.html",
+      "kind": "pi_homepage",
+      "people_page": null,
+      "alumni_page": null,
+      "pubs_page": null,
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.ox.ac.uk/people/Sam.Staton",
+      "sha256": "57ce7a48b9bcbca4498196a80df44401b022a6c7f923b9894334419e4851a5fb",
+      "evidence": {
+        "url": "https://www.cs.ox.ac.uk/people/samuel.staton/main.html",
+        "sha256": "57ce7a48b9bcbca4498196a80df44401b022a6c7f923b9894334419e4851a5fb",
+        "quote": "Sam Staton Sam Staton Sam Staton Professor of Computer Science Departm"
+      },
+      "official_link_status": "recorded",
+      "official_link_evidence": [
+        {
+          "source": "school_profile_link",
+          "url": "https://www.cs.ox.ac.uk/people/samuel.staton/main.html",
+          "on": "https://www.cs.ox.ac.uk/people/Sam.Staton",
+          "at": "2026-11-07T15:57:38",
+          "result": "listed",
+          "anchor": "personal webpage",
+          "source_sha256": "f55045b09f485f1baa9b865ff360a938e95b09780de3bab19b407a190e7d7ce8",
+          "linked_url": "https://www.cs.ox.ac.uk/people/samuel.staton/main.html"
+        }
+      ],
+      "coverage": "website",
+      "evidence_gaps": []
+    },
+    {
+      "pi": "Sergii Strelchuk",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Sergii.Strelchuk",
+          "at": "2026-11-07T15:57:41",
+          "result": "ok",
+          "sha256": "55db2990bac04d97d572d7e4c6e3970000dade2ee89cfff9fc254b9c99a6db95"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:57:41",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Niki Trigoni",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Niki.Trigoni",
+          "at": "2026-11-07T15:57:43",
+          "result": "ok",
+          "sha256": "a75a4091dffbc956b3764740ad2970e73319dae26b6c3ac16b5edc7b2bf39590"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:57:43",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Gareth Tyson",
+      "status": "none_found",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+      "audited_at": "2026-11-07T16:02:30",
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Gareth.Tyson",
+          "at": "2026-11-07T15:57:46",
+          "result": "ok",
+          "sha256": "a06738735d8d3b3e774f8e05929283389967fec1851fa7fe4ade25abafe7a2dd"
+        },
+        {
+          "source": "school_profile_link",
+          "url": "https://tysong.github.io/",
+          "on": "https://www.cs.ox.ac.uk/people/Gareth.Tyson",
+          "at": "2026-11-07T15:57:46",
+          "result": "listed",
+          "anchor": "personal webpage",
+          "source_sha256": "a06738735d8d3b3e774f8e05929283389967fec1851fa7fe4ade25abafe7a2dd",
+          "linked_url": "https://tysong.github.io/"
+        },
+        {
+          "source": "candidate_site",
+          "url": "https://tysong.github.io/",
+          "at": "2026-11-07T16:02:30",
+          "result": "ok",
+          "via": "school_profile_link",
+          "sha256": "25ca1f6e766d30844135de1ab967c82fc4d3bbf66dbc200e89029b828e39db5b"
+        }
+      ],
+      "places_checked": [
+        "candidate_site:ok",
+        "school_profile:ok",
+        "school_profile_link:listed"
+      ],
+      "checked_at": "2026-11-07T16:02:30",
+      "students_page_status": "deferred_by_scope",
+      "papers_page_status": "pending_review",
+      "url": "https://tysong.github.io/",
+      "kind": "pi_homepage",
+      "people_page": null,
+      "alumni_page": null,
+      "pubs_page": null,
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.ox.ac.uk/people/Gareth.Tyson",
+      "sha256": "25ca1f6e766d30844135de1ab967c82fc4d3bbf66dbc200e89029b828e39db5b",
+      "evidence": {
+        "url": "https://tysong.github.io/",
+        "sha256": "25ca1f6e766d30844135de1ab967c82fc4d3bbf66dbc200e89029b828e39db5b",
+        "quote": "Gareth Tyson's Homepage Gareth Tyson's Homepage About Me Selected Public"
+      },
+      "official_link_status": "recorded",
+      "official_link_evidence": [
+        {
+          "source": "school_profile_link",
+          "url": "https://tysong.github.io/",
+          "on": "https://www.cs.ox.ac.uk/people/Gareth.Tyson",
+          "at": "2026-11-07T15:57:46",
+          "result": "listed",
+          "anchor": "personal webpage",
+          "source_sha256": "a06738735d8d3b3e774f8e05929283389967fec1851fa7fe4ade25abafe7a2dd",
+          "linked_url": "https://tysong.github.io/"
+        }
+      ],
+      "coverage": "website",
+      "evidence_gaps": []
+    },
+    {
+      "pi": "Mark van der Wilk",
+      "status": "none_found",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+      "audited_at": "2026-11-07T16:02:31",
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Mark.vanderWilk",
+          "at": "2026-11-07T15:57:48",
+          "result": "ok",
+          "sha256": "6628a13b99ad4f91fe52162cec1a416580e89da9d2ff2026fd3d7f73bfdf0081"
+        },
+        {
+          "source": "school_profile_link",
+          "url": "https://mvdw.uk",
+          "on": "https://www.cs.ox.ac.uk/people/Mark.vanderWilk",
+          "at": "2026-11-07T15:57:48",
+          "result": "listed",
+          "anchor": "personal webpage",
+          "source_sha256": "6628a13b99ad4f91fe52162cec1a416580e89da9d2ff2026fd3d7f73bfdf0081",
+          "linked_url": "https://mvdw.uk"
+        },
+        {
+          "source": "candidate_site",
+          "url": "https://mvdw.uk",
+          "at": "2026-11-07T16:02:31",
+          "result": "ok",
+          "via": "school_profile_link",
+          "sha256": "f16745ba8d6ce049fb1aa9a2ee33af9cc7cbde90fb27483965fd5b157dc78d7a"
+        }
+      ],
+      "places_checked": [
+        "candidate_site:ok",
+        "school_profile:ok",
+        "school_profile_link:listed"
+      ],
+      "checked_at": "2026-11-07T16:02:31",
+      "students_page_status": "deferred_by_scope",
+      "papers_page_status": "pending_review",
+      "url": "https://mvdw.uk",
+      "kind": "pi_homepage",
+      "people_page": null,
+      "alumni_page": null,
+      "pubs_page": null,
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.ox.ac.uk/people/Mark.vanderWilk",
+      "sha256": "f16745ba8d6ce049fb1aa9a2ee33af9cc7cbde90fb27483965fd5b157dc78d7a",
+      "evidence": {
+        "url": "https://mvdw.uk",
+        "sha256": "f16745ba8d6ce049fb1aa9a2ee33af9cc7cbde90fb27483965fd5b157dc78d7a",
+        "quote": "Mark van der Wilk Search Mark van der Wilk Mark van der Wilk Home Group Resea"
+      },
+      "official_link_status": "recorded",
+      "official_link_evidence": [
+        {
+          "source": "school_profile_link",
+          "url": "https://mvdw.uk",
+          "on": "https://www.cs.ox.ac.uk/people/Mark.vanderWilk",
+          "at": "2026-11-07T15:57:48",
+          "result": "listed",
+          "anchor": "personal webpage",
+          "source_sha256": "6628a13b99ad4f91fe52162cec1a416580e89da9d2ff2026fd3d7f73bfdf0081",
+          "linked_url": "https://mvdw.uk"
+        }
+      ],
+      "coverage": "website",
+      "evidence_gaps": []
+    },
+    {
+      "pi": "Max Van Kleek",
+      "status": "none_found",
+      "reason_code": "new_arrival_no_site_yet",
+      "reason": "joined in 2026; no school lab site yet",
+      "audited_at": "2026-11-07T21:07:34.901556+00:00",
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Max.VanKleek",
+          "at": "2026-11-07T15:57:51",
+          "result": "ok",
+          "sha256": "b6fbb59cb7e4b33ff849b51471bba0417ab208d65736e06830285722a4bacd5a"
+        },
+        {
+          "source": "school_profile_link",
+          "url": "http://hip.cat/emax",
+          "on": "https://www.cs.ox.ac.uk/people/Max.VanKleek",
+          "at": "2026-11-07T15:57:51",
+          "result": "listed",
+          "anchor": "Personal Home Page",
+          "source_sha256": "b6fbb59cb7e4b33ff849b51471bba0417ab208d65736e06830285722a4bacd5a",
+          "linked_url": "http://hip.cat/emax"
+        },
+        {
+          "source": "candidate_site",
+          "url": "http://hip.cat/emax",
+          "at": "2026-11-07T21:07:34.901556+00:00",
+          "result": "robots_disallowed",
+          "via": "school_profile_link",
+          "sha256": null
+        },
+        {
+          "source": "search_continuation",
+          "url": "http://hip.cat/emax",
+          "at": "2026-11-07T21:07:34.901556+00:00",
+          "result": "wayback_deferred",
+          "note": "No archive request made in live-first pass; failure is an access reason, not absence of a site."
+        }
+      ],
+      "places_checked": [
+        "candidate_site:robots_disallowed",
+        "school_profile:ok",
+        "school_profile_link:listed",
+        "search_continuation:wayback_deferred"
+      ],
+      "checked_at": "2026-11-07T21:07:34.901556+00:00",
+      "students_page_status": "pending_review",
+      "papers_page_status": "pending_review",
+      "coverage": "reason",
+      "reason_type": "pending_archive",
+      "reason_scope": "Recorded search/access outcome; not proof no website exists.",
+      "evidence_gaps": []
+    },
+    {
+      "pi": "Irina Voiculescu",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Irina.Voiculescu",
+          "at": "2026-11-07T15:57:53",
+          "result": "ok",
+          "sha256": "328aec79393023d960355e5f139d00d4a76c75409043760d6318b667b44231ce"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:57:53",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Jonathan Whiteley",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Jonathan.Whiteley",
+          "at": "2026-11-07T15:57:56",
+          "result": "ok",
+          "sha256": "21766f10343e86a205252fbf0d7439c12c60a697631319dca6418123a378f795"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:57:56",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Michael Wooldridge",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Michael.Wooldridge",
+          "at": "2026-11-07T15:57:58",
+          "result": "ok",
+          "sha256": "cb09e51a55ecab4a3131eb7e9a0117f0a9fc5bd0cf576e5d565d148e5cd0db54"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:57:58",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "James Worrell",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/James.Worrell",
+          "at": "2026-11-07T15:58:01",
+          "result": "ok",
+          "sha256": "2ffbe6fd68ad73e73c11279d9f9b172f79bd6e94d582194d3468e909000b5061"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:58:01",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Nobuko Yoshida",
+      "status": "unaudited",
+      "coverage": "pending",
+      "evidence_gaps": [
+        "additional_website_search_required"
+      ],
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/Nobuko.Yoshida",
+          "at": "2026-11-07T15:58:04",
+          "result": "ok",
+          "sha256": "c597f2ecd4269ca97a86ee9cbe1d79b00e6a10ab530b0f7d083dfe58ad2a6135"
+        }
+      ],
+      "places_checked": [
+        "school_profile:ok"
+      ],
+      "checked_at": "2026-11-07T15:58:04",
+      "search_note": "Official profile captured and examined. A qualifying separate lab/PI homepage or a fully researched absence reason has not yet been established; further sources remain to check."
+    },
+    {
+      "pi": "Standa Živný",
+      "status": "none_found",
+      "reason_code": "pi_homepage_only_no_lab_site",
+      "reason": "The official faculty-directory link resolves to a PI-authored research homepage, with personal navigation and publications; manually reviewed content establishes this is a homepage, not an institutional profile card.",
+      "audited_at": "2026-11-07T15:58:06",
+      "checks": [
+        {
+          "source": "school_profile",
+          "url": "https://www.cs.ox.ac.uk/people/faculty.html",
+          "at": "2026-11-06T23:42:35",
+          "result": "ok",
+          "sha256": "1336e1303fae2f95e46926860596178a2bd983cd898b188ce5756b336db12f39"
+        },
+        {
+          "source": "school_profile_link",
+          "url": "https://www.cs.ox.ac.uk/people/Standa.Zivny",
+          "on": "https://www.cs.ox.ac.uk/people/faculty.html",
+          "at": "2026-11-06T23:42:35",
+          "result": "listed",
+          "anchor": "Standa Živný",
+          "source_sha256": "1336e1303fae2f95e46926860596178a2bd983cd898b188ce5756b336db12f39",
+          "source_kind": "official_faculty_listing"
+        },
+        {
+          "source": "candidate_site",
+          "url": "https://www.cs.ox.ac.uk/people/Standa.Zivny",
+          "at": "2026-11-07T15:58:06",
+          "result": "ok",
+          "via": "school_profile_link",
+          "sha256": "749037d4c0ecc20ec636771dc3062ccf32b882bbfbae18dda230601574bbbfe4"
+        }
+      ],
+      "places_checked": [
+        "candidate_site:ok",
+        "school_profile:ok",
+        "school_profile_link:listed"
+      ],
+      "checked_at": "2026-11-07T15:58:06",
+      "students_page_status": "deferred_by_scope",
+      "papers_page_status": "pending_review",
+      "url": "https://www.cs.ox.ac.uk/people/Standa.Zivny",
+      "kind": "pi_homepage",
+      "people_page": null,
+      "alumni_page": null,
+      "pubs_page": null,
+      "found_via": "school_profile_link",
+      "listed_on": "https://www.cs.ox.ac.uk/people/faculty.html",
+      "sha256": "749037d4c0ecc20ec636771dc3062ccf32b882bbfbae18dda230601574bbbfe4",
+      "evidence": {
+        "url": "https://www.cs.ox.ac.uk/people/Standa.Zivny",
+        "sha256": "749037d4c0ecc20ec636771dc3062ccf32b882bbfbae18dda230601574bbbfe4",
+        "quote": "Standa Živný Professor of Computer Science, University of Oxford Fellow and Tutor, Merton College A short bio, a picture, and my CV."
+      },
+      "official_link_status": "recorded",
+      "official_link_evidence": [
+        {
+          "source": "school_profile_link",
+          "url": "https://www.cs.ox.ac.uk/people/Standa.Zivny",
+          "on": "https://www.cs.ox.ac.uk/people/faculty.html",
+          "at": "2026-11-06T23:42:35",
+          "result": "listed",
+          "anchor": "Standa Živný",
+          "source_sha256": "1336e1303fae2f95e46926860596178a2bd983cd898b188ce5756b336db12f39",
+          "source_kind": "official_faculty_listing"
+        }
+      ],
+      "coverage": "website",
+      "evidence_gaps": [],
+      "reviewed_content_classification": "pi_homepage",
+      "classification_note": "Content-reviewed exception to URL-only profile heuristic: personal homepage at official /people/<name> URL. Preserve this reviewed classification when refreshing discovery."
+    }
+  ]
+}
