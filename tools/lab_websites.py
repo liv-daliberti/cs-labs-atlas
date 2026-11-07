@@ -18,7 +18,7 @@ import atlas_paths as P
 
 FOUND_RESULTS = ('ok', 'ok_wayback', 'does_not_name_pi_kept_strong_source')
 WEBSITE_REASONS = ('lab_site', 'pi_homepage_only_no_lab_site')
-OFFICIAL_LINK_SOURCES = ('school_profile_link', 'department_listing_link')
+OFFICIAL_LINK_SOURCES = ('school_profile_link', 'department_listing_link', 'official_link_chain')
 RESEARCH_OUTPUT_PATH = re.compile(r'/(?:publications?|papers?|reports?)(?:/|\.|$)|/(?:news|blog)/[12][0-9]{3}(?:/|$)', re.I)
 IDENTITY_INDEX_HOST = re.compile(r'(?:^|\.)(?:orcid\.org|dblp\.org|openalex\.org|researchgate\.net|scholar\.google\.[a-z.]+)$', re.I)
 ABSENCE_REASONS = {
@@ -58,6 +58,19 @@ def selection_gaps(url):
     return gaps
 
 
+def official_check(check, url):
+    if check.get('source') not in OFFICIAL_LINK_SOURCES or check.get('url') != url or not check.get('on'):
+        return False
+    if check['source'] != 'official_link_chain':
+        return True
+    chain = check.get('provenance_chain') or []
+    if len(chain) != 2 or chain[0].get('source_url') != check['on'] or chain[-1].get('url') != url:
+        return False
+    if normalized_link(chain[0].get('url')) != normalized_link(chain[1].get('source_url')):
+        return False
+    return all(c.get('href') and c.get('source_fetched_at') and re.fullmatch(r'[a-fA-F0-9]{64}', c.get('source_sha256') or '') for c in chain)
+
+
 def entry(rec):
     lp = rec.get('lab_page') or {}
     urls, ev = lp.get('urls') or {}, lp.get('evidence') or {}
@@ -89,8 +102,7 @@ def entry(rec):
                 gaps.append('discovery_source_missing')
             # An index is a useful lead, but does not establish the official link
             # required by the top-25 brief. Keep this visible for follow-up.
-            official = [c for c in checks if c.get('source') in OFFICIAL_LINK_SOURCES
-                        and c.get('url') == urls['lab_site'] and c.get('on')]
+            official = [c for c in checks if official_check(c, urls['lab_site'])]
             out['official_link_status'] = 'recorded' if official else 'not_recorded'
             out['official_link_evidence'] = official
             out['coverage'] = 'pending' if gaps else 'website'
@@ -204,6 +216,39 @@ def counts(doc):
     return c
 
 
+def preserve_reviewed_entries(previous, current, aliases=None):
+    """A cache refresh must not undo a source-specific manual identity review.
+
+    Changed captures or newly discovered destinations still need fresh review;
+    only the identical reviewed source, or an explicit current census alias,
+    can retain the earlier decision.
+    """
+    if previous.get('school') != current.get('school'):
+        return current
+    prior = {r['pi']: r for r in previous.get('labs', [])}
+    for i, row in enumerate(current['labs']):
+        old = prior.get(row['pi']) or {}
+        review = old.get('classification_review') or {}
+        if isinstance(review, str):
+            review = {'reason': review}  # earlier reviewed school registers
+        if not review and not old.get('review_note'):
+            continue
+        reviewed_sources = {(normalized_link(old.get('url')), old.get('sha256'))}
+        source = review.get('source') or {}
+        reviewed_sources.add((normalized_link(review.get('old_url')), source.get('sha256')))
+        # Earlier Michigan review stored the correction's source hash in its
+        # dated check, with the literal previous URL in `on`.
+        for check in old.get('checks') or []:
+            if check.get('source', '').startswith('reviewed_cached_') or check.get('source') == 'reviewed_capture_original_url':
+                reviewed_sources.add((normalized_link(check.get('on')), check.get('source_sha256')))
+        same_source = bool(row.get('sha256') and (normalized_link(row.get('url')), row['sha256']) in reviewed_sources)
+        alias = review.get('reviewed_alias')
+        reviewed_alias = row.get('status') == 'unaudited' and alias and alias in (aliases or {}).get(row['pi'], [])
+        if same_source or reviewed_alias:
+            current['labs'][i] = dict(old, preserved_review_on_refresh=True)
+    return current
+
+
 
 
 def normalized_link(url):
@@ -250,12 +295,70 @@ def listing_link_context(content, base, target, pi):
     return None
 
 
+def literal_links(content, base):
+    """Resolved destinations together with the exact href in cached HTML."""
+    from bs4 import BeautifulSoup
+    try:
+        content = zlib.decompress(content)
+    except (zlib.error, TypeError):
+        pass
+    for anchor in BeautifulSoup(content, 'html.parser').find_all('a', href=True):
+        url = urljoin(base, anchor['href'])
+        url = re.sub(r'^https?://web\.archive\.org/web/[^/]+/(https?://)', r'\1', url)
+        if url.startswith(('http://', 'https://')):
+            yield url, anchor.get_text(' ', strip=True), anchor['href']
+
+
+def cached_profile_chain(profile, source_url, target_url, cached_page, link_base):
+    """Official profile -> named lab/home link -> selected page, all cached."""
+    target = normalized_link(target_url)
+    candidates = 0
+    for intermediate, anchor, href in literal_links(profile['content'], link_base(profile, source_url)):
+        parsed = urlsplit(intermediate)
+        if parsed.hostname != urlsplit(target_url).hostname or selection_gaps(intermediate):
+            continue
+        if parsed.hostname == urlsplit(source_url).hostname and parsed.path in ('', '/'):
+            continue  # university navigation is not a PI's lab/home link
+        if not re.search(r'lab|group|research|home|web', anchor, re.I):
+            continue
+        candidates += 1
+        if candidates > 4:
+            break
+        page = cached_page(intermediate)
+        if not page or page.get('status') != 200 or not page.get('content'):
+            continue
+        for dest, text, raw_href in literal_links(page['content'], link_base(page, intermediate)):
+            if normalized_link(dest) != target:
+                continue
+            chain = [dict(source_url=source_url, url=intermediate, href=href, anchor=anchor,
+                          source_sha256=profile.get('sha256'), source_fetched_at=profile.get('fetched_at'),
+                          source_capture_url=profile.get('capture_url'), via='literal_html_href'),
+                     dict(source_url=intermediate, url=target_url, linked_url=dest, href=raw_href, anchor=text,
+                          source_sha256=page.get('sha256'), source_fetched_at=page.get('fetched_at'),
+                          source_capture_url=page.get('capture_url'), via='literal_html_href')]
+            check = dict(source='official_link_chain', url=target_url, on=source_url,
+                         at=profile.get('fetched_at'), result='listed_via_recorded_chain',
+                         original_link=intermediate, provenance_chain=chain,
+                         provenance='recovered_from_cached_profile_lab_chain')
+            if official_check(check, target_url):
+                return check
+    return None
+
+
 def enrich_official_links(school, doc):
     """Recover exact official profile/card links from cached HTML, with no network."""
     import labpage_audit as L
     kit = L.Kit(school)
     domain = L.SCHOOLS[school]['domain']
     pages = {}
+    def cached_page(url):
+        if url not in pages:
+            page, _ = kit.stored(url)
+            if not page:
+                page, _ = kit.stored(kit.src_of(url))
+            pages[url] = page
+        return pages[url]
+
     for r in doc['labs']:
         if r.get('coverage') != 'website' or r.get('official_link_status') == 'recorded':
             continue
@@ -267,12 +370,7 @@ def enrich_official_links(school, doc):
                 continue
             if not re.search(r'(?:^|\.)(?:' + domain + r')$', urlsplit(source_url).hostname or ''):
                 continue
-            if source_url not in pages:
-                page, _ = kit.stored(source_url)
-                if not page:
-                    page, _ = kit.stored(kit.src_of(source_url))
-                pages[source_url] = page
-            page = pages[source_url]
+            page = cached_page(source_url)
             if not page or page.get('status') != 200 or not page.get('sha256') or not page.get('content'):
                 continue
             if listing:
@@ -293,6 +391,14 @@ def enrich_official_links(school, doc):
                 r['official_link_evidence'] = [check]
                 r['listed_on'] = source_url
                 break
+            if not listing:
+                check = cached_profile_chain(page, source_url, r['url'], cached_page, L.link_base)
+                if check:
+                    r['checks'].append(check)
+                    r['official_link_status'] = 'recorded'
+                    r['official_link_evidence'] = [check]
+                    r['listed_on'] = source_url
+                    break
     return doc
 
 def gate(doc, expected_pis, require_official=True):
@@ -318,8 +424,7 @@ def gate(doc, expected_pis, require_official=True):
                 bad.append(f'{pi}: selected website is {description}')
             if not re.fullmatch(r'[a-fA-F0-9]{64}', r.get('sha256') or '') or not r.get('found_via'):
                 bad.append(f'{pi}: website capture hash or discovery provenance missing')
-            if require_official and not any(c.get('source') in OFFICIAL_LINK_SOURCES and c.get('url') == r['url'] and c.get('on')
-                                            for c in r.get('checks') or []):
+            if require_official and not any(official_check(c, r['url']) for c in r.get('checks') or []):
                 bad.append(f'{pi}: website official discovery link not recorded')
         elif r.get('reason_code') not in ABSENCE_REASONS or not r.get('reason'):
             bad.append(f'{pi}: no website or supported absence/access reason')
@@ -344,6 +449,12 @@ def main():
         doc = json.loads(Path(a.out).read_text()) if a.cmd == 'enrich' else build(s, refresh=a.refresh_discovery)
         if doc.get('school') != s:
             ap.error('existing register school does not match requested school')
+        if a.cmd == 'build':
+            previous_path = Path(a.out) if a.out else P.data('lab-websites.json', s)
+            if previous_path.exists():
+                previous = json.loads(previous_path.read_text())
+                pis = json.loads(P.data('pis.json', s).read_text())
+                doc = preserve_reviewed_entries(previous, doc, aliases={p['pi']: p.get('names', []) for p in pis})
         if a.enrich_official_links or a.cmd == 'enrich':
             doc = enrich_official_links(s, doc)
         summary = counts(doc)

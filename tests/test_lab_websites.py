@@ -150,6 +150,23 @@ def test_cached_archive_listing_link_is_valid_official_provenance(monkeypatch):
     assert not W.gate(doc, ['Ada Example'])
 
 
+def test_cached_profile_lab_chain_retains_each_literal_href_hash_and_date():
+    profile = {'url':'https://school.edu/people/ada', 'content':b'<a href="https://lab.example/">Research lab</a>',
+               'sha256':'a'*64, 'fetched_at':'2026-11-01'}
+    lab = {'status':200, 'url':'https://lab.example/', 'content':b'<a href="people/">People</a>',
+           'sha256':'b'*64, 'fetched_at':'2026-11-02'}
+    target = 'https://lab.example/people/'
+    check = W.cached_profile_chain(profile, profile['url'], target, lambda url:lab, lambda page,url:url)
+    assert check['source']=='official_link_chain'
+    assert [c['href'] for c in check['provenance_chain']]==['https://lab.example/','people/']
+    assert [c['source_sha256'] for c in check['provenance_chain']]==['a'*64,'b'*64]
+    assert W.official_check(check,target)
+    check['provenance_chain'][1]['source_sha256']=None
+    assert not W.official_check(check,target)
+    lab['content']=b'<a href="other/">People</a>'
+    assert not W.cached_profile_chain(profile,profile['url'],target,lambda url:lab,lambda page,url:url)
+
+
 def test_archive_pending_is_unresolved_at_gate():
     rec = record('no_web_presence_found', None)
     rec['lab_page']['checks'][0]['result'] = 'wayback_only_host'
@@ -181,6 +198,31 @@ def test_identity_indices_cv_documents_and_publication_indexes_remain_gaps():
         assert row['coverage'] == 'pending'
         assert W.gate({'labs': [row]}, ['Ada Example'], require_official=False)
     assert W.entry(record(url='https://lab.school.edu/people/'))['coverage'] == 'website'
+
+
+def test_cache_refresh_preserves_review_only_for_identical_source_or_reviewed_alias():
+    old = W.entry(record())
+    old.update(coverage='pending', review_note='Directory index, not a PI homepage')
+    previous = {'school': 'u', 'labs': [old]}
+    current = {'school': 'u', 'labs': [W.entry(record())]}
+    assert W.preserve_reviewed_entries(previous, current)['labs'][0]['coverage'] == 'pending'
+    changed = W.entry(record())
+    changed['sha256'] = 'b' * 64
+    assert W.preserve_reviewed_entries(previous, {'school':'u','labs':[changed]})['labs'][0]['coverage'] == 'website'
+    old['classification_review'] = {'reviewed_alias': 'A Example'}
+    missing = {'pi':'Ada Example','status':'unaudited','coverage':'pending'}
+    assert W.preserve_reviewed_entries(previous, {'school':'u','labs':[missing]},
+                                      aliases={'Ada Example':['A Example']})['labs'][0].get('preserved_review_on_refresh')
+    assert not W.preserve_reviewed_entries(previous, {'school':'u','labs':[missing]}, aliases={})['labs'][0].get('preserved_review_on_refresh')
+
+
+def test_refresh_retains_reviewed_relocation_replacement_only_for_same_stub_hash():
+    old = W.entry(record(url='https://lab.example/new'))
+    old['classification_review']={'old_url':'https://lab.example/old','source':{'sha256':'b'*64}}
+    current = W.entry(record(url='https://lab.example/old'))
+    current['sha256'] = 'b'*64
+    doc = W.preserve_reviewed_entries({'school':'u','labs':[old]}, {'school':'u','labs':[current]})
+    assert doc['labs'][0]['url']=='https://lab.example/new'
 
 
 def test_refresh_imports_landing_cache_without_transferring_old_review(monkeypatch):
