@@ -12,7 +12,7 @@ robots.txt (this client, ClaudeBot, anthropic-ai) is checked for every URL befor
 running or a non-HTML body stops the crawl (state kept). Resumable: raw/etd_crawl/<school>.sqlite (queue, pages), one file per school.
 Only the fields we need are stored per page: title, author, degree/type, year, department, advisors, URL, sha256 of the page, and a short
 verbatim quote of the metadata block. Nothing else of the page is kept.
-usage: etd_crawl.py enumerate <school> | add <school> <urls-or-sitemap file> [--rx R] [--front] | crawl <school> [--max N] | evidence <school> [--out FILE] | stats <school>
+usage: etd_crawl.py enumerate <school> | add <school> <urls-or-sitemap file> [--rx R] [--front] | crawl <school> [--max N] | requeue-robots <school> | evidence <school> [--out FILE] | stats <school>
 `evidence` matches each dissertation's advisor to the school's PIs (full name, pihier.names.Name) and writes thesis-evidence rows:
 {pi, students: [{name, role, years, url, sha256, quote, note}]} (the format tools/pihier/students.py RESEARCHED_FILES reads).
 """
@@ -266,7 +266,14 @@ def url_allowed(rp_by_agent, url):
 def load_robots(host, client):
     from protego import Protego
     r = client.s.get(f'https://{host}/robots.txt', timeout=(15, 30))
-    text = r.text if r.status_code == 200 else ('' if r.status_code == 404 else 'User-agent: *\nDisallow: /\n')
+    if r.status_code in (401, 403):
+        text = 'User-agent: *\nDisallow: /\n'   # the host refuses us robots.txt itself: treated as closed
+    elif r.status_code in (200, 404, 410):
+        text = r.text if r.status_code == 200 else ''
+    else:
+        # 429, 5xx, ...: the answer is unknown, not 'Disallow: /'. 2026-11-06 17:38 a 5xx here marked 40,621 allowed item pages
+        # 'robots' in 80 minutes (requeue_robots below restores them); the crawl stops instead and keeps the queue as it was.
+        raise O.Transient(f'robots.txt of {host} answered {r.status_code}: not read, nothing marked')
     rp = Protego.parse(text)
     agents = (F.UA,) + O.AI_AGENTS
     return {a: rp for a in agents}, max([rp.crawl_delay(a) or 0 for a in agents])
@@ -287,7 +294,11 @@ def crawl(school, max_pages=None, out=print, client=None):
             out(json.dumps(dict(school=school, stop=f'another crawl of {host} is running')))
             return None
         client = client or O.Client(max(float(conf.get('delay') or 10), float(conf.get('min_delay', 10))), low_priority=True)
-        rp, cd = load_robots(host, client)
+        try:
+            rp, cd = load_robots(host, client)
+        except O.Blocked as e:
+            out(json.dumps(dict(school=school, blocked=str(e))))
+            return None
         client.delay = max(client.delay, float(cd or 0))
         out(json.dumps(dict(school=school, host=host, delay=client.delay, robots=dict(zip(['self', 'ClaudeBot', 'anthropic-ai'],
                                                                                            [rp[a].can_fetch(f'https://{host}/', a) for a in rp])))))
@@ -355,6 +366,21 @@ def crawl(school, max_pages=None, out=print, client=None):
             return None
         out(json.dumps(dict(school=school, stats=stats(school))))
         return stats(school)
+
+
+def requeue_robots(school, client=None, out=print):
+    """Rows marked 'robots' that the host's CURRENT robots.txt allows (for this client and the AI agents) go back to 'pending' at their old
+    position. Reads robots.txt once; fetches no page. -> number requeued."""
+    conf = cfg(school)
+    client = client or O.Client(max(float(conf.get('delay') or 10), float(conf.get('min_delay', 10))), low_priority=True)
+    rp, _ = load_robots(conf['host'], client)
+    c = connect(school)
+    back = [u for (u,) in c.execute("SELECT url FROM queue WHERE status='robots'") if urlsplit(u).netloc == conf['host'] and url_allowed(rp, u)]
+    for i in range(0, len(back), 500):
+        c.executemany("UPDATE queue SET status='pending', at=NULL WHERE url=? AND status='robots'", [(u,) for u in back[i:i + 500]])
+    c.commit()
+    out(json.dumps(dict(school=school, requeued=len(back), stats=stats(school))))
+    return len(back)
 
 
 def add_urls(school, urls, front=False):
@@ -495,6 +521,8 @@ def main(argv):
         rx = argv[argv.index('--rx') + 1] if '--rx' in argv else conf.get('url_rx', '.')
         urls = re.findall(r'<loc>\s*([^<]+?)\s*</loc>', text) if '<loc>' in text else text.split()
         print(json.dumps(dict(school=school, added=add_urls(school, [u for u in urls if re.search(rx, u)], '--front' in argv))))
+    elif cmd == 'requeue-robots':   # requeue-robots <school>: 'robots' rows the current robots.txt allows go back to pending
+        requeue_robots(school)
     elif cmd == 'stats':
         print(json.dumps(stats(school)))
     elif cmd == 'evidence':

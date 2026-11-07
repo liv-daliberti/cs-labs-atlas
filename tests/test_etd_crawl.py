@@ -252,3 +252,24 @@ def test_real_smartech_full_capture_fixture(tmp_path):
     fx = Path(__file__).parent / 'fixtures' / 'smartech_54321_full.html'
     p = E.parse_smartech(fx.read_bytes(), dict(handle='1853/54321'))
     assert p['dissertation'] and p['advisors'] == ['Cathcart, J. M.'] and p['year'] == 2015 and p['department'] == 'Physics'
+
+
+def test_robots_5xx_is_unknown_not_disallow_and_requeue_restores(store, monkeypatch):
+    """2026-11-06: a 5xx on robots.txt was read as 'Disallow: /' and 40,621 allowed item pages were marked 'robots'."""
+    conf = dict(host='h', delay=10, enumerate='sitemap', parser='dspace7')
+    monkeypatch.setattr(E, 'cfg', lambda school: conf)
+    c = E.connect('s')
+    for i, u in enumerate(['https://h/entities/publication/1', 'https://h/browse/x']):
+        c.execute('INSERT INTO queue (url, seq, status) VALUES (?,?,?)', (u, i, 'robots'))
+    c.commit()
+
+    class Down(Sess):
+        def get(self, url, params=None, timeout=None):
+            return types.SimpleNamespace(status_code=503, text='')
+    cl = O.Client(10, session=Down([]), sleep=lambda s: None, clock=lambda: 0.0)
+    out = []
+    assert E.crawl('s', out=out.append, client=cl) is None and 'blocked' in out[0]
+    assert dict(c.execute('SELECT url, status FROM queue')) == {'https://h/entities/publication/1': 'robots', 'https://h/browse/x': 'robots'}
+    cl = O.Client(10, session=Sess([]), sleep=lambda s: None, clock=lambda: 0.0)
+    assert E.requeue_robots('s', client=cl, out=lambda x: None) == 1   # only the allowed one; /browse stays barred
+    assert dict(c.execute('SELECT url, status FROM queue')) == {'https://h/entities/publication/1': 'pending', 'https://h/browse/x': 'robots'}
