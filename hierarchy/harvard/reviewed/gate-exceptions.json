@@ -28,5 +28,29 @@
       "CS 2024: never planned",
       "CS 2025: never planned"
     ]
+  },
+  "2": {
+    "reason": "The supported partial package is the reviewed current CS directory subset. Broad CS-related discovery outside that subset has not run; this exception covers that missing discovery artifact only. Snapshot sanity, candidate identity and any later candidate decisions are not waived.",
+    "by": "owner",
+    "decided": "2026-11-07",
+    "owner_quote": "lets add what we have / release what we have for washington university, harvard, and JHU (and then keep working on improving them)?",
+    "allow_items": [
+      "candidates: hierarchy/harvard/cs-related-candidates.json missing (tools/cs_related_school.py candidates harvard)"
+    ],
+    "remaining_items": [
+      "Run the broader CS-related candidate discovery and review every candidate; the current package does not claim that scope."
+    ]
+  },
+  "3": {
+    "reason": "The supported partial package has manually reviewed current-roster sources, PI bases and homes. A complete automatic lab-page audit has not run; this exception covers that missing audit artifact only. Missing PI evidence, an invalid home, a stale census, and any other finding remain hard failures.",
+    "by": "owner",
+    "decided": "2026-11-07",
+    "owner_quote": "lets add what we have / release what we have for washington university, harvard, and JHU (and then keep working on improving them)?",
+    "allow_items": [
+      "lab-page audit: labpage-audit.jsonl.gz missing (tools/labpage_audit.py discover harvard; docs/LAB-PAGES.md)"
+    ],
+    "remaining_items": [
+      "Complete the broader lab-page discovery and audit under the recorded host policies; current manual sources cover only the admitted subset."
+    ]
   }
 }

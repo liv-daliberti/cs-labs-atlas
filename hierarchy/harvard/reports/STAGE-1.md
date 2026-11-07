@@ -1,6 +1,6 @@
 # Harvard stage 1: historical faculty evidence review, 2026-11-06
 
-Status: **incomplete**. The school remains onboarding at stage 0. No gate exception or source-exhaustion claim was added.
+Historical listing coverage remains **incomplete**. This report records the initial historical review. The owner subsequently authorized a supported partial release; the current scope, finite completeness exceptions and build results are documented in [PARTIAL-PACKAGE.md](PARTIAL-PACKAGE.md). Unknown historical years remain unknown, and the school remains onboarding pending coordinator release.
 
 ## Evidence saved and reviewed
 
