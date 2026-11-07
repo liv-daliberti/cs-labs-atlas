@@ -17,6 +17,7 @@ import collections, json, re, sys
 
 import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
+import census_overrides as CO  # noqa: E402
 
 NOT_HOME = re.compile(r'courtesy|affiliate|adjunct|visiting|emerit|lecturer|research (?:scientist|investigator)', re.I)
 PROF = re.compile(r'\bprofessor\b', re.I)
@@ -51,6 +52,27 @@ def clean_unit(u):
         j = JOINT.sub('', u).strip()
         return None, (None if NOT_A_UNIT.search(j) or '…' in j else j)
     return (None if NOT_A_UNIT.search(u) else u), None
+
+
+def apply_reviewed_homes(rows, overrides, normalize):
+    """A sourced school-local home decision can correct an ambiguous directory title."""
+    for row in rows:
+        decision = overrides.get(row['name']) or {}
+        home = decision.get('home_department')
+        if not home:
+            continue
+        evidence = decision.get('home_department_evidence') or []
+        if not isinstance(evidence, list) or not evidence or any(
+            not isinstance(e, dict) or not e.get('url') or not str(e.get('quote') or '').strip()
+            or not re.fullmatch(r'[0-9a-f]{64}', str(e.get('sha256') or '')) for e in evidence
+        ):
+            raise SystemExit(f"{row['name']}: reviewed home_department requires evidence with url, SHA-256 and verbatim quote")
+        old = row.get('home_department')
+        home = normalize(home)
+        also = [a for a in dict.fromkeys([old] + list(row.get('also') or []) + list(decision.get('also_home_departments') or [])) if a and a != home]
+        row.update(home_department=home, also=also, status='accepted', evidence=evidence[0],
+                   reviewed_home_evidence=evidence, note=decision.get('why_home_department') or 'reviewed home department with sourced evidence')
+    return rows
 
 
 def main(key, write_shared=False):
@@ -123,6 +145,9 @@ def main(key, write_shared=False):
         row = dict(school=key, name=x['name'], home_department=home, also=also, no_academic_department=False, status='accepted' if home else 'hold',
                    evidence=dict(url=b.get('url'), sha256=b.get('sha256'), quote=b.get('quote')), note=f'the {code} faculty listing (cs-related-review.json)')
         out.append(row); n[row['status']] += 1; n['home:' + str(home)] += 1
+    apply_reviewed_homes(out, CO.section(key), norm)
+    n = collections.Counter(row['status'] for row in out)
+    n.update('home:' + str(row['home_department']) for row in out)
     P.data_w('home-departments-school.json', key).write_text(json.dumps(out, indent=1, ensure_ascii=False))
     if write_shared:
         f = P.data('home-departments.json')

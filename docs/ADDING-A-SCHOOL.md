@@ -320,6 +320,7 @@ atlas stage-gate <key> [n ...]                 # only the gates (0-10), from the
   a reason code from `docs/LAB-PAGES.md`, and dated checks of the school profile, DBLP, ORCID and homepage sources. A lab
   whose only site is at another institution is never audited as this school's lab.
 - **Learned from Michigan (2026-10-29):** a PI's home department comes from the same listing row that proves the appointment. No separate profile crawl is needed when the listing carries every title.
+- When a directory title leaves a cross-school faculty member's home ambiguous, a reviewed school-local `census-overrides-school.json` entry may provide `home_department`, `home_department_evidence` (a list of URL, SHA-256 and verbatim-quote items), and `why_home_department`. `home_departments_school.py` applies that sourced decision after inference, keeps the former unit in `also`, and refuses evidence without all three fields. The stage-3 charter-home check still applies.
 
 - **Stage 3 order (friction 26, 27, 29):** `census-refresh` -> `homes` -> `build` (pi_hierarchy: the lab-page audit reads `pis.json`) -> `labpage-discover` -> `labpage-audit`; submit with `atlas stage-gate <key> 3 --run --submit --from-worktree` while the charter is not on main.
 
