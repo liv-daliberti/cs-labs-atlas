@@ -342,7 +342,38 @@ def cambridge_profile(h):
     return [dict(name_listed=nm, titles=titles, homepage=None, division=None)] if titles else []
 
 
+def toronto_directory(h, section):
+    """One explicitly selected CS directory section, retaining only name and written position.
+
+    Some source rows omit their opening tr tag. Fixed header column counts let us
+    retain those entries without pulling contact or research cells into titles.
+    """
+    m = re.search(r'<h2\b[^>]*id=[\'"]' + re.escape(section) + r'[\'"][^>]*>.*?</h2>\s*<table\b[^>]*>(.*?)</table>', h, re.S | re.I)
+    if not m:
+        return []
+    cells = re.findall(r'<td\b[^>]*>(.*?)(?=</td>|<td\b|</tr>|$)', m.group(1), re.S | re.I)
+    columns = 5 if section == 'teachingstream' else 3
+    if len(cells) % columns:
+        raise ValueError(f'Toronto {section}: incomplete directory row ({len(cells)} cells)')
+    out = []
+    for i in range(0, len(cells), columns):
+        first = re.split(r'<br\s*/?>', cells[i], flags=re.I)
+        name = clean(first[0])
+        link = re.search(r'<a\b[^>]*href=[\'"]([^\'"]+)', first[0], re.I)
+        titles = [clean(x) for x in first[1:] if clean(x)] if section in ('researchstream', 'emeriti') else [clean(cells[i + 1])]
+        if name:
+            out.append(dict(name_listed=name, titles=[t for t in titles if t],
+                            homepage=H.unescape(link.group(1)).strip() if link else None, division=None))
+    return out
+
+
 FORMATS = {
+    'toronto_research': (lambda h: toronto_directory(h, 'researchstream'), re.compile(r'(?!)')),
+    'toronto_teaching': (lambda h: toronto_directory(h, 'teachingstream'), re.compile(r'(?!)')),
+    'toronto_emeriti': (lambda h: toronto_directory(h, 'emeriti'), re.compile(r'(?!)')),
+    'toronto_cross': (lambda h: toronto_directory(h, 'crossappointed'), re.compile(r'(?!)')),
+    'toronto_status': (lambda h: toronto_directory(h, 'statusonly'), re.compile(r'(?!)')),
+    'toronto_adjunct': (lambda h: toronto_directory(h, 'adjunct'), re.compile(r'(?!)')),
     'cambridge_profile': (cambridge_profile, re.compile(r'class="cst-job-titles')),
     'oxford_person_index': (oxford_person_index, re.compile(r'class="personIndex"')),
     'cambridge_directory': (cambridge_directory, re.compile(r'views-field-field-sd-classifications-ref')),
