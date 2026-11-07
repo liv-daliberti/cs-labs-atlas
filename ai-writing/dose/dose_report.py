@@ -124,14 +124,23 @@ def figures(paper, did, fig):
             ax[0].legend(fontsize=5); f.tight_layout(); f.savefig(fig / 'event_study.png', dpi=130); plt.close(f)
 
 
-def build(out_dir):
+FIGDIR = 'figures-ai-dose-v3' if D.DETECTOR_VERSION.startswith('v3') else 'figures-ai-dose'
+V3_BANNER = '''
+> **Detector v3, main body only (owner 2026-11-05).** Passage scores are detector v3 (`detector_v3/results/operating_point.json`: the `all` model, threshold at 0.3% calibration false-alarm rate; passages under 100 words or heading-heavy abstain and are excluded). The dose is flagged / scored main-body passages (appendix excluded; abstained share is a column of the paper table). Human passages wrongly flagged: 0.30% (0.27-0.32%); unseen-family misses 0.9-6.6%; partial edits are reported separately (`detector_v3/results/tables.md`). Detector-v3 papers in the training split (`trained_on_v3`) are excluded from every false-positive/placebo floor. Abstract-level columns (`flag_abstract`) remain the v1 abstract detector (v3 scores body text). **These shares are not comparable in level with the v2 report (`AI-DOSE-NOVELTY-DIVERSITY.md`; 1% threshold, no abstain rule); compare direction only.** No 2026 in any series.
+'''
+
+
+def build(out_dir, fname='AI-DOSE-NOVELTY-DIVERSITY.md'):
     out_dir = Path(out_dir)
-    fig = out_dir / 'figures-ai-dose'
+    fig = out_dir / FIGDIR
     res = D.RESULTS
     paper, did, mech = read_all('paper'), read_all('did'), read_all('mech')
     figures(paper, did, fig)
-    L = ['# AI amount in papers, and novelty and diversity (the dose question)\n', f'Generated {D.now()} by `ai-writing/dose/dose_report.py`; all numbers come from the tables in `ai-writing/data/ai-scores/results`.\n']
+    L = ['# AI amount in papers, and novelty and diversity (the dose question)\n', f'Generated {D.now()} by `ai-writing/dose/dose_report.py`; all numbers come from the tables in `{D.RESULTS}`.\n']
     sm = Path(__file__).parent / 'report_summary.md'
+    if D.DETECTOR_VERSION.startswith('v3'):
+        L.append(V3_BANNER)
+        sm = Path('/nonexistent')      # report_summary.md is the v2 narrative: its numbers do not carry over
     L.append(sm.read_text() if sm.exists() else '## Summary\n\n(The plain-language summary is written once the tables exist.)\n')
     L.append('\n## 1. Detector validation\n')
     v = res / 'validation.md'
@@ -141,7 +150,7 @@ def build(out_dir):
         if p.exists():
             t = pd.read_parquet(p)
             L.append(f'\n### {title}\n\n' + M.md_table(t, pct=tuple(c for c in t.columns if t[c].dtype.kind == 'f' and t[c].abs().max() <= 1.0)))
-    L.append('\n![yearly](figures-ai-dose/yearly_ai_amount_by_school.png)\n')
+    L.append(f'\n![yearly]({FIGDIR}/yearly_ai_amount_by_school.png)\n')
     for f, title in (('validation_corr_panel.csv', 'Correlation of the four "amount of AI" measures over school-years'), ('validation_corr_within_school.csv', 'The same within school (school means removed)')):
         p = res / f
         if p.exists():
@@ -161,7 +170,7 @@ def build(out_dir):
     if paper is not None:
         for title, t in dose_tables(paper, mech):
             L.append(f'\n### {title}\n\nscope all, k=3, nov_nn_cap; effect of ai_share going 0 -> 1, 95% interval (cluster-robust over labs)\n\n' + M.md_table(t))
-        L.append('\n![bins](figures-ai-dose/dose_bins_by_model.png)\n\n![forest](figures-ai-dose/dose_forest.png)\n')
+        L.append(f'\n![bins]({FIGDIR}/dose_bins_by_model.png)\n\n![forest]({FIGDIR}/dose_forest.png)\n')
         paper.to_csv(res / 'paper_all_fits.csv', index=False)
     else:
         L.append('Not run yet.\n')
@@ -176,17 +185,19 @@ def build(out_dir):
     if did is not None:
         t = did[did['spec'].isin(['did', 'placebo2019', 'placebo2020', 'placebo2021', 'within_lab_year']) & (did['dose'].isin(['dose', 'ai_share_lt']))]
         t = t.pivot_table(index=['model', 'outcome'], columns='spec', values='beta').reset_index()
-        L.append(M.md_table(t, floatfmt='{:+.3f}') + '\n![event](figures-ai-dose/event_study.png)\n')
+        L.append(M.md_table(t, floatfmt='{:+.3f}') + f'\n![event]({FIGDIR}/event_study.png)\n')
         did.to_csv(res / 'did_all_fits.csv', index=False)
     else:
         L.append('Not run yet.\n')
     L.append('\n## Method notes\n\nSee `ai-writing/dose/README.md` and the module docstrings (dose_analysis.py, dose_lab.py, dose_mechanical.py, dose_validate.py).\n')
     out_dir.mkdir(parents=True, exist_ok=True)
-    (out_dir / 'AI-DOSE-NOVELTY-DIVERSITY.md').write_text('\n'.join(L))
-    D.log(report=str(out_dir / 'AI-DOSE-NOVELTY-DIVERSITY.md'), json=json.dumps(dict(paper=paper is not None, did=did is not None, mech=mech is not None)))
+    (out_dir / fname).write_text('\n'.join(L))
+    D.log(report=str(out_dir / fname), json=json.dumps(dict(paper=paper is not None, did=did is not None, mech=mech is not None)))
 
 
 if __name__ == '__main__':
     ap = argparse.ArgumentParser()
     ap.add_argument('--out', default=str(D.AIW / 'diversity' / 'reports'))
-    build(ap.parse_args().out)
+    ap.add_argument('--name', default='AI-DOSE-NOVELTY-DIVERSITY-v3.md' if D.DETECTOR_VERSION.startswith('v3') else 'AI-DOSE-NOVELTY-DIVERSITY.md')
+    a = ap.parse_args()
+    build(a.out, a.name)

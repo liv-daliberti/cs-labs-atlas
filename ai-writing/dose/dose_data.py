@@ -47,6 +47,9 @@ def split_of_old_keys():
     """{paper_id: 'train'|'cal'|'test'} for papers of the five original schools, by the detector's old key f'{school}:{work}'."""
     import v2common as V
     out = {}
+    db = sqlite3.connect(f'file:{D.UNIVERSE_DB}?mode=ro', uri=True)
+    by_oa = {oa.rsplit('/', 1)[-1]: pid for pid, oa in db.execute('select paper_id, oa from papers where oa is not null')}   # packages may lack atlasWorkId: join by OpenAlex id
+    db.close()
     for s in ORIGINAL:
         p = D.P.data('lab_papers.jsonl.gz', s)
         if not p.exists():
@@ -54,8 +57,9 @@ def split_of_old_keys():
         with gzip.open(p, 'rt') as f:
             for line in f:
                 r = json.loads(line)
-                if r.get('atlasWorkId') and r.get('work'):
-                    out.setdefault(r['atlasWorkId'], V.split_of(f"{s}:{r['work']}"))
+                pid = r.get('atlasWorkId') or by_oa.get((r.get('oa') or '').rsplit('/', 1)[-1])
+                if pid and r.get('work'):
+                    out.setdefault(pid, V.split_of(f"{s}:{r['work']}"))
     return out
 
 
@@ -113,6 +117,9 @@ def paper_table(with_split=True):
     if with_split:
         sp = split_of_old_keys()
         df['old_split'] = df['paper_id'].map(sp)
+        if 'trained_on_v3' in df:      # v3 container: the detector-v3 training split (merge_sections3.py; carries the OpenAlex-id fix, all schools)
+            df['trained_on'] = df['trained_on_v3'].fillna(False).astype(bool) & df['ai_share'].notna()
+            return df
         df['trained_on'] = df['old_split'].eq('train') & df['year'].between(2016, 2021) & df['home_school'].isin(ORIGINAL) & df['ai_share'].notna()
     return df
 

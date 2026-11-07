@@ -21,6 +21,8 @@ def r(v, k=4):
 
 def dump(obj, name, gz=False):
     A.OUT.mkdir(parents=True, exist_ok=True)
+    if isinstance(obj, dict) and isinstance(obj.get('meta'), dict) and A.detector_note():
+        obj['meta']['detector'] = A.detector_note()
     raw = json.dumps(obj, separators=(',', ':'), allow_nan=False).encode()
     p = A.OUT / (name + ('.gz' if gz else ''))
     if gz:

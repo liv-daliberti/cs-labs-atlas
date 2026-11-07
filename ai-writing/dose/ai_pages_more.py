@@ -158,7 +158,7 @@ def stage_matched(args):
         del Zs[m]
     rng = np.random.default_rng(A.SEED)
     post = fr['year'].isin(A.POST).to_numpy()
-    pre = fr['year'].isin(A.PLACEBO).to_numpy()
+    pre = (fr['year'].isin(A.PLACEBO) & ~fr['trained_on'].fillna(False).astype(bool)).to_numpy()      # detector-training papers are no false-positive floor
     thr_pre, share_post = placebo_threshold(fr.loc[pre, 'x'].to_numpy(), fr.loc[post, 'x'].to_numpy())
     pops = {'post': (post, fr['x'] >= A.THR - 1e-12, f'AI = dose >= {A.THR:.0%}, 2023-2025'),
             'placebo': (pre, fr['x'] >= thr_pre, f'placebo 2017-2021: "AI" = dose >= {thr_pre:.3f} (flags the same share, {share_post:.1%}, as the 25% cut does in 2023-2025; detector noise)'),

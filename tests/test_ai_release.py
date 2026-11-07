@@ -96,3 +96,14 @@ def test_a_words_folder_needs_both_files(tmp_path):
     (root / 'words' / 'words.json').write_text('{}')
     with pytest.raises(SystemExit, match='word_curves'):
         ai_release.collect(root)
+
+
+def test_words_folder_is_collected_whole_or_refused(tmp_path):
+    root = folder(tmp_path)
+    (root / 'words').mkdir()
+    (root / 'words' / 'words.json').write_text('{"meta": {"last_year": 2025}}')
+    with pytest.raises(SystemExit):
+        ai_release.collect(root)
+    (root / 'words' / 'word_curves.json').write_text('{}')
+    src = ai_release.collect(root)
+    assert 'ai/words/words.json' in src and 'ai/words/word_curves.json' in src
