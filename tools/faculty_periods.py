@@ -202,8 +202,15 @@ def candidates(text, school):
         ('range', rf'((?:19|20)\d\d)\s*(?:[-–—]|to)\s*((?:19|20)\d\d|[Pp]resent|[Nn]ow|[Tt]oday)?\s*[,:]?\s*[^.;]{{0,60}}?{RANK}[^.;]{{0,100}}?(?:{sch})'),
         ('range_rev', rf'{RANK}[^.;]{{0,100}}?(?:{sch})[^.;]{{0,40}}?\(?((?:19|20)\d\d)\s*(?:[-–—]|to)\s*((?:19|20)\d\d|[Pp]resent|[Nn]ow)?\)?'),
     ]
+    forward_ranges = [(m.start(), m.end()) for name, p in pats if name == 'range' for m in re.finditer(p, t)]
     for name, p in pats:
         for mm in re.finditer(p, t):
+            # A flattened CV can put the next position's dates immediately after
+            # this position's institution. If a preceding range already owns
+            # this rank and school, those following dates are not reverse-order
+            # evidence for the same appointment.
+            if name == 'range_rev' and any(a <= mm.start() < b <= mm.start(1) for a, b in forward_ranges):
+                continue
             g = mm.groups(); start = g[0]; end = g[1] if len(g) > 1 and g[1] and g[1][:1].isdigit() else None
             q = t[max(0, mm.start() - 60): mm.end() + 60]
             if name == 'joined':  # joining the school is an appointment only with a rank word in the sentence and no student/postdoc role
