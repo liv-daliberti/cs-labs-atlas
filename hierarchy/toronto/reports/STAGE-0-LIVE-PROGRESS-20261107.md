@@ -47,3 +47,11 @@ The standard local-data pipeline is afterok-chained to snapshot merge `32142786`
 ## Explicit appointment starts recovered from cached homepages
 
 Five reviewed starts now carry exact captured quotes and the independent official rank listing: Eyal de Lara (2002), Toniann Pitassi (fall 2001), Thomas Ristenpart (January 2026), Ohad Shamir (August 2026), and Khai Truong (2006). Month/season precision is preserved; no lab foundation or departure date is invented. Every quote and body hash was rechecked against the cached bytes. The automatic scanner's two other suggestions were administrative chair terms (Marsha Chechik, David Fleet); neither was accepted as a faculty start/end interval. This is appointment evidence for five current candidates, not complete historical census coverage.
+
+## Five official-link gaps resolved
+
+Fresh institutional sources establish five additional sites: Gururaj Saileshwar's UTM profile links his research homepage; Alex Mariakakis's official Blue Book profile links the CHAI lab; Schwartz Reisman Institute's community page links Rahul G. Krishnan and Ningning Xie; and Anna Goldenberg's previously captured SickKids profile links her Vector profile, which links Goldenberg Lab. Exact hrefs and all selected-page hashes were checked against cached bytes. The register now contains **76 verified sites, one documented other-institution/on-leave case, and eight pending cases** (12 gate findings because four also require archive work). No students were admitted or extracted.
+
+The new official Blue Book page explicitly lists Mariakakis at St George. Saileshwar's UTM profile explicitly lists Mathematical and Computational Sciences and a Mississauga address; his personal homepage lists Toronto CS with courtesy ECE. This is a further campus eligibility case, not automatic exclusion or St George admission. Preserve campus distinctions until reviewed.
+
+Eight website cases remain: Alán Aspuru-Guzik, Niv Dayan, Bo Wang and Lisa Strug (access/archive work); Daniel Wigdor (default server page); Arvind Gupta, Sam Toueg and Nathan Wiebe (further official-link search). Source and target capture receipts: `scratch/top25-resume-1107/toronto-official-gap-followup.jsonl` and `toronto-gap-homepages.jsonl`. Each new positive entry independently passes the strict website provenance gate; the complete 85-PI register remains incomplete.

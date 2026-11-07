@@ -1,7 +1,7 @@
 {
  "school": "toronto",
  "tool": "tools/lab_websites.py entry schema",
- "review_status": "71 content-verified PI/lab websites, one documented other-institution/on-leave site, 13 pending targets; provisional PI campus scope and historical coverage remain open; students deferred.",
+ "review_status": "76 content-verified PI/lab websites, one documented other-institution/on-leave site, eight pending targets; provisional campus scope and historical coverage remain open; students deferred.",
  "source": "official directory + school-captures.sqlite",
  "labs": [
   {
@@ -2410,9 +2410,9 @@
   },
   {
    "pi": "Anna Goldenberg",
-   "status": "pending",
-   "coverage": "pending",
-   "reason": "Captured page is a SickKids institutional profile; follow explicit lab/homepage links before declaring website coverage.",
+   "status": "reviewed",
+   "coverage": "website",
+   "reason": "Captured lab/group website.",
    "candidate_url": "https://www.sickkids.ca/en/staff/g/anna-goldenberg/",
    "checks": [
     {
@@ -2437,13 +2437,83 @@
      "result": "ok",
      "via": "school_profile_link",
      "sha256": "5632106e0ddad8e24e4b491324fadcb7b6997fedf96bc3bc23eeb75e43facf38"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://vectorinstitute.ai/team/anna-goldenberg/",
+     "at": "2026-11-07T17:15:09",
+     "result": "ok",
+     "sha256": "c6216ed65e8edba24f5b65b04065911196d9a9c4667c08ae377a4969f26c735c"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://goldenberglab.ca/",
+     "on": "https://vectorinstitute.ai/team/anna-goldenberg/",
+     "at": "2026-11-07T17:15:09",
+     "result": "listed",
+     "sha256": "c6216ed65e8edba24f5b65b04065911196d9a9c4667c08ae377a4969f26c735c"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://goldenberglab.ca/",
+     "at": "2026-11-07T17:16:24",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "ef62b226107862fe3c8981fbed03664b7083600192a89e4c9eeb87e1c538f185"
     }
    ],
-   "checked_at": "2026-11-07T16:37:02",
+   "checked_at": "2026-11-07T17:16:24",
    "students_page_status": "deferred_by_scope",
    "papers_page_status": "deferred_by_scope",
-   "evidence_gaps": [
-    "eligible_website_not_yet_established"
+   "evidence_gaps": [],
+   "reason_code": "lab_site",
+   "audited_at": "2026-11-07T17:16:24",
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "url": "http://goldenberglab.ca/",
+   "kind": "lab_site",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://vectorinstitute.ai/team/anna-goldenberg/",
+   "sha256": "ef62b226107862fe3c8981fbed03664b7083600192a89e4c9eeb87e1c538f185",
+   "evidence": {
+    "url": "http://goldenberglab.ca/",
+    "sha256": "ef62b226107862fe3c8981fbed03664b7083600192a89e4c9eeb87e1c538f185",
+    "captured_at": "2026-11-07T17:16:24"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://goldenberglab.ca/",
+     "on": "https://vectorinstitute.ai/team/anna-goldenberg/",
+     "at": "2026-11-07T17:15:09",
+     "result": "listed",
+     "sha256": "c6216ed65e8edba24f5b65b04065911196d9a9c4667c08ae377a4969f26c735c"
+    }
+   ],
+   "upstream_audit_reason": "PI/group research content reviewed against institutional link and appointment.",
+   "classification_review": "Manually reviewed captured research homepage and exact outgoing official link. The current CS directory independently establishes appointment; campus eligibility remains a separate onboarding review.",
+   "provenance_chain": [
+    {
+     "on": "https://www.sickkids.ca/en/staff/g/anna-goldenberg/",
+     "url": "https://vectorinstitute.ai/team/anna-goldenberg/",
+     "at": "2026-11-07T16:37:02",
+     "sha256": "5632106e0ddad8e24e4b491324fadcb7b6997fedf96bc3bc23eeb75e43facf38",
+     "result": "explicit_profile_link"
+    },
+    {
+     "on": "https://vectorinstitute.ai/team/anna-goldenberg/",
+     "url": "http://goldenberglab.ca/",
+     "at": "2026-11-07T17:15:09",
+     "sha256": "c6216ed65e8edba24f5b65b04065911196d9a9c4667c08ae377a4969f26c735c",
+     "result": "explicit_lab_link"
+    }
    ]
   },
   {
@@ -3336,9 +3406,9 @@
   },
   {
    "pi": "Rahul G. Krishnan",
-   "status": "pending",
-   "coverage": "pending",
-   "reason": "Official directory does not provide a homepage link; targeted official-profile search remains open.",
+   "status": "reviewed",
+   "coverage": "website",
+   "reason": "Captured lab/group website.",
    "candidate_url": null,
    "checks": [
     {
@@ -3353,14 +3423,69 @@
      "url": "https://web.cs.toronto.edu/people/faculty-directory",
      "at": "2026-11-07T15:40:55",
      "result": "no_homepage_in_official_listing"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://srinstitute.utoronto.ca/our-community",
+     "at": "2026-11-07T17:15:08",
+     "result": "ok",
+     "sha256": "46bd6aa8d5e517da6c597e4366a5b3a5f44ce647af73b12db77727da4cbf825d"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~rahulgk/index.html",
+     "on": "https://srinstitute.utoronto.ca/our-community",
+     "at": "2026-11-07T17:15:08",
+     "result": "listed",
+     "sha256": "46bd6aa8d5e517da6c597e4366a5b3a5f44ce647af73b12db77727da4cbf825d"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~rahulgk/index.html",
+     "at": "2026-11-07T17:16:23",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "192b3237a9a447b53e4df5e21e23d0a5de3abe82fc1875244cc8b3bb8031c15c"
     }
    ],
-   "checked_at": "2026-11-07T15:40:55",
+   "checked_at": "2026-11-07T17:16:23",
    "students_page_status": "deferred_by_scope",
    "papers_page_status": "deferred_by_scope",
-   "evidence_gaps": [
-    "eligible_website_not_yet_established"
-   ]
+   "evidence_gaps": [],
+   "reason_code": "lab_site",
+   "audited_at": "2026-11-07T17:16:23",
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "website_search:no_homepage_in_official_listing"
+   ],
+   "url": "https://www.cs.toronto.edu/~rahulgk/index.html",
+   "kind": "lab_site",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://srinstitute.utoronto.ca/our-community",
+   "sha256": "192b3237a9a447b53e4df5e21e23d0a5de3abe82fc1875244cc8b3bb8031c15c",
+   "evidence": {
+    "url": "https://www.cs.toronto.edu/~rahulgk/index.html",
+    "sha256": "192b3237a9a447b53e4df5e21e23d0a5de3abe82fc1875244cc8b3bb8031c15c",
+    "captured_at": "2026-11-07T17:16:23"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cs.toronto.edu/~rahulgk/index.html",
+     "on": "https://srinstitute.utoronto.ca/our-community",
+     "at": "2026-11-07T17:15:08",
+     "result": "listed",
+     "sha256": "46bd6aa8d5e517da6c597e4366a5b3a5f44ce647af73b12db77727da4cbf825d"
+    }
+   ],
+   "upstream_audit_reason": "PI/group research content reviewed against institutional link and appointment.",
+   "classification_review": "Manually reviewed captured research homepage and exact outgoing official link. The current CS directory independently establishes appointment; campus eligibility remains a separate onboarding review."
   },
   {
    "pi": "Kyros Kutulakos",
@@ -4266,9 +4391,9 @@
   },
   {
    "pi": "Alex Mariakakis",
-   "status": "pending",
-   "coverage": "pending",
-   "reason": "Official directory does not provide a homepage link; targeted official-profile search remains open.",
+   "status": "reviewed",
+   "coverage": "website",
+   "reason": "Captured lab/group website.",
    "candidate_url": null,
    "checks": [
     {
@@ -4283,14 +4408,69 @@
      "url": "https://web.cs.toronto.edu/people/faculty-directory",
      "at": "2026-11-07T15:40:55",
      "result": "no_homepage_in_official_listing"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://media.utoronto.ca/bluebook/alex-mariakakis/",
+     "at": "2026-11-07T17:15:06",
+     "result": "ok",
+     "sha256": "01e73a1526a9eef4d59c1bbde139cce0abedd1de3c5646e7a6ae399258d5db13"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://chai.cs.toronto.edu/",
+     "on": "https://media.utoronto.ca/bluebook/alex-mariakakis/",
+     "at": "2026-11-07T17:15:06",
+     "result": "listed",
+     "sha256": "01e73a1526a9eef4d59c1bbde139cce0abedd1de3c5646e7a6ae399258d5db13"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://chai.cs.toronto.edu/",
+     "at": "2026-11-07T17:16:23",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "ebb4465adb11a35972183e09d84271313a2b4d5551873e96ebc845b6e58a94a3"
     }
    ],
-   "checked_at": "2026-11-07T15:40:55",
+   "checked_at": "2026-11-07T17:16:23",
    "students_page_status": "deferred_by_scope",
    "papers_page_status": "deferred_by_scope",
-   "evidence_gaps": [
-    "eligible_website_not_yet_established"
-   ]
+   "evidence_gaps": [],
+   "reason_code": "lab_site",
+   "audited_at": "2026-11-07T17:16:23",
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "website_search:no_homepage_in_official_listing"
+   ],
+   "url": "https://chai.cs.toronto.edu/",
+   "kind": "lab_site",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://media.utoronto.ca/bluebook/alex-mariakakis/",
+   "sha256": "ebb4465adb11a35972183e09d84271313a2b4d5551873e96ebc845b6e58a94a3",
+   "evidence": {
+    "url": "https://chai.cs.toronto.edu/",
+    "sha256": "ebb4465adb11a35972183e09d84271313a2b4d5551873e96ebc845b6e58a94a3",
+    "captured_at": "2026-11-07T17:16:23"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://chai.cs.toronto.edu/",
+     "on": "https://media.utoronto.ca/bluebook/alex-mariakakis/",
+     "at": "2026-11-07T17:15:06",
+     "result": "listed",
+     "sha256": "01e73a1526a9eef4d59c1bbde139cce0abedd1de3c5646e7a6ae399258d5db13"
+    }
+   ],
+   "upstream_audit_reason": "PI/group research content reviewed against institutional link and appointment.",
+   "classification_review": "Manually reviewed captured research homepage and exact outgoing official link. The current CS directory independently establishes appointment; campus eligibility remains a separate onboarding review."
   },
   {
    "pi": "Sheila McIlraith",
@@ -5278,9 +5458,9 @@
   },
   {
    "pi": "Gururaj Saileshwar",
-   "status": "pending",
-   "coverage": "pending",
-   "reason": "Official directory does not provide a homepage link; targeted official-profile search remains open.",
+   "status": "reviewed",
+   "coverage": "website",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "candidate_url": null,
    "checks": [
     {
@@ -5295,14 +5475,69 @@
      "url": "https://web.cs.toronto.edu/people/faculty-directory",
      "at": "2026-11-07T15:40:55",
      "result": "no_homepage_in_official_listing"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://www.utm.utoronto.ca/math-cs-stats/people/gururaj-saileshwar",
+     "at": "2026-11-07T17:15:05",
+     "result": "ok",
+     "sha256": "f862289a55547f53489301bea1cbef1e7e50dc9bfe63bab8c4b6e2be706902f2"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://gururaj-s.github.io/",
+     "on": "https://www.utm.utoronto.ca/math-cs-stats/people/gururaj-saileshwar",
+     "at": "2026-11-07T17:15:05",
+     "result": "listed",
+     "sha256": "f862289a55547f53489301bea1cbef1e7e50dc9bfe63bab8c4b6e2be706902f2"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://gururaj-s.github.io/",
+     "at": "2026-11-07T17:16:23",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "3483b61689d6c3448b049be51b4f023aee69e19d4f6e0192bff28dacb53b60c9"
     }
    ],
-   "checked_at": "2026-11-07T15:40:55",
+   "checked_at": "2026-11-07T17:16:23",
    "students_page_status": "deferred_by_scope",
    "papers_page_status": "deferred_by_scope",
-   "evidence_gaps": [
-    "eligible_website_not_yet_established"
-   ]
+   "evidence_gaps": [],
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "audited_at": "2026-11-07T17:16:23",
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "website_search:no_homepage_in_official_listing"
+   ],
+   "url": "https://gururaj-s.github.io/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://www.utm.utoronto.ca/math-cs-stats/people/gururaj-saileshwar",
+   "sha256": "3483b61689d6c3448b049be51b4f023aee69e19d4f6e0192bff28dacb53b60c9",
+   "evidence": {
+    "url": "https://gururaj-s.github.io/",
+    "sha256": "3483b61689d6c3448b049be51b4f023aee69e19d4f6e0192bff28dacb53b60c9",
+    "captured_at": "2026-11-07T17:16:23"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://gururaj-s.github.io/",
+     "on": "https://www.utm.utoronto.ca/math-cs-stats/people/gururaj-saileshwar",
+     "at": "2026-11-07T17:15:05",
+     "result": "listed",
+     "sha256": "f862289a55547f53489301bea1cbef1e7e50dc9bfe63bab8c4b6e2be706902f2"
+    }
+   ],
+   "upstream_audit_reason": "PI/group research content reviewed against institutional link and appointment.",
+   "classification_review": "Manually reviewed captured research homepage and exact outgoing official link. The current CS directory independently establishes appointment; campus eligibility remains a separate onboarding review."
   },
   {
    "pi": "Shubhangi Saraf",
@@ -6743,9 +6978,9 @@
   },
   {
    "pi": "Ningning Xie",
-   "status": "pending",
-   "coverage": "pending",
-   "reason": "Official directory does not provide a homepage link; targeted official-profile search remains open.",
+   "status": "reviewed",
+   "coverage": "website",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "candidate_url": null,
    "checks": [
     {
@@ -6760,14 +6995,69 @@
      "url": "https://web.cs.toronto.edu/people/faculty-directory",
      "at": "2026-11-07T15:40:55",
      "result": "no_homepage_in_official_listing"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://srinstitute.utoronto.ca/our-community",
+     "at": "2026-11-07T17:15:08",
+     "result": "ok",
+     "sha256": "46bd6aa8d5e517da6c597e4366a5b3a5f44ce647af73b12db77727da4cbf825d"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://xnning.github.io",
+     "on": "https://srinstitute.utoronto.ca/our-community",
+     "at": "2026-11-07T17:15:08",
+     "result": "listed",
+     "sha256": "46bd6aa8d5e517da6c597e4366a5b3a5f44ce647af73b12db77727da4cbf825d"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://xnning.github.io",
+     "at": "2026-11-07T17:16:24",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "52f200bf79fd96a48599989d3cfa9b181b63f691cf8fbcc0c7ab2bff01e878c5"
     }
    ],
-   "checked_at": "2026-11-07T15:40:55",
+   "checked_at": "2026-11-07T17:16:24",
    "students_page_status": "deferred_by_scope",
    "papers_page_status": "deferred_by_scope",
-   "evidence_gaps": [
-    "eligible_website_not_yet_established"
-   ]
+   "evidence_gaps": [],
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "audited_at": "2026-11-07T17:16:24",
+   "places_checked": [
+    "candidate_site:ok",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "website_search:no_homepage_in_official_listing"
+   ],
+   "url": "https://xnning.github.io",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://srinstitute.utoronto.ca/our-community",
+   "sha256": "52f200bf79fd96a48599989d3cfa9b181b63f691cf8fbcc0c7ab2bff01e878c5",
+   "evidence": {
+    "url": "https://xnning.github.io",
+    "sha256": "52f200bf79fd96a48599989d3cfa9b181b63f691cf8fbcc0c7ab2bff01e878c5",
+    "captured_at": "2026-11-07T17:16:24"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://xnning.github.io",
+     "on": "https://srinstitute.utoronto.ca/our-community",
+     "at": "2026-11-07T17:15:08",
+     "result": "listed",
+     "sha256": "46bd6aa8d5e517da6c597e4366a5b3a5f44ce647af73b12db77727da4cbf825d"
+    }
+   ],
+   "upstream_audit_reason": "PI/group research content reviewed against institutional link and appointment.",
+   "classification_review": "Manually reviewed captured research homepage and exact outgoing official link. The current CS directory independently establishes appointment; campus eligibility remains a separate onboarding review."
   },
   {
    "pi": "Yang Xu",
