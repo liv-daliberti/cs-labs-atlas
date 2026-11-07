@@ -211,6 +211,7 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `cs-related-hand.json` | reviewed | `hierarchy/{school}/cs-related-hand.json` | `hierarchy/{school}/reviewed/cs-related-hand.json` | - | <10MB |
 | `cs-related-candidates-openalex.json` | derived | `hierarchy/{school}/cs-related-candidates-openalex.json` | `hierarchy/{school}/derived/cs-related-candidates-openalex.json` | - | <100MB |
 | `defense-evidence.json` | reviewed | `hierarchy/{school}/defense-evidence.json` | `hierarchy/{school}/reviewed/defense-evidence.json` | - | <100MB |
+| `live-listing-sources.json` | reviewed | `hierarchy/{school}/live-listing-sources.json` | `hierarchy/{school}/reviewed/live-listing-sources.json` | reviewed source groups | <100MB |
 | `directory-evidence.json` | reviewed | `hierarchy/{school}/directory-evidence.json` | `hierarchy/{school}/reviewed/directory-evidence.json` | - | <100MB |
 | `labpage-students-report.json` | derived | `hierarchy/{school}/labpage-students-report.json` | `hierarchy/{school}/derived/labpage-students-report.json` | - | <100MB |
 | `holds.json` | derived | `periods/{school}-holds.json` | `hierarchy/{school}/derived/holds.json` | - | <100MB |
