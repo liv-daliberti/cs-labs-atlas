@@ -8,9 +8,10 @@ The overlay is a directory of symlinks that looks like the main code root, excep
     and a writer's output lands in the worktree, ready to commit), else main's file;
   - hierarchy/reviewed (the shared reviewed files: census-overrides.json, ...) is overlaid the same way, per file, recursively (a branch's override was
     silently dropped when the overlay linked main's directory);
-  - hierarchy/<school>/work is a REAL, empty directory of the overlay (fixed 2026-11-05): a run wrote main's hierarchy/michigan/work/dblp-recover.sqlite through
+  - hierarchy/<school>/work is a REAL directory of the overlay (fixed 2026-11-05): a run wrote main's hierarchy/michigan/work/dblp-recover.sqlite through
     the old symlink. `atlas_paths.data()` resolves work files into it, and `data_w()` seeds a copy of main's file there when the file is first written
-    (the marker .overlay.json at the overlay root names main). Main's work files are never opened for writing;
+    (the marker .overlay.json at the overlay root names main). The three compressed recovery/publication inputs are copied
+    at overlay creation so a read-only build retains them without first running a collector. Main's work files are never opened for writing;
   - hierarchy/<school>/derived, raw and tmp are main's (build outputs stay where the release and the other tools read them);
   - everything else in the main root is a symlink to main.
 Run any tool against it with `CS_ATLAS_CODE=<out> bin/atlas <command>` (from the worktree). Nothing in main's tracked files is touched.
@@ -29,6 +30,7 @@ import atlas_paths as P  # noqa: E402
 CODE_DIRS = ('tools', 'atlas_cli', 'bin', 'schools', 'tests', 'vendor', 'docs', 'accuracy')
 SCHOOL_REAL = ('reviewed', 'reports', 'work')   # work: real but empty (seeded on first write); reviewed, reports: a link per file
 SEEDED_EMPTY = ('work',)
+WORK_READ_INPUTS = ('dblp-recovered.jsonl.gz', 'labpage-recovered.jsonl.gz', 'labpage-pubs.jsonl.gz')
 SHARED_REVIEWED = 'reviewed'   # hierarchy/reviewed/: shared reviewed files
 
 
@@ -93,6 +95,11 @@ def build(school, out, worktree=None, main=None):
         d = sch / part
         d.mkdir()
         if part in SEEDED_EMPTY:
+            # These work files are also builder inputs. data_w() cannot seed them in a read-only build.
+            for name in WORK_READ_INPUTS:
+                src = main / 'hierarchy' / school / part / name
+                if src.is_file():
+                    shutil.copy2(src, d / name)
             continue
         n_branch += overlay_dir(d, main / 'hierarchy' / school / part, worktree, f'hierarchy/{school}/{part}')
     (out / '.overlay.json').write_text(json.dumps(dict(main=str(main), school=school, worktree=str(worktree))))

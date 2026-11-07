@@ -89,3 +89,18 @@ def test_without_an_overlay_work_files_resolve_as_before(tmp_path, monkeypatch):
     assert P.overlay_main() is None
     p = P.data_w('dblp-recover.sqlite', 'newu')
     assert p == tmp_path / 'hierarchy' / 'newu' / 'work' / 'dblp-recover.sqlite' and not p.exists() and p.parent.is_dir()
+
+
+def test_read_only_build_recovery_inputs_are_copied_without_sharing_mutable_work(tmp_path):
+    main, wt = tree(tmp_path)
+    original = main / 'hierarchy' / 'newu' / 'work'
+    for name in O.WORK_READ_INPUTS:
+        (original / name).write_bytes(b'recovered source bytes')
+    out, _ = O.build('newu', tmp_path / 'overlay', worktree=wt, main=main)
+    work = out / 'hierarchy' / 'newu' / 'work'
+    assert not (work / 'dblp-recover.sqlite').exists()
+    for name in O.WORK_READ_INPUTS:
+        assert (work / name).read_bytes() == (original / name).read_bytes()
+        assert not (work / name).is_symlink()
+        (work / name).write_bytes(b'isolated changed input')
+        assert (original / name).read_bytes() == b'recovered source bytes'
