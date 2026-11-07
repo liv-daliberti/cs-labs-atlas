@@ -1,0 +1,244 @@
+# Virginia Tech: top-25 push onboarding (coordinator brief scratch/top25-brief.md, 2026-11-07). Computing labs only; CS department full, other units through the CS-related-faculty rule.
+key = "vt"
+name = "Virginia Tech"
+short = "Virginia Tech"
+site_uni = "virginia-polytechnic-institute-and-state-university"
+status = "onboarding"
+order = 18
+stage = 0
+started = "2026-11-07"
+window = [2016, 2026]
+
+[ids]
+# Scope follows the accepted computing-faculty brief: retain lineage metadata but admit only explicitly evidenced Virginia Tech faculty. Source and snapshot gates remain open.
+openalex = ["I859038795"]
+openalex_related = []
+openalex_excluded = []
+ror = "https://ror.org/02smfhw86"
+ids_note = "tools/oa_institutions.py search/lineage on the local OpenAlex institutions snapshot (no API credits), 2026-11-07: I859038795 'Virginia Tech' ROR 02smfhw86, lineage [I859038795]. Lineage children: Virginia Tech Transportation Institute I4387930269, Virginia-Maryland College of Veterinary Medicine I39822340, Virginia Tech-Wake Forest School of Biomedical Engineering and Sciences I4210104154, Virginia Agricultural Experiment Station I4391768034, Carilion Clinic I5716644 with Carilion Roanoke Memorial I2800553677 and Roanoke Community Hospital I4210125016. Not the school: Virginia Tech Services I4210166782, Virginia Technologies I4210112638, West Virginia Tech, Virginia Commonwealth, University of Virginia."
+
+[web]
+domains = ["vt.edu"]
+email_domains = ["vt.edu"]
+wayback_only_suffixes = []
+excluded_hosts = []
+
+[affiliation]
+regex = '''(?<!west\s)\bvirginia\s+(?:polytechnic\s+institute(?:\s+and\s+state\s+univ\w*)?|tech)\b|\bvirginia\s+polytechnic\b|\bvt\.edu\b|\b[\w-]+\.vt\.edu\b'''
+loose = '''virginia\s+tech|virginia\s+polytechnic|blacksburg|vt\.edu'''
+own_units = '''\bhume\s+center\b|\bsanghani\s+center\b|\bfralin\s+biomedical\b|\bvirginia\s+tech\s+transportation\s+institute\b'''
+must_match = [
+  "Virginia Tech, Blacksburg, VA, USA",
+  "Department of Computer Science, Virginia Polytechnic Institute and State University",
+  "Virginia Polytechnic Institute and State University, Blacksburg, VA",
+  "Virginia Tech Transportation Institute",
+  "jdoe@vt.edu",
+  "Sanghani Center for Artificial Intelligence and Data Analytics, Virginia Tech"
+]
+must_not_match = [
+  "West Virginia Tech, Beckley",
+  "West Virginia University, Morgantown",
+  "University of Virginia, Charlottesville",
+  "Virginia Commonwealth University, Richmond",
+  "Virginia Military Institute, Lexington",
+  "George Mason University, Fairfax, VA",
+  "Old Dominion University, Norfolk",
+  "Virginia State University, Petersburg"
+]
+
+[dblp]
+affiliation_strings = ["Virginia Tech", "Virginia Polytechnic Institute and State University", "Virginia Polytechnic Institute"]
+legacy_sweep = ""
+
+[census]
+computing_departments = ["CS"]
+center_units = ["SANGHANI", "HUME"]
+home_units = {"Computer Science" = 'computer\s+science', "Electrical and Computer Engineering" = 'electrical\s+(?:and|&)\s+computer\s+engineering', "Statistics" = 'statistics', "Industrial and Systems Engineering" = 'industrial\s+(?:and|&)\s+systems', "Mathematics" = 'mathematics'}
+rank_words = {teaching = '\bprofessor\s+of\s+practice\b|\bcollegiate\s+(?:(?:assistant|associate)\s+)?professor\b|\binstructor\b|\bteaching\b', adjunct = '\badjunct\b|\bvisiting\b'}
+
+[sweep_check]
+exceptions = []
+
+[cs_related]
+not_faculty = {}
+share_test_settles = []
+
+[site]
+depts = {CS = "Computer Science"}
+full_codes = ["CS"]
+
+[periods]
+school_regex = '''(?<!west\s)\bvirginia\s+(?:polytechnic\s+institute(?:\s+and\s+state\s+univ\w*)?|tech)\b|\bvirginia\s+polytechnic\b|\bvt\.edu\b|\b[\w-]+\.vt\.edu\b'''
+
+[rules]
+foreign_title_exception = false
+listing_continuity = false
+
+[[departments]]
+code = "CS"
+name = "Computer Science"
+unit = "Department of Computer Science, College of Engineering"
+title_match = 'computer\s+science'
+coverage = "full"
+url = "https://cs.vt.edu/people/faculty.html"
+  [[departments.listings]]
+  slot = "main"
+  kind = "main"
+  url = "cs.vt.edu/people/faculty.html"
+  from = "20160101"
+  to = "20261231"
+  prefix = false
+  match = ""
+  format = ""
+  title_filter = ''
+
+[[affiliated_units]]
+code = "ECE"
+name = "Electrical and Computer Engineering"
+url = "https://ece.vt.edu/people/faculty.html"
+listings = ["ece.vt.edu/people/faculty.html"]
+
+[[affiliated_units]]
+code = "STAT"
+name = "Statistics"
+url = "https://stat.vt.edu/people/faculty.html"
+listings = ["stat.vt.edu/people/faculty.html"]
+
+[[affiliated_units]]
+code = "MATH"
+name = "Mathematics"
+url = "https://math.vt.edu/people/faculty.html"
+listings = ["math.vt.edu/people/faculty.html"]
+
+[[affiliated_units]]
+code = "ISE"
+name = "Industrial and Systems Engineering"
+url = "https://www.ise.vt.edu/people/faculty.html"
+listings = ["www.ise.vt.edu/people/faculty.html"]
+
+[[affiliated_units]]
+code = "ME"
+name = "Mechanical Engineering"
+url = "https://me.vt.edu/people/faculty.html"
+listings = ["me.vt.edu/people/faculty.html"]
+
+[[affiliated_units]]
+code = "AOE"
+name = "Aerospace and Ocean Engineering"
+url = "https://aoe.vt.edu/people/faculty.html"
+listings = ["aoe.vt.edu/people/faculty.html"]
+
+[[affiliated_units]]
+code = "CEE"
+name = "Civil and Environmental Engineering"
+url = "https://cee.vt.edu/people/faculty.html"
+listings = ["cee.vt.edu/people/faculty.html"]
+
+[[affiliated_units]]
+code = "SANGHANI"
+name = "Sanghani Center for AI and Data Analytics (centre)"
+url = "https://sanghani.cs.vt.edu/people/"
+listings = ["sanghani.cs.vt.edu/people"]
+
+[[affiliated_units]]
+code = "HUME"
+name = "Hume Center for National Security and Technology (centre)"
+url = "https://hume.vt.edu/people.html"
+listings = ["hume.vt.edu/people.html"]
+
+
+[thesis]
+kind = "dspace"
+base_url = "https://vtechworks.lib.vt.edu/"
+endpoints = []
+robots = "disallowed"
+note = "VTechWorks robots.txt disallows all agents on the paths checked (2026-11-07); verify before stage 8 and use OpenAlex otherwise. Collect explicit supervisor statements only."
+
+[collector]
+channels = ["oa_arxiv", "openalex", "s2", "labpages"]
+
+[students]
+directories = []
+adviser_directories = []
+defense_lists = []
+adviser_alumni = []
+rosters = []
+sources = ["thesis repository with explicit supervisor metadata", "dated official defence and graduation lists", "PI-owned lab member and alumni pages"]
+
+[labpages]
+skip_pages = []
+hints = ["https://cs.vt.edu/research.html", "https://cs.vt.edu/people/faculty.html", "https://ece.vt.edu/research.html"]
+
+[repository]
+name = "VTechWorks (local OpenAlex metadata only while repository access is unresolved; CORE paused)"
+pattern = 'vtechworks\.lib\.vt\.edu|VTechWorks'
+
+[store]
+path = "stores/vt"
+
+[[hosts]]
+host = "cs.vt.edu"
+use = "live"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://cs.vt.edu/people/faculty.html"
+
+[[hosts]]
+host = "vtechworks.lib.vt.edu"
+use = "wayback-only"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://vtechworks.lib.vt.edu/"
+
+[[hosts]]
+host = "ece.vt.edu"
+use = "live"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://ece.vt.edu/people/faculty.html"
+
+[[hosts]]
+host = "stat.vt.edu"
+use = "live"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://stat.vt.edu/people/faculty.html"
+
+[[hosts]]
+host = "math.vt.edu"
+use = "live"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://math.vt.edu/people/faculty.html"
+
+[[hosts]]
+host = "www.ise.vt.edu"
+use = "live"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://www.ise.vt.edu/people/faculty.html"
+
+[[hosts]]
+host = "me.vt.edu"
+use = "live"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://me.vt.edu/people/faculty.html"
+
+[[hosts]]
+host = "aoe.vt.edu"
+use = "live"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://aoe.vt.edu/people/faculty.html"
+
+[[hosts]]
+host = "cee.vt.edu"
+use = "live"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://cee.vt.edu/people/faculty.html"
+
+[[hosts]]
+host = "sanghani.cs.vt.edu"
+use = "live"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://sanghani.cs.vt.edu/people/"
+
+[[hosts]]
+host = "hume.vt.edu"
+use = "live"
+purpose = "Faculty listings, research groups, thesis evidence"
+probe = "https://hume.vt.edu/people.html"
+
