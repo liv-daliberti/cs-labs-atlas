@@ -6510,7 +6510,7 @@
    "pi": "Sam Toueg",
    "status": "pending",
    "coverage": "pending",
-   "reason": "Official directory does not provide a homepage link; targeted official-profile search remains open.",
+   "reason": "Current directory has no homepage link. Captured Cornell research page is at another institution; Toronto user-root candidate derived from an official course URL returned 403. Collector host stopped; permitted archival or another official source remains pending.",
    "candidate_url": null,
    "checks": [
     {
@@ -6525,14 +6525,31 @@
      "url": "https://web.cs.toronto.edu/people/faculty-directory",
      "at": "2026-11-07T15:40:55",
      "result": "no_homepage_in_official_listing"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.cornell.edu/info/people/sam/sam.html",
+     "at": "2026-11-07T17:29:04",
+     "result": "other_institution_research_page",
+     "sha256": "022338d73818d7ccddbeb47582c0bee4d57b68f3c621b5aa85ff8dcee746a0b7",
+     "via": "official_search_lead"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.toronto.edu/~sam/",
+     "at": "2026-11-07T17:29:04",
+     "result": "http_403",
+     "sha256": "a805687a50c1a68f84bf8bcb40804be145a2f274e0545615c45da8306fcafde5",
+     "via": "derived_user_root_from_official_course_url"
     }
    ],
-   "checked_at": "2026-11-07T15:40:55",
+   "checked_at": "2026-11-07T17:29:04",
    "students_page_status": "deferred_by_scope",
    "papers_page_status": "deferred_by_scope",
    "evidence_gaps": [
     "eligible_website_not_yet_established"
-   ]
+   ],
+   "reason_type": "pending_archive"
   },
   {
    "pi": "Khai Truong",
@@ -6886,7 +6903,7 @@
    "pi": "Nathan Wiebe",
    "status": "pending",
    "coverage": "pending",
-   "reason": "Official Physics profile confirms UTSG cross-appointment but links only the broad Quantum Optics research category, not a PI/group homepage. Further site search remains pending.",
+   "reason": "Official Physics profile confirms UTSG CS cross-appointment; its linked Quantum Optics page is a broad departmental category, not a PI lab. No eligible PI/group homepage established from these captured pages; further official source search remains pending.",
    "candidate_url": null,
    "checks": [
     {
@@ -6909,9 +6926,17 @@
      "sha256": "0e3a388f4e94e1afa525ccbfcffcf17f350e555f25d01c74420dd277d7f0d46e",
      "result": "profile_only_no_homepage_link",
      "via": "official_search_lead"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.physics.utoronto.ca/members/department_groups/qo/",
+     "at": "2026-11-07T17:29:05",
+     "result": "broad_department_research_category",
+     "sha256": "3448e1d75bc4a0f76f007ea63b171c7d7ed8735babad65c476393a2c00ad4ce4",
+     "via": "school_profile_link"
     }
    ],
-   "checked_at": "2026-11-07T17:18:51",
+   "checked_at": "2026-11-07T17:29:05",
    "students_page_status": "deferred_by_scope",
    "papers_page_status": "deferred_by_scope",
    "evidence_gaps": [
