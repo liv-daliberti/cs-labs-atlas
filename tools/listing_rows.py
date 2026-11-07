@@ -3,6 +3,8 @@
 Reads the plan the listings pipeline wrote (listings/<key>/captures.sqlite, table plan, status ok: one Wayback id_
 capture per slot and half-year, listings/scripts/plan_fetch.py driven by the charter's [[departments.listings]]), parses
 each capture with tools/listing_formats.py, and writes listings/<key>/rows.json.
+Reviewed live-listing-sources.json supplements the plan from saved school_web live pages, using their actual
+fetch dates and URLs. A complete group must match its reviewed expected entry count; no archive URL is invented.
 
 row      name (given-first, as the page spells it), name_listed ('Last, First M.'), dept (the slot's department code),
          slot, kind (the slot's kind), year, observed (capture timestamp), titles (as listed), dept_title (the title lines
@@ -14,12 +16,13 @@ coverage listings/<key>/coverage.json: department x year -> slots with an ok cap
          half-year without one (nocapture | unusable | out_of_scope)
 usage: listing_rows.py <key>
 """
-import collections, json, re, sqlite3, sys
+import collections, hashlib, json, re, sqlite3, sys, urllib.parse, zlib
+from datetime import datetime
 
 import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
 import listing_formats as LF  # noqa: E402
-from school_web import body as wb_body  # noqa: E402  (stored capture bytes, gunzipped)
+from school_web import body as wb_body, extract as html_extract  # noqa: E402  (stored capture bytes, gunzipped)
 
 RANKS = [('emeritus', r'emerit'), ('courtesy', r'courtesy|\baffiliate\s+faculty'), ('adjunct', r'\badjunct\b|\badjoint\b'), ('visiting', r'\bvisiting\b'),
          ('lecturer', r'\blecturer\b|\binstructor\b'), ('research', r'\bresearch\s+(?:scientist|investigator|professor|fellow|faculty)|\bresearch\s+assistant\s+professor'),
@@ -74,6 +77,85 @@ def quote_of(flat, e):
     return flat[i:end]
 
 
+def live_listing_rows(key, cfg, rw, tm, title_filters, kind_of):
+    """Import reviewed saved live pages; dates and hashes come from the raw store, never the wall clock.
+
+    sources: [{dept, slot, format?, complete, expected_entries, pages: [{url, sha256, fetched_at?}]}].
+    A group explicitly reviews all pages of one listing. Incomplete groups supply sourced person rows, but
+    never an ok coverage entry. This reads cached bytes only and does not fetch or create archive plan rows.
+    """
+    manifest = P.data('live-listing-sources.json', key)
+    rows, n, coverage = [], collections.Counter(), []
+    if not manifest.exists():
+        return rows, n, coverage
+    sources = json.loads(manifest.read_text())['sources']
+    slots = {(d['code'], s['slot']) for d in cfg.get('departments') or [] for s in d.get('listings') or []}
+    db = P.data('school-captures.sqlite', key)
+    with sqlite3.connect(f'file:{db}?mode=ro', uri=True) as c:
+        for source in sources:
+            dept, slot = source['dept'], source['slot']
+            if (dept, slot) not in slots:
+                raise ValueError(f'live listing names an unknown department/slot: {dept}/{slot}')
+            if not source.get('pages'):
+                raise ValueError(f'live listing has no reviewed pages: {slot}')
+            complete = source.get('complete') is True
+            expected = source.get('expected_entries')
+            if complete and (type(expected) is not int or expected < 1):
+                raise ValueError(f'complete live listing needs a positive expected_entries: {slot}')
+            def normalized(url):
+                parsed = urllib.parse.urlsplit(url)
+                query = urllib.parse.urlencode(sorted(urllib.parse.parse_qsl(parsed.query, keep_blank_values=True)))
+                return parsed._replace(query=query, fragment='').geturl()
+            reviewed_urls = {normalized(p['url']) for p in source['pages']}
+            group_rows, buckets = [], set()
+            for page in source['pages']:
+                url = page['url']
+                cached = c.execute('select fetched_at,status,sha256,raw_zlib,content_type from live where url=?', (url,)).fetchone()
+                if not cached or cached[1] != 200 or not cached[3]:
+                    raise ValueError(f'live listing lacks a saved HTTP 200 body: {url}')
+                fetched, _, sha, raw, ct = cached
+                data = zlib.decompress(raw)
+                if page['sha256'] != sha or hashlib.sha256(data).hexdigest() != sha:
+                    raise ValueError(f'live listing hash mismatch: {url}')
+                if page.get('fetched_at', fetched) != fetched:
+                    raise ValueError(f'live listing fetch date mismatch: {url}')
+                observed = datetime.fromisoformat(fetched.replace('Z', '+00:00'))
+                year, half = observed.year, ('H1' if observed.month <= 6 else 'H2')
+                buckets.add((year, half))
+                html = data.decode('utf-8', 'replace')
+                missing = {normalized(u) for u in LF.page_links(html, url).values()} - reviewed_urls
+                if complete and missing:
+                    raise ValueError(f'complete live listing has unreviewed linked pages: {slot}: {sorted(missing)}')
+                fmt, entries = LF.parse(html, source.get('format'))
+                flat = ' '.join(' '.join(t for _, t in html_extract.blocks(data, ct, url)).split())
+                n[f'live_captures_{fmt}'] += 1
+                for entry in entries:
+                    if slot in title_filters and not any(title_filters[slot].search(t) for t in entry['titles']):
+                        n['entries_outside_title_filter'] += 1
+                        continue
+                    quote = quote_of(flat, entry)
+                    if not quote:
+                        n['entries_without_quote'] += 1
+                        continue
+                    titles = entry['titles']
+                    dt = [t for t in titles if tm[dept].search(t)]
+                    links = {f: urllib.parse.urljoin(url, entry[f]) for f in ('homepage', 'profile') if entry.get(f)}
+                    group_rows.append(dict(name=given_first(entry['name_listed']), name_listed=entry['name_listed'], dept=dept,
+                                           slot=slot, kind=kind_of[slot], year=year, half=half, observed=observed.strftime('%Y%m%d%H%M%S'),
+                                           titles=titles, dept_title=dt, rank=listing_rank(titles, dt, kind_of[slot], rw), division=entry.get('division'),
+                                           homepage=links.pop('homepage', None), **links, capture_url=url, sha256=sha, quote=quote,
+                                           source_kind='live', fetched_at=fetched))
+            if len(buckets) != 1:
+                raise ValueError(f'live listing pages must belong to one observed half-year: {slot}')
+            if expected is not None and len(group_rows) != expected:
+                raise ValueError(f'live listing entry count mismatch for {slot}: reviewed {expected}, parsed {len(group_rows)}')
+            year, half = next(iter(buckets))
+            coverage.append((dept, year, f'{slot} live {half}', 'ok' if complete else 'partial: reviewed live listing is incomplete'))
+            rows.extend(group_rows)
+            n['live_rows'] += len(group_rows)
+    return rows, n, coverage
+
+
 def main(key):
     cfg = S.get(key)
     rw = (cfg.get('census') or {}).get('rank_words') or {}
@@ -82,11 +164,13 @@ def main(key):
     title_filters = {s['slot']: re.compile(s['title_filter'], re.I) for d in cfg.get('departments') or [] for s in d.get('listings') or [] if s.get('title_filter')}
     kind_of = {s['slot']: s['kind'] for s in S.listing_slots(key)}
     db = P.data('listings-captures.sqlite', key)
-    c = sqlite3.connect(f'file:{db}?mode=ro', uri=True)
-    has_pages = bool(c.execute("select 1 from sqlite_master where name='plan_pages'").fetchone())
+    c = sqlite3.connect(f'file:{db}?mode=ro', uri=True) if db.exists() else None
+    has_pages = bool(c and c.execute("select 1 from sqlite_master where name='plan_pages'").fetchone())
     rows, n = [], collections.Counter()
     cov = collections.defaultdict(lambda: collections.defaultdict(dict))
-    for slot, dept, year, half, cap, status, reason in c.execute('select slot, dept, year, half, capture_url, status, reason from plan order by slot, year, half'):
+    has_plan = bool(c and c.execute("select 1 from sqlite_master where name='plan'").fetchone())
+    plan = c.execute('select slot, dept, year, half, capture_url, status, reason from plan order by slot, year, half') if has_plan else []
+    for slot, dept, year, half, cap, status, reason in plan:
         cov[dept][year][f'{slot} {half}'] = status if status == 'ok' else f'{status}: {reason}'
         if status != 'ok':
             continue
@@ -124,6 +208,14 @@ def main(key):
                                  half=half, observed=obs, titles=e['titles'], dept_title=dt, rank=listing_rank(e['titles'], dt, kind_of.get(slot), rw), division=e.get('division'),
                                  homepage=e.get('homepage'), **({'profile': e['profile']} if e.get('profile') else {}), capture_url=cap, sha256=sha, quote=q))
                 n['rows'] += 1
+    if c:
+        c.close()
+    live, live_counts, live_coverage = live_listing_rows(key, cfg, rw, tm, title_filters, kind_of)
+    rows.extend(live)
+    n.update(live_counts)
+    n['rows'] += len(live)
+    for dept, year, slot, status in live_coverage:
+        cov[dept][year][slot] = status
     out = P.data('rows.json', key)
     out.parent.mkdir(parents=True, exist_ok=True)  # listings/<key>/derived does not exist for a new school (UChicago friction #12)
     out.write_text(json.dumps(rows, indent=0, ensure_ascii=False))

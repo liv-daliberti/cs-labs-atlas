@@ -264,6 +264,7 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('school-captures.sqlite', 'raw', 'captures/{school}.sqlite', 'hierarchy/{school}/raw/school-captures.sqlite'),
     ('listings-captures.sqlite', 'raw', 'listings/{school}/captures.sqlite', 'listings/{school}/raw/captures.sqlite'),
     # per school: reviewed decisions and researched evidence (the build's inputs)
+    ('live-listing-sources.json', 'reviewed', 'hierarchy/{school}/live-listing-sources.json', 'hierarchy/{school}/reviewed/live-listing-sources.json'),
     ('gap-evidence.json', 'reviewed', 'hierarchy/{school}/gap-evidence.json', 'hierarchy/{school}/reviewed/gap-evidence.json'),
     ('few-students-evidence.json', 'reviewed', 'hierarchy/{school}/few-students-evidence.json', 'hierarchy/{school}/reviewed/few-students-evidence.json'),
     ('undated-capture-evidence.json', 'reviewed', 'hierarchy/{school}/undated-capture-evidence.json', 'hierarchy/{school}/reviewed/undated-capture-evidence.json'),

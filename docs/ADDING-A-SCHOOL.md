@@ -179,6 +179,16 @@ atlas stage-gate <key> [n ...]                 # only the gates (0-10), from the
   - *Debt:* `new-school --like <released key>` and live URL probes (ROADMAP #54) [L-11].
 
 ## Stage 1: sources and captures
+- **Current live supplements:** `tools/listing_rows.py <key>` also reads the optional reviewed input
+  `hierarchy/<key>/reviewed/live-listing-sources.json`. Each `sources` entry names a charter `dept` and `slot`, a
+  `format`, `complete` (a reviewed boolean), `expected_entries` (required when complete), and `pages`, a list of
+  `{url, sha256}` receipts for HTTP-200 pages already saved in `school-captures.sqlite` by `school_web.live`.
+  It verifies the raw hashes, actual stored fetch dates, parsed entry count, source quotes and every linked pager
+  page. Relative person links resolve against their real source URL. Rows carry `source_kind: live`, the actual
+  URL and observation date; a complete group covers only its observed year/half under a separate `live` coverage
+  key. An incomplete group supplies sourced person rows with partial coverage. No historical years or archive
+  captures are invented; this works when no archive plan database exists. A supplied optional `fetched_at` must
+  match the stored value exactly. Commit the reviewed manifest before building from a code snapshot.
 - **Do:**
   - Find each department's faculty listing URL eras. Use exact-URL Wayback CDX queries with `collapse=timestamp:4`. Prefix queries on a large host time out (503/504).
   - Write the eras into the charter as `[[departments.listings]]`. Entries that share a slot name are URL eras of one slot.
