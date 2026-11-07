@@ -37,6 +37,7 @@ import argparse
 import collections
 import copy
 import datetime
+import fcntl
 import gzip
 import hashlib
 import json
@@ -430,6 +431,11 @@ def pi_end_year(p):
 
 # ---------------------------------------------------------------- the lab-page toolkit (fetch + parse), patched
 
+
+def names_project_agents(robots_body):
+    names = '|'.join(re.escape(agent) for agent in AI_AGENTS)
+    return bool(re.search(r'^\s*user-agent\s*:\s*(?:' + names + r')\s*(?:#.*)?$', robots_body, re.I | re.M))
+
 def archive_original_url(url):
     """Original host policy also applies to CDX lookups and playback URLs."""
     if (urlsplit(url).hostname or '') not in ('web.archive.org', 'archive.org'):
@@ -440,12 +446,39 @@ def archive_original_url(url):
 
 
 
-def live_only_send(send, deferred, request, **kwargs):
+def live_only_send(send, deferred, request, denied=None, record_denial=None, **kwargs):
     """Also stop archive redirects at the transport boundary, before any socket call."""
     if (urlsplit(request.url).hostname or '') in ('web.archive.org', 'archive.org'):
         deferred.add(request.url)
         raise RuntimeError('archive network disabled by live-first mode')
-    return send(request, **kwargs)
+    host = urlsplit(request.url).hostname or ''
+    if denied and denied(host):
+        raise RuntimeError(f'live host previously refused access: {host}')
+    response = send(request, **kwargs)
+    if record_denial and getattr(response, 'status_code', None) in (403, 429):
+        record_denial(host, response.status_code)
+    return response
+
+
+def live_denials(path=None):
+    path = Path(path or P.RATE_STAMPS / 'labpage-live-denials.json')
+    try:
+        return json.loads(path.read_text())
+    except (OSError, ValueError):
+        return {}
+
+
+def remember_live_denial(host, status, path=None):
+    path = Path(path or P.RATE_STAMPS / 'labpage-live-denials.json')
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.with_suffix('.lock').open('a') as lock:
+        fcntl.flock(lock, fcntl.LOCK_EX)
+        states = live_denials(path)
+        states.setdefault(host, {'status': status, 'at': now()})
+        temp = path.with_suffix('.tmp')
+        temp.write_text(json.dumps(states))
+        temp.replace(path)
+
 
 def cached_archive_only(lpcap, school, url, deferred):
     hit = lpcap.cached(school, url)
@@ -475,7 +508,10 @@ class Kit:
         self.lpcap, self.lpev, self.autom, self.pubx, self.names = lpcap, lpev, autom, pubx, names
         if os.environ.get('CS_ATLAS_LABPAGE_LIVE_ONLY') == '1':
             send = lpcap._sess.send
-            lpcap._sess.send = lambda request, **kw: live_only_send(send, self.deferred_archive_urls, request, **kw)
+            lpcap._sess.send = lambda request, **kw: live_only_send(
+                send, self.deferred_archive_urls, request,
+                denied=lambda host: live_denials().get(host) or (hasattr(self, 'host_use') and self.host_use(host) == 'none'),
+                record_denial=remember_live_denial, **kw)
         lpcap.ROOT = pubx.ROOT = str(H)  # the toolkit's own constant predates tools/atlas_paths.py; its file paths now go through atlas_paths.data
         for k_ in list(lpcap.DBS) + [school]:
             lpcap.DBS[k_] = str(P.data('labpage-captures.sqlite', k_))
@@ -499,6 +535,18 @@ class Kit:
         lpcap.robots_allowed = robots_allowed
         con = lpcap.connect(school)  # create the store
         con.close()
+        if os.environ.get('CS_ATLAS_LABPAGE_LIVE_ONLY') == '1':
+            # Seed the shared stop list from recorded refusals, so a fresh batch
+            # does not ask a denied host again merely because its process is new.
+            for source in dict.fromkeys([str(self.store), lpcap.DBS[school]]):
+                if not os.path.exists(source):
+                    continue
+                with sqlite3.connect(f'file:{source}?mode=ro', uri=True) as db:
+                    denied_rows = db.execute('SELECT url, final_url, status FROM captures WHERE capture_url IS NULL AND status IN (403,429)').fetchall()
+                for url, final, status in denied_rows:
+                    host = urlsplit(final or url).hostname or ''
+                    if host and not host.endswith('archive.org'):
+                        remember_live_denial(host, status)
         try:  # the school charter's host policy (schools/<key>.toml): 'none' is never fetched, live or Wayback; 'wayback-only'
             import school_config as SC  # hosts are read only from Wayback id_ captures (Michigan: Deep Blue, news, record; umich.edu)
             SC.get(school)
@@ -516,6 +564,12 @@ class Kit:
                 return cached_archive_only(lpcap, school_, url, self.deferred_archive_urls)
             if use == 'none':
                 return {'url': url, 'capture_url': None, 'status': None, 'error': 'off-limits-host', 'content': b''}
+            if not original and os.environ.get('CS_ATLAS_LABPAGE_LIVE_ONLY') == '1':
+                refusal = live_denials().get(urlsplit(url).hostname or '')
+                if refusal and not lpcap.cached(school_, url):
+                    return {'url': url, 'capture_url': None, 'status': None, 'http_status': refusal['status'],
+                            'error': 'previous-host-refusal-no-retry', 'content': b''}
+
             if use == 'wayback-only' and not lpcap.WAYBACK_RX.match(url) and 'web.archive.org/cdx/' not in url:
                 return {'url': url, 'capture_url': None, 'status': None, 'error': 'wayback-only-host', 'content': b''}
             return ofetch(school_, url, **kw)
@@ -526,20 +580,22 @@ class Kit:
     def _ai_allowed(self, url):
         import urllib.robotparser
         sp = urlsplit(url)
-        base = f'{sp.scheme}://{sp.netloc}/robots.txt'
+        bases = (f'http://{sp.netloc}/robots.txt', f'https://{sp.netloc}/robots.txt')
         body, st = '', None
         for path in [str(self.store), self.lpcap.DBS[self.school]]:
             if not os.path.exists(path):
                 continue
             c = sqlite3.connect(f'file:{path}?mode=ro', uri=True, timeout=60)
-            row = c.execute('SELECT status, content FROM captures WHERE url=? AND capture_url IS NULL AND error IS NULL '
-                            'ORDER BY id DESC LIMIT 1', (base,)).fetchone()
+            row = c.execute('SELECT status, content FROM captures WHERE url IN (?,?) AND capture_url IS NULL AND error IS NULL '
+                            'ORDER BY id DESC LIMIT 1', bases).fetchone()
             c.close()
             if row:
                 st, body = row[0], (zlib.decompress(row[1]).decode('utf-8', 'replace') if row[1] else '')
                 break
         if st != 200 or '<html' in body[:500].lower():
             return st not in (401, 403)
+        if os.environ.get('CS_ATLAS_LABPAGE_LIVE_ONLY') == '1' and names_project_agents(body):
+            return False  # the top-25/source policy excludes hosts naming these agents entirely
         rp = urllib.robotparser.RobotFileParser()
         rp.parse(body.splitlines())
         return all(rp.can_fetch(a, url) for a in AI_AGENTS)
@@ -583,6 +639,12 @@ class Kit:
         if not os.path.exists(path):
             return 0
         src = sqlite3.connect(f'file:{path}?mode=ro', uri=True, timeout=60)
+        tables = {r[0] for r in src.execute("SELECT name FROM sqlite_master WHERE type='table'")}
+        if not {'live', 'captures'} <= tables:
+            # Older schools use an unrelated pages/linkcheck database at this
+            # logical path. Their normal lpcap caches remain the source of bytes.
+            src.close()
+            return 0
         dst = self.lpcap.connect(self.school)
         n = 0
         for u in urls:
@@ -884,8 +946,8 @@ def discover_lab(kit, school, p, ctx, full=True):
     recorded = bool(prior and prior.get('lab_site') and not is_profile(prior['lab_site'], dom))
     sites = []
     for u, src in list(cands.items())[:8]:
-        if recorded and src == 'prior_labpage_pass':
-            continue
+        if recorded and src == 'prior_labpage_pass' and kit.stored(u)[0]:
+            continue  # a prior URL without captured bytes still needs checking
         r = kit.get(u)
         res = result_of(r)
         txt = ''
@@ -2451,6 +2513,8 @@ def patch_mpcap(mpcap):
         body = zlib.decompress(row[1]).decode('utf-8', 'replace')
         if '<html' in body[:500].lower():
             return True
+        if os.environ.get('CS_ATLAS_LABPAGE_LIVE_ONLY') == '1' and names_project_agents(body):
+            return False  # the top-25/source policy excludes hosts naming these agents entirely
         rp = urllib.robotparser.RobotFileParser()
         rp.parse(body.splitlines())
         return all(rp.can_fetch(a, url) for a in AI_AGENTS)

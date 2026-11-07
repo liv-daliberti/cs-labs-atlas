@@ -525,3 +525,50 @@ def test_live_first_transport_also_blocks_redirects_to_archive():
     assert not sent and pending
     A.live_only_send(send, pending, SimpleNamespace(url='https://u.edu/'))
     assert sent == ['https://u.edu/']
+
+
+def test_live_refusal_is_shared_and_blocks_later_requests(tmp_path):
+    from types import SimpleNamespace
+    path = tmp_path / 'denials.json'
+    sent = []
+    def send(request, **kw):
+        sent.append(request.url)
+        return SimpleNamespace(status_code=403)
+    options = {'denied': lambda host: A.live_denials(path).get(host),
+               'record_denial': lambda host, status: A.remember_live_denial(host, status, path)}
+    request = SimpleNamespace(url='https://u.edu/faculty/a')
+    A.live_only_send(send, set(), request, **options)
+    assert A.live_denials(path)['u.edu']['status'] == 403
+    with pytest.raises(RuntimeError, match='previously refused'):
+        A.live_only_send(send, set(), SimpleNamespace(url='https://u.edu/faculty/b'), **options)
+    assert sent == ['https://u.edu/faculty/a']
+
+
+def test_school_web_import_ignores_legacy_page_container(tmp_path):
+    import sqlite3
+    from types import SimpleNamespace
+    path = tmp_path / 'legacy.sqlite'
+    with sqlite3.connect(path) as con:
+        con.execute('CREATE TABLE pages (url TEXT)')
+    # No lpcap attribute: an unsupported source must return before opening a writer.
+    assert A.Kit.import_school_web(SimpleNamespace(school='old'), str(path), ['https://u.edu/']) == 0
+
+
+def test_live_first_named_agent_host_exclusion_is_not_path_specific():
+    assert A.names_project_agents('User-agent: ClaudeBot\nDisallow: /api\n')
+    assert A.names_project_agents('user-agent: anthropic-ai # model bot\nAllow: /\n')
+    assert not A.names_project_agents('User-agent: *\nDisallow: /admin\n')
+
+
+def test_named_agent_exclusion_survives_http_https_archive_variant(tmp_path, monkeypatch):
+    import sqlite3
+    import zlib
+    from types import SimpleNamespace
+    path = tmp_path / 'captures.sqlite'
+    with sqlite3.connect(path) as con:
+        con.execute('CREATE TABLE captures (id INTEGER, url TEXT, capture_url TEXT, status INTEGER, content BLOB, error TEXT)')
+        con.execute('INSERT INTO captures VALUES (1,?,NULL,200,?,NULL)',
+                    ('https://u.edu/robots.txt', zlib.compress(b'User-agent: ClaudeBot\nDisallow: /api\n')))
+    monkeypatch.setenv('CS_ATLAS_LABPAGE_LIVE_ONLY', '1')
+    kit = SimpleNamespace(store=path, school='u', lpcap=SimpleNamespace(DBS={'u': str(path)}))
+    assert not A.Kit._ai_allowed(kit, 'http://u.edu/lab/')

@@ -315,3 +315,8 @@ Both archive CDX and playback use cached bytes only; missing archive requests
 are recorded as `wayback_deferred`. A transport guard also stops live redirects
 to archive.org before sending them. Named-agent robot restrictions and charter
 `none` policies apply to the original target of CDX/playback as well.
+Live-first batches share a persistent refusal list at
+`rate-stamps/labpage-live-denials.json`: recorded HTTP 403/429 responses prevent
+later network requests to that host, including from a new process. Existing
+captured bytes remain usable where the source policy permits. A prior-pass URL
+without a stored capture is checked instead of being silently skipped.
