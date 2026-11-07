@@ -24,8 +24,8 @@
    "outside_appointment_by_year": {
     "2016": 2,
     "2025": 1,
-    "2023": 1,
-    "2026": 1
+    "2026": 1,
+    "2023": 1
    },
    "periods": [],
    "listing_years": [
@@ -338,8 +338,8 @@
    "reason": "Listed only in 2026 ('Assistant Professor ... Coming Fall 2026'): a future start; no school work yet.",
    "evidence": null,
    "funnel": {
-    "name_hits": 72,
-    "school_affiliated": 7,
+    "name_hits": 71,
+    "school_affiliated": 8,
     "dblpTitles": 12,
     "dblpDois": 13,
     "verifiedWorks": 0
@@ -364,16 +364,15 @@
    "reason": "Listed only in 2026 (Robotics, Assistant Professor); his 2 identified school works predate the listing.",
    "evidence": null,
    "funnel": {
-    "name_hits": 5,
-    "school_affiliated": 2,
-    "identity": 2,
+    "name_hits": 4,
+    "school_affiliated": 1,
+    "identity": 1,
     "dblpTitles": 24,
     "dblpDois": 23,
     "verifiedWorks": 0
    },
    "outside_appointment_by_year": {
-    "2018": 1,
-    "2024": 1
+    "2018": 1
    },
    "periods": [],
    "listing_years": [
@@ -447,36 +446,6 @@
     2024,
     2025,
     2026
-   ],
-   "students": 0
-  },
-  {
-   "school": "uchicago",
-   "pi": "Ariel Feldman",
-   "departments": [
-    "CS"
-   ],
-   "rank": "ladder",
-   "title": "Assistant Professor; Department of Computer Science",
-   "diagnosis": "no_appointment_coverage",
-   "verdict": "unreviewed",
-   "reason": null,
-   "evidence": null,
-   "funnel": {
-    "name_hits": 9,
-    "school_affiliated": 7,
-    "identity": 5,
-    "dblpTitles": 4,
-    "dblpDois": 4,
-    "verifiedWorks": 0
-   },
-   "outside_appointment_by_year": {
-    "2017": 2,
-    "2018": 3
-   },
-   "periods": [],
-   "listing_years": [
-    2016
    ],
    "students": 0
   },
@@ -566,7 +535,7 @@
    "reason": null,
    "evidence": null,
    "funnel": {
-    "name_hits": 40,
+    "name_hits": 39,
     "school_affiliated": 1,
     "dblpTitles": 62,
     "dblpDois": 58,
@@ -761,7 +730,7 @@
    "reason": null,
    "evidence": null,
    "funnel": {
-    "name_hits": 42,
+    "name_hits": 41,
     "dblpTitles": 97,
     "dblpDois": 92,
     "verifiedWorks": 0
@@ -936,35 +905,696 @@
    "students": 0
   },
   {
-   "school": "gatech",
-   "pi": "Lutz Warnke",
+   "school": "harvard",
+   "pi": "Boaz Barak",
    "departments": [
-    "MATH"
+    "CS"
    ],
    "rank": "ladder",
-   "title": "Lutz Warnke Assistant Professor",
+   "title": "Catalyst Professor of Computer Science",
    "diagnosis": "no_appointment_coverage",
-   "verdict": "unreviewed",
-   "reason": null,
-   "evidence": null,
+   "verdict": "fix",
+   "reason": "The exact DBLP person list in the frozen 2026-09-01 dump has no 2026 publication records (latest year 2025). The supported appointment evidence currently establishes only the 2026 directory observation, so older publications are not admitted through an invented historical interval. This is a bounded attribution result, not a claim of no lifetime or later-2026 output.",
+   "evidence": [
+    {
+     "url": "https://dblp.org/pid/b/BBarak",
+     "sha256": "4644eb84f067f17088b2dcf872581eec89c2a962ef4341501cfce1605c51b626",
+     "artifact": "hierarchy/harvard/raw/identity-source-4644eb84f067f17088b2dcf872581eec89c2a962ef4341501cfce1605c51b626.json.gz",
+     "quote": "Boaz Barak",
+     "hash_basis": "Saved compressed official-dump-derived school-local persons cache; quote in decompressed JSON."
+    }
+   ],
    "funnel": {
-    "name_hits": 14,
-    "school_affiliated": 11,
-    "identity": 11,
-    "dblpTitles": 30,
-    "dblpDois": 30,
+    "name_hits": 41,
+    "school_affiliated": 32,
+    "identity": 31,
+    "dblpTitles": 106,
+    "dblpDois": 94,
     "verifiedWorks": 0
    },
    "outside_appointment_by_year": {
-    "2018": 2,
-    "2019": 4,
-    "2020": 2,
-    "2021": 2,
-    "2022": 1
+    "2016": 5,
+    "2017": 3,
+    "2018": 1,
+    "2019": 1,
+    "2020": 4,
+    "2021": 5,
+    "2022": 2,
+    "2023": 5,
+    "2024": 4,
+    "2025": 1
    },
    "periods": [],
    "listing_years": [
-    2017
+    2026
+   ],
+   "students": 0
+  },
+  {
+   "school": "harvard",
+   "pi": "Eddie Kohler",
+   "departments": [
+    "CS"
+   ],
+   "rank": "ladder",
+   "title": "Microsoft Professor of Computer Science",
+   "diagnosis": "no_appointment_coverage",
+   "verdict": "fix",
+   "reason": "The exact DBLP person list in the frozen 2026-09-01 dump has no 2026 publication records (latest year 2025). The supported appointment evidence currently establishes only the 2026 directory observation, so older publications are not admitted through an invented historical interval. This is a bounded attribution result, not a claim of no lifetime or later-2026 output.",
+   "evidence": [
+    {
+     "url": "https://dblp.org/pid/78/5231",
+     "sha256": "4644eb84f067f17088b2dcf872581eec89c2a962ef4341501cfce1605c51b626",
+     "artifact": "hierarchy/harvard/raw/identity-source-4644eb84f067f17088b2dcf872581eec89c2a962ef4341501cfce1605c51b626.json.gz",
+     "quote": "Eddie Kohler",
+     "hash_basis": "Saved compressed official-dump-derived school-local persons cache; quote in decompressed JSON."
+    }
+   ],
+   "funnel": {
+    "name_hits": 13,
+    "school_affiliated": 12,
+    "identity": 12,
+    "dblpTitles": 77,
+    "dblpDois": 73,
+    "verifiedWorks": 0
+   },
+   "outside_appointment_by_year": {
+    "2016": 1,
+    "2017": 1,
+    "2018": 3,
+    "2019": 2,
+    "2020": 1,
+    "2021": 1,
+    "2022": 1,
+    "2023": 2
+   },
+   "periods": [],
+   "listing_years": [
+    2026
+   ],
+   "students": 0
+  },
+  {
+   "school": "harvard",
+   "pi": "Michael D. Smith",
+   "departments": [
+    "CS"
+   ],
+   "rank": "ladder",
+   "title": "John H. Finley, Jr. Professor of Engineering and Applied Sciences; Harvard University Distinguished Service Professor",
+   "diagnosis": "no_appointment_coverage",
+   "verdict": "fix",
+   "reason": "The reviewed exact Harvard homonym has one 2026 DBLP preprint, Inducing Sustained Creativity and Diversity in Large Language Models (arXiv2603.19519). Its DOI was not found by indexed exact-normalized lookup in the local 2026-10-14 snapshot. A known publication without its own Harvard byline evidence is not attributed, and older publications lack supported appointment years in this partial package. This is a bounded attribution result, not a claim of no lifetime or later-2026 output.",
+   "evidence": [
+    {
+     "url": "https://dblp.org/pid/163/1790-1",
+     "sha256": "4644eb84f067f17088b2dcf872581eec89c2a962ef4341501cfce1605c51b626",
+     "artifact": "hierarchy/harvard/raw/identity-source-4644eb84f067f17088b2dcf872581eec89c2a962ef4341501cfce1605c51b626.json.gz",
+     "quote": "Michael D. Smith 0001",
+     "hash_basis": "Saved compressed official-dump-derived school-local persons cache; quote in decompressed JSON."
+    }
+   ],
+   "funnel": {
+    "name_hits": 477,
+    "school_affiliated": 57,
+    "identity": 4,
+    "dblpTitles": 57,
+    "dblpDois": 64,
+    "verifiedWorks": 0
+   },
+   "outside_appointment_by_year": {
+    "2023": 2,
+    "2024": 2
+   },
+   "periods": [],
+   "listing_years": [
+    2026
+   ],
+   "students": 0
+  },
+  {
+   "school": "harvard",
+   "pi": "Qianqian Wang",
+   "departments": [
+    "CS"
+   ],
+   "rank": "ladder",
+   "title": "Assistant Professor of Computer Science",
+   "diagnosis": "identity_unanchored",
+   "verdict": "fix",
+   "reason": "The reviewed homepage/CV-matched DBLP person has two 2026 records. Flat-Pack Bench (arXiv2605.21625) was not found by indexed exact-normalized snapshot DOI lookup. Self-Improving 4D Perception via Self-Distillation (arXiv2604.08532, OpenAlexW7153170511) has an author entry for Qianqian Wang with no institution or raw affiliation. Neither establishes her own Harvard byline; older publications lack supported appointment years in this partial package. This is a bounded attribution result, not a claim of no lifetime or later-2026 output.",
+   "evidence": [
+    {
+     "url": "https://dblp.org/pid/118/6735-2",
+     "sha256": "4644eb84f067f17088b2dcf872581eec89c2a962ef4341501cfce1605c51b626",
+     "artifact": "hierarchy/harvard/raw/identity-source-4644eb84f067f17088b2dcf872581eec89c2a962ef4341501cfce1605c51b626.json.gz",
+     "quote": "Qianqian Wang",
+     "hash_basis": "Saved compressed official-dump-derived school-local persons cache; quote in decompressed JSON."
+    }
+   ],
+   "funnel": {
+    "name_hits": 66,
+    "school_affiliated": 6,
+    "dblpTitles": 31,
+    "dblpDois": 44,
+    "verifiedWorks": 0
+   },
+   "outside_appointment_by_year": {},
+   "periods": [],
+   "listing_years": [
+    2026
+   ],
+   "students": 0
+  },
+  {
+   "school": "jhu",
+   "pi": "Uthsav Chitra",
+   "departments": [
+    "CS"
+   ],
+   "rank": "ladder",
+   "title": "Assistant Professor",
+   "diagnosis": "identity_unanchored",
+   "verdict": "fix",
+   "reason": "Snapshot-limited collection: only the saved 2026 faculty listing is supported; historical appointment years remain unknown. The cached sweep funnel has 3 name hits, 3 school-affiliated hits, 0 identity-accepted hits, and zero final papers in that admitted year. DBLP supplies 14 title anchors and 10 DOI anchors. Earlier attributable works outside the sourced year are held, not evidence of absence. This is an incomplete local collection result, not a claim that the PI has no publications.",
+   "evidence": [
+    {
+     "url": "https://www.cs.jhu.edu/faculty/",
+     "sha256": "edcd65cb150863b03ec33fa3cf7572d0a90cfba20ca260453752aab5b8d39959",
+     "quote": "Uthsav Chitra Assistant Professor",
+     "kind": "dept_listing:CS",
+     "year": 2026
+    }
+   ],
+   "funnel": {
+    "name_hits": 3,
+    "school_affiliated": 3,
+    "dblpTitles": 14,
+    "dblpDois": 10,
+    "verifiedWorks": 0
+   },
+   "outside_appointment_by_year": {},
+   "periods": [],
+   "listing_years": [
+    2026
+   ],
+   "students": 0
+  },
+  {
+   "school": "jhu",
+   "pi": "Zih-Yun “Sarah” Chiu",
+   "departments": [
+    "CS"
+   ],
+   "rank": "ladder",
+   "title": "Assistant Professor",
+   "diagnosis": "identity_unanchored",
+   "verdict": "fix",
+   "reason": "Snapshot-limited collection: only the saved 2026 faculty listing is supported; historical appointment years remain unknown. The cached sweep funnel has 1 name hits, 1 school-affiliated hits, 0 identity-accepted hits, and zero final papers in that admitted year. DBLP supplies 1 title anchors and 1 DOI anchors. Earlier attributable works outside the sourced year are held, not evidence of absence. This is an incomplete local collection result, not a claim that the PI has no publications.",
+   "evidence": [
+    {
+     "url": "https://www.cs.jhu.edu/faculty/",
+     "sha256": "edcd65cb150863b03ec33fa3cf7572d0a90cfba20ca260453752aab5b8d39959",
+     "quote": "Zih-Yun “Sarah” Chiu Assistant Professor",
+     "kind": "dept_listing:CS",
+     "year": 2026
+    }
+   ],
+   "funnel": {
+    "name_hits": 1,
+    "school_affiliated": 1,
+    "dblpTitles": 1,
+    "dblpDois": 1,
+    "verifiedWorks": 0
+   },
+   "outside_appointment_by_year": {},
+   "periods": [],
+   "listing_years": [
+    2026
+   ],
+   "students": 0
+  },
+  {
+   "school": "jhu",
+   "pi": "Gillian Hadfield",
+   "departments": [
+    "CS"
+   ],
+   "rank": "ladder",
+   "title": "Bloomberg Distinguished Professor",
+   "diagnosis": "identity_unanchored",
+   "verdict": "fix",
+   "reason": "Snapshot-limited collection: only the saved 2026 faculty listing is supported; historical appointment years remain unknown. The cached sweep funnel has 12 name hits, 10 school-affiliated hits, 0 identity-accepted hits, and zero final papers in that admitted year. DBLP supplies 1 title anchors and 1 DOI anchors. Earlier attributable works outside the sourced year are held, not evidence of absence. This is an incomplete local collection result, not a claim that the PI has no publications.",
+   "evidence": [
+    {
+     "url": "https://www.cs.jhu.edu/faculty/",
+     "sha256": "edcd65cb150863b03ec33fa3cf7572d0a90cfba20ca260453752aab5b8d39959",
+     "quote": "Gillian Hadfield Bloomberg Distinguished Professor",
+     "kind": "dept_listing:CS",
+     "year": 2026
+    }
+   ],
+   "funnel": {
+    "name_hits": 12,
+    "school_affiliated": 10,
+    "dblpTitles": 1,
+    "dblpDois": 1,
+    "verifiedWorks": 0
+   },
+   "outside_appointment_by_year": {},
+   "periods": [],
+   "listing_years": [
+    2026
+   ],
+   "students": 0
+  },
+  {
+   "school": "jhu",
+   "pi": "Krishna Murthy Jatavallabhula",
+   "departments": [
+    "CS"
+   ],
+   "rank": "ladder",
+   "title": "Assistant Professor",
+   "diagnosis": "no_school_affiliation",
+   "verdict": "fix",
+   "reason": "Snapshot-limited collection: only the saved 2026 faculty listing is supported; historical appointment years remain unknown. The cached sweep funnel has 2 name hits, 0 school-affiliated hits, 0 identity-accepted hits, and zero final papers in that admitted year. DBLP supplies 52 title anchors and 62 DOI anchors. Earlier attributable works outside the sourced year are held, not evidence of absence. This is an incomplete local collection result, not a claim that the PI has no publications.",
+   "evidence": [
+    {
+     "url": "https://www.cs.jhu.edu/faculty/",
+     "sha256": "edcd65cb150863b03ec33fa3cf7572d0a90cfba20ca260453752aab5b8d39959",
+     "quote": "Krishna Murthy Jatavallabhula Assistant Professor",
+     "kind": "dept_listing:CS",
+     "year": 2026
+    }
+   ],
+   "funnel": {
+    "name_hits": 2,
+    "dblpTitles": 52,
+    "dblpDois": 62,
+    "verifiedWorks": 0
+   },
+   "outside_appointment_by_year": {},
+   "periods": [],
+   "listing_years": [
+    2026
+   ],
+   "students": 0
+  },
+  {
+   "school": "jhu",
+   "pi": "Murat Kocaoglu",
+   "departments": [
+    "CS"
+   ],
+   "rank": "ladder",
+   "title": "Assistant Professor",
+   "diagnosis": "no_appointment_coverage",
+   "verdict": "fix",
+   "reason": "Snapshot-limited collection: only the saved 2026 faculty listing is supported; historical appointment years remain unknown. The cached sweep funnel has 6 name hits, 3 school-affiliated hits, 2 identity-accepted hits, and zero final papers in that admitted year. DBLP supplies 57 title anchors and 29 DOI anchors. Earlier attributable works outside the sourced year are held, not evidence of absence. This is an incomplete local collection result, not a claim that the PI has no publications.",
+   "evidence": [
+    {
+     "url": "https://www.cs.jhu.edu/faculty/",
+     "sha256": "edcd65cb150863b03ec33fa3cf7572d0a90cfba20ca260453752aab5b8d39959",
+     "quote": "Murat Kocaoglu Assistant Professor",
+     "kind": "dept_listing:CS",
+     "year": 2026
+    }
+   ],
+   "funnel": {
+    "name_hits": 6,
+    "school_affiliated": 3,
+    "identity": 2,
+    "dblpTitles": 57,
+    "dblpDois": 29,
+    "verifiedWorks": 0
+   },
+   "outside_appointment_by_year": {
+    "2025": 2
+   },
+   "periods": [],
+   "listing_years": [
+    2026
+   ],
+   "students": 0
+  },
+  {
+   "school": "jhu",
+   "pi": "Alex Marder",
+   "departments": [
+    "CS"
+   ],
+   "rank": "ladder",
+   "title": "Assistant Professor",
+   "diagnosis": "identity_unanchored",
+   "verdict": "fix",
+   "reason": "Identity held: multiple or incomplete DBLP name candidates and no positively matched ORCID/OpenAlex identity in the saved institutional listing/profile sources. Current package attributes zero papers; this is an unresolved identity review, not a claim that no identity or papers exist. Complete permitted homepage/CV evidence review remains open.",
+   "evidence": [
+    {
+     "kind": "ladder_faculty",
+     "url": "https://www.cs.jhu.edu/faculty/",
+     "sha256": "edcd65cb150863b03ec33fa3cf7572d0a90cfba20ca260453752aab5b8d39959",
+     "quote": "Alex Marder Assistant Professor",
+     "observed": "20261105145819",
+     "role": ""
+    }
+   ],
+   "funnel": {
+    "name_hits": 8,
+    "school_affiliated": 8,
+    "dblpTitles": 0,
+    "dblpDois": 0,
+    "verifiedWorks": 0
+   },
+   "outside_appointment_by_year": {},
+   "periods": [],
+   "listing_years": [
+    2026
+   ],
+   "students": 0
+  },
+  {
+   "school": "jhu",
+   "pi": "Lydia Zakynthinou",
+   "departments": [
+    "CS"
+   ],
+   "rank": "ladder",
+   "title": "Assistant Professor",
+   "diagnosis": "not_in_school_sweep",
+   "verdict": "fix",
+   "reason": "Snapshot-limited collection: only the saved 2026 faculty listing is supported; historical appointment years remain unknown. The cached sweep funnel has 0 name hits, 0 school-affiliated hits, 0 identity-accepted hits, and zero final papers in that admitted year. DBLP supplies 15 title anchors and 7 DOI anchors. Earlier attributable works outside the sourced year are held, not evidence of absence. This is an incomplete local collection result, not a claim that the PI has no publications.",
+   "evidence": [
+    {
+     "url": "https://www.cs.jhu.edu/faculty/",
+     "sha256": "edcd65cb150863b03ec33fa3cf7572d0a90cfba20ca260453752aab5b8d39959",
+     "quote": "Lydia Zakynthinou Assistant Professor",
+     "kind": "dept_listing:CS",
+     "year": 2026
+    }
+   ],
+   "funnel": {
+    "dblpTitles": 15,
+    "dblpDois": 7,
+    "verifiedWorks": 0
+   },
+   "outside_appointment_by_year": {},
+   "periods": [],
+   "listing_years": [
+    2026
+   ],
+   "students": 0
+  },
+  {
+   "school": "jhu",
+   "pi": "Roy Adams",
+   "departments": [
+    "CS"
+   ],
+   "rank": "courtesy",
+   "title": "Assistant Professor, Psychiatry and Behavioral Sciences",
+   "diagnosis": "no_appointment_coverage",
+   "verdict": "fix",
+   "reason": "Snapshot-limited collection: only the saved 2026 faculty listing is supported; historical appointment years remain unknown. The cached sweep funnel has 43 name hits, 34 school-affiliated hits, 5 identity-accepted hits, and zero final papers in that admitted year. DBLP supplies 7 title anchors and 2 DOI anchors. Earlier attributable works outside the sourced year are held, not evidence of absence. This is an incomplete local collection result, not a claim that the PI has no publications.",
+   "evidence": [
+    {
+     "url": "https://www.cs.jhu.edu/people/cs-affiliates/joint-and-secondary-faculty/",
+     "sha256": "3192b4b3bfd6230196515442f3556a1f77f1a88446cb686fd7dc3997d2ca9e81",
+     "quote": "Roy Adams Assistant Professor, Psychiatry and Behavioral Sciences",
+     "kind": "dept_listing:CS",
+     "year": 2026
+    }
+   ],
+   "funnel": {
+    "name_hits": 43,
+    "school_affiliated": 34,
+    "identity": 5,
+    "dblpTitles": 7,
+    "dblpDois": 2,
+    "verifiedWorks": 0
+   },
+   "outside_appointment_by_year": {
+    "2019": 1,
+    "2020": 2,
+    "2022": 1,
+    "2024": 1
+   },
+   "periods": [],
+   "listing_years": [
+    2026
+   ],
+   "students": 0
+  },
+  {
+   "school": "jhu",
+   "pi": "Joel Bader",
+   "departments": [
+    "CS"
+   ],
+   "rank": "courtesy",
+   "title": "Professor, Biomedical Engineering & Oncology",
+   "diagnosis": "identity_unanchored",
+   "verdict": "fix",
+   "reason": "Identity held: multiple or incomplete DBLP name candidates and no positively matched ORCID/OpenAlex identity in the saved institutional listing/profile sources. Current package attributes zero papers; this is an unresolved identity review, not a claim that no identity or papers exist. Complete permitted homepage/CV evidence review remains open.",
+   "evidence": [
+    {
+     "kind": "courtesy_faculty",
+     "url": "https://www.cs.jhu.edu/people/cs-affiliates/joint-and-secondary-faculty/",
+     "sha256": "3192b4b3bfd6230196515442f3556a1f77f1a88446cb686fd7dc3997d2ca9e81",
+     "quote": "Joel Bader Professor, Biomedical Engineering & Oncology",
+     "observed": "20261106222642",
+     "role": "Professor, Biomedical Engineering & Oncology",
+     "home_unit": "Biomedical Engineering & Oncology"
+    }
+   ],
+   "funnel": {
+    "name_hits": 91,
+    "school_affiliated": 91,
+    "dblpTitles": 0,
+    "dblpDois": 0,
+    "verifiedWorks": 0
+   },
+   "outside_appointment_by_year": {},
+   "periods": [],
+   "listing_years": [
+    2026
+   ],
+   "students": 0
+  },
+  {
+   "school": "jhu",
+   "pi": "Yiqun Chen",
+   "departments": [
+    "CS"
+   ],
+   "rank": "courtesy",
+   "title": "Assistant Professor, Biostatistics",
+   "diagnosis": "identity_unanchored",
+   "verdict": "fix",
+   "reason": "Identity held: multiple or incomplete DBLP name candidates and no positively matched ORCID/OpenAlex identity in the saved institutional listing/profile sources. Current package attributes zero papers; this is an unresolved identity review, not a claim that no identity or papers exist. Complete permitted homepage/CV evidence review remains open.",
+   "evidence": [
+    {
+     "kind": "courtesy_faculty",
+     "url": "https://www.cs.jhu.edu/people/cs-affiliates/joint-and-secondary-faculty/",
+     "sha256": "3192b4b3bfd6230196515442f3556a1f77f1a88446cb686fd7dc3997d2ca9e81",
+     "quote": "Yiqun Chen Assistant Professor, Biostatistics",
+     "observed": "20261106222642",
+     "role": "Assistant Professor, Biostatistics",
+     "home_unit": "Biostatistics"
+    }
+   ],
+   "funnel": {
+    "name_hits": 132,
+    "school_affiliated": 46,
+    "dblpTitles": 0,
+    "dblpDois": 0,
+    "verifiedWorks": 0
+   },
+   "outside_appointment_by_year": {},
+   "periods": [],
+   "listing_years": [
+    2026
+   ],
+   "students": 0
+  },
+  {
+   "school": "jhu",
+   "pi": "Jon Donnelly",
+   "departments": [
+    "CS"
+   ],
+   "rank": "courtesy",
+   "title": "Assistant Professor, Biostatistics",
+   "diagnosis": "no_school_affiliation",
+   "verdict": "fix",
+   "reason": "Snapshot-limited collection: only the saved 2026 faculty listing is supported; historical appointment years remain unknown. The cached sweep funnel has 6 name hits, 0 school-affiliated hits, 0 identity-accepted hits, and zero final papers in that admitted year. DBLP supplies 18 title anchors and 21 DOI anchors. Earlier attributable works outside the sourced year are held, not evidence of absence. This is an incomplete local collection result, not a claim that the PI has no publications.",
+   "evidence": [
+    {
+     "url": "https://www.cs.jhu.edu/people/cs-affiliates/joint-and-secondary-faculty/",
+     "sha256": "3192b4b3bfd6230196515442f3556a1f77f1a88446cb686fd7dc3997d2ca9e81",
+     "quote": "Jon Donnelly Assistant Professor, Biostatistics",
+     "kind": "dept_listing:CS",
+     "year": 2026
+    }
+   ],
+   "funnel": {
+    "name_hits": 6,
+    "dblpTitles": 18,
+    "dblpDois": 21,
+    "verifiedWorks": 0
+   },
+   "outside_appointment_by_year": {},
+   "periods": [],
+   "listing_years": [
+    2026
+   ],
+   "students": 0
+  },
+  {
+   "school": "jhu",
+   "pi": "Jennifer Hu",
+   "departments": [
+    "CS"
+   ],
+   "rank": "courtesy",
+   "title": "Assistant Professor, Cognitive Science",
+   "diagnosis": "identity_unanchored",
+   "verdict": "fix",
+   "reason": "Identity held: multiple or incomplete DBLP name candidates and no positively matched ORCID/OpenAlex identity in the saved institutional listing/profile sources. Current package attributes zero papers; this is an unresolved identity review, not a claim that no identity or papers exist. Complete permitted homepage/CV evidence review remains open.",
+   "evidence": [
+    {
+     "kind": "courtesy_faculty",
+     "url": "https://www.cs.jhu.edu/people/cs-affiliates/joint-and-secondary-faculty/",
+     "sha256": "3192b4b3bfd6230196515442f3556a1f77f1a88446cb686fd7dc3997d2ca9e81",
+     "quote": "Jennifer Hu Assistant Professor, Cognitive Science",
+     "observed": "20261106222642",
+     "role": "Assistant Professor, Cognitive Science",
+     "home_unit": "Cognitive Science"
+    }
+   ],
+   "funnel": {
+    "name_hits": 90,
+    "school_affiliated": 26,
+    "dblpTitles": 0,
+    "dblpDois": 0,
+    "verifiedWorks": 0
+   },
+   "outside_appointment_by_year": {},
+   "periods": [],
+   "listing_years": [
+    2026
+   ],
+   "students": 0
+  },
+  {
+   "school": "jhu",
+   "pi": "Louis Whitcomb",
+   "departments": [
+    "CS"
+   ],
+   "rank": "courtesy",
+   "title": "Professor, Mechanical Engineering",
+   "diagnosis": "identity_unanchored",
+   "verdict": "fix",
+   "reason": "Identity held: multiple or incomplete DBLP name candidates and no positively matched ORCID/OpenAlex identity in the saved institutional listing/profile sources. Current package attributes zero papers; this is an unresolved identity review, not a claim that no identity or papers exist. Complete permitted homepage/CV evidence review remains open.",
+   "evidence": [
+    {
+     "kind": "courtesy_faculty",
+     "url": "https://www.cs.jhu.edu/people/cs-affiliates/joint-and-secondary-faculty/",
+     "sha256": "3192b4b3bfd6230196515442f3556a1f77f1a88446cb686fd7dc3997d2ca9e81",
+     "quote": "Louis Whitcomb Professor, Mechanical Engineering",
+     "observed": "20261106222642",
+     "role": "Professor, Mechanical Engineering",
+     "home_unit": "Mechanical Engineering"
+    }
+   ],
+   "funnel": {
+    "name_hits": 48,
+    "school_affiliated": 46,
+    "dblpTitles": 0,
+    "dblpDois": 0,
+    "verifiedWorks": 0
+   },
+   "outside_appointment_by_year": {},
+   "periods": [],
+   "listing_years": [
+    2026
+   ],
+   "students": 0
+  },
+  {
+   "school": "washu",
+   "pi": "Jonathan Turner",
+   "departments": [
+    "CSE"
+   ],
+   "rank": "emeritus",
+   "title": "Emeritus Professor",
+   "diagnosis": "identity_unanchored",
+   "verdict": "fix",
+   "reason": "Snapshot-limited finding: no paper is admitted by the 2026-10-14 institution sweep plus the local DBLP person list in the currently evidenced listing years 2020, 2024, and 2026. The proposed Jay R. Turner environmental-science identity is a different person and is rejected. Other years and additional sources remain incomplete; no claim of no publications is made.",
+   "evidence": [
+    {
+     "kind": "ladder_faculty",
+     "url": "https://web.archive.org/web/20200915222351id_/https://cse.wustl.edu/faculty-research/directory.html",
+     "sha256": "6e2f9f6c0703ac49c930ba5ff86a3c5d3dbcb6926c6ac18328ab59cc1de07e0f",
+     "quote": "Jonathan Turner Senior Professor",
+     "observed": "20200915222351",
+     "role": ""
+    }
+   ],
+   "funnel": {
+    "name_hits": 6,
+    "school_affiliated": 4,
+    "dblpTitles": 107,
+    "dblpDois": 121,
+    "verifiedWorks": 0
+   },
+   "outside_appointment_by_year": {},
+   "periods": [],
+   "listing_years": [
+    2020,
+    2024,
+    2026
+   ],
+   "students": 0
+  },
+  {
+   "school": "washu",
+   "pi": "Ian Bogost",
+   "departments": [
+    "CSE"
+   ],
+   "rank": "ladder",
+   "title": "Professor",
+   "diagnosis": "not_in_school_sweep",
+   "verdict": "fix",
+   "reason": "Snapshot-limited finding: the local DBLP person identity is established, but no paper is admitted by the stored institution sweep/DBLP list within the evidenced appointment beginning 2021-07-01 and observed through 2026-11-06. Additional source recovery remains incomplete; this is not a claim of no publications.",
+   "evidence": [
+    {
+     "kind": "ladder_faculty",
+     "url": "https://web.archive.org/web/20240528162741id_/https://cse.wustl.edu/faculty-research/directory.html",
+     "sha256": "c367f8f40d192e9c6c5940f665cc72add18ddbee37bb08068cc5ace7b152947a",
+     "quote": "Ian Bogost Professor",
+     "observed": "20240528162741",
+     "role": ""
+    }
+   ],
+   "funnel": {
+    "dblpTitles": 20,
+    "dblpDois": 13,
+    "verifiedWorks": 0
+   },
+   "outside_appointment_by_year": {},
+   "periods": [
+    [
+     "2021-07-01",
+     null
+    ]
+   ],
+   "listing_years": [
+    2024,
+    2026
    ],
    "students": 0
   }
@@ -989,152 +1619,11 @@
   },
   {
    "school": "michigan",
-   "pi": "Jeffrey A. Fessler",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 191
-  },
-  {
-   "school": "michigan",
-   "pi": "Michael P. Flynn",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 89
-  },
-  {
-   "school": "michigan",
    "pi": "James S. Freudenberg",
    "departments": [
     "ECE"
    ],
    "lab_papers": 7
-  },
-  {
-   "school": "michigan",
-   "pi": "Yogesh B. Gianchandani",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 57
-  },
-  {
-   "school": "michigan",
-   "pi": "Jessy W Grizzle",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 57
-  },
-  {
-   "school": "michigan",
-   "pi": "John P. Hayes",
-   "departments": [
-    "CSE",
-    "ECE"
-   ],
-   "lab_papers": 42
-  },
-  {
-   "school": "michigan",
-   "pi": "Ian A. Hiskens",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 75
-  },
-  {
-   "school": "michigan",
-   "pi": "Heath Hofmann",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 73
-  },
-  {
-   "school": "michigan",
-   "pi": "Stéphane Lafortune",
-   "departments": [
-    "CSE",
-    "ECE"
-   ],
-   "lab_papers": 78
-  },
-  {
-   "school": "michigan",
-   "pi": "Pinaki Mazumder",
-   "departments": [
-    "CSE",
-    "ECE"
-   ],
-   "lab_papers": 75
-  },
-  {
-   "school": "michigan",
-   "pi": "Semyon M. Meerkov",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 13
-  },
-  {
-   "school": "michigan",
-   "pi": "David L. Neuhoff",
-   "departments": [
-    "CSE",
-    "ECE"
-   ],
-   "lab_papers": 15
-  },
-  {
-   "school": "michigan",
-   "pi": "Jamie D. Phillips",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 38
-  },
-  {
-   "school": "michigan",
-   "pi": "S. Sandeep Pradhan",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 60
-  },
-  {
-   "school": "michigan",
-   "pi": "Shai Revzen",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 33
-  },
-  {
-   "school": "michigan",
-   "pi": "Karem A. Sakallah",
-   "departments": [
-    "CSE",
-    "ECE"
-   ],
-   "lab_papers": 13
-  },
-  {
-   "school": "michigan",
-   "pi": "Kamal Sarabandi",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 290
-  },
-  {
-   "school": "michigan",
-   "pi": "Dennis Sylvester",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 191
   },
   {
    "school": "michigan",
@@ -1155,38 +1644,6 @@
   },
   {
    "school": "michigan",
-   "pi": "Mark S. Ackerman",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 60
-  },
-  {
-   "school": "michigan",
-   "pi": "Eytan Adar",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 70
-  },
-  {
-   "school": "michigan",
-   "pi": "Satinder Singh Baveja",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 63
-  },
-  {
-   "school": "michigan",
-   "pi": "Michael J. Cafarella",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 31
-  },
-  {
-   "school": "michigan",
    "pi": "Peter M. Chen",
    "departments": [
     "CSE"
@@ -1195,43 +1652,11 @@
   },
   {
    "school": "michigan",
-   "pi": "Kevyn Collins-Thompson",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 27
-  },
-  {
-   "school": "michigan",
    "pi": "Kevin J. Compton",
    "departments": [
     "CSE"
    ],
    "lab_papers": 3
-  },
-  {
-   "school": "michigan",
-   "pi": "Jia Deng",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 24
-  },
-  {
-   "school": "michigan",
-   "pi": "Tawanna Ruth Dillahunt",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 66
-  },
-  {
-   "school": "michigan",
-   "pi": "Edmund H. Durfee",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 21
   },
   {
    "school": "michigan",
@@ -1251,52 +1676,11 @@
   },
   {
    "school": "michigan",
-   "pi": "Ryan M. Eustice",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 36
-  },
-  {
-   "school": "michigan",
    "pi": "Jason Flinn",
    "departments": [
     "CSE"
    ],
-   "lab_papers": 14
-  },
-  {
-   "school": "michigan",
-   "pi": "Kevin Fu",
-   "departments": [
-    "CSE",
-    "ECE"
-   ],
-   "lab_papers": 27
-  },
-  {
-   "school": "michigan",
-   "pi": "Yuanfang Guan",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 10
-  },
-  {
-   "school": "michigan",
-   "pi": "H.V. Jagadish",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 132
-  },
-  {
-   "school": "michigan",
-   "pi": "Sugih Jamin",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 11
+   "lab_papers": 13
   },
   {
    "school": "michigan",
@@ -1308,30 +1692,6 @@
   },
   {
    "school": "michigan",
-   "pi": "Danai Koutra",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 139
-  },
-  {
-   "school": "michigan",
-   "pi": "John E. Laird",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 26
-  },
-  {
-   "school": "michigan",
-   "pi": "Harsha Madhyastha",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 29
-  },
-  {
-   "school": "michigan",
    "pi": "Igor Markov",
    "departments": [
     "CSE"
@@ -1340,51 +1700,11 @@
   },
   {
    "school": "michigan",
-   "pi": "Jason Mars",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 59
-  },
-  {
-   "school": "michigan",
-   "pi": "Qiaozhu Mei",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 138
-  },
-  {
-   "school": "michigan",
-   "pi": "Barzan Mozafari",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 30
-  },
-  {
-   "school": "michigan",
-   "pi": "Mark W Newman",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 43
-  },
-  {
-   "school": "michigan",
    "pi": "Brian Noble",
    "departments": [
     "CSE"
    ],
    "lab_papers": 4
-  },
-  {
-   "school": "michigan",
-   "pi": "Christopher Peikert",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 37
   },
   {
    "school": "michigan",
@@ -1404,22 +1724,6 @@
   },
   {
    "school": "michigan",
-   "pi": "Daniel Romero",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 59
-  },
-  {
-   "school": "michigan",
-   "pi": "Grant Schoenebeck",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 24
-  },
-  {
-   "school": "michigan",
    "pi": "Yaoyun Shi",
    "departments": [
     "CSE"
@@ -1433,14 +1737,6 @@
     "CSE"
    ],
    "lab_papers": 11
-  },
-  {
-   "school": "michigan",
-   "pi": "Quentin F. Stout",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 14
   },
   {
    "school": "michigan",
@@ -1484,22 +1780,6 @@
   },
   {
    "school": "michigan",
-   "pi": "Thomas F. Wenisch",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 58
-  },
-  {
-   "school": "michigan",
-   "pi": "Jieping Ye",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 115
-  },
-  {
-   "school": "michigan",
    "pi": "Shuheng Zhou",
    "departments": [
     "CSE"
@@ -1508,92 +1788,11 @@
   },
   {
    "school": "michigan",
-   "pi": "Ehsan Afshari",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 74
-  },
-  {
-   "school": "michigan",
-   "pi": "Manos Kapritsos",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 15
-  },
-  {
-   "school": "michigan",
-   "pi": "Matthew Kay",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 27
-  },
-  {
-   "school": "michigan",
-   "pi": "Michael Nebeling",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 47
-  },
-  {
-   "school": "michigan",
-   "pi": "Florian Schaub",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 87
-  },
-  {
-   "school": "michigan",
-   "pi": "Daniel Genkin",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 21
-  },
-  {
-   "school": "michigan",
-   "pi": "Alanson Sample",
-   "departments": [
-    "CSE",
-    "ECE"
-   ],
-   "lab_papers": 50
-  },
-  {
-   "school": "michigan",
-   "pi": "Robin Brewer",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 7
-  },
-  {
-   "school": "michigan",
    "pi": "Barbara Ericson",
    "departments": [
     "CSE"
    ],
-   "lab_papers": 60
-  },
-  {
-   "school": "michigan",
-   "pi": "Jie Liu",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 20
-  },
-  {
-   "school": "michigan",
-   "pi": "Paramveer Dhillon",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 12
+   "lab_papers": 52
   },
   {
    "school": "michigan",
@@ -1605,22 +1804,6 @@
   },
   {
    "school": "michigan",
-   "pi": "Lin Ma",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 2
-  },
-  {
-   "school": "michigan",
-   "pi": "Georgios Tzimpragos",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 5
-  },
-  {
-   "school": "michigan",
    "pi": "Krisztián Flautner",
    "departments": [
     "CSE"
@@ -1629,116 +1812,11 @@
   },
   {
    "school": "michigan",
-   "pi": "Jeong Joon Park",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 17
-  },
-  {
-   "school": "michigan",
-   "pi": "Vladimir Dvorkin",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 14
-  },
-  {
-   "school": "michigan",
-   "pi": "Farnaz Jahanbakhsh",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 10
-  },
-  {
-   "school": "michigan",
-   "pi": "Di Liang",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 34
-  },
-  {
-   "school": "michigan",
-   "pi": "Dallas Card",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 13
-  },
-  {
-   "school": "michigan",
-   "pi": "Amrita Roy Chowdhury",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 13
-  },
-  {
-   "school": "michigan",
-   "pi": "Muhammad Shahbaz",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 12
-  },
-  {
-   "school": "michigan",
-   "pi": "Ke Sun",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 15
-  },
-  {
-   "school": "michigan",
-   "pi": "Inigo Incer",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 10
-  },
-  {
-   "school": "michigan",
-   "pi": "Shubhanshu Shekhar",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 10
-  },
-  {
-   "school": "michigan",
-   "pi": "Junyi Zhu",
-   "departments": [
-    "CSE",
-    "ECE"
-   ],
-   "lab_papers": 12
-  },
-  {
-   "school": "michigan",
-   "pi": "Jiayu Zhou",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 30
-  },
-  {
-   "school": "michigan",
    "pi": "Jalani Williams",
    "departments": [
     "ECE"
    ],
    "lab_papers": 0
-  },
-  {
-   "school": "michigan",
-   "pi": "Venkatesh Potluri",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 8
   },
   {
    "school": "michigan",
@@ -1774,35 +1852,11 @@
   },
   {
    "school": "michigan",
-   "pi": "Andrea Forte",
-   "departments": [
-    "UMSI"
-   ],
-   "lab_papers": 6
-  },
-  {
-   "school": "michigan",
    "pi": "Ankit Goyal",
    "departments": [
     "ROB"
    ],
    "lab_papers": 0
-  },
-  {
-   "school": "michigan",
-   "pi": "Ben Green",
-   "departments": [
-    "UMSI"
-   ],
-   "lab_papers": 5
-  },
-  {
-   "school": "michigan",
-   "pi": "Carol C. Menassa",
-   "departments": [
-    "ROB"
-   ],
-   "lab_papers": 37
   },
   {
    "school": "michigan",
@@ -1814,27 +1868,11 @@
   },
   {
    "school": "michigan",
-   "pi": "Christopher Brooks",
-   "departments": [
-    "UMSI"
-   ],
-   "lab_papers": 53
-  },
-  {
-   "school": "michigan",
    "pi": "Cliff Lampe",
    "departments": [
     "UMSI"
    ],
    "lab_papers": 2
-  },
-  {
-   "school": "michigan",
-   "pi": "Erhan Bayraktar",
-   "departments": [
-    "MATH"
-   ],
-   "lab_papers": 116
   },
   {
    "school": "michigan",
@@ -1858,7 +1896,7 @@
    "departments": [
     "ROB"
    ],
-   "lab_papers": 10
+   "lab_papers": 9
   },
   {
    "school": "michigan",
@@ -1874,55 +1912,7 @@
    "departments": [
     "ME"
    ],
-   "lab_papers": 56
-  },
-  {
-   "school": "michigan",
-   "pi": "Katherine A. Skinner",
-   "departments": [
-    "ROB"
-   ],
-   "lab_papers": 7
-  },
-  {
-   "school": "michigan",
-   "pi": "Kenn Richard Oldham",
-   "departments": [
-    "ROB"
-   ],
-   "lab_papers": 68
-  },
-  {
-   "school": "michigan",
-   "pi": "Kentaro Toyama",
-   "departments": [
-    "UMSI"
-   ],
-   "lab_papers": 69
-  },
-  {
-   "school": "michigan",
-   "pi": "Mark S. Daskin",
-   "departments": [
-    "IOE"
-   ],
-   "lab_papers": 5
-  },
-  {
-   "school": "michigan",
-   "pi": "Michaelanne Thomas",
-   "departments": [
-    "UMSI"
-   ],
-   "lab_papers": 14
-  },
-  {
-   "school": "michigan",
-   "pi": "Paul Resnick",
-   "departments": [
-    "UMSI"
-   ],
-   "lab_papers": 28
+   "lab_papers": 58
   },
   {
    "school": "michigan",
@@ -1930,23 +1920,7 @@
    "departments": [
     "UMSI"
    ],
-   "lab_papers": 82
-  },
-  {
-   "school": "michigan",
-   "pi": "Sarita Yardi Schoenebeck",
-   "departments": [
-    "UMSI"
-   ],
-   "lab_papers": 42
-  },
-  {
-   "school": "michigan",
-   "pi": "Tiffany C. Veinot",
-   "departments": [
-    "UMSI"
-   ],
-   "lab_papers": 87
+   "lab_papers": 81
   },
   {
    "school": "michigan",
@@ -1966,43 +1940,11 @@
   },
   {
    "school": "michigan",
-   "pi": "Kira Barton",
-   "departments": [
-    "ROB"
-   ],
-   "lab_papers": 214
-  },
-  {
-   "school": "michigan",
-   "pi": "Anouck Girard",
-   "departments": [
-    "ROB"
-   ],
-   "lab_papers": 107
-  },
-  {
-   "school": "michigan",
-   "pi": "Nazanin Andalibi",
-   "departments": [
-    "UMSI"
-   ],
-   "lab_papers": 54
-  },
-  {
-   "school": "michigan",
    "pi": "Anthony Bloch",
    "departments": [
     "MATH"
    ],
-   "lab_papers": 71
-  },
-  {
-   "school": "michigan",
-   "pi": "Libby Hemphill",
-   "departments": [
-    "UMSI"
-   ],
-   "lab_papers": 59
+   "lab_papers": 72
   },
   {
    "school": "michigan",
@@ -2010,15 +1952,7 @@
    "departments": [
     "UMSI"
    ],
-   "lab_papers": 25
-  },
-  {
-   "school": "michigan",
-   "pi": "Julie Hui",
-   "departments": [
-    "UMSI"
-   ],
-   "lab_papers": 31
+   "lab_papers": 27
   },
   {
    "school": "michigan",
@@ -2026,7 +1960,7 @@
    "departments": [
     "MATH"
    ],
-   "lab_papers": 46
+   "lab_papers": 55
   },
   {
    "school": "michigan",
@@ -2034,7 +1968,7 @@
    "departments": [
     "UMSI"
    ],
-   "lab_papers": 1
+   "lab_papers": 2
   },
   {
    "school": "michigan",
@@ -2042,7 +1976,7 @@
    "departments": [
     "IOE"
    ],
-   "lab_papers": 58
+   "lab_papers": 57
   },
   {
    "school": "michigan",
@@ -2050,7 +1984,7 @@
    "departments": [
     "IOE"
    ],
-   "lab_papers": 16
+   "lab_papers": 23
   },
   {
    "school": "michigan",
@@ -2059,14 +1993,6 @@
     "ME"
    ],
    "lab_papers": 29
-  },
-  {
-   "school": "michigan",
-   "pi": "Gabriela Marcu",
-   "departments": [
-    "UMSI"
-   ],
-   "lab_papers": 30
   },
   {
    "school": "michigan",
@@ -2082,7 +2008,7 @@
    "departments": [
     "MATH"
    ],
-   "lab_papers": 53
+   "lab_papers": 56
   },
   {
    "school": "michigan",
@@ -2090,15 +2016,7 @@
    "departments": [
     "ME"
    ],
-   "lab_papers": 92
-  },
-  {
-   "school": "michigan",
-   "pi": "James D. Weiland",
-   "departments": [
-    "ROB"
-   ],
-   "lab_papers": 54
+   "lab_papers": 83
   },
   {
    "school": "michigan",
@@ -2107,14 +2025,6 @@
     "ROB"
    ],
    "lab_papers": 28
-  },
-  {
-   "school": "michigan",
-   "pi": "Brian T. Denton",
-   "departments": [
-    "IOE"
-   ],
-   "lab_papers": 10
   },
   {
    "school": "michigan",
@@ -2134,19 +2044,11 @@
   },
   {
    "school": "michigan",
-   "pi": "Eunshin Byon",
-   "departments": [
-    "IOE"
-   ],
-   "lab_papers": 35
-  },
-  {
-   "school": "michigan",
    "pi": "Elizabeth Yakel",
    "departments": [
     "UMSI"
    ],
-   "lab_papers": 23
+   "lab_papers": 24
   },
   {
    "school": "michigan",
@@ -2158,27 +2060,11 @@
   },
   {
    "school": "michigan",
-   "pi": "Liliana Borcea",
-   "departments": [
-    "MATH"
-   ],
-   "lab_papers": 31
-  },
-  {
-   "school": "michigan",
    "pi": "Robert Krasny",
    "departments": [
     "MATH"
    ],
-   "lab_papers": 21
-  },
-  {
-   "school": "michigan",
-   "pi": "Abigail Z. Jacobs",
-   "departments": [
-    "UMSI"
-   ],
-   "lab_papers": 21
+   "lab_papers": 23
   },
   {
    "school": "michigan",
@@ -2186,7 +2072,7 @@
    "departments": [
     "ME"
    ],
-   "lab_papers": 24
+   "lab_papers": 28
   },
   {
    "school": "michigan",
@@ -2198,27 +2084,11 @@
   },
   {
    "school": "michigan",
-   "pi": "Sabina Tomkins",
-   "departments": [
-    "UMSI"
-   ],
-   "lab_papers": 23
-  },
-  {
-   "school": "michigan",
    "pi": "Michael E. Zieve",
    "departments": [
     "MATH"
    ],
-   "lab_papers": 21
-  },
-  {
-   "school": "michigan",
-   "pi": "Roman Vershynin",
-   "departments": [
-    "MATH"
-   ],
-   "lab_papers": 4
+   "lab_papers": 22
   },
   {
    "school": "michigan",
@@ -2235,7 +2105,7 @@
     "CS",
     "TTIC"
    ],
-   "lab_papers": 21
+   "lab_papers": 20
   },
   {
    "school": "uchicago",
@@ -2244,7 +2114,7 @@
     "CS",
     "TTIC"
    ],
-   "lab_papers": 8
+   "lab_papers": 7
   },
   {
    "school": "uchicago",
@@ -2268,7 +2138,7 @@
    "departments": [
     "CS"
    ],
-   "lab_papers": 0
+   "lab_papers": 3
   },
   {
    "school": "uchicago",
@@ -2284,7 +2154,7 @@
    "departments": [
     "CS"
    ],
-   "lab_papers": 12
+   "lab_papers": 13
   },
   {
    "school": "uchicago",
@@ -2348,7 +2218,7 @@
    "departments": [
     "STAT"
    ],
-   "lab_papers": 47
+   "lab_papers": 46
   },
   {
    "school": "uchicago",
@@ -2360,19 +2230,11 @@
   },
   {
    "school": "uchicago",
-   "pi": "Lorenzo Orecchia",
-   "departments": [
-    "CS"
-   ],
-   "lab_papers": 6
-  },
-  {
-   "school": "uchicago",
    "pi": "Yi Sun",
    "departments": [
     "STAT"
    ],
-   "lab_papers": 10
+   "lab_papers": 11
   },
   {
    "school": "uchicago",
@@ -2381,23 +2243,6 @@
     "TTIC"
    ],
    "lab_papers": 0
-  },
-  {
-   "school": "uchicago",
-   "pi": "Aloni Cohen",
-   "departments": [
-    "CS"
-   ],
-   "lab_papers": 20
-  },
-  {
-   "school": "uchicago",
-   "pi": "Rana Hanocka",
-   "departments": [
-    "CS",
-    "TTIC"
-   ],
-   "lab_papers": 33
   },
   {
    "school": "uchicago",
@@ -2425,37 +2270,11 @@
   },
   {
    "school": "uchicago",
-   "pi": "Haifeng Xu",
-   "departments": [
-    "CS",
-    "TTIC"
-   ],
-   "lab_papers": 65
-  },
-  {
-   "school": "uchicago",
    "pi": "Aaron Schein",
    "departments": [
     "STAT"
    ],
    "lab_papers": 18
-  },
-  {
-   "school": "uchicago",
-   "pi": "Ari Holtzman",
-   "departments": [
-    "CS",
-    "TTIC"
-   ],
-   "lab_papers": 25
-  },
-  {
-   "school": "uchicago",
-   "pi": "William Hoza",
-   "departments": [
-    "CS"
-   ],
-   "lab_papers": 7
   },
   {
    "school": "uchicago",
@@ -2475,19 +2294,11 @@
   },
   {
    "school": "uchicago",
-   "pi": "Tian Li",
-   "departments": [
-    "CS"
-   ],
-   "lab_papers": 6
-  },
-  {
-   "school": "uchicago",
    "pi": "Bo Li",
    "departments": [
     "CS"
    ],
-   "lab_papers": 35
+   "lab_papers": 36
   },
   {
    "school": "uchicago",
@@ -2527,7 +2338,7 @@
    "departments": [
     "TTIC"
    ],
-   "lab_papers": 6
+   "lab_papers": 7
   },
   {
    "school": "uchicago",
@@ -2604,22 +2415,6 @@
   },
   {
    "school": "uchicago",
-   "pi": "Denis R. Hirschfeldt",
-   "departments": [
-    "MATH"
-   ],
-   "lab_papers": 11
-  },
-  {
-   "school": "uchicago",
-   "pi": "Maryanthe Malliaris",
-   "departments": [
-    "MATH"
-   ],
-   "lab_papers": 21
-  },
-  {
-   "school": "uchicago",
    "pi": "Matthew Taddy",
    "departments": [
     "BOOTH"
@@ -2636,19 +2431,11 @@
   },
   {
    "school": "uchicago",
-   "pi": "Maryellen L. Giger",
-   "departments": [
-    "DSI"
-   ],
-   "lab_papers": 27
-  },
-  {
-   "school": "uchicago",
    "pi": "Eric Budish",
    "departments": [
     "BOOTH"
    ],
-   "lab_papers": 17
+   "lab_papers": 26
   },
   {
    "school": "uchicago",
@@ -2672,7 +2459,7 @@
    "departments": [
     "IC"
    ],
-   "lab_papers": 58
+   "lab_papers": 57
   },
   {
    "school": "gatech",
@@ -2680,15 +2467,7 @@
    "departments": [
     "IC"
    ],
-   "lab_papers": 11
-  },
-  {
-   "school": "gatech",
-   "pi": "Ronald Arkin",
-   "departments": [
-    "IC"
-   ],
-   "lab_papers": 34
+   "lab_papers": 8
   },
   {
    "school": "gatech",
@@ -2705,7 +2484,7 @@
     "CS",
     "IC"
    ],
-   "lab_papers": 35
+   "lab_papers": 34
   },
   {
    "school": "gatech",
@@ -2714,7 +2493,7 @@
     "CS",
     "IC"
    ],
-   "lab_papers": 19
+   "lab_papers": 20
   },
   {
    "school": "gatech",
@@ -2735,23 +2514,6 @@
   },
   {
    "school": "gatech",
-   "pi": "Jacob Eisenstein",
-   "departments": [
-    "IC"
-   ],
-   "lab_papers": 23
-  },
-  {
-   "school": "gatech",
-   "pi": "Alex Endert",
-   "departments": [
-    "CS",
-    "IC"
-   ],
-   "lab_papers": 92
-  },
-  {
-   "school": "gatech",
    "pi": "James Foley",
    "departments": [
     "IC",
@@ -2761,20 +2523,12 @@
   },
   {
    "school": "gatech",
-   "pi": "Eric Gilbert",
-   "departments": [
-    "IC"
-   ],
-   "lab_papers": 8
-  },
-  {
-   "school": "gatech",
    "pi": "Ashok Goel",
    "departments": [
     "IC",
     "CSE"
    ],
-   "lab_papers": 117
+   "lab_papers": 115
   },
   {
    "school": "gatech",
@@ -2798,39 +2552,7 @@
    "departments": [
     "IC"
    ],
-   "lab_papers": 16
-  },
-  {
-   "school": "gatech",
-   "pi": "Charles Isbell",
-   "departments": [
-    "IC"
-   ],
-   "lab_papers": 24
-  },
-  {
-   "school": "gatech",
-   "pi": "Melody Jackson",
-   "departments": [
-    "IC"
-   ],
-   "lab_papers": 31
-  },
-  {
-   "school": "gatech",
-   "pi": "Neha Kumar",
-   "departments": [
-    "IC"
-   ],
-   "lab_papers": 145
-  },
-  {
-   "school": "gatech",
-   "pi": "Karen Liu",
-   "departments": [
-    "IC"
-   ],
-   "lab_papers": 19
+   "lab_papers": 14
   },
   {
    "school": "gatech",
@@ -2842,43 +2564,11 @@
   },
   {
    "school": "gatech",
-   "pi": "Elizabeth Mynatt",
-   "departments": [
-    "IC"
-   ],
-   "lab_papers": 27
-  },
-  {
-   "school": "gatech",
    "pi": "Colin Potts",
    "departments": [
     "IC"
    ],
    "lab_papers": 0
-  },
-  {
-   "school": "gatech",
-   "pi": "James Rehg",
-   "departments": [
-    "IC"
-   ],
-   "lab_papers": 88
-  },
-  {
-   "school": "gatech",
-   "pi": "Mark Riedl",
-   "departments": [
-    "IC"
-   ],
-   "lab_papers": 142
-  },
-  {
-   "school": "gatech",
-   "pi": "Jarek Rossignac",
-   "departments": [
-    "IC"
-   ],
-   "lab_papers": 21
   },
   {
    "school": "gatech",
@@ -2906,14 +2596,6 @@
   },
   {
    "school": "gatech",
-   "pi": "Bruce Walker",
-   "departments": [
-    "IC"
-   ],
-   "lab_papers": 86
-  },
-  {
-   "school": "gatech",
    "pi": "Gil Weinberg",
    "departments": [
     "IC"
@@ -2931,23 +2613,6 @@
   },
   {
    "school": "gatech",
-   "pi": "Amy Bruckman",
-   "departments": [
-    "IC"
-   ],
-   "lab_papers": 55
-  },
-  {
-   "school": "gatech",
-   "pi": "Sonia Chernova",
-   "departments": [
-    "CS",
-    "IC"
-   ],
-   "lab_papers": 98
-  },
-  {
-   "school": "gatech",
    "pi": "Henrik I. Christensen",
    "departments": [
     "IC"
@@ -2956,86 +2621,11 @@
   },
   {
    "school": "gatech",
-   "pi": "Munmun DeChoudhury",
-   "departments": [
-    "CS",
-    "IC"
-   ],
-   "lab_papers": 246
-  },
-  {
-   "school": "gatech",
-   "pi": "Frank Dellaert",
-   "departments": [
-    "IC"
-   ],
-   "lab_papers": 57
-  },
-  {
-   "school": "gatech",
-   "pi": "Betsy DiSalvo",
-   "departments": [
-    "IC"
-   ],
-   "lab_papers": 63
-  },
-  {
-   "school": "gatech",
-   "pi": "Ellen Do",
-   "departments": [
-    "IC"
-   ],
-   "lab_papers": 6
-  },
-  {
-   "school": "gatech",
-   "pi": "Charles Eastman",
-   "departments": [
-    "IC"
-   ],
-   "lab_papers": 13
-  },
-  {
-   "school": "gatech",
    "pi": "Keith Edwards",
    "departments": [
     "IC"
    ],
    "lab_papers": 14
-  },
-  {
-   "school": "gatech",
-   "pi": "Haesun Park",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 45
-  },
-  {
-   "school": "gatech",
-   "pi": "C. David Sherrill",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 71
-  },
-  {
-   "school": "gatech",
-   "pi": "Le Song",
-   "departments": [
-    "CS",
-    "CSE"
-   ],
-   "lab_papers": 100
-  },
-  {
-   "school": "gatech",
-   "pi": "Jimeng Sun",
-   "departments": [
-    "CS",
-    "CSE"
-   ],
-   "lab_papers": 66
   },
   {
    "school": "gatech",
@@ -3048,14 +2638,6 @@
   },
   {
    "school": "gatech",
-   "pi": "Richard Vuduc",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 76
-  },
-  {
-   "school": "gatech",
    "pi": "Hongyuan Zha",
    "departments": [
     "CSE"
@@ -3064,35 +2646,11 @@
   },
   {
    "school": "gatech",
-   "pi": "David A. Bader",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 32
-  },
-  {
-   "school": "gatech",
-   "pi": "Mark Borodovsky",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 25
-  },
-  {
-   "school": "gatech",
    "pi": "Ken Brown",
    "departments": [
     "CSE"
    ],
    "lab_papers": 18
-  },
-  {
-   "school": "gatech",
-   "pi": "Polo Chau",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 161
   },
   {
    "school": "gatech",
@@ -3113,21 +2671,12 @@
   },
   {
    "school": "gatech",
-   "pi": "Mustaque Ahamad",
-   "departments": [
-    "CS",
-    "CSP"
-   ],
-   "lab_papers": 29
-  },
-  {
-   "school": "gatech",
    "pi": "Thomas Conte",
    "departments": [
     "CS",
     "ECE"
    ],
-   "lab_papers": 46
+   "lab_papers": 47
   },
   {
    "school": "gatech",
@@ -3140,27 +2689,11 @@
   },
   {
    "school": "gatech",
-   "pi": "Constantine Dovrolis",
-   "departments": [
-    "CS"
-   ],
-   "lab_papers": 27
-  },
-  {
-   "school": "gatech",
    "pi": "Hadi Esmaeilzadeh",
    "departments": [
     "CS"
    ],
    "lab_papers": 14
-  },
-  {
-   "school": "gatech",
-   "pi": "Lance Fortnow",
-   "departments": [
-    "CS"
-   ],
-   "lab_papers": 8
   },
   {
    "school": "gatech",
@@ -3170,22 +2703,6 @@
     "CSP"
    ],
    "lab_papers": 0
-  },
-  {
-   "school": "gatech",
-   "pi": "Shabbir Ahmed",
-   "departments": [
-    "ISYE"
-   ],
-   "lab_papers": 47
-  },
-  {
-   "school": "gatech",
-   "pi": "Christos Alexopoulos",
-   "departments": [
-    "ISYE"
-   ],
-   "lab_papers": 25
   },
   {
    "school": "gatech",
@@ -3213,43 +2730,11 @@
   },
   {
    "school": "gatech",
-   "pi": "Alan Erera",
-   "departments": [
-    "ISYE"
-   ],
-   "lab_papers": 37
-  },
-  {
-   "school": "gatech",
-   "pi": "David Goldsman",
-   "departments": [
-    "ISYE"
-   ],
-   "lab_papers": 33
-  },
-  {
-   "school": "gatech",
-   "pi": "Xiaoming Huo",
-   "departments": [
-    "ISYE"
-   ],
-   "lab_papers": 77
-  },
-  {
-   "school": "gatech",
    "pi": "Seong-Hee Kim",
    "departments": [
     "ISYE"
    ],
    "lab_papers": 23
-  },
-  {
-   "school": "gatech",
-   "pi": "Anton Kleywegt",
-   "departments": [
-    "ISYE"
-   ],
-   "lab_papers": 25
   },
   {
    "school": "gatech",
@@ -3261,35 +2746,11 @@
   },
   {
    "school": "gatech",
-   "pi": "Yajun Mei",
-   "departments": [
-    "ISYE"
-   ],
-   "lab_papers": 64
-  },
-  {
-   "school": "gatech",
-   "pi": "Renato Monteiro",
-   "departments": [
-    "ISYE"
-   ],
-   "lab_papers": 33
-  },
-  {
-   "school": "gatech",
-   "pi": "Benoit Montreuil",
-   "departments": [
-    "ISYE"
-   ],
-   "lab_papers": 116
-  },
-  {
-   "school": "gatech",
    "pi": "George Nemhauser",
    "departments": [
     "ISYE"
    ],
-   "lab_papers": 24
+   "lab_papers": 25
   },
   {
    "school": "gatech",
@@ -3298,54 +2759,6 @@
     "ISYE"
    ],
    "lab_papers": 32
-  },
-  {
-   "school": "gatech",
-   "pi": "Sebastian Pokutta",
-   "departments": [
-    "ISYE"
-   ],
-   "lab_papers": 21
-  },
-  {
-   "school": "gatech",
-   "pi": "Martin Savelsbergh",
-   "departments": [
-    "ISYE"
-   ],
-   "lab_papers": 81
-  },
-  {
-   "school": "gatech",
-   "pi": "Alexander Shapiro",
-   "departments": [
-    "ISYE"
-   ],
-   "lab_papers": 43
-  },
-  {
-   "school": "gatech",
-   "pi": "Jianjun Shi",
-   "departments": [
-    "ISYE"
-   ],
-   "lab_papers": 87
-  },
-  {
-   "school": "gatech",
-   "pi": "Joel Sokol",
-   "departments": [
-    "ISYE"
-   ],
-   "lab_papers": 16
-  },
-  {
-   "school": "gatech",
-   "pi": "Andy Sun",
-   "departments": [
-    "ISYE"
-   ],
-   "lab_papers": 27
   },
   {
    "school": "gatech",
@@ -3365,36 +2778,11 @@
   },
   {
    "school": "gatech",
-   "pi": "Yao Xie",
-   "departments": [
-    "ECE",
-    "ISYE"
-   ],
-   "lab_papers": 194
-  },
-  {
-   "school": "gatech",
-   "pi": "Chuck Zhang",
-   "departments": [
-    "ISYE"
-   ],
-   "lab_papers": 81
-  },
-  {
-   "school": "gatech",
    "pi": "Milena Mihail",
    "departments": [
     "CS"
    ],
    "lab_papers": 2
-  },
-  {
-   "school": "gatech",
-   "pi": "Mayur Naik",
-   "departments": [
-    "CS"
-   ],
-   "lab_papers": 5
   },
   {
    "school": "gatech",
@@ -3414,35 +2802,11 @@
   },
   {
    "school": "gatech",
-   "pi": "Alessandro Orso",
-   "departments": [
-    "CS"
-   ],
-   "lab_papers": 51
-  },
-  {
-   "school": "gatech",
-   "pi": "Santosh Pande",
-   "departments": [
-    "CS"
-   ],
-   "lab_papers": 37
-  },
-  {
-   "school": "gatech",
    "pi": "Chris Peikert",
    "departments": [
     "CS"
    ],
    "lab_papers": 0
-  },
-  {
-   "school": "gatech",
-   "pi": "Milos Prvulovic",
-   "departments": [
-    "CS"
-   ],
-   "lab_papers": 59
   },
   {
    "school": "gatech",
@@ -3471,46 +2835,11 @@
   },
   {
    "school": "gatech",
-   "pi": "Hyesoon Kim",
-   "departments": [
-    "CS",
-    "ECE"
-   ],
-   "lab_papers": 116
-  },
-  {
-   "school": "gatech",
-   "pi": "Taesoo Kim",
-   "departments": [
-    "CS",
-    "CSP"
-   ],
-   "lab_papers": 109
-  },
-  {
-   "school": "gatech",
-   "pi": "Wenke Lee",
-   "departments": [
-    "CS",
-    "CSP"
-   ],
-   "lab_papers": 89
-  },
-  {
-   "school": "gatech",
    "pi": "Richard Lipton",
    "departments": [
     "CS"
    ],
    "lab_papers": 2
-  },
-  {
-   "school": "gatech",
-   "pi": "Ling Liu",
-   "departments": [
-    "CS"
-   ],
-   "lab_papers": 261
   },
   {
    "school": "gatech",
@@ -3522,27 +2851,11 @@
   },
   {
    "school": "gatech",
-   "pi": "Ellen Zegura",
-   "departments": [
-    "CS"
-   ],
-   "lab_papers": 71
-  },
-  {
-   "school": "gatech",
    "pi": "Dana Randall",
    "departments": [
     "CS"
    ],
-   "lab_papers": 31
-  },
-  {
-   "school": "gatech",
-   "pi": "Prasad Tetali",
-   "departments": [
-    "CS"
-   ],
-   "lab_papers": 24
+   "lab_papers": 30
   },
   {
    "school": "gatech",
@@ -3566,15 +2879,7 @@
    "departments": [
     "CS"
    ],
-   "lab_papers": 21
-  },
-  {
-   "school": "gatech",
-   "pi": "Jun Xu",
-   "departments": [
-    "CS"
-   ],
-   "lab_papers": 49
+   "lab_papers": 19
   },
   {
    "school": "gatech",
@@ -3586,51 +2891,11 @@
   },
   {
    "school": "gatech",
-   "pi": "Mohit Singh",
-   "departments": [
-    "ISYE"
-   ],
-   "lab_papers": 49
-  },
-  {
-   "school": "gatech",
    "pi": "He Wang",
    "departments": [
     "ISYE"
    ],
-   "lab_papers": 25
-  },
-  {
-   "school": "gatech",
-   "pi": "Ian F Akyildiz",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 89
-  },
-  {
-   "school": "gatech",
-   "pi": "Ghassan AlRegib",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 173
-  },
-  {
-   "school": "gatech",
-   "pi": "David V Anderson",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 50
-  },
-  {
-   "school": "gatech",
-   "pi": "Farrokh Ayazi",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 99
+   "lab_papers": 26
   },
   {
    "school": "gatech",
@@ -3638,7 +2903,7 @@
    "departments": [
     "ECE"
    ],
-   "lab_papers": 18
+   "lab_papers": 19
   },
   {
    "school": "gatech",
@@ -3646,40 +2911,7 @@
    "departments": [
     "ECE"
    ],
-   "lab_papers": 30
-  },
-  {
-   "school": "gatech",
-   "pi": "Matthieu Ratoslav Bloch",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 122
-  },
-  {
-   "school": "gatech",
-   "pi": "Douglas M Blough",
-   "departments": [
-    "CS",
-    "ECE"
-   ],
-   "lab_papers": 63
-  },
-  {
-   "school": "gatech",
-   "pi": "Gee-Kung Chang",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 165
-  },
-  {
-   "school": "gatech",
-   "pi": "Abhijit Chatterjee",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 95
+   "lab_papers": 31
   },
   {
    "school": "gatech",
@@ -3691,181 +2923,11 @@
   },
   {
    "school": "gatech",
-   "pi": "Mark Andrew Davenport",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 63
-  },
-  {
-   "school": "gatech",
-   "pi": "F Levent Degertekin",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 76
-  },
-  {
-   "school": "gatech",
-   "pi": "Gregory David Durgin",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 103
-  },
-  {
-   "school": "gatech",
-   "pi": "Magnus B Egerstedt",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 112
-  },
-  {
-   "school": "gatech",
-   "pi": "Faramarz Fekri",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 90
-  },
-  {
-   "school": "gatech",
-   "pi": "Bonnie H Ferri",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 27
-  },
-  {
-   "school": "gatech",
-   "pi": "Maysam Ghovanloo",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 97
-  },
-  {
-   "school": "gatech",
-   "pi": "Santiago Carlos Grijalva",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 153
-  },
-  {
-   "school": "gatech",
-   "pi": "Jennifer Olson Hasler",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 90
-  },
-  {
-   "school": "gatech",
-   "pi": "Ayanna MacCalla Howard",
-   "departments": [
-    "IC",
-    "ECE"
-   ],
-   "lab_papers": 55
-  },
-  {
-   "school": "gatech",
-   "pi": "Omer T Inan",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 286
-  },
-  {
-   "school": "gatech",
-   "pi": "Biing Hwang Juang",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 30
-  },
-  {
-   "school": "gatech",
-   "pi": "David C Keezer",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 13
-  },
-  {
-   "school": "gatech",
-   "pi": "Tushar Krishna",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 170
-  },
-  {
-   "school": "gatech",
-   "pi": "Chin-Hui Lee",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 143
-  },
-  {
-   "school": "gatech",
-   "pi": "Geoffrey Ye Li",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 209
-  },
-  {
-   "school": "gatech",
-   "pi": "Sung Kyu Lim",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 198
-  },
-  {
-   "school": "gatech",
-   "pi": "Xiaoli Ma",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 76
-  },
-  {
-   "school": "gatech",
-   "pi": "Vijay Madisetti",
-   "departments": [
-    "CSP",
-    "ECE"
-   ],
-   "lab_papers": 59
-  },
-  {
-   "school": "gatech",
-   "pi": "James H McClellan",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 43
-  },
-  {
-   "school": "gatech",
-   "pi": "Linda S Milor",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 41
-  },
-  {
-   "school": "gatech",
    "pi": "Vincent J Mooney",
    "departments": [
     "ECE"
    ],
-   "lab_papers": 32
+   "lab_papers": 34
   },
   {
    "school": "gatech",
@@ -3877,44 +2939,11 @@
   },
   {
    "school": "gatech",
-   "pi": "Saibal Mukhopadhyay",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 245
-  },
-  {
-   "school": "gatech",
    "pi": "Henry L Owen III.",
    "departments": [
     "ECE"
    ],
    "lab_papers": 12
-  },
-  {
-   "school": "gatech",
-   "pi": "Moinuddin Qureshi",
-   "departments": [
-    "CS",
-    "ECE"
-   ],
-   "lab_papers": 101
-  },
-  {
-   "school": "gatech",
-   "pi": "Stephen E Ralph",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 128
-  },
-  {
-   "school": "gatech",
-   "pi": "Arijit Raychowdhury",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 231
   },
   {
    "school": "gatech",
@@ -3926,39 +2955,7 @@
   },
   {
    "school": "gatech",
-   "pi": "Gabriel A Rincon-Mora",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 43
-  },
-  {
-   "school": "gatech",
-   "pi": "Justin Romberg",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 119
-  },
-  {
-   "school": "gatech",
-   "pi": "Christopher John Rozell",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 81
-  },
-  {
-   "school": "gatech",
-   "pi": "Maryam Saeedifard",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 122
-  },
-  {
-   "school": "gatech",
-   "pi": "Waymond R Scott",
+   "pi": "Gordon L Stuber",
    "departments": [
     "ECE"
    ],
@@ -3966,67 +2963,11 @@
   },
   {
    "school": "gatech",
-   "pi": "Raghupathy Sivakumar",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 49
-  },
-  {
-   "school": "gatech",
-   "pi": "Gordon L Stuber",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 40
-  },
-  {
-   "school": "gatech",
-   "pi": "David G Taylor",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 28
-  },
-  {
-   "school": "gatech",
-   "pi": "Patricio Antonio Vela",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 84
-  },
-  {
-   "school": "gatech",
-   "pi": "Erik I Verriest",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 67
-  },
-  {
-   "school": "gatech",
    "pi": "Hua Wang",
    "departments": [
     "ECE"
    ],
-   "lab_papers": 146
-  },
-  {
-   "school": "gatech",
-   "pi": "Yorai Wardi",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 30
-  },
-  {
-   "school": "gatech",
-   "pi": "Mary Ann Weitnauer",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 35
+   "lab_papers": 145
   },
   {
    "school": "gatech",
@@ -4038,76 +2979,11 @@
   },
   {
    "school": "gatech",
-   "pi": "Sudhakar Yalamanchili",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 29
-  },
-  {
-   "school": "gatech",
-   "pi": "Anthony Joseph Yezzi",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 61
-  },
-  {
-   "school": "gatech",
-   "pi": "Alenka Zajic",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 102
-  },
-  {
-   "school": "gatech",
-   "pi": "Fumin Zhang",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 156
-  },
-  {
-   "school": "gatech",
-   "pi": "Ying Zhang",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 83
-  },
-  {
-   "school": "gatech",
-   "pi": "Thomas Ploetz",
-   "departments": [
-    "IC",
-    "ECE"
-   ],
-   "lab_papers": 103
-  },
-  {
-   "school": "gatech",
    "pi": "Manos Antonakakis",
    "departments": [
     "ECE"
    ],
-   "lab_papers": 31
-  },
-  {
-   "school": "gatech",
-   "pi": "Raheem A Beyah",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 75
-  },
-  {
-   "school": "gatech",
-   "pi": "Samuel Coogan",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 134
+   "lab_papers": 36
   },
   {
    "school": "gatech",
@@ -4121,15 +2997,6 @@
   },
   {
    "school": "gatech",
-   "pi": "Felix Herrmann",
-   "departments": [
-    "CSE",
-    "ECE"
-   ],
-   "lab_papers": 116
-  },
-  {
-   "school": "gatech",
    "pi": "Tobin Isaac",
    "departments": [
     "CSE"
@@ -4138,53 +3005,11 @@
   },
   {
    "school": "gatech",
-   "pi": "Vivek Sarkar",
-   "departments": [
-    "CS"
-   ],
-   "lab_papers": 79
-  },
-  {
-   "school": "gatech",
-   "pi": "Rachel Cummings",
-   "departments": [
-    "CS",
-    "ISYE"
-   ],
-   "lab_papers": 12
-  },
-  {
-   "school": "gatech",
-   "pi": "Chaouki Tanios Abdallah",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 23
-  },
-  {
-   "school": "gatech",
-   "pi": "Eva Lauren Dyer",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 51
-  },
-  {
-   "school": "gatech",
-   "pi": "Seth Hutchinson",
-   "departments": [
-    "IC",
-    "ECE"
-   ],
-   "lab_papers": 63
-  },
-  {
-   "school": "gatech",
    "pi": "Angelos D Keromytis",
    "departments": [
     "ECE"
    ],
-   "lab_papers": 15
+   "lab_papers": 18
   },
   {
    "school": "gatech",
@@ -4193,40 +3018,7 @@
     "ECE",
     "ISYE"
    ],
-   "lab_papers": 11
-  },
-  {
-   "school": "gatech",
-   "pi": "Shimeng Yu",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 335
-  },
-  {
-   "school": "gatech",
-   "pi": "Swati Gupta",
-   "departments": [
-    "CS",
-    "ISYE"
-   ],
-   "lab_papers": 29
-  },
-  {
-   "school": "gatech",
-   "pi": "Srinivas Peeta",
-   "departments": [
-    "ISYE"
-   ],
-   "lab_papers": 83
-  },
-  {
-   "school": "gatech",
-   "pi": "Xu Chu",
-   "departments": [
-    "CS"
-   ],
-   "lab_papers": 22
+   "lab_papers": 12
   },
   {
    "school": "gatech",
@@ -4243,7 +3035,7 @@
     "CS",
     "CSP"
    ],
-   "lab_papers": 47
+   "lab_papers": 44
   },
   {
    "school": "gatech",
@@ -4252,55 +3044,6 @@
     "CS"
    ],
    "lab_papers": 8
-  },
-  {
-   "school": "gatech",
-   "pi": "Carl DiSalvo",
-   "departments": [
-    "IC"
-   ],
-   "lab_papers": 56
-  },
-  {
-   "school": "gatech",
-   "pi": "Matthew Gombolay",
-   "departments": [
-    "IC"
-   ],
-   "lab_papers": 135
-  },
-  {
-   "school": "gatech",
-   "pi": "Harish Ravichandar",
-   "departments": [
-    "IC"
-   ],
-   "lab_papers": 34
-  },
-  {
-   "school": "gatech",
-   "pi": "Vince D Calhoun",
-   "departments": [
-    "CSE",
-    "ECE"
-   ],
-   "lab_papers": 944
-  },
-  {
-   "school": "gatech",
-   "pi": "Roshan Joseph",
-   "departments": [
-    "ISYE"
-   ],
-   "lab_papers": 43
-  },
-  {
-   "school": "gatech",
-   "pi": "Lauren Steimle",
-   "departments": [
-    "ISYE"
-   ],
-   "lab_papers": 29
   },
   {
    "school": "gatech",
@@ -4313,59 +3056,11 @@
   },
   {
    "school": "gatech",
-   "pi": "Shihao Yang",
-   "departments": [
-    "ISYE"
-   ],
-   "lab_papers": 38
-  },
-  {
-   "school": "gatech",
-   "pi": "Elizabeth Cherry",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 55
-  },
-  {
-   "school": "gatech",
-   "pi": "Xiuwei Zhang",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 29
-  },
-  {
-   "school": "gatech",
-   "pi": "Shaolan Li",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 34
-  },
-  {
-   "school": "gatech",
-   "pi": "Judy Hoffman",
-   "departments": [
-    "IC"
-   ],
-   "lab_papers": 44
-  },
-  {
-   "school": "gatech",
-   "pi": "HyunJoo Oh",
-   "departments": [
-    "IC"
-   ],
-   "lab_papers": 34
-  },
-  {
-   "school": "gatech",
    "pi": "Jessica Roberts",
    "departments": [
     "IC"
    ],
-   "lab_papers": 26
+   "lab_papers": 28
   },
   {
    "school": "gatech",
@@ -4374,15 +3069,6 @@
     "CS"
    ],
    "lab_papers": 42
-  },
-  {
-   "school": "gatech",
-   "pi": "Frank Li",
-   "departments": [
-    "CSP",
-    "ECE"
-   ],
-   "lab_papers": 27
   },
   {
    "school": "gatech",
@@ -4398,32 +3084,7 @@
    "departments": [
     "IC"
    ],
-   "lab_papers": 13
-  },
-  {
-   "school": "gatech",
-   "pi": "Sashank Varma",
-   "departments": [
-    "IC"
-   ],
-   "lab_papers": 56
-  },
-  {
-   "school": "gatech",
-   "pi": "Jing Li",
-   "departments": [
-    "ISYE"
-   ],
-   "lab_papers": 44
-  },
-  {
-   "school": "gatech",
-   "pi": "Vidya Muthukumar",
-   "departments": [
-    "ECE",
-    "ISYE"
-   ],
-   "lab_papers": 33
+   "lab_papers": 12
   },
   {
    "school": "gatech",
@@ -4432,14 +3093,6 @@
     "ISYE"
    ],
    "lab_papers": 46
-  },
-  {
-   "school": "gatech",
-   "pi": "Callie Hao",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 54
   },
   {
    "school": "gatech",
@@ -4452,19 +3105,11 @@
   },
   {
    "school": "gatech",
-   "pi": "Spencer Bryngelson",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 38
-  },
-  {
-   "school": "gatech",
    "pi": "Florian Schäfer",
    "departments": [
     "CSE"
    ],
-   "lab_papers": 11
+   "lab_papers": 10
   },
   {
    "school": "gatech",
@@ -4473,7 +3118,7 @@
     "IC",
     "ECE"
    ],
-   "lab_papers": 39
+   "lab_papers": 40
   },
   {
    "school": "gatech",
@@ -4481,7 +3126,7 @@
    "departments": [
     "ECE"
    ],
-   "lab_papers": 20
+   "lab_papers": 27
   },
   {
    "school": "gatech",
@@ -4490,7 +3135,7 @@
     "CS",
     "CSP"
    ],
-   "lab_papers": 30
+   "lab_papers": 38
   },
   {
    "school": "gatech",
@@ -4498,23 +3143,7 @@
    "departments": [
     "ISYE"
    ],
-   "lab_papers": 2
-  },
-  {
-   "school": "gatech",
-   "pi": "Arthur Delarue",
-   "departments": [
-    "ISYE"
-   ],
-   "lab_papers": 7
-  },
-  {
-   "school": "gatech",
-   "pi": "Rosa Arriaga",
-   "departments": [
-    "IC"
-   ],
-   "lab_papers": 59
+   "lab_papers": 1
   },
   {
    "school": "gatech",
@@ -4535,36 +3164,11 @@
   },
   {
    "school": "gatech",
-   "pi": "Nabil Imam",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 10
-  },
-  {
-   "school": "gatech",
-   "pi": "Anqi Wu",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 15
-  },
-  {
-   "school": "gatech",
    "pi": "Danfei Xu",
    "departments": [
     "IC"
    ],
-   "lab_papers": 51
-  },
-  {
-   "school": "gatech",
-   "pi": "Cecilia Testart",
-   "departments": [
-    "CS",
-    "CSP"
-   ],
-   "lab_papers": 21
+   "lab_papers": 59
   },
   {
    "school": "gatech",
@@ -4572,7 +3176,7 @@
    "departments": [
     "ISYE"
    ],
-   "lab_papers": 25
+   "lab_papers": 23
   },
   {
    "school": "gatech",
@@ -4584,21 +3188,13 @@
   },
   {
    "school": "gatech",
-   "pi": "Weijun Xie",
-   "departments": [
-    "ISYE"
-   ],
-   "lab_papers": 37
-  },
-  {
-   "school": "gatech",
    "pi": "Josiah Hester",
    "departments": [
     "CS",
     "IC",
     "ECE"
    ],
-   "lab_papers": 85
+   "lab_papers": 86
   },
   {
    "school": "gatech",
@@ -4618,39 +3214,6 @@
   },
   {
    "school": "gatech",
-   "pi": "Victor Fung",
-   "departments": [
-    "CSE"
-   ],
-   "lab_papers": 26
-  },
-  {
-   "school": "gatech",
-   "pi": "Fabian Monrose",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 13
-  },
-  {
-   "school": "gatech",
-   "pi": "Visvesh S Sathe",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 14
-  },
-  {
-   "school": "gatech",
-   "pi": "Saman Zonouz",
-   "departments": [
-    "CSP",
-    "ECE"
-   ],
-   "lab_papers": 40
-  },
-  {
-   "school": "gatech",
    "pi": "Alexander T Adams",
    "departments": [
     "IC"
@@ -4663,7 +3226,7 @@
    "departments": [
     "IC"
    ],
-   "lab_papers": 26
+   "lab_papers": 32
   },
   {
    "school": "gatech",
@@ -4672,22 +3235,6 @@
     "CS"
    ],
    "lab_papers": 28
-  },
-  {
-   "school": "gatech",
-   "pi": "Kexin Rong",
-   "departments": [
-    "CS"
-   ],
-   "lab_papers": 23
-  },
-  {
-   "school": "gatech",
-   "pi": "Pan Li",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 49
   },
   {
    "school": "gatech",
@@ -4719,7 +3266,7 @@
    "departments": [
     "IC"
    ],
-   "lab_papers": 25
+   "lab_papers": 24
   },
   {
    "school": "gatech",
@@ -4731,14 +3278,6 @@
   },
   {
    "school": "gatech",
-   "pi": "Humphrey Shi",
-   "departments": [
-    "IC"
-   ],
-   "lab_papers": 45
-  },
-  {
-   "school": "gatech",
    "pi": "Judith Uchidiuno",
    "departments": [
     "IC"
@@ -4747,35 +3286,19 @@
   },
   {
    "school": "gatech",
-   "pi": "Yalong Yang",
-   "departments": [
-    "IC"
-   ],
-   "lab_papers": 28
-  },
-  {
-   "school": "gatech",
-   "pi": "Bo Zhu",
-   "departments": [
-    "IC"
-   ],
-   "lab_papers": 46
-  },
-  {
-   "school": "gatech",
    "pi": "Aaron J Young",
    "departments": [
     "ECE"
    ],
-   "lab_papers": 34
+   "lab_papers": 44
   },
   {
    "school": "gatech",
-   "pi": "Bo Dai",
+   "pi": "Raphaël Pestourie",
    "departments": [
     "CSE"
    ],
-   "lab_papers": 34
+   "lab_papers": 19
   },
   {
    "school": "gatech",
@@ -4784,22 +3307,6 @@
     "CSE"
    ],
    "lab_papers": 10
-  },
-  {
-   "school": "gatech",
-   "pi": "Matthew Hale",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 18
-  },
-  {
-   "school": "gatech",
-   "pi": "Viveck Cadambe",
-   "departments": [
-    "ECE"
-   ],
-   "lab_papers": 8
   },
   {
    "school": "gatech",
@@ -4852,14 +3359,6 @@
   },
   {
    "school": "gatech",
-   "pi": "Steve Mussmann",
-   "departments": [
-    "CS"
-   ],
-   "lab_papers": 5
-  },
-  {
-   "school": "gatech",
    "pi": "Zongchen Chen",
    "departments": [
     "CS"
@@ -4877,36 +3376,11 @@
   },
   {
    "school": "gatech",
-   "pi": "Kuldeep S. Meel",
-   "departments": [
-    "CS",
-    "ISYE"
-   ],
-   "lab_papers": 28
-  },
-  {
-   "school": "gatech",
    "pi": "Michael Bailey",
    "departments": [
     "CSP"
    ],
    "lab_papers": 1
-  },
-  {
-   "school": "gatech",
-   "pi": "Teodora Baluta",
-   "departments": [
-    "CSP"
-   ],
-   "lab_papers": 5
-  },
-  {
-   "school": "gatech",
-   "pi": "Joseph Jaeger",
-   "departments": [
-    "CSP"
-   ],
-   "lab_papers": 4
   },
   {
    "school": "gatech",
@@ -4990,44 +3464,11 @@
   },
   {
    "school": "gatech",
-   "pi": "Alexander Lerch",
+   "pi": "Jesse Thomason",
    "departments": [
-    "ML",
-    "MUSIC"
-   ],
-   "lab_papers": 78
-  },
-  {
-   "school": "gatech",
-   "pi": "Ali Mazalek",
-   "departments": [
-    "LMC"
+    "IC"
    ],
    "lab_papers": 5
-  },
-  {
-   "school": "gatech",
-   "pi": "Brian Magerko",
-   "departments": [
-    "LMC"
-   ],
-   "lab_papers": 85
-  },
-  {
-   "school": "gatech",
-   "pi": "Charles C. Kemp",
-   "departments": [
-    "BME"
-   ],
-   "lab_papers": 52
-  },
-  {
-   "school": "gatech",
-   "pi": "David W. Rosen",
-   "departments": [
-    "ME"
-   ],
-   "lab_papers": 66
   },
   {
    "school": "gatech",
@@ -5039,22 +3480,13 @@
   },
   {
    "school": "gatech",
-   "pi": "Dimitri N. Mavris",
-   "departments": [
-    "ML",
-    "AE"
-   ],
-   "lab_papers": 795
-  },
-  {
-   "school": "gatech",
    "pi": "Eberhard O. Voit",
    "departments": [
     "MATH",
     "BIOS",
     "BME"
    ],
-   "lab_papers": 67
+   "lab_papers": 66
   },
   {
    "school": "gatech",
@@ -5066,28 +3498,11 @@
   },
   {
    "school": "gatech",
-   "pi": "Evangelos A. Theodorou",
-   "departments": [
-    "ML",
-    "AE"
-   ],
-   "lab_papers": 167
-  },
-  {
-   "school": "gatech",
    "pi": "Glaucio H. Paulino",
    "departments": [
     "CEE"
    ],
    "lab_papers": 91
-  },
-  {
-   "school": "gatech",
-   "pi": "Grigoriy Blekherman",
-   "departments": [
-    "MATH"
-   ],
-   "lab_papers": 4
   },
   {
    "school": "gatech",
@@ -5107,14 +3522,6 @@
   },
   {
    "school": "gatech",
-   "pi": "Jason Freeman",
-   "departments": [
-    "MUSIC"
-   ],
-   "lab_papers": 47
-  },
-  {
-   "school": "gatech",
    "pi": "Jay David Bolter",
    "departments": [
     "LMC"
@@ -5131,28 +3538,11 @@
   },
   {
    "school": "gatech",
-   "pi": "John E. Taylor",
-   "departments": [
-    "CEE"
-   ],
-   "lab_papers": 64
-  },
-  {
-   "school": "gatech",
    "pi": "Julie Linsey",
    "departments": [
     "ME"
    ],
-   "lab_papers": 95
-  },
-  {
-   "school": "gatech",
-   "pi": "Leonid A. Bunimovich",
-   "departments": [
-    "MATH",
-    "BIOS"
-   ],
-   "lab_papers": 39
+   "lab_papers": 111
   },
   {
    "school": "gatech",
@@ -5168,7 +3558,7 @@
    "departments": [
     "AE"
    ],
-   "lab_papers": 15
+   "lab_papers": 14
   },
   {
    "school": "gatech",
@@ -5184,7 +3574,7 @@
    "departments": [
     "ME"
    ],
-   "lab_papers": 10
+   "lab_papers": 11
   },
   {
    "school": "gatech",
@@ -5212,22 +3602,6 @@
   },
   {
    "school": "gatech",
-   "pi": "Roger Jianxin Jiao",
-   "departments": [
-    "ME"
-   ],
-   "lab_papers": 68
-  },
-  {
-   "school": "gatech",
-   "pi": "Wei Sun",
-   "departments": [
-    "BME"
-   ],
-   "lab_papers": 77
-  },
-  {
-   "school": "gatech",
    "pi": "Wei Wang",
    "departments": [
     "ID"
@@ -5240,7 +3614,7 @@
    "departments": [
     "MATH"
    ],
-   "lab_papers": 10
+   "lab_papers": 12
   },
   {
    "school": "gatech",
@@ -5256,24 +3630,7 @@
    "departments": [
     "ME"
    ],
-   "lab_papers": 234
-  },
-  {
-   "school": "gatech",
-   "pi": "Yongxin Chen",
-   "departments": [
-    "ML",
-    "AE"
-   ],
-   "lab_papers": 134
-  },
-  {
-   "school": "gatech",
-   "pi": "Yu (Jeffrey) Hu",
-   "departments": [
-    "SCHELLER"
-   ],
-   "lab_papers": 20
+   "lab_papers": 232
   },
   {
    "school": "gatech",
@@ -5285,30 +3642,11 @@
   },
   {
    "school": "gatech",
-   "pi": "May D. Wang",
-   "departments": [
-    "ML",
-    "BME"
-   ],
-   "lab_papers": 187
-  },
-  {
-   "school": "gatech",
-   "pi": "Daniel I. Goldman",
-   "departments": [
-    "ML",
-    "PHYS",
-    "BIOS"
-   ],
-   "lab_papers": 128
-  },
-  {
-   "school": "gatech",
    "pi": "Kok-Meng Lee",
    "departments": [
     "ME"
    ],
-   "lab_papers": 81
+   "lab_papers": 98
   },
   {
    "school": "gatech",
@@ -5316,50 +3654,7 @@
    "departments": [
     "LMC"
    ],
-   "lab_papers": 29
-  },
-  {
-   "school": "gatech",
-   "pi": "Flavio H. Fenton",
-   "departments": [
-    "PHYS",
-    "BIOS"
-   ],
-   "lab_papers": 104
-  },
-  {
-   "school": "gatech",
-   "pi": "Xingxing Yu",
-   "departments": [
-    "MATH"
-   ],
-   "lab_papers": 4
-  },
-  {
-   "school": "gatech",
-   "pi": "Karen M. Feigh",
-   "departments": [
-    "ML",
-    "AE"
-   ],
-   "lab_papers": 96
-  },
-  {
-   "school": "gatech",
-   "pi": "Sung Ha Kang",
-   "departments": [
-    "ML",
-    "MATH"
-   ],
-   "lab_papers": 40
-  },
-  {
-   "school": "gatech",
-   "pi": "Shella Keilholz",
-   "departments": [
-    "BME"
-   ],
-   "lab_papers": 92
+   "lab_papers": 37
   },
   {
    "school": "gatech",
@@ -5368,22 +3663,6 @@
     "MATH"
    ],
    "lab_papers": 2
-  },
-  {
-   "school": "gatech",
-   "pi": "Eric Feron",
-   "departments": [
-    "AE"
-   ],
-   "lab_papers": 81
-  },
-  {
-   "school": "gatech",
-   "pi": "Anirban Mazumdar",
-   "departments": [
-    "ME"
-   ],
-   "lab_papers": 30
   },
   {
    "school": "gatech",
@@ -5396,27 +3675,11 @@
   },
   {
    "school": "gatech",
-   "pi": "Yong K. Cho",
-   "departments": [
-    "CEE"
-   ],
-   "lab_papers": 109
-  },
-  {
-   "school": "gatech",
    "pi": "Richmond Y. Wong",
    "departments": [
     "LMC"
    ],
    "lab_papers": 23
-  },
-  {
-   "school": "gatech",
-   "pi": "Aaron D. Ames",
-   "departments": [
-    "ME"
-   ],
-   "lab_papers": 22
   },
   {
    "school": "gatech",
@@ -5432,35 +3695,7 @@
    "departments": [
     "LMC"
    ],
-   "lab_papers": 25
-  },
-  {
-   "school": "gatech",
-   "pi": "Lena H. Ting",
-   "departments": [
-    "BME",
-    "BIOS",
-    "ME"
-   ],
-   "lab_papers": 87
-  },
-  {
-   "school": "gatech",
-   "pi": "Jonathan Rogers",
-   "departments": [
-    "ME",
-    "AE"
-   ],
-   "lab_papers": 79
-  },
-  {
-   "school": "gatech",
-   "pi": "Cassie S. Mitchell",
-   "departments": [
-    "ML",
-    "BME"
-   ],
-   "lab_papers": 61
+   "lab_papers": 24
   },
   {
    "school": "gatech",
@@ -5472,37 +3707,12 @@
   },
   {
    "school": "gatech",
-   "pi": "William Singhose",
-   "departments": [
-    "ME"
-   ],
-   "lab_papers": 41
-  },
-  {
-   "school": "gatech",
    "pi": "Jeffrey Skolnick",
    "departments": [
     "ML",
     "BIOS"
    ],
-   "lab_papers": 63
-  },
-  {
-   "school": "gatech",
-   "pi": "Sudheer Chava",
-   "departments": [
-    "ML",
-    "SCHELLER"
-   ],
-   "lab_papers": 12
-  },
-  {
-   "school": "gatech",
-   "pi": "Michael Hunter",
-   "departments": [
-    "CEE"
-   ],
-   "lab_papers": 46
+   "lab_papers": 62
   },
   {
    "school": "gatech",
@@ -5510,15 +3720,7 @@
    "departments": [
     "BME"
    ],
-   "lab_papers": 38
-  },
-  {
-   "school": "gatech",
-   "pi": "Joseph Homer Saleh",
-   "departments": [
-    "AE"
-   ],
-   "lab_papers": 33
+   "lab_papers": 37
   },
   {
    "school": "gatech",
@@ -5527,24 +3729,6 @@
     "CEE"
    ],
    "lab_papers": 7
-  },
-  {
-   "school": "gatech",
-   "pi": "Fani Boukouvala",
-   "departments": [
-    "ML",
-    "CHBE"
-   ],
-   "lab_papers": 21
-  },
-  {
-   "school": "gatech",
-   "pi": "Joseph K. Scott",
-   "departments": [
-    "ML",
-    "CHBE"
-   ],
-   "lab_papers": 19
   },
   {
    "school": "gatech",
@@ -5572,14 +3756,6 @@
   },
   {
    "school": "gatech",
-   "pi": "P. K. Yeung",
-   "departments": [
-    "ME"
-   ],
-   "lab_papers": 33
-  },
-  {
-   "school": "gatech",
    "pi": "Young Mi Choi",
    "departments": [
     "ID"
@@ -5592,7 +3768,7 @@
    "departments": [
     "ID"
    ],
-   "lab_papers": 8
+   "lab_papers": 23
   },
   {
    "school": "gatech",
@@ -5617,14 +3793,6 @@
     "MATH"
    ],
    "lab_papers": 3
-  },
-  {
-   "school": "gatech",
-   "pi": "Audrey Duarte",
-   "departments": [
-    "BIOS"
-   ],
-   "lab_papers": 22
   },
   {
    "school": "gatech",
@@ -5660,20 +3828,11 @@
   },
   {
    "school": "gatech",
-   "pi": "Alexander Oettl",
-   "departments": [
-    "ML",
-    "SCHELLER"
-   ],
-   "lab_papers": 4
-  },
-  {
-   "school": "gatech",
    "pi": "Lutz Warnke",
    "departments": [
     "MATH"
    ],
-   "lab_papers": 0
+   "lab_papers": 10
   },
   {
    "school": "gatech",
@@ -5685,35 +3844,11 @@
   },
   {
    "school": "gatech",
-   "pi": "Claire Arthur",
-   "departments": [
-    "MUSIC"
-   ],
-   "lab_papers": 14
-  },
-  {
-   "school": "gatech",
-   "pi": "Josephine Yu",
-   "departments": [
-    "MATH"
-   ],
-   "lab_papers": 8
-  },
-  {
-   "school": "gatech",
    "pi": "Basak Kalkanci",
    "departments": [
     "SCHELLER"
    ],
    "lab_papers": 1
-  },
-  {
-   "school": "gatech",
-   "pi": "Athanassios Economou",
-   "departments": [
-    "ARCH"
-   ],
-   "lab_papers": 9
   },
   {
    "school": "gatech",
@@ -5730,6 +3865,1163 @@
     "BME"
    ],
    "lab_papers": 11
+  },
+  {
+   "school": "harvard",
+   "pi": "Nada Amin",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 6
+  },
+  {
+   "school": "harvard",
+   "pi": "Anurag Anshu",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 4
+  },
+  {
+   "school": "harvard",
+   "pi": "Boaz Barak",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 0
+  },
+  {
+   "school": "harvard",
+   "pi": "Kianté Brantley",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 15
+  },
+  {
+   "school": "harvard",
+   "pi": "Stephen Casper",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 4
+  },
+  {
+   "school": "harvard",
+   "pi": "Yiling Chen",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 6
+  },
+  {
+   "school": "harvard",
+   "pi": "Stephen Chong",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 1
+  },
+  {
+   "school": "harvard",
+   "pi": "Yilun Du",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 34
+  },
+  {
+   "school": "harvard",
+   "pi": "Cynthia Dwork",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 1
+  },
+  {
+   "school": "harvard",
+   "pi": "Elena Leah Glassman",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 5
+  },
+  {
+   "school": "harvard",
+   "pi": "Yannai A. Gonczarowski",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 2
+  },
+  {
+   "school": "harvard",
+   "pi": "Steven J. Gortler",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 1
+  },
+  {
+   "school": "harvard",
+   "pi": "Stratos Idreos",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 1
+  },
+  {
+   "school": "harvard",
+   "pi": "Sham Kakade",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 15
+  },
+  {
+   "school": "harvard",
+   "pi": "Eddie Kohler",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 0
+  },
+  {
+   "school": "harvard",
+   "pi": "Hima Lakkaraju",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 6
+  },
+  {
+   "school": "harvard",
+   "pi": "James Mickens",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 6
+  },
+  {
+   "school": "harvard",
+   "pi": "Michael D. Mitzenmacher",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 11
+  },
+  {
+   "school": "harvard",
+   "pi": "Susan A Murphy",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 9
+  },
+  {
+   "school": "harvard",
+   "pi": "Stuart M. Shieber",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 3
+  },
+  {
+   "school": "harvard",
+   "pi": "Michael D. Smith",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 0
+  },
+  {
+   "school": "harvard",
+   "pi": "Milind Tambe",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 21
+  },
+  {
+   "school": "harvard",
+   "pi": "Salil P. Vadhan",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 5
+  },
+  {
+   "school": "harvard",
+   "pi": "Leslie G. Valiant",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 1
+  },
+  {
+   "school": "harvard",
+   "pi": "Fernanda Viegas",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 2
+  },
+  {
+   "school": "harvard",
+   "pi": "Qianqian Wang",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 0
+  },
+  {
+   "school": "harvard",
+   "pi": "Jonathan Zittrain",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 20
+  },
+  {
+   "school": "jhu",
+   "pi": "Raman Arora",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 2
+  },
+  {
+   "school": "jhu",
+   "pi": "Alexis Battle",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 9
+  },
+  {
+   "school": "jhu",
+   "pi": "Homanga Bharadhwaj",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 5
+  },
+  {
+   "school": "jhu",
+   "pi": "Anand Bhattad",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 6
+  },
+  {
+   "school": "jhu",
+   "pi": "Vladimir Braverman",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 13
+  },
+  {
+   "school": "jhu",
+   "pi": "Randal Burns",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 4
+  },
+  {
+   "school": "jhu",
+   "pi": "Yinzhi Cao",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 77
+  },
+  {
+   "school": "jhu",
+   "pi": "Uthsav Chitra",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 0
+  },
+  {
+   "school": "jhu",
+   "pi": "Zih-Yun “Sarah” Chiu",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 0
+  },
+  {
+   "school": "jhu",
+   "pi": "Jaemin Cho",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 9
+  },
+  {
+   "school": "jhu",
+   "pi": "Nicolas Christianson",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 1
+  },
+  {
+   "school": "jhu",
+   "pi": "Michael Dinitz",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 4
+  },
+  {
+   "school": "jhu",
+   "pi": "Mark Dredze",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 31
+  },
+  {
+   "school": "jhu",
+   "pi": "Jason Eisner",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 60
+  },
+  {
+   "school": "jhu",
+   "pi": "Anjalie Field",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 5
+  },
+  {
+   "school": "jhu",
+   "pi": "Kristina Gligorić",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 7
+  },
+  {
+   "school": "jhu",
+   "pi": "Matthew Green",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 1
+  },
+  {
+   "school": "jhu",
+   "pi": "Gillian Hadfield",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 0
+  },
+  {
+   "school": "jhu",
+   "pi": "Haimin Hu",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 4
+  },
+  {
+   "school": "jhu",
+   "pi": "Abhishek Jain",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 7
+  },
+  {
+   "school": "jhu",
+   "pi": "Krishna Murthy Jatavallabhula",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 0
+  },
+  {
+   "school": "jhu",
+   "pi": "Misha Kazhdan",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 17
+  },
+  {
+   "school": "jhu",
+   "pi": "Daniel Khashabi",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 23
+  },
+  {
+   "school": "jhu",
+   "pi": "Murat Kocaoglu",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 0
+  },
+  {
+   "school": "jhu",
+   "pi": "Philipp Koehn",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 12
+  },
+  {
+   "school": "jhu",
+   "pi": "Ben Langmead",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 8
+  },
+  {
+   "school": "jhu",
+   "pi": "Xin Li",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 3
+  },
+  {
+   "school": "jhu",
+   "pi": "Ziyang Li",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 1
+  },
+  {
+   "school": "jhu",
+   "pi": "Anqi \"Angie\" Liu",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 8
+  },
+  {
+   "school": "jhu",
+   "pi": "Alex Marder",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 0
+  },
+  {
+   "school": "jhu",
+   "pi": "Eric Nalisnick",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 8
+  },
+  {
+   "school": "jhu",
+   "pi": "Michael Oberst",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 6
+  },
+  {
+   "school": "jhu",
+   "pi": "Tiziano Piccardi",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 7
+  },
+  {
+   "school": "jhu",
+   "pi": "Erik Rye",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 5
+  },
+  {
+   "school": "jhu",
+   "pi": "Krishan Sabnani",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 3
+  },
+  {
+   "school": "jhu",
+   "pi": "Steven Salzberg",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 10
+  },
+  {
+   "school": "jhu",
+   "pi": "Suchi Saria",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 103
+  },
+  {
+   "school": "jhu",
+   "pi": "Michael Schatz",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 151
+  },
+  {
+   "school": "jhu",
+   "pi": "Tianmin Shu",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 15
+  },
+  {
+   "school": "jhu",
+   "pi": "Scott Smith",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 8
+  },
+  {
+   "school": "jhu",
+   "pi": "Jessica Sorrell",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 2
+  },
+  {
+   "school": "jhu",
+   "pi": "Alex Szalay",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 3
+  },
+  {
+   "school": "jhu",
+   "pi": "Benjamin Van Durme",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 26
+  },
+  {
+   "school": "jhu",
+   "pi": "Ziang Xiao",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 20
+  },
+  {
+   "school": "jhu",
+   "pi": "Yaxing Yao",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 11
+  },
+  {
+   "school": "jhu",
+   "pi": "David Yarowsky",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 2
+  },
+  {
+   "school": "jhu",
+   "pi": "Alan Yuille",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 382
+  },
+  {
+   "school": "jhu",
+   "pi": "Lydia Zakynthinou",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 0
+  },
+  {
+   "school": "jhu",
+   "pi": "Renjie Zhao",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 4
+  },
+  {
+   "school": "jhu",
+   "pi": "Zongwei Zhou",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 19
+  },
+  {
+   "school": "jhu",
+   "pi": "Roy Adams",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 0
+  },
+  {
+   "school": "jhu",
+   "pi": "Joel Bader",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 0
+  },
+  {
+   "school": "jhu",
+   "pi": "Amitabh Basu",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 4
+  },
+  {
+   "school": "jhu",
+   "pi": "Tamás Budavári",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 1
+  },
+  {
+   "school": "jhu",
+   "pi": "Adam Charles",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 7
+  },
+  {
+   "school": "jhu",
+   "pi": "Yiqun Chen",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 0
+  },
+  {
+   "school": "jhu",
+   "pi": "Noah Cowan",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 5
+  },
+  {
+   "school": "jhu",
+   "pi": "Najim Dehak",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 14
+  },
+  {
+   "school": "jhu",
+   "pi": "Jon Donnelly",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 0
+  },
+  {
+   "school": "jhu",
+   "pi": "Jean Fan",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 10
+  },
+  {
+   "school": "jhu",
+   "pi": "Mahyar Fazlyab",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 6
+  },
+  {
+   "school": "jhu",
+   "pi": "Liliana Florea",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 3
+  },
+  {
+   "school": "jhu",
+   "pi": "Sijia Geng",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 5
+  },
+  {
+   "school": "jhu",
+   "pi": "John T. Hale",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 4
+  },
+  {
+   "school": "jhu",
+   "pi": "Soufiane Hayou",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 3
+  },
+  {
+   "school": "jhu",
+   "pi": "Jennifer Hu",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 0
+  },
+  {
+   "school": "jhu",
+   "pi": "Ananya Joshi",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 6
+  },
+  {
+   "school": "jhu",
+   "pi": "Rachel Karchin",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 1
+  },
+  {
+   "school": "jhu",
+   "pi": "Sanjeev Khudanpur",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 11
+  },
+  {
+   "school": "jhu",
+   "pi": "Holden Lee",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 2
+  },
+  {
+   "school": "jhu",
+   "pi": "Nicolas Loizou",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 6
+  },
+  {
+   "school": "jhu",
+   "pi": "Enrique Mallada",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 3
+  },
+  {
+   "school": "jhu",
+   "pi": "Brice Ménard",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 1
+  },
+  {
+   "school": "jhu",
+   "pi": "Tinoosh Mohsenin",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 6
+  },
+  {
+   "school": "jhu",
+   "pi": "Casey Overby Taylor",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 11
+  },
+  {
+   "school": "jhu",
+   "pi": "Vishal Patel",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 31
+  },
+  {
+   "school": "jhu",
+   "pi": "Mihaela Pertea",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 5
+  },
+  {
+   "school": "jhu",
+   "pi": "Carey Priebe",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 14
+  },
+  {
+   "school": "jhu",
+   "pi": "Luana Ruiz",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 5
+  },
+  {
+   "school": "jhu",
+   "pi": "Berrak Sisman",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 23
+  },
+  {
+   "school": "jhu",
+   "pi": "Jeremias Sulam",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 6
+  },
+  {
+   "school": "jhu",
+   "pi": "Soledad Villar",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 4
+  },
+  {
+   "school": "jhu",
+   "pi": "Joshua T. Vogelstein",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 5
+  },
+  {
+   "school": "jhu",
+   "pi": "Louis Whitcomb",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 0
+  },
+  {
+   "school": "jhu",
+   "pi": "Laurent Younes",
+   "departments": [
+    "CS"
+   ],
+   "lab_papers": 3
+  },
+  {
+   "school": "washu",
+   "pi": "Kunal Agrawal",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 71
+  },
+  {
+   "school": "washu",
+   "pi": "Sanjoy Baruah",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 98
+  },
+  {
+   "school": "washu",
+   "pi": "Michael Brent",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 17
+  },
+  {
+   "school": "washu",
+   "pi": "Jeremy Buhler",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 29
+  },
+  {
+   "school": "washu",
+   "pi": "Ayan Chakrabarti",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 9
+  },
+  {
+   "school": "washu",
+   "pi": "Roger Chamberlain",
+   "departments": [
+    "CSE",
+    "ESE"
+   ],
+   "lab_papers": 68
+  },
+  {
+   "school": "washu",
+   "pi": "Yixin Chen",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 96
+  },
+  {
+   "school": "washu",
+   "pi": "Patrick Crowley",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 21
+  },
+  {
+   "school": "washu",
+   "pi": "Ron Cytron",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 1
+  },
+  {
+   "school": "washu",
+   "pi": "Roman Garnett",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 49
+  },
+  {
+   "school": "washu",
+   "pi": "Christopher Gill",
+   "departments": [
+    "CSE",
+    "ESE"
+   ],
+   "lab_papers": 60
+  },
+  {
+   "school": "washu",
+   "pi": "Roch Guérin",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 16
+  },
+  {
+   "school": "washu",
+   "pi": "Chien-Ju Ho",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 32
+  },
+  {
+   "school": "washu",
+   "pi": "Raj Jain",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 13
+  },
+  {
+   "school": "washu",
+   "pi": "Tao Ju",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 39
+  },
+  {
+   "school": "washu",
+   "pi": "Ulugbek Kamilov",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 23
+  },
+  {
+   "school": "washu",
+   "pi": "Caitlin Kelleher",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 37
+  },
+  {
+   "school": "washu",
+   "pi": "I-Ting Angelina Lee",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 29
+  },
+  {
+   "school": "washu",
+   "pi": "Chenyang Lu",
+   "departments": [
+    "CSE",
+    "ESE"
+   ],
+   "lab_papers": 27
+  },
+  {
+   "school": "washu",
+   "pi": "Alvitta Ottley",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 14
+  },
+  {
+   "school": "washu",
+   "pi": "Neal Patwari",
+   "departments": [
+    "CSE",
+    "ESE"
+   ],
+   "lab_papers": 20
+  },
+  {
+   "school": "washu",
+   "pi": "Netanel Raviv",
+   "departments": [
+    "CSE",
+    "ESE"
+   ],
+   "lab_papers": 56
+  },
+  {
+   "school": "washu",
+   "pi": "Weixiong Zhang",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 7
+  },
+  {
+   "school": "washu",
+   "pi": "Ning Zhang",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 92
+  },
+  {
+   "school": "washu",
+   "pi": "Jonathan Turner",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 0
+  },
+  {
+   "school": "washu",
+   "pi": "Ian Bogost",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 0
+  },
+  {
+   "school": "washu",
+   "pi": "Jiaxin Huang",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 9
+  },
+  {
+   "school": "washu",
+   "pi": "Umar Iqbal",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 12
+  },
+  {
+   "school": "washu",
+   "pi": "Hussein Sibai",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 19
+  },
+  {
+   "school": "washu",
+   "pi": "Chenguang Wang",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 6
+  },
+  {
+   "school": "washu",
+   "pi": "Chongjie Zhang",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 21
+  },
+  {
+   "school": "washu",
+   "pi": "Gregory Kehne",
+   "departments": [
+    "CSE"
+   ],
+   "lab_papers": 7
   }
  ],
  "counts": {
@@ -5737,13 +5029,19 @@
   "berkeley:zero_students": 1,
   "cmu:zero_papers:zero_is_right": 1,
   "epfl:zero_papers:zero_is_right": 2,
-  "gatech:zero_papers:unreviewed": 10,
-  "gatech:zero_students": 374,
+  "gatech:zero_papers:unreviewed": 9,
+  "gatech:zero_students": 173,
+  "harvard:zero_papers:fix": 4,
+  "harvard:zero_students": 27,
+  "jhu:zero_papers:fix": 13,
+  "jhu:zero_students": 85,
   "michigan:zero_papers:zero_is_right": 5,
-  "michigan:zero_students": 155,
+  "michigan:zero_students": 61,
   "mit:zero_papers:zero_is_right": 2,
   "princeton:zero_papers:zero_is_right": 2,
-  "uchicago:zero_papers:unreviewed": 8,
-  "uchicago:zero_students": 54
+  "uchicago:zero_papers:unreviewed": 7,
+  "uchicago:zero_students": 44,
+  "washu:zero_papers:fix": 2,
+  "washu:zero_students": 32
  }
 }
