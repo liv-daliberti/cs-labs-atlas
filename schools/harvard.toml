@@ -27,7 +27,7 @@ openalex = ["I136199984"]
 # D3 exclude Harvard University Press and Real Colegio Complutense; D4 regex does not match bare Harvard-MIT/HST, bare Harvard-Smithsonian, Harvard Pilgrim, Harvey Mudd, HBS matches; D5 blocked FAS hosts and DASH are read through Wayback
 # (owner "allowed always"); D6 Kempner and Wyss are center units, only members with a Harvard faculty appointment can be PIs.
 openalex_related = ["I4210087915", "I1283280774", "I1288882113", "I4210117453", "I107606265", "I4210092658"]   # MGH, Brigham, Boston Children's, Dana-Farber, Broad, HST
-openalex_excluded = []    # PROPOSED (D3): Harvard University Press I2801851002, Real Colegio Complutense I4392738166 (Spain), Harvard Pilgrim Health Care and Harvard Eye Associates/Vanguard (never lineage)
+openalex_excluded = ["I2801851002", "I4392738166"]    # owner D3: Harvard University Press and Real Colegio Complutense
 ror = "https://ror.org/03vek6s52"
 ids_note = """OpenAlex institutions table of the 2026-10-14 snapshot (no API credits; checked 2026-11-05): I136199984 'Harvard University', ROR 03vek6s52, US, lineage [I136199984] (no parent). ROR v2 record
 (api.ror.org, 2026-11-05) agrees: 18 children, 24 related. Lineage children (22 in OpenAlex): Rowland Institute I4387153050, Ragon Institute I2802422659, NSF AI Institute for AI and Fundamental

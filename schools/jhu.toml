@@ -7,7 +7,7 @@ name = "Johns Hopkins University"
 short = "Johns Hopkins"
 site_uni = ""
 status = "onboarding"
-order = 10                 # Harvard and WashU draft 11 and 12 in parallel; the coordinator settles the order at landing
+order = 11                 # Harvard 10, Johns Hopkins 11, WashU 12
 stage = 0
 started = "2026-11-05"
 window = [2016, 2026]
@@ -152,18 +152,15 @@ name = "Department of Applied Mathematics and Statistics"
 unit = "Whiting School of Engineering"
 title_match = '''Applied Mathematics'''
 coverage = "affiliated"
+# CDX 2026-11-06: engineering.jhu.edu/ams/people/ has 45 captures 2016-03..2025-11 (every half-year but 2018H2, 2019H1); the old host ams.jhu.edu has none.
+listing_gaps = {2026 = "no archived capture after 2025-11 (engineering.jhu.edu is Wayback-only, bot challenge)"}
 url = "https://engineering.jhu.edu/ams/"
   [[departments.listings]]
   slot = "AMS faculty"
   kind = "main"
   url = "engineering.jhu.edu/ams/people/"
-  from = "20230101"
-  to = "20261231"
-  [[departments.listings]]
-  slot = "AMS faculty"
-  url = "ams.jhu.edu/people/"
   from = "20160101"
-  to = "20221231"
+  to = "20261231"
 
 [[departments]]
 code = "BME"
