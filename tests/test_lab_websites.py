@@ -174,6 +174,34 @@ def test_archive_pending_is_unresolved_at_gate():
     assert any('archive evidence pending' in x for x in W.gate({'labs': [e]}, ['Ada Example']))
 
 
+def test_cross_host_cached_homepage_chain_requires_named_pi_and_exact_destination():
+    profile = {'url': 'https://school.edu/people/ada',
+               'content': b'<a href="https://old.example/~ada/">Personal website</a>',
+               'sha256': 'a'*64, 'fetched_at': '2026-11-01'}
+    old = {'status': 200, 'content': b'<h1>Ada Example</h1><a href="https://new.example/ada/">New homepage</a>',
+           'sha256': 'b'*64, 'fetched_at': '2026-11-02'}
+    target = 'https://new.example/ada/'
+    args = (profile, profile['url'], target, lambda url: old, lambda page, url: url)
+    assert W.cached_profile_chain(*args) is None
+    assert W.cached_profile_chain(*args, pi='Grace Example') is None
+    check = W.cached_profile_chain(*args, pi='Ada Example')
+    assert check['intermediate_identity_quote'] == 'Ada Example'
+    assert W.official_check(check, target)
+    assert [c['source_sha256'] for c in check['provenance_chain']] == ['a'*64, 'b'*64]
+    old['content'] = b'<h1>Ada Example</h1><a href="https://new.example/other/">Other homepage</a>'
+    assert W.cached_profile_chain(*args, pi='Ada Example') is None
+
+
+def test_cross_host_chain_rejects_generic_research_navigation():
+    profile = {'url': 'https://school.edu/people/ada',
+               'content': b'<a href="https://research.example/">Research</a>',
+               'sha256': 'a'*64, 'fetched_at': '2026-11-01'}
+    def unexpected_lookup(url):
+        raise AssertionError('Generic navigation must not be used as a personal link')
+    assert W.cached_profile_chain(profile, profile['url'], 'https://new.example/',
+                                  unexpected_lookup, lambda page, url: url, pi='Ada Example') is None
+
+
 def test_dated_publication_page_is_not_a_lab_website():
     rec = record(url='https://cyber.harvard.edu/publications/2016/Cybersecurity/Dont_Panic')
     row = W.entry(rec)

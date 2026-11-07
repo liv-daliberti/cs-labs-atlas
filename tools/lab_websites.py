@@ -309,13 +309,16 @@ def literal_links(content, base):
             yield url, anchor.get_text(' ', strip=True), anchor['href']
 
 
-def cached_profile_chain(profile, source_url, target_url, cached_page, link_base):
+def cached_profile_chain(profile, source_url, target_url, cached_page, link_base, pi=None):
     """Official profile -> named lab/home link -> selected page, all cached."""
     target = normalized_link(target_url)
     candidates = 0
     for intermediate, anchor, href in literal_links(profile['content'], link_base(profile, source_url)):
         parsed = urlsplit(intermediate)
-        if parsed.hostname != urlsplit(target_url).hostname or selection_gaps(intermediate):
+        cross_host = parsed.hostname != urlsplit(target_url).hostname
+        if selection_gaps(intermediate):
+            continue
+        if cross_host and (not pi or not re.search(r'personal|home.?page|web.?site|web.?page|\blab\b', anchor, re.I)):
             continue
         if parsed.hostname == urlsplit(source_url).hostname and parsed.path in ('', '/'):
             continue  # university navigation is not a PI's lab/home link
@@ -327,6 +330,22 @@ def cached_profile_chain(profile, source_url, target_url, cached_page, link_base
         page = cached_page(intermediate)
         if not page or page.get('status') != 200 or not page.get('content'):
             continue
+        identity_quote = None
+        if cross_host:
+            from bs4 import BeautifulSoup
+            content = page['content']
+            try:
+                content = zlib.decompress(content)
+            except (zlib.error, TypeError):
+                pass
+            tokens = re.findall(r'\w+', pi)
+            if len([t for t in tokens if len(t) > 1]) < 2:
+                continue
+            text = BeautifulSoup(content, 'html.parser').get_text(' ', strip=True)
+            match = re.search(r'(?<!\w)' + r'[\W_]+'.join(map(re.escape, tokens)) + r'(?!\w)', text, re.I)
+            if not match:
+                continue
+            identity_quote = match.group(0)
         for dest, text, raw_href in literal_links(page['content'], link_base(page, intermediate)):
             if normalized_link(dest) != target:
                 continue
@@ -340,6 +359,8 @@ def cached_profile_chain(profile, source_url, target_url, cached_page, link_base
                          at=profile.get('fetched_at'), result='listed_via_recorded_chain',
                          original_link=intermediate, provenance_chain=chain,
                          provenance='recovered_from_cached_profile_lab_chain')
+            if identity_quote:
+                check['intermediate_identity_quote'] = identity_quote
             if official_check(check, target_url):
                 return check
     return None
@@ -392,7 +413,7 @@ def enrich_official_links(school, doc):
                 r['listed_on'] = source_url
                 break
             if not listing:
-                check = cached_profile_chain(page, source_url, r['url'], cached_page, L.link_base)
+                check = cached_profile_chain(page, source_url, r['url'], cached_page, L.link_base, pi=r['pi'])
                 if check:
                     r['checks'].append(check)
                     r['official_link_status'] = 'recorded'
