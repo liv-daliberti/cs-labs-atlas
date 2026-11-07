@@ -1,9 +1,5 @@
 """ai-writing/fulltext_sections.py: the main / references / appendix split, on synthetic text (no NFS, no pdftotext)."""
-import sys
-from pathlib import Path
-
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'ai-writing'))
-import fulltext_sections as S  # noqa: E402
+import fulltext_sections as S
 
 PROSE = ' '.join(['We study the effect of the method in this setting and show that the results hold for the data.'] * 30)
 REFS = 'References\n' + '\n'.join(f'[{i}] Author {i}. A paper about topic {i}. Journal of Things, {2000 + i}.' for i in range(1, 30)) + '\n'
@@ -108,7 +104,6 @@ def test_reference_list_without_heading_is_trimmed():
 
 def test_main_matches_vendored_body_up_to_the_references():
     """The main text is the vendored body (Introduction to the references heading) when there is no appendix."""
-    sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'vendor' / 'homogenization_tools'))
     import fulltext_store as fs
     t = doc(PROSE, '2 Method\n' + PROSE, REFS)
     assert S.split_text(t)['main'] == fs.sections(t, 'A Paper Title')['body']

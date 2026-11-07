@@ -196,7 +196,9 @@ def test_arxiv_bulk_matches_by_doi_then_exact_title_and_authors(monkeypatch, bul
     r = dict(title=t, year=2021, byline=['Ada Lovelace', 'Charles Babbage'], pis=['Ada Lovelace'], doi=None)
     assert AB.match(r, ix) == ('title_author', ix['by_t'][F.nt(t)][0])
     assert AB.match(dict(r, byline=['Grace Hopper', 'Charles Babbage']), ix)[0] is None
-    assert AB.match(dict(r, year=2026), ix)[0] is None
+    assert AB.match(dict(r, year=2028), ix)[0] == 'title_author'  # accepted eight-year publication lag
+    assert AB.match(dict(r, year=2029), ix)[0] is None
+    assert AB.match(dict(r, year=2018), ix)[0] is None  # preprint cannot follow the paper by two years
 
 
 def test_oa_locations_reads_every_location_and_sibling_records(monkeypatch):
