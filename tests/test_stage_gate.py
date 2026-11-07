@@ -58,12 +58,46 @@ def test_gate9_thresholds_and_stale_build(tree):
 
 
 def test_waiver_needs_a_reason_and_keeps_the_items(tree):
+    tree.cfg['status'] = 'released'  # the legacy exception format remains valid for released schools
     tree.put('copies.json', {'summary': {'lab_papers': 10, 'local': 1}})
     tree.put('gate-exceptions.json', {'8': {'reason': '', 'by': 'owner'}})
     assert G.evaluate('u', 8)['gate'] == 'fail'
     tree.put('gate-exceptions.json', {'8': {'reason': 'owner shipped it 2026-11-02', 'by': 'owner'}})
     r = G.evaluate('u', 8)
     assert r['gate'] == 'waived' and r['open'] == 1 and r['waiver']['by'] == 'owner'
+
+
+def test_onboarding_exception_requires_exact_scope_and_owner_quote(tree, monkeypatch):
+    monkeypatch.setitem(G.GATES, '1', lambda key: (['CS 2016: never planned'], {}))
+    tree.put('gate-exceptions.json', {'1': {'reason': 'partial coverage authorized', 'by': 'owner'}})
+    r = G.evaluate('u', 1)
+    assert r['gate'] == 'fail' and r['unwaived_items'] == r['items']
+    assert 'allow_items' in r['exception_error']
+    tree.put('gate-exceptions.json', {'1': {'reason': 'partial coverage authorized', 'allow_items': r['items']}})
+    assert 'owner_quote' in G.evaluate('u', 1)['exception_error']
+
+
+def test_scoped_exception_keeps_all_open_findings_visible_and_rejects_new_errors(tree, monkeypatch):
+    findings = ['CS 2016: never planned']
+    monkeypatch.setitem(G.GATES, '1', lambda key: (findings, {}))
+    tree.put('gate-exceptions.json', {'1': {'reason': 'historical coverage incomplete', 'by': 'owner',
+                                          'owner_quote': 'release what we have and keep improving',
+                                          'allow_items': list(findings)}})
+    r = G.evaluate('u', 1)
+    assert r['gate'] == 'waived' and r['open'] == 1 and r['items'] == findings
+    assert r['waived_items'] == findings and r['unwaived_items'] == []
+    findings.append('evidence: source quote is missing')
+    r = G.evaluate('u', 1)
+    assert r['gate'] == 'fail' and r['open'] == 2
+    assert r['unwaived_items'] == ['evidence: source quote is missing']
+    assert r['waived_items'] == ['CS 2016: never planned']
+
+
+def test_scoped_exception_does_not_match_prefixes_or_wildcards(tree, monkeypatch):
+    monkeypatch.setitem(G.GATES, '5', lambda key: (['identity: missing anchor'], {}))
+    tree.put('gate-exceptions.json', {'5': {'reason': 'completeness only', 'owner_quote': 'release what we have',
+                                          'allow_items': ['identity:*', 'identity:']}})
+    assert G.evaluate('u', 5)['gate'] == 'fail'
 
 
 def test_gate10_needs_release_status_and_manifest(tree, monkeypatch):

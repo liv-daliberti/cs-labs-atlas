@@ -331,12 +331,28 @@ def traps_for(key, stage):
 
 
 def evaluate(key, stage):
-    """-> dict(stage, gate pass|waived|fail, open, counts, items, waiver)."""
+    """Evaluate all findings; scoped exceptions authorize exact reviewed items, never new findings."""
     bad, counts = GATES[str(stage)](key)
     bad = list(bad) + traps_for(key, stage)
     w = exceptions(key).get(str(stage))
-    gate = 'pass' if not bad else ('waived' if w and w.get('reason') else 'fail')
-    return dict(stage=int(stage), gate=gate, open=len(bad), items=bad, waiver=(w if gate == 'waived' else None), **counts)
+    waived, error = [], None
+    if bad and w and w.get('reason'):
+        if 'allow_items' in w:
+            allowed = w['allow_items']
+            if not isinstance(allowed, list) or not all(isinstance(x, str) and x for x in allowed):
+                error = 'allow_items must be a list of exact gate finding strings'
+            elif not isinstance(w.get('owner_quote'), str) or not w['owner_quote'].strip():
+                error = 'scoped exceptions require the quoted owner authorization in owner_quote'
+            else:
+                waived = [x for x in bad if x in set(allowed)]
+        elif S.get(key).get('status') == 'onboarding':
+            error = 'onboarding exceptions require exact allow_items and owner_quote'
+        else:
+            waived = list(bad)  # preserve the recorded legacy exceptions of released schools
+    unwaived = [x for x in bad if x not in waived]
+    gate = 'pass' if not bad else ('waived' if not unwaived else 'fail')
+    return dict(stage=int(stage), gate=gate, open=len(bad), items=bad, waiver=(w if gate == 'waived' else None),
+                waived_items=waived, unwaived_items=unwaived, **({'exception_error': error} if error else {}), **counts)
 
 
 # ---- the stages run themselves (ROADMAP #39) -------------------------------------------------------------------------------------

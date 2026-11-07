@@ -93,7 +93,12 @@ atlas stage-gate <key> [n ...]                 # only the gates (0-10), from the
 - It refuses a released school, and a step that writes a shared file (home departments, the DBLP dump persons) needs `--allow-shared`.
 - It writes `hierarchy/<key>/reports/stage-<n>-gate.json` (steps, result). The hand-written `STAGE-<n>.md` report stays yours.
 - The step table is `STEPS` in `tools/stage_gate.py`; a stage's checks are its `g<n>` function. A rule learned in a stage becomes a check there (stage 4 refuses compact dates like `20261029`).
-- A gate the owner waives is recorded in `hierarchy/<key>/reviewed/gate-exceptions.json` as `{"6": {"reason": "...", "by": "owner", "decided": "2026-11-02"}}`; the gate then reports `waived`, with the open items still listed.
+- An onboarding completeness exception is recorded in `hierarchy/<key>/reviewed/gate-exceptions.json` as
+  `{"1": {"reason": "...", "by": "owner", "decided": "2026-11-07", "owner_quote": "...", "allow_items": ["CS 2016: never planned"]}}`.
+  `allow_items` matches exact current finding strings; every unmatched finding keeps the gate failed. All findings
+  remain visible in `items`/`open`, with `waived_items` and `unwaived_items` showing their scope. Completeness
+  authorization never includes evidence, schema, identity, precision or stale-build failures. Legacy recorded
+  exceptions of released schools retain their previous behavior when they have no `allow_items` field.
 
 ## Stage 0: charter and config
 - **Do:**
