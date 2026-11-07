@@ -140,7 +140,21 @@ url = "https://www.cs.washington.edu/"
   url = "www.cs.washington.edu/people/faculty-members/"
   from = "20250701"
   to = "20261231"
-  format = "uw_elementor_cards"   # to be written in stage 1 against the live capture
+  format = "uw_allen_cards"   # live 2026-11-07: 95 cards = 95 distinct profile links
+  [[departments.listings]]
+  slot = "CSE emeritus"
+  kind = "emeritus"
+  url = "www.cs.washington.edu/people/emeritus/"
+  from = "20160101"
+  to = "20261231"
+  format = "uw_allen_cards"   # live 2026-11-07: 19 cards
+  [[departments.listings]]
+  slot = "CSE adjunct"
+  kind = "adjunct"
+  url = "www.cs.washington.edu/people/adjunct/"
+  from = "20160101"
+  to = "20261231"
+  format = "uw_allen_cards"   # live 2026-11-07: 52 cards (title, then the home unit)
 
 [[departments]]
 code = "ECE"
@@ -155,6 +169,7 @@ url = "https://www.ece.uw.edu/"
   url = "www.ece.uw.edu/people/faculty/"
   from = "20160101"
   to = "20261231"
+  format = "uw_ece_staff"   # live 2026-11-07: 59 entries
   [[departments.listings]]
   # Electrical Engineering before the 2017-18 merger of EE with Computer Engineering naming; old host.
   slot = "ECE faculty"
@@ -176,6 +191,7 @@ url = "https://ischool.uw.edu/"
   url = "ischool.uw.edu/people/faculty"
   from = "20160101"
   to = "20261231"
+  format = "uw_ischool_card"   # live 2026-11-07: 263 cards of every group on one page (faculty, visiting, phd, staff...)
 
 [[departments]]
 code = "HCDE"
@@ -190,6 +206,7 @@ url = "https://www.hcde.washington.edu/"
   url = "www.hcde.washington.edu/faculty"
   from = "20160101"
   to = "20261231"
+  format = "uw_hcde_columns"   # live 2026-11-07: 24 entries
 
 [[affiliated_units]]
 code = "STAT"
@@ -212,8 +229,8 @@ listings = ["bioe.uw.edu/faculty-staff/", "www.bioe.washington.edu/people/facult
 [[affiliated_units]]
 code = "GS"
 name = "Department of Genome Sciences (computational faculty only)"
-url = "https://www.gs.washington.edu/faculty/"
-listings = ["www.gs.washington.edu/faculty/", "www.gs.washington.edu/faculty/faculty.htm"]
+url = "https://www.gs.washington.edu/about/directory/faculty/"
+listings = ["www.gs.washington.edu/about/directory/faculty/", "www.gs.washington.edu/faculty/faculty.htm"]
 
 [thesis]
 kind = "none"
@@ -297,7 +314,7 @@ probe = "https://bioe.uw.edu/faculty-staff/"
 host = "www.gs.washington.edu"
 use = "live"
 purpose = "Genome Sciences"
-probe = "https://www.gs.washington.edu/administration/faculty-resources/faculty-committees/"
+probe = "https://www.gs.washington.edu/about/directory/faculty/"
 
 [[hosts]]
 host = "www.washington.edu"

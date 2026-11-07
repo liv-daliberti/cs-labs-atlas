@@ -32,7 +32,16 @@ formats
   isye_card    Georgia Tech ISyE 2023- (www.isye.gatech.edu/people/faculty): div.person-name link, div.person-type
   wu_teaser    WashU McKelvey School of Engineering sites 2023/24- (cse/ese/bme.washu.edu/faculty-research/directory.html): article.faculty-directory__teaser,
                h3.faculty-directory__teaser-name, p.faculty-directory__teaser-title, the profile on engineering.washu.edu as the link (data-shortdept names the department)
+  uw_allen_cards   UW Paul G. Allen School 2025- (www.cs.washington.edu/people/{faculty-members,emeritus,adjunct}/): Elementor cards, p.elementor-heading-title; the name is the
+               link labelled "Read the bio for ..." (the profile), the following heading paragraphs are the title(s) and, for adjuncts, the home unit (kept as a title line)
+  uw_ece_staff UW ECE WordPress (www.ece.uw.edu/people/faculty/): div.stafftemplate--entry, span.stafftemplate--name (link), span.stafftemplate--title; interests, office, phone and
+               e-mail spans are dropped
+  uw_ischool_card UW Information School Drupal (ischool.uw.edu/people/faculty): article.card, h2 link name, p.small em title; ONE page lists every group (data-type: faculty,
+               visitingguest, phd, staff, ...), kept as `division`; a rank still needs the title
+  uw_amath_directory UW Applied Mathematics Drupal (amath.washington.edu/people/faculty): h2.directory-item__name link, strong.directory-item__title ('<br>'-separated lines)
+  uw_hcde_columns UW HCDE Drupal (www.hcde.washington.edu/faculty): div.column holding h2 > a > strong name and the <p> title that follows
 """
+
 import html as H
 import json
 import re
@@ -1092,6 +1101,63 @@ def wu_teaser(h):
         tt = re.search(r'<p class="faculty-directory__teaser-title">(.*?)</p>', p, re.S)
         link = re.search(r'href="([^"]+)"', p)
         out.append(dict(name_listed=clean(nm.group(1)), titles=_titles(tt.group(1)) if tt else [], homepage=link.group(1) if link else None, division=None))
+    return out
+
+
+def uw_allen_cards(h):
+    """Allen School cards: a name link (aria-label "Read the bio for ...") opens each card; heading paragraphs up to the next name link are its titles."""
+    out, cur = [], None
+    for m in re.finditer(r'<p class="elementor-heading-title[^"]*">(.*?)</p>', h, re.S):
+        body = m.group(1)
+        link = re.search(r'<a href="([^"]+)" aria-label="Read the bio for', body)
+        if link:
+            cur = dict(name_listed=clean(body), titles=[], homepage=H.unescape(link.group(1)), division=None)
+            out.append(cur)
+        elif cur is not None and clean(body):
+            cur['titles'].append(clean(body))
+    return out
+
+
+def uw_ece_staff(h):
+    out = []
+    for p in re.split(r'<div class="stafftemplate--entry">', h)[1:]:
+        nm = re.search(r'<span class="stafftemplate--name">(.*?)</span>', p, re.S)
+        if not nm:
+            continue
+        tt = re.search(r'<span class="stafftemplate--title">(.*?)</span>', p, re.S)
+        link = re.search(r'<a href="([^"]+)"', nm.group(1))
+        out.append(dict(name_listed=clean(nm.group(1)), titles=[x.strip() for x in clean(tt.group(1)).split(';') if x.strip()] if tt else [],
+                        homepage=H.unescape(link.group(1)) if link else None, division=None))
+    return out
+
+
+def uw_ischool_card(h):
+    out = []
+    for m in re.finditer(r'<article aria-label="[^"]*" id="card-[^"]*" class="card clearfix" data-type="([^"]*)"(.*?)</article>', h, re.S):
+        p = m.group(2)
+        nm = re.search(r'<h2 class="h1">\s*<a href="([^"]+)"[^>]*>(.*?)</a>', p, re.S)
+        if not nm:
+            continue
+        tt = re.search(r'<p class="small">(.*?)</p>', p, re.S)
+        out.append(dict(name_listed=clean(nm.group(2)), titles=_titles(tt.group(1)) if tt else [], homepage=H.unescape(nm.group(1)), division=m.group(1)))
+    return out
+
+
+def uw_amath_directory(h):
+    out = []
+    for p in re.split(r'<h2 class="directory-item__name">', h)[1:]:
+        nm = re.match(r'\s*<a href="([^"]+)"[^>]*>(.*?)</a>', p, re.S)
+        if not nm:
+            continue
+        tt = re.search(r'<strong class="directory-item__title">(.*?)</strong>', p, re.S)
+        out.append(dict(name_listed=clean(nm.group(2)), titles=_titles(tt.group(1)) if tt else [], homepage=H.unescape(nm.group(1)), division=None))
+    return out
+
+
+def uw_hcde_columns(h):
+    out = []
+    for m in re.finditer(r'<h2><a href="([^"]+)"[^>]*><strong>(.*?)</strong></a></h2>\s*<p>(.*?)</p>', h, re.S):
+        out.append(dict(name_listed=clean(m.group(2)), titles=_titles(m.group(3)), homepage=H.unescape(m.group(1)), division=None))
     return out
 
 
@@ -2631,6 +2697,11 @@ FORMATS = {
     'jhu_bme_complete_faculty': (jhu_bme_complete_faculty, re.compile(r'JHU BME complete faculty listing')),
     'wu_teaser': (wu_teaser, re.compile(r'class="faculty-directory__teaser"')),
     'isye_card': (isye_card, re.compile(r'class="w-100 px-0 pt-0 person-name"')),
+    'uw_allen_cards': (uw_allen_cards, re.compile(r'aria-label="Read the bio for')),
+    'uw_ece_staff': (uw_ece_staff, re.compile(r'class="stafftemplate--entry"')),
+    'uw_ischool_card': (uw_ischool_card, re.compile(r'<article aria-label="[^"]*" id="card-[^"]*" class="card clearfix" data-type=')),
+    'uw_amath_directory': (uw_amath_directory, re.compile(r'class="directory-item__name"')),
+    'uw_hcde_columns': (uw_hcde_columns, re.compile(r'<h2><a href="[^"]+"[^>]*><strong>')),
 }
 
 
