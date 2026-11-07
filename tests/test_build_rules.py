@@ -328,6 +328,8 @@ def test_R_PAP_16_work_in_progress_subtitle_requires_same_byline_and_year():
     assert len(merged) == 1 and merged[0]['oa'] == 'ieee'
     assert merged[0]['editions'][0]['oa'] == 'mirror'
     assert len(merged[0]['_bylines']) == 2 and n['edition_records_merged'] == 1
+    preprint = dict(ieee, oa='preprint', doi='10.48550/arxiv.1')
+    assert papers.merge_editions([row, preprint], collections.Counter())[0]['oa'] == 'mirror'
     for change in (dict(year=2019), dict(byline=['Roger D. Chamberlain']),
                    dict(byline=['Christopher Gill', 'Roger D. Chamberlain']), dict(pi='Y')):
         assert len(papers.merge_editions([row, dict(ieee, **change)], collections.Counter())) == 2

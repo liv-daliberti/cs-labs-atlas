@@ -884,7 +884,7 @@ def merge_editions(rows, n):
         grouped[key].append(r)
     rows = []
     for g in grouped.values():
-        g.sort(key=lambda r: (bool((r.get('doi') or '').startswith('10.5555/')), rank(r))); lead = dict(g[0])
+        g.sort(key=lambda r: rank(r)[:1] + (bool((r.get('doi') or '').startswith('10.5555/')),) + rank(r)[1:]); lead = dict(g[0])
         dups = [d for x in g for d in x.get('_dups') or []]
         lead['editions'] = [dict(oa=x['oa'], work=x['work'], doi=x.get('doi'), year=x['year'], venue=x.get('venue')) for x in g[1:]] \
             + [{k_: d[k_] for k_ in ('oa', 'work', 'doi', 'year', 'venue')} for d in dups]
