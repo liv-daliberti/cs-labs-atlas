@@ -115,6 +115,32 @@ def years_of(stu):
     return ys
 
 
+def stated_student_start(stu):
+    """An explicit start immediately following this student's name, never a roster capture year."""
+    role = r"(?:ph\.?d\.?|doctoral|graduate|master'?s|undergraduate)(?:\s+(?:student|candidate))?"
+    patterns = [
+        rf'^\s*[,;:(]?\s*{role}\s*[,:(]?\s*(?:since|from|started|starting)\s+(20\d\d)\b',
+        rf'^\s*[,;:(]?\s*{role}\s*[,:(]?\s*(20\d\d)\s*[-–—]\s*(?:present|current|now|20\d\d|(?=[,)]))',
+        r'^\s*[,;:(]?\s*joined\s+(?:the\s+)?(?:lab|group)\s+(?:in\s+)?(20\d\d)\b',
+    ]
+    starts = []
+    for relation in stu.get('relations') or []:
+        for source in relation.get('sources') or []:
+            if not source.get('url') or not re.fullmatch(r'[0-9a-f]{64}', str(source.get('sha256') or '')):
+                continue
+            quote = source.get('quote') or ''
+            for name in [stu.get('name')] + list(stu.get('aliases') or []):
+                if not name:
+                    continue
+                for match in re.finditer(re.escape(name), quote, re.I):
+                    entry = quote[match.end():match.end() + 160]
+                    for pattern in patterns:
+                        found = re.match(pattern, entry, re.I)
+                        if found:
+                            starts.append(int(found.group(1)))
+    return min(starts) if starts else None
+
+
 def audit(school):
     D = P.SchoolDir(school, H)
     pis = load(D / 'pis.json', [])
@@ -218,8 +244,8 @@ def audit(school):
             reason = None
             if not papers_by_pi.get(k):
                 reason = 'lab has no papers (check 3)'
-            elif ys and min(ys) >= 2025:
-                reason = 'advising starts 2025 or later: no time to publish yet'
+            elif ys and min(ys) >= 2025 and (start := stated_student_start(s)) is not None and start >= 2025:
+                reason = 'stated student/lab start 2025 or later: no time to publish yet'
             elif ys and not any(pyears.get(y) for y in range(min(ys) - 1, max(ys) + 4)):
                 reason = "no lab paper in the student's years"
             elif roles and roles <= {'undergraduate', 'masters', 'visiting', 'intern'}:
