@@ -60,3 +60,18 @@ def test_legacy_defense_extracts_are_not_grouped_researched_inputs(tmp_path, mon
     row = next(iter(students['Ann Lee'].values()))
     assert row['name'] == 'Ada Student'
     assert [source['quote'] for source in row['relations'][0]['sources']] == ['Ada Student', 'Advisor Ann Lee']
+
+
+def test_proposal_and_defense_keep_separate_dated_source_citations(monkeypatch):
+    import sqlite3
+    c = sqlite3.connect(':memory:')
+    c.executescript('create table pages(url text, sha256 text, text text); create table queue(url text, listed text, title text);')
+    for year, kind in [(2022, 'Proposal'), (2024, 'Defense')]:
+        url = f'https://example.edu/{year}'
+        c.execute('insert into pages values (?,?,?)', (url, str(year), f'PhD {kind} by Ada Student Committee: Dr. Ann Lee (Advisor)'))
+        c.execute('insert into queue values (?,?,?)', (url, f'{year}-06-01', f'PhD {kind} by Ada Student'))
+    monkeypatch.setattr(D, 'connect_ro', lambda: c)
+    rows, counts, _ = D.build('example', [{'pi': 'Ann Lee'}])
+    students = rows[0]['students']
+    assert counts['rows'] == 2 and [x['years'] for x in students] == [[2022, 2022], [2024, 2024]]
+    assert [x['url'] for x in students] == ['https://example.edu/2022', 'https://example.edu/2024']

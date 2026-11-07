@@ -180,11 +180,9 @@ def build(school, pis, pi_window=None):
                 if source is None:
                     counts['no_source_candidate'] += 1
                     continue
-                key = (p, F.nt(cand))
-                if key in seen:   # the proposal and the defense of one candidate: one row, the years span both announcements
+                key = (p, F.nt(cand), url)
+                if key in seen:   # repeated parsing of one event is a duplicate; distinct events retain their own dated source
                     counts['duplicate'] += 1
-                    r = seen[key]
-                    r['years'] = [min(r['years'][0], year), max(r['years'][1], year)]
                     continue
                 quote, host_quote = source
                 row = dict(name=cand, role='phd', years=[year, year], url=url, sha256=sha, quote=quote, host_quote=host_quote,
