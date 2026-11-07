@@ -61,6 +61,26 @@ The BME 2017–18 section links Patricia Widder to the exact legacy URL
 `bme.wustl.edu/faculty/Pages/default.aspx`, a useful explicit directory discovery
 lead for the shared archive follow-up. Its archive availability is not yet known.
 
+An additional permitted live primary source now establishes the exact old CSE
+directory URL, rather than only per-person profile shapes:
+
+- Source: `https://bulletin.wustl.edu/undergrad/Bulletin_2023-24_Undergraduate.pdf`,
+  printed 2023-09-22, PDF page 1141 (printed page 1140).
+- Raw SHA256: `7c8abbc913e4f74b3871fb7c49b290b622b433188cbf9275db6ae8bd9d09f5fa`.
+- Verbatim normalized quote: “Additional information can be found on our CSE
+  website (http://cse.wustl.edu/), or any of the CSE faculty
+  (https://cse.wustl.edu/faculty/Pages/default.aspx) can oﬀer further guidance
+  and information about our programs.”
+
+The body is cached in the same school `live` table. This makes
+`cse.wustl.edu/faculty/Pages/default.aspx` an evidence-backed exact-URL CDX
+follow-up. The directory itself was not fetched; neither its capture range nor
+its page format is asserted. The original shared queue is unchanged. The 2016
+undergraduate PDF was also cached (SHA256
+`f40f1bc68c84280c0d3c153e5a191fc6404275d09ad4bffa59aaafd8f20a0ab3`)
+but did not contain that directory hyperlink; its general CSE website link
+does not establish an additional directory era.
+
 ## Cached directory review and charter corrections
 
 | Source | Cards | Parsed | Pagination |
@@ -86,27 +106,44 @@ asserted for the unsampled legacy ESE/BME era.
 
 ## Gate and precise remaining work
 
-The post-review check still reports stage 0 **pass** (14 hosts, 284,817 snapshot
-works), stage 1 **fail**, 33 open department-years, zero reviewed gap exceptions.
-Every CSE/ESE/BME year from 2016 through 2026 is still `never planned` in the
-standard listing coverage. The two usable cached CSE captures live in the
-school evidence store rather than the standard listings plan; this is not
-misreported as missing archive evidence or parser failure.
+The post-review check reports stage 0 **pass** (14 hosts, 284,817 snapshot
+works), stage 1 **fail**, **31 open department-years** (down from 33), zero
+reviewed gap exceptions. The two usable CSE captures were copied strictly
+offline to the previously absent standard listing store, preserving their raw
+bytes, timestamps and hashes. Both pass the standard planner's `usable` and
+`charter_usable` checks. Standard `listing_rows.py` emits **89 rows, 52 people**:
+41 rows for CSE 2020H2 and 48 for CSE 2024H1. Every emitted quote is a substring
+of the stored text; every raw hash and observation year was independently
+verified. No quotation or card was dropped. The raw hashes are respectively
+`6e2f9f6c0703ac49c930ba5ff86a3c5d3dbcb6926c6ac18328ab59cc1de07e0f` and
+`c367f8f40d192e9c6c5940f665cc72add18ddbee37bb08068cc5ace7b152947a`.
+
+The cached-only reuse receipt is
+`hierarchy/washu/tmp/history-offline-listing-reuse-20261106.json`; it records
+zero network requests, both source capture URLs, timestamps, original hashes
+and card counts. Standard outputs are `listings/washu/raw/captures.sqlite` and
+`listings/washu/derived/{rows,coverage}.json` (untracked data).
+The fresh gate receipt is
+`scratch/completion-20261106-washu-history-gates.json` under the project root;
+the original takeover gate receipt remains preserved.
+
+The open annual items are CSE 2016–19, 2021–23, 2025–26, and every ESE/BME year
+2016–26. CSE 2020H1 and 2024H2 still need the normal half-year capture pass even
+though the annual gate now has evidence for those years.
 
 1. Coordinate with the owner of shared discovery job **32136252** before any
    archive request. Preserve its round-robin tasks and respect the global host
-   throttle, including a cooldown extended by another transient 429.
-2. Reuse the already stored CSE 2020H2/2024H1 captures in the standard plan without
-   a network request, coordinated against concurrent writers. A saved raw body
-   is evidence; it is not yet a planned listing capture.
-3. Review the queue's old CSE/SEAS/Engineering homepage samples for exact linked
+   throttle, including a cooldown extended by another transient 429. The
+   coordinator's latest eligibility floor is **2026-11-06 23:55:51 ET**; recheck
+   the shared throttle rather than assuming that floor remains current.
+2. Review the queue's old CSE/SEAS/Engineering homepage samples for exact linked
    faculty directory URLs; inspect ESE/BME samples for format drift and dates.
    Add actual eras only after evidence, then run the standard half-year plan.
-4. Review the preserved catalog sections per person, keeping printed date and
+3. Review the preserved catalog sections per person, keeping printed date and
    academic edition distinct. A catalog-source importer must cite the actual
    PDF and raw hash and preserve PDF text as the quote source; it must not invent
    Wayback timestamps or merge academic years into appointment intervals.
-5. Parse the completed capture plan, review card parity, pagination, and annual
+4. Parse the completed capture plan, review card parity, pagination, and annual
    counts, then rerun stage 1. A transient 429 never becomes `no capture` or a
    `listing_gaps` exception.
 
