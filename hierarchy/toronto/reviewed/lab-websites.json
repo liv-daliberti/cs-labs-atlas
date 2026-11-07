@@ -2724,8 +2724,8 @@
    "pi": "Arvind Gupta",
    "status": "pending",
    "coverage": "pending",
-   "reason": "Official directory does not provide a homepage link; targeted official-profile search remains open.",
-   "candidate_url": null,
+   "reason": "Official department-hosted Vanguard lab lead challenged the collector. Host stopped; explicit official link and permitted archived content remain to establish.",
+   "candidate_url": "https://vanguardlab.cs.utoronto.ca/",
    "checks": [
     {
      "source": "school_profile",
@@ -2739,14 +2739,23 @@
      "url": "https://web.cs.toronto.edu/people/faculty-directory",
      "at": "2026-11-07T15:40:55",
      "result": "no_homepage_in_official_listing"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://vanguardlab.cs.utoronto.ca/",
+     "at": "2026-11-07T17:18:50",
+     "sha256": "13ee70dbc4016a1d655e8a15103e8b65cb82da0f14ef449ea5dfb65e78735571",
+     "result": "bot_challenge",
+     "via": "official_search_lead"
     }
    ],
-   "checked_at": "2026-11-07T15:40:55",
+   "checked_at": "2026-11-07T17:18:50",
    "students_page_status": "deferred_by_scope",
    "papers_page_status": "deferred_by_scope",
    "evidence_gaps": [
     "eligible_website_not_yet_established"
-   ]
+   ],
+   "reason_type": "pending_archive"
   },
   {
    "pi": "Vassos Hadzilacos",
@@ -6877,7 +6886,7 @@
    "pi": "Nathan Wiebe",
    "status": "pending",
    "coverage": "pending",
-   "reason": "Official directory does not provide a homepage link; targeted official-profile search remains open.",
+   "reason": "Official Physics profile confirms UTSG cross-appointment but links only the broad Quantum Optics research category, not a PI/group homepage. Further site search remains pending.",
    "candidate_url": null,
    "checks": [
     {
@@ -6892,9 +6901,17 @@
      "url": "https://web.cs.toronto.edu/people/faculty-directory",
      "at": "2026-11-07T15:40:55",
      "result": "no_homepage_in_official_listing"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://www.physics.utoronto.ca/members/wiebe-nathan/",
+     "at": "2026-11-07T17:18:51",
+     "sha256": "0e3a388f4e94e1afa525ccbfcffcf17f350e555f25d01c74420dd277d7f0d46e",
+     "result": "profile_only_no_homepage_link",
+     "via": "official_search_lead"
     }
    ],
-   "checked_at": "2026-11-07T15:40:55",
+   "checked_at": "2026-11-07T17:18:51",
    "students_page_status": "deferred_by_scope",
    "papers_page_status": "deferred_by_scope",
    "evidence_gaps": [

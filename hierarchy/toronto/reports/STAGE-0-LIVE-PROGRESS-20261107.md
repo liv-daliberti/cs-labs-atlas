@@ -55,3 +55,23 @@ Fresh institutional sources establish five additional sites: Gururaj Saileshwar'
 The new official Blue Book page explicitly lists Mariakakis at St George. Saileshwar's UTM profile explicitly lists Mathematical and Computational Sciences and a Mississauga address; his personal homepage lists Toronto CS with courtesy ECE. This is a further campus eligibility case, not automatic exclusion or St George admission. Preserve campus distinctions until reviewed.
 
 Eight website cases remain: Alán Aspuru-Guzik, Niv Dayan, Bo Wang and Lisa Strug (access/archive work); Daniel Wigdor (default server page); Arvind Gupta, Sam Toueg and Nathan Wiebe (further official-link search). Source and target capture receipts: `scratch/top25-resume-1107/toronto-official-gap-followup.jsonl` and `toronto-gap-homepages.jsonl`. Each new positive entry independently passes the strict website provenance gate; the complete 85-PI register remains incomplete.
+
+## Dated historical sources recovered live
+
+Two official historical PDFs were captured and retained with hashes: the 2016 Faculty Highlights brochure (`https://www.cs.toronto.edu/dcs/documents/Faculty_Highlights_2016.pdf`, SHA-256 `b94509a08d8e1eb9908f29f2b6ad7cb886db932a6c79131e27f7bfeccb3d74f3`) and the 2017–18 SGS Calendar (`https://sgs.calendar.utoronto.ca/sites/default/files/PDFs/SGS_Calendar_2017-18.pdf`, SHA-256 `524d2b6e7ae16a1480fc80e737f0d161b15c365fa9fe2a89a845596c55c8c143`). Both were retrieved November 7; the PDF's historical publication year is separate from the capture date. The brochure's appointment spreads were visually reviewed.
+
+Raquel Urtasun's explicit retrospective statement, “A faculty member since 2014,” supports the sixth reviewed faculty start. The brochure also establishes these historical role/scope leads; none is silently treated as a complete historical census or an exact start date:
+
+| Source page | Evidence | Review consequence |
+| --- | --- | --- |
+| 2 | Ben Rossman and Aleksandar Nikolov: CS assistant professors, 2015/2016 appointments heading | Historical rank evidence; exact start still needs review. |
+| 2 | David Liu and Jacqueline Smith: assistant professors, teaching stream | Preserve teaching classification; no automatic independent-PI admission. |
+| 2 | Arvind Gupta: distinguished visiting professor | Preserve visiting classification for this period. |
+| 2 | Ashton Anderson: UTSC, starting summer 2017 | Announced future arrival, not an observed 2016 appointment. |
+| 3 | David Duvenaud, Roger Grosse, Alec Jacobson and David Levin: CS assistant professors, 2016/2017 appointments heading | Historical rank evidence; no exact start inferred from heading. |
+| 3 | Sanja Fidler: UTM assistant professor | Historical campus evidence; review eligibility. |
+| 3 | Gennady Pekhimenko (UTSC), Sushant Sachdeva (UTM), Nisarg Shah (CS): starting summer 2017 | Preserve campus and future-announcement distinction. |
+
+The SGS Calendar's printed pages 267–268 list full, emeritus and associate graduate-faculty members. Those membership labels and academic degree suffixes are not faculty ranks. Some glyphs are missing in text extraction, so candidate names need visual correction before census ingestion. This source is held for historical corroboration; it was not fed to the rank parser.
+
+Additional website follow-up: Nathan Wiebe's official Physics profile explicitly says UTSG, non-budgetary cross-appointment, with CS as home department. Its only group link is the broad Quantum Optics category, so it does not close the lab-site gap. Arvind Gupta's department-hosted Vanguard lab lead returned a challenge; the host is stopped and Wayback-only. The register still has eight pending entries, now five with archive work. Raw receipts and PDF extracts are in `scratch/top25-resume-1107/toronto-historical-followup.jsonl` and `toronto-*-2016/2017-18.*`.
