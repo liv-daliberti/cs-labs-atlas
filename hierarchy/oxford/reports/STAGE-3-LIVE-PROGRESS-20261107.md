@@ -33,3 +33,9 @@ Source bindings for reproducibility:
 - Private audit details: `scratch/top25-resume-1107/oxford-identity-sample.json` and `oxford-paper-sample.json`, with source capture/page hashes and exact evidence.
 
 Open requirements: historical listing completeness; 48 unresolved lab-website entries (46 search pending, two archive pending); the remaining appointment intervals; outside-CS candidate identity/scope review; unresolved DBLP identities and identity precision review; the failed paper sample and rebuilt precision review. Keep Oxford onboarding rather than reporting stages 3–5 or 7 passed. Next: independently corroborate the ten sampled identities, finish remaining websites/CVs, and review the 35 source-supported Engineering candidates before any admission.
+
+## Corrected build and second precision finding
+
+The paper-only rebuild `32142807`, pinned to tested main `0ceb8af`, finished with 761 PI-paper rows across the same 55 labs. It removed exactly the sampled dataset (`not_paper:dataset_record = 1`). A fresh deterministic 30-row metadata sample of the rebuilt population found another explicit nonpaper: Michael Wooldridge, “Learning to Resolve Social Dilemmas: A Survey (Abstract Reprint)”, DOI `10.24963/ijcai.2024/949`, OpenAlex W4401023720. The source explicitly types it conference-abstract; missing page counts let it through the older fallback. The exact '(Abstract Reprint)' suffix now excludes the abstract while preserving the full survey. This second sample remains failed (29 metadata-supported, one explicit abstract reprint); stage 7 is still open. Both failed samples remain preserved.
+
+Rebuilt bindings: lab_papers SHA-256 `dd0bf8fcad76107fc7b457939a96491bcfd6957ea75014489298cfbdb0f10cc1`; pis SHA-256 `a7b2fa87c6d99050abb185eaaad2614a8b58726f0f9c46d59f3fd75790831489`. Detailed second sample: `scratch/top25-resume-1107/oxford-paper-sample-postfix.json`. Rebuild once more after the suffix safeguard, then rebind the review.

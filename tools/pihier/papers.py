@@ -196,6 +196,7 @@ def short_piece(r, pages, bare=False):
 INTRODUCTION_TITLE = re.compile(r'(?i)^\s*(?:(?:session|special[- ]section|special[- ]issue|minitrack|track|mini[- ]symposium) introduction\b|introduction to the (?:session|minitrack|track)\b)')
 INTERVIEW_TITLE = re.compile(r'(?i)^\s*(?:an )?interview\s*(?::|with\b)')
 PRESENTATION_TITLE = re.compile(r'(?i)\((?:conference|invited|keynote|plenary) (?:presentation|talk)\)\s*$')
+ABSTRACT_REPRINT_TITLE = re.compile(r'(?i)\(abstract reprint\)\s*$')
 REPOSITORY_DOI = re.compile(r'(?i)^10\.(?:5281/zenodo|6084/m9\.figshare|5061/dryad)\b')   # not OSF (10.17605): those are preprints
 DATASET_TITLE = re.compile(r'(?i)^\s*(?:processed|raw|synthetic|simulation) data\b|^\s*datasets? (?:for|of|from|used in)\b|'
                            r'\b(?:matlab|csv|json|hdf5?) (?:data )?(?:format|files?)\s*$')
@@ -225,6 +226,8 @@ def non_research_record(r, pages=None):
         return 'editorial'
     if PRESENTATION_TITLE.search(t):
         return 'presentation_only'
+    if ABSTRACT_REPRINT_TITLE.search(t):
+        return 'conference_abstract'
     if REPOSITORY_DOI.match(d) and not v.strip():
         return 'repository_record'
     if REPOSITORY_DOI.match(d) and REPOSITORY_VENUE.match(v) and (DATASET_TITLE.search(t) or NAMED_DATASET_TITLE.search(t)):
