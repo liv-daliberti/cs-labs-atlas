@@ -43,6 +43,21 @@ def advising_label(quote, names):
 
 
 ADVISER_NAMED = re.compile(r"advis[oe]rs?(?:\(s\))?\s*:\s*([^;\n]{3,120})|([A-Z][\w.'\- ]{2,40}?)\s*\(advis[oe]r\)", re.I)
+PIPE_ADVISER_FIELD = re.compile(r"(?:^|\|)\s*advis[oe]rs?(?:\(s\))?\s*:\s*([^|\n]+)", re.I)
+
+
+def named_advisers(quote):
+    """Keep all names in a pipe-delimited adviser field, but no later metadata.
+
+    Repository evidence uses semicolons between co-advisers, e.g. ``Creators
+    Zhang, Jiawei | Advisor: Li, Bo; Zhang, Ce | Published 2026``. A semicolon
+    before another labelled field remains a boundary. Unstructured quotes keep
+    the conservative existing parser.
+    """
+    fields = PIPE_ADVISER_FIELD.findall(quote) if '|' in quote else []
+    if fields:
+        return ' '.join(re.split(r';\s*[\w ()-]{1,40}:', field, maxsplit=1)[0] for field in fields)
+    return ' '.join((m.group(1) or m.group(2) or '') for m in ADVISER_NAMED.finditer(quote))
 
 
 def relation_names_other_adviser(r, pi_names):
@@ -56,7 +71,7 @@ def relation_names_other_adviser(r, pi_names):
     for q in quotes:
         if re.search(r'co-?advis|primary advis', q, re.I):
             return False
-        named = ' '.join((m.group(1) or m.group(2) or '') for m in ADVISER_NAMED.finditer(q))
+        named = named_advisers(q)
         named = unicodedata.normalize('NFKD', named).encode('ascii', 'ignore').decode().lower()
         if not named or any(re.search(r'\b' + re.escape(f) + r'\b', named) for f in fams):
             return False
