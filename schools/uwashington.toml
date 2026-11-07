@@ -1,0 +1,311 @@
+# schools/uwashington.toml: University of Washington, Seattle (charter; docs/ADDING-A-SCHOOL.md stage 0, protocol v3). Filled 2026-11-07.
+# Owner scope (2026-11-07, via the coordinator): ONLY labs that do computing. The Paul G. Allen School of Computer Science & Engineering first, then the
+# computing-heavy units of other departments (ECE, the Information School, Statistics, Applied Math, HCDE, and BioE / Genome Sciences only for computational
+# faculty) under the CS-related rule (docs/RULES.md). A unit's affiliation strings stay in `loose` / `own_units` so papers of in-scope PIs are credited; they
+# never add PIs or labs. Window 2016 onward, no 2026 in plots. The look-alike exclusions are identity, not scope, and always apply.
+# D-rules below are the agent's RECOMMENDATIONS, not yet confirmed by the owner (hierarchy/uwashington/reports/STAGE-0.md): the snapshot extension filters by them.
+
+key = "uwashington"
+name = "University of Washington"
+short = "UW"
+site_uni = "university-of-washington"
+status = "onboarding"
+order = 15
+stage = 0
+started = "2026-11-07"
+window = [2016, 2026]
+
+[ids]
+openalex = ["I201448701"]
+# D1 (recommended): Seattle campus only. University of Washington Tacoma I4210150356 and Bothell I4210138624 are lineage children of I201448701 but separate campuses with their own faculty;
+# they are excluded (an authorship that carries them but not the Seattle id is not UW Seattle) and the regex refuses their names.
+# D2 (recommended): related (regex-only) = UW Medical Center I2801852214, Harborview I2802336062, Seattle Children's I1295499534 (+ its Research Institute I4405262941), Fred Hutch I4210089486 is NOT related (a separate institution, joint appointments are handled by the CS-related rule).
+# Lineage children kept (swept): Applied Physics Laboratory I4210138199, Friday Harbor I4387153569, Harborview Injury Prevention I4210126198, Burke Museum, CEGA, CloudBank I4405259881, Sea Grant, etc.
+openalex_related = ["I2801852214", "I2802336062", "I1295499534", "I4405262941"]
+openalex_excluded = ["I4210150356", "I4210138624"]
+ror = "https://ror.org/00cvxb145"
+ids_note = """OpenAlex institutions table of the filtered snapshot (no API credits; checked 2026-11-07, tools/oa_institutions.py search/lineage): I201448701 'University of Washington', ROR 00cvxb145, US, lineage [I201448701] (no parent).
+Lineage children (OpenAlex marks them child): Tacoma I4210150356 (05n8t2628), Bothell I4210138624 (02ygzhr13), Applied Physics Laboratory I4210138199 (03d17d270), Harborview Injury Prevention and Research Center I4210126198,
+Friday Harbor Laboratories I4387153569, Burke Museum I4210108707, Center for Effective Global Action I4210135243, Washington Sea Grant I4210139762, Washington Space Grant Consortium I4210101779, CloudBank I4405259881,
+Seattle Epidemiologic Information and Research Center I4210102726, Health Alliance International I2802617771, Northwest Climate Adaptation Science Center I4405276951, Cooperative Institute for Climate, Ocean, & Ecosystem Studies I4405257308.
+Associated, not lineage ('related'): UW Medical Center I2801852214 (00wbzw723), Harborview Medical Center I2802336062 (059jq5127), Seattle Children's Hospital I1295499534 (01njes783) and Research Institute I4405262941,
+VA Puget Sound I4210094549, Northwest Hospital I4210121110, Valley Medical Center I4210106811, Washington Research Foundation I4210092964.
+Separate institutions, never UW: Fred Hutch Cancer Center I4210089486, Allen Institute I4210140341 (and its AI2 / Brain Science / Cell Science children), Institute for Systems Biology I3148997608, Seattle Cancer Care Alliance I1332479046.
+Look-alikes (other lineages): Washington University in St. Louis I204465549, Washington State University, George Washington University, Central/Eastern/Western Washington University.
+ROR relationships not looked up in this run (api.ror.org answered 403 to the WashU host gate)."""
+
+[web]
+domains = ["washington.edu", "uw.edu"]
+email_domains = ["uw.edu", "washington.edu", "cs.washington.edu", "cs.uw.edu", "ece.uw.edu", "ee.washington.edu", "u.washington.edu", "stat.washington.edu", "stat.uw.edu", "amath.washington.edu", "hcde.washington.edu", "uw.edu"]
+wayback_only_suffixes = []
+excluded_hosts = ["tacoma.uw.edu", "uwb.edu", "uw.tacoma.edu", "washington.tacoma.edu", "wsu.edu", "wustl.edu", "washu.edu", "gwu.edu", "ewu.edu", "cwu.edu", "wwu.edu", "wlu.edu"]
+
+[affiliation]
+regex = '''\buniv(?:ersity|\.)?\s+of\s+washington\b(?!\s*(?:,\s*|-\s*|[–—]\s*|\(\s*|at\s+)?(?:tacoma|bothell))|(?<![\w.-])(?<!tacoma\.)(?<!bothell\.)uw\.edu\b|(?<!tacoma\.)(?<!bothell\.)(?<!uwt\.)\bwashington\.edu\b|\bpaul\s+g\.?\s+allen\s+school\s+of\s+computer\s+science\b(?!.{0,60}\b(?:stanford|rice|utah)\b)'''
+own_units = '''\b(?:applied\s+physics|friday\s+harbor|burke|information|paul\s+g\.?\s+allen|institute\s+for\s+protein\s+design|eScience|escience|neuroengineering|molecular\s+engineering\s+and\s+sciences|harborview\s+injury)\s+(?:laboratory|laboratories|museum|school|institute|center|school\s+of\s+computer\s+science)\b'''
+loose = '''univ(?:ersity|\.)?\s+of\s+washington|\bwashington\.edu\b|\buw\.edu\b|\bseattle\s*,\s*w(?:a|ashington)\b.{0,40}\buw\b'''
+must_match = [
+  "Paul G. Allen School of Computer Science & Engineering, University of Washington, Seattle, WA 98195, USA",
+  "University of Washington",
+  "Univ. of Washington, Seattle",
+  "University of Washington, Seattle, WA, USA",
+  "Department of Electrical and Computer Engineering, University of Washington",
+  "Information School, University of Washington, Seattle",
+  "University of Washington School of Medicine, Seattle",
+  "University of Washington Medical Center, Seattle",
+  "Department of Genome Sciences, University of Washington",
+  "Applied Physics Laboratory, University of Washington",
+  "Human Centered Design and Engineering, University of Washington",
+  "jdoe@cs.washington.edu",
+  "jdoe@uw.edu",
+  "jdoe@u.washington.edu",
+  "Allen School of Computer Science and Engineering, University of Washington",
+]
+must_not_match = [
+  "University of Washington Tacoma",
+  "University of Washington, Tacoma, WA 98402",
+  "University of Washington Bothell, Bothell, WA",
+  "University of Washington - Bothell",
+  "School of Engineering and Technology, University of Washington Tacoma",
+  "jdoe@uw.tacoma.edu",
+  "jdoe@tacoma.uw.edu",
+  "jdoe@uwb.edu",
+  "Washington University in St. Louis, St. Louis, MO",
+  "Washington State University, Pullman, WA",
+  "George Washington University, Washington, DC",
+  "Washington and Lee University, Lexington, VA",
+  "Central Washington University, Ellensburg",
+  "Eastern Washington University, Cheney",
+  "Western Washington University, Bellingham",
+  "Trinity Washington University",
+  "University of Wisconsin-Madison",
+  "UW-Madison, Madison, WI",
+  "jdoe@wisc.edu",
+  "jdoe@wustl.edu",
+  "Seattle University, Seattle, WA",
+  "Seattle Pacific University",
+  "Fred Hutchinson Cancer Research Center, Seattle, WA",
+  "Allen Institute for AI, Seattle, WA",
+  "Institute for Systems Biology, Seattle",
+  "Microsoft Research, Redmond, WA",
+]
+
+[dblp]
+affiliation_strings = ["University of Washington", "Univ. of Washington", "Paul G. Allen School", "University of Washington, Seattle"]
+legacy_sweep = ""
+
+[rules]
+foreign_title_exception = false
+
+[census]
+center_units = []
+computing_departments = ["CSE"]
+home_units = {"Computer Science and Engineering" = '^(?:Paul G\. Allen School of )?Computer Science (?:and|&) Engineering$', "Electrical and Computer Engineering" = '^(?:Department of )?Electrical (?:and|&) Computer Engineering$', "Information School" = '^(?:The )?Information School$|^Information$', "Statistics" = '^(?:Department of )?Statistics$', "Applied Mathematics" = '^(?:Department of )?Applied Mathematics$', "Human Centered Design and Engineering" = '^(?:Department of )?Human Centered Design (?:and|&) Engineering$', "Bioengineering" = '^(?:Department of )?Bioengineering$', "Genome Sciences" = '^(?:Department of )?Genome Sciences$', "Biostatistics" = '^(?:Department of )?Biostatistics$'}
+rank_words = {teaching = '\bteaching\s+professor|\bprofessor\s+of\s+practice|\bprincipal\s+lecturer', adjunct = '\badjunct\b', research = '\bresearch\s+(?:associate\s+|assistant\s+)?professor|\bresearch\s+scientist', courtesy = '\b(?:affiliate|joint)\s+(?:associate\s+|assistant\s+)?professor'}
+
+[sweep_check]
+exceptions = []
+
+[cs_related]
+not_faculty = {}
+share_test_settles = []
+
+[site]
+depts = {CSE = "Paul G. Allen School of Computer Science & Engineering"}
+full_codes = ["CSE"]
+
+[periods]
+school_regex = ''
+profile_patterns = ["www.cs.washington.edu/people/faculty/{first}-{last}/"]
+
+[[departments]]
+code = "CSE"
+name = "Paul G. Allen School of Computer Science & Engineering"
+unit = "College of Engineering"
+title_match = '''Computer Science|Allen School'''
+coverage = "full"
+url = "https://www.cs.washington.edu/"
+  # PROVISIONAL slots: stage 1 fixes the URL eras from the 2016 homepage links. The current page (WordPress/Elementor, 2025) is
+  # https://www.cs.washington.edu/people/faculty-members/ (live, robots allows); it lists ranks one card per person (name link + title).
+  # The pre-2025 pages were /people/faculty/ (301 now) and the Computer Science & Engineering department name changed to the Allen School in 2017.
+  [[departments.listings]]
+  slot = "CSE faculty"
+  kind = "main"
+  url = "www.cs.washington.edu/people/faculty/"
+  from = "20160101"
+  to = "20250630"
+  [[departments.listings]]
+  slot = "CSE faculty"
+  kind = "main"
+  url = "www.cs.washington.edu/people/faculty-members/"
+  from = "20250701"
+  to = "20261231"
+  format = "uw_elementor_cards"   # to be written in stage 1 against the live capture
+
+[[departments]]
+code = "ECE"
+name = "Department of Electrical and Computer Engineering"
+unit = "College of Engineering"
+title_match = '''Electrical (?:and|&) Computer Engineering|Electrical Engineering'''
+coverage = "affiliated"
+url = "https://www.ece.uw.edu/"
+  [[departments.listings]]
+  slot = "ECE faculty"
+  kind = "main"
+  url = "www.ece.uw.edu/people/faculty/"
+  from = "20160101"
+  to = "20261231"
+  [[departments.listings]]
+  # Electrical Engineering before the 2017-18 merger of EE with Computer Engineering naming; old host.
+  slot = "ECE faculty"
+  kind = "main"
+  url = "www.ee.washington.edu/people/faculty/"
+  from = "20160101"
+  to = "20191231"
+
+[[departments]]
+code = "INFO"
+name = "The Information School"
+unit = "University of Washington"
+title_match = '''Information School|Information'''
+coverage = "affiliated"
+url = "https://ischool.uw.edu/"
+  [[departments.listings]]
+  slot = "INFO faculty"
+  kind = "main"
+  url = "ischool.uw.edu/people/faculty"
+  from = "20160101"
+  to = "20261231"
+
+[[departments]]
+code = "HCDE"
+name = "Department of Human Centered Design & Engineering"
+unit = "College of Engineering"
+title_match = '''Human Centered Design'''
+coverage = "affiliated"
+url = "https://www.hcde.washington.edu/"
+  [[departments.listings]]
+  slot = "HCDE faculty"
+  kind = "main"
+  url = "www.hcde.washington.edu/faculty"
+  from = "20160101"
+  to = "20261231"
+
+[[affiliated_units]]
+code = "STAT"
+name = "Department of Statistics"
+url = "https://stat.uw.edu/people/faculty"
+listings = ["stat.uw.edu/people/faculty", "www.stat.washington.edu/people/faculty/"]
+
+[[affiliated_units]]
+code = "AMATH"
+name = "Department of Applied Mathematics"
+url = "https://amath.washington.edu/people/faculty"
+listings = ["amath.washington.edu/people/faculty", "amath.washington.edu/people/core-faculty"]
+
+[[affiliated_units]]
+code = "BIOE"
+name = "Department of Bioengineering (computational faculty only)"
+url = "https://bioe.uw.edu/faculty-staff/"
+listings = ["bioe.uw.edu/faculty-staff/", "www.bioe.washington.edu/people/faculty/"]
+
+[[affiliated_units]]
+code = "GS"
+name = "Department of Genome Sciences (computational faculty only)"
+url = "https://www.gs.washington.edu/faculty/"
+listings = ["www.gs.washington.edu/faculty/", "www.gs.washington.edu/faculty/faculty.htm"]
+
+[thesis]
+kind = "none"
+base_url = "https://digital.lib.washington.edu/"
+endpoints = []
+robots = "disallowed-for-ai-agents"
+note = """ResearchWorks Archive (digital.lib.washington.edu, DSpace). Its robots.txt (2026-11-07) has a group 'User-agent: anthropic-ai / Disallow: /': this project's fetchers are Claude agents, so the host is not used in any form, not through Wayback either.
+Its holdings (UW theses and dissertations) reach us only through OpenAlex and CORE (CORE is paused). Students therefore come from lab pages, PhD graduation lists and the Allen School's own pages, stage 6."""
+
+[collector]
+channels = ["oa_arxiv", "openalex", "proceedings", "arxiv_title", "dblp_ee", "s2", "europepmc", "pmc", "figshare", "labpages", "pihomes", "wayback_acm"]
+
+[students]
+rosters = []
+directories = []
+adviser_directories = []
+sources = [
+  "Allen School PhD student directory and graduation lists (live where robots allows, else Wayback)",
+  "lab member pages and PI homepages (live where robots allows, else Wayback)",
+]
+
+[labpages]
+hints = ["<lab>.cs.washington.edu", "<lab>.cs.uw.edu", "homes.cs.washington.edu/~<name>/", "www.cs.washington.edu/people/faculty/<name>/", "<name>.github.io", "sites.google.com/view/<lab>"]
+
+[repository]
+name = "ResearchWorks Archive (digital.lib.washington.edu), through OpenAlex only: its robots.txt disallows anthropic-ai, so it is never asked directly or through Wayback"
+pattern = '''digital\.lib\.washington\.edu|researchworks\.washington\.edu|hdl\.handle\.net/1773/|ResearchWorks'''
+
+[store]
+path = "/n/fs/resemble/homogenizing-science/stores/uwashington"
+
+[[hosts]]
+host = "web.archive.org"
+use = "live"
+purpose = "Wayback id_ captures and CDX (listings 2016-2026, lab pages); every request through fulltext-push/host_throttle (WAYBACK_LOW=1)"
+probe = ""   # no probe: the archive is rate-starved (2026-11-07); its robots row is copied from the WashU store, no new archive request
+
+[[hosts]]
+host = "www.cs.washington.edu"
+use = "live"
+purpose = "Paul G. Allen School of Computer Science & Engineering (robots: Disallow only a wp-content json)"
+probe = "https://www.cs.washington.edu/people/faculty-members/"
+
+[[hosts]]
+host = "ece.uw.edu"
+use = "live"
+purpose = "Electrical and Computer Engineering (robots Disallow /lab/)"
+probe = "https://www.ece.uw.edu/people/faculty/"
+
+[[hosts]]
+host = "ischool.uw.edu"
+use = "live"
+purpose = "The Information School"
+probe = "https://ischool.uw.edu/people/faculty"
+
+[[hosts]]
+host = "stat.uw.edu"
+use = "wayback-only"
+purpose = "Statistics (live host fails TLS verification: unable to get local issuer certificate; we never disable verification)"
+probe = ""
+
+[[hosts]]
+host = "amath.washington.edu"
+use = "live"
+purpose = "Applied Mathematics (robots Crawl-delay 10)"
+probe = "https://amath.washington.edu/people/faculty"
+
+[[hosts]]
+host = "www.hcde.washington.edu"
+use = "live"
+purpose = "Human Centered Design & Engineering"
+probe = "https://www.hcde.washington.edu/faculty"
+
+[[hosts]]
+host = "bioe.uw.edu"
+use = "live"
+purpose = "Bioengineering"
+probe = "https://bioe.uw.edu/faculty-staff/"
+
+[[hosts]]
+host = "www.gs.washington.edu"
+use = "live"
+purpose = "Genome Sciences"
+probe = "https://www.gs.washington.edu/administration/faculty-resources/faculty-committees/"
+
+[[hosts]]
+host = "www.washington.edu"
+use = "live"
+purpose = "University site (news, announcements of appointments)"
+probe = "https://www.washington.edu/"
+
+[[hosts]]
+host = "digital.lib.washington.edu"
+use = "none"
+purpose = "ResearchWorks Archive: robots.txt names anthropic-ai (Disallow /); never used, Wayback included"
