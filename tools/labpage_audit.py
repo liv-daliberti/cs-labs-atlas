@@ -1338,6 +1338,21 @@ def current_page_url(x):
     return bool(CURRENT_URL.search(u.split('?')[0].split('#')[0]))
 
 
+
+NONPERSON_NAME = re.compile(r'\b(?:distinguished|invited|keynote)\s+(?:talk|lecture)\b|'
+                            r'^[A-Z0-9-]{2,}\s+(?:[Aa]rchitecture|[Rr]untime|[Pp]latform|[Ss]ystem)$')
+NONMEMBER_SECTION = re.compile(r'\bstudent\s+(?:reports?|projects?)\b|\bprospective\b|\bjoin\s+(?:the|our)\s+team\b|'
+                              r'\b(?:postdoc|postdoctoral|phd|student)\s+positions?\b|scholar profile|citation data', re.I)
+
+
+def nonmember_candidate(name, heading):
+    """Reject obvious non-person titles and recruiting/report sections before admission."""
+    if NONPERSON_NAME.search(name or ''):
+        return 'name_unresolved', 'a talk or technical noun phrase, not a full person name'
+    if NONMEMBER_SECTION.search(heading or ''):
+        return 'not_in_people_section', 'a report, recruiting or citation section, not a member roster'
+    return None
+
 def pm_candidates(kit, school, pi, plan, held):
     """Every name autom.extract proposes from a lab plan's pages (lpauto.rows_for's sources), with the disposition
     rows_for gives it (None: kept as an evidence row). plan keys: see lpauto.py."""
@@ -1408,6 +1423,8 @@ def pm_candidates(kit, school, pi, plan, held):
                 why, x['detail'] = 'site_at_other_institution', f"the page's header names {inst_[src]}, not this school"
             elif CREDIT_RX.search(x.get('quote') or '') or CREDIT_RX.search((x.get('desc') or '')[:60]):
                 why, x['detail'] = 'name_unresolved', 'site credit or footer'
+            elif auto_plan and fn not in keep and (nonmember := nonmember_candidate(x.get('name'), x.get('head'))):
+                why, x['detail'] = nonmember
             elif any(names.match_one(x['name'], c) for c in coadv[src]):
                 why, x['detail'] = 'not_a_student', 'named as a co-adviser (joint with / co-advised with)'
             elif auto_plan and x['role'] != 'visiting' and (m_el := (ELSEWHERE_RX.search((x.get('desc') or '')[:220]) or DEGREE_AT_RX.search((x.get('desc') or '')[:120]))) and \

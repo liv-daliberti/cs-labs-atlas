@@ -465,3 +465,23 @@ def test_fellowship_names_are_noise():
     assert A.NAME_NOISE.search('William J. Happel Fellowship')
     assert A.NAME_NOISE.search('NSF Graduate Research Fellowship')
     assert not A.NAME_NOISE.search('William Happel')
+
+
+@pytest.mark.parametrize('name,heading', [
+    ('NUMA Architecture', 'Student Reports'),
+    ('Schmidt Distinguished Talk', 'Washington People > Google Scholar Profile (citation data)'),
+    ('Martin Saveski', 'Prospective Students/Postdocs/Interns > Meta'),
+    ('Ravit Barak', 'postdoc positions'),
+])
+def test_report_and_recruiting_sections_cannot_supply_members(name, heading):
+    assert A.nonmember_candidate(name, heading) is not None
+
+
+@pytest.mark.parametrize('name,heading', [
+    ('Peiqi Gao', 'Current PhD Students'),
+    ('Jinyuan Li', 'PhD Students'),
+    ('Chen Yang', 'PhD students'),
+    ('Jin Zhang', 'Graduate Students > Heng Dong PhD Candidate'),
+])
+def test_current_member_rosters_survive_nonperson_filter(name, heading):
+    assert A.nonmember_candidate(name, heading) is None
