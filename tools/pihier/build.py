@@ -2,13 +2,29 @@
 census -> periods (inside the PI records) -> students -> identity -> papers -> links -> weak students -> the package.
 -> hierarchy/<school>/pis.json, lab_papers.jsonl.gz, students.json, student_papers.jsonl.gz, report.json
 (PI_HIERARCHY_OUT=<dir> writes <dir>/<school>/ instead; the inputs stay where they are)."""
-import collections, datetime, json, os
+import collections, datetime, json, os, tempfile
 from pathlib import Path
 
 import atlas_paths as P  # data paths (DATA_FILES)
 import provenance  # report.json -> provenance
 from .common import HERE, Ctx
 from . import census, identity, links, papers, students
+
+
+def atomic_json(path, value):
+    """Publish complete JSON via same-directory rename; a failed write preserves the prior file."""
+    temporary = None
+    try:
+        with tempfile.NamedTemporaryFile(mode='w', encoding='utf-8', dir=path.parent,
+                                         prefix=f'.{path.name}.', suffix='.tmp', delete=False) as stream:
+            temporary = Path(stream.name)
+            json.dump(value, stream, indent=1, ensure_ascii=False)
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.replace(temporary, path)
+    finally:
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
 
 
 def write(ctx):
@@ -26,8 +42,8 @@ def write(ctx):
                            studentPaperLinks=sum(1 for x in sp if x['pi'] == p['pi']))
     n['pis_with_lab_papers'] = sum(bool(per_pi[p['pi']]) for p in pis)
     n['pis_complete_chain'] = sum(bool(p['counts']['labPapers'] and p['counts']['students'] and p['counts']['studentPaperLinks']) for p in pis)
-    json.dump(pis, open(out / 'pis.json', 'w'), indent=1, ensure_ascii=False)
-    json.dump({k: list(v.values()) for k, v in stu.items()}, open(out / 'students.json', 'w'), indent=1, ensure_ascii=False)
+    atomic_json(out / 'pis.json', pis)
+    atomic_json(out / 'students.json', {k: list(v.values()) for k, v in stu.items()})
     for r in rows:
         r.pop('_bylines', None)
     for name, data in (('lab_papers', rows), ('student_papers', sp)):
@@ -42,7 +58,7 @@ def write(ctx):
                page1ElsewhereSamples=page1_samples, staleListingReview=ctx.listing_review, droppedWithoutHashedSource=ctx.unevidenced, labpageAdditionsSetAside=ctx.labpage_set_aside,
                provenance=provenance.block(school),
                studentInitialsMerges=ctx.initials_merges, studentSurnameTypoCandidates=students.typo_candidate_rows(ctx), labpageStudentsCorroborated=getattr(ctx, 'corroborated', []))  # what this package was built from (tools/provenance.py; make_release requires it)
-    json.dump(rep, open(out / 'report.json', 'w'), indent=1, ensure_ascii=False)
+    atomic_json(out / 'report.json', rep)
     print(json.dumps(dict(school=school, **n)))
 
 
