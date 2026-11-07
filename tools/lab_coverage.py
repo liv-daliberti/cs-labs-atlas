@@ -59,7 +59,12 @@ def derived_reason(kind, p, cen, ov):
         return 'no_phd_advising_role', 'teaching-track or lecturer title in every listed year', title
     if kind == 'students' and cen.get('rank') == 'research' and not any('ladder' in r for r in allr):
         return 'research_only_appointment', 'research-faculty title in every listed year', title
-    if ys and ys[0] >= 2025:
+    source_urls = [s['url'] for s in cen.get('sources') or [] if s.get('url')]
+    live_only = bool(source_urls) and not any(re.search(r'https?://web\.archive\.org/web/\d', u) for u in source_urls)
+    # A partial school's first current capture is an observation date, not an
+    # arrival date. Leave missing students/papers open instead of calling all
+    # previously unobserved faculty new hires.
+    if ys and ys[0] >= 2025 and not live_only:
         return 'new_hire_2025_or_later', f'first listed {ys[0]} ({title}); no students or UChicago papers yet', title
     if ys and ys[-1] <= 2018:
         return 'appointment_ended_early', f'last listed {ys[-1]}; the appointment at the school ends before the papers can accrue (R-PAP-01)', title
