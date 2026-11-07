@@ -54,7 +54,7 @@ def test_R_STU_19_B_roles():
     assert links.student_role_ok(student(['phd'])) and links.student_role_ok(student(['phd_alumnus', 'phd_student']))
     assert links.student_role_ok(student(['student_or_alumnus'])) and links.student_role_ok(student(['masters']))
     assert not links.student_role_ok(student(['other']))        # Anderson (Batra's research scientist), Elola (Clifford's visitor)
-    assert not links.student_role_ok(student(['postdoc'])) and not links.student_role_ok(student(['visiting']))
+    assert not links.student_role_ok(student(['postdoc']))
     assert not links.student_role_ok(student(['member']))
 
 
@@ -70,3 +70,27 @@ def test_R_STU_19_B_applies_to_the_within_lab_route():
     import inspect
     src = inspect.getsource(links.link_students)
     assert src.count('student_role_ok(') == 2 and src.count('pi_is_adviser(') == 2   # full-name route and within-lab route
+
+
+def named(roles, quote, name):
+    s = student(roles, quote); s['name'] = name
+    return s
+
+
+def test_R_STU_19_B_visiting_students_count_visiting_scholars_do_not():
+    assert links.student_role_ok(named(['visiting'], 'Visiting students: Frederik Warburg (ETH)', 'Frederik Warburg'))            # R-STU-17 role
+    assert not links.student_role_ok(named(['visiting'], 'Visiting scholar Sikai Chen (2019-2022) from Purdue University', 'Sikai Chen'))
+    assert not links.student_role_ok(named(['visitor'], 'Visiting Researchers Johannes Krug (2013-2015) Andoni Elola', 'Andoni Elola'))
+    assert links.student_role_ok(named(['visitor'], 'Visiting PhD student Ana Pop (2022)', 'Ana Pop'))
+    assert not links.student_role_ok(named(['visitor'], 'Ryo Fujii : Visiting PhD (2025) Sikai Chen : Visiting scholar (2019-2022) from Purdue University Alvaro Castro-Gonzales', 'Alvaro Castro-Gonzales'))
+    assert not links.student_role_ok(named(['visitor'], 'PhD Students: A B Visitors: Alvaro Castro-Gonzales', 'Alvaro Castro-Gonzales'))   # a visitors list is not a student heading
+
+
+def test_R_STU_19_B_member_rows_by_the_entrys_words_then_the_heading():
+    assert links.student_role_ok(named(['member'], 'Current Members (Role, Program) David Deriso (Ph.D. Student, CS) Jakob Heiss (Post-doc)', 'David Deriso'))   # own words
+    assert not links.student_role_ok(named(['member'], 'Current Members (Role, Program) David Deriso (Ph.D. Student, CS) Jakob Heiss (Post-doc)', 'Jakob Heiss'))
+    assert links.student_role_ok(named(['member'], 'PhD Students: Tianze Jiang, Boris Shigida', 'Boris Shigida'))                                              # heading
+    assert not links.student_role_ok(named(['member'], 'PhD Students: A B Postdocs: Gage DeZoort, Paolo Baglioni', 'Paolo Baglioni'))                          # nearer postdoc cue
+    assert links.student_role_ok(named(['member'], 'Andres Gomez (PhD', 'Andres Gomez'))
+    assert not links.student_role_ok(named(['member'], 'Members: Jane Roe', 'Jane Roe'))                                                                     # no cue at all
+    assert not links.student_role_ok(named(['other'], 'PhD Students: A B Peter Anderson , Research Scientist', 'Peter Anderson'))                             # an explicit non-student role stays

@@ -839,8 +839,58 @@
   "why_no_papers": "2026-11-05: the appointment has not begun. The TTIC faculty page and his profile page read live on 2026-11-05 (robots.txt allows; profile sha256 11c87fe7066705818c3338b0ec5d124b39289020fd36eec65a5b436841feece6) title him 'Assistant Professor (starting Fall 2027)' (earlier captures of 2025-09-13, 2026-04-14 and 2026-07-15 said 'starting Fall 2026'), so under R-PAP-02 he has no appointment and his three 2026 works with a TTIC or UChicago authorship (W7160203706 2026-05-01, W7163370823 2026-06-02, W7170136498 2026-07-22; OpenAlex author A5051101769, 38 of 39 works match DBLP pid/232/1765) fall outside it (funnel outside_appointment_2026: 3)."
  },
  "Ariel Feldman": {
-  "no_papers": true,
-  "why_no_papers": "2026-11-05: no paper falls inside an evidenced appointment. He is listed as Assistant Professor, Department of Computer Science in the CS directory captures of 2016-04-06 and 2016-11-04 and in no later listing: the 2017-08-29 capture of the same directory is page 1 of a paged list (5 names, Amit to Chugh; later pages are not archived), the 2018-11-19 capture of cs.uchicago.edu/people/faculty/ lists 53 faculty (Elmore, Drucker, Franklin, Gunawi, Foster among the D-G names) and not him. His homepage people.cs.uchicago.edu/~arielfeldman/ has no Wayback capture (CDX of the exact URL and its prefix answered nothing; stage-4 holds: 'no page captured'), and no unit profile page of his is archived. His works that name the University of Chicago (OpenAlex author A5061039165, 'Lemonade from Lemons' 2017-06 (two records), 'StrongBox' 2018-03 (two records), 'Using Differential Privacy to Efficiently Mitigate Side Channels' 2018-03; his DBLP pid/161/0107 lists 4 titles) are dated after his last listing and before a complete listing that omits him, so R-PAP-01 keeps them outside the appointment (funnel outside_appointment_2017: 2, _2018: 3). Unproven: whether he was on the faculty through 2017 and part of 2018."
+  "periods": [
+   {
+    "id": "override_period_uchicago_ariel_feldman",
+    "start": "2016",
+    "end": "2018-11",
+    "asof": "2026-11-05",
+    "datePrecision": "year",
+    "datePrecisionEnd": "month",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20160406050620id_/https://cs.uchicago.edu/directories/table/faculty",
+      "sha256": "3522e6ed6b0f6dcabe8662fd3b6a0a2d7b93a83f76fb745636db4603a218870e",
+      "quote": "Ariel Feldman Assistant Professor, Department of Computer Science",
+      "observed": "2016-04-06",
+      "kind": "dept_listing:CS"
+     },
+     {
+      "url": "https://web.archive.org/web/20161104085330id_/https://www.cs.uchicago.edu/directories/table/faculty",
+      "sha256": "c7d59b6349bc1f6664d7222f063808f2143187bcd85978aabd15054eb0f56fa0",
+      "quote": "Ariel Feldman Assistant Professor, Department of Computer Science Research Interests: Computer Security and Privacy",
+      "observed": "2016-11-04",
+      "kind": "dept_listing:CS"
+     },
+     {
+      "url": "https://mailman.cs.uchicago.edu/mailman/public/colloquium/2017-May/004084.html",
+      "sha256": "e67c3251c418438f8e64b7914bc3e9796006e7614fb58ed349a6a402957d03d6",
+      "quote": "Min's advisor is Prof. Ariel Feldman",
+      "observed": "2017-06-12",
+      "kind": "appointment_activity",
+      "note": "UChicago CS colloquium announcement '[Colloquium] Xu/MS Presentation/Jun 12, 2017' (the mailing list archive of the department): a master's presentation whose advisor is Ariel Feldman."
+     },
+     {
+      "url": "https://haeberlen.cis.upenn.edu/papers/hermetic-eurosec2018.pdf",
+      "sha256": "f91b00c00de7f85b251153068aa622b4ef04ea9e077b2ee926b918360d4ce3b4",
+      "quote": "Ariel Feldman Andreas Haeberlen University of Chicago arielfeldman@cs.uchicago.edu University of Pennsylvania ahae@cis.upenn.edu",
+      "observed": "2018-04-23",
+      "kind": "appointment_activity",
+      "note": "page 1 of 'Using Differential Privacy to Efficiently Mitigate Side Channels in Distributed Analytics' (EuroSec 2018, Porto, 2018-04-23)."
+     },
+     {
+      "url": "https://web.archive.org/web/20181119192421id_/https://www.cs.uchicago.edu/people/faculty/",
+      "sha256": "2693809dc2b42532658aee4cdfc80f74e9aa5e0153a8b1e7f1690624b7363719",
+      "quote": "Aaron Elmore Aaron Elmore Assistant Professor Department of Computer Science Ian Foster Ian Foster Arthur Holly Compton Distinguished Service Professor Department of Computer Science",
+      "observed": "2018-11-19",
+      "kind": "faculty_end_moved",
+      "note": "the complete CS faculty list (53 names) has no Feldman between Elmore and Foster."
+     }
+    ],
+    "note": "2026-11-05 (owner: recheck Feldman). Listed as Assistant Professor in the CS directory of 2016-04-06 and 2016-11-04; no complete listing exists for 2017-2018 (the 2017-08-29 capture is page 1 of a paged list, later pages never archived; no homepage capture), but dated evidence shows him active at UChicago in the gap: advisor of a master's presentation on 2017-06-12 (department colloquium list) and 'University of Chicago, arielfeldman@cs.uchicago.edu' on page 1 of a paper of 2018-04-23. The first complete listing without him is 2018-11-19, so by the listing-drop rule (R-PAP-03) and the continuity rule (R-PAP-28: his identified works name the school in the full gap year 2017, and no departure evidence exists before the omission) the period runs from the window start to 2018-11. The end is the listing-drop month, an upper bound: his real departure date stays unknown.",
+    "reviewed": "feldman_recheck_20261105"
+   }
+  ]
  },
  "Yuxin Chen": {
   "blocked_clusters": [

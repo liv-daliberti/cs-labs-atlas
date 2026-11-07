@@ -7,6 +7,7 @@ import collections, gzip, html, json, re, unicodedata, zlib
 import atlas_paths as P  # data paths (DATA_FILES)
 import school_config as _S  # the school charters (R-PAP-15's foreign-title exception)
 from .common import OWN_UNITS, SCHOOL_LOOSE, TODAY, WINDOW_START, accepted_additions, ndoi, norm_title
+from .identity import in_blocked_cluster
 from .names import NICK, _nick_pairs, byline_name, full_pair, toks
 from .periods import _year, bridge_periods, contains, same_year, transition_side, transition_status
 from . import identity
@@ -187,6 +188,59 @@ def short_piece(r, pages, bare=False):
     return None
 
 
+# ---- R-PAP-33 (2026-11-05, owner: round-r2 pooled failures and the abstracts decision) ----------------------------------
+# Not research records the round-r2 samples found, each as a general pattern: session and special-section introductions, interviews, eBook
+# editorials, SPIE '(Conference Presentation)' records, repository (Zenodo/Figshare/Dryad) and dataset records, conference highlights and
+# summaries, CACM 'Research for Practice' columns, edited-volume records (a book-level DOI with no chapter suffix), and workshop or session
+# descriptions ('EE2: Workshop on ...' at ISSCC, 'VDS @ KDD 2022'). The owner's decision of the same day: conference abstracts are not papers.
+INTRODUCTION_TITLE = re.compile(r'(?i)^\s*(?:(?:session|special[- ]section|special[- ]issue|minitrack|track|mini[- ]symposium) introduction\b|introduction to the (?:session|minitrack|track)\b)')
+INTERVIEW_TITLE = re.compile(r'(?i)^\s*(?:an )?interview\s*(?::|with\b)')
+PRESENTATION_TITLE = re.compile(r'(?i)\((?:conference|invited|keynote|plenary) (?:presentation|talk)\)\s*$')
+REPOSITORY_DOI = re.compile(r'(?i)^10\.(?:5281/zenodo|6084/m9\.figshare|5061/dryad)\b')   # not OSF (10.17605): those are preprints
+DATASET_TITLE = re.compile(r'(?i)^\s*(?:processed|raw|synthetic|simulation) data\b|^\s*datasets? (?:for|of|from|used in)\b|'
+                           r'\b(?:matlab|csv|json|hdf5?) (?:data )?(?:format|files?)\s*$')
+HIGHLIGHTS_SUMMARY_TITLE = re.compile(r'(?i)\bhighlights (?:from|of) the\b.*\b(?:conference|workshop|symposium|meeting|summit)\b|'
+                                      r'^\s*(?:summary|report|overview) (?:of|on) the\b.*\b(?:workshop|conference|symposium|seminar|meeting|summit)\b|'
+                                      r'^\s*(?:conference|workshop|symposium) (?:summary|report)\b')
+SUMMARY_SUFFIX = re.compile(r'(?i)\b(?:workshop|symposium|conference) (?:summary|report)\s*$')   # 'SECM 2017 Workshop Summary' (8 words or fewer: a long title is a paper)
+CONFERENCE_VOLUME_TITLE = re.compile(r'(?i)^\s*(?:the )?(?:\d+(?:st|nd|rd|th)\s+)?(?:annual |international |joint )?(?:conference|symposium|workshop)\s+on\b[^:]{0,110}?\s*(?:\([^)]{2,25}\)\s*)?(?:19|20)\d\d\.?\s*$')   # 'Conference on Health, Inference, and Learning (CHIL) 2022': a proceedings volume
+RESEARCH_FOR_PRACTICE = re.compile(r'(?i)^\s*research for practice\b')
+BOOK_LEVEL_DOI = re.compile(r'^10\.(?:1007|1002|1016|3233|1201|1142|1017)/97[89][\d-]+$')   # an ISBN-style DOI: the book itself, no chapter suffix
+SESSION_WORKSHOP_TITLE = re.compile(r'^\s*[A-Z]{1,4}\d{1,3}(?:\.\d+)?\s*:\s*(?i:workshop|tutorial|forum|panel|short course|special session|evening session)\b|'
+                                    r'\s@\s*[A-Z][A-Za-z]+\s*\d{4}\s*$|'
+                                    r'^\s*[A-Za-z]+[- ]?\d{4} (?i:international )?(?i:workshop|tutorial) on\b')
+
+
+def non_research_record(r, pages=None):
+    """R-PAP-33: why a record is no research paper (tag), or None."""
+    t = str(r.get('title') or '').strip(); v = str(r.get('venue') or ''); d = ndoi(r.get('doi')); ty = r.get('type') or ''
+    if INTRODUCTION_TITLE.search(t):
+        return 'session_introduction'
+    if INTERVIEW_TITLE.search(t):
+        return 'interview'
+    if ty == 'editorial' and re.match(r'(?i)acm ebooks', v.strip()):
+        return 'editorial'
+    if PRESENTATION_TITLE.search(t):
+        return 'presentation_only'
+    if REPOSITORY_DOI.match(d) and not v.strip():
+        return 'repository_record'
+    if not d and not v.strip() and DATASET_TITLE.search(t):
+        return 'dataset_record'
+    if HIGHLIGHTS_SUMMARY_TITLE.search(t) or (SUMMARY_SUFFIX.search(t) and len(t.split()) <= 8):
+        return 'highlights_column'
+    if RESEARCH_FOR_PRACTICE.search(t):
+        return 'column'
+    if CONFERENCE_VOLUME_TITLE.search(t):
+        return 'proceedings_volume'
+    if BOOK_LEVEL_DOI.match(d) and ty in ('conference-paper', 'article', 'other', 'proceedings', 'editorial'):
+        return 'edited_volume'
+    if SESSION_WORKSHOP_TITLE.search(t) and ty in ('conference-paper', 'conference-abstract', 'article', 'other'):
+        return 'workshop_proposal'
+    if ty == 'conference-abstract' and pages and pages <= INVITED_MAX_PAGES:   # a one- or two-page abstract record of any byline
+        return 'conference_abstract'
+    return None
+
+
 def not_a_paper(r, pages=None, bare=False):
     """Why a lab-paper row is not a paper, or None (2026-10-29, owner: accuracy sample). `r` is a lab-paper row (title,
     venue, type, doi, byline, authorship.position). The tags:
@@ -244,6 +298,9 @@ def not_a_paper(r, pages=None, bare=False):
     sp = short_piece(r, pages, bare)
     if sp:
         return sp
+    nr = non_research_record(r, pages)   # R-PAP-33 (after the meeting-abstract tags below it keeps their finer names)
+    if nr and nr != 'conference_abstract':
+        return nr
     # R2: meeting abstracts (owner: abstracts are not papers)
     if ABSTRACT_VENUE.search(v):
         return 'meeting_abstract:venue'
@@ -257,7 +314,7 @@ def not_a_paper(r, pages=None, bare=False):
         return 'meeting_abstract:single_author'
     if ty == 'conference-abstract' and re.search(r'(?i)\bkeynote\b|\binvited talk\b', t):
         return 'meeting_abstract:keynote'
-    return None
+    return nr   # R-PAP-33: a conference abstract not tagged above
 
 
 def doi_year_conflict(r):
@@ -357,6 +414,9 @@ def names_other_inst(z, school):
     return bool(OTHER_INST.search(u.sub(' ', z) if u else z))
 
 
+REPRINT_YEARS = 4   # R-PAP-38: a book chapter this many years after the PI's DBLP record of the same title is a reprint of that older paper
+
+
 def venue_version_date(w, venues):
     """R9 (R-PAP-26, 2026-10-29, owner: accuracy sample): (date for the appointment check, dated_by or None). A preprint or
     repository deposit (type preprint, an arXiv DOI, or a repository as the primary source) whose title is on the PI's
@@ -365,8 +425,12 @@ def venue_version_date(w, venues):
     record; Sandholm's IJCAI 2009 paper was a 2018 KiltHub deposit."""
     date = w.get('publication_date') or str(w.get('publication_year') or '')
     src = (w.get('primary_location') or {}).get('source') or {}
-    deposit = w.get('type') == 'preprint' or ndoi(w.get('doi')).startswith('10.48550/') or src.get('type') == 'repository'
+    # R-PAP-38 (2026-11-06, owner): a book chapter is dated like a deposit: ACM Books and other anthologies reprint older papers as chapters ('Video Textures',
+    # SIGGRAPH 2000, as a 2023 ACM Books chapter), so the PI's own DBLP record of the same title gives the work's year (and takes it out of the window when older)
+    deposit = w.get('type') in ('preprint', 'book-chapter') or ndoi(w.get('doi')).startswith('10.48550/') or src.get('type') == 'repository'
     vy = venues.get(norm_title(w.get('title'))) if deposit else None
+    if vy and w.get('type') == 'book-chapter' and w.get('type') != 'preprint' and not (int(w.get('publication_year') or 0) - int(vy[0]) >= REPRINT_YEARS):
+        vy = None   # R-PAP-38: a chapter of a proceedings-type series a year or two after its conference (Springer Tracts, LNCS) is no reprint
     if vy and vy[0] != w.get('publication_year'):
         return str(vy[0]), dict(oa_date=date, venue_year=vy[0], dblp_key=vy[1])
     return date, None
@@ -668,6 +732,15 @@ def rows_from_hits(ctx):
     return rows, seen
 
 
+ARXIV_PRE_YEARS = 4   # a DBLP record this many years after its arXiv v1: the v1's affiliation is not where the published version was done (Mossel 2016, v1 2012)
+
+
+def arxiv_predates_record(ev, year):
+    """R-PAP-36: the arXiv v1 an accepted page-1 read came from (id YYMM.NNNNN) was posted ARXIV_PRE_YEARS or more years before the DBLP record's year."""
+    m = re.search(r'/pdf/(\d{2})\d{2}/', ev.get('url') or '') if ev.get('basis') == 'page1_arxiv' else None
+    return bool(m and year and int(year) - (2000 + int(m.group(1))) >= ARXIV_PRE_YEARS)
+
+
 def recovered_rows(ctx, rows, seen):
     """Rows from RECOVERED_KINDS: inside the appointment, one per (PI, work); appended to `rows`."""
     HERE, school, n, pid0, cwork = ctx.here, ctx.school, ctx.n, ctx.pid0, ctx.cwork
@@ -676,30 +749,38 @@ def recovered_rows(ctx, rows, seen):
     # publications page lists (tools/labpage_recover.py -> hierarchy/<school>/labpage-recovered.jsonl.gz, key 'labpage:<sha1>')
     for kind, label in RECOVERED_KINDS:
         for x in recovered_source(ctx, kind):
-            p = pid0.get(x['pi'])
+            p = pid0.get(x['pi']) or next((q for q in pid0.values() if q.get('censusName') == x['pi']), None)   # R-PAP-34: rows made under a census placeholder name
             if not p:
                 continue
+            x = dict(x, pi=p['pi'])
             ev = x['evidence']; date = str(x['year'])
+            if kind == 'dblp' and in_blocked_cluster(p, dict(authorships=[dict(raw_author_name=b_) for b_ in x.get('byline') or []])):
+                n['dblp_recovered_blocked_cluster'] += 1; continue   # R-PAP-32: a reviewed namesake cluster is never the PI's, whatever the DBLP page says
 
             def aside(why, x=x):  # an accepted lab-page paper the build does not keep: named in report.json
                 if kind == 'labpage_addition':
                     ctx.labpage_set_aside.append(dict(pi=x['pi'], year=int(x['year']), title=x.get('title'), key=x.get('key'), reason=why))
             if not WINDOW_START <= int(x['year']) <= int(TODAY[:4]):  # the atlas window, as the sweep's (2026-10-31: EPFL 2015 row)
                 n[f'{kind}_recovered_outside_window'] += 1; aside('outside_window'); continue
+            if kind == 'dblp' and arxiv_predates_record(ev, x.get('year')):   # R-PAP-36: page 1 of a v1 posted 4+ years before the record says where it was done then
+                n['dblp_recovered_arxiv_v1_predates_record'] += 1; continue
             via = ev.get('school_via') or [f"page 1 ({ev.get('how')}): " + ' … '.join(ev.get('quotes') or [])]
+            if kind == 'dblp' and ev.get('how'):  # R-PAP-36: the DBLP-listed work confirmed by its own first page
+                via = ['page1_dblp: ' + str(x.get('dblp_key') or '')] + via
             per = next((q for q in p['periods'] if contains(q['start'], q['end'], date, q['asof'] or TODAY) == 'supported'), None)
             lst = None if per else next((l for l in p['listings'] if l['year'] == int(x['year'])), None)
             if per is None and lst is None:
                 n[f'{kind}_recovered_outside_appointment'] += 1; aside('outside_appointment'); continue
             cw = cwork(dict(doi=x.get('doi'), title=(x.get('title') or '').rstrip('.'), publication_year=x['year'])) or None
-            oa_id = ev.get('oa') or (f"https://dblp.org/rec/{x['dblp_key']}" if kind == 'dblp' else x['key'])
+            oa_id = ev.get('oa') or (f"https://dblp.org/rec/{re.sub('^https?://dblp[.]org/rec/', '', str(x['dblp_key']))}" if kind == 'dblp' else x['key'])
             if (x['pi'], cw or oa_id) in seen:
                 aside('already_a_lab_paper'); continue
             seen.add((x['pi'], cw or oa_id))
             rows.append(dict(pi=x['pi'], work=cw, oa=oa_id, doi=x.get('doi'), title=(x.get('title') or '').rstrip('.'), year=x['year'], date=date, type='article',
-                             venue=x.get('venue'), landing=ev.get('url'), byline=x.get('byline') or [], byline_school=[],
+                             venue=x.get('venue'), landing=ev.get('url'), byline=list(dict.fromkeys(x.get('byline') or [])), byline_school=[],
                              authorship=dict(position=None, raw_name=None, author_id=None, institutions=[], raw_affiliations=[], school_via=via[:3],
-                                             page1=dict(url=ev.get('url'), pdf_sha256=ev.get('pdf_sha256'), how=ev.get('how'), quotes=ev.get('quotes')) if ev.get('how') else None),
+                                             page1=dict(url=ev.get('url'), pdf_sha256=ev.get('pdf_sha256'), how=ev.get('how'), quotes=ev.get('quotes'),
+                                                       **({'dblp_key': ev['dblp_key'], 'fetched_at': ev['fetched_at']} if ev.get('dblp_key') and ev.get('fetched_at') else {})) if ev.get('how') else None),
                              identity=label, appointment=dict(periodId=per['id']) if per else dict(listing=lst),
                              source=(f'{kind}_recover:' if kind != 'labpage_addition' else f"labpage_addition:{x.get('rule')}:") + ev['basis']))
             n[f'{kind}_recovered_lab_papers'] += 1
@@ -742,7 +823,15 @@ def drop_namesakes(rows, pis, reviewed_oa, n):
     return rows
 
 
-def drop_not_papers(rows, dblp_nauth, n, dblp_pages=None):
+def reviewed_not_paper(p, r):
+    """R-PAP-39: a reviewed `not_papers` entry of the PI (census overrides: doi or OpenAlex id, why, evidence) names this row."""
+    for e in (p or {}).get('notPapers') or []:
+        if (e.get('doi') and ndoi(e['doi']) == ndoi(r.get('doi'))) or (e.get('oa') and e['oa'] == r.get('oa')):
+            return e
+    return None
+
+
+def drop_not_papers(rows, dblp_nauth, n, dblp_pages=None, pid0=None):
     """R-PAP-17 .. R-PAP-19, R-PAP-22, R-PAP-23: rows that are not papers leave the lab, counted per tag with samples.
     Returns (rows kept, samples)."""
     # not papers (R-PAP-18/19/22, 2026-10-29, owner: accuracy sample): repository records, paratext, seminar and workshop
@@ -754,6 +843,8 @@ def drop_not_papers(rows, dblp_nauth, n, dblp_pages=None):
         if dblp_pages:  # R-PAP-27: the DBLP page count of this record (by DOI, else title), None when DBLP has none
             pg_, bare_ = dblp_pages['doi'][r['pi']].get(ndoi(r.get('doi'))) or dblp_pages['title'][r['pi']].get(norm_title(r.get('title'))) or (None, False)
         why = not_a_paper(r, pg_, bare_) or ('doi_year_conflict' if doi_year_conflict(r) else None)
+        if not why and reviewed_not_paper((pid0 or {}).get(r['pi']), r):
+            why = 'reviewed_not_paper'
         if why in ('meeting_abstract:single_author', 'invited_abstract') and dblp_nauth[r['pi']].get(norm_title(r.get('title')), 0) >= 2:
             why = None  # OpenAlex cut the byline: the PI's DBLP page has the paper with co-authors, so it is no keynote
             n['single_author_abstract_kept_dblp_coauthors'] += 1
@@ -876,7 +967,7 @@ def lab_papers(ctx):
     rows, seen = rows_from_hits(ctx)
     recovered_rows(ctx, rows, seen)
     rows = drop_namesakes(rows, pis, ctx.reviewed_oa, n)
-    rows, not_paper_samples = drop_not_papers(rows, ctx.dblp_nauth, n, ctx.dblp_pages)
+    rows, not_paper_samples = drop_not_papers(rows, ctx.dblp_nauth, n, ctx.dblp_pages, ctx.pid0)
     # books are one work, and a translation is not new work (2026-10-29, owner: best judgement): fold_books
     nv0 = sum(r.get('type') == 'book-chapter' and not r.get('venue') for r in rows)
     rows, n['book_chapters_folded'], translated = fold_books(rows, school)

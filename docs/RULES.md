@@ -280,6 +280,53 @@ name the namesake's group by coauthors: a work whose byline carries `min_coautho
 `authorship_identity` before any identity). Applies to every school's overrides; a cluster needs a reviewed reason and the works it removes.
 Tests: `tests/test_blocked_cluster_and_link_rules.py`.
 
+### R-PAP-34 (2026-11-05, owner: round-r2 Michigan verdict) — placeholder PI names
+A PI whose name is made only of single letters ('Y Z': the university directory lists a Nuclear Engineering professor by initials) names no one a matcher can tell
+from a namesake and anchors no paper (`placeholder_name`). `pi_records` excludes such a census row (`excluded`, reason 'placeholder name') unless the reviewed overrides give a
+`display_name` with its evidence; the PI is then built under that name (`censusName` keeps the census spelling, `displayNameBasis` the reason; researched, lab-page and decision files that key the person by the census name still reach the PI, `renamed_pis`). Michigan's 'Y Z' is Yang Zhang, from the
+ORCID 0000-0002-7339-8342 and the OpenAlex author A5113215889 that carries it (the molten-salt paper the sample doubted is his). All nine schools were checked: 'Y Z' is the only placeholder
+(names such as 'Weinan E', 'H.V. Jagadish', 'R. Ravi' have a word of two letters or more). Tests: `tests/test_namesake_guard_and_placeholder_pi.py`.
+
+### R-PAP-36 (2026-11-05, owner: "yes", the DBLP page-1 extension of R8) — DBLP-listed works confirmed by page 1
+A work on the PI's own DBLP person page (the dump or a reviewed pid) that the build lacks, in a year inside a dated appointment (a period, or a listing year), where OpenAlex has no record
+or gives the PI no school, is added only when page 1 of the paper (arXiv v1 from the public GCS bulk copy, or an open PDF on a proceedings host: PMLR, NeurIPS, ACL, CVF, USENIX,
+IJCAI, AAAI, OpenReview, JMLR, CEUR-WS; robots.txt honoured, 3 s per host, 10 s at USENIX (its Crawl-delay)) names the school for the PI (`tie`). `tools/dblp_recover.py` (`candidates`, `dump_ee`, `pdf_url`): the candidates
+are now the cached lists plus the PI's full DBLP person page from the dump (the cached lists lacked MIT's Mossel NeurIPS 2022 and Freund COLT 2022), `ee` for a record only the dump has
+comes from the dump XML, and the JMLR host was added (Shah JMLR 2025). IACR ePrint is not asked: eprint.iacr.org answers with a Cloudflare challenge and its robots.txt carries an AI policy against the PDFs, so Devadas's 2021 ePrint paper stays `dblp_unconfirmed`. A reviewed blocked cluster (R-PAP-32) also stops a recovered row. A record with no page-1 evidence is not added: it is kept in
+`dblp-recover.sqlite` with status `dblp_unconfirmed` and a reason (`no_open_page1_source`, `page1_fetch_failed`, `page1_read_school_not_named`) for later. The rows carry
+`school_via: ['page1_dblp: <DBLP key>', 'page 1 (<how>): ...']`, `authorship.page1` with the PDF url, its sha256, the quotes, the DBLP key and the fetch time, identity `dblp_person_page`,
+source `dblp_recover:page1_arxiv|page1_open` and enter the normal flow (appointment, editions, dedup against the sweep's works, copies). `dblp_recover.py <school> --retry` asks again for the
+unconfirmed. A page-1 read from an arXiv v1 posted 4 or more years before the DBLP record's year is not accepted at build time (`arxiv_predates_record`: Mossel's 2016 TOC paper, v1 2012, names Berkeley), and a byline lists each name once. Not used: the publisher's landing text (no open source parsed there). Tests: `tests/test_dblp_recover_page1.py`.
+
+### R-PAP-38 (2026-11-06, owner) — book-chapter reprints of older papers
+ACM Books and other anthologies reprint older papers as chapters (Essa's 'Video Textures', SIGGRAPH 2000, appears as a 2023 ACM Books chapter; 39 such chapters over the nine
+schools, most of 'Seminal Graphics Papers', 'Making Databases Work', 'Providing Sound Foundations for Cryptography'). R-PAP-26 dated a preprint or repository deposit by the PI's DBLP
+record of the same title; a record of type `book-chapter` now is dated the same way (`venue_version_date`): the original's year is the work's year, and one before 2016 leaves the lab
+(`dated_before_window`). Only a chapter dated 4 or more years after that record (`REPRINT_YEARS`) is re-dated: a Springer Tracts chapter a year or two after its conference is no reprint. A chapter with no DBLP record of the same title, or new chapters of a handbook, are untouched. Tests: `tests/test_not_paper_non_research_records.py`.
+
+### R-PAP-39 (2026-11-06, owner) — editorials whose byline is the guest editors (reviewed records)
+Georgia Tech's FITEE special-issue editorial (Fumin Zhang, seven authors who are the guest editors) carries no stored signal: OpenAlex types it article, the sweep keeps no abstract or
+references, DBLP has no page count, the DOI is opaque. So the rule is a reviewed entry in the PI's census overrides (`not_papers`: `doi` or `oa`, `why`, `evidence`), applied at the
+lab-paper stage (`reviewed_not_paper`, tag `reviewed_not_paper`). A record is such an editorial when its byline is the special issue's editors, as the hand check read it. Tests:
+`tests/test_not_paper_non_research_records.py`.
+
+### R-PAP-35 (2026-11-05, owner: round-r2 Michigan namesake) — middle names against name-only identities
+An identity that rests on the name through a DBLP person page (DOI or title) or a publication list does not stand when the byline writes middle names and the PI's own names write middle
+names and they share no initial (`middle_conflict`, `NAME_ONLY_IDENTITY`; ORCID, author-id, verified-collection and advisee identities are not touched). The Michigan paper by M. E. J. Newman
+(Physics) was credited to Mark W Newman (CSE) through a census DBLP id that is the physicist's page. A census DBLP id whose person names all contradict the PI's middle name is dropped like a name mismatch (R-PAP-05; Mark W Newman's census id was the physicist's page, so the anchored author id and every Newman paper followed it; his own page, pid/03/6629, is a reviewed override). The affiliation half of the owner's wording (department match) is not added: a middle-name
+contradiction alone settled every case in the packages; the count per school is `namesake_middle_name_conflicts` in `report.json`.
+
+### R-PAP-33 (2026-11-05, owner: round-r2 pooled failures; abstracts decision) — more non-research records
+Dropped (`not_a_paper`, `non_research_record`; tests `tests/test_not_paper_non_research_records.py`, each on the real failing rows): a title that opens 'Session Introduction',
+'Special-section Introduction' or 'Introduction to the Minitrack/Session' (`session_introduction`); 'Interview:' / 'An interview with' (`interview`); OpenAlex type `editorial` in
+ACM eBooks; a title ending '(Conference Presentation)', '(Invited Talk)', '(Keynote Presentation)' (`presentation_only`, SPIE and LIPIcs invited-talk records); a Zenodo, Figshare or Dryad DOI
+with no venue (`repository_record`: datasets, software, artifacts; OSF DOIs are preprints and stay); a record with no DOI and no venue whose title is a data file ('... in MATLAB data format',
+'Processed data ...', 'Dataset for ...'; `dataset_record`); a conference highlights, report, overview or summary ('Highlights from the ... Conference', 'Report on the ... Workshop', '... Workshop Summary';
+`highlights_column`); a title that opens 'Research for Practice' (CACM columns; `column`); an edited-volume record: a book-level ISBN DOI with no chapter suffix on a conference-paper, article or
+editorial record (LNCS volumes whose byline is the editors; type `book` stays, R-PAP-15; `edited_volume`); a workshop or session description ('EE2: Workshop on ...' at ISSCC, 'VDS @ KDD 2022',
+'KDD-2023 Workshop on ...'; `workshop_proposal`; 'KIT@IWSLT2022' stays); a proceedings-volume title ('Conference on Health, Inference, and Learning (CHIL) 2022': 'Conference|Symposium|Workshop on ...' ending in a year; `proceedings_volume`). **Conference abstracts are not papers (owner, 2026-11-05):** besides R-PAP-19's meeting abstracts and the '(Conference Presentation)' records,
+a `conference-abstract` record of 2 pages or less in DBLP is dropped whatever its byline (`conference_abstract`); one without a page count, or of 3+ pages (ACM EC, PES General Meeting papers OpenAlex types as abstracts), stays.
+
 ## Students
 
 ### R-STU-01 (2026-10-21, owner)
@@ -404,7 +451,7 @@ a researched-evidence file (`RESEARCHED_FILES`, so R-STU-01/R-STU-12 apply: no q
 the data: among the 2,606 byline links of the nine packages that match on a name the paper does not spell in full, 540 are on papers with 10+ authors, 147 with 20+,
 74 with 30+, 37 with 50+ and 11 with 100+, while a lab paper's median byline is 5. UChicago's case: four initial-only 'Zhou' authors of a 2,938-author ATLAS paper
 linked to one CS student.
-**B. The wide-window routes.** A `full_name_on_lab_paper_byline` or `within_lab_byline_match` link (the routes outside the narrow window; the three Georgia Tech errors were within-lab matches on the full name) needs the person to hold a student role (`student_role_ok`: phd, doctoral, masters,
+**B. The wide-window routes.** (Owner 2026-11-06: a visiting STUDENT counts, role `visiting` of R-STU-17, unless the entry says visiting scholar, professor, faculty or researcher; a `visitor` row only when the entry says visiting student or PhD; a `member` row counts when the entry's own words after the name, else its heading, say student: `pihier/role_cues.py`, the cues of R-STU-20. Effect on the 592 removed links of the 2026-11-05 scratch build: 17 come back, because the rest are postdocs, visitors and `other` staff by an explicit role.) A `full_name_on_lab_paper_byline` or `within_lab_byline_match` link (the routes outside the narrow window; the three Georgia Tech errors were within-lab matches on the full name) needs the person to hold a student role (`student_role_ok`: phd, doctoral, masters,
 undergraduate, student, alumnus or intern, not only research scientist, visitor, postdoc, staff or other) and no relation whose quotes name other advisers only
 (`pi_is_adviser`, R-STU-03's test). Georgia Tech's draw: a research scientist (Anderson, Batra), a visiting researcher (Elola, Clifford) and a student of two other
 advisers (Basciftci, Van Hentenryck) had entered by full name. Tests: `tests/test_blocked_cluster_and_link_rules.py`.
@@ -469,6 +516,11 @@ student, publishes as Izabel Aguiar).
 
 ### R-LNK-04a (2026-10-29, owner: link-gap sample) — more nickname pairs
 `extras.csv`: Manolis/Emmanouil (Zampetakis), Robbie/Robert, Dima/Dmitry and Dmitri, Ági/Agnes, Lily/Lillian.
+
+### R-LNK-04b (2026-11-05, owner: round-r2 pooled failures) — Greek short forms; Robin Netzorg
+`extras.csv`: Fotis/Fotios (Iliopoulos, Sinclair's student: two lab papers read 'Fotis') and Giorgos/Georgios. Robin is not a nickname of Robert, so no table pair is
+added; Netzorg (Bin Yu's lab: the dissertation list says Robert, the roster and the ICML paper say Robin) is one reviewed `same_person` decision in
+`student-identity-review.json` (R-STU-04). Izzy was added on 2026-10-29 (R-LNK-04). Tests: `tests/test_nicknames_round_r2.py`.
 
 ### R-LNK-05 (2026-10-29, owner) — links carry their evidence
 Every byline link (`within_lab_byline_match`, `byline_name_with_school_affiliation`, `advisee_name_on_lab_paper_byline`,

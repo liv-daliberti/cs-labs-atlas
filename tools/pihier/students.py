@@ -334,19 +334,27 @@ def people_by_family(people):
     return by_name
 
 
+def renamed_pis(pis):
+    """{census name: built name} of PIs a reviewed display_name renamed (R-PAP-34): reviewed and researched files that key a person by the census
+    placeholder ('Y Z') still reach the PI built as 'Yang Zhang'."""
+    return {p['censusName']: p['pi'] for p in pis if p.get('censusName')}
+
+
 def researched(ctx, stu, by_name):
     """R-STU-01: researched advisees and lab members with a quote and hash (gap-evidence.json and RESEARCHED_FILES); a
     unique collection person of that name takes the record, else an ext:<school>:<name> id."""
     HERE, school, pis, ge, n = ctx.here, ctx.school, ctx.pis, ctx.ge, ctx.n
+    ren = renamed_pis(pis)
+    ge = {ren.get(k, k): v for k, v in ge.items()}
     fe = collections.defaultdict(lambda: dict(students=[]))  # researched students: thin labs and the thesis hunt
     for fn in RESEARCHED_FILES:
         if P.data(fn, school, root=HERE).exists():
             for r in read(P.data(fn, school, root=HERE)):
-                fe[r['pi']]['students'] = list(fe[r['pi']]['students']) + list(r.get('students') or [])
+                fe[ren.get(r['pi'], r['pi'])]['students'] = list(fe[ren.get(r['pi'], r['pi'])]['students']) + list(r.get('students') or [])
     for s_ in accepted_additions(school, 'students', HERE, ctx.n):  # LP-STU-01, accepted (docs/LAB-PAGES.md): one row per student
-        fe[s_['pi']]['students'] = list(fe[s_['pi']]['students']) + [s_]
+        fe[ren.get(s_['pi'], s_['pi'])]['students'] = list(fe[ren.get(s_['pi'], s_['pi'])]['students']) + [s_]
     dec_f = P.data('student-decisions.json', school, root=HERE)
-    visiting_decided = {(pi_, SD.fold(nm_)) for pi_, d_ in (read(dec_f) if dec_f.exists() else {}).items() for nm_, v_ in d_.items() if v_.get('decision') == 'visiting'}
+    visiting_decided = {(ren.get(pi_, pi_), SD.fold(nm_)) for pi_, d_ in (read(dec_f) if dec_f.exists() else {}).items() for nm_, v_ in d_.items() if v_.get('decision') == 'visiting'}
     for p in pis:  # researched students (gap-evidence.json, few-students-evidence.json): a stated advisee or lab member, with its quote
         for s_ in list((ge.get(p['pi']) or {}).get('students') or []) + list((fe.get(p['pi']) or {}).get('students') or []):
             if not (s_.get('name') and s_.get('quote') and s_.get('sha256')):

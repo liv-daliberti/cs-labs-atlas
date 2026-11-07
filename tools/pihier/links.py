@@ -3,6 +3,7 @@ guard, names.given_conflict), R-LNK-03 (within-lab byline matching), R-LNK-05 (l
 import collections, re, unicodedata
 
 from .names import LETTERS, Name, byline_name, clean_person_name, given_conflict, gwords, name_variants, nick_ok, student_on_byline, toks
+from .role_cues import VISITING_NOT_STUDENT, VISITING_STUDENT, student_by_entry
 from .students import relation_names_other_adviser
 
 # R-STU-19 (2026-11-05, owner: UChicago/Georgia Tech stage-9 samples). Rule A: an initials-only name match ('Y. Zhou') cannot link a student to
@@ -27,10 +28,33 @@ def hyper_authored(r):
 
 
 def student_role_ok(s):
-    """R-STU-19 rule B: some role is a student role (phd, masters, undergraduate, student, alumnus, intern), not only research
-    scientist, visitor, postdoc, staff or other."""
+    """R-STU-19 rule B: some role is a student role (phd, masters, undergraduate, student, alumnus, intern), not only research scientist, visitor, postdoc,
+    staff or other. Owner 2026-11-06: (1) a visiting STUDENT counts (role `visiting`, R-STU-17: visiting PhD, master's or undergraduate students; visiting
+    scholars, professors, faculty and researchers stay out, also when the entry says so); (2) a `member` row counts when the entry's own words
+    (right after the name) or else its heading (the nearest role cue before the name) say student: 'David Deriso (Ph.D. Student, CS)', 'PhD Students: A, B'."""
     roles = [str(x).lower() for x in s.get('roles') or [] if x] or [str(rel.get('role') or '').lower() for rel in s.get('relations') or []]
-    return any(STUDENT_ROLE.search(x) and not NON_STUDENT_ROLE.search(x) for x in roles)
+    if any(STUDENT_ROLE.search(x) and not NON_STUDENT_ROLE.search(x) for x in roles):
+        return True
+    quotes = [q.get('quote') or '' for rel in s.get('relations') or [] for q in rel.get('sources') or []]
+    names = [n for n in [s.get('name')] + list(s.get('aliases') or []) if n]
+    def nearest_visiting(q):   # the nearest visiting cue before the name decides: 'Visiting scholar (2019) from Purdue Alvaro X' is a scholar
+        best = None
+        for n in names:
+            j = q.rfind(n)
+            if j < 0:
+                continue
+            for kind, rx in (('student', VISITING_STUDENT), ('not', VISITING_NOT_STUDENT)):
+                for m in rx.finditer(q[:j]):
+                    if best is None or m.end() > best[0]:
+                        best = (m.end(), kind)
+        return best[1] if best else None
+    if 'visiting' in roles:
+        return not any(nearest_visiting(q) == 'not' for q in quotes)
+    if 'visitor' in roles:   # a visitors' list is not a student heading: only a visiting-student cue nearest to the name counts
+        return any(nearest_visiting(q) == 'student' for q in quotes)
+    if 'member' in roles:
+        return any(student_by_entry(q, names) for q in quotes)
+    return False
 
 
 def pi_is_adviser(s, pi_names):
@@ -66,8 +90,14 @@ def link_students(ctx):
     rows, stu, pls, n = ctx.rows, ctx.stu, ctx.pls, ctx.n
     sp = []
     # every reading of a student's name: the name, its aliases, and parenthesized forms ('Fatma Imamoglu (Deniz)')
-    forms = {sid: [f for f in dict.fromkeys([s['name']] + list(s.get('aliases') or []) + [v_ for x_ in [s['name']] + list(s.get('aliases') or []) for v_ in name_variants(x_)])
-                   if '(' not in f] or [s['name']] for v in stu.values() for sid, s in v.items()}
+    # one person under two labs (Netzorg: Bin Yu and Anumanchipalli) is one entry: the readings of every lab's record, so a reviewed alias in one lab (Robin)
+    # is not lost to the other lab's record of the same person (2026-11-05, round-r2 Berkeley verdict)
+    forms = {}
+    for v in stu.values():
+        for sid, s in v.items():
+            fs = [f for f in dict.fromkeys([s['name']] + list(s.get('aliases') or []) + [v_ for x_ in [s['name']] + list(s.get('aliases') or []) for v_ in name_variants(x_)])
+                  if '(' not in f] or [s['name']]
+            forms[sid] = list(dict.fromkeys(forms.get(sid, []) + fs))
     snm = {sid: [(Name([f]), toks(f)) for f in fs] for sid, fs in forms.items()}
 
     def on_byline(sid, b):

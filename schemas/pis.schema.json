@@ -98,6 +98,27 @@
       "R-PAP-04"
      ]
     },
+    "censusName": {
+     "description": "The census name when a reviewed display_name renamed a placeholder-named PI (R-PAP-34).",
+     "type": "string"
+    },
+    "displayNameBasis": {
+     "description": "Why the reviewed display name is the person.",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "notPapers": {
+     "description": "Reviewed records of this PI that are no papers (census-overrides not_papers).",
+     "type": "array",
+     "items": {
+      "type": "object"
+     },
+     "x-rules": [
+      "R-PAP-39"
+     ]
+    },
     "blockedClusters": {
      "description": "Reviewed namesake clusters (census-overrides blocked_clusters): works whose byline carries the cluster's coauthors are never this PI's.",
      "type": "array",

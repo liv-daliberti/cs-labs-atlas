@@ -55,6 +55,27 @@ def toks(s):
     return [t for t in re.sub(r"[^a-z\- ]+", ' ', s.replace("'", '').replace('’', '').replace('‘', '').replace('`', '')).replace('-', ' ').split() if t]
 
 
+def placeholder_name(name):
+    """R-PAP-34: a name made only of single letters ('Y Z': a directory that lists a person by initials) names no one the matchers can
+    tell from any namesake. 'Weinan E', 'H.V. Jagadish', 'R. Ravi' have a word of two letters or more and are not placeholders."""
+    t = re.findall(r'[^\W\d_]+', str(name or ''))
+    return not t or all(len(x) == 1 for x in t)
+
+
+def middle_initials(name):
+    """The initials of the middle given names of a written name: 'Mark W Newman' -> {'w'}, 'M. E. J. Newman' -> {'e', 'j'}, 'Mark Newman' -> set()."""
+    t = nosuffix(toks(byline_name(name)))
+    return {x[0] for x in t[1:-1]} if len(t) >= 3 else set()
+
+
+def middle_conflict(pi_names, raw):
+    """R-PAP-35: the byline writes middle names and the PI's own names write middle names, and they share no initial ('M. E. J. Newman' on the
+    Physics paper credited to Mark W Newman). A name that agrees on first and family name proves nothing against a contradicting middle name."""
+    b = middle_initials(raw)
+    p = [m for m in (middle_initials(n) for n in pi_names or []) if m]
+    return bool(b and p and not any(b & m for m in p))
+
+
 def given(t):
     return NICK.get(t, t)
 
