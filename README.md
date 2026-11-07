@@ -1,5 +1,7 @@
 # CS Labs Atlas
 
+[![DOI](https://zenodo.org/badge/1436088043.svg)](https://doi.org/10.5281/zenodo.23988437)
+
 An open, evidence-backed dataset of computer-science research labs, 2016–2026:
 
 1. **The CS PI-lab hierarchy** of five universities (Princeton, Carnegie Mellon, EPFL, MIT, UC Berkeley; Stanford is
@@ -185,7 +187,7 @@ they were published with.
 
 This dataset is © 2026 Liv d'Aliberti and licensed under [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/): attribution is required and use is non-commercial. Papers keep their own licences. Please cite:
 
-> d'Aliberti, L. (2026). CS Labs Atlas (Release 2026-10-29.4) [Data set]. https://github.com/liv-daliberti/cs-labs-atlas (a Zenodo DOI follows with the first archived release)
+> d'Aliberti, L. (2026). CS Labs Atlas (Release 2026-10-29.4) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.23988437
 
 ```bibtex
 @dataset{daliberti2026csatlas,
@@ -194,12 +196,13 @@ This dataset is © 2026 Liv d'Aliberti and licensed under [CC BY-NC 4.0](https:/
   year      = {2026},
   version   = {2026-10-29.4},
   publisher = {Zenodo},
-  url       = {https://github.com/liv-daliberti/cs-labs-atlas},
+  doi       = {10.5281/zenodo.23988437},
+  url       = {https://doi.org/10.5281/zenodo.23988437},
   license   = {CC-BY-NC-4.0}
 }
 ```
 
-GitHub's "Cite this repository" button reads `CITATION.cff`; the DOI comes from the Zenodo record of each GitHub release.
+This is the concept DOI: it always resolves to the latest release. Each GitHub release also gets its own version DOI on its Zenodo record (release 2026-10-29.4: 10.5281/zenodo.23988438). GitHub's "Cite this repository" button reads `CITATION.cff`.
 
 **Terms of use.** Automated scraping or bulk download of the CS Labs Atlas website for AI or machine-learning training, or for building datasets, is not permitted except by permission. Use the bulk data in this repository (or the Hugging Face release) under the licence instead. The text-and-data-mining rights are expressly reserved under Article 4(3) of EU Directive 2019/790. Commercial use needs permission: open an issue at https://github.com/liv-daliberti/cs-labs-atlas/issues.
 <!-- cite:end -->

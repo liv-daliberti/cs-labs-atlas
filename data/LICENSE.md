@@ -16,7 +16,7 @@ Commercial use needs permission (open an issue). Earlier versions remain under t
 - **DBLP** metadata (person pages, record keys, titles) is released under CC0 1.0; it is included here under those terms.
 - **Quoted evidence snippets** (`quote` fields and similar) are short verbatim excerpts of public web pages
   (department listings, profiles, thesis records, lab pages), included only so that each claim can be checked against
-  its source. They remain the property of their publishers; the CC BY 4.0 license of this dataset does not extend to
+  its source. They remain the property of their publishers; the CC BY-NC 4.0 license of this dataset does not extend to
   them. Contact details were removed from them.
 - Names of people are factual statements from public university sources. If you are listed and want a record
   corrected or removed, please open an issue.
