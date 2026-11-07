@@ -45,6 +45,16 @@ def test_seas_wrapped_field_classes():
     assert rows[1]['titles'] == []
 
 
+def test_seas_unlinked_name_never_uses_a_contact_link_as_homepage():
+    html = '''<h2 class="node-title person__detailed-name"><span class="person__name">Stephen Casper</span></h2>
+    <div class="person__primary-title"><div class="field-item">Assistant Professor of Public Policy</div></div>
+    <a href="mailto:fixture@example.org">Email</a><a href="tel:12345">Phone</a>'''
+    fmt, rows = F.parse(html)
+    assert fmt == 'seas_directory'
+    assert rows[0]['homepage'] is None
+    assert rows[0]['name_listed'] == 'Stephen Casper'
+
+
 def test_seas_old_pager_keeps_filter_and_sort():
     pages = F.page_links(SEAS_WRAPPED, 'https://seas.harvard.edu/faculty')
     assert F.is_paged(SEAS_WRAPPED)

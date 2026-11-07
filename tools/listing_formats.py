@@ -242,7 +242,7 @@ def seas_directory(h):
         if not nm:
             continue
         tt = re.search(r'class="[^"]*\bperson__primary-title\b[^"]*".*?<div class="field-item">(.*?)</div>', p, re.S)
-        link = re.search(r'href="([^"]+)"', p)
+        link = re.search(r'href="([^"]+)"', p.split('</h2>', 1)[0])
         out.append(dict(name_listed=clean(nm.group(1)), titles=_titles(tt.group(1)) if tt else [], homepage=link.group(1) if link else None, division=None))
     return out
 
