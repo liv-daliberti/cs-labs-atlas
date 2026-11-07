@@ -120,3 +120,61 @@ def test_dated_publication_page_is_not_a_lab_website():
     assert row['coverage'] == 'pending'
     assert 'selected_url_is_research_output' in row['evidence_gaps']
     assert any('research-output' in b for b in W.gate({'labs': [row]}, ['Ada Example']))
+
+
+def test_refresh_imports_landing_cache_without_transferring_old_review(monkeypatch):
+    import labpage_audit as L
+    imported = []
+    rec = record()
+    rec['students'] = {'page_status': 'audited'}
+    rec['papers'] = {'pubs_page_status': 'audited'}
+    new_lp = {**rec['lab_page'], 'urls': {'lab_site': 'https://school.edu/new-lab/'}}
+
+    class Kit:
+        def __init__(self, school):
+            pass
+
+        def import_school_web(self, path, urls):
+            imported.extend(urls)
+
+    monkeypatch.setattr(L, 'Kit', Kit)
+    monkeypatch.setattr(L, 'load_ctx', lambda *a, **kw: {'pis': [{'pi': 'Ada Example'}], 'cfg': {'domain': r'school\.edu'}})
+    monkeypatch.setattr(L, 'read_discovery', lambda s: {'Ada Example': {
+        'chosen': {'lab_site': 'https://school.edu/new-lab/'}, 'checked_at': '2026-11-07',
+        'checks': [{'source': 'school_profile', 'url': 'https://school.edu/people/ada'}]}})
+    monkeypatch.setattr(L, 'lab_record', lambda *a: (new_lp, {}))
+    out = W.refresh_records('u', {'Ada Example': rec})['Ada Example']
+    assert set(imported) == {'https://school.edu/new-lab/', 'https://school.edu/people/ada'}
+    assert out['students']['page_status'] == 'pending_review'
+    assert out['papers']['pubs_page_status'] == 'pending_review'
+
+
+def test_invalid_cached_selection_uses_verified_alternative_or_remains_pending(monkeypatch):
+    import labpage_audit as L
+    rec = record()
+    bad_url = 'https://school.edu/publications/2020/a-report'
+    good_url = 'https://school.edu/ada/'
+    discovery = {'Ada Example': {'chosen': {'lab_site': bad_url}, 'checked_at': '2026-11-07',
+                 'checks': [{'source': 'candidate_site', 'url': good_url, 'result': 'ok'}],
+                 'sites': [{'url': good_url, 'other_school': False}]}}
+
+    class Kit:
+        def __init__(self, school):
+            pass
+
+        def import_school_web(self, *args):
+            pass
+
+    monkeypatch.setattr(L, 'Kit', Kit)
+    monkeypatch.setattr(L, 'load_ctx', lambda *a, **kw: {'pis': [{'pi': 'Ada Example'}], 'cfg': {'domain': r'school\.edu'}})
+    monkeypatch.setattr(L, 'read_discovery', lambda s: discovery)
+    monkeypatch.setattr(L, 'lab_record', lambda kit, ctx, pi, disc: (
+        {**rec['lab_page'], 'urls': {'lab_site': disc[pi['pi']]['chosen'].get('lab_site')}}, {}))
+    out = W.refresh_records('u', {})['Ada Example']
+    assert out['lab_page']['urls']['lab_site'] == good_url
+    assert not out['website_review_needed']
+    discovery['Ada Example']['chosen'] = {'lab_site': bad_url}
+    discovery['Ada Example']['sites'] = []
+    out = W.refresh_records('u', {})['Ada Example']
+    assert out['website_review_needed']
+    assert W.entry(out)['coverage'] == 'pending'
