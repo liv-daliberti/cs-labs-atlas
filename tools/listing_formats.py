@@ -260,6 +260,30 @@ def wse_entity(h):
     return out
 
 
+def wse_contact(h):
+    """JHU Whiting contact blocks (CS secondary/research faculty): visible names and titles only.
+
+    A section heading applies until the next heading (Research, Visiting, Part-Time Faculty).
+    The JSON-LD copy of each person and the contact details are deliberately not parsed.
+    """
+    out, division = [], None
+    for p in re.split(r'<div class="contact_block">', h)[1:]:
+        heading = re.search(r'<h\d class="contact_block_title">(.*?)</h\d>', p, re.S)
+        if heading:
+            division = clean(heading.group(1))
+        nm = re.search(r'<h\d class="contact_name">(.*?)</h\d>', p, re.S)
+        if not nm:
+            continue
+        title = re.search(r'<div class="contact_title">(.*?)</div>', p, re.S)
+        link = re.search(r'<a class="contact_link" href="([^"]+)"[^>]*>(.*?)</a>', p, re.S)
+        url = H.unescape(link.group(1)) if link else None
+        profile = bool(link and clean(link.group(2)).lower() in ('faculty profile', 'profile'))
+        out.append(dict(name_listed=clean(nm.group(1)), titles=_titles(title.group(1)) if title else [],
+                        homepage=None if profile else url, division=division,
+                        **({'profile': url} if profile else {})))
+    return out
+
+
 def wu_teaser(h):
     out = []
     for p in re.split(r'<article [^>]*class="faculty-directory__teaser"', h)[1:]:
@@ -288,6 +312,7 @@ FORMATS = {
     'isye_old': (isye_old, re.compile(r'<!-- Person -->')),
     'seas_directory': (seas_directory, re.compile(r'person__detailed-name')),
     'wse_entity': (wse_entity, re.compile(r'class="entity_list_item"')),
+    'wse_contact': (wse_contact, re.compile(r'class="contact_block"')),
     'wu_teaser': (wu_teaser, re.compile(r'class="faculty-directory__teaser"')),
     'isye_card': (isye_card, re.compile(r'class="w-100 px-0 pt-0 person-name"')),
 }

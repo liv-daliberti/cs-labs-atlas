@@ -131,6 +131,22 @@ url = "https://www.cs.jhu.edu/"
   url = "www.cs.jhu.edu/faculty/"
   from = "20160101"
   to = "20261231"
+  # The live CS affiliates landing page links these two separate faculty lists (reviewed 2026-11-06).
+  # Their 2026 scope is conservative: earlier URL eras remain discovery candidates, not inferred history.
+  [[departments.listings]]
+  slot = "CS secondary faculty"
+  kind = "courtesy"
+  url = "www.cs.jhu.edu/people/cs-affiliates/joint-and-secondary-faculty/"
+  format = "wse_contact"
+  from = "20260101"
+  to = "20261231"
+  [[departments.listings]]
+  slot = "CS research visiting part-time faculty"
+  kind = "research"
+  url = "www.cs.jhu.edu/people/cs-affiliates/research-visiting-and-part-time-faculty/"
+  format = "wse_contact"
+  from = "20260101"
+  to = "20261231"
 
 [[departments]]
 code = "ECE"

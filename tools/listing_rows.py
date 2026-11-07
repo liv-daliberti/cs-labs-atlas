@@ -44,12 +44,22 @@ def rank_of(titles, extra=None):
     """The rank a title list reads as. `extra` = the charter's [census].rank_words ({rank = regex}): title words of one school that
     join the shared RANKS patterns for that rank (UChicago PROTOCOL-FRICTION 17, R3), so a new school never edits the shared table."""
     t = ' | '.join(titles)
+    if re.search(r'\b(?:incoming|future)\s+(?:\w+\s+){0,5}professor\b', t, re.I):
+        return 'other'  # an announced future appointment is not a dated faculty appointment
     for r, rx in RANKS:
         if extra and extra.get(r):
             rx = f'(?:{rx})|(?:{extra[r]})'
         if re.search(rx, t, re.I):
             return r
     return 'other'
+
+
+def listing_rank(titles, dept_titles, kind=None, extra=None):
+    """Classify the written titles, retaining a listing's explicit courtesy-appointment context."""
+    rank = rank_of(dept_titles, extra) if dept_titles else 'other'
+    if rank == 'other':
+        rank = rank_of(titles, extra)
+    return 'courtesy' if kind == 'courtesy' and rank == 'ladder' else rank
 
 
 def quote_of(flat, e):
@@ -111,7 +121,7 @@ def main(key):
                     n['entries_without_quote'] += 1; continue
                 dt = [t for t in e['titles'] if tm.get(dept, re.compile('.')).search(t)]
                 rows.append(dict(name=given_first(e['name_listed']), name_listed=e['name_listed'], dept=dept, slot=slot, kind=kind_of.get(slot), year=int(obs[:4]),
-                                 half=half, observed=obs, titles=e['titles'], dept_title=dt, rank=(rank_of(dt, rw) if dt and rank_of(dt, rw) != 'other' else rank_of(e['titles'], rw)), division=e.get('division'),
+                                 half=half, observed=obs, titles=e['titles'], dept_title=dt, rank=listing_rank(e['titles'], dt, kind_of.get(slot), rw), division=e.get('division'),
                                  homepage=e.get('homepage'), **({'profile': e['profile']} if e.get('profile') else {}), capture_url=cap, sha256=sha, quote=q))
                 n['rows'] += 1
     out = P.data('rows.json', key)

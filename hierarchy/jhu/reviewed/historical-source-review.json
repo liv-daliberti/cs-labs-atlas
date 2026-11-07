@@ -1,0 +1,499 @@
+{
+  "version": 1,
+  "school": "jhu",
+  "reviewed": "2026-11-06",
+  "scope": "Source discovery and historical appointment statements; not a census, appointment-period override, or stage-one coverage waiver.",
+  "sources": {
+    "yuille": {
+      "url": "https://www.cs.jhu.edu/faculty/alan-yuille/",
+      "sha256": "e90fb150c0be237470ccf3dd220cb7c1e23b98c7d70331a92ff94ef370233ecb",
+      "captured": "2026-11-07T03:29:37+00:00",
+      "stored_fetched_at": "2026-11-06T22:29:37",
+      "stored_fetched_at_timezone": "America/New_York",
+      "raw_store": "hierarchy/jhu/raw/school-captures.sqlite",
+      "table": "live",
+      "key": "https://www.cs.jhu.edu/faculty/alan-yuille/"
+    },
+    "cao": {
+      "url": "https://www.cs.jhu.edu/faculty/yinzhi-cao/",
+      "sha256": "05a32168c9e22d254712d6699ba3791626457fd780da08031c94004fbff8fc97",
+      "captured": "2026-11-07T03:29:39+00:00",
+      "stored_fetched_at": "2026-11-06T22:29:39",
+      "stored_fetched_at_timezone": "America/New_York",
+      "raw_store": "hierarchy/jhu/raw/school-captures.sqlite",
+      "table": "live",
+      "key": "https://www.cs.jhu.edu/faculty/yinzhi-cao/"
+    },
+    "three-arrivals": {
+      "url": "https://www.cs.jhu.edu/news/three-new-assistant-professors-joined-department-computer-science-summer/",
+      "sha256": "dbcdf74893a89ab8460c0bb83800a72850164414095b90b90d8038c21f674651",
+      "captured": "2026-11-07T03:29:41+00:00",
+      "stored_fetched_at": "2026-11-06T22:29:41",
+      "stored_fetched_at_timezone": "America/New_York",
+      "raw_store": "hierarchy/jhu/raw/school-captures.sqlite",
+      "table": "live",
+      "key": "https://www.cs.jhu.edu/news/three-new-assistant-professors-joined-department-computer-science-summer/"
+    },
+    "kosaraju-retirement": {
+      "url": "https://www.cs.jhu.edu/news/s-rao-kosaraju-retires-from-computer-science/",
+      "sha256": "40e00842d845945c8980fecdf1b3d301fdc009b34a3967acd732440ae7cd0ad7",
+      "captured": "2026-11-07T03:29:44+00:00",
+      "stored_fetched_at": "2026-11-06T22:29:44",
+      "stored_fetched_at_timezone": "America/New_York",
+      "raw_store": "hierarchy/jhu/raw/school-captures.sqlite",
+      "table": "live",
+      "key": "https://www.cs.jhu.edu/news/s-rao-kosaraju-retires-from-computer-science/"
+    },
+    "2022-welcome": {
+      "url": "https://www.cs.jhu.edu/news/johns-hopkins-computer-science-welcomes-new-faculty/",
+      "sha256": "5ff7d4b1189d245c2cd5957a7d680986ebe18d044b04c8b63ef6b5a96ba6548f",
+      "captured": "2026-11-07T03:29:46+00:00",
+      "stored_fetched_at": "2026-11-06T22:29:46",
+      "stored_fetched_at_timezone": "America/New_York",
+      "raw_store": "hierarchy/jhu/raw/school-captures.sqlite",
+      "table": "live",
+      "key": "https://www.cs.jhu.edu/news/johns-hopkins-computer-science-welcomes-new-faculty/"
+    },
+    "khashabi": {
+      "url": "https://www.cs.jhu.edu/news/new-faculty-qa-daniel-khashabi/",
+      "sha256": "a69250bf92744ad529d4db19e728fe688dddcbd3fc73f69832c47e045f1d1493",
+      "captured": "2026-11-07T03:29:48+00:00",
+      "stored_fetched_at": "2026-11-06T22:29:48",
+      "stored_fetched_at_timezone": "America/New_York",
+      "raw_store": "hierarchy/jhu/raw/school-captures.sqlite",
+      "table": "live",
+      "key": "https://www.cs.jhu.edu/news/new-faculty-qa-daniel-khashabi/"
+    },
+    "hadfield": {
+      "url": "https://www.cs.jhu.edu/news/new-faculty-qa-gillian-hadfield/",
+      "sha256": "585056f3da9f014c5a9ed2a4f32e269d3b547a75cd79a646dbb026221ab930f6",
+      "captured": "2026-11-07T03:29:50+00:00",
+      "stored_fetched_at": "2026-11-06T22:29:50",
+      "stored_fetched_at_timezone": "America/New_York",
+      "raw_store": "hierarchy/jhu/raw/school-captures.sqlite",
+      "table": "live",
+      "key": "https://www.cs.jhu.edu/news/new-faculty-qa-gillian-hadfield/"
+    },
+    "chiu": {
+      "url": "https://www.cs.jhu.edu/news/new-faculty-qa-zih-yun-sarah-chiu/",
+      "sha256": "dbd40fd99520f9af986341dcd493daa5e660a03c9eda2e903de5ffaadd6706ac",
+      "captured": "2026-11-07T03:29:53+00:00",
+      "stored_fetched_at": "2026-11-06T22:29:53",
+      "stored_fetched_at_timezone": "America/New_York",
+      "raw_store": "hierarchy/jhu/raw/school-captures.sqlite",
+      "table": "live",
+      "key": "https://www.cs.jhu.edu/news/new-faculty-qa-zih-yun-sarah-chiu/"
+    },
+    "schatz": {
+      "url": "https://www.cs.jhu.edu/news/michael-schatz-named-to-time-magazine-top-100-most-influential-people/",
+      "sha256": "33781c5669103033729f38f228a08685e6702f9bea05d9d419bf9ff3efd32b1d",
+      "captured": "2026-11-07T03:29:55+00:00",
+      "stored_fetched_at": "2026-11-06T22:29:55",
+      "stored_fetched_at_timezone": "America/New_York",
+      "raw_store": "hierarchy/jhu/raw/school-captures.sqlite",
+      "table": "live",
+      "key": "https://www.cs.jhu.edu/news/michael-schatz-named-to-time-magazine-top-100-most-influential-people/"
+    },
+    "2024-welcome": {
+      "url": "https://www.cs.jhu.edu/news/johns-hopkins-computer-science-welcomes-seven-new-tenure-track-faculty/",
+      "sha256": "32abd803c12007cd76ba7392b018ea0a03508ccf04b9632e89ef0380e435f4d7",
+      "captured": "2026-11-07T03:31:29+00:00",
+      "stored_fetched_at": "2026-11-06T22:31:29",
+      "stored_fetched_at_timezone": "America/New_York",
+      "raw_store": "hierarchy/jhu/raw/school-captures.sqlite",
+      "table": "live",
+      "key": "https://www.cs.jhu.edu/news/johns-hopkins-computer-science-welcomes-seven-new-tenure-track-faculty/"
+    },
+    "unberath-2018": {
+      "url": "https://www.cs.jhu.edu/seminar-archive-fall-2018/",
+      "sha256": "68232dafcd750a7fc46dfc69a30c522737d2a1006e008c06d55c331e2ba68e9f",
+      "captured": "2026-11-07T03:31:31+00:00",
+      "stored_fetched_at": "2026-11-06T22:31:31",
+      "stored_fetched_at_timezone": "America/New_York",
+      "raw_store": "hierarchy/jhu/raw/school-captures.sqlite",
+      "table": "live",
+      "key": "https://www.cs.jhu.edu/seminar-archive-fall-2018/"
+    },
+    "unberath-2020": {
+      "url": "https://www.cs.jhu.edu/seminar-archive-spring-2020/",
+      "sha256": "57e5d664b10e80def8b44c0f005b330791883d365df3f5a791ff8b89a89311f7",
+      "captured": "2026-11-07T03:31:34+00:00",
+      "stored_fetched_at": "2026-11-06T22:31:34",
+      "stored_fetched_at_timezone": "America/New_York",
+      "raw_store": "hierarchy/jhu/raw/school-captures.sqlite",
+      "table": "live",
+      "key": "https://www.cs.jhu.edu/seminar-archive-spring-2020/"
+    },
+    "milani": {
+      "url": "https://www.cs.jhu.edu/faculty/stephanie-milani/",
+      "sha256": "eb01ad8b45d98c8e9b2a777ef803a2de8b1d06f61fd4e6ad13ab1797338ca3d2",
+      "captured": "2026-11-07T03:31:36+00:00",
+      "stored_fetched_at": "2026-11-06T22:31:36",
+      "stored_fetched_at_timezone": "America/New_York",
+      "raw_store": "hierarchy/jhu/raw/school-captures.sqlite",
+      "table": "live",
+      "key": "https://www.cs.jhu.edu/faculty/stephanie-milani/"
+    },
+    "main-list": {
+      "url": "https://www.cs.jhu.edu/faculty/",
+      "sha256": "edcd65cb150863b03ec33fa3cf7572d0a90cfba20ca260453752aab5b8d39959",
+      "captured": "2026-11-05T19:58:19+00:00",
+      "stored_fetched_at": "2026-11-05T14:58:19",
+      "stored_fetched_at_timezone": "America/New_York",
+      "raw_store": "hierarchy/jhu/raw/school-captures.sqlite",
+      "table": "live",
+      "key": "https://www.cs.jhu.edu/faculty/"
+    },
+    "secondary-list": {
+      "url": "https://www.cs.jhu.edu/people/cs-affiliates/joint-and-secondary-faculty/",
+      "sha256": "3192b4b3bfd6230196515442f3556a1f77f1a88446cb686fd7dc3997d2ca9e81",
+      "captured": "2026-11-07T03:26:42+00:00",
+      "stored_fetched_at": "2026-11-06T22:26:42",
+      "stored_fetched_at_timezone": "America/New_York",
+      "raw_store": "hierarchy/jhu/raw/school-captures.sqlite",
+      "table": "live",
+      "key": "https://www.cs.jhu.edu/people/cs-affiliates/joint-and-secondary-faculty/"
+    },
+    "research-list": {
+      "url": "https://www.cs.jhu.edu/people/cs-affiliates/research-visiting-and-part-time-faculty/",
+      "sha256": "913b49eb2266aff5d71b710c209012f55de881c8edcd4f92916e11f050cb7b35",
+      "captured": "2026-11-07T03:26:43+00:00",
+      "stored_fetched_at": "2026-11-06T22:26:43",
+      "stored_fetched_at_timezone": "America/New_York",
+      "raw_store": "hierarchy/jhu/raw/school-captures.sqlite",
+      "table": "live",
+      "key": "https://www.cs.jhu.edu/people/cs-affiliates/research-visiting-and-part-time-faculty/"
+    },
+    "affiliates-landing": {
+      "url": "https://www.cs.jhu.edu/people/cs-affiliates/",
+      "sha256": "bcd3d3bca32c86b17978b8cfc70558ca901b7eb5f4d4699b4b24217afcef1792",
+      "captured": "2026-11-07T03:26:20+00:00",
+      "stored_fetched_at": "2026-11-06T22:26:20",
+      "stored_fetched_at_timezone": "America/New_York",
+      "raw_store": "hierarchy/jhu/raw/school-captures.sqlite",
+      "table": "live",
+      "key": "https://www.cs.jhu.edu/people/cs-affiliates/"
+    },
+    "newsletter-index": {
+      "url": "https://www.cs.jhu.edu/cs-newsletter/",
+      "sha256": "939f6af070c8662564a764e04ca2b3c9ae83a5c9df748944c1a8038e6380350d",
+      "captured": "2026-11-07T03:26:20+00:00",
+      "stored_fetched_at": "2026-11-06T22:26:20",
+      "stored_fetched_at_timezone": "America/New_York",
+      "raw_store": "hierarchy/jhu/raw/school-captures.sqlite",
+      "table": "live",
+      "key": "https://www.cs.jhu.edu/cs-newsletter/"
+    }
+  },
+  "facts": [
+    {
+      "person": "Alan Yuille",
+      "source": "yuille",
+      "claim": "explicit faculty arrival year",
+      "quote": "Yuille joined the Johns Hopkins University faculty in 2016.",
+      "year": 2016
+    },
+    {
+      "person": "Yinzhi Cao",
+      "source": "cao",
+      "claim": "explicit arrival year",
+      "quote": "Cao joined Johns Hopkins in 2018 from Lehigh University, where he was an assistant professor.",
+      "year": 2018
+    },
+    {
+      "person": "Michael Schatz",
+      "source": "schatz",
+      "claim": "explicit arrival year",
+      "quote": "Schatz joined Johns Hopkins in 2016, coming from Cold Spring Harbor Laboratory",
+      "year": 2016
+    },
+    {
+      "person": "S. Rao Kosaraju",
+      "source": "kosaraju-retirement",
+      "claim": "retirement reported by dated official article",
+      "quote": "S. Rao Kosaraju has retired from the Johns Hopkins University",
+      "source_date": "2020-07-09",
+      "decision": "retirement evidence; no exact retirement day asserted"
+    },
+    {
+      "person": "Anjalie Field",
+      "source": "2022-welcome",
+      "claim": "research rank and announced future tenure-track start",
+      "quote": "Anjalie Field, Research Professor (she will start her tenure track position 7/1/2023)",
+      "source_date": "2022-09-27",
+      "announced_tenure_track_start": "2023-07-01",
+      "decision": "announcement only; not a 2022 ladder appointment"
+    },
+    {
+      "person": "Ziang Xiao",
+      "source": "2022-welcome",
+      "claim": "research rank and announced future tenure-track start",
+      "quote": "Ziang Xiao, Research Professor (he will start his tenure track position 1/1/2024)",
+      "source_date": "2022-09-27",
+      "announced_tenure_track_start": "2024-01-01",
+      "decision": "announcement only; not a 2022 ladder appointment"
+    },
+    {
+      "person": "Daniel Khashabi",
+      "source": "khashabi",
+      "claim": "dated assistant-professor arrival report",
+      "quote": "Daniel Khashabi, who joins Johns Hopkins as an assistant professor of computer science",
+      "source_date": "2022-11-16",
+      "year": 2022
+    },
+    {
+      "person": "Gillian Hadfield",
+      "source": "hadfield",
+      "claim": "explicit arrival this year on dated article",
+      "quote": "Gillian Hadfield joined the Johns Hopkins University this year",
+      "source_date": "2025-11-06",
+      "year": 2025
+    },
+    {
+      "person": "Zih-Yun “Sarah” Chiu",
+      "source": "chiu",
+      "claim": "dated assistant-professor arrival report",
+      "quote": "Zih-Yun “Sarah” Chiu joins the Johns Hopkins University as an assistant professor of computer science",
+      "source_date": "2026-01-27",
+      "year": 2026
+    },
+    {
+      "person": "Mathias Unberath",
+      "source": "unberath-2018",
+      "claim": "dated biography identifies postdoctoral rank",
+      "quote": "Mathias Unberath is currently a postdoctoral fellow in the Laboratory for Computational Sensing and Robotics at Johns Hopkins University.",
+      "source_date": "2018-09-11",
+      "year": 2018,
+      "decision": "not faculty in this dated biography"
+    },
+    {
+      "person": "Mathias Unberath",
+      "source": "unberath-2020",
+      "claim": "dated biography identifies research-faculty rank",
+      "quote": "Mathias Unberath is an Assistant Research Professor in the Department of Computer Science at Johns Hopkins University",
+      "source_date": "2020-01-21",
+      "year": 2020,
+      "decision": "research rank; no ladder appointment inferred"
+    },
+    {
+      "person": "Stephanie Milani",
+      "source": "milani",
+      "claim": "current official profile explicitly says incoming",
+      "quote": "Stephanie Milani is an incoming assistant professor in the Department of Computer Science",
+      "year": 2026,
+      "decision": "hold: incoming is not proof of a current appointment"
+    },
+    {
+      "person": "Mark Dredze",
+      "source": "three-arrivals",
+      "claim": "rank change in undated official article",
+      "quote": "Mark Dredze, PhD, has been promoted to associate professor.",
+      "decision": "date unresolved: an image upload path is not an appointment date"
+    },
+    {
+      "person": "Anjalie Field",
+      "source": "2024-welcome",
+      "claim": "dated collective assistant-professor arrival article",
+      "quote": "The new faculty join the university as assistant professors of computer science:",
+      "source_date": "2024-01-04",
+      "year": 2024,
+      "decision": "article presence in 2024; exact start not inferred"
+    },
+    {
+      "person": "Alex Marder",
+      "source": "2024-welcome",
+      "claim": "dated collective assistant-professor arrival article",
+      "quote": "The new faculty join the university as assistant professors of computer science:",
+      "source_date": "2024-01-04",
+      "year": 2024,
+      "decision": "article presence in 2024; exact start not inferred"
+    },
+    {
+      "person": "Renjie Zhao",
+      "source": "2024-welcome",
+      "claim": "dated collective assistant-professor arrival article",
+      "quote": "The new faculty join the university as assistant professors of computer science:",
+      "source_date": "2024-01-04",
+      "year": 2024,
+      "decision": "article presence in 2024; exact start not inferred"
+    },
+    {
+      "person": "Tianmin Shu",
+      "source": "2024-welcome",
+      "claim": "dated collective assistant-professor arrival article",
+      "quote": "The new faculty join the university as assistant professors of computer science:",
+      "source_date": "2024-01-04",
+      "year": 2024,
+      "decision": "article presence in 2024; exact start not inferred"
+    },
+    {
+      "person": "Ziang Xiao",
+      "source": "2024-welcome",
+      "claim": "dated collective assistant-professor arrival article",
+      "quote": "The new faculty join the university as assistant professors of computer science:",
+      "source_date": "2024-01-04",
+      "year": 2024,
+      "decision": "article presence in 2024; exact start not inferred"
+    },
+    {
+      "person": "Eric Nalisnick",
+      "source": "2024-welcome",
+      "claim": "dated collective assistant-professor arrival article",
+      "quote": "The new faculty join the university as assistant professors of computer science:",
+      "source_date": "2024-01-04",
+      "year": 2024,
+      "decision": "article presence in 2024; exact start not inferred"
+    },
+    {
+      "person": "Michael Oberst",
+      "source": "2024-welcome",
+      "claim": "dated collective assistant-professor arrival article",
+      "quote": "The new faculty join the university as assistant professors of computer science:",
+      "source_date": "2024-01-04",
+      "year": 2024,
+      "decision": "article presence in 2024; exact start not inferred"
+    }
+  ],
+  "cdx": [
+    {
+      "url": "https://web.archive.org/cdx/search/cdx?url=www.cs.jhu.edu%2Ffaculty%2F&from=2016&to=2026&output=json&fl=urlkey%2Ctimestamp%2Coriginal%2Cstatuscode%2Cdigest%2Cmimetype&limit=30000&filter=statuscode%3A200&collapse=timestamp%3A6",
+      "fetched_at": "2026-11-06T11:40:05",
+      "sha256": "2ffcb8cce3a7a873e6e6fe96b00e02cbc90401808c8a492c30b5f6ae88f1df29",
+      "sha256_basis": "UTF-8 encoding of cached cdx.body text",
+      "quote": "[\"edu,jhu,cs)/faculty\",\"20160122045816\",\"http://www.cs.jhu.edu/faculty/\",\"200\",\"LW3GCKMQW7L2R56CFTH7AV76KJGILA7H\",\"text/html\"],",
+      "captures": 59,
+      "first": "20160122045816",
+      "last": "20261104223614",
+      "years": [
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "raw_store": "hierarchy/jhu/raw/school-captures.sqlite",
+      "table": "cdx",
+      "decision": "CDX discovery only; no listing body or appointment proved"
+    },
+    {
+      "url": "https://web.archive.org/cdx/search/cdx?url=www.cs.jhu.edu%2Fpeople%2F&from=2016&to=2026&output=json&fl=urlkey%2Ctimestamp%2Coriginal%2Cstatuscode%2Cdigest%2Cmimetype&limit=30000&filter=statuscode%3A200&collapse=timestamp%3A6",
+      "fetched_at": "2026-11-06T11:40:31",
+      "sha256": "b52f2e872845f6f5435a8731ac99582ee7807864acb211aea0bb2ecbf4c1cc7f",
+      "sha256_basis": "UTF-8 encoding of cached cdx.body text",
+      "quote": "[\"edu,jhu,cs)/people\",\"20160312225549\",\"http://www.cs.jhu.edu:80/people\",\"200\",\"2VGBN6EKLE6UCSHQTUSJIV377SZBAA3N\",\"text/html\"],",
+      "captures": 57,
+      "first": "20160312225549",
+      "last": "20261002055046",
+      "years": [
+        2016,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "raw_store": "hierarchy/jhu/raw/school-captures.sqlite",
+      "table": "cdx",
+      "decision": "CDX discovery only; no listing body or appointment proved"
+    },
+    {
+      "url": "https://web.archive.org/cdx/search/cdx?url=ece.jhu.edu%2Fpeople%2F&from=2016&to=2026&output=json&fl=urlkey%2Ctimestamp%2Coriginal%2Cstatuscode%2Cdigest%2Cmimetype&limit=30000&filter=statuscode%3A200&collapse=timestamp%3A6",
+      "fetched_at": "2026-11-06T11:41:01",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "sha256_basis": "UTF-8 encoding of cached cdx.body text",
+      "quote": "[]",
+      "captures": 0,
+      "first": null,
+      "last": null,
+      "years": [],
+      "raw_store": "hierarchy/jhu/raw/school-captures.sqlite",
+      "table": "cdx",
+      "decision": "CDX discovery only; no listing body or appointment proved"
+    },
+    {
+      "url": "https://web.archive.org/cdx/search/cdx?url=ece.jhu.edu%2Ffaculty%2F&from=2016&to=2026&output=json&fl=urlkey%2Ctimestamp%2Coriginal%2Cstatuscode%2Cdigest%2Cmimetype&limit=30000&filter=statuscode%3A200&collapse=timestamp%3A6",
+      "fetched_at": "2026-11-06T11:41:49",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "sha256_basis": "UTF-8 encoding of cached cdx.body text",
+      "quote": "[]",
+      "captures": 0,
+      "first": null,
+      "last": null,
+      "years": [],
+      "raw_store": "hierarchy/jhu/raw/school-captures.sqlite",
+      "table": "cdx",
+      "decision": "CDX discovery only; no listing body or appointment proved"
+    },
+    {
+      "url": "https://web.archive.org/cdx/search/cdx?url=ams.jhu.edu%2Fpeople%2F&from=2016&to=2026&output=json&fl=urlkey%2Ctimestamp%2Coriginal%2Cstatuscode%2Cdigest%2Cmimetype&limit=30000&filter=statuscode%3A200&collapse=timestamp%3A6",
+      "fetched_at": "2026-11-06T11:43:32",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "sha256_basis": "UTF-8 encoding of cached cdx.body text",
+      "quote": "[]",
+      "captures": 0,
+      "first": null,
+      "last": null,
+      "years": [],
+      "raw_store": "hierarchy/jhu/raw/school-captures.sqlite",
+      "table": "cdx",
+      "decision": "CDX discovery only; no listing body or appointment proved"
+    },
+    {
+      "url": "https://web.archive.org/cdx/search/cdx?url=engineering.jhu.edu%2Fams%2Fpeople%2F&from=2016&to=2026&output=json&fl=urlkey%2Ctimestamp%2Coriginal%2Cstatuscode%2Cdigest%2Cmimetype&limit=30000&filter=statuscode%3A200&collapse=timestamp%3A6",
+      "fetched_at": "2026-11-06T11:45:01",
+      "sha256": "bf9555204b8b939c7024db65eafdcdfbf32137cd4901cdbdd43efd1b955372b0",
+      "sha256_basis": "UTF-8 encoding of cached cdx.body text",
+      "quote": "[\"edu,jhu,engineering)/ams/people\",\"20160303152611\",\"http://engineering.jhu.edu:80/ams/people\",\"200\",\"3ANAR3QBRHSOQEKAPFEW244UQH4KEZN7\",\"text/html\"],",
+      "captures": 45,
+      "first": "20160303152611",
+      "last": "20251118110412",
+      "years": [
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "raw_store": "hierarchy/jhu/raw/school-captures.sqlite",
+      "table": "cdx",
+      "decision": "CDX discovery only; no listing body or appointment proved"
+    },
+    {
+      "url": "https://web.archive.org/cdx/search/cdx?url=bme.jhu.edu%2Fpeople%2Ffaculty%2F&from=2016&to=2026&output=json&fl=urlkey%2Ctimestamp%2Coriginal%2Cstatuscode%2Cdigest%2Cmimetype&limit=30000&filter=statuscode%3A200&collapse=timestamp%3A6",
+      "fetched_at": "2026-11-06T12:17:18",
+      "sha256": "f4f0c0d1f16fee958004e3374bd1650d0a3bf5cac2abf5bc7f54eff487dc263d",
+      "sha256_basis": "UTF-8 encoding of cached cdx.body text",
+      "quote": "[\"edu,jhu,bme)/people/faculty\",\"20201218175647\",\"https://www.bme.jhu.edu/people/faculty/\",\"200\",\"7CBRDYFEDCDEXJE5IXG7F5MRKN7ZILNO\",\"text/html\"],",
+      "captures": 45,
+      "first": "20201218175647",
+      "last": "20260728062956",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "raw_store": "hierarchy/jhu/raw/school-captures.sqlite",
+      "table": "cdx",
+      "decision": "CDX discovery only; no listing body or appointment proved"
+    }
+  ]
+}
