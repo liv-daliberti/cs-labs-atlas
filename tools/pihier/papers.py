@@ -199,6 +199,9 @@ PRESENTATION_TITLE = re.compile(r'(?i)\((?:conference|invited|keynote|plenary) (
 REPOSITORY_DOI = re.compile(r'(?i)^10\.(?:5281/zenodo|6084/m9\.figshare|5061/dryad)\b')   # not OSF (10.17605): those are preprints
 DATASET_TITLE = re.compile(r'(?i)^\s*(?:processed|raw|synthetic|simulation) data\b|^\s*datasets? (?:for|of|from|used in)\b|'
                            r'\b(?:matlab|csv|json|hdf5?) (?:data )?(?:format|files?)\s*$')
+# Repository-hosted named dataset deposits can be mislabeled articles with the repository as venue.
+NAMED_DATASET_TITLE = re.compile(r'(?i)^\s*[^:]{1,100}\bdatasets?\s*:')
+REPOSITORY_VENUE = re.compile(r'(?i)^\s*(?:zenodo|figshare|dryad)(?:\s*\([^)]*\))?\s*$')
 HIGHLIGHTS_SUMMARY_TITLE = re.compile(r'(?i)\bhighlights (?:from|of) the\b.*\b(?:conference|workshop|symposium|meeting|summit)\b|'
                                       r'^\s*(?:summary|report|overview) (?:of|on) the\b.*\b(?:workshop|conference|symposium|seminar|meeting|summit)\b|'
                                       r'^\s*(?:conference|workshop|symposium) (?:summary|report)\b')
@@ -224,6 +227,8 @@ def non_research_record(r, pages=None):
         return 'presentation_only'
     if REPOSITORY_DOI.match(d) and not v.strip():
         return 'repository_record'
+    if REPOSITORY_DOI.match(d) and REPOSITORY_VENUE.match(v) and (DATASET_TITLE.search(t) or NAMED_DATASET_TITLE.search(t)):
+        return 'dataset_record'
     if not d and not v.strip() and DATASET_TITLE.search(t):
         return 'dataset_record'
     if HIGHLIGHTS_SUMMARY_TITLE.search(t) or (SUMMARY_SUFFIX.search(t) and len(t.split()) <= 8):
