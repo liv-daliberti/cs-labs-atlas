@@ -2,7 +2,7 @@
 import datetime as dt
 import json
 
-from student_source_discovery import defense_rows, gatsby_rows, index_links
+from student_source_discovery import defense_rows, gatsby_rows, index_links, news_rows
 
 
 def test_defense_explicit_advisor_not_other_committee_members():
@@ -50,3 +50,22 @@ def test_tabbed_roster_retains_student_category_without_inventing_adviser():
     assert len(rows) == 1 and rows[0]['name'] == 'Some Student'
     assert rows[0]['biography'] == 'A visiting student at another university.'
     assert 'pi' not in rows[0] and 'email' not in rows[0] and 'role' not in rows[0]
+
+
+def test_news_advising_requires_same_bullet_and_ended_reporting_period():
+    html = '<ul><li>Congratulations to Ph.D. candidate Ziyi (Francis) Yin on his defense. Advised by Professor Felix Herrmann, Yin defended a thesis with committee member John Jones.</li><li>Ph.D. student Some Student and Felix Herrmann co-authored a paper.</li></ul>'
+    pis = [{'pi': 'Felix Herrmann', 'names': ['Felix Herrmann']}, {'pi': 'John Jones'}]
+    url = 'https://cse.gatech.edu/cse-biweekly-roundup-july-december-2024'
+    rows, _ = news_rows(html, url, 'c' * 64, pis, dt.date(2026, 11, 7))
+    assert [(r['pi'], r['name'], r['years']) for r in rows] == [('Felix Herrmann', 'Ziyi (Francis) Yin', [2024, 2024])]
+    assert news_rows(html, url.replace('2024', '2026'), 'c' * 64, pis, dt.date(2026, 11, 7))[0] == []
+
+
+def test_news_does_not_include_verb_in_name_or_collaborator_as_adviser():
+    html = '<li>Ph.D. student Matthew Hull first-authored a paper accepted for a conference. Advised by Professor Polo Chau, the pair collaborated with Professor Chao Zhang.</li>'
+    pis = [{'pi': 'Polo Chau'}, {'pi': 'Chao Zhang'}]
+    url = 'https://cse.gatech.edu/cse-biweekly-roundup-january-june-2025'
+    rows, _ = news_rows(html, url, 'c' * 64, pis, dt.date(2026, 11, 7))
+    assert [(r['pi'], r['name']) for r in rows] == [('Polo Chau', 'Matthew Hull')]
+    ambiguous = '<li>Ph.D. student Matthew Hull and Jane Doe won awards. Hull is advised by Polo Chau. Doe is advised by Chao Zhang.</li>'
+    assert news_rows(ambiguous, url, 'c' * 64, pis, dt.date(2026, 11, 7))[0] == []

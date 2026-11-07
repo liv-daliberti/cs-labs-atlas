@@ -10,12 +10,16 @@ $CS_ATLAS_PY -I tools/labpage_students_school.py sources gatech \
 ```
 
 A seed file is a JSON list of `{ "url": "https://...", "kind": "..." }` objects.
-Kinds: `defense_index`, `defense`, `lab_people`, and `gatsby_team`. Known pilot sources:
+Kinds: `defense_index`, `defense`, `advising_news`, `lab_people`, and `gatsby_team`. Known pilot sources:
 
 - Georgia Tech ECE: `https://ece.gatech.edu/taxonomy/term/16445`. Follow its explicit
   pagination and dated defense links. Other committee members are not advisers.
 - HPArch: `https://sites.gatech.edu/hparch/people/`. Review students by section and
   alumni by stated year; exclude out-of-window alumni and do not infer missing dates.
+- Georgia Tech CSE biweekly roundups: e.g.
+  `https://cse.gatech.edu/cse-biweekly-roundup-july-december-2024`. Advising must be
+  explicit in the same bullet as the named PhD student. Only completed reporting
+  periods are parsed; a paper coauthor mentioned without an advising statement is not enough.
 - UChicago Knowledge Lab: `https://knowledgelab.org/team` renders affiliated faculty
   initially; its public `/page-data/team/page-data.json` contains the student and alumni
   tabs. The team component consumes `contentfulKLabPage.kLabContents`. Read category

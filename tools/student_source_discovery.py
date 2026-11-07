@@ -3,7 +3,7 @@
 Run through the isolated labpage_students_school.py entry point:
   ... sources SCHOOL --seeds sources.json --out DIR [--hierarchy H] [--max-fetches 40 | --offline]
 
-Seeds are a JSON list with url and kind (defense_index, defense, gatsby_team, lab_people).
+Seeds are a JSON list with url and kind (defense_index, defense, advising_news, gatsby_team, lab_people).
 Defense indexes follow only same-host dissertation/PhD defense links and pagination on
 the exact index path. Gatsby page-data is the public data used by the site's team tabs;
 categories and biographies are retained for review, not treated as individual advising.
@@ -16,6 +16,7 @@ import fcntl
 import hashlib
 import json
 import re
+import unicodedata
 import urllib.parse as U
 import zlib
 from pathlib import Path
@@ -103,6 +104,47 @@ def rich_text(node):
     return node.get('value', '') if node.get('nodeType') == 'text' else rich_text(node.get('content', []))
 
 
+def news_rows(body, url, sha, pis, today):
+    """Explicit advising within one dated department-news bullet; never coauthorship alone."""
+    path = U.urlsplit(url).path
+    match = re.search(r'(january-june|july-december)-(20\d{2})/?$', path)
+    if not match:
+        return [], 'unrecognized_roundup_date'
+    year = int(match[2])
+    end = dt.date(year, 6, 30) if match[1] == 'january-june' else dt.date(year, 12, 31)
+    if end > today or not 2016 <= year <= 2026:
+        return [], 'future_or_outside_window_roundup'
+    soup = BeautifulSoup(body, 'lxml')
+    rows = []
+    for li in soup.select('li'):
+        if li.find('li'):  # nested navigation is not one news item
+            continue
+        quote = tidy(li.get_text(' ', strip=True))
+        student = re.search(r'Ph\.?D\.?\s+(?:candidate|student)\s+(.+?)\s+(?:on|for|is|has|and|presented|first-authored|co-authored|led|received)\b', quote)
+        statements = list(re.finditer(r'\b(?:co[-– ]?)?advised by\s+', quote, re.I))
+        if not student or len(statements) != 1 or len(quote) > 1400:
+            continue
+        advising = statements[0]
+        name = student[1].strip()
+        tokens = re.sub(r'\([^)]*\)', '', name).split()
+        if not 2 <= len(tokens) <= 5 or any(not t[0].isupper() for t in tokens) or re.search(r'[,;:]|\band\b', name):
+            continue
+        tail = quote[advising.end():]
+        # Stop before the student's subsequent action or another sentence. A later
+        # committee member/coauthor in the same bullet is not another adviser.
+        tail = re.split(r',\s+(?:(?:the|a|an|his|her|their|this|these|he|she)\b|(?:[A-Z][\w-]*\s+){1,3}(?:defended|proposed|presented|received|led|collaborated|co-authored|accepted|is|has|will|was)\b)', tail, maxsplit=1)[0]
+        tail = re.split(r'\.\s+(?=[A-Z])', tail, maxsplit=1)[0]
+        fold = lambda s: ' '.join(re.findall(r'[a-z]+', unicodedata.normalize('NFKD', s).encode('ascii', 'ignore').decode().lower()))
+        tail = ' ' + fold(tail) + ' '
+        for pi in pis:
+            aliases = pi.get('names') or [pi['pi']]
+            if any(len(fold(n).split()) >= 2 and ' ' + fold(n) + ' ' in tail for n in aliases):
+                rows.append(dict(pi=pi['pi'], name=name, role='phd', years=[year, year], url=url, sha256=sha,
+                                 quote=quote, years_basis='dated_department_roundup', review_status='unreviewed',
+                                 note='Explicit advising statement in the same news bullet; no enrollment start or degree award inferred.'))
+    return rows, 'advising_news_parsed'
+
+
 def gatsby_rows(body, url, sha):
     """Read hidden tabs without turning faculty, visitors or affiliates into advisees."""
     data = json.loads(body)
@@ -139,7 +181,7 @@ def collect(school, seeds, out, hierarchy, max_fetches=40, offline=False):
             raise ValueError(f'Invalid public HTTPS seed: {url}')
         if parsed.hostname == 'web.archive.org':
             raise ValueError('This collector uses live sources only.')
-        if kind not in ('defense_index', 'defense', 'gatsby_team', 'lab_people'):
+        if kind not in ('defense_index', 'defense', 'gatsby_team', 'lab_people', 'advising_news'):
             raise ValueError(f'Unknown source kind: {kind}')
         row = c.execute('select status, sha256, raw_zlib, fetched_at from live where url=?', (url,)).fetchone()
         if row is None:
@@ -185,6 +227,10 @@ def collect(school, seeds, out, hierarchy, max_fetches=40, offline=False):
             else:
                 proposals.extend(rows)
                 receipt.update(result='tabbed_roster_parsed', proposals=len(rows))
+        elif kind == 'advising_news':
+            rows, result = news_rows(body, url, sha, pis, today)
+            proposals.extend(rows)
+            receipt.update(result=result, proposals=len(rows))
         else:
             receipt['result'] = 'captured_for_manual_roster_review'
     result = dict(school=school, generated_at=dt.datetime.now(dt.timezone.utc).isoformat(),
