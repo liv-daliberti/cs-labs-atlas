@@ -178,3 +178,20 @@ def test_invalid_cached_selection_uses_verified_alternative_or_remains_pending(m
     out = W.refresh_records('u', {})['Ada Example']
     assert out['website_review_needed']
     assert W.entry(out)['coverage'] == 'pending'
+
+
+def test_blocked_reason_never_claims_an_archive_has_no_capture():
+    rec = record('host_blocked_by_robots', None)
+    rec['lab_page']['reason'] = 'robots.txt disallows site; Wayback holds no capture'
+    rec['lab_page']['checks'][0]['result'] = 'robots_disallowed'
+    row = W.entry(rec)
+    assert row['reason_type'] == 'access_blocked'
+    assert 'holds no capture' not in row['reason']
+    assert 'school_profile https://school.edu/people/ada: robots_disallowed' in row['reason']
+    assert row['upstream_audit_reason'] == rec['lab_page']['reason']
+
+
+def test_website_refresh_does_not_claim_students_were_audited():
+    rec = record('pi_homepage_only_no_lab_site')
+    rec['lab_page']['reason'] = 'PI homepage was audited for students and papers'
+    assert 'audited' not in W.entry(rec)['reason']

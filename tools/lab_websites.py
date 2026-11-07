@@ -86,6 +86,9 @@ def entry(rec):
     else:
         gaps.append('absence_reason_not_supported')
         out['coverage'] = 'pending'
+    out['upstream_audit_reason'] = out.get('reason')
+    if out.get('coverage') == 'website':
+        out['reason'] = 'Captured lab/group website.' if out.get('kind') == 'lab_site' else 'Captured PI homepage used as the lab-page fallback.'
     # Failed/deferred attempts are a reason access is incomplete, never proof a
     # site does not exist. Preserve the upstream reason, but state its scope.
     if out['coverage'] == 'reason':
@@ -101,7 +104,10 @@ def entry(rec):
             out['reason_type'] = 'site_unavailable'
         else:
             out['reason_type'] = 'search_no_eligible_site'
-        out['reason_scope'] = 'Recorded search/access outcome; not proof no website exists.'
+        observations = '; '.join(f"{c.get('source')} {c['url']}: {c['result']}" for c in dated[:4])
+        more = f'; {len(dated) - 4} further dated checks retained' if len(dated) > 4 else ''
+        out['reason'] = f"No eligible website established for this school from the recorded checks ({out['reason_type']}): {observations}{more}."
+        out['reason_scope'] = 'Recorded search/access outcome; not proof no website exists or that an archive has no capture.'
     if gaps:
         out['coverage'] = 'pending'
     out['evidence_gaps'] = gaps
