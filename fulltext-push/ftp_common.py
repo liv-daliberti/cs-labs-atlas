@@ -5,7 +5,7 @@ The catalogs (homogenizing-science/data/fulltext/<school>/catalog.sqlite) live o
 written by running collectors that wait at most 120 s for a lock: every read here is a short rowid-chunked statement
 on a read-only connection, and every write commits per batch of at most BATCH rows (retrying on a lock).
 """
-import gzip, json, re, sqlite3, sys, time, unicodedata, zlib
+import gzip, json, os, re, sqlite3, sys, time, unicodedata, zlib
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
@@ -391,13 +391,17 @@ def pmc_rows(work_id, pmcids, memo, session):
 
 
 def bulk_rows(want, source):
-    """{work_id: arXiv id} -> candidate rows on arXiv's bulk copy (storage.googleapis.com/arxiv-dataset), never arxiv.org."""
+    """{work_id: arXiv id} -> bulk-copy candidates; ARXIV_DIRECT=1 allows modern IDs missing from the bucket to use arxiv.org."""
     from arxiv_bulk import listing
     urls = listing(list(dict.fromkeys(want.values())))
     rows, missing = [], 0
     for w, a in want.items():
         if urls.get(a):
             rows.append(dict(work_id=w, url=urls[a], landing_url=f'https://arxiv.org/abs/{a}', version='submittedVersion', source=source, detail=a))
+        elif os.environ.get('ARXIV_DIRECT') == '1' and re.match(r'^\d{4}\.\d{4,5}$', a):
+            # owner 2026-11-06: an id the bucket lacks (a recent one) is fetched from arxiv.org/pdf/<id> itself, on the 15 s shared clock
+            # (host_throttle, collector_wrapper MIN_DELAY); the collector stops the host on a 403 or 429. Opt-in: only the run the owner asked for.
+            rows.append(dict(work_id=w, url=f'https://arxiv.org/pdf/{a}', landing_url=f'https://arxiv.org/abs/{a}', version='submittedVersion', source=source, detail=a))
         else:
             missing += 1
     return rows, missing

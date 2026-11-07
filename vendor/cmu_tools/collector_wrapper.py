@@ -55,7 +55,8 @@ DELIVERY = {'s3-eu-west-1.amazonaws.com': '/pstorage-cmu-348901238291901/',
 # 2026-10-30: dspace.mit.edu (HTTP 429 at 3 s; Open Access Articles manuscripts of MIT's IEEE / ACM / Springer papers) at
 # one request per 15 s, bioRxiv / medRxiv slowed from 15 s to 30 s (429 again at 15 s); a 429 still pauses the host for the
 # pass and the pass-start requeue asks again next pass
-MIN_DELAY = {'infoscience.epfl.ch': 10.0, 'www.biorxiv.org': 30.0, 'www.medrxiv.org': 30.0, 'web.archive.org': 6.0, 'dspace.mit.edu': 15.0}
+MIN_DELAY = {'infoscience.epfl.ch': 10.0, 'www.biorxiv.org': 30.0, 'www.medrxiv.org': 30.0, 'web.archive.org': 6.0, 'dspace.mit.edu': 15.0,
+             'arxiv.org': 15.0}  # 2026-11-06 (owner): arxiv.org robots.txt Crawl-delay 15, one clock for all clients (host_throttle.SHARED_INTERVAL); /pdf/<id> only
 MAX_WAIT = 300.0
 # 2026-11-02: hosts that answer every automated request with a refusal. They are not asked at all: the attempt is recorded at once,
 # with a detail the pass-start requeue does not clear (it is not 'source_paused:'), and review_access reads it as a bot challenge
@@ -83,7 +84,14 @@ class _Blocked(dict):
         self._cool = set()
 
     def __setitem__(self, key, value):
-        if value == RATE_429:
+        if key == 'arxiv.org' and value == RATE_429:
+            # owner rule 2026-11-06: arxiv.org stops on the first 429 (no timed retry); the cooldown is still recorded for the other loops
+            try:
+                HT.record_429(key)
+            except OSError:
+                pass
+            value = 'HTTP 429 from arxiv.org: stopped for this pass (owner rule)'
+        elif value == RATE_429:
             try:
                 HT.record_429(key)
             except OSError:
@@ -164,6 +172,8 @@ def get(self, url, limit=500 * 1024 * 1024):
                 if self.blocked.get(store) == 'Repeated access or network failures' and self.failures[store] < 3:
                     del self.blocked[store]
             raise ValueError('Signed file store refused this file (HTTP 403): restricted or embargoed') from None
+        if urlsplit(url).hostname == 'arxiv.org' and e.response is not None and e.response.status_code == 403:
+            self.blocked['arxiv.org'] = 'HTTP 403 from arxiv.org: stopped for this pass (owner rule)'
         raise
     host = urlsplit(final).hostname or ''
     if host in MIN_DELAY and not data:
