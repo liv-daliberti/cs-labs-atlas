@@ -326,6 +326,31 @@ with no venue (`repository_record`: datasets, software, artifacts; OSF DOIs are 
 editorial record (LNCS volumes whose byline is the editors; type `book` stays, R-PAP-15; `edited_volume`); a workshop or session description ('EE2: Workshop on ...' at ISSCC, 'VDS @ KDD 2022',
 'KDD-2023 Workshop on ...'; `workshop_proposal`; 'KIT@IWSLT2022' stays); a proceedings-volume title ('Conference on Health, Inference, and Learning (CHIL) 2022': 'Conference|Symposium|Workshop on ...' ending in a year; `proceedings_volume`). **Conference abstracts are not papers (owner, 2026-11-05):** besides R-PAP-19's meeting abstracts and the '(Conference Presentation)' records,
 a `conference-abstract` record of 2 pages or less in DBLP is dropped whatever its byline (`conference_abstract`); one without a page count, or of 3+ pages (ACM EC, PES General Meeting papers OpenAlex types as abstracts), stays.
+### R-PAP-37 (2026-11-05, owner task: Michigan student-paper gaps) — listing continuity
+Four Michigan `student_not_linked` findings of accuracy round r2 (Chen, Aksoy, Sattar, Wandke) were checked paper by paper. Two (Chen, Aksoy, both
+Gorodetsky's students) are real lab-paper gaps: Gorodetsky's only dated appointment evidence is the AERO unit listing of 2018-2020 (the later AERO
+captures are filter or hub pages that name no one), so his 2021-2026 papers, 6-15 a year, every one crediting Michigan Aerospace Engineering in his
+own byline, were `outside_appointment`. A listing proves its own calendar year only, so nothing could extend it. The R-PAP-28 argument (no departure
+evidence, the PI's own works name the school in every year) now also builds continuity periods from listings alone (`periods.listing_bridge_periods`,
+`LISTING_BRIDGE`, `papers.continuity_bridges`): (a) interior, from listing year A's capture date to the next listing year B's, when every year
+between qualifies; (b) tail, from the last listing's capture date through the longest run of qualifying years after it (open when the run reaches
+today). A year qualifies when the PI's identified works name the school in their own authorship at least once and credit no other institution more
+often. Never a head: the years before the first listing are the arrival side (R-PAP-13). Only for a PI with no period at all (R-PAP-28's), no
+departure evidence (`listingsAfterMove`, an end_moved period), and no non-primary listing row (adjunct, courtesy, visiting, emeritus, on leave,
+part-time). A listing drop closes the period (R-PAP-03, 2026-11-02): a department whose listing was captured and read in a gap year
+(`listings/<school>/coverage.json`, per-department format; emeritus slots do not count) and omits the PI stops the run there, and a PI listed in a
+department with no coverage data is bridged nowhere (the per-person coverage files of Berkeley, CMU, EPFL, MIT and Stanford say nothing about
+department years). The period admits only a paper whose own byline names the school (`direct_via`: not an advisee, unit-name, first-page or
+cross-affiliation route) and a first-page-proved DBLP or lab-page addition. Evidence is the listing capture; `reviewed: R-PAP-37 listing continuity`.
+Switched on per school by the charter (`[rules] listing_continuity`, TEMPLATE default false): Michigan only. Measured on all nine schools, the others wait
+for the owner (docs/DECISIONS.md). Counters `listing_bridge_periods`.
+The other two cases are correct non-links, not gaps. Sattar's co-authored papers (2019-2022, arXiv, TSP, ACC, CDC) name the University of California,
+Riverside for both authors: Oymak joined Michigan in fall 2023 (his first listing reads 'starting Fall 23'); the one 2021 arXiv record that
+carries 'U Michigan' tokens is a co-author's shifted affiliation string. Wandke's papers are UIUC work: the PI row 'Y Z' (Yang Zhang; R-PAP-34 on agent/accuracy-fixes-1105 resolves the placeholder name) is first listed at Michigan in
+2024; his 2023 RoboSoft and IEEE Access bylines name Michigan NERS beside UIUC (a prospective affiliation: the NERS people page of October 2023 does
+not yet list the PI), and the 2024-2025 bylines name UIUC only. Wayback captures 20230615164134, 20230922051505, 20231003085706 of
+ners.engin.umich.edu/people/. Brian Chen's Morressier record (2021, type other, no byline affiliation) is an abstract, not a paper.
+Tests: `tests/test_listing_continuity.py`.
 
 ## Students
 
@@ -482,6 +507,64 @@ The MGP (mathgenealogy.org, genealogy.math.ndsu.nodak.edu) is a source only when
 (including any group naming ClaudeBot or anthropic-ai), polite pacing, one query per PI by MGP id or name, students with a degree from this school,
 year >= 2016 and the PI as advisor; the PI is matched by name plus school plus field, never by name alone. On 2026-11-03 the site served only its
 outage notice (PHP disabled since 21 October 2026), robots.txt answered 404 (no rules) and no terms page was reachable, so no query was made.
+
+### R-STU-20 (2026-11-05, owner: Boris Hanin deep dive) — lab-page students corroborated by the PI's byline
+A school whose lab-page student additions are not accepted (`labpage-acceptance.json` students `accepted: false`: Princeton, CMU, Stanford, Michigan, after the
+extended hand rounds failed) wired none of them, so a PI's own PhD students were off the lab although they stand on the PI's byline (Hanin: 6 current PhD
+students on his page, none in the build; Tianze Jiang is on three of his lab papers). The roster alone and co-authorship alone stay no evidence (Stanford rule);
+the two together are (R-STU-02 and the UChicago roster rule of 2026-11-04 already pair them). A not-accepted additions row (`labpage-additions.json`) is wired,
+and only that row, when all of these hold (`tools/pihier/corroborated.py`, `students.add_corroborated`, run after the lab papers and before the links):
+1. it names a student: the row's role is phd, masters, undergraduate or visiting, or the role is empty and the stored capture (its sha256) shows a student cue as the
+   NEAREST role cue before the name (`cue_role`: 'supervise several excellent PhD students: A, B, C' is a prose list the audit's heading reader never sees;
+   a postdoc, staff, scientist, collaborator, alumni, former, placement or publication cue nearer to the name rejects it: Hanin's postdocs Gage DeZoort and
+   Paolo Baglioni, who are on his byline, stay out); a role postdoc/other/staff/member is never read as a student;
+2. an alumni row needs stated years (a capture year is not a membership year, R-STU-14); other rows are dated by the capture year (R-STU-14);
+3. the student's full first given name (or a nickname pair) and family name, no initials, are on the byline of a lab paper of that PI, the strict given-name
+   guard passes, the paper has at most 15 authors (`MAX_AUTHORS`; the 50-author rule for initial-only bylines is R-STU-19 A on agent/accuracy-fixes-1105, a separate guard), and its
+   year is within three years of the row's years;
+4. the lab holds no student of that name already (R-STU-13 merges stay the only way to join records).
+The row builds a record like an accepted one (relation `researched_advising`, `auto`, `corroborated`) and the usual link bases link it. Not wired, counted:
+`labpage_students_corroborated_skipped:role|no_student_cue|no_byline|alumni_without_years|in_lab`; wired: `labpage_students_corroborated_wired`; the report lists them
+(`labpageStudentsCorroborated`, with up to six corroborating works). Effect, 2026-11-05 scratch rebuild: 358 rows wired (Princeton 26, CMU 53, Stanford 70, Michigan 209), 1,443 links (Hanin 1 -> 6: Jiang x3, Shigida, Bhandarkar, Jelassi); skipped: role 282, no byline 506, no student cue 154, alumni without years, already in the lab 22. Hand check of the final build, 30 random added links (20 R-STU-20, 7 R-LNK-06, all 3 R-LNK-07): 30 correct; a first version without the alumni-section rule wired 13 alumni (Posada, Will Held, Esterwood) whose capture year is not a membership year, and two of 15 sampled links were such rows.
+Interaction with agent/accuracy-fixes-1105's R-STU-19 B (the wide-window routes need a student role and the PI as adviser): the wired rows carry a student role and a quote
+from the PI's own page. Tests: `tests/test_student_links_hanin.py`.
+
+### R-STU-22 (2026-11-06, owner approved) — a student's own page or ORCID education record
+A co-author of a PI who has no lab record of being the PI's student can state it on their own page. **Own-page form** (the evidence standard of the UChicago deep dive: "the student's own page
+or CV names the student as this PI's advisee"; `tools/own_page_students.py`, tests `tests/test_own_page_students.py`):
+1. **Candidates:** the school-affiliated authors (`byline_school`) of the lab papers of a PI with fewer than three students, 2016-2025, papers of at most 15 authors, at least two co-authored papers, not in the census.
+2. **Homepage:** from DBLP's own dump (the person record whose name string is on a pub record with one of the candidate's lab-paper titles, exactly one such person; its `url` entries), from a link whose text is
+   the candidate's full name on a lab page we already hold (`hop`), and from Semantic Scholar's paper batch (the author profile's homepage; the project key, never printed). Hosts of aggregators, profiles and the barred sites
+   (Deep Blue, news.umich.edu, record.umich.edu, Math Genealogy, academictree.org, Google Scholar, LinkedIn, ...) are skipped.
+3. **Read live** only where robots.txt allows: every Disallow of the `*` group, any group naming ClaudeBot / anthropic-ai / claude-web that disallows anything (the host is then skipped whole), Crawl-delay (at least 3 s a host, a host belongs to one
+   job); generic User-Agent, no e-mail address; HTML only, at most four pages of one person (the homepage and a CV / about / people link of the same host). A host that answers 403/429/503 is queued for the Wayback lane, not fetched here.
+4. **Kept** only a sentence of that page that names the PI right after an adviser cue ('advised by', 'advisor:', 'co-advised by', 'supervised by', 'under the supervision of') with nothing but names and titles in between (a
+   'worked closely with' collaborator is not an adviser), where the institution nearest before the cue (this sentence, else the sentence or lines before) is the school, a student cue (PhD, doctoral, graduate student, MS, undergraduate) is in scope
+   and no postdoc, research scientist, visiting-faculty, intern or collaborator cue is within the cue's clause. The page must name the candidate in full (namesake guard, R-STU-19/20; the given name is spelled out). The role is the role cue nearest to the adviser cue.
+   Years: a range written next to the school ('2017-2022', 'present' = the capture year), a degree year next to the school mention, or, for a person described in the present tense on a page whose newest year is within three years of the capture
+   (R-LAB-02), the capture year (R-STU-14). A past-tense statement with no year on the page (owner approved 2026-11-06): the years are the span, first to last, of the student's co-authored lab papers with that PI within 2016-2025, `years_basis: coauthored_lab_papers`; no co-authored lab paper in the window, no row (a span can run past the degree year: papers continue after graduation). The sentence also may not call the PI a committee member, reader or collaborator, and in a sentence the PhD cue outranks MS/BS ('Ph.D. and M.S. at X').
+5. Row: `reviewed/few-students-evidence.json`, `rule: R-STU-22`, `source: own_page`, verbatim `quote`, `url`, `captured` (UTC), `sha256` of the extracted page text (and `raw_sha256` of the bytes). Role phd/masters/undergraduate/visiting (R-STU-17).
+**ORCID form (proposed, not run):** an ORCID education record of a PhD (or MS/BS) at the school in the window, held by a co-author of the PI, would count only with the PI on the byline of at least one co-authored lab paper in those years
+(R-STU-02's logic; ORCID names no advisor). It was not executed: `pub.orcid.org/robots.txt` answers `User-agent: * / Disallow: /` (read 2026-11-06), so the public API is barred to automated clients under the standing robots rule. The sanctioned bulk channel is ORCID's annual public data file (CC0);
+whether to fetch it (tens of GB) is an owner decision (not asked for; no ORCID row exists).
+**Effect on this branch (2026-11-06 scratch build, overlay root, main untouched):** labs with students 146 -> 149 of 287 (CSE 88 -> 90, UMSI 8 -> 9); 7 new students and 36 student-paper links of those students (8 new lab-student pairs); of 5,299 co-author candidates 824 had a homepage URL (DBLP 768 incl. lab-page links, Semantic Scholar 43), 605 pages read, 79 robots-barred, 150 queued for Wayback (403); 37 advisee statements, 11 dated (written), 18 past-tense statements without a year listed apart. Hand check of all 11 written rows: 10 correct, 1 doubtful (Yonathan Fisseha: 'advised by Prof. Austin', a bare family name unique among the census faculty and co-authored with Todd Austin).
+
+### R-LNK-06 (2026-11-05, owner: Hanin deep dive) — a dissertation year is the END of the student's work
+A PhD student known only from dissertation records (every relation role phd, its source quote a DSpace record whose `dc.contributor.advisor` names the PI)
+has one recorded year, the degree year. Papers come mostly BEFORE it; the full-name route's window (two years before to six after) lost them (Jiasi Shen's 2018
+paper with Rinard, thesis 2022). For such a student the full-name route (`full_name_on_lab_paper_byline`, R-LNK-01) counts from six years before the degree year
+(`DISSERTATION_BEFORE`), on a lab paper of at most 15 authors; initial-only bylines never take the longer window; a roster, lab-page or program year is not a degree year
+(old window). 70 links in the scratch rebuild (EPFL 41, Princeton 15, MIT 13, CMU 1); 14 of 14 sampled links correct.
+
+### R-LNK-07 (2026-11-05, owner: Hanin deep dive) — spelling variants of a first given name, within the lab
+Within-lab matching (R-LNK-03) reads a byline whose family name is written exactly as the lab student's (the straight reading only: never through the order
+swap, which would turn a family-name typo into a match) and whose first given name, 5+ letters on both sides, differs by one insertion, deletion, adjacent
+transposition or vowel-for-vowel substitution ('Aiden'/'Aidan', 'Connor'/'Conor', 'Makena'/'Maken'; `vowel_edit`). A consonant for a consonant ('Kavin'/'Navin',
+'Anna'/'Anja') is a different name. Not under an East Asian family name (R-LNK-02a: 'Yue'/'Yuan'); never when the student's own spelling or another lab
+student's exact name is on the paper, nor on a paper of more than 15 authors; exactly one candidate in the lab; the window and the guard of R-LNK-03 apply.
+Counted `link_within_lab_spelling_variant`. Two earlier versions were withdrawn by the hand check: one through the order swap added 213 links and matched
+different people ('Swarup Kumar Sahoo' / 'Swarun Kumar', 'Andy Peng' / 'Andy Zeng'); one with any one-edit change of a 4+ letter name added 8 links of which
+three were doubtful ('Kavin'/'Navin', 'Yong'/'Yang', 'Anna'/'Anja'). Family-name typos stay queued for review (R-STU-13). Final: 3 links (Igoe, Georgiou, Schwinn), all correct.
 
 ### R-LNK-01 — link bases
 A lab student is linked to a lab paper by the collection's person link; by their name on a school-affiliated

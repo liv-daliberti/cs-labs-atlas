@@ -216,6 +216,8 @@ def previous_school_students(key):
         ids[x['name']] = {('dblp', d) for d in dl(o.get('dblp')) or dl(x.get('dblp'))} | {('orcid', q) for q in dl(x.get('orcid')) + dl(o.get('orcid'))}
     out = {}
     for s in S.released():
+        if s == key:   # a school is not its own previous school (Michigan 2026-11-05: once its package existed, every wired lab-page student was dropped as 'already held')
+            continue
         pf, sf = P.data('pis.json', s), P.data('students.json', s)
         if not (pf.exists() and sf.exists()):
             continue
@@ -554,8 +556,18 @@ def roster_coauthor_students(key, forms):
     best = {}  # a student on several PIs' papers is linked to the PI(s) with the most last-author, then co-authored, papers (stage 6, Michigan round 5)
     for (k, pi), e in by.items():
         best[k] = max(best.get(k, (0, 0)), e['score'])
+    pis_of = collections.defaultdict(set)   # name -> every PI whose lab papers carry it (a namesake or a collaboration), whatever the roster says
+    for (k, pi), e in by.items():
+        pis_of[k].add(pi)
+    for k_, ps_ in papers.items():
+        for x in ps_:
+            pis_of[k_].add(x[0])
     for (k, pi), e in sorted(by.items()):
         if e['score'] < best[k]:
+            continue
+        # Michigan 2026-11-06 hand check (Yuhan Liu lesson): one co-authored paper is thin evidence, so when the same name also stands on another PI's lab papers the pair is
+        # ambiguous (a namesake, or a collaborator of two labs) and is not written; two or more papers, or the PI last on several, keep it
+        if e['score'][1] <= 1 and len(pis_of[k]) > 1:
             continue
         ts, cap, sha, url, q, disp = e['first']
         ys = sorted(e['years'])

@@ -114,3 +114,9 @@ hierarchy/derived/COLLECTORS-STATUS.json
 
 # the split layout (2026-11-01): the flat ignores above, translated; a school's work/ holds rebuildable tool state and scratch (nothing tracked)
 /hierarchy/*/work/
+# Michigan lab-page, directory/roster and defense evidence: the build reads them and no tool regenerates the merged labpage-evidence.json byte for byte
+# (round 2, 2026-11-06: main's rows plus the roster/adviser-list rows of the slow-lane directory run); needed in a git-archive release
+!hierarchy/michigan/reviewed/labpage-evidence.json
+!hierarchy/michigan/reviewed/directory-evidence.json
+!hierarchy/michigan/reviewed/defense-evidence.json
+!hierarchy/michigan/reviewed/deepdive-dossiers.json

@@ -9,7 +9,7 @@ import school_config as _S  # the school charters (R-PAP-15's foreign-title exce
 from .common import OWN_UNITS, SCHOOL_LOOSE, TODAY, WINDOW_START, accepted_additions, ndoi, norm_title
 from .identity import in_blocked_cluster
 from .names import NICK, _nick_pairs, byline_name, full_pair, toks
-from .periods import _year, bridge_periods, contains, same_year, transition_side, transition_status
+from .periods import _year, LISTING_BRIDGE, bridge_periods, listing_bridge_periods, contains, same_year, transition_side, transition_status
 from . import identity
 from dblp_dump_pages import page_count  # noqa: E402  (DBLP's `pages` string -> number of pages; R-PAP-27)
 
@@ -232,7 +232,10 @@ def non_research_record(r, pages=None):
         return 'column'
     if CONFERENCE_VOLUME_TITLE.search(t):
         return 'proceedings_volume'
-    if BOOK_LEVEL_DOI.match(d) and ty in ('conference-paper', 'article', 'other', 'proceedings', 'editorial'):
+    # an authored monograph OpenAlex types 'article' (no venue, at most three authors: Rojo and Bloch, The Principle of Least Action, Cambridge 2018) is a
+    # book, which R-PAP-15 keeps; an edited volume is typed conference-paper/proceedings/editorial or lists its editors
+    authored_monograph = ty == 'article' and not v.strip() and 1 <= len(r.get('byline') or []) <= 3
+    if BOOK_LEVEL_DOI.match(d) and ty in ('conference-paper', 'article', 'other', 'proceedings', 'editorial') and not authored_monograph:
         return 'edited_volume'
     if SESSION_WORKSHOP_TITLE.search(t) and ty in ('conference-paper', 'conference-abstract', 'article', 'other'):
         return 'workshop_proposal'
@@ -641,7 +644,9 @@ def rows_from_hits(ctx):
                 # the venue version predates the atlas window (2016-2026): a later deposit or preprint of an older paper
                 # is not a lab paper of the window (Sandholm's IJCAI 2009 paper, a 2018 KiltHub deposit)
                 n['dated_before_window'] += 1; funnel[pi]['dated_before_window'] += 1; continue
-        per = next((q for q in p['periods'] if contains(q['start'], q['end'], date, q['asof'] or TODAY) == 'supported'), None)
+        # R-PAP-37: a listing-continuity period admits only a paper whose own byline names the school
+        per = next((q for q in p['periods'] if contains(q['start'], q['end'], date, q['asof'] or TODAY) == 'supported'
+                    and (q.get('reviewed') != LISTING_BRIDGE or direct_via(via))), None)
         lst = None
         if per is None:
             y = same_year(date); lst = next((l for l in p['listings'] if l['year'] == y), None) if y else None
@@ -884,6 +889,12 @@ def merge_editions(rows, n):
     return rows
 
 
+def listing_continuity_on(school):
+    """R-PAP-37 is switched on per school by the charter ([rules].listing_continuity): Michigan since 2026-11-05; the other schools
+    were measured and wait for the owner (docs/DECISIONS.md)."""
+    return bool(_S.field(_S.get(school), 'rules.listing_continuity'))
+
+
 def continuity_bridges(ctx):
     """R-PAP-28: add each PI's continuity periods (periods.bridge_periods) before the rows are made. The years that count are those
     of the PI's identified works whose own authorship names the school (institution lineage or raw affiliation)."""
@@ -906,6 +917,10 @@ def continuity_bridges(ctx):
         if new:
             p['periods'] = p['periods'] + new
             n['continuity_bridge_periods'] += len(new)
+        lb = listing_bridge_periods(p, years[p['pi']], other[p['pi']], getattr(ctx, 'listing_covered', {}), moved) if listing_continuity_on(ctx.school) else []  # R-PAP-37
+        if lb:
+            p['periods'] = p['periods'] + lb
+            n['listing_bridge_periods'] += len(lb)
     ctx.direct_years, ctx.other_years = years, other
 
 

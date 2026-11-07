@@ -49,6 +49,14 @@ def reviewed_inputs(ctx):
     for r in (read(lf) if lf.exists() else []):
         if not r.get('future_start_note') and r.get('sha256') and r.get('quote'):
             yearly[r['pi']].append(r)
+    # R-PAP-37: the years each department's listing was captured and read (listings/<school>/coverage.json); a PI absent from a covered
+    # year was dropped from that listing. Emeritus slots do not count (an emeritus page never lists the active faculty).
+    cov_f = P.data('coverage.json', school, root=HERE)
+    covered = {}  # {department: {years}}; only the per-department format (Michigan, Georgia Tech, UChicago); the per-person coverage files of the older schools say nothing about a department's years
+    for dept, years_ in (read(cov_f) if cov_f.exists() else {}).items():
+        if isinstance(years_, dict) and all(isinstance(v, dict) for v in years_.values()):
+            covered[dept] = {int(y) for y, slots in years_.items() if any(str(v).startswith('ok') for k, v in slots.items() if 'emeritus' not in k.lower())}
+    ctx.listing_covered = covered
     ge_f = P.data('gap-evidence.json', school, root=HERE)
     ov = CO.section(school, lambda n, s=None: P.data(n, s, root=HERE))
     ge = {r['pi']: r for r in read(ge_f)} if ge_f.exists() else {}

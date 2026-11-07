@@ -194,4 +194,5 @@ class Ctx:
         self.n = collections.Counter()
         self.initials_merges = []  # merges only the optional-initials rule made (R-STU-13), for the report
         self.typo_pairs = []  # (pi, record id, record id): one-letter surname typos left for review (R-STU-13)
+        self.corroborated = []  # lab-page students wired by R-STU-20 (report.json labpageStudentsCorroborated)
         self.labpage_set_aside = []  # accepted lab-page papers the build did not keep, with the reason (report.json)

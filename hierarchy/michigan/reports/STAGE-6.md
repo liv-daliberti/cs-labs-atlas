@@ -114,3 +114,9 @@ What would close the gap, in order of yield:
 
 ## Update, 2026-11-03 (owner-approved fills R-STU-14, R-STU-15, R-STU-16)
 Labs with students 129 -> 132 (R-STU-14: Mahlke, Mudge; R-STU-15: Orosz; five and two relations; hand rounds 7 and 8, all outputs judged from their captures, tiny populations and filters fixed after a poor first output, so weak evidence of precision). R-STU-16 (Mathematics Genealogy Project): not used, the site served only its outage notice, robots.txt 404, no terms page. 116 labs remain at 0 students with `sources_exhausted` (reasons file regenerated with the new sources). Ryan Huang's one lab paper disappeared with the rebase onto main 17941a9 (build rule change upstream, funnel in_appointment 1, verified 0): 0 papers, open.
+
+## Round 2e (2026-11-06, owner: more students from students' own homepages and ORCID), branch agent/michigan-round2
+- Source: R-STU-22 (proposed): co-authors of the PIs of labs with fewer than 3 students (5,299 candidates, 2,119 with 2+ papers) -> homepage URL from the DBLP dump, stored lab-page links (376 names) and Semantic Scholar profiles (43) -> live read under robots.txt (`tools/own_page_students.py`).
+- Result (scratch build in the overlay root): labs with students 146 -> 149 of 287 (CSE 88 -> 90, UMSI 8 -> 9). Evidence: `reviewed/few-students-evidence.json` (rule R-STU-22), 11 rows in 9 PIs. Hand check: 10 of 11 correct, 1 doubtful.
+- ORCID education records: not read (pub.orcid.org/robots.txt: `User-agent: * / Disallow: /`).
+- 18 past-tense statements without a year ('I received my PhD from the University of Michigan, advised by ...') are not evidence under R-STU-14; they are in the scratch proposals file for the owner's decision.

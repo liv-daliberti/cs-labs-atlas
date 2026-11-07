@@ -383,6 +383,35 @@ def researched(ctx, stu, by_name):
                 r['auto'] = True
 
 
+def add_corroborated(ctx):
+    """R-STU-20: lab-page student rows the acceptance gate did not wire, kept when the PI's own byline corroborates them (tools/pihier/
+    corroborated.py). Runs after the lab papers are built and before the links; the student then links through the usual bases."""
+    from . import corroborated as CO
+    school, pis, stu, n = ctx.school, ctx.pis, ctx.stu, ctx.n
+    ctx.corroborated = []
+    if not n.get('labpage_additions_students_not_wired:not_accepted'):
+        return
+    papers_by_pi = collections.defaultdict(list)
+    for r_ in ctx.rows:
+        papers_by_pi[r_['pi']].append(r_)
+    existing = {p['pi']: [r_['name'] for r_ in stu[p['pi']].values()] + [a for r_ in stu[p['pi']].values() for a in r_.get('aliases') or []] for p in pis}
+    dbs = CO.open_capture_dbs(school, ctx.here)
+    rows = CO.corroborated_rows(school, papers_by_pi, existing, dbs, ctx.here, n)
+    by_name = people_by_family(ctx.people)
+    for s_, works in rows:
+        t_ = toks(s_['name']); nm_ = Name([s_['name']])
+        match_ = [q for q in by_name.get(t_[-1] if t_ else '', []) if nm_.match(q['name'])]
+        sid = match_[0]['id'] if len(match_) == 1 else f"ext:{school}:{re.sub('[^a-z0-9]+', '-', s_['name'].lower()).strip('-')}"
+        role_ = s_['role']
+        r = stu[s_['pi']].setdefault(sid, dict(person=sid, name=match_[0]['name'] if len(match_) == 1 else s_['name'], roles=[role_], relations=[]))
+        r['relations'].append(dict(type='researched_' + ('membership' if role_ == 'visiting' else 'advising'), years=as_years(s_.get('years'), n), role=role_,
+                                   sources=[dict(url=s_.get('capture_url') or s_['url'], sha256=s_['sha256'], quote=s_['quote'])], auto=True, corroborated=True))
+        r['auto'] = True
+        n['labpage_students_corroborated_wired'] += 1
+        ctx.corroborated.append(dict(pi=s_['pi'], student=s_['name'], role=role_, role_basis=s_.get('role_basis'), years=s_['years'], works=works[:6], n_works=len(works)))
+    n['pis_with_students'] = sum(bool(stu[p['pi']]) for p in pis); n['students'] = len({x for v in stu.values() for x in v}); n['lab_student_pairs'] = sum(len(v) for v in stu.values())
+
+
 def basis_students(ctx, stu, by_name):
     """R-STU-01, R-STU-11: advisees named in the PI's own reviewed basis quote, when a DSpace record's own advisor field
     (if any) names the PI."""

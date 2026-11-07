@@ -76,6 +76,7 @@ legacy_sweep = ""
 
 [rules]
 foreign_title_exception = false
+listing_continuity = true     # R-PAP-37 (owner task 2026-11-05): non-CSE/ECE units list the faculty in some years only (Gorodetsky AERO 2018-2020)
 
 [census]
 computing_departments = ["CSE", "ECE"]
@@ -271,7 +272,13 @@ CSE/ECE PhD defence and graduation pages (Wayback), lab member pages and the PIs
 directories = ["cse.engin.umich.edu/people/phd-students/", "ece.engin.umich.edu/people/directory/phd-students/"]
 surname_adviser_lists = [{url = "www.me.engin.umich.edu/people/students", department = "ME"}]   # "<Name> <uniqname> PhD Research Advisor: <surname>" (ME graduate list 2016-2017); R-STU-15
 adviser_flat_lists = ["robotics.umich.edu/people/students/"]   # '<Name> PhD Student ... Advisor <PI> Research Interests' (Wayback captures 2019-2026)
-# rosters (CSE/ECE phd-students lists + co-authorship, R-STU-02): tried 2026-11-03 under the UChicago rule and a stricter two_and_last rule; re-judged on evidence only, 7 of 30 rows have an independent page (lab members list) and 23 have only the roster+co-authorship itself, so they are not kept (STAGE-6 update)
+# rosters (R-STU-02, owner 2026-11-05 "Michigan students are badly incomplete"): names-only PhD rosters, evidence only together with a co-authored lab paper of the PI
+# (roster name on a lab paper's byline within the capture year +-1; PI last author on one, or two papers); the namesake guards of the byline matchers apply.
+# Tried 2026-11-03 under the UChicago rule and two_and_last (7 of 30 rows had an independent page): re-run 2026-11-05 as a 20-row pilot before any write.
+rosters = [{url = "cse.engin.umich.edu/people/phd-students/", kind = "students", listed_as_phd = true},
+           {url = "ece.engin.umich.edu/people/directory/phd-students/", kind = "students", listed_as_phd = true},
+           {url = "www.si.umich.edu/people/directory/phd-student", kind = "students", listed_as_phd = true}]
+# 2026-11-06 deep dive: the UMSI roster URL above was www.si.umich.edu/people/directory/phd-students (a 404; no capture was ever made), so no UMSI roster pair existed before; the live directory is /people/directory/phd-student (names only, no adviser). Archived 2019-2025 captures: slow-lane stage q-mi-dd.
 sources = [
   "CSE and ECE dissertation defence announcements (cse.engin.umich.edu/event/..., Wayback): 'Chair: Prof. X'",
   "CSE and ECE PhD graduate / alumni lists (Wayback)",
@@ -371,8 +378,8 @@ probe = "https://record.umich.edu/"
 
 [[hosts]]
 host = "web.eecs.umich.edu"
-use = "wayback-only"
-purpose = "faculty homepages (~uniqname) and lab pages"
+use = "live"
+purpose = "faculty homepages (~uniqname) and lab pages (2026-11-05: re-probed, HTTP 200 with a verifying certificate and no challenge, robots.txt allows * except a few course and calendar paths; the 2026-10-29 probe had failed TLS)"
 probe = "https://web.eecs.umich.edu/"
 
 [[hosts]]

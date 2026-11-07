@@ -1,0 +1,177 @@
+"""R-STU-20, R-LNK-06 and R-LNK-07 (2026-11-05, owner: Boris Hanin's lab deep dive). The fixtures are the shapes found in Hanin's
+lab (hanin.princeton.edu, ORFE): a prose list of PhD students with postdocs after it, his students on his bylines, and the cases
+the guards must refuse."""
+import collections, gzip, json, sqlite3
+
+import atlas_paths as P
+from pihier import corroborated as CO
+from pihier import links
+from pihier.common import Ctx
+
+PAGE = ('<html><body><h2>Research Group</h2><p>I am fortunate to supervise several excellent PhD students: <a>Boris Shigida</a> (joint with '
+        'Matias Cattaneo), <a>Alex Negron</a>, <a>Tianze Jiang</a>, <a>Shaunak Bhandarkar</a> (joint with Jonathan Pillow). I am excited to be '
+        'working with several phenomenal postdocs: <a>Gage DeZoort</a>, <a>Paolo Baglioni</a></p><h3>First Placement of Former Members</h3>'
+        '<p>Samy Jelassi (Postdoc at Harvard)</p><h3>Papers</h3><p>The Score Hamiltonian, with P. Halmos</p></body></html>')
+SHA = 'a' * 64
+TEXT = ' '.join(__import__('re').sub(r'<[^>]+>', ' ', PAGE).split())
+
+
+def q(start, name):
+    """The audit's quote: from the heading (or the name itself) through the name."""
+    i = TEXT.index(start)
+    return TEXT[i:TEXT.index(name, i) + len(name)]
+
+
+def test_R_STU_20_cue_role_reads_the_prose_list():
+    shigida = q('Research Group', 'Boris Shigida')
+    assert CO.cue_role(TEXT, shigida, 'Boris Shigida') == 'phd'
+    assert CO.cue_role(TEXT, q('Research Group', 'Tianze Jiang'), 'Tianze Jiang') == 'phd'
+    assert CO.cue_role(TEXT, q('Shaunak Bhandarkar', 'Shaunak Bhandarkar'), 'Shaunak Bhandarkar') == 'phd'   # the quote starts at the name
+    assert CO.cue_role(TEXT, q('Research Group', 'Gage DeZoort'), 'Gage DeZoort') is None                     # 'postdocs' is the nearer cue
+    assert CO.cue_role(TEXT, q('Research Group', 'Paolo Baglioni'), 'Paolo Baglioni') is None
+    assert CO.cue_role(TEXT, 'a quote the page does not hold', 'Nobody') is None
+
+
+def test_R_STU_20_full_name_on_never_initials_and_guarded():
+    nt = ['tianze', 'jiang']
+    assert CO.full_name_on(nt, 'Jiang, Tianze', ['Tianze Jiang']) and CO.full_name_on(nt, 'Tianze Jiang', ['Tianze Jiang'])
+    assert not CO.full_name_on(nt, 'T. Jiang', ['Tianze Jiang'])             # initials never corroborate
+    assert not CO.full_name_on(nt, 'Kaiqi Jiang', ['Tianze Jiang'])
+    assert not CO.full_name_on(nt, 'Tianyu Jiang', ['Tianze Jiang'])
+
+
+def _school(tmp_path, rows):
+    P.data_w('labpage-additions.json', 'x', root=tmp_path).write_text(json.dumps(dict(students=rows)))
+    db = sqlite3.connect(str(P.data_w('labpage-audit-captures.sqlite', 'x', root=tmp_path)))
+    db.execute('create table captures (id integer primary key, url text, sha256 text, content blob, fetched_at text)')
+    db.execute('insert into captures (url, sha256, content, fetched_at) values (?, ?, ?, ?)', ('https://h.example', SHA, gzip.compress(PAGE.encode()), '2026-10-30T18:05:40+00:00'))
+    db.commit(); db.close()
+    return CO.open_capture_dbs('x', tmp_path)
+
+
+def row(name, start='Research Group', **kw):
+    return dict(name=name, role=None, years=None, url='https://h.example', sha256=SHA, quote=q(start, name), pi='Boris Hanin', **dict(dict(alumni=False), **kw))
+
+
+def paper(work, year, byline):
+    return dict(pi='Boris Hanin', work=work, year=year, byline=byline, _bylines=[(byline, byline)])
+
+
+def test_R_STU_20_corroborated_rows(tmp_path):
+    dbs = _school(tmp_path, [row('Boris Shigida'), row('Alex Negron'), row('Tianze Jiang'), row('Shaunak Bhandarkar', 'Shaunak Bhandarkar'),
+                             row('Gage DeZoort'), row('Paolo Baglioni'), row('Samy Jelassi', 'Samy Jelassi', alumni=True), row('Boris Shigida', note='lab-page audit; section: Recent Lab Alumni')])
+    papers = {'Boris Hanin': [paper('w1', 2026, ['Shigida, Boris', 'Hanin, Boris', 'Gromov, Andrey']),
+                              paper('w2', 2025, ['Hanin, Boris', 'Jiang, Tianze']),
+                              paper('w3', 2026, ['Bhandarkar, Shaunak', 'Hanin, Boris']),
+                              paper('w4', 2026, ['DeZoort, Gage', 'Hanin, Boris']),
+                              paper('w5', 2025, ['Samy Jelassi', 'Boris Hanin']),
+                              paper('w6', 2026, ['Hanin, Boris'] + [f'Author {i}' for i in range(20)] + ['Alex Negron'])]}   # hyper-authored
+    n = collections.Counter()
+    out = CO.corroborated_rows('x', papers, {'Boris Hanin': []}, dbs, tmp_path, n)
+    got = {r['name']: (r['role'], r['years'], w) for r, w in out}
+    assert sorted(got) == ['Boris Shigida', 'Shaunak Bhandarkar', 'Tianze Jiang']
+    assert got['Tianze Jiang'] == ('phd', [2026], ['w2'])                         # capture-year dating (R-STU-14): 2025 is within three years of 2026
+    assert 'Alex Negron' not in got and n['labpage_students_corroborated_skipped:no_byline'] >= 1   # a roster alone is never evidence; nor a hyper-authored paper
+    assert 'Gage DeZoort' not in got and 'Paolo Baglioni' not in got                # postdocs, even on the byline (DeZoort is)
+    assert n['labpage_students_corroborated_skipped:alumni_without_years'] == 2       # a capture year is not a membership year (flagged alumni, and an alumni section)
+    # a student the lab already holds is left to the existing records
+    out = CO.corroborated_rows('x', papers, {'Boris Hanin': ['Tianze Jiang']}, dbs, tmp_path, collections.Counter())
+    assert 'Tianze Jiang' not in {r['name'] for r, _ in out}
+    # an explicit postdoc role is never read as a student, whatever the page says
+    P.data_w('labpage-additions.json', 'x', root=tmp_path).write_text(json.dumps(dict(students=[dict(row('Tianze Jiang'), role='postdoc')])))
+    assert CO.corroborated_rows('x', papers, {'Boris Hanin': []}, dbs, tmp_path, collections.Counter()) == []
+
+
+def link(stu_name, relations, byline_rows, extra=()):
+    """The students of one lab linked to papers (rows: (work, year, byline list, school-affiliated list)); returns {work: (basis, byline)}."""
+    ctx = Ctx('x')
+    ctx.rows = [dict(pi='Lab', work=w, oa=w, year=y, byline=bl, _bylines=[(bl, sch)]) for w, y, bl, sch in byline_rows]
+    ctx.stu = {'Lab': {'s1': dict(person='s1', name=stu_name, relations=relations)}}
+    for i, (nm, rel) in enumerate(extra):
+        ctx.stu['Lab'][f's{i + 2}'] = dict(person=f's{i + 2}', name=nm, relations=rel)
+    ctx.pls = {sid: [] for sid in ctx.stu['Lab']}
+    ctx.pid0 = {'Lab': {'names': ['Lab']}}   # R-STU-19 rule B reads the PI's names
+    links.link_students(ctx)
+    return {x['work']: (x['basis'], x['byline']) for x in ctx.sp if x['student'] == 's1'}, ctx
+
+
+DSPACE = [dict(type='researched_advising', years=[2022, 2022], role='phd', sources=[dict(url='u', sha256='b' * 64,
+           quote='<dim:field element="contributor" qualifier="advisor">Rinard, Martin</dim:field> <dim:field qualifier="author">Shen, Jiasi</dim:field>')])]
+ROSTER = [dict(type='researched_advising', years=[2022, 2022], role='phd', sources=[dict(url='u', sha256='b' * 64, quote='Jiasi Shen, PhD student of Martin Rinard')])]
+
+
+def test_R_LNK_06_dissertation_year_is_the_end_of_the_work():
+    papers = [('w17', 2017, ['Jiasi Shen', 'Martin Rinard'], []), ('w18', 2018, ['Jiasi Shen', 'Martin Rinard'], []),
+              ('w15', 2015, ['Jiasi Shen', 'Martin Rinard'], []), ('wi', 2018, ['J. Shen', 'Martin Rinard'], []),
+              ('wh', 2018, ['Jiasi Shen'] + [f'A{i}' for i in range(20)], [])]
+    got, _ = link('Jiasi Shen', DSPACE, papers)
+    assert set(got) >= {'w18', 'w17'} and 'w15' not in got                         # 2015 is seven years before the degree year
+    assert 'wi' not in got or got['wi'][0] != 'full_name_on_lab_paper_byline'      # an initial byline never takes the longer window
+    assert 'wh' not in got                                                         # nor a hyper-authored paper
+    got, _ = link('Jiasi Shen', ROSTER, papers)                                    # a roster year is not a degree year: the old window
+    assert 'w17' not in got and 'w18' not in got
+
+
+def test_R_LNK_07_spelling_variant_within_lab():
+    rel = [dict(type='researched_advising', years=[2021, 2021], role='phd', sources=[dict(url='u', sha256='b' * 64, quote='Aiden Curtis, PhD student')])]
+    got, ctx = link('Aiden Curtis', rel, [('w1', 2021, ['Aidan Curtis', 'Leslie Kaelbling'], [])])
+    assert got == {'w1': ('within_lab_byline_match', 'Aidan Curtis')} and ctx.n['link_within_lab_spelling_variant'] == 1
+    # both spellings on one paper: two people
+    got, _ = link('Aiden Curtis', rel, [('w1', 2021, ['Aidan Curtis', 'Aiden Curtis', 'Leslie Kaelbling'], [])])
+    assert 'w1' in got and got['w1'][1] == 'Aiden Curtis'
+    # a hyper-authored paper, and an East Asian family name ('Yue' / 'Yuan' are different people)
+    got, _ = link('Aiden Curtis', rel, [('w2', 2021, ['Aidan Curtis'] + [f'A{i}' for i in range(20)], [])])
+    assert got == {}
+    rel2 = [dict(type='researched_advising', years=[2021, 2021], role='phd', sources=[dict(url='u', sha256='b' * 64, quote='Yuan Li, PhD student')])]
+    got, _ = link('Yuan Li', rel2, [('w3', 2021, ['Yuen Li', 'Leslie Kaelbling'], [])])
+    assert got == {}
+    # a consonant for a consonant ('Kavin'/'Navin', 'Anna'/'Anja') and short names ('Yong'/'Yang') are different names
+    rel4 = [dict(type='researched_advising', years=[2026, 2026], role='phd', sources=[dict(url='u', sha256='b' * 64, quote='Kavin Ravie, member')])]
+    got, _ = link('Kavin Ravie', rel4, [('w7', 2026, ['Navin Ravie', 'Sebastian Scherer'], [])])
+    assert got == {}
+    got, _ = link('Connor Igoe', rel4, [('w8', 2026, ['Conor Igoe', 'Stephen Smith'], [])])
+    assert got == {'w8': ('within_lab_byline_match', 'Conor Igoe')}
+    # a lab student who owns the variant spelling is that author, not this one
+    got, _ = link('Aiden Curtis', rel, [('w4', 2021, ['Aidan Curtis'], [])], extra=[('Aidan Curtis', rel)])
+    assert 'w4' not in got
+    # a family-name typo is never matched through the order swap (R-STU-13 queues it for review): 'Dor Mintzer' / 'Dor Minzer'
+    rel3 = [dict(type='researched_advising', years=[2021, 2021], role='phd', sources=[dict(url='u', sha256='b' * 64, quote='Dor Mintzer, PhD student')])]
+    got, _ = link('Dor Mintzer', rel3, [('w5', 2021, ['Dor Minzer', 'Mark Braverman'], [])])
+    assert got == {}
+    got, _ = link('Swarup Kumar Sahoo', rel3, [('w6', 2021, ['Swarun Kumar'], [])])
+    assert got == {}
+
+
+def test_R_STU_20_capture_year_is_the_wayback_timestamp_not_the_fetch_date(tmp_path):
+    """Michigan 2026-11-05 (Kira Barton's 2020 lab page): the row's `url` is the live address, `capture_url` carries the Wayback timestamp; the
+    undated row takes the CAPTURE's year (R-STU-14), never the year our fetch of that capture ran (2026)."""
+    cap = 'https://web.archive.org/web/20200807150555id_/https://h.example'
+    dbs = _school(tmp_path, [dict(row('Tianze Jiang'), capture_url=cap)])
+    papers = {'Boris Hanin': [paper('w2', 2020, ['Hanin, Boris', 'Jiang, Tianze']), paper('w9', 2026, ['Hanin, Boris', 'Jiang, Tianze'])]}
+    out = CO.corroborated_rows('x', papers, {'Boris Hanin': []}, dbs, tmp_path, collections.Counter())
+    assert [(r['years'], w) for r, w in out] == [([2020], ['w2'])]
+
+
+def test_R_STU_20_entry_text_role_beats_heading_and_preceding_cue(tmp_path):
+    """Michigan 2026-11-05 hand check: 'Zihan Zhou (Master, Winter 2025)' sat in a Ph.D. alumni list, 'Theodor Chakhachiro MS Student' under the
+    previous entry's 'Next Position: PhD Student' heading, 'Rachel Gologorsky : Medical Student (2024)' in a lab-alumni list, 'Ross Cortino Ph.D.
+    student' under a masters role: the entry's own words right after the name decide."""
+    page = ('<p>Alumni Ava Old (Ph.D., 2021), now at Google Zihan Zhou (Master, Winter 2025) Next Position: PhD Student, MIT Theodor Chakhachiro MS Student, '
+            'Robotics Lab Alumni Rachel Gologorsky : Medical Student (2024) Graduate Students Ross Cortino Ph.D. student (ROB) Pat Lee Staff Gray Thomas , Ph.D. (UT Austin) Research Investigator Curt Laub Current Graduate Students Emma Treadway received her B.S. in Engineering Science Staff Mengyan Wu Software Developer Collaborators Zhengxu Tang , (Summer 2023 – Fall 2024), UG in MATH &amp; CS, Next: PhD in EECS</p>')
+    text = ' '.join(__import__('re').sub(r'<[^>]+>', ' ', page).split())
+    P.data_w('labpage-additions.json', 'x', root=tmp_path).write_text(json.dumps(dict(students=[
+        dict(name='Zihan Zhou', role=None, years=[2025, 2025], alumni=True, url='https://h.example', sha256=SHA, quote=text[:text.index('Zihan Zhou') + 10], pi='Boris Hanin'),
+        dict(name='Theodor Chakhachiro', role='phd', years=[2024, 2024], alumni=False, url='https://h.example', sha256=SHA, quote=text[:text.index('Theodor Chakhachiro') + 19], pi='Boris Hanin'),
+        dict(name='Rachel Gologorsky', role=None, years=[2024, 2024], alumni=True, url='https://h.example', sha256=SHA, quote=text[:text.index('Rachel Gologorsky') + 17], pi='Boris Hanin'),
+        dict(name='Ross Cortino', role='masters', years=[2024, 2024], alumni=False, url='https://h.example', sha256=SHA, quote=text[:text.index('Ross Cortino') + 12], pi='Boris Hanin'),
+        dict(name='Gray Thomas', role='phd', years=[2023, 2023], alumni=False, url='https://h.example', sha256=SHA, quote=text[:text.index('Gray Thomas') + 11], pi='Boris Hanin'),
+        dict(name='Mengyan Wu', role='phd', years=[2025, 2025], alumni=False, url='https://h.example', sha256=SHA, quote=text[:text.index('Mengyan Wu') + 10], pi='Boris Hanin'),
+        dict(name='Zhengxu Tang', role='phd', years=[2024, 2024], alumni=False, url='https://h.example', sha256=SHA, quote=text[:text.index('Zhengxu Tang') + 12], pi='Boris Hanin'),
+        dict(name='Emma Treadway', role='undergraduate', years=[2025, 2025], alumni=False, url='https://h.example', sha256=SHA, quote=text[:text.index('Emma Treadway') + 13], pi='Boris Hanin')])))
+    db = sqlite3.connect(str(P.data_w('labpage-audit-captures.sqlite', 'x', root=tmp_path)))
+    db.execute('create table captures (id integer primary key, url text, sha256 text, content blob, fetched_at text)')
+    db.execute('insert into captures (url, sha256, content, fetched_at) values (?, ?, ?, ?)', ('https://h.example', SHA, gzip.compress(page.encode()), '2026-10-30T18:05:40+00:00'))
+    db.commit(); db.close()
+    papers = {'Boris Hanin': [paper('w1', 2025, ['Hanin, Boris', 'Zhou, Zihan', 'Chakhachiro, Theodor', 'Gologorsky, Rachel', 'Cortino, Ross', 'Thomas, Gray', 'Treadway, Emma', 'Wu, Mengyan', 'Tang, Zhengxu'])]}
+    out = CO.corroborated_rows('x', papers, {'Boris Hanin': []}, CO.open_capture_dbs('x', tmp_path), tmp_path, collections.Counter())
+    assert {r['name']: r['role'] for r, _ in out} == {'Zihan Zhou': 'masters', 'Theodor Chakhachiro': 'masters', 'Ross Cortino': 'phd', 'Zhengxu Tang': 'undergraduate'}   # no software developer (Wu), no medical student, no staff title after a degree (Gray Thomas), no role the section contradicts (Treadway)
