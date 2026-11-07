@@ -53,6 +53,9 @@ def entry(rec):
                students_page_status=(rec.get('students') or {}).get('page_status'),
                papers_page_status=(rec.get('papers') or {}).get('pubs_page_status'))
     gaps = []
+    if rec.get('website_review_needed'):
+        gaps.append('rejected_candidate_requires_search')
+        out['review_note'] = rec['website_review_needed']
     if not dated:
         gaps.append('no_dated_source_check')
     if urls.get('lab_site'):
@@ -99,6 +102,8 @@ def entry(rec):
         else:
             out['reason_type'] = 'search_no_eligible_site'
         out['reason_scope'] = 'Recorded search/access outcome; not proof no website exists.'
+    if gaps:
+        out['coverage'] = 'pending'
     out['evidence_gaps'] = gaps
     return out
 
@@ -109,21 +114,36 @@ def refresh_records(school, recs):
     kit = L.Kit(school)
     ctx = L.load_ctx(school, kit, plan=False)
     disc = L.read_discovery(school)
+    # New schools capture official profiles/landing pages through school_web.
+    # Reuse those bytes; importing the cache is not a new crawl or people review.
+    landing_urls = set()
+    for d in disc.values():
+        landing_urls.add((d.get('chosen') or {}).get('lab_site'))
+        landing_urls.update(c.get('url') for c in d.get('checks') or [] if c.get('source') == 'school_profile')
+    kit.import_school_web(str(P.data('school-captures.sqlite', school)), sorted(u for u in landing_urls if u))
     for p in ctx['pis']:
         if p['pi'] not in disc:
             continue
         # Discovery from older code may mistake a university profile for a lab.
         d = disc[p['pi']]
         chosen = (d.get('chosen') or {}).get('lab_site')
-        if chosen and L.is_profile(chosen, ctx['cfg']['domain']):
-            d = dict(d, chosen={})
+        review_needed = None
+        invalid = lambda u: L.is_profile(u, ctx['cfg']['domain']) or RESEARCH_OUTPUT_PATH.search(urlsplit(u).path)
+        if chosen and invalid(chosen):
+            verified = {c.get('url') for c in d.get('checks') or [] if c.get('source') == 'candidate_site' and c.get('result') in FOUND_RESULTS}
+            replacement = next((s for s in d.get('sites') or [] if s.get('url') in verified and not invalid(s['url'])), None)
+            if replacement:
+                d = dict(d, chosen={'lab_site': replacement['url'], 'other_school': replacement.get('other_school')})
+            else:
+                d = dict(d, chosen={})
+                review_needed = 'Selected URL was an institutional profile or research output; no eligible cached alternative. Further website search required.'
             disc[p['pi']] = d
         lp, _ = L.lab_record(kit, ctx, p, disc)
         old = recs.get(p['pi']) or {}
         # A new page needs its own review; an old page's audited status cannot
         # silently transfer to a different discovery target.
         same_pages = (old.get('lab_page') or {}).get('urls') == lp.get('urls')
-        recs[p['pi']] = dict(old, pi=p['pi'], lab_page=lp, audited_at=d.get('checked_at'),
+        recs[p['pi']] = dict(old, pi=p['pi'], lab_page=lp, audited_at=d.get('checked_at'), website_review_needed=review_needed,
                             students=(old.get('students') if same_pages else None) or {'page_status': 'pending_review'},
                             papers=(old.get('papers') if same_pages else None) or {'pubs_page_status': 'pending_review'})
     return recs
@@ -211,6 +231,8 @@ def gate(doc, expected_pis, require_official=True):
         if not r:
             bad.append(f'{pi}: website audit record missing')
             continue
+        if r.get('review_note'):
+            bad.append(f'{pi}: {r["review_note"]}')
         if r.get('reason_type') == 'pending_archive':
             bad.append(f'{pi}: website archive evidence pending')
         if not dated_checks(r.get('checks') or []):
