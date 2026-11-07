@@ -7,8 +7,8 @@ Stage 1 remains open. No waiver, census acceptance, release, landing, or push wa
 
 The raw evidence is in the shared data store
 `/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/school-captures.sqlite`.
-The branch's `reviewed/historical-source-review.json` records 18 official live-page receipts,
-20 reviewed historical facts, and seven previously saved exact-URL CDX results. Every fact
+The branch's `reviewed/historical-source-review.json` records 104 source receipts (101 unique
+URLs), 33 reviewed historical facts, and seven previously saved exact-URL CDX results. Every fact
 has a verbatim quote and a source carrying URL, raw-byte SHA-256, and capture time. The
 collector's stored `fetched_at` is local New York time; the receipt also gives an explicit UTC time.
 No contact details are copied into reviewed facts or fixtures.
@@ -26,6 +26,29 @@ The Fall 2018 seminar biography calls Mathias Unberath a postdoctoral fellow; th
 biography calls him an assistant research professor. Those observations must not become
 ladder appointments. An older three-arrival article lacks a visible publication date; its
 image upload directory is not accepted as a date.
+
+The continued review checked all 77 profiles linked from the current main CS roster: all
+served HTTP 200, and 31 profiles contained appointment-related candidate paragraphs. The
+review distinguishes navigation headlines and unrelated research dates from appointment
+statements. Simari's official retrospective specifies a senior-lecturer return in 2021;
+Sabnani's profile explicitly gives a 2022 arrival. Hovemeyer's and Madooei's September 2019
+announcement gives teaching/lecturer ranks and uses future tense, so it establishes an
+announcement rather than a precise appointment day. A July 2023 article names Unberath as
+an assistant professor, without settling when his research appointment changed to ladder rank.
+
+Chien-Ming Huang's own CV, updated April 23, 2026, explicitly gives assistant-professor rank
+in 2017–2025 and associate-professor rank from 2026. Its raw PDF is preserved with SHA-256
+`ffab73bf4988a9871dbf953811883a98669c67c03491ff85427670f51fd16bcb`; the appointment quotes
+were extracted with `pdftotext -layout` and whitespace collapsed. These are rank changes,
+not a 2025 departure.
+
+Departure checks reused Ryan Huang's already-saved May 11, 2026 own-page capture from the
+Michigan evidence store, copying the exact bytes and original metadata into JHU's capture
+store with no network request. It explicitly gives JHU assistant-professor service in
+2017–2022. Permitted official Boston University pages independently give Archana
+Venkataraman's JHU service in 2016–2022 and BU arrival in January 2023. Jennifer Rexford's
+Princeton alumni history gives Xin Jin's JHU arrival in fall 2017 and later Peking appointment
+in 2021; it does not establish an exact JHU end date.
 
 ## Parser and charter changes
 
@@ -59,6 +82,8 @@ No archive request was made by this branch while the shared cooldown was active.
 `32136252` owns the round-robin discovery queue under project scratch
 `completion-20261106-onboarding/`; its scheduled start was November 6 at 23:22:21 New York time.
 The coordinator must reconcile the host-throttle state before further archive work.
+At 22:36 New York time the coordinator reported the next eligibility had moved to 23:55:51;
+the existing driver will recheck and rearm. No additional driver was started.
 
 Cached exact-CDX evidence proves only these URL discoveries:
 
@@ -77,6 +102,8 @@ explicitly disallows `/archive/` for `User-agent: *`. The historical archive was
 A permitted current CS catalogue page was checked and contains no faculty roster. No archive
 or alternate client was used to work around the disallow. Other JHU challenge blocks and
 named-AI robots exclusions remain in force.
+The CS newsletter index links historical Mailchimp editions, but `mailchi.mp/robots.txt`
+explicitly disallows `/` for `User-agent: *`; no newsletter body was fetched there.
 
 ## Validation and remaining work
 
