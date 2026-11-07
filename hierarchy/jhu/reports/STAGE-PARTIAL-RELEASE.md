@@ -166,3 +166,41 @@ yield gaps and no non-availability evidence failures. The offline ledger remains
 found-not-in-catalog and 555 incomplete checks. Exact comparison and gate artifacts are
 project scratch `jhu-canonical-equivalence-59ddf03.json` and `jhu-canonical-gates-59ddf03.json`.
 A later formal-release sample may be rechecked against these accepted canonical claims.
+
+## Final stable-ID and copies binding
+
+After final global IDs and all offline ledgers completed, the coordinator authorized
+measurement binding against stable canonical packages on main `c236469`. The baseline is
+project scratch `release-expansion-20261107/before-final-ids-32138566/jhu`. A read-only
+comparison verified that every pre-existing scientific claim and evidence field remains
+identical. The only package additions are Atlas metadata: 91 PI person/lab IDs and
+appointment/as-student fields, 37 student person IDs, 1,483 paper work IDs, and the three
+corresponding ID references on each of 106 student links. No pre-existing ID was replaced.
+
+All 127 person IDs, 91 lab IDs and 1,402 unique work IDs were checked active in the read-only
+registry, and every link's person/work/lab IDs agree with its actual source records. The
+sole cross-school PI appointment added to the JHU records is Anand Bhattad at JHU/UChicago;
+both records share DBLP `215/4305` and the same Atlas person ID. Scientific appointment
+periods, paper eligibility, student relations and their quotes/hashes were not changed.
+Copy claims remain identical except for the measured count and ledger timestamps; the
+ledger remains 847 found-not-in-catalog and 555 incomplete checks, with zero local copies.
+
+Only after the coordinator's data-stability signal, standard sampling and summarizing tools
+bound the five final package hashes. The full sampled populations, indices, keys, strata,
+coverage records and candidate order exactly match the accepted review. All 90 judgment
+records are byte-identical to the preserved accepted verdict file. Precision remains
+25/25 uniform lab papers and 25/25 uniform student links; judged coverage remains 12/13,
+with its one missing and two unclear cases retained. Final schema validation checks 18
+files with zero violations. Build-time scientific/evidence failures are zero; only the
+measured 555 incomplete availability checks remain.
+
+The final read-only quality tail was still pending when this binding was prepared. Its
+released-status transition exposed a separate chain-audit guard: stage seven currently
+reports 13 unexplained zero-paper labs because that guard skips the eight explicitly
+reviewed collection reasons and five explicit identity holds once status is released.
+The coordinator owns the generic fix to retain those explicit reasons, without enabling
+inferred census reasons for legacy released schools, and will rerun chain audit and gates.
+No exception was added to hide that finding. This commit changes only JHU accuracy hashes
+and this report; it performs no package rebuild or write, judgment edit, or status change.
+Read-only proof and gate snapshots are project scratch
+`jhu-final-id-equivalence-32138566.json` and `jhu-final-id-gates-32138566.json`.
