@@ -148,3 +148,31 @@ def test_school_page_sidecar_is_a_recorded_input(tmp_path, monkeypatch):
     assert inputs[str(local)]['sha256'] == hashlib.sha256(local.read_bytes()).hexdigest()
     local.write_bytes(b'corrected local page source')
     assert provenance.school_inputs('oxford')[str(local)]['sha256'] != inputs[str(local)]['sha256']
+
+
+@pytest.mark.parametrize('shared_exists', [False, True])
+def test_school_persons_reach_page_filter_without_polluting_shared_cache(tmp_path, monkeypatch, shared_exists):
+    import gzip, json
+    from types import SimpleNamespace
+    from pihier import identity
+    monkeypatch.setattr(identity.P, 'archive_sweep', lambda school: tmp_path / 'archive')
+    shared = {'persons': {'other': {'names': ['Other Person'], 'pubs': []}}, 'by_name': {'other person': ['other']}}
+    monkeypatch.setattr(identity, 'DUMP_PERSONS', shared if shared_exists else None)
+    own = {'persons': {'pi': {'names': ['Alice Smith'], 'pubs': [
+        {'key': 'journals/expert/MichalakW17', 'title': 'AI and Economics.', 'year': 2017, 'authors': [['Alice Smith'], ['B']], 'dois': ['10.1109/mis.2017.10']}
+    ]}}, 'by_name': {'alice smith': ['pi']}}
+    def put(name, content, school=None):
+        p = identity.P.data_w(name, school, root=tmp_path)
+        p.write_bytes(gzip.compress(json.dumps(content).encode()))
+    if shared_exists:
+        put('dblp-dump-persons.json.gz', shared)
+    put('dblp-dump-persons-school.json.gz', own, 'oxford')
+    put('dblp-dump-pages-school.json.gz', {'pages': {'journals/expert/MichalakW17': '5-7'}}, 'oxford')
+    pi = dict(pi='P', names=['Alice Smith'], dblp=['pi'], personIds=[], orcid=[])
+    ctx = SimpleNamespace(here=tmp_path, school='oxford', pis=[pi], pls={}, stu={'P': {}}, n=collections.Counter())
+    identity.anchors(ctx)
+    papers.venue_tables(ctx)
+    assert ctx.dblp_pages['doi']['P']['10.1109/mis.2017.10'] == (3, False)
+    assert ctx.dblp_nauth['P'][papers.norm_title('AI and Economics')] == 2
+    assert identity.DUMP_PERSONS == (shared if shared_exists else None)
+    assert 'pi' not in shared['persons']
