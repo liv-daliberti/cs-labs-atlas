@@ -47,3 +47,21 @@ The original 30-of-67 identity sample is now independently corroborated 30/30. E
 Final sample artifact: `scratch/top25-resume-1107/oxford-identity-sample-reviewed.json`, SHA-256 `635aa09001ec40224e97eb73a88bed988fa926620634850e636d0604550fd6e1`. Original proposal and unfinished review files remain preserved.
 
 The next paper-only rebuild (`32142873`, pinned `d452f70`) produced 757 PI-paper rows across 55 labs: one dataset deposit and four explicit abstract reprints are excluded. The third deterministic sample has 29 metadata-supported rows and one item held for page/type evidence, “AI and Economics” (DOI 10.1109/MIS.2017.10; DBLP key journals/expert/MichalakW17). The builder currently has zero page-count title signals for Oxford because the older extractor only processes the shared DBLP person set. A school-local page-range extraction and merged read are needed to apply the existing short-magazine/abstract rules. This is not a new title exclusion. The third sample is preserved in `scratch/top25-resume-1107/oxford-paper-sample-after-two-fixes.json`; no stage-7 pass is claimed.
+
+## School-local metadata handoff and fresh paper review
+
+The local DBLP page extraction (`32143058`) recovered 6,794 page ranges for 10,241 wanted records, including actual pages 5–7 for “AI and Economics.” The first rebuild still had zero page signals because identity loading merged local persons only into a temporary variable, while the paper stage read the shared process cache. The corrected handoff carries merged persons on the per-school build context and leaves the shared cache untouched. Integration regressions cover local-only and shared-plus-local inputs; genuine short conference and Nature research remains accepted by the existing rules.
+
+The corrected paper-only rebuild `32143082`, pinned to `7a2e07e`, completed in 80 seconds using 5,025,032 KB maximum RSS (one requested CPU, 8 GB, 59-minute cap; no-preemption test-only passed). The builder now has 6,681 page-title signals, five column exclusions, and 152 venue-version dating signals. It produces 757 PI-paper rows for 708 unique works across 55 of 71 labs; students remain zero. The unchanged row count conceals changed membership/dates and is not evidence the outputs are unchanged.
+
+A fresh deterministic 30-row sample (seed 20261107) was manually read against matching author ORCIDs, explicit Oxford affiliations, source-bound current listings or reviewed periods, title/type/venue metadata, and local DBLP page evidence where available. All 30 are supported at this metadata-review level. “VeriNet” is a six-page proceedings paper despite its missing OpenAlex venue; the ICALP k-server paper is a genuine 20-page proceedings record despite its generic repository venue. The 2022 online-first / 2024 DBLP volume-year difference for the activity-recognition article lies within its reviewed appointment and retains the existing earliest-publication rule. Fulltext authorship was not independently inspected. Prior failed and held samples remain unchanged.
+
+Final bindings:
+
+- lab_papers SHA-256: `c799c3965abd19bdfffb6ea90d74d4f0c41fb7b24fb1d1a72f154153dd78f123`.
+- pis SHA-256: `e7084efee92bd40467f1fb3c40060537e0d1d2ca42931f35ba813ed974f2044c`.
+- Local page sidecar SHA-256: `88e5092ce4bc1a7e21220d2b3a0635f3791b23875ea18c19913d68b5d7e89190`.
+- Fresh sample: `scratch/top25-resume-1107/oxford-paper-sample-with-pages.json`, SHA-256 `34673edf09db2a22948fa8b0a110b36aa9936f6ea66b0317484a0302f94826d8`.
+- Build report SHA-256: `6c9512cb55cdac16dace50dff82aeb120fd7e5200d894eab95e594faea9b3623`.
+
+The bounded identity sample (30/30) and fresh paper metadata sample (30/30) are now closed. They do not pass complete Oxford stages 3–5 or 7: historical listing coverage, 48 website gaps, remaining appointment boundaries, four unresolved proposed identities, outside-CS scope/identity review, and the full paper/chain gates remain open. Next work should address those explicit gaps; no new raw dump, API spend, or student extraction is needed to repeat this build.
