@@ -1,0 +1,149 @@
+{
+ "school": "jhu",
+ "date": "2026-11-07",
+ "seed": 20261029,
+ "n_verdicts": 90,
+ "files": {
+  "pis.json": "de74dde49487b2ce8878fa57edb15aae83977407234c51973eb8dd27b54f52f5",
+  "students.json": "e8fe1ece48e7d1927a6caa61081baa2a8b208bb45aea2c62e99fa8d2121e80bd",
+  "lab_papers.jsonl.gz": "26a02389db75438ee75b342e194c924a548fd1a77079d70ca7cda7762a63814c",
+  "student_papers.jsonl.gz": "87900b3309cca2897655571236ad25791e8df7bd3891aa80d780d48f4c46dad2",
+  "copies.json": "18bedfe598c8a3e054f7201ccf289a596b3d69d88c27ad1f88a30fbd11dd1ff1"
+ },
+ "files_now": {
+  "pis.json": "de74dde49487b2ce8878fa57edb15aae83977407234c51973eb8dd27b54f52f5",
+  "students.json": "e8fe1ece48e7d1927a6caa61081baa2a8b208bb45aea2c62e99fa8d2121e80bd",
+  "lab_papers.jsonl.gz": "26a02389db75438ee75b342e194c924a548fd1a77079d70ca7cda7762a63814c",
+  "student_papers.jsonl.gz": "87900b3309cca2897655571236ad25791e8df7bd3891aa80d780d48f4c46dad2",
+  "copies.json": "18bedfe598c8a3e054f7201ccf289a596b3d69d88c27ad1f88a30fbd11dd1ff1"
+ },
+ "lab_precision_uniform": {
+  "k": 25,
+  "n": 25,
+  "p": 1.0,
+  "lo": 0.8668,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 25,
+  "n": 25,
+  "p": 1.0,
+  "lo": 0.8668,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "unclear": 0
+  },
+  "listing": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "identity_not_reviewed": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "lab_precision_all40": {
+  "k": 35,
+  "n": 35,
+  "p": 1.0,
+  "lo": 0.9011,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "student_precision_uniform": {
+  "k": 25,
+  "n": 25,
+  "p": 1.0,
+  "lo": 0.8668,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "student_precision_strata": {
+  "advisee_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "fill_uniform": {
+   "k": 10,
+   "n": 10,
+   "p": 1.0,
+   "lo": 0.7225,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "student_precision_all40": {
+  "k": 40,
+  "n": 40,
+  "p": 1.0,
+  "lo": 0.9124,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_coverage": {
+  "k": 12,
+  "n": 13,
+  "p": 0.9231,
+  "lo": 0.6669,
+  "hi": 0.9863
+ },
+ "lab_coverage_items": {
+  "drawn": 15,
+  "true_lab_papers": 13,
+  "not_lab_papers_absent": 0,
+  "not_lab_papers_in_build": 0
+ },
+ "student_coverage": null,
+ "student_coverage_items": {
+  "drawn": 0,
+  "no_coauthored_paper": 0
+ },
+ "failures": {
+  "missing_from_build": 1
+ },
+ "incorrect": [
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Alan Yuille|conf/icip/WangXLTRHQCY17",
+   "failure_type": "missing_from_build",
+   "reason": "True lab paper under R-PAP-25: anchored Alan L. Yuille names his own Department of Computer Science in Baltimore; coauthor Harry Quon explicitly names Johns Hopkins University on the same byline. Reviewed 2016 faculty start covers 2017. DOI/title are absent from the package.",
+   "policy": null
+  }
+ ],
+ "unclear": [
+  {
+   "sample": "lab_coverage",
+   "item": "Alan Yuille|conf/cogsci/ZhuTYPP19",
+   "reason": "DBLP identity and 2019 appointment match, but saved raw authorship gives Alan Yuille no affiliation. No cached primary byline tying his name to JHU was reviewed; school coauthor alone does not settle this."
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Tinoosh Mohsenin|journals/tecs/NavardiGWCM26",
+   "reason": "DBLP dates the journal issue 2026, whereas saved OpenAlex dates the article 2025-09-05. PI affiliation names JHU, but this partial package only proves a 2026 faculty listing and no earlier appointment. Eligibility for its supported time window remains unresolved."
+  }
+ ],
+ "screened": [],
+ "population": {
+  "n_lab_papers": 1483,
+  "n_student_papers": 106,
+  "n_coverage_pool": 822,
+  "n_student_candidates": 0
+ }
+}
