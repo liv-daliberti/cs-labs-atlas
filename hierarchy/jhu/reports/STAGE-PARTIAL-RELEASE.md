@@ -83,13 +83,13 @@ candidates under the current sample protocol; student coverage is unmeasured.
 
 The pre-ledger draw was retained in project scratch. After ledger attachment, the draw was
 bound to final copies hashes and all sample keys and populations were verified unchanged.
-A canonical rebuild must revalidate those same reviewed keys before rebinding any changed
-package hashes. Overlay Git symlinks can produce a misleading dirty provenance flag; no
-report flag was manually cleared.
+The canonical rebuild below revalidated those same reviewed keys before rebinding the
+changed copies hash. Overlay Git symlinks had produced a misleading dirty provenance flag;
+no report flag was manually cleared.
 
 ## Availability and visible remaining work
 
-The offline ledger completed at `2026-11-07T05:44:15.342411+00:00`: 1,402 unique non-local
+The offline ledger completed at `2026-11-07T05:54:15.371676+00:00`: 1,402 unique non-local
 papers comprise **847 found_not_in_catalog** and **555 incomplete_check**. Local copies are
 zero. These are cached-source measurements, not exhausted searches. Missing or unperformed
 checks remain explicit; no archive or API requests were used for the package/ledger run.
@@ -136,3 +136,33 @@ checks preserved. Accuracy sample/verdict/summary files are committed separately
 and generated package artifacts. Thirty-seven focused accuracy, stage-gate and live-listing regression checks pass.
 The coordinator will rebuild canonically and run the
 release-wide checks before making any status or publication decision.
+
+## Canonical revalidation at integrated main
+
+Job `32138386` ran build, copies and the offline ledger pinned to
+`59ddf0368d70b0bb3ccb5bb5cafc0d4201147cb2`, with every data slot explicitly pointing to the
+canonical checkout. Slurm preflight passed without preemption; the job used two CPUs, a
+16 GB memory limit, a 59-minute limit and the four required node exclusions. It completed
+in 1m44s with 5,563,948 KiB maximum RSS. No XML scan or network stage ran.
+
+Before the job, all five accepted core hashes matched the committed accuracy summary and
+were retained in project scratch `jhu-accepted-before-canonical-59ddf03`. After the job,
+`pis.json`, `students.json`, `lab_papers.jsonl.gz` and `student_papers.jsonl.gz` were byte
+identical to those accepted files: every claim and evidence field is unchanged. Copies
+claims and reason distributions are identical after excluding only `summary.counted_at`
+and `summary.ledger_built_at`. The report changed only build time and provenance: canonical
+paths, the integrated commit and reviewed-input hashes. Its code provenance now records
+that exact commit, `snapshot: true`, `dirty: false`, and empty dirty-path lists. Main's
+tracked checkout remained clean.
+
+Only after that comparison, standard `accuracy/sample.py --school jhu` regenerated the
+measurement and its entire school population, indices, keys, strata, coverage records and
+candidate order were checked equal to the accepted draw. All 90 existing verdict keys
+remain valid; no judgment was edited. Standard `accuracy/summarize.py --school jhu` rebound
+the copies timestamp hash and retains 25/25 uniform lab precision, 25/25 uniform student
+precision and 12/13 judged lab coverage, with one missing and two unclear coverage cases.
+Schema validation again has zero violations; there are no unmatched gate findings, no
+yield gaps and no non-availability evidence failures. The offline ledger remains 847
+found-not-in-catalog and 555 incomplete checks. Exact comparison and gate artifacts are
+project scratch `jhu-canonical-equivalence-59ddf03.json` and `jhu-canonical-gates-59ddf03.json`.
+A later formal-release sample may be rechecked against these accepted canonical claims.
