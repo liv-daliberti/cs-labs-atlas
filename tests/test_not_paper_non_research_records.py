@@ -104,3 +104,11 @@ def test_named_repository_dataset_with_venue_is_not_a_paper():
     assert papers.not_a_paper(row(title, venue='Scientific Data', doi='10.1038/s41597-1')) is None
     assert papers.not_a_paper(row(title, venue='Scientific Data', doi='10.5281/zenodo.7863342')) is None
     assert papers.not_a_paper(row('Learning from datasets', venue='Zenodo', doi='10.5281/zenodo.9')) is None
+
+
+def test_explicit_abstract_reprint_is_not_the_full_research_paper():
+    title = 'Learning to Resolve Social Dilemmas: A Survey (Abstract Reprint)'
+    assert papers.not_a_paper(row(title, typ='conference-abstract', venue=None, doi='10.24963/ijcai.2024/949')) == 'conference_abstract'
+    assert papers.not_a_paper(row(title, typ='article', venue='IJCAI')) == 'conference_abstract'
+    assert papers.not_a_paper(row('Learning to Resolve Social Dilemmas: A Survey', typ='article', venue='JAIR')) is None
+    assert papers.not_a_paper(row('Abstract Reprint Detection using Language Models', venue='ACL')) is None
