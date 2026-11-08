@@ -590,6 +590,10 @@ The build's report: counters, exclusions, samples of what the rules dropped, and
 | `primaryPDFAffiliationReviews[].status` | string | yes |  | one of `accepted`, `held`, `not_requested` |  |
 | `primaryPDFAffiliationReviews[].work` | string | no |  |  |  |
 | `primaryPDFAffiliationReviews[].reason` | string | no |  |  |  |
+| `recoverySourceReview` | object | no | Optional exact recovery/PID/publisher proof input and per-source projected or held outcomes; complete original/projected observations retained, ordinary downstream admission gates still apply. | no other keys |  |
+| `recoverySourceReview.path` | string | yes |  |  |  |
+| `recoverySourceReview.sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `recoverySourceReview.decisions` | array of object | yes |  |  |  |
 
 ## `hierarchy/<school>/student_papers.jsonl.gz`
 

@@ -108,6 +108,9 @@ def test_review_input_uses_standard_path_and_hash_bound_report(tmp_path):
     assert R.project(ctx, p, c['source'], 'dblp')['year'] == 2019
     assert ctx.recovery_source_review['path'] == str(path)
     assert len(ctx.recovery_source_review['sha256']) == 64
+    import schema_check as S
+    schema = json.loads((FIXTURE.parents[2] / 'schemas/report.schema.json').read_text())
+    assert S.validate(ctx.recovery_source_review, schema['properties']['recoverySourceReview']) == []
 
 
 @pytest.mark.parametrize('fault', [None, 'appointment', 'window', 'identity_owner', 'nonpaper_pages'])

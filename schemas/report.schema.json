@@ -1267,6 +1267,31 @@
      "status"
     ]
    }
+  },
+  "recoverySourceReview": {
+   "description": "Optional exact recovery/PID/publisher proof input and per-source projected or held outcomes; complete original/projected observations retained, ordinary downstream admission gates still apply.",
+   "type": "object",
+   "required": [
+    "path",
+    "sha256",
+    "decisions"
+   ],
+   "properties": {
+    "path": {
+     "type": "string"
+    },
+    "sha256": {
+     "type": "string",
+     "pattern": "^[0-9a-f]{64}$"
+    },
+    "decisions": {
+     "type": "array",
+     "items": {
+      "type": "object"
+     }
+    }
+   },
+   "additionalProperties": false
   }
  },
  "required": [
