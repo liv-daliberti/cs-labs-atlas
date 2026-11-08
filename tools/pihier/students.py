@@ -597,7 +597,7 @@ def corrections(ctx, stu):
     corr = read(corr_f) if corr_f.exists() else []
     def check_preimage(decision, member):
         expected = decision.get('expected_member_sha256')
-        if expected is None:
+        if 'expected_member_sha256' not in decision:
             return
         if not isinstance(expected, str) or not re.fullmatch(r'[0-9a-f]{64}', expected):
             raise ValueError('student correction needs a valid expected_member_sha256')
@@ -610,7 +610,7 @@ def corrections(ctx, stu):
 
     # Validate all applicable guards before any correction, and recheck immediately before use.
     for decision in corr:
-        if decision.get('expected_member_sha256') is None or decision.get('school') != school:
+        if 'expected_member_sha256' not in decision or decision.get('school') != school:
             continue
         group = stu.get(decision.get('pi')) or {}
         member = next((r for key, r in group.items()

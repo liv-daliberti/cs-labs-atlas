@@ -84,10 +84,11 @@ def test_legacy_unconditional_correction_keeps_existing_contract(tmp_path):
     assert apply(tmp_path, stu, [d]).n['student_corrections_drop'] == 1
 
 
-def test_malformed_applicable_guard_holds(tmp_path):
+@pytest.mark.parametrize('invalid', ['bad', None, 0, ''])
+def test_malformed_applicable_guard_holds(tmp_path, invalid):
     row = member()
     d = decision(row)
-    d['expected_member_sha256'] = 'bad'
+    d['expected_member_sha256'] = invalid
     stu = {'One PI': {row['person']: copy.deepcopy(row)}}
     with pytest.raises(ValueError, match='valid expected_member_sha256'):
         apply(tmp_path, stu, [d])
