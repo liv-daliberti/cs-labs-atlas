@@ -172,6 +172,7 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `labpage-pubs-report.json` | derived | `hierarchy/{school}/labpage-pubs-report.json` | `hierarchy/{school}/derived/labpage-pubs-report.json` | - | <100MB |
 | `labpage-audit-summary-school.json` | derived | `hierarchy/{school}/labpage-audit-summary-school.json` | `hierarchy/{school}/derived/labpage-audit-summary-school.json` | - | <100MB |
 | `lab-websites.json` | reviewed | `hierarchy/{school}/lab-websites.json` | `hierarchy/{school}/reviewed/lab-websites.json` | - | <10MB |
+| `person-websites.json` | reviewed | `hierarchy/{school}/person-websites.json` | `hierarchy/{school}/reviewed/person-websites.json` | - | <10MB |
 | `labpage-audit.jsonl.gz` | derived | `hierarchy/{school}/labpage-audit.jsonl.gz` | `hierarchy/{school}/derived/labpage-audit.jsonl.gz` | - | <100MB |
 | `labpage-audit-discovery.jsonl` | raw | `hierarchy/{school}/labpage-audit-discovery.jsonl` | `hierarchy/{school}/raw/labpage-audit-discovery.jsonl` | - | <100MB |
 | `labpage-audit-recover` | work | `hierarchy/{school}/labpage-audit-recover` | `hierarchy/{school}/work/labpage-audit-recover` | - | <100MB |

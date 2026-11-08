@@ -8,6 +8,7 @@ import argparse
 import gzip
 import json
 import re
+import sqlite3
 import sys
 import unicodedata
 import zlib
@@ -422,6 +423,43 @@ def enrich_official_links(school, doc):
                     break
     return doc
 
+def stored_captures(school, urls):
+    """{url: (sha256, fetched_at, text)} for stored 200 captures of exactly these URLs (lab-page audit stores; no network)."""
+    out = {}
+    for name in ('labpage-audit-captures.sqlite', 'labpage-captures.sqlite'):
+        path = P.data(name, school)
+        if not path.exists():
+            continue
+        con = sqlite3.connect(f'file:{path}?mode=ro', uri=True)
+        for url, sha, at, blob in con.execute("select url, sha256, fetched_at, content from captures where status=200 and sha256 is not null and content is not null"):
+            if url in urls and url not in out:
+                try:
+                    blob = zlib.decompress(blob)
+                except zlib.error:
+                    pass
+                out[url] = (sha, at, blob.decode('utf-8', 'replace'))
+    return out
+
+
+def attach_stored_captures(school, doc):
+    """A prior-pass site with no hash gets one from a stored capture of that exact page, when the page names the PI."""
+    def fold(t):
+        return re.sub(r'[^a-z ]+', ' ', unicodedata.normalize('NFKD', t or '').encode('ascii', 'ignore').decode().lower())
+    todo = [r for r in doc['labs'] if 'page_capture_hash_missing' in (r.get('evidence_gaps') or []) and r.get('url')]
+    caps = stored_captures(school, {r['url'] for r in todo})
+    for r in todo:
+        got = caps.get(r['url'])
+        toks = fold(r['pi']).split()
+        if not got or not toks or toks[-1] not in fold(got[2]) or toks[0] not in fold(got[2]):
+            continue
+        r['sha256'], r['capture_fetched_at'] = got[0], got[1]
+        r['evidence'] = dict(r.get('evidence') or {}, url=r['url'], sha256=got[0], source='stored_capture')
+        r['evidence_gaps'] = [g for g in r['evidence_gaps'] if g != 'page_capture_hash_missing']
+        if not r['evidence_gaps']:
+            r['coverage'] = 'website'
+    return doc
+
+
 def gate(doc, expected_pis, require_official=True):
     """Check persisted records independently of their precomputed coverage label."""
     rows = {r['pi']: r for r in doc.get('labs', [])}
@@ -477,7 +515,7 @@ def main():
                 pis = json.loads(P.data('pis.json', s).read_text())
                 doc = preserve_reviewed_entries(previous, doc, aliases={p['pi']: p.get('names', []) for p in pis})
         if a.enrich_official_links or a.cmd == 'enrich':
-            doc = enrich_official_links(s, doc)
+            doc = enrich_official_links(s, attach_stored_captures(s, doc))
         summary = counts(doc)
         if a.cmd in ('build', 'enrich'):
             out = Path(a.out) if a.out else P.data_w('lab-websites.json', s)
