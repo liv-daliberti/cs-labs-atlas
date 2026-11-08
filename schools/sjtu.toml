@@ -15,9 +15,9 @@ window = [2016, 2026]
 # Pending inherited-child/shared-center/hospital scope is not silently accepted or provisionally excluded.
 openalex = ["I183067930"]
 openalex_related = []
-openalex_excluded = ["I87445476"] # Actual1959independence guard only. XJTLU and all unresolved children stay policy-held.
+openalex_excluded = ["I87445476", "I69356397"] # Source-proved distinct universities; independent explicit SJTU dual evidence remains.
 ror = "https://ror.org/0220qvk04"
-ids_note = "Local2026-10-14 institution record original compressed-body SHA84031a1223a51e6fb4e836a2f571e514a82807ef66e9d8906a78918e64432813 binds Shanghai Jiao Tong University/I183067930/recordedROR0220qvk04/homepage www.sjtu.edu.cn. This is not independent ROR relationship verification. The official SJTU introduction explicitly proves the1959independent Shanghai/Xi'an establishments; localI87445476 names Xi'an Jiaotong University. Its exact source-backed guard is active. XJTLUI69356397 has a separate local self-lineage but its legal/campus scope remains unreviewed and is not resolved by this charter. No genuine SJTU campus is excluded. All inherited-child/hospital/shared-center and joint-unit scope decisions remain PENDING before any sweep/native scientific attribution. Related expansion is empty. Original bodies and policy holds: scratch/sjtu-first-chain-1108."
+ids_note = "Local2026-10-14 institution record original compressed-body SHA84031a1223a51e6fb4e836a2f571e514a82807ef66e9d8906a78918e64432813 binds Shanghai Jiao Tong University/I183067930/recordedROR0220qvk04/homepage www.sjtu.edu.cn. This is not independent ROR relationship verification. The official SJTU introduction explicitly proves the1959independent Shanghai/Xi'an establishments; localI87445476 names Xi'an Jiaotong University. Its exact source-backed guard is active. XJTLUI69356397 is a distinct self-named university: its exact owned overview source https://www.xjtlu.edu.cn/zh/about/overview SHA256f98fca57d4aa0e0e0056cc4982627e879e06e51f8791654ae78887f62b256e1e explicitly names founders Xi'an Jiaotong University and University of Liverpool and its own Suzhou/Taicang locations. Its exact ID/raw-name guard preserves independent explicit SJTU dual affiliations. No geography-only or other-child exclusion is added. No genuine SJTU campus is excluded. All inherited-child/hospital/shared-center and joint-unit scope decisions remain PENDING before any sweep/native scientific attribution. Related expansion is empty. Original bodies and policy holds: scratch/sjtu-first-chain-1108."
 [web]
 # Every explicit configured host is closed. Native host_use has an unlisted-host live default;
 # this charter is NOT acquisition-ready. No runner/sweep/native until complete host and lineage review.
@@ -28,11 +28,11 @@ excluded_hosts = []
 [affiliation]
 regex = '\bshanghai\s*jiao\s*-?\s*tong\s+university\b|上海交通大学|(?<![a-z0-9.-])(?:[a-z0-9-]+\.)*sjtu\.edu\.cn(?![a-z0-9.-])'
 loose = '\bshanghai\s*jiao\s*-?\s*tong\b|上海交通大学|\bsjtu\b(?!\.)|(?<![a-z0-9.-])(?:[a-z0-9-]+\.)*sjtu\.edu\.cn(?![a-z0-9.-])'
-# Xi'an only: actual1959separation plus exact local modern institution identity.
-# XJTLU remains a policy hold, not an asserted native ID/campus exclusion.
-excluded_regex = '\bxi[’\x27-]?\s*an\s+jiao\s*tong\s+university\b|西安交通大学'
+# Xi'an: actual1959separation. XJTLU: literal owned overview names distinct founders/university and own campuses.
+# XJTLU exact named-university guard proposed from owned overview; no blanket Suzhou/Taicang/geographic exclusion.
+excluded_regex = '\bxi[’\x27-]?\s*an\s+jiao\s*tong\s+university\b|西安交通大学|\bxi[’\x27]an\s+jiaotong-liverpool\s+university\b|\bxjtlu\b|西交利物浦大学'
 own_units = ''
-must_match = ["Shanghai Jiao Tong University", "Shanghai Jiaotong University", "Shanghai Jiao-Tong University", "上海交通大学计算机学院", "Department of Computer Science and Engineering, Shanghai Jiao Tong University", "person@cs.sjtu.edu.cn", "https://www.sjtu.edu.cn", "Xi'an Jiaotong University and Shanghai Jiao Tong University", "西安交通大学与上海交通大学", "上海交通大学徐汇校区", "上海交通大学闵行校区", "上海交通大学黄浦校区", "上海交通大学长宁校区", "上海交通大学浦东校区", "上海交通大学崇明校区"]
+must_match = ["Shanghai Jiao Tong University", "Shanghai Jiaotong University", "Shanghai Jiao-Tong University", "上海交通大学计算机学院", "Department of Computer Science and Engineering, Shanghai Jiao Tong University", "person@cs.sjtu.edu.cn", "https://www.sjtu.edu.cn", "Xi'an Jiaotong University and Shanghai Jiao Tong University", "西安交通大学与上海交通大学", "上海交通大学徐汇校区", "上海交通大学闵行校区", "上海交通大学黄浦校区", "上海交通大学长宁校区", "上海交通大学浦东校区", "上海交通大学崇明校区", "西交利物浦大学与上海交通大学", "Xi'an Jiaotong-Liverpool University and Shanghai Jiao Tong University"]
 must_not_match = ["Xi'an Jiaotong University", "Xi’an Jiao Tong University", "西安交通大学", "Xi’an Jiaotong-Liverpool University", "西交利物浦大学", "XJTLU", "person@xjtu.edu.cn", "person@xjtlu.edu.cn", "Beijing Jiaotong University", "Southwest Jiaotong University", "Shanghai University", "person@sjtu.edu.cn.example.org", "person@not-sjtu.edu.cn", "person@fakesjtu.edu.cn", "上海财经大学", "上海理工大学"]
 [dblp]
 affiliation_strings = ["Shanghai Jiao Tong University", "Shanghai Jiaotong University"]
