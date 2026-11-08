@@ -22,3 +22,16 @@ def test_paper_table_shares_and_usable_rule():
     assert t.loc['a', 'abstained_share_main'] == pytest.approx(1 / 4)
     assert pd.isna(t.loc['b', 'ai_share_main']) and pd.isna(t.loc['b', 'ai_share_main_appendix'])
     assert not t['trained_on_v3'].any() and t.loc['a', 'home_school'] == 'jhu'
+
+
+def test_load_emb_keeps_the_earlier_vector_for_a_duplicated_id(tmp_path):
+    import numpy as np
+    import study_analyze as A
+    snap = tmp_path
+    for root, vec in (('embeddings', [1.0, 0.0]), ('delta/embeddings', [0.0, 1.0])):
+        d = snap / root / 'm' / 'cmu'
+        d.mkdir(parents=True)
+        ids = np.array(['a', 'b']) if root == 'embeddings' else np.array(['b', 'c'])
+        np.savez(d / 'abstract.npz', ids=ids, M=np.array([[1.0, 0.0], vec if root == 'embeddings' else [0.0, 1.0]], np.float16))
+    rows, X = A.load_emb(snap, 'm', np.array(['a', 'b', 'c', 'zzz']))
+    assert list(rows) == [0, 1, 2] and X.shape == (3, 2)

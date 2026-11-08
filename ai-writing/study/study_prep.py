@@ -88,6 +88,7 @@ def build(snap, out):
         sc = sc.set_index('paper_id')
         sc.loc[upd.index, ft_cols] = upd
         sc = pd.concat([sc.reset_index(), fresh], ignore_index=True)
+        sc['appendix_found'] = pd.to_numeric(sc['appendix_found'].astype(float), errors='coerce')     # bool in one table, float in the other
         pan_delta = set(new['paper_id'])
         ch = snap / 'delta' / 'copies_held.parquet'
         if ch.exists():
@@ -100,6 +101,7 @@ def build(snap, out):
     pan['held'] = pan['k'].map(held.set_index('k')['has_copy']).fillna(False).astype(bool) if held is not None else pan['ai_share_main'].notna()
     pan['delta'] = pan['paper_id'].isin(pan_delta) if pan_delta else False
     pan['has_ft'] = pan['ai_share_main'].notna()
+    pan['held'] = pan['held'] | pan['has_ft']          # a scored paper is held, whichever school's store the copy came from
     pan['trained_on_v3'] = pan['trained_on_v3'].fillna(False).astype(bool)
     pan['llm_text'] = pan['llm_text'].fillna(False).astype(bool)
     pan['has_abs'] = pan['has_abs'].fillna(False).astype(bool)

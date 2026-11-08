@@ -224,6 +224,11 @@ def build(snap_id, compare=None):
         flag = ' (partial)' if s in C.PARTIAL else ''
         w(f'| {s}{flag} | {cv["lab_papers_2016_2025"]} | {cv["pis"]} | {cv["in_universe"]:.0%} | {cv["abstract_embedded"]:.0%} | {("n/a" if cv.get("held") is None else format(cv["held"], ".0%"))} | {cv["fulltext_v3"]:.0%} | {cv["period_supported"]:.0%} |')
     w('')
+    cv = T(res, 'ai_coverage')
+    if 'held' in cv:
+        g = cv.groupby('school')[['held', 'scored', 'papers']].sum()
+        gap = ', '.join(f'{s_} {int(g.loc[s_, "held"] - g.loc[s_, "scored"])} of {int(g.loc[s_, "held"])}' for s_ in ('gatech', 'michigan') if s_ in g.index)
+        w(f'Held versus scored (home-school papers): copies we hold that are not scored are those whose main body is under 1,000 words, unreadable or without a scorable passage: {gap}. Every other held copy is scored.\n')
     pc = [man['coverage']['by_school'][s_] for s_ in C.PARTIAL]
     lo_, hi_ = min(c['fulltext_v3'] for c in pc), max(c['fulltext_v3'] for c in pc)
     elo, ehi = min(c['abstract_embedded'] for c in pc), max(c['abstract_embedded'] for c in pc)
@@ -231,18 +236,15 @@ def build(snap_id, compare=None):
       'Most of their PIs carry appointment evidence only from 2026 listings, so which years a PI was at the school is unresolved: papers are attributed to the PI in all years. Georgia Tech, Michigan and UChicago share this to a lesser degree (dated-period share 10 to 17%) and Georgia Tech has full text for only 40% of its papers.')
     late = []
     for s_ in C.PARTIAL:
-        p_ = C.snapshot_dir(snap_id) / 'release' / 'periods' / f'{s_}-faculty-periods.json'
-        if p_.exists():
-            ps = json.loads(p_.read_text())
-            n26 = sum(1 for x in ps if str(x.get('facultyStart') or '9999') >= '2026')
-            late.append(f'{s_}: {n26} of {len(ps)} period records start in 2026')
-        else:
-            late.append(f'{s_}: no period file in the release')
-    w('- **Period gaps.** The dated-period column counts papers whose PI has any period record; it does not mean the earlier years are resolved. Faculty-start records of the partial schools: ' + '; '.join(late) + '. A 2026 start with papers attributed to earlier years means those years are unresolved; a period-supported-only sensitivity is in section 8.')
+        pis = json.loads((C.snapshot_dir(snap_id) / 'release' / 'hierarchy' / s_ / 'pis.json').read_text())
+        only26 = sum(1 for q in pis if not q.get('periods') and q.get('listings') and all(str(x.get('year')) == '2026' for x in q['listings']))
+        late.append(f'{s_}: {only26} of {len(pis)} PIs have no dated period and only 2026 listings')
+    w('- **Period gaps.** The dated-period column counts papers whose PI has any period record; it does not mean the earlier years are resolved. ' + '; '.join(late) + '. Their papers are attributed to the PI in all years; a period-supported-only sensitivity is in section 8.')
     w('- **Detector error.** v3 misses 0.9 to 6.6% of AI passages from unseen generators (more for lightly edited text); the AI share is therefore a lower bound for heavy use and says nothing about authors who edit AI output.')
     w('- **Membership.** The strict rule (PI on the byline) leaves out student-only papers, so a lab\'s output is understated and the share of student writing is unknown. Co-led papers count in each lab.')
     w('- **Clustering.** The bootstrap resamples labs; it does not model dependence between labs of one department or between a PI\'s years beyond that.')
-    w('- **Selection.** Full-text AI scores cover 40 to 72% of papers per school; IPW weights are from the earlier fit.\n')
+    fts = [c_['fulltext_v3'] for s_, c_ in man['coverage']['by_school'].items() if s_ not in C.PARTIAL]
+    w(f'- **Selection.** Full-text AI scores cover {100 * min(fts):.0f} to {100 * max(fts):.0f}% of papers per school (the 9 older schools); IPW weights are from the earlier fit and cover only papers the earlier build saw.\n')
 
     w('## 10. What more schools would sharpen\n')
     w('- Harvard, JHU and WashU hold no stored full-text copies yet (their catalogs are empty: open copies were found for most papers but not downloaded), so only their abstracts are embedded and abstract-flagged, and they are absent from the full-text AI layer; downloading the open copies would bring them in.' if low_cov else '- Harvard, JHU and WashU are scored in this snapshot; they remain small and many of their papers have no stored copy, and their appointment periods are open.')

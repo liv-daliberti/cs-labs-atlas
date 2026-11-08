@@ -108,7 +108,7 @@ def layer_ai(pan, lp):
                 rows.append(dict(scope=r.scope, year=r.year, observed=r.est, lo=r.lo, hi=r.hi, corrected=f(r.est), corrected_lo=f(r.lo), corrected_hi=f(r.hi), miss=lab, fpr=fl))
     save('ai_fp_corrected', pd.DataFrame(rows))
     # coverage of the scored full-text sample
-    cov = pan.groupby(['school', 'year']).agg(papers=('k', 'size'), scored=('has_ft', 'sum'), in_universe=('in_universe', 'sum')).reset_index()
+    cov = pan.groupby(['school', 'year']).agg(papers=('k', 'size'), scored=('has_ft', 'sum'), held=('held', 'sum'), in_universe=('in_universe', 'sum')).reset_index()
     save('ai_coverage', cov)
 
 
@@ -187,6 +187,9 @@ def load_emb(snap, model, panel_pid):
             ids.append(z['ids']); mats.append(z['M'])
     ids = np.concatenate(ids)
     X = np.vstack(mats).astype(np.float32)
+    _, first = np.unique(ids, return_index=True)      # an id can sit in the earlier build and the delta (two OpenAlex ids, one atlas paper): keep the earlier vector
+    first.sort()
+    ids, X = ids[first], X[first]
     pos = pd.Series(np.arange(len(ids)), index=ids)
     pid = pd.Series(panel_pid)
     ok = pid.isin(pos.index).to_numpy()

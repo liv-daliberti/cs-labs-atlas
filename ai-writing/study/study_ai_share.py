@@ -58,7 +58,9 @@ def build(tables, snapshot, release_id, snap_id, man_cov=None):
     for s in C.SCHOOLS:
         g = cov[cov.school == s]
         n, k = int(g.papers.sum()), int(g.scored.sum())
-        coverage.append(dict(school=s, papers=n, scored_fulltext=k, share=round(k / n, 4) if n else None, partial=s in C.PARTIAL))
+        h = int(g.held.sum()) if 'held' in g else None
+        coverage.append(dict(school=s, papers=n, held_fulltext=h, scored_fulltext=k, held_share=round(h / n, 4) if (n and h is not None) else None,
+                             share=round(k / n, 4) if n else None, partial=s in C.PARTIAL))
     et = json.loads((snapshot / 'ai' / 'v3_error_table.json').read_text())
     meta = dict(schema=1, snapshot=snap_id, release=release_id, detector='v3', last_year=C.LAST, first_year=C.FIRST, post_start=C.POST_START,
                 generated=time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()),

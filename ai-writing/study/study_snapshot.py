@@ -118,6 +118,7 @@ def place(src, dst, mode):
         except OSError:
             pass
     shutil.copy2(src, dst)
+    dst.chmod(0o644)           # a copy of a sealed (read-only) file must stay writable until this snapshot is sealed
     return 'copy'
 
 
@@ -196,9 +197,10 @@ def seal(args):
     snap = C.snapshot_dir(args.id)
     meta = json.loads((snap / 'snapshot.json').read_text())
     listed = {f['path'] for f in meta['files']}
-    for p in sorted((snap / 'delta').glob('*')) if (snap / 'delta').exists() else []:      # fetched after build (study_delta_oa.py): abstracts and topics of papers the earlier build never saw
-        if f'delta/{p.name}' not in listed:
-            meta['files'].append({'group': 'delta', 'path': f'delta/{p.name}', 'source': 'api.openalex.org via tools/oa_api.py', 'how': 'fetched',
+    for p in sorted(x for x in (snap / 'delta').rglob('*') if x.is_file()) if (snap / 'delta').exists() else []:      # fetched after build (study_delta_oa.py): abstracts and topics of papers the earlier build never saw
+        rel = p.relative_to(snap).as_posix()
+        if rel not in listed:
+            meta['files'].append({'group': 'delta', 'path': rel, 'source': 'api.openalex.org via tools/oa_api.py', 'how': 'fetched',
                                   'bytes': p.stat().st_size, 'source_mtime': now()})
     with ThreadPoolExecutor(args.jobs) as ex:
         files = list(ex.map(lambda f: describe(snap, f), meta['files']))
@@ -207,6 +209,16 @@ def seal(args):
     man = {'snapshot': args.id, 'sealed': now(), 'release_id': rel.get('release'), 'release_code_commit': (rel.get('code') or {}).get('commit'),
            'release_dir': meta['release_dir'], 'schools': C.SCHOOLS, 'partial_schools': C.PARTIAL, 'files': files, 'missing': meta['missing'],
            'coverage': cov, 'analysis_code_commit': C.git_commit()}
+    old = snap / 'MANIFEST.json'
+    if old.exists():      # re-sealing the same inputs (a documentation fix): every hash must be unchanged
+        prev = {f['path']: f['sha256'] for f in json.loads(old.read_text())['files'] if f['sha256']}
+        changed = [f['path'] for f in files if f['sha256'] and prev.get(f['path'], f['sha256']) != f['sha256']]
+        if changed:
+            raise SystemExit(f'refusing to re-seal: inputs changed {changed[:3]}')
+        for n in ('MANIFEST.json', 'README.md', 'SEALED'):
+            if (snap / n).exists():
+                (snap / n).chmod(0o644)
+                (snap / n).unlink()
     (snap / 'MANIFEST.json').write_text(json.dumps(man, indent=1, default=str))
     (snap / 'README.md').write_text(readme(man))
     for f in snap.rglob('*'):

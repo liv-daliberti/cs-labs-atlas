@@ -82,6 +82,7 @@ def coverage(snap):
             emb.update(r[0] for r in d3.execute('select paper_id from papers'))
             d3.close()
     u['emb'] = u['paper_id'].isin(emb)
+    uni = uni.sort_values('ai_share_main', na_position='last')      # a rescored paper has a row in both tables: keep the scored one
     u = u.drop_duplicates('paper_id').merge(uni.drop_duplicates('paper_id'), on='paper_id', how='left').dropna(subset=['oa']).drop_duplicates('oa').set_index('oa')
     hp = snap / 'delta' / 'copies_held.parquet'
     hm = dict(pd.read_parquet(hp)[['k', 'has_copy']].drop_duplicates('k').itertuples(index=False)) if hp.exists() else None
