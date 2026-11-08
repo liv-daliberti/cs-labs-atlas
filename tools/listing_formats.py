@@ -367,7 +367,29 @@ def toronto_directory(h, section):
     return out
 
 
+def hkust_faculty_table(h):
+    """HKUST CSE text directory: named faculty rows, excluding contact cells.
+
+    The named link is a department profile, not an independently verified lab
+    website. Keep bilingual spellings together as written for source quotes.
+    """
+    from bs4 import BeautifulSoup
+    out = []
+    for row in BeautifulSoup(h, 'html.parser').select('tr.search'):
+        cells = row.find_all('td', recursive=False)
+        name = row.select_one('td.name a[href]')
+        if name is None or len(cells) < 2:
+            continue
+        listed = name.get_text(' ', strip=True)
+        titles = [clean(t) for t in re.split(r'<br\s*/?>', cells[1].decode_contents(), flags=re.I)]
+        if listed:
+            out.append(dict(name_listed=listed, titles=[t for t in titles if t],
+                            profile=name['href'], homepage=None, division=None))
+    return out
+
+
 FORMATS = {
+    'hkust_faculty_table': (hkust_faculty_table, re.compile(r'(?!)')),
     'toronto_research': (lambda h: toronto_directory(h, 'researchstream'), re.compile(r'(?!)')),
     'toronto_teaching': (lambda h: toronto_directory(h, 'teachingstream'), re.compile(r'(?!)')),
     'toronto_emeriti': (lambda h: toronto_directory(h, 'emeriti'), re.compile(r'(?!)')),

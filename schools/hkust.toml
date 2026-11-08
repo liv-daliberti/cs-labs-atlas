@@ -1,0 +1,114 @@
+# Live-first core census; affiliated departments and history remain open.
+key = "hkust"
+name = "The Hong Kong University of Science and Technology"
+short = "HKUST"
+site_uni = "the-hong-kong-university-of-science-and-technology"
+status = "onboarding"
+order = 16
+stage = 0
+started = "2026-11-07"
+window = [2016, 2026]
+
+[ids]
+openalex = ["I200769079"]
+openalex_related = []
+openalex_excluded = ["I4405261251"]
+ror = "https://ror.org/00q4vv597"
+ids_note = "Primary ID, ROR and relationships read from the local OpenAlex institutions snapshot 2026-10-14 on 2026-11-07. Guangzhou I4405261251 is a separate related university, not an automatic Hong Kong appointment. No related-only expansion. A PI and their own school affiliation and appointment are required; a university child alone does not establish an appointment. No new snapshot extension or API sweep has been run."
+
+[web]
+domains = ["hkust.edu.hk", "ust.hk"]
+email_domains = ["hkust.edu.hk", "ust.hk", "cse.ust.hk"]
+wayback_only_suffixes = []
+excluded_hosts = ["hkust-gz.edu.cn"]
+
+[affiliation]
+regex = '\bhong\s+kong\s+university\s+of\s+science\s+(?:and|&)\s+technology\b(?!\s*\((?:guangzhou|gz)\))|\bhkust\b(?![-\s]*(?:gz\b|\((?:guangzhou|gz)\)))|\b(?:[\w-]+\.)*(?:hkust\.edu\.hk|ust\.hk)\b'
+loose = 'hong\s+kong\s+university\s+of\s+science\s+(?:and|&)\s+technology|\bhkust\b|hkust\.edu\.hk|ust\.hk'
+own_units = ''
+must_match = ["The Hong Kong University of Science and Technology, Hong Kong", "Hong Kong University of Science & Technology", "HKUST, Department of Computer Science and Engineering, Hong Kong", "person@cse.ust.hk"]
+must_not_match = ["The Hong Kong University of Science and Technology (Guangzhou)", "HKUST (Guangzhou)", "HKUST (GZ)", "University of Hong Kong", "Hong Kong Polytechnic University", "Hong Kong Institute of Technology", "South China University of Technology", "person@hkust-gz.edu.cn"]
+
+[dblp]
+affiliation_strings = ["Hong Kong University of Science and Technology", "Hong Kong University of Science & Technology", "HKUST"]
+legacy_sweep = ""
+
+[census]
+computing_departments = ["CSE"]
+center_units = []
+home_units = { "Computer Science and Engineering" = 'computer science and engineering' }
+rank_words = {}
+
+[sweep_check]
+exceptions = []
+[cs_related]
+not_faculty = {}
+share_test_settles = []
+[site]
+depts = { CSE = "Computer Science and Engineering", ECE = "Electronic and Computer Engineering", MATH = "Mathematics" }
+full_codes = ["CSE"]
+[periods]
+school_regex = 'hong\s+kong\s+university\s+of\s+science\s+(?:and|&)\s+technology|\bhkust\b'
+[rules]
+foreign_title_exception = false
+listing_continuity = false
+
+[[departments]]
+code = "CSE"
+name = "Computer Science and Engineering"
+unit = "Department of Computer Science and Engineering"
+title_match = 'professor|computer science and engineering'
+coverage = "full"
+url = "https://cse.hkust.edu.hk/admin/people/faculty/?c=regular&d=textview"
+  [[departments.listings]]
+  slot = "CSE regular faculty"
+  kind = "main"
+  url = "cse.hkust.edu.hk/admin/people/faculty/?c=regular&d=textview"
+  from = "20160101"
+  to = "20261231"
+  prefix = false
+  match = ""
+  format = "hkust_faculty_table"
+  title_filter = ''
+
+# Discovery leads only; none of these units has been reviewed as complete.
+[[affiliated_units]]
+code = "ECE"
+name = "Electronic and Computer Engineering"
+url = "https://ece.hkust.edu.hk/"
+listings = []
+[[affiliated_units]]
+code = "MATH"
+name = "Mathematics"
+url = "https://www.math.hkust.edu.hk/"
+listings = []
+
+[thesis]
+kind = "none"
+base_url = "https://repository.ust.hk/"
+endpoints = []
+robots = "unreachable"
+note = "Student-source discovery remains open. Cached repository robots response is a redirect; no repository endpoint is accepted or fetched by this checkpoint. None means no configured thesis channel, not absence of theses."
+[collector]
+channels = []
+[students]
+directories = []
+adviser_directories = []
+defense_lists = []
+adviser_alumni = []
+rosters = []
+sources = []
+[labpages]
+skip_pages = []
+hints = ["cse.hkust.edu.hk faculty profiles link to PI homepages and lab sites"]
+[repository]
+name = "HKUST Institutional Repository (endpoint and access review pending)"
+pattern = 'repository\.ust\.hk|repository\.hkust\.edu\.hk|HKUST Institutional Repository'
+[store]
+path = "hkust"
+
+[[hosts]]
+host = "cse.hkust.edu.hk"
+use = "live"
+purpose = "Official CSE regular faculty directory and profiles; cached robots and HTTP200 directory captured on 2026-11-07."
+probe = "https://cse.hkust.edu.hk/admin/people/faculty/?c=regular&d=textview"

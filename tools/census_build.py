@@ -198,14 +198,15 @@ def main(key):
         n[f'pi:{is_pi}'] += 1; n[f"basis:{(basis or {}).get('kind')}"] += 1
         cid = f'{key}_fac_' + slug(name)
         homepage = next((r['homepage'] for r in reversed(rs) if r.get('homepage')), None)
+        profile_url = homepage or next((r['profile'] for r in reversed(rs) if r.get('profile')), None)
         census.append(dict(name=name, aliases=[a for a in g['names'] if a != name and not TITLE_NAME.search(a)], collection_person_id=cid, structure_name=name,
-                           profile_url=homepage, dblp=[d_['pid']] if (d_ := dblp_ids.get(name) or {}).get('pid') else [],
+                           profile_url=profile_url, dblp=[d_['pid']] if (d_ := dblp_ids.get(name) or {}).get('pid') else [],
                            dblp_basis=d_.get('basis'), dblp_evidence={k: d_[k] for k in ('url', 'dump', 'sha256', 'quote') if k in d_} or None,
                            orcid=list(d_.get('orcid') or []), rank=best[max(best)], title_as_listed='; '.join(latest['titles']),
                            departments=depts, listed_in=depts, years_listed=sorted(best), ranks_by_year={str(y): sorted(v, key=ORDER.index) for y, v in sorted(ranks_by_year.items())},
                            sources=sources, is_pi=is_pi, pi_basis=basis, not_pi_reason=None if is_pi else why_not,
                            lab_units=[], collectives=[], emeritus_since=min((y for y, b in best.items() if b == 'emeritus'), default=None)))
-        people.append(dict(id=cid, name=name, roles=['faculty'], contexts=[], profileUrl=homepage))
+        people.append(dict(id=cid, name=name, roles=['faculty'], contexts=[], profileUrl=profile_url))
         by_dy = {}
         for r in rs:
             by_dy.setdefault((r['dept'], r['year']), r)
