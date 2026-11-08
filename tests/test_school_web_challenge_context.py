@@ -10,6 +10,7 @@ import school_web as W
 @pytest.mark.parametrize('body', [
     '<title>Faculty publications</title><li>PhishDecloaker: Detecting CAPTCHA-cloaked Phishing Websites via Hybrid Vision-based Interactive Models (USENIX Security 2024).</li>',
     '<p>We study CAPTCHA security and privacy.</p>',
+    '<h1>Faculty homepage</h1><script src="/_Incapsula_Resource?SWJIYLWA=abc" async></script>',
 ])
 def test_research_mentions_are_not_challenges(body):
     assert not W.CHALLENGE.search(body)
@@ -22,6 +23,8 @@ def test_research_mentions_are_not_challenges(body):
     'Please complete the CAPTCHA to continue',
     '<title>Just a moment...</title>',
     'checking your browser',
+    '<iframe src="/_Incapsula_Resource?incident_id=123"></iframe>',
+    'Request unsuccessful. Incapsula incident ID: 123',
     'access denied',
     '<script src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>',
 ])

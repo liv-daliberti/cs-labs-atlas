@@ -31,7 +31,8 @@ UA = 'HomogenizingScienceResearch/0.2 (academic metadata inventory; robots.txt h
 AI_AGENTS = ('ClaudeBot', 'anthropic-ai', 'Claude-Web', 'Claude-User', 'Claude-SearchBot')
 CHALLENGE = re.compile(r'bot detection|traffic check|Please enable JavaScript to view the page content|cf-chl|'
                        r'checking your browser|are you a robot|access denied|<title>Just a moment\.\.\.</title>|'
-                       r'challenges\.cloudflare\.com|cf_chl_opt|_Incapsula_Resource|px-captcha|ddos-guard|'
+                       r'challenges\.cloudflare\.com|cf_chl_opt|px-captcha|ddos-guard|'
+                       r'<(?:iframe|frame)[^>]+_Incapsula_Resource|Incapsula incident ID|Request unsuccessful\. Incapsula|' 
                        # Research citations can contain CAPTCHA; require an actual gate/widget context.
                        r'g-recaptcha|h-captcha|hcaptcha\.com|recaptcha/(?:api|enterprise)|'
                        r'captcha[-_](?:container|challenge|form|input)|'
