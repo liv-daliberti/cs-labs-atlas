@@ -17,3 +17,9 @@ Tests: `tests/test_study_labstats.py`, `tests/test_study_snapshot.py` (pandas; t
 `study_hetero_attr.py` (group attributes; `study_hetero_fields.py` is the venue/topic field map) -> `study_hetero.py` (pre/post per group, group-difference DiD, placebo, 12-school and excl.-partial scopes, Holm and BH over the
 75-contrast primary family) -> `study_hetero_report.py` (figures + `results/<ID>/heterogeneity/HETEROGENEITY.md`). Tests: `tests/test_study_hetero.py`.
 Non-text sameness (owner 2026-11-08): `sameness_*.py` (reference overlap and citation concentration, benchmark/method dictionary, topic concentration, report) -> `results/<id>/sameness/SAMENESS.md`; `run_study.sh <id> sameness`; tests `tests/test_study_sameness.py`.
+## Design layers (owner 2026-11-08: separating ChatGPT's effect from long-running trends)
+`run_study.sh <id> designs` (needs the prep output): `study_design_prep.py` (OpenAlex affiliation scan of the panel's works, PI tables, exposures) -> `study_design_panel.py` (PI fixed effects, trends, event time)
+| `study_design_exposure.py` (continuous DiD on pre-2023 style distance and non-English-country affiliation share, event studies) | `study_design_revision.py` + `_fetch.py` + `_gpu.py` (arXiv v1 against the final
+version, main body and main + appendix, reusing the 11-05 AI-in-revision pairs in `ai-writing/revision`) -> `study_design_figures.py`, `study_design_report.py`. Outputs: `results/<id>/designs/` (`tables/`, `figures/`,
+`headline.md`, `DESIGNS.md` for the owner). Shared estimator: `study_fe.py` (PI fixed effects, PI-specific trends, CR1 cluster-robust by PI). Tests: `tests/test_study_designs.py`.
+Language exposure is the share of a team's authors with an affiliation institution outside US/GB/CA/AU/NZ/IE (OpenAlex institution country); names are never used and nothing is inferred about a person.

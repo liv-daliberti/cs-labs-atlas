@@ -7,7 +7,7 @@
 #SBATCH --job-name=study-delta-gpu
 #SBATCH --partition=all
 #SBATCH --account=mltheory
-#SBATCH --exclude=node302
+#SBATCH --exclude=node302,node014
 #SBATCH --gres=gpu:a5000:1
 #SBATCH --cpus-per-task=6
 #SBATCH --mem=48G

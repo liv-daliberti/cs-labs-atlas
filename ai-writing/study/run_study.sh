@@ -8,6 +8,9 @@
 #   delta BASE       score and embed what the earlier build and snapshot BASE never covered, then build + seal SNAPSHOT_ID with that delta, then analyse:
 #                    list -> sections (4 shards) + texts -> GPU: abstract embeddings (7 models), v1 abstract flag, detector v3 passages -> per-paper table
 #                    -> snapshot build --delta-base BASE -> OpenAlex leftovers -> seal -> prep -> layers -> figures -> report (compared with BASE) -> ai_share.json
+#   designs          the three design layers on the sealed snapshot SNAPSHOT_ID (needs its prep output, results/<id>/work/panel.parquet; owner 2026-11-08):
+#                    OpenAlex affiliation scan (array) -> design prep (PI tables, exposures) -> PI panel with author fixed effects | exposure DiD + event studies
+#                    | arXiv-revision pairs -> CPU fetch + main/appendix split of the versions (array of 24) -> GPU scoring (array of 6, one A5000 each, restartable by chunk) -> revision analysis -> design figures + DESIGNS tables
 # Every step is a Slurm job (<= 59 min, explicit cpus/mem/gres) chained with afterok; restartable (each stage skips finished output). Waiting: tools/slurm_wait.py <ids>.
 set -euo pipefail
 ID=${1:-2026-11-07}; MODE=${2:-}; BASE=${3:-}
@@ -38,6 +41,22 @@ if [ "$MODE" = hetero ]; then      # results/<ID>/heterogeneity/: study_hetero_a
   h3=$(sbatch --parsable --dependency=afterok:$h2 $X --cpus-per-task=4 --mem=8G --time=00:30:00 $HERE/study.slurm study_hetero.py --id "$ID")
   h4=$(sbatch --parsable --dependency=afterok:$h3 $X --cpus-per-task=2 --mem=8G --time=00:20:00 $HERE/study.slurm study_hetero_report.py --id "$ID")
   echo "hetero chain: career $h1 attr $h2 analysis $h3 report $h4"; exit 0
+fi
+if [ "$MODE" = designs ]; then
+  X="--export=ALL,STUDY_CODE=$HERE,SNAPSHOT_ID=$ID"; NSH=6
+  n=16   # = len(study_design_prep.tasks()) (OpenAlex stores x row ranges); tests/test_study_designs.py checks that the two agree
+  o=$(sbatch --parsable --array=0-$((n-1)) $X --cpus-per-task=2 --mem=8G --time=00:59:00 --job-name=sd-oascan $HERE/study.slurm study_design_prep.py oa-scan --id "$ID")
+  b=$(sbatch --parsable --dependency=afterok:$o $X --cpus-per-task=4 --mem=32G --time=00:45:00 --job-name=sd-prep $HERE/study.slurm study_design_prep.py build --id "$ID")
+  l=$(sbatch --parsable $X --cpus-per-task=2 --mem=8G --time=00:20:00 --job-name=sd-revlist $HERE/study.slurm study_design_revision.py list --id "$ID")
+  NF=24   # fetch tasks: PDFs from the public cloud mirror (storage.googleapis.com), split into main / appendix, nothing kept but the text
+  fe=$(sbatch --parsable --array=0-$((NF-1)) --dependency=afterok:$l $X --cpus-per-task=6 --mem=8G --time=00:59:00 --job-name=sd-revfetch $HERE/study.slurm study_design_revision_fetch.py --id "$ID" --of $NF)
+  g=$(sbatch --parsable --array=0-$((NSH-1)) --dependency=afterok:$fe $X $HERE/study_design_revision_gpu.slurm $NSH)
+  p=$(sbatch --parsable --dependency=afterok:$b $X --cpus-per-task=4 --mem=16G --time=00:30:00 --job-name=sd-panel $HERE/study.slurm study_design_panel.py --id "$ID")
+  e=$(sbatch --parsable --dependency=afterok:$b $X --cpus-per-task=4 --mem=24G --time=00:45:00 --job-name=sd-expo $HERE/study.slurm study_design_exposure.py --id "$ID")
+  r=$(sbatch --parsable --dependency=afterok:$b:$g $X --cpus-per-task=4 --mem=16G --time=00:45:00 --job-name=sd-revan $HERE/study.slurm study_design_revision.py analyze --id "$ID")
+  f=$(sbatch --parsable --dependency=afterok:$p:$e:$r $X --cpus-per-task=2 --mem=8G --time=00:20:00 --job-name=sd-fig $HERE/study.slurm study_design_figures.py --id "$ID")
+  sbatch --parsable --dependency=afterok:$f $X --cpus-per-task=2 --mem=4G --time=00:10:00 --job-name=sd-report $HERE/study.slurm study_design_report.py --id "$ID" >/dev/null
+  echo "designs chain: oa-scan $o prep $b revlist $l fetch $fe gpu $g panel $p exposure $e revision $r figures $f"; exit 0
 fi
 if [ "$MODE" = delta ]; then
   [ -n "$BASE" ] || { echo "delta needs BASE (the sealed snapshot whose membership and universe define the delta)"; exit 2; }
