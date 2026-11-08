@@ -186,7 +186,7 @@ def short_piece(r, pages, bare=False):
     one number is a keynote abstract in the sample (ICAART 2016 '5', IWASI 2019 '1')."""
     if not pages:
         return None
-    v = str(r.get('venue') or ''); ty = r.get('type') or ''
+    v = str(quality_venue(r.get('venue')) or ''); ty = r.get('type') or ''
     if COLUMN_VENUE.search(v) and ty in ('article', 'other', 'editorial', 'paratext') and pages <= COLUMN_MAX_PAGES \
             and not (bare and not re.match(r'(?i)communications of the acm', v)):
         return 'column'
@@ -536,6 +536,7 @@ def venue_tables(ctx):
                         dblp_pages['doi'][p['pi']][ndoi(d_)] = max((c_, b_), dblp_pages['doi'][p['pi']].get(ndoi(d_), (0, True)))
         ctx.n['dblp_page_counts_titles'] = sum(len(v) for v in dblp_pages['title'].values())
     ctx.dblp_pages = dblp_pages
+    ctx.dblp_page_ranges = pg  # retain exact publication-key/literal evidence for recovered sources
 
 
 AUTHOR_AFFILIATION_PREFIX = re.compile(r'^\s*(?:drs?|profs?|professors?)\.?\s+', re.I)
@@ -873,6 +874,104 @@ def arxiv_predates_record(ev, year):
     return bool(m and year and int(year) - (2000 + int(m.group(1))) >= ARXIV_PRE_YEARS)
 
 
+# Citation abbreviations and DBLP journal streams identify the same venues already covered by R-PAP-27.
+# These are quality views only: retain original source spellings in the paper and reviewed inputs.
+QUALITY_VENUE_ALIASES = {'commun acm': 'Communications of the ACM', 'ieee softw': 'IEEE Software',
+                         'ieee pervasive comput': 'IEEE Pervasive Computing'}
+QUALITY_DBLP_STREAMS = {'journals/cacm/': 'Communications of the ACM', 'journals/software/': 'IEEE Software',
+                        'journals/pervasive/': 'IEEE Pervasive Computing'}
+RECOVERED_PUB_TYPES = {'inproceedings': 'conference-paper', 'article': 'article', 'incollection': 'book-chapter',
+                       'book': 'book', 'phdthesis': 'dissertation', 'mastersthesis': 'dissertation'}
+
+
+def quality_venue(venue):
+    key = re.sub(r'[^a-z0-9]+', ' ', str(venue or '').lower()).strip()
+    return QUALITY_VENUE_ALIASES.get(key, venue)
+
+
+def recovered_source_metadata(ctx, p, x, ev, kind, strict=False):
+    """Type/quality evidence for an independently retained source, never an authorship or school admission waiver.
+
+    A missing historical `article` fallback has no authority for a newly retained alternate. Owned publication kinds
+    bind exact key/title/DOI/year; exact same-edition raw metadata can retain a more specific nonpaper genre. Source
+    fields stay unchanged, and quality-only canonical venues never reconstruct a publisher record.
+    """
+    key = re.sub(r'^https?://dblp[.]org/rec/', '', str(x.get('dblp_key') or ev.get('dblp_key') or ''))
+    proof = dict(pi=p['pi'], kind=kind, key=key, doi=x.get('doi'), title=x.get('title'), year=x.get('year'),
+                 strict_new_alternate=strict, original_type=x.get('type'), original_venue=x.get('venue'),
+                 pages_literal=(getattr(ctx, 'dblp_page_ranges', None) or {}).get(key))
+    if not hasattr(ctx, 'recovered_source_quality'):
+        ctx.recovered_source_quality = []
+    evidence = []
+    pubs = []
+    if kind == 'dblp':
+        persons = (getattr(ctx, 'dblp_persons', None) or {}).get('persons') or {}
+        for pid in p.get('dblp') or []:
+            pubs.extend((pid, r) for r in (persons.get(pid) or {}).get('pubs') or [] if r.get('key') == key)
+        compatible = [(pid, r) for pid, r in pubs
+                      if norm_title(html.unescape(str(r.get('title') or ''))) == norm_title(html.unescape(str(x.get('title') or '')))
+                      and str(r.get('year')) == str(x.get('year'))
+                      and any(Name(p.get('names') or [p['pi']]).match(byline_name(re.sub(r'\s+\d{4}$', '', a[0])))
+                              for a in r.get('authors') or [])
+                      and (not r.get('dois') or ndoi(x.get('doi')) in {ndoi(d) for d in r['dois']})]
+        kinds = {r.get('type') for _, r in compatible}
+        typ = RECOVERED_PUB_TYPES.get(next(iter(kinds))) if len(kinds) == 1 else None
+        proof['owned_publications'] = [dict(pid=pid, record=r) for pid, r in pubs]
+        if typ and len(compatible) == len(pubs):
+            canonical = next((v for prefix, v in QUALITY_DBLP_STREAMS.items() if key.startswith(prefix)), None)
+            evidence.append(dict(type=typ, venue=canonical or quality_venue(x.get('venue'))))
+        else:
+            typ = None
+    else:
+        typ = None
+    raw = ev.get('openalex_work')
+    oid = ev.get('oa')
+    if not isinstance(raw, dict) or raw.get('id') != oid:
+        if not hasattr(ctx, '_recovery_source_work_index'):
+            ctx._recovery_source_work_index = {(pi, w['id']): w for pi, w, *_ in getattr(ctx, 'hits', [])}
+        raw = ctx._recovery_source_work_index.get((p['pi'], oid))
+    raw_bound = bool(raw and raw.get('id') == oid and norm_title(raw.get('title')) == norm_title(x.get('title'))
+                     and (not raw.get('doi') or not x.get('doi') or ndoi(raw.get('doi')) == ndoi(x.get('doi'))))
+    proof['raw_same_edition_bound'] = raw_bound
+    if raw_bound:
+        source = ((raw.get('primary_location') or {}).get('source') or {})
+        proof['raw_metadata'] = dict(id=raw.get('id'), doi=raw.get('doi'), title=raw.get('title'),
+                                     type=raw.get('type'), venue=source.get('display_name'))
+        if raw.get('type'):
+            evidence.append(dict(type=raw['type'], venue=quality_venue(source.get('display_name') or x.get('venue'))))
+            if kind != 'dblp':
+                typ = raw['type']
+    if x.get('type'):
+        evidence.append(dict(type=x['type'], venue=quality_venue(x.get('venue'))))
+        if kind != 'dblp' and not typ:
+            typ = x['type']
+    # A known source contradiction cannot be paper-positive merely through an explicit generic `article` label.
+    if pubs and (len(compatible) != len(pubs) or not typ):
+        reason = 'owned_publication_metadata_conflict'
+    elif strict and not typ:
+        reason = 'new_alternate_type_unproven'
+    elif strict and kind == 'dblp' and x.get('doi') \
+            and not (raw_bound and ndoi(raw.get('doi')) == ndoi(x['doi'])) \
+            and not any(ndoi(x['doi']) in {ndoi(d) for d in r.get('dois') or []} for _, r in pubs):
+        reason = 'new_alternate_doi_unproven'
+    else:
+        reason = None
+    proof.update(classified_type=typ, quality_views=evidence, hold_reason=reason)
+    ctx.recovered_source_quality.append(proof)
+    if reason:
+        ctx.n['recovered_source_quality:' + reason] += 1
+        return None
+    if not typ:
+        # Preserve the pre-existing route's output contract; it does not make the fallback new source evidence.
+        typ = x.get('type') or 'article'
+        ctx.n['recovered_source_quality:legacy_type_unproven'] += 1
+    else:
+        ctx.n['recovered_source_quality:classified'] += 1
+    return dict(type=typ, quality_views=evidence,
+                author_count=max((len(r.get('authors') or []) for _, r in compatible), default=None) if kind == 'dblp' else None,
+                page_evidence=dict(key=key, literal=proof['pages_literal']) if kind == 'dblp' and compatible else None)
+
+
 def recovered_scope_via(ctx, p, ev, require_replay=False):
     """Replay an OpenAlex recovery against the current charter; display names alone cannot prove scope.
     Page-1 evidence is independent. Legacy rows may reuse the original work already read by the native hits stage."""
@@ -935,11 +1034,14 @@ def recovered_rows(ctx, rows, seen):
             lst = None if per else next((l for l in p['listings'] if l['year'] == int(x['year'])), None)
             if per is None and lst is None:
                 n[f'{kind}_recovered_outside_appointment'] += 1; aside('outside_appointment'); continue
+            classified = recovered_source_metadata(ctx, p, x, ev, kind, strict=existing)
+            if classified is None:
+                aside('source_type_unproven_or_conflicting'); continue
             # A complete independently eligible recovery can be the publisher edition of an existing collection
             # work. It must reach the ordinary quality checks and edition selector instead of being discarded here.
             seen.add((x['pi'], cw or oa_id))
             present_sources.add((x['pi'], oa_id))
-            rows.append(dict(pi=x['pi'], work=cw, oa=oa_id, doi=x.get('doi'), title=(x.get('title') or '').rstrip('.'), year=x['year'], date=date, type=x.get('type') or 'article',
+            rows.append(dict(pi=x['pi'], work=cw, oa=oa_id, doi=x.get('doi'), title=(x.get('title') or '').rstrip('.'), year=x['year'], date=date, type=classified['type'], _source_quality_views=classified['quality_views'], _source_author_count=classified['author_count'], _source_page_evidence=classified['page_evidence'],
                              venue=x.get('venue'), landing=ev.get('url'), byline=list(dict.fromkeys(x.get('byline') or [])), byline_school=[],
                              authorship=dict(position=None, raw_name=None, author_id=None, institutions=[], raw_affiliations=[], school_via=via[:3],
                                              page1=dict(url=ev.get('url'), pdf_sha256=ev.get('pdf_sha256'), how=ev.get('how'), quotes=ev.get('quotes'),
@@ -1003,20 +1105,33 @@ def drop_not_papers(rows, dblp_nauth, n, dblp_pages=None, pid0=None):
     kept_, not_paper_samples = [], collections.defaultdict(list)
     for r in rows:
         pg_, bare_ = None, False
-        if dblp_pages:  # R-PAP-27: the DBLP page count of this record (by DOI, else title), None when DBLP has none
+        exact_pages = r.get('_source_page_evidence')
+        if exact_pages is not None:
+            literal = exact_pages['literal']
+            pg_, bare_ = page_count(literal), bool(literal and not re.search(r'[-\u2013]', str(literal)))
+        elif dblp_pages:  # R-PAP-27: the raw record's page count by DOI, else title
             pg_, bare_ = dblp_pages['doi'][r['pi']].get(ndoi(r.get('doi'))) or dblp_pages['title'][r['pi']].get(norm_title(r.get('title'))) or (None, False)
-        why = ('source_type:' + r['type'] if r.get('type') in NOT_PAPERS else None) \
-            or not_a_paper(r, pg_, bare_) or ('doi_year_conflict' if doi_year_conflict(r) else None)
+        why = None; corrected_authors = False
+        for view in [r] + [dict(r, **fields) for fields in r.get('_source_quality_views') or []]:
+            why = ('source_type:' + view['type'] if view.get('type') in NOT_PAPERS else None) \
+                or not_a_paper(view, pg_, bare_) or ('doi_year_conflict' if doi_year_conflict(view) else None)
+            if why in ('meeting_abstract:single_author', 'invited_abstract') and (r.get('_source_author_count') if r.get('_source_author_count') is not None
+                    else dblp_nauth[r['pi']].get(norm_title(r.get('title')), 0)) >= 2:
+                why = None; corrected_authors = True  # same existing full-DBLP-author correction for every source quality view
+            if why:
+                break
         if not why and reviewed_not_paper((pid0 or {}).get(r['pi']), r):
             why = 'reviewed_not_paper'
-        if why in ('meeting_abstract:single_author', 'invited_abstract') and dblp_nauth[r['pi']].get(norm_title(r.get('title')), 0) >= 2:
-            why = None  # OpenAlex cut the byline: the PI's DBLP page has the paper with co-authors, so it is no keynote
+        if not why and corrected_authors:
             n['single_author_abstract_kept_dblp_coauthors'] += 1
         if why:
             n['not_paper:' + why] += 1
             if len(not_paper_samples[why]) < 10:
                 not_paper_samples[why].append(dict(pi=r['pi'], oa=r['oa'], title=r.get('title'), venue=r.get('venue'), type=r.get('type'), doi=r.get('doi')))
         else:
+            # Title-enrichment review tracks this native row by object identity. Remove only internal quality fields;
+            # raw work/recovery source objects are separate and stay unchanged.
+            r.pop('_source_quality_views', None); r.pop('_source_author_count', None); r.pop('_source_page_evidence', None)
             kept_.append(r)
     n['not_paper_dropped'] = len(rows) - len(kept_); rows = kept_
     return rows, not_paper_samples

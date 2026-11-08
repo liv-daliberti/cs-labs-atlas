@@ -204,7 +204,7 @@ def test_same_collection_target_still_needs_every_native_gate(tmp_path, fault):
 
 
 @pytest.mark.usefixtures('layout')
-def test_independently_eligible_recovery_is_not_skipped_for_an_existing_collection_work(tmp_path):
+def test_independently_eligible_recovery_is_not_skipped_for_an_existing_collection_work(tmp_path, monkeypatch):
     source, _ = native_pair(tmp_path)
     # Leave only the manuscript raw source; the full publisher record enters through ordinary R36 recovery.
     db = T.put(tmp_path, 'openalex-sweep.sqlite'); db.unlink(); T.write_school(tmp_path, sweep=[source])
@@ -213,9 +213,11 @@ def test_independently_eligible_recovery_is_not_skipped_for_an_existing_collecti
                      evidence=dict(oa='https://dblp.org/rec/conf/example/Full20', basis='page1_publisher', how='publisher PDF',
                                    url='https://example.edu/paper.pdf', pdf_sha256='a' * 64,
                                    quotes=['Ada Lovelace, Princeton University']))
+    from test_recovered_source_quality import write_owned_publication
+    write_owned_publication(tmp_path, recovered, monkeypatch)
     T.put(tmp_path, 'dblp-recovered.jsonl.gz').write_bytes(gzip.compress((json.dumps(recovered)+'\n').encode()))
     ctx = T.run_stages(tmp_path, upto='papers'); row = next(r for r in ctx.rows if r['pi'] == 'Ada Lovelace')
-    assert row['oa'] == recovered['evidence']['oa'] and row['type'] == 'article'
+    assert row['oa'] == recovered['evidence']['oa'] and row['type'] == 'conference-paper'
     assert row['authorship']['page1']['pdf_sha256'] == 'a' * 64
     assert row['source'] == 'dblp_recover:page1_publisher' and row['identity'] == 'dblp_person_page'
     assert any('Alan Turing' in names for names, _ in row['_bylines'])
