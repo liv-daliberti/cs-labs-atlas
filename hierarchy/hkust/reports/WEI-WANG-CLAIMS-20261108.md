@@ -1,0 +1,9 @@
+# Two distinct HKUST Wei Wang identities: exact paper claims
+
+The 2016–2026 window is unchanged. Reject only W4388184732 (FollowBench, arXiv2310.20410v1) and W4415320100 (WebR, arXiv2504.15573v1) as claims by CSE associate professor Wei Wang **王威**, whose official profile links `~weiwa`.
+
+The two actual original-version full PDFs have 10 and 11 authors respectively. Both name final author Wei Wang with affiliation markers1,2 (HKUST Guangzhou and HKUST) and contact `weiwcs@ust.hk`. The official university EMIA roster explicitly binds that contact to **王煒**, Professor, under Cross-Campus Joint Appointment Faculty, with a literal official personal-profile link. These are distinct people. Root verified full PDF hashes/bytes, parsed all33pages, and visually checked both bylines and markers.
+
+The exact two PI/OA/DOI review decisions run through the existing reviewed-claim pipeline before dynamic author-ID anchoring and downstream member-paper links. No global paper, raw record, author identifier, membership, appointment or other PI claim is changed by this input. The actual scientific papers remain valid discovery leads. A shared English name or coauthor is insufficient identity evidence. The separate 王煒 campus/unit and historical appointment inventory remains a discovery lead requiring its own scope review.
+
+Source hashes and literal citations are in `reviewed/paper-claim-review.json`. Full primary PDFs, official HTML, original raw page/work SHA bindings, page1images and the independent source adjudication are preserved in `scratch/hkust-roster-build-1108/next-v3/primary-source-review/`. Job32149198 completed normally in49seconds; no API or archive requests, no catalog/registry/canonical writes. The newer trial had added both weak claims; old canonical files remain unchanged. Actual native/ID comparison and canonical promotion remain pending.
