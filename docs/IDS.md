@@ -84,3 +84,30 @@ is split: those rows join only through their own lead record, and register only 
 | GitHub export | every row: `atlas_id`, `atlas_lab_id`, `atlas_work_id`, `student_atlas_id`, ...; `data/ids/` (see its `docs/SCHEMA.md`) |
 
 Run alone: `python tools/atlas_ids.py` (every released school; `--no-sweep` skips the student-to-PI byline step).
+
+## Person-specific co-advising evidence and shared personal pages
+
+A co-advising guard is activated only by a source clause naming the person being checked. Its report preserves the exact
+character span in the original quote. Roster boilerplate such as "many students are co-advised", or a preceding student's
+qualifier, does not assert co-advising for another member. An actual negative clause about the subject still holds for
+review. Ordinary compatible name+source-URL anchors already proving identity do not require invented reciprocal quotes;
+several previously issued person IDs still hold before assignment or redirects.
+
+The existing shared `student-identity-review.json` input also supports explicit `scope: "cross_lab"`, `verdict: "same_person"`
+reviews. Each names one school, an exact native external person key, the exact `{pi, person}` memberships, a full canonical
+name and one `identity_url`. Each membership must cite a `roster_person_link` whose URL/hash already occurs in its unchanged
+native relation sources, with an original HTML anchor binding that name to the shared personal page. A hashed
+`primary_person_page` citation must name the subject at that URL. Only the HTTP empty-path/root spelling is normalized;
+redirects, titles and names alone are not identity keys. These reviewed proofs add a normal school-scoped name+URL anchor;
+they do not change membership roles/years/sources, paper eligibility or candidate author identity. Ambiguous names, invalid
+proofs and multiple issued IDs fail before package or registry writes. Old within-lab review records retain their behavior.
+The ID report separates reciprocal co-advising groups from shared external identity groups and includes the reviewed source
+hashes. As with all isolated preparations, its registry and auxiliary cross-reference files require complete global review
+before promotion.
+
+A source-proven duplicate that already has two issued IDs requires a separate explicit redirect review. Optional
+`issued_id_review` metadata records the exact survivor/alias, baseline registry hash and before-state; `atlas_ids.run`
+never executes that metadata or waives its guard. In isolated preparation only, the existing `assign` mechanism can apply
+the reviewed two-anchor component using the standard earliest-issued/ID tie policy. The alias remains resolvable, unrelated
+IDs remain unchanged, and repeated preparation must create no additional redirect or split. The ordinary ID stage then
+runs against that copied reviewed registry; global application remains a separately reviewed operation.

@@ -510,7 +510,7 @@ def identity_review(ctx, stu):
     rev_f = P.data('student-identity-review.json', root=HERE)
     rev = read(rev_f) if rev_f.exists() else []
     for x in rev:
-        if x.get('school') != school or x.get('verdict') != 'same_person' or x.get('pi') not in stu:
+        if x.get('scope') == 'cross_lab' or x.get('school') != school or x.get('verdict') != 'same_person' or x.get('pi') not in stu:
             continue
         S = stu[x['pi']]
         find = lambda i: next((k for k, r in S.items() if k == i or i in (r.get('merged') or [])), None)
@@ -531,7 +531,8 @@ def queue_surname_typos(ctx, stu):
     """R-STU-13: two records of one lab with the same given name and family names one edit apart are queued for review
     (ctx.typo_pairs), never merged. Pairs the review file already judged (either verdict) are not queued again."""
     rev_f = P.data('student-identity-review.json', root=ctx.here)
-    judged = {frozenset((x['a'][0], x['b'][0])) for x in (read(rev_f) if rev_f.exists() else []) if x.get('school') == ctx.school and x.get('verdict')}
+    judged = {frozenset((x['a'][0], x['b'][0])) for x in (read(rev_f) if rev_f.exists() else [])
+              if x.get('scope') != 'cross_lab' and x.get('school') == ctx.school and x.get('verdict')}
     for pi, S in stu.items():
         recs = list(S.values())
         for i, a in enumerate(recs):

@@ -18,7 +18,8 @@ def main():
     out = Path(a.out) if a.out else P.data('student-name-candidates.json')
     old = json.loads(out.read_text()) if out.exists() else []
     rv = Path(a.review) if a.review else P.data('student-identity-review.json')
-    judged = {(x['school'], x['pi'], x['a'][0], x['b'][0]) for x in (json.loads(rv.read_text()) if rv.exists() else []) if x.get('verdict')}
+    judged = {(x['school'], x['pi'], x['a'][0], x['b'][0]) for x in (json.loads(rv.read_text()) if rv.exists() else [])
+              if x.get('scope') != 'cross_lab' and x.get('verdict')}
     key = lambda x: (x['school'], x['pi'], x['a'][0], x['b'][0])
     rows = {key(x): x for x in old if key(x) not in judged}
     for school in P.SCHOOL_IDS:
