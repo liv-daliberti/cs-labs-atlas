@@ -2,9 +2,10 @@
 
 The catalogs (homogenizing-science/data/fulltext/<school>/catalog.sqlite) are written by running collectors over NFS
 with a rollback journal: they are read in short rowid chunks, read-only (as claude-princeton-20261015's
-catalog_snapshot does), never with one long SELECT. A lab paper matches a catalog work by collection work id, else <school>_oa_<OpenAlex W id> (lab papers the
-fulltext-push added to a catalog), else DOI
-(including arXiv's 10.48550 DOI from the work's arXiv id).
+catalog_snapshot does), never with one long SELECT. A lab paper matches a catalog work by an accepted collection work id, <school>_oa_<OpenAlex W id> (lab papers the
+fulltext-push added to a catalog), or DOI; a title alone never establishes that a copy belongs to the paper.
+Matching accepted editions and reviewed DOI aliases also qualify. Exact identity candidates are all checked for a local copy,
+so a queued id does not hide a downloaded DOI match (including arXiv's 10.48550 DOI from the work's arXiv id).
 A work the collector left at needs_access_review carries the cause the stores' access review recorded
 (fulltext-push/review_access.py -> catalog side table access_review(work_id, verdict, cause, causes_json, ...); 2026-10-29):
 access_cause (the deciding cause: paywall_or_forbidden, login, challenge, robots_disallow, landing_no_pdf, not_found, ...),
@@ -60,7 +61,8 @@ def ndoi(s):
 def resolve(school, rows, status, by_doi, local_titles, access=None, matches=None, alias=None):
     """The coverage counter's rule, one place (tools/reader_export.py uses it too): lab-paper rows -> ({paper key: {status, catalog,
     doi, oa, year, ...}}, counts). `status` is {catalog work id: status} (a downloaded copy whose identity is still pending is
-    'identity_unconfirmed'), `by_doi` {DOI: work id}, `local_titles` the normalized titles of local copies. If `matches` is a
+    'identity_unconfirmed'), `by_doi` {DOI: work id}. `local_titles` is retained for caller compatibility but ignored:
+    a shared title, even with a checked file for that other catalog record, is not a paper identity. If `matches` is a
     dict it receives {paper key: (catalog work id or None, status)} for the callers that need the copy itself."""
     access = access or {}
     out, n = {}, collections.Counter()
@@ -71,15 +73,20 @@ def resolve(school, rows, status, by_doi, local_titles, access=None, matches=Non
         st, cid = None, None
         for e in [r] + list(r.get('editions') or []):  # one unique paper: a copy of any edition counts
             oaw = f"{school}_oa_{(e.get('oa') or '').rsplit('/', 1)[-1]}"  # lab papers added to a catalog under their OpenAlex id (fulltext-push, 2026-10-22)
-            c_ = e.get('work') if e.get('work') in status else (oaw if oaw in status else None) or by_doi.get(ndoi(e.get('doi'))) or (by_doi.get('10.48550/arxiv.' + r['arxiv']) if r.get('arxiv') else None)
-            c_ = (alias or {}).get(c_, c_)
-            if c_ and (cid is None or status.get(c_) in LOCAL):
-                cid = c_
+            candidates = [e.get('work'), oaw, by_doi.get(ndoi(e.get('doi')))]
+            if r.get('arxiv'):
+                candidates.append(by_doi.get('10.48550/arxiv.' + r['arxiv']))
+            for candidate in candidates:
+                candidate = (alias or {}).get(candidate, candidate)
+                if candidate not in status:
+                    continue
+                if cid is None or status[candidate] in LOCAL:
+                    cid = candidate
+                if status[cid] in LOCAL:
+                    break
             if cid and status.get(cid) in LOCAL:
                 break
         st = status.get(cid) if cid else None
-        if st not in LOCAL and re.sub(r'[^a-z0-9]', '', (r.get('title') or '').lower()) in local_titles:
-            st = 'downloaded'  # another catalog record of the same paper (same title) has the copy
         out[key] = dict(status=st or 'not_in_catalog', catalog=cid, doi=r.get('doi'), oa=r['oa'], year=r.get('year'))
         if matches is not None:
             matches[key] = (cid, st)
@@ -93,7 +100,7 @@ def resolve(school, rows, status, by_doi, local_titles, access=None, matches=Non
 def run(school):
     rows = [json.loads(l) for l in gzip.open(P.data('lab_papers.jsonl.gz', school), 'rt')]
     alias = {}
-    status, by_doi, local_titles, access = {}, {}, set(), {}  # the coverage counter's rule: any catalog work with the same id, DOI or title
+    status, by_doi, access = {}, {}, {}  # accepted work/OpenAlex ids, DOI and editions; never title alone
     if (FT / school / 'catalog.sqlite').exists():
         db = sqlite3.connect(f'file:{FT / school / "catalog.sqlite"}?mode=ro', uri=True, timeout=120)
         db.execute('pragma busy_timeout = 120000')
@@ -111,7 +118,7 @@ def run(school):
             alias = dict(db.execute('select alias_id, canonical_id from work_alias'))
         except sqlite3.OperationalError:
             alias = {}
-        for wid, doi, st, title, ic in chunks(db, 'id, doi, status, title, identity_check'):
+        for wid, doi, st, ic in chunks(db, 'id, doi, status, identity_check'):
             wid = alias.get(wid, wid)
             if st == 'downloaded' and ic == PENDING:
                 st = 'identity_unconfirmed'  # a copy whose identity is not confirmed does not count (owner, 2026-10-31)
@@ -119,11 +126,9 @@ def run(school):
                 status[wid] = st
             if doi and (st in LOCAL or ndoi(doi) not in by_doi):
                 by_doi[ndoi(doi)] = wid
-            if st in LOCAL and title:
-                local_titles.add(re.sub(r'[^a-z0-9]', '', title.lower()))
     for a, c in alias.items():
         status.setdefault(a, status.get(c))   # an alias id answers with its canonical's status
-    out, n = resolve(school, rows, status, by_doi, local_titles, access, alias=alias)
+    out, n = resolve(school, rows, status, by_doi, set(), access, alias=alias)
     summary = dict(school=school, lab_papers=len(out), **n, local_share=round(n['local'] / max(1, len(out)), 3),
                    counted_at=time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()))
     json.dump(dict(summary=summary, papers=out), open(P.data_w('copies.json', school), 'w'))
