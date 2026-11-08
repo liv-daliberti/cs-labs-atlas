@@ -68,6 +68,16 @@ def toks(s):
     return [t for t in re.sub(r"[^a-z\u3400-\u9fff\uf900-\ufaff\u3040-\u30ff\u1100-\u11ff\U00020000-\U000323af\- ]+", ' ', s.replace("'", '').replace('’', '').replace('‘', '').replace('`', '')).replace('-', ' ').split() if t]
 
 
+def name_toks(s):
+    """Use a bilingual label's explicit full Latin reading, not its appended Chinese name as a Latin surname.
+
+    The Latin spelling is already present in the source; this does not transliterate a Chinese-only name.
+    Generic text tokenization still preserves Chinese words for source/listing checks.
+    """
+    latin = toks(CJK.sub(' ', unicodedata.normalize('NFKC', str(s or ''))))
+    return latin if len(latin) >= 2 else toks(s)
+
+
 def placeholder_name(name):
     """R-PAP-34: a name made only of single letters ('Y Z': a directory that lists a person by initials) names no one the matchers can
     tell from any namesake. 'Weinan E', 'H.V. Jagadish', 'R. Ravi' have a word of two letters or more and are not placeholders."""
@@ -139,7 +149,7 @@ def names_full_form(text, pi_names):
         return True
     t = ' '.join(toks(_fold(text))); raw = _fold(text)
     for n in pi_names:
-        tk = toks(n)
+        tk = name_toks(n)
         if len(tk) < 2 or len(tk[0]) < 2:
             continue
         if re.search(r'(?:^| )' + re.escape(' '.join(tk)) + r'(?: |$)', t) or f'{tk[-1]}, {tk[0]}' in raw:
@@ -152,14 +162,14 @@ class Name:
     def __init__(self, names):
         self.forms = set()
         names = list(names)
-        self.mono = {toks(n)[0] for n in names if len(toks(n)) == 1}
+        self.mono = {name_toks(n)[0] for n in names if len(name_toks(n)) == 1}
         for n in list(names):  # "J. Andrew (Drew) Bagnell": the parenthetical nickname is a given name too
             for nick in re.findall(r'\(([^)]+)\)', str(n or '')):
-                rest = toks(n)
+                rest = name_toks(n)
                 if rest and len(toks(nick)) == 1:
                     names.append(toks(nick)[0] + ' ' + rest[-1])
         for n in names:
-            t = nosuffix(toks(n))
+            t = nosuffix(name_toks(n))
             if len(t) >= 3 and len(t[0]) == 1:  # "M. Frans Kaashoek" is also written "Frans Kaashoek"
                 self.forms.add((t[1], t[-1]))
             if len(t) >= 3:  # "Jun-Yan Zhu" is also written "Junyan Zhu"
@@ -173,7 +183,7 @@ class Name:
             self.forms.add((t[-1], t[0]))              # family-name-first order
 
     def match(self, raw):
-        t = nosuffix(toks(raw))
+        t = nosuffix(name_toks(raw))
         if len(t) == 1:  # a single-name person ("Arvind") matches only that single name
             return t[0] in self.mono
         if len(t) < 2:
@@ -377,7 +387,7 @@ def name_conflict(pi_names, dblp_name):
 
 def full_pair(nm_):
     """(first given name, family name) when the first given name is written out (no initial), generational suffix dropped."""
-    t_ = nosuffix(toks(nm_))
+    t_ = nosuffix(name_toks(nm_))
     return (t_[0], t_[-1]) if len(t_) >= 2 and len(t_[0]) > 1 else None
 
 
