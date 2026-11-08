@@ -289,6 +289,132 @@ def student_urls(r):
     return sorted({q.get('url') for rel in r.get('relations') or [] for q in rel.get('sources') or [] if q.get('url')})
 
 
+COADVISED = re.compile(r'\bco[-\s]?(?:advised|supervised)\s*(?:with\b|by\b|w/)\s*', re.I)
+COADVISED_MENTION = re.compile(r'\bco[-\s]?(?:advis|supervis)', re.I)
+STUDENT_DESCRIPTORS = {'phd', 'ph', 'd', 'student', 'master', 'masters', 'msc', 'ms', 'm', 's', 'sc',
+                       'undergraduate', 'fall', 'spring', 'summer', 'autumn', 'since', 'from', 'present', 'started'}
+
+
+class CoadvisingIDConflict(ValueError):
+    """Source-backed external memberships need review before any registry/package writes."""
+    def __init__(self, holds):
+        self.holds = holds
+        super().__init__('Co-advising ID preparation held: ' + '; '.join(
+            h['school'] + '/' + h['native_person'] + ': ' + h['reason'] for h in holds))
+
+
+def _coadvising_text_toks(text):
+    # Prose commas separate clauses; unlike a standalone person's name, they never reverse the text.
+    return [w for w in re.findall(r'[a-z]+', fold(text)) if w not in {'dr', 'prof', 'professor'}]
+
+
+def _contains_name(tokens, name):
+    return any(tokens[i:i + len(name)] == name for i in range(len(tokens) - len(name) + 1))
+
+
+def _student_before_coadvising(prefix, names):
+    tokens = _coadvising_text_toks(prefix)
+    for name in names:
+        words = name_toks(name)
+        if len(words) < 2 or not any(len(w) > 1 for w in words[:-1]):
+            continue
+        for i in range(len(tokens) - len(words) + 1):
+            if tokens[i:i + len(words)] == words and set(tokens[i + len(words):]) <= STUDENT_DESCRIPTORS:
+                return True
+    return False
+
+
+def _coadvisers_named(label, pi_names):
+    tokens = _coadvising_text_toks(label)
+    matched = collections.defaultdict(set)
+    for pi, names in pi_names.items():
+        for name in names:
+            words = name_toks(name)
+            if len(words) > 1 and any(len(w) > 1 for w in words[:-1]) and _contains_name(tokens, words):
+                matched[tuple(words)].add(pi)
+    full = {pi for candidates in matched.values() if len(candidates) == 1 for pi in candidates}
+    if full:
+        return full
+    # A short qualifier such as "w/ Junxian" is allowed only when that complete given name is unique in the school.
+    short = [w for w in tokens if w not in {'professor', 'with', 'by'}]
+    if len(short) == 1 and len(short[0]) > 1:
+        return {pi for pi, names in pi_names.items() for name in names if name_toks(name)[:1] == short}
+    return set()
+
+
+def coadvised_external_groups(data, ents, registry, nick=None):
+    """Join a shared native ext: record only through reciprocal, cited co-adviser evidence within one school.
+
+    Native external ids select candidates; they are never global person anchors. Names alone, unqualified roster
+    mentions and one-sided co-advising do not prove identity. A new join that would redirect two issued person ids
+    requires review instead of silently merging them. All validation precedes assign(), commit() and package writes.
+    """
+    groups = collections.defaultdict(list)
+    for school, (pis, students, _, _) in data.items():
+        for pi, records in students.items():
+            for r in records:
+                if str(r['person']).startswith('ext:'):
+                    groups[school, r['person']].append((('stu', school, pi, r['person']), r))
+    joins, holds = [], []
+    for (school, person), records in sorted(groups.items()):
+        if len(records) < 2:
+            continue
+        citations = [(k, q) for k, r in records for rel in r.get('relations') or [] for q in rel.get('sources') or []]
+        if not any(COADVISED_MENTION.search(str(q.get('quote') or '')) for _, q in citations):
+            continue  # an ext: key or the same name on two pages alone is not an identity claim
+        keys = [k for k, _ in records]
+        base = dict(school=school, native_person=person, records=[dict(pi=k[2], name=r['name']) for k, r in records])
+        if len(set(keys)) != len(keys) or not all(any(compatible(a, b, nick) for a in ents[x]['names'] for b in ents[y]['names'])
+                                                for x in keys for y in keys):
+            holds.append(dict(base, reason='incompatible names or duplicate memberships for a co-advised external id'))
+            continue
+        pi_names = {p['pi']: p.get('names') or [p['pi']] for p in data[school][0]}
+        edges = collections.defaultdict(list)
+        for key, q in citations:
+            quote = str(q.get('quote') or '')
+            if not re.fullmatch(r'[0-9a-fA-F]{64}', str(q.get('sha256') or '')) or not re.match(r'https?://', str(q.get('url') or '')):
+                continue
+            for m in COADVISED.finditer(quote):
+                prefix = quote[:m.start()]
+                if re.search(r'\b(?:not|never|no longer|without)\b', prefix[-40:], re.I) or not _student_before_coadvising(prefix, ents[key]['names']):
+                    continue
+                label = re.split(r'[);\n]', quote[m.end():], maxsplit=1)[0]
+                if re.search(r'\b(?:not|never|no longer|except|excluding)\b', label, re.I):
+                    continue
+                targets = _coadvisers_named(label, pi_names)
+                # Exact full names may list several advisers, but a given-only ambiguity is never narrowed to this group.
+                if len(targets) > 1 and len(_coadvising_text_toks(label)) == 1:
+                    continue
+                for target in keys:
+                    if target != key and target[2] in targets:
+                        edges[key, target].append(dict(q))
+        linked = {k: {j for j in keys if edges[k, j] and edges[j, k]} for k in keys}
+        reached = {keys[0]}
+        while True:
+            expanded = reached | {j for k in reached for j in linked[k]}
+            if expanded == reached:
+                break
+            reached = expanded
+        if len(reached) != len(keys):
+            holds.append(dict(base, reason='reciprocal source-bound co-advising evidence is unresolved',
+                              supported_directions=[dict(from_pi=k[2], to_pi=j[2], sources=v) for (k, j), v in edges.items() if v]))
+            continue
+        issued = set()
+        for key in keys:
+            for kind, value in ents[key]['anchors']:
+                row = registry.execute('select id from anchors where anchor=?', (person_anchor_str(kind, value),)).fetchone()
+                if row:
+                    issued.add(resolve(registry, row[0]))
+        if len(issued) > 1:
+            holds.append(dict(base, reason='co-advising join reaches multiple issued person IDs; explicit redirect review required', issued_ids=sorted(issued)))
+            continue
+        joins.append(dict(base, keys=keys, sources=[dict(from_pi=k[2], to_pi=j[2], source=q)
+                                                  for (k, j), vv in sorted(edges.items()) if linked[k] and j in linked[k] for q in vv]))
+    if holds:
+        raise CoadvisingIDConflict(holds)
+    return joins
+
+
 def byline_author_ids(school, wanted, hdir):
     """{(openalex work id, raw byline name): author id} for the wanted pairs, from the school's OpenAlex sweep."""
     out = {}
@@ -376,11 +502,15 @@ def run(schools, hdir, registry, use_sweep=True, today=None, write=True):
                             any(compatible(x['byline'], b, nick_ok) for b in ents[pk]['names']):
                         ents[sk]['anchors'].add(('openalex', aid))
                         student_oa_evidence.setdefault(sk, dict(openalex=aid, work=x.get('oa'), byline=x.get('byline'), pi=pk[2], pi_school=pk[1]))
+    coadvising = coadvised_external_groups(data, ents, registry, nick_ok)
     uf = UF(); by_anchor = collections.defaultdict(list)
     for k, e in ents.items():
         uf.find(k)
         for a in e['anchors']:
             by_anchor[a].append(k)
+    for group in coadvising:
+        for key in group['keys'][1:]:
+            uf.union(group['keys'][0], key)
     conflicts = []
     for a, ks in sorted(by_anchor.items()):
         k0 = ks[0]
@@ -547,6 +677,8 @@ def run(schools, hdir, registry, use_sweep=True, today=None, write=True):
                people=len(set(person_of.values())), pi_people=len(appts), student_records=sum(1 for k in ents if k[0] == 'stu'),
                works=len(set(work_of.values())), work_rows=len(work_of), labs=len(lab_ids), cross_school_persons=len(cross),
                students_matched_to_pi_elsewhere=len(student_oa_evidence),
+               coadvised_student_groups=len(coadvising),
+               coadvising_evidence=[{k: v for k, v in g.items() if k != 'keys'} for g in coadvising],
                conflicts_refused=len(conflicts), conflicts=conflicts[:50],
                registry=dict(ids=db.execute('select count(*) from ids').fetchone()[0],
                              anchors=db.execute('select count(*) from anchors').fetchone()[0],
