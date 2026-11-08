@@ -27,6 +27,8 @@ sys.path.insert(0, str(Path(__file__).parent))
 from pi_hierarchy import read, DBLP, INST, AFF, ndoi, norm_title, Name, toks, given  # noqa: E402
 from pi_fulltext_affiliation import tie  # noqa: E402
 import atlas_paths as P  # noqa: E402  (every path in one place)
+from pihier.common import school_scope_work  # noqa: E402
+from pihier.papers import _authorship_school_via  # noqa: E402
 
 UA = 'HomogenizingScienceResearch/0.2 (academic metadata inventory)'
 OPEN_HOSTS = ('ceur-ws.org', 'aclanthology.org', 'proceedings.mlr.press', 'openaccess.thecvf.com', 'papers.nips.cc', 'proceedings.neurips.cc',
@@ -261,12 +263,13 @@ def run(school, workers):
             except (requests.RequestException, ValueError):
                 w = None
             if w:
+                source_work = w
+                w = school_scope_work(w, school)
                 a = next((a for a in w.get('authorships') or [] if nm.match(a.get('raw_author_name') or (a.get('author') or {}).get('display_name') or '')), None)
                 if a is not None:
-                    via = [i.get('display_name') for i in a.get('institutions') or [] if inst == i.get('id') or inst in (i.get('lineage') or [])] + \
-                          ['text: ' + z for z in a.get('raw_affiliation_strings') or [] if aff.search(z)]
+                    via = _authorship_school_via(w, a, inst, aff)
                     if via:
-                        record(x, 'openalex_doi', w['id'], 'ok', ok=1, ev=dict(basis='openalex_authorship', oa=w['id'], school_via=via[:3])); return 'openalex'
+                        record(x, 'openalex_doi', w['id'], 'ok', ok=1, ev=dict(basis='openalex_authorship', oa=w['id'], school_via=via[:3], openalex_work=source_work)); return 'openalex'
                     if a.get('institutions'):
                         record(x, 'openalex_doi', w['id'], 'other_institution', ok=0); return 'other_institution'
                 for loc in [w.get('primary_location') or {}] + list(w.get('locations') or []):

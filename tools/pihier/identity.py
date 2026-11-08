@@ -6,7 +6,7 @@ for DBLP-anchored works)."""
 import collections, gzip, html, json, re, sqlite3, zlib
 
 import atlas_paths as P  # every path in one place
-from .common import DBLP, NOT_PAPERS, ndoi, norm_title, read, sweep_works
+from .common import DBLP, NOT_PAPERS, ndoi, norm_title, read, school_scope_work, sweep_works
 from .names import Name, all_initials, byline_name, clean_person_name, full_pair, middle_conflict, name_conflict, nosuffix, toks
 from . import reviewed_claims
 
@@ -307,7 +307,7 @@ def hits(ctx):
                 owner[a_].append(p['pi'])
         k0 = len(hits)
         for (b_,) in con.execute('select body from works'):
-            w = json.loads(zlib.decompress(b_))
+            w = school_scope_work(json.loads(zlib.decompress(b_)), school)
             if w['id'] in in_sweep or w.get('type') in NOT_PAPERS:
                 continue
             for a in w.get('authorships') or []:

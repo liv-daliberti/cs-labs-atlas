@@ -47,6 +47,8 @@ from dblp_recover import pdf_url, OPEN_HOSTS  # noqa: E402
 import mpcap  # noqa: E402  (tools/mpcap.py; was hierarchy/missing-pi-tools/, docs/SCRIPT-MAP.md)
 
 import atlas_paths as P  # noqa: E402  (every path in one place)
+from pihier.common import school_scope_work  # noqa: E402
+from pihier.papers import _authorship_school_via  # noqa: E402
 
 
 def D(name, school=None, write=False):
@@ -762,10 +764,16 @@ def run(school, workers=6, title_credits=600, floor=4000, dry=False):
             app = appointment(p, cw['year'])
             if app is None:
                 record(x, step, cw['id'], f"outside_appointment:{cw['year']}"); fails.append('outside_appointment'); continue
-            via = [i_['name'] for i_ in a['inst'] if inst == i_['id'] or inst in i_['lineage']] + ['text: ' + z for z in a['aff'] if aff.search(z)]
+            # Reconstruct the source fields compact() preserved; keep them unchanged for native replay.
+            source_work = dict(id=cw['id'], authorships=[dict(raw_author_name=aa['raw'], author=dict(id=aa['aid']),
+                institutions=[dict(id=ii['id'], display_name=ii['name'], lineage=ii['lineage']) for ii in aa['inst']],
+                raw_affiliation_strings=aa['aff']) for aa in cw['authorships']])
+            scoped = school_scope_work(source_work, school)
+            own = next(aa for aa in scoped['authorships'] if (aa.get('author') or {}).get('id') == a['aid'] and aa['raw_author_name'] == a['raw'])
+            via = _authorship_school_via(scoped, own, inst, aff)
             base = dict(step=step, match=how, oa=cw['id'], appointment=app)
             if via:
-                ev = dict(base, basis='openalex_authorship', school_via=via[:3], institutions=[i_['name'] for i_ in a['inst']], raw_affiliations=a['aff'][:3])
+                ev = dict(base, basis='openalex_authorship', school_via=via[:3], institutions=[i_['name'] for i_ in a['inst']], raw_affiliations=a['aff'][:3], openalex_work=source_work)
                 record(x, step, cw['id'], 'ok', ok=1, ev=ev); return 'accepted', (step, cw, ev)
             if a['inst']:
                 record(x, step, cw['id'], 'other_institution:' + '; '.join(i_['name'] or '' for i_ in a['inst'])[:300]); fails.append('other_institution'); continue

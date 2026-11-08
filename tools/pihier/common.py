@@ -1,5 +1,5 @@
 """What every stage of the build shares: the charter tables, the date, the readers, the work keys and the evidence order."""
-import collections, datetime, gzip, hashlib, json, re, sqlite3, unicodedata, zlib
+import collections, copy, datetime, gzip, hashlib, json, re, sqlite3, unicodedata, zlib
 from pathlib import Path
 
 import atlas_paths as P  # every path in one place
@@ -43,29 +43,57 @@ def source_year(s):
 
 
 def related_gate(school):
-    """(related ids, affiliation regex, the school's primary lineage id) from the charter, or None when the school lists no related institution."""
-    rel = set(_S.get(school)['ids'].get('openalex_related') or [])
-    return (rel, _S.aff_rx(school), _S.inst(school)) if rel else None
+    """The charter's related and excluded affiliation entries, or None without either restriction."""
+    ids = _S.get(school)['ids']
+    rel, excluded = set(ids.get('openalex_related') or []), set(ids.get('openalex_excluded') or [])
+    return (rel, _S.aff_rx(school), _S.inst(school), excluded) if rel or excluded else None
 
 
 def gate_related(w, gate, joint=None):
-    """D3 of UChicago (2026-11-03): an institution that holds a related id (Argonne: a lineage child of the university, treated like the Medical Center)
-    ties an authorship to the school only when the authorship's raw affiliation string matches the school regex, or the author is a PI with a documented
-    joint appointment (`joint` = {folded author name: related ids cited}). Otherwise the school id is taken out of that institution's lineage on a copy of the
-    authorship, so every lineage test downstream reads it as another institution. Per affiliation: a UChicago entry on the same authorship is untouched."""
-    rel, rx, inst = gate
+    """Apply charter scope per affiliation on a copy. Excluded children cannot lend the primary lineage;
+    a separate direct primary entry and the authorship's own raw text remain. Related entries retain the
+    existing raw-text or documented joint-appointment exception. Joint appointments never override exclusion.
+    Three-item gates remain accepted for callers using the original related-only interface."""
+    rel, rx, inst = gate[:3]
+    excluded = gate[3] if len(gate) > 3 else set()
     sch = inst.rsplit('/', 1)[-1]
+    w = copy.deepcopy(w)
     for a in w.get('authorships') or []:
         raws = a.get('raw_affiliation_strings') or []
         who = ' '.join(re.findall(r'\w+', unicodedata.normalize('NFKD', (a.get('raw_author_name') or (a.get('author') or {}).get('display_name') or '')).lower()))
         cited = (joint or {}).get(who, set())
         for x in a.get('institutions') or []:
-            ids = {str(l).rsplit('/', 1)[-1] for l in (x.get('lineage') or [])} | {str(x.get('id')).rsplit('/', 1)[-1]}
-            if ids & rel and not (ids & cited) and sch in ids and not any(rx.search(z or '') for z in raws):   # a cited institution covers its own facilities (their lineage holds it)
+            direct = str(x.get('id') or '').rsplit('/', 1)[-1]
+            ids = {str(l).rsplit('/', 1)[-1] for l in (x.get('lineage') or [])} | {direct}
+            if direct == sch:  # a true primary entry is independent of another excluded affiliation
+                continue
+            denied = bool(ids & excluded) or (ids & rel and not (ids & cited) and not any(rx.search(z or '') for z in raws))
+            if denied and sch in ids:
                 x['lineage'] = [l for l in (x.get('lineage') or []) if str(l).rsplit('/', 1)[-1] != sch]
-                if str(x.get('id')).rsplit('/', 1)[-1] == sch:
-                    x['id'] = None
     return w
+
+
+def school_scope_work(w, school):
+    """One school-specific view; original shared metadata is never modified."""
+    gate = related_gate(school)
+    return gate_related(w, gate, joint_appointments(school)) if gate else w
+
+
+def excluded_school_only(authorship, school):
+    """An excluded entry cannot become school evidence through another author's affiliation."""
+    gate = related_gate(school)
+    if not gate or len(gate) < 4 or not gate[3]:
+        return False
+    _, rx, inst, excluded = gate
+    sch = inst.rsplit('/', 1)[-1]
+    entries = [{str(x.get('id') or '').rsplit('/', 1)[-1]} |
+               {str(i).rsplit('/', 1)[-1] for i in x.get('lineage') or []}
+               for x in authorship.get('institutions') or []]
+    if any(sch in ids and not ids & excluded for ids in entries):
+        return False
+    if any(str(x.get('id') or '').rsplit('/', 1)[-1] == sch for x in authorship.get('institutions') or []):
+        return False
+    return any(ids & excluded for ids in entries) and not any(rx.search(raw or '') for raw in authorship.get('raw_affiliation_strings') or [])
 
 
 def joint_appointments(school):
@@ -81,9 +109,8 @@ def joint_appointments(school):
 
 def sweep_works(school, here=None):
     c = sqlite3.connect(f"file:{P.data('openalex-sweep.sqlite', school, root=here or HERE)}?mode=ro", uri=True)
-    gate, joint = related_gate(school), None
-    if gate:
-        joint = joint_appointments(school)
+    gate = related_gate(school)
+    joint = joint_appointments(school) if gate else None
     for (body,) in c.execute('select body from pages order by year, page'):
         for w in json.loads(zlib.decompress(body)):
             yield gate_related(w, gate, joint) if gate else w

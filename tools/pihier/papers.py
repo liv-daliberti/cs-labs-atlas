@@ -6,9 +6,9 @@ import collections, gzip, html, json, re, unicodedata, zlib
 
 import atlas_paths as P  # data paths (DATA_FILES)
 import school_config as _S  # the school charters (R-PAP-15's foreign-title exception)
-from .common import OWN_UNITS, SCHOOL_LOOSE, TODAY, WINDOW_START, accepted_additions, ndoi, norm_title
+from .common import OWN_UNITS, SCHOOL_LOOSE, TODAY, WINDOW_START, accepted_additions, excluded_school_only, ndoi, norm_title, related_gate, school_scope_work
 from .identity import in_blocked_cluster
-from .names import NICK, _nick_pairs, byline_name, full_pair, toks
+from .names import NICK, _nick_pairs, byline_name, full_pair, toks, Name
 from .periods import _year, LISTING_BRIDGE, bridge_periods, listing_bridge_periods, contains, same_year, transition_side, transition_status
 from . import identity, reviewed_claims
 from dblp_dump_pages import page_count  # noqa: E402  (DBLP's `pages` string -> number of pages; R-PAP-27)
@@ -633,6 +633,9 @@ def school_basis(ctx, pi, w, a, ident, page1):
         # ties the school to this PI by name (2026-10-29: Chi Jin, Karthik Narasimhan, Adam Perer); the primary
         # source outranks OpenAlex's derived affiliation
         page1 = tied[w['id']]; via = [f"page 1 ({page1['how']}): " + ' … '.join(page1['quotes'])]
+    if not via and excluded_school_only(a, school):
+        n['school_excluded_child_only'] += 1
+        return [], page1
     if bystander and not via:
         n['school_affiliation_explicit_other_author'] += 1
         return [], page1   # a named bystander is not an unaffiliated PI or a silent R-PAP-11/29 recovery
@@ -832,6 +835,27 @@ def arxiv_predates_record(ev, year):
     return bool(m and year and int(year) - (2000 + int(m.group(1))) >= ARXIV_PRE_YEARS)
 
 
+def recovered_scope_via(ctx, p, ev):
+    """Replay an OpenAlex recovery against the current charter; display names alone cannot prove scope.
+    Page-1 evidence is independent. Legacy rows may reuse the original work already read by the native hits stage."""
+    if ev.get('basis') != 'openalex_authorship' or not related_gate(ctx.school):
+        return ev.get('school_via')
+    w = ev.get('openalex_work')
+    if not isinstance(w, dict) or w.get('id') != ev.get('oa'):
+        w = next((h[1] for h in getattr(ctx, 'hits', []) if h[1]['id'] == ev.get('oa')), None)
+    if w is None:
+        ctx.n['recovered_school_scope_unreplayable'] += 1
+        return []
+    w = school_scope_work(w, ctx.school)
+    nm = Name(p.get('names') or [p['pi']])
+    via = [v for a in w.get('authorships') or []
+           if nm.match(a.get('raw_author_name') or (a.get('author') or {}).get('display_name') or '')
+           for v in _authorship_school_via(w, a, ctx.inst, ctx.aff)]
+    if not via:
+        ctx.n['recovered_school_scope_not_supported'] += 1
+    return via
+
+
 def recovered_rows(ctx, rows, seen):
     """Rows from RECOVERED_KINDS: inside the appointment, one per (PI, work); appended to `rows`."""
     HERE, school, n, pid0, cwork = ctx.here, ctx.school, ctx.n, ctx.pid0, ctx.cwork
@@ -855,7 +879,10 @@ def recovered_rows(ctx, rows, seen):
                 n[f'{kind}_recovered_outside_window'] += 1; aside('outside_window'); continue
             if kind == 'dblp' and arxiv_predates_record(ev, x.get('year')):   # R-PAP-36: page 1 of a v1 posted 4+ years before the record says where it was done then
                 n['dblp_recovered_arxiv_v1_predates_record'] += 1; continue
-            via = ev.get('school_via') or [f"page 1 ({ev.get('how')}): " + ' … '.join(ev.get('quotes') or [])]
+            scope_via = recovered_scope_via(ctx, p, ev)
+            if ev.get('basis') == 'openalex_authorship' and scope_via == []:
+                aside('school_scope_not_supported'); continue
+            via = scope_via or [f"page 1 ({ev.get('how')}): " + ' … '.join(ev.get('quotes') or [])]
             if kind == 'dblp' and ev.get('how'):  # R-PAP-36: the DBLP-listed work confirmed by its own first page
                 via = ['page1_dblp: ' + str(x.get('dblp_key') or '')] + via
             per = next((q for q in p['periods'] if contains(q['start'], q['end'], date, q['asof'] or TODAY) == 'supported'), None)
