@@ -8,7 +8,7 @@ import collections, gzip, html, json, re, sqlite3, zlib
 import atlas_paths as P  # every path in one place
 from .common import DBLP, NOT_PAPERS, ndoi, norm_title, read, school_scope_work, sweep_works
 from .names import Name, all_initials, byline_name, clean_person_name, full_pair, middle_conflict, name_conflict, name_toks, nosuffix, toks
-from . import reviewed_claims
+from . import primary_affiliations, reviewed_claims
 
 DUMP_PERSONS = None  # hierarchy/dblp-dump-persons.json.gz, read once per process
 
@@ -354,6 +354,15 @@ def hits(ctx):
     tied, from_pw, page_read = {}, set(), {}
     if pw.exists():
         con = sqlite3.connect(f'file:{pw}?mode=ro', uri=True)
+        author_reviews = primary_affiliations.load_author_review_pages(con)
+        if author_reviews is not None:
+            ctx.author_review_pages, input_holds = author_reviews
+            for i, evidence in enumerate(input_holds):
+                if not hasattr(ctx, 'primary_affiliation_reviews'):
+                    ctx.primary_affiliation_reviews = {}
+                ctx.primary_affiliation_reviews[('__author_review_input__', str(i))] = (None, evidence)
+            if input_holds:
+                n['primary_author_review_input_holds'] += len(input_holds)
         tied = {r[0]: dict(json.loads(r[1]), url=r[2], pdf_sha256=r[3]) for r in con.execute('select work, quote, url, pdf_sha256 from pages where school_named=1')}
         page_read = {r[0]: (r[1], r[2], r[3]) for r in con.execute('select work, status, page1, url from pages')}  # R3: every page-1 read
         in_sweep = {h[1]['id'] for h in hits}

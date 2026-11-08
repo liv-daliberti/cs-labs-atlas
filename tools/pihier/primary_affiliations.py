@@ -1,12 +1,128 @@
 """Complete primary-PDF author blocks may correct derived byline flags, never paper admission or raw records."""
 import copy
 import collections
+import datetime
 import hashlib
 import json
 import math
 import re
+import sqlite3
 import unicodedata
 import zlib
+
+AUTHOR_REVIEW_TABLE = 'author_review_pages'
+AUTHOR_REVIEW_PURPOSE = 'derived_author_affiliation_flags_only'
+_REVIEW_LIMIT = 2 << 20
+_APPROVAL_KEYS = {'version', 'decision', 'purpose', 'school', 'review_id', 'work', 'reviewed_by', 'reviewed_at',
+                  'source_packet_sha256', 'source_replay_sha256', 'source_work_sha256', 'source_authorships_sha256',
+                  'metadata_sha256', 'page1_text_sha256', 'pdf_sha256', 'pdf_url'}
+
+
+def load_author_review_pages(con):
+    """Read only the explicitly reviewed table, NEVER proposals or ordinary works/pages.
+
+    None means an absent table and exact legacy behavior. The caller keeps this
+    snapshot separate from admission metadata. Invalid selectors/table structure
+    become input diagnostics; scoped malformed payloads are held when consulted.
+    """
+    if not con.execute("select 1 from sqlite_master where type='table' and name=?", (AUTHOR_REVIEW_TABLE,)).fetchone():
+        return None
+    records, errors, total = collections.defaultdict(list), [], 0
+    try:
+        rows = con.execute('''select substr(review_id,1,2001),substr(work,1,2001),
+            substr(approval,1,?),substr(metadata,1,?),substr(page1,1,?)
+            from author_review_pages order by review_id,work limit 10001''', (_REVIEW_LIMIT + 1,) * 3)
+        for number, row in enumerate(rows):
+            if number == 10000:
+                return {}, [dict(status='held', reason='author_review_table_too_large', input_table=AUTHOR_REVIEW_TABLE)]
+            rid, wid, approval, metadata, page1 = row
+            total += sum(len(x) for x in row if isinstance(x, (str, bytes)))
+            if total > 32 << 20:
+                return {}, [dict(status='held', reason='author_review_table_too_large', input_table=AUTHOR_REVIEW_TABLE)]
+            if (not isinstance(wid, str) or not wid.strip() or len(wid) > 2000
+                    or not isinstance(rid, str) or not rid.strip() or len(rid) > 2000):
+                errors.append(dict(status='held', reason='invalid_author_review_selector', input_table=AUTHOR_REVIEW_TABLE))
+                continue
+            records[wid].append(dict(review_id=rid, work=wid, approval=approval, metadata=metadata, page1=page1))
+    except sqlite3.DatabaseError:
+        return {}, [dict(status='held', reason='malformed_author_review_table', input_table=AUTHOR_REVIEW_TABLE)]
+    return dict(records), errors
+
+
+def _review_json(value):
+    if not isinstance(value, str) or len(value.encode()) > _REVIEW_LIMIT:
+        raise ValueError('invalid or oversized review JSON')
+    return json.loads(value)
+
+
+def _review_text(value):
+    if not isinstance(value, bytes) or len(value) > _REVIEW_LIMIT:
+        raise ValueError('invalid or oversized review text')
+    dec = zlib.decompressobj()
+    body = dec.decompress(value, _REVIEW_LIMIT + 1)
+    if len(body) > _REVIEW_LIMIT or not dec.eof or dec.unused_data or dec.unconsumed_tail:
+        raise ValueError('invalid or oversized decompressed review text')
+    return body.decode('utf-8')
+
+
+def author_review_signature(records):
+    """Cache only this exact read-only row snapshot, including compressed text bytes."""
+    return digest([{k: ['bytes', hashlib.sha256(v).hexdigest()] if isinstance(v, bytes) else ['json', v]
+                    for k, v in row.items()} for row in records])
+
+
+def resolve_author_review(work, school, records):
+    """One approved source-bound flag review, with no identity/eligibility authority."""
+    def held(reason):
+        return dict(status='held', reason=reason, work=work.get('id'), input_table=AUTHOR_REVIEW_TABLE,
+                    review_ids=[r.get('review_id') for r in records])
+    if len(records) != 1:
+        return held('competing_author_review_records')
+    row = records[0]
+    try:
+        approval = _review_json(row['approval'])
+        if not isinstance(approval, dict) or set(approval) != _APPROVAL_KEYS:
+            return held('invalid_author_review_approval')
+        if (type(approval['version']) is not int or approval['version'] != 1
+                or approval['decision'] != 'reviewed' or approval['purpose'] != AUTHOR_REVIEW_PURPOSE):
+            return held('not_explicitly_reviewed_for_derived_flags')
+        if (approval['review_id'] != row['review_id'] or approval['work'] != row['work']
+                or row['work'] != work.get('id') or approval['school'] != school):
+            return held('wrong_author_review_selector')
+        if not isinstance(approval['reviewed_by'], str) or not approval['reviewed_by'].strip():
+            return held('missing_author_review_reviewer')
+        if not isinstance(approval['reviewed_at'], str) or not re.fullmatch(r'\d{4}-\d{2}-\d{2}', approval['reviewed_at']):
+            return held('invalid_author_review_date')
+        datetime.date.fromisoformat(approval['reviewed_at'])
+        if any(not re.fullmatch('[0-9a-f]{64}', str(approval[k])) for k in _APPROVAL_KEYS if k.endswith('_sha256')):
+            return held('invalid_author_review_hash')
+        if (approval['source_work_sha256'] != digest(work)
+                or approval['source_authorships_sha256'] != digest(work.get('authorships') or [])):
+            return held('author_review_source_changed')
+        metadata, text = _review_json(row['metadata']), _review_text(row['page1'])
+        if not isinstance(metadata, dict) or set(metadata) != {'url', 'pdf_sha256', 'author_affiliation_review'}:
+            return held('author_review_contains_unexpected_metadata')
+        review = metadata['author_affiliation_review']
+        if not isinstance(review, dict) or type(review.get('version')) is not int or review['version'] not in (1, 2):
+            return held('invalid_complete_author_review')
+        if (approval['metadata_sha256'] != digest(metadata)
+                or approval['page1_text_sha256'] != hashlib.sha256(text.encode()).hexdigest()
+                or approval['pdf_sha256'] != metadata.get('pdf_sha256') or approval['pdf_url'] != metadata.get('url')):
+            return held('author_review_payload_changed')
+        result = resolve(work, metadata, text)
+        if result.get('status') != 'accepted':
+            if result.get('status') != 'held':
+                return held('missing_complete_author_review')
+            result.update(input_table=AUTHOR_REVIEW_TABLE, review_ids=[row['review_id']])
+            return result
+        result['evidence'].update(input_table=AUTHOR_REVIEW_TABLE, purpose=AUTHOR_REVIEW_PURPOSE,
+                                  approval_sha256=digest(approval), review_id=row['review_id'],
+                                  approved_by=approval['reviewed_by'], approved_at=approval['reviewed_at'],
+                                  source_packet_sha256=approval['source_packet_sha256'],
+                                  source_replay_sha256=approval['source_replay_sha256'])
+        return result
+    except (ValueError, TypeError, KeyError, IndexError, AttributeError, UnicodeError, zlib.error, RecursionError):
+        return held('malformed_author_review_payload')
 
 
 def digest(value):

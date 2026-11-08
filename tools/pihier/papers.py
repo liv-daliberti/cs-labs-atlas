@@ -623,19 +623,29 @@ def reviewed_byline_school(ctx, work):
                 for a in work.get('authorships') or []
                 if _authorship_school_via(work, a, ctx.inst, ctx.aff, school=ctx.school)]
     page1 = (getattr(ctx, 'tied', None) or {}).get(work['id'])
-    if not page1 or 'author_affiliation_review' not in page1:
+    dedicated = (getattr(ctx, 'author_review_pages', None) or {}).get(work['id'])
+    if dedicated is None and (not page1 or 'author_affiliation_review' not in page1):
         return original, None
     try:
         source_key = primary_affiliations.digest(work)
     except (TypeError, ValueError):
         source_key = None
     key = (work['id'], source_key)
+    if dedicated is not None:
+        key += (primary_affiliations.author_review_signature(dedicated),
+                'legacy_review' if page1 and 'author_affiliation_review' in page1 else 'dedicated_review')
     cache = getattr(ctx, 'primary_affiliation_reviews', None)
     if cache is None:
         ctx.primary_affiliation_reviews = cache = {}
     if key not in cache:
-        status, text, _ = (getattr(ctx, 'page_read', None) or {}).get(work['id'], (None, None, None))
-        result = primary_affiliations.resolve(work, page1, text) if status == 'ok' else dict(status='held', reason='page1_not_read', work=work['id'])
+        if dedicated is not None:
+            if page1 and 'author_affiliation_review' in page1:
+                result = dict(status='held', reason='competing_author_review_channels', work=work['id'])
+            else:
+                result = primary_affiliations.resolve_author_review(work, ctx.school, dedicated)
+        else:
+            status, text, _ = (getattr(ctx, 'page_read', None) or {}).get(work['id'], (None, None, None))
+            result = primary_affiliations.resolve(work, page1, text) if status == 'ok' else dict(status='held', reason='page1_not_read', work=work['id'])
         corrected = primary_affiliations.school_flags(work, result, lambda w, a: _authorship_school_via(w, a, ctx.inst, ctx.aff, school=ctx.school))
         evidence = dict(status=result['status'], **result['evidence']) if corrected is not None else dict(result)
         cache[key] = (corrected if corrected is not None else original, evidence)
