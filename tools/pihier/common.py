@@ -26,8 +26,16 @@ def read(p):
 
 
 def norm_title(s):
-    s = unicodedata.normalize('NFKD', str(s or '')).encode('ascii', 'ignore').decode().lower()
-    return re.sub(r'[^a-z0-9]', '', s)
+    # Preserve the established Latin/ASCII fold; other scripts keep their literal letters and digits.
+    out = []
+    for c in unicodedata.normalize('NFKC', str(s or '')).lower():
+        name = unicodedata.name(c, '')
+        if c.isascii() or name.startswith('LATIN '):
+            folded = unicodedata.normalize('NFKD', c).encode('ascii', 'ignore').decode()
+            out.extend(x for x in folded if 'a' <= x <= 'z' or '0' <= x <= '9')
+        elif c.isalnum() and not name.startswith('MODIFIER LETTER '):
+            out.append(c)
+    return ''.join(out)
 
 
 def ndoi(s):
@@ -193,14 +201,15 @@ def collection_work_matcher(works):
         for d in [w.get('doi')] + [a for a in (w.get('aliases') or []) if str(a).startswith('10.') or 'doi.org' in str(a)]:
             if d:
                 by_doi.setdefault(ndoi(d), wid)
-        if w.get('title'):
-            by_title[norm_title(w['title'])].append(wid)
+        if title_key := norm_title(w.get('title')):
+            by_title[title_key].append(wid)
 
     def cwork(oa):
         d = ndoi(oa.get('doi'))
         if d and d in by_doi:
             return by_doi[d]
-        for wid in by_title.get(norm_title(oa.get('title')), []):
+        title_key = norm_title(oa.get('title'))
+        for wid in by_title.get(title_key, []) if title_key else []:
             y = works[wid].get('year')
             if not y or not oa.get('publication_year') or abs(int(str(y)[:4]) - oa['publication_year']) <= 1:
                 return wid

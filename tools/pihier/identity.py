@@ -7,7 +7,7 @@ import collections, gzip, html, json, re, sqlite3, zlib
 
 import atlas_paths as P  # every path in one place
 from .common import DBLP, NOT_PAPERS, ndoi, norm_title, read, school_scope_work, sweep_works
-from .names import Name, all_initials, byline_name, clean_person_name, full_pair, middle_conflict, name_conflict, nosuffix, toks
+from .names import Name, all_initials, byline_name, clean_person_name, full_pair, middle_conflict, name_conflict, name_toks, nosuffix, toks
 from . import reviewed_claims
 
 DUMP_PERSONS = None  # hierarchy/dblp-dump-persons.json.gz, read once per process
@@ -45,7 +45,8 @@ def apply_cached_lists(pis, pubs, dblp_doi, dblp_title, n):
             for pi in owner.get(q, []):
                 if rec.get('doi'):
                     dblp_doi[pi].add(ndoi(rec['doi']))
-                dblp_title[pi][norm_title(rec.get('title', '').rstrip('.'))] = rec.get('year')
+                if title_key := norm_title((rec.get('title') or '').rstrip('.')):
+                    dblp_title[pi][title_key] = rec.get('year')
 
 
 def apply_dump(pis, dump, dblp_doi, dblp_title, n):
@@ -125,7 +126,8 @@ def anchors(ctx):
     pl_f = P.data('pi-publication-lists.json', school, root=HERE)
     for pi_, rows_ in (read(pl_f) if pl_f.exists() else {}).items():
         for r_ in rows_:
-            own_list[pi_][norm_title(r_['title'])] = r_.get('year')
+            if title_key := norm_title(r_.get('title')):
+                own_list[pi_][title_key] = r_.get('year')
     n['pis_with_own_publication_list'] = sum(bool(own_list[p['pi']]) for p in pis)
     lab_page = collections.defaultdict(list)  # the lab's own publications page (labpage-pubs.jsonl.gz): citation strings, title inside
     lp_f = P.data('labpage-pubs.jsonl.gz', school, root=HERE)
@@ -143,7 +145,7 @@ def anchors(ctx):
 def _cluster_key(raw):
     """'Zhao, Ben Y.' / 'Ben Y. Zhao' -> 'ben zhao': first given name and family name."""
     t = nosuffix(toks(byline_name(raw)))
-    return f'{t[0]} {t[-1]}' if len(t) >= 2 else ''
+    return f'{t[0]} {t[-1]}' if len(t) >= 2 else (t[0] if t else '')
 
 
 def in_blocked_cluster(pid, w):
@@ -195,10 +197,11 @@ def _authorship_identity(ctx, pi, w, a, cw):
         return 'dblp_verified_collection_work'
     if ndoi(w.get('doi')) in dblp_doi[pi]:
         return 'dblp_person_page_doi'
-    y = dblp_title[pi].get(norm_title(w.get('title')))
+    title_key = norm_title(w.get('title'))
+    y = dblp_title[pi].get(title_key) if title_key else None
     if y is not None and (not y or not w.get('publication_year') or abs(int(y) - w['publication_year']) <= 1):
         return 'dblp_person_page_title'
-    y = own_list[pi].get(norm_title(w.get('title')), -1)
+    y = own_list[pi].get(title_key, -1) if title_key else -1
     if y != -1 and (not y or not w.get('publication_year') or abs(int(y) - w['publication_year']) <= 1):
         return 'pi_institutional_publication_list'
     t_ = norm_title(w.get('title'))
@@ -237,11 +240,21 @@ def id_sets(ctx):
     ctx.reviewed_oa, ctx.orcids, ctx.blocked, ctx.mixed = reviewed_oa, orcids, blocked, mixed
 
 
+def candidate_pis(ctx, raw):
+    """Exact opaque single-name forms, else the established first/family candidate index. No transliteration."""
+    t = nosuffix(name_toks(raw))
+    if len(t) == 1:
+        return sorted(set(getattr(ctx, 'by_mono', {}).get(t[0], [])))
+    if not t:
+        return []
+    return sorted(set(ctx.by_sur.get(t[-1], []) + ctx.by_sur.get(''.join(t[1:]), []) + ctx.by_sur.get(t[0], [])))
+
+
 def hits(ctx):
     """The authorships matched to PIs: sweep works with an authorship matching the PI's name (with its identity), surname
     hits under an anchored or reviewed id, and the PI's own works outside the sweep (pi-works.sqlite) under an anchored or
     reviewed id or tied by page 1 (R-PAP-24). Anchored author ids are counted on the way."""
-    HERE, school, pis, n, nm, by_sur, cwork = ctx.here, ctx.school, ctx.pis, ctx.n, ctx.nm, ctx.by_sur, ctx.cwork
+    HERE, school, pis, n, nm, cwork = ctx.here, ctx.school, ctx.pis, ctx.n, ctx.nm, ctx.cwork
 
     def identity_of(pi, w, a, cw):
         return authorship_identity(ctx, pi, w, a, cw)
@@ -257,10 +270,7 @@ def hits(ctx):
         cw = None; done = set()
         for a in w.get('authorships') or []:
             raw = a.get('raw_author_name') or (a.get('author') or {}).get('display_name') or ''
-            t = nosuffix(toks(raw))  # "John Fisher III" is looked up under Fisher
-            if len(t) < 2:
-                continue
-            for pi in sorted(set(by_sur.get(t[-1], []) + by_sur.get(''.join(t[1:]), []) + by_sur.get(t[0], []))):  # sorted: hit order
+            for pi in candidate_pis(ctx, raw):  # sorted: stable hit order; opaque CJK names stay exact
                 if pi in done:
                     continue
                 if reviewed_claims.excluded(ctx, pi, w):
@@ -326,10 +336,10 @@ def hits(ctx):
             if w['id'] in tied:
                 for a in w.get('authorships') or []:
                     raw = a.get('raw_author_name') or (a.get('author') or {}).get('display_name') or ''
-                    t = nosuffix(toks(raw)); aid = (a.get('author') or {}).get('id')
-                    if len(t) < 2 or a.get('institutions') or a.get('raw_affiliation_strings'):
+                    aid = (a.get('author') or {}).get('id')
+                    if a.get('institutions') or a.get('raw_affiliation_strings'):
                         continue
-                    for pi in sorted(set(by_sur.get(t[-1], []))):
+                    for pi in candidate_pis(ctx, raw):
                         if reviewed_claims.excluded(ctx, pi, w):
                             continue
                         if (pi, w['id']) in from_pw or aid in blocked[pi] or not nm[pi].match(raw) \

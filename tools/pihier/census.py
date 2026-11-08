@@ -193,8 +193,10 @@ def index_pis(ctx):
         if p['lab']['unitId']:
             by_unit[p['lab']['unitId']].append(p['pi'])
     nm = {p['pi']: Name(p['names']) for p in pis}
-    by_sur = collections.defaultdict(list)
+    by_sur, by_mono = collections.defaultdict(list), collections.defaultdict(list)
     for p in pis:
+        for literal in nm[p['pi']].mono:
+            by_mono[literal].append(p['pi'])
         for f, l in nm[p['pi']].forms:
             by_sur[l].append(p['pi'])
 
@@ -202,4 +204,4 @@ def index_pis(ctx):
     # Hamsa must not take 'Balakrishnan, Hari' theses, 2026-10-28); an initials-only field goes to no PI when another PI of
     # the school shares that family name and initial
     nm_full = {p['pi']: Name([x for x in p['names'] if len((toks(x) or [''])[0]) > 1] or p['names']) for p in pis}
-    ctx.pid0, ctx.by_unit, ctx.nm, ctx.by_sur, ctx.nm_full = pid0, by_unit, nm, by_sur, nm_full
+    ctx.pid0, ctx.by_unit, ctx.nm, ctx.by_sur, ctx.by_mono, ctx.nm_full = pid0, by_unit, nm, by_sur, by_mono, nm_full
