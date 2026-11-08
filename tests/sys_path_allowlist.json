@@ -125,6 +125,8 @@
  "tools/cv_students.py": "launched under python -I; reaches the labpage toolkit (hierarchy/labpage-tools-epfl-berkeley)",
  "tools/dblp_dump_index.py": "launched under python -I, or imported by a script that is (docs/CONTRIBUTING.md, Imports and sys.path)",
  "tools/dblp_recover.py": "launched under python -I, or imported by a script that is (docs/CONTRIBUTING.md, Imports and sys.path)",
+ "tools/fulltext_advisers.py": "entry point run as a script by hand and by Slurm (tools/fulltext-advisers.slurm, python -I): puts its own directory on the path to import atlas_paths and pihier",
+ "tools/fulltext_advisers_build.py": "entry point run as a script by hand and by Slurm (tools/fulltext-advisers.slurm, python -I): puts its own directory on the path to import atlas_paths and pihier",
  "tools/lab_coverage.py": "launched under python -I (docs/CONTRIBUTING.md, Imports and sys.path)",
  "tools/lab_paper_copies.py": "launched under python -I, or imported by a script that is (docs/CONTRIBUTING.md, Imports and sys.path)",
  "tools/labpage_audit.py": "launched under python -I, or imported by a script that is (docs/CONTRIBUTING.md, Imports and sys.path)",
