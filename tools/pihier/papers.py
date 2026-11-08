@@ -6,7 +6,7 @@ import collections, gzip, html, json, re, unicodedata, zlib
 
 import atlas_paths as P  # data paths (DATA_FILES)
 import school_config as _S  # the school charters (R-PAP-15's foreign-title exception)
-from .common import OWN_UNITS, SCHOOL_LOOSE, TODAY, WINDOW_START, accepted_additions, excluded_school_only, ndoi, norm_title, related_gate, school_scope_work
+from .common import NOT_PAPERS, OWN_UNITS, SCHOOL_LOOSE, TODAY, WINDOW_START, accepted_additions, excluded_school_only, ndoi, norm_title, related_gate, school_scope_work
 from .identity import in_blocked_cluster
 from .names import NICK, _nick_pairs, byline_name, full_pair, toks, Name
 from .periods import _year, LISTING_BRIDGE, bridge_periods, listing_bridge_periods, contains, same_year, transition_side, transition_status
@@ -729,7 +729,7 @@ def rows_from_hits(ctx):
     funnel, blocked, anchored, page_read, dblp_venue = ctx.funnel, ctx.blocked, ctx.anchored, ctx.page_read, ctx.dblp_venue
     page1_samples = []
     # lab papers
-    rows, seen, row_at = [], set(), {}
+    rows, seen = [], set()
     for pi, w, a, cw, ident, page1 in hits:
         p = pid0[pi]
         via, page1 = school_basis(ctx, pi, w, a, ident, page1)
@@ -830,18 +830,9 @@ def rows_from_hits(ctx):
                 n[f"transition_year_{'unaffiliated' if unaffiliated else 'affiliated'}_{ts}"] += 1
         funnel[pi]['in_appointment'] += 1
         k = (pi, cw or w['id'])
-        if k in seen:
-            # a second OpenAlex record of the same collection work (2026-10-29): kept as an edition of the row already
-            # made, with its own byline, so the lab's students on it are seen (EPFL 'Lê-Nguyên, Hoang', CMU 'Cui, Catherine')
-            if k in row_at and w['id'] != rows[row_at[k]]['oa']:
-                byline_school, affiliation_review = reviewed_byline_school(ctx, w)
-                rows[row_at[k]].setdefault('_dups', []).append(dict(
-                    oa=w['id'], work=cw, doi=ndoi(w.get('doi')), year=w.get('publication_year'), venue=((w.get('primary_location') or {}).get('source') or {}).get('display_name'),
-                    byline=[(x.get('raw_author_name') or (x.get('author') or {}).get('display_name')) for x in w.get('authorships') or []],
-                    byline_school=byline_school,
-                    **({'byline_affiliation_review': affiliation_review} if affiliation_review else {})))
-            continue
-        seen.add(k); row_at[k] = len(rows)
+        # Keep each complete admitted source through namesake/type checks and lead selection. Compacting a later
+        # same-collection record here loses its appointment/authorship and can hide its better published metadata.
+        seen.add(k)
         byline_school, affiliation_review = reviewed_byline_school(ctx, w)
         rows.append(dict(pi=pi, work=cw, oa=w['id'], doi=ndoi(w.get('doi')), title=w.get('title'), year=dated_by['venue_year'] if dated_by else w.get('publication_year'), date=date, type=w.get('type'),
                          venue=((w.get('primary_location') or {}).get('source') or {}).get('display_name'),
@@ -880,10 +871,10 @@ def arxiv_predates_record(ev, year):
     return bool(m and year and int(year) - (2000 + int(m.group(1))) >= ARXIV_PRE_YEARS)
 
 
-def recovered_scope_via(ctx, p, ev):
+def recovered_scope_via(ctx, p, ev, require_replay=False):
     """Replay an OpenAlex recovery against the current charter; display names alone cannot prove scope.
     Page-1 evidence is independent. Legacy rows may reuse the original work already read by the native hits stage."""
-    if ev.get('basis') != 'openalex_authorship' or not related_gate(ctx.school):
+    if ev.get('basis') != 'openalex_authorship' or (not require_replay and not related_gate(ctx.school)):
         return ev.get('school_via')
     w = ev.get('openalex_work')
     if not isinstance(w, dict) or w.get('id') != ev.get('oa'):
@@ -904,6 +895,7 @@ def recovered_scope_via(ctx, p, ev):
 def recovered_rows(ctx, rows, seen):
     """Rows from RECOVERED_KINDS: inside the appointment, one per (PI, work); appended to `rows`."""
     HERE, school, n, pid0, cwork = ctx.here, ctx.school, ctx.n, ctx.pid0, ctx.cwork
+    present_sources = {(r['pi'], r['oa']) for r in rows}
     # papers on the PI's own DBLP page that only DOI-resolved OpenAlex records or the paper's first page tie to the school
     # (tools/dblp_recover.py -> hierarchy/<school>/dblp-recovered.jsonl.gz), and likewise papers the PI's own lab
     # publications page lists (tools/labpage_recover.py -> hierarchy/<school>/labpage-recovered.jsonl.gz, key 'labpage:<sha1>')
@@ -924,7 +916,12 @@ def recovered_rows(ctx, rows, seen):
                 n[f'{kind}_recovered_outside_window'] += 1; aside('outside_window'); continue
             if kind == 'dblp' and arxiv_predates_record(ev, x.get('year')):   # R-PAP-36: page 1 of a v1 posted 4+ years before the record says where it was done then
                 n['dblp_recovered_arxiv_v1_predates_record'] += 1; continue
-            scope_via = recovered_scope_via(ctx, p, ev)
+            cw = cwork(dict(doi=x.get('doi'), title=(x.get('title') or '').rstrip('.'), publication_year=x['year'])) or None
+            oa_id = ev.get('oa') or (f"https://dblp.org/rec/{re.sub('^https?://dblp[.]org/rec/', '', str(x['dblp_key']))}" if kind == 'dblp' else x['key'])
+            existing = (x['pi'], cw or oa_id) in seen or (x['pi'], oa_id) in present_sources
+            if existing and not any(Name(p.get('names') or [p['pi']]).match(byline_name(b)) for b in x.get('byline') or []):
+                n[f'{kind}_recovered_existing_pi_byline_unproven'] += 1; aside('existing_work_pi_byline_unproven'); continue
+            scope_via = recovered_scope_via(ctx, p, ev, require_replay=existing)
             if ev.get('basis') == 'openalex_authorship' and scope_via == []:
                 aside('school_scope_not_supported'); continue
             via = scope_via or [f"page 1 ({ev.get('how')}): " + ' … '.join(ev.get('quotes') or [])]
@@ -934,12 +931,11 @@ def recovered_rows(ctx, rows, seen):
             lst = None if per else next((l for l in p['listings'] if l['year'] == int(x['year'])), None)
             if per is None and lst is None:
                 n[f'{kind}_recovered_outside_appointment'] += 1; aside('outside_appointment'); continue
-            cw = cwork(dict(doi=x.get('doi'), title=(x.get('title') or '').rstrip('.'), publication_year=x['year'])) or None
-            oa_id = ev.get('oa') or (f"https://dblp.org/rec/{re.sub('^https?://dblp[.]org/rec/', '', str(x['dblp_key']))}" if kind == 'dblp' else x['key'])
-            if (x['pi'], cw or oa_id) in seen:
-                aside('already_a_lab_paper'); continue
+            # A complete independently eligible recovery can be the publisher edition of an existing collection
+            # work. It must reach the ordinary quality checks and edition selector instead of being discarded here.
             seen.add((x['pi'], cw or oa_id))
-            rows.append(dict(pi=x['pi'], work=cw, oa=oa_id, doi=x.get('doi'), title=(x.get('title') or '').rstrip('.'), year=x['year'], date=date, type='article',
+            present_sources.add((x['pi'], oa_id))
+            rows.append(dict(pi=x['pi'], work=cw, oa=oa_id, doi=x.get('doi'), title=(x.get('title') or '').rstrip('.'), year=x['year'], date=date, type=x.get('type') or 'article',
                              venue=x.get('venue'), landing=ev.get('url'), byline=list(dict.fromkeys(x.get('byline') or [])), byline_school=[],
                              authorship=dict(position=None, raw_name=None, author_id=None, institutions=[], raw_affiliations=[], school_via=via[:3],
                                              page1=dict(url=ev.get('url'), pdf_sha256=ev.get('pdf_sha256'), how=ev.get('how'), quotes=ev.get('quotes'),
@@ -1005,7 +1001,8 @@ def drop_not_papers(rows, dblp_nauth, n, dblp_pages=None, pid0=None):
         pg_, bare_ = None, False
         if dblp_pages:  # R-PAP-27: the DBLP page count of this record (by DOI, else title), None when DBLP has none
             pg_, bare_ = dblp_pages['doi'][r['pi']].get(ndoi(r.get('doi'))) or dblp_pages['title'][r['pi']].get(norm_title(r.get('title'))) or (None, False)
-        why = not_a_paper(r, pg_, bare_) or ('doi_year_conflict' if doi_year_conflict(r) else None)
+        why = ('source_type:' + r['type'] if r.get('type') in NOT_PAPERS else None) \
+            or not_a_paper(r, pg_, bare_) or ('doi_year_conflict' if doi_year_conflict(r) else None)
         if not why and reviewed_not_paper((pid0 or {}).get(r['pi']), r):
             why = 'reviewed_not_paper'
         if why in ('meeting_abstract:single_author', 'invited_abstract') and dblp_nauth[r['pi']].get(norm_title(r.get('title')), 0) >= 2:
@@ -1028,22 +1025,116 @@ def edition_source(work):
                 source_type=(location.get('source') or {}).get('type'))
 
 
+def edition_rank(r):
+    """Existing source/DOI/collection/year preference, applied only to complete eligible records."""
+    d = ndoi(r.get('doi'))
+    source = r.get('_edition_source') or {}
+    published = source.get('is_published') is True or source.get('version') == 'publishedVersion'
+    repository = source.get('source_type') == 'repository' or (r.get('type') == 'preprint' and not published) \
+        or d.startswith('10.48550') or REPOSITORY_DOI.match(d) or REPOSITORY_VENUE.search(str(r.get('venue') or ''))
+    manuscript = source.get('version') in ('submittedVersion', 'acceptedVersion') and source.get('is_published') is not True
+    publication = 2 if repository or manuscript else (0 if published else 1)
+    return (publication, 0 if d and not d.startswith('10.48550') else 1,
+            bool(d.startswith('10.5555/')), 0 if r['work'] else 1, -(int(r['year'] or 0)))
+
+
+class EditionIdentityConflict(ValueError):
+    """Complete source records disagree; retain the inputs and hold before package serialization."""
+
+    def __init__(self, conflicts):
+        self.conflicts = conflicts
+        super().__init__('Eligible edition identity requires source review: ' + json.dumps(conflicts, ensure_ascii=False))
+
+
+def compatible_bylines(a, b):
+    """A source may omit authors, but must not replace/reorder the authors it supplies for the same identifier."""
+    def subsequence(short, long):
+        j = 0
+        for name in long:
+            if j < len(short) and Name([short[j]]).match(byline_name(name)):
+                j += 1
+        return j == len(short)
+    return subsequence(a, b) or subsequence(b, a)
+
+
+def collapse_eligible_sources(rows, n, preferred=None):
+    """One scientific work enters book counting; all its complete eligible editions survive for final selection.
+
+    Collection identity is the established native link. An exact PI/OA duplicate can also join compatible records;
+    a shared name/title alone never adds a link. Differing populated DOI records of one OA identifier stay source
+    distinct when they have distinct collection identities. An ambiguous bridge or contradictory byline holds.
+    """
+    parent = list(range(len(rows)))
+
+    def root(i):
+        while parent[i] != i:
+            parent[i] = parent[parent[i]]; i = parent[i]
+        return i
+
+    def join(ix):
+        for i in ix[1:]:
+            parent[root(i)] = root(ix[0])
+
+    works, oa = collections.defaultdict(list), collections.defaultdict(list)
+    for i, r in enumerate(rows):
+        if r.get('work'):
+            works[r['pi'], r['work']].append(i)
+        if r.get('oa'):
+            oa[r['pi'], r['oa']].append(i)
+    work_dois = {key: {ndoi(rows[i].get('doi')) for i in ix} - {''} for key, ix in works.items()}
+    conflicts, distinct = [], {}
+    for key, ix in oa.items():
+        if len(ix) < 2:
+            continue
+        evidence = {i: {ndoi(rows[i]['doi'])} if ndoi(rows[i].get('doi')) else
+                    work_dois.get((rows[i]['pi'], rows[i].get('work')), set()) for i in ix}
+        dois = set().union(*evidence.values())
+        if len(dois) > 1:
+            # A DOI-backed source split must not be erased just because OpenAlex assigned the same work key.
+            # Missing-DOI variants cannot silently bridge those two publications.
+            ambiguous = any(len(evidence[i]) != 1 or len(work_dois.get((rows[i]['pi'], rows[i].get('work')), set())) > 1 for i in ix)
+            if ambiguous:
+                conflicts.append(dict(pi=key[0], oa=key[1], reason='ambiguous DOI/source-work split', records=[rows[i] for i in ix]))
+            else:
+                distinct.update({i: next(iter(evidence[i])) for i in ix})
+            continue
+        if not all(compatible_bylines(rows[i].get('byline') or [], rows[j].get('byline') or []) for i in ix for j in ix):
+            conflicts.append(dict(pi=key[0], oa=key[1], reason='contradictory same-identifier bylines', records=[rows[i] for i in ix]))
+            continue
+        if not dois and len({norm_title(rows[i].get('title')) for i in ix}) > 1:
+            # Without a DOI bridge, distinct titles/collection records need source adjudication, not fuzzy matching.
+            if len({rows[i].get('work') for i in ix}) > 1:
+                conflicts.append(dict(pi=key[0], oa=key[1], reason='unresolved title/source-work split without DOI', records=[rows[i] for i in ix]))
+                continue
+        join(ix)
+    if conflicts:
+        raise EditionIdentityConflict(conflicts)
+    for ix in works.values():
+        join(ix)
+    grouped = collections.defaultdict(list)
+    for i in range(len(rows)):
+        grouped[root(i)].append(i)
+    out = []
+    for ix in grouped.values():
+        g = [rows[i] for i in ix]
+        selected = preferred(g) if preferred else None
+        chosen = selected or min(g, key=edition_rank)
+        lead = dict(chosen)
+        lead['_eligible_editions'] = [r for r in g if r is not chosen]
+        partitions = sorted({(rows[i]['oa'], distinct[i]) for i in ix if i in distinct})
+        if partitions:
+            lead['_source_partition'] = tuple(partitions)
+        out.append(lead)
+    n['source_distinct_same_oa_records'] = len(distinct)
+    return out
+
+
 def merge_editions(rows, n, preferred=None):
     """R-PAP-16: one record per unique paper and lab; editions share a normalized title, the published edition leads,
     and every edition's byline is kept for the links (`_bylines`)."""
     # one record per unique paper and lab: editions (arXiv preprint, conference, journal version) share a normalized
     # title; explicit published venue versions lead repository/submitted records, including deposits with their own DOI.
     # Without source evidence, keep the established DOI/collection/year preference among otherwise equivalent records.
-    def rank(r):
-        d = ndoi(r.get('doi'))
-        source = r.get('_edition_source') or {}
-        published = source.get('is_published') is True or source.get('version') == 'publishedVersion'
-        repository = source.get('source_type') == 'repository' or (r.get('type') == 'preprint' and not published) \
-            or d.startswith('10.48550') or REPOSITORY_DOI.match(d) or REPOSITORY_VENUE.search(str(r.get('venue') or ''))
-        manuscript = source.get('version') in ('submittedVersion', 'acceptedVersion') and source.get('is_published') is not True
-        publication = 2 if repository or manuscript else (0 if published else 1)
-        return (publication, 0 if d and not d.startswith('10.48550') else 1,
-                bool(d.startswith('10.5555/')), 0 if r['work'] else 1, -(int(r['year'] or 0)))
     grouped = collections.defaultdict(list)
     for r in rows:
         title = str(r.get('title') or '')
@@ -1054,11 +1145,15 @@ def merge_editions(rows, n, preferred=None):
             key = ('wip', r['pi'], norm_title(wip), r['year'], tuple(norm_title(a) for a in r['byline']))
         else:
             key = (r['pi'], norm_title(title)[:150] or r['oa'])
-        grouped[key].append(r)
+        if r.get('_source_partition'):
+            key = (key, r['_source_partition'])
+        complete = dict(r); variants = complete.pop('_eligible_editions', [])
+        complete.pop('_source_partition', None)
+        grouped[key].extend([complete] + variants)
     rows = []
     for g in grouped.values():
         selected = preferred(g) if preferred else None
-        g.sort(key=lambda r: (0 if r is selected else 1, rank(r))); lead = dict(g[0])
+        g.sort(key=lambda r: (0 if r is selected else 1, edition_rank(r))); lead = dict(g[0])
         dups = [d for x in g for d in x.get('_dups') or []]
         lead['editions'] = [dict(oa=x['oa'], work=x['work'], doi=x.get('doi'), year=x['year'], venue=x.get('venue')) for x in g[1:]] \
             + [{k_: d[k_] for k_ in ('oa', 'work', 'doi', 'year', 'venue')} for d in dups]
@@ -1171,6 +1266,9 @@ def lab_papers(ctx):
     rows = [r for r in rows if r['pi'] not in held]
     rows = drop_namesakes(rows, pis, ctx.reviewed_oa, n)
     rows, not_paper_samples = drop_not_papers(rows, ctx.dblp_nauth, n, ctx.dblp_pages, ctx.pid0)
+    # Count distinct scientific chapters, not the number of OA/DBLP records describing one chapter. Full eligible
+    # alternatives remain attached internally until the final edition selector; none are reconstructed from pointers.
+    rows = collapse_eligible_sources(rows, n, preferred=lambda group: reviewed_claims.preferred_edition(ctx, group))
     # books are one work, and a translation is not new work (2026-10-29, owner: best judgement): fold_books
     nv0 = sum(r.get('type') == 'book-chapter' and not r.get('venue') for r in rows)
     rows, n['book_chapters_folded'], translated = fold_books(rows, school)
