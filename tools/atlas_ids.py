@@ -600,7 +600,7 @@ class _PersonLink(HTMLParser):
 
 def reviewed_cross_lab_identities(data, ents, hdir, nick=None):
     """An exact reviewed shared personal page adds a normal name+URL anchor, never a name-only/global join."""
-    path = P.data('student-identity-review.json', root=hdir)
+    path = P.hfile(hdir, 'student-identity-review.json')
     if not path.exists():
         return []
     records = json.loads(path.read_text())

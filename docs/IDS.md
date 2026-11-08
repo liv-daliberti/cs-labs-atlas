@@ -130,6 +130,8 @@ native relation sources, with an original HTML anchor binding that name to the s
 redirects, titles and names alone are not identity keys. These reviewed proofs add a normal school-scoped name+URL anchor;
 they do not change membership roles/years/sources, paper eligibility or candidate author identity. Ambiguous names, invalid
 proofs and multiple issued IDs fail before package or registry writes. Old within-lab review records retain their behavior.
+Shared reviews follow the same hierarchy-container path contract as the school packages: the working hierarchy uses its configured flat/split layout, while a release or isolated hierarchy uses its flat reviewed-file location. The ID stage must not add another `hierarchy/` directory or silently skip reviews already present.
+
 The ID report separates reciprocal co-advising groups from shared external identity groups and includes the reviewed source
 hashes. As with all isolated preparations, its registry and auxiliary cross-reference files require complete global review
 before promotion.

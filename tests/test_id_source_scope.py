@@ -32,7 +32,7 @@ def proof(fx):
 
 def reviewed(root, registry, fx, reviews):
     write(root, fx)
-    A.P.data_w('student-identity-review.json', root=root).write_text(json.dumps(reviews))
+    A.P.hfile_w(root, 'student-identity-review.json').write_text(json.dumps(reviews))
     db = A.open_registry(registry, seed=False)
     try:
         return A.run(['example'], root, db, use_sweep=True, today='2026-11-08')
@@ -232,3 +232,37 @@ def test_candidate_queue_keeps_cross_lab_proof_scope_separate_from_legacy_pairs(
     monkeypatch.setattr(sys, 'argv', ['student_name_candidates.py', '--root', str(tmp_path), '--review', str(review), '--out', str(out)])
     Q.main()
     assert json.loads(out.read_text()) == ([] if legacy_review else [pair])
+
+
+@pytest.mark.parametrize('layout', ['flat', 'split'])
+def test_real_hierarchy_reads_existing_shared_review_in_both_layouts(tmp_path, monkeypatch, layout):
+    import gzip
+    monkeypatch.setenv('CS_ATLAS_DATA_LAYOUT', layout)
+    monkeypatch.setattr(A.P, 'HIERARCHY', tmp_path / 'hierarchy')
+    fx = fixture()
+    sources(fx)[1]['quote'] = 'Current students: Jingyi Chen'
+    data = fx['example']
+    for name, value in [('pis.json', data['pis']), ('students.json', data['students'])]:
+        A.P.data_w(name, 'example').write_text(json.dumps(value))
+    for name, rows in [('lab_papers.jsonl.gz', data['papers']), ('student_papers.jsonl.gz', data['links'])]:
+        with gzip.open(A.P.data_w(name, 'example'), 'wt') as output:
+            for row in rows:
+                output.write(json.dumps(row) + '\n')
+    review = A.P.data_w('student-identity-review.json')
+    review.write_text(json.dumps([proof(fx)]))
+    # A stale nested file must never shadow the actual hierarchy-container input.
+    nested = A.P.data_w('student-identity-review.json', root=A.P.HIERARCHY)
+    assert nested != review
+    nested.write_text('{invalid stale nested input')
+    before = copy.deepcopy(data['students'])
+    db = A.open_registry(tmp_path / 'registry.sqlite', seed=False)
+    try:
+        result = A.run(['example'], A.P.HIERARCHY, db, use_sweep=False, today='2026-11-08')
+    finally:
+        db.close()
+    assert len(set(student_ids(result).values())) == 1
+    assert result['report']['reviewed_cross_lab_identity_groups'] == 1
+    after = json.loads(A.P.data('students.json', 'example').read_text())
+    for pi, rows in after.items():
+        rows[0].pop('atlasId')
+        assert rows == before[pi]
