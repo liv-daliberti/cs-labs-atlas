@@ -126,7 +126,7 @@ def role_of(text):
     t = (text or '').lower()
     if re.search(r'ph\.?\s?d|doctor|dissertation', t):
         return 'phd'
-    if re.search(r"master[’']s (?:thesis|degree|student)|\bm\.?s\.? thesis|\bs\.?m\.? thesis", t):
+    if re.search(r"master of|master[’']s (?:thesis|degree|student)|\bm\.?s\.? thesis|\bs\.?m\.? thesis", t):
         return 'masters'
     return 'student'
 
@@ -141,6 +141,25 @@ def student_of(hit, byline, adviser_name):
         named = [a for a in named if not Name([adviser_name]).match(a)]
         return named[0] if len(named) == 1 else None
     return None
+
+
+def title_page_author(school, path, byline, S, adviser):
+    """A thesis whose byline lists the author with several others (the adviser, committee): the one non-PI byline author whose full
+    name stands in the first three pages (the title page). None when zero or several do."""
+    try:
+        txt = subprocess.run(['pdftotext', '-f', '1', '-l', '3', '-q', str(Path(P.STORES) / school / path), '-'],
+                             capture_output=True, timeout=60).stdout.decode('utf8', 'replace')
+    except (subprocess.TimeoutExpired, OSError):
+        return None
+    flat = nt(txt)
+    found = []
+    for a in byline:
+        t = toks(natural(a))
+        if len(t) < 2 or S.is_pi(a) or Name([adviser]).match(a):
+            continue
+        if nt(' '.join(t)) in flat or nt(' '.join([t[0], t[-1]])) in flat:
+            found.append(a)
+    return found[0] if len(found) == 1 else None
 
 
 def build(school, hits_dir):
@@ -161,6 +180,12 @@ def build(school, hits_dir):
             if pi == 'AMBIGUOUS':
                 c['ambiguous'] += 1
                 continue
+            at = h['quote'].find(h['adviser'])
+            before = h['quote'][max(0, at - 110):at]
+            after_ = h['quote'][at:at + 120]
+            if h['kind'] != 'front' and re.search(r"\b(?:not|never|n[’']t)\b[^.]{0,40}\b(?:advis|supervis)|academic|senior thesis|undergrad|bachelor|master|\bM\.?S\.?\b|\bintern\b|summer|co-?op|rotation", before + ' ' + after_[:110], re.I):
+                c['not_phd_adviser'] += 1   # 'academic advisor' is program advising (R-STU-02); senior-thesis, master's, intern and negated statements are no PhD adviser
+                continue
             if re.search(r'\b(?:former|previous|late)\b', h['quote'][max(0, h['quote'].find(h['adviser']) - 60):h['quote'].find(h['adviser'])], re.I):
                 c['former'] += 1
                 continue
@@ -171,8 +196,16 @@ def build(school, hits_dir):
                 byline = next((v for k, v in gj.items() if k.endswith('_students') and isinstance(v, list)), []) if g else []
                 byline = [b for b in byline if not re.search(r'Institute|University|Ph\.? ?D|Thesis', b)]   # a garbled catalog name is no author
             stu = student_of(h, byline, h['adviser'])
+            if not stu and (h['pages'] or 0) >= 40 and h['kind'] in ('ack_my', 'ack_my2', 'front') and len(byline) > 1 and h['path'].endswith('.pdf'):
+                stu = title_page_author(school, h['path'], byline, S, h['adviser'])
+                if stu:
+                    c['title_page_author'] += 1
             if not stu:
                 c['no_student'] += 1
+                continue
+            stu = re.sub(r'\s*\([^)]*\)', '', natural(stu)).strip()   # 'Jayson(Jayson R.) Lynch', 'Homberg, Bianca S.'
+            if len(toks(stu)) < 2:
+                c['name_incomplete'] += 1
                 continue
             if S.is_pi(stu):
                 c['student_is_pi'] += 1
@@ -226,7 +259,7 @@ def washu(etd_json, out):
                 c['already_held'] += 1
                 continue
             out_rows[pi][nt(nm)] = dict(
-                name=nm, role=role_of(r['degree']), years=[year, year], url=r['url'], sha256=r['sha256'], quote=r['quote'],
+                name=nm, role=role_of(r['degree']), years=[year, year], url=r['url'], sha256=r['sha256'], quote=(f'Committee Chair {a}' if f'Committee Chair {a}' in r['quote'] else r['quote']),
                 note=f"washu repository item page ({r['degree']}; {r['department']}): '{r['title']}'; Committee Chair '{a}' = {pi}. HELD: "
                      "WashU Committee Chair counts as the adviser only when the owner approves that rule")
             c['rows'] += 1
