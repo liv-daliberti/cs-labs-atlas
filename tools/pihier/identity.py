@@ -25,6 +25,7 @@ LEGACY_CURRENT_STUDENTS_BASIS = re.compile(
 ADVISER_RELATIONS = {'academic_advising', 'researched_advising', 'source_advising_context',
                      'pi_basis_advising', 'academic_adviser', 'thesis_adviser', 'phd_advising', 'research_advising'}
 ACADEMIC_ADVISER_LABEL = re.compile(r'\b(?:academic|program|major)\s+advis[oe]r', re.I)
+MY_ADVISEE = re.compile(r'\bmy\s+(?:(?:former|current|ph\.?d\.?|doctoral|master\x27?s?|undergraduate|graduate)\s+)*(?:students?|advisees?|supervisees?)\b', re.I)
 
 
 def _adviser_source_key(source):
@@ -52,11 +53,30 @@ def adviser_source_claims(ctx):
             if claims.get(key) != 'explicit_reviewed_membership':
                 claims[key] = basis
 
-    rows = [(pi, s) for pi, row in (getattr(ctx, 'ge', {}) or {}).items() for s in row.get('students') or []]
+    groups = list((getattr(ctx, 'ge', {}) or {}).items())
     for filename in RESEARCHED_FILES:
         path = P.data(filename, ctx.school, root=ctx.here)
         if path.exists():
-            rows += [(r['pi'], s) for r in read(path) for s in r.get('students') or []]
+            groups += [(r['pi'], r) for r in read(path)]
+    rows, owned_bodies = [], set()
+    for pi, group in groups:
+        pi = renames.get(pi, pi)
+        rows += [(pi, s) for s in group.get('students') or []]
+        if pi not in pis:
+            continue
+        context = group.get('pi_context_evidence') or {}
+        official, owned = context.get('official_role') or {}, context.get('owned_role') or {}
+        outbound = context.get('official_outbound') or context.get('ownership') or {}
+        literal = context.get('literal_official_href') or outbound.get('literal_href')
+        names = pis[pi].get('names') or [pi]
+        # A finite, already reviewed literal ownership chain; never normalize URLs or infer redirects.
+        if (_adviser_source_key(official) and _adviser_source_key(owned) and _adviser_source_key(outbound)
+                and official['url'] == outbound['url'] == context.get('profile')
+                and official['sha256'] == outbound['sha256']
+                and names_full_form(official['quote'], names)
+                and literal == context.get('home') == owned['url'] and literal in outbound['quote']
+                and (names_full_form(owned['quote'], names) or context.get('owned_named_PI_alias') in names)):
+            owned_bodies.add((pi, owned['url'], owned['sha256']))
     rows += [(s['pi'], s) for s in accepted_additions(ctx.school, 'students', ctx.here, collections.Counter())]
     for pi, row in rows:
         pi = renames.get(pi, pi)
@@ -78,6 +98,14 @@ def adviser_source_claims(ctx):
                 elif (row.get('relationship_basis') in LEGACY_ADVISER_BASES
                       or LEGACY_CURRENT_STUDENTS_BASIS.fullmatch(row.get('relationship_basis') or '')):
                     add(pi, row.get('name'), row, 'reviewed_legacy_relationship_basis')
+        if (relationship is None and (row.get('reviewed') is True or (row.get('reviewed_by') and row.get('reviewed_on')))
+                and (pi, row.get('url'), row.get('sha256')) in owned_bodies):
+            quote = row.get('quote') or ''
+            name = row.get('name') or ''
+            immediate = any(re.match(re.escape(name) + r'(?!\w)', quote[m.end():].lstrip(' :,-'), re.I)
+                            for m in MY_ADVISEE.finditer(quote)) if name else False
+            if immediate or MY_ADVISEE.fullmatch((row.get('section') or '').strip(' :')):
+                add(pi, name, row, 'reviewed_owned_first_person_advising')
 
     member_ids, member_names = collections.defaultdict(set), collections.defaultdict(set)
     for pi in pis:

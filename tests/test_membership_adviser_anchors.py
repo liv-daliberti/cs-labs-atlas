@@ -165,3 +165,37 @@ def test_owned_context_cannot_borrow_another_PIs_role_source(tmp_path):
     B.put(tmp_path, 'few-students-evidence.json').write_text(json.dumps([dict(pi='Ada Lovelace', students=[row])]))
     ctx = B.run_stages(tmp_path, upto='papers')
     assert 'A Paper With An Unresolved PI Identity' not in B.rows_of(ctx, 'Ada Lovelace')
+
+
+@pytest.mark.parametrize('change,expected', [
+    (None, True), ('source_hash', False), ('owned_url', False), ('other_PI', False),
+    ('other_student', False), ('membership', False),
+])
+def test_finite_owned_first_person_advising_recovers_real_entry_context(tmp_path, change, expected):
+    school_fixture(tmp_path)
+    home, profile = 'https://lab.example/ada/', 'https://faculty.example/ada'
+    quote = 'My master student Alan Turing received a research award.'
+    if change == 'other_student':
+        quote = 'My master student Another Person collaborated with Alan Turing.'
+    change_member(tmp_path, 'academic_advising', quote)
+    # The source citation is to the same owned page whose literal official link was reviewed.
+    path = B.put(tmp_path, 'collection.json.gz')
+    collection = json.loads(gzip.decompress(path.read_bytes()))
+    next(p for p in collection['people'] if p['id'] == 'p_alan')['contexts'][0]['sources'] = [B.src(quote, home)]
+    path.write_bytes(gzip.compress(json.dumps(collection).encode()))
+    student = dict(name='Alan Turing', role='masters', reviewed=True, **B.src(quote, home))
+    if change == 'membership':
+        student['relationship'] = 'membership'
+    context = dict(profile=profile, home=home,
+                   official_role=B.src('Grace Hopper Professor' if change == 'other_PI' else 'Ada Lovelace Professor', profile),
+                   owned_role=B.src('I am a Professor.', home), owned_named_PI_alias='Ada Lovelace',
+                   official_outbound=dict(B.src(home, profile), literal_href=home))
+    if change == 'source_hash':
+        context['owned_role']['sha256'] = 'b' * 64
+    if change == 'owned_url':
+        context['owned_role']['url'] = home.rstrip('/')
+    B.put(tmp_path, 'few-students-evidence.json').write_text(json.dumps([
+        dict(pi='Ada Lovelace', students=[student], pi_context_evidence=context)]))
+    ctx = B.run_stages(tmp_path, upto='papers')
+    assert ('A Paper With An Unresolved PI Identity' in B.rows_of(ctx, 'Ada Lovelace')) is expected
+    assert 'p_alan' in ctx.stu['Ada Lovelace']
