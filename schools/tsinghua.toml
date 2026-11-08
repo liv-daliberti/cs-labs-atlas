@@ -1,0 +1,440 @@
+# Partial source-reviewed207-PI onboarding checkpoint; history and university-wide scope remain open.
+# Full coverage means the unit is computing in scope, NOT that its census or history is exhausted.
+# Source-supported Beijing appointments only:207people /208unit memberships; no stage passed.
+key = "tsinghua"
+name = "Tsinghua University"
+short = "Tsinghua"
+site_uni = ""
+status = "onboarding"
+order = 17
+stage = 0
+started = "2026-11-07"
+window = [2016, 2026]
+
+[ids]
+openalex = ["I99065089"]
+openalex_related = []
+openalex_excluded = ["I4210091786", "I4210114105", "I4210127494", "I4210159340", "I4210160507", "I4391767736", "I4391767762", "I4391767819", "I4391767871", "I4391767896", "I4391768054", "I4391768119", "I4391768272", "I4392738191", "I4403928416", "I4405255477", "I4405263052"]
+ror = "https://ror.org/03cve4549"
+ids_note = "Primary ID, ROR and relationships queried from the existing local OpenAlex2026-10-14 institutions snapshot on2026-11-08 (primary-institution-evidence.json). No API used and no separate ROR endpoint checked in this batch. Current207source-supported PIs are in reviewed Beijing units. All17lineage children, including Shenzhen/TBSI and other unreviewed institutes/facilities, are provisionally excluded from child-only attribution; this does not assert they are unrelated to Tsinghua. No related-only institution is admitted. Child/campus inclusion requires separate source-backed appointment and unit review."
+
+[web]
+domains = ["tsinghua.edu.cn"]
+email_domains = ["tsinghua.edu.cn", "mail.tsinghua.edu.cn"]
+wayback_only_suffixes = []
+excluded_hosts = ["sigs.tsinghua.edu.cn", "www.sigs.tsinghua.edu.cn", "tbsi.edu.cn", "www.tbsi.edu.cn", "sz.tsinghua.edu.cn"]
+
+[affiliation]
+regex = '\btsinghua\s+univ\w*\b(?!\s*[,(-]\s*(?:shenzhen|深圳))|\bqinghua\s+univ\w*\b(?!\s*[,(-]\s*(?:shenzhen|深圳))|(?<!国立)清华大学(?!深圳)|(?<!sigs\.)(?<!sz\.)(?<!tbsi\.)\btsinghua\.edu\.cn\b'
+loose = 'tsinghua|qinghua|清华|\bbnrist\b'
+own_units = 'Department of Computer Science and Technology|School of Software|Institute for Interdisciplinary Information Sciences|Institute for AI Industry Research|Institute for Network Sciences and Cyberspace|Beijing National Research Center for Information Science and Technology|\bBNRist\b'
+must_match = ["Department of Computer Science and Technology, Tsinghua University, Beijing, China", "Institute for Interdisciplinary Information Sciences, Tsinghua University", "School of Software, Tsinghua University", "Institute for AI Industry Research, Tsinghua University", "Department of Automation, Tsinghua University", "Institute for Network Sciences and Cyberspace, Tsinghua University", "清华大学计算机科学与技术系", "Qinghua University, Beijing", "person@tsinghua.edu.cn"]
+must_not_match = ["Tsinghua Unigroup Co., Ltd.", "Tsinghua Tongfang", "National Tsing Hua University, Hsinchu, Taiwan", "国立清华大学", "person@nthu.edu.tw", "Tsinghua Shenzhen International Graduate School", "Tsinghua-Berkeley Shenzhen Institute", "清华大学深圳国际研究生院", "Tsinghua University, Shenzhen", "person@sigs.tsinghua.edu.cn"]
+
+[dblp]
+affiliation_strings = ["Tsinghua University"]
+legacy_sweep = ""
+
+[census]
+computing_departments = ["CS", "IIIS", "SW", "AIR"]
+center_units = []
+home_units = { "Computer Science and Technology" = 'computer science|计算机科学', "Software" = 'school of software|软件学院', "Interdisciplinary Information Sciences" = 'interdisciplinary information|交叉信息', "AI Industry Research" = 'AI Industry Research|智能产业', "Automation" = 'automation|自动化', "Network Sciences and Cyberspace" = 'network sciences and cyberspace|网络科学与网络空间' }
+rank_words = { ladder = '教授', research = '研究员', lecturer = '讲师|助教', emeritus = '荣休|退休|名誉', adjunct = '兼职', visiting = '客座|访问' }
+
+[sweep_check]
+exceptions = []
+[cs_related]
+not_faculty = {}
+share_test_settles = []
+[site]
+depts = { CS = "Computer Science and Technology", IIIS = "Interdisciplinary Information Sciences", SW = "School of Software", AIR = "AI Industry Research", AU = "Automation", INSC = "Network Sciences and Cyberspace" }
+full_codes = ["CS", "IIIS", "SW", "AIR"]
+[periods]
+school_regex = 'tsinghua\s+univ\w*|qinghua\s+univ\w*|清华大学'
+[rules]
+foreign_title_exception = false
+listing_continuity = false
+
+[[departments]]
+code = "CS"
+name = "Department of Computer Science and Technology"
+unit = "Tsinghua University, Beijing (reviewed source scope)"
+title_match = '教授|研究员|Professor|Research|Investigator'
+coverage = "full"
+url = "https://www.cs.tsinghua.edu.cn/szzk/jzgml.htm"
+  [[departments.listings]]
+  slot = "CS current2026reviewed source"
+  kind = "main"
+  url = "www.cs.tsinghua.edu.cn/szzk/jzgml.htm"
+  from = "20260101"
+  to = "20261231"
+  prefix = false
+  match = ""
+  format = ""
+  title_filter = ''
+
+[[departments]]
+code = "IIIS"
+name = "Institute for Interdisciplinary Information Sciences"
+unit = "Tsinghua University, Beijing (reviewed source scope)"
+title_match = '教授|研究员|Professor|Research|Investigator'
+coverage = "full"
+url = "https://iiis.tsinghua.edu.cn/en/People.htm"
+  [[departments.listings]]
+  slot = "IIIS current2026reviewed source"
+  kind = "main"
+  url = "iiis.tsinghua.edu.cn/en/People.htm"
+  from = "20260101"
+  to = "20261231"
+  prefix = false
+  match = ""
+  format = ""
+  title_filter = ''
+
+[[departments]]
+code = "SW"
+name = "School of Software"
+unit = "Tsinghua University, Beijing (reviewed source scope)"
+title_match = '教授|研究员|Professor|Research|Investigator'
+coverage = "full"
+url = "https://www.thss.tsinghua.edu.cn/szdw/jsml.htm"
+  [[departments.listings]]
+  slot = "SW current2026reviewed source"
+  kind = "main"
+  url = "www.thss.tsinghua.edu.cn/szdw/jsml.htm"
+  from = "20260101"
+  to = "20261231"
+  prefix = false
+  match = ""
+  format = ""
+  title_filter = ''
+
+[[departments]]
+code = "AIR"
+name = "Institute for AI Industry Research"
+unit = "Tsinghua University, Beijing (reviewed source scope)"
+title_match = '教授|研究员|Professor|Research|Investigator'
+coverage = "full"
+url = "https://air.tsinghua.edu.cn/en/our_team/Research_Team.htm"
+  [[departments.listings]]
+  slot = "AIR current2026reviewed source"
+  kind = "main"
+  url = "air.tsinghua.edu.cn/en/our_team/Research_Team.htm"
+  from = "20260101"
+  to = "20261231"
+  prefix = false
+  match = ""
+  format = ""
+  title_filter = ''
+
+[[departments]]
+code = "AU"
+name = "Department of Automation"
+unit = "Tsinghua University, Beijing (reviewed source scope)"
+title_match = '教授|研究员|Professor|Research|Investigator'
+coverage = "affiliated"
+url = "https://www.au.tsinghua.edu.cn/szdw/jsdw1/ayjscz/kzyjcyjs.htm"
+  [[departments.listings]]
+  slot = "AU current2026reviewed source"
+  kind = "main"
+  url = "www.au.tsinghua.edu.cn/szdw/jsdw1/ayjscz/kzyjcyjs.htm"
+  from = "20260101"
+  to = "20261231"
+  prefix = false
+  match = ""
+  format = ""
+  title_filter = ''
+
+[[departments]]
+code = "INSC"
+name = "Institute for Network Sciences and Cyberspace"
+unit = "Tsinghua University, Beijing (reviewed source scope)"
+title_match = '教授|研究员|Professor|Research|Investigator'
+coverage = "affiliated"
+url = "https://nmgroup.tsinghua.edu.cn/ryjs/index.htm"
+  [[departments.listings]]
+  slot = "INSC current2026reviewed source"
+  kind = "main"
+  url = "nmgroup.tsinghua.edu.cn/ryjs/index.htm"
+  from = "20260101"
+  to = "20261231"
+  prefix = false
+  match = ""
+  format = ""
+  title_filter = ''
+
+# Discovery leads only; not admitted to the207-person census or child-only paper attribution.
+[[affiliated_units]]
+code = "EE"
+name = "Department of Electronic Engineering (unreviewed computing faculty census)"
+url = "https://www.ee.tsinghua.edu.cn/ryqk/teacher/xxgdzyjs/js2.htm"
+listings = []
+[[affiliated_units]]
+code = "SIGS"
+name = "Shenzhen International Graduate School (unreviewed campus and computing faculty)"
+url = "https://www.sigs.tsinghua.edu.cn/7644/list.htm"
+listings = []
+
+[thesis]
+kind = "none"
+base_url = ""
+endpoints = []
+robots = "unreachable"
+note = "No public thesis repository/endpoints admitted at this checkpoint; repository discovery/access review remains open. No login, CNKI/Wanfang, API or Wayback access was used for this checkpoint. None denotes unconfigured sources, not an absence of theses."
+[collector]
+channels = ["labpages"]
+[students]
+directories = []
+adviser_directories = []
+defense_lists = []
+adviser_alumni = []
+rosters = []
+sources = ["Individually reviewed owned lab/member pages and explicit role clauses;55committed student memberships only in the original207bundle", "Broader390member observations and17appointment proposals are separate scratch proposals and not automatically consumed"]
+[labpages]
+skip_pages = [{url = "https://www.lisglab.com/people", why = "Page explicitly names another PI (Prof. Shuguang Li); an outgoing collaborator link from Tao Du does not establish this as Tao Du's Tsinghua lab."}]
+hints = ["people.iiis.tsinghua.edu.cn", "cg.cs.tsinghua.edu.cn", "madsys.cs.tsinghua.edu.cn", "pacman.cs.tsinghua.edu.cn", "tns.thss.tsinghua.edu.cn"]
+[repository]
+name = "Tsinghua thesis repository discovery unconfigured; no direct repository access admitted"
+pattern = 'thesis\.lib\.tsinghua\.edu\.cn|Tsinghua University Library'
+[store]
+path = "/n/fs/resemble/homogenizing-science/scratch/tsinghua-next-1108/native/stores/tsinghua"
+
+[review_scope]
+reviewed_beijing_units = ["CS", "IIIS", "SW", "AIR", "AU (individually reviewed computing faculty only)", "INSC (Yang Jiahai only in207bundle)"]
+unreviewed_scope = ["All historical faculty/leavers2016-2025", "EE computing faculty", "SIGS/Shenzhen and TBSI appointments", "Other INSC faculty", "School of Artificial Intelligence faculty directory", "Computing faculty in other university units", "All member and paper coverage beyond existing reviewed inputs"]
+notes = "This is a staged primary-only charter. Unit-slot formats and historical listing completeness are pending; saved2026listings prove only2026. Source207 means119baseline identities plus88committed additions; no new scratch-only PI/member/date/alias proposals were admitted.61proper owned websites are verified and146remain pending. Stage0 host gate has not run. No collector or source refresh is launched by staging this file."
+
+[[hosts]]
+host = "air.tsinghua.edu.cn"
+use = "live"
+purpose = "Existing source-capture robots decision permits a normal request; no new request made."
+probe = "https://air.tsinghua.edu.cn/en/info/1046/1615.htm"
+
+[[hosts]]
+host = "alchem.cs.tsinghua.edu.cn"
+use = "live"
+purpose = "Existing source-capture robots decision permits a normal request; no new request made."
+probe = "https://alchem.cs.tsinghua.edu.cn/people.html"
+
+[[hosts]]
+host = "binwangthss.github.io"
+use = "live"
+purpose = "Existing source-capture robots decision permits a normal request; no new request made."
+probe = "https://binwangthss.github.io/"
+
+[[hosts]]
+host = "cg.cs.tsinghua.edu.cn"
+use = "live"
+purpose = "Existing source-capture robots decision permits a normal request; no new request made."
+probe = "https://cg.cs.tsinghua.edu.cn/people/~Yongjin/Yongjin.htm"
+
+[[hosts]]
+host = "chancharles92.github.io"
+use = "live"
+purpose = "Existing source-capture robots decision permits a normal request; no new request made."
+probe = "https://chancharles92.github.io/"
+
+[[hosts]]
+host = "chenzhenpeng18.github.io"
+use = "live"
+purpose = "Existing source-capture robots decision permits a normal request; no new request made."
+probe = "https://chenzhenpeng18.github.io"
+
+[[hosts]]
+host = "chyyuu.github.io"
+use = "live"
+purpose = "Existing source-capture robots decision permits a normal request; no new request made."
+probe = "https://chyyuu.github.io/zh/"
+
+[[hosts]]
+host = "cloudygoose.github.io"
+use = "live"
+purpose = "Existing source-capture robots decision permits a normal request; no new request made."
+probe = "https://cloudygoose.github.io/"
+
+[[hosts]]
+host = "coai.cs.tsinghua.edu.cn"
+use = "live"
+purpose = "Existing source-capture robots decision permits a normal request; no new request made."
+probe = "https://coai.cs.tsinghua.edu.cn/hw-ai/"
+
+[[hosts]]
+host = "dbgroup.cs.tsinghua.edu.cn"
+use = "live"
+purpose = "Existing source-capture robots decision permits a normal request; no new request made."
+probe = "https://dbgroup.cs.tsinghua.edu.cn/wangjy/"
+
+[[hosts]]
+host = "eda.cs.tsinghua.edu.cn"
+use = "live"
+purpose = "Existing source-capture robots decision permits a normal request; no new request made."
+probe = "https://eda.cs.tsinghua.edu.cn/~zlhe/"
+
+[[hosts]]
+host = "feihe.github.io"
+use = "live"
+purpose = "Existing source-capture robots decision permits a normal request; no new request made."
+probe = "https://feihe.github.io/"
+
+[[hosts]]
+host = "hangzhaomit.github.io"
+use = "live"
+purpose = "Existing source-capture robots decision permits a normal request; no new request made."
+probe = "https://hangzhaomit.github.io/"
+
+[[hosts]]
+host = "haopan.github.io"
+use = "live"
+purpose = "Existing source-capture robots decision permits a normal request; no new request made."
+probe = "https://haopan.github.io/"
+
+[[hosts]]
+host = "hpc.cs.tsinghua.edu.cn"
+use = "live"
+purpose = "Existing source-capture robots decision permits a normal request; no new request made."
+probe = "https://hpc.cs.tsinghua.edu.cn/info/1537/2709.htm"
+
+[[hosts]]
+host = "iiis.tsinghua.edu.cn"
+use = "live"
+purpose = "Existing source-capture robots decision permits a normal request; no new request made."
+probe = "https://iiis.tsinghua.edu.cn/en/Research/Research_Groups/ARChip_Lab.htm"
+
+[[hosts]]
+host = "juren1987.github.io"
+use = "live"
+purpose = "Existing source-capture robots decision permits a normal request; no new request made."
+probe = "https://juren1987.github.io"
+
+[[hosts]]
+host = "madsys.cs.tsinghua.edu.cn"
+use = "live"
+purpose = "Existing source-capture robots decision permits a normal request; no new request made."
+probe = "https://madsys.cs.tsinghua.edu.cn/~zhangmx/"
+
+[[hosts]]
+host = "ml.cs.tsinghua.edu.cn"
+use = "live"
+purpose = "Existing source-capture robots decision permits a normal request; no new request made."
+probe = "https://ml.cs.tsinghua.edu.cn/~jianfei/"
+
+[[hosts]]
+host = "nmgroup.tsinghua.edu.cn"
+use = "live"
+purpose = "Existing source-capture robots decision permits a normal request; no new request made."
+probe = "https://nmgroup.tsinghua.edu.cn/ryjs/index.htm"
+
+[[hosts]]
+host = "numbda.cs.tsinghua.edu.cn"
+use = "live"
+purpose = "Existing source-capture robots decision permits a normal request; no new request made."
+probe = "https://numbda.cs.tsinghua.edu.cn/"
+
+[[hosts]]
+host = "pacman.cs.tsinghua.edu.cn"
+use = "live"
+purpose = "Existing source-capture robots decision permits a normal request; no new request made."
+probe = "https://pacman.cs.tsinghua.edu.cn/~zjd/"
+
+[[hosts]]
+host = "people.iiis.tsinghua.edu.cn"
+use = "live"
+purpose = "Existing source-capture robots decision permits a normal request; no new request made."
+probe = "https://people.iiis.tsinghua.edu.cn/~yuanyang/en.html"
+
+[[hosts]]
+host = "qingyaoai.github.io"
+use = "live"
+purpose = "Existing source-capture robots decision permits a normal request; no new request made."
+probe = "https://qingyaoai.github.io"
+
+[[hosts]]
+host = "sxsong.github.io"
+use = "live"
+purpose = "Existing source-capture robots decision permits a normal request; no new request made."
+probe = "https://sxsong.github.io"
+
+[[hosts]]
+host = "thuiar.github.io"
+use = "live"
+purpose = "Existing source-capture robots decision permits a normal request; no new request made."
+probe = "https://thuiar.github.io/"
+
+[[hosts]]
+host = "tingcao952.github.io"
+use = "live"
+purpose = "Existing source-capture robots decision permits a normal request; no new request made."
+probe = "https://tingcao952.github.io/"
+
+[[hosts]]
+host = "tns.thss.tsinghua.edu.cn"
+use = "live"
+purpose = "Existing source-capture robots decision permits a normal request; no new request made."
+probe = "https://tns.thss.tsinghua.edu.cn/sun/members/YuanHe/"
+
+[[hosts]]
+host = "www.au.tsinghua.edu.cn"
+use = "live"
+purpose = "Existing source-capture robots decision permits a normal request; no new request made."
+probe = "https://www.au.tsinghua.edu.cn/info/1075/3204.htm"
+
+[[hosts]]
+host = "www.cs.tsinghua.edu.cn"
+use = "live"
+purpose = "Existing source-capture robots decision permits a normal request; no new request made."
+probe = "https://www.cs.tsinghua.edu.cn/info/1122/6641.htm"
+
+[[hosts]]
+host = "www.cuiyong.net"
+use = "live"
+purpose = "Existing source-capture robots decision permits a normal request; no new request made."
+probe = "https://www.cuiyong.net/cuiyong.html"
+
+[[hosts]]
+host = "www.mengdixu.me"
+use = "live"
+purpose = "Existing source-capture robots decision permits a normal request; no new request made."
+probe = "https://www.mengdixu.me/"
+
+[[hosts]]
+host = "www.thss.tsinghua.edu.cn"
+use = "live"
+purpose = "Existing source-capture robots decision permits a normal request; no new request made."
+probe = "https://www.thss.tsinghua.edu.cn/faculty/sunjiaguang.htm"
+
+[[hosts]]
+host = "www.thucloud.com"
+use = "live"
+purpose = "Existing source-capture robots decision permits a normal request; no new request made."
+probe = "https://www.thucloud.com/zhenhua/"
+
+[[hosts]]
+host = "www.xlhu.cn"
+use = "live"
+purpose = "Existing source-capture robots decision permits a normal request; no new request made."
+probe = "https://www.xlhu.cn/"
+
+[[hosts]]
+host = "xufeng.site"
+use = "live"
+purpose = "Existing source-capture robots decision permits a normal request; no new request made."
+probe = "http://xufeng.site/"
+
+[[hosts]]
+host = "yuanyuan-yuan.github.io"
+use = "live"
+purpose = "Existing source-capture robots decision permits a normal request; no new request made."
+probe = "https://yuanyuan-yuan.github.io/"
+
+[[hosts]]
+host = "yunxinliu.github.io"
+use = "live"
+purpose = "Existing source-capture robots decision permits a normal request; no new request made."
+probe = "https://yunxinliu.github.io/"
+
+[[hosts]]
+host = "yushen-liu.github.io"
+use = "live"
+purpose = "Existing source-capture robots decision permits a normal request; no new request made."
+probe = "https://yushen-liu.github.io/index_cn.html"
+
