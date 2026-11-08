@@ -22,7 +22,9 @@ Every new row has the original URL/hash, reproducing complete named clause, lite
 
 `validate_first_batch.py` uses the actual pinned `pihier.students.researched()` against a new scratch-only input root, not a replacement model of the implementation. It reproduces **263 distinct member pairs / 264 source relations across 7 PI contexts**: the original source had one repeated same-PI/name observation, which remains retained as separate relations. All 64 new pairs survive; Shen's 27 relations are `researched_advising`, Wu's 37 are `researched_membership`, with all four degree-qualified role labels preserved. All 200 original objects and 12 original census objects compare field-for-field equal.
 
-The actual progress helper has a separate coverage gap: it recognizes “PhD alumnus” and “MEng alumnus” (19 observations) as student coverage, but misses “BEng alumnus” and “BSc alumnus” (18). These 18 remain correctly stored as historical memberships with the original degrees/year/status; labels were not altered to hide the reporting gap. Generic reporting support requires a separately claimed review. No new core parser or reporting code is changed here.
+The initial actual progress helper had a separate coverage gap: it recognized “PhD alumnus” and “MEng alumnus” (19 observations) as student coverage, but missed “BEng alumnus” and “BSc alumnus” (18). These 18 remained correctly stored as historical memberships with original degrees/year/status; labels were not altered to hide the gap. Root separately corrected the scratch reporting helper. A fresh replay recognizes all37degree-qualified historical alumni as student coverage, still37memberships and no advising; the initial gap receipt remains historical evidence. No core parser or reporting code is changed by this branch.
+
+The new PI has an explicit unresolved bibliography guard (`no_identity=true`) and an empty opt-in DBLP ORCID allowlist. All12original override objects and the existing four PID bindings remain unchanged. No guessed identity can arise merely from adding this professor to the census.
 
 ## Remaining unit and source-policy scope
 
