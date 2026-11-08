@@ -272,6 +272,7 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('thesis-evidence.json', 'reviewed', 'hierarchy/{school}/thesis-evidence.json', 'hierarchy/{school}/reviewed/thesis-evidence.json'),
     ('roster-evidence.json', 'reviewed', 'hierarchy/{school}/roster-evidence.json', 'hierarchy/{school}/reviewed/roster-evidence.json'),
     ('defense-adviser-evidence.json', 'reviewed', 'hierarchy/{school}/defense-adviser-evidence.json', 'hierarchy/{school}/reviewed/defense-adviser-evidence.json'),
+    ('thesis-committee-chair-evidence.json', 'reviewed', 'hierarchy/{school}/thesis-committee-chair-evidence.json', 'hierarchy/{school}/reviewed/thesis-committee-chair-evidence.json'),   # R-STU-23 (2026-11-08)
     ('thesis-held-years-evidence.json', 'reviewed', 'hierarchy/{school}/thesis-held-years-evidence.json', 'hierarchy/{school}/reviewed/thesis-held-years-evidence.json'),
     ('labpage-evidence.json', 'reviewed', 'hierarchy/{school}/labpage-evidence.json', 'hierarchy/{school}/reviewed/labpage-evidence.json'),
     ('extra-lab-pages.json', 'reviewed', 'hierarchy/{school}/extra-lab-pages.json', 'hierarchy/{school}/reviewed/extra-lab-pages.json'),

@@ -575,6 +575,13 @@ whether to fetch it (tens of GB) is an owner decision (not asked for; no ORCID r
 
 **Effect in UChicago (2026-11-06 scratch build, overlay root, main untouched):** labs with students 89 -> 90 of 134 (CS 53 -> 54); 1 student (Todd Nief, Holtzman's PhD student since 2024) and 3 student-paper links; of 643 co-author candidates 114 had a homepage URL (DBLP, lab-page links, Semantic Scholar), 74 pages read, 23 robots-barred, 5 queued for Wayback; 4 advisee statements, 2 dated (one already in the lab: Xuchen Gong under Tian Li), 2 past-tense statements without a year listed apart. Hand check of all 2 dated rows: 2 of 2 correct (membership, role, years).
 
+### R-STU-23 (2026-11-08, owner: "yes") — a WashU dissertation's Committee Chair is the student's adviser
+On a Washington University in St. Louis Open Scholarship engineering thesis or dissertation record (`repository.library.washu.edu/eng_etds/`), the
+"Committee Chair" names the student's adviser. The record must come from 2016 or later, and the chair must match a WashU PI under R-STU-03. Co-chairs each count, under the co-adviser rule. The role is
+the degree's (phd or masters), and the years are the degree year (R-STU-14). Rows: `hierarchy/washu/reviewed/thesis-committee-chair-evidence.json`
+(a RESEARCHED_FILES file), built by `tools/fulltext_advisers_build.py washu` from `tools/washu_etd.py parse`. Hand check: 30 of 30 correct on chair and PI
+(seed 20261107). 164 rows, 31 PIs.
+
 ### R-LNK-06 (2026-11-05, owner: Hanin deep dive) — a dissertation year is the END of the student's work
 A PhD student known only from dissertation records (every relation role phd, its source quote a DSpace record whose `dc.contributor.advisor` names the PI)
 has one recorded year, the degree year. Papers come mostly BEFORE it; the full-name route's window (two years before to six after) lost them (Jiasi Shen's 2018

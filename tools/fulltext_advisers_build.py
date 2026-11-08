@@ -1,7 +1,7 @@
 """Turn adviser-statement hits (fulltext_advisers.py scan) and WashU ETD committee-chair records into researched-evidence rows.
 
 build  <school> --hits DIR --out FILE      hits -> rows in the thesis-evidence.json shape ([{pi, students:[{name, role, years, url, sha256, quote, note}], notes}])
-washu  --etd washu-etd.json --out FILE     tools/washu_etd.py parse output -> the HELD committee-chair file (not in RESEARCHED_FILES)
+washu  --etd washu-etd.json --out FILE     tools/washu_etd.py parse output -> hierarchy/washu/reviewed/thesis-committee-chair-evidence.json (a RESEARCHED_FILES file since R-STU-23, 2026-11-08)
 
 Rules: R-STU-01 (quote + hash), R-STU-03 (adviser names: pihier.names.Name + the given-name guard of etd_crawl.given_ok),
 R-STU-14 (year = the document's year, inside 2016-2026 and the PI's listed years), R-STU-07 (a PI is never a student record).
