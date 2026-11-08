@@ -1,0 +1,1243 @@
+{
+  "version": 1,
+  "scope": "explicit_issued_person_redirect_review_no_automatic_execution",
+  "reviews": [
+    {
+      "school": "berkeley",
+      "native_person": "ext:berkeley:mihir-singhal",
+      "canonical_name": "Mihir Singhal",
+      "memberships": [
+        {
+          "pi": "Jelani Nelson",
+          "person": "ext:berkeley:mihir-singhal"
+        },
+        {
+          "pi": "Venkatesan Guruswami",
+          "person": "ext:berkeley:mihir-singhal"
+        }
+      ],
+      "reviewer": "Codex",
+      "reviewed_on": "2026-11-08",
+      "verdict": "same_person",
+      "reason": "Both original PI-owned roster captures independently name this student and the other adviser. Full reciprocal source-bound proof passes the existing co-advising guard independent of issued history.",
+      "evidence": [
+        {
+          "from_pi": "Jelani Nelson",
+          "to_pi": "Venkatesan Guruswami",
+          "url": "http://people.eecs.berkeley.edu/~minilek",
+          "sha256": "ceee34fe3014dabea763b24db31794a13459c478436af2d8a477419c8472e26e",
+          "quote": "Mihir Singhal (co-advised with Venkatesan Guruswami "
+        },
+        {
+          "from_pi": "Venkatesan Guruswami",
+          "to_pi": "Jelani Nelson",
+          "url": "https://people.eecs.berkeley.edu/~venkatg/",
+          "sha256": "b18fcbd40bb930f4827cc8430e53cb71b405f9f3488748fdc2936b450599ef52",
+          "quote": "Mihir Singhal (co-advised with Jelani Nelson"
+        }
+      ],
+      "issued_id_review": {
+        "decision": "prepare_explicit_redirect_in_isolated_registry_only",
+        "survivor": "atl:p:10b8747eedc6",
+        "aliases": [
+          "atl:p:d2e5a78ef8b9"
+        ],
+        "source_registry_sha256": "76e1a4565c4afa7decb98c2e2539ac15150ba83e56bb6064f58942119c619554",
+        "source_registry_fingerprint": {
+          "schema_sha256": "857d07e996ea4f455fbcc6b67c08b6f77bfc39e03f479c449b527ed2f4218d3a",
+          "tables": {
+            "anchors": {
+              "rows": 386577,
+              "sha256": "f7dc5c7803c4fce8a3b3542997a7d8c2a21715509a55e0630842490965c5091c"
+            },
+            "ids": {
+              "rows": 178921,
+              "sha256": "e5c2364bc49a2dc660c633cd6db143cff04d2c3c249d36a59e43cc94c8b61b27"
+            },
+            "meta": {
+              "rows": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          }
+        },
+        "expected_before_ids": [
+          {
+            "id": "atl:p:10b8747eedc6",
+            "kind": "person",
+            "minted_from": "p|name:berkeley:mihir-singhal:https://people.eecs.berkeley.edu/~venkatg/",
+            "issued": "2026-10-30",
+            "status": "active",
+            "redirect_to": null,
+            "note": null
+          },
+          {
+            "id": "atl:p:d2e5a78ef8b9",
+            "kind": "person",
+            "minted_from": "p|name:berkeley:mihir-singhal:http://people.eecs.berkeley.edu/~minilek",
+            "issued": "2026-10-30",
+            "status": "active",
+            "redirect_to": null,
+            "note": null
+          }
+        ],
+        "expected_before_anchors": [
+          {
+            "anchor": "p|name:berkeley:mihir-singhal:https://people.eecs.berkeley.edu/~venkatg/",
+            "id": "atl:p:10b8747eedc6",
+            "kind": "person",
+            "first_seen": "2026-10-30"
+          },
+          {
+            "anchor": "p|name:berkeley:mihir-singhal:http://people.eecs.berkeley.edu/~minilek",
+            "id": "atl:p:d2e5a78ef8b9",
+            "kind": "person",
+            "first_seen": "2026-10-30"
+          }
+        ]
+      }
+    },
+    {
+      "school": "cmu",
+      "native_person": "ext:cmu:jiangyifei-zhu",
+      "canonical_name": "Jiangyifei Zhu",
+      "memberships": [
+        {
+          "pi": "Swarun Kumar",
+          "person": "ext:cmu:jiangyifei-zhu"
+        },
+        {
+          "pi": "Justin Chan",
+          "person": "ext:cmu:jiangyifei-zhu"
+        }
+      ],
+      "reviewer": "Codex",
+      "reviewed_on": "2026-11-08",
+      "verdict": "same_person",
+      "reason": "Both original PI-owned roster captures independently name this student and the other adviser. Full reciprocal source-bound proof passes the existing co-advising guard independent of issued history.",
+      "evidence": [
+        {
+          "from_pi": "Justin Chan",
+          "to_pi": "Swarun Kumar",
+          "url": "https://semanticsignals.com/cadre.html",
+          "sha256": "d806b89760d5c979bcef72ef973b15f570804e024f787548dafe3247eabd4946",
+          "quote": "Jiangyifei Zhu Ph.D. Student co-advised with Swarun Kumar"
+        },
+        {
+          "from_pi": "Justin Chan",
+          "to_pi": "Swarun Kumar",
+          "url": "https://semanticsignals.com/cadre.html",
+          "sha256": "d806b89760d5c979bcef72ef973b15f570804e024f787548dafe3247eabd4946",
+          "quote": "Jiangyifei Zhu Ph.D. Student co-advised with Swarun Kumar"
+        },
+        {
+          "from_pi": "Swarun Kumar",
+          "to_pi": "Justin Chan",
+          "url": "https://www.witechlab.com/people.html",
+          "sha256": "8370ce73e3f614e4aac0988f454dc72e4764e4bc6a4a710d2b5675d686e5af62",
+          "quote": "Jiangyifei Zhu Co-advised by Prof. Justin Chan Freddy Liu Co-advised by Prof. Justin Chan"
+        }
+      ],
+      "issued_id_review": {
+        "decision": "prepare_explicit_redirect_in_isolated_registry_only",
+        "survivor": "atl:p:1163248d2836",
+        "aliases": [
+          "atl:p:60faa0d9b349"
+        ],
+        "source_registry_sha256": "76e1a4565c4afa7decb98c2e2539ac15150ba83e56bb6064f58942119c619554",
+        "source_registry_fingerprint": {
+          "schema_sha256": "857d07e996ea4f455fbcc6b67c08b6f77bfc39e03f479c449b527ed2f4218d3a",
+          "tables": {
+            "anchors": {
+              "rows": 386577,
+              "sha256": "f7dc5c7803c4fce8a3b3542997a7d8c2a21715509a55e0630842490965c5091c"
+            },
+            "ids": {
+              "rows": 178921,
+              "sha256": "e5c2364bc49a2dc660c633cd6db143cff04d2c3c249d36a59e43cc94c8b61b27"
+            },
+            "meta": {
+              "rows": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          }
+        },
+        "expected_before_ids": [
+          {
+            "id": "atl:p:1163248d2836",
+            "kind": "person",
+            "minted_from": "p|name:cmu:jiangyifei-zhu:https://www.witechlab.com/people.html",
+            "issued": "2026-10-30",
+            "status": "active",
+            "redirect_to": null,
+            "note": null
+          },
+          {
+            "id": "atl:p:60faa0d9b349",
+            "kind": "person",
+            "minted_from": "p|name:cmu:jiangyifei-zhu:https://semanticsignals.com/cadre.html",
+            "issued": "2026-10-30",
+            "status": "active",
+            "redirect_to": null,
+            "note": null
+          }
+        ],
+        "expected_before_anchors": [
+          {
+            "anchor": "p|name:cmu:jiangyifei-zhu:https://www.witechlab.com/people.html",
+            "id": "atl:p:1163248d2836",
+            "kind": "person",
+            "first_seen": "2026-10-30"
+          },
+          {
+            "anchor": "p|name:cmu:jiangyifei-zhu:https://semanticsignals.com/cadre.html",
+            "id": "atl:p:60faa0d9b349",
+            "kind": "person",
+            "first_seen": "2026-10-30"
+          }
+        ]
+      }
+    }
+  ],
+  "unresolved": [
+    {
+      "school": "berkeley",
+      "native_person": "ext:berkeley:alex-thomas",
+      "reason": [
+        {
+          "school": "berkeley",
+          "native_person": "ext:berkeley:alex-thomas",
+          "records": [
+            {
+              "pi": "Krste Asanović",
+              "name": "Alex Thomas"
+            },
+            {
+              "pi": "John D. Kubiatowicz",
+              "name": "Alex Thomas"
+            },
+            {
+              "pi": "Christopher Fletcher",
+              "name": "Alex Thomas"
+            }
+          ],
+          "student_specific_clauses": [
+            {
+              "pi": "John D. Kubiatowicz",
+              "url": "https://cwfletcher.github.io/fpsg",
+              "sha256": "011ff2b2ed6fef6069a1c2bdc0d58a94d3764b925d80c261bf7ad239c668e4f5",
+              "span": {
+                "start": 219,
+                "end": 276,
+                "text": "Alex Thomas (2024-present; co-advised by John Kubiatowicz"
+              }
+            },
+            {
+              "pi": "Christopher Fletcher",
+              "url": "https://cwfletcher.github.io/fpsg",
+              "sha256": "011ff2b2ed6fef6069a1c2bdc0d58a94d3764b925d80c261bf7ad239c668e4f5",
+              "span": {
+                "start": 219,
+                "end": 276,
+                "text": "Alex Thomas (2024-present; co-advised by John Kubiatowicz"
+              }
+            }
+          ],
+          "reason": "reciprocal source-bound co-advising evidence is unresolved",
+          "supported_directions": []
+        }
+      ]
+    },
+    {
+      "school": "berkeley",
+      "native_person": "ext:berkeley:meng-li",
+      "reason": [
+        {
+          "school": "berkeley",
+          "native_person": "ext:berkeley:meng-li",
+          "records": [
+            {
+              "pi": "Alper Atamtürk",
+              "name": "Meng Li"
+            },
+            {
+              "pi": "Paul Grigas",
+              "name": "Meng Li"
+            }
+          ],
+          "student_specific_clauses": [
+            {
+              "pi": "Alper Atamtürk",
+              "url": "https://grigas.ieor.berkeley.edu/group/",
+              "sha256": "eaa05f738813cdc096aeac5b68c429d7532f903cdd5ffe32330e910ac57762fd",
+              "span": {
+                "start": 0,
+                "end": 39,
+                "text": "Meng Li (co-advised with Alper Atamturk"
+              }
+            }
+          ],
+          "reason": "reciprocal source-bound co-advising evidence is unresolved",
+          "supported_directions": []
+        }
+      ]
+    },
+    {
+      "school": "berkeley",
+      "native_person": "ext:berkeley:nithin-chalapathi",
+      "reason": [
+        {
+          "school": "berkeley",
+          "native_person": "ext:berkeley:nithin-chalapathi",
+          "records": [
+            {
+              "pi": "Aditi Krishnapriyan",
+              "name": "Nithin Chalapathi"
+            },
+            {
+              "pi": "Aditya Parameswaran",
+              "name": "Nithin Chalapathi"
+            }
+          ],
+          "student_specific_clauses": [
+            {
+              "pi": "Aditya Parameswaran",
+              "url": "https://people.eecs.berkeley.edu/~adityagp/cv.pdf",
+              "sha256": "77bf3cb5580af5176fd94831e1f59718826acc0e5169133a5ddd6c9ef51f9f99",
+              "span": {
+                "start": 121,
+                "end": 170,
+                "text": "Nithin Chalapathi, 2021— (Coadvisor: Alvin Cheung"
+              }
+            }
+          ],
+          "reason": "reciprocal source-bound co-advising evidence is unresolved",
+          "supported_directions": []
+        }
+      ]
+    },
+    {
+      "school": "berkeley",
+      "native_person": "ext:berkeley:prasann-singhal",
+      "reason": [
+        {
+          "school": "berkeley",
+          "native_person": "ext:berkeley:prasann-singhal",
+          "records": [
+            {
+              "pi": "Daniel Klein",
+              "name": "Prasann Singhal"
+            },
+            {
+              "pi": "Sewon Min",
+              "name": "Prasann Singhal"
+            }
+          ],
+          "student_specific_clauses": [
+            {
+              "pi": "Sewon Min",
+              "url": "https://www.sewonmin.com/assets/CV.pdf",
+              "sha256": "9b8f1edd0d614cebfdc8ffd51fce163243e8a738f95d4340c49a6b651d2f336b",
+              "span": {
+                "start": 129,
+                "end": 178,
+                "text": "Prasann Singhal (co-advised with Jacob Steinhardt"
+              }
+            }
+          ],
+          "reason": "reciprocal source-bound co-advising evidence is unresolved",
+          "supported_directions": []
+        }
+      ]
+    },
+    {
+      "school": "berkeley",
+      "native_person": "ext:berkeley:shashank-anand",
+      "reason": [
+        {
+          "school": "berkeley",
+          "native_person": "ext:berkeley:shashank-anand",
+          "records": [
+            {
+              "pi": "Christopher Fletcher",
+              "name": "Shashank Anand"
+            },
+            {
+              "pi": "Sophia Shao",
+              "name": "Shashank Anand"
+            }
+          ],
+          "student_specific_clauses": [
+            {
+              "pi": "Christopher Fletcher",
+              "url": "https://cwfletcher.github.io/fpsg",
+              "sha256": "011ff2b2ed6fef6069a1c2bdc0d58a94d3764b925d80c261bf7ad239c668e4f5",
+              "span": {
+                "start": 87,
+                "end": 142,
+                "text": "Shashank Anand (2024-present; co-advised by Sophia Shao"
+              }
+            }
+          ],
+          "reason": "reciprocal source-bound co-advising evidence is unresolved",
+          "supported_directions": [
+            {
+              "from_pi": "Christopher Fletcher",
+              "to_pi": "Sophia Shao",
+              "sources": [
+                {
+                  "url": "https://cwfletcher.github.io/fpsg",
+                  "sha256": "011ff2b2ed6fef6069a1c2bdc0d58a94d3764b925d80c261bf7ad239c668e4f5",
+                  "quote": "PhD Hannah Leung (2022-present; co-advised with Talia Ringer) Boru Chen (2022-present) Shashank Anand (2024-present; co-advised by Sophia Shao)",
+                  "quote_span": {
+                    "start": 87,
+                    "end": 142,
+                    "text": "Shashank Anand (2024-present; co-advised by Sophia Shao"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "school": "berkeley",
+      "native_person": "ext:berkeley:wenjie-ma",
+      "reason": [
+        {
+          "school": "berkeley",
+          "native_person": "ext:berkeley:wenjie-ma",
+          "records": [
+            {
+              "pi": "Daniel Klein",
+              "name": "Wenjie Ma"
+            },
+            {
+              "pi": "Matei Zaharia",
+              "name": "Wenjie Ma"
+            },
+            {
+              "pi": "Sewon Min",
+              "name": "Wenjie Ma"
+            }
+          ],
+          "student_specific_clauses": [
+            {
+              "pi": "Sewon Min",
+              "url": "https://www.sewonmin.com/assets/CV.pdf",
+              "sha256": "9b8f1edd0d614cebfdc8ffd51fce163243e8a738f95d4340c49a6b651d2f336b",
+              "span": {
+                "start": 87,
+                "end": 127,
+                "text": "Wenjie Ma (co-advised with Matei Zaharia"
+              }
+            }
+          ],
+          "reason": "reciprocal source-bound co-advising evidence is unresolved",
+          "supported_directions": [
+            {
+              "from_pi": "Sewon Min",
+              "to_pi": "Matei Zaharia",
+              "sources": [
+                {
+                  "url": "https://www.sewonmin.com/assets/CV.pdf",
+                  "sha256": "9b8f1edd0d614cebfdc8ffd51fce163243e8a738f95d4340c49a6b651d2f336b",
+                  "quote": "Ph.D. Student Advising 01/2025–Current 08/2025–Current 08/2025–Current 01/2026–Current Wenjie Ma (co-advised with Matei Zaharia)",
+                  "quote_span": {
+                    "start": 87,
+                    "end": 127,
+                    "text": "Wenjie Ma (co-advised with Matei Zaharia"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "school": "cmu",
+      "native_person": "ext:cmu:jiin-woo",
+      "reason": [
+        {
+          "school": "cmu",
+          "native_person": "ext:cmu:jiin-woo",
+          "records": [
+            {
+              "pi": "Yuejie Chi",
+              "name": "Jiin Woo"
+            },
+            {
+              "pi": "Gauri Joshi",
+              "name": "Jiin Woo"
+            }
+          ],
+          "student_specific_clauses": [
+            {
+              "pi": "Gauri Joshi",
+              "url": "https://www.andrew.cmu.edu/user/gaurij/Group.html",
+              "sha256": "38dff8a2854630a2d03436da664a6cf8c7cae3f8243db5ea4718decea8e34508",
+              "span": {
+                "start": 0,
+                "end": 35,
+                "text": "Jiin Woo (co-advised by Yuejie Chi "
+              }
+            },
+            {
+              "pi": "Gauri Joshi",
+              "url": "https://www.andrew.cmu.edu/user/gaurij/Group.html",
+              "sha256": "38dff8a2854630a2d03436da664a6cf8c7cae3f8243db5ea4718decea8e34508",
+              "span": {
+                "start": 0,
+                "end": 35,
+                "text": "Jiin Woo (co-advised by Yuejie Chi "
+              }
+            }
+          ],
+          "reason": "reciprocal source-bound co-advising evidence is unresolved",
+          "supported_directions": [
+            {
+              "from_pi": "Gauri Joshi",
+              "to_pi": "Yuejie Chi",
+              "sources": [
+                {
+                  "url": "https://www.andrew.cmu.edu/user/gaurij/Group.html",
+                  "sha256": "38dff8a2854630a2d03436da664a6cf8c7cae3f8243db5ea4718decea8e34508",
+                  "quote": "Jiin Woo (co-advised by Yuejie Chi ), PhD 2026",
+                  "quote_span": {
+                    "start": 0,
+                    "end": 35,
+                    "text": "Jiin Woo (co-advised by Yuejie Chi "
+                  }
+                },
+                {
+                  "url": "https://www.andrew.cmu.edu/user/gaurij/Group.html",
+                  "sha256": "38dff8a2854630a2d03436da664a6cf8c7cae3f8243db5ea4718decea8e34508",
+                  "quote": "Jiin Woo (co-advised by Yuejie Chi ), PhD 2026",
+                  "quote_span": {
+                    "start": 0,
+                    "end": 35,
+                    "text": "Jiin Woo (co-advised by Yuejie Chi "
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "school": "cmu",
+      "native_person": "ext:cmu:kevin-han",
+      "reason": [
+        {
+          "school": "cmu",
+          "native_person": "ext:cmu:kevin-han",
+          "records": [
+            {
+              "pi": "Niloofar Mireshghallah",
+              "name": "Kevin Han"
+            },
+            {
+              "pi": "Amir Barati Farimani",
+              "name": "Kevin Han"
+            }
+          ],
+          "student_specific_clauses": [
+            {
+              "pi": "Niloofar Mireshghallah",
+              "url": "https://mireshghallah.github.io/looni-lab.html",
+              "sha256": "99aff43acf1671c451f4dff4cbedcc2d556d9a0cf5dbd9d2ac7c426b4315a329",
+              "span": {
+                "start": 0,
+                "end": 48,
+                "text": "Kevin Han (co-advised with Amir Barati Farimani "
+              }
+            }
+          ],
+          "reason": "reciprocal source-bound co-advising evidence is unresolved",
+          "supported_directions": [
+            {
+              "from_pi": "Niloofar Mireshghallah",
+              "to_pi": "Amir Barati Farimani",
+              "sources": [
+                {
+                  "url": "https://mireshghallah.github.io/looni-lab.html",
+                  "sha256": "99aff43acf1671c451f4dff4cbedcc2d556d9a0cf5dbd9d2ac7c426b4315a329",
+                  "quote": "Kevin Han (co-advised with Amir Barati Farimani )",
+                  "quote_span": {
+                    "start": 0,
+                    "end": 48,
+                    "text": "Kevin Han (co-advised with Amir Barati Farimani "
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "school": "cmu",
+      "native_person": "ext:cmu:matthew-golub",
+      "reason": [
+        {
+          "school": "cmu",
+          "native_person": "ext:cmu:matthew-golub",
+          "records": [
+            {
+              "pi": "Byron Yu",
+              "name": "Matthew Golub"
+            },
+            {
+              "pi": "Steven Michael Chase",
+              "name": "Matthew Golub"
+            }
+          ],
+          "student_specific_clauses": [
+            {
+              "pi": "Byron Yu",
+              "url": "http://users.ece.cmu.edu/~byronyu/people.html",
+              "sha256": "8086c83d0ed4337d8e272ae1be1c6fa33ff5d29a12fe12bb2ced91139f86fc6f",
+              "span": {
+                "start": 0,
+                "end": 36,
+                "text": "Matthew Golub (2015-2017, co-advised"
+              }
+            }
+          ],
+          "reason": "reciprocal source-bound co-advising evidence is unresolved",
+          "supported_directions": []
+        }
+      ]
+    },
+    {
+      "school": "cmu",
+      "native_person": "ext:cmu:milijana-surbatovich",
+      "reason": [
+        {
+          "school": "cmu",
+          "native_person": "ext:cmu:milijana-surbatovich",
+          "records": [
+            {
+              "pi": "Limin Jia",
+              "name": "Milijana Surbatovich"
+            },
+            {
+              "pi": "Brandon Lucia",
+              "name": "Milijana Surbatovich"
+            }
+          ],
+          "student_specific_clauses": [
+            {
+              "pi": "Limin Jia",
+              "url": "https://www.andrew.cmu.edu/user/liminjia/",
+              "sha256": "68160a9136a56bc584cf0fe76fdd4cd1f1195b34d86959ce3a21297be72a405f",
+              "span": {
+                "start": 0,
+                "end": 70,
+                "text": "Milijana Surbatovich (co-advised with Brandon Lucia, CMU ECE, PhD 2023"
+              }
+            }
+          ],
+          "reason": "reciprocal source-bound co-advising evidence is unresolved",
+          "supported_directions": [
+            {
+              "from_pi": "Limin Jia",
+              "to_pi": "Brandon Lucia",
+              "sources": [
+                {
+                  "url": "https://www.andrew.cmu.edu/user/liminjia/",
+                  "sha256": "68160a9136a56bc584cf0fe76fdd4cd1f1195b34d86959ce3a21297be72a405f",
+                  "quote": "Milijana Surbatovich (co-advised with Brandon Lucia, CMU ECE, PhD 2023; now at University of Maryland at College Park)",
+                  "quote_span": {
+                    "start": 0,
+                    "end": 70,
+                    "text": "Milijana Surbatovich (co-advised with Brandon Lucia, CMU ECE, PhD 2023"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "school": "cmu",
+      "native_person": "ext:cmu:nathan-serafin",
+      "reason": [
+        {
+          "school": "cmu",
+          "native_person": "ext:cmu:nathan-serafin",
+          "records": [
+            {
+              "pi": "Brandon Lucia",
+              "name": "Nathan Serafin"
+            },
+            {
+              "pi": "Nathan Beckmann",
+              "name": "Nathan Serafin"
+            }
+          ],
+          "student_specific_clauses": [
+            {
+              "pi": "Brandon Lucia",
+              "url": "https://abstract.ece.cmu.edu/people.html",
+              "sha256": "e99b011c492cdf98e2eb140c6e52211e79c4e8bfed8f11993e70ae54094e342b",
+              "span": {
+                "start": 58,
+                "end": 243,
+                "text": "Nathan Serafin co-advised w/ Nathan Beckmann Guy Wilks co-advised w/ Nathan Beckmann Sun A Cho co-advised w/ Nathan Beckmann Ania Krzyżańska co-advised w/ Ken Mai McKenzie van der Hagen"
+              }
+            }
+          ],
+          "reason": "reciprocal source-bound co-advising evidence is unresolved",
+          "supported_directions": [
+            {
+              "from_pi": "Brandon Lucia",
+              "to_pi": "Nathan Beckmann",
+              "sources": [
+                {
+                  "url": "https://abstract.ece.cmu.edu/people.html",
+                  "sha256": "e99b011c492cdf98e2eb140c6e52211e79c4e8bfed8f11993e70ae54094e342b",
+                  "quote": "PhD Students Souradip Ghosh co-advised w/ Nathan Beckmann Nathan Serafin co-advised w/ Nathan Beckmann Guy Wilks co-advised w/ Nathan Beckmann Sun A Cho co-advised w/ Nathan Beckmann Ania Krzyżańska co-advised w/ Ken Mai McKenzie van der Hagen",
+                  "quote_span": {
+                    "start": 58,
+                    "end": 243,
+                    "text": "Nathan Serafin co-advised w/ Nathan Beckmann Guy Wilks co-advised w/ Nathan Beckmann Sun A Cho co-advised w/ Nathan Beckmann Ania Krzyżańska co-advised w/ Ken Mai McKenzie van der Hagen"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "school": "cmu",
+      "native_person": "ext:cmu:samarth-gupta",
+      "reason": [
+        {
+          "school": "cmu",
+          "native_person": "ext:cmu:samarth-gupta",
+          "records": [
+            {
+              "pi": "Gauri Joshi",
+              "name": "Samarth Gupta"
+            },
+            {
+              "pi": "Osman Yağan",
+              "name": "Samarth Gupta"
+            }
+          ],
+          "student_specific_clauses": [
+            {
+              "pi": "Gauri Joshi",
+              "url": "https://www.andrew.cmu.edu/user/gaurij/Group.html",
+              "sha256": "38dff8a2854630a2d03436da664a6cf8c7cae3f8243db5ea4718decea8e34508",
+              "span": {
+                "start": 0,
+                "end": 41,
+                "text": "Samarth Gupta (co-advised by Osman Yaǧan "
+              }
+            },
+            {
+              "pi": "Gauri Joshi",
+              "url": "https://www.andrew.cmu.edu/user/gaurij/Group.html",
+              "sha256": "38dff8a2854630a2d03436da664a6cf8c7cae3f8243db5ea4718decea8e34508",
+              "span": {
+                "start": 0,
+                "end": 41,
+                "text": "Samarth Gupta (co-advised by Osman Yaǧan "
+              }
+            }
+          ],
+          "reason": "reciprocal source-bound co-advising evidence is unresolved",
+          "supported_directions": [
+            {
+              "from_pi": "Gauri Joshi",
+              "to_pi": "Osman Yağan",
+              "sources": [
+                {
+                  "url": "https://www.andrew.cmu.edu/user/gaurij/Group.html",
+                  "sha256": "38dff8a2854630a2d03436da664a6cf8c7cae3f8243db5ea4718decea8e34508",
+                  "quote": "Samarth Gupta (co-advised by Osman Yaǧan ), PhD 2022",
+                  "quote_span": {
+                    "start": 0,
+                    "end": 41,
+                    "text": "Samarth Gupta (co-advised by Osman Yaǧan "
+                  }
+                },
+                {
+                  "url": "https://www.andrew.cmu.edu/user/gaurij/Group.html",
+                  "sha256": "38dff8a2854630a2d03436da664a6cf8c7cae3f8243db5ea4718decea8e34508",
+                  "quote": "Samarth Gupta (co-advised by Osman Yaǧan ), PhD 2022",
+                  "quote_span": {
+                    "start": 0,
+                    "end": 41,
+                    "text": "Samarth Gupta (co-advised by Osman Yaǧan "
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "school": "cmu",
+      "native_person": "ext:cmu:siqi-zhang",
+      "reason": [
+        {
+          "school": "cmu",
+          "native_person": "ext:cmu:siqi-zhang",
+          "records": [
+            {
+              "pi": "Mayank Goel",
+              "name": "Siqi Zhang"
+            },
+            {
+              "pi": "Justin Chan",
+              "name": "Siqi Zhang"
+            }
+          ],
+          "student_specific_clauses": [
+            {
+              "pi": "Justin Chan",
+              "url": "https://semanticsignals.com/cadre.html",
+              "sha256": "d806b89760d5c979bcef72ef973b15f570804e024f787548dafe3247eabd4946",
+              "span": {
+                "start": 0,
+                "end": 52,
+                "text": "Siqi Zhang Ph.D. Student co-advised with Mayank Goel"
+              }
+            },
+            {
+              "pi": "Justin Chan",
+              "url": "https://semanticsignals.com/cadre.html",
+              "sha256": "d806b89760d5c979bcef72ef973b15f570804e024f787548dafe3247eabd4946",
+              "span": {
+                "start": 0,
+                "end": 52,
+                "text": "Siqi Zhang Ph.D. Student co-advised with Mayank Goel"
+              }
+            }
+          ],
+          "reason": "reciprocal source-bound co-advising evidence is unresolved",
+          "supported_directions": [
+            {
+              "from_pi": "Justin Chan",
+              "to_pi": "Mayank Goel",
+              "sources": [
+                {
+                  "url": "https://semanticsignals.com/cadre.html",
+                  "sha256": "d806b89760d5c979bcef72ef973b15f570804e024f787548dafe3247eabd4946",
+                  "quote": "Siqi Zhang Ph.D. Student co-advised with Mayank Goel",
+                  "quote_span": {
+                    "start": 0,
+                    "end": 52,
+                    "text": "Siqi Zhang Ph.D. Student co-advised with Mayank Goel"
+                  }
+                },
+                {
+                  "url": "https://semanticsignals.com/cadre.html",
+                  "sha256": "d806b89760d5c979bcef72ef973b15f570804e024f787548dafe3247eabd4946",
+                  "quote": "Siqi Zhang Ph.D. Student co-advised with Mayank Goel",
+                  "quote_span": {
+                    "start": 0,
+                    "end": 52,
+                    "text": "Siqi Zhang Ph.D. Student co-advised with Mayank Goel"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "school": "cmu",
+      "native_person": "ext:cmu:souradip-ghosh",
+      "reason": [
+        {
+          "school": "cmu",
+          "native_person": "ext:cmu:souradip-ghosh",
+          "records": [
+            {
+              "pi": "Brandon Lucia",
+              "name": "Souradip Ghosh"
+            },
+            {
+              "pi": "Nathan Beckmann",
+              "name": "Souradip Ghosh"
+            }
+          ],
+          "student_specific_clauses": [
+            {
+              "pi": "Brandon Lucia",
+              "url": "https://abstract.ece.cmu.edu/people.html",
+              "sha256": "e99b011c492cdf98e2eb140c6e52211e79c4e8bfed8f11993e70ae54094e342b",
+              "span": {
+                "start": 13,
+                "end": 243,
+                "text": "Souradip Ghosh co-advised w/ Nathan Beckmann Nathan Serafin co-advised w/ Nathan Beckmann Guy Wilks co-advised w/ Nathan Beckmann Sun A Cho co-advised w/ Nathan Beckmann Ania Krzyżańska co-advised w/ Ken Mai McKenzie van der Hagen"
+              }
+            }
+          ],
+          "reason": "reciprocal source-bound co-advising evidence is unresolved",
+          "supported_directions": [
+            {
+              "from_pi": "Brandon Lucia",
+              "to_pi": "Nathan Beckmann",
+              "sources": [
+                {
+                  "url": "https://abstract.ece.cmu.edu/people.html",
+                  "sha256": "e99b011c492cdf98e2eb140c6e52211e79c4e8bfed8f11993e70ae54094e342b",
+                  "quote": "PhD Students Souradip Ghosh co-advised w/ Nathan Beckmann Nathan Serafin co-advised w/ Nathan Beckmann Guy Wilks co-advised w/ Nathan Beckmann Sun A Cho co-advised w/ Nathan Beckmann Ania Krzyżańska co-advised w/ Ken Mai McKenzie van der Hagen",
+                  "quote_span": {
+                    "start": 13,
+                    "end": 243,
+                    "text": "Souradip Ghosh co-advised w/ Nathan Beckmann Nathan Serafin co-advised w/ Nathan Beckmann Guy Wilks co-advised w/ Nathan Beckmann Sun A Cho co-advised w/ Nathan Beckmann Ania Krzyżańska co-advised w/ Ken Mai McKenzie van der Hagen"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "school": "cmu",
+      "native_person": "ext:cmu:sun-a-cho",
+      "reason": [
+        {
+          "school": "cmu",
+          "native_person": "ext:cmu:sun-a-cho",
+          "records": [
+            {
+              "pi": "Brandon Lucia",
+              "name": "Sun A Cho"
+            },
+            {
+              "pi": "Nathan Beckmann",
+              "name": "Sun A Cho"
+            }
+          ],
+          "student_specific_clauses": [
+            {
+              "pi": "Brandon Lucia",
+              "url": "https://abstract.ece.cmu.edu/people.html",
+              "sha256": "e99b011c492cdf98e2eb140c6e52211e79c4e8bfed8f11993e70ae54094e342b",
+              "span": {
+                "start": 143,
+                "end": 243,
+                "text": "Sun A Cho co-advised w/ Nathan Beckmann Ania Krzyżańska co-advised w/ Ken Mai McKenzie van der Hagen"
+              }
+            },
+            {
+              "pi": "Brandon Lucia",
+              "url": "https://abstract.ece.cmu.edu/people.html",
+              "sha256": "e99b011c492cdf98e2eb140c6e52211e79c4e8bfed8f11993e70ae54094e342b",
+              "span": {
+                "start": 0,
+                "end": 123,
+                "text": "Sun A Cho co-advised w/ Nathan Beckmann Ania Krzyżańska co-advised w/ Ken Mai McKenzie van der Hagen Graduated PhD Students"
+              }
+            }
+          ],
+          "reason": "reciprocal source-bound co-advising evidence is unresolved",
+          "supported_directions": [
+            {
+              "from_pi": "Brandon Lucia",
+              "to_pi": "Nathan Beckmann",
+              "sources": [
+                {
+                  "url": "https://abstract.ece.cmu.edu/people.html",
+                  "sha256": "e99b011c492cdf98e2eb140c6e52211e79c4e8bfed8f11993e70ae54094e342b",
+                  "quote": "PhD Students Souradip Ghosh co-advised w/ Nathan Beckmann Nathan Serafin co-advised w/ Nathan Beckmann Guy Wilks co-advised w/ Nathan Beckmann Sun A Cho co-advised w/ Nathan Beckmann Ania Krzyżańska co-advised w/ Ken Mai McKenzie van der Hagen",
+                  "quote_span": {
+                    "start": 143,
+                    "end": 243,
+                    "text": "Sun A Cho co-advised w/ Nathan Beckmann Ania Krzyżańska co-advised w/ Ken Mai McKenzie van der Hagen"
+                  }
+                },
+                {
+                  "url": "https://abstract.ece.cmu.edu/people.html",
+                  "sha256": "e99b011c492cdf98e2eb140c6e52211e79c4e8bfed8f11993e70ae54094e342b",
+                  "quote": "Sun A Cho co-advised w/ Nathan Beckmann Ania Krzyżańska co-advised w/ Ken Mai McKenzie van der Hagen Graduated PhD Students",
+                  "quote_span": {
+                    "start": 0,
+                    "end": 123,
+                    "text": "Sun A Cho co-advised w/ Nathan Beckmann Ania Krzyżańska co-advised w/ Ken Mai McKenzie van der Hagen Graduated PhD Students"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "school": "cmu",
+      "native_person": "ext:cmu:tuhinangshu-choudhury",
+      "reason": [
+        {
+          "school": "cmu",
+          "native_person": "ext:cmu:tuhinangshu-choudhury",
+          "records": [
+            {
+              "pi": "Weina Wang",
+              "name": "Tuhinangshu Choudhury"
+            },
+            {
+              "pi": "Gauri Joshi",
+              "name": "Tuhinangshu Choudhury"
+            }
+          ],
+          "student_specific_clauses": [
+            {
+              "pi": "Gauri Joshi",
+              "url": "https://www.andrew.cmu.edu/user/gaurij/Group.html",
+              "sha256": "38dff8a2854630a2d03436da664a6cf8c7cae3f8243db5ea4718decea8e34508",
+              "span": {
+                "start": 0,
+                "end": 48,
+                "text": "Tuhinangshu Choudhury (co-advised by Weina Wang "
+              }
+            },
+            {
+              "pi": "Gauri Joshi",
+              "url": "https://www.andrew.cmu.edu/user/gaurij/Group.html",
+              "sha256": "38dff8a2854630a2d03436da664a6cf8c7cae3f8243db5ea4718decea8e34508",
+              "span": {
+                "start": 0,
+                "end": 48,
+                "text": "Tuhinangshu Choudhury (co-advised by Weina Wang "
+              }
+            }
+          ],
+          "reason": "reciprocal source-bound co-advising evidence is unresolved",
+          "supported_directions": [
+            {
+              "from_pi": "Gauri Joshi",
+              "to_pi": "Weina Wang",
+              "sources": [
+                {
+                  "url": "https://www.andrew.cmu.edu/user/gaurij/Group.html",
+                  "sha256": "38dff8a2854630a2d03436da664a6cf8c7cae3f8243db5ea4718decea8e34508",
+                  "quote": "Tuhinangshu Choudhury (co-advised by Weina Wang ), PhD 2024",
+                  "quote_span": {
+                    "start": 0,
+                    "end": 48,
+                    "text": "Tuhinangshu Choudhury (co-advised by Weina Wang "
+                  }
+                },
+                {
+                  "url": "https://www.andrew.cmu.edu/user/gaurij/Group.html",
+                  "sha256": "38dff8a2854630a2d03436da664a6cf8c7cae3f8243db5ea4718decea8e34508",
+                  "quote": "Tuhinangshu Choudhury (co-advised by Weina Wang ), PhD 2024",
+                  "quote_span": {
+                    "start": 0,
+                    "end": 48,
+                    "text": "Tuhinangshu Choudhury (co-advised by Weina Wang "
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "school": "cmu",
+      "native_person": "ext:cmu:vaishnavh-nagarajan",
+      "reason": [
+        {
+          "school": "cmu",
+          "native_person": "ext:cmu:vaishnavh-nagarajan",
+          "records": [
+            {
+              "pi": "Zico Kolter",
+              "name": "Vaishnavh Nagarajan"
+            },
+            {
+              "pi": "Avrim Blum",
+              "name": "Vaishnavh Nagarajan"
+            }
+          ],
+          "student_specific_clauses": [
+            {
+              "pi": "Avrim Blum",
+              "url": "https://web.archive.org/web/20170102001605id_/http://www.cs.cmu.edu/~avrim/",
+              "sha256": "8fcb6978401340c08f07bc25dc645906082e8e9ac34f9d938944e48b554db705",
+              "span": {
+                "start": 63,
+                "end": 111,
+                "text": "Vaishnavh Nagarajan (co-advised with Nina Balcan"
+              }
+            }
+          ],
+          "reason": "reciprocal source-bound co-advising evidence is unresolved",
+          "supported_directions": []
+        }
+      ]
+    },
+    {
+      "school": "epfl",
+      "native_person": "ext:epfl:vidit",
+      "reason": [
+        {
+          "school": "epfl",
+          "native_person": "ext:epfl:vidit",
+          "records": [
+            {
+              "pi": "Pascal Fua",
+              "name": "Vidit"
+            },
+            {
+              "pi": "Mathieu Salzmann",
+              "name": "Vidit"
+            }
+          ],
+          "reason": "incompatible names or duplicate memberships for a co-advised external id"
+        }
+      ]
+    },
+    {
+      "school": "harvard",
+      "native_person": "ext:harvard:jaeyeon-kim",
+      "reason": [
+        {
+          "school": "harvard",
+          "native_person": "ext:harvard:jaeyeon-kim",
+          "records": [
+            {
+              "pi": "Sitan Chen",
+              "name": "Jaeyeon Kim"
+            },
+            {
+              "pi": "Sham Kakade",
+              "name": "Jaeyeon Kim"
+            }
+          ],
+          "student_specific_clauses": [
+            {
+              "pi": "Sitan Chen",
+              "url": "https://sitanchen.com/",
+              "sha256": "b64f473fcdd733d1e27b2a3c5ea50ce82e09b9e70486fd730a3bab05b12ec0d8",
+              "span": {
+                "start": 0,
+                "end": 52,
+                "text": "Jaeyeon Kim (PhD, 2024-, co-advised with Sham Kakade"
+              }
+            }
+          ],
+          "reason": "reciprocal source-bound co-advising evidence is unresolved",
+          "supported_directions": [
+            {
+              "from_pi": "Sitan Chen",
+              "to_pi": "Sham Kakade",
+              "sources": [
+                {
+                  "url": "https://sitanchen.com/",
+                  "sha256": "b64f473fcdd733d1e27b2a3c5ea50ce82e09b9e70486fd730a3bab05b12ec0d8",
+                  "quote": "Jaeyeon Kim (PhD, 2024-, co-advised with Sham Kakade)",
+                  "quote_span": {
+                    "start": 0,
+                    "end": 52,
+                    "text": "Jaeyeon Kim (PhD, 2024-, co-advised with Sham Kakade"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "school": "michigan",
+      "native_person": "ext:michigan:meera-desai",
+      "reason": [
+        {
+          "school": "michigan",
+          "native_person": "ext:michigan:meera-desai",
+          "records": [
+            {
+              "pi": "Dallas Card",
+              "name": "Meera Desai"
+            },
+            {
+              "pi": "Abigail Z. Jacobs",
+              "name": "Meera Desai"
+            }
+          ],
+          "student_specific_clauses": [
+            {
+              "pi": "Dallas Card",
+              "url": "https://dallascard.github.io/",
+              "sha256": "62f8580b9a99e68be0267affb63d41f87d6f788906c202368496c74ea23a2085",
+              "span": {
+                "start": 100,
+                "end": 143,
+                "text": "Meera Desai (co-advised with Abigail Jacobs"
+              }
+            }
+          ],
+          "reason": "reciprocal source-bound co-advising evidence is unresolved",
+          "supported_directions": []
+        }
+      ]
+    },
+    {
+      "school": "uchicago",
+      "native_person": "ext:uchicago:raphael-rossellini",
+      "reason": [
+        {
+          "school": "uchicago",
+          "native_person": "ext:uchicago:raphael-rossellini",
+          "records": [
+            {
+              "pi": "Rina Foygel Barber",
+              "name": "Raphael Rossellini"
+            },
+            {
+              "pi": "Rebecca Willett",
+              "name": "Raphael Rossellini"
+            }
+          ],
+          "student_specific_clauses": [
+            {
+              "pi": "Rina Foygel Barber",
+              "url": "https://web.archive.org/web/20260618181709id_/https://rinafb.github.io/group/",
+              "sha256": "5fc42d7396acf607e5c1d7c36f7611ce42e200895edb94d734dc67681706cd3f",
+              "span": {
+                "start": 70,
+                "end": 134,
+                "text": "Raphael Rossellini, PhD student (co-advised with Rebecca Willett"
+              }
+            }
+          ],
+          "reason": "reciprocal source-bound co-advising evidence is unresolved",
+          "supported_directions": [
+            {
+              "from_pi": "Rina Foygel Barber",
+              "to_pi": "Rebecca Willett",
+              "sources": [
+                {
+                  "url": "https://web.archive.org/web/20260618181709id_/https://rinafb.github.io/group/",
+                  "sha256": "5fc42d7396acf607e5c1d7c36f7611ce42e200895edb94d734dc67681706cd3f",
+                  "quote": "PhD student Ruiting Liang, PhD student (Computational & Applied Math) Raphael Rossellini, PhD student (co-advised with Rebecca Willett) David Chen, PhD student Chen Cheng, Postdoctoral Scholar Anirb",
+                  "quote_span": {
+                    "start": 70,
+                    "end": 134,
+                    "text": "Raphael Rossellini, PhD student (co-advised with Rebecca Willett"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
