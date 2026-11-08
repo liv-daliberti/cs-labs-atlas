@@ -6,11 +6,149 @@ for DBLP-anchored works)."""
 import collections, gzip, html, json, re, sqlite3, zlib
 
 import atlas_paths as P  # every path in one place
-from .common import DBLP, NOT_PAPERS, ndoi, norm_title, read, school_scope_work, sweep_works
-from .names import Name, all_initials, byline_name, clean_person_name, full_pair, middle_conflict, name_conflict, name_toks, nosuffix, toks
+from .common import DBLP, NOT_PAPERS, accepted_additions, ndoi, norm_title, read, school_scope_work, sweep_works
+from .names import Name, all_initials, byline_name, clean_person_name, full_pair, middle_conflict, name_conflict, name_toks, names_full_form, nosuffix, toks
 from . import primary_affiliations, reviewed_claims
+from .students import (ADV_RX, RESEARCHED_FILES, advising_label, dspace_advisors, named_advisers, own_roster_entry,
+                       relation_is_weak, relation_names_other_adviser, renamed_pis)
 
 DUMP_PERSONS = None  # hierarchy/dblp-dump-persons.json.gz, read once per process
+
+# These old, reviewed relationship-basis statements predate the explicit relationship enum.
+# They are finite prior source decisions, not a rule that an owned Students page implies advising.
+LEGACY_ADVISER_BASES = {
+    'PI-owned personally named roster',
+    'PI personal Students and Postdoctoral Fellows; explicit dates and full co-adviser statements',
+}
+LEGACY_CURRENT_STUDENTS_BASIS = re.compile(
+    r'PI-owned current Students roster; source explicitly names [^;\n]+ appointment, no doctoral inference')
+ADVISER_RELATIONS = {'academic_advising', 'researched_advising', 'source_advising_context',
+                     'pi_basis_advising', 'academic_adviser', 'thesis_adviser', 'phd_advising', 'research_advising'}
+ACADEMIC_ADVISER_LABEL = re.compile(r'\b(?:academic|program|major)\s+advis[oe]r', re.I)
+
+
+def _adviser_source_key(source):
+    """No URL/hash/quote aliasing: a source decision applies only to its exact native preimage."""
+    if (source.get('url') and re.fullmatch(r'[0-9a-f]{64}(?:,[0-9a-f]{64})*', str(source.get('sha256') or ''))
+            and isinstance(source.get('quote'), str) and source['quote'].strip()):
+        return source['url'], source['sha256'], source['quote']
+    return None
+
+
+def adviser_source_claims(ctx):
+    """Recover reviewed/contextual advising omitted from compiled relations, without changing members.
+
+    Keys bind PI, literal member name and the exact source tuple. Explicit membership wins for the
+    same key. Unknown historical context stays unavailable; a degree or relationship type is no proof.
+    """
+    claims = {}
+    pis = {p['pi']: p for p in ctx.pis}
+    renames = renamed_pis(ctx.pis)
+
+    def add(pi, name, source, basis):
+        key = _adviser_source_key(source)
+        if pi in pis and name and key:
+            key = pi, clean_person_name(name), key
+            if claims.get(key) != 'explicit_reviewed_membership':
+                claims[key] = basis
+
+    rows = [(pi, s) for pi, row in (getattr(ctx, 'ge', {}) or {}).items() for s in row.get('students') or []]
+    for filename in RESEARCHED_FILES:
+        path = P.data(filename, ctx.school, root=ctx.here)
+        if path.exists():
+            rows += [(r['pi'], s) for r in read(path) for s in r.get('students') or []]
+    rows += [(s['pi'], s) for s in accepted_additions(ctx.school, 'students', ctx.here, collections.Counter())]
+    for pi, row in rows:
+        pi = renames.get(pi, pi)
+        if pi not in pis:
+            continue
+        names = pis[pi].get('names') or [pi]
+        relationship = row.get('relationship')
+        if relationship == 'membership':
+            add(pi, row.get('name'), row, 'explicit_reviewed_membership')
+        elif relationship == 'advising':
+            add(pi, row.get('name'), row, 'explicit_reviewed_advising')
+        elif relationship is None and row.get('reviewed') is True:
+            owner = row.get('source_owner_PI')
+            role_source = row.get('PI_role_source') or {}
+            section = row.get('section') or ''
+            if owner in names and _adviser_source_key(role_source):
+                if re.search(r'\badvisees\b|\bsupervised students\b', section, re.I):
+                    add(pi, row.get('name'), row, 'reviewed_owned_advising_section')
+                elif (row.get('relationship_basis') in LEGACY_ADVISER_BASES
+                      or LEGACY_CURRENT_STUDENTS_BASIS.fullmatch(row.get('relationship_basis') or '')):
+                    add(pi, row.get('name'), row, 'reviewed_legacy_relationship_basis')
+
+    member_ids, member_names = collections.defaultdict(set), collections.defaultdict(set)
+    for pi in pis:
+        for member in ctx.stu[pi].values():
+            member_ids[member['person']].add(pi)
+            for name in [member['name']] + list(member.get('aliases') or []):
+                member_names[clean_person_name(name)].add(pi)
+    for person in getattr(ctx, 'people', []):
+        for context in person.get('contexts') or []:
+            if context.get('type') not in ADVISER_RELATIONS:
+                continue
+            advisers = [context.get('advisorName'), context.get('advisor')] + list(context.get('advisors') or [])
+            ids = {context.get('advisorPersonId'), context.get('advisorPerson')} - {None}
+            candidates = member_ids[person['id']] | member_names[clean_person_name(person['name'])]
+            for pi in sorted(candidates):
+                p = pis[pi]
+                if ids & set(p.get('personIds') or []) or any(isinstance(a, str) and names_full_form(a, p.get('names') or [pi]) for a in advisers):
+                    for source in context.get('sources') or []:
+                        if (not ACADEMIC_ADVISER_LABEL.search(source.get('quote') or '')
+                                and names_full_form(source.get('quote') or '', p.get('names') or [pi])):
+                            add(pi, person['name'], source, 'named_adviser_collection_context')
+    for pi, p in pis.items():
+        basis = p.get('piBasis') or {}
+        if basis.get('kind') == 'advises_phd':
+            for member in ctx.stu[pi].values():
+                for relation in member.get('relations') or []:
+                    if relation.get('type') == 'pi_basis_advising':
+                        add(pi, member['name'], basis, 'reviewed_PI_advises_phd_basis')
+    return claims
+
+
+def adviser_anchor_basis(pi, member, pi_names, claims):
+    """R-PAP-04/11/12 require a stated advisee, not a degree-labelled lab member.
+
+    This is advisory-anchor eligibility only, not a person, membership or paper rejection.
+    One genuine research-advising episode suffices; unrelated membership/weak episodes remain intact.
+    """
+    names = [member['name']] + list(member.get('aliases') or [])
+    for relation in member.get('relations') or []:
+        if (relation.get('type') not in ADVISER_RELATIONS or relation.get('weak')
+                or relation.get('role') == 'Postdoctoral Faculty Sponsor'
+                or relation_is_weak(relation, names) or relation_names_other_adviser(relation, pi_names)):
+            continue
+        for source in relation.get('sources') or []:
+            key = _adviser_source_key(source)
+            if not key:
+                continue
+            bases = {claims.get((pi, clean_person_name(name), key)) for name in names} - {None}
+            if 'explicit_reviewed_membership' in bases:
+                continue
+            quote = source['quote']
+            if advising_label(quote, names) == 'Postdoctoral Faculty Sponsor':
+                continue
+            if own_roster_entry(quote, names, pi_names) in {'names_other', 'unknown'}:
+                continue
+            if bases:
+                return dict(basis=sorted(bases)[0], source=key)
+            if source.get('names_pi') is False:
+                continue
+            named = named_advisers(quote) if not ACADEMIC_ADVISER_LABEL.search(quote) else ''
+            if names_full_form(named, pi_names) or any(names_full_form(n, pi_names) for n in dspace_advisors(quote)):
+                return dict(basis='literal_named_adviser', source=key)
+            # Figshare's labelled adviser field, and an explicitly named advising sentence.
+            fields = re.findall(r'"name"\s*:\s*"Advis[oe]r(?:\(s\))?"\s*,\s*"value"\s*:\s*"([^"]+)"', quote, re.I)
+            fields += re.findall(r'\b(?:co[- ]?)?(?:advised|supervised)\s+(?:by|with)\s+([^.;\n]{3,160})', quote, re.I)
+            fields += re.findall(r'\b(?:Ph\.?D\.?|doctoral|master\x27?s?)\s+student\s+of\s+([^.;\n]{3,160})', quote, re.I)
+            if not ACADEMIC_ADVISER_LABEL.search(quote):
+                fields += [match.group(1) for rx in ADV_RX for match in rx.finditer(quote)]
+            if any(names_full_form(value, pi_names) for value in fields):
+                return dict(basis='literal_named_supervision', source=key)
+    return None
 
 
 def apply_cached_lists(pis, pubs, dblp_doi, dblp_title, n):
@@ -148,8 +286,12 @@ def anchors(ctx):
         if r_.get('sha256') and r_.get('quote'):
             lab_page[r_['pi']].append((norm_title(r_.get('title')), r_.get('year')))
     n['pis_with_lab_publication_page'] = sum(bool(lab_page[p['pi']]) for p in pis)
-    advisee_names = {p['pi']: [Name([s_['name']]) for s_ in stu[p['pi']].values()] for p in pis}
-    adv_full = {p['pi']: {fp_ for s_ in stu[p['pi']].values() for nm_ in [s_['name']] + list(s_.get('aliases') or []) for fp_ in [full_pair(clean_person_name(nm_))] if fp_} for p in pis}
+    claims = adviser_source_claims(ctx)
+    advisees = {p['pi']: [s_ for s_ in stu[p['pi']].values()
+                         if adviser_anchor_basis(p['pi'], s_, p.get('names') or [p['pi']], claims)] for p in pis}
+    advisee_names = {pi: [Name([s_['name']]) for s_ in members] for pi, members in advisees.items()}
+    adv_full = {pi: {fp_ for s_ in members for nm_ in [s_['name']] + list(s_.get('aliases') or [])
+                     for fp_ in [full_pair(clean_person_name(nm_))] if fp_} for pi, members in advisees.items()}
     ctx.verified, ctx.dblp_doi, ctx.dblp_title, ctx.own_list, ctx.lab_page = verified, dblp_doi, dblp_title, own_list, lab_page
     ctx.advisee_names, ctx.adv_full = advisee_names, adv_full
 
