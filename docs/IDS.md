@@ -111,3 +111,10 @@ never executes that metadata or waives its guard. In isolated preparation only, 
 the reviewed two-anchor component using the standard earliest-issued/ID tie policy. The alias remains resolvable, unrelated
 IDs remain unchanged, and repeated preparation must create no additional redirect or split. The ordinary ID stage then
 runs against that copied reviewed registry; global application remains a separately reviewed operation.
+
+A same-lab work collision stays as separate scientific rows at the ID stage. When a previously issued ID covered several
+such components, a split registers each component's unambiguous source lead anchors with its own ID; it does not move a
+shared DOI anchor or change paper metadata. Otherwise a replay would repeatedly mint an orphan while the unique source
+anchor still pointed at the old shared ID. A split with no unambiguous source identifier holds and rolls back unpublished
+assignments. This stability rule does not adjudicate a conflicting DOI, title or edition: those source questions remain
+promotion blockers until independently resolved. Existing issued IDs remain present under the normal split policy.

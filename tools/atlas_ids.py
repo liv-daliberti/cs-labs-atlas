@@ -227,6 +227,12 @@ def assign(db, kind, prefix, comps, today, stats):
     cnt = collections.Counter(a for c in comps for _, a in comps[c])
     amb = {a for a, n in cnt.items() if n > 1}
     stats['ambiguous_anchors'] += len(amb)
+    if kind == 'work':
+        holds = [dict(component=str(c), anchors=[a for _, a in comps[c]],
+                      reason='source-distinct work has no unambiguous identifier')
+                 for c in comps if not any(a not in amb for _, a in comps[c])]
+        if holds:
+            raise WorkIDConflict(holds)
     order = sorted(comps, key=lambda c: (comps[c], str(c)))
     claims = collections.defaultdict(list)
     issued = lambda i: (db.execute('select issued from ids where id=?', (i,)).fetchone() or ('9',))[0] + i
@@ -272,8 +278,14 @@ def assign(db, kind, prefix, comps, today, stats):
             row = db.execute('select id from anchors where anchor=?', (a,)).fetchone()
             if row is None:
                 db.execute('insert into anchors (anchor, id, kind, first_seen) values (?,?,?,?)', (a, i, kind, today))
-            elif resolve(db, row[0]) != i and len(claims.get(resolve(db, row[0]), [])) <= 1:
+            elif resolve(db, row[0]) != i and (kind == 'work' or len(claims.get(resolve(db, row[0]), [])) <= 1):
+                # A work split retains only this component's unambiguous lead anchors. Register its own source key
+                # with the newly minted work ID, even when the old ID covered several components. Otherwise every
+                # replay finds that old ID again and mints another orphan. Shared/ambiguous DOI anchors stay untouched.
+                split_work = kind == 'work' and len(claims.get(resolve(db, row[0]), [])) > 1
                 db.execute('update anchors set id=? where anchor=?', (i, a))
+                if split_work:
+                    stats['split_work_anchors_rebound'] += 1
     return out
 
 
@@ -305,6 +317,13 @@ class CoadvisingIDConflict(ValueError):
         self.holds = holds
         super().__init__('Co-advising ID preparation held: ' + '; '.join(
             h['school'] + '/' + h['native_person'] + ': ' + h['reason'] for h in holds))
+
+
+class WorkIDConflict(ValueError):
+    """The scientific rows remain separate but cannot yet be assigned stable, source-bound work identities."""
+    def __init__(self, holds):
+        self.holds = holds
+        super().__init__('Work ID preparation held: ' + '; '.join(h['reason'] + ': ' + h['component'] for h in holds))
 
 
 def _coadvising_text_toks(text):
@@ -697,6 +716,9 @@ def run(schools, hdir, registry, use_sweep=True, today=None, write=True):
                 for a in lead[k]:
                     lb[a].append(k)
             for a, kk in lb.items():
+                if len({(k[0], data[k[0]][2][k[1]]['pi']) for k in kk}) < len(kk):
+                    stats['ambiguous_lead_work_anchors'] += 1
+                    continue  # a DOI colliding inside one lab must not rejoin those works through another lab
                 for k in kk[1:]:
                     if (k[0], data[k[0]][2][k[1]]['pi']) != (kk[0][0], data[kk[0][0]][2][kk[0][1]]['pi']):
                         wuf.union(kk[0], k)
@@ -704,7 +726,11 @@ def run(schools, hdir, registry, use_sweep=True, today=None, write=True):
     for k, A in wents.items():
         wcomps[wuf.find(k)] |= {(RANK[a], f'w|{WSCHEME[a]}:{v}') for a, v in A}
     wcomps = {c: sorted(v) for c, v in wcomps.items()}
-    wid = assign(db, 'work', 'atl:w:', wcomps, today, stats)
+    try:
+        wid = assign(db, 'work', 'atl:w:', wcomps, today, stats)
+    except WorkIDConflict:
+        db.rollback()  # person/lab assignments above were part of this same unpublished transaction
+        raise
     work_of = {k: wid[wuf.find(k)] for k in wents}
     db.commit()
     # ---- appointments and cross-school persons
