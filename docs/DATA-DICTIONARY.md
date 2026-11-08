@@ -540,6 +540,15 @@ The build's report: counters, exclusions, samples of what the rules dropped, and
 | `studentInitialsMerges` | array of object | no | R-STU-13: student records of one lab merged because their names differ only by initial-only tokens or a second surname (kept and merged: [person id, name]). |  | R-STU-13 |
 | `studentSurnameTypoCandidates` | array of object | no | R-STU-13: same-lab student pairs whose surnames differ by one edit; never merged by the build, queued for review (hierarchy/reviewed/student-name-candidates.json; only a reviewed same_person verdict merges). |  | R-STU-13 |
 | `labpageStudentsCorroborated` | array of object | no | R-STU-20: lab-page student rows that the acceptance gate left unwired and the PI's own byline corroborated (the student, role and its basis, years, up to six corroborating works). |  | R-STU-20 |
+| `paperClaimReview` | object | no | Loaded source-bound claim review and every applied, held, rejected, merged or unmatched decision. It never bypasses normal admission gates. | no other keys |  |
+| `paperClaimReview.path` | string | yes |  |  |  |
+| `paperClaimReview.sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `paperClaimReview.decisions` | array of object | yes |  |  |  |
+| `paperClaimReview.decisions[]` | object | — |  |  |  |
+| `paperClaimReview.decisions[].id` | string | yes |  |  |  |
+| `paperClaimReview.decisions[].pi` | string | yes |  |  |  |
+| `paperClaimReview.decisions[].decision` | any | yes |  | one of `hold`, `reject`, `merge` |  |
+| `paperClaimReview.decisions[].outcome` | any | yes |  | one of `no_current_claim`, `held`, `rejected`, `held_before_identity`, `rejected_before_identity`, `already_merged`, `held_missing_merge_target`, `merged` |  |
 
 ## `hierarchy/<school>/student_papers.jsonl.gz`
 

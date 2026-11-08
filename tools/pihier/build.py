@@ -8,7 +8,7 @@ from pathlib import Path
 import atlas_paths as P  # data paths (DATA_FILES)
 import provenance  # report.json -> provenance
 from .common import HERE, Ctx
-from . import census, identity, links, papers, students
+from . import census, identity, links, papers, reviewed_claims, students
 
 
 def atomic_json(path, value):
@@ -58,6 +58,8 @@ def write(ctx):
                page1ElsewhereSamples=page1_samples, staleListingReview=ctx.listing_review, droppedWithoutHashedSource=ctx.unevidenced, labpageAdditionsSetAside=ctx.labpage_set_aside,
                provenance=provenance.block(school),
                studentInitialsMerges=ctx.initials_merges, studentSurnameTypoCandidates=students.typo_candidate_rows(ctx), labpageStudentsCorroborated=getattr(ctx, 'corroborated', []))  # what this package was built from (tools/provenance.py; make_release requires it)
+    if getattr(ctx, 'paper_claim_review', None) is not None:
+        rep['paperClaimReview'] = ctx.paper_claim_review
     atomic_json(out / 'report.json', rep)
     print(json.dumps(dict(school=school, **n)))
 
@@ -75,6 +77,7 @@ def build(school):
     identity.anchors(ctx)
     identity.hits(ctx)
     papers.lab_papers(ctx)
+    reviewed_claims.apply(ctx)
     students.add_corroborated(ctx)  # R-STU-20
     links.link_students(ctx)
     students.drop_weak(ctx, ctx.sp)

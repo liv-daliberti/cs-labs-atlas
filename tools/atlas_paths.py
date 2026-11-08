@@ -293,6 +293,7 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('person-urls.json', 'reviewed', 'hierarchy/{school}/person-urls.json', 'hierarchy/{school}/reviewed/person-urls.json'),
     ('deep-gap-evidence.json', 'derived', 'hierarchy/{school}/deep-gap-evidence.json', 'hierarchy/{school}/derived/deep-gap-evidence.json'),
     ('census-additions.json', 'reviewed', 'census/{school}-additions.json', 'hierarchy/{school}/reviewed/census-additions.json'),
+    ('paper-claim-review.json', 'reviewed', 'hierarchy/{school}/paper-claim-review.json', 'hierarchy/{school}/reviewed/paper-claim-review.json'),
     ('cs-related-hand.json', 'reviewed', 'hierarchy/{school}/cs-related-hand.json', 'hierarchy/{school}/reviewed/cs-related-hand.json'),
     ('faculty-periods.json', 'reviewed', 'periods/{school}-faculty-periods.json', 'hierarchy/{school}/reviewed/faculty-periods.json'),
     # per school: recovered rows and tool state (rebuildable from raw + reviewed)

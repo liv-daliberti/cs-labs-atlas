@@ -24,6 +24,31 @@ reviewed inputs, even when a reviewed verdict is folded into them.
 | `hierarchy/nicknames/{names,extras}.csv` | `pi_hierarchy.py` | given-name pairs (public carltonnorthern/nicknames table, Apache-2.0, plus curated extras) |
 | `census/<school>-additions.json` | `pi_hierarchy.py`, `export_release.py` | listed faculty the census missed |
 | `periods/<school>-faculty-periods.json` | `pi_hierarchy.py` | reviewed faculty periods |
+| `hierarchy/<school>/reviewed/paper-claim-review.json` | `pihier.identity`, `pihier.reviewed_claims`, `pihier.build` | sourced per-PI claim holds/rejections and explicit edition bridges; never forces admission |
+
+## Per-paper claim reviews
+
+Use `atlas_paths.data('paper-claim-review.json', school)` for the working layout. The input is
+`{"version": 1, "school": "harvard", "decisions": [...]}`. Each active decision has a unique `id`, exact `pi`,
+`match` containing an `oa`, `doi` or collection `work` identifier, `decision`, `why`, `reviewed_by`, ISO
+`reviewed_at` date, and original `evidence` items with `url`, `sha256` and a literal `quote`. Supplied identifiers
+must agree on one record; a shared title or name is not an identity selector.
+
+- `hold` preserves an unresolved claim as an explicit review outcome. It does not call the underlying work a non-paper.
+- `reject` rejects this PI-paper claim with its sourced reason. It does not blacklist a person or author entity.
+- `merge` additionally names an `into` identifier selector for an independently eligible edition of the same PI.
+  The accepted target keeps its metadata; every eligible source/target edition and byline remains available for links.
+  A missing target holds the source. A review never creates or admits an absent target or crosses PI labs.
+
+There is no `accept` action and no completeness waiver. Normal identity, own-school affiliation, appointment and
+paper-type checks remain required. Held/rejected raw works cannot lend new dynamic author-ID anchors. The final
+review pass also catches recovered rows and runs before student corroboration and links, preventing orphan links.
+Ambiguous matches, conflicting actions, merge cycles, malformed evidence or an input changed during a build stop it.
+
+The loaded input hash and every decision, including unmatched ones, are written to `report.json` as
+`paperClaimReview`; the input also enters school provenance. An active review file records current decisions;
+retain superseded judgments in the audit artifacts and replace the active decision only after new evidence resolves it.
+These decisions do not prove corpus completeness or convert candidate member authorships into verified ones.
 
 Not tracked (large or harvested, but in the working root and, where the build reads them, in the sweeps): the census
 files (`census/<school>-faculty.json`), the listings (`listings/<school>/listings.json`), the thesis / lab-page evidence

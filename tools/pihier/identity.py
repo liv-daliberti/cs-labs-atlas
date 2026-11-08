@@ -8,6 +8,7 @@ import collections, gzip, html, json, re, sqlite3, zlib
 import atlas_paths as P  # every path in one place
 from .common import DBLP, NOT_PAPERS, ndoi, norm_title, read, sweep_works
 from .names import Name, all_initials, byline_name, clean_person_name, full_pair, middle_conflict, name_conflict, nosuffix, toks
+from . import reviewed_claims
 
 DUMP_PERSONS = None  # hierarchy/dblp-dump-persons.json.gz, read once per process
 
@@ -82,9 +83,12 @@ def apply_dump(pis, dump, dblp_doi, dblp_title, n):
 def anchors(ctx):
     """The identity anchors of every PI: verified collection works, DBLP DOIs and titles, the PI's own and lab
     publication lists, the lab's advisee names."""
+    reviewed_claims.prepare(ctx)
     HERE, school, pis, pls, stu, n = ctx.here, ctx.school, ctx.pis, ctx.pls, ctx.stu, ctx.n
     # identity anchors: the PI's own DBLP publication list, the PI's DBLP-verified collection works, a stated advisee as co-author
-    verified = {p['pi']: {l['work'] for i in p['personIds'] for l in pls[i] if l.get('status') == 'verified' and l.get('role', 'author') == 'author'} for p in pis}
+    verified = {p['pi']: {l['work'] for i in p['personIds'] for l in pls[i]
+                           if l.get('status') == 'verified' and l.get('role', 'author') == 'author'
+                           and not reviewed_claims.excluded(ctx, p['pi'], dict(ctx.works.get(l['work']) or {}, work=l['work']))} for p in pis}
     dblp_doi, dblp_title = collections.defaultdict(set), collections.defaultdict(dict)
     dp = P.archive_sweep(DBLP.get(school, '')) / 'raw/dblp_pubs.json.gz'
     if P.data('dblp_pubs.json.gz', school, root=HERE).exists():  # Princeton: converted from the lab records' cached DBLP answers
@@ -259,6 +263,8 @@ def hits(ctx):
             for pi in sorted(set(by_sur.get(t[-1], []) + by_sur.get(''.join(t[1:]), []) + by_sur.get(t[0], []))):  # sorted: hit order
                 if pi in done:
                     continue
+                if reviewed_claims.excluded(ctx, pi, w):
+                    done.add(pi); continue
                 if not nm[pi].match(raw):
                     if (a.get('author') or {}).get('id'):  # "Zhiwei Steven Wu" for Steven Wu: decided once the PI's ids are anchored
                         surname_only.append((pi, w, a))
@@ -307,6 +313,8 @@ def hits(ctx):
             for a in w.get('authorships') or []:
                 aid = (a.get('author') or {}).get('id')
                 for pi in owner.get(aid, []):
+                    if reviewed_claims.excluded(ctx, pi, w):
+                        continue
                     raw = a.get('raw_author_name') or (a.get('author') or {}).get('display_name') or ''
                     if aid in blocked[pi] or not nm[pi].match(raw):
                         continue
@@ -322,6 +330,8 @@ def hits(ctx):
                     if len(t) < 2 or a.get('institutions') or a.get('raw_affiliation_strings'):
                         continue
                     for pi in sorted(set(by_sur.get(t[-1], []))):
+                        if reviewed_claims.excluded(ctx, pi, w):
+                            continue
                         if (pi, w['id']) in from_pw or aid in blocked[pi] or not nm[pi].match(raw) \
                                 or toks(pi)[-1] not in toks(' '.join(tied[w['id']].get('quotes') or [])):
                             continue

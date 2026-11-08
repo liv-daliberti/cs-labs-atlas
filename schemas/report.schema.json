@@ -1121,6 +1121,71 @@
    "x-rules": [
     "R-STU-20"
    ]
+  },
+  "paperClaimReview": {
+   "description": "Loaded source-bound claim review and every applied, held, rejected, merged or unmatched decision. It never bypasses normal admission gates.",
+   "type": "object",
+   "required": [
+    "path",
+    "sha256",
+    "decisions"
+   ],
+   "properties": {
+    "path": {
+     "type": "string"
+    },
+    "sha256": {
+     "type": "string",
+     "pattern": "^[0-9a-f]{64}$"
+    },
+    "decisions": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "required": [
+       "id",
+       "pi",
+       "decision",
+       "match",
+       "why",
+       "evidence",
+       "reviewed_by",
+       "reviewed_at",
+       "outcome",
+       "matched_before_identity"
+      ],
+      "properties": {
+       "id": {
+        "type": "string"
+       },
+       "pi": {
+        "type": "string"
+       },
+       "decision": {
+        "enum": [
+         "hold",
+         "reject",
+         "merge"
+        ]
+       },
+       "outcome": {
+        "enum": [
+         "no_current_claim",
+         "held",
+         "rejected",
+         "held_before_identity",
+         "rejected_before_identity",
+         "already_merged",
+         "held_missing_merge_target",
+         "merged"
+        ]
+       }
+      },
+      "additionalProperties": true
+     }
+    }
+   },
+   "additionalProperties": false
   }
  },
  "required": [
