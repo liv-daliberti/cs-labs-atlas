@@ -10,7 +10,7 @@ from .common import OWN_UNITS, SCHOOL_LOOSE, TODAY, WINDOW_START, accepted_addit
 from .identity import in_blocked_cluster
 from .names import NICK, _nick_pairs, byline_name, full_pair, toks, Name
 from .periods import _year, LISTING_BRIDGE, bridge_periods, listing_bridge_periods, contains, same_year, transition_side, transition_status
-from . import identity, reviewed_claims
+from . import identity, primary_affiliations, reviewed_claims
 from dblp_dump_pages import page_count  # noqa: E402  (DBLP's `pages` string -> number of pages; R-PAP-27)
 
 # Recovered lab-paper rows as (kind, identity label): hierarchy/<school>/<kind>-recovered.jsonl.gz (tools/dblp_recover.py,
@@ -608,6 +608,32 @@ def _authorship_school_via(work, authorship, inst, aff, school=None):
         + ['text: ' + raw for raw in authorship.get('raw_affiliation_strings') or [] if aff.search(raw)]
 
 
+def reviewed_byline_school(ctx, work):
+    """Complete primary author blocks affect derived flags only, after ordinary paper eligibility."""
+    original = [(a.get('raw_author_name') or (a.get('author') or {}).get('display_name'))
+                for a in work.get('authorships') or []
+                if _authorship_school_via(work, a, ctx.inst, ctx.aff, school=ctx.school)]
+    page1 = (getattr(ctx, 'tied', None) or {}).get(work['id'])
+    if not page1 or 'author_affiliation_review' not in page1:
+        return original, None
+    try:
+        source_key = primary_affiliations.digest(work)
+    except (TypeError, ValueError):
+        source_key = None
+    key = (work['id'], source_key)
+    cache = getattr(ctx, 'primary_affiliation_reviews', None)
+    if cache is None:
+        ctx.primary_affiliation_reviews = cache = {}
+    if key not in cache:
+        status, text, _ = (getattr(ctx, 'page_read', None) or {}).get(work['id'], (None, None, None))
+        result = primary_affiliations.resolve(work, page1, text) if status == 'ok' else dict(status='held', reason='page1_not_read', work=work['id'])
+        corrected = primary_affiliations.school_flags(work, result, lambda w, a: _authorship_school_via(w, a, ctx.inst, ctx.aff, school=ctx.school))
+        evidence = dict(status=result['status'], **result['evidence']) if corrected is not None else dict(result)
+        cache[key] = (corrected if corrected is not None else original, evidence)
+        ctx.n['primary_pdf_affiliation_review_' + result['status']] += 1
+    return cache[key]
+
+
 STRONG_IDENTITY = ('reviewed_openalex_author_id', 'pi_orcid', 'dblp_verified_collection_work', 'dblp_person_page_doi', 'dblp_person_page_title',
                    'pi_institutional_publication_list', 'lab_publication_page')
 # R-PAP-29 (2026-11-03): a cross-affiliated byline does not count when the PI's appointment at the school is not a primary one: an adjunct's,
@@ -802,24 +828,26 @@ def rows_from_hits(ctx):
             # a second OpenAlex record of the same collection work (2026-10-29): kept as an edition of the row already
             # made, with its own byline, so the lab's students on it are seen (EPFL 'Lê-Nguyên, Hoang', CMU 'Cui, Catherine')
             if k in row_at and w['id'] != rows[row_at[k]]['oa']:
+                byline_school, affiliation_review = reviewed_byline_school(ctx, w)
                 rows[row_at[k]].setdefault('_dups', []).append(dict(
                     oa=w['id'], work=cw, doi=ndoi(w.get('doi')), year=w.get('publication_year'), venue=((w.get('primary_location') or {}).get('source') or {}).get('display_name'),
                     byline=[(x.get('raw_author_name') or (x.get('author') or {}).get('display_name')) for x in w.get('authorships') or []],
-                    byline_school=[(x.get('raw_author_name') or (x.get('author') or {}).get('display_name')) for x in w.get('authorships') or []
-                                   if _authorship_school_via(w, x, inst, aff, school=school)]))
+                    byline_school=byline_school,
+                    **({'byline_affiliation_review': affiliation_review} if affiliation_review else {})))
             continue
         seen.add(k); row_at[k] = len(rows)
+        byline_school, affiliation_review = reviewed_byline_school(ctx, w)
         rows.append(dict(pi=pi, work=cw, oa=w['id'], doi=ndoi(w.get('doi')), title=w.get('title'), year=dated_by['venue_year'] if dated_by else w.get('publication_year'), date=date, type=w.get('type'),
                          venue=((w.get('primary_location') or {}).get('source') or {}).get('display_name'),
                          landing=(w.get('primary_location') or {}).get('landing_page_url'),
                          _edition_source=edition_source(w),
                          byline=[(x.get('raw_author_name') or (x.get('author') or {}).get('display_name')) for x in w.get('authorships') or []],
-                         byline_school=[(x.get('raw_author_name') or (x.get('author') or {}).get('display_name')) for x in w.get('authorships') or []
-                                        if _authorship_school_via(w, x, inst, aff, school=school)],
+                         byline_school=byline_school,
                          authorship=dict(position=a.get('author_position'), raw_name=a.get('raw_author_name'), author_id=aid,
                                          institutions=[i.get('display_name') for i in a.get('institutions') or []], raw_affiliations=a.get('raw_affiliation_strings') or [],
                                          school_via=via[:3], page1=dict(url=page1['url'], pdf_sha256=page1['pdf_sha256'], how=page1['how'], quotes=page1['quotes']) if page1 and via[0].startswith('page 1') else None),
                          identity=identity, appointment=dict(periodId=per['id']) if per else dict(listing=lst),
+                         **({'byline_affiliation_review': affiliation_review} if affiliation_review else {}),
                          **({'dated_by': dated_by} if dated_by else {}),
                          **({'page1_check': page1_check} if page1_check else {}),
                          **({'flags': ['page1_unchecked']} if page1_check and page1_check['status'] == 'page1_unchecked' else {})))

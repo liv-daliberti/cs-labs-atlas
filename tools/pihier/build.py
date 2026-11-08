@@ -60,6 +60,8 @@ def write(ctx):
                studentInitialsMerges=ctx.initials_merges, studentSurnameTypoCandidates=students.typo_candidate_rows(ctx), labpageStudentsCorroborated=getattr(ctx, 'corroborated', []))  # what this package was built from (tools/provenance.py; make_release requires it)
     if getattr(ctx, 'paper_claim_review', None) is not None:
         rep['paperClaimReview'] = ctx.paper_claim_review
+    if getattr(ctx, 'primary_affiliation_reviews', None):
+        rep['primaryPDFAffiliationReviews'] = [value[1] for _, value in sorted(ctx.primary_affiliation_reviews.items())]
     atomic_json(out / 'report.json', rep)
     print(json.dumps(dict(school=school, **n)))
 
