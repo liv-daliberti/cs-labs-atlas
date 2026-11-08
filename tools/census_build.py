@@ -24,12 +24,13 @@ listings  listings/<key>/listings.json: one row per (person, department, year): 
 -> census/<key>-faculty.json, census/<key>-report.md, hierarchy/<key>/collection.json.gz, listings/<key>/listings.json
 usage: census_build.py <key>
 """
-import collections, datetime, gzip, json, re, sys, unicodedata
+import collections, datetime, gzip, hashlib, json, re, sys, unicodedata
 from pathlib import Path
 
 import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
 from pi_hierarchy import Name, toks as _toks, nick_ok, EAST_ASIAN_FAMILY, nosuffix, SUFFIX  # noqa: F401,E402
+from pihier.names import literal_cjk_name
 
 ORDER = ['ladder', 'research', 'teaching', 'lecturer', 'adjunct', 'visiting', 'courtesy', 'emeritus', 'other']
 # a title or an endowed-chair string is never a person's name or alias (ROADMAP #42)
@@ -57,8 +58,9 @@ def display_name(rs, names):
 
 
 def slug(s):
+    original = s
     s = unicodedata.normalize('NFKD', s).encode('ascii', 'ignore').decode().lower()
-    return re.sub(r'[^a-z0-9]+', '-', s).strip('-')
+    return re.sub(r'[^a-z0-9]+', '-', s).strip('-') or 'name-' + hashlib.sha256(original.encode()).hexdigest()[:24]
 
 
 def read(p, default=None):
@@ -92,9 +94,15 @@ def merge_people(rows):
     groups, by_fam = [], collections.defaultdict(list)
     for r in sorted((dict(r, name=CLONE_OF.sub('', r['name'])) for r in rows), key=lambda r: r['observed']):   # a Drupal 'Clone of X' card is X
         t = toks(r['name'])
-        if len(t) < 2 or TITLE_NAME.search(r['name']):
+        literal = literal_cjk_name(r['name'])
+        if (len(t) < 2 and not literal) or TITLE_NAME.search(r['name']):
             continue
-        g = next((g for g in by_fam[t[-1]] if any(given_compatible(toks(n)[:-1], t[:-1], t[-1]) for n in g['names'])), None)
+        if literal:
+            profile = (r.get('profile') or r.get('homepage') or '').rstrip('/')
+            g = next((g for g in by_fam[t[-1]] if profile and any(
+                (q.get('profile') or q.get('homepage') or '').rstrip('/') == profile for q in g['rows'])), None)
+        else:
+            g = next((g for g in by_fam[t[-1]] if any(given_compatible(toks(n)[:-1], t[:-1], t[-1]) for n in g['names'])), None)
         if g is None:
             g = dict(names=[], rows=[]); groups.append(g); by_fam[t[-1]].append(g)
         if r['name'] not in g['names']:
@@ -112,6 +120,8 @@ def merge_people(rows):
             for i, a in enumerate(gs):
                 ha = {home_key(r.get('homepage')) for r in a['rows']} - {None}
                 for b in gs[i + 1:]:
+                    if any(literal_cjk_name(n) for n in a['names'] + b['names']):
+                        continue  # only source-profile identity joins opaque names, never a shared lab homepage
                     if ha & ({home_key(r.get('homepage')) for r in b['rows']} - {None}):
                         a['names'] += [n for n in b['names'] if n not in a['names']]; a['rows'] += b['rows']
                         gs.remove(b); groups.remove(b); merged = True
@@ -141,7 +151,12 @@ def main(key):
                       dump=None)
         d0['orcid'] = sorted(set(d0.get('orcid') or []) | {o['orcid'] for o in h_.get('orcid') or []})
     census, people, listing_rows, n = [], [], [], collections.Counter()
-    for g in merge_people(rows):
+    groups = merge_people(rows)
+    labels = [display_name(g['rows'], g['names']) for g in groups]
+    duplicates = [name for name, count in collections.Counter(labels).items() if count > 1]
+    if duplicates:
+        raise ValueError('Distinct faculty profiles need reviewed unique names before census output: ' + ', '.join(duplicates))
+    for g in groups:
         rs = [r for r in g['rows'] if lo <= r['year'] <= hi]
         if not rs:
             continue

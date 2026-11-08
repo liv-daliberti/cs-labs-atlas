@@ -47,17 +47,32 @@ def nick_ok(a, b):
 LETTERS = str.maketrans({'ı': 'i', 'ł': 'l', 'Ł': 'l', 'ø': 'o', 'Ø': 'o', 'đ': 'd', 'Đ': 'd', 'ß': 'ss', 'æ': 'ae', 'œ': 'oe', 'þ': 'th'})  # no NFKD decomposition
 
 
+CJK = re.compile(r'[\u3400-\u9fff\uf900-\ufaff\u3040-\u30ff\uac00-\ud7af\U00020000-\U000323af]')
+
+
+def literal_cjk_name(s):
+    """An unromanized name is opaque: preserve its letters, without guessing name order or a transliteration."""
+    s = unicodedata.normalize('NFKC', str(s or '')).strip()
+    letters = ''.join(s.split())
+    return letters if letters and all(CJK.fullmatch(c) for c in letters) else None
+
+
 def toks(s):
+    literal = literal_cjk_name(s)
+    if literal:
+        return [literal]
     s = unicodedata.normalize('NFKD', str(s or '').translate(LETTERS)); s = ''.join(c for c in s if not unicodedata.combining(c)).lower()
     s = re.sub(r'\([^)]*\)', ' ', s)
     if ',' in s and s.count(',') == 1:  # "Last, First M."
         a, b = s.split(','); s = b + ' ' + a
-    return [t for t in re.sub(r"[^a-z\- ]+", ' ', s.replace("'", '').replace('’', '').replace('‘', '').replace('`', '')).replace('-', ' ').split() if t]
+    return [t for t in re.sub(r"[^a-z\u3400-\u9fff\uf900-\ufaff\u3040-\u30ff\u1100-\u11ff\U00020000-\U000323af\- ]+", ' ', s.replace("'", '').replace('’', '').replace('‘', '').replace('`', '')).replace('-', ' ').split() if t]
 
 
 def placeholder_name(name):
     """R-PAP-34: a name made only of single letters ('Y Z': a directory that lists a person by initials) names no one the matchers can
     tell from any namesake. 'Weinan E', 'H.V. Jagadish', 'R. Ravi' have a word of two letters or more and are not placeholders."""
+    if literal := literal_cjk_name(name):
+        return len(literal) < 2
     t = re.findall(r'[^\W\d_]+', str(name or ''))
     return not t or all(len(x) == 1 for x in t)
 
@@ -119,6 +134,9 @@ def _fold(s):
 def names_full_form(text, pi_names):
     """One of the PI's full-name forms (a full first given name; accents folded; 'Family, Given' too) occurs in text as a run
     of whole tokens."""
+    literal_text = unicodedata.normalize('NFKC', str(text or ''))
+    if any((literal := literal_cjk_name(n)) and literal in literal_text for n in pi_names):
+        return True
     t = ' '.join(toks(_fold(text))); raw = _fold(text)
     for n in pi_names:
         tk = toks(n)
@@ -314,6 +332,8 @@ def strict_name_one(n):
     """(first given name as written, hyphen parts joined; family name), middle names ignored, nicknames mapped:
     'Jun-Yan Zhu' -> ('junyan', 'zhu') and 'Jun Zhu' -> ('jun', 'zhu') differ; 'Steven Michael Chase' and 'Steven M. Chase'
     agree; 'Chris Atkeson' and 'Christopher G. Atkeson' agree."""
+    if literal := literal_cjk_name(n):
+        return (literal, '')
     s = unicodedata.normalize('NFKD', str(n or '')); s = ''.join(c for c in s if not unicodedata.combining(c)).lower()
     s = re.sub(r'\([^)]*\)', ' ', s); s = re.sub(r'\s+\d{4}$', '', s.strip())
     w = [re.sub(r'[^a-z]', '', x) for x in s.replace(',', ' ').split()]; w = [x for x in w if x]

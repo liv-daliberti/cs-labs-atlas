@@ -3,14 +3,14 @@ R-HIER-03 (no merges across labs), R-HIER-04 (the PI is not their own student), 
 advising and readers), R-STU-03 (adviser names), R-STU-04 (reviewed corrections), R-STU-05 (doubled tokens), R-STU-06
 (hyphen halves), R-STU-07 (a PI's person id is never a student), R-STU-08 (re-captured evidence), R-STU-09 (program-wide
 advisers), R-STU-10 (the student's own roster entry), R-STU-11 (a basis record's advisor field), R-STU-17 (visiting students), R-STU-18 (evidence-confirmed roster pairs)."""
-import collections, json, re, unicodedata
+import collections, hashlib, json, re, unicodedata
 from pathlib import Path
 
 import atlas_paths as P  # data paths (DATA_FILES)
 import student_decisions as SD  # reviewed per-person decisions (R-STU-17 `visiting`)
 
 from .common import accepted_additions, as_years, best_sources, read, source_year
-from .names import Name, _fold, clean_person_name, dedupe_tokens, full_pair, names_full_form, nick_ok, initials_optional, same_student, surname_typo, toks
+from .names import CJK, Name, _fold, clean_person_name, dedupe_tokens, full_pair, names_full_form, nick_ok, initials_optional, same_student, surname_typo, toks
 
 # Researched student evidence files, hierarchy/<school>/<file>, each a list of {pi, students: [{name, quote, sha256, url,
 # ...}]}. EXTENSION POINT for a new reviewed student source. The lab-page additions (labpage-additions.json `students`)
@@ -344,7 +344,7 @@ def people_by_family(people):
     by_name = collections.defaultdict(list)
     for person in people:
         for t_ in [toks(person['name'])]:
-            if len(t_) >= 2:
+            if t_:
                 by_name[t_[-1]].append(person)
     return by_name
 
@@ -353,6 +353,21 @@ def renamed_pis(pis):
     """{census name: built name} of PIs a reviewed display_name renamed (R-PAP-34): reviewed and researched files that key a person by the census
     placeholder ('Y Z') still reach the PI built as 'Yang Zhang'."""
     return {p['censusName']: p['pi'] for p in pis if p.get('censusName')}
+
+
+def external_member_id(school, pi, name):
+    """Retain legacy Latin IDs; unromanized names need a nonempty, lab-scoped identity (R-HIER-03)."""
+    slug = re.sub('[^a-z0-9]+', '-', name.lower()).strip('-')
+    if not slug or CJK.search(name):
+        key = json.dumps([pi, unicodedata.normalize('NFKC', name).strip()], ensure_ascii=False)
+        slug = 'name-' + hashlib.sha256(key.encode()).hexdigest()[:24]
+    return f'ext:{school}:{slug}'
+
+
+def researched_relation_type(role, withheld=False):
+    """Only explicit student/degree roles imply advising; other lab roles remain memberships."""
+    student_roles = {'student', 'phd', 'doctoral', 'masters', 'master', 'ms', 'msc', 'mphil', 'meng', 'undergraduate', 'undergrad', 'graduate', 'alumni', 'alumnus'}
+    return 'researched_advising' if not withheld and (role is None or role in student_roles) else 'researched_membership'
 
 
 def researched(ctx, stu, by_name):
@@ -376,7 +391,7 @@ def researched(ctx, stu, by_name):
                 continue
             t_ = toks(s_['name']); nm_ = Name([s_['name']])
             match_ = [q for q in by_name.get(t_[-1] if t_ else '', []) if nm_.match(q['name'])]
-            sid = match_[0]['id'] if len(match_) == 1 else f"ext:{school}:{re.sub('[^a-z0-9]+', '-', s_['name'].lower()).strip('-')}"
+            sid = match_[0]['id'] if len(match_) == 1 else external_member_id(school, p['pi'], s_['name'])
             # a lab-page entry whose role the audit withheld (role null, role_basis withheld_*: Berkeley, 2026-11-01) is a plain lab MEMBER, not a
             # student: it may be a postdoc or a visitor. roles ['member'] shows as 'Lab member' on the site (build-cs-hierarchy.py role_label).
             role_ = 'visiting' if (p['pi'], SD.fold(s_['name'])) in visiting_decided else s_.get('role')   # R-STU-17: decided `visiting` in student-decisions.json
@@ -387,8 +402,9 @@ def researched(ctx, stu, by_name):
                 n['students_role_visiting'] += 1
             r = stu[p['pi']].setdefault(sid, dict(person=sid, name=match_[0]['name'] if len(match_) == 1 else s_['name'],
                                                   roles=['member'] if withheld else [role_ or 'student'], relations=[]))
+            r['roles'] = list(dict.fromkeys(r['roles'] + (['member'] if withheld else [role_ or 'student'])))
             # a visiting student is a lab member, never an adviser relation (R-STU-17): researched_membership, like `member`
-            r['relations'].append(dict(type='researched_' + ('membership' if role_ in ('member', 'visiting') or withheld else 'advising'), years=as_years(s_.get('years'), n),
+            r['relations'].append(dict(type=researched_relation_type(role_, withheld), years=as_years(s_.get('years'), n),
                                        role=role_, **({'role_withheld': True} if withheld else {}), sources=[dict(url=s_.get('capture_url') or s_['url'], sha256=s_['sha256'], quote=s_['quote'])]
                                        # a defense announcement's 'Faculty Host <PI>' line, same page and hash (Michigan request 4)
                                        + ([dict(url=s_.get('capture_url') or s_['url'], sha256=s_['sha256'], quote=s_['host_quote'])] if s_.get('host_quote') else []),
@@ -416,10 +432,10 @@ def add_corroborated(ctx):
     for s_, works in rows:
         t_ = toks(s_['name']); nm_ = Name([s_['name']])
         match_ = [q for q in by_name.get(t_[-1] if t_ else '', []) if nm_.match(q['name'])]
-        sid = match_[0]['id'] if len(match_) == 1 else f"ext:{school}:{re.sub('[^a-z0-9]+', '-', s_['name'].lower()).strip('-')}"
+        sid = match_[0]['id'] if len(match_) == 1 else external_member_id(school, s_['pi'], s_['name'])
         role_ = s_['role']
         r = stu[s_['pi']].setdefault(sid, dict(person=sid, name=match_[0]['name'] if len(match_) == 1 else s_['name'], roles=[role_], relations=[]))
-        r['relations'].append(dict(type='researched_' + ('membership' if role_ == 'visiting' else 'advising'), years=as_years(s_.get('years'), n), role=role_,
+        r['relations'].append(dict(type=researched_relation_type(role_), years=as_years(s_.get('years'), n), role=role_,
                                    sources=[dict(url=s_.get('capture_url') or s_['url'], sha256=s_['sha256'], quote=s_['quote'])], auto=True, corroborated=True))
         r['auto'] = True
         n['labpage_students_corroborated_wired'] += 1
@@ -442,7 +458,7 @@ def basis_students(ctx, stu, by_name):
         for sname, yr in basis_advisees(b['quote']):  # not 'nm': that is the PI name table
             t_ = toks(sname); nm_ = Name([sname])
             match_ = [q for q in by_name.get(t_[-1] if t_ else '', []) if nm_.match(q['name'])]
-            sid = match_[0]['id'] if len(match_) == 1 else f"ext:{school}:{re.sub('[^a-z0-9]+', '-', sname.lower()).strip('-')}"
+            sid = match_[0]['id'] if len(match_) == 1 else external_member_id(school, p['pi'], sname)
             r = stu[p['pi']].setdefault(sid, dict(person=sid, name=match_[0]['name'] if len(match_) == 1 else sname, roles=['phd'], relations=[]))
             r['relations'].append(dict(type='pi_basis_advising', years=[y for y in (yr or source_year(b),) if y], role='phd',
                                        sources=[dict(url=b['url'], sha256=b['sha256'], quote=b['quote'])]))
@@ -478,7 +494,8 @@ def merge_within_lab(ctx, stu):
             if tgt is None:
                 keep.append(r)
             else:
-                tgt['relations'] += r['relations']; tgt.setdefault('aliases', []).append(r['name']); tgt.setdefault('merged', []).append(r['person']); merged_students += 1
+                tgt['relations'] += r['relations']; tgt['roles'] = list(dict.fromkeys(tgt['roles'] + r['roles']))
+                tgt.setdefault('aliases', []).append(r['name']); tgt.setdefault('merged', []).append(r['person']); merged_students += 1
         stu[p['pi']] = {r['person']: r for r in keep}
     return merged_students
 

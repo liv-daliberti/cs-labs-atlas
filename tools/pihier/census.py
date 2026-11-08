@@ -7,7 +7,7 @@ import atlas_paths as P  # data paths (DATA_FILES)
 import census_overrides as CO  # reviewed overrides: shared file + an onboarding school's own
 
 from .common import AFF, INST, as_list, collection_work_matcher, read
-from .names import Name, nick_ok, placeholder_name, toks
+from .names import Name, literal_cjk_name, nick_ok, placeholder_name, toks
 from .periods import listings_after_move, pi_listings, pi_mine, pi_periods
 
 COLLECTIVE = re.compile(r'\b(cent(?:er|re)|initiative|consortium|program(?:me)?|project|cluster|institute)\b', re.I)  # not labs (owner, 2026-10-21)
@@ -82,14 +82,21 @@ def merge_census_rows(census, ov, n):
     for x in census:  # census duplicate pairs (one person listed twice): same DBLP PID or same collection person
         if not (x.get('is_pi') or (ov.get(x['name']) or {}).get('is_pi')) or x.get('not_faculty'):  # a reviewed is_pi wins
             continue
-        nk = 'name:' + ' '.join(toks(x['name']))  # spelling variants of one name ("O’Toole" / "O'Toole") are one person too
-        k = next((first[q] for q in dblp_of(x) + [x.get('collection_person_id'), nk] if q and q in first), None)
         t = toks(x['name'])
+        nk = 'name:' + ' '.join(t) if t else None  # an empty token set never identifies a person
+        if literal_cjk_name(x['name']):
+            # Same written CJK names can be different faculty. Only the same profile or an explicit person/PID joins rows.
+            profile = (x.get('profile_url') or '').rstrip('/')
+            nk = nk + ':profile:' + profile if profile else None
+        k = next((first[q] for q in dblp_of(x) + [x.get('collection_person_id'), nk] if q and q in first), None)
         if not k and len(t) >= 2:  # "Dan Klein" / "Daniel Klein", "David A. Wagner" / "David Wagner": same family name, nickname-equal given name
             k = next((k_ for g_, k_ in by_family[t[-1]] if g_ == t[0] or nick_ok(g_, t[0])), None)
             if k:
                 n['census_rows_merged_by_nickname'] += 1; nick_merges.append([merged[k][0]['name'], x['name']])
-        k = k or x['name']
+        if not k:
+            k = x['name']
+            if k in merged:
+                k = (x['name'], len(merged))  # distinct source identities; display-name ambiguity is checked before indexing
         for q in dblp_of(x) + [x.get('collection_person_id'), nk]:
             if q:
                 first.setdefault(q, k)
@@ -168,6 +175,9 @@ def pi_records(ctx):
                         periods=pi_periods(mine, o),  # collection periods + reviewed periods (census-overrides.json)
                         listings=[listings[y] for y in sorted(listings) if y not in after_move],
                         listingsAfterMove=[after_move[y] for y in sorted(after_move)]))
+    duplicate_names = [name for name, count in collections.Counter(p['pi'] for p in pis).items() if count > 1]
+    if duplicate_names:
+        raise ValueError('Distinct PI identities need reviewed unique display names before indexing: ' + ', '.join(duplicate_names))
     n['pis_excluded_by_review'] = len(excluded)
     n['pis'] = len(pis); n['pis_without_person'] = sum(not p['personIds'] for p in pis)
     n['labs_reused'] = sum(p['lab']['unitId'] is not None for p in pis); n['labs_new'] = n['pis'] - n['labs_reused']
