@@ -30,8 +30,9 @@ case "$cmd" in
     b=$(branch_of "$dir"); [ -n "$b" ] || { echo "no worktree at $dir"; exit 1; }
     git -C "$dir" diff --quiet && git -C "$dir" diff --cached --quiet || { echo "$dir has uncommitted changes"; exit 1; }
     git -C "$dir" rebase main
-    # charters (schools/*.toml) are code: test the branch's own, not main's (a status change would fail test_paths_sh_is_current)
-    (cd "$dir" && CS_ATLAS_VENDOR="$dir/vendor" CS_ATLAS_SCHOOL_CONFIGS="$dir/schools" bin/atlas test) || { echo "tests failed: main unchanged"; exit 1; }
+    # Tool bootstraps use atlas_paths.TOOLS; pin it to the branch so later imports cannot load stale main modules.
+    # Charters and vendor code must likewise come from the branch under test.
+    (cd "$dir" && CS_ATLAS_TOOLS="$dir/tools" CS_ATLAS_VENDOR="$dir/vendor" CS_ATLAS_SCHOOL_CONFIGS="$dir/schools" bin/atlas test) || { echo "tests failed: main unchanged"; exit 1; }
     "$dir/bin/atlas" scan --staged >/dev/null 2>&1 || true
     # landing lock (tools/work_queue.py): one session lands at a time. Warn by default; `git config atlas.landLock enforce` refuses.
     # Session: $ATLAS_SESSION / $CLAUDE_SESSION_ID. Take it first: bin/atlas task land-lock acquire
