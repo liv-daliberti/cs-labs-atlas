@@ -138,6 +138,13 @@ def build_md(a, tab, work, fig_names):
              f'strict lab membership, intervals are 95% percentile intervals of a lab-cluster bootstrap ({summ["boot"]} draws, stratified by school, seed {summ["seed"]}). '
              f'Embedding outcomes use {summ["embedding_model"]} only. Association, not causation: a group that changed more is not thereby shown to have used AI more.\n')
     L.append('## 1. What was found\n')
+    L.append('**Post - pre change by group, all 12 schools** (percentage points for the AI outcomes; distance units for the embedding outcomes; 95% lab-cluster bootstrap intervals; the pre period is at the detector floor, so for the AI outcomes this is almost the post level):\n')
+    h1, h2 = headline(pd.read_csv(tab / 'hetero_group_effects.csv'))
+    L.append(h1)
+    L.append(h2)
+    L.append('**Reading** (generated from the tables by fixed rules; "differs" means Benjamini-Hochberg p < 0.05 in the 75-member family):\n')
+    L.extend(reading(pr, eff))
+    L.append('')
     surv = fam[fam.p_holm < 0.05].sort_values('p')
     bhonly = fam[(fam.p_bh < 0.05) & ~(fam.p_holm < 0.05)].sort_values('p')
     nz = fam[fam.excludes_zero & ~(fam.p_bh < 0.05)]
@@ -145,7 +152,8 @@ def build_md(a, tab, work, fig_names):
              f'**{summ["bh_survivors"]} survive Benjamini-Hochberg (FDR 5%)**; {summ["excludes_zero_uncorrected"]} have an uncorrected 95% interval excluding zero and {summ["nominal_p05"]} a nominal p < 0.05 '
              f'(the two use the same bootstrap draws; the p-value is a bootstrap-SE Wald test).')
     flat = fam[(fam.p_bh < 0.05) & fam.placebo_excludes_zero]
-    L.append(f'- Of the BH survivors, **{len(flat)}** also have a placebo difference whose interval excludes zero (the groups were already drifting apart before ChatGPT): treat those as trend differences, not AI effects.')
+    same = int((np.sign(flat.placebo_est) == np.sign(flat.est)).sum())
+    L.append(f'- Of the BH survivors, **{len(flat)}** also have a placebo difference whose interval excludes zero (the groups were already drifting apart before ChatGPT; in {same} of them with the same sign as the post change): treat those as trend differences, not AI effects.')
     L.append('- Survivors of Holm (smallest p first; difference = first group minus second, in the post-minus-pre change):\n')
     t = []
     for _, r in surv.iterrows():
@@ -168,15 +176,17 @@ def build_md(a, tab, work, fig_names):
              'Robotics is `other` here; the sensitivity `field:robotics_in_ml` moves it to ML/AI. See section 7 for coverage and the hand check.')
     L.append('- **Prestige** (school level). GRAS 2025 CS&E band: top 10 (MIT, Stanford, Berkeley, Princeton, CMU), 11-50 (Harvard 19, Georgia Tech 21), 51-300 (EPFL 51-75, Michigan 51-75, UChicago 76-100, JHU 151-200, WashU 201-300). '
              '**This is coarse**: 12 schools, three bands of 5/2/5 schools, so the gras split compares school-level clusters, the effective number of independent units is 12, and the lab-cluster bootstrap does not capture school-level variation (strata fix the school mix). '
-             'It is a description of these 12 schools, not a prestige effect. The planned 300-university abstract-level extension would make it informative.')
+             'The 11-50 band is Georgia Tech (44% full-text coverage) plus Harvard (6%), i.e. effectively one school. It is a description of these 12 schools, not a prestige effect; the planned 300-university abstract-level extension would make it informative.')
     L.append('- **Outcomes.** Heavy-AI share = papers with >= 25% of passages flagged (detector v3), main body and main + appendix; abstract flag = v1 detector; within-lab distance = mean pairwise SPECTER2-proximity distance among a lab\'s papers (lab-years with >= 5 papers, >= 3 for paper-level groups); '
              'lab-to-school distance = mean distance between a lab\'s papers and the papers of the school\'s other labs in the same year (lab-level statistic: the school pool is not resampled). For paper-level splits both distances are computed on the group\'s papers only (the pool is always all papers).\n')
     L.append('## 3. Sizes\n')
     L.append(md(sizes[sizes.split.isin(list(H.SPLITS))].assign(split=lambda x: x.split)[['split', 'group', 'schools', 'labs', 'pis', 'papers', 'papers_pre', 'papers_post']]))
-    L.append('A paper of two labs counts once in each (strict membership), so `papers` sums above the panel count for the paper-level splits only through that rule.\n')
+    L.append('`papers` are distinct papers in the group; a paper of two labs enters both labs (strict membership), and a lab-level group can contain the same paper through two PIs.\n')
+    L.append(composition_section(tab))
     secs = [('career', '4. Junior against senior PIs'), ('led', '5. Student-led against PI-led papers'), ('field', '6. Field'), ('gras', '8. Prestige tier (GRAS 2025 band)')]
     for split, title in secs:
         if split == 'gras':
+            L.append(adjusted_section(pr))
             L.append('## 7. Field validation\n')
             L.append(field_validation(work, ser))
         L.append(f'## {title}\n')
@@ -191,6 +201,67 @@ def build_md(a, tab, work, fig_names):
     L.append(sensitivity_partial(pr))
     L.append(multiplicity_section(pr, eff, summ))
     L.append(caveats(work))
+    return '\n'.join(L)
+
+
+def headline(eff):
+    e = eff[(eff.scope == 'ALL') & (eff.contrast == 'post_minus_pre') & eff.split.isin(list(H.SPLITS))]
+    out = []
+    for cols in (['heavy_main', 'heavy_main_appendix', 'abs_flag'], ['within_lab', 'lab_to_school']):
+        rows = []
+        for sp in H.SPLITS:
+            for g in H.SPLITS[sp][1]:
+                r = {'split': sp, 'group': nm(g)}
+                for o in cols:
+                    x = e[(e.split == sp) & (e.group == g) & (e.outcome == o)]
+                    r[LABEL[o]] = fci(o, *x.iloc[0][['est', 'lo', 'hi']]) if len(x) else 'n/a'
+                rows.append(r)
+        out.append(md(pd.DataFrame(rows)))
+    return out
+
+
+def reading(pr, eff):
+    """Rule-generated reading of the primary contrasts (what differs, what does not, which placebo gaps are not flat)."""
+    fam = pr[pr.in_family]
+    e = eff[(eff.scope == 'ALL') & (eff.contrast == 'post_minus_pre')]
+    L = []
+    for sp in H.SPLITS:
+        groups = H.SPLITS[sp][1]
+        ch = '; '.join(f'{nm(g)} {fv("heavy_main", e[(e.split == sp) & (e.group == g) & (e.outcome == "heavy_main")].est.iloc[0], True)} pp' for g in groups)
+        d = fam[(fam.split == sp) & (fam.outcome == 'heavy_main')]
+        sig = [f'{nm(r.g1)} - {nm(r.g2)} {fv("heavy_main", r.est, True)} pp' for r in d.itertuples() if r.p_bh < 0.05]
+        non = [f'{nm(r.g1)} - {nm(r.g2)}' for r in d.itertuples() if not r.p_bh < 0.05]
+        L.append(f'- **{sp}** (heavy-AI main-body share, post - pre): {ch}. Pairs that differ after BH: {"; ".join(sig) if sig else "none"}.' + (f' No detectable difference: {"; ".join(non)}.' if non else ''))
+    for sp in H.SPLITS:
+        d = fam[(fam.split == sp) & (fam.outcome == 'lab_to_school')]
+        sig = [f'{nm(r.g1)} - {nm(r.g2)} {fv("lab_to_school", r.est, True)}' + (' (placebo gap of the same sign)' if r.placebo_excludes_zero and np.sign(r.placebo_est) == np.sign(r.est) else '')
+               for r in d.itertuples() if r.p_bh < 0.05]
+        L.append(f'- **{sp}**, lab-to-school distance: {"; ".join(sig) if sig else "no pair differs after BH"}. Within-lab distance: ' +
+                 ('; '.join(f'{nm(r.g1)} - {nm(r.g2)} {fv("within_lab", r.est, True)}' for r in fam[(fam.split == sp) & (fam.outcome == "within_lab") & (fam.p_bh < 0.05)].itertuples()) or 'no pair differs after BH') + '.')
+    return L
+
+
+def composition_section(tab):
+    c = pd.read_csv(tab / 'hetero_composition.csv')
+    L = ['## 3b. How the characteristics co-vary\n', 'Share of papers by field within each group of the other splits (pre = 2016-22, post = 2023-25), and by led class. This is why every split is also run inside a field stratum (section 6b).\n']
+    for within, split_order in (('field', ['career', 'led', 'gras']), ('led', ['career', 'field', 'gras'])):
+        x = c[(c.within == within) & c.split.isin(split_order)]
+        t = x.assign(share=lambda z: (100 * z.share).round(1)).pivot_table(index=['split', 'group', 'period'], columns='class', values='share').reset_index()
+        L.append(f'{within} mix (% of the group\'s papers):\n')
+        L.append(md(t.round(1)))
+    return '\n'.join(L)
+
+
+def adjusted_section(pr):
+    L = ['## 6b. Inside one field stratum (adjusting the field mix)\n',
+         'The same group differences computed only on ML/AI papers (or only on papers outside ML/AI), so the field mix cannot drive them. Difference in the post - pre change, all 12 schools; these are sensitivities, not in the multiplicity family. '
+         'Papers outside the stratum leave the group but stay in the school pool for the lab-to-school distance.\n']
+    rows = []
+    for sp in ('led|ml_ai', 'led|not_ml_ai', 'career|ml_ai', 'career|not_ml_ai', 'gras|ml_ai', 'field|student_led'):
+        x = pr[(pr.split == sp) & (pr.scope == 'ALL') & (pr.contrast == 'post_minus_pre') & pr.outcome.isin(['heavy_main', 'abs_flag', 'lab_to_school'])]
+        for r in x.itertuples():
+            rows.append({'stratum': sp, 'difference': f'{nm(r.g1)} - {nm(r.g2)}', 'outcome': LABEL[r.outcome], 'DiD [95% CI]': fci(r.outcome, r.est, r.lo, r.hi), 'placebo DiD [95% CI]': fci(r.outcome, r.placebo_est, r.placebo_lo, r.placebo_hi)})
+    L.append(md(pd.DataFrame(rows)))
     return '\n'.join(L)
 
 
@@ -242,7 +313,7 @@ def multiplicity_section(pr, eff, summ):
     fam = pr[pr.in_family]
     byfam = pr.groupby(['family', 'scope']).size().to_dict()
     L = ['## 10. Contrasts run and multiplicity\n',
-         f'- Between-group difference-in-differences computed: **{len(pr)}** rows in `hetero_pair_diffs.csv` (every group pair x 5 outcomes x 3 period contrasts x 2 scopes x 23 split definitions incl. sensitivities); '
+         f'- Between-group difference-in-differences computed: **{len(pr)}** rows in `hetero_pair_diffs.csv` (every group pair x 5 outcomes x 3 period contrasts x 2 scopes x {pr.split.nunique()} split definitions incl. sensitivities); '
          f'within-group post - pre contrasts with intervals: {len(eff)} (descriptive, not tests of heterogeneity).',
          f'- **Primary family: {len(fam)}** = 15 group pairs (career 3, led 3, field 6, gras 3) x 5 outcomes, all 12 schools, post - pre, primary definitions. Holm and BH act on these p-values only (two-sided bootstrap-SE Wald).',
          f'- Survivors: Holm {summ["holm_survivors"]}, BH {summ["bh_survivors"]}; uncorrected 95% interval excludes zero {summ["excludes_zero_uncorrected"]}.',
@@ -286,7 +357,10 @@ def field_validation(work, ser):
     if hl.exists():
         h = pd.read_csv(hl)
         ok = h.my_label == h.assigned
-        L.append(f'**Hand check of the led split** ({len(h)} lab papers, seed {T.HANDCHECK_SEED}): {int(ok.sum())} of {len(h)} agree.\n')
+        unv = int(h.note.fillna('').str.startswith('unverified').sum())
+        L.append(f'**Hand check of the led split** ({len(h)} lab papers, stratified 7/7/6, seed {T.HANDCHECK_SEED}; `led_handcheck.csv`): {int(ok.sum())} of {len(h)} labelled as assigned after correction; '
+                 f'{int((~ok).sum())} known error (a student the roster missed, so student-led papers are slightly undercounted and "other" slightly contaminated) and {unv} "other" papers whose first author could not be verified either way. '
+                 'All 7 PI-led and all 7 student-led papers had a first author the analyst could confirm from title, byline and lab.\n')
     return '\n'.join(L)
 
 

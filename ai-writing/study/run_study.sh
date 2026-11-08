@@ -16,9 +16,9 @@ GPU="sbatch --parsable --export=ALL,STUDY_CODE=$HERE,DELTA_BASE=${BASE:-$ID} $HE
 dep=""
 if [ "$MODE" = hetero ]; then      # results/<ID>/heterogeneity/: study_hetero_authors.py (network, restartable) -> attr -> analysis -> report
   X="--export=ALL,STUDY_CODE=$HERE"
-  h1=$(sbatch --parsable $X --cpus-per-task=1 --mem=2G --time=00:59:00 $HERE/study.slurm study_hetero_authors.py --id "$ID")
-  h2=$(sbatch --parsable --dependency=afterok:$h1 $X --cpus-per-task=2 --mem=16G --time=00:30:00 $HERE/study.slurm study_hetero_attr.py --id "$ID")
-  h3=$(sbatch --parsable --dependency=afterok:$h2 $X --cpus-per-task=8 --mem=@HETERO_MEM@ --time=00:59:00 $HERE/study.slurm study_hetero.py --id "$ID")
+  h1=$(sbatch --parsable $X --cpus-per-task=1 --mem=1G --time=00:59:00 $HERE/study.slurm study_hetero_authors.py --id "$ID")
+  h2=$(sbatch --parsable --dependency=afterok:$h1 $X --cpus-per-task=2 --mem=4G --time=00:20:00 $HERE/study.slurm study_hetero_attr.py --id "$ID")
+  h3=$(sbatch --parsable --dependency=afterok:$h2 $X --cpus-per-task=4 --mem=8G --time=00:30:00 $HERE/study.slurm study_hetero.py --id "$ID")
   h4=$(sbatch --parsable --dependency=afterok:$h3 $X --cpus-per-task=2 --mem=8G --time=00:20:00 $HERE/study.slurm study_hetero_report.py --id "$ID")
   echo "hetero chain: career $h1 attr $h2 analysis $h3 report $h4"; exit 0
 fi

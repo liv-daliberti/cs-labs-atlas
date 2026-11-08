@@ -114,3 +114,19 @@ def test_embedding_statistics_match_brute_force():
             l2s = np.mean([1 - V[i] @ V[j] for i in ix for j in others])
             S, N = em[g]['lab_to_school']
             assert 1 - S[li, t] / N[li, t] == pytest.approx(l2s, abs=1e-5)
+
+
+def test_frame_restricted_columns_composition_and_quantile_groups():
+    rng = np.random.default_rng(3)
+    n = 400
+    hp = pd.DataFrame({'k': [f'p{i}' for i in range(n)], 'school': 'mit', 'lab_id': [f'l{i % 40}' for i in range(n)], 'pi': 'x', 'year': rng.choice(LS.YEARS, n),
+                       'led': rng.choice(['pi_led', 'student_led', 'other'], n), 'field': rng.choice(['theory', 'systems', 'ml_ai', 'other'], n),
+                       'gras': 'top10', 'career': 'senior', 'age_any': [float(i % 40) for i in range(n)]})
+    pan = pd.DataFrame({'k': hp.k, 'paper_id': hp.k, 'flag_abstract': 1.0, 'ai_share_main': 0.5, 'ai_share_main_appendix': 0.1, 'trained_on_v3': False})
+    d = H.frame(pan, hp)
+    assert (d.loc[d.field != 'ml_ai', 'led_in_ml'].isna()).all() and (d.loc[d.field == 'ml_ai', 'led_not_ml'].isna()).all()
+    assert (d.heavy_main == 1).all() and (d.heavy_main_appendix == 0).all()
+    youngest = d[d.career_t3 == 't1_youngest'].age_any.max()
+    assert youngest <= d[d.career_t3 == 't3_oldest'].age_any.min()          # tertile 1 holds the smallest career ages
+    c = H.composition(d)
+    assert np.allclose(c.groupby(['split', 'within', 'group', 'period']).share.sum(), 1.0)

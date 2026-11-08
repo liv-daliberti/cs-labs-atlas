@@ -45,6 +45,13 @@ VARIANTS = {   # sensitivity definitions, same machinery (not in the multiplicit
     'career:tertile': ('career_t3', ['t1_youngest', 't2', 't3_oldest'], 'lab'),
     'career:quartile': ('career_q4', ['q1_youngest', 'q2', 'q3', 'q4_oldest'], 'lab'),
     'field:robotics_in_ml': ('field_alt', ['theory', 'systems', 'ml_ai', 'other'], 'paper'),
+    # adjustment for the field mix: the same contrasts inside one field stratum (papers outside the stratum are dropped from the group, not from the school pool)
+    'led|ml_ai': ('led_in_ml', ['pi_led', 'student_led', 'other'], 'paper'),
+    'led|not_ml_ai': ('led_not_ml', ['pi_led', 'student_led', 'other'], 'paper'),
+    'career|ml_ai': ('career_in_ml', ['early', 'mid', 'senior'], 'paper'),
+    'career|not_ml_ai': ('career_not_ml', ['early', 'mid', 'senior'], 'paper'),
+    'gras|ml_ai': ('gras_in_ml', ['top10', 'r11_50', 'r51_300'], 'paper'),
+    'field|student_led': ('field_in_student_led', ['theory', 'systems', 'ml_ai', 'other'], 'paper'),
 }
 NMIN = {'lab': 5, 'paper': 3}     # papers of a group in a lab-year needed for the embedding outcomes (5 as in the main study; 3 where the group is a share of a lab's papers)
 SCOPES = {'ALL': C.SCHOOLS, 'EXCL_PARTIAL': [s for s in C.SCHOOLS if s not in C.PARTIAL]}
@@ -93,11 +100,30 @@ def frame(pan, hp):
         d[tag] = np.where(ok & d[col].notna(), (d[col] >= 0.25).astype(float), np.nan)
     d['abs_flag'] = np.where(ok & d['flag_abstract'].notna(), d['flag_abstract'].astype(float), np.nan)
     pi = d.drop_duplicates('lab_id').set_index('lab_id')['age_any'].dropna()
+    ml = d['field'] == 'ml_ai'
+    for new, src, keep in (('led_in_ml', 'led', ml), ('led_not_ml', 'led', ~ml), ('career_in_ml', 'career', ml), ('career_not_ml', 'career', ~ml), ('gras_in_ml', 'gras', ml),
+                           ('field_in_student_led', 'field', d['led'] == 'student_led')):
+        d[new] = d[src].where(keep)
     for nm, q in (('career_t3', 3), ('career_q4', 4)):
         lab = ['t1_youngest', 't2', 't3_oldest'] if q == 3 else ['q1_youngest', 'q2', 'q3', 'q4_oldest']
         cut = pd.qcut(pi.rank(method='first', ascending=True), q, labels=lab)    # smallest career age = youngest
         d[nm] = d['lab_id'].map(cut.astype(object))
     return d
+
+
+def composition(d):
+    """Share of each field and of each led class within the groups of the other splits, pre and post (how the characteristics co-vary)."""
+    rows = []
+    d = d.assign(period=np.where(d.year.isin(LS.PRE), 'pre', np.where(d.year.isin(LS.POST), 'post', None)))
+    for split, (col, groups, _) in SPLITS.items():
+        for other in ('field', 'led'):
+            if other == col:
+                continue
+            x = d[d[col].isin(groups) & d.period.notna()].drop_duplicates(['k', col])
+            t = x.groupby([col, 'period', other]).size().rename('n').reset_index()
+            t['share'] = t.n / t.groupby([col, 'period']).n.transform('sum')
+            rows.append(t.rename(columns={col: 'group', other: 'class'}).assign(split=split, within=other))
+    return pd.concat(rows, ignore_index=True)
 
 
 def group_sums(keys, vecs):
@@ -183,7 +209,7 @@ def run(d, V, boot, log=print):
     labs_all = np.sort(d['lab_id'].unique())
     lab_school = d.drop_duplicates('lab_id').set_index('lab_id')['school'].reindex(labs_all).to_numpy()
     sers, effs, prs, sizes = [], [], [], []
-    specs = [(n, s, 'primary') for n, s in SPLITS.items()] + [(n, s, 'sensitivity') for n, s in VARIANTS.items()]
+    specs = list(SPLITS.items()) + list(VARIANTS.items())
     for name, (col, groups, kind) in specs:
         t0 = time.time()
         dd = d[d[col].isin(groups)]
@@ -260,6 +286,8 @@ def main():
         df.to_parquet(tab / f'{nm}.parquet')
         print(nm, df.shape)
     fam = pr[pr.in_family]
+    comp = composition(d)
+    comp.to_csv(tab / 'hetero_composition.csv', index=False)
     summary = dict(boot=a.boot, seed=SEED, embedding_model=C.HEADLINE_MODEL, primary_family=len(fam), pair_contrasts_total=len(pr), group_effects_total=len(eff),
                    holm_survivors=int((fam.p_holm < 0.05).sum()), bh_survivors=int((fam.p_bh < 0.05).sum()),
                    excludes_zero_uncorrected=int(fam.excludes_zero.sum()), nominal_p05=int((fam.p < 0.05).sum()))
