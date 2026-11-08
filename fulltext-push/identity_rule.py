@@ -172,23 +172,52 @@ def reason(ev):
 _LAB, _S2, _OA = {}, {}, {}
 
 
+class AuthorEvidenceIndex(dict):
+    """Exact identities only; a key claimed by distinct works supplies no borrowed authors."""
+    def __init__(self):
+        super().__init__()
+        self.claims = {}
+
+    def bind(self, key, value, identity):
+        if not key or not identity:
+            return
+        owners = self.claims.setdefault(key, set())
+        owners.add(identity)
+        if len(owners) > 1:
+            self.pop(key, None)
+        elif value:
+            self.setdefault(key, value)
+
+
+def author_keys(school, work=None, oa=None, doi=None):
+    """Catalog/accepted work, explicit OpenAlex identity, then normalized DOI; never title."""
+    keys = [work] if isinstance(work, str) and work else []
+    short = oa.rsplit('/', 1)[-1] if isinstance(oa, str) else ''
+    if re.fullmatch(r'W\d+', short):
+        keys += [f'{school}_oa_{short}', 'oa:' + short]
+    if isinstance(doi, str) and doi and ndoi(doi):
+        keys.append('doi:' + ndoi(doi))
+    return keys
+
+
+def author_work_identity(row):
+    # Prefer the explicit leading OA record: a DOI-derived collection id must not
+    # collapse distinct OA works that happen to carry the same erroneous DOI.
+    return row.get('oa') or row.get('work') or row.get('id')
+
+
 def lab_first_authors(code_root, school):
-    """{work id / 'doi:..' / 't:..': first author family} from hierarchy/<school>/lab_papers.jsonl.gz (byline order)."""
+    """Exact lab-paper identity -> explicit first byline family; conflicting keys stay unknown."""
     if school not in _LAB:
-        out = {}
+        out = AuthorEvidenceIndex()
         import atlas_paths as _AP   # the data slot: the main checkout's package, whatever checkout or snapshot this runs from
         p = _AP.data('lab_papers.jsonl.gz', school)
         if p.exists():
             for line in gzip.open(p, 'rt'):
                 r = json.loads(line)
-                f = fam((r.get('byline') or [''])[0]) or (fam((r.get('pis') or [''])[0]) if not r.get('byline') else '')
-                if not f:
-                    continue
-                oa = (r.get('oa') or '').rsplit('/', 1)[-1]
-                for k in (r.get('work'), f'{school}_oa_{oa}' if oa else None, 'doi:' + ndoi(r.get('doi')) if r.get('doi') else None,
-                          't:' + re.sub(r'[^a-z0-9]', '', (r.get('title') or '').lower())):
-                    if k:
-                        out.setdefault(k, f)
+                f = fam((r.get('byline') or [''])[0])
+                for key in author_keys(school, r.get('work'), r.get('oa'), r.get('doi')):
+                    out.bind(key, f, author_work_identity(r))
         _LAB[school] = out
     return _LAB[school]
 
@@ -200,8 +229,8 @@ def graph_first_author(g):
         g = json.loads(g or '{}') if isinstance(g, str) else (g or {})
     except ValueError:
         return '', False
-    for a in g.get('authors') or []:
-        n = a.get('name') if isinstance(a, dict) else a
+    for a in g.get('authors') or g.get('byline') or []:
+        n = (a.get('name') or a.get('display_name')) if isinstance(a, dict) else a
         if n:
             return fam(n), True
     for k, v in g.items():
@@ -213,9 +242,9 @@ def graph_first_author(g):
 
 
 def first_author(code_root, school, work_id, title, doi, graph_json=None, catalog=None):
-    """(family, authoritative): the lab paper's first byline author, else graph_first_author."""
+    """Exact work/OA evidence, own ordered authors, unambiguous DOI, then weak own graph evidence."""
     lab = lab_first_authors(code_root, school)
-    f = lab.get(work_id) or (lab.get('doi:' + ndoi(doi)) if doi else None) or lab.get('t:' + re.sub(r'[^a-z0-9]', '', (title or '').lower()))
+    f = lab.get(work_id)
     if f:
         return f, True
     if graph_json is None and catalog is not None:
@@ -223,7 +252,21 @@ def first_author(code_root, school, work_id, title, doi, graph_json=None, catalo
         row = db.execute('SELECT graph_json FROM works WHERE id=?', (work_id,)).fetchone()
         db.close()
         graph_json = row[0] if row else None
-    return graph_first_author(graph_json)
+    try:
+        graph = json.loads(graph_json or '{}') if isinstance(graph_json, str) else (graph_json or {})
+    except ValueError:
+        graph = {}
+    graph = graph if isinstance(graph, dict) else {}
+    ids = graph.get('ids') if isinstance(graph.get('ids'), dict) else {}
+    for value in [graph.get('openalex'), graph.get('oa'), ids.get('openalex'), graph.get('id')]:
+        for key in author_keys(school, value, value):
+            if key in lab:
+                return lab[key], True
+    own, authoritative = graph_first_author(graph)
+    if own and authoritative:
+        return own, True
+    f = lab.get('doi:' + ndoi(doi)) if doi else None
+    return (f, True) if f else (own, authoritative)
 
 
 def mapped_arxiv(doi, s2_cache_path=None, oa_cache_path=None, oa_id=None):
