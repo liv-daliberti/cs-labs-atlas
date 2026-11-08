@@ -23,8 +23,10 @@ email_domains = ["zju.edu.cn", "cad.zju.edu.cn"]
 wayback_only_suffixes = []
 excluded_hosts = [] # Access refusal belongs in hosts.use=none, not an assertion of another institution.
 [affiliation]
-# Exact separate-university names also hold a misassigned primary metadata ID; true dual ZJU affiliation remains eligible.
-excluded_regex = '\bzhejiang\s+university\s+of\s+(?:technology|science\s+and\s+technology|finance\s+and\s+economics|water\s+resource\s+and\s+electric\s+power)\b'
+# Separate-university aliases and unresolved legacy labels hold a misassigned primary metadata ID.
+# Legacy labels are ambiguity holds pending dated ownership review, not assertions of historical independence.
+# An independent explicit ZJU affiliation still supports true dual affiliations.
+excluded_regex = '(?:\bzhejiang\s+university\s+of\s+(?:technology|science\s+and\s+technology|finance\s+and\s+economics|water\s+resource\s+and\s+electric\s+power)\b|浙江工业大学|浙江科技大学|浙江财经大学|浙江水利水电学院|\bzhejiang\s+university\s+(?:city\s+college|ningbo\s+institute\s+of\s+technology)\b|浙江大学城市学院|浙江大学宁波理工学院|浙大城市学院)'
 regex = '\bzhejiang\s+university\b(?!\s+(?:of\b|city\s+college\b|ningbo\s+institute\s+of\s+technology\b))|浙江大学(?!城市学院|宁波理工学院)|\b(?:[a-z0-9-]+\.)*zju\.edu\.cn(?![a-z0-9.-])'
 loose = '\bzhejiang\s+university\b(?!\s+(?:of\b|city\s+college\b|ningbo\s+institute\s+of\s+technology\b))|浙江大学(?!城市学院|宁波理工学院)|\bzju\b(?!\.)|\b(?:[a-z0-9-]+\.)*zju\.edu\.cn(?![a-z0-9.-])'
 own_units = ''
