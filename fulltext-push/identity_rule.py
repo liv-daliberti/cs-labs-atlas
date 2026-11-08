@@ -263,7 +263,7 @@ def first_author(code_root, school, work_id, title, doi, graph_json=None, catalo
             if key in lab:
                 return lab[key], True
     own, authoritative = graph_first_author(graph)
-    if own and authoritative:
+    if authoritative:
         return own, True
     f = lab.get('doi:' + ndoi(doi)) if doi else None
     return (f, True) if f else (own, authoritative)

@@ -129,6 +129,13 @@ def test_own_ordered_graph_authors_beat_borrowed_doi_evidence(sources):
     assert RI.authors_of(result, byline) == ['hopper']
 
 
+def test_non_latin_own_author_is_not_replaced_with_a_borrowed_latin_family(sources):
+    _, byline = sources([paper()])
+    result = catalog(doi='10.1234/one', graph=dict(authors=[dict(name='张三')]))
+    assert IR.first_author(None, 'school', result['id'], '', result['doi'], graph_json=result['graph_json']) == ('', True)
+    assert RI.authors_of(result, byline) == []
+
+
 def test_lab_pi_is_not_invented_as_authoritative_first_author(sources):
     row = paper();row['byline'] = [];row['pis'] = ['Ada Lovelace']
     sources([row])
