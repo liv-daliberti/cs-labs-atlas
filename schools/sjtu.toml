@@ -1,0 +1,337 @@
+# Reviewed partial onboarding charter. Source report: hierarchy/sjtu/reports/PARTIAL-CHARTER-20261108.md.
+# Stage0 remains pending; no acquisition, sweep, native build or scientific attribution authority.
+# Full means every listed faculty is a census candidate, not completed reviewed coverage.
+key = "sjtu"
+name = "Shanghai Jiao Tong University"
+short = "SJTU"
+site_uni = "shanghai-jiao-tong-university"
+status = "onboarding"
+order = 999
+stage = 0
+started = "2026-11-08"
+window = [2016, 2026]
+[ids]
+# Pending inherited-child/shared-center/hospital scope is not silently accepted or provisionally excluded.
+openalex = ["I183067930"]
+openalex_related = []
+openalex_excluded = ["I87445476"] # Actual1959independence guard only. XJTLU and all unresolved children stay policy-held.
+ror = "https://ror.org/0220qvk04"
+ids_note = "Local2026-10-14 institution record original compressed-body SHA84031a1223a51e6fb4e836a2f571e514a82807ef66e9d8906a78918e64432813 binds Shanghai Jiao Tong University/I183067930/recordedROR0220qvk04/homepage www.sjtu.edu.cn. This is not independent ROR relationship verification. The official SJTU introduction explicitly proves the1959independent Shanghai/Xi'an establishments; localI87445476 names Xi'an Jiaotong University. Its exact source-backed guard is active. XJTLUI69356397 has a separate local self-lineage but its legal/campus scope remains unreviewed and is not resolved by this charter. No genuine SJTU campus is excluded. All inherited-child/hospital/shared-center and joint-unit scope decisions remain PENDING before any sweep/native scientific attribution. Related expansion is empty. Original bodies and policy holds: scratch/sjtu-first-chain-1108."
+[web]
+# Every explicit configured host is closed. Native host_use has an unlisted-host live default;
+# this charter is NOT acquisition-ready. No runner/sweep/native until complete host and lineage review.
+domains = ["sjtu.edu.cn"]
+email_domains = ["sjtu.edu.cn"]
+wayback_only_suffixes = []
+excluded_hosts = []
+[affiliation]
+regex = '\bshanghai\s*jiao\s*-?\s*tong\s+university\b|上海交通大学|(?<![a-z0-9.-])(?:[a-z0-9-]+\.)*sjtu\.edu\.cn(?![a-z0-9.-])'
+loose = '\bshanghai\s*jiao\s*-?\s*tong\b|上海交通大学|\bsjtu\b(?!\.)|(?<![a-z0-9.-])(?:[a-z0-9-]+\.)*sjtu\.edu\.cn(?![a-z0-9.-])'
+# Xi'an only: actual1959separation plus exact local modern institution identity.
+# XJTLU remains a policy hold, not an asserted native ID/campus exclusion.
+excluded_regex = '\bxi[’\x27-]?\s*an\s+jiao\s*tong\s+university\b|西安交通大学'
+own_units = ''
+must_match = ["Shanghai Jiao Tong University", "Shanghai Jiaotong University", "Shanghai Jiao-Tong University", "上海交通大学计算机学院", "Department of Computer Science and Engineering, Shanghai Jiao Tong University", "person@cs.sjtu.edu.cn", "https://www.sjtu.edu.cn", "Xi'an Jiaotong University and Shanghai Jiao Tong University", "西安交通大学与上海交通大学", "上海交通大学徐汇校区", "上海交通大学闵行校区", "上海交通大学黄浦校区", "上海交通大学长宁校区", "上海交通大学浦东校区", "上海交通大学崇明校区"]
+must_not_match = ["Xi'an Jiaotong University", "Xi’an Jiao Tong University", "西安交通大学", "Xi’an Jiaotong-Liverpool University", "西交利物浦大学", "XJTLU", "person@xjtu.edu.cn", "person@xjtlu.edu.cn", "Beijing Jiaotong University", "Southwest Jiaotong University", "Shanghai University", "person@sjtu.edu.cn.example.org", "person@not-sjtu.edu.cn", "person@fakesjtu.edu.cn", "上海财经大学", "上海理工大学"]
+[dblp]
+affiliation_strings = ["Shanghai Jiao Tong University", "Shanghai Jiaotong University"]
+legacy_sweep = ""
+[census]
+computing_departments = ["CS"]
+center_units = []
+home_units = {}
+rank_words = {}
+[sweep_check]
+exceptions = []
+[cs_related]
+not_faculty = {}
+share_test_settles = []
+[site]
+depts = { CS = "计算机学院（网络空间安全学院、密码学院）" }
+full_codes = ["CS"]
+[periods]
+school_regex = '\bshanghai\s*jiao\s*-?\s*tong\s+university\b|上海交通大学'
+[rules]
+foreign_title_exception = false
+listing_continuity = false
+# Official literal primary-unit navigation: https://www.sjtu.edu.cn/resource/assets/js/headersy.js; SHA2569e39404f855849019c2f86f12f6a6efc82a5734dd936f6f5f3302a1a1c78b53a.
+# Verbatim label:计算机学院（网络空间安全学院、密码学院）; literal href:https://www.cs.sjtu.edu.cn/.
+[[departments]]
+code = "CS"
+name = "计算机学院（网络空间安全学院、密码学院）"
+unit = "Shanghai Jiao Tong University"
+title_match = '计算机学院|Computer Science'
+coverage = "full"
+url = "https://www.cs.sjtu.edu.cn/"
+  [[departments.listings]]
+  # Original directory: https://www.cs.sjtu.edu.cn/jiaoshiml.html; SHA25649c8483109798f1b02dced810092e5e96d7ec5b27eb980078c45df342b36021c; observed2026-11-07T15:41:42; quote:"教师名录".
+  slot = "CS current faculty directory, individually reviewed roles pending"
+  kind = "main"
+  url = "www.cs.sjtu.edu.cn/jiaoshiml.html"
+  from = "20261107"
+  to = "20261107"
+  prefix = false
+  match = ""
+  format = ""
+  title_filter = ''
+
+# Official literal navigation: https://www.sjtu.edu.cn/resource/assets/js/headersy.js; SHA2569e39404f855849019c2f86f12f6a6efc82a5734dd936f6f5f3302a1a1c78b53a.
+# Verbatim label:电子信息与电气工程学院; literal href:http://www.seiee.sjtu.edu.cn; observed2026-11-08T11:32:52.
+[[affiliated_units]]
+code = "SEIEE"
+name = "电子信息与电气工程学院"
+url = "http://www.seiee.sjtu.edu.cn"
+listings = [] # Faculty source/role review remains open; no URL or historical era invented.
+
+# Official literal navigation: https://www.sjtu.edu.cn/resource/assets/js/headersy.js; SHA2569e39404f855849019c2f86f12f6a6efc82a5734dd936f6f5f3302a1a1c78b53a.
+# Verbatim label:自动化与感知学院; literal href:https://sais.sjtu.edu.cn/; observed2026-11-08T11:32:52.
+[[affiliated_units]]
+code = "SAIS"
+name = "自动化与感知学院"
+url = "https://sais.sjtu.edu.cn/"
+listings = [] # Faculty source/role review remains open; no URL or historical era invented.
+
+# Official literal navigation: https://www.sjtu.edu.cn/resource/assets/js/headersy.js; SHA2569e39404f855849019c2f86f12f6a6efc82a5734dd936f6f5f3302a1a1c78b53a.
+# Verbatim label:集成电路学院（信息与电子工程学院）; literal href:https://icisee.sjtu.edu.cn; observed2026-11-08T11:32:52.
+[[affiliated_units]]
+code = "ICISEE"
+name = "集成电路学院（信息与电子工程学院）"
+url = "https://icisee.sjtu.edu.cn"
+listings = [] # Faculty source/role review remains open; no URL or historical era invented.
+
+# Official literal navigation: https://www.sjtu.edu.cn/resource/assets/js/headersy.js; SHA2569e39404f855849019c2f86f12f6a6efc82a5734dd936f6f5f3302a1a1c78b53a.
+# Verbatim label:人工智能学院; literal href:https://soai.sjtu.edu.cn/; observed2026-11-08T11:32:52.
+[[affiliated_units]]
+code = "SOAI"
+name = "人工智能学院"
+url = "https://soai.sjtu.edu.cn/"
+listings = [] # Faculty source/role review remains open; no URL or historical era invented.
+
+# Official literal navigation: https://www.sjtu.edu.cn/resource/assets/js/headersy.js; SHA2569e39404f855849019c2f86f12f6a6efc82a5734dd936f6f5f3302a1a1c78b53a.
+# Verbatim label:人工智能研究院; literal href:http://ai.sjtu.edu.cn/; observed2026-11-08T11:32:52.
+[[affiliated_units]]
+code = "IAI"
+name = "人工智能研究院"
+url = "http://ai.sjtu.edu.cn/"
+listings = [] # Faculty source/role review remains open; no URL or historical era invented.
+
+# Official literal navigation: https://www.sjtu.edu.cn/resource/assets/js/headersy.js; SHA2569e39404f855849019c2f86f12f6a6efc82a5734dd936f6f5f3302a1a1c78b53a.
+# Verbatim label:巴黎卓越工程师学院; literal href:http://speit.sjtu.edu.cn; observed2026-11-08T11:32:52.
+[[affiliated_units]]
+code = "SPEIT"
+name = "巴黎卓越工程师学院"
+url = "http://speit.sjtu.edu.cn"
+listings = [] # Faculty source/role review remains open; no URL or historical era invented.
+
+# Official literal navigation: https://www.sjtu.edu.cn/resource/assets/js/headersy.js; SHA2569e39404f855849019c2f86f12f6a6efc82a5734dd936f6f5f3302a1a1c78b53a.
+# Verbatim label:溥渊未来技术学院; literal href:https://gift.sjtu.edu.cn/; observed2026-11-08T11:32:52.
+[[affiliated_units]]
+code = "GIFT"
+name = "溥渊未来技术学院"
+url = "https://gift.sjtu.edu.cn/"
+listings = [] # Faculty source/role review remains open; no URL or historical era invented.
+
+# Official literal navigation: https://www.sjtu.edu.cn/resource/assets/js/headersy.js; SHA2569e39404f855849019c2f86f12f6a6efc82a5734dd936f6f5f3302a1a1c78b53a.
+# Verbatim label:浦江国际学院; literal href:https://gc.sjtu.edu.cn/cn/; observed2026-11-08T11:32:52.
+[[affiliated_units]]
+code = "GC"
+name = "浦江国际学院"
+url = "https://gc.sjtu.edu.cn/cn/"
+listings = [] # Faculty source/role review remains open; no URL or historical era invented.
+
+# Official literal navigation: https://www.sjtu.edu.cn/resource/assets/js/headersy.js; SHA2569e39404f855849019c2f86f12f6a6efc82a5734dd936f6f5f3302a1a1c78b53a.
+# Verbatim label:数学科学学院; literal href:http://www.math.sjtu.edu.cn; observed2026-11-08T11:32:52.
+[[affiliated_units]]
+code = "MATH"
+name = "数学科学学院"
+url = "http://www.math.sjtu.edu.cn"
+listings = [] # Faculty source/role review remains open; no URL or historical era invented.
+
+# Official literal navigation: https://www.sjtu.edu.cn/resource/assets/js/headersy.js; SHA2569e39404f855849019c2f86f12f6a6efc82a5734dd936f6f5f3302a1a1c78b53a.
+# Verbatim label:生物医学工程学院; literal href:http://bme.sjtu.edu.cn; observed2026-11-08T11:32:52.
+[[affiliated_units]]
+code = "BME"
+name = "生物医学工程学院"
+url = "http://bme.sjtu.edu.cn"
+listings = [] # Faculty source/role review remains open; no URL or historical era invented.
+
+# Official literal navigation: https://www.sjtu.edu.cn/resource/assets/js/headersy.js; SHA2569e39404f855849019c2f86f12f6a6efc82a5734dd936f6f5f3302a1a1c78b53a.
+# Verbatim label:医疗机器人研究院; literal href:https://imr.sjtu.edu.cn/; observed2026-11-08T11:32:52.
+[[affiliated_units]]
+code = "IMR"
+name = "医疗机器人研究院"
+url = "https://imr.sjtu.edu.cn/"
+listings = [] # Faculty source/role review remains open; no URL or historical era invented.
+
+# Official literal navigation: https://www.sjtu.edu.cn/resource/assets/js/headersy.js; SHA2569e39404f855849019c2f86f12f6a6efc82a5734dd936f6f5f3302a1a1c78b53a.
+# Verbatim label:元知机器人研究院; literal href:https://mri.sjtu.edu.cn/; observed2026-11-08T11:32:52.
+[[affiliated_units]]
+code = "MRI"
+name = "元知机器人研究院"
+url = "https://mri.sjtu.edu.cn/"
+listings = [] # Faculty source/role review remains open; no URL or historical era invented.
+
+[thesis]
+kind = "none"
+base_url = ""
+endpoints = []
+robots = "unreviewed"
+note = "No thesis channel configured; not evidence of unavailable or absent theses."
+[collector]
+channels = []
+[students]
+directories = []
+adviser_directories = []
+defense_lists = []
+adviser_alumni = []
+rosters = []
+sources = []
+[labpages]
+skip_pages = []
+hints = []
+[repository]
+name = "No institutional repository channel reviewed"
+pattern = '(?!)' # Explicit never-match placeholder, not an asserted repository identity.
+note = "Explicit never-match placeholder: repository identity/access/recognition remain unreviewed. No attempted lookup or exhausted-source claim."
+[store]
+path = "stores/sjtu"
+
+[[hosts]]
+host = "ai.sjtu.edu.cn"
+use = "none"
+purpose = "Acquisition disabled in this partial charter pending scoped host/lineage review. Existing permitted scratch captures do not open an automatic collector."
+
+[[hosts]]
+host = "bme.sjtu.edu.cn"
+use = "none"
+purpose = "Acquisition disabled in this partial charter pending scoped host/lineage review. Existing permitted scratch captures do not open an automatic collector."
+
+[[hosts]]
+host = "cs.sjtu.edu.cn"
+use = "none"
+purpose = "Acquisition disabled in this partial charter pending scoped host/lineage review. Existing permitted scratch captures do not open an automatic collector."
+
+[[hosts]]
+host = "gc.sjtu.edu.cn"
+use = "none"
+purpose = "Acquisition disabled in this partial charter pending scoped host/lineage review. Existing permitted scratch captures do not open an automatic collector."
+
+[[hosts]]
+host = "gift.sjtu.edu.cn"
+use = "none"
+purpose = "Acquisition disabled in this partial charter pending scoped host/lineage review. Existing permitted scratch captures do not open an automatic collector."
+
+[[hosts]]
+host = "guxd.github.io"
+use = "none"
+purpose = "Acquisition disabled in this partial charter pending scoped host/lineage review. Existing permitted scratch captures do not open an automatic collector."
+
+[[hosts]]
+host = "icisee.sjtu.edu.cn"
+use = "none"
+purpose = "Acquisition disabled in this partial charter pending scoped host/lineage review. Existing permitted scratch captures do not open an automatic collector."
+
+[[hosts]]
+host = "imr.sjtu.edu.cn"
+use = "none"
+purpose = "Acquisition disabled in this partial charter pending scoped host/lineage review. Existing permitted scratch captures do not open an automatic collector."
+
+[[hosts]]
+host = "mri.sjtu.edu.cn"
+use = "none"
+purpose = "Acquisition disabled in this partial charter pending scoped host/lineage review. Existing permitted scratch captures do not open an automatic collector."
+
+[[hosts]]
+host = "sais.sjtu.edu.cn"
+use = "none"
+purpose = "Acquisition disabled in this partial charter pending scoped host/lineage review. Existing permitted scratch captures do not open an automatic collector."
+
+[[hosts]]
+host = "shixuansun.github.io"
+use = "none"
+purpose = "Acquisition disabled in this partial charter pending scoped host/lineage review. Existing permitted scratch captures do not open an automatic collector."
+
+[[hosts]]
+host = "soai.sjtu.edu.cn"
+use = "none"
+purpose = "Acquisition disabled in this partial charter pending scoped host/lineage review. Existing permitted scratch captures do not open an automatic collector."
+
+[[hosts]]
+host = "speit.sjtu.edu.cn"
+use = "none"
+purpose = "Acquisition disabled in this partial charter pending scoped host/lineage review. Existing permitted scratch captures do not open an automatic collector."
+
+[[hosts]]
+host = "wangruinlp.github.io"
+use = "none"
+purpose = "Acquisition disabled in this partial charter pending scoped host/lineage review. Existing permitted scratch captures do not open an automatic collector."
+
+[[hosts]]
+host = "www.cs.sjtu.edu.cn"
+use = "none"
+purpose = "Existing source packet records robots302 hold; no live page request/redirect bypass permitted. Source SHA/provenance in report."
+
+[[hosts]]
+host = "www.math.sjtu.edu.cn"
+use = "none"
+purpose = "Acquisition disabled in this partial charter pending scoped host/lineage review. Existing permitted scratch captures do not open an automatic collector."
+
+[[hosts]]
+host = "www.seiee.sjtu.edu.cn"
+use = "none"
+purpose = "Acquisition disabled in this partial charter pending scoped host/lineage review. Existing permitted scratch captures do not open an automatic collector."
+
+[[hosts]]
+host = "www.sjtu.edu.cn"
+use = "none"
+purpose = "Acquisition disabled in this partial charter pending scoped host/lineage review. Existing permitted scratch captures do not open an automatic collector."
+
+[[hosts]]
+host = "wyb15.github.io"
+use = "none"
+purpose = "Acquisition disabled in this partial charter pending scoped host/lineage review. Existing permitted scratch captures do not open an automatic collector."
+
+[[hosts]]
+host = "yulunzhang.com"
+use = "none"
+purpose = "Acquisition disabled in this partial charter pending scoped host/lineage review. Existing permitted scratch captures do not open an automatic collector."
+
+[[hosts]]
+host = "api.openalex.org"
+use = "none"
+purpose = "Acquisition disabled: no API, direct DBLP HTTP, ORCID lookup or archive channel authorized."
+
+[[hosts]]
+host = "api.ror.org"
+use = "none"
+purpose = "Acquisition disabled: no API, direct DBLP HTTP, ORCID lookup or archive channel authorized."
+
+[[hosts]]
+host = "pub.orcid.org"
+use = "none"
+purpose = "Acquisition disabled: no API, direct DBLP HTTP, ORCID lookup or archive channel authorized."
+
+[[hosts]]
+host = "orcid.org"
+use = "none"
+purpose = "Acquisition disabled: no API, direct DBLP HTTP, ORCID lookup or archive channel authorized."
+
+[[hosts]]
+host = "dblp.org"
+use = "none"
+purpose = "Acquisition disabled: no API, direct DBLP HTTP, ORCID lookup or archive channel authorized."
+
+[[hosts]]
+host = "www.dblp.org"
+use = "none"
+purpose = "Acquisition disabled: no API, direct DBLP HTTP, ORCID lookup or archive channel authorized."
+
+[[hosts]]
+host = "web.archive.org"
+use = "none"
+purpose = "Acquisition disabled: no API, direct DBLP HTTP, ORCID lookup or archive channel authorized."
+
+[[hosts]]
+host = "web-static.archive.org"
+use = "none"
+purpose = "Acquisition disabled: no API, direct DBLP HTTP, ORCID lookup or archive channel authorized."
