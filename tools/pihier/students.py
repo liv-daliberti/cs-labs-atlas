@@ -370,6 +370,23 @@ def researched_relation_type(role, withheld=False):
     return 'researched_advising' if not withheld and (role is None or role in student_roles) else 'researched_membership'
 
 
+def reviewed_relationship_type(row, role, withheld=False):
+    """An explicit reviewed membership keeps its degree role without asserting PI advising.
+
+    Omitted selectors retain the legacy role-based behavior. A present selector must be one of the
+    two documented values; an advising selector cannot override visitor/nonstudent/withheld-role guards.
+    """
+    inferred = researched_relation_type(role, withheld)
+    if 'relationship' not in row:
+        return inferred
+    relationship = row['relationship']
+    if relationship == 'membership':
+        return 'researched_membership'
+    if relationship == 'advising' and inferred == 'researched_advising':
+        return inferred
+    raise ValueError(f"invalid reviewed relationship {relationship!r} for role {role!r}")
+
+
 def researched(ctx, stu, by_name):
     """R-STU-01: researched advisees and lab members with a quote and hash (gap-evidence.json and RESEARCHED_FILES); a
     unique collection person of that name takes the record, else an ext:<school>:<name> id."""
@@ -400,11 +417,12 @@ def researched(ctx, stu, by_name):
                 n['students_role_withheld'] += 1
             if role_ == 'visiting':
                 n['students_role_visiting'] += 1
+            relation_type = reviewed_relationship_type(s_, role_, withheld)
             r = stu[p['pi']].setdefault(sid, dict(person=sid, name=match_[0]['name'] if len(match_) == 1 else s_['name'],
                                                   roles=['member'] if withheld else [role_ or 'student'], relations=[]))
             r['roles'] = list(dict.fromkeys(r['roles'] + (['member'] if withheld else [role_ or 'student'])))
             # a visiting student is a lab member, never an adviser relation (R-STU-17): researched_membership, like `member`
-            r['relations'].append(dict(type=researched_relation_type(role_, withheld), years=as_years(s_.get('years'), n),
+            r['relations'].append(dict(type=relation_type, years=as_years(s_.get('years'), n),
                                        role=role_, **({'role_withheld': True} if withheld else {}), sources=[dict(url=s_.get('capture_url') or s_['url'], sha256=s_['sha256'], quote=s_['quote'])]
                                        # a defense announcement's 'Faculty Host <PI>' line, same page and hash (Michigan request 4)
                                        + ([dict(url=s_.get('capture_url') or s_['url'], sha256=s_['sha256'], quote=s_['host_quote'])] if s_.get('host_quote') else []),

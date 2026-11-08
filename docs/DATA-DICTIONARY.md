@@ -1509,6 +1509,7 @@ A researched student or lab member (with its quote and hash).
 | `note` | string | no | Note. |  |  |
 | `host_quote` | string | no | A 'Faculty Host <PI>' line on the same page. |  |  |
 | `auto` | boolean | no | Automatic, unreviewed. |  |  |
+| `relationship` | string | no | Optional reviewed relationship: membership preserves a degree/student role without asserting PI advising; advising requires a student role and cannot override visitor/nonstudent or withheld-role guards. Omission retains legacy inference; a present invalid value fails closed. | one of `membership`, `advising` |  |
 
 ## `hierarchy/<school>/gap-evidence.json`
 
@@ -1567,6 +1568,7 @@ A researched student or lab member (with its quote and hash).
 | `note` | string | no | Note. |  |  |
 | `host_quote` | string | no | A 'Faculty Host <PI>' line on the same page. |  |  |
 | `auto` | boolean | no | Automatic, unreviewed. |  |  |
+| `relationship` | string | no | Optional reviewed relationship: membership preserves a degree/student role without asserting PI advising; advising requires a student role and cannot override visitor/nonstudent or withheld-role guards. Omission retains legacy inference; a present invalid value fails closed. | one of `membership`, `advising` |  |
 
 ## `hierarchy/<school>/labpage-additions.json`
 

@@ -184,6 +184,14 @@
     "auto": {
      "description": "Automatic, unreviewed.",
      "type": "boolean"
+    },
+    "relationship": {
+     "description": "Optional reviewed relationship: membership preserves a degree/student role without asserting PI advising; advising requires a student role and cannot override visitor/nonstudent or withheld-role guards. Omission retains legacy inference; a present invalid value fails closed.",
+     "type": "string",
+     "enum": [
+      "membership",
+      "advising"
+     ]
     }
    },
    "x-rules": [
