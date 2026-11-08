@@ -154,3 +154,14 @@ def test_explicit_membership_overrides_same_source_positive_context(tmp_path):
     before = copy.deepcopy(ctx.stu)
     links.link_students(ctx)
     assert ctx.stu == before
+
+
+def test_owned_context_cannot_borrow_another_PIs_role_source(tmp_path):
+    school_fixture(tmp_path)
+    change_member(tmp_path, 'academic_advising', 'Alan Turing (PhD)')
+    row = dict(name='Alan Turing', role='phd', reviewed=True, section='ADVISEES',
+               source_owner_PI='Ada Lovelace', PI_role_source=B.src('Grace Hopper Professor'),
+               **B.src('Alan Turing (PhD)'))
+    B.put(tmp_path, 'few-students-evidence.json').write_text(json.dumps([dict(pi='Ada Lovelace', students=[row])]))
+    ctx = B.run_stages(tmp_path, upto='papers')
+    assert 'A Paper With An Unresolved PI Identity' not in B.rows_of(ctx, 'Ada Lovelace')
