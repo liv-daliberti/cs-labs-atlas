@@ -2001,8 +2001,60 @@
   ]
  },
  "Francisco Romero": {
-  "no_identity": true,
-  "why_no_identity": "new arrival (listed 2026 only): no OpenAlex author of the school with 3+ works matches the name, no DBLP record names the school; no papers attributed until one appears"
+  "dblp": [
+   "https://dblp.org/pid/29/6093"
+  ],
+  "orcid": [
+   "0000-0001-6902-405X"
+  ],
+  "why_identity": "2026-11-08 source-reviewed: official Georgia Tech SCS profile links the owned homepage, which explicitly names DBLP PID 29/6093 and ORCID 0000-0001-6902-405X. This resolves only the stale identity hold; keep the existing 2026-only faculty listing and no earlier appointment inference. Halo v1 and CodecSight v4 retain their original source-specific bylines. No explicit OpenAlex author ID or career-paper admission.",
+  "identity_evidence": [
+   {
+    "url": "https://scs.gatech.edu/people/francisco-romero",
+    "sha256": "d04b88a99f1cc58a5ed5c238d73d6667f91f326a3ee35fed8806071c23dfcadf",
+    "quote": "Francisco Romero is an assistant professor in the School of Computer Science."
+   },
+   {
+    "url": "https://www.franciscoaromero.com/home",
+    "sha256": "e4660e1d1c2780d7a62d97dce747c0e80fabcae35c6b7428923e76cb0d61577e",
+    "quote": "I'm an assistant professor in the Georgia Tech School of Computer Science."
+   },
+   {
+    "url": "https://www.franciscoaromero.com/home",
+    "sha256": "e4660e1d1c2780d7a62d97dce747c0e80fabcae35c6b7428923e76cb0d61577e",
+    "quote": "https://www.google.com/url?q=https%3A%2F%2Forcid.org%2F0000-0001-6902-405X&amp;sa=D&amp;sntz=1&amp;usg=AOvVaw0TAo-51XVESS7P_LYtzfNe"
+   },
+   {
+    "url": "https://www.franciscoaromero.com/home",
+    "sha256": "e4660e1d1c2780d7a62d97dce747c0e80fabcae35c6b7428923e76cb0d61577e",
+    "quote": "https://www.google.com/url?q=https%3A%2F%2Fdblp.org%2Fpid%2F29%2F6093&amp;sa=D&amp;sntz=1&amp;usg=AOvVaw3yceMv5ywoP3OAT2zzgtTH"
+   }
+  ],
+  "dblp_orcid_review": {
+   "allowed": [
+    "0000-0001-6902-405X"
+   ],
+   "why": "Only the ORCID explicitly linked by the institution-bound owned homepage is allowed; do not inherit other DBLP identifiers automatically.",
+   "evidence": [
+    {
+     "orcid": "0000-0001-6902-405X",
+     "url": "https://www.franciscoaromero.com/home",
+     "sha256": "e4660e1d1c2780d7a62d97dce747c0e80fabcae35c6b7428923e76cb0d61577e",
+     "quote": "https://www.google.com/url?q=https%3A%2F%2Forcid.org%2F0000-0001-6902-405X&amp;sa=D&amp;sntz=1&amp;usg=AOvVaw0TAo-51XVESS7P_LYtzfNe"
+    }
+   ]
+  },
+  "identity_review_history": [
+   {
+    "reviewed_at": "2026-11-08",
+    "reviewed_by": "source review codex-francisco-identity-review-1108",
+    "supersedes": {
+     "no_identity": true,
+     "why_no_identity": "new arrival (listed 2026 only): no OpenAlex author of the school with 3+ works matches the name, no DBLP record names the school; no papers attributed until one appears"
+    },
+    "scope": "Identity only. Faculty association remains 2026-only; no facultyStart/facultyEnd, period, membership, byline, alias, or paper-date edit."
+   }
+  ]
  },
  "Veronica Rivera": {
   "no_identity": true,
