@@ -1,0 +1,449 @@
+{
+  "schema_version": 1,
+  "base_commit": "0acff904a53303e2b68135450cba2ffd0986aaa4",
+  "scope": "Reviewed inputs and report/source envelopes only; no code, paper claims, canonical outputs, promotions or landing.",
+  "input_hashes_before": {
+    "census-additions.json": "7c2f3ee3f96b5e518161cb22d1353e7d214a9690e9a965b975c9551664928948",
+    "lab-websites.json": "dd9d39caa87e8229c412b7e5afcb0ca28534847d3734133971b4ae8aa3ef4049",
+    "roster-evidence.json": "0b1860a2cb086becec0dfa91017d15f41fea6ede310eb7e2a5330a1fb28208ac",
+    "few-students-evidence.json": "2e5e22ee594af21ae6e194437f3a8bcb4e670810cd9bff5ee833abb08a533c6e",
+    "census-overrides-school.json": "eefaa7911c1af7069bf7ccc6960d8f2793313df55e9d69173a60752f4811f59f"
+  },
+  "input_hashes_after": {
+    "roster-evidence.json": "903125a5d49dcf4a38f7ca3ffb6ae86dabb13ede4ef095d81840ce08ad30a787",
+    "faculty-periods.json": "6c4f96522d7b371382324accf6b54de1383b06555d2375b589c8185e8882e671",
+    "few-students-evidence.json": "2e5e22ee594af21ae6e194437f3a8bcb4e670810cd9bff5ee833abb08a533c6e",
+    "census-additions.json": "60771dac47f5cb45ee9d6851f947ddf73dd291e6d04b344afc832032c1dd2021",
+    "lab-websites.json": "f1ab87bb680e3a760d83f8c2f946b8a36424adfe3cac9960eeeb30dcbf3f947c",
+    "census-overrides-school.json": "eefaa7911c1af7069bf7ccc6960d8f2793313df55e9d69173a60752f4811f59f"
+  },
+  "tracked_artifacts": {
+    "hierarchy/tsinghua/reports/NEXT2-INTEGRATION.md": "cfb94a5f4076336ab268ad7d8641b4d95ca69dd0c5319a7de4879d8666f99711",
+    "hierarchy/tsinghua/reports/next2-source-evidence.json": "9b5ae194a30d4d12740d307c9c0720ab7b51e6979a20037595f8c3a560406a72"
+  },
+  "source_replay": {
+    "status": "PASS",
+    "original_response_rows": 52,
+    "fact_proofs": 463,
+    "named_admission_pages": 45,
+    "original_roster_sha256": "0b1860a2cb086becec0dfa91017d15f41fea6ede310eb7e2a5330a1fb28208ac",
+    "prior_roster_literal_prefix_preserved": true,
+    "prior_roster_JSON_objects_preserved": 9,
+    "original55_file_unchanged_sha256": "2e5e22ee594af21ae6e194437f3a8bcb4e670810cd9bff5ee833abb08a533c6e",
+    "original_identity_override_unchanged_sha256": "eefaa7911c1af7069bf7ccc6960d8f2793313df55e9d69173a60752f4811f59f",
+    "PI_count": 207,
+    "only_allowed_census_metadata_changes": {
+      "Li Jian": [
+        "alias_evidence",
+        "aliases"
+      ],
+      "赵曦滨": [
+        "owned_website_evidence",
+        "profile_url"
+      ],
+      "龙明盛": [
+        "owned_website_evidence",
+        "profile_url"
+      ],
+      "刘世霞": [
+        "alias_evidence",
+        "aliases",
+        "owned_website_evidence",
+        "profile_url"
+      ],
+      "杨铮": [
+        "alias_evidence",
+        "aliases",
+        "owned_website_evidence",
+        "profile_url"
+      ],
+      "何源": [
+        "alias_evidence",
+        "aliases"
+      ],
+      "王继良": [
+        "alias_evidence",
+        "aliases",
+        "owned_website_evidence",
+        "profile_url"
+      ],
+      "何秀强": [
+        "owned_website_evidence",
+        "profile_url"
+      ],
+      "张长水": [
+        "owned_website_evidence",
+        "profile_url"
+      ],
+      "李梢": [
+        "alias_evidence",
+        "aliases"
+      ],
+      "朱松纯": [
+        "owned_website_evidence",
+        "profile_url"
+      ],
+      "鲁继文": [
+        "owned_website_evidence",
+        "profile_url"
+      ]
+    },
+    "old_website_rows_retained": 11,
+    "new_website_rows": 9,
+    "native_PI_periods": 15,
+    "appointment_holds": 7,
+    "held_member_observations": 179
+  },
+  "decisions": {
+    "new_role_episodes": 215,
+    "new_pairs": 189,
+    "new_PI_contexts": 6,
+    "new_independent_rosters": 5,
+    "new_websites": 9,
+    "aliases": 6,
+    "native_PI_periods": 15,
+    "qualifying_next2_appointment_clauses": 10,
+    "held_appointment_proposals": [
+      {
+        "pi": "丁贵广",
+        "faculty_start": "2006",
+        "first_supported_pi_start": null,
+        "faculty_end": null,
+        "observed_current_as_of": "2026-11-08",
+        "appointment_status": "source_supported_start_currently_appointed",
+        "date_precision": "year",
+        "window": [
+          2016,
+          2026
+        ],
+        "evidence": [
+          {
+            "url": "https://www.thss.tsinghua.edu.cn/faculty/dingguiguang.htm",
+            "sha256": "b916107cd6a672344ee195d4be6ae86d55782d79ed1f5b7c6c2146ace9cd318c",
+            "quote": "2006年—至今 清华大学软件学院教师 2004年—2006年 清华大学自动化系博士后",
+            "observed_at": "2026-11-08T00:10:03"
+          }
+        ],
+        "review_note": "Teacher/faculty appointment begins in 2006; current tenured professor rank alone does not date the first independent-PI role.",
+        "reviewed_by": "codex-tsinghua-expansion-1108",
+        "reviewed_on": "2026-11-08",
+        "auto": false,
+        "hold_reason": "Untyped teaching/employment does not date an independent PI role; current2026 listing only."
+      },
+      {
+        "pi": "雍俊海",
+        "faculty_start": "2002-10",
+        "first_supported_pi_start": null,
+        "faculty_end": null,
+        "observed_current_as_of": "2026-11-08",
+        "appointment_status": "source_supported_start_currently_appointed",
+        "date_precision": "month",
+        "window": [
+          2016,
+          2026
+        ],
+        "evidence": [
+          {
+            "url": "https://www.thss.tsinghua.edu.cn/faculty/yongjunhai.htm",
+            "sha256": "69af045c5156ecd05ad8e90e66e5c3e17b3873f5c89c3996aae4d5c9d8a7a4c5",
+            "quote": "2002.10-今 清华大学软件学院, 任教",
+            "observed_at": "2026-11-08T00:10:33"
+          }
+        ],
+        "review_note": "Explicit faculty teaching employment start; first independent-PI rank date remains open.",
+        "reviewed_by": "codex-tsinghua-expansion-1108",
+        "reviewed_on": "2026-11-08",
+        "auto": false,
+        "hold_reason": "Untyped teaching/employment does not date an independent PI role; current2026 listing only."
+      },
+      {
+        "pi": "王斌",
+        "faculty_start": "2006-05",
+        "first_supported_pi_start": null,
+        "faculty_end": null,
+        "observed_current_as_of": "2026-11-08",
+        "appointment_status": "source_supported_start_currently_appointed",
+        "date_precision": "month",
+        "window": [
+          2016,
+          2026
+        ],
+        "evidence": [
+          {
+            "url": "https://binwangthss.github.io/",
+            "sha256": "d3f0bd34eac9ebd0e29136ea6bd44982cf011f18a240233a794d94d9330cb30b",
+            "quote": "Work Experience: School of Software, Tsinghua University, China. (From May 2006 )",
+            "observed_at": "2026-11-08T00:16:46"
+          }
+        ],
+        "review_note": "Named official profile says 2006-present teaching/faculty employment and links this bilingual owned page; no PI start date inferred.",
+        "reviewed_by": "codex-tsinghua-expansion-1108",
+        "reviewed_on": "2026-11-08",
+        "auto": false,
+        "hold_reason": "Untyped teaching/employment does not date an independent PI role; current2026 listing only."
+      },
+      {
+        "pi": "刘玉身",
+        "faculty_start": "2009",
+        "first_supported_pi_start": null,
+        "faculty_end": null,
+        "observed_current_as_of": "2026-11-08",
+        "appointment_status": "source_supported_start_currently_appointed",
+        "date_precision": "year",
+        "window": [
+          2016,
+          2026
+        ],
+        "evidence": [
+          {
+            "url": "https://yushen-liu.github.io/index_cn.html",
+            "sha256": "1f55ae56dd3801cf0a2f3d9a858d0622dd1c58700b25bd756611c5f52eedcda5",
+            "quote": "2009年至今，清华大学软件学院任教。",
+            "observed_at": "2026-11-08T00:16:46"
+          }
+        ],
+        "review_note": "Explicit faculty employment since 2009; current professor role does not independently date the first PI rank.",
+        "reviewed_by": "codex-tsinghua-expansion-1108",
+        "reviewed_on": "2026-11-08",
+        "auto": false,
+        "hold_reason": "Untyped teaching/employment does not date an independent PI role; current2026 listing only."
+      },
+      {
+        "pi": "杨帆",
+        "role": "associate professor / associate researcher",
+        "start": "2013-12",
+        "end": null,
+        "current_through_observation": 2026,
+        "appointment_basis": "mixed_historical_rank_preserved",
+        "evidence": {
+          "url": "https://www.au.tsinghua.edu.cn/info/1079/3139.htm",
+          "sha256": "acde3aaf720585803b497762119c6f5da9cf3b1690b09396216675ee38478945",
+          "observed_at": "2026-11-08T00:13:35",
+          "encoding": "utf-8",
+          "quote": "2013年12月至今，清华大学自动化系，副教授/副研究员"
+        },
+        "review_note": "Direct official clause; original precision retained. Start before 2016 is provenance, not expansion of analysis window. Employment-only / mixed ranks do not set an unsupported historical PI start.",
+        "hold_reason": "Employment-only or mixed historical rank does not establish independent PI interval."
+      },
+      {
+        "pi": "刘玉身",
+        "role": "university employment; rank unstated",
+        "start": "2009",
+        "end": null,
+        "current_through_observation": 2026,
+        "appointment_basis": "employment_only_not_pi_start",
+        "evidence": {
+          "url": "https://www.thss.tsinghua.edu.cn/faculty/liuyushen.htm",
+          "sha256": "e34e3c3119e987b05c3c54f3d17e3686439f3111565f2bfe590ffd684d07d403",
+          "observed_at": "2026-11-08T00:10:44",
+          "encoding": "utf-8",
+          "quote": "2009 至今 清华大学软件学院"
+        },
+        "review_note": "Direct official clause; original precision retained. Start before 2016 is provenance, not expansion of analysis window. Employment-only / mixed ranks do not set an unsupported historical PI start.",
+        "hold_reason": "Employment-only or mixed historical rank does not establish independent PI interval."
+      },
+      {
+        "pi": "何秀强",
+        "role": "assistant researcher",
+        "start": "2025",
+        "end": "2026",
+        "current_through_observation": null,
+        "appointment_basis": "employment_only_not_pi_start",
+        "evidence": {
+          "url": "https://www.au.tsinghua.edu.cn/info/1079/4192.htm",
+          "sha256": "58dba4703d48461c6639bd35a213fce4804752562187f1f6bb45e70572235712",
+          "observed_at": "2026-11-08T00:13:43",
+          "encoding": "utf-8",
+          "quote": "2025 – 2026 年，清华大学自动化系，助理研究员"
+        },
+        "review_note": "Direct official clause; original precision retained. Start before 2016 is provenance, not expansion of analysis window. Employment-only / mixed ranks do not set an unsupported historical PI start.",
+        "hold_reason": "Employment-only or mixed historical rank does not establish independent PI interval."
+      }
+    ],
+    "source_fact_count": 463,
+    "original_captures": 52,
+    "original_roster_prefix_preserved": true,
+    "original_roster_sha256": "84f7e02a7a00b4cf5a6038fe641661f5f8398c83a8df163fc9f699da421c870e"
+  },
+  "native_before": {
+    "label": "before",
+    "pis": 207,
+    "distinct_PI_member_pairs": 365,
+    "member_PI_contexts": 14,
+    "relations": 378,
+    "relation_types": {
+      "researched_advising": 298,
+      "researched_membership": 80
+    },
+    "PI_identity_and_lab_ids_sha256": "99eac7f5d9736e23e6cb71073ac9dcc5a6d33357c667c8ca3bd939a1075104c6",
+    "canonical_outputs_written": false,
+    "heavy_paper_builder_run": false,
+    "relation_objects_sha256": "beb025ca17fb8daa5c7118deb383e08ef2ae7ba044f8215e677e6d15b46dc9cf",
+    "original_relation_subset_sha256": "beb025ca17fb8daa5c7118deb383e08ef2ae7ba044f8215e677e6d15b46dc9cf"
+  },
+  "native_after": {
+    "label": "after",
+    "pis": 207,
+    "distinct_PI_member_pairs": 554,
+    "member_PI_contexts": 20,
+    "relations": 593,
+    "relation_types": {
+      "researched_advising": 512,
+      "researched_membership": 81
+    },
+    "PI_identity_and_lab_ids_sha256": "99eac7f5d9736e23e6cb71073ac9dcc5a6d33357c667c8ca3bd939a1075104c6",
+    "canonical_outputs_written": false,
+    "heavy_paper_builder_run": false,
+    "all_original365_member_rows_retained": true,
+    "all_original_relation_objects_retained": 378,
+    "relation_objects_sha256": "23fb95e7ffe510768fa467accb75dbe3cafa2766af9045854dbc32363f0d92ce",
+    "original_relation_subset_sha256": "beb025ca17fb8daa5c7118deb383e08ef2ae7ba044f8215e677e6d15b46dc9cf"
+  },
+  "native_artifact_hashes": {
+    "smoke-before/pis.json": "53c6cb9507d3114e9f5ed04084428b8da735370d1977da66191a51de7273644d",
+    "smoke-after/pis.json": "4c7ad5d84df49c6c06fab476c664f852b65e89103ecb220428c7d053408702f7",
+    "smoke-before/members.json": "cf495e07c5566e5189b34a41cb3b7e005070b0bdbc6fdd2688013522e9c64f5a",
+    "smoke-after/members.json": "2195ca68c1337c11643b68191d899e80ef58ddd2da6bcc3171ffbc9161c47685"
+  },
+  "PI_identity_and_lab_ids_unchanged": true,
+  "bibliography_input_hashes_before": {
+    "hierarchy/raw/dblp-dump-persons.json.gz": {
+      "exists": true,
+      "sha256": "64779dea697ec00014cc5c71e50e60ef8efe9a4eb046071750fc87fd62755425",
+      "bytes": 24188133,
+      "resolved_path": "/n/fs/resemble/homogenizing-science/code/hierarchy/raw/dblp-dump-persons.json.gz"
+    },
+    "hierarchy/raw/dblp-dump-pages.json.gz": {
+      "exists": true,
+      "sha256": "c1fdd4157731c7900f7ebb1604f3405e052db7014f55b522b2742aad12681e06",
+      "bytes": 2417067,
+      "resolved_path": "/n/fs/resemble/homogenizing-science/code/hierarchy/raw/dblp-dump-pages.json.gz"
+    },
+    "hierarchy/tsinghua/raw/dblp-dump-persons.json.gz": {
+      "exists": true,
+      "sha256": "5ead9db0778b64d63d138dd13dc4dac3e2dfc614dd4b06e0952624da9556a6ce",
+      "bytes": 13606,
+      "resolved_path": "/n/fs/resemble/homogenizing-science/scratch/tsinghua-next-1108/native/hierarchy/tsinghua/raw/dblp-dump-persons.json.gz"
+    },
+    "hierarchy/tsinghua/raw/dblp-dump-pages.json.gz": {
+      "exists": false,
+      "sha256": null,
+      "bytes": null,
+      "resolved_path": "/n/fs/resemble/homogenizing-science/scratch/tsinghua-next-1108/native/hierarchy/tsinghua/raw/dblp-dump-pages.json.gz"
+    },
+    "hierarchy/tsinghua/work/dblp-recovered.jsonl.gz": {
+      "exists": false,
+      "sha256": null,
+      "bytes": null,
+      "resolved_path": "/n/fs/resemble/homogenizing-science/scratch/tsinghua-next-1108/native/hierarchy/tsinghua/work/dblp-recovered.jsonl.gz"
+    },
+    "hierarchy/tsinghua/work/labpage-recovered.jsonl.gz": {
+      "exists": false,
+      "sha256": null,
+      "bytes": null,
+      "resolved_path": "/n/fs/resemble/homogenizing-science/scratch/tsinghua-next-1108/native/hierarchy/tsinghua/work/labpage-recovered.jsonl.gz"
+    },
+    "hierarchy/tsinghua/reviewed/pi-publication-lists.json": {
+      "exists": false,
+      "sha256": null,
+      "bytes": null,
+      "resolved_path": "/n/fs/resemble/homogenizing-science/scratch/tsinghua-next-1108/native/hierarchy/tsinghua/reviewed/pi-publication-lists.json"
+    },
+    "hierarchy/tsinghua/work/labpage-pubs.jsonl.gz": {
+      "exists": false,
+      "sha256": null,
+      "bytes": null,
+      "resolved_path": "/n/fs/resemble/homogenizing-science/scratch/tsinghua-next-1108/native/hierarchy/tsinghua/work/labpage-pubs.jsonl.gz"
+    },
+    "hierarchy/tsinghua/raw/dblp_pubs.json.gz": {
+      "exists": false,
+      "sha256": null,
+      "bytes": null,
+      "resolved_path": "/n/fs/resemble/homogenizing-science/scratch/tsinghua-next-1108/native/hierarchy/tsinghua/raw/dblp_pubs.json.gz"
+    }
+  },
+  "bibliography_input_hashes_after": {
+    "hierarchy/raw/dblp-dump-persons.json.gz": {
+      "exists": true,
+      "sha256": "64779dea697ec00014cc5c71e50e60ef8efe9a4eb046071750fc87fd62755425",
+      "bytes": 24188133,
+      "resolved_path": "/n/fs/resemble/homogenizing-science/code/hierarchy/raw/dblp-dump-persons.json.gz"
+    },
+    "hierarchy/raw/dblp-dump-pages.json.gz": {
+      "exists": true,
+      "sha256": "c1fdd4157731c7900f7ebb1604f3405e052db7014f55b522b2742aad12681e06",
+      "bytes": 2417067,
+      "resolved_path": "/n/fs/resemble/homogenizing-science/code/hierarchy/raw/dblp-dump-pages.json.gz"
+    },
+    "hierarchy/tsinghua/raw/dblp-dump-persons.json.gz": {
+      "exists": true,
+      "sha256": "5ead9db0778b64d63d138dd13dc4dac3e2dfc614dd4b06e0952624da9556a6ce",
+      "bytes": 13606,
+      "resolved_path": "/n/fs/resemble/homogenizing-science/scratch/tsinghua-next-1108/native/hierarchy/tsinghua/raw/dblp-dump-persons.json.gz"
+    },
+    "hierarchy/tsinghua/raw/dblp-dump-pages.json.gz": {
+      "exists": false,
+      "sha256": null,
+      "bytes": null,
+      "resolved_path": "/n/fs/resemble/homogenizing-science/scratch/tsinghua-next-1108/native/hierarchy/tsinghua/raw/dblp-dump-pages.json.gz"
+    },
+    "hierarchy/tsinghua/work/dblp-recovered.jsonl.gz": {
+      "exists": false,
+      "sha256": null,
+      "bytes": null,
+      "resolved_path": "/n/fs/resemble/homogenizing-science/scratch/tsinghua-next-1108/native/hierarchy/tsinghua/work/dblp-recovered.jsonl.gz"
+    },
+    "hierarchy/tsinghua/work/labpage-recovered.jsonl.gz": {
+      "exists": false,
+      "sha256": null,
+      "bytes": null,
+      "resolved_path": "/n/fs/resemble/homogenizing-science/scratch/tsinghua-next-1108/native/hierarchy/tsinghua/work/labpage-recovered.jsonl.gz"
+    },
+    "hierarchy/tsinghua/reviewed/pi-publication-lists.json": {
+      "exists": false,
+      "sha256": null,
+      "bytes": null,
+      "resolved_path": "/n/fs/resemble/homogenizing-science/scratch/tsinghua-next-1108/native/hierarchy/tsinghua/reviewed/pi-publication-lists.json"
+    },
+    "hierarchy/tsinghua/work/labpage-pubs.jsonl.gz": {
+      "exists": false,
+      "sha256": null,
+      "bytes": null,
+      "resolved_path": "/n/fs/resemble/homogenizing-science/scratch/tsinghua-next-1108/native/hierarchy/tsinghua/work/labpage-pubs.jsonl.gz"
+    },
+    "hierarchy/tsinghua/raw/dblp_pubs.json.gz": {
+      "exists": false,
+      "sha256": null,
+      "bytes": null,
+      "resolved_path": "/n/fs/resemble/homogenizing-science/scratch/tsinghua-next-1108/native/hierarchy/tsinghua/raw/dblp_pubs.json.gz"
+    }
+  },
+  "bibliography_inputs_unchanged": true,
+  "verified_websites": {
+    "before": 61,
+    "added": 9,
+    "after": 70,
+    "frozen_baseline_path": "/n/fs/resemble/homogenizing-science/scratch/tsinghua-next-1108/native/hierarchy/tsinghua/reviewed/lab-websites.json",
+    "frozen_baseline_sha256": "fee19b8417cfa735c686fda3fbee235fc35d1daa72fafd19fdd51d0a6d39c85d",
+    "new_owners": [
+      "何秀强",
+      "刘世霞",
+      "张长水",
+      "朱松纯",
+      "杨铮",
+      "王继良",
+      "赵曦滨",
+      "鲁继文",
+      "龙明盛"
+    ]
+  },
+  "new_papers": 0,
+  "new_member_paper_links": 0,
+  "analysis_window": [
+    2016,
+    2026
+  ],
+  "code_tests": "No code changes. Light native/source/date invariants only; root runs landing gates.",
+  "native_smoke_script_sha256": "f8aa3e5c9d386a365b99f263b3c02eb83566039906098afb63c69bea7da4596f",
+  "source_replay_script_sha256": "82f27549ca483919381f1f2f63bd6b7a8f92dbdedd173458c5caeea90f388922"
+}
