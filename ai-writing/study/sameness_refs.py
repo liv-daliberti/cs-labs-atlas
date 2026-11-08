@@ -30,6 +30,7 @@ import study_common as C
 import study_labstats as LS
 
 NULL_REPS = 5
+ACROSS_SCOPES = ('ALL', 'EXCL_PARTIAL')   # scopes that also get the across-school pairs (field300_sameness.py sets it: its 'schools' are institutions and every pair is 'across')
 MIN_PAPERS_PAIR = 2
 TOP_K = 100
 
@@ -129,7 +130,7 @@ def run_overlap(lp, p, sample, labs, sch, W, out_tab):
     sers, cons = [], []
     for sc, schools in SC.scope_schools():
         for pt in ('within', 'across'):
-            if pt == 'across' and sc not in ('ALL', 'EXCL_PARTIAL'):
+            if pt == 'across' and sc not in ACROSS_SCOPES:
                 continue
             V = {f'{s}_{k}': np.full((W.shape[0], T), np.nan) for s in STATS for k in ('raw', 'null')}
             for ti, o in res.items():

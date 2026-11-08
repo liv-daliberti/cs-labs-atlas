@@ -8,6 +8,9 @@
 #   delta BASE       score and embed what the earlier build and snapshot BASE never covered, then build + seal SNAPSHOT_ID with that delta, then analyse:
 #                    list -> sections (4 shards) + texts -> GPU: abstract embeddings (7 models), v1 abstract flag, detector v3 passages -> per-paper table
 #                    -> snapshot build --delta-base BASE -> OpenAlex leftovers -> seal -> prep -> layers -> figures -> report (compared with BASE) -> ai_share.json
+#   field300 [STAGE]  the field-300 abstract-level extension (owner 2026-11-08; ID field300-2026-11-08): all 300 GRAS 2025 CS&E universities, 2016-2025 computer-science papers from the OpenAlex bulk snapshot.
+#                    STAGE corpus (default): stream the snapshot (array of 95 chunks) -> merge + counts -> prep (tables + GPU text store). STAGE gpu: detector + two embedding models (arrays of F300_NSH shards,
+#                    one A5000 each, restartable; resubmit to resume). STAGE analyze: ai | topics | embeds | sameness (overlap, concentration, bench) -> hetero -> report. STAGE seal: snapshot build + seal.
 #   designs          the three design layers on the sealed snapshot SNAPSHOT_ID (needs its prep output, results/<id>/work/panel.parquet; owner 2026-11-08):
 #                    OpenAlex affiliation scan (array) -> design prep (PI tables, exposures) -> PI panel with author fixed effects | exposure DiD + event studies
 #                    | arXiv-revision pairs -> CPU fetch + main/appendix split of the versions (array of 24) -> GPU scoring (array of 6, one A5000 each, restartable by chunk) -> revision analysis -> design figures + DESIGNS tables
@@ -16,6 +19,43 @@ set -euo pipefail
 ID=${1:-2026-11-07}; MODE=${2:-}; BASE=${3:-}
 HERE=$(cd "$(dirname "$0")" && pwd)
 export STUDY_CODE=$HERE
+if [ "$MODE" = field300 ]; then
+  ST=${BASE:-corpus}; ID=field300-2026-11-08; X="--export=ALL,STUDY_CODE=$HERE"; NSH=${F300_NSH:-24}; MODELS=${F300_MODELS:-specter2_proximity scincl}
+  case "$ST" in
+  corpus)
+    c=$(sbatch --parsable --array=0-94%30 $X --cpus-per-task=1 --mem=6G --time=00:59:00 --job-name=f300-corpus $HERE/study.slurm field300_corpus.py chunk)
+    m=$(sbatch --parsable --dependency=afterok:$c $X --cpus-per-task=2 --mem=48G --time=00:59:00 --job-name=f300-merge $HERE/study.slurm field300_corpus.py merge)
+    p=$(sbatch --parsable --dependency=afterok:$m $X --cpus-per-task=4 --mem=64G --time=00:59:00 --job-name=f300-prep $HERE/study.slurm field300_prep.py build)
+    echo "field300 corpus chain: chunks $c merge $m prep $p" ;;
+  gpu)
+    d=$(sbatch --parsable --array=0-$((NSH-1)) $X,F300_NSH=$NSH --job-name=f300-detect $HERE/field300_gpu.slurm detect)
+    echo "field300 gpu: detect $d"
+    for M in $MODELS; do e=$(sbatch --parsable --array=0-$((NSH-1)) $X,F300_NSH=$NSH --job-name=f300-emb-$M $HERE/field300_gpu.slurm embed $M); echo "  embed $M $e"; done ;;
+  analyze)
+    A="sbatch --parsable $X --cpus-per-task=8"
+    a=$($A --mem=32G --time=00:30:00 --job-name=f300-ai $HERE/study.slurm field300_analyze.py ai)
+    t=$($A --mem=32G --time=00:59:00 --job-name=f300-topics $HERE/study.slurm field300_analyze.py topics)
+    es=(); for M in $MODELS; do es+=($($A --mem=64G --time=00:59:00 --job-name=f300-emb-an $HERE/study.slurm field300_analyze.py embed --model $M)); done
+    sp=$($A --mem=64G --time=00:59:00 --job-name=f300-sprep $HERE/study.slurm field300_sameness.py prep)
+    jobs=()
+    for S in journal refs10; do
+      jobs+=($(sbatch --parsable --dependency=afterok:$sp $X --cpus-per-task=4 --mem=64G --time=00:59:00 --job-name=f300-ovl $HERE/study.slurm field300_sameness.py overlap --sample $S --groups ALL,tier,english,region,size))
+      jobs+=($(sbatch --parsable --dependency=afterok:$sp $X --cpus-per-task=4 --mem=64G --time=00:59:00 --job-name=f300-conc $HERE/study.slurm field300_sameness.py concentration --sample $S --groups ALL,tier,english))
+    done
+    jobs+=($(sbatch --parsable --dependency=afterok:$sp $X --cpus-per-task=4 --mem=32G --time=00:59:00 --job-name=f300-bench $HERE/study.slurm field300_sameness.py bench --groups ALL,tier,english))
+    dep=$(IFS=:; echo "$a:$t:${es[*]// /:}" | tr ' ' ':')
+    h=$(sbatch --parsable --dependency=afterok:$dep $X --cpus-per-task=4 --mem=24G --time=00:30:00 --job-name=f300-hetero $HERE/study.slurm field300_hetero.py run --models ${MODELS// /,})
+    alld=$(IFS=:; echo "$h:${jobs[*]}" | tr ' ' ':')
+    sbatch --parsable --dependency=afterok:$alld $X --cpus-per-task=2 --mem=16G --time=00:30:00 --job-name=f300-report $HERE/study.slurm field300_report.py --models ${MODELS// /,} >/dev/null
+    echo "field300 analyze: ai $a topics $t embed ${es[*]} sameness-prep $sp sameness ${jobs[*]} hetero $h" ;;
+  seal)
+    b=$(sbatch --parsable $X --cpus-per-task=4 --mem=48G --time=00:59:00 --job-name=f300-snap $HERE/study.slurm field300_snapshot.py build --models ${MODELS// /,})
+    sbatch --parsable --dependency=afterok:$b $X --cpus-per-task=4 --mem=8G --time=00:59:00 --job-name=f300-seal $HERE/study.slurm field300_snapshot.py seal >/dev/null
+    echo "field300 seal: build $b" ;;
+  *) echo "field300 STAGE: corpus | gpu | analyze | seal"; exit 2 ;;
+  esac
+  exit 0
+fi
 if [ "$MODE" = sameness ]; then
   S="sbatch --parsable --exclude=node302,node014 --export=ALL,STUDY_CODE=$HERE $HERE/study.slurm"
   a=$($S --cpus-per-task=2 --mem=8G --time=00:20:00 sameness_bench.py abstract --id "$ID")
