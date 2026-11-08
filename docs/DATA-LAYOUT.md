@@ -137,6 +137,7 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `cs-venues.json` | reviewed | `hierarchy/cs-venues.json` | `hierarchy/reviewed/cs-venues.json` | 1/1 | <1MB |
 | `nicknames` | reviewed | `hierarchy/nicknames` | `hierarchy/reviewed/nicknames` | 0/1 | dir |
 | `dblp-dump-persons-school.json.gz` | raw | `hierarchy/{school}/dblp-dump-persons-school.json.gz` | `hierarchy/{school}/raw/dblp-dump-persons-school.json.gz` | - | <100MB |
+| `dblp-dump-pages-school.json.gz` | raw | `hierarchy/{school}/dblp-dump-pages-school.json.gz` | `hierarchy/{school}/raw/dblp-dump-pages-school.json.gz` | - | <100MB |
 | `dblp-dump-persons.json.gz` | raw | `hierarchy/dblp-dump-persons.json.gz` | `hierarchy/raw/dblp-dump-persons.json.gz` | 0/1 | <100MB |
 | `dblp-dump-pages.json.gz` | raw | `hierarchy/dblp-dump-pages.json.gz` | `hierarchy/raw/dblp-dump-pages.json.gz` | 0/1 | <100MB |
 | `chain-audit.json` | derived | `hierarchy/chain-audit.json` | `hierarchy/derived/chain-audit.json` | 0/1 | <100MB |
