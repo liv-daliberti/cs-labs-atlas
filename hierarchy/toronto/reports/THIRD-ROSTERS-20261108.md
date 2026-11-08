@@ -22,3 +22,5 @@ Original sources, literal section/entry quotes, exact role/date checks, old-inpu
 The three new raw capture rows remain in the approved operational Q database; the canonical capture cache is unchanged. The JSON companion identifies exact original rows for a separately claimed root source-cache import if needed for durable source replay.
 
 Validation: 2,568 tests passed / 22 skipped; lint passed; all 19 charters passed; staged secret scan three files / zero findings; diff check and final original-source replay passed.
+
+Independent integration review: five postdoc name fields now contain the literal public name without the parenthetical prior-degree description or trailing comma. The original source name and prior-degree text are retained separately, alongside unchanged entry quotations, roles, years, URLs and hashes. Literal spelling `Priyank Chanrda` is preserved. This changes no pair, role episode or attribution.
