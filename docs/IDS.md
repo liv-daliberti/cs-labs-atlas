@@ -136,6 +136,40 @@ The ID report separates reciprocal co-advising groups from shared external ident
 hashes. As with all isolated preparations, its registry and auxiliary cross-reference files require complete global review
 before promotion.
 
+### Exact typed repository author certificates
+
+A cross-lab review with `identity_basis: "typed_repository_author"` uses an original repository record instead of a
+personal-page link. It requires the ordinary school/verdict/canonical-name/exact external-membership fields, plus:
+
+- `repository_author`: the actual capture-host `namespace`, RFC6901 `source_json_pointer`, `item_id`, `handle`,
+  complete source `author` object, `advisor_bindings` (`pi`, exact typed `source_name`, actual adviser `authority` UUID),
+  and `source_record_sha256`. The item digest is SHA256 of UTF-8 JSON with sorted keys, `ensure_ascii=False`, and
+  separators `(',', ':')`; it binds the whole selected item, including all metadata and links.
+- One `typed_repository_author_record` evidence citation containing the complete original
+  `dc.contributor.advisor` and `dc.contributor.author` property pair. Every citation retains the exact original URL,
+  body SHA256 and whitespace-normalized literal quote.
+- Each membership's `native_sources`: the ordered exact `{url, sha256, quote}` list flattened from that unchanged
+  member's relation sources. The complete typed property quote or its original prefix through the complete public
+  author value is accepted; a bare name, changed/truncated preimage or unrelated source is not.
+
+Runtime opens only the registered `thesis-captures.sqlite` through `SchoolDir(school, hdir)`, in SQLite read-only mode.
+Review-supplied paths are ignored. It requires one successful exact URL/hash capture, at most 8 MiB compressed and
+16 MiB expanded, a complete single zlib stream, and a matching original-body hash. It then checks the exact pointer,
+canonical whole-item digest, matching item ID/UUID and handle, exactly one author identical to the certificate, and
+all native PI bindings against the actual typed adviser names/UUIDs. Native source lists and quotations are checked
+against the same selected source record before any identity anchors are added.
+
+A valid proof adds only `coll:<school>:repository-author:<actual capture host>:<actual author authority UUID>`.
+It invents no repository person URI and inherits no ORCID, Scopus, first-name or other global identity. A private
+validated proof object exists only in temporary ID entities. Only when every key in the entire external-person group
+shares that object and the identical source-exact full public mononym (letters, at least two characters, without
+unproved aliases) may that mononym pass the normal full-name compatibility guard. A bare mononym remains held.
+Ordinary personal-page reviews, negative-clause checks and the multiple-issued-ID guard retain their behavior;
+within-lab native identity review ignores this cross-lab certificate. One issued identity is reused without a redirect.
+The public ID report records the exact source/item/adviser/native-preimage provenance, never the private proof object.
+No membership role/year/source, paper claim or candidate author verification changes. Preparing the certificate or
+running disposable fixtures does not authorize global registry/package writes or publication.
+
 A source-proven duplicate that already has two issued IDs requires a separate explicit redirect review. Optional
 `issued_id_review` metadata records the exact survivor/alias, baseline registry hash and before-state; `atlas_ids.run`
 never executes that metadata or waives its guard. In isolated preparation only, the existing `assign` mechanism can apply

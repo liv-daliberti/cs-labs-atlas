@@ -598,6 +598,125 @@ class _PersonLink(HTMLParser):
             self.links.append((self.current[0], ' '.join(self.current[1]))); self.current = None
 
 
+def _repository_json_object(pairs):
+    out = {}
+    for key, value in pairs:
+        if key in out:
+            raise ValueError('repository identity review original JSON has duplicate keys')
+        out[key] = value
+    return out
+
+
+def _repository_json_pointer(value, pointer):
+    if not isinstance(pointer, str) or not pointer.startswith('/') or len(pointer) > 2048:
+        raise ValueError('repository identity review needs an exact JSON pointer')
+    parts = pointer[1:].split('/')
+    if len(parts) > 64:
+        raise ValueError('repository identity review pointer is too deep')
+    for part in parts:
+        if re.search(r'~(?![01])', part):
+            raise ValueError('repository identity review has invalid pointer escaping')
+        part = part.replace('~1', '/').replace('~0', '~')
+        if isinstance(value, list):
+            if not re.fullmatch(r'0|[1-9][0-9]*', part):
+                raise ValueError('repository identity review needs an exact array index')
+            value = value[int(part)]
+        elif isinstance(value, dict):
+            value = value[part]
+        else:
+            raise ValueError('repository identity review pointer traverses a scalar')
+    return value
+
+
+def _repository_author_identity(review, data, ents, keys, hdir, nick):
+    """Validate original typed repository bytes; a reviewer-supplied path is never opened."""
+    school, name = review['school'], review['canonical_name']
+    cert = review.get('repository_author') or {}
+    evidence = review.get('evidence') or []
+    if not isinstance(cert, dict) or not isinstance(evidence, list) or not all(isinstance(q, dict) for q in evidence):
+        raise ValueError('repository identity review has malformed certificate/evidence')
+    primary = [q for q in evidence if q.get('kind') == 'typed_repository_author_record']
+    if len(primary) != 1:
+        raise ValueError('repository identity review needs one typed author citation')
+    source = primary[0]; url, digest = source.get('url'), source.get('sha256')
+    parsed = urlsplit(url or '')
+    if not _identity_url(url) or not re.fullmatch(r'[0-9a-f]{64}', str(digest or '')) \
+            or cert.get('namespace') != parsed.hostname or not name or not all(ents[k]['name'] == name for k in keys):
+        raise ValueError('repository identity review has wrong source namespace or public name')
+    path = P.SchoolDir(school, hdir) / 'thesis-captures.sqlite'
+    if not path.is_file():
+        raise ValueError('repository identity review original capture is missing')
+    compressed_limit, expanded_limit = 8 * 1024 * 1024, 16 * 1024 * 1024
+    with sqlite3.connect(path.resolve().as_uri() + '?mode=ro', uri=True) as db:
+        rows = db.execute('select status,content,final_url from captures where url=? and sha256=? '
+                          'and length(content)<=? limit 2', (url, digest, compressed_limit)).fetchall()
+    if len(rows) != 1 or rows[0][0] != 200 or (rows[0][2] and urlsplit(rows[0][2]).hostname != parsed.hostname):
+        raise ValueError('repository identity review needs one exact successful original capture')
+    decoder = zlib.decompressobj(); raw = decoder.decompress(rows[0][1], expanded_limit + 1)
+    if len(raw) > expanded_limit or decoder.unconsumed_tail or decoder.unused_data or not decoder.eof \
+            or hashlib.sha256(raw).hexdigest() != digest:
+        raise ValueError('repository identity review original body/hash is invalid or oversized')
+    text = raw.decode('utf-8'); normalized = ' '.join(text.split())
+    item = _repository_json_pointer(json.loads(text, object_pairs_hook=_repository_json_object), cert.get('source_json_pointer'))
+    item_digest = hashlib.sha256(json.dumps(item, ensure_ascii=False, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
+    if not isinstance(item, dict) or item_digest != cert.get('source_record_sha256') \
+            or item.get('id') != cert.get('item_id') or item.get('uuid') != cert.get('item_id') \
+            or not cert.get('item_id') or not cert.get('handle') or item.get('handle') != cert['handle'] or item.get('type') != 'item':
+        raise ValueError('repository identity review item digest, identifier or handle mismatch')
+    metadata = item.get('metadata') or {}; authors = metadata.get('dc.contributor.author')
+    author = cert.get('author') or {}
+    if not isinstance(author, dict):
+        raise ValueError('repository identity review author is malformed')
+    authority = author.get('authority')
+    uuid_pattern = r'[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+    if authors != [author] or author.get('value') != name or not re.fullmatch(uuid_pattern, str(authority or '')):
+        raise ValueError('repository identity review needs one exact source-issued author authority')
+    if re.fullmatch(r'[^\W\d_]{2,}', name) and any(ents[k]['names'] != [name] for k in keys):
+        raise ValueError('repository identity review mononym names must be source-exact without unproved aliases')
+    advisers = metadata.get('dc.contributor.advisor') or []; bindings = cert.get('advisor_bindings') or []
+    if not isinstance(advisers, list) or not all(isinstance(a, dict) for a in advisers) \
+            or not isinstance(bindings, list) or not all(isinstance(b, dict) for b in bindings) \
+            or len({a.get('authority') for a in advisers}) != len(advisers) \
+            or len(bindings) != len(keys) or {b.get('pi') for b in bindings} != {k[2] for k in keys}:
+        raise ValueError('repository identity review adviser bindings are incomplete or ambiguous')
+    for binding in bindings:
+        matches = [a for a in advisers if a.get('value') == binding.get('source_name') and a.get('authority') == binding.get('authority')]
+        pis = [p for p in data[school][0] if p['pi'] == binding['pi']]
+        if len(matches) != 1 or not re.fullmatch(uuid_pattern, str(binding.get('authority') or '')) \
+                or binding['authority'] == authority or len(pis) != 1 \
+                or not any(compatible(binding['source_name'], n, nick) for n in pis[0].get('names') or [binding['pi']]):
+            raise ValueError('repository identity review adviser name/authority does not match its PI')
+    quote = source.get('quote') or ''
+    typed = json.loads('{' + quote + '}', object_pairs_hook=_repository_json_object)
+    if typed != {k: metadata[k] for k in ('dc.contributor.advisor', 'dc.contributor.author')}:
+        raise ValueError('repository identity review quote is not the selected typed author/adviser pair')
+    for q in evidence:
+        if q.get('url') != url or q.get('sha256') != digest or not q.get('quote') or q['quote'] not in normalized:
+            raise ValueError('repository identity review citation differs from original source bytes')
+    for member, key in zip(review['memberships'], keys):
+        student = next(r for r in data[school][1][key[2]] if r['person'] == key[3])
+        sources = [{k: q.get(k) for k in ('url', 'sha256', 'quote')}
+                   for rel in student.get('relations') or [] for q in rel.get('sources') or []]
+        if not sources or sources != member.get('native_sources'):
+            raise ValueError('repository identity review native source preimage mismatch')
+        for q in sources:
+            # Existing thesis extraction retains a prefix through the complete public author value.
+            # Permit that exact original prefix or the complete typed property pair, never a bare name.
+            quoted = q.get('quote') or ''
+            if q['url'] != url or q['sha256'] != digest or quoted not in normalized \
+                    or not (quoted == quote or quote.startswith(quoted) and quoted.endswith(json.dumps(name, ensure_ascii=False))
+                            and '"dc.contributor.author"' in quoted
+                            and all(json.dumps(b['source_name'], ensure_ascii=False) in quoted
+                                    and json.dumps(b['authority']) in quoted for b in bindings)):
+                raise ValueError('repository identity review native quote does not bind the typed author/advisers')
+    anchor = ('coll', f'{school}:repository-author:{parsed.hostname}:{authority}')
+    proof = dict(identity_basis='typed_repository_author', namespace=parsed.hostname, source_url=url,
+                 source_sha256=digest, source_json_pointer=cert['source_json_pointer'], source_record_sha256=item_digest,
+                 item_id=item['id'], handle=item['handle'], author=author, advisor_bindings=bindings,
+                 native_memberships=review['memberships'], registered_capture=str(path), anchor=anchor)
+    return anchor, proof
+
+
 def reviewed_cross_lab_identities(data, ents, hdir, nick=None):
     """An exact reviewed shared personal page adds a normal name+URL anchor, never a name-only/global join."""
     path = P.hfile(hdir, 'student-identity-review.json')
@@ -613,11 +732,24 @@ def reviewed_cross_lab_identities(data, ents, hdir, nick=None):
         school = review['school']; name = review.get('canonical_name') or ''; url = _identity_url(review.get('identity_url'))
         members = review.get('memberships') or []
         keys = [('stu', school, m.get('pi'), m.get('person')) for m in members]
-        if review.get('verdict') != 'same_person' or not url or len(set(keys)) != len(keys) or len(keys) < 2 \
+        repository = review.get('identity_basis') == 'typed_repository_author'
+        if review.get('verdict') != 'same_person' or (not repository and not url) or len(set(keys)) != len(keys) or len(keys) < 2 \
                 or len({k[2] for k in keys}) != len(keys) or len({k[3] for k in keys}) != 1 \
                 or not str(keys[0][3]).startswith('ext:') or any(k not in ents or k in seen for k in keys) \
-                or not all(any(compatible(name, n, nick) for n in ents[k]['names']) for k in keys):
+                or (not repository and not all(any(compatible(name, n, nick) for n in ents[k]['names']) for k in keys)):
             raise ValueError('invalid or conflicting cross-lab identity review: ' + str(review.get('canonical_name')))
+        if repository:
+            try:
+                anchor, source_proof = _repository_author_identity(review, data, ents, keys, hdir, nick)
+            except (ValueError, TypeError, KeyError, IndexError, OverflowError, sqlite3.Error, zlib.error, UnicodeError) as error:
+                raise ValueError('invalid repository identity review: ' + str(error)) from error
+            token = dict(public_name=name)  # shared object identity; never read from native records or serialized
+            for key in keys:
+                ents[key]['anchors'].add(anchor); ents[key]['_repository_author_proof'] = token
+            seen.update(keys); proofs.append(dict(school=school, native_person=keys[0][3], keys=keys,
+                                                  canonical_name=name, evidence=review.get('evidence'), repository_author=source_proof,
+                                                  reviewed_input_sha256=hashlib.sha256(path.read_bytes()).hexdigest()))
+            continue
         evidence = review.get('evidence') or []
         cited = lambda q: bool(re.fullmatch(r'[0-9a-fA-F]{64}', str(q.get('sha256') or ''))
                                and _identity_url(q.get('url')) and str(q.get('quote') or '').strip())
@@ -698,8 +830,12 @@ def coadvised_external_groups(data, ents, registry, nick=None):
         if not clauses and not shared_identity:
             continue  # another student's qualifier or roster boilerplate is not this person's identity claim
         base = dict(school=school, native_person=person, records=[dict(pi=k[2], name=r['name']) for k, r in records])
-        if len(set(keys)) != len(keys) or not all(any(compatible(a, b, nick) for a in ents[x]['names'] for b in ents[y]['names'])
-                                                for x in keys for y in keys):
+        repository = ents[keys[0]].get('_repository_author_proof')
+        source_mononym = bool(repository and re.fullmatch(r'[^\W\d_]{2,}', repository['public_name'])
+                              and all(ents[k].get('_repository_author_proof') is repository
+                                      and ents[k]['names'] == [repository['public_name']] for k in keys))
+        if len(set(keys)) != len(keys) or (not source_mononym and not all(
+                any(compatible(a, b, nick) for a in ents[x]['names'] for b in ents[y]['names']) for x in keys for y in keys)):
             holds.append(dict(base, reason='incompatible names or duplicate memberships for a co-advised external id'))
             continue
         base['student_specific_clauses'] = [dict(pi=k[2], url=q.get('url'), sha256=q.get('sha256'), span=span)
