@@ -3,7 +3,7 @@
 #SBATCH --job-name=study1107
 #SBATCH --partition=all
 #SBATCH --account=mltheory
-#SBATCH --exclude=node302
+#SBATCH --exclude=node302,node014
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=32G
 #SBATCH --time=00:59:00

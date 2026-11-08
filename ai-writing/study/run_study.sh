@@ -2,6 +2,7 @@
 # One command for the 12-school pre/post-ChatGPT study: ai-writing/study/run_study.sh [SNAPSHOT_ID] [MODE] [BASE]
 #   (no mode)        analyse the sealed snapshot SNAPSHOT_ID
 #   snapshot         rebuild + seal SNAPSHOT_ID from releases/latest first (no scoring of new papers)
+#   hetero           heterogeneity layer on the analysed snapshot (needs study_prep.py output): PI career ages (OpenAlex, ~2,500 credits) -> group attributes -> splits -> figures + HETEROGENEITY.md
 #   delta BASE       score and embed what the earlier build and snapshot BASE never covered, then build + seal SNAPSHOT_ID with that delta, then analyse:
 #                    list -> sections (4 shards) + texts -> GPU: abstract embeddings (7 models), v1 abstract flag, detector v3 passages -> per-paper table
 #                    -> snapshot build --delta-base BASE -> OpenAlex leftovers -> seal -> prep -> layers -> figures -> report (compared with BASE) -> ai_share.json
@@ -13,6 +14,14 @@ export STUDY_CODE=$HERE
 CPU="sbatch --parsable --export=ALL,STUDY_CODE=$HERE $HERE/study.slurm"
 GPU="sbatch --parsable --export=ALL,STUDY_CODE=$HERE,DELTA_BASE=${BASE:-$ID} $HERE/study_delta_gpu.slurm"
 dep=""
+if [ "$MODE" = hetero ]; then      # results/<ID>/heterogeneity/: study_hetero_authors.py (network, restartable) -> attr -> analysis -> report
+  X="--export=ALL,STUDY_CODE=$HERE"
+  h1=$(sbatch --parsable $X --cpus-per-task=1 --mem=2G --time=00:59:00 $HERE/study.slurm study_hetero_authors.py --id "$ID")
+  h2=$(sbatch --parsable --dependency=afterok:$h1 $X --cpus-per-task=2 --mem=16G --time=00:30:00 $HERE/study.slurm study_hetero_attr.py --id "$ID")
+  h3=$(sbatch --parsable --dependency=afterok:$h2 $X --cpus-per-task=8 --mem=@HETERO_MEM@ --time=00:59:00 $HERE/study.slurm study_hetero.py --id "$ID")
+  h4=$(sbatch --parsable --dependency=afterok:$h3 $X --cpus-per-task=2 --mem=8G --time=00:20:00 $HERE/study.slurm study_hetero_report.py --id "$ID")
+  echo "hetero chain: career $h1 attr $h2 analysis $h3 report $h4"; exit 0
+fi
 if [ "$MODE" = delta ]; then
   [ -n "$BASE" ] || { echo "delta needs BASE (the sealed snapshot whose membership and universe define the delta)"; exit 2; }
   l=$($CPU --cpus-per-task=4 --mem=24G --time=00:45:00 study_delta_build.py list --id "$BASE")
