@@ -1292,6 +1292,31 @@
     }
    },
    "additionalProperties": false
+  },
+  "paperSourceReview": {
+   "description": "Optional exact owned-publication pre-group title projection input, with full original eligible row/work and projected/held/no-eligible-source outcomes. No admission override.",
+   "type": "object",
+   "required": [
+    "path",
+    "sha256",
+    "decisions"
+   ],
+   "properties": {
+    "path": {
+     "type": "string"
+    },
+    "sha256": {
+     "type": "string",
+     "pattern": "^[0-9a-f]{64}$"
+    },
+    "decisions": {
+     "type": "array",
+     "items": {
+      "type": "object"
+     }
+    }
+   },
+   "additionalProperties": false
   }
  },
  "required": [

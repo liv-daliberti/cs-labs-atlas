@@ -540,6 +540,53 @@
     }
    },
    "additionalProperties": false
+  },
+  "sourceMetadataReviews": {
+   "description": "Applied title-only projections of complete already eligible originals before R16 grouping; original whole sources/rows retained in report.paperSourceReview.",
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": [
+     "id",
+     "input_sha256",
+     "source_work_sha256",
+     "owned_dblp_pid",
+     "owned_dblp_key",
+     "owned_publication_sha256",
+     "original_title",
+     "title"
+    ],
+    "properties": {
+     "id": {
+      "type": "string"
+     },
+     "input_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+     },
+     "source_work_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+     },
+     "owned_dblp_pid": {
+      "type": "string"
+     },
+     "owned_dblp_key": {
+      "type": "string"
+     },
+     "owned_publication_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+     },
+     "original_title": {
+      "type": "string"
+     },
+     "title": {
+      "type": "string"
+     }
+    },
+    "additionalProperties": false
+   }
   }
  },
  "required": [

@@ -62,6 +62,8 @@ def write(ctx):
         rep['memberPaperReview'] = ctx.member_paper_review
     if getattr(ctx, 'recovery_source_review', None) is not None:
         rep['recoverySourceReview'] = ctx.recovery_source_review
+    if getattr(ctx, 'paper_source_review', None) is not None:
+        rep['paperSourceReview'] = ctx.paper_source_review
     if getattr(ctx, 'paper_title_review', None) is not None:
         rep['paperTitleReview'] = ctx.paper_title_review
     if getattr(ctx, 'paper_claim_review', None) is not None:

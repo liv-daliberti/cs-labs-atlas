@@ -298,6 +298,7 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('census-additions.json', 'reviewed', 'census/{school}-additions.json', 'hierarchy/{school}/reviewed/census-additions.json'),
     ('paper-claim-review.json', 'reviewed', 'hierarchy/{school}/paper-claim-review.json', 'hierarchy/{school}/reviewed/paper-claim-review.json'),
     ('paper-title-review.json', 'reviewed', 'hierarchy/{school}/paper-title-review.json', 'hierarchy/{school}/reviewed/paper-title-review.json'),
+    ('paper-source-review.json', 'reviewed', 'hierarchy/{school}/paper-source-review.json', 'hierarchy/{school}/reviewed/paper-source-review.json'),
     ('member-paper-review.json', 'reviewed', 'hierarchy/{school}/member-paper-review.json', 'hierarchy/{school}/reviewed/member-paper-review.json'),
     ('cs-related-hand.json', 'reviewed', 'hierarchy/{school}/cs-related-hand.json', 'hierarchy/{school}/reviewed/cs-related-hand.json'),
     ('faculty-periods.json', 'reviewed', 'periods/{school}-faculty-periods.json', 'hierarchy/{school}/reviewed/faculty-periods.json'),

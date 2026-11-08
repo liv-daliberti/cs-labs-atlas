@@ -10,7 +10,7 @@ from .common import NOT_PAPERS, OWN_UNITS, SCHOOL_LOOSE, TODAY, WINDOW_START, ac
 from .identity import in_blocked_cluster
 from .names import NICK, _nick_pairs, byline_name, full_pair, toks, Name
 from .periods import _year, LISTING_BRIDGE, bridge_periods, listing_bridge_periods, contains, same_year, transition_side, transition_status
-from . import identity, primary_affiliations, recovery_reviews, reviewed_claims, title_enrichment
+from . import identity, primary_affiliations, recovery_reviews, reviewed_claims, source_metadata, title_enrichment
 from dblp_dump_pages import page_count  # noqa: E402  (DBLP's `pages` string -> number of pages; R-PAP-27)
 
 # Recovered lab-paper rows as (kind, identity label): hierarchy/<school>/<kind>-recovered.jsonl.gz (tools/dblp_recover.py,
@@ -1387,6 +1387,9 @@ def merge_editions(rows, n, preferred=None, diagnostics=None):
         dups = [d for r in g for d in r.get('_dups') or []]
         aliases.extend({k: d[k] for k in ('oa', 'work', 'doi', 'year', 'venue')} for d in dups)
         lead['editions'] = aliases
+        source_reviews = [d for r in g for d in r.get('sourceMetadataReviews') or []]
+        if source_reviews:
+            lead['sourceMetadataReviews'] = list({(d['id'], d['source_work_sha256']): d for d in source_reviews}.values())
         lead['_bylines'] = [(r['byline'], r['byline_school']) for r in g] + [(d['byline'], d['byline_school']) for d in dups]
         if counts[i]:
             lead['chapters_folded'] = counts[i]
@@ -1497,6 +1500,9 @@ def lab_papers(ctx):
     n['paper_rows_withheld_by_identity_review'] = sum(r['pi'] in held for r in rows)
     rows = [r for r in rows if r['pi'] not in held]
     rows = drop_namesakes(rows, pis, ctx.reviewed_oa, n)
+    # Exact owned-publication corrections precede quality, book folding and legacy R16 title components.
+    rows = source_metadata.apply(ctx, rows, lambda w, title, r: venue_version_date(
+        dict(w, title=title), ctx.dblp_venue[r['pi']])[0])
     rows, not_paper_samples = drop_not_papers(rows, ctx.dblp_nauth, n, ctx.dblp_pages, ctx.pid0)
     # Count distinct scientific chapters, not the number of OA/DBLP records describing one chapter. Full eligible
     # alternatives remain attached internally until the final edition selector; none are reconstructed from pointers.
