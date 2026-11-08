@@ -286,5 +286,79 @@
     "conflictingStartYears": [],
     "addedBy": "codex-top25-goal-20261107",
     "qualification": "Explicit school joining statement on the official faculty biography; its current professor appointment is independently recorded in the regular faculty directory. Date precision preserved; prior degrees and appointments at other universities are excluded."
+  },
+  {
+    "personId": "hkust_fac_albert-chi-shing-chung",
+    "name": "Albert Chi-Shing CHUNG 鍾志成",
+    "school": "hkust",
+    "unitIds": [],
+    "labStart": null,
+    "labEnd": null,
+    "labPeriodStatus": "unresolved",
+    "boundaryYearUncertain": true,
+    "boundaryMonthUncertain": true,
+    "conflictingStartYears": [],
+    "addedBy": "codex-top25-goal-1107",
+    "id": "hkust_chung_professor_2014_2021",
+    "facultyStart": "2014",
+    "facultyEnd": "2021",
+    "datePrecision": "year",
+    "endDatePrecision": "year",
+    "evidence": [
+      {
+        "url": "https://cse.hkust.edu.hk/~achung/",
+        "sha256": "cca1bc482a7c9b70540afa80920ad01050bc50e08ab0f90669b7cd8270a9f5ad",
+        "quote": "The Hong Kong University of Science and Technology , Clear Water Bay, Hong Kong Professor, Department of Computer Science and Engineering (2014 – 2021)",
+        "kind": "explicit_faculty_role_range",
+        "observedAt": "2026-11-07T18:31:17"
+      },
+      {
+        "url": "https://cse.hkust.edu.hk/~achung/",
+        "sha256": "cca1bc482a7c9b70540afa80920ad01050bc50e08ab0f90669b7cd8270a9f5ad",
+        "quote": "University of Exeter , Streatham Campus, Exeter, Devon, United Kingdom, Chair in Artificial Intelligence, Department of Computer Science (Jan 2022 – Aug 2023)",
+        "kind": "faculty_end_moved",
+        "observedAt": "2026-11-07T18:31:17"
+      }
+    ],
+    "facultyPeriodStatus": "supported_closed_interval",
+    "qualification": "Typed former HKUST CSE professor interval2014–2021. End-year boundary unresolved; do not infer exact2021departuredate. His1996HKUSTarrival was anMPhilstudent and2001event is not used to infer continuousfacultyservice. Explicit ExeterJan2022–Aug2023 is outsideHKUST; no bridging."
+  },
+  {
+    "personId": "hkust_fac_albert-chi-shing-chung",
+    "name": "Albert Chi-Shing CHUNG 鍾志成",
+    "school": "hkust",
+    "unitIds": [],
+    "labStart": null,
+    "labEnd": null,
+    "labPeriodStatus": "unresolved",
+    "boundaryYearUncertain": true,
+    "boundaryMonthUncertain": true,
+    "conflictingStartYears": [],
+    "addedBy": "codex-top25-goal-1107",
+    "id": "hkust_chung_professor_return_2023_08",
+    "facultyStart": "2023-08",
+    "facultyEnd": null,
+    "datePrecision": "month",
+    "endDatePrecision": null,
+    "ongoingAsOf": "2026-11-07",
+    "facultyLastConfirmed": "2026-11-07",
+    "evidence": [
+      {
+        "url": "https://cse.hkust.edu.hk/~achung/",
+        "sha256": "cca1bc482a7c9b70540afa80920ad01050bc50e08ab0f90669b7cd8270a9f5ad",
+        "quote": "Current Appointments The Hong Kong University of Science and Technology , Clear Water Bay, Hong Kong Professor, Department of Computer Science and Engineering (Aug 2023 – present)",
+        "kind": "explicit_current_faculty_role_range",
+        "observedAt": "2026-11-07T18:31:17"
+      },
+      {
+        "url": "https://cse.hkust.edu.hk/admin/people/faculty/profile/achung",
+        "sha256": "630600c507f5e9f89e74c2d487c944b0199429ae1bde9400d72885ddf25237f6",
+        "quote": "Albert Chi-Shing CHUNG",
+        "kind": "official_named_faculty_profile",
+        "observedAt": "2026-11-07T18:17:55"
+      }
+    ],
+    "facultyPeriodStatus": "supported_return_interval",
+    "qualification": "Own current appointments explicitly say CSE professor Aug2023–present. Capture bounds ongoingconfirmation only; Augustboundary remains unresolved and no Jan–Jul2023HKUSTappointment is inferred."
   }
 ]

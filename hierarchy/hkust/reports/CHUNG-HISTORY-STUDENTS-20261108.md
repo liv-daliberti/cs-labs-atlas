@@ -1,0 +1,9 @@
+# Albert Chung: disjoint faculty history and explicit PhD members
+
+The official named HKUST CSE profile links Albert C. S. Chung’s owned homepage. Its complete captured original body explicitly lists HKUST CSE Professor2014–2021; University of Exeter Chair in Artificial Intelligence Jan2022–Aug2023; and HKUST CSE ProfessorAug2023–present. Record two disjoint HKUST intervals. Do not turn the1996MPhilstudentarrival or2001early-careerevent into continuousfacultyservice. The2021departureyear and August2023returnmonth remain boundary-uncertain. The explicit Exeter appointment cannot be bridged as HKUST. The dataset window remains2016–2026.
+
+The same owned page explicitly names Ziyi HE and Wen JI under “Current Research Group Members at HKUST” and “Ph.D. (Doctor of Philosophy) Students”. Add two sourced doctoral memberships with empty year arrays. “Current” is the source heading; an undated roster captured in2026 does not establish a2026enrollment interval. It creates no verified author links or cross-labpersonmerge.
+
+The input retains all8previous faculty-period objects and all47previous researched memberships without alteration. New total is10periodobjects for9PIs, and49researched memberships. Existing canonical packages, all817-work trial bytes, catalogs and the IDregistry are unchanged. Actual full-native comparison and source/IDreview remain necessary before promotion.
+
+Source home: https://cse.hkust.edu.hk/~achung/ , SHA256 `cca1bc482a7c9b70540afa80920ad01050bc50e08ab0f90669b7cd8270a9f5ad`, captured2026-11-07T18:31:17. Source named profile: https://cse.hkust.edu.hk/admin/people/faculty/profile/achung , SHA256 `630600c507f5e9f89e74c2d487c944b0199429ae1bde9400d72885ddf25237f6`. Whole originalHTML and independentreview are preserved in scratch/hkust-roster-build-1108/chung-history-members/.
