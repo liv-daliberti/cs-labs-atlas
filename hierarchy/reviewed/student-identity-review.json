@@ -2246,96 +2246,417 @@
  ]
 },
 {
- "scope": "cross_lab",
- "school": "harvard",
- "verdict": "same_person",
- "canonical_name": "Yiyu Liu",
- "identity_url": "https://lau.yeeyu.org/",
- "memberships": [
-  {
-   "pi": "Juncheng Yang",
-   "person": "ext:harvard:yiyu-liu"
-  },
-  {
-   "pi": "Minlan Yu",
-   "person": "ext:harvard:yiyu-liu"
-  }
- ],
- "reviewed_by": "codex-harvard-id-holds-1108",
- "reviewed_at": "2026-11-08",
- "reason": "Each exact already-supported lab membership cites an original PI roster that literally links this full name to the same personal page. The privately captured primary page names the subject; its own bio confirms the supervisors/hosts where present. This adds only a normal source-bound identity URL anchor within this school. Preserve every role, year, source and candidate link; do not infer new advising roles or merge global names. Multiple issued IDs must hold for explicit review.",
- "evidence": [
-  {
-   "kind": "primary_person_page",
-   "url": "https://lau.yeeyu.org/",
-   "sha256": "45c9d8317b85f004d8bf5f7b570853e6604513bd205346eaff412ca3e0a1d9d1",
-   "quote": "Yiyu Liu",
-   "context": "advised by Prof. Juncheng Yang and Prof. Minlan Yu",
-   "source_packet": "scratch/harvard-id-holds-1108/source-captures.sqlite"
-  },
-  {
-   "kind": "roster_person_link",
-   "pi": "Juncheng Yang",
-   "person": "ext:harvard:yiyu-liu",
-   "url": "https://juncheng.seas.harvard.edu/students.html",
-   "sha256": "d9691a4cebe237ddc4f328fd3e401c4abc0031eb0541dc1b210eb840f2e0c5da",
-   "quote": "<a href=\"https://lau.yeeyu.org/\">Yiyu Liu</a>",
-   "captured_url": "https://juncheng.seas.harvard.edu/students#main-content",
-   "literal_href": "https://lau.yeeyu.org/"
-  },
-  {
-   "kind": "roster_person_link",
-   "pi": "Minlan Yu",
-   "person": "ext:harvard:yiyu-liu",
-   "url": "http://minlanyu.seas.harvard.edu/student.html",
-   "sha256": "887a7230d647dbb79edcb96fb8af754f5099dfaec6cafd169eca49a86e73e588",
-   "quote": "<a href=\"https://lau.yeeyu.org/\">Yiyu Liu</a>",
-   "captured_url": "http://minlanyu.seas.harvard.edu/student.html",
-   "literal_href": "https://lau.yeeyu.org/"
-  }
- ],
- "issued_id_review": {
-  "decision": "prepare_explicit_redirect_in_isolated_registry_only",
-  "survivor": "atl:p:60527c50658d",
-  "alias": "atl:p:95490dc1a019",
-  "source_registry_sha256": "76e1a4565c4afa7decb98c2e2539ac15150ba83e56bb6064f58942119c619554",
-  "expected_before_ids": [
+  "scope": "cross_lab",
+  "school": "harvard",
+  "verdict": "same_person",
+  "canonical_name": "Yiyu Liu",
+  "identity_url": "https://lau.yeeyu.org/",
+  "memberships": [
    {
-    "id": "atl:p:60527c50658d",
-    "kind": "person",
-    "minted_from": "p|name:harvard:yiyu-liu:https://juncheng.seas.harvard.edu/students.html",
-    "issued": "2026-11-07",
-    "status": "active",
-    "redirect_to": null,
-    "note": null
+    "pi": "Juncheng Yang",
+    "person": "ext:harvard:yiyu-liu"
    },
    {
-    "id": "atl:p:95490dc1a019",
-    "kind": "person",
-    "minted_from": "p|name:harvard:yiyu-liu:http://minlanyu.seas.harvard.edu/student.html",
-    "issued": "2026-11-07",
-    "status": "active",
-    "redirect_to": null,
-    "note": null
+    "pi": "Minlan Yu",
+    "person": "ext:harvard:yiyu-liu"
    }
   ],
-  "expected_before_anchors": [
-   {
-    "anchor": "p|name:harvard:yiyu-liu:https://juncheng.seas.harvard.edu/students.html",
-    "id": "atl:p:60527c50658d",
-    "kind": "person",
-    "first_seen": "2026-11-07"
-   },
-   {
-    "anchor": "p|name:harvard:yiyu-liu:http://minlanyu.seas.harvard.edu/student.html",
-    "id": "atl:p:95490dc1a019",
-    "kind": "person",
-    "first_seen": "2026-11-07"
-   }
-  ],
-  "why": "Both exact previously issued name/roster anchors refer to the one Yiyu Liu whose primary biography explicitly names Juncheng Yang and Minlan Yu. Both original PI rosters literally link his full name to the same primary page. Both IDs were issued2026-11-07; the standard earliest-issued then lexical-ID policy preserves60527c50658d and keeps95490dc1a019 as a resolvable redirect. Root explicitly authorized isolated source-bound redirect review on2026-11-08. This metadata does not waive the generic multiple-issued guard or execute a redirect during atlas_ids.run. Use only the existing assign redirect mechanism on a copied registry, retaining exact before/after/replay evidence. Root must review before any global application.",
   "reviewed_by": "codex-harvard-id-holds-1108",
-  "reviewed_at": "2026-11-08"
+  "reviewed_at": "2026-11-08",
+  "reason": "Each exact already-supported lab membership cites an original PI roster that literally links this full name to the same personal page. The privately captured primary page names the subject; its own bio confirms the supervisors/hosts where present. This adds only a normal source-bound identity URL anchor within this school. Preserve every role, year, source and candidate link; do not infer new advising roles or merge global names. Multiple issued IDs must hold for explicit review.",
+  "evidence": [
+   {
+    "kind": "primary_person_page",
+    "url": "https://lau.yeeyu.org/",
+    "sha256": "45c9d8317b85f004d8bf5f7b570853e6604513bd205346eaff412ca3e0a1d9d1",
+    "quote": "Yiyu Liu",
+    "context": "advised by Prof. Juncheng Yang and Prof. Minlan Yu",
+    "source_packet": "scratch/harvard-id-holds-1108/source-captures.sqlite"
+   },
+   {
+    "kind": "roster_person_link",
+    "pi": "Juncheng Yang",
+    "person": "ext:harvard:yiyu-liu",
+    "url": "https://juncheng.seas.harvard.edu/students.html",
+    "sha256": "d9691a4cebe237ddc4f328fd3e401c4abc0031eb0541dc1b210eb840f2e0c5da",
+    "quote": "<a href=\"https://lau.yeeyu.org/\">Yiyu Liu</a>",
+    "captured_url": "https://juncheng.seas.harvard.edu/students#main-content",
+    "literal_href": "https://lau.yeeyu.org/"
+   },
+   {
+    "kind": "roster_person_link",
+    "pi": "Minlan Yu",
+    "person": "ext:harvard:yiyu-liu",
+    "url": "http://minlanyu.seas.harvard.edu/student.html",
+    "sha256": "887a7230d647dbb79edcb96fb8af754f5099dfaec6cafd169eca49a86e73e588",
+    "quote": "<a href=\"https://lau.yeeyu.org/\">Yiyu Liu</a>",
+    "captured_url": "http://minlanyu.seas.harvard.edu/student.html",
+    "literal_href": "https://lau.yeeyu.org/"
+   }
+  ],
+  "issued_id_review": {
+   "decision": "prepare_explicit_redirect_in_isolated_registry_only",
+   "survivor": "atl:p:60527c50658d",
+   "aliases": [
+    "atl:p:95490dc1a019"
+   ],
+   "source_registry_sha256": "32f04b126f439a825b6cbaf370caf700af99a455e7b227458019e080c9668c73",
+   "source_registry_fingerprint": {
+    "schema_sha256": "857d07e996ea4f455fbcc6b67c08b6f77bfc39e03f479c449b527ed2f4218d3a",
+    "tables": {
+     "anchors": {
+      "rows": 386577,
+      "sha256": "3dd845a10871b400311850592ac6205f3ffb644b78637855b48c388c4d34439a"
+     },
+     "ids": {
+      "rows": 178921,
+      "sha256": "b6b1f5ff14ba26b4d04379bb1e4eed06eb1d7a01ad0fe58f2658325b47be3b22"
+     },
+     "meta": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+     }
+    }
+   },
+   "expected_before_ids": [
+    {
+     "id": "atl:p:60527c50658d",
+     "kind": "person",
+     "minted_from": "p|name:harvard:yiyu-liu:https://juncheng.seas.harvard.edu/students.html",
+     "issued": "2026-11-07",
+     "status": "active",
+     "redirect_to": null,
+     "note": null
+    },
+    {
+     "id": "atl:p:95490dc1a019",
+     "kind": "person",
+     "minted_from": "p|name:harvard:yiyu-liu:http://minlanyu.seas.harvard.edu/student.html",
+     "issued": "2026-11-07",
+     "status": "active",
+     "redirect_to": null,
+     "note": null
+    }
+   ],
+   "expected_before_anchors": [
+    {
+     "anchor": "p|name:harvard:yiyu-liu:https://juncheng.seas.harvard.edu/students.html",
+     "id": "atl:p:60527c50658d",
+     "kind": "person",
+     "first_seen": "2026-11-07"
+    },
+    {
+     "anchor": "p|name:harvard:yiyu-liu:http://minlanyu.seas.harvard.edu/student.html",
+     "id": "atl:p:95490dc1a019",
+     "kind": "person",
+     "first_seen": "2026-11-07"
+    }
+   ],
+   "reviewed_by": "codex-top25-goal-1107",
+   "reviewed_at": "2026-11-08",
+   "why": "Both exact native memberships independently link the complete name to the same primary named person page. Full original captures independently replayed. Keep the earliest-issued then lexical ID; aliases remain resolvable. Explicit review only; no automatic multiple-issued guard waiver."
+  }
+ },
+ {
+  "scope": "cross_lab",
+  "school": "cmu",
+  "native_person": "ext:cmu:milijana-surbatovich",
+  "verdict": "same_person",
+  "canonical_name": "Milijana Surbatovich",
+  "identity_url": "https://msurbatovich.github.io/",
+  "memberships": [
+   {
+    "pi": "Limin Jia",
+    "person": "ext:cmu:milijana-surbatovich"
+   },
+   {
+    "pi": "Brandon Lucia",
+    "person": "ext:cmu:milijana-surbatovich"
+   }
+  ],
+  "evidence": [
+   {
+    "kind": "roster_person_link",
+    "pi": "Limin Jia",
+    "person": "ext:cmu:milijana-surbatovich",
+    "url": "https://www.andrew.cmu.edu/user/liminjia/",
+    "sha256": "68160a9136a56bc584cf0fe76fdd4cd1f1195b34d86959ce3a21297be72a405f",
+    "quote": "<a href=\"https://msurbatovich.github.io/\">Milijana Surbatovich</a>",
+    "literal_href": "https://msurbatovich.github.io/",
+    "resolved_exact_or_documented_empty_root_only": "https://msurbatovich.github.io/",
+    "DOM_serialization": "Complete actual original DOM anchor, retaining all source attributes; not asserted as original byte substring"
+   },
+   {
+    "kind": "roster_person_link",
+    "pi": "Brandon Lucia",
+    "person": "ext:cmu:milijana-surbatovich",
+    "url": "https://abstract.ece.cmu.edu/people.html",
+    "sha256": "e99b011c492cdf98e2eb140c6e52211e79c4e8bfed8f11993e70ae54094e342b",
+    "quote": "<a href=\"https://msurbatovich.github.io/\">Milijana Surbatovich</a>",
+    "literal_href": "https://msurbatovich.github.io/",
+    "resolved_exact_or_documented_empty_root_only": "https://msurbatovich.github.io/",
+    "DOM_serialization": "Complete actual original DOM anchor, retaining all source attributes; not asserted as original byte substring"
+   },
+   {
+    "kind": "primary_person_page",
+    "url": "https://msurbatovich.github.io/",
+    "sha256": "f1ef7fc0888291d92b60364281c5be4ef9dd7f46c0bfba2540f992f4bfb3d0ce",
+    "quote": "About me | Milijana Surbatovich Milijana Surbatovich Milijana's personal web page View My GitHub Profile About me I am an Assistant Professor in the CS department at the University of Maryland , also affiliated with the Maryland Cybersecurity Center and UMIACS. My research interests are in programming languages, formal methods, and systems for non-",
+    "observation_unix": 1794177938.5048804
+   }
+  ],
+  "reviewed_by": "codex-top25-goal-1107",
+  "reviewed_at": "2026-11-08",
+  "reason": "Independent original-byte review: both exact existing native memberships cite original PI rosters literally linking this full name to the same named primary page. Identity only: preserve all role, year, source and paper-link facts. The separate explicit issued-ID review is required; no automatic guard waiver.",
+  "issued_id_review": {
+   "decision": "prepare_explicit_redirect_in_isolated_registry_only",
+   "survivor": "atl:p:05fb41b81a90",
+   "aliases": [
+    "atl:p:ed1103fab904"
+   ],
+   "source_registry_sha256": "32f04b126f439a825b6cbaf370caf700af99a455e7b227458019e080c9668c73",
+   "source_registry_fingerprint": {
+    "schema_sha256": "857d07e996ea4f455fbcc6b67c08b6f77bfc39e03f479c449b527ed2f4218d3a",
+    "tables": {
+     "anchors": {
+      "rows": 386577,
+      "sha256": "3dd845a10871b400311850592ac6205f3ffb644b78637855b48c388c4d34439a"
+     },
+     "ids": {
+      "rows": 178921,
+      "sha256": "b6b1f5ff14ba26b4d04379bb1e4eed06eb1d7a01ad0fe58f2658325b47be3b22"
+     },
+     "meta": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+     }
+    }
+   },
+   "expected_before_ids": [
+    {
+     "id": "atl:p:05fb41b81a90",
+     "kind": "person",
+     "minted_from": "p|name:cmu:milijana-surbatovich:https://www.andrew.cmu.edu/user/liminjia/",
+     "issued": "2026-10-30",
+     "status": "active",
+     "redirect_to": null,
+     "note": null
+    },
+    {
+     "id": "atl:p:ed1103fab904",
+     "kind": "person",
+     "minted_from": "p|name:cmu:milijana-surbatovich:https://abstract.ece.cmu.edu/people.html",
+     "issued": "2026-10-30",
+     "status": "active",
+     "redirect_to": null,
+     "note": null
+    }
+   ],
+   "expected_before_anchors": [
+    {
+     "anchor": "p|name:cmu:milijana-surbatovich:https://www.andrew.cmu.edu/user/liminjia/",
+     "id": "atl:p:05fb41b81a90",
+     "kind": "person",
+     "first_seen": "2026-10-30"
+    },
+    {
+     "anchor": "p|name:cmu:milijana-surbatovich:https://abstract.ece.cmu.edu/people.html",
+     "id": "atl:p:ed1103fab904",
+     "kind": "person",
+     "first_seen": "2026-10-30"
+    }
+   ],
+   "reviewed_by": "codex-top25-goal-1107",
+   "reviewed_at": "2026-11-08",
+   "why": "Both exact native memberships independently link the complete name to the same primary named person page. Full original captures independently replayed. Keep the earliest-issued then lexical ID; aliases remain resolvable. Explicit review only; no automatic multiple-issued guard waiver."
+  }
+ },
+ {
+  "scope": "cross_lab",
+  "school": "uchicago",
+  "native_person": "ext:uchicago:raphael-rossellini",
+  "verdict": "same_person",
+  "canonical_name": "Raphael Rossellini",
+  "identity_url": "https://rrross.github.io/",
+  "memberships": [
+   {
+    "pi": "Rina Foygel Barber",
+    "person": "ext:uchicago:raphael-rossellini"
+   },
+   {
+    "pi": "Rebecca Willett",
+    "person": "ext:uchicago:raphael-rossellini"
+   }
+  ],
+  "evidence": [
+   {
+    "kind": "roster_person_link",
+    "pi": "Rina Foygel Barber",
+    "person": "ext:uchicago:raphael-rossellini",
+    "url": "https://web.archive.org/web/20260618181709id_/https://rinafb.github.io/group/",
+    "sha256": "5fc42d7396acf607e5c1d7c36f7611ce42e200895edb94d734dc67681706cd3f",
+    "quote": "<a href=\"https://rrross.github.io/\">Raphael Rossellini</a>",
+    "literal_href": "https://rrross.github.io/",
+    "resolved_exact_or_documented_empty_root_only": "https://rrross.github.io/",
+    "DOM_serialization": "Complete actual original DOM anchor, retaining all source attributes; not asserted as original byte substring"
+   },
+   {
+    "kind": "roster_person_link",
+    "pi": "Rebecca Willett",
+    "person": "ext:uchicago:raphael-rossellini",
+    "url": "https://voices.uchicago.edu/willett/research/group-members/",
+    "sha256": "30608eb111fb4f058b24dca3152a29386ca608ffe9a7ec5476804e4e8cec1e18",
+    "quote": "<a href=\"https://rrross.github.io\">Raphael Rossellini</a>",
+    "literal_href": "https://rrross.github.io",
+    "resolved_exact_or_documented_empty_root_only": "https://rrross.github.io",
+    "DOM_serialization": "Complete actual original DOM anchor, retaining all source attributes; not asserted as original byte substring"
+   },
+   {
+    "kind": "primary_person_page",
+    "url": "https://rrross.github.io/",
+    "sha256": "42c2c48a8aff09ccde57e9b626f3cfe524572a802897ec914943189eebb60eed",
+    "quote": "Raphael Rossellini Raphael Rossellini Papers CV Raphael Rossellini UChicago Stats PhD Student Links LinkedIn Google Scholar ORCID I am a fifth-year Statistics PhD student at UChicago working with Rebecca Willett and Rina Foygel Barber . I develop statistical theory and methods for reliable probabilistic prediction and uncertainty quantification. My",
+    "observation_unix": 1794177980.8935761
+   }
+  ],
+  "reviewed_by": "codex-top25-goal-1107",
+  "reviewed_at": "2026-11-08",
+  "reason": "Independent original-byte review: both exact existing native memberships cite original PI rosters literally linking this full name to the same named primary page. Identity only: preserve all role, year, source and paper-link facts. The separate explicit issued-ID review is required; no automatic guard waiver.",
+  "issued_id_review": {
+   "decision": "prepare_explicit_redirect_in_isolated_registry_only",
+   "survivor": "atl:p:496b2d19e3ec",
+   "aliases": [
+    "atl:p:fffd531c2508"
+   ],
+   "source_registry_sha256": "32f04b126f439a825b6cbaf370caf700af99a455e7b227458019e080c9668c73",
+   "source_registry_fingerprint": {
+    "schema_sha256": "857d07e996ea4f455fbcc6b67c08b6f77bfc39e03f479c449b527ed2f4218d3a",
+    "tables": {
+     "anchors": {
+      "rows": 386577,
+      "sha256": "3dd845a10871b400311850592ac6205f3ffb644b78637855b48c388c4d34439a"
+     },
+     "ids": {
+      "rows": 178921,
+      "sha256": "b6b1f5ff14ba26b4d04379bb1e4eed06eb1d7a01ad0fe58f2658325b47be3b22"
+     },
+     "meta": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+     }
+    }
+   },
+   "expected_before_ids": [
+    {
+     "id": "atl:p:496b2d19e3ec",
+     "kind": "person",
+     "minted_from": "p|name:uchicago:raphael-rossellini:https://web.archive.org/web/20260618181709id_/https://rinafb.github.io/group/",
+     "issued": "2026-11-05",
+     "status": "active",
+     "redirect_to": null,
+     "note": null
+    },
+    {
+     "id": "atl:p:fffd531c2508",
+     "kind": "person",
+     "minted_from": "p|name:uchicago:raphael-rossellini:https://voices.uchicago.edu/willett/research/group-members/",
+     "issued": "2026-11-05",
+     "status": "active",
+     "redirect_to": null,
+     "note": null
+    }
+   ],
+   "expected_before_anchors": [
+    {
+     "anchor": "p|name:uchicago:raphael-rossellini:https://web.archive.org/web/20260618181709id_/https://rinafb.github.io/group/",
+     "id": "atl:p:496b2d19e3ec",
+     "kind": "person",
+     "first_seen": "2026-11-05"
+    },
+    {
+     "anchor": "p|name:uchicago:raphael-rossellini:https://voices.uchicago.edu/willett/research/group-members/",
+     "id": "atl:p:fffd531c2508",
+     "kind": "person",
+     "first_seen": "2026-11-05"
+    }
+   ],
+   "reviewed_by": "codex-top25-goal-1107",
+   "reviewed_at": "2026-11-08",
+   "why": "Both exact native memberships independently link the complete name to the same primary named person page. Full original captures independently replayed. Keep the earliest-issued then lexical ID; aliases remain resolvable. Explicit review only; no automatic multiple-issued guard waiver."
+  }
+ },
+ {
+  "scope": "cross_lab",
+  "identity_basis": "typed_repository_author",
+  "school": "epfl",
+  "verdict": "same_person",
+  "canonical_name": "Vidit",
+  "memberships": [
+   {
+    "pi": "Pascal Fua",
+    "person": "ext:epfl:vidit",
+    "native_sources": [
+     {
+      "url": "https://infoscience.epfl.ch/server/api/discover/search/objects?query=dc.type%3A%22thesis%3A%3Adoctoral+thesis%22&dsoType=ITEM&size=100&page=3&f.dateIssued=%5B2023+TO+2023%5D%2Cequals&sort=dc.date.accessioned%2CASC",
+      "sha256": "ca9a82057352cdc02e2199b9c0d18b17a6a3e97a5ed9e0e2e307a791857c7f62",
+      "quote": "\"dc.contributor.advisor\" : [ { \"value\" : \"Fua, Pascal\", \"language\" : null, \"authority\" : \"26ee9199-5a82-4097-90f0-e9eb052de875\", \"confidence\" : 600, \"place\" : 0 }, { \"value\" : \"Salzmann, Mathieu\", \"language\" : null, \"authority\" : \"191ffa93-13b8-4573-be61-28f10aabf314\", \"confidence\" : 600, \"place\" : 1 } ], \"dc.contributor.author\" : [ { \"value\" : \"Vidit\""
+     }
+    ]
+   },
+   {
+    "pi": "Mathieu Salzmann",
+    "person": "ext:epfl:vidit",
+    "native_sources": [
+     {
+      "url": "https://infoscience.epfl.ch/server/api/discover/search/objects?query=dc.type%3A%22thesis%3A%3Adoctoral+thesis%22&dsoType=ITEM&size=100&page=3&f.dateIssued=%5B2023+TO+2023%5D%2Cequals&sort=dc.date.accessioned%2CASC",
+      "sha256": "ca9a82057352cdc02e2199b9c0d18b17a6a3e97a5ed9e0e2e307a791857c7f62",
+      "quote": "\"dc.contributor.advisor\" : [ { \"value\" : \"Fua, Pascal\", \"language\" : null, \"authority\" : \"26ee9199-5a82-4097-90f0-e9eb052de875\", \"confidence\" : 600, \"place\" : 0 }, { \"value\" : \"Salzmann, Mathieu\", \"language\" : null, \"authority\" : \"191ffa93-13b8-4573-be61-28f10aabf314\", \"confidence\" : 600, \"place\" : 1 } ], \"dc.contributor.author\" : [ { \"value\" : \"Vidit\""
+     }
+    ]
+   }
+  ],
+  "reviewed_by": "codex-top25-goal-1107",
+  "reviewed_at": "2026-11-08",
+  "reason": "The exact single-author repository thesis record names this full public mononym and a source-issued author authority UUID, together with both typed named adviser authorities. This is a school-scoped repository identity proof, without an invented surname, global author ID, role/year change or issued-ID redirect.",
+  "repository_author": {
+   "namespace": "infoscience.epfl.ch",
+   "source_json_pointer": "/_embedded/searchResult/_embedded/objects/75/_embedded/indexableObject",
+   "item_id": "7dc2f81a-86ad-41df-a3be-819dbfb24eda",
+   "handle": "20.500.14299/201880",
+   "author": {
+    "value": "Vidit",
+    "language": null,
+    "authority": "68cb81ee-a70a-46b9-807d-ca48ac423c6f",
+    "confidence": 600,
+    "place": 0
+   },
+   "advisor_bindings": [
+    {
+     "pi": "Pascal Fua",
+     "source_name": "Fua, Pascal",
+     "authority": "26ee9199-5a82-4097-90f0-e9eb052de875"
+    },
+    {
+     "pi": "Mathieu Salzmann",
+     "source_name": "Salzmann, Mathieu",
+     "authority": "191ffa93-13b8-4573-be61-28f10aabf314"
+    }
+   ],
+   "source_record_sha256": "13047e38e5a4231211179123f4cc55428906399451a706995bf72484e8c5122a"
+  },
+  "evidence": [
+   {
+    "kind": "typed_repository_author_record",
+    "url": "https://infoscience.epfl.ch/server/api/discover/search/objects?query=dc.type%3A%22thesis%3A%3Adoctoral+thesis%22&dsoType=ITEM&size=100&page=3&f.dateIssued=%5B2023+TO+2023%5D%2Cequals&sort=dc.date.accessioned%2CASC",
+    "sha256": "ca9a82057352cdc02e2199b9c0d18b17a6a3e97a5ed9e0e2e307a791857c7f62",
+    "quote": "\"dc.contributor.advisor\" : [ { \"value\" : \"Fua, Pascal\", \"language\" : null, \"authority\" : \"26ee9199-5a82-4097-90f0-e9eb052de875\", \"confidence\" : 600, \"place\" : 0 }, { \"value\" : \"Salzmann, Mathieu\", \"language\" : null, \"authority\" : \"191ffa93-13b8-4573-be61-28f10aabf314\", \"confidence\" : 600, \"place\" : 1 } ], \"dc.contributor.author\" : [ { \"value\" : \"Vidit\", \"language\" : null, \"authority\" : \"68cb81ee-a70a-46b9-807d-ca48ac423c6f\", \"confidence\" : 600, \"place\" : 0 } ]"
+   },
+   {
+    "kind": "repository_item_id",
+    "url": "https://infoscience.epfl.ch/server/api/discover/search/objects?query=dc.type%3A%22thesis%3A%3Adoctoral+thesis%22&dsoType=ITEM&size=100&page=3&f.dateIssued=%5B2023+TO+2023%5D%2Cequals&sort=dc.date.accessioned%2CASC",
+    "sha256": "ca9a82057352cdc02e2199b9c0d18b17a6a3e97a5ed9e0e2e307a791857c7f62",
+    "quote": "\"id\" : \"7dc2f81a-86ad-41df-a3be-819dbfb24eda\""
+   }
+  ]
  }
-}
 ]
