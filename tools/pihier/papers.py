@@ -10,7 +10,7 @@ from .common import OWN_UNITS, SCHOOL_LOOSE, TODAY, WINDOW_START, accepted_addit
 from .identity import in_blocked_cluster
 from .names import NICK, _nick_pairs, byline_name, full_pair, toks
 from .periods import _year, LISTING_BRIDGE, bridge_periods, listing_bridge_periods, contains, same_year, transition_side, transition_status
-from . import identity
+from . import identity, reviewed_claims
 from dblp_dump_pages import page_count  # noqa: E402  (DBLP's `pages` string -> number of pages; R-PAP-27)
 
 # Recovered lab-paper rows as (kind, identity label): hierarchy/<school>/<kind>-recovered.jsonl.gz (tools/dblp_recover.py,
@@ -956,7 +956,7 @@ def edition_source(work):
                 source_type=(location.get('source') or {}).get('type'))
 
 
-def merge_editions(rows, n):
+def merge_editions(rows, n, preferred=None):
     """R-PAP-16: one record per unique paper and lab; editions share a normalized title, the published edition leads,
     and every edition's byline is kept for the links (`_bylines`)."""
     # one record per unique paper and lab: editions (arXiv preprint, conference, journal version) share a normalized
@@ -985,7 +985,8 @@ def merge_editions(rows, n):
         grouped[key].append(r)
     rows = []
     for g in grouped.values():
-        g.sort(key=rank); lead = dict(g[0])
+        selected = preferred(g) if preferred else None
+        g.sort(key=lambda r: (0 if r is selected else 1, rank(r))); lead = dict(g[0])
         dups = [d for x in g for d in x.get('_dups') or []]
         lead['editions'] = [dict(oa=x['oa'], work=x['work'], doi=x.get('doi'), year=x['year'], venue=x.get('venue')) for x in g[1:]] \
             + [{k_: d[k_] for k_ in ('oa', 'work', 'doi', 'year', 'venue')} for d in dups]
@@ -1099,7 +1100,7 @@ def lab_papers(ctx):
     n['book_chapters_folded_by_doi_prefix'] = nv0 - sum(r.get('type') == 'book-chapter' and not r.get('venue') for r in rows)
     if translated is not None:
         n['translated_editions_dropped'] = translated
-    rows = merge_editions(rows, n)
+    rows = merge_editions(rows, n, preferred=lambda group: reviewed_claims.preferred_edition(ctx, group))
     n['lab_papers'] = len(rows); n['lab_papers_in_collection'] = sum(bool(r['work']) for r in rows); n['lab_papers_new'] = n['lab_papers'] - n['lab_papers_in_collection']
     n['lab_papers_by_period'] = sum('periodId' in r['appointment'] for r in rows); n['lab_papers_by_listing'] = n['lab_papers'] - n['lab_papers_by_period']
     n.update({'identity:' + k: v for k, v in collections.Counter(r['identity'] for r in rows).items()})

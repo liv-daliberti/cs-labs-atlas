@@ -119,6 +119,14 @@ One record per unique paper and lab: editions (preprint, conference, journal) sh
 edition leads (a non-arXiv DOI, then a collection work). A second OpenAlex record of the same collection work is kept as
 an edition, with its own byline.
 
+A sourced `paper-claim-review.json` merge can name the preferred edition by exact OA/DOI/work identifiers
+(2026-11-08). When source and target already belong to the same native edition group, the target is selected while its
+complete, normally eligible row still exists, before compact edition pointers replace it. The target must independently
+pass identity, own school, faculty time and paper-type gates; a review never admits it from title similarity or reconstructs
+missing affiliation/appointment fields. Conflicting targets, ambiguous selectors and cycles stop the build. A missing
+complete target holds the source; a folded pointer alone cannot authorize a new lead. All eligible bylines remain available
+for candidate student links. Different-title reviewed merges retain their existing eligible-target handling.
+
 ### R-PAP-17 — not papers
 Datasets, paratext, peer reviews, errata, supplementary materials, grants, standards, retractions, reference entries
 and library guides are not papers (`NOT_PAPERS`).

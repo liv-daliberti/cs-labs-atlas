@@ -96,6 +96,62 @@ def excluded(ctx, pi, work):
     return bool(selected)
 
 
+def _primary_matches(row, selector):
+    """Match only this complete eligible record, never a compact folded-edition pointer."""
+    return matches(dict(row, editions=[]), selector)
+
+
+def preferred_edition(ctx, group):
+    """Resolve exact reviewed merge targets while complete normally eligible edition records still exist.
+
+    This chooses metadata already admitted by native identity/school/time/type gates. It cannot reconstruct a lead
+    from compact edition fields, admit a missing target or use a title as an identifier. Other-title merges still run
+    in apply(); their native rows remain independently eligible.
+    """
+    edges, selected = {}, {}
+
+    def find(d, selector):
+        found = [i for i, r in enumerate(group) if r['pi'] == d['pi'] and _primary_matches(r, selector)]
+        if len(found) > 1:
+            raise ValueError('ambiguous preferred edition selector: ' + d['id'])
+        return found[0] if found else None
+
+    for d in prepare(ctx):
+        if d['decision'] != 'merge':
+            continue
+        source = find(d, d['match'])
+        if source is None:
+            continue
+        target = find(d, d['into'])
+        if target is None:
+            continue  # missing/other-group targets are handled conservatively by apply()
+        if source in selected:
+            raise ValueError('multiple preferred destinations for one eligible claim: ' + d['id'])
+        selected[source] = d
+        if source != target:
+            edges[source] = target
+    if not selected:
+        return None
+
+    def root(i, trail=()):
+        if i in trail:
+            raise ValueError('cycle in reviewed preferred editions')
+        return root(edges[i], trail + (i,)) if i in edges else i
+
+    roots = {root(i) for i in selected}
+    if len(roots) != 1:
+        raise ValueError('conflicting reviewed preferred targets in one eligible edition group')
+    chosen = group[roots.pop()]
+    targets = getattr(ctx, '_paper_preferred_targets', {})
+    target = {k: chosen.get(k) for k in ('oa', 'doi', 'work') if chosen.get(k)}
+    target = _selector(target)
+    for d in selected.values():
+        targets[d['id']] = target
+    ctx._paper_preferred_targets = targets
+    ctx.n['paper_review_preferred_edition_groups'] += 1
+    return chosen
+
+
 def _joined(target, source):
     """Keep the accepted target's metadata and every eligible source/target edition byline."""
     result = copy.deepcopy(target)
@@ -152,7 +208,17 @@ def apply(ctx):
         if source is None:
             continue
         if source == target:
-            outcomes[d['id']]['outcome'] = 'already_merged'; continue
+            preferred = getattr(ctx, '_paper_preferred_targets', {}).get(d['id'])
+            if _primary_matches(rows[source], d['into']) or (preferred and _primary_matches(rows[source], preferred)):
+                outcomes[d['id']]['outcome'] = 'preferred_edition_selected' if preferred else 'already_merged'
+                continue
+            # Both identifiers survive only as one folded row, whose lead is not the requested target. The full
+            # target metadata is unavailable here; never synthesize an affiliation/appointment from edition fields.
+            if source in edges or source in missing:
+                raise ValueError('multiple merge destinations for one eligible claim: ' + d['id'])
+            merge_sources[source] = d; missing.add(source)
+            outcomes[d['id']]['outcome'] = 'held_missing_preferred_target_record'
+            continue
         if source in edges or source in missing:
             raise ValueError('multiple merge destinations for one eligible claim: ' + d['id'])
         merge_sources[source] = d
@@ -174,7 +240,9 @@ def apply(ctx):
     for i, target in destinations.items():
         d = merge_sources[i]
         if target is None:
-            outcomes[d['id']]['outcome'] = 'held_missing_merge_target'; held_missing += 1
+            if outcomes[d['id']]['outcome'] != 'held_missing_preferred_target_record':
+                outcomes[d['id']]['outcome'] = 'held_missing_merge_target'
+            held_missing += 1
         else:
             kept[target] = _joined(kept[target], rows[i])
             outcomes[d['id']]['outcome'] = 'merged'; merged += 1
@@ -185,6 +253,7 @@ def apply(ctx):
     n['paper_review_rows_held'] = sum(v == 'hold' for v in actions.values()) + held_missing
     n['paper_review_rows_rejected'] = sum(v == 'reject' for v in actions.values())
     n['paper_review_editions_merged'] = merged
+    n['paper_review_preferred_editions_selected'] = sum(x['outcome'] == 'preferred_edition_selected' for x in outcomes.values())
     n['paper_review_decisions_without_current_claim'] = sum(x['outcome'] == 'no_current_claim' for x in outcomes.values())
     n['lab_papers'] = len(ctx.rows)
     n['lab_papers_in_collection'] = sum(bool(r.get('work')) for r in ctx.rows)
