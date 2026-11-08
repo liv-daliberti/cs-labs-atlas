@@ -179,6 +179,37 @@ def authorship_identity(ctx, pi, w, a, cw):
     return ident
 
 
+def _advisee_coauthor(advisee_names, others, pi_full):
+    """Index possible Name.match surname/mono keys, retaining its exact final verdict.
+
+    Name.match only compares these candidate family keys (or an exact single-name form). The index avoids
+    normalizing every byline once per advisee; it neither removes authors nor changes the full-name guard.
+    """
+    if not advisee_names:
+        return False
+    by_family = collections.defaultdict(list)
+    by_mono = collections.defaultdict(list)
+    for raw in others:
+        if not pi_full:
+            full_tokens = nosuffix(toks(byline_name(raw)))
+            if len(full_tokens) < 2 or len(full_tokens[0]) <= 1:
+                continue
+        t = nosuffix(name_toks(raw))
+        if len(t) == 1:
+            by_mono[t[0]].append(raw)
+        elif len(t) >= 2:
+            for family in {t[-1], ''.join(t[1:]), ''.join(t[-2:])}:
+                by_family[family].append(raw)
+    for name in advisee_names:
+        for family in {last for _, last in name.forms}:
+            if any(name.match(raw) for raw in by_family.get(family, ())):
+                return True
+        for mono in name.mono:
+            if any(name.match(raw) for raw in by_mono.get(mono, ())):
+                return True
+    return False
+
+
 def _authorship_identity(ctx, pi, w, a, cw):
     """R-PAP-04, R-PAP-07: the identity that makes authorship `a` of work `w` (collection work `cw`) the PI's, in order,
     or None. An id reviewed as someone else's (or another PI's reviewed id) is never the PI."""
@@ -218,7 +249,7 @@ def _authorship_identity(ctx, pi, w, a, cw):
     # ... unless the initials spell every given name of a PI with two or more ('M.T. Islam' is Md Tauhidul Islam;
     # 'Y. L. Chen' is still not Yuxin Chen, 'M. Wang' still not Mengdi Wang) (2026-10-29, owner: best judgement)
     pi_full = full(pi_raw) or all_initials(pid0[pi].get('names') or [pi], pi_raw)
-    if any(an.match(o) and (pi_full or full(o)) for an in advisee_names[pi] for o in others):
+    if _advisee_coauthor(advisee_names[pi], others, pi_full):
         return 'advisee_coauthor'
     return None
 

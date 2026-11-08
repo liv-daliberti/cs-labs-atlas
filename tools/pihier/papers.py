@@ -573,6 +573,12 @@ def school_affiliation_explicitly_other_author(work, authorship, aff):
     A structured institution list can repeat a combined affiliation block. Only clear named qualifiers contradict it;
     unqualified text, unknown names and ambiguous ownership retain the existing behavior. No person identity is decided.
     """
+    # Without an explicit Dr/Prof qualifier, the existing parser can only return unknown/empty assignments.
+    # Avoid normalizing the entire byline in this common case, especially on large collaborations.
+    if not any(aff.search(raw) and any(AUTHOR_AFFILIATION_PREFIX.match(m[1])
+                                      for m in re.finditer(r'\(([^()]*)\)', raw))
+               for raw in authorship.get('raw_affiliation_strings') or []):
+        return False
     authors = work.get('authorships') or []
     target_names = _affiliation_author_names(authorship)
     targets = {i for i, author in enumerate(authors)
