@@ -598,7 +598,9 @@ def school_affiliation_explicitly_other_author(work, authorship, aff):
     return bool(assignments) and all(a == 'other' for a in assignments)
 
 
-def _authorship_school_via(work, authorship, inst, aff):
+def _authorship_school_via(work, authorship, inst, aff, school=None):
+    if school is not None and excluded_school_only(authorship, school):
+        return []
     if school_affiliation_explicitly_other_author(work, authorship, aff):
         return []
     return [i.get('display_name') for i in authorship.get('institutions') or []
@@ -624,7 +626,7 @@ def school_basis(ctx, pi, w, a, ident, page1):
     advisee_names, adv_full, from_pw = ctx.advisee_names, ctx.adv_full, ctx.from_pw
     p = ctx.pid0[pi]
     bystander = school_affiliation_explicitly_other_author(w, a, aff)
-    via = _authorship_school_via(w, a, inst, aff)
+    via = _authorship_school_via(w, a, inst, aff, school=school)
     if page1 and not a.get('institutions') and not a.get('raw_affiliation_strings'):
         via = [f"page 1 ({page1['how']}): " + ' … '.join(page1['quotes'])]  # the paper's own first page ties the school to the PI
     elif not via and tied.get(w['id']) and any(toks(n_)[-1] in toks(' '.join(tied[w['id']]['quotes'])) for n_ in p['names'] if toks(n_)):
@@ -647,14 +649,14 @@ def school_basis(ctx, pi, w, a, ident, page1):
         # school, so the unit must be the PI's own and one of the two must hold)
         aid_ = (a.get('author') or {}).get('id')
         anchored_ok = (ident not in (None, 'advisee_coauthor', 'advisee_anchored_author_id')) or bool(aid_ and anchored[pi].get(aid_, 0) >= 1)
-        school_co = any(x is not a and _authorship_school_via(w, x, inst, aff) for x in w.get('authorships') or [])
+        school_co = any(x is not a and _authorship_school_via(w, x, inst, aff, school=school) for x in w.get('authorships') or [])
         if bare_unit_school(raws_, pi_units[pi], school_units, anchored_ok, school_co):
             via = [f'school unit on the PI authorship: {raws_[0]}']; n['school_via_bare_unit'] += 1
     if not via and not a.get('institutions') and not any(names_other_inst(z, school) for z in a.get('raw_affiliation_strings') or []):
         # the PI's authorship names no institution (none, or a department only, as recent preprints do) and a stated
         # advisee of the PI on the same byline lists the school: the paper is the lab's (identity and appointment still apply)
         co = [x.get('raw_author_name') for x in w.get('authorships') or [] if x is not a and x.get('raw_author_name')
-              and _authorship_school_via(w, x, inst, aff)
+              and _authorship_school_via(w, x, inst, aff, school=school)
               and any(an.match(byline_name(x['raw_author_name'])) for an in advisee_names[pi])]
         if co:
             via = [f'advisee at the school on the byline: {co[0]}']; n['school_via_advisee_coauthor'] += 1
@@ -673,7 +675,7 @@ def school_basis(ctx, pi, w, a, ident, page1):
         # that year name the school at least twice. Strong identity, the appointment check below and the paper-type checks still
         # apply. Not the unaffiliated route: a byline with no institution at all (pi-0) is not touched.
         kinds_ = {i.get('type') for i in a['institutions']}
-        school_co = any(x is not a and _authorship_school_via(w, x, inst, aff) for x in w.get('authorships') or [])
+        school_co = any(x is not a and _authorship_school_via(w, x, inst, aff, school=school) for x in w.get('authorships') or [])
         if kinds_ <= CROSS_KINDS and school_co:
             via = ['cross-affiliated byline: PI credited to ' + ', '.join(i.get('display_name') or '?' for i in a['institutions'][:2])
                    + '; a co-author is credited to the school']
@@ -804,7 +806,7 @@ def rows_from_hits(ctx):
                     oa=w['id'], work=cw, doi=ndoi(w.get('doi')), year=w.get('publication_year'), venue=((w.get('primary_location') or {}).get('source') or {}).get('display_name'),
                     byline=[(x.get('raw_author_name') or (x.get('author') or {}).get('display_name')) for x in w.get('authorships') or []],
                     byline_school=[(x.get('raw_author_name') or (x.get('author') or {}).get('display_name')) for x in w.get('authorships') or []
-                                   if _authorship_school_via(w, x, inst, aff)]))
+                                   if _authorship_school_via(w, x, inst, aff, school=school)]))
             continue
         seen.add(k); row_at[k] = len(rows)
         rows.append(dict(pi=pi, work=cw, oa=w['id'], doi=ndoi(w.get('doi')), title=w.get('title'), year=dated_by['venue_year'] if dated_by else w.get('publication_year'), date=date, type=w.get('type'),
@@ -813,7 +815,7 @@ def rows_from_hits(ctx):
                          _edition_source=edition_source(w),
                          byline=[(x.get('raw_author_name') or (x.get('author') or {}).get('display_name')) for x in w.get('authorships') or []],
                          byline_school=[(x.get('raw_author_name') or (x.get('author') or {}).get('display_name')) for x in w.get('authorships') or []
-                                        if _authorship_school_via(w, x, inst, aff)],
+                                        if _authorship_school_via(w, x, inst, aff, school=school)],
                          authorship=dict(position=a.get('author_position'), raw_name=a.get('raw_author_name'), author_id=aid,
                                          institutions=[i.get('display_name') for i in a.get('institutions') or []], raw_affiliations=a.get('raw_affiliation_strings') or [],
                                          school_via=via[:3], page1=dict(url=page1['url'], pdf_sha256=page1['pdf_sha256'], how=page1['how'], quotes=page1['quotes']) if page1 and via[0].startswith('page 1') else None),
@@ -850,7 +852,7 @@ def recovered_scope_via(ctx, p, ev):
     nm = Name(p.get('names') or [p['pi']])
     via = [v for a in w.get('authorships') or []
            if nm.match(a.get('raw_author_name') or (a.get('author') or {}).get('display_name') or '')
-           for v in _authorship_school_via(w, a, ctx.inst, ctx.aff)]
+           for v in _authorship_school_via(w, a, ctx.inst, ctx.aff, school=ctx.school)]
     if not via:
         ctx.n['recovered_school_scope_not_supported'] += 1
     return via
