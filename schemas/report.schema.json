@@ -1241,6 +1241,32 @@
     }
    },
    "additionalProperties": false
+  },
+  "primaryPDFAffiliationReviews": {
+   "description": "Diagnostics from complete primary-PDF affiliation reviews. The resolver checks source bindings before deriving flags; this report does not authorize paper admission or person identity.",
+   "type": "array",
+   "items": {
+    "type": "object",
+    "properties": {
+     "status": {
+      "type": "string",
+      "enum": [
+       "accepted",
+       "held",
+       "not_requested"
+      ]
+     },
+     "work": {
+      "type": "string"
+     },
+     "reason": {
+      "type": "string"
+     }
+    },
+    "required": [
+     "status"
+    ]
+   }
   }
  },
  "required": [

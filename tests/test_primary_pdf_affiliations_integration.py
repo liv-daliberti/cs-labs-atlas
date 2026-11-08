@@ -8,10 +8,12 @@ import re
 import sqlite3
 import types
 import zlib
+from pathlib import Path
 
 import pytest
 
 import test_build_rules as T
+from schema_check import validate
 from pihier import build, common, identity, papers, primary_affiliations as A
 
 
@@ -43,7 +45,11 @@ def test_full_native_flags_correct_while_PI_admission_raw_source_and_candidate_s
     work,page,text=native_source(tmp_path);raw_before=T.put(tmp_path,'pi-works.sqlite').read_bytes()
     monkeypatch.setattr(build,'HERE',tmp_path)
     monkeypatch.setattr(build,'Ctx',lambda school,out:common.Ctx(school,here=tmp_path,site=tmp_path,out=out))
-    monkeypatch.setattr(build.provenance,'block',lambda school:{})
+    fixture_provenance = dict(at='2026-11-08T00:00:00',
+        code=dict(commit='0'*40,dirty=False,dirty_paths=[],other_dirty_paths=[]),
+        rules=[dict(id='R-PAP-15',decided='fixture')],openalex_sweep=None,dblp_dump=dict(file='fixture',date='2026-11-08',md5='0'*32),
+        dblp_persons=None,pi_works=dict(path='fixture'),reviewed_inputs={},inputs={})
+    monkeypatch.setattr(build.provenance,'block',lambda school:copy.deepcopy(fixture_provenance))
     monkeypatch.setenv('PI_HIERARCHY_OUT',str(tmp_path/'trial'))
     build.build(T.SCHOOL);out=tmp_path/'trial'/T.SCHOOL
     rows=[json.loads(x)for x in gzip.open(out/'lab_papers.jsonl.gz','rt')]
@@ -55,6 +61,15 @@ def test_full_native_flags_correct_while_PI_admission_raw_source_and_candidate_s
     report=json.loads((out/'report.json').read_text())
     assert report['counts']['primary_pdf_affiliation_review_accepted']==1
     assert report['primaryPDFAffiliationReviews'][0]['source_work_sha256']==A.digest(work)
+    report_schema=json.loads((Path(__file__).resolve().parents[1]/'schemas/report.schema.json').read_text())
+    assert not validate(report,report_schema)
+    held=copy.deepcopy(report)
+    held['primaryPDFAffiliationReviews']=[dict(status='held',work=work['id'],reason='source_work_changed')]
+    assert not validate(held,report_schema)
+    invalid=copy.deepcopy(report)
+    invalid['primaryPDFAffiliationReviews'][0]['status']='unreviewed_auto_accept'
+    assert validate(invalid,report_schema)
+
     links=[json.loads(x)for x in gzip.open(out/'student_papers.jsonl.gz','rt')]
     link=next(l for l in links if l['student']=='p_alan'and l['oa']==work['id'])
     assert link['status']=='candidate'and link['basis']=='byline_name_with_school_affiliation'

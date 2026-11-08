@@ -585,6 +585,11 @@ The build's report: counters, exclusions, samples of what the rules dropped, and
 | `memberPaperReview.path` | string | yes |  |  |  |
 | `memberPaperReview.sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
 | `memberPaperReview.decisions` | array of object | yes |  |  |  |
+| `primaryPDFAffiliationReviews` | array of object | no | Diagnostics from complete primary-PDF affiliation reviews. The resolver checks source bindings before deriving flags; this report does not authorize paper admission or person identity. |  |  |
+| `primaryPDFAffiliationReviews[]` | object | — |  |  |  |
+| `primaryPDFAffiliationReviews[].status` | string | yes |  | one of `accepted`, `held`, `not_requested` |  |
+| `primaryPDFAffiliationReviews[].work` | string | no |  |  |  |
+| `primaryPDFAffiliationReviews[].reason` | string | no |  |  |  |
 
 ## `hierarchy/<school>/student_papers.jsonl.gz`
 
@@ -640,6 +645,7 @@ One row per (lab paper, lab student) link (JSON lines, gzip).
 | `workReview.review.preimages.paper` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
 | `workReview.review.preimages.editions` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
 | `workReview.review.preimages.source_work` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `workReview.review.preimages.pi` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
 | `workReview.review.proof` | object | yes |  | no other keys |  |
 | `workReview.review.proof.school` | string | yes |  | non-empty |  |
 | `workReview.review.proof.pi` | string | yes |  | non-empty |  |
@@ -1664,6 +1670,7 @@ Optional source-preimage-bound certification of an existing candidate only; neve
 | `reviews[].preimages.paper` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
 | `reviews[].preimages.editions` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
 | `reviews[].preimages.source_work` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `reviews[].preimages.pi` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
 | `reviews[].proof` | object | yes |  | no other keys |  |
 | `reviews[].proof.school` | string | yes |  | non-empty |  |
 | `reviews[].proof.pi` | string | yes |  | non-empty |  |
