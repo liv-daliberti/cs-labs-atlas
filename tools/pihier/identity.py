@@ -105,6 +105,7 @@ def anchors(ctx):
         if DUMP_PERSONS is None:
             DUMP_PERSONS = read(dd_f)
     dd_s = P.data('dblp-dump-persons-school.json.gz', school, root=HERE)  # an onboarding school's own persons (tools/dblp_dump_persons.py <key>)
+    dump = None
     if dd_f.exists() or dd_s.exists():
         dump = DUMP_PERSONS if dd_f.exists() else {'persons': {}, 'by_name': {}}
         if dd_s.exists():
@@ -112,6 +113,9 @@ def anchors(ctx):
             dump = dict(dump, persons={**dump.get('persons', {}), **own['persons']},
                         by_name={k: sorted(set(dump.get('by_name', {}).get(k, [])) | set(own['by_name'].get(k, []))) for k in {*dump.get('by_name', {}), *own['by_name']}})
         apply_dump(pis, dump, dblp_doi, dblp_title, n)
+    # Venue dates, author counts and page filters need the same school-augmented records.
+    # Keep this per build; the shared read-once cache must not absorb school-local records.
+    ctx.dblp_persons = dump
     n['pis_with_dblp_list'] = sum(bool(dblp_title[p['pi']]) for p in pis)
     own_list = collections.defaultdict(dict)  # the PI's own institutional publication list (hierarchy/<school>/pi-publication-lists.json)
     pl_f = P.data('pi-publication-lists.json', school, root=HERE)

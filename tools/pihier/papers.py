@@ -489,7 +489,7 @@ def venue_tables(ctx):
     """R-PAP-26 and R-PAP-19: from the DBLP dump, per PI, each venue publication's earliest year and DBLP key by
     normalized title (not CoRR, ECCC, ePrint, theses, books), and the largest author count of each title."""
     pis = ctx.pis
-    DUMP_PERSONS = identity.DUMP_PERSONS
+    DUMP_PERSONS = getattr(ctx, 'dblp_persons', identity.DUMP_PERSONS)
     # R9 (R-PAP-26, 2026-10-29, owner: accuracy sample): the venue version's year on the PI's DBLP person page (a record
     # that is not a CoRR preprint), by normalized title, for dating a preprint or a repository deposit
     dblp_venue, dblp_nauth = collections.defaultdict(dict), collections.defaultdict(dict)
