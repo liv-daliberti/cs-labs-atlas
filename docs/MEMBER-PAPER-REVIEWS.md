@@ -3,7 +3,8 @@
 `member-paper-review.json` is an optional, school-local reviewed input. Version 1
 supports one retained candidate, an exact lead OpenAlex work with a nonempty arXiv
 DOI, and an explicitly identified primary PDF version. Names and titles are never
-selectors. Folded-only editions, recovered records without their exact native
+selectors. Version 1 requires an empty persisted edition array and one distinct
+exact native lead source. Folded editions, recovered records without their exact native
 source, and competing source versions remain held. No school input is enabled by
 installing this consumer.
 
@@ -22,8 +23,8 @@ filtering. It cannot rescue a paper, membership or missing link. A review must b
 the final ordinary output, not a preliminary trial or an old candidate count.
 
 `member-paper-semantic-v1` hashes canonical UTF-8 JSON (sorted keys, compact
-separators, no NaN). It binds every field of the full candidate, member, accepted
-paper and complete native source work, plus the persisted edition array. Unknown
+separators, no NaN). It binds every field of the full PI, candidate, member, accepted
+paper and complete native lead source work, plus the persisted edition array. Unknown
 future scientific fields participate automatically. Only these top-level fields
 are omitted:
 
@@ -32,14 +33,22 @@ are omitted:
 | Candidate | `studentAtlasId`, `atlasWorkId`, `labId` |
 | Member | `atlasId`, `alsoPi` |
 | Paper | `atlasWorkId`, transient `_bylines` |
+| PI | `atlasId`, `labId`, `asStudent`, AtlasIDs-derived `appointments`, build summaries `counts` and `funnel` |
+
+PI `oaAuthorIds` are scientific fields. Before hashing, the consumer anticipates
+the exact anchored-ID list that the normal writer will persist, without changing
+the PI or anchored counter. Names, source person IDs, identity holds/policies,
+faculty periods, listings, ranks, units and lab provenance remain bound. Cross-school
+ID annotations do not replace the sourced faculty `periods`.
 
 `_bylines` is removed by the ordinary writer. The persisted paper and edition
 fields, and the complete exact lead source work and its ordered authorships, stay
-bound. This version does not certify a compact folded-edition pointer. When a
+bound. Persisted edition metadata is a preimage, not proof of every omitted
+nonlead source authorship; version 1 holds any nonempty edition group. When a
 future builder preserves fuller edition records, their fields also change the
 paper preimage and require fresh independent approval.
 
-Exactly one candidate, retained member, accepted paper and source-work digest must
+Exactly one PI, candidate, retained member, accepted paper and source-work digest must
 match. Repeated identical source observations are harmless; distinct source
 preimages are ambiguous. A mismatch leaves the original candidate unchanged and
 emits a held reason in `report.json.memberPaperReview`. Invalid input structure

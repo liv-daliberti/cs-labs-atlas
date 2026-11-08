@@ -273,6 +273,10 @@
         "source_work": {
          "type": "string",
          "pattern": "^[0-9a-f]{64}$"
+        },
+        "pi": {
+         "type": "string",
+         "pattern": "^[0-9a-f]{64}$"
         }
        },
        "required": [
@@ -280,7 +284,8 @@
         "member",
         "paper",
         "editions",
-        "source_work"
+        "source_work",
+        "pi"
        ],
        "additionalProperties": false
       },

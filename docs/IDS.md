@@ -151,7 +151,7 @@ promotion blockers until independently resolved. Existing issued IDs remain pres
 ## Work-only authorship certificates
 
 An exact-work member-paper review (R-LNK-08) proves one link, without OA author ownership or a new member URL anchor.
-AtlasIDs checks its complete member/paper/original-candidate preimages before assigning IDs, skips it in both byline
+AtlasIDs checks its complete PI/member/paper/original-candidate scientific preimages before assigning IDs, skips it in both byline
 bridge stages, and validates post-ID semantic invariance before commit/publication. Proof remains on the link, never
 on member relations or aliases. Earlier issued identities remain historical registry state; this mechanism cannot
 split, retire or repair them. Before enabling reviews, compare full-cohort disposable registry copies, including

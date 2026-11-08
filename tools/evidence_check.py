@@ -145,7 +145,7 @@ def check(school, root):
     scoped_error = False
     if any(work_only(x) for x in links):
         try:
-            validate_scoped(school, students, papers, links)
+            validate_scoped(school, students, papers, links, pis=pis)
         except (ValueError, KeyError, TypeError):
             scoped_error = True
     for x in links:

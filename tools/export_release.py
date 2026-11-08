@@ -431,7 +431,7 @@ def export_school(repo, s, homes_all, profiles, zero):
 
     # student papers
     from pihier.member_paper_reviews import export_fields, validate_scoped
-    validate_scoped(s, stu, rows, sp)
+    validate_scoped(s, stu, rows, sp, pis=pis)
     SP = []
     for x in sp:
         sid = x['student'] if str(x['student']).startswith('ext:') else f"{s}:{x['student']}"

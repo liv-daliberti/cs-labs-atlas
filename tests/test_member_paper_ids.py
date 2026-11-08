@@ -19,7 +19,7 @@ def fixture(tmp_path, ordinary_twin=False):
         twin = stu('ext:tsinghua:other-wu', 'Haixu Wu', ['https://other.example/roster'])
         members.append(twin)
         links.append(dict(links[0]['workReview']['original'], student=twin['person']))
-    return {'tsinghua': dict(pis=[pi(reviews[0]['pi'], personIds=['long'])],
+    return {'tsinghua': dict(pis=ctx.pis,
                             students={reviews[0]['pi']: members}, papers=ctx.rows, links=links,
                             sweep=[dict(id=ctx.rows[0]['oa'], authorships=[
                                 dict(raw_author_name='Wu, Haixu', author=dict(id='https://openalex.org/A5002224926')),
@@ -145,10 +145,10 @@ def test_post_id_invariance_failure_rolls_back_before_publication(tmp_path, monk
     root = tmp_path / 'package'; write(root, fx)
     before_files = {str(p.relative_to(root)): p.read_bytes() for p in root.rglob('*.json')}
     real = M.validate_scoped
-    def check(school, members, papers, links):
+    def check(school, members, papers, links, *, pis):
         if links and 'studentAtlasId' in links[0]:
             raise ValueError('injected post-ID semantic mismatch')
-        return real(school, members, papers, links)
+        return real(school, members, papers, links, pis=pis)
     monkeypatch.setattr(M, 'validate_scoped', check)
     db = A.open_registry(tmp_path / 'registry.sqlite', seed=False)
     try:
@@ -160,7 +160,7 @@ def test_post_id_invariance_failure_rolls_back_before_publication(tmp_path, monk
         db.close()
 
 
-@pytest.mark.parametrize('change', ['role', 'paper_date', 'proof_scope', 'proof_basis', 'missing_proof'])
+@pytest.mark.parametrize('change', ['role', 'paper_date', 'proof_scope', 'proof_basis', 'missing_proof', 'pi_identity'])
 def test_stale_or_malformed_work_proof_rejected_before_any_id_write(tmp_path, change):
     fx = fixture(tmp_path)
     data = fx['tsinghua']
@@ -169,6 +169,7 @@ def test_stale_or_malformed_work_proof_rejected_before_any_id_write(tmp_path, ch
     if change == 'proof_scope': data['links'][0]['workReview']['identity_scope'] = 'global_person'
     if change == 'proof_basis': data['links'][0]['basis'] = 'advisee_name_on_lab_paper_byline'
     if change == 'missing_proof': data['links'][0].pop('workReview')
+    if change == 'pi_identity': data['pis'][0]['identityHold'] = {'why': 'unresolved source ownership'}
     root = tmp_path / 'package'; write(root, fx)
     db = A.open_registry(tmp_path / 'registry.sqlite', seed=False)
     try:

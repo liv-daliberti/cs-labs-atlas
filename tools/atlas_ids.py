@@ -788,8 +788,8 @@ def run(schools, hdir, registry, use_sweep=True, today=None, write=True):
     """
     from pihier.member_paper_reviews import validate_scoped, work_only
     data = {s: load_school(P.SchoolDir(s, Path(hdir))) for s in schools}
-    for s, (_, stu, rows, sp) in data.items():
-        validate_scoped(s, stu, rows, sp)
+    for s, (pis, stu, rows, sp) in data.items():
+        validate_scoped(s, stu, rows, sp, pis=pis)
     guarded = any(work_only(x) for _, _, _, sp in data.values() for x in sp)
     if not guarded:
         return _run(schools, hdir, registry, data, registry.commit, False, use_sweep, today, write)
@@ -1040,7 +1040,7 @@ def _run(schools, hdir, registry, data, finish, guarded, use_sweep, today, write
                 x['labId'] = lab_ids.get(('pi', s, x['pi']))
             del key
             try:
-                validate_scoped(s, stu, rows, sp)
+                validate_scoped(s, stu, rows, sp, pis=pis)
             except ValueError:
                 if not guarded:
                     db.rollback()

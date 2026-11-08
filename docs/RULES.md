@@ -640,9 +640,10 @@ sentence as `statement`, which becomes the quote (`best_sources`).
 
 ### R-LNK-08 (2026-11-08, owner: exact per-work source certification)
 An independently reviewed, optional `member-paper-review.json` can certify only one existing retained candidate's
-PI/member/accepted-work authorship. Exact identifiers and complete final native semantic preimages, a source-bound
+PI/member/accepted-work authorship. Exact identifiers and complete final PI/member/paper/candidate scientific preimages, a source-bound
 owned-person citation, complete ordered author/affiliation mapping from a full primary PDF, and independently typed
 membership dates must agree. Stale, missing, competing or temporally uncertain proof leaves the candidate unchanged.
+Version 1 holds nonempty edition groups: persisted edition pointers alone cannot certify omitted source authorships.
 `reviewed_exact_member_paper` carries `workReview.identity_scope=exact_work` and the original candidate. It admits no
 paper/member, changes no source/date/alias, and cannot lend an OpenAlex/person anchor through either AtlasIDs byline
 bridge path. Both pre-ID and post-ID invariance are checked before publication. Existing global joins require separate

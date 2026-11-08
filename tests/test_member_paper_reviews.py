@@ -18,6 +18,7 @@ import pytest
 import atlas_paths as P
 from pihier import member_paper_reviews as M
 from schema_check import validate
+from test_atlas_ids import pi as make_pi
 
 FIXTURE = Path(__file__).parent / 'fixtures' / 'member-paper-reviews.json'
 
@@ -32,13 +33,14 @@ def context(tmp_path, real_source=None):
                                  authorships=[dict(raw_author_name=a['native']) for a in fx['cases'][0]['proof']['authors']])
     ctx = SimpleNamespace(school='tsinghua', here=tmp_path, n=collections.Counter(), rows=[paper],
                           stu={pi: {c['member']['person']: c['member'] for c in fx['cases']}},
-                          sp=[c['candidate'] for c in fx['cases']], hits=[(pi, source)])
+                          sp=[c['candidate'] for c in fx['cases']], hits=[(pi, source)],
+                          pis=[make_pi(pi, personIds=['long'])], anchored={pi: collections.Counter()})
     reviews = []
     for c in fx['cases']:
         reviews.append(dict(id=c['id'], pi=pi, member=c['member']['person'], reviewed_by='regression-fixture-only',
                             reviewed_at='2026-11-08', projection=M.PROJECTION,
                             match=dict(oa=paper['oa'], work=paper['work'], doi=paper['doi'], arxiv_version='2310.06625v1'),
-                            preimages=M.preimages(c['candidate'], c['member'], paper, source), proof=c['proof']))
+                            preimages=M.preimages(c['candidate'], c['member'], paper, source, M.native_pi(ctx, ctx.pis[0])), proof=c['proof']))
     return ctx, reviews
 
 
@@ -71,7 +73,7 @@ def test_R_LNK_08_two_real_source_cases_change_only_two_link_statuses(tmp_path):
         assert row['workReview']['original'] == old
         assert row['workReview']['review']['proof']['pdf']['date'] == '2023-10-10'
         assert row['workReview']['identity_scope'] == 'exact_work'
-    M.validate_scoped(ctx.school, {p: list(v.values()) for p, v in ctx.stu.items()}, ctx.rows, ctx.sp)
+    M.validate_scoped(ctx.school, {p: list(v.values()) for p, v in ctx.stu.items()}, ctx.rows, ctx.sp, pis=ctx.pis)
     assert ctx.n['member_paper_review_verified'] == 2
     assert not validate(ctx.sp[0], json.loads((FIXTURE.parents[2] / 'schemas/student_papers.schema.json').read_text()))
 
@@ -83,11 +85,11 @@ def test_absent_optional_input_is_exact_noop(tmp_path):
     assert vars(ctx) == before
 
 
-@pytest.mark.parametrize('part', ['candidate', 'member', 'paper', 'editions', 'source'])
+@pytest.mark.parametrize('part', ['candidate', 'member', 'paper', 'editions', 'source', 'pi'])
 def test_complete_semantic_preimages_hold_changed_fields(tmp_path, part):
     ctx, reviews = context(tmp_path)
     target = {'candidate': ctx.sp[0], 'member': next(iter(ctx.stu[ctx.sp[0]['pi']].values())),
-              'paper': ctx.rows[0], 'editions': ctx.rows[0], 'source': ctx.hits[0][1]}[part]
+              'paper': ctx.rows[0], 'editions': ctx.rows[0], 'source': ctx.hits[0][1], 'pi': ctx.pis[0]}[part]
     target['future_scientific_field'] = dict(exact='new value', nested={'sha256': '9' * 64})
     if part == 'editions':
         target['editions'].append(dict(oa='https://openalex.org/W88', date='2022', byline=['Another Author']))
@@ -95,6 +97,38 @@ def test_complete_semantic_preimages_hold_changed_fields(tmp_path, part):
     certify(ctx, reviews[:1])
     assert ctx.sp == before
     assert ctx.member_paper_review['decisions'][0]['reason'] == 'stale_semantic_preimage'
+
+
+def test_v1_holds_folded_editions_even_with_fresh_preimages(tmp_path):
+    ctx, reviews = context(tmp_path)
+    ctx.rows[0]['editions'].append(dict(oa='https://openalex.org/W88', doi='10.1000/publisher', year=2024))
+    d = reviews[0]
+    d['preimages'] = M.preimages(ctx.sp[0], ctx.stu[d['pi']][d['member']], ctx.rows[0],
+                                 ctx.hits[0][1], M.native_pi(ctx, ctx.pis[0]))
+    before = copy.deepcopy(ctx.sp)
+    certify(ctx, reviews[:1])
+    assert ctx.sp == before
+    assert ctx.member_paper_review['decisions'][0]['reason'] == 'multiple_editions_not_supported_in_v1'
+
+
+def test_pi_author_ids_match_normal_writer_without_changing_scientific_input(tmp_path):
+    ctx, reviews = context(tmp_path)
+    name = reviews[0]['pi']
+    ctx.anchored[name] = collections.Counter({'https://openalex.org/A2': 3, 'https://openalex.org/A1': 1})
+    original = copy.deepcopy(ctx.pis[0])
+    d = reviews[0]
+    final_pi = M.native_pi(ctx, ctx.pis[0])
+    d['preimages'] = M.preimages(ctx.sp[0], ctx.stu[name][d['member']], ctx.rows[0], ctx.hits[0][1], final_pi)
+    certify(ctx, reviews[:1])
+    assert ctx.sp[0]['status'] == 'verified' and ctx.pis[0] == original
+    # build.write persists anchored IDs; AtlasIDs adds only the named annotations.
+    ctx.pis[0].update(oaAuthorIds=final_pi['oaAuthorIds'], counts={'students': 2}, funnel={'seen': 10},
+                      atlasId='atl:p:000000000000', labId='atl:l:example:long', asStudent=[], appointments=[])
+    members = {p: list(v.values()) for p, v in ctx.stu.items()}
+    M.validate_scoped(ctx.school, members, ctx.rows, ctx.sp, pis=ctx.pis)
+    ctx.pis[0]['oaAuthorIds'].append('https://openalex.org/A3')
+    with pytest.raises(ValueError, match='stale exact-work member paper preimage'):
+        M.validate_scoped(ctx.school, members, ctx.rows, ctx.sp, pis=ctx.pis)
 
 
 @pytest.mark.parametrize('part,field,value,reason', [
@@ -155,7 +189,7 @@ def test_owned_source_chain_and_complete_author_mapping(tmp_path, change, reason
     assert ctx.member_paper_review['decisions'][0]['reason'] == reason
 
 
-@pytest.mark.parametrize('part', ['member', 'paper', 'candidate', 'source', 'doi', 'other_pi'])
+@pytest.mark.parametrize('part', ['member', 'paper', 'candidate', 'source', 'doi', 'other_pi', 'missing_pi', 'duplicate_pi'])
 def test_exact_native_target_required_no_rescue_or_name_alias_join(tmp_path, part):
     ctx, reviews = context(tmp_path)
     if part == 'member': ctx.stu[reviews[0]['pi']].pop(reviews[0]['member'])
@@ -164,6 +198,8 @@ def test_exact_native_target_required_no_rescue_or_name_alias_join(tmp_path, par
     if part == 'source': ctx.hits.append((ctx.hits[0][0], dict(ctx.hits[0][1], changed=True)))
     if part == 'doi': reviews[0]['match']['doi'] = '10.48550/arxiv.2310.06626'
     if part == 'other_pi': reviews[0]['pi'] = 'Name-Only Other PI'
+    if part == 'missing_pi': ctx.pis.clear()
+    if part == 'duplicate_pi': ctx.pis.append(copy.deepcopy(ctx.pis[0]))
     before = copy.deepcopy((ctx.stu, ctx.rows, ctx.sp))
     certify(ctx, reviews[:1])
     assert (ctx.stu, ctx.rows, ctx.sp) == before
@@ -190,13 +226,13 @@ def test_post_id_invariance_and_stale_proof_fail_before_registry(tmp_path):
     for r in members[reviews[0]['pi']]: r.update(atlasId='atl:p:000000000000', alsoPi=[])
     ctx.rows[0]['atlasWorkId'] = 'atl:w:000000000000'
     for r in ctx.sp: r.update(studentAtlasId='atl:p:000000000000', atlasWorkId='atl:w:000000000000', labId='atl:l:example:pi')
-    M.validate_scoped(ctx.school, members, ctx.rows, ctx.sp)
+    M.validate_scoped(ctx.school, members, ctx.rows, ctx.sp, pis=ctx.pis)
     exported = M.export_fields(ctx.sp[0])
     assert exported['identity_scope'] == 'exact_work' and exported['work_review']['original']['status'] == 'candidate'
     assert M.export_fields(dict(basis='collection_person_link')) == {}
     ctx.sp[0]['relation_source']['quote'] += ' altered'
     with pytest.raises(ValueError, match='stale exact-work'):
-        M.validate_scoped(ctx.school, members, ctx.rows, ctx.sp)
+        M.validate_scoped(ctx.school, members, ctx.rows, ctx.sp, pis=ctx.pis)
 
 
 def test_finite_owned_resolution_is_required_not_a_generic_url_alias(tmp_path):
@@ -214,18 +250,18 @@ def test_finite_owned_resolution_is_required_not_a_generic_url_alias(tmp_path):
 
 def test_evidence_checker_rejects_unknown_or_stale_work_only_proof(tmp_path, monkeypatch):
     import evidence_check as E
-    from test_atlas_ids import pi, write
+    from test_atlas_ids import write
     ctx, reviews = context(tmp_path)
     certify(ctx, reviews)
-    fx = {'tsinghua': dict(pis=[pi(reviews[0]['pi'])], students={p: list(v.values()) for p, v in ctx.stu.items()},
+    fx = {'tsinghua': dict(pis=ctx.pis, students={p: list(v.values()) for p, v in ctx.stu.items()},
                           papers=ctx.rows, links=ctx.sp, sweep=[])}
     root = tmp_path / 'package'; write(root, fx)
     validated = []
     real_validate = E.validate_scoped
 
-    def validate_package(*args):
+    def validate_package(*args, **kwargs):
         validated.append(args[0])
-        return real_validate(*args)
+        return real_validate(*args, **kwargs)
 
     monkeypatch.setattr(E, 'validate_scoped', validate_package)
     result = E.check('tsinghua', root)
@@ -242,20 +278,22 @@ def test_evidence_checker_rejects_unknown_or_stale_work_only_proof(tmp_path, mon
 def test_release_json_and_conditional_csv_preserve_scope_and_proof(tmp_path, monkeypatch, scoped):
     import csv
     import export_release as E
-    from test_atlas_ids import pi, write
+    from test_atlas_ids import write
     ctx, reviews = context(tmp_path / 'native')
     # English native PI spelling keeps this regression independent of the
     # pre-existing export slug policy for non-Latin names.
     old_pi = reviews[0]['pi']; name = 'Mingsheng Long'
     ctx.stu[name] = ctx.stu.pop(old_pi)
     ctx.rows[0]['pi'] = name
+    ctx.pis[0].update(pi=name, names=[name], lab={})
+    ctx.anchored[name] = ctx.anchored.pop(old_pi)
     for link, d in zip(ctx.sp, reviews):
         link['pi'] = name; d['pi'] = name; d['proof']['pi'] = name
-        d['preimages'] = M.preimages(link, ctx.stu[name][d['member']], ctx.rows[0], ctx.hits[0][1])
+        d['preimages'] = M.preimages(link, ctx.stu[name][d['member']], ctx.rows[0], ctx.hits[0][1], M.native_pi(ctx, ctx.pis[0]))
     ctx.hits[0] = (name, ctx.hits[0][1])
     if scoped: certify(ctx, reviews)
     root = tmp_path / 'package'
-    write(root, {'tsinghua': dict(pis=[pi(name, lab={})], students={name: list(ctx.stu[name].values())},
+    write(root, {'tsinghua': dict(pis=ctx.pis, students={name: list(ctx.stu[name].values())},
                                 papers=ctx.rows, links=ctx.sp, sweep=[])})
     (root / 'tsinghua/report.json').write_text(json.dumps(dict(builtAt='fixture')))
     monkeypatch.setattr(E, 'H', root)

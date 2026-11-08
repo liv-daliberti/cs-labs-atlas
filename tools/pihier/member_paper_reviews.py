@@ -4,6 +4,7 @@ This is authorship evidence for ONE work, never a person identity anchor. No
 membership, paper admission, source observation, date or edition is changed.
 """
 import calendar
+import collections
 import copy
 import datetime
 import hashlib
@@ -19,7 +20,8 @@ from .common import ndoi
 BASIS = 'reviewed_exact_member_paper'
 PROJECTION = 'member-paper-semantic-v1'
 ID_FIELDS = {'candidate': {'studentAtlasId', 'atlasWorkId', 'labId'},
-             'member': {'atlasId', 'alsoPi'}, 'paper': {'atlasWorkId', '_bylines'}}
+             'member': {'atlasId', 'alsoPi'}, 'paper': {'atlasWorkId', '_bylines'},
+             'pi': {'atlasId', 'labId', 'asStudent', 'appointments', 'counts', 'funnel'}}
 
 
 def digest(value):
@@ -34,13 +36,29 @@ def semantic(value, kind):
     complete persisted paper/edition group and exact source work bind its inputs.
     Only top-level fields are removed: nested source/edition fields stay bound.
     """
-    return {k: copy.deepcopy(v) for k, v in value.items() if k not in ID_FIELDS[kind]}
+    result = {k: copy.deepcopy(v) for k, v in value.items() if k not in ID_FIELDS[kind]}
+    if kind == 'pi':
+        result.setdefault('oaAuthorIds', [])
+    return result
 
 
-def preimages(candidate, member, paper, source):
+def preimages(candidate, member, paper, source, pi):
     return dict(candidate=digest(semantic(candidate, 'candidate')), member=digest(semantic(member, 'member')),
                 paper=digest(semantic(paper, 'paper')), editions=digest(paper.get('editions') or []),
-                source_work=digest(source))
+                source_work=digest(source), pi=digest(semantic(pi, 'pi')))
+
+
+def native_pi(ctx, pi):
+    """Anticipate only the scientific author IDs that build.write will persist.
+
+    Neither the original PI nor its anchored-ID counter is modified. Counts and
+    funnel summaries are deliberately excluded; every other future PI field binds.
+    """
+    result = copy.deepcopy(pi)
+    if hasattr(ctx, 'anchored'):
+        counts = collections.Counter(ctx.anchored.get(pi['pi'], {}))
+        result['oaAuthorIds'] = [a for a, _ in counts.most_common()]
+    return result
 
 
 def work_only(link):
@@ -72,6 +90,8 @@ def _arxiv(value):
 def _proof_error(d, candidate, member, paper, source, school):
     """Validate cross-field meaning in addition to the closed input schema."""
     p, m = d['proof'], d['match']
+    if paper.get('editions'):
+        return 'multiple_editions_not_supported_in_v1'
     citation, pdf, period = p['citation'], p['pdf'], p['period']
     chain = p['chain']
     if [x['kind'] for x in chain] != ['official_pi', 'pi_person', 'person_identity', 'authored_citation']:
@@ -222,16 +242,18 @@ def apply(ctx):
         candidates = [(i, x) for i, x in enumerate(ctx.sp) if _target(d, x) and x.get('student') == d['member']]
         papers = [r for r in ctx.rows if _target(d, r) and ndoi(r.get('doi')) == d['match']['doi']]
         members = [r for r in ctx.stu.get(d['pi'], {}).values() if r.get('person') == d['member']]
+        pis = [p for p in ctx.pis if p.get('pi') == d['pi']]
         sources = {digest(h[1]): h[1] for h in ctx.hits if h[0] == d['pi'] and h[1].get('id') == d['match']['oa']}
         reason, result = None, None
-        if any(len(x) != 1 for x in (candidates, papers, members, sources)):
+        if any(len(x) != 1 for x in (candidates, papers, members, pis, sources)):
             reason = 'missing_or_ambiguous_native_target'
         else:
             i, candidate = candidates[0]
             member, paper, source = members[0], papers[0], next(iter(sources.values()))
+            pi = native_pi(ctx, pis[0])
             if candidate.get('status') != 'candidate' or work_only(candidate) or not candidate.get('byline'):
                 reason = 'not_original_candidate'
-            elif d['projection'] != PROJECTION or d['preimages'] != preimages(candidate, member, paper, source):
+            elif d['projection'] != PROJECTION or d['preimages'] != preimages(candidate, member, paper, source, pi):
                 reason = 'stale_semantic_preimage'
             else:
                 reason = _proof_error(d, candidate, member, paper, source, ctx.school)
@@ -256,7 +278,7 @@ def apply(ctx):
         ctx.n['member_paper_review_' + status] = sum(x['status'] == status for x in report['decisions'])
 
 
-def validate_scoped(school, members, papers, links):
+def validate_scoped(school, members, papers, links, *, pis):
     """Before any ID writes: validate proof and post-ID semantic invariance, or fail closed.
 
     Source bytes are not loaded here. Their complete digest was checked in the
@@ -276,15 +298,17 @@ def validate_scoped(school, members, papers, links):
         current.pop('workReview', None)
         current.update(status=original.get('status'), basis=original.get('basis'))
         ms = [m for m in members.get(d['pi'], []) if m.get('person') == d['member']]
+        ps_pi = [p for p in pis if p.get('pi') == d['pi']]
         ps = [r for r in papers if _target(d, r) and ndoi(r.get('doi')) == d['match']['doi']]
         ls = [r for r in links if _target(d, r) and r.get('student') == d['member']]
         if (link.get('status') != 'verified' or link.get('basis') != BASIS or original.get('status') != 'candidate'
                 or work_only(original) or not _target(d, link) or link.get('student') != d['member']
-                or current != original or len(ms) != 1 or len(ps) != 1 or len(ls) != 1
+                or current != original or len(ms) != 1 or len(ps_pi) != 1 or len(ps) != 1 or len(ls) != 1
                 or not re.fullmatch('[0-9a-f]{64}', str(proof.get('input_sha256') or ''))):
             raise ValueError('stale exact-work member paper target')
         expected = d['preimages']
         if (expected['candidate'] != digest(original) or expected['member'] != digest(semantic(ms[0], 'member'))
+                or expected['pi'] != digest(semantic(ps_pi[0], 'pi'))
                 or expected['paper'] != digest(semantic(ps[0], 'paper'))
                 or expected['editions'] != digest(ps[0].get('editions') or [])):
             raise ValueError('stale exact-work member paper preimage')
