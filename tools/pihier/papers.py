@@ -27,7 +27,9 @@ def recovered_source(ctx, kind):
     rf = P.data(f'{kind}-recovered.jsonl.gz', ctx.school, root=ctx.here)
     return (json.loads(l) for l in gzip.open(rf, 'rt')) if rf.exists() else []
 
-EN_WORDS = set('the of and for in a an to with on from by at as is are its into via toward towards using'.split())
+# Interrogatives are English function words too: Portuguese 'do' alone must not classify an English question as foreign.
+EN_WORDS = set('the of and for in a an to with on from by at as is are its into via toward towards using '
+               'how what why where when which who whose whom whether'.split())
 FOREIGN_WORDS = set('''der die das und eine einer einen ein einführung mit für von zur zum im über des den dem
 le la les de des et une un du pour avec dans sur par aux au à
 el los las del y una para con en por al

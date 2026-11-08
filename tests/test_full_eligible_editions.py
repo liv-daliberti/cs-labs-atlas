@@ -324,3 +324,35 @@ def test_translated_source_cannot_become_identity_representative_or_lend_a_stude
 def test_foreign_title_exception_remains_available_for_an_original_language_source():
     row = chapter('source-work', 1, 'source-oa'); row['title'] = 'Die Theorie der Berechnung'
     assert papers.eligible_untranslated_sources([row], 'epfl') == ([row], None)
+
+
+@pytest.mark.parametrize('pi', ['Laura Dabbish', 'Bogdan Vasilescu'])
+def test_actual_english_question_chapter_publisher_survives_source_translation_gate(pi):
+    case = next(c for c in sources()['actual_native_51_case_corpus']['cases']
+                if c['pi'] == pi and c['oa'].endswith('W4402666620'))
+    original = copy.deepcopy(case['records'])
+    publisher = next(r for r in original if r['type'] == 'book-chapter')
+    assert not papers.foreign_title(publisher['title'])
+    eligible, dropped = papers.eligible_untranslated_sources(original, 'cmu')
+    assert dropped == 0 and eligible == original
+    rows, _ = folded(original)
+    assert len(rows) == 1 and rows[0]['type'] == 'book-chapter'
+    for field in ['oa', 'work', 'title', 'doi', 'date', 'year', 'identity', 'byline', 'byline_school']:
+        assert rows[0][field] == publisher[field]
+    assert len(rows[0]['_bylines']) == 2
+
+
+@pytest.mark.parametrize('title', [
+    'How Much Do Women Build Open Source Infrastructure?',
+    'What Do We Know?', 'Why Do Models Fail?', 'Where Do Errors Occur?',
+    'When Do Algorithms Converge?', 'Which Methods Do Researchers Prefer?',
+])
+def test_english_interrogatives_do_not_become_portuguese_from_the_word_do(title):
+    assert not papers.foreign_title(title)
+
+
+@pytest.mark.parametrize('title', ['Fundamentos do projeto', 'Die Theorie der Berechnung', 'La théorie de la programmation'])
+def test_existing_foreign_chapter_controls_remain_excluded(title):
+    row = chapter('source-work', 1, 'source-oa'); row['title'] = title
+    assert papers.foreign_title(title)
+    assert papers.eligible_untranslated_sources([row], 'cmu') == ([], 1)
