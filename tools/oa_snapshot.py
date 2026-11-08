@@ -86,6 +86,19 @@ def load_author_ids(path):
     return {a for a in (short(x) for x in raw if isinstance(x, str)) if re.fullmatch(r'A\d+', a or '')}
 
 
+def load_institution_ids(path):
+    """Explicit discovery institutions, without inferring faculty appointments.
+
+    A JSON list is deliberately strict: a malformed roster must fail before any
+    global snapshot parts are fetched. No related institutions are added.
+    """
+    raw = json.loads(Path(path).read_text())
+    if not isinstance(raw, list) or not raw or any(
+            not isinstance(x, str) or not re.fullmatch(r'(?:https://openalex.org/)?I\d+', x) for x in raw):
+        raise SystemExit('institution ids must be a nonempty JSON list of OpenAlex institution ids')
+    return {short(x) for x in raw}
+
+
 def related_gates(only=None):
     """[(related ids, compiled affiliation regex)] per school: an institution whose id or lineage holds a related id counts for the school only
     when the authorship's raw affiliation string matches the school's regex (D1-D3 of UChicago, the Michigan Medicine precedent)."""
@@ -289,10 +302,21 @@ def sha(path):
     return h.hexdigest()
 
 
-def cmd_filter(task, of, date=None, parts=None, tmp=None, ext=None, authors_file=None):
+def cmd_filter(task, of, date=None, parts=None, tmp=None, ext=None, authors_file=None, institutions_file=None):
     """`authors_file` (needs `ext`): an extension keyed only by author ids, for institutions that have no charter (the cohort universities
     of phase A): it keeps the works those authors wrote and their author rows, whatever the byline's institution, and no institution lineage."""
-    if authors_file:
+    if authors_file and institutions_file:
+        raise SystemExit('--authors-file and --institutions-file are mutually exclusive')
+    institutions_file_sha256 = None
+    if institutions_file:
+        if not ext:
+            raise SystemExit('--institutions-file needs --ext KEY (the store is ext-KEY.sqlite)')
+        institutions_file_sha256 = sha(institutions_file)
+        inst, excl, authors = load_institution_ids(institutions_file), set(), set()
+        if sha(institutions_file) != institutions_file_sha256:
+            raise SystemExit('institution-id file changed while reading it')
+        RELATED[:] = []
+    elif authors_file:
         if not ext:
             raise SystemExit('--authors-file needs --ext KEY (the store is ext-KEY.sqlite)')
         inst, excl, authors = set(), set(), load_author_ids(authors_file)
@@ -329,13 +353,16 @@ def cmd_filter(task, of, date=None, parts=None, tmp=None, ext=None, authors_file
         print(json.dumps(dict(task=task, parts_done=done, of=len(mine), url=url.rsplit('/', 2)[-2:], records=rows[0], kept=len(rows[1]) + len(rows[4]) + len(rows[5]),
                               seconds=int(time.time() - t0))), flush=True)
     db.close()
+    if institutions_file and sha(institutions_file) != institutions_file_sha256:
+        raise SystemExit('institution-id file changed during filtering; no finished part was recorded')
     out = scratch_dir(d, ext)
     out.mkdir(parents=True, exist_ok=True)
     dest = out / f'part-{task:02d}.sqlite'
     shutil.copyfile(tmp, str(dest) + '.part')  # one sequential write of the finished part
     os.replace(str(dest) + '.part', dest)
     (out / f'part-{task:02d}.done').write_text(json.dumps(dict(bytes=dest.stat().st_size, sha256=sha(dest), parts=len(mine), of=of,
-                                                               **(dict(authors_file_sha256=sha(authors_file), authors=len(authors)) if authors_file else {}))))
+                                                               **(dict(authors_file_sha256=sha(authors_file), authors=len(authors)) if authors_file else {}),
+                                                               **(dict(institutions_file_sha256=institutions_file_sha256, institutions=len(inst)) if institutions_file else {}))))
     tmp.unlink(missing_ok=True)
     print(json.dumps(dict(task=task, finished=str(dest), bytes=dest.stat().st_size)), flush=True)
 
@@ -349,6 +376,10 @@ def cmd_merge(date, of=None, keep_parts=False, parts=None, promote=True, ext=Non
                       for m in (json.loads(d.read_text()) for d in dones)}
     if len(author_filters) != 1:
         raise SystemExit('parts use different author filters; rebuild with one unchanged author-id file')
+    institution_filters = {(m.get('institutions_file_sha256'), m.get('institutions'))
+                           for m in (json.loads(d.read_text()) for d in dones)}
+    if len(institution_filters) != 1:
+        raise SystemExit('parts use different institution filters; rebuild with one unchanged institution-id file')
     tdir = sqlite_tmpdir(sum(d.with_suffix('.sqlite').stat().st_size for d in dones), out)
     os.environ['SQLITE_TMPDIR'] = str(tdir)   # read at the first temp file, so before any connection below
     final_dir = P.OA_SNAPSHOT / date
@@ -390,6 +421,8 @@ def cmd_merge(date, of=None, keep_parts=False, parts=None, promote=True, ext=Non
         first = json.loads(dones[0].read_text())
         if 'authors_file_sha256' in first:
             man['authors_file_sha256'], man['authors'] = first['authors_file_sha256'], first['authors']
+        if 'institutions_file_sha256' in first:
+            man['institutions_file_sha256'], man['institutions'] = first['institutions_file_sha256'], first['institutions']
     man_path.write_text(json.dumps(man, indent=1))
     if promote and not ext:  # a refresh builds a new dated store and leaves `current` alone (oa_snapshot_refresh.py promote switches it); an extension never moves `current`
         cur = P.OA_SNAPSHOT / 'current'
@@ -514,11 +547,12 @@ def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest='cmd', required=True)
     f = sub.add_parser('filter'); f.add_argument('task', type=int); f.add_argument('of', type=int); f.add_argument('--date'); f.add_argument('--ext'); f.add_argument('--authors-file', help='ids of the authors to keep (needs --ext): an extension for institutions without a charter')
+    f.add_argument('--institutions-file', help='JSON institution-id list (needs --ext): one discovery extension for several universities; no related-only expansion')
     m = sub.add_parser('merge'); m.add_argument('--date', required=True); m.add_argument('--of', type=int); m.add_argument('--keep-parts', action='store_true'); m.add_argument('--no-promote', action='store_true', help='do not point `current` at the new store'); m.add_argument('--ext')
     s = sub.add_parser('status'); s.add_argument('--date')
     a = ap.parse_args(argv)
     if a.cmd == 'filter':
-        cmd_filter(a.task, a.of, a.date, ext=a.ext, authors_file=a.authors_file)
+        cmd_filter(a.task, a.of, a.date, ext=a.ext, authors_file=a.authors_file, institutions_file=a.institutions_file)
     elif a.cmd == 'merge':
         cmd_merge(a.date, a.of, a.keep_parts, promote=not a.no_promote, ext=a.ext)
     else:

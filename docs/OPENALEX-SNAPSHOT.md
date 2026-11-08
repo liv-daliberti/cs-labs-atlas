@@ -203,3 +203,19 @@ cmu 77, princeton 41, stanford 13, michigan 11, berkeley 4): earlier channel run
   OpenAlex publishes quarterly (next 2027-01-13), so submit the first one for, say, `--begin=2027-01-15` and it re-checks monthly. It never promotes
   unless submitted with `OA_REFRESH_PROMOTE=1`.
 - Not run for real yet (only `--dry-run` against the live manifest, and fixture tests); the first real run is the 2027-01 release.
+
+## 15. Cohort discovery extension (2026-11-07)
+
+`oa_snapshot.py filter <task> <of> --date <date> --ext <name> --institutions-file <ids.json>`
+can collect several new universities in one streaming pass. The input is a
+nonempty JSON list of primary OpenAlex institution IDs, checked against the
+cohort and the local institutions table. It selects these institution lineages
+without adding related-only institutions. This is discovery metadata: it grants
+no faculty appointment, PI identity or lab-paper attribution.
+
+The filter records the input hash and institution count in each finished-part
+receipt. A changed input during filtering fails, and the merge refuses parts
+with different input hashes. The extension manifest retains that provenance.
+Use a new extension name and the normal pinned-code Slurm workflow, explicit
+resources and test-only scheduling check. The existing stores and `current`
+remain unchanged. `--institutions-file` and `--authors-file` are mutually exclusive.

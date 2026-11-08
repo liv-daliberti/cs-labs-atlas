@@ -245,3 +245,50 @@ def test_merge_rejects_mixed_author_filters(served):
     with pytest.raises(SystemExit, match='different author filters'):
         S.cmd_merge(date, of=2, parts=parts, ext='cohort')
     assert not (served / 'snap' / date / 'ext-cohort.sqlite').exists()
+
+
+def test_explicit_institution_extension_uses_lineage_and_preserves_main(served):
+    date, parts = S.all_parts()
+    for task in range(2):
+        S.cmd_filter(task, 2, date=date, parts=parts, tmp=served)
+    S.cmd_merge(date, of=2, parts=parts)
+    main = served / 'snap' / date / 'openalex.sqlite'
+    before = main.read_bytes()
+    f = served / 'institutions.json'
+    # I2 is an ancestor of I20 in the fixture; I99 is an exact hit.
+    f.write_text(json.dumps(['https://openalex.org/I2', 'I99']))
+    for task in range(2):
+        S.cmd_filter(task, 2, date=date, parts=parts, tmp=served, ext='top25', institutions_file=f)
+    S.cmd_merge(date, of=2, parts=parts, ext='top25')
+    assert main.read_bytes() == before
+    S._conns.clear()
+    assert {w['id'].rsplit('/', 1)[-1] for w in S.works_by_lineage('I99')} == {'W2', 'W3'}
+    assert {w['id'].rsplit('/', 1)[-1] for w in S.works_by_lineage('I2')} == {'W4'}
+    manifest = json.loads((main.parent / 'ext-top25.manifest.json').read_text())
+    assert manifest['institutions_file_sha256'] == S.sha(f)
+    assert manifest['institutions'] == 2
+
+
+def test_institution_input_errors_precede_any_manifest_fetch(tmp_path, monkeypatch):
+    monkeypatch.setattr(S, 'all_parts', lambda *a: pytest.fail('must not fetch'))
+    f = tmp_path / 'ids.json'
+    f.write_text('["I99"]')
+    with pytest.raises(SystemExit, match='needs --ext'):
+        S.cmd_filter(0, 1, institutions_file=f)
+    with pytest.raises(SystemExit, match='mutually exclusive'):
+        S.cmd_filter(0, 1, ext='top25', authors_file=f, institutions_file=f)
+    for bad in [[], ['A7'], ['I99', 'typo'], {'I99': 'not a list'}]:
+        f.write_text(json.dumps(bad))
+        with pytest.raises(SystemExit, match='nonempty JSON list'):
+            S.cmd_filter(0, 1, ext='top25', institutions_file=f)
+
+
+def test_merge_rejects_mixed_institution_filters(served):
+    date, parts = S.all_parts()
+    f = served / 'ids.json'
+    for task, iid in enumerate(('I99', 'I10')):
+        f.write_text(json.dumps([iid]))
+        S.cmd_filter(task, 2, date=date, parts=parts, tmp=served, ext='top25', institutions_file=f)
+    with pytest.raises(SystemExit, match='different institution filters'):
+        S.cmd_merge(date, of=2, parts=parts, ext='top25')
+    assert not (served / 'snap' / date / 'ext-top25.sqlite').exists()
