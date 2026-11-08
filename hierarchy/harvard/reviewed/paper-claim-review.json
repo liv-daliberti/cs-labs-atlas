@@ -3171,6 +3171,48 @@
           "hash_basis": "SHA256 of decoded frozen original response page JSON, year 2024 page 177"
         }
       ]
+    },
+    {
+      "id": "harvard-20261108-Sudan-DenseModel-mixed-source",
+      "pi": "Madhu Sudan",
+      "match": {
+        "oa": "https://openalex.org/W4391709362",
+        "doi": "10.4230/lipics.icalp.2025.11"
+      },
+      "decision": "reject",
+      "reviewed_by": "codex-harvard-dense-reject-1108",
+      "reviewed_at": "2026-11-08",
+      "why": "This exact frozen PI/OA/DOI claim combines the Dense Model title and arXiv2402.05217 with another paper DOI/authorship. The original Dense Model v1 first page has the complete four-author byline Gil Kalai, Noam Lifshitz, Dor Minzer and Tamar Ziegler; Sudan is not an author. The genuine ICALP2025 Near-Optimal Polynomial Distance Lemma publisher PDF names Amireddy, Behera, Srinivasan and Sudan and separately cites Dense Model as reference24. Reject this false Harvard Sudan representation, not the genuine Dense Model research of its actual authors or other schools. Preserve Near-Optimal W7110215342 independently and do not turn the corrupted Dense OA/arXiv into its edition/ID alias. This follows direct primary byline evidence, not CV absence, a title-only rule or an author blacklist. Original172audit141pass/9fail/22unknown and the first34decisions stay unchanged.",
+      "evidence": [
+        {
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2402/2402.05217v1.pdf",
+          "sha256": "256246a39df636f0816531f070f43ba8db0e39444783ea306ed431fd101b6dd5",
+          "quote": "A Dense Model Theorem for the Boolean Slice; Gil Kalai, Noam Lifshitz, Dor Minzer, Tamar Ziegler",
+          "kind": "original_arxiv_v1_complete_primary_byline",
+          "hash_basis": "SHA256 of all206278 original PDF bytes from the approved public bulk v1 route; first page visually inspected. arXiv2402.05217v1 dated7February2024; complete byline contains no Sudan."
+        },
+        {
+          "url": "https://drops.dagstuhl.de/storage/00lipics/lipics-vol334-icalp2025/LIPIcs.ICALP.2025.11/LIPIcs.ICALP.2025.11.pdf",
+          "sha256": "dec4fd24ecd2ebef812ef16ba5bac1fbb2183e5785e94612a277f3814004a7b8",
+          "quote": "A Near-Optimal Polynomial Distance Lemma over Boolean Slices",
+          "kind": "original_publisher_primary_DOI_and_byline",
+          "hash_basis": "SHA256 of all889878 original publisher PDF bytes. Page1 directly names MadhuSudan/Harvard and DOI10.4230/LIPIcs.ICALP.2025.11; the target remains independently eligible."
+        },
+        {
+          "url": "https://drops.dagstuhl.de/storage/00lipics/lipics-vol334-icalp2025/LIPIcs.ICALP.2025.11/LIPIcs.ICALP.2025.11.pdf",
+          "sha256": "dec4fd24ecd2ebef812ef16ba5bac1fbb2183e5785e94612a277f3814004a7b8",
+          "quote": "Gil Kalai, Noam Lifshitz, Dor Minzer, and Tamar Ziegler.",
+          "kind": "original_publisher_reference24_distinct_work",
+          "hash_basis": "Same complete publisher PDF; reference24 identifies DenseModel arXiv2402.05217 and FOCS2024, separate from this ICALP2025 paper."
+        },
+        {
+          "url": "https://openalex.org/W4391709362",
+          "sha256": "822c69e410c088d887fc828c5f34415deb93ad692c407f09209130b2625e5296",
+          "quote": "A Dense Model Theorem for the Boolean Slice",
+          "kind": "frozen_mixed_OpenAlex_record",
+          "hash_basis": "SHA256 of decoded original frozen response page, year2024 page21; not a PDF hash. Original source bytes remain unchanged."
+        }
+      ]
     }
   ]
 }
