@@ -268,27 +268,34 @@ def catalog_state(school, with_urls=True):
 
 
 def match_work(school, r, cs):
-    """The catalog work of a lab paper by the counter's rule: collection work id, our OA-keyed id, DOI, arXiv DOI, title."""
+    """An exact accepted work/edition, OA id or DOI match, preferring an eligible local copy.
+
+    Keep the candidate order of lab_paper_copies.resolve without copying the full
+    catalog status map for each paper. Titles are discovery hints, never identity.
+    """
     st = cs['status']
     al = cs.get('alias') or {}
-    for k in (r.get('work'), oa_work_id(school, r)):
-        if k and k in st:
-            return al.get(k, k)
-    d = ndoi(r.get('doi'))
-    if d and d in cs['doi']:
-        return cs['doi'][d]
-    k = nt(r.get('title'))
-    if len(k) >= 20 and k in cs['title']:
-        return cs['title'][k]
-    return None
+    first = None
+    for edition in [r] + list(r.get('editions') or []):
+        oaw = f"{school}_oa_{oa_short(edition.get('oa'))}"
+        candidates = [edition.get('work'), oaw, cs['doi'].get(ndoi(edition.get('doi')))]
+        if r.get('arxiv'):
+            candidates.append(cs['doi'].get('10.48550/arxiv.' + r['arxiv']))
+        for candidate in candidates:
+            candidate = al.get(candidate, candidate)
+            if candidate not in st:
+                continue
+            if first is None:
+                first = candidate
+            if st[candidate] in LOCAL:
+                return candidate
+    return first
 
 
 def is_local(school, r, cs):
+    """Only an identity-matched, quality-eligible catalog record suppresses missing seeds."""
     w = match_work(school, r, cs)
-    if w and cs['status'].get(w) in LOCAL:
-        return True
-    d = ndoi(r.get('doi'))
-    return bool((d and 'doi:' + d in cs['local']) or ('t:' + nt(r.get('title')) in cs['local']))
+    return bool(w and cs['status'].get(w) in LOCAL)
 
 
 def connect_rw(school):
