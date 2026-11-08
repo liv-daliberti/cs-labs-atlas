@@ -69,11 +69,36 @@ def build(snap, out):
     u = u.dropna(subset=['k']).drop_duplicates('k')[['paper_id', 'k']]
     sc = pd.read_parquet(snap / 'ai' / 'papers_v3.parquet', columns=['paper_id', 'flag_abstract', 'kobak_abs', 'ai_share_main', 'ai_share_main_appendix',
                                                                       'abstained_share_main', 'trained_on_v3', 'appendix_found', 'body_words'])
+    dl = snap / 'delta' / 'delta_scores.parquet'
+    pan_delta = None
+    held = None
+    if dl.exists():        # papers scored after the earlier build (study_delta_build.py): new papers are appended, rescored old papers update their full-text columns
+        dp = pd.read_parquet(dl)
+        dpap = pd.read_json(snap / 'delta' / 'delta_papers.jsonl.gz', lines=True)
+        new = dpap[dpap['new']] if 'new' in dpap else dpap
+        new = new.assign(k=new['oa'].where(new['oa'].notna(), new['paper_id']))
+        u = pd.concat([u, new[['paper_id', 'k']]], ignore_index=True).drop_duplicates('k')
+        dp = dp.rename(columns={'main_words': 'body_words'})
+        if 'flag_abstract' not in dp:
+            dp['flag_abstract'] = float('nan')
+        cols = [c for c in sc.columns if c in dp.columns]
+        fresh = dp[~dp['paper_id'].isin(sc['paper_id'])][cols]
+        ft_cols = [c for c in ('ai_share_main', 'ai_share_main_appendix', 'abstained_share_main', 'appendix_found', 'body_words') if c in cols]
+        upd = dp[dp['paper_id'].isin(sc['paper_id']) & dp['ai_share_main'].notna()].set_index('paper_id')[ft_cols]
+        sc = sc.set_index('paper_id')
+        sc.loc[upd.index, ft_cols] = upd
+        sc = pd.concat([sc.reset_index(), fresh], ignore_index=True)
+        pan_delta = set(new['paper_id'])
+        ch = snap / 'delta' / 'copies_held.parquet'
+        if ch.exists():
+            held = pd.read_parquet(ch)[['k', 'has_copy']].drop_duplicates('k')
     cm = pd.read_parquet(snap / 'citation' / 'paper_measures.parquet', columns=['paper_id', 'z_med', 'z_p10', 'rs_sub', 'h_sub', 'cd5', 'n_refs'])
     w = pd.read_parquet(snap / 'ipw' / 'ipw_weights.parquet', columns=['paper_id', 'w_ft'])
     u = u.merge(sc, on='paper_id', how='left').merge(cm, on='paper_id', how='left').merge(w, on='paper_id', how='left')
     pan = pan.merge(u, on='k', how='left').merge(topics(snap), on='k', how='left')
     pan['in_universe'] = pan['paper_id'].notna()
+    pan['held'] = pan['k'].map(held.set_index('k')['has_copy']).fillna(False).astype(bool) if held is not None else pan['ai_share_main'].notna()
+    pan['delta'] = pan['paper_id'].isin(pan_delta) if pan_delta else False
     pan['has_ft'] = pan['ai_share_main'].notna()
     pan['trained_on_v3'] = pan['trained_on_v3'].fillna(False).astype(bool)
     pan['llm_text'] = pan['llm_text'].fillna(False).astype(bool)

@@ -68,8 +68,23 @@ def coverage(snap):
             d2 = sqlite3.connect(f'file:{ip}?mode=ro', uri=True)
             emb.update(r[0] for r in d2.execute('select paper_id from papers'))
             d2.close()
+    dl = snap / 'delta' / 'delta_scores.parquet'
+    if dl.exists():     # papers scored and embedded after the earlier build (study_delta_build.py)
+        dp = pd.read_parquet(dl)
+        dpap = pd.read_json(snap / 'delta' / 'delta_papers.jsonl.gz', lines=True)[['paper_id', 'oa']]
+        dpap['oa'] = dpap['oa'].map(oa_short)
+        if 'flag_abstract' not in dp:
+            dp['flag_abstract'] = float('nan')
+        uni = pd.concat([uni, dp[['paper_id', 'flag_abstract', 'ai_share_main']]], ignore_index=True)
+        u = pd.concat([u, dpap], ignore_index=True)
+        for ip in sorted((snap / 'delta' / 'embeddings' / HEADLINE_MODEL).glob('*/abstract.index.sqlite')):
+            d3 = sqlite3.connect(f'file:{ip}?mode=ro', uri=True)
+            emb.update(r[0] for r in d3.execute('select paper_id from papers'))
+            d3.close()
     u['emb'] = u['paper_id'].isin(emb)
-    u = u.merge(uni, on='paper_id', how='left').dropna(subset=['oa']).drop_duplicates('oa').set_index('oa')
+    u = u.drop_duplicates('paper_id').merge(uni.drop_duplicates('paper_id'), on='paper_id', how='left').dropna(subset=['oa']).drop_duplicates('oa').set_index('oa')
+    hp = snap / 'delta' / 'copies_held.parquet'
+    hm = dict(pd.read_parquet(hp)[['k', 'has_copy']].drop_duplicates('k').itertuples(index=False)) if hp.exists() else None
     out = {}
     for s in SCHOOLS:
         ids = {}
@@ -85,5 +100,6 @@ def coverage(snap):
         pis = len(json.loads((snap / 'release' / 'hierarchy' / s / 'pis.json').read_text()))
         out[s] = {'lab_papers_2016_2025': len(ids), 'pis': pis, 'in_universe': len(inu) / n, 'abstract_embedded': float(sub['emb'].sum()) / n,
                   'abstract_flag': float(sub['flag_abstract'].notna().sum()) / n, 'fulltext_v3': float(sub['ai_share_main'].notna().sum()) / n,
-                  'period_supported': sum(ids.values()) / n}
+                  'period_supported': sum(ids.values()) / n,
+                  'held': (sum(1 for k in ids if hm.get(k)) / n) if hm is not None else None}
     return {'by_school': out}

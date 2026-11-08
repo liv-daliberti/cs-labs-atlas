@@ -181,9 +181,8 @@ def layer_topics(pan, lp):
 def load_emb(snap, model, panel_pid):
     """Centered, unit-length abstract vectors aligned to panel rows (NaN rows dropped): returns (row index, X float32)."""
     ids, mats = [], []
-    for s in C.EMB_SCHOOLS:
-        p = snap / 'embeddings' / model / s / 'abstract.npz'
-        if p.exists():
+    for root in (snap / 'embeddings' / model, snap / 'delta' / 'embeddings' / model):       # the earlier build, then the delta (same layout)
+        for p in sorted(root.glob('*/abstract.npz')):
             z = np.load(p)
             ids.append(z['ids']); mats.append(z['M'])
     ids = np.concatenate(ids)

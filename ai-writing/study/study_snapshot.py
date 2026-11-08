@@ -34,7 +34,7 @@ def now():
     return datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
 
 
-def spec(release_dir, src=None):
+def spec(release_dir, src=None, delta_base=None):
     """The inputs as (group, destination relative to the snapshot, source path, mode); mode: copy | link | ref."""
     src = src or C.sources()
     rel = Path(release_dir)
@@ -91,6 +91,15 @@ def spec(release_dir, src=None):
               'AI-DOSE-NOVELTY-DIVERSITY-v3.md', 'CITATION-NOVELTY.md', 'TOPIC-CONVERGENCE.md', 'LAB-EVENT-STUDY.md', 'FULLTEXT-SELECTION-IPW.md'):
         add('carryover', f'carryover/{f}', src['reports'] / f, 'copy')
     add('design', 'design/preregistration.json', src['labstudy_code'] / 'preregistration.json', 'copy')
+    if delta_base:    # papers the earlier build never saw, scored and embedded by study_delta_build.py (work/delta-<base>) plus their OpenAlex abstracts/topics
+        w = C.STUDY / 'work' / f'delta-{delta_base}'
+        add('delta', 'delta/oa_fields_delta.sqlite', C.snapshot_dir(delta_base) / 'delta' / 'oa_fields_delta.sqlite', 'copy')
+        for f in ('delta_papers.jsonl.gz', 'delta_scores.parquet', 'copies_held.parquet'):
+            add('delta', f'delta/{f}', w / f, 'copy')
+        add('delta', 'delta/scores_passages.sqlite', w / 'scores.sqlite', 'copy')
+        for m in C.MODELS:
+            for p in sorted((w / 'emb' / m).glob('*/abstract.*')):
+                add('delta', f'delta/embeddings/{m}/{p.parent.name}/{p.name}', p, 'copy')
     return out
 
 
@@ -114,7 +123,7 @@ def place(src, dst, mode):
 
 def build(args):
     snap = C.snapshot_dir(args.id)
-    items = spec(C.release_dir(args.release))
+    items = spec(C.release_dir(args.release), delta_base=args.delta_base)
     snap.mkdir(parents=True, exist_ok=True)
     files, missing = [], []
     for g, d, s, m in items:
@@ -221,7 +230,7 @@ def verify(args):
 
 def readme(man):
     cov = man['coverage']
-    rows = '\n'.join(f"| {s} | {c['lab_papers_2016_2025']} | {c['pis']} | {c['in_universe']:.0%} | {c['abstract_embedded']:.0%} | {c['abstract_flag']:.0%} | {c['fulltext_v3']:.0%} | {c['period_supported']:.0%} |"
+    rows = '\n'.join(f"| {s} | {c['lab_papers_2016_2025']} | {c['pis']} | {c['in_universe']:.0%} | {c['abstract_embedded']:.0%} | {c['abstract_flag']:.0%} | {('n/a' if c.get('held') is None else format(c['held'], '.0%'))} | {c['fulltext_v3']:.0%} | {c['period_supported']:.0%} |"
                      for s, c in cov['by_school'].items())
     groups = {}
     for f in man['files']:
@@ -239,6 +248,7 @@ Built from release `{man['release_id']}` (`{man['release_dir']}`, code commit `{
 - **Release AI tables** (`release/ai/`): lab AI scores, histograms and the AI-words tables as published with the release.
 - **AI scores, detector v3** (`ai/`): `papers_v3.parquet` (one row per universe paper: abstract flag, full-text `ai_share` over main body, over main + appendix, abstained share, `trained_on_v3`, Kobak words), `paper_ai_v3.parquet` (the section split per full-text paper), the operating point and the error table. v3 false-positive rate 0.30% per passage (CI 0.27 to 0.32%); unseen-generator misses 0.9 to 6.6%.
 - **Universe and OpenAlex fields** (`universe/`): `universe.sqlite` (paper list with OpenAlex ids, labs), `oa_fields.sqlite` (abstracts, primary topics), `oa_extra.sqlite` (references count, venue type).
+- **Delta** (`delta/`, present when built with `--delta-base`): OpenAlex abstracts/topics, detector-v3 scores (`delta_scores.parquet`, passage scores in `scores_passages.sqlite`) and abstract embeddings of papers the earlier build never saw. They have no citation measures and no IPW weights.
 - **Embeddings of abstracts** (`embeddings/<model>/<school>/abstract.npz`, hard-linked): seven models (SPECTER2 base and proximity, SciNCL, Qwen3-0.6B, GTE-Qwen2-1.5B, BGE-M3, Nomic v1.5), one vector per paper under its home school, plus BERTopic topic ids (`topics/`).
 - **Citation measures** (`citation/`): Uzzi atypicality, Rao-Stirling and related per paper (detector-v3 build), **IPW weights** (`ipw/`), the lab-event-study pre-registration (`design/preregistration.json`), and the earlier reports for the experiments that are carried over unchanged (`carryover/`).
 
@@ -252,10 +262,10 @@ Built from release `{man['release_id']}` (`{man['release_dir']}`, code commit `{
 - Anything built after the sealing time. The AI scores and embeddings were built on 2026-11-04 to 11-06 from the earlier paper universe (9 schools); the release is 2026-11-07. A release paper that is not in that universe has no AI score and no embedding (see coverage).
 
 ## Coverage of the 12 schools (papers 2016 to 2025, release membership)
-Partial-coverage schools: **{', '.join(man['partial_schools'])}**. They were onboarded after the AI scores and embeddings were built, so they have almost no scored papers; most of their PIs carry appointment evidence from 2026 listings only, so their period gaps are open (papers are attributed to the PI at every year, `period_supported` is the share with a dated appointment period).
+Partial-coverage schools: **{', '.join(man['partial_schools'])}**. They were onboarded after the earlier AI scores and embeddings were built; where `delta/` is present, the papers the earlier build never saw (these schools' and about 3% of the others') were scored with detector v3 and embedded afterwards (`delta/delta_scores.parquet`, `delta/embeddings/`), and the shares below include them. Most of their PIs carry appointment evidence from 2026 listings only, so their period gaps are open (papers are attributed to the PI at every year, `period_supported` is the share with a dated appointment period).
 
-| school | lab papers | PIs | in universe | abstract embedded | abstract flag | full-text scored (v3) | period-supported |
-|---|---|---|---|---|---|---|---|
+| school | lab papers | PIs | in universe | abstract embedded | abstract flag | full text held | full-text scored (v3) | period-supported |
+|---|---|---|---|---|---|---|---|---|
 {rows}
 
 "in universe", "abstract embedded", "abstract flag" and "full-text scored" are shares of the school's release papers (matched by OpenAlex id) that the earlier build covered.
@@ -269,10 +279,11 @@ def main():
     ap.add_argument('--release', default='latest')
     ap.add_argument('--id', default='2026-11-07')
     ap.add_argument('-j', '--jobs', type=int, default=8)
+    ap.add_argument('--delta-base', default=None, help='build: also take the scored/embedded delta of this earlier snapshot (work/delta-<base>)')
     a = ap.parse_args()
     if a.cmd == 'plan':
         tot = 0
-        for g, d, s, m in spec(C.release_dir(a.release)):
+        for g, d, s, m in spec(C.release_dir(a.release), delta_base=a.delta_base):
             sz = s.stat().st_size if s.exists() else -1
             tot += max(sz, 0) if m != 'ref' else 0
             print(f'{g:20s} {m:5s} {sz / 2 ** 20:9.1f} MiB {d}' + ('' if sz >= 0 else '  MISSING'))
