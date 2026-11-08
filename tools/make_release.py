@@ -117,6 +117,7 @@ def release_sources(ai_dir=None):
     if ai_dir:  # the AI-writing pages' data (owner 2026-11-04); the manifest ai/manifest.json is written by make()
         ai = ai_release.collect(ai_dir)
         ai_release.check_years(ai)
+        ai_release.check_share(ai)
         src.update(ai)
     return src
 

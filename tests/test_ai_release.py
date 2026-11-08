@@ -119,3 +119,31 @@ def test_lab_score_file_is_optional_and_year_checked(tmp_path):
     (root / 'lab_ai_scores_2025.json').write_text(json.dumps({'meta': {'year': 2026}, 'labs': {}}))
     with pytest.raises(SystemExit, match='2026'):
         ai_release.check_years(ai_release.collect(root))
+
+
+def share_file(years=range(2016, 2026), measures=None):
+    series = {m: [{'year': y, 'est': 0.1, 'lo': 0.0, 'hi': 0.2, 'n': 10} for y in years] for m in (measures or ai_release.SHARE_MEASURES)}
+    return {'meta': {'last_year': 2025}, 'series': {'all': series}, 'contrasts': {}, 'coverage': [], 'error_table': {}}
+
+
+def test_optional_ai_share_is_collected_and_checked(tmp_path):
+    root = folder(tmp_path)
+    (root / 'ai_share.json').write_text(json.dumps(share_file()))
+    src = ai_release.collect(root)
+    assert 'ai/ai_share.json' in src
+    ai_release.check_years(src)
+    ai_release.check_share(src)
+
+
+def test_ai_share_refuses_2026_and_missing_years(tmp_path):
+    root = folder(tmp_path)
+    (root / 'ai_share.json').write_text(json.dumps(share_file(years=range(2016, 2027))))
+    src = ai_release.collect(root)
+    with pytest.raises(SystemExit, match='2026'):
+        ai_release.check_years(src)
+    (root / 'ai_share.json').write_text(json.dumps(share_file(years=range(2018, 2026))))
+    with pytest.raises(SystemExit, match='2016-2025'):
+        ai_release.check_share(ai_release.collect(root))
+    (root / 'ai_share.json').write_text(json.dumps({'meta': {}}))
+    with pytest.raises(SystemExit, match='lacks'):
+        ai_release.check_share(ai_release.collect(root))

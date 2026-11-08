@@ -20,4 +20,5 @@ ids+=($(sbatch --parsable --dependency=afterok:$p --cpus-per-task=16 --mem=48G $
 all=$(IFS=:; echo "${ids[*]}")
 f=$(sbatch --parsable --dependency=afterok:$all --cpus-per-task=2 --mem=8G $HERE/study.slurm study_figures.py --id "$ID")
 r=$(sbatch --parsable --dependency=afterok:$f --cpus-per-task=2 --mem=8G $HERE/study.slurm study_report.py --id "$ID")
+sbatch --parsable --dependency=afterok:$r --cpus-per-task=2 --mem=8G $HERE/study.slurm study_ai_share.py --id "$ID" >/dev/null
 echo "chain: prep $p, layers ${ids[*]}, figures $f, report $r"
