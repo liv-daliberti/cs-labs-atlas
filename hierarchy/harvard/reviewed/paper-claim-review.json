@@ -3093,10 +3093,10 @@
         "oa": "https://openalex.org/W4406031367",
         "doi": "10.48550/arxiv.2501.00418"
       },
-      "decision": "hold",
-      "reviewed_by": "codex-harvard-final-delta-review-1108",
+      "decision": "merge",
+      "reviewed_by": "codex-harvard-generalizing-recovery-1108",
       "reviewed_at": "2026-11-08",
-      "why": "Independent final-delta review leaves this exact Generalizing Trust preprint representation unresolved because the captured ACL2026 published record W7166886059 (10.18653/v1/2026.acl-long.2163) has no own PI affiliation in its target author slot, while her literal Harvard text is assigned to another author slot. The preprint has own Harvard evidence; the published edition and work-scope bridge need explicit review. Hold this exact PI/OA/DOI claim without rejecting the underlying research, borrowing the bystander affiliation or forcing target admission. This additional baseline-delta judgment does not modify the original 172-paper audit.",
+      "why": "The exact official ACL2026 publisher PDF directly identifies Himabindu Lakkaraju in her own lower-right author block as Harvard University, Cambridge, MA, USA. It matches the publisher DOI and July2026 long-paper proceedings/date and all five author identities, within her sourced Harvard faculty appointment since January2020. The layout-preserving page-one extraction gives the ordinary R-PAP-10 near tie; visual inspection and PDF coordinates disambiguate it from Martin Pawelczyk separate Vienna block. Retain the exact arXiv source as an edition of the independently eligible full publisher record, with both five-author byline orders retained. This is no acceptance waiver: integrate the source-bound standard pi-works pages evidence first, and hold if the complete eligible publisher target is missing. Original derived affiliation errors and the previous hold remain preserved in the audit.",
       "evidence": [
         {
           "url": "https://openalex.org/W4406031367",
@@ -3111,8 +3111,26 @@
           "quote": "Himabindu Lakkaraju Harvard University Cambridge , MA , USA",
           "kind": "cached_OpenAlex_bystander_slot",
           "hash_basis": "SHA256 of decoded frozen original response page JSON, year 2026 page 294; this string is on Martin Pawelczyk author slot, not the target PI slot."
+        },
+        {
+          "url": "https://aclanthology.org/2026.acl-long.2163.pdf",
+          "sha256": "9ba2af6be54334f38c1478db16ce1be0da2f0934cc4c6e9d49cb4f8f0d3e849d",
+          "quote": "Himabindu Lakkaraju Harvard University",
+          "kind": "original_publisher_PDF_page1_own_author_block",
+          "hash_basis": "SHA256 of all 3,549,092 original PDF bytes; page1 visually inspected, layout text and bounding boxes retained. Harvard is directly below this PI in lower-right author column; Martin Pawelczyk has a separate Vienna block."
+        },
+        {
+          "url": "https://aclanthology.org/2026.acl-long.2163/",
+          "sha256": "026ef162656aa4298416532a15d82d135d9a10fa7e63accc345c637d96b8e4c2",
+          "quote": "Generalizing Trust: Weak-to-Strong Trustworthiness in Language Models",
+          "kind": "original_publisher_landing_metadata",
+          "hash_basis": "SHA256 original HTML bytes in isolated source-captures.sqlite; citation DOI10.18653/v1/2026.acl-long.2163, July2026, pages46625–46647, exact five authors."
         }
-      ]
+      ],
+      "into": {
+        "oa": "https://openalex.org/W7166886059",
+        "doi": "10.18653/v1/2026.acl-long.2163"
+      }
     },
     {
       "id": "harvard-20261108-Sudan-published-edition",

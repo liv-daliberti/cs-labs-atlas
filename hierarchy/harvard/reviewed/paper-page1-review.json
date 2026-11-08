@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "school": "harvard",
+  "purpose": "Source-bound reviewed page1 evidence for an isolated standard pi-works overlay; not an acceptance override or publisher download configuration.",
+  "reviewed_by": "codex-harvard-generalizing-integration-1108",
+  "reviewed_at": "2026-11-08",
+  "papers": [
+    {
+      "pi": "Hima Lakkaraju",
+      "oa": "https://openalex.org/W7166886059",
+      "doi": "10.18653/v1/2026.acl-long.2163",
+      "title": "Generalizing Trust: Weak-to-Strong Trustworthiness in Language Models",
+      "pdf": {
+        "url": "https://aclanthology.org/2026.acl-long.2163.pdf",
+        "sha256": "9ba2af6be54334f38c1478db16ce1be0da2f0934cc4c6e9d49cb4f8f0d3e849d",
+        "bytes": 3549092,
+        "pages": 23
+      },
+      "landing": {
+        "url": "https://aclanthology.org/2026.acl-long.2163/",
+        "sha256": "026ef162656aa4298416532a15d82d135d9a10fa7e63accc345c637d96b8e4c2",
+        "date": "2026-07",
+        "pages": "46625–46647"
+      },
+      "page1": {
+        "how": "near",
+        "quotes": [
+          "Himabindu Lakkaraju Harvard University"
+        ],
+        "layout_text_sha256": "c5d72ab7e74449b24547d9fa5850adbb2f471ac298a84bb883870441a434d413",
+        "extraction": "pdftotext -f 1 -l 1 -layout",
+        "own_mapping": "Himabindu Lakkaraju is the lower-right author column, with Harvard University directly below. Martin Pawelczyk has a separate University of Vienna block. Visual PDF and bounding boxes independently reviewed by two agents.",
+        "plain_extraction_limitation": "Default reading order places Hima after Abstract; do not weaken tie or borrow another author affiliation."
+      },
+      "source_packet": {
+        "directory": "scratch/harvard-generalizing-recovery-1108",
+        "proof_sha256": "b0bfb0733e56e16025b855fa19e391c4f1939c66daac856b4bc432e12186f556",
+        "overlay_sha256": "3b1db067cff3ca0b44107c97789e78ea8e4a4b9c4f222f80203b34440503f975",
+        "overlay_source_sha256": "f4ab81d0da2f2fae637b210002eab0ce20369ec8a5ed0663064f20aebe6c0bc9",
+        "raw_publisher_source": {
+          "source_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-reviewed-build-1108/trial/hierarchy/harvard/raw/openalex-sweep.sqlite",
+          "source_page": {
+            "year": 2026,
+            "page": 294,
+            "body_sha256": "f04da5d936d27e751ec0f019bfc5262c13310ca98eb7ac08564d4b565ec8c852"
+          },
+          "exact_requested_key": false
+        },
+        "raw_publisher_metadata_unchanged": true
+      },
+      "previous_exact_hold": {
+        "id": "harvard-20261108-W4406031367",
+        "pi": "Hima Lakkaraju",
+        "match": {
+          "oa": "https://openalex.org/W4406031367",
+          "doi": "10.48550/arxiv.2501.00418"
+        },
+        "decision": "hold",
+        "reviewed_by": "codex-harvard-final-delta-review-1108",
+        "reviewed_at": "2026-11-08",
+        "why": "Independent final-delta review leaves this exact Generalizing Trust preprint representation unresolved because the captured ACL2026 published record W7166886059 (10.18653/v1/2026.acl-long.2163) has no own PI affiliation in its target author slot, while her literal Harvard text is assigned to another author slot. The preprint has own Harvard evidence; the published edition and work-scope bridge need explicit review. Hold this exact PI/OA/DOI claim without rejecting the underlying research, borrowing the bystander affiliation or forcing target admission. This additional baseline-delta judgment does not modify the original 172-paper audit.",
+        "evidence": [
+          {
+            "url": "https://openalex.org/W4406031367",
+            "sha256": "9e4dd045127f8f746a1524fd17ddcb3e97d50c2cd27da5df0b9bc754934baff3",
+            "quote": "Generalizing Trust: Weak-to-Strong Trustworthiness in Language Models",
+            "kind": "cached_OpenAlex_preprint",
+            "hash_basis": "SHA256 of decoded frozen original response page JSON, year 2024 page 204; not a PDF hash"
+          },
+          {
+            "url": "https://openalex.org/W7166886059",
+            "sha256": "f04da5d936d27e751ec0f019bfc5262c13310ca98eb7ac08564d4b565ec8c852",
+            "quote": "Himabindu Lakkaraju Harvard University Cambridge , MA , USA",
+            "kind": "cached_OpenAlex_bystander_slot",
+            "hash_basis": "SHA256 of decoded frozen original response page JSON, year 2026 page 294; this string is on Martin Pawelczyk author slot, not the target PI slot."
+          }
+        ]
+      },
+      "decision_scope": "Only the additional baseline-delta Generalizing Trust hold is replaced. Preserve original172 audit141pass/9fail/22unknown, first31 decisions, chapter hold and Sudan preferred publication.",
+      "integration": "Add the exact publisher work/page1 evidence through standard pi-works SQLite; normal identity, own-school, appointment, paper-type and edition checks remain required. Exact source→eligible publisher merge holds if full publisher target is unavailable. No title-only identity rule.",
+      "byline_caveat": "Retain all five full names and both source author orders. Derived Zhenting Qi author IDs differ; no global person merge is proposed."
+    }
+  ]
+}
