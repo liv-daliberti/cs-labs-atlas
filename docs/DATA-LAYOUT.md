@@ -244,7 +244,15 @@ Files in `hierarchy/` that the table does not name were not moved, and nothing i
 `hierarchy/cs-related-captures*.sqlite`, `home-departments-captures.sqlite`, `period-captures.sqlite`, `period-targets-*.json`, `home-department-input.json`,
 `new-pis-gap-input.json`, the `*-berkeley|cmu|epfl|mit|princeton|stanford.log` run logs, `LINKS-AGENT-REPORT-20261029.md`, and the leftover tool directories
 (`cs-related-tools/`, `few-students-tools*/`, `gap-tools-*/`, `home-dept-tools/`, `missing-pi-tools/`, `period-tools/`, `chain-research-20261028/`).
-They are candidates for `hierarchy/archive-data/` (with a dated note) or deletion after review, which is the owner's call. The per-school inputs
+They are candidates for `hierarchy/archive-data/` (with a dated note) or deletion after review, which is the owner's call.
+
+**Cleanup 2026-11-07 (owner-approved).** These leftovers are moved out of `hierarchy/`:
+- The run logs went to `archive/hierarchy-legacy/logs/`.
+- The tool directories and this report went to `archive/hierarchy-legacy/`.
+- The shared capture databases and their inputs went to `archive/hierarchy-legacy/data/`.
+- The root `cs-related-captures-<school>.sqlite` files are NOT subsets of each school's `raw/cs-related-captures.sqlite` (Princeton has 231 rows against 59), so they were not unioned. They now sit at `hierarchy/<school>/raw/legacy/cs-related-captures-root-copy.sqlite`.
+
+Every move has a line in `archive/migrations/cleanup-2026-11-07.jsonl`, with the restore command. The per-school inputs
 `few-students-input.json`, `gap-input.json`, `cs-related-home-departments.json`, CMU's `departures-20261031.json`, Berkeley's `pubs-fetch.log` and
 `hosts.json` (written by `tools/school_hosts.py`) are in the table now and move with `relocate_data.py --apply --only
 hosts.json,few-students-input.json,gap-input.json,cs-related-home-departments.json,departures-20261031.json,pubs-fetch.log` (no loop or job touches them).
