@@ -199,3 +199,23 @@ def test_finite_owned_first_person_advising_recovers_real_entry_context(tmp_path
     ctx = B.run_stages(tmp_path, upto='papers')
     assert ('A Paper With An Unresolved PI Identity' in B.rows_of(ctx, 'Ada Lovelace')) is expected
     assert 'p_alan' in ctx.stu['Ada Lovelace']
+
+
+@pytest.mark.parametrize('filename,note,chair,relationship,expected', [
+    ('thesis-committee-chair-evidence.json', 'Approved by the owner 2026-11-08 (R-STU-23).', 'Ada Lovelace', None, True),
+    ('few-students-evidence.json', 'Approved by the owner (R-STU-23).', 'Ada Lovelace', None, False),
+    ('thesis-committee-chair-evidence.json', 'Unreviewed Committee Chair.', 'Ada Lovelace', None, False),
+    ('thesis-committee-chair-evidence.json', 'Approved by the owner (R-STU-23).', 'Grace Hopper', None, False),
+    ('thesis-committee-chair-evidence.json', 'Approved by the owner (R-STU-23).', 'Ada Lovelace', 'membership', False),
+])
+def test_existing_owner_approved_thesis_chair_contract_is_exact_and_not_generic(
+        tmp_path, filename, note, chair, relationship, expected):
+    school_fixture(tmp_path)
+    quote = 'Committee Chair ' + chair
+    change_member(tmp_path, 'academic_advising', quote)
+    row = dict(name='Alan Turing', role='phd', note=note, **B.src(quote))
+    if relationship:
+        row['relationship'] = relationship
+    B.put(tmp_path, filename).write_text(json.dumps([dict(pi='Ada Lovelace', students=[row])]))
+    ctx = B.run_stages(tmp_path, upto='papers')
+    assert ('A Paper With An Unresolved PI Identity' in B.rows_of(ctx, 'Ada Lovelace')) is expected

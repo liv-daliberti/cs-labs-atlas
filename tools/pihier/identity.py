@@ -54,10 +54,14 @@ def adviser_source_claims(ctx):
                 claims[key] = basis
 
     groups = list((getattr(ctx, 'ge', {}) or {}).items())
+    chair_rows = []
     for filename in RESEARCHED_FILES:
         path = P.data(filename, ctx.school, root=ctx.here)
         if path.exists():
-            groups += [(r['pi'], r) for r in read(path)]
+            records = read(path)
+            groups += [(r['pi'], r) for r in records]
+            if filename == 'thesis-committee-chair-evidence.json':
+                chair_rows += [(r['pi'], s) for r in records for s in r.get('students') or []]
     rows, owned_bodies = [], set()
     for pi, group in groups:
         pi = renames.get(pi, pi)
@@ -77,6 +81,14 @@ def adviser_source_claims(ctx):
                 and literal == context.get('home') == owned['url'] and literal in outbound['quote']
                 and (names_full_form(owned['quote'], names) or context.get('owned_named_PI_alias') in names)):
             owned_bodies.add((pi, owned['url'], owned['sha256']))
+    for pi, row in chair_rows:
+        pi = renames.get(pi, pi)
+        note = row.get('note') or ''
+        chair = re.search(r'\bCommittee\s+Chair\s*:?\s*([^|;\n]+)', row.get('quote') or '', re.I)
+        if (pi in pis and row.get('relationship') != 'membership' and chair
+                and 'R-STU-23' in note and re.search(r'Approved by (?:the )?owner', note, re.I)
+                and names_full_form(chair.group(1), pis[pi].get('names') or [pi])):
+            add(pi, row.get('name'), row, 'reviewed_R_STU23_committee_chair')
     rows += [(s['pi'], s) for s in accepted_additions(ctx.school, 'students', ctx.here, collections.Counter())]
     for pi, row in rows:
         pi = renames.get(pi, pi)
