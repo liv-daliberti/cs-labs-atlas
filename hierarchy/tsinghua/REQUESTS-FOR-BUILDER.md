@@ -2,6 +2,8 @@
 
 2026-11-08, source review branch `agent/tsinghua-expansion-1108`.
 
+Native identity fix integrated in `245c00f` (1,547 tests passed, 18 skipped). The reproducer below records the original failure at `b2e650f`; it is retained as the reason for the fix. Literal CJK identities and lab-scoped fallback member IDs are now preserved, and distinct same-name profiles require explicit disambiguation before downstream PI indexing. A full Tsinghua native trial and source-bound input integration remain required.
+
 The 88 reviewed census additions use the exact public Chinese names from named official profiles. No English transliterations were inferred. A native smoke check against main b2e650f exposes a prerequisite shared-code fix:
 
 ```python
