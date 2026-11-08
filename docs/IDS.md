@@ -46,6 +46,15 @@ a missing working registry is seeded from `releases/latest`; it is not in git (t
 - A record with no identifier (`ext:` students found by the targeted research) is anchored by its name and each evidence
   url. The same name on two different pages stays two people; the same name on the same page (a roster that names both
   advisers) is one.
+- **Source-backed co-advising (2026-11-08).** Within one school, memberships carrying the same native `ext:` student
+  record may join when their full names are compatible and reciprocal source quotations explicitly identify the
+  co-advisers. Every citation retains its URL and SHA256; a given-name-only adviser must be unique among the school's
+  PIs. A connected reciprocal graph supports more than two advisers. The native external key selects candidates; it
+  never becomes a global person anchor. Each membership retains its own role, years and source citations. Names or a
+  shared external key alone still leave records separate. A cited co-advising claim that cannot be resolved, incompatible
+  names, or a join reaching two previously issued person IDs raises `CoadvisingIDConflict` before assignment or writes;
+  its `holds` records identify the evidence requiring review. One existing issued ID is reused. Source proof is recorded
+  in `IDS-REPORT.json` `coadvising_evidence`; this does not verify candidate student-paper author identities.
 - **Students who became PIs.** For each student-paper link, the byline author id on the student's linked lab paper is read
   from the school's OpenAlex sweep; when it is a PI's reviewed OpenAlex id and both the student's name and the byline are
   name-compatible with the PI (same family name and first full given name, or a nickname pair; initials never count), the

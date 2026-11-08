@@ -715,6 +715,14 @@ Across labs and schools only by ORCID, a reviewed OpenAlex id or a DBLP person, 
 different family names is refused. A student joins a PI elsewhere when the byline author id on the student's linked lab
 paper is that PI's reviewed OpenAlex id and the names are compatible (full first given name or a nickname pair).
 
+Within one school, a shared native `ext:` student record can identify co-advised memberships only with compatible
+full names and reciprocal URL/hash/quote evidence explicitly naming the advisers (2026-11-08). A given-only adviser
+must be unique schoolwide. Names or the external key alone never join records; each membership's sources, role and
+observed years remain distinct. Unresolved cited co-advising, incompatible names, or multiple previously issued person
+IDs stop the ID stage before assignment or writes (`CoadvisingIDConflict.holds`); existing issued IDs are not silently
+redirected by this route. One already-issued ID is reused. The source proof appears in `IDS-REPORT.json`; candidate
+student-paper author identity remains candidate.
+
 ### R-ID-04 (2026-10-29, owner) — joining works
 Rows sharing a work anchor, editions included, are one work across labs and schools; two rows of one lab are never one
 work (they join only through their own lead record).
