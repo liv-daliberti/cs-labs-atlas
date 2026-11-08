@@ -72,7 +72,7 @@ def adviser_source_claims(ctx):
             owner = row.get('source_owner_PI')
             role_source = row.get('PI_role_source') or {}
             section = row.get('section') or ''
-            if owner in names and _adviser_source_key(role_source):
+            if owner in names and _adviser_source_key(role_source) and names_full_form(role_source['quote'], names):
                 if re.search(r'\badvisees\b|\bsupervised students\b', section, re.I):
                     add(pi, row.get('name'), row, 'reviewed_owned_advising_section')
                 elif (row.get('relationship_basis') in LEGACY_ADVISER_BASES

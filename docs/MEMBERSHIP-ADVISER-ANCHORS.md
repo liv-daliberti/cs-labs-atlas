@@ -11,7 +11,7 @@ A qualifying relation needs an actual source with URL, hash and quote. The sourc
 An existing native relation label such as `researched_advising` is not sufficient: older compilers generated it from degree roles. Advisory proof can instead be recovered from:
 
 - An explicitly reviewed `relationship: advising` row in an already consumed reviewed evidence input. `relationship: membership` is a hard negative for the same bound source, including stale compiled advising labels.
-- A reviewed, PI-owned `Advisees`/supervised-students section with a complete PI-role source. The entry quote may omit the heading; the exact registered row carries that context.
+- A reviewed, PI-owned `Advisees`/supervised-students section with a complete PI-role source that names that PI in full. The entry quote may omit the heading; the exact registered row carries that context.
 - A finite prior reviewed relationship-basis form: `PI-owned personally named roster`; `PI personal Students and Postdoctoral Fellows; explicit dates and full co-adviser statements`; or the existing `PI-owned current Students roster; source explicitly names … appointment, no doctoral inference` format. These require the same reviewed flag, exact source-owner PI and complete role source. They are compatibility for recorded source decisions, not a rule granting authority to unknown owned-student headings. Explicit membership still overrides them.
 - A named-adviser collection context with its exact native source tuple and the PI's full name in that source. A suggested person ID or an expanded initial/surname is insufficient.
 - The PI's reviewed `advises_phd` basis for a matching `pi_basis_advising` relation.
