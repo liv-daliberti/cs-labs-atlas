@@ -3047,6 +3047,72 @@
       ],
       "decision": "hold",
       "why": "Independent audit remains unresolved for own_harvard_affiliation. No own Harvard affiliation in the original PI authorship. Permitted alternative school route documented separately; own-affiliation criterion remains unknown. Hold this exact PI-paper claim pending stronger evidence; no inference that the underlying work is nonresearch or the author is a different person."
+    },
+    {
+      "id": "harvard-20261108-W2986563348",
+      "pi": "Susan A Murphy",
+      "match": {
+        "oa": "https://openalex.org/W2986563348",
+        "doi": "10.1007/978-3-030-31620-4_18"
+      },
+      "decision": "hold",
+      "reviewed_by": "codex-harvard-final-delta-review-1108",
+      "reviewed_at": "2026-11-08",
+      "audit_number": 14,
+      "original_audit_status": "unknown",
+      "original_audit_sha256": "099c24971f92a66e511f3dc4116206aabbba2ceda24e18adc6753f1da3f9a043",
+      "why": "This exact 2019 representation was the retained edition of original audit 14, the unresolved 2022 chapter W4286559732 (10.1007/978-3-030-98546-2_21). The original audit left both PI identity and the 2019/2022 revision or reprint relationship unknown. Holding only the 2022 primary lets this already-known 2019 edition re-enter as a new primary without stronger independent identity or edition evidence. Hold this exact PI/OA/DOI claim pending review; do not infer a namesake or nonresearch status from CV absence, and do not force the chapters to merge.",
+      "evidence": [
+        {
+          "url": "https://openalex.org/W2986563348",
+          "sha256": "997169da8ac4ec39ca30a963711237ee1b2f1eba46b44aa71f4ce5fe932b8fcd",
+          "quote": "Optimizing mHealth Interventions with a Bandit",
+          "kind": "cached_OpenAlex_record",
+          "hash_basis": "SHA256 of decoded frozen original OpenAlex response page JSON, 2019 page 137; not a PDF hash"
+        },
+        {
+          "url": "https://openalex.org/W2986563348",
+          "sha256": "997169da8ac4ec39ca30a963711237ee1b2f1eba46b44aa71f4ce5fe932b8fcd",
+          "quote": "Department of Statistics and Department of Computer Science, Harvard University, Cambridge, USA",
+          "kind": "cached_OpenAlex_target_authorship",
+          "hash_basis": "Same frozen original response-page hash; own affiliation does not independently resolve the PI-person identity."
+        },
+        {
+          "url": "https://openalex.org/W4286559732",
+          "sha256": "c6dc36787f7c1450066d1bc316c93fa6503372261c73793acaf68d792a836d1f",
+          "quote": "Optimizing mHealth Interventions with a Bandit",
+          "kind": "cached_OpenAlex_ambiguous_related_chapter",
+          "hash_basis": "SHA256 of decoded frozen original response page JSON, 2022 page 106; identity and edition uncertainty retained from audit 14."
+        }
+      ]
+    },
+    {
+      "id": "harvard-20261108-W4406031367",
+      "pi": "Hima Lakkaraju",
+      "match": {
+        "oa": "https://openalex.org/W4406031367",
+        "doi": "10.48550/arxiv.2501.00418"
+      },
+      "decision": "hold",
+      "reviewed_by": "codex-harvard-final-delta-review-1108",
+      "reviewed_at": "2026-11-08",
+      "why": "Independent final-delta review leaves this exact Generalizing Trust preprint representation unresolved because the captured ACL2026 published record W7166886059 (10.18653/v1/2026.acl-long.2163) has no own PI affiliation in its target author slot, while her literal Harvard text is assigned to another author slot. The preprint has own Harvard evidence; the published edition and work-scope bridge need explicit review. Hold this exact PI/OA/DOI claim without rejecting the underlying research, borrowing the bystander affiliation or forcing target admission. This additional baseline-delta judgment does not modify the original 172-paper audit.",
+      "evidence": [
+        {
+          "url": "https://openalex.org/W4406031367",
+          "sha256": "9e4dd045127f8f746a1524fd17ddcb3e97d50c2cd27da5df0b9bc754934baff3",
+          "quote": "Generalizing Trust: Weak-to-Strong Trustworthiness in Language Models",
+          "kind": "cached_OpenAlex_preprint",
+          "hash_basis": "SHA256 of decoded frozen original response page JSON, year 2024 page 204; not a PDF hash"
+        },
+        {
+          "url": "https://openalex.org/W7166886059",
+          "sha256": "f04da5d936d27e751ec0f019bfc5262c13310ca98eb7ac08564d4b565ec8c852",
+          "quote": "Himabindu Lakkaraju Harvard University Cambridge , MA , USA",
+          "kind": "cached_OpenAlex_bystander_slot",
+          "hash_basis": "SHA256 of decoded frozen original response page JSON, year 2026 page 294; this string is on Martin Pawelczyk author slot, not the target PI slot."
+        }
+      ]
     }
   ]
 }

@@ -50,3 +50,15 @@ The unchanged full audit and frozen metadata are retained in `scratch/harvard-pa
 | 159 | Hima Lakkaraju | W4403580602 | hold |
 
 No canonical research package, stable-ID registry or verification status is changed by this input commit. Member-paper connections remain candidates unless individually verified. A frozen isolated rebuild and full canonical-delta review are required before promotion.
+
+## Independent final-delta follow-up
+
+The frozen 31-decision job32147944 produced647 PI-paper relations. All141 original passes remained primary, all22 original hold keys and six reject keys were absent, and the three reviewed preprints remained editions of their published leads. All201 membership pairs survived;197 links stayed candidate. This preserves the original172 audit outcomes rather than declaring a new stage9 pass.
+
+The independent review found one known-edition leak: original audit14 held W4286559732, but its already-recorded2019 edition W2986563348 (10.1007/978-3-030-31620-4_18) became primary. The new exact hold retains the original unknown PI identity and2019/2022 edition relationship. Its frozen2019 page137 hash is `997169da8ac4ec39ca30a963711237ee1b2f1eba46b44aa71f4ce5fe932b8fcd`; no forced edition merge or namesake rejection is made.
+
+A second exact hold covers Hima's GeneralizingTrust preprint W4406031367 (10.48550/arxiv.2501.00418). A captured ACL published version exists, but its target PI slot has no affiliation and her Harvard text appears on another author slot. An explicit work-scope bridge or primary affiliation evidence is required before admitting that published representation. This is one of eight separate baseline-delta judgments, outside the unchanged original172 audit.
+
+The eight baseline additions received six bounded source-evidence passes, one edition failure (Sudan's arXiv/DROPS priority) and one unresolved edition case (GeneralizingTrust). The canonical SSRN/Wellcome swap preserves a published lead and all captured editions. Sudan's scientific work remains supported; its PI page links the exact RANDOM2025 published PDF, so the eligible DROPS representation should lead through source-backed review. No broad title rule, target admission from compact edition metadata, full-text certificate or canonical promotion is authorized by these holds. The source ledger now has33 decisions; the original31 are preserved verbatim.
+
+Independent artifacts: `scratch/harvard-final-delta-review-1108/{receipt.json,final-comparison.json,baseline-adjudications.json,additional-hold-proof.json,Sudan-edition-primary-source.json}`. A new isolated native rebuild after the remaining edition-selection correction is required; the frozen31 ledger and authoritative647-row package remain unchanged.
