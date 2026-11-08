@@ -3213,6 +3213,48 @@
           "hash_basis": "SHA256 of decoded original frozen response page, year2024 page21; not a PDF hash. Original source bytes remain unchanged."
         }
       ]
+    },
+    {
+      "id": "harvard-20261108-Sudan-HMM-mixed-source",
+      "pi": "Madhu Sudan",
+      "match": {
+        "oa": "https://openalex.org/W2963320196",
+        "doi": "10.4230/lipics.approx-random.2018.34"
+      },
+      "decision": "hold",
+      "reviewed_by": "codex-harvard-hmm-source-hold-1108",
+      "reviewed_at": "2026-11-08",
+      "why": "This exact frozen OA representation mixes the HMM title with Polar Codes DOI10.4230/LIPIcs.APPROX-RANDOM.2018.34 and its three-author list, and General Strong Polarization arXiv1802.02718. The real HMM publisher DOI is10.4230/LIPIcs.ITCS.2019.39 with Venkatesan Guruswami, Preetum Nakkiran and Madhu Sudan; Sudan has his own Harvard block. Hold this mixed source before author anchoring without rejecting the underlying genuine HMM research. Standard R10/R24 recovers unchanged original correct preprint W2895063194/arXiv1810.01969 from the exact CMU pi-works source with the actual publisher page1 Harvard tie, and independent standard R36 uses the reviewed own DBLP publisher record. Only those genuinely corroborated editions may fold. Do not attach W2963320196, DOI2018.34 or arXiv1802.02718 as HMM aliases or merge it into Polar Codes/General Strong. Preserve all35 prior decisions and the original172audit141pass/9fail/22unknown; no broad title/person/school rejection or forced admission.",
+      "evidence": [
+        {
+          "url": "https://drops.dagstuhl.de/storage/00lipics/lipics-vol124-itcs2019/LIPIcs.ITCS.2019.39/LIPIcs.ITCS.2019.39.pdf",
+          "sha256": "c74b0ba9c2fe33fefc817d46c0055c2d57de2fa44bad733f55d007d4f03c23bd",
+          "quote": "© Venkatesan Guruswami, Preetum Nakkiran, and Madhu Sudan;",
+          "kind": "original_ITCS2019_publisher_complete_primary_byline_and_DOI",
+          "hash_basis": "SHA256 of all653100 original publisher PDF bytes in existing CMU local object; page1 visually inspected. DOI10.4230/LIPIcs.ITCS.2019.39,3authors,own Madhu Sudan Harvard block,ITCS2019 Article39 pages39:1–39:19."
+        },
+        {
+          "url": "https://openalex.org/W2895063194",
+          "sha256": "304d3a27ec1c5a0fb231588ba3a460c0636c9829a2d245605810b7de0e524787",
+          "quote": "Algorithmic Polarization for Hidden Markov Models",
+          "kind": "original_correct_CMU_piworks_preprint_record",
+          "hash_basis": "SHA256 of the complete decoded original JSON work body from exact indexed CMU pi-works row, not a PDF hash. Correct arXiv1810.01969 and3correct authors; original empty affiliation slots preserved. Standard R10 primary page1 review supplies a separate school tie."
+        },
+        {
+          "url": "https://openalex.org/W2963320196",
+          "sha256": "587f2cbf339270ce0c4a051b9bd1b9ce5947d44d4e4f577e401a314b2d92230c",
+          "quote": "Algorithmic Polarization for Hidden Markov Models",
+          "kind": "frozen_mixed_OpenAlex_response",
+          "hash_basis": "SHA256 of decoded frozen original response page JSON,2018/page150; not a PDF hash. Mixed DOI2018.34 and arXiv1802.02718 remain in original source bytes only."
+        },
+        {
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1802/1802.02718v1.pdf",
+          "sha256": "f39974e6d187a70f8134475bd78234f6a2e8da6c7080d53ebe33f541f0f9a968",
+          "quote": "General Strong Polarization",
+          "kind": "original_other_research_arxivv1",
+          "hash_basis": "Full original517935-byte PDF has5authors Blasiok,Guruswami,Nakkiran,Rudra,Sudan and own Sudan Harvard footnote. It is separate from3author HMM and remains genuine research under its own identifiers."
+        }
+      ]
     }
   ]
 }
