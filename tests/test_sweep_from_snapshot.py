@@ -1,4 +1,4 @@
-"""sweep_from_snapshot writes oa_sweep's pages layout from a snapshot (main store + extension), with the API sweep's filter."""
+"""Offline sweeps preserve all byline sizes in the common pages layout."""
 import json
 import sqlite3
 import zlib
@@ -27,10 +27,12 @@ def test_pages_layout_filter_and_counts(tmp_path, monkeypatch):
     monkeypatch.setattr(T.S, 'get', lambda k: {'window': [2020, 2021]})
     monkeypatch.setattr(T.S, 'sweep_ids', lambda k: ['I9'])
     out = tmp_path / 'sweep.sqlite'
-    assert T.build('newu', out, root=tmp_path) == {2020: 2, 2021: 1}     # W2 has 101 authors; W1 is in both stores once
+    assert T.build('newu', out, root=tmp_path) == {2020: 3, 2021: 1}     # W2's101 authors remain; W1 occurs in both stores once
     c = sqlite3.connect(out)
     rows = c.execute('select year, page, n, count, cursor from pages order by year, page').fetchall()
-    assert rows == [(2020, 0, 2, 2, 'snapshot:2026-10-14'), (2021, 0, 1, 1, 'snapshot:2026-10-14')]
+    assert rows == [(2020, 0, 3, 3, 'snapshot:2026-10-14'), (2021, 0, 1, 1, 'snapshot:2026-10-14')]
     body = json.loads(zlib.decompress(c.execute('select body from pages where year=2020').fetchone()[0]))
-    assert [x['id'][-2:] for x in body] == ['W1', 'W4'] and 'abstract' not in body[0] and set(body[0]) <= set(T.SELECT)
-    assert json.loads(c.execute("select value from meta where key='source'").fetchone()[0])['snapshot_date'] == '2026-10-14'
+    assert [x['id'][-2:] for x in body] == ['W1', 'W2', 'W4'] and 'abstract' not in body[0] and set(body[0]) <= set(T.SELECT)
+    assert body[1]['authorships'] == w('W2', 2020, 101)['authorships']
+    meta = json.loads(c.execute("select value from meta where key='source'").fetchone()[0])
+    assert meta['snapshot_date'] == '2026-10-14' and meta['works_over_100_authors'] == {'2020': 1, '2021': 0}
