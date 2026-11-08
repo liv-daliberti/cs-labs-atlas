@@ -106,6 +106,33 @@ def merge_census_rows(census, ov, n):
     return merged, nick_merges
 
 
+def reviewed_dblp_orcids(group, ov):
+    """An opt-in reviewed inheritance policy; positive ORCIDs need their own source evidence."""
+    reviews = [ov[g['name']]['dblp_orcid_review'] for g in group if 'dblp_orcid_review' in ov.get(g['name'], {})]
+    if not reviews:
+        return None
+    policy = reviews[0]
+    if any(r != policy for r in reviews[1:]):
+        raise ValueError('Conflicting DBLP ORCID reviews for merged PI: ' + group[0]['name'])
+    if not isinstance(policy, dict) or set(policy) != {'allowed', 'why', 'evidence'}:
+        raise ValueError('DBLP ORCID review requires allowed, why and evidence: ' + group[0]['name'])
+    allowed, evidence = policy['allowed'], policy['evidence']
+    valid_id = lambda s: isinstance(s, str) and bool(re.fullmatch(r'\d{4}-\d{4}-\d{4}-\d{3}[\dX]', s))
+    if not isinstance(allowed, list) or not all(valid_id(s) for s in allowed) or len(set(allowed)) != len(allowed):
+        raise ValueError('DBLP ORCID allowed values must be distinct bare ORCIDs: ' + group[0]['name'])
+    if not isinstance(policy['why'], str) or not policy['why'].strip() or not isinstance(evidence, list):
+        raise ValueError('DBLP ORCID review needs a reason and evidence list: ' + group[0]['name'])
+    for e in evidence:
+        if (not isinstance(e, dict) or set(e) != {'orcid', 'url', 'sha256', 'quote'} or e['orcid'] not in allowed
+                or not isinstance(e['url'], str) or not e['url'].startswith(('https://', 'http://'))
+                or not isinstance(e['sha256'], str) or not re.fullmatch(r'[0-9a-f]{64}', e['sha256'])
+                or not isinstance(e['quote'], str) or e['orcid'] not in e['quote']):
+            raise ValueError('Invalid source-bound DBLP ORCID evidence: ' + group[0]['name'])
+    if set(allowed) != {e['orcid'] for e in evidence}:
+        raise ValueError('Every allowed DBLP ORCID needs its own source evidence: ' + group[0]['name'])
+    return policy
+
+
 def choose_lab(x, units, Pid, ids, names):
     """The PI's lab (R-HIER-01, R-HIER-02): a census lab unit whose single leader is this PI and that is not a
     collective, else a new own lab (named after a proposed non-collective unit, else '<PI> group')."""
@@ -138,6 +165,7 @@ def pi_records(ctx):
             excluded.append(dict(pi=group[0]['name'], why=hit.get('why'))); continue
         identity_hold = next((ov[g['name']] for g in group if ov.get(g['name'], {}).get('no_identity')
                               and ov[g['name']].get('why_no_identity')), None)
+        orcid_review = reviewed_dblp_orcids(group, ov)
         x = dict(group[0]); x['aliases'] = list(dict.fromkeys(list(x.get('aliases') or []) + [g['name'] for g in group[1:]] + [a for g in group[1:] for a in g.get('aliases') or []]))
         x['sources'] = [s_ for g in group for s_ in g.get('sources') or []]; x['lab_units'] = [l for g in group for l in g.get('lab_units') or []]
         x['dblp'] = list(dict.fromkeys(q for g in group for q in dblp_of(g)))
@@ -165,6 +193,7 @@ def pi_records(ctx):
         pis.append(dict(pi=shown or x['name'], personIds=ids, names=list(dict.fromkeys(names)), dblp=x['dblp'], reviewedOpenAlex=x['openalex'], orcid=x['orcid'],
                         **({'identityHold': dict(status='reviewed_no_identity', reason=identity_hold['why_no_identity'])}
                            if identity_hold else {}),
+                        **({'dblpOrcidReview': orcid_review} if orcid_review is not None else {}),
                         notOpenAlex=list(o.get('not_openalex') or []),  # reviewed namesake author ids: never this PI
                         # reviewed mixed author ids (2026-10-29): OpenAlex records of another person that also hold some of the
                         # PI's works (Song Mei's Berkeley papers sit in five Chinese namesakes' records); such an id neither

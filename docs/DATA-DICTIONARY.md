@@ -248,6 +248,16 @@ One PI: the merged census rows, reviewed corrections, identity, appointment evid
 | `identityHold` | object | no | An explicit unresolved bibliography identity decision (no_identity plus why_no_identity). Keeps the PI and members but blocks automatic bibliography/ORCID binding and paper attribution until the reviewed decision is resolved. | no other keys |  |
 | `identityHold.status` | string | yes |  | always `reviewed_no_identity` |  |
 | `identityHold.reason` | string | yes |  | non-empty |  |
+| `dblpOrcidReview` | object | no | Opt-in per-PI reviewed ORCID inheritance policy. An empty allowed list withholds all new DBLP ORCIDs; positive entries require source evidence. Explicit independently sourced census ORCIDs remain unchanged. | no other keys |  |
+| `dblpOrcidReview.allowed` | array of string | yes |  | items: pattern `^\d{4}-\d{4}-\d{4}-\d{3}[\dX]$` |  |
+| `dblpOrcidReview.why` | string | yes |  | non-empty |  |
+| `dblpOrcidReview.evidence` | array of object | yes |  |  |  |
+| `dblpOrcidReview.evidence[]` | object | — |  | no other keys |  |
+| `dblpOrcidReview.evidence[].orcid` | string | yes |  | pattern `^\d{4}-\d{4}-\d{4}-\d{3}[\dX]$` |  |
+| `dblpOrcidReview.evidence[].url` | string | yes |  | non-empty |  |
+| `dblpOrcidReview.evidence[].sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `dblpOrcidReview.evidence[].quote` | string | yes |  | non-empty |  |
+| `dblpOrcidsWithheld` | array of string | no | DBLP person-record ORCIDs not admitted by the reviewed inheritance allowlist. These are unresolved identifiers, not a claim that they are false. Original person records remain intact. | items: pattern `^\d{4}-\d{4}-\d{4}-\d{3}[\dX]$` |  |
 | `notOpenAlex` | array of string | yes | Reviewed namesake author ids: never this PI (census-overrides not_openalex). | items: pattern `^https://openalex\.org/A\d+$` | R-PAP-04 |
 | `censusName` | string | no | The census name when a reviewed display_name renamed a placeholder-named PI (R-PAP-34). |  |  |
 | `displayNameBasis` | string \| null | no | Why the reviewed display name is the person. |  |  |

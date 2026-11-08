@@ -91,11 +91,82 @@
      "description": "An explicit unresolved bibliography identity decision (no_identity plus why_no_identity). Keeps the PI and members but blocks automatic bibliography/ORCID binding and paper attribution until the reviewed decision is resolved.",
      "type": "object",
      "properties": {
-      "status": {"type": "string", "const": "reviewed_no_identity"},
-      "reason": {"type": "string", "minLength": 1}
+      "status": {
+       "type": "string",
+       "const": "reviewed_no_identity"
+      },
+      "reason": {
+       "type": "string",
+       "minLength": 1
+      }
      },
-     "required": ["status", "reason"],
+     "required": [
+      "status",
+      "reason"
+     ],
      "additionalProperties": false
+    },
+    "dblpOrcidReview": {
+     "description": "Opt-in per-PI reviewed ORCID inheritance policy. An empty allowed list withholds all new DBLP ORCIDs; positive entries require source evidence. Explicit independently sourced census ORCIDs remain unchanged.",
+     "type": "object",
+     "properties": {
+      "allowed": {
+       "type": "array",
+       "items": {
+        "type": "string",
+        "pattern": "^\\d{4}-\\d{4}-\\d{4}-\\d{3}[\\dX]$"
+       }
+      },
+      "why": {
+       "type": "string",
+       "minLength": 1
+      },
+      "evidence": {
+       "type": "array",
+       "items": {
+        "type": "object",
+        "properties": {
+         "orcid": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{4}-\\d{4}-\\d{3}[\\dX]$"
+         },
+         "url": {
+          "type": "string",
+          "minLength": 1
+         },
+         "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+         },
+         "quote": {
+          "type": "string",
+          "minLength": 1
+         }
+        },
+        "required": [
+         "orcid",
+         "url",
+         "sha256",
+         "quote"
+        ],
+        "additionalProperties": false
+       }
+      }
+     },
+     "required": [
+      "allowed",
+      "why",
+      "evidence"
+     ],
+     "additionalProperties": false
+    },
+    "dblpOrcidsWithheld": {
+     "description": "DBLP person-record ORCIDs not admitted by the reviewed inheritance allowlist. These are unresolved identifiers, not a claim that they are false. Original person records remain intact.",
+     "type": "array",
+     "items": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{4}-\\d{4}-\\d{3}[\\dX]$"
+     }
     },
     "notOpenAlex": {
      "description": "Reviewed namesake author ids: never this PI (census-overrides not_openalex).",

@@ -78,7 +78,16 @@ def apply_dump(pis, dump, dblp_doi, dblp_title, n):
                 if t_:
                     dblp_title[p['pi']].setdefault(t_, r_.get('year'))
             n['dblp_dump_titles_added'] += len(dblp_title[p['pi']]) - k0
-            new_orcid = [o_ for o_ in rec_.get('orcid') or [] if o_ not in p['orcid']]
+            candidates = list(rec_.get('orcid') or [])
+            policy = p.get('dblpOrcidReview')
+            if policy is not None:
+                prior = set(p.get('dblpOrcidsWithheld') or [])
+                withheld = {o_ for o_ in candidates if o_ not in policy['allowed'] and o_ not in p['orcid']}
+                if withheld:
+                    p['dblpOrcidsWithheld'] = sorted(prior | withheld)
+                    n['dblp_orcids_withheld_by_review'] += len(withheld - prior)
+                candidates = [o_ for o_ in candidates if o_ in policy['allowed']]
+            new_orcid = [o_ for o_ in candidates if o_ not in p['orcid']]
             if new_orcid:
                 p['orcid'] = list(p['orcid']) + new_orcid; p['orcidFromDblp'] = new_orcid; n['pis_orcid_from_dblp'] += 1
 
