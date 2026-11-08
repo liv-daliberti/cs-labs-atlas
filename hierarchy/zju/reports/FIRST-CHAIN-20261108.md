@@ -1,0 +1,33 @@
+# First Zhejiang source batch, 2026-11-08
+
+This own-branch proposal adds 64 source observations in two previously unrepresented supported PI contexts and admits the exact distinct CJK identity **蔺宏伟** as a computing PI associated with the existing CAD&CG unit. It preserves all 200 original member observations, all 12 original native census additions, all existing faculty periods, four bibliography bindings, charter rules and source-policy holds. It does not build or promote a school package, assign global person IDs, attribute papers or acquire new pages.
+
+## Distinct professor identity and unit evidence
+
+The existing official CAD&CG professor roster literally links 蔺宏伟 to `http://www.cad.zju.edu.cn/home/hwlin/`, original SHA256 `d4cab7846c7abad07f9f998f84b75a63a1b60170f4857e11689db61a87a788b5`. The owned page states **“蔺宏伟 教授, 博士生导师 浙江大学数学科学学院 浙江大学CAD&CG国家重点实验室”**. This is individual professor/doctoral-supervisor evidence and explicit association with the computing center, not an inference from a generic Mathematics degree. The computing-center association suffices for the inclusive computing scope; a more specific research clause is still desirable. The official roster original SHA256 is `91a7f3ce9c8be96a5fe5f6cab58353d75e013d547fce34df40c8f12d832e699b` and its existing current listing supports 2026 only.
+
+The owned page prints **“Last update: May. 1, 2018”**. This is historical source context, not a 2018 hire start, continuous service through 2026 or a current exclusive Mathematics home-unit assignment. No faculty interval is added. The source identifies 蔺, which is not merged with 林海 or an invented 林宏伟 spelling. The linked roster page's English title remains a held literal candidate; no English alias, PID, ORCID or OpenAlex ID is inferred.
+
+The unchanged website register already contains this owned resource among 27 raw resources; admitting the PI changes the supported-PI/site intersection from 12 to 13 without adding a new capture or rewriting the register. The unchanged 33 roster observations were already present in the original source file. Their degrees, individual timing and present enrollment remain as previously unresolved; PI admission does not upgrade any of them to current students or assign attendance years.
+
+## New source observations
+
+沈春华's already institution-linked owned page `https://cshen.github.io/`, SHA256 `1a96ea9e6372c0c0764536b411682b92edddfebecfaf1ade134fe1c37b62a04e`, explicitly says **“I lead a research team at Zhejiang University (Chair Professor, since 2022)”** and labels the roster **“学生指导”**. It prints a source update of 2026-11-05. The new 27 observations comprise 11 PhD and 4 master's students as listed, plus 5 PhD graduates in 2026 and 7 master's graduates in 2025/2026. The native roles remain PhD/master's with advising supported by 学生指导. Current-as-listed source status is retained without attendance starts or an independent current-enrollment assertion. Explicit graduation years are points, never inferred attendance ranges. A destination mentioning a later PhD is not promoted into an extra PhD role.
+
+吴鸿智's already institution-linked owned page `https://svbrdf.github.io/`, SHA256 `018c5903711391a59f57593af911a7c0135599f20b070b035e5c711ae24b3259`, labels 37 entries **“Alumni”** and prints their degrees and years: 2 PhD, 17 MEng, 17 BEng and 1 BSc, with graduation points in 2016–2025. The role labels truthfully preserve degree and alumni status (for example “PhD alumnus”) separately from an intended membership relation. Alumni membership alone does not assert this PI's individual doctoral supervision. No earlier faculty start or school-paper eligibility is inferred from these alumni years.
+
+Every new row has the original URL/hash, reproducing complete named clause, literal source section, status and explicit year or undated source observation. The original raw HTML bodies and official-profile→owned-page sources remain frozen in `scratch/zju-first-chain-1108/`. The two rosters contain 64 exact distinct PI/name pairs; these are source observations, not 64 verified member-paper links or a complete lab census.
+
+## Actual isolated native replay
+
+`validate_first_batch.py` uses the actual pinned `pihier.students.researched()` against a new scratch-only input root, not a replacement model of the implementation. It reproduces **263 distinct member pairs / 264 source relations across 7 PI contexts**: the original source had one repeated same-PI/name observation, which remains retained as separate relations. All 64 new pairs survive; Shen's 27 relations are `researched_advising`, Wu's 37 are `researched_membership`, with all four degree-qualified role labels preserved. All 200 original objects and 12 original census objects compare field-for-field equal.
+
+The actual progress helper has a separate coverage gap: it recognizes “PhD alumnus” and “MEng alumnus” (19 observations) as student coverage, but misses “BEng alumnus” and “BSc alumnus” (18). These 18 remain correctly stored as historical memberships with the original degrees/year/status; labels were not altered to hide the reporting gap. Generic reporting support requires a separately claimed review. No new core parser or reporting code is changed here.
+
+## Remaining unit and source-policy scope
+
+Current known units are incomplete: the main Computer Science college is still missing; CST is the Software College, while CSE is the distinct Control Science and Engineering college, and ISEE is Information Science and Electronic Engineering. Original cached titles and navigation links are preserved separately as unit-footprint source facts. These are not a unioned faculty census. ICSR's original 24 records and the Software College's 103 rank-unreviewed candidates remain distinct populations; CAD&CG is an affiliated computing center, not one PI lab. No genuine Haining, Ningbo Software or Edinburgh joint campus is blanket-excluded, and all existing homonym/legacy-label guards remain unchanged.
+
+All nine charter hosts remain `use=none`, related expansion remains empty, and the challenged personal-profile host is never retried. A separate exact-origin robots-only review may assess current bounded source-policy readiness; it does not itself open content acquisition or infer HTTPS permission from historical HTTP captures. No API, archive, institution sweep, collector, full native builder, canonical output, inventory, store or registry write occurred in this source batch.
+
+Source-proof and actual native-replay receipts: `scratch/zju-first-chain-1108/source-batch-proof.json` and `native-member-source-replay.json`. The three source input files and this report are ready for root's independent review; no landing is performed by this agent.
