@@ -23,11 +23,11 @@ wayback_only_suffixes = []
 excluded_hosts = ["hkust-gz.edu.cn"]
 
 [affiliation]
-regex = '\bhong\s+kong\s+university\s+of\s+science\s+(?:and|&)\s+technology\b(?!\s*\((?:guangzhou|gz)\))|\bhkust\b(?![-\s]*(?:gz\b|\((?:guangzhou|gz)\)))|\b(?:[\w-]+\.)*(?:hkust\.edu\.hk|ust\.hk)\b'
+regex = '\bhong\s+kong\s+university\s+of\s+science\s+(?:and|&)\s+technology\b(?!\s*\(\s*(?:guang\s*zhou|gz)\s*\))|\bhkust\b(?![-\s]*(?:gz\b|\(\s*(?:guang\s*zhou|gz)\s*\)))|\b(?:[\w-]+\.)*(?:hkust\.edu\.hk|ust\.hk)\b'
 loose = 'hong\s+kong\s+university\s+of\s+science\s+(?:and|&)\s+technology|\bhkust\b|hkust\.edu\.hk|ust\.hk'
 own_units = ''
 must_match = ["The Hong Kong University of Science and Technology, Hong Kong", "Hong Kong University of Science & Technology", "HKUST, Department of Computer Science and Engineering, Hong Kong", "person@cse.ust.hk"]
-must_not_match = ["The Hong Kong University of Science and Technology (Guangzhou)", "HKUST (Guangzhou)", "HKUST (GZ)", "University of Hong Kong", "Hong Kong Polytechnic University", "Hong Kong Institute of Technology", "South China University of Technology", "person@hkust-gz.edu.cn"]
+must_not_match = ["The Hong Kong University of Science and Technology (Guangzhou)", "HKUST (Guangzhou)", "HKUST (GZ)", "HKUST(GZ )", "HKUST ( GZ )", "HKUST (Guang Zhou)", "The Hong Kong University of Science and Technology (Guangzhou )", "University of Hong Kong", "Hong Kong Polytechnic University", "Hong Kong Institute of Technology", "South China University of Technology", "person@hkust-gz.edu.cn"]
 
 [dblp]
 affiliation_strings = ["Hong Kong University of Science and Technology", "Hong Kong University of Science & Technology", "HKUST"]

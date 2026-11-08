@@ -770,7 +770,7 @@ def run(school, workers=6, title_credits=600, floor=4000, dry=False):
                 raw_affiliation_strings=aa['aff']) for aa in cw['authorships']])
             scoped = school_scope_work(source_work, school)
             own = next(aa for aa in scoped['authorships'] if (aa.get('author') or {}).get('id') == a['aid'] and aa['raw_author_name'] == a['raw'])
-            via = _authorship_school_via(scoped, own, inst, aff)
+            via = _authorship_school_via(scoped, own, inst, aff, school=school)
             base = dict(step=step, match=how, oa=cw['id'], appointment=app)
             if via:
                 ev = dict(base, basis='openalex_authorship', school_via=via[:3], institutions=[i_['name'] for i_ in a['inst']], raw_affiliations=a['aff'][:3], openalex_work=source_work)

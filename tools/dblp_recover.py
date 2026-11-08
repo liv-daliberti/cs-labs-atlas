@@ -267,7 +267,7 @@ def run(school, workers):
                 w = school_scope_work(w, school)
                 a = next((a for a in w.get('authorships') or [] if nm.match(a.get('raw_author_name') or (a.get('author') or {}).get('display_name') or '')), None)
                 if a is not None:
-                    via = _authorship_school_via(w, a, inst, aff)
+                    via = _authorship_school_via(w, a, inst, aff, school=school)
                     if via:
                         record(x, 'openalex_doi', w['id'], 'ok', ok=1, ev=dict(basis='openalex_authorship', oa=w['id'], school_via=via[:3], openalex_work=source_work)); return 'openalex'
                     if a.get('institutions'):

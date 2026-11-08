@@ -88,7 +88,7 @@ def school_scope_work(w, school):
 
 
 def excluded_school_only(authorship, school):
-    """An excluded entry cannot become school evidence through another author's affiliation."""
+    """Excluded-campus raw text cannot borrow a derived primary ID or another author's affiliation."""
     gate = related_gate(school)
     if not gate or len(gate) < 4 or not gate[3]:
         return False
@@ -97,11 +97,17 @@ def excluded_school_only(authorship, school):
     entries = [{str(x.get('id') or '').rsplit('/', 1)[-1]} |
                {str(i).rsplit('/', 1)[-1] for i in x.get('lineage') or []}
                for x in authorship.get('institutions') or []]
+    raws = authorship.get('raw_affiliation_strings') or []
+    if any(rx.search(raw or '') for raw in raws):
+        return False  # independent primary or dual raw evidence remains available
+    has_excluded = any(ids & excluded for ids in entries)
+    if has_excluded and any(re.search(SCHOOL_LOOSE[school], raw or '', re.I) for raw in raws):
+        return True  # named school variant fails the charter's primary-campus pattern
     if any(sch in ids and not ids & excluded for ids in entries):
         return False
     if any(str(x.get('id') or '').rsplit('/', 1)[-1] == sch for x in authorship.get('institutions') or []):
         return False
-    return any(ids & excluded for ids in entries) and not any(rx.search(raw or '') for raw in authorship.get('raw_affiliation_strings') or [])
+    return has_excluded
 
 
 def joint_appointments(school):
