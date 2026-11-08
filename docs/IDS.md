@@ -49,7 +49,11 @@ a missing working registry is seeded from `releases/latest`; it is not in git (t
 - **Source-backed co-advising (2026-11-08).** Within one school, memberships carrying the same native `ext:` student
   record may join when their full names are compatible and reciprocal source quotations explicitly identify the
   co-advisers. Every citation retains its URL and SHA256; a given-name-only adviser must be unique among the school's
-  PIs. A connected reciprocal graph supports more than two advisers. The native external key selects candidates; it
+  PIs. A full adviser label may omit one-letter given-name initials, including a leading initial when another full given
+  name remains. The family and all full given words remain mandatory; the observed token sequence must still identify
+  one PI across the school. Thus `John Smith` cannot distinguish `John D. Smith` from `John X. Smith`, while the exact
+  full label can. This does not add aliases or relax the required co-advising source statement or issued-ID guard.
+  A connected reciprocal graph supports more than two advisers. The native external key selects candidates; it
   never becomes a global person anchor. Each membership retains its own role, years and source citations. Names or a
   shared external key alone still leave records separate. A cited co-advising claim that cannot be resolved, incompatible
   names, or a join reaching two previously issued person IDs raises `CoadvisingIDConflict` before assignment or writes;

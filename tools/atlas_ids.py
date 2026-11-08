@@ -786,8 +786,17 @@ def _coadvisers_named(label, pi_names):
     for pi, names in pi_names.items():
         for name in names:
             words = name_toks(name)
-            if len(words) > 1 and any(len(w) > 1 for w in words[:-1]) and _contains_name(tokens, words):
-                matched[tuple(words)].add(pi)
+            if len(words) < 2 or not any(len(w) > 1 for w in words[:-1]):
+                continue
+            variants = {tuple(words)}
+            # Source labels may omit given-name initials, including a leading initial.
+            # Preserve the family and every full given word; never create an initial-only name.
+            without_initials = tuple(w for w in words[:-1] if len(w) > 1) + (words[-1],)
+            if len(without_initials) > 1 and len(words[-1]) > 1:
+                variants.add(without_initials)
+            for variant in variants:
+                if _contains_name(tokens, list(variant)):
+                    matched[variant].add(pi)
     full = {pi for candidates in matched.values() if len(candidates) == 1 for pi in candidates}
     if full:
         return full
