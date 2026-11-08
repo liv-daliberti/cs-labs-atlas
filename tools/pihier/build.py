@@ -8,7 +8,7 @@ from pathlib import Path
 import atlas_paths as P  # data paths (DATA_FILES)
 import provenance  # report.json -> provenance
 from .common import HERE, Ctx
-from . import census, identity, links, papers, reviewed_claims, students
+from . import census, identity, links, member_paper_reviews, papers, reviewed_claims, students
 
 
 def atomic_json(path, value):
@@ -58,6 +58,8 @@ def write(ctx):
                page1ElsewhereSamples=page1_samples, staleListingReview=ctx.listing_review, droppedWithoutHashedSource=ctx.unevidenced, labpageAdditionsSetAside=ctx.labpage_set_aside,
                provenance=provenance.block(school),
                studentInitialsMerges=ctx.initials_merges, studentSurnameTypoCandidates=students.typo_candidate_rows(ctx), labpageStudentsCorroborated=getattr(ctx, 'corroborated', []))  # what this package was built from (tools/provenance.py; make_release requires it)
+    if getattr(ctx, 'member_paper_review', None) is not None:
+        rep['memberPaperReview'] = ctx.member_paper_review
     if getattr(ctx, 'paper_title_review', None) is not None:
         rep['paperTitleReview'] = ctx.paper_title_review
     if getattr(ctx, 'paper_claim_review', None) is not None:
@@ -85,6 +87,7 @@ def build(school):
     students.add_corroborated(ctx)  # R-STU-20
     links.link_students(ctx)
     students.drop_weak(ctx, ctx.sp)
+    member_paper_reviews.apply(ctx)
     n, pis, stu, sp = ctx.n, ctx.pis, ctx.stu, ctx.sp
     # recount after the drops: the counts taken when the students were gathered still held the dropped pairs
     n['pis_with_students'] = sum(bool(stu[p['pi']]) for p in pis); n['students'] = len({s for v in stu.values() for s in v})

@@ -18,7 +18,8 @@
  "x-format": "jsonl",
  "x-rules": [
   "R-LNK-01",
-  "R-LNK-05"
+  "R-LNK-05",
+  "R-LNK-08"
  ],
  "$comment": "Every byline basis carries the byline string (R-LNK-05).",
  "type": "object",
@@ -49,7 +50,7 @@
    "type": "string"
   },
   "status": {
-   "description": "verified: the collection's person link (its status); candidate: a byline match.",
+   "description": "candidate: native byline match; verified: collection link or exact-work reviewed authorship, distinguished by basis and workReview.",
    "type": "string",
    "enum": [
     "candidate",
@@ -67,7 +68,8 @@
     "byline_name_with_school_affiliation",
     "advisee_name_on_lab_paper_byline",
     "full_name_on_lab_paper_byline",
-    "within_lab_byline_match"
+    "within_lab_byline_match",
+    "reviewed_exact_member_paper"
    ],
    "x-rules": [
     "R-LNK-01",
@@ -175,6 +177,589 @@
    "x-rules": [
     "R-ID-01"
    ]
+  },
+  "workReview": {
+   "type": "object",
+   "properties": {
+    "version": {
+     "const": 1
+    },
+    "identity_scope": {
+     "const": "exact_work"
+    },
+    "school": {
+     "type": "string",
+     "minLength": 1
+    },
+    "input_sha256": {
+     "type": "string",
+     "pattern": "^[0-9a-f]{64}$"
+    },
+    "review": {
+     "type": "object",
+     "properties": {
+      "id": {
+       "type": "string",
+       "minLength": 1
+      },
+      "pi": {
+       "type": "string",
+       "minLength": 1
+      },
+      "member": {
+       "type": "string",
+       "minLength": 1
+      },
+      "reviewed_by": {
+       "type": "string",
+       "minLength": 1
+      },
+      "reviewed_at": {
+       "type": "string",
+       "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+      },
+      "projection": {
+       "const": "member-paper-semantic-v1"
+      },
+      "match": {
+       "type": "object",
+       "properties": {
+        "oa": {
+         "type": "string",
+         "pattern": "^https://openalex.org/W\\d+$"
+        },
+        "work": {
+         "type": [
+          "string",
+          "null"
+         ]
+        },
+        "doi": {
+         "type": "string",
+         "pattern": "^10\\.48550/arxiv\\.\\d{4}\\.\\d{4,5}$"
+        },
+        "arxiv_version": {
+         "type": "string",
+         "pattern": "^\\d{4}\\.\\d{4,5}v[1-9]\\d*$"
+        }
+       },
+       "required": [
+        "oa",
+        "work",
+        "doi",
+        "arxiv_version"
+       ],
+       "additionalProperties": false
+      },
+      "preimages": {
+       "type": "object",
+       "properties": {
+        "candidate": {
+         "type": "string",
+         "pattern": "^[0-9a-f]{64}$"
+        },
+        "member": {
+         "type": "string",
+         "pattern": "^[0-9a-f]{64}$"
+        },
+        "paper": {
+         "type": "string",
+         "pattern": "^[0-9a-f]{64}$"
+        },
+        "editions": {
+         "type": "string",
+         "pattern": "^[0-9a-f]{64}$"
+        },
+        "source_work": {
+         "type": "string",
+         "pattern": "^[0-9a-f]{64}$"
+        }
+       },
+       "required": [
+        "candidate",
+        "member",
+        "paper",
+        "editions",
+        "source_work"
+       ],
+       "additionalProperties": false
+      },
+      "proof": {
+       "type": "object",
+       "properties": {
+        "school": {
+         "type": "string",
+         "minLength": 1
+        },
+        "pi": {
+         "type": "string",
+         "minLength": 1
+        },
+        "member_name": {
+         "type": "string",
+         "minLength": 1
+        },
+        "adviser_name": {
+         "type": "string",
+         "minLength": 1
+        },
+        "packet_sha256": {
+         "type": "string",
+         "pattern": "^[0-9a-f]{64}$"
+        },
+        "replay_sha256": {
+         "type": "string",
+         "pattern": "^[0-9a-f]{64}$"
+        },
+        "source_capture_sha256": {
+         "type": "string",
+         "pattern": "^[0-9a-f]{64}$"
+        },
+        "source_uncompressed_sha256": {
+         "type": "string",
+         "pattern": "^[0-9a-f]{64}$"
+        },
+        "chain": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "properties": {
+           "kind": {
+            "enum": [
+             "official_pi",
+             "pi_person",
+             "person_identity",
+             "authored_citation"
+            ]
+           },
+           "url": {
+            "type": "string",
+            "minLength": 1
+           },
+           "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+           },
+           "observed": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+           },
+           "quote": {
+            "type": "string",
+            "minLength": 1
+           },
+           "href": {
+            "type": "string",
+            "minLength": 1
+           },
+           "form": {
+            "enum": [
+             "dom_anchor",
+             "literal_published_text_not_clickable_anchor",
+             "same_owned_document"
+            ]
+           }
+          },
+          "required": [
+           "kind",
+           "url",
+           "sha256",
+           "observed",
+           "quote",
+           "href",
+           "form"
+          ],
+          "additionalProperties": false
+         },
+         "minItems": 1
+        },
+        "period": {
+         "type": "object",
+         "properties": {
+          "role": {
+           "type": "string",
+           "minLength": 1
+          },
+          "role_label": {
+           "type": "string",
+           "minLength": 1
+          },
+          "relation": {
+           "type": "string",
+           "minLength": 1
+          },
+          "start": {
+           "type": "string",
+           "pattern": "^\\d{4}(-\\d{2}(-\\d{2})?)?$"
+          },
+          "end": {
+           "type": "string",
+           "pattern": "^\\d{4}(-\\d{2}(-\\d{2})?)?$"
+          },
+          "quote": {
+           "type": "string",
+           "minLength": 1
+          }
+         },
+         "required": [
+          "role",
+          "role_label",
+          "relation",
+          "start",
+          "end",
+          "quote"
+         ],
+         "additionalProperties": false
+        },
+        "citation": {
+         "type": "object",
+         "properties": {
+          "kind": {
+           "const": "authored_publication"
+          },
+          "url": {
+           "type": "string",
+           "minLength": 1
+          },
+          "sha256": {
+           "type": "string",
+           "pattern": "^[0-9a-f]{64}$"
+          },
+          "href": {
+           "type": "string",
+           "minLength": 1
+          },
+          "title": {
+           "type": "string",
+           "minLength": 1
+          },
+          "authors": {
+           "type": "array",
+           "items": {
+            "type": "string",
+            "minLength": 1
+           },
+           "minItems": 1
+          },
+          "byline_quote": {
+           "type": "string",
+           "minLength": 1
+          },
+          "quote": {
+           "type": "string",
+           "minLength": 1
+          }
+         },
+         "required": [
+          "kind",
+          "url",
+          "sha256",
+          "href",
+          "title",
+          "authors",
+          "byline_quote",
+          "quote"
+         ],
+         "additionalProperties": false
+        },
+        "pdf": {
+         "type": "object",
+         "properties": {
+          "url": {
+           "type": "string",
+           "minLength": 1
+          },
+          "sha256": {
+           "type": "string",
+           "pattern": "^[0-9a-f]{64}$"
+          },
+          "bytes": {
+           "type": "integer",
+           "minimum": 1
+          },
+          "pages": {
+           "type": "integer",
+           "minimum": 1
+          },
+          "complete_body": {
+           "const": true
+          },
+          "parse_returncode": {
+           "const": 0
+          },
+          "fulltext_sha256": {
+           "type": "string",
+           "pattern": "^[0-9a-f]{64}$"
+          },
+          "arxiv_version": {
+           "type": "string",
+           "minLength": 1
+          },
+          "date": {
+           "type": "string",
+           "minLength": 1
+          },
+          "title": {
+           "type": "string",
+           "minLength": 1
+          },
+          "authors": {
+           "type": "array",
+           "items": {
+            "type": "string",
+            "minLength": 1
+           },
+           "minItems": 1
+          },
+          "byline_quote": {
+           "type": "string",
+           "minLength": 1
+          },
+          "publication_quote": {
+           "type": "string",
+           "minLength": 1
+          },
+          "quote": {
+           "type": "string",
+           "minLength": 1
+          },
+          "institution": {
+           "type": "string",
+           "minLength": 1
+          },
+          "school": {
+           "type": "string",
+           "minLength": 1
+          },
+          "affiliation_quote": {
+           "type": "string",
+           "minLength": 1
+          },
+          "affiliations": {
+           "type": "array",
+           "items": {
+            "type": "object",
+            "properties": {
+             "index": {
+              "type": "integer",
+              "minimum": 0
+             },
+             "name": {
+              "type": "string",
+              "minLength": 1
+             },
+             "affiliations": {
+              "type": "array",
+              "items": {
+               "type": "string",
+               "minLength": 1
+              },
+              "minItems": 1
+             }
+            },
+            "required": [
+             "index",
+             "name",
+             "affiliations"
+            ],
+            "additionalProperties": false
+           },
+           "minItems": 1
+          }
+         },
+         "required": [
+          "url",
+          "sha256",
+          "bytes",
+          "pages",
+          "complete_body",
+          "parse_returncode",
+          "fulltext_sha256",
+          "arxiv_version",
+          "date",
+          "title",
+          "authors",
+          "byline_quote",
+          "publication_quote",
+          "quote",
+          "institution",
+          "school",
+          "affiliation_quote",
+          "affiliations"
+         ],
+         "additionalProperties": false
+        },
+        "author_index": {
+         "type": "integer",
+         "minimum": 0
+        },
+        "authors": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "properties": {
+           "native": {
+            "type": "string",
+            "minLength": 1
+           },
+           "printed": {
+            "type": "string",
+            "minLength": 1
+           },
+           "member": {
+            "type": [
+             "string",
+             "null"
+            ]
+           },
+           "evidence_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+           }
+          },
+          "required": [
+           "native",
+           "printed",
+           "member",
+           "evidence_sha256"
+          ],
+          "additionalProperties": false
+         },
+         "minItems": 1
+        },
+        "self_quote": {
+         "type": "string",
+         "minLength": 1
+        },
+        "advisor_quote": {
+         "type": "string",
+         "minLength": 1
+        },
+        "link_resolutions": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "required": [
+           "index",
+           "kind",
+           "href",
+           "url",
+           "source_sha256",
+           "target_sha256",
+           "packet_sha256",
+           "why",
+           "pi_name",
+           "context_quote",
+           "reviewed_record",
+           "reviewed_record_sha256",
+           "receipt_sha256"
+          ],
+          "properties": {
+           "index": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2
+           },
+           "kind": {
+            "const": "reviewed_same_personal_path_ownership"
+           },
+           "href": {
+            "type": "string",
+            "minLength": 1
+           },
+           "url": {
+            "type": "string",
+            "minLength": 1
+           },
+           "why": {
+            "type": "string",
+            "minLength": 1
+           },
+           "source_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+           },
+           "target_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+           },
+           "packet_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+           },
+           "pi_name": {
+            "type": "string",
+            "minLength": 1
+           },
+           "context_quote": {
+            "type": "string",
+            "minLength": 1
+           },
+           "reviewed_record": {
+            "type": "string",
+            "minLength": 1
+           },
+           "reviewed_record_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+           },
+           "receipt_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+           }
+          },
+          "additionalProperties": false
+         }
+        }
+       },
+       "required": [
+        "school",
+        "pi",
+        "member_name",
+        "adviser_name",
+        "packet_sha256",
+        "replay_sha256",
+        "source_capture_sha256",
+        "source_uncompressed_sha256",
+        "chain",
+        "period",
+        "citation",
+        "pdf",
+        "author_index",
+        "authors",
+        "self_quote",
+        "advisor_quote",
+        "link_resolutions"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "id",
+      "pi",
+      "member",
+      "reviewed_by",
+      "reviewed_at",
+      "projection",
+      "match",
+      "preimages",
+      "proof"
+     ],
+     "additionalProperties": false
+    },
+    "original": {
+     "type": "object"
+    }
+   },
+   "required": [
+    "version",
+    "identity_scope",
+    "school",
+    "input_sha256",
+    "review",
+    "original"
+   ],
+   "additionalProperties": false
   }
  },
  "required": [
@@ -199,6 +784,38 @@
   {
    "required": [
     "byline"
+   ]
+  }
+ ],
+ "allOf": [
+  {
+   "anyOf": [
+    {
+     "properties": {
+      "basis": {
+       "enum": [
+        "collection_person_link",
+        "byline_name_with_school_affiliation",
+        "advisee_name_on_lab_paper_byline",
+        "full_name_on_lab_paper_byline",
+        "within_lab_byline_match"
+       ]
+      }
+     }
+    },
+    {
+     "properties": {
+      "basis": {
+       "const": "reviewed_exact_member_paper"
+      },
+      "status": {
+       "const": "verified"
+      }
+     },
+     "required": [
+      "workReview"
+     ]
+    }
    ]
   }
  ]

@@ -430,6 +430,8 @@ def export_school(repo, s, homes_all, profiles, zero):
     stud = {r['student_id']: r for r in ST}
 
     # student papers
+    from pihier.member_paper_reviews import export_fields, validate_scoped
+    validate_scoped(s, stu, rows, sp)
     SP = []
     for x in sp:
         sid = x['student'] if str(x['student']).startswith('ext:') else f"{s}:{x['student']}"
@@ -437,7 +439,7 @@ def export_school(repo, s, homes_all, profiles, zero):
         SP.append(dict(pi_id=i, student_id=sid, paper_id=by_pi_work.get((i, x.get('work'))) or paper_id(x['oa']),
                        student_atlas_id=x.get('studentAtlasId'), atlas_work_id=x.get('atlasWorkId'), atlas_lab_id=x.get('labId'),
                        status=x.get('status'), basis=x.get('basis'),
-                       collection_work=x.get('work'), student_name=x.get('name')))
+                       collection_work=x.get('work'), student_name=x.get('name'), **export_fields(x)))
     SP = scrub(sorted(SP, key=lambda r: (r['pi_id'], r['student_id'], r['paper_id'])))
 
     write_jsonl(repo, f'{out}/pis.jsonl.gz', P)
@@ -468,11 +470,14 @@ def export_school(repo, s, homes_all, profiles, zero):
                             ' '.join(sorted({rel['type'] for rel in a['relations']})), src0.get('url'), a.get('atlas_lab_id'), a.get('atlas_id')])
     write_csv(repo, f'{out}/lab_students.csv', ['pi_id', 'pi_name', 'student_id', 'student_name', 'role_label', 'relation', 'first_year', 'last_year',
                                                 'relation_types', 'source_url', 'atlas_lab_id', 'student_atlas_id'], sorted(ls_rows, key=lambda r: (r[0], r[2])))
+    scoped_columns = ['identity_scope', 'review_ids', 'review_input_sha256'] if any(r.get('work_review') for r in SP) else []
     write_csv(repo, f'{out}/student_papers.csv', ['pi_id', 'student_id', 'student_name', 'paper_id', 'doi', 'title', 'year', 'status', 'basis',
-                                                  'atlas_lab_id', 'student_atlas_id', 'atlas_work_id'],
+                                                  'atlas_lab_id', 'student_atlas_id', 'atlas_work_id'] + scoped_columns,
               [[r['pi_id'], r['student_id'], r['student_name'], r['paper_id'], (pap.get(r['paper_id']) or {}).get('doi'),
                 (pap.get(r['paper_id']) or {}).get('title'), (pap.get(r['paper_id']) or {}).get('year'), r['status'], r['basis'],
-                r['atlas_lab_id'], r['student_atlas_id'], r['atlas_work_id']] for r in SP])
+                r['atlas_lab_id'], r['student_atlas_id'], r['atlas_work_id']]
+               + ([r.get('identity_scope', ''), (r.get('work_review') or {}).get('review', {}).get('id', ''),
+                   (r.get('work_review') or {}).get('input_sha256', '')] if scoped_columns else []) for r in SP])
 
     # review ledgers
     zp = [dict(r, pi_id=pid.get(r['pi'])) for r in zero.get('zero_papers', []) if r.get('school') == s]

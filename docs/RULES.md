@@ -638,6 +638,17 @@ roster source (`relation_source`: relation type, url, sha256, quote); every link
 items with url, sha256 and quote are preferred when a relation or period keeps two; MIT's collection writes the quoted
 sentence as `statement`, which becomes the quote (`best_sources`).
 
+### R-LNK-08 (2026-11-08, owner: exact per-work source certification)
+An independently reviewed, optional `member-paper-review.json` can certify only one existing retained candidate's
+PI/member/accepted-work authorship. Exact identifiers and complete final native semantic preimages, a source-bound
+owned-person citation, complete ordered author/affiliation mapping from a full primary PDF, and independently typed
+membership dates must agree. Stale, missing, competing or temporally uncertain proof leaves the candidate unchanged.
+`reviewed_exact_member_paper` carries `workReview.identity_scope=exact_work` and the original candidate. It admits no
+paper/member, changes no source/date/alias, and cannot lend an OpenAlex/person anchor through either AtlasIDs byline
+bridge path. Both pre-ID and post-ID invariance are checked before publication. Existing global joins require separate
+review; full registry-copy comparisons precede enabling actual inputs. Contract: `docs/MEMBER-PAPER-REVIEWS.md`.
+Tests: `tests/test_member_paper_reviews.py`, `tests/test_member_paper_ids.py`.
+
 ## Audits
 
 ### R-AUD-01 (2026-10-28, owner) — the seven chain checks

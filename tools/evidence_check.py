@@ -37,9 +37,11 @@ import argparse, collections, gzip, json, re, sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+from pihier.member_paper_reviews import BASIS, validate_scoped, work_only
+
 import atlas_paths as P  # noqa: E402  (every path in one place)
 
-BYLINE_BASES = {'within_lab_byline_match', 'byline_name_with_school_affiliation', 'advisee_name_on_lab_paper_byline', 'full_name_on_lab_paper_byline'}
+BYLINE_BASES = {BASIS, 'within_lab_byline_match', 'byline_name_with_school_affiliation', 'advisee_name_on_lab_paper_byline', 'full_name_on_lab_paper_byline'}
 CATEGORIES = ['pi_period', 'faculty_listing', 'student_relation', 'student_relation_student_only', 'student_no_relation', 'paper_school_basis', 'paper_appointment',
               'link_byline', 'link_relation_source', 'link_relation_source_student_only',
               'unavailable_missing', 'unavailable_stale', 'unavailable_incomplete']
@@ -141,6 +143,12 @@ def check(school, root):
         elif not sourced(ap.get('listing')):
             flag('paper_appointment', key + ' | listing')
     for x in links:
+        if work_only(x):
+            total['link_work_review'] += 1
+            try:
+                validate_scoped(school, students, papers, links)
+            except (ValueError, KeyError, TypeError):
+                flag('link_work_review', f"{x.get('pi')} | {x.get('student')} | {x.get('oa')}")
         if x.get('basis') not in BYLINE_BASES:
             continue
         key = f"{x['pi']} | {x.get('student')} | {x.get('oa')} | {x['basis']}"
@@ -152,7 +160,8 @@ def check(school, root):
         elif (x.get('relation_source') or {}).get('names_pi') is False:
             flag('link_relation_source_student_only', key)
     check_ledger(D, flag, total)
-    return {c: dict(n=len(bad[c]), of=total[c], samples=bad[c][:15]) for c in CATEGORIES}
+    categories = CATEGORIES + (['link_work_review'] if total['link_work_review'] else [])
+    return {c: dict(n=len(bad[c]), of=total[c], samples=bad[c][:15]) for c in categories}
 
 
 def main(argv=None):
@@ -172,13 +181,17 @@ def main(argv=None):
             v['whitelisted'] = allowed
             if v['n'] > allowed:
                 over.append(dict(school=s, category=c, n=v['n'], whitelisted=allowed))
+    categories = CATEGORIES + (['link_work_review'] if any('link_work_review' in r for r in res.values()) else [])
+    if 'link_work_review' in categories:
+        for r in res.values():
+            r.setdefault('link_work_review', dict(n=0, of=0, samples=[], whitelisted=0))
     out = dict(at=datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'), mode='report' if a.report else 'strict',
                whitelist=str(WHITELIST), schools=res, over_whitelist=over, ok=not over)
     Path(a.out, 'EVIDENCE-CHECK.json').write_text(json.dumps(out, indent=1, ensure_ascii=False) + '\n')
     L = [f"# Evidence check ({out['at']}, {out['mode']})", '',
          'Violations per category and school (whitelisted count in brackets; docs/evidence-whitelist.json).', '',
          '| category | ' + ' | '.join(schools) + ' |', '|---|' + '---|' * len(schools)]
-    for c in CATEGORIES:
+    for c in categories:
         L.append(f'| {c} | ' + ' | '.join(f"{res[s][c]['n']} of {res[s][c]['of']}" + (f" [{res[s][c]['whitelisted']}]" if res[s][c]['whitelisted'] else '')
                                          for s in schools) + ' |')
     L += ['', 'Over the whitelist: ' + (', '.join(f"{x['school']}/{x['category']} {x['n']}>{x['whitelisted']}" for x in over) or 'none')]

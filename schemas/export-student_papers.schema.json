@@ -60,7 +60,8 @@
     "byline_name_with_school_affiliation",
     "advisee_name_on_lab_paper_byline",
     "full_name_on_lab_paper_byline",
-    "within_lab_byline_match"
+    "within_lab_byline_match",
+    "reviewed_exact_member_paper"
    ],
    "x-rules": [
     "R-LNK-01"
@@ -81,6 +82,23 @@
    "description": "Atlas work id.",
    "pattern": "^(atl:w:[0-9a-f]{12})?$",
    "type": "string"
+  },
+  "identity_scope": {
+   "type": "string",
+   "enum": [
+    "",
+    "exact_work"
+   ],
+   "description": "Optional exact-work scope; never global person identity."
+  },
+  "review_ids": {
+   "type": "string",
+   "description": "Optional source review IDs; complete proof is in student_papers.jsonl.gz."
+  },
+  "review_input_sha256": {
+   "type": "string",
+   "pattern": "^([0-9a-f]{64})?$",
+   "description": "Optional reviewed input SHA256."
   }
  },
  "required": [

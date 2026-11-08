@@ -147,3 +147,12 @@ shared DOI anchor or change paper metadata. Otherwise a replay would repeatedly 
 anchor still pointed at the old shared ID. A split with no unambiguous source identifier holds and rolls back unpublished
 assignments. This stability rule does not adjudicate a conflicting DOI, title or edition: those source questions remain
 promotion blockers until independently resolved. Existing issued IDs remain present under the normal split policy.
+
+## Work-only authorship certificates
+
+An exact-work member-paper review (R-LNK-08) proves one link, without OA author ownership or a new member URL anchor.
+AtlasIDs checks its complete member/paper/original-candidate preimages before assigning IDs, skips it in both byline
+bridge stages, and validates post-ID semantic invariance before commit/publication. Proof remains on the link, never
+on member relations or aliases. Earlier issued identities remain historical registry state; this mechanism cannot
+split, retire or repair them. Before enabling reviews, compare full-cohort disposable registry copies, including
+anchor owners, redirects and cross-school relations. See `docs/MEMBER-PAPER-REVIEWS.md`.

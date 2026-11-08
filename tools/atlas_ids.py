@@ -780,13 +780,46 @@ def byline_author_ids(school, wanted, hdir):
 # ---------------------------------------------------------------- main
 
 def run(schools, hdir, registry, use_sweep=True, today=None, write=True):
+    """Validate work-only certificates first; their transaction cannot repair issued identities.
+
+    A caller-owned transaction remains owned by the caller. Scoped publication
+    inside one is held; write=False can stage IDs under a savepoint, never a dry run.
+    Ordinary packages retain their existing transaction behavior.
+    """
+    from pihier.member_paper_reviews import validate_scoped, work_only
+    data = {s: load_school(P.SchoolDir(s, Path(hdir))) for s in schools}
+    for s, (_, stu, rows, sp) in data.items():
+        validate_scoped(s, stu, rows, sp)
+    guarded = any(work_only(x) for _, _, _, sp in data.values() for x in sp)
+    if not guarded:
+        return _run(schools, hdir, registry, data, registry.commit, False, use_sweep, today, write)
+    if registry.in_transaction and write:
+        raise ValueError('exact-work ID publication requires its own transaction; caller transaction retained')
+    registry.execute('savepoint atlas_exact_member_work')
+    pending = True
+
+    def finish():
+        nonlocal pending
+        registry.execute('release savepoint atlas_exact_member_work')
+        pending = False
+
+    try:
+        return _run(schools, hdir, registry, data, finish, True, use_sweep, today, write)
+    except Exception:
+        if pending:
+            registry.execute('rollback to savepoint atlas_exact_member_work')
+            registry.execute('release savepoint atlas_exact_member_work')
+        raise
+
+
+def _run(schools, hdir, registry, data, finish, guarded, use_sweep, today, write):
     today = today or datetime.now(timezone.utc).strftime('%Y-%m-%d')
     hdir = Path(hdir)
     try:
         sys.path.insert(0, str(P.TOOLS)); from pi_hierarchy import nick_ok  # noqa: E402
     except Exception:  # pragma: no cover
         nick_ok = None
-    data = {s: load_school(P.SchoolDir(s, hdir)) for s in schools}
+    from pihier.member_paper_reviews import validate_scoped, work_only
     # Check every source edition before splitting can discard an edition anchor, and before any person/lab writes.
     _check_retired_work_anchors(registry, {
         (s, j): sorted((RANK[k], f'w|{WSCHEME[k]}:{v}') for k, v in work_anchors(r, s))
@@ -816,6 +849,23 @@ def run(schools, hdir, registry, use_sweep=True, today=None, write=True):
                     urls = student_urls(r)
                     A = {('name', f'{s}:{nname(r["name"])}:{u}') for u in urls} or {('name', f'{s}:{nname(r["name"])}:lab:{slug(pi)}')}
                 ents[k] = dict(kind='stu', school=s, name=r['name'], names=[r['name']] + list(r.get('aliases') or []), anchors=A)
+    # Existing normal member anchors identify issued history, not certificate URLs.
+    # A certificate cannot silently split or redirect that history after removing an OA bridge.
+    scoped_issued = {}
+    for s, (_, stu, _, sp) in data.items():
+        for x in sp:
+            if not work_only(x):
+                continue
+            key = ('stu', s, x['pi'], x['student'])
+            issued = {resolve(registry, row[0]) for a in ents[key]['anchors']
+                      if (row := registry.execute('select id from anchors where anchor=?', (person_anchor_str(*a),)).fetchone())}
+            member = next(r for r in stu[x['pi']] if r['person'] == x['student'])
+            prior = member.get('atlasId')
+            if prior and registry.execute('select 1 from ids where id=?', (prior,)).fetchone():
+                issued.add(resolve(registry, prior))
+            scoped_issued[key] = issued
+            if len(issued) > 1:
+                raise ValueError('exact-work certificate reaches multiple issued member IDs; separate identity review required')
     # students who are PIs elsewhere in the atlas: a byline author id on one of the student's linked lab papers that is a
     # PI's reviewed OpenAlex id, with compatible names (Danqi Chen: Manning's student at Stanford, PI at Princeton)
     pi_by_oa = collections.defaultdict(list)
@@ -827,12 +877,14 @@ def run(schools, hdir, registry, use_sweep=True, today=None, write=True):
     student_oa_evidence = {}
     if use_sweep:
         for s, (pis, stu, rows, sp) in data.items():
-            wanted = {(norm_oa(x.get('oa'), 'W'), x.get('byline')) for x in sp if x.get('byline') and norm_oa(x.get('oa'), 'W')}
+            wanted = {(norm_oa(x.get('oa'), 'W'), x.get('byline')) for x in sp if not work_only(x) and x.get('byline') and norm_oa(x.get('oa'), 'W')}
             # cheap prefilter: only bylines whose family name is some PI's family name
             pi_fams = {family(n) for e in ents.values() if e['kind'] == 'pi' for n in e['names']}
             wanted = {(w, b) for w, b in wanted if family(b) in pi_fams}
             got = byline_author_ids(s, wanted, hdir)
             for x in sp:
+                if work_only(x):
+                    continue  # another ordinary row may have populated this same (work, byline) key
                 aid = got.get((norm_oa(x.get('oa'), 'W'), x.get('byline')))
                 if not aid or aid not in pi_by_oa:
                     continue
@@ -869,6 +921,9 @@ def run(schools, hdir, registry, use_sweep=True, today=None, write=True):
     comps = {c: sorted(v) for c, v in comps.items()}
     pid = assign(db := registry, 'person', 'atl:p:', comps, today, stats)
     person_of = {k: pid[uf.find(k)] for k in ents}
+    for key, issued in scoped_issued.items():
+        if issued and (person_of[key] not in issued or any(resolve(registry, old) != old for old in issued)):
+            raise ValueError('exact-work certificate would change an issued member ID; separate identity review required')
     # ---- labs
     lab_comps = {}
     for k, e in ents.items():
@@ -932,10 +987,10 @@ def run(schools, hdir, registry, use_sweep=True, today=None, write=True):
     try:
         wid = assign(db, 'work', 'atl:w:', wcomps, today, stats)
     except WorkIDConflict:
-        db.rollback()  # person/lab assignments above were part of this same unpublished transaction
+        if not guarded:
+            db.rollback()  # guarded runs roll back their own savepoint, retaining a caller's transaction
         raise
     work_of = {k: wid[wuf.find(k)] for k in wents}
-    db.commit()
     # ---- appointments and cross-school persons
     appts = collections.defaultdict(list)
     for k, e in ents.items():
@@ -955,10 +1010,9 @@ def run(schools, hdir, registry, use_sweep=True, today=None, write=True):
             anchors_ = sorted({person_anchor_str(a, v) for k in ents if person_of[k] == i for a, v in ents[k]['anchors'] if a in STRONG_PERSON})
             cross.append(dict(atlasId=i, name=next(a['pi'] for a in appts[i]), appointments=appts[i],
                               studentRecords=stud_of.get(i, []), matchedBy=anchors_, studentEvidence=ev))
-    # ---- write
+    # ---- ID annotations, validated before commit or package publication
     if write:
         for s, (pis, stu, rows, sp) in data.items():
-            D = P.SchoolDir(s, hdir)
             for p in pis:
                 k = ('pi', s, p['pi'])
                 p['atlasId'] = person_of[k]; p['labId'] = lab_ids[k]
@@ -985,6 +1039,20 @@ def run(schools, hdir, registry, use_sweep=True, today=None, write=True):
                 x['atlasWorkId'] = by_work.get((x['pi'], x.get('work'))) or by_work.get((x['pi'], x.get('oa')))
                 x['labId'] = lab_ids.get(('pi', s, x['pi']))
             del key
+            try:
+                validate_scoped(s, stu, rows, sp)
+            except ValueError:
+                if not guarded:
+                    db.rollback()
+                raise
+    scoped_links = sum(work_only(x) for _, _, _, sp in data.values() for x in sp)
+    if scoped_links:
+        stats['exact_work_links_validated'] = scoped_links
+    finish()
+    # ---- write (all scoped post-ID preimages have passed)
+    if write:
+        for s, (pis, stu, rows, sp) in data.items():
+            D = P.SchoolDir(s, hdir)
             tmpf = D.tmp('pis.json', '.ids-tmp'); tmpf.write_text(json.dumps(pis, indent=1, ensure_ascii=False)); tmpf.replace(D / 'pis.json')
             tmpf = D.tmp('students.json', '.ids-tmp'); tmpf.write_text(json.dumps(stu, indent=1, ensure_ascii=False)); tmpf.replace(D / 'students.json')
             for name, rr in (('lab_papers', rows), ('student_papers', sp)):
