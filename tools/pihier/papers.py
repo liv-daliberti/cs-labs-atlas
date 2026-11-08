@@ -508,9 +508,13 @@ def venue_tables(ctx):
     # R-PAP-27: the largest page count DBLP gives each of the PI's records, by normalized title and by DOI (the sidecar
     # hierarchy/dblp-dump-pages.json.gz; without it no page signal, only titles)
     dblp_pages = dict(title=collections.defaultdict(dict), doi=collections.defaultdict(dict))
-    pf = P.data('dblp-dump-pages.json.gz', root=ctx.here)
-    if DUMP_PERSONS is not None and pf.exists():
-        pg = json.loads(gzip.decompress(pf.read_bytes()))['pages']
+    pg = {}
+    if DUMP_PERSONS is not None:
+        for pf in (P.data('dblp-dump-pages.json.gz', root=ctx.here),
+                   P.data('dblp-dump-pages-school.json.gz', ctx.school, root=ctx.here)):
+            if pf.exists():
+                pg.update(json.loads(gzip.decompress(pf.read_bytes()))['pages'])
+    if DUMP_PERSONS is not None and pg:
         for p in pis:
             for q in p['dblp']:
                 for r_ in (DUMP_PERSONS['persons'].get(q) or {}).get('pubs') or []:
