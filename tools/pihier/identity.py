@@ -17,6 +17,7 @@ def apply_cached_lists(pis, pubs, dblp_doi, dblp_title, n):
     """R-PAP-05 with the pre-protocol schools' cached DBLP publication lists (`pubs`: key -> record with authors {pid:
     name}): a census DBLP id whose names never carry the PI's name is dropped; a PI without one takes the one DBLP person
     of exactly that name; every record of the PI's ids anchors by DOI and title."""
+    pis = [p for p in pis if not p.get('identityHold')]
     by_dname = collections.defaultdict(set)  # a PI without a census DBLP id: the one DBLP person of exactly that name, if unique
     for rec in pubs.values():
         for q, dn in (rec.get('authors') or {}).items():
@@ -53,6 +54,7 @@ def apply_dump(pis, dump, dblp_doi, dblp_title, n):
     """R-PAP-05 with DBLP's own dump (`dump`: hierarchy/dblp-dump-persons.json.gz, {persons, by_name}): name conflicts
     drop an id, a PI still without one takes the unique person of exactly that name (no disambiguation record), every
     record anchors by DOI and title, and the person's ORCIDs join the PI's."""
+    pis = [p for p in pis if not p.get('identityHold')]
     DP, DN = dump['persons'], dump['by_name']
     n.setdefault('dblp_ids_dropped_name_mismatch', 0)  # report.schema requires the counter even when nothing is dropped (protocol schools skip apply_cached_lists)
     for p in pis:
@@ -86,6 +88,7 @@ def anchors(ctx):
     publication lists, the lab's advisee names."""
     reviewed_claims.prepare(ctx)
     HERE, school, pis, pls, stu, n = ctx.here, ctx.school, ctx.pis, ctx.pls, ctx.stu, ctx.n
+    n['pis_with_reviewed_identity_hold'] = sum(bool(p.get('identityHold')) for p in pis)
     # identity anchors: the PI's own DBLP publication list, the PI's DBLP-verified collection works, a stated advisee as co-author
     verified = {p['pi']: {l['work'] for i in p['personIds'] for l in pls[i]
                            if l.get('status') == 'verified' and l.get('role', 'author') == 'author'
@@ -213,6 +216,9 @@ def _advisee_coauthor(advisee_names, others, pi_full):
 def _authorship_identity(ctx, pi, w, a, cw):
     """R-PAP-04, R-PAP-07: the identity that makes authorship `a` of work `w` (collection work `cw`) the PI's, in order,
     or None. An id reviewed as someone else's (or another PI's reviewed id) is never the PI."""
+    if ctx.pid0[pi].get('identityHold'):
+        ctx.n['authorships_withheld_by_identity_review'] += 1
+        return None
     blocked, reviewed_oa, orcids, verified = ctx.blocked, ctx.reviewed_oa, ctx.orcids, ctx.verified
     dblp_doi, dblp_title, own_list, lab_page = ctx.dblp_doi, ctx.dblp_title, ctx.own_list, ctx.lab_page
     advisee_names, pid0 = ctx.advisee_names, ctx.pid0

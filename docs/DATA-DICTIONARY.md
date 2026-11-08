@@ -245,6 +245,9 @@ One PI: the merged census rows, reviewed corrections, identity, appointment evid
 | `dblp` | array of string | yes | DBLP person pages of the PI (census, overrides, gap identity; a name-mismatched pid dropped, a unique exact-name pid added). | items: pattern `^https://dblp\.org/pid/\S+$` | R-PAP-05 |
 | `reviewedOpenAlex` | array of string | yes | Reviewed OpenAlex author ids of the PI (census + census-overrides + gap-evidence identity). | items: pattern `^https://openalex\.org/A\d+$` | R-PAP-04 |
 | `orcid` | array of string | yes | The PI's ORCIDs (bare, without https://orcid.org/), including those added from the DBLP dump. | items: pattern `^\d{4}-\d{4}-\d{4}-\d{3}[\dX]$` | R-PAP-04, R-PAP-05 |
+| `identityHold` | object | no | An explicit unresolved bibliography identity decision (no_identity plus why_no_identity). Keeps the PI and members but blocks automatic bibliography/ORCID binding and paper attribution until the reviewed decision is resolved. | no other keys |  |
+| `identityHold.status` | string | yes |  | always `reviewed_no_identity` |  |
+| `identityHold.reason` | string | yes |  | non-empty |  |
 | `notOpenAlex` | array of string | yes | Reviewed namesake author ids: never this PI (census-overrides not_openalex). | items: pattern `^https://openalex\.org/A\d+$` | R-PAP-04 |
 | `censusName` | string | no | The census name when a reviewed display_name renamed a placeholder-named PI (R-PAP-34). |  |  |
 | `displayNameBasis` | string \| null | no | Why the reviewed display name is the person. |  |  |

@@ -87,6 +87,16 @@
       "R-PAP-05"
      ]
     },
+    "identityHold": {
+     "description": "An explicit unresolved bibliography identity decision (no_identity plus why_no_identity). Keeps the PI and members but blocks automatic bibliography/ORCID binding and paper attribution until the reviewed decision is resolved.",
+     "type": "object",
+     "properties": {
+      "status": {"type": "string", "const": "reviewed_no_identity"},
+      "reason": {"type": "string", "minLength": 1}
+     },
+     "required": ["status", "reason"],
+     "additionalProperties": false
+    },
     "notOpenAlex": {
      "description": "Reviewed namesake author ids: never this PI (census-overrides not_openalex).",
      "type": "array",

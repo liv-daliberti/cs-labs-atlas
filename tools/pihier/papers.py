@@ -1155,6 +1155,11 @@ def lab_papers(ctx):
     listing_review_prepass(ctx)
     rows, seen = rows_from_hits(ctx)
     recovered_rows(ctx, rows, seen)
+    # A direct recovery (including a primary-page tie) does not resolve an explicit PI identity hold.
+    # Keep the PI, website, appointments and members; withhold only scientific attribution until review resolves it.
+    held = {p['pi'] for p in pis if p.get('identityHold')}
+    n['paper_rows_withheld_by_identity_review'] = sum(r['pi'] in held for r in rows)
+    rows = [r for r in rows if r['pi'] not in held]
     rows = drop_namesakes(rows, pis, ctx.reviewed_oa, n)
     rows, not_paper_samples = drop_not_papers(rows, ctx.dblp_nauth, n, ctx.dblp_pages, ctx.pid0)
     # books are one work, and a translation is not new work (2026-10-29, owner: best judgement): fold_books

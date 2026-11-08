@@ -136,6 +136,8 @@ def pi_records(ctx):
         hit = next((ov[g['name']] for g in group if ov.get(g['name'], {}).get('exclude')), None)
         if hit:  # reviewed: no faculty appointment at the school in the window
             excluded.append(dict(pi=group[0]['name'], why=hit.get('why'))); continue
+        identity_hold = next((ov[g['name']] for g in group if ov.get(g['name'], {}).get('no_identity')
+                              and ov[g['name']].get('why_no_identity')), None)
         x = dict(group[0]); x['aliases'] = list(dict.fromkeys(list(x.get('aliases') or []) + [g['name'] for g in group[1:]] + [a for g in group[1:] for a in g.get('aliases') or []]))
         x['sources'] = [s_ for g in group for s_ in g.get('sources') or []]; x['lab_units'] = [l for g in group for l in g.get('lab_units') or []]
         x['dblp'] = list(dict.fromkeys(q for g in group for q in dblp_of(g)))
@@ -161,6 +163,8 @@ def pi_records(ctx):
         if shown and lab.get('name') == f"{x['name']} group":
             lab['name'] = f'{shown} group'
         pis.append(dict(pi=shown or x['name'], personIds=ids, names=list(dict.fromkeys(names)), dblp=x['dblp'], reviewedOpenAlex=x['openalex'], orcid=x['orcid'],
+                        **({'identityHold': dict(status='reviewed_no_identity', reason=identity_hold['why_no_identity'])}
+                           if identity_hold else {}),
                         notOpenAlex=list(o.get('not_openalex') or []),  # reviewed namesake author ids: never this PI
                         # reviewed mixed author ids (2026-10-29): OpenAlex records of another person that also hold some of the
                         # PI's works (Song Mei's Berkeley papers sit in five Chinese namesakes' records); such an id neither
