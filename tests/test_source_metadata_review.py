@@ -94,8 +94,9 @@ def test_exact_source_and_owned_publication_guards_hold_without_changing_origina
     if fault == 'identity_hold': ctx.pid0[c['pi']]['identityHold'] = {'reason': 'unresolved person'}
     if fault == 'missing_original': ctx.hits = []
     before = copy.deepcopy((c, r))
-    got = M.apply(ctx, [r], lambda w, title, row: '2001' if fault == 'date' else date)
-    assert got == [r] and (c, r) == before
+    with pytest.raises(ValueError, match='requires renewed proof.*'+reason):
+        M.apply(ctx, [r], lambda w, title, row: '2001' if fault == 'date' else date)
+    assert (c, r) == before
     assert ctx.paper_source_review['decisions'][0]['status'] == 'held'
     assert ctx.paper_source_review['decisions'][0]['reason'] == reason
 
@@ -104,7 +105,8 @@ def test_exact_source_and_owned_publication_guards_hold_without_changing_origina
 def test_compact_edition_pointer_cannot_reconstruct_absent_source_or_admit_ineligible_paper(tmp_path):
     c = cases()[0];ctx = context(tmp_path, [c]);ctx.hits = []
     r = row(c);r['editions'] = [dict(oa=r['oa'], doi=r['doi'])]
-    assert M.apply(ctx, [r], lambda w, t, r: r['date']) == [r]
+    with pytest.raises(ValueError, match='missing_complete_source'):
+        M.apply(ctx, [r], lambda w, t, r: r['date'])
     ctx = context(tmp_path, [c]);assert M.apply(ctx, [], lambda w, t, r: '') == []
     assert ctx.paper_source_review['decisions'][0]['status'] == 'no_eligible_source'
 
@@ -176,7 +178,8 @@ def test_owned_bibliographic_year_cannot_force_an_ordinary_date(tmp_path):
 @pytest.mark.usefixtures('layout')
 def test_complete_unrelated_nonempty_title_is_not_a_completion_even_with_same_owned_doi(tmp_path):
     c=cases()[0];c['source_projection']['title']='An Entirely Different Study';ctx=context(tmp_path,[c]);r=row(c)
-    assert M.apply(ctx,[r],lambda w,t,r:r['date'])==[r]
+    with pytest.raises(ValueError, match='not_a_title_completion'):
+        M.apply(ctx,[r],lambda w,t,r:r['date'])
     assert ctx.paper_source_review['decisions'][0]['reason']=='not_a_title_completion'
 
 

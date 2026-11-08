@@ -122,11 +122,17 @@ def apply(ctx, rows, date_check):
         decision = dict(id=d['id'], pi=row['pi'], oa=row['oa'], doi=row.get('doi'), status=status,
                         reason=reason, source_work_sha256=(d.get('source') or {}).get('work_sha256'),
                         owned_dblp=copy.deepcopy(d.get('owned_dblp')), original_eligible_row=copy.deepcopy(row),
-                        original_complete_source=copy.deepcopy(source), proposed_title=d['changes']['title'])
+                        original_complete_source=copy.deepcopy(source),
+                        available_complete_sources=copy.deepcopy(list(sources.get((row['pi'], row['oa']), {}).values())),
+                        proposed_title=d['changes']['title'])
         ctx.paper_source_review['decisions'].append(decision)
         ctx.n['source_metadata_' + status] += 1
         if reason:
-            output.append(row); continue
+            # A positive corrective selector identifies a known unsafe original.
+            # Keeping that row would silently restore the very merge being repaired.
+            # Preserve diagnostics and all available originals, then stop before grouping.
+            raise ValueError(f"source metadata review {d['id']} requires renewed proof for "
+                             f"{row['pi']} / {row['oa']}: {reason}")
         result = dict(row, title=d['changes']['title'])
         result['sourceMetadataReviews'] = list(row.get('sourceMetadataReviews') or []) + [dict(
             id=d['id'], input_sha256=ctx.paper_source_review['sha256'], source_work_sha256=d['source']['work_sha256'],

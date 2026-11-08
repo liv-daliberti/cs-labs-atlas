@@ -14,11 +14,15 @@ and source preimages prevent a different publication from lending its title. No 
 
 `source_metadata.apply` receives complete rows only after ordinary PI identity, own-school, appointment and
 namesake gates. It copies the eligible row and changes its title only. A recomputation of ordinary venue dating
-must give the same eligible date, or the review is held. Ordinary type/genre/translation gates then run, followed by
+must give the same eligible date. Ordinary type/genre/translation gates then run, followed by
 book/edition grouping. Missing/ineligible sources are never reconstructed from compact editions or force-admitted.
-A stale hash, wrong DOI/PID/key, changed author array, conflicting review or date change does not project metadata.
-Per-source held outcomes remain explicit; a controlled build must require expected projections and zero unexplained
-holds before claiming readiness. Existing unsupported person identities stay in the normal claim-review pipeline.
+A matching PI/OA corrective selector with a stale hash, wrong DOI/PID/key, changed author array or date change
+raises an explicit `ValueError` requiring renewed review before grouping. It never silently emits the known unsafe
+original title. The in-memory report retains the held reason, original eligible row, exact original source when found,
+and all available complete source variants, including changed preimages. A selector with no ordinarily eligible row
+remains `no_eligible_source`; it does not reconstruct or admit a source. A controlled build must require expected
+projections and zero unexplained holds before claiming readiness. Existing unsupported person identities stay in
+the normal claim-review pipeline.
 
 `report.paperSourceReview` retains each original complete work and eligible row plus its outcome. Applied review
 provenance accompanies lab rows, including when a reviewed source becomes a nonleading edition. Thus neither raw
