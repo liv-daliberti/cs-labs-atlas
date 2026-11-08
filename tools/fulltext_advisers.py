@@ -100,7 +100,7 @@ def lab_bylines(school):
 
 
 def scan(school, shard, shards, outdir, limit=0):
-    store = Path(P.STORES) / school if hasattr(P, 'STORES') else Path(P.data('stores')) / school
+    store = Path(P.STORES) / school
     cat = sqlite3.connect(f'file:{store}/catalog.sqlite?mode=ro', uri=True)
     by = lab_bylines(school)
     out = Path(outdir) / f'{school}-{shard}of{shards}.sqlite'
