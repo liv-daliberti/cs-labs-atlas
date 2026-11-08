@@ -1,0 +1,11 @@
+# Exact mixed-source hold; not a stage-9 pass
+
+The canonical CMU Venkatesan Guruswami Polar Codes row (lead W2964241527, DOI10.4230/LIPIcs.APPROX-RANDOM.2018.34, issued atl:w:b60271264862) incorrectly carries W2963320196 as a compact secondary edition. The original OpenAlex W2963320196 response mixes an HMM title, Polar's DOI/byline and General Strong Polarization's arXiv identifier. Independent actual publisher PDFs establish separate Polar and HMM works, and the actual General Strong preprint has its own five-author byline.
+
+The exact OA-only reviewed hold operates through the normal pre-identity and edition gates; it cannot admit a work. It preserves genuine Polar, HMM and General Strong and their issued IDs. The already-reviewed anchor retirement remains separate, retaining the original association/history rather than rebinding the corrupt identifier by title.
+
+Original response replay: frozen Harvard original OpenAlex sweep, 2018/page150, decoded-page SHA256587f2cbf339270ce0c4a051b9bd1b9ce5947d44d4e4f577e401a314b2d92230c. The original JSON contains exactly W2963320196, HMM title, DOI2018.34 and arXiv1802.02718. Current CMU sweep/PI-work inputs no longer contain that OA record; absence is reported rather than described as a reproduced CMU raw hit.
+
+Primary full-byte PDF hashes and original URLs are in the reviewed decision. Polar530620bytes SHA256c93bbac2ff002d1cef2063edf6eebe33b42ccab91d84d30058e57f931db3118f; HMM653100bytes SHA256c74b0ba9c2fe33fefc817d46c0055c2d57de2fa44bad733f55d007d4f03c23bd; General Strong517935bytes SHA256f39974e6d187a70f8134475bd78234f6a2e8da6c7080d53ebe33f541f0f9a968. Parent independently replayed the original response and visually checked all three page1s. Harvard's original172audit141pass/9fail/22unknown and all36decisions remain unchanged.
+
+An isolated actual CMU native rebuild and current-code baseline comparison are required; no canonical package/registry/auxiliary/store changes are authorized here. The all14 assessment's original HOLD and exact source preimages remain preserved in scratch/harvard-cas-promotion-plan-1108. Modern code/input changes are independently reported, not certified by this one hold. Full-school completeness and formal stage gates remain unclaimed.

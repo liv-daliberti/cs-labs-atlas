@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "school": "cmu",
+  "decisions": [
+    {
+      "id": "cmu-20261108-Guruswami-mixed-W2963320196",
+      "pi": "Venkatesan Guruswami",
+      "match": {
+        "oa": "https://openalex.org/W2963320196"
+      },
+      "decision": "hold",
+      "reviewed_by": "codex-cmu-corrupt-secondary-1108",
+      "reviewed_at": "2026-11-08",
+      "why": "Hold only this exact corrupt OpenAlex representation before identity anchoring/folding. It mixes the HMM title, Polar Codes DOI2018.34 and three-author byline, and General Strong arXiv1802.02718. Canonical CMU Polar currently contains it as a secondary edition; that pointer must not survive into active ID lookup after source-bound retirement. Preserve genuine Polar W2964241527/DOI2018.34/issued atl:w:b60271264862 and its valid editions, correct HMM W2895063194/arXiv1810.01969/DOI2019.39/issued atl:w:445d0cea99ac, and General Strong W2787306773/arXiv1802.02718 as separate research. This is no title/person-wide rejection, admission waiver or issued-ID deletion. The current CMU sweep and PI-work cache no longer reproduce W296; exact source proof is the frozen original OpenAlex record plus the canonical secondary pointer and actual distinct primary PDFs. Native baseline/corrected comparison must report all unrelated modern-input/code deltas, not silently promote them.",
+      "evidence": [
+        {
+          "url": "https://openalex.org/W2963320196",
+          "sha256": "587f2cbf339270ce0c4a051b9bd1b9ce5947d44d4e4f577e401a314b2d92230c",
+          "quote": "Algorithmic Polarization for Hidden Markov Models",
+          "kind": "original_mixed_OpenAlex_record",
+          "source_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-reviewed-build-1108/trial/hierarchy/harvard/raw/openalex-sweep.sqlite",
+          "source_page": {
+            "year": 2018,
+            "page": 150,
+            "body_sha256": "587f2cbf339270ce0c4a051b9bd1b9ce5947d44d4e4f577e401a314b2d92230c"
+          },
+          "hash_basis": "SHA256 of decoded original complete response page; the exact record contains Polar DOI2018.34/three Polar authors and GeneralStrong arXiv1802.02718."
+        },
+        {
+          "url": "https://drops.dagstuhl.de/storage/00lipics/lipics-vol116-approx-random2018/LIPIcs.APPROX-RANDOM.2018.34/LIPIcs.APPROX-RANDOM.2018.34.pdf",
+          "sha256": "c93bbac2ff002d1cef2063edf6eebe33b42ccab91d84d30058e57f931db3118f",
+          "quote": "Polar Codes with Exponentially Small Error at Finite Block Length",
+          "kind": "original_publisher_full_PDF",
+          "hash_basis": "530620 original PDF bytes; page1 names Blasiok, Guruswami (own CMU), Sudan; DOI2018.34. The true Polar lead W2964241527 remains eligible."
+        },
+        {
+          "url": "https://drops.dagstuhl.de/storage/00lipics/lipics-vol124-itcs2019/LIPIcs.ITCS.2019.39/LIPIcs.ITCS.2019.39.pdf",
+          "sha256": "c74b0ba9c2fe33fefc817d46c0055c2d57de2fa44bad733f55d007d4f03c23bd",
+          "quote": "© Venkatesan Guruswami, Preetum Nakkiran, and Madhu Sudan;",
+          "kind": "original_ITCS2019_publisher_complete_primary_byline_and_DOI",
+          "hash_basis": "SHA256 of all653100 original publisher PDF bytes in existing CMU local object; page1 visually inspected. DOI10.4230/LIPIcs.ITCS.2019.39,3authors,own Madhu Sudan Harvard block,ITCS2019 Article39 pages39:1–39:19."
+        },
+        {
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1802/1802.02718v1.pdf",
+          "sha256": "f39974e6d187a70f8134475bd78234f6a2e8da6c7080d53ebe33f541f0f9a968",
+          "quote": "General Strong Polarization",
+          "kind": "original_other_research_arxivv1",
+          "hash_basis": "Full original517935-byte PDF has5authors Blasiok,Guruswami,Nakkiran,Rudra,Sudan and own Sudan Harvard footnote. It is separate from3author HMM and remains genuine research under its own identifiers."
+        }
+      ]
+    }
+  ]
+}
