@@ -341,6 +341,11 @@
       "R-PAP-25",
       "R-PAP-29"
      ]
+    },
+    "^title_enrichment_": {
+     "description": "Missing-title enrichment outcomes after ordinary identity/appointment/edition gates and title quality.",
+     "type": "integer",
+     "minimum": 0
     }
    },
    "required": [
@@ -1182,6 +1187,31 @@
        }
       },
       "additionalProperties": true
+     }
+    }
+   },
+   "additionalProperties": false
+  },
+  "paperTitleReview": {
+   "description": "Exact source-bound missing-title input and per-row outcomes after ordinary identity/appointment/edition gates.",
+   "type": "object",
+   "required": [
+    "path",
+    "sha256",
+    "decisions"
+   ],
+   "properties": {
+    "path": {
+     "type": "string"
+    },
+    "sha256": {
+     "type": "string",
+     "pattern": "^[0-9a-f]{64}$"
+    },
+    "decisions": {
+     "type": "array",
+     "items": {
+      "type": "object"
      }
     }
    },

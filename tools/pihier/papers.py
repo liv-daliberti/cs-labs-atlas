@@ -10,7 +10,7 @@ from .common import OWN_UNITS, SCHOOL_LOOSE, TODAY, WINDOW_START, accepted_addit
 from .identity import in_blocked_cluster
 from .names import NICK, _nick_pairs, byline_name, full_pair, toks, Name
 from .periods import _year, LISTING_BRIDGE, bridge_periods, listing_bridge_periods, contains, same_year, transition_side, transition_status
-from . import identity, primary_affiliations, reviewed_claims
+from . import identity, primary_affiliations, reviewed_claims, title_enrichment
 from dblp_dump_pages import page_count  # noqa: E402  (DBLP's `pages` string -> number of pages; R-PAP-27)
 
 # Recovered lab-paper rows as (kind, identity label): hierarchy/<school>/<kind>-recovered.jsonl.gz (tools/dblp_recover.py,
@@ -857,6 +857,15 @@ def rows_from_hits(ctx):
                          **({'dated_by': dated_by} if dated_by else {}),
                          **({'page1_check': page1_check} if page1_check else {}),
                          **({'flags': ['page1_unchecked']} if page1_check and page1_check['status'] == 'page1_unchecked' else {})))
+    title_sources = {}
+    for pi, w, *_ in ctx.hits:
+        if title_enrichment.missing(w.get('title')):
+            title_sources.setdefault((pi, w['id']), w)
+    for row in rows:
+        # Retain source references only for missing-title eligible rows; raw work objects are never changed.
+        source = title_sources.get((row['pi'], row['oa']))
+        if source is not None:
+            title_enrichment.remember(ctx, row, source)
     ctx.page1_samples = page1_samples
     ctx.listing_review += [dict(v, withheld_n=len(v['withheld'])) for per_ in ctx.stale_years.values() for v in per_.values()]  # R-PAP-30
     return rows, seen
@@ -1169,6 +1178,32 @@ def lab_papers(ctx):
     if translated is not None:
         n['translated_editions_dropped'] = translated
     rows = merge_editions(rows, n, preferred=lambda group: reviewed_claims.preferred_edition(ctx, group))
+    # Enrichment cannot lend identity or change ordinary edition groups/aliases.
+    rows, filled_titles = title_enrichment.apply(ctx, rows, lambda w, title, r: venue_version_date(
+        dict(w, title=title), ctx.dblp_venue[r['pi']])[0])
+    if filled_titles:
+        quality_counts = collections.Counter()
+        quality_kept, quality_samples = drop_not_papers(filled_titles, ctx.dblp_nauth, quality_counts, ctx.dblp_pages, ctx.pid0)
+        # Recheck R-PAP-15 per record. A singleton cannot regroup books or change aliases.
+        untranslated = [r for r in quality_kept if fold_books([r], school)[0]]
+        if n.get('translated_editions_dropped') is not None:
+            n['translated_editions_dropped'] += len(quality_kept) - len(untranslated)
+        quality_kept = untranslated
+        n['not_paper_dropped'] += quality_counts['not_paper_dropped']
+        for key, value in quality_counts.items():
+            if key.startswith('not_paper:'):
+                n[key] += value
+        dropped_ids = {id(r) for r in filled_titles} - {id(r) for r in quality_kept}
+        rows = [r for r in rows if id(r) not in dropped_ids]
+        n['title_enrichment_quality_dropped'] += len(dropped_ids)
+        for r in filled_titles:
+            status = 'rejected' if id(r) in dropped_ids else 'passed'
+            r['titleEnrichment']['quality_status'] = status
+            for decision in ctx.paper_title_review['decisions']:
+                if (decision['pi'], decision['oa'], decision['work']) == (r['pi'], r['oa'], r['work']):
+                    decision['quality_status'] = status
+        for why, samples in quality_samples.items():
+            not_paper_samples[why] = (not_paper_samples[why] + samples)[:10]
     n['lab_papers'] = len(rows); n['lab_papers_in_collection'] = sum(bool(r['work']) for r in rows); n['lab_papers_new'] = n['lab_papers'] - n['lab_papers_in_collection']
     n['lab_papers_by_period'] = sum('periodId' in r['appointment'] for r in rows); n['lab_papers_by_listing'] = n['lab_papers'] - n['lab_papers_by_period']
     n.update({'identity:' + k: v for k, v in collections.Counter(r['identity'] for r in rows).items()})

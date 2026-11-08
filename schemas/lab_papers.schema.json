@@ -476,6 +476,70 @@
     "R-ID-01",
     "R-ID-04"
    ]
+  },
+  "titleEnrichment": {
+   "description": "Post-identity, post-edition source-bound title-only enrichment status; original source, byline, date and IDs remain unchanged.",
+   "type": "object",
+   "required": [
+    "status",
+    "review_ids",
+    "input_sha256",
+    "original_title",
+    "reasons"
+   ],
+   "properties": {
+    "status": {
+     "enum": [
+      "filled",
+      "held",
+      "unchanged_nonempty"
+     ]
+    },
+    "review_ids": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "input_sha256": {
+     "type": "string",
+     "pattern": "^[0-9a-f]{64}$"
+    },
+    "original_title": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "reasons": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "source_work_sha256": {
+     "type": "string",
+     "pattern": "^[0-9a-f]{64}$"
+    },
+    "publisher_pdf_sha256": {
+     "type": "string",
+     "pattern": "^[0-9a-f]{64}$"
+    },
+    "owned_dblp_pid": {
+     "type": "string"
+    },
+    "owned_dblp_key": {
+     "type": "string"
+    },
+    "quality_status": {
+     "enum": [
+      "passed",
+      "rejected"
+     ],
+     "description": "Ordinary title quality recheck result after enrichment."
+    }
+   },
+   "additionalProperties": false
   }
  },
  "required": [

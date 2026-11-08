@@ -58,6 +58,8 @@ def write(ctx):
                page1ElsewhereSamples=page1_samples, staleListingReview=ctx.listing_review, droppedWithoutHashedSource=ctx.unevidenced, labpageAdditionsSetAside=ctx.labpage_set_aside,
                provenance=provenance.block(school),
                studentInitialsMerges=ctx.initials_merges, studentSurnameTypoCandidates=students.typo_candidate_rows(ctx), labpageStudentsCorroborated=getattr(ctx, 'corroborated', []))  # what this package was built from (tools/provenance.py; make_release requires it)
+    if getattr(ctx, 'paper_title_review', None) is not None:
+        rep['paperTitleReview'] = ctx.paper_title_review
     if getattr(ctx, 'paper_claim_review', None) is not None:
         rep['paperClaimReview'] = ctx.paper_claim_review
     if getattr(ctx, 'primary_affiliation_reviews', None):

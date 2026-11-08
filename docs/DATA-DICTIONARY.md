@@ -37,6 +37,7 @@ Paths: `a.b` a key inside an object, `[]` an array item, `<key>` any key of a ma
 - [`hierarchy/<school>/labpage-additions.json`](#hierarchyschoollabpage-additionsjson)
 - [`hierarchy/<school>/missing-pi-review.json`](#hierarchyschoolmissing-pi-reviewjson)
 - [`hierarchy/<school>/openalex-identity-review.json`](#hierarchyschoolopenalex-identity-reviewjson)
+- [`hierarchy/<school>/paper-title-review.json`](#hierarchyschoolpaper-title-reviewjson)
 - [`hierarchy/<school>/relation-evidence.json`](#hierarchyschoolrelation-evidencejson)
 - [`hierarchy/census-overrides.json`](#hierarchycensus-overridesjson)
 - [`hierarchy/chain-reasons.json`](#hierarchychain-reasonsjson)
@@ -153,6 +154,17 @@ One row per unique paper and lab (JSON lines, gzip): an OpenAlex work by the PI,
 | `source` | string | no | Recovered rows: <kind>_recover:<basis> (tools/dblp_recover.py, tools/labpage_recover.py); accepted lab-page additions: labpage_addition:<rule>:<basis> (labpage-additions.json, gated by labpage-acceptance.json). | pattern `^((dblp\|labpage)_recover:[a-z0-9_]+\|labpage_addition:LP-PAP-\d+:[a-z0-9_]+)$`; e.g. `dblp_recover:openalex_authorship`, `labpage_recover:page1_arxiv`, `labpage_addition:LP-PAP-01:page1_arxiv` | R-PAP-24 |
 | `chapters_folded` | integer | no | Book chapters folded into this row. | at least 1 | R-PAP-15, R-PAP-21 |
 | `atlasWorkId` | string | no | Atlas work id (ids stage). | pattern `^atl:w:[0-9a-f]{12}$` | R-ID-01, R-ID-04 |
+| `titleEnrichment` | object | no | Post-identity, post-edition source-bound title-only enrichment status; original source, byline, date and IDs remain unchanged. | no other keys |  |
+| `titleEnrichment.status` | any | yes |  | one of `filled`, `held`, `unchanged_nonempty` |  |
+| `titleEnrichment.review_ids` | array of string | yes |  |  |  |
+| `titleEnrichment.input_sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `titleEnrichment.original_title` | string \| null | yes |  |  |  |
+| `titleEnrichment.reasons` | array of string | yes |  |  |  |
+| `titleEnrichment.source_work_sha256` | string | no |  | pattern `^[0-9a-f]{64}$` |  |
+| `titleEnrichment.publisher_pdf_sha256` | string | no |  | pattern `^[0-9a-f]{64}$` |  |
+| `titleEnrichment.owned_dblp_pid` | string | no |  |  |  |
+| `titleEnrichment.owned_dblp_key` | string | no |  |  |  |
+| `titleEnrichment.quality_status` | any | no | Ordinary title quality recheck result after enrichment. | one of `passed`, `rejected` |  |
 
 ### lab_papers: shape `listing`
 
@@ -439,6 +451,7 @@ The build's report: counters, exclusions, samples of what the rules dropped, and
 | `counts.<key ~ /^student_corrections_/>` | integer | — | Reviewed corrections applied, by action. | at least 0 | R-STU-04 |
 | `counts.<key ~ /^(dblp\|labpage)_recovered_/>` | integer | — | Recovered rows (kept, or outside the appointment). | at least 0 | R-PAP-24 |
 | `counts.<key ~ /^(unaffiliated\|school_via)_/>` | integer | — | School-basis route counters. | at least 0 | R-PAP-11, R-PAP-12, R-PAP-20, R-PAP-25, R-PAP-29 |
+| `counts.<key ~ /^title_enrichment_/>` | integer | — | Missing-title enrichment outcomes after ordinary identity/appointment/edition gates and title quality. | at least 0 |  |
 | `counts.<key>` | integer | — |  | at least 0 |  |
 | `excluded` | array of object | yes | PIs removed by a reviewed exclusion (census-overrides.json exclude, gap-evidence not_pi_in_window). |  |  |
 | `excluded[]` | object | — | A sample. | no other keys |  |
@@ -563,6 +576,10 @@ The build's report: counters, exclusions, samples of what the rules dropped, and
 | `paperClaimReview.decisions[].pi` | string | yes |  |  |  |
 | `paperClaimReview.decisions[].decision` | any | yes |  | one of `hold`, `reject`, `merge` |  |
 | `paperClaimReview.decisions[].outcome` | any | yes |  | one of `no_current_claim`, `held`, `rejected`, `held_before_identity`, `rejected_before_identity`, `already_merged`, `held_missing_merge_target`, `merged` |  |
+| `paperTitleReview` | object | no | Exact source-bound missing-title input and per-row outcomes after ordinary identity/appointment/edition gates. | no other keys |  |
+| `paperTitleReview.path` | string | yes |  |  |  |
+| `paperTitleReview.sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `paperTitleReview.decisions` | array of object | yes |  |  |  |
 
 ## `hierarchy/<school>/student_papers.jsonl.gz`
 
@@ -1553,6 +1570,70 @@ Hand-reviewed OpenAlex author ids of an onboarding school's PIs.
 | `decisions.<key>.openalex` | array of string | yes | Author ids (bare A ids). | items: pattern `^(https://openalex\.org/)?A\d+$` | R-PAP-04 |
 | `decisions.<key>.aliases` | array of string | no | Name forms. |  |  |
 | `decisions.<key>.why` | string | yes | Why. | non-empty |  |
+
+## `hierarchy/<school>/paper-title-review.json`
+
+Source-bound missing-title-only output enrichment; no identity, byline, date or alias changes.
+
+- schema: `schemas/paper_title_review.schema.json`
+- kind: reviewed (a decision file, tracked in git)
+- format: JSON
+- writer: Source reviewers
+- readers: tools/pihier/title_enrichment.py
+
+| Field | Type | Required | Meaning | Allowed values | Rules |
+|---|---|---|---|---|---|
+| `version` | any | yes |  | always `1` |  |
+| `school` | string | yes |  | non-empty |  |
+| `reviews` | array of object | yes |  |  |  |
+| `reviews[]` | object | — |  | no other keys |  |
+| `reviews[].id` | string | yes |  | non-empty |  |
+| `reviews[].pi` | string | yes |  | non-empty |  |
+| `reviews[].reviewed_by` | string | yes |  | non-empty |  |
+| `reviews[].reviewed_at` | string | yes |  | pattern `^\d{4}-\d{2}-\d{2}$` |  |
+| `reviews[].match` | object | yes |  | no other keys |  |
+| `reviews[].match.oa` | string | no |  |  |  |
+| `reviews[].match.work` | string \| null | no |  |  |  |
+| `reviews[].match.doi` | string | yes |  | non-empty |  |
+| `reviews[].title` | string | yes |  | non-empty |  |
+| `reviews[].source_preimages` | array of object | yes |  | at least 1 item(s) |  |
+| `reviews[].source_preimages[]` | object | — |  | no other keys |  |
+| `reviews[].source_preimages[].work_sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `reviews[].source_preimages[].capture_sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `reviews[].source_preimages[].origin` | string | yes |  |  |  |
+| `reviews[].source_preimages[].original_title` | string \| null | yes |  |  |  |
+| `reviews[].source_preimages[].byline` | array of string | yes |  | at least 1 item(s) |  |
+| `reviews[].edition_binding` | any | yes |  | always `exact_doi` |  |
+| `reviews[].publisher` | object | yes |  | no other keys |  |
+| `reviews[].publisher.url` | string | yes |  |  |  |
+| `reviews[].publisher.sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `reviews[].publisher.bytes` | integer | yes |  | at least 1 |  |
+| `reviews[].publisher.pages` | integer | yes |  | at least 1 |  |
+| `reviews[].publisher.complete_body` | any | yes |  | always `true` |  |
+| `reviews[].publisher.full_parse_returncode` | any | yes |  | always `0` |  |
+| `reviews[].publisher.doi` | string | yes |  |  |  |
+| `reviews[].publisher.title` | string | yes |  |  |  |
+| `reviews[].publisher.year` | integer | yes |  |  |  |
+| `reviews[].publisher.byline` | array of string | yes |  | at least 1 item(s) |  |
+| `reviews[].publisher.title_quote` | string | yes |  |  |  |
+| `reviews[].publisher.publication_quote` | string | yes |  |  |  |
+| `reviews[].publisher.byline_quote` | string | yes |  | non-empty |  |
+| `reviews[].owned_dblp` | object | yes |  | no other keys |  |
+| `reviews[].owned_dblp.pid` | string | yes |  | pattern `^https://dblp.org/pid/` |  |
+| `reviews[].owned_dblp.key` | string | yes |  |  |  |
+| `reviews[].owned_dblp.sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `reviews[].owned_dblp.source_file` | string | no |  |  |  |
+| `reviews[].owned_dblp.doi` | string | yes |  |  |  |
+| `reviews[].owned_dblp.title` | string | yes |  |  |  |
+| `reviews[].owned_dblp.year` | integer | yes |  |  |  |
+| `reviews[].owned_dblp.byline` | array of string | yes |  | at least 1 item(s) |  |
+| `reviews[].reviewed_spelling_bindings` | array of object | no |  |  |  |
+| `reviews[].reviewed_spelling_bindings[]` | object | — |  | no other keys |  |
+| `reviews[].reviewed_spelling_bindings[].source` | string | yes |  |  |  |
+| `reviews[].reviewed_spelling_bindings[].publisher` | string | yes |  |  |  |
+| `reviews[].reviewed_spelling_bindings[].evidence_sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `reviews[].why` | string | no |  |  |  |
+| `reviews[].edition_preimage_sha256` | string | yes | Canonical JSON SHA256 of the already accepted edition pointer array; no new edition join is permitted. | pattern `^[0-9a-f]{64}$` |  |
 
 ## `hierarchy/<school>/relation-evidence.json`
 

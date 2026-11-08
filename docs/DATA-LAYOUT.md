@@ -120,6 +120,7 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `openalex-identity-review.json` | reviewed | `hierarchy/{school}/openalex-identity-review.json` | `hierarchy/{school}/reviewed/openalex-identity-review.json` | 1/1 | <10KB |
 | `census-additions.json` | reviewed | `census/{school}-additions.json` | `hierarchy/{school}/reviewed/census-additions.json` | 7/7 | <100MB |
 | `paper-claim-review.json` | reviewed | `hierarchy/{school}/paper-claim-review.json` | `hierarchy/{school}/reviewed/paper-claim-review.json` | optional | <5MB |
+| `paper-title-review.json` | reviewed | `hierarchy/{school}/paper-title-review.json` | `hierarchy/{school}/reviewed/paper-title-review.json` | optional | <5MB |
 | `faculty-periods.json` | reviewed | `periods/{school}-faculty-periods.json` | `hierarchy/{school}/reviewed/faculty-periods.json` | 5/5 | <1MB |
 | `dblp-recovered.jsonl.gz` | work | `hierarchy/{school}/dblp-recovered.jsonl.gz` | `hierarchy/{school}/work/dblp-recovered.jsonl.gz` | 0/7 | <1MB |
 | `labpage-recovered.jsonl.gz` | work | `hierarchy/{school}/labpage-recovered.jsonl.gz` | `hierarchy/{school}/work/labpage-recovered.jsonl.gz` | 0/3 | <1MB |
