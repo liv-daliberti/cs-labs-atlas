@@ -536,6 +536,76 @@ def venue_tables(ctx):
     ctx.dblp_pages = dblp_pages
 
 
+AUTHOR_AFFILIATION_PREFIX = re.compile(r'^\s*(?:drs?|profs?|professors?)\.?\s+', re.I)
+AUTHOR_AFFILIATION_TITLE = re.compile(r'\b(?:drs?|profs?|professors?)\.?\s+', re.I)
+
+
+def _affiliation_author_names(authorship):
+    return {tuple(toks(byline_name(name))) for name in
+            (authorship.get('raw_author_name'), (authorship.get('author') or {}).get('display_name')) if name}
+
+
+def _named_affiliation_owners(qualifier, authorships):
+    """Indices of byline authors explicitly named by a Dr/Prof qualifier; None means unresolved."""
+    if not AUTHOR_AFFILIATION_PREFIX.match(qualifier):
+        return None
+    owners = set()
+    for part in re.split(r'\band\b|[,&/;]', AUTHOR_AFFILIATION_TITLE.sub('', qualifier), flags=re.I):
+        wanted = toks(part)
+        if not wanted:
+            return None
+        matches = set()
+        for index, author in enumerate(authorships):
+            for name in _affiliation_author_names(author):
+                if name and wanted[-1] == name[-1] and all(
+                        word in name[:-1] or (len(word) == 1 and any(n.startswith(word) for n in name[:-1]))
+                        for word in wanted[:-1]):
+                    matches.add(index)
+        if not matches:
+            return None
+        owners.update(matches)
+    return owners
+
+
+def school_affiliation_explicitly_other_author(work, authorship, aff):
+    """Every raw school clause explicitly names another byline author, never this one.
+
+    A structured institution list can repeat a combined affiliation block. Only clear named qualifiers contradict it;
+    unqualified text, unknown names and ambiguous ownership retain the existing behavior. No person identity is decided.
+    """
+    authors = work.get('authorships') or []
+    target_names = _affiliation_author_names(authorship)
+    targets = {i for i, author in enumerate(authors)
+               if author is authorship or bool(_affiliation_author_names(author) & target_names)}
+    if not targets:
+        return False
+    assignments = []
+    for raw in authorship.get('raw_affiliation_strings') or []:
+        if not aff.search(raw):
+            continue
+        # Semicolons inside a shared author qualifier belong to that qualifier.
+        for clause in re.split(r';(?![^()]*\))', raw):
+            start = 0
+            for match in re.finditer(r'\(([^()]*)\)', clause):
+                if not AUTHOR_AFFILIATION_PREFIX.match(match[1]):
+                    continue   # geographical/unit parentheses are not author assignments
+                if aff.search(clause[start:match.start()]):
+                    owners = _named_affiliation_owners(match[1], authors)
+                    assignments.append('unknown' if owners is None else 'own' if owners & targets else 'other')
+                start = match.end()
+            if aff.search(clause[start:]):
+                assignments.append('unknown')
+    return bool(assignments) and all(a == 'other' for a in assignments)
+
+
+def _authorship_school_via(work, authorship, inst, aff):
+    if school_affiliation_explicitly_other_author(work, authorship, aff):
+        return []
+    return [i.get('display_name') for i in authorship.get('institutions') or []
+            if inst == i.get('id') or inst in (i.get('lineage') or [])] \
+        + ['text: ' + raw for raw in authorship.get('raw_affiliation_strings') or [] if aff.search(raw)]
+
+
 STRONG_IDENTITY = ('reviewed_openalex_author_id', 'pi_orcid', 'dblp_verified_collection_work', 'dblp_person_page_doi', 'dblp_person_page_title',
                    'pi_institutional_publication_list', 'lab_publication_page')
 # R-PAP-29 (2026-11-03): a cross-affiliated byline does not count when the PI's appointment at the school is not a primary one: an adjunct's,
@@ -553,8 +623,8 @@ def school_basis(ctx, pi, w, a, ident, page1):
     pi_units, school_units, anchored = ctx.pi_units, ctx.school_units, ctx.anchored
     advisee_names, adv_full, from_pw = ctx.advisee_names, ctx.adv_full, ctx.from_pw
     p = ctx.pid0[pi]
-    via = [i.get('display_name') for i in a.get('institutions') or [] if inst == i.get('id') or inst in (i.get('lineage') or [])] \
-        + ['text: ' + z for z in a.get('raw_affiliation_strings') or [] if aff.search(z)]
+    bystander = school_affiliation_explicitly_other_author(w, a, aff)
+    via = _authorship_school_via(w, a, inst, aff)
     if page1 and not a.get('institutions') and not a.get('raw_affiliation_strings'):
         via = [f"page 1 ({page1['how']}): " + ' … '.join(page1['quotes'])]  # the paper's own first page ties the school to the PI
     elif not via and tied.get(w['id']) and any(toks(n_)[-1] in toks(' '.join(tied[w['id']]['quotes'])) for n_ in p['names'] if toks(n_)):
@@ -563,6 +633,9 @@ def school_basis(ctx, pi, w, a, ident, page1):
         # ties the school to this PI by name (2026-10-29: Chi Jin, Karthik Narasimhan, Adam Perer); the primary
         # source outranks OpenAlex's derived affiliation
         page1 = tied[w['id']]; via = [f"page 1 ({page1['how']}): " + ' … '.join(page1['quotes'])]
+    if bystander and not via:
+        n['school_affiliation_explicit_other_author'] += 1
+        return [], page1   # a named bystander is not an unaffiliated PI or a silent R-PAP-11/29 recovery
     raws_ = a.get('raw_affiliation_strings') or []
     if not via and not a.get('institutions') and raws_ and all(norm_unit(z) in pi_units[pi] or norm_unit(z) in school_units for z in raws_):
         # R6: the PI's raw affiliation is only the name of one of the PI's own units at the school, and no institution
@@ -571,16 +644,14 @@ def school_basis(ctx, pi, w, a, ident, page1):
         # school, so the unit must be the PI's own and one of the two must hold)
         aid_ = (a.get('author') or {}).get('id')
         anchored_ok = (ident not in (None, 'advisee_coauthor', 'advisee_anchored_author_id')) or bool(aid_ and anchored[pi].get(aid_, 0) >= 1)
-        school_co = any(x is not a and (inst in [i.get('id') for i in x.get('institutions') or []] + [l for i in x.get('institutions') or [] for l in i.get('lineage') or []]
-                                        or any(aff.search(z) for z in x.get('raw_affiliation_strings') or [])) for x in w.get('authorships') or [])
+        school_co = any(x is not a and _authorship_school_via(w, x, inst, aff) for x in w.get('authorships') or [])
         if bare_unit_school(raws_, pi_units[pi], school_units, anchored_ok, school_co):
             via = [f'school unit on the PI authorship: {raws_[0]}']; n['school_via_bare_unit'] += 1
     if not via and not a.get('institutions') and not any(names_other_inst(z, school) for z in a.get('raw_affiliation_strings') or []):
         # the PI's authorship names no institution (none, or a department only, as recent preprints do) and a stated
         # advisee of the PI on the same byline lists the school: the paper is the lab's (identity and appointment still apply)
         co = [x.get('raw_author_name') for x in w.get('authorships') or [] if x is not a and x.get('raw_author_name')
-              and (inst in [i.get('id') for i in x.get('institutions') or []] + [l for i in x.get('institutions') or [] for l in i.get('lineage') or []]
-                   or any(aff.search(z) for z in x.get('raw_affiliation_strings') or []))
+              and _authorship_school_via(w, x, inst, aff)
               and any(an.match(byline_name(x['raw_author_name'])) for an in advisee_names[pi])]
         if co:
             via = [f'advisee at the school on the byline: {co[0]}']; n['school_via_advisee_coauthor'] += 1
@@ -599,8 +670,7 @@ def school_basis(ctx, pi, w, a, ident, page1):
         # that year name the school at least twice. Strong identity, the appointment check below and the paper-type checks still
         # apply. Not the unaffiliated route: a byline with no institution at all (pi-0) is not touched.
         kinds_ = {i.get('type') for i in a['institutions']}
-        school_co = any(x is not a and (any(inst == i.get('id') or inst in (i.get('lineage') or []) for i in x.get('institutions') or [])
-                                        or any(aff.search(z) for z in x.get('raw_affiliation_strings') or [])) for x in w.get('authorships') or [])
+        school_co = any(x is not a and _authorship_school_via(w, x, inst, aff) for x in w.get('authorships') or [])
         if kinds_ <= CROSS_KINDS and school_co:
             via = ['cross-affiliated byline: PI credited to ' + ', '.join(i.get('display_name') or '?' for i in a['institutions'][:2])
                    + '; a co-author is credited to the school']
@@ -731,8 +801,7 @@ def rows_from_hits(ctx):
                     oa=w['id'], work=cw, doi=ndoi(w.get('doi')), year=w.get('publication_year'), venue=((w.get('primary_location') or {}).get('source') or {}).get('display_name'),
                     byline=[(x.get('raw_author_name') or (x.get('author') or {}).get('display_name')) for x in w.get('authorships') or []],
                     byline_school=[(x.get('raw_author_name') or (x.get('author') or {}).get('display_name')) for x in w.get('authorships') or []
-                                   if inst in [i.get('id') for i in x.get('institutions') or []] + [l for i in x.get('institutions') or [] for l in i.get('lineage') or []]
-                                   or any(aff.search(z) for z in x.get('raw_affiliation_strings') or [])]))
+                                   if _authorship_school_via(w, x, inst, aff)]))
             continue
         seen.add(k); row_at[k] = len(rows)
         rows.append(dict(pi=pi, work=cw, oa=w['id'], doi=ndoi(w.get('doi')), title=w.get('title'), year=dated_by['venue_year'] if dated_by else w.get('publication_year'), date=date, type=w.get('type'),
@@ -741,8 +810,7 @@ def rows_from_hits(ctx):
                          _edition_source=edition_source(w),
                          byline=[(x.get('raw_author_name') or (x.get('author') or {}).get('display_name')) for x in w.get('authorships') or []],
                          byline_school=[(x.get('raw_author_name') or (x.get('author') or {}).get('display_name')) for x in w.get('authorships') or []
-                                        if inst in [i.get('id') for i in x.get('institutions') or []] + [l for i in x.get('institutions') or [] for l in i.get('lineage') or []]
-                                        or any(aff.search(z) for z in x.get('raw_affiliation_strings') or [])],
+                                        if _authorship_school_via(w, x, inst, aff)],
                          authorship=dict(position=a.get('author_position'), raw_name=a.get('raw_author_name'), author_id=aid,
                                          institutions=[i.get('display_name') for i in a.get('institutions') or []], raw_affiliations=a.get('raw_affiliation_strings') or [],
                                          school_via=via[:3], page1=dict(url=page1['url'], pdf_sha256=page1['pdf_sha256'], how=page1['how'], quotes=page1['quotes']) if page1 and via[0].startswith('page 1') else None),
