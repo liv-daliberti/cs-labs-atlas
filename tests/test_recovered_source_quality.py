@@ -76,7 +76,7 @@ def test_inproceedings_format_does_not_erase_actual_abstract_genre(label):
     assert not kept and ctx.n['not_paper:meeting_abstract:single_author'] == 1
 
 
-@pytest.mark.parametrize('fault', ['pid', 'key', 'title', 'doi', 'year', 'kind', 'authors'])
+@pytest.mark.parametrize('fault', ['pid', 'key', 'title', 'doi', 'kind', 'authors'])
 def test_new_alternate_requires_exact_owned_publication_metadata(fault):
     case = next(c for c in cases() if c['label'] == 'english_chapter')
     ctx, p = context(case)

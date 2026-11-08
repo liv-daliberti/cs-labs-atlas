@@ -899,12 +899,46 @@ def quality_venue(venue):
     return QUALITY_VENUE_ALIASES.get(key, venue)
 
 
-def recovered_source_metadata(ctx, p, x, ev, kind, strict=False):
+def recovered_publication_binding(ctx, p, x, ev, kind):
+    """Resolve format/role evidence on this exact owned publication, without adding any PI/global aliases.
+
+    An owned PID's attested selfnames apply only to its own matching publication. Publication year is separate
+    evidence: proceedings/event and publisher years may differ, and this resolver never changes either date.
+    """
+    key = re.sub(r'^https?://dblp[.]org/rec/', '', str(x.get('dblp_key') or ev.get('dblp_key') or ''))
+    base_names = p.get('names') or [p['pi']]
+    pubs, compatible = [], []
+    if kind == 'dblp' and key:
+        persons = (getattr(ctx, 'dblp_persons', None) or {}).get('persons') or {}
+        for pid in p.get('dblp') or []:
+            person = persons.get(pid) or {}
+            self_names = [re.sub(r'\s+\d{4}$', '', str(name)) for name in person.get('names') or []]
+            names = list(dict.fromkeys([*base_names, *self_names]))
+            for record in person.get('pubs') or []:
+                if record.get('key') != key:
+                    continue
+                entry = dict(pid=pid, record=record, self_names=self_names)
+                pubs.append(entry)
+                title = norm_title(html.unescape(str(x.get('title') or '')))
+                if not title or norm_title(html.unescape(str(record.get('title') or ''))) != title \
+                        or (record.get('dois') and ndoi(x.get('doi')) not in {ndoi(d) for d in record['dois']}):
+                    continue
+                if any(Name(names).match(byline_name(re.sub(r'\s+\d{4}$', '', a[0]))) for a in record.get('authors') or []):
+                    compatible.append(entry)
+    # No aliases from a wrong key/title/DOI, another PID, or a publication lacking its owner's byline.
+    names = list(base_names)
+    if compatible and len(compatible) == len(pubs):
+        names = list(dict.fromkeys([*names, *(name for entry in compatible for name in entry['self_names'])]))
+    return dict(key=key, publications=pubs, compatible=compatible, names=names)
+
+
+def recovered_source_metadata(ctx, p, x, ev, kind, strict=False, binding=None):
     """Type/quality evidence for an independently retained source, never an authorship or school admission waiver.
 
     A missing historical `article` fallback has no authority for a newly retained alternate. Owned publication kinds
-    bind exact key/title/DOI/year; exact same-edition raw metadata can retain a more specific nonpaper genre. Source
-    fields stay unchanged, and quality-only canonical venues never reconstruct a publisher record.
+    bind exact key/title/DOI and the owned author's literal selfnames; a differing source year is recorded separately
+    and cannot rewrite recovery dates or waive ordinary appointment/window gates. Exact same-edition raw metadata
+    retains a more specific nonpaper genre. Quality-only canonical venues never reconstruct a publisher record.
     """
     key = re.sub(r'^https?://dblp[.]org/rec/', '', str(x.get('dblp_key') or ev.get('dblp_key') or ''))
     proof = dict(pi=p['pi'], kind=kind, key=key, doi=x.get('doi'), title=x.get('title'), year=x.get('year'),
@@ -913,20 +947,24 @@ def recovered_source_metadata(ctx, p, x, ev, kind, strict=False):
     if not hasattr(ctx, 'recovered_source_quality'):
         ctx.recovered_source_quality = []
     evidence = []
-    pubs = []
+    binding = binding if binding is not None else recovered_publication_binding(ctx, p, x, ev, kind)
+    pubs = [(entry['pid'], entry['record']) for entry in binding['publications']]
+    compatible = [(entry['pid'], entry['record']) for entry in binding['compatible']]
     if kind == 'dblp':
-        persons = (getattr(ctx, 'dblp_persons', None) or {}).get('persons') or {}
-        for pid in p.get('dblp') or []:
-            pubs.extend((pid, r) for r in (persons.get(pid) or {}).get('pubs') or [] if r.get('key') == key)
-        compatible = [(pid, r) for pid, r in pubs
-                      if norm_title(html.unescape(str(r.get('title') or ''))) == norm_title(html.unescape(str(x.get('title') or '')))
-                      and str(r.get('year')) == str(x.get('year'))
-                      and any(Name(p.get('names') or [p['pi']]).match(byline_name(re.sub(r'\s+\d{4}$', '', a[0])))
-                              for a in r.get('authors') or [])
-                      and (not r.get('dois') or ndoi(x.get('doi')) in {ndoi(d) for d in r['dois']})]
         kinds = {r.get('type') for _, r in compatible}
         typ = RECOVERED_PUB_TYPES.get(next(iter(kinds))) if len(kinds) == 1 else None
         proof['owned_publications'] = [dict(pid=pid, record=r) for pid, r in pubs]
+        proof['owned_publication_selfnames'] = [dict(pid=entry['pid'], names=entry['self_names']) for entry in binding['compatible']]
+        proof['year_disagreements'] = [dict(pid=pid, key=key, publication_year=r.get('year'), recovery_year=x.get('year'))
+                                       for pid, r in compatible if str(r.get('year')) != str(x.get('year'))]
+        review = (['publication_year_disagreement'] if proof['year_disagreements'] else [])
+        if re.search(r'(?i)\bpanel report\s*[.]?$', str(x.get('title') or '')):
+            review.append('panel_report_genre_review')
+        if re.search(r'(?i)\bwork[- ]in[- ]progress\b', str(x.get('title') or '')):
+            review.append('work_in_progress_genre_review')
+        proof['review_reasons'] = review
+        for reason in review:
+            ctx.n['recovered_source_review:' + reason] += 1
         if typ and len(compatible) == len(pubs):
             canonical = next((v for prefix, v in QUALITY_DBLP_STREAMS.items() if key.startswith(prefix)), None)
             evidence.append(dict(type=typ, venue=canonical or quality_venue(x.get('venue'))))
@@ -982,7 +1020,7 @@ def recovered_source_metadata(ctx, p, x, ev, kind, strict=False):
                 page_evidence=dict(key=key, literal=proof['pages_literal']) if kind == 'dblp' and compatible else None)
 
 
-def recovered_scope_via(ctx, p, ev, require_replay=False):
+def recovered_scope_via(ctx, p, ev, require_replay=False, names=None, publication=None):
     """Replay an OpenAlex recovery against the current charter; display names alone cannot prove scope.
     Page-1 evidence is independent. Legacy rows may reuse the original work already read by the native hits stage."""
     if ev.get('basis') != 'openalex_authorship' or (not require_replay and not related_gate(ctx.school)):
@@ -993,8 +1031,18 @@ def recovered_scope_via(ctx, p, ev, require_replay=False):
     if w is None:
         ctx.n['recovered_school_scope_unreplayable'] += 1
         return []
+    nm = Name(names if names is not None else p.get('names') or [p['pi']])
+    base = Name(p.get('names') or [p['pi']])
+    alias_used = any(nm.match(a.get('raw_author_name') or (a.get('author') or {}).get('display_name') or '')
+                     and not base.match(a.get('raw_author_name') or (a.get('author') or {}).get('display_name') or '')
+                     for a in w.get('authorships') or [])
+    if alias_used and publication is not None:
+        title = norm_title(publication.get('title'))
+        if not title or norm_title(w.get('title')) != title \
+                or (w.get('doi') and publication.get('doi') and ndoi(w['doi']) != ndoi(publication['doi'])):
+            ctx.n['recovered_school_scope_alias_source_conflict'] += 1
+            return []   # a new local alias cannot borrow this other work's school
     w = school_scope_work(w, ctx.school)
-    nm = Name(p.get('names') or [p['pi']])
     via = [v for a in w.get('authorships') or []
            if nm.match(a.get('raw_author_name') or (a.get('author') or {}).get('display_name') or '')
            for v in _authorship_school_via(w, a, ctx.inst, ctx.aff, school=ctx.school)]
@@ -1032,9 +1080,14 @@ def recovered_rows(ctx, rows, seen):
             if reviewed_claims.excluded(ctx, x['pi'], dict(oa=oa_id, doi=x.get('doi'), work=cw)):
                 aside('reviewed_source_held'); continue
             existing = (x['pi'], cw or oa_id) in seen or (x['pi'], oa_id) in present_sources
-            if existing and not any(Name(p.get('names') or [p['pi']]).match(byline_name(b)) for b in x.get('byline') or []):
+            binding = recovered_publication_binding(ctx, p, x, ev, kind)
+            own_byline = any(Name(binding['names']).match(byline_name(b)) for b in x.get('byline') or [])
+            base_byline = any(Name(p.get('names') or [p['pi']]).match(byline_name(b)) for b in x.get('byline') or [])
+            if existing and not own_byline:
                 n[f'{kind}_recovered_existing_pi_byline_unproven'] += 1; aside('existing_work_pi_byline_unproven'); continue
-            scope_via = recovered_scope_via(ctx, p, ev, require_replay=existing)
+            alias_replay = kind == 'dblp' and bool(p.get('dblp')) and bool(x.get('byline')) and not base_byline
+            scope_via = recovered_scope_via(ctx, p, ev, require_replay=existing or alias_replay,
+                                            names=binding['names'], publication=x)
             if ev.get('basis') == 'openalex_authorship' and scope_via == []:
                 aside('school_scope_not_supported'); continue
             via = scope_via or [f"page 1 ({ev.get('how')}): " + ' … '.join(ev.get('quotes') or [])]
@@ -1044,7 +1097,7 @@ def recovered_rows(ctx, rows, seen):
             lst = None if per else next((l for l in p['listings'] if l['year'] == int(x['year'])), None)
             if per is None and lst is None:
                 n[f'{kind}_recovered_outside_appointment'] += 1; aside('outside_appointment'); continue
-            classified = recovered_source_metadata(ctx, p, x, ev, kind, strict=existing)
+            classified = recovered_source_metadata(ctx, p, x, ev, kind, strict=existing, binding=binding)
             if classified is None:
                 aside('source_type_unproven_or_conflicting'); continue
             # A complete independently eligible recovery can be the publisher edition of an existing collection
