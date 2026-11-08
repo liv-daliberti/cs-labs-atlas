@@ -192,7 +192,9 @@ def same_student(a, b, initials=True):
     """Two student records of one lab that Name.match missed but are one person: the same family name and middle names
     with first given names that are nickname-equal or one a prefix (3+ letters) of the other ('Ali'/'Alireza',
     'Theo'/'Théophile', 'Subra'/'Subramanian'), or the same 3+ name tokens reordered ('Tan Nhat Bui'/'Nhat-Tan Bui').
-    Two-token reorders ('Wei Li'/'Li Wei') and 1-2 letter prefixes ('Xi'/'Xinyi', 'Ru'/'Rui') are often different people."""
+    Two-token reorders ('Wei Li'/'Li Wei') and 1-2 letter prefixes ('Xi'/'Xinyi', 'Ru'/'Rui') are often different people.
+    Under East Asian family names, even long given-name prefixes differ ('Jiali Li'/'Jialin Li'); exact joined forms
+    and known nickname pairs still agree."""
     ta, tb = toks(a), toks(b)
     if len(ta) < 2 or len(tb) < 2:
         return False
@@ -203,10 +205,10 @@ def same_student(a, b, initials=True):
     if ta[-1] != tb[-1]:
         return False
     x, y = sorted((ta[0], tb[0]), key=len)
-    if nick_ok(x, y) or (len(x) >= 3 and y.startswith(x) and ta[1:-1] == tb[1:-1]):
+    if nick_ok(x, y) or (ta[-1] not in EAST_ASIAN_FAMILY and len(x) >= 3 and y.startswith(x) and ta[1:-1] == tb[1:-1]):
         return True
     gx, gy = sorted((''.join(ta[:-1]), ''.join(tb[:-1])), key=len)  # 'Amir'/'Amirali Bagher', 'Kyutae'/'Kyu-Tae Thomas'
-    return len(gx) >= 4 and gy.startswith(gx)
+    return gx == gy or (ta[-1] not in EAST_ASIAN_FAMILY and len(gx) >= 4 and gy.startswith(gx))
 
 
 def core_tokens(name):
