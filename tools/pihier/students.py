@@ -595,30 +595,34 @@ def corrections(ctx, stu):
     # record keyed to the wrong person (the old name stays an alias), or replace a relation's mis-cut evidence
     corr_f = P.data('student-corrections.json', root=HERE)
     corr = read(corr_f) if corr_f.exists() else []
-    # A source-bound correction must hold for review if any new relation or other member fact appears.
-    # Validate all applicable preimages before applying any correction from this file.
-    for decision in corr:
+    def check_preimage(decision, member):
         expected = decision.get('expected_member_sha256')
-        if expected is None or decision.get('school') != school:
-            continue
+        if expected is None:
+            return
         if not isinstance(expected, str) or not re.fullmatch(r'[0-9a-f]{64}', expected):
             raise ValueError('student correction needs a valid expected_member_sha256')
+        if member is not None:
+            actual = hashlib.sha256(json.dumps(member, ensure_ascii=False, sort_keys=True,
+                                               separators=(',', ':')).encode()).hexdigest()
+            if actual != expected:
+                raise ValueError('student correction source preimage changed; review required: '
+                                 + str((school, decision.get('pi'), decision['student'])))
+
+    # Validate all applicable guards before any correction, and recheck immediately before use.
+    for decision in corr:
+        if decision.get('expected_member_sha256') is None or decision.get('school') != school:
+            continue
         group = stu.get(decision.get('pi')) or {}
         member = next((r for key, r in group.items()
                        if key == decision['student'] or decision['student'] in (r.get('merged') or [])), None)
-        if member is None:
-            continue  # no correction applies; repeat execution of a completed drop is a no-op
-        actual = hashlib.sha256(json.dumps(member, ensure_ascii=False, sort_keys=True,
-                                           separators=(',', ':')).encode()).hexdigest()
-        if actual != expected:
-            raise ValueError('student correction source preimage changed; review required: '
-                             + str((school, decision.get('pi'), decision['student'])))
+        check_preimage(decision, member)
     for x in corr:
         S = stu.get(x.get('pi')) if x.get('school') == school else None
         k = next((k for k, r in (S or {}).items() if k == x['student'] or x['student'] in (r.get('merged') or [])), None)
         if not k:
             continue
         r = S[k]
+        check_preimage(x, r)
         if x['action'] == 'drop':
             S.pop(k)
         elif x['action'] == 'rename':

@@ -92,3 +92,15 @@ def test_malformed_applicable_guard_holds(tmp_path):
     with pytest.raises(ValueError, match='valid expected_member_sha256'):
         apply(tmp_path, stu, [d])
     assert stu['One PI'][row['person']] == row
+
+
+def test_prior_in_batch_evidence_change_cannot_be_silently_dropped(tmp_path):
+    row = member()
+    stu = {'One PI': {row['person']: copy.deepcopy(row)}}
+    new_source = dict(url='https://example.edu/independent', sha256='2' * 64, quote='Independent lab source')
+    replace = dict(school='example', pi='One PI', student=row['person'], action='replace_sources',
+                   reason='Separately reviewed new source.', years=[2026], sources=[new_source])
+    with pytest.raises(ValueError, match='preimage changed'):
+        apply(tmp_path, stu, [replace, decision(row)])
+    assert row['person'] in stu['One PI']
+    assert stu['One PI'][row['person']]['relations'][0]['sources'] == [new_source]
