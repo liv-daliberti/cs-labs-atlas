@@ -5,8 +5,9 @@
   atl:l:<school>:<pi-slug>  a PI lab (one per PI and school)
 
 Ids are opaque and deterministic: an entity's anchors (identifiers) are ranked, and a new id is the sha256 of its strongest
-anchor. Once issued an id never changes: the registry (hierarchy/ids/registry.sqlite) maps every anchor ever seen to its
-id, and a later build finds an entity's id through any of its anchors, so a new ORCID or DOI joins the existing id.
+anchor. Once issued an id never changes: the registry (hierarchy/ids/registry.sqlite) retains every anchor's history,
+and a later build finds an entity's id through its active anchors, so a new ORCID or DOI joins the existing id.
+An explicitly retired corrupt work identifier remains in audited history and cannot resolve or be reused as an active anchor.
 Two issued ids that turn out to be one entity are merged by a redirect (the earlier-issued id stays; the other is kept in
 the registry with status 'redirect', never reissued).
 
@@ -29,11 +30,15 @@ legacy ids), redirects.tsv, persons-cross-school.json, IDS-REPORT.json.
 A missing registry is seeded from releases/latest/hierarchy/ids/registry.sqlite.
 usage: atlas_ids.py [--registry PATH] [--dir HIERARCHY] [--no-sweep] [school ...]   (default: every released school)
 """
-import argparse, collections, csv, gzip, hashlib, io, json, os, re, shutil, sqlite3, sys, tempfile, unicodedata, zlib
+import argparse, collections, csv, gzip, hashlib, io, json, os, re, runpy, shutil, sqlite3, sys, tempfile, unicodedata, zlib
 from datetime import datetime, timezone
 from pathlib import Path
 from html.parser import HTMLParser
 from urllib.parse import urlsplit, urlunsplit
+
+if __name__ == '__main__' and sys.flags.isolated:
+    # Reuse the existing allowlisted entrypoint; downloaded reviews never add the caller's cwd to imports.
+    runpy.run_path(str(Path(__file__).with_name('pi_hierarchy.py')), run_name='atlas_ids_bootstrap')
 
 import atlas_paths as P  # noqa: E402  (every path in one place)
 
@@ -193,6 +198,199 @@ def open_registry(path, seed=True):
     return db
 
 
+def registry_fingerprint(db):
+    """Logical preimage of the complete registry, including schema and every user table, independent of backup headers."""
+    schema = db.execute("select type,name,tbl_name,sql from sqlite_master where name not glob 'sqlite_*' order by type,name").fetchall()
+    encode = lambda v: json.dumps(v, ensure_ascii=False, separators=(',', ':'), default=lambda b: {'blob_hex': b.hex()}).encode()
+    quote = lambda s: '"' + s.replace('"', '""') + '"'
+    tables = {}
+    for (name,) in db.execute("select name from sqlite_master where type='table' and name not glob 'sqlite_*' order by name"):
+        columns = [r[1] for r in db.execute('pragma table_info(' + quote(name) + ')')]
+        h, count = hashlib.sha256(), 0
+        for row in db.execute('select * from ' + quote(name) + ' order by ' + ','.join(map(quote, columns))):
+            h.update(encode(row) + b'\n'); count += 1
+        tables[name] = dict(rows=count, sha256=h.hexdigest())
+    return dict(schema_sha256=hashlib.sha256(encode(schema)).hexdigest(), tables=tables)
+
+
+def retired_work_anchors(db):
+    if not db.execute("select 1 from sqlite_master where type='table' and name='retired_work_anchors'").fetchone():
+        return {}
+    return dict(db.execute('select anchor,review_id from retired_work_anchors'))
+
+
+def _check_retired_work_anchors(db, comps):
+    retired = retired_work_anchors(db)
+    holds = [dict(component=str(c), anchors=[a for _, a in anchors],
+                  retired_anchors=[a for _, a in anchors if a in retired],
+                  retirement_reviews={a: retired[a] for _, a in anchors if a in retired},
+                  reason='retired work anchor requires explicit source review')
+             for c, anchors in comps.items() if any(a in retired for _, a in anchors)]
+    if holds:
+        raise WorkIDConflict(holds)
+
+
+_ANCHOR_COLUMNS = ('anchor', 'id', 'kind', 'first_seen')
+_ID_COLUMNS = ('id', 'kind', 'minted_from', 'issued', 'status', 'redirect_to', 'note')
+_RETIREMENT_DDL = (
+    '''create table if not exists retired_work_anchors (
+       anchor text primary key, id text not null, kind text not null check(kind='work'), first_seen text not null,
+       retired_at text not null, review_id text not null, review_sha256 text not null,
+       source_registry_sha256 text not null, review_json text not null)''',
+    '''create trigger if not exists retired_anchor_no_insert before insert on anchors
+       when exists(select 1 from retired_work_anchors where anchor=new.anchor)
+       begin select raise(abort, 'retired work anchor cannot become active'); end''',
+    '''create trigger if not exists retired_anchor_no_update before update on anchors
+       when exists(select 1 from retired_work_anchors where anchor=new.anchor)
+       begin select raise(abort, 'retired work anchor cannot become active'); end''',
+    '''create trigger if not exists retired_anchor_history_no_update before update on retired_work_anchors
+       begin select raise(abort, 'retired anchor history is immutable'); end''',
+    '''create trigger if not exists retired_anchor_history_no_delete before delete on retired_work_anchors
+       begin select raise(abort, 'retired anchor history is immutable'); end''',
+)
+
+
+def _retirement_review(review):
+    if not isinstance(review, dict) or review.get('version') != 1 or review.get('action') != 'retire_work_anchors':
+        raise ValueError('work anchor retirement needs version 1 and an explicit action')
+    for k in ('id', 'reviewed_by', 'reviewed_at', 'reason'):
+        if not isinstance(review.get(k), str) or not review[k].strip():
+            raise ValueError('work anchor retirement needs reviewer, date, id and reason')
+    if datetime.strptime(review['reviewed_at'], '%Y-%m-%d').strftime('%Y-%m-%d') != review['reviewed_at']:
+        raise ValueError('retirement review date must be YYYY-MM-DD')
+    if not re.fullmatch('[0-9a-f]{64}', str(review.get('source_registry_sha256') or '')):
+        raise ValueError('work anchor retirement needs the physical source registry hash')
+    if not isinstance(review.get('expected_registry'), dict):
+        raise ValueError('work anchor retirement needs a complete logical registry preimage')
+    evidence = review.get('evidence')
+    if not isinstance(evidence, list) or not evidence or any(
+            not isinstance(e, dict) or not re.match(r'https?://', str(e.get('url') or ''))
+            or not re.fullmatch('[0-9a-f]{64}', str(e.get('sha256') or ''))
+            or not isinstance(e.get('quote'), str) or not e['quote'].strip() for e in evidence):
+        raise ValueError('work anchor retirement needs original URL, SHA256 and quoted evidence')
+    rows = review.get('retirements')
+    if not isinstance(rows, list) or not 1 <= len(rows) <= 100:
+        raise ValueError('work anchor retirement needs 1-100 exact anchor preimages')
+    seen = set()
+    for row in rows:
+        a, i = (row.get('expected_anchor'), row.get('expected_id')) if isinstance(row, dict) else (None, None)
+        if not isinstance(a, dict) or set(a) != set(_ANCHOR_COLUMNS) or not isinstance(i, dict) or set(i) != set(_ID_COLUMNS) \
+                or a['kind'] != 'work' or i['kind'] != 'work' or a['id'] != i['id'] \
+                or not re.fullmatch(r'atl:w:[0-9a-f]{12}', str(i['id'])) \
+                or not re.fullmatch(r'w\|(?:doi|openalex|dblp|arxiv|coll|labpage):[^\s]+', str(a['anchor'])) \
+                or a['anchor'] in seen:
+            raise ValueError('invalid, non-work or duplicate anchor retirement preimage')
+        seen.add(a['anchor'])
+    text = json.dumps(review, sort_keys=True, ensure_ascii=False, separators=(',', ':'))
+    return text, hashlib.sha256(text.encode()).hexdigest()
+
+
+def _retirement_state(db, review, review_hash):
+    retired = retired_work_anchors(db); already = []
+    for row in review['retirements']:
+        expected = row['expected_anchor']; anchor = expected['anchor']
+        actual = db.execute('select ' + ','.join(_ANCHOR_COLUMNS) + ' from anchors where anchor=?', (anchor,)).fetchone()
+        if anchor in retired:
+            history = db.execute('select anchor,id,kind,first_seen,review_sha256 from retired_work_anchors where anchor=?', (anchor,)).fetchone()
+            if actual or history[:4] != tuple(expected[k] for k in _ANCHOR_COLUMNS) or history[4] != review_hash:
+                raise ValueError('conflicting or resurrected retired anchor: ' + anchor)
+            already.append(anchor); continue
+        if actual != tuple(expected[k] for k in _ANCHOR_COLUMNS):
+            raise ValueError('active anchor preimage mismatch: ' + anchor)
+        actual_id = db.execute('select ' + ','.join(_ID_COLUMNS) + ' from ids where id=?', (expected['id'],)).fetchone()
+        if actual_id != tuple(row['expected_id'][k] for k in _ID_COLUMNS):
+            raise ValueError('issued ID preimage mismatch: ' + anchor)
+    if already and len(already) != len(review['retirements']):
+        raise ValueError('partial retirement state; source review required')
+    if not already and registry_fingerprint(db) != review['expected_registry']:
+        raise ValueError('complete registry preimage mismatch')
+    return bool(already)
+
+
+def retire_work_anchors(registry, review, backup=None, write=False):
+    """Offline, exact-source retirement on a copied registry. Dry run by default; writes require a fresh whole backup.
+
+    The public registry is replaced atomically only after its full preimage is rechecked. Issued IDs are never changed.
+    Retired keys remain in immutable history and cannot be used by assignment or active cross-reference exports.
+    """
+    text, review_hash = _retirement_review(review); registry = Path(registry)
+    def file_hash(p):
+        with open(p, 'rb') as source:
+            return hashlib.file_digest(source, 'sha256').hexdigest()
+    source_hash = file_hash(registry)
+    src = sqlite3.connect('file:' + str(registry) + '?mode=ro', uri=True, timeout=120)
+    try:
+        src.execute('begin'); already = _retirement_state(src, review, review_hash); before = registry_fingerprint(src)
+        result = dict(status='already_retired' if already else 'planned', review_id=review['id'], review_sha256=review_hash,
+                      source_registry_sha256=source_hash, registry_before=before,
+                      anchors=[r['expected_anchor'] for r in review['retirements']], issued_ID_changes=0)
+        if already:
+            return result
+        if source_hash != review['source_registry_sha256']:
+            raise ValueError('physical registry preimage mismatch')
+        if not write:
+            return result
+        if backup is None:
+            raise ValueError('retirement write requires a new whole-registry backup path')
+        backup = Path(backup)
+        if backup.resolve() == registry.resolve() or backup.exists() or backup.is_symlink():
+            raise ValueError('retirement backup must be a new file separate from the registry')
+        backup.parent.mkdir(parents=True, exist_ok=True)
+        # Exclusive creation prevents an existing receipt/backup from being overwritten.
+        with backup.open('xb'):
+            pass
+        copied = sqlite3.connect(str(backup))
+        try:
+            src.backup(copied)
+            if registry_fingerprint(copied) != before:
+                raise ValueError('whole-registry backup preimage mismatch')
+        finally:
+            copied.close()
+    finally:
+        src.close()
+    local = Path(tempfile.mkdtemp(prefix='atlas-anchor-retirement-', dir=os.environ.get('ATLAS_IDS_LOCAL_DIR') or tempfile.gettempdir()))
+    try:
+        candidate = local / 'registry.sqlite'; shutil.copy2(backup, candidate); db = sqlite3.connect(str(candidate))
+        try:
+            db.execute('begin immediate'); _retirement_state(db, review, review_hash)
+            for ddl in _RETIREMENT_DDL:
+                db.execute(ddl)
+            for row in review['retirements']:
+                a = row['expected_anchor']
+                n = db.execute('delete from anchors where anchor=? and id=? and kind=? and first_seen=?', tuple(a[k] for k in _ANCHOR_COLUMNS)).rowcount
+                if n != 1:
+                    raise ValueError('anchor changed during retirement: ' + a['anchor'])
+                db.execute('insert into retired_work_anchors values (?,?,?,?,?,?,?,?,?)',
+                           tuple(a[k] for k in _ANCHOR_COLUMNS) + (review['reviewed_at'], review['id'], review_hash, source_hash, text))
+            after = registry_fingerprint(db)
+            if before['tables']['ids'] != after['tables']['ids']:
+                raise ValueError('retirement must not change any issued ID')
+            db.commit()
+        except BaseException:
+            db.rollback(); raise
+        finally:
+            db.close()
+        # Like normal ID preparation, replacement is serialized by the owner; also reject a changed source preimage.
+        check = sqlite3.connect('file:' + str(registry) + '?mode=ro', uri=True, timeout=120)
+        try:
+            check.execute('begin')
+            if file_hash(registry) != source_hash or registry_fingerprint(check) != before or file_hash(registry) != source_hash:
+                raise ValueError('registry changed while retirement was prepared')
+        finally:
+            check.close()
+        fd, name = tempfile.mkstemp(prefix='.' + registry.name + '.retire-', dir=registry.parent); os.close(fd)
+        temporary = Path(name)
+        try:
+            shutil.copy2(candidate, temporary); temporary.chmod(registry.stat().st_mode & 0o777); os.replace(temporary, registry)
+        finally:
+            temporary.unlink(missing_ok=True)
+        result.update(status='retired', registry_after=after, prepared_registry_sha256=file_hash(registry),
+                      backup=str(backup), backup_sha256=file_hash(backup), active_crossrefs_must_be_regenerated=True)
+        return result
+    finally:
+        shutil.rmtree(local, ignore_errors=True)
+
+
 def resolve(db, i):
     seen = set()
     while i and i not in seen:
@@ -228,6 +426,7 @@ def assign(db, kind, prefix, comps, today, stats):
     amb = {a for a, n in cnt.items() if n > 1}
     stats['ambiguous_anchors'] += len(amb)
     if kind == 'work':
+        _check_retired_work_anchors(db, comps)
         holds = [dict(component=str(c), anchors=[a for _, a in comps[c]],
                       reason='source-distinct work has no unambiguous identifier')
                  for c in comps if not any(a not in amb for _, a in comps[c])]
@@ -588,6 +787,10 @@ def run(schools, hdir, registry, use_sweep=True, today=None, write=True):
     except Exception:  # pragma: no cover
         nick_ok = None
     data = {s: load_school(P.SchoolDir(s, hdir)) for s in schools}
+    # Check every source edition before splitting can discard an edition anchor, and before any person/lab writes.
+    _check_retired_work_anchors(registry, {
+        (s, j): sorted((RANK[k], f'w|{WSCHEME[k]}:{v}') for k, v in work_anchors(r, s))
+        for s, (_, _, rows, _) in data.items() for j, r in enumerate(rows)})
     stats = collections.Counter()
     # ---- people
     ents = {}      # entity key -> dict(kind, school, name, anchors set of (k, v), ref)
@@ -834,7 +1037,8 @@ def run(schools, hdir, registry, use_sweep=True, today=None, write=True):
                conflicts_refused=len(conflicts), conflicts=conflicts[:50],
                registry=dict(ids=db.execute('select count(*) from ids').fetchone()[0],
                              anchors=db.execute('select count(*) from anchors').fetchone()[0],
-                             redirects=db.execute("select count(*) from ids where status='redirect'").fetchone()[0]))
+                             redirects=db.execute("select count(*) from ids where status='redirect'").fetchone()[0],
+                             retired_work_anchors=len(retired_work_anchors(db))))
     if write:
         (P.hfile(hdir, 'ids') / 'IDS-REPORT.json').write_text(json.dumps(rep, indent=1, ensure_ascii=False) + '\n')
     return dict(report=rep, person_of=person_of, work_of=work_of, lab_ids=lab_ids, cross=cross)
@@ -846,7 +1050,27 @@ def main(argv=None):
     ap.add_argument('--dir', default=str(P.HIERARCHY))
     ap.add_argument('--registry', default=str(P.data('ids') / 'registry.sqlite'))
     ap.add_argument('--no-sweep', action='store_true', help='skip the OpenAlex byline author ids (student -> PI elsewhere)')
+    ap.add_argument('--retire-work-anchors', type=Path, help='offline exact source review JSON; dry run unless --apply-retirements')
+    ap.add_argument('--retirement-backup', type=Path, help='new whole-registry backup required when applying retirements')
+    ap.add_argument('--apply-retirements', action='store_true', help='apply the exact reviewed retirement; no package or auxiliary writes')
     a = ap.parse_args(argv)
+    if a.retire_work_anchors:
+        args = list(sys.argv[1:] if argv is None else argv)
+        if a.schools or not any(x == '--registry' or x.startswith('--registry=') for x in args):
+            ap.error('retirement requires an explicit --registry and does not take schools')
+        if not sys.flags.isolated:
+            ap.error('retirement review input requires isolated Python (-I)')
+        with a.retire_work_anchors.open('rb') as source:
+            raw = source.read(5 * 1024 * 1024 + 1)
+        if len(raw) > 5 * 1024 * 1024:
+            ap.error('retirement review exceeds 5 MB')
+        review = json.loads(raw)
+        result = retire_work_anchors(a.registry, review, backup=a.retirement_backup, write=a.apply_retirements)
+        result['review_file_sha256'] = hashlib.sha256(raw).hexdigest()
+        print(json.dumps(result, indent=2, ensure_ascii=False))
+        return 0
+    if a.apply_retirements or a.retirement_backup:
+        ap.error('retirement options require --retire-work-anchors')
     # The registry lives on NFS, where every SQLite lock change drops the page cache: a run re-read the 56 MB file ~150
     # times (8.5 GB) and three runs on 2026-11-03 hung for good inside a lock call. So the run works on a copy on local
     # disk and the result replaces the registry in one rename; a failed run leaves the registry as it was.

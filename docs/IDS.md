@@ -69,6 +69,35 @@ Rows sharing any work anchor (including through their editions) are one work, ac
 would put two rows of one lab together (two records the builder kept apart, e.g. Zenodo versions behind one OpenAlex record)
 is split: those rows join only through their own lead record, and register only its anchors.
 
+### Reviewed retirement of a corrupt work identifier
+
+A source record can combine identifiers from different papers. Holding that record in a bibliography does not remove an
+older registry association. An exact reviewed retirement removes only the corrupt identifier from active `anchors`;
+the issued work ID, its other identifiers, every science row and every unrelated ID remain unchanged. No title or name
+rule can retire an identifier. A later assignment containing the retired identifier holds before any package writes,
+even when that component also has a valid DOI. SQLite guards also prevent the identifier from becoming active again.
+
+The version1 `retire_work_anchors` review requires a reviewer/date/reason, original URL/SHA256/quoted evidence, the physical
+source registry SHA256, `registry_fingerprint(db)` for its complete schema and all tables, and each exact four-field
+anchor row plus the complete seven-field issued-ID preimage. Apply only to an isolated registry for review first:
+
+```bash
+"$CS_ATLAS_PY" -I "$CS_ATLAS_TOOLS/atlas_ids.py" --registry /tmp/reviewed-registry.sqlite \
+  --retire-work-anchors /tmp/exact-anchor-review.json
+"$CS_ATLAS_PY" -I "$CS_ATLAS_TOOLS/atlas_ids.py" --registry /tmp/reviewed-registry.sqlite \
+  --retire-work-anchors /tmp/exact-anchor-review.json --apply-retirements \
+  --retirement-backup /tmp/whole-registry-before.sqlite
+```
+
+Dry run is the default. Applying requires a new consistent whole-registry backup; the tool validates every preimage,
+works locally and replaces the target atomically only if its full source preimage still agrees. The immutable
+`retired_work_anchors` history retains the original association, review and source evidence. Replaying the identical
+review is a no-op; a conflicting review or partial retirement state holds. Restoring a retired identifier requires a
+separate explicit source review mechanism, never automatic reuse. Active cross-reference exports read `anchors` and
+exclude retired keys; regenerate the complete cohort exports at a reviewed promotion, never publish a partial school
+cross-reference or treat an old export as proof that a retired key is active. Live global changes still require the
+normal exact task claim and serialized promotion; preparing this review does not authorize them.
+
 ## Where the ids are
 | place | fields |
 |---|---|
