@@ -1,0 +1,574 @@
+[
+ {
+  "id": "T001",
+  "title": "Onboard toronto: stages 0-5,7 to the gate",
+  "school": "toronto",
+  "kind": "collect",
+  "scope": [
+   "hierarchy/toronto",
+   "stores/toronto",
+   "listings/toronto",
+   "schools/toronto.toml"
+  ],
+  "branch": "agent/toronto-resume-1107 (older agent/toronto)",
+  "note": "Held by Codex: preserved charter + cached current faculty directory, no API/snapshot credits. Claude lease top25-na also named Toronto (expired): Codex owns it.",
+  "source": "lease toronto-codex",
+  "claimed_by": "codex-top25-resume"
+ },
+ {
+  "id": "T002",
+  "title": "Onboard vt: stages 0-5,7 to the gate",
+  "school": "vt",
+  "kind": "collect",
+  "scope": [
+   "hierarchy/vt",
+   "stores/vt",
+   "listings/vt",
+   "schools/vt.toml"
+  ],
+  "branch": "agent/vt-resume-1107 (older agent/vt)",
+  "note": "Held by Codex: preserved Virginia Tech draft, isolated cache/source checks only.",
+  "source": "lease vt-resume-1107",
+  "claimed_by": "codex-root-1107"
+ },
+ {
+  "id": "T003",
+  "title": "Onboard oxford: stages 0-5,7 to the gate",
+  "school": "oxford",
+  "kind": "collect",
+  "scope": [
+   "hierarchy/oxford",
+   "stores/oxford",
+   "listings/oxford",
+   "schools/oxford.toml"
+  ],
+  "branch": "agent/top25-resume-1107 (older agent/oxford)",
+  "note": "Held by Codex (Claude charter handoff, Oxford live-first census, no overlapping crawlers). Claude lease top25-oxford (\"continue from Codex state\") is a duplicate and expired: do not start it.",
+  "source": "lease top25-codex",
+  "claimed_by": "codex-top25-resume"
+ },
+ {
+  "id": "T004",
+  "title": "Onboard utaustin: stages 0-5,7 to the gate",
+  "school": "utaustin",
+  "kind": "collect",
+  "scope": [
+   "hierarchy/utaustin",
+   "stores/utaustin",
+   "listings/utaustin",
+   "schools/utaustin.toml"
+  ],
+  "branch": "agent/utaustin",
+  "note": "lease expired (last renewed ~6 h before seeding); open for the next session, resume from the branch. Lease top25-na.",
+  "source": "lease top25-na"
+ },
+ {
+  "id": "T005",
+  "title": "Onboard purdue: stages 0-5,7 to the gate",
+  "school": "purdue",
+  "kind": "collect",
+  "scope": [
+   "hierarchy/purdue",
+   "stores/purdue",
+   "listings/purdue",
+   "schools/purdue.toml"
+  ],
+  "branch": "agent/purdue",
+  "note": "lease expired (last renewed ~6 h before seeding); open for the next session, resume from the branch. Lease top25-na.",
+  "source": "lease top25-na"
+ },
+ {
+  "id": "T006",
+  "title": "Onboard hkust: stages 0-5,7 to the gate",
+  "school": "hkust",
+  "kind": "collect",
+  "scope": [
+   "hierarchy/hkust",
+   "stores/hkust",
+   "listings/hkust",
+   "schools/hkust.toml"
+  ],
+  "branch": "agent/hkust",
+  "note": "lease expired (last renewed ~6 h before seeding); open for the next session, resume from the branch. Lease top25-asia-en.",
+  "source": "lease top25-asia-en"
+ },
+ {
+  "id": "T007",
+  "title": "Onboard ntu: stages 0-5,7 to the gate",
+  "school": "ntu",
+  "kind": "collect",
+  "scope": [
+   "hierarchy/ntu",
+   "stores/ntu",
+   "listings/ntu",
+   "schools/ntu.toml"
+  ],
+  "branch": "agent/ntu",
+  "note": "lease expired (last renewed ~6 h before seeding); open for the next session, resume from the branch. Lease top25-asia-en.",
+  "source": "lease top25-asia-en"
+ },
+ {
+  "id": "T008",
+  "title": "Onboard nus: stages 0-5,7 to the gate",
+  "school": "nus",
+  "kind": "collect",
+  "scope": [
+   "hierarchy/nus",
+   "stores/nus",
+   "listings/nus",
+   "schools/nus.toml"
+  ],
+  "branch": "agent/nus",
+  "note": "lease expired (last renewed ~6 h before seeding); open for the next session, resume from the branch. Lease top25-asia-en.",
+  "source": "lease top25-asia-en"
+ },
+ {
+  "id": "T009",
+  "title": "Onboard cuhk: stages 0-5,7 to the gate",
+  "school": "cuhk",
+  "kind": "collect",
+  "scope": [
+   "hierarchy/cuhk",
+   "stores/cuhk",
+   "listings/cuhk",
+   "schools/cuhk.toml"
+  ],
+  "branch": "agent/cuhk",
+  "note": "lease expired (last renewed ~6 h before seeding); open for the next session, resume from the branch. Lease top25-asia-en.",
+  "source": "lease top25-asia-en"
+ },
+ {
+  "id": "T010",
+  "title": "Onboard tsinghua: stages 0-5,7 to the gate",
+  "school": "tsinghua",
+  "kind": "collect",
+  "scope": [
+   "hierarchy/tsinghua",
+   "stores/tsinghua",
+   "listings/tsinghua",
+   "schools/tsinghua.toml"
+  ],
+  "branch": "agent/tsinghua",
+  "note": "lease expired (last renewed ~6 h before seeding); open for the next session, resume from the branch. Lease top25-cn-north.",
+  "source": "lease top25-cn-north"
+ },
+ {
+  "id": "T011",
+  "title": "Onboard pku: stages 0-5,7 to the gate",
+  "school": "pku",
+  "kind": "collect",
+  "scope": [
+   "hierarchy/pku",
+   "stores/pku",
+   "listings/pku",
+   "schools/pku.toml"
+  ],
+  "branch": "agent/pku",
+  "note": "lease expired (last renewed ~6 h before seeding); open for the next session, resume from the branch. Lease top25-cn-north.",
+  "source": "lease top25-cn-north"
+ },
+ {
+  "id": "T012",
+  "title": "Onboard hit: stages 0-5,7 to the gate",
+  "school": "hit",
+  "kind": "collect",
+  "scope": [
+   "hierarchy/hit",
+   "stores/hit",
+   "listings/hit",
+   "schools/hit.toml"
+  ],
+  "branch": "agent/hit",
+  "note": "lease expired (last renewed ~6 h before seeding); open for the next session, resume from the branch. Lease top25-cn-north.",
+  "source": "lease top25-cn-north"
+ },
+ {
+  "id": "T013",
+  "title": "Onboard sjtu: stages 0-5,7 to the gate",
+  "school": "sjtu",
+  "kind": "collect",
+  "scope": [
+   "hierarchy/sjtu",
+   "stores/sjtu",
+   "listings/sjtu",
+   "schools/sjtu.toml"
+  ],
+  "branch": "agent/sjtu",
+  "note": "lease expired (last renewed ~6 h before seeding); open for the next session, resume from the branch. Lease top25-cn-east.",
+  "source": "lease top25-cn-east"
+ },
+ {
+  "id": "T014",
+  "title": "Onboard zju: stages 0-5,7 to the gate",
+  "school": "zju",
+  "kind": "collect",
+  "scope": [
+   "hierarchy/zju",
+   "stores/zju",
+   "listings/zju",
+   "schools/zju.toml"
+  ],
+  "branch": "agent/zju",
+  "note": "lease expired (last renewed ~6 h before seeding); open for the next session, resume from the branch. Lease top25-cn-east.",
+  "source": "lease top25-cn-east"
+ },
+ {
+  "id": "T015",
+  "title": "Onboard ustc: stages 0-5,7 to the gate",
+  "school": "ustc",
+  "kind": "collect",
+  "scope": [
+   "hierarchy/ustc",
+   "stores/ustc",
+   "listings/ustc",
+   "schools/ustc.toml"
+  ],
+  "branch": "agent/ustc",
+  "note": "lease expired (last renewed ~6 h before seeding); open for the next session, resume from the branch. Lease top25-cn-east.",
+  "source": "lease top25-cn-east"
+ },
+ {
+  "id": "T016",
+  "title": "Onboard seu: stages 0-5,7 to the gate",
+  "school": "seu",
+  "kind": "collect",
+  "scope": [
+   "hierarchy/seu",
+   "stores/seu",
+   "listings/seu",
+   "schools/seu.toml"
+  ],
+  "branch": "agent/seu",
+  "note": "lease expired (last renewed ~6 h before seeding); open for the next session, resume from the branch. Lease top25-cn-east.",
+  "source": "lease top25-cn-east"
+ },
+ {
+  "id": "T017",
+  "title": "Onboard whu: stages 0-5,7 to the gate",
+  "school": "whu",
+  "kind": "collect",
+  "scope": [
+   "hierarchy/whu",
+   "stores/whu",
+   "listings/whu",
+   "schools/whu.toml"
+  ],
+  "branch": "agent/whu",
+  "note": "lease expired (last renewed ~6 h before seeding); open for the next session, resume from the branch. Lease top25-cn-central.",
+  "source": "lease top25-cn-central"
+ },
+ {
+  "id": "T018",
+  "title": "Onboard uestc: stages 0-5,7 to the gate",
+  "school": "uestc",
+  "kind": "collect",
+  "scope": [
+   "hierarchy/uestc",
+   "stores/uestc",
+   "listings/uestc",
+   "schools/uestc.toml"
+  ],
+  "branch": "agent/uestc",
+  "note": "lease expired (last renewed ~6 h before seeding); open for the next session, resume from the branch. Lease top25-cn-central.",
+  "source": "lease top25-cn-central"
+ },
+ {
+  "id": "T019",
+  "title": "Top-25 verification: sample checks on resumed schools",
+  "school": "",
+  "kind": "review",
+  "scope": [
+   "hierarchy/reviewed/top25"
+  ],
+  "branch": "agent/top25-verification-1107",
+  "note": "Codex worktree top25-verification-1107; claimed by Codex (inferred from the worktree, no lease).",
+  "source": "worktree",
+  "claimed_by": "codex-root-1107"
+ },
+ {
+  "id": "T020",
+  "title": "GRAS cohort phase A: top-300 roster, OpenAlex map, ARWU diff, charter tie test",
+  "school": "",
+  "kind": "build",
+  "scope": [
+   "docs/cohort",
+   "tests/test_cohort_roster.py",
+   "schools"
+  ],
+  "branch": "agent/qs-cohort",
+  "note": "1 commit ahead of main (6fb6ee4), no lease: ready for the coordinator to land after rebase + tests.",
+  "source": "branch"
+ },
+ {
+  "id": "T021",
+  "title": "GT student gathering: ETD/roster/own-page/OA-thesis sources, overlay root",
+  "school": "gatech",
+  "kind": "collect",
+  "scope": [
+   "hierarchy/gatech/students",
+   "hierarchy/gatech/tmp"
+  ],
+  "branch": "agent/gt-students-1107",
+  "note": "lease expired (last renewed ~6 h before seeding); open for the next session, resume from the branch. No landing. Newest commit: PhD-defense announcements as adviser evidence.",
+  "source": "lease gt-students"
+ },
+ {
+  "id": "T022",
+  "title": "Michigan + UChicago student gathering",
+  "school": "michigan",
+  "kind": "collect",
+  "scope": [
+   "hierarchy/michigan/students",
+   "hierarchy/uchicago/students"
+  ],
+  "branch": "agent/mi-uc-students-1107",
+  "note": "lease expired (last renewed ~6 h before seeding); open for the next session, resume from the branch. ",
+  "source": "lease mi-uc-students"
+ },
+ {
+  "id": "T023",
+  "title": "Harvard/JHU/WashU student gathering, overlay builds only",
+  "school": "harvard",
+  "kind": "collect",
+  "scope": [
+   "hierarchy/harvard/students",
+   "hierarchy/jhu/students",
+   "hierarchy/washu/students"
+  ],
+  "branch": "agent/hjw-students-1107",
+  "note": "lease expired (last renewed ~6 h before seeding); open for the next session, resume from the branch. ",
+  "source": "lease hjw-students"
+ },
+ {
+  "id": "T024",
+  "title": "Student gap next: 1107 gap list",
+  "school": "",
+  "kind": "collect",
+  "scope": [
+   "hierarchy/student-gaps"
+  ],
+  "branch": "agent/student-gap-next-1107",
+  "note": "Codex; lease student-gap-next-1107 (no note).",
+  "source": "lease student-gap-next-1107",
+  "claimed_by": "codex-student-gap-next-1107"
+ },
+ {
+  "id": "T025",
+  "title": "Student evidence: bounded review of cached GT and UChicago thesis leads",
+  "school": "",
+  "kind": "review",
+  "scope": [
+   "hierarchy/gatech/students",
+   "hierarchy/uchicago/students"
+  ],
+  "branch": "agent/student-evidence-20261107",
+  "note": "Codex; no landing without the coordinator.",
+  "source": "lease student-evidence-20261107",
+  "claimed_by": "codex-student-evidence-20261107"
+ },
+ {
+  "id": "T026",
+  "title": "Student resume / lab review (1107 worktrees)",
+  "school": "",
+  "kind": "review",
+  "scope": [
+   "hierarchy/reviewed/students"
+  ],
+  "branch": "agent/student-resume-1107 / agent/student-lab-review-1107",
+  "note": "Worktrees without a lease; check their git log before starting anything on students.",
+  "source": "worktree"
+ },
+ {
+  "id": "T027",
+  "title": "Lab websites: coverage audit for every PI",
+  "school": "",
+  "kind": "collect",
+  "scope": [
+   "hierarchy/reviewed/lab-websites",
+   "listings/lab-websites"
+  ],
+  "branch": "agent/lab-websites",
+  "note": "lease expired (last renewed ~6 h before seeding); open for the next session, resume from the branch. Claude side; see also the Codex task below.",
+  "source": "lease lab-websites"
+ },
+ {
+  "id": "T028",
+  "title": "Lab websites (Codex): resume authorized lab-page coverage audit in an isolated worktree",
+  "school": "",
+  "kind": "collect",
+  "scope": [
+   "hierarchy/reviewed/lab-websites"
+  ],
+  "branch": "agent/codex-lab-websites-1107",
+  "note": "Codex; preserve Claude discovery jobs. Scope kept disjoint from the Claude lab-websites task: merge or split before either lands.",
+  "source": "lease codex-lab-websites-1107",
+  "claimed_by": "codex-lab-websites-1107"
+ },
+ {
+  "id": "T029",
+  "title": "Codex cohort resume: school onboarding, all-PI website evidence, historical queue repair, verified student coverage",
+  "school": "",
+  "kind": "collect",
+  "scope": [
+   "hierarchy/cohort-resume"
+  ],
+  "branch": "agent/codex-cohort-resume",
+  "note": "Codex coordinating session.",
+  "source": "lease codex-cohort-resume",
+  "claimed_by": "codex-root-1107"
+ },
+ {
+  "id": "T030",
+  "title": "History recovery: audit 22 historical source tasks, strict cache-aware discovery recovery",
+  "school": "",
+  "kind": "collect",
+  "scope": [
+   "hierarchy/history-recovery"
+  ],
+  "branch": "agent/history-recovery-20261107",
+  "note": "Codex; no competing crawlers.",
+  "source": "lease history-recovery-20261107",
+  "claimed_by": "codex-history-recovery-20261107"
+ },
+ {
+  "id": "T031",
+  "title": "Publish discovery: maintenance secret, Nov 7 upload, then historical discovery and student gaps",
+  "school": "",
+  "kind": "release",
+  "scope": [
+   "releases",
+   "site-worktrees"
+  ],
+  "branch": "",
+  "note": "Codex.",
+  "source": "lease publish-discovery-20261107",
+  "claimed_by": "codex-publish-discovery-20261107"
+ },
+ {
+  "id": "T032",
+  "title": "Common Crawl as second historical source (pilot on 22 stalled tasks)",
+  "school": "",
+  "kind": "collect",
+  "scope": [
+   "hierarchy/commoncrawl",
+   "cache/commoncrawl"
+  ],
+  "branch": "agent/commoncrawl",
+  "note": "Restartable Slurm job; the agent only reviews.",
+  "source": "lease commoncrawl",
+  "claimed_by": "claude-commoncrawl"
+ },
+ {
+  "id": "T033",
+  "title": "Data cleanup phase B",
+  "school": "",
+  "kind": "build",
+  "scope": [
+   "archive",
+   "hierarchy/*/tmp"
+  ],
+  "branch": "fix/cleanup-1107",
+  "note": "Phase A landed as 09a3496 (hierarchy/ root leftovers to archive/hierarchy-legacy). Phase B is open; no lease. Branch fix/cleanup-1107 is at main.",
+  "source": "memory + branch"
+ },
+ {
+  "id": "T034",
+  "title": "Fulltext advisers: adviser evidence from full text",
+  "school": "",
+  "kind": "collect",
+  "scope": [
+   "hierarchy/fulltext-advisers",
+   "fulltext-push"
+  ],
+  "branch": "agent/fulltext-advisers",
+  "note": "Live lease; no commits yet.",
+  "source": "lease fulltext-advisers",
+  "claimed_by": "claude-fulltext-advisers"
+ },
+ {
+  "id": "T035",
+  "title": "study-1107: homogenization study run",
+  "school": "",
+  "kind": "analysis",
+  "scope": [
+   "studies/homogenization"
+  ],
+  "branch": "agent/study-1107",
+  "note": "Live lease (no note).",
+  "source": "lease study-1107",
+  "claimed_by": "claude-study-1107"
+ },
+ {
+  "id": "T036",
+  "title": "University of Washington onboarding stages 0-1 (then 2-7)",
+  "school": "washington",
+  "kind": "collect",
+  "scope": [
+   "hierarchy/washington",
+   "stores/washington",
+   "listings/washington",
+   "schools/uwashington.toml"
+  ],
+  "branch": "agent/uwashington",
+  "note": "lease expired (last renewed ~6 h before seeding); open for the next session, resume from the branch. 2 commits ahead of main (five listing formats with fixture tests).",
+  "source": "lease uwashington"
+ },
+ {
+  "id": "T037",
+  "title": "harvard: unmerged onboarding/history branches awaiting a land decision",
+  "school": "",
+  "kind": "land",
+  "scope": [
+   "hierarchy/harvard"
+  ],
+  "branch": "agent/harvard + agent/harvard-final-binding-20261107",
+  "note": "Unmerged per `git branch --no-merged main`; no lease. Coordinator decides what lands.",
+  "source": "branch"
+ },
+ {
+  "id": "T038",
+  "title": "jhu: unmerged onboarding/history branches awaiting a land decision",
+  "school": "",
+  "kind": "land",
+  "scope": [
+   "hierarchy/jhu"
+  ],
+  "branch": "agent/jhu + agent/history-jhu-20261106",
+  "note": "Unmerged per `git branch --no-merged main`; no lease. Coordinator decides what lands.",
+  "source": "branch"
+ },
+ {
+  "id": "T039",
+  "title": "washu: unmerged onboarding/history branches awaiting a land decision",
+  "school": "",
+  "kind": "land",
+  "scope": [
+   "hierarchy/washu"
+  ],
+  "branch": "agent/washu + agent/history-washu-20261106",
+  "note": "Unmerged per `git branch --no-merged main`; no lease. Coordinator decides what lands.",
+  "source": "branch"
+ },
+ {
+  "id": "T040",
+  "title": "uchicago: unmerged onboarding/history branches awaiting a land decision",
+  "school": "",
+  "kind": "land",
+  "scope": [
+   "hierarchy/uchicago"
+  ],
+  "branch": "agent/uchicago + agent/uchicago-round2",
+  "note": "Unmerged per `git branch --no-merged main`; no lease. Coordinator decides what lands.",
+  "source": "branch"
+ },
+ {
+  "id": "T041",
+  "title": "Co-adviser rule, arXiv direct fetch, Huei Peng period end, WashU discovery: the four 2026-11-07 duplicates",
+  "school": "",
+  "kind": "review",
+  "scope": [],
+  "branch": "",
+  "note": "Reconcile Codex 765582b/ef5d22b with agent/copies-push 5b46ab1 before either lands.",
+  "source": "owner brief"
+ }
+]

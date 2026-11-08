@@ -649,6 +649,7 @@ one `listings/<key>`, one collector job (`school-collector.slurm SCHOOL=<key>`),
 **Landing at gates.** Each school lands when a stage gate passes: `bin/atlas test` (exit code), lint, `tools/secret_scan.py --staged`, `git rebase main`, then the coordinator fast-forwards. Charter first (stage 0) so jobs can run from main;
 code fixes that all three need land as soon as they pass (they change nothing for released schools); the school's reviewed files land with the gate commit. Rebase the other two branches after every landing, and re-run
 `atlas stage-gate <key> --traps` there. Three drivers, one coordinator: the coordinator owns landings, the OpenAlex budget and the Wayback turn order; the drivers own their schools.
+**Claims.** Each school is a task on the shared queue (`bin/atlas task list`, `claim`, `heartbeat`, `done --commit`; docs/CONTRIBUTING.md). Claim before stage 0; a second driver for the same school is refused.
 **Order of work.** Stages 0 (together, the owner D-decisions batched in one message), then stages 1-2 staggered by one day, stage 6 rounds and stage 8 collectors are the long poles; stage 9 draws after the last rebuild.
 
 ## Before you land (v3)

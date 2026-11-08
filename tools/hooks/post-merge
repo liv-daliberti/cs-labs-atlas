@@ -1,0 +1,8 @@
+#!/bin/bash
+# After a merge or fast-forward INTO main (git runs post-merge for both): warn when the landing session does not hold the land lock (atlas task land-lock).
+# Warning only; `git config atlas.landLock enforce` cannot undo a finished merge, so enforcement lives in tools/agent_worktree.sh land.
+top=$(git rev-parse --show-toplevel) || exit 0
+[ "$(git symbolic-ref --short -q HEAD)" = main ] || exit 0
+out=$("$top/bin/atlas" task land-lock check 2>&1) || { echo "post-merge: WARNING main moved but the land lock is held by someone else or no session id is set ($out); see docs/CONTRIBUTING.md 'Landing lock'" >&2; exit 0; }
+case "$out" in *ours*) ;; *) echo "post-merge: WARNING main moved without the land lock; take it first next time: bin/atlas task land-lock acquire" >&2 ;; esac
+exit 0

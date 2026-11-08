@@ -33,6 +33,15 @@ case "$cmd" in
     # charters (schools/*.toml) are code: test the branch's own, not main's (a status change would fail test_paths_sh_is_current)
     (cd "$dir" && CS_ATLAS_VENDOR="$dir/vendor" CS_ATLAS_SCHOOL_CONFIGS="$dir/schools" bin/atlas test) || { echo "tests failed: main unchanged"; exit 1; }
     "$dir/bin/atlas" scan --staged >/dev/null 2>&1 || true
+    # landing lock (tools/work_queue.py): one session lands at a time. Warn by default; `git config atlas.landLock enforce` refuses.
+    # Session: $ATLAS_SESSION / $CLAUDE_SESSION_ID. Take it first: bin/atlas task land-lock acquire
+    if ! "$dir/bin/atlas" task land-lock check >/dev/null 2>&1; then
+      if [ "$(git -C "$main_top" config --get atlas.landLock || echo warn)" = enforce ]; then echo "land lock is held by another session or you have no session id (atlas task land-lock status): main unchanged"; exit 1; fi
+      echo "WARNING: the land lock is held by another session (atlas task land-lock status); landing anyway (atlas.landLock=warn)" >&2
+    elif ! "$dir/bin/atlas" task land-lock check 2>/dev/null | grep -q ours; then
+      echo "WARNING: you do not hold the land lock; take it first: bin/atlas task land-lock acquire (atlas.landLock=enforce makes this an error)" >&2
+      [ "$(git -C "$main_top" config --get atlas.landLock || echo warn)" = enforce ] && exit 1
+    fi
     git -C "$main_top" merge --ff-only "$b" || { echo "main moved or has local changes in these files: rebase again and retry"; exit 1; }
     echo "main fast-forwarded to $b ($(git -C "$main_top" rev-parse --short HEAD))" ;;
   rm)

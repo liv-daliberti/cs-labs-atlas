@@ -55,6 +55,20 @@ The hook does three things:
 Slurm jobs go the same way: submit with `atlas submit [sbatch options] script.slurm`, and every `.slurm` script sources the code-snapshot helper
 (`tests/test_slurm_snapshot.py` fails CI on a script that does not; the ML studies in `ai-writing/` and `archive/` are exempt).
 
+## The shared work queue and the landing lock (2026-11-07)
+Claude and Codex both land on `main`, and on 2026-11-07 they duplicated four jobs (the co-adviser rule, the arXiv direct fetch, Huei Peng's period end, WashU discovery). A lease (`atlas lease`) is a
+per-session lock with a free-text note; the work queue is a per-task claim. One queue, `leases/queue.jsonl` (flock-protected, `tools/work_queue.py`), is used by both sessions.
+**Before any work:** `bin/atlas task list` (needs `ATLAS_SESSION=<stable id>`), then `bin/atlas task claim <id> --branch <branch>`, then `heartbeat` while you work (ttl 30 min, like leases), then
+`done <id> --commit <hash>` (or `block --note`, `release`). New work: `task add --title ... --school ... --kind collect|build|review|land|release|analysis --scope <paths written>`, then claim it.
+`claim` is REFUSED (exit 3, holder and branch printed) when another live claim has an overlapping scope key (equal, path prefix or glob), the same title, or the same school and kind. Status runs
+open -> claimed -> running -> done | blocked | dropped; a claim whose heartbeat is older than its ttl is `stale`, no longer blocks and is taken over (history keeps the former holder).
+`--allow-overlap 'reason'` overrides and is recorded. `atlas task show <id>` prints the claim history; `atlas task import FILE.json` adds tasks whose id is new (the 2026-11-07 seed is `docs/queue-seed-20261107.json`).
+**Long jobs:** the work is a restartable Slurm job; the agent claims only the review of its results and records the job ids with `heartbeat --job`.
+**Landing lock:** one session lands on `main` at a time: `bin/atlas task land-lock acquire`, `tools/agent_worktree.sh land <name>`, `bin/atlas task land-lock release` (a stale lock expires after 1 h; `status` shows the holder).
+Today it WARNS only: `tools/agent_worktree.sh land` warns before the fast-forward, and `tools/hooks/post-merge` (installed by `tools/install_hooks.sh`) warns after any merge or fast-forward into main made without
+the lock. To make the land path blocking: `git config atlas.landLock enforce` (every worktree shares it); back with `git config atlas.landLock warn`. A plain `git merge --ff-only` run by hand cannot be blocked
+(git has no pre-fast-forward hook), so the hook only warns; use the land script.
+
 ## Agent reports (ROADMAP #41)
 An agent's final report has this shape, in this order, and nothing else (under 40 lines; the coordinator reads many):
 ```
