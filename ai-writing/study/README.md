@@ -16,3 +16,4 @@ Tests: `tests/test_study_labstats.py`, `tests/test_study_snapshot.py` (pandas; t
 (theory / systems / ML-AI / other) and the school's GRAS 2025 band. `study_hetero_authors.py` (OpenAlex publication-year histogram per PI, 1 credit each, restartable, writes only under results) ->
 `study_hetero_attr.py` (group attributes; `study_hetero_fields.py` is the venue/topic field map) -> `study_hetero.py` (pre/post per group, group-difference DiD, placebo, 12-school and excl.-partial scopes, Holm and BH over the
 75-contrast primary family) -> `study_hetero_report.py` (figures + `results/<ID>/heterogeneity/HETEROGENEITY.md`). Tests: `tests/test_study_hetero.py`.
+Non-text sameness (owner 2026-11-08): `sameness_*.py` (reference overlap and citation concentration, benchmark/method dictionary, topic concentration, report) -> `results/<id>/sameness/SAMENESS.md`; `run_study.sh <id> sameness`; tests `tests/test_study_sameness.py`.

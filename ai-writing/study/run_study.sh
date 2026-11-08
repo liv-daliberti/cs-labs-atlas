@@ -3,6 +3,8 @@
 #   (no mode)        analyse the sealed snapshot SNAPSHOT_ID
 #   snapshot         rebuild + seal SNAPSHOT_ID from releases/latest first (no scoring of new papers)
 #   hetero           heterogeneity layer on the analysed snapshot (needs study_prep.py output): PI career ages (OpenAlex, ~2,500 credits) -> group attributes -> splits -> figures + HETEROGENEITY.md
+#   sameness         non-text sameness measures (sameness_*.py) on the prepared tables of SNAPSHOT_ID (study_prep.py must have run): reference overlap, citation concentration,
+#                    benchmark/method clustering, topic concentration -> results/<id>/sameness/SAMENESS.md. All jobs <= 59 min, afterok chain.
 #   delta BASE       score and embed what the earlier build and snapshot BASE never covered, then build + seal SNAPSHOT_ID with that delta, then analyse:
 #                    list -> sections (4 shards) + texts -> GPU: abstract embeddings (7 models), v1 abstract flag, detector v3 passages -> per-paper table
 #                    -> snapshot build --delta-base BASE -> OpenAlex leftovers -> seal -> prep -> layers -> figures -> report (compared with BASE) -> ai_share.json
@@ -11,6 +13,21 @@ set -euo pipefail
 ID=${1:-2026-11-07}; MODE=${2:-}; BASE=${3:-}
 HERE=$(cd "$(dirname "$0")" && pwd)
 export STUDY_CODE=$HERE
+if [ "$MODE" = sameness ]; then
+  S="sbatch --parsable --exclude=node302,node014 --export=ALL,STUDY_CODE=$HERE $HERE/study.slurm"
+  a=$($S --cpus-per-task=2 --mem=8G --time=00:20:00 sameness_bench.py abstract --id "$ID")
+  f=$($S --cpus-per-task=16 --mem=6G --time=00:30:00 sameness_bench.py fulltext --id "$ID" -j 15)
+  o1=$($S --cpus-per-task=8 --mem=4G --time=00:20:00 sameness_refs.py overlap --sample refs10 --id "$ID")
+  o2=$($S --cpus-per-task=8 --mem=4G --time=00:20:00 sameness_refs.py overlap --sample journal --id "$ID")
+  c1=$($S --cpus-per-task=4 --mem=4G --time=00:59:00 sameness_refs.py concentration --sample refs10 --id "$ID")
+  c2=$($S --cpus-per-task=4 --mem=4G --time=00:59:00 sameness_refs.py concentration --sample journal --id "$ID")
+  t=$($S --cpus-per-task=4 --mem=4G --time=00:30:00 sameness_topics.py run --id "$ID")
+  b=$(sbatch --parsable --dependency=afterok:$a:$f --exclude=node302,node014 --export=ALL,STUDY_CODE=$HERE --cpus-per-task=4 --mem=8G --time=00:30:00 $HERE/study.slurm sameness_bench.py analyze --id "$ID")
+  h=$(sbatch --parsable --dependency=afterok:$a --exclude=node302,node014 --export=ALL,STUDY_CODE=$HERE --cpus-per-task=2 --mem=8G --time=00:10:00 $HERE/study.slurm sameness_bench.py handcheck --id "$ID")
+  r=$(sbatch --parsable --dependency=afterok:$b:$h:$o1:$o2:$c1:$c2:$t --exclude=node302,node014 --export=ALL,STUDY_CODE=$HERE --cpus-per-task=2 --mem=8G --time=00:20:00 $HERE/study.slurm sameness_report.py --id "$ID")
+  echo "sameness chain: abstract $a fulltext $f overlap $o1 $o2 concentration $c1 $c2 topics $t bench $b handcheck $h report $r"
+  exit 0
+fi
 CPU="sbatch --parsable --export=ALL,STUDY_CODE=$HERE $HERE/study.slurm"
 GPU="sbatch --parsable --export=ALL,STUDY_CODE=$HERE,DELTA_BASE=${BASE:-$ID} $HERE/study_delta_gpu.slurm"
 dep=""
