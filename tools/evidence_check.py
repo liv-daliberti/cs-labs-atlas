@@ -142,12 +142,16 @@ def check(school, root):
                 flag('paper_appointment', key + ' | period ' + str(ap['periodId']))
         elif not sourced(ap.get('listing')):
             flag('paper_appointment', key + ' | listing')
+    scoped_error = False
+    if any(work_only(x) for x in links):
+        try:
+            validate_scoped(school, students, papers, links)
+        except (ValueError, KeyError, TypeError):
+            scoped_error = True
     for x in links:
         if work_only(x):
             total['link_work_review'] += 1
-            try:
-                validate_scoped(school, students, papers, links)
-            except (ValueError, KeyError, TypeError):
+            if scoped_error:
                 flag('link_work_review', f"{x.get('pi')} | {x.get('student')} | {x.get('oa')}")
         if x.get('basis') not in BYLINE_BASES:
             continue

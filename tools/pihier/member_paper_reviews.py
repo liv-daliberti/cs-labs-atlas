@@ -121,6 +121,8 @@ def _proof_error(d, candidate, member, paper, source, school):
         return 'unbound_source_edition'
     if citation['href'] not in ('https://arxiv.org/abs/' + arxiv, 'https://arxiv.org/abs/' + m['arxiv_version']):
         return 'wrong_citation_identifier'
+    if chain[3]['href'] != citation['href']:
+        return 'citation_chain_identifier_mismatch'
     if pdf['url'] != 'https://arxiv.org/pdf/' + m['arxiv_version'] or pdf['arxiv_version'] != m['arxiv_version']:
         return 'wrong_pdf_edition'
     actual = [a.get('raw_author_name') or (a.get('author') or {}).get('display_name') for a in source.get('authorships') or []]
@@ -160,6 +162,8 @@ def _proof_error(d, candidate, member, paper, source, school):
             return 'citation_not_complete_authored_item'
     if citation['kind'] != 'authored_publication' or citation['sha256'] != chain[3]['sha256']:
         return 'not_owned_authored_citation'
+    if _norm(citation['byline_quote']) not in _norm(citation['quote']):
+        return 'citation_byline_outside_owned_item'
     try:
         lo, hi = _bounds(period['start'])[1], _bounds(period['end'])[0]
         source_lo, source_hi = _bounds(pdf['date'])

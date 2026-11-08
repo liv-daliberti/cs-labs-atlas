@@ -135,6 +135,8 @@ def test_wrong_partial_or_temporally_uncertain_proofs_never_verify(tmp_path, par
     ('wrong_adviser', 'disconnected_owned_chain'),
     ('unbound_spelling', 'unbound_spelling_map'),
     ('other_member', 'other_member_assertion'),
+    ('wrong_citation_hop', 'citation_chain_identifier_mismatch'),
+    ('byline_outside_item', 'citation_byline_outside_owned_item'),
 ])
 def test_owned_source_chain_and_complete_author_mapping(tmp_path, change, reason):
     ctx, reviews = context(tmp_path)
@@ -146,6 +148,8 @@ def test_owned_source_chain_and_complete_author_mapping(tmp_path, change, reason
     if change == 'wrong_adviser': p['adviser_name'] = 'Another Adviser'
     if change == 'unbound_spelling': p['authors'][3]['evidence_sha256'] = '0' * 64
     if change == 'other_member': p['authors'][0]['member'] = reviews[1]['member']
+    if change == 'wrong_citation_hop': p['chain'][3]['href'] = 'https://arxiv.org/abs/0000.00000'
+    if change == 'byline_outside_item': p['citation']['quote'] = p['citation']['title']
     certify(ctx, reviews[:1])
     assert all(r['status'] == 'candidate' for r in ctx.sp)
     assert ctx.member_paper_review['decisions'][0]['reason'] == reason
@@ -208,7 +212,7 @@ def test_finite_owned_resolution_is_required_not_a_generic_url_alias(tmp_path):
     assert ctx.member_paper_review['decisions'][0]['reason'] == 'disconnected_owned_chain'
 
 
-def test_evidence_checker_rejects_unknown_or_stale_work_only_proof(tmp_path):
+def test_evidence_checker_rejects_unknown_or_stale_work_only_proof(tmp_path, monkeypatch):
     import evidence_check as E
     from test_atlas_ids import pi, write
     ctx, reviews = context(tmp_path)
@@ -216,12 +220,22 @@ def test_evidence_checker_rejects_unknown_or_stale_work_only_proof(tmp_path):
     fx = {'tsinghua': dict(pis=[pi(reviews[0]['pi'])], students={p: list(v.values()) for p, v in ctx.stu.items()},
                           papers=ctx.rows, links=ctx.sp, sweep=[])}
     root = tmp_path / 'package'; write(root, fx)
+    validated = []
+    real_validate = E.validate_scoped
+
+    def validate_package(*args):
+        validated.append(args[0])
+        return real_validate(*args)
+
+    monkeypatch.setattr(E, 'validate_scoped', validate_package)
     result = E.check('tsinghua', root)
     assert result['link_work_review']['n'] == 0 and result['link_work_review']['of'] == 2
+    assert validated == ['tsinghua']
     ctx.sp[0]['workReview']['identity_scope'] = 'global_person'
     write(root, fx)
     result = E.check('tsinghua', root)
     assert result['link_work_review']['n'] > 0
+    assert validated == ['tsinghua', 'tsinghua']
 
 
 @pytest.mark.parametrize('scoped', [False, True])
