@@ -238,7 +238,7 @@ def test_candidate_queue_keeps_cross_lab_proof_scope_separate_from_legacy_pairs(
 def test_real_hierarchy_reads_existing_shared_review_in_both_layouts(tmp_path, monkeypatch, layout):
     import gzip
     monkeypatch.setenv('CS_ATLAS_DATA_LAYOUT', layout)
-    monkeypatch.setattr(A.P, 'HIERARCHY', tmp_path / 'hierarchy')
+    monkeypatch.setattr(A.P, 'HIERARCHY', A.P.data('pis.json', 'example', root=tmp_path, layout='flat').parent.parent)
     fx = fixture()
     sources(fx)[1]['quote'] = 'Current students: Jingyi Chen'
     data = fx['example']
