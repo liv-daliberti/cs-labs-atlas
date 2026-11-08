@@ -25,6 +25,7 @@ reviewed inputs, even when a reviewed verdict is folded into them.
 | `census/<school>-additions.json` | `pi_hierarchy.py`, `export_release.py` | listed faculty the census missed |
 | `periods/<school>-faculty-periods.json` | `pi_hierarchy.py` | reviewed faculty periods |
 | `hierarchy/<school>/reviewed/paper-claim-review.json` | `pihier.identity`, `pihier.reviewed_claims`, `pihier.build` | sourced per-PI claim holds/rejections and explicit edition bridges; never forces admission |
+| `hierarchy/<school>/reviewed/recovery-source-review.json` | `pihier/recovery_reviews.py`, normal native recovery gates | Exact original recovery/PID/publication/PDF-bound complete publisher metadata projection; no admission override |
 
 ## Per-paper claim reviews
 

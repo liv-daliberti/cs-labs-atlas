@@ -60,6 +60,8 @@ def write(ctx):
                studentInitialsMerges=ctx.initials_merges, studentSurnameTypoCandidates=students.typo_candidate_rows(ctx), labpageStudentsCorroborated=getattr(ctx, 'corroborated', []))  # what this package was built from (tools/provenance.py; make_release requires it)
     if getattr(ctx, 'member_paper_review', None) is not None:
         rep['memberPaperReview'] = ctx.member_paper_review
+    if getattr(ctx, 'recovery_source_review', None) is not None:
+        rep['recoverySourceReview'] = ctx.recovery_source_review
     if getattr(ctx, 'paper_title_review', None) is not None:
         rep['paperTitleReview'] = ctx.paper_title_review
     if getattr(ctx, 'paper_claim_review', None) is not None:

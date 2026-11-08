@@ -10,7 +10,7 @@ from .common import NOT_PAPERS, OWN_UNITS, SCHOOL_LOOSE, TODAY, WINDOW_START, ac
 from .identity import in_blocked_cluster
 from .names import NICK, _nick_pairs, byline_name, full_pair, toks, Name
 from .periods import _year, LISTING_BRIDGE, bridge_periods, listing_bridge_periods, contains, same_year, transition_side, transition_status
-from . import identity, primary_affiliations, reviewed_claims, title_enrichment
+from . import identity, primary_affiliations, recovery_reviews, reviewed_claims, title_enrichment
 from dblp_dump_pages import page_count  # noqa: E402  (DBLP's `pages` string -> number of pages; R-PAP-27)
 
 # Recovered lab-paper rows as (kind, identity label): hierarchy/<school>/<kind>-recovered.jsonl.gz (tools/dblp_recover.py,
@@ -1063,7 +1063,9 @@ def recovered_rows(ctx, rows, seen):
             p = pid0.get(x['pi']) or next((q for q in pid0.values() if q.get('censusName') == x['pi']), None)   # R-PAP-34: rows made under a census placeholder name
             if not p:
                 continue
-            x = dict(x, pi=p['pi'])
+            x = recovery_reviews.project(ctx, p, dict(x, pi=p['pi']), kind)
+            if x is None:
+                continue
             ev = x['evidence']; date = str(x['year'])
             if kind == 'dblp' and in_blocked_cluster(p, dict(authorships=[dict(raw_author_name=b_) for b_ in x.get('byline') or []])):
                 n['dblp_recovered_blocked_cluster'] += 1; continue   # R-PAP-32: a reviewed namesake cluster is never the PI's, whatever the DBLP page says
