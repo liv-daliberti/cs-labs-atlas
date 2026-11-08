@@ -159,3 +159,33 @@ def test_download_guard_calls_original_policy_client_and_keeps_other_candidates(
         Client().get('https://pmc.example/stub.xml')
     assert Client().get('https://pmc.example/full.xml')[0]
     assert calls==['https://pmc.example/stub.xml','https://pmc.example/full.xml']
+
+
+def test_parseable_replacement_PDF_cannot_inherit_catalog_identity(tmp_path):
+    from test_reader_export import pdf_bytes
+    original=pdf_bytes('Original Paper');replacement=pdf_bytes('Replaced Paper')
+    assert len(original)==len(replacement)
+    path=tmp_path/'copy.pdf';path.write_bytes(original);h=hashlib.sha256(original).hexdigest()
+    work=dict(status='downloaded',sha256=h,file_path='copy.pdf',byte_count=len(original),identity_check='title_in_first_three_pages')
+    asset=dict(kind='pdf',path='copy.pdf',sha256=h,bytes=len(original),identity_check='title_in_first_three_pages')
+    chosen,result=Q.catalog_copy(tmp_path,work,[asset])
+    assert chosen and result['actual_sha256']==h and result['actual_bytes']==len(original)
+    path.write_bytes(replacement)  # same pathname and size; a different valid PDF
+    chosen,result=Q.catalog_copy(tmp_path,work,[asset])
+    assert chosen is None and result['reason']=='asset_integrity_mismatch'
+    assert Q.file_quality(path,'pdf')['actual_sha256']==hashlib.sha256(replacement).hexdigest()
+
+
+def test_correct_PDF_hash_with_wrong_expected_size_is_unconfirmed(tmp_path):
+    from test_reader_export import pdf_bytes
+    raw=pdf_bytes('Actual Paper');path=tmp_path/'copy.pdf';path.write_bytes(raw);h=hashlib.sha256(raw).hexdigest()
+    asset=dict(kind='pdf',path='copy.pdf',sha256=h,bytes=len(raw)+1,identity_check='title_in_first_three_pages')
+    chosen,result=Q.catalog_copy(tmp_path,dict(status='downloaded'),[asset])
+    assert chosen is None and result['reason']=='asset_integrity_mismatch'
+
+
+def test_parseable_title_only_PDF_is_quality_unconfirmed(tmp_path):
+    from test_reader_export import pdf_bytes
+    raw=pdf_bytes('Only metadata',body='');path=tmp_path/'copy.pdf';path.write_bytes(raw)
+    result=Q.file_quality(path,'pdf')
+    assert not result['ok'] and result['reason']=='pdf_no_substantive_text'

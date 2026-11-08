@@ -1,12 +1,30 @@
 """tools/reader_export.py: licence normalisation, the arXiv-licence lookup, never quarantined or pending, the link fallback order."""
-import hashlib, sqlite3
+import hashlib, sqlite3, textwrap
 
 import pytest
 
 import atlas_paths as P
 import reader_export as R
 
-SHA = lambda n: f'{n:064x}'   # noqa: E731
+def pdf_bytes(title, body=('We measured the complete experimental response and compared it with a controlled baseline. '
+                          'The result remained stable across repeated measurements, including the uncertainty reported '
+                          'in this brief letter. The method and conditions are described here so that the measurement '
+                          'can be reproduced independently.')):
+    stream = (f'BT /F1 12 Tf 30 700 Td ({title}) Tj /F1 10 Tf 0 -30 Td '+
+              ' '.join(f'({line}) Tj 0 -14 Td' for line in textwrap.wrap(body,70))+' ET').encode()
+    objects = [b'<< /Type /Catalog /Pages 2 0 R >>', b'<< /Type /Pages /Kids [3 0 R] /Count 1 >>',
+               b'<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 5 0 R >> >> /Contents 4 0 R >>',
+               b'<< /Length '+str(len(stream)).encode()+b' >>\nstream\n'+stream+b'\nendstream',
+               b'<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>']
+    data=b'%PDF-1.4\n';offsets=[0]
+    for i,obj in enumerate(objects,1):offsets.append(len(data));data+=f'{i} 0 obj\n'.encode()+obj+b'\nendobj\n'
+    start=len(data);data+=b'xref\n0 6\n0000000000 65535 f \n'+b''.join(f'{off:010d} 00000 n \n'.encode() for off in offsets[1:])
+    return data+f'trailer\n<< /Size 6 /Root 1 0 R >>\nstartxref\n{start}\n%%EOF\n'.encode()
+
+
+def SHA(n):
+    titles=['One','Two','Three','Four','Five','Six','Seven','Eight']
+    return hashlib.sha256(pdf_bytes('Paper '+titles[n-1])).hexdigest() if 1 <= n <= 8 else f'{n:064x}'
 
 
 @pytest.mark.parametrize('raw,want', [
@@ -81,19 +99,11 @@ def make_store(tmp_path, monkeypatch):
     for wid, title, doi, st, sha, dl, ic, lic, cand in rows:
         # Licence/identity fixtures now contain actual parseable PDFs, so the
         # production asset-quality path runs rather than a metadata-only bypass.
-        stream = f'BT /F1 12 Tf 30 700 Td ({title}) Tj ET'.encode()
-        objects = [b'<< /Type /Catalog /Pages 2 0 R >>', b'<< /Type /Pages /Kids [3 0 R] /Count 1 >>',
-                   b'<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 5 0 R >> >> /Contents 4 0 R >>',
-                   b'<< /Length '+str(len(stream)).encode()+b' >>\nstream\n'+stream+b'\nendstream',
-                   b'<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>']
-        data=b'%PDF-1.4\n';offsets=[0]
-        for i,obj in enumerate(objects,1):offsets.append(len(data));data+=f'{i} 0 obj\n'.encode()+obj+b'\nendobj\n'
-        start=len(data);data+=b'xref\n0 6\n0000000000 65535 f \n'+b''.join(f'{off:010d} 00000 n \n'.encode() for off in offsets[1:])
-        data+=f'trailer\n<< /Size 6 /Root 1 0 R >>\nstartxref\n{start}\n%%EOF\n'.encode()
+        data=pdf_bytes(title)
         (root/'objects'/f'{sha}.pdf').write_bytes(data)
         db.execute('insert into works (id, title, doi, year, status, file_path, sha256, byte_count, download_url, identity_check) values (?,?,?,?,?,?,?,?,?,?)',
-                   (wid, title, doi, 2020, st, f'objects/{sha}.pdf', sha, 1000, dl, ic))
-        db.execute('insert into assets values (?,?,?,?,?,?,?,?,?,?,?)', (wid, 'pdf', dl, f'objects/{sha}.pdf', sha, 1000, 'publishedVersion', lic, None, None, ic))
+                   (wid, title, doi, 2020, st, f'objects/{sha}.pdf', sha, len(data), dl, ic))
+        db.execute('insert into assets values (?,?,?,?,?,?,?,?,?,?,?)', (wid, 'pdf', dl, f'objects/{sha}.pdf', sha, len(data), 'publishedVersion', lic, None, None, ic))
         if cand:
             db.execute('insert into candidates values (?,?,?,?,?,?)', (wid, cand[0], cand[1], cand[2], None, None))
     db.commit()

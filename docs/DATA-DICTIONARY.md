@@ -79,11 +79,12 @@ One unique paper.
 
 | Field | Type | Required | Meaning | Allowed values | Rules |
 |---|---|---|---|---|---|
-| `status` | string | yes | Catalog status of the matched work (downloaded, fulltext_xml = local), or not_in_catalog; identity_unconfirmed for a downloaded copy whose identity is pending. | e.g. `downloaded`, `fulltext_xml`, `queued`, `needs_access_review`, `quarantined_robots_ai`, `identity_unconfirmed`, `not_in_catalog` |  |
+| `status` | string | yes | Matched copy status: downloaded/fulltext_xml is local only after asset quality; copy_quality_unconfirmed records an inadequate/missing asset without classifying the work. identity_unconfirmed means identity is pending. | e.g. `downloaded`, `fulltext_xml`, `queued`, `needs_access_review`, `quarantined_robots_ai`, `identity_unconfirmed`, `copy_quality_unconfirmed`, `not_in_catalog` |  |
 | `catalog` | string \| null | yes | The catalog work id holding (or queued for) the copy. |  |  |
 | `doi` | string \| null | yes | DOI of the lab paper. | pattern `^(10\.\S+/\S*)?$` |  |
 | `oa` | string | yes | oa of the lab paper. |  |  |
 | `year` | integer \| null | yes | Year. |  |  |
+| `copy_quality_reason` | string | no | Actual asset failed full-body/format/availability checks; does not classify the underlying work as nonresearch. |  |  |
 | `access_verdict` | string \| null | no | Access-review verdict (needs_access_review only). | one of `closed`, `requeue_untried`, `requeue_transient`, `null` | R-AUD-07 |
 | `access_cause` | string \| null | no | Deciding access-review cause (needs_access_review only). | one of `challenge`, `login`, `paywall_or_forbidden`, `publisher_landing_no_pdf`, `robots_disallow`, `robots_unavailable`, `embargoed`, `not_found`, `integrity_mismatch`, `unapproved_redirect`, `landing_no_pdf`, `not_pdf`, `identity_mismatch`, `tls_error`, `too_large`, `policy_skip`, `transient_on_challenge_or_publisher_host`, `transient_exhausted`, `transient`, `other`, `no_attempts`, `null` | R-AUD-07 |
 | `access_causes` | map \| null | no | Every cause seen: cause -> URLs. |  | R-AUD-07 |

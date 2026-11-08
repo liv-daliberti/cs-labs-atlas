@@ -85,15 +85,28 @@ def file_quality(path, kind):
             data = path.read_bytes()
             result = dict(xml_quality(data), actual_sha256=hashlib.sha256(data).hexdigest(), actual_bytes=len(data))
         elif kind == 'pdf':
+            digest = hashlib.sha256(); size = 0
+            with path.open('rb') as stream:
+                for block in iter(lambda: stream.read(1048576), b''):
+                    digest.update(block); size += len(block)
             info = subprocess.run(['pdfinfo', str(path)], capture_output=True, text=True, timeout=60)
             text = subprocess.run(['pdftotext', '-f', '1', '-l', '3', str(path), '-'], capture_output=True, text=True, timeout=60)
             reason = pdf_nonpaper_reason(text.stdout, info.stdout)
+            if not reason and info.returncode == 0 and text.returncode == 0 and len(text.stdout.strip()) < 200:
+                reason = 'pdf_no_substantive_text'
             result = dict(ok=not reason and info.returncode == 0 and text.returncode == 0,
-                          reason=reason or ('pdf_parse_unconfirmed' if info.returncode or text.returncode else None))
+                          reason=reason or ('pdf_parse_unconfirmed' if info.returncode or text.returncode else None),
+                          actual_sha256=digest.hexdigest(), actual_bytes=size)
         else:
             result = dict(ok=False, reason='unsupported_asset_format')
     except (OSError, subprocess.TimeoutExpired):
         result = dict(ok=False, reason='asset_parse_unconfirmed')
+    try:
+        after = path.stat()
+        if (after.st_dev, after.st_ino, after.st_size, after.st_mtime_ns) != (st.st_dev, st.st_ino, st.st_size, st.st_mtime_ns):
+            return dict(ok=False, reason='asset_changed_during_check')
+    except OSError:
+        return dict(ok=False, reason='asset_changed_during_check')
     _CACHE[key] = result
     return result
 
@@ -119,8 +132,8 @@ def catalog_copy(store, work, assets):
         if not path.resolve().is_relative_to(Path(store).resolve()):
             failures.append('asset_outside_store'); continue
         q = file_quality(path, a['kind'])
-        if a['kind'] == 'xml' and q.get('ok') and (q['actual_sha256'] != a['sha256'] or q['actual_bytes'] != a.get('bytes')):
-            q = dict(ok=False, reason='xml_asset_integrity_mismatch')
+        if q.get('ok') and (q['actual_sha256'] != a['sha256'] or q['actual_bytes'] != a.get('bytes')):
+            q = dict(ok=False, reason='asset_integrity_mismatch')
         if q['ok']:
             return a, q
         failures.append(q['reason'])
