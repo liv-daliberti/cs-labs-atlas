@@ -28,7 +28,8 @@ def sources():
 
 def folded(rows, school='cmu', preferred=None):
     n = Counter()
-    unique = papers.collapse_eligible_sources(copy.deepcopy(rows), n, preferred=preferred)
+    eligible, _ = papers.eligible_untranslated_sources(copy.deepcopy(rows), school)
+    unique = papers.collapse_eligible_sources(eligible, n)
     unique, n['book_chapters_folded'], _ = papers.fold_books(unique, school)
     return papers.merge_editions(unique, n, preferred=preferred), n
 
@@ -81,35 +82,43 @@ def test_actual_ryan_source_distinct_dois_and_ordered_bylines_are_not_blindly_jo
     assert all(r['byline'] == next(s['byline'] for s in original if s['doi'] == r['doi']) for r in rows)
 
 
-@pytest.mark.parametrize('fault', ['byline', 'doi_bridge', 'same_work_doi', 'transitive_same_work_doi', 'unknown_title_split'])
-def test_ambiguous_same_identifier_records_hold_without_mutating_inputs(fault):
+def test_new_cross_component_contradictions_withhold_join_without_rewriting_sources():
     a, b = copy.deepcopy(sources()['native_duplicate_groups'][0]['rows'])
-    if fault == 'byline':
-        b['byline'] = ['Unrelated Author', 'Another Person']
-    elif fault == 'doi_bridge':
-        b['doi'] = '10.2000/different'; third = copy.deepcopy(b); third.update(doi='', work='third'); b['work'] = 'second'
-    elif fault == 'same_work_doi':
-        b.update(doi='10.2000/different', work=a['work'])
-    elif fault == 'transitive_same_work_doi':
-        b.update(doi='10.2000/different', work=a['work']); third = copy.deepcopy(a); third['work'] = 'third'
-    else:
-        a['doi'] = b['doi'] = ''
-    rows = [a, b] + ([third] if fault in {'doi_bridge', 'transitive_same_work_doi'} else []); before = copy.deepcopy(rows)
-    with pytest.raises(papers.EditionIdentityConflict) as err:
-        papers.collapse_eligible_sources(rows, Counter())
-    assert rows == before and err.value.conflicts
-    assert all(x['oa'] == a['oa'] and x['records'] for x in err.value.conflicts)
+    b['doi'] = '10.2000/different'
+    original = [a, b]; before = copy.deepcopy(original); diagnostics = []; n = Counter()
+    unique = papers.collapse_eligible_sources(original, n, diagnostics=diagnostics)
+    rows = papers.merge_editions(unique, n, diagnostics=diagnostics)
+    assert original == before and len(rows) == 2
+    assert any(d.get('reason') == 'distinct_populated_doi_components' for d in diagnostics)
+
+
+def test_new_transitive_missing_doi_bridge_never_picks_the_first_neighbor():
+    a, template = copy.deepcopy(sources()['native_duplicate_groups'][0]['rows'])
+    a['title'] = 'First independent scientific component'
+    b = copy.deepcopy(template); b.update(title='Unidentified independent scientific component', doi='', work='missing')
+    c = copy.deepcopy(template); c.update(title='Second independent scientific component', doi='10.2000/different', work='other')
+    for original in [[a, b, c], [c, b, a]]:
+        before = copy.deepcopy(original); diagnostics = []; n = Counter()
+        unique = papers.collapse_eligible_sources(original, n, diagnostics=diagnostics)
+        rows = papers.merge_editions(unique, n, diagnostics=diagnostics)
+        assert original == before and len(rows) == 3
+        assert any(d.get('reason') == 'transitive_missing_doi_bridge' for d in diagnostics)
 
 
 def test_missing_doi_cannot_transitively_join_two_source_distinct_collection_works():
     a, b = copy.deepcopy(sources()['native_duplicate_groups'][0]['rows'])
     third = copy.deepcopy(b); third.update(oa='another-complete-oa', doi='10.2000/different')
-    # B's missing DOI has one exact collection identity with the complete third record. That must protect their
-    # source-distinct publication rather than using B's common OA as a bridge from A to the unrelated DOI.
-    original = [a, b, third]; rows, n = folded(original)
-    assert len(rows) == 2 and n['source_distinct_same_oa_records'] == 2
+    rows, _ = folded([a, b, third])
+    assert len(rows) == 2
     assert {r.get('doi') for r in rows} == {a['doi'], third['doi']}
     assert len({r['work'] for r in rows}) == 2
+
+
+def test_preferred_target_must_be_one_of_the_complete_eligible_records():
+    original = sources()['polar_complete_native_records'][:1]
+    missing = copy.deepcopy(sources()['polar_complete_native_records'][1])
+    with pytest.raises(papers.EditionIdentityConflict, match='not a complete eligible source'):
+        folded(original, preferred=lambda group: missing)
 
 
 def chapter(work, number, oa):
@@ -248,3 +257,70 @@ def test_newly_preserved_recovery_cannot_waive_existing_work_gates(tmp_path, fau
     T.put(tmp_path, 'dblp-recovered.jsonl.gz').write_bytes(gzip.compress((json.dumps(recovered)+'\n').encode()))
     ctx = T.run_stages(tmp_path, upto='papers'); row = next(r for r in ctx.rows if r['pi'] == 'Ada Lovelace')
     assert row['oa'] == source['id'] and not row['editions']
+
+
+@pytest.mark.parametrize('index', range(51))
+def test_actual_51_source_conflicts_preserve_established_identity_and_all_bylines(index):
+    corpus = sources()['actual_native_51_case_corpus']; case = corpus['cases'][index]
+    original = copy.deepcopy(case['records']); before = copy.deepcopy(original); diagnostics = []; n = Counter()
+    assert hashlib.sha256(json.dumps(original, sort_keys=True, ensure_ascii=False).encode()).hexdigest() == case['reviewed_projection_sha256']
+    unique = papers.collapse_eligible_sources(original, n, diagnostics=diagnostics)
+    rows = papers.merge_editions(unique, n, diagnostics=diagnostics)
+    assert original == before and len(rows) == 1
+    assert diagnostics and not any(d['kind'] == 'new_oa_join_withheld' for d in diagnostics)
+    assert sorted(json.dumps([r['byline'], r['byline_school']]) for r in original) == sorted(json.dumps(b) for b in rows[0]['_bylines'])
+    fields = ['oa', 'work', 'title', 'doi', 'date', 'year', 'type', 'identity', 'byline', 'byline_school']
+    # Equal title/DOI records can carry different types; selection must copy one entire source, not a field mixture.
+    assert any(all(rows[0].get(field) == r.get(field) for field in fields) for r in original)
+    assert not any(k.startswith('_legacy') or k.startswith('_eligible') for k in rows[0])
+
+
+def test_actual_navcog_metadata_title_change_cannot_join_an_unrelated_legacy_component():
+    case = next(c for c in sources()['actual_native_51_case_corpus']['cases'] if c['oa'].endswith('W2477723829'))
+    actual = copy.deepcopy(case['records']); alternate = actual[1]
+    # The first two records are exact source-bound native observations. The third is an explicit synthetic
+    # collision: its legacy identity has the alternate's long title but an independent source/DOI/work.
+    other = copy.deepcopy(actual[0]); other.update(oa='https://example.test/independent-work', work='independent-work',
+                                                  doi='10.2000/independent', title=alternate['title'])
+    original = actual + [other]
+    preferred = lambda group: next((r for r in group if r.get('source', '').startswith('dblp_recover:')), None)
+    rows, _ = folded(original, preferred=preferred)
+    assert len(rows) == 2 and rows[0]['title'] == rows[1]['title']
+    assert {r['work'] for r in rows} == {actual[0]['work'], other['work']}
+    assert {r['doi'] for r in rows} == {actual[0]['doi'], other['doi']}
+    assert len(next(r for r in rows if r['work'] == actual[0]['work'])['_bylines']) == 2
+
+
+@pytest.mark.usefixtures('layout')
+def test_exact_held_recovery_cannot_poison_a_genuine_existing_work(tmp_path):
+    source, _ = native_pair(tmp_path)
+    T.put(tmp_path, 'openalex-sweep.sqlite').unlink(); T.write_school(tmp_path, sweep=[source])
+    recovered = dict(pi='Ada Lovelace', title=source['title'], year=2020, doi='10.1/w1', dblp_key='conf/example/Bad20',
+                     byline=['Ada Lovelace'], venue='Proceedings', evidence=dict(oa=T.OA + 'W599', basis='page1_publisher',
+                     how='publisher PDF', url='https://example.edu/paper.pdf', pdf_sha256='a'*64, quotes=['Ada Lovelace, Princeton University']))
+    T.put(tmp_path, 'dblp-recovered.jsonl.gz').write_bytes(gzip.compress((json.dumps(recovered)+'\n').encode()))
+    write_review(tmp_path, [decision('W599', 'hold')])
+    ctx = T.run_stages(tmp_path, upto='papers'); reviewed_claims.apply(ctx)
+    assert len(ctx.rows) == 1 and ctx.rows[0]['oa'] == source['id'] and not ctx.rows[0]['editions']
+    assert ctx.paper_claim_review['decisions'][0]['outcome'] == 'held_before_identity'
+
+
+@pytest.mark.usefixtures('layout')
+@pytest.mark.parametrize('reverse', [False, True])
+def test_translated_source_cannot_become_identity_representative_or_lend_a_student_byline(tmp_path, reverse):
+    source, target = native_pair(tmp_path)
+    source.update(title='Die Theorie der Berechnung', type='book-chapter')
+    target['type'] = 'book-chapter'
+    T.put(tmp_path, 'openalex-sweep.sqlite').unlink()
+    T.write_school(tmp_path, sweep=[target, source] if reverse else [source, target])
+    ctx = T.run_stages(tmp_path, upto='papers')
+    row = next(r for r in ctx.rows if r['pi'] == 'Ada Lovelace')
+    assert row['oa'] == target['id'] and not row['editions']
+    assert ctx.n['translated_editions_dropped'] == 1
+    links.link_students(ctx)
+    assert not any(x['student'] == 'p_alan' for x in ctx.sp)
+
+
+def test_foreign_title_exception_remains_available_for_an_original_language_source():
+    row = chapter('source-work', 1, 'source-oa'); row['title'] = 'Die Theorie der Berechnung'
+    assert papers.eligible_untranslated_sources([row], 'epfl') == ([row], None)

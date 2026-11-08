@@ -918,6 +918,8 @@ def recovered_rows(ctx, rows, seen):
                 n['dblp_recovered_arxiv_v1_predates_record'] += 1; continue
             cw = cwork(dict(doi=x.get('doi'), title=(x.get('title') or '').rstrip('.'), publication_year=x['year'])) or None
             oa_id = ev.get('oa') or (f"https://dblp.org/rec/{re.sub('^https?://dblp[.]org/rec/', '', str(x['dblp_key']))}" if kind == 'dblp' else x['key'])
+            if reviewed_claims.excluded(ctx, x['pi'], dict(oa=oa_id, doi=x.get('doi'), work=cw)):
+                aside('reviewed_source_held'); continue
             existing = (x['pi'], cw or oa_id) in seen or (x['pi'], oa_id) in present_sources
             if existing and not any(Name(p.get('names') or [p['pi']]).match(byline_name(b)) for b in x.get('byline') or []):
                 n[f'{kind}_recovered_existing_pi_byline_unproven'] += 1; aside('existing_work_pi_byline_unproven'); continue
@@ -1057,114 +1059,162 @@ def compatible_bylines(a, b):
     return subsequence(a, b) or subsequence(b, a)
 
 
-def collapse_eligible_sources(rows, n, preferred=None):
-    """One scientific work enters book counting; all its complete eligible editions survive for final selection.
+def legacy_edition_key(r):
+    """The ordinary R16 identity key, evaluated before choosing a different metadata source."""
+    title = str(r.get('title') or '')
+    wip = re.sub(r'^\s*work[- ]in[- ]progress\s*:\s*|\s*:\s*work[- ]in[- ]progress\s*$', '', title, flags=re.I)
+    if wip != title and r.get('year') and r.get('byline'):
+        return ('wip', r['pi'], norm_title(wip), r['year'], tuple(norm_title(a) for a in r['byline']))
+    return (r['pi'], norm_title(title)[:150] or r['oa'])
 
-    Collection identity is the established native link. An exact PI/OA duplicate can also join compatible records;
-    a shared name/title alone never adds a link. Differing populated DOI records of one OA identifier stay source
-    distinct when they have distinct collection identities. An ambiguous bridge or contradictory byline holds.
+
+def eligible_untranslated_sources(rows, school):
+    """R-PAP-15 is per source: a translated alternate cannot lead or lend a byline after CW collapse."""
+    if _S.field(_S.get(school), 'rules.foreign_title_exception'):
+        return rows, None
+    kept = [r for r in rows if not (r.get('type') in ('book', 'book-chapter') and foreign_title(r.get('title')))]
+    return kept, len(rows) - len(kept)
+
+
+def collapse_eligible_sources(rows, n, diagnostics=None):
+    """Retain legacy first-eligible representatives for identity/book counting, not metadata preference.
+
+    All complete normally eligible alternatives survive internally. Inherited collection/source grouping is not a
+    new OA identity assertion or an assertion that discrepant author orders/DOIs have been independently verified.
     """
-    parent = list(range(len(rows)))
+    diagnostics = diagnostics if diagnostics is not None else []
+    grouped = collections.defaultdict(list)
+    for i, r in enumerate(rows):
+        key = (r['pi'], 'collection', r['work']) if r.get('work') else (r['pi'], 'source', r.get('oa') or i)
+        grouped[key].append(r)
+    out = []
+    for key, g in grouped.items():
+        representative = dict(g[0])
+        representative['_eligible_editions'] = g[1:]
+        # Book folding runs on this eligible legacy representative. A later publisher's title cannot redefine R16.
+        representative['_legacy_identity_key'] = legacy_edition_key(g[0])
+        out.append(representative)
+        signatures = {(ndoi(r.get('doi')), r.get('year'), r.get('type'), tuple(r.get('byline') or [])) for r in g}
+        if len(signatures) > 1:
+            diagnostics.append(dict(kind='established_source_metadata_disagreement', base=list(key), records=g))
+    n['established_source_metadata_disagreements'] = sum(d['kind'] == 'established_source_metadata_disagreement' for d in diagnostics)
+    return out
+
+
+def merge_editions(rows, n, preferred=None, diagnostics=None):
+    """Fix legacy CW/R16 components before metadata selection; guard only genuinely new exact-OA bridges."""
+    diagnostics = diagnostics if diagnostics is not None else []
+    grouped = collections.defaultdict(list)
+    chapter_counts = collections.Counter()
+    for r in rows:
+        key = r.get('_legacy_identity_key') or legacy_edition_key(r)
+        complete = dict(r)
+        variants = complete.pop('_eligible_editions', [])
+        complete.pop('_legacy_identity_key', None)
+        complete.pop('_source_partition', None)
+        chapter_counts[key] += r.get('chapters_folded', 0)
+        grouped[key].extend([complete] + variants)
+    keys = list(grouped)
+    groups = [grouped[k] for k in keys]
+    parent = list(range(len(groups)))
 
     def root(i):
         while parent[i] != i:
             parent[i] = parent[parent[i]]; i = parent[i]
         return i
 
-    def join(ix):
-        for i in ix[1:]:
-            parent[root(i)] = root(ix[0])
-
-    works, oa = collections.defaultdict(list), collections.defaultdict(list)
-    for i, r in enumerate(rows):
-        if r.get('work'):
-            works[r['pi'], r['work']].append(i)
-        if r.get('oa'):
-            oa[r['pi'], r['oa']].append(i)
-    work_dois = {key: {ndoi(rows[i].get('doi')) for i in ix} - {''} for key, ix in works.items()}
-    conflicts, distinct = [], {}
-    for key, ix in oa.items():
-        if len(ix) < 2:
+    doi_sets = [{ndoi(r.get('doi')) for r in g} - {''} for g in groups]
+    observations = collections.defaultdict(lambda: collections.defaultdict(list))
+    for i, g in enumerate(groups):
+        for r in g:
+            if r.get('oa'):
+                observations[r['pi'], r['oa']][i].append(r)
+    edges = []
+    for (pi, oa), by_component in observations.items():
+        ix = list(by_component)
+        # Contradictions inside an established R16 component remain source diagnostics, not new-join failures.
+        for i in ix:
+            g = by_component[i]
+            if len({tuple(r.get('byline') or []) for r in g}) > 1:
+                diagnostics.append(dict(kind='established_oa_byline_disagreement', pi=pi, oa=oa, component=keys[i], records=g))
+        for pos, a in enumerate(ix):
+            for b in ix[pos + 1:]:
+                reason = None
+                if doi_sets[a] and doi_sets[b] and not doi_sets[a] & doi_sets[b]:
+                    reason = 'distinct_populated_doi_components'
+                elif not doi_sets[a] and not doi_sets[b]:
+                    reason = 'new_oa_bridge_without_doi_support'
+                elif not all(compatible_bylines(x.get('byline') or [], y.get('byline') or [])
+                             for x in by_component[a] for y in by_component[b]):
+                    reason = 'new_oa_bridge_byline_unresolved'
+                if reason:
+                    diagnostics.append(dict(kind='new_oa_join_withheld', reason=reason, pi=pi, oa=oa,
+                                            components=[keys[a], keys[b]], records=by_component[a] + by_component[b]))
+                else:
+                    edges.append((a, b, pi, oa))
+    # Look ahead before any union. A missing-DOI component with two incompatible identified neighbors must not
+    # choose whichever edge happens to be processed first (nor transitively connect those two publications).
+    neighbors = collections.defaultdict(set)
+    for a, b, _, _ in edges:
+        if not doi_sets[a]: neighbors[a].add(b)
+        if not doi_sets[b]: neighbors[b].add(a)
+    ambiguous_empty = set()
+    for empty, boundary in neighbors.items():
+        boundary = list(boundary)
+        reached = {boundary[0]}
+        while True:
+            expanded = reached | {j for i in reached for j in boundary if doi_sets[i] & doi_sets[j]}
+            if expanded == reached:
+                break
+            reached = expanded
+        if len(reached) != len(boundary):
+            ambiguous_empty.add(empty)
+            diagnostics.append(dict(kind='new_oa_join_withheld', reason='transitive_missing_doi_bridge',
+                                    components=[keys[empty]] + [keys[i] for i in boundary],
+                                    records=[r for i in [empty] + boundary for r in groups[i]]))
+    for a, b, pi, oa in edges:
+        if a in ambiguous_empty or b in ambiguous_empty:
             continue
-        evidence = {i: {ndoi(rows[i]['doi'])} if ndoi(rows[i].get('doi')) else
-                    work_dois.get((rows[i]['pi'], rows[i].get('work')), set()) for i in ix}
-        dois = set().union(*evidence.values())
-        if len(dois) > 1:
-            # A DOI-backed source split must not be erased just because OpenAlex assigned the same work key.
-            # Missing-DOI variants cannot silently bridge those two publications.
-            ambiguous = any(len(evidence[i]) != 1 or len(work_dois.get((rows[i]['pi'], rows[i].get('work')), set())) > 1 for i in ix)
-            if ambiguous:
-                conflicts.append(dict(pi=key[0], oa=key[1], reason='ambiguous DOI/source-work split', records=[rows[i] for i in ix]))
-            else:
-                distinct.update({i: next(iter(evidence[i])) for i in ix})
+        a, b = root(a), root(b)
+        if a == b:
             continue
-        if not all(compatible_bylines(rows[i].get('byline') or [], rows[j].get('byline') or []) for i in ix for j in ix):
-            conflicts.append(dict(pi=key[0], oa=key[1], reason='contradictory same-identifier bylines', records=[rows[i] for i in ix]))
+        if doi_sets[a] and doi_sets[b] and not doi_sets[a] & doi_sets[b]:
+            diagnostics.append(dict(kind='new_oa_join_withheld', reason='component_doi_conflict_after_union', pi=pi, oa=oa,
+                                    components=[keys[a], keys[b]], records=groups[a] + groups[b]))
             continue
-        if not dois and len({norm_title(rows[i].get('title')) for i in ix}) > 1:
-            # Without a DOI bridge, distinct titles/collection records need source adjudication, not fuzzy matching.
-            if len({rows[i].get('work') for i in ix}) > 1:
-                conflicts.append(dict(pi=key[0], oa=key[1], reason='unresolved title/source-work split without DOI', records=[rows[i] for i in ix]))
-                continue
-        join(ix)
-    if conflicts:
-        raise EditionIdentityConflict(conflicts)
-    for ix in works.values():
-        join(ix)
-    grouped = collections.defaultdict(list)
-    for i in range(len(rows)):
-        grouped[root(i)].append(i)
+        parent[b] = a
+        doi_sets[a] |= doi_sets[b]
+    components = collections.defaultdict(list)
+    counts = collections.Counter()
+    for i, g in enumerate(groups):
+        components[root(i)].extend(g)
+        counts[root(i)] += chapter_counts[keys[i]]
     out = []
-    for ix in grouped.values():
-        g = [rows[i] for i in ix]
+    for i, g in components.items():
         selected = preferred(g) if preferred else None
-        chosen = selected or min(g, key=edition_rank)
-        lead = dict(chosen)
-        lead['_eligible_editions'] = [r for r in g if r is not chosen]
-        partitions = sorted({(rows[i]['oa'], distinct[i]) for i in ix if i in distinct})
-        if partitions:
-            lead['_source_partition'] = tuple(partitions)
+        if selected is not None and not any(selected is r for r in g):
+            raise EditionIdentityConflict([dict(reason='preferred target is not a complete eligible source', records=g)])
+        g.sort(key=lambda r: (0 if r is selected else 1, edition_rank(r)))
+        lead = dict(g[0])
+        aliases, seen = [], {(lead['oa'], lead.get('work'), ndoi(lead.get('doi')))}
+        for r in g[1:]:
+            identity = (r['oa'], r.get('work'), ndoi(r.get('doi')))
+            if identity not in seen:
+                aliases.append(dict(oa=r['oa'], work=r.get('work'), doi=r.get('doi'), year=r['year'], venue=r.get('venue')))
+                seen.add(identity)
+        dups = [d for r in g for d in r.get('_dups') or []]
+        aliases.extend({k: d[k] for k in ('oa', 'work', 'doi', 'year', 'venue')} for d in dups)
+        lead['editions'] = aliases
+        lead['_bylines'] = [(r['byline'], r['byline_school']) for r in g] + [(d['byline'], d['byline_school']) for d in dups]
+        if counts[i]:
+            lead['chapters_folded'] = counts[i]
+        for field in ('_dups', '_edition_source', '_legacy_identity_key', '_eligible_editions', '_source_partition'):
+            lead.pop(field, None)
         out.append(lead)
-    n['source_distinct_same_oa_records'] = len(distinct)
+    n['edition_records_merged'] = sum(len(g) - 1 for g in components.values())
+    n['new_oa_joins_withheld'] = sum(d['kind'] == 'new_oa_join_withheld' for d in diagnostics)
+    n['source_distinct_same_oa_records'] = sum(d.get('reason') == 'distinct_populated_doi_components' for d in diagnostics) * 2
     return out
-
-
-def merge_editions(rows, n, preferred=None):
-    """R-PAP-16: one record per unique paper and lab; editions share a normalized title, the published edition leads,
-    and every edition's byline is kept for the links (`_bylines`)."""
-    # one record per unique paper and lab: editions (arXiv preprint, conference, journal version) share a normalized
-    # title; explicit published venue versions lead repository/submitted records, including deposits with their own DOI.
-    # Without source evidence, keep the established DOI/collection/year preference among otherwise equivalent records.
-    grouped = collections.defaultdict(list)
-    for r in rows:
-        title = str(r.get('title') or '')
-        wip = re.sub(r'^\s*work[- ]in[- ]progress\s*:\s*|\s*:\s*work[- ]in[- ]progress\s*$', '', title, flags=re.I)
-        # Catalogues move this label between title and subtitle. Only merge those
-        # marked records when the year and the complete, ordered byline agree.
-        if wip != title and r.get('year') and r.get('byline'):
-            key = ('wip', r['pi'], norm_title(wip), r['year'], tuple(norm_title(a) for a in r['byline']))
-        else:
-            key = (r['pi'], norm_title(title)[:150] or r['oa'])
-        if r.get('_source_partition'):
-            key = (key, r['_source_partition'])
-        complete = dict(r); variants = complete.pop('_eligible_editions', [])
-        complete.pop('_source_partition', None)
-        grouped[key].extend([complete] + variants)
-    rows = []
-    for g in grouped.values():
-        selected = preferred(g) if preferred else None
-        g.sort(key=lambda r: (0 if r is selected else 1, edition_rank(r))); lead = dict(g[0])
-        dups = [d for x in g for d in x.get('_dups') or []]
-        lead['editions'] = [dict(oa=x['oa'], work=x['work'], doi=x.get('doi'), year=x['year'], venue=x.get('venue')) for x in g[1:]] \
-            + [{k_: d[k_] for k_ in ('oa', 'work', 'doi', 'year', 'venue')} for d in dups]
-        # every edition's byline counts for the lab's students (2026-10-29): a lead record can carry a cut byline (Freedman's
-        # 'Poor Video Streaming Performance Explained' lead names only him) or another name form than its preprint
-        lead['_bylines'] = [(x['byline'], x['byline_school']) for x in g] + [(d['byline'], d['byline_school']) for d in dups]
-        lead.pop('_dups', None)
-        lead.pop('_edition_source', None)
-        rows.append(lead)
-    n['edition_records_merged'] = sum(len(g) - 1 for g in grouped.values())
-    return rows
 
 
 def listing_continuity_on(school):
@@ -1268,14 +1318,17 @@ def lab_papers(ctx):
     rows, not_paper_samples = drop_not_papers(rows, ctx.dblp_nauth, n, ctx.dblp_pages, ctx.pid0)
     # Count distinct scientific chapters, not the number of OA/DBLP records describing one chapter. Full eligible
     # alternatives remain attached internally until the final edition selector; none are reconstructed from pointers.
-    rows = collapse_eligible_sources(rows, n, preferred=lambda group: reviewed_claims.preferred_edition(ctx, group))
+    ctx.edition_source_diagnostics = []
+    rows, translated_sources = eligible_untranslated_sources(rows, school)
+    rows = collapse_eligible_sources(rows, n, diagnostics=ctx.edition_source_diagnostics)
     # books are one work, and a translation is not new work (2026-10-29, owner: best judgement): fold_books
     nv0 = sum(r.get('type') == 'book-chapter' and not r.get('venue') for r in rows)
     rows, n['book_chapters_folded'], translated = fold_books(rows, school)
     n['book_chapters_folded_by_doi_prefix'] = nv0 - sum(r.get('type') == 'book-chapter' and not r.get('venue') for r in rows)
     if translated is not None:
-        n['translated_editions_dropped'] = translated
-    rows = merge_editions(rows, n, preferred=lambda group: reviewed_claims.preferred_edition(ctx, group))
+        n['translated_editions_dropped'] = (translated_sources or 0) + translated
+    rows = merge_editions(rows, n, preferred=lambda group: reviewed_claims.preferred_edition(ctx, group),
+                          diagnostics=ctx.edition_source_diagnostics)
     # Enrichment cannot lend identity or change ordinary edition groups/aliases.
     rows, filled_titles = title_enrichment.apply(ctx, rows, lambda w, title, r: venue_version_date(
         dict(w, title=title), ctx.dblp_venue[r['pi']])[0])
