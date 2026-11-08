@@ -11,7 +11,7 @@ cd "$(dirname "$0")"
 [ -f "$CS_ATLAS_FT_RAW"/downloads_stopped_for_disk ] && { echo '{"skipped": "downloads stopped: /n/fs/similarity under 150 GB free (disk_guard.sh)"}'; exit 0; }
 PY=${CS_ATLAS_COLLECTOR_PY}
 OUT=$CS_ATLAS_STORES/princeton
-WRAPPER=$CS_ATLAS_VENDOR/cmu_tools/collector_wrapper.py  # vendored (tools/vendor_sync.py)
+WRAPPER=$CS_ATLAS_FULLTEXT_PUSH/collector_quality.py  # shared asset quality; unchanged vendored policy/identity wrapper
 pk=$(ls -d $OUT/discovery/claude-labpapers-*/ 2>/dev/null | grep -v newworks | while read d; do [ -s "$d/cs-open-copies-candidates.jsonl" ] && echo "cs_open_copies:$(basename $d)"; done)
 [ -n "$pk" ] && ($PY -u "$CS_ATLAS_VENDOR/princeton_tools/import_all_when_free.py" $pk)
 ls $OUT/discovery/claude-labpapers-*/work-ids.txt >/dev/null 2>&1 || exit 0

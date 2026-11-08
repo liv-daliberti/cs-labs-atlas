@@ -15,6 +15,7 @@ HERE = Path(__file__).resolve().parent
 if str(HERE.parent / 'tools') not in sys.path:  # appended, never first: tools/ must not shadow the stages' modules
     sys.path.append(str(HERE.parent / 'tools'))
 import atlas_paths as P  # noqa: E402  (every path in one place; collectors reach it as F.P)
+import copy_quality as CQ  # noqa: E402
 from catalog_lock import backup_catalog, catalog_lock, catalog_lock_for  # noqa: E402,F401  (one writer per catalog)
 SCHOOLS = P.WORK
 FT = P.STORES
@@ -242,6 +243,7 @@ def catalog_state(school, with_urls=True):
     db = sqlite3.connect(f'file:{path}?mode=ro', uri=True, timeout=120)
     alias = alias_map(db)   # ROADMAP #28: a sibling's rows and URLs belong to its canonical work
     for i, d, s, t in works_rows(db, 'id, doi, status, title'):
+        s, _ = CQ.catalog_status(db, FT / school, i, s)
         i = alias.get(i, i)
         if st.get(i) not in LOCAL:
             st[i] = s

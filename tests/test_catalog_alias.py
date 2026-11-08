@@ -96,6 +96,9 @@ def test_readers_resolve_through_the_alias_view(tmp_path, monkeypatch):
     A.apply(store, A.plan(A.load(db))['groups'])
     db.close()
     monkeypatch.setattr(F, 'FT', tmp_path)
+    # This fixture tests alias/DOI resolution, not physical assets (/f.pdf is a
+    # placeholder). Actual-byte quality is covered by test_copy_quality.py.
+    monkeypatch.setattr(F.CQ, 'catalog_status', lambda db, store, wid, st: (st, None))
     cs = F.catalog_state('mit')
     assert cs['alias'] == {'mit_hash1': 'mit_oa_W1'}
     assert cs['status']['mit_hash1'] == 'downloaded' and cs['doi']['10.1/x'] == 'mit_oa_W1'

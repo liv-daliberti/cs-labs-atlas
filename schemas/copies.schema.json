@@ -111,7 +111,7 @@
    "type": "object",
    "properties": {
     "status": {
-     "description": "Catalog status of the matched work (downloaded, fulltext_xml = local), or not_in_catalog; identity_unconfirmed for a downloaded copy whose identity is pending.",
+     "description": "Matched copy status: downloaded/fulltext_xml is local only after asset quality; copy_quality_unconfirmed records an inadequate/missing asset without classifying the work. identity_unconfirmed means identity is pending.",
      "type": "string",
      "examples": [
       "downloaded",
@@ -120,6 +120,7 @@
       "needs_access_review",
       "quarantined_robots_ai",
       "identity_unconfirmed",
+      "copy_quality_unconfirmed",
       "not_in_catalog"
      ]
     },
@@ -148,6 +149,10 @@
       "integer",
       "null"
      ]
+    },
+    "copy_quality_reason": {
+     "description": "Actual asset failed full-body/format/availability checks; does not classify the underlying work as nonresearch.",
+     "type": "string"
     },
     "access_verdict": {
      "description": "Access-review verdict (needs_access_review only).",

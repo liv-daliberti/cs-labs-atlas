@@ -1,5 +1,5 @@
 """tools/reader_export.py: licence normalisation, the arXiv-licence lookup, never quarantined or pending, the link fallback order."""
-import sqlite3
+import hashlib, sqlite3
 
 import pytest
 
@@ -57,6 +57,7 @@ def test_source_link_fallback_order():
 def make_store(tmp_path, monkeypatch):
     root = tmp_path / 'stores' / 'mit'
     root.mkdir(parents=True)
+    (root / 'objects').mkdir()
     db = sqlite3.connect(root / 'catalog.sqlite')
     db.executescript('''create table works (id text primary key, title text, doi text, year integer, graph_json text not null default '{}', oa_json text,
         metadata_source text, status text not null default 'queued', file_path text, sha256 text, byte_count integer, pages integer, download_url text,
@@ -78,6 +79,18 @@ def make_store(tmp_path, monkeypatch):
          ('https://pub.example.com/eight.pdf', None, 'cc-by-nc')),
     ]
     for wid, title, doi, st, sha, dl, ic, lic, cand in rows:
+        # Licence/identity fixtures now contain actual parseable PDFs, so the
+        # production asset-quality path runs rather than a metadata-only bypass.
+        stream = f'BT /F1 12 Tf 30 700 Td ({title}) Tj ET'.encode()
+        objects = [b'<< /Type /Catalog /Pages 2 0 R >>', b'<< /Type /Pages /Kids [3 0 R] /Count 1 >>',
+                   b'<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 5 0 R >> >> /Contents 4 0 R >>',
+                   b'<< /Length '+str(len(stream)).encode()+b' >>\nstream\n'+stream+b'\nendstream',
+                   b'<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>']
+        data=b'%PDF-1.4\n';offsets=[0]
+        for i,obj in enumerate(objects,1):offsets.append(len(data));data+=f'{i} 0 obj\n'.encode()+obj+b'\nendobj\n'
+        start=len(data);data+=b'xref\n0 6\n0000000000 65535 f \n'+b''.join(f'{off:010d} 00000 n \n'.encode() for off in offsets[1:])
+        data+=f'trailer\n<< /Size 6 /Root 1 0 R >>\nstartxref\n{start}\n%%EOF\n'.encode()
+        (root/'objects'/f'{sha}.pdf').write_bytes(data)
         db.execute('insert into works (id, title, doi, year, status, file_path, sha256, byte_count, download_url, identity_check) values (?,?,?,?,?,?,?,?,?,?)',
                    (wid, title, doi, 2020, st, f'objects/{sha}.pdf', sha, 1000, dl, ic))
         db.execute('insert into assets values (?,?,?,?,?,?,?,?,?,?,?)', (wid, 'pdf', dl, f'objects/{sha}.pdf', sha, 1000, 'publishedVersion', lic, None, None, ic))
@@ -127,15 +140,18 @@ def test_hosted_not_permitted_is_strict(tmp_path, monkeypatch):
     assert rows[SHA(99)][3] == 'not_in_stores'
 
 
-def test_full_text_xml_copy_takes_its_file_from_the_asset_row():
+def test_full_text_xml_copy_takes_its_file_from_the_asset_row(tmp_path):
     w = dict(id='w', doi='10.1/x', title='t', year=2020, status='fulltext_xml', file_path=None, sha256=None, byte_count=None,
              download_url='https://europepmc.org/x', identity_check=None)
     a = [dict(work_id='w', kind='xml', url='https://europepmc.org/x', path='objects/' + SHA(9) + '.xml', sha256=SHA(9), bytes=50, version='publishedVersion',
               license='cc-by', identity_check=None)]
-    cp = R.copy_for('w', w, a, [], R.ArxivLicenses())
-    assert (cp['format'], cp['decision'], cp['sha256'], cp['bytes']) == ('xml', 'host', SHA(9), 50)
+    raw=('<article><body><p>'+('Complete experimental results and reproducible methods. '*6)+'</p></body></article>').encode()
+    h=hashlib.sha256(raw).hexdigest();(tmp_path/'objects').mkdir();(tmp_path/'objects'/(h+'.xml')).write_bytes(raw)
+    a[0].update(path='objects/'+h+'.xml',sha256=h,bytes=len(raw))
+    cp = R.copy_for('w', w, a, [], R.ArxivLicenses(),store=tmp_path)
+    assert (cp['format'], cp['decision'], cp['sha256'], cp['bytes']) == ('xml', 'host', h, len(raw))
     w['status'] = 'quarantined_robots_ai'
-    assert R.copy_for('w', w, a, [], R.ArxivLicenses()) is None
+    assert R.copy_for('w', w, a, [], R.ArxivLicenses(),store=tmp_path) is None
 
 
 def test_link_without_a_source_url_is_not_readable(tmp_path, monkeypatch):

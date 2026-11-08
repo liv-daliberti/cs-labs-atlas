@@ -32,6 +32,7 @@ from pathlib import Path
 import atlas_paths as P  # noqa: E402  (every path in one place)
 import lab_paper_copies as LPC  # noqa: E402  (the coverage counter's rule)
 import reader_links as RL  # noqa: E402  (candidate URLs confirmed as this paper become source links)
+import copy_quality as CQ
 
 HOST = frozenset(['cc-by', 'cc-by-sa', 'cc-by-nc', 'cc-by-nc-sa', 'cc-by-nd', 'cc-by-nc-nd', 'cc0', 'public-domain'])
 LOCAL, PENDING = LPC.LOCAL, LPC.PENDING
@@ -242,21 +243,23 @@ def batches(seq, n=400):
         yield seq[i:i + n]
 
 
-def copy_for(wid, w, assets, cands, arxiv_lic):
+def copy_for(wid, w, assets, cands, arxiv_lic, store=None):
     """One confirmed copy of catalog work `wid` -> dict, or None when it is not a hostable/linkable confirmed copy.
     w = works row dict, assets = [asset dict], cands = [candidate dict]."""
-    if not w or w['status'] not in LOCAL or w['identity_check'] == PENDING:
+    if not w or w['status'] not in LOCAL or (w['status'] == 'downloaded' and w['identity_check'] == PENDING):
+        return None
+    # No metadata-only path can qualify an asset as readable/hostable.
+    if store is None:
         return None
     fmt = 'xml' if w['status'] == 'fulltext_xml' else 'pdf'
-    sha = w['sha256']
-    chosen = next((a for a in assets if a['sha256'] == sha and a['kind'] in ('pdf', 'xml') and a['identity_check'] != PENDING), None)
-    if chosen is None and not sha:   # a full-text XML work keeps its file on the asset row only
-        chosen = next((a for a in assets if a['kind'] == fmt and a['sha256'] and a['identity_check'] != PENDING), None)
-        sha = (chosen or {}).get('sha256')
+    chosen, quality = CQ.catalog_copy(store, w, assets)
+    if chosen is None:
+        return None
+    fmt = chosen['kind']; sha = chosen['sha256']
     path = (chosen or {}).get('path') or w['file_path']
     if not sha or not path or 'quarantine' in str(path):
         return None
-    dl = w['download_url'] or (chosen or {}).get('url')
+    dl = (chosen or {}).get('url') or w['download_url']
     raw = None
     if chosen and normalise_license(chosen['license']):
         raw = (chosen['license'], 'asset')
@@ -274,7 +277,7 @@ def copy_for(wid, w, assets, cands, arxiv_lic):
     decision, lic, basis = decide(raw, arxiv, arxiv_lic)
     src, kind = pick_source(w['doi'], arxiv, urls)
     return dict(catalog_work=wid, format=fmt, decision=decision, license=lic, license_basis=basis, source_url=src, source_kind=kind,
-                sha256=sha, bytes=w['byte_count'] or (chosen or {}).get('bytes'), path=path, version=(chosen or {}).get('version'), identity_check=w['identity_check'],
+                sha256=sha, bytes=(chosen or {}).get('bytes') or (w['byte_count'] if fmt == 'pdf' else None), path=path, version=(chosen or {}).get('version'), identity_check=(chosen or {}).get('identity_check') or w['identity_check'],
                 download_url=dl, arxiv=arxiv)
 
 
@@ -327,7 +330,8 @@ def school_rows(school, lab_rows, arxiv_lic, hosted_shas=frozenset(), db_parts=N
     `links` (a reader_links.LinkTools) turns the catalog candidates of papers with no stored copy into confirmed source links."""
     db, status, by_doi, local_titles, title_local, sha_refs = db_parts or load_catalog(school, hosted_shas)
     matches = {}
-    out, counts = LPC.resolve(school, lab_rows, status, by_doi, local_titles, matches=matches, alias=getattr(load_catalog, 'alias', None))
+    out, counts = LPC.resolve(school, lab_rows, status, by_doi, local_titles, matches=matches, alias=getattr(load_catalog, 'alias', None),
+                              quality=lambda wid, st: CQ.catalog_status(db, P.store(school), wid, st))
     first = {}
     for r in lab_rows:
         first.setdefault(r['work'] or r['oa'], r)
@@ -342,7 +346,7 @@ def school_rows(school, lab_rows, arxiv_lic, hosted_shas=frozenset(), db_parts=N
     for shas in sha_refs.values():
         need.update(shas)
     works, assets, cands = fetch(db, need)
-    copies = {c: copy_for(c, works.get(c), assets.get(c, []), cands.get(c, []), arxiv_lic) for c in need}
+    copies = {c: copy_for(c, works.get(c), assets.get(c, []), cands.get(c, []), arxiv_lic, store=P.store(school)) for c in need}
     open_cands = set()   # papers with no usable stored copy whose catalog work has an open-source candidate
     rest = {cid for key, (cid, st) in matches.items() if cid and not copies.get(cid_of.get(key))}
     cand_rows, bad_urls = collections.defaultdict(list), collections.defaultdict(set)
@@ -399,6 +403,8 @@ def school_rows(school, lab_rows, arxiv_lic, hosted_shas=frozenset(), db_parts=N
         for wid in wids:
             w = works.get(wid)
             cp = copies.get(wid)
+            if cp and cp['sha256'] != sha:
+                cp = None  # an XML asset's licence cannot authorize an older PDF hash
             chk[sha].append(cp or dict(catalog_work=wid, decision='not_confirmed', license=None, license_basis='none', status=(w or {}).get('status'),
                                        identity_check=(w or {}).get('identity_check'), bytes=(w or {}).get('byte_count')))
     return recs, stats, chk, requests

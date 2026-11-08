@@ -27,7 +27,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import ftp_common as F
 import priority_retry
 
-WRAPPER = str(F.P.vendor('cmu_tools') / 'collector_wrapper.py')  # vendored 2026-10-30 (tools/vendor_sync.py)
+WRAPPER = str(F.P.FULLTEXT_PUSH / 'collector_quality.py')  # shared asset quality before vendored collector admission
 SCRIPTS = str(F.P.vendor('homogenizing_scripts'))  # the collector's directory (its cwd)
 PY = str(F.P.COLLECTOR_PY)
 

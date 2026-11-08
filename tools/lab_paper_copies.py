@@ -25,6 +25,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402  (every path in one place)
+import copy_quality as CQ
 HERE = P.WORK; FT = P.STORES
 LOCAL = ('downloaded', 'fulltext_xml')
 # the collector's identity when neither the catalog title nor the DOI was found in the file; such a copy counts only once
@@ -58,13 +59,15 @@ def ndoi(s):
     return re.sub(r'^https?://(?:dx\.)?doi\.org/', '', str(s or '').strip(), flags=re.I).lower()
 
 
-def resolve(school, rows, status, by_doi, local_titles, access=None, matches=None, alias=None):
+def resolve(school, rows, status, by_doi, local_titles, access=None, matches=None, alias=None, quality=None):
     """The coverage counter's rule, one place (tools/reader_export.py uses it too): lab-paper rows -> ({paper key: {status, catalog,
     doi, oa, year, ...}}, counts). `status` is {catalog work id: status} (a downloaded copy whose identity is still pending is
     'identity_unconfirmed'), `by_doi` {DOI: work id}. `local_titles` is retained for caller compatibility but ignored:
     a shared title, even with a checked file for that other catalog record, is not a paper identity. If `matches` is a
     dict it receives {paper key: (catalog work id or None, status)} for the callers that need the copy itself."""
     access = access or {}
+    status = dict(status)
+    checked, quality_reasons = set(), {}
     out, n = {}, collections.Counter()
     for r in rows:
         key = r['work'] or r['oa']
@@ -80,6 +83,11 @@ def resolve(school, rows, status, by_doi, local_titles, access=None, matches=Non
                 candidate = (alias or {}).get(candidate, candidate)
                 if candidate not in status:
                     continue
+                if quality is not None and candidate not in checked:
+                    status[candidate], why = quality(candidate, status[candidate])
+                    checked.add(candidate)
+                    if why:
+                        quality_reasons[candidate] = why
                 if cid is None or status[candidate] in LOCAL:
                     cid = candidate
                 if status[cid] in LOCAL:
@@ -88,6 +96,8 @@ def resolve(school, rows, status, by_doi, local_titles, access=None, matches=Non
                 break
         st = status.get(cid) if cid else None
         out[key] = dict(status=st or 'not_in_catalog', catalog=cid, doi=r.get('doi'), oa=r['oa'], year=r.get('year'))
+        if cid in quality_reasons:
+            out[key]['copy_quality_reason'] = quality_reasons[cid]
         if matches is not None:
             matches[key] = (cid, st)
         if st == 'needs_access_review':
@@ -101,6 +111,7 @@ def run(school):
     rows = [json.loads(l) for l in gzip.open(P.data('lab_papers.jsonl.gz', school), 'rt')]
     alias = {}
     status, by_doi, access = {}, {}, {}  # accepted work/OpenAlex ids, DOI and editions; never title alone
+    quality = None
     if (FT / school / 'catalog.sqlite').exists():
         db = sqlite3.connect(f'file:{FT / school / "catalog.sqlite"}?mode=ro', uri=True, timeout=120)
         db.execute('pragma busy_timeout = 120000')
@@ -126,9 +137,12 @@ def run(school):
                 status[wid] = st
             if doi and (st in LOCAL or ndoi(doi) not in by_doi):
                 by_doi[ndoi(doi)] = wid
+        quality = lambda wid, st: CQ.catalog_status(db, FT / school, wid, st)
     for a, c in alias.items():
         status.setdefault(a, status.get(c))   # an alias id answers with its canonical's status
-    out, n = resolve(school, rows, status, by_doi, set(), access, alias=alias)
+    out, n = resolve(school, rows, status, by_doi, set(), access, alias=alias, quality=quality)
+    if quality:
+        db.close()
     summary = dict(school=school, lab_papers=len(out), **n, local_share=round(n['local'] / max(1, len(out)), 3),
                    counted_at=time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()))
     json.dump(dict(summary=summary, papers=out), open(P.data_w('copies.json', school), 'w'))
