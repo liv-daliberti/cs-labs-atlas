@@ -1,0 +1,156 @@
+# Initial partial onboarding charter; source review: docs/ZJU-STAGE0-REVIEW-20261108.md.
+# CST means the Software College at the CST hostname, not the main CS college.
+# Full means every listed faculty member is a candidate; Stage1 role/history review is incomplete.
+# CADCG remains affiliated. No acquisition, sweep or scientific admission is authorized by this setup.
+key = "zju"
+name = "Zhejiang University"
+short = "ZJU"
+site_uni = "zhejiang-university"
+status = "onboarding"
+order = 999 # provisional ordering, not a university ranking or reviewed cohort position
+stage = 0
+started = "2026-11-08"
+window = [2016, 2026]
+[ids]
+openalex = ["I76130692"]
+openalex_related = []
+openalex_excluded = ["I55712492", "I168879160", "I90727586", "I4210160030"] # Separate self-lineage University-of-* institutions, not genuine ZJU campuses.
+ror = "https://ror.org/00a2xv884"
+ids_note = "Local OpenAlex snapshot 2026-10-14, original institution body SHA256 a847833900af6b7f1cc545e92d235d5626df3a314573cddada08976276e181a9, binds I76130692, Zhejiang University, homepage https://www.zju.edu.cn and this recorded ROR. This is not independent ROR relationship verification. Four University-of-* institutions have separate self-lineages. Hospital, shared-center and other inherited-child policy remains pending before any lineage sweep; related expansion is empty. No genuine Haining, Ningbo Software or joint Edinburgh campus is blanket-excluded. See the source review report and scratch/zju-stage0-charter-review-1108."
+[web]
+domains = ["zju.edu.cn"]
+email_domains = ["zju.edu.cn", "cad.zju.edu.cn"]
+wayback_only_suffixes = []
+excluded_hosts = [] # Access refusal belongs in hosts.use=none, not an assertion of another institution.
+[affiliation]
+# Exact separate-university names also hold a misassigned primary metadata ID; true dual ZJU affiliation remains eligible.
+excluded_regex = '\bzhejiang\s+university\s+of\s+(?:technology|science\s+and\s+technology|finance\s+and\s+economics|water\s+resource\s+and\s+electric\s+power)\b'
+regex = '\bzhejiang\s+university\b(?!\s+(?:of\b|city\s+college\b|ningbo\s+institute\s+of\s+technology\b))|浙江大学(?!城市学院|宁波理工学院)|\b(?:[a-z0-9-]+\.)*zju\.edu\.cn(?![a-z0-9.-])'
+loose = '\bzhejiang\s+university\b(?!\s+(?:of\b|city\s+college\b|ningbo\s+institute\s+of\s+technology\b))|浙江大学(?!城市学院|宁波理工学院)|\bzju\b(?!\.)|\b(?:[a-z0-9-]+\.)*zju\.edu\.cn(?![a-z0-9.-])'
+own_units = ''
+must_match = ["Zhejiang University", "State Key Lab of CAD&CG, Zhejiang University", "浙江大学计算机辅助设计与图形系统全国重点实验室", "person@cad.zju.edu.cn", "International Campus, Zhejiang University, Haining", "Software College, Zhejiang University, Ningbo", "Zhejiang University-University of Edinburgh Institute", "Zhejiang University of Technology and Zhejiang University", "Zhejiang University International Business School", "浙江大学海宁国际校区", "浙江大学软件学院（宁波）"]
+must_not_match = ["Zhejiang University of Technology", "Zhejiang University of Science and Technology", "Zhejiang University of Finance and Economics", "Zhejiang University of Water Resource and Electric Power", "Zhejiang University City College", "Zhejiang University Ningbo Institute of Technology", "Zhejiang Lab", "Zhejiang Sci-Tech University", "ZJUT", "person@zjut.edu.cn", "person@zju.edu.cn.example.org", "浙江工业大学", "浙江科技大学", "浙江财经大学", "浙大城市学院", "浙江大学城市学院", "浙江大学宁波理工学院", "浙江水利水电学院"]
+[dblp]
+affiliation_strings = ["Zhejiang University"]
+legacy_sweep = ""
+[census]
+computing_departments = ["CST", "CADCG", "ICSR"] # Existing ICSR inputs remain in scope; no new PI admission.
+center_units = ["CADCG"]
+home_units = {}
+rank_words = {}
+[sweep_check]
+exceptions = []
+[cs_related]
+not_faculty = {}
+share_test_settles = []
+[site]
+depts = { CST = "浙江大学软件学院", CADCG = "State Key Laboratory of CAD&CG" }
+full_codes = ["CST"]
+[periods]
+school_regex = '\bzhejiang\s+university\b(?!\s+(?:of\b|city\s+college\b|ningbo\s+institute\s+of\s+technology\b))|浙江大学(?!城市学院|宁波理工学院)'
+[rules]
+foreign_title_exception = false
+listing_continuity = false
+[[departments]]
+code = "CST"
+name = "浙江大学软件学院"
+unit = "浙江大学软件学院"
+title_match = '' # Names-only candidate table; no faculty rank or PI status is supplied by this charter.
+coverage = "full" # every listed faculty member is a census candidate, not a completion claim
+url = "http://www.cst.zju.edu.cn/92741/list.htm"
+  [[departments.listings]]
+  slot = "CST current faculty-team table"
+  kind = "main"
+  url = "www.cst.zju.edu.cn/92741/list.htm"
+  from = "20261108" # actual observed source date only; no invented2016–2025URL era
+  to = "20261108"
+  prefix = false
+  match = ""
+  format = "" # native format/row/rank verification is Stage1work
+  title_filter = ''
+
+[[departments]]
+code = "CADCG"
+name = "State Key Laboratory of CAD&CG"
+unit = "浙江大学计算机辅助设计与图形系统全国重点实验室"
+title_match = '教授|professor'
+coverage = "affiliated"
+url = "http://www.cad.zju.edu.cn/innovationteam"
+listings = [] # original2026 roster is in proposal sources; no invented historical listing eras
+[[affiliated_units]]
+code = "ICSR"
+name = "Institute of Cyberspace Security Research"
+url = "https://icsr.zju.edu.cn/icsren/Faculty/list.htm"
+listings = []
+[thesis]
+kind = "none"
+base_url = ""
+endpoints = []
+robots = "unreviewed"
+note = "No configured thesis acquisition channel; not evidence of no theses."
+[collector]
+channels = []
+[students]
+directories = []
+adviser_directories = []
+defense_lists = []
+adviser_alumni = []
+rosters = []
+sources = []
+[labpages]
+skip_pages = []
+hints = []
+[repository]
+name = "No institutional repository channel reviewed"
+pattern = '(?!)' # Explicit never-match sentinel: repository identity/recognition is unreviewed and disabled.
+note = "No repository identity/date/download policy reviewed. This required ledger configuration admits no repository source and makes no attempted-lookup, unavailable or exhausted-source claim. Stage8 remains unconfigured."
+[store]
+path = "stores/zju"
+[[hosts]]
+host = "icsr.zju.edu.cn"
+use = "none"
+probe = "https://icsr.zju.edu.cn/icsren/Faculty/list.htm"
+note = "Frozen HTTPS robots404 plus faculty200 are historical source facts. New acquisition remains closed pending a current live-host review; no archive use is authorized."
+[[hosts]]
+host = "www.cad.zju.edu.cn"
+use = "none"
+probe = "http://www.cad.zju.edu.cn/innovationteam"
+note = "HTTP exact-origin robots200 permitted source capture. HTTPS unreachable; ordinary native host robots defaults to HTTPS. Keep new automated acquisition disabled until protocol-aware host gate is reviewed; existing permitted HTTP bytes remain valid evidence."
+[[hosts]]
+host = "person.zju.edu.cn"
+use = "none"
+probe = ""
+note = "Prior challenge, no alternate protocol/API attempt."
+[[hosts]]
+host = "www.cs.zju.edu.cn"
+use = "none"
+probe = ""
+note = "Robots network-unreachable, no permission inferred."
+
+[[hosts]]
+host = "www.cst.zju.edu.cn"
+use = "none"
+probe = "http://www.cst.zju.edu.cn/92741/list.htm"
+note = "Existing exact HTTP-origin robots404+content200 captures support the source. HTTPS robots was unreachable and native default host policy is HTTPS; keep new automated acquisition disabled until formal protocol-aware host gate review."
+
+# Existing owned-profile sources; no new acquisition permission is inferred from historical captures.
+[[hosts]]
+host = "cshen.github.io"
+use = "none"
+probe = "https://cshen.github.io/"
+note = "Owned profile source is sealed. Keep new acquisition closed pending current origin review."
+[[hosts]]
+host = "kunzhou.net"
+use = "none"
+probe = "http://kunzhou.net/"
+note = "Owned HTTP profile source is sealed; this does not grant HTTPS permission. Keep new acquisition closed."
+[[hosts]]
+host = "www.ycwu.org"
+use = "none"
+probe = "http://www.ycwu.org"
+note = "Owned HTTP profile source is sealed; this does not grant HTTPS permission. Keep new acquisition closed."
+[[hosts]]
+host = "svbrdf.github.io"
+use = "none"
+probe = "https://svbrdf.github.io/"
+note = "Owned profile source is sealed. Keep new acquisition closed pending current origin review."
