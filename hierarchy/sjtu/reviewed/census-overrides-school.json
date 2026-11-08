@@ -9,12 +9,181 @@
     }
   },
   "王 瑞": {
-    "no_identity": true,
-    "why_no_identity": "PI role and ownership reviewed; bibliographic identity remains held for separate exact-source admission. No name-only author join or career-school paper admission.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No independently PI-owned ORCID admitted in this batch.",
       "evidence": []
+    },
+    "dblp": [
+      "https://dblp.org/pid/w/RuiWang15"
+    ],
+    "identity_resolution": {
+      "decision": "verified_source_owned_exact_WWW",
+      "reviewed": "2026-11-08",
+      "reviewed_by": "codex-sjtu-native-inputs-1108",
+      "basis": "Exact official profile plus owned named self-role and literal PID or exact parsed official WWW reciprocal homepage; no name-only join, URL alias, ORCID or global OA inheritance.",
+      "evidence": {
+        "pi": "王 瑞",
+        "source_status": "PROPOSED_SOURCE_READY_REQUIRES_INDEPENDENT_ADMISSION",
+        "PID": "https://dblp.org/pid/w/RuiWang15",
+        "identity_routes": [
+          "exact_official_WWW_reciprocal_homepage"
+        ],
+        "official_profile": "https://www.cs.sjtu.edu.cn/jiaoshiml/wangrui.html",
+        "owned_homepage": "https://wangruinlp.github.io/",
+        "official_to_owned_sources": [
+          {
+            "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/wangrui.html",
+            "sha256": "4523c138cb4e49e28417a4cf79a17648290c3f4d71f60d6d9186c0fc1e820d8c",
+            "observed": "2026-11-07T18:06:02",
+            "observedAt": "2026-11-07T18:06:02",
+            "quote": "个人主页：https://wangruinlp.github.io/",
+            "kind": "official_owned_homepage_link"
+          },
+          {
+            "url": "https://wangruinlp.github.io/",
+            "sha256": "705e8b56a57e88d6b2f54e8176fd1e8d483977bba0ac773eaf1b48e224c580b1",
+            "observed": "2026-11-07T18:38:24",
+            "observedAt": "2026-11-07T18:38:24",
+            "quote": "Rui Wang Associate Professor School of Computer Science Shanghai Jiao Tong University",
+            "kind": "owned_profile_named_role"
+          }
+        ],
+        "official_to_owned_checks": [
+          {
+            "source": "official_profile_link",
+            "url": "https://wangruinlp.github.io/",
+            "on": "https://www.cs.sjtu.edu.cn/jiaoshiml/wangrui.html",
+            "linked_url": "https://wangruinlp.github.io/",
+            "result": "listed",
+            "source_sha256": "4523c138cb4e49e28417a4cf79a17648290c3f4d71f60d6d9186c0fc1e820d8c"
+          }
+        ],
+        "owned_original_sha256": "705e8b56a57e88d6b2f54e8176fd1e8d483977bba0ac773eaf1b48e224c580b1",
+        "literal_self_name_forms": [
+          "Rui Wang"
+        ],
+        "owned_self_role_quote": {
+          "url": "https://wangruinlp.github.io/",
+          "sha256": "705e8b56a57e88d6b2f54e8176fd1e8d483977bba0ac773eaf1b48e224c580b1",
+          "observed": "2026-11-07T18:38:24",
+          "observedAt": "2026-11-07T18:38:24",
+          "quote": "Rui Wang Associate Professor School of Computer Science Shanghai Jiao Tong University",
+          "kind": "owned_profile_named_role"
+        },
+        "literal_PID_anchors": [],
+        "exact_WWW_URL_in_parsed_official_record": "https://wangruinlp.github.io/",
+        "parsed_record_names": [
+          "Rui Wang 0015"
+        ],
+        "source_variants": [
+          {
+            "source_file": "/n/fs/resemble/homogenizing-science/scratch/top25-labs-20261107/new251-dblp-persons-expanded.json.gz",
+            "source_compressed_sha256": "8acfa5bcf35c18658f949f62fd55b67ca3639e2cba9a8a1201801dbbc3aa349e",
+            "person_key": "https://dblp.org/pid/w/RuiWang15",
+            "record_sha256": "3a3cf4ac8d66b9ca0ddefe5d1736ac76e2e05b42144207751540a63f7dcbc86d",
+            "core_without_selection_sha256": "7c80e4d7ec282aeebfeb9c08ebb98f877dd8ce73fa0adf70350432b26ba8d46d",
+            "metrics": {
+              "career_pub_records": 225,
+              "window_2016_2026_pub_records": 218,
+              "complete_byline_items": 1489,
+              "max_byline_length": 25,
+              "records_without_author_list": 0,
+              "all_raw_fields_preserved": true,
+              "author_arrays_sha256": "9b2648d72e776e47561593d8b04fd1419a7973de3897c386682a696a20762351"
+            }
+          },
+          {
+            "source_file": "/n/fs/resemble/homogenizing-science/scratch/top25-labs-20261107/plus250-dblp-persons-expanded.json.gz",
+            "source_compressed_sha256": "5a23b0fc6593c19f3479949722855ef79ffd98be4f81e5c70b3f88cbe61df5e8",
+            "person_key": "https://dblp.org/pid/w/RuiWang15",
+            "record_sha256": "3a3cf4ac8d66b9ca0ddefe5d1736ac76e2e05b42144207751540a63f7dcbc86d",
+            "core_without_selection_sha256": "7c80e4d7ec282aeebfeb9c08ebb98f877dd8ce73fa0adf70350432b26ba8d46d",
+            "metrics": {
+              "career_pub_records": 225,
+              "window_2016_2026_pub_records": 218,
+              "complete_byline_items": 1489,
+              "max_byline_length": 25,
+              "records_without_author_list": 0,
+              "all_raw_fields_preserved": true,
+              "author_arrays_sha256": "9b2648d72e776e47561593d8b04fd1419a7973de3897c386682a696a20762351"
+            }
+          },
+          {
+            "source_file": "/n/fs/resemble/homogenizing-science/scratch/top25-labs-20261107/verified-pi-dblp-persons-expanded.json.gz",
+            "source_compressed_sha256": "702c53bb0ebb5840bb078fb2dd75081e88257a26446cca61930787f4a3c0bea5",
+            "person_key": "https://dblp.org/pid/w/RuiWang15",
+            "record_sha256": "ba2c13f45054bbc92f145bf466dfd616199120ea147eb2cf95d1697998f574b5",
+            "core_without_selection_sha256": "7c80e4d7ec282aeebfeb9c08ebb98f877dd8ce73fa0adf70350432b26ba8d46d",
+            "metrics": {
+              "career_pub_records": 225,
+              "window_2016_2026_pub_records": 218,
+              "complete_byline_items": 1489,
+              "max_byline_length": 25,
+              "records_without_author_list": 0,
+              "all_raw_fields_preserved": true,
+              "author_arrays_sha256": "9b2648d72e776e47561593d8b04fd1419a7973de3897c386682a696a20762351"
+            }
+          }
+        ],
+        "complete_career_metrics": {
+          "career_pub_records": 225,
+          "window_2016_2026_pub_records": 218,
+          "complete_byline_items": 1489,
+          "max_byline_length": 25,
+          "records_without_author_list": 0,
+          "all_raw_fields_preserved": true,
+          "author_arrays_sha256": "9b2648d72e776e47561593d8b04fd1419a7973de3897c386682a696a20762351"
+        },
+        "typed_faculty_periods": [
+          {
+            "id": "sjtu_source_review_1108_3",
+            "personId": null,
+            "name": "王 瑞",
+            "school": "sjtu",
+            "unitIds": [],
+            "facultyStart": "2021",
+            "facultyEnd": null,
+            "facultyLastConfirmed": "2026-11-07",
+            "ongoingAsOf": "2026-11-07",
+            "labStart": null,
+            "labEnd": null,
+            "datePrecision": "year",
+            "endDatePrecision": null,
+            "evidence": [
+              {
+                "url": "https://wangruinlp.github.io/",
+                "sha256": "705e8b56a57e88d6b2f54e8176fd1e8d483977bba0ac773eaf1b48e224c580b1",
+                "observed": "2026-11-07T18:38:24",
+                "observedAt": "2026-11-07T18:38:24",
+                "quote": "Since 2021, I have been a faculty member at SJTU.",
+                "kind": "faculty_role_chronology"
+              }
+            ],
+            "facultyPeriodStatus": "supported_start",
+            "labPeriodStatus": "unresolved",
+            "boundaryYearUncertain": true,
+            "role": "faculty member",
+            "review_note": "Literal qualified chronology; no roster-year or teaching-year inference."
+          }
+        ],
+        "publication_window": [
+          2016,
+          2026
+        ],
+        "university_paper_scope": "Ordinary own-authorship affiliation, qualified faculty periods and paper/date/type/edition checks still required; raw career/window counts are NOT university paper admissions.",
+        "ORCID_policy": {
+          "allowed": [],
+          "raw_urls_and_author_ORCIDs_preserved": true,
+          "no_inheritance": true
+        },
+        "global_OA_author_ID_assertions": [],
+        "student_paper_identity_assertions": [],
+        "active_input_edits": false
+      },
+      "previous_identity_hold_reason": "PI role and ownership reviewed; bibliographic identity remains held for separate exact-source admission. No name-only author join or career-school paper admission.",
+      "school_papers_admitted": 0
     }
   },
   "吴晨涛": {
@@ -149,21 +318,373 @@
     }
   },
   "汪宇霆": {
-    "no_identity": true,
-    "why_no_identity": "Academic PI/owned role and membership evidence reviewed; no bibliographic PID/OpenAlex/ORCID ownership activated. No name-only joins or career-school paper admission.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "All original identifier links remain inactive pending separate source-bound identity admission.",
       "evidence": []
+    },
+    "dblp": [
+      "https://dblp.org/pid/09/8269-1"
+    ],
+    "identity_resolution": {
+      "decision": "verified_source_owned_literal_PID",
+      "reviewed": "2026-11-08",
+      "reviewed_by": "codex-sjtu-native-inputs-1108",
+      "basis": "Exact official profile plus owned named self-role and literal PID or exact parsed official WWW reciprocal homepage; no name-only join, URL alias, ORCID or global OA inheritance.",
+      "evidence": {
+        "pi": "汪宇霆",
+        "source_status": "PROPOSED_SOURCE_READY_REQUIRES_INDEPENDENT_ADMISSION",
+        "PID": "https://dblp.org/pid/09/8269-1",
+        "identity_routes": [
+          "exact_official_WWW_reciprocal_homepage",
+          "literal_owned_PID_target"
+        ],
+        "official_profile": "https://www.cs.sjtu.edu.cn/jiaoshiml/wangyuting.html",
+        "owned_homepage": "https://jhc.sjtu.edu.cn/~yutingwang/",
+        "official_to_owned_sources": [
+          {
+            "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/wangyuting.html",
+            "sha256": "9c3fc8b73a0d43537b27aa655b5216153217223e28ff6175b2da9b78a63ee6f8",
+            "observed": "2026-11-07T18:04:16",
+            "observedAt": "2026-11-07T18:04:16",
+            "quote": "个人主页：https://jhc.sjtu.edu.cn/~yutingwang/",
+            "kind": "official_literal_outbound_owned_resource",
+            "literal_href": "https://jhc.sjtu.edu.cn/~yutingwang/",
+            "anchor_html": "<a href=\"https://jhc.sjtu.edu.cn/~yutingwang/\" target=\"_blank\">https://jhc.sjtu.edu.cn/~yutingwang/</a>",
+            "form": "literal_anchor"
+          },
+          {
+            "url": "https://jhc.sjtu.edu.cn/~yutingwang/",
+            "sha256": "d73955976dcf9cb7147cf98c250fb4887deca19b4169920daabf5411634dfaf1",
+            "observed": "2026-11-07T18:34:22",
+            "observedAt": "2026-11-07T18:34:22",
+            "quote": "I am currently a Tenure-Track Associate Professor at Shanghai Jiao Tong University.",
+            "kind": "owned_current_academic_PI_role"
+          }
+        ],
+        "official_to_owned_checks": [
+          {
+            "source": "official_profile_literal_link",
+            "on": "https://www.cs.sjtu.edu.cn/jiaoshiml/wangyuting.html",
+            "linked_url": "https://jhc.sjtu.edu.cn/~yutingwang/",
+            "result": "listed",
+            "source_sha256": "9c3fc8b73a0d43537b27aa655b5216153217223e28ff6175b2da9b78a63ee6f8"
+          }
+        ],
+        "owned_original_sha256": "d73955976dcf9cb7147cf98c250fb4887deca19b4169920daabf5411634dfaf1",
+        "literal_self_name_forms": [
+          "Yuting Wang"
+        ],
+        "owned_self_role_quote": {
+          "url": "https://jhc.sjtu.edu.cn/~yutingwang/",
+          "sha256": "d73955976dcf9cb7147cf98c250fb4887deca19b4169920daabf5411634dfaf1",
+          "observed": "2026-11-07T18:34:22",
+          "observedAt": "2026-11-07T18:34:22",
+          "quote": "I am currently a Tenure-Track Associate Professor at Shanghai Jiao Tong University.",
+          "kind": "owned_current_academic_PI_role"
+        },
+        "literal_PID_anchors": [
+          {
+            "literal_href": "https://dblp.org/pid/09/8269-1.html",
+            "expanded_target_only_if_literal_Google_wrapper": "https://dblp.org/pid/09/8269-1.html",
+            "anchor_text": "DBLP",
+            "title": null,
+            "aria_label": null,
+            "literal_anchor_html": "<a href=\"https://dblp.org/pid/09/8269-1.html\">DBLP</a>",
+            "parent_context": "DBLP",
+            "pid_literal_candidate": "https://dblp.org/pid/09/8269-1",
+            "link_kind": "literal_PID",
+            "not_automatically_self_binding": true
+          }
+        ],
+        "exact_WWW_URL_in_parsed_official_record": "https://jhc.sjtu.edu.cn/~yutingwang/",
+        "parsed_record_names": [
+          "Yuting Wang 0001"
+        ],
+        "source_variants": [
+          {
+            "source_file": "/n/fs/resemble/homogenizing-science/scratch/top25-labs-20261107/verified-pi-dblp-persons-expanded.json.gz",
+            "source_compressed_sha256": "702c53bb0ebb5840bb078fb2dd75081e88257a26446cca61930787f4a3c0bea5",
+            "person_key": "https://dblp.org/pid/09/8269-1",
+            "record_sha256": "b80da092ce1bc394819369f1e9dadb50cd17083044f803b5ccb4d8ea8b7e06d0",
+            "core_without_selection_sha256": "6f88d762e6f5f3aea7954564147f24ebf45b819c0266909997ad97c48b85351c",
+            "metrics": {
+              "career_pub_records": 25,
+              "window_2016_2026_pub_records": 18,
+              "complete_byline_items": 79,
+              "max_byline_length": 7,
+              "records_without_author_list": 0,
+              "all_raw_fields_preserved": true,
+              "author_arrays_sha256": "78b4f8b8531b9618007430451e947a73967698b83b1e61adc0ab27279d5e7bc2"
+            }
+          }
+        ],
+        "complete_career_metrics": {
+          "career_pub_records": 25,
+          "window_2016_2026_pub_records": 18,
+          "complete_byline_items": 79,
+          "max_byline_length": 7,
+          "records_without_author_list": 0,
+          "all_raw_fields_preserved": true,
+          "author_arrays_sha256": "78b4f8b8531b9618007430451e947a73967698b83b1e61adc0ab27279d5e7bc2"
+        },
+        "typed_faculty_periods": [
+          {
+            "id": "sjtu_cached_review_1108_9",
+            "personId": null,
+            "name": "汪宇霆",
+            "school": "sjtu",
+            "unitIds": [],
+            "facultyStart": "2020-03",
+            "facultyEnd": null,
+            "facultyLastConfirmed": "2026-11-07",
+            "ongoingAsOf": "2026-11-07",
+            "labStart": null,
+            "labEnd": null,
+            "datePrecision": "month",
+            "endDatePrecision": null,
+            "evidence": [
+              {
+                "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/wangyuting.html",
+                "sha256": "9c3fc8b73a0d43537b27aa655b5216153217223e28ff6175b2da9b78a63ee6f8",
+                "observed": "2026-11-07T18:04:16",
+                "observedAt": "2026-11-07T18:04:16",
+                "quote": "上海交通大学约翰*霍普克罗夫特计算机科学中心，长聘教轨副教授，2020.03 - 至今，中国",
+                "kind": "explicit_qualified_faculty_chronology"
+              }
+            ],
+            "facultyPeriodStatus": "supported_start",
+            "labPeriodStatus": "unresolved",
+            "boundaryYearUncertain": true,
+            "role": "长聘教轨副教授",
+            "review_note": "Explicit academic role chronology only. No lab-join, education, teaching or student-cohort date was turned into facultyStart."
+          }
+        ],
+        "publication_window": [
+          2016,
+          2026
+        ],
+        "university_paper_scope": "Ordinary own-authorship affiliation, qualified faculty periods and paper/date/type/edition checks still required; raw career/window counts are NOT university paper admissions.",
+        "ORCID_policy": {
+          "allowed": [],
+          "raw_urls_and_author_ORCIDs_preserved": true,
+          "no_inheritance": true
+        },
+        "global_OA_author_ID_assertions": [],
+        "student_paper_identity_assertions": [],
+        "active_input_edits": false
+      },
+      "previous_identity_hold_reason": "Academic PI/owned role and membership evidence reviewed; no bibliographic PID/OpenAlex/ORCID ownership activated. No name-only joins or career-school paper admission.",
+      "school_papers_admitted": 0
     }
   },
   "丁家昕": {
-    "no_identity": true,
-    "why_no_identity": "Academic PI/owned role and membership evidence reviewed; no bibliographic PID/OpenAlex/ORCID ownership activated. No name-only joins or career-school paper admission.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "All original identifier links remain inactive pending separate source-bound identity admission.",
       "evidence": []
+    },
+    "dblp": [
+      "https://dblp.org/pid/165/9711-1"
+    ],
+    "identity_resolution": {
+      "decision": "verified_source_owned_exact_WWW",
+      "reviewed": "2026-11-08",
+      "reviewed_by": "codex-sjtu-native-inputs-1108",
+      "basis": "Exact official profile plus owned named self-role and literal PID or exact parsed official WWW reciprocal homepage; no name-only join, URL alias, ORCID or global OA inheritance.",
+      "evidence": {
+        "pi": "丁家昕",
+        "source_status": "PROPOSED_SOURCE_READY_REQUIRES_INDEPENDENT_ADMISSION",
+        "PID": "https://dblp.org/pid/165/9711-1",
+        "identity_routes": [
+          "exact_official_WWW_reciprocal_homepage"
+        ],
+        "official_profile": "https://www.cs.sjtu.edu.cn/jiaoshiml/dingjiaxin.html",
+        "owned_homepage": "https://jhc.sjtu.edu.cn/~jiaxinding/",
+        "official_to_owned_sources": [
+          {
+            "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/dingjiaxin.html",
+            "sha256": "5268ce567b7450603853b7a818e109056e3ac3bf9ede13d4eabbe9cc953c5003",
+            "observed": "2026-11-07T18:16:02",
+            "observedAt": "2026-11-07T18:16:02",
+            "quote": "个人主页：https://jhc.sjtu.edu.cn/~jiaxinding/",
+            "kind": "official_literal_outbound_owned_resource",
+            "literal_href": "https://jhc.sjtu.edu.cn/~jiaxinding/",
+            "anchor_html": "<a href=\"https://jhc.sjtu.edu.cn/~jiaxinding/\" target=\"_blank\">https://jhc.sjtu.edu.cn/~jiaxinding/</a>",
+            "form": "literal_anchor"
+          },
+          {
+            "url": "https://jhc.sjtu.edu.cn/~jiaxinding/",
+            "sha256": "83333868ecea17eceaa67625c8d05eaecedae1a3e810043a3ef637fa9c9b5377",
+            "observed": "2026-11-07T18:34:36",
+            "observedAt": "2026-11-07T18:34:36",
+            "quote": "I am currently a tenured associate professor in the John Hopcroft Center for Computer Science, Shanghai Jiao Tong University.",
+            "kind": "owned_current_academic_PI_role"
+          }
+        ],
+        "official_to_owned_checks": [
+          {
+            "source": "official_profile_literal_link",
+            "on": "https://www.cs.sjtu.edu.cn/jiaoshiml/dingjiaxin.html",
+            "linked_url": "https://jhc.sjtu.edu.cn/~jiaxinding/",
+            "result": "listed",
+            "source_sha256": "5268ce567b7450603853b7a818e109056e3ac3bf9ede13d4eabbe9cc953c5003"
+          }
+        ],
+        "owned_original_sha256": "83333868ecea17eceaa67625c8d05eaecedae1a3e810043a3ef637fa9c9b5377",
+        "literal_self_name_forms": [
+          "Jiaxin Ding"
+        ],
+        "owned_self_role_quote": {
+          "url": "https://jhc.sjtu.edu.cn/~jiaxinding/",
+          "sha256": "83333868ecea17eceaa67625c8d05eaecedae1a3e810043a3ef637fa9c9b5377",
+          "observed": "2026-11-07T18:34:36",
+          "observedAt": "2026-11-07T18:34:36",
+          "quote": "I am currently a tenured associate professor in the John Hopcroft Center for Computer Science, Shanghai Jiao Tong University.",
+          "kind": "owned_current_academic_PI_role"
+        },
+        "literal_PID_anchors": [],
+        "exact_WWW_URL_in_parsed_official_record": "https://jhc.sjtu.edu.cn/~jiaxinding/",
+        "parsed_record_names": [
+          "Jiaxin Ding 0001"
+        ],
+        "source_variants": [
+          {
+            "source_file": "/n/fs/resemble/homogenizing-science/scratch/top25-labs-20261107/new251-dblp-persons-expanded.json.gz",
+            "source_compressed_sha256": "8acfa5bcf35c18658f949f62fd55b67ca3639e2cba9a8a1201801dbbc3aa349e",
+            "person_key": "https://dblp.org/pid/165/9711-1",
+            "record_sha256": "25fb331917151f152feb5cb3b2e7a6a8d0ac4f7ef95a9294494e18a4a6fd99c9",
+            "core_without_selection_sha256": "d006dfa19890e72cf5d16285913d6efea8568ba9eaa41532b1ced94b26c460b3",
+            "metrics": {
+              "career_pub_records": 68,
+              "window_2016_2026_pub_records": 65,
+              "complete_byline_items": 460,
+              "max_byline_length": 26,
+              "records_without_author_list": 0,
+              "all_raw_fields_preserved": true,
+              "author_arrays_sha256": "87a3365847cd4b526d8f05cd9c6597881c054272cfda8e01e8695ffb7d01f8f8"
+            }
+          }
+        ],
+        "complete_career_metrics": {
+          "career_pub_records": 68,
+          "window_2016_2026_pub_records": 65,
+          "complete_byline_items": 460,
+          "max_byline_length": 26,
+          "records_without_author_list": 0,
+          "all_raw_fields_preserved": true,
+          "author_arrays_sha256": "87a3365847cd4b526d8f05cd9c6597881c054272cfda8e01e8695ffb7d01f8f8"
+        },
+        "typed_faculty_periods": [
+          {
+            "id": "sjtu_cached_review_1108_10",
+            "personId": null,
+            "name": "丁家昕",
+            "school": "sjtu",
+            "unitIds": [],
+            "facultyStart": "2020",
+            "facultyEnd": "2022",
+            "facultyLastConfirmed": null,
+            "ongoingAsOf": null,
+            "labStart": null,
+            "labEnd": null,
+            "datePrecision": "year",
+            "endDatePrecision": "year",
+            "evidence": [
+              {
+                "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/dingjiaxin.html",
+                "sha256": "5268ce567b7450603853b7a818e109056e3ac3bf9ede13d4eabbe9cc953c5003",
+                "observed": "2026-11-07T18:16:02",
+                "observedAt": "2026-11-07T18:16:02",
+                "quote": "2020～2022 上海交通大学 计算机学院 助理教授",
+                "kind": "explicit_qualified_faculty_chronology"
+              }
+            ],
+            "facultyPeriodStatus": "supported_interval",
+            "labPeriodStatus": "unresolved",
+            "boundaryYearUncertain": true,
+            "role": "助理教授",
+            "review_note": "Explicit academic role chronology only. No lab-join, education, teaching or student-cohort date was turned into facultyStart."
+          },
+          {
+            "id": "sjtu_cached_review_1108_11",
+            "personId": null,
+            "name": "丁家昕",
+            "school": "sjtu",
+            "unitIds": [],
+            "facultyStart": "2023",
+            "facultyEnd": "2025",
+            "facultyLastConfirmed": null,
+            "ongoingAsOf": null,
+            "labStart": null,
+            "labEnd": null,
+            "datePrecision": "year",
+            "endDatePrecision": "year",
+            "evidence": [
+              {
+                "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/dingjiaxin.html",
+                "sha256": "5268ce567b7450603853b7a818e109056e3ac3bf9ede13d4eabbe9cc953c5003",
+                "observed": "2026-11-07T18:16:02",
+                "observedAt": "2026-11-07T18:16:02",
+                "quote": "2023～2025 上海交通大学 计算机学院 长聘教轨副教授",
+                "kind": "explicit_qualified_faculty_chronology"
+              }
+            ],
+            "facultyPeriodStatus": "supported_interval",
+            "labPeriodStatus": "unresolved",
+            "boundaryYearUncertain": true,
+            "role": "长聘教轨副教授",
+            "review_note": "Explicit academic role chronology only. No lab-join, education, teaching or student-cohort date was turned into facultyStart."
+          },
+          {
+            "id": "sjtu_cached_review_1108_12",
+            "personId": null,
+            "name": "丁家昕",
+            "school": "sjtu",
+            "unitIds": [],
+            "facultyStart": "2026",
+            "facultyEnd": null,
+            "facultyLastConfirmed": "2026-11-07",
+            "ongoingAsOf": "2026-11-07",
+            "labStart": null,
+            "labEnd": null,
+            "datePrecision": "year",
+            "endDatePrecision": null,
+            "evidence": [
+              {
+                "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/dingjiaxin.html",
+                "sha256": "5268ce567b7450603853b7a818e109056e3ac3bf9ede13d4eabbe9cc953c5003",
+                "observed": "2026-11-07T18:16:02",
+                "observedAt": "2026-11-07T18:16:02",
+                "quote": "2026至今 上海交通大学 计算机学院 长聘副教授",
+                "kind": "explicit_qualified_faculty_chronology"
+              }
+            ],
+            "facultyPeriodStatus": "supported_start",
+            "labPeriodStatus": "unresolved",
+            "boundaryYearUncertain": true,
+            "role": "长聘副教授",
+            "review_note": "Explicit academic role chronology only. No lab-join, education, teaching or student-cohort date was turned into facultyStart."
+          }
+        ],
+        "publication_window": [
+          2016,
+          2026
+        ],
+        "university_paper_scope": "Ordinary own-authorship affiliation, qualified faculty periods and paper/date/type/edition checks still required; raw career/window counts are NOT university paper admissions.",
+        "ORCID_policy": {
+          "allowed": [],
+          "raw_urls_and_author_ORCIDs_preserved": true,
+          "no_inheritance": true
+        },
+        "global_OA_author_ID_assertions": [],
+        "student_paper_identity_assertions": [],
+        "active_input_edits": false
+      },
+      "previous_identity_hold_reason": "Academic PI/owned role and membership evidence reviewed; no bibliographic PID/OpenAlex/ORCID ownership activated. No name-only joins or career-school paper admission.",
+      "school_papers_admitted": 0
     }
   },
   "胡云聪": {
@@ -212,12 +733,176 @@
     }
   },
   "杨岚青": {
-    "no_identity": true,
-    "why_no_identity": "Academic PI/owned source and member roles reviewed; no PID/OpenAlex/ORCID ownership asserted or career-school paper admission.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw identifier links remain inactive pending independent exact source-bound ownership review.",
       "evidence": []
+    },
+    "dblp": [
+      "https://dblp.org/pid/235/0627"
+    ],
+    "identity_resolution": {
+      "decision": "verified_source_owned_literal_PID",
+      "reviewed": "2026-11-08",
+      "reviewed_by": "codex-sjtu-native-inputs-1108",
+      "basis": "Exact official profile plus owned named self-role and literal PID or exact parsed official WWW reciprocal homepage; no name-only join, URL alias, ORCID or global OA inheritance.",
+      "evidence": {
+        "pi": "杨岚青",
+        "source_status": "PROPOSED_SOURCE_READY_REQUIRES_INDEPENDENT_ADMISSION",
+        "PID": "https://dblp.org/pid/235/0627",
+        "identity_routes": [
+          "literal_owned_PID_target"
+        ],
+        "official_profile": "https://www.cs.sjtu.edu.cn/jiaoshiml/yanglanqing.html",
+        "owned_homepage": "https://lanqing-sjtu.github.io/academic/",
+        "official_to_owned_sources": [
+          {
+            "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/yanglanqing.html",
+            "sha256": "8c61dd09ed0f54f63b9593d47b7f6a5ee3d823cf4c08cb7b96526a2f9a50d52c",
+            "observed": "2026-11-07T18:14:08",
+            "observedAt": "2026-11-07T18:14:08",
+            "quote": "https://lanqing-sjtu.github.io/academic/",
+            "kind": "official_literal_outbound_owned_site",
+            "literal_href": "https://lanqing-sjtu.github.io/academic/",
+            "anchor_html": "<a href=\"https://lanqing-sjtu.github.io/academic/\" target=\"_blank\">https://lanqing-sjtu.github.io/academic/</a>",
+            "form": "literal_anchor"
+          },
+          {
+            "url": "https://lanqing-sjtu.github.io/academic/",
+            "sha256": "b8ca3dbc8bbcdcc7855a432f845a20e102d96270ce154a0064a1ced5bf42f249",
+            "observed": "2026-11-07T18:38:52",
+            "observedAt": "2026-11-07T18:38:52",
+            "quote": "我是上海交通大学计算机学院助理研究员、博士生导师，与薛广涛教授紧密合作。",
+            "kind": "owned_named_academic_PI_role"
+          }
+        ],
+        "official_to_owned_checks": [
+          {
+            "source": "official_profile_literal_link",
+            "on": "https://www.cs.sjtu.edu.cn/jiaoshiml/yanglanqing.html",
+            "linked_url": "https://lanqing-sjtu.github.io/academic/",
+            "result": "listed",
+            "source_sha256": "8c61dd09ed0f54f63b9593d47b7f6a5ee3d823cf4c08cb7b96526a2f9a50d52c"
+          }
+        ],
+        "owned_original_sha256": "b8ca3dbc8bbcdcc7855a432f845a20e102d96270ce154a0064a1ced5bf42f249",
+        "literal_self_name_forms": [
+          "Lanqing Yang"
+        ],
+        "owned_self_role_quote": {
+          "url": "https://lanqing-sjtu.github.io/academic/",
+          "sha256": "b8ca3dbc8bbcdcc7855a432f845a20e102d96270ce154a0064a1ced5bf42f249",
+          "observed": "2026-11-07T18:38:52",
+          "observedAt": "2026-11-07T18:38:52",
+          "quote": "我是上海交通大学计算机学院助理研究员、博士生导师，与薛广涛教授紧密合作。",
+          "kind": "owned_named_academic_PI_role"
+        },
+        "literal_PID_anchors": [
+          {
+            "literal_href": "https://dblp.org/pid/235/0627.html",
+            "expanded_target_only_if_literal_Google_wrapper": "https://dblp.org/pid/235/0627.html",
+            "anchor_text": "DBLP",
+            "title": null,
+            "aria_label": null,
+            "literal_anchor_html": "<a class=\"btn\" href=\"https://dblp.org/pid/235/0627.html\" rel=\"noopener\" target=\"_blank\"><i class=\"fas fa-database\"></i>DBLP</a>",
+            "parent_context": "Publications 论文 巫萌 platform 巫萌平台 yanglanqing@sjtu.edu.cn Scholar DBLP",
+            "pid_literal_candidate": "https://dblp.org/pid/235/0627",
+            "link_kind": "literal_PID",
+            "not_automatically_self_binding": true
+          },
+          {
+            "literal_href": "https://dblp.org/pid/235/0627.html",
+            "expanded_target_only_if_literal_Google_wrapper": "https://dblp.org/pid/235/0627.html",
+            "anchor_text": "DBLP",
+            "title": null,
+            "aria_label": null,
+            "literal_anchor_html": "<a href=\"https://dblp.org/pid/235/0627.html\" rel=\"noopener\" target=\"_blank\">DBLP</a>",
+            "parent_context": "Email 邮箱 · Google Scholar · DBLP · 巫萌 MagicGenesis 巫萌平台 · Back to top 回到顶部",
+            "pid_literal_candidate": "https://dblp.org/pid/235/0627",
+            "link_kind": "literal_PID",
+            "not_automatically_self_binding": true
+          }
+        ],
+        "exact_WWW_URL_in_parsed_official_record": null,
+        "parsed_record_names": [
+          "Lanqing Yang"
+        ],
+        "source_variants": [
+          {
+            "source_file": "/n/fs/resemble/homogenizing-science/scratch/top25-labs-20261107/verified-pi-dblp-persons-expanded.json.gz",
+            "source_compressed_sha256": "702c53bb0ebb5840bb078fb2dd75081e88257a26446cca61930787f4a3c0bea5",
+            "person_key": "https://dblp.org/pid/235/0627",
+            "record_sha256": "68d926114a58c6d7d94b85c7e991f80e48719b1395387b2721001e62efe7c985",
+            "core_without_selection_sha256": "6fab6dc486c3ef3cb4347b0387f7c92b45eb9071e136055d11d296f21eaeb032",
+            "metrics": {
+              "career_pub_records": 33,
+              "window_2016_2026_pub_records": 33,
+              "complete_byline_items": 245,
+              "max_byline_length": 15,
+              "records_without_author_list": 0,
+              "all_raw_fields_preserved": true,
+              "author_arrays_sha256": "34e8e6161f9e03fd56f04e5ff3252472230b874770497a879ca4123bfbba1edd"
+            }
+          }
+        ],
+        "complete_career_metrics": {
+          "career_pub_records": 33,
+          "window_2016_2026_pub_records": 33,
+          "complete_byline_items": 245,
+          "max_byline_length": 15,
+          "records_without_author_list": 0,
+          "all_raw_fields_preserved": true,
+          "author_arrays_sha256": "34e8e6161f9e03fd56f04e5ff3252472230b874770497a879ca4123bfbba1edd"
+        },
+        "typed_faculty_periods": [
+          {
+            "id": "sjtu_cached_batch3_1108_18",
+            "personId": null,
+            "name": "杨岚青",
+            "school": "sjtu",
+            "unitIds": [],
+            "facultyStart": "2024",
+            "facultyEnd": null,
+            "facultyLastConfirmed": "2026-11-07",
+            "ongoingAsOf": "2026-11-07",
+            "labStart": null,
+            "labEnd": null,
+            "datePrecision": "year",
+            "endDatePrecision": null,
+            "evidence": [
+              {
+                "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/yanglanqing.html",
+                "sha256": "8c61dd09ed0f54f63b9593d47b7f6a5ee3d823cf4c08cb7b96526a2f9a50d52c",
+                "observed": "2026-11-07T18:14:08",
+                "observedAt": "2026-11-07T18:14:08",
+                "quote": "2024年至今， 上海交通大学计算机学院助理研究员",
+                "kind": "explicit_role_qualified_faculty_chronology"
+              }
+            ],
+            "facultyPeriodStatus": "ongoing_as_of_capture",
+            "labPeriodStatus": "unresolved",
+            "boundaryYearUncertain": true,
+            "role": "助理研究员",
+            "review_note": "Qualified faculty chronology only; no student-cohort, degree or university-join inference."
+          }
+        ],
+        "publication_window": [
+          2016,
+          2026
+        ],
+        "university_paper_scope": "Ordinary own-authorship affiliation, qualified faculty periods and paper/date/type/edition checks still required; raw career/window counts are NOT university paper admissions.",
+        "ORCID_policy": {
+          "allowed": [],
+          "raw_urls_and_author_ORCIDs_preserved": true,
+          "no_inheritance": true
+        },
+        "global_OA_author_ID_assertions": [],
+        "student_paper_identity_assertions": [],
+        "active_input_edits": false
+      },
+      "previous_identity_hold_reason": "Academic PI/owned source and member roles reviewed; no PID/OpenAlex/ORCID ownership asserted or career-school paper admission.",
+      "school_papers_admitted": 0
     }
   },
   "俞嘉地": {
@@ -253,6 +938,1617 @@
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw identifier links remain inactive pending independent exact source-bound ownership review.",
+      "evidence": []
+    }
+  },
+  "吴 旋": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "白 石": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "蔡鸿明": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "曹 健": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "陈 博": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "陈 晨": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "陈贵海": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "陈海波": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "陈昊鹏": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "陈黎兴": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "陈 全": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "陈 榕": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "陈 谐": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "陈秀真": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "陈翌佳": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "陈游旻": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "陈玉泉": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "陈雨亭": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "邓倩妮": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "邓志杰": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "丁 宁": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "董笑菊": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "董益宏": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "范 磊": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "冯 宇": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "傅洛伊": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "傅育熙": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "高晓沨": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "高 岳": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "管海兵": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "谷大武": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "桂佳平": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "顾磊磊": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "过敏意": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "顾尚定": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "韩 帅": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "贺可强": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "何哲陟": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "洪 义": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "侯小凤": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "化存卿": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "黄林鹏": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "黄 涛": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "黄维然": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "黄 征": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "胡宏盛": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "回 红": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "胡 畔": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "姜丽红": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "蒋兴浩": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "金海明": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "金耀辉": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "纪幸辰": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "孔令和": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "李 阳": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "赖奕甫": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "冷静文": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "梁诗宇": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "梁晓峣": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "李 超": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "李承璋": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "李高磊": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "李国强": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "李建华": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "李 颉": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "李林森": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "林 夕": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "林 云": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "李生红": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "刘方鑫": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "刘功申": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "刘锦阳": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "刘满华": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "刘鹏飞": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "刘胜利": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "刘生钟": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "刘思学": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "刘卫文": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "刘笑宏": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "刘 振": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "李 伟": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "李小勇": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "李钟毓": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "龙 环": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "龙 宇": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "卢宏涛": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "罗欣剑": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "骆 源": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "吕宝粮": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "马 超": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "马利庄": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "马汝辉": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "穆 尧": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "牛超越": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "牛 力": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "潘 昊": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "潘 理": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "潘 烨": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "彭 博": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "邱卫东": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "戚正伟": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "任庆生": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "沈备军": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "盛 斌": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "申丽萍": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "沈 为": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "沈艳艳": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "宋卓然": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "孙士锋": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "孙锬锋": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "唐 灯": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "唐飞龙": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "唐俊华": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "涂仕奎": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "王德泉": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "王 东": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "王浩洋": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "王 磊": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "王启圣": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "王士林": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "王 烁": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "王肇国": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "汪哲东": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "王 铮": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "魏星达": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "吴安邦": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "吴 帆": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "吴 刚": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "吴小宝": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "吴亚东": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "向立瑶": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "肖双九": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "夏虞斌": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "邢朝平": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "熊国钧": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "薛栋梁": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "薛广涛": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "徐尔茨": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "薛 质": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "徐宁仪": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "许 强": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "许岩岩": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "杨 宽": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "杨旭波": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "杨 旸": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "晏轶超": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "姚 斌": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "姚建国": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "叶南阳": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "应 凯": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "尹 强": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "易 冉": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "袁 晨": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "袁肖赟": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "俞 凯": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "俞 勇": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "郁 昱": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "朱开元": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "臧斌宇": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "张驰豪": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "张健夫": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "张丽清": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "张拳石": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "张少霆": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "张伟楠": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "张晓凡": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "张一鸣": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "张媛媛": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "张宇昊": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "赵 海": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "赵杰茹": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "赵世振": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "郑冠杰": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "郑圣安": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "郑伟龙": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "郑臻哲": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "周煊赫": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "朱弘恣": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
+      "evidence": []
+    }
+  },
+  "朱燕民": {
+    "no_identity": true,
+    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "dblp_orcid_review": {
+      "allowed": [],
+      "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
       "evidence": []
     }
   }
