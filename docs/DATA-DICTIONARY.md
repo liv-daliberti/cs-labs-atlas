@@ -2086,6 +2086,7 @@ The file is an array of items.
 | `[].years` | array of integer | no | replace_sources: the years. |  |  |
 | `[].role` | string \| null | no | replace_sources: the role. |  |  |
 | `[].sources` | array of `evidence` | no | replace_sources: the new sources. |  |  |
+| `[].expected_member_sha256` | string | no | Optional exact whole-member preimage guard: SHA256 of UTF-8 JSON with ensure_ascii=False, sort_keys=True and compact comma/colon separators, omitting no fields. All applicable guards are checked before any correction; changed roles, years, aliases, sources or independent relations require review. | pattern `^[0-9a-f]{64}$` |  |
 
 ### student-corrections: shape `evidence`
 
