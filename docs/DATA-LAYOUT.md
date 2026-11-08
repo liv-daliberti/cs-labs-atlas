@@ -122,6 +122,7 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `census-additions.json` | reviewed | `census/{school}-additions.json` | `hierarchy/{school}/reviewed/census-additions.json` | 7/7 | <100MB |
 | `paper-claim-review.json` | reviewed | `hierarchy/{school}/paper-claim-review.json` | `hierarchy/{school}/reviewed/paper-claim-review.json` | optional | <5MB |
 | `paper-title-review.json` | reviewed | `hierarchy/{school}/paper-title-review.json` | `hierarchy/{school}/reviewed/paper-title-review.json` | optional | <5MB |
+| `paper-source-review.json` | reviewed | `hierarchy/{school}/paper-source-review.json` | `hierarchy/{school}/reviewed/paper-source-review.json` | optional | <5MB |
 | `recovery-source-review.json` | reviewed | `hierarchy/{school}/recovery-source-review.json` | `hierarchy/{school}/reviewed/recovery-source-review.json` | optional | source-bound complete publisher recovery projections; original observations retained |
 | `member-paper-review.json` | reviewed | `hierarchy/{school}/member-paper-review.json` | `hierarchy/{school}/reviewed/member-paper-review.json` | optional | <5MB |
 | `faculty-periods.json` | reviewed | `periods/{school}-faculty-periods.json` | `hierarchy/{school}/reviewed/faculty-periods.json` | 5/5 | <1MB |

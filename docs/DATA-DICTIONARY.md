@@ -38,6 +38,7 @@ Paths: `a.b` a key inside an object, `[]` an array item, `<key>` any key of a ma
 - [`hierarchy/<school>/member-paper-review.json`](#hierarchyschoolmember-paper-reviewjson)
 - [`hierarchy/<school>/missing-pi-review.json`](#hierarchyschoolmissing-pi-reviewjson)
 - [`hierarchy/<school>/openalex-identity-review.json`](#hierarchyschoolopenalex-identity-reviewjson)
+- [`hierarchy/<school>/paper-source-review.json`](#hierarchyschoolpaper-source-reviewjson)
 - [`hierarchy/<school>/paper-title-review.json`](#hierarchyschoolpaper-title-reviewjson)
 - [`hierarchy/<school>/relation-evidence.json`](#hierarchyschoolrelation-evidencejson)
 - [`hierarchy/census-overrides.json`](#hierarchycensus-overridesjson)
@@ -166,6 +167,16 @@ One row per unique paper and lab (JSON lines, gzip): an OpenAlex work by the PI,
 | `titleEnrichment.owned_dblp_pid` | string | no |  |  |  |
 | `titleEnrichment.owned_dblp_key` | string | no |  |  |  |
 | `titleEnrichment.quality_status` | any | no | Ordinary title quality recheck result after enrichment. | one of `passed`, `rejected` |  |
+| `sourceMetadataReviews` | array of object | no | Applied title-only projections of complete already eligible originals before R16 grouping; original whole sources/rows retained in report.paperSourceReview. |  |  |
+| `sourceMetadataReviews[]` | object | — |  | no other keys |  |
+| `sourceMetadataReviews[].id` | string | yes |  |  |  |
+| `sourceMetadataReviews[].input_sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `sourceMetadataReviews[].source_work_sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `sourceMetadataReviews[].owned_dblp_pid` | string | yes |  |  |  |
+| `sourceMetadataReviews[].owned_dblp_key` | string | yes |  |  |  |
+| `sourceMetadataReviews[].owned_publication_sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `sourceMetadataReviews[].original_title` | string | yes |  |  |  |
+| `sourceMetadataReviews[].title` | string | yes |  |  |  |
 
 ### lab_papers: shape `listing`
 
@@ -594,6 +605,10 @@ The build's report: counters, exclusions, samples of what the rules dropped, and
 | `recoverySourceReview.path` | string | yes |  |  |  |
 | `recoverySourceReview.sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
 | `recoverySourceReview.decisions` | array of object | yes |  |  |  |
+| `paperSourceReview` | object | no | Optional exact owned-publication pre-group title projection input, with full original eligible row/work and projected/held/no-eligible-source outcomes. No admission override. | no other keys |  |
+| `paperSourceReview.path` | string | yes |  |  |  |
+| `paperSourceReview.sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `paperSourceReview.decisions` | array of object | yes |  |  |  |
 
 ## `hierarchy/<school>/student_papers.jsonl.gz`
 
@@ -1812,6 +1827,43 @@ Hand-reviewed OpenAlex author ids of an onboarding school's PIs.
 | `decisions.<key>.openalex` | array of string | yes | Author ids (bare A ids). | items: pattern `^(https://openalex\.org/)?A\d+$` | R-PAP-04 |
 | `decisions.<key>.aliases` | array of string | no | Name forms. |  |  |
 | `decisions.<key>.why` | string | yes | Why. | non-empty |  |
+
+## `hierarchy/<school>/paper-source-review.json`
+
+Exact whole-source and already-owned publication title completions before ordinary quality and edition grouping; no new source admission or other field changes.
+
+- schema: `schemas/paper_source_review.schema.json`
+- kind: reviewed (a decision file, tracked in git)
+- format: JSON
+- writer: Source reviewers
+- readers: tools/pihier/source_metadata.py
+
+| Field | Type | Required | Meaning | Allowed values | Rules |
+|---|---|---|---|---|---|
+| `version` | any | yes |  | always `1` |  |
+| `school` | string | yes |  |  |  |
+| `reviews` | array of object | yes |  |  |  |
+| `reviews[]` | object | — |  | no other keys |  |
+| `reviews[].id` | string | yes |  | non-empty |  |
+| `reviews[].pi` | string | yes |  | non-empty |  |
+| `reviews[].decision` | any | yes |  | always `owned_publication_title` |  |
+| `reviews[].reviewed_by` | string | yes |  | non-empty |  |
+| `reviews[].reviewed_at` | string | yes |  | pattern `^[0-9]{4}-[0-9]{2}-[0-9]{2}$` |  |
+| `reviews[].match` | object | yes |  | no other keys |  |
+| `reviews[].match.oa` | string | yes |  | non-empty |  |
+| `reviews[].match.doi` | string | yes |  | non-empty |  |
+| `reviews[].match.work` | string \| null | no |  |  |  |
+| `reviews[].source` | object | yes |  | no other keys |  |
+| `reviews[].source.work_sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `reviews[].source.original_title` | string | yes |  | non-empty |  |
+| `reviews[].source.ordered_byline` | array of string | yes |  | at least 1 item(s) |  |
+| `reviews[].owned_dblp` | object | yes |  | no other keys |  |
+| `reviews[].owned_dblp.pid` | string | yes |  | non-empty |  |
+| `reviews[].owned_dblp.key` | string | yes |  | non-empty |  |
+| `reviews[].owned_dblp.record_sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `reviews[].changes` | object | yes |  | no other keys |  |
+| `reviews[].changes.title` | string | yes |  | non-empty |  |
+| `reviews[].evidence` | object | yes |  |  |  |
 
 ## `hierarchy/<school>/paper-title-review.json`
 
