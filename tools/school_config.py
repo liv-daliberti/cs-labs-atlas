@@ -159,6 +159,12 @@ def check(key):
                 out.append(f'{key}: affiliation regex matches must_not_match {s!r}')
     except re.error as e:
         out.append(f'{key}: affiliation regex does not compile: {e}')
+    excluded_rx = field(cfg, 'affiliation.excluded_regex', '')
+    if excluded_rx:
+        try:
+            re.compile(excluded_rx, re.I)
+        except (re.error, TypeError) as e:
+            out.append(f'{key}: affiliation.excluded_regex does not compile: {e}')
     for r, rx in (field(cfg, 'census.rank_words', {}) or {}).items():
         try:
             re.compile(rx)

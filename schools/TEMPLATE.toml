@@ -35,6 +35,7 @@ excluded_hosts = []       # hosts under the school's domain that belong to anoth
 # Python regex, matched case-insensitively against raw affiliation strings and page-1 text. It must name the
 # institution, never a bare town. Add every must_match / must_not_match case you checked; --check runs them.
 regex = ''
+excluded_regex = ''       # explicit excluded-campus names, held even if derived metadata supplies the primary ID; independent own primary/dual raw text still qualifies
 loose = ''                # any mention of the school on a paper's page 1 (pi_hierarchy.SCHOOL_LOOSE); may name the town
 own_units = ''            # R-PAP-09: the school's own unit names that contain an institution word ('... Institute')
 must_match = []

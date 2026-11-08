@@ -89,7 +89,16 @@ def school_scope_work(w, school):
 
 def excluded_school_only(authorship, school):
     """Excluded-campus raw text cannot borrow a derived primary ID or another author's affiliation."""
+    explicit = _S.field(_S.get(school), 'affiliation.excluded_regex')
     gate = related_gate(school)
+    if not explicit and (not gate or len(gate) < 4 or not gate[3]):
+        return False
+    raws = authorship.get('raw_affiliation_strings') or []
+    rx = gate[1] if gate else _S.aff_rx(school)
+    if any(rx.search(raw or '') for raw in raws):
+        return False  # independent primary or dual raw evidence remains available
+    if explicit and any(re.search(explicit, raw or '', re.I) for raw in raws):
+        return True  # literal excluded-campus evidence outranks a derived primary ID
     if not gate or len(gate) < 4 or not gate[3]:
         return False
     _, rx, inst, excluded = gate
@@ -97,9 +106,6 @@ def excluded_school_only(authorship, school):
     entries = [{str(x.get('id') or '').rsplit('/', 1)[-1]} |
                {str(i).rsplit('/', 1)[-1] for i in x.get('lineage') or []}
                for x in authorship.get('institutions') or []]
-    raws = authorship.get('raw_affiliation_strings') or []
-    if any(rx.search(raw or '') for raw in raws):
-        return False  # independent primary or dual raw evidence remains available
     has_excluded = any(ids & excluded for ids in entries)
     if has_excluded and any(re.search(SCHOOL_LOOSE[school], raw or '', re.I) for raw in raws):
         return True  # named school variant fails the charter's primary-campus pattern
