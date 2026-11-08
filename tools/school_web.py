@@ -29,9 +29,15 @@ import extract  # noqa: E402
 
 UA = 'HomogenizingScienceResearch/0.2 (academic metadata inventory; robots.txt honoured)'
 AI_AGENTS = ('ClaudeBot', 'anthropic-ai', 'Claude-Web', 'Claude-User', 'Claude-SearchBot')
-CHALLENGE = re.compile(r'bot detection|traffic check|Please enable JavaScript to view the page content|cf-chl|captcha|'
+CHALLENGE = re.compile(r'bot detection|traffic check|Please enable JavaScript to view the page content|cf-chl|'
                        r'checking your browser|are you a robot|access denied|<title>Just a moment\.\.\.</title>|'
-                       r'challenges\.cloudflare\.com|cf_chl_opt|_Incapsula_Resource|px-captcha|ddos-guard', re.I)
+                       r'challenges\.cloudflare\.com|cf_chl_opt|_Incapsula_Resource|px-captcha|ddos-guard|'
+                       # Research citations can contain CAPTCHA; require an actual gate/widget context.
+                       r'g-recaptcha|h-captcha|hcaptcha\.com|recaptcha/(?:api|enterprise)|'
+                       r'captcha[-_](?:container|challenge|form|input)|'
+                       r'<(?:title|h[1-3])[^>]*>[^<]{0,120}captcha|'
+                       r'(?:complete|solve|enter) (?:the |this |a )?captcha|'
+                       r'captcha(?: validation| verification)? (?:required|failed)', re.I)
 _last = {}
 _blocked = set()
 
@@ -186,6 +192,7 @@ def live(c, url, refresh=False):
                 ct = 'application/json'
         except Exception as e:  # noqa: BLE001
             body, st, ct = repr(e).encode(), -1, None
+        transport_status = st
         _last[host] = time.time()
         if st in (401, 403, 429):
             block(c, host, f'HTTP {st} access refusal at {url}')
@@ -193,6 +200,9 @@ def live(c, url, refresh=False):
             st = 999  # a bot challenge: recorded, never worked around; the host is not used again
             block(c, host, f'challenge at {url}')
         sha = hashlib.sha256(body).hexdigest() if body else None
+        # Keep the HTTP status separate from synthetic classifications (e.g. 999).
+        c.execute('create table if not exists live_transport (url text primary key, http_status int, classified_status int, sha256 text)')
+        c.execute('insert or replace into live_transport values (?,?,?,?)', (url, transport_status, st, sha))
         c.execute('insert or replace into live values (?,?,?,?,?,?,?)', (url, time.strftime('%Y-%m-%dT%H:%M:%S'), st, sha, ct, zlib.compress(body, 6), None)); c.commit()
         row = (st, sha, zlib.compress(body, 6), ct)
     st, sha, raw, ct = row
