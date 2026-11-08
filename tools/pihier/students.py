@@ -494,7 +494,7 @@ def merge_within_lab(ctx, stu):
             if tgt is None:
                 keep.append(r)
             else:
-                tgt['relations'] += r['relations']; tgt['roles'] = list(dict.fromkeys(tgt['roles'] + r['roles']))
+                tgt['relations'] += r['relations']; tgt['roles'] = list(dict.fromkeys(list(tgt.get('roles') or []) + list(r.get('roles') or [])))
                 tgt.setdefault('aliases', []).append(r['name']); tgt.setdefault('merged', []).append(r['person']); merged_students += 1
         stu[p['pi']] = {r['person']: r for r in keep}
     return merged_students
