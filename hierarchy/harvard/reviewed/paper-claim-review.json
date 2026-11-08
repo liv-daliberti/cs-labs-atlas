@@ -3113,6 +3113,46 @@
           "hash_basis": "SHA256 of decoded frozen original response page JSON, year 2026 page 294; this string is on Martin Pawelczyk author slot, not the target PI slot."
         }
       ]
+    },
+    {
+      "id": "harvard-20261108-Sudan-published-edition",
+      "pi": "Madhu Sudan",
+      "match": {
+        "oa": "https://openalex.org/W4404342406",
+        "doi": "10.4230/lipics.approx/random.2025.59"
+      },
+      "decision": "merge",
+      "into": {
+        "oa": "https://openalex.org/W7110142740",
+        "doi": "10.4230/lipics.approx/random.2025.59"
+      },
+      "reviewed_by": "codex-harvard-final-delta-review-1108",
+      "reviewed_at": "2026-11-08",
+      "why": "The exact complete DROPS target is independently eligible and represents the RANDOM2025 publication of Testing Tensor Products of Algebraic Codes. The PI own original publication page separately links the arXiv manuscript and the published RANDOM2025 PDF matching this DOI and the same three authors. Both captured native records have the PI own Harvard affiliation within the sourced faculty period since 2015. Prefer the full eligible DROPS row despite its misleading derived repository/submitted flags, preserving the manuscript as an edition. This is not rejection of the research paper, title-only matching, forced target admission or reconstruction from compact edition pointers. If the complete eligible target is unavailable, hold the source for review.",
+      "evidence": [
+        {
+          "url": "https://madhu.seas.harvard.edu/papers/",
+          "sha256": "221291dc22be17db11f408c8878fb41b1e6c071e4b6a589c8ddfa8f1f3416c0b",
+          "quote": "Testing Tensor Products of Algebraic Codes. With Sumegha Garg and Gabriel Wu. ( arxiv , Random 2025 )",
+          "kind": "original_PI_publication_page",
+          "hash_basis": "SHA256 of original HTML bytes; the page separately links arXiv2410.22606 and the exact RANDOM2025 published PDF. This is not a PDF byte hash.",
+          "publication_url": "https://drops.dagstuhl.de/storage/00lipics/lipics-vol353-approx-random2025/LIPIcs.APPROX-RANDOM.2025.59/LIPIcs.APPROX-RANDOM.2025.59.pdf"
+        },
+        {
+          "url": "https://openalex.org/W7110142740",
+          "sha256": "0a47528b83510578402e387bbffbaffdbbc0bfdaf19df65683a4c53fcb5f1618",
+          "quote": "School of Engineering and Applied Sciences, Harvard University, Cambridge, MA, USA",
+          "kind": "cached_OpenAlex_eligible_target_authorship",
+          "hash_basis": "SHA256 of decoded frozen original response page JSON, year 2025 page 260; original target metadata, not a reconstructed edition."
+        },
+        {
+          "url": "https://openalex.org/W4404342406",
+          "sha256": "d5ca456e0d2d08d5909fe9eb31db3ae6c9d6e478f2b0cb57995e914504f40bf0",
+          "quote": "Testing Tensor Products of Algebraic Codes",
+          "kind": "cached_OpenAlex_preprint_source",
+          "hash_basis": "SHA256 of decoded frozen original response page JSON, year 2024 page 177"
+        }
+      ]
     }
   ]
 }
