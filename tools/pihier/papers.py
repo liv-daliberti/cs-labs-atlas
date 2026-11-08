@@ -662,6 +662,45 @@ NONPRIMARY = re.compile(r'\b(adjunct|on leave|consulting|visiting|courtesy|affil
 CROSS_KINDS = {'company', 'nonprofit', 'government', 'facility', 'other', 'archive'}  # R-PAP-29: not another university
 
 
+def reviewed_cross_affiliation_holds(overrides):
+    """Explicit observed-year uncertainty holds, never inferred leave intervals or negative identity verdicts."""
+    from datetime import datetime
+    result = collections.defaultdict(lambda: collections.defaultdict(list))
+    fields = {'action', 'years', 'reason', 'evidence', 'leave_start', 'leave_end', 'departure_inferred'}
+    for pi, override in overrides.items():
+        if not isinstance(override, dict) or 'cross_affiliation_holds' not in override:
+            continue
+        reviews = override['cross_affiliation_holds']
+        if not isinstance(reviews, list):
+            raise ValueError('cross-affiliation holds must be a reviewed list: ' + pi)
+        for review in reviews:
+            if not isinstance(review, dict) or set(review) != fields or review.get('action') != 'hold_company_only_fallback' \
+                    or not isinstance(review.get('reason'), str) or not review['reason'].strip() \
+                    or review.get('leave_start') is not None or review.get('leave_end') is not None \
+                    or review.get('departure_inferred') is not False:
+                raise ValueError('invalid explicit cross-affiliation uncertainty review: ' + pi)
+            years, evidence = review['years'], review['evidence']
+            if not isinstance(years, list) or not years or any(type(y) is not int or not WINDOW_START <= y <= 2026 for y in years) \
+                    or len(set(years)) != len(years) or not isinstance(evidence, list) or not evidence:
+                raise ValueError('cross-affiliation uncertainty review needs exact years and source evidence: ' + pi)
+            observed_years = set()
+            for source in evidence:
+                if not isinstance(source, dict) or not re.fullmatch(r'https?://[^\s]+', str(source.get('url') or '')) \
+                        or not re.fullmatch(r'[0-9a-f]{64}', str(source.get('sha256') or '')) \
+                        or not isinstance(source.get('quote'), str) or not NONPRIMARY.search(source['quote']) \
+                        or not isinstance(source.get('observedAt'), str):
+                    raise ValueError('cross-affiliation uncertainty review lacks its nonprimary source: ' + pi)
+                try:
+                    observed_years.add(datetime.fromisoformat(source['observedAt'].replace('Z', '+00:00')).year)
+                except ValueError as error:
+                    raise ValueError('cross-affiliation uncertainty review has an invalid observation date: ' + pi) from error
+            if observed_years != set(years):
+                raise ValueError('cross-affiliation hold years must equal the literal source observation years: ' + pi)
+            for year in years:
+                result[pi][year].append(review)
+    return result
+
+
 def school_basis(ctx, pi, w, a, ident, page1):
     """Why authorship `a` of `w` ties the PI to the school, as `via` (empty: no basis), and the page-1 tie used: the
     institution lineage or raw string; page 1 (R-PAP-10); a bare unit name (R-PAP-25); an advisee at the school on the
@@ -741,6 +780,8 @@ def rows_from_hits(ctx):
     school, n, hits, pid0, inst, aff = ctx.school, ctx.n, ctx.hits, ctx.pid0, ctx.inst, ctx.aff
     funnel, blocked, anchored, page_read, dblp_venue = ctx.funnel, ctx.blocked, ctx.anchored, ctx.page_read, ctx.dblp_venue
     page1_samples = []
+    uncertainty_holds = reviewed_cross_affiliation_holds(getattr(ctx, 'ov', {}))
+    ctx.cross_affiliation_hold_review = []
     # lab papers
     rows, seen = [], set()
     for pi, w, a, cw, ident, page1 in hits:
@@ -799,6 +840,12 @@ def rows_from_hits(ctx):
             n['outside_appointment'] += 1; funnel[pi]['outside_appointment_' + str(w.get('publication_year'))] += 1; continue
         if via[0].startswith('cross-affiliated') and NONPRIMARY.search(' '.join([(q_.get('quote') or '') for q_ in (per or {}).get('evidence') or []] + [(lst or {}).get('quote') or '', (lst or {}).get('kind') or ''])):
             n['cross_affiliation_nonprimary_appointment'] += 1; continue
+        if via[0].startswith('cross-affiliated') and (reviews := uncertainty_holds[pi].get(same_year(date))):
+            n['cross_affiliation_review_hold'] += 1; funnel[pi]['cross_affiliation_review_hold'] += 1
+            ctx.cross_affiliation_hold_review.append(dict(pi=pi, oa=w['id'], title=w.get('title'), date=date,
+                status='held_source_uncertainty', school_via=via,
+                admitting_appointment=dict(periodId=per['id']) if per else dict(listing=lst), reviews=reviews))
+            continue
         if via[0].startswith('cross-affiliated') and per is None and len({l_['year'] for l_ in p['listings']}) >= 2 \
                 and lst['year'] <= int(TODAY[:4]) - 3 and transition_side(p, lst, date) == 'outside' \
                 and ctx.other_years[pi][int(w.get('publication_year') or 0)] > ctx.direct_years[pi][int(w.get('publication_year') or 0)]:

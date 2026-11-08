@@ -247,6 +247,14 @@ leave, consulting, visiting, courtesy, affiliate, emeritus, part-time in the lis
 company papers of an adjunct or leave-taker with one co-author credited to the school (Savarese/Salesforce under a Stanford adjunct
 listing, Metze/Meta 'Associate Research Professor (On Leave)', Kalai/Microsoft 'Adjunct Associate Professor'). Counter
 `cross_affiliation_nonprimary_appointment`.
+2026-11-08 (owner, first Toronto build): an explicit reviewed `cross_affiliation_holds` override can hold this company-only
+fallback in the exact source observation years (`action: hold_company_only_fallback`, `years`, reason, and owned-source
+URL/SHA256/quote/`observedAt`). The source must explicitly show a nonprimary appointment, and its observation years must
+equal the held years. `leave_start`/`leave_end` remain null and `departure_inferred` false. This marks source uncertainty,
+not a negative paper/person verdict or a whole-year leave fact: an earlier paper in that same observed year remains held
+because the leave dates are unknown. The guard runs only after normal identity/appointment admission and only for the
+cross-affiliation fallback; direct own-school or primary-PDF evidence and genuine prior history stay eligible. Malformed
+reviews fail closed. Counter `cross_affiliation_review_hold`; exact held candidates and source reviews remain auditable.
 Also not when the paper is admitted only by a listing (no period) in the PI's arrival or departure year and falls on the far side of the
 capture date (R-PAP-13's transition rule, applied as for an unaffiliated byline: a company credit says nothing about where the work was done;
 Smola's 2017 Amazon papers under his last CMU listing, April 2017). Only for a PI with 2+ listing years whose listing is 3+ years old (one captured listing, or a last capture of the past two years, shows no observed

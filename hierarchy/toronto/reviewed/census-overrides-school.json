@@ -173,7 +173,27 @@
       "leave_start": null,
       "departure_inferred": false,
       "scope": "Current on-leave observation only. Native R-PAP29 reads admitting period/listing quotes; standalone reviewer note requires controlled integration or explicit cross-affiliation review before paper promotion."
-    }
+    },
+    "cross_affiliation_holds": [
+      {
+        "action": "hold_company_only_fallback",
+        "years": [
+          2026
+        ],
+        "reason": "Owned source explicitly lists Toronto on leave in the2026observation. Leave start/end are unknown, so a company-only R-PAP29 fallback in this observed year requires source review, including earlier2026papers. This is not a claim of whole-year leave or a negative paper/person verdict; direct Toronto/PDF school evidence and genuine prior history remain eligible.",
+        "evidence": [
+          {
+            "url": "https://www.cs.toronto.edu/~meel/",
+            "sha256": "789622f13d0cf1f31c794ec1e7ee345bf09b089503a36d07923f4392228311ee",
+            "quote": "I hold Stephen Fleming Early-Career Associate Professorship in the School of Computer Science, and an Associate Professor at the University of Toronto (on leave).",
+            "observedAt": "2026-11-07T16:37:24"
+          }
+        ],
+        "leave_start": null,
+        "leave_end": null,
+        "departure_inferred": false
+      }
+    ]
   },
   "Akshayaram Srinivasan": {
     "dblp": [
