@@ -95,10 +95,15 @@ SUPPLEMENT_TITLE = re.compile(r'(?i)^\s*(moesm\d+|additional file \d+|supplement
                               r'reproduction package|replication (?:package|data|code)|research data for|source code for)'
                               r'|\((?:[\w ]+ )?artifact\)\s*$|\bdata (?:&|and) materials\s*$')
 ERRATUM_TITLE = re.compile(r'(?i)^\s*(?:publisher|author)s?[’\']?\s+correction\b|^\s*correction(?: to)?\s*:|^\s*erratum\b|^\s*corrigendum\b')
-EDITORIAL_TITLE = re.compile(r"(?i)^\s*(guest[- ]editorial|editorial\b|foreword\b|preface\b|from the (?:guest )?editors?\b|"
+EDITORIAL_TITLE = re.compile(r"(?i)^\s*(guest[- ]editorial|(?:inaugural )?editorial\b|foreword\b|preface\b|from the (?:guest )?editors?\b|"
                              r"(?:guest )?editors?['’]? (?:introduction|note|preface|message)|editor['’]?s? note|"
                              r"introduction to the (?:\w+ )?(?:special|focus|featured|themed) (?:issue|section)|"
                              r"message from the (?:general |program |conference )?(?:co-?)?chairs?|in this issue\b|letter from the editor)")
+# Issue front matter can put the journal/volume before "Editorial". Require the complete issue-label shape,
+# not merely the word, so research studying editorial decisions remains eligible.
+ISSUE_EDITORIAL_TITLE = re.compile(r'(?is)^\s*[\w.&-]+,?\s+v(?:ol(?:ume)?)?\.?\s*\d+\b'
+                                   r'.*?\bn(?:o)?\.?\s*\d+\b.*?\b(?:19|20)\d{2}\s+editorial\b'
+                                   r'(?:\s+[a-z]+\d+)?\s*\.?\s*$')
 AWARD_TITLE = re.compile(r"^\d{4} .*\b(Award|Prize|Medal)\b|\b(Award|Prize|Medal)\b\s*(given to|:)\s*[A-Z][\w.'-]+( [A-Z][\w.'-]+){1,3}\s*$")
 AWARD_END = re.compile(r'\b(Award|Prize|Medal)\s*$')
 WORKSHOP_TITLE = re.compile(r'(?i)^(?:the )?(?:\d+(?:st|nd|rd|th) )?(?:international |joint )?workshop on\b|^tutorial\s*:|'
@@ -284,7 +289,7 @@ def not_a_paper(r, pages=None, bare=False):
         return 'dagstuhl_report'
     if re.search(r'(?i)oberwolfach', v) or d.startswith('10.4171/owr'):
         return 'oberwolfach_report'
-    if EDITORIAL_TITLE.search(t):
+    if EDITORIAL_TITLE.search(t) or ISSUE_EDITORIAL_TITLE.search(t):
         return 'editorial'
     if AWARD_TITLE.search(t) or (AWARD_END.search(t) and len(t.split()) <= 8):
         return 'award_announcement'
@@ -733,6 +738,7 @@ def rows_from_hits(ctx):
         rows.append(dict(pi=pi, work=cw, oa=w['id'], doi=ndoi(w.get('doi')), title=w.get('title'), year=dated_by['venue_year'] if dated_by else w.get('publication_year'), date=date, type=w.get('type'),
                          venue=((w.get('primary_location') or {}).get('source') or {}).get('display_name'),
                          landing=(w.get('primary_location') or {}).get('landing_page_url'),
+                         _edition_source=edition_source(w),
                          byline=[(x.get('raw_author_name') or (x.get('author') or {}).get('display_name')) for x in w.get('authorships') or []],
                          byline_school=[(x.get('raw_author_name') or (x.get('author') or {}).get('display_name')) for x in w.get('authorships') or []
                                         if inst in [i.get('id') for i in x.get('institutions') or []] + [l for i in x.get('institutions') or [] for l in i.get('lineage') or []]
@@ -875,14 +881,29 @@ def drop_not_papers(rows, dblp_nauth, n, dblp_pages=None, pid0=None):
     return rows, not_paper_samples
 
 
+def edition_source(work):
+    """Compact source evidence used while selecting a lead, removed before package serialization."""
+    location = work.get('primary_location') or {}
+    return dict(version=location.get('version'), is_published=location.get('is_published'),
+                source_type=(location.get('source') or {}).get('type'))
+
+
 def merge_editions(rows, n):
     """R-PAP-16: one record per unique paper and lab; editions share a normalized title, the published edition leads,
     and every edition's byline is kept for the links (`_bylines`)."""
     # one record per unique paper and lab: editions (arXiv preprint, conference, journal version) share a normalized
-    # title; the published edition leads (a DOI that is not arXiv's, then a collection work), the rest are its editions
+    # title; explicit published venue versions lead repository/submitted records, including deposits with their own DOI.
+    # Without source evidence, keep the established DOI/collection/year preference among otherwise equivalent records.
     def rank(r):
-        d = r.get('doi') or ''
-        return (0 if d and not d.startswith('10.48550') else 1, 0 if r['work'] else 1, -(int(r['year'] or 0)))
+        d = ndoi(r.get('doi'))
+        source = r.get('_edition_source') or {}
+        published = source.get('is_published') is True or source.get('version') == 'publishedVersion'
+        repository = source.get('source_type') == 'repository' or (r.get('type') == 'preprint' and not published) \
+            or d.startswith('10.48550') or REPOSITORY_DOI.match(d) or REPOSITORY_VENUE.search(str(r.get('venue') or ''))
+        manuscript = source.get('version') in ('submittedVersion', 'acceptedVersion') and source.get('is_published') is not True
+        publication = 2 if repository or manuscript else (0 if published else 1)
+        return (publication, 0 if d and not d.startswith('10.48550') else 1,
+                bool(d.startswith('10.5555/')), 0 if r['work'] else 1, -(int(r['year'] or 0)))
     grouped = collections.defaultdict(list)
     for r in rows:
         title = str(r.get('title') or '')
@@ -896,7 +917,7 @@ def merge_editions(rows, n):
         grouped[key].append(r)
     rows = []
     for g in grouped.values():
-        g.sort(key=lambda r: rank(r)[:1] + (bool((r.get('doi') or '').startswith('10.5555/')),) + rank(r)[1:]); lead = dict(g[0])
+        g.sort(key=rank); lead = dict(g[0])
         dups = [d for x in g for d in x.get('_dups') or []]
         lead['editions'] = [dict(oa=x['oa'], work=x['work'], doi=x.get('doi'), year=x['year'], venue=x.get('venue')) for x in g[1:]] \
             + [{k_: d[k_] for k_ in ('oa', 'work', 'doi', 'year', 'venue')} for d in dups]
@@ -904,6 +925,7 @@ def merge_editions(rows, n):
         # 'Poor Video Streaming Performance Explained' lead names only him) or another name form than its preprint
         lead['_bylines'] = [(x['byline'], x['byline_school']) for x in g] + [(d['byline'], d['byline_school']) for d in dups]
         lead.pop('_dups', None)
+        lead.pop('_edition_source', None)
         rows.append(lead)
     n['edition_records_merged'] = sum(len(g) - 1 for g in grouped.values())
     return rows
