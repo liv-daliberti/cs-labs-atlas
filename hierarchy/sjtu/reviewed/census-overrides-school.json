@@ -724,12 +724,62 @@
     }
   },
   "张倬胜": {
-    "no_identity": true,
-    "why_no_identity": "Academic PI/owned role and membership evidence reviewed; no bibliographic PID/OpenAlex/ORCID ownership activated. No name-only joins or career-school paper admission.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "All original identifier links remain inactive pending separate source-bound identity admission.",
       "evidence": []
+    },
+    "dblp": [
+      "https://dblp.org/pid/06/9708"
+    ],
+    "aliases": [
+      "Zhuosheng Zhang"
+    ],
+    "identity_resolution": {
+      "decision": "verified_source_owned_exact_WWW",
+      "reviewed": "2026-11-09",
+      "reviewed_by": "claude-sjtu-admit-1109",
+      "basis": "Exact named official profile plus a literal PID anchor, or an official-profile-linked owned homepage that the local DBLP person record lists as its own homepage. No name-only join, namesake, ORCID, OpenAlex-author or other-person inheritance.",
+      "evidence": [
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhangzhuosheng.html",
+          "sha256": "46c51bf19ccbf2218e9af8c06da219e5a198fb9abf207bb3f21798c5d61ba1e2",
+          "observed": "2026-11-07T18:05:23",
+          "quote": "张倬胜",
+          "kind": "official_named_faculty_profile"
+        },
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhangzhuosheng.html",
+          "sha256": "46c51bf19ccbf2218e9af8c06da219e5a198fb9abf207bb3f21798c5d61ba1e2",
+          "observed": "2026-11-07T18:05:23",
+          "quote": "https://bcmi.sjtu.edu.cn/home/zhangzs/",
+          "kind": "official_profile_links_owned_homepage",
+          "discovery": "literal_official_profile_link"
+        },
+        {
+          "url": "https://bcmi.sjtu.edu.cn/home/zhangzs/",
+          "sha256": "f9bd2a6fa0bc7a73967a00aa682c019db4fcfb1fae98df0f34835683776d943f",
+          "observed": "2026-11-07T18:43:10",
+          "kind": "owned_homepage_original",
+          "literal_self_name_forms": [
+            "Zhuosheng Zhang"
+          ]
+        },
+        {
+          "kind": "dblp_person_record_lists_same_homepage",
+          "record_url": "http://bcmi.sjtu.edu.cn/home/zhangzs/",
+          "selected_homepage": "https://bcmi.sjtu.edu.cn/home/zhangzs/",
+          "equality": "exact modulo http/https and trailing slash only",
+          "record_sha256": "be731568a43c592d2c52f9a9212ab13ed117dd3ef58144244eb407f64780b035"
+        }
+      ],
+      "local_complete_record_sha256": "be731568a43c592d2c52f9a9212ab13ed117dd3ef58144244eb407f64780b035",
+      "original_source_store_sha256": "8acfa5bcf35c18658f949f62fd55b67ca3639e2cba9a8a1201801dbbc3aa349e",
+      "full_career_record_count": 279,
+      "raw_2016_2026_bibliography_record_count": 279,
+      "school_papers_admitted": 0,
+      "orcid_inheritance": false
     }
   },
   "杨岚青": {
@@ -951,12 +1001,62 @@
     }
   },
   "白 石": {
-    "no_identity": true,
-    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
       "evidence": []
+    },
+    "dblp": [
+      "https://dblp.org/pid/25/4561-1"
+    ],
+    "aliases": [
+      "Shi Bai"
+    ],
+    "identity_resolution": {
+      "decision": "verified_source_owned_exact_WWW",
+      "reviewed": "2026-11-09",
+      "reviewed_by": "claude-sjtu-admit-1109",
+      "basis": "Exact named official profile plus a literal PID anchor, or an official-profile-linked owned homepage that the local DBLP person record lists as its own homepage. No name-only join, namesake, ORCID, OpenAlex-author or other-person inheritance.",
+      "evidence": [
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/baishi.html",
+          "sha256": "9560df3225d0f8b465e9d324720167bdd93ede1c37fe45c4a213d7f689838454",
+          "observed": "2026-11-07T18:14:26",
+          "quote": "白石",
+          "kind": "official_named_faculty_profile"
+        },
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/baishi.html",
+          "sha256": "9560df3225d0f8b465e9d324720167bdd93ede1c37fe45c4a213d7f689838454",
+          "observed": "2026-11-07T18:14:26",
+          "quote": "https://shi-bai.github.io/",
+          "kind": "official_profile_links_owned_homepage",
+          "discovery": "literal_official_profile_link"
+        },
+        {
+          "url": "https://shi-bai.github.io/",
+          "sha256": "942dd3693fabc4b27fd32551c72f4327c8bbaa15c859974500418c2d900ddef1",
+          "observed": "2026-11-07T18:38:53",
+          "kind": "owned_homepage_original",
+          "literal_self_name_forms": [
+            "Shi Bai"
+          ]
+        },
+        {
+          "kind": "dblp_person_record_lists_same_homepage",
+          "record_url": "https://shi-bai.github.io/",
+          "selected_homepage": "https://shi-bai.github.io/",
+          "equality": "exact modulo http/https and trailing slash only",
+          "record_sha256": "dd35650dfa8ca0441611e8ce55f12cfc99f2d9306a75860b60ee00d31af94fe6"
+        }
+      ],
+      "local_complete_record_sha256": "dd35650dfa8ca0441611e8ce55f12cfc99f2d9306a75860b60ee00d31af94fe6",
+      "original_source_store_sha256": "702c53bb0ebb5840bb078fb2dd75081e88257a26446cca61930787f4a3c0bea5",
+      "full_career_record_count": 45,
+      "raw_2016_2026_bibliography_record_count": 33,
+      "school_papers_admitted": 0,
+      "orcid_inheritance": false
     }
   },
   "蔡鸿明": {
@@ -978,21 +1078,113 @@
     }
   },
   "陈 博": {
-    "no_identity": true,
-    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
       "evidence": []
+    },
+    "dblp": [
+      "https://dblp.org/pid/89/5615-25"
+    ],
+    "aliases": [
+      "Bo Chen"
+    ],
+    "identity_resolution": {
+      "decision": "verified_owned_homepage_literal_PID",
+      "reviewed": "2026-11-09",
+      "reviewed_by": "claude-sjtu-admit-1109",
+      "basis": "Exact named official profile plus a literal PID anchor, or an official-profile-linked owned homepage that the local DBLP person record lists as its own homepage. No name-only join, namesake, ORCID, OpenAlex-author or other-person inheritance.",
+      "evidence": [
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/chenbo.html",
+          "sha256": "791f201ac7efb4f5a28d7c6906a297d82b49f3008e17cb260de29eb449b105d5",
+          "observed": "2026-11-07T18:10:42",
+          "quote": "陈博",
+          "kind": "official_named_faculty_profile"
+        },
+        {
+          "url": "https://bochen.info/",
+          "sha256": "9264462d10152557633714287a539f71378ad31ea4c580e1b5955b9f23df2b0d",
+          "observed": "2026-11-07T18:38:38",
+          "quote": "DBLP",
+          "literal_href": "https://dblp.org/pid/89/5615-25.html",
+          "kind": "literal_PID_anchor_in_official_linked_owned_homepage"
+        },
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/chenbo.html",
+          "sha256": "791f201ac7efb4f5a28d7c6906a297d82b49f3008e17cb260de29eb449b105d5",
+          "observed": "2026-11-07T18:10:42",
+          "quote": "https://bochen.info/",
+          "kind": "official_profile_links_owned_homepage",
+          "discovery": "literal_official_profile_link"
+        }
+      ],
+      "local_complete_record_sha256": "94aab2e20c93d89442999e0317e7da74c174cffaa459f10580f9a3d835cb6f33",
+      "original_source_store_sha256": "8acfa5bcf35c18658f949f62fd55b67ca3639e2cba9a8a1201801dbbc3aa349e",
+      "full_career_record_count": 46,
+      "raw_2016_2026_bibliography_record_count": 46,
+      "school_papers_admitted": 0,
+      "orcid_inheritance": false
     }
   },
   "陈 晨": {
-    "no_identity": true,
-    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
       "evidence": []
+    },
+    "dblp": [
+      "https://dblp.org/pid/65/4423-67"
+    ],
+    "aliases": [
+      "Chen Chen"
+    ],
+    "identity_resolution": {
+      "decision": "verified_source_owned_exact_WWW",
+      "reviewed": "2026-11-09",
+      "reviewed_by": "claude-sjtu-admit-1109",
+      "basis": "Exact named official profile plus a literal PID anchor, or an official-profile-linked owned homepage that the local DBLP person record lists as its own homepage. No name-only join, namesake, ORCID, OpenAlex-author or other-person inheritance.",
+      "evidence": [
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/chenchen.html",
+          "sha256": "9e71d51a95d5cebb26aac72179ac419099467c663d900dd0e34ffbd60f771d95",
+          "observed": "2026-11-07T18:08:46",
+          "quote": "陈晨",
+          "kind": "official_named_faculty_profile"
+        },
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/chenchen.html",
+          "sha256": "9e71d51a95d5cebb26aac72179ac419099467c663d900dd0e34ffbd60f771d95",
+          "observed": "2026-11-07T18:08:46",
+          "quote": "https://jhc.sjtu.edu.cn/~chen-chen/",
+          "kind": "official_profile_links_owned_homepage",
+          "discovery": "literal_official_profile_link"
+        },
+        {
+          "url": "https://jhc.sjtu.edu.cn/~chen-chen/",
+          "sha256": "5ece2f21e46794300c63c8c7ffeef9fb2721f16b3049bcc066dd990db81e94b8",
+          "observed": "2026-11-07T18:34:32",
+          "kind": "owned_homepage_original",
+          "literal_self_name_forms": [
+            "Chen Chen"
+          ]
+        },
+        {
+          "kind": "dblp_person_record_lists_same_homepage",
+          "record_url": "https://jhc.sjtu.edu.cn/~chen-chen/",
+          "selected_homepage": "https://jhc.sjtu.edu.cn/~chen-chen/",
+          "equality": "exact modulo http/https and trailing slash only",
+          "record_sha256": "67418afed035326e8785ed8927683cbae00b90013c8c2090917d89a36af9fbe0"
+        }
+      ],
+      "local_complete_record_sha256": "67418afed035326e8785ed8927683cbae00b90013c8c2090917d89a36af9fbe0",
+      "original_source_store_sha256": "702c53bb0ebb5840bb078fb2dd75081e88257a26446cca61930787f4a3c0bea5",
+      "full_career_record_count": 78,
+      "raw_2016_2026_bibliography_record_count": 75,
+      "school_papers_admitted": 0,
+      "orcid_inheritance": false
     }
   },
   "陈贵海": {
@@ -1384,21 +1576,113 @@
     }
   },
   "黄 涛": {
-    "no_identity": true,
-    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
       "evidence": []
+    },
+    "dblp": [
+      "https://dblp.org/pid/34/808-20"
+    ],
+    "aliases": [
+      "Tao Huang"
+    ],
+    "identity_resolution": {
+      "decision": "verified_source_owned_exact_WWW",
+      "reviewed": "2026-11-09",
+      "reviewed_by": "claude-sjtu-admit-1109",
+      "basis": "Exact named official profile plus a literal PID anchor, or an official-profile-linked owned homepage that the local DBLP person record lists as its own homepage. No name-only join, namesake, ORCID, OpenAlex-author or other-person inheritance.",
+      "evidence": [
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/huangtao.html",
+          "sha256": "efc2199bec665e527d4375e86f97f247ff4e459ce0f6fc8e845cce4a2e9b1ebb",
+          "observed": "2026-11-07T18:16:06",
+          "quote": "黄涛",
+          "kind": "official_named_faculty_profile"
+        },
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/huangtao.html",
+          "sha256": "efc2199bec665e527d4375e86f97f247ff4e459ce0f6fc8e845cce4a2e9b1ebb",
+          "observed": "2026-11-07T18:16:06",
+          "quote": "https://taohuang.info",
+          "kind": "official_profile_links_owned_homepage",
+          "discovery": "literal_official_profile_link"
+        },
+        {
+          "url": "https://taohuang.info",
+          "sha256": "a6d78580408aa25fe723bbc27b8b5a146ba85a38a569e1e4e9e5570867010909",
+          "observed": "2026-11-07T18:38:58",
+          "kind": "owned_homepage_original",
+          "literal_self_name_forms": [
+            "Tao Huang"
+          ]
+        },
+        {
+          "kind": "dblp_person_record_lists_same_homepage",
+          "record_url": "https://taohuang.info/",
+          "selected_homepage": "https://taohuang.info",
+          "equality": "exact modulo http/https and trailing slash only",
+          "record_sha256": "a3543b4894b9238e779ec3585fb69a0421f864a18d9e8c39ef84c1dd661ae21f"
+        }
+      ],
+      "local_complete_record_sha256": "a3543b4894b9238e779ec3585fb69a0421f864a18d9e8c39ef84c1dd661ae21f",
+      "original_source_store_sha256": "702c53bb0ebb5840bb078fb2dd75081e88257a26446cca61930787f4a3c0bea5",
+      "full_career_record_count": 65,
+      "raw_2016_2026_bibliography_record_count": 65,
+      "school_papers_admitted": 0,
+      "orcid_inheritance": false
     }
   },
   "黄维然": {
-    "no_identity": true,
-    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
       "evidence": []
+    },
+    "dblp": [
+      "https://dblp.org/pid/170/0073-1"
+    ],
+    "aliases": [
+      "Weiran Huang"
+    ],
+    "identity_resolution": {
+      "decision": "verified_owned_homepage_literal_PID",
+      "reviewed": "2026-11-09",
+      "reviewed_by": "claude-sjtu-admit-1109",
+      "basis": "Exact named official profile plus a literal PID anchor, or an official-profile-linked owned homepage that the local DBLP person record lists as its own homepage. No name-only join, namesake, ORCID, OpenAlex-author or other-person inheritance.",
+      "evidence": [
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/huangweiran.html",
+          "sha256": "c75e381754d0f3e277360a85d56a1ca58a92c2f748240b6e06ec4e311f4bb523",
+          "observed": "2026-11-07T18:11:02",
+          "quote": "黄维然",
+          "kind": "official_named_faculty_profile"
+        },
+        {
+          "url": "https://mifa.sjtu.edu.cn/~weiranhuang/",
+          "sha256": "7c676f4f7683d91dcfaf9865103eccb003fac775b4e2548b36f605674dc66019",
+          "observed": "2026-11-07T18:38:41",
+          "quote": "DBLP",
+          "literal_href": "https://dblp.org/pid/170/0073-1",
+          "kind": "literal_PID_anchor_in_official_linked_owned_homepage"
+        },
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/huangweiran.html",
+          "sha256": "c75e381754d0f3e277360a85d56a1ca58a92c2f748240b6e06ec4e311f4bb523",
+          "observed": "2026-11-07T18:11:02",
+          "quote": "https://mifa.sjtu.edu.cn/~weiranhuang/",
+          "kind": "official_profile_links_owned_homepage",
+          "discovery": "literal_official_profile_link"
+        }
+      ],
+      "local_complete_record_sha256": "3bce82a4277527151f207d21131dddf30935e62e0b8e764a503187f0c185c233",
+      "original_source_store_sha256": "702c53bb0ebb5840bb078fb2dd75081e88257a26446cca61930787f4a3c0bea5",
+      "full_career_record_count": 93,
+      "raw_2016_2026_bibliography_record_count": 92,
+      "school_papers_admitted": 0,
+      "orcid_inheritance": false
     }
   },
   "黄 征": {
@@ -1807,12 +2091,62 @@
     }
   },
   "马 超": {
-    "no_identity": true,
-    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
       "evidence": []
+    },
+    "dblp": [
+      "https://dblp.org/pid/79/1552-4"
+    ],
+    "aliases": [
+      "Chao Ma"
+    ],
+    "identity_resolution": {
+      "decision": "verified_source_owned_exact_WWW",
+      "reviewed": "2026-11-09",
+      "reviewed_by": "claude-sjtu-admit-1109",
+      "basis": "Exact named official profile plus a literal PID anchor, or an official-profile-linked owned homepage that the local DBLP person record lists as its own homepage. No name-only join, namesake, ORCID, OpenAlex-author or other-person inheritance.",
+      "evidence": [
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/machao.html",
+          "sha256": "45c0872a2d3fee18eaedc4a949d7c5e82cc19f48e901c08aede5217f437789ec",
+          "observed": "2026-11-07T18:09:58",
+          "quote": "马超",
+          "kind": "official_named_faculty_profile"
+        },
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/machao.html",
+          "sha256": "45c0872a2d3fee18eaedc4a949d7c5e82cc19f48e901c08aede5217f437789ec",
+          "observed": "2026-11-07T18:09:58",
+          "quote": "https://vision.sjtu.edu.cn/",
+          "kind": "official_profile_links_owned_homepage",
+          "discovery": "literal_printed_profile_homepage"
+        },
+        {
+          "url": "https://vision.sjtu.edu.cn/",
+          "sha256": "bff54e5093c4c3b9c5993f61bc0fab74356cb36e12382d4b3ac2b412163b231f",
+          "observed": "2026-11-07T18:38:37",
+          "kind": "owned_homepage_original",
+          "literal_self_name_forms": [
+            "Chao Ma"
+          ]
+        },
+        {
+          "kind": "dblp_person_record_lists_same_homepage",
+          "record_url": "https://vision.sjtu.edu.cn/",
+          "selected_homepage": "https://vision.sjtu.edu.cn/",
+          "equality": "exact modulo http/https and trailing slash only",
+          "record_sha256": "7cfb02fbf0242f4306fe55977cd3e9df70bf6f2c5f50160696c33bbf114b6405"
+        }
+      ],
+      "local_complete_record_sha256": "7cfb02fbf0242f4306fe55977cd3e9df70bf6f2c5f50160696c33bbf114b6405",
+      "original_source_store_sha256": "8acfa5bcf35c18658f949f62fd55b67ca3639e2cba9a8a1201801dbbc3aa349e",
+      "full_career_record_count": 212,
+      "raw_2016_2026_bibliography_record_count": 206,
+      "school_papers_admitted": 0,
+      "orcid_inheritance": false
     }
   },
   "马利庄": {
@@ -1951,12 +2285,62 @@
     }
   },
   "沈 为": {
-    "no_identity": true,
-    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
       "evidence": []
+    },
+    "dblp": [
+      "https://dblp.org/pid/71/3692-2"
+    ],
+    "aliases": [
+      "Wei Shen"
+    ],
+    "identity_resolution": {
+      "decision": "verified_source_owned_exact_WWW",
+      "reviewed": "2026-11-09",
+      "reviewed_by": "claude-sjtu-admit-1109",
+      "basis": "Exact named official profile plus a literal PID anchor, or an official-profile-linked owned homepage that the local DBLP person record lists as its own homepage. No name-only join, namesake, ORCID, OpenAlex-author or other-person inheritance.",
+      "evidence": [
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/shenwei.html",
+          "sha256": "299b5d06df1a6aa9b2d822d23e86fd6e4b6545a9cb8d519ce1461fd77cf85aec",
+          "observed": "2026-11-07T18:10:06",
+          "quote": "沈为",
+          "kind": "official_named_faculty_profile"
+        },
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/shenwei.html",
+          "sha256": "299b5d06df1a6aa9b2d822d23e86fd6e4b6545a9cb8d519ce1461fd77cf85aec",
+          "observed": "2026-11-07T18:10:06",
+          "quote": "https://shenwei1231.github.io/",
+          "kind": "official_profile_links_owned_homepage",
+          "discovery": "literal_official_profile_link"
+        },
+        {
+          "url": "https://shenwei1231.github.io/",
+          "sha256": "9642886cc1a95186c37becf5222f3ebbab74cb2a3b475cdc9a4204bde6802914",
+          "observed": "2026-11-07T18:35:41",
+          "kind": "owned_homepage_original",
+          "literal_self_name_forms": [
+            "Wei Shen"
+          ]
+        },
+        {
+          "kind": "dblp_person_record_lists_same_homepage",
+          "record_url": "https://shenwei1231.github.io/",
+          "selected_homepage": "https://shenwei1231.github.io/",
+          "equality": "exact modulo http/https and trailing slash only",
+          "record_sha256": "95e06cc51ff5e6554c2297c4bc03ac28697372963fa1fd163a72c2fb272511fe"
+        }
+      ],
+      "local_complete_record_sha256": "95e06cc51ff5e6554c2297c4bc03ac28697372963fa1fd163a72c2fb272511fe",
+      "original_source_store_sha256": "702c53bb0ebb5840bb078fb2dd75081e88257a26446cca61930787f4a3c0bea5",
+      "full_career_record_count": 259,
+      "raw_2016_2026_bibliography_record_count": 241,
+      "school_papers_admitted": 0,
+      "orcid_inheritance": false
     }
   },
   "沈艳艳": {
@@ -2271,12 +2655,62 @@
     }
   },
   "徐尔茨": {
-    "no_identity": true,
-    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
       "evidence": []
+    },
+    "dblp": [
+      "https://dblp.org/pid/83/10695"
+    ],
+    "aliases": [
+      "Erci Xu"
+    ],
+    "identity_resolution": {
+      "decision": "verified_source_owned_exact_WWW",
+      "reviewed": "2026-11-09",
+      "reviewed_by": "claude-sjtu-admit-1109",
+      "basis": "Exact named official profile plus a literal PID anchor, or an official-profile-linked owned homepage that the local DBLP person record lists as its own homepage. No name-only join, namesake, ORCID, OpenAlex-author or other-person inheritance.",
+      "evidence": [
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/xuerci.html",
+          "sha256": "951f73be5f3d010f5b885e7462b217a082c5088224a4b1b50592c90090f5ff0a",
+          "observed": "2026-11-07T18:14:04",
+          "quote": "徐尔茨",
+          "kind": "official_named_faculty_profile"
+        },
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/xuerci.html",
+          "sha256": "951f73be5f3d010f5b885e7462b217a082c5088224a4b1b50592c90090f5ff0a",
+          "observed": "2026-11-07T18:14:04",
+          "quote": "https://giorgioercixu.github.io/",
+          "kind": "official_profile_links_owned_homepage",
+          "discovery": "literal_official_profile_link"
+        },
+        {
+          "url": "https://giorgioercixu.github.io/",
+          "sha256": "7683cb631c4839fba02b6a29237ab6de74307c4c9dec0e26acbefc769ab25be2",
+          "observed": "2026-11-07T18:38:50",
+          "kind": "owned_homepage_original",
+          "literal_self_name_forms": [
+            "Erci Xu"
+          ]
+        },
+        {
+          "kind": "dblp_person_record_lists_same_homepage",
+          "record_url": "https://giorgioercixu.github.io/",
+          "selected_homepage": "https://giorgioercixu.github.io/",
+          "equality": "exact modulo http/https and trailing slash only",
+          "record_sha256": "73a37ddf90d9e988a742577bf703c0450684b91b7b513004f81cede379f0e6fa"
+        }
+      ],
+      "local_complete_record_sha256": "73a37ddf90d9e988a742577bf703c0450684b91b7b513004f81cede379f0e6fa",
+      "original_source_store_sha256": "702c53bb0ebb5840bb078fb2dd75081e88257a26446cca61930787f4a3c0bea5",
+      "full_career_record_count": 51,
+      "raw_2016_2026_bibliography_record_count": 47,
+      "school_papers_admitted": 0,
+      "orcid_inheritance": false
     }
   },
   "薛 质": {
@@ -2316,12 +2750,62 @@
     }
   },
   "杨 宽": {
-    "no_identity": true,
-    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
       "evidence": []
+    },
+    "dblp": [
+      "https://dblp.org/pid/50/4285-1"
+    ],
+    "aliases": [
+      "Kuan Yang"
+    ],
+    "identity_resolution": {
+      "decision": "verified_source_owned_exact_WWW",
+      "reviewed": "2026-11-09",
+      "reviewed_by": "claude-sjtu-admit-1109",
+      "basis": "Exact named official profile plus a literal PID anchor, or an official-profile-linked owned homepage that the local DBLP person record lists as its own homepage. No name-only join, namesake, ORCID, OpenAlex-author or other-person inheritance.",
+      "evidence": [
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/yangkuan.html",
+          "sha256": "6025ddbf31aef9e5494f1acd5ef2fd0840a4f9bc62c749d4a325064485429e5e",
+          "observed": "2026-11-07T18:04:19",
+          "quote": "杨宽",
+          "kind": "official_named_faculty_profile"
+        },
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/yangkuan.html",
+          "sha256": "6025ddbf31aef9e5494f1acd5ef2fd0840a4f9bc62c749d4a325064485429e5e",
+          "observed": "2026-11-07T18:04:19",
+          "quote": "https://jhc.sjtu.edu.cn/~kuanyang/",
+          "kind": "official_profile_links_owned_homepage",
+          "discovery": "literal_official_profile_link"
+        },
+        {
+          "url": "https://jhc.sjtu.edu.cn/~kuanyang/",
+          "sha256": "b24235d3fa8087a5cfe571c57c1b53ef029aa4136baee2d091bb56b49970c526",
+          "observed": "2026-11-07T18:34:25",
+          "kind": "owned_homepage_original",
+          "literal_self_name_forms": [
+            "Kuan Yang"
+          ]
+        },
+        {
+          "kind": "dblp_person_record_lists_same_homepage",
+          "record_url": "https://jhc.sjtu.edu.cn/~kuanyang/",
+          "selected_homepage": "https://jhc.sjtu.edu.cn/~kuanyang/",
+          "equality": "exact modulo http/https and trailing slash only",
+          "record_sha256": "87615d5aa2d71ea1f7fac5f1517e787395ea5f785a5993a2b54d8caf1eaf4b17"
+        }
+      ],
+      "local_complete_record_sha256": "87615d5aa2d71ea1f7fac5f1517e787395ea5f785a5993a2b54d8caf1eaf4b17",
+      "original_source_store_sha256": "702c53bb0ebb5840bb078fb2dd75081e88257a26446cca61930787f4a3c0bea5",
+      "full_career_record_count": 23,
+      "raw_2016_2026_bibliography_record_count": 21,
+      "school_papers_admitted": 0,
+      "orcid_inheritance": false
     }
   },
   "杨旭波": {
@@ -2352,12 +2836,46 @@
     }
   },
   "姚 斌": {
-    "no_identity": true,
-    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
       "evidence": []
+    },
+    "dblp": [
+      "https://dblp.org/pid/86/508-2"
+    ],
+    "aliases": [
+      "Bin Yao"
+    ],
+    "identity_resolution": {
+      "decision": "verified_official_profile_literal_owned_PID",
+      "reviewed": "2026-11-09",
+      "reviewed_by": "claude-sjtu-admit-1109",
+      "basis": "Exact named official profile plus a literal PID anchor, or an official-profile-linked owned homepage that the local DBLP person record lists as its own homepage. No name-only join, namesake, ORCID, OpenAlex-author or other-person inheritance.",
+      "evidence": [
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/yaobin.html",
+          "sha256": "db636f34d592d2bc7eebf07bb7ce61e5f5122d6a1ea63bafec7d330f2df0d726",
+          "observed": "2026-11-07T18:01:11",
+          "quote": "姚斌",
+          "kind": "official_named_faculty_profile"
+        },
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/yaobin.html",
+          "sha256": "db636f34d592d2bc7eebf07bb7ce61e5f5122d6a1ea63bafec7d330f2df0d726",
+          "observed": "2026-11-07T18:01:11",
+          "quote": "DBLP",
+          "literal_href": "https://dblp.org/pid/86/508-2.html",
+          "kind": "literal_PID_anchor_in_named_official_profile"
+        }
+      ],
+      "local_complete_record_sha256": "78da9ecaebcc022d4a1b91fd52f71b2526d60d49ce13d687dc4c4437cac9dae7",
+      "original_source_store_sha256": "5a23b0fc6593c19f3479949722855ef79ffd98be4f81e5c70b3f88cbe61df5e8",
+      "full_career_record_count": 107,
+      "raw_2016_2026_bibliography_record_count": 87,
+      "school_papers_admitted": 0,
+      "orcid_inheritance": false
     }
   },
   "姚建国": {
@@ -2442,12 +2960,62 @@
     }
   },
   "郁 昱": {
-    "no_identity": true,
-    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
       "evidence": []
+    },
+    "dblp": [
+      "https://dblp.org/pid/33/0-1"
+    ],
+    "aliases": [
+      "Yu Yu"
+    ],
+    "identity_resolution": {
+      "decision": "verified_source_owned_exact_WWW",
+      "reviewed": "2026-11-09",
+      "reviewed_by": "claude-sjtu-admit-1109",
+      "basis": "Exact named official profile plus a literal PID anchor, or an official-profile-linked owned homepage that the local DBLP person record lists as its own homepage. No name-only join, namesake, ORCID, OpenAlex-author or other-person inheritance.",
+      "evidence": [
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/yuyu.html",
+          "sha256": "1275b0034642714109bd34210768f019ca12610af385862b4ba0cb989cb26ada",
+          "observed": "2026-11-07T18:14:22",
+          "quote": "郁昱",
+          "kind": "official_named_faculty_profile"
+        },
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/yuyu.html",
+          "sha256": "1275b0034642714109bd34210768f019ca12610af385862b4ba0cb989cb26ada",
+          "observed": "2026-11-07T18:14:22",
+          "quote": "https://yuyu.hk/",
+          "kind": "official_profile_links_owned_homepage",
+          "discovery": "literal_official_profile_link"
+        },
+        {
+          "url": "https://yuyu.hk/",
+          "sha256": "1a6834edcf906cec20cc04968110aad20b977bc3d89854e730c8e574204308a1",
+          "observed": "2026-11-07T18:43:16",
+          "kind": "owned_homepage_original",
+          "literal_self_name_forms": [
+            "Yu Yu"
+          ]
+        },
+        {
+          "kind": "dblp_person_record_lists_same_homepage",
+          "record_url": "http://yuyu.hk/",
+          "selected_homepage": "https://yuyu.hk/",
+          "equality": "exact modulo http/https and trailing slash only",
+          "record_sha256": "46dc81185c034e1e9f41e6458c130dbd171937c5a1468960ae22e59381b07f04"
+        }
+      ],
+      "local_complete_record_sha256": "46dc81185c034e1e9f41e6458c130dbd171937c5a1468960ae22e59381b07f04",
+      "original_source_store_sha256": "702c53bb0ebb5840bb078fb2dd75081e88257a26446cca61930787f4a3c0bea5",
+      "full_career_record_count": 190,
+      "raw_2016_2026_bibliography_record_count": 153,
+      "school_papers_admitted": 0,
+      "orcid_inheritance": false
     }
   },
   "朱开元": {
@@ -2469,21 +3037,113 @@
     }
   },
   "张驰豪": {
-    "no_identity": true,
-    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
       "evidence": []
+    },
+    "dblp": [
+      "https://dblp.org/pid/92/11261-1"
+    ],
+    "aliases": [
+      "Chihao Zhang"
+    ],
+    "identity_resolution": {
+      "decision": "verified_source_owned_exact_WWW",
+      "reviewed": "2026-11-09",
+      "reviewed_by": "claude-sjtu-admit-1109",
+      "basis": "Exact named official profile plus a literal PID anchor, or an official-profile-linked owned homepage that the local DBLP person record lists as its own homepage. No name-only join, namesake, ORCID, OpenAlex-author or other-person inheritance.",
+      "evidence": [
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhangchihao.html",
+          "sha256": "60e7d8ddcbc8fb3bb5e5c7526751c646b21b8a94e18ed04e92501eb225262aec",
+          "observed": "2026-11-07T18:04:26",
+          "quote": "张驰豪",
+          "kind": "official_named_faculty_profile"
+        },
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhangchihao.html",
+          "sha256": "60e7d8ddcbc8fb3bb5e5c7526751c646b21b8a94e18ed04e92501eb225262aec",
+          "observed": "2026-11-07T18:04:26",
+          "quote": "https://chihaozhang.com",
+          "kind": "official_profile_links_owned_homepage",
+          "discovery": "literal_official_profile_link"
+        },
+        {
+          "url": "https://chihaozhang.com",
+          "sha256": "a069b9944952195f24c32e025c6821db252dea72909363ef73fcbf440b7ff090",
+          "observed": "2026-11-07T18:38:05",
+          "kind": "owned_homepage_original",
+          "literal_self_name_forms": [
+            "Chihao Zhang"
+          ]
+        },
+        {
+          "kind": "dblp_person_record_lists_same_homepage",
+          "record_url": "http://chihaozhang.com/",
+          "selected_homepage": "https://chihaozhang.com",
+          "equality": "exact modulo http/https and trailing slash only",
+          "record_sha256": "ac977d50f431a88b6a291325fa7b82f45e9fbcaaddc67777b4fe7c9f55f39533"
+        }
+      ],
+      "local_complete_record_sha256": "ac977d50f431a88b6a291325fa7b82f45e9fbcaaddc67777b4fe7c9f55f39533",
+      "original_source_store_sha256": "702c53bb0ebb5840bb078fb2dd75081e88257a26446cca61930787f4a3c0bea5",
+      "full_career_record_count": 62,
+      "raw_2016_2026_bibliography_record_count": 48,
+      "school_papers_admitted": 0,
+      "orcid_inheritance": false
     }
   },
   "张健夫": {
-    "no_identity": true,
-    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
       "evidence": []
+    },
+    "dblp": [
+      "https://dblp.org/pid/78/3993-3"
+    ],
+    "aliases": [
+      "Jianfu Zhang"
+    ],
+    "identity_resolution": {
+      "decision": "verified_owned_homepage_literal_PID",
+      "reviewed": "2026-11-09",
+      "reviewed_by": "claude-sjtu-admit-1109",
+      "basis": "Exact named official profile plus a literal PID anchor, or an official-profile-linked owned homepage that the local DBLP person record lists as its own homepage. No name-only join, namesake, ORCID, OpenAlex-author or other-person inheritance.",
+      "evidence": [
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhangjianfu.html",
+          "sha256": "707f5582c368d8b98b909b3f9f2f2546f5d568bae72775bb9346082e59c12fe2",
+          "observed": "2026-11-07T18:01:35",
+          "quote": "张健夫",
+          "kind": "official_named_faculty_profile"
+        },
+        {
+          "url": "https://matt-sjtu.github.io/",
+          "sha256": "f96f168062c66f2cc8a39f47fc08536246cfdca008c6d3ff22a2cbdece3e0fc9",
+          "observed": "2026-11-07T18:37:51",
+          "quote": "https://dblp.org/pid/78/3993-3.html",
+          "literal_href": "https://dblp.org/pid/78/3993-3.html",
+          "kind": "literal_PID_anchor_in_official_linked_owned_homepage"
+        },
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhangjianfu.html",
+          "sha256": "707f5582c368d8b98b909b3f9f2f2546f5d568bae72775bb9346082e59c12fe2",
+          "observed": "2026-11-07T18:01:35",
+          "quote": "https://matt-sjtu.github.io/",
+          "kind": "official_profile_links_owned_homepage",
+          "discovery": "literal_official_profile_link"
+        }
+      ],
+      "local_complete_record_sha256": "c43654da80830f6e58eaf1dcdb53badb2feb23697fcb4fda7444e7802585a639",
+      "original_source_store_sha256": "8acfa5bcf35c18658f949f62fd55b67ca3639e2cba9a8a1201801dbbc3aa349e",
+      "full_career_record_count": 98,
+      "raw_2016_2026_bibliography_record_count": 98,
+      "school_papers_admitted": 0,
+      "orcid_inheritance": false
     }
   },
   "张丽清": {
@@ -2514,12 +3174,62 @@
     }
   },
   "张伟楠": {
-    "no_identity": true,
-    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
       "evidence": []
+    },
+    "dblp": [
+      "https://dblp.org/pid/28/10261-1"
+    ],
+    "aliases": [
+      "Weinan Zhang"
+    ],
+    "identity_resolution": {
+      "decision": "verified_source_owned_exact_WWW",
+      "reviewed": "2026-11-09",
+      "reviewed_by": "claude-sjtu-admit-1109",
+      "basis": "Exact named official profile plus a literal PID anchor, or an official-profile-linked owned homepage that the local DBLP person record lists as its own homepage. No name-only join, namesake, ORCID, OpenAlex-author or other-person inheritance.",
+      "evidence": [
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhangweinan.html",
+          "sha256": "058598b106af277d1f853d5e17a808e7a75eea29d4c400dd2189deecba87446d",
+          "observed": "2026-11-07T18:01:53",
+          "quote": "张伟楠",
+          "kind": "official_named_faculty_profile"
+        },
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhangweinan.html",
+          "sha256": "058598b106af277d1f853d5e17a808e7a75eea29d4c400dd2189deecba87446d",
+          "observed": "2026-11-07T18:01:53",
+          "quote": "https://wnzhang.net/",
+          "kind": "official_profile_links_owned_homepage",
+          "discovery": "literal_official_profile_link"
+        },
+        {
+          "url": "https://wnzhang.net/",
+          "sha256": "07806584f887b83a2542d921bec7fd02d463993ce441d7114546cb0897ba4899",
+          "observed": "2026-11-07T18:37:52",
+          "kind": "owned_homepage_original",
+          "literal_self_name_forms": [
+            "Weinan Zhang"
+          ]
+        },
+        {
+          "kind": "dblp_person_record_lists_same_homepage",
+          "record_url": "http://wnzhang.net/",
+          "selected_homepage": "https://wnzhang.net/",
+          "equality": "exact modulo http/https and trailing slash only",
+          "record_sha256": "48db5db62228f955eb956972291f8b71347c3ee83dbb6f6bdc198a494ce7d22a"
+        }
+      ],
+      "local_complete_record_sha256": "48db5db62228f955eb956972291f8b71347c3ee83dbb6f6bdc198a494ce7d22a",
+      "original_source_store_sha256": "702c53bb0ebb5840bb078fb2dd75081e88257a26446cca61930787f4a3c0bea5",
+      "full_career_record_count": 761,
+      "raw_2016_2026_bibliography_record_count": 736,
+      "school_papers_admitted": 0,
+      "orcid_inheritance": false
     }
   },
   "张晓凡": {
