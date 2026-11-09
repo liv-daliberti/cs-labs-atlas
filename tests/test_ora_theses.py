@@ -28,3 +28,17 @@ def test_oxford_person_index_strips_life_dates():
     h = ('<li class="personIndex"><a href="/people/x"><span itemprop="name">Stephen Cameron (1958-2019)</span></a>'
          '<span class="list-unbulleted-extra">Reader in Computing Science</span></li>')
     assert LF.oxford_person_index(h)[0]['name_listed'] == 'Stephen Cameron'
+
+
+def test_R_STU_24_ora_supervisor_needs_one_pi_and_a_computing_unit():
+    idx, orc = O.pi_index(PIS)
+    sup = dict(name='Kissinger, A', orcid=None, department='Computer Science')
+    assert O.supervisor_pi(sup, idx, orc)[0] == 'Aleks Kissinger'
+    assert 'Biochemistry' not in O.COMP_DEPTS and 'Computer Science' in O.COMP_DEPTS
+
+
+def test_R_STU_25_cs_student_supervisors_line_is_cut_before_students():
+    import cs_student_pages as C
+    flat = 'Ann Lee Ann Lee Ann Lee Doctoral Student Student, X College Themes: AI Supervisors Paul Goldberg Elias Koutsoupias Past Student Bob Roe About Us'
+    role, leave, sup, quote = C.parse_page(flat, 'Ann Lee')
+    assert role == 'Doctoral Student' and sup == 'Paul Goldberg Elias Koutsoupias' and quote in flat
