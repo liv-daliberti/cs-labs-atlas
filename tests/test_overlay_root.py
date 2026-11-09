@@ -67,6 +67,17 @@ def test_shared_reviewed_files_are_overlaid_per_file(tmp_path):
     assert (main / 'hierarchy' / 'reviewed' / 'census-overrides.json').read_text() == 'main-co'
 
 
+def test_school_root_publication_list_added_on_branch_is_visible_without_main_write(tmp_path):
+    main, wt = tree(tmp_path)
+    branch_input = wt / 'hierarchy' / 'newu' / 'pi-publication-lists.json'
+    branch_input.write_text('{"Faculty": [{"title": "An owned paper", "year": 2026}]}')
+    subprocess.run(['git', '-C', str(wt), 'add', 'hierarchy/newu/pi-publication-lists.json'], check=True)
+    out, _ = O.build('newu', main / 'hierarchy' / 'newu' / 'tmp' / 'ov', worktree=wt, main=main)
+    actual = out / 'hierarchy' / 'newu' / 'pi-publication-lists.json'
+    assert actual.is_symlink() and actual.read_text() == branch_input.read_text()
+    assert not (main / 'hierarchy' / 'newu' / 'pi-publication-lists.json').exists()
+
+
 def test_work_is_overlay_local_and_seeded_on_first_write(tmp_path, monkeypatch):
     import atlas_paths as P
     main, wt = tree(tmp_path)

@@ -90,6 +90,13 @@ def build(school, out, worktree=None, main=None):
     for e in sorted((main / 'hierarchy' / school).iterdir()):
         if e.name not in SCHOOL_REAL:
             link(sch / e.name, e)
+    # School inputs such as pi-publication-lists.json live directly under the
+    # school directory. A branch can add or correct them before admission.
+    # Overlay those tracked files too, including files absent from main.
+    for rel in tracked(worktree, f'hierarchy/{school}'):
+        sub = rel.relative_to(f'hierarchy/{school}')
+        if len(sub.parts) == 1 and sub.name not in SCHOOL_REAL:
+            link(sch / sub, worktree / rel)
     n_branch = 0
     for part in SCHOOL_REAL:
         d = sch / part

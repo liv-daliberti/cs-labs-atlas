@@ -1311,11 +1311,21 @@
     }
   },
   "Bo LI 李波": {
-    "openalex": [
+    "orcid": [
+      "0000-0003-2955-750X"
+    ],
+    "why_orcid": "Official HKUST research portal directly links the named CSE professor to this ORCID; author identity only, not automatic school or paper admission.",
+    "orcid_evidence": {
+      "url": "https://researchportal.hkust.edu.hk/en/persons/bo-li/",
+      "sha256": "3adf60fb61287d38130d35217687955994f7ab438d52d845971a2f902f941e3b",
+      "quote": "Bo LI, 李波 Chair Professor, Department of Computer Science and Engineering https://orcid.org/0000-0003-2955-750X",
+      "observedAt": "2026-11-09"
+    },
+    "mixed_openalex": [
       "https://openalex.org/A5100374360"
     ],
-    "why_openalex": "The named HKUST research profile lists Furion and Efficient Mixture-of-Experts Training; their exact-title OpenAlex records both assign the single Bo Li authorship to A5100374360. This binds the author cluster only; each work still needs its own school, appointment, genre, edition and copy review. A5100374506, also named Bo Li on the profile's CHI paper, is not bound by this review.",
-    "openalex_evidence": [
+    "why_mixed_openalex": "The provider author cluster carries ORCID 0000-0001-6709-0942, while the university binds this CSE chair professor to 0000-0003-2955-750X; an ACM paper identifies the former ORCID with an Institute of Information Engineering, Chinese Academy of Sciences Bo Li. Exact works on the professor-owned university list remain eligible, but this cluster cannot propagate identity to its other works.",
+    "mixed_openalex_evidence": [
       {
         "url": "https://researchportal.hkust.edu.hk/en/persons/bo-li/",
         "sha256": "3adf60fb61287d38130d35217687955994f7ab438d52d845971a2f902f941e3b",
@@ -1334,17 +1344,7 @@
           "https://openalex.org/W7164347437"
         ]
       }
-    ],
-    "orcid": [
-      "0000-0003-2955-750X"
-    ],
-    "why_orcid": "Official HKUST research portal directly links the named CSE professor to this ORCID; author identity only, not automatic school or paper admission.",
-    "orcid_evidence": {
-      "url": "https://researchportal.hkust.edu.hk/en/persons/bo-li/",
-      "sha256": "3adf60fb61287d38130d35217687955994f7ab438d52d845971a2f902f941e3b",
-      "quote": "Bo LI, 李波 Chair Professor, Department of Computer Science and Engineering https://orcid.org/0000-0003-2955-750X",
-      "observedAt": "2026-11-09"
-    }
+    ]
   },
   "Qian ZHANG 張黔": {
     "orcid": [
@@ -1371,11 +1371,21 @@
     }
   },
   "Yike GUO 郭毅可": {
-    "openalex": [
+    "orcid": [
+      "0009-0005-8401-282X"
+    ],
+    "why_orcid": "The named university-owned source directly links this professor to this ORCID. Author identity only; school affiliation, appointment date, work type and edition are independently gated.",
+    "orcid_evidence": {
+      "url": "https://researchportal.hkust.edu.hk/en/persons/yike-guo/",
+      "sha256": "40e12c2e882873e72add05eafce4130e4b55bfc97c6767c0711b35da41c684b6",
+      "quote": "Yike GUO, 郭毅可 Provost, Office of the Provost Chair Professor, Department of Computer Science and Engineering",
+      "observedAt": "2026-11-09"
+    },
+    "mixed_openalex": [
       "https://openalex.org/A5045081171"
     ],
-    "why_openalex": "The named HKUST research profile lists AIRA, Adaptive weighted disentangling variational autoencoder and Audio-Omni; exact-title OpenAlex records assign their Yike Guo authorships to A5045081171. This binds the author cluster only; each work still needs its own school, appointment, genre, edition and copy review.",
-    "openalex_evidence": [
+    "why_mixed_openalex": "The provider author cluster carries ORCID 0000-0002-3075-2161, whereas the named HKUST profile binds the professor to 0009-0005-8401-282X, and DBLP reports an ORCID conflict for this person page. Exact HKUST-owned listed titles remain eligible; cluster-wide propagation is held pending source adjudication.",
+    "mixed_openalex_evidence": [
       {
         "url": "https://researchportal.hkust.edu.hk/en/persons/yike-guo/",
         "sha256": "40e12c2e882873e72add05eafce4130e4b55bfc97c6767c0711b35da41c684b6",
@@ -1403,16 +1413,6 @@
           "https://openalex.org/W7168500566"
         ]
       }
-    ],
-    "orcid": [
-      "0009-0005-8401-282X"
-    ],
-    "why_orcid": "The named university-owned source directly links this professor to this ORCID. Author identity only; school affiliation, appointment date, work type and edition are independently gated.",
-    "orcid_evidence": {
-      "url": "https://researchportal.hkust.edu.hk/en/persons/yike-guo/",
-      "sha256": "40e12c2e882873e72add05eafce4130e4b55bfc97c6767c0711b35da41c684b6",
-      "quote": "Yike GUO, 郭毅可 Provost, Office of the Provost Chair Professor, Department of Computer Science and Engineering",
-      "observedAt": "2026-11-09"
-    }
+    ]
   }
 }
