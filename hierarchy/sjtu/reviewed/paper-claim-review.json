@@ -1,0 +1,195 @@
+{
+  "version": 1,
+  "school": "sjtu",
+  "decisions": [
+    {
+      "id": "sjtu-20261108-W7130601592",
+      "pi": "丁家昕",
+      "decision": "hold",
+      "match": {
+        "oa": "https://openalex.org/W7130601592",
+        "doi": "10.1007/s11704-025-50122-8"
+      },
+      "why": "The source representation has ten author slots, including duplicate Xing-Li Wang and Xin-Bing Wang API identities, whereas the exact owned publication has eight ordered authors. Hold this representation pending a source-bound complete byline repair; underlying research and genuine authorship are not rejected.",
+      "reviewed_by": "codex-sjtu-first-paper-preparation-1108",
+      "reviewed_at": "2026-11-08",
+      "evidence": [
+        {
+          "url": "https://openalex.org/W7130601592",
+          "sha256": "19e4161b53507153fe1da64a7bb73a13fb93d1a5064618057c4136754d019259",
+          "quote": "API ordered author slots: Hu-Quan Kang | Xing-Li Wang | Xing-Li Wang | Zhou-Yang Jin | Yu-Ang Ding | Yi-Ming Liu | Luo-Yi Fu | Jia-Xin Ding | Xin-Bing Wang | Xin-Bing Wang",
+          "kind": "original_indexed_stored_zlib_blob",
+          "hash_basis": "SHA256 of exact original indexed compressed work BLOB; not HTTP response or PDF",
+          "source_path": "/n/fs/resemble/homogenizing-science/scratch/sjtu-first-paper-preparation-1108/TARGETED-DOI-FULL-SOURCE-CONTEXTS.json.gz",
+          "canonical_work_sha256": "374c769bfe2ee12278a4a553dc83143a522816e8f9cad4ba46f579eb6b03f234"
+        },
+        {
+          "url": "https://dblp.org/rec/journals/fcsc/KangWJDLFDW26",
+          "sha256": "96aca8f86c91dfd3836e3698dbfa974921c1a71f10f41b755594ad0ec25142f9",
+          "quote": "Exact original owned publication title: Reachability-state encoding: bridging tradeoffs between the minimal storage and the fastest query for reachability query.; ordered authors: Huquan Kang | Xing-Li Wang | Zhouyang Jin | Yu-Ang Ding | Yi-Ming Liu | Luoyi Fu | Jiaxin Ding 0001 | Xinbing Wang",
+          "kind": "original_local_DBLP_XML_record",
+          "source_path": "/n/fs/resemble/homogenizing-science/scratch/sjtu-first-paper-preparation-1108/source-output/DBLP-ORIGINAL-SELECTED.json.gz",
+          "owned_pid": "https://dblp.org/pid/165/9711-1",
+          "publication_key": "journals/fcsc/KangWJDLFDW26"
+        }
+      ]
+    },
+    {
+      "id": "sjtu-20261108-W7166804414",
+      "pi": "王 瑞",
+      "decision": "hold",
+      "match": {
+        "oa": "https://openalex.org/W7166804414",
+        "doi": "10.18653/v1/2026.acl-industry.147"
+      },
+      "why": "The published API representation repeats Rui Wang's author ID in two slots, whereas the exact owned published record has five ordered authors. Hold this representation before identity anchoring; underlying research is retained for source-bound repair, not rejected.",
+      "reviewed_by": "codex-sjtu-first-paper-preparation-1108",
+      "reviewed_at": "2026-11-08",
+      "evidence": [
+        {
+          "url": "https://openalex.org/W7166804414",
+          "sha256": "4bcfd4a37b72be4f192c2fe9c5767eb81b1c7ea68517e1aaba768ce5a93abe4b",
+          "quote": "API ordered author slots: Jun Wang | Ziyin Zhang | Rui Wang | Hang Yu | Peng Di | Rui Wang",
+          "kind": "original_indexed_stored_zlib_blob",
+          "hash_basis": "SHA256 of exact original indexed compressed work BLOB; not HTTP response or PDF",
+          "source_path": "/n/fs/resemble/homogenizing-science/scratch/sjtu-first-paper-preparation-1108/TARGETED-DOI-FULL-SOURCE-CONTEXTS.json.gz",
+          "canonical_work_sha256": "18f7c1e914b936447c26ea0afbed5067d779b34deefc42aac4aa038e08ae28c2"
+        },
+        {
+          "url": "https://dblp.org/rec/conf/acl/WangZWYD26",
+          "sha256": "b8a8b457c594ce9772394ab6431a08a116be1b6b819a7d238cd3391a32610ae0",
+          "quote": "Exact original owned publication title: TingIS: Real-time Risk Event Discovery from Noisy Customer Incidents at Enterprise Scale.; ordered authors: Jun Wang 0006 | Ziyin Zhang | Rui Wang 0015 | Hang Yu 0002 | Peng Di",
+          "kind": "original_local_DBLP_XML_record",
+          "source_path": "/n/fs/resemble/homogenizing-science/scratch/sjtu-first-paper-preparation-1108/source-output/DBLP-ORIGINAL-SELECTED.json.gz",
+          "owned_pid": "https://dblp.org/pid/w/RuiWang15",
+          "publication_key": "conf/acl/WangZWYD26"
+        }
+      ]
+    },
+    {
+      "id": "sjtu-20261108-W7155536437",
+      "pi": "王 瑞",
+      "decision": "hold",
+      "match": {
+        "oa": "https://openalex.org/W7155536437",
+        "doi": "10.48550/arxiv.2604.21889"
+      },
+      "why": "The original owned CoRR publication itself repeats Rui Wang, as does the API record. The published edition's five-author byline cannot silently rewrite this preprint. Hold this specific duplicate-author representation pending version-specific primary evidence.",
+      "reviewed_by": "codex-sjtu-first-paper-preparation-1108",
+      "reviewed_at": "2026-11-08",
+      "evidence": [
+        {
+          "url": "https://openalex.org/W7155536437",
+          "sha256": "2d1096c0b0ffafe13bfda76078ea27cdc8e6710d06416428b06b39ac1e3e5a37",
+          "quote": "API ordered author slots: Wang, Jun | Zhang, Ziyin | Wang, Rui | Yu, Hang | Di, Peng | Wang, Rui",
+          "kind": "original_indexed_stored_zlib_blob",
+          "hash_basis": "SHA256 of exact original indexed compressed work BLOB; not HTTP response or PDF",
+          "source_path": "/n/fs/resemble/homogenizing-science/scratch/sjtu-first-paper-preparation-1108/TARGETED-DOI-FULL-SOURCE-CONTEXTS.json.gz",
+          "canonical_work_sha256": "2d1c6cb92eeb0483a05f2f8261ffdb7840726e1077277cd446e89eb7d90f3adf"
+        },
+        {
+          "url": "https://dblp.org/rec/journals/corr/abs-2604-21889",
+          "sha256": "b9d7562557128f6955a38e0fdf405e9f13798eb1bd6c31ad284a248cd8b19c30",
+          "quote": "Exact original owned publication title: TingIS: Real-time Risk Event Discovery from Noisy Customer Incidents at Enterprise Scale.; ordered authors: Jun Wang 0006 | Ziyin Zhang | Rui Wang 0015 | Hang Yu 0002 | Peng Di | Rui Wang 0015",
+          "kind": "original_local_DBLP_XML_record",
+          "source_path": "/n/fs/resemble/homogenizing-science/scratch/sjtu-first-paper-preparation-1108/source-output/DBLP-ORIGINAL-SELECTED.json.gz",
+          "owned_pid": "https://dblp.org/pid/w/RuiWang15",
+          "publication_key": "journals/corr/abs-2604-21889"
+        }
+      ]
+    },
+    {
+      "id": "sjtu-20261108-TingIS-noDOI-W7155654220",
+      "pi": "王 瑞",
+      "decision": "hold",
+      "match": {
+        "oa": "https://openalex.org/W7155654220"
+      },
+      "why": "This newly observed DOI-less representation repeats exactly the same Rui Wang API identity in author slots3and6. It is in the already held TingIS family: the original owned CoRR source itself repeats Rui Wang, while the exact published owned source has five unique ordered authors. Hold this exact representation before it lends PI identity or affiliation; do not reject genuine research or silently rewrite the preprint from the published byline. The selector uses only the exact OA ID because this original source has no DOI.",
+      "reviewed_by": "codex-sjtu-first-paper-preparation-1108",
+      "reviewed_at": "2026-11-08",
+      "evidence": [
+        {
+          "url": "https://arxiv.org/abs/2604.21889",
+          "sha256": "bcfcf350f9553629fc6d3a25d0eac50079b8c31d7c1ad9e8899781caff04d368",
+          "quote": "Complete original author slots: 1: Wang, Jun [https://openalex.org/A5134608045] | 2: Zhang, Ziyin [https://openalex.org/A5101552415] | 3: Wang, Rui [https://openalex.org/A5134592614] | 4: Yu, Hang [https://openalex.org/A5134587070] | 5: Di, Peng [https://openalex.org/A5000833287] | 6: Wang, Rui [https://openalex.org/A5134592614]",
+          "kind": "original_indexed_source_zlib_BLOB",
+          "source_full_json_sha256": "bbb3a493162582a6786ed440d37cc8444f8379be245ba1ee9aab01415d9b9f30",
+          "source_path": "/n/fs/resemble/homogenizing-science/scratch/sjtu-first-native-1108/NATIVE-EXACT-ORIGINAL-SOURCE-PACKET.json.gz"
+        },
+        {
+          "url": "https://dblp.org/rec/journals/corr/abs-2604-21889",
+          "sha256": "b9d7562557128f6955a38e0fdf405e9f13798eb1bd6c31ad284a248cd8b19c30",
+          "quote": "Original owned CoRR ordered authors: Jun Wang 0006 | Ziyin Zhang | Rui Wang 0015 | Hang Yu 0002 | Peng Di | Rui Wang 0015",
+          "kind": "original_owned_PID_XML"
+        },
+        {
+          "url": "https://dblp.org/rec/conf/acl/WangZWYD26",
+          "sha256": "b8a8b457c594ce9772394ab6431a08a116be1b6b819a7d238cd3391a32610ae0",
+          "quote": "Original owned published ordered authors: Jun Wang 0006 | Ziyin Zhang | Rui Wang 0015 | Hang Yu 0002 | Peng Di; DOI: 10.18653/v1/2026.acl-industry.147",
+          "kind": "original_owned_PID_XML"
+        }
+      ]
+    },
+    {
+      "id": "sjtu-20261108-Yuting-ECOOP26-extended-version",
+      "pi": "汪宇霆",
+      "decision": "merge",
+      "match": {
+        "oa": "https://openalex.org/W7164409479",
+        "doi": "10.5281/zenodo.20640215"
+      },
+      "into": {
+        "oa": "https://openalex.org/W7165937471",
+        "doi": "10.4230/lipics.ecoop.2026.21"
+      },
+      "why": "The original report metadata explicitly identifies this as the extended version of the exact ECOOP26 paper; the separately normally eligible published paper has the same complete two-author byline and is identified by its exact DOI in the PI-owned original publication entry and owned DBLP record. Preserve the genuine report as an edition of the publisher paper, not an independent research count or nonpaper rejection. Never admit an absent or otherwise ineligible target.",
+      "reviewed_by": "codex-sjtu-first-paper-preparation-1108",
+      "reviewed_at": "2026-11-08",
+      "evidence": [
+        {
+          "url": "https://doi.org/10.5281/zenodo.20640215",
+          "sha256": "cb66b069944907f97f9b8001f99bcd4d53c11844f4195f18e329f0859f9bc078",
+          "quote": "This is the extended version of the ECOOP26 paper \"Foundational and Compositional Verification of Layered Concurrent Objects\".",
+          "kind": "original_indexed_OpenAlex_zlib_BLOB",
+          "source_path": "/n/fs/resemble/homogenizing-science/scratch/sjtu-first-native-1108/NATIVE-EXACT-ORIGINAL-SOURCE-PACKET.json.gz",
+          "source_full_json_sha256": "f5e555e086d6fae28e38671a72493a54b25084d769f39494646e7b6c244c850a"
+        },
+        {
+          "url": "https://jhc.sjtu.edu.cn/~yutingwang/",
+          "sha256": "d73955976dcf9cb7147cf98c250fb4887deca19b4169920daabf5411634dfaf1",
+          "quote": "Yicheng Ni, Yuting Wang * . Foundational and Compositional Verification of Layered Concurrent Objects .\n        The 40th European Conference on Object-Oriented Programming (ECOOP), 2026.\n        [ DOI | PDF | Slides | Artifact ] Exact DOI href: https://doi.org/10.4230/LIPIcs.ECOOP.2026.21",
+          "kind": "original_owned_homepage_same_entry",
+          "ownership_chain": [
+            {
+              "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/wangyuting.html",
+              "sha256": "9c3fc8b73a0d43537b27aa655b5216153217223e28ff6175b2da9b78a63ee6f8",
+              "observed": "2026-11-07T18:04:16",
+              "observedAt": "2026-11-07T18:04:16",
+              "quote": "个人主页：https://jhc.sjtu.edu.cn/~yutingwang/",
+              "kind": "official_literal_outbound_owned_resource",
+              "literal_href": "https://jhc.sjtu.edu.cn/~yutingwang/",
+              "anchor_html": "<a href=\"https://jhc.sjtu.edu.cn/~yutingwang/\" target=\"_blank\">https://jhc.sjtu.edu.cn/~yutingwang/</a>",
+              "form": "literal_anchor"
+            },
+            {
+              "url": "https://jhc.sjtu.edu.cn/~yutingwang/",
+              "sha256": "d73955976dcf9cb7147cf98c250fb4887deca19b4169920daabf5411634dfaf1",
+              "observed": "2026-11-07T18:34:22",
+              "observedAt": "2026-11-07T18:34:22",
+              "quote": "I am currently a Tenure-Track Associate Professor at Shanghai Jiao Tong University.",
+              "kind": "owned_current_academic_PI_role"
+            }
+          ]
+        },
+        {
+          "url": "https://dblp.org/rec/conf/ecoop/NiW26",
+          "sha256": "27acb12b277d5bb7666f7d56d5b04bb07b3528dd77a4de2e3a7570a0cb854ff3",
+          "quote": "Foundational and Compositional Verification of Layered Concurrent Objects.; complete byline: Yicheng Ni | Yuting Wang 0001; DOI: 10.4230/lipics.ecoop.2026.21",
+          "kind": "original_owned_PID_DBLP_XML_record",
+          "owned_PID": "https://dblp.org/pid/09/8269-1"
+        }
+      ]
+    }
+  ]
+}
