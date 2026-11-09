@@ -30,6 +30,7 @@ def atomic_json(path, value):
 def write(ctx):
     """The package files and report.json."""
     school, out, n, pis, rows, stu, sp = ctx.school, ctx.out, ctx.n, ctx.pis, ctx.rows, ctx.stu, ctx.sp
+    n.setdefault('pi_work_list_hits', 0)  # Required report count; an absent optional cache contributes no hits.
     anchored, funnel, dblp_title, dblp_doi, verified = ctx.anchored, ctx.funnel, ctx.dblp_title, ctx.dblp_doi, ctx.verified
     excluded, nick_merges, weak_dropped, self_listed = ctx.excluded, ctx.nick_merges, ctx.weak_dropped, ctx.self_listed
     guard_samples, guard_kept_samples = ctx.guard_samples, ctx.guard_kept_samples
