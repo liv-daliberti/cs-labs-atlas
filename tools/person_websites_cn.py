@@ -214,6 +214,45 @@ class Fetcher:
         self.store(url, rec)
         return rec
 
+    def post(self, key, url, data):
+        """One polite POST to a same-host data endpoint the page's own scripts call (robots checked); cached under `key`."""
+        import requests
+        u, v = self.live.find(key)
+        if v is not None and (v.get('raw') or v.get('error')):
+            return v
+        host = urllib.parse.urlsplit(url).netloc
+        ok, why = self.robots(url)
+        if not ok:
+            rec = dict(at=NOW, status=None, sha256=None, raw=None, source='own', error=why)
+            self.store(key, rec)
+            return rec
+        delay = self.delay_for(host)
+        err = None
+        for attempt in range(2):
+            with self.lock:
+                wait = self.last[host] + delay - time.time()
+                self.last[host] = max(time.time(), self.last[host]) + (delay if wait > 0 else 0)
+            if wait > 0:
+                time.sleep(wait)
+            try:
+                r = requests.post(url, data=data, headers={'User-Agent': UA}, timeout=(8, 25))
+                body = r.content[:3_000_000]
+                try:
+                    html_ = json.loads(r.text) if r.status_code == 200 else None
+                except ValueError:
+                    html_ = None
+                raw = html_.encode('utf-8') if isinstance(html_, str) else None
+                rec = dict(at=NOW, status=r.status_code, sha256=sha256(body).hexdigest(), raw=raw, source='own', final_url=key,
+                           error=None if raw else 'endpoint returned no page body')
+                self.store(key, rec)
+                return rec
+            except Exception as e:
+                err = type(e).__name__
+                time.sleep(5)
+        rec = dict(at=NOW, status=None, sha256=None, raw=None, source='own', error=f'unreachable from our network (timeout/{err}) after 2 attempts')
+        self.store(key, rec)
+        return rec
+
     def store(self, url, rec):
         with self.lock:
             self.db.execute('insert or replace into f values (?,?,?,?,?,?,?)',
@@ -348,6 +387,18 @@ def build(school, do_live=True, workers=6):
         with ThreadPoolExecutor(workers) as ex:
             list(ex.map(fet.get, list(dict.fromkeys(todo_fetch))))
 
+    # HIT: homepage.hit.edu.cn renders its sections client-side; the page's own script (scripts/homepage/home-teacher-show.js)
+    # POSTs TeacherHome/teacherBody.do for the body HTML. robots.txt there is 'Allow: /'. One request per PI, 3 s apart.
+    body_recs = {}
+    if school == 'hit' and do_live:
+        for r in rows_in:
+            if r['website'] and urllib.parse.urlsplit(r['website']).hostname == 'homepage.hit.edu.cn':
+                u, rec = live.find(r['website'])
+                m = re.search(r'data-tid="([0-9A-Za-z]+)"', decode(rec['raw'])) if rec and rec.get('raw') else None
+                if m:
+                    key = 'https://homepage.hit.edu.cn/TeacherHome/teacherBody.do?id=' + m.group(1)
+                    body_recs[r['PI']] = fet.post(key, 'https://homepage.hit.edu.cn/TeacherHome/teacherBody.do',
+                                                  {'id': m.group(1), 'versionId': 'onlineVersion'})
     # pass 2: link discovery from profile/home pages, fetch candidate people pages and group sites
     pending = {}
     profile_set = {norm_url(x['official_profile_url']) for v in fc.values() for x in v if x.get('official_profile_url')}
@@ -360,6 +411,9 @@ def build(school, do_live=True, workers=6):
                 u, rec = live.find(u0)
                 if rec and rec.get('raw') and not any(norm_url(u) == norm_url(x[0]) for x in pages):
                     pages.append((u0, rec))
+        b = body_recs.get(pi)
+        if b and b.get('raw') and r['website']:
+            pages.append((r['website'], dict(b, final_url=r['website'], via='TeacherHome/teacherBody.do (the homepage script\'s own body endpoint)')))
         pi_sites[pi] = pages
         for u0, rec in pages:
             host = urllib.parse.urlsplit(u0).hostname
@@ -499,7 +553,7 @@ def build(school, do_live=True, workers=6):
             kept_hosts.add(urllib.parse.urlsplit(prof).hostname)
         for k, (kind, href, text, u0, rec0) in groups.items():
             u, rec = live.find(href)
-            ff = dict(kind='official_page', url=u0, sha256=rec0.get('sha256'), anchor=text)
+            ff = dict(kind='official_page', url=u0, sha256=rec0.get('sha256'), anchor=text, **({'via': rec0['via']} if rec0.get('via') else {}))
             from_own_home = bool(site) and norm_url(u0) == norm_url(site)
             names_pi = bool(rec and rec.get('raw') and norm_name(pi) in norm_name(decode(rec['raw'])))
             if rec and rec.get('raw') and not names_pi and not from_own_home:
@@ -560,7 +614,34 @@ def build(school, do_live=True, workers=6):
                            member_role_stated=role if role and '导师' not in role else 'not stated on the page')
                 row.update(fetched_fields(full, mrec) if mrec else dict(fetched=False, fetch_reason=host_class(full) or 'queued: member page not fetched in this pass'))
                 out.append(row)
+    out, dropped = clean_members(out)
+    for row in out:
+        why = DOUBTFUL.get((school, row['person'], row.get('url')))
+        if why and row['role'] == 'pi':
+            row.update(verified=False, doubtful_reason=why)
+    live.dropped = dropped
     return out, live
+
+
+DOUBTFUL = {('pku', '苗旭鹏', 'https://www.pdl.cmu.edu/'): 'linked from own page but appears to be another lab'}
+ROLE_OK = re.compile(r'^(?:博士后|博士生?|博士研究生|硕士生?|硕士研究生|研究生|本科生?|在读|已毕业|毕业生|校友|访问学生|访问学者|科研助理|实习生|'
+                     r'(?:Ph\.?D|Master|M\.?S|Undergrad|Postdoc|Alumni|Visiting|Intern|Research (?:Assistant|Scientist)|Past|Current|Former|Graduate)'
+                     r'[A-Za-z .,()\d-]{0,25}):?$', re.I)
+
+
+def clean_members(rows):
+    """Keep a member row only when the role the page states is a recognisable role (or the page states none); the rest are
+    dropped and returned with the reason, never silently."""
+    keep, dropped = [], []
+    for r in rows:
+        if r['kind'] == 'member_home':
+            role = (r.get('member_role_stated') or '').strip()
+            if role != 'not stated on the page' and not ROLE_OK.match(role):
+                dropped.append(dict(lab=r['lab'], person=r['person'], url=r['url'], found_from=r['found_from'].get('url'), role_text=role,
+                                    reason='the heading text above the link is not a recognisable member role (page text, navigation or address)'))
+                continue
+        keep.append(r)
+    return keep, dropped
 
 
 def gate(rows):
@@ -603,7 +684,8 @@ def main():
     if a.cmd in ('build', 'offline'):
         rows, live = build(a.school, do_live=(a.cmd == 'build'))
         doc = dict(school=a.school, tool='tools/person_websites_cn.py', review_status='automatic',
-                   source='progress-pi-detail.csv, faculty-candidates.json, staged live captures, own live pass %s' % NOW, rows=rows)
+                   source='progress-pi-detail.csv, faculty-candidates.json, staged live captures, own live pass %s' % NOW, rows=rows,
+                   dropped_member_rows=live.dropped, member_rows_note='discovery leads only; roles verbatim from the lab page')
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(json.dumps(doc, indent=1, ensure_ascii=False) + '\n')
     else:

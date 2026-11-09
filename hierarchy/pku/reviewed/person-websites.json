@@ -3600,7 +3600,9 @@
    "fetched": true,
    "fetched_at": "2026-11-08",
    "status": 200,
-   "sha256": "6cdeef27d67a5b1a306c5da0be873a5b36e43ec96535bbe783ea898cc1eedf7b"
+   "sha256": "6cdeef27d67a5b1a306c5da0be873a5b36e43ec96535bbe783ea898cc1eedf7b",
+   "verified": false,
+   "doubtful_reason": "linked from own page but appears to be another lab"
   },
   {
    "person": "苗旭鹏",
@@ -7678,112 +7680,6 @@
    "sha256": "434ee88b26e4e63cddd05a135d397c4631f66dbe3e37cb4f899cef23d6ceafa1"
   },
   {
-   "person": "网站首页",
-   "role": "member",
-   "lab": "张铭",
-   "kind": "member_home",
-   "url": "https://dse.pku.edu.cn/index.html",
-   "found_from": {
-    "kind": "lab_page",
-    "url": "https://dse.pku.edu.cn/rcpy/yjsjx/index.htm",
-    "sha256": "f37678819a9591398c89497a1c394d70414ae6e1f7475f38dada2e136bb641f4",
-    "anchor": "网站首页",
-    "section": "研究生教学"
-   },
-   "member_role_stated": "研究生教学",
-   "fetched": true,
-   "fetched_at": "2026-11-08",
-   "status": 200,
-   "sha256": "434ee88b26e4e63cddd05a135d397c4631f66dbe3e37cb4f899cef23d6ceafa1"
-  },
-  {
-   "person": "教辅系列",
-   "role": "member",
-   "lab": "张铭",
-   "kind": "member_home",
-   "url": "https://dse.pku.edu.cn/people/jfxl/index.htm",
-   "found_from": {
-    "kind": "lab_page",
-    "url": "https://dse.pku.edu.cn/rcpy/yjsjx/index.htm",
-    "sha256": "f37678819a9591398c89497a1c394d70414ae6e1f7475f38dada2e136bb641f4",
-    "anchor": "教辅系列",
-    "section": "研究生教学"
-   },
-   "member_role_stated": "研究生教学",
-   "fetched": false,
-   "fetch_reason": "queued: member page not fetched in this pass"
-  },
-  {
-   "person": "人才招聘",
-   "role": "member",
-   "lab": "张铭",
-   "kind": "member_home",
-   "url": "https://dse.pku.edu.cn/news/rczp/index.htm",
-   "found_from": {
-    "kind": "lab_page",
-    "url": "https://dse.pku.edu.cn/rcpy/yjsjx/index.htm",
-    "sha256": "f37678819a9591398c89497a1c394d70414ae6e1f7475f38dada2e136bb641f4",
-    "anchor": "人才招聘",
-    "section": "研究生教学"
-   },
-   "member_role_stated": "研究生教学",
-   "fetched": false,
-   "fetch_reason": "queued: member page not fetched in this pass"
-  },
-  {
-   "person": "现有学生",
-   "role": "member",
-   "lab": "张铭",
-   "kind": "member_home",
-   "url": "https://dse.pku.edu.cn/rcpy/xyxs/index.htm",
-   "found_from": {
-    "kind": "lab_page",
-    "url": "https://dse.pku.edu.cn/rcpy/yjsjx/index.htm",
-    "sha256": "f37678819a9591398c89497a1c394d70414ae6e1f7475f38dada2e136bb641f4",
-    "anchor": "现有学生",
-    "section": "研究生教学"
-   },
-   "member_role_stated": "研究生教学",
-   "fetched": true,
-   "fetched_at": "2026-11-08",
-   "status": 200,
-   "sha256": "f5293d2c959faa28545ec63ae8b80b6247d091fefc2b8c16edc0062e575a4fa0"
-  },
-  {
-   "person": "毕业校友",
-   "role": "member",
-   "lab": "张铭",
-   "kind": "member_home",
-   "url": "https://dse.pku.edu.cn/rcpy/bfxy/index.htm",
-   "found_from": {
-    "kind": "lab_page",
-    "url": "https://dse.pku.edu.cn/rcpy/yjsjx/index.htm",
-    "sha256": "f37678819a9591398c89497a1c394d70414ae6e1f7475f38dada2e136bb641f4",
-    "anchor": "毕业校友",
-    "section": "研究生教学"
-   },
-   "member_role_stated": "研究生教学",
-   "fetched": false,
-   "fetch_reason": "queued: member page not fetched in this pass"
-  },
-  {
-   "person": "人才培养",
-   "role": "member",
-   "lab": "张铭",
-   "kind": "member_home",
-   "url": "https://dse.pku.edu.cn/rcpy/index.htm",
-   "found_from": {
-    "kind": "lab_page",
-    "url": "https://dse.pku.edu.cn/rcpy/yjsjx/index.htm",
-    "sha256": "f37678819a9591398c89497a1c394d70414ae6e1f7475f38dada2e136bb641f4",
-    "anchor": "人才培养",
-    "section": "研究生教学"
-   },
-   "member_role_stated": "研究生教学",
-   "fetched": false,
-   "fetch_reason": "queued: member page not fetched in this pass"
-  },
-  {
    "person": "张史梁",
    "role": "pi",
    "lab": "张史梁",
@@ -8335,5 +8231,56 @@
    "url": null,
    "reason": "the lab is PI-centred; no separate lab website: the PI's profile/home page links no lab, group or research-centre site by anchor text (checked 1 stored page(s))"
   }
- ]
+ ],
+ "dropped_member_rows": [
+  {
+   "lab": "张铭",
+   "person": "网站首页",
+   "url": "https://dse.pku.edu.cn/index.html",
+   "found_from": "https://dse.pku.edu.cn/rcpy/yjsjx/index.htm",
+   "role_text": "研究生教学",
+   "reason": "the heading text above the link is not a recognisable member role (page text, navigation or address)"
+  },
+  {
+   "lab": "张铭",
+   "person": "教辅系列",
+   "url": "https://dse.pku.edu.cn/people/jfxl/index.htm",
+   "found_from": "https://dse.pku.edu.cn/rcpy/yjsjx/index.htm",
+   "role_text": "研究生教学",
+   "reason": "the heading text above the link is not a recognisable member role (page text, navigation or address)"
+  },
+  {
+   "lab": "张铭",
+   "person": "人才招聘",
+   "url": "https://dse.pku.edu.cn/news/rczp/index.htm",
+   "found_from": "https://dse.pku.edu.cn/rcpy/yjsjx/index.htm",
+   "role_text": "研究生教学",
+   "reason": "the heading text above the link is not a recognisable member role (page text, navigation or address)"
+  },
+  {
+   "lab": "张铭",
+   "person": "现有学生",
+   "url": "https://dse.pku.edu.cn/rcpy/xyxs/index.htm",
+   "found_from": "https://dse.pku.edu.cn/rcpy/yjsjx/index.htm",
+   "role_text": "研究生教学",
+   "reason": "the heading text above the link is not a recognisable member role (page text, navigation or address)"
+  },
+  {
+   "lab": "张铭",
+   "person": "毕业校友",
+   "url": "https://dse.pku.edu.cn/rcpy/bfxy/index.htm",
+   "found_from": "https://dse.pku.edu.cn/rcpy/yjsjx/index.htm",
+   "role_text": "研究生教学",
+   "reason": "the heading text above the link is not a recognisable member role (page text, navigation or address)"
+  },
+  {
+   "lab": "张铭",
+   "person": "人才培养",
+   "url": "https://dse.pku.edu.cn/rcpy/index.htm",
+   "found_from": "https://dse.pku.edu.cn/rcpy/yjsjx/index.htm",
+   "role_text": "研究生教学",
+   "reason": "the heading text above the link is not a recognisable member role (page text, navigation or address)"
+  }
+ ],
+ "member_rows_note": "discovery leads only; roles verbatim from the lab page"
 }

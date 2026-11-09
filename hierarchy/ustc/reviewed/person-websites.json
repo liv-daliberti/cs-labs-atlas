@@ -3987,40 +3987,6 @@
    "sha256": "85a953e303fb4e9e330bc72007af07cdb9156d510466fab9630a8ea90f735040"
   },
   {
-   "person": "廖云铭",
-   "role": "member",
-   "lab": "赵功名",
-   "kind": "member_home",
-   "url": "https://ymliao98.github.io/",
-   "found_from": {
-    "kind": "lab_page",
-    "url": "https://int-ustc.github.io/member.html",
-    "sha256": "9b231eaf57b6b337ae88cf43f0876826c4546c128dc45157e9ed549941a458a7",
-    "anchor": "廖云铭",
-    "section": "本科: 中国科学技术大学"
-   },
-   "member_role_stated": "本科: 中国科学技术大学",
-   "fetched": false,
-   "fetch_reason": "queued: member page not fetched in this pass"
-  },
-  {
-   "person": "方 缙",
-   "role": "member",
-   "lab": "赵功名",
-   "kind": "member_home",
-   "url": "https://www.fangjin.site/",
-   "found_from": {
-    "kind": "lab_page",
-    "url": "https://int-ustc.github.io/member.html",
-    "sha256": "9b231eaf57b6b337ae88cf43f0876826c4546c128dc45157e9ed549941a458a7",
-    "anchor": "方 缙",
-    "section": "本科: 中国科学技术大学"
-   },
-   "member_role_stated": "本科: 中国科学技术大学",
-   "fetched": false,
-   "fetch_reason": "queued: member page not fetched in this pass"
-  },
-  {
    "person": "郑浩然",
    "role": "pi",
    "lab": "郑浩然",
@@ -4164,5 +4130,24 @@
    "url": null,
    "reason": "the lab is PI-centred; no separate lab website: the PI's profile/home page links no lab, group or research-centre site by anchor text (checked 1 stored page(s))"
   }
- ]
+ ],
+ "dropped_member_rows": [
+  {
+   "lab": "赵功名",
+   "person": "廖云铭",
+   "url": "https://ymliao98.github.io/",
+   "found_from": "https://int-ustc.github.io/member.html",
+   "role_text": "本科: 中国科学技术大学",
+   "reason": "the heading text above the link is not a recognisable member role (page text, navigation or address)"
+  },
+  {
+   "lab": "赵功名",
+   "person": "方 缙",
+   "url": "https://www.fangjin.site/",
+   "found_from": "https://int-ustc.github.io/member.html",
+   "role_text": "本科: 中国科学技术大学",
+   "reason": "the heading text above the link is not a recognisable member role (page text, navigation or address)"
+  }
+ ],
+ "member_rows_note": "discovery leads only; roles verbatim from the lab page"
 }

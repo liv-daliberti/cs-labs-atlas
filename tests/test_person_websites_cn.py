@@ -31,3 +31,9 @@ def test_link_kind_filters_organisations():
     assert C.link_kind('Programming Languages Laboratory', 'http://pl.example.cn/', 'x') == 'group'
     assert C.link_kind('IFIP Working Group 2.1', 'http://w.example.org/', 'x') is None
     assert C.link_kind('个人主页', 'http://p.example.cn/~a', 'x') == 'pi_home'
+
+
+def test_clean_members_drops_unrecognisable_roles_with_reason():
+    mk = lambda role: dict(kind='member_home', lab='L', person='张三', url='http://x/', found_from={'url': 'http://p/'}, member_role_stated=role)
+    keep, dropped = C.clean_members([mk('博士研究生'), mk('Past MS Students:'), mk('not stated on the page'), mk('研究生教学'), mk("master's degree")])
+    assert len(keep) == 3 and len(dropped) == 2 and all(d['reason'] for d in dropped)
