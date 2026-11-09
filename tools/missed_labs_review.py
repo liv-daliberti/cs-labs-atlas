@@ -36,32 +36,34 @@ def slug(name):
     return '-'.join(toks(name))
 
 
-def title_after(text, m_end):
-    tail = text[m_end:m_end + 90]
+def title_after(text, m_end, own=None):
+    tail = text[m_end:m_end + 260]
     t = C.PROF_T.search(tail)
-    if not t or t.start() > 45:
+    if not t or t.start() > (200 if own and own in tail[:t.start()] else 45):
         return None
     between = tail[:t.start()]
     if re.search(r'former|retired|emerit|visiting', between, re.I):
         return None
-    if re.search(r'[a-z]{2,}\s+[A-Z][a-z]+\s+[A-Z][a-z]+', between):  # another person's name sits between
-        return None
+    if own and own in between:
+        pass   # a profile heading repeats the person's own name ('Isaac Kohane, MD, PhD Isaac Kohane, MD, PhD Chair of ...')
+    elif re.search(r'[a-z]{2,}\s+[A-Z][a-z]+\s+[A-Z][a-z]+', between) and not re.fullmatch(r"(?:\s*(?:[A-Z][\w.'-]*|and|&|of))+\s*", between):
+        return None  # another person's name sits between (a named chair such as 'Harry Lewis and Marlyn McGrath Professor' is the person's own title)
     return tail[:t.end()], t.end()
 
 
 def faculty_hits(rows, name):
-    t = re.sub(r'[^\w ]', '', name).split()
+    t = re.sub(r'[^\w ]', '', name.replace('-', ' ')).split()
     pat = re.compile(r'(?<![\w])' + re.escape(t[0]) + r'[\w. ()"\u2019-]{0,25}?' + r'(?<![\w])' + re.escape(t[-1]) + r'(?-i:(?![a-z]))', re.I)
     out = []
     for url, dept, ts, sha, text in rows:
-        m = pat.search(text)
-        if not m:
-            continue
-        ta = title_after(text, m.end())
-        if ta:
+        for m in pat.finditer(text):   # every mention: a profile page names the person in its navigation before the heading that carries the title
+            ta = title_after(text, m.end(), t[-1])
+            if not ta:
+                continue
             title, tend = ta
             out.append({'url': url, 'sha256': sha, 'observed': ts, 'dept': dept, 'year': int((ts or '0000')[:4]) or None,
                         'quote': ' '.join(text[m.start():m.end() + tend].split()), 'ladder': not C.NOT_LADDER.search(title)})
+            break
     return out
 
 
@@ -96,7 +98,7 @@ def run(school, apply=False, min_cs=5):
             if not r[1].startswith(SKIP)]
     rows += scratch_rows(school)   # pages of the profile pass (tools/missed_labs_fetch.py), kept outside main's capture store
     units = sorted({r[1].split(':')[0] for r in rows})
-    hand = ML.load(root / 'reviewed/missed-labs-hand.json') or {}
+    hand = ML.load(Path(__file__).resolve().parents[1] / 'hierarchy' / school / 'reviewed/missed-labs-hand.json') or ML.load(root / 'reviewed/missed-labs-hand.json') or {}
     decisions, accepted = [], []
     for e in leads:
         if 'oa' in e['sources'] and e['works'] and e['cs'] / e['works'] < 0.2 and 'dblp' not in e['sources']:

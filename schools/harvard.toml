@@ -137,6 +137,26 @@ url = "https://seas.harvard.edu/computer-science"
   # The school-wide directory includes all SEAS disciplines. title_match alone does not filter rows out of the CS census.
   title_filter = '''\bComputer Science\b'''
   format = "seas_directory"
+  # Deep dive 2026-11-09 (T095): exact historical eras found in the Wayback CDX (kept in scratch/harvard-deepdive/cdx1.json).
+  # 2016-2019: the Drupal 7 ladder-faculty page (one page, ~105-112 SEAS ladder professors, `/directory/<id>` entries); 2020-2022: the CS people directory on www.seas (paged,
+  # `?search=&page=%2CN`); 2023-: seas.harvard.edu/faculty (slot above). No capture is invented for a year the CDX does not hold.
+  [[departments.listings]]
+  slot = "SEAS ladder (Drupal 7)"
+  kind = "main"
+  url = "www.seas.harvard.edu/faculty-research/people/ladder"
+  from = "20160101"
+  to = "20191231"
+  prefix = false
+  title_filter = '''\bComputer Science\b'''
+  format = "seas_directory_d7"
+  [[departments.listings]]
+  slot = "SEAS CS people (www)"
+  kind = "main"
+  url = "www.seas.harvard.edu/computer-science/people"
+  from = "20200101"
+  to = "20221231"
+  prefix = false
+  format = "seas_directory"
   [[departments.listings]]
   slot = "SEAS CS people"
   kind = "main"
@@ -153,6 +173,12 @@ url = "https://seas.harvard.edu/computer-science"
   format = "seas_directory"
 
 # --- units searched for computing-related faculty (stage 2). Only computing labs count (owner 2026-11-05). -----------------------------
+[[affiliated_units]]
+code = "SEAS"
+name = "SEAS ladder faculty, all areas (non-CS computing faculty: EE, Applied Mathematics, Bioengineering)"
+url = "https://seas.harvard.edu/faculty"
+listings = ["www.seas.harvard.edu/faculty-research/people/ladder", "seas.harvard.edu/faculty"]
+
 [[affiliated_units]]
 code = "AM"
 name = "Applied Mathematics (SEAS)"

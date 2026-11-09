@@ -103,3 +103,13 @@ def test_listing_slots_carry_the_charter_format():
     import school_config as S
     slots = S.listing_slots('hkust')
     assert slots and slots[0].get('format') == 'hkust_faculty_any'
+
+
+def test_seas_directory_drupal7():
+    html = ('<div class="group-header"><div class="field field-name-title"><div class="field-items"><div class="field-item even">'
+            '<h2><a href="/directory/jaiz">Joanna Aizenberg</a></h2></div></div></div>'
+            '<div class="field field-name-field-primary-title"><div class="field-items"><div class="field-item even">'
+            'Amy Smith Berylson Professor of Materials Science </div></div></div></div>')
+    name, rows = F.parse(html)
+    assert name == 'seas_directory_d7'
+    assert rows[0]['name_listed'] == 'Joanna Aizenberg' and rows[0]['titles'] == ['Amy Smith Berylson Professor of Materials Science']

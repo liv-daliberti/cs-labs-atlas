@@ -247,6 +247,19 @@ def seas_directory(h):
     return out
 
 
+def seas_directory_d7(h):
+    """Harvard SEAS directory before 2020 (Drupal 7: `/directory/<id>` entries, www.seas.harvard.edu/faculty-research/people/ladder and the CS people page):
+    <h2><a href="/directory/jaiz">Name</a></h2> then field-primary-title."""
+    out = []
+    for p in re.split(r'<div class="group-header">', h)[1:]:
+        nm = re.search(r'<h2><a href="([^"]*)">(.*?)</a></h2>', p, re.S)
+        if not nm:
+            continue
+        tt = re.search(r'field-name-field-primary-title.*?<div class="field-item[^"]*">(.*?)</div>', p, re.S)
+        out.append(dict(name_listed=clean(nm.group(2)), titles=_titles(tt.group(1)) if tt else [], homepage=nm.group(1) or None, division=None))
+    return out
+
+
 def wse_entity(h):
     """Johns Hopkins Whiting School WordPress theme ('wse'): <li class="entity_list_item"> with entity_name(_link) and entity_title (CS 2021-, other Whiting sites)."""
     out = []
@@ -532,6 +545,7 @@ FORMATS = {
     'ece_new': (ece_new, re.compile(r'field--name-field-person-official-job-title')),
     'isye_old': (isye_old, re.compile(r'<!-- Person -->')),
     'seas_directory': (seas_directory, re.compile(r'person__detailed-name')),
+    'seas_directory_d7': (seas_directory_d7, re.compile(r'field-name-field-primary-title')),
     'wse_entity': (wse_entity, re.compile(r'class="entity_list_item"')),
     'wse_contact': (wse_contact, re.compile(r'class="contact_block"')),
     'wu_teaser': (wu_teaser, re.compile(r'class="faculty-directory__teaser"')),
