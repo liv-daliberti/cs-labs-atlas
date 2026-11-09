@@ -10,7 +10,7 @@ excluded: anyone matching a census row or alias, a student / postdoc / member of
 CSRankings is never read here (licence: discovery lead only, by hand).
 usage: missed_labs_leads.py <school> [--min-cs 5] [--out FILE]
 """
-import argparse, gzip, json, sys
+import argparse, gzip, json
 from collections import defaultdict
 from pathlib import Path
 
@@ -32,6 +32,8 @@ def best_name(raw):
         t = toks(n)
         return (sum(1 for x in t if len(x) > 1), c)
     n = max(raw.items(), key=key)[0]
+    w = n.split()
+    n = ' '.join(x for i, x in enumerate(w) if i == 0 or x.lower() != w[i - 1].lower())   # 'Bruno Sinopoli Sinopoli'
     if ',' in n and n.count(',') == 1:
         a, b = n.split(','); n = f'{b.strip()} {a.strip()}'
     return n
@@ -70,7 +72,7 @@ def build(school, min_cs=5):
 
     prior = {}
     for f in ('cs-related-review.json',):
-        r = load(Path(P.data('reviewed/' + f, school)) if False else Path(P.CODE) / 'hierarchy' / school / 'reviewed' / f)
+        r = load(Path(P.CODE) / 'hierarchy' / school / 'reviewed' / f)
         for x in (r or {}).get('decisions', []):
             for n in [x['name'], *x.get('aliases', [])]:
                 prior[n] = x['decision']

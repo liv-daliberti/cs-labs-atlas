@@ -19,10 +19,14 @@ from pathlib import Path
 import atlas_paths as P  # noqa: E402
 import cs_related_school as C  # noqa: E402
 import missed_labs_leads as ML  # noqa: E402
-from pi_hierarchy import toks  # noqa: E402
+from pi_hierarchy import Name, toks  # noqa: E402
 
 SKIP = ('labpage', 'homepage', 'defense', 'gap', 'student', 'cv', 'thesis', 'roster', 'wikidata')
 TODAY = '20261109'
+WAYBACK_QUEUE = {   # pages the stored captures do not hold; fetched later through the shared Wayback throttle (WAYBACK_LOW=1, queued, no retry on 429)
+    'uchicago': ['https://cs.uchicago.edu/people/faculty/', 'https://cs.uchicago.edu/people/', 'https://datascience.uchicago.edu/people/faculty/'],   # cs.uchicago.edu was down for maintenance
+    'jhu': ['https://www.cs.jhu.edu/faculty/', 'https://engineering.jhu.edu/faculty/', 'lab hosts of the verify_queue leads (bot-challenged: Wayback only)'],
+}
 RULE = ('Leads: OpenAlex sweep authors with >= 5 DBLP-indexed school works and >= 20% of their school works so, DBLP-affiliated persons and '
         'listed-not-in-census names, none in the census or a prior cs-related decision. Accepted only with a stored unit/profile capture that names '
         'the person followed by a ladder professor title; an OpenAlex or DBLP affiliation alone is never appointment evidence.')
@@ -42,8 +46,7 @@ def title_after(text, m_end):
         return None
     if re.search(r'[a-z]{2,}\s+[A-Z][a-z]+\s+[A-Z][a-z]+', between):  # another person's name sits between
         return None
-    title = tail[:t.end()].strip(' ,;-–')
-    return title
+    return tail[:t.end()], t.end()
 
 
 def faculty_hits(rows, name):
@@ -54,10 +57,11 @@ def faculty_hits(rows, name):
         m = pat.search(text)
         if not m:
             continue
-        title = title_after(text, m.end())
-        if title:
+        ta = title_after(text, m.end())
+        if ta:
+            title, tend = ta
             out.append({'url': url, 'sha256': sha, 'observed': ts, 'dept': dept, 'year': int((ts or '0000')[:4]) or None,
-                        'quote': ' '.join((m.group(0) + ' ' + title).split()), 'ladder': not C.NOT_LADDER.search(title)})
+                        'quote': ' '.join(text[m.start():m.end() + tend].split()), 'ladder': not C.NOT_LADDER.search(title)})
     return out
 
 
@@ -99,11 +103,31 @@ def run(school, apply=False, min_cs=5):
     counts = {}
     for d in decisions:
         counts[d['decision']] = counts.get(d['decision'], 0) + 1
+    live = [d for d in decisions if d['decision'] == 'no_appointment_evidence' and d['years'] and d['years'][-1] >= 2022]
+    queue = [{'name': d['name'], 'dblp_indexed': d['dblp_indexed'], 'school_works': d['school_works'], 'last_author': d['last_author'], 'oa_ids': d['oa_ids'],
+              'next': 'official unit faculty list / profile via Wayback (live only where robots allows); not in a stored capture'}
+             for d in sorted(live, key=lambda d: (-d['last_author'], -d['dblp_indexed']))[:40]]
     print(school, 'per source', per_source, 'decisions', counts)
+    merged = []   # one person under two name forms ('Margo I. Seltzer' / 'Margo Seltzer'): keep the one with more works, fold the other in
+    for e, lad in sorted(accepted, key=lambda x: -x[0]['works']):
+        for m in merged:
+            if Name([m[0]['name']]).match(e['name']) or Name([e['name']]).match(m[0]['name']):
+                m[0].setdefault('aliases', []).append(e['name']); m[0]['oa_ids'] = sorted(set(m[0]['oa_ids']) | set(e['oa_ids']))
+                m[0]['dblp'] = sorted(set(m[0]['dblp']) | set(e['dblp'])); m[1].extend(x for x in lad if x not in m[1])
+                for d in decisions:
+                    if d['name'] == e['name']:
+                        d.update(decision='already_in_census_as', reason=f"name variant of {m[0]['name']} (same pass)")
+                break
+        else:
+            merged.append((e, list(lad)))
+    accepted = merged
+    counts = {}
+    for d in decisions:
+        counts[d['decision']] = counts.get(d['decision'], 0) + 1
     adds = []
     for e, lad in accepted:
         yrs = sorted({x['year'] for x in lad if x['year']})
-        adds.append({'name': e['name'], 'aliases': [], 'collection_person_id': f'{school}_fac_{slug(e["name"])}', 'dblp': e['dblp'],
+        adds.append({'name': e['name'], 'aliases': e.get('aliases', []), 'collection_person_id': f'{school}_fac_{slug(e["name"])}', 'dblp': e['dblp'],
                      'rank': 'ladder', 'title_as_listed': lad[0]['quote'], 'departments': sorted({x['dept'].split(':')[-1] for x in lad}),
                      'years_listed': yrs,
                      'sources': [{'url': x['url'], 'sha256': x['sha256'], 'quote': x['quote'], 'kind': 'unit_listing:' + x['dept'].split(':')[-1],
@@ -121,7 +145,7 @@ def run(school, apply=False, min_cs=5):
         rv = Path(__file__).resolve().parents[1] / 'hierarchy' / school / 'reviewed'
         rv.mkdir(parents=True, exist_ok=True)
         (rv / 'missed-labs-review.json').write_text(json.dumps({'school': school, 'reviewed': TODAY, 'rule': RULE, 'units_searched': units,
-                                                                'counts': counts, 'per_source': per_source, 'decisions': decisions}, indent=1, ensure_ascii=False))
+                                                                'counts': counts, 'per_source': per_source, 'verify_queue': queue, 'wayback_queue': WAYBACK_QUEUE.get(school, []), 'decisions': decisions}, indent=1, ensure_ascii=False))
         cur = ML.load(rv / 'census-additions.json')
         if cur is None:
             cur = ML.load(root / 'reviewed/census-additions.json') or []
