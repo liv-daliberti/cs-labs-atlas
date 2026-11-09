@@ -101,6 +101,11 @@ EDITORIAL_TITLE = re.compile(r"(?i)^\s*(guest[- ]editorial|(?:inaugural )?editor
                              r"(?:guest )?editors?['’]? (?:introduction|note|preface|message)|editor['’]?s? note|"
                              r"introduction to the (?:\w+ )?(?:special|focus|featured|themed) (?:issue|section)|"
                              r"message from the (?:general |program |conference )?(?:co-?)?chairs?|in this issue\b|letter from the editor)")
+# An explicit final genre label is also paratext, even when the issue's subject
+# precedes it. Requiring paired brackets and the whole label preserves research
+# about editorial work and ordinary papers whose titles contain "introduction".
+_GUEST_EDITORIAL_LABEL = r"\s*guest[- ]editors?(?:['’]s?)?\s+(?:introduction|preface|note|message)\s*"
+BRACKETED_EDITORIAL_TITLE = re.compile(r'(?i)(?:\[' + _GUEST_EDITORIAL_LABEL + r'\]|\(' + _GUEST_EDITORIAL_LABEL + r'\))\s*\.?\s*$')
 # Issue front matter can put the journal/volume before "Editorial". Require the complete issue-label shape,
 # not merely the word, so research studying editorial decisions remains eligible.
 ISSUE_EDITORIAL_TITLE = re.compile(r'(?is)^\s*[\w.&-]+,?\s+v(?:ol(?:ume)?)?\.?\s*\d+\b'
@@ -291,7 +296,7 @@ def not_a_paper(r, pages=None, bare=False):
         return 'dagstuhl_report'
     if re.search(r'(?i)oberwolfach', v) or d.startswith('10.4171/owr'):
         return 'oberwolfach_report'
-    if EDITORIAL_TITLE.search(t) or ISSUE_EDITORIAL_TITLE.search(t):
+    if EDITORIAL_TITLE.search(t) or ISSUE_EDITORIAL_TITLE.search(t) or BRACKETED_EDITORIAL_TITLE.search(t):
         return 'editorial'
     if AWARD_TITLE.search(t) or (AWARD_END.search(t) and len(t.split()) <= 8):
         return 'award_announcement'
