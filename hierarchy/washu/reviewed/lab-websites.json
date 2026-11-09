@@ -1,0 +1,4480 @@
+{
+ "school": "washu",
+ "tool": "tools/lab_websites.py",
+ "source": "labpage-audit.jsonl.gz",
+ "source_exists": false,
+ "refreshed_from_cached_discovery": true,
+ "review_status": "generated; student admissions require separate review",
+ "labs": [
+  {
+   "pi": "Kunal Agrawal",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:31:15+00:00",
+   "checks": [
+    {
+     "source": "prior_labpage_pass_2026-10-22",
+     "url": "https://engineering.wustl.edu/faculty/Kunal-Agrawal.html",
+     "at": "2026-11-07T20:29:45+00:00",
+     "result": "recorded_lab_site_is_a_profile"
+    },
+    {
+     "source": "prior_labpage_pass_2026-10-22",
+     "url": "https://www.cse.wustl.edu/~kunal/",
+     "at": "2026-11-07T20:29:45+00:00",
+     "result": "recorded_people_page"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://cse.washu.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:29:49+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://cse.wustl.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:29:53+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://engineering.wustl.edu/faculty/Kunal-Agrawal.html",
+     "at": "2026-11-07T20:29:57+00:00",
+     "result": "ok",
+     "sha256": "7647adfb4c547ce227bce504dbadb52283e09d1dc840579feba72b1725520310"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://www.cse.wustl.edu/~kunal/",
+     "at": "2026-11-07T20:29:57+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "on": "https://engineering.wustl.edu/faculty/Kunal-Agrawal.html"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://engineering.washu.edu/search.html#?cludoquery=Kunal Agrawal",
+     "at": "2026-11-07T20:29:57+00:00",
+     "result": "listed",
+     "anchor": "Find more news about Kunal Agrawal",
+     "on": "https://engineering.wustl.edu/faculty/Kunal-Agrawal.html"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://engineering.washu.edu/faculty/Kunal-Agrawal.html",
+     "at": "2026-11-07T20:29:57+00:00",
+     "result": "ok",
+     "sha256": "7647adfb4c547ce227bce504dbadb52283e09d1dc840579feba72b1725520310"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://www.cse.wustl.edu/~kunal/",
+     "at": "2026-11-07T20:29:57+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "on": "https://engineering.washu.edu/faculty/Kunal-Agrawal.html"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/35/962",
+     "at": "2026-11-07T20:29:57+00:00",
+     "result": "listed",
+     "urls": [
+      "https://engineering.wustl.edu/faculty/Kunal-Agrawal.html",
+      "https://www.cse.wustl.edu/~kunal/"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0001-5882-6647/person.json",
+     "at": "2026-11-07T20:30:00+00:00",
+     "result": "no_urls",
+     "sha256": "9ed10ae3197ef9f266dce13d940131dc05e14f3584f8da1f2dfff6685adc7925"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:30:00+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "https://engineering.washu.edu/faculty/Kunal-Agrawal.html",
+     "at": "2026-11-07T20:30:00+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cse.wustl.edu/~kunal/",
+     "at": "2026-11-07T20:30:04+00:00",
+     "result": "ok",
+     "via": "prior_labpage_pass",
+     "sha256": "043bff4964db38633f8e1b17d7b5bfb8d1e8deffb3f7af3a9abe30ff0643499b"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.cse.wustl.edu/~kunal/",
+     "at": "2026-11-07T20:30:04+00:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "043bff4964db38633f8e1b17d7b5bfb8d1e8deffb3f7af3a9abe30ff0643499b"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://engineering.washu.edu/search.html#?cludoquery=Kunal Agrawal",
+     "at": "2026-11-07T20:30:07+00:00",
+     "result": "does_not_name_pi_kept_strong_source",
+     "via": "school_profile_link",
+     "sha256": "1ccca10e6f3a45fcb459f0c0670d3b47bc9756b92481a893458fc5b889c5ed57",
+     "final_url": "https://engineering.washu.edu/search.html#?cludoquery=Kunal%20Agrawal"
+    },
+    {
+     "source": "pubs_link",
+     "url": "https://www.cse.wustl.edu/~kunal/code/index.html",
+     "at": "2026-11-07T20:30:07+00:00",
+     "result": "ok",
+     "on": "https://www.cse.wustl.edu/~kunal/",
+     "sha256": "e7b7e05a4ebe1ec182c6636029b8fbcc887ed505de6222cd7e57797bb82e8335"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "https://www.cse.wustl.edu/~kunal/",
+     "at": "2026-11-07T20:30:23+00:00",
+     "result": "3 captures",
+     "frm": 2016
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20160412152522id_/http://www.cse.wustl.edu:80/~kunal/",
+     "at": "2026-11-07T20:30:41+00:00",
+     "result": "ok_wayback",
+     "sha256": "2846bddf4d31be1390b50435aa38a0d2539d0e1c4c255ee7737b3f00b3afae5b"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20170830115012id_/http://www.cse.wustl.edu:80/~kunal/",
+     "at": "2026-11-07T20:30:57+00:00",
+     "result": "ok_wayback",
+     "sha256": "4d6191913da161b24d4c91c819a1ccddc1c512acbe2fe89be8284004ee107c3d"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20190204163340id_/https://www.cse.wustl.edu/~kunal/",
+     "at": "2026-11-07T20:31:15+00:00",
+     "result": "ok_wayback",
+     "sha256": "043bff4964db38633f8e1b17d7b5bfb8d1e8deffb3f7af3a9abe30ff0643499b"
+    },
+    {
+     "source": "pubs_link_not_used_by_prior_pass",
+     "url": "https://www.cse.wustl.edu/~kunal/code/index.html",
+     "at": "2026-11-07T20:31:15+00:00",
+     "result": "ok",
+     "sha256": "e7b7e05a4ebe1ec182c6636029b8fbcc887ed505de6222cd7e57797bb82e8335",
+     "capture_url": null
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cse.wustl.edu/~kunal/",
+     "on": "https://engineering.wustl.edu/faculty/Kunal-Agrawal.html",
+     "at": "2026-11-07T20:29:45+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "linked_url": "http://www.cse.wustl.edu/~kunal/",
+     "source_sha256": "7647adfb4c547ce227bce504dbadb52283e09d1dc840579feba72b1725520310",
+     "source_capture_url": null,
+     "provenance": "recovered_from_cached_profile_html"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:does_not_name_pi_kept_strong_source",
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "pi_evidence_url:listed",
+    "prior_labpage_pass_2026-10-22:recorded_lab_site_is_a_profile",
+    "prior_labpage_pass_2026-10-22:recorded_people_page",
+    "pubs_link:ok",
+    "pubs_link_not_used_by_prior_pass:ok",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "wayback_capture:ok_wayback",
+    "wayback_cdx:3 captures"
+   ],
+   "checked_at": "2026-11-07T20:31:15+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "https://www.cse.wustl.edu/~kunal/",
+   "kind": "pi_homepage",
+   "people_page": "https://www.cse.wustl.edu/~kunal/",
+   "alumni_page": null,
+   "pubs_page": "https://www.cse.wustl.edu/~kunal/code/index.html",
+   "found_via": "prior_labpage_pass",
+   "listed_on": "https://engineering.wustl.edu/faculty/Kunal-Agrawal.html",
+   "sha256": "043bff4964db38633f8e1b17d7b5bfb8d1e8deffb3f7af3a9abe30ff0643499b",
+   "evidence": {
+    "url": "https://www.cse.wustl.edu/~kunal/",
+    "sha256": "043bff4964db38633f8e1b17d7b5bfb8d1e8deffb3f7af3a9abe30ff0643499b",
+    "quote": "Main Kunal Agrawal Changing the world, one site at a time… Main Projects Publi"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cse.wustl.edu/~kunal/",
+     "on": "https://engineering.wustl.edu/faculty/Kunal-Agrawal.html",
+     "at": "2026-11-07T20:29:45+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "linked_url": "http://www.cse.wustl.edu/~kunal/",
+     "source_sha256": "7647adfb4c547ce227bce504dbadb52283e09d1dc840579feba72b1725520310",
+     "source_capture_url": null,
+     "provenance": "recovered_from_cached_profile_html"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Sanjoy Baruah",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:31:22+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cse.washu.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:31:15+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://cse.wustl.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:31:15+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://engineering.washu.edu/faculty/Sanjoy-Baruah.html",
+     "at": "2026-11-07T20:31:15+00:00",
+     "result": "ok",
+     "sha256": "9e0995ea1719fe4079bf7100c4c5bdeab819f3012bae7860a4a899f59a41dfdc"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://sites.wustl.edu/baruah/",
+     "at": "2026-11-07T20:31:15+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "on": "https://engineering.washu.edu/faculty/Sanjoy-Baruah.html"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/b/SKBaruah",
+     "at": "2026-11-07T20:31:15+00:00",
+     "result": "listed",
+     "urls": [
+      "https://engineering.wustl.edu/faculty/Sanjoy-Baruah.html",
+      "http://www.cs.unc.edu/~baruah/"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0002-4541-3445/person.json",
+     "at": "2026-11-07T20:31:15+00:00",
+     "result": "no_urls",
+     "sha256": "d12a9d00eeded24af1421f87667da76046a99caafdb6f875780bccceaf8a78f4"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:31:15+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "https://engineering.washu.edu/faculty/Sanjoy-Baruah.html",
+     "at": "2026-11-07T20:31:15+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://sites.wustl.edu/baruah/",
+     "at": "2026-11-07T20:31:16+00:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "e6ba36cb36439de84cd1cedaf46ab18f5210b4eb80d65414d31c5adea1effd61"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.cs.unc.edu/~baruah/",
+     "at": "2026-11-07T20:31:19+00:00",
+     "result": "does_not_name_pi_kept_strong_source",
+     "via": "dblp_person_url",
+     "sha256": "d420d28811b5d5c57ac67d9d2e024a963c6712b7ad86125aa38411bdf67090f9",
+     "final_url": "https://web.unc.edu"
+    },
+    {
+     "source": "pubs_link",
+     "url": "https://research.engineering.wustl.edu/~baruah/Pubs.shtml",
+     "at": "2026-11-07T20:31:22+00:00",
+     "result": "ok",
+     "on": "https://sites.wustl.edu/baruah/",
+     "sha256": "10f90aaccf5a02fcd8d5c8687182efcbb24b9d9b9c2bba126532517da9b4a843"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:does_not_name_pi_kept_strong_source",
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "pi_evidence_url:listed",
+    "pubs_link:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T20:31:22+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "https://sites.wustl.edu/baruah/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": "https://research.engineering.wustl.edu/~baruah/Pubs.shtml",
+   "found_via": "school_profile_link",
+   "listed_on": "https://engineering.washu.edu/faculty/Sanjoy-Baruah.html",
+   "sha256": "e6ba36cb36439de84cd1cedaf46ab18f5210b4eb80d65414d31c5adea1effd61",
+   "evidence": {
+    "url": "https://sites.wustl.edu/baruah/",
+    "sha256": "e6ba36cb36439de84cd1cedaf46ab18f5210b4eb80d65414d31c5adea1effd61",
+    "quote": "Home | Sanjoy Baruah | Washington University in St. Louis Skip to content Skip t"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://sites.wustl.edu/baruah/",
+     "at": "2026-11-07T20:31:15+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "on": "https://engineering.washu.edu/faculty/Sanjoy-Baruah.html"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Michael Brent",
+   "status": "none_found",
+   "reason_code": "no_web_presence_found",
+   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cse.washu.edu/faculty-research/directory.html: ok; department_listing https://cse.wustl.edu/faculty-research/directory.html: ok.",
+   "audited_at": "2026-11-07T20:31:23+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cse.washu.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:31:23+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://cse.wustl.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:31:23+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": null,
+     "at": "2026-11-07T20:31:23+00:00",
+     "result": "no_dblp_person"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-07T20:31:23+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": "https://openalex.org/A5010345611",
+     "at": "2026-11-07T20:31:23+00:00",
+     "result": "no_homepage_field_in_schema"
+    }
+   ],
+   "places_checked": [
+    "department_listing:ok"
+   ],
+   "checked_at": "2026-11-07T20:31:23+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "coverage": "reason",
+   "upstream_audit_reason": "no homepage or lab site at any source checked",
+   "reason_type": "search_no_eligible_site",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Jeremy Buhler",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:32:20+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cse.washu.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:31:23+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://cse.wustl.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:31:23+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://engineering.washu.edu/faculty/Jeremy-Buhler.html",
+     "at": "2026-11-07T20:31:23+00:00",
+     "result": "ok",
+     "sha256": "2b5146d3315808f233c872be7ab886cae9f225e830107e2688cc76b5ead909b5"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://www.cse.wustl.edu/~jbuhler/",
+     "at": "2026-11-07T20:31:23+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "on": "https://engineering.washu.edu/faculty/Jeremy-Buhler.html"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/b/JeremyBuhler",
+     "at": "2026-11-07T20:31:23+00:00",
+     "result": "listed",
+     "urls": [
+      "http://www.cse.wustl.edu/~jbuhler/"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0002-4159-4226/person.json",
+     "at": "2026-11-07T20:31:23+00:00",
+     "result": "no_urls",
+     "sha256": "b6d12bd4b7b4d26a1e5c7acf73f9e1f5a200b88e64de0cb6b78460e390372ab5"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:31:23+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "https://engineering.washu.edu/faculty/Jeremy-Buhler.html",
+     "at": "2026-11-07T20:31:23+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.cse.wustl.edu/~jbuhler/",
+     "at": "2026-11-07T20:31:23+00:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "0e0fc31621d800e398df66e86140872de0c5c1081f433ab6ea20db60263ad4b6"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "http://www.cse.wustl.edu/~jbuhler/",
+     "at": "2026-11-07T20:31:40+00:00",
+     "result": "10 captures",
+     "frm": 2016
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20160502112350id_/http://www.cse.wustl.edu:80/~jbuhler/",
+     "at": "2026-11-07T20:31:58+00:00",
+     "result": "ok_wayback",
+     "sha256": "a48d502d5528fee7aa7b409fc5fd631b5c9726a9794a7e6aed93e5b56b13ce0c"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20190204222113id_/https://www.cse.wustl.edu/~jbuhler/",
+     "at": "2026-11-07T20:32:14+00:00",
+     "result": "ok_wayback",
+     "sha256": "c48378543476a121a8f9e57044840228794fb843e23a6610c0de1ea6d356ebfe"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20260227114839id_/https://www.cse.wustl.edu/~jbuhler/",
+     "at": "2026-11-07T20:32:20+00:00",
+     "result": "ok_wayback",
+     "sha256": "586210ec2581a2f28f4900a20e0fb461390bee6e8542d2093edac2b3ce6d7406"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "pi_evidence_url:listed",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "wayback_capture:ok_wayback",
+    "wayback_cdx:10 captures"
+   ],
+   "checked_at": "2026-11-07T20:32:20+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "http://www.cse.wustl.edu/~jbuhler/",
+   "kind": "pi_homepage",
+   "people_page": "http://www.cse.wustl.edu/~jbuhler/",
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://engineering.washu.edu/faculty/Jeremy-Buhler.html",
+   "sha256": "0e0fc31621d800e398df66e86140872de0c5c1081f433ab6ea20db60263ad4b6",
+   "evidence": {
+    "url": "http://www.cse.wustl.edu/~jbuhler/",
+    "sha256": "0e0fc31621d800e398df66e86140872de0c5c1081f433ab6ea20db60263ad4b6",
+    "quote": "Jeremy Buhler's Home Page Jeremy Buhler's Home Page Position: Professor,"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://www.cse.wustl.edu/~jbuhler/",
+     "at": "2026-11-07T20:31:23+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "on": "https://engineering.washu.edu/faculty/Jeremy-Buhler.html"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Ayan Chakrabarti",
+   "status": "none_found",
+   "reason_code": "no_web_presence_found",
+   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cse.wustl.edu/faculty-research/directory.html: ok; dblp_person_url https://dblp.org/pid/68/5758: no_homepage_url.",
+   "audited_at": "2026-11-07T20:32:21+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cse.wustl.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:32:21+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/68/5758",
+     "at": "2026-11-07T20:32:21+00:00",
+     "result": "no_homepage_url"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-07T20:32:21+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:32:21+00:00",
+     "result": "no_homepage_field_in_schema"
+    }
+   ],
+   "places_checked": [
+    "dblp_person_url:no_homepage_url",
+    "department_listing:ok"
+   ],
+   "checked_at": "2026-11-07T20:32:21+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "coverage": "reason",
+   "upstream_audit_reason": "no homepage or lab site at any source checked",
+   "reason_type": "search_no_eligible_site",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Roger Chamberlain",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:32:24+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cse.washu.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:32:21+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://cse.wustl.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:32:21+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://engineering.washu.edu/faculty/Roger-Chamberlain.html",
+     "at": "2026-11-07T20:32:21+00:00",
+     "result": "ok",
+     "sha256": "760ae97111db3fa04ec0f77b4b6cc074a23910aa648203e43d8d7db220dc88f7"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://www.ccrc.wustl.edu/~roger/",
+     "at": "2026-11-07T20:32:21+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "on": "https://engineering.washu.edu/faculty/Roger-Chamberlain.html"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/12/2696",
+     "at": "2026-11-07T20:32:21+00:00",
+     "result": "listed",
+     "urls": [
+      "http://www.ccrc.wustl.edu/~roger/"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0002-7207-6106/person.json",
+     "at": "2026-11-07T20:32:21+00:00",
+     "result": "no_urls",
+     "sha256": "7ac64bbaf022a98965e674c37947c0594a96cf2e5bdfd50bc8696f84bd2cac05"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:32:21+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "https://engineering.washu.edu/faculty/Roger-Chamberlain.html",
+     "at": "2026-11-07T20:32:21+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.ccrc.wustl.edu/~roger/",
+     "at": "2026-11-07T20:32:21+00:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "a8b2cfbca98036a690c9020c7f85c91906f79e9cd87e33323e83399829a3b56d"
+    },
+    {
+     "source": "pubs_link",
+     "url": "http://www.ccrc.wustl.edu/~roger/pubs.html",
+     "at": "2026-11-07T20:32:24+00:00",
+     "result": "ok",
+     "on": "http://www.ccrc.wustl.edu/~roger/",
+     "sha256": "ccd0412c53b83bfa425d7864c1bf7f77457ecb206f741ced4564e0a808c8f576"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "pi_evidence_url:listed",
+    "pubs_link:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T20:32:24+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "http://www.ccrc.wustl.edu/~roger/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": "http://www.ccrc.wustl.edu/~roger/pubs.html",
+   "found_via": "school_profile_link",
+   "listed_on": "https://engineering.washu.edu/faculty/Roger-Chamberlain.html",
+   "sha256": "a8b2cfbca98036a690c9020c7f85c91906f79e9cd87e33323e83399829a3b56d",
+   "evidence": {
+    "url": "http://www.ccrc.wustl.edu/~roger/",
+    "sha256": "a8b2cfbca98036a690c9020c7f85c91906f79e9cd87e33323e83399829a3b56d",
+    "quote": "Home Page for Roger Chamberlain Roger D. Chamberlain Professor Department of Computer Scien"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://www.ccrc.wustl.edu/~roger/",
+     "at": "2026-11-07T20:32:21+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "on": "https://engineering.washu.edu/faculty/Roger-Chamberlain.html"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Yixin Chen",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:32:25+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cse.washu.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:32:24+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://cse.wustl.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:32:24+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://engineering.washu.edu/faculty/Yixin-Chen.html",
+     "at": "2026-11-07T20:32:25+00:00",
+     "result": "ok",
+     "sha256": "cb6f609c717aa2bbce76761eb36d59288b0cc4a7b7ecacf1d333d089be4509c8"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://www.cse.wustl.edu/~chen/",
+     "at": "2026-11-07T20:32:25+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "on": "https://engineering.washu.edu/faculty/Yixin-Chen.html"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": null,
+     "at": "2026-11-07T20:32:25+00:00",
+     "result": "no_dblp_person"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-07T20:32:25+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": "https://openalex.org/A5100393445",
+     "at": "2026-11-07T20:32:25+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "https://engineering.washu.edu/faculty/Yixin-Chen.html",
+     "at": "2026-11-07T20:32:25+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.cse.wustl.edu/~chen/",
+     "at": "2026-11-07T20:32:25+00:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "c9b0c9e2a69cf811c28897ea8d9ba82a28fbf1597215424b980a672bffdbd51d"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "department_listing:ok",
+    "pi_evidence_url:listed",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T20:32:25+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "http://www.cse.wustl.edu/~chen/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://engineering.washu.edu/faculty/Yixin-Chen.html",
+   "sha256": "c9b0c9e2a69cf811c28897ea8d9ba82a28fbf1597215424b980a672bffdbd51d",
+   "evidence": {
+    "url": "http://www.cse.wustl.edu/~chen/",
+    "sha256": "c9b0c9e2a69cf811c28897ea8d9ba82a28fbf1597215424b980a672bffdbd51d",
+    "quote": "Professor Yixin Chen <body> </body>"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://www.cse.wustl.edu/~chen/",
+     "at": "2026-11-07T20:32:25+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "on": "https://engineering.washu.edu/faculty/Yixin-Chen.html"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Patrick Crowley",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:32:25+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cse.washu.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:32:25+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://cse.wustl.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:32:25+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://engineering.washu.edu/faculty/Patrick-Crowley.html",
+     "at": "2026-11-07T20:32:25+00:00",
+     "result": "ok",
+     "sha256": "5ea2190ffb1e877a445a4de97a0bb367bff111649a452418c8df833101a6134f"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://www.arl.wustl.edu/~pcrowley/",
+     "at": "2026-11-07T20:32:25+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "on": "https://engineering.washu.edu/faculty/Patrick-Crowley.html"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/92/6939",
+     "at": "2026-11-07T20:32:25+00:00",
+     "result": "listed",
+     "urls": [
+      "http://www.arl.wustl.edu/~pcrowley/"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-07T20:32:25+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:32:25+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "https://engineering.washu.edu/faculty/Patrick-Crowley.html",
+     "at": "2026-11-07T20:32:25+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.arl.wustl.edu/~pcrowley/",
+     "at": "2026-11-07T20:32:25+00:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "9a14535c520496eff00e0dfb321b28544664646b3dd41bbefe056fac8bd3c273"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "pi_evidence_url:listed",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T20:32:25+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "http://www.arl.wustl.edu/~pcrowley/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://engineering.washu.edu/faculty/Patrick-Crowley.html",
+   "sha256": "9a14535c520496eff00e0dfb321b28544664646b3dd41bbefe056fac8bd3c273",
+   "evidence": {
+    "url": "http://www.arl.wustl.edu/~pcrowley/",
+    "sha256": "9a14535c520496eff00e0dfb321b28544664646b3dd41bbefe056fac8bd3c273",
+    "quote": "Patrick Crowley Welcome Research Teaching Bio Contact Welcome Patrick Crowl"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://www.arl.wustl.edu/~pcrowley/",
+     "at": "2026-11-07T20:32:25+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "on": "https://engineering.washu.edu/faculty/Patrick-Crowley.html"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Ron Cytron",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:32:28+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cse.wustl.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:32:25+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/c/RCytron",
+     "at": "2026-11-07T20:32:25+00:00",
+     "result": "listed",
+     "urls": [
+      "http://www.cs.wustl.edu/~cytron/"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0009-0009-5915-602X/person.json",
+     "at": "2026-11-07T20:32:25+00:00",
+     "result": "no_urls",
+     "sha256": "9c62da59acacb1f45ecf45ada12553466815a6dccc727cc1a4bb89c8e9765062"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:32:25+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.cs.wustl.edu/~cytron/",
+     "at": "2026-11-07T20:32:28+00:00",
+     "result": "ok",
+     "via": "dblp_person_url",
+     "sha256": "8118324f59db1f7785215ce83bd96b562a8c6f40b5da6ce282f1fe982d612b2e",
+     "final_url": "https://www.cs.wustl.edu/~cytron/"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls"
+   ],
+   "checked_at": "2026-11-07T20:32:28+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "http://www.cs.wustl.edu/~cytron/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "dblp_person_url",
+   "listed_on": null,
+   "sha256": "8118324f59db1f7785215ce83bd96b562a8c6f40b5da6ce282f1fe982d612b2e",
+   "evidence": {
+    "url": "http://www.cs.wustl.edu/~cytron/",
+    "sha256": "8118324f59db1f7785215ce83bd96b562a8c6f40b5da6ce282f1fe982d612b2e",
+    "quote": "Ron K. Cytron's Home Page Ron K. Cytron Professor, Computer Science and E"
+   },
+   "official_link_status": "not_recorded",
+   "official_link_evidence": [],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Roman Garnett",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:33:28+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cse.washu.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:32:28+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://cse.wustl.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:32:28+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://engineering.washu.edu/faculty/Roman-Garnett.html",
+     "at": "2026-11-07T20:32:29+00:00",
+     "result": "ok",
+     "sha256": "6e833e73aff49324c9a95589aee04c7bc02e541f9e765dcc3e79d9aaa30eeccf"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cse.wustl.edu/~garnett/",
+     "at": "2026-11-07T20:32:29+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "on": "https://engineering.washu.edu/faculty/Roman-Garnett.html"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/29/7058",
+     "at": "2026-11-07T20:32:29+00:00",
+     "result": "no_homepage_url"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0002-0152-5453/person.json",
+     "at": "2026-11-07T20:32:31+00:00",
+     "result": "no_urls",
+     "sha256": "8991557e6e3fedc79cab4b951c2cb7338c036c897c92b23a39775f2c3a19b78a"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:32:31+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "https://engineering.washu.edu/faculty/Roman-Garnett.html",
+     "at": "2026-11-07T20:32:31+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cse.wustl.edu/~garnett/",
+     "at": "2026-11-07T20:32:31+00:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "6aac446e339c063a69e241363971fd8a91fc9499f993b21733c8d05f7530da1b"
+    },
+    {
+     "source": "pubs_link",
+     "url": "https://www.cse.wustl.edu/~garnett/publications.html",
+     "at": "2026-11-07T20:32:32+00:00",
+     "result": "ok",
+     "on": "https://www.cse.wustl.edu/~garnett/",
+     "sha256": "2514e61a3ce3051146b067bd178aa8e97766e491f741bea8d8f642914d0326a2"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "https://www.cse.wustl.edu/~garnett/",
+     "at": "2026-11-07T20:32:39+00:00",
+     "result": "10 captures",
+     "frm": 2016
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20160408063734id_/http://www.cse.wustl.edu:80/~garnett/",
+     "at": "2026-11-07T20:32:50+00:00",
+     "result": "ok_wayback",
+     "sha256": "65bbaf4d40dc0a23340542b935339c7c289d5320efceb654daff2d15cef94d31"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20180217203531id_/http://www.cse.wustl.edu:80/~garnett/",
+     "at": "2026-11-07T20:33:08+00:00",
+     "result": "ok_wayback",
+     "sha256": "85f732ccd77428b726d3a17cbd596aad3102ef74c0376ff04377a98d3b00b432"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20240830082353id_/https://www.cse.wustl.edu/~garnett/",
+     "at": "2026-11-07T20:33:28+00:00",
+     "result": "ok_wayback",
+     "sha256": "6aac446e339c063a69e241363971fd8a91fc9499f993b21733c8d05f7530da1b"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:no_homepage_url",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "pi_evidence_url:listed",
+    "pubs_link:ok",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "wayback_capture:ok_wayback",
+    "wayback_cdx:10 captures"
+   ],
+   "checked_at": "2026-11-07T20:33:28+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "https://www.cse.wustl.edu/~garnett/",
+   "kind": "pi_homepage",
+   "people_page": "https://www.cse.wustl.edu/~garnett/",
+   "alumni_page": null,
+   "pubs_page": "https://www.cse.wustl.edu/~garnett/publications.html",
+   "found_via": "school_profile_link",
+   "listed_on": "https://engineering.washu.edu/faculty/Roman-Garnett.html",
+   "sha256": "6aac446e339c063a69e241363971fd8a91fc9499f993b21733c8d05f7530da1b",
+   "evidence": {
+    "url": "https://www.cse.wustl.edu/~garnett/",
+    "sha256": "6aac446e339c063a69e241363971fd8a91fc9499f993b21733c8d05f7530da1b",
+    "quote": "Roman Garnett Roman Garnett Associate Professor Department of Computer Sc"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.cse.wustl.edu/~garnett/",
+     "at": "2026-11-07T20:32:29+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "on": "https://engineering.washu.edu/faculty/Roman-Garnett.html"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Christopher Gill",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:33:33+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cse.washu.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:33:28+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://cse.wustl.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:33:28+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://engineering.washu.edu/faculty/Christopher-Gill.html",
+     "at": "2026-11-07T20:33:28+00:00",
+     "result": "ok",
+     "sha256": "6582f63ae608f964c23a0b1a50877beae31c7549b5fd64dedabd7866b6b25509"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://www.cse.wustl.edu/~cdgill/",
+     "at": "2026-11-07T20:33:28+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "on": "https://engineering.washu.edu/faculty/Christopher-Gill.html"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/51/3192",
+     "at": "2026-11-07T20:33:28+00:00",
+     "result": "no_homepage_url"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0003-0366-8586/person.json",
+     "at": "2026-11-07T20:33:30+00:00",
+     "result": "no_urls",
+     "sha256": "e24648054f83165f6d0c9a883541366a1421abda84a865632e96ae5a36d7231b"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:33:30+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "https://engineering.washu.edu/faculty/Christopher-Gill.html",
+     "at": "2026-11-07T20:33:30+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.cse.wustl.edu/~cdgill/",
+     "at": "2026-11-07T20:33:30+00:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "65daa58e3f8b780128d0f02067353cfea1070fc7b36ef4235aeb7b2acae855d1"
+    },
+    {
+     "source": "pubs_link",
+     "url": "http://www.cse.wustl.edu/~cdgill/publications.html",
+     "at": "2026-11-07T20:33:33+00:00",
+     "result": "ok",
+     "on": "http://www.cse.wustl.edu/~cdgill/",
+     "sha256": "8e0902344dd00a6d5790eaf021d3c6692d31375bccc60d001422b6102480f720"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:no_homepage_url",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "pi_evidence_url:listed",
+    "pubs_link:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T20:33:33+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "http://www.cse.wustl.edu/~cdgill/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": "http://www.cse.wustl.edu/~cdgill/publications.html",
+   "found_via": "school_profile_link",
+   "listed_on": "https://engineering.washu.edu/faculty/Christopher-Gill.html",
+   "sha256": "65daa58e3f8b780128d0f02067353cfea1070fc7b36ef4235aeb7b2acae855d1",
+   "evidence": {
+    "url": "http://www.cse.wustl.edu/~cdgill/",
+    "sha256": "65daa58e3f8b780128d0f02067353cfea1070fc7b36ef4235aeb7b2acae855d1",
+    "quote": "Christopher D. Gill Christopher D. Gill Professor of Computer Science and Engin"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://www.cse.wustl.edu/~cdgill/",
+     "at": "2026-11-07T20:33:28+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "on": "https://engineering.washu.edu/faculty/Christopher-Gill.html"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Roch Guérin",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:33:46+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cse.washu.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:33:33+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://cse.wustl.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:33:33+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://engineering.washu.edu/faculty/Roch-Guerin.html",
+     "at": "2026-11-07T20:33:34+00:00",
+     "result": "ok",
+     "sha256": "96afe1e95c53520023795bd28314646e6361eb3bc5ac5c28f3e4e15b3a5c52b9"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://www.cse.wustl.edu/~guerin/",
+     "at": "2026-11-07T20:33:34+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "on": "https://engineering.washu.edu/faculty/Roch-Guerin.html"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://rochguerin.github.io/news/",
+     "at": "2026-11-07T20:33:34+00:00",
+     "result": "listed",
+     "anchor": "Read the news section",
+     "on": "https://engineering.washu.edu/faculty/Roch-Guerin.html"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/15/745",
+     "at": "2026-11-07T20:33:34+00:00",
+     "result": "no_homepage_url"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-07T20:33:34+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:33:34+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "https://engineering.washu.edu/faculty/Roch-Guerin.html",
+     "at": "2026-11-07T20:33:34+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.cse.wustl.edu/~guerin/",
+     "at": "2026-11-07T20:33:37+00:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "01fe5b07949d34084123ac7e1dd9cf2a4c643aeb4b96d72f92ff90b9a8ada58c",
+     "final_url": "https://rochguerin.github.io/"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://rochguerin.github.io/news/",
+     "at": "2026-11-07T20:33:40+00:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "dda38e53716bcb23f9328dd5e3b7e7b511b8edd5458713726347177423182a79"
+    },
+    {
+     "source": "pubs_link",
+     "url": "https://rochguerin.github.io/publications/",
+     "at": "2026-11-07T20:33:43+00:00",
+     "result": "ok",
+     "on": "http://www.cse.wustl.edu/~guerin/",
+     "sha256": "54f85497948b25e0512feaf7677394e1d0383a99f82811f97f2eee10590eb3a1"
+    },
+    {
+     "source": "pubs_link",
+     "url": "https://rochguerin.github.io/publications",
+     "at": "2026-11-07T20:33:46+00:00",
+     "result": "ok",
+     "on": "http://www.cse.wustl.edu/~guerin/",
+     "sha256": "54f85497948b25e0512feaf7677394e1d0383a99f82811f97f2eee10590eb3a1"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:no_homepage_url",
+    "department_listing:ok",
+    "pi_evidence_url:listed",
+    "pubs_link:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T20:33:46+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "http://www.cse.wustl.edu/~guerin/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": "https://rochguerin.github.io/publications/",
+   "found_via": "school_profile_link",
+   "listed_on": "https://engineering.washu.edu/faculty/Roch-Guerin.html",
+   "sha256": "01fe5b07949d34084123ac7e1dd9cf2a4c643aeb4b96d72f92ff90b9a8ada58c",
+   "evidence": {
+    "url": "http://www.cse.wustl.edu/~guerin/",
+    "sha256": "01fe5b07949d34084123ac7e1dd9cf2a4c643aeb4b96d72f92ff90b9a8ada58c",
+    "quote": "Roch Guerin’s webpage - Roch Guerin Roch Guerin Background News Publica"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://www.cse.wustl.edu/~guerin/",
+     "at": "2026-11-07T20:33:34+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "on": "https://engineering.washu.edu/faculty/Roch-Guerin.html"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Chien-Ju Ho",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:34:33+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cse.washu.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:33:46+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://cse.wustl.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:33:46+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://engineering.washu.edu/faculty/Chien-Ju-Ho.html",
+     "at": "2026-11-07T20:33:46+00:00",
+     "result": "ok",
+     "sha256": "222af991a3f677667c6048960d166d2e02a9f0618658fdd77abe1303c5f47436"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://chienjuho.com/",
+     "at": "2026-11-07T20:33:46+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "on": "https://engineering.washu.edu/faculty/Chien-Ju-Ho.html"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/85/4929",
+     "at": "2026-11-07T20:33:46+00:00",
+     "result": "no_homepage_url"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-07T20:33:46+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:33:46+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://chienjuho.com/",
+     "at": "2026-11-07T20:33:46+00:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "917f88296027e587a8de17a451c3982a5ddda2db630f91a986759b176ca1fd13"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "http://chienjuho.com/",
+     "at": "2026-11-07T20:33:51+00:00",
+     "result": "56 captures",
+     "frm": 2017
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20170516205618id_/http://chienjuho.com:80/",
+     "at": "2026-11-07T20:34:03+00:00",
+     "result": "ok_wayback",
+     "sha256": "f3c32de51968502e7ef3ac7bf6572acf976aa0ad9c4108ff6e9f05be421bb866"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20220811150327id_/http://chienjuho.com/",
+     "at": "2026-11-07T20:34:21+00:00",
+     "result": "ok_wayback",
+     "sha256": "54bc3c14ecc7affa997ed69b26a99ef6009ca6f9b809c0d2f95420709937f3ab"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20260714072720id_/https://chienjuho.com/",
+     "at": "2026-11-07T20:34:33+00:00",
+     "result": "ok_wayback",
+     "sha256": "3c26da962093dede4d76a9afcb6b145ab2006313953f783a487a3bab8d96406f"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:no_homepage_url",
+    "department_listing:ok",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "wayback_capture:ok_wayback",
+    "wayback_cdx:56 captures"
+   ],
+   "checked_at": "2026-11-07T20:34:33+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "http://chienjuho.com/",
+   "kind": "pi_homepage",
+   "people_page": "http://chienjuho.com/",
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://engineering.washu.edu/faculty/Chien-Ju-Ho.html",
+   "sha256": "917f88296027e587a8de17a451c3982a5ddda2db630f91a986759b176ca1fd13",
+   "evidence": {
+    "url": "http://chienjuho.com/",
+    "sha256": "917f88296027e587a8de17a451c3982a5ddda2db630f91a986759b176ca1fd13",
+    "quote": "Chien-Ju Ho Chien-Ju Ho Chien-Ju Ho About Me I am an Associate Professo"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://chienjuho.com/",
+     "at": "2026-11-07T20:33:46+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "on": "https://engineering.washu.edu/faculty/Chien-Ju-Ho.html"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Raj Jain",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:35:39+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cse.washu.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:34:33+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://cse.wustl.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:34:33+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/j/RajJain",
+     "at": "2026-11-07T20:34:33+00:00",
+     "result": "listed",
+     "urls": [
+      "http://www.cse.wustl.edu/~jain/index.html",
+      "https://www.researcherid.com/rid/A-6966-2008"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0002-7023-0368/person.json",
+     "at": "2026-11-07T20:34:33+00:00",
+     "result": "listed",
+     "sha256": "798495a24b8a0505e3b15eb8d5ce2fbc7f56336bf84ab038345c92851e4a8b43",
+     "urls": [
+      "http://www.cse.wustl.edu/~jain/",
+      "https://orcid.org/0000-0002-7023-0368"
+     ]
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:34:33+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.cse.wustl.edu/~jain/index.html",
+     "at": "2026-11-07T20:34:33+00:00",
+     "result": "ok",
+     "via": "dblp_person_url",
+     "sha256": "2301daee7a8b63128f8facb7867ae4cd8abd23d68361557099ff536d1f5e88f3",
+     "final_url": "https://www.cse.wustl.edu/~jain/index.html"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.researcherid.com/rid/A-6966-2008",
+     "at": "2026-11-07T20:34:37+00:00",
+     "result": "does_not_name_pi_kept_strong_source",
+     "via": "dblp_person_url",
+     "sha256": "71379dd5631d6e46a2f8c5c9efc501b82d4b104a2f7ce7f45f3f5b8c6ac5e53e",
+     "final_url": "https://www.webofscience.com:443/wos/author/rid/A-6966-2008"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.cse.wustl.edu/~jain/",
+     "at": "2026-11-07T20:34:37+00:00",
+     "result": "ok",
+     "via": "orcid_researcher_url",
+     "sha256": "2301daee7a8b63128f8facb7867ae4cd8abd23d68361557099ff536d1f5e88f3"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "http://www.cse.wustl.edu/~jain/",
+     "at": "2026-11-07T20:34:50+00:00",
+     "result": "16 captures",
+     "frm": 2020
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20200310185218id_/https://www.cse.wustl.edu/~jain/",
+     "at": "2026-11-07T20:35:03+00:00",
+     "result": "ok_wayback",
+     "sha256": "c8fcf35893b7524ceb5729daa01e860e6a0d7b9871ac8e4ab018c44ff5fe341f"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20221208084843id_/https://www.cse.wustl.edu/~jain/",
+     "at": "2026-11-07T20:35:21+00:00",
+     "result": "ok_wayback",
+     "sha256": "9d3ebc678a2da52af001adae33fa81c2479ff90aa9f455867316ff876c5fba75"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20260114210705id_/https://www.cse.wustl.edu/~jain/",
+     "at": "2026-11-07T20:35:39+00:00",
+     "result": "ok_wayback",
+     "sha256": "2301daee7a8b63128f8facb7867ae4cd8abd23d68361557099ff536d1f5e88f3"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:does_not_name_pi_kept_strong_source",
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:listed",
+    "wayback_capture:ok_wayback",
+    "wayback_cdx:16 captures"
+   ],
+   "checked_at": "2026-11-07T20:35:39+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "http://www.cse.wustl.edu/~jain/",
+   "kind": "pi_homepage",
+   "people_page": "http://www.cse.wustl.edu/~jain/",
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "orcid_researcher_url",
+   "listed_on": null,
+   "sha256": "2301daee7a8b63128f8facb7867ae4cd8abd23d68361557099ff536d1f5e88f3",
+   "evidence": {
+    "url": "http://www.cse.wustl.edu/~jain/",
+    "sha256": "2301daee7a8b63128f8facb7867ae4cd8abd23d68361557099ff536d1f5e88f3",
+    "quote": "Raj Jain - Professor of Computer Science and Engineering Raj Jain, B"
+   },
+   "official_link_status": "not_recorded",
+   "official_link_evidence": [],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Tao Ju",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:38:14+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cse.washu.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:37:49+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://cse.wustl.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:37:49+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://engineering.washu.edu/faculty/Tao-Ju.html",
+     "at": "2026-11-07T20:37:49+00:00",
+     "result": "ok",
+     "sha256": "a402a1f51890c9311b33083eb34389d502cdf69a4e92b1931245378291b505c4"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://www.cs.wustl.edu/~taoju/",
+     "at": "2026-11-07T20:37:49+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "on": "https://engineering.washu.edu/faculty/Tao-Ju.html"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/16/2529-1",
+     "at": "2026-11-07T20:37:49+00:00",
+     "result": "no_homepage_url"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0002-1848-1012/person.json",
+     "at": "2026-11-07T20:37:49+00:00",
+     "result": "no_urls",
+     "sha256": "1fa6bd43c859e35ef014ab7fa0f5f3feffe10f160933c050c18e3b33a50720ec"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:37:49+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.cs.wustl.edu/~taoju/",
+     "at": "2026-11-07T20:37:49+00:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "6214097f4abdfccedf77ba4c581b0360324ecca03253c1bc37ce802c20867139"
+    },
+    {
+     "source": "pubs_link",
+     "url": "http://www.cs.wustl.edu/~taoju/index.htm#pub",
+     "at": "2026-11-07T20:37:49+00:00",
+     "result": "ok",
+     "on": "http://www.cs.wustl.edu/~taoju/",
+     "sha256": "6214097f4abdfccedf77ba4c581b0360324ecca03253c1bc37ce802c20867139"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "http://www.cs.wustl.edu/~taoju/",
+     "at": "2026-11-07T20:37:49+00:00",
+     "result": "19 captures",
+     "frm": 2016
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20160110170843id_/http://www.cs.wustl.edu:80/~taoju/",
+     "at": "2026-11-07T20:37:49+00:00",
+     "result": "ok_wayback",
+     "sha256": "8b97dc217dbb7943f0000de5563f6e4903d7c81d33757893aac9bf1322b66891"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20180610112221id_/http://www.cs.wustl.edu:80/~taoju/",
+     "at": "2026-11-07T20:37:56+00:00",
+     "result": "ok_wayback",
+     "sha256": "905b8c4553708f80197c96e9a0b2cc7555a73dae59da7081016b04e74070229a"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20260711055743id_/https://www.cs.wustl.edu/~taoju/",
+     "at": "2026-11-07T20:38:14+00:00",
+     "result": "ok_wayback",
+     "sha256": "54ad68de3cb38304dd87ec2f7701dc1ed50f3868ca0f7933352f797d03c43d18"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:no_homepage_url",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "pubs_link:ok",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "wayback_capture:ok_wayback",
+    "wayback_cdx:19 captures"
+   ],
+   "checked_at": "2026-11-07T20:38:14+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "http://www.cs.wustl.edu/~taoju/",
+   "kind": "pi_homepage",
+   "people_page": "http://www.cs.wustl.edu/~taoju/",
+   "alumni_page": null,
+   "pubs_page": "http://www.cs.wustl.edu/~taoju/index.htm#pub",
+   "found_via": "school_profile_link",
+   "listed_on": "https://engineering.washu.edu/faculty/Tao-Ju.html",
+   "sha256": "6214097f4abdfccedf77ba4c581b0360324ecca03253c1bc37ce802c20867139",
+   "evidence": {
+    "url": "http://www.cs.wustl.edu/~taoju/",
+    "sha256": "6214097f4abdfccedf77ba4c581b0360324ecca03253c1bc37ce802c20867139",
+    "quote": "Home of Tao Ju Home Bio Teaching Advising Service Projects Software Public"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://www.cs.wustl.edu/~taoju/",
+     "at": "2026-11-07T20:37:49+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "on": "https://engineering.washu.edu/faculty/Tao-Ju.html"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Brendan Juba",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:39:14+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cse.washu.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:38:14+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://cse.wustl.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:38:14+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://engineering.washu.edu/faculty/Brendan-Juba.html",
+     "at": "2026-11-07T20:38:14+00:00",
+     "result": "ok",
+     "sha256": "ea0f22c4d4836685ce48d282acef5a5073eb64f7cf42f50a305f5e9cf5b7c29e"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://www.cse.wustl.edu/~bjuba/",
+     "at": "2026-11-07T20:38:14+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "on": "https://engineering.washu.edu/faculty/Brendan-Juba.html"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/62/6079",
+     "at": "2026-11-07T20:38:14+00:00",
+     "result": "listed",
+     "urls": [
+      "http://www.cse.wustl.edu/~bjuba/"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0001-6542-833X/person.json",
+     "at": "2026-11-07T20:38:14+00:00",
+     "result": "no_urls",
+     "sha256": "4a9b52ef20e6cd66d90431877ca5156175520784c3245cfd2834aa147da723b2"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:38:14+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "https://engineering.washu.edu/faculty/Brendan-Juba.html",
+     "at": "2026-11-07T20:38:14+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.cse.wustl.edu/~bjuba/",
+     "at": "2026-11-07T20:38:14+00:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "f0d01236aa4f80f2e938c70858b0a97e2824bfc2e8b2e48615a2553aac8315ac"
+    },
+    {
+     "source": "people_link",
+     "url": "http://www.cse.wustl.edu/~bjuba/students.html",
+     "at": "2026-11-07T20:38:14+00:00",
+     "result": "ok",
+     "on": "http://www.cse.wustl.edu/~bjuba/",
+     "sha256": "2a5aa509aaa5d7ac6eac1896e12cfd77f4e32ad928008a58a115b671d7261635"
+    },
+    {
+     "source": "pubs_link",
+     "url": "http://www.cse.wustl.edu/~bjuba/papers/index.html",
+     "at": "2026-11-07T20:38:14+00:00",
+     "result": "ok",
+     "on": "http://www.cse.wustl.edu/~bjuba/",
+     "sha256": "61052a951c46833ccbef0c962292af4b86697e991a7a06a176a9c5b77e14a744"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "http://www.cse.wustl.edu/~bjuba/students.html",
+     "at": "2026-11-07T20:38:32+00:00",
+     "result": "3 captures",
+     "frm": 2016
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20180906110657id_/https://www.cse.wustl.edu/~bjuba/students.html",
+     "at": "2026-11-07T20:38:49+00:00",
+     "result": "ok_wayback",
+     "sha256": "2fbed137d29a8bc0453bd22cc7c1b3a82efb3a7ac7a3bcbc0950e71f2a0f406c"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20190204181105id_/https://www.cse.wustl.edu/~bjuba/students.html",
+     "at": "2026-11-07T20:39:01+00:00",
+     "result": "ok_wayback",
+     "sha256": "473de8b9ea990a11f56d41e7d2ec35ff500de72176a69186beece2440d073b41"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20240407185616id_/https://www.cse.wustl.edu/~bjuba/students.html",
+     "at": "2026-11-07T20:39:14+00:00",
+     "result": "ok_wayback",
+     "sha256": "3e523feb3d5bbddba79086ed24347e9d815d648ed67a3653b80677917146b8f8"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "people_link:ok",
+    "pi_evidence_url:listed",
+    "pubs_link:ok",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "wayback_capture:ok_wayback",
+    "wayback_cdx:3 captures"
+   ],
+   "checked_at": "2026-11-07T20:39:14+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "http://www.cse.wustl.edu/~bjuba/",
+   "kind": "pi_homepage",
+   "people_page": "http://www.cse.wustl.edu/~bjuba/students.html",
+   "alumni_page": null,
+   "pubs_page": "http://www.cse.wustl.edu/~bjuba/papers/index.html",
+   "found_via": "school_profile_link",
+   "listed_on": "https://engineering.washu.edu/faculty/Brendan-Juba.html",
+   "sha256": "f0d01236aa4f80f2e938c70858b0a97e2824bfc2e8b2e48615a2553aac8315ac",
+   "evidence": {
+    "url": "http://www.cse.wustl.edu/~bjuba/",
+    "sha256": "f0d01236aa4f80f2e938c70858b0a97e2824bfc2e8b2e48615a2553aac8315ac",
+    "quote": "Brendan Juba, Washington University in St. Louis Brendan Juba Washington"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://www.cse.wustl.edu/~bjuba/",
+     "at": "2026-11-07T20:38:14+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "on": "https://engineering.washu.edu/faculty/Brendan-Juba.html"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Ulugbek Kamilov",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Captured lab/group website.",
+   "audited_at": "2026-11-07T20:39:46+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cse.wustl.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:39:14+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/73/9223",
+     "at": "2026-11-07T20:39:14+00:00",
+     "result": "listed",
+     "urls": [
+      "https://www.researcherid.com/rid/F-9609-2014"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0001-6770-3278/person.json",
+     "at": "2026-11-07T20:39:15+00:00",
+     "result": "listed",
+     "sha256": "99eccda7daa163e848ae9e9d242bd2665eab23fb2003b25213c27ac34f98b5b5",
+     "urls": [
+      "https://orcid.org/0000-0001-6770-3278",
+      "https://ukmlv.github.io",
+      "https://uw-cig.github.io",
+      "https://x.com/prof_kamilov"
+     ]
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:39:15+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.researcherid.com/rid/F-9609-2014",
+     "at": "2026-11-07T20:39:15+00:00",
+     "result": "does_not_name_pi_kept_strong_source",
+     "via": "dblp_person_url",
+     "sha256": "f38db2f0e23f92546064ea1d2976e081bf9611de7a9951f04e32e518808b25aa",
+     "final_url": "https://www.webofscience.com:443/wos/author/rid/F-9609-2014"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://ukmlv.github.io",
+     "at": "2026-11-07T20:39:19+00:00",
+     "result": "ok",
+     "via": "orcid_researcher_url",
+     "sha256": "bda87eb66ec78a3f77d2dc7c47ec5b05e82ba43ab22ca6e21c7e4abe2cfdd5e9",
+     "final_url": "https://kamilov.io/"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://uw-cig.github.io",
+     "at": "2026-11-07T20:39:22+00:00",
+     "result": "ok",
+     "via": "orcid_researcher_url",
+     "sha256": "34a82042b13d77eb2692f200b520d9b2c139f5c0db9978ff063f6e7c7b95206e",
+     "final_url": "https://cig.ece.wisc.edu/"
+    },
+    {
+     "source": "people_link",
+     "url": "https://kamilov.io/team/",
+     "at": "2026-11-07T20:39:25+00:00",
+     "result": "ok",
+     "on": "https://ukmlv.github.io",
+     "sha256": "928d51b792a5faef2107caca58c1ca87849a9f3f4acc567b07c4624b735a9481"
+    },
+    {
+     "source": "pubs_link",
+     "url": "https://kamilov.io/publications/",
+     "at": "2026-11-07T20:39:28+00:00",
+     "result": "ok",
+     "on": "https://ukmlv.github.io",
+     "sha256": "914d08b57707b746a4906bc519d44cd3255925b4b644356d3c616bec5fb8e2a4"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "https://kamilov.io/team/",
+     "at": "2026-11-07T20:39:46+00:00",
+     "result": "0 captures",
+     "frm": 2020
+    }
+   ],
+   "places_checked": [
+    "candidate_site:does_not_name_pi_kept_strong_source",
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:listed",
+    "people_link:ok",
+    "pubs_link:ok",
+    "wayback_cdx:0 captures"
+   ],
+   "checked_at": "2026-11-07T20:39:46+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "https://ukmlv.github.io",
+   "kind": "lab_site",
+   "people_page": "https://kamilov.io/team/",
+   "alumni_page": null,
+   "pubs_page": "https://kamilov.io/publications/",
+   "found_via": "orcid_researcher_url",
+   "listed_on": null,
+   "sha256": "bda87eb66ec78a3f77d2dc7c47ec5b05e82ba43ab22ca6e21c7e4abe2cfdd5e9",
+   "evidence": {
+    "url": "https://ukmlv.github.io",
+    "sha256": "bda87eb66ec78a3f77d2dc7c47ec5b05e82ba43ab22ca6e21c7e4abe2cfdd5e9",
+    "quote": "Ulugbek S. Kamilov Toggle navigation about (current) publications team teachin"
+   },
+   "official_link_status": "not_recorded",
+   "official_link_evidence": [],
+   "coverage": "website",
+   "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Caitlin Kelleher",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:39:49+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cse.washu.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:39:46+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://cse.wustl.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:39:46+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://engineering.washu.edu/faculty/Caitlin-Kelleher.html",
+     "at": "2026-11-07T20:39:46+00:00",
+     "result": "ok",
+     "sha256": "f0dc26074ad18c9dc6d1850ee1ca337f04d59e7688f3e772eb08f80b6fbc1efd"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://www.cse.wustl.edu/~ckelleher/",
+     "at": "2026-11-07T20:39:46+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "on": "https://engineering.washu.edu/faculty/Caitlin-Kelleher.html"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/40/5272",
+     "at": "2026-11-07T20:39:46+00:00",
+     "result": "listed",
+     "urls": [
+      "https://www.cse.wustl.edu/~ckelleher"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0002-9470-1478/person.json",
+     "at": "2026-11-07T20:39:46+00:00",
+     "result": "no_urls",
+     "sha256": "50a0a0315d4c60bbeafe7acbe8f01e831284103d4a517ad9f7798ae5e0118653"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:39:46+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "https://engineering.washu.edu/faculty/Caitlin-Kelleher.html",
+     "at": "2026-11-07T20:39:46+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.cse.wustl.edu/~ckelleher/",
+     "at": "2026-11-07T20:39:46+00:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "77d2227dbe70482ffbed1cd4b80d0ecff0026d2326d9545658e95ed68928b40d"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cse.wustl.edu/~ckelleher",
+     "at": "2026-11-07T20:39:46+00:00",
+     "result": "ok",
+     "via": "dblp_person_url",
+     "sha256": "77d2227dbe70482ffbed1cd4b80d0ecff0026d2326d9545658e95ed68928b40d",
+     "final_url": "https://www.cse.wustl.edu/~ckelleher/"
+    },
+    {
+     "source": "pubs_link",
+     "url": "http://www.cse.wustl.edu/~ckelleher/publications.html",
+     "at": "2026-11-07T20:39:49+00:00",
+     "result": "ok",
+     "on": "http://www.cse.wustl.edu/~ckelleher/",
+     "sha256": "6b0213effa7010bb5be7f9a6818471f0c5ab5bfd2709b844b736611eb8ffe4bd"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "pi_evidence_url:listed",
+    "pubs_link:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T20:39:49+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "http://www.cse.wustl.edu/~ckelleher/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": "http://www.cse.wustl.edu/~ckelleher/publications.html",
+   "found_via": "school_profile_link",
+   "listed_on": "https://engineering.washu.edu/faculty/Caitlin-Kelleher.html",
+   "sha256": "77d2227dbe70482ffbed1cd4b80d0ecff0026d2326d9545658e95ed68928b40d",
+   "evidence": {
+    "url": "http://www.cse.wustl.edu/~ckelleher/",
+    "sha256": "77d2227dbe70482ffbed1cd4b80d0ecff0026d2326d9545658e95ed68928b40d",
+    "quote": "[ Caitlin Kelleher @ WUSTL ] Toggle navigation Toggle navigation Home Research"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://www.cse.wustl.edu/~ckelleher/",
+     "at": "2026-11-07T20:39:46+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "on": "https://engineering.washu.edu/faculty/Caitlin-Kelleher.html"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "I-Ting Angelina Lee",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:39:52+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cse.washu.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:39:49+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://cse.wustl.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:39:50+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://engineering.washu.edu/faculty/I-Ting-Angelina-Lee.html",
+     "at": "2026-11-07T20:39:50+00:00",
+     "result": "ok",
+     "sha256": "2bf07bef6d96d51740747860c5a0122538f617f617c0419ddcadb4b5c37c5bc4"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://www.cse.wustl.edu/~angelee/",
+     "at": "2026-11-07T20:39:50+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "on": "https://engineering.washu.edu/faculty/I-Ting-Angelina-Lee.html"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/82/1002",
+     "at": "2026-11-07T20:39:50+00:00",
+     "result": "listed",
+     "urls": [
+      "https://engineering.wustl.edu/faculty/I-Ting-Angelina-Lee.html",
+      "https://www.cse.wustl.edu/~angelee/home_page/"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0002-0687-5508/person.json",
+     "at": "2026-11-07T20:39:50+00:00",
+     "result": "no_urls",
+     "sha256": "e248a5ab2df822e68ea7a6e7a727db3699158f6a6cfeb44105aee4d20db9c29d"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:39:50+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "https://engineering.washu.edu/faculty/I-Ting-Angelina-Lee.html",
+     "at": "2026-11-07T20:39:50+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.cse.wustl.edu/~angelee/",
+     "at": "2026-11-07T20:39:50+00:00",
+     "result": "does_not_name_pi_kept_strong_source",
+     "via": "school_profile_link",
+     "sha256": "5954ad3f80ca0a633a1b2befcacb24c708813238a153ac76fdb44e6e5f76102d"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cse.wustl.edu/~angelee/home_page/",
+     "at": "2026-11-07T20:39:52+00:00",
+     "result": "ok",
+     "via": "dblp_person_url",
+     "sha256": "5cc43a321a8b660f83444b097d6e6b82c0d544f7be792f274177b7fd0b0b27eb"
+    },
+    {
+     "source": "official_link_chain",
+     "url": "https://www.cse.wustl.edu/~angelee/home_page/",
+     "on": "https://engineering.washu.edu/faculty/I-Ting-Angelina-Lee.html",
+     "at": "2026-11-06T23:59:24",
+     "result": "listed_via_recorded_chain",
+     "original_link": "http://www.cse.wustl.edu/~angelee/",
+     "provenance_chain": [
+      {
+       "source_url": "https://engineering.washu.edu/faculty/I-Ting-Angelina-Lee.html",
+       "url": "http://www.cse.wustl.edu/~angelee/",
+       "href": "http://www.cse.wustl.edu/~angelee/",
+       "anchor": "Lab website",
+       "source_sha256": "2bf07bef6d96d51740747860c5a0122538f617f617c0419ddcadb4b5c37c5bc4",
+       "source_fetched_at": "2026-11-06T23:59:24",
+       "source_capture_url": null,
+       "via": "literal_html_href"
+      },
+      {
+       "source_url": "http://www.cse.wustl.edu/~angelee/",
+       "url": "https://www.cse.wustl.edu/~angelee/home_page/",
+       "linked_url": "http://www.cse.wustl.edu/~angelee/home_page",
+       "href": "http://www.cse.wustl.edu/~angelee/home_page",
+       "anchor": "here",
+       "source_sha256": "5954ad3f80ca0a633a1b2befcacb24c708813238a153ac76fdb44e6e5f76102d",
+       "source_fetched_at": "2026-11-06T23:59:25",
+       "source_capture_url": null,
+       "via": "literal_html_href"
+      }
+     ],
+     "provenance": "recovered_from_cached_profile_lab_chain"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:does_not_name_pi_kept_strong_source",
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "pi_evidence_url:listed",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T20:39:52+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "https://www.cse.wustl.edu/~angelee/home_page/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "dblp_person_url",
+   "listed_on": "https://engineering.washu.edu/faculty/I-Ting-Angelina-Lee.html",
+   "sha256": "5cc43a321a8b660f83444b097d6e6b82c0d544f7be792f274177b7fd0b0b27eb",
+   "evidence": {
+    "url": "https://www.cse.wustl.edu/~angelee/home_page/",
+    "sha256": "5cc43a321a8b660f83444b097d6e6b82c0d544f7be792f274177b7fd0b0b27eb",
+    "quote": "I-Ting Angelina Lee I-Ting Angelina Lee Washington University in St. Louis Scho"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "official_link_chain",
+     "url": "https://www.cse.wustl.edu/~angelee/home_page/",
+     "on": "https://engineering.washu.edu/faculty/I-Ting-Angelina-Lee.html",
+     "at": "2026-11-06T23:59:24",
+     "result": "listed_via_recorded_chain",
+     "original_link": "http://www.cse.wustl.edu/~angelee/",
+     "provenance_chain": [
+      {
+       "source_url": "https://engineering.washu.edu/faculty/I-Ting-Angelina-Lee.html",
+       "url": "http://www.cse.wustl.edu/~angelee/",
+       "href": "http://www.cse.wustl.edu/~angelee/",
+       "anchor": "Lab website",
+       "source_sha256": "2bf07bef6d96d51740747860c5a0122538f617f617c0419ddcadb4b5c37c5bc4",
+       "source_fetched_at": "2026-11-06T23:59:24",
+       "source_capture_url": null,
+       "via": "literal_html_href"
+      },
+      {
+       "source_url": "http://www.cse.wustl.edu/~angelee/",
+       "url": "https://www.cse.wustl.edu/~angelee/home_page/",
+       "linked_url": "http://www.cse.wustl.edu/~angelee/home_page",
+       "href": "http://www.cse.wustl.edu/~angelee/home_page",
+       "anchor": "here",
+       "source_sha256": "5954ad3f80ca0a633a1b2befcacb24c708813238a153ac76fdb44e6e5f76102d",
+       "source_fetched_at": "2026-11-06T23:59:25",
+       "source_capture_url": null,
+       "via": "literal_html_href"
+      }
+     ],
+     "provenance": "recovered_from_cached_profile_lab_chain"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Chenyang Lu",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:41:08+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cse.washu.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:39:52+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://cse.wustl.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:39:52+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/88/683",
+     "at": "2026-11-07T20:39:53+00:00",
+     "result": "listed",
+     "urls": [
+      "http://www.cse.wustl.edu/~lu/"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0003-1709-6769/person.json",
+     "at": "2026-11-07T20:39:53+00:00",
+     "result": "no_urls",
+     "sha256": "a4c50b7d527086098be47acde5206821c052a77b5bfcf542fc6728151df56aa7"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:39:53+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.cse.wustl.edu/~lu/",
+     "at": "2026-11-07T20:39:53+00:00",
+     "result": "ok",
+     "via": "dblp_person_url",
+     "sha256": "f62a55c7573f95edafbc6d311fe608509e8ac6e8ea17e54f95935aeca25591a3"
+    },
+    {
+     "source": "people_link",
+     "url": "http://www.cse.wustl.edu/~lu/#Students",
+     "at": "2026-11-07T20:39:55+00:00",
+     "result": "ok",
+     "on": "http://www.cse.wustl.edu/~lu/",
+     "sha256": "f62a55c7573f95edafbc6d311fe608509e8ac6e8ea17e54f95935aeca25591a3"
+    },
+    {
+     "source": "pubs_link",
+     "url": "http://www.cse.wustl.edu/~lu/#Papers",
+     "at": "2026-11-07T20:39:58+00:00",
+     "result": "ok",
+     "on": "http://www.cse.wustl.edu/~lu/",
+     "sha256": "f62a55c7573f95edafbc6d311fe608509e8ac6e8ea17e54f95935aeca25591a3"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "http://www.cse.wustl.edu/~lu/#Students",
+     "at": "2026-11-07T20:40:15+00:00",
+     "result": "32 captures",
+     "frm": 2020
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20200310185244id_/https://www.cse.wustl.edu/~lu/",
+     "at": "2026-11-07T20:40:32+00:00",
+     "result": "ok_wayback",
+     "sha256": "36250cd0cc55045149c8db4512a73a9435bfeed762a95b8449cdb0c53e5f2c79"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20230327142700id_/https://www.cse.wustl.edu/~lu/",
+     "at": "2026-11-07T20:40:50+00:00",
+     "result": "ok_wayback",
+     "sha256": "daf4fb861947827b3ade40cf0cefb32db0b123676789b1ea586f391d80787c86"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20260801094343id_/https://www.cse.wustl.edu/~lu/",
+     "at": "2026-11-07T20:41:08+00:00",
+     "result": "ok_wayback",
+     "sha256": "da9a341b29300f7932e572fd903ad012e1344a2594c5e5639a936303be908156"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "people_link:ok",
+    "pubs_link:ok",
+    "wayback_capture:ok_wayback",
+    "wayback_cdx:32 captures"
+   ],
+   "checked_at": "2026-11-07T20:41:08+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "http://www.cse.wustl.edu/~lu/",
+   "kind": "pi_homepage",
+   "people_page": "http://www.cse.wustl.edu/~lu/#Students",
+   "alumni_page": null,
+   "pubs_page": "http://www.cse.wustl.edu/~lu/#Papers",
+   "found_via": "dblp_person_url",
+   "listed_on": null,
+   "sha256": "f62a55c7573f95edafbc6d311fe608509e8ac6e8ea17e54f95935aeca25591a3",
+   "evidence": {
+    "url": "http://www.cse.wustl.edu/~lu/",
+    "sha256": "f62a55c7573f95edafbc6d311fe608509e8ac6e8ea17e54f95935aeca25591a3",
+    "quote": "Chenyang Lu | AI for Health and Cyber-Physical Systems AIHealth Short B"
+   },
+   "official_link_status": "not_recorded",
+   "official_link_evidence": [],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Alvitta Ottley",
+   "status": "none_found",
+   "reason_code": "no_web_presence_found",
+   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cse.washu.edu/faculty-research/directory.html: ok; department_listing https://cse.wustl.edu/faculty-research/directory.html: ok; dblp_person_url https://dblp.org/pid/121/5542: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0002-9485-276X/person.json: no_urls.",
+   "audited_at": "2026-11-07T20:41:08+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cse.washu.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:41:08+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://cse.wustl.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:41:08+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/121/5542",
+     "at": "2026-11-07T20:41:08+00:00",
+     "result": "no_homepage_url"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0002-9485-276X/person.json",
+     "at": "2026-11-07T20:41:08+00:00",
+     "result": "no_urls",
+     "sha256": "b85713bd499129d6c20dd4bf133a4443817281b1c4f904908e3f16aed48047bd"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:41:08+00:00",
+     "result": "no_homepage_field_in_schema"
+    }
+   ],
+   "places_checked": [
+    "dblp_person_url:no_homepage_url",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls"
+   ],
+   "checked_at": "2026-11-07T20:41:08+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "coverage": "reason",
+   "upstream_audit_reason": "no homepage or lab site at any source checked",
+   "reason_type": "search_no_eligible_site",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Neal Patwari",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Captured lab/group website.",
+   "audited_at": "2026-11-07T20:41:18+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://ese.washu.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:41:11+00:00",
+     "result": "ok",
+     "sha256": "72e66704090814d8254fb219fdad43a3f6bfcc46b6a1c058e80d4ddfc7034650"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://cse.wustl.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:41:11+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/45/3974",
+     "at": "2026-11-07T20:41:11+00:00",
+     "result": "listed",
+     "urls": [
+      "https://engineering.wustl.edu/faculty/Neal-Patwari.html",
+      "https://span.engineering.wustl.edu/people.html"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0003-3440-2043/person.json",
+     "at": "2026-11-07T20:41:11+00:00",
+     "result": "listed",
+     "sha256": "d1079efcdef5ddb0ab16daf5016555cef8104a9d7796d370c7943a3e91b8da66",
+     "urls": [
+      "https://orcid.org/0000-0003-3440-2043",
+      "https://patwarilab.com",
+      "https://scholar.google.com/citations?user=g9yhtN8AAAAJ"
+     ]
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:41:11+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://span.engineering.wustl.edu/people.html",
+     "at": "2026-11-07T20:41:14+00:00",
+     "result": "ok",
+     "via": "dblp_person_url",
+     "sha256": "778fea08d57ae3d53978036b910582731221d94207839d600cc94ff9098338f9"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://patwarilab.com",
+     "at": "2026-11-07T20:41:18+00:00",
+     "result": "does_not_name_pi_kept_strong_source",
+     "via": "orcid_researcher_url",
+     "sha256": "45a7c544f6ea812168e40937c83b21d404c2afea702c30945ca68d2f31e6d1ec",
+     "final_url": "https://patwarilab.com/"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:does_not_name_pi_kept_strong_source",
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:listed"
+   ],
+   "checked_at": "2026-11-07T20:41:18+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "https://span.engineering.wustl.edu/people.html",
+   "kind": "lab_site",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "dblp_person_url",
+   "listed_on": null,
+   "sha256": "778fea08d57ae3d53978036b910582731221d94207839d600cc94ff9098338f9",
+   "evidence": {
+    "url": "https://span.engineering.wustl.edu/people.html",
+    "sha256": "778fea08d57ae3d53978036b910582731221d94207839d600cc94ff9098338f9",
+    "quote": "News Papers People Products Projects Teaching Faculty Neal Patwari I direct the research of the Sensing, People and Networks ("
+   },
+   "official_link_status": "not_recorded",
+   "official_link_evidence": [],
+   "coverage": "website",
+   "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Netanel Raviv",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Captured lab/group website.",
+   "audited_at": "2026-11-07T20:42:04+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cse.washu.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:41:18+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://cse.wustl.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:41:18+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://engineering.washu.edu/faculty/Netanel-Raviv.html",
+     "at": "2026-11-07T20:41:18+00:00",
+     "result": "ok",
+     "sha256": "b408ee59d41f38d33ec7d0557cbf765769b761546c2232a1b312e5a22e063f84"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://sites.wustl.edu/ravivlab/",
+     "at": "2026-11-07T20:41:18+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "on": "https://engineering.washu.edu/faculty/Netanel-Raviv.html"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/131/6853",
+     "at": "2026-11-07T20:41:18+00:00",
+     "result": "no_homepage_url"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0002-1686-1994/person.json",
+     "at": "2026-11-07T20:41:18+00:00",
+     "result": "no_urls",
+     "sha256": "11e3535f8795f7de887be2d41f27dbb48d5b21cb4e81878583ef1b5f6b612bde"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:41:18+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "https://engineering.washu.edu/faculty/Netanel-Raviv.html",
+     "at": "2026-11-07T20:41:18+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://sites.wustl.edu/ravivlab/",
+     "at": "2026-11-07T20:41:18+00:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "d18d6d17eea211b39fb96f29544704935d679f6db0a9cd5d722edb0b6583944c"
+    },
+    {
+     "source": "people_link",
+     "url": "https://sites.wustl.edu/ravivlab/lab/",
+     "at": "2026-11-07T20:41:21+00:00",
+     "result": "ok",
+     "on": "https://sites.wustl.edu/ravivlab/",
+     "sha256": "8932db55de68e4490e9bad816c76b029e534a7b6cbd0f5b4c19e697ffe844418"
+    },
+    {
+     "source": "pubs_link",
+     "url": "https://sites.wustl.edu/ravivlab/publications/",
+     "at": "2026-11-07T20:41:25+00:00",
+     "result": "ok",
+     "on": "https://sites.wustl.edu/ravivlab/",
+     "sha256": "16042e6829cc4ef214ff1f5de82bfdfff7ebcdb5def8880f09913fa6687d8980"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "https://sites.wustl.edu/ravivlab/lab/",
+     "at": "2026-11-07T20:41:37+00:00",
+     "result": "2 captures",
+     "frm": 2019
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20220928062218id_/https://sites.wustl.edu/ravivlab/lab/",
+     "at": "2026-11-07T20:41:50+00:00",
+     "result": "ok_wayback",
+     "sha256": "ad1eab3581f3a6c8b703ff3c7007e2340961d7e3313bb99de5057075016f3a41"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20240723021945id_/https://sites.wustl.edu/ravivlab/lab/",
+     "at": "2026-11-07T20:42:04+00:00",
+     "result": "ok_wayback",
+     "sha256": "eef7fefcf2d9bb9542dfd2a0b389bd3af5cee624eb44558414d69f0e7dbd1826"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:no_homepage_url",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "people_link:ok",
+    "pi_evidence_url:listed",
+    "pubs_link:ok",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "wayback_capture:ok_wayback",
+    "wayback_cdx:2 captures"
+   ],
+   "checked_at": "2026-11-07T20:42:04+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "https://sites.wustl.edu/ravivlab/",
+   "kind": "lab_site",
+   "people_page": "https://sites.wustl.edu/ravivlab/lab/",
+   "alumni_page": null,
+   "pubs_page": "https://sites.wustl.edu/ravivlab/publications/",
+   "found_via": "school_profile_link",
+   "listed_on": "https://engineering.washu.edu/faculty/Netanel-Raviv.html",
+   "sha256": "d18d6d17eea211b39fb96f29544704935d679f6db0a9cd5d722edb0b6583944c",
+   "evidence": {
+    "url": "https://sites.wustl.edu/ravivlab/",
+    "sha256": "d18d6d17eea211b39fb96f29544704935d679f6db0a9cd5d722edb0b6583944c",
+    "quote": "Home | Raviv Lab | Washington University in St. Louis Skip to content Sk"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://sites.wustl.edu/ravivlab/",
+     "at": "2026-11-07T20:41:18+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "on": "https://engineering.washu.edu/faculty/Netanel-Raviv.html"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Yevgeniy Vorobeychik",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:42:08+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cse.washu.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:42:04+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://cse.wustl.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:42:04+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://engineering.washu.edu/faculty/Yevgeniy-Vorobeychik.html",
+     "at": "2026-11-07T20:42:04+00:00",
+     "result": "ok",
+     "sha256": "2ce8c271d3e98eea2b5bd00ad7f7875312288810c01bd83c0b0516b5bdd34214"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://vorobeychik.com/",
+     "at": "2026-11-07T20:42:04+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "on": "https://engineering.washu.edu/faculty/Yevgeniy-Vorobeychik.html"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://vorobeychik.com/cv.pdf",
+     "at": "2026-11-07T20:42:04+00:00",
+     "result": "listed",
+     "anchor": "Download CV",
+     "on": "https://engineering.washu.edu/faculty/Yevgeniy-Vorobeychik.html"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/70/2217",
+     "at": "2026-11-07T20:42:04+00:00",
+     "result": "no_homepage_url"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0003-2471-5345/person.json",
+     "at": "2026-11-07T20:42:05+00:00",
+     "result": "no_urls",
+     "sha256": "724832119ad9585f1f7fbbd6e314259ee6a9c1a7531cfbc9aa2b86e69205a92a"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:42:05+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "https://engineering.washu.edu/faculty/Yevgeniy-Vorobeychik.html",
+     "at": "2026-11-07T20:42:05+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://vorobeychik.com/",
+     "at": "2026-11-07T20:42:05+00:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "bfa9bc1f69c149eb283eebd67cc32a89bea9ecb925943739addd85d83a1154f0"
+    },
+    {
+     "source": "pubs_link",
+     "url": "http://vorobeychik.com/publications.html",
+     "at": "2026-11-07T20:42:08+00:00",
+     "result": "ok",
+     "on": "http://vorobeychik.com/",
+     "sha256": "800f9b1505f986614a67431ebd2e0fca8118e9d2c241ae231b395fe8b2bdd23a"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:no_homepage_url",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "pi_evidence_url:listed",
+    "pubs_link:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T20:42:08+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "http://vorobeychik.com/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": "http://vorobeychik.com/publications.html",
+   "found_via": "school_profile_link",
+   "listed_on": "https://engineering.washu.edu/faculty/Yevgeniy-Vorobeychik.html",
+   "sha256": "bfa9bc1f69c149eb283eebd67cc32a89bea9ecb925943739addd85d83a1154f0",
+   "evidence": {
+    "url": "http://vorobeychik.com/",
+    "sha256": "bfa9bc1f69c149eb283eebd67cc32a89bea9ecb925943739addd85d83a1154f0",
+    "quote": "Yevgeniy Vorobeychik Current Projects My set of ongoing projects is rather dynam"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://vorobeychik.com/",
+     "at": "2026-11-07T20:42:04+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "on": "https://engineering.washu.edu/faculty/Yevgeniy-Vorobeychik.html"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "William Yeoh",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Captured lab/group website.",
+   "audited_at": "2026-11-07T20:43:02+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cse.washu.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:42:08+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://cse.wustl.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:42:08+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://engineering.washu.edu/faculty/William-Yeoh.html",
+     "at": "2026-11-07T20:42:08+00:00",
+     "result": "ok",
+     "sha256": "b27af8961b31d56d0e8d3f3102f251624d380c38eb106fded77fd403f406bcb9"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://yeoh-lab.wustl.edu/",
+     "at": "2026-11-07T20:42:08+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "on": "https://engineering.washu.edu/faculty/William-Yeoh.html"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/97/4283-1",
+     "at": "2026-11-07T20:42:08+00:00",
+     "result": "listed",
+     "urls": [
+      "https://sites.wustl.edu/wyeoh/"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0002-2617-870X/person.json",
+     "at": "2026-11-07T20:42:08+00:00",
+     "result": "no_urls",
+     "sha256": "17935e6a0893ec4fcc30b1417a45717d4ca2664762d466ac750befd3db50a3b8"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:42:08+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "https://engineering.washu.edu/faculty/William-Yeoh.html",
+     "at": "2026-11-07T20:42:08+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://yeoh-lab.wustl.edu/",
+     "at": "2026-11-07T20:42:08+00:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "255f2b62cce4cfb05c9a7b34f79c82bfd6fd86535a417372252eda857fa63d63"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://sites.wustl.edu/wyeoh/",
+     "at": "2026-11-07T20:42:09+00:00",
+     "result": "ok",
+     "via": "dblp_person_url",
+     "sha256": "255f2b62cce4cfb05c9a7b34f79c82bfd6fd86535a417372252eda857fa63d63",
+     "final_url": "https://yeoh-lab.wustl.edu/"
+    },
+    {
+     "source": "people_link",
+     "url": "https://yeoh-lab.wustl.edu/people/",
+     "at": "2026-11-07T20:42:09+00:00",
+     "result": "ok",
+     "on": "https://yeoh-lab.wustl.edu/",
+     "sha256": "01bebdf14220dc159a1e9759ea6eeb6166a74669af704b4de0c5481e77949d35"
+    },
+    {
+     "source": "pubs_link",
+     "url": "https://yeoh-lab.wustl.edu/publications/",
+     "at": "2026-11-07T20:42:13+00:00",
+     "result": "ok",
+     "on": "https://yeoh-lab.wustl.edu/",
+     "sha256": "28c6468fdcf2209e4f8024f123e9018ca284fac6556cd730d46515743fa50ba0"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "https://yeoh-lab.wustl.edu/people/",
+     "at": "2026-11-07T20:42:19+00:00",
+     "result": "6 captures",
+     "frm": 2017
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20240324042607id_/https://yeoh-lab.wustl.edu/people/",
+     "at": "2026-11-07T20:42:25+00:00",
+     "result": "ok_wayback",
+     "sha256": "eb213a5aea49c2ef870312ef8241080067b65f8cb973a921570848ade69ecec8"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20241117123306id_/https://yeoh-lab.wustl.edu/people/",
+     "at": "2026-11-07T20:42:44+00:00",
+     "result": "ok_wayback",
+     "sha256": "af2753ec8a423ca1a1a6d7a4fd3017a53dc48304f9f42d22ead2f0b6fbf3e671"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20251110224145id_/https://yeoh-lab.wustl.edu/people/",
+     "at": "2026-11-07T20:43:02+00:00",
+     "result": "ok_wayback",
+     "sha256": "be7fee7d63ae6823462364c45e940c4533964bff917b8887df2b205c368701bc"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "people_link:ok",
+    "pi_evidence_url:listed",
+    "pubs_link:ok",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "wayback_capture:ok_wayback",
+    "wayback_cdx:6 captures"
+   ],
+   "checked_at": "2026-11-07T20:43:02+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "https://yeoh-lab.wustl.edu/",
+   "kind": "lab_site",
+   "people_page": "https://yeoh-lab.wustl.edu/people/",
+   "alumni_page": null,
+   "pubs_page": "https://yeoh-lab.wustl.edu/publications/",
+   "found_via": "school_profile_link",
+   "listed_on": "https://engineering.washu.edu/faculty/William-Yeoh.html",
+   "sha256": "255f2b62cce4cfb05c9a7b34f79c82bfd6fd86535a417372252eda857fa63d63",
+   "evidence": {
+    "url": "https://yeoh-lab.wustl.edu/",
+    "sha256": "255f2b62cce4cfb05c9a7b34f79c82bfd6fd86535a417372252eda857fa63d63",
+    "quote": "(current) research publications people contact YODA Lab The Yeoh’s Optimization and Decision Analytics (YODA) Lab at Washing"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://yeoh-lab.wustl.edu/",
+     "at": "2026-11-07T20:42:08+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "on": "https://engineering.washu.edu/faculty/William-Yeoh.html"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Weixiong Zhang",
+   "status": "none_found",
+   "reason_code": "no_web_presence_found",
+   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cse.wustl.edu/faculty-research/directory.html: ok; dblp_person_url https://dblp.org/pid/51/2284: no_homepage_url.",
+   "audited_at": "2026-11-07T20:43:02+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cse.wustl.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:43:02+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/51/2284",
+     "at": "2026-11-07T20:43:02+00:00",
+     "result": "no_homepage_url"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-07T20:43:02+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:43:02+00:00",
+     "result": "no_homepage_field_in_schema"
+    }
+   ],
+   "places_checked": [
+    "dblp_person_url:no_homepage_url",
+    "department_listing:ok"
+   ],
+   "checked_at": "2026-11-07T20:43:02+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "coverage": "reason",
+   "upstream_audit_reason": "no homepage or lab site at any source checked",
+   "reason_type": "search_no_eligible_site",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Ning Zhang",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:44:15+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cse.washu.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:43:02+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://cse.wustl.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:43:02+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://engineering.washu.edu/faculty/Ning-Zhang.html",
+     "at": "2026-11-07T20:43:02+00:00",
+     "result": "ok",
+     "sha256": "2948f7c5c28f2fdd9bcc168b83209cef1d7e6c398123eb8331193fe39f92f0e2"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://n1ngz.github.io/",
+     "at": "2026-11-07T20:43:02+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "on": "https://engineering.washu.edu/faculty/Ning-Zhang.html"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/181/2597-17",
+     "at": "2026-11-07T20:43:02+00:00",
+     "result": "listed",
+     "urls": [
+      "http://ningzhang.info/"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0003-0670-2161/person.json",
+     "at": "2026-11-07T20:43:02+00:00",
+     "result": "listed",
+     "sha256": "48732f67b168a2d58dcbd4fae6ab29da99f9778ac58f3bb713ced6da34588abc",
+     "urls": [
+      "http://ningzhang.info",
+      "https://orcid.org/0000-0003-0670-2161"
+     ]
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:43:02+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "https://engineering.washu.edu/faculty/Ning-Zhang.html",
+     "at": "2026-11-07T20:43:02+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://n1ngz.github.io/",
+     "at": "2026-11-07T20:43:02+00:00",
+     "result": "does_not_name_pi_kept_strong_source",
+     "via": "school_profile_link",
+     "sha256": "f17e8b07e33784c458f032654a7dba516b471aca29542ef5d2dcd924f1097926"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://ningzhang.info/",
+     "at": "2026-11-07T20:43:05+00:00",
+     "result": "ok",
+     "via": "dblp_person_url",
+     "sha256": "2cf11817428dbb5bc81a72d538f9affadb22b38e95fc7d494f35c19be554d4f6",
+     "final_url": "https://cybersecurity.seas.wustl.edu/"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://ningzhang.info",
+     "at": "2026-11-07T20:43:08+00:00",
+     "result": "ok",
+     "via": "orcid_researcher_url",
+     "sha256": "2cf11817428dbb5bc81a72d538f9affadb22b38e95fc7d494f35c19be554d4f6",
+     "final_url": "https://cybersecurity.seas.wustl.edu/"
+    },
+    {
+     "source": "people_link",
+     "url": "https://cybersecurity.seas.wustl.edu/#studentAd",
+     "at": "2026-11-07T20:43:12+00:00",
+     "result": "ok",
+     "on": "http://ningzhang.info/",
+     "sha256": "2cf11817428dbb5bc81a72d538f9affadb22b38e95fc7d494f35c19be554d4f6"
+    },
+    {
+     "source": "people_link",
+     "url": "https://cybersecurity.seas.wustl.edu/members.html",
+     "at": "2026-11-07T20:43:15+00:00",
+     "result": "ok",
+     "on": "http://ningzhang.info/",
+     "sha256": "61489024ca84835210629a402d008b0d02f75d04875ba43168845d9794946ade"
+    },
+    {
+     "source": "pubs_link",
+     "url": "https://cybersecurity.seas.wustl.edu/#publication",
+     "at": "2026-11-07T20:43:18+00:00",
+     "result": "ok",
+     "on": "http://ningzhang.info/",
+     "sha256": "2cf11817428dbb5bc81a72d538f9affadb22b38e95fc7d494f35c19be554d4f6"
+    },
+    {
+     "source": "pubs_link",
+     "url": "https://cybersecurity.seas.wustl.edu/publication.html",
+     "at": "2026-11-07T20:43:21+00:00",
+     "result": "ok",
+     "on": "http://ningzhang.info/",
+     "sha256": "cae584d5efca7f646433bf44681beae1d0055f7a994b6dbbb906071ec263078c"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "https://cybersecurity.seas.wustl.edu/#studentAd",
+     "at": "2026-11-07T20:43:27+00:00",
+     "result": "23 captures",
+     "frm": 2018
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20190817152708id_/https://cybersecurity.seas.wustl.edu/",
+     "at": "2026-11-07T20:43:45+00:00",
+     "result": "ok_wayback",
+     "sha256": "1c4b114cf1c65c0ca8d353ef8f04bb7a7fb355dfcaf40b282e5df8b82d8d6b5e"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20230925031536id_/https://cybersecurity.seas.wustl.edu/",
+     "at": "2026-11-07T20:44:02+00:00",
+     "result": "ok_wayback",
+     "sha256": "1d90a370cf11c7c7c7b41a44d891aa5b639427c9d234b809cc3fdb81b4c3d807"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20260901111744id_/https://cybersecurity.seas.wustl.edu/",
+     "at": "2026-11-07T20:44:15+00:00",
+     "result": "ok_wayback",
+     "sha256": "2cf11817428dbb5bc81a72d538f9affadb22b38e95fc7d494f35c19be554d4f6"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:does_not_name_pi_kept_strong_source",
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:listed",
+    "people_link:ok",
+    "pi_evidence_url:listed",
+    "pubs_link:ok",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "wayback_capture:ok_wayback",
+    "wayback_cdx:23 captures"
+   ],
+   "checked_at": "2026-11-07T20:44:15+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "http://ningzhang.info/",
+   "kind": "pi_homepage",
+   "people_page": "https://cybersecurity.seas.wustl.edu/#studentAd",
+   "alumni_page": null,
+   "pubs_page": "https://cybersecurity.seas.wustl.edu/#publication",
+   "found_via": "dblp_person_url",
+   "listed_on": null,
+   "sha256": "2cf11817428dbb5bc81a72d538f9affadb22b38e95fc7d494f35c19be554d4f6",
+   "evidence": {
+    "url": "http://ningzhang.info/",
+    "sha256": "2cf11817428dbb5bc81a72d538f9affadb22b38e95fc7d494f35c19be554d4f6",
+    "quote": "resiliency in IoT Analog attacks on CPS sensors News - Dr. Zhang delivered a keynote talk at the ArtSec, IEEE S&P 2027! [ Ta"
+   },
+   "official_link_status": "not_recorded",
+   "official_link_evidence": [],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Jonathan Turner",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:44:18+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cse.washu.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:44:15+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://cse.wustl.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:44:15+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/t/JonathanSTurner",
+     "at": "2026-11-07T20:44:15+00:00",
+     "result": "listed",
+     "urls": [
+      "http://www.arl.wustl.edu/~jst/"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-07T20:44:15+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:44:15+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.arl.wustl.edu/~jst/",
+     "at": "2026-11-07T20:44:18+00:00",
+     "result": "ok",
+     "via": "dblp_person_url",
+     "sha256": "c11a2bd9566ee18f1375983a05f4a76f12f01e25c5b794b0c3afeac4d61e0ab9",
+     "final_url": "https://www.arl.wustl.edu/~jon.turner/"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok"
+   ],
+   "checked_at": "2026-11-07T20:44:18+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "http://www.arl.wustl.edu/~jst/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "dblp_person_url",
+   "listed_on": null,
+   "sha256": "c11a2bd9566ee18f1375983a05f4a76f12f01e25c5b794b0c3afeac4d61e0ab9",
+   "evidence": {
+    "url": "http://www.arl.wustl.edu/~jst/",
+    "sha256": "c11a2bd9566ee18f1375983a05f4a76f12f01e25c5b794b0c3afeac4d61e0ab9",
+    "quote": "Jon Turner's Home Page"
+   },
+   "official_link_status": "not_recorded",
+   "official_link_evidence": [],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Ian Bogost",
+   "status": "none_found",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cse.washu.edu/faculty-research/directory.html: ok; department_listing https://cse.wustl.edu/faculty-research/directory.html: ok; school_profile https://engineering.washu.edu/faculty/Ian-Bogost.html: ok; dblp_person_url https://dblp.org/pid/54/3623: no_homepage_url; 1 further dated checks retained.",
+   "audited_at": "2026-11-07T20:44:18+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cse.washu.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:44:18+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://cse.wustl.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:44:18+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://engineering.washu.edu/faculty/Ian-Bogost.html",
+     "at": "2026-11-07T20:44:18+00:00",
+     "result": "ok",
+     "sha256": "f690ac0d3edc94634bb00b2f4edd5fbcc251d18d866e473bbc71b1641efb4b9d"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/54/3623",
+     "at": "2026-11-07T20:44:18+00:00",
+     "result": "no_homepage_url"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-07T20:44:18+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:44:18+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "https://engineering.washu.edu/faculty/Ian-Bogost.html",
+     "at": "2026-11-07T20:44:18+00:00",
+     "result": "listed"
+    }
+   ],
+   "places_checked": [
+    "dblp_person_url:no_homepage_url",
+    "department_listing:ok",
+    "pi_evidence_url:listed",
+    "school_profile:ok"
+   ],
+   "checked_at": "2026-11-07T20:44:18+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "coverage": "reason",
+   "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
+   "reason_type": "search_no_eligible_site",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Jiaxin Huang",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Captured lab/group website.",
+   "audited_at": "2026-11-07T20:45:26+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cse.washu.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:44:18+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://cse.wustl.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:44:18+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/187/2874-1",
+     "at": "2026-11-07T20:44:18+00:00",
+     "result": "listed",
+     "urls": [
+      "https://teapot123.github.io"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0001-8095-3343/person.json",
+     "at": "2026-11-07T20:44:18+00:00",
+     "result": "no_urls",
+     "sha256": "a0bd4adbfd1b7130bffb6f3e370a85aaf176c9eb26ac69fd6745aedf5c18492d"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:44:18+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://teapot123.github.io",
+     "at": "2026-11-07T20:44:22+00:00",
+     "result": "ok",
+     "via": "dblp_person_url",
+     "sha256": "1e068aa79fd78d85f824ee58b4a760bc732fa1f34797de10d2e06a8da954187b",
+     "final_url": "https://teapot123.github.io/"
+    },
+    {
+     "source": "people_link",
+     "url": "https://teapot123.github.io/group/",
+     "at": "2026-11-07T20:44:25+00:00",
+     "result": "ok",
+     "on": "https://teapot123.github.io",
+     "sha256": "8530144f11f0fdda84d8c4d50b066f278e59ef9c9a6f7547a67a3c233744623e"
+    },
+    {
+     "source": "pubs_link",
+     "url": "https://teapot123.github.io/cv1/",
+     "at": "2026-11-07T20:44:28+00:00",
+     "result": "ok",
+     "on": "https://teapot123.github.io",
+     "sha256": "f91821dae888065ff24c61544ad997c0cdccfad7aa0a9d5d28aca62e8bf50c29"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "https://teapot123.github.io/group/",
+     "at": "2026-11-07T20:44:44+00:00",
+     "result": "4 captures",
+     "frm": 2024
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20250328122707id_/https://teapot123.github.io/group/",
+     "at": "2026-11-07T20:45:02+00:00",
+     "result": "ok_wayback",
+     "sha256": "f3e6fda2e0d2b3a183fbd33d3bd574ff197362f387652fc8da50901affb7c0a6"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20260305171819id_/https://teapot123.github.io/group/",
+     "at": "2026-11-07T20:45:14+00:00",
+     "result": "ok_wayback",
+     "sha256": "3c9068000f4988c336a4e27c6e983e941befc8d3ed452855af7eb37f153db66c"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20260607015757id_/https://teapot123.github.io/group/",
+     "at": "2026-11-07T20:45:26+00:00",
+     "result": "ok_wayback",
+     "sha256": "864726eb5b9f34b9fdba0d6e04c81352ae99a1c9ed26206cd8ebf69d55a59c67"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "people_link:ok",
+    "pubs_link:ok",
+    "wayback_capture:ok_wayback",
+    "wayback_cdx:4 captures"
+   ],
+   "checked_at": "2026-11-07T20:45:26+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "https://teapot123.github.io",
+   "kind": "lab_site",
+   "people_page": "https://teapot123.github.io/group/",
+   "alumni_page": null,
+   "pubs_page": "https://teapot123.github.io/cv1/",
+   "found_via": "dblp_person_url",
+   "listed_on": null,
+   "sha256": "1e068aa79fd78d85f824ee58b4a760bc732fa1f34797de10d2e06a8da954187b",
+   "evidence": {
+    "url": "https://teapot123.github.io",
+    "sha256": "1e068aa79fd78d85f824ee58b4a760bc732fa1f34797de10d2e06a8da954187b",
+    "quote": "About Me - Jiaxin Huang Jiaxin Huang Publications Group Awards Teaching Jiaxin Huan"
+   },
+   "official_link_status": "not_recorded",
+   "official_link_evidence": [],
+   "coverage": "website",
+   "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Umar Iqbal",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:46:38+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cse.washu.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:45:26+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://cse.wustl.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:45:26+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://engineering.washu.edu/faculty/Umar-Iqbal.html",
+     "at": "2026-11-07T20:45:26+00:00",
+     "result": "ok",
+     "sha256": "75d9f8bb7b57bfe4fc2986bdfa8276b82ffbbb51003c810df7f29813163a4175"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://umariqbal.com",
+     "at": "2026-11-07T20:45:26+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "on": "https://engineering.washu.edu/faculty/Umar-Iqbal.html"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/08/8604-2",
+     "at": "2026-11-07T20:45:26+00:00",
+     "result": "listed",
+     "urls": [
+      "https://www.umariqbal.com/index.html"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0003-1416-4113/person.json",
+     "at": "2026-11-07T20:45:26+00:00",
+     "result": "no_urls",
+     "sha256": "ecb73fdbd80e35ed7f5d555f4a7dce422a656c505aa524651854e8f24b562e90"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:45:26+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "https://engineering.washu.edu/faculty/Umar-Iqbal.html",
+     "at": "2026-11-07T20:45:26+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://umariqbal.com",
+     "at": "2026-11-07T20:45:26+00:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "32d75cb2d438a3c4d6b99f8281060c699e2cca1f3c720817358697b1c51f49c0"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.umariqbal.com/index.html",
+     "at": "2026-11-07T20:45:29+00:00",
+     "result": "ok",
+     "via": "dblp_person_url",
+     "sha256": "32d75cb2d438a3c4d6b99f8281060c699e2cca1f3c720817358697b1c51f49c0",
+     "final_url": "https://umariqbal.com/index.html"
+    },
+    {
+     "source": "people_link",
+     "url": "https://umariqbal.com/pages/students.html",
+     "at": "2026-11-07T20:45:32+00:00",
+     "result": "ok",
+     "on": "https://umariqbal.com",
+     "sha256": "e30d8c2662a3a3dd98e5cb947e4da51bef57294eae58a1d6268b4f1ecb179b18"
+    },
+    {
+     "source": "pubs_link",
+     "url": "https://umariqbal.com/pages/publications.html",
+     "at": "2026-11-07T20:45:35+00:00",
+     "result": "ok",
+     "on": "https://umariqbal.com",
+     "sha256": "d1c5102209004c2e8a61d3aa5f19435fa6550749e9bb3bb66ec9c0ce2fda692b"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "https://umariqbal.com/pages/students.html",
+     "at": "2026-11-07T20:45:44+00:00",
+     "result": "5 captures",
+     "frm": 2023
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20240227043941id_/https://umariqbal.com/pages/students.html",
+     "at": "2026-11-07T20:46:02+00:00",
+     "result": "ok_wayback",
+     "sha256": "89c992746a7631d91ada10171847108a269ccc0cff48eade37cf82964408684d"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20240613144157id_/https://umariqbal.com/pages/students.html",
+     "at": "2026-11-07T20:46:20+00:00",
+     "result": "ok_wayback",
+     "sha256": "3f593cf3428fc5f0097986a2e4b2c55282388719f0e7cf54aa2b79a64d30ef7f"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20250808035022id_/https://www.umariqbal.com/pages/students.html",
+     "at": "2026-11-07T20:46:38+00:00",
+     "result": "ok_wayback",
+     "sha256": "87b96c94086f4cc1eacc8fd9917c04ed4f11f4a9c96ba52f8c45d4b972de8dc7"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "people_link:ok",
+    "pi_evidence_url:listed",
+    "pubs_link:ok",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "wayback_capture:ok_wayback",
+    "wayback_cdx:5 captures"
+   ],
+   "checked_at": "2026-11-07T20:46:38+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "https://umariqbal.com",
+   "kind": "pi_homepage",
+   "people_page": "https://umariqbal.com/pages/students.html",
+   "alumni_page": null,
+   "pubs_page": "https://umariqbal.com/pages/publications.html",
+   "found_via": "school_profile_link",
+   "listed_on": "https://engineering.washu.edu/faculty/Umar-Iqbal.html",
+   "sha256": "32d75cb2d438a3c4d6b99f8281060c699e2cca1f3c720817358697b1c51f49c0",
+   "evidence": {
+    "url": "https://umariqbal.com",
+    "sha256": "32d75cb2d438a3c4d6b99f8281060c699e2cca1f3c720817358697b1c51f49c0",
+    "quote": "Umar Iqbal Umar Iqbal Assistant professor Washington University in St."
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://umariqbal.com",
+     "at": "2026-11-07T20:45:26+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "on": "https://engineering.washu.edu/faculty/Umar-Iqbal.html"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Nathan Jacobs",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:47:50+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cse.washu.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:46:38+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://cse.wustl.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:46:38+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/82/3140",
+     "at": "2026-11-07T20:46:38+00:00",
+     "result": "listed",
+     "urls": [
+      "https://jacobsn.github.io/",
+      "https://mvrl.cse.wustl.edu/people/"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0002-4242-8967/person.json",
+     "at": "2026-11-07T20:46:38+00:00",
+     "result": "listed",
+     "sha256": "0c1746e243026b8b5468b6b8183984f172fbc0b64a3d12d1c7cdfa133cd1ec06",
+     "urls": [
+      "https://engineering.wustl.edu/faculty/Nathan-Jacobs.html",
+      "https://jacobsn.github.io",
+      "https://mvrl.cse.wustl.edu/",
+      "https://orcid.org/0000-0002-4242-8967"
+     ]
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:46:38+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://jacobsn.github.io/",
+     "at": "2026-11-07T20:46:41+00:00",
+     "result": "ok",
+     "via": "dblp_person_url",
+     "sha256": "fe0bce20710f444c93393bbfa47808c3f1e5c70640b4a74347c9675a138a7a58"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://mvrl.cse.wustl.edu/people/",
+     "at": "2026-11-07T20:46:41+00:00",
+     "result": "ok",
+     "via": "dblp_person_url",
+     "sha256": "d7defb819b0a95a24f45883904acc4eeccc07a202a31fbdccbb05750c913d8f5"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://jacobsn.github.io",
+     "at": "2026-11-07T20:46:44+00:00",
+     "result": "ok",
+     "via": "orcid_researcher_url",
+     "sha256": "fe0bce20710f444c93393bbfa47808c3f1e5c70640b4a74347c9675a138a7a58",
+     "final_url": "https://jacobsn.github.io/"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://mvrl.cse.wustl.edu/",
+     "at": "2026-11-07T20:46:44+00:00",
+     "result": "ok",
+     "via": "orcid_researcher_url",
+     "sha256": "8c69addaa46228bc585520db617bb238b672ff65404625bd74006f4d5d9e5bfd"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "https://mvrl.cse.wustl.edu/people/",
+     "at": "2026-11-07T20:46:57+00:00",
+     "result": "10 captures",
+     "frm": 2024
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20240324033129id_/https://mvrl.cse.wustl.edu/people/",
+     "at": "2026-11-07T20:47:26+00:00",
+     "result": "ok_wayback",
+     "sha256": "590e561a5ef51c699f15236462c1c3354eb758f8f5a206c359cbd819dc6f818d"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20250322032112id_/https://mvrl.cse.wustl.edu/people/",
+     "at": "2026-11-07T20:47:38+00:00",
+     "result": "ok_wayback",
+     "sha256": "99941b85ae96ecb897c0d547ae63864bd80a27eb7c40d957048c34d00f61a407"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20260521135717id_/https://mvrl.cse.wustl.edu/people/",
+     "at": "2026-11-07T20:47:50+00:00",
+     "result": "ok_wayback",
+     "sha256": "523e977288f6ac5ac75db2a26bdeffc8b0000ab6a40d526790488db67f59c525"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:listed",
+    "wayback_capture:ok_wayback",
+    "wayback_cdx:10 captures"
+   ],
+   "checked_at": "2026-11-07T20:47:50+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "https://mvrl.cse.wustl.edu/people/",
+   "kind": "pi_homepage",
+   "people_page": "https://mvrl.cse.wustl.edu/people/",
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "dblp_person_url",
+   "listed_on": null,
+   "sha256": "d7defb819b0a95a24f45883904acc4eeccc07a202a31fbdccbb05750c913d8f5",
+   "evidence": {
+    "url": "https://mvrl.cse.wustl.edu/people/",
+    "sha256": "d7defb819b0a95a24f45883904acc4eeccc07a202a31fbdccbb05750c913d8f5",
+    "quote": "rn more about joining the lab. Current Members Staff Nathan Jacobs Director, Professor of Computer Science Hamza Iqbal Researc"
+   },
+   "official_link_status": "not_recorded",
+   "official_link_evidence": [],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Hussein Sibai",
+   "status": "none_found",
+   "reason_code": "site_at_other_institution",
+   "reason": "No eligible website established for this school from the recorded checks (other_institution): department_listing https://cse.washu.edu/faculty-research/directory.html: ok; department_listing https://cse.wustl.edu/faculty-research/directory.html: ok; school_profile https://engineering.washu.edu/faculty/Hussein-Sibai.html: ok; school_profile_link https://husseinsibai.web.illinois.edu/: listed; 4 further dated checks retained.",
+   "audited_at": "2026-11-07T20:48:58+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cse.washu.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:47:50+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://cse.wustl.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:47:50+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://engineering.washu.edu/faculty/Hussein-Sibai.html",
+     "at": "2026-11-07T20:47:50+00:00",
+     "result": "ok",
+     "sha256": "b54593bf44844334890743465f328368e44d087e4394f82d9dc263a7a9fe6ed8"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://husseinsibai.web.illinois.edu/",
+     "at": "2026-11-07T20:47:50+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "on": "https://engineering.washu.edu/faculty/Hussein-Sibai.html"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/198/6856",
+     "at": "2026-11-07T20:47:50+00:00",
+     "result": "no_homepage_url"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-07T20:47:50+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:47:50+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "https://engineering.washu.edu/faculty/Hussein-Sibai.html",
+     "at": "2026-11-07T20:47:50+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://husseinsibai.web.illinois.edu/",
+     "at": "2026-11-07T20:48:20+00:00",
+     "result": "ok_wayback",
+     "via": "school_profile_link",
+     "capture_url": "https://web.archive.org/web/20240421081714id_/https://www.husseinsibai.web.illinois.edu/",
+     "sha256": "b3d7a80811ebaea94af4529eee43a31f7f5bced6c5a0abae2bf43241cc0f2302",
+     "final_url": "https://web.archive.org/web/20240421081714id_/https://www.husseinsibai.web.illinois.edu/"
+    },
+    {
+     "source": "pubs_link",
+     "url": "https://www.husseinsibai.web.illinois.edu/publications.html",
+     "at": "2026-11-07T20:48:58+00:00",
+     "result": "ok_wayback",
+     "on": "https://husseinsibai.web.illinois.edu/",
+     "capture_url": "https://web.archive.org/web/20240324034910id_/https://husseinsibai.web.illinois.edu/publications.html",
+     "sha256": "bd73a4a2acd41dd633004ed2be95a37a5bc5574f7c86b3896444bad765d99a27"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok_wayback",
+    "dblp_person_url:no_homepage_url",
+    "department_listing:ok",
+    "pi_evidence_url:listed",
+    "pubs_link:ok_wayback",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T20:48:58+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "https://husseinsibai.web.illinois.edu/",
+   "kind": "other_institution_site",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": "https://www.husseinsibai.web.illinois.edu/publications.html",
+   "found_via": "school_profile_link",
+   "listed_on": "https://engineering.washu.edu/faculty/Hussein-Sibai.html",
+   "sha256": "b3d7a80811ebaea94af4529eee43a31f7f5bced6c5a0abae2bf43241cc0f2302",
+   "evidence": {},
+   "coverage": "reason",
+   "upstream_audit_reason": "the only site found is at another institution (joint or previous appointment): not this school's lab page",
+   "reason_type": "other_institution",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Chenguang Wang",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Captured lab/group website.",
+   "audited_at": "2026-11-07T20:49:44+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cse.wustl.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:48:58+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/62/3432-1",
+     "at": "2026-11-07T20:48:58+00:00",
+     "result": "listed",
+     "urls": [
+      "https://cgraywang.github.io/",
+      "https://sites.google.com/site/raychenguangwang",
+      "https://engineering.wustl.edu/faculty/Chenguang-Wang.html"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-07T20:48:58+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:48:58+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://cgraywang.github.io/",
+     "at": "2026-11-07T20:49:01+00:00",
+     "result": "ok",
+     "via": "dblp_person_url",
+     "sha256": "9494826b804fa78a311dd24bcc911b59cd56344e496c42d94666d3146301f27e"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://sites.google.com/site/raychenguangwang",
+     "at": "2026-11-07T20:49:05+00:00",
+     "result": "ok",
+     "via": "dblp_person_url",
+     "sha256": "79ef7f235fa433be0090bbad4d09e5ddba4be7c36ab54bab058b9425da08f470"
+    },
+    {
+     "source": "people_link",
+     "url": "https://cgraywang.github.io/people/",
+     "at": "2026-11-07T20:49:05+00:00",
+     "result": "ok",
+     "on": "https://cgraywang.github.io/",
+     "sha256": "67163a7c29efbe9cf69da7f65d8eef5652bfa8986e0d8a4365cf7f33432bc0d6"
+    },
+    {
+     "source": "pubs_link",
+     "url": "https://cgraywang.github.io/#publications",
+     "at": "2026-11-07T20:49:08+00:00",
+     "result": "ok",
+     "on": "https://cgraywang.github.io/",
+     "sha256": "9494826b804fa78a311dd24bcc911b59cd56344e496c42d94666d3146301f27e"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "https://cgraywang.github.io/people/",
+     "at": "2026-11-07T20:49:14+00:00",
+     "result": "2 captures",
+     "frm": 2024
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20251014041902id_/https://cgraywang.github.io/people/",
+     "at": "2026-11-07T20:49:32+00:00",
+     "result": "ok_wayback",
+     "sha256": "d9dceabdec7f632e1b01d112a87ab3928544d87dad8f608201e7814752c1762d"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20260122164941id_/https://cgraywang.github.io/people/",
+     "at": "2026-11-07T20:49:44+00:00",
+     "result": "ok_wayback",
+     "sha256": "b47e9f3c2678240c47295ba2f5c3fe64e54ae962473e47e4d4f6dfdd04040cf9"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "people_link:ok",
+    "pubs_link:ok",
+    "wayback_capture:ok_wayback",
+    "wayback_cdx:2 captures"
+   ],
+   "checked_at": "2026-11-07T20:49:44+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "https://cgraywang.github.io/",
+   "kind": "lab_site",
+   "people_page": "https://cgraywang.github.io/people/",
+   "alumni_page": null,
+   "pubs_page": "https://cgraywang.github.io/#publications",
+   "found_via": "dblp_person_url",
+   "listed_on": null,
+   "sha256": "9494826b804fa78a311dd24bcc911b59cd56344e496c42d94666d3146301f27e",
+   "evidence": {
+    "url": "https://cgraywang.github.io/",
+    "sha256": "9494826b804fa78a311dd24bcc911b59cd56344e496c42d94666d3146301f27e",
+    "quote": "Chenguang Wang Chenguang Wang News Workshops Publications People Awards Pr"
+   },
+   "official_link_status": "not_recorded",
+   "official_link_evidence": [],
+   "coverage": "website",
+   "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Chongjie Zhang",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Captured lab/group website.",
+   "audited_at": "2026-11-07T20:51:02+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cse.washu.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:49:44+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://cse.wustl.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:49:44+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://engineering.washu.edu/faculty/Chongjie-Zhang.html",
+     "at": "2026-11-07T20:49:44+00:00",
+     "result": "ok",
+     "sha256": "89d95cf47e9f0295ecbba81a71bf95e16f857d68b4d0f57aa04bccc498acb6e5"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://mig-ai.github.io/",
+     "at": "2026-11-07T20:49:44+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "on": "https://engineering.washu.edu/faculty/Chongjie-Zhang.html"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/29/6693",
+     "at": "2026-11-07T20:49:44+00:00",
+     "result": "no_homepage_url"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-07T20:49:44+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:49:44+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "https://engineering.washu.edu/faculty/Chongjie-Zhang.html",
+     "at": "2026-11-07T20:49:44+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://mig-ai.github.io/",
+     "at": "2026-11-07T20:49:44+00:00",
+     "result": "does_not_name_pi_kept_strong_source",
+     "via": "school_profile_link",
+     "sha256": "36efa90ff3376c50e2fa6c102c6b374c7a3c476b8fff0253b73c1d6e62b9038e"
+    },
+    {
+     "source": "people_link",
+     "url": "https://mig-ai.github.io/people.html",
+     "at": "2026-11-07T20:49:44+00:00",
+     "result": "ok",
+     "on": "https://mig-ai.github.io/",
+     "sha256": "f4cc42d7d70917098413b027b0f59645ecd786f34b6bf668a0617688df7d4d1f"
+    },
+    {
+     "source": "pubs_link",
+     "url": "https://mig-ai.github.io/publications.html",
+     "at": "2026-11-07T20:49:47+00:00",
+     "result": "ok",
+     "on": "https://mig-ai.github.io/",
+     "sha256": "77294ba5234e84c39b664aff648eaa269d21beca06d4c739ba335d4789e5e145"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "https://mig-ai.github.io/people.html",
+     "at": "2026-11-07T20:50:01+00:00",
+     "result": "3 captures",
+     "frm": 2023
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20240324035147id_/https://mig-ai.github.io/people.html",
+     "at": "2026-11-07T20:50:33+00:00",
+     "result": "ok_wayback",
+     "sha256": "6e137b6f56c53f7526ea203d49a708d88046ee871f6e9195d111bc4656dd93bd"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20240418183043id_/https://mig-ai.github.io/people.html",
+     "at": "2026-11-07T20:50:44+00:00",
+     "result": "ok_wayback",
+     "sha256": "6e137b6f56c53f7526ea203d49a708d88046ee871f6e9195d111bc4656dd93bd"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20250715130430id_/https://mig-ai.github.io/people.html",
+     "at": "2026-11-07T20:51:02+00:00",
+     "result": "ok_wayback",
+     "sha256": "44c365059fa4f18f164f56c129831ba53a5f9a5650b539841761cba6e9717a1d"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:does_not_name_pi_kept_strong_source",
+    "dblp_person_url:no_homepage_url",
+    "department_listing:ok",
+    "people_link:ok",
+    "pi_evidence_url:listed",
+    "pubs_link:ok",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "wayback_capture:ok_wayback",
+    "wayback_cdx:3 captures"
+   ],
+   "checked_at": "2026-11-07T20:51:02+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "https://mig-ai.github.io/",
+   "kind": "lab_site",
+   "people_page": "https://mig-ai.github.io/people.html",
+   "alumni_page": null,
+   "pubs_page": "https://mig-ai.github.io/publications.html",
+   "found_via": "school_profile_link",
+   "listed_on": "https://engineering.washu.edu/faculty/Chongjie-Zhang.html",
+   "sha256": "36efa90ff3376c50e2fa6c102c6b374c7a3c476b8fff0253b73c1d6e62b9038e",
+   "evidence": {
+    "url": "https://mig-ai.github.io/",
+    "sha256": "36efa90ff3376c50e2fa6c102c6b374c7a3c476b8fff0253b73c1d6e62b9038e",
+    "quote": null
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://mig-ai.github.io/",
+     "at": "2026-11-07T20:49:44+00:00",
+     "result": "listed",
+     "anchor": "Lab website",
+     "on": "https://engineering.washu.edu/faculty/Chongjie-Zhang.html"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Gregory Kehne",
+   "status": "none_found",
+   "reason_code": "new_arrival_no_site_yet",
+   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cse.washu.edu/faculty-research/directory.html: ok; dblp_person_url https://dblp.org/pid/228/6865: no_homepage_url.",
+   "audited_at": "2026-11-07T20:51:02+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cse.washu.edu/faculty-research/directory.html",
+     "at": "2026-11-07T20:51:02+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/228/6865",
+     "at": "2026-11-07T20:51:02+00:00",
+     "result": "no_homepage_url"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-07T20:51:02+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:51:02+00:00",
+     "result": "no_homepage_field_in_schema"
+    }
+   ],
+   "places_checked": [
+    "dblp_person_url:no_homepage_url",
+    "department_listing:ok"
+   ],
+   "checked_at": "2026-11-07T20:51:02+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "coverage": "reason",
+   "upstream_audit_reason": "joined in 2026; no school lab site yet",
+   "reason_type": "search_no_eligible_site",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Fuhai Li",
+   "status": "none_found",
+   "reason_code": "new_arrival_no_site_yet",
+   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cse.washu.edu/faculty-research/directory.html: ok; dblp_person_url https://dblp.org/pid/36/3924-1: listed; orcid_researcher_urls https://orcid.org/0000-0002-3773-146X/person.json: no_urls.",
+   "audited_at": "2026-11-07T21:19:54+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cse.washu.edu/faculty-research/directory.html",
+     "at": "2026-11-07T21:19:54+00:00",
+     "result": "ok",
+     "sha256": "dd0a906666b1fa6120e89c287608f2c0a7b273319e3ea2ce1f30c2a07cfd6e48"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/36/3924-1",
+     "at": "2026-11-07T21:19:54+00:00",
+     "result": "listed",
+     "urls": [
+      "https://engineering.washu.edu/faculty/Fuhai-Li.html",
+      "https://profiles.wustl.edu/en/persons/fuhai-li",
+      "https://i2db.wustl.edu/people/fuhai-li-phd/"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0002-3773-146X/person.json",
+     "at": "2026-11-07T21:19:54+00:00",
+     "result": "no_urls",
+     "sha256": "e8d134c8f2e7aac56450412d1bc2fbd516c7fcc3034ddc243e700b903872da47"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T21:19:54+00:00",
+     "result": "no_homepage_field_in_schema"
+    }
+   ],
+   "places_checked": [
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls"
+   ],
+   "checked_at": "2026-11-07T21:19:54+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "coverage": "reason",
+   "upstream_audit_reason": "joined in 2026; no school lab site yet",
+   "reason_type": "search_no_eligible_site",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence_gaps": []
+  }
+ ]
+}

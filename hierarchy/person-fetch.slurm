@@ -24,5 +24,5 @@ df -h "$TMPDIR" | tail -1
 PY="$CS_ATLAS_PY"
 for s in "$@"; do
   echo "== $s $(date -Is)"
-  nice "$PY" -I -u "$CS_ATLAS_TOOLS/person_fetch.py" "$s" --workers 8 --deadline 3000 || echo "!! $s failed"
+  nice "$PY" -u "$CS_ATLAS_TOOLS/person_fetch.py" "$s" --workers 8 --deadline 3000 || echo "!! $s failed"
 done

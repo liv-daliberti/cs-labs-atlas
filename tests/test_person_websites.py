@@ -33,3 +33,17 @@ def test_unfetchable_hosts_are_recorded_not_fetched():
 def test_wayback_original_and_name_key():
     assert W.original('https://web.archive.org/web/2020id_/https://a.org/x') == 'https://a.org/x'
     assert W.name_key('José  Álvarez-Smith') == ('jose', 'smith') or W.name_key('José Álvarez Smith')
+
+
+def test_found_kind_separates_official_from_dblp_orcid_prior_pass():
+    d = lambda via: {'found_from': {'kind': 'discovery', 'via': via}}  # noqa: E731
+    assert W.found_kind(d('dblp_person_url')) == 'dblp_homepage'
+    assert W.found_kind(d('orcid_researcher_url')) == 'orcid'
+    assert W.found_kind(d('prior_labpage_pass_2026-10-22')) == 'prior_pass'
+    assert W.found_kind({'found_from': {'kind': 'official_page'}}) == 'official_page'
+
+
+def test_names_person_needs_first_and_last_name_on_the_page():
+    import person_fetch as F
+    assert F.names_person(b'<html><title>Ada Example</title>', 'Ada Example')[0]
+    assert not F.names_person(b'<html>Ada Smith', 'Ada Example')[0]

@@ -27,6 +27,7 @@ from pathlib import Path
 from urllib.parse import urljoin, urlsplit
 
 import atlas_paths as P
+from lab_websites import capture_stores
 
 NOT_FETCHABLE = re.compile(r'(?:^|\.)(?:scholar\.google\.[a-z.]+|linkedin\.com|twitter\.com|x\.com|facebook\.com|instagram\.com|'
                            r'researchgate\.net|academia\.edu|orcid\.org|dblp\.org|mathgenealogy\.org|genealogy\.math\.ndsu\.nodak\.edu|'
@@ -98,12 +99,11 @@ def read_json(path, default=None):
     return json.loads(path.read_text()) if path.exists() else default
 
 
-def captures(school):
+def captures(school, fetched_store=False):
     """Every stored 200 HTML capture of the lab-page stores: (url, capture_url, sha256, fetched_at, bytes)."""
     seen = set()
-    for name in ('labpage-audit-captures.sqlite', 'labpage-captures.sqlite'):
-        path = P.data(name, school)
-        if not path.exists():
+    for path in capture_stores(school):
+        if path.name.startswith('captures-') != fetched_store:
             continue
         con = sqlite3.connect(f'file:{path}?mode=ro', uri=True)
         for url, cap, sha, at, blob in con.execute(
@@ -145,6 +145,8 @@ def build(school, labs_path=None):
         if cap:
             cap_urls.setdefault(original(cap), dict(sha256=sha, at=at))
         pages.append((url, cap, sha, at, raw))
+    for url, cap, sha, at, raw in captures(school, fetched_store=True):   # pages person_fetch.py read live: fetch evidence only
+        cap_urls[url] = dict(sha256=sha, at=at)
     rows = []
     # PIs: home page / lab group (from the lab register), official profile (school_profile check), reasons otherwise
     for p in pis:
@@ -245,8 +247,64 @@ def build(school, labs_path=None):
                 rows.append(dict(person=s['name'], person_id=s['person'], role='student', lab=pi, kind='student_home', url=None,
                                  reason='student listed without a link on any stored official or lab page; no page found linking to them '
                                         '(searched: stored lab people/alumni pages and the student\'s relation sources; no name-pattern guesses)'))
+    annotate(rows, school)
     return dict(school=school, tool='tools/person_websites.py', source='lab-websites.json, labpage-audit-captures.sqlite, students.json',
                 review_status='automatic', rows=rows)
+
+
+FOUND_KINDS = (('dblp_person_url', 'dblp_homepage'), ('orcid', 'orcid'), ('prior_labpage_pass', 'prior_pass'))
+
+
+def found_kind(row):
+    ff = row.get('found_from') or {}
+    if ff.get('kind') == 'discovery':
+        via = ff.get('via') or ''
+        return next((k for prefix, k in FOUND_KINDS if via.startswith(prefix)), 'prior_pass')
+    return ff.get('kind') or 'official_page'
+
+
+def annotate(rows, school):
+    """found_from_kind for every URL row; verified = the fetched page names the person (first and last name). Fetch results
+    from tools/person_fetch.py that were not a 200 give the unfetched row its specific reason."""
+    from person_fetch import DIR, names_person
+    shas = {r['sha256'] for r in rows if r.get('url') and r.get('sha256')}
+    text = {}
+    for path in capture_stores(school):
+        con = sqlite3.connect(f'file:{path}?mode=ro', uri=True)
+        for sha in list(shas - set(text)):
+            row = con.execute("select content from captures where sha256=? and content is not null limit 1", (sha,)).fetchone()
+            if row:
+                try:
+                    text[sha] = zlib.decompress(row[0])
+                except zlib.error:
+                    text[sha] = row[0]
+    failed = {}
+    res_path = DIR / f'fetched-{school}.jsonl'
+    if res_path.exists():
+        for line in res_path.open():
+            x = json.loads(line)
+            if x.get('status') != 200:
+                failed[x['url']] = x
+    for r in rows:
+        if not r.get('url'):
+            continue
+        r['found_from_kind'] = found_kind(r)
+        if r.get('fetched') and r.get('sha256') in text:
+            r['verified'], q = names_person(text[r['sha256']], r['person'])
+            if q:
+                r['verification_quote'] = q
+        else:
+            r['verified'] = False
+        x = failed.get(r['url'])
+        if x and not r.get('fetched'):
+            err = x.get('error') or f"HTTP {x.get('status')}"
+            if any(k in err for k in ('robots', 'off-limits')):
+                r['fetch_reason'] = f'not fetched: robots.txt disallows it, or the host names an AI agent or is a banned source ({err})'
+            elif any(k in err for k in ('challenge', 'host-challenged', 'previous-host-refusal', 'wayback-only', '403', '429')):
+                r['fetch_reason'] = f'read via Wayback only (shared low lane): {err}'
+            else:
+                r['fetch_reason'] = f'live fetch failed: {err}'
+            r['fetch_attempted_at'] = x['at']
 
 
 def counts(doc):
@@ -256,7 +314,11 @@ def counts(doc):
             sel = [r for r in doc['rows'] if r['role'] == role and r['kind'] == kind]
             out[f'{role}:{kind}'] = dict(url=sum(1 for r in sel if r['url']), reason=sum(1 for r in sel if not r['url']),
                                          not_fetchable=sum(1 for r in sel if r['url'] and not r['fetched'] and 'not fetchable' in r.get('fetch_reason', '')),
-                                         queued=sum(1 for r in sel if r['url'] and not r['fetched'] and r.get('fetch_reason', '').startswith('queued')))
+                                         queued=sum(1 for r in sel if r['url'] and not r['fetched'] and r.get('fetch_reason', '').startswith('queued')),
+                                         fetched=sum(1 for r in sel if r['url'] and r['fetched']),
+                                         verified=sum(1 for r in sel if r.get('verified')),
+                                         official=sum(1 for r in sel if r['url'] and r.get('found_from_kind') == 'official_page'),
+                                         non_official=sum(1 for r in sel if r['url'] and r.get('found_from_kind') != 'official_page'))
     return out
 
 
@@ -277,7 +339,7 @@ def gate(doc):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument('cmd', choices=['build', 'summary', 'sample'])
+    ap.add_argument('cmd', choices=['build', 'summary', 'sample', 'queue'])
     ap.add_argument('schools', nargs='+')
     ap.add_argument('--out')
     ap.add_argument('--labs', help='lab-websites.json to read (default: the data path)')
@@ -293,6 +355,19 @@ def main():
             out = Path(a.out) if a.out else P.data_w('person-websites.json', s)
             out.parent.mkdir(parents=True, exist_ok=True)
             out.write_text(json.dumps(doc, indent=1, ensure_ascii=False) + '\n')
+        if a.cmd == 'queue':
+            from person_fetch import DIR
+            labs = read_json(a.labs or P.data('lab-websites.json', s), {})['labs']
+            DIR.mkdir(parents=True, exist_ok=True)
+            with open(DIR / f'queue-{s}.jsonl', 'w') as f:
+                for r in doc['rows']:
+                    if r['url'] and not r['fetched'] and r.get('fetch_reason', '').startswith('queued'):
+                        mode = 'wayback_only' if s == 'uchicago' and (urlsplit(r['url']).hostname or '').endswith('uchicago.edu') else 'live_if_robots_else_wayback'
+                        f.write(json.dumps(dict(url=r['url'], person=r['person'], role=r['role'], kind=r['kind'], lab=r['lab'], mode=mode)) + '\n')
+                for r in labs:
+                    if r.get('coverage') == 'pending' and r.get('url'):
+                        f.write(json.dumps(dict(url=r['url'], person=r['pi'], role='pi', kind='lab_pending', lab=r['pi'], gaps=r.get('evidence_gaps'),
+                                                mode='live_if_robots_else_wayback')) + '\n')
         if a.cmd == 'sample':
             pool = [r for r in doc['rows'] if r['url']]
             for r in random.Random(a.seed).sample(pool, min(a.n, len(pool))):

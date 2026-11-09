@@ -1,0 +1,4604 @@
+{
+ "school": "harvard",
+ "tool": "tools/lab_websites.py",
+ "source": "labpage-audit.jsonl.gz",
+ "source_exists": false,
+ "refreshed_from_cached_discovery": true,
+ "review_status": "generated; student admissions require separate review",
+ "labs": [
+  {
+   "pi": "David Alvarez-Melis",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:31:04+00:00",
+   "checks": [
+    {
+     "source": "prior_labpage_pass_2026-10-22",
+     "url": "https://dmelis.github.io/",
+     "at": "2026-11-07T20:29:45+00:00",
+     "result": "recorded_people_page"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46",
+     "at": "2026-11-07T20:29:48+00:00",
+     "result": "ok",
+     "sha256": "0ac559644c3c4f7c24f4851f01a09a11a51eb4e581795b94ba92783e1ecc00c0"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://seas.harvard.edu/person/david-alvarez-melis",
+     "at": "2026-11-07T20:29:51+00:00",
+     "result": "ok",
+     "sha256": "7da3e7a847f07d10a36745c64c9faf1260555a1f36dfe3f81e83b22d0c4f8312"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://dmelis.github.io/",
+     "at": "2026-11-07T20:29:51+00:00",
+     "result": "listed",
+     "anchor": "dmelis.github.io",
+     "on": "https://seas.harvard.edu/person/david-alvarez-melis"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/168/8255",
+     "at": "2026-11-07T20:29:51+00:00",
+     "result": "no_homepage_url"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-07T20:29:51+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:29:51+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "https://dmelis.github.io/",
+     "at": "2026-11-07T20:29:51+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://dmelis.github.io/",
+     "at": "2026-11-07T20:29:55+00:00",
+     "result": "ok",
+     "via": "prior_labpage_pass",
+     "sha256": "9278494915cc30e38238cd03a9db64ca9e59e2e161ad2f730b2870ba7dabd2b1"
+    },
+    {
+     "source": "people_link",
+     "url": "https://dmelis.github.io/index.html#group",
+     "at": "2026-11-07T20:29:57+00:00",
+     "result": "ok",
+     "on": "https://dmelis.github.io/",
+     "sha256": "9278494915cc30e38238cd03a9db64ca9e59e2e161ad2f730b2870ba7dabd2b1"
+    },
+    {
+     "source": "pubs_link",
+     "url": "https://dmelis.github.io/index.html#publications",
+     "at": "2026-11-07T20:30:00+00:00",
+     "result": "ok",
+     "on": "https://dmelis.github.io/",
+     "sha256": "9278494915cc30e38238cd03a9db64ca9e59e2e161ad2f730b2870ba7dabd2b1"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "https://dmelis.github.io/index.html#group",
+     "at": "2026-11-07T20:30:09+00:00",
+     "result": "4 captures",
+     "frm": 2023
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20230323011911id_/https://dmelis.github.io/index.html",
+     "at": "2026-11-07T20:30:28+00:00",
+     "result": "ok_wayback",
+     "sha256": "4406d35cb2459175ffe0c9a2353fabed6b84b66d4e84a4b3c215d1aa546c672f"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20251118005739id_/https://dmelis.github.io/index.html",
+     "at": "2026-11-07T20:30:45+00:00",
+     "result": "ok_wayback",
+     "sha256": "16248040a6cbebe6ccc6e7885624448de9765835bf4fcd2226f6f49b188d9069"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20261006182931id_/https://dmelis.github.io/index.html",
+     "at": "2026-11-07T20:31:04+00:00",
+     "result": "ok_wayback",
+     "sha256": "837aabdd43d66109b93bdf1dd4a4c282837edaeca49b18d9a9cdf2fdb23b0c7a"
+    },
+    {
+     "source": "pubs_link_not_used_by_prior_pass",
+     "url": "https://dmelis.github.io/index.html#publications",
+     "at": "2026-11-07T20:31:05+00:00",
+     "result": "ok",
+     "sha256": "9278494915cc30e38238cd03a9db64ca9e59e2e161ad2f730b2870ba7dabd2b1",
+     "capture_url": null
+    },
+    {
+     "source": "people_link_not_used_by_prior_pass",
+     "url": "https://dmelis.github.io/index.html#group",
+     "at": "2026-11-07T20:31:05+00:00",
+     "result": "ok",
+     "sha256": "9278494915cc30e38238cd03a9db64ca9e59e2e161ad2f730b2870ba7dabd2b1",
+     "capture_url": null
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:no_homepage_url",
+    "department_listing:ok",
+    "people_link:ok",
+    "people_link_not_used_by_prior_pass:ok",
+    "pi_evidence_url:listed",
+    "prior_labpage_pass_2026-10-22:recorded_people_page",
+    "pubs_link:ok",
+    "pubs_link_not_used_by_prior_pass:ok",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "wayback_capture:ok_wayback",
+    "wayback_cdx:4 captures"
+   ],
+   "checked_at": "2026-11-07T20:31:05+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "https://dmelis.github.io/",
+   "kind": "pi_homepage",
+   "people_page": "https://dmelis.github.io/index.html#group",
+   "alumni_page": null,
+   "pubs_page": "https://dmelis.github.io/index.html#publications",
+   "found_via": "prior_labpage_pass",
+   "listed_on": null,
+   "sha256": "9278494915cc30e38238cd03a9db64ca9e59e2e161ad2f730b2870ba7dabd2b1",
+   "evidence": {
+    "url": "https://dmelis.github.io/",
+    "sha256": "9278494915cc30e38238cd03a9db64ca9e59e2e161ad2f730b2870ba7dabd2b1",
+    "quote": "David Alvarez-Melis | Home David Alvarez-Melis (he/him/his) Assistant Professor"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://dmelis.github.io/",
+     "at": "2026-11-07T20:29:51+00:00",
+     "result": "listed",
+     "anchor": "dmelis.github.io",
+     "on": "https://seas.harvard.edu/person/david-alvarez-melis"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Nada Amin",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:31:11+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46",
+     "at": "2026-11-07T20:31:05+00:00",
+     "result": "ok",
+     "sha256": "0ac559644c3c4f7c24f4851f01a09a11a51eb4e581795b94ba92783e1ecc00c0"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://seas.harvard.edu/person/nada-amin",
+     "at": "2026-11-07T20:31:05+00:00",
+     "result": "ok",
+     "sha256": "a993924f9d67da7c1e095103a8aa7c7c7c576ec9068bea10f5fe96e58024bda5"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://namin.seas.harvard.edu",
+     "at": "2026-11-07T20:31:05+00:00",
+     "result": "listed",
+     "anchor": "namin.seas.harvard.edu",
+     "on": "https://seas.harvard.edu/person/nada-amin"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/88/11209",
+     "at": "2026-11-07T20:31:05+00:00",
+     "result": "no_homepage_url"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-07T20:31:05+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:31:05+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://namin.seas.harvard.edu",
+     "at": "2026-11-07T20:31:08+00:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "b0c9348b87f230d22169ba993e6f0b1199d6f4930bddfb1662358cfcc500b021",
+     "final_url": "https://namin.seas.harvard.edu/"
+    },
+    {
+     "source": "pubs_link",
+     "url": "https://namin.seas.harvard.edu/publications",
+     "at": "2026-11-07T20:31:11+00:00",
+     "result": "ok",
+     "on": "https://namin.seas.harvard.edu",
+     "sha256": "6ee4c7bb957e2efc524b28a95001cb34581734805d5d7f3d8ac8284fc42b88b2"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:no_homepage_url",
+    "department_listing:ok",
+    "pubs_link:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T20:31:11+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "https://namin.seas.harvard.edu",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": "https://namin.seas.harvard.edu/publications",
+   "found_via": "school_profile_link",
+   "listed_on": "https://seas.harvard.edu/person/nada-amin",
+   "sha256": "b0c9348b87f230d22169ba993e6f0b1199d6f4930bddfb1662358cfcc500b021",
+   "evidence": {
+    "url": "https://namin.seas.harvard.edu",
+    "sha256": "b0c9348b87f230d22169ba993e6f0b1199d6f4930bddfb1662358cfcc500b021",
+    "quote": "Nada Amin at Harvard SEAS Nada AMIN ندى أمين namin@seas.harvard.edu C"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://namin.seas.harvard.edu",
+     "at": "2026-11-07T20:31:05+00:00",
+     "result": "listed",
+     "anchor": "namin.seas.harvard.edu",
+     "on": "https://seas.harvard.edu/person/nada-amin"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Anurag Anshu",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:32:09+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46",
+     "at": "2026-11-07T20:31:11+00:00",
+     "result": "ok",
+     "sha256": "0ac559644c3c4f7c24f4851f01a09a11a51eb4e581795b94ba92783e1ecc00c0"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://seas.harvard.edu/person/anurag-anshu",
+     "at": "2026-11-07T20:31:11+00:00",
+     "result": "ok",
+     "sha256": "3d47194150c6c20860b134152c50182b3bd70bfc49995827ddbec5f3b5fc647d"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://anuraganshu.seas.harvard.edu/",
+     "at": "2026-11-07T20:31:11+00:00",
+     "result": "listed",
+     "anchor": "anuraganshu.seas.harvard.edu",
+     "on": "https://seas.harvard.edu/person/anurag-anshu"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/137/6679",
+     "at": "2026-11-07T20:31:11+00:00",
+     "result": "no_homepage_url"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-07T20:31:11+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:31:11+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://anuraganshu.seas.harvard.edu/",
+     "at": "2026-11-07T20:31:32+00:00",
+     "result": "ok_wayback",
+     "via": "school_profile_link",
+     "capture_url": "https://web.archive.org/web/20260317204553id_/https://anuraganshu.seas.harvard.edu/",
+     "sha256": "afdea1bf94297291fbb6204365a1e6889fe1581c2999fd112876c4b8dc044d0c",
+     "final_url": "https://web.archive.org/web/20260317204553id_/https://anuraganshu.seas.harvard.edu/"
+    },
+    {
+     "source": "pubs_link",
+     "url": "https://anuraganshu.seas.harvard.edu/anurag-publications",
+     "at": "2026-11-07T20:32:09+00:00",
+     "result": "ok_wayback",
+     "on": "https://anuraganshu.seas.harvard.edu/",
+     "capture_url": "https://web.archive.org/web/20231101231539id_/https://anuraganshu.seas.harvard.edu/anurag-publications",
+     "sha256": "38dfab9bcdbd788654a84d4405989374fc90aed48b64de72372c8a3405212263"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok_wayback",
+    "dblp_person_url:no_homepage_url",
+    "department_listing:ok",
+    "pubs_link:ok_wayback",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T20:32:09+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "https://anuraganshu.seas.harvard.edu/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": "https://anuraganshu.seas.harvard.edu/anurag-publications",
+   "found_via": "school_profile_link",
+   "listed_on": "https://seas.harvard.edu/person/anurag-anshu",
+   "sha256": "afdea1bf94297291fbb6204365a1e6889fe1581c2999fd112876c4b8dc044d0c",
+   "evidence": {
+    "url": "https://anuraganshu.seas.harvard.edu/",
+    "sha256": "afdea1bf94297291fbb6204365a1e6889fe1581c2999fd112876c4b8dc044d0c",
+    "quote": "Anurag Anshu | Anurag Anshu Skip to main content arrow_circle_down Anura",
+    "capture_url": "https://web.archive.org/web/20260317204553id_/https://anuraganshu.seas.harvard.edu/"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://anuraganshu.seas.harvard.edu/",
+     "at": "2026-11-07T20:31:11+00:00",
+     "result": "listed",
+     "anchor": "anuraganshu.seas.harvard.edu",
+     "on": "https://seas.harvard.edu/person/anurag-anshu"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Boaz Barak",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:33:21+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46",
+     "at": "2026-11-07T20:32:09+00:00",
+     "result": "ok",
+     "sha256": "0ac559644c3c4f7c24f4851f01a09a11a51eb4e581795b94ba92783e1ecc00c0"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://seas.harvard.edu/person/boaz-barak",
+     "at": "2026-11-07T20:32:10+00:00",
+     "result": "ok",
+     "sha256": "4698e6c8a96f826ee162b18682ee496b73469cf36c5963e8304719a962ab5960"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://www.boazbarak.org",
+     "at": "2026-11-07T20:32:10+00:00",
+     "result": "listed",
+     "anchor": "www.boazbarak.org",
+     "on": "https://seas.harvard.edu/person/boaz-barak"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/b/BBarak",
+     "at": "2026-11-07T20:32:10+00:00",
+     "result": "listed",
+     "urls": [
+      "http://www.boazbarak.org/"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-07T20:32:10+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:32:10+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.boazbarak.org",
+     "at": "2026-11-07T20:32:13+00:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "3438db8f5dc3e2199072088c0c08bc3c10eec186b75ce153311520d8f5851fc2",
+     "final_url": "https://www.boazbarak.org/"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.boazbarak.org/",
+     "at": "2026-11-07T20:32:16+00:00",
+     "result": "ok",
+     "via": "dblp_person_url",
+     "sha256": "3438db8f5dc3e2199072088c0c08bc3c10eec186b75ce153311520d8f5851fc2",
+     "final_url": "https://www.boazbarak.org/"
+    },
+    {
+     "source": "pubs_link",
+     "url": "https://www.boazbarak.org/#publications",
+     "at": "2026-11-07T20:32:22+00:00",
+     "result": "ok",
+     "on": "http://www.boazbarak.org",
+     "sha256": "3438db8f5dc3e2199072088c0c08bc3c10eec186b75ce153311520d8f5851fc2"
+    },
+    {
+     "source": "pubs_link",
+     "url": "https://www.boazbarak.org/Papers/",
+     "at": "2026-11-07T20:32:25+00:00",
+     "result": "ok",
+     "on": "http://www.boazbarak.org",
+     "sha256": "170361315aded798967a7b2c860e71df4320c3f3c6a82ff596bdb0ac9815e91c"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "http://www.boazbarak.org",
+     "at": "2026-11-07T20:32:33+00:00",
+     "result": "14 captures",
+     "frm": 2026
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20260105042744id_/https://www.boazbarak.org/",
+     "at": "2026-11-07T20:32:45+00:00",
+     "result": "ok_wayback",
+     "sha256": "17b79675a23df68e1c25827b2aa8c8277c33aacf6ac5a5abe032c59d6d39b414"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20260511050126id_/https://www.boazbarak.org/",
+     "at": "2026-11-07T20:33:02+00:00",
+     "result": "ok_wayback",
+     "sha256": "3438db8f5dc3e2199072088c0c08bc3c10eec186b75ce153311520d8f5851fc2"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20261011204322id_/https://www.boazbarak.org/",
+     "at": "2026-11-07T20:33:21+00:00",
+     "result": "ok_wayback",
+     "sha256": "3438db8f5dc3e2199072088c0c08bc3c10eec186b75ce153311520d8f5851fc2"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "pubs_link:ok",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "wayback_capture:ok_wayback",
+    "wayback_cdx:14 captures"
+   ],
+   "checked_at": "2026-11-07T20:33:21+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "http://www.boazbarak.org",
+   "kind": "pi_homepage",
+   "people_page": "http://www.boazbarak.org",
+   "alumni_page": null,
+   "pubs_page": "https://www.boazbarak.org/#publications",
+   "found_via": "school_profile_link",
+   "listed_on": "https://seas.harvard.edu/person/boaz-barak",
+   "sha256": "3438db8f5dc3e2199072088c0c08bc3c10eec186b75ce153311520d8f5851fc2",
+   "evidence": {
+    "url": "http://www.boazbarak.org",
+    "sha256": "3438db8f5dc3e2199072088c0c08bc3c10eec186b75ce153311520d8f5851fc2",
+    "quote": "Boaz Barak Toggle navigation Boaz Barak Home News Publications Writing"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://www.boazbarak.org",
+     "at": "2026-11-07T20:32:10+00:00",
+     "result": "listed",
+     "anchor": "www.boazbarak.org",
+     "on": "https://seas.harvard.edu/person/boaz-barak"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Kianté Brantley",
+   "status": "none_found",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://seas.harvard.edu/computer-science/people?role%5B46%5D=46: ok; school_profile https://seas.harvard.edu/person/kiante-brantley: ok; dblp_person_url https://dblp.org/pid/205/2760: no_homepage_url.",
+   "audited_at": "2026-11-07T20:33:21+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46",
+     "at": "2026-11-07T20:33:21+00:00",
+     "result": "ok",
+     "sha256": "0ac559644c3c4f7c24f4851f01a09a11a51eb4e581795b94ba92783e1ecc00c0"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://seas.harvard.edu/person/kiante-brantley",
+     "at": "2026-11-07T20:33:21+00:00",
+     "result": "ok",
+     "sha256": "e8464110cee3c484a2e12bd61eae73dfcf47bdd994b4960f45c6176af0aef5db"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/205/2760",
+     "at": "2026-11-07T20:33:21+00:00",
+     "result": "no_homepage_url"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-07T20:33:21+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:33:21+00:00",
+     "result": "no_homepage_field_in_schema"
+    }
+   ],
+   "places_checked": [
+    "dblp_person_url:no_homepage_url",
+    "department_listing:ok",
+    "school_profile:ok"
+   ],
+   "checked_at": "2026-11-07T20:33:21+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "coverage": "reason",
+   "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
+   "reason_type": "search_no_eligible_site",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "David Brooks",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:33:44+00:00",
+   "checks": [
+    {
+     "source": "prior_labpage_pass_2026-10-22",
+     "url": "https://davidbrooks.seas.harvard.edu/students/",
+     "at": "2026-11-07T20:33:21+00:00",
+     "result": "recorded_people_page"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46",
+     "at": "2026-11-07T20:33:21+00:00",
+     "result": "ok",
+     "sha256": "0ac559644c3c4f7c24f4851f01a09a11a51eb4e581795b94ba92783e1ecc00c0"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://seas.harvard.edu/person/david-brooks",
+     "at": "2026-11-07T20:33:24+00:00",
+     "result": "ok",
+     "sha256": "d9e1e2b0f60ae8173013ec3a72b83b4789e9657d51b2676ed84bbce852350a2f"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://davidbrooks.seas.harvard.edu/",
+     "at": "2026-11-07T20:33:24+00:00",
+     "result": "listed",
+     "anchor": "davidbrooks.seas.harvard.edu",
+     "on": "https://seas.harvard.edu/person/david-brooks"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/30/135",
+     "at": "2026-11-07T20:33:24+00:00",
+     "result": "listed",
+     "urls": [
+      "http://www.eecs.harvard.edu/~dbrooks/"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0002-0662-7889/person.json",
+     "at": "2026-11-07T20:33:27+00:00",
+     "result": "no_urls",
+     "sha256": "075c99a9fdfc834cd5abda1a63ceae40795fb176023779c8434f86e3804badad"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:33:27+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "https://davidbrooks.seas.harvard.edu/",
+     "at": "2026-11-07T20:33:27+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://davidbrooks.seas.harvard.edu/students/",
+     "at": "2026-11-07T20:33:31+00:00",
+     "result": "does_not_name_pi",
+     "via": "prior_labpage_pass",
+     "sha256": "391898b667933a30ecb599c4647f66c0525c39e0c84f7878ddee4b248013fa73"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://davidbrooks.seas.harvard.edu/",
+     "at": "2026-11-07T20:33:33+00:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "a89ec8fa444b858eea1d3eb2635e9e0f618084ae0dcef31407212bbef438a733"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.eecs.harvard.edu/~dbrooks/",
+     "at": "2026-11-07T20:33:36+00:00",
+     "result": "ok",
+     "via": "dblp_person_url",
+     "sha256": "a89ec8fa444b858eea1d3eb2635e9e0f618084ae0dcef31407212bbef438a733",
+     "final_url": "https://davidbrooks.seas.harvard.edu/"
+    },
+    {
+     "source": "people_link",
+     "url": "https://davidbrooks.seas.harvard.edu/students/",
+     "at": "2026-11-07T20:33:36+00:00",
+     "result": "ok",
+     "on": "https://davidbrooks.seas.harvard.edu/",
+     "sha256": "391898b667933a30ecb599c4647f66c0525c39e0c84f7878ddee4b248013fa73"
+    },
+    {
+     "source": "pubs_link",
+     "url": "https://davidbrooks.seas.harvard.edu/publications/",
+     "at": "2026-11-07T20:33:37+00:00",
+     "result": "ok",
+     "on": "https://davidbrooks.seas.harvard.edu/",
+     "sha256": "e3da0ec9d9807212b598695c407cef9a9fb67261317265c0dc5632a3fbbd86ca"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "https://davidbrooks.seas.harvard.edu/students/",
+     "at": "2026-11-07T20:33:44+00:00",
+     "result": "0 captures",
+     "frm": 2016
+    },
+    {
+     "source": "people_link_not_used_by_prior_pass",
+     "url": "https://davidbrooks.seas.harvard.edu/students/#content",
+     "at": "2026-11-07T20:33:45+00:00",
+     "result": "ok",
+     "sha256": "391898b667933a30ecb599c4647f66c0525c39e0c84f7878ddee4b248013fa73",
+     "capture_url": null
+    }
+   ],
+   "places_checked": [
+    "candidate_site:does_not_name_pi",
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "people_link:ok",
+    "people_link_not_used_by_prior_pass:ok",
+    "pi_evidence_url:listed",
+    "prior_labpage_pass_2026-10-22:recorded_people_page",
+    "pubs_link:ok",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "wayback_cdx:0 captures"
+   ],
+   "checked_at": "2026-11-07T20:33:45+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "https://davidbrooks.seas.harvard.edu/",
+   "kind": "pi_homepage",
+   "people_page": "https://davidbrooks.seas.harvard.edu/students/",
+   "alumni_page": null,
+   "pubs_page": "https://davidbrooks.seas.harvard.edu/publications/",
+   "found_via": "school_profile_link",
+   "listed_on": "https://seas.harvard.edu/person/david-brooks",
+   "sha256": "098cae0174ee05de7109a68843c05f3891057c99a393b4772020e5160a6e1fda",
+   "evidence": {
+    "url": "https://davidbrooks.seas.harvard.edu/",
+    "sha256": "098cae0174ee05de7109a68843c05f3891057c99a393b4772020e5160a6e1fda",
+    "quote": "ggle search interface Menu Toggle extended navigation David Brooks Haley Family Professor of Computer Science John. A. Paulson"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://davidbrooks.seas.harvard.edu/",
+     "at": "2026-11-07T20:33:24+00:00",
+     "result": "listed",
+     "anchor": "davidbrooks.seas.harvard.edu",
+     "on": "https://seas.harvard.edu/person/david-brooks"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Stephen Casper",
+   "status": "none_found",
+   "reason_code": "new_arrival_no_site_yet",
+   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://seas.harvard.edu/computer-science/people?role%5B46%5D=46: ok; dblp_person_url https://dblp.org/pid/255/5295: no_homepage_url.",
+   "audited_at": "2026-11-07T20:33:45+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46",
+     "at": "2026-11-07T20:33:45+00:00",
+     "result": "ok",
+     "sha256": "0ac559644c3c4f7c24f4851f01a09a11a51eb4e581795b94ba92783e1ecc00c0"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/255/5295",
+     "at": "2026-11-07T20:33:45+00:00",
+     "result": "no_homepage_url"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-07T20:33:45+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:33:45+00:00",
+     "result": "no_homepage_field_in_schema"
+    }
+   ],
+   "places_checked": [
+    "dblp_person_url:no_homepage_url",
+    "department_listing:ok"
+   ],
+   "checked_at": "2026-11-07T20:33:45+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "coverage": "reason",
+   "upstream_audit_reason": "joined in 2026; no school lab site yet",
+   "reason_type": "search_no_eligible_site",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Sitan Chen",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:34:39+00:00",
+   "checks": [
+    {
+     "source": "prior_labpage_pass_2026-10-22",
+     "url": "https://sitanchen.com/",
+     "at": "2026-11-07T20:33:45+00:00",
+     "result": "recorded_people_page"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46",
+     "at": "2026-11-07T20:33:45+00:00",
+     "result": "ok",
+     "sha256": "0ac559644c3c4f7c24f4851f01a09a11a51eb4e581795b94ba92783e1ecc00c0"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://seas.harvard.edu/person/sitan-chen",
+     "at": "2026-11-07T20:33:45+00:00",
+     "result": "ok",
+     "sha256": "b80fe2efcadce2aa465cd5edf752dadf6ab5c9276be5046a17cb376329ecf9aa"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://sitanchen.com/",
+     "at": "2026-11-07T20:33:45+00:00",
+     "result": "listed",
+     "anchor": "sitanchen.com",
+     "on": "https://seas.harvard.edu/person/sitan-chen"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/141/7670",
+     "at": "2026-11-07T20:33:45+00:00",
+     "result": "no_homepage_url"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-07T20:33:45+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:33:45+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://sitanchen.com/",
+     "at": "2026-11-07T20:33:48+00:00",
+     "result": "ok",
+     "via": "prior_labpage_pass",
+     "sha256": "b64f473fcdd733d1e27b2a3c5ea50ce82e09b9e70486fd730a3bab05b12ec0d8"
+    },
+    {
+     "source": "people_link",
+     "url": "https://sitanchen.com/#group",
+     "at": "2026-11-07T20:33:51+00:00",
+     "result": "ok",
+     "on": "https://sitanchen.com/",
+     "sha256": "b64f473fcdd733d1e27b2a3c5ea50ce82e09b9e70486fd730a3bab05b12ec0d8"
+    },
+    {
+     "source": "pubs_link",
+     "url": "https://sitanchen.com/#papers",
+     "at": "2026-11-07T20:33:54+00:00",
+     "result": "ok",
+     "on": "https://sitanchen.com/",
+     "sha256": "b64f473fcdd733d1e27b2a3c5ea50ce82e09b9e70486fd730a3bab05b12ec0d8"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "https://sitanchen.com/#group",
+     "at": "2026-11-07T20:34:08+00:00",
+     "result": "2 captures",
+     "frm": 2026
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20260511040800id_/https://sitanchen.com/",
+     "at": "2026-11-07T20:34:27+00:00",
+     "result": "ok_wayback",
+     "sha256": "43adeb18e74f2c4482624c00d272f5bb587794a8c6e7ce24b978ecda989e07ff"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20261015203306id_/https://sitanchen.com/",
+     "at": "2026-11-07T20:34:39+00:00",
+     "result": "ok_wayback",
+     "sha256": "b64f473fcdd733d1e27b2a3c5ea50ce82e09b9e70486fd730a3bab05b12ec0d8"
+    },
+    {
+     "source": "pubs_link_not_used_by_prior_pass",
+     "url": "https://sitanchen.com/#papers",
+     "at": "2026-11-07T20:34:39+00:00",
+     "result": "ok",
+     "sha256": "b64f473fcdd733d1e27b2a3c5ea50ce82e09b9e70486fd730a3bab05b12ec0d8",
+     "capture_url": null
+    },
+    {
+     "source": "people_link_not_used_by_prior_pass",
+     "url": "https://sitanchen.com/#group",
+     "at": "2026-11-07T20:34:39+00:00",
+     "result": "ok",
+     "sha256": "b64f473fcdd733d1e27b2a3c5ea50ce82e09b9e70486fd730a3bab05b12ec0d8",
+     "capture_url": null
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:no_homepage_url",
+    "department_listing:ok",
+    "people_link:ok",
+    "people_link_not_used_by_prior_pass:ok",
+    "prior_labpage_pass_2026-10-22:recorded_people_page",
+    "pubs_link:ok",
+    "pubs_link_not_used_by_prior_pass:ok",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "wayback_capture:ok_wayback",
+    "wayback_cdx:2 captures"
+   ],
+   "checked_at": "2026-11-07T20:34:39+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "https://sitanchen.com/",
+   "kind": "pi_homepage",
+   "people_page": "https://sitanchen.com/#group",
+   "alumni_page": null,
+   "pubs_page": "https://sitanchen.com/#papers",
+   "found_via": "prior_labpage_pass",
+   "listed_on": null,
+   "sha256": "b64f473fcdd733d1e27b2a3c5ea50ce82e09b9e70486fd730a3bab05b12ec0d8",
+   "evidence": {
+    "url": "https://sitanchen.com/",
+    "sha256": "b64f473fcdd733d1e27b2a3c5ea50ce82e09b9e70486fd730a3bab05b12ec0d8",
+    "quote": "Sitan Chen Sitan Chen About Group Teaching Papers Other Sitan Chen Ass"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://sitanchen.com/",
+     "at": "2026-11-07T20:33:45+00:00",
+     "result": "listed",
+     "anchor": "sitanchen.com",
+     "on": "https://seas.harvard.edu/person/sitan-chen"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Yiling Chen",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Captured lab/group website.",
+   "audited_at": "2026-11-07T21:19:53+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46",
+     "at": "2026-11-07T21:19:53+00:00",
+     "result": "ok",
+     "sha256": "0ac559644c3c4f7c24f4851f01a09a11a51eb4e581795b94ba92783e1ecc00c0"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://seas.harvard.edu/person/yiling-chen",
+     "at": "2026-11-07T21:19:53+00:00",
+     "result": "ok",
+     "sha256": "99ea8f43ebc7436a4d455ce003193f66a688c1cd20bcd5cd8c5a6968c445b423"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/72/3762-1",
+     "at": "2026-11-07T21:19:53+00:00",
+     "result": "listed",
+     "urls": [
+      "https://yiling.seas.harvard.edu/"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0002-0166-594X/person.json",
+     "at": "2026-11-07T21:19:53+00:00",
+     "result": "no_urls",
+     "sha256": "7b52acd95b27853c0ca39c26205fe6a8ad88050964ac65f4cae5c0531aa2616d"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T21:19:53+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://yiling.seas.harvard.edu/",
+     "at": "2026-11-07T21:19:53+00:00",
+     "result": "ok",
+     "via": "dblp_person_url",
+     "sha256": "72fed578658e4b019897ee6cb74c36315532c8cbea6c90d7ff19d0430e9f0110"
+    },
+    {
+     "source": "people_link",
+     "url": "https://yiling.seas.harvard.edu/people/",
+     "at": "2026-11-07T21:19:53+00:00",
+     "result": "ok",
+     "on": "https://yiling.seas.harvard.edu/",
+     "sha256": "463f2f3d6da42c96dedcdf5c0474d80c3133b446be1b5be31790842f259edfb2"
+    },
+    {
+     "source": "pubs_link",
+     "url": "https://yiling.seas.harvard.edu/publications/",
+     "at": "2026-11-07T21:19:53+00:00",
+     "result": "ok",
+     "on": "https://yiling.seas.harvard.edu/",
+     "sha256": "b5f05779782eb2d4b9c055c34d816d32d69bd958d2bc0f07ec5f9d3695edbc3b"
+    },
+    {
+     "source": "pubs_link",
+     "url": "https://yiling.seas.harvard.edu/publication/",
+     "at": "2026-11-07T21:19:53+00:00",
+     "result": "ok",
+     "on": "https://yiling.seas.harvard.edu/",
+     "sha256": "40748d060005f2a998236d9806a0f818d4c4b3114da84fc5baa30ffeaa4e27c2"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "https://yiling.seas.harvard.edu/people/",
+     "at": "2026-11-07T21:19:53+00:00",
+     "result": "0 captures",
+     "frm": 2026
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "people_link:ok",
+    "pubs_link:ok",
+    "school_profile:ok",
+    "wayback_cdx:0 captures"
+   ],
+   "checked_at": "2026-11-07T21:19:53+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "https://yiling.seas.harvard.edu/",
+   "kind": "lab_site",
+   "people_page": "https://yiling.seas.harvard.edu/people/",
+   "alumni_page": null,
+   "pubs_page": "https://yiling.seas.harvard.edu/publications/",
+   "found_via": "dblp_person_url",
+   "listed_on": null,
+   "sha256": "72fed578658e4b019897ee6cb74c36315532c8cbea6c90d7ff19d0430e9f0110",
+   "evidence": {
+    "url": "https://yiling.seas.harvard.edu/",
+    "sha256": "72fed578658e4b019897ee6cb74c36315532c8cbea6c90d7ff19d0430e9f0110",
+    "quote": "Yiling Chen Personal Website Skip to content HARVARD.EDU Yiling Chen Pe"
+   },
+   "official_link_status": "not_recorded",
+   "official_link_evidence": [],
+   "coverage": "website",
+   "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Stephen Chong",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:35:45+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46",
+     "at": "2026-11-07T20:35:08+00:00",
+     "result": "ok",
+     "sha256": "0ac559644c3c4f7c24f4851f01a09a11a51eb4e581795b94ba92783e1ecc00c0"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://seas.harvard.edu/person/stephen-chong",
+     "at": "2026-11-07T20:35:09+00:00",
+     "result": "ok",
+     "sha256": "251cb4f9dc750b4dfaa75662b3fb05d05e3b8499259ca1b3eb7d157846f530fa"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://people.seas.harvard.edu/~chong/",
+     "at": "2026-11-07T20:35:09+00:00",
+     "result": "listed",
+     "anchor": "people.seas.harvard.edu/~chong",
+     "on": "https://seas.harvard.edu/person/stephen-chong"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/13/2794",
+     "at": "2026-11-07T20:35:09+00:00",
+     "result": "no_homepage_url"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-07T20:35:09+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:35:09+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://people.seas.harvard.edu/~chong/",
+     "at": "2026-11-07T20:35:12+00:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "92cde8af507cc155ae01e813366a630dabbacd0d32dd71b259a22800877091de"
+    },
+    {
+     "source": "alumni_link",
+     "url": "http://people.seas.harvard.edu/~chong/alumni.html",
+     "at": "2026-11-07T20:35:15+00:00",
+     "result": "ok",
+     "on": "http://people.seas.harvard.edu/~chong/",
+     "sha256": "d2892548a5344026f77d16c0a435c87121520dc1a493c0039f54e45d48371832"
+    },
+    {
+     "source": "pubs_link",
+     "url": "http://people.seas.harvard.edu/~chong/publications.html",
+     "at": "2026-11-07T20:35:18+00:00",
+     "result": "ok",
+     "on": "http://people.seas.harvard.edu/~chong/",
+     "sha256": "d7ea450dbea70f9a353bad263d22454311eab00a6818f142e478ffbee589529b"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "http://people.seas.harvard.edu/~chong/alumni.html",
+     "at": "2026-11-07T20:35:32+00:00",
+     "result": "1 captures",
+     "frm": 2026
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20260519155110id_/https://people.seas.harvard.edu/~chong/alumni.html",
+     "at": "2026-11-07T20:35:45+00:00",
+     "result": "ok_wayback",
+     "sha256": "69610425721684149ec0ffc122dd868d373d6dabf1f8c23318c041322baa7985"
+    }
+   ],
+   "places_checked": [
+    "alumni_link:ok",
+    "candidate_site:ok",
+    "dblp_person_url:no_homepage_url",
+    "department_listing:ok",
+    "pubs_link:ok",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "wayback_capture:ok_wayback",
+    "wayback_cdx:1 captures"
+   ],
+   "checked_at": "2026-11-07T20:35:45+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "http://people.seas.harvard.edu/~chong/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": "http://people.seas.harvard.edu/~chong/alumni.html",
+   "pubs_page": "http://people.seas.harvard.edu/~chong/publications.html",
+   "found_via": "school_profile_link",
+   "listed_on": "https://seas.harvard.edu/person/stephen-chong",
+   "sha256": "92cde8af507cc155ae01e813366a630dabbacd0d32dd71b259a22800877091de",
+   "evidence": {
+    "url": "http://people.seas.harvard.edu/~chong/",
+    "sha256": "92cde8af507cc155ae01e813366a630dabbacd0d32dd71b259a22800877091de",
+    "quote": "Stephen Chong Stephen Chong Gordon McKay Professor of Computer Science, H"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://people.seas.harvard.edu/~chong/",
+     "at": "2026-11-07T20:35:09+00:00",
+     "result": "listed",
+     "anchor": "people.seas.harvard.edu/~chong",
+     "on": "https://seas.harvard.edu/person/stephen-chong"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Finale Doshi-Velez",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Captured lab/group website.",
+   "audited_at": "2026-11-07T21:19:54+00:00",
+   "checks": [
+    {
+     "source": "prior_labpage_pass_2026-10-22",
+     "url": "https://dtak.github.io/people/",
+     "at": "2026-11-07T21:19:53+00:00",
+     "result": "recorded_people_page"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46",
+     "at": "2026-11-07T21:19:53+00:00",
+     "result": "ok",
+     "sha256": "0ac559644c3c4f7c24f4851f01a09a11a51eb4e581795b94ba92783e1ecc00c0"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://seas.harvard.edu/person/finale-doshi-velez",
+     "at": "2026-11-07T21:19:54+00:00",
+     "result": "ok",
+     "sha256": "9f3b06afcd934e8f9ad076651236a4cbd7018e46a74f7a29b296b3cc3cdcd3e1"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/64/7056",
+     "at": "2026-11-07T21:19:54+00:00",
+     "result": "listed",
+     "urls": [
+      "http://people.csail.mit.edu/finale/"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0003-2886-3898/person.json",
+     "at": "2026-11-07T21:19:54+00:00",
+     "result": "no_urls",
+     "sha256": "07ba4267cf6962234f8f4f79da70e0f8116f0074bd50d67d99ab9258210274fd"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T21:19:54+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://dtak.github.io/people/",
+     "at": "2026-11-07T21:19:54+00:00",
+     "result": "ok",
+     "via": "prior_labpage_pass",
+     "sha256": "982770f0e5b0f42a3c5e0f95b4cc440215d8d41b32dc2ffe9aab22e4843b3f4d"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://people.csail.mit.edu/finale/",
+     "at": "2026-11-07T21:19:54+00:00",
+     "result": "does_not_name_pi_kept_strong_source",
+     "via": "dblp_person_url",
+     "sha256": "0a40b50e363622944fe1c05ac8e24e9d538338e599c887ce84f12dd90da216f1",
+     "final_url": "https://people.csail.mit.edu/finale/"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "https://dtak.github.io/people/",
+     "at": "2026-11-07T21:19:54+00:00",
+     "result": "0 captures",
+     "frm": 2026
+    }
+   ],
+   "places_checked": [
+    "candidate_site:does_not_name_pi_kept_strong_source",
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "prior_labpage_pass_2026-10-22:recorded_people_page",
+    "school_profile:ok",
+    "wayback_cdx:0 captures"
+   ],
+   "checked_at": "2026-11-07T21:19:54+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "https://dtak.github.io/people/",
+   "kind": "lab_site",
+   "people_page": "https://dtak.github.io/people/",
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "prior_labpage_pass",
+   "listed_on": null,
+   "sha256": "982770f0e5b0f42a3c5e0f95b4cc440215d8d41b32dc2ffe9aab22e4843b3f4d",
+   "evidence": {
+    "url": "https://dtak.github.io/people/",
+    "sha256": "982770f0e5b0f42a3c5e0f95b4cc440215d8d41b32dc2ffe9aab22e4843b3f4d",
+    "quote": "ard's Data to Actionable Knowledge lab, led by Prof. Finale Doshi-Velez. Follow Cambridge, MA Github YouTube Google Scholar People"
+   },
+   "official_link_status": "not_recorded",
+   "official_link_evidence": [],
+   "coverage": "website",
+   "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Yilun Du",
+   "status": "none_found",
+   "reason_code": "new_arrival_no_site_yet",
+   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://seas.harvard.edu/computer-science/people?role%5B46%5D=46: ok; school_profile https://seas.harvard.edu/person/yilun-du: ok; dblp_person_url https://dblp.org/pid/204/4379: no_homepage_url.",
+   "audited_at": "2026-11-07T20:36:09+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46",
+     "at": "2026-11-07T20:36:09+00:00",
+     "result": "ok",
+     "sha256": "0ac559644c3c4f7c24f4851f01a09a11a51eb4e581795b94ba92783e1ecc00c0"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://seas.harvard.edu/person/yilun-du",
+     "at": "2026-11-07T20:36:09+00:00",
+     "result": "ok",
+     "sha256": "ff8a363331157f676873d1d2f1d281ace27db6137c1984a0a753f8cf466fef22"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/204/4379",
+     "at": "2026-11-07T20:36:09+00:00",
+     "result": "no_homepage_url"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-07T20:36:09+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:36:09+00:00",
+     "result": "no_homepage_field_in_schema"
+    }
+   ],
+   "places_checked": [
+    "dblp_person_url:no_homepage_url",
+    "department_listing:ok",
+    "school_profile:ok"
+   ],
+   "checked_at": "2026-11-07T20:36:09+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "coverage": "reason",
+   "upstream_audit_reason": "joined in 2026; no school lab site yet",
+   "reason_type": "search_no_eligible_site",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Cynthia Dwork",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:38:45+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46",
+     "at": "2026-11-07T20:37:48+00:00",
+     "result": "ok",
+     "sha256": "0ac559644c3c4f7c24f4851f01a09a11a51eb4e581795b94ba92783e1ecc00c0"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://seas.harvard.edu/person/cynthia-dwork",
+     "at": "2026-11-07T20:37:49+00:00",
+     "result": "ok",
+     "sha256": "5bfbad900b251ddc91e8ef9a15776163ae98145c3b9e27dea72508bdc3fd5618"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://dwork.seas.harvard.edu",
+     "at": "2026-11-07T20:37:49+00:00",
+     "result": "listed",
+     "anchor": "dwork.seas.harvard.edu",
+     "on": "https://seas.harvard.edu/person/cynthia-dwork"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/83/6616",
+     "at": "2026-11-07T20:37:49+00:00",
+     "result": "listed",
+     "urls": [
+      "http://research.microsoft.com/en-us/people/dwork/"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0001-7177-3738/person.json",
+     "at": "2026-11-07T20:37:49+00:00",
+     "result": "no_urls",
+     "sha256": "527c5f8781ee7bf760013670cf21c77ccff730c07c45ceedd23cb8ad70cf4533"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:37:49+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://dwork.seas.harvard.edu",
+     "at": "2026-11-07T20:38:02+00:00",
+     "result": "ok_wayback",
+     "via": "school_profile_link",
+     "capture_url": "https://web.archive.org/web/20261016223250id_/https://dwork.seas.harvard.edu/",
+     "sha256": "721d29fbc9519f52ace67c7a548aa2fb1ed170c5a363a5d75fb0e34831a0018d",
+     "final_url": "https://web.archive.org/web/20261016223250id_/https://dwork.seas.harvard.edu/"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://research.microsoft.com/en-us/people/dwork/",
+     "at": "2026-11-07T20:38:07+00:00",
+     "result": "does_not_name_pi_kept_strong_source",
+     "via": "dblp_person_url",
+     "sha256": "d3fe57109425553632a9bfc3dc503180c7546b9292b942d46fdb41884f6213a5",
+     "final_url": "https://www.microsoft.com/en-us/research/people/"
+    },
+    {
+     "source": "pubs_link",
+     "url": "https://dwork.seas.harvard.edu/selected-publications",
+     "at": "2026-11-07T20:38:45+00:00",
+     "result": "ok_wayback",
+     "on": "https://dwork.seas.harvard.edu",
+     "capture_url": "https://web.archive.org/web/20240727102255id_/https://dwork.seas.harvard.edu/selected-publications",
+     "sha256": "efbcd1a674ffd9f8b52a8a15117ce2237958f89cfc240c3527d2ebfa50d9a8e9"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:does_not_name_pi_kept_strong_source",
+    "candidate_site:ok_wayback",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "pubs_link:ok_wayback",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T20:38:45+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "https://dwork.seas.harvard.edu",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": "https://dwork.seas.harvard.edu/selected-publications",
+   "found_via": "school_profile_link",
+   "listed_on": "https://seas.harvard.edu/person/cynthia-dwork",
+   "sha256": "721d29fbc9519f52ace67c7a548aa2fb1ed170c5a363a5d75fb0e34831a0018d",
+   "evidence": {
+    "url": "https://dwork.seas.harvard.edu/",
+    "sha256": "721d29fbc9519f52ace67c7a548aa2fb1ed170c5a363a5d75fb0e34831a0018d",
+    "quote": "Cynthia Dwork | Cynthia Dwork Skip to main content arrow_circle_down Cynt",
+    "capture_url": "https://web.archive.org/web/20261016223250id_/https://dwork.seas.harvard.edu/"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://dwork.seas.harvard.edu",
+     "at": "2026-11-07T20:37:49+00:00",
+     "result": "listed",
+     "anchor": "dwork.seas.harvard.edu",
+     "on": "https://seas.harvard.edu/person/cynthia-dwork"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Krzysztof Z Gajos",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:39:32+00:00",
+   "checks": [
+    {
+     "source": "prior_labpage_pass_2026-10-22",
+     "url": "https://iis.seas.harvard.edu/people/",
+     "at": "2026-11-07T20:38:45+00:00",
+     "result": "recorded_people_page"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46",
+     "at": "2026-11-07T20:38:45+00:00",
+     "result": "ok",
+     "sha256": "0ac559644c3c4f7c24f4851f01a09a11a51eb4e581795b94ba92783e1ecc00c0"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://seas.harvard.edu/person/krzysztof-gajos",
+     "at": "2026-11-07T20:38:46+00:00",
+     "result": "ok",
+     "sha256": "641de7feaddc555ab916f889039053804689fbbbcdcb8eef99e24db905a88cb0"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://kgajos.seas.harvard.edu",
+     "at": "2026-11-07T20:38:46+00:00",
+     "result": "listed",
+     "anchor": "kgajos.seas.harvard.edu",
+     "on": "https://seas.harvard.edu/person/krzysztof-gajos"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/g/KrzysztofZGajos",
+     "at": "2026-11-07T20:38:46+00:00",
+     "result": "listed",
+     "urls": [
+      "http://www.cs.washington.edu/homes/kgajos/"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0002-1897-9048/person.json",
+     "at": "2026-11-07T20:38:46+00:00",
+     "result": "listed",
+     "sha256": "dc7f903b3026953c9cec8db6421333fff126f95a605323e131dc0de326e4b24d",
+     "urls": [
+      "http://dl.acm.org/author_page.cfm?id=81100593751",
+      "http://www.eecs.harvard.edu/~kgajos/",
+      "https://orcid.org/0000-0002-1897-9048",
+      "https://www.semanticscholar.org/author/Krzysztof-Z-Gajos/1770992"
+     ]
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:38:46+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://iis.seas.harvard.edu/people/",
+     "at": "2026-11-07T20:38:50+00:00",
+     "result": "ok",
+     "via": "prior_labpage_pass",
+     "sha256": "a11193af1a95ba7d1b26284e09457fc7b8a34468a2d6c4b11ac59e425bcdce75"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://kgajos.seas.harvard.edu",
+     "at": "2026-11-07T20:38:53+00:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "f65e51720e05749dedaf9f46cf1c716d6d9a7d1a8b7c6bf9b86a10e53be3efaf",
+     "final_url": "https://kgajos.seas.harvard.edu/"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.cs.washington.edu/homes/kgajos/",
+     "at": "2026-11-07T20:38:57+00:00",
+     "result": "ok",
+     "via": "dblp_person_url",
+     "sha256": "f59fa5c1e00d2130be35282feebf54c6a6d90afa1ce4fe4d9601d9b01c4f6813",
+     "final_url": "https://www.eecs.harvard.edu/~kgajos/"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.eecs.harvard.edu/~kgajos/",
+     "at": "2026-11-07T20:38:57+00:00",
+     "result": "ok",
+     "via": "orcid_researcher_url",
+     "sha256": "f59fa5c1e00d2130be35282feebf54c6a6d90afa1ce4fe4d9601d9b01c4f6813",
+     "final_url": "https://www.eecs.harvard.edu/~kgajos/"
+    },
+    {
+     "source": "pubs_link",
+     "url": "https://kgajos.seas.harvard.edu/publications/",
+     "at": "2026-11-07T20:38:57+00:00",
+     "result": "ok",
+     "on": "https://kgajos.seas.harvard.edu",
+     "sha256": "282577414a56d2688047c2a9b14669d377db800683c765950a8010debcb4f6a9"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "https://kgajos.seas.harvard.edu",
+     "at": "2026-11-07T20:39:10+00:00",
+     "result": "2 captures",
+     "frm": 2026
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20260213065944id_/https://kgajos.seas.harvard.edu/",
+     "at": "2026-11-07T20:39:21+00:00",
+     "result": "ok_wayback",
+     "sha256": "a7c09558b65cd843f575aa14ec6da5bb911e3f26278ecf8dcf70a377e5c070ac"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20260417094638id_/https://kgajos.seas.harvard.edu/",
+     "at": "2026-11-07T20:39:32+00:00",
+     "result": "ok_wayback",
+     "sha256": "5e15828dfbfcb5a3870a5be9d75036d4c88091e72edf27a598e9df6a26d817ee"
+    },
+    {
+     "source": "people_link_not_used_by_prior_pass",
+     "url": "https://iis.seas.harvard.edu/people/#wp--skip-link--target",
+     "at": "2026-11-07T20:39:32+00:00",
+     "result": "ok",
+     "sha256": "a11193af1a95ba7d1b26284e09457fc7b8a34468a2d6c4b11ac59e425bcdce75",
+     "capture_url": null
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:listed",
+    "people_link_not_used_by_prior_pass:ok",
+    "prior_labpage_pass_2026-10-22:recorded_people_page",
+    "pubs_link:ok",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "wayback_capture:ok_wayback",
+    "wayback_cdx:2 captures"
+   ],
+   "checked_at": "2026-11-07T20:39:32+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "https://kgajos.seas.harvard.edu",
+   "kind": "pi_homepage",
+   "people_page": "https://kgajos.seas.harvard.edu",
+   "alumni_page": null,
+   "pubs_page": "https://kgajos.seas.harvard.edu/publications/",
+   "found_via": "school_profile_link",
+   "listed_on": "https://seas.harvard.edu/person/krzysztof-gajos",
+   "sha256": "096f4483029b5af7f7bef6833908eb621129698d475109f94d2bca5865d5b2e8",
+   "evidence": {
+    "url": "https://kgajos.seas.harvard.edu",
+    "sha256": "096f4483029b5af7f7bef6833908eb621129698d475109f94d2bca5865d5b2e8",
+    "quote": "Krzysztof Gajos Skip to content Krzysztof Gajos Home Publications Teaching"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://kgajos.seas.harvard.edu",
+     "at": "2026-11-07T20:38:46+00:00",
+     "result": "listed",
+     "anchor": "kgajos.seas.harvard.edu",
+     "on": "https://seas.harvard.edu/person/krzysztof-gajos"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Stephanie Gil",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Captured lab/group website.",
+   "audited_at": "2026-11-07T20:41:55+00:00",
+   "checks": [
+    {
+     "source": "prior_labpage_pass_2026-10-22",
+     "url": "https://react.seas.harvard.edu/members/",
+     "at": "2026-11-07T20:39:32+00:00",
+     "result": "recorded_people_page"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46",
+     "at": "2026-11-07T20:39:32+00:00",
+     "result": "ok",
+     "sha256": "0ac559644c3c4f7c24f4851f01a09a11a51eb4e581795b94ba92783e1ecc00c0"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://seas.harvard.edu/person/stephanie-gil",
+     "at": "2026-11-07T20:39:32+00:00",
+     "result": "ok",
+     "sha256": "19ac52b624419785f08672aa7d5a91ca36741bea6a91520bc7f84490d9a2b9b7"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://gil.seas.harvard.edu",
+     "at": "2026-11-07T20:39:32+00:00",
+     "result": "listed",
+     "anchor": "gil.seas.harvard.edu",
+     "on": "https://seas.harvard.edu/person/stephanie-gil"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/80/8134",
+     "at": "2026-11-07T20:39:32+00:00",
+     "result": "no_homepage_url"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-07T20:39:32+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:39:32+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://react.seas.harvard.edu/members/",
+     "at": "2026-11-07T20:39:36+00:00",
+     "result": "ok",
+     "via": "prior_labpage_pass",
+     "sha256": "008283f58068b746efb5b6ca90f00586fb38b4b4884bdbfd7a88fef5f91b2420"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://gil.seas.harvard.edu",
+     "at": "2026-11-07T20:40:05+00:00",
+     "result": "ok_wayback",
+     "via": "school_profile_link",
+     "capture_url": "https://web.archive.org/web/20240831131753id_/https://gil.seas.harvard.edu/",
+     "sha256": "f4d427f075f408609c5c4f738377000a059c5ef5334960b4be73e20d8fda4602",
+     "final_url": "https://web.archive.org/web/20240831131753id_/https://gil.seas.harvard.edu/"
+    },
+    {
+     "source": "people_link",
+     "url": "https://gil.seas.harvard.edu/people",
+     "at": "2026-11-07T20:40:39+00:00",
+     "result": "ok_wayback",
+     "on": "https://gil.seas.harvard.edu",
+     "capture_url": "https://web.archive.org/web/20240811141723id_/https://gil.seas.harvard.edu/people",
+     "sha256": "21552e87823bd1ed819924dd20cc8999d6bb9fffecfafcae63e131e1ae3b0c44"
+    },
+    {
+     "source": "people_link",
+     "url": "https://react.seas.harvard.edu/people",
+     "at": "2026-11-07T20:41:15+00:00",
+     "result": "ok_wayback",
+     "on": "https://gil.seas.harvard.edu",
+     "capture_url": "https://web.archive.org/web/20251025082154id_/https://react.seas.harvard.edu/people",
+     "sha256": "decdd2593ab0fb021a3fb8b9bf1d91682ab6155ce62056c99be36743918e5bb4"
+    },
+    {
+     "source": "pubs_link",
+     "url": "https://gil.seas.harvard.edu/publications",
+     "at": "2026-11-07T20:41:44+00:00",
+     "result": "ok_wayback",
+     "on": "https://gil.seas.harvard.edu",
+     "capture_url": "https://web.archive.org/web/20240423215948id_/https://gil.seas.harvard.edu/publications",
+     "sha256": "8b3821f0c8322329667606873f1e7524e7915ec6f4f7aee85e5e1f3eed265385"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "https://gil.seas.harvard.edu/people",
+     "at": "2026-11-07T20:41:55+00:00",
+     "result": "0 captures",
+     "frm": 2026
+    },
+    {
+     "source": "people_link_not_used_by_prior_pass",
+     "url": "https://react.seas.harvard.edu/members/#main-content",
+     "at": "2026-11-07T20:41:55+00:00",
+     "result": "ok",
+     "sha256": "008283f58068b746efb5b6ca90f00586fb38b4b4884bdbfd7a88fef5f91b2420",
+     "capture_url": null
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "candidate_site:ok_wayback",
+    "dblp_person_url:no_homepage_url",
+    "department_listing:ok",
+    "people_link:ok_wayback",
+    "people_link_not_used_by_prior_pass:ok",
+    "prior_labpage_pass_2026-10-22:recorded_people_page",
+    "pubs_link:ok_wayback",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "wayback_cdx:0 captures"
+   ],
+   "checked_at": "2026-11-07T20:41:55+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "https://gil.seas.harvard.edu",
+   "kind": "lab_site",
+   "people_page": "https://gil.seas.harvard.edu/people",
+   "alumni_page": null,
+   "pubs_page": "https://gil.seas.harvard.edu/publications",
+   "found_via": "school_profile_link",
+   "listed_on": "https://seas.harvard.edu/person/stephanie-gil",
+   "sha256": "f4d427f075f408609c5c4f738377000a059c5ef5334960b4be73e20d8fda4602",
+   "evidence": {
+    "url": "https://gil.seas.harvard.edu/",
+    "sha256": "f4d427f075f408609c5c4f738377000a059c5ef5334960b4be73e20d8fda4602",
+    "quote": "Stephanie Gil Skip to main content Main Menu Utility Menu Search HARVARD.",
+    "capture_url": "https://web.archive.org/web/20240831131753id_/https://gil.seas.harvard.edu/"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://gil.seas.harvard.edu",
+     "at": "2026-11-07T20:39:32+00:00",
+     "result": "listed",
+     "anchor": "gil.seas.harvard.edu",
+     "on": "https://seas.harvard.edu/person/stephanie-gil"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Elena Leah Glassman",
+   "status": "none_found",
+   "reason_code": "new_arrival_no_site_yet",
+   "reason": "No eligible website established for this school from the recorded checks (other_institution): department_listing https://seas.harvard.edu/computer-science/people?role%5B46%5D=46: ok; school_profile https://seas.harvard.edu/person/elena-glassman: ok; school_profile_link https://glassmanlab.seas.harvard.edu: listed; dblp_person_url https://dblp.org/pid/118/6231: listed; 5 further dated checks retained.",
+   "audited_at": "2026-11-07T20:42:09+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46",
+     "at": "2026-11-07T20:41:56+00:00",
+     "result": "ok",
+     "sha256": "0ac559644c3c4f7c24f4851f01a09a11a51eb4e581795b94ba92783e1ecc00c0"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://seas.harvard.edu/person/elena-glassman",
+     "at": "2026-11-07T20:41:56+00:00",
+     "result": "ok",
+     "sha256": "db9b81ece29c880f8f1227dbdad7ef9f3c37157833869a68668fece9f2551563"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://glassmanlab.seas.harvard.edu",
+     "at": "2026-11-07T20:41:56+00:00",
+     "result": "listed",
+     "anchor": "glassmanlab.seas.harvard.edu",
+     "on": "https://seas.harvard.edu/person/elena-glassman"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/118/6231",
+     "at": "2026-11-07T20:41:56+00:00",
+     "result": "listed",
+     "urls": [
+      "https://glassmanlab.seas.harvard.edu/glassman.html",
+      "https://bids.berkeley.edu/people/elena-glassman",
+      "https://www.radcliffe.harvard.edu/people/elena-leah-glassman-radcliffe-professor"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0001-5178-3496/person.json",
+     "at": "2026-11-07T20:41:56+00:00",
+     "result": "listed",
+     "sha256": "ab4bead80db0d211b48d3e8d31cd2d2388876d4b28e67c416c52d172146cf393",
+     "urls": [
+      "http://glassmanlab.seas.harvard.edu/",
+      "https://orcid.org/0000-0001-5178-3496",
+      "https://www.radcliffe.harvard.edu/people/elena-leah-glassman-radcliffe-professor"
+     ]
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:41:56+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://glassmanlab.seas.harvard.edu",
+     "at": "2026-11-07T20:41:59+00:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "c264554c21e1bc3b9d8d230ea56731cb619f58e2919395f836592772492a8709",
+     "final_url": "https://glassmanlab.seas.harvard.edu/"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://glassmanlab.seas.harvard.edu/glassman.html",
+     "at": "2026-11-07T20:42:02+00:00",
+     "result": "ok",
+     "via": "dblp_person_url",
+     "sha256": "3daf8d41102cd674f2eaa7cff7cbe17e895b589d9b6252861e36c6cf4c0ee2f8"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://bids.berkeley.edu/people/elena-glassman",
+     "at": "2026-11-07T20:42:06+00:00",
+     "result": "ok",
+     "via": "dblp_person_url",
+     "sha256": "1e33c4546354e48154fbbcce9b222e34406f705fee5a80104837da6fbce071b8"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://glassmanlab.seas.harvard.edu/",
+     "at": "2026-11-07T20:42:09+00:00",
+     "result": "ok",
+     "via": "orcid_researcher_url",
+     "sha256": "c264554c21e1bc3b9d8d230ea56731cb619f58e2919395f836592772492a8709"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:listed",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T20:42:09+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "https://bids.berkeley.edu/people/elena-glassman",
+   "kind": "other_institution_site",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "dblp_person_url",
+   "listed_on": null,
+   "sha256": "1e33c4546354e48154fbbcce9b222e34406f705fee5a80104837da6fbce071b8",
+   "evidence": {
+    "url": "https://bids.berkeley.edu/people/elena-glassman",
+    "sha256": "1e33c4546354e48154fbbcce9b222e34406f705fee5a80104837da6fbce071b8",
+    "quote": "Elena Glassman | Berkeley Institute for Data Science (BIDS) Skip to main c"
+   },
+   "coverage": "reason",
+   "upstream_audit_reason": "joined in 2026; the only site found is at the previous institution (its students are not this school's)",
+   "reason_type": "other_institution",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Yannai A. Gonczarowski",
+   "status": "none_found",
+   "reason_code": "new_arrival_no_site_yet",
+   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C1: ok; school_profile https://seas.harvard.edu/person/yannai-gonczarowski: ok; dblp_person_url https://dblp.org/pid/36/9509: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0002-7887-0490/person.json: no_urls.",
+   "audited_at": "2026-11-07T20:42:12+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C1",
+     "at": "2026-11-07T20:42:09+00:00",
+     "result": "ok",
+     "sha256": "ecf0b9abdf10272dd9d919d0123b98eeb963c215727f63b4a601ecb0c68bbdc9"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://seas.harvard.edu/person/yannai-gonczarowski",
+     "at": "2026-11-07T20:42:12+00:00",
+     "result": "ok",
+     "sha256": "72e9ac159cebfa2930c72e06ea0594ec9bd78ab9882609b1bb73242412791dbe"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/36/9509",
+     "at": "2026-11-07T20:42:12+00:00",
+     "result": "no_homepage_url"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0002-7887-0490/person.json",
+     "at": "2026-11-07T20:42:12+00:00",
+     "result": "no_urls",
+     "sha256": "dd9823975b4f1a95c94c3e7a8f7c652a0d82dd81df71037704174ea4bfd72dd4"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:42:12+00:00",
+     "result": "no_homepage_field_in_schema"
+    }
+   ],
+   "places_checked": [
+    "dblp_person_url:no_homepage_url",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "school_profile:ok"
+   ],
+   "checked_at": "2026-11-07T20:42:12+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "coverage": "reason",
+   "upstream_audit_reason": "joined in 2026; no school lab site yet",
+   "reason_type": "search_no_eligible_site",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Steven J. Gortler",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:42:15+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C1",
+     "at": "2026-11-07T20:42:12+00:00",
+     "result": "ok",
+     "sha256": "ecf0b9abdf10272dd9d919d0123b98eeb963c215727f63b4a601ecb0c68bbdc9"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://seas.harvard.edu/person/steven-gortler",
+     "at": "2026-11-07T20:42:15+00:00",
+     "result": "ok",
+     "sha256": "8aa2fb4d894b6f371b09b84d7b9d3fc9a6ca28af1f9690ab7fcda43c18894aa5"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/86/3747",
+     "at": "2026-11-07T20:42:15+00:00",
+     "result": "listed",
+     "urls": [
+      "http://www.eecs.harvard.edu/~sjg/"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-07T20:42:15+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:42:15+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.eecs.harvard.edu/~sjg/",
+     "at": "2026-11-07T20:42:15+00:00",
+     "result": "ok",
+     "via": "dblp_person_url",
+     "sha256": "013c5a39e02994ac4b009601f1ce3107a5dddd16a403feca05e000035ebbcbe5",
+     "final_url": "https://www.eecs.harvard.edu/~sjg/"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://www.eecs.harvard.edu/~sjg/",
+     "on": "https://seas.harvard.edu/person/steven-gortler",
+     "at": "2026-11-07T20:42:15+00:00",
+     "result": "listed",
+     "anchor": "www.eecs.harvard.edu/~sjg",
+     "linked_url": "http://www.eecs.harvard.edu/~sjg",
+     "source_sha256": "8aa2fb4d894b6f371b09b84d7b9d3fc9a6ca28af1f9690ab7fcda43c18894aa5",
+     "source_capture_url": null,
+     "provenance": "recovered_from_cached_profile_html"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "school_profile:ok"
+   ],
+   "checked_at": "2026-11-07T20:42:15+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "http://www.eecs.harvard.edu/~sjg/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "dblp_person_url",
+   "listed_on": "https://seas.harvard.edu/person/steven-gortler",
+   "sha256": "013c5a39e02994ac4b009601f1ce3107a5dddd16a403feca05e000035ebbcbe5",
+   "evidence": {
+    "url": "http://www.eecs.harvard.edu/~sjg/",
+    "sha256": "013c5a39e02994ac4b009601f1ce3107a5dddd16a403feca05e000035ebbcbe5",
+    "quote": "Steven J. Gortler Steven J. Gortler Robert I. Goldman Professor of Computer S"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://www.eecs.harvard.edu/~sjg/",
+     "on": "https://seas.harvard.edu/person/steven-gortler",
+     "at": "2026-11-07T20:42:15+00:00",
+     "result": "listed",
+     "anchor": "www.eecs.harvard.edu/~sjg",
+     "linked_url": "http://www.eecs.harvard.edu/~sjg",
+     "source_sha256": "8aa2fb4d894b6f371b09b84d7b9d3fc9a6ca28af1f9690ab7fcda43c18894aa5",
+     "source_capture_url": null,
+     "provenance": "recovered_from_cached_profile_html"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Stratos Idreos",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T21:19:54+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C1",
+     "at": "2026-11-07T21:19:54+00:00",
+     "result": "ok",
+     "sha256": "ecf0b9abdf10272dd9d919d0123b98eeb963c215727f63b4a601ecb0c68bbdc9"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://seas.harvard.edu/person/stratos-idreos",
+     "at": "2026-11-07T21:19:54+00:00",
+     "result": "ok",
+     "sha256": "f2902fdbedc49ff4ece0ca4cd209d53737b07cba17d4fd55a8f30010c26da94d"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/i/StratosIdreos",
+     "at": "2026-11-07T21:19:54+00:00",
+     "result": "listed",
+     "urls": [
+      "https://stratos.idreos.ai/"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0002-8271-9187/person.json",
+     "at": "2026-11-07T21:19:54+00:00",
+     "result": "no_urls",
+     "sha256": "360a8359bf69080e4158436efb382b71e0cf9ce36a01915b1deea773121fd806"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T21:19:54+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://stratos.idreos.ai/",
+     "at": "2026-11-07T21:19:54+00:00",
+     "result": "ok",
+     "via": "dblp_person_url",
+     "sha256": "6ff13eeb6eca3b144062a8923b0abefa0941dfd09f8dc667563df72e2c8d4685"
+    },
+    {
+     "source": "people_link",
+     "url": "https://stratos.idreos.ai/#students",
+     "at": "2026-11-07T21:19:54+00:00",
+     "result": "ok",
+     "on": "https://stratos.idreos.ai/",
+     "sha256": "6ff13eeb6eca3b144062a8923b0abefa0941dfd09f8dc667563df72e2c8d4685"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "https://stratos.idreos.ai/#students",
+     "at": "2026-11-07T21:19:54+00:00",
+     "result": "4 captures",
+     "frm": 2026
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20260207082810id_/http://stratos.idreos.ai/",
+     "at": "2026-11-07T21:19:54+00:00",
+     "result": "ok_wayback",
+     "sha256": "6ff13eeb6eca3b144062a8923b0abefa0941dfd09f8dc667563df72e2c8d4685"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20261016172939id_/http://stratos.idreos.ai/",
+     "at": "2026-11-07T21:19:54+00:00",
+     "result": "ok_wayback",
+     "sha256": "6ff13eeb6eca3b144062a8923b0abefa0941dfd09f8dc667563df72e2c8d4685"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20261016173429id_/https://stratos.idreos.ai/",
+     "at": "2026-11-07T21:19:54+00:00",
+     "result": "ok_wayback",
+     "sha256": "b551c554e3bf6b926ce18adb2ffd6ecc5c24b2099e6644efc5fba2d9a355cc4b"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "people_link:ok",
+    "school_profile:ok",
+    "wayback_capture:ok_wayback",
+    "wayback_cdx:4 captures"
+   ],
+   "checked_at": "2026-11-07T21:19:54+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "https://stratos.idreos.ai/",
+   "kind": "pi_homepage",
+   "people_page": "https://stratos.idreos.ai/#students",
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "dblp_person_url",
+   "listed_on": null,
+   "sha256": "6ff13eeb6eca3b144062a8923b0abefa0941dfd09f8dc667563df72e2c8d4685",
+   "evidence": {
+    "url": "https://stratos.idreos.ai/",
+    "sha256": "6ff13eeb6eca3b144062a8923b0abefa0941dfd09f8dc667563df72e2c8d4685",
+    "quote": "Stratos Idreos | Harvard STRATOS IDREOS Research Results Future Students B"
+   },
+   "official_link_status": "not_recorded",
+   "official_link_evidence": [],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Sham Kakade",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T21:19:56+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C1",
+     "at": "2026-11-07T21:19:54+00:00",
+     "result": "ok",
+     "sha256": "ecf0b9abdf10272dd9d919d0123b98eeb963c215727f63b4a601ecb0c68bbdc9"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://seas.harvard.edu/person/sham-kakade",
+     "at": "2026-11-07T21:19:54+00:00",
+     "result": "ok",
+     "sha256": "adf5eb847ef8555ce54f604c1773752e8cfafc47bb104e541adb402b147e23d7"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/s/SMKakade",
+     "at": "2026-11-07T21:19:54+00:00",
+     "result": "listed",
+     "urls": [
+      "https://sham.seas.harvard.edu/",
+      "https://www.cs.washington.edu/people/faculty/sham",
+      "http://homes.cs.washington.edu/~sham/",
+      "http://research.microsoft.com/en-us/um/people/skakade/"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-07T21:19:54+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T21:19:54+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://sham.seas.harvard.edu/",
+     "at": "2026-11-07T21:19:54+00:00",
+     "result": "ok",
+     "via": "dblp_person_url",
+     "sha256": "32addb86205a7f463a8dd121ac92f58766cc93b7c085c0ef9387c5f4cd189131"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.cs.washington.edu/people/faculty/sham",
+     "at": "2026-11-07T21:19:56+00:00",
+     "result": "ok_wayback",
+     "via": "dblp_person_url",
+     "capture_url": "https://web.archive.org/web/20241012060424id_/https://www.cs.washington.edu/people/faculty/sham",
+     "sha256": "9b637bd57aaf1b8c16602be111ed8d5aa2f0fb31d1b77b40e9f14e6150176271",
+     "final_url": "https://web.archive.org/web/20241012060424id_/https://www.cs.washington.edu/people/faculty/sham"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://homes.cs.washington.edu/~sham/",
+     "at": "2026-11-07T21:19:56+00:00",
+     "result": "does_not_name_pi_kept_strong_source",
+     "via": "dblp_person_url",
+     "sha256": "ccd30be4178f80ecfc5cd7e526df876b66a92dc0b5797c16005d68a6044526c7",
+     "final_url": "https://homes.cs.washington.edu/~sham/"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://research.microsoft.com/en-us/um/people/skakade/",
+     "at": "2026-11-07T21:19:56+00:00",
+     "result": "does_not_name_pi_kept_strong_source",
+     "via": "dblp_person_url",
+     "sha256": "35e1b3136a5a3d46533e39736045566e7bd109e47e032f1843d43b6d688ea05f",
+     "final_url": "https://www.microsoft.com/en-us/research/"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:does_not_name_pi_kept_strong_source",
+    "candidate_site:ok",
+    "candidate_site:ok_wayback",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "school_profile:ok"
+   ],
+   "checked_at": "2026-11-07T21:19:56+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "https://sham.seas.harvard.edu/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "dblp_person_url",
+   "listed_on": null,
+   "sha256": "32addb86205a7f463a8dd121ac92f58766cc93b7c085c0ef9387c5f4cd189131",
+   "evidence": {
+    "url": "https://sham.seas.harvard.edu/",
+    "sha256": "32addb86205a7f463a8dd121ac92f58766cc93b7c085c0ef9387c5f4cd189131",
+    "quote": "Redirecting to Sham Kakade's Website You are being redirected to the new website. If t"
+   },
+   "official_link_status": "not_recorded",
+   "official_link_evidence": [],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Eddie Kohler",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:44:12+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C1",
+     "at": "2026-11-07T20:44:02+00:00",
+     "result": "ok",
+     "sha256": "ecf0b9abdf10272dd9d919d0123b98eeb963c215727f63b4a601ecb0c68bbdc9"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://seas.harvard.edu/person/eddie-kohler",
+     "at": "2026-11-07T20:44:02+00:00",
+     "result": "ok",
+     "sha256": "fa748d4fa3d85e737b65cfe05c5b73499cbbe75e8b8f50565e979cf1c960c197"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://www.read.seas.harvard.edu/~kohler/",
+     "at": "2026-11-07T20:44:02+00:00",
+     "result": "listed",
+     "anchor": "www.read.seas.harvard.edu/~kohler",
+     "on": "https://seas.harvard.edu/person/eddie-kohler"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/78/5231",
+     "at": "2026-11-07T20:44:02+00:00",
+     "result": "listed",
+     "urls": [
+      "http://read.seas.harvard.edu/~kohler/"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0003-2027-0035/person.json",
+     "at": "2026-11-07T20:44:02+00:00",
+     "result": "no_urls",
+     "sha256": "bcb3174dd7ee552f811a497f8770bba967b394f845c395ca2740728e1fdab648"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:44:02+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.read.seas.harvard.edu/~kohler/",
+     "at": "2026-11-07T20:44:05+00:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "321e62d08bb36fc6618da773a43e64cb8d9d159ad3ec087b7b2737bc413b659e",
+     "final_url": "https://www.read.seas.harvard.edu/~kohler/"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://read.seas.harvard.edu/~kohler/",
+     "at": "2026-11-07T20:44:09+00:00",
+     "result": "ok",
+     "via": "dblp_person_url",
+     "sha256": "321e62d08bb36fc6618da773a43e64cb8d9d159ad3ec087b7b2737bc413b659e",
+     "final_url": "https://read.seas.harvard.edu/~kohler/"
+    },
+    {
+     "source": "pubs_link",
+     "url": "https://www.read.seas.harvard.edu/~kohler/pubs/",
+     "at": "2026-11-07T20:44:12+00:00",
+     "result": "ok",
+     "on": "http://www.read.seas.harvard.edu/~kohler/",
+     "sha256": "dad2ed47a08953e7e4d9e731dd2179e85ef1af6faa83753098f3b362aecaf1e1"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "pubs_link:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T20:44:12+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "http://www.read.seas.harvard.edu/~kohler/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": "https://www.read.seas.harvard.edu/~kohler/pubs/",
+   "found_via": "school_profile_link",
+   "listed_on": "https://seas.harvard.edu/person/eddie-kohler",
+   "sha256": "321e62d08bb36fc6618da773a43e64cb8d9d159ad3ec087b7b2737bc413b659e",
+   "evidence": {
+    "url": "http://www.read.seas.harvard.edu/~kohler/",
+    "sha256": "321e62d08bb36fc6618da773a43e64cb8d9d159ad3ec087b7b2737bc413b659e",
+    "quote": "Eddie Kohler 2013 – 2011 – 2006 – 2002ish by Paula M. Official Bronze Sp"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://www.read.seas.harvard.edu/~kohler/",
+     "at": "2026-11-07T20:44:02+00:00",
+     "result": "listed",
+     "anchor": "www.read.seas.harvard.edu/~kohler",
+     "on": "https://seas.harvard.edu/person/eddie-kohler"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Hima Lakkaraju",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:44:58+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C1",
+     "at": "2026-11-07T20:44:12+00:00",
+     "result": "ok",
+     "sha256": "ecf0b9abdf10272dd9d919d0123b98eeb963c215727f63b4a601ecb0c68bbdc9"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://seas.harvard.edu/person/hima-lakkaraju",
+     "at": "2026-11-07T20:44:12+00:00",
+     "result": "ok",
+     "sha256": "5ee67fcd2048dac8fbfe05c5248d070109dfd54ceb9d9217c9b7ff784f935856"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://himalakkaraju.github.io/",
+     "at": "2026-11-07T20:44:12+00:00",
+     "result": "listed",
+     "anchor": "himalakkaraju.github.io",
+     "on": "https://seas.harvard.edu/person/hima-lakkaraju"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/68/9376",
+     "at": "2026-11-07T20:44:12+00:00",
+     "result": "no_homepage_url"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-07T20:44:12+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:44:12+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://himalakkaraju.github.io/",
+     "at": "2026-11-07T20:44:15+00:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "6f59de98f8ac9e63cfc721c89369b493c93295f4c8b89fc3d9b09da1fde142dd"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "https://himalakkaraju.github.io/",
+     "at": "2026-11-07T20:44:25+00:00",
+     "result": "2 captures",
+     "frm": 2026
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20260806000252id_/https://himalakkaraju.github.io/",
+     "at": "2026-11-07T20:44:38+00:00",
+     "result": "ok_wayback",
+     "sha256": "74ad92d3eed96bd790ca0eb197835f5a4474c29e212a52ef897ed0fe7a50ea92"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20260810023542id_/https://himalakkaraju.github.io/",
+     "at": "2026-11-07T20:44:58+00:00",
+     "result": "ok_wayback",
+     "sha256": "74ad92d3eed96bd790ca0eb197835f5a4474c29e212a52ef897ed0fe7a50ea92"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:no_homepage_url",
+    "department_listing:ok",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "wayback_capture:ok_wayback",
+    "wayback_cdx:2 captures"
+   ],
+   "checked_at": "2026-11-07T20:44:58+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "https://himalakkaraju.github.io/",
+   "kind": "pi_homepage",
+   "people_page": "https://himalakkaraju.github.io/",
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://seas.harvard.edu/person/hima-lakkaraju",
+   "sha256": "6f59de98f8ac9e63cfc721c89369b493c93295f4c8b89fc3d9b09da1fde142dd",
+   "evidence": {
+    "url": "https://himalakkaraju.github.io/",
+    "sha256": "6f59de98f8ac9e63cfc721c89369b493c93295f4c8b89fc3d9b09da1fde142dd",
+    "quote": "Hima Lakkaraju Toggle navigation Hima Lakkaraju Home News Research Advisin"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://himalakkaraju.github.io/",
+     "at": "2026-11-07T20:44:12+00:00",
+     "result": "listed",
+     "anchor": "himalakkaraju.github.io",
+     "on": "https://seas.harvard.edu/person/hima-lakkaraju"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "James Mickens",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:45:09+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C1",
+     "at": "2026-11-07T20:44:58+00:00",
+     "result": "ok",
+     "sha256": "ecf0b9abdf10272dd9d919d0123b98eeb963c215727f63b4a601ecb0c68bbdc9"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://seas.harvard.edu/person/james-mickens",
+     "at": "2026-11-07T20:44:59+00:00",
+     "result": "ok",
+     "sha256": "e541466d0fa62c550a9861325f1e27c90644a31448c06c4c3b033b99e92415bb"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://mickens.seas.harvard.edu/",
+     "at": "2026-11-07T20:44:59+00:00",
+     "result": "listed",
+     "anchor": "mickens.seas.harvard.edu",
+     "on": "https://seas.harvard.edu/person/james-mickens"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/90/1843",
+     "at": "2026-11-07T20:44:59+00:00",
+     "result": "listed",
+     "urls": [
+      "http://research.microsoft.com/en-us/people/mickens/"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0009-0007-7296-5185/person.json",
+     "at": "2026-11-07T20:44:59+00:00",
+     "result": "no_urls",
+     "sha256": "64e9d8d1c92a2fd4b56254f03696160beeb4748d13447bdedfbdf6d140fcb020"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:44:59+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://mickens.seas.harvard.edu/",
+     "at": "2026-11-07T20:45:03+00:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "01eb92eaf724ece21a4ae4904ade33aee8cb6acaf060146dd11307acac9d928a",
+     "final_url": "https://mickens.seas.harvard.edu/"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://research.microsoft.com/en-us/people/mickens/",
+     "at": "2026-11-07T20:45:04+00:00",
+     "result": "does_not_name_pi_kept_strong_source",
+     "via": "dblp_person_url",
+     "sha256": "35e1b3136a5a3d46533e39736045566e7bd109e47e032f1843d43b6d688ea05f",
+     "final_url": "https://www.microsoft.com/en-us/research/"
+    },
+    {
+     "source": "pubs_link",
+     "url": "https://mickens.seas.harvard.edu/publications/",
+     "at": "2026-11-07T20:45:09+00:00",
+     "result": "ok",
+     "on": "http://mickens.seas.harvard.edu/",
+     "sha256": "8472921046409c257a0b943de5e4d1f8b744265263381909a607d8ea366e862a"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:does_not_name_pi_kept_strong_source",
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "pubs_link:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T20:45:09+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "http://mickens.seas.harvard.edu/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": "https://mickens.seas.harvard.edu/publications/",
+   "found_via": "school_profile_link",
+   "listed_on": "https://seas.harvard.edu/person/james-mickens",
+   "sha256": "6758a8dd7c2c47417a0fa4ddfed5b1986a11422d27cf0c016d6dee59a90ebead",
+   "evidence": {
+    "url": "http://mickens.seas.harvard.edu/",
+    "sha256": "6758a8dd7c2c47417a0fa4ddfed5b1986a11422d27cf0c016d6dee59a90ebead",
+    "quote": "James Mickens Skip to main content arrow_circle_down James Mickens menu c"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://mickens.seas.harvard.edu/",
+     "at": "2026-11-07T20:44:59+00:00",
+     "result": "listed",
+     "anchor": "mickens.seas.harvard.edu",
+     "on": "https://seas.harvard.edu/person/james-mickens"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Michael D. Mitzenmacher",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:45:35+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C1",
+     "at": "2026-11-07T20:45:09+00:00",
+     "result": "ok",
+     "sha256": "ecf0b9abdf10272dd9d919d0123b98eeb963c215727f63b4a601ecb0c68bbdc9"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://seas.harvard.edu/person/michael-mitzenmacher",
+     "at": "2026-11-07T20:45:09+00:00",
+     "result": "ok",
+     "sha256": "4cdf876f74623ec8fb5b801222c999494a7d28e60f66fbec6fa2f125f46ada2d"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/74/838",
+     "at": "2026-11-07T20:45:09+00:00",
+     "result": "listed",
+     "urls": [
+      "https://www.eecs.harvard.edu/~michaelm/"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0001-5430-5457/person.json",
+     "at": "2026-11-07T20:45:09+00:00",
+     "result": "no_urls",
+     "sha256": "a7262cdd4426171d8c372a6737c148cdf5e5113e3f1953dfc32baf8903c1baa0"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:45:09+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.eecs.harvard.edu/~michaelm/",
+     "at": "2026-11-07T20:45:13+00:00",
+     "result": "ok",
+     "via": "dblp_person_url",
+     "sha256": "be09650227a7c172840c2bd7ebf1cdade371f4c0f33f562d2542f34bb65d489f"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "https://www.eecs.harvard.edu/~michaelm/",
+     "at": "2026-11-07T20:45:19+00:00",
+     "result": "1 captures",
+     "frm": 2026
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20260105111143id_/https://www.eecs.harvard.edu/~michaelm/",
+     "at": "2026-11-07T20:45:35+00:00",
+     "result": "ok_wayback",
+     "sha256": "be09650227a7c172840c2bd7ebf1cdade371f4c0f33f562d2542f34bb65d489f"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.eecs.harvard.edu/~michaelm/",
+     "on": "https://seas.harvard.edu/person/michael-mitzenmacher",
+     "at": "2026-11-07T20:45:09+00:00",
+     "result": "listed",
+     "anchor": "www.eecs.harvard.edu/~michaelm",
+     "linked_url": "http://www.eecs.harvard.edu/~michaelm/",
+     "source_sha256": "b1e160400558988b79eeacb1d59e15945bfd22ae703141092bfdf1b6ba1c6a44",
+     "source_capture_url": null,
+     "provenance": "recovered_from_cached_profile_html"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "school_profile:ok",
+    "wayback_capture:ok_wayback",
+    "wayback_cdx:1 captures"
+   ],
+   "checked_at": "2026-11-07T20:45:35+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "https://www.eecs.harvard.edu/~michaelm/",
+   "kind": "pi_homepage",
+   "people_page": "https://www.eecs.harvard.edu/~michaelm/",
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "dblp_person_url",
+   "listed_on": "https://seas.harvard.edu/person/michael-mitzenmacher",
+   "sha256": "be09650227a7c172840c2bd7ebf1cdade371f4c0f33f562d2542f34bb65d489f",
+   "evidence": {
+    "url": "https://www.eecs.harvard.edu/~michaelm/",
+    "sha256": "be09650227a7c172840c2bd7ebf1cdade371f4c0f33f562d2542f34bb65d489f",
+    "quote": "Michael Mitzenmacher's Homepage Michael Mitzenmacher Professor of Computer Scien"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://www.eecs.harvard.edu/~michaelm/",
+     "on": "https://seas.harvard.edu/person/michael-mitzenmacher",
+     "at": "2026-11-07T20:45:09+00:00",
+     "result": "listed",
+     "anchor": "www.eecs.harvard.edu/~michaelm",
+     "linked_url": "http://www.eecs.harvard.edu/~michaelm/",
+     "source_sha256": "b1e160400558988b79eeacb1d59e15945bfd22ae703141092bfdf1b6ba1c6a44",
+     "source_capture_url": null,
+     "provenance": "recovered_from_cached_profile_html"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Susan A Murphy",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:46:44+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C1",
+     "at": "2026-11-07T20:45:35+00:00",
+     "result": "ok",
+     "sha256": "ecf0b9abdf10272dd9d919d0123b98eeb963c215727f63b4a601ecb0c68bbdc9"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://seas.harvard.edu/person/susan-murphy",
+     "at": "2026-11-07T20:45:35+00:00",
+     "result": "ok",
+     "sha256": "1a5f0dab0f3293c23fe4659cdf16d0aa5a17e1f9689dcf6ac889cfb2374a1e6b"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://people.seas.harvard.edu/~samurphy/",
+     "at": "2026-11-07T20:45:35+00:00",
+     "result": "listed",
+     "anchor": "people.seas.harvard.edu/~samurphy",
+     "on": "https://seas.harvard.edu/person/susan-murphy"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/05/3845",
+     "at": "2026-11-07T20:45:35+00:00",
+     "result": "listed",
+     "urls": [
+      "https://people.seas.harvard.edu/~samurphy/"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0002-2032-4286/person.json",
+     "at": "2026-11-07T20:45:35+00:00",
+     "result": "listed",
+     "sha256": "022c2ac99d84c6b3f5dc00f0e8147c20f4b94528285477cc202b6717ee6efc06",
+     "urls": [
+      "http://people.seas.harvard.edu/~samurphy/",
+      "https://orcid.org/0000-0002-2032-4286"
+     ]
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:45:35+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://people.seas.harvard.edu/~samurphy/",
+     "at": "2026-11-07T20:45:35+00:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "43df5da5b3aaac5152d249cb08f8cc7dbf3c0b7fb05414d0480bad496b3fd7ad"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://people.seas.harvard.edu/~samurphy/",
+     "at": "2026-11-07T20:45:41+00:00",
+     "result": "ok",
+     "via": "dblp_person_url",
+     "sha256": "43df5da5b3aaac5152d249cb08f8cc7dbf3c0b7fb05414d0480bad496b3fd7ad"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "http://people.seas.harvard.edu/~samurphy/",
+     "at": "2026-11-07T20:45:49+00:00",
+     "result": "4 captures",
+     "frm": 2026
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20260219032125id_/http://people.seas.harvard.edu/~samurphy/",
+     "at": "2026-11-07T20:46:08+00:00",
+     "result": "ok_wayback",
+     "sha256": "9ca6ea3037e495a5398a95c042f3de11e8d474db45dc20b14f3e4c3913c1bd1a"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20260817174601id_/http://people.seas.harvard.edu/~samurphy/",
+     "at": "2026-11-07T20:46:26+00:00",
+     "result": "ok_wayback",
+     "sha256": "6b085e729c47b7f8dac4176e34c90f13d5ed8e3a4ca3126a81182ed8181335ce"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20261026215453id_/http://people.seas.harvard.edu/~samurphy/",
+     "at": "2026-11-07T20:46:44+00:00",
+     "result": "ok_wayback",
+     "sha256": "d94bf1f0bcd3163f75558d2695604124076f73c7feeed6931edb7b9520e4fa36"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:listed",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "wayback_capture:ok_wayback",
+    "wayback_cdx:4 captures"
+   ],
+   "checked_at": "2026-11-07T20:46:44+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "http://people.seas.harvard.edu/~samurphy/",
+   "kind": "pi_homepage",
+   "people_page": "http://people.seas.harvard.edu/~samurphy/",
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://seas.harvard.edu/person/susan-murphy",
+   "sha256": "43df5da5b3aaac5152d249cb08f8cc7dbf3c0b7fb05414d0480bad496b3fd7ad",
+   "evidence": {
+    "url": "http://people.seas.harvard.edu/~samurphy/",
+    "sha256": "43df5da5b3aaac5152d249cb08f8cc7dbf3c0b7fb05414d0480bad496b3fd7ad",
+    "quote": "Susan Murphy's home page Susan A. Murphy Mallinckrodt Professor of Stati"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://people.seas.harvard.edu/~samurphy/",
+     "at": "2026-11-07T20:45:35+00:00",
+     "result": "listed",
+     "anchor": "people.seas.harvard.edu/~samurphy",
+     "on": "https://seas.harvard.edu/person/susan-murphy"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Hanspeter Pfister",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T21:19:57+00:00",
+   "checks": [
+    {
+     "source": "prior_labpage_pass_2026-10-22",
+     "url": "https://vcg.seas.harvard.edu/people",
+     "at": "2026-11-07T21:19:56+00:00",
+     "result": "recorded_people_page"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C1",
+     "at": "2026-11-07T21:19:56+00:00",
+     "result": "ok",
+     "sha256": "ecf0b9abdf10272dd9d919d0123b98eeb963c215727f63b4a601ecb0c68bbdc9"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://seas.harvard.edu/person/hanspeter-pfister",
+     "at": "2026-11-07T21:19:56+00:00",
+     "result": "ok",
+     "sha256": "0bd52b94a9dd5595287cc605048925c2b21f327c18f0150846ed9d61a49624cf"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/p/HanspeterPfister",
+     "at": "2026-11-07T21:19:56+00:00",
+     "result": "listed",
+     "urls": [
+      "https://www.seas.harvard.edu/directory/pfister",
+      "http://www.merl.com/people/?user=pfister"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0002-3620-2582/person.json",
+     "at": "2026-11-07T21:19:56+00:00",
+     "result": "no_urls",
+     "sha256": "d301fae74c0e3ad72eb07d323be749ecff028a98281101f74fc75ee07218fef0"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T21:19:56+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://vcg.seas.harvard.edu/people",
+     "at": "2026-11-07T21:19:56+00:00",
+     "result": "ok",
+     "via": "prior_labpage_pass",
+     "sha256": "31733be1121cf8baf17f8676b6a254d36065fdeb6cbe267bcf5fa141471ef22e"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.merl.com/people/?user=pfister",
+     "at": "2026-11-07T21:19:56+00:00",
+     "result": "does_not_name_pi_kept_strong_source",
+     "via": "dblp_person_url",
+     "sha256": "e23c43bae5aec3d083c0d53b8b41e92201d1e67be22d1a3521b659143b96cb9b",
+     "final_url": "https://www.merl.com/people/pfister"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "https://vcg.seas.harvard.edu/people",
+     "at": "2026-11-07T21:19:56+00:00",
+     "result": "4 captures",
+     "frm": 2026
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20260101085750id_/https://vcg.seas.harvard.edu/people",
+     "at": "2026-11-07T21:19:57+00:00",
+     "result": "ok_wayback",
+     "sha256": "77ca700914ef30fe3d19269a73a6cffa51d8104501b98284fe0e6a6972aef1bb"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20260501090421id_/https://vcg.seas.harvard.edu/people",
+     "at": "2026-11-07T21:19:57+00:00",
+     "result": "ok_wayback",
+     "sha256": "9419af1c35bc92a1c0c5cef165341dfadfeee8edb5b7d8ab3a8679b965de2dbd"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20261012051106id_/https://vcg.seas.harvard.edu/people",
+     "at": "2026-11-07T21:19:57+00:00",
+     "result": "ok_wayback",
+     "sha256": "31733be1121cf8baf17f8676b6a254d36065fdeb6cbe267bcf5fa141471ef22e"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:does_not_name_pi_kept_strong_source",
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "prior_labpage_pass_2026-10-22:recorded_people_page",
+    "school_profile:ok",
+    "wayback_capture:ok_wayback",
+    "wayback_cdx:4 captures"
+   ],
+   "checked_at": "2026-11-07T21:19:57+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "https://vcg.seas.harvard.edu/people",
+   "kind": "pi_homepage",
+   "people_page": "https://vcg.seas.harvard.edu/people",
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "prior_labpage_pass",
+   "listed_on": null,
+   "sha256": "31733be1121cf8baf17f8676b6a254d36065fdeb6cbe267bcf5fa141471ef22e",
+   "evidence": {
+    "url": "https://vcg.seas.harvard.edu/people",
+    "sha256": "31733be1121cf8baf17f8676b6a254d36065fdeb6cbe267bcf5fa141471ef22e",
+    "quote": "asses Contact Publications Principal Investigator Hanspeter Pfister An Wang Professor of Computer Science +1 (617) 496 8269 pfi"
+   },
+   "official_link_status": "not_recorded",
+   "official_link_evidence": [],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Ariel Procaccia",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Captured lab/group website.",
+   "audited_at": "2026-11-07T20:49:03+00:00",
+   "checks": [
+    {
+     "source": "prior_labpage_pass_2026-10-22",
+     "url": "https://procaccia.info/people/",
+     "at": "2026-11-07T20:47:44+00:00",
+     "result": "recorded_people_page"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C1",
+     "at": "2026-11-07T20:47:44+00:00",
+     "result": "ok",
+     "sha256": "ecf0b9abdf10272dd9d919d0123b98eeb963c215727f63b4a601ecb0c68bbdc9"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://seas.harvard.edu/person/ariel-procaccia",
+     "at": "2026-11-07T20:47:44+00:00",
+     "result": "ok",
+     "sha256": "9221967b64e3a5a3679b75a9d61e01341ada263e669cc329086aceb75498e4ef"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://procaccia.info",
+     "at": "2026-11-07T20:47:44+00:00",
+     "result": "listed",
+     "anchor": "procaccia.info",
+     "on": "https://seas.harvard.edu/person/ariel-procaccia"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/p/ArielDProcaccia",
+     "at": "2026-11-07T20:47:44+00:00",
+     "result": "listed",
+     "urls": [
+      "http://www.cs.cmu.edu/~arielpro/"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0002-8774-5827/person.json",
+     "at": "2026-11-07T20:47:44+00:00",
+     "result": "listed",
+     "sha256": "2f3e26f8364efc8864cb0697ede9678ecb902077bcaa4e1424e962860e158605",
+     "urls": [
+      "http://www.cs.cmu.edu/~arielpro/",
+      "https://orcid.org/0000-0002-8774-5827"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0003-0318-491X/person.json",
+     "at": "2026-11-07T20:47:47+00:00",
+     "result": "no_urls",
+     "sha256": "afbea047b88a26e935b56d9616a335826d78b33947b408065e5ae60c60d6e4d7"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:47:47+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://procaccia.info/people/",
+     "at": "2026-11-07T20:47:51+00:00",
+     "result": "ok",
+     "via": "prior_labpage_pass",
+     "sha256": "bcae4da5a44d3ddd3ea15b00a680faa2b33a70eebfbfafe9003ef10e2f244acb"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://procaccia.info",
+     "at": "2026-11-07T20:47:57+00:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "7b817cbfd82d7f5a3968df32f0fa01b3bf0ee70f9e10534dbff38a59c2d40354",
+     "final_url": "https://procaccia.info/"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.cs.cmu.edu/~arielpro/",
+     "at": "2026-11-07T20:48:01+00:00",
+     "result": "ok",
+     "via": "dblp_person_url",
+     "sha256": "7b817cbfd82d7f5a3968df32f0fa01b3bf0ee70f9e10534dbff38a59c2d40354",
+     "final_url": "https://procaccia.info/"
+    },
+    {
+     "source": "people_link",
+     "url": "https://procaccia.info/people/",
+     "at": "2026-11-07T20:48:02+00:00",
+     "result": "ok",
+     "on": "http://procaccia.info",
+     "sha256": "bcae4da5a44d3ddd3ea15b00a680faa2b33a70eebfbfafe9003ef10e2f244acb"
+    },
+    {
+     "source": "pubs_link",
+     "url": "https://procaccia.info/publications/",
+     "at": "2026-11-07T20:48:02+00:00",
+     "result": "ok",
+     "on": "http://procaccia.info",
+     "sha256": "b22b9db2b7af3a358b506c34b23971f7651fbb6f8ca1d59f8c6ca5e58952b9f1"
+    },
+    {
+     "source": "pubs_link",
+     "url": "http://procaccia.info/publications/?publication_type=o&publication_year=",
+     "at": "2026-11-07T20:48:05+00:00",
+     "result": "ok",
+     "on": "http://procaccia.info",
+     "sha256": "66248238e3440c81302c276ecd008e7b369a431a29810724b6b988bffe1604fd"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "https://procaccia.info/people/",
+     "at": "2026-11-07T20:48:15+00:00",
+     "result": "4 captures",
+     "frm": 2026
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20260106150158id_/https://procaccia.info/people/",
+     "at": "2026-11-07T20:48:33+00:00",
+     "result": "ok_wayback",
+     "sha256": "d13fc281a9d03d22d86e31144fa14fadd38c4f0878aa8cfe4818d59c7ce4b8b8"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20260310225359id_/https://procaccia.info/people/",
+     "at": "2026-11-07T20:48:51+00:00",
+     "result": "ok_wayback",
+     "sha256": "3a11e4ca2667cfc7da5765d4bfe7542ed8d510e7b35199458bd22425e8b1721a"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20260511095421id_/https://procaccia.info/people/",
+     "at": "2026-11-07T20:49:03+00:00",
+     "result": "ok_wayback",
+     "sha256": "8884f45068ee63e987e1f11f496e8a8c4403b7a7f3fd1c76d5cacb6c5a65ad59"
+    },
+    {
+     "source": "people_link_not_used_by_prior_pass",
+     "url": "https://procaccia.info/people/#main",
+     "at": "2026-11-07T20:49:04+00:00",
+     "result": "ok",
+     "sha256": "bcae4da5a44d3ddd3ea15b00a680faa2b33a70eebfbfafe9003ef10e2f244acb",
+     "capture_url": null
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:listed",
+    "orcid_researcher_urls:no_urls",
+    "people_link:ok",
+    "people_link_not_used_by_prior_pass:ok",
+    "prior_labpage_pass_2026-10-22:recorded_people_page",
+    "pubs_link:ok",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "wayback_capture:ok_wayback",
+    "wayback_cdx:4 captures"
+   ],
+   "checked_at": "2026-11-07T20:49:04+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "http://procaccia.info",
+   "kind": "lab_site",
+   "people_page": "https://procaccia.info/people/",
+   "alumni_page": null,
+   "pubs_page": "https://procaccia.info/publications/",
+   "found_via": "school_profile_link",
+   "listed_on": "https://seas.harvard.edu/person/ariel-procaccia",
+   "sha256": "7b817cbfd82d7f5a3968df32f0fa01b3bf0ee70f9e10534dbff38a59c2d40354",
+   "evidence": {
+    "url": "http://procaccia.info",
+    "sha256": "7b817cbfd82d7f5a3968df32f0fa01b3bf0ee70f9e10534dbff38a59c2d40354",
+    "quote": "Home - Ariel Procaccia Skip to main content 2 1 Menu Ariel Procaccia Close Home Bi"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://procaccia.info",
+     "at": "2026-11-07T20:47:44+00:00",
+     "result": "listed",
+     "anchor": "procaccia.info",
+     "on": "https://seas.harvard.edu/person/ariel-procaccia"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Stuart M. Shieber",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:49:07+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C2",
+     "at": "2026-11-07T20:49:04+00:00",
+     "result": "ok",
+     "sha256": "a84bb65c56b206181362224565c693a5c532dd7a9e52822388d3daac2433f840"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://seas.harvard.edu/person/stuart-shieber",
+     "at": "2026-11-07T20:49:07+00:00",
+     "result": "ok",
+     "sha256": "1431a4bf6f922c9a54267f5b7a19da119bbea532274ce78734f85e2b3f1b9125"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://www.eecs.harvard.edu/~shieber/",
+     "at": "2026-11-07T20:49:07+00:00",
+     "result": "listed",
+     "anchor": "www.eecs.harvard.edu/~shieber",
+     "on": "https://seas.harvard.edu/person/stuart-shieber"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/s/StuartMShieber",
+     "at": "2026-11-07T20:49:07+00:00",
+     "result": "listed",
+     "urls": [
+      "http://www.eecs.harvard.edu/~shieber/"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0002-7733-8195/person.json",
+     "at": "2026-11-07T20:49:07+00:00",
+     "result": "no_urls",
+     "sha256": "7ffa3ff08dd884da7f1d38a6cef6c2d2310c4febcffa24940d5fa1bdd75e6a8c"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:49:07+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.eecs.harvard.edu/~shieber/",
+     "at": "2026-11-07T20:49:07+00:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "bfee15ee5b12060f8ea92e4bb6b6da1963e19ef766d3c1565e0c160517a7c3c7",
+     "final_url": "https://www.eecs.harvard.edu/~shieber/"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T20:49:07+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "http://www.eecs.harvard.edu/~shieber/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://seas.harvard.edu/person/stuart-shieber",
+   "sha256": "bfee15ee5b12060f8ea92e4bb6b6da1963e19ef766d3c1565e0c160517a7c3c7",
+   "evidence": {
+    "url": "http://www.eecs.harvard.edu/~shieber/",
+    "sha256": "bfee15ee5b12060f8ea92e4bb6b6da1963e19ef766d3c1565e0c160517a7c3c7",
+    "quote": "Stuart M. Shieber | Harvard University Overview Stuart Shieber is a computer"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://www.eecs.harvard.edu/~shieber/",
+     "at": "2026-11-07T20:49:07+00:00",
+     "result": "listed",
+     "anchor": "www.eecs.harvard.edu/~shieber",
+     "on": "https://seas.harvard.edu/person/stuart-shieber"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Michael D. Smith",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:50:27+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C2",
+     "at": "2026-11-07T20:49:07+00:00",
+     "result": "ok",
+     "sha256": "a84bb65c56b206181362224565c693a5c532dd7a9e52822388d3daac2433f840"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://seas.harvard.edu/person/michael-smith",
+     "at": "2026-11-07T20:49:10+00:00",
+     "result": "ok",
+     "sha256": "9c7682bfbb4535ddcb219bfe4bae89c1262b436623b084e8e254aefd13399b03"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://scholar.harvard.edu/mikesmith",
+     "at": "2026-11-07T20:49:10+00:00",
+     "result": "listed",
+     "anchor": "scholar.harvard.edu/mikesmith",
+     "on": "https://seas.harvard.edu/person/michael-smith"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/163/1790-1",
+     "at": "2026-11-07T20:49:10+00:00",
+     "result": "listed",
+     "urls": [
+      "https://www.seas.harvard.edu/directory/mikesmith"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-07T20:49:10+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:49:10+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://scholar.harvard.edu/mikesmith",
+     "at": "2026-11-07T20:49:40+00:00",
+     "result": "ok_wayback",
+     "via": "school_profile_link",
+     "capture_url": "https://web.archive.org/web/20240922233834id_/https://scholar.harvard.edu/mikesmith",
+     "sha256": "4641e9125d5978d19cbe3d7ce4f8335809d55e7c413660dcbdf369d8eb971082",
+     "final_url": "https://web.archive.org/web/20240922233834id_/https://scholar.harvard.edu/mikesmith"
+    },
+    {
+     "source": "people_link",
+     "url": "https://scholar.harvard.edu/mikesmith/students",
+     "at": "2026-11-07T20:50:11+00:00",
+     "result": "ok_wayback",
+     "on": "https://scholar.harvard.edu/mikesmith",
+     "capture_url": "https://web.archive.org/web/20240922233834id_/https://scholar.harvard.edu/mikesmith/students",
+     "sha256": "8b4a358c8f30872c52d0334ac5e5fd94e4d0a8b3f4a8bcbccfcce42a304bafb2"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "https://scholar.harvard.edu/mikesmith/students",
+     "at": "2026-11-07T20:50:27+00:00",
+     "result": "0 captures",
+     "frm": 2026
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok_wayback",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "people_link:ok_wayback",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "wayback_cdx:0 captures"
+   ],
+   "checked_at": "2026-11-07T20:50:27+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "https://scholar.harvard.edu/mikesmith",
+   "kind": "pi_homepage",
+   "people_page": "https://scholar.harvard.edu/mikesmith/students",
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://seas.harvard.edu/person/michael-smith",
+   "sha256": "4641e9125d5978d19cbe3d7ce4f8335809d55e7c413660dcbdf369d8eb971082",
+   "evidence": {
+    "url": "https://scholar.harvard.edu/mikesmith",
+    "sha256": "4641e9125d5978d19cbe3d7ce4f8335809d55e7c413660dcbdf369d8eb971082",
+    "quote": "mikesmith Skip to main content Main Menu Utility Menu Search HARVARD.",
+    "capture_url": "https://web.archive.org/web/20240922233834id_/https://scholar.harvard.edu/mikesmith"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://scholar.harvard.edu/mikesmith",
+     "at": "2026-11-07T20:49:10+00:00",
+     "result": "listed",
+     "anchor": "scholar.harvard.edu/mikesmith",
+     "on": "https://seas.harvard.edu/person/michael-smith"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Madhu Sudan",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:51:20+00:00",
+   "checks": [
+    {
+     "source": "prior_labpage_pass_2026-10-22",
+     "url": "https://madhu.seas.harvard.edu/students/",
+     "at": "2026-11-07T20:50:27+00:00",
+     "result": "recorded_people_page"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C2",
+     "at": "2026-11-07T20:50:27+00:00",
+     "result": "ok",
+     "sha256": "a84bb65c56b206181362224565c693a5c532dd7a9e52822388d3daac2433f840"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://seas.harvard.edu/person/madhu-sudan",
+     "at": "2026-11-07T20:50:27+00:00",
+     "result": "ok",
+     "sha256": "5c38afaecc5d1b9bd2d56b18d91cced7b3d1303ea6933057187906a0ab6fdf23"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/s/MadhuSudan",
+     "at": "2026-11-07T20:50:27+00:00",
+     "result": "listed",
+     "urls": [
+      "https://madhu.seas.harvard.edu/"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0003-3718-6489/person.json",
+     "at": "2026-11-07T20:50:27+00:00",
+     "result": "listed",
+     "sha256": "ac11d8094dc2fc92ce0ea71872bf1fd23f0029cbe561b7ca7f6160682e29ad47",
+     "urls": [
+      "https://madhu.seas.harvard.edu",
+      "https://orcid.org/0000-0003-3718-6489"
+     ]
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:50:27+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://madhu.seas.harvard.edu/students/",
+     "at": "2026-11-07T20:50:31+00:00",
+     "result": "ok",
+     "via": "prior_labpage_pass",
+     "sha256": "35afad48db9867218b5b962a7479796ec1978977ef17477a00d379c244b62073"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://madhu.seas.harvard.edu/",
+     "at": "2026-11-07T20:50:33+00:00",
+     "result": "ok",
+     "via": "dblp_person_url",
+     "sha256": "9ef9a9871675af1d2f4775114a89aa7065141075895d1584226c58993b434f42"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://madhu.seas.harvard.edu",
+     "at": "2026-11-07T20:50:36+00:00",
+     "result": "ok",
+     "via": "orcid_researcher_url",
+     "sha256": "9ef9a9871675af1d2f4775114a89aa7065141075895d1584226c58993b434f42",
+     "final_url": "https://madhu.seas.harvard.edu/"
+    },
+    {
+     "source": "people_link",
+     "url": "https://madhu.seas.harvard.edu/students/",
+     "at": "2026-11-07T20:50:36+00:00",
+     "result": "ok",
+     "on": "https://madhu.seas.harvard.edu/",
+     "sha256": "35afad48db9867218b5b962a7479796ec1978977ef17477a00d379c244b62073"
+    },
+    {
+     "source": "pubs_link",
+     "url": "https://madhu.seas.harvard.edu/papers/",
+     "at": "2026-11-07T20:50:40+00:00",
+     "result": "ok",
+     "on": "https://madhu.seas.harvard.edu/",
+     "sha256": "221291dc22be17db11f408c8878fb41b1e6c071e4b6a589c8ddfa8f1f3416c0b"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "https://madhu.seas.harvard.edu/students/",
+     "at": "2026-11-07T20:50:49+00:00",
+     "result": "2 captures",
+     "frm": 2016
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20250914130945id_/https://madhu.seas.harvard.edu/students/",
+     "at": "2026-11-07T20:51:09+00:00",
+     "result": "ok_wayback",
+     "sha256": "a9befa4c113be12ed06235968e9bbcef58eef1fde824f29c8ea60f0fb7535ebc"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20250916154548id_/https://madhu.seas.harvard.edu/students/",
+     "at": "2026-11-07T20:51:20+00:00",
+     "result": "ok_wayback",
+     "sha256": "f0421b08d1cf28cfc777d42d193181c05961257910456d811484d367538f1b16"
+    },
+    {
+     "source": "people_link_not_used_by_prior_pass",
+     "url": "https://madhu.seas.harvard.edu/students/#content",
+     "at": "2026-11-07T20:51:20+00:00",
+     "result": "ok",
+     "sha256": "e2b2bfb179bea68202660bcee9813e97782a5aeeac16d82b933566fe17de4300",
+     "capture_url": null
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://madhu.seas.harvard.edu/",
+     "on": "https://seas.harvard.edu/person/madhu-sudan",
+     "at": "2026-11-07T20:50:27+00:00",
+     "result": "listed",
+     "anchor": "madhu.seas.harvard.edu",
+     "linked_url": "http://madhu.seas.harvard.edu",
+     "source_sha256": "5c38afaecc5d1b9bd2d56b18d91cced7b3d1303ea6933057187906a0ab6fdf23",
+     "source_capture_url": null,
+     "provenance": "recovered_from_cached_profile_html"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:listed",
+    "people_link:ok",
+    "people_link_not_used_by_prior_pass:ok",
+    "prior_labpage_pass_2026-10-22:recorded_people_page",
+    "pubs_link:ok",
+    "school_profile:ok",
+    "wayback_capture:ok_wayback",
+    "wayback_cdx:2 captures"
+   ],
+   "checked_at": "2026-11-07T20:51:20+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "https://madhu.seas.harvard.edu/",
+   "kind": "pi_homepage",
+   "people_page": "https://madhu.seas.harvard.edu/students/",
+   "alumni_page": null,
+   "pubs_page": "https://madhu.seas.harvard.edu/papers/",
+   "found_via": "dblp_person_url",
+   "listed_on": "https://seas.harvard.edu/person/madhu-sudan",
+   "sha256": "9ef9a9871675af1d2f4775114a89aa7065141075895d1584226c58993b434f42",
+   "evidence": {
+    "url": "https://madhu.seas.harvard.edu/",
+    "sha256": "9ef9a9871675af1d2f4775114a89aa7065141075895d1584226c58993b434f42",
+    "quote": "Madhu Sudan – Gordon McKay Professor of Computer Science Harvard John A"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://madhu.seas.harvard.edu/",
+     "on": "https://seas.harvard.edu/person/madhu-sudan",
+     "at": "2026-11-07T20:50:27+00:00",
+     "result": "listed",
+     "anchor": "madhu.seas.harvard.edu",
+     "linked_url": "http://madhu.seas.harvard.edu",
+     "source_sha256": "5c38afaecc5d1b9bd2d56b18d91cced7b3d1303ea6933057187906a0ab6fdf23",
+     "source_capture_url": null,
+     "provenance": "recovered_from_cached_profile_html"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Milind Tambe",
+   "status": "none_found",
+   "reason_code": "new_arrival_no_site_yet",
+   "reason": "No eligible website established for this school from the recorded checks (other_institution): department_listing https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C2: ok; school_profile https://seas.harvard.edu/person/milind-tambe: ok; dblp_person_url https://dblp.org/pid/67/2667: listed; orcid_researcher_urls https://orcid.org/0000-0003-3296-3672/person.json: no_urls; 2 further dated checks retained.",
+   "audited_at": "2026-11-07T20:52:25+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C2",
+     "at": "2026-11-07T20:51:20+00:00",
+     "result": "ok",
+     "sha256": "a84bb65c56b206181362224565c693a5c532dd7a9e52822388d3daac2433f840"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://seas.harvard.edu/person/milind-tambe",
+     "at": "2026-11-07T20:51:21+00:00",
+     "result": "ok",
+     "sha256": "9a2ef59bef6d6cab3730cfa0b0f80d80d1158cac848acc6572c245e8f4d60942"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/67/2667",
+     "at": "2026-11-07T20:51:21+00:00",
+     "result": "listed",
+     "urls": [
+      "http://teamcore.usc.edu/tambe/"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0003-3296-3672/person.json",
+     "at": "2026-11-07T20:51:21+00:00",
+     "result": "no_urls",
+     "sha256": "b8cf87d5d1f419c68ab92e2d7a6913be80ba5dca043150949d47ba22205fb228"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:51:21+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://teamcore.usc.edu/tambe/",
+     "at": "2026-11-07T20:52:08+00:00",
+     "result": "ok_wayback",
+     "via": "dblp_person_url",
+     "capture_url": "https://web.archive.org/web/20190502091839id_/http://teamcore.usc.edu/tambe/",
+     "sha256": "77fac604581f647e584b8a795ae822096cc7bcf76d87c4a3f3edceb008798a1d",
+     "final_url": "https://web.archive.org/web/20190502091839id_/http://teamcore.usc.edu/tambe/"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "http://teamcore.usc.edu/tambe/",
+     "at": "2026-11-07T20:52:25+00:00",
+     "result": "0 captures",
+     "frm": 2026
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok_wayback",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "school_profile:ok",
+    "wayback_cdx:0 captures"
+   ],
+   "checked_at": "2026-11-07T20:52:25+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "http://teamcore.usc.edu/tambe/",
+   "kind": "other_institution_site",
+   "people_page": "http://teamcore.usc.edu/tambe/",
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "dblp_person_url",
+   "listed_on": null,
+   "sha256": "77fac604581f647e584b8a795ae822096cc7bcf76d87c4a3f3edceb008798a1d",
+   "evidence": {
+    "url": "http://teamcore.usc.edu/tambe/",
+    "sha256": "77fac604581f647e584b8a795ae822096cc7bcf76d87c4a3f3edceb008798a1d",
+    "quote": "Milind Tambe HOME RESEARCH PEOPLE NEWS PUBLICATIONS AWARDS TEACHING EVEN",
+    "capture_url": "https://web.archive.org/web/20190502091839id_/http://teamcore.usc.edu/tambe/"
+   },
+   "coverage": "reason",
+   "upstream_audit_reason": "joined in 2026; the only site found is at the previous institution (its students are not this school's)",
+   "reason_type": "other_institution",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Salil P. Vadhan",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Captured lab/group website.",
+   "audited_at": "2026-11-07T21:19:57+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C2",
+     "at": "2026-11-07T21:19:57+00:00",
+     "result": "ok",
+     "sha256": "a84bb65c56b206181362224565c693a5c532dd7a9e52822388d3daac2433f840"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://seas.harvard.edu/person/salil-vadhan",
+     "at": "2026-11-07T21:19:57+00:00",
+     "result": "ok",
+     "sha256": "fe08e0f91199cbf7cb709c536c1e5b61ae02686462fcd0aca36d910bab66a9ce"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/v/SPVadhan",
+     "at": "2026-11-07T21:19:57+00:00",
+     "result": "listed",
+     "urls": [
+      "http://www.eecs.harvard.edu/~salil/"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0002-4059-4072/person.json",
+     "at": "2026-11-07T21:19:57+00:00",
+     "result": "no_urls",
+     "sha256": "52c5324f8270f709971132b527b09919bea5311ff15cb8e9b023e40a8d5e7bf4"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T21:19:57+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.eecs.harvard.edu/~salil/",
+     "at": "2026-11-07T21:19:57+00:00",
+     "result": "ok",
+     "via": "dblp_person_url",
+     "sha256": "f57d39df5b780da9ee3f27859e5ff859816333df666796ae88227ca753f0fcff",
+     "final_url": "https://salil.seas.harvard.edu/"
+    },
+    {
+     "source": "people_link",
+     "url": "https://salil.seas.harvard.edu/people",
+     "at": "2026-11-07T21:19:57+00:00",
+     "result": "ok_wayback",
+     "on": "http://www.eecs.harvard.edu/~salil/",
+     "capture_url": "https://web.archive.org/web/20260110091606id_/https://salil.seas.harvard.edu/people",
+     "sha256": "e0ee6d4c9d7575e0dbad4ef3fe9f28f12338a701648a3efa06e7901d8a77f31a"
+    },
+    {
+     "source": "pubs_link",
+     "url": "https://salil.seas.harvard.edu/publications",
+     "at": "2026-11-07T21:19:57+00:00",
+     "result": "ok_wayback",
+     "on": "http://www.eecs.harvard.edu/~salil/",
+     "capture_url": "https://web.archive.org/web/20260309085644id_/https://salil.seas.harvard.edu/publications",
+     "sha256": "0bd81a14f3b111974f2e9a65bce4a07af7f041e7d2fdd2427ff01e6a449f33cc"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "https://salil.seas.harvard.edu/people",
+     "at": "2026-11-07T21:19:57+00:00",
+     "result": "1 captures",
+     "frm": 2026
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20260110091606id_/https://salil.seas.harvard.edu/people",
+     "at": "2026-11-07T21:19:57+00:00",
+     "result": "ok_wayback",
+     "sha256": "e0ee6d4c9d7575e0dbad4ef3fe9f28f12338a701648a3efa06e7901d8a77f31a"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "people_link:ok_wayback",
+    "pubs_link:ok_wayback",
+    "school_profile:ok",
+    "wayback_capture:ok_wayback",
+    "wayback_cdx:1 captures"
+   ],
+   "checked_at": "2026-11-07T21:19:57+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "http://www.eecs.harvard.edu/~salil/",
+   "kind": "lab_site",
+   "people_page": "https://salil.seas.harvard.edu/people",
+   "alumni_page": null,
+   "pubs_page": "https://salil.seas.harvard.edu/publications",
+   "found_via": "dblp_person_url",
+   "listed_on": null,
+   "sha256": "f57d39df5b780da9ee3f27859e5ff859816333df666796ae88227ca753f0fcff",
+   "evidence": {
+    "url": "http://www.eecs.harvard.edu/~salil/",
+    "sha256": "f57d39df5b780da9ee3f27859e5ff859816333df666796ae88227ca753f0fcff",
+    "quote": "Salil Vadhan | Salil Vadhan Skip to main content arrow_circle_down Salil"
+   },
+   "official_link_status": "not_recorded",
+   "official_link_evidence": [],
+   "coverage": "website",
+   "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Leslie G. Valiant",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:53:38+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C2",
+     "at": "2026-11-07T20:53:34+00:00",
+     "result": "ok",
+     "sha256": "a84bb65c56b206181362224565c693a5c532dd7a9e52822388d3daac2433f840"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://seas.harvard.edu/person/leslie-valiant",
+     "at": "2026-11-07T20:53:34+00:00",
+     "result": "ok",
+     "sha256": "7fa22205ae2491214750d6b93ab17d65dc5e3598785f0d34ef7406ba22fb81d8"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://people.seas.harvard.edu/~valiant",
+     "at": "2026-11-07T20:53:34+00:00",
+     "result": "listed",
+     "anchor": "people.seas.harvard.edu/~valiant",
+     "on": "https://seas.harvard.edu/person/leslie-valiant"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/v/LeslieGValiant",
+     "at": "2026-11-07T20:53:34+00:00",
+     "result": "listed",
+     "urls": [
+      "http://people.deas.harvard.edu/~valiant/"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-07T20:53:34+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:53:34+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://people.seas.harvard.edu/~valiant",
+     "at": "2026-11-07T20:53:35+00:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "5e60abfa6a22e200723998d9291b0907a27a5326ca6ccdac2eb126b0a273c87f",
+     "final_url": "http://people.seas.harvard.edu/~valiant/"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://people.deas.harvard.edu/~valiant/",
+     "at": "2026-11-07T20:53:38+00:00",
+     "result": "ok",
+     "via": "dblp_person_url",
+     "sha256": "5e60abfa6a22e200723998d9291b0907a27a5326ca6ccdac2eb126b0a273c87f",
+     "final_url": "http://people.seas.harvard.edu/~valiant/"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T20:53:38+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "http://people.seas.harvard.edu/~valiant",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://seas.harvard.edu/person/leslie-valiant",
+   "sha256": "5e60abfa6a22e200723998d9291b0907a27a5326ca6ccdac2eb126b0a273c87f",
+   "evidence": {
+    "url": "http://people.seas.harvard.edu/~valiant",
+    "sha256": "5e60abfa6a22e200723998d9291b0907a27a5326ca6ccdac2eb126b0a273c87f",
+    "quote": "Leslie Valiant T. Jefferson Coolidge Professor of Computer Science and App"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://people.seas.harvard.edu/~valiant",
+     "at": "2026-11-07T20:53:34+00:00",
+     "result": "listed",
+     "anchor": "people.seas.harvard.edu/~valiant",
+     "on": "https://seas.harvard.edu/person/leslie-valiant"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Fernanda Viegas",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:54:22+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C2",
+     "at": "2026-11-07T20:53:38+00:00",
+     "result": "ok",
+     "sha256": "a84bb65c56b206181362224565c693a5c532dd7a9e52822388d3daac2433f840"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://seas.harvard.edu/person/fernanda-viegas",
+     "at": "2026-11-07T20:53:38+00:00",
+     "result": "ok",
+     "sha256": "8242b28d7fef6df74f6a66027b96e8545812c829e2b29d579567ae653cb5ab92"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://www.fernandaviegas.com/",
+     "at": "2026-11-07T20:53:38+00:00",
+     "result": "listed",
+     "anchor": "www.fernandaviegas.com",
+     "on": "https://seas.harvard.edu/person/fernanda-viegas"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/v/FernandaBViegas",
+     "at": "2026-11-07T20:53:38+00:00",
+     "result": "listed",
+     "urls": [
+      "http://www.research.ibm.com/visual/fernanda.html"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0002-4951-4008/person.json",
+     "at": "2026-11-07T20:53:38+00:00",
+     "result": "no_urls",
+     "sha256": "8e4adb6b08967b5aa0c2a327c8a591a1d959f0ab809ddc6c4c070891b8acf356"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:53:38+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.fernandaviegas.com/",
+     "at": "2026-11-07T20:53:55+00:00",
+     "result": "ok_wayback",
+     "via": "school_profile_link",
+     "capture_url": "https://web.archive.org/web/20260929124000id_/http://www.fernandaviegas.com/",
+     "sha256": "c8ec5bca611b05f997b68ccaafa7fb6c723ba0764b762a089d835afb3fe6c531",
+     "final_url": "https://web.archive.org/web/20260929124000id_/http://www.fernandaviegas.com/"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.research.ibm.com/visual/fernanda.html",
+     "at": "2026-11-07T20:54:22+00:00",
+     "result": "ok_wayback",
+     "via": "dblp_person_url",
+     "capture_url": "https://web.archive.org/web/20100710035000id_/http://www.research.ibm.com/visual/fernanda.html",
+     "sha256": "79df44d917682e088a6c15a72b56130d917cca2cd8d3fac1c6b00d8cd10484f3",
+     "final_url": "https://web.archive.org/web/20100710035000id_/http://www.research.ibm.com/visual/fernanda.html"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok_wayback",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T20:54:22+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "http://www.fernandaviegas.com/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://seas.harvard.edu/person/fernanda-viegas",
+   "sha256": "c8ec5bca611b05f997b68ccaafa7fb6c723ba0764b762a089d835afb3fe6c531",
+   "evidence": {
+    "url": "http://www.fernandaviegas.com/",
+    "sha256": "c8ec5bca611b05f997b68ccaafa7fb6c723ba0764b762a089d835afb3fe6c531",
+    "quote": "Fernanda Viégas",
+    "capture_url": "https://web.archive.org/web/20260929124000id_/http://www.fernandaviegas.com/"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://www.fernandaviegas.com/",
+     "at": "2026-11-07T20:53:38+00:00",
+     "result": "listed",
+     "anchor": "www.fernandaviegas.com",
+     "on": "https://seas.harvard.edu/person/fernanda-viegas"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Qianqian Wang",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:55:02+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C2",
+     "at": "2026-11-07T20:54:22+00:00",
+     "result": "ok",
+     "sha256": "a84bb65c56b206181362224565c693a5c532dd7a9e52822388d3daac2433f840"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://seas.harvard.edu/person/qianqian-wang",
+     "at": "2026-11-07T20:54:22+00:00",
+     "result": "ok",
+     "sha256": "71c69f0f1ee0108647c20ea1de558d0e4213438577d46449791c10684a0890eb"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://qianqianwang68.github.io/",
+     "at": "2026-11-07T20:54:22+00:00",
+     "result": "listed",
+     "anchor": "qianqianwang68.github.io",
+     "on": "https://seas.harvard.edu/person/qianqian-wang"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/118/6735-2",
+     "at": "2026-11-07T20:54:22+00:00",
+     "result": "listed",
+     "urls": [
+      "https://qianqianwang68.github.io/"
+     ]
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0009-0002-9000-2386/person.json",
+     "at": "2026-11-07T20:54:22+00:00",
+     "result": "no_urls",
+     "sha256": "2655d73942f14b5a1fb5fa0a15e89001d054ceca7f2607820bd6058f58d3f4ad"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:54:22+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://qianqianwang68.github.io/",
+     "at": "2026-11-07T20:54:26+00:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "93d5af9d4426598ded284c730b1e3bf108bd8af7f1fe33d6273af1aca4d64259"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "https://qianqianwang68.github.io/",
+     "at": "2026-11-07T20:54:32+00:00",
+     "result": "6 captures",
+     "frm": 2026
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20260227162438id_/https://qianqianwang68.github.io/",
+     "at": "2026-11-07T20:54:47+00:00",
+     "result": "ok_wayback",
+     "sha256": "b9d85e741a5a22e2da738b069074b966f1a4627752e5f08331c44a1e9372cb05"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20260805114503id_/https://qianqianwang68.github.io/",
+     "at": "2026-11-07T20:54:56+00:00",
+     "result": "ok_wayback",
+     "sha256": "3d77e7fdfd74a479a9bfa422e9d6bca738b0d01d57acc39cc474539e080939c6"
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20261022150616id_/https://qianqianwang68.github.io/",
+     "at": "2026-11-07T20:55:02+00:00",
+     "result": "ok_wayback",
+     "sha256": "3f02c834fdb39fadf581e3c5dea445a41f4182175a9296484b479dcfbae66938"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "wayback_capture:ok_wayback",
+    "wayback_cdx:6 captures"
+   ],
+   "checked_at": "2026-11-07T20:55:02+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "https://qianqianwang68.github.io/",
+   "kind": "pi_homepage",
+   "people_page": "https://qianqianwang68.github.io/",
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://seas.harvard.edu/person/qianqian-wang",
+   "sha256": "3f02c834fdb39fadf581e3c5dea445a41f4182175a9296484b479dcfbae66938",
+   "evidence": {
+    "url": "https://qianqianwang68.github.io/",
+    "sha256": "3f02c834fdb39fadf581e3c5dea445a41f4182175a9296484b479dcfbae66938",
+    "quote": "Qianqian (Quinn) Wang Qianqian (Quinn) ? I go by Quinn these days. “Qianqian” is"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://qianqianwang68.github.io/",
+     "at": "2026-11-07T20:54:22+00:00",
+     "result": "listed",
+     "anchor": "qianqianwang68.github.io",
+     "on": "https://seas.harvard.edu/person/qianqian-wang"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Juncheng Yang",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T21:19:57+00:00",
+   "checks": [
+    {
+     "source": "prior_labpage_pass_2026-10-22",
+     "url": "https://juncheng.seas.harvard.edu/students.html",
+     "at": "2026-11-07T21:19:57+00:00",
+     "result": "recorded_people_page"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C2",
+     "at": "2026-11-07T21:19:57+00:00",
+     "result": "ok",
+     "sha256": "a84bb65c56b206181362224565c693a5c532dd7a9e52822388d3daac2433f840"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://seas.harvard.edu/person/juncheng-yang",
+     "at": "2026-11-07T21:19:57+00:00",
+     "result": "ok",
+     "sha256": "9256f0a9bece259bdb5f6a1e47d5a5cdcf277f8a78be44c464dcc6115853d49e"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/183/0795",
+     "at": "2026-11-07T21:19:57+00:00",
+     "result": "no_homepage_url"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-07T21:19:57+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T21:19:57+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://juncheng.seas.harvard.edu/students.html",
+     "at": "2026-11-07T21:19:57+00:00",
+     "result": "ok",
+     "via": "prior_labpage_pass",
+     "sha256": "d9691a4cebe237ddc4f328fd3e401c4abc0031eb0541dc1b210eb840f2e0c5da",
+     "final_url": "https://juncheng.seas.harvard.edu/students"
+    },
+    {
+     "source": "people_link",
+     "url": "https://juncheng.seas.harvard.edu/students#main-content",
+     "at": "2026-11-07T21:19:57+00:00",
+     "result": "ok",
+     "on": "https://juncheng.seas.harvard.edu/students.html",
+     "sha256": "d9691a4cebe237ddc4f328fd3e401c4abc0031eb0541dc1b210eb840f2e0c5da"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "https://juncheng.seas.harvard.edu/students#main-content",
+     "at": "2026-11-07T21:19:57+00:00",
+     "result": "0 captures",
+     "frm": 2026
+    },
+    {
+     "source": "people_link_not_used_by_prior_pass",
+     "url": "https://juncheng.seas.harvard.edu/students#main-content",
+     "at": "2026-11-07T21:19:57+00:00",
+     "result": "ok",
+     "sha256": "d9691a4cebe237ddc4f328fd3e401c4abc0031eb0541dc1b210eb840f2e0c5da",
+     "capture_url": null
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:no_homepage_url",
+    "department_listing:ok",
+    "people_link:ok",
+    "people_link_not_used_by_prior_pass:ok",
+    "prior_labpage_pass_2026-10-22:recorded_people_page",
+    "school_profile:ok",
+    "wayback_cdx:0 captures"
+   ],
+   "checked_at": "2026-11-07T21:19:57+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "https://juncheng.seas.harvard.edu/students.html",
+   "kind": "pi_homepage",
+   "people_page": "https://juncheng.seas.harvard.edu/students#main-content",
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "prior_labpage_pass",
+   "listed_on": null,
+   "sha256": "d9691a4cebe237ddc4f328fd3e401c4abc0031eb0541dc1b210eb840f2e0c5da",
+   "evidence": {
+    "url": "https://juncheng.seas.harvard.edu/students.html",
+    "sha256": "d9691a4cebe237ddc4f328fd3e401c4abc0031eb0541dc1b210eb840f2e0c5da",
+    "quote": "Students - Juncheng Yang Skip to main content Students I have been very fortunate to"
+   },
+   "official_link_status": "not_recorded",
+   "official_link_evidence": [],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Minlan Yu",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T21:19:58+00:00",
+   "checks": [
+    {
+     "source": "prior_labpage_pass_2026-10-22",
+     "url": "http://minlanyu.seas.harvard.edu/student.html",
+     "at": "2026-11-07T21:19:57+00:00",
+     "result": "recorded_people_page"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C2",
+     "at": "2026-11-07T21:19:58+00:00",
+     "result": "ok",
+     "sha256": "a84bb65c56b206181362224565c693a5c532dd7a9e52822388d3daac2433f840"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://seas.harvard.edu/person/minlan-yu",
+     "at": "2026-11-07T21:19:58+00:00",
+     "result": "ok",
+     "sha256": "c783c46dfa571c6a4f4ad6937ffcea4fc0652446125d89ab4a4af618c75056f2"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/89/6345",
+     "at": "2026-11-07T21:19:58+00:00",
+     "result": "no_homepage_url"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0002-2381-0212/person.json",
+     "at": "2026-11-07T21:19:58+00:00",
+     "result": "no_urls",
+     "sha256": "cb9381e084abb70ab8d6fe0f4833adf165b64e4639eb8be1f521f5645130ddb9"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T21:19:58+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://minlanyu.seas.harvard.edu/student.html",
+     "at": "2026-11-07T21:19:58+00:00",
+     "result": "ok",
+     "via": "prior_labpage_pass",
+     "sha256": "887a7230d647dbb79edcb96fb8af754f5099dfaec6cafd169eca49a86e73e588"
+    },
+    {
+     "source": "wayback_cdx",
+     "url": "http://minlanyu.seas.harvard.edu/student.html",
+     "at": "2026-11-07T21:19:58+00:00",
+     "result": "1 captures",
+     "frm": 2026
+    },
+    {
+     "source": "wayback_capture",
+     "url": "https://web.archive.org/web/20260313145656id_/http://minlanyu.seas.harvard.edu/student.html",
+     "at": "2026-11-07T21:19:58+00:00",
+     "result": "ok_wayback",
+     "sha256": "b505ae83dd41939933d7effe0de818c8535f292ce047ad1d3fcb4003d594813e"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:no_homepage_url",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "prior_labpage_pass_2026-10-22:recorded_people_page",
+    "school_profile:ok",
+    "wayback_capture:ok_wayback",
+    "wayback_cdx:1 captures"
+   ],
+   "checked_at": "2026-11-07T21:19:58+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "http://minlanyu.seas.harvard.edu/student.html",
+   "kind": "pi_homepage",
+   "people_page": "http://minlanyu.seas.harvard.edu/student.html",
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "prior_labpage_pass",
+   "listed_on": null,
+   "sha256": "887a7230d647dbb79edcb96fb8af754f5099dfaec6cafd169eca49a86e73e588",
+   "evidence": {
+    "url": "http://minlanyu.seas.harvard.edu/student.html",
+    "sha256": "887a7230d647dbb79edcb96fb8af754f5099dfaec6cafd169eca49a86e73e588",
+    "quote": "unding | Students Current graduate student Weifan Jiang Xingyu Xiang (co-advised with Eddie Kohler) Yiyu Liu (co-advised w"
+   },
+   "official_link_status": "not_recorded",
+   "official_link_evidence": [],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Jonathan Zittrain",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T20:55:55+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://seas.harvard.edu/computer-science/people?role%5B46%5D=46&page=%2C2",
+     "at": "2026-11-07T20:55:44+00:00",
+     "result": "ok",
+     "sha256": "a84bb65c56b206181362224565c693a5c532dd7a9e52822388d3daac2433f840"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://seas.harvard.edu/person/jonathan-zittrain",
+     "at": "2026-11-07T20:55:44+00:00",
+     "result": "ok",
+     "sha256": "5a6329a55ef7565f31d1869fcf83e5cbe676a7ef2c7195498e6359db51edf09e"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://hls.harvard.edu/faculty/directory/10992/Zittrain",
+     "at": "2026-11-07T20:55:48+00:00",
+     "result": "ok",
+     "sha256": "a28db001c9c546981b89df56685f2c8b26f23c1f633ed51388fab48286dbde3d"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://cyber.harvard.edu/publications/2016/Cybersecurity/Dont_Panic",
+     "at": "2026-11-07T20:55:48+00:00",
+     "result": "listed",
+     "anchor": "Jonathan L. Zittrain, David O'Brien, Matt Olsen, Bruce Schneier & the Berklett W",
+     "on": "https://hls.harvard.edu/faculty/directory/10992/Zittrain"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/64/6752",
+     "at": "2026-11-07T20:55:48+00:00",
+     "result": "no_homepage_url"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0002-3122-0298/person.json",
+     "at": "2026-11-07T20:55:48+00:00",
+     "result": "listed",
+     "sha256": "77540294ce3a79fbf558c1f9e52626eb6a6b5d9df2f93df914102cab0fa09d05",
+     "urls": [
+      "http://www.jz.org",
+      "https://orcid.org/0000-0002-3122-0298"
+     ]
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-07T20:55:48+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://cyber.harvard.edu/publications/2016/Cybersecurity/Dont_Panic",
+     "at": "2026-11-07T20:55:51+00:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "089a24f190394731dd001d8f002236fd149987464a362e08e5c3636c07c55709"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.jz.org",
+     "at": "2026-11-07T20:55:55+00:00",
+     "result": "ok",
+     "via": "orcid_researcher_url",
+     "sha256": "aa2d2b3568a4a71ca480134c286ba47cbf54bfdcc9fbd09a2173fd5416555285",
+     "final_url": "https://jz.cyber.harvard.edu/"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://www.jz.org",
+     "on": "https://hls.harvard.edu/faculty/directory/10992/Zittrain",
+     "at": "2026-11-07T20:55:48+00:00",
+     "result": "listed",
+     "anchor": "jz.org",
+     "linked_url": "http://www.jz.org",
+     "source_sha256": "5243f6d4eba51b483a2f6ab660299b41d520ddc3a52b1a9fe6cc031c0c3ea714",
+     "source_capture_url": null,
+     "provenance": "recovered_from_cached_profile_html"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:no_homepage_url",
+    "department_listing:ok",
+    "orcid_researcher_urls:listed",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-07T20:55:55+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "http://www.jz.org",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "orcid_researcher_url",
+   "listed_on": "https://hls.harvard.edu/faculty/directory/10992/Zittrain",
+   "sha256": "aa2d2b3568a4a71ca480134c286ba47cbf54bfdcc9fbd09a2173fd5416555285",
+   "evidence": {
+    "url": "http://www.jz.org",
+    "sha256": "aa2d2b3568a4a71ca480134c286ba47cbf54bfdcc9fbd09a2173fd5416555285",
+    "quote": "Jonathan Zittrain Jonathan Zittrain Home About Blog Books Publications Teachi"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://www.jz.org",
+     "on": "https://hls.harvard.edu/faculty/directory/10992/Zittrain",
+     "at": "2026-11-07T20:55:48+00:00",
+     "result": "listed",
+     "anchor": "jz.org",
+     "linked_url": "http://www.jz.org",
+     "source_sha256": "5243f6d4eba51b483a2f6ab660299b41d520ddc3a52b1a9fe6cc031c0c3ea714",
+     "source_capture_url": null,
+     "provenance": "recovered_from_cached_profile_html"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": []
+  }
+ ]
+}

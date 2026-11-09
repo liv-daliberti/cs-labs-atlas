@@ -423,13 +423,17 @@ def enrich_official_links(school, doc):
                     break
     return doc
 
+def capture_stores(school):
+    """The lab-page capture stores of a school, plus the person-website fetch store (tools/person_fetch.py) when it exists."""
+    paths = [P.data('labpage-audit-captures.sqlite', school), P.data('labpage-captures.sqlite', school),
+             Path(P.ROOT) / 'scratch' / 'websites-b' / f'captures-{school}.sqlite']
+    return [p for p in paths if p.exists()]
+
+
 def stored_captures(school, urls):
     """{url: (sha256, fetched_at, text)} for stored 200 captures of exactly these URLs (lab-page audit stores; no network)."""
     out = {}
-    for name in ('labpage-audit-captures.sqlite', 'labpage-captures.sqlite'):
-        path = P.data(name, school)
-        if not path.exists():
-            continue
+    for path in capture_stores(school):
         con = sqlite3.connect(f'file:{path}?mode=ro', uri=True)
         for url, sha, at, blob in con.execute("select url, sha256, fetched_at, content from captures where status=200 and sha256 is not null and content is not null"):
             if url in urls and url not in out:
