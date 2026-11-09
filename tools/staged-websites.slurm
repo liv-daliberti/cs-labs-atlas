@@ -1,5 +1,5 @@
 #!/bin/bash
-# Staged-school website sweep (tools/staged_websites.py): robots-honouring, paced, live; one or more schools per job. usage: atlas submit hierarchy/staged-websites.slurm purdue
+# Staged-school website sweep (tools/staged_websites.py): robots-honouring, paced, live; one or more schools per job. usage: atlas submit tools/staged-websites.slurm purdue
 #SBATCH --job-name=staged-websites
 #SBATCH --partition=all
 #SBATCH --account=mltheory
@@ -20,5 +20,5 @@ df -h "$TMPDIR" | tail -1
 PY="$CS_ATLAS_PY"
 for s in "$@"; do
   echo "== $s $(date -Is)"
-  nice "$PY" -I -u "$CS_ATLAS_TOOLS/staged_websites.py" build "$s" --workers 12 --deadline 3200 --out-dir "${STAGED_OUT:?set STAGED_OUT to the worktree hierarchy dir}/$s/reviewed" || echo "!! $s failed"
+  nice "$PY" -u "$CS_ATLAS_TOOLS/staged_websites.py" build "$s" --workers 12 --deadline 3200 --out-dir "${STAGED_OUT:?set STAGED_OUT to the worktree hierarchy dir}/$s/reviewed" || echo "!! $s failed"
 done

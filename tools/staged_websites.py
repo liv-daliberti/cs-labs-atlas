@@ -30,10 +30,9 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urldefrag, urljoin, urlsplit
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))  # python -I leaves the script's directory off sys.path
-import atlas_paths as P  # noqa: E402
-import person_websites as PW  # noqa: E402
-import staged_fetch as SF  # noqa: E402
+import atlas_paths as P
+import person_websites as PW
+import staged_fetch as SF
 
 SCRATCH = P.ROOT / 'scratch' / 'websites-c'
 ROLES = P.ROOT / 'scratch' / 'top25-roles-students-1107' / 'pi-role-verification.json'
@@ -50,17 +49,19 @@ LAB_WORD = re.compile(r'\b(?:lab|laboratory|group|center|centre|institute|team|i
 PEOPLE_TEXT = re.compile(r'^(?:people|members?|team|students?|group members?|lab members?|current (?:members|students)|our team|the team|'
                          r'who we are|researchers|lab people|group|alumni|phd students|graduate students|people & alumni)$', re.I)
 PEOPLE_HREF = re.compile(r'(?:people|members?|team|students|group)(?:\.html?|/|$)', re.I)
-ROLE_HEAD = re.compile(r'ph\.?\s?d|doctoral|graduate|student|post-?doc|research(?:er|ers)?\b|member|master|m\.?s\.?c?\b|undergrad|intern|visit|'
-                       r'alumni|alumnus|staff|scientist|fellow|assistant|current|former|team|people|collaborat|engineer|candidate|trainee|'
-                       r'associate|faculty|affiliate', re.I)
-NAME_STOP = {'home', 'page', 'website', 'web', 'pdf', 'slides', 'paper', 'papers', 'cv', 'email', 'github', 'scholar', 'google', 'read', 'more',
+ROLE_HEAD = re.compile(r'ph\.?\s?d|doctoral|graduate|students?\b|post-?docs?|postdoctoral|master|\bm\.?s\.? |undergrad|intern|visiting (?:student|scholar|researcher)|'
+                       r'alumni|alumnus|former (?:members|students|group)|(?:current|group|lab|team) members|^members|^people|^team|researchers|'
+                       r'research (?:assistants|staff|scientists)|staff|^graduated', re.I)
+HEAD_NOT = re.compile(r'paper|award|publication|best|news|directory|conference|journal|talk|teaching|collaborat|view |administrative|professor|'
+                      r'faculty|course|class|seminar|workshop|funding|sponsor|openings|prospective|apply|join', re.I)
+NAME_STOP = {'visiting', 'austin', 'antonio', 'industry', 'engagement', 'san', 'cra', 'dreu', 'home', 'page', 'website', 'web', 'pdf', 'slides', 'paper', 'papers', 'cv', 'email', 'github', 'scholar', 'google', 'read', 'more',
              'here', 'see', 'link', 'publications', 'research', 'people', 'members', 'team', 'news', 'contact', 'teaching', 'lab', 'group',
              'university', 'department', 'school', 'institute', 'center', 'centre', 'college', 'projects', 'project', 'software', 'code',
              'data', 'dataset', 'about', 'join', 'us', 'openings', 'courses', 'course', 'student', 'students', 'alumni', 'former', 'current',
              'prof', 'professor', 'dr', 'ph', 'd', 'phd', 'visit', 'apply', 'blog', 'talks', 'awards', 'service', 'misc', 'previous',
              'computer', 'science', 'engineering', 'artificial', 'intelligence', 'machine', 'learning', 'systems', 'security', 'theory',
              'vision', 'language', 'natural', 'processing', 'robotics', 'graphics', 'networks', 'database', 'databases', 'software',
-             'overview', 'resources', 'tutorial', 'tutorials', 'seminar', 'seminars', 'events', 'event', 'funding', 'sponsors', 'and', 'the', 'of'}
+             'journal', 'conference', 'transactions', 'proceedings', 'society', 'association', 'award', 'awards', 'program', 'programs', 'fellows', 'fellowship', 'postdoctoral', 'workshop', 'symposium', 'review', 'press', 'magazine', 'council', 'foundation', 'overview', 'resources', 'tutorial', 'tutorials', 'seminar', 'seminars', 'events', 'event', 'funding', 'sponsors', 'and', 'the', 'of'}
 NAME_TOKEN = re.compile(r"^(?:[A-Z][a-zà-ÿ'’\-]+|[A-Z]\.?|[A-Z][A-Z\-]+|de|van|von|der|den|di|da|del|la|le|bin|al|el|ibn)$")
 CJK_NAME = re.compile(r'^[一-鿿]{2,4}$')
 TITLEISH = re.compile(r'^(?:dr\.?|prof\.?|professor|mr\.?|ms\.?|mrs\.?)\s+', re.I)
@@ -284,6 +285,8 @@ def build(school, workers=12, deadline=None, fetch_members=True):
                 if SKIP_HOST.search(host):
                     continue
                 same = reg_domain(host) == me
+                if re.search(r'(?i)/(?:publications?|pubs?|papers?|cv|resume|teaching|courses?)(?:\.html?)?/?$', urlsplit(u).path):
+                    continue
                 strong = bool(HOME_TEXT.search(lk['text'] or ''))
                 weak = bool(WEAK_TEXT.search(lk['text'] or '')) and (same or len((lk['text'] or '').split()) <= 3)
                 if strong or weak or ('~' in urlsplit(u).path and same):
@@ -301,6 +304,10 @@ def build(school, workers=12, deadline=None, fetch_members=True):
                 o = (reg.get('official_link_evidence') or [{}])[0]
                 cands[pi].setdefault(canon(reg['url']), dict(ff=dict(kind='official_page', url=o.get('on'), sha256=o.get('source_sha256'),
                                                                      anchor=o.get('anchor'), via='existing Oxford lab register'), anchor=o.get('anchor')))
+    for pi in cands:   # a department or university front page is not a person's or lab's site
+        roots = {urlsplit(r_['profile_url']).hostname for r_ in ros if r_['profile_url']}
+        for u in [u for u in cands[pi] if urlsplit(u).path in ('', '/') and not urlsplit(u).query and urlsplit(u).hostname in roots]:
+            del cands[pi][u]
     fetch_urls = [u for pi in cands for u, c in cands[pi].items() if not c.get('social')]
     sites = getall(fetch_urls)
 
@@ -388,7 +395,7 @@ def build(school, workers=12, deadline=None, fetch_members=True):
             via_block = False
             if not name and lk['block_name'] and (HOME_TEXT.search(lk['text'] or '') or re.match(r'(?i)^(?:web ?page|homepage|home|website|personal|site|link)$', lk['text'] or '')):
                 name, via_block = lk['block_name'], True
-            if not name or not ROLE_HEAD.search(lk['heading'] or ''):
+            if not name or not ROLE_HEAD.search(lk['heading'] or '') or HEAD_NOT.search(lk['heading'] or '') or len(lk['heading']) > 70:
                 continue
             if set(fold(name)) <= pi_toks:
                 continue
@@ -397,6 +404,7 @@ def build(school, workers=12, deadline=None, fetch_members=True):
                 continue
             seen_members.add(key)
             mrows.append((pi, name, u, g, lk, via_block))
+    roster_keys = {tuple(fold(r['pi'])[:1] + fold(r['pi'])[-1:]) for r in ros}
     mfetch = getall([m[2] for m in mrows if not SOCIAL.search(urlsplit(m[2]).hostname or '')]) if fetch_members else {}
     for pi, name, u, g, lk, via_block in mrows:
         mg = mfetch.get(u)
@@ -405,10 +413,12 @@ def build(school, workers=12, deadline=None, fetch_members=True):
             toks = fold(name)
             body_t = ' '.join(fold(html.unescape(re.sub(r'<[^>]+>', ' ', mg['body'][:400000].decode('utf-8', 'replace')))))
             named = (len(toks) >= 2 and toks[0] in body_t.split() and toks[-1] in body_t.split(), None)
+        fn = fold(name)
         rows.append(row(name, 'member', pi, 'member_home', u,
                         dict(kind='lab_page', url=g['final_url'], sha256=g['sha256'], anchor=lk['text']), mg, named,
                         role_as_stated=lk['heading'], anchor=lk['text'], name_from='adjacent text in the same list entry' if via_block else 'link text',
-                        same_site=(urlsplit(u).hostname == urlsplit(g['final_url']).hostname) or None))
+                        same_site=(urlsplit(u).hostname == urlsplit(g['final_url']).hostname) or None,
+                        is_roster_pi=True if len(fn) >= 2 and any(fn[0] == r_[0] and fn[-1] == r_[-1] for r_ in roster_keys) else None))
     doc = dict(school=school, tool='tools/staged_websites.py', review_status='automatic',
                source='scratch/top25-roles-students-1107/pi-role-verification.json (verified_PI_role), scratch/top25-labs-20261107/website-verification.json, live fetch',
                generated=time.strftime('%Y-%m-%d'), rows=rows)

@@ -8,18 +8,25 @@ fetched); redirects are followed by hand (<= 4 hops), each hop checked against i
 """
 import hashlib
 import json
+import re
 import sqlite3
-import sys
 import threading
 import time
 import urllib.parse
 import zlib
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))  # python -I leaves the script's directory off sys.path
-import school_web as W  # noqa: E402
+import school_web as W
 
 MAX_BYTES = 2_000_000
+CHALLENGE = re.compile(r'bot detection|traffic check|cf-chl|cf_chl_opt|checking your browser|are you a robot|<title>Just a moment\.\.\.</title>|'
+                       r'challenges\.cloudflare\.com|px-captcha|ddos-guard|Incapsula incident ID|_Incapsula_Resource|<title>Access denied', re.I)
+
+
+def visible_len(body):
+    import re
+    t = re.sub(r'<(script|style)\b.*?</\1>|<[^>]+>', ' ', body.decode('utf-8', 'replace'), flags=re.S | re.I)
+    return len(' '.join(t.split()))
 
 
 class Fetcher:
@@ -84,7 +91,7 @@ class Fetcher:
             return self.con.execute('select url, final_url, status, sha256, fetched_at, content_type, body, chain, note from pages where url=?',
                                     (url,)).fetchone()
 
-    def get(self, url):
+    def get(self, url, self_retry=False):
         """dict(url, final_url, status, sha256, at, body, chain, note); status None when not fetched (note says why)."""
         row = self.cached(url)
         if row:
@@ -122,7 +129,7 @@ class Fetcher:
                 chain.append(dict(url=cur, status=status))
                 cur = urllib.parse.urljoin(cur, loc)
                 continue
-            if status == 200 and W.CHALLENGE.search(body[:20000].decode('utf-8', 'replace')):
+            if status == 200 and CHALLENGE.search(body[:20000].decode('utf-8', 'replace')) and visible_len(body) < 2500:   # a real page that merely loads a captcha widget is not a challenge
                 self.block(host, f'challenge at {cur}')
                 status, note = 999, 'bot challenge; host not used again, queue for Wayback only'
             break
@@ -130,8 +137,15 @@ class Fetcher:
             note = 'too many redirects'
         if len(body) > MAX_BYTES:
             body, note = body[:MAX_BYTES], 'truncated at 2 MB'
+        if status == -1 and url.startswith('http://') and not self_retry:
+            g = self.get('https://' + url[len('http://'):], True)   # the scheme the site actually answers on; the recorded URL stays as linked
+            if g['status'] == 200:
+                g = dict(g, url=url, note='fetched over https (the linked http URL did not answer)')
+                return g
         sha = hashlib.sha256(body).hexdigest() if body and status == 200 else None
         at = time.strftime('%Y-%m-%dT%H:%M:%S')
+        if status == -1:   # a transport error is not an answer: not cached, so the next run asks again
+            return dict(url=url, final_url=cur, status=-1, sha256=None, at=at, content_type=None, body=b'', chain=chain, note=note)
         with self.db_lock:
             self.con.execute('insert or replace into pages values (?,?,?,?,?,?,?,?,?)',
                              (url, cur, status, sha, at, ct, zlib.compress(body, 6) if status == 200 else b'', json.dumps(chain), note))

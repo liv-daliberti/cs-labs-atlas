@@ -286,6 +286,7 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('lab-websites.json', 'reviewed', 'hierarchy/{school}/lab-websites.json', 'hierarchy/{school}/reviewed/lab-websites.json'),
     ('person-websites.json', 'reviewed', 'hierarchy/{school}/person-websites.json', 'hierarchy/{school}/reviewed/person-websites.json'),   # PI/student sites (2026-11-08)
     ('person-website-review.json', 'reviewed', 'hierarchy/{school}/person-website-review.json', 'hierarchy/{school}/reviewed/person-website-review.json'),   # hand review of unverified sites (2026-11-08)
+    ('lab-websites-sweep.json', 'reviewed', 'hierarchy/{school}/lab-websites-sweep.json', 'hierarchy/{school}/reviewed/lab-websites-sweep.json'),   # live website sweep beside a promoted lab register (oxford, 2026-11-08)
     ('relation-evidence.json', 'reviewed', 'hierarchy/{school}/relation-evidence.json', 'hierarchy/{school}/reviewed/relation-evidence.json'),
     ('pi-publication-lists.json', 'reviewed', 'hierarchy/{school}/pi-publication-lists.json', 'hierarchy/{school}/reviewed/pi-publication-lists.json'),
     ('cs-related-review.json', 'reviewed', 'hierarchy/{school}/cs-related-review.json', 'hierarchy/{school}/reviewed/cs-related-review.json'),
