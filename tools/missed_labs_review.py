@@ -21,7 +21,7 @@ import cs_related_school as C  # noqa: E402
 import missed_labs_leads as ML  # noqa: E402
 from pi_hierarchy import toks  # noqa: E402
 
-SKIP = ('labpage', 'homepage', 'defense', 'gap', 'student-directory')
+SKIP = ('labpage', 'homepage', 'defense', 'gap', 'student', 'cv', 'thesis', 'roster', 'wikidata')
 TODAY = '20261109'
 RULE = ('Leads: OpenAlex sweep authors with >= 5 DBLP-indexed school works and >= 20% of their school works so, DBLP-affiliated persons and '
         'listed-not-in-census names, none in the census or a prior cs-related decision. Accepted only with a stored unit/profile capture that names '
@@ -38,6 +38,8 @@ def title_after(text, m_end):
     if not t or t.start() > 45:
         return None
     between = tail[:t.start()]
+    if re.search(r'former|retired|emerit|visiting', between, re.I):
+        return None
     if re.search(r'[a-z]{2,}\s+[A-Z][a-z]+\s+[A-Z][a-z]+', between):  # another person's name sits between
         return None
     title = tail[:t.end()].strip(' ,;-–')
@@ -46,7 +48,7 @@ def title_after(text, m_end):
 
 def faculty_hits(rows, name):
     t = re.sub(r'[^\w ]', '', name).split()
-    pat = re.compile(re.escape(t[0]) + r'[\w. ()"\u2019-]{0,25}' + re.escape(t[-1]), re.I)
+    pat = re.compile(r'(?<![\w])' + re.escape(t[0]) + r'[\w. ()"\u2019-]{0,25}?' + r'(?<![\w])' + re.escape(t[-1]) + r'(?-i:(?![a-z]))', re.I)
     out = []
     for url, dept, ts, sha, text in rows:
         m = pat.search(text)
@@ -116,15 +118,16 @@ def run(school, apply=False, min_cs=5):
         print('ACCEPT', a['name'], a['departments'], a['years_listed'], '|', a['title_as_listed'], '| cs', a['pi_basis']['cs_related']['dblp_indexed'], '/',
               a['pi_basis']['cs_related']['school_works'])
     if apply:
-        rv = Path(P.CODE).parent / 'worktrees/missed-labs-b' / 'hierarchy' / school / 'reviewed'
+        rv = Path(__file__).resolve().parents[1] / 'hierarchy' / school / 'reviewed'
         rv.mkdir(parents=True, exist_ok=True)
         (rv / 'missed-labs-review.json').write_text(json.dumps({'school': school, 'reviewed': TODAY, 'rule': RULE, 'units_searched': units,
                                                                 'counts': counts, 'per_source': per_source, 'decisions': decisions}, indent=1, ensure_ascii=False))
         cur = ML.load(rv / 'census-additions.json')
         if cur is None:
             cur = ML.load(root / 'reviewed/census-additions.json') or []
+        cur = [r for r in cur if r.get('added') != 'missed_labs_' + TODAY]   # idempotent: this pass's rows are rebuilt
         have = {r['name'] for r in cur}
-        cur = [r for r in cur if r.get('added') != 'missed_labs_' + TODAY] + [a for a in adds if a['name'] not in have]
+        cur = cur + [a for a in adds if a['name'] not in have]
         (rv / 'census-additions.json').write_text(json.dumps(cur, indent=1, ensure_ascii=False))
     return decisions, adds
 
