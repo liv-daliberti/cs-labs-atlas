@@ -47,3 +47,35 @@ def test_names_person_needs_first_and_last_name_on_the_page():
     import person_fetch as F
     assert F.names_person(b'<html><title>Ada Example</title>', 'Ada Example')[0]
     assert not F.names_person(b'<html>Ada Smith', 'Ada Example')[0]
+
+
+def test_redirects_stay_on_the_registrable_domain_and_are_bounded():
+    import person_fetch as F
+
+    class Lp:
+        def __init__(self, chain):
+            self.chain = chain
+
+        def fetch(self, school, url):
+            nxt = self.chain.get(url)
+            return {'url': url, 'status': 301 if nxt else 200, 'content': b'' if nxt else b'ok'}
+
+    class Kit:
+        def __init__(self, chain):
+            self.lpcap = Lp(chain)
+
+    loc = {'http://a.example.edu/~x': '/~x/', 'http://a.example.edu/~x/': 'https://www.example.edu/x/home'}
+    g, hops = F.follow(Kit({k: 1 for k in loc}), 's', 'http://a.example.edu/~x', loc)
+    assert g['status'] == 200 and hops == ['http://a.example.edu/~x/', 'https://www.example.edu/x/home']
+    g, hops = F.follow(Kit({'http://a.example.edu/y': 1}), 's', 'http://a.example.edu/y', {'http://a.example.edu/y': 'https://other.org/y'})
+    assert g['error'] == 'redirect-to-other-site' and hops == []
+    loop = {'http://a.example.edu/z': 'http://a.example.edu/z'}
+    g, hops = F.follow(Kit({k: 1 for k in loop}), 's', 'http://a.example.edu/z', loop)
+    assert g['error'] == 'too-many-redirects' and len(hops) == 5
+
+
+def test_plausible_owner_and_clear_mismatch():
+    import person_fetch as F
+    assert F.plausible_owner('https://eunhyesong.info', 'Eunhye Song')
+    assert F.plausible_owner('http://www.eecs.umich.edu/~jag', 'H.V. Jagadish')
+    assert not F.plausible_owner('https://studentaffairs.jhu.edu/life-design/', 'Tamás Budavári')

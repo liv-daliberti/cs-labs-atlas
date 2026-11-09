@@ -278,24 +278,55 @@ def annotate(rows, school):
                     text[sha] = zlib.decompress(row[0])
                 except zlib.error:
                     text[sha] = row[0]
-    failed = {}
+    failed, got = {}, {}
     res_path = DIR / f'fetched-{school}.jsonl'
     if res_path.exists():
         for line in res_path.open():
-            x = json.loads(line)
-            if x.get('status') != 200:
-                failed[x['url']] = x
+            x = json.loads(line)   # the latest line per URL counts (a redirect re-fetch follows the first attempt)
+            got[x['url']] = x
+        failed = {u: x for u, x in got.items() if x.get('status') != 200}
+        sha_needed = {x['sha256'] for u, x in got.items() if x.get('status') == 200 and x.get('sha256')} - set(text)
+        for path in capture_stores(school):
+            if not sha_needed:
+                break
+            con = sqlite3.connect(f'file:{path}?mode=ro', uri=True)
+            for sha in list(sha_needed):
+                row = con.execute("select content from captures where sha256=? and content is not null limit 1", (sha,)).fetchone()
+                if row:
+                    try:
+                        text[sha] = zlib.decompress(row[0])
+                    except zlib.error:
+                        text[sha] = row[0]
+                    sha_needed.discard(sha)
+    from person_fetch import last_name_on_page, plausible_owner
     for r in rows:
         if not r.get('url'):
             continue
+        x = got.get(r['url'])
+        if x and x.get('status') == 200 and not r.get('fetched') and x.get('sha256'):
+            r.update(fetched=True, status=200, sha256=x['sha256'], fetched_at=x['at'])
+            r.pop('fetch_reason', None)
+            if x.get('redirect_hops'):
+                r['redirected_to'] = x['final_url']
         r['found_from_kind'] = found_kind(r)
-        if r.get('fetched') and r.get('sha256') in text:
-            r['verified'], q = names_person(text[r['sha256']], r['person'])
+        body = text.get(r.get('sha256')) if r.get('fetched') else None
+        if body is not None:
+            r['verified'], q = names_person(body, r['person'])
             if q:
                 r['verification_quote'] = q
+            if not r['verified']:
+                if not last_name_on_page(body, r['person']) and not plausible_owner(r.get('redirected_to') or r['url'], r['person']):
+                    # clear mismatch: the page does not name the person and the address does not either. Never shown as the person's site.
+                    r.update(rejected_url=r['url'], url=None, fetched=False,
+                             reason=f"fetched page does not name {r['person']} (no surname on the page, none in the address): "
+                                    f"{r['url']} rejected as not this person's website")
+                    for k in ('status', 'sha256', 'fetched_at', 'fetch_reason', 'found_from_kind', 'verified', 'redirected_to'):
+                        r.pop(k, None)
+                    continue
+                r['unverified_reason'] = 'fetched page does not carry the full name' + (' (surname present)' if last_name_on_page(body, r['person']) else ' (address names the person)')
         else:
             r['verified'] = False
-        x = failed.get(r['url'])
+            r['unverified_reason'] = r.get('fetch_reason') or 'page not fetched'
         if x and not r.get('fetched'):
             err = x.get('error') or f"HTTP {x.get('status')}"
             if any(k in err for k in ('robots', 'off-limits')):
@@ -305,6 +336,7 @@ def annotate(rows, school):
             else:
                 r['fetch_reason'] = f'live fetch failed: {err}'
             r['fetch_attempted_at'] = x['at']
+            r['unverified_reason'] = r['fetch_reason']
 
 
 def counts(doc):

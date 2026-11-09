@@ -47,12 +47,57 @@ def names_person(body, person):
     return False, None
 
 
+def plausible_owner(url, person):
+    """A name token (3+ letters) of the person appears in the URL's host or path, e.g. eunhyesong.info, /~jag, /faculty/linsey."""
+    import unicodedata
+    u = unicodedata.normalize('NFKD', url or '').encode('ascii', 'ignore').decode().lower()
+    toks = [w for w in re.sub(r'[^a-z ]+', ' ', unicodedata.normalize('NFKD', person).encode('ascii', 'ignore').decode().lower()).split() if len(w) >= 3]
+    return any(t in u for t in toks) or any(t[:3] in re.sub(r'[^a-z]', '', urlsplit(u).path) for t in toks[-1:])
+
+
+def last_name_on_page(body, person):
+    t = text_of(body).split()
+    toks = [w for w in re.sub(r'[^a-z ]+', ' ', text_of(person.encode())).split() if len(w) > 1]
+    return bool(toks) and toks[-1] in t
+
+
+def registrable(host):
+    parts = (host or '').lower().split('.')
+    k = 3 if len(parts) >= 3 and parts[-2] in ('co', 'ac', 'edu', 'com', 'org', 'gov', 'net') else 2
+    return '.'.join(parts[-k:])
+
+
+MAX_HOPS = 5
+
+
+def follow(kit, school, url, locations):
+    """Fetch url; follow same-registrable-domain 301/302/307/308 redirects (max 5 hops). Each hop goes through the toolkit's fetch,
+    so robots.txt, AI-agent groups, pacing and host refusals are checked per hop. -> (result, hops [urls visited after the first])."""
+    g, hops, cur = kit.lpcap.fetch(school, url), [], url
+    while g.get('status') in (301, 302, 303, 307, 308) or g.get('http_status') in (301, 302, 307, 308) and g.get('status') is None:
+        loc = locations.get(cur)
+        if not loc or len(hops) >= MAX_HOPS:
+            g['error'] = g.get('error') or ('redirect-without-location' if not loc else 'too-many-redirects')
+            break
+        from urllib.parse import urljoin
+        dest = urljoin(cur, loc)
+        if registrable(urlsplit(dest).hostname) != registrable(urlsplit(url).hostname) or urlsplit(dest).scheme not in ('http', 'https'):
+            g['error'] = 'redirect-to-other-site'
+            g['redirect_to'] = dest
+            break
+        hops.append(dest)
+        cur = dest
+        g = kit.lpcap.fetch(school, dest)
+    return g, hops
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument('school')
     ap.add_argument('--workers', type=int, default=8)
     ap.add_argument('--deadline', type=int, default=3000, help='seconds; remaining URLs stay queued')
     ap.add_argument('--limit', type=int)
+    ap.add_argument('--refetch-redirects', action='store_true', help='re-fetch URLs whose recorded result was an unfollowed 3xx')
     a = ap.parse_args()
     os.environ['CS_ATLAS_LABPAGE_LIVE_ONLY'] = '1'
     import labpage_audit as L
@@ -62,13 +107,29 @@ def main():
     os.environ['LPCAP_LOCAL'] = str(store)   # new captures go to the scratch store; reads still cover the school's earlier stores
     kit.store = store
     kit.lpcap.connect(a.school).close()
+    locations = {}
+    send = kit.lpcap._sess.send
+
+    def send_keep_location(request, **kw):   # the live-only transport returns 3xx unfollowed; remember where it points
+        r = send(request, **kw)
+        if getattr(r, 'status_code', None) in (301, 302, 303, 307, 308) and r.headers.get('Location'):
+            locations[request.url] = r.headers['Location']
+        return r
+    kit.lpcap._sess.send = send_keep_location
     out = DIR / f'fetched-{a.school}.jsonl'
-    done = {json.loads(line)['url'] for line in out.open()} if out.exists() else set()
+    latest = {}
+    if out.exists():
+        for line in out.open():
+            x = json.loads(line)
+            latest[x['url']] = x
+    done = {u for u, x in latest.items() if not (a.refetch_redirects and x.get('status') in (301, 302, 303, 307, 308))}
     rows = [json.loads(line) for line in (DIR / f'queue-{a.school}.jsonl').open()]
     todo, seen = [], set(done)
     for r in rows:
         u = r.get('url')
         if not u or u in seen or r.get('mode') == 'wayback_only' or SKIP.search(urlsplit(u).hostname or ''):
+            continue
+        if a.refetch_redirects and u not in latest:
             continue
         seen.add(u)
         todo.append(r)
@@ -83,14 +144,15 @@ def main():
             if (datetime.datetime.now() - t0).total_seconds() > a.deadline:
                 break
             at = datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='seconds')
-            g = kit.lpcap.fetch(a.school, r['url'])
+            g, hops = follow(kit, a.school, r['url'], locations)
             body = g.get('content') or b''
             ok = g.get('status') == 200 and bool(body)
             who = r['person']
             named, quote = names_person(body, who) if ok else (False, None)
             res.append(dict(url=r['url'], person=who, role=r.get('role'), kind=r.get('kind'), lab=r.get('lab'), at=at,
                             status=g.get('http_status') or g.get('status'), error=g.get('error'), sha256=g.get('sha256') if ok else None,
-                            final_url=g.get('final_url'), names_person=named, quote=quote))
+                            final_url=g.get('final_url') or r['url'], redirect_hops=hops or None, redirect_to=g.get('redirect_to'),
+                            names_person=named, last_name_on_page=bool(ok and last_name_on_page(body, who)), quote=quote))
         return res
 
     n = 0

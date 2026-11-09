@@ -464,6 +464,46 @@ def attach_stored_captures(school, doc):
     return doc
 
 
+def verify_websites(school, doc):
+    """A lab or PI website counts only when its stored page names the PI. verified/unverified_reason on every website row; a clear
+    mismatch (the page has no surname and the address has no name token, e.g. a student-affairs page) is dropped to `rejected_url` and the
+    lab goes back to pending, so no unverified or wrong URL is shown as a lab's website."""
+    from person_fetch import last_name_on_page, names_person, plausible_owner
+    rows = [r for r in doc['labs'] if r.get('url') and r.get('coverage') == 'website']
+    shas = {r['sha256'] for r in rows if r.get('sha256')}
+    text = {}
+    for path in capture_stores(school):
+        con = sqlite3.connect(f'file:{path}?mode=ro', uri=True)
+        for sha in list(shas - set(text)):
+            row = con.execute("select content from captures where sha256=? and content is not null limit 1", (sha,)).fetchone()
+            if row:
+                try:
+                    text[sha] = zlib.decompress(row[0])
+                except zlib.error:
+                    text[sha] = row[0]
+    for r in rows:
+        body = text.get(r.get('sha256'))
+        if body is None:
+            r['verified'], r['unverified_reason'] = False, 'no stored capture of the page to check against'
+            continue
+        r['verified'], quote = names_person(body, r['pi'])
+        if r['verified']:
+            r['verification_quote'] = quote
+            r.pop('unverified_reason', None)
+        elif not last_name_on_page(body, r['pi']) and not plausible_owner(r['url'], r['pi']):
+            r['rejected_url'] = r.pop('url')
+            r['rejected_reason'] = f"stored page does not name {r['pi']} (no surname on the page, none in the address)"
+            for k in ('sha256', 'evidence', 'people_page', 'alumni_page', 'pubs_page', 'found_via', 'listed_on', 'official_link_status',
+                      'official_link_evidence', 'verified', 'kind'):
+                r.pop(k, None)
+            r['coverage'] = 'pending'
+            r['evidence_gaps'] = list(r.get('evidence_gaps') or []) + ['website_rejected_page_does_not_name_pi']
+            r['reason'] = r['rejected_reason'] + '; a new search is needed'
+        else:
+            r['unverified_reason'] = 'stored page does not carry the PI full name' + (' (surname present)' if last_name_on_page(body, r['pi']) else ' (address names the PI)')
+    return doc
+
+
 def gate(doc, expected_pis, require_official=True):
     """Check persisted records independently of their precomputed coverage label."""
     rows = {r['pi']: r for r in doc.get('labs', [])}
@@ -520,6 +560,8 @@ def main():
                 doc = preserve_reviewed_entries(previous, doc, aliases={p['pi']: p.get('names', []) for p in pis})
         if a.enrich_official_links or a.cmd == 'enrich':
             doc = enrich_official_links(s, attach_stored_captures(s, doc))
+        if a.cmd in ('build', 'enrich'):
+            doc = verify_websites(s, doc)
         summary = counts(doc)
         if a.cmd in ('build', 'enrich'):
             out = Path(a.out) if a.out else P.data_w('lab-websites.json', s)
