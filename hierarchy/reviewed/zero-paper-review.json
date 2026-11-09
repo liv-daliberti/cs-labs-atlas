@@ -523,5 +523,73 @@
     }
    ]
   }
+ },
+ "oxford": {
+  "Alessandra Cavarra": {
+   "verdict": "zero_is_right",
+   "reason": "Listed Associate Professor and Director of Graduate Studies (Professional Programmes) 2016-2026, but her DBLP record (pid 54/5948, 21 records, none dated 2016-2026) lists no work in the window; no Oxford-affiliated OpenAlex author profile exists in the institution sweep.",
+   "evidence": "local DBLP dump dblp-2026-09-01 pid/54/5948: 21 pubs, 0 with year 2016-2026"
+  },
+  "Gareth Tyson": {
+   "verdict": "zero_is_right",
+   "reason": "Appointed Professor of Computer Science at Oxford in 2026 (period start 2026, source page quote \"Gareth Tyson is a Professor in the...\" cs.ox.ac.uk/people/Gareth.Tyson); his 265 DBLP works of 2016-2026 carry HKUST/QMUL/Lancaster affiliations; the institution sweep has no Oxford-affiliated author profile for him.",
+   "evidence": "https://www.cs.ox.ac.uk/people/Gareth.Tyson sha256 a06738735d8d3b3e774f8e05929283389967fec1851fa7fe4ade25abafe7a2dd; dblp pid/85/85"
+  },
+  "Hamed Haddadi": {
+   "verdict": "zero_is_right",
+   "reason": "First listed 2026 (Professor of Human-Centred Systems); DBLP affiliation Imperial College London for all 271 works of 2016-2026; no Oxford-affiliated OpenAlex author in the Oxford institution sweep (snapshot 2026-10-14).",
+   "evidence": "dblp pid/33/5454-1 affiliations: Imperial College London, UK; listings [2026]"
+  },
+  "Misha Sra": {
+   "verdict": "zero_is_right",
+   "reason": "First listed 2026 (Professor of Computer Science); DBLP affiliation UC Santa Barbara for 167 works of 2016-2026; no Oxford-affiliated author profile in the institution sweep.",
+   "evidence": "dblp pid/119/4545; listings [2026]"
+  },
+  "Thomas Pasquier": {
+   "verdict": "zero_is_right",
+   "reason": "Appointment period starts 2026 (cs.ox.ac.uk/people/Thomas.Pasquier biography); DBLP affiliation Harvard University; only 1 of 12 name hits school-affiliated and none inside the appointment; no Oxford author profile in the sweep.",
+   "evidence": "https://www.cs.ox.ac.uk/people/Thomas.Pasquier sha256 1d364f42bc6d36f36f472df11fe16ddaccdcc76ee5e1aa0242a9b7d108ede439; dblp pid/144/4204"
+  },
+  "Shan Luo": {
+   "verdict": "zero_is_right",
+   "reason": "First listed 2026 (Associate Professor of Computer Science); no DBLP record anchored, none of 13 name hits school-affiliated; no Oxford-affiliated author profile in the sweep. Stage-5 identity (DBLP/ORCID/OpenAlex) is still unresolved, so this is zero-by-appointment-date, not a proven no-identity.",
+   "evidence": "listings [2026]; funnel name_hits 13, school_affiliated 0"
+  },
+  "David William Murray": {
+   "verdict": "fix",
+   "reason": "NOT zero: Oxford Engineering Science Professor (Active Vision Lab). The 59 OpenAlex claims were a Nuffield Orthopaedic namesake (correctly removed, not_openalex A5105508316). His own DBLP record pid/60/5939-1 (Engineering Science) has 12 works in 2016-2018 that fail only because the Engineering Science listing captures start 2019. Primary-source appointment evidence for 2016-2018 exists (below); a reviewed faculty period 2016-2021 would admit them for the ordinary gates.",
+   "evidence": {
+    "url": "https://web.archive.org/web/20170116125022id_/http://www.robots.ox.ac.uk:80/~dwm/",
+    "sha256": "272b9828fe8084de8c9e9620ab29757e9d1ca1732d4e895504e9a0b4b7312f88",
+    "quote": "I am a Professor of Engineering Science at Oxford, and guide research in the Active Vision Laboratory which I set up in 1989.",
+    "also": "20160420133727 capture of the same page (2016 coverage); local copy evidence_dwm_20170116.html"
+   },
+   "candidates": "murray_2016_2018_dblp_candidates.json (12 works)"
+  },
+  "Vicente Grau": {
+   "verdict": "fix",
+   "reason": "NOT zero: Engineering Science Professor listed in the unit listing as \"Colomer, Vicente\" (surname variant of Vicente Grau Colomer); piBasis exists but listings=0, so all 128 identity-passed works (DBLP 120 in window, OpenAlex A5023353591 126 works, ORCID 0000-0001-8139-3480 matches) fail outside_appointment. A census alias for the listing spelling, then a rebuild, is the fix; up to ~120 relations.",
+   "evidence": {
+    "url": "https://web.archive.org/web/20190821095042id_/https://www.eng.ox.ac.uk/people/?c=ac",
+    "sha256": "513eb1962dae4a37ee9d93bffe707a6f7f932ba5705790a07f017afdecdf8e97",
+    "quote": "Colomer, Vicente Professor"
+   }
+  },
+  "Manus Henry": {
+   "verdict": "fix",
+   "reason": "NOT zero: listed Associate Professor Engineering Science 2019-2026; no DBLP/ORCID anchor in census so stage-5 identity is unresolved. Oxford institution sweep holds OpenAlex author A5073723674 (ORCID 0000-0002-9677-1234, \"Manus Henry\"/\"Manus P. Henry\", 48 works 2016-2026, Flow Measurement and Instrumentation, Measurement) - propose reviewedOpenAlex after a source-bound check.",
+   "evidence": {
+    "oa": "https://openalex.org/A5073723674",
+    "listing": "https://web.archive.org/web/20190821095042id_/https://www.eng.ox.ac.uk/people/?c=ac quote \"Henry, Manus Associate Professor\""
+   }
+  },
+  "Daniele De Martini": {
+   "verdict": "fix",
+   "reason": "Listed 2026 only (Associate Professor of Engineering Science; Oxford Robotics Institute researcher before). Candidate OpenAlex A5074335131 (ORCID 0000-0001-6121-5839, 79 works 2019-2026, IEEE RA-L/ICRA/IROS) needs a reviewedOpenAlex decision; after that only 2026 works fall inside the appointment unless an earlier research-staff period is reviewed (not faculty, so likely not admitted).",
+   "evidence": {
+    "oa": "https://openalex.org/A5074335131",
+    "listing": "https://eng.ox.ac.uk/people?c=ac sha256 a6712bc3f2a3857e726be30ee6905bab2ac15f0a6c71e1bc45f904dfff2fbdff quote \"De Martini, Daniele Professor Associate Professor of Engineering Science\""
+   }
+  }
  }
 }
