@@ -1,0 +1,7 @@
+# Zhejiang directory/profile correction — 2026-11-09
+
+T094 traced 55 incorrect individual-profile assignments to `census-additions.json`, rather than a materialized `person-websites.json` (none exists in the current checkout). All 55 pointed to the collective CAD&CG faculty listing `http://www.cad.zju.edu.cn/innovationteam`. Their individual `profile_url` is now unknown (`null`). The listing remains intact in each source/PI-basis record as evidence of the explicitly named faculty role; no faculty record, appointment, paper, or membership is removed. All other fields in the 88-row additions file are unchanged.
+
+The staged website producer now refuses a shared multi-person page as an individual profile and refuses a directory link back to itself, including fragments and redirects to the same page. Individual named links remain available for collection. Automatic person and lab register rows explicitly carry `verified: false`: successful fetching or a name mention is not an ownership/page-purpose review. Existing reviewed lab inputs are unchanged. NUS and Oxford batch corrections belong to the owner and are outside this patch.
+
+Validation includes a directory-self-link build regression, collective-profile rejection with exact listing-evidence preservation, and fetched-name/nonverification checks. The source-field conservation receipt is `scratch/zju-website-register-1109/source-correction-receipt.json`; no new network acquisition or canonical scientific-package write occurred.

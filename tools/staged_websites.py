@@ -15,6 +15,7 @@ Rows (reviewed/person-websites.json, the person_websites.py format):
               ('host not fetchable (robots/login)', 'queued: ...', 'not fetched: robots.txt disallows', 'host refused automated access ...')
   member_home rows carry role_as_stated (the heading text the people page shows above the link, verbatim) and anchor (the link text).
 A URL counts only when an official page, or the lab's own page, links it; a name pattern is never a source.
+Automatic rows carry verified=false: fetching a page or finding a name does not verify its ownership or page purpose.
 """
 import argparse
 import collections
@@ -167,6 +168,22 @@ def parse(body, base):
     return p
 
 
+def individual_profiles(rows):
+    """A page shared by distinct faculty is a collective source, not an individual profile."""
+    owners = collections.defaultdict(set)
+    for r in rows:
+        if r.get('profile_url'):
+            owners[canon(r['profile_url'])].add(r['pi'])
+    result = []
+    for original in rows:
+        r = dict(original)
+        if r.get('profile_url') and len(owners[canon(r['profile_url'])]) > 1:
+            r['rejected_profile_url'] = r['profile_url']
+            r['profile_url'] = None
+        result.append(r)
+    return result
+
+
 def roster(school):
     """[dict(pi, profile_url, listing_url, listing_sha, role)] from the newest reviewed PI list."""
     if school == 'oxford':
@@ -179,7 +196,7 @@ def roster(school):
             lst = (p.get('listings') or [{}])[-1]
             out.append(dict(pi=p['pi'], profile_url=prof['url'] if prof else None, listing_url=lst.get('url'), listing_sha=lst.get('sha256'),
                             role=p.get('title')))
-        return out
+        return individual_profiles(out)
     rows = [x for x in json.loads(ROLES.read_text()) if x['school'] == school and x['role_status'] == 'verified_PI_role']
     have = {x['name'] for x in rows}
     add = P.data('census-additions.json', school)
@@ -189,8 +206,8 @@ def roster(school):
                 s = (x.get('sources') or [{}])[0]
                 rows.append(dict(name=x['name'], profile_url=x.get('profile_url'), source_url=s.get('url'), source_sha256=s.get('sha256'),
                                  role_as_listed=x.get('title_as_listed')))
-    return [dict(pi=x['name'], profile_url=x.get('profile_url'), listing_url=x.get('source_url'), listing_sha=x.get('source_sha256'),
-                 role=x.get('role_as_listed')) for x in rows]
+    return individual_profiles([dict(pi=x['name'], profile_url=x.get('profile_url'), listing_url=x.get('source_url'), listing_sha=x.get('source_sha256'),
+                                     role=x.get('role_as_listed')) for x in rows])
 
 
 def codex_sites(school):
@@ -204,7 +221,8 @@ def codex_sites(school):
 
 def row(person, role, lab, kind, url, ff, g=None, names=None, **extra):
     host = urlsplit(url).hostname or ''
-    r = dict(person=person, role=role, lab=lab, kind=kind, url=url, found_from=ff)
+    r = dict(person=person, role=role, lab=lab, kind=kind, url=url, found_from=ff,
+             verified=False, unverified_reason='Automatic link discovery; ownership and page purpose need review.')
     if PW.BANNED.search(host):
         r.update(fetched=False, fetch_reason='host not used (owner-banned source)')
     elif SOCIAL.search(host):
@@ -247,9 +265,12 @@ def build(school, workers=12, deadline=None, fetch_members=True):
             toks = fold(r['pi'])
             for lk in parse(g['body'], g['final_url']).links:
                 t = fold(lk['text'])
-                if len(toks) >= 2 and t and set(t) == set(toks) and urlsplit(lk['url']).hostname == urlsplit(g['final_url']).hostname:
+                if (len(toks) >= 2 and t and set(t) == set(toks)
+                        and urlsplit(lk['url']).hostname == urlsplit(g['final_url']).hostname
+                        and canon(lk['url']) not in {canon(r['listing_url']), canon(g['final_url'])}):
                     r['profile_url'], r['profile_found_on'] = canon(lk['url']), dict(url=r['listing_url'], sha256=g['sha256'], anchor=lk['text'])
                     break
+    ros = individual_profiles(ros)
     profs = getall([r['profile_url'] for r in ros if r['profile_url']])
     # site chrome: links that recur on many profile pages
     cnt = collections.Counter()
@@ -419,6 +440,10 @@ def build(school, workers=12, deadline=None, fetch_members=True):
                         role_as_stated=lk['heading'], anchor=lk['text'], name_from='adjacent text in the same list entry' if via_block else 'link text',
                         same_site=(urlsplit(u).hostname == urlsplit(g['final_url']).hostname) or None,
                         is_roster_pi=True if len(fn) >= 2 and any(fn[0] == r_[0] and fn[-1] == r_[-1] for r_ in roster_keys) else None))
+    for item in rows + labs:
+        item.setdefault('verified', False)
+        item.setdefault('unverified_reason', 'Automatic link discovery; ownership and page purpose need review.'
+                        if item.get('url') else 'No individual website URL established.')
     doc = dict(school=school, tool='tools/staged_websites.py', review_status='automatic',
                source='scratch/top25-roles-students-1107/pi-role-verification.json (verified_PI_role), scratch/top25-labs-20261107/website-verification.json, live fetch',
                generated=time.strftime('%Y-%m-%d'), rows=rows)
