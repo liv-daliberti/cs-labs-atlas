@@ -68,3 +68,21 @@ def test_secondary_listing_context_keeps_home_title_and_nonladder_ranks():
     assert title == ['Professor, Biomedical Engineering & Oncology']
     assert R.listing_rank(['Associate Research Professor'], [], 'courtesy') == 'research'
     assert R.listing_rank(['Professor Emeritus'], [], 'courtesy') == 'emeritus'
+
+
+# Excerpts of the CS faculty page as archived 2016-06-14 and 2019-03-25 (web.archive.org id_ captures).
+CARDS = '''<div class="highlight-box faculty-member-card">
+      <h3><a href="http://www.cs.jhu.edu/faculty/david-yarowsky/" style='color:#5E6F7F;'>David Yarowsky</a></h3>
+  <h6>Professor</h6>
+<p><a href="http://www.cs.jhu.edu/research/language-speech-processing/">Language &amp; Speech Processing Group</a></p>
+</div>
+<div class="highlight-box faculty-member-card">
+      <h3><a href="https://www.cs.jhu.edu/faculty/mathias-unberath/" style='color:#5E6F7F;'>Mathias Unberath</a></h3>
+  <p><H6>ASSISTANT RESEARCH PROFESSOR</H6></p>
+</div>'''
+
+
+def test_wse_card_reads_2016_to_2020_cards():
+    fmt, rows = F.parse(CARDS)
+    assert fmt == 'wse_card' and [r['name_listed'] for r in rows] == ['David Yarowsky', 'Mathias Unberath']
+    assert rows[0]['titles'] == ['Professor'] and rows[1]['titles'] == ['ASSISTANT RESEARCH PROFESSOR']

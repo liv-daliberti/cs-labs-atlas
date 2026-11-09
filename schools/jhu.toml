@@ -193,7 +193,15 @@ url = "https://bme.jhu.edu/"
   from = "20160101"
   to = "20261231"
 
-# --- other units searched for computing-related faculty (stage 2); first guesses, added to when the OpenAlex rule names their people ---------
+# --- other units searched for computing-related faculty (stage 2) -------------------------------------------------------------
+# 2026-11-09 deep dive: every unit page is read through Wayback (the hosts challenge bots), one capture per year (cs_related_school.py units). The URLs below are exact
+# archived URLs found by exact-URL CDX queries; an era is a separate listing of the same unit.
+[[affiliated_units]]
+code = "WSE"
+name = "Whiting School of Engineering faculty directory"
+url = "https://engineering.jhu.edu/faculty/"
+listings = ["engineering.jhu.edu/faculty/"]
+
 [[affiliated_units]]
 code = "CLSP"
 name = "Center for Language and Speech Processing"
@@ -219,16 +227,28 @@ url = "https://cogsci.jhu.edu/people/"
 listings = ["cogsci.jhu.edu/people/"]
 
 [[affiliated_units]]
-code = "MATH"
-name = "Department of Mathematics"
-url = "https://www.math.jhu.edu/people/"
-listings = ["www.math.jhu.edu/people/"]
-
-[[affiliated_units]]
 code = "DSAI"
 name = "Data Science and AI Institute"
 url = "https://ai.jhu.edu/people/"
 listings = ["ai.jhu.edu/people/"]
+
+[[affiliated_units]]
+code = "ECEU"
+name = "Department of Electrical and Computer Engineering (faculty eras)"
+url = "https://engineering.jhu.edu/ece/"
+listings = ["engineering.jhu.edu/ece/faculty/", "engineering.jhu.edu/ece/people/"]
+
+[[affiliated_units]]
+code = "AMSU"
+name = "Department of Applied Mathematics and Statistics (people)"
+url = "https://engineering.jhu.edu/ams/"
+listings = ["engineering.jhu.edu/ams/people/"]
+
+[[affiliated_units]]
+code = "BMEU"
+name = "Department of Biomedical Engineering (faculty eras)"
+url = "https://bme.jhu.edu/"
+listings = ["bme.jhu.edu/people/faculty/", "www.bme.jhu.edu/people/faculty/"]
 
 # --- students ----------------------------------------------------------------------------------------------------------------
 [thesis]
@@ -241,7 +261,7 @@ note = "JScholarship (DSpace) robots.txt, read 2026-11-05: 'User-agent: ClaudeBo
 [students]
 rosters = []
 directories = []
-adviser_h4_lists = ["www.cs.jhu.edu/phd-students/", "www.cs.jhu.edu/people/phd-students/"]   # CS PhD list: <h4>Name</h4> ... "Advisor(s): A, B" (live 2026 page; Wayback years when the clock allows)
+adviser_h4_lists = ["www.cs.jhu.edu/phd-students/", "www.cs.jhu.edu/people/phd-students/", "www.cs.jhu.edu/people/phd-graduates/", "www.cs.jhu.edu/graduate-studies/2018-19-phd-graduates/", "www.cs.jhu.edu/graduate-studies/2017-18-phd-graduates/", "www.cs.jhu.edu/graduate-studies/2016-17-phd-graduates/", "www.cs.jhu.edu/graduate-studies/2016-phd-graduates/", "www.cs.jhu.edu/graduate-studies/phd-students-2/"]   # CS PhD list: <h4>Name</h4> ... "Advisor(s): A, B" (live 2026 page; Wayback years when the clock allows)
 sources = [
     "CS and CLSP PhD student / alumni lists (Wayback)",
   "lab member pages and PI homepages (live where robots allows, else Wayback)",
@@ -298,6 +318,12 @@ host = "bme.jhu.edu"
 use = "wayback-only"
 purpose = "Biomedical Engineering faculty (bot challenge 2026-11-05)"
 probe = "https://bme.jhu.edu/people/faculty/"
+
+[[hosts]]
+host = "www.bme.jhu.edu"
+use = "wayback-only"
+purpose = "Biomedical Engineering faculty, www host (the 2022 and 2025 captures; the site challenges bots)"
+probe = "https://www.bme.jhu.edu/people/faculty/"
 
 [[hosts]]
 host = "www.clsp.jhu.edu"

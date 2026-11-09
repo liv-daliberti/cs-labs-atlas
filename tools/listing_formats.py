@@ -260,6 +260,19 @@ def wse_entity(h):
     return out
 
 
+def wse_card(h):
+    """Johns Hopkins CS WordPress cards (2016-2020): <div class="highlight-box faculty-member-card"> with an <h3> name and an <h6> title (<p><H6> in 2019)."""
+    out = []
+    for p in re.split(r'<div class="highlight-box faculty-member-card">', h)[1:]:
+        nm = re.search(r'<h3[^>]*>(.*?)</h3>', p, re.S)
+        if not nm:
+            continue
+        jt = re.search(r'<h6[^>]*>(.*?)</h6>', p, re.S | re.I)
+        link = re.search(r'href="([^"]+)"', nm.group(1))
+        out.append(dict(name_listed=clean(nm.group(1)), titles=_titles(jt.group(1)) if jt else [], homepage=link.group(1) if link else None, division=None))
+    return out
+
+
 def wse_contact(h):
     """JHU Whiting contact blocks (CS secondary/research faculty): visible names and titles only.
 
@@ -416,6 +429,7 @@ FORMATS = {
     'isye_old': (isye_old, re.compile(r'<!-- Person -->')),
     'seas_directory': (seas_directory, re.compile(r'person__detailed-name')),
     'wse_entity': (wse_entity, re.compile(r'class="entity_list_item"')),
+    'wse_card': (wse_card, re.compile(r'class="highlight-box faculty-member-card"')),
     'wse_contact': (wse_contact, re.compile(r'class="contact_block"')),
     'wu_teaser': (wu_teaser, re.compile(r'class="faculty-directory__teaser"')),
     'isye_card': (isye_card, re.compile(r'class="w-100 px-0 pt-0 person-name"')),
