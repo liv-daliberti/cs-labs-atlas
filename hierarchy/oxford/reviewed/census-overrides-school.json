@@ -1,111 +1,864 @@
 {
-  "Standa Živný": {
-    "aliases": [
-      "Stanislav Zivný"
-    ],
-    "why_aliases": "The already-reviewed DBLP person ID explicitly lists both Standa and Stanislav Zivný in one author record. It supplies the same ORCID already attached to the census PI and the Oxford personal homepage. This is an explicit curated alias, not a guessed first-name expansion. Appointment years remain independently gated.",
-    "alias_review": {
-      "reviewed_by": "codex-top25-goal-1107",
-      "reviewed_on": "2026-11-08",
-      "dblp_pid": "https://dblp.org/pid/z/StanislavZivny",
-      "curated_names": [
-        "Stanislav Zivný",
-        "Standa Zivný"
-      ],
-      "orcid": "0000-0002-0263-159X",
-      "published_person_links": [
-        "http://www.cs.ox.ac.uk/standa.zivny/homepage/",
-        "https://scholar.google.com/citations?user=pAS_AlQAAAAJ",
-        "https://dl.acm.org/profile/81488672735",
-        "https://dl.acm.org/profile/81416602718",
-        "https://zbmath.org/authors/?q=ai:zivny.stanislav",
-        "https://mathscinet.ams.org/mathscinet/MRAuthorID/856690",
-        "https://mathgenealogy.org/id.php?id=138304",
-        "https://orcid.org/0000-0002-0263-159X",
-        "https://www.wikidata.org/entity/Q90101883"
-      ],
-      "source_dump": "dblp-2026-09-01.xml.gz",
-      "local_extract": "/n/fs/resemble/homogenizing-science/code/hierarchy/oxford/raw/dblp-dump-persons-school.json.gz",
-      "extract_sha256": "4920fff7a17c324f229288331c87153d9560e4ebfc8c04caf4ba401694d3a40a",
-      "record_sha256": "43ef33fac5ef02128f45cab887e8399ffca7bfd67eca4029674030dca32de279",
-      "school_homepage_evidence": {
-        "url": "https://www.cs.ox.ac.uk/people/Standa.Zivny",
-        "sha256": "749037d4c0ecc20ec636771dc3062ccf32b882bbfbae18dda230601574bbbfe4",
-        "quote": "Standa Živný Professor of Computer Science , University of Oxford"
-      }
-    }
-  },
-  "Bob Coecke": {
-    "home_department": "Computer Science",
-    "home_department_evidence": [
-      {
-        "url": "https://web.archive.org/web/20200924223109id_/https://www.cs.ox.ac.uk/people/faculty.html",
-        "sha256": "1cf7a229880d61dc06ee86a65abea0b60bd768de465ec26bfba943eb9b9c0aa1",
-        "quote": "Bob CoeckeProfessor of Quantum Foundations, Logics and Structures"
-      }
-    ],
-    "why_home_department": "'Logics and Structures' is part of his chair title ('Professor of Quantum Foundations, Logics and Structures'), not a department; the page is the Department of Computer Science faculty listing."
-  },
-  "Michael B. Giles": {
-    "home_department": "Mathematical Institute",
-    "home_department_evidence": [
-      {
-        "url": "https://web.archive.org/web/20170315081914id_/http://www.oerc.ox.ac.uk/people",
-        "sha256": "0ef2fe9cab1f6d34e7e4d38460892b4c329d43e6ceed260b4867c7620c336849",
-        "quote": "Mike Giles Professor of Scientific Computing - Mathematical Institute"
-      }
-    ],
-    "why_home_department": "The Oxford e-Research Centre listing names his chair with the Mathematical Institute; the OERC is a centre, not an academic department."
-  },
-  "Scott A. Hale": {
-    "orcid": [
-      "0000-0002-6894-4951"
-    ],
-    "why_orcid": "The named university-owned source directly links this professor to this ORCID. Author identity only; school affiliation, appointment date, work type and edition are independently gated.",
-    "orcid_evidence": {
-      "url": "https://www.oii.ox.ac.uk/people/profiles/scott-hale/",
-      "sha256": "c154574f43a8335a005bd2047df9cf9835b17ea82ebb5a3a10764a0fa7b69e77",
-      "quote": "Professor Scott A. Hale Director, Professor of Social Data Science",
-      "observedAt": "2026-11-09"
-    }
-  },
-  "David William Murray": {
-    "not_openalex": [
-      "https://openalex.org/A5105508316"
-    ],
-    "why_not_openalex": "The 59 trial claims under this OpenAlex author ID are knee and hip orthopaedics papers by D. W. Murray at the Nuffield Orthopaedic Centre, not the Engineering Science professor David William Murray. DBLP separates the Engineering Science author (pid/60/5939-1) from the Nuffield Orthopaedic Centre namesake (pid/60/5939-2). Hold this exact OpenAlex author ID for this PI; retain the source works and do not blacklist the title or person name globally.",
-    "not_openalex_evidence": [
-      {
-        "url": "https://dblp.org/pid/60/5939-1",
-        "source_path": "hierarchy/oxford/raw/dblp-dump-persons-school.json.gz",
-        "sha256": "e6cd276cd6dd1c323d0f7fe02f7a7953d4aea03b264028fe5dfd676d4566eea9",
-        "quote": "University of Oxford, Dept of Engineering Science",
-        "qualification": "The DBLP September 2026 dump has a separate Engineering Science record for the target PI."
-      },
-      {
-        "url": "https://dblp.org/pid/60/5939-2",
-        "source_path": "hierarchy/oxford/raw/dblp-dump-persons-school.json.gz",
-        "sha256": "e6cd276cd6dd1c323d0f7fe02f7a7953d4aea03b264028fe5dfd676d4566eea9",
-        "quote": "University of Oxford, Nuffield Orthopaedic Centre",
-        "qualification": "The distinct exact-name DBLP record aligns with the bylines and orthopaedic affiliations of all 59 held trial claims."
-      }
-    ]
-  },
-  "Vicente Grau": {
-    "aliases": [
-      "Colomer, Vicente"
-    ],
-    "why_aliases": "The Engineering Science people listing writes the surname-first variant \"Colomer, Vicente Professor\" for Vicente Grau Colomer (DBLP g/VicenteGrau, ORCID 0000-0001-8139-3480, OpenAlex A5023353591). A reviewed listing alias; appointment years stay gated by the listings.",
-    "alias_review": {
-      "reviewed_by": "claude-oxford-rules-1109",
-      "reviewed_on": "2026-11-09",
-      "orcid": "0000-0001-8139-3480",
-      "dblp_pid": "https://dblp.org/pid/g/VicenteGrau",
-      "listing_evidence": {
-        "url": "https://web.archive.org/web/20190821095042id_/https://www.eng.ox.ac.uk/people/?c=ac",
-        "sha256": "513eb1962dae4a37ee9d93bffe707a6f7f932ba5705790a07f017afdecdf8e97",
-        "quote": "Colomer, Vicente Professor"
-      }
-    }
+ "Standa Živný": {
+  "aliases": [
+   "Stanislav Zivný"
+  ],
+  "why_aliases": "The already-reviewed DBLP person ID explicitly lists both Standa and Stanislav Zivný in one author record. It supplies the same ORCID already attached to the census PI and the Oxford personal homepage. This is an explicit curated alias, not a guessed first-name expansion. Appointment years remain independently gated.",
+  "alias_review": {
+   "reviewed_by": "codex-top25-goal-1107",
+   "reviewed_on": "2026-11-08",
+   "dblp_pid": "https://dblp.org/pid/z/StanislavZivny",
+   "curated_names": [
+    "Stanislav Zivný",
+    "Standa Zivný"
+   ],
+   "orcid": "0000-0002-0263-159X",
+   "published_person_links": [
+    "http://www.cs.ox.ac.uk/standa.zivny/homepage/",
+    "https://scholar.google.com/citations?user=pAS_AlQAAAAJ",
+    "https://dl.acm.org/profile/81488672735",
+    "https://dl.acm.org/profile/81416602718",
+    "https://zbmath.org/authors/?q=ai:zivny.stanislav",
+    "https://mathscinet.ams.org/mathscinet/MRAuthorID/856690",
+    "https://mathgenealogy.org/id.php?id=138304",
+    "https://orcid.org/0000-0002-0263-159X",
+    "https://www.wikidata.org/entity/Q90101883"
+   ],
+   "source_dump": "dblp-2026-09-01.xml.gz",
+   "local_extract": "/n/fs/resemble/homogenizing-science/code/hierarchy/oxford/raw/dblp-dump-persons-school.json.gz",
+   "extract_sha256": "4920fff7a17c324f229288331c87153d9560e4ebfc8c04caf4ba401694d3a40a",
+   "record_sha256": "43ef33fac5ef02128f45cab887e8399ffca7bfd67eca4029674030dca32de279",
+   "school_homepage_evidence": {
+    "url": "https://www.cs.ox.ac.uk/people/Standa.Zivny",
+    "sha256": "749037d4c0ecc20ec636771dc3062ccf32b882bbfbae18dda230601574bbbfe4",
+    "quote": "Standa Živný Professor of Computer Science , University of Oxford"
+   }
   }
+ },
+ "Bob Coecke": {
+  "home_department": "Computer Science",
+  "home_department_evidence": [
+   {
+    "url": "https://web.archive.org/web/20200924223109id_/https://www.cs.ox.ac.uk/people/faculty.html",
+    "sha256": "1cf7a229880d61dc06ee86a65abea0b60bd768de465ec26bfba943eb9b9c0aa1",
+    "quote": "Bob CoeckeProfessor of Quantum Foundations, Logics and Structures"
+   }
+  ],
+  "why_home_department": "'Logics and Structures' is part of his chair title ('Professor of Quantum Foundations, Logics and Structures'), not a department; the page is the Department of Computer Science faculty listing."
+ },
+ "Michael B. Giles": {
+  "home_department": "Mathematical Institute",
+  "home_department_evidence": [
+   {
+    "url": "https://web.archive.org/web/20170315081914id_/http://www.oerc.ox.ac.uk/people",
+    "sha256": "0ef2fe9cab1f6d34e7e4d38460892b4c329d43e6ceed260b4867c7620c336849",
+    "quote": "Mike Giles Professor of Scientific Computing - Mathematical Institute"
+   }
+  ],
+  "why_home_department": "The Oxford e-Research Centre listing names his chair with the Mathematical Institute; the OERC is a centre, not an academic department."
+ },
+ "Scott A. Hale": {
+  "orcid": [
+   "0000-0002-6894-4951"
+  ],
+  "why_orcid": "The named university-owned source directly links this professor to this ORCID. Author identity only; school affiliation, appointment date, work type and edition are independently gated.",
+  "orcid_evidence": {
+   "url": "https://www.oii.ox.ac.uk/people/profiles/scott-hale/",
+   "sha256": "c154574f43a8335a005bd2047df9cf9835b17ea82ebb5a3a10764a0fa7b69e77",
+   "quote": "Professor Scott A. Hale Director, Professor of Social Data Science",
+   "observedAt": "2026-11-09"
+  },
+  "openalex": [
+   "https://openalex.org/A5029882049"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): venues and years checked against the PI's field and listing span. unique name match under family name and first given name among the school's OpenAlex authors: 86 school works 2016-2026, raw names ['Scott A. Hale', 'Scott Hale', 'Hale, Scott A.'], ORCID ['0000-0002-6894-4951'], venues ['Proceedings of the International AAAI Conference on Web and Social Media', 'PLoS ONE', 'EPJ Data Science', 'International ACM SIGIR Conference on Research and Development in Information Retrieval (SIGIR)']; 0 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4407186836",
+    "sha256": "44867df78c36b7e0706e76fbf903e99c1226b3f5408382119978fb15b1bad96c",
+    "quote": "Scott A. Hale | Oxford Internet Institute, University of Oxford\nMeedan",
+    "observed": "2026-05-25",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "David William Murray": {
+  "not_openalex": [
+   "https://openalex.org/A5105508316"
+  ],
+  "why_not_openalex": "The 59 trial claims under this OpenAlex author ID are knee and hip orthopaedics papers by D. W. Murray at the Nuffield Orthopaedic Centre, not the Engineering Science professor David William Murray. DBLP separates the Engineering Science author (pid/60/5939-1) from the Nuffield Orthopaedic Centre namesake (pid/60/5939-2). Hold this exact OpenAlex author ID for this PI; retain the source works and do not blacklist the title or person name globally.",
+  "not_openalex_evidence": [
+   {
+    "url": "https://dblp.org/pid/60/5939-1",
+    "source_path": "hierarchy/oxford/raw/dblp-dump-persons-school.json.gz",
+    "sha256": "e6cd276cd6dd1c323d0f7fe02f7a7953d4aea03b264028fe5dfd676d4566eea9",
+    "quote": "University of Oxford, Dept of Engineering Science",
+    "qualification": "The DBLP September 2026 dump has a separate Engineering Science record for the target PI."
+   },
+   {
+    "url": "https://dblp.org/pid/60/5939-2",
+    "source_path": "hierarchy/oxford/raw/dblp-dump-persons-school.json.gz",
+    "sha256": "e6cd276cd6dd1c323d0f7fe02f7a7953d4aea03b264028fe5dfd676d4566eea9",
+    "quote": "University of Oxford, Nuffield Orthopaedic Centre",
+    "qualification": "The distinct exact-name DBLP record aligns with the bylines and orthopaedic affiliations of all 59 held trial claims."
+   }
+  ],
+  "openalex": [
+   "https://openalex.org/A5101402996"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): CORRECTED by review: the auto proposal A5105508316 is the orthopaedic surgeon David W. Murray (Knee/Arthroplasty venues, 2 of 176 works computing). The Active Vision / robotics David W. Murray is A5101402996 (ORCID 0000-0001-5309-5080, 8 Oxford works 2016-2023 in IEEE Transactions on Robotics, Visualization and Computer Graphics, ISMAR-type venues).",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4385292873",
+    "sha256": "912efff601153468ac6d9f113162d028068f9e7eb0cd19d962f99ad40bb3a364",
+    "quote": "Murray, David | Active Vision Laboratory , Department of Engineering Science University of Oxford Oxford OX1 3PJ , United Kingdom",
+    "observed": "2023-07-25",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Vicente Grau": {
+  "aliases": [
+   "Colomer, Vicente"
+  ],
+  "why_aliases": "The Engineering Science people listing writes the surname-first variant \"Colomer, Vicente Professor\" for Vicente Grau Colomer (DBLP g/VicenteGrau, ORCID 0000-0001-8139-3480, OpenAlex A5023353591). A reviewed listing alias; appointment years stay gated by the listings.",
+  "alias_review": {
+   "reviewed_by": "claude-oxford-rules-1109",
+   "reviewed_on": "2026-11-09",
+   "orcid": "0000-0001-8139-3480",
+   "dblp_pid": "https://dblp.org/pid/g/VicenteGrau",
+   "listing_evidence": {
+    "url": "https://web.archive.org/web/20190821095042id_/https://www.eng.ox.ac.uk/people/?c=ac",
+    "sha256": "513eb1962dae4a37ee9d93bffe707a6f7f932ba5705790a07f017afdecdf8e97",
+    "quote": "Colomer, Vicente Professor"
+   }
+  },
+  "openalex": [
+   "https://openalex.org/A5023353591"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): venues and years checked against the PI's field and listing span. unique name match under family name and first given name among the school's OpenAlex authors: 126 school works 2016-2026, raw names ['Vicente Grau', 'Grau, Vicente', 'V Grau'], ORCID ['0000-0001-8139-3480'], venues ['Lecture notes in computer science', 'Medical Image Analysis', 'IEEE Transactions on Medical Imaging', 'IEEE International Symposium on Biomedical Imaging (ISBI)']; 0 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4414817243",
+    "sha256": "3c027d896a01194901ccca65fe55ef5541b9a94ea5c896b3248eea67d58a172d",
+    "quote": "Vicente Grau | University of Oxford",
+    "observed": "2026-03-06",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Abhirup Banerjee": {
+  "openalex": [
+   "https://openalex.org/A5063446245"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): venues and years checked against the PI's field and listing span. unique name match under family name and first given name among the school's OpenAlex authors: 102 school works 2019-2026, raw names ['Abhirup Banerjee', 'A Banerjee', 'Banerjee, Abhirup'], ORCID ['0000-0001-8198-5128'], venues ['Lecture notes in computer science', 'European Heart Journal', 'EP Europace', 'IEEE International Symposium on Biomedical Imaging (ISBI)']; 6 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4416982448",
+    "sha256": "ce275d2d3dbd8f46ffb6724970abffe10f38113c7f87d04829385244310d5a5f",
+    "quote": "Abhirup Banerjee | Institute of Biomedical Engineering, Department of Engineering Science, University of Oxford, Oxford, UK",
+    "observed": "2026-09-24",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Adam Mahdi": {
+  "openalex": [
+   "https://openalex.org/A5055914149"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): venues and years checked against the PI's field and listing span. unique name match under family name and first given name among the school's OpenAlex authors: 70 school works 2016-2026, raw names ['Adam Mahdi', 'Mahdi, Adam', 'A Mahdi'], ORCID ['0000-0002-2329-4457'], venues ['Computing in cardiology', 'Physiological Measurement', 'BMJ Open', 'IEEE Transactions on Control Systems Technology']; 0 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7124834820",
+    "sha256": "d721b3478789bf9da159fc3c871c59b1e6173e49e7d1dc94e08503a43d4ecac3",
+    "quote": "Adam Mahdi | Institute of Biomedical Engineering, University of Oxford, Oxford, UK",
+    "observed": "2026-01-01",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Alex D. Scott": {
+  "openalex": [
+   "https://openalex.org/A5045091550"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): venues and years checked against the PI's field and listing span. unique name match under family name and first given name among the school's OpenAlex authors: 155 school works 2016-2026, raw names ['Alex Scott', 'Scott, Alex', 'Alexander Scott'], ORCID ['0000-0003-4489-5988'], venues ['Journal of Combinatorial Theory Series B', 'COMBINATORICA', 'Journal of Graph Theory', 'European Journal of Combinatorics']; 0 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4390810024",
+    "sha256": "bb458c27c3690cfcae638fa8a5ec6ee2f0fe3eda94d32114f2e515c8cb2e388d",
+    "quote": "Alex Scott | Mathematical Institute, University of Oxford, United Kingdom",
+    "observed": "2026-05-08",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Amro Awad": {
+  "openalex": [
+   "https://openalex.org/A5017485096"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): venues and years checked against the PI's field and listing span. unique name match under family name and first given name among the school's OpenAlex authors: 11 school works 2024-2026, raw names ['Amro Awad', 'Awad, Amro'], ORCID ['0000-0003-3987-463X'], venues ['IEEE Transactions on Dependable and Secure Computing', 'IEEE Transactions on Computers', 'IEEE Computer Architecture Letters', 'Proceedings - International Symposium on High-Performance Computer Architecture/Proceedings']; 1 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7167726498",
+    "sha256": "3e5168b7c758f136958ae8e8ea4f61218da691d543f15b37888ea2a170a8ae66",
+    "quote": "Amro Awad | University of Oxford",
+    "observed": "2026-07-08",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Andrea Vedaldi": {
+  "openalex": [
+   "https://openalex.org/A5060511349"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): venues and years checked against the PI's field and listing span. unique name match under family name and first given name among the school's OpenAlex authors: 178 school works 2016-2026, raw names ['Andrea Vedaldi', 'Vedaldi, Andrea'], ORCID ['0000-0003-1374-2858'], venues ['IEEE Computer Society Conference on Computer Vision and Pattern Recognition/Proceedings - IEEE Computer Society Conference on Computer Vision and Pattern Recognition/Proceedings', 'Lecture notes in computer science', 'IEEE/CVF International Conference on Computer Vision (ICCV)', 'International Conference on 3D Vision (3DV)']; 0 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4414585516",
+    "sha256": "54ae9f825274f1e5ed6a78270b80485e2b3ed4bda86091d59ce73b22e4eee88e",
+    "quote": "Andrea Vedaldi | University of Oxford",
+    "observed": "2026-03-20",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Brent D. Mittelstadt": {
+  "openalex": [
+   "https://openalex.org/A5081516308"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): venues and years checked against the PI's field and listing span. unique name match under family name and first given name among the school's OpenAlex authors: 70 school works 2016-2026, raw names ['Brent Mittelstadt', 'Mittelstadt, Brent', 'Brent Daniel Mittelstadt'], ORCID ['0000-0002-4709-6404'], venues ['Journal of Alzheimer s Disease', 'Nature Machine Intelligence', 'Oxford University Press eBooks', 'ACM Conference on Fairness, Accountability, and Transparency (FAccT)']; 0 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4406950060",
+    "sha256": "e0f9fd242412ecb6348940241339593e6de0be6089efec3022b9008a492e73c2",
+    "quote": "Brent Mittelstadt | University of Oxford, Oxford, United Kingdom",
+    "observed": "2026-06-23",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Charlotte M. Deane": {
+  "openalex": [
+   "https://openalex.org/A5015572211"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): venues and years checked against the PI's field and listing span. unique name match under family name and first given name among the school's OpenAlex authors: 236 school works 2016-2026, raw names ['Charlotte M. Deane', 'Charlotte M Deane', 'Charlotte Deane'], ORCID ['0000-0003-1388-2252'], venues ['Bioinformatics', 'Frontiers in Immunology', 'mAbs', 'Journal of Chemical Information and Modeling']; 1 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7117958811",
+    "sha256": "f48b6c6b701be11464d79ef9cba964db1995f47552d1677090808e59ebf40a17",
+    "quote": "Charlotte M. Deane | University of Oxford",
+    "observed": "2026-01-02",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Colin McDiarmid": {
+  "openalex": [
+   "https://openalex.org/A5111437501"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): venues and years checked against the PI's field and listing span. unique name match under family name and first given name among the school's OpenAlex authors: 30 school works 2016-2026, raw names ['Colin McDiarmid', 'McDiarmid, Colin', 'COLIN McDIARMID'], ORCID none, venues ['Random Structures and Algorithms', 'European Journal of Combinatorics', 'Cambridge University Press eBooks', 'Journal of Graph Theory']; 0 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4388685049",
+    "sha256": "c7ade93d33d895db4c51168238452266183f3cf412a8706b0ba9b130309c766b",
+    "quote": "Colin McDiarmid | University of Oxford",
+    "observed": "2026-08-28",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Daniele De Martini": {
+  "openalex": [
+   "https://openalex.org/A5074335131"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): venues and years checked against the PI's field and listing span. unique name match under family name and first given name among the school's OpenAlex authors: 79 school works 2019-2026, raw names ['Daniele De Martini', 'De Martini, Daniele', 'Daniele de Martini'], ORCID ['0000-0001-6121-5839'], venues ['Proceedings - IEEE International Conference on Robotics and Automation/Proceedings', 'IEEE Robotics and Automation Letters', 'IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)', 'Lecture notes in computer science']; 0 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7163587252",
+    "sha256": "2f5872808c29bc3a15505d296609dd5e7adda529936b21e7a03da4d01e211dd4",
+    "quote": "De Martini, Daniele | University of Oxford Oxford , United Kingdom",
+    "observed": "2026-06-03",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Dominic O'Brien": {
+  "openalex": [
+   "https://openalex.org/A5053459127"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): venues and years checked against the PI's field and listing span. unique name match under family name and first given name among the school's OpenAlex authors: 94 school works 2016-2026, raw names [\"Dominic O'Brien\", 'Dominic O’Brien', \"Dominic C. O'Brien\"], ORCID ['0000-0001-7185-0676'], venues ['Journal of Lightwave Technology', 'IEEE Photonics Technology Letters', 'IEEE Photonics Conference', 'Proceedings of SPIE, the International Society for Optical Engineering/Proceedings of SPIE']; 0 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4391231557",
+    "sha256": "a33036232b4c069482bf57516756800733493a0fb8f1135742273b59e19420da",
+    "quote": "Dominic O'Brien | University of Oxford",
+    "observed": "2026-01-01",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Eric T. Meyer": {
+  "openalex": [
+   "https://openalex.org/A5085018241"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): venues and years checked against the PI's field and listing span. unique name match under family name and first given name among the school's OpenAlex authors: 12 school works 2016-2020, raw names ['Eric T. Meyer', 'Eric T Meyer', 'Meyer, Eric T.'], ORCID ['0000-0002-1998-7162'], venues ['Lecture notes in computer science', 'New Media & Society', 'Proceedings of the Association for Information Science and Technology', 'ACM Computing Surveys']; 0 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W3033119897",
+    "sha256": "8bd0e1194e9e38c4de2c839305b1bcca8b2306b6c9f4d2d5c0d59caf236e4154",
+    "quote": "Eric T Meyer | Oxford Internet Institute, University of Oxford, Oxford, UK",
+    "observed": "2020-06-01",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Geoff K. Nicholls": {
+  "openalex": [
+   "https://openalex.org/A5009428718"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): venues and years checked against the PI's field and listing span. unique name match under family name and first given name among the school's OpenAlex authors: 25 school works 2016-2026, raw names ['Geoff K. Nicholls', 'Nicholls, Geoff K.', 'Geoff Nicholls'], ORCID ['0000-0002-1595-9041'], venues ['Environmental and Ecological Statistics', 'Computational Statistics & Data Analysis', 'Nature Plants', 'Bayesian Analysis']; 0 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4402704323",
+    "sha256": "72d4e4c5b0720b20904233cc8bb1e37f0c834c53853f76e40214b2e8857aaefe",
+    "quote": "Geoff K. Nicholls | Department of Statistics, University of Oxford, 24-29 St Giles, Oxford, OX1 3LB, UK",
+    "observed": "2026-06-25",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Gil McVean": {
+  "openalex": [
+   "https://openalex.org/A5000481707"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): venues and years checked against the PI's field and listing span. unique name match under family name and first given name among the school's OpenAlex authors: 55 school works 2016-2026, raw names ['Gil McVean', 'Gilean McVean'], ORCID ['0000-0002-5012-4162'], venues ['Nature Communications', 'Nature Genetics', 'Genome Research', 'PLoS Genetics']; 1 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7154687031",
+    "sha256": "2d7a7d6ce9d2d6c743fde728b95fccbec42c1b3e52cd50882e51cca41c384e88",
+    "quote": "Gil McVean | Department of Statistics, University of Oxford, Oxford, UK",
+    "observed": "2026-04-17",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Harrison Steel": {
+  "openalex": [
+   "https://openalex.org/A5034003551"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): venues and years checked against the PI's field and listing span. unique name match under family name and first given name among the school's OpenAlex authors: 51 school works 2017-2026, raw names ['Harrison Steel', 'Harrison C.B. Steel', 'Steel, Harrison'], ORCID ['0000-0002-9625-4755'], venues ['Proceedings of the IEEE Conference on Decision & Control, including the Symposium on Adaptive Processes', 'ACS Synthetic Biology', 'Journal of The Royal Society Interface', 'PLoS Computational Biology']; 2 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4414945809",
+    "sha256": "64c698368808f5266161e5d6478ae92b154db4bf5fa55cf4d08d7075ad06072a",
+    "quote": "Harrison Steel | University of Oxford",
+    "observed": "2026-09-03",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Ingmar Posner": {
+  "openalex": [
+   "https://openalex.org/A5027013897"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): venues and years checked against the PI's field and listing span. unique name match under family name and first given name among the school's OpenAlex authors: 83 school works 2016-2026, raw names ['Ingmar Posner', 'Posner, Ingmar'], ORCID ['0000-0001-6270-700X'], venues ['Proceedings - IEEE International Conference on Robotics and Automation/Proceedings', 'IEEE Robotics and Automation Letters', 'IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)', 'Lecture notes in computer science']; 0 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4415055386",
+    "sha256": "9e29b9dc249a8e94173b5be2784f0a7072e4d5efebf1fcc5b351bf8125d55614",
+    "quote": "Ingmar Posner | University of Oxford",
+    "observed": "2026-06-01",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Jens Rittscher": {
+  "openalex": [
+   "https://openalex.org/A5027416348"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): venues and years checked against the PI's field and listing span. unique name match under family name and first given name among the school's OpenAlex authors: 148 school works 2017-2026, raw names ['Jens Rittscher', 'Rittscher, Jens'], ORCID ['0000-0002-8528-8298'], venues ['Lecture notes in computer science', 'IEEE International Symposium on Biomedical Imaging (ISBI)', 'Blood', 'Journal of Clinical Pathology']; 0 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4404990162",
+    "sha256": "da1ba5063d3a1cb8b798cbfddaeaf2b16f4f65df570e2f672dd50f6f0aee5b80",
+    "quote": "Jens Rittscher | Department of Engineering, University of Oxford, Oxford, U.K",
+    "observed": "2026-03-09",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Jeroen Bergmann": {
+  "openalex": [
+   "https://openalex.org/A5041208534"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): venues and years checked against the PI's field and listing span. unique name match under family name and first given name among the school's OpenAlex authors: 84 school works 2016-2026, raw names ['Jeroen Bergmann', 'Jeroen H. M. Bergmann', 'Jeroen H.M. Bergmann'], ORCID ['0000-0001-7306-2630'], venues ['Prosthesis', 'Sensors', 'Bio-Design and Manufacturing', 'IEEE Sensors Letters']; 0 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7118255549",
+    "sha256": "1e587ea5cfd86d3ee680b5b6630571dc9a3c80507d3433e3e7e227a1519f3f67",
+    "quote": "Jeroen H. M. Bergmann | Biomedical Engineering Centre, Department of Technology and Innovation, Faculty of Engineering, University of Southern Denmark, Campusvej 55, 5230 Odense, Denmark",
+    "observed": "2026-01-06",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Jim Davies": {
+  "openalex": [
+   "https://openalex.org/A5030187840"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): venues and years checked against the PI's field and listing span. unique name match under family name and first given name among the school's OpenAlex authors: 71 school works 2017-2025, raw names ['Jim Davies', 'Davies, Jim'], ORCID ['0000-0003-4664-6862'], venues ['BMJ Health & Care Informatics', 'British Journal of Diabetes', 'Interventional Cardiology', 'Nature Communications']; 2 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works) Cross-check: the 65 lab rows carry Oxford Computer Science / Big Data Institute / NIHR Oxford BRC affiliations and co-authors Gibbons and Welch (DBLP-route rows agree with the OpenAlex-route rows); the cardiology and diabetes work is his Health Informatics Collaborative.",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4406034667",
+    "sha256": "e82f108a66cd49a48b8078003840281cba7746ce3291eefe1f2512499c65e117",
+    "quote": "Jim Davies | Department of Computer Science, University of Oxford, Oxford, UK",
+    "observed": "2025-01-03",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Jonathan Barrett": {
+  "openalex": [
+   "https://openalex.org/A5017180969"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): venues and years checked against the PI's field and listing span. unique name match under family name and first given name among the school's OpenAlex authors: 16 school works 2017-2025, raw names ['Jonathan Barrett', 'Barrett, Jonathan', 'Barrett, J.'], ORCID ['0000-0002-2222-0579'], venues ['Quantum', 'Nature Communications', 'Physical Review X', 'npj Quantum Information']; 1 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4283314344",
+    "sha256": "354e6a4d764925fe5fbf09c56d6f3a5cd5bb37f8121842fd41da2fc14ffb8b11",
+    "quote": "Jonathan Barrett | Quantum Group, Department of Computer Science, University of Oxford",
+    "observed": "2025-12-02",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Konstantinos Kamnitsas": {
+  "openalex": [
+   "https://openalex.org/A5001104721"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): venues and years checked against the PI's field and listing span. unique name match under family name and first given name among the school's OpenAlex authors: 33 school works 2022-2026, raw names ['Konstantinos Kamnitsas', 'Kamnitsas, Konstantinos', 'K. Kamnitsas'], ORCID ['0000-0003-3281-6509'], venues ['Lecture notes in computer science', 'IEEE Transactions on Medical Imaging', 'Proceedings of the AAAI Conference on Artificial Intelligence', 'Clinical Oncology']; 0 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7204902678",
+    "sha256": "fac2cacecc9588911a04404462e2aeb61d33c97e60aa65e8fb9c6cc3ae7eb8c7",
+    "quote": "Kamnitsas, Konstantinos | Department of Engineering Science , University of Oxford , UK",
+    "observed": "2026-08-30",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Kostas Margellos": {
+  "openalex": [
+   "https://openalex.org/A5000801527"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): venues and years checked against the PI's field and listing span. unique name match under family name and first given name among the school's OpenAlex authors: 83 school works 2016-2026, raw names ['Kostas Margellos', 'Margellos, Kostas', 'Margellos K.'], ORCID ['0000-0001-8865-8568'], venues ['Proceedings of the IEEE Conference on Decision & Control, including the Symposium on Adaptive Processes', 'Automatica', 'IEEE Transactions on Automatic Control', 'IFAC-PapersOnLine']; 0 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7122830259",
+    "sha256": "d3b8ae3d3fc4e81dfbcad0b63677e94f7f83485822d47cfaa29335b423de51ba",
+    "quote": "Kostas Margellos | Department of Engineering Science, University of Oxford, United Kingdom",
+    "observed": "2026-01-12",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Luc Rocher": {
+  "openalex": [
+   "https://openalex.org/A5003244640"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): venues and years checked against the PI's field and listing span. unique name match under family name and first given name among the school's OpenAlex authors: 14 school works 2022-2026, raw names ['Luc Rocher', 'Rocher, Luc'], ORCID ['0000-0002-9956-1187'], venues ['Nature Communications', 'Nature Machine Intelligence', 'Science Advances', 'BMJ']; 0 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7128161670",
+    "sha256": "6084e22755a9a69a33887a5769e5ca2d5753e34fdeee16bb50e715e902938268",
+    "quote": "Luc Rocher | Oxford Internet Institute, University of Oxford, Oxford, UK",
+    "observed": "2026-02-06",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Manus Henry": {
+  "openalex": [
+   "https://openalex.org/A5073723674"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): venues and years checked against the PI's field and listing span. unique name match under family name and first given name among the school's OpenAlex authors: 48 school works 2016-2026, raw names ['Manus Henry', 'Manus P. Henry', 'Manus Patrick Henry'], ORCID ['0000-0002-9677-1234'], venues ['Flow Measurement and Instrumentation', 'Global Smart Industry Conference (GloSIC)', 'Measurement', 'Proceedings of the Annual Conference of the IEEE Industrial Electronics Society']; 1 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7128707068",
+    "sha256": "2b31c6c4f5bcbfd330330f455d6b46ba0b64b2c4b22a27bae0310bf1aa14e020",
+    "quote": "Manus Henry | Department of Engineering Science, University of Oxford, Parks Road, Oxford OX3 7TR, UK",
+    "observed": "2026-02-13",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Mark Cannon": {
+  "openalex": [
+   "https://openalex.org/A5059593338"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): venues and years checked against the PI's field and listing span. unique name match under family name and first given name among the school's OpenAlex authors: 67 school works 2016-2026, raw names ['Mark Cannon', 'Cannon, Mark', 'M. Cannon'], ORCID ['0000-0003-2189-7876'], venues ['European Control Conference (ECC)', 'IEEE Transactions on Automatic Control', 'IFAC-PapersOnLine', 'Automatica']; 1 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7127302214",
+    "sha256": "830fb63716fc044cc0ed58f74c445828b7d5e2dc8c91060c40b4187b5e0a3de1",
+    "quote": "Cannon, Mark | Department of Engineering Science , University of Oxford",
+    "observed": "2026-02-01",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Mauricio Villarroel": {
+  "openalex": [
+   "https://openalex.org/A5025327657"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): venues and years checked against the PI's field and listing span. unique name match under family name and first given name among the school's OpenAlex authors: 55 school works 2017-2026, raw names ['Mauricio Villarroel', 'Villarroel, Mauricio', 'Mauricio ViIllarroel'], ORCID ['0000-0003-4787-6053'], venues ['International Conference on Automatic Face and Gesture Recognition', 'npj Digital Medicine', 'Scientific Reports', 'Journal of Medical Engineering & Technology']; 0 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7133187738",
+    "sha256": "8ecd4d647419e96b44c6fe6aa73c2fd8252d9bd4208a03a971a87d42b44691ae",
+    "quote": "Mauricio Villarroel | Institute of Biomedical Engineering, Department of Engineering Science, University of Oxford, Oxford, United Kingdom",
+    "observed": "2026-03-02",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Mihai Cucuringu": {
+  "openalex": [
+   "https://openalex.org/A5039600886"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): venues and years checked against the PI's field and listing span. unique name match under family name and first given name among the school's OpenAlex authors: 106 school works 2016-2026, raw names ['Mihai Cucuringu', 'Cucuringu, Mihai', 'Cucuringu M.'], ORCID ['0000-0002-8464-2152'], venues ['ACM International Conference on AI in Finance (ICAIF)', 'Quantitative Finance', 'Machine Learning', 'Studies in computational intelligence']; 1 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4404353553",
+    "sha256": "18a6142ded2c92f283cb24950ffd9da5256b26fd3c88efb48cb0008db22ac436",
+    "quote": "Mihai Cucuringu | Department of Mathematics, University of California Los Angeles , 520 Portola Plaza, Los Angeles, CA 90095 ,",
+    "observed": "2026-04-08",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Natalia Ares": {
+  "openalex": [
+   "https://openalex.org/A5020583292"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): venues and years checked against the PI's field and listing span. unique name match under family name and first given name among the school's OpenAlex authors: 56 school works 2016-2026, raw names ['Natalia Ares', 'Ares, Natalia', 'N. Ares'], ORCID ['0000-0003-2588-6322'], venues ['Physical Review Research', 'Physical Review Letters', 'Nature Communications', 'Scientific Reports']; 0 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4391667846",
+    "sha256": "7f7be37b8c0d9ab10a3e2661c087969b0c750b68b1ea0421d646482e449d265a",
+    "quote": "Natalia Ares | Department of Engineering Science, University of Oxford, Oxford, UK",
+    "observed": "2026-02-02",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Nicholas Lane": {
+  "openalex": [
+   "https://openalex.org/A5045638679"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): venues and years checked against the PI's field and listing span. unique name match under family name and first given name among the school's OpenAlex authors: 48 school works 2018-2021, raw names ['Nicholas D. Lane', 'Lane, Nicholas D.', 'Lane, Nicholas'], ORCID ['0000-0002-2728-8273'], venues ['Proceedings of the ACM on Interactive Mobile Wearable and Ubiquitous Technologies', 'International Conference on Mobile Systems, Applications, and Services', 'Proceedings', 'Interspeech (USB)']; 0 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W3121924028",
+    "sha256": "305e983301ed6898b79444e3f1705bd6c9bb47feb1e1e33057cae218c0556434",
+    "quote": "Lane, Nicholas D. | [Department of Computer Science, University of Oxford]",
+    "observed": "2021-01-20",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Paul J. Goulart": {
+  "openalex": [
+   "https://openalex.org/A5001694225"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): venues and years checked against the PI's field and listing span. unique name match under family name and first given name among the school's OpenAlex authors: 77 school works 2016-2026, raw names ['Paul J. Goulart', 'Paul Goulart', 'Goulart, Paul'], ORCID ['0000-0002-0456-4124'], venues ['European Control Conference (ECC)', 'Automatica', 'Proceedings of the IEEE Conference on Decision & Control, including the Symposium on Adaptive Processes', 'IEEE Transactions on Automatic Control']; 0 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4405901344",
+    "sha256": "5e13ce3b008bd1b4a6ac301a9462b75ed3c5f36e66fc93d8d850567f7bddca70",
+    "quote": "Paul Goulart | Department of Engineering Science, University of Oxford, Oxford, United Kingdom of Great Britain and Northern Ireland",
+    "observed": "2026-05-21",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Perla Maiolino": {
+  "openalex": [
+   "https://openalex.org/A5054789141"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): venues and years checked against the PI's field and listing span. unique name match under family name and first given name among the school's OpenAlex authors: 86 school works 2019-2026, raw names ['Perla Maiolino', 'P. Maiolino', 'Maiolino, P'], ORCID ['0000-0002-7588-9567'], venues ['IEEE International Conference on Soft Robotics (RoboSoft)', 'IEEE Robotics and Automation Letters', 'Advanced Intelligent Systems', 'Frontiers in Robotics and AI']; 0 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7123518974",
+    "sha256": "f98adcaa586e434ef546b6162ffb24f26179459f70ecc96ed6a970c1ad194005",
+    "quote": "Perla Maiolino | Department of Engineering Science, University of Oxford, Oxford, U.K",
+    "observed": "2026-01-13",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Rebecca Eynon": {
+  "openalex": [
+   "https://openalex.org/A5023383528"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): venues and years checked against the PI's field and listing span. unique name match under family name and first given name among the school's OpenAlex authors: 44 school works 2016-2026, raw names ['Rebecca Eynon', 'Eynon, Rebecca'], ORCID ['0000-0002-2074-5486'], venues ['Learning Media and Technology', 'British Journal of Sociology of Education', 'Information Communication & Society', 'Springer eBooks']; 0 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7133976671",
+    "sha256": "cceb6b825d350357bdbb44f68ce71ac7e544b11ee04e7044e48fe05804382b35",
+    "quote": "Rebecca Eynon | University of Oxford",
+    "observed": "2026-03-04",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Renaud Lambiotte": {
+  "openalex": [
+   "https://openalex.org/A5034372799"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): venues and years checked against the PI's field and listing span. unique name match under family name and first given name among the school's OpenAlex authors: 116 school works 2017-2026, raw names ['Renaud Lambiotte', 'Lambiotte, Renaud', 'R. Lambiotte'], ORCID ['0000-0002-0583-4595'], venues ['Physical review. E', 'Communications Physics', 'Journal of Physics Complexity', 'Science Advances']; 0 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7134815781",
+    "sha256": "dafe0914b8b412b9f592b2b626732a480a870d8809418be87e65d421f1b49fc2",
+    "quote": "Lambiotte, Renaud | Mathematical Institute , University of Oxford , Woodstock Rd , Oxford OX2 6GG ( United Kingdom)",
+    "observed": "2026-03-09",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Ronnie Clark": {
+  "openalex": [
+   "https://openalex.org/A5054998594"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): venues and years checked against the PI's field and listing span. unique name match under family name and first given name among the school's OpenAlex authors: 21 school works 2016-2026, raw names ['Ronald Clark', 'Clark, Ronald'], ORCID ['0000-0002-6344-5299'], venues ['neural information processing systems', 'Proceedings - IEEE International Conference on Robotics and Automation/Proceedings', 'Proceedings of the AAAI Conference on Artificial Intelligence', 'IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)']; 2 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works) Review note: published as Ronald Clark (neural information processing, ICCV, AAAI, IROS = computer vision and robotics); appointment from 2022 gates the years.",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7161491378",
+    "sha256": "b0a5fb9b7eeda83651fc351e331b6aebfa195b0dc5ea40f96086a77063f3f464",
+    "quote": "Ronald Clark | Department of Computer Science, University of Oxford, Oxford, UK",
+    "observed": "2026-01-01",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Stefan Zohren": {
+  "openalex": [
+   "https://openalex.org/A5090331439"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): venues and years checked against the PI's field and listing span. unique name match under family name and first given name among the school's OpenAlex authors: 105 school works 2016-2026, raw names ['Stefan Zohren', 'Zohren, Stefan', 'S. Zohren'], ORCID ['0000-0002-3392-0394'], venues ['The Journal of Financial Data Science', 'ACM International Conference on AI in Finance (ICAIF)', 'The Journal of Portfolio Management', 'Quantitative Finance']; 0 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4410155420",
+    "sha256": "db2ff80f68959dc5cfb5d918a9a3a5c9423366fec519b655f1777a66e20b090e",
+    "quote": "Stefan Zohren | University of Oxford",
+    "observed": "2026-06-16",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Thomas Morstyn": {
+  "openalex": [
+   "https://openalex.org/A5000042067"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): venues and years checked against the PI's field and listing span. unique name match under family name and first given name among the school's OpenAlex authors: 91 school works 2016-2026, raw names ['Thomas Morstyn', 'Morstyn, Thomas'], ORCID ['0000-0003-2781-9588'], venues ['IEEE Transactions on Smart Grid', 'Applied Energy', 'IEEE Transactions on Power Systems', 'IEEE Power & Energy Society General Meeting (PESGM)']; 0 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4405562538",
+    "sha256": "c3c4877dffe1b6147488a77f3be28fb8fa2df8f11756206f3725cc4f30303557",
+    "quote": "Thomas Morstyn | Department of Engineering Science, University of Oxford, Oxford OX1 2JD, United Kingdom",
+    "observed": "2026-05-12",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Timothy Denison": {
+  "openalex": [
+   "https://openalex.org/A5031652451"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): venues and years checked against the PI's field and listing span. unique name match under family name and first given name among the school's OpenAlex authors: 165 school works 2018-2026, raw names ['Timothy Denison', 'Tim Denison', 'Timothy J. Denison'], ORCID ['0000-0002-5404-4004'], venues ['Brain stimulation', 'Neuromodulation Technology at the Neural Interface', 'Journal of Neural Engineering', 'Proceedings of the Annual International Conference of the IEEE Engineering in Medicine and Biology Society']; 0 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4414781946",
+    "sha256": "a1530dc5578786a383093b9cf0b909ba117fc7220ed776a1731c40e043babeae",
+    "quote": "Timothy Denison | Brain Network Dynamics Unit, Nuffield Department of Clinical Neuroscience, University of Oxford, Oxford, United Kingdom; MRC Centre of Research Excellence in Restorative Neural Dynamics, United Kingdom; Institute of Biomedical Engineering, Department of Engineering Sciences, University of Oxford, Oxford, United Kingdom",
+    "observed": "2026-04-26",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Victor Prisacariu": {
+  "openalex": [
+   "https://openalex.org/A5067395390"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): venues and years checked against the PI's field and listing span. unique name match under family name and first given name among the school's OpenAlex authors: 69 school works 2016-2026, raw names ['Victor Prisacariu', 'Victor Adrian Prisacariu', 'Prisacariu, Victor Adrian'], ORCID ['0000-0002-0630-6129'], venues ['Lecture notes in computer science', 'IEEE Computer Society Conference on Computer Vision and Pattern Recognition/Proceedings - IEEE Computer Society Conference on Computer Vision and Pattern Recognition/Proceedings', 'International Conference on 3D Vision (3DV)', 'IEEE/CVF International Conference on Computer Vision (ICCV)']; 0 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4414788462",
+    "sha256": "a199dba52e1f58096c58e8758c219658a901d108f5fc3f319d1b795447ebc61d",
+    "quote": "Victor Adrian Prisacariu | University of Oxford",
+    "observed": "2026-03-20",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Wesley Armour": {
+  "openalex": [
+   "https://openalex.org/A5080149070"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): venues and years checked against the PI's field and listing span. unique name match under family name and first given name among the school's OpenAlex authors: 57 school works 2016-2026, raw names ['Wesley Armour', 'Armour, Wesley', 'Wes Armour'], ORCID ['0000-0003-1756-3064'], venues ['The Astrophysical Journal Supplement Series', 'Proceedings of the International Astronomical Union', 'Monthly Notices of the Royal Astronomical Society', 'ACM Transactions on Architecture and Code Optimization']; 1 other name match(es) set aside (other ORCID, ended before the first listing, an initial-only name, or under a fifth of the works)",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7118674772",
+    "sha256": "742455fc1873a9403460b2e55478f4b70e6ad3cd79d2c39bc7148452e9ce745b",
+    "quote": "Wesley Armour | Oxford e-Research Centre, Department of Engineering Science, University of Oxford, 7 Keble Rd, Oxford, OX1 3QG, UK",
+    "observed": "2026-01-06",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Joss Wright": {
+  "openalex": [
+   "https://openalex.org/A5043144947"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): CORRECTED by review: the auto proposal A5029730905 is 'Jesse Wright' (Journal of service management, 145 works, 2 computing). Joss Wright of the Oxford Internet Institute is A5043144947 (ORCID 0000-0001-5237-3309; 23 Oxford works 2016-2026: Network Traffic Measurement and Analysis, IEEE Security and Privacy Workshops, Lecture Notes in Computer Science).",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7161240930",
+    "sha256": "9ff0b0f53f54ad55e60c622c6c664b0a73b9349def96b0b733bb5cd99b7f52a6",
+    "quote": "Wright, Joss | Oxford Internet Institute , University of Oxford",
+    "observed": "2026-05-14",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "David A. Clifton": {
+  "openalex": [
+   "https://openalex.org/A5040302008",
+   "https://openalex.org/A5107914504",
+   "https://openalex.org/A5128840056",
+   "https://openalex.org/A5112363864"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): Four OpenAlex author profiles of one person: three carry the same ORCID 0000-0002-9848-8555 (A5040302008 247 works, A5107914504 18, A5128840056 6; IEEE JBHI, npj Digital Medicine, Bioinformatics) and A5112363864 (50 works, no ORCID, raw names 'David A. Clifton', Sensors, BMJ Global Health) has every one of its works Oxford-affiliated in the same field. Not accepted: A5110745082 ('D Clifton', Value in Health, 4 works), A5128699291 and A5135456304 (3 works each, 2026, no ORCID).",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7123739449",
+    "sha256": "e8f08913a57d523c15a9ad5ee90c715a31257a72403335ed676752aa686e0864",
+    "quote": "David A. Clifton | University of Oxford, Institute of Biomedical Engineering, Department of Engineering Science, United Kingdom",
+    "observed": "2026-01-13",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   },
+   {
+    "url": "https://api.openalex.org/works/W4416052208",
+    "sha256": "8b28d0d14442b0e72824c67657e4c683869bca67f10dddd6d7235af68b413e90",
+    "quote": "David Clifton | University of Oxford",
+    "observed": "2026-06-10",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   },
+   {
+    "url": "https://api.openalex.org/works/W7135017265",
+    "sha256": "26b3fbf554f52733f7fa9af21e03cbf8fe38e80e8bd9a3a282a1081c5504d338",
+    "quote": "David Clifton | Department of Engineering Science, University of Oxford, Oxford, England, UK",
+    "observed": "2026-03-01",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   },
+   {
+    "url": "https://api.openalex.org/works/W7133566325",
+    "sha256": "5d4b907ee616fcc564f89474912dcfb6d00723d6f389f320d4391afa86a9faad",
+    "quote": "David A. Clifton | Department of Engineering Science, University of Oxford, Parks Road, Oxford OX1 3PJ, U.K",
+    "observed": "2026-03-04",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Gesine Reinert": {
+  "openalex": [
+   "https://openalex.org/A5049954115"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): One profile with ORCID 0000-0002-0363-9470, 83 Oxford works 2016-2026 (Journal of Complex Networks, Bioinformatics, Bernoulli). The 2026-only 26-work profile A5137525926 (journal 'Networks', no ORCID) is not accepted.",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4404353553",
+    "sha256": "18a6142ded2c92f283cb24950ffd9da5256b26fd3c88efb48cb0008db22ac436",
+    "quote": "Gesine Reinert | Department of Statistics, University of Oxford , 24-29 St Giles, Oxford OX1 3LB ,",
+    "observed": "2026-04-08",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Steve Collins": {
+  "openalex": [
+   "https://openalex.org/A5001046633"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): Steve Collins of Oxford Engineering Science: ORCID 0000-0002-3874-8319, 42 Oxford works 2016-2025 in IEEE Photonics Technology Letters, Journal of Lightwave Technology. Set aside: Stephan C. Collins (genetics, namesake) and Sally L. Collins (obstetrics, other given name).",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4410153072",
+    "sha256": "09972bdbfecba523c44d7ebf7d099c4646df69c26a127a235eda07a20684e460",
+    "quote": "Steve Collins | Department of Engineering Science, University of Oxford, Oxford, U.K",
+    "observed": "2025-05-07",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Arnaud Doucet": {
+  "openalex": [
+   "https://openalex.org/A5091677854"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): Single name-matched OpenAlex profile (family name and full first given name): 97 Oxford works 2016-2026, ORCID ['0000-0002-7662-419X'], venues ['Journal of the Royal Statistical Society Series B (Statistical Methodology)', 'The Annals of Applied Probability', 'Journal of the American Statistical Association', 'Advances in Water Resources'] (statistics and machine learning). No other profile of the name has 3+ Oxford works. Appointment years still gate the papers (RULES R-PAP-01).",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7160920924",
+    "sha256": "c9452baffda8cbba125db0dbeb83260125776d55c122fac481fdb905c7db0a88",
+    "quote": "Doucet, Arnaud | Department of Statistics , University of Oxford",
+    "observed": "2026-05-10",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "George Deligiannidis": {
+  "openalex": [
+   "https://openalex.org/A5016007881"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): Single name-matched OpenAlex profile (family name and full first given name): 39 Oxford works 2016-2025, ORCID ['0000-0002-0821-4607'], venues ['Journal of the Royal Statistical Society Series B (Statistical Methodology)', 'The Annals of Applied Probability', 'International Journal of Stochastic Analysis', 'The Annals of Probability'] (statistics and machine learning). No other profile of the name has 3+ Oxford works. Appointment years still gate the papers (RULES R-PAP-01).",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4407425131",
+    "sha256": "1ae570837d1d0b58fc929575c111875d92bb6c3d296719b42641f0184d2e5df0",
+    "quote": "Deligiannidis, George | PSL Research University -CNRS Paris , France",
+    "observed": "2025-02-11",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Patrick Rebeschini": {
+  "openalex": [
+   "https://openalex.org/A5091668854"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): Single name-matched OpenAlex profile (family name and full first given name): 41 Oxford works 2016-2026, ORCID ['0000-0001-7772-4160'], venues ['neural information processing systems', 'Information and Inference A Journal of the IMA', 'IEEE Transactions on Control of Network Systems', 'Statistics & Probability Letters'] (statistics and machine learning). No other profile of the name has 3+ Oxford works. Appointment years still gate the papers (RULES R-PAP-01).",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7135209128",
+    "sha256": "8c1e678a00ae9c4f347b4bafe0b82f211d2ab8befdde195e37883ee18f05088c",
+    "quote": "Rebeschini, Patrick | Department of Statistics , University of Oxford",
+    "observed": "2026-03-12",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Yee Whye Teh": {
+  "openalex": [
+   "https://openalex.org/A5064373793"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Reviewed 2026-11-09 (claude-oxford-apply-1109): Single name-matched OpenAlex profile (family name and full first given name): 107 Oxford works 2016-2026, ORCID ['0000-0001-5365-6933'], venues ['Journal of Computational and Graphical Statistics', 'Statistical Science', '48th Scientific Meeting of the Italian Statistical Society', 'Electronic Journal of Statistics'] (statistics and machine learning). No other profile of the name has 3+ Oxford works. Appointment years still gate the papers (RULES R-PAP-01).",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4414819524",
+    "sha256": "db333cec47f1bfbbd98bb412720f5311bbdee8230d5b94b841b685394cf6d31c",
+    "quote": "Yee Whye Teh | Department of Statistics, University of Oxford, 24-29 St Giles’, Oxford, OX1 3LB, UK",
+    "observed": "2026-08-13",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/oxford/openalex-sweep.sqlite)"
+   }
+  ]
+ }
 }
