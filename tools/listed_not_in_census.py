@@ -29,6 +29,8 @@ def captures(school):
         db = P.archive_sweep('claude-princeton-listings-20261022') / 'captures/listings.sqlite'
     else:
         db = P.data('listings-captures.sqlite', school)
+        if not db.exists():   # Harvard / JHU keep their unit listings in the school capture store (2026-11-09)
+            db = P.data('school-captures.sqlite', school)
     c = sqlite3.connect(f'file:{db}?mode=ro', uri=True)
     cols = [r[1] for r in c.execute('pragma table_info(captures)')]
     q = 'select capture_url, wayback_timestamp, sha256, blocks_json, department from captures where http_status=200' if 'blocks_json' in cols else None
@@ -37,7 +39,10 @@ def captures(school):
         for url, ts, ct, raw, sha, dept in c.execute('select capture_url, wayback_timestamp, content_type, raw_zlib, sha256, department from captures where http_status=200'):
             yield url, ts, sha, [t for _, t in pex.blocks(zlib.decompress(raw), ct)], dept
         return
+    skip = ('labpage', 'homepage', 'defense', 'gap', 'student', 'cv', 'thesis', 'roster', 'wikidata', 'profile', 'live')
     for url, ts, sha, bj, dept in c.execute(q):
+        if dept and dept.startswith(skip):
+            continue
         b = json.loads(bj) if bj else []
         b = b.get('blocks', []) if isinstance(b, dict) else b
         yield url, ts, sha, [x[-1] if isinstance(x, list) else x.get('text') if isinstance(x, dict) else x for x in b], dept

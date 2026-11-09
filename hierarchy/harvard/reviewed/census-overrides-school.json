@@ -1,80 +1,329 @@
 {
-  "Stephen Casper": {
-    "home_department": "Kennedy School",
-    "home_department_evidence": [
-      {
-        "url": "https://www.hks.harvard.edu/faculty/stephen-casper",
-        "sha256": "cc76eb0f4c2efe632175bb14b897e8fa423ab7ba515b2e7ec13042852d94a540",
-        "quote": "Stephen \"Cas\" Casper is computer scientist and an Assistant Professor of Public Policy at the Harvard Kennedy School.",
-        "observed": "2026-11-06T23:51:11"
-      }
-    ],
-    "why_home_department": "Official current faculty profile identifies the home school; preserve the CS listing as an additional computing appointment."
-  },
-  "Jonathan Zittrain": {
-    "home_department": "Harvard Law School",
-    "home_department_evidence": [
-      {
-        "url": "https://hls.harvard.edu/faculty/directory/10992/Zittrain",
-        "sha256": "5243f6d4eba51b483a2f6ab660299b41d520ddc3a52b1a9fe6cc031c0c3ea714",
-        "quote": "Jonathan Zittrain is the George Bemis Professor of International Law at Harvard Law School.",
-        "observed": "2026-11-06T23:43:51"
-      }
-    ],
-    "why_home_department": "Official current faculty profile identifies the home school; preserve the CS listing as an additional computing appointment."
-  },
-  "Michael D. Smith": {
-    "dblp": [
-      "https://dblp.org/pid/163/1790-1"
-    ],
-    "why_dblp": "Reviewed exact middle-name homonym: DBLP Michael D. Smith 0001 names Harvard University and links the legacy official SEAS directory /directory/mikesmith; the current SEAS profile names Michael D. Smith with Harvard faculty rank. Other Michael Smith and Michael D. Smith records are not combined. The automatic broad given/family matcher had 155 candidates, including three school-name matches.",
-    "identity_reviewed_at": "2026-11-07",
-    "identity_evidence": [
-      {
-        "url": "https://dblp.org/pid/163/1790-1",
-        "sha256": "64779dea697ec00014cc5c71e50e60ef8efe9a4eb046071750fc87fd62755425",
-        "quote": "Harvard University, Cambridge, MA, USA",
-        "artifact": "hierarchy/harvard/raw/identity-source-64779dea697ec00014cc5c71e50e60ef8efe9a4eb046071750fc87fd62755425.json.gz",
-        "hash_basis": "Exact saved compressed school-independent DBLP persons cache, derived from official dblp-2026-09-01.xml.gz; quote in its decompressed JSON record.",
-        "person_record_name": "Michael D. Smith 0001",
-        "person_record_url": "https://www.seas.harvard.edu/directory/mikesmith"
-      },
-      {
-        "url": "https://seas.harvard.edu/person/michael-smith",
-        "sha256": "983002d12e966984da2395b6f1cc1e92244ca0ed5af3b23c608253ca836aba91",
-        "quote": "Michael D. Smith"
-      }
-    ]
-  },
-  "Qianqian Wang": {
-    "dblp": [
-      "https://dblp.org/pid/118/6735-2"
-    ],
-    "orcid": [
-      "0009-0002-9000-2386"
-    ],
-    "why_dblp": "Reviewed DBLP Qianqian Wang 0002 links exactly the personal homepage linked by her current official SEAS profile. Its DynIBaR, Tracking Everything Everywhere All at Once, IBRNet and Shape of Motion publications match her own CV. Her Berkeley/Cornell affiliation notes predate the current Harvard appointment and do not make these other Qianqian Wang homonyms. ORCID is from this same DBLP record.",
-    "identity_reviewed_at": "2026-11-07",
-    "identity_evidence": [
-      {
-        "url": "https://dblp.org/pid/118/6735-2",
-        "sha256": "4644eb84f067f17088b2dcf872581eec89c2a962ef4341501cfce1605c51b626",
-        "quote": "https://qianqianwang68.github.io/",
-        "artifact": "hierarchy/harvard/raw/identity-source-4644eb84f067f17088b2dcf872581eec89c2a962ef4341501cfce1605c51b626.json.gz",
-        "hash_basis": "Exact saved compressed school-local person extraction from official dblp-2026-09-01.xml.gz; quote in its decompressed JSON record.",
-        "person_record_name": "Qianqian Wang 0002"
-      },
-      {
-        "url": "https://seas.harvard.edu/person/qianqian-wang",
-        "sha256": "71c69f0f1ee0108647c20ea1de558d0e4213438577d46449791c10684a0890eb",
-        "quote": "qianqianwang68.github.io"
-      },
-      {
-        "url": "https://qianqianwang68.github.io/data/qianqianwang_cv.pdf",
-        "sha256": "b51610ba0618eb6262b87408d2733ee64488d0aec5ad36351fb90ec516cf2d2f",
-        "quote": "Tracking Everything Everywhere All at Once",
-        "quote_basis": "pdftotext -layout extraction from saved PDF bytes"
-      }
-    ]
-  }
+ "Stephen Casper": {
+  "home_department": "Kennedy School",
+  "home_department_evidence": [
+   {
+    "url": "https://www.hks.harvard.edu/faculty/stephen-casper",
+    "sha256": "cc76eb0f4c2efe632175bb14b897e8fa423ab7ba515b2e7ec13042852d94a540",
+    "quote": "Stephen \"Cas\" Casper is computer scientist and an Assistant Professor of Public Policy at the Harvard Kennedy School.",
+    "observed": "2026-11-06T23:51:11"
+   }
+  ],
+  "why_home_department": "Official current faculty profile identifies the home school; preserve the CS listing as an additional computing appointment."
+ },
+ "Jonathan Zittrain": {
+  "home_department": "Harvard Law School",
+  "home_department_evidence": [
+   {
+    "url": "https://hls.harvard.edu/faculty/directory/10992/Zittrain",
+    "sha256": "5243f6d4eba51b483a2f6ab660299b41d520ddc3a52b1a9fe6cc031c0c3ea714",
+    "quote": "Jonathan Zittrain is the George Bemis Professor of International Law at Harvard Law School.",
+    "observed": "2026-11-06T23:43:51"
+   }
+  ],
+  "why_home_department": "Official current faculty profile identifies the home school; preserve the CS listing as an additional computing appointment."
+ },
+ "Michael D. Smith": {
+  "dblp": [
+   "https://dblp.org/pid/163/1790-1"
+  ],
+  "why_dblp": "Reviewed exact middle-name homonym: DBLP Michael D. Smith 0001 names Harvard University and links the legacy official SEAS directory /directory/mikesmith; the current SEAS profile names Michael D. Smith with Harvard faculty rank. Other Michael Smith and Michael D. Smith records are not combined. The automatic broad given/family matcher had 155 candidates, including three school-name matches.",
+  "identity_reviewed_at": "2026-11-07",
+  "identity_evidence": [
+   {
+    "url": "https://dblp.org/pid/163/1790-1",
+    "sha256": "64779dea697ec00014cc5c71e50e60ef8efe9a4eb046071750fc87fd62755425",
+    "quote": "Harvard University, Cambridge, MA, USA",
+    "artifact": "hierarchy/harvard/raw/identity-source-64779dea697ec00014cc5c71e50e60ef8efe9a4eb046071750fc87fd62755425.json.gz",
+    "hash_basis": "Exact saved compressed school-independent DBLP persons cache, derived from official dblp-2026-09-01.xml.gz; quote in its decompressed JSON record.",
+    "person_record_name": "Michael D. Smith 0001",
+    "person_record_url": "https://www.seas.harvard.edu/directory/mikesmith"
+   },
+   {
+    "url": "https://seas.harvard.edu/person/michael-smith",
+    "sha256": "983002d12e966984da2395b6f1cc1e92244ca0ed5af3b23c608253ca836aba91",
+    "quote": "Michael D. Smith"
+   }
+  ]
+ },
+ "Qianqian Wang": {
+  "dblp": [
+   "https://dblp.org/pid/118/6735-2"
+  ],
+  "orcid": [
+   "0009-0002-9000-2386"
+  ],
+  "why_dblp": "Reviewed DBLP Qianqian Wang 0002 links exactly the personal homepage linked by her current official SEAS profile. Its DynIBaR, Tracking Everything Everywhere All at Once, IBRNet and Shape of Motion publications match her own CV. Her Berkeley/Cornell affiliation notes predate the current Harvard appointment and do not make these other Qianqian Wang homonyms. ORCID is from this same DBLP record.",
+  "identity_reviewed_at": "2026-11-07",
+  "identity_evidence": [
+   {
+    "url": "https://dblp.org/pid/118/6735-2",
+    "sha256": "4644eb84f067f17088b2dcf872581eec89c2a962ef4341501cfce1605c51b626",
+    "quote": "https://qianqianwang68.github.io/",
+    "artifact": "hierarchy/harvard/raw/identity-source-4644eb84f067f17088b2dcf872581eec89c2a962ef4341501cfce1605c51b626.json.gz",
+    "hash_basis": "Exact saved compressed school-local person extraction from official dblp-2026-09-01.xml.gz; quote in its decompressed JSON record.",
+    "person_record_name": "Qianqian Wang 0002"
+   },
+   {
+    "url": "https://seas.harvard.edu/person/qianqian-wang",
+    "sha256": "71c69f0f1ee0108647c20ea1de558d0e4213438577d46449791c10684a0890eb",
+    "quote": "qianqianwang68.github.io"
+   },
+   {
+    "url": "https://qianqianwang68.github.io/data/qianqianwang_cv.pdf",
+    "sha256": "b51610ba0618eb6262b87408d2733ee64488d0aec5ad36351fb90ec516cf2d2f",
+    "quote": "Tracking Everything Everywhere All at Once",
+    "quote_basis": "pdftotext -layout extraction from saved PDF bytes"
+   }
+  ]
+ },
+ "Margo I. Seltzer": {
+  "openalex": [
+   "https://openalex.org/A5054751297"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Missed-labs pass: A5054751297 (ORCID 0000-0002-2165-4658) holds 13 school works 2016-2018, 10 DBLP-indexed, under the name 'Margo Seltzer'; the unit listing names Margo I. Seltzer 2016-2018",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W2796123855",
+    "sha256": "5f8b8a30c333a2e1bd77e63849779c59226d3f98d80e68c9ea72376ca5bc0221",
+    "quote": "Seltzer, Margo | Harvard University",
+    "observed": "2018-03-09",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/harvard/openalex-sweep.sqlite)"
+   }
+  ],
+  "aliases": [
+   "Margo Seltzer"
+  ]
+ },
+ "Michael P. Brenner": {
+  "openalex": [
+   "https://openalex.org/A5001027226"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Missed-labs pass: A5001027226 (ORCID 0000-0002-5673-7947) holds 122 school works 2016-2026, 9 DBLP-indexed, under the name 'Michael P. Brenner'; the unit listing names Michael P. Brenner 2019-2019",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4414757142",
+    "sha256": "93e435e672461c697531d143c87a5a18888d1190b9977cd10469296b18c2cc15",
+    "quote": "Michael P. Brenner | Google Research, Cambridge, MA, USA. mbrenner@google.com",
+    "observed": "2026-05-19",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/harvard/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "David D. Cox": {
+  "openalex": [
+   "https://openalex.org/A5100763986"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Missed-labs pass: A5100763986 (ORCID 0000-0002-2189-9743) holds 29 school works 2016-2025, 11 DBLP-indexed, under the name 'David Cox'; the unit listing names David D. Cox 2016-2018",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4408934704",
+    "sha256": "774d9efdc2ce40771271bfa37aa96c6f42e8176b81ae41f92b976a2891ddad7b",
+    "quote": "David D. Cox | Center for Brain Science, Harvard University, Cambridge, MA 02138, USA; IBM Research, Cambridge, MA 02142, USA",
+    "observed": "2025-03-28",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/harvard/openalex-sweep.sqlite)"
+   }
+  ],
+  "aliases": [
+   "David Cox"
+  ]
+ },
+ "Ryan P. Adams": {
+  "openalex": [
+   "https://openalex.org/A5007769527"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Missed-labs pass: A5007769527 (ORCID 0000-0002-5704-6654) holds 9 school works 2016-2016, 6 DBLP-indexed, under the name 'Ryan P. Adams'; the unit listing names Ryan P. Adams 2016-2016",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W2275495996",
+    "sha256": "60946c37a879149843a252b1d5f3cc5e4aee651df445fd19e0d2ed6de28ac962",
+    "quote": "Adams, Ryan | Harvard University and Twitter#TAB#",
+    "observed": "2016-02-20",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/harvard/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Demba Ba": {
+  "openalex": [
+   "https://openalex.org/A5002643771"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Missed-labs pass: A5002643771 (ORCID 0000-0002-1139-1030) holds 42 school works 2017-2026, 30 DBLP-indexed, under the name 'Demba Ba'; the unit listing names Demba Ba 2019-2025",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4407448503",
+    "sha256": "596a7def9736dd2dd3f4452a11335972968a9e653c020578a53f5991f4019949",
+    "quote": "Demba Ba | Center for Brain Science, Harvard University, Cambridge, MA, USA",
+    "observed": "2026-04-29",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/harvard/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Alexander Rush": {
+  "openalex": [
+   "https://openalex.org/A5062546146"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Missed-labs pass: A5062546146 (ORCID 0000-0002-9900-1606) holds 56 school works 2016-2023, 48 DBLP-indexed, under the name 'Alexander Rush'; the unit listing names Alexander Rush 2016-2019",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4387145081",
+    "sha256": "1dfb29fb57b4910fb092b264e87dc09e139dee19aa6ba72a8dd8a3602511bcc7",
+    "quote": "Rush, Alexander M. | Harvard University ♡ Northwestern University",
+    "observed": "2023-09-25",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/harvard/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Radhika Nagpal": {
+  "openalex": [
+   "https://openalex.org/A5049251065"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Missed-labs pass: A5049251065 (ORCID 0000-0001-9756-0167) holds 34 school works 2016-2022, 19 DBLP-indexed, under the name 'Radhika Nagpal'; the unit listing names Radhika Nagpal 2016-2019",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4214893343",
+    "sha256": "3d7ad6559ad6d0efd63241edd33460befca7b648158b3325658d0f41d6a93160",
+    "quote": "Radhika Nagpal | School of Engineering and Applied Sciences, Harvard University, Boston, MA, 02134, USA",
+    "observed": "2022-03-04",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/harvard/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Yaron Singer": {
+  "openalex": [
+   "https://openalex.org/A5050591232"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Missed-labs pass: A5050591232 (ORCID 0000-0001-6811-9102) holds 32 school works 2016-2024, 29 DBLP-indexed, under the name 'Yaron Singer'; the unit listing names Yaron Singer 2016-2019",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W2560014408",
+    "sha256": "c6d3a6f5abb3bed9c9b2f5aa657e01ff6ed5a32a9831a470bb845fe4d08ac29c",
+    "quote": "Singer, Yaron | Harvard University",
+    "observed": "2024-11-17",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/harvard/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Sendhil Mullainathan": {
+  "openalex": [
+   "https://openalex.org/A5034703281"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Missed-labs pass: A5034703281 (ORCID 0000-0001-8508-4052) holds 24 school works 2016-2020, 6 DBLP-indexed, under the name 'Sendhil Mullainathan'; the unit listing names Sendhil Mullainathan 2018-2018",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W3023660821",
+    "sha256": "6592db0357e8aa21589f74171757ef7025a3bfabf2138a7b3946094dfc3d65e1",
+    "quote": "Sendhil Mullainathan | University of Chicago, 1101 East 58th Street, Chicago, IL 60637, United States",
+    "observed": "2020-05-01",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/harvard/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Scott Kuindersma": {
+  "openalex": [
+   "https://openalex.org/A5049981830"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Missed-labs pass: A5049981830 (ORCID 0000-0003-0645-6626) holds 22 school works 2016-2022, 17 DBLP-indexed, under the name 'Scott Kuindersma'; the unit listing names Scott Kuindersma 2016-2019",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W3200371584",
+    "sha256": "3ef2eb97436fbc71f156d60eaa3ea1e50bd9d6c58adeea22d4ed18419dfba419",
+    "quote": "Scott Kuindersma | School of Engineering and Applied SciencesM Harvard University,Cambridge,MA",
+    "observed": "2022-05-23",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/harvard/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Jelani Nelson": {
+  "openalex": [
+   "https://openalex.org/A5109135732"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Missed-labs pass: A5109135732 (ORCID 0000-0001-7370-3733) holds 15 school works 2016-2019, 14 DBLP-indexed, under the name 'Jelani Nelson'; the unit listing names Jelani Nelson 2016-2019",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W2883214243",
+    "sha256": "3093fd93e1ada006e77d7ec99efca1cdd94f28dfe0fc77f333bc8b3d679ae15d",
+    "quote": "Jelani Nelson | Harvard University ,",
+    "observed": "2019-01-01",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/harvard/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Na Li": {
+  "openalex": [
+   "https://openalex.org/A5100368048"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Missed-labs pass: A5100368048 (ORCID 0000-0001-9545-3050) holds 200 school works 2016-2026, 137 DBLP-indexed, under the name 'Na Li'; the unit listing names Na Li 2026-2026",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7126078644",
+    "sha256": "5a6beac22af3d52221d02fb22b5069fb9e2dd0712a333b2ca9f921e39019f504",
+    "quote": "Li, Na | Harvard University",
+    "observed": "2026-01-28",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/harvard/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Vijay Janapa Reddi": {
+  "openalex": [
+   "https://openalex.org/A5000635267"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Missed-labs pass: A5000635267 (ORCID 0000-0002-5259-7721) holds 141 school works 2018-2026, 99 DBLP-indexed, under the name 'Vijay Janapa Reddi'; the unit listing names Vijay Janapa Reddi 2026-2026",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7125899851",
+    "sha256": "632bcf907684a488cde1af6756ce229354eef2f3ad2ca853cf6fc3f1ebc9b9ee",
+    "quote": "Reddi, Vijay Janapa | Harvard University",
+    "observed": "2026-01-27",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/harvard/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Conor James Walsh": {
+  "openalex": [
+   "https://openalex.org/A5028193094"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Missed-labs pass: A5028193094 (ORCID 0000-0002-2744-917X) holds 211 school works 2016-2026, 60 DBLP-indexed, under the name 'Conor J. Walsh'; the unit listing names Conor James Walsh 2026-2026",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4404088091",
+    "sha256": "b461148310a6c9f15918816094d9d5e51bbc41ca1f2fd7d28cac9673a4729f2d",
+    "quote": "Conor J. Walsh | John A. Paulson School of Engineering and Applied Sciences Harvard University Cambridge Massachusetts USA",
+    "observed": "2026-06-15",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/harvard/openalex-sweep.sqlite)"
+   }
+  ],
+  "aliases": [
+   "Conor J. Walsh"
+  ]
+ },
+ "Flavio du Pin Calmon": {
+  "openalex": [
+   "https://openalex.org/A5074697940"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Missed-labs pass: A5074697940 (ORCID 0000-0002-7493-1428) holds 101 school works 2017-2026, 76 DBLP-indexed, under the name 'Flavio P. Calmon'; the unit listing names Flavio du Pin Calmon 2026-2026",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7128490488",
+    "sha256": "777da8a5b59f67d4f49a030d0971ded98016e15d86942e7562f0d582c518331a",
+    "quote": "Calmon, Flavio P. | Harvard University",
+    "observed": "2026-02-06",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/harvard/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Cengiz Pehlevan": {
+  "openalex": [
+   "https://openalex.org/A5023195984"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): Missed-labs pass: A5023195984 (ORCID 0000-0001-9767-6063) holds 86 school works 2016-2026, 41 DBLP-indexed, under the name 'Cengiz Pehlevan'; the unit listing names Cengiz Pehlevan 2026-2026",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4396628331",
+    "sha256": "06f7ae00334c751840807c7f61d09075cb5db9e3b922a70ea71221fe341eb931",
+    "quote": "Cengiz Pehlevan | Center for Brain Science, Harvard University, Cambridge, MA, United States of America",
+    "observed": "2026-04-01",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/harvard/openalex-sweep.sqlite)"
+   }
+  ]
+ }
 }

@@ -102,6 +102,8 @@ def build(school, min_cs=5):
                     e[key].append(v)
         for key in ('cs', 'works', 'last'):
             e[key] = max(e[key], kw.get(key, 0))
+        if src == 'oa':
+            e['oa_cs'], e['oa_n'] = kw.get('cs', 0), kw.get('works', 0)
         if kw.get('years'):
             e['years'] = [min(e['years'] + [kw['years'][0]]), max(e['years'] + [kw['years'][-1]])]
 

@@ -65,12 +65,36 @@ def faculty_hits(rows, name):
     return out
 
 
+def scratch_rows(school):
+    """(url, 'profile', timestamp, sha256, text) for the pages the profile pass stored in the scratch store (live 200s and Wayback 200s)."""
+    import time, zlib
+    import school_web as W
+    f = Path('/n/fs/resemble/homogenizing-science/scratch/missed-labs-profile') / f'{school}.sqlite'
+    if not f.exists():
+        return []
+    c = sqlite3.connect(f'file:{f}?mode=ro', uri=True)
+    out = []
+    for url, fetched, st, sha, ct, raw in c.execute('select url, fetched_at, status, sha256, content_type, raw_zlib from live where status=200'):
+        try:
+            text = W.flat(W.extract.blocks(zlib.decompress(raw), ct, url))
+        except Exception:  # noqa: BLE001
+            continue
+        out.append((url, 'profile', (fetched or time.strftime('%Y%m%d')).replace('-', '').replace(':', '')[:8], sha, text))
+    try:
+        for url, ts, sha, text in c.execute("select capture_url, wayback_timestamp, sha256, text from captures where http_status=200 and text is not null"):
+            out.append((url, 'profile', ts, sha, text))
+    except sqlite3.OperationalError:
+        pass
+    return out
+
+
 def run(school, apply=False, min_cs=5):
     leads, per_source = ML.build(school, min_cs)
     root = Path(P.CODE) / 'hierarchy' / school
     db = sqlite3.connect(f'file:{P.data("school-captures.sqlite", school)}?mode=ro', uri=True)
     rows = [r for r in db.execute("select capture_url,department,wayback_timestamp,sha256,text from captures where http_status=200 and text is not null")
             if not r[1].startswith(SKIP)]
+    rows += scratch_rows(school)   # pages of the profile pass (tools/missed_labs_fetch.py), kept outside main's capture store
     units = sorted({r[1].split(':')[0] for r in rows})
     hand = ML.load(root / 'reviewed/missed-labs-hand.json') or {}
     decisions, accepted = [], []
@@ -136,7 +160,9 @@ def run(school, apply=False, min_cs=5):
                      'pi_basis': {'kind': 'ladder_faculty', 'url': lad[0]['url'], 'sha256': lad[0]['sha256'], 'quote': lad[0]['quote'],
                                   'observed': lad[0]['observed'], 'role': 'professor title on a stored unit or profile capture',
                                   'cs_related': {'dblp': e['dblp'], 'openalex': e['oa_ids'], 'dblp_indexed': e['cs'], 'school_works': e['works'],
-                                                 'share': round(e['cs'] / max(e['works'], 1), 3)}},
+                                                 'share': round(e['cs'] / max(e['works'], 1), 3),
+                                                 'oa_share': round(e['oa_cs'] / e['oa_n'], 3) if e.get('oa_n') else None,
+                                                 'share_flag': bool(e.get('oa_n')) and e['oa_cs'] / e['oa_n'] < 0.2}},
                      'lab_units': [], 'added': 'missed_labs_' + TODAY})
     for a in adds:
         print('ACCEPT', a['name'], a['departments'], a['years_listed'], '|', a['title_as_listed'], '| cs', a['pi_basis']['cs_related']['dblp_indexed'], '/',
