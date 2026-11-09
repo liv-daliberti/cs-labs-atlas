@@ -167,8 +167,8 @@ One row per unique paper and lab (JSON lines, gzip): an OpenAlex work by the PI,
 | `titleEnrichment.owned_dblp_pid` | string | no |  |  |  |
 | `titleEnrichment.owned_dblp_key` | string | no |  |  |  |
 | `titleEnrichment.quality_status` | any | no | Ordinary title quality recheck result after enrichment. | one of `passed`, `rejected` |  |
-| `sourceMetadataReviews` | array of object | no | Applied title-only projections of complete already eligible originals before R16 grouping; original whole sources/rows retained in report.paperSourceReview. |  |  |
-| `sourceMetadataReviews[]` | object | — |  | no other keys |  |
+| `sourceMetadataReviews` | array of object | no | Applied exact title or type projections on complete already eligible originals before quality/folding/R16; original work/eligible row/available variants retained in report.paperSourceReview. Type authority never edits names, dates or identities. |  |  |
+| `sourceMetadataReviews[]` | object | — |  |  |  |
 | `sourceMetadataReviews[].id` | string | yes |  |  |  |
 | `sourceMetadataReviews[].input_sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
 | `sourceMetadataReviews[].source_work_sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
@@ -177,6 +177,42 @@ One row per unique paper and lab (JSON lines, gzip): an OpenAlex work by the PI,
 | `sourceMetadataReviews[].owned_publication_sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
 | `sourceMetadataReviews[].original_title` | string | yes |  |  |  |
 | `sourceMetadataReviews[].title` | string | yes |  |  |  |
+| `sourceMetadataReviews[].id` | string | yes |  | non-empty |  |
+| `sourceMetadataReviews[].input_sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `sourceMetadataReviews[].source_work_sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `sourceMetadataReviews[].review_kind` | any | yes |  | always `source_type` |  |
+| `sourceMetadataReviews[].eligible_row_sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `sourceMetadataReviews[].original_type` | string | yes |  | non-empty |  |
+| `sourceMetadataReviews[].type` | any | yes |  | one of `book-chapter`, `article` |  |
+| `sourceMetadataReviews[].authority` | object | yes |  |  |  |
+| `sourceMetadataReviews[].authority.kind` | any | yes |  | always `owned_monograph_chapter` |  |
+| `sourceMetadataReviews[].authority.book` | object | yes |  | no other keys |  |
+| `sourceMetadataReviews[].authority.book.oa` | string | yes |  | non-empty |  |
+| `sourceMetadataReviews[].authority.book.doi` | string | yes |  | non-empty |  |
+| `sourceMetadataReviews[].authority.book.work_sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `sourceMetadataReviews[].authority.book.eligible_row_sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `sourceMetadataReviews[].authority.book.available_work_sha256s` | array of string | yes | Distinct complete-source variant hashes; runtime rejects duplicates. | at least 1 item(s); items: pattern `^[0-9a-f]{64}$` |  |
+| `sourceMetadataReviews[].authority.book.owned_dblp` | object | yes |  | no other keys |  |
+| `sourceMetadataReviews[].authority.book.owned_dblp.pid` | string | yes |  | non-empty |  |
+| `sourceMetadataReviews[].authority.book.owned_dblp.key` | string | yes |  | non-empty |  |
+| `sourceMetadataReviews[].authority.book.owned_dblp.record_sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `sourceMetadataReviews[].authority.chapter_doi` | string | yes |  | non-empty |  |
+| `sourceMetadataReviews[].authority.container_title` | string | yes |  | non-empty |  |
+| `sourceMetadataReviews[].authority.kind` | any | yes |  | always `owned_primary_journal_article` |  |
+| `sourceMetadataReviews[].authority.homepage` | object | yes |  | no other keys |  |
+| `sourceMetadataReviews[].authority.homepage.url` | string | yes |  | non-empty |  |
+| `sourceMetadataReviews[].authority.homepage.sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `sourceMetadataReviews[].authority.homepage.name_quote` | string | yes |  | non-empty |  |
+| `sourceMetadataReviews[].authority.homepage.role_quote` | string | yes |  | non-empty |  |
+| `sourceMetadataReviews[].authority.homepage.publication_href` | string | yes |  | non-empty |  |
+| `sourceMetadataReviews[].authority.publication` | object | yes |  | no other keys |  |
+| `sourceMetadataReviews[].authority.publication.url` | string | yes |  | non-empty |  |
+| `sourceMetadataReviews[].authority.publication.sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `sourceMetadataReviews[].authority.publication.citation_quote` | string | yes |  | non-empty |  |
+| `sourceMetadataReviews[].authority.publication.journal` | string | yes |  | non-empty |  |
+| `sourceMetadataReviews[].authority.publication.label` | string | yes |  | non-empty |  |
+| `sourceMetadataReviews[].authority.publication.paper_href` | string | yes |  | non-empty |  |
+| `sourceMetadataReviews[].authority.publication.paper_label` | string | yes |  | non-empty |  |
 
 ### lab_papers: shape `listing`
 
@@ -605,7 +641,7 @@ The build's report: counters, exclusions, samples of what the rules dropped, and
 | `recoverySourceReview.path` | string | yes |  |  |  |
 | `recoverySourceReview.sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
 | `recoverySourceReview.decisions` | array of object | yes |  |  |  |
-| `paperSourceReview` | object | no | Optional exact owned-publication pre-group title projection input, with full original eligible row/work and projected/held/no-eligible-source outcomes. No admission override. | no other keys |  |
+| `paperSourceReview` | object | no | Optional exact pre-group title or type projection input, with complete original eligible row/work and available variants, finite owned authority, and projected/held/no-eligible-source outcomes. No identity, school, appointment, date or byline admission override. | no other keys |  |
 | `paperSourceReview.path` | string | yes |  |  |  |
 | `paperSourceReview.sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
 | `paperSourceReview.decisions` | array of object | yes |  |  |  |
@@ -1830,7 +1866,7 @@ Hand-reviewed OpenAlex author ids of an onboarding school's PIs.
 
 ## `hierarchy/<school>/paper-source-review.json`
 
-Exact whole-source and already-owned publication title completions before ordinary quality and edition grouping; no new source admission or other field changes.
+Optional one-field title completion or type correction on complete already eligible originals; preserves original sources/rows/variants and ordinary identity/school/appointment/date/quality gates.
 
 - schema: `schemas/paper_source_review.schema.json`
 - kind: reviewed (a decision file, tracked in git)
@@ -1843,7 +1879,7 @@ Exact whole-source and already-owned publication title completions before ordina
 | `version` | any | yes |  | always `1` |  |
 | `school` | string | yes |  |  |  |
 | `reviews` | array of object | yes |  |  |  |
-| `reviews[]` | object | — |  | no other keys |  |
+| `reviews[]` | object | — |  |  |  |
 | `reviews[].id` | string | yes |  | non-empty |  |
 | `reviews[].pi` | string | yes |  | non-empty |  |
 | `reviews[].decision` | any | yes |  | always `owned_publication_title` |  |
@@ -1864,6 +1900,53 @@ Exact whole-source and already-owned publication title completions before ordina
 | `reviews[].changes` | object | yes |  | no other keys |  |
 | `reviews[].changes.title` | string | yes |  | non-empty |  |
 | `reviews[].evidence` | object | yes |  |  |  |
+| `reviews[].id` | string | yes |  | non-empty |  |
+| `reviews[].pi` | string | yes |  | non-empty |  |
+| `reviews[].reviewed_by` | string | yes |  | non-empty |  |
+| `reviews[].reviewed_at` | string | yes |  | pattern `^[0-9]{4}-[0-9]{2}-[0-9]{2}$` |  |
+| `reviews[].match` | object | yes |  | no other keys |  |
+| `reviews[].match.oa` | string | yes |  | non-empty |  |
+| `reviews[].match.doi` | string | yes |  | non-empty |  |
+| `reviews[].match.work` | string \| null | no |  |  |  |
+| `reviews[].evidence` | object | yes |  |  |  |
+| `reviews[].decision` | any | yes |  | always `source_type` |  |
+| `reviews[].source` | object | yes |  | no other keys |  |
+| `reviews[].source.work_sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `reviews[].source.eligible_row_sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `reviews[].source.available_work_sha256s` | array of string | yes | Distinct complete-source variant hashes; runtime rejects duplicates. | at least 1 item(s); items: pattern `^[0-9a-f]{64}$` |  |
+| `reviews[].source.original_type` | string | yes |  | non-empty |  |
+| `reviews[].source.ordered_byline` | array of string | yes |  | at least 1 item(s) |  |
+| `reviews[].changes` | object | yes |  | no other keys |  |
+| `reviews[].changes.type` | string | yes |  | one of `book-chapter`, `article` |  |
+| `reviews[].authority` | object | yes |  |  |  |
+| `reviews[].authority.kind` | any | yes |  | always `owned_monograph_chapter` |  |
+| `reviews[].authority.book` | object | yes |  | no other keys |  |
+| `reviews[].authority.book.oa` | string | yes |  | non-empty |  |
+| `reviews[].authority.book.doi` | string | yes |  | non-empty |  |
+| `reviews[].authority.book.work_sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `reviews[].authority.book.eligible_row_sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `reviews[].authority.book.available_work_sha256s` | array of string | yes | Distinct complete-source variant hashes; runtime rejects duplicates. | at least 1 item(s); items: pattern `^[0-9a-f]{64}$` |  |
+| `reviews[].authority.book.owned_dblp` | object | yes |  | no other keys |  |
+| `reviews[].authority.book.owned_dblp.pid` | string | yes |  | non-empty |  |
+| `reviews[].authority.book.owned_dblp.key` | string | yes |  | non-empty |  |
+| `reviews[].authority.book.owned_dblp.record_sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `reviews[].authority.chapter_doi` | string | yes |  | non-empty |  |
+| `reviews[].authority.container_title` | string | yes |  | non-empty |  |
+| `reviews[].authority.kind` | any | yes |  | always `owned_primary_journal_article` |  |
+| `reviews[].authority.homepage` | object | yes |  | no other keys |  |
+| `reviews[].authority.homepage.url` | string | yes |  | non-empty |  |
+| `reviews[].authority.homepage.sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `reviews[].authority.homepage.name_quote` | string | yes |  | non-empty |  |
+| `reviews[].authority.homepage.role_quote` | string | yes |  | non-empty |  |
+| `reviews[].authority.homepage.publication_href` | string | yes |  | non-empty |  |
+| `reviews[].authority.publication` | object | yes |  | no other keys |  |
+| `reviews[].authority.publication.url` | string | yes |  | non-empty |  |
+| `reviews[].authority.publication.sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `reviews[].authority.publication.citation_quote` | string | yes |  | non-empty |  |
+| `reviews[].authority.publication.journal` | string | yes |  | non-empty |  |
+| `reviews[].authority.publication.label` | string | yes |  | non-empty |  |
+| `reviews[].authority.publication.paper_href` | string | yes |  | non-empty |  |
+| `reviews[].authority.publication.paper_label` | string | yes |  | non-empty |  |
 
 ## `hierarchy/<school>/paper-title-review.json`
 
