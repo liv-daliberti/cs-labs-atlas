@@ -605,7 +605,7 @@ The build's report: counters, exclusions, samples of what the rules dropped, and
 | `labpageAdditionsSetAside[].year` | integer | yes | Its year. |  |  |
 | `labpageAdditionsSetAside[].title` | string \| null | no | Its title. |  |  |
 | `labpageAdditionsSetAside[].key` | string \| null | no | The lab-page record key (labpage:<sha1>). |  |  |
-| `labpageAdditionsSetAside[].reason` | string | yes | Why it was not kept. | one of `outside_window`, `outside_appointment`, `already_a_lab_paper` |  |
+| `labpageAdditionsSetAside[].reason` | string | yes | Why it was not kept. | one of `outside_window`, `outside_appointment`, `already_a_lab_paper`, `reviewed_source_held`, `existing_work_pi_byline_unproven`, `school_scope_not_supported`, `source_type_unproven_or_conflicting` |  |
 | `droppedWithoutHashedSource` | array of object | no | Students that left a lab because none of their relations kept a source with a sha256 (R-STU-12). |  | R-STU-12 |
 | `droppedWithoutHashedSource[]` | object | — |  | no other keys |  |
 | `droppedWithoutHashedSource[].pi` | string | yes | The lab's PI. |  |  |
@@ -623,7 +623,7 @@ The build's report: counters, exclusions, samples of what the rules dropped, and
 | `paperClaimReview.decisions[].id` | string | yes |  |  |  |
 | `paperClaimReview.decisions[].pi` | string | yes |  |  |  |
 | `paperClaimReview.decisions[].decision` | any | yes |  | one of `hold`, `reject`, `merge` |  |
-| `paperClaimReview.decisions[].outcome` | any | yes |  | one of `no_current_claim`, `held`, `rejected`, `held_before_identity`, `rejected_before_identity`, `already_merged`, `held_missing_merge_target`, `merged` |  |
+| `paperClaimReview.decisions[].outcome` | any | yes |  | one of `no_current_claim`, `held`, `rejected`, `held_before_identity`, `rejected_before_identity`, `already_merged`, `preferred_edition_selected`, `held_missing_preferred_target_record`, `held_missing_merge_target`, `merged` |  |
 | `paperTitleReview` | object | no | Exact source-bound missing-title input and per-row outcomes after ordinary identity/appointment/edition gates. | no other keys |  |
 | `paperTitleReview.path` | string | yes |  |  |  |
 | `paperTitleReview.sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
