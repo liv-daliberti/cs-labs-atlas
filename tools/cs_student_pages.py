@@ -12,13 +12,11 @@ usage: cs_student_pages.py crawl [--extra FILE] [--limit N] | evidence --pis pis
 import argparse
 import json
 import re
-import sys
 import time
 import unicodedata
 import urllib.parse
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import school_web as W  # noqa: E402
 
 KEY = 'oxford'

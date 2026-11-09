@@ -1,8 +1,5 @@
 """tools/ora_theses.py: supervisor-to-PI resolution (R-STU-03 logic) and the contributor parser."""
-import sys
-from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
 import ora_theses as O  # noqa: E402
 
 PIS = [dict(pi='Aleks Kissinger', names=['Aleks Kissinger'], orcid=['0000-0001-0000-0001']),
