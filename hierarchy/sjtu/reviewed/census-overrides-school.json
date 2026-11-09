@@ -1794,12 +1794,62 @@
     }
   },
   "冷静文": {
-    "no_identity": true,
-    "why_no_identity": "PI role and exact source-profile membership reviewed; no source-owned bibliographic identity admitted. No name-only/person-URLguess/ORCID or global OA inheritance; separate exact-source review required.",
+    "no_identity": false,
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
       "evidence": []
+    },
+    "dblp": [
+      "https://dblp.org/pid/131/5131"
+    ],
+    "aliases": [
+      "Jingwen Leng"
+    ],
+    "identity_resolution": {
+      "decision": "verified_source_owned_exact_WWW",
+      "reviewed": "2026-11-09",
+      "reviewed_by": "claude-sjtu-admit-1109",
+      "basis": "Exact named official profile plus a literal PID anchor, or an official-profile-linked owned homepage that the local DBLP person record lists as its own homepage. No name-only join, namesake, ORCID, OpenAlex-author or other-person inheritance.",
+      "evidence": [
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/lengjingwen.html",
+          "sha256": "930abf4bdf78acceb9bd296aaeab4cb523f509e58e76936bb674950419eb2acc",
+          "observed": "2026-11-07T18:09:00",
+          "quote": "冷静文",
+          "kind": "official_named_faculty_profile"
+        },
+        {
+          "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/lengjingwen.html",
+          "sha256": "930abf4bdf78acceb9bd296aaeab4cb523f509e58e76936bb674950419eb2acc",
+          "observed": "2026-11-07T18:09:00",
+          "quote": "https://cs.sjtu.edu.cn/~leng-jw/",
+          "kind": "official_profile_links_owned_homepage",
+          "discovery": "literal_printed_profile_homepage"
+        },
+        {
+          "url": "https://cs.sjtu.edu.cn/~leng-jw/",
+          "sha256": "1fd3a7c403310c1f7f45fd30a7638b21bf251e072f3914c593011fed11a7977f",
+          "observed": "2026-11-07T20:04:47",
+          "kind": "owned_homepage_original",
+          "literal_self_name_forms": [
+            "Jingwen Leng"
+          ]
+        },
+        {
+          "kind": "dblp_person_record_lists_same_homepage",
+          "record_url": "https://www.cs.sjtu.edu.cn/~leng-jw/",
+          "selected_homepage": "https://cs.sjtu.edu.cn/~leng-jw/",
+          "equality": "exact modulo http/https and trailing slash only",
+          "record_sha256": "0e52961d544ca267e4d8361dd774fd926736bb4661e0072cdd3f658e60ad8481"
+        }
+      ],
+      "local_complete_record_sha256": "0e52961d544ca267e4d8361dd774fd926736bb4661e0072cdd3f658e60ad8481",
+      "original_source_store_sha256": "8acfa5bcf35c18658f949f62fd55b67ca3639e2cba9a8a1201801dbbc3aa349e",
+      "full_career_record_count": 191,
+      "raw_2016_2026_bibliography_record_count": 184,
+      "school_papers_admitted": 0,
+      "orcid_inheritance": false
     }
   },
   "梁诗宇": {
