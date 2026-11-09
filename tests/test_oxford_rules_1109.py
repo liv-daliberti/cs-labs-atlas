@@ -103,7 +103,8 @@ def test_R_HIER_05_computing_as_object_people_are_never_accepted():
     text = (root / 'docs' / 'RULES.md').read_text()
     section = text.split('### R-HIER-05', 1)[1].split('\n### ', 1)[0]
     assert all(n in section for n in names) and 'excluded_scope' in section
-    p = root / 'hierarchy' / 'oxford' / 'reviewed' / 'cs-related-review.json'
+    import atlas_paths as P
+    p = P.data('cs-related-review.json', 'oxford')
     if p.exists():
         decisions = {d['name']: d['decision'] for d in json.loads(p.read_text())['decisions']}
         assert all(decisions.get(n, 'excluded_scope') in ('held_scope', 'excluded_scope') for n in names)
