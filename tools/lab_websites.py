@@ -430,6 +430,18 @@ def capture_stores(school):
     return [p for p in paths if p.exists()]
 
 
+def wayback_captures(school):
+    """{url: (sha256, fetched_at, bytes)} for 200 captures the Wayback slow lane stored for the website queue
+    (scratch/own-pages/wayback-captures-<school>-websites.sqlite, tools queue_fetch.py: table cap(url, status, final, body, sha256, fetched))."""
+    path = Path(P.ROOT) / 'scratch' / 'own-pages' / f'wayback-captures-{school}-websites.sqlite'
+    out = {}
+    if path.exists():
+        con = sqlite3.connect(f'file:{path}?mode=ro', uri=True)
+        for url, sha, at, body in con.execute("select url, sha256, fetched, body from cap where status=200 and body is not null"):
+            out[url] = (sha, at, body)
+    return out
+
+
 def stored_captures(school, urls):
     """{url: (sha256, fetched_at, text)} for stored 200 captures of exactly these URLs (lab-page audit stores; no network)."""
     out = {}
@@ -442,6 +454,9 @@ def stored_captures(school, urls):
                 except zlib.error:
                     pass
                 out[url] = (sha, at, blob.decode('utf-8', 'replace'))
+    for url, (sha, at, body) in wayback_captures(school).items():
+        if url in urls and url not in out:
+            out[url] = (sha, at, body.decode('utf-8', 'replace'))
     return out
 
 
@@ -493,7 +508,10 @@ def verify_websites(school, doc, near=None):
                     text[sha] = zlib.decompress(row[0])
                 except zlib.error:
                     text[sha] = row[0]
+    for sha, _at, body in wayback_captures(school).values():
+        text.setdefault(sha, body)
     review = website_review(school, near)
+    wbcaps = wayback_captures(school)
     for r in rows:
         body = text.get(r.get('sha256'))
         rv = review.get((r['pi'], r['url']))
@@ -501,11 +519,14 @@ def verify_websites(school, doc, near=None):
             r['verified'], r['verified_by'], r['verification_reason'] = True, 'hand_review', rv['reason']
             r.pop('unverified_reason', None)
             continue
-        if rv and rv['decision'] in ('rejected', 'unresolved'):
-            if rv['decision'] == 'unresolved':
+        if rv and rv['decision'] == 'unresolved':
+            if r['url'] in wbcaps:   # the slow lane has since read the page: judge it on its text
+                body = wbcaps[r['url']][2]
+                r['sha256'] = wbcaps[r['url']][0]
+            else:
                 r['verified'], r['unverified_reason'] = False, rv['reason']
                 continue
-            body = None   # falls to the rejection below with the reviewer's reason
+        elif rv and rv['decision'] == 'rejected':
             r['verified'] = False
             r['rejected_url'] = r.pop('url')
             r['rejected_reason'] = rv['reason']

@@ -27,7 +27,7 @@ from pathlib import Path
 from urllib.parse import urljoin, urlsplit
 
 import atlas_paths as P
-from lab_websites import capture_stores
+from lab_websites import capture_stores, wayback_captures
 
 NOT_FETCHABLE = re.compile(r'(?:^|\.)(?:scholar\.google\.[a-z.]+|linkedin\.com|twitter\.com|x\.com|facebook\.com|instagram\.com|'
                            r'researchgate\.net|academia\.edu|orcid\.org|dblp\.org|mathgenealogy\.org|genealogy\.math\.ndsu\.nodak\.edu|'
@@ -281,6 +281,8 @@ def annotate(rows, school, near=None):
                     text[sha] = zlib.decompress(row[0])
                 except zlib.error:
                     text[sha] = row[0]
+    for sha, _at, body in wayback_captures(school).values():
+        text.setdefault(sha, body)
     failed, got = {}, {}
     res_path = DIR / f'fetched-{school}.jsonl'
     if res_path.exists():
@@ -301,6 +303,7 @@ def annotate(rows, school, near=None):
                     except zlib.error:
                         text[sha] = row[0]
                     sha_needed.discard(sha)
+    wb = wayback_captures(school)
     from lab_websites import website_review
     from person_fetch import last_name_on_page, plausible_owner
     review = website_review(school, near)
@@ -309,7 +312,12 @@ def annotate(rows, school, near=None):
             continue
         rv = review.get((r['person'], r['url']))
         x = got.get(r['url'])
-        if x and x.get('status') == 200 and not r.get('fetched') and x.get('sha256'):
+        if r['url'] in wb and (not r.get('fetched') or (rv and rv['decision'] == 'unresolved')):   # read from the newest Wayback id_ capture by the slow lane; live fetch was not possible
+            sha, at, _body = wb[r['url']]
+            r.update(fetched=True, status=200, sha256=sha, fetched_at=at, via='wayback_capture')
+            r.pop('fetch_reason', None)
+            r.pop('unverified_reason', None)
+        elif x and x.get('status') == 200 and not r.get('fetched') and x.get('sha256'):
             r.update(fetched=True, status=200, sha256=x['sha256'], fetched_at=x['at'])
             r.pop('fetch_reason', None)
             if x.get('redirect_hops'):
@@ -324,7 +332,7 @@ def annotate(rows, school, near=None):
             for k in ('status', 'sha256', 'fetched_at', 'fetch_reason', 'found_from_kind', 'verified', 'redirected_to'):
                 r.pop(k, None)
             continue
-        if rv and rv['decision'] == 'unresolved':
+        if rv and rv['decision'] == 'unresolved' and r.get('via') != 'wayback_capture':
             r['verified'], r['unverified_reason'] = False, rv['reason']
             continue
         if body is not None:
