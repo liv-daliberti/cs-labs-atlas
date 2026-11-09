@@ -304,7 +304,9 @@ def oxford_person_index(h):
         title = re.search(r'<span[^>]*class="list-unbulleted-extra"[^>]*>(.*?)</span>', block, re.S)
         link = re.search(r'<a[^>]*href="([^"]+)"', block)
         if name:
-            out.append(dict(name_listed=clean(name.group(1)), titles=_titles(title.group(1)) if title else [],
+            # a memorial listing carries life dates after the name ('Stephen Cameron (1958-2019)'): they are not part of the name
+            nm = re.sub(r'\s*\(\d{4}\s*[-\u2013]\s*\d{4}\)\s*$', '', clean(name.group(1)))
+            out.append(dict(name_listed=nm, titles=_titles(title.group(1)) if title else [],
                             homepage=H.unescape(link.group(1)) if link else None, division=None))
     return out
 
