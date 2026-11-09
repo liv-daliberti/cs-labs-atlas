@@ -17,6 +17,7 @@ reviewed inputs, even when a reviewed verdict is folded into them.
 | `hierarchy/cs-venues.json` | CS-related candidate tools | the computing venue list |
 | `hierarchy/<school>/missing-pi-review.json` | `chain_audit.py` | decisions for listed faculty the census lacks |
 | `hierarchy/<school>/cs-related-review.json` | `chain_audit.py`, `export_release.py` | decisions for CS-related candidates in other departments |
+| `hierarchy/<school>/missed-labs-review.json` | read by no build step (a record, like `missing-pi-review.json`); its accepted people are also in `census-additions.json` / `cs-related-review.json` | the 2026-11-09 missed-computing-labs search: one decision per candidate (accepted, not_faculty, faculty_not_computing, no_appointment_evidence, already_in_census_as, ...), the PI-basis grants on census rows, the Wayback queue and the hand-check (`tools/missed_labs_candidates.py`) |
 | `hierarchy/<school>/few-students-evidence.json` | `pi_hierarchy.py`, `chain_audit.py` | researched advisees of thin labs, with quotes and hashes |
 | `hierarchy/<school>/relation-evidence.json` | `pi_hierarchy.py` (R-STU-08) | re-captured url, sha256 and quote for collection relations that had none (cmu, epfl, mit; `tools/relation_recapture.py`, bodies in `relation-captures.sqlite`, not tracked) |
 | `hierarchy/<school>/gap-evidence.json` | `pi_hierarchy.py`, the site builder | researched gap labs: status, identity, students |

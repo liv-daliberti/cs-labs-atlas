@@ -27,7 +27,8 @@
  "notes": [
   "tools/princeton_census.py does not read additions; tools/pi_hierarchy.py appends census/princeton-additions.json to census/princeton-faculty.json, and reads listings/princeton/listings.json for yearly listings.",
   "Live princeton.edu department pages (ece., eeb.) answered with a bot challenge (stored with error=bot-challenge, not retried); department lists come from Wayback captures.",
-  "Flag cs_bar_met_via_noncomputing_venues: the person meets the 5-work bar only through venues of cs-venues.json that are not computing venues (Cell Systems, statistics or psychology journals)."
+  "Flag cs_bar_met_via_noncomputing_venues: the person meets the 5-work bar only through venues of cs-venues.json that are not computing venues (Cell Systems, statistics or psychology journals).",
+  "missed-labs review 2026-11-09: 3 accepted (tools/missed_labs_candidates.py snapshot candidates + stored unit listings/catalog + thesis-advisor records); full pool in missed-labs-review.json"
  ],
  "decisions": [
   {
@@ -8770,6 +8771,190 @@
     }
    ],
    "review_round": "dblp_list_supplement_20261026"
+  },
+  {
+   "name": "Andrew Houck",
+   "aliases": [],
+   "openalex": [
+    "https://openalex.org/A5009891438"
+   ],
+   "decision": "accepted",
+   "reason": "professor-rank listing 2016-2026 (Electrical and Computer Engineering); PI by advises_phd (17 theses 2016-2025); superconducting circuit QED, quantum computing and simulation hardware",
+   "home_department": "Electrical and Computer Engineering",
+   "rank": "ladder",
+   "pi_basis_kind": "advises_phd",
+   "years_listed": [
+    2016,
+    2017,
+    2018,
+    2019,
+    2024,
+    2025,
+    2026
+   ],
+   "borderline": true,
+   "evidence": [
+    {
+     "kind": "pi_basis:advises_phd",
+     "url": "https://dataspace.princeton.edu/oai/request?verb=ListRecords&resumptionToken=dim%2F%2F%2Fcom_88435_dsp01td96k251d%2F1700",
+     "sha256": "e8f218c2a5c0d95876a605de890b4c8377f29b5b7e33bbf9ac474d2a5af69d3f",
+     "quote": "advisor: Houck, Andrew; author: Liu, Yanbing",
+     "observed": "2026-11-09"
+    },
+    {
+     "kind": "coverage_review_evidence",
+     "url": "https://web.archive.org/web/20160330172825id_/http://ee.princeton.edu/people/faculty",
+     "sha256": "34e87b528998669c5e669b857e095705569e922196f8d4860013f285e2144e57",
+     "quote": "Andrew Houck Associate Professor of Electrical Engineering",
+     "observed": "2016-03-30"
+    },
+    {
+     "kind": "coverage_review_evidence",
+     "url": "https://web.archive.org/web/20260408055226id_/https://ece.princeton.edu/people-list/faculty",
+     "sha256": "ba7cd55d5deea1e5c69dc4a1e20c0bff9a0544772a877e3d2f8aef8293acbd92",
+     "quote": "Andrew Houck Anthony H.P. Lee '79 P11 P14 Professor of Electrical and Computer Engineering",
+     "observed": "2026-04-08"
+    }
+   ],
+   "oa_candidates": [
+    [
+     "https://openalex.org/A5009891438",
+     56,
+     [
+      "Andrew Houck",
+      "https://orcid.org/0000-0002-9788-5874"
+     ]
+    ]
+   ]
+  },
+  {
+   "name": "Jeff Thompson",
+   "aliases": [
+    "Jeff Thompson"
+   ],
+   "openalex": [
+    "https://openalex.org/A5086641609"
+   ],
+   "decision": "accepted",
+   "reason": "professor-rank listing 2016-2026 (ECE, Electrical and Computer Engineering); PI by advises_phd (7 theses 2021-2025); neutral-atom and solid-state quantum computing hardware",
+   "home_department": "Electrical and Computer Engineering",
+   "rank": "ladder",
+   "pi_basis_kind": "advises_phd",
+   "years_listed": [
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+   ],
+   "borderline": true,
+   "evidence": [
+    {
+     "kind": "pi_basis:advises_phd",
+     "url": "https://dataspace.princeton.edu/oai/request?verb=ListRecords&resumptionToken=dim%2F%2F%2Fcom_88435_dsp01td96k251d%2F3500",
+     "sha256": "846668b95572f8ed46d28bb5d4381b68a0301a48fa8122736886b4ee5d40a5e9",
+     "quote": "advisor: Thompson, Jeff; author: Raha, Mouktik",
+     "observed": "2026-11-09"
+    },
+    {
+     "kind": "coverage_review_evidence",
+     "url": "https://web.archive.org/web/20160330172825id_/http://ee.princeton.edu/people/faculty",
+     "sha256": "34e87b528998669c5e669b857e095705569e922196f8d4860013f285e2144e57",
+     "quote": "Jeff Thompson Assistant Professor of Electrical Engineering",
+     "observed": "2016-03-30"
+    },
+    {
+     "kind": "coverage_review_evidence",
+     "url": "https://web.archive.org/web/20260408055226id_/https://ece.princeton.edu/people-list/faculty",
+     "sha256": "ba7cd55d5deea1e5c69dc4a1e20c0bff9a0544772a877e3d2f8aef8293acbd92",
+     "quote": "Jeff Thompson Associate Professor of Electrical and Computer Engineering",
+     "observed": "2026-04-08"
+    }
+   ],
+   "oa_candidates": [
+    [
+     "https://openalex.org/A5086641609",
+     66,
+     [
+      "Jeff D. Thompson",
+      "https://orcid.org/0000-0001-8673-052X"
+     ]
+    ],
+    [
+     "https://openalex.org/A5109842688",
+     2,
+     [
+      "Jeffrey D. Thompson",
+      null
+     ]
+    ],
+    [
+     "https://openalex.org/A5072635440",
+     1,
+     [
+      "Jeff Thompson",
+      null
+     ]
+    ]
+   ]
+  },
+  {
+   "name": "Jason Petta",
+   "aliases": [],
+   "openalex": [
+    "https://openalex.org/A5002847180"
+   ],
+   "decision": "accepted",
+   "reason": "professor-rank listing 2016-2019 (Electrical and Computer Engineering); PI by advises_phd (11 theses 2016-2024); semiconductor spin qubits (quantum computing hardware)",
+   "home_department": "Electrical and Computer Engineering",
+   "rank": "ladder",
+   "pi_basis_kind": "advises_phd",
+   "years_listed": [
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "borderline": true,
+   "evidence": [
+    {
+     "kind": "pi_basis:advises_phd",
+     "url": "https://dataspace.princeton.edu/oai/request?verb=ListRecords&resumptionToken=dim%2F%2F%2Fcom_88435_dsp01td96k251d%2F1600",
+     "sha256": "ea5e39aa8fc60daa7aeab31d9c4394d031355228fd2c199ba3e17feac60beabf",
+     "quote": "advisor: Petta, Jason  R; author: Sangtawesin, Sorawis",
+     "observed": "2026-11-09"
+    },
+    {
+     "kind": "coverage_review_evidence",
+     "url": "https://web.archive.org/web/20160330172825id_/http://ee.princeton.edu/people/faculty",
+     "sha256": "34e87b528998669c5e669b857e095705569e922196f8d4860013f285e2144e57",
+     "quote": "Jason Petta Professor of Physics",
+     "observed": "2016-03-30"
+    },
+    {
+     "kind": "coverage_review_evidence",
+     "url": "https://web.archive.org/web/20190315201849id_/http://ee.princeton.edu/people/faculty",
+     "sha256": "bd8287999f39b4342134f7a139b60793ba9b328ac0812a28262e6334d0f062a5",
+     "quote": "Jason Petta Professor of Physics",
+     "observed": "2019-03-15"
+    }
+   ],
+   "oa_candidates": [
+    [
+     "https://openalex.org/A5002847180",
+     39,
+     [
+      "J. R. Petta",
+      "https://orcid.org/0000-0002-6416-0789"
+     ]
+    ]
+   ]
   }
  ],
  "supplement": {
