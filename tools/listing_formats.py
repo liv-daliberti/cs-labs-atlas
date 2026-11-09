@@ -350,11 +350,28 @@ def toronto_directory(h, section):
     Some source rows omit their opening tr tag. Fixed header column counts let us
     retain those entries without pulling contact or research cells into titles.
     """
-    m = re.search(r'<h2\b[^>]*id=[\'"]' + re.escape(section) + r'[\'"][^>]*>.*?</h2>\s*<table\b[^>]*>(.*?)</table>', h, re.S | re.I)
+    # 2021-2022 captures call the research section `tenurestream`; the current page calls it `researchstream`
+    ids = ('researchstream', 'tenurestream') if section == 'researchstream' else (section,)
+    m = None
+    for sid in ids:
+        m = re.search(r'<h2\b[^>]*id=[\'"]' + re.escape(sid) + r'[\'"][^>]*>.*?</h2>\s*<table\b[^>]*>(.*?)</table>', h, re.S | re.I)
+        if m:
+            break
     if not m:
         return []
     cells = re.findall(r'<td\b[^>]*>(.*?)(?=</td>|<td\b|</tr>|$)', m.group(1), re.S | re.I)
     columns = 5 if section == 'teachingstream' else 3
+    if len(cells) % columns and section == 'teachingstream':
+        # a teaching row may omit its phone/office cells (2025-04 capture): pair each name cell with the position cell after it
+        out = []
+        for i in range(len(cells) - 1):
+            if '@' in cells[i] or not re.search(r'Teaching Stream|Lecturer|Instructor|Professor', cells[i + 1]) or re.search(r'Teaching Stream|Lecturer|Instructor', cells[i]):
+                continue
+            link = re.search(r'<a\b[^>]*href=[\'"]([^\'"]+)', cells[i], re.I)
+            name = clean(re.split(r'<br\s*/?>', cells[i], flags=re.I)[0])
+            if name:
+                out.append(dict(name_listed=name, titles=[clean(cells[i + 1])], homepage=H.unescape(link.group(1)).strip() if link else None, division=None))
+        return out
     if len(cells) % columns:
         raise ValueError(f'Toronto {section}: incomplete directory row ({len(cells)} cells)')
     out = []
