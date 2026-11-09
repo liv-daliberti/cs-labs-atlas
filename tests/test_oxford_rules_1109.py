@@ -73,7 +73,7 @@ def test_R_PAP_33_deliverable_pattern_only_on_repository_dois():
     ('Mosquito Detection with Neural Networks', 'Mosquito Detection with Neural Networks: The Buzz of Deep Learning'),
     ('Salt & Pepper Heatmaps', 'SALT AND PEPPER HEATMAPS'),
 ])
-def test_R_PAP_40_tolerant_matches(a, b):
+def test_R_PAP_41_tolerant_matches(a, b):
     assert g.titles_match(a, b)
 
 
@@ -81,14 +81,29 @@ def test_R_PAP_40_tolerant_matches(a, b):
     ('HumBugDB: a large-scale acoustic mosquito dataset', 'Mosquito Detection with Neural Networks: The Buzz of Deep Learning'),
     ('Dynamic / ME-JEPA v2.0.0-rc1: Audited World-Model Runtime', 'The Curse of Recursion: Training on Generated Data Makes Models Forget'),
 ])
-def test_R_PAP_40_corrupted_records_hold(rec, src):
+def test_R_PAP_41_corrupted_records_hold(rec, src):
     sources = {'1705.05180': {'title': src}, '2305.17493': [src]}
     r = dict(pi='X', doi='10.48550/arxiv.1705.05180v2' if 'Hum' in rec else '10.48550/arxiv.2305.17493', title=rec)
     assert g.title_conflict(r, sources) == [src]
     assert g.held_rows([r], sources)[0]['verdict'] == 'hold'
 
 
-def test_R_PAP_40_unknown_doi_is_not_judged_and_any_version_title_matches():
+def test_R_PAP_41_unknown_doi_is_not_judged_and_any_version_title_matches():
     assert g.title_conflict(dict(doi='10.1/none', title='Anything'), {}) is None
     s = {'10.1109/x': ['Old Title of the Paper', 'New Title of the Paper']}
     assert g.title_conflict(dict(doi='10.1109/X', title='Old title of the paper.'), s) is None
+
+
+def test_R_HIER_05_computing_as_object_people_are_never_accepted():
+    """The five Oxford Internet Institute people excluded as a class (owner delegated to Claude 2026-11-09) are held or excluded, never accepted as PIs."""
+    import json
+    from pathlib import Path
+    root = Path(__file__).resolve().parents[1]
+    names = ['Gina Neff', 'Luciano Floridi', 'Mariarosaria Taddeo', 'Sandra Wachter', 'Bernie Hogan']
+    text = (root / 'docs' / 'RULES.md').read_text()
+    section = text.split('### R-HIER-05', 1)[1].split('\n### ', 1)[0]
+    assert all(n in section for n in names) and 'excluded_scope' in section
+    p = root / 'hierarchy' / 'oxford' / 'reviewed' / 'cs-related-review.json'
+    if p.exists():
+        decisions = {d['name']: d['decision'] for d in json.loads(p.read_text())['decisions']}
+        assert all(decisions.get(n, 'excluded_scope') in ('held_scope', 'excluded_scope') for n in names)
