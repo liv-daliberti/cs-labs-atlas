@@ -14,6 +14,14 @@ School → department → PI lab → papers + students → student papers. Every
 own lab (the PI and their advisees). A census lab unit is reused only when the collection unit has this PI as its single
 leader; otherwise a new own lab is proposed and the multi-leader or umbrella unit stays a collective, not a lab.
 
+### R-HIER-05 (2026-11-09, Claude on the owner's delegation) — computing-as-object social scientists are out of scope
+Owner delegated the choice to Claude on 2026-11-09 (coordinator question `owner_question_1_computing_as_object`). Faculty whose research object is digital society, ethics or
+information policy rather than computing methods are EXCLUDED as a class, even when the computing-share test passes (it counts DBLP-indexed CHI/CSCW venues). A PI is in
+scope when computing is their research method or object across the body of work. Recorded reviewed scope exclusions (`decision: excluded_scope`, evidence kept in the review row):
+Oxford Internet Institute's Gina Neff (sociologist, OII listing 2022: 'Professor of Technology & Society'; all 16 works arrive by advisee routes, not by her own ORCID or
+DBLP id; the last 3 carry a Cambridge Minderoo Centre affiliation), Luciano Floridi, Mariarosaria Taddeo, Sandra Wachter and Bernie Hogan. Their works do not enter through
+any route. Reversible per person with new evidence; a person whose own work is computing methods is not covered by this class.
+
 ### R-HIER-02 (2026-10-21, owner)
 Centres, initiatives, consortia, programmes, projects, clusters and institutes are not labs (`COLLECTIVE`), unless the
 unit name also says lab, laboratory or group.
@@ -158,6 +166,11 @@ Management Proceedings, ...); a single-author `conference-abstract` (keynotes an
 our world with sensors'), unless the PI's DBLP page lists the same title with co-authors (OpenAlex cut the byline); and
 a `conference-abstract` titled as a keynote or invited talk. CS conference abstracts with co-authors (EC, FPGA, SIGCSE,
 CHI EA) stay. Reversible per school: the report counts every `not_paper:meeting_abstract:*` tag.
+**Extension 2026-11-09 (owner delegated the choice to Claude on 2026-11-09; Oxford admission review, T111):** congress-supplement abstracts of two
+series are dropped as `meeting_abstract:congress`. (a) Neuromodulation (INS congress; Elsevier DOI `10.1016/j.neurom.YYYY.MM.NNN`) when the record is typed
+`conference-abstract` or its title opens with a program code (`PO222 / #1008 `, `O025 `, `RF006 `, `ID: 324641 `); a title-case Neuromodulation article under the
+same DOI shape stays. (b) ERS congress abstracts (`10.1183/13993003.congress-YYYY.*`, and the `1393003` typo OpenAlex carries), any type. On the Oxford round-2
+package: 10 net-new Denison rows and 1 Min Chen row drop (the owner expected 11 net-new; 10 Denison counts the 'ID: 324641' supplement). Tests: `tests/test_oxford_rules_1109.py`.
 
 ### R-PAP-20 (2026-10-29, owner: accuracy sample) — page 1 before the unaffiliated-advisee route (R3)
 Before a work enters through R-PAP-12, page 1 (`tools/pi_fulltext_affiliation.py`: the arXiv v1 bulk copy or the
@@ -334,6 +347,24 @@ with no venue (`repository_record`: datasets, software, artifacts; OSF DOIs are 
 editorial record (LNCS volumes whose byline is the editors; type `book` stays, R-PAP-15; `edited_volume`); a workshop or session description ('EE2: Workshop on ...' at ISSCC, 'VDS @ KDD 2022',
 'KDD-2023 Workshop on ...'; `workshop_proposal`; 'KIT@IWSLT2022' stays); a proceedings-volume title ('Conference on Health, Inference, and Learning (CHIL) 2022': 'Conference|Symposium|Workshop on ...' ending in a year; `proceedings_volume`). **Conference abstracts are not papers (owner, 2026-11-05):** besides R-PAP-19's meeting abstracts and the '(Conference Presentation)' records,
 an explicit title suffix '(Abstract Reprint)' is dropped even if its page count is missing or its type is misclassified; a `conference-abstract` record of 2 pages or less in DBLP is dropped whatever its byline (`conference_abstract`); one without a page count, or of 3+ pages (ACM EC, PES General Meeting papers OpenAlex types as abstracts), stays.
+**Extension 2026-11-09 (owner delegated the choice to Claude on 2026-11-09; Oxford admission review, T111): Zenodo project deliverables and reports.** A record with a
+Zenodo, Figshare or Dryad DOI (venue Zenodo or any other) is dropped as `repository_deliverable` when its OpenAlex type is `report`, or its title carries a project
+deliverable code (`D2.5`, `D4.5`, `SMASH-HCM D1.4`, 'Deliverable 5.8', `M5:`), a report title ('Final / Interim / Annual / Progress / Workshop / Case Report',
+'Report on ...', a plenary report), a consultation or RFI response ('Response of ... to the ...', 'Response to the ... consultation'), a focus-group record or a
+'Preliminary Release'. Zenodo records that are real publications (an article or conference paper, a FAIRsharing paper, a book chapter) stay: the rule never judges a record
+by its Zenodo host alone. The remainder (webinars, work plans, survey results, code-for-paper deposits) is held in the Oxford review, not dropped by rule. On the Oxford
+round-2 package: 36 of the 81 Zenodo, Figshare and Dryad DOI rows (79 Zenodo) drop, 20 of them among the 44 net-new Zenodo (mostly Sansone). Tests: `tests/test_oxford_rules_1109.py`.
+
+### R-PAP-41 (2026-11-09, Claude on the owner's delegation; Oxford admission review) — source-title guard
+A record's title must match the title its source gives for its DOI: arXiv (the id in `10.48550/arxiv.<id>`, any version title) or Crossref. The comparison is normalised
+(HTML entities and markup, accents, case, punctuation, '&' = 'and') and tolerant: a subtitle (one title is the other's prefix of 2+ words), a small wording change
+('Iterate' / 'Iterative'; character ratio >= 0.78 or stemmed-token Jaccard >= 0.6) all match. A record that matches none of the source titles is HELD (verdict `hold`; a person
+reads the pair), never silently dropped or admitted; a DOI with no source title is not judged. Known corrupted: Roberts 'HumBugDB' under arXiv 1705.05180, Gal 'ME-JEPA'
+under 2305.17493 (also in the live 7031 candidate). A genuine retitling between arXiv versions is held too and cleared by the reviewer (on the Oxford round-2 package: 10
+holds, 2 corrupted and 8 retitles; Crossref's 4 markup-only differences pass). `tools/source_title_guard.py PAPERS SOURCES --out holds.json`; the library functions are
+`titles_match`, `title_conflict`, `held_rows`. It is an admission-review gate, not yet a build step: the build has no local arXiv/Crossref title store (the 1,289 arXiv and
+640 Crossref titles of the Oxford review were fetched into scratch), so a school's package is checked by running the tool on its `lab_papers.jsonl.gz`.
+
 ### R-PAP-37 (2026-11-05, owner task: Michigan student-paper gaps) — listing continuity
 Four Michigan `student_not_linked` findings of accuracy round r2 (Chen, Aksoy, Sattar, Wandke) were checked paper by paper. Two (Chen, Aksoy, both
 Gorodetsky's students) are real lab-paper gaps: Gorodetsky's only dated appointment evidence is the AERO unit listing of 2018-2020 (the later AERO

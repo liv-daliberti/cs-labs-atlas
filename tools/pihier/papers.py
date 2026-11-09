@@ -155,6 +155,13 @@ ABSTRACT_JOURNALS = re.compile(r'(?i)^(cancer research|circulation|blood|stroke|
                                r'genetics in medicine|schizophrenia bulletin|structural dynamics|academy of management proceedings|'
                                r'regular and young investigator|the faseb journal|neurology|biological psychiatry|value in health|'
                                r'annals of the rheumatic diseases|american journal of respiratory and critical care|journal of thoracic oncology)')
+# R-PAP-19 extension (2026-11-09, Claude on the owner's delegation): meeting-supplement abstracts of two congress series. Neuromodulation
+# (INS congress, Elsevier DOIs 10.1016/j.neurom.YYYY.MM.NNN) abstracts are typed conference-abstract or open with a program code ('PO222 / #1008 ...',
+# 'O025 ...', 'RF006 ...', 'ID: 324641 ...'); a regular Neuromodulation article is title-case with no such code and stays. ERS congress abstracts have
+# DOIs 10.1183/13993003.congress-YYYY.<code> (OpenAlex also carries the typo 10.1183/1393003.congress-...); every such DOI is an abstract.
+NEUROM_DOI = re.compile(r'(?i)^10\.1016/j\.neurom\.\d{4}\.\d{2}\.\d+$')
+NEUROM_ABSTRACT_CODE = re.compile(r'^\s*(?:[A-Z]{1,3}\d{2,4}\b(?:\s*/\s*#\d+)?\s|ID:\s*\d+\s)')   # 'PO222 / #1008 ', 'O025 ', 'ID: 324641 '
+ERS_CONGRESS_DOI = re.compile(r'(?i)^10\.1183/1\d*3003\.congress-\d{4}\.')
 THESIS_REPOSITORY_DOI = re.compile(r'^10\.25740/')  # Stanford Digital Repository (purl.stanford.edu): theses, honors theses, capstones
 
 
@@ -214,6 +221,12 @@ DATASET_TITLE = re.compile(r'(?i)^\s*(?:processed|raw|synthetic|simulation) data
                            r'\b(?:matlab|csv|json|hdf5?) (?:data )?(?:format|files?)\s*$')
 # Repository-hosted named dataset deposits can be mislabeled articles with the repository as venue.
 NAMED_DATASET_TITLE = re.compile(r'(?i)^\s*[^:]{1,100}\bdatasets?\s*:')
+# R-PAP-33 extension (2026-11-09): project deliverables, reports and consultation responses deposited on Zenodo (Sansone's FAIRplus/BY-COVID/ELIXIR
+# deliverables 'D2.5 ...', Wallom's 'Project Radar D4.5', Bueno-Orovio's 'SMASH-HCM D1.4'). Only a Zenodo/Figshare/Dryad DOI is tested.
+DELIVERABLE_TITLE = re.compile(r'(?i)(?:^|[\s:(\-\u2013])D\d{1,2}\.\d{1,2}(?:\.\d{1,2})?\b|\bdeliverable\s+\d|^\s*M\d{1,2}\s*:|'
+                               r'\b(?:final|interim|annual|progress|workshop|stakeholder engagement|case) reports?\b|^\s*report on\b|\bplenary\b.*\breport\b|'
+                               r'\bresponse of\b.*\bto the\b|\bresponse to the\b.*\b(?:consultation|rfi|call for (?:evidence|views|input))|\bconsultation response\b|'
+                               r'\bfocus group\b|^\s*preliminary release\b')
 REPOSITORY_VENUE = re.compile(r'(?i)^\s*(?:zenodo|figshare|dryad)(?:\s*\([^)]*\))?\s*$')
 HIGHLIGHTS_SUMMARY_TITLE = re.compile(r'(?i)\bhighlights (?:from|of) the\b.*\b(?:conference|workshop|symposium|meeting|summit)\b|'
                                       r'^\s*(?:summary|report|overview) (?:of|on) the\b.*\b(?:workshop|conference|symposium|seminar|meeting|summit)\b|'
@@ -242,6 +255,8 @@ def non_research_record(r, pages=None):
         return 'conference_abstract'
     if REPOSITORY_DOI.match(d) and not v.strip():
         return 'repository_record'
+    if REPOSITORY_DOI.match(d) and (ty == 'report' or DELIVERABLE_TITLE.search(t)):
+        return 'repository_deliverable'
     if REPOSITORY_DOI.match(d) and REPOSITORY_VENUE.match(v) and (DATASET_TITLE.search(t) or NAMED_DATASET_TITLE.search(t)):
         return 'dataset_record'
     if not d and not v.strip() and DATASET_TITLE.search(t):
@@ -270,7 +285,7 @@ def not_a_paper(r, pages=None, bare=False):
       R-PAP-18 (R1) software_record, repository_supplement (incl. protocols.io), erratum, machine_translation,
                dagstuhl_report, oberwolfach_report, editorial, award_announcement, workshop_proposal, highlights_column,
                tribute
-      R-PAP-19 (R2) meeting_abstract:<venue|doi|title|journal|single_author|keynote>
+      R-PAP-19 (R2) meeting_abstract:<venue|doi|title|journal|single_author|keynote|congress>  (congress: Neuromodulation/ERS supplements, 2026-11-09)
       R-PAP-22 (R5) dissertation (the PI is the adviser, not the author).
       R-PAP-31      commentary (a closure, discussion or quoted comment/reply), editorial (a 'Special Issue/Topic/Section on ...' preface)
       R-PAP-27      proceedings_volume, supplement_abstract (a numbered abstract in a journal), commentary (a 'Technical perspective'), column (a magazine piece of 3 pages or less), invited_abstract (a
@@ -331,6 +346,8 @@ def not_a_paper(r, pages=None, bare=False):
         return 'meeting_abstract:doi'
     if ABSTRACT_TITLE.search(t):
         return 'meeting_abstract:title'
+    if ERS_CONGRESS_DOI.match(d) or (NEUROM_DOI.match(d) and (ty == 'conference-abstract' or NEUROM_ABSTRACT_CODE.search(t))):
+        return 'meeting_abstract:congress'
     if ty == 'conference-abstract' and ABSTRACT_JOURNALS.search(v):
         return 'meeting_abstract:journal'
     if ty == 'conference-abstract' and nb == 1:
