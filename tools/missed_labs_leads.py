@@ -10,7 +10,7 @@ excluded: anyone matching a census row or alias, a student / postdoc / member of
 CSRankings is never read here (licence: discovery lead only, by hand).
 usage: missed_labs_leads.py <school> [--min-cs 5] [--out FILE]
 """
-import argparse, gzip, json
+import argparse, gzip, json, re
 from collections import defaultdict
 from pathlib import Path
 
@@ -36,7 +36,7 @@ def best_name(raw):
     n = ' '.join(x for i, x in enumerate(w) if i == 0 or x.lower() != w[i - 1].lower())   # 'Bruno Sinopoli Sinopoli'
     if ',' in n and n.count(',') == 1:
         a, b = n.split(','); n = f'{b.strip()} {a.strip()}'
-    return n
+    return re.sub(r'^(?:(?:PhD|MD|Dr|Prof)\.?\s+)+(?=\S+\s+\S)', '', n)   # a degree OpenAlex stored in the name field ('PhD Pranav Rajpurkar')
 
 
 def build(school, min_cs=5):
