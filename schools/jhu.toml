@@ -250,6 +250,36 @@ name = "Department of Biomedical Engineering (faculty eras)"
 url = "https://bme.jhu.edu/"
 listings = ["bme.jhu.edu/people/faculty/", "www.bme.jhu.edu/people/faculty/"]
 
+[[affiliated_units]]
+code = "CBEU"
+name = "Department of Chemical and Biomolecular Engineering (people eras)"
+url = "https://engineering.jhu.edu/chbe/"
+listings = ["engineering.jhu.edu/chbe/people/", "engineering.jhu.edu/chbe/faculty/", "engineering.jhu.edu/chbe/people/faculty/"]
+
+[[affiliated_units]]
+code = "MEU"
+name = "Department of Mechanical Engineering (people eras)"
+url = "https://engineering.jhu.edu/me/"
+listings = ["engineering.jhu.edu/me/people/", "engineering.jhu.edu/me/faculty/", "me.jhu.edu/faculty/"]
+
+[[affiliated_units]]
+code = "DCSEU"
+name = "Department of Civil and Systems Engineering (people eras)"
+url = "https://engineering.jhu.edu/dces/"
+listings = ["engineering.jhu.edu/dces/people/", "engineering.jhu.edu/dces/faculty/", "engineering.jhu.edu/civil/faculty/"]
+
+[[affiliated_units]]
+code = "MSEU"
+name = "Department of Materials Science and Engineering (people eras)"
+url = "https://engineering.jhu.edu/materials/"
+listings = ["engineering.jhu.edu/materials/people/", "engineering.jhu.edu/materials/faculty/"]
+
+[[affiliated_units]]
+code = "PHYSU"
+name = "Department of Physics and Astronomy (faculty)"
+url = "https://physics-astronomy.jhu.edu/"
+listings = ["physics-astronomy.jhu.edu/people/faculty/", "physics-astronomy.jhu.edu/people/"]
+
 # --- students ----------------------------------------------------------------------------------------------------------------
 [thesis]
 kind = "none"
@@ -326,6 +356,18 @@ purpose = "Biomedical Engineering faculty, www host (the 2022 and 2025 captures;
 probe = "https://www.bme.jhu.edu/people/faculty/"
 
 [[hosts]]
+host = "physics-astronomy.jhu.edu"
+use = "wayback-only"
+purpose = "Physics and Astronomy people (robots.txt answered 403 to a plain request 2026-11-09)"
+probe = "https://physics-astronomy.jhu.edu/people/"
+
+[[hosts]]
+host = "me.jhu.edu"
+use = "wayback-only"
+purpose = "Mechanical Engineering, older host (Whiting sites challenge bots)"
+probe = "https://me.jhu.edu/faculty/"
+
+[[hosts]]
 host = "www.clsp.jhu.edu"
 use = "wayback-only"
 purpose = "Center for Language and Speech Processing faculty (bot challenge 2026-11-05)"
@@ -366,6 +408,18 @@ host = "ai.jhu.edu"
 use = "wayback-only"
 purpose = "Data Science and AI Institute people (searched unit)"
 probe = "https://ai.jhu.edu/people/"
+
+[[hosts]]
+host = "sais.jhu.edu"
+use = "none"
+purpose = "SAIS (robots.txt names ClaudeBot and anthropic-ai, read 2026-11-09: never used, Wayback included)"
+probe = "https://sais.jhu.edu/"
+
+[[hosts]]
+host = "carey.jhu.edu"
+use = "none"
+purpose = "Carey Business School (robots.txt answered 403 to a plain request 2026-11-09, so its AI rules cannot be read: not used; owner/coordinator 2026-11-09)"
+probe = "https://carey.jhu.edu/"
 
 [[hosts]]
 host = "jscholarship.library.jhu.edu"

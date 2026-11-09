@@ -18,8 +18,9 @@
  "counts": {
   "no_appointment_evidence": 774,
   "not_faculty": 33,
-  "accepted": 35,
-  "already_in_census_as": 1
+  "accepted": 33,
+  "already_in_census_as": 1,
+  "held_scope": 2
  },
  "per_source": {
   "oa": 851,
@@ -9788,8 +9789,8 @@
     2016,
     2025
    ],
-   "decision": "accepted",
-   "reason": "ladder professor title in a stored unit/profile capture; computing share test passed",
+   "decision": "held_scope",
+   "reason": "held_scope: nonlinear and quantum optics (physics); the DBLP record matched is a namesake-risk (15 of 15 indexed on a short list), no computing object or method found in the venues.",
    "evidence": [
     {
      "url": "https://web.archive.org/web/20160303230717id_/http://engineering.jhu.edu:80/ece/faculty/",
@@ -12517,7 +12518,8 @@
      "quote": "Pablo Iglesias Edward J. Schaefer Professor",
      "ladder": true
     }
-   ]
+   ],
+   "hand_review": "2026-11-09 kept accepted: statistical learning / computational modelling is the method (Geman: machine-learning classifiers and vision; Iglesias: control-theoretic models of cell signalling, Biological Cybernetics), listed Professor on the ECE directory"
   },
   {
    "name": "Seth Billings",
@@ -16849,8 +16851,8 @@
     2016,
     2026
    ],
-   "decision": "accepted",
-   "reason": "ladder professor title in a stored unit/profile capture; computing share test passed",
+   "decision": "held_scope",
+   "reason": "held_scope: acoustics and electret-microphone research (venues: Springer eBooks, J. Acoust. Soc. Am., Sensors); 8 DBLP-indexed of 28 school works are signal-processing side papers, computing is not the object or method of the lab (read from OpenAlex venue counts; unit page lists him as Professor, ECE).",
    "evidence": [
     {
      "url": "https://web.archive.org/web/20160303230717id_/http://engineering.jhu.edu:80/ece/faculty/",
@@ -21727,7 +21729,8 @@
      "quote": "Donald Geman Professor",
      "ladder": true
     }
-   ]
+   ],
+   "hand_review": "2026-11-09 kept accepted: statistical learning / computational modelling is the method (Geman: machine-learning classifiers and vision; Iglesias: control-theoretic models of cell signalling, Biological Cybernetics), listed Professor on the ECE directory"
   },
   {
    "name": "Matthew J. Roos",
@@ -27887,5 +27890,9 @@
     "profile"
    ]
   }
- ]
+ ],
+ "census_notes": {
+  "sais.jhu.edu": "use none: robots.txt names ClaudeBot and anthropic-ai (read 2026-11-09); never used, Wayback included",
+  "carey.jhu.edu": "use none: robots.txt answered 403 to a plain request (2026-11-09), AI rules unreadable; not used (coordinator 2026-11-09)"
+ }
 }

@@ -13,7 +13,6 @@ import argparse
 import json
 import re
 
-import atlas_paths as P  # noqa: E402
 import school_web as W  # noqa: E402
 
 PAGES = re.compile(r'/(?:graduate-studies/(?:2016|2016-17|2017-18|2018-19)-phd-graduates|people/phd-graduates)/?$')
@@ -71,5 +70,6 @@ if __name__ == '__main__':
     r = rows(a.school)
     for x in r:
         assert x['quote'] in ' '.join(W.con(a.school).execute('select text from captures where capture_url=?', (x['capture_url'],)).fetchone()[0].replace('\n', ' ').split()), x
-    P.data_w('defense-evidence.json', a.school).write_text(json.dumps(r, indent=1, ensure_ascii=False)) if not a.out else open(a.out, 'w').write(json.dumps(r, indent=1, ensure_ascii=False))
+    if a.out:
+        open(a.out, 'w').write(json.dumps(dict(rows=r), indent=1, ensure_ascii=False))   # R-STU-26 is held: the rows go to a held file, never straight to defense-evidence.json
     print(len(r), 'rows', len({x['student'] for x in r}), 'students', len({x['host'] for x in r}), 'advisers')

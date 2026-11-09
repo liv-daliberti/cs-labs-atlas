@@ -774,8 +774,8 @@ tool judges a page by its own record markers instead of school_web's challenge p
 An Oxford Computer Science student profile (www.cs.ox.ac.uk/people/First.Last) reads "Doctoral Student ... Supervisors <full names>". Each full-name match with a school PI is a row (`reviewed/roster-evidence.json`,
 `tools/cs_student_pages.py`); the line is cut at "Past Student", "Students" and "Co-supervis...". Years: the leaving-date year, else the capture year. 175 rows, 55 PIs; hand check 30 of 175 (seed 20261109): 30 quotes verified in the page; one spill-over (a past-student name after the supervisors) found and fixed.
 
-### R-STU-26 (2026-11-09, proposed by the JHU deep dive; needs owner approval) — a department's PhD graduate page names the adviser
+### R-STU-26 (2026-11-09, proposed by the JHU deep dive; HELD until the owner approves) — a department's PhD graduate page names the adviser
 The JHU Computer Science graduate pages (www.cs.jhu.edu/graduate-studies/2016-17, 2017-18, 2018-19 PhD graduates; people/phd-graduates/) announce each defense: "would like to congratulate Dr. X on the recent
 successful defense of his thesis work ... on <date>. Primary Advisor: <PI>" (2016-17 layout: "<Name> Defense Date: <date> Title: ... Primary Advisor: <PI>"). The block is the department's own record of the adviser.
 One row per named adviser who resolves to exactly one school PI (R-STU-03); years = the defense year (R-STU-14); role phd_alumnus. Tool: `tools/cs_phd_graduates.py` (reads stored Wayback captures; writes
-`reviewed/defense-evidence.json`, merged by `labpage_students_school.py extract`). 2026-11-09: 47 rows, 46 graduates, 34 matched to a PI; hand check 30 of 34 (seed 20261109): 30 quotes and adviser lines verified in the stored page.
+`reviewed/held-student-rules.json` while held; to release, copy the rows to `reviewed/defense-evidence.json` and run `labpage_students_school.py extract`). 2026-11-09: 47 rows, 46 graduates, 34 matched to a PI; hand check 30 of 34 (seed 20261109): 30 quotes and adviser lines verified in the stored page.
