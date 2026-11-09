@@ -44,7 +44,9 @@ NOW = time.strftime('%Y-%m-%d')
 UA = 'HomogenizingScienceResearch/0.2 (academic metadata inventory; robots.txt honoured)'
 
 PEOPLE = re.compile(r'团队|成员|学生|人员|研究生|师生|课题组|研究组|实验室成员|people|member|team|student|alumni|lab\s*members|group', re.I)
-LABTXT = re.compile(r'实验室|课题组|研究组|研究所|研究中心|工作室|Lab\b|Laboratory|Group\b|Center|Centre|Institute', re.I)
+LABTXT = re.compile(r'实验室|课题组|研究组|研究所|研究中心|工作室|\bLab\b|Laboratory|\bGroup\b|\bCenter\b|\bCentre\b|\bInstitute\b', re.I)
+BAD_LINK_HOST = re.compile(r'(?:^|\.)(?:mathworks\.com|weixin\.qq\.com|yjs\.hit\.edu\.cn|en\.hit\.edu\.cn|www\.hit\.edu\.cn|[a-z]+\.gov\.cn|miit\.gov\.cn)$', re.I)
+SECTION_PAGE = re.compile(r'/list\d*\.htm$|/list/index\.htm|/page\.htm$')
 HOMETXT = re.compile(r'主页|主頁|个人网站|个人网页|个人页面|home\s*page|personal\s*(?:web)?(?:site|page)', re.I)
 ORGTXT = re.compile(r'Working Group|Challenge|Conference|Workshop|Journal|Committee|Society|Association|IEEE|ACM|委员会|学会|协会|会议|期刊|研讨会|University\b|大学$', re.I)
 SKIP_HREF = re.compile(r'^(?:javascript:|mailto:|tel:|#)|\.(?:pdf|docx?|pptx?|zip|rar|jpe?g|png|gif)(?:$|\?)', re.I)
@@ -55,6 +57,7 @@ NAME_LAT = re.compile(r"^[A-Z][A-Za-z'’.-]+(?:\s+[A-Z][A-Za-z'’.-]+){1,3}$")
 ROLE_HEAD = re.compile(r'博士|硕士|研究生|本科|学生|教师|教授|老师|助理|博后|博士后|访问|毕业|在读|校友|成员|Ph\.?D|Master|Undergrad|Student|Postdoc|Alumni|Faculty|Member|Visiting|Staff|Intern', re.I)
 NOT_NAME = {'更多', '详情', '返回', '首页', '联系', '联系我们', '关于我们', '研究方向', '研究成果', '团队介绍', '课题组', '师资队伍',
             '招生信息', '学生信息', '科学研究', '教学研究', '论文成果', '科研项目', '新闻动态', '实验室', '研究组', '更多>>', '公众号'}
+NOT_NAME_LAT = re.compile(r'Google|Scholar|Github|Twitter|Linkedin|DBLP|Homepage|Home Page|Website|Email|Download|Read More|Learn More|Click|CV$', re.I)
 
 
 def norm_name(s):
@@ -296,9 +299,9 @@ def host_class(url):
 def link_kind(text, url, home_host):
     """group | pi_home | None for an external link on a PI's page."""
     t = text or ''
-    if ORGTXT.search(t):
+    if ORGTXT.search(t) or len(t) > 45 or '“' in t or BAD_LINK_HOST.search(urllib.parse.urlsplit(url).hostname or ''):
         return None
-    if LABTXT.search(t):
+    if LABTXT.search(t) or (re.match(r'https?://', t) and re.search(r'lab|group', urllib.parse.urlsplit(url).hostname or '', re.I)):
         return 'group'
     if HOMETXT.search(t):
         return 'pi_home'
@@ -357,7 +360,7 @@ def role_of_headings(raw):
 
 def is_person_text(t):
     t = t.strip()
-    if t in NOT_NAME:
+    if t in NOT_NAME or NOT_NAME_LAT.search(t):
         return False
     return bool(NAME_CJK.match(norm_name(t)) or NAME_LAT.match(t))
 
@@ -603,7 +606,8 @@ def build(school, do_live=True, workers=6):
                 pr = urllib.parse.urlsplit(full)
                 if pr.scheme not in ('http', 'https') or SKIP_HREF.search(h) or not is_person_text(t):
                     continue
-                if norm_url(full) in {norm_url(pbase), norm_url(site or ''), norm_url(prof or '')} or (t, full) in seen_m:
+                if (norm_url(full) in {norm_url(pbase), norm_url(site or ''), norm_url(prof or '')} or (t, full) in seen_m
+                        or norm_name(t) == norm_name(pi) or (pr.path in ('', '/') and pr.hostname == urllib.parse.urlsplit(pbase).hostname) or SECTION_PAGE.search(pr.path) or BAD_LINK_HOST.search(pr.hostname or '')):
                     continue
                 if W.NOT_A_SITE.search(pr.hostname or '') or 'weixin' in (pr.hostname or '') or pr.hostname == 'githubstatus.com':
                     continue
