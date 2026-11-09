@@ -4036,6 +4036,72 @@
      "quote": "\"display_name\":\"University of California, Berkeley\",\"country_code\":\"US\",\"type\":\"education\",\"lineage\":[\"https://openalex.org/I95457486\"]},\"years\":[2026,2025,2024,2023,2022,2021,2020]"
     }
    ]
+  },
+  {
+   "name": "Anne Collins",
+   "aliases": [
+    "Anne Gabrielle Eva Collins"
+   ],
+   "openalex": [
+    "https://openalex.org/A5067451415"
+   ],
+   "decision": "accepted",
+   "reason": "professor-rank listing 2016-2020 (Neuroscience); PI by lab_head (1 records 2026-2026); computational models of learning and executive function (reinforcement learning)",
+   "home_department": "Psychology",
+   "rank": "ladder",
+   "pi_basis_kind": "lab_head",
+   "years_listed": [
+    2016,
+    2017,
+    2018,
+    2019,
+    2020
+   ],
+   "borderline": true,
+   "evidence": [
+    {
+     "kind": "pi_basis:lab_head",
+     "url": "https://ccn.berkeley.edu/",
+     "sha256": "3dddefa46cc8c352302bd42b0cdf2129d12224579be70dc48ee09e14fe65acf7",
+     "quote": "Principal Investigator: Professor Anne Collins",
+     "observed": "2026-11-09"
+    },
+    {
+     "kind": "coverage_review_evidence",
+     "url": "https://web.archive.org/web/20161005011516id_/http://neuroscience.berkeley.edu:80/faculty/",
+     "sha256": "128309fc3a8307c86d7a2d357a00d3a7f46132f9b8081f00ec933c08523f32af",
+     "quote": "Anne Collins Assistant Professor of Psychology",
+     "observed": "2016-10-05"
+    },
+    {
+     "kind": "coverage_review_evidence",
+     "url": "https://web.archive.org/web/20200811164753id_/https://neuroscience.berkeley.edu/faculty/",
+     "sha256": "3e37fe25d70783c016f07861cb03b32c3376ff793fcc2b86f8bba487c0b52ebe",
+     "quote": "Anne Collins Assistant Professor of Psychology",
+     "observed": "2020-08-11"
+    }
+   ],
+   "oa_candidates": [
+    [
+     "https://openalex.org/A5067451415",
+     97,
+     [
+      "Anne Gabrielle Eva Collins",
+      "https://orcid.org/0000-0003-3751-3662"
+     ]
+    ],
+    [
+     "https://openalex.org/A5063972184",
+     1,
+     [
+      "Ann G.E. Collins",
+      null
+     ]
+    ]
+   ]
   }
+ ],
+ "notes": [
+  "missed-labs review 2026-11-09: 1 accepted (tools/missed_labs_candidates.py snapshot candidates + stored unit listings/catalog + thesis-advisor records); full pool in missed-labs-review.json"
  ]
 }
