@@ -1,34 +1,23 @@
-"""Personal websites of a school's PIs and students (owner request 2026-11-08: every website we can get).
+"""Sweep of the stored official pages for personal websites (owner request 2026-11-08), feeding tools/person_websites.py.
 
-A URL counts only when an official page, or the person's own verified page, links it: the department directory, a faculty
-profile, a lab people page, a thesis/listing page. Nothing is guessed from a name pattern. Every row keeps the URL, the
-page that links it (url + sha256 + anchor text), whether we fetched it (date, HTTP status, sha256), and its kind
-(lab | pi_home | pi_profile | group | student_home). Hosts we never fetch (Google Scholar, LinkedIn, X, GitHub, ...) are
-recorded with fetched=false and the reason. A person with no URL gets a specific reason.
+A URL counts only when an official page, or the person's own verified page, links it; nothing is guessed from a name pattern.
 
-  person_sweep.py harvest <school>    offline: links next to a person's name on the school's stored official pages
-                                          -> <scratch>/person-sweep/<school>/candidates.json
-  person_sweep.py fetch <school> [--shard i/n] [--limit N]
-                                          live, robots-checked, >= 3 s per host; -> <scratch>/person-sweep/<school>/fetch.<i>.jsonl
-  person_sweep.py build <school> [--out PATH]
-                                          assemble hierarchy/<school>/reviewed/person-sweep.json (+ the PI side)
-  person_sweep.py summary <school>     counts for the report
-  person_sweep.py sample <school> [--n 30] [--seed S]   the hand-check sample (printed as JSON)
+  person_sweep.py harvest <school>                       offline: links beside a person's name on every stored page -> <scratch>/candidates.json
+  person_sweep.py queue <school> --labs FILE             the URLs still to fetch -> scratch/websites-b/queue-<school>.jsonl (person_fetch.py reads it)
+  person_sweep.py build <school> --labs FILE --out FILE  person-websites.json rows: person_websites.py's plus the sweep's, annotated and gated
 
-Websites only: this module never changes a student or membership relation.
+Websites only: no student or membership relation changes.
 """
 import argparse
 import collections
 import hashlib
 import json
 import os
-import random
 import re
 import sqlite3
 import time
 import unicodedata
 import zlib
-from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from urllib.parse import urljoin, urlsplit
 
@@ -341,99 +330,6 @@ def harvest(school):
     print(school, 'pages', pages, 'candidates', len(rows), 'persons', len({r['person'] for r in rows if r['person']}), dict(stats))
 
 
-# ---------------------------------------------------------------- fetch
-class Fetcher:
-    def __init__(self):
-        import own_page_students as O
-        self.rb = O.Robots()
-        import threading
-        self.lock = threading.Lock()
-        self.hostlock = collections.defaultdict(threading.Lock)
-
-    def get(self, url):
-        import urllib.request as R
-        sp = urlsplit(url)
-        out = dict(url=url, fetched=False, at=time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()))
-        if NO_FETCH.search(sp.hostname or ''):
-            out['reason'] = 'host not fetchable (robots/login): recorded from the official page, never fetched'
-            return out
-        with self.hostlock[sp.netloc]:
-            with self.lock:
-                known = sp.netloc in self.rb.cache
-            ok, delay = self.rb.allowed(url)
-            flag = self.rb.cache.get(sp.netloc, (None, 0, 'ok'))[2]
-            if flag == 'ai_group':
-                out['reason'] = 'robots.txt names ClaudeBot/anthropic-ai/Claude-Web: host not used in any form'
-                return out
-            if not ok:
-                out['reason'] = 'robots.txt disallows this path' if delay is not None and self.rb.cache[sp.netloc][0] not in (None,) else 'robots.txt not retrievable: not fetched'
-                return out
-            self.rb.wait(sp.netloc, delay)
-            try:
-                req = R.Request(url, headers={'User-Agent': UA, 'Accept': 'text/html,*/*;q=0.5'})
-                with R.urlopen(req, timeout=25) as r:
-                    raw = r.read(4_000_000)
-                    out.update(status=r.status, final_url=r.geturl(), content_type=r.headers.get('Content-Type', ''))
-            except Exception as e:  # noqa: BLE001
-                code = getattr(e, 'code', None)
-                out['status'] = code
-                if code in (401, 403, 429):
-                    out['reason'] = f'HTTP {code}: host refuses automated access; queued for Wayback (shared throttle), not retried live'
-                    out['wayback_queue'] = True
-                elif code in (404, 410):
-                    out['reason'] = f'HTTP {code}: page gone'
-                else:
-                    out['reason'] = f'unreachable ({type(e).__name__})'
-                return out
-        if re.search(rb'(Just a moment|cf_chl_opt|Attention Required|Verifying you are human|px-captcha|Pardon Our Interruption|not a bot)', raw[:20000], re.I):
-            out.update(reason='bot challenge: not read; queued for Wayback', wayback_queue=True)
-            return out
-        out.update(fetched=True, sha256=sha_of(raw), bytes=len(raw))
-        try:
-            text = re.sub(r'(?is)<(script|style)\b.*?</\1>', ' ', raw.decode('utf8', 'replace'))
-            text = re.sub(r'<[^>]+>', ' ', text)
-            out['text_head'] = ' '.join(text.split())[:3000]
-            m = re.search(r'(?is)<title[^>]*>(.*?)</title>', raw.decode('utf8', 'replace'))
-            out['title'] = ' '.join(m.group(1).split())[:200] if m else None
-        except Exception:  # noqa: BLE001
-            pass
-        return out
-
-
-def fetch(school, shard=(0, 1), limit=None, workers=12, urls=None):
-    cands = json.loads((SCRATCH / school / 'candidates.json').read_text())['candidates']
-    domain = school_domain(school)
-    todo = urls or sorted({c['url'] for c in cands if classify(c['url'], domain) in ('personal_site', 'lab_site')})
-    reg = P.data('lab-websites.json', school)
-    for p_ in (Path(os.environ['PERSON_WEBSITES_REGISTER']) if os.environ.get('PERSON_WEBSITES_REGISTER') else reg,):
-        if p_.exists() and not urls:   # the lab register's pages (a lab or PI home page) are fetched too
-            todo = sorted(set(todo) | {r['url'] for r in json.loads(p_.read_text()).get('labs', []) if r.get('url') and r.get('coverage') != 'reason'})
-    todo = [u for u in todo if hash(urlsplit(u).netloc) is not None and zlib.crc32((urlsplit(u).hostname or '').encode()) % shard[1] == shard[0]]
-    if limit:
-        todo = todo[:limit]
-    path = SCRATCH / school / f'fetch.{shard[0]}.jsonl'
-    done = set()
-    if path.exists():
-        done = {json.loads(l)['url'] for l in path.open()}
-    todo = [u for u in todo if u not in done]
-    f = Fetcher()
-    # one worker per host at a time (hostlock), many hosts at once
-    by_host = collections.defaultdict(list)
-    for u in todo:
-        by_host[urlsplit(u).netloc].append(u)
-    print(school, 'urls to fetch', len(todo), 'hosts', len(by_host), flush=True)
-    with path.open('a') as out:
-        def run(host):
-            return [f.get(u) for u in by_host[host]]
-        with ThreadPoolExecutor(workers) as ex:
-            for n, res in enumerate(ex.map(run, sorted(by_host))):
-                for r in res:
-                    out.write(json.dumps(r, ensure_ascii=False) + '\n')
-                out.flush()
-                if n % 200 == 0:
-                    print('hosts done', n, flush=True)
-
-
 
 # ---------------------------------------------------------------- build
 NEWSY = re.compile(r'/(?:news|events?|article|articles|story|stories|blog|press|calendar|talks?|seminars?|courses?|class(?:es)?)(?:/|$)|/20\d\d/', re.I)
@@ -473,266 +369,128 @@ def classify(url, domain):
     return 'personal_site'
 
 
-def load_fetch(school):
-    out = {}
-    for f in sorted((SCRATCH / school).glob('fetch.*.jsonl')):
-        for line in f.open():
-            r = json.loads(line)
-            out[r['url']] = r
-    return out
 
-
-def fetched_block(r):
-    if not r:
-        return dict(fetched=False, reason='not fetched in this pass')
-    b = dict(fetched=bool(r.get('fetched')), at=r.get('at'))
-    for k in ('status', 'sha256', 'final_url', 'title', 'reason', 'wayback_queue'):
-        if r.get(k) not in (None, ''):
-            b[k] = r[k]
-    return b
-
-
-def persons_sources(pid, persons):
-    return persons[pid]['sources']
-
-
-def build(school, out=None):
+# ---------------------------------------------------------------- rows in the person-websites.json format
+def sweep_rows(school, labs_path=None):
+    """tools/person_websites.py's register for the school, enlarged with the links the sweep found beside a person's name on every
+    stored official page (a student's own site, a PI's home page), and with a more specific reason for each person still without a URL."""
+    import person_websites as PW
+    real_annotate = PW.annotate
+    PW.annotate = lambda rows, school: None          # annotate once, after the merge
+    try:
+        doc = PW.build(school, labs_path)
+    finally:
+        PW.annotate = real_annotate
+    rows = doc['rows']
     data = json.loads((SCRATCH / school / 'candidates.json').read_text())
-    fetched = load_fetch(school)
     domain = school_domain(school)
-    pis, students, persons = load_people(school)
-    reg_path = Path(out).parent / 'lab-websites.json' if out else P.data('lab-websites.json', school)
-    register = json.loads(reg_path.read_text()) if reg_path.exists() else {'labs': []}
-    rows, by_person = [], collections.defaultdict(list)
-    pi_rows = collections.defaultdict(list)
+    _pis, _students, persons = load_people(school)
+    have = {(r.get('person_id') or r['person'], PW.original(r['url']).rstrip('/').lower()) for r in rows if r.get('url')}
+    have_urls = {(r['person'], r['kind']): r for r in rows if r.get('url')}
+    searched = data.get('searched') or {}
+    added_students = set()
     for c in data['candidates']:
-        if DROP_HOSTS.search(urlsplit(c['url']).hostname or ''):
+        host = urlsplit(c['url']).hostname or ''
+        if DROP_HOSTS.search(host) or PW.NOT_A_SITE.search(host) or PW.BANNED.search(host):
             continue
         st = classify(c['url'], domain)
-        if st in ('personal_site', 'lab_site') and not c.get('person') is None:
-            host, path = urlsplit(c['url']).hostname, urlsplit(c['url']).path
-            if host == urlsplit(c['found'][0]['page_url']).hostname and '/~' not in path and (MEMBER_PATH.search(path) or re.search(r'/author/', path)):
-                st = 'lab_member_page'   # the lab's own people page for this student, not a personal site
-        if st in ('news_or_event', 'school_page'):
+        if st in ('news_or_event', 'school_page', 'school_profile', 'lab_member_page'):
             continue
-        pi_scope = c.get('person') is None
-        if pi_scope and not any(f['how'] == 'anchor_text_is_name' for f in c['found']) and st not in ('personal_site', 'lab_site'):
+        f = c['found'][0]
+        ff = dict(kind='official_page' if (urlsplit(f['page_url']).hostname or '').endswith(('.edu', '.org')) else 'lab_page', url=f['page_url'],
+                  sha256=f['page_sha256'], capture_url=f['capture_url'], anchor=f['anchor'])
+        key_url = PW.original(c['url']).rstrip('/').lower()
+        if c.get('person') is None:           # a PI: only a link whose anchor is the PI's name, found on a page of the school
+            if not any(x['how'] == 'anchor_text_is_name' and re.search(domain, urlsplit(x['page_url']).hostname or '') for x in c['found']):
+                continue
+            kind = 'group' if st == 'lab_site' else 'pi_home'
+            if (c['pi'], key_url) in have:
+                continue
+            old = have_urls.get((c['pi'], kind))
+            row = PW.home_row(c['pi'], c['pi'], kind, c['url'], ff, {})
+            if old is None:
+                rows[:] = [r for r in rows if not (r['person'] == c['pi'] and r['kind'] == 'pi_home' and not r.get('url') and kind == 'pi_home')] if kind == 'pi_home' else rows
+            rows.append(row)
+            have.add((c['pi'], key_url))
+            have_urls[(c['pi'], kind)] = row
             continue
-        row = dict(school=school, role='pi' if pi_scope else 'student', person=c.get('person'), name=c['name'], pi=c.get('pi') or sorted(persons[c['person']]['pis']),
-                   url=c['url'], site_type=st, found_from=c['found'], fetched=fetched_block(fetched.get(c['url'])))
-        if st == 'social_or_profile':
-            row['fetched'] = dict(fetched=False, at=TODAY, reason='host not fetchable (robots/login): recorded from the official page, never fetched')
-        if pi_scope:
-            row['kind'] = {'school_profile': 'pi_profile', 'lab_site': 'group', 'lab_member_page': 'pi_profile'}.get(st, 'pi_home')
-            pi_rows[c['pi']].append(row)
-        else:
-            row['kind'] = 'student_home'
-            row['counts_as_home_page'] = st in ('personal_site', 'lab_site') and any(f['scope'] == 'page_is_a_recorded_source_of_this_person' for f in c['found'])   # a name-only match elsewhere in the school is not enough (a template-designer credit matched a student)
-            by_person[c['person']].append(row)
+        if not any(x['scope'] == 'page_is_a_recorded_source_of_this_person' for x in c['found']):
+            continue
+        if (c['person'], key_url) in have:
+            continue
+        p = persons[c['person']]
+        row = PW.home_row(p['name'], sorted(p['pis'])[0], 'student_home', c['url'], ff, {}, role='student') | dict(person_id=c['person'])
         rows.append(row)
-    searched = data.get('searched') or {}
-    no_url = []
-    for pid, p in sorted(persons.items()):
-        have = [r for r in by_person.get(pid, ()) if r['counts_as_home_page']]
-        if have:
-            continue
-        s = searched.get(pid) or []
-        total = data['source_pages'].get(pid, 0)
-        others = [r for r in by_person.get(pid, ())]
-        if s:
-            reason = (f"no personal-site link beside this person's name on the {len(s)} stored official page(s) that list them"
-                      f" ({'; '.join(sorted({u for u, _ in s})[:2])}); no own page linked from any of them")
-            if others:
-                reason += f"; only profile, lab-member or name-only (unverified) links were found ({sorted({r['site_type'] for r in others})})"
-        else:
-            hosts = sorted({u.split('/')[0] for u in persons_sources(pid, persons)})
-            if hosts and all(re.search(r'dspace|figshare|arks\.|dataspace|repository|infoscience|escholarship|ethz|thesis', h) for h in hosts):
-                reason = (f"listed only by thesis-repository record(s) on {', '.join(hosts)}: such a record names the thesis, not a personal site, and the repository "
-                          "is not crawled for links; no stored official page lists this person with a link; no own page linked from any official page")
-            else:
-                reason = f"none of this person's {total} source page(s) is in the capture stores, so no official page was searched for a link: gap, needs a fetch"
-        no_url.append(dict(school=school, person=pid, name=p['name'], role='student', pi=sorted(p['pis']), searched_pages=len(s),
-                           source_pages=total, reason=reason, reason_kind='searched_no_link' if s else ('thesis_record_only' if reason.startswith('listed only by thesis') else 'source_pages_not_stored')))
-    doc = dict(school=school, tool='tools/person_sweep.py', built_at=TODAY, review_status='generated; websites only, no relation changes',
-               rows=rows, students_without_website=no_url, pis=pi_side(school, register, pi_rows, fetched, pis),
-               counts=summary_of(school, rows, no_url, persons, register, pis))
-    return doc
-
-
-def summary_of(school, rows, no_url, persons, register, pis):
-    st = collections.Counter()
-    homes = {r['person'] for r in rows if r['role'] == 'student' and r.get('counts_as_home_page')}
-    fetched_rows = [r for r in rows if r['role'] == 'student' and r.get('counts_as_home_page')]
-    out = dict(students=len(persons), students_with_home_page=len(homes), students_with_reason=len(no_url),
-               students_neither=len(persons) - len(homes) - len(no_url),
-               student_home_urls=len({r['url'] for r in fetched_rows}),
-               student_urls_fetched=len({r['url'] for r in fetched_rows if r['fetched'].get('fetched')}),
-               recorded_not_fetchable=len({r['url'] for r in rows if r['site_type'] == 'social_or_profile'}),
-               reasons_source_pages_not_stored=sum(1 for r in no_url if r['reason_kind'] == 'source_pages_not_stored'))
+        have.add((c['person'], key_url))
+        added_students.add(c['person'])
+    # a person who gained a URL no longer carries the reason row; the others keep a specific reason
+    with_url = {r.get('person_id') for r in rows if r['role'] == 'student' and r.get('url')}
+    out = []
     for r in rows:
-        st[r['role'] + ':' + r['site_type']] += 1
-    out['row_types'] = dict(st)
-    return out
-
-
-def pi_counts(pi_recs):
-    c = collections.Counter()
-    for r in pi_recs:
-        kinds = {u['kind'] for u in r['urls']}
-        c['pis'] += 1
-        c['with_lab_or_home'] += bool({'lab', 'pi_home', 'group'} & kinds)
-        c['with_home_page'] += 'pi_home' in kinds
-        c['with_profile'] += 'pi_profile' in kinds
-        c['with_reason_only'] += (not ({'lab', 'pi_home', 'group'} & kinds)) and bool(r['reasons'])
-        c['neither'] += (not ({'lab', 'pi_home', 'group'} & kinds)) and not r['reasons']
-    return dict(c)
-
-
-
-def audit_pi_checks(school):
-    import gzip
-    out = {}
-    path = P.data('labpage-audit.jsonl.gz', school)
-    with gzip.open(path, 'rt') as f:
-        for line in f:
-            r = json.loads(line)
-            out[r['pi']] = (r.get('lab_page') or {}).get('checks') or []
-    return out
-
-
-def pi_side(school, register, pi_rows, fetched, pis):
-    """One record per PI: lab/home page (from the lab register), official profile (from the audit's school_profile check), extra links."""
-    checks = audit_pi_checks(school)
-    labs = {r['pi']: r for r in register.get('labs', [])}
-    out = []
-    for p in pis:
-        pi = p['pi']
-        lab = labs.get(pi) or {}
-        rec = dict(pi=pi, person_ids=p.get('personIds'), urls=[], reasons=[])
-        gaps = set(lab.get('evidence_gaps') or [])
-        if lab.get('url') and 'selected_url_is_profile_card' in gaps:
-            rec['urls'].append(dict(kind='pi_profile', url=lab['url'], site_type='school_profile', found_from=dict(url=None, via=lab.get('found_via'), note='selected by the lab-page audit; an institutional profile card, not a home page'),
-                                    fetched=fetched_block(fetched.get(lab['url']))))
-        elif lab.get('url') and 'selected_url_is_research_output' not in gaps and lab.get('coverage') in ('website', 'pending') and lab.get('kind') != 'other_institution_site':
-            ev = (lab.get('official_link_evidence') or [{}])[0]
-            ff = dict(url=ev.get('on') or lab.get('listed_on'), anchor=ev.get('anchor'), sha256=ev.get('source_sha256') or (ev.get('provenance_chain') or [{}])[0].get('source_sha256'),
-                      via=ev.get('source') or lab.get('found_via')) if ev or lab.get('listed_on') else dict(url=None, via=lab.get('found_via'), note='discovered by the lab-page audit; no official page link recorded yet')
-            rec['urls'].append(dict(kind='lab' if lab.get('kind') == 'lab_site' else 'pi_home', url=lab['url'], site_type='register', found_from=ff,
-                                    fetched=fetched_block(fetched.get(lab['url'])) | ({'sha256_store_capture': lab.get('sha256')} if lab.get('sha256') else {})))
-        prof = [c for c in checks.get(pi, []) if c.get('source') == 'school_profile' and c.get('result') in ('ok', 'ok_wayback') and c.get('url')]
-        listing = next((c for c in checks.get(pi, []) if c.get('source') == 'department_listing' and c.get('result') in ('ok', 'ok_wayback')), None)
-        if prof:
-            c = prof[0]
-            rec['urls'].append(dict(kind='pi_profile', url=c['url'], site_type='school_profile',
-                                    found_from=dict(url=listing['url'], sha256=listing.get('sha256'), via='department_listing') if listing else dict(url=None, note='profile URL from the audit school_profile check'),
-                                    fetched=dict(fetched=True, at=c.get('at'), status=200, sha256=c.get('sha256'), reason='captured by the lab-page audit')))
-        seen = {norm_url(u['url']) for u in rec['urls']}
-        for r in pi_rows.get(pi, ()):
-            if norm_url(r['url']) in seen or r['site_type'] in ('lab_member_page',):
+        if r['role'] == 'student' and not r.get('url'):
+            if r.get('person_id') in with_url:
                 continue
-            seen.add(norm_url(r['url']))
-            if r['kind'] == 'pi_profile' and any(u['kind'] == 'pi_profile' for u in rec['urls']):
-                continue
-            rec['urls'].append(dict(kind=r['kind'], url=r['url'], site_type=r['site_type'], found_from=r['found_from'][0], fetched=r['fetched']))
-        kinds = {u['kind'] for u in rec['urls']}
-        if not ({'lab', 'pi_home', 'group'} & kinds):
-            rec['reasons'].append(dict(kind='no_lab_or_home_page', reason=lab.get('reason') or 'no lab or home page recorded: no entry in the lab register'))
-        if 'pi_profile' not in kinds:
-            rec['reasons'].append(dict(kind='no_profile', reason='no official faculty profile page captured: the department listing has no profile link for this PI'))
-        out.append(rec)
-    return out
+            pid = r.get('person_id')
+            s = searched.get(pid) or []
+            if s:
+                r['reason'] = (f"no personal-site link beside this person's name on the {len(s)} stored official page(s) that list them "
+                               f"(e.g. {'; '.join(sorted({u for u, _ in s})[:2])}); no own page linked from any of them; no name-pattern guess")
+            elif pid in persons and all(re.search(r'dspace|figshare|arks\.|dataspace|repository|infoscience|escholarship|thesis', u.split('/')[0]) for u in persons[pid]['sources']) and persons[pid]['sources']:
+                r['reason'] = ('listed only by thesis-repository record(s) (' + ', '.join(sorted({u.split('/')[0] for u in persons[pid]['sources']})) +
+                               '): a thesis record names the thesis, not a personal site, and the repository is not crawled for links; '
+                               'no stored official page lists this person with a link')
+        out.append(r)
+    doc['rows'] = out
+    doc['tool'] = 'tools/person_websites.py + tools/person_sweep.py'
+    return doc, real_annotate
 
 
-def apply_register(school, register_path, fetched, cand_doc):
-    """Close 'page_capture_hash_missing' with the live fetch, and record official links harvested from stored official pages."""
-    import lab_websites as LW
-    reg = json.loads(Path(register_path).read_text())
-    domain = school_domain(school)
-    by_url = collections.defaultdict(list)
-    for c in cand_doc['candidates']:
-        if c.get('person') is None:
-            by_url[norm_url(c['url'])].append(c)
-    changed = 0
-    for r in reg['labs']:
-        if not r.get('url'):
-            continue
-        f = fetched.get(r['url'])
-        if 'page_capture_hash_missing' in r.get('evidence_gaps', []) and f and f.get('fetched') and f.get('sha256'):
-            r['sha256'] = f['sha256']
-            r['checks'].append(dict(source='live_fetch_websites_1108', url=r['url'], at=f['at'], result='ok', sha256=f['sha256'], status=f.get('status'),
-                                    final_url=f.get('final_url'), via=r.get('found_via')))
-            r['evidence_gaps'] = [g for g in r['evidence_gaps'] if g != 'page_capture_hash_missing']
-            changed += 1
-        if r.get('official_link_status') != 'recorded':
-            for c in by_url.get(norm_url(r['url']), ()):
-                if c['pi'] != r['pi']:
-                    continue
-                for ff in c['found']:
-                    host = urlsplit(ff['page_url']).hostname or ''
-                    if re.search(domain, host) and ff['how'] == 'anchor_text_is_name' and norm_url(ff['page_url']) != norm_url(r['url']):
-                        chk = dict(source='department_listing_link', url=r['url'], on=ff['page_url'], at=ff['page_fetched_at'], result='listed', anchor=ff['anchor'],
-                                   linked_url=c['url'], source_sha256=ff['page_sha256'], provenance='recovered_from_stored_official_page_by_person_sweep')
-                        r['checks'].append(chk)
-                        r['official_link_status'], r['official_link_evidence'], r['listed_on'] = 'recorded', [chk], ff['page_url']
-                        changed += 1
-                        break
-                if r.get('official_link_status') == 'recorded':
-                    break
-        if not r['evidence_gaps'] and r.get('coverage') == 'pending' and r.get('kind') in ('lab_site', 'pi_homepage') and r.get('sha256'):
-            r['coverage'] = 'website'
-            r['reason'] = 'Captured lab/group website.' if r.get('kind') == 'lab_site' else 'Captured PI homepage used as the lab-page fallback.'
-    Path(register_path).write_text(json.dumps(reg, indent=1, ensure_ascii=False) + '\n')
-    return changed, LW.counts(reg)
+def write_queue(school, labs_path):
+    import person_websites as PW
+    from person_fetch import DIR
+    doc, _ = sweep_rows(school, labs_path)
+    labs = json.loads(Path(labs_path).read_text())['labs']
+    DIR.mkdir(parents=True, exist_ok=True)
+    n = 0
+    with open(DIR / f'queue-{school}.jsonl', 'w') as f:
+        for r in doc['rows']:
+            if r.get('url') and not r['fetched'] and r.get('fetch_reason', '').startswith('queued') and not PW.NOT_FETCHABLE.search(urlsplit(r['url']).hostname or ''):
+                f.write(json.dumps(dict(url=r['url'], person=r['person'], role=r['role'], kind=r['kind'], lab=r['lab'], mode='live_if_robots_else_wayback')) + '\n')
+                n += 1
+        for r in labs:
+            if r.get('coverage') == 'pending' and r.get('url'):
+                f.write(json.dumps(dict(url=r['url'], person=r['pi'], role='pi', kind='lab_pending', lab=r['pi'], gaps=r.get('evidence_gaps'), mode='live_if_robots_else_wayback')) + '\n')
+                n += 1
+    print(school, 'queued', n)
 
 
-def sample(school, n=30, seed=20261108, path=None):
-    """The hand-check sample: n recorded student/PI URLs that were fetched, with the evidence a reader needs (name on page, affiliation words)."""
-    doc = json.loads(Path(path or P.data('person-sweep.json', school)).read_text())
-    pool = [r for r in doc['rows'] if r['fetched'].get('fetched') and r['site_type'] in ('personal_site', 'lab_site') and r['role'] == 'student']
-    rng = random.Random(seed)
-    out = []
-    for r in rng.sample(pool, min(n, len(pool))):
-        fetched = load_fetch(school).get(r['url'], {})
-        text = fold(fetched.get('text_head') or '')
-        t = toks(r['name'])
-        out.append(dict(name=r['name'], url=r['url'], title=fetched.get('title'), family_on_page=bool(t) and t[-1] in text,
-                        given_on_page=bool(t) and t[0] in text, school_word=bool(re.search(school, text)), found_on=r['found_from'][0]['page_url'],
-                        anchor=r['found_from'][0]['anchor'], head=(fetched.get('text_head') or '')[:200]))
-    return out
-
-
-def build_cmd(school, out=None, apply=False):
-    if apply:
-        reg = Path(out).parent / 'lab-websites.json' if out else P.data_w('lab-websites.json', school)
-        cd = json.loads((SCRATCH / school / 'candidates.json').read_text())
-        n, lc = apply_register(school, reg, load_fetch(school), cd)
-        print(school, 'lab register updated', n, json.dumps(lc))
-    doc = build(school, out)
-    doc['counts']['pis'] = pi_counts(doc['pis'])
-    out = Path(out) if out else P.data_w('person-sweep.json', school)
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(doc, ensure_ascii=False, indent=0) + '\n')
-    print(school, json.dumps(doc['counts']))
+def write_register(school, labs_path, out):
+    import person_websites as PW
+    doc, annotate = sweep_rows(school, labs_path)
+    annotate(doc['rows'], school)
+    bad = PW.gate(doc)
+    Path(out).parent.mkdir(parents=True, exist_ok=True)
+    Path(out).write_text(json.dumps(doc, indent=1, ensure_ascii=False) + '\n')
+    print(school, json.dumps(PW.counts(doc)), 'gate_problems', len(bad))
+    for b in bad[:5]:
+        print('  !', b)
+    return doc
 
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument('cmd', choices=['harvest', 'fetch', 'build', 'sample'])
+    ap.add_argument('cmd', choices=['harvest', 'queue', 'build'])
     ap.add_argument('school')
-    ap.add_argument('--shard', default='0/1')
-    ap.add_argument('--limit', type=int)
+    ap.add_argument('--labs', help='lab-websites.json (default: the data path)')
     ap.add_argument('--out')
-    ap.add_argument('--apply', action='store_true', help='build: also close the lab register gaps the fetch resolves')
     a = ap.parse_args()
-    i, n = map(int, a.shard.split('/'))
+    labs = a.labs or str(P.data('lab-websites.json', a.school))
     if a.cmd == 'harvest':
         harvest(a.school)
-    elif a.cmd == 'fetch':
-        fetch(a.school, (i, n), a.limit)
-    elif a.cmd == 'build':
-        build_cmd(a.school, a.out, a.apply)
-    elif a.cmd == 'sample':
-        print(json.dumps(sample(a.school, 30, 20261108, a.out), indent=1, ensure_ascii=False))
+    elif a.cmd == 'queue':
+        write_queue(a.school, labs)
+    else:
+        write_register(a.school, labs, a.out or P.data_w('person-websites.json', a.school))
 
 
 if __name__ == '__main__':

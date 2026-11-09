@@ -1,4 +1,3 @@
-import json
 import sys
 from pathlib import Path
 
@@ -20,9 +19,3 @@ def test_classify():
     assert W.classify('https://someone.github.io/', d) == 'personal_site'
 
 
-def test_registered_files_have_the_contract():
-    for f in (Path(__file__).resolve().parents[1] / 'hierarchy').glob('*/reviewed/person-sweep.json'):
-        doc = json.loads(f.read_text())
-        assert doc['counts']['students_neither'] == 0
-        for r in doc['rows']:
-            assert r['url'].startswith('http') and r['found_from'] and 'fetched' in r and r['kind']
