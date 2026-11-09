@@ -110,24 +110,82 @@
       "reviewed_at": "2026-11-08",
       "evidence": [
         {
-          "url": "https://arxiv.org/abs/2604.21889",
+          "url": "https://openalex.org/W7155654220",
           "sha256": "bcfcf350f9553629fc6d3a25d0eac50079b8c31d7c1ad9e8899781caff04d368",
-          "quote": "Complete original author slots: 1: Wang, Jun [https://openalex.org/A5134608045] | 2: Zhang, Ziyin [https://openalex.org/A5101552415] | 3: Wang, Rui [https://openalex.org/A5134592614] | 4: Yu, Hang [https://openalex.org/A5134587070] | 5: Di, Peng [https://openalex.org/A5000833287] | 6: Wang, Rui [https://openalex.org/A5134592614]",
+          "quote": "TingIS: Real-time Risk Event Discovery from Noisy Customer Incidents at Enterprise Scale",
           "kind": "original_indexed_source_zlib_BLOB",
           "source_full_json_sha256": "bbb3a493162582a6786ed440d37cc8444f8379be245ba1ee9aab01415d9b9f30",
-          "source_path": "/n/fs/resemble/homogenizing-science/scratch/sjtu-first-native-1108/NATIVE-EXACT-ORIGINAL-SOURCE-PACKET.json.gz"
+          "source_path": "/n/fs/resemble/homogenizing-science/scratch/sjtu-first-native-1108/NATIVE-EXACT-ORIGINAL-SOURCE-PACKET.json.gz",
+          "hash_basis": "Exact stored indexed zlib BLOB, not a fetched DOI landing or publisher page",
+          "source_field": "$.title",
+          "raw_author_scalars": [
+            {
+              "index": 0,
+              "name": "Wang, Jun",
+              "author_id": "https://openalex.org/A5134608045"
+            },
+            {
+              "index": 1,
+              "name": "Zhang, Ziyin",
+              "author_id": "https://openalex.org/A5101552415"
+            },
+            {
+              "index": 2,
+              "name": "Wang, Rui",
+              "author_id": "https://openalex.org/A5134592614"
+            },
+            {
+              "index": 3,
+              "name": "Yu, Hang",
+              "author_id": "https://openalex.org/A5134587070"
+            },
+            {
+              "index": 4,
+              "name": "Di, Peng",
+              "author_id": "https://openalex.org/A5000833287"
+            },
+            {
+              "index": 5,
+              "name": "Wang, Rui",
+              "author_id": "https://openalex.org/A5134592614"
+            }
+          ]
         },
         {
           "url": "https://dblp.org/rec/journals/corr/abs-2604-21889",
           "sha256": "b9d7562557128f6955a38e0fdf405e9f13798eb1bd6c31ad284a248cd8b19c30",
-          "quote": "Original owned CoRR ordered authors: Jun Wang 0006 | Ziyin Zhang | Rui Wang 0015 | Hang Yu 0002 | Peng Di | Rui Wang 0015",
-          "kind": "original_owned_PID_XML"
+          "quote": "TingIS: Real-time Risk Event Discovery from Noisy Customer Incidents at Enterprise Scale.",
+          "kind": "original_owned_PID_XML",
+          "source_field": "./title",
+          "ordered_author_scalars": [
+            "Jun Wang 0006",
+            "Ziyin Zhang",
+            "Rui Wang 0015",
+            "Hang Yu 0002",
+            "Peng Di",
+            "Rui Wang 0015"
+          ],
+          "DOI_hrefs": [
+            "https://doi.org/10.48550/arXiv.2604.21889"
+          ]
         },
         {
           "url": "https://dblp.org/rec/conf/acl/WangZWYD26",
           "sha256": "b8a8b457c594ce9772394ab6431a08a116be1b6b819a7d238cd3391a32610ae0",
-          "quote": "Original owned published ordered authors: Jun Wang 0006 | Ziyin Zhang | Rui Wang 0015 | Hang Yu 0002 | Peng Di; DOI: 10.18653/v1/2026.acl-industry.147",
-          "kind": "original_owned_PID_XML"
+          "quote": "TingIS: Real-time Risk Event Discovery from Noisy Customer Incidents at Enterprise Scale.",
+          "kind": "original_owned_PID_XML",
+          "source_field": "./title",
+          "ordered_author_scalars": [
+            "Jun Wang 0006",
+            "Ziyin Zhang",
+            "Rui Wang 0015",
+            "Hang Yu 0002",
+            "Peng Di"
+          ],
+          "DOI_hrefs": [
+            "https://doi.org/10.18653/v1/2026.acl-industry.147",
+            "https://aclanthology.org/2026.acl-industry.147/"
+          ]
         }
       ]
     },
@@ -148,17 +206,19 @@
       "reviewed_at": "2026-11-08",
       "evidence": [
         {
-          "url": "https://doi.org/10.5281/zenodo.20640215",
+          "url": "https://openalex.org/W7164409479",
           "sha256": "cb66b069944907f97f9b8001f99bcd4d53c11844f4195f18e329f0859f9bc078",
           "quote": "This is the extended version of the ECOOP26 paper \"Foundational and Compositional Verification of Layered Concurrent Objects\".",
           "kind": "original_indexed_OpenAlex_zlib_BLOB",
           "source_path": "/n/fs/resemble/homogenizing-science/scratch/sjtu-first-native-1108/NATIVE-EXACT-ORIGINAL-SOURCE-PACKET.json.gz",
-          "source_full_json_sha256": "f5e555e086d6fae28e38671a72493a54b25084d769f39494646e7b6c244c850a"
+          "source_full_json_sha256": "f5e555e086d6fae28e38671a72493a54b25084d769f39494646e7b6c244c850a",
+          "hash_basis": "Exact stored indexed zlib BLOB, not a fetched DOI landing or publisher page",
+          "source_field": "$.abstract (reconstructed original inverted index)"
         },
         {
           "url": "https://jhc.sjtu.edu.cn/~yutingwang/",
           "sha256": "d73955976dcf9cb7147cf98c250fb4887deca19b4169920daabf5411634dfaf1",
-          "quote": "Yicheng Ni, Yuting Wang * . Foundational and Compositional Verification of Layered Concurrent Objects .\n        The 40th European Conference on Object-Oriented Programming (ECOOP), 2026.\n        [ DOI | PDF | Slides | Artifact ] Exact DOI href: https://doi.org/10.4230/LIPIcs.ECOOP.2026.21",
+          "quote": "Yicheng Ni, Yuting Wang * . Foundational and Compositional Verification of Layered Concurrent Objects .\n        The 40th European Conference on Object-Oriented Programming (ECOOP), 2026.\n        [ DOI | PDF | Slides | Artifact ]",
           "kind": "original_owned_homepage_same_entry",
           "ownership_chain": [
             {
@@ -180,14 +240,23 @@
               "quote": "I am currently a Tenure-Track Associate Professor at Shanghai Jiao Tong University.",
               "kind": "owned_current_academic_PI_role"
             }
-          ]
+          ],
+          "literal_DOI_href": "https://doi.org/10.4230/LIPIcs.ECOOP.2026.21"
         },
         {
           "url": "https://dblp.org/rec/conf/ecoop/NiW26",
           "sha256": "27acb12b277d5bb7666f7d56d5b04bb07b3528dd77a4de2e3a7570a0cb854ff3",
-          "quote": "Foundational and Compositional Verification of Layered Concurrent Objects.; complete byline: Yicheng Ni | Yuting Wang 0001; DOI: 10.4230/lipics.ecoop.2026.21",
+          "quote": "Foundational and Compositional Verification of Layered Concurrent Objects.",
           "kind": "original_owned_PID_DBLP_XML_record",
-          "owned_PID": "https://dblp.org/pid/09/8269-1"
+          "owned_PID": "https://dblp.org/pid/09/8269-1",
+          "source_field": "./title",
+          "ordered_author_scalars": [
+            "Yicheng Ni",
+            "Yuting Wang 0001"
+          ],
+          "DOI_hrefs": [
+            "https://doi.org/10.4230/LIPIcs.ECOOP.2026.21"
+          ]
         }
       ]
     }
