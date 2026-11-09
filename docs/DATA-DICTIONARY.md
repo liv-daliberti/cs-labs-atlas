@@ -338,7 +338,7 @@ One PI: the merged census rows, reviewed corrections, identity, appointment evid
 | `lab.name` | string | yes | The lab's name: the unit's, a proposed non-collective unit's, else '<PI> group'. | non-empty |  |
 | `lab.basis` | string | yes | single_leader_unit: a census lab unit with this PI as its single leader; new_own_lab otherwise. | one of `single_leader_unit`, `new_own_lab` | R-HIER-01 |
 | `lab.url` | string \| null | no | The proposed unit url or the census profile url (new own labs only). |  |  |
-| `lab.evidence` | object \| null | no | The proposed lab unit's evidence, else the census row's pi_basis (free-form census record: kind, url, sha256, quote, ...). |  | R-HIER-01 |
+| `lab.evidence` | object \| array of object \| null | no | The proposed lab unit's evidence, else the census row's pi_basis (free-form census record: kind, url, sha256, quote, ...). Multiple source citations remain an ordered array of evidence objects; preserving them grants no additional identity or paper authority. |  | R-HIER-01 |
 | `lab.collectives` | array of string | no | Census lab-unit ids the PI belongs to that are collectives (centers, institutes, multi-leader units), not labs (new own labs only). |  | R-HIER-02 |
 | `periods` | array of `period` | yes | The PI's appointment periods at the school: collection faculty periods (up to two evidence items) and reviewed periods (census-overrides.json; an open reviewed period is current as of the build date). |  | R-PAP-01 |
 | `listings` | array of `listing` | yes | Dated department listings naming the PI as faculty, one per calendar year (2016-2026), without the stale years after a move. |  | R-PAP-01, R-PAP-02 |

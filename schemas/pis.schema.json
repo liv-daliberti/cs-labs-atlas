@@ -337,11 +337,15 @@
        ]
       },
       "evidence": {
-       "description": "The proposed lab unit's evidence, else the census row's pi_basis (free-form census record: kind, url, sha256, quote, ...).",
+       "description": "The proposed lab unit's evidence, else the census row's pi_basis (free-form census record: kind, url, sha256, quote, ...). Multiple source citations remain an ordered array of evidence objects; preserving them grants no additional identity or paper authority.",
        "type": [
         "object",
+        "array",
         "null"
        ],
+       "items": {
+        "type": "object"
+       },
        "x-rules": [
         "R-HIER-01"
        ]

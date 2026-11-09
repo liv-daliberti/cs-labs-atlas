@@ -325,6 +325,8 @@ def _ordered_literal_names(text, names):
 def _primary_article_type(ctx, row, source, d):
     a = d['authority']; home, pub = a['homepage'], a['publication']; p = ctx.pid0[row['pi']]
     lab = p.get('lab') or {}; e = lab.get('evidence') or {}; location = source.get('primary_location') or {}
+    if not isinstance(e, dict):
+        return 'primary_owner_binding_mismatch'
     if (home['url'] != lab.get('url') or home['url'] != e.get('url') or home['sha256'] != e.get('sha256')
             or home['role_quote'] != e.get('quote') or not names_full_form(home['name_quote'], p.get('names') or [])
             or not _origin(home['url']) or _origin(home['url']) != _origin(pub['url'])
