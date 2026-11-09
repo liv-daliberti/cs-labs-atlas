@@ -191,12 +191,16 @@ def roster(school):
         reg = {r['pi']: r for r in json.loads(P.data('lab-websites.json', school).read_text())['labs']}
         out = []
         addf = P.data('census-additions.json', school)
-        adds = {x['name']: x for x in json.loads(addf.read_text())} if addf.exists() else {}   # PIs added from other units: the profile link their unit listing gives
+        adds = {x['name']: x for x in json.loads(addf.read_text())} if addf.exists() else {}
+        import urllib.parse as _up
+        cen = {x['name']: _up.urljoin('https://www.cs.ox.ac.uk/', x['profile_url']) for x in json.loads(P.data('census-faculty.json', school).read_text())['faculty'] if x.get('profile_url')}   # PIs added from other units: the profile link their unit listing gives
         for p in pis:
             r = reg.get(p['pi']) or {}
             prof = next((c for c in r.get('checks') or [] if c.get('source') == 'school_profile' and c.get('result') in ('ok', 'ok_wayback')), None)
             if not prof and (adds.get(p['pi']) or {}).get('profile_url'):
                 prof = dict(url=adds[p['pi']]['profile_url'])
+            if not prof and cen.get(p['pi']):   # a CS faculty row of an earlier year: the homepage link of the department's own listing
+                prof = dict(url=cen[p['pi']])
             lst = (p.get('listings') or [{}])[-1]
             out.append(dict(pi=p['pi'], profile_url=prof['url'] if prof else None, listing_url=lst.get('url'), listing_sha=lst.get('sha256'),
                             role=p.get('title')))
