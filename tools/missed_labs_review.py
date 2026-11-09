@@ -13,7 +13,7 @@ decisions         accepted | not_faculty (a title that is not ladder, or a stude
 -> hierarchy/<school>/reviewed/census-additions.json     accepted rows appended (added = missed_labs_20261109), existing rows untouched
 usage: missed_labs_review.py <school> [--apply]   (without --apply: prints the counts and the accepted rows only)
 """
-import argparse, datetime, json, re, sqlite3, sys
+import argparse, json, re, sqlite3
 from pathlib import Path
 
 import atlas_paths as P  # noqa: E402
