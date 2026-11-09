@@ -276,6 +276,91 @@
       "R-PAP-01",
       "R-PAP-03"
      ]
+    },
+    "cross_affiliation_holds": {
+     "description": "Explicit source uncertainty holds for company-only R-PAP29 fallback in literal observation years; never a leave interval, departure or negative paper/person verdict.",
+     "type": "array",
+     "items": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+       "action",
+       "years",
+       "reason",
+       "evidence",
+       "leave_start",
+       "leave_end",
+       "departure_inferred"
+      ],
+      "properties": {
+       "action": {
+        "type": "string",
+        "const": "hold_company_only_fallback",
+        "description": "Withhold only the company-only cross-affiliation route for source review."
+       },
+       "years": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+         "type": "integer",
+         "minimum": 2016,
+         "maximum": 2026
+        },
+        "description": "Exact source observation years; no inferred leave dates or whole-year status."
+       },
+       "reason": {
+        "type": "string",
+        "minLength": 1
+       },
+       "evidence": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+         "type": "object",
+         "required": [
+          "url",
+          "sha256",
+          "quote",
+          "observedAt"
+         ],
+         "properties": {
+          "url": {
+           "type": "string",
+           "pattern": "^https?://"
+          },
+          "sha256": {
+           "type": "string",
+           "pattern": "^[0-9a-f]{64}$"
+          },
+          "quote": {
+           "type": "string",
+           "minLength": 1
+          },
+          "observedAt": {
+           "type": "string",
+           "description": "Literal source capture/observation date, independent of attendance or appointment start."
+          }
+         }
+        }
+       },
+       "leave_start": {
+        "type": "null",
+        "description": "Unknown; this review cannot create a leave start."
+       },
+       "leave_end": {
+        "type": "null",
+        "description": "Unknown; this review cannot create a leave end."
+       },
+       "departure_inferred": {
+        "type": "boolean",
+        "const": false,
+        "description": "A leave observation is not departure evidence."
+       }
+      }
+     },
+     "x-rules": [
+      "R-PAP-29"
+     ]
     }
    },
    "patternProperties": {

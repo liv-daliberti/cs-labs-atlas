@@ -645,6 +645,29 @@ The build's report: counters, exclusions, samples of what the rules dropped, and
 | `paperSourceReview.path` | string | yes |  |  |  |
 | `paperSourceReview.sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
 | `paperSourceReview.decisions` | array of object | yes |  |  |  |
+| `crossAffiliationSourceHolds` | array of object | no | All candidate PI/work claims held solely by explicit observed-year company-only fallback source uncertainty; no negative identity/paper verdict. |  | R-PAP-29 |
+| `crossAffiliationSourceHolds[]` | object | — |  | no other keys |  |
+| `crossAffiliationSourceHolds[].pi` | string | yes |  |  |  |
+| `crossAffiliationSourceHolds[].oa` | string | yes |  |  |  |
+| `crossAffiliationSourceHolds[].title` | string \| null | yes |  |  |  |
+| `crossAffiliationSourceHolds[].date` | string | yes |  |  |  |
+| `crossAffiliationSourceHolds[].status` | string | yes |  | always `held_source_uncertainty` |  |
+| `crossAffiliationSourceHolds[].school_via` | array of string | yes |  | at least 1 item(s) |  |
+| `crossAffiliationSourceHolds[].admitting_appointment` | object | yes | The ordinary admitting period or listing, unchanged. |  |  |
+| `crossAffiliationSourceHolds[].reviews` | array of object | yes |  | at least 1 item(s) |  |
+| `crossAffiliationSourceHolds[].reviews[]` | object | — |  | no other keys |  |
+| `crossAffiliationSourceHolds[].reviews[].action` | string | yes | Withhold only the company-only cross-affiliation route for source review. | always `hold_company_only_fallback` |  |
+| `crossAffiliationSourceHolds[].reviews[].years` | array of integer | yes | Exact source observation years; no inferred leave dates or whole-year status. | at least 1 item(s); items: 2016 to 2026 |  |
+| `crossAffiliationSourceHolds[].reviews[].reason` | string | yes |  | non-empty |  |
+| `crossAffiliationSourceHolds[].reviews[].evidence` | array of object | yes |  | at least 1 item(s) |  |
+| `crossAffiliationSourceHolds[].reviews[].evidence[]` | object | — |  |  |  |
+| `crossAffiliationSourceHolds[].reviews[].evidence[].url` | string | yes |  | pattern `^https?://` |  |
+| `crossAffiliationSourceHolds[].reviews[].evidence[].sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `crossAffiliationSourceHolds[].reviews[].evidence[].quote` | string | yes |  | non-empty |  |
+| `crossAffiliationSourceHolds[].reviews[].evidence[].observedAt` | string | yes | Literal source capture/observation date, independent of attendance or appointment start. |  |  |
+| `crossAffiliationSourceHolds[].reviews[].leave_start` | null | yes | Unknown; this review cannot create a leave start. |  |  |
+| `crossAffiliationSourceHolds[].reviews[].leave_end` | null | yes | Unknown; this review cannot create a leave end. |  |  |
+| `crossAffiliationSourceHolds[].reviews[].departure_inferred` | boolean | yes | A leave observation is not departure evidence. | always `false` |  |
 
 ## `hierarchy/<school>/student_papers.jsonl.gz`
 
@@ -2096,6 +2119,20 @@ Reviewed corrections for one person (keys the build does not know are kept as re
 | `periods[].evidence` | array of `evidence` | yes | Evidence items; an evidence kind containing end_moved marks a departure (R-PAP-03). | at least 1 item(s) |  |
 | `periods[].datePrecision` | string | no | Precision. | one of `day`, `month`, `year` |  |
 | `periods[].endPrecision` | string | no | Precision. | one of `day`, `month`, `year` |  |
+| `cross_affiliation_holds` | array of object | no | Explicit source uncertainty holds for company-only R-PAP29 fallback in literal observation years; never a leave interval, departure or negative paper/person verdict. |  | R-PAP-29 |
+| `cross_affiliation_holds[]` | object | — |  | no other keys |  |
+| `cross_affiliation_holds[].action` | string | yes | Withhold only the company-only cross-affiliation route for source review. | always `hold_company_only_fallback` |  |
+| `cross_affiliation_holds[].years` | array of integer | yes | Exact source observation years; no inferred leave dates or whole-year status. | at least 1 item(s); items: 2016 to 2026 |  |
+| `cross_affiliation_holds[].reason` | string | yes |  | non-empty |  |
+| `cross_affiliation_holds[].evidence` | array of object | yes |  | at least 1 item(s) |  |
+| `cross_affiliation_holds[].evidence[]` | object | — |  |  |  |
+| `cross_affiliation_holds[].evidence[].url` | string | yes |  | pattern `^https?://` |  |
+| `cross_affiliation_holds[].evidence[].sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `cross_affiliation_holds[].evidence[].quote` | string | yes |  | non-empty |  |
+| `cross_affiliation_holds[].evidence[].observedAt` | string | yes | Literal source capture/observation date, independent of attendance or appointment start. |  |  |
+| `cross_affiliation_holds[].leave_start` | null | yes | Unknown; this review cannot create a leave start. |  |  |
+| `cross_affiliation_holds[].leave_end` | null | yes | Unknown; this review cannot create a leave end. |  |  |
+| `cross_affiliation_holds[].departure_inferred` | boolean | yes | A leave observation is not departure evidence. | always `false` |  |
 | `<key ~ /^(why\|note)_/>` | string | — | Reviewer note on one correction. |  |  |
 
 ### census-overrides: shape `evidence`

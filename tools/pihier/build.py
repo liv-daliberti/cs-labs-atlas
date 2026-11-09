@@ -71,6 +71,8 @@ def write(ctx):
         rep['paperClaimReview'] = ctx.paper_claim_review
     if getattr(ctx, 'primary_affiliation_reviews', None):
         rep['primaryPDFAffiliationReviews'] = [value[1] for _, value in sorted(ctx.primary_affiliation_reviews.items())]
+    if getattr(ctx, 'cross_affiliation_hold_review', None) is not None:
+        rep['crossAffiliationSourceHolds'] = ctx.cross_affiliation_hold_review
     atomic_json(out / 'report.json', rep)
     print(json.dumps(dict(school=school, **n)))
 
