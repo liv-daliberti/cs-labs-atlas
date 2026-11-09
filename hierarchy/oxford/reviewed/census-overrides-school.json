@@ -68,5 +68,27 @@
       "quote": "Professor Scott A. Hale Director, Professor of Social Data Science",
       "observedAt": "2026-11-09"
     }
+  },
+  "David William Murray": {
+    "not_openalex": [
+      "https://openalex.org/A5105508316"
+    ],
+    "why_not_openalex": "The 59 trial claims under this OpenAlex author ID are knee and hip orthopaedics papers by D. W. Murray at the Nuffield Orthopaedic Centre, not the Engineering Science professor David William Murray. DBLP separates the Engineering Science author (pid/60/5939-1) from the Nuffield Orthopaedic Centre namesake (pid/60/5939-2). Hold this exact OpenAlex author ID for this PI; retain the source works and do not blacklist the title or person name globally.",
+    "not_openalex_evidence": [
+      {
+        "url": "https://dblp.org/pid/60/5939-1",
+        "source_path": "hierarchy/oxford/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "e6cd276cd6dd1c323d0f7fe02f7a7953d4aea03b264028fe5dfd676d4566eea9",
+        "quote": "University of Oxford, Dept of Engineering Science",
+        "qualification": "The DBLP September 2026 dump has a separate Engineering Science record for the target PI."
+      },
+      {
+        "url": "https://dblp.org/pid/60/5939-2",
+        "source_path": "hierarchy/oxford/raw/dblp-dump-persons-school.json.gz",
+        "sha256": "e6cd276cd6dd1c323d0f7fe02f7a7953d4aea03b264028fe5dfd676d4566eea9",
+        "quote": "University of Oxford, Nuffield Orthopaedic Centre",
+        "qualification": "The distinct exact-name DBLP record aligns with the bylines and orthopaedic affiliations of all 59 held trial claims."
+      }
+    ]
   }
 }
