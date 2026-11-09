@@ -685,7 +685,8 @@
    "status": 200,
    "sha256": "b551c554e3bf6b926ce18adb2ffd6ecc5c24b2099e6644efc5fba2d9a355cc4b",
    "found_from_kind": "dblp_homepage",
-   "verified": false
+   "verified": false,
+   "unverified_reason": "fetched page does not carry the full name (address names the person)"
   },
   {
    "person": "Sham Kakade",
@@ -1391,7 +1392,8 @@
    "status": 200,
    "sha256": "b505ae83dd41939933d7effe0de818c8535f292ce047ad1d3fcb4003d594813e",
    "found_from_kind": "prior_pass",
-   "verified": false
+   "verified": false,
+   "unverified_reason": "fetched page does not carry the full name (address names the person)"
   },
   {
    "person": "Jonathan Zittrain",
@@ -1780,7 +1782,8 @@
    "fetch_reason": "host not fetchable (robots/login)",
    "person_id": "ext:harvard:matthew-adiletta",
    "found_from_kind": "official_page",
-   "verified": false
+   "verified": false,
+   "unverified_reason": "host not fetchable (robots/login)"
   },
   {
    "person": "Mariam Elgamal",
@@ -1800,6 +1803,7 @@
    "person_id": "ext:harvard:mariam-elgamal",
    "found_from_kind": "official_page",
    "verified": false,
+   "unverified_reason": "not fetched: robots.txt disallows it, or the host names an AI agent or is a banned source (robots-disallowed)",
    "fetch_attempted_at": "2026-11-09T00:05:24+00:00"
   },
   {
@@ -1819,7 +1823,8 @@
    "fetch_reason": "host not fetchable (robots/login)",
    "person_id": "ext:harvard:nestor-cuevas",
    "found_from_kind": "official_page",
-   "verified": false
+   "verified": false,
+   "unverified_reason": "host not fetchable (robots/login)"
   },
   {
    "person": "Alicia Golden",
@@ -1860,7 +1865,8 @@
    "fetch_reason": "host not fetchable (robots/login)",
    "person_id": "ext:harvard:jennifer-zhou",
    "found_from_kind": "official_page",
-   "verified": false
+   "verified": false,
+   "unverified_reason": "host not fetchable (robots/login)"
   },
   {
    "person": "Kevin Kim",
@@ -1879,7 +1885,8 @@
    "fetch_reason": "host not fetchable (robots/login)",
    "person_id": "ext:harvard:kevin-kim",
    "found_from_kind": "official_page",
-   "verified": false
+   "verified": false,
+   "unverified_reason": "host not fetchable (robots/login)"
   },
   {
    "person": "Haebin Do",
@@ -1898,7 +1905,8 @@
    "fetch_reason": "host not fetchable (robots/login)",
    "person_id": "ext:harvard:haebin-do",
    "found_from_kind": "official_page",
-   "verified": false
+   "verified": false,
+   "unverified_reason": "host not fetchable (robots/login)"
   },
   {
    "person": "Kevin He",
@@ -1918,6 +1926,7 @@
    "person_id": "ext:harvard:kevin-he",
    "found_from_kind": "official_page",
    "verified": false,
+   "unverified_reason": "not fetched: robots.txt disallows it, or the host names an AI agent or is a banned source (robots-disallowed)",
    "fetch_attempted_at": "2026-11-09T00:05:24+00:00"
   },
   {
@@ -1959,7 +1968,8 @@
    "fetch_reason": "host not fetchable (robots/login)",
    "person_id": "ext:harvard:aayush-karan",
    "found_from_kind": "lab_page",
-   "verified": false
+   "verified": false,
+   "unverified_reason": "host not fetchable (robots/login)"
   },
   {
    "person": "Jaeyeon Kim",
@@ -2046,7 +2056,8 @@
    "sha256": "22106cd7726ed1fda9563dbde716f7bfdaf65deabfd9e5eaaab8343324a748ed",
    "person_id": "ext:harvard:walt-mckelvie",
    "found_from_kind": "lab_page",
-   "verified": false
+   "verified": false,
+   "unverified_reason": "fetched page does not carry the full name (surname present)"
   },
   {
    "person": "Safwan Hossain",
@@ -2132,6 +2143,7 @@
    "person_id": "ext:harvard:varun-gandhi",
    "found_from_kind": "official_page",
    "verified": false,
+   "unverified_reason": "read via Wayback only (shared low lane): wayback-only-host",
    "fetch_attempted_at": "2026-11-09T00:05:27+00:00"
   },
   {
@@ -2218,6 +2230,7 @@
    "person_id": "ext:harvard:hiwot-belay-tadesse",
    "found_from_kind": "lab_page",
    "verified": false,
+   "unverified_reason": "not fetched: robots.txt disallows it, or the host names an AI agent or is a banned source (robots-disallowed)",
    "fetch_attempted_at": "2026-11-09T00:05:28+00:00"
   },
   {
@@ -2238,6 +2251,7 @@
    "person_id": "ext:harvard:ritesh-kanchi",
    "found_from_kind": "official_page",
    "verified": false,
+   "unverified_reason": "not fetched: robots.txt disallows it, or the host names an AI agent or is a banned source (robots-disallowed)",
    "fetch_attempted_at": "2026-11-09T00:05:28+00:00"
   },
   {
@@ -2302,6 +2316,7 @@
    "person_id": "ext:harvard:jianna-so",
    "found_from_kind": "official_page",
    "verified": false,
+   "unverified_reason": "not fetched: robots.txt disallows it, or the host names an AI agent or is a banned source (robots-disallowed)",
    "fetch_attempted_at": "2026-11-09T00:05:30+00:00"
   },
   {
@@ -2647,12 +2662,15 @@
     "capture_url": null,
     "anchor": "Elad Haramaty"
    },
-   "fetched": false,
-   "fetch_reason": "live fetch failed: HTTP 302",
+   "fetched": true,
    "person_id": "ext:harvard:elad-haramaty",
+   "status": 200,
+   "sha256": "3416471c97cb8e07befcefec83c0da9bf59605814c9f60f04c7e3e1dad2d5646",
+   "fetched_at": "2026-11-09T00:20:52+00:00",
+   "redirected_to": "https://accounts.google.com/v3/signin/identifier?continue=https://sites.google.com/site/eladharamaty/&followup=https://sites.google.com/site/eladharamaty/&osid=1&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S925603865:1794183657399481",
    "found_from_kind": "official_page",
    "verified": false,
-   "fetch_attempted_at": "2026-11-09T00:06:03+00:00"
+   "unverified_reason": "fetched page does not carry the full name (address names the person)"
   },
   {
    "person": "Mrinal Kumar",
@@ -2716,6 +2734,7 @@
    "person_id": "ext:harvard:omri-ben-eliezer",
    "found_from_kind": "official_page",
    "verified": false,
+   "unverified_reason": "not fetched: robots.txt disallows it, or the host names an AI agent or is a banned source (robots-disallowed)",
    "fetch_attempted_at": "2026-11-09T00:05:37+00:00"
   },
   {
@@ -2779,7 +2798,8 @@
    "fetch_reason": "host not fetchable (robots/login)",
    "person_id": "ext:harvard:yunjia-zheng",
    "found_from_kind": "official_page",
-   "verified": false
+   "verified": false,
+   "unverified_reason": "host not fetchable (robots/login)"
   },
   {
    "person": "Yiyu Liu",
@@ -2842,7 +2862,8 @@
    "fetch_reason": "host not fetchable (robots/login)",
    "person_id": "ext:harvard:bintang-dwi-marthen",
    "found_from_kind": "official_page",
-   "verified": false
+   "verified": false,
+   "unverified_reason": "host not fetchable (robots/login)"
   },
   {
    "person": "Weifan Jiang",

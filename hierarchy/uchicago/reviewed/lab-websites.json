@@ -3,7 +3,7 @@
  "tool": "tools/lab_websites.py",
  "source": "labpage-audit.jsonl.gz",
  "source_exists": true,
- "refreshed_from_cached_discovery": false,
+ "refreshed_from_cached_discovery": true,
  "review_status": "generated; student admissions require separate review",
  "labs": [
   {
@@ -11,7 +11,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-04T19:30:41+00:00",
+   "audited_at": "2026-11-03T15:53:34+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -129,14 +129,16 @@
    ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "verified": true,
+   "verification_quote": "julia chuzhoy julia chuzhoy manuel blum professor toyota technological institute at ch"
   },
   {
    "pi": "Kevin Gimpel",
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://ttic.edu/faculty/: ok; department_listing https://www.cs.uchicago.edu/people/faculty/: ok.",
-   "audited_at": "2026-11-04T19:30:41+00:00",
+   "audited_at": "2026-11-03T15:53:38+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -188,7 +190,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.ttic.edu/faculty/: ok; department_listing https://www.ttic.edu/faculty.php: ok.",
-   "audited_at": "2026-11-04T19:30:42+00:00",
+   "audited_at": "2026-11-03T15:53:39+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -240,7 +242,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-04T19:30:47+00:00",
+   "audited_at": "2026-11-03T15:54:09+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -389,14 +391,16 @@
    ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "verified": true,
+   "verification_quote": "karen livescu karen livescu klivescu at ttic edu professor toyota technological instit"
   },
   {
    "pi": "Michael Maire",
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok; department_listing https://www.cs.uchicago.edu/people/faculty/: ok.",
-   "audited_at": "2026-11-04T19:30:47+00:00",
+   "audited_at": "2026-11-03T15:54:13+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -448,7 +452,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-04T19:30:48+00:00",
+   "audited_at": "2026-11-03T15:54:20+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -557,14 +561,16 @@
    ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "verified": true,
+   "verification_quote": "yury makarychev yury makarychev ttic about teaching talks surveys publications yury m"
   },
   {
    "pi": "David McAllester",
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-04T19:30:48+00:00",
+   "audited_at": "2026-11-03T15:54:24+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -665,14 +671,16 @@
    ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "verified": true,
+   "verification_quote": "david mcallester s personal www page 2006 1991 1974 1956 david mcallester lenore blum "
   },
   {
    "pi": "Alexander A. Razborov",
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok; department_listing https://www.cs.uchicago.edu/people/faculty/: ok.",
-   "audited_at": "2026-11-04T19:30:48+00:00",
+   "audited_at": "2026-11-03T15:54:24+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -724,7 +732,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-04T19:31:08+00:00",
+   "audited_at": "2026-11-03T15:54:30+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -833,40 +841,54 @@
    ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "verified": true,
+   "verification_quote": "greg shakhnarovich tti chicago greg shakhnarovich professor toyota technological inst"
   },
   {
    "pi": "Nathan Srebro",
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "audited_at": "2026-11-04T19:31:15+00:00",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T21:19:56+00:00",
    "checks": [
+    {
+     "source": "prior_labpage_pass_2026-10-22",
+     "url": "http://ttic.uchicago.edu/~nati/",
+     "at": "2026-11-07T21:19:55+00:00",
+     "result": "recorded_lab_site"
+    },
+    {
+     "source": "prior_labpage_pass_2026-10-22",
+     "url": "http://ttic.uchicago.edu:80/~nati/",
+     "at": "2026-11-07T21:19:55+00:00",
+     "result": "recorded_people_page"
+    },
     {
      "source": "department_listing",
      "url": "https://ttic.edu/faculty/",
-     "at": "2026-11-03T15:54:30+00:00",
+     "at": "2026-11-07T21:19:55+00:00",
      "result": "ok",
      "sha256": "e9e1a3efc15620690a31652e3e70ce42267ea5def59fb87ecfea402adbfae362"
     },
     {
      "source": "department_listing",
      "url": "https://www.ttic.edu/faculty/",
-     "at": "2026-11-03T15:54:30+00:00",
+     "at": "2026-11-07T21:19:55+00:00",
      "result": "ok",
      "sha256": "e9e1a3efc15620690a31652e3e70ce42267ea5def59fb87ecfea402adbfae362"
     },
     {
      "source": "school_profile",
      "url": "https://ttic.edu/faculty/srebro",
-     "at": "2026-11-03T15:54:31+00:00",
+     "at": "2026-11-07T21:19:55+00:00",
      "result": "ok",
      "sha256": "fcb209d62e6bc14f3fa635a9707c6cf4b6953d2d1454c3bdf7af7b0512913a38"
     },
     {
      "source": "school_profile_link",
      "url": "http://www.ttic.edu/srebro",
-     "at": "2026-11-03T15:54:31+00:00",
+     "at": "2026-11-07T21:19:55+00:00",
      "result": "listed",
      "anchor": "http://www.ttic.edu/srebro",
      "on": "https://ttic.edu/faculty/srebro"
@@ -874,93 +896,50 @@
     {
      "source": "school_profile",
      "url": "https://www.ttic.edu/faculty/srebro",
-     "at": "2026-11-03T15:54:32+00:00",
+     "at": "2026-11-07T21:19:55+00:00",
      "result": "ok",
      "sha256": "fcb209d62e6bc14f3fa635a9707c6cf4b6953d2d1454c3bdf7af7b0512913a38"
     },
     {
      "source": "dblp_person_url",
-     "url": null,
-     "at": "2026-11-03T15:54:32+00:00",
-     "result": "no_dblp_person"
+     "url": "https://dblp.org/pid/50/3633",
+     "at": "2026-11-07T21:19:55+00:00",
+     "result": "no_homepage_url"
     },
     {
      "source": "orcid_researcher_urls",
-     "url": null,
-     "at": "2026-11-03T15:54:32+00:00",
-     "result": "no_orcid"
+     "url": "https://orcid.org/0000-0002-0763-1740/person.json",
+     "at": "2026-11-07T21:19:56+00:00",
+     "result": "no_urls",
+     "sha256": "eeed457ac95c436ec46182b93d7f623e0477cc13e46bb867db70e62abc3e88a3"
     },
     {
      "source": "openalex_author",
      "url": null,
-     "at": "2026-11-03T15:54:32+00:00",
+     "at": "2026-11-07T21:19:56+00:00",
      "result": "no_homepage_field_in_schema"
     },
     {
      "source": "candidate_site",
      "url": "http://www.ttic.edu/srebro",
-     "at": "2026-11-03T15:54:36+00:00",
+     "at": "2026-11-07T21:19:56+00:00",
      "result": "ok",
      "via": "school_profile_link",
      "sha256": "bf4ccd3182d68c6a5256183490cb67e7e22b22a10ef7dc3bc41f32e3657f9ab5",
      "final_url": "https://nati.ttic.edu"
-    },
-    {
-     "source": "people_link",
-     "url": "https://nati.ttic.edu/group.html",
-     "at": "2026-11-03T15:54:39+00:00",
-     "result": "ok",
-     "on": "http://www.ttic.edu/srebro",
-     "sha256": "c5c4be2e607e65e26a148175de38fa365b59167be7087f7de03dfb739890fb04"
-    },
-    {
-     "source": "pubs_link",
-     "url": "https://nati.ttic.edu/research.html",
-     "at": "2026-11-03T15:54:42+00:00",
-     "result": "ok",
-     "on": "http://www.ttic.edu/srebro",
-     "sha256": "7c9ea4fa8ce2809797b9c1c1d70ab38c2274573b13fc6b8e50abee39513084fc"
-    },
-    {
-     "source": "wayback_cdx",
-     "url": "https://nati.ttic.edu/group.html",
-     "at": "2026-11-03T15:54:42+00:00",
-     "result": "6 captures",
-     "frm": 2016
-    },
-    {
-     "source": "wayback_capture",
-     "url": "https://web.archive.org/web/20220125221809id_/https://nati.ttic.edu/group.html",
-     "at": "2026-11-03T15:54:48+00:00",
-     "result": "ok_wayback",
-     "sha256": "138029a504bf5ef3be8739126e49846813e3fc9c3cac53d0be37fb84ee5ea0bf"
-    },
-    {
-     "source": "wayback_capture",
-     "url": "https://web.archive.org/web/20240424145624id_/https://nati.ttic.edu/group.html",
-     "at": "2026-11-03T15:54:55+00:00",
-     "result": "ok_wayback",
-     "sha256": "5b89500ee2af95646ad795713d863e4e8ca4de04eea1cffa6cf111aeab7e2422"
-    },
-    {
-     "source": "wayback_capture",
-     "url": "https://web.archive.org/web/20260210232918id_/https://nati.ttic.edu/group.html",
-     "at": "2026-11-03T15:55:00+00:00",
-     "result": "ok_wayback",
-     "sha256": "c5c4be2e607e65e26a148175de38fa365b59167be7087f7de03dfb739890fb04"
     }
    ],
    "places_checked": [
     "candidate_site:ok",
+    "dblp_person_url:no_homepage_url",
     "department_listing:ok",
-    "people_link:ok",
-    "pubs_link:ok",
+    "orcid_researcher_urls:no_urls",
+    "prior_labpage_pass_2026-10-22:recorded_lab_site",
+    "prior_labpage_pass_2026-10-22:recorded_people_page",
     "school_profile:ok",
-    "school_profile_link:listed",
-    "wayback_capture:ok_wayback",
-    "wayback_cdx:6 captures"
+    "school_profile_link:listed"
    ],
-   "checked_at": "2026-11-03T15:55:00+00:00",
+   "checked_at": "2026-11-07T21:19:56+00:00",
    "students_page_status": "audited",
    "papers_page_status": "no_pubs_page",
    "url": "http://ttic.uchicago.edu/~nati/",
@@ -970,25 +949,27 @@
    "pubs_page": null,
    "found_via": "prior_labpage_pass_2026-10-22",
    "listed_on": null,
-   "sha256": "5eadf29d92e64ef7ec62342a4de9c6e94bef9226bc84e872ba25cc64e5bbf7a3",
+   "sha256": "30dbc5edde24a92fb900626e2ed244bea38f7ac6fb90cfb3b28fcf0760f6cdfb",
    "evidence": {
     "url": "http://ttic.uchicago.edu/~nati/",
-    "sha256": "5eadf29d92e64ef7ec62342a4de9c6e94bef9226bc84e872ba25cc64e5bbf7a3",
-    "source": "stored_capture"
+    "sha256": "30dbc5edde24a92fb900626e2ed244bea38f7ac6fb90cfb3b28fcf0760f6cdfb",
+    "quote": "Nati Srebro Nathan Srebro Professor Toyota Technological Institute at C",
+    "capture_url": "https://web.archive.org/web/20201204150630id_/https://ttic.uchicago.edu/~nati/"
    },
    "official_link_status": "not_recorded",
    "official_link_evidence": [],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
-   "capture_fetched_at": "2026-11-03T11:21:28"
+   "verified": true,
+   "verification_quote": "nati srebro nathan srebro professor toyota technological institute at chicago profess"
   },
   {
    "pi": "Madhur Tulsiani",
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-04T19:31:17+00:00",
+   "audited_at": "2026-11-03T15:55:27+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -1145,14 +1126,16 @@
    ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "verified": true,
+   "verification_quote": "madhur tulsiani madhur tulsiani professor toyota technological institute at chicago pro"
   },
   {
    "pi": "Matthew Walter",
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-04T19:31:17+00:00",
+   "audited_at": "2026-11-03T15:55:32+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -1261,14 +1244,16 @@
    ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "verified": true,
+   "verification_quote": "matthew r walter matthew walter associate professor toyota technological institute at chic"
   },
   {
    "pi": "Jinbo Xu",
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-04T19:31:18+00:00",
+   "audited_at": "2026-11-03T15:57:41+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -1378,7 +1363,12 @@
    "found_via": "school_profile_link",
    "listed_on": "https://ttic.edu/faculty/xu",
    "sha256": "bcf4d9b54b7c889cafcd064f9f898859a94194a99804e158a78259a91865f94e",
-   "evidence": {},
+   "evidence": {
+    "url": "http://raptorx.uchicago.edu/",
+    "sha256": "bcf4d9b54b7c889cafcd064f9f898859a94194a99804e158a78259a91865f94e",
+    "quote": "onal study My Jobs Docs Download Inquiry & Bug Report About Xu Group Forum RaptorX: Protein Structure and Function Predict",
+    "capture_url": "https://web.archive.org/web/20260919081853id_/http://raptorx.uchicago.edu/"
+   },
    "official_link_status": "recorded",
    "official_link_evidence": [
     {
@@ -1400,14 +1390,16 @@
    ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "verified": false,
+   "unverified_reason": "stored page does not carry the PI full name (surname present)"
   },
   {
    "pi": "Yali Amit",
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-04T19:31:18+00:00",
+   "audited_at": "2026-11-03T15:57:52+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -1500,14 +1492,16 @@
    ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "verified": true,
+   "verification_quote": "yali amit s home page"
   },
   {
    "pi": "László Babai",
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok; department_listing https://www.cs.uchicago.edu/people/faculty/: ok.",
-   "audited_at": "2026-11-04T19:31:18+00:00",
+   "audited_at": "2026-11-03T15:57:52+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -1559,7 +1553,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok; department_listing https://www.cs.uchicago.edu/people/faculty/: ok.",
-   "audited_at": "2026-11-04T19:31:18+00:00",
+   "audited_at": "2026-11-03T15:57:52+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -1610,46 +1604,131 @@
    "pi": "Fred Chong",
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "audited_at": "2026-11-04T19:31:18+00:00",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T21:20:05+00:00",
    "checks": [
+    {
+     "source": "prior_labpage_pass_2026-10-22",
+     "url": "http://people.cs.uchicago.edu/~ftchong/",
+     "at": "2026-11-07T21:19:56+00:00",
+     "result": "recorded_lab_site"
+    },
+    {
+     "source": "prior_labpage_pass_2026-10-22",
+     "url": "http://people.cs.uchicago.edu:80/~ftchong/",
+     "at": "2026-11-07T21:19:56+00:00",
+     "result": "recorded_people_page"
+    },
     {
      "source": "department_listing",
      "url": "https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/",
-     "at": "2026-11-03T15:57:52+00:00",
+     "at": "2026-11-07T21:19:56+00:00",
      "result": "ok",
      "sha256": "183c569072acd623bbcdbd95961065508405854c304ef589e5662cea7552ebb2"
     },
     {
      "source": "department_listing",
      "url": "https://www.cs.uchicago.edu/people/faculty/",
-     "at": "2026-11-03T15:57:52+00:00",
+     "at": "2026-11-07T21:19:56+00:00",
      "result": "ok",
      "sha256": "368e30fe0be1c9d711b45a76a39befc3ad1c6dee3162f1bb9d5fa9b14948e902"
     },
     {
+     "source": "school_profile",
+     "url": "https://cs.uchicago.edu/people/frederic-chong/",
+     "at": "2026-11-07T21:19:57+00:00",
+     "result": "ok",
+     "sha256": "d022e63b4f65b0dd7cc5d784f0b48f69c08e0bc2ed7d20e12015ef62fba3e970"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://people.cs.uchicago.edu/~ftchong/",
+     "at": "2026-11-07T21:19:57+00:00",
+     "result": "listed",
+     "anchor": "https://people.cs.uchicago.edu/~ftchong/",
+     "on": "https://cs.uchicago.edu/people/frederic-chong/"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://systems.cs.uchicago.edu/",
+     "at": "2026-11-07T21:19:57+00:00",
+     "result": "listed",
+     "anchor": "Systems Group",
+     "on": "https://cs.uchicago.edu/people/frederic-chong/"
+    },
+    {
      "source": "dblp_person_url",
-     "url": null,
-     "at": "2026-11-03T15:57:53+00:00",
-     "result": "no_dblp_person"
+     "url": "https://dblp.org/pid/c/FTChong",
+     "at": "2026-11-07T21:19:57+00:00",
+     "result": "listed",
+     "urls": [
+      "https://people.cs.uchicago.edu/~ftchong/"
+     ]
     },
     {
      "source": "orcid_researcher_urls",
-     "url": null,
-     "at": "2026-11-03T15:57:53+00:00",
-     "result": "no_orcid"
+     "url": "https://orcid.org/0000-0001-9282-4645/person.json",
+     "at": "2026-11-07T21:19:59+00:00",
+     "result": "no_urls",
+     "sha256": "8e84b11d907d6ccf0d81be5f91752ca7e83254c7796f235ee041abb9c9ee3654"
     },
     {
      "source": "openalex_author",
      "url": null,
-     "at": "2026-11-03T15:57:53+00:00",
+     "at": "2026-11-07T21:19:59+00:00",
      "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://people.cs.uchicago.edu/~ftchong/",
+     "at": "2026-11-07T21:20:02+00:00",
+     "result": "unreachable",
+     "via": "school_profile_link"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://systems.cs.uchicago.edu/",
+     "at": "2026-11-07T21:20:05+00:00",
+     "result": "unreachable",
+     "via": "school_profile_link"
+    },
+    {
+     "source": "wayback_pending",
+     "url": "https://web.archive.org/cdx/search/cdx?url=http%3A%2F%2Fsystems.cs.uchicago.edu%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
+     "at": "2026-11-07T21:20:05+00:00",
+     "result": "wayback_deferred"
+    },
+    {
+     "source": "wayback_pending",
+     "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fpeople.cs.uchicago.edu%2F~ftchong%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
+     "at": "2026-11-07T21:20:05+00:00",
+     "result": "wayback_deferred"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://people.cs.uchicago.edu/~ftchong/",
+     "on": "https://cs.uchicago.edu/people/frederic-chong/",
+     "at": "2026-11-07T21:19:57+00:00",
+     "result": "listed",
+     "anchor": "https://people.cs.uchicago.edu/~ftchong/",
+     "linked_url": "https://people.cs.uchicago.edu/~ftchong/",
+     "source_sha256": "d022e63b4f65b0dd7cc5d784f0b48f69c08e0bc2ed7d20e12015ef62fba3e970",
+     "source_capture_url": null,
+     "provenance": "recovered_from_cached_profile_html"
     }
    ],
    "places_checked": [
-    "department_listing:ok"
+    "candidate_site:unreachable",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "prior_labpage_pass_2026-10-22:recorded_lab_site",
+    "prior_labpage_pass_2026-10-22:recorded_people_page",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "wayback_pending:wayback_deferred"
    ],
-   "checked_at": "2026-11-03T15:57:52+00:00",
+   "checked_at": "2026-11-07T21:20:05+00:00",
    "students_page_status": "audited",
    "papers_page_status": "no_pubs_page",
    "url": "http://people.cs.uchicago.edu/~ftchong/",
@@ -1658,64 +1737,179 @@
    "alumni_page": null,
    "pubs_page": null,
    "found_via": "prior_labpage_pass_2026-10-22",
-   "listed_on": null,
-   "sha256": "8dddda3f585cc17c0e43c2a07ecac61a458c343a25b2c842214e9426bc19a97b",
+   "listed_on": "https://cs.uchicago.edu/people/frederic-chong/",
+   "sha256": "d9b9f2a0bea1ac7e2de778179226f53f6f6598003f0a106ba4df6a2ae96d740a",
    "evidence": {
     "url": "http://people.cs.uchicago.edu/~ftchong/",
-    "sha256": "8dddda3f585cc17c0e43c2a07ecac61a458c343a25b2c842214e9426bc19a97b",
-    "source": "stored_capture"
+    "sha256": "d9b9f2a0bea1ac7e2de778179226f53f6f6598003f0a106ba4df6a2ae96d740a",
+    "quote": "\\ Fred Chong Fred Chong Home Papers Personal CV Quantum computing sits p",
+    "capture_url": "https://web.archive.org/web/20260823024548id_/https://people.cs.uchicago.edu/~ftchong/"
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://people.cs.uchicago.edu/~ftchong/",
+     "on": "https://cs.uchicago.edu/people/frederic-chong/",
+     "at": "2026-11-07T21:19:57+00:00",
+     "result": "listed",
+     "anchor": "https://people.cs.uchicago.edu/~ftchong/",
+     "linked_url": "https://people.cs.uchicago.edu/~ftchong/",
+     "source_sha256": "d022e63b4f65b0dd7cc5d784f0b48f69c08e0bc2ed7d20e12015ef62fba3e970",
+     "source_capture_url": null,
+     "provenance": "recovered_from_cached_profile_html"
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
-   "capture_fetched_at": "2026-11-03T11:23:54"
+   "verified": true,
+   "verification_quote": "fred chong fred chong home papers personal cv talks misc quantum computing sits poise"
   },
   {
    "pi": "Ravi Chugh",
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "audited_at": "2026-11-04T19:31:18+00:00",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T21:20:12+00:00",
    "checks": [
+    {
+     "source": "prior_labpage_pass_2026-10-22",
+     "url": "http://people.cs.uchicago.edu/~rchugh",
+     "at": "2026-11-07T21:20:05+00:00",
+     "result": "recorded_lab_site"
+    },
+    {
+     "source": "prior_labpage_pass_2026-10-22",
+     "url": "http://people.cs.uchicago.edu:80/~rchugh/",
+     "at": "2026-11-07T21:20:05+00:00",
+     "result": "recorded_people_page"
+    },
     {
      "source": "department_listing",
      "url": "https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/",
-     "at": "2026-11-03T15:57:53+00:00",
+     "at": "2026-11-07T21:20:05+00:00",
      "result": "ok",
      "sha256": "183c569072acd623bbcdbd95961065508405854c304ef589e5662cea7552ebb2"
     },
     {
      "source": "department_listing",
      "url": "https://www.cs.uchicago.edu/people/faculty/",
-     "at": "2026-11-03T15:57:53+00:00",
+     "at": "2026-11-07T21:20:05+00:00",
      "result": "ok",
      "sha256": "368e30fe0be1c9d711b45a76a39befc3ad1c6dee3162f1bb9d5fa9b14948e902"
     },
     {
+     "source": "school_profile",
+     "url": "https://cs.uchicago.edu/people/ravi-chugh/",
+     "at": "2026-11-07T21:20:06+00:00",
+     "result": "ok",
+     "sha256": "9b4f54358efa47fbf350eb50fb54719483b4ac1257b2492f92c13b54a4be833e"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://people.cs.uchicago.edu/~rchugh",
+     "at": "2026-11-07T21:20:06+00:00",
+     "result": "listed",
+     "anchor": "https://people.cs.uchicago.edu/~rchugh",
+     "on": "https://cs.uchicago.edu/people/ravi-chugh/"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://pl.cs.uchicago.edu/",
+     "at": "2026-11-07T21:20:06+00:00",
+     "result": "listed",
+     "anchor": "Programming Languages Group",
+     "on": "https://cs.uchicago.edu/people/ravi-chugh/"
+    },
+    {
      "source": "dblp_person_url",
-     "url": null,
-     "at": "2026-11-03T15:57:53+00:00",
-     "result": "no_dblp_person"
+     "url": "https://dblp.org/pid/54/4184",
+     "at": "2026-11-07T21:20:06+00:00",
+     "result": "no_homepage_url"
     },
     {
      "source": "orcid_researcher_urls",
      "url": null,
-     "at": "2026-11-03T15:57:53+00:00",
+     "at": "2026-11-07T21:20:06+00:00",
      "result": "no_orcid"
     },
     {
      "source": "openalex_author",
      "url": null,
-     "at": "2026-11-03T15:57:53+00:00",
+     "at": "2026-11-07T21:20:06+00:00",
      "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "http://people.cs.uchicago.edu/~rchugh/",
+     "at": "2026-11-07T21:20:06+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://people.cs.uchicago.edu/~rchugh",
+     "at": "2026-11-07T21:20:06+00:00",
+     "result": "unreachable",
+     "via": "school_profile_link"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://pl.cs.uchicago.edu/",
+     "at": "2026-11-07T21:20:09+00:00",
+     "result": "unreachable",
+     "via": "school_profile_link"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://people.cs.uchicago.edu/~rchugh/",
+     "at": "2026-11-07T21:20:12+00:00",
+     "result": "unreachable",
+     "via": "pi_evidence_url"
+    },
+    {
+     "source": "wayback_pending",
+     "url": "https://web.archive.org/cdx/search/cdx?url=http%3A%2F%2Fpeople.cs.uchicago.edu%2F~rchugh%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
+     "at": "2026-11-07T21:20:12+00:00",
+     "result": "wayback_deferred"
+    },
+    {
+     "source": "wayback_pending",
+     "url": "https://web.archive.org/cdx/search/cdx?url=http%3A%2F%2Fpl.cs.uchicago.edu%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
+     "at": "2026-11-07T21:20:12+00:00",
+     "result": "wayback_deferred"
+    },
+    {
+     "source": "wayback_pending",
+     "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fpeople.cs.uchicago.edu%2F~rchugh&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
+     "at": "2026-11-07T21:20:12+00:00",
+     "result": "wayback_deferred"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://people.cs.uchicago.edu/~rchugh",
+     "on": "https://cs.uchicago.edu/people/ravi-chugh/",
+     "at": "2026-11-07T21:20:06+00:00",
+     "result": "listed",
+     "anchor": "https://people.cs.uchicago.edu/~rchugh",
+     "linked_url": "https://people.cs.uchicago.edu/~rchugh",
+     "source_sha256": "9b4f54358efa47fbf350eb50fb54719483b4ac1257b2492f92c13b54a4be833e",
+     "source_capture_url": null,
+     "provenance": "recovered_from_cached_profile_html"
     }
    ],
    "places_checked": [
-    "department_listing:ok"
+    "candidate_site:unreachable",
+    "dblp_person_url:no_homepage_url",
+    "department_listing:ok",
+    "pi_evidence_url:listed",
+    "prior_labpage_pass_2026-10-22:recorded_lab_site",
+    "prior_labpage_pass_2026-10-22:recorded_people_page",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "wayback_pending:wayback_deferred"
    ],
-   "checked_at": "2026-11-03T15:57:53+00:00",
+   "checked_at": "2026-11-07T21:20:12+00:00",
    "students_page_status": "audited",
    "papers_page_status": "no_pubs_page",
    "url": "http://people.cs.uchicago.edu/~rchugh",
@@ -1724,26 +1918,41 @@
    "alumni_page": null,
    "pubs_page": null,
    "found_via": "prior_labpage_pass_2026-10-22",
-   "listed_on": null,
-   "sha256": "e9c0366e65c80eb5b44f8f3afd7f230e0b56beddb95615f31cbd3f6cb355a429",
+   "listed_on": "https://cs.uchicago.edu/people/ravi-chugh/",
+   "sha256": "774ace62a7a5f46cf83f6793cf76762db75a5a15c544c84099c181669f5527fe",
    "evidence": {
     "url": "http://people.cs.uchicago.edu/~rchugh",
-    "sha256": "e9c0366e65c80eb5b44f8f3afd7f230e0b56beddb95615f31cbd3f6cb355a429",
-    "source": "stored_capture"
+    "sha256": "774ace62a7a5f46cf83f6793cf76762db75a5a15c544c84099c181669f5527fe",
+    "quote": "Ravi Chugh Ravi Chugh Home Classes Papers Talks Misc News [Sep/Oct 202",
+    "capture_url": "https://web.archive.org/web/20260502010230id_/http://people.cs.uchicago.edu/~rchugh/"
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://people.cs.uchicago.edu/~rchugh",
+     "on": "https://cs.uchicago.edu/people/ravi-chugh/",
+     "at": "2026-11-07T21:20:06+00:00",
+     "result": "listed",
+     "anchor": "https://people.cs.uchicago.edu/~rchugh",
+     "linked_url": "https://people.cs.uchicago.edu/~rchugh",
+     "source_sha256": "9b4f54358efa47fbf350eb50fb54719483b4ac1257b2492f92c13b54a4be833e",
+     "source_capture_url": null,
+     "provenance": "recovered_from_cached_profile_html"
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
-   "capture_fetched_at": "2026-11-03T11:24:14"
+   "verified": true,
+   "verification_quote": "ravi chugh ravi chugh home classes papers talks misc news sep oct 2025 our css rocks "
   },
   {
    "pi": "Andrew Drucker",
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok; department_listing https://www.cs.uchicago.edu/people/faculty/: ok.",
-   "audited_at": "2026-11-04T19:31:18+00:00",
+   "audited_at": "2026-11-03T15:57:53+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -1795,7 +2004,7 @@
    "status": "none_found",
    "reason_code": "emeritus_or_admin_no_lab",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/emeritus-faculty/: ok; department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok.",
-   "audited_at": "2026-11-04T19:31:18+00:00",
+   "audited_at": "2026-11-03T15:57:54+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -1847,7 +2056,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok; department_listing https://www.cs.uchicago.edu/people/faculty/: ok.",
-   "audited_at": "2026-11-04T19:31:18+00:00",
+   "audited_at": "2026-11-03T15:57:54+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -1899,7 +2108,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/directories/table/faculty: ok_wayback.",
-   "audited_at": "2026-11-04T19:31:18+00:00",
+   "audited_at": "2026-11-03T15:58:04+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -1945,7 +2154,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok; department_listing https://www.cs.uchicago.edu/people/faculty/: ok.",
-   "audited_at": "2026-11-04T19:31:19+00:00",
+   "audited_at": "2026-11-03T15:58:04+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -1997,7 +2206,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok; department_listing https://www.cs.uchicago.edu/people/faculty/: ok; dblp_person_url https://dblp.org/pid/13/9964: no_homepage_url.",
-   "audited_at": "2026-11-04T19:31:19+00:00",
+   "audited_at": "2026-11-03T15:58:04+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -2050,7 +2259,7 @@
    "status": "none_found",
    "reason_code": "emeritus_or_admin_no_lab",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/emeritus-faculty/: ok; department_listing https://www.cs.uchicago.edu/people/faculty/: ok.",
-   "audited_at": "2026-11-04T19:31:19+00:00",
+   "audited_at": "2026-11-03T15:58:04+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -2101,46 +2310,141 @@
    "pi": "Haryadi Gunawi",
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "audited_at": "2026-11-04T19:31:24+00:00",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T21:20:18+00:00",
    "checks": [
+    {
+     "source": "prior_labpage_pass_2026-10-22",
+     "url": "http://people.cs.uchicago.edu/~haryadi",
+     "at": "2026-11-07T21:20:12+00:00",
+     "result": "recorded_lab_site"
+    },
+    {
+     "source": "prior_labpage_pass_2026-10-22",
+     "url": "http://people.cs.uchicago.edu:80/~haryadi/",
+     "at": "2026-11-07T21:20:12+00:00",
+     "result": "recorded_people_page"
+    },
     {
      "source": "department_listing",
      "url": "https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/",
-     "at": "2026-11-03T15:58:04+00:00",
+     "at": "2026-11-07T21:20:13+00:00",
      "result": "ok",
      "sha256": "183c569072acd623bbcdbd95961065508405854c304ef589e5662cea7552ebb2"
     },
     {
      "source": "department_listing",
      "url": "https://www.cs.uchicago.edu/people/faculty/",
-     "at": "2026-11-03T15:58:04+00:00",
+     "at": "2026-11-07T21:20:13+00:00",
      "result": "ok",
      "sha256": "368e30fe0be1c9d711b45a76a39befc3ad1c6dee3162f1bb9d5fa9b14948e902"
     },
     {
+     "source": "school_profile",
+     "url": "https://cs.uchicago.edu/people/haryadi-gunawi/",
+     "at": "2026-11-07T21:20:13+00:00",
+     "result": "ok",
+     "sha256": "05543efc3edf28a78a29e42419eb5a9560c51d8300fad6f37e324974b6203e50"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://people.cs.uchicago.edu/~haryadi",
+     "at": "2026-11-07T21:20:13+00:00",
+     "result": "listed",
+     "anchor": "https://people.cs.uchicago.edu/~haryadi",
+     "on": "https://cs.uchicago.edu/people/haryadi-gunawi/"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://people.cs.uchicago.edu/~haryadi",
+     "at": "2026-11-07T21:20:13+00:00",
+     "result": "listed",
+     "anchor": "personal website",
+     "on": "https://cs.uchicago.edu/people/haryadi-gunawi/"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://systems.cs.uchicago.edu/",
+     "at": "2026-11-07T21:20:13+00:00",
+     "result": "listed",
+     "anchor": "Systems Group",
+     "on": "https://cs.uchicago.edu/people/haryadi-gunawi/"
+    },
+    {
      "source": "dblp_person_url",
-     "url": null,
-     "at": "2026-11-03T15:58:04+00:00",
-     "result": "no_dblp_person"
+     "url": "https://dblp.org/pid/84/5664",
+     "at": "2026-11-07T21:20:13+00:00",
+     "result": "listed",
+     "urls": [
+      "https://people.cs.uchicago.edu/~haryadi/",
+      "https://www.cs.uchicago.edu/directory/haryadi-gunawi"
+     ]
     },
     {
      "source": "orcid_researcher_urls",
-     "url": null,
-     "at": "2026-11-03T15:58:04+00:00",
-     "result": "no_orcid"
+     "url": "https://orcid.org/0000-0003-3680-8450/person.json",
+     "at": "2026-11-07T21:20:13+00:00",
+     "result": "no_urls",
+     "sha256": "1c21c31a361181d793d347815bdb4d438ea3245e62b72fb6b2ffdde02945f430"
     },
     {
      "source": "openalex_author",
      "url": null,
-     "at": "2026-11-03T15:58:04+00:00",
+     "at": "2026-11-07T21:20:13+00:00",
      "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://people.cs.uchicago.edu/~haryadi",
+     "at": "2026-11-07T21:20:15+00:00",
+     "result": "unreachable",
+     "via": "school_profile_link"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://systems.cs.uchicago.edu/",
+     "at": "2026-11-07T21:20:16+00:00",
+     "result": "unreachable",
+     "via": "school_profile_link"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://people.cs.uchicago.edu/~haryadi/",
+     "at": "2026-11-07T21:20:18+00:00",
+     "result": "unreachable",
+     "via": "dblp_person_url"
+    },
+    {
+     "source": "wayback_pending",
+     "url": "https://web.archive.org/cdx/search/cdx?url=http%3A%2F%2Fsystems.cs.uchicago.edu%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
+     "at": "2026-11-07T21:20:18+00:00",
+     "result": "wayback_deferred"
+    },
+    {
+     "source": "wayback_pending",
+     "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fpeople.cs.uchicago.edu%2F~haryadi%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
+     "at": "2026-11-07T21:20:18+00:00",
+     "result": "wayback_deferred"
+    },
+    {
+     "source": "wayback_pending",
+     "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fpeople.cs.uchicago.edu%2F~haryadi&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
+     "at": "2026-11-07T21:20:18+00:00",
+     "result": "wayback_deferred"
     }
    ],
    "places_checked": [
-    "department_listing:ok"
+    "candidate_site:unreachable",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "prior_labpage_pass_2026-10-22:recorded_lab_site",
+    "prior_labpage_pass_2026-10-22:recorded_people_page",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "wayback_pending:wayback_deferred"
    ],
-   "checked_at": "2026-11-03T15:58:04+00:00",
+   "checked_at": "2026-11-07T21:20:18+00:00",
    "students_page_status": "audited",
    "papers_page_status": "no_pubs_page",
    "url": "http://people.cs.uchicago.edu/~haryadi",
@@ -2150,63 +2454,195 @@
    "pubs_page": null,
    "found_via": "prior_labpage_pass_2026-10-22",
    "listed_on": null,
-   "sha256": "13beefef341ea777150842612e401885647185bb15db574d076171017a3c6478",
+   "sha256": "7c2f8cbad9dc6b34010adfdeaf33aa15939288d9b925496d2d7778403f044394",
    "evidence": {
     "url": "http://people.cs.uchicago.edu/~haryadi",
-    "sha256": "13beefef341ea777150842612e401885647185bb15db574d076171017a3c6478",
-    "source": "stored_capture"
+    "sha256": "7c2f8cbad9dc6b34010adfdeaf33aa15939288d9b925496d2d7778403f044394",
+    "quote": "Prof. Haryadi S. Gunawi, Univ. of Chicago, CS Dept. Research | Publications | Teach",
+    "capture_url": "https://web.archive.org/web/20260922115154id_/https://people.cs.uchicago.edu/~haryadi/"
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://people.cs.uchicago.edu/~haryadi",
+     "at": "2026-11-07T21:20:13+00:00",
+     "result": "listed",
+     "anchor": "personal website",
+     "on": "https://cs.uchicago.edu/people/haryadi-gunawi/"
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
-   "capture_fetched_at": "2026-11-03T11:26:05"
+   "verified": true,
+   "verification_quote": "prof haryadi s gunawi univ of chicago cs dept research publications teaching services har yadi "
   },
   {
    "pi": "Henry Hoffmann",
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "audited_at": "2026-11-04T19:31:25+00:00",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T21:20:26+00:00",
    "checks": [
+    {
+     "source": "prior_labpage_pass_2026-10-22",
+     "url": "http://people.cs.uchicago.edu/~hankhoffmann",
+     "at": "2026-11-07T21:20:18+00:00",
+     "result": "recorded_lab_site"
+    },
+    {
+     "source": "prior_labpage_pass_2026-10-22",
+     "url": "http://people.cs.uchicago.edu:80/~hankhoffmann/",
+     "at": "2026-11-07T21:20:18+00:00",
+     "result": "recorded_people_page"
+    },
     {
      "source": "department_listing",
      "url": "https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/",
-     "at": "2026-11-03T15:58:04+00:00",
+     "at": "2026-11-07T21:20:19+00:00",
      "result": "ok",
      "sha256": "183c569072acd623bbcdbd95961065508405854c304ef589e5662cea7552ebb2"
     },
     {
      "source": "department_listing",
      "url": "https://www.cs.uchicago.edu/people/faculty/",
-     "at": "2026-11-03T15:58:04+00:00",
+     "at": "2026-11-07T21:20:19+00:00",
      "result": "ok",
      "sha256": "368e30fe0be1c9d711b45a76a39befc3ad1c6dee3162f1bb9d5fa9b14948e902"
     },
     {
+     "source": "school_profile",
+     "url": "https://cs.uchicago.edu/people/henry-hoffmann/",
+     "at": "2026-11-07T21:20:19+00:00",
+     "result": "ok",
+     "sha256": "b3a2a2eeecc797f4003dfc23d30649f2bbf791ba50376f341e1cf654146a2715"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://people.cs.uchicago.edu/~hankhoffmann",
+     "at": "2026-11-07T21:20:19+00:00",
+     "result": "listed",
+     "anchor": "https://people.cs.uchicago.edu/~hankhoffmann",
+     "on": "https://cs.uchicago.edu/people/henry-hoffmann/"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://systems.cs.uchicago.edu/",
+     "at": "2026-11-07T21:20:19+00:00",
+     "result": "listed",
+     "anchor": "Systems Group",
+     "on": "https://cs.uchicago.edu/people/henry-hoffmann/"
+    },
+    {
      "source": "dblp_person_url",
-     "url": null,
-     "at": "2026-11-03T15:58:04+00:00",
-     "result": "no_dblp_person"
+     "url": "https://dblp.org/pid/h/HenryHoffmann",
+     "at": "2026-11-07T21:20:19+00:00",
+     "result": "listed",
+     "urls": [
+      "http://www.cag.lcs.mit.edu/~hank/"
+     ]
     },
     {
      "source": "orcid_researcher_urls",
-     "url": null,
-     "at": "2026-11-03T15:58:04+00:00",
-     "result": "no_orcid"
+     "url": "https://orcid.org/0000-0003-0816-8150/person.json",
+     "at": "2026-11-07T21:20:19+00:00",
+     "result": "no_urls",
+     "sha256": "4f2afa289a42b4a9ff7213ca3ad69ba69297b7c14334459401302595fe0ccef7"
     },
     {
      "source": "openalex_author",
      "url": null,
-     "at": "2026-11-03T15:58:04+00:00",
+     "at": "2026-11-07T21:20:19+00:00",
      "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "http://people.cs.uchicago.edu/~hankhoffmann/",
+     "at": "2026-11-07T21:20:19+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "http://people.cs.uchicago.edu/~hankhoffmann/",
+     "at": "2026-11-07T21:20:19+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://people.cs.uchicago.edu/~hankhoffmann",
+     "at": "2026-11-07T21:20:21+00:00",
+     "result": "unreachable",
+     "via": "school_profile_link"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://systems.cs.uchicago.edu/",
+     "at": "2026-11-07T21:20:22+00:00",
+     "result": "unreachable",
+     "via": "school_profile_link"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.cag.lcs.mit.edu/~hank/",
+     "at": "2026-11-07T21:20:25+00:00",
+     "result": "ok",
+     "via": "dblp_person_url",
+     "sha256": "742e32935aff4d9b0d1b25519ab3b871c42a87c0f72008ccd674412eab7ef4b4",
+     "final_url": "https://people.csail.mit.edu/hank/"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://people.cs.uchicago.edu/~hankhoffmann/",
+     "at": "2026-11-07T21:20:26+00:00",
+     "result": "unreachable",
+     "via": "pi_evidence_url"
+    },
+    {
+     "source": "wayback_pending",
+     "url": "https://web.archive.org/cdx/search/cdx?url=http%3A%2F%2Fpeople.cs.uchicago.edu%2F~hankhoffmann%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
+     "at": "2026-11-07T21:20:26+00:00",
+     "result": "wayback_deferred"
+    },
+    {
+     "source": "wayback_pending",
+     "url": "https://web.archive.org/cdx/search/cdx?url=http%3A%2F%2Fsystems.cs.uchicago.edu%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
+     "at": "2026-11-07T21:20:26+00:00",
+     "result": "wayback_deferred"
+    },
+    {
+     "source": "wayback_pending",
+     "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fpeople.cs.uchicago.edu%2F~hankhoffmann&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
+     "at": "2026-11-07T21:20:26+00:00",
+     "result": "wayback_deferred"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://people.cs.uchicago.edu/~hankhoffmann",
+     "on": "https://cs.uchicago.edu/people/henry-hoffmann/",
+     "at": "2026-11-07T21:20:19+00:00",
+     "result": "listed",
+     "anchor": "https://people.cs.uchicago.edu/~hankhoffmann",
+     "linked_url": "https://people.cs.uchicago.edu/~hankhoffmann",
+     "source_sha256": "b3a2a2eeecc797f4003dfc23d30649f2bbf791ba50376f341e1cf654146a2715",
+     "source_capture_url": null,
+     "provenance": "recovered_from_cached_profile_html"
     }
    ],
    "places_checked": [
-    "department_listing:ok"
+    "candidate_site:ok",
+    "candidate_site:unreachable",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "pi_evidence_url:listed",
+    "prior_labpage_pass_2026-10-22:recorded_lab_site",
+    "prior_labpage_pass_2026-10-22:recorded_people_page",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "wayback_pending:wayback_deferred"
    ],
-   "checked_at": "2026-11-03T15:58:04+00:00",
+   "checked_at": "2026-11-07T21:20:26+00:00",
    "students_page_status": "audited",
    "papers_page_status": "no_pubs_page",
    "url": "http://people.cs.uchicago.edu/~hankhoffmann",
@@ -2215,26 +2651,41 @@
    "alumni_page": null,
    "pubs_page": null,
    "found_via": "prior_labpage_pass_2026-10-22",
-   "listed_on": null,
-   "sha256": "6ef6733bd609a17a7e446faf631abf062f12b372ed3f5f252b439f1b2a84caff",
+   "listed_on": "https://cs.uchicago.edu/people/henry-hoffmann/",
+   "sha256": "e90b90b80ad285bd85f1140c56c24d3de3a1a6fc624e105e65bf7cdb1f080819",
    "evidence": {
     "url": "http://people.cs.uchicago.edu/~hankhoffmann",
-    "sha256": "6ef6733bd609a17a7e446faf631abf062f12b372ed3f5f252b439f1b2a84caff",
-    "source": "stored_capture"
+    "sha256": "e90b90b80ad285bd85f1140c56c24d3de3a1a6fc624e105e65bf7cdb1f080819",
+    "quote": "Henry (Hank) Hoffmann — Department of Computer Science, University of Chicago Dep",
+    "capture_url": "https://web.archive.org/web/20260830174436id_/http://people.cs.uchicago.edu/~hankhoffmann/"
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://people.cs.uchicago.edu/~hankhoffmann",
+     "on": "https://cs.uchicago.edu/people/henry-hoffmann/",
+     "at": "2026-11-07T21:20:19+00:00",
+     "result": "listed",
+     "anchor": "https://people.cs.uchicago.edu/~hankhoffmann",
+     "linked_url": "https://people.cs.uchicago.edu/~hankhoffmann",
+     "source_sha256": "b3a2a2eeecc797f4003dfc23d30649f2bbf791ba50376f341e1cf654146a2715",
+     "source_capture_url": null,
+     "provenance": "recovered_from_cached_profile_html"
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
-   "capture_fetched_at": "2026-11-03T11:26:24"
+   "verified": true,
+   "verification_quote": "henry hank hoffmann department of computer science university of chicago department of comp"
   },
   {
    "pi": "Gordon Kindlmann",
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok; department_listing https://www.cs.uchicago.edu/people/faculty/: ok.",
-   "audited_at": "2026-11-04T19:31:25+00:00",
+   "audited_at": "2026-11-03T15:58:05+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -2285,116 +2736,181 @@
    "pi": "Risi Kondor",
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "audited_at": "2026-11-04T19:31:31+00:00",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T21:20:37+00:00",
    "checks": [
+    {
+     "source": "prior_labpage_pass_2026-10-22",
+     "url": "http://people.cs.uchicago.edu/~risi/",
+     "at": "2026-11-07T21:20:26+00:00",
+     "result": "recorded_lab_site"
+    },
+    {
+     "source": "prior_labpage_pass_2026-10-22",
+     "url": "http://people.cs.uchicago.edu:80/~risi/",
+     "at": "2026-11-07T21:20:26+00:00",
+     "result": "recorded_people_page"
+    },
     {
      "source": "department_listing",
      "url": "https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/",
-     "at": "2026-11-03T15:58:05+00:00",
+     "at": "2026-11-07T21:20:26+00:00",
      "result": "ok",
      "sha256": "183c569072acd623bbcdbd95961065508405854c304ef589e5662cea7552ebb2"
     },
     {
      "source": "department_listing",
      "url": "https://stat.uchicago.edu/people/",
-     "at": "2026-11-03T15:58:05+00:00",
+     "at": "2026-11-07T21:20:26+00:00",
      "result": "ok",
      "sha256": "26b67ddc657e922dab298a2a60701688a92cb4ba0c969de05469dde3915e3e87"
     },
     {
      "source": "school_profile",
+     "url": "https://cs.uchicago.edu/people/risi-kondor/",
+     "at": "2026-11-07T21:20:27+00:00",
+     "result": "ok",
+     "sha256": "c3543f929e78798377aa3ce3bedb9fb70b72ba35cf4b46fb9b2643cb83e4aa07"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://people.cs.uchicago.edu/~risi/",
+     "at": "2026-11-07T21:20:27+00:00",
+     "result": "listed",
+     "anchor": "https://people.cs.uchicago.edu/~risi/",
+     "on": "https://cs.uchicago.edu/people/risi-kondor/"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://people.cs.uchicago.edu/~risi/research/symmetric.html",
+     "at": "2026-11-07T21:20:27+00:00",
+     "result": "listed",
+     "anchor": "Permutation problems and Fourier analysis on the symmetric group",
+     "on": "https://cs.uchicago.edu/people/risi-kondor/"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://theory.cs.uchicago.edu/",
+     "at": "2026-11-07T21:20:27+00:00",
+     "result": "listed",
+     "anchor": "Theoretical Computer Science Group",
+     "on": "https://cs.uchicago.edu/people/risi-kondor/"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://voices.uchicago.edu/machinelearning/",
+     "at": "2026-11-07T21:20:27+00:00",
+     "result": "listed",
+     "anchor": "Machine Learning Group",
+     "on": "https://cs.uchicago.edu/people/risi-kondor/"
+    },
+    {
+     "source": "school_profile",
      "url": "https://stat.uchicago.edu/people/profile/risi-kondor/",
-     "at": "2026-11-03T15:58:05+00:00",
+     "at": "2026-11-07T21:20:27+00:00",
      "result": "ok",
      "sha256": "4a97683f7d19075d2c0a89f07aa31ff73721ee128dd86a9569b008887be11be0"
     },
     {
      "source": "school_profile_link",
      "url": "https://people.cs.uchicago.edu/~risi/",
-     "at": "2026-11-03T15:58:05+00:00",
+     "at": "2026-11-07T21:20:27+00:00",
      "result": "listed",
      "anchor": "https://people.cs.uchicago.edu/~risi/",
      "on": "https://stat.uchicago.edu/people/profile/risi-kondor/"
     },
     {
      "source": "dblp_person_url",
-     "url": null,
-     "at": "2026-11-03T15:58:05+00:00",
-     "result": "no_dblp_person"
+     "url": "https://dblp.org/pid/90/869",
+     "at": "2026-11-07T21:20:27+00:00",
+     "result": "listed",
+     "urls": [
+      "http://people.cs.uchicago.edu/~risi/"
+     ]
     },
     {
      "source": "orcid_researcher_urls",
      "url": null,
-     "at": "2026-11-03T15:58:05+00:00",
+     "at": "2026-11-07T21:20:27+00:00",
      "result": "no_orcid"
     },
     {
      "source": "openalex_author",
      "url": null,
-     "at": "2026-11-03T15:58:05+00:00",
+     "at": "2026-11-07T21:20:27+00:00",
      "result": "no_homepage_field_in_schema"
     },
     {
      "source": "candidate_site",
      "url": "https://people.cs.uchicago.edu/~risi/",
-     "at": "2026-11-03T15:58:21+00:00",
+     "at": "2026-11-07T21:20:29+00:00",
      "result": "ok_wayback",
      "via": "school_profile_link",
      "capture_url": "https://web.archive.org/web/20260820224844id_/http://people.cs.uchicago.edu/~risi/",
-     "sha256": "12347c09152227f3b12a4574ff46fccc0b4183d399236f9df4deb81fb1193c59",
+     "sha256": "982088f0fdb7dc4bd6730af487a9cb869467ccbcac4cf7e500aabf03d92f43a8",
      "final_url": "https://web.archive.org/web/20260820224844id_/http://people.cs.uchicago.edu/~risi/"
     },
     {
-     "source": "wayback_cdx",
-     "url": "https://people.cs.uchicago.edu/~risi/",
-     "at": "2026-11-03T15:58:21+00:00",
-     "result": "36 captures",
-     "frm": 2016
+     "source": "candidate_site",
+     "url": "https://people.cs.uchicago.edu/~risi/research/symmetric.html",
+     "at": "2026-11-07T21:20:31+00:00",
+     "result": "unreachable",
+     "via": "school_profile_link"
     },
     {
-     "source": "wayback_capture",
-     "url": "https://web.archive.org/web/20160108125439id_/http://people.cs.uchicago.edu:80/~risi/",
-     "at": "2026-11-03T15:58:28+00:00",
-     "result": "ok_wayback",
-     "sha256": "80148e5fee7dfafc7e7dc38eb44f65f6ce1da18655e8e0056845fee3eac35d34"
+     "source": "candidate_site",
+     "url": "http://theory.cs.uchicago.edu/",
+     "at": "2026-11-07T21:20:35+00:00",
+     "result": "unreachable",
+     "via": "school_profile_link"
     },
     {
-     "source": "wayback_capture",
-     "url": "https://web.archive.org/web/20180701175804id_/http://people.cs.uchicago.edu:80/~risi/",
-     "at": "2026-11-03T15:58:34+00:00",
-     "result": "ok_wayback",
-     "sha256": "d291f070094ec2b070191027e3899574de8d19c19e7f70dbff5cf57a2a46e1fb"
+     "source": "candidate_site",
+     "url": "https://voices.uchicago.edu/machinelearning/",
+     "at": "2026-11-07T21:20:37+00:00",
+     "result": "does_not_name_pi_kept_strong_source",
+     "via": "school_profile_link",
+     "sha256": "517dc751071b938e8c15ce8af2815a7c2b20fee91f6ca43232285c6646e85d33",
+     "final_url": "https://machinelearning.uchicago.edu/"
     },
     {
-     "source": "wayback_capture",
-     "url": "https://web.archive.org/web/20260820224844id_/http://people.cs.uchicago.edu/~risi/",
-     "at": "2026-11-03T15:58:34+00:00",
-     "result": "ok_wayback",
-     "sha256": "12347c09152227f3b12a4574ff46fccc0b4183d399236f9df4deb81fb1193c59"
+     "source": "wayback_pending",
+     "url": "https://web.archive.org/cdx/search/cdx?url=http%3A%2F%2Ftheory.cs.uchicago.edu%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
+     "at": "2026-11-07T21:20:38+00:00",
+     "result": "wayback_deferred"
+    },
+    {
+     "source": "wayback_pending",
+     "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fpeople.cs.uchicago.edu%2F~risi%2Fresearch%2Fsymmetric.html&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
+     "at": "2026-11-07T21:20:38+00:00",
+     "result": "wayback_deferred"
     },
     {
      "source": "school_profile_link",
      "url": "http://people.cs.uchicago.edu/~risi/",
-     "on": "https://stat.uchicago.edu/people/profile/risi-kondor/",
-     "at": "2026-11-03T15:58:05+00:00",
+     "on": "https://cs.uchicago.edu/people/risi-kondor/",
+     "at": "2026-11-07T21:20:27+00:00",
      "result": "listed",
      "anchor": "https://people.cs.uchicago.edu/~risi/",
      "linked_url": "https://people.cs.uchicago.edu/~risi/",
-     "source_sha256": "4a97683f7d19075d2c0a89f07aa31ff73721ee128dd86a9569b008887be11be0",
+     "source_sha256": "c3543f929e78798377aa3ce3bedb9fb70b72ba35cf4b46fb9b2643cb83e4aa07",
      "source_capture_url": null,
      "provenance": "recovered_from_cached_profile_html"
     }
    ],
    "places_checked": [
+    "candidate_site:does_not_name_pi_kept_strong_source",
     "candidate_site:ok_wayback",
+    "candidate_site:unreachable",
+    "dblp_person_url:listed",
     "department_listing:ok",
+    "prior_labpage_pass_2026-10-22:recorded_lab_site",
+    "prior_labpage_pass_2026-10-22:recorded_people_page",
     "school_profile:ok",
     "school_profile_link:listed",
-    "wayback_capture:ok_wayback",
-    "wayback_cdx:36 captures"
+    "wayback_pending:wayback_deferred"
    ],
-   "checked_at": "2026-11-03T15:58:34+00:00",
+   "checked_at": "2026-11-07T21:20:38+00:00",
    "students_page_status": "audited",
    "papers_page_status": "no_pubs_page",
    "url": "http://people.cs.uchicago.edu/~risi/",
@@ -2403,24 +2919,25 @@
    "alumni_page": null,
    "pubs_page": null,
    "found_via": "prior_labpage_pass_2026-10-22",
-   "listed_on": "https://stat.uchicago.edu/people/profile/risi-kondor/",
-   "sha256": "12347c09152227f3b12a4574ff46fccc0b4183d399236f9df4deb81fb1193c59",
+   "listed_on": "https://cs.uchicago.edu/people/risi-kondor/",
+   "sha256": "982088f0fdb7dc4bd6730af487a9cb869467ccbcac4cf7e500aabf03d92f43a8",
    "evidence": {
     "url": "http://people.cs.uchicago.edu/~risi/",
-    "sha256": "12347c09152227f3b12a4574ff46fccc0b4183d399236f9df4deb81fb1193c59",
-    "source": "stored_capture"
+    "sha256": "982088f0fdb7dc4bd6730af487a9cb869467ccbcac4cf7e500aabf03d92f43a8",
+    "quote": "Risi Kondor Risi Kondor homepage Risi Kondor Associate Professor Depart",
+    "capture_url": "https://web.archive.org/web/20260820224844id_/http://people.cs.uchicago.edu/~risi/"
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
     {
      "source": "school_profile_link",
      "url": "http://people.cs.uchicago.edu/~risi/",
-     "on": "https://stat.uchicago.edu/people/profile/risi-kondor/",
-     "at": "2026-11-03T15:58:05+00:00",
+     "on": "https://cs.uchicago.edu/people/risi-kondor/",
+     "at": "2026-11-07T21:20:27+00:00",
      "result": "listed",
      "anchor": "https://people.cs.uchicago.edu/~risi/",
      "linked_url": "https://people.cs.uchicago.edu/~risi/",
-     "source_sha256": "4a97683f7d19075d2c0a89f07aa31ff73721ee128dd86a9569b008887be11be0",
+     "source_sha256": "c3543f929e78798377aa3ce3bedb9fb70b72ba35cf4b46fb9b2643cb83e4aa07",
      "source_capture_url": null,
      "provenance": "recovered_from_cached_profile_html"
     }
@@ -2428,52 +2945,154 @@
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
-   "capture_fetched_at": "2026-11-03T15:58:21+00:00"
+   "verified": true,
+   "verification_quote": "risi kondor risi kondor homepage risi kondor associate professor department of comput"
   },
   {
    "pi": "Stuart Kurtz",
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "audited_at": "2026-11-04T19:31:31+00:00",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T21:20:44+00:00",
    "checks": [
+    {
+     "source": "prior_labpage_pass_2026-10-22",
+     "url": "http://people.cs.uchicago.edu/~stuart",
+     "at": "2026-11-07T21:20:38+00:00",
+     "result": "recorded_lab_site"
+    },
+    {
+     "source": "prior_labpage_pass_2026-10-22",
+     "url": "http://people.cs.uchicago.edu/~stuart/students.html",
+     "at": "2026-11-07T21:20:38+00:00",
+     "result": "recorded_people_page"
+    },
     {
      "source": "department_listing",
      "url": "https://cs.uchicago.edu/people/uchicago-faculty/emeritus-faculty/",
-     "at": "2026-11-03T15:58:34+00:00",
+     "at": "2026-11-07T21:20:39+00:00",
      "result": "ok",
      "sha256": "7d4ae50e1b6d87276c65c3d356dd2109bb168ad6d7d29b6e5ebad55e1385314b"
     },
     {
      "source": "department_listing",
      "url": "https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/",
-     "at": "2026-11-03T15:58:34+00:00",
+     "at": "2026-11-07T21:20:39+00:00",
      "result": "ok",
      "sha256": "183c569072acd623bbcdbd95961065508405854c304ef589e5662cea7552ebb2"
     },
     {
+     "source": "school_profile",
+     "url": "https://cs.uchicago.edu/people/stuart-kurtz/",
+     "at": "2026-11-07T21:20:41+00:00",
+     "result": "ok",
+     "sha256": "85a63d42b8f22cf3e27f8ed7ec28ce09a7004a2a3d062dd4d9bc6d8ac991afe4"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://people.cs.uchicago.edu/~stuart",
+     "at": "2026-11-07T21:20:41+00:00",
+     "result": "listed",
+     "anchor": "https://people.cs.uchicago.edu/~stuart",
+     "on": "https://cs.uchicago.edu/people/stuart-kurtz/"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://theory.cs.uchicago.edu/",
+     "at": "2026-11-07T21:20:41+00:00",
+     "result": "listed",
+     "anchor": "Theoretical Computer Science Group",
+     "on": "https://cs.uchicago.edu/people/stuart-kurtz/"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://pl.cs.uchicago.edu/",
+     "at": "2026-11-07T21:20:41+00:00",
+     "result": "listed",
+     "anchor": "Programming Languages Group",
+     "on": "https://cs.uchicago.edu/people/stuart-kurtz/"
+    },
+    {
      "source": "dblp_person_url",
-     "url": null,
-     "at": "2026-11-03T15:58:34+00:00",
-     "result": "no_dblp_person"
+     "url": "https://dblp.org/pid/13/5248",
+     "at": "2026-11-07T21:20:41+00:00",
+     "result": "no_homepage_url"
     },
     {
      "source": "orcid_researcher_urls",
      "url": null,
-     "at": "2026-11-03T15:58:34+00:00",
+     "at": "2026-11-07T21:20:41+00:00",
      "result": "no_orcid"
     },
     {
      "source": "openalex_author",
      "url": null,
-     "at": "2026-11-03T15:58:34+00:00",
+     "at": "2026-11-07T21:20:41+00:00",
      "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://people.cs.uchicago.edu/~stuart",
+     "at": "2026-11-07T21:20:42+00:00",
+     "result": "unreachable",
+     "via": "school_profile_link"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://theory.cs.uchicago.edu/",
+     "at": "2026-11-07T21:20:43+00:00",
+     "result": "unreachable",
+     "via": "school_profile_link"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://pl.cs.uchicago.edu/",
+     "at": "2026-11-07T21:20:44+00:00",
+     "result": "unreachable",
+     "via": "school_profile_link"
+    },
+    {
+     "source": "wayback_pending",
+     "url": "https://web.archive.org/cdx/search/cdx?url=http%3A%2F%2Fpl.cs.uchicago.edu%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
+     "at": "2026-11-07T21:20:44+00:00",
+     "result": "wayback_deferred"
+    },
+    {
+     "source": "wayback_pending",
+     "url": "https://web.archive.org/cdx/search/cdx?url=http%3A%2F%2Ftheory.cs.uchicago.edu%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
+     "at": "2026-11-07T21:20:44+00:00",
+     "result": "wayback_deferred"
+    },
+    {
+     "source": "wayback_pending",
+     "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fpeople.cs.uchicago.edu%2F~stuart&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
+     "at": "2026-11-07T21:20:44+00:00",
+     "result": "wayback_deferred"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://people.cs.uchicago.edu/~stuart",
+     "on": "https://cs.uchicago.edu/people/stuart-kurtz/",
+     "at": "2026-11-07T21:20:41+00:00",
+     "result": "listed",
+     "anchor": "https://people.cs.uchicago.edu/~stuart",
+     "linked_url": "https://people.cs.uchicago.edu/~stuart",
+     "source_sha256": "85a63d42b8f22cf3e27f8ed7ec28ce09a7004a2a3d062dd4d9bc6d8ac991afe4",
+     "source_capture_url": null,
+     "provenance": "recovered_from_cached_profile_html"
     }
    ],
    "places_checked": [
-    "department_listing:ok"
+    "candidate_site:unreachable",
+    "dblp_person_url:no_homepage_url",
+    "department_listing:ok",
+    "prior_labpage_pass_2026-10-22:recorded_lab_site",
+    "prior_labpage_pass_2026-10-22:recorded_people_page",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "wayback_pending:wayback_deferred"
    ],
-   "checked_at": "2026-11-03T15:58:34+00:00",
+   "checked_at": "2026-11-07T21:20:44+00:00",
    "students_page_status": "audited",
    "papers_page_status": "no_pubs_page",
    "url": "http://people.cs.uchicago.edu/~stuart",
@@ -2482,26 +3101,41 @@
    "alumni_page": null,
    "pubs_page": null,
    "found_via": "prior_labpage_pass_2026-10-22",
-   "listed_on": null,
-   "sha256": "85491ae04b63c3ca71690adf5209ebc3b3387e711c545cce0272c02d6373f008",
+   "listed_on": "https://cs.uchicago.edu/people/stuart-kurtz/",
+   "sha256": "69883a3b30b184b0f00b0283a179c190bf8e4426c881f37f0b046ae34ed64b67",
    "evidence": {
     "url": "http://people.cs.uchicago.edu/~stuart",
-    "sha256": "85491ae04b63c3ca71690adf5209ebc3b3387e711c545cce0272c02d6373f008",
-    "source": "stored_capture"
+    "sha256": "69883a3b30b184b0f00b0283a179c190bf8e4426c881f37f0b046ae34ed64b67",
+    "quote": "Stuart A. Kurtz — Contact Information Stuart A. Kurtz Professor in Computer",
+    "capture_url": "https://web.archive.org/web/20260801124531id_/https://people.cs.uchicago.edu/~stuart/"
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://people.cs.uchicago.edu/~stuart",
+     "on": "https://cs.uchicago.edu/people/stuart-kurtz/",
+     "at": "2026-11-07T21:20:41+00:00",
+     "result": "listed",
+     "anchor": "https://people.cs.uchicago.edu/~stuart",
+     "linked_url": "https://people.cs.uchicago.edu/~stuart",
+     "source_sha256": "85a63d42b8f22cf3e27f8ed7ec28ce09a7004a2a3d062dd4d9bc6d8ac991afe4",
+     "source_capture_url": null,
+     "provenance": "recovered_from_cached_profile_html"
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
-   "capture_fetched_at": "2026-11-03T11:27:20"
+   "verified": true,
+   "verification_quote": "stuart a kurtz contact information stuart a kurtz professor in computer science and the c"
   },
   {
    "pi": "Yanjing Li",
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok; department_listing https://www.cs.uchicago.edu/people/faculty/: ok.",
-   "audited_at": "2026-11-04T19:31:32+00:00",
+   "audited_at": "2026-11-03T15:58:34+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -2552,46 +3186,167 @@
    "pi": "Shan Lu",
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "audited_at": "2026-11-04T19:31:32+00:00",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T21:20:57+00:00",
    "checks": [
+    {
+     "source": "prior_labpage_pass_2026-10-22",
+     "url": "http://people.cs.uchicago.edu/~shanlu",
+     "at": "2026-11-07T21:20:44+00:00",
+     "result": "recorded_lab_site"
+    },
+    {
+     "source": "prior_labpage_pass_2026-10-22",
+     "url": "https://people.cs.uchicago.edu/~shanlu/",
+     "at": "2026-11-07T21:20:44+00:00",
+     "result": "recorded_people_page"
+    },
     {
      "source": "department_listing",
      "url": "https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/",
-     "at": "2026-11-03T15:58:34+00:00",
+     "at": "2026-11-07T21:20:44+00:00",
      "result": "ok",
      "sha256": "183c569072acd623bbcdbd95961065508405854c304ef589e5662cea7552ebb2"
     },
     {
      "source": "department_listing",
      "url": "https://www.cs.uchicago.edu/people/faculty/",
-     "at": "2026-11-03T15:58:34+00:00",
+     "at": "2026-11-07T21:20:45+00:00",
      "result": "ok",
      "sha256": "368e30fe0be1c9d711b45a76a39befc3ad1c6dee3162f1bb9d5fa9b14948e902"
     },
     {
+     "source": "school_profile",
+     "url": "https://cs.uchicago.edu/people/shan-lu/",
+     "at": "2026-11-07T21:20:46+00:00",
+     "result": "ok",
+     "sha256": "ca0ca8db9931ba538b3d2d3c8a0e6a0f862fa1ebab2d1516807d8114ac2f8fbd"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://people.cs.uchicago.edu/~shanlu",
+     "at": "2026-11-07T21:20:46+00:00",
+     "result": "listed",
+     "anchor": "https://people.cs.uchicago.edu/~shanlu",
+     "on": "https://cs.uchicago.edu/people/shan-lu/"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://systems.cs.uchicago.edu/",
+     "at": "2026-11-07T21:20:46+00:00",
+     "result": "listed",
+     "anchor": "Systems Group",
+     "on": "https://cs.uchicago.edu/people/shan-lu/"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://pl.cs.uchicago.edu/",
+     "at": "2026-11-07T21:20:46+00:00",
+     "result": "listed",
+     "anchor": "Programming Languages Group",
+     "on": "https://cs.uchicago.edu/people/shan-lu/"
+    },
+    {
      "source": "dblp_person_url",
-     "url": null,
-     "at": "2026-11-03T15:58:34+00:00",
-     "result": "no_dblp_person"
+     "url": "https://dblp.org/pid/31/5916-1",
+     "at": "2026-11-07T21:20:46+00:00",
+     "result": "listed",
+     "urls": [
+      "https://www.microsoft.com/en-us/research/people/shanlu/",
+      "https://people.cs.uchicago.edu/~shanlu/"
+     ]
     },
     {
      "source": "orcid_researcher_urls",
-     "url": null,
-     "at": "2026-11-03T15:58:34+00:00",
-     "result": "no_orcid"
+     "url": "https://orcid.org/0000-0002-0757-4600/person.json",
+     "at": "2026-11-07T21:20:47+00:00",
+     "result": "listed",
+     "sha256": "768877fee30d28f161d68fea7189729b7dc7cdc2a1fad79416dd28a9eb400e57",
+     "urls": [
+      "http://people.cs.uchicago.edu/~shanlu",
+      "https://orcid.org/0000-0002-0757-4600"
+     ]
     },
     {
      "source": "openalex_author",
      "url": null,
-     "at": "2026-11-03T15:58:34+00:00",
+     "at": "2026-11-07T21:20:47+00:00",
      "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://people.cs.uchicago.edu/~shanlu",
+     "at": "2026-11-07T21:20:48+00:00",
+     "result": "unreachable",
+     "via": "school_profile_link"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://systems.cs.uchicago.edu/",
+     "at": "2026-11-07T21:20:51+00:00",
+     "result": "unreachable",
+     "via": "school_profile_link"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://pl.cs.uchicago.edu/",
+     "at": "2026-11-07T21:20:52+00:00",
+     "result": "unreachable",
+     "via": "school_profile_link"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://www.microsoft.com/en-us/research/people/shanlu/",
+     "at": "2026-11-07T21:20:57+00:00",
+     "result": "ok",
+     "via": "dblp_person_url",
+     "sha256": "d3fe57109425553632a9bfc3dc503180c7546b9292b942d46fdb41884f6213a5",
+     "final_url": "https://www.microsoft.com/en-us/research/people/"
+    },
+    {
+     "source": "wayback_pending",
+     "url": "https://web.archive.org/cdx/search/cdx?url=http%3A%2F%2Fpl.cs.uchicago.edu%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
+     "at": "2026-11-07T21:20:58+00:00",
+     "result": "wayback_deferred"
+    },
+    {
+     "source": "wayback_pending",
+     "url": "https://web.archive.org/cdx/search/cdx?url=http%3A%2F%2Fsystems.cs.uchicago.edu%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
+     "at": "2026-11-07T21:20:58+00:00",
+     "result": "wayback_deferred"
+    },
+    {
+     "source": "wayback_pending",
+     "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fpeople.cs.uchicago.edu%2F~shanlu&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
+     "at": "2026-11-07T21:20:58+00:00",
+     "result": "wayback_deferred"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://people.cs.uchicago.edu/~shanlu",
+     "on": "https://cs.uchicago.edu/people/shan-lu/",
+     "at": "2026-11-07T21:20:46+00:00",
+     "result": "listed",
+     "anchor": "https://people.cs.uchicago.edu/~shanlu",
+     "linked_url": "https://people.cs.uchicago.edu/~shanlu",
+     "source_sha256": "ca0ca8db9931ba538b3d2d3c8a0e6a0f862fa1ebab2d1516807d8114ac2f8fbd",
+     "source_capture_url": null,
+     "provenance": "recovered_from_cached_profile_html"
     }
    ],
    "places_checked": [
-    "department_listing:ok"
+    "candidate_site:ok",
+    "candidate_site:unreachable",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:listed",
+    "prior_labpage_pass_2026-10-22:recorded_lab_site",
+    "prior_labpage_pass_2026-10-22:recorded_people_page",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "wayback_pending:wayback_deferred"
    ],
-   "checked_at": "2026-11-03T15:58:34+00:00",
+   "checked_at": "2026-11-07T21:20:58+00:00",
    "students_page_status": "audited",
    "papers_page_status": "no_pubs_page",
    "url": "http://people.cs.uchicago.edu/~shanlu",
@@ -2600,26 +3355,41 @@
    "alumni_page": null,
    "pubs_page": null,
    "found_via": "prior_labpage_pass_2026-10-22",
-   "listed_on": null,
-   "sha256": "a442d1980dbc190e1277bb5e80026b1e2161379c9336da3f9a7a198278255c87",
+   "listed_on": "https://cs.uchicago.edu/people/shan-lu/",
+   "sha256": "0062991a8c4e61d08767b18029ccf86ff5208d584db0e2a2c8f226bdd92725b9",
    "evidence": {
     "url": "http://people.cs.uchicago.edu/~shanlu",
-    "sha256": "a442d1980dbc190e1277bb5e80026b1e2161379c9336da3f9a7a198278255c87",
-    "source": "stored_capture"
+    "sha256": "0062991a8c4e61d08767b18029ccf86ff5208d584db0e2a2c8f226bdd92725b9",
+    "quote": "Shan Lu, CS@U-Chicago Publications | Teaching | Research Shan Lu Pr",
+    "capture_url": "https://web.archive.org/web/20260915072208id_/https://people.cs.uchicago.edu/~shanlu/"
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://people.cs.uchicago.edu/~shanlu",
+     "on": "https://cs.uchicago.edu/people/shan-lu/",
+     "at": "2026-11-07T21:20:46+00:00",
+     "result": "listed",
+     "anchor": "https://people.cs.uchicago.edu/~shanlu",
+     "linked_url": "https://people.cs.uchicago.edu/~shanlu",
+     "source_sha256": "ca0ca8db9931ba538b3d2d3c8a0e6a0f862fa1ebab2d1516807d8114ac2f8fbd",
+     "source_capture_url": null,
+     "provenance": "recovered_from_cached_profile_html"
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
-   "capture_fetched_at": "2026-11-03T11:27:54"
+   "verified": true,
+   "verification_quote": "shan lu cs u chicago publications teaching research shan lu professor alfred p sloan "
   },
   {
    "pi": "Ketan Mulmuley",
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok; department_listing https://www.cs.uchicago.edu/people/faculty/: ok.",
-   "audited_at": "2026-11-04T19:31:32+00:00",
+   "audited_at": "2026-11-03T15:58:34+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -2671,7 +3441,7 @@
    "status": "none_found",
    "reason_code": "emeritus_or_admin_no_lab",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/emeritus-faculty/: ok; department_listing https://www.cs.uchicago.edu/people/faculty/: ok.",
-   "audited_at": "2026-11-04T19:31:32+00:00",
+   "audited_at": "2026-11-03T15:58:34+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -2723,7 +3493,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok; department_listing https://www.cs.uchicago.edu/people/faculty/: ok.",
-   "audited_at": "2026-11-04T19:31:32+00:00",
+   "audited_at": "2026-11-03T15:58:34+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -2775,7 +3545,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok; department_listing https://www.cs.uchicago.edu/people/faculty/: ok.",
-   "audited_at": "2026-11-04T19:31:32+00:00",
+   "audited_at": "2026-11-03T15:58:35+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -2827,7 +3597,7 @@
    "status": "none_found",
    "reason_code": "emeritus_or_admin_no_lab",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/emeritus-faculty/: ok; department_listing https://www.cs.uchicago.edu/people/faculty/: ok.",
-   "audited_at": "2026-11-04T19:31:32+00:00",
+   "audited_at": "2026-11-03T15:58:35+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -2878,46 +3648,146 @@
    "pi": "Janos Simon",
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "audited_at": "2026-11-04T19:31:33+00:00",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T21:21:03+00:00",
    "checks": [
+    {
+     "source": "prior_labpage_pass_2026-10-22",
+     "url": "http://people.cs.uchicago.edu/~simon",
+     "at": "2026-11-07T21:20:58+00:00",
+     "result": "recorded_lab_site"
+    },
+    {
+     "source": "prior_labpage_pass_2026-10-22",
+     "url": "http://people.cs.uchicago.edu:80/~simon/",
+     "at": "2026-11-07T21:20:58+00:00",
+     "result": "recorded_people_page"
+    },
     {
      "source": "department_listing",
      "url": "https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/",
-     "at": "2026-11-03T15:58:35+00:00",
+     "at": "2026-11-07T21:20:58+00:00",
      "result": "ok",
      "sha256": "183c569072acd623bbcdbd95961065508405854c304ef589e5662cea7552ebb2"
     },
     {
      "source": "department_listing",
      "url": "https://www.cs.uchicago.edu/people/faculty/",
-     "at": "2026-11-03T15:58:35+00:00",
+     "at": "2026-11-07T21:20:58+00:00",
      "result": "ok",
      "sha256": "368e30fe0be1c9d711b45a76a39befc3ad1c6dee3162f1bb9d5fa9b14948e902"
     },
     {
+     "source": "school_profile",
+     "url": "https://cs.uchicago.edu/people/janos-simon/",
+     "at": "2026-11-07T21:20:59+00:00",
+     "result": "ok",
+     "sha256": "b7440e8a9f1bbb06cd1059069fc19e4a3783701caa8b142f4a35ab06515dc53a"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://people.cs.uchicago.edu/~simon",
+     "at": "2026-11-07T21:20:59+00:00",
+     "result": "listed",
+     "anchor": "https://people.cs.uchicago.edu/~simon",
+     "on": "https://cs.uchicago.edu/people/janos-simon/"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://theory.cs.uchicago.edu/",
+     "at": "2026-11-07T21:20:59+00:00",
+     "result": "listed",
+     "anchor": "Theoretical Computer Science Group",
+     "on": "https://cs.uchicago.edu/people/janos-simon/"
+    },
+    {
      "source": "dblp_person_url",
-     "url": null,
-     "at": "2026-11-03T15:58:35+00:00",
-     "result": "no_dblp_person"
+     "url": "https://dblp.org/pid/69/3732",
+     "at": "2026-11-07T21:20:59+00:00",
+     "result": "no_homepage_url"
     },
     {
      "source": "orcid_researcher_urls",
      "url": null,
-     "at": "2026-11-03T15:58:35+00:00",
+     "at": "2026-11-07T21:20:59+00:00",
      "result": "no_orcid"
     },
     {
      "source": "openalex_author",
      "url": null,
-     "at": "2026-11-03T15:58:35+00:00",
+     "at": "2026-11-07T21:20:59+00:00",
      "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "http://people.cs.uchicago.edu/~simon/",
+     "at": "2026-11-07T21:20:59+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://people.cs.uchicago.edu/~simon",
+     "at": "2026-11-07T21:21:00+00:00",
+     "result": "unreachable",
+     "via": "school_profile_link"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://theory.cs.uchicago.edu/",
+     "at": "2026-11-07T21:21:00+00:00",
+     "result": "unreachable",
+     "via": "school_profile_link"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://people.cs.uchicago.edu/~simon/",
+     "at": "2026-11-07T21:21:03+00:00",
+     "result": "unreachable",
+     "via": "pi_evidence_url"
+    },
+    {
+     "source": "wayback_pending",
+     "url": "https://web.archive.org/cdx/search/cdx?url=http%3A%2F%2Fpeople.cs.uchicago.edu%2F~simon%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
+     "at": "2026-11-07T21:21:03+00:00",
+     "result": "wayback_deferred"
+    },
+    {
+     "source": "wayback_pending",
+     "url": "https://web.archive.org/cdx/search/cdx?url=http%3A%2F%2Ftheory.cs.uchicago.edu%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
+     "at": "2026-11-07T21:21:03+00:00",
+     "result": "wayback_deferred"
+    },
+    {
+     "source": "wayback_pending",
+     "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fpeople.cs.uchicago.edu%2F~simon&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
+     "at": "2026-11-07T21:21:03+00:00",
+     "result": "wayback_deferred"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://people.cs.uchicago.edu/~simon",
+     "on": "https://cs.uchicago.edu/people/janos-simon/",
+     "at": "2026-11-07T21:20:59+00:00",
+     "result": "listed",
+     "anchor": "https://people.cs.uchicago.edu/~simon",
+     "linked_url": "https://people.cs.uchicago.edu/~simon",
+     "source_sha256": "b7440e8a9f1bbb06cd1059069fc19e4a3783701caa8b142f4a35ab06515dc53a",
+     "source_capture_url": null,
+     "provenance": "recovered_from_cached_profile_html"
     }
    ],
    "places_checked": [
-    "department_listing:ok"
+    "candidate_site:unreachable",
+    "dblp_person_url:no_homepage_url",
+    "department_listing:ok",
+    "pi_evidence_url:listed",
+    "prior_labpage_pass_2026-10-22:recorded_lab_site",
+    "prior_labpage_pass_2026-10-22:recorded_people_page",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "wayback_pending:wayback_deferred"
    ],
-   "checked_at": "2026-11-03T15:58:35+00:00",
+   "checked_at": "2026-11-07T21:21:03+00:00",
    "students_page_status": "audited",
    "papers_page_status": "no_pubs_page",
    "url": "http://people.cs.uchicago.edu/~simon",
@@ -2926,26 +3796,41 @@
    "alumni_page": null,
    "pubs_page": null,
    "found_via": "prior_labpage_pass_2026-10-22",
-   "listed_on": null,
-   "sha256": "0c0eb949eb008046d57c2c21c9eccf9fd98893c7760dbfc884f5f07cd88a5b27",
+   "listed_on": "https://cs.uchicago.edu/people/janos-simon/",
+   "sha256": "c128a47ebe7a34e11e80dbf97449fdbfb43014012f444939627735e911c341f6",
    "evidence": {
     "url": "http://people.cs.uchicago.edu/~simon",
-    "sha256": "0c0eb949eb008046d57c2c21c9eccf9fd98893c7760dbfc884f5f07cd88a5b27",
-    "source": "stored_capture"
+    "sha256": "c128a47ebe7a34e11e80dbf97449fdbfb43014012f444939627735e911c341f6",
+    "quote": "Janos Simon Janos Simon Professor of Computer Science and the College R",
+    "capture_url": "https://web.archive.org/web/20260629231756id_/http://people.cs.uchicago.edu/~simon/"
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://people.cs.uchicago.edu/~simon",
+     "on": "https://cs.uchicago.edu/people/janos-simon/",
+     "at": "2026-11-07T21:20:59+00:00",
+     "result": "listed",
+     "anchor": "https://people.cs.uchicago.edu/~simon",
+     "linked_url": "https://people.cs.uchicago.edu/~simon",
+     "source_sha256": "b7440e8a9f1bbb06cd1059069fc19e4a3783701caa8b142f4a35ab06515dc53a",
+     "source_capture_url": null,
+     "provenance": "recovered_from_cached_profile_html"
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
-   "capture_fetched_at": "2026-11-03T11:29:30"
+   "verified": true,
+   "verification_quote": "janos simon janos simon professor of computer science and the college research include"
   },
   {
    "pi": "Rick Stevens",
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok; department_listing https://www.cs.uchicago.edu/people/faculty/: ok.",
-   "audited_at": "2026-11-04T19:31:33+00:00",
+   "audited_at": "2026-11-03T15:58:35+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -2997,7 +3882,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok; department_listing https://www.cs.uchicago.edu/people/faculty/: ok.",
-   "audited_at": "2026-11-04T19:31:33+00:00",
+   "audited_at": "2026-11-03T15:58:35+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -3049,7 +3934,7 @@
    "status": "found",
    "reason_code": "lab_site",
    "reason": "Captured lab/group website.",
-   "audited_at": "2026-11-04T19:31:33+00:00",
+   "audited_at": "2026-11-03T16:00:03+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -3195,7 +4080,12 @@
    "found_via": "school_profile_link",
    "listed_on": "https://stat.uchicago.edu/people/profile/mihai-anitescu/",
    "sha256": "d81169b3e2e3f472f1d6cedb89139abe6c687a2123c1145c2a364b6c842ec2f5",
-   "evidence": {},
+   "evidence": {
+    "url": "https://www.mcs.anl.gov/MACSER/",
+    "sha256": "d81169b3e2e3f472f1d6cedb89139abe6c687a2123c1145c2a364b6c842ec2f5",
+    "quote": "go, and Ohio State University. The project is lead by Mihai Anitescu from Argonne National Laboratory. The project is sponsored",
+    "capture_url": "https://web.archive.org/web/20220928040832id_/https://www.mcs.anl.gov/MACSER/"
+   },
    "official_link_status": "recorded",
    "official_link_evidence": [
     {
@@ -3209,14 +4099,16 @@
    ],
    "coverage": "website",
    "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "verified": true,
+   "verification_quote": "cago and ohio state university the project is lead by mihai anitescu from argonne national laboratory the project is sponsored by the office"
   },
   {
    "pi": "Rina Foygel Barber",
    "status": "found",
    "reason_code": "lab_site",
    "reason": "Captured lab/group website.",
-   "audited_at": "2026-11-04T19:31:34+00:00",
+   "audited_at": "2026-11-03T17:59:25+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -3366,14 +4258,16 @@
    ],
    "coverage": "website",
    "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "verified": true,
+   "verification_quote": "rina foygel barber rina foygel barber home research teaching software talks group rina foyge"
   },
   {
    "pi": "Lek-Heng Lim",
    "status": "found",
    "reason_code": "lab_site",
    "reason": "Captured lab/group website.",
-   "audited_at": "2026-11-04T19:31:37+00:00",
+   "audited_at": "2026-11-03T16:00:32+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -3516,14 +4410,16 @@
    ],
    "coverage": "website",
    "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "verified": true,
+   "verification_quote": "lek heng lim lh s homepage professor in the computational and applied mathematics initiat"
   },
   {
    "pi": "Dan Nicolae",
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://stat.uchicago.edu/people/: ok; department_listing https://galton.uchicago.edu/people/faculty.shtml: ok_wayback; dblp_person_url https://dblp.org/pid/287/9628: person_not_in_dump_extract.",
-   "audited_at": "2026-11-04T19:31:38+00:00",
+   "audited_at": "2026-11-03T17:59:25+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -3578,7 +4474,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://stat.uchicago.edu/people/: ok; department_listing https://galton.uchicago.edu/people/faculty.shtml: ok_wayback; dblp_person_url https://dblp.org/pid/95/1253: person_not_in_dump_extract.",
-   "audited_at": "2026-11-04T19:31:38+00:00",
+   "audited_at": "2026-11-03T17:59:28+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -3633,7 +4529,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://galton.uchicago.edu/people/faculty.shtml: ok_wayback.",
-   "audited_at": "2026-11-04T19:31:38+00:00",
+   "audited_at": "2026-11-03T16:00:33+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -3679,7 +4575,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-04T19:31:38+00:00",
+   "audited_at": "2026-11-03T16:00:43+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -3783,14 +4679,16 @@
    ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "verified": true,
+   "verification_quote": "homepage of wei biao wu wei biao wu normal wei biao wu 8 8 2012 08 20t02 26 00z 2012 08 20t02 34 00z "
   },
   {
    "pi": "Blase Ur",
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok; department_listing https://www.cs.uchicago.edu/people/faculty/: ok.",
-   "audited_at": "2026-11-04T19:31:38+00:00",
+   "audited_at": "2026-11-03T16:00:43+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -3842,7 +4740,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-04T19:31:51+00:00",
+   "audited_at": "2026-11-03T16:01:09+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -3985,14 +4883,16 @@
    ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "verified": true,
+   "verification_quote": "avrim blum s home page avrim blum avrim at ttic edu chief academic officer and interim"
   },
   {
    "pi": "Daniel Sanz-Alonso",
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-04T19:31:52+00:00",
+   "audited_at": "2026-11-03T18:00:11+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -4118,14 +5018,16 @@
    ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "verified": true,
+   "verification_quote": "daniel sanz alonso search this site embedded files skip to main content skip to navigation d"
   },
   {
    "pi": "Rebecca Willett",
    "status": "found",
    "reason_code": "lab_site",
    "reason": "Captured lab/group website.",
-   "audited_at": "2026-11-04T19:32:10+00:00",
+   "audited_at": "2026-11-03T16:01:18+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -4244,14 +5146,16 @@
    ],
    "coverage": "website",
    "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "verified": true,
+   "verification_quote": "rebecca willett university of chicago rebecca willett university of chicago menu skip to"
   },
   {
    "pi": "Allyson Ettinger",
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok; department_listing https://www.ttic.edu/faculty/: ok.",
-   "audited_at": "2026-11-04T19:32:10+00:00",
+   "audited_at": "2026-11-03T16:01:18+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -4303,7 +5207,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok; department_listing https://www.cs.uchicago.edu/people/faculty/: ok.",
-   "audited_at": "2026-11-04T19:32:10+00:00",
+   "audited_at": "2026-11-03T16:01:19+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -4355,7 +5259,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-04T19:32:11+00:00",
+   "audited_at": "2026-11-03T16:01:30+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -4431,14 +5335,16 @@
    "official_link_evidence": [],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "verified": true,
+   "verification_quote": "home rayid ghani skip to content about projects research teaching speaking publications blo"
   },
   {
    "pi": "Robert Grossman",
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok; department_listing https://www.cs.uchicago.edu/people/faculty/: ok.",
-   "audited_at": "2026-11-04T19:32:11+00:00",
+   "audited_at": "2026-11-03T16:01:30+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -4490,7 +5396,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok; department_listing https://www.cs.uchicago.edu/people/faculty/: ok.",
-   "audited_at": "2026-11-04T19:32:11+00:00",
+   "audited_at": "2026-11-03T16:01:30+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -4542,7 +5448,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok; department_listing https://www.cs.uchicago.edu/people/faculty/: ok.",
-   "audited_at": "2026-11-04T19:32:11+00:00",
+   "audited_at": "2026-11-03T16:01:30+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -4594,7 +5500,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok; department_listing https://www.cs.uchicago.edu/people/faculty/: ok.",
-   "audited_at": "2026-11-04T19:32:11+00:00",
+   "audited_at": "2026-11-03T16:01:30+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -4646,7 +5552,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok; department_listing https://www.cs.uchicago.edu/people/faculty/: ok.",
-   "audited_at": "2026-11-04T19:32:11+00:00",
+   "audited_at": "2026-11-03T16:01:30+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -4697,46 +5603,152 @@
    "pi": "Ben Y. Zhao",
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "audited_at": "2026-11-04T19:32:12+00:00",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T21:21:09+00:00",
    "checks": [
+    {
+     "source": "prior_labpage_pass_2026-10-22",
+     "url": "http://people.cs.uchicago.edu/~ravenben/",
+     "at": "2026-11-07T21:21:03+00:00",
+     "result": "recorded_lab_site"
+    },
+    {
+     "source": "prior_labpage_pass_2026-10-22",
+     "url": "http://people.cs.uchicago.edu:80/~ravenben/students.html",
+     "at": "2026-11-07T21:21:03+00:00",
+     "result": "recorded_people_page"
+    },
     {
      "source": "department_listing",
      "url": "https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/",
-     "at": "2026-11-03T16:01:30+00:00",
+     "at": "2026-11-07T21:21:03+00:00",
      "result": "ok",
      "sha256": "183c569072acd623bbcdbd95961065508405854c304ef589e5662cea7552ebb2"
     },
     {
      "source": "department_listing",
      "url": "https://www.cs.uchicago.edu/people/faculty/",
-     "at": "2026-11-03T16:01:30+00:00",
+     "at": "2026-11-07T21:21:03+00:00",
      "result": "ok",
      "sha256": "368e30fe0be1c9d711b45a76a39befc3ad1c6dee3162f1bb9d5fa9b14948e902"
     },
     {
+     "source": "school_profile",
+     "url": "https://cs.uchicago.edu/people/ben-y-zhao/",
+     "at": "2026-11-07T21:21:03+00:00",
+     "result": "ok",
+     "sha256": "80d62b18f845b2f71b376d2a3cd50833b763ef64d84f7463d83659b446916064"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://people.cs.uchicago.edu/~ravenben/",
+     "at": "2026-11-07T21:21:03+00:00",
+     "result": "listed",
+     "anchor": "https://people.cs.uchicago.edu/~ravenben/",
+     "on": "https://cs.uchicago.edu/people/ben-y-zhao/"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://systems.cs.uchicago.edu/",
+     "at": "2026-11-07T21:21:03+00:00",
+     "result": "listed",
+     "anchor": "Systems Group",
+     "on": "https://cs.uchicago.edu/people/ben-y-zhao/"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://sandlab.cs.uchicago.edu/",
+     "at": "2026-11-07T21:21:03+00:00",
+     "result": "listed",
+     "anchor": "SAND (Security, Algorithms, Networking and Data) Lab",
+     "on": "https://cs.uchicago.edu/people/ben-y-zhao/"
+    },
+    {
      "source": "dblp_person_url",
-     "url": null,
-     "at": "2026-11-03T16:01:30+00:00",
-     "result": "no_dblp_person"
+     "url": "https://dblp.org/pid/z/BenYZhao",
+     "at": "2026-11-07T21:21:03+00:00",
+     "result": "listed",
+     "urls": [
+      "http://people.cs.uchicago.edu/~ravenben/"
+     ]
     },
     {
      "source": "orcid_researcher_urls",
-     "url": null,
-     "at": "2026-11-03T16:01:30+00:00",
-     "result": "no_orcid"
+     "url": "https://orcid.org/0009-0003-8909-0494/person.json",
+     "at": "2026-11-07T21:21:04+00:00",
+     "result": "no_urls",
+     "sha256": "49cc1c0a1dc4e5a0f91299811be6b0966e1651237f5e1cc9ab71042a72c40a74"
     },
     {
      "source": "openalex_author",
      "url": null,
-     "at": "2026-11-03T16:01:30+00:00",
+     "at": "2026-11-07T21:21:04+00:00",
      "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://people.cs.uchicago.edu/~ravenben/",
+     "at": "2026-11-07T21:21:06+00:00",
+     "result": "unreachable",
+     "via": "school_profile_link"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://systems.cs.uchicago.edu/",
+     "at": "2026-11-07T21:21:06+00:00",
+     "result": "unreachable",
+     "via": "school_profile_link"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://sandlab.cs.uchicago.edu/",
+     "at": "2026-11-07T21:21:09+00:00",
+     "result": "unreachable",
+     "via": "school_profile_link"
+    },
+    {
+     "source": "wayback_pending",
+     "url": "https://web.archive.org/cdx/search/cdx?url=http%3A%2F%2Fsandlab.cs.uchicago.edu%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
+     "at": "2026-11-07T21:21:09+00:00",
+     "result": "wayback_deferred"
+    },
+    {
+     "source": "wayback_pending",
+     "url": "https://web.archive.org/cdx/search/cdx?url=http%3A%2F%2Fsystems.cs.uchicago.edu%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
+     "at": "2026-11-07T21:21:09+00:00",
+     "result": "wayback_deferred"
+    },
+    {
+     "source": "wayback_pending",
+     "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fpeople.cs.uchicago.edu%2F~ravenben%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
+     "at": "2026-11-07T21:21:09+00:00",
+     "result": "wayback_deferred"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://people.cs.uchicago.edu/~ravenben/",
+     "on": "https://cs.uchicago.edu/people/ben-y-zhao/",
+     "at": "2026-11-07T21:21:03+00:00",
+     "result": "listed",
+     "anchor": "https://people.cs.uchicago.edu/~ravenben/",
+     "linked_url": "https://people.cs.uchicago.edu/~ravenben/",
+     "source_sha256": "80d62b18f845b2f71b376d2a3cd50833b763ef64d84f7463d83659b446916064",
+     "source_capture_url": null,
+     "provenance": "recovered_from_cached_profile_html"
     }
    ],
    "places_checked": [
-    "department_listing:ok"
+    "candidate_site:unreachable",
+    "dblp_person_url:listed",
+    "department_listing:ok",
+    "orcid_researcher_urls:no_urls",
+    "prior_labpage_pass_2026-10-22:recorded_lab_site",
+    "prior_labpage_pass_2026-10-22:recorded_people_page",
+    "school_profile:ok",
+    "school_profile_link:listed",
+    "wayback_pending:wayback_deferred"
    ],
-   "checked_at": "2026-11-03T16:01:30+00:00",
+   "checked_at": "2026-11-07T21:21:09+00:00",
    "students_page_status": "audited",
    "papers_page_status": "no_pubs_page",
    "url": "http://people.cs.uchicago.edu/~ravenben/",
@@ -4745,26 +5757,41 @@
    "alumni_page": null,
    "pubs_page": null,
    "found_via": "prior_labpage_pass_2026-10-22",
-   "listed_on": null,
-   "sha256": "0d52b2733040311091c34cdc88510b7d58d0a7185941ca178f6b70bdbeadcb10",
+   "listed_on": "https://cs.uchicago.edu/people/ben-y-zhao/",
+   "sha256": "5004c41f656acce2fdc8deaebc88ba1f9e61088f47c01721aed2f57e0eb00660",
    "evidence": {
     "url": "http://people.cs.uchicago.edu/~ravenben/",
-    "sha256": "0d52b2733040311091c34cdc88510b7d58d0a7185941ca178f6b70bdbeadcb10",
-    "source": "stored_capture"
+    "sha256": "5004c41f656acce2fdc8deaebc88ba1f9e61088f47c01721aed2f57e0eb00660",
+    "quote": "Ben Y. Zhao, University of Chicago Ben Y. Zhao CV Short Bio Publication",
+    "capture_url": "https://web.archive.org/web/20260706001550id_/https://people.cs.uchicago.edu/~ravenben/"
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://people.cs.uchicago.edu/~ravenben/",
+     "on": "https://cs.uchicago.edu/people/ben-y-zhao/",
+     "at": "2026-11-07T21:21:03+00:00",
+     "result": "listed",
+     "anchor": "https://people.cs.uchicago.edu/~ravenben/",
+     "linked_url": "https://people.cs.uchicago.edu/~ravenben/",
+     "source_sha256": "80d62b18f845b2f71b376d2a3cd50833b763ef64d84f7463d83659b446916064",
+     "source_capture_url": null,
+     "provenance": "recovered_from_cached_profile_html"
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
-   "capture_fetched_at": "2026-11-04T01:03:44"
+   "verified": true,
+   "verification_quote": "ben y zhao university of chicago ben y zhao cv short bio publications sand lab profess"
   },
   {
    "pi": "Heather Zheng",
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok; department_listing https://www.cs.uchicago.edu/people/faculty/: ok.",
-   "audited_at": "2026-11-04T19:32:12+00:00",
+   "audited_at": "2026-11-03T16:01:31+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -4816,7 +5843,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-04T19:32:12+00:00",
+   "audited_at": "2026-11-03T18:00:38+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -4897,7 +5924,11 @@
    "found_via": "school_profile_link",
    "listed_on": "https://stat.uchicago.edu/people/profile/guillaume-bal/",
    "sha256": "c68f2e848264bb8ac84cae19fdf37ae1fea23df19bacb5b3e3947a9452b94f57",
-   "evidence": {},
+   "evidence": {
+    "url": "https://www.stat.uchicago.edu/~guillaumebal/",
+    "sha256": "c68f2e848264bb8ac84cae19fdf37ae1fea23df19bacb5b3e3947a9452b94f57",
+    "quote": "Guillaume Bal Guillaume Bal Home Résumé Publications Research Courses My"
+   },
    "official_link_status": "recorded",
    "official_link_evidence": [
     {
@@ -4911,14 +5942,16 @@
    ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "verified": true,
+   "verification_quote": "guillaume bal guillaume bal home resume publications research courses my address professor"
   },
   {
    "pi": "Chao Gao",
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-04T19:32:12+00:00",
+   "audited_at": "2026-11-03T16:01:32+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -5004,14 +6037,16 @@
    ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "verified": true,
+   "verification_quote": "chao gao personal information i am a professor of statistics at university of chicago"
   },
   {
    "pi": "Yuehaw Khoo",
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-04T19:32:12+00:00",
+   "audited_at": "2026-11-03T16:01:35+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -5097,14 +6132,16 @@
    ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "verified": true,
+   "verification_quote": "yuehaw khoo yuehaw khoo i m an associate professor at the department of statistics at u"
   },
   {
    "pi": "Raul Castro Fernandez",
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok; department_listing https://www.cs.uchicago.edu/people/faculty/: ok.",
-   "audited_at": "2026-11-04T19:32:13+00:00",
+   "audited_at": "2026-11-03T16:01:35+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -5156,7 +6193,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok; department_listing https://www.cs.uchicago.edu/people/faculty/: ok.",
-   "audited_at": "2026-11-04T19:32:13+00:00",
+   "audited_at": "2026-11-03T16:01:35+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -5208,7 +6245,7 @@
    "status": "found",
    "reason_code": "lab_site",
    "reason": "Captured lab/group website.",
-   "audited_at": "2026-11-04T19:32:13+00:00",
+   "audited_at": "2026-11-03T16:01:36+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -5266,14 +6303,16 @@
    "official_link_evidence": [],
    "coverage": "website",
    "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "verified": true,
+   "verification_quote": "yuxin chen interactive learning systems yuxin chen research people publications teachi"
   },
   {
    "pi": "Marshini Chetty",
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok; department_listing https://www.cs.uchicago.edu/people/faculty/: ok.",
-   "audited_at": "2026-11-04T19:32:14+00:00",
+   "audited_at": "2026-11-03T16:01:36+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -5325,7 +6364,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-04T19:32:14+00:00",
+   "audited_at": "2026-11-03T16:03:35+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -5447,20 +6486,27 @@
    "pubs_page": null,
    "found_via": "dblp_person_url",
    "listed_on": null,
-   "sha256": "a7e71cff84ff8ee094e962782e06281b5b92299116d123181030977d34a51eee",
-   "evidence": {},
+   "sha256": "d2ba2bd85f4be2f1ef81f7dc691370e85a3c725b18751327fe4122e1cd4418ad",
+   "evidence": {
+    "url": "https://people.cs.uchicago.edu/~feamster/",
+    "sha256": "d2ba2bd85f4be2f1ef81f7dc691370e85a3c725b18751327fe4122e1cd4418ad",
+    "quote": "Nick Feamster Nick Feamster Neubauer Professor, Department of Computer Sc",
+    "capture_url": "https://web.archive.org/web/20260704003617id_/https://people.cs.uchicago.edu/~feamster/"
+   },
    "official_link_status": "not_recorded",
    "official_link_evidence": [],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "verified": true,
+   "verification_quote": "nick feamster nick feamster neubauer professor department of computer science directo"
   },
   {
    "pi": "William Fefferman",
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok; department_listing https://www.cs.uchicago.edu/people/faculty/: ok.",
-   "audited_at": "2026-11-04T19:32:14+00:00",
+   "audited_at": "2026-11-03T16:03:35+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -5512,7 +6558,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok; department_listing https://www.cs.uchicago.edu/people/faculty/: ok.",
-   "audited_at": "2026-11-04T19:32:14+00:00",
+   "audited_at": "2026-11-03T16:03:35+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -5564,7 +6610,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok; department_listing https://www.cs.uchicago.edu/people/faculty/: ok.",
-   "audited_at": "2026-11-04T19:32:14+00:00",
+   "audited_at": "2026-11-03T16:03:35+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -5616,7 +6662,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok; department_listing https://www.cs.uchicago.edu/people/faculty/: ok.",
-   "audited_at": "2026-11-04T19:32:14+00:00",
+   "audited_at": "2026-11-03T16:03:35+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -5668,7 +6714,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok; department_listing https://www.cs.uchicago.edu/people/faculty/: ok.",
-   "audited_at": "2026-11-04T19:32:14+00:00",
+   "audited_at": "2026-11-03T16:03:35+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -5720,7 +6766,7 @@
    "status": "found",
    "reason_code": "lab_site",
    "reason": "Captured lab/group website.",
-   "audited_at": "2026-11-04T19:32:16+00:00",
+   "audited_at": "2026-11-03T18:01:08+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -5856,14 +6902,16 @@
    ],
    "coverage": "website",
    "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "verified": false,
+   "unverified_reason": "stored page does not carry the PI full name (surname present)"
   },
   {
    "pi": "Claire Donnat",
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-04T19:32:16+00:00",
+   "audited_at": "2026-11-03T18:01:16+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -5977,14 +7025,16 @@
    ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "verified": true,
+   "verification_quote": "claire donnat statistics machine learning skip to content claire donnat university of c"
   },
   {
    "pi": "Jeremy Hoskins",
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-04T19:32:16+00:00",
+   "audited_at": "2026-11-03T16:03:43+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -6079,14 +7129,16 @@
    ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "verified": true,
+   "verification_quote": "jeremy g hoskins about cv publications menu jeremy g hoskins street address city state zi"
   },
   {
    "pi": "Yi Sun",
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://stat.uchicago.edu/people/: ok; dblp_person_url https://dblp.org/pid/65/2709-10: person_not_in_dump_extract.",
-   "audited_at": "2026-11-04T19:32:16+00:00",
+   "audited_at": "2026-11-03T18:01:16+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -6132,7 +7184,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok; department_listing https://www.cs.uchicago.edu/people/faculty/: ok.",
-   "audited_at": "2026-11-04T19:32:16+00:00",
+   "audited_at": "2026-11-03T16:03:43+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -6184,7 +7236,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-04T19:32:16+00:00",
+   "audited_at": "2026-11-03T16:03:48+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -6271,14 +7323,16 @@
    ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "verified": true,
+   "verification_quote": "victor veitch victor veitch i am a machine learning researcher my current research inte"
   },
   {
    "pi": "Norimichi Ukita",
    "status": "none_found",
    "reason_code": "profile_only_no_homepage",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://ttic.edu/faculty/: ok; department_listing https://www.ttic.edu/faculty/: ok; school_profile https://www.toyota-ti.ac.jp/english/research/staff/elec/post-74.html: ok.",
-   "audited_at": "2026-11-04T19:32:16+00:00",
+   "audited_at": "2026-11-03T16:03:51+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -6338,7 +7392,7 @@
    "status": "found",
    "reason_code": "lab_site",
    "reason": "Captured lab/group website.",
-   "audited_at": "2026-11-04T19:32:16+00:00",
+   "audited_at": "2026-11-03T16:03:51+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -6389,14 +7443,16 @@
    "official_link_evidence": [],
    "coverage": "website",
    "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "verified": true,
+   "verification_quote": "cong ma cong ma home papers papers by topics group teaching tutorials cong ma e mail "
   },
   {
    "pi": "Aloni Cohen",
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok; department_listing https://www.cs.uchicago.edu/people/faculty/: ok.",
-   "audited_at": "2026-11-04T19:32:16+00:00",
+   "audited_at": "2026-11-03T16:03:51+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -6448,7 +7504,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok; department_listing https://www.cs.uchicago.edu/people/faculty/: ok.",
-   "audited_at": "2026-11-04T19:32:16+00:00",
+   "audited_at": "2026-11-03T16:03:52+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -6500,7 +7556,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok; department_listing https://www.cs.uchicago.edu/people/faculty/: ok.",
-   "audited_at": "2026-11-04T19:32:16+00:00",
+   "audited_at": "2026-11-03T16:03:52+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -6552,7 +7608,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok.",
-   "audited_at": "2026-11-04T19:32:16+00:00",
+   "audited_at": "2026-11-03T16:03:52+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -6597,7 +7653,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok.",
-   "audited_at": "2026-11-04T19:32:16+00:00",
+   "audited_at": "2026-11-03T16:03:52+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -6642,7 +7698,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok.",
-   "audited_at": "2026-11-04T19:32:16+00:00",
+   "audited_at": "2026-11-03T16:03:52+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -6687,7 +7743,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-04T19:32:16+00:00",
+   "audited_at": "2026-11-03T16:03:56+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -6774,40 +7830,54 @@
    ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "verified": true,
+   "verification_quote": "aaron schein about cv research teaching aaron schein assistant professor of statistics"
   },
   {
    "pi": "Zhiyuan Li",
    "status": "found",
    "reason_code": "lab_site",
-   "reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
-   "audited_at": "2026-11-04T19:32:17+00:00",
+   "reason": "Captured lab/group website.",
+   "audited_at": "2026-11-07T21:29:29+00:00",
    "checks": [
+    {
+     "source": "prior_labpage_pass_2026-10-22",
+     "url": "https://ai.stanford.edu/~zhiyuanli/",
+     "at": "2026-11-07T21:29:01+00:00",
+     "result": "recorded_lab_site"
+    },
+    {
+     "source": "prior_labpage_pass_2026-10-22",
+     "url": "https://zhiyuanli.ttic.edu/People/",
+     "at": "2026-11-07T21:29:01+00:00",
+     "result": "recorded_people_page"
+    },
     {
      "source": "department_listing",
      "url": "https://ttic.edu/faculty/",
-     "at": "2026-11-03T16:03:56+00:00",
+     "at": "2026-11-07T21:29:01+00:00",
      "result": "ok",
      "sha256": "e9e1a3efc15620690a31652e3e70ce42267ea5def59fb87ecfea402adbfae362"
     },
     {
      "source": "department_listing",
      "url": "https://www.ttic.edu/faculty/",
-     "at": "2026-11-03T16:03:56+00:00",
+     "at": "2026-11-07T21:29:01+00:00",
      "result": "ok",
      "sha256": "e9e1a3efc15620690a31652e3e70ce42267ea5def59fb87ecfea402adbfae362"
     },
     {
      "source": "school_profile",
      "url": "https://ttic.edu/faculty/li",
-     "at": "2026-11-03T16:03:57+00:00",
+     "at": "2026-11-07T21:29:01+00:00",
      "result": "ok",
      "sha256": "a76225ee8951c20bb633dfc1f2b7b66be67ad9d5130761590ae075f070db2572"
     },
     {
      "source": "school_profile_link",
      "url": "http://www.ttic.edu/li",
-     "at": "2026-11-03T16:03:57+00:00",
+     "at": "2026-11-07T21:29:01+00:00",
      "result": "listed",
      "anchor": "http://www.ttic.edu/li",
      "on": "https://ttic.edu/faculty/li"
@@ -6815,93 +7885,100 @@
     {
      "source": "school_profile",
      "url": "https://www.ttic.edu/faculty/li",
-     "at": "2026-11-03T16:03:57+00:00",
+     "at": "2026-11-07T21:29:01+00:00",
      "result": "ok",
      "sha256": "a76225ee8951c20bb633dfc1f2b7b66be67ad9d5130761590ae075f070db2572"
     },
     {
      "source": "dblp_person_url",
-     "url": null,
-     "at": "2026-11-03T16:03:57+00:00",
-     "result": "no_dblp_person"
+     "url": "https://dblp.org/pid/39/7780-5",
+     "at": "2026-11-07T21:29:01+00:00",
+     "result": "listed",
+     "urls": [
+      "https://zhiyuanli.ttic.edu/",
+      "https://ai.stanford.edu/~zhiyuanli/",
+      "https://www.cs.princeton.edu/~zl4/"
+     ]
     },
     {
      "source": "orcid_researcher_urls",
-     "url": null,
-     "at": "2026-11-03T16:03:57+00:00",
-     "result": "no_orcid"
+     "url": "https://orcid.org/0000-0001-8446-0319/person.json",
+     "at": "2026-11-07T21:29:01+00:00",
+     "result": "listed",
+     "sha256": "cc1cca5e3076c25424f2c0f0b4d2026532e2d25ad6a8c12f1ef4bed93c8af85f",
+     "urls": [
+      "http://zhiyuanli.ttic.edu",
+      "https://orcid.org/0000-0001-8446-0319"
+     ]
     },
     {
      "source": "openalex_author",
      "url": null,
-     "at": "2026-11-03T16:03:57+00:00",
+     "at": "2026-11-07T21:29:01+00:00",
      "result": "no_homepage_field_in_schema"
     },
     {
      "source": "candidate_site",
+     "url": "https://ai.stanford.edu/~zhiyuanli/",
+     "at": "2026-11-07T21:29:22+00:00",
+     "result": "unreachable",
+     "via": "prior_labpage_pass"
+    },
+    {
+     "source": "candidate_site",
      "url": "http://www.ttic.edu/li",
-     "at": "2026-11-03T16:04:00+00:00",
+     "at": "2026-11-07T21:29:22+00:00",
      "result": "ok",
      "via": "school_profile_link",
      "sha256": "cfae8c08e08acf9ab3aff6e94977c164b4116db37533eb35e940602dcb20736c",
      "final_url": "https://zhiyuanli.ttic.edu/"
     },
     {
-     "source": "people_link",
-     "url": "https://zhiyuanli.ttic.edu/People/",
-     "at": "2026-11-03T16:04:03+00:00",
+     "source": "candidate_site",
+     "url": "https://zhiyuanli.ttic.edu/",
+     "at": "2026-11-07T21:29:23+00:00",
      "result": "ok",
-     "on": "http://www.ttic.edu/li",
-     "sha256": "6ea785f31237f815f7b7f6e7c75c9b066d060ad2ea21bfebd7e9c19bd4ed8a4b"
+     "via": "dblp_person_url",
+     "sha256": "cfae8c08e08acf9ab3aff6e94977c164b4116db37533eb35e940602dcb20736c"
     },
     {
-     "source": "pubs_link",
-     "url": "https://zhiyuanli.ttic.edu/publications/",
-     "at": "2026-11-03T16:04:06+00:00",
+     "source": "candidate_site",
+     "url": "https://www.cs.princeton.edu/~zl4/",
+     "at": "2026-11-07T21:29:26+00:00",
      "result": "ok",
-     "on": "http://www.ttic.edu/li",
-     "sha256": "fcdc7991be8bf7d4db44f0b46adc5eb773bdcbda45df4ba942f62f43259721a7"
+     "via": "dblp_person_url",
+     "sha256": "81a1f78c1dfbc5c50f83e3c0b1254f13f120bdb3a54b6640c1909b7eef8e6d31",
+     "final_url": "https://www.cs.princeton.edu/people/forwarding/zl4"
     },
     {
-     "source": "wayback_cdx",
-     "url": "https://zhiyuanli.ttic.edu/People/",
-     "at": "2026-11-03T16:04:24+00:00",
-     "result": "4 captures",
-     "frm": 2023
+     "source": "candidate_site",
+     "url": "http://zhiyuanli.ttic.edu",
+     "at": "2026-11-07T21:29:29+00:00",
+     "result": "ok",
+     "via": "orcid_researcher_url",
+     "sha256": "cfae8c08e08acf9ab3aff6e94977c164b4116db37533eb35e940602dcb20736c",
+     "final_url": "https://zhiyuanli.ttic.edu/"
     },
     {
-     "source": "wayback_capture",
-     "url": "https://web.archive.org/web/20250717064733id_/https://zhiyuanli.ttic.edu/People/",
-     "at": "2026-11-03T16:04:26+00:00",
-     "result": "ok_wayback",
-     "sha256": "e3c66377262fe09e3933f9152ce4532454ca34bfd3b515c432e086ac69e28d85"
-    },
-    {
-     "source": "wayback_capture",
-     "url": "https://web.archive.org/web/20251118003016id_/https://zhiyuanli.ttic.edu/People/",
-     "at": "2026-11-03T16:04:31+00:00",
-     "result": "ok_wayback",
-     "sha256": "e3c66377262fe09e3933f9152ce4532454ca34bfd3b515c432e086ac69e28d85"
-    },
-    {
-     "source": "wayback_capture",
-     "url": "https://web.archive.org/web/20260613003457id_/https://zhiyuanli.ttic.edu/People/",
-     "at": "2026-11-03T16:04:38+00:00",
-     "result": "ok_wayback",
-     "sha256": "077759e25d0c76269f0dfe70d29bf2b178a5d415f99e66ef2877121e1c8ecea1"
+     "source": "wayback_pending",
+     "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fai.stanford.edu%2F~zhiyuanli%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
+     "at": "2026-11-07T21:29:29+00:00",
+     "result": "wayback_deferred"
     }
    ],
    "places_checked": [
     "candidate_site:ok",
+    "candidate_site:unreachable",
+    "dblp_person_url:listed",
     "department_listing:ok",
-    "people_link:ok",
-    "pubs_link:ok",
+    "orcid_researcher_urls:listed",
+    "prior_labpage_pass_2026-10-22:recorded_lab_site",
+    "prior_labpage_pass_2026-10-22:recorded_people_page",
     "school_profile:ok",
     "school_profile_link:listed",
-    "wayback_capture:ok_wayback",
-    "wayback_cdx:4 captures"
+    "wayback_pending:wayback_deferred"
    ],
-   "checked_at": "2026-11-03T16:04:38+00:00",
+   "checked_at": "2026-11-07T21:29:29+00:00",
    "students_page_status": "audited",
    "papers_page_status": "no_pubs_page",
    "url": "https://ai.stanford.edu/~zhiyuanli/",
@@ -6911,25 +7988,27 @@
    "pubs_page": null,
    "found_via": "prior_labpage_pass_2026-10-22",
    "listed_on": null,
-   "sha256": "908b0f4226b8a11167c89928260fcd48e04ea5603308aefe8c79348a000f37b9",
+   "sha256": "542f3c7cb9fb70572b0476f3b50ed16f0648e51a351b1a52cafd9cfc271775c6",
    "evidence": {
     "url": "https://ai.stanford.edu/~zhiyuanli/",
-    "sha256": "908b0f4226b8a11167c89928260fcd48e04ea5603308aefe8c79348a000f37b9",
-    "source": "stored_capture"
+    "sha256": "542f3c7cb9fb70572b0476f3b50ed16f0648e51a351b1a52cafd9cfc271775c6",
+    "quote": "Zhiyuan Li Zhiyuan Li (李志远) I am a tenure-track assistant professor in",
+    "capture_url": "https://web.archive.org/web/20250726025003id_/https://ai.stanford.edu/~zhiyuanli/"
    },
    "official_link_status": "not_recorded",
    "official_link_evidence": [],
    "coverage": "website",
    "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
    "evidence_gaps": [],
-   "capture_fetched_at": "2026-11-03T11:32:03"
+   "verified": true,
+   "verification_quote": "zhiyuan li zhiyuan li i am a tenure track assistant professor in the toyota technologica"
   },
   {
    "pi": "Ari Holtzman",
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok.",
-   "audited_at": "2026-11-04T19:32:17+00:00",
+   "audited_at": "2026-11-03T16:04:38+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -6974,7 +8053,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok.",
-   "audited_at": "2026-11-04T19:32:17+00:00",
+   "audited_at": "2026-11-03T16:04:38+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -7019,7 +8098,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok.",
-   "audited_at": "2026-11-04T19:32:17+00:00",
+   "audited_at": "2026-11-03T16:04:38+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -7064,7 +8143,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok.",
-   "audited_at": "2026-11-04T19:32:17+00:00",
+   "audited_at": "2026-11-03T16:04:38+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -7109,7 +8188,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok.",
-   "audited_at": "2026-11-04T19:32:17+00:00",
+   "audited_at": "2026-11-03T16:04:38+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -7154,7 +8233,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok.",
-   "audited_at": "2026-11-04T19:32:17+00:00",
+   "audited_at": "2026-11-03T16:04:38+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -7199,7 +8278,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok.",
-   "audited_at": "2026-11-04T19:32:17+00:00",
+   "audited_at": "2026-11-03T16:04:38+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -7244,7 +8323,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok.",
-   "audited_at": "2026-11-04T19:32:17+00:00",
+   "audited_at": "2026-11-03T16:04:38+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -7289,7 +8368,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://stat.uchicago.edu/people/: ok; dblp_person_url https://dblp.org/pid/255/7042: person_not_in_dump_extract.",
-   "audited_at": "2026-11-04T19:32:17+00:00",
+   "audited_at": "2026-11-03T18:01:17+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -7335,7 +8414,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://stat.uchicago.edu/people/: ok; dblp_person_url https://dblp.org/pid/57/10368: person_not_in_dump_extract.",
-   "audited_at": "2026-11-04T19:32:17+00:00",
+   "audited_at": "2026-11-03T18:01:17+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -7381,7 +8460,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://ttic.edu/faculty/: ok; department_listing https://www.ttic.edu/faculty/: ok.",
-   "audited_at": "2026-11-04T19:32:17+00:00",
+   "audited_at": "2026-11-03T16:04:38+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -7432,34 +8511,46 @@
    "pi": "Shiry Ginosar",
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "audited_at": "2026-11-04T19:32:18+00:00",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-07T21:29:30+00:00",
    "checks": [
+    {
+     "source": "prior_labpage_pass_2026-10-22",
+     "url": "https://people.eecs.berkeley.edu/~shiry/",
+     "at": "2026-11-07T21:29:29+00:00",
+     "result": "recorded_lab_site"
+    },
+    {
+     "source": "prior_labpage_pass_2026-10-22",
+     "url": "https://shiry.ttic.edu/",
+     "at": "2026-11-07T21:29:29+00:00",
+     "result": "recorded_people_page"
+    },
     {
      "source": "department_listing",
      "url": "https://ttic.edu/faculty/",
-     "at": "2026-11-03T16:04:38+00:00",
+     "at": "2026-11-07T21:29:30+00:00",
      "result": "ok",
      "sha256": "e9e1a3efc15620690a31652e3e70ce42267ea5def59fb87ecfea402adbfae362"
     },
     {
      "source": "department_listing",
      "url": "https://www.ttic.edu/faculty/",
-     "at": "2026-11-03T16:04:38+00:00",
+     "at": "2026-11-07T21:29:30+00:00",
      "result": "ok",
      "sha256": "e9e1a3efc15620690a31652e3e70ce42267ea5def59fb87ecfea402adbfae362"
     },
     {
      "source": "school_profile",
      "url": "https://ttic.edu/faculty/ginosar",
-     "at": "2026-11-03T16:04:39+00:00",
+     "at": "2026-11-07T21:29:30+00:00",
      "result": "ok",
      "sha256": "8a72c7c8801614f6f26f8ee036c3d707be79642af1a96f21510db3b104c368ec"
     },
     {
      "source": "school_profile_link",
      "url": "http://www.ttic.edu/ginosar",
-     "at": "2026-11-03T16:04:39+00:00",
+     "at": "2026-11-07T21:29:30+00:00",
      "result": "listed",
      "anchor": "http://www.ttic.edu/ginosar",
      "on": "https://ttic.edu/faculty/ginosar"
@@ -7467,121 +8558,111 @@
     {
      "source": "school_profile",
      "url": "https://www.ttic.edu/faculty/ginosar",
-     "at": "2026-11-03T16:04:39+00:00",
+     "at": "2026-11-07T21:29:30+00:00",
      "result": "ok",
      "sha256": "8a72c7c8801614f6f26f8ee036c3d707be79642af1a96f21510db3b104c368ec"
     },
     {
      "source": "dblp_person_url",
-     "url": null,
-     "at": "2026-11-03T16:04:39+00:00",
-     "result": "no_dblp_person"
+     "url": "https://dblp.org/pid/90/5688",
+     "at": "2026-11-07T21:29:30+00:00",
+     "result": "no_homepage_url"
     },
     {
      "source": "orcid_researcher_urls",
      "url": null,
-     "at": "2026-11-03T16:04:39+00:00",
+     "at": "2026-11-07T21:29:30+00:00",
      "result": "no_orcid"
     },
     {
      "source": "openalex_author",
      "url": null,
-     "at": "2026-11-03T16:04:39+00:00",
+     "at": "2026-11-07T21:29:30+00:00",
      "result": "no_homepage_field_in_schema"
     },
     {
      "source": "candidate_site",
+     "url": "https://people.eecs.berkeley.edu/~shiry/",
+     "at": "2026-11-07T21:29:30+00:00",
+     "result": "http_403",
+     "via": "prior_labpage_pass"
+    },
+    {
+     "source": "candidate_site",
      "url": "http://www.ttic.edu/ginosar",
-     "at": "2026-11-03T16:04:42+00:00",
+     "at": "2026-11-07T21:29:30+00:00",
      "result": "ok",
      "via": "school_profile_link",
      "sha256": "2a6589b9ca262ef0f3848b036c9bd06b6117120672c12d48b38ae0e746283a2e",
      "final_url": "https://shiry.ttic.edu"
     },
     {
-     "source": "people_link",
-     "url": "https://shiry.ttic.edu#group",
-     "at": "2026-11-03T16:04:46+00:00",
+     "source": "wayback_pending",
+     "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fpeople.eecs.berkeley.edu%2F~shiry%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
+     "at": "2026-11-07T21:29:34+00:00",
+     "result": "wayback_deferred"
+    },
+    {
+     "source": "pubs_link_not_used_by_prior_pass",
+     "url": "https://shiry.ttic.edu/#publications",
+     "at": "2026-11-07T21:29:31+00:00",
      "result": "ok",
-     "on": "http://www.ttic.edu/ginosar",
-     "sha256": "2a6589b9ca262ef0f3848b036c9bd06b6117120672c12d48b38ae0e746283a2e"
+     "sha256": "2a6589b9ca262ef0f3848b036c9bd06b6117120672c12d48b38ae0e746283a2e",
+     "capture_url": null
     },
     {
-     "source": "pubs_link",
-     "url": "https://shiry.ttic.edu#publications",
-     "at": "2026-11-03T16:04:49+00:00",
+     "source": "people_link_not_used_by_prior_pass",
+     "url": "https://shiry.ttic.edu/#group",
+     "at": "2026-11-07T21:29:34+00:00",
      "result": "ok",
-     "on": "http://www.ttic.edu/ginosar",
-     "sha256": "2a6589b9ca262ef0f3848b036c9bd06b6117120672c12d48b38ae0e746283a2e"
-    },
-    {
-     "source": "wayback_cdx",
-     "url": "https://shiry.ttic.edu#group",
-     "at": "2026-11-03T16:04:55+00:00",
-     "result": "24 captures",
-     "frm": 2025
-    },
-    {
-     "source": "wayback_capture",
-     "url": "https://web.archive.org/web/20250115180649id_/http://shiry.ttic.edu/",
-     "at": "2026-11-03T16:04:56+00:00",
-     "result": "ok_wayback",
-     "sha256": "7d0b25ef41fed4d1cff112bf7a0e173a28b307fb128834a22ab3bf7fedd50bb8"
-    },
-    {
-     "source": "wayback_capture",
-     "url": "https://web.archive.org/web/20250709222609id_/https://shiry.ttic.edu/",
-     "at": "2026-11-03T16:05:02+00:00",
-     "result": "ok_wayback",
-     "sha256": "8a1f14b300bfc51abd22dcca54795dc542544c4fb16401882f5e85a0d487bf6d"
-    },
-    {
-     "source": "wayback_capture",
-     "url": "https://web.archive.org/web/20260614073257id_/https://shiry.ttic.edu/",
-     "at": "2026-11-03T16:05:08+00:00",
-     "result": "ok_wayback",
-     "sha256": "b8f4d843d5c48418371584708a0412960667e2ad44f65cbcfd71721f99fa5c03"
+     "sha256": "2a6589b9ca262ef0f3848b036c9bd06b6117120672c12d48b38ae0e746283a2e",
+     "capture_url": null
     }
    ],
    "places_checked": [
+    "candidate_site:http_403",
     "candidate_site:ok",
+    "dblp_person_url:no_homepage_url",
     "department_listing:ok",
-    "people_link:ok",
-    "pubs_link:ok",
+    "people_link_not_used_by_prior_pass:ok",
+    "prior_labpage_pass_2026-10-22:recorded_lab_site",
+    "prior_labpage_pass_2026-10-22:recorded_people_page",
+    "pubs_link_not_used_by_prior_pass:ok",
     "school_profile:ok",
     "school_profile_link:listed",
-    "wayback_capture:ok_wayback",
-    "wayback_cdx:24 captures"
+    "wayback_pending:wayback_deferred"
    ],
-   "checked_at": "2026-11-03T16:05:08+00:00",
-   "students_page_status": "audited",
-   "papers_page_status": "no_pubs_page",
+   "checked_at": "2026-11-07T21:29:34+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
    "url": "https://people.eecs.berkeley.edu/~shiry/",
    "kind": "pi_homepage",
    "people_page": "https://shiry.ttic.edu/",
    "alumni_page": null,
-   "pubs_page": null,
+   "pubs_page": "https://shiry.ttic.edu/#publications",
    "found_via": "prior_labpage_pass_2026-10-22",
    "listed_on": null,
-   "sha256": "1b4d2e3bbac32f166ad76a015846f6a00eccaba016a1202fe1d75e350fbe6345",
+   "sha256": "e25074b8edf0245bf0c11bb87fdd920ee41d390f091a90114aa62c54cb6e1d46",
    "evidence": {
     "url": "https://people.eecs.berkeley.edu/~shiry/",
-    "sha256": "1b4d2e3bbac32f166ad76a015846f6a00eccaba016a1202fe1d75e350fbe6345",
-    "source": "stored_capture"
+    "sha256": "e25074b8edf0245bf0c11bb87fdd920ee41d390f091a90114aa62c54cb6e1d46",
+    "quote": "Shiry Ginosar - Homepage shiry at eecs dot berkeley dot edu Google Schola",
+    "capture_url": "https://web.archive.org/web/20240912163819id_/https://people.eecs.berkeley.edu/~shiry/"
    },
    "official_link_status": "not_recorded",
    "official_link_evidence": [],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
-   "capture_fetched_at": "2026-11-03T11:32:44"
+   "verified": true,
+   "verification_quote": "shiry ginosar homepage contact info mailing address ucb eecs mc 1776 387 soda hall ber"
   },
   {
    "pi": "Frederic Koehler",
    "status": "none_found",
    "reason_code": "profile_only_no_homepage",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://stat.uchicago.edu/people/: ok; school_profile https://stat.uchicago.edu/people/profile/frederic-koehler/: ok.",
-   "audited_at": "2026-11-04T19:32:18+00:00",
+   "audited_at": "2026-11-03T16:05:09+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -7634,7 +8715,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://stat.uchicago.edu/people/: ok; dblp_person_url https://dblp.org/pid/236/5726: person_not_in_dump_extract.",
-   "audited_at": "2026-11-04T19:32:18+00:00",
+   "audited_at": "2026-11-03T18:01:17+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -7680,7 +8761,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-04T19:32:18+00:00",
+   "audited_at": "2026-11-03T16:05:15+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -7766,14 +8847,16 @@
    ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "verified": true,
+   "verification_quote": "promit ghosal search this site embedded files skip to main content skip to navigation p"
   },
   {
    "pi": "Kanishka Misra",
    "status": "none_found",
    "reason_code": "new_arrival_no_site_yet",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://ttic.edu/faculty/: ok; department_listing https://www.ttic.edu/faculty/: ok.",
-   "audited_at": "2026-11-04T19:32:18+00:00",
+   "audited_at": "2026-11-03T16:05:16+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -7824,119 +8907,154 @@
    "pi": "Yossi Gandelsman",
    "status": "none_found",
    "reason_code": "no_web_presence_found",
-   "reason": "no homepage or lab site at any source checked",
-   "audited_at": "2026-11-04T19:32:18+00:00",
+   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): dblp_person_url https://dblp.org/pid/232/1765: no_homepage_url.",
+   "audited_at": "2026-11-07T21:29:34+00:00",
    "checks": [
     {
      "source": "dblp_person_url",
-     "url": null,
-     "at": "2026-11-03T16:05:16+00:00",
-     "result": "no_dblp_person"
+     "url": "https://dblp.org/pid/232/1765",
+     "at": "2026-11-07T21:29:34+00:00",
+     "result": "no_homepage_url"
     },
     {
      "source": "orcid_researcher_urls",
      "url": null,
-     "at": "2026-11-03T16:05:16+00:00",
+     "at": "2026-11-07T21:29:34+00:00",
      "result": "no_orcid"
     },
     {
      "source": "openalex_author",
      "url": null,
-     "at": "2026-11-03T16:05:16+00:00",
+     "at": "2026-11-07T21:29:34+00:00",
      "result": "no_homepage_field_in_schema"
     }
    ],
-   "places_checked": [],
-   "checked_at": null,
+   "places_checked": [
+    "dblp_person_url:no_homepage_url"
+   ],
+   "checked_at": "2026-11-07T21:29:34+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "pending",
+   "coverage": "reason",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "evidence_gaps": [
-    "no_dated_source_check",
-    "absence_reason_not_supported"
-   ]
+   "reason_type": "search_no_eligible_site",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence_gaps": []
   },
   {
    "pi": "William Merrill",
    "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "no homepage or lab site at any source checked",
-   "audited_at": "2026-11-04T19:32:18+00:00",
+   "reason_code": "new_arrival_no_site_yet",
+   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): school_profile https://www.ttic.edu/faculty/merrill/: ok; dblp_person_url https://dblp.org/pid/19/3512: no_homepage_url; pi_evidence_url https://www.ttic.edu/faculty/merrill/: listed.",
+   "audited_at": "2026-11-07T21:29:35+00:00",
    "checks": [
     {
+     "source": "school_profile",
+     "url": "https://www.ttic.edu/faculty/merrill/",
+     "at": "2026-11-07T21:29:35+00:00",
+     "result": "ok",
+     "sha256": "9fdfa45b912972908733561f53687b7d61c74e1a12fced2d243a8b275546aa9f"
+    },
+    {
      "source": "dblp_person_url",
-     "url": null,
-     "at": "2026-11-03T16:05:16+00:00",
-     "result": "no_dblp_person"
+     "url": "https://dblp.org/pid/19/3512",
+     "at": "2026-11-07T21:29:35+00:00",
+     "result": "no_homepage_url"
     },
     {
      "source": "orcid_researcher_urls",
      "url": null,
-     "at": "2026-11-03T16:05:16+00:00",
+     "at": "2026-11-07T21:29:35+00:00",
      "result": "no_orcid"
     },
     {
      "source": "openalex_author",
      "url": null,
-     "at": "2026-11-03T16:05:16+00:00",
+     "at": "2026-11-07T21:29:35+00:00",
      "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "https://www.ttic.edu/faculty/merrill/",
+     "at": "2026-11-07T21:29:35+00:00",
+     "result": "listed"
     }
    ],
-   "places_checked": [],
-   "checked_at": null,
+   "places_checked": [
+    "dblp_person_url:no_homepage_url",
+    "pi_evidence_url:listed",
+    "school_profile:ok"
+   ],
+   "checked_at": "2026-11-07T21:29:35+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "pending",
-   "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "evidence_gaps": [
-    "no_dated_source_check",
-    "absence_reason_not_supported"
-   ]
+   "coverage": "reason",
+   "upstream_audit_reason": "joined in 2026; no school lab site yet",
+   "reason_type": "search_no_eligible_site",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence_gaps": []
   },
   {
    "pi": "Nicholas Tomlin",
    "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "no homepage or lab site at any source checked",
-   "audited_at": "2026-11-04T19:32:18+00:00",
+   "reason_code": "new_arrival_no_site_yet",
+   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): school_profile https://www.ttic.edu/faculty/tomlin/: ok; dblp_person_url https://dblp.org/pid/249/7195: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0001-7322-808X/person.json: no_urls; pi_evidence_url https://www.ttic.edu/faculty/tomlin/: listed.",
+   "audited_at": "2026-11-07T21:29:38+00:00",
    "checks": [
     {
+     "source": "school_profile",
+     "url": "https://www.ttic.edu/faculty/tomlin/",
+     "at": "2026-11-07T21:29:37+00:00",
+     "result": "ok",
+     "sha256": "77742d8dea87e3a7e4914463fd8c7cd7d4ce3381844e5d7142e2beea46bcbaf1"
+    },
+    {
      "source": "dblp_person_url",
-     "url": null,
-     "at": "2026-11-03T16:05:16+00:00",
-     "result": "no_dblp_person"
+     "url": "https://dblp.org/pid/249/7195",
+     "at": "2026-11-07T21:29:37+00:00",
+     "result": "no_homepage_url"
     },
     {
      "source": "orcid_researcher_urls",
-     "url": null,
-     "at": "2026-11-03T16:05:16+00:00",
-     "result": "no_orcid"
+     "url": "https://orcid.org/0000-0001-7322-808X/person.json",
+     "at": "2026-11-07T21:29:38+00:00",
+     "result": "no_urls",
+     "sha256": "14f6724a0ed1680dea09d69dbf5ce33d04e776d1bf9f26504d0ee90aa0e3c905"
     },
     {
      "source": "openalex_author",
-     "url": null,
-     "at": "2026-11-03T16:05:16+00:00",
+     "url": "https://openalex.org/A5013447238",
+     "at": "2026-11-07T21:29:38+00:00",
      "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "https://www.ttic.edu/faculty/tomlin/",
+     "at": "2026-11-07T21:29:38+00:00",
+     "result": "listed"
     }
    ],
-   "places_checked": [],
-   "checked_at": null,
+   "places_checked": [
+    "dblp_person_url:no_homepage_url",
+    "orcid_researcher_urls:no_urls",
+    "pi_evidence_url:listed",
+    "school_profile:ok"
+   ],
+   "checked_at": "2026-11-07T21:29:38+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "pending",
-   "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "evidence_gaps": [
-    "no_dated_source_check",
-    "absence_reason_not_supported"
-   ]
+   "coverage": "reason",
+   "upstream_audit_reason": "joined in 2026; no school lab site yet",
+   "reason_type": "search_no_eligible_site",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence_gaps": []
   },
   {
    "pi": "Moon Duchin",
    "status": "none_found",
    "reason_code": "new_arrival_no_site_yet",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok.",
-   "audited_at": "2026-11-04T19:32:18+00:00",
+   "audited_at": "2026-11-03T16:05:16+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -7981,7 +9099,7 @@
    "status": "none_found",
    "reason_code": "new_arrival_no_site_yet",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.uchicago.edu/people/uchicago-faculty/full-time-faculty/: ok.",
-   "audited_at": "2026-11-04T19:32:18+00:00",
+   "audited_at": "2026-11-03T16:05:53+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -8026,7 +9144,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-04T19:32:18+00:00",
+   "audited_at": "2026-11-03T16:06:04+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -8129,14 +9247,16 @@
    ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "verified": true,
+   "verification_quote": "denis hirschfeldt s homepage denis r hirschfeldt department of mathematics university "
   },
   {
    "pi": "James A. Evans",
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://datascience.uchicago.edu/people/affiliated-faculty/: ok; department_listing https://www.chicagobooth.edu/faculty/directory: ok; dblp_person_url https://dblp.org/pid/12/4152: person_not_in_dump_extract.",
-   "audited_at": "2026-11-04T19:32:18+00:00",
+   "audited_at": "2026-11-03T16:06:10+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -8189,7 +9309,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-04T19:32:18+00:00",
+   "audited_at": "2026-11-03T16:06:17+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -8285,14 +9405,16 @@
    ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "verified": false,
+   "unverified_reason": "stored page does not carry the PI full name (surname present)"
   },
   {
    "pi": "Matthew Taddy",
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.chicagobooth.edu/faculty/directory: ok; dblp_person_url https://dblp.org/pid/92/8896: person_not_in_dump_extract.",
-   "audited_at": "2026-11-04T19:32:18+00:00",
+   "audited_at": "2026-11-03T16:06:18+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -8338,7 +9460,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.chicagobooth.edu/faculty/directory: ok; dblp_person_url https://dblp.org/pid/22/839: person_not_in_dump_extract.",
-   "audited_at": "2026-11-04T19:32:18+00:00",
+   "audited_at": "2026-11-03T16:06:18+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -8384,7 +9506,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.chicagobooth.edu/faculty/directory: ok; dblp_person_url https://dblp.org/pid/19/4180-4: person_not_in_dump_extract.",
-   "audited_at": "2026-11-04T19:32:18+00:00",
+   "audited_at": "2026-11-03T16:06:18+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -8430,7 +9552,7 @@
    "status": "none_found",
    "reason_code": "new_arrival_no_site_yet",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://datascience.uchicago.edu/people/affiliated-faculty/: ok.",
-   "audited_at": "2026-11-04T19:32:18+00:00",
+   "audited_at": "2026-11-03T16:06:18+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -8475,7 +9597,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.chicagobooth.edu/faculty/directory: ok.",
-   "audited_at": "2026-11-04T19:32:18+00:00",
+   "audited_at": "2026-11-03T16:06:18+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -8520,7 +9642,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.chicagobooth.edu/faculty/directory: ok.",
-   "audited_at": "2026-11-04T19:32:18+00:00",
+   "audited_at": "2026-11-03T16:06:18+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -8565,7 +9687,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.chicagobooth.edu/faculty/directory: ok.",
-   "audited_at": "2026-11-04T19:32:18+00:00",
+   "audited_at": "2026-11-03T16:06:18+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -8610,7 +9732,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.chicagobooth.edu/faculty/directory: ok.",
-   "audited_at": "2026-11-04T19:32:19+00:00",
+   "audited_at": "2026-11-03T16:06:18+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -8655,7 +9777,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.chicagobooth.edu/faculty/directory: ok.",
-   "audited_at": "2026-11-04T19:32:19+00:00",
+   "audited_at": "2026-11-03T16:06:18+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -8700,7 +9822,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.chicagobooth.edu/faculty/directory: ok.",
-   "audited_at": "2026-11-04T19:32:19+00:00",
+   "audited_at": "2026-11-03T16:06:19+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -8745,7 +9867,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.chicagobooth.edu/faculty/directory: ok.",
-   "audited_at": "2026-11-04T19:32:19+00:00",
+   "audited_at": "2026-11-03T16:06:19+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -8790,7 +9912,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.chicagobooth.edu/faculty/directory: ok.",
-   "audited_at": "2026-11-04T19:32:19+00:00",
+   "audited_at": "2026-11-03T16:06:19+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -8835,7 +9957,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.chicagobooth.edu/faculty/directory: ok.",
-   "audited_at": "2026-11-04T19:32:19+00:00",
+   "audited_at": "2026-11-03T16:06:19+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -8880,7 +10002,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.chicagobooth.edu/faculty/directory: ok.",
-   "audited_at": "2026-11-04T19:32:19+00:00",
+   "audited_at": "2026-11-03T16:06:19+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -8925,7 +10047,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.chicagobooth.edu/faculty/directory: ok.",
-   "audited_at": "2026-11-04T19:32:19+00:00",
+   "audited_at": "2026-11-03T16:06:19+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -8970,7 +10092,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.chicagobooth.edu/faculty/directory: ok.",
-   "audited_at": "2026-11-04T19:32:19+00:00",
+   "audited_at": "2026-11-03T16:06:19+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -9015,7 +10137,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.chicagobooth.edu/faculty/directory: ok.",
-   "audited_at": "2026-11-04T19:32:19+00:00",
+   "audited_at": "2026-11-03T16:06:19+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -9060,7 +10182,7 @@
    "status": "found",
    "reason_code": "lab_site",
    "reason": "Captured lab/group website.",
-   "audited_at": "2026-11-04T19:32:20+00:00",
+   "audited_at": "2026-11-03T18:01:39+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -9180,14 +10302,16 @@
    ],
    "coverage": "website",
    "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "verified": true,
+   "verification_quote": "of everyday human language principal investigator dr marisa casillas the chatter lab is part of the comparative human development department"
   },
   {
    "pi": "Christopher Thomas Ryan",
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.chicagobooth.edu/faculty/directory: ok.",
-   "audited_at": "2026-11-04T19:32:20+00:00",
+   "audited_at": "2026-11-03T16:06:19+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -9232,7 +10356,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.chicagobooth.edu/faculty/directory: ok.",
-   "audited_at": "2026-11-04T19:32:20+00:00",
+   "audited_at": "2026-11-03T16:06:19+00:00",
    "checks": [
     {
      "source": "department_listing",

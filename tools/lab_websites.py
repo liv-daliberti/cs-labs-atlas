@@ -468,7 +468,11 @@ def verify_websites(school, doc):
     """A lab or PI website counts only when its stored page names the PI. verified/unverified_reason on every website row; a clear
     mismatch (the page has no surname and the address has no name token, e.g. a student-affairs page) is dropped to `rejected_url` and the
     lab goes back to pending, so no unverified or wrong URL is shown as a lab's website."""
-    from person_fetch import last_name_on_page, names_person, plausible_owner
+    from person_fetch import GENERIC, last_name_on_page, names_person, plausible_owner
+    shared = {}
+    for r in doc['labs']:
+        if r.get('url'):
+            shared.setdefault(normalized_link(r['url']), set()).add(r['pi'])
     rows = [r for r in doc['labs'] if r.get('url') and r.get('coverage') == 'website']
     shas = {r['sha256'] for r in rows if r.get('sha256')}
     text = {}
@@ -490,9 +494,11 @@ def verify_websites(school, doc):
         if r['verified']:
             r['verification_quote'] = quote
             r.pop('unverified_reason', None)
-        elif not last_name_on_page(body, r['pi']) and not plausible_owner(r['url'], r['pi']):
+        elif (not last_name_on_page(body, r['pi']) and not plausible_owner(r['url'], r['pi'])
+              and (r.get('official_link_status') != 'recorded' or len(shared[normalized_link(r['url'])]) > 1 or GENERIC.search(r['url']))):
             r['rejected_url'] = r.pop('url')
-            r['rejected_reason'] = f"stored page does not name {r['pi']} (no surname on the page, none in the address)"
+            r['rejected_reason'] = (f"stored page does not name {r['pi']} (no surname on the page, none in the address) and the URL is "
+                                    + ('also assigned to other PIs' if len(shared[normalized_link(r['rejected_url'])]) > 1 else 'a generic page' if GENERIC.search(r['rejected_url']) else 'not linked from an official page'))
             for k in ('sha256', 'evidence', 'people_page', 'alumni_page', 'pubs_page', 'found_via', 'listed_on', 'official_link_status',
                       'official_link_evidence', 'verified', 'kind'):
                 r.pop(k, None)

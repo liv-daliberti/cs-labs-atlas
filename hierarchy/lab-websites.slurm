@@ -31,6 +31,6 @@ PY="$CS_ATLAS_PY"
 for s in "$@"; do
   for st in ${STEPS:-discover recover audit}; do
     echo "== $s $st $(date -Is)"
-    nice "$PY" -I -u "$CS_ATLAS_TOOLS/labpage_audit.py" "$st" "$s" ${ARGS:-} || echo "!! $s $st failed"
+    eval "nice \"\$PY\" -I -u \"\$CS_ATLAS_TOOLS/labpage_audit.py\" \"\$st\" \"\$s\" ${ARGS:-}" || echo "!! $s $st failed"
   done
 done

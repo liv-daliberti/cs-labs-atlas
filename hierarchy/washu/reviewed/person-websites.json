@@ -930,7 +930,8 @@
    "status": 200,
    "sha256": "2cf11817428dbb5bc81a72d538f9affadb22b38e95fc7d494f35c19be554d4f6",
    "found_from_kind": "dblp_homepage",
-   "verified": false
+   "verified": false,
+   "unverified_reason": "fetched page does not carry the full name (surname present)"
   },
   {
    "person": "Jonathan Turner",
@@ -958,7 +959,8 @@
    "status": 200,
    "sha256": "c11a2bd9566ee18f1375983a05f4a76f12f01e25c5b794b0c3afeac4d61e0ab9",
    "found_from_kind": "dblp_homepage",
-   "verified": false
+   "verified": false,
+   "unverified_reason": "fetched page does not carry the full name (surname present)"
   },
   {
    "person": "Ian Bogost",
@@ -1178,7 +1180,8 @@
    "status": 200,
    "sha256": "36efa90ff3376c50e2fa6c102c6b374c7a3c476b8fff0253b73c1d6e62b9038e",
    "found_from_kind": "official_page",
-   "verified": false
+   "verified": false,
+   "unverified_reason": "fetched page does not carry the full name (address names the person)"
   },
   {
    "person": "Gregory Kehne",
@@ -1758,6 +1761,7 @@
    "person_id": "ext:washu:mengxue-zhang",
    "found_from_kind": "official_page",
    "verified": false,
+   "unverified_reason": "live fetch failed: HTTP 410",
    "fetch_attempted_at": "2026-11-09T00:04:29+00:00"
   },
   {
@@ -1778,6 +1782,7 @@
    "person_id": "ext:washu:mengxue-zhang",
    "found_from_kind": "official_page",
    "verified": false,
+   "unverified_reason": "live fetch failed: HTTP 410",
    "fetch_attempted_at": "2026-11-09T00:04:29+00:00"
   },
   {
@@ -1797,7 +1802,8 @@
    "fetch_reason": "host not fetchable (robots/login)",
    "person_id": "ext:washu:di-huang",
    "found_from_kind": "lab_page",
-   "verified": false
+   "verified": false,
+   "unverified_reason": "host not fetchable (robots/login)"
   },
   {
    "person": "Wenyu Li",
@@ -1840,7 +1846,8 @@
    "sha256": "c35cda224b0a98c75e3a9b1fdfedd7f66a43220df9839500d201eb450a495dbc",
    "person_id": "ext:washu:daniel-cher",
    "found_from_kind": "official_page",
-   "verified": false
+   "verified": false,
+   "unverified_reason": "fetched page does not carry the full name (surname present)"
   },
   {
    "person": "Eric Xing",
@@ -1970,6 +1977,7 @@
    "person_id": "ext:washu:aayush-dhakal",
    "found_from_kind": "official_page",
    "verified": false,
+   "unverified_reason": "not fetched: robots.txt disallows it, or the host names an AI agent or is a banned source (robots-disallowed)",
    "fetch_attempted_at": "2026-11-09T00:04:35+00:00"
   },
   {
@@ -2118,11 +2126,12 @@
     "anchor": "Stylianos Vasileiou"
    },
    "fetched": false,
-   "fetch_reason": "live fetch failed: HTTP 301",
+   "fetch_reason": "live fetch failed: redirect-to-other-site",
    "person_id": "ext:washu:stylianos-loukas-vasileiou",
    "found_from_kind": "official_page",
    "verified": false,
-   "fetch_attempted_at": "2026-11-09T00:04:38+00:00"
+   "unverified_reason": "live fetch failed: redirect-to-other-site",
+   "fetch_attempted_at": "2026-11-09T00:20:44+00:00"
   },
   {
    "person": "Jiaming Qiu",
@@ -2143,7 +2152,8 @@
    "sha256": "62da5e9872ab5d2d3e7e6ab288dfedabaea39966f7f016e42d45922dd5215cf6",
    "person_id": "ext:washu:jiaming-qiu",
    "found_from_kind": "lab_page",
-   "verified": false
+   "verified": false,
+   "unverified_reason": "fetched page does not carry the full name (address names the person)"
   },
   {
    "person": "Wei Tang",
@@ -2163,6 +2173,7 @@
    "person_id": "ext:washu:wei-tang",
    "found_from_kind": "lab_page",
    "verified": false,
+   "unverified_reason": "live fetch failed: HTTP 404",
    "fetch_attempted_at": "2026-11-09T00:04:39+00:00"
   },
   {
@@ -2183,6 +2194,7 @@
    "person_id": "ext:washu:ming-zou",
    "found_from_kind": "official_page",
    "verified": false,
+   "unverified_reason": "not fetched: robots.txt disallows it, or the host names an AI agent or is a banned source (robots-disallowed)",
    "fetch_attempted_at": "2026-11-09T00:04:42+00:00"
   },
   {
@@ -2203,6 +2215,7 @@
    "person_id": "ext:washu:zhiyang-huang",
    "found_from_kind": "official_page",
    "verified": false,
+   "unverified_reason": "not fetched: robots.txt disallows it, or the host names an AI agent or is a banned source (robots-disallowed)",
    "fetch_attempted_at": "2026-11-09T00:04:45+00:00"
   },
   {
@@ -2218,12 +2231,15 @@
     "capture_url": "https://web.archive.org/web/20200310185244id_/https://www.cse.wustl.edu/~lu/",
     "anchor": "Jing Li"
    },
-   "fetched": false,
-   "fetch_reason": "live fetch failed: HTTP 302",
+   "fetched": true,
    "person_id": "ext:washu:jing-li",
+   "status": 200,
+   "sha256": "ed5a682dfd5168202138c73765901901cea91f3530895dd6d0db6aa1342bfa69",
+   "fetched_at": "2026-11-09T00:20:44+00:00",
+   "redirected_to": "https://accounts.google.com/v3/signin/identifier?continue=https://sites.google.com/site/jingliwustl/&followup=https://sites.google.com/site/jingliwustl/&osid=1&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-2126915123:1794183648369959",
    "found_from_kind": "official_page",
    "verified": false,
-   "fetch_attempted_at": "2026-11-09T00:05:00+00:00"
+   "unverified_reason": "fetched page does not carry the full name (address names the person)"
   },
   {
    "person": "Jing Li",
@@ -2238,12 +2254,15 @@
     "capture_url": "https://web.archive.org/web/20200310185244id_/https://www.cse.wustl.edu/~lu/",
     "anchor": "Jing Li"
    },
-   "fetched": false,
-   "fetch_reason": "live fetch failed: HTTP 302",
+   "fetched": true,
    "person_id": "ext:washu:jing-li",
+   "status": 200,
+   "sha256": "ed5a682dfd5168202138c73765901901cea91f3530895dd6d0db6aa1342bfa69",
+   "fetched_at": "2026-11-09T00:20:44+00:00",
+   "redirected_to": "https://accounts.google.com/v3/signin/identifier?continue=https://sites.google.com/site/jingliwustl/&followup=https://sites.google.com/site/jingliwustl/&osid=1&passive=1209600&service=wise&flowName=WebLiteSignIn&flowEntry=ServiceLogin&dsh=S-2126915123:1794183648369959",
    "found_from_kind": "official_page",
    "verified": false,
-   "fetch_attempted_at": "2026-11-09T00:05:00+00:00"
+   "unverified_reason": "fetched page does not carry the full name (address names the person)"
   },
   {
    "person": "Chao Wang",
@@ -2264,7 +2283,8 @@
    "sha256": "d9942e1315bce7b22dc2c16b9a1d76fe3bd29763d998b79be04059edc5329b9a",
    "person_id": "ext:washu:chao-wang",
    "found_from_kind": "official_page",
-   "verified": false
+   "verified": false,
+   "unverified_reason": "fetched page does not carry the full name (address names the person)"
   },
   {
    "person": "Jing Li",
@@ -2284,6 +2304,7 @@
    "person_id": "ext:washu:jing-li",
    "found_from_kind": "official_page",
    "verified": false,
+   "unverified_reason": "not fetched: robots.txt disallows it, or the host names an AI agent or is a banned source (robots-disallowed)",
    "fetch_attempted_at": "2026-11-09T00:04:39+00:00"
   },
   {
@@ -2304,6 +2325,7 @@
    "person_id": "ext:washu:jing-li",
    "found_from_kind": "official_page",
    "verified": false,
+   "unverified_reason": "not fetched: robots.txt disallows it, or the host names an AI agent or is a banned source (robots-disallowed)",
    "fetch_attempted_at": "2026-11-09T00:04:39+00:00"
   },
   {
@@ -2346,6 +2368,7 @@
    "person_id": "ext:washu:chen-yang",
    "found_from_kind": "lab_page",
    "verified": false,
+   "unverified_reason": "not fetched: robots.txt disallows it, or the host names an AI agent or is a banned source (robots-disallowed)",
    "fetch_attempted_at": "2026-11-09T00:04:45+00:00"
   },
   {
@@ -2409,7 +2432,8 @@
    "fetch_reason": "host not fetchable (robots/login)",
    "person_id": "ext:washu:ke-yang",
    "found_from_kind": "lab_page",
-   "verified": false
+   "verified": false,
+   "unverified_reason": "host not fetchable (robots/login)"
   },
   {
    "person": "Aayush Dhakal",
@@ -2428,7 +2452,8 @@
    "fetch_reason": "host not fetchable (robots/login)",
    "person_id": "ext:washu:aayush-dhakal",
    "found_from_kind": "official_page",
-   "verified": false
+   "verified": false,
+   "unverified_reason": "host not fetchable (robots/login)"
   },
   {
    "person": "Srikumar Sastry",
@@ -2492,6 +2517,7 @@
    "person_id": "ext:washu:dev-gupta",
    "found_from_kind": "official_page",
    "verified": false,
+   "unverified_reason": "live fetch failed: HTTP 404",
    "fetch_attempted_at": "2026-11-09T00:04:42+00:00"
   },
   {
@@ -2512,6 +2538,7 @@
    "person_id": "ext:washu:fankun-zeng",
    "found_from_kind": "lab_page",
    "verified": false,
+   "unverified_reason": "not fetched: robots.txt disallows it, or the host names an AI agent or is a banned source (robots-disallowed)",
    "fetch_attempted_at": "2026-11-09T00:04:42+00:00"
   },
   {

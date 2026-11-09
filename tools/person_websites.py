@@ -158,7 +158,10 @@ def build(school, labs_path=None):
             lst = p.get('listings') or [{}]
             lst = ([x for x in lst if urlsplit(original(x.get('url') or '')).hostname == urlsplit(profile['url']).hostname] or lst)
             rows.append(dict(person=pi, role='pi', lab=pi, kind='pi_profile', url=profile['url'],
-                             found_from=dict(kind='official_page', url=lst[-1].get('url'), sha256=lst[-1].get('sha256')),
+                             found_from=(dict(kind='official_page', url=lst[-1].get('url'), sha256=lst[-1].get('sha256'))
+                                         if lst[-1].get('url') and lst[-1].get('sha256') else
+                                         dict(kind='official_page', url=profile['url'], sha256=profile['sha256'],
+                                              note='school profile cited by the PI evidence; no listing record')),
                              fetched=True, fetched_at=profile['at'], status=200, sha256=profile['sha256']))
         else:
             rows.append(dict(person=pi, role='pi', lab=pi, kind='pi_profile', url=None,
@@ -315,7 +318,7 @@ def annotate(rows, school):
             if q:
                 r['verification_quote'] = q
             if not r['verified']:
-                if not last_name_on_page(body, r['person']) and not plausible_owner(r.get('redirected_to') or r['url'], r['person']):
+                if r['role'] == 'student' and not last_name_on_page(body, r['person']) and not plausible_owner(r.get('redirected_to') or r['url'], r['person']):
                     # clear mismatch: the page does not name the person and the address does not either. Never shown as the person's site.
                     r.update(rejected_url=r['url'], url=None, fetched=False,
                              reason=f"fetched page does not name {r['person']} (no surname on the page, none in the address): "

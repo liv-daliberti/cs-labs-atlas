@@ -55,6 +55,9 @@ def plausible_owner(url, person):
     return any(t in u for t in toks) or any(t[:3] in re.sub(r'[^a-z]', '', urlsplit(u).path) for t in toks[-1:])
 
 
+GENERIC = re.compile(r'feedback|post-a-job|machineshop|studentaffairs|life-design|/directory|/jobs?\b|careers|/news|/events?\b|/contact|login|/admissions', re.I)
+
+
 def last_name_on_page(body, person):
     t = text_of(body).split()
     toks = [w for w in re.sub(r'[^a-z ]+', ' ', text_of(person.encode())).split() if len(w) > 1]
