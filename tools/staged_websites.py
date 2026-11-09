@@ -30,9 +30,10 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urldefrag, urljoin, urlsplit
 
-import atlas_paths as P
-import person_websites as PW
-import staged_fetch as SF
+sys.path.insert(0, str(Path(__file__).resolve().parent))  # python -I leaves the script's directory off sys.path
+import atlas_paths as P  # noqa: E402
+import person_websites as PW  # noqa: E402
+import staged_fetch as SF  # noqa: E402
 
 SCRATCH = P.ROOT / 'scratch' / 'websites-c'
 ROLES = P.ROOT / 'scratch' / 'top25-roles-students-1107' / 'pi-role-verification.json'

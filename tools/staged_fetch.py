@@ -9,13 +9,15 @@ fetched); redirects are followed by hand (<= 4 hops), each hop checked against i
 import hashlib
 import json
 import sqlite3
+import sys
 import threading
 import time
 import urllib.parse
 import zlib
 from pathlib import Path
 
-import school_web as W
+sys.path.insert(0, str(Path(__file__).resolve().parent))  # python -I leaves the script's directory off sys.path
+import school_web as W  # noqa: E402
 
 MAX_BYTES = 2_000_000
 
