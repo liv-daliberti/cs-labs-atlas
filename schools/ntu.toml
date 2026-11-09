@@ -1,0 +1,379 @@
+# Partial source-backed onboarding charter. Source/member admissions do not establish university-wide closure.
+key = "ntu"
+name = "Nanyang Technological University"
+short = "NTU Singapore"
+site_uni = ""
+status = "onboarding"
+order = 20
+stage = 0
+started = "2026-11-08"
+window = [2016, 2026]
+
+[ids]
+openalex = ["I172675005"]
+openalex_related = ["I194744927", "I4210114908", "I4210167254"]
+openalex_excluded = ["I16733864", "I52590639"]
+ror = "https://ror.org/02e7b5302"
+ids_note = "The indexed local snapshot original compact BLOB for I172675005 binds Nanyang Technological University/SG/ROR02e7b5302/homepagehttps://www.ntu.edu.sg. Actual compressed and decoded bytes/SQLprimarykeys are preserved in scratch/ntu-next-chain-1108/institution25-original-indexed-records.json; these are local snapshot records, not original ROR/OpenAlex HTTP. NIE and UMI MajuLab are recorded children; SMART is recorded related. Proposed conservative related treatment requires independent explicit raw primary-university affiliation or reviewed joint appointment, never inherited lineage alone; it is not a legal ownership assertion. National Taiwan University/TW/I16733864 and Nottingham Trent University/GB/I52590639 are distinct indexed institutions. Genuine primary NTU dual affiliations are preserved. No Singapore NTU campus is excluded. Campus/university-wide unit and host readiness remains partial; no sweep/native/collector is authorized by this charter alone."
+
+[web]
+domains = ["ntu.edu.sg"]
+email_domains = ["ntu.edu.sg"]
+wayback_only_suffixes = []
+excluded_hosts = []
+
+[affiliation]
+regex = '\bnanyang\s+technological\s+university\b|\bntu[,\s]+singapore\b|\b(?:[a-z0-9-]+\.)*ntu\.edu\.sg\b'
+excluded_regex = '\bnational\s+taiwan\s+university\b|\bnottingham\s+trent\s+university\b'
+loose = '\bnanyang\s+technological\s+university\b|\bntu\b|ntu\.edu\.sg'
+own_units = ''
+must_match = ["Nanyang Technological University, Singapore", "College of Computing and Data Science, Nanyang Technological University", "NTU Singapore", "staff.ntu.edu.sg", "Nanyang Technological University; National Taiwan University", "Nottingham Trent University; Nanyang Technological University"]
+must_not_match = ["NTU", "National Taiwan University", "National Taiwan University of Science and Technology", "Nottingham Trent University", "Nanyang Polytechnic", "Nanyang Institute of Technology", "Nanyang Normal University", "ntu.edu.tw", "ntu.ac.uk"]
+
+[dblp]
+affiliation_strings = ["Nanyang Technological University", "NTU Singapore", "ntu.edu.sg"]
+legacy_sweep = ""
+
+[census]
+computing_departments = ["CCDS"]
+center_units = []
+home_units = {CCDS = 'College of Computing and Data Science', SPMS = 'School of Physical and Mathematical Sciences', LKC_MEDICINE = 'Lee Kong Chian School of Medicine'}
+rank_words = {}
+
+[sweep_check]
+exceptions = []
+
+[cs_related]
+not_faculty = {}
+share_test_settles = []
+
+[site]
+depts = {CCDS = "College of Computing and Data Science", SPMS = "School of Physical and Mathematical Sciences", LKC_MEDICINE = "Lee Kong Chian School of Medicine"}
+full_codes = ["CCDS"]
+
+[periods]
+school_regex = '\bnanyang\s+technological\s+university\b|\bntu[,\s]+singapore\b|\b(?:[a-z0-9-]+\.)*ntu\.edu\.sg\b'
+
+[rules]
+foreign_title_exception = false
+listing_continuity = false
+
+[[departments]]
+code = "CCDS"
+name = "College of Computing and Data Science"
+unit = "Nanyang Technological University"
+title_match = 'College of Computing and Data Science|\bCCDS\b|\bProf(?:essor)?\b'
+coverage = "full" # Every listed faculty is a census candidate; this is not completed university-wide coverage.
+url = "https://www.ntu.edu.sg/computing"
+  [[departments.listings]]
+  slot = "ccds_current_2026"
+  kind = "main"
+  url = "www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds"
+  from = "20260101"
+  to = "20261231"
+  prefix = false
+  match = ""
+  format = ""
+
+[[affiliated_units]]
+code = "SPMS"
+name = "School of Physical and Mathematical Sciences"
+url = "https://www.ntu.edu.sg/spms"
+listings = ["www.ntu.edu.sg/spms/about-us/mathematics/people/faculty"]
+# Literal official unit/navigation sources and Hai Dang Dau's explicit joint appointment; individual computing relevance still required.
+
+[[affiliated_units]]
+code = "LKC_MEDICINE"
+name = "Lee Kong Chian School of Medicine"
+url = "" # Exact owned joint-appointment clauses support the name, not a guessed official unit/listing URL.
+listings = []
+# Alvin Chan and Jie Xiong sources name this unit. Computing-related labs may be sought; all medicine staff/lineage are not automatically PIs.
+
+[thesis]
+kind = "none"
+base_url = ""
+endpoints = []
+robots = "unreachable"
+note = "No thesis acquisition/recognition endpoint independently reviewed. This is a closed configuration, not a claim of repository absence or an attempted failed lookup."
+
+[collector]
+channels = []
+
+[students]
+directories = []
+adviser_directories = []
+defense_lists = []
+adviser_alumni = []
+rosters = []
+sources = ["reviewed exact PI-owned current/alumni/group sources"]
+
+[labpages]
+skip_pages = []
+hints = []
+
+[repository]
+name = "Institutional repository acquisition and recognition not reviewed"
+pattern = '(?!)' # Documented never-match placeholder, not an invented repository identity.
+
+[store]
+path = "ntu"
+
+[[hosts]]
+host = "agents-lab.org"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "alvinchanlabntu.github.io"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "arxiv.org"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "boyangli.org"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "chau999.github.io"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "chenwang.site"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "conrad-watt.github.io"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "d-nb.info"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "dblp.org"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "dr.ntu.edu.sg"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "epiclab-sg.github.io"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "hai-dang-dau.github.io"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "home.ustc.edu.cn"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "jiexiong1.github.io"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "jrmcornish.github.io"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "jwbian.net"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "liuocean613.github.io"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "liuziwei7.github.io"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "mathscinet.ams.org"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "nanyang.academia.edu"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "openreview.net"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "orcid.org"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "peng-hui.github.io"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "people.mpi-inf.mpg.de"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "personal.ntu.edu.sg"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "pub.orcid.org"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "publons.com"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "raihanjoty.github.io"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "research.ntu.edu.sg"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "scholars.cmu.edu"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "sites.google.com"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "sydney.edu.au"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "tvanbr.github.io"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "ustiugov.github.io"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "wangchen.io"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "www.agents-lab.org"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "www.c2i.ntu.edu.sg"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "www.comlab.ox.ac.uk"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "www.intsci.ac.cn"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "www.mmlab-ntu.com"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "www.ntu.edu.sg"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "www.qcri.com"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "www.researcherid.com"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "www.samanthachan.net"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "www.scopus.com"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "www.ttiangong.com"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "www.uts.edu.au"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "www3.ntu.edu.sg"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "ych133.github.io"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "yeshwanth94.github.io"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "zbmath.org"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
+
+[[hosts]]
+host = "zjzac.github.io"
+use = "none"
+purpose = "Closed partial onboarding; cached originals only. Any exact finite exception requires separate root-approved source packet; no collector/sweep authority."
