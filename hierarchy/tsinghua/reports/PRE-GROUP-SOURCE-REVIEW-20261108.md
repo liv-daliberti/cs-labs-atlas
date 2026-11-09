@@ -1,40 +1,48 @@
-# Tsinghua exact pre-group source-title corrections
+# Tsinghua exact source corrections before edition grouping
 
-Two exact already-eligible originals have a confirmed false edition merge caused by nonempty truncated title
-`Experience`: W4306179722, DOI10.1145/3495243.3517021 (MobiCom2022), and W3023980905,
-DOI10.1145/3372224.3380897 (MobiCom2020). Their owned PID61/1951-1 records have different full titles and
-complete ordered eight-author bylines. Original full PI bibliography citations corroborate both titles.
+The reviewed inputs correct two nonempty truncated titles and eight source types before normal edition
+identity and quality rules run. They also hold one exact PAM2018 source claim with unresolved full authorship.
+All selectors bind the exact PI, source work/DOI, complete original and eligible-row preimages, ordered byline,
+and owned primary bibliography or publication evidence. A stale positive correction fails closed.
 
-The optional reviewed input binds each complete source work preimage plus the exact owned publication record,
-DOI, key and ordered byline. Only the title is projected, before R16 components. Original sources, all bylines,
-dates, institutions and original audit failures remain preserved. The NianSun/NianXiangSun record-local form
-is corroborated by the PI's own2020citation; no global alias or identity is created.
+## Reviewed changes
 
-This first patch does not fix or certify the separate duplicate-author/type/monograph-chapter issues. The two
-LiZhenhua environmental-paper identity holds, SQA3D representation, remaining genre/edition/date holds and
-unproven physical-copy cases remain scientific blockers, not wholesale research rejections. Existing two Wang
-physics claim holds remain unchanged. No Stage9, complete bibliography/copy coverage or promotion is claimed.
+- W4306179722, DOI10.1145/3495243.3517021, and W3023980905, DOI10.1145/3372224.3380897:
+  the same truncated `Experience` title falsely merged two distinct MobiCom papers. Exact owned PID61/1951-1
+  records and complete eight-author primary citations supply the different full titles. The NianSun/NianXiangSun
+  record-local form is source-attested; no global alias or person identity is created.
+- Seven ZhuSongChun chapter sources have exact owned monograph/DOI/byline authority. Type-only projection
+  makes the normal book rule fold them into their eligible book, increasing its folded chapters from5to12.
+- ChenZhenpeng W7163740557 has a complete owned TOSEM research citation with the full ordered byline and DOI.
+  Its article-type projection preserves the ordinary date. No fetched Crossref response, volume number,
+  DOI hyperlink or general journal-page heading is asserted.
+- LiZhenhua W2792053284, DOI10.1007/978-3-319-76481-8_8, is held by the existing exact-claim mechanism.
+  Seven raw authorships disagree with the owned five-author record. Full originals and distinct source author
+  identifiers are preserved; neither duplicate authors nor global IDs are resolved by names. Prior holds remain.
 
+## Actual verification
 
-## Exact type corrections and conservative PAM hold (root review)
+Root replay32156505 matched all14 complete case sources/eligible rows, all16 scoped original PID objects,
+and both original registered HTML capture rows. It projected the8types without changing dates, full bylines,
+PI/member/link objects or raw sources. Copied-graph replay32156531 proved the exact PAM hold removes only
+its own PI/source row and no direct candidate link.
 
-Root independent replay32156505 compared all14 supplied complete source/eligible-row objects against the
-completed32155503 native, all16 original scoped PID objects, and both actual registered HTML capture rows.
-Eight type-only projections passed: seven owned-monograph chapters fold through the normal book rule
-(chapters folded5 to12), and one complete TOSEM research citation supports article type. Dates, full bylines,
-PI/member objects and candidate links stayed exact in this replay. The two existing title corrections remain.
-The primary citation supplies journal-article kind; no fetched Crossref response, volume number,
-DOI hyperlink, publication date change or general journal-page heading is asserted.
+The integrated code passed2783tests/23skipped, lint,19charters and history scan0findings in32156543.
+Complete normal native32156623 then finished14m59, peak20231300KiB, using18frozen input files with exactly
+two reviewed-slot replacements. It produced615PI-paper relations/611distinct source-work keys, with all
+586member records,625role episodes and611candidate links unchanged. Verified member-paper links remain0.
 
-Root copied-graph replay32156531 bound the PAM2018 source DOI10.1007/978-3-319-76481-8_8 and all complete
-source variants to the actual623-row graph. Its seven raw authorships disagree with the owned five-author
-record, including two distinct ZhenyuLi source identifiers. The existing exact-claim hold removes only that
-PI/source row (623 to622) on the copied graph; no candidate links directly name it. This is an unresolved
-representation/identity hold, not a nonresearch decision or permission to merge identifiers by name.
-All prior claim decisions are preserved.
+Independent whole-graph comparison32156751 found only the seven chapter-row folds, the exact PAM hold,
+the TOSEM type change and corresponding source-proof metadata changes. It initially held one additional
+PI metadata delta: dynamic anchor A5144286967 disappeared from LiZhenhua. Root follow-up tied that anchor
+to the exact held PAM source and proved identity.py/reviewed_claims.py byte-equal between builds. Every
+other original source context and all other PI metadata apart from expected counts/funnel are unchanged.
+No global author/person identifier was merged, redirected or deleted. The original HOLD receipt is retained.
 
-These reviewed inputs are staged on the integration branch. A new complete normal native is still required:
-replay book folds, both title corrections and the PAM hold together; compare every full source, PI, member,
-role and candidate-link object and explain transitive changes before scientific promotion. The fixed copied
-graph suggests615 relations after both adjustments; that expectation must not force an observed count.
-No new normal package, global IDs, Stage9 certification or release admission is claimed here.
+Receipts and complete private packages are under scratch/tsinghua-source-type-root-integration-1108/:
+INDEPENDENT-SOURCE-REPLAY.json, INDEPENDENT-HOLD-REPLAY.json, TYPE-COLD-NATIVE-COMPLETED.json,
+INDEPENDENT-COLD-DELTA-RECEIPT.json and EXPLAINED-PAM-ANCHOR-DELTA.json.
+
+These are corrective source inputs and code, not a normal package or release promotion. Other source,
+edition/date and author-identity cases retain their review status. Full bibliography/student/copy coverage,
+Stage9 accuracy certification and issued-ID/canonical promotion remain unfinished.
