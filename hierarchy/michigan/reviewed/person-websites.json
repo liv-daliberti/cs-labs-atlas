@@ -149,12 +149,12 @@
     "via": "school_profile_link"
    },
    "fetched": true,
-   "fetched_at": "2026-10-31T11:52:47+00:00",
+   "fetched_at": "2026-10-30T11:56:06",
    "status": 200,
-   "sha256": "742787d1504380c758c91712aab4ee1a5100be50315ac692b5258e799cec7666",
+   "sha256": "ce698bca4ddefaef585331ca95c626c24c7f24cc27bc5b3cd590431d56a75fb4",
    "found_from_kind": "official_page",
    "verified": true,
-   "verification_quote": "laura balzano laura balzano home bio spada lab publications projects matrix completion"
+   "verification_quote": "laura balzano laura balzano home bio spada lab publications projects compact deep lear"
   },
   {
    "person": "Pallab Bhattacharya",
@@ -240,7 +240,7 @@
    "found_from": {
     "kind": "discovery",
     "url": "http://web.eecs.umich.edu/~jjcorso",
-    "sha256": "e406b318443a262b42b6e96afaa0a8a1a246e0cb8835229eaa3cc910cf294fcf",
+    "sha256": "0a068175a0ad70446afaf1be27e3882dd1cf219568672c3d53ef019e065b03d7",
     "via": "prior_labpage_pass_2026-10-22",
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
@@ -274,9 +274,9 @@
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
    "fetched": true,
-   "fetched_at": "2026-10-31T11:53:45+00:00",
+   "fetched_at": "2026-10-29T15:52:54",
    "status": 200,
-   "sha256": "0641af6259587479c26b29d793c6cda553eea2bcff2ab7f1c03ff8485c5a08a0",
+   "sha256": "461549462e9436ab64efef93877acb6c3907730030080c909f6eb9fefa9c53f9",
    "found_from_kind": "dblp_homepage",
    "verified": true,
    "verification_quote": "robert dick robert s zoom meeting room biographical summary people research interests p"
@@ -445,7 +445,7 @@
    "sha256": "206bea58a465a7d4c45a1c08df4bb8ae81d9b73c5d15d037dbd577be4ed40eac",
    "found_from_kind": "official_page",
    "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (address names the person)"
+   "unverified_reason": "page not readable now (empty page); stays hidden, queued for Wayback"
   },
   {
    "person": "Yogesh B. Gianchandani",
@@ -472,7 +472,7 @@
    "sha256": "3bacd1b22da06b156b93692aa44be481b14d747b9e9dd13408a40e0e7c5aa4ec",
    "found_from_kind": "official_page",
    "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (address names the person)"
+   "unverified_reason": "page not readable now (empty page); stays hidden, queued for Wayback"
   },
   {
    "person": "Jessy W Grizzle",
@@ -619,7 +619,7 @@
    "sha256": "71942eecbad82227da73ef4b2c430572c2df5d54f8e7dd62fd6b9a9fe21087f1",
    "found_from_kind": "prior_pass",
    "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (address names the person)"
+   "unverified_reason": "page not readable now (empty page); stays hidden, queued for Wayback"
   },
   {
    "person": "Stéphane Lafortune",
@@ -810,16 +810,30 @@
    "status": 200,
    "sha256": "fecc0969e48d4322d7c32b97c3631e5b682dfbfb6e502f73be0c2d2ed0b6795a",
    "found_from_kind": "official_page",
-   "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (surname present)"
+   "verified": true,
+   "verified_by": "hand_review",
+   "verification_reason": "reviewed: the page title carries the person's surname with a given-name variant (title 'The webpage of Raj Rao Nadakuditi')"
   },
   {
    "person": "Rajesh Rao Nadakuditi",
    "role": "pi",
    "lab": "Rajesh Rao Nadakuditi",
-   "kind": "pi_home",
-   "url": null,
-   "reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited"
+   "kind": "group",
+   "url": "https://web.eecs.umich.edu/~rajnrao/",
+   "found_from": {
+    "kind": "discovery",
+    "url": "https://web.eecs.umich.edu/~rajnrao/",
+    "sha256": "376fea42ad5ccfad0cbc39d357980a69ec7cf420a29c5b7377f11658fd7dcef2",
+    "via": "prior_labpage_pass_2026-10-22",
+    "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
+   },
+   "fetched": true,
+   "fetched_at": "2026-10-30T12:04:31",
+   "status": 200,
+   "sha256": "376fea42ad5ccfad0cbc39d357980a69ec7cf420a29c5b7377f11658fd7dcef2",
+   "found_from_kind": "prior_pass",
+   "verified": false,
+   "unverified_reason": "fetched page does not carry the full name (surname present)"
   },
   {
    "person": "David L. Neuhoff",
@@ -878,7 +892,7 @@
    "found_from": {
     "kind": "discovery",
     "url": "http://web.eecs.umich.edu/~necmiye/",
-    "sha256": "6b52a386e365dda2a04965aa2e179ec5cdbc3e126bf2b15a63e1c7c89fd7ab99",
+    "sha256": "536b201a37a63f773812377b93e66430bf77764d74dca659406324e1abc12d05",
     "via": "prior_labpage_pass_2026-10-22",
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
@@ -966,12 +980,12 @@
     "via": "school_profile_link"
    },
    "fetched": true,
-   "fetched_at": "2026-10-31T12:05:15+00:00",
+   "fetched_at": "2026-10-30T12:06:18",
    "status": 200,
-   "sha256": "180ff1e15c0428b641b92402d9b1dad01575f73d3c4fb53059e6697b9d44c054",
+   "sha256": "e8f2aac641c3a012d42b2d62b940b442f3810e0310ab48a7053746351e8c6251",
    "found_from_kind": "official_page",
    "verified": true,
-   "verification_quote": "pradhan home s sandeep pradhan professor menu home research interests publicatio"
+   "verification_quote": "s sandeep pradhan home of s sandeep pradhan skip to content menu home research interests p"
   },
   {
    "person": "Shai Revzen",
@@ -996,7 +1010,7 @@
    "person": "Shai Revzen",
    "role": "pi",
    "lab": "Shai Revzen",
-   "kind": "pi_home",
+   "kind": "group",
    "url": "https://birds.eecs.umich.edu/_pages/alums",
    "found_from": {
     "kind": "official_page",
@@ -1097,7 +1111,7 @@
    "found_from": {
     "kind": "discovery",
     "url": "http://web.eecs.umich.edu/~cscott/",
-    "sha256": "40985fab1010fc84d726bbf621cab3065c0933cc10426797c30a605eecfb2a9c",
+    "sha256": "4b5378aa56b317b888ba62eeb0d36d621ecae3fad6a4966abd4720d930bad950",
     "via": "prior_labpage_pass_2026-10-22",
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
@@ -1178,8 +1192,21 @@
    "role": "pi",
    "lab": "Vijay Subramanian",
    "kind": "pi_home",
-   "url": null,
-   "reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers"
+   "url": "http://web.eecs.umich.edu/~vgsubram",
+   "found_from": {
+    "kind": "discovery",
+    "url": "http://web.eecs.umich.edu/~vgsubram",
+    "sha256": "d951f2a92895562d256b4aee5a80348ee655c844864fea87379ae55a3a4372f4",
+    "via": "prior_labpage_pass_2026-10-22",
+    "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
+   },
+   "fetched": true,
+   "fetched_at": "2026-10-30T12:08:30",
+   "status": 200,
+   "sha256": "d951f2a92895562d256b4aee5a80348ee655c844864fea87379ae55a3a4372f4",
+   "found_from_kind": "prior_pass",
+   "verified": false,
+   "unverified_reason": "fetched page does not carry the full name (address names the person)"
   },
   {
    "person": "Dennis Sylvester",
@@ -1366,7 +1393,7 @@
    "found_from": {
     "kind": "discovery",
     "url": "http://web.eecs.umich.edu/~jabernet/",
-    "sha256": "cab2cb9b6bc859011044214832933e0fd82a853b355863c05993ed62a58aa97a",
+    "sha256": "c8c01444aea651602d779d29760edf7778b8ead3759de2501e78acc7148131a1",
     "via": "prior_labpage_pass_2026-10-22",
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
@@ -1376,7 +1403,7 @@
    "sha256": "c8c01444aea651602d779d29760edf7778b8ead3759de2501e78acc7148131a1",
    "found_from_kind": "prior_pass",
    "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (address names the person)"
+   "unverified_reason": "page not readable now (empty page); stays hidden, queued for Wayback"
   },
   {
    "person": "Steven Abney",
@@ -1416,7 +1443,7 @@
    "sha256": "7b42af43375096309f8df8521d6e3e86b0f4c9fbdb9002830730bcf906407095",
    "found_from_kind": "official_page",
    "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (address names the person)"
+   "unverified_reason": "page not readable now (empty page); stays hidden, queued for Wayback"
   },
   {
    "person": "Mark S. Ackerman",
@@ -1491,9 +1518,9 @@
     "via": "school_profile_link"
    },
    "fetched": true,
-   "fetched_at": "2026-10-31T12:12:40+00:00",
+   "fetched_at": "2026-10-29T17:30:49",
    "status": 200,
-   "sha256": "6404e3a74975134f017ebbdf8317e8f8a680ba119b1a37b3485623513190c414",
+   "sha256": "2878b3e8282fadd7b0b2474358a01cd89c99e260703eeb6539dea456fbd4e014",
    "found_from_kind": "official_page",
    "verified": true,
    "verification_quote": "phd students if you re a student and just want the by eytan adar aug 2026 medium sitemap open in app sign up sign in medium logo get app wri"
@@ -1562,8 +1589,21 @@
    "role": "pi",
    "lab": "Valeria Bertacco",
    "kind": "pi_home",
-   "url": null,
-   "reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers"
+   "url": "http://www.eecs.umich.edu/~valeria",
+   "found_from": {
+    "kind": "official_page",
+    "url": "https://www.eecs.umich.edu/eecs/faculty/csefaculty.html",
+    "sha256": "c3341d0b10b5d810236a65507cd3680ea24aa306e2b4bc7ccf06d44ebcf3982e",
+    "anchor": "Bertacco, Valeria",
+    "via": "department_listing_link"
+   },
+   "fetched": true,
+   "status": 200,
+   "sha256": "ddf12c5e71a2ded4c8092568233c838521060197c87152491ea1d369eec0db94",
+   "fetched_at": "2026-10-31T12:13:26+00:00",
+   "found_from_kind": "official_page",
+   "verified": true,
+   "verification_quote": "valeria bertacco research teaching professional activities press links associate profess"
   },
   {
    "person": "Michael J. Cafarella",
@@ -1598,9 +1638,9 @@
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
    "fetched": true,
+   "fetched_at": "2026-10-29T16:02:53",
    "status": 200,
    "sha256": "dcc2c5a3fe9b2db09db7f8196910305e39bf9c2c07cbef0fdf9c3d82ed6592f3",
-   "fetched_at": "2026-10-31T12:14:33+00:00",
    "found_from_kind": "dblp_homepage",
    "verified": true,
    "verification_quote": "michael j cafarella michael j cafarella home projects publications students teaching bio p"
@@ -1708,22 +1748,9 @@
    "person": "Kevyn Collins-Thompson",
    "role": "pi",
    "lab": "Kevyn Collins-Thompson",
-   "kind": "group",
-   "url": "http://ai.eecs.umich.edu/",
-   "found_from": {
-    "kind": "official_page",
-    "url": "http://www-personal.umich.edu/~kevynct/",
-    "sha256": "7957e69c2c3d3eb610a1894641ab60b9d293411dbfeb87b66ff3b256b2550593",
-    "anchor": "Artificial Intelligence Lab",
-    "via": "school_profile_link"
-   },
-   "fetched": true,
-   "status": 200,
-   "sha256": "4016be69b8dccf1b999e86219c3edfd366cca55dedd2aa3280812e0286fb4f3f",
-   "fetched_at": "2026-10-31T12:16:20+00:00",
-   "found_from_kind": "official_page",
-   "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (address names the person)"
+   "kind": "pi_home",
+   "url": null,
+   "reason": "fetched page is 'Index of /', not this person's website; a new search is needed"
   },
   {
    "person": "Kevin J. Compton",
@@ -1747,9 +1774,9 @@
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
    "fetched": true,
+   "fetched_at": "2026-10-29T16:03:59",
    "status": 200,
    "sha256": "8f92e481770f3ceb53470066ed9668078772dbf6fbd504754731e68efbcd065e",
-   "fetched_at": "2026-10-31T12:16:34+00:00",
    "found_from_kind": "dblp_homepage",
    "verified": true,
    "verification_quote": "kevin compton s homepage home page of kevin j compton contact info postal addr cse div"
@@ -1854,12 +1881,12 @@
     "via": "school_profile_link"
    },
    "fetched": true,
-   "fetched_at": "2026-10-31T12:17:15+00:00",
+   "fetched_at": "2026-10-29T17:36:37",
    "status": 200,
-   "sha256": "deb427fffb2ad5291ff2caca0c1aacd5a9615aeed26608b1da4edb42c6682fb4",
+   "sha256": "824cae465e1f874d9f08cabf1118b421b3f783f0ad23b65883fe758b0c366753",
    "found_from_kind": "official_page",
    "verified": true,
-   "verification_quote": "mentado l winton h katzman j l berry s rowe z sanders k and dillahunt t r in acm cscw companion 26 keywords paper keywords endif pdf confron"
+   "verification_quote": "quitabletechnology use in everyday life antonio m g stone a dillahunt t buis l veinot t c in journal of the association for information scie"
   },
   {
    "person": "Ronald Dreslinski",
@@ -1899,7 +1926,7 @@
    "sha256": "467f8458a591d83c078583f55cd4aff439523cbf5cce4039dcbfa2f03ece4474",
    "found_from_kind": "official_page",
    "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (address names the person)"
+   "unverified_reason": "lab/home page that does not name the person in its text (title 'FASoC: Fully-Autonomous SoC Synthesis using Custom'); stays hidden"
   },
   {
    "person": "Edmund H. Durfee",
@@ -1952,12 +1979,12 @@
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
    "fetched": true,
-   "fetched_at": "2026-10-31T12:19:35+00:00",
+   "fetched_at": "2026-10-30T12:54:25",
    "status": 200,
-   "sha256": "ce215634a2e878b2f047e4886dcbdc752fbaeaf675a9a6a3866c2b7de32a3b63",
+   "sha256": "ac5d4f283ba578b9fcd0ce8bc36167225b3d74701ba2942988380d04aabeebc6",
    "found_from_kind": "dblp_homepage",
    "verified": true,
-   "verification_quote": "prabal dutta homepage prabal dutta associate professor of electrical engineering and co"
+   "verification_quote": "prabal dutta homepage prabal dutta adjunct associate professor of electrical engineerin"
   },
   {
    "person": "Georg Essl",
@@ -1997,9 +2024,9 @@
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
    "fetched": true,
-   "fetched_at": "2026-10-31T12:19:59+00:00",
+   "fetched_at": "2026-10-29T16:06:12",
    "status": 200,
-   "sha256": "f7a4efce6e4429552761c401a0c12a8539e64930c54be96d1d30b656f7557454",
+   "sha256": "1385ce51d690e9014cb3b372445582ce39acfeee62ec75e3ae8c3ebfcbfba877",
    "found_from_kind": "dblp_homepage",
    "verified": true,
    "verification_quote": "ryan eustice home page bio cv publications lab teaching calendar um autonomy m roboti"
@@ -2132,8 +2159,9 @@
    "status": 200,
    "sha256": "87546eeed40730ef874453ca7364e46bd09d90b058d6e4728656b71ce2b3d5f9",
    "found_from_kind": "official_page",
-   "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (surname present)"
+   "verified": true,
+   "verified_by": "hand_review",
+   "verification_reason": "reviewed: the page title carries the person's surname with a given-name variant (title 'H V Jagadish')"
   },
   {
    "person": "H.V. Jagadish",
@@ -2153,8 +2181,9 @@
    "status": 200,
    "sha256": "87546eeed40730ef874453ca7364e46bd09d90b058d6e4728656b71ce2b3d5f9",
    "found_from_kind": "dblp_homepage",
-   "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (surname present)"
+   "verified": true,
+   "verified_by": "hand_review",
+   "verification_reason": "reviewed: the page title carries the person's surname with a given-name variant (title 'H V Jagadish')"
   },
   {
    "person": "Sugih Jamin",
@@ -2216,9 +2245,9 @@
     "via": "department_listing_link"
    },
    "fetched": true,
+   "fetched_at": "2026-10-29T16:08:07",
    "status": 200,
-   "sha256": "d452900fc89dff3147f3c9a87d237fac4ce30d9858b31b36aca5bf2cbcdc335d",
-   "fetched_at": "2026-10-31T12:22:59+00:00",
+   "sha256": "9677dc23c4e8eec34233013fe38dbe340d5ea807fa0a4345e8079b69e909009f",
    "found_from_kind": "official_page",
    "verified": true,
    "verification_quote": "chad jenkins roboticist and computer scientist chad jenkins skip to main navigation s"
@@ -2251,7 +2280,7 @@
    "found_from": {
     "kind": "discovery",
     "url": "http://droplab.engin.umich.edu/matthew-johnson-roberson",
-    "sha256": "ad55d8347e72f16527d5c2f789967b190747ffaae2414939c7b227866e181c00",
+    "sha256": "2c3043e698ba732bfa32a911be0edd529c69c5aebd2533a0d530975e0fc328c9",
     "via": "prior_labpage_pass_2026-10-22",
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
@@ -2438,9 +2467,9 @@
     "via": "department_listing_link"
    },
    "fetched": true,
+   "fetched_at": "2026-10-29T16:11:07",
    "status": 200,
    "sha256": "c2af104d8a36c2b447f7e7bd816000f01e79f5bca2a54b7e5f96a160a96e2958",
-   "fetched_at": "2026-10-31T12:25:00+00:00",
    "found_from_kind": "official_page",
    "verified": true,
    "verification_quote": "homepage of harsha v madhyastha"
@@ -2598,9 +2627,9 @@
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
    "fetched": true,
-   "fetched_at": "2026-10-31T12:27:58+00:00",
+   "fetched_at": "2026-10-30T12:58:07",
    "status": 200,
-   "sha256": "8a25587674f0fcd20db3c49e1866645d7f07ce3cfc0e59ecd930c315c6dcbfe1",
+   "sha256": "f1ed46f503fd99fb8e92d36ce16c192e89447c11751f5b0d1b9db7dbf8fd30e0",
    "found_from_kind": "dblp_homepage",
    "verified": true,
    "verification_quote": "jason mars inventor scientist professor entrepreneur author bio publications patents g"
@@ -2638,12 +2667,12 @@
     "via": "school_profile_link"
    },
    "fetched": true,
-   "fetched_at": "2026-10-31T12:28:19+00:00",
+   "fetched_at": "2026-10-29T17:49:55",
    "status": 200,
-   "sha256": "bb38821c8bf5d66945576d89724931542b2399874d3ef8ae0a57d0545db46b72",
+   "sha256": "2447483539e38bcdd9aedf623b6aadf5e5bcc109c27c4d070eb12424c50c742e",
    "found_from_kind": "official_page",
    "verified": true,
-   "verification_quote": "telligence the foreseer research group is led by dr qiaozhu mei at the university of michigan ann arbor we do cutting edge research related "
+   "verification_quote": "larization the foreseer research group is led by dr qiaozhu mei at the university of michigan ann arbor we do cutting edge research related "
   },
   {
    "person": "Rada Mihalcea",
@@ -2695,9 +2724,22 @@
    "person": "Emily Mower Provost",
    "role": "pi",
    "lab": "Emily Mower Provost",
-   "kind": "pi_home",
-   "url": null,
-   "reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited"
+   "kind": "group",
+   "url": "http://www.eecs.umich.edu/~emilykmp",
+   "found_from": {
+    "kind": "discovery",
+    "url": "http://www.eecs.umich.edu/~emilykmp",
+    "sha256": "f28a91280aa672ad82903f19b154365432342c4904caf16cc2bc5bfc757a3814",
+    "via": "prior_labpage_pass_2026-10-22",
+    "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
+   },
+   "fetched": true,
+   "status": 200,
+   "sha256": "f28a91280aa672ad82903f19b154365432342c4904caf16cc2bc5bfc757a3814",
+   "fetched_at": "2026-10-31T12:29:30+00:00",
+   "found_from_kind": "prior_pass",
+   "verified": true,
+   "verification_quote": "emily mower provost s research page emily mower provost assistant professor university of mi"
   },
   {
    "person": "Barzan Mozafari",
@@ -2738,9 +2780,22 @@
    "person": "Kayvan Najarian",
    "role": "pi",
    "lab": "Kayvan Najarian",
-   "kind": "pi_home",
-   "url": null,
-   "reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited"
+   "kind": "group",
+   "url": "http://najarianlab.ccmb.med.umich.edu/",
+   "found_from": {
+    "kind": "discovery",
+    "url": "http://najarianlab.ccmb.med.umich.edu/",
+    "sha256": "4ecf4efa85fa3d354196a169b951bb337aac6d9dd3d0ae7895df17b639ed4b2c",
+    "via": "prior_labpage_pass_2026-10-22",
+    "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
+   },
+   "fetched": true,
+   "fetched_at": "2026-10-29T16:14:38",
+   "status": 200,
+   "sha256": "4ecf4efa85fa3d354196a169b951bb337aac6d9dd3d0ae7895df17b639ed4b2c",
+   "found_from_kind": "prior_pass",
+   "verified": true,
+   "verification_quote": "bcil kayvan najarian search this site embedded files skip to main content skip to navigation"
   },
   {
    "person": "Satish Narayanasamy",
@@ -2815,9 +2870,9 @@
     "via": "school_profile_link"
    },
    "fetched": true,
-   "fetched_at": "2026-10-31T12:30:30+00:00",
+   "fetched_at": "2026-10-30T12:58:46",
    "status": 200,
-   "sha256": "8daf4d43a3d468a757e023ad91614ab7e7728aadba0b4861ac3b85a6604e6e3c",
+   "sha256": "c9f5332402a0c2d73b45c75fba68b76d35ef0936f6f7beb8926dfbf328563583",
    "found_from_kind": "official_page",
    "verified": true,
    "verification_quote": "mark newman mark newman anatol rapoport distinguished university professor of physics"
@@ -2899,7 +2954,7 @@
    "person": "Edwin Olson",
    "role": "pi",
    "lab": "Edwin Olson",
-   "kind": "pi_home",
+   "kind": "group",
    "url": "https://april.eecs.umich.edu/people/",
    "found_from": {
     "kind": "official_page",
@@ -2932,8 +2987,9 @@
    "status": 200,
    "sha256": "121ddeefe89684957de942b42c89a8a735a6d03c7522f1308544f185eb01bcad",
    "found_from_kind": "official_page",
-   "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (surname present)"
+   "verified": true,
+   "verified_by": "hand_review",
+   "verification_reason": "reviewed: the page title carries the person's surname with a given-name variant (title 'Chris Peikert')"
   },
   {
    "person": "Christopher Peikert",
@@ -2953,8 +3009,9 @@
    "status": 200,
    "sha256": "121ddeefe89684957de942b42c89a8a735a6d03c7522f1308544f185eb01bcad",
    "found_from_kind": "official_page",
-   "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (surname present)"
+   "verified": true,
+   "verified_by": "hand_review",
+   "verification_reason": "reviewed: the page title carries the person's surname with a given-name variant (title 'Chris Peikert')"
   },
   {
    "person": "Seth Pettie",
@@ -3135,7 +3192,7 @@
    "fetched_at": "2026-10-31T12:34:53+00:00",
    "found_from_kind": "dblp_homepage",
    "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (address names the person)"
+   "unverified_reason": "page not readable now (empty page); stays hidden, queued for Wayback"
   },
   {
    "person": "Yaoyun Shi",
@@ -3175,7 +3232,7 @@
    "sha256": "4616d8546ee87635088f5a4ed70c83ef9a133fcc53f44d3e35f46619c063810d",
    "found_from_kind": "official_page",
    "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (address names the person)"
+   "unverified_reason": "page not readable now (empty page); stays hidden, queued for Wayback"
   },
   {
    "person": "Elliot Soloway",
@@ -3370,8 +3427,9 @@
    "status": 200,
    "sha256": "382e724a5b27cc1708c9922ea9270e4074e8797e3078faeb875f8c233febbb86",
    "found_from_kind": "official_page",
-   "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (surname present)"
+   "verified": true,
+   "verified_by": "hand_review",
+   "verification_reason": "reviewed: title/address carry the person's name (title '')"
   },
   {
    "person": "Richmond H. Thomason",
@@ -3430,9 +3488,9 @@
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
    "fetched": true,
-   "fetched_at": "2026-10-31T12:37:33+00:00",
+   "fetched_at": "2026-10-29T16:22:14",
    "status": 200,
-   "sha256": "53a0aadcc053c8de429e69cc4419695293e54d61d07ba706c8aad9c8c21b544f",
+   "sha256": "a9ee00862d63a64d4b7d51654bb3637af41b6e2d9d20245f11e830d2f95f7326",
    "found_from_kind": "orcid",
    "verified": true,
    "verification_quote": "michael p wellman strategic reasoning group home people alumni projects research areas new"
@@ -3566,7 +3624,7 @@
    "sha256": "8a67cf4ff55dee577f7968ae8b7f9bc3a024c45f3d2ec251723f279a4b719f07",
    "found_from_kind": "official_page",
    "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (address names the person)"
+   "unverified_reason": "lab/home page that does not name the person in its text (title 'home'); stays hidden"
   },
   {
    "person": "Ehsan Afshari",
@@ -3700,13 +3758,13 @@
    "sha256": "9e4b9c071887827893b3ea86ca893498635892e0d4dc88cf7f349ab8849fe83b",
    "found_from_kind": "official_page",
    "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (address names the person)"
+   "unverified_reason": "page not readable now (EECS Department); stays hidden, queued for Wayback"
   },
   {
    "person": "Hessam Mahdavifar",
    "role": "pi",
    "lab": "Hessam Mahdavifar",
-   "kind": "pi_home",
+   "kind": "group",
    "url": "https://mahdavifar.engin.umich.edu/students/",
    "found_from": {
     "kind": "discovery",
@@ -3859,8 +3917,9 @@
    "status": 200,
    "sha256": "1c64264f5dd0e0dec183162f16d667f48d5540eb25a1df27c1abd9c2f0768ae8",
    "found_from_kind": "official_page",
-   "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (surname present)"
+   "verified": true,
+   "verified_by": "hand_review",
+   "verification_reason": "reviewed: page names the surname with a given-name variant or initial and the school (title 'Home | SPOT Research Group')"
   },
   {
    "person": "Stephen Oney",
@@ -3880,8 +3939,9 @@
    "status": 200,
    "sha256": "1c64264f5dd0e0dec183162f16d667f48d5540eb25a1df27c1abd9c2f0768ae8",
    "found_from_kind": "official_page",
-   "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (surname present)"
+   "verified": true,
+   "verified_by": "hand_review",
+   "verification_reason": "reviewed: page names the surname with a given-name variant or initial and the school (title 'Home | SPOT Research Group')"
   },
   {
    "person": "Florian Schaub",
@@ -4132,7 +4192,7 @@
    "sha256": "1f5441f009e334c38e85c509c042986faad41ed084104fbb572adfe20ed97afc",
    "found_from_kind": "official_page",
    "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (address names the person)"
+   "unverified_reason": "page not readable now (I have moved to Georgia Tech. Redirectin); stays hidden, queued for Wayback"
   },
   {
    "person": "Daniel Genkin",
@@ -4159,7 +4219,7 @@
    "found_from": {
     "kind": "discovery",
     "url": "http://eegilbert.org/",
-    "sha256": "f89b3fc4e2245f5aa422677105e06b1bbcff4dfa9b2cb1a1d522b4c533e720a2",
+    "sha256": "9852b6348d1516e6c5ab94727bade644b58a3820be83a4bea210be41c8758deb",
     "via": "prior_labpage_pass_2026-10-22",
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
@@ -4222,12 +4282,12 @@
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
    "fetched": true,
-   "fetched_at": "2026-10-31T12:46:30+00:00",
+   "fetched_at": "2026-10-30T13:03:01",
    "status": 200,
-   "sha256": "854205a2b149c803d6ee353717d82ac4be7b135c99042487bd4ff86690eca8ee",
+   "sha256": "6b083b6be1a5df708bf045d00c537267b6bae4f28f0baaf945af35d8306c05a1",
    "found_from_kind": "dblp_homepage",
    "verified": true,
-   "verification_quote": "alanson sample alanson sample isc lab calendar alanson sample alanson joined the univers"
+   "verification_quote": "home alanson sample alanson sample home research publications disney reseach cv alanson sampl"
   },
   {
    "person": "Joshua Welch",
@@ -4255,8 +4315,9 @@
    "status": 200,
    "sha256": "ec3367bbccd972cb210e5263c3bbc4a3bdd32f052cef97f8aa2db5d6dc13d227",
    "found_from_kind": "prior_pass",
-   "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (surname present)"
+   "verified": true,
+   "verified_by": "hand_review",
+   "verification_reason": "reviewed: the page title carries the person's surname with a given-name variant (title 'Welch Lab - Home')"
   },
   {
    "person": "Justin Johnson",
@@ -4275,7 +4336,7 @@
    "found_from": {
     "kind": "discovery",
     "url": "https://web.eecs.umich.edu/~justincj/",
-    "sha256": "3d68307d0547fe2354ad9a7fde58a0a91f6fff5ef41a8a4b89e998a17c8502de",
+    "sha256": "7c11a75844e429c105a2d4546e8d6f8f81ae48bf0b54aaf77c25f0c6299b788f",
     "via": "prior_labpage_pass_2026-10-22",
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
@@ -4304,7 +4365,7 @@
    "found_from": {
     "kind": "discovery",
     "url": "https://viswa.engin.umich.edu/",
-    "sha256": "c03ef1bb6b47b32c65931ddded09a67ded4c43d6ea91ee11160aa52bc5962064",
+    "sha256": "bfddd112dbe26319edc0d60859b39a68982ad9f5db4a3fb8514dd2ff13a9e262",
     "via": "prior_labpage_pass_2026-10-22",
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
@@ -4338,9 +4399,9 @@
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
    "fetched": true,
-   "fetched_at": "2026-10-31T12:46:48+00:00",
+   "fetched_at": "2026-10-29T16:27:22",
    "status": 200,
-   "sha256": "18d1d716bea6b802ee298d9fe7549633d4df8212a1a33961daca6da15333e670",
+   "sha256": "a0302ff61283d5dcf293775505dd99c6d0164f7e8f49ca70588578e37523539a",
    "found_from_kind": "dblp_homepage",
    "verified": true,
    "verification_quote": "joyce y chai joyce y chai professor computer science and engineering 3632 beyster univer"
@@ -4486,8 +4547,21 @@
    "role": "pi",
    "lab": "Euiwoong Lee",
    "kind": "pi_home",
-   "url": null,
-   "reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers"
+   "url": "https://cims.nyu.edu/~euiwoong/",
+   "found_from": {
+    "kind": "discovery",
+    "url": "https://cims.nyu.edu/~euiwoong/",
+    "sha256": "7929a3e3938dd950b9fdcc0eb1b8e5f6c6253d41d8b03c1e12f788034ebf14d1",
+    "via": "prior_labpage_pass_2026-10-22",
+    "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
+   },
+   "fetched": true,
+   "fetched_at": "2026-10-29T16:28:54",
+   "status": 200,
+   "sha256": "7929a3e3938dd950b9fdcc0eb1b8e5f6c6253d41d8b03c1e12f788034ebf14d1",
+   "found_from_kind": "prior_pass",
+   "verified": false,
+   "unverified_reason": "fetched page does not carry the full name (address names the person)"
   },
   {
    "person": "Jie Liu",
@@ -4522,7 +4596,7 @@
    "found_from": {
     "kind": "discovery",
     "url": "https://web.eecs.umich.edu/~comar/",
-    "sha256": "692859e2a1efdb39a25cbb1700507029aa9ffb1e12b83d2d3a4096225e2f51c7",
+    "sha256": "d94f5e4ac787fc52db58882be2082ac4749364843ab49a0e7134608d0aad95d2",
     "via": "prior_labpage_pass_2026-10-22",
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
@@ -4551,7 +4625,7 @@
    "found_from": {
     "kind": "discovery",
     "url": "https://web.eecs.umich.edu/~xwangsd/",
-    "sha256": "d2ca75b83c184674267965078f060371c2d6924fd512f0c90e14fd2fdb3a6546",
+    "sha256": "30e61464f855b7db1336fa4ad4893de9f97ebe8258140fb57bcaedeaaac74896",
     "via": "prior_labpage_pass_2026-10-22",
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
@@ -4575,9 +4649,22 @@
    "person": "Zhongming Liu",
    "role": "pi",
    "lab": "Zhongming Liu",
-   "kind": "pi_home",
-   "url": null,
-   "reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited"
+   "kind": "group",
+   "url": "https://libi.engin.umich.edu/",
+   "found_from": {
+    "kind": "discovery",
+    "url": "https://libi.engin.umich.edu/",
+    "sha256": "7df00f039dc545f14e1c010395e4842dca2530fceda3587d90c36bb1abfb3c6b",
+    "via": "prior_labpage_pass_2026-10-22",
+    "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
+   },
+   "fetched": true,
+   "fetched_at": "2026-10-30T12:14:13",
+   "status": 200,
+   "sha256": "7df00f039dc545f14e1c010395e4842dca2530fceda3587d90c36bb1abfb3c6b",
+   "found_from_kind": "prior_pass",
+   "verified": false,
+   "unverified_reason": "fetched page does not carry the full name (surname present)"
   },
   {
    "person": "Andrew Owens",
@@ -4625,7 +4712,7 @@
    "found_from": {
     "kind": "discovery",
     "url": "https://qingqu.engin.umich.edu/",
-    "sha256": "7026bfa38ac779d069fc9ef2a486e50a54b9b9b35dcd883f370aa05a742a33d6",
+    "sha256": "9c2a5e236acf164384127ea5222f22580b945f017c238ec985987d6c3d7dd868",
     "via": "prior_labpage_pass_2026-10-22",
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
@@ -4654,7 +4741,7 @@
    "found_from": {
     "kind": "discovery",
     "url": "https://seiler.engin.umich.edu/",
-    "sha256": "4c6b8121ac6b0bd2da946b56dab4f154bee7cf799d07ddb6673f7c89c895865d",
+    "sha256": "e0860b4a9692b1ac55febe925ca1f96f69e8eef70a090cf4f8ffb5de6da40175",
     "via": "prior_labpage_pass_2026-10-22",
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
@@ -4683,7 +4770,7 @@
    "found_from": {
     "kind": "discovery",
     "url": "https://song.engin.umich.edu/",
-    "sha256": "61055ffc166d2b14b7bb49b0d8b8dc93ca31c920db081a649c2d40d425ea1eb6",
+    "sha256": "5684ac3bf912b88d00cf2da0ba805a4b550ff4641cf6218f3a9bf4c320a64e75",
     "via": "prior_labpage_pass_2026-10-22",
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
@@ -4733,9 +4820,9 @@
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
    "fetched": true,
-   "fetched_at": "2026-10-31T12:48:42+00:00",
+   "fetched_at": "2026-10-30T13:04:44",
    "status": 200,
-   "sha256": "08f73f32d077c9284709150c8aec4de90c1299645b8f52f2e00619995fd7bc15",
+   "sha256": "f96e412f75b82ba2abf9592064ec75e27aca4f9ab7b1c2aa73d1d92bd1c55ee1",
    "found_from_kind": "dblp_homepage",
    "verified": true,
    "verification_quote": "paramveer dhillon paramveer dhillon associate professor school of information computer sci"
@@ -4823,9 +4910,9 @@
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
    "fetched": true,
-   "fetched_at": "2026-10-31T12:49:15+00:00",
+   "fetched_at": "2026-10-29T16:31:03",
    "status": 200,
-   "sha256": "7efc70eb90cc6af3090d61f45c1725ec3dc7ec76c28179047bd8557a3c458ae4",
+   "sha256": "607e3c89cfcbdfc9c565c6da8518d99681b7b155a63d93eb7216bc3bdfb54f8b",
    "found_from_kind": "orcid",
    "verified": true,
    "verification_quote": "thatchaphol saranurak search this site embedded files skip to main content skip to navigatio"
@@ -4847,7 +4934,7 @@
    "found_from": {
     "kind": "discovery",
     "url": "https://web.eecs.umich.edu/~wangluxy/",
-    "sha256": "85eef4b4e18a4d6a63322f13c72c04f797e618e2776f2eac13a425a1fd19e7f5",
+    "sha256": "5027945dc0353627deeb4e7c539c96800c66ccca675d3a381a3e8203638f001e",
     "via": "prior_labpage_pass_2026-10-22",
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
@@ -4886,7 +4973,7 @@
    "sha256": "ce09225b67889e0cddb82e29c03eddb697fde545319468ec49502880dfa4102a",
    "found_from_kind": "prior_pass",
    "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (address names the person)"
+   "unverified_reason": "page not readable now (empty page); stays hidden, queued for Wayback"
   },
   {
    "person": "Yatin Manerkar",
@@ -4905,7 +4992,7 @@
    "found_from": {
     "kind": "discovery",
     "url": "https://web.eecs.umich.edu/~manerkar/",
-    "sha256": "d6bd28315785e291f5b36f21ab36f4a3d123209bcb5785b3b67e70a2709e4d57",
+    "sha256": "61fa8a76d9c829c9fb16b6d851227d19b65ab65a08210b4ea5069c2f101353cd",
     "via": "prior_labpage_pass_2026-10-22",
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
@@ -4963,7 +5050,7 @@
    "found_from": {
     "kind": "discovery",
     "url": "https://peizhang.engin.umich.edu",
-    "sha256": "bf98619cbfaa809889437f4d5653e780978e337e7a1c3ff9449f1bc1db3b5694",
+    "sha256": "24e084db33377134f156346086af990d792f11ac8e3ca26a1db7d17cc39f2a1a",
     "via": "prior_labpage_pass_2026-10-22",
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
@@ -4997,9 +5084,9 @@
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
    "fetched": true,
+   "fetched_at": "2026-10-30T13:05:05",
    "status": 200,
-   "sha256": "79fe234be30308008287402d6b11870c9de4bd846df2426be5e526d3147bcc7b",
-   "fetched_at": "2026-10-31T12:50:17+00:00",
+   "sha256": "5c26814f809594d1f125768b3810dd9c236baef278bf756bf73c750e0461ccc0",
    "found_from_kind": "dblp_homepage",
    "verified": true,
    "verification_quote": "web page of nikhil bansal bcf helpdesk normal bansal n 4 1805 2021 07 19t15 34 00z 2021 07 19t15 34"
@@ -5021,7 +5108,7 @@
    "found_from": {
     "kind": "discovery",
     "url": "https://web.eecs.umich.edu/~derezin/",
-    "sha256": "218fba198920e1a974d7d46b26c3a97b0d310c1242abdc16dcc72c5085d3c26e",
+    "sha256": "ca454efaf9e482266e629508a666741beeafa4f33b2045f9ff7a51415b012a9d",
     "via": "prior_labpage_pass_2026-10-22",
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
@@ -5095,7 +5182,7 @@
    "found_from": {
     "kind": "discovery",
     "url": "http://http://https://mymakar.github.io/",
-    "sha256": "99f99f6f96a8fad0efacb01b839dffd6249e01f41dfdec122316fa78bbe8752c",
+    "sha256": "84fcaf83c65610e1adc94f10d9541134b70e9301be4d12de8fa26562c1fcece8",
     "via": "prior_labpage_pass_2026-10-22",
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
@@ -5129,9 +5216,9 @@
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
    "fetched": true,
-   "fetched_at": "2026-10-31T12:50:18+00:00",
+   "fetched_at": "2026-10-30T13:05:08",
    "status": 200,
-   "sha256": "94a7641d146185505792017d2848013ce3c070bd30ed9799de9f16b52bbae29d",
+   "sha256": "9bf889751a97cce9311c8c96da3022f967745ec663f0821aabc86207f0f989b5",
    "found_from_kind": "dblp_homepage",
    "verified": true,
    "verification_quote": "elizabeth bondi kelly search this site embedded files skip to main content skip to navigation el"
@@ -5153,7 +5240,7 @@
    "found_from": {
     "kind": "discovery",
     "url": "https://web.eecs.umich.edu/~ryanph/",
-    "sha256": "07d31380dd6a7001429152a2a82320f751593cca9115d600620972c36fe393d6",
+    "sha256": "464883c37a29c344f9f4c093c4b4610a34990f8176d685b6669219426f8363e0",
     "via": "prior_labpage_pass_2026-10-22",
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
@@ -5243,7 +5330,7 @@
    "found_from": {
     "kind": "discovery",
     "url": "https://web.eecs.umich.edu/~stellayu/",
-    "sha256": "07d0e31df0b5c69d0d8b146a9be61564334c5976a8aa769e7d8194e33d207584",
+    "sha256": "cb32df622ed878c0d1ef462a1b9813f0222ace11488c6e0b8a94fccca29c07b8",
     "via": "prior_labpage_pass_2026-10-22",
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
@@ -5272,7 +5359,7 @@
    "found_from": {
     "kind": "discovery",
     "url": "https://alineeid.engin.umich.edu/",
-    "sha256": "a13045ab23a50d01d0ebd89d3756a81547efe8516e10a96b1b5263f8ee26c53f",
+    "sha256": "882d126c7941168e0a355ab8692b32f4f8a789a090f9b9875a29985d97f3bdfc",
     "via": "prior_labpage_pass_2026-10-22",
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
@@ -5301,7 +5388,7 @@
    "found_from": {
     "kind": "discovery",
     "url": "https://liyueshen.engin.umich.edu/",
-    "sha256": "aab8b9c350aa002805f12081ef7a7510e5d09cf4c41d2312eec9eb3cb0c95c00",
+    "sha256": "e3607aabccb6714d608b7111507d32251a06102ddccd7e4362826d31378c151c",
     "via": "prior_labpage_pass_2026-10-22",
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
@@ -5330,7 +5417,7 @@
    "found_from": {
     "kind": "discovery",
     "url": "https://jiasi.engin.umich.edu/",
-    "sha256": "97ba157bdb02f325ea5b4df687420f619879158a8269553e1de2991ef3af8d5b",
+    "sha256": "1d15ceba4de1e3cba5d02405071dcc4898c67ed15f3e33b7bd1f61a90d8c2f72",
     "via": "prior_labpage_pass_2026-10-22",
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
@@ -5359,7 +5446,7 @@
    "found_from": {
     "kind": "discovery",
     "url": "https://sota.engin.umich.edu/",
-    "sha256": "385008f01af06dd2c4413e5b229156918aa4fb35c0d781d3eb5f2f37d486d4bb",
+    "sha256": "503f780b87dbfd5fdf9cab986c178c192e47da26c1a4ce8deb3da52b0e52749c",
     "via": "prior_labpage_pass_2026-10-22",
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
@@ -5404,7 +5491,7 @@
    "found_from": {
     "kind": "discovery",
     "url": "https://web.eecs.umich.edu/~chenang/",
-    "sha256": "d71248fd63d7118c582ab25caf922347b1581b080d5caf27160d0ea45a0ee3cb",
+    "sha256": "7e7dd317196fe8908814a201d7afeb1bbedfc9813831ba4b9305a396737e366c",
     "via": "prior_labpage_pass_2026-10-22",
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
@@ -5494,7 +5581,7 @@
    "found_from": {
     "kind": "discovery",
     "url": "https://alrodri.engin.umich.edu/",
-    "sha256": "fd6767c3ba8975bc0a3488ab250d47019f95fc19bc388de3331257e0d2df5958",
+    "sha256": "088170f1b35c5ed383fc00a1b5264bd7a9442bf7ef5832db7e51fe2b580b5c73",
     "via": "prior_labpage_pass_2026-10-22",
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
@@ -5523,7 +5610,7 @@
    "found_from": {
     "kind": "discovery",
     "url": "https://web.eecs.umich.edu/~nswein/",
-    "sha256": "5106e97797900f88391f843fbdf8095ad7234890695672ff3cd9e5bbe6257681",
+    "sha256": "d5200d2b1d6d00a728f326b72b215f1ade2e484b71af1c822eba7fe634a2e643",
     "via": "prior_labpage_pass_2026-10-22",
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
@@ -5613,7 +5700,7 @@
    "found_from": {
     "kind": "discovery",
     "url": "https://kewucse.engin.umich.edu/",
-    "sha256": "c92beb50de1a7a0add72bb6e400fb713ebd60726e229d636d6a8ffe2b3265e3e",
+    "sha256": "5c64c949a6c73a443c4feeccfd3ebeb42f8327f760f6640e38a0d566b5510270",
     "via": "prior_labpage_pass_2026-10-22",
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
@@ -5663,12 +5750,13 @@
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
    "fetched": true,
-   "fetched_at": "2026-10-31T12:51:18+00:00",
+   "fetched_at": "2026-10-30T13:05:27",
    "status": 200,
-   "sha256": "b3a6d47da7a706934fdf3af3c998ad4937751d3dc2899d0c6cd7cbe21bf16352",
+   "sha256": "1a4b955b72c0fb3abf05785d31244c9b01034627ab12a37908b4620550acb5e2",
    "found_from_kind": "dblp_homepage",
-   "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (surname present)"
+   "verified": true,
+   "verified_by": "hand_review",
+   "verification_reason": "reviewed: the page title carries the person's surname with a given-name variant (title 'Nathan Bleier &#8211; Home of Nathan Bleier')"
   },
   {
    "person": "Bernadette Bucher",
@@ -5692,9 +5780,9 @@
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
    "fetched": true,
-   "fetched_at": "2026-10-31T12:51:38+00:00",
+   "fetched_at": "2026-10-29T16:36:43",
    "status": 200,
-   "sha256": "c8d73ef8b768d89fb8e1ae37b1af93316c6793816725961e4d0e9ba23197c875",
+   "sha256": "7a0955a14f64a3032494e0459acd3ad25f2cd63f85c82ac3123e2715a8577a8a",
    "found_from_kind": "orcid",
    "verified": true,
    "verification_quote": "bernadette bucher bernadette bucher about publications workshop papers preprints bernadette"
@@ -5737,9 +5825,9 @@
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
    "fetched": true,
-   "fetched_at": "2026-10-31T12:51:45+00:00",
+   "fetched_at": "2026-10-29T16:36:54",
    "status": 200,
-   "sha256": "982a1985b278b8558009e13edd0bce03407a578dbaa3dda76dcad896a5839b48",
+   "sha256": "1918bacd47fa5d284ee8dc3af0b0f8d4903a1c930e6a8d154ec324e69fb51b3d",
    "found_from_kind": "dblp_homepage",
    "verified": true,
    "verification_quote": "amrita roy chowdhury search this site embedded files skip to main content skip to navigatio"
@@ -5771,7 +5859,7 @@
    "sha256": "215169941d0ac9ce85b87058f2958f911114b3bedb5d3a6cf0b279437479bc87",
    "found_from_kind": "dblp_homepage",
    "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (address names the person)"
+   "unverified_reason": "page not readable now (empty page); stays hidden, queued for Wayback"
   },
   {
    "person": "Ke Sun",
@@ -5816,7 +5904,7 @@
    "lab": "Yang Zhang",
    "kind": "pi_home",
    "url": null,
-   "reason": "no lab-websites record for this PI"
+   "reason": "stored page does not name Yang Zhang (no surname on the page, none in the address) and the URL is not linked from an official page; a new search is needed"
   },
   {
    "person": "Inigo Incer",
@@ -5885,9 +5973,9 @@
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
    "fetched": true,
-   "fetched_at": "2026-10-31T12:52:53+00:00",
+   "fetched_at": "2026-10-29T16:37:49",
    "status": 200,
-   "sha256": "4cf41702a03a63fa1b844c14f0d27f17cdf87023be851374e2da0442f852b048",
+   "sha256": "72f6afa2e7611af9144299c6f0ed4f375ee398da1bf331ffd363580b5f30f5fe",
    "found_from_kind": "dblp_homepage",
    "verified": true,
    "verification_quote": "home junyi zhu top of page home about curriculum vitae more use tab to navigate through the"
@@ -6334,7 +6422,7 @@
    "fetched_at": "2026-10-31T12:56:11+00:00",
    "found_from_kind": "official_page",
    "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (address names the person)"
+   "unverified_reason": "lab/home page that does not name the person in its text (title 'HaptiX Lab &#8211; Welcome to the HaptiX Lab websi'); stays hidden"
   },
   {
    "person": "Carol C. Menassa",
@@ -6396,9 +6484,9 @@
     "via": "school_profile_link"
    },
    "fetched": true,
-   "fetched_at": "2026-10-31T12:56:43+00:00",
+   "fetched_at": "2026-10-30T13:06:47",
    "status": 200,
-   "sha256": "9a5de1c60521a414335b65c61da2298bd2e83805b8371472484e1436658a20df",
+   "sha256": "646b3edd29359782bee8469ce6b69e9048eeb224687cb2c32a219053ca6b1bd1",
    "found_from_kind": "official_page",
    "verified": true,
    "verification_quote": "charles p friedman phd learning health sciences michigan medicine university of michigan s"
@@ -6521,7 +6609,7 @@
    "sha256": "6dc9c7fc93bb488bb0520a6c780a8d3c0fb5486a4711aca49b4c53fac7393023",
    "found_from_kind": "official_page",
    "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (address names the person)"
+   "unverified_reason": "page not readable now (empty page); stays hidden, queued for Wayback"
   },
   {
    "person": "Denise L. Anthony",
@@ -6583,12 +6671,12 @@
     "via": "school_profile_link"
    },
    "fetched": true,
-   "fetched_at": "2026-10-31T13:00:20+00:00",
+   "fetched_at": "2026-10-30T13:07:34",
    "status": 200,
-   "sha256": "85d74a6fa53de57b89570608860d91ed74d93313a2bb992c482798e3270b5ca3",
+   "sha256": "232ab239d40e1d39e53777a864c79c978b81fdb63987382113b1ac43ca438fb5",
    "found_from_kind": "official_page",
    "verified": true,
-   "verification_quote": "dimitra panagou 734 763 2355 home about dimitra panagou dimitra panagou associate profes"
+   "verification_quote": "dimitra panagou aerospace engineering 734 763 2355 home about dimitra panagou dimitra pa"
   },
   {
    "person": "Elliott J. Rouse",
@@ -6746,12 +6834,12 @@
     "note": "listed on the PI's DBLP person record / ORCID researcher URLs (the dump, never dblp.org); the page was captured and names the PI (url is the page itself when no linking record survives); no official school page link recorded yet"
    },
    "fetched": true,
-   "fetched_at": "2026-10-31T13:04:12+00:00",
+   "fetched_at": "2026-10-30T13:08:49",
    "status": 200,
-   "sha256": "1b22d266d464d00d87e287b9b15c62d21da42e2a33c1bd548c84c551289eac6f",
+   "sha256": "520da1e2f9d23a83e06eb2fcf60e8258b2e1a3b69b4209502cda0cd519a473fc",
    "found_from_kind": "dblp_homepage",
    "verified": true,
-   "verification_quote": "judy jin home for judy jin skip to content search home awards publications research s"
+   "verification_quote": "judy jin home for judy jin skip to content menu home awards lab publications research"
   },
   {
    "person": "John Leslie King",
@@ -6836,8 +6924,9 @@
    "status": 200,
    "sha256": "55d0f42d1accaa07f21dc39adbce5b3dd11ba57f9a8fa05b7df2fd5d8e7c9aae",
    "found_from_kind": "official_page",
-   "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (address names the person)"
+   "verified": true,
+   "verified_by": "hand_review",
+   "verification_reason": "reviewed: the address names the person and the page names the school (title 'Faculty Directory | Michigan Robotics')"
   },
   {
    "person": "Katherine A. Skinner",
@@ -6870,7 +6959,7 @@
    "person": "Kenn Richard Oldham",
    "role": "pi",
    "lab": "Kenn Richard Oldham",
-   "kind": "pi_home",
+   "kind": "group",
    "url": "http://microsystems.engin.umich.edu/",
    "found_from": {
     "kind": "official_page",
@@ -6983,8 +7072,9 @@
    "status": 200,
    "sha256": "4d4740e29eb87a9ada388779770ea8dcd141407f76c4b1e7e13cad120d6cb5f3",
    "found_from_kind": "official_page",
-   "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (address names the person)"
+   "verified": true,
+   "verified_by": "hand_review",
+   "verification_reason": "reviewed: the address names the person and the page names the school (title 'Lionel Robert | umsi')"
   },
   {
    "person": "Lionel P. Robert Jr.",
@@ -7005,7 +7095,7 @@
    "sha256": "b669b6a23333c49320bef85b09c946eba2e6e29ea78280e8eea07107e7f721f6",
    "found_from_kind": "official_page",
    "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (address names the person)"
+   "unverified_reason": "lab/home page that does not name the person in its text (title 'MAVRIC'); stays hidden"
   },
   {
    "person": "Mark S. Daskin",
@@ -7199,8 +7289,9 @@
    "status": 200,
    "sha256": "52b1727865d814e7219b6c06a96a3a4474cb0572c9215d516d6c2a4f3fcd137e",
    "found_from_kind": "official_page",
-   "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (surname present)"
+   "verified": true,
+   "verified_by": "hand_review",
+   "verification_reason": "reviewed: the page title carries the person's surname with a given-name variant (title 'Pedja Klasnja | umsi')"
   },
   {
    "person": "Predrag V. Klasnja",
@@ -7260,8 +7351,9 @@
    "status": 200,
    "sha256": "5a79bbef0f36fb3f4dea0c00265aaf5690175b3b4a20060636fc329b9605b0bd",
    "found_from_kind": "official_page",
-   "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (surname present)"
+   "verified": true,
+   "verified_by": "hand_review",
+   "verification_reason": "reviewed: page names the surname with a given-name variant or initial and the school (title 'Roahm Lab')"
   },
   {
    "person": "Sarita Yardi Schoenebeck",
@@ -7296,12 +7388,12 @@
     "via": "school_profile_link"
    },
    "fetched": true,
-   "fetched_at": "2026-10-31T13:14:18+00:00",
+   "fetched_at": "2026-10-30T13:12:35",
    "status": 200,
-   "sha256": "e126d19257378b96989307afbf48f7f4763c819e977ea64377d4c6632ee69f6e",
+   "sha256": "350f14395b8d2c3e3f7aee207d8e7dff71dcb454cedd5ad699379ccd14d83983",
    "found_from_kind": "official_page",
    "verified": true,
-   "verification_quote": "sarita schoenebeck sarita schoenebeck home research publications teaching advising livi"
+   "verification_quote": "sarita schoenebeck sarita schoenebeck professor school of information university of mic"
   },
   {
    "person": "Silvia Lindtner",
@@ -7331,7 +7423,7 @@
    "found_from": {
     "kind": "official_page",
     "url": "https://www.si.umich.edu/people/silvia-lindtner",
-    "sha256": "0e8bac946899c9fea38f85dbd449d0758370d3e8f26faeb7afdf9f022f559eac",
+    "sha256": "09f2e0c9e816fc200de76796b959aca83d9bceb15b104245afe2669b24f4994c",
     "anchor": "Personal website",
     "via": "school_profile_link"
    },
@@ -7406,7 +7498,7 @@
    "person": "Xi Jessie Yang",
    "role": "pi",
    "lab": "Xi Jessie Yang",
-   "kind": "pi_home",
+   "kind": "group",
    "url": "http://icrl.engin.umich.edu/index.php/xi-jessie-yang/",
    "found_from": {
     "kind": "official_page",
@@ -7420,8 +7512,9 @@
    "sha256": "caa8629f55290f6856c3205981cee7d6268ee6467aa116a5d85118bd505b92ef",
    "fetched_at": "2026-10-31T13:17:48+00:00",
    "found_from_kind": "official_page",
-   "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (surname present)"
+   "verified": true,
+   "verified_by": "hand_review",
+   "verification_reason": "reviewed: the page title carries the person's surname with a given-name variant (title 'X. Jessie Yang &#8211; Interaction and Collaborati')"
   },
   {
    "person": "Yan Chen",
@@ -7624,7 +7717,7 @@
    "fetched_at": "2026-10-31T13:22:00+00:00",
    "found_from_kind": "official_page",
    "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (address names the person)"
+   "unverified_reason": "lab/home page that does not name the person in its text (title 'CURLY'); stays hidden"
   },
   {
    "person": "Nazanin Andalibi",
@@ -8088,8 +8181,9 @@
    "status": 200,
    "sha256": "cb3dd2c1ffc5cff4c9be50c0f1e5b22d3f690672210fc840c4ed62a6b1aa7651",
    "found_from_kind": "official_page",
-   "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (address names the person)"
+   "verified": true,
+   "verified_by": "hand_review",
+   "verification_reason": "reviewed: the address names the person and the page names the school (title 'People | Michigan Robotics')"
   },
   {
    "person": "Huei Peng",
@@ -8211,8 +8305,9 @@
    "status": 200,
    "sha256": "cb3dd2c1ffc5cff4c9be50c0f1e5b22d3f690672210fc840c4ed62a6b1aa7651",
    "found_from_kind": "official_page",
-   "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (address names the person)"
+   "verified": true,
+   "verified_by": "hand_review",
+   "verification_reason": "reviewed: the address names the person and the page names the school (title 'People | Michigan Robotics')"
   },
   {
    "person": "Nadine Sarter",
@@ -8542,8 +8637,9 @@
    "status": 200,
    "sha256": "0c7af67aef076647f4495f5c72a1cb6c1feafe0d6b850c22719d6676dbcd6cee",
    "found_from_kind": "official_page",
-   "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (surname present)"
+   "verified": true,
+   "verified_by": "hand_review",
+   "verification_reason": "reviewed: the page title carries the person's surname with a given-name variant (title 'Home | perkins')"
   },
   {
    "person": "Talia Y. Moore",
@@ -8610,7 +8706,7 @@
    "sha256": "93f30dcffde1c327496672bc9d014c40e6667e98fee8d84940240bf319dea2d6",
    "found_from_kind": "official_page",
    "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (address names the person)"
+   "unverified_reason": "page not readable now (empty page); stays hidden, queued for Wayback"
   },
   {
    "person": "Sabina Tomkins",
@@ -8733,7 +8829,7 @@
    "sha256": "1bd8b99d434771bf12128a24115a6b83faa97183c4c2204d1a946df727d75fb5",
    "found_from_kind": "official_page",
    "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (address names the person)"
+   "unverified_reason": "lab/home page that does not name the person in its text (title ''); stays hidden"
   },
   {
    "person": "Abhinav Sinha",
@@ -11459,8 +11555,9 @@
    "sha256": "42b65a89e6e05612dcf966692921c0a604b414de9afb040e50bfa478cf2a4933",
    "person_id": "ext:michigan:christopher-rockwell",
    "found_from_kind": "official_page",
-   "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (surname present)"
+   "verified": true,
+   "verified_by": "hand_review",
+   "verification_reason": "reviewed: the page title carries the person's surname with a given-name variant (title 'Chris Rockwell')"
   },
   {
    "person": "Sarah Jabbour",
@@ -12850,8 +12947,9 @@
    "sha256": "c891930fc6307f39149e84c9ca907ee3da4ab3ee02eae5600e29599020b6a7c7",
    "person_id": "ext:michigan:joseph-wilson",
    "found_from_kind": "official_page",
-   "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (surname present)"
+   "verified": true,
+   "verified_by": "hand_review",
+   "verification_reason": "reviewed: the page title carries the person's surname with a given-name variant (title 'About &#8211; Joey Wilson')"
   },
   {
    "person": "Joseph Wilson",
@@ -12872,8 +12970,9 @@
    "sha256": "c891930fc6307f39149e84c9ca907ee3da4ab3ee02eae5600e29599020b6a7c7",
    "person_id": "ext:michigan:joseph-wilson",
    "found_from_kind": "official_page",
-   "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (surname present)"
+   "verified": true,
+   "verified_by": "hand_review",
+   "verification_reason": "reviewed: the page title carries the person's surname with a given-name variant (title 'About &#8211; Joey Wilson')"
   },
   {
    "person": "Tyler Toner",
@@ -13838,8 +13937,9 @@
    "sha256": "0b6c5e5ee38a1080f690e437860c3564bdabae30ed864e828952892f88f28ff8",
    "person_id": "ext:michigan:sze-zheng-yong",
    "found_from_kind": "official_page",
-   "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (surname present)"
+   "verified": true,
+   "verified_by": "hand_review",
+   "verification_reason": "reviewed: page names the surname with a given-name variant or initial and the school (title 'Intelligent Control and Estimation of Things Lab')"
   },
   {
    "person": "Sara Shoouri",
@@ -15035,8 +15135,9 @@
    "sha256": "53d40e5b999e37c04058d6c313a812dbdd5212fb60c50680952fe0866f060571",
    "person_id": "ext:michigan:jacob-sansom",
    "found_from_kind": "lab_page",
-   "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (surname present)"
+   "verified": true,
+   "verified_by": "hand_review",
+   "verification_reason": "reviewed: the page title carries the person's surname with a given-name variant (title 'Hi, I’m Jake Sansom - Jake Sansom’s Website')"
   },
   {
    "person": "Yiwei Lyu",
@@ -17696,7 +17797,7 @@
    "person_id": "ext:michigan:fengyu-yang",
    "found_from_kind": "lab_page",
    "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (address names the person)"
+   "unverified_reason": "page not readable now (empty page); stays hidden, queued for Wayback"
   },
   {
    "person": "Chao Feng",
@@ -17762,7 +17863,7 @@
    "person_id": "ext:michigan:fengyu-yang",
    "found_from_kind": "lab_page",
    "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (address names the person)"
+   "unverified_reason": "page not readable now (empty page); stays hidden, queued for Wayback"
   },
   {
    "person": "Sheng Liu",
@@ -18274,7 +18375,7 @@
    "person_id": "ext:michigan:bing-chen",
    "found_from_kind": "lab_page",
    "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (surname present)"
+   "unverified_reason": "lab/home page that does not name the person in its text (title \"Robin's Homepage\"); stays hidden"
   },
   {
    "person": "Xinyue Chen",
@@ -18426,7 +18527,7 @@
    "person_id": "ext:michigan:steven-schaefer",
    "found_from_kind": "lab_page",
    "verified": false,
-   "unverified_reason": "fetched page does not carry the full name (address names the person)"
+   "unverified_reason": "page not readable now (empty page); stays hidden, queued for Wayback"
   },
   {
    "person": "Eric Bond",

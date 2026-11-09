@@ -1,0 +1,111 @@
+{
+ "school": "uchicago",
+ "tool": "hand review 2026-11-08 (claude-websites-b): each fetched page that did not carry the full name was read for title, surname, school and address",
+ "decisions": {
+  "verified": "counts as verified",
+  "rejected": "the page is something else; the URL is dropped",
+  "unresolved": "cannot be read now; stays hidden (verified false), queued for Wayback"
+ },
+ "rows": [
+  {
+   "person": "Jinbo Xu",
+   "role": "pi",
+   "kind": "pi_home",
+   "url": "http://raptorx.uchicago.edu",
+   "decision": "unresolved",
+   "reason": "lab/home page that does not name the person in its text (title 'RaptorX web servers for protein sequence, structur'); stays hidden",
+   "reviewed_at": "2026-11-08",
+   "reviewer": "claude-websites-b"
+  },
+  {
+   "person": "Brent Doiron",
+   "role": "pi",
+   "kind": "group",
+   "url": "https://brainmath.bsd.uchicago.edu",
+   "decision": "verified",
+   "reason": "reviewed: the page title carries the person's surname with a given-name variant (title 'Doiron Lab')",
+   "reviewed_at": "2026-11-08",
+   "reviewer": "claude-websites-b"
+  },
+  {
+   "person": "Norimichi Ukita",
+   "role": "pi",
+   "kind": "pi_profile",
+   "url": "https://www.toyota-ti.ac.jp/english/research/staff/elec/post-74.html",
+   "decision": "unresolved",
+   "reason": "lab/home page that does not name the person in its text (title '豊田工業大学'); stays hidden",
+   "reviewed_at": "2026-11-08",
+   "reviewer": "claude-websites-b"
+  },
+  {
+   "person": "Maryanthe Malliaris",
+   "role": "pi",
+   "kind": "pi_home",
+   "url": "https://math.uchicago.edu/~mem/",
+   "decision": "verified",
+   "reason": "reviewed: the page title carries the person's surname with a given-name variant (title 'Malliaris')",
+   "reviewed_at": "2026-11-08",
+   "reviewer": "claude-websites-b"
+  },
+  {
+   "person": "Payman Yadollahpour",
+   "role": "student",
+   "kind": "student_home",
+   "url": "https://www.csail.mit.edu/person/payman-yadollahpour",
+   "decision": "unresolved",
+   "reason": "page not readable now (CSAIL Login | MIT CSAIL); stays hidden, queued for Wayback",
+   "reviewed_at": "2026-11-08",
+   "reviewer": "claude-websites-b"
+  },
+  {
+   "person": "Shubhendu Trivedi",
+   "role": "student",
+   "kind": "student_home",
+   "url": "https://www.csail.mit.edu/person/shubhendu-trivedi",
+   "decision": "unresolved",
+   "reason": "page not readable now (CSAIL Login | MIT CSAIL); stays hidden, queued for Wayback",
+   "reviewed_at": "2026-11-08",
+   "reviewer": "claude-websites-b"
+  },
+  {
+   "person": "Camille Osumah",
+   "role": "student",
+   "kind": "student_home",
+   "url": "https://camille-osumah.notion.site",
+   "decision": "unresolved",
+   "reason": "page not readable now (Notion); stays hidden, queued for Wayback",
+   "reviewed_at": "2026-11-08",
+   "reviewer": "claude-websites-b"
+  },
+  {
+   "person": "Raghav Kulkarni",
+   "role": "student",
+   "kind": "student_home",
+   "url": "https://sites.google.com/site/kulraghav",
+   "decision": "unresolved",
+   "reason": "page not readable now (Google Drive: Sign-in); stays hidden, queued for Wayback",
+   "reviewed_at": "2026-11-08",
+   "reviewer": "claude-websites-b"
+  },
+  {
+   "person": "Parinya Chalmersook",
+   "role": "student",
+   "kind": "student_home",
+   "url": "https://sites.google.com/site/parinyachalermsook/",
+   "decision": "verified",
+   "reason": "reviewed: the address names the person and the page names the school (title 'Parinya Chalermsook')",
+   "reviewed_at": "2026-11-08",
+   "reviewer": "claude-websites-b"
+  },
+  {
+   "person": "Kunal Marwaha",
+   "role": "student",
+   "kind": "student_home",
+   "url": "https://kunalmarwaha.com/about",
+   "decision": "verified",
+   "reason": "reviewed: the address names the person and the page names the school (title 'Kunal')",
+   "reviewed_at": "2026-11-08",
+   "reviewer": "claude-websites-b"
+  }
+ ]
+}

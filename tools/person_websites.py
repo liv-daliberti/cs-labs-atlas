@@ -250,7 +250,7 @@ def build(school, labs_path=None):
                 rows.append(dict(person=s['name'], person_id=s['person'], role='student', lab=pi, kind='student_home', url=None,
                                  reason='student listed without a link on any stored official or lab page; no page found linking to them '
                                         '(searched: stored lab people/alumni pages and the student\'s relation sources; no name-pattern guesses)'))
-    annotate(rows, school)
+    annotate(rows, school, labs_path)
     return dict(school=school, tool='tools/person_websites.py', source='lab-websites.json, labpage-audit-captures.sqlite, students.json',
                 review_status='automatic', rows=rows)
 
@@ -266,7 +266,7 @@ def found_kind(row):
     return ff.get('kind') or 'official_page'
 
 
-def annotate(rows, school):
+def annotate(rows, school, near=None):
     """found_from_kind for every URL row; verified = the fetched page names the person (first and last name). Fetch results
     from tools/person_fetch.py that were not a 200 give the unfetched row its specific reason."""
     from person_fetch import DIR, names_person
@@ -301,10 +301,13 @@ def annotate(rows, school):
                     except zlib.error:
                         text[sha] = row[0]
                     sha_needed.discard(sha)
+    from lab_websites import website_review
     from person_fetch import last_name_on_page, plausible_owner
+    review = website_review(school, near)
     for r in rows:
         if not r.get('url'):
             continue
+        rv = review.get((r['person'], r['url']))
         x = got.get(r['url'])
         if x and x.get('status') == 200 and not r.get('fetched') and x.get('sha256'):
             r.update(fetched=True, status=200, sha256=x['sha256'], fetched_at=x['at'])
@@ -313,6 +316,17 @@ def annotate(rows, school):
                 r['redirected_to'] = x['final_url']
         r['found_from_kind'] = found_kind(r)
         body = text.get(r.get('sha256')) if r.get('fetched') else None
+        if rv and rv['decision'] == 'verified':
+            r['verified'], r['verified_by'], r['verification_reason'] = True, 'hand_review', rv['reason']
+            continue
+        if rv and rv['decision'] == 'rejected':
+            r.update(rejected_url=r['url'], url=None, fetched=False, reason=rv['reason'] + ' (hand review): ' + r['url'] + ' rejected as not this person\'s website')
+            for k in ('status', 'sha256', 'fetched_at', 'fetch_reason', 'found_from_kind', 'verified', 'redirected_to'):
+                r.pop(k, None)
+            continue
+        if rv and rv['decision'] == 'unresolved':
+            r['verified'], r['unverified_reason'] = False, rv['reason']
+            continue
         if body is not None:
             r['verified'], q = names_person(body, r['person'])
             if q:

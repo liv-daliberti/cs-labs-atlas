@@ -1,0 +1,81 @@
+{
+ "school": "jhu",
+ "tool": "hand review 2026-11-08 (claude-websites-b): each fetched page that did not carry the full name was read for title, surname, school and address",
+ "decisions": {
+  "verified": "counts as verified",
+  "rejected": "the page is something else; the URL is dropped",
+  "unresolved": "cannot be read now; stays hidden (verified false), queued for Wayback"
+ },
+ "rows": [
+  {
+   "person": "Haimin Hu",
+   "role": "pi",
+   "kind": "group",
+   "url": "https://alliance-ai.cs.jhu.edu/",
+   "decision": "unresolved",
+   "reason": "lab/home page that does not name the person in its text (title 'Alliance AI Lab | JHU Alliance AI Lab'); stays hidden",
+   "reviewed_at": "2026-11-08",
+   "reviewer": "claude-websites-b"
+  },
+  {
+   "person": "Krishan Sabnani",
+   "role": "pi",
+   "kind": "group",
+   "url": "https://s4.cs.jhu.edu/",
+   "decision": "unresolved",
+   "reason": "lab/home page that does not name the person in its text (title 'S4 Lab @ JHU'); stays hidden",
+   "reviewed_at": "2026-11-08",
+   "reviewer": "claude-websites-b"
+  },
+  {
+   "person": "Yaxing Yao",
+   "role": "pi",
+   "kind": "group",
+   "url": "https://hopsec.cs.jhu.edu/",
+   "decision": "unresolved",
+   "reason": "lab/home page that does not name the person in its text (title 'Dopetrope by HTML5 UP'); stays hidden",
+   "reviewed_at": "2026-11-08",
+   "reviewer": "claude-websites-b"
+  },
+  {
+   "person": "John T. Hale",
+   "role": "pi",
+   "kind": "group",
+   "url": "https://krieger.jhu.edu",
+   "decision": "rejected",
+   "reason": "fetched page is 'Krieger School of Arts &amp; Sciences | Johns Hopkins Univer', not this person's website",
+   "reviewed_at": "2026-11-08",
+   "reviewer": "claude-websites-b"
+  },
+  {
+   "person": "Jennifer Hu",
+   "role": "pi",
+   "kind": "pi_home",
+   "url": "https://www.jhu.edu/",
+   "decision": "rejected",
+   "reason": "fetched page is 'Johns Hopkins University', not this person's website",
+   "reviewed_at": "2026-11-08",
+   "reviewer": "claude-websites-b"
+  },
+  {
+   "person": "Rachel Karchin",
+   "role": "pi",
+   "kind": "group",
+   "url": "http://www.karchinlab.org",
+   "decision": "verified",
+   "reason": "reviewed: the page title carries the person's surname with a given-name variant (title 'Karchin Lab')",
+   "reviewed_at": "2026-11-08",
+   "reviewer": "claude-websites-b"
+  },
+  {
+   "person": "Casey Overby Taylor",
+   "role": "pi",
+   "kind": "group",
+   "url": "https://tirilab.github.io/",
+   "decision": "verified",
+   "reason": "reviewed: page names the surname with a given-name variant or initial and the school (title 'Translational Informatics Research and Innovation ')",
+   "reviewed_at": "2026-11-08",
+   "reviewer": "claude-websites-b"
+  }
+ ]
+}

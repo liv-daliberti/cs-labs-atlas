@@ -1,0 +1,81 @@
+{
+ "school": "washu",
+ "tool": "hand review 2026-11-08 (claude-websites-b): each fetched page that did not carry the full name was read for title, surname, school and address",
+ "decisions": {
+  "verified": "counts as verified",
+  "rejected": "the page is something else; the URL is dropped",
+  "unresolved": "cannot be read now; stays hidden (verified false), queued for Wayback"
+ },
+ "rows": [
+  {
+   "person": "Ning Zhang",
+   "role": "pi",
+   "kind": "pi_home",
+   "url": "http://ningzhang.info/",
+   "decision": "verified",
+   "reason": "reviewed: page names the surname with a given-name variant or initial and the school (title 'CSPL - WashU')",
+   "reviewed_at": "2026-11-08",
+   "reviewer": "claude-websites-b"
+  },
+  {
+   "person": "Jonathan Turner",
+   "role": "pi",
+   "kind": "pi_home",
+   "url": "http://www.arl.wustl.edu/~jst/",
+   "decision": "unresolved",
+   "reason": "page not readable now (Jon Turner's Home Page); stays hidden, queued for Wayback",
+   "reviewed_at": "2026-11-08",
+   "reviewer": "claude-websites-b"
+  },
+  {
+   "person": "Chongjie Zhang",
+   "role": "pi",
+   "kind": "group",
+   "url": "https://mig-ai.github.io/",
+   "decision": "unresolved",
+   "reason": "lab/home page that does not name the person in its text (title 'About'); stays hidden",
+   "reviewed_at": "2026-11-08",
+   "reviewer": "claude-websites-b"
+  },
+  {
+   "person": "Daniel Cher",
+   "role": "student",
+   "kind": "student_home",
+   "url": "https://dcher95.github.io/",
+   "decision": "verified",
+   "reason": "reviewed: the page title carries the person's surname with a given-name variant (title 'Dan Cher')",
+   "reviewed_at": "2026-11-08",
+   "reviewer": "claude-websites-b"
+  },
+  {
+   "person": "Jiaming Qiu",
+   "role": "student",
+   "kind": "student_home",
+   "url": "https://qiujiaming315.github.io",
+   "decision": "unresolved",
+   "reason": "page not readable now (webpage); stays hidden, queued for Wayback",
+   "reviewed_at": "2026-11-08",
+   "reviewer": "claude-websites-b"
+  },
+  {
+   "person": "Jing Li",
+   "role": "student",
+   "kind": "student_home",
+   "url": "https://sites.google.com/site/jingliwustl/",
+   "decision": "unresolved",
+   "reason": "page not readable now (Google Drive: Sign-in); stays hidden, queued for Wayback",
+   "reviewed_at": "2026-11-08",
+   "reviewer": "claude-websites-b"
+  },
+  {
+   "person": "Chao Wang",
+   "role": "student",
+   "kind": "student_home",
+   "url": "https://wangc86.github.io",
+   "decision": "unresolved",
+   "reason": "page not readable now (We have moved to https://web.ntnu.edu.tw); stays hidden, queued for Wayback",
+   "reviewed_at": "2026-11-08",
+   "reviewer": "claude-websites-b"
+  }
+ ]
+}

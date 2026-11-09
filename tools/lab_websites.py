@@ -464,7 +464,15 @@ def attach_stored_captures(school, doc):
     return doc
 
 
-def verify_websites(school, doc):
+def website_review(school, near=None):
+    """{(person, url): decision row} from person-website-review.json (next to `near` when given, else the data path)."""
+    path = (Path(near).parent / 'person-website-review.json') if near else P.data('person-website-review.json', school)
+    if not path.exists():
+        path = P.data('person-website-review.json', school)
+    return {(r['person'], r['url']): r for r in json.loads(path.read_text()).get('rows', [])} if path.exists() else {}
+
+
+def verify_websites(school, doc, near=None):
     """A lab or PI website counts only when its stored page names the PI. verified/unverified_reason on every website row; a clear
     mismatch (the page has no surname and the address has no name token, e.g. a student-affairs page) is dropped to `rejected_url` and the
     lab goes back to pending, so no unverified or wrong URL is shown as a lab's website."""
@@ -485,8 +493,29 @@ def verify_websites(school, doc):
                     text[sha] = zlib.decompress(row[0])
                 except zlib.error:
                     text[sha] = row[0]
+    review = website_review(school, near)
     for r in rows:
         body = text.get(r.get('sha256'))
+        rv = review.get((r['pi'], r['url']))
+        if rv and rv['decision'] == 'verified':
+            r['verified'], r['verified_by'], r['verification_reason'] = True, 'hand_review', rv['reason']
+            r.pop('unverified_reason', None)
+            continue
+        if rv and rv['decision'] in ('rejected', 'unresolved'):
+            if rv['decision'] == 'unresolved':
+                r['verified'], r['unverified_reason'] = False, rv['reason']
+                continue
+            body = None   # falls to the rejection below with the reviewer's reason
+            r['verified'] = False
+            r['rejected_url'] = r.pop('url')
+            r['rejected_reason'] = rv['reason']
+            for k in ('sha256', 'evidence', 'people_page', 'alumni_page', 'pubs_page', 'found_via', 'listed_on', 'official_link_status',
+                      'official_link_evidence', 'verified', 'kind'):
+                r.pop(k, None)
+            r['coverage'] = 'pending'
+            r['evidence_gaps'] = list(r.get('evidence_gaps') or []) + ['website_rejected_by_review']
+            r['reason'] = rv['reason'] + '; a new search is needed'
+            continue
         if body is None:
             r['verified'], r['unverified_reason'] = False, 'no stored capture of the page to check against'
             continue
@@ -567,7 +596,7 @@ def main():
         if a.enrich_official_links or a.cmd == 'enrich':
             doc = enrich_official_links(s, attach_stored_captures(s, doc))
         if a.cmd in ('build', 'enrich'):
-            doc = verify_websites(s, doc)
+            doc = verify_websites(s, doc, a.out)
         summary = counts(doc)
         if a.cmd in ('build', 'enrich'):
             out = Path(a.out) if a.out else P.data_w('lab-websites.json', s)

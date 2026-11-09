@@ -1,0 +1,51 @@
+{
+ "school": "harvard",
+ "tool": "hand review 2026-11-08 (claude-websites-b): each fetched page that did not carry the full name was read for title, surname, school and address",
+ "decisions": {
+  "verified": "counts as verified",
+  "rejected": "the page is something else; the URL is dropped",
+  "unresolved": "cannot be read now; stays hidden (verified false), queued for Wayback"
+ },
+ "rows": [
+  {
+   "person": "Stratos Idreos",
+   "role": "pi",
+   "kind": "pi_home",
+   "url": "https://stratos.idreos.ai/",
+   "decision": "unresolved",
+   "reason": "page not readable now (One moment, please...); stays hidden, queued for Wayback",
+   "reviewed_at": "2026-11-08",
+   "reviewer": "claude-websites-b"
+  },
+  {
+   "person": "Minlan Yu",
+   "role": "pi",
+   "kind": "pi_home",
+   "url": "http://minlanyu.seas.harvard.edu/student.html",
+   "decision": "verified",
+   "reason": "reviewed: the address names the person and the page names the school (title 'Students')",
+   "reviewed_at": "2026-11-08",
+   "reviewer": "claude-websites-b"
+  },
+  {
+   "person": "Walt McKelvie",
+   "role": "student",
+   "kind": "student_home",
+   "url": "https://www.waltmckelvie.com/",
+   "decision": "verified",
+   "reason": "reviewed: the page title carries the person's surname with a given-name variant (title 'Home | Walter McKelvie')",
+   "reviewed_at": "2026-11-08",
+   "reviewer": "claude-websites-b"
+  },
+  {
+   "person": "Elad Haramaty",
+   "role": "student",
+   "kind": "student_home",
+   "url": "https://sites.google.com/site/eladharamaty/",
+   "decision": "unresolved",
+   "reason": "page not readable now (Google Drive: Sign-in); stays hidden, queued for Wayback",
+   "reviewed_at": "2026-11-08",
+   "reviewer": "claude-websites-b"
+  }
+ ]
+}
