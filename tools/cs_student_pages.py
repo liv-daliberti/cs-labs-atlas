@@ -88,7 +88,7 @@ def parse_page(flat, name):
         return None
     seg = flat[i:]
     m = re.search(r'\b(Doctoral Student|DPhil Student|Student on|Master\w* Student|MSc Student|Visiting Student)\b', seg[:400])
-    sup = re.search(r'\bSupervisors?\s+(.*?)(?=\s+About Us\b|\s+Interests\b|\s+Biography\b|\s+Selected Publications\b|$)', seg)
+    sup = re.search(r'\bSupervisors?\s+(.*?)(?=\s+About Us\b|\s+Interests\b|\s+Biography\b|\s+Selected Publications\b|\s+(?:Past )?Students?\b|\s+Co-?supervis\w+\b|$)', seg)
     if not m or not sup:
         return None
     lv = re.search(rf'Leaving date:\s*\d{{1,2}}(?:st|nd|rd|th)?\s+{MONTHS}\s+(\d{{4}})', seg[:600])

@@ -31,6 +31,8 @@ import school_web as W  # noqa: E402
 KEY = 'oxford'
 FIELDS = ('Computer Science', 'Engineering', 'Mathematics', 'Decision Sciences')
 UA = W.UA
+COMP_DEPTS = {'Computer Science', 'Engineering Science', 'Statistics', 'Mathematical Institute', 'Mathematics', 'Internet Institute', 'Oxford Internet Institute',
+              'Physics', 'Materials', 'Big Data Institute', 'Oxford e-Research Centre', 'Experimental Psychology', 'Statistical Science', 'Computing'}
 
 
 def db():
@@ -205,18 +207,33 @@ def cmd_evidence(a):
         sups = [c for c in r['contributors'] if c['role'] == 'Supervisor']
         hit = [(c, *supervisor_pi(c, idx, orc)) for c in sups]
         names = (todo.get(r['doi']) or {}).get('author_names') or []
-        fam = fold(r['author'].split(',')[0]).split()
+        afam = fold(r['author'].split(',')[0])
         ini = fold(r['author'].split(',')[1])[:1] if ',' in r['author'] else ''
-        full = [n for n in names if fam and fold(n).split() and fold(n).split()[-1] == fam[-1] and fold(n)[:1] == ini]
-        holder = r.get('copyright_holder') or ''
-        full_name = holder if holder and fold(holder).split()[-1:] == fam[-1:] and fold(holder)[:1] == ini else (full[0] if len(full) == 1 else None)
+        full = None
+        holder = (r.get('copyright_holder') or '').strip()
+        # 1. OpenAlex's own byline of the thesis, 'Family, Given' with the given name spelled out (more than an initial)
+        for n_ in names:
+            if ',' in n_:
+                f_, g_ = n_.split(',', 1)
+                if fold(f_) == afam and len(fold(g_).replace(' ', '')) > 1 and fold(g_)[:1] == ini:
+                    full = f"{g_.strip()} {f_.strip()}"
+                    break
+        # 2. the record's copyright holder in natural order (family tokens all present, same first initial, more than an initial)
+        if not full and holder and ',' not in holder and set(afam.split()) <= set(fold(holder).split()) and len(fold(holder).split()) >= 2 \
+                and fold(holder)[:1] == ini:
+            full = holder
+        full_name = full
         if not full_name:
             bump('author_name_not_full'); continue
+        auth_dept = next((c_.get('department') for c_ in r['contributors'] if c_['role'] == 'Author'), None)
         for c, pi, how in hit:
             if not pi:
                 bump('supervisor_' + how); continue
+            # namesake guard (R-STU-03 spirit): an initials match needs the supervisor's department (else the author's) to be a computing-related unit
+            if how != 'orcid' and (c.get('department') or auth_dept) and (c.get('department') or auth_dept) not in COMP_DEPTS:
+                bump('supervisor_dept_outside_computing'); continue
             t = text_of(zlib.decompress(db().execute('select raw_zlib from rec where doi=?', (r['doi'],)).fetchone()[0]).decode('utf-8', 'replace'))
-            q = f"{c['name']} Institution: {c['institution']}"
+            q = f"{c['name']} Institution: {c['institution']}" if c.get('institution') else f"{c['name']} Role: Supervisor"
             i = t.find(q)
             j = t.find('Role: Supervisor', i)
             quote = t[i:j + len('Role: Supervisor')] if i >= 0 and 0 <= j - i < 400 else ''
@@ -229,7 +246,14 @@ def cmd_evidence(a):
     rows = [dict(pi=p, students=sorted(v.values(), key=lambda s: (s['years'][0], s['name'])), notes='ORA thesis records with an explicit Supervisor contributor (tools/ora_theses.py, R-STU-24).')
             for p, v in sorted(out.items())]
     Path(a.out).write_text(json.dumps(rows, indent=1, ensure_ascii=False))
-    print(json.dumps(cnt), len(rows), 'PIs')
+    # the evidence pages go into the school's capture store (live table) so a hash check finds the bytes the quote came from
+    wc, used = W.con(KEY), {s_['url'] for r_ in rows for s_ in r_['students']}
+    d = db()
+    for url, sha, raw, at in d.execute('select url, sha256, raw_zlib, fetched_at from rec where status=200'):
+        if url in used:
+            wc.execute('insert or replace into live values (?,?,?,?,?,?,?)', (url, at, 200, sha, 'text/html', raw, None))
+    wc.commit()
+    print(json.dumps(cnt), len(rows), 'PIs', len(used), 'pages stored in the capture store')
 
 
 if __name__ == '__main__':

@@ -1,6 +1,6 @@
 {
  "school": "oxford",
- "reviewed": "2026-11-08",
+ "reviewed": "2026-11-09",
  "rule": "CS-related faculty for a protocol school (protocol stage 2; owner rule 2026-10-22/28: computing-related faculty in any\ndepartment, computing being the object or the method of their research; administrative advisers are not PIs).\n\ncandidates  (a) every person a department with coverage \"affiliated\" lists with a professor rank (census rank ladder),\n                whose computing work is to be decided (Michigan ECE)\n            (b) every DBLP person whose dump record names the school (tools/dblp_affiliated.py: affiliation note or a URL\n                on a school domain) with >= MIN_DBLP records 2016-2026 and who is not in the census\n            (c) once the OpenAlex sweep is complete: tools/cs_related_candidates.py's rule on the school's sweep\n                (>= 8 school works, >= 5 DBLP-indexed and >= 20% so, ...), read from\n                hierarchy/<key>/cs-related-candidates-openalex.json (run it with --no-venues --stats --out that name);\n                an author id whose names match a census person or an (a)/(b) candidate is not a new candidate\n            -> hierarchy/<key>/cs-related-candidates.json\nunits       one Wayback capture per year 2016-2026 of every faculty listing URL the charter's [[affiliated_units]] name\n            (`listings`), into captures/<key>.sqlite (live only where the host's charter `use` is live)\nreview      faculty evidence: a 2016-2026 unit capture whose text has the candidate's name followed (within 300\n            characters, before the next person's name) by a professor title; the quote runs from the name through the\n            title. For (a) the department listing itself is the evidence.\n            computing evidence: the person's DBLP record (for (a) the one tools/dblp_ids_school.py decides; for (b) the\n            record that names the school) with its 2016-2026 record count (every DBLP record is a computing venue or a CS\n            preprint); >= MIN_DBLP records is computing as object or method. Learned 2026-10-29: a DBLP record without\n            the school in its notes is not evidence of no computing output (Hun-Seok Kim, Nadakuditi), so (a) is decided\n            negatively only when no DBLP person of the name has a 2016-2026 record.\n            computing-share test (owner decision 2026-10-30, Michigan; once hierarchy/<key>/oa-author-stats.json.gz\n            exists): it decides computing for pending (a) people, OpenAlex-rule (c) candidates, people without >=\n            MIN_DBLP DBLP records, and the acceptances the charter's [cs_related].share_test_settles names. Any other\n            DBLP-decided acceptance stands; its share result is recorded, with share_flag when the test fails. The person's\n            OpenAlex author ids at the school are (1) ids carrying the person's ORCID (census, from DBLP), and (2) ids\n            whose raw name has the person's family name and first spelled-out given name (nicknames allowed; 'Hyungjin\n            Myra Kim' is not Hun-Seok Kim), unless the id carries another ORCID or all its works end more than one year\n            before the person's first listing (a namesake: 'Joyce Wang', infectious diseases 2017-2023, is not Joyce\n            Yan-Ran Wang, listed from 2026). Over these ids' school works (papers only, 2016-2026): computing when >=\n            SHARE_MIN_CS are DBLP-indexed and they are >= SHARE_MIN of the works (the candidate rule's thresholds);\n            not computing when the test fails on >= SHARE_MIN_N works. With fewer works the test cannot fail: the\n            DBLP decision stands (>= MIN_DBLP records of the decided DBLP person: accepted), and a person with no\n            decided DBLP record (pending) is too_few_school_works (new and recent faculty: nothing to place in a lab\n            yet; revisit at the next sweep). When the person has no ORCID and the name-matched ids carry several, the\n            ids of the ORCID with the most school works are kept (with ids that carry none).\n            decision  accepted                 faculty evidence (ladder professor title) and computing evidence\n                      faculty_not_computing    faculty evidence, < MIN_DBLP DBLP records naming the school\n                      not_faculty_listed       no searched unit lists them as faculty in 2016-2026 and the DBLP record\n                                               names the school only as a past or student affiliation (or nothing else\n                                               shows a faculty appointment); `units_searched` says where we looked\n                      research_or_other_rank   listed, but with a research / adjunct / emeritus / clinical title only\n                      pending_openalex         (a) only: DBLP has namesakes and none names the school; decided with the\n                                               OpenAlex sweep (an open coverage item until then)\n                      too_few_school_works     faculty evidence, fewer than SHARE_MIN_N school works and the share\n                                               test does not pass (revisit at the next sweep; not open)\n                      census_alias             the DBLP person is a census person under another name form\n                                               ('Satinder Singh' / 'Satinder Singh Baveja'); recorded for stage 5\n            -> hierarchy/<key>/cs-related-review.json {school, rule, reviewed, provisional, decisions: [...]}\n            -> census/<key>-additions.json: accepted people of other units (census format; is_pi with pi_basis\n               ladder_faculty from the unit listing; added = cs_related_review_<date>)\nhand        reviewed/cs-related-hand.json: faculty evidence from a person's own profile page (a unit directory that is a script shell proves nothing):\n            [{name, unit, url, sha256, observed, quote, ladder}]. `cs_related_school.py profile <key> \"<Name>\" <unit> <url>` fetches the page (the live page where\n            robots allows, else the latest Wayback capture), requires the name followed by a professor title, and appends the entry; `review` reads the file as\n            faculty evidence only when the sha256 is a stored capture whose text holds the quote verbatim. The share test still decides computing.",
  "min_dblp": 5,
  "share_test": {
@@ -22,11 +22,11 @@
   "STAT"
  ],
  "counts": {
-  "not_faculty_listed": 534,
+  "not_faculty_listed": 530,
   "census_alias": 5,
-  "accepted": 80,
+  "accepted": 83,
+  "research_or_other_rank": 5,
   "duplicate_dblp_record": 4,
-  "research_or_other_rank": 4,
   "faculty_not_computing": 1
  },
  "decisions": [
@@ -438,8 +438,8 @@
     "Alex Scott"
    ],
    "source": "dblp_affiliation",
-   "decision": "not_faculty_listed",
-   "reason": "no 2016-2026 faculty listing of the searched units (BDI, ECON, ENG, INTERNET, MATH, OERC, PHYS, PSY, SOC, STAT) names them with a professor title",
+   "decision": "accepted",
+   "reason": "faculty (MATH listing, professor rank) with 116 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/s/AlexDScott"
@@ -454,10 +454,91 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Oxford, Mathematical Institute, UK"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5045091550"
+     ],
+     "school_works": 155,
+     "dblp_indexed": 100,
+     "share": 0.645,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5045091550",
+       "basis": "full name: Alex Scott",
+       "works": 155,
+       "dblp_indexed": 100,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Alex Scott",
+        "Scott, Alex",
+        "Alexander Scott"
+       ],
+       "orcids": [
+        "0000-0003-4489-5988"
+       ],
+       "venues": [
+        "Journal of Combinatorial Theory Series B",
+        "COMBINATORICA",
+        "Journal of Graph Theory"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W1842412249",
+         "year": 2016,
+         "title": "Saturation in the Hypercube and Bootstrap Percolation",
+         "venue": "Combinatorics Probability Computing"
+        },
+        {
+         "oa": "https://openalex.org/W1852112098",
+         "year": 2016,
+         "title": "Induced Subgraphs of Graphs with Large Chromatic Number. III. Long Holes",
+         "venue": "COMBINATORICA"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2576464445",
+         "year": 2016,
+         "title": "Maximising $H$-Colourings of Graphs",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W1489925592",
+         "year": 2017,
+         "title": "On a problem of Erdős and Moser",
+         "venue": "Abhandlungen aus dem Mathematischen Seminar der Universität Hamburg"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "MATH",
+     "url": "https://web.archive.org/web/20260608085927id_/https://www.maths.ox.ac.uk/people/alexander.scott",
+     "sha256": "f1302ba79099fa12065d3c4ee35e11c8f77432f159835e543bed7c9fa22b95f7",
+     "observed": "20260608085927",
+     "quote": "Alex Scott Status Academic Faculty Professor of Mathematics ",
+     "ladder": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BDI",
     "ECON",
@@ -979,8 +1060,8 @@
     "Andy J. Wathen"
    ],
    "source": "dblp_affiliation",
-   "decision": "not_faculty_listed",
-   "reason": "no 2016-2026 faculty listing of the searched units (BDI, ECON, ENG, INTERNET, MATH, OERC, PHYS, PSY, SOC, STAT) names them with a professor title",
+   "decision": "research_or_other_rank",
+   "reason": "listed by a searched unit only with a research, adjunct, clinical or emeritus title",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/85/3224"
@@ -997,8 +1078,19 @@
      }
     ]
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "MATH",
+     "url": "https://web.archive.org/web/20260116100708id_/https://www.maths.ox.ac.uk/people/andy.wathen",
+     "sha256": "6e143b931e4817c3190fc764d8ff11d440155e24290b90fb915c69c7fa5a2f25",
+     "observed": "20260116100708",
+     "quote": "Andrew Wathen BA, PhD Status Emeritus Professor of Computational Mathematics, Fellow of New College",
+     "ladder": false
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BDI",
     "ECON",
@@ -2838,7 +2930,7 @@
    ],
    "source": "dblp_affiliation",
    "decision": "not_faculty_listed",
-   "reason": "strict re-check (claude-oxford-deepdive 2026-11-09): the stored quote ran into a neighbouring entry or names a non-ladder / research / associate-member role; no clean professor title directly after the name",
+   "reason": "strict re-check (claude-oxford-deepdive 2026-11-09): the stored quote ran into a neighbouring entry or names a non-ladder / research / associate-member / student role; no clean professor title directly after the name",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/57/9988-1"
@@ -3153,36 +3245,6 @@
        ]
       },
       {
-       "author": "https://openalex.org/A5126238470",
-       "basis": "full name: Holmes, Chris",
-       "works": 3,
-       "dblp_indexed": 0,
-       "years": [
-        2026,
-        2026
-       ],
-       "names": [
-        "Holmes, Chris"
-       ],
-       "orcids": [],
-       "venues": [],
-       "dblp_examples": [],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W7129438475",
-         "year": 2026,
-         "title": "Predicting fixed-sample test decisions enables anytime-valid inference",
-         "venue": null
-        },
-        {
-         "oa": "https://openalex.org/W7140146631",
-         "year": 2026,
-         "title": "Posterior inference via Hill's prediction model",
-         "venue": null
-        }
-       ]
-      },
-      {
        "author": "https://openalex.org/A5113969566",
        "basis": "full name: Chris C. Holmes",
        "works": 3,
@@ -3221,6 +3283,36 @@
          "year": 2021,
          "title": "Advancing data science in drug development through an innovative computational framework for data sharing and statistical analysis",
          "venue": "BMC Medical Research Methodology"
+        }
+       ]
+      },
+      {
+       "author": "https://openalex.org/A5126238470",
+       "basis": "full name: Holmes, Chris",
+       "works": 3,
+       "dblp_indexed": 0,
+       "years": [
+        2026,
+        2026
+       ],
+       "names": [
+        "Holmes, Chris"
+       ],
+       "orcids": [],
+       "venues": [],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W7129438475",
+         "year": 2026,
+         "title": "Predicting fixed-sample test decisions enables anytime-valid inference",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W7140146631",
+         "year": 2026,
+         "title": "Posterior inference via Hill's prediction model",
+         "venue": null
         }
        ]
       }
@@ -3695,14 +3787,14 @@
      "namesake_orcids": false,
      "excluded": [
       {
-       "author": "https://openalex.org/A5075614578",
-       "why": "namesake: ORCID 0000-0002-4532-0329, not the busiest ORCID 0000-0002-0940-3311",
-       "n": 16
-      },
-      {
        "author": "https://openalex.org/A5035520416",
        "why": "namesake: ORCID 0000-0003-4412-1202, not the busiest ORCID 0000-0002-0940-3311",
        "n": 11
+      },
+      {
+       "author": "https://openalex.org/A5075614578",
+       "why": "namesake: ORCID 0000-0002-4532-0329, not the busiest ORCID 0000-0002-0940-3311",
+       "n": 16
       }
      ],
      "authors": [
@@ -4705,14 +4797,14 @@
      "namesake_orcids": false,
      "excluded": [
       {
-       "author": "https://openalex.org/A5016538537",
-       "why": "namesake: ORCID 0000-0001-9010-2905, not the busiest ORCID 0000-0002-0839-3166",
-       "n": 6
-      },
-      {
        "author": "https://openalex.org/A5101402996",
        "why": "namesake: ORCID 0000-0001-5309-5080, not the busiest ORCID 0000-0002-0839-3166",
        "n": 8
+      },
+      {
+       "author": "https://openalex.org/A5016538537",
+       "why": "namesake: ORCID 0000-0001-9010-2905, not the busiest ORCID 0000-0002-0839-3166",
+       "n": 6
       }
      ],
      "authors": [
@@ -6999,7 +7091,7 @@
    "aliases": [],
    "source": "dblp_affiliation",
    "decision": "not_faculty_listed",
-   "reason": "strict re-check (claude-oxford-deepdive 2026-11-09): the stored quote ran into a neighbouring entry or names a non-ladder / research / associate-member role; no clean professor title directly after the name",
+   "reason": "strict re-check (claude-oxford-deepdive 2026-11-09): the stored quote ran into a neighbouring entry or names a non-ladder / research / associate-member / student role; no clean professor title directly after the name",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/34/4838"
@@ -7204,7 +7296,7 @@
    ],
    "source": "dblp_affiliation",
    "decision": "not_faculty_listed",
-   "reason": "strict re-check (claude-oxford-deepdive 2026-11-09): the stored quote ran into a neighbouring entry or names a non-ladder / research / associate-member role; no clean professor title directly after the name",
+   "reason": "strict re-check (claude-oxford-deepdive 2026-11-09): the stored quote ran into a neighbouring entry or names a non-ladder / research / associate-member / student role; no clean professor title directly after the name",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/217/1770-1"
@@ -8287,42 +8379,6 @@
        ]
       },
       {
-       "author": "https://openalex.org/A5135371928",
-       "basis": "full name: J. Alison Noble",
-       "works": 5,
-       "dblp_indexed": 0,
-       "years": [
-        2026,
-        2026
-       ],
-       "names": [
-        "J. Alison Noble",
-        "Noble, Alison",
-        "Alison J. Noble"
-       ],
-       "orcids": [
-        "0000-0002-3060-3772"
-       ],
-       "venues": [
-        "Nature Communications"
-       ],
-       "dblp_examples": [],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W7131190689",
-         "year": 2026,
-         "title": "Normative growth trajectories of fetal brain regions validated by satisfactory maturation of neurodevelopmental domains at 2 years of age",
-         "venue": "Nature Communications"
-        },
-        {
-         "oa": "https://openalex.org/W7163153405",
-         "year": 2026,
-         "title": "SchistoTrackVideoNet: multilabel deep learning-based classification of schistosomal periportal fibrosis from ultrasound video",
-         "venue": null
-        }
-       ]
-      },
-      {
        "author": "https://openalex.org/A5143499967",
        "basis": "full name: J. Alison Noble",
        "works": 5,
@@ -8359,6 +8415,42 @@
          "year": 2026,
          "title": "Anomaly Detection in Fetal Echocardiography via Cross-Modal Translation and Region-Discriminated Error Calibration",
          "venue": "Lecture notes in computer science"
+        }
+       ]
+      },
+      {
+       "author": "https://openalex.org/A5135371928",
+       "basis": "full name: J. Alison Noble",
+       "works": 5,
+       "dblp_indexed": 0,
+       "years": [
+        2026,
+        2026
+       ],
+       "names": [
+        "J. Alison Noble",
+        "Noble, Alison",
+        "Alison J. Noble"
+       ],
+       "orcids": [
+        "0000-0002-3060-3772"
+       ],
+       "venues": [
+        "Nature Communications"
+       ],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W7131190689",
+         "year": 2026,
+         "title": "Normative growth trajectories of fetal brain regions validated by satisfactory maturation of neurodevelopmental domains at 2 years of age",
+         "venue": "Nature Communications"
+        },
+        {
+         "oa": "https://openalex.org/W7163153405",
+         "year": 2026,
+         "title": "SchistoTrackVideoNet: multilabel deep learning-based classification of schistosomal periportal fibrosis from ultrasound video",
+         "venue": null
         }
        ]
       },
@@ -8884,7 +8976,7 @@
    ],
    "source": "dblp_affiliation",
    "decision": "not_faculty_listed",
-   "reason": "strict re-check (claude-oxford-deepdive 2026-11-09): the stored quote ran into a neighbouring entry or names a non-ladder / research / associate-member role; no clean professor title directly after the name",
+   "reason": "strict re-check (claude-oxford-deepdive 2026-11-09): the stored quote ran into a neighbouring entry or names a non-ladder / research / associate-member / student role; no clean professor title directly after the name",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/60/1043"
@@ -16155,6 +16247,39 @@
        "other_examples": []
       },
       {
+       "author": "https://openalex.org/A5151402213",
+       "basis": "full name: Torr, Philip",
+       "works": 3,
+       "dblp_indexed": 0,
+       "years": [
+        2026,
+        2026
+       ],
+       "names": [
+        "Torr, Philip",
+        "Philip Torr"
+       ],
+       "orcids": [],
+       "venues": [
+        "IEEE Transactions on Pattern Analysis and Machine Intelligence"
+       ],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W7137926406",
+         "year": 2026,
+         "title": "Measuring Progress in Reasoning Toward Mathematical Discovery with Automatic Verification",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W7212325935",
+         "year": 2026,
+         "title": "RAP: Research Attention Prediction Reveals Target-Conditioned Evidence Acquisition Biases",
+         "venue": null
+        }
+       ]
+      },
+      {
        "author": "https://openalex.org/A5151068390",
        "basis": "full name: Torr, Philip H. S.",
        "works": 3,
@@ -16184,39 +16309,6 @@
          "oa": "https://openalex.org/W7212066911",
          "year": 2026,
          "title": "Online Surrogate Repair: Decoupling High-Fidelity Feedback from Search Length in Closed-Loop Discovery",
-         "venue": null
-        }
-       ]
-      },
-      {
-       "author": "https://openalex.org/A5151402213",
-       "basis": "full name: Torr, Philip",
-       "works": 3,
-       "dblp_indexed": 0,
-       "years": [
-        2026,
-        2026
-       ],
-       "names": [
-        "Torr, Philip",
-        "Philip Torr"
-       ],
-       "orcids": [],
-       "venues": [
-        "IEEE Transactions on Pattern Analysis and Machine Intelligence"
-       ],
-       "dblp_examples": [],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W7137926406",
-         "year": 2026,
-         "title": "Measuring Progress in Reasoning Toward Mathematical Discovery with Automatic Verification",
-         "venue": null
-        },
-        {
-         "oa": "https://openalex.org/W7212325935",
-         "year": 2026,
-         "title": "RAP: Research Attention Prediction Reveals Target-Conditioned Evidence Acquisition Biases",
          "venue": null
         }
        ]
@@ -16324,7 +16416,7 @@
    "aliases": [],
    "source": "dblp_affiliation",
    "decision": "not_faculty_listed",
-   "reason": "strict re-check (claude-oxford-deepdive 2026-11-09): the stored quote ran into a neighbouring entry or names a non-ladder / research / associate-member role; no clean professor title directly after the name",
+   "reason": "strict re-check (claude-oxford-deepdive 2026-11-09): the stored quote ran into a neighbouring entry or names a non-ladder / research / associate-member / student role; no clean professor title directly after the name",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/99/588"
@@ -19286,14 +19378,14 @@
      "namesake_orcids": false,
      "excluded": [
       {
-       "author": "https://openalex.org/A5019060488",
-       "why": "namesake: ORCID 0000-0003-1067-0801, not the busiest ORCID 0000-0001-8166-069X",
-       "n": 3
-      },
-      {
        "author": "https://openalex.org/A5110129533",
        "why": "namesake: ORCID 0000-0002-5737-0155, not the busiest ORCID 0000-0001-8166-069X",
        "n": 21
+      },
+      {
+       "author": "https://openalex.org/A5019060488",
+       "why": "namesake: ORCID 0000-0003-1067-0801, not the busiest ORCID 0000-0001-8166-069X",
+       "n": 3
       }
      ],
      "authors": [
@@ -22118,8 +22210,8 @@
    "name": "Yee Whye Teh",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "not_faculty_listed",
-   "reason": "no 2016-2026 faculty listing of the searched units (BDI, ECON, ENG, INTERNET, MATH, OERC, PHYS, PSY, SOC, STAT) names them with a professor title",
+   "decision": "accepted",
+   "reason": "faculty (STAT listing, professor rank) with 242 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/88/2483"
@@ -22134,10 +22226,92 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Oxford, UK"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5064373793"
+     ],
+     "school_works": 107,
+     "dblp_indexed": 51,
+     "share": 0.477,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5064373793",
+       "basis": "full name: Teh, Yee Whye",
+       "works": 107,
+       "dblp_indexed": 51,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Teh, Yee Whye",
+        "Yee Whye Teh",
+        "Y. W. Teh"
+       ],
+       "orcids": [
+        "0000-0001-5365-6933"
+       ],
+       "venues": [
+        "Journal of Computational and Graphical Statistics",
+        "Statistical Science",
+        "48th Scientific Meeting of the Italian Statistical Society"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W123701566",
+         "year": 2016,
+         "title": "Consistency and fluctuations for stochastic gradient Langevin dynamics",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W2278642510",
+         "year": 2016,
+         "title": "DR-ABC: Approximate Bayesian Computation with Kernel-Based Distribution Regression",
+         "venue": null
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W1625591031",
+         "year": 2016,
+         "title": "A Marginal Sampler for σ-Stable Poisson–Kingman Mixture Models",
+         "venue": "Journal of Computational and Graphical Statistics"
+        },
+        {
+         "oa": "https://openalex.org/W2282943206",
+         "year": 2016,
+         "title": "Bayesian Nonparametric Modeling and the Ubiquitous Ewens Sampling Formula",
+         "venue": "Statistical Science"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "STAT",
+     "url": "https://www.stats.ox.ac.uk/people/yee-whye-teh",
+     "sha256": "da24544f68f74182a41f72fe627beda1979ec0cf6a92076e0e1ee8dee41a2b83",
+     "observed": "20261109",
+     "quote": "Yee Whye Teh Professor of Statistical Machine Learning Biographical Sketch Prior to joining Oxford, I was a",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BDI",
     "ECON",
@@ -24787,7 +24961,7 @@
    ],
    "source": "openalex_rule",
    "decision": "not_faculty_listed",
-   "reason": "strict re-check (claude-oxford-deepdive 2026-11-09): the stored quote ran into a neighbouring entry or names a non-ladder / research / associate-member role; no clean professor title directly after the name",
+   "reason": "strict re-check (claude-oxford-deepdive 2026-11-09): the stored quote ran into a neighbouring entry or names a non-ladder / research / associate-member / student role; no clean professor title directly after the name",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
@@ -25773,7 +25947,7 @@
    ],
    "source": "openalex_rule",
    "decision": "not_faculty_listed",
-   "reason": "strict re-check (claude-oxford-deepdive 2026-11-09): the stored quote ran into a neighbouring entry or names a non-ladder / research / associate-member role; no clean professor title directly after the name",
+   "reason": "strict re-check (claude-oxford-deepdive 2026-11-09): the stored quote ran into a neighbouring entry or names a non-ladder / research / associate-member / student role; no clean professor title directly after the name",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
@@ -26085,7 +26259,7 @@
    ],
    "source": "openalex_rule",
    "decision": "not_faculty_listed",
-   "reason": "strict re-check (claude-oxford-deepdive 2026-11-09): the stored quote ran into a neighbouring entry or names a non-ladder / research / associate-member role; no clean professor title directly after the name",
+   "reason": "strict re-check (claude-oxford-deepdive 2026-11-09): the stored quote ran into a neighbouring entry or names a non-ladder / research / associate-member / student role; no clean professor title directly after the name",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
@@ -26630,7 +26804,7 @@
    ],
    "source": "openalex_rule",
    "decision": "not_faculty_listed",
-   "reason": "strict re-check (claude-oxford-deepdive 2026-11-09): the stored quote ran into a neighbouring entry or names a non-ladder / research / associate-member role; no clean professor title directly after the name",
+   "reason": "strict re-check (claude-oxford-deepdive 2026-11-09): the stored quote ran into a neighbouring entry or names a non-ladder / research / associate-member / student role; no clean professor title directly after the name",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
@@ -27137,16 +27311,106 @@
     "RENAUD LAMBIOTTE"
    ],
    "source": "openalex_rule",
-   "decision": "not_faculty_listed",
-   "reason": "no 2016-2026 faculty listing of the searched units (BDI, ECON, ENG, INTERNET, MATH, OERC, PHYS, PSY, SOC, STAT) names them with a professor title",
+   "decision": "accepted",
+   "reason": "faculty (MATH listing, professor rank); computing-share test passes: 32 of 116 school works DBLP-indexed (share 0.28; 1 OpenAlex author ids)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": []
+    "evidence": [],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5034372799"
+     ],
+     "school_works": 116,
+     "dblp_indexed": 32,
+     "share": 0.276,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5034372799",
+       "basis": "candidate author id",
+       "works": 116,
+       "dblp_indexed": 32,
+       "years": [
+        2017,
+        2026
+       ],
+       "names": [
+        "Renaud Lambiotte",
+        "Lambiotte, Renaud",
+        "R. Lambiotte"
+       ],
+       "orcids": [
+        "0000-0002-0583-4595"
+       ],
+       "venues": [
+        "Physical review. E",
+        "Communications Physics",
+        "Journal of Physics Complexity"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2762094921",
+         "year": 2017,
+         "title": "Backtracking and Mixing Rate of Diffusion on Uncorrelated Temporal Networks",
+         "venue": "Entropy"
+        },
+        {
+         "oa": "https://openalex.org/W2573498873",
+         "year": 2018,
+         "title": "Developing and Deploying a Taxi Price Comparison Mobile App in the Wild: Insights and Challenges.",
+         "venue": null
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2743656265",
+         "year": 2018,
+         "title": "Multiscale mixing patterns in networks",
+         "venue": "Proceedings of the National Academy of Sciences"
+        },
+        {
+         "oa": "https://openalex.org/W2883189204",
+         "year": 2018,
+         "title": "Altered trajectories in the dynamical repertoire of functional network states under psilocybin",
+         "venue": null
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "MATH",
+     "url": "https://web.archive.org/web/20260715050828id_/https://www.maths.ox.ac.uk/people/renaud.lambiotte",
+     "sha256": "88943c30401ebfe044cedf3b37bd4c4fbd212facf496a862842dcea5496f6413",
+     "observed": "20260715050828",
+     "quote": "Renaud Lambiotte PhD in Physics Pronouns He / Them Status Academic Faculty Professor of Networks and Nonlinear Systems ",
+     "ladder": true
+    },
+    {
+     "unit": "MATH",
+     "url": "https://web.archive.org/web/20260715050828id_/https://www.maths.ox.ac.uk/people/renaud.lambiotte",
+     "sha256": "88943c30401ebfe044cedf3b37bd4c4fbd212facf496a862842dcea5496f6413",
+     "observed": "20260715050828",
+     "quote": "Renaud Lambiotte PhD in Physics Pronouns He / Them Status Academic Faculty Professor of Networks and Nonlinear Systems ",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BDI",
     "ECON",
@@ -32595,7 +32859,7 @@
    ],
    "source": "openalex_rule",
    "decision": "not_faculty_listed",
-   "reason": "strict re-check (claude-oxford-deepdive 2026-11-09): the stored quote ran into a neighbouring entry or names a non-ladder / research / associate-member role; no clean professor title directly after the name",
+   "reason": "strict re-check (claude-oxford-deepdive 2026-11-09): the stored quote ran into a neighbouring entry or names a non-ladder / research / associate-member / student role; no clean professor title directly after the name",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
@@ -32932,7 +33196,7 @@
    ],
    "source": "openalex_rule",
    "decision": "not_faculty_listed",
-   "reason": "strict re-check (claude-oxford-deepdive 2026-11-09): the stored quote ran into a neighbouring entry or names a non-ladder / research / associate-member role; no clean professor title directly after the name",
+   "reason": "strict re-check (claude-oxford-deepdive 2026-11-09): the stored quote ran into a neighbouring entry or names a non-ladder / research / associate-member / student role; no clean professor title directly after the name",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
