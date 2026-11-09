@@ -161,6 +161,48 @@
      "qualification": "Public record page fetched 2026-11-09 under zenodo.org robots.txt (10 s crawl delay observed); Resource type 'Publication'. Raw page kept at scratch/oxford-apply-1109/zenodo/rec-21242438.html."
     }
    ]
+  },
+  {
+   "id": "oxford-20261109-titleguard-Roberts-HumBugDB",
+   "pi": "Stephen J. Roberts",
+   "match": {
+    "oa": "https://openalex.org/W2615354843",
+    "doi": "10.48550/arxiv.1705.05180"
+   },
+   "decision": "reject",
+   "reviewed_by": "claude-oxford-apply-1109",
+   "reviewed_at": "2026-11-09",
+   "why": "Reject this exact corrupted record (RULES R-PAP-41, source-title guard; owner delegation 2026-11-09): OpenAlex W2615354843 carries the arXiv DOI 1705.05180, which arXiv gives as 'Mosquito Detection with Neural Networks: The Buzz of Deep Learning', but the record's title is 'HumBugDB: a large-scale acoustic mosquito dataset'. Title and identifier belong to different papers, so no attribution can be trusted. No global blacklist of the PI, author id or DOI.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/1705.05180",
+     "sha256": "4980664d65e407202fb9c6a1cb53787caeb824ec5915abb42c2ce6016ae882bb",
+     "quote": "Mosquito Detection with Neural Networks: The Buzz of Deep Learning",
+     "kind": "arxiv_abstract_page",
+     "qualification": "arXiv abstract page fetched 2026-11-09 (robots permit /abs); title is the source title of the DOI."
+    }
+   ]
+  },
+  {
+   "id": "oxford-20261109-titleguard-Gal-ME-JEPA",
+   "pi": "Yarin Gal",
+   "match": {
+    "oa": "https://openalex.org/W4378765257",
+    "doi": "10.48550/arxiv.2305.17493"
+   },
+   "decision": "reject",
+   "reviewed_by": "claude-oxford-apply-1109",
+   "reviewed_at": "2026-11-09",
+   "why": "Reject this exact corrupted record (RULES R-PAP-41, source-title guard; owner delegation 2026-11-09): OpenAlex W4378765257 carries the arXiv DOI 2305.17493, which arXiv gives as 'The Curse of Recursion: Training on Generated Data Makes Models Forget', but the record's title is 'Dynamic / ME-JEPA v2.0.0-rc1: Audited World-Model Runtime and Verified Training-Corpus Artifact'. Title and identifier belong to different papers, so no attribution can be trusted. No global blacklist of the PI, author id or DOI.",
+   "evidence": [
+    {
+     "url": "https://arxiv.org/abs/2305.17493",
+     "sha256": "f2c319e5f840bbc3c62985b5ad4bc051360b73518ce5232c5af034d2d708727e",
+     "quote": "The Curse of Recursion: Training on Generated Data Makes Models Forget",
+     "kind": "arxiv_abstract_page",
+     "qualification": "arXiv abstract page fetched 2026-11-09 (robots permit /abs); title is the source title of the DOI."
+    }
+   ]
   }
  ]
 }
