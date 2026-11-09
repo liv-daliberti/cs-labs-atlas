@@ -807,12 +807,16 @@ def _coadvisers_named(label, pi_names):
     return set()
 
 
-def coadvised_external_groups(data, ents, registry, nick=None):
+def coadvised_external_groups(data, ents, registry, nick=None, held=None):
     """Join a shared native ext: record only through reciprocal, cited co-adviser evidence within one school.
 
     Native external ids select candidates; they are never global person anchors. Names alone, unqualified roster
     mentions and one-sided co-advising do not prove identity. A new join that would redirect two issued person ids
     requires review instead of silently merging them. All validation precedes assign(), commit() and package writes.
+
+    held=None (default) raises CoadvisingIDConflict for any unresolved group. A release passes a list (2026-11-09): the held
+    groups are then appended to it, left out of the returned joins (their memberships stay separate people, no redirect, no
+    registry write), and the caller must report them.
     """
     groups = collections.defaultdict(list)
     for school, (pis, students, _, _) in data.items():
@@ -896,7 +900,9 @@ def coadvised_external_groups(data, ents, registry, nick=None):
         joins.append(dict(base, keys=keys, basis='reciprocal_coadvising', sources=[dict(from_pi=k[2], to_pi=j[2], source=q)
                                                   for (k, j), vv in sorted(edges.items()) if linked[k] and j in linked[k] for q in vv]))
     if holds:
-        raise CoadvisingIDConflict(holds)
+        if held is None:
+            raise CoadvisingIDConflict(holds)
+        held.extend(holds)
     return joins
 
 
@@ -924,7 +930,7 @@ def byline_author_ids(school, wanted, hdir):
 
 # ---------------------------------------------------------------- main
 
-def run(schools, hdir, registry, use_sweep=True, today=None, write=True):
+def run(schools, hdir, registry, use_sweep=True, today=None, write=True, skip_coadvising_holds=False):
     """Validate work-only certificates first; their transaction cannot repair issued identities.
 
     A caller-owned transaction remains owned by the caller. Scoped publication
@@ -937,7 +943,7 @@ def run(schools, hdir, registry, use_sweep=True, today=None, write=True):
         validate_scoped(s, stu, rows, sp, pis=pis)
     guarded = any(work_only(x) for _, _, _, sp in data.values() for x in sp)
     if not guarded:
-        return _run(schools, hdir, registry, data, registry.commit, False, use_sweep, today, write)
+        return _run(schools, hdir, registry, data, registry.commit, False, use_sweep, today, write, skip_coadvising_holds)
     if registry.in_transaction and write:
         raise ValueError('exact-work ID publication requires its own transaction; caller transaction retained')
     registry.execute('savepoint atlas_exact_member_work')
@@ -949,7 +955,7 @@ def run(schools, hdir, registry, use_sweep=True, today=None, write=True):
         pending = False
 
     try:
-        return _run(schools, hdir, registry, data, finish, True, use_sweep, today, write)
+        return _run(schools, hdir, registry, data, finish, True, use_sweep, today, write, skip_coadvising_holds)
     except Exception:
         if pending:
             registry.execute('rollback to savepoint atlas_exact_member_work')
@@ -957,7 +963,7 @@ def run(schools, hdir, registry, use_sweep=True, today=None, write=True):
         raise
 
 
-def _run(schools, hdir, registry, data, finish, guarded, use_sweep, today, write):
+def _run(schools, hdir, registry, data, finish, guarded, use_sweep, today, write, skip_coadvising_holds=False):
     today = today or datetime.now(timezone.utc).strftime('%Y-%m-%d')
     hdir = Path(hdir)
     try:
@@ -1044,7 +1050,8 @@ def _run(schools, hdir, registry, data, finish, guarded, use_sweep, today, write
                         ents[sk]['anchors'].add(('openalex', aid))
                         student_oa_evidence.setdefault(sk, dict(openalex=aid, work=x.get('oa'), byline=x.get('byline'), pi=pk[2], pi_school=pk[1]))
     reviewed_identities = reviewed_cross_lab_identities(data, ents, hdir, nick_ok)
-    coadvising = coadvised_external_groups(data, ents, registry, nick_ok)
+    held_coadvising = [] if skip_coadvising_holds else None
+    coadvising = coadvised_external_groups(data, ents, registry, nick_ok, held=held_coadvising)
     uf = UF(); by_anchor = collections.defaultdict(list)
     for k, e in ents.items():
         uf.find(k)
@@ -1060,6 +1067,11 @@ def _run(schools, hdir, registry, data, finish, guarded, use_sweep, today, write
             if a[0] in STRONG_PERSON and not any(family(x) == family(y) for x in ents[k0]['names'] for y in ents[k]['names']):
                 conflicts.append(dict(anchor=person_anchor_str(*a), a=list(k0), b=list(k))); continue
             uf.union(k0, k)
+    for h in held_coadvising or []:
+        # A skipped hold must stay unjoined: if an ordinary shared anchor still unites its memberships, that would redirect.
+        keys = [('stu', h['school'], r['pi'], h['native_person']) for r in h['records']]
+        if len({uf.find(k) for k in set(keys)}) != len(set(keys)):
+            raise CoadvisingIDConflict([dict(h, reason='held co-advising memberships are joined by a shared anchor; skipping cannot keep them apart')])
     comps = collections.defaultdict(set)
     for k in ents:
         comps[uf.find(k)] |= {(RANK[a], person_anchor_str(a, v)) for a, v in ents[k]['anchors']}
@@ -1247,6 +1259,8 @@ def _run(schools, hdir, registry, data, finish, guarded, use_sweep, today, write
                reviewed_cross_lab_identity_groups=len(reviewed_identities),
                reviewed_cross_lab_identity_evidence=[{k: v for k, v in g.items() if k != 'keys'} for g in reviewed_identities],
                coadvising_evidence=[{k: v for k, v in g.items() if k != 'keys'} for g in coadvising],
+               coadvising_holds_skipped=[dict(school=h['school'], native_person=h['native_person'], reason=h['reason'],
+                                              records=h['records']) for h in held_coadvising or []],
                conflicts_refused=len(conflicts), conflicts=conflicts[:50],
                registry=dict(ids=db.execute('select count(*) from ids').fetchone()[0],
                              anchors=db.execute('select count(*) from anchors').fetchone()[0],
@@ -1263,6 +1277,9 @@ def main(argv=None):
     ap.add_argument('--dir', default=str(P.HIERARCHY))
     ap.add_argument('--registry', default=str(P.data('ids') / 'registry.sqlite'))
     ap.add_argument('--no-sweep', action='store_true', help='skip the OpenAlex byline author ids (student -> PI elsewhere)')
+    ap.add_argument('--skip-coadvising-holds', action='store_true',
+                    help='release mode: co-advising groups needing review stay separate people (no redirect, no join) and are listed '
+                         'in IDS-REPORT.json coadvising_holds_skipped; also set by ATLAS_IDS_SKIP_COADVISING_HOLDS=1')
     ap.add_argument('--retire-work-anchors', type=Path, help='offline exact source review JSON; dry run unless --apply-retirements')
     ap.add_argument('--retirement-backup', type=Path, help='new whole-registry backup required when applying retirements')
     ap.add_argument('--apply-retirements', action='store_true', help='apply the exact reviewed retirement; no package or auxiliary writes')
@@ -1297,7 +1314,8 @@ def main(argv=None):
             open_registry(reg).close()  # seed from the latest release (or empty) at the real path, then copy it
             shutil.copy2(reg, local)
         db = open_registry(local, seed=False)
-        res = run(a.schools or list(P.SCHOOL_IDS), a.dir, db, use_sweep=not a.no_sweep)
+        res = run(a.schools or list(P.SCHOOL_IDS), a.dir, db, use_sweep=not a.no_sweep,
+                  skip_coadvising_holds=a.skip_coadvising_holds or os.environ.get('ATLAS_IDS_SKIP_COADVISING_HOLDS') == '1')
         db.close()
         tmp = reg.with_name(f'.{reg.name}.{os.getpid()}.tmp')
         shutil.copy2(local, tmp); tmp.chmod(0o644)

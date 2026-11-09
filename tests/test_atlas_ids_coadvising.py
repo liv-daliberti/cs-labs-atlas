@@ -148,3 +148,22 @@ def test_another_students_coadvising_clause_does_not_identify_this_student(tmp_p
     source['quote'] = 'Jingyi Chen, Other Student co-supervised with Jiasi Shen'
     with pytest.raises(A.CoadvisingIDConflict, match='reciprocal'):
         run(tmp_path / 'trial', tmp_path / 'registry.sqlite', fx)
+
+
+def test_release_mode_skips_a_held_group_without_redirect_join_or_registry_change(tmp_path):
+    reg = tmp_path / 'registry.sqlite'; before = run(tmp_path / 'before', reg, fixture(quotes=False))
+    old_ids = set(student_ids(before).values()); assert len(old_ids) == 2
+    root = tmp_path / 'after'; write(root, fixture()); db = A.open_registry(reg, seed=False)
+    with pytest.raises(A.CoadvisingIDConflict, match='issued'):
+        A.run(['example'], root, db)  # default stays fail-closed
+    ids = db.execute('select * from ids order by id').fetchall(); anchors = db.execute('select * from anchors order by anchor').fetchall()
+    result = A.run(['example'], root, db, today='2026-11-09', skip_coadvising_holds=True)
+    assert set(student_ids(result).values()) == old_ids  # the two memberships keep their two issued ids
+    assert result['report']['coadvised_student_groups'] == 0
+    skipped = result['report']['coadvising_holds_skipped']
+    assert len(skipped) == 1 and skipped[0]['native_person'].startswith('ext:example:') and 'issued' in skipped[0]['reason']
+    assert db.execute("select count(*) from ids where status='redirect'").fetchone()[0] == 0
+    assert db.execute('select * from ids order by id').fetchall() == ids
+    assert db.execute('select * from anchors order by anchor').fetchall() == anchors
+    db.close()
+

@@ -118,6 +118,15 @@ normal exact task claim and serialized promotion; preparing this review does not
 
 Run alone: `python tools/atlas_ids.py` (every released school; `--no-sweep` skips the student-to-PI byline step).
 
+### Release mode: unresolved co-advising holds stay separate (2026-11-09)
+
+`tools/atlas_ids.py --skip-coadvising-holds` (or `ATLAS_IDS_SKIP_COADVISING_HOLDS=1`, `run(..., skip_coadvising_holds=True)`)
+lets a release proceed while explicit reviews are pending. Every co-advising group that would otherwise raise
+`CoadvisingIDConflict` (several issued person IDs, unresolved or negative evidence, incompatible names) is left unjoined:
+its memberships keep their own issued IDs, nothing is redirected, nothing new is minted for it, and the groups are listed in
+`IDS-REPORT.json` `coadvising_holds_skipped`. If an ordinary shared anchor would still join a skipped group, the run raises
+instead. The default stays fail-closed; a release may use this mode only with the skipped list recorded in its manifest notes.
+
 ## Person-specific co-advising evidence and shared personal pages
 
 A co-advising guard is activated only by a source clause naming the person being checked. Its report preserves the exact

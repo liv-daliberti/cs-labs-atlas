@@ -885,8 +885,8 @@
           "Use existing explicit redirect transaction; do not weaken ordinary issued-ID guard"
         ]
       },
-      "application_status": "conditional_not_applied",
-      "required_next": "Controlled full native member/paper/link validation, independent scientific delta review, and exact registry/member preimage revalidation before explicit application."
+      "application_status": "applied_2026-11-09",
+      "required_next": "Applied 2026-11-09; the next normal full-cohort ID stage must report no new IDs for this group."
     },
     {
       "school": "cmu",
@@ -1200,8 +1200,8 @@
           "Use existing explicit redirect transaction; do not weaken ordinary issued-ID guard"
         ]
       },
-      "application_status": "conditional_not_applied",
-      "required_next": "Controlled full native member/paper/link validation, independent scientific delta review, and exact registry/member preimage revalidation before explicit application."
+      "application_status": "applied_2026-11-09",
+      "required_next": "Applied 2026-11-09; the next normal full-cohort ID stage must report no new IDs for this group."
     },
     {
       "school": "cmu",
@@ -1506,8 +1506,8 @@
           "Use existing explicit redirect transaction; do not weaken ordinary issued-ID guard"
         ]
       },
-      "application_status": "conditional_not_applied",
-      "required_next": "Controlled full native member/paper/link validation, independent scientific delta review, and exact registry/member preimage revalidation before explicit application."
+      "application_status": "applied_2026-11-09",
+      "required_next": "Applied 2026-11-09; the next normal full-cohort ID stage must report no new IDs for this group."
     },
     {
       "school": "michigan",
@@ -1807,8 +1807,8 @@
           "Use existing explicit redirect transaction; do not weaken ordinary issued-ID guard"
         ]
       },
-      "application_status": "conditional_not_applied",
-      "required_next": "Controlled full native member/paper/link validation, independent scientific delta review, and exact registry/member preimage revalidation before explicit application."
+      "application_status": "applied_2026-11-09",
+      "required_next": "Applied 2026-11-09; the next normal full-cohort ID stage must report no new IDs for this group."
     },
     {
       "school": "berkeley",
@@ -2135,8 +2135,8 @@
           "Use existing explicit redirect transaction; do not weaken ordinary issued-ID guard"
         ]
       },
-      "application_status": "conditional_not_applied",
-      "required_next": "Controlled full native member/paper/link validation, independent scientific delta review, and exact registry/member preimage revalidation before explicit application."
+      "application_status": "applied_2026-11-09",
+      "required_next": "Applied 2026-11-09; the next normal full-cohort ID stage must report no new IDs for this group."
     },
     {
       "school": "cmu",
@@ -2445,8 +2445,8 @@
           "Use existing explicit redirect transaction; do not weaken ordinary issued-ID guard"
         ]
       },
-      "application_status": "conditional_not_applied",
-      "required_next": "Controlled full native member/paper/link validation, independent scientific delta review, and exact registry/member preimage revalidation before explicit application."
+      "application_status": "applied_2026-11-09",
+      "required_next": "Applied 2026-11-09; the next normal full-cohort ID stage must report no new IDs for this group."
     },
     {
       "school": "cmu",
@@ -2763,8 +2763,8 @@
           "Use existing explicit redirect transaction; do not weaken ordinary issued-ID guard"
         ]
       },
-      "application_status": "conditional_not_applied",
-      "required_next": "Controlled full native member/paper/link validation, independent scientific delta review, and exact registry/member preimage revalidation before explicit application."
+      "application_status": "applied_2026-11-09",
+      "required_next": "Applied 2026-11-09; the next normal full-cohort ID stage must report no new IDs for this group."
     }
   ],
   "unresolved": [
@@ -3635,15 +3635,26 @@
       ]
     }
   ],
-  "review_status_note": "Five previous redirect reviews and their original metadata preserved. Seven additional conditional source-backed reviews describe eight proposed redirects, rehearsed only in disposable copies. No new canonical or global application; current live17 holds remain until controlled native validation and explicit CAS application. Original unresolved list retained as the pre-application audit.",
+  "review_status_note": "Five previous redirect reviews and their original metadata preserved. Seven source-backed reviews (eight redirects) were rehearsed on a disposable full-registry copy and applied to the global registry on 2026-11-09 under the land lock with a whole-registry backup (see conditional_batch_20261109.application_receipt). 9 co-advising groups remain held for lack of reciprocal source evidence; the original unresolved list is retained as the pre-application audit.",
   "conditional_batch_20261109": {
     "groups": 7,
     "proposed_redirects": 8,
-    "applied": false,
+    "applied": true,
     "metadata_source_sha256": "da28a7cc72b45be98d865516491ba7af17c4c764bb39b79c89ee14075ccfa36e",
     "combined_source_only_receipt_sha256": "28dc9ee8a03d19e78034e550970fc372543258d2ed45a71459448cf1d7331857",
     "full_native_validation_complete": false,
-    "live_ID_holds": 17,
-    "conditional_remaining_holds_after_source_corrections_and_application": 9
+    "live_ID_holds": 9,
+    "conditional_remaining_holds_after_source_corrections_and_application": 9,
+    "applied_on": "2026-11-09",
+    "application_receipt": {
+      "path": "/n/fs/resemble/homogenizing-science/scratch/idholds-1109/global-eight-redirect-application-receipt.json",
+      "sha256": "7649f405aaad1c61e283689840c97db978dc30ae01c87091565ef9bb7fb5a5cc",
+      "rehearsal_receipt_sha256": "bdab5531e6f8f79e65e1c890df01f05407646384b73b264e0ecc40f17115d878",
+      "registry_sha256_before": "2eb56d168115cb40c0a6e90480c93793dc50d7bda55da4dac4e0c06f8c9852eb",
+      "registry_sha256_after": "c5df145cb17f5152f3ffb8cbf0f7a9479ce982b291cefd54eb4bfe4e198f9ed2",
+      "whole_registry_backup": "/n/fs/resemble/homogenizing-science/scratch/idholds-1109/global-before-eight-reviewed-redirects.sqlite"
+    },
+    "full_native_validation_note": "2026-11-09 claude-idholds-1109: the live canonical cmu/michigan/berkeley packages (rebuilt by the ordinary builder at 13:00-13:04 EST after the source commits) contain exactly the 14 reviewed expected_after_source_build_member objects (all whole-member postimages equal, old relations retained, no other field changed); strict validate.py rc=0 on the three schools. The separate controlled isolated native rebuild was not run; the only scientific change to these members is the retained-source append.",
+    "live_ID_holds_before_application": 16
   }
 }
