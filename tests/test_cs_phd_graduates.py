@@ -8,7 +8,7 @@ FLAT = ('The Department of Computer Science would like to congratulate Dr. Keith
         'successful defense of her thesis work, "U" on April 2, 2019. Primary Advisor: Russ Taylor. For more information')
 
 
-def test_blocks_do_not_leak_into_each_other():
+def test_R_STU_26_blocks_do_not_leak_into_each_other():
     starts = [m.start() for m in re.finditer('would like to congratulate ', FLAT)]
     got = []
     for i, st in enumerate(starts):
