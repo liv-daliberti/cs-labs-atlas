@@ -43,3 +43,9 @@ def test_person_text_needs_a_surname_and_no_nav_words():
     assert C.is_person_text('张三') and C.is_person_text('宛 斌')
     for nav in ('内部资源', '研究生', '查看更多', '尾页', '中心主任', '发表论文', '课程信息', '获奖信息', 'Minimal Mistakes', 'Google Scholar'):
         assert not C.is_person_text(nav), nav
+
+
+def test_clean_members_handles_member_listing_kind():
+    r = dict(kind='member_listing', lab='L', person='张三', url='http://x/', found_from={'url': 'http://p/'}, member_role_stated='Current position:')
+    keep, dropped = C.clean_members([r])
+    assert not keep and dropped

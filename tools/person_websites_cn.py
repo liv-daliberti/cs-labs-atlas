@@ -12,8 +12,9 @@ the reviewed PI list and the staged captures, read-only, not hierarchy/<school>/
   person_websites_cn.py summary <school>
   person_websites_cn.py sample <school> [--seed N] [--n 30]
 
-kind  pi_profile | pi_home | group | lab | pi_other | member_home.  `lab` is the PI-centred lab: url = the lab's own site
-(same as the group row) or a reason.  member_home = a page linked from a lab's own people page, `role` verbatim as the page
+kind  pi_profile | pi_home | group | lab | pi_other | member_home | member_listing.  `lab` is the PI-centred lab: url = the lab's own site
+(same as the group row) or a reason.  member_home = a member's own site linked from a lab's own people page; member_listing = an entry that points into the PI's/lab's own
+space (same host as the people page: an item on the PI's student page), not the person's own site; `role` verbatim as the page
 states it (Chinese kept in the original script).  No student relations are produced.  A URL counts only when an official
 page, the lab's own page or the person's own page links it; names are never turned into URLs.
 """
@@ -633,7 +634,7 @@ def build(school, do_live=True, workers=6):
                     continue        # a profile on an aggregator is not the person's own page
                 seen_m.add((t, full))
                 uu, mrec = live.find(full)
-                row = dict(person=t.strip(), role='member', lab=pi, kind='member_home', url=full,
+                row = dict(person=t.strip(), role='member', lab=pi, kind=('member_listing' if pr.hostname == urllib.parse.urlsplit(pbase).hostname else 'member_home'), url=full,
                            found_from=dict(kind='lab_page', url=href, sha256=rec['sha256'], anchor=t, section=role),
                            member_role_stated=role if role and '导师' not in role else 'not stated on the page')
                 row.update(fetched_fields(full, mrec) if mrec else dict(fetched=False, fetch_reason=host_class(full) or 'queued: member page not fetched in this pass'))
@@ -658,7 +659,7 @@ def clean_members(rows):
     dropped and returned with the reason, never silently."""
     keep, dropped = [], []
     for r in rows:
-        if r['kind'] == 'member_home':
+        if r['kind'] in ('member_home', 'member_listing'):
             role = (r.get('member_role_stated') or '').strip()
             if role != 'not stated on the page' and not ROLE_OK.match(role):
                 dropped.append(dict(lab=r['lab'], person=r['person'], url=r['url'], found_from=r['found_from'].get('url'), role_text=role,
@@ -685,7 +686,7 @@ def gate(rows):
 def counts(rows):
     pis = {r['person'] for r in rows if r['role'] == 'pi'}
     c = dict(pis=len(pis))
-    for k in ('pi_profile', 'pi_home', 'lab', 'group', 'pi_other', 'member_home'):
+    for k in ('pi_profile', 'pi_home', 'lab', 'group', 'pi_other', 'member_home', 'member_listing'):
         sel = [r for r in rows if r['kind'] == k]
         c[k] = dict(url=sum(1 for r in sel if r['url']), reason=sum(1 for r in sel if not r['url']),
                     fetched=sum(1 for r in sel if r['url'] and r['fetched']),
