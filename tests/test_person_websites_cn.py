@@ -37,3 +37,9 @@ def test_clean_members_drops_unrecognisable_roles_with_reason():
     mk = lambda role: dict(kind='member_home', lab='L', person='张三', url='http://x/', found_from={'url': 'http://p/'}, member_role_stated=role)
     keep, dropped = C.clean_members([mk('博士研究生'), mk('Past MS Students:'), mk('not stated on the page'), mk('研究生教学'), mk("master's degree")])
     assert len(keep) == 3 and len(dropped) == 2 and all(d['reason'] for d in dropped)
+
+
+def test_person_text_needs_a_surname_and_no_nav_words():
+    assert C.is_person_text('张三') and C.is_person_text('宛 斌')
+    for nav in ('内部资源', '研究生', '查看更多', '尾页', '中心主任', '发表论文', '课程信息', '获奖信息', 'Minimal Mistakes', 'Google Scholar'):
+        assert not C.is_person_text(nav), nav

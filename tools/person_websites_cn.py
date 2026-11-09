@@ -57,7 +57,7 @@ NAME_LAT = re.compile(r"^[A-Z][A-Za-z'’.-]+(?:\s+[A-Z][A-Za-z'’.-]+){1,3}$")
 ROLE_HEAD = re.compile(r'博士|硕士|研究生|本科|学生|教师|教授|老师|助理|博后|博士后|访问|毕业|在读|校友|成员|Ph\.?D|Master|Undergrad|Student|Postdoc|Alumni|Faculty|Member|Visiting|Staff|Intern', re.I)
 NOT_NAME = {'更多', '详情', '返回', '首页', '联系', '联系我们', '关于我们', '研究方向', '研究成果', '团队介绍', '课题组', '师资队伍',
             '招生信息', '学生信息', '科学研究', '教学研究', '论文成果', '科研项目', '新闻动态', '实验室', '研究组', '更多>>', '公众号'}
-NOT_NAME_LAT = re.compile(r'Google|Scholar|Github|Twitter|Linkedin|DBLP|Homepage|Home Page|Website|Email|Download|Read More|Learn More|Click|CV$', re.I)
+NOT_NAME_LAT = re.compile(r'Mistakes|Theme|Jekyll|Template|Google|Scholar|Github|Twitter|Linkedin|DBLP|Homepage|Home Page|Website|Email|Download|Read More|Learn More|Click|CV$', re.I)
 
 
 def norm_name(s):
@@ -358,11 +358,18 @@ def role_of_headings(raw):
     return p.out
 
 
+SURNAMES = set('王李张刘陈杨黄赵吴周徐孙马朱胡郭何高林罗郑梁谢宋唐许韩冯邓曹彭曾肖田董袁潘于蒋蔡余杜叶程苏魏吕丁任沈姚卢姜崔钟谭陆汪范金石廖贾夏韦傅方白邹孟熊秦邱江尹薛闫段雷侯龙史陶黎贺顾毛郝龚邵万钱严覃武戴莫孔向汤常温康施文牛樊葛邢安齐易乔伍庞颜倪庄聂章鲁岳翟殷詹申欧耿关兰焦俞左柳甘祝包宁尚符舒阮柯纪梅童凌毕单季裴霍涂成苗谷盛曲翁冉骆蓝路游辛靳管柴蒙鲍华喻祁蒲房滕屈饶解牟艾尤阳时穆农司卓古吉缪简车项连芦麦褚娄窦戚岑景党宫费卜冷晏席卫米柏宗瞿桂全佟应臧闵苟邬边卞姬师和仇栾隋甄家封郁')
+CJK_STOP = re.compile(r'查看|更多|尾页|首页|下一页|上一页|信息|资源|概况|简介|论文|获奖|课程|新闻|动态|招生|联系|主任|导师|教师|师资|研究|学生|成员|团队|通知|公告|链接|登录|搜索')
+
+
 def is_person_text(t):
     t = t.strip()
     if t in NOT_NAME or NOT_NAME_LAT.search(t):
         return False
-    return bool(NAME_CJK.match(norm_name(t)) or NAME_LAT.match(t))
+    n = norm_name(t)
+    if NAME_CJK.match(n):
+        return n[0] in SURNAMES and not CJK_STOP.search(n)
+    return bool(NAME_LAT.match(t))
 
 
 def build(school, do_live=True, workers=6):
@@ -475,6 +482,11 @@ def build(school, do_live=True, workers=6):
             with ThreadPoolExecutor(workers) as ex:
                 list(ex.map(fet.get, list(dict.fromkeys(second))))
 
+    group_host_pis = defaultdict(set)
+    for pi_, lst_ in pending.items():
+        for kind_, href_, *_r in lst_:
+            if kind_ in ('group', 'pi_home'):
+                group_host_pis[urllib.parse.urlsplit(href_).hostname].add(pi_)
     link_index = {}
     for u, v in list(live.pages.items()):
         if v.get('raw') and v['source'] == 'staged':
@@ -563,10 +575,11 @@ def build(school, do_live=True, workers=6):
                 out.append(base | dict(kind='pi_other', url=href, found_from=ff, link_type='external organisation or centre link; the page does not name the PI',
                                        **fetched_fields(href, rec)))
                 continue
-            if names_pi:
-                kept_hosts.add(urllib.parse.urlsplit(href).hostname)
+            if names_pi and len(group_host_pis[urllib.parse.urlsplit(href).hostname]) < 2:
+                kept_hosts.add(urllib.parse.urlsplit(href).hostname)    # a host shared by 2+ PIs is a centre or department, not one lab
             out.append(base | dict(kind='group' if kind == 'group' else 'pi_home', url=href, found_from=ff) | fetched_fields(href, rec))
-        people_pages = [x for x in people_pages if urllib.parse.urlsplit(x[0]).hostname in kept_hosts]
+        people_pages = [x for x in people_pages if urllib.parse.urlsplit(x[0]).hostname in kept_hosts
+                        and not (SECTION_PAGE.search(urllib.parse.urlsplit(x[0]).path) and first_seg(x[0]).isdigit())]
         # other (non-fetchable) outbound personal links on the profile / home pages
         for u0, rec0 in pi_sites.get(pi, []):
             for href, text in anchors(rec0['raw'], rec0.get('final_url') or u0):
@@ -597,6 +610,11 @@ def build(school, do_live=True, workers=6):
             if sum(1 for _t, _h, ro in page_items if ro and '导师' in ro) >= 3:
                 continue        # a supervisor directory, not a lab-member list
             for t, h, role in page_items:
+                if re.match(r'(?:Prof|Dr)\b\.?\s', t) or re.search(r'\bProfessor\b', t):
+                    continue        # faculty, not a lab member
+                m_role = re.search(r'\s+(Undergraduate|Master|PhD|Ph\.D\.?|Postdoc|Alumni|Visiting)\w*$', t)
+                if m_role:
+                    t, role = t[:m_role.start()], role or m_role.group(1)
                 if t in nav_texts or LATIN_NAV.search(t):
                     continue
                 try:
@@ -609,8 +627,10 @@ def build(school, do_live=True, workers=6):
                 if (norm_url(full) in {norm_url(pbase), norm_url(site or ''), norm_url(prof or '')} or (t, full) in seen_m
                         or norm_name(t) == norm_name(pi) or (pr.path in ('', '/') and pr.hostname == urllib.parse.urlsplit(pbase).hostname) or SECTION_PAGE.search(pr.path) or BAD_LINK_HOST.search(pr.hostname or '')):
                     continue
-                if W.NOT_A_SITE.search(pr.hostname or '') or 'weixin' in (pr.hostname or '') or pr.hostname == 'githubstatus.com':
+                if W.NOT_A_SITE.search(pr.hostname or '') or 'weixin' in (pr.hostname or '') or pr.hostname in ('githubstatus.com', 'portal.acm.org'):
                     continue
+                if W.NOT_FETCHABLE.search(pr.hostname or '') or 'research.google.com' in (pr.hostname or ''):
+                    continue        # a profile on an aggregator is not the person's own page
                 seen_m.add((t, full))
                 uu, mrec = live.find(full)
                 row = dict(person=t.strip(), role='member', lab=pi, kind='member_home', url=full,
@@ -629,8 +649,8 @@ def build(school, do_live=True, workers=6):
 
 DOUBTFUL = {('pku', '苗旭鹏', 'https://www.pdl.cmu.edu/'): 'linked from own page but appears to be another lab'}
 ROLE_OK = re.compile(r'^(?:博士后|博士生?|博士研究生|硕士生?|硕士研究生|研究生|本科生?|在读|已毕业|毕业生|校友|访问学生|访问学者|科研助理|实习生|'
-                     r'(?:Ph\.?D|Master|M\.?S|Undergrad|Postdoc|Alumni|Visiting|Intern|Research (?:Assistant|Scientist)|Past|Current|Former|Graduate)'
-                     r'[A-Za-z .,()\d-]{0,25}):?$', re.I)
+                     r'(?:Ph\.?D|Master|M\.?S|Undergrad|Postdoc|Alumni|Visiting|Intern|Research (?:Assistant|Scientist)|Graduate)'
+                     r'[A-Za-z .,()\d-]{0,25}|(?:Past|Current|Former)[A-Za-z .,()\d-]{0,12}(?:Student|PhD|Ph\.D|MS|Master|Member|Alumni|Postdoc)[A-Za-z .,()\d-]{0,12}):?$', re.I)
 
 
 def clean_members(rows):
