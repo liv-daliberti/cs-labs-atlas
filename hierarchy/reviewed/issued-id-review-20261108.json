@@ -531,6 +531,2240 @@
         "reviewed_at": "2026-11-08",
         "why": "Both exact native memberships independently link the complete name to the same primary named person page. Full original captures independently replayed. Keep the earliest-issued then lexical ID; aliases remain resolvable. Explicit review only; no automatic multiple-issued guard waiver."
       }
+    },
+    {
+      "school": "cmu",
+      "native_person": "ext:cmu:jiin-woo",
+      "canonical_name": "Jiin Woo",
+      "memberships": [
+        {
+          "pi": "Yuejie Chi",
+          "person": "ext:cmu:jiin-woo"
+        },
+        {
+          "pi": "Gauri Joshi",
+          "person": "ext:cmu:jiin-woo"
+        }
+      ],
+      "reviewer": "Codex",
+      "reviewed_on": "2026-11-09",
+      "verdict": "same_person",
+      "reason": "Independent original-source review and ordinary source-guard closure on exact paired member after-states; explicit issued-ID decision only. Preserve every original source, name, role, year and unrelated member. Controlled full native scientific validation and root CAS approval/application remain required.",
+      "source_review_packet": "four-redirect-review-20261109/issued-id-four-redirects-PROPOSAL.json",
+      "ordinary_source_proof": {
+        "school": "cmu",
+        "native_person": "ext:cmu:jiin-woo",
+        "records": [
+          {
+            "pi": "Yuejie Chi",
+            "name": "Jiin Woo"
+          },
+          {
+            "pi": "Gauri Joshi",
+            "name": "Jiin Woo"
+          }
+        ],
+        "student_specific_clauses": [
+          {
+            "pi": "Gauri Joshi",
+            "url": "https://www.andrew.cmu.edu/user/gaurij/Group.html",
+            "sha256": "38dff8a2854630a2d03436da664a6cf8c7cae3f8243db5ea4718decea8e34508",
+            "span": {
+              "start": 0,
+              "end": 35,
+              "text": "Jiin Woo (co-advised by Yuejie Chi "
+            }
+          },
+          {
+            "pi": "Gauri Joshi",
+            "url": "https://www.andrew.cmu.edu/user/gaurij/Group.html",
+            "sha256": "38dff8a2854630a2d03436da664a6cf8c7cae3f8243db5ea4718decea8e34508",
+            "span": {
+              "start": 0,
+              "end": 35,
+              "text": "Jiin Woo (co-advised by Yuejie Chi "
+            }
+          }
+        ],
+        "keys": [
+          [
+            "stu",
+            "cmu",
+            "Yuejie Chi",
+            "ext:cmu:jiin-woo"
+          ],
+          [
+            "stu",
+            "cmu",
+            "Gauri Joshi",
+            "ext:cmu:jiin-woo"
+          ]
+        ],
+        "basis": "shared_identity_anchor",
+        "sources": [],
+        "shared_anchors": [
+          {
+            "from_pi": "Yuejie Chi",
+            "to_pi": "Gauri Joshi",
+            "anchors": [
+              [
+                "name",
+                "cmu:jiin-woo:https://yuejiechi.github.io/group.html"
+              ]
+            ]
+          },
+          {
+            "from_pi": "Gauri Joshi",
+            "to_pi": "Yuejie Chi",
+            "anchors": [
+              [
+                "name",
+                "cmu:jiin-woo:https://yuejiechi.github.io/group.html"
+              ]
+            ]
+          }
+        ]
+      },
+      "expected_current_and_after_source_members": [
+        {
+          "pi": "Yuejie Chi",
+          "person": "ext:cmu:jiin-woo",
+          "current_whole_member": {
+            "person": "ext:cmu:jiin-woo",
+            "name": "Jiin Woo",
+            "roles": [
+              "phd"
+            ],
+            "relations": [
+              {
+                "type": "researched_advising",
+                "years": [
+                  2026
+                ],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://yuejiechi.github.io/group.html",
+                    "sha256": "a58dffe3dd51543d5792b00ecd4e94adeb55f0e7d45f6cac50fd6ceac1633729",
+                    "quote": "Jiin Woo , CMU Ph.D. 2026 (co-advised with Gauri Joshi)"
+                  }
+                ]
+              },
+              {
+                "type": "researched_advising",
+                "years": [
+                  2021,
+                  2026
+                ],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://yuejiechi.github.io/group.html",
+                    "sha256": "a58dffe3dd51543d5792b00ecd4e94adeb55f0e7d45f6cac50fd6ceac1633729",
+                    "quote": "Jiin Woo , CMU Ph.D. 2026"
+                  }
+                ]
+              }
+            ]
+          },
+          "current_sha256": "a179febe32e611524427402e681a9dcfba546bc1367e95d60de15b62ae5ac866",
+          "expected_after_source_build_member": {
+            "person": "ext:cmu:jiin-woo",
+            "name": "Jiin Woo",
+            "roles": [
+              "phd"
+            ],
+            "relations": [
+              {
+                "type": "researched_advising",
+                "years": [
+                  2026
+                ],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://yuejiechi.github.io/group.html",
+                    "sha256": "a58dffe3dd51543d5792b00ecd4e94adeb55f0e7d45f6cac50fd6ceac1633729",
+                    "quote": "Jiin Woo , CMU Ph.D. 2026 (co-advised with Gauri Joshi)"
+                  }
+                ]
+              },
+              {
+                "type": "researched_advising",
+                "years": [
+                  2026
+                ],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://yuejiechi.github.io/group.html",
+                    "sha256": "a58dffe3dd51543d5792b00ecd4e94adeb55f0e7d45f6cac50fd6ceac1633729",
+                    "quote": "Jiin Woo , CMU Ph.D. 2026 (co-advised with Gauri Joshi) Dissertation: \" Federated Reinforcement Learning for Efficient and Collaborative Decision Making \" Current: Amazon"
+                  }
+                ]
+              },
+              {
+                "type": "researched_advising",
+                "years": [
+                  2021,
+                  2026
+                ],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://yuejiechi.github.io/group.html",
+                    "sha256": "a58dffe3dd51543d5792b00ecd4e94adeb55f0e7d45f6cac50fd6ceac1633729",
+                    "quote": "Jiin Woo , CMU Ph.D. 2026"
+                  }
+                ]
+              }
+            ]
+          },
+          "expected_after_sha256": "1e6a6ade7d86a9888117ebba116711d7679d226d038dd573692ec21f4e9496c7"
+        },
+        {
+          "pi": "Gauri Joshi",
+          "person": "ext:cmu:jiin-woo",
+          "current_whole_member": {
+            "person": "ext:cmu:jiin-woo",
+            "name": "Jiin Woo",
+            "roles": [
+              "phd"
+            ],
+            "relations": [
+              {
+                "type": "researched_advising",
+                "years": [
+                  2026
+                ],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://www.andrew.cmu.edu/user/gaurij/Group.html",
+                    "sha256": "38dff8a2854630a2d03436da664a6cf8c7cae3f8243db5ea4718decea8e34508",
+                    "quote": "Jiin Woo (co-advised by Yuejie Chi ), PhD 2026"
+                  }
+                ]
+              },
+              {
+                "type": "researched_advising",
+                "years": [
+                  2026
+                ],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://www.andrew.cmu.edu/user/gaurij/Group.html",
+                    "sha256": "38dff8a2854630a2d03436da664a6cf8c7cae3f8243db5ea4718decea8e34508",
+                    "quote": "Jiin Woo (co-advised by Yuejie Chi ), PhD 2026"
+                  }
+                ]
+              }
+            ]
+          },
+          "current_sha256": "ce7e96bc893a2472ffd5b65f60243d667aa1942d2aab8c8aea1c2389e0591006",
+          "expected_after_source_build_member": {
+            "person": "ext:cmu:jiin-woo",
+            "name": "Jiin Woo",
+            "roles": [
+              "phd"
+            ],
+            "relations": [
+              {
+                "type": "researched_advising",
+                "years": [
+                  2026
+                ],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://www.andrew.cmu.edu/user/gaurij/Group.html",
+                    "sha256": "38dff8a2854630a2d03436da664a6cf8c7cae3f8243db5ea4718decea8e34508",
+                    "quote": "Jiin Woo (co-advised by Yuejie Chi ), PhD 2026"
+                  }
+                ]
+              },
+              {
+                "type": "researched_advising",
+                "years": [
+                  2026
+                ],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://yuejiechi.github.io/group.html",
+                    "sha256": "a58dffe3dd51543d5792b00ecd4e94adeb55f0e7d45f6cac50fd6ceac1633729",
+                    "quote": "Jiin Woo , CMU Ph.D. 2026 (co-advised with Gauri Joshi) Dissertation: \" Federated Reinforcement Learning for Efficient and Collaborative Decision Making \" Current: Amazon"
+                  }
+                ]
+              },
+              {
+                "type": "researched_advising",
+                "years": [
+                  2026
+                ],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://www.andrew.cmu.edu/user/gaurij/Group.html",
+                    "sha256": "38dff8a2854630a2d03436da664a6cf8c7cae3f8243db5ea4718decea8e34508",
+                    "quote": "Jiin Woo (co-advised by Yuejie Chi ), PhD 2026"
+                  }
+                ]
+              }
+            ]
+          },
+          "expected_after_sha256": "9aa12bcd03620deb16b98733b625f2c475b5cd6acf3d838ccad322f7b964e1ac"
+        }
+      ],
+      "issued_id_review": {
+        "scope": "explicit_issued_person_redirect_review_no_automatic_execution",
+        "survivor": "atl:p:57c86db0e45e",
+        "aliases": [
+          "atl:p:c324f88c2ff7"
+        ],
+        "source_registry_sha256": "2eb56d168115cb40c0a6e90480c93793dc50d7bda55da4dac4e0c06f8c9852eb",
+        "source_registry_fingerprint": {
+          "schema_sha256": "857d07e996ea4f455fbcc6b67c08b6f77bfc39e03f479c449b527ed2f4218d3a",
+          "tables": {
+            "anchors": {
+              "rows": 386577,
+              "sha256": "b4870833b022f7eb8663505f4b6b5cc0192d51a2011aed13a8897cd792d8938a"
+            },
+            "ids": {
+              "rows": 178921,
+              "sha256": "3de1cdc253cf9a16ec3021d50fc94f2608cc963e8dccc24f738e868b98be5e43"
+            },
+            "meta": {
+              "rows": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          }
+        },
+        "expected_before_ids": [
+          {
+            "id": "atl:p:57c86db0e45e",
+            "kind": "person",
+            "minted_from": "p|name:cmu:jiin-woo:https://www.andrew.cmu.edu/user/gaurij/Group.html",
+            "issued": "2026-10-30",
+            "status": "active",
+            "redirect_to": null,
+            "note": null
+          },
+          {
+            "id": "atl:p:c324f88c2ff7",
+            "kind": "person",
+            "minted_from": "p|name:cmu:jiin-woo:https://yuejiechi.github.io/group.html",
+            "issued": "2026-10-30",
+            "status": "active",
+            "redirect_to": null,
+            "note": null
+          }
+        ],
+        "expected_before_anchors": [
+          {
+            "anchor": "p|name:cmu:jiin-woo:https://www.andrew.cmu.edu/user/gaurij/Group.html",
+            "id": "atl:p:57c86db0e45e",
+            "kind": "person",
+            "first_seen": "2026-10-30"
+          },
+          {
+            "anchor": "p|name:cmu:jiin-woo:https://yuejiechi.github.io/group.html",
+            "id": "atl:p:c324f88c2ff7",
+            "kind": "person",
+            "first_seen": "2026-10-30"
+          }
+        ],
+        "reviewed_by": "codex-id-reviews-1109",
+        "reviewed_at": "2026-11-09",
+        "application_preconditions": [
+          "Controlled normal native CMU/Michigan rebuild consumes db622ce source appends",
+          "Recheck exact full current native member preimages; regenerate decision if changed",
+          "Independently root-review original source proofs and current whole registry CAS",
+          "No frozen scientific job active; preserve whole pre-application registry backup",
+          "Use existing explicit redirect transaction; do not weaken ordinary issued-ID guard"
+        ]
+      },
+      "application_status": "conditional_not_applied",
+      "required_next": "Controlled full native member/paper/link validation, independent scientific delta review, and exact registry/member preimage revalidation before explicit application."
+    },
+    {
+      "school": "cmu",
+      "native_person": "ext:cmu:samarth-gupta",
+      "canonical_name": "Samarth Gupta",
+      "memberships": [
+        {
+          "pi": "Gauri Joshi",
+          "person": "ext:cmu:samarth-gupta"
+        },
+        {
+          "pi": "Osman Yağan",
+          "person": "ext:cmu:samarth-gupta"
+        }
+      ],
+      "reviewer": "Codex",
+      "reviewed_on": "2026-11-09",
+      "verdict": "same_person",
+      "reason": "Independent original-source review and ordinary source-guard closure on exact paired member after-states; explicit issued-ID decision only. Preserve every original source, name, role, year and unrelated member. Controlled full native scientific validation and root CAS approval/application remain required.",
+      "source_review_packet": "four-redirect-review-20261109/issued-id-four-redirects-PROPOSAL.json",
+      "ordinary_source_proof": {
+        "school": "cmu",
+        "native_person": "ext:cmu:samarth-gupta",
+        "records": [
+          {
+            "pi": "Gauri Joshi",
+            "name": "Samarth Gupta"
+          },
+          {
+            "pi": "Osman Yağan",
+            "name": "Samarth Gupta"
+          }
+        ],
+        "student_specific_clauses": [
+          {
+            "pi": "Gauri Joshi",
+            "url": "https://www.andrew.cmu.edu/user/gaurij/Group.html",
+            "sha256": "38dff8a2854630a2d03436da664a6cf8c7cae3f8243db5ea4718decea8e34508",
+            "span": {
+              "start": 0,
+              "end": 41,
+              "text": "Samarth Gupta (co-advised by Osman Yaǧan "
+            }
+          },
+          {
+            "pi": "Gauri Joshi",
+            "url": "https://www.andrew.cmu.edu/user/gaurij/Group.html",
+            "sha256": "38dff8a2854630a2d03436da664a6cf8c7cae3f8243db5ea4718decea8e34508",
+            "span": {
+              "start": 0,
+              "end": 41,
+              "text": "Samarth Gupta (co-advised by Osman Yaǧan "
+            }
+          }
+        ],
+        "keys": [
+          [
+            "stu",
+            "cmu",
+            "Gauri Joshi",
+            "ext:cmu:samarth-gupta"
+          ],
+          [
+            "stu",
+            "cmu",
+            "Osman Yağan",
+            "ext:cmu:samarth-gupta"
+          ]
+        ],
+        "basis": "shared_identity_anchor",
+        "sources": [],
+        "shared_anchors": [
+          {
+            "from_pi": "Gauri Joshi",
+            "to_pi": "Osman Yağan",
+            "anchors": [
+              [
+                "name",
+                "cmu:samarth-gupta:https://api.figshare.com/v2/articles/21865533"
+              ]
+            ]
+          },
+          {
+            "from_pi": "Osman Yağan",
+            "to_pi": "Gauri Joshi",
+            "anchors": [
+              [
+                "name",
+                "cmu:samarth-gupta:https://api.figshare.com/v2/articles/21865533"
+              ]
+            ]
+          }
+        ]
+      },
+      "expected_current_and_after_source_members": [
+        {
+          "pi": "Gauri Joshi",
+          "person": "ext:cmu:samarth-gupta",
+          "current_whole_member": {
+            "person": "ext:cmu:samarth-gupta",
+            "name": "Samarth Gupta",
+            "roles": [
+              "phd"
+            ],
+            "relations": [
+              {
+                "type": "researched_advising",
+                "years": [
+                  2022
+                ],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://www.andrew.cmu.edu/user/gaurij/Group.html",
+                    "sha256": "38dff8a2854630a2d03436da664a6cf8c7cae3f8243db5ea4718decea8e34508",
+                    "quote": "Samarth Gupta (co-advised by Osman Yaǧan ), PhD 2022"
+                  }
+                ]
+              },
+              {
+                "type": "researched_advising",
+                "years": [
+                  2022
+                ],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://www.andrew.cmu.edu/user/gaurij/Group.html",
+                    "sha256": "38dff8a2854630a2d03436da664a6cf8c7cae3f8243db5ea4718decea8e34508",
+                    "quote": "Samarth Gupta (co-advised by Osman Yaǧan ), PhD 2022"
+                  }
+                ]
+              }
+            ]
+          },
+          "current_sha256": "4e25524c91a6bb243cdcbe021015609b8cae531d51b38a1bc13a82afdfed9faa",
+          "expected_after_source_build_member": {
+            "person": "ext:cmu:samarth-gupta",
+            "name": "Samarth Gupta",
+            "roles": [
+              "phd"
+            ],
+            "relations": [
+              {
+                "type": "researched_advising",
+                "years": [
+                  2022
+                ],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://www.andrew.cmu.edu/user/gaurij/Group.html",
+                    "sha256": "38dff8a2854630a2d03436da664a6cf8c7cae3f8243db5ea4718decea8e34508",
+                    "quote": "Samarth Gupta (co-advised by Osman Yaǧan ), PhD 2022"
+                  }
+                ]
+              },
+              {
+                "type": "researched_advising",
+                "years": [
+                  2022,
+                  2022
+                ],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://api.figshare.com/v2/articles/21865533",
+                    "sha256": "32f5b0db2ed1bcf4d139ca3d640a93291f501990ec0e2189126bdfd894fbbc6c",
+                    "quote": "\"full_name\": \"Samarth Gupta\", \"first_name\": \"Samarth\", \"last_name\": \"Gupta\", \"is_active\": true, \"url_name\": \"Samarth_Gupta\", \"orcid_id\": \"\"}], \"custom_fields\": [{\"name\": \"Publisher Statement\", \"value\": \"\", \"settings\": {\"validations\": {\"min_length\": 2, \"max_length\": 2000}, \"placeholder\": \"Add the text and full citation to the published version.\"}, \"field_type\": \"textarea\", \"order\": null, \"is_mandatory\": false}, {\"name\": \"Date\", \"value\": \"2022-05-02\", \"settings\": {}, \"field_type\": \"date\", \"order\": null, \"is_mandatory\": false}, {\"name\": \"Degree Type\", \"value\": [\"Dissertation\"], \"settings\": {\"options\": [\"Master's Thesis\", \"Dissertation\"], \"placeholder\": \"Degree Type\", \"is_multiple\": false}, \"field_type\": \"dropdown\", \"order\": null, \"is_mandatory\": false}, {\"name\": \"Thesis Department\", \"value\": [\"Electrical and Computer Engineering\"], \"settings\": {\"options\": [\"Architecture\", \"Art\", \"Biological Sciences\", \"Biomedical Engineering\", \"Center for the Neural Basis of Cognition\", \"Chemical Engineering\", \"Chemistry\", \"Civil and Environmental Engineering\", \"Computer Science\", \"Design\", \"Economics\", \"Electrical and Computer Engineering\", \"Engineering and Public Policy\", \"English\", \"History\", \"Human-Computer Interaction Institute\", \"Information Networking Institute\", \"Information Systems and Management\", \"Institute for Software Research\", \"Language Technologies Institute\", \"Machine Learning\", \"Materials Science and Engineering\", \"Mathematical Sciences\", \"Mechanical Engineering\", \"Metallurgical Engineering\", \"Mining Engineering\", \"Modern Languages\", \"Philosophy\", \"Physics\", \"Psychology\", \"Public Policy and Management\", \"Robotics Institute\", \"Social and Decision Sciences\", \"Statistics and Data Science\", \"Tepper School of Business\", \"Drama\", \"Neuroscience Institute\", \"Information Security Policy and Management\", \"Music\", \"Institute for Politics and Strategy\", \"Software and Societal Systems (S3D)\"], \"placeholder\": \"Department\", \"is_multiple\": false}, \"field_type\": \"dropdown\", \"order\": null, \"is_mandatory\": false}, {\"name\": \"Degree Name\", \"value\": [\"Doctor of Philosophy (PhD)\"], \"settings\": {\"options\": [\"Doctor of Philosophy (PhD)\", \"Master of Architecture (MArch)\", \"Master of Arts (MA)\", \"Master of Arts Management (MAM)\", \"Master of Design (MDes)\", \"Master of Entertainment Technology (MET)\", \"Master of Information Systems Management (MISM)\", \"Master of Product Development (MPD)\", \"Master of Science (MS)\", \"Master of Science in Chemical Engineering (MSChE)\", \"Master of Science in Information Security Policy and Management (MSISPM)\", \"Master of Science in Information Technology (MSIT)\", \"Master of Science in Public Policy and Management (MSPPM)\", \"Master of Science in Sustainable Design (MSSD)\", \"Master of Urban Planning (MUP)\", \"Master of Statistical Practice (MSP)\", \"Master of Fine Arts (MFA)\", \"Master of Science in Computational Design (MSCD)\", \"Master of Language Technologies\", \"Master of Science in Information Security Policy (MSISPM)\", \"Master of Music\"], \"placeholder\": \"Degree Name\", \"is_multiple\": true}, \"field_type\": \"dropdown\", \"order\": null, \"is_mandatory\": false}, {\"name\": \"Advisor(s)\", \"value\": \"Gauri Joshi, Osman Yağan\""
+                  }
+                ]
+              },
+              {
+                "type": "researched_advising",
+                "years": [
+                  2022
+                ],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://www.andrew.cmu.edu/user/gaurij/Group.html",
+                    "sha256": "38dff8a2854630a2d03436da664a6cf8c7cae3f8243db5ea4718decea8e34508",
+                    "quote": "Samarth Gupta (co-advised by Osman Yaǧan ), PhD 2022"
+                  }
+                ]
+              }
+            ]
+          },
+          "expected_after_sha256": "78713420480ce368886f8bc9141f40fa1235a0c41d74c4318a70d41b739a5e1a"
+        },
+        {
+          "pi": "Osman Yağan",
+          "person": "ext:cmu:samarth-gupta",
+          "current_whole_member": {
+            "person": "ext:cmu:samarth-gupta",
+            "name": "Samarth Gupta",
+            "roles": [
+              "phd"
+            ],
+            "relations": [
+              {
+                "type": "researched_advising",
+                "years": [
+                  2022,
+                  2022
+                ],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://api.figshare.com/v2/articles/21865533",
+                    "sha256": "32f5b0db2ed1bcf4d139ca3d640a93291f501990ec0e2189126bdfd894fbbc6c",
+                    "quote": "\"full_name\": \"Samarth Gupta\", \"first_name\": \"Samarth\", \"last_name\": \"Gupta\", \"is_active\": true, \"url_name\": \"Samarth_Gupta\", \"orcid_id\": \"\"}], \"custom_fields\": [{\"name\": \"Publisher Statement\", \"value\": \"\", \"settings\": {\"validations\": {\"min_length\": 2, \"max_length\": 2000}, \"placeholder\": \"Add the text and full citation to the published version.\"}, \"field_type\": \"textarea\", \"order\": null, \"is_mandatory\": false}, {\"name\": \"Date\", \"value\": \"2022-05-02\", \"settings\": {}, \"field_type\": \"date\", \"order\": null, \"is_mandatory\": false}, {\"name\": \"Degree Type\", \"value\": [\"Dissertation\"], \"settings\": {\"options\": [\"Master's Thesis\", \"Dissertation\"], \"placeholder\": \"Degree Type\", \"is_multiple\": false}, \"field_type\": \"dropdown\", \"order\": null, \"is_mandatory\": false}, {\"name\": \"Thesis Department\", \"value\": [\"Electrical and Computer Engineering\"], \"settings\": {\"options\": [\"Architecture\", \"Art\", \"Biological Sciences\", \"Biomedical Engineering\", \"Center for the Neural Basis of Cognition\", \"Chemical Engineering\", \"Chemistry\", \"Civil and Environmental Engineering\", \"Computer Science\", \"Design\", \"Economics\", \"Electrical and Computer Engineering\", \"Engineering and Public Policy\", \"English\", \"History\", \"Human-Computer Interaction Institute\", \"Information Networking Institute\", \"Information Systems and Management\", \"Institute for Software Research\", \"Language Technologies Institute\", \"Machine Learning\", \"Materials Science and Engineering\", \"Mathematical Sciences\", \"Mechanical Engineering\", \"Metallurgical Engineering\", \"Mining Engineering\", \"Modern Languages\", \"Philosophy\", \"Physics\", \"Psychology\", \"Public Policy and Management\", \"Robotics Institute\", \"Social and Decision Sciences\", \"Statistics and Data Science\", \"Tepper School of Business\", \"Drama\", \"Neuroscience Institute\", \"Information Security Policy and Management\", \"Music\", \"Institute for Politics and Strategy\", \"Software and Societal Systems (S3D)\"], \"placeholder\": \"Department\", \"is_multiple\": false}, \"field_type\": \"dropdown\", \"order\": null, \"is_mandatory\": false}, {\"name\": \"Degree Name\", \"value\": [\"Doctor of Philosophy (PhD)\"], \"settings\": {\"options\": [\"Doctor of Philosophy (PhD)\", \"Master of Architecture (MArch)\", \"Master of Arts (MA)\", \"Master of Arts Management (MAM)\", \"Master of Design (MDes)\", \"Master of Entertainment Technology (MET)\", \"Master of Information Systems Management (MISM)\", \"Master of Product Development (MPD)\", \"Master of Science (MS)\", \"Master of Science in Chemical Engineering (MSChE)\", \"Master of Science in Information Security Policy and Management (MSISPM)\", \"Master of Science in Information Technology (MSIT)\", \"Master of Science in Public Policy and Management (MSPPM)\", \"Master of Science in Sustainable Design (MSSD)\", \"Master of Urban Planning (MUP)\", \"Master of Statistical Practice (MSP)\", \"Master of Fine Arts (MFA)\", \"Master of Science in Computational Design (MSCD)\", \"Master of Language Technologies\", \"Master of Science in Information Security Policy (MSISPM)\", \"Master of Music\"], \"placeholder\": \"Degree Name\", \"is_multiple\": true}, \"field_type\": \"dropdown\", \"order\": null, \"is_mandatory\": false}, {\"name\": \"Advisor(s)\", \"value\": \"Gauri Joshi, Osman Yağan\""
+                  }
+                ]
+              }
+            ]
+          },
+          "current_sha256": "d058a0ced574336cea1976929725497f8ccfe3c3ba0012f842f91ad518dfcad4",
+          "expected_after_source_build_member": {
+            "person": "ext:cmu:samarth-gupta",
+            "name": "Samarth Gupta",
+            "roles": [
+              "phd"
+            ],
+            "relations": [
+              {
+                "type": "researched_advising",
+                "years": [
+                  2022,
+                  2022
+                ],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://api.figshare.com/v2/articles/21865533",
+                    "sha256": "32f5b0db2ed1bcf4d139ca3d640a93291f501990ec0e2189126bdfd894fbbc6c",
+                    "quote": "\"full_name\": \"Samarth Gupta\", \"first_name\": \"Samarth\", \"last_name\": \"Gupta\", \"is_active\": true, \"url_name\": \"Samarth_Gupta\", \"orcid_id\": \"\"}], \"custom_fields\": [{\"name\": \"Publisher Statement\", \"value\": \"\", \"settings\": {\"validations\": {\"min_length\": 2, \"max_length\": 2000}, \"placeholder\": \"Add the text and full citation to the published version.\"}, \"field_type\": \"textarea\", \"order\": null, \"is_mandatory\": false}, {\"name\": \"Date\", \"value\": \"2022-05-02\", \"settings\": {}, \"field_type\": \"date\", \"order\": null, \"is_mandatory\": false}, {\"name\": \"Degree Type\", \"value\": [\"Dissertation\"], \"settings\": {\"options\": [\"Master's Thesis\", \"Dissertation\"], \"placeholder\": \"Degree Type\", \"is_multiple\": false}, \"field_type\": \"dropdown\", \"order\": null, \"is_mandatory\": false}, {\"name\": \"Thesis Department\", \"value\": [\"Electrical and Computer Engineering\"], \"settings\": {\"options\": [\"Architecture\", \"Art\", \"Biological Sciences\", \"Biomedical Engineering\", \"Center for the Neural Basis of Cognition\", \"Chemical Engineering\", \"Chemistry\", \"Civil and Environmental Engineering\", \"Computer Science\", \"Design\", \"Economics\", \"Electrical and Computer Engineering\", \"Engineering and Public Policy\", \"English\", \"History\", \"Human-Computer Interaction Institute\", \"Information Networking Institute\", \"Information Systems and Management\", \"Institute for Software Research\", \"Language Technologies Institute\", \"Machine Learning\", \"Materials Science and Engineering\", \"Mathematical Sciences\", \"Mechanical Engineering\", \"Metallurgical Engineering\", \"Mining Engineering\", \"Modern Languages\", \"Philosophy\", \"Physics\", \"Psychology\", \"Public Policy and Management\", \"Robotics Institute\", \"Social and Decision Sciences\", \"Statistics and Data Science\", \"Tepper School of Business\", \"Drama\", \"Neuroscience Institute\", \"Information Security Policy and Management\", \"Music\", \"Institute for Politics and Strategy\", \"Software and Societal Systems (S3D)\"], \"placeholder\": \"Department\", \"is_multiple\": false}, \"field_type\": \"dropdown\", \"order\": null, \"is_mandatory\": false}, {\"name\": \"Degree Name\", \"value\": [\"Doctor of Philosophy (PhD)\"], \"settings\": {\"options\": [\"Doctor of Philosophy (PhD)\", \"Master of Architecture (MArch)\", \"Master of Arts (MA)\", \"Master of Arts Management (MAM)\", \"Master of Design (MDes)\", \"Master of Entertainment Technology (MET)\", \"Master of Information Systems Management (MISM)\", \"Master of Product Development (MPD)\", \"Master of Science (MS)\", \"Master of Science in Chemical Engineering (MSChE)\", \"Master of Science in Information Security Policy and Management (MSISPM)\", \"Master of Science in Information Technology (MSIT)\", \"Master of Science in Public Policy and Management (MSPPM)\", \"Master of Science in Sustainable Design (MSSD)\", \"Master of Urban Planning (MUP)\", \"Master of Statistical Practice (MSP)\", \"Master of Fine Arts (MFA)\", \"Master of Science in Computational Design (MSCD)\", \"Master of Language Technologies\", \"Master of Science in Information Security Policy (MSISPM)\", \"Master of Music\"], \"placeholder\": \"Degree Name\", \"is_multiple\": true}, \"field_type\": \"dropdown\", \"order\": null, \"is_mandatory\": false}, {\"name\": \"Advisor(s)\", \"value\": \"Gauri Joshi, Osman Yağan\""
+                  }
+                ]
+              }
+            ]
+          },
+          "expected_after_sha256": "d058a0ced574336cea1976929725497f8ccfe3c3ba0012f842f91ad518dfcad4"
+        }
+      ],
+      "issued_id_review": {
+        "scope": "explicit_issued_person_redirect_review_no_automatic_execution",
+        "survivor": "atl:p:07820555b0d9",
+        "aliases": [
+          "atl:p:95614f4f585b"
+        ],
+        "source_registry_sha256": "2eb56d168115cb40c0a6e90480c93793dc50d7bda55da4dac4e0c06f8c9852eb",
+        "source_registry_fingerprint": {
+          "schema_sha256": "857d07e996ea4f455fbcc6b67c08b6f77bfc39e03f479c449b527ed2f4218d3a",
+          "tables": {
+            "anchors": {
+              "rows": 386577,
+              "sha256": "b4870833b022f7eb8663505f4b6b5cc0192d51a2011aed13a8897cd792d8938a"
+            },
+            "ids": {
+              "rows": 178921,
+              "sha256": "3de1cdc253cf9a16ec3021d50fc94f2608cc963e8dccc24f738e868b98be5e43"
+            },
+            "meta": {
+              "rows": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          }
+        },
+        "expected_before_ids": [
+          {
+            "id": "atl:p:07820555b0d9",
+            "kind": "person",
+            "minted_from": "p|name:cmu:samarth-gupta:https://api.figshare.com/v2/articles/21865533",
+            "issued": "2026-10-30",
+            "status": "active",
+            "redirect_to": null,
+            "note": null
+          },
+          {
+            "id": "atl:p:95614f4f585b",
+            "kind": "person",
+            "minted_from": "p|name:cmu:samarth-gupta:https://www.andrew.cmu.edu/user/gaurij/Group.html",
+            "issued": "2026-10-30",
+            "status": "active",
+            "redirect_to": null,
+            "note": null
+          }
+        ],
+        "expected_before_anchors": [
+          {
+            "anchor": "p|name:cmu:samarth-gupta:https://api.figshare.com/v2/articles/21865533",
+            "id": "atl:p:07820555b0d9",
+            "kind": "person",
+            "first_seen": "2026-10-30"
+          },
+          {
+            "anchor": "p|name:cmu:samarth-gupta:https://www.andrew.cmu.edu/user/gaurij/Group.html",
+            "id": "atl:p:95614f4f585b",
+            "kind": "person",
+            "first_seen": "2026-10-30"
+          }
+        ],
+        "reviewed_by": "codex-id-reviews-1109",
+        "reviewed_at": "2026-11-09",
+        "application_preconditions": [
+          "Controlled normal native CMU/Michigan rebuild consumes db622ce source appends",
+          "Recheck exact full current native member preimages; regenerate decision if changed",
+          "Independently root-review original source proofs and current whole registry CAS",
+          "No frozen scientific job active; preserve whole pre-application registry backup",
+          "Use existing explicit redirect transaction; do not weaken ordinary issued-ID guard"
+        ]
+      },
+      "application_status": "conditional_not_applied",
+      "required_next": "Controlled full native member/paper/link validation, independent scientific delta review, and exact registry/member preimage revalidation before explicit application."
+    },
+    {
+      "school": "cmu",
+      "native_person": "ext:cmu:souradip-ghosh",
+      "canonical_name": "Souradip Ghosh",
+      "memberships": [
+        {
+          "pi": "Brandon Lucia",
+          "person": "ext:cmu:souradip-ghosh"
+        },
+        {
+          "pi": "Nathan Beckmann",
+          "person": "ext:cmu:souradip-ghosh"
+        }
+      ],
+      "reviewer": "Codex",
+      "reviewed_on": "2026-11-09",
+      "verdict": "same_person",
+      "reason": "Independent original-source review and ordinary source-guard closure on exact paired member after-states; explicit issued-ID decision only. Preserve every original source, name, role, year and unrelated member. Controlled full native scientific validation and root CAS approval/application remain required.",
+      "source_review_packet": "four-redirect-review-20261109/issued-id-four-redirects-PROPOSAL.json",
+      "ordinary_source_proof": {
+        "school": "cmu",
+        "native_person": "ext:cmu:souradip-ghosh",
+        "records": [
+          {
+            "pi": "Brandon Lucia",
+            "name": "Souradip Ghosh"
+          },
+          {
+            "pi": "Nathan Beckmann",
+            "name": "Souradip Ghosh"
+          }
+        ],
+        "student_specific_clauses": [
+          {
+            "pi": "Brandon Lucia",
+            "url": "https://abstract.ece.cmu.edu/people.html",
+            "sha256": "e99b011c492cdf98e2eb140c6e52211e79c4e8bfed8f11993e70ae54094e342b",
+            "span": {
+              "start": 13,
+              "end": 243,
+              "text": "Souradip Ghosh co-advised w/ Nathan Beckmann Nathan Serafin co-advised w/ Nathan Beckmann Guy Wilks co-advised w/ Nathan Beckmann Sun A Cho co-advised w/ Nathan Beckmann Ania Krzyżańska co-advised w/ Ken Mai McKenzie van der Hagen"
+            }
+          }
+        ],
+        "keys": [
+          [
+            "stu",
+            "cmu",
+            "Brandon Lucia",
+            "ext:cmu:souradip-ghosh"
+          ],
+          [
+            "stu",
+            "cmu",
+            "Nathan Beckmann",
+            "ext:cmu:souradip-ghosh"
+          ]
+        ],
+        "basis": "shared_identity_anchor",
+        "sources": [],
+        "shared_anchors": [
+          {
+            "from_pi": "Brandon Lucia",
+            "to_pi": "Nathan Beckmann",
+            "anchors": [
+              [
+                "name",
+                "cmu:souradip-ghosh:https://cmu-corgi.github.io/people/souradip.html"
+              ]
+            ]
+          },
+          {
+            "from_pi": "Nathan Beckmann",
+            "to_pi": "Brandon Lucia",
+            "anchors": [
+              [
+                "name",
+                "cmu:souradip-ghosh:https://cmu-corgi.github.io/people/souradip.html"
+              ]
+            ]
+          }
+        ]
+      },
+      "expected_current_and_after_source_members": [
+        {
+          "pi": "Brandon Lucia",
+          "person": "ext:cmu:souradip-ghosh",
+          "current_whole_member": {
+            "person": "ext:cmu:souradip-ghosh",
+            "name": "Souradip Ghosh",
+            "roles": [
+              "phd"
+            ],
+            "relations": [
+              {
+                "type": "researched_advising",
+                "years": [],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://abstract.ece.cmu.edu/people.html",
+                    "sha256": "e99b011c492cdf98e2eb140c6e52211e79c4e8bfed8f11993e70ae54094e342b",
+                    "quote": "PhD Students Souradip Ghosh co-advised w/ Nathan Beckmann Nathan Serafin co-advised w/ Nathan Beckmann Guy Wilks co-advised w/ Nathan Beckmann Sun A Cho co-advised w/ Nathan Beckmann Ania Krzyżańska co-advised w/ Ken Mai McKenzie van der Hagen"
+                  }
+                ]
+              },
+              {
+                "type": "researched_advising",
+                "years": [],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://abstract.ece.cmu.edu/people.html",
+                    "sha256": "e99b011c492cdf98e2eb140c6e52211e79c4e8bfed8f11993e70ae54094e342b",
+                    "quote": "PhD Students Souradip Ghosh"
+                  }
+                ]
+              }
+            ]
+          },
+          "current_sha256": "c2be7d437bb938a092b3b316f324697b086a796c942c98c7945f5cdb48eddb59",
+          "expected_after_source_build_member": {
+            "person": "ext:cmu:souradip-ghosh",
+            "name": "Souradip Ghosh",
+            "roles": [
+              "phd"
+            ],
+            "relations": [
+              {
+                "type": "researched_advising",
+                "years": [],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://abstract.ece.cmu.edu/people.html",
+                    "sha256": "e99b011c492cdf98e2eb140c6e52211e79c4e8bfed8f11993e70ae54094e342b",
+                    "quote": "PhD Students Souradip Ghosh co-advised w/ Nathan Beckmann Nathan Serafin co-advised w/ Nathan Beckmann Guy Wilks co-advised w/ Nathan Beckmann Sun A Cho co-advised w/ Nathan Beckmann Ania Krzyżańska co-advised w/ Ken Mai McKenzie van der Hagen"
+                  }
+                ]
+              },
+              {
+                "type": "researched_advising",
+                "years": [],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://cmu-corgi.github.io/people/souradip.html",
+                    "sha256": "70a57d699922c04dddff2ec533998f92a71fb36167cdf8d1473bb99e7cdd2bd3",
+                    "quote": "Souradip Ghosh PhD student in the Computer Science Department. Personal webpage. Co-advised with Brandon Lucia ."
+                  }
+                ]
+              },
+              {
+                "type": "researched_advising",
+                "years": [],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://abstract.ece.cmu.edu/people.html",
+                    "sha256": "e99b011c492cdf98e2eb140c6e52211e79c4e8bfed8f11993e70ae54094e342b",
+                    "quote": "PhD Students Souradip Ghosh"
+                  }
+                ]
+              }
+            ]
+          },
+          "expected_after_sha256": "1f630d879ad0f0a949e723d6563e19cf80d40af2882983c41dbb90072ddef51d"
+        },
+        {
+          "pi": "Nathan Beckmann",
+          "person": "ext:cmu:souradip-ghosh",
+          "current_whole_member": {
+            "person": "ext:cmu:souradip-ghosh",
+            "name": "Souradip Ghosh",
+            "roles": [
+              "phd"
+            ],
+            "relations": [
+              {
+                "type": "researched_advising",
+                "years": [
+                  2021
+                ],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://cmu-corgi.github.io/people.html",
+                    "sha256": "c214b240f68cf72ee6c0eb781b994046676234b7245649031c147d2d1bf02206",
+                    "quote": "Current PhD Students Nathan Serafin (2019 – ) Souradip Ghosh"
+                  }
+                ]
+              }
+            ]
+          },
+          "current_sha256": "7767bd94c036ea7ef3fb9636d3eeb75437ae995a59f49077f99b200917f5013a",
+          "expected_after_source_build_member": {
+            "person": "ext:cmu:souradip-ghosh",
+            "name": "Souradip Ghosh",
+            "roles": [
+              "phd"
+            ],
+            "relations": [
+              {
+                "type": "researched_advising",
+                "years": [
+                  2021
+                ],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://cmu-corgi.github.io/people/souradip.html",
+                    "sha256": "70a57d699922c04dddff2ec533998f92a71fb36167cdf8d1473bb99e7cdd2bd3",
+                    "quote": "Souradip Ghosh PhD student in the Computer Science Department. Personal webpage. Co-advised with Brandon Lucia ."
+                  }
+                ]
+              },
+              {
+                "type": "researched_advising",
+                "years": [
+                  2021
+                ],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://cmu-corgi.github.io/people.html",
+                    "sha256": "c214b240f68cf72ee6c0eb781b994046676234b7245649031c147d2d1bf02206",
+                    "quote": "Current PhD Students Nathan Serafin (2019 – ) Souradip Ghosh"
+                  }
+                ]
+              }
+            ]
+          },
+          "expected_after_sha256": "3de53ea509c5b8ba63577cae0875b8b1dfd42ad761d831b7178431c63c9d17cf"
+        }
+      ],
+      "issued_id_review": {
+        "scope": "explicit_issued_person_redirect_review_no_automatic_execution",
+        "survivor": "atl:p:774cc629362f",
+        "aliases": [
+          "atl:p:d5debb06f806"
+        ],
+        "source_registry_sha256": "2eb56d168115cb40c0a6e90480c93793dc50d7bda55da4dac4e0c06f8c9852eb",
+        "source_registry_fingerprint": {
+          "schema_sha256": "857d07e996ea4f455fbcc6b67c08b6f77bfc39e03f479c449b527ed2f4218d3a",
+          "tables": {
+            "anchors": {
+              "rows": 386577,
+              "sha256": "b4870833b022f7eb8663505f4b6b5cc0192d51a2011aed13a8897cd792d8938a"
+            },
+            "ids": {
+              "rows": 178921,
+              "sha256": "3de1cdc253cf9a16ec3021d50fc94f2608cc963e8dccc24f738e868b98be5e43"
+            },
+            "meta": {
+              "rows": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          }
+        },
+        "expected_before_ids": [
+          {
+            "id": "atl:p:774cc629362f",
+            "kind": "person",
+            "minted_from": "p|name:cmu:souradip-ghosh:https://abstract.ece.cmu.edu/people.html",
+            "issued": "2026-10-30",
+            "status": "active",
+            "redirect_to": null,
+            "note": null
+          },
+          {
+            "id": "atl:p:d5debb06f806",
+            "kind": "person",
+            "minted_from": "p|name:cmu:souradip-ghosh:https://cmu-corgi.github.io/people.html",
+            "issued": "2026-10-30",
+            "status": "active",
+            "redirect_to": null,
+            "note": null
+          }
+        ],
+        "expected_before_anchors": [
+          {
+            "anchor": "p|name:cmu:souradip-ghosh:https://abstract.ece.cmu.edu/people.html",
+            "id": "atl:p:774cc629362f",
+            "kind": "person",
+            "first_seen": "2026-10-30"
+          },
+          {
+            "anchor": "p|name:cmu:souradip-ghosh:https://cmu-corgi.github.io/people.html",
+            "id": "atl:p:d5debb06f806",
+            "kind": "person",
+            "first_seen": "2026-10-30"
+          }
+        ],
+        "reviewed_by": "codex-id-reviews-1109",
+        "reviewed_at": "2026-11-09",
+        "application_preconditions": [
+          "Controlled normal native CMU/Michigan rebuild consumes db622ce source appends",
+          "Recheck exact full current native member preimages; regenerate decision if changed",
+          "Independently root-review original source proofs and current whole registry CAS",
+          "No frozen scientific job active; preserve whole pre-application registry backup",
+          "Use existing explicit redirect transaction; do not weaken ordinary issued-ID guard"
+        ]
+      },
+      "application_status": "conditional_not_applied",
+      "required_next": "Controlled full native member/paper/link validation, independent scientific delta review, and exact registry/member preimage revalidation before explicit application."
+    },
+    {
+      "school": "michigan",
+      "native_person": "ext:michigan:meera-desai",
+      "canonical_name": "Meera Desai",
+      "memberships": [
+        {
+          "pi": "Dallas Card",
+          "person": "ext:michigan:meera-desai"
+        },
+        {
+          "pi": "Abigail Z. Jacobs",
+          "person": "ext:michigan:meera-desai"
+        }
+      ],
+      "reviewer": "Codex",
+      "reviewed_on": "2026-11-09",
+      "verdict": "same_person",
+      "reason": "Independent original-source review and ordinary source-guard closure on exact paired member after-states; explicit issued-ID decision only. Preserve every original source, name, role, year and unrelated member. Controlled full native scientific validation and root CAS approval/application remain required.",
+      "source_review_packet": "four-redirect-review-20261109/issued-id-four-redirects-PROPOSAL.json",
+      "ordinary_source_proof": {
+        "school": "michigan",
+        "native_person": "ext:michigan:meera-desai",
+        "records": [
+          {
+            "pi": "Dallas Card",
+            "name": "Meera Desai"
+          },
+          {
+            "pi": "Abigail Z. Jacobs",
+            "name": "Meera Desai"
+          }
+        ],
+        "student_specific_clauses": [
+          {
+            "pi": "Dallas Card",
+            "url": "https://dallascard.github.io/",
+            "sha256": "62f8580b9a99e68be0267affb63d41f87d6f788906c202368496c74ea23a2085",
+            "span": {
+              "start": 100,
+              "end": 143,
+              "text": "Meera Desai (co-advised with Abigail Jacobs"
+            }
+          },
+          {
+            "pi": "Abigail Z. Jacobs",
+            "url": "https://azjacobs.com",
+            "sha256": "fc063aec8d2dd9cc1377c6df434ae2fb84007c2f21b76312fbd1f608da1f7eb4",
+            "span": {
+              "start": 0,
+              "end": 40,
+              "text": "Meera Desai (co-advised with Dallas Card"
+            }
+          }
+        ],
+        "keys": [
+          [
+            "stu",
+            "michigan",
+            "Dallas Card",
+            "ext:michigan:meera-desai"
+          ],
+          [
+            "stu",
+            "michigan",
+            "Abigail Z. Jacobs",
+            "ext:michigan:meera-desai"
+          ]
+        ],
+        "basis": "reciprocal_coadvising",
+        "sources": [
+          {
+            "from_pi": "Abigail Z. Jacobs",
+            "to_pi": "Dallas Card",
+            "source": {
+              "url": "https://azjacobs.com",
+              "sha256": "fc063aec8d2dd9cc1377c6df434ae2fb84007c2f21b76312fbd1f608da1f7eb4",
+              "quote": "Meera Desai (co-advised with Dallas Card)",
+              "quote_span": {
+                "start": 0,
+                "end": 40,
+                "text": "Meera Desai (co-advised with Dallas Card"
+              }
+            }
+          },
+          {
+            "from_pi": "Dallas Card",
+            "to_pi": "Abigail Z. Jacobs",
+            "source": {
+              "url": "https://dallascard.github.io/",
+              "sha256": "62f8580b9a99e68be0267affb63d41f87d6f788906c202368496c74ea23a2085",
+              "quote": "NSF GRFP!! ---> Current Ph.D. Students Ben Litterer (co-advised with David Jurgens) Lavinia Dunagan Meera Desai (co-advised with Abigail Jacobs) Selected Publications Catching Fire in the News: The Necess",
+              "quote_span": {
+                "start": 100,
+                "end": 143,
+                "text": "Meera Desai (co-advised with Abigail Jacobs"
+              }
+            }
+          }
+        ]
+      },
+      "expected_current_and_after_source_members": [
+        {
+          "pi": "Dallas Card",
+          "person": "ext:michigan:meera-desai",
+          "current_whole_member": {
+            "person": "ext:michigan:meera-desai",
+            "name": "Meera Desai",
+            "roles": [
+              "phd"
+            ],
+            "relations": [
+              {
+                "type": "researched_advising",
+                "years": [
+                  2026,
+                  2026
+                ],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://dallascard.github.io/",
+                    "sha256": "62f8580b9a99e68be0267affb63d41f87d6f788906c202368496c74ea23a2085",
+                    "quote": "NSF GRFP!! ---> Current Ph.D. Students Ben Litterer (co-advised with David Jurgens) Lavinia Dunagan Meera Desai (co-advised with Abigail Jacobs) Selected Publications Catching Fire in the News: The Necess"
+                  }
+                ]
+              }
+            ]
+          },
+          "current_sha256": "e90b97d46d8ef13ecc27c1148991c6bc58335ad3ca268de71cc128df3ca55b5c",
+          "expected_after_source_build_member": {
+            "person": "ext:michigan:meera-desai",
+            "name": "Meera Desai",
+            "roles": [
+              "phd"
+            ],
+            "relations": [
+              {
+                "type": "researched_advising",
+                "years": [
+                  2026,
+                  2026
+                ],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://dallascard.github.io/",
+                    "sha256": "62f8580b9a99e68be0267affb63d41f87d6f788906c202368496c74ea23a2085",
+                    "quote": "NSF GRFP!! ---> Current Ph.D. Students Ben Litterer (co-advised with David Jurgens) Lavinia Dunagan Meera Desai (co-advised with Abigail Jacobs) Selected Publications Catching Fire in the News: The Necess"
+                  }
+                ]
+              }
+            ]
+          },
+          "expected_after_sha256": "e90b97d46d8ef13ecc27c1148991c6bc58335ad3ca268de71cc128df3ca55b5c"
+        },
+        {
+          "pi": "Abigail Z. Jacobs",
+          "person": "ext:michigan:meera-desai",
+          "current_whole_member": {
+            "person": "ext:michigan:meera-desai",
+            "name": "Meera Desai",
+            "roles": [
+              "phd"
+            ],
+            "relations": [
+              {
+                "type": "researched_advising",
+                "years": [
+                  2026
+                ],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://azjacobs.com",
+                    "sha256": "fc063aec8d2dd9cc1377c6df434ae2fb84007c2f21b76312fbd1f608da1f7eb4",
+                    "quote": "Ph.D. students, UMich School of Information Amina Abdu Meera Desai"
+                  }
+                ],
+                "auto": true,
+                "corroborated": true
+              }
+            ],
+            "auto": true
+          },
+          "current_sha256": "e02e17c44d0706939b70f9c4f4b7a9a823cb891e1792d01a3922ed28cd71c041",
+          "expected_after_source_build_member": {
+            "person": "ext:michigan:meera-desai",
+            "name": "Meera Desai",
+            "roles": [
+              "phd"
+            ],
+            "relations": [
+              {
+                "type": "researched_advising",
+                "years": [
+                  2026
+                ],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://azjacobs.com",
+                    "sha256": "fc063aec8d2dd9cc1377c6df434ae2fb84007c2f21b76312fbd1f608da1f7eb4",
+                    "quote": "Ph.D. students, UMich School of Information Amina Abdu Meera Desai"
+                  }
+                ],
+                "auto": true,
+                "corroborated": true
+              },
+              {
+                "type": "researched_advising",
+                "years": [
+                  2026
+                ],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://azjacobs.com",
+                    "sha256": "fc063aec8d2dd9cc1377c6df434ae2fb84007c2f21b76312fbd1f608da1f7eb4",
+                    "quote": "Meera Desai (co-advised with Dallas Card)"
+                  }
+                ],
+                "auto": true,
+                "corroborated": true
+              }
+            ],
+            "auto": true
+          },
+          "expected_after_sha256": "2171aa3f015a3453c0214e4c10b9a6316f69359e437198e6cb09599fcff4d3f1"
+        }
+      ],
+      "issued_id_review": {
+        "scope": "explicit_issued_person_redirect_review_no_automatic_execution",
+        "survivor": "atl:p:17c760d7596b",
+        "aliases": [
+          "atl:p:bd265265606c"
+        ],
+        "source_registry_sha256": "2eb56d168115cb40c0a6e90480c93793dc50d7bda55da4dac4e0c06f8c9852eb",
+        "source_registry_fingerprint": {
+          "schema_sha256": "857d07e996ea4f455fbcc6b67c08b6f77bfc39e03f479c449b527ed2f4218d3a",
+          "tables": {
+            "anchors": {
+              "rows": 386577,
+              "sha256": "b4870833b022f7eb8663505f4b6b5cc0192d51a2011aed13a8897cd792d8938a"
+            },
+            "ids": {
+              "rows": 178921,
+              "sha256": "3de1cdc253cf9a16ec3021d50fc94f2608cc963e8dccc24f738e868b98be5e43"
+            },
+            "meta": {
+              "rows": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          }
+        },
+        "expected_before_ids": [
+          {
+            "id": "atl:p:17c760d7596b",
+            "kind": "person",
+            "minted_from": "p|name:michigan:meera-desai:https://azjacobs.com",
+            "issued": "2026-11-07",
+            "status": "active",
+            "redirect_to": null,
+            "note": null
+          },
+          {
+            "id": "atl:p:bd265265606c",
+            "kind": "person",
+            "minted_from": "p|name:michigan:meera-desai:https://dallascard.github.io/",
+            "issued": "2026-11-07",
+            "status": "active",
+            "redirect_to": null,
+            "note": null
+          }
+        ],
+        "expected_before_anchors": [
+          {
+            "anchor": "p|name:michigan:meera-desai:https://azjacobs.com",
+            "id": "atl:p:17c760d7596b",
+            "kind": "person",
+            "first_seen": "2026-11-07"
+          },
+          {
+            "anchor": "p|name:michigan:meera-desai:https://dallascard.github.io/",
+            "id": "atl:p:bd265265606c",
+            "kind": "person",
+            "first_seen": "2026-11-07"
+          }
+        ],
+        "reviewed_by": "codex-id-reviews-1109",
+        "reviewed_at": "2026-11-09",
+        "application_preconditions": [
+          "Controlled normal native CMU/Michigan rebuild consumes db622ce source appends",
+          "Recheck exact full current native member preimages; regenerate decision if changed",
+          "Independently root-review original source proofs and current whole registry CAS",
+          "No frozen scientific job active; preserve whole pre-application registry backup",
+          "Use existing explicit redirect transaction; do not weaken ordinary issued-ID guard"
+        ]
+      },
+      "application_status": "conditional_not_applied",
+      "required_next": "Controlled full native member/paper/link validation, independent scientific delta review, and exact registry/member preimage revalidation before explicit application."
+    },
+    {
+      "school": "berkeley",
+      "native_person": "ext:berkeley:wenjie-ma",
+      "canonical_name": "Wenjie Ma",
+      "memberships": [
+        {
+          "pi": "Matei Zaharia",
+          "person": "ext:berkeley:wenjie-ma"
+        },
+        {
+          "pi": "Sewon Min",
+          "person": "ext:berkeley:wenjie-ma"
+        }
+      ],
+      "reviewer": "Codex",
+      "reviewed_on": "2026-11-09",
+      "verdict": "same_person",
+      "reason": "Independent original-source review and ordinary source-guard closure on exact paired member after-states; explicit issued-ID decision only. Preserve every original source, name, role, year and unrelated member. Controlled full native scientific validation and root CAS approval/application remain required.",
+      "source_review_packet": "wenjie-redirect-review-20261109/issued-id-wenjie-two-redirects-PROPOSAL.json",
+      "ordinary_source_proof": {
+        "school": "berkeley",
+        "native_person": "ext:berkeley:wenjie-ma",
+        "records": [
+          {
+            "pi": "Matei Zaharia",
+            "name": "Wenjie Ma"
+          },
+          {
+            "pi": "Sewon Min",
+            "name": "Wenjie Ma"
+          }
+        ],
+        "student_specific_clauses": [
+          {
+            "pi": "Sewon Min",
+            "url": "https://www.sewonmin.com/assets/CV.pdf",
+            "sha256": "9b8f1edd0d614cebfdc8ffd51fce163243e8a738f95d4340c49a6b651d2f336b",
+            "span": {
+              "start": 87,
+              "end": 127,
+              "text": "Wenjie Ma (co-advised with Matei Zaharia"
+            }
+          }
+        ],
+        "keys": [
+          [
+            "stu",
+            "berkeley",
+            "Matei Zaharia",
+            "ext:berkeley:wenjie-ma"
+          ],
+          [
+            "stu",
+            "berkeley",
+            "Sewon Min",
+            "ext:berkeley:wenjie-ma"
+          ]
+        ],
+        "basis": "shared_identity_anchor",
+        "sources": [],
+        "shared_anchors": [
+          {
+            "from_pi": "Matei Zaharia",
+            "to_pi": "Sewon Min",
+            "anchors": [
+              [
+                "name",
+                "berkeley:wenjie-ma:http://nlp.cs.berkeley.edu/members.html"
+              ]
+            ]
+          },
+          {
+            "from_pi": "Sewon Min",
+            "to_pi": "Matei Zaharia",
+            "anchors": [
+              [
+                "name",
+                "berkeley:wenjie-ma:http://nlp.cs.berkeley.edu/members.html"
+              ]
+            ]
+          }
+        ]
+      },
+      "expected_current_and_after_source_members": [
+        {
+          "pi": "Matei Zaharia",
+          "person": "ext:berkeley:wenjie-ma",
+          "current_whole_member": {
+            "person": "ext:berkeley:wenjie-ma",
+            "name": "Wenjie Ma",
+            "roles": [
+              "phd",
+              "postdoc"
+            ],
+            "relations": [
+              {
+                "type": "researched_advising",
+                "years": [],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://people.eecs.berkeley.edu/~matei/",
+                    "sha256": "91e8efa15e4c77c08d5760becb0dc91dd46c1d382ed0fd3be66ebfc97cabf45a",
+                    "quote": "PhD Students and Postdocs Dev Bali (with Scott Shenker ) Donghyun Lee Jared Quincy Davis (with Jure Leskovec ) Jiwon Park Karim Elmaaroufi (with Sanjit Seshia ) Lakshya Agarwal (with Dan Klein ) Liana Patel (with Carlos Guestrin ) Melissa Pan Negar Arabzadeh Parth Asawa Shangyin Tan (with Koushik Sen ) Soujanya Ponnapalli (with Natacha Crooks ) Tyler Griggs (with Ion Stoica ) Wenjie Ma (with Sewon Min )"
+                  }
+                ]
+              },
+              {
+                "type": "researched_membership",
+                "years": [
+                  2026,
+                  2026
+                ],
+                "role": "postdoc",
+                "sources": [
+                  {
+                    "url": "https://people.eecs.berkeley.edu/~matei/",
+                    "sha256": "91e8efa15e4c77c08d5760becb0dc91dd46c1d382ed0fd3be66ebfc97cabf45a",
+                    "quote": "PhD Students and Postdocs Dev Bali (with Scott Shenker ) Donghyun Lee Jared Quincy Davis (with Jure Leskovec ) Jiwon Park Karim Elmaaroufi (with Sanjit Seshia ) Lakshya Agarwal (with Dan Klein ) Liana Patel (with Carlos Guestrin ) Melissa Pan Negar Arabzadeh Parth Asawa Shangyin Tan (with Koushik Sen ) Soujanya Ponnapalli (with Natacha Crooks ) Tyler Griggs (with Ion Stoica ) Wenjie Ma"
+                  }
+                ]
+              }
+            ]
+          },
+          "current_sha256": "697f774968252bffeb0ea00262ace3330b4172afe90222139e77277b33fff23d",
+          "expected_after_source_build_member": {
+            "person": "ext:berkeley:wenjie-ma",
+            "name": "Wenjie Ma",
+            "roles": [
+              "phd",
+              "postdoc"
+            ],
+            "relations": [
+              {
+                "type": "researched_advising",
+                "years": [],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://people.eecs.berkeley.edu/~matei/",
+                    "sha256": "91e8efa15e4c77c08d5760becb0dc91dd46c1d382ed0fd3be66ebfc97cabf45a",
+                    "quote": "PhD Students and Postdocs Dev Bali (with Scott Shenker ) Donghyun Lee Jared Quincy Davis (with Jure Leskovec ) Jiwon Park Karim Elmaaroufi (with Sanjit Seshia ) Lakshya Agarwal (with Dan Klein ) Liana Patel (with Carlos Guestrin ) Melissa Pan Negar Arabzadeh Parth Asawa Shangyin Tan (with Koushik Sen ) Soujanya Ponnapalli (with Natacha Crooks ) Tyler Griggs (with Ion Stoica ) Wenjie Ma (with Sewon Min )"
+                  }
+                ]
+              },
+              {
+                "type": "researched_advising",
+                "years": [],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "http://nlp.cs.berkeley.edu/members.html",
+                    "sha256": "c9524025b4a20a06192b8c534012a2e1b6e23c40da7c9eb24c683ec34ec2441d",
+                    "quote": "Wenjie Ma Advisors: Sewon Min & Matei Zaharia"
+                  }
+                ]
+              },
+              {
+                "type": "researched_membership",
+                "years": [
+                  2026,
+                  2026
+                ],
+                "role": "postdoc",
+                "sources": [
+                  {
+                    "url": "https://people.eecs.berkeley.edu/~matei/",
+                    "sha256": "91e8efa15e4c77c08d5760becb0dc91dd46c1d382ed0fd3be66ebfc97cabf45a",
+                    "quote": "PhD Students and Postdocs Dev Bali (with Scott Shenker ) Donghyun Lee Jared Quincy Davis (with Jure Leskovec ) Jiwon Park Karim Elmaaroufi (with Sanjit Seshia ) Lakshya Agarwal (with Dan Klein ) Liana Patel (with Carlos Guestrin ) Melissa Pan Negar Arabzadeh Parth Asawa Shangyin Tan (with Koushik Sen ) Soujanya Ponnapalli (with Natacha Crooks ) Tyler Griggs (with Ion Stoica ) Wenjie Ma"
+                  }
+                ]
+              }
+            ]
+          },
+          "expected_after_sha256": "99f8fbb8d6f46b77b309b9d9a33f4a707f1b88442aeacd10c24358ea5b3bb0ea"
+        },
+        {
+          "pi": "Sewon Min",
+          "person": "ext:berkeley:wenjie-ma",
+          "current_whole_member": {
+            "person": "ext:berkeley:wenjie-ma",
+            "name": "Wenjie Ma",
+            "roles": [
+              "phd"
+            ],
+            "relations": [
+              {
+                "type": "researched_advising",
+                "years": [
+                  2025
+                ],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://www.sewonmin.com/assets/CV.pdf",
+                    "sha256": "9b8f1edd0d614cebfdc8ffd51fce163243e8a738f95d4340c49a6b651d2f336b",
+                    "quote": "Ph.D. Student Advising 01/2025–Current 08/2025–Current 08/2025–Current 01/2026–Current Wenjie Ma (co-advised with Matei Zaharia)"
+                  }
+                ]
+              }
+            ]
+          },
+          "current_sha256": "6644bb80c0d807f18791a9f5ce44e8eb2d4476fd2bdd3ea592d053bc9e3bc040",
+          "expected_after_source_build_member": {
+            "person": "ext:berkeley:wenjie-ma",
+            "name": "Wenjie Ma",
+            "roles": [
+              "phd"
+            ],
+            "relations": [
+              {
+                "type": "researched_advising",
+                "years": [
+                  2025
+                ],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://www.sewonmin.com/assets/CV.pdf",
+                    "sha256": "9b8f1edd0d614cebfdc8ffd51fce163243e8a738f95d4340c49a6b651d2f336b",
+                    "quote": "Ph.D. Student Advising 01/2025–Current 08/2025–Current 08/2025–Current 01/2026–Current Wenjie Ma (co-advised with Matei Zaharia)"
+                  }
+                ]
+              },
+              {
+                "type": "researched_advising",
+                "years": [],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "http://nlp.cs.berkeley.edu/members.html",
+                    "sha256": "c9524025b4a20a06192b8c534012a2e1b6e23c40da7c9eb24c683ec34ec2441d",
+                    "quote": "Wenjie Ma Advisors: Sewon Min & Matei Zaharia"
+                  }
+                ]
+              }
+            ]
+          },
+          "expected_after_sha256": "1582d33ea9ac5b65cfa8b86018e977e4d22da5cfc8633297e56b574bafa77874"
+        }
+      ],
+      "issued_id_review": {
+        "scope": "explicit_issued_person_redirect_review_no_automatic_execution",
+        "survivor": "atl:p:8c258770627a",
+        "aliases": [
+          "atl:p:c1712007f167",
+          "atl:p:f806286226b1"
+        ],
+        "source_registry_sha256": "2eb56d168115cb40c0a6e90480c93793dc50d7bda55da4dac4e0c06f8c9852eb",
+        "source_registry_fingerprint": {
+          "schema_sha256": "857d07e996ea4f455fbcc6b67c08b6f77bfc39e03f479c449b527ed2f4218d3a",
+          "tables": {
+            "anchors": {
+              "rows": 386577,
+              "sha256": "b4870833b022f7eb8663505f4b6b5cc0192d51a2011aed13a8897cd792d8938a"
+            },
+            "ids": {
+              "rows": 178921,
+              "sha256": "3de1cdc253cf9a16ec3021d50fc94f2608cc963e8dccc24f738e868b98be5e43"
+            },
+            "meta": {
+              "rows": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          }
+        },
+        "expected_before_ids": [
+          {
+            "id": "atl:p:8c258770627a",
+            "kind": "person",
+            "minted_from": "p|name:berkeley:wenjie-ma:https://people.eecs.berkeley.edu/~matei/",
+            "issued": "2026-10-30",
+            "status": "active",
+            "redirect_to": null,
+            "note": null
+          },
+          {
+            "id": "atl:p:c1712007f167",
+            "kind": "person",
+            "minted_from": "p|name:berkeley:wenjie-ma:https://www.sewonmin.com/assets/CV.pdf",
+            "issued": "2026-10-30",
+            "status": "active",
+            "redirect_to": null,
+            "note": null
+          },
+          {
+            "id": "atl:p:f806286226b1",
+            "kind": "person",
+            "minted_from": "p|name:berkeley:wenjie-ma:http://nlp.cs.berkeley.edu/members.html",
+            "issued": "2026-10-30",
+            "status": "active",
+            "redirect_to": null,
+            "note": null
+          }
+        ],
+        "expected_before_anchors": [
+          {
+            "anchor": "p|name:berkeley:wenjie-ma:https://people.eecs.berkeley.edu/~matei/",
+            "id": "atl:p:8c258770627a",
+            "kind": "person",
+            "first_seen": "2026-10-30"
+          },
+          {
+            "anchor": "p|name:berkeley:wenjie-ma:https://www.sewonmin.com/assets/CV.pdf",
+            "id": "atl:p:c1712007f167",
+            "kind": "person",
+            "first_seen": "2026-10-30"
+          },
+          {
+            "anchor": "p|name:berkeley:wenjie-ma:http://nlp.cs.berkeley.edu/members.html",
+            "id": "atl:p:f806286226b1",
+            "kind": "person",
+            "first_seen": "2026-10-30"
+          }
+        ],
+        "reviewed_by": "codex-id-reviews-1109",
+        "reviewed_at": "2026-11-09",
+        "application_preconditions": [
+          "Controlled normal native Berkeley rebuild consumes reviewed exact source-card appends and guarded Klein corrections",
+          "Recheck exact full current native member preimages; regenerate decision if changed",
+          "Independently root-review original source proofs and current whole registry CAS",
+          "No frozen scientific job active; preserve whole pre-application registry backup",
+          "Use existing explicit redirect transaction; do not weaken ordinary issued-ID guard"
+        ]
+      },
+      "application_status": "conditional_not_applied",
+      "required_next": "Controlled full native member/paper/link validation, independent scientific delta review, and exact registry/member preimage revalidation before explicit application."
+    },
+    {
+      "school": "cmu",
+      "native_person": "ext:cmu:siqi-zhang",
+      "canonical_name": "Siqi Zhang",
+      "memberships": [
+        {
+          "pi": "Mayank Goel",
+          "person": "ext:cmu:siqi-zhang"
+        },
+        {
+          "pi": "Justin Chan",
+          "person": "ext:cmu:siqi-zhang"
+        }
+      ],
+      "reviewer": "Codex",
+      "reviewed_on": "2026-11-09",
+      "verdict": "same_person",
+      "reason": "Independent original-source review and ordinary source-guard closure on exact paired member after-states; explicit issued-ID decision only. Preserve every original source, name, role, year and unrelated member. Controlled full native scientific validation and root CAS approval/application remain required.",
+      "source_review_packet": "siqi-redirect-review-20261109/issued-id-siqi-one-redirect-PROPOSAL.json",
+      "ordinary_source_proof": {
+        "school": "cmu",
+        "native_person": "ext:cmu:siqi-zhang",
+        "records": [
+          {
+            "pi": "Mayank Goel",
+            "name": "Siqi Zhang"
+          },
+          {
+            "pi": "Justin Chan",
+            "name": "Siqi Zhang"
+          }
+        ],
+        "student_specific_clauses": [
+          {
+            "pi": "Justin Chan",
+            "url": "https://semanticsignals.com/cadre.html",
+            "sha256": "d806b89760d5c979bcef72ef973b15f570804e024f787548dafe3247eabd4946",
+            "span": {
+              "start": 0,
+              "end": 52,
+              "text": "Siqi Zhang Ph.D. Student co-advised with Mayank Goel"
+            }
+          },
+          {
+            "pi": "Justin Chan",
+            "url": "https://semanticsignals.com/cadre.html",
+            "sha256": "d806b89760d5c979bcef72ef973b15f570804e024f787548dafe3247eabd4946",
+            "span": {
+              "start": 0,
+              "end": 52,
+              "text": "Siqi Zhang Ph.D. Student co-advised with Mayank Goel"
+            }
+          }
+        ],
+        "keys": [
+          [
+            "stu",
+            "cmu",
+            "Mayank Goel",
+            "ext:cmu:siqi-zhang"
+          ],
+          [
+            "stu",
+            "cmu",
+            "Justin Chan",
+            "ext:cmu:siqi-zhang"
+          ]
+        ],
+        "basis": "shared_identity_anchor",
+        "sources": [],
+        "shared_anchors": [
+          {
+            "from_pi": "Mayank Goel",
+            "to_pi": "Justin Chan",
+            "anchors": [
+              [
+                "name",
+                "cmu:siqi-zhang:https://siqizhang9.github.io/"
+              ]
+            ]
+          },
+          {
+            "from_pi": "Justin Chan",
+            "to_pi": "Mayank Goel",
+            "anchors": [
+              [
+                "name",
+                "cmu:siqi-zhang:https://siqizhang9.github.io/"
+              ]
+            ]
+          }
+        ]
+      },
+      "expected_current_and_after_source_members": [
+        {
+          "pi": "Mayank Goel",
+          "person": "ext:cmu:siqi-zhang",
+          "current_whole_member": {
+            "person": "ext:cmu:siqi-zhang",
+            "name": "Siqi Zhang",
+            "roles": [
+              "phd"
+            ],
+            "relations": [
+              {
+                "type": "researched_advising",
+                "years": [],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://mynkgoel.github.io/",
+                    "sha256": "f0de173c9b0a8b73fa4637ec9cbef91fe6133fac35860cd75aa964d73f69370e",
+                    "quote": "Current Ph.D. Students Riku Arakawa Human-Computer Interaction Shreya Bali Human-Computer Interaction Seungjoo Lee Societal Computing Ayush Shrivastava IIT Gandhinagar Siqi Zhang"
+                  }
+                ]
+              }
+            ]
+          },
+          "current_sha256": "321c9e5e48eb01ca331c3447ed89f7a374a4f1b1d96b3e597ce500a6406c5820",
+          "expected_after_source_build_member": {
+            "person": "ext:cmu:siqi-zhang",
+            "name": "Siqi Zhang",
+            "roles": [
+              "phd"
+            ],
+            "relations": [
+              {
+                "type": "researched_advising",
+                "years": [],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://siqizhang9.github.io/",
+                    "sha256": "912309f4ed732cc94897fb08d99d8b4eef77bf27bba21dd40647d82bc0f87ab6",
+                    "quote": "Hi! I'm Siqi Zhang. I'm a Ph.D. student at Semantic Signals Lab and Smash Lab at Carnegie Mellon University , advised by professor Justin Chan and professor Mayank Goel ."
+                  }
+                ]
+              },
+              {
+                "type": "researched_advising",
+                "years": [],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://mynkgoel.github.io/",
+                    "sha256": "f0de173c9b0a8b73fa4637ec9cbef91fe6133fac35860cd75aa964d73f69370e",
+                    "quote": "Current Ph.D. Students Riku Arakawa Human-Computer Interaction Shreya Bali Human-Computer Interaction Seungjoo Lee Societal Computing Ayush Shrivastava IIT Gandhinagar Siqi Zhang"
+                  }
+                ]
+              }
+            ]
+          },
+          "expected_after_sha256": "a2211cadcfc9ac218fd0de3ec5d970ae42f04c67d83a6d832ec09b534b86a4d1"
+        },
+        {
+          "pi": "Justin Chan",
+          "person": "ext:cmu:siqi-zhang",
+          "current_whole_member": {
+            "person": "ext:cmu:siqi-zhang",
+            "name": "Siqi Zhang",
+            "roles": [
+              "phd"
+            ],
+            "relations": [
+              {
+                "type": "researched_advising",
+                "years": [],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://semanticsignals.com/cadre.html",
+                    "sha256": "d806b89760d5c979bcef72ef973b15f570804e024f787548dafe3247eabd4946",
+                    "quote": "Siqi Zhang Ph.D. Student co-advised with Mayank Goel"
+                  }
+                ]
+              },
+              {
+                "type": "researched_advising",
+                "years": [],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://semanticsignals.com/cadre.html",
+                    "sha256": "d806b89760d5c979bcef72ef973b15f570804e024f787548dafe3247eabd4946",
+                    "quote": "Siqi Zhang Ph.D. Student co-advised with Mayank Goel"
+                  }
+                ]
+              }
+            ]
+          },
+          "current_sha256": "8d0f4a36da3a1eea6ddc099fd4bb318a580aa86a539d1dbc52df4ffcd3b64d69",
+          "expected_after_source_build_member": {
+            "person": "ext:cmu:siqi-zhang",
+            "name": "Siqi Zhang",
+            "roles": [
+              "phd"
+            ],
+            "relations": [
+              {
+                "type": "researched_advising",
+                "years": [],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://semanticsignals.com/cadre.html",
+                    "sha256": "d806b89760d5c979bcef72ef973b15f570804e024f787548dafe3247eabd4946",
+                    "quote": "Siqi Zhang Ph.D. Student co-advised with Mayank Goel"
+                  }
+                ]
+              },
+              {
+                "type": "researched_advising",
+                "years": [],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://siqizhang9.github.io/",
+                    "sha256": "912309f4ed732cc94897fb08d99d8b4eef77bf27bba21dd40647d82bc0f87ab6",
+                    "quote": "Hi! I'm Siqi Zhang. I'm a Ph.D. student at Semantic Signals Lab and Smash Lab at Carnegie Mellon University , advised by professor Justin Chan and professor Mayank Goel ."
+                  }
+                ]
+              },
+              {
+                "type": "researched_advising",
+                "years": [],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://semanticsignals.com/cadre.html",
+                    "sha256": "d806b89760d5c979bcef72ef973b15f570804e024f787548dafe3247eabd4946",
+                    "quote": "Siqi Zhang Ph.D. Student co-advised with Mayank Goel"
+                  }
+                ]
+              }
+            ]
+          },
+          "expected_after_sha256": "0d2451cf8064a95dc47edb420e5b39a81f10551f19f9b26388f323be9b9a855d"
+        }
+      ],
+      "issued_id_review": {
+        "scope": "explicit_issued_person_redirect_review_no_automatic_execution",
+        "survivor": "atl:p:56fd03a38d26",
+        "aliases": [
+          "atl:p:f296bc121915"
+        ],
+        "source_registry_sha256": "2eb56d168115cb40c0a6e90480c93793dc50d7bda55da4dac4e0c06f8c9852eb",
+        "source_registry_fingerprint": {
+          "schema_sha256": "857d07e996ea4f455fbcc6b67c08b6f77bfc39e03f479c449b527ed2f4218d3a",
+          "tables": {
+            "anchors": {
+              "rows": 386577,
+              "sha256": "b4870833b022f7eb8663505f4b6b5cc0192d51a2011aed13a8897cd792d8938a"
+            },
+            "ids": {
+              "rows": 178921,
+              "sha256": "3de1cdc253cf9a16ec3021d50fc94f2608cc963e8dccc24f738e868b98be5e43"
+            },
+            "meta": {
+              "rows": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          }
+        },
+        "expected_before_ids": [
+          {
+            "id": "atl:p:56fd03a38d26",
+            "kind": "person",
+            "minted_from": "p|name:cmu:siqi-zhang:https://semanticsignals.com/cadre.html",
+            "issued": "2026-10-30",
+            "status": "active",
+            "redirect_to": null,
+            "note": null
+          },
+          {
+            "id": "atl:p:f296bc121915",
+            "kind": "person",
+            "minted_from": "p|name:cmu:siqi-zhang:https://mynkgoel.github.io/",
+            "issued": "2026-10-30",
+            "status": "active",
+            "redirect_to": null,
+            "note": null
+          }
+        ],
+        "expected_before_anchors": [
+          {
+            "anchor": "p|name:cmu:siqi-zhang:https://semanticsignals.com/cadre.html",
+            "id": "atl:p:56fd03a38d26",
+            "kind": "person",
+            "first_seen": "2026-10-30"
+          },
+          {
+            "anchor": "p|name:cmu:siqi-zhang:https://mynkgoel.github.io/",
+            "id": "atl:p:f296bc121915",
+            "kind": "person",
+            "first_seen": "2026-10-30"
+          }
+        ],
+        "reviewed_by": "codex-id-reviews-1109",
+        "reviewed_at": "2026-11-09",
+        "application_preconditions": [
+          "Controlled normal native CMU rebuild consumes the reviewed exact Siqi primary-page source appends",
+          "Recheck exact full current native member preimages; regenerate decision if changed",
+          "Independently root-review original source proofs and current whole registry CAS",
+          "No frozen scientific job active; preserve whole pre-application registry backup",
+          "Use existing explicit redirect transaction; do not weaken ordinary issued-ID guard"
+        ]
+      },
+      "application_status": "conditional_not_applied",
+      "required_next": "Controlled full native member/paper/link validation, independent scientific delta review, and exact registry/member preimage revalidation before explicit application."
+    },
+    {
+      "school": "cmu",
+      "native_person": "ext:cmu:kevin-han",
+      "canonical_name": "Kevin Han",
+      "memberships": [
+        {
+          "pi": "Niloofar Mireshghallah",
+          "person": "ext:cmu:kevin-han"
+        },
+        {
+          "pi": "Amir Barati Farimani",
+          "person": "ext:cmu:kevin-han"
+        }
+      ],
+      "reviewer": "Codex",
+      "reviewed_on": "2026-11-09",
+      "verdict": "same_person",
+      "reason": "Independent original-source review and ordinary source-guard closure on exact paired member after-states; explicit issued-ID decision only. Preserve every original source, name, role, year and unrelated member. Controlled full native scientific validation and root CAS approval/application remain required.",
+      "source_review_packet": "kevin-redirect-review-20261109/issued-id-kevin-one-redirect-PROPOSAL.json",
+      "ordinary_source_proof": {
+        "school": "cmu",
+        "native_person": "ext:cmu:kevin-han",
+        "records": [
+          {
+            "pi": "Niloofar Mireshghallah",
+            "name": "Kevin Han"
+          },
+          {
+            "pi": "Amir Barati Farimani",
+            "name": "Kevin Han"
+          }
+        ],
+        "student_specific_clauses": [
+          {
+            "pi": "Niloofar Mireshghallah",
+            "url": "https://mireshghallah.github.io/looni-lab.html",
+            "sha256": "99aff43acf1671c451f4dff4cbedcc2d556d9a0cf5dbd9d2ac7c426b4315a329",
+            "span": {
+              "start": 0,
+              "end": 48,
+              "text": "Kevin Han (co-advised with Amir Barati Farimani "
+            }
+          }
+        ],
+        "keys": [
+          [
+            "stu",
+            "cmu",
+            "Niloofar Mireshghallah",
+            "ext:cmu:kevin-han"
+          ],
+          [
+            "stu",
+            "cmu",
+            "Amir Barati Farimani",
+            "ext:cmu:kevin-han"
+          ]
+        ],
+        "basis": "shared_identity_anchor",
+        "sources": [],
+        "shared_anchors": [
+          {
+            "from_pi": "Niloofar Mireshghallah",
+            "to_pi": "Amir Barati Farimani",
+            "anchors": [
+              [
+                "name",
+                "cmu:kevin-han:https://kevinxhan.com"
+              ]
+            ]
+          },
+          {
+            "from_pi": "Amir Barati Farimani",
+            "to_pi": "Niloofar Mireshghallah",
+            "anchors": [
+              [
+                "name",
+                "cmu:kevin-han:https://kevinxhan.com"
+              ]
+            ]
+          }
+        ]
+      },
+      "expected_current_and_after_source_members": [
+        {
+          "pi": "Niloofar Mireshghallah",
+          "person": "ext:cmu:kevin-han",
+          "current_whole_member": {
+            "person": "ext:cmu:kevin-han",
+            "name": "Kevin Han",
+            "roles": [
+              "phd"
+            ],
+            "relations": [
+              {
+                "type": "researched_advising",
+                "years": [
+                  2026
+                ],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://mireshghallah.github.io/looni-lab.html",
+                    "sha256": "99aff43acf1671c451f4dff4cbedcc2d556d9a0cf5dbd9d2ac7c426b4315a329",
+                    "quote": "Kevin Han (co-advised with Amir Barati Farimani )"
+                  }
+                ]
+              },
+              {
+                "type": "researched_advising",
+                "years": [],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://mireshghallah.github.io/looni-lab.html",
+                    "sha256": "99aff43acf1671c451f4dff4cbedcc2d556d9a0cf5dbd9d2ac7c426b4315a329",
+                    "quote": "PhD students Bill Watson (co-advised with Sauvik Das ) Xiaoyu (Nicholas) Wu (co-advised with Andrew Ilyas and Steven Wu ) Renfei Zhang Kevin Han"
+                  }
+                ]
+              }
+            ]
+          },
+          "current_sha256": "9ab2eed9ef0b83f830cf3c2bd0a008532f940d8b5088d3bec3770d7b963605fd",
+          "expected_after_source_build_member": {
+            "person": "ext:cmu:kevin-han",
+            "name": "Kevin Han",
+            "roles": [
+              "phd"
+            ],
+            "relations": [
+              {
+                "type": "researched_advising",
+                "years": [
+                  2026
+                ],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://mireshghallah.github.io/looni-lab.html",
+                    "sha256": "99aff43acf1671c451f4dff4cbedcc2d556d9a0cf5dbd9d2ac7c426b4315a329",
+                    "quote": "Kevin Han (co-advised with Amir Barati Farimani )"
+                  }
+                ]
+              },
+              {
+                "type": "researched_advising",
+                "years": [],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://kevinxhan.com",
+                    "sha256": "71c9d08bbafaba802f05957e60ebe2b035f36d49969b079f4869728e37cc846d",
+                    "quote": "Kevin Han I’m a third-year PhD student at Carnegie Mellon University advised by Niloofar Mireshghallah and Amir Farimani . My research is focused on learning for automated scientific discovery using LLMs, primarily focused on materials and drug discovery , as well as large-scale atomistic simulation ."
+                  }
+                ]
+              },
+              {
+                "type": "researched_advising",
+                "years": [],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://mireshghallah.github.io/looni-lab.html",
+                    "sha256": "99aff43acf1671c451f4dff4cbedcc2d556d9a0cf5dbd9d2ac7c426b4315a329",
+                    "quote": "PhD students Bill Watson (co-advised with Sauvik Das ) Xiaoyu (Nicholas) Wu (co-advised with Andrew Ilyas and Steven Wu ) Renfei Zhang Kevin Han"
+                  }
+                ]
+              }
+            ]
+          },
+          "expected_after_sha256": "5f630325c76de60a3ea7098aec6f9b948c4c71149d953075bfb17d12040207db"
+        },
+        {
+          "pi": "Amir Barati Farimani",
+          "person": "ext:cmu:kevin-han",
+          "current_whole_member": {
+            "person": "ext:cmu:kevin-han",
+            "name": "Kevin Han",
+            "roles": [
+              "phd"
+            ],
+            "relations": [
+              {
+                "type": "researched_advising",
+                "years": [
+                  2026
+                ],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://sites.google.com/view/barati/team",
+                    "sha256": "74f132ecef43350411e6e3fe7341c5375cf564ffad0f36928534c7974d646863",
+                    "quote": "PhD Students Peter Pak AI and AM Read about Peter Anthony Zhou AI and PDEs Read about Anthony Kevin Han"
+                  }
+                ],
+                "auto": true,
+                "corroborated": true
+              }
+            ],
+            "auto": true
+          },
+          "current_sha256": "98f58a6f864de61148cefe1e94d236f895ff00059b5a9bb5808c6842de282667",
+          "expected_after_source_build_member": {
+            "person": "ext:cmu:kevin-han",
+            "name": "Kevin Han",
+            "roles": [
+              "phd"
+            ],
+            "relations": [
+              {
+                "type": "researched_advising",
+                "years": [
+                  2026
+                ],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://sites.google.com/view/barati/team",
+                    "sha256": "74f132ecef43350411e6e3fe7341c5375cf564ffad0f36928534c7974d646863",
+                    "quote": "PhD Students Peter Pak AI and AM Read about Peter Anthony Zhou AI and PDEs Read about Anthony Kevin Han"
+                  }
+                ],
+                "auto": true,
+                "corroborated": true
+              },
+              {
+                "type": "researched_advising",
+                "years": [
+                  2026
+                ],
+                "role": "phd",
+                "sources": [
+                  {
+                    "url": "https://kevinxhan.com",
+                    "sha256": "71c9d08bbafaba802f05957e60ebe2b035f36d49969b079f4869728e37cc846d",
+                    "quote": "Kevin Han I’m a third-year PhD student at Carnegie Mellon University advised by Niloofar Mireshghallah and Amir Farimani . My research is focused on learning for automated scientific discovery using LLMs, primarily focused on materials and drug discovery , as well as large-scale atomistic simulation ."
+                  }
+                ],
+                "auto": true,
+                "corroborated": true
+              }
+            ],
+            "auto": true
+          },
+          "expected_after_sha256": "aac7c2308f851348db6f363a72bcc1b468a588540ac77049d264434d5e0f576d"
+        }
+      ],
+      "issued_id_review": {
+        "scope": "explicit_issued_person_redirect_review_no_automatic_execution",
+        "survivor": "atl:p:e7867eda93d0",
+        "aliases": [
+          "atl:p:cb2014f2fb15"
+        ],
+        "source_registry_sha256": "2eb56d168115cb40c0a6e90480c93793dc50d7bda55da4dac4e0c06f8c9852eb",
+        "source_registry_fingerprint": {
+          "schema_sha256": "857d07e996ea4f455fbcc6b67c08b6f77bfc39e03f479c449b527ed2f4218d3a",
+          "tables": {
+            "anchors": {
+              "rows": 386577,
+              "sha256": "b4870833b022f7eb8663505f4b6b5cc0192d51a2011aed13a8897cd792d8938a"
+            },
+            "ids": {
+              "rows": 178921,
+              "sha256": "3de1cdc253cf9a16ec3021d50fc94f2608cc963e8dccc24f738e868b98be5e43"
+            },
+            "meta": {
+              "rows": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          }
+        },
+        "expected_before_ids": [
+          {
+            "id": "atl:p:cb2014f2fb15",
+            "kind": "person",
+            "minted_from": "p|name:cmu:kevin-han:https://sites.google.com/view/barati/team",
+            "issued": "2026-11-07",
+            "status": "active",
+            "redirect_to": null,
+            "note": null
+          },
+          {
+            "id": "atl:p:e7867eda93d0",
+            "kind": "person",
+            "minted_from": "p|name:cmu:kevin-han:https://mireshghallah.github.io/looni-lab.html",
+            "issued": "2026-10-30",
+            "status": "active",
+            "redirect_to": null,
+            "note": null
+          }
+        ],
+        "expected_before_anchors": [
+          {
+            "anchor": "p|name:cmu:kevin-han:https://sites.google.com/view/barati/team",
+            "id": "atl:p:cb2014f2fb15",
+            "kind": "person",
+            "first_seen": "2026-11-07"
+          },
+          {
+            "anchor": "p|name:cmu:kevin-han:https://mireshghallah.github.io/looni-lab.html",
+            "id": "atl:p:e7867eda93d0",
+            "kind": "person",
+            "first_seen": "2026-10-30"
+          }
+        ],
+        "reviewed_by": "codex-id-reviews-1109",
+        "reviewed_at": "2026-11-09",
+        "application_preconditions": [
+          "Controlled normal native CMU rebuild consumes the reviewed exact Kevin primary-page source appends with original late flags preserved",
+          "Recheck exact full current native member preimages; regenerate decision if changed",
+          "Independently root-review original source proofs and current whole registry CAS",
+          "No frozen scientific job active; preserve whole pre-application registry backup",
+          "Use existing explicit redirect transaction; do not weaken ordinary issued-ID guard"
+        ]
+      },
+      "application_status": "conditional_not_applied",
+      "required_next": "Controlled full native member/paper/link validation, independent scientific delta review, and exact registry/member preimage revalidation before explicit application."
     }
   ],
   "unresolved": [
@@ -1401,5 +3635,15 @@
       ]
     }
   ],
-  "review_status_note": "Five explicit redirect reviews total: the first two already applied before this batch; the three additional reviews were independently rehearsed on a whole registry copy. The EPFL typed repository identity review does not require a redirect. Remaining17 holds are the previous full-cohort hold set minus these four reviewed groups; the normal full cohort stage must revalidate before release."
+  "review_status_note": "Five previous redirect reviews and their original metadata preserved. Seven additional conditional source-backed reviews describe eight proposed redirects, rehearsed only in disposable copies. No new canonical or global application; current live17 holds remain until controlled native validation and explicit CAS application. Original unresolved list retained as the pre-application audit.",
+  "conditional_batch_20261109": {
+    "groups": 7,
+    "proposed_redirects": 8,
+    "applied": false,
+    "metadata_source_sha256": "da28a7cc72b45be98d865516491ba7af17c4c764bb39b79c89ee14075ccfa36e",
+    "combined_source_only_receipt_sha256": "28dc9ee8a03d19e78034e550970fc372543258d2ed45a71459448cf1d7331857",
+    "full_native_validation_complete": false,
+    "live_ID_holds": 17,
+    "conditional_remaining_holds_after_source_corrections_and_application": 9
+  }
 }
