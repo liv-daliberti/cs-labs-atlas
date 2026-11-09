@@ -231,7 +231,9 @@ def basis_advisees(quote):
     m = re.match(r'\s*([A-Z][\w.\'\- ]+?)\s+(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+((?:19|20)\d\d)\s+Ph\.?\s*D\.?\s+Thesis', q)
     if m:
         out.append((m.group(1).strip(), int(m.group(2))))
-    m = re.search(r'Doctoral Dissertation (?:Co-)?Advisor \(AC\)\s+(.+?)(?=\s+(?:Doctoral|Postdoctoral|Master|Undergraduate|Reader|Orals|Current)|\s*$)', q)
+    # Stanford's final advisee section can lead straight into publications: the 2026-11-09 Greg Zaharchuk
+    # profile names Ashwin Kumar before "All Publications", which is not part of the student's name.
+    m = re.search(r'Doctoral Dissertation (?:Co-)?Advisor \(AC\)\s+(.+?)(?=\s+(?:Doctoral|Postdoctoral|Master|Undergraduate|Reader|Orals|Current|(?:All |Selected )?Publications\b)|\s*$)', q)
     if m:
         out += [(x.strip(), None) for x in m.group(1).split(',') if len(x.strip().split()) >= 2]
     return [(clean_person_name(a), y) for a, y in out if a]
