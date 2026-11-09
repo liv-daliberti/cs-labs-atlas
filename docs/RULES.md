@@ -763,13 +763,13 @@ package without them.
 
 R-PAP-03 also recognizes `faculty_end_deceased` evidence. Later memorial or stale faculty listings are kept aside as `listingsAfterMove` and do not extend the appointment. Huei Peng’s reviewed end is 2022, supported by the captured ASME DSCD Winter 2022 memorial. ASME and Michigan Engineering disagree by one day, so only year precision is asserted.
 
-### R-STU-24 (2026-11-09, Oxford deep dive; owner asked for ORA supervisor records) — an ORA thesis record's Supervisor contributor
+### R-STU-24 (2026-11-09, owner approved) — an ORA thesis record's Supervisor contributor
 On an Oxford University Research Archive (ora.ox.ac.uk/objects/uuid:...) DPhil/MSc/MPhil record, a contributor with `Role: Supervisor` names the student's adviser. The record must be from 2016 or later;
 the supervisor must resolve to exactly one school PI (ORCID match, else family name + first initial unique among the PIs, R-STU-03; a supervisor or author department outside the computing-related set
 is skipped); the student's name is spelled out (the OpenAlex byline `Family, Given` or the record's copyright holder). Years: the degree year (R-STU-14). Rows: `reviewed/thesis-evidence.json`,
 built by `tools/ora_theses.py` (list from the snapshot extension, crawl at 3 s, parse, evidence); the pages are stored in the capture store. ORA pages carry a recaptcha script for their feedback form, so the
 tool judges a page by its own record markers instead of school_web's challenge pattern; robots.txt (`*`, no AI rule) is honoured. 2026-11-09: 1,141 records read, 415 rows, 113 PIs; hand check 30 of 415 (seed 20261109): 30 correct.
 
-### R-STU-25 (2026-11-09, Oxford deep dive) — a CS student profile page names the supervisors
+### R-STU-25 (2026-11-09, owner approved) — a CS student profile page names the supervisors
 An Oxford Computer Science student profile (www.cs.ox.ac.uk/people/First.Last) reads "Doctoral Student ... Supervisors <full names>". Each full-name match with a school PI is a row (`reviewed/roster-evidence.json`,
 `tools/cs_student_pages.py`); the line is cut at "Past Student", "Students" and "Co-supervis...". Years: the leaving-date year, else the capture year. 175 rows, 55 PIs; hand check 30 of 175 (seed 20261109): 30 quotes verified in the page; one spill-over (a past-student name after the supervisors) found and fixed.
