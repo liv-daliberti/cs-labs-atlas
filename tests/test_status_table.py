@@ -10,6 +10,7 @@ import subprocess
 
 import pytest
 
+import atlas_paths as AP
 import status_table as T
 
 
@@ -49,8 +50,8 @@ def world(tmp_path):
     rel = root / 'releases' / '2026-11-07'
     put(rel / 'MANIFEST.json', dict(release='2026-11-07', created='2026-11-07T08:00:00Z',
                                     counts=dict(alpha=dict(builtAt='2026-11-07T06:00:00Z', pis=10, lab_papers=120, students=30, lab_student_pairs=40, pis_with_lab_papers=9))))
-    put(rel / 'hierarchy' / 'alpha' / 'copies.json', dict(summary=dict(lab_papers=100, local=60, local_share=0.6, counted_at='2026-11-07T07:00:00Z'), papers={}))
-    put(rel / 'hierarchy' / 'alpha' / 'students.json', {'P1': [{'person': 'a'}, {'person': 'b'}], 'P2': [{'person': 'a'}]})
+    put(rel / 'hierarchy' / 'alpha' / 'copies.json', dict(summary=dict(lab_papers=100, local=60, local_share=0.6, counted_at='2026-11-07T07:00:00Z'), papers={}))  # route-ok: a release keeps flat names
+    put(rel / 'hierarchy' / 'alpha' / 'students.json', {'P1': [{'person': 'a'}, {'person': 'b'}], 'P2': [{'person': 'a'}]})  # route-ok: a release keeps flat names
     (root / 'releases' / 'latest').symlink_to(rel)
     # an isolated package for beta: 5 rows, 3 distinct works (a work listed under two PIs and a row without an id)
     pk = root / 'scratch' / 'beta-pkg' / 'beta'
@@ -69,7 +70,7 @@ def args(**kw):
 def ctx_for(root, **over):
     reg = over.pop('registry', dict(packages=dict(beta=dict(basis='native package', path='scratch/beta-pkg/beta', next_step='go')), paper_target=100))
     ov = dict(root=root, code=root, registry=reg, charters=T.load_charters(root / 'schools'), release=T.frozen_release(root / 'releases'),
-              data=lambda key, name: root / 'hierarchy' / key / name, collectors=root / 'none.json', no_nice=True)
+              data=lambda key, name: AP.data(name, key, root=root), collectors=root / 'none.json', no_nice=True)
     ov.update(over)
     c = T.make_context(args(), ov)
     c.update(git={}, queue={})
@@ -180,7 +181,7 @@ def test_copies_counter_in_the_registry_wins_and_a_base_mismatch_is_flagged(worl
 
 def test_websites_come_from_the_register(world):
     ctx = ctx_for(world)
-    put(world / 'hierarchy' / 'alpha' / 'lab-websites.json', dict(labs=[dict(coverage='website'), dict(coverage='reason'), dict(coverage='website')]))
+    put(AP.data('lab-websites.json', 'alpha', root=world), dict(labs=[dict(coverage='website'), dict(coverage='reason'), dict(coverage='website')]))
     assert T.build_row(dict(key='alpha', rank='1', rank_low=1, university='A', country='', registered=True), ctx)['websites'] == 2
 
 
@@ -191,7 +192,7 @@ def test_carried_figures_are_used_only_without_a_live_source_and_flagged(world):
     assert (g['PIs'], g['websites'], g['papers'], g['data_as_of_utc']) == (85, 16, '', '2026-11-09T16:05:53Z') and 'carried' in g['flags']
     a = T.build_row(dict(key='alpha', rank='1', rank_low=1, university='A', country='', registered=True), ctx)
     assert a['PIs'] == 10 and a['websites'] == 7                      # the frozen PIs win; only the missing websites are carried
-    put(world / 'hierarchy' / 'alpha' / 'lab-websites.json', dict(labs=[dict(coverage='website')]))
+    put(AP.data('lab-websites.json', 'alpha', root=world), dict(labs=[dict(coverage='website')]))
     assert T.build_row(dict(key='alpha', rank='1', rank_low=1, university='A', country='', registered=True), ctx)['websites'] == 1   # a live register wins
 
 
@@ -221,8 +222,8 @@ def test_git_state_lists_unlanded_branches_by_token(tmp_path):
     def g(*a):
         subprocess.run(['git', '-C', str(tmp_path), '-c', 'user.name=t', '-c', 'user.email=t@t', *a], check=True, capture_output=True)
     g('init', '-q', '-b', 'main')
-    (tmp_path / 'hierarchy' / 'alpha').mkdir(parents=True)
-    (tmp_path / 'hierarchy' / 'alpha' / 'x.py').write_text('1')
+    (tmp_path / 'hierarchy' / 'alpha').mkdir(parents=True)  # route-ok: a git path, not a data file
+    (tmp_path / 'hierarchy' / 'alpha' / 'x.py').write_text('1')  # route-ok
     g('add', '-A')
     g('commit', '-q', '-m', 'alpha work on main')
     g('checkout', '-q', '-b', 'agent/alpha-deepdive')
@@ -247,7 +248,7 @@ def test_main_is_read_only_and_writes_only_the_three_files(world, tmp_path):
     before = snapshot()
     ov = dict(root=world, code=world, registry=dict(packages=dict(beta=dict(basis='b', path='scratch/beta-pkg/beta'))), no_nice=True,
               charters=T.load_charters(world / 'schools'), release=T.frozen_release(world / 'releases'), roster=T.load_roster(world / 'roster.tsv'),
-              data=lambda key, name: world / 'hierarchy' / key / name, collectors=world / 'none.json', git={}, queue={}, ids=dict(registry_sha256=None, coadvising_holds=None),
+              data=lambda key, name: AP.data(name, key, root=world), collectors=world / 'none.json', git={}, queue={}, ids=dict(registry_sha256=None, coadvising_holds=None),
               live_fn=lambda key, n: dict(gate='pass' if n < 9 else 'fail', open=0 if n < 9 else 1))
     assert T.main(['--gates', 'live', '--out-dir', str(out), '--top', '2'], ov) == 0
     assert snapshot() == before                                  # nothing under the data tree changed
