@@ -9,41 +9,58 @@
   "held": "rows flagged by the rules (uncorroborated anchors, books and chapters, non-SJTU affiliation, claim-held leaks); proposed or ingested holds, excluded from the kept counts"
  },
  "sealed_package": {
-  "package": "scratch/sjtu-coverage-1110/native32/package/sjtu",
-  "job_id": "32181138",
+  "package": "scratch/sjtu-coverage-1110/native33/package/sjtu",
+  "job_id": "32183331",
   "sealed": true,
-  "input_commit": "1a9a519",
+  "input_commit": "c64f4d0",
   "package_sha256": {
-   "pis.json": "46ed8dbd1a07c4a03a3af0e11125e976e4d04c4c50a15ca456118da393c19a96",
+   "pis.json": "e2292b38cf98a9092aa1be1e9402422c3071303c32fff36f94b1f28983973804",
    "students.json": "1d7986aec3eb5d155133748702405e0e4a7ce9e8ce3aebd166efae064d323e50",
-   "lab_papers.jsonl.gz": "1d889533625271506c44a2c43fe4b1d274d5b385c319b83fb7a078195ecd25f2",
-   "student_papers.jsonl.gz": "c4e545acfac2dfa020a460581a47531d38aae6bc0d0a7c9bfc9688aafb7ad2af",
-   "report.json": "1bf1b0b6cdcec50c446da13b67d22792b7ab1e7590975fd44c7c016a9d7330b2"
+   "lab_papers.jsonl.gz": "11403b142ba7fc809136063def3d696d8f218cd85a0a11f019fa3c8556b1f8fa",
+   "student_papers.jsonl.gz": "1b4d2c91b8c0271c30d311aa50d84e08638cc32690a5226a424ff2c306f85237",
+   "report.json": "2b2934f13aba392e05759045a7e7298d5a31a200febeed96c6d04c7f0b7f809c"
   },
-  "package_rows": 5369,
-  "package_distinct_works": 4915,
+  "package_rows": 5571,
+  "package_distinct_works": 5080,
   "pis_with_papers": 106,
-  "student_links": 792,
-  "student_links_failing_name_or_date": 19,
+  "owned_dblp_persons": 42,
+  "student_links": 804,
+  "student_links_after_post_filter": 711,
+  "student_links_filtered": {
+   "failing_name_or_date": 19,
+   "unlabelled_name_plus_topic": 74
+  },
+  "student_precision_sample": {
+   "n": 117,
+   "correct": 110,
+   "doubtful": 7,
+   "incorrect": 0,
+   "point_precision_doubtful_half": 0.9700854700854701,
+   "seeds": [
+    20261119,
+    "9 new links, fresh reviewer"
+   ],
+   "note": "round 2 (108, covers 702 links) plus 9 links new to this package"
+  },
   "source_backed": {
-   "rows": 2959,
-   "distinct_works": 2833
+   "rows": 3532,
+   "distinct_works": 3326
   },
   "heuristic": {
-   "rows": 2406,
-   "distinct_works": 2240,
-   "distinct_works_not_source_backed": 2078
+   "rows": 1921,
+   "distinct_works": 1842,
+   "distinct_works_not_source_backed": 1636
   },
   "held_proposed": {
-   "rows": 4
+   "rows": 118
   },
   "all_kept": {
-   "rows": 5365,
-   "distinct_works": 4911
+   "rows": 5453,
+   "distinct_works": 4962
   },
   "lab_coverage_dblp_pool": {
-   "found": 1448,
-   "total": 1699
+   "found": 2325,
+   "total": 2876
   }
  },
  "registered_package": "sealed_package",
