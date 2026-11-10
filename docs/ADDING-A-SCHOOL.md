@@ -128,7 +128,8 @@ atlas stage-gate <key> [n ...]                 # only the gates (0-10), from the
   - `school_hosts.py <key>` reports 0 inconsistent hosts:
     - every host was checked against its robots.txt;
     - every host marked `live` was probed and served no challenge;
-    - every host that disallows AI agents by name is marked `none`.
+    - every host that disallows AI agents by name is marked `none`;
+    - a host on the never-contact list (`school_hosts.NEVER_CONTACT`: dblp.org, www.dblp.org, dblp.uni-trier.de, orcid.org, pub.orcid.org, web.archive.org, web-static.archive.org) with `use = none` is recorded as `robots: not_fetched` without any request, not even robots.txt (R-HOST-01); DBLP data comes from the local dump only.
   - The charter is reviewed and committed.
 - **Learned from Michigan (2026-10-29):**
   - **The host gate needs a probe fetch.** robots.txt allowing a host proves nothing about a Cloudflare challenge in front of it. At Michigan, every umich.edu host but one challenged a plain request. The charter's `[web].wayback_only_suffixes` makes a whole domain Wayback-only, and `school_config.host_use()` applies it.
