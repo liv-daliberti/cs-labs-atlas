@@ -207,9 +207,22 @@
   },
   {
    "pi": "Sanmay Das",
-   "url": null,
-   "coverage": "reason",
-   "reason": "profile page fetched; it links no personal, lab or group site (non-navigation anchors checked), and Codex's website verification found none; no lab list entry; no own page linked from any official page"
+   "url": "https://people.cs.vt.edu/sanmay/",
+   "coverage": "website",
+   "kind": "pi_homepage",
+   "found_from": {
+    "kind": "official_page",
+    "url": "https://sanghani.cs.vt.edu/people/our-team/faculty/sanmay-das.html",
+    "sha256": "eca83c84957470bb88bd745a74f84ccca0e78cb19a277c5056ab0d3c4b03db88",
+    "via": "literal Website anchor"
+   },
+   "fetched": true,
+   "sha256": "b3438db32e88dd1a5d456c4a781da88b93d4a4b6a4a439aa447e48ba2571eea0",
+   "names_person": true,
+   "other_urls": [
+    "https://people.cs.vt.edu/sanmay/lab.html"
+   ],
+   "review_status": "source_chain_checked_2026-11-10"
   },
   {
    "pi": "Brendan David-John",
@@ -952,9 +965,24 @@
   },
   {
    "pi": "Pinar Yanardag",
-   "url": null,
-   "coverage": "reason",
-   "reason": "profile page fetched; it links no personal, lab or group site (non-navigation anchors checked), and Codex's website verification found none; no lab list entry; no own page linked from any official page"
+   "url": "https://gemlab-vt.github.io/",
+   "coverage": "website",
+   "kind": "lab_site",
+   "found_from": {
+    "kind": "pi_homepage",
+    "url": "https://pinguar.org",
+    "sha256": "c8be978f0fe88858266afe9b64fca67a78a8bd8a4a3daece9e9cf0e408cc7884",
+    "via": "literal GEM Lab anchor; PI homepage is linked from official profile",
+    "official_profile_url": "https://sanghani.cs.vt.edu/people/our-team/faculty/pinar-yanardag.html",
+    "official_profile_sha256": "63b0cdedf06c2241615cd481ee0a7009872664d59f0b101a69249daa24b0124a"
+   },
+   "fetched": true,
+   "sha256": "2c8eac3e32f7f7f1c727b9a88e2e17d99e9f174b78ded8ca06b0ec7d4cb87c9b",
+   "names_person": true,
+   "other_urls": [
+    "https://pinguar.org"
+   ],
+   "review_status": "source_chain_checked_2026-11-10"
   },
   {
    "pi": "Liqing Zhang",
