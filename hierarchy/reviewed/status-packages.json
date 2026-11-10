@@ -78,12 +78,9 @@
    "next_step": "Land census expansion, run Wayback part A, rerun native, scientific review."
   },
   "tsinghua": {
-   "basis": "latest isolated native package, not admitted",
-   "candidates": [
-    "scratch/tsinghua-native52-1110/package/tsinghua"
-   ],
-   "path": "scratch/tsinghua-seventeen-bibliographies-1109/package/tsinghua",
-   "next_step": "Review the native 52 output when its job has run; then gates."
+   "basis": "latest isolated native package, not admitted (run 4, job 32180733: 3,349 relations / 3,255 works / 49 of 207 PIs; baseline 653 / 17)",
+   "path": "scratch/tsinghua-native52-1110/package/tsinghua",
+   "next_step": "DISCLOSURE: only 52 of 207 PIs have an owned DBLP binding; 155 carry reviewed no_identity holds and have no attributed papers (7 thin title evidence, 52 unlinked candidates, 96 none found; reports/IDENTITY-DISCLOSURE-20261110.md). All anchored OpenAlex ids of the 52 are mixed (about 560 anchored rows need per-work evidence); outside_appointment 3,050 because pre-2021 listings are not captured (job 32180010 queued behind the Wayback cooldown). Frozen inputs of the next native must add reviewed/labpage-evidence.json and reviewed/lab-websites-sweep.json (student worker). Open: stage 1 pre-2021 listings, stage 2 review of 2,062 DBLP candidates (T132), stage 3 home departments (207 prepared in scratch/tsinghua-overlay-1110, placed at promotion), stages 6-9."
   },
   "harvard": {
    "basis": "overlay trial package (not admitted); the frozen release counts are in the frozen_* columns",
