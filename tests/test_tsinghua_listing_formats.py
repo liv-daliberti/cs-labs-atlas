@@ -35,6 +35,20 @@ def test_au_card_name_only():
     fmt, rows = L.parse(AU)
     assert fmt == 'tsinghua_au_cards' and rows[0]['name_listed'] == '周东华' and rows[0]['titles'] == []
 
+AU22 = '<div class="research-name">控制与决策研究所</div><div class="teacher-list"><a href="../../../info/1077/1622.htm"><div class="item">黄德先</div></a><a href="javascript:;"><div class="item">吉吟东</div></a></div>'
+AIR = '<div class="yjtd_tit"><h1>Professor</h1></div><div class="yjtd_nr"><ul><li><a href="../info/1046/1188.htm" title="Ya-Qin Zhang"><div class="yjtd_nwz"><h2>Ya-Qin Zhang</h2><h3>Founding Dean/Chair Professor</h3><p>Chair Professor</p></div></a></li></ul></div>'
+
+
+def test_au_2022_template_keeps_institute_and_drops_javascript_links():
+    fmt, rows = L.parse(AU22)
+    assert fmt == 'tsinghua_au_cards' and [r['name_listed'] for r in rows] == ['黄德先', '吉吟东']
+    assert rows[0]['division'] == '控制与决策研究所' and rows[1]['profile'] is None
+
+
+def test_air_cards_band_name_and_title():
+    fmt, rows = L.parse(AIR)
+    assert fmt == 'tsinghua_air_cards' and rows[0]['name_listed'] == 'Ya-Qin Zhang' and rows[0]['titles'] == ['Founding Dean/Chair Professor'] and rows[0]['division'] == 'Professor'
+
 
 def test_slot_with_a_format_is_usable_when_english_title_lines_and_latin_names_cannot_see_the_listing(monkeypatch):
     """Tsinghua captures (Chinese names and titles) were all 'unusable' (0 English title lines, no Latin PI-name match) until a slot's own format counted."""

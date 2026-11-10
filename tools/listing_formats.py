@@ -505,13 +505,39 @@ def tsinghua_iiis_cards(h):
 
 
 def tsinghua_au_cards(h):
-    """Tsinghua Automation institute pages (szdw/jsdw1/<group>/<institute>.htm): `ul.list13 li a` cards, name in `<h3><big>`; no title on the card."""
+    """Tsinghua Automation institute pages (szdw/jsdw1/<group>/<institute>.htm): 2023+ `ul.list13 li a` cards, name in `<h3><big>`;
+    the 2022 template is `div.teacher-list a div.item` under `div.research-name`. No title on either; javascript:; links have no profile."""
     from bs4 import BeautifulSoup
+    soup = BeautifulSoup(h, 'html.parser')
     out = []
-    for a in BeautifulSoup(h, 'html.parser').select('ul.list13 li a[href]'):
+    for a in soup.select('ul.list13 li a[href]'):
         n = a.select_one('div.con h3')
         if n is not None and clean(n.get_text(' ', strip=True)):
             out.append(dict(name_listed=clean(n.get_text(' ', strip=True)), titles=[], profile=a['href'], homepage=None, division=None))
+    if out:
+        return out
+    division = soup.select_one('div.research-name')
+    division = clean(division.get_text(' ', strip=True)) if division else None
+    for a in soup.select('div.teacher-list a[href]'):
+        n = a.select_one('div.item')
+        if n is not None and clean(n.get_text(' ', strip=True)):
+            href = a['href']
+            out.append(dict(name_listed=clean(n.get_text(' ', strip=True)), titles=[], profile=None if href.startswith('javascript') else href, homepage=None, division=division))
+    return out
+
+
+def tsinghua_air_cards(h):
+    """Tsinghua AIR English team page (our_team/Research_Team.htm): `div.yjtd_tit h1` band (Professor, ...) then `li` cards with `<h2>` name and `<h3>` title."""
+    from bs4 import BeautifulSoup
+    out = []
+    for box in BeautifulSoup(h, 'html.parser').select('div.yjtd_tit'):
+        band = clean(box.get_text(' ', strip=True))
+        body = box.find_next_sibling('div', class_='yjtd_nr')
+        for li in (body.select('li') if body else []):
+            n, t, a = li.select_one('h2'), li.select_one('h3'), li.select_one('a[href]')
+            if n is not None and clean(n.get_text(' ', strip=True)):
+                out.append(dict(name_listed=clean(n.get_text(' ', strip=True)), titles=[clean(t.get_text(' ', strip=True))] if t else [],
+                                profile=a['href'] if a else None, homepage=None, division=band))
     return out
 
 
@@ -520,7 +546,8 @@ FORMATS = {
     'tsinghua_cs_list': (tsinghua_cs_list, re.compile(r'class="people01-nr"')),
     'tsinghua_sw_names': (tsinghua_sw_names, re.compile(r'class="group-title"')),
     'tsinghua_iiis_cards': (tsinghua_iiis_cards, re.compile(r'class="ls16 flex"')),
-    'tsinghua_au_cards': (tsinghua_au_cards, re.compile(r'class="list13 flex"')),
+    'tsinghua_au_cards': (tsinghua_au_cards, re.compile(r'class="list13 flex"|class="teacher-list"')),
+    'tsinghua_air_cards': (tsinghua_air_cards, re.compile(r'class="yjtd_tit"')),
     'hkust_faculty_table': (hkust_faculty_table, re.compile(r'(?!)')),
     'toronto_research': (lambda h: toronto_directory(h, 'researchstream'), re.compile(r'(?!)')),
     'toronto_teaching': (lambda h: toronto_directory(h, 'teachingstream'), re.compile(r'(?!)')),
