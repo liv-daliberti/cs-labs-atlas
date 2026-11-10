@@ -17,3 +17,9 @@ Other host findings: isom.hkust.edu.hk serves an untrusted TLS chain (no workaro
 - path: /n/fs/resemble/homogenizing-science/code/hierarchy/hkust/tmp/census-1110-overlay/hierarchy/hkust/derived/hosts.json
 - sha256: 8548f3543fb59142a407a1c1559d5af247c7a233293a53c969e6ba133fcdd5e7
 - ISOM and MAE listing URLs (CDX prefix query, 2026-11-10): isom.hkust.edu.hk/faculty-and-staff/directory; www.mae.ust.hk/en/people/faculty and www.mae.ust.hk/people/faculty.html. Hosts mae.ust.hk, mae.hkust.edu.hk, isom.hkust.edu.hk are wayback_only_suffixes.
+
+## Portal (researchportal.hkust.edu.hk / facultyprofiles) is not a source (coordinator, 2026-11-10)
+The central faculty portal redirects to researchportal.hkust.edu.hk, which answered a bot challenge to the earlier collector; the rule is to stop at challenges and the block was not cleared. No portal page is cited, and no site entry rests on it. A fresh reviewer agent read portal profiles that link personal sites for Anyi Rao, Wei Xue and Yiding Feng; that is an unsupported lead only: those sites are not recorded (their extra-lab-pages entries were removed) and their content is not copied. Their reasons rest on the official EMIA and IEDA unit pages that were read under robots.
+
+## Own-page title evidence (R-PAP-44), 2026-11-10
+Zhiyao Xie, Ling Pan and Zili Meng: the own publications page (linked from the official ECE profile as Personal Homepage) holds 67, 48 and 53 exact long DBLP titles of one DBLP person each; no same-base-name rival shares a matched title; the person's name equals the PI's. Bound in census-overrides-school.json as accepted_rule_bound with url+sha256 of the page.
