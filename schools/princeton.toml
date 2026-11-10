@@ -45,6 +45,157 @@ verdict = "skip"
 repository = "Princeton OAR (oar.princeton.edu, DSpace 5 JSPUI)"
 reason = "no OAI-PMH endpoint: /oai/request and /jspui/oai/request answer 404 (checked 2026-11-04); robots.txt allows the item pages and lists a sitemap, which the earlier OAR item index (cs-structure/raw/oar, matched by the oar channel) already used. No ClaudeBot/anthropic-ai rule."
 
+# Hosts the princeton tools contact (stage 0, 2026-11-10). Derived from evidence: the raw capture stores (hierarchy/princeton/raw/*captures*.sqlite) and the full-text download ledger (stores/princeton/fulltext_assets.csv). The long tail of faculty personal sites is read per capture under school_web robots checks and is not enumerated here.
+[[hosts]]
+host = "web.archive.org"
+use = "live"
+purpose = "Wayback id_ captures and CDX (411 captures in the princeton raw stores; listings, lab pages, theses)"
+probe = ""
+
+[[hosts]]
+host = "api.openalex.org"
+use = "live"
+purpose = "OpenAlex API (snapshot first; the shared 10k/day key; 42 captures in the raw stores)"
+probe = ""
+
+[[hosts]]
+host = "dblp.org"
+use = "none"
+purpose = "DBLP: local dump only, never fetched (project rule)"
+probe = ""
+
+[[hosts]]
+host = "orcid.org"
+use = "none"
+purpose = "ORCID: never contacted (project rule); the raw stores hold 104 older captures from before the rule"
+probe = ""
+
+[[hosts]]
+host = "arxiv.org"
+use = "live"
+purpose = "Third-party source: 8872 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = ""
+
+[[hosts]]
+host = "storage.googleapis.com"
+use = "live"
+purpose = "Third-party source: 8013 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = ""
+
+[[hosts]]
+host = "pmc-oa-opendata.s3.amazonaws.com"
+use = "live"
+purpose = "Third-party source: 7469 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = ""
+
+[[hosts]]
+host = "oar.princeton.edu"
+use = "live"
+purpose = "School site: 2476 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = ""
+
+[[hosts]]
+host = "www.osti.gov"
+use = "live"
+purpose = "Third-party source: 973 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = ""
+
+[[hosts]]
+host = "watermark02.silverchair.com"
+use = "live"
+purpose = "Third-party source: 912 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = ""
+
+[[hosts]]
+host = "dataspace.princeton.edu"
+use = "live"
+purpose = "School site: 632 captures in the raw stores (632 live, 0 via Wayback; 632 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://dataspace.princeton.edu/"
+
+[[hosts]]
+host = "www.nber.org"
+use = "live"
+purpose = "Third-party source: 626 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = ""
+
+[[hosts]]
+host = "www.cs.princeton.edu"
+use = "live"
+purpose = "School site: 304 captures in the raw stores (304 live, 0 via Wayback; 288 HTTP 200); 250 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = "https://www.cs.princeton.edu/"
+
+[[hosts]]
+host = "cocosci.princeton.edu"
+use = "live"
+purpose = "School site: 462 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = ""
+
+[[hosts]]
+host = "www.cambridge.org"
+use = "live"
+purpose = "Third-party source: 448 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = ""
+
+[[hosts]]
+host = "hal.science"
+use = "live"
+purpose = "Third-party source: 323 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = ""
+
+[[hosts]]
+host = "www.princeton.edu"
+use = "live"
+purpose = "School site: 67 captures in the raw stores (67 live, 0 via Wayback; 61 HTTP 200); 110 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = "https://www.princeton.edu/"
+
+[[hosts]]
+host = "pillowlab.princeton.edu"
+use = "live"
+purpose = "School site: 21 captures in the raw stores (21 live, 0 via Wayback; 13 HTTP 200); 49 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = "https://pillowlab.princeton.edu/"
+
+[[hosts]]
+host = "ece.princeton.edu"
+use = "live"
+purpose = "School site: 68 captures in the raw stores (67 live, 1 via Wayback; 63 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://ece.princeton.edu/"
+
+[[hosts]]
+host = "www.math.princeton.edu"
+use = "live"
+purpose = "School site: 51 captures in the raw stores (49 live, 2 via Wayback; 20 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://www.math.princeton.edu/"
+
+[[hosts]]
+host = "web.math.princeton.edu"
+use = "live"
+purpose = "School site: 28 captures in the raw stores (28 live, 0 via Wayback; 28 HTTP 200); 12 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+probe = "https://web.math.princeton.edu/"
+
+[[hosts]]
+host = "orfe.princeton.edu"
+use = "live"
+purpose = "School site: 30 captures in the raw stores (21 live, 9 via Wayback; 26 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://orfe.princeton.edu/"
+
+[[hosts]]
+host = "mae.princeton.edu"
+use = "live"
+purpose = "School site: 27 captures in the raw stores (16 live, 11 via Wayback; 22 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://mae.princeton.edu/"
+
+[[hosts]]
+host = "ee.princeton.edu"
+use = "live"
+purpose = "School site: 27 captures in the raw stores (26 live, 1 via Wayback; 25 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://ee.princeton.edu/"
+
+[[hosts]]
+host = "mracz.princeton.edu"
+use = "live"
+purpose = "School site: 21 captures in the raw stores (21 live, 0 via Wayback; 3 HTTP 200) (derived 2026-11-10 from evidence)"
+probe = "https://mracz.princeton.edu/"
+
 [collector]
 # 2026-11-10 (owner): discovery channels re-enabled for every loop. wayback_acm stays OFF (and WAYBACK_HOLD=1 in the loop scripts) while Wayback listing captures run; CORE stays paused.
 # Re-enable wayback_acm later: append "wayback_acm" here and set WAYBACK_HOLD=0 for the loops. OpenAlex spend is capped by OA_RESERVE=4000 (docs/CHANNELS.md).
