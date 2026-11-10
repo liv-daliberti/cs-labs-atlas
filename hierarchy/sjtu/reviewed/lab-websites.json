@@ -1407,21 +1407,31 @@
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/chenyijia.html",
    "profile_sha256": "01f413f966ec159ca510fd2f70cd6a04c81141f17699a059d0eb0072c27cb314",
    "url": "https://basics.sjtu.edu.cn/~chen/",
-   "status": "not_fetched_policy_or_transport",
-   "reason_code": "host_robots_or_transport_hold",
-   "reason": "live fetch not made or failed: robots (-1, 'ReadTimeout(ReadTimeoutError(\"HTTPSConnectionPool(host=\\'basics.sjtu.edu.cn\\', por'); ownership_sources: profile https://www.cs.sjtu.edu.cn/jiaoshiml/chenyijia.html",
-   "coverage": "pending",
-   "evidence_gaps": [
-    "not_resolved"
-   ],
+   "status": "reviewed_live_website",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "the page linked from the official profile carries the pinyin reading of the PI name from the profile address (live fetch under robots, 2026-11-10)",
+   "coverage": "website",
    "checks": [
     {
-     "source": "sweep_attempt",
+     "source": "school_profile_link",
      "url": "https://basics.sjtu.edu.cn/~chen/",
-     "result": "not_fetched_policy_or_transport",
-     "at": "2026-11-10T00:00:00"
+     "on": "https://www.cs.sjtu.edu.cn/jiaoshiml/chenyijia.html",
+     "linked_url": "https://basics.sjtu.edu.cn/~chen/",
+     "result": "listed",
+     "at": "2026-11-10T18:00:00",
+     "source_sha256": "01f413f966ec159ca510fd2f70cd6a04c81141f17699a059d0eb0072c27cb314"
+    },
+    {
+     "source": "live_fetch",
+     "url": "https://basics.sjtu.edu.cn/~chen/",
+     "result": "ok_names_pi_by_profile_slug",
+     "at": "2026-11-10T18:00:00",
+     "sha256": "cf026620bad4838df4fe5bd42126f0b81bfc2b1c5000c6c931fd9bae4a6e14d7"
     }
-   ]
+   ],
+   "found_via": "school_profile_link",
+   "sha256": "cf026620bad4838df4fe5bd42126f0b81bfc2b1c5000c6c931fd9bae4a6e14d7",
+   "verification_quote": "Yijia Chen"
   },
   {
    "pi": "陈游旻",
@@ -1756,21 +1766,31 @@
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/fuyuxi.html",
    "profile_sha256": "f7e7e1b28c24e59ea775ceefd717f3e75eb82519569f9dd457c71ed1c4c3e1ce",
    "url": "https://basics.sjtu.edu.cn/~yuxi/",
-   "status": "not_fetched_policy_or_transport",
-   "reason_code": "host_robots_or_transport_hold",
-   "reason": "live fetch not made or failed: robots (-1, 'ReadTimeout(ReadTimeoutError(\"HTTPSConnectionPool(host=\\'basics.sjtu.edu.cn\\', por'); ownership_sources: profile https://www.cs.sjtu.edu.cn/jiaoshiml/fuyuxi.html",
-   "coverage": "pending",
-   "evidence_gaps": [
-    "not_resolved"
-   ],
+   "status": "reviewed_live_website",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "the page linked from the official profile carries the pinyin reading of the PI name from the profile address (live fetch under robots, 2026-11-10)",
+   "coverage": "website",
    "checks": [
     {
-     "source": "sweep_attempt",
+     "source": "school_profile_link",
      "url": "https://basics.sjtu.edu.cn/~yuxi/",
-     "result": "not_fetched_policy_or_transport",
-     "at": "2026-11-10T00:00:00"
+     "on": "https://www.cs.sjtu.edu.cn/jiaoshiml/fuyuxi.html",
+     "linked_url": "https://basics.sjtu.edu.cn/~yuxi/",
+     "result": "listed",
+     "at": "2026-11-10T18:00:00",
+     "source_sha256": "f7e7e1b28c24e59ea775ceefd717f3e75eb82519569f9dd457c71ed1c4c3e1ce"
+    },
+    {
+     "source": "live_fetch",
+     "url": "https://basics.sjtu.edu.cn/~yuxi/",
+     "result": "ok_names_pi_by_profile_slug",
+     "at": "2026-11-10T18:00:00",
+     "sha256": "ea272eda9c5dd40b9be7794d92a3fe43d63e8485ac7905392ec4ceb76d515441"
     }
-   ]
+   ],
+   "found_via": "school_profile_link",
+   "sha256": "ea272eda9c5dd40b9be7794d92a3fe43d63e8485ac7905392ec4ceb76d515441",
+   "verification_quote": "Yuxi Fu"
   },
   {
    "pi": "高晓沨",
@@ -2320,19 +2340,16 @@
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/huangzheng.html",
    "profile_sha256": "da7d157887b9f34a17ec6bd87ebfa865b1928bdf4217cee9afeeba57f9d3bbbd",
    "url": "https://infosec.sjtu.edu.cn/",
-   "status": "fetched_page_does_not_name_pi",
-   "reason_code": "page_names_no_pi",
-   "reason": "fetched page did not contain the PI name or alias; not accepted as the PI site",
-   "coverage": "pending",
-   "evidence_gaps": [
-    "not_resolved"
-   ],
+   "status": "none_found",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "the page linked from the profile is the cyber-security institute site (上海交通大学网络空间安全学院), which does not name the PI; no personal homepage found",
+   "coverage": "none",
    "checks": [
     {
-     "source": "sweep_attempt",
+     "source": "live_fetch",
      "url": "https://infosec.sjtu.edu.cn/",
-     "result": "fetched_page_does_not_name_pi",
-     "at": "2026-11-10T00:00:00"
+     "result": "institute_site_does_not_name_pi",
+     "at": "2026-11-10T18:00:00"
     }
    ]
   },
@@ -2827,21 +2844,31 @@
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/liguoqiang.html",
    "profile_sha256": "701f516171a177841bb085b00c5182fafb6567315a37e7fa42c23302a0c5ff00",
    "url": "https://basics.sjtu.edu.cn/~liguoqiang",
-   "status": "not_fetched_policy_or_transport",
-   "reason_code": "host_robots_or_transport_hold",
-   "reason": "live fetch not made or failed: robots (-1, 'ReadTimeout(ReadTimeoutError(\"HTTPSConnectionPool(host=\\'basics.sjtu.edu.cn\\', por'); ownership_sources: profile https://www.cs.sjtu.edu.cn/jiaoshiml/liguoqiang.html",
-   "coverage": "pending",
-   "evidence_gaps": [
-    "not_resolved"
-   ],
+   "status": "reviewed_live_website",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "the page linked from the official profile carries the pinyin reading of the PI name from the profile address (live fetch under robots, 2026-11-10)",
+   "coverage": "website",
    "checks": [
     {
-     "source": "sweep_attempt",
+     "source": "school_profile_link",
      "url": "https://basics.sjtu.edu.cn/~liguoqiang",
-     "result": "not_fetched_policy_or_transport",
-     "at": "2026-11-10T00:00:00"
+     "on": "https://www.cs.sjtu.edu.cn/jiaoshiml/liguoqiang.html",
+     "linked_url": "https://basics.sjtu.edu.cn/~liguoqiang",
+     "result": "listed",
+     "at": "2026-11-10T18:00:00",
+     "source_sha256": "701f516171a177841bb085b00c5182fafb6567315a37e7fa42c23302a0c5ff00"
+    },
+    {
+     "source": "live_fetch",
+     "url": "https://basics.sjtu.edu.cn/~liguoqiang",
+     "result": "ok_names_pi_by_profile_slug",
+     "at": "2026-11-10T18:00:00",
+     "sha256": "9b67b58e03a6b1a6adc8eba0e723f867ff2ef444ba7ad1ed2842c99d3223cae4"
     }
-   ]
+   ],
+   "found_via": "school_profile_link",
+   "sha256": "9b67b58e03a6b1a6adc8eba0e723f867ff2ef444ba7ad1ed2842c99d3223cae4",
+   "verification_quote": "Guoqiang Li"
   },
   {
    "pi": "李建华",
@@ -4616,19 +4643,16 @@
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/wangshuo.html",
    "profile_sha256": "6d1bd7b65e50d0e750e51336ccbe1752e549f96ee5ea2a21f1e1bc1e769c1d35",
    "url": "https://www.wang-shuo.com/",
-   "status": "fetched_page_does_not_name_pi",
-   "reason_code": "page_names_no_pi",
-   "reason": "fetched page did not contain the PI name or alias; not accepted as the PI site",
-   "coverage": "pending",
-   "evidence_gaps": [
-    "not_resolved"
-   ],
+   "status": "none_found",
+   "reason_code": "no_web_presence_found",
+   "reason": "the linked domain serves only a script redirect to /lander (a parked-domain page), not a personal site (live fetch 2026-11-10)",
+   "coverage": "none",
    "checks": [
     {
-     "source": "sweep_attempt",
+     "source": "live_fetch",
      "url": "https://www.wang-shuo.com/",
-     "result": "fetched_page_does_not_name_pi",
-     "at": "2026-11-10T00:00:00"
+     "result": "domain_parking_redirect",
+     "at": "2026-11-10T18:00:00"
     }
    ]
   },
@@ -5581,21 +5605,31 @@
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/yinqiang.html",
    "profile_sha256": "de19633dd8226a5533036d50b01f9923afa8e2a8a7f64da830b215deacc99cb0",
    "url": "https://basics.sjtu.edu.cn/~qyin",
-   "status": "not_fetched_policy_or_transport",
-   "reason_code": "host_robots_or_transport_hold",
-   "reason": "live fetch not made or failed: robots (-1, 'ReadTimeout(ReadTimeoutError(\"HTTPSConnectionPool(host=\\'basics.sjtu.edu.cn\\', por'); ownership_sources: profile https://www.cs.sjtu.edu.cn/jiaoshiml/yinqiang.html",
-   "coverage": "pending",
-   "evidence_gaps": [
-    "not_resolved"
-   ],
+   "status": "reviewed_live_website",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "the page linked from the official profile carries the pinyin reading of the PI name from the profile address (live fetch under robots, 2026-11-10)",
+   "coverage": "website",
    "checks": [
     {
-     "source": "sweep_attempt",
+     "source": "school_profile_link",
      "url": "https://basics.sjtu.edu.cn/~qyin",
-     "result": "not_fetched_policy_or_transport",
-     "at": "2026-11-10T00:00:00"
+     "on": "https://www.cs.sjtu.edu.cn/jiaoshiml/yinqiang.html",
+     "linked_url": "https://basics.sjtu.edu.cn/~qyin",
+     "result": "listed",
+     "at": "2026-11-10T18:00:00",
+     "source_sha256": "de19633dd8226a5533036d50b01f9923afa8e2a8a7f64da830b215deacc99cb0"
+    },
+    {
+     "source": "live_fetch",
+     "url": "https://basics.sjtu.edu.cn/~qyin",
+     "result": "ok_names_pi_by_profile_slug",
+     "at": "2026-11-10T18:00:00",
+     "sha256": "9040b8e6bfb9b823bf7b7777a529726db5650f23b129bc08acf1f60238945219"
     }
-   ]
+   ],
+   "found_via": "school_profile_link",
+   "sha256": "9040b8e6bfb9b823bf7b7777a529726db5650f23b129bc08acf1f60238945219",
+   "verification_quote": "Qiang Yin"
   },
   {
    "pi": "易 冉",
@@ -6083,21 +6117,31 @@
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhangxiaofan.html",
    "profile_sha256": "01fb828800b9b0571bec0e778861461ad29c9364819894b07c4afd3114e576c2",
    "url": "https://zhangxiaofan101.github.io",
-   "status": "not_fetched_policy_or_transport",
-   "reason_code": "host_robots_or_transport_hold",
-   "reason": "live fetch not made or failed: robots (301, ''); ownership_sources: profile https://www.cs.sjtu.edu.cn/jiaoshiml/zhangxiaofan.html",
-   "coverage": "pending",
-   "evidence_gaps": [
-    "not_resolved"
-   ],
+   "status": "reviewed_live_website",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "the page linked from the official profile carries the pinyin reading of the PI name from the profile address (live fetch under robots, 2026-11-10)",
+   "coverage": "website",
    "checks": [
     {
-     "source": "sweep_attempt",
+     "source": "school_profile_link",
      "url": "https://zhangxiaofan101.github.io",
-     "result": "not_fetched_policy_or_transport",
-     "at": "2026-11-10T00:00:00"
+     "on": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhangxiaofan.html",
+     "linked_url": "https://zhangxiaofan101.github.io",
+     "result": "listed",
+     "at": "2026-11-10T18:00:00",
+     "source_sha256": "01fb828800b9b0571bec0e778861461ad29c9364819894b07c4afd3114e576c2"
+    },
+    {
+     "source": "live_fetch",
+     "url": "https://zhangxiaofan101.github.io",
+     "result": "ok_names_pi_by_profile_slug",
+     "at": "2026-11-10T18:00:00",
+     "sha256": "5e30019825213a4625eefc1fd07f8e41ea62669588077823e8dba7bd6b4c210f"
     }
-   ]
+   ],
+   "found_via": "school_profile_link",
+   "sha256": "5e30019825213a4625eefc1fd07f8e41ea62669588077823e8dba7bd6b4c210f",
+   "verification_quote": "Xiaofan Zhang"
   },
   {
    "pi": "张一鸣",
@@ -6200,21 +6244,31 @@
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhaohai.html",
    "profile_sha256": "244dbe2c39a038b9761daa1324aac0ebed01fff59983be2caba5e5a4ba6bf68c",
    "url": "http://bcmi.sjtu.edu.cn/home/zhaohai",
-   "status": "not_fetched_policy_or_transport",
-   "reason_code": "host_robots_or_transport_hold",
-   "reason": "live fetch not made or failed: robots (200, 'User-agent: *\\r\\nAllow: /'); ownership_sources: profile https://www.cs.sjtu.edu.cn/jiaoshiml/zhaohai.html",
-   "coverage": "pending",
-   "evidence_gaps": [
-    "not_resolved"
-   ],
+   "status": "reviewed_live_website",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "the page linked from the official profile carries the pinyin reading of the PI name from the profile address (live fetch under robots, 2026-11-10)",
+   "coverage": "website",
    "checks": [
     {
-     "source": "sweep_attempt",
+     "source": "school_profile_link",
      "url": "http://bcmi.sjtu.edu.cn/home/zhaohai",
-     "result": "not_fetched_policy_or_transport",
-     "at": "2026-11-10T00:00:00"
+     "on": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhaohai.html",
+     "linked_url": "http://bcmi.sjtu.edu.cn/home/zhaohai",
+     "result": "listed",
+     "at": "2026-11-10T18:00:00",
+     "source_sha256": "244dbe2c39a038b9761daa1324aac0ebed01fff59983be2caba5e5a4ba6bf68c"
+    },
+    {
+     "source": "live_fetch",
+     "url": "http://bcmi.sjtu.edu.cn/home/zhaohai",
+     "result": "ok_names_pi_by_profile_slug",
+     "at": "2026-11-10T18:00:00",
+     "sha256": "141eef59b78b1163f6664b787b6ffd3170477c116fc4c9d332f74fed90f6b48c"
     }
-   ]
+   ],
+   "found_via": "school_profile_link",
+   "sha256": "141eef59b78b1163f6664b787b6ffd3170477c116fc4c9d332f74fed90f6b48c",
+   "verification_quote": "Hai Zhao"
   },
   {
    "pi": "赵杰茹",
