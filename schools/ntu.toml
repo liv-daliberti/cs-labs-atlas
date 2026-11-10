@@ -75,6 +75,19 @@ url = "https://www.ntu.edu.sg/computing"
   match = ""
   format = ""
 
+  [[departments.listings]]
+  slot = "scse_faculty_2016_2025"
+  kind = "main"
+  url = "www.ntu.edu.sg/scse/about-us/our-people/faculty"
+  from = "20160101"
+  to = "20251231"
+  prefix = false
+  match = ""
+  format = "ntu_img_cards"
+  # CDX evidence 2026-11-10 (scratch/ntu-admit-1110/stage1/prefix.json): this SCSE page has a 200 capture only in 2021; the sibling pages
+  # research/faculty-directory (2021, 2023) and about-us/our-people (2021, 2024) are filter/landing pages, not name lists. 2016-2020, 2022, 2023-2025
+  # have no capture of any faculty list; plan_fetch records those half-years as nocapture.
+
 [[affiliated_units]]
 code = "SPMS"
 name = "School of Physical and Mathematical Sciences"

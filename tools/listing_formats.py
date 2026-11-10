@@ -786,7 +786,27 @@ def tsinghua_ee_any(h):
     return tsinghua_ee_embedded(h) or tsinghua_ee_rendered(h) or tsinghua_ee_text(h)
 
 
+def ntu_img_cards(h):
+    """NTU SCSE 2021 faculty list (www.ntu.edu.sg/scse/about-us/our-people/faculty, Sitefinity img-card--academic): h3.img-card__title link (honorific + name,
+    the DR-NTU profile), the Appointments paragraph (one title per line). The honorific is not part of the name; the e-mail and the biography teaser are dropped."""
+    from bs4 import BeautifulSoup
+    out = []
+    for card in BeautifulSoup(h, 'html.parser').select('.img-card--academic'):
+        a = card.select_one('.img-card__title a')
+        if a is None:
+            continue
+        name = re.sub(r'^(?:Emeritus Prof|Adj(?:unct)? (?:Assoc |Asst )?Prof|Assoc Prof|Asst Prof|Prof|Dr|Mr|Ms|Mrs)\s+', '', clean(a.get_text(' ')))
+        titles = []
+        for p in card.select('.img-card__interests'):
+            if 'Appointments' in p.get_text():
+                body = re.sub(r'^.*?Appointments:\s*', '', p.decode_contents(), flags=re.S)
+                titles = [clean(x) for x in re.split(r'<br\s*/?>', body, flags=re.I)]
+        out.append(dict(name_listed=name, titles=[t for t in titles if t], profile=a.get('href'), homepage=None, division=None))
+    return out
+
+
 FORMATS = {
+    'ntu_img_cards': (ntu_img_cards, re.compile(r'img-card--academic')),
     'tsinghua_ee_any': (tsinghua_ee_any, re.compile(r'(?!)')),
     'tsinghua_ee_text': (tsinghua_ee_text, re.compile(r'图片列表.{0,3000}?(?:教\s*授|副教授)\s*[：:]', re.S)),
     'tsinghua_au_old_list': (tsinghua_au_old_list, re.compile(r'<table[^>]*uetable')),
