@@ -1,7 +1,7 @@
 # Common Crawl as a second historical source (pilot 2026-11-07)
 
-Status (2026-11-10): the S3 route is implemented and tested offline (`listings/scripts/cc.py`, `cc_fill.py`, `cc_fill.slurm`; tests `test_cc.py`,
-`test_cc_fill.py`). **No Common Crawl data request has been made by the code's author**; the owner-approval marker now exists (see the S3 route section), so a run is possible. Coverage is NOT measured. The index.commoncrawl.org / data.commoncrawl.org hosts are never requested.
+Status (2026-11-10): **S3 anonymous access denied; route blocked.** Code (`listings/scripts/cc.py`, `cc_fill.py`, `cc_fill.slurm`) stays landed, inert
+and fail-closed (owner-approval marker, bucket host only). No Common Crawl coverage was measured.
 
 ## What Common Crawl says (read 2026-11-07)
 - Terms of Use (updated 2024-03-07): limited, non-exclusive licence; crawled content "may be subject to separate terms of use ... from the
@@ -124,3 +124,15 @@ passes (test). `tools/reader_export.py` concerns paper copies, not listing captu
 crossAffiliationSourceHolds evidence) is not a listing path. `plan_fetch.py` gained `capture_stamp()` so a `commoncrawl:` capture is not treated as
 "redirected away" (it has no Wayback redirect); plan rows written by cc_fill are skipped by plan_fetch (status ok) and read by listing_rows by
 capture_url + `wayback_timestamp` like Wayback rows.
+
+## Smoke test finding (2026-11-10, run by the coordinator session)
+Slurm job 32179738 plus two curl probes (<= 4 requests, bucket host only; script /n/fs/resemble/homogenizing-science/scratch/commoncrawl-pilot-1110/smoke.py,
+output /n/fs/resemble/homogenizing-science/scratch/commoncrawl-pilot-1110/smoke-32179738.out): for CC-MAIN-2018-30 and CC-MAIN-2019-30 the
+`cc-index/collections/<crawl>/indexes/cluster.idx` returns S3 AccessDenied (HTTP 403, XML) on both https://commoncrawl.s3.amazonaws.com/... and
+https://s3.amazonaws.com/commoncrawl/... Anonymous HTTPS reads of the bucket are denied. Correction: the earlier note that the bucket's `/robots.txt` 403
+meant "no robots rules" was a misreading; it is the same AccessDenied. Not tried (and not to be tried without a new owner call): data.commoncrawl.org
+(its robots disallows automated clients; the owner approved only the S3 route) and signed/authenticated AWS access.
+
+### Owner decision pending
+How to proceed with Common Crawl: (a) ask Common Crawl for permission/access (draft message above; recommended); (b) use data.commoncrawl.org despite its
+robots disallow (owner call, not recommended); (c) drop Common Crawl as a source and rely on Wayback.
