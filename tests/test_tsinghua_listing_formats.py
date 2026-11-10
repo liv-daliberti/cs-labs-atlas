@@ -172,3 +172,11 @@ def test_math_bands_join_split_cjk_and_follow_the_post_div():
 def test_bme_series_is_not_a_rank():
     rows = L.tsinghua_bme_cards(BME)
     assert [(r['name_listed'], r['titles']) for r in rows] == [('丁长海', ['教研系列'])]
+
+
+DPI = '<ul><li> <a href="/houbo/zh_CN/index.htm"><div class="pics"></div><div class="info"><h3>侯波</h3><div><p>职称：副教授</p><p>单位：导航技术工程中心</p></div></div></a></li><li><a href="/x/zh_CN/index.htm"><div class="info"><h3>杨 军</h3><div><p>职称：副研究员</p></div></div></a></li></ul>'
+
+
+def test_dpi_rendered_cards_keep_title_and_unit():
+    rows = L.tsinghua_dpi_rendered(DPI)
+    assert [(r['name_listed'], r['titles'], r['division']) for r in rows] == [('侯波', ['副教授'], '导航技术工程中心'), ('杨军', ['副研究员'], None)]

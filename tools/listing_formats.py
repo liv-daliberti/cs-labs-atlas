@@ -812,6 +812,26 @@ def tsinghua_bme_cards(h):
     return out
 
 
+def tsinghua_dpi_rendered(h):
+    """Tsinghua Precision Instruments faculty page (faculty.dpi.tsinghua.edu.cn/teacher.jsp?...wbtreeid=1052) AFTER JavaScript (tools/js_render_capture.py):
+    `li > a[href] .info` cards with `<h3>NAME</h3>`, `<p>职称：TITLE</p>` and `<p>单位：UNIT</p>`. The raw HTML is a shell; the list is loaded by script."""
+    from bs4 import BeautifulSoup
+    out = []
+    for a in BeautifulSoup(h, 'html.parser').select('li > a[href]'):
+        h3 = a.select_one('div.info h3')
+        if h3 is None:
+            continue
+        title = unit = None
+        for p in a.select('div.info p'):
+            t = clean(p.get_text(' ', strip=True))
+            if t.startswith('职称：'):
+                title = t[3:].strip()
+            elif t.startswith('单位：'):
+                unit = t[3:].strip()
+        out.append(dict(name_listed=clean(h3.get_text(' ', strip=True)).replace(' ', ''), titles=[title] if title else [], profile=a['href'], homepage=None, division=unit))
+    return out
+
+
 def tsinghua_ee_text(h):
     """Tsinghua EE faculty page 2022-2025 as ARCHIVED: plain text after `图片列表`: institute heading (…研究所 / …中心), then `教 授：`, `副教授：`, `讲 师：` ... bands each followed by name tokens."""
     from bs4 import BeautifulSoup
@@ -997,6 +1017,7 @@ FORMATS = {
     'tsinghua_ee_text': (tsinghua_ee_text, re.compile(r'图片列表.{0,3000}?(?:教\s*授|副教授)\s*[：:]', re.S)),
     'tsinghua_au_old_list': (tsinghua_au_old_list, re.compile(r'<table[^>]*uetable')),
     'tsinghua_insc_bands': (tsinghua_insc_bands, re.compile(r'(?!)')),
+    'tsinghua_dpi_rendered': (tsinghua_dpi_rendered, re.compile(r'(?!)')),
     'tsinghua_me_zh': (tsinghua_me_zh, re.compile(r'(?!)')),
     'tsinghua_me_en': (tsinghua_me_en, re.compile(r'(?!)')),
     'tsinghua_math_bands': (tsinghua_math_bands, re.compile(r'(?!)')),
