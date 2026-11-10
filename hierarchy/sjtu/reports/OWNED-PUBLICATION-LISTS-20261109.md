@@ -16,9 +16,9 @@ Sealed, guards pass, 0 verified links. 2347 hold decisions (each with stored-rec
 | --- | ---: | ---: |
 | PIs with papers | 25 | 107 |
 | Rows / distinct works | 1782 / 1741 | 5033 / 4620 |
-| Rows with typed period / 2026 listing | 1669 / 113 | 4850 / 183 |
+| Rows with typed period / 2026 listing | 1669 / 113 | 4837 / 196 |
 | Residual flagged rows (not held: sibling editions, 11 non-paper types) | 1 | 21 |
 | Candidate student links | 207 | 436 |
 
-Stage-9 style draw (`accuracy/sample.py` method, 90 of 105 rows: no thesis-adviser relations exist for the student-coverage part), hand judgement on stored evidence, no primary-PDF check: lab precision 35 of 35; student precision 38 of 40 (0.95, 4 doubtful, 35 undated); lab coverage 13 of 15 (0.867). Gates: lab precision pass; student precision (0.97) and coverage (0.90) NOT met. Student links stay candidates (`verified` 0); 161 earlier and 388 of 436 links have no start date in their source.
+Stage-9 style draw (`accuracy/sample.py` method, 90 of 105 rows: no thesis-adviser relations exist for the student-coverage part), hand judgement on stored evidence, no primary-PDF check: lab precision 35 of 35; student precision 38 of 40 (0.95, 4 doubtful, 35 undated); lab coverage 13 of 15 (0.867). Gates: lab precision pass; student precision (0.97) and coverage (0.90) NOT met. Student links stay candidates (`verified` 0); 388 of 436 links have no start date in their source.
 Copies: nothing measured; stored records point to an open PDF URL for 1969 of 4620 works (upper bound; nothing fetched).
