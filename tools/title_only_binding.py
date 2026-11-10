@@ -1,4 +1,4 @@
-"""R-PAP-43: a DBLP person binding from credited exact titles alone (no Chinese+English self-name on a source).
+"""R-PAP-44: a DBLP person binding from credited exact titles alone (no Chinese+English self-name on a source).
 
 Owner-delegated 2026-11-09. Accept only when (a) the PI's own official profile or owned page credits at least MIN_TITLES
 exact long DBLP titles and every one of them belongs to the one candidate person, (b) that person carries the school's
