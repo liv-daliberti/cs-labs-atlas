@@ -48,7 +48,7 @@ reason = "no OAI-PMH endpoint on purl.stanford.edu or searchworks.stanford.edu (
 # Hosts the stanford tools contact (stage 0, 2026-11-10). Derived from evidence: the raw capture stores (hierarchy/stanford/raw/*captures*.sqlite) and the full-text download ledger (stores/stanford/fulltext_assets.csv). The long tail of faculty personal sites is read per capture under school_web robots checks and is not enumerated here.
 [[hosts]]
 host = "web.archive.org"
-use = "live"
+use = "none"
 purpose = "Wayback id_ captures and CDX (859 captures in the stanford raw stores; listings, lab pages, theses)"
 probe = ""
 
@@ -97,8 +97,8 @@ probe = "https://purl.stanford.edu/"
 [[hosts]]
 host = "web.stanford.edu"
 use = "live"
-purpose = "School site: 268 captures in the raw stores (268 live, 0 via Wayback; 192 HTTP 200); 193 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
-probe = "https://web.stanford.edu/"
+purpose = "School site: 268 captures in the raw stores (268 live, 0 via Wayback; 192 HTTP 200); 193 full-text assets in the download ledger (derived 2026-11-10 from evidence) [stage 0 2026-11-10: probe skipped: https://web.stanford.edu/ only redirects off-host (http 301); robots allowed]"
+probe = ""
 
 [[hosts]]
 host = "papers.nips.cc"
@@ -108,8 +108,8 @@ probe = ""
 
 [[hosts]]
 host = "cs.stanford.edu"
-use = "live"
-purpose = "School site: 191 captures in the raw stores (191 live, 0 via Wayback; 78 HTTP 200); 33 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+use = "none"
+purpose = "School site: 191 captures in the raw stores (191 live, 0 via Wayback; 78 HTTP 200); 33 full-text assets in the download ledger (derived 2026-11-10 from evidence) [stage 0 2026-11-10: robots.txt disallowed (HTTP 301); must not be live]"
 probe = "https://cs.stanford.edu/"
 
 [[hosts]]
@@ -126,8 +126,8 @@ probe = "https://theory.stanford.edu/"
 
 [[hosts]]
 host = "stanford.edu"
-use = "live"
-purpose = "School site: 33 captures in the raw stores (33 live, 0 via Wayback; 30 HTTP 200); 51 full-text assets in the download ledger (derived 2026-11-10 from evidence)"
+use = "none"
+purpose = "School site: 33 captures in the raw stores (33 live, 0 via Wayback; 30 HTTP 200); 51 full-text assets in the download ledger (derived 2026-11-10 from evidence) [stage 0 2026-11-10: robots.txt disallowed (HTTP 308); must not be live]"
 probe = "https://stanford.edu/"
 
 [[hosts]]
@@ -138,8 +138,8 @@ probe = "https://graphics.stanford.edu/"
 
 [[hosts]]
 host = "ai.stanford.edu"
-use = "live"
-purpose = "School site: 47 captures in the raw stores (47 live, 0 via Wayback; 16 HTTP 200) (derived 2026-11-10 from evidence)"
+use = "none"
+purpose = "School site: 47 captures in the raw stores (47 live, 0 via Wayback; 16 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: robots.txt unreachable (status -1); unusable]"
 probe = "https://ai.stanford.edu/"
 
 [[hosts]]
@@ -156,8 +156,8 @@ probe = "https://crypto.stanford.edu/"
 
 [[hosts]]
 host = "nlp.stanford.edu"
-use = "live"
-purpose = "School site: 27 captures in the raw stores (27 live, 0 via Wayback; 13 HTTP 200) (derived 2026-11-10 from evidence)"
+use = "none"
+purpose = "School site: 27 captures in the raw stores (27 live, 0 via Wayback; 13 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: robots.txt unreachable (status -1); unusable]"
 probe = "https://nlp.stanford.edu/"
 
 [[hosts]]
@@ -174,8 +174,8 @@ probe = "https://hci.stanford.edu/"
 
 [[hosts]]
 host = "montgomerylab.stanford.edu"
-use = "live"
-purpose = "School site: 21 captures in the raw stores (21 live, 0 via Wayback; 6 HTTP 200) (derived 2026-11-10 from evidence)"
+use = "none"
+purpose = "School site: 21 captures in the raw stores (21 live, 0 via Wayback; 6 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: robots.txt unreachable (status -1); unusable]"
 probe = "https://montgomerylab.stanford.edu/"
 
 [[hosts]]
@@ -198,8 +198,8 @@ probe = "https://ee.stanford.edu/"
 
 [[hosts]]
 host = "bejerano.stanford.edu"
-use = "live"
-purpose = "School site: 16 captures in the raw stores (16 live, 0 via Wayback; 10 HTTP 200) (derived 2026-11-10 from evidence)"
+use = "none"
+purpose = "School site: 16 captures in the raw stores (16 live, 0 via Wayback; 10 HTTP 200) (derived 2026-11-10 from evidence) [stage 0 2026-11-10: robots.txt unreachable (status -1); unusable]"
 probe = "https://bejerano.stanford.edu/"
 
 [[hosts]]
