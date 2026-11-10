@@ -669,8 +669,14 @@
     "aliases": [
       "Weiwei Xu"
     ],
-    "why_aliases": "The bound DBLP person record (\"Weiwei Xu 0003\") lists the PI's exact owned profile URL and names Zhejiang University and the PI's own page credits 132 of its exact titles; without the Latin form the build dropped the id as a name conflict (R-PAP-05).",
+    "why_aliases": "The PI's own cached page carries the Chinese name and the Latin form together (许威威 ... Weiwei Xu) and credits \"Weiwei Xu\" as author in its publication list; the bound DBLP person is \"Weiwei Xu 0003\" (R-PAP-44 name check).",
     "aliases_evidence": [
+      {
+        "url": "http://www.cad.zju.edu.cn/home/weiweixu/",
+        "sha256": "f8eb7dce98aadbbfd367aa92f13331d92aff97f3ec40459bf527b88d2051dbc6",
+        "quote": "许威威 xtong Weiwei Xu",
+        "kind": "cached_owned_profile_page_text"
+      },
       {
         "url": "https://dblp.org/pid/56/3321-3",
         "sha256": "d42c8aa9cc8a00a9fabf18cc0e82c1c7fac331e855e0e2a68c8e6f01bd23ece3",
@@ -1535,7 +1541,31 @@
         "weak_relations": 8
       }
     ],
-    "why_mixed_openalex": "R-PAP-42 (2026-11-09 re-run): the ids added for 陈翔 carry an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so they are other people's records: neither anchor nor block, per-work evidence needed."
+    "why_mixed_openalex": "R-PAP-42 (2026-11-09 re-run): the ids added for 陈翔 carry an ORCID absent from every ORCID of the PI's source-bound DBLP person record, so they are other people's records: neither anchor nor block, per-work evidence needed.",
+    "aliases": [
+      "Xiang Chen"
+    ],
+    "aliases_evidence": [
+      {
+        "url": "https://xchen-cs.github.io",
+        "sha256": "783a35169e8cb7899bd265d6cefbba6b74fe3d923678fc19682223a65f921c66",
+        "quote": "Xiang Chen I love geometry and physics",
+        "kind": "cached_owned_profile_page_text"
+      },
+      {
+        "url": "http://www.cad.zju.edu.cn/innovationteam",
+        "sha256": "91a7f3ce9c8be96a5fe5f6cab58353d75e013d547fce34df40c8f12d832e699b",
+        "quote": "副教授/长聘副教授 李明 | 邵天甲 | 郑友怡 | 李峙 | 吴超 | 侯启明 任重 | 陈翔 | 陶煜波 | 蔡铭 | 厉向东 | 徐雯洁 邹宁 | 况琨 | 刘海风 | 胡贤良 | 杨勋年 | 翁彦琳 张宏鑫 | 郑文庭 | 王章野 | 万华根 | 陈实 | 姚琤 鲁伟明",
+        "kind": "official_roster_names_the_PI_and_links_the_page"
+      },
+      {
+        "url": "https://dblp.org/pid/97/11157",
+        "sha256": "49dbb7c41a8fbf2d59801e2b81063ca333020f981577f1a3fa0fdffc439684f6",
+        "quote": "<www mdate=\"2020-05-12\" key=\"homepages/97/11157\">\n<author>Xiang Chen 0001</author>\n<title>Home Page</title>\n<note type=\"affiliation\">Zhejiang University, State Key Lab of CAD&amp;CG, China</note>\n<url>https://orcid.org/0000-0002-6955-8729</url>\n<url>https://www.wikidata.org/entity/Q88616005</url>\n</www>",
+        "kind": "original_DBLP_www_record_local_dump_2026-09-01"
+      }
+    ],
+    "why_aliases": "The page the official CAD&CG roster links for 陈翔 (profile_url https://xchen-cs.github.io) is headed by the Latin name Xiang Chen; the bound DBLP person is \"Xiang Chen 0001\" (Zhejiang University, CAD&CG; 24 of its exact titles are credited on that page). Name equality supplied by the page, not by DBLP."
   },
   "陶煜波": {
     "no_identity": true,
