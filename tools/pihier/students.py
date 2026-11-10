@@ -629,6 +629,7 @@ def corrections(ctx, stu):
             S.pop(k)
         elif x['action'] == 'rename':
             r.setdefault('aliases', []).append(r['name']); r['name'] = x['name']
+            r['aliases'].extend(a for a in x.get('aliases') or [] if a not in r['aliases'])   # reviewed extra name forms (a byline form such as 'Panos Tigas')
             if x.get('person'):
                 r.setdefault('merged', []).append(k); r['person'] = x['person']; S[x['person']] = S.pop(k)
         elif x['action'] == 'replace_sources':

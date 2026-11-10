@@ -105,3 +105,12 @@ def test_prior_in_batch_evidence_change_cannot_be_silently_dropped(tmp_path):
         apply(tmp_path, stu, [replace, decision(row)])
     assert row['person'] in stu['One PI']
     assert stu['One PI'][row['person']]['relations'][0]['sources'] == [new_source]
+
+
+def test_rename_keeps_the_old_form_and_the_reviewed_extra_aliases(tmp_path):
+    row = member('Tigkas Panagiotis')
+    stu = {'One PI': {row['person']: copy.deepcopy(row)}}
+    ctx = apply(tmp_path, stu, [decision(row, action='rename', name='Panagiotis Tigas', person='ext:example:panagiotis-tigas', aliases=['Panos Tigas'])])
+    rec = stu['One PI']['ext:example:panagiotis-tigas']
+    assert rec['name'] == 'Panagiotis Tigas' and rec['aliases'] == ['Tigkas Panagiotis', 'Panos Tigas']
+    assert ctx.n['student_corrections_rename'] == 1
