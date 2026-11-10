@@ -88,7 +88,7 @@ def ensure(c):
     c.commit()
 
 
-def render(key, urls, *, wait=20.0, gap=3.0, cap=20, wait_css=None, http_origin=False, driver_factory=firefox_driver, raw_fetch=default_raw_fetch, con=None, sleep=time.sleep):
+def render(key, urls, *, wait=20.0, gap=3.0, cap=20, wait_css=None, http_origin=False, click_selector=None, click_pages=0, driver_factory=firefox_driver, raw_fetch=default_raw_fetch, con=None, sleep=time.sleep):
     """Render each URL once; returns one receipt per URL: {url, status, ...}. status: ok | robots_disallowed | host_blocked | challenge | login | not_settled | capped | error."""
     c = con or W.con(key)
     ensure(c)
@@ -143,6 +143,34 @@ def render(key, urls, *, wait=20.0, gap=3.0, cap=20, wait_css=None, http_origin=
                           (url, now, status, raw_http, None, None, sha(dom), None, '[]', TOOL, browser, drv, wait_css, 'not stored: ' + status))
             c.commit()
             receipts.append(dict(url=url, status=status, raw_http=raw_http, raw_sha256=sha(raw), dom_sha256=sha(dom), dom_bytes=len(dom), resources=len(res)))
+            if click_selector and click_pages and status in ('ok', 'not_settled'):
+                # bounded pagination: click the same control up to click_pages times; each page is stored as <url>#page=N with the same raw HTML; a challenge or
+                # login marker on any page stops the host, a missing/disabled control or an unchanged DOM ends the loop
+                prev = dom
+                for pg in range(2, min(click_pages, 40) + 1):
+                    sleep(max(gap, float(delay or 0)))
+                    try:
+                        clicked = driver.execute_script('var e=document.querySelector(arguments[0]); if(!e||/disabled/.test(e.className)){return false;} e.click(); return true;', click_selector)
+                        if not clicked:
+                            break
+                        settle(driver, wait, None, sleep=sleep)
+                        dom = driver.page_source.encode('utf-8')
+                    except Exception as e:  # noqa: BLE001
+                        receipts.append(dict(url=f'{url}#page={pg}', status='error', note=repr(e)[:200]))
+                        break
+                    text = dom.decode('utf-8', 'replace')
+                    if W.CHALLENGE.search(text) or LOGIN_WALL.search(text):
+                        W.block(c, host, f'challenge or login in paged render {url}#page={pg}')
+                        receipts.append(dict(url=f'{url}#page={pg}', status='challenge'))
+                        break
+                    if dom == prev:
+                        break
+                    prev = dom
+                    now = time.strftime('%Y-%m-%dT%H:%M:%S')
+                    c.execute('insert or replace into js_render values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
+                              (f'{url}#page={pg}', now, 'ok', raw_http, sha(raw), zlib.compress(raw, 6), sha(dom), zlib.compress(dom, 6), '[]', TOOL, browser, drv, wait_css, f'click {click_selector} x{pg - 1}'))
+                    c.commit()
+                    receipts.append(dict(url=f'{url}#page={pg}', status='ok', dom_sha256=sha(dom), dom_bytes=len(dom)))
     finally:
         if driver is not None:
             try:
@@ -168,9 +196,11 @@ def main(argv=None):
     ap.add_argument('school'); ap.add_argument('urls', nargs='+')
     ap.add_argument('--wait', type=float, default=20.0); ap.add_argument('--gap', type=float, default=3.0)
     ap.add_argument('--cap', type=int, default=20); ap.add_argument('--wait-css')
+    ap.add_argument('--click-selector', help='CSS selector of a next-page control to click after the first render (bounded by --click-pages); pages are stored as <url>#page=N')
+    ap.add_argument('--click-pages', type=int, default=0, help='total pages to capture with --click-selector (at most 40, including the first)')
     ap.add_argument('--http-origin', action='store_true', help='read robots.txt at each URL\'s own origin (http://host/robots.txt) for an owner-approved http-only host; HTTPS is never inferred')
     a = ap.parse_args(argv)
-    out = render(a.school, a.urls, wait=a.wait, gap=max(a.gap, 3.0), cap=a.cap, wait_css=a.wait_css, http_origin=a.http_origin)
+    out = render(a.school, a.urls, wait=a.wait, gap=max(a.gap, 3.0), cap=a.cap, wait_css=a.wait_css, http_origin=a.http_origin, click_selector=a.click_selector, click_pages=a.click_pages)
     print(json.dumps(out, ensure_ascii=False, indent=1))
     return 0 if all(r['status'] in ('ok', 'not_settled') for r in out) else 3
 

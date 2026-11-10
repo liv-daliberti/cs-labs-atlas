@@ -113,3 +113,38 @@ def test_render_passes_http_origin_to_the_robots_check(con, monkeypatch):
     monkeypatch.setattr(W, 'robots_ok', lambda c_, u, same_origin=False: (seen.append(same_origin) or (False, 0)))
     out = J.render('t', ['http://www.cad.zju.edu.cn/innovationteam'], con=con, http_origin=True, driver_factory=lambda: None)
     assert seen == [True] and out[0]['status'] == 'robots_disallowed'
+
+
+class PagedDriver(Driver):
+    """A next-page control: each click shows the next page; after `last` pages the control is disabled."""
+    def __init__(self, last=3):
+        super().__init__(); self.page, self.last, self.clicks = 1, last, 0
+
+    @property
+    def page_source(self): return f'<html><body><ul id="app"><li>page {self.page}</li></ul></body></html>'
+
+    def execute_script(self, js, *a):
+        if 'e.click' in js:
+            if self.page >= self.last:
+                return False
+            self.page += 1; self.clicks += 1
+            return True
+        return super().execute_script(js, *a)
+
+
+def test_click_pagination_is_bounded_and_stored_per_page(con, monkeypatch):
+    monkeypatch.setattr(W, 'robots_ok', lambda c_, u: (True, 0))
+    d = PagedDriver(last=3)
+    out = J.render('t', ['http://x.example/p'], con=con, driver_factory=lambda: d, raw_fetch=lambda u: (200, STATIC.encode()), click_selector='a.next', click_pages=10, sleep=lambda s: None)
+    assert [r['url'] for r in out] == ['http://x.example/p', 'http://x.example/p#page=2', 'http://x.example/p#page=3']
+    assert 'page 3' in J.stored(con, 'http://x.example/p#page=3')[0] and d.clicks == 2
+
+
+def test_click_pagination_stops_at_a_challenge(con, monkeypatch):
+    monkeypatch.setattr(W, 'robots_ok', lambda c_, u: (True, 0))
+
+    class D(PagedDriver):
+        @property
+        def page_source(self): return '<html><body>Just a moment... cf-chl checking your browser</body></html>' if self.page > 1 else super().page_source
+    out = J.render('t', ['http://x.example/p'], con=con, driver_factory=lambda: D(last=5), raw_fetch=lambda u: (200, STATIC.encode()), click_selector='a.next', click_pages=5, sleep=lambda s: None)
+    assert out[-1]['status'] == 'challenge' and J.stored(con, 'http://x.example/p#page=2') is None
