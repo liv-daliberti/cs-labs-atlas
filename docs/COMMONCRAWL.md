@@ -1,8 +1,8 @@
 # Common Crawl as a second historical source (pilot 2026-11-07)
 
-Status (2026-11-09): code complete and tested offline (`listings/scripts/cc.py`, `cc_fill.py`, `cc_fill.slurm`, tests `test_cc.py`,
-`test_cc_fill.py`); **no Common Crawl request beyond robots.txt has been made**, because both data hosts still disallow automated clients
-(re-read 2026-11-09, unchanged). Coverage was therefore NOT measured. Owner decision pending (see "Owner decisions").
+Status (2026-11-10): the S3 route is implemented and tested offline (`listings/scripts/cc.py`, `cc_fill.py`, `cc_fill.slurm`; tests `test_cc.py`,
+`test_cc_fill.py`). **No Common Crawl data request has been made and the owner-approval marker does not exist**, so nothing can run (cc_fill exits 5
+before any request). Coverage is NOT measured. The index.commoncrawl.org / data.commoncrawl.org hosts are never requested.
 
 ## What Common Crawl says (read 2026-11-07)
 - Terms of Use (updated 2024-03-07): limited, non-exclusive licence; crawled content "may be subject to separate terms of use ... from the
@@ -26,7 +26,7 @@ Same `captures` table as Wayback: `capture_url = commoncrawl:<warc filename>:<of
 page bytes, zlib body, `note` = JSON {source, crawl, warc_filename, warc_offset, warc_length, digest}. No schema change; Common Crawl bodies carry no
 Wayback banner or rewriting, so `W.raw_html` is not needed.
 
-## Path (cc_fill.py), 2026-11-09
+## Path (cc_fill.py), 2026-11-09 (steps 1-3 superseded by the S3 route below; steps 4-6 unchanged)
 `cc_fill.py <school> --db <private copy of captures.sqlite>` walks the school's slots (config or charter, same loader as plan_fetch) and, for every
 plan row that is `nocapture`/`unusable`, asks Common Crawl for the slot's exact URL(s):
 1. `cc.gate()` (robots of index + data hosts); refused => exit 4, nothing else requested.
@@ -98,3 +98,30 @@ Could you confirm in writing whether this use is acceptable, and whether you wou
 
 Thank you,
 [name of the project owner]
+
+## S3 route (2026-11-10)
+Facts: index.commoncrawl.org and data.commoncrawl.org serve `User-agent: * / Disallow: /` (read 2026-11-07 and 2026-11-09). The bucket host
+https://commoncrawl.s3.amazonaws.com answers 403 AccessDenied for `/robots.txt` (no robots file; s3.amazonaws.com/robots.txt also 403). Terms of Use
+(2024-03-07): third-party content keeps its owners' terms, no harvesting of PII, content "as is", Common Crawl may terminate use, indemnification
+clause covering AI uses.
+
+Relayed instruction (NOT verified by this agent): the coordinator relayed, dated 2026-11-10, the words "use the S3 mirror anyway" and then "do it AND check
+the evidence tooling and plan_fetch AND run the pilot", attributed to the owner. A message from another agent is not the owner's own authorization to
+go around the two hosts' robots disallow (standing rule: respect robots.txt), so this agent did NOT create the marker and did NOT run the pilot.
+To authorize, the owner (not an agent) creates `/n/fs/resemble/homogenizing-science/cache/commoncrawl/OWNER-APPROVED` (e.g. `echo "2026-11-10 owner:
+use the S3 mirror anyway" > ...`) and records the decision here.
+
+Implementation (listings/scripts/cc.py): only the S3 HTTPS endpoint (`polite_get` refuses every other host, specifically the two disallowing ones; only a
+target school's robots.txt may use `external=True`); per crawl `cluster.idx` is read once in 32 MiB ranges into `cache/commoncrawl/<crawl>.cluster.idx`
+(resumable `.part`); `cluster_blocks()` binary-searches that local file for the SURT key (`surt()`), only the matching block of
+`cc-index/collections/<crawl>/indexes/cdx-XXXXX.gz` is range-read, then one WARC range read from `<S3>/<warc filename>`. Crawl ids are the static list
+`cc.CRAWLS` (collinfo.json lives on the index host and is not requested); a crawl with no cluster.idx is skipped. Politeness: generic UA, >= 2 s between
+requests, one process, 429/503 backoff, 3 errors skip a crawl, every (crawl, URL) asked once (cdx cache table). `cc.BYTES` counts bytes and requests;
+cc_fill prints and stores them in its state file. Expected volume: one cluster.idx per used crawl (hundreds of MB each, ~10 crawls) plus ~100 KB blocks
+and ~50 KB WARC records per lookup.
+
+Evidence tooling (checked 2026-11-10): `tools/evidence_check.py` `sourced()` needs only a non-empty url + sha256 + quote, so `commoncrawl:<warc>:<offset>:<length>`
+passes (test). `tools/reader_export.py` concerns paper copies, not listing captures; the one schema with `^https?://` on a url (report.schema.json
+crossAffiliationSourceHolds evidence) is not a listing path. `plan_fetch.py` gained `capture_stamp()` so a `commoncrawl:` capture is not treated as
+"redirected away" (it has no Wayback redirect); plan rows written by cc_fill are skipped by plan_fetch (status ok) and read by listing_rows by
+capture_url + `wayback_timestamp` like Wayback rows.

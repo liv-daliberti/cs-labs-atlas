@@ -1,18 +1,21 @@
-"""Common Crawl as a second historical source beside the Wayback Machine (proposal, 2026-11-07).
+"""Common Crawl as a second historical source beside the Wayback Machine (S3 route, 2026-11-10).
 
-Read docs/COMMONCRAWL.md first.  Summary of the gates this module enforces:
+Read docs/COMMONCRAWL.md first.  Gates this module enforces:
 
-- FAIL CLOSED on robots.txt.  index.commoncrawl.org and data.commoncrawl.org both serve `User-agent: *  Disallow: /` (checked 2026-11-07;
-  only the front page and collinfo.json are allowed).  `gate()` re-reads those robots files (cached for a day) and refuses every CDX query and
-  WARC range request while they disallow our paths.  Nothing here bypasses that: when Common Crawl opens the paths, the module starts working.
+- ONLY the public S3 HTTPS endpoint https://commoncrawl.s3.amazonaws.com is requested for Common Crawl data (polite_get refuses every other host for
+  Common Crawl paths, in particular index.commoncrawl.org and data.commoncrawl.org, whose robots.txt disallow automated clients).  Using the bucket
+  instead is an OWNER decision (docs/COMMONCRAWL.md); gate() refuses unless the owner-approval marker file exists, checked before any request.
+- Lookup: per crawl the cluster.idx is read once (cached under cache/commoncrawl/), the SURT-key block located by binary search on the local file,
+  and only that block range-read from cc-index/collections/<crawl>/indexes/cdx-XXXXX.gz; then one range read of the WARC record.
 - A target host whose robots.txt names ClaudeBot / anthropic-ai / Claude-Web (school_web.robots_decision) is never used from Common Crawl either.
-- Generic User-Agent, no email.  One request per MIN_GAP seconds, 503/429 back off exponentially (Retry-After honoured) and give up after MAX_TRIES.
-- Records are stored in the school's captures.sqlite `captures` table like Wayback captures: sha256 of the raw page bytes, zlib body, and
-  provenance (source, WARC filename, offset, length) in `note` as JSON; capture_url is `commoncrawl:<filename>:<offset>:<length>`.
+- Generic User-Agent, no email.  One request per MIN_GAP seconds, 503/429 back off exponentially (Retry-After honoured), give up after MAX_TRIES.
+- Records are stored in the school's captures.sqlite `captures` table like Wayback captures: sha256 of the raw page bytes, zlib body, provenance
+  (source, crawl, WARC filename, offset, length) in `note` as JSON; capture_url is `commoncrawl:<filename>:<offset>:<length>`.
 
 Network functions take an injectable `http` callable so tests never touch the network: http(url, headers) -> (status, headers, body).
 """
 import datetime
+import os
 import gzip
 import hashlib
 import json
@@ -24,9 +27,11 @@ import urllib.request
 import zlib
 
 UA = 'Mozilla/5.0 (compatible; faculty-listing-archival-research/1.0)'
-INDEX = 'https://index.commoncrawl.org'
-DATA = 'https://data.commoncrawl.org'
-MIN_GAP = 5.0
+S3 = 'https://commoncrawl.s3.amazonaws.com'
+S3_HOST = 'commoncrawl.s3.amazonaws.com'
+FORBIDDEN_HOSTS = ('index.commoncrawl.org', 'data.commoncrawl.org')
+MIN_GAP = 2.0
+BYTES = {'n': 0, 'requests': 0}
 MAX_TRIES = 4
 SOURCE = 'commoncrawl'
 _last = [0.0]
@@ -45,8 +50,12 @@ def _http(url, headers):
         return e.code, dict(e.headers), b''
 
 
-def polite_get(url, headers=None, http=None):
-    """One request with a minimum gap and back-off on 429/503/5xx; returns (status, headers, body) or raises CCRefused after MAX_TRIES."""
+def polite_get(url, headers=None, http=None, external=False):
+    """One request with a minimum gap and back-off on 429/503/5xx; returns (status, headers, body) or raises CCRefused after MAX_TRIES.
+    Common Crawl data comes only from the S3 bucket host; `external=True` is for a target school host's robots.txt only."""
+    host = urllib.parse.urlsplit(url).netloc
+    if host in FORBIDDEN_HOSTS or (not external and host != S3_HOST):
+        raise CCRefused(f'{host} is not an allowed Common Crawl host (only {S3_HOST})')
     http, sleep, now = http or _http, time.sleep, time.time
     delay = 30.0
     for _ in range(MAX_TRIES):
@@ -55,13 +64,31 @@ def polite_get(url, headers=None, http=None):
             sleep(wait)
         _last[0] = now()
         st, hd, body = http(url, headers or {})
+        BYTES['requests'] += 1
+        BYTES['n'] += len(body or b'')
         if st in (429, 503) or st >= 500:
             ra = {k.lower(): v for k, v in hd.items()}.get('retry-after', '')
             sleep(float(ra) if ra.isdigit() else delay)
             delay *= 2
             continue
         return st, hd, body
-    raise CCRefused(f'{urllib.parse.urlsplit(url).netloc} kept answering 429/5xx; backing off')
+    raise CCRefused(f'{host} kept answering 429/5xx; backing off')
+
+
+def project_root():
+    here = os.path.abspath(__file__)
+    if '/worktrees/' in here:
+        return here.split('/worktrees/')[0]
+    return os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(here))))
+
+
+def approval_marker():
+    """The owner creates this file to authorize the S3 route (docs/COMMONCRAWL.md); without it nothing is requested."""
+    return os.path.join(project_root(), 'cache', 'commoncrawl', 'OWNER-APPROVED')
+
+
+def cache_dir():
+    return os.path.join(project_root(), 'cache', 'commoncrawl')
 
 
 def robots_allows(robots_txt, path, agent=UA):
@@ -71,14 +98,10 @@ def robots_allows(robots_txt, path, agent=UA):
     return rp.can_fetch(agent, path)
 
 
-def gate(http=None, paths=('/CC-MAIN-2024-10-index', '/crawl-data/CC-MAIN-2024-10/x.warc.gz')):
-    """Raise CCRefused unless index and data hosts' robots.txt allow our UA to request CDX queries and WARC files."""
-    for host, path in ((INDEX, paths[0]), (DATA, paths[1])):
-        st, _, body = polite_get(host + '/robots.txt', http=http)
-        if st == 200 and not robots_allows(body.decode('utf-8', 'replace'), path):
-            raise CCRefused(f'{host} robots.txt disallows {path} for automated clients')
-        if st not in (200, 404, 410):
-            raise CCRefused(f'{host} robots.txt unavailable (HTTP {st})')
+def gate(http=None):
+    """Raise CCRefused unless the owner-approval marker exists (fail-closed, before any request)."""
+    if not os.path.exists(approval_marker()):
+        raise CCRefused(f'no owner approval marker {approval_marker()}')
 
 
 def host_allowed(robots_status, robots_body, url):
@@ -88,27 +111,139 @@ def host_allowed(robots_status, robots_body, url):
     return ours and ai
 
 
+# CC-MAIN crawl ids 2016-2025 (static: collinfo.json lives on index.commoncrawl.org, which is never requested).  An id whose cluster.idx is absent
+# (HTTP 403/404) is skipped at run time, so a wrong guess costs one request.
+CRAWLS = ('CC-MAIN-2016-07 CC-MAIN-2016-18 CC-MAIN-2016-22 CC-MAIN-2016-26 CC-MAIN-2016-30 CC-MAIN-2016-36 CC-MAIN-2016-40 CC-MAIN-2016-44 CC-MAIN-2016-50 '
+          'CC-MAIN-2017-04 CC-MAIN-2017-09 CC-MAIN-2017-13 CC-MAIN-2017-17 CC-MAIN-2017-22 CC-MAIN-2017-26 CC-MAIN-2017-30 CC-MAIN-2017-34 CC-MAIN-2017-39 '
+          'CC-MAIN-2017-43 CC-MAIN-2017-47 CC-MAIN-2017-51 CC-MAIN-2018-05 CC-MAIN-2018-09 CC-MAIN-2018-13 CC-MAIN-2018-17 CC-MAIN-2018-22 CC-MAIN-2018-26 '
+          'CC-MAIN-2018-30 CC-MAIN-2018-34 CC-MAIN-2018-39 CC-MAIN-2018-43 CC-MAIN-2018-47 CC-MAIN-2018-51 CC-MAIN-2019-04 CC-MAIN-2019-09 CC-MAIN-2019-13 '
+          'CC-MAIN-2019-18 CC-MAIN-2019-22 CC-MAIN-2019-26 CC-MAIN-2019-30 CC-MAIN-2019-35 CC-MAIN-2019-39 CC-MAIN-2019-43 CC-MAIN-2019-47 CC-MAIN-2019-51 '
+          'CC-MAIN-2020-05 CC-MAIN-2020-10 CC-MAIN-2020-16 CC-MAIN-2020-24 CC-MAIN-2020-29 CC-MAIN-2020-34 CC-MAIN-2020-40 CC-MAIN-2020-45 CC-MAIN-2020-50 '
+          'CC-MAIN-2021-04 CC-MAIN-2021-10 CC-MAIN-2021-17 CC-MAIN-2021-21 CC-MAIN-2021-25 CC-MAIN-2021-31 CC-MAIN-2021-39 CC-MAIN-2021-43 CC-MAIN-2021-49 '
+          'CC-MAIN-2022-05 CC-MAIN-2022-21 CC-MAIN-2022-27 CC-MAIN-2022-33 CC-MAIN-2022-40 CC-MAIN-2022-49 CC-MAIN-2023-06 CC-MAIN-2023-14 CC-MAIN-2023-23 '
+          'CC-MAIN-2023-40 CC-MAIN-2023-50 CC-MAIN-2024-10 CC-MAIN-2024-18 CC-MAIN-2024-22 CC-MAIN-2024-26 CC-MAIN-2024-30 CC-MAIN-2024-33 CC-MAIN-2024-38 '
+          'CC-MAIN-2024-42 CC-MAIN-2024-46 CC-MAIN-2024-51 CC-MAIN-2025-05 CC-MAIN-2025-08 CC-MAIN-2025-13 CC-MAIN-2025-18 CC-MAIN-2025-21 CC-MAIN-2025-26').split()
+
+
 def crawls_for_years(collinfo, frm=2016, to=2026):
-    """Crawl ids (CC-MAIN-YYYY-WW) from collinfo.json whose year is in [frm, to], oldest first."""
+    """Crawl ids (CC-MAIN-YYYY-WW) whose year is in [frm, to], oldest first."""
     ids = [c['id'] for c in collinfo if re.fullmatch(r'CC-MAIN-\d{4}-\d+', c.get('id', ''))]
     return sorted(i for i in ids if frm <= int(i.split('-')[2]) <= to)
 
 
-def cdx_rows(crawl, url, http=None):
-    """Exact-URL CDX lines for one crawl, status 200 html only.  Dicts with the Wayback-compatible keys timestamp/original plus warc fields."""
+def surt(url):
+    """The SURT key Common Crawl indexes a URL under: scheme and www dropped, host reversed and comma-joined, ')' then the path, query args
+    sorted, all lower-case (e.g. https://www.cs.harvard.edu/people/ -> edu,harvard,cs)/people/)."""
+    u = urllib.parse.urlsplit(url if '//' in url else 'http://' + url)
+    host = re.sub(r'^www\d*\.', '', (u.hostname or '').lower())
+    key = ','.join(reversed(host.split('.'))) + ')' + (u.path or '/')
+    if u.query:
+        key += '?' + '&'.join(sorted(u.query.split('&')))
+    return key.lower()
+
+
+def cluster_path(crawl):
+    return os.path.join(cache_dir(), f'{crawl}.cluster.idx')
+
+
+def ensure_cluster(crawl, http=None, chunk=32 << 20):
+    """Read the crawl's cluster.idx once (32 MiB range reads, resumable via a .part file) into cache/commoncrawl/; returns its path, or None when the
+    crawl has no cluster.idx.  Bytes read are counted in BYTES."""
     gate(http)
-    q = urllib.parse.urlencode({'url': url, 'output': 'json', 'filter': ['=status:200', '=mime:text/html'], 'limit': '50'}, doseq=True)
-    st, _, body = polite_get(f'{INDEX}/{crawl}-index?{q}', http=http)
-    if st == 404:
-        return []
-    if st != 200:
-        raise CCRefused(f'CDX {crawl} HTTP {st}')
+    path = cluster_path(crawl)
+    if os.path.exists(path):
+        return path
+    os.makedirs(cache_dir(), exist_ok=True)
+    url = f'{S3}/cc-index/collections/{crawl}/indexes/cluster.idx'
+    part = path + '.part'
+    have = os.path.getsize(part) if os.path.exists(part) else 0
+    while True:
+        st, hd, body = polite_get(url, {'Range': f'bytes={have}-{have + chunk - 1}'}, http=http)
+        if st in (403, 404):
+            return None
+        if st == 416:
+            break
+        if st not in (200, 206):
+            raise CCRefused(f'cluster.idx {crawl} HTTP {st}')
+        with open(part, 'ab') as f:
+            f.write(body)
+        have += len(body)
+        total = {k.lower(): v for k, v in hd.items()}.get('content-range', '').rpartition('/')[2]
+        if st == 200 or len(body) < chunk or (total.isdigit() and have >= int(total)):
+            break
+    os.replace(part, path)
+    return path
+
+
+def cluster_blocks(path, key):
+    """Cluster lines (surt, timestamp, cdx file, offset, length) whose block may hold exact-key rows: the line before the first line with
+    surt >= key, then every line with surt == key.  Binary search on byte offsets of the local file (no full read)."""
+    kb = key.encode()
+    size = os.path.getsize(path)
+    with open(path, 'rb') as f:
+        lo, hi, ans = 0, size, size
+        while lo < hi:  # ans = start of the first line whose surt >= key
+            mid = (lo + hi) // 2
+            f.seek(mid)
+            if mid:
+                f.readline()
+            ls = f.tell()
+            if ls >= hi:
+                hi = mid
+                continue
+            ln = f.readline()
+            if ln.split(b' ', 1)[0] < kb:
+                lo = f.tell()
+            else:
+                ans, hi = ls, mid
+        start = max(0, ans - 4096)
+        f.seek(start)
+        if start:
+            f.readline()
+        prev = None
+        while f.tell() < ans:
+            prev = f.readline()
+        lines = [prev] if prev else []
+        f.seek(ans)
+        for ln in f:
+            if ln.split(b' ', 1)[0] != kb:
+                break
+            lines.append(ln)
     out = []
-    for ln in body.decode('utf-8', 'replace').splitlines():
-        if ln.strip():
-            r = json.loads(ln)
-            out.append(dict(timestamp=r['timestamp'], original=r['url'], filename=r['filename'], offset=int(r['offset']),
-                            length=int(r['length']), digest=r.get('digest'), crawl=crawl))
+    for ln in lines:
+        head, _, rest = ln.decode().rstrip('\n').partition('\t')
+        parts = head.split(' ')
+        f2 = rest.split('\t')
+        if len(parts) >= 2 and len(f2) >= 3:
+            out.append((parts[0], parts[1], f2[0], int(f2[1]), int(f2[2])))
+    return out
+
+
+def cdx_rows(crawl, url, http=None, cluster=None):
+    """Exact-URL index rows (status 200 html) for one crawl via cluster.idx + a ranged read of only the matching cdx block(s)."""
+    gate(http)
+    path = cluster or ensure_cluster(crawl, http=http)
+    if not path:
+        return []
+    key = surt(url)
+    out, seen = [], set()
+    for variant in dict.fromkeys([key, key.rstrip('/') if key.endswith('/') and not key.endswith(')/') else key + '/']):
+        for _, _, name, off, length in cluster_blocks(path, variant):
+            if (name, off) in seen:
+                continue
+            seen.add((name, off))
+            st, _, blk = polite_get(f'{S3}/cc-index/collections/{crawl}/indexes/{name}', {'Range': f'bytes={off}-{off + length - 1}'}, http=http)
+            if st not in (200, 206):
+                raise CCRefused(f'cdx block {crawl} {name} HTTP {st}')
+            for ln in gzip.decompress(blk).decode('utf-8', 'replace').splitlines():
+                k, _, js = ln.split(' ', 2)
+                if k != variant:
+                    continue
+                r = json.loads(js)
+                if r.get('status') != '200' or 'html' not in (r.get('mime-detected') or r.get('mime') or ''):
+                    continue
+                out.append(dict(timestamp=r['timestamp'] if 'timestamp' in r else ln.split(' ', 2)[1], original=r['url'], filename=r['filename'],
+                                offset=int(r['offset']), length=int(r['length']), digest=r.get('digest'), crawl=crawl))
     return out
 
 
@@ -141,7 +276,7 @@ def fetch_record(row, http=None):
     """Range-request one WARC record; returns (status, body, headers).  The body is the raw page bytes, with no banner or rewriting."""
     gate(http)
     rng = f"bytes={row['offset']}-{row['offset'] + row['length'] - 1}"
-    st, _, rec = polite_get(f"{DATA}/{row['filename']}", {'Range': rng}, http=http)
+    st, _, rec = polite_get(f"{S3}/{row['filename']}", {'Range': rng}, http=http)
     if st not in (200, 206):
         raise CCRefused(f'WARC range HTTP {st}')
     _, status, hdrs, body = parse_warc(rec)
@@ -236,7 +371,7 @@ def record_target_robots(con, url, http=None):
         host, time.strftime('%Y-%m-%dT%H:%M:%S', time.localtime(time.time() - 86400)))).fetchone()
     if row:
         return bool(row[0] and row[1])
-    st, _, body = polite_get(f'https://{host}/robots.txt', http=http)
+    st, _, body = polite_get(f'https://{host}/robots.txt', http=http, external=True)
     text = body.decode('utf-8', 'replace')
     import school_web as W
     ours, ai, _ = W.robots_decision(st, text, urllib.parse.urlsplit(url if '//' in url else 'https://' + url).path or '/')

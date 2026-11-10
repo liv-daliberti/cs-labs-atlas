@@ -3,14 +3,15 @@
 usage: cc_fill.py <school> --db <captures.sqlite> [--slot substr ...] [--state state.json] [--gap-crawls] [--dry-run]
 
 Read docs/COMMONCRAWL.md first.  Rules enforced here:
-- cc.gate() re-reads index/data robots.txt before any query; while they disallow automated clients the run exits 4 having asked nothing else.
+- Only the S3 bucket https://commoncrawl.s3.amazonaws.com is requested (cc.polite_get refuses index/data.commoncrawl.org); cc.gate() refuses
+  (exit 5, before any request) unless the owner-approval marker cache/commoncrawl/OWNER-APPROVED exists.
 - --db is REQUIRED.  Run it on a private copy of the school's captures.sqlite (the school's own worker writes the live one); merge with
   tools/... merge steps in docs/COMMONCRAWL.md.
 - Same plan semantics as plan_fetch: one row per (slot, year, half); a row is only ever changed from nocapture/unusable to ok (or H2 to
   out_of_scope when H1 became ok for ONE_CAPTURE_PER_YEAR schools); never touches 'ok' rows; slot_usable() decides usability.
 - Per half-year the crawl nearest the middle of the half is asked first (one crawl per calendar year), the others only with --gap-crawls.
 - The target page host's current robots.txt must not disallow AI agents by name (recorded in cc_robots); else its rows are left alone.
-Exit codes: 0 done, 3 unfinished (errors; re-run resumes from the cached index), 4 Common Crawl refused (robots), 5 no owner-approval marker (fail-closed, checked before any request), 2 usage.
+Exit codes: 0 done, 3 unfinished (errors; re-run resumes from the cached index), 5 no owner-approval marker (fail-closed, before any request), 2 usage.
 """
 import argparse
 import json
@@ -23,18 +24,6 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'tools'))
 import cc
 import plan_fetch as PF
-
-
-def project_root():
-    here = os.path.abspath(__file__)
-    if '/worktrees/' in here:
-        return here.split('/worktrees/')[0]
-    return os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(here))))
-
-
-def approval_marker():
-    """Owner approval marker: the file must exist (the owner creates it after Common Crawl's written permission)."""
-    return os.path.join(project_root(), 'cache', 'commoncrawl', 'OWNER-APPROVED')
 
 
 def open_db(path):
@@ -81,20 +70,16 @@ def try_capture(con, s, pri_u_r, school, pis, http):
 
 
 def run(school, db, filters, state_path, gap, dry, http=None):
-    if not os.path.exists(approval_marker()):
-        print(f'REFUSED: no owner approval marker {approval_marker()} (waiting for owner / Common Crawl written permission); nothing requested', flush=True)
-        return 5
-    cfg, pis = PF.load(school)
-    con = open_db(db)
     try:
         cc.gate(http)
     except cc.CCRefused as e:
-        print('REFUSED:', e, flush=True)
-        return 4
+        print(f'REFUSED: {e} (waiting for the owner approval marker); nothing requested', flush=True)
+        return 5
+    cfg, pis = PF.load(school)
+    con = open_db(db)
     st = json.load(open(state_path)) if state_path and os.path.exists(state_path) else {}
     errors = st.get('errors', {})
-    st_, _, body = cc.polite_get(cc.INDEX + '/collinfo.json', http=http)
-    crawls = cc.pick_crawls(json.loads(body))
+    crawls = cc.pick_crawls([{'id': c} for c in cc.CRAWLS])
     filled = scanned = 0
     for s in cfg.SLOTS:
         if filters and not any(f.lower() in s['slot'].lower() for f in filters):
@@ -127,13 +112,13 @@ def run(school, db, filters, state_path, gap, dry, http=None):
                         filled += 1
                         break
                 con.commit()
-        json.dump({'errors': errors, 'updated': time.strftime('%Y-%m-%dT%H:%M:%S')}, open(state_path, 'w')) if state_path else None
+        json.dump({'errors': errors, 'bytes': st.get('bytes', 0) + cc.BYTES['n'], 'requests': cc.BYTES['requests'], 'updated': time.strftime('%Y-%m-%dT%H:%M:%S')}, open(state_path, 'w')) if state_path else None
     if not dry and one:  # H2 rows whose H1 is now ok become out_of_scope, as plan_fetch does
         con.execute("update plan set status='out_of_scope', capture_url=null, page_url=null, wayback_timestamp=null, "
                     "reason='year already proven by its Jan-Jun capture (one capture per calendar year)' where half='H2' and status in "
                     "('nocapture','unusable') and exists (select 1 from plan p where p.slot=plan.slot and p.year=plan.year and p.half='H1' and p.status='ok')")
         con.commit()
-    print(f'scanned {scanned} slot-halves, filled {filled}', flush=True)
+    print(f'scanned {scanned} slot-halves, filled {filled}, bytes read {cc.BYTES["n"]} in {cc.BYTES["requests"]} requests', flush=True)
     return 3 if any(v >= cc.MAX_CRAWL_ERRORS for v in errors.values()) else 0
 
 

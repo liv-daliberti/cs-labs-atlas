@@ -25,6 +25,18 @@ YEARS = list(range(2016, 2027))
 ONE_CAPTURE_PER_YEAR = {"harvard", "toronto"}
 
 
+CC_PREFIX = "commoncrawl:"  # capture_url of a Common Crawl record: commoncrawl:<warc filename>:<offset>:<length> (listings/scripts/cc.py)
+
+
+def capture_stamp(cap, final_url, ts):
+    """(capture timestamp, moved_away) for a fetched capture. A Wayback capture must end at its own web.archive.org/web/<ts>id_/ URL (its
+    timestamp is then the final URL's); a Common Crawl record has no redirect rewriting, its timestamp is the crawl's and it never counts as moved."""
+    if cap.startswith(CC_PREFIX):
+        return ts, False
+    m = re.match(r"https://web\.archive\.org/web/(\d{14})id_/", final_url or cap)
+    return (m.group(1) if m else ts), not m
+
+
 def ts_date(ts):
     return f"{ts[:4]}-{ts[4:6]}-{ts[6:8]}"
 
@@ -261,9 +273,8 @@ def run_slot(school, s, con, pis, max_tries=2):
                         else:
                             good, why = True, None
                 fu = con.execute("select final_url from captures where capture_url=?", (cap,)).fetchone()[0] or cap
-                m = re.match(r"https://web\.archive\.org/web/(\d{14})id_/", fu)
-                fts = m.group(1) if m else r["timestamp"]
-                if st == 200 and not m:
+                fts, moved = capture_stamp(cap, fu, r["timestamp"])
+                if st == 200 and moved:
                     good, why = False, f"redirected away from the capture ({fu[:120]})"
                 if good and not (lo <= fts[:8] <= hi):
                     good, why = False, f"redirected to capture {fts} outside the half-year"
