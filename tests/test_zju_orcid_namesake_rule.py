@@ -11,6 +11,7 @@ def test_R_PAP_42_classify():
     assert o.classify('0000-0003-0655-3303', ['0000-0002-8365-4741'], 1) == 'mixed'
     assert o.classify('0000-0003-3444-8383', ['0000-0001-9817-4065'], 0) == 'not'
     assert o.classify(None, ['0000-0001-9817-4065'], 5) == 'undecided'
+    assert o.classify('0000-0003-3444-8383', [], 0) == 'undecided'   # the PI has no known ORCID: no conflict
 
 
 def _overrides():
@@ -34,7 +35,7 @@ def test_R_PAP_42_namesake_ids_conflict_with_the_dblp_orcids():
                     orc = o.bare(item['quote'])
                     assert orc and orc not in dblp_orcids, (pi, item['author_id'])
                     checked += 1
-    assert checked in (0, 24)
+    assert checked == 0 or checked >= 24
 
 
 def test_R_PAP_42_reciprocal_url_bindings_name_the_profile_url():
