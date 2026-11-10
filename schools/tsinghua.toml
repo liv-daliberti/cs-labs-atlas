@@ -38,7 +38,7 @@ legacy_sweep = ""
 [census]
 computing_departments = ["CS", "IIIS", "SW", "AIR"]
 center_units = []
-home_units = { "Computer Science and Technology" = 'computer science|计算机科学', "Software" = 'school of software|软件学院', "Interdisciplinary Information Sciences" = 'interdisciplinary information|交叉信息', "AI Industry Research" = 'AI Industry Research|智能产业', "Automation" = 'automation|自动化', "Network Sciences and Cyberspace" = 'network sciences and cyberspace|网络科学与网络空间', "Electronic Engineering" = 'electronic engineering|电子工程' }
+home_units = { "Computer Science and Technology" = 'computer science|计算机科学', "Software" = 'school of software|软件学院', "Interdisciplinary Information Sciences" = 'interdisciplinary information|交叉信息', "AI Industry Research" = 'AI Industry Research|智能产业', "Automation" = 'automation|自动化', "Network Sciences and Cyberspace" = 'network sciences and cyberspace|网络科学与网络空间', "Electronic Engineering" = 'electronic engineering|电子工程', "Mechanical Engineering" = 'mechanical engineering|机械工程', "Mathematical Sciences" = 'mathematical sciences|数学科学', "Biomedical Engineering" = 'biomedical engineering|生物医学工程' }
 rank_words = { ladder = '教授', research = '研究员', lecturer = '讲师|助教', emeritus = '荣休|退休|名誉', adjunct = '兼职', visiting = '客座|访问' }
 
 [sweep_check]
@@ -320,6 +320,93 @@ listing_gaps = {2016 = "exact-URL CDX 2026-11-10: www.insc.tsinghua.edu.cn/szdw_
   title_filter = ''
   # CDX 2022H2-2025H2; samples 2022/2024 parse 48/51 names under 教授/副教授 bands.
 # Discovery leads only; not admitted to the207-person census or child-only paper attribution.
+[[departments]]
+code = "ME"
+name = "Department of Mechanical Engineering"
+unit = "Tsinghua University, Beijing (reviewed source scope)"
+title_match = '教授|研究员|Professor|Research|Investigator|教研系列'
+coverage = "affiliated"
+url = "https://me.tsinghua.edu.cn/en/People/Registered_Faculty/Al.htm"
+listing_gaps = {2016 = "exact-URL CDX 2026-11-10 (discover_listings, job 32190474): www.me.tsinghua.edu.cn/szdw/zzjs.htm first captured 2021-02 and me.tsinghua.edu.cn/en/People/Registered_Faculty/Al.htm first captured 2024-10; no older list URL known", 2017 = "exact-URL CDX 2026-11-10 (discover_listings, job 32190474): www.me.tsinghua.edu.cn/szdw/zzjs.htm first captured 2021-02 and me.tsinghua.edu.cn/en/People/Registered_Faculty/Al.htm first captured 2024-10; no older list URL known", 2018 = "exact-URL CDX 2026-11-10 (discover_listings, job 32190474): www.me.tsinghua.edu.cn/szdw/zzjs.htm first captured 2021-02 and me.tsinghua.edu.cn/en/People/Registered_Faculty/Al.htm first captured 2024-10; no older list URL known", 2019 = "exact-URL CDX 2026-11-10 (discover_listings, job 32190474): www.me.tsinghua.edu.cn/szdw/zzjs.htm first captured 2021-02 and me.tsinghua.edu.cn/en/People/Registered_Faculty/Al.htm first captured 2024-10; no older list URL known", 2020 = "exact-URL CDX 2026-11-10 (discover_listings, job 32190474): www.me.tsinghua.edu.cn/szdw/zzjs.htm first captured 2021-02 and me.tsinghua.edu.cn/en/People/Registered_Faculty/Al.htm first captured 2024-10; no older list URL known"}
+  [[departments.listings]]
+  slot = "ME EN current2026"
+  kind = "main"
+  url = "me.tsinghua.edu.cn/en/People/Registered_Faculty/Al.htm"
+  from = "20260101"
+  to = "20261231"
+  prefix = false
+  match = ""
+  format = "tsinghua_me_en"
+  title_filter = ''
+  [[departments.listings]]
+  slot = "ME EN archive 2024-2025"
+  kind = "main"
+  url = "me.tsinghua.edu.cn/en/People/Registered_Faculty/Al.htm"
+  from = "20240101"
+  to = "20251231"
+  prefix = false
+  match = ""
+  format = "tsinghua_me_en"
+  title_filter = ''
+  [[departments.listings]]
+  slot = "ME zzjs archive 2021-2025"
+  kind = "main"
+  url = "www.me.tsinghua.edu.cn/szdw/zzjs.htm"
+  from = "20210101"
+  to = "20251231"
+  prefix = false
+  match = ""
+  format = "tsinghua_me_zh"
+  title_filter = ''
+
+[[departments]]
+code = "MATH"
+name = "Department of Mathematical Sciences"
+unit = "Tsinghua University, Beijing (reviewed source scope)"
+title_match = '教授|研究员|Professor|Research|Investigator|教研系列'
+coverage = "affiliated"
+url = "https://www.math.tsinghua.edu.cn/szdw1/js/ayjs.htm"
+listing_gaps = {2016 = "exact-URL CDX 2026-11-10 (discover_listings, job 32190474): www.math.tsinghua.edu.cn/szdw1/js/ayjs.htm first captured 2026-07 (2 captures 2026-07..2026-09); szdw1/js.htm and szdw1.htm have no capture; no older list URL known", 2017 = "exact-URL CDX 2026-11-10 (discover_listings, job 32190474): www.math.tsinghua.edu.cn/szdw1/js/ayjs.htm first captured 2026-07 (2 captures 2026-07..2026-09); szdw1/js.htm and szdw1.htm have no capture; no older list URL known", 2018 = "exact-URL CDX 2026-11-10 (discover_listings, job 32190474): www.math.tsinghua.edu.cn/szdw1/js/ayjs.htm first captured 2026-07 (2 captures 2026-07..2026-09); szdw1/js.htm and szdw1.htm have no capture; no older list URL known", 2019 = "exact-URL CDX 2026-11-10 (discover_listings, job 32190474): www.math.tsinghua.edu.cn/szdw1/js/ayjs.htm first captured 2026-07 (2 captures 2026-07..2026-09); szdw1/js.htm and szdw1.htm have no capture; no older list URL known", 2020 = "exact-URL CDX 2026-11-10 (discover_listings, job 32190474): www.math.tsinghua.edu.cn/szdw1/js/ayjs.htm first captured 2026-07 (2 captures 2026-07..2026-09); szdw1/js.htm and szdw1.htm have no capture; no older list URL known", 2021 = "exact-URL CDX 2026-11-10 (discover_listings, job 32190474): www.math.tsinghua.edu.cn/szdw1/js/ayjs.htm first captured 2026-07 (2 captures 2026-07..2026-09); szdw1/js.htm and szdw1.htm have no capture; no older list URL known", 2022 = "exact-URL CDX 2026-11-10 (discover_listings, job 32190474): www.math.tsinghua.edu.cn/szdw1/js/ayjs.htm first captured 2026-07 (2 captures 2026-07..2026-09); szdw1/js.htm and szdw1.htm have no capture; no older list URL known", 2023 = "exact-URL CDX 2026-11-10 (discover_listings, job 32190474): www.math.tsinghua.edu.cn/szdw1/js/ayjs.htm first captured 2026-07 (2 captures 2026-07..2026-09); szdw1/js.htm and szdw1.htm have no capture; no older list URL known", 2024 = "exact-URL CDX 2026-11-10 (discover_listings, job 32190474): www.math.tsinghua.edu.cn/szdw1/js/ayjs.htm first captured 2026-07 (2 captures 2026-07..2026-09); szdw1/js.htm and szdw1.htm have no capture; no older list URL known", 2025 = "exact-URL CDX 2026-11-10 (discover_listings, job 32190474): www.math.tsinghua.edu.cn/szdw1/js/ayjs.htm first captured 2026-07 (2 captures 2026-07..2026-09); szdw1/js.htm and szdw1.htm have no capture; no older list URL known"}
+  [[departments.listings]]
+  slot = "MATH ayjs current2026"
+  kind = "main"
+  url = "www.math.tsinghua.edu.cn/szdw1/js/ayjs.htm"
+  from = "20260101"
+  to = "20261231"
+  prefix = false
+  match = ""
+  format = "tsinghua_math_bands"
+  title_filter = ''
+
+[[departments]]
+code = "BME"
+name = "Department of Biomedical Engineering"
+unit = "Tsinghua University, Beijing (reviewed source scope)"
+title_match = '教授|研究员|Professor|Research|Investigator|教研系列'
+coverage = "affiliated"
+url = "https://bme.tsinghua.edu.cn/ryqk/zzjs/jyxl.htm"
+listing_gaps = {2016 = "exact-URL CDX 2026-11-10 (discover_listings, job 32190474): bme.tsinghua.edu.cn/ryqk/zzjs/jyxl.htm first captured 2025-11 and ryqk/zzjs.htm first captured 2025-07; ryqk.htm has no capture; no older list URL known", 2017 = "exact-URL CDX 2026-11-10 (discover_listings, job 32190474): bme.tsinghua.edu.cn/ryqk/zzjs/jyxl.htm first captured 2025-11 and ryqk/zzjs.htm first captured 2025-07; ryqk.htm has no capture; no older list URL known", 2018 = "exact-URL CDX 2026-11-10 (discover_listings, job 32190474): bme.tsinghua.edu.cn/ryqk/zzjs/jyxl.htm first captured 2025-11 and ryqk/zzjs.htm first captured 2025-07; ryqk.htm has no capture; no older list URL known", 2019 = "exact-URL CDX 2026-11-10 (discover_listings, job 32190474): bme.tsinghua.edu.cn/ryqk/zzjs/jyxl.htm first captured 2025-11 and ryqk/zzjs.htm first captured 2025-07; ryqk.htm has no capture; no older list URL known", 2020 = "exact-URL CDX 2026-11-10 (discover_listings, job 32190474): bme.tsinghua.edu.cn/ryqk/zzjs/jyxl.htm first captured 2025-11 and ryqk/zzjs.htm first captured 2025-07; ryqk.htm has no capture; no older list URL known", 2021 = "exact-URL CDX 2026-11-10 (discover_listings, job 32190474): bme.tsinghua.edu.cn/ryqk/zzjs/jyxl.htm first captured 2025-11 and ryqk/zzjs.htm first captured 2025-07; ryqk.htm has no capture; no older list URL known", 2022 = "exact-URL CDX 2026-11-10 (discover_listings, job 32190474): bme.tsinghua.edu.cn/ryqk/zzjs/jyxl.htm first captured 2025-11 and ryqk/zzjs.htm first captured 2025-07; ryqk.htm has no capture; no older list URL known", 2023 = "exact-URL CDX 2026-11-10 (discover_listings, job 32190474): bme.tsinghua.edu.cn/ryqk/zzjs/jyxl.htm first captured 2025-11 and ryqk/zzjs.htm first captured 2025-07; ryqk.htm has no capture; no older list URL known", 2024 = "exact-URL CDX 2026-11-10 (discover_listings, job 32190474): bme.tsinghua.edu.cn/ryqk/zzjs/jyxl.htm first captured 2025-11 and ryqk/zzjs.htm first captured 2025-07; ryqk.htm has no capture; no older list URL known"}
+  [[departments.listings]]
+  slot = "BME jyxl current2026"
+  kind = "main"
+  url = "bme.tsinghua.edu.cn/ryqk/zzjs/jyxl.htm"
+  from = "20260101"
+  to = "20261231"
+  prefix = false
+  match = ""
+  format = "tsinghua_bme_cards"
+  title_filter = ''
+  [[departments.listings]]
+  slot = "BME jyxl archive 2025"
+  kind = "main"
+  url = "bme.tsinghua.edu.cn/ryqk/zzjs/jyxl.htm"
+  from = "20250101"
+  to = "20251231"
+  prefix = false
+  match = ""
+  format = "tsinghua_bme_cards"
+  title_filter = ''
+
 [[affiliated_units]]
 code = "SIGS"
 name = "Shenzhen International Graduate School (unreviewed campus and computing faculty)"
@@ -590,3 +677,26 @@ use = "live"
 purpose = "Existing source-capture robots decision permits a normal request; no new request made."
 probe = "https://yushen-liu.github.io/index_cn.html"
 
+[[hosts]]
+host = "me.tsinghua.edu.cn"
+use = "live"
+purpose = "robots.txt 404 (no rules, no AI-agent rules) on 2026-11-10; static faculty list read at 3 s intervals with the honest UA."
+probe = "https://me.tsinghua.edu.cn/en/People/Registered_Faculty/Al.htm"
+
+[[hosts]]
+host = "www.me.tsinghua.edu.cn"
+use = "live"
+purpose = "robots.txt 404 (no rules, no AI-agent rules) on 2026-11-10; static faculty list read at 3 s intervals with the honest UA."
+probe = "https://www.me.tsinghua.edu.cn/szdw/zzjs.htm"
+
+[[hosts]]
+host = "www.math.tsinghua.edu.cn"
+use = "live"
+purpose = "robots.txt 404 (no rules, no AI-agent rules) on 2026-11-10; static faculty list read at 3 s intervals with the honest UA."
+probe = "https://www.math.tsinghua.edu.cn/szdw1/js/ayjs.htm"
+
+[[hosts]]
+host = "bme.tsinghua.edu.cn"
+use = "live"
+purpose = "robots.txt 404 (no rules, no AI-agent rules) on 2026-11-10; static faculty list read at 3 s intervals with the honest UA."
+probe = "https://bme.tsinghua.edu.cn/ryqk/zzjs/jyxl.htm"
