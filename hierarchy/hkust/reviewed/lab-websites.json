@@ -11,7 +11,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T09:35:19+00:00",
+   "audited_at": "2026-11-10T09:36:25+00:00",
    "checks": [
     {
      "source": "prior_labpage_pass_2026-10-22",
@@ -131,9 +131,9 @@
   {
    "pi": "Song GUO 郭嵩",
    "status": "found",
-   "reason_code": "lab_site",
-   "reason": "Captured lab/group website.",
-   "audited_at": "2026-11-10T09:35:20+00:00",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-10T09:36:26+00:00",
    "checks": [
     {
      "source": "prior_labpage_pass_2026-10-22",
@@ -259,33 +259,49 @@
    "checked_at": "2026-11-10T07:14:53+00:00",
    "students_page_status": "audited",
    "papers_page_status": "audited",
-   "url": "https://www.hkpeilab.com/",
-   "kind": "lab_site",
-   "people_page": "https://www.hkpeilab.com/people",
-   "alumni_page": null,
-   "pubs_page": "https://www.hkpeilab.com/publications",
-   "found_via": "prior_labpage_pass",
-   "listed_on": null,
-   "sha256": "38fd169adcaa0fce6ae375370013360e3fb8c6c5c296c5f2304ca5d492c87b64",
+   "url": "https://cse.hkust.edu.hk/~songguo/",
+   "kind": "pi_homepage",
+   "found_via": "school_profile_link",
+   "listed_on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/songguo",
+   "sha256": "b29f0ba2c82e2c67a84cfc0a4d09a3f14f0b0c9621ab73b06b65a5b770a02b8b",
    "evidence": {
-    "url": "https://www.hkpeilab.com/",
-    "sha256": "38fd169adcaa0fce6ae375370013360e3fb8c6c5c296c5f2304ca5d492c87b64",
-    "quote": "our Research Recent News Browse all News CNCC2026特邀报告｜香港科技大学郭嵩——迈向自主进化的物理智能 CNCC2026将于10月21-24日在成都举办，香港科技大学郭嵩教授受邀做特邀报告：迈向自"
+    "url": "https://cse.hkust.edu.hk/~songguo/",
+    "sha256": "b29f0ba2c82e2c67a84cfc0a4d09a3f14f0b0c9621ab73b06b65a5b770a02b8b",
+    "quote": null
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://cse.hkust.edu.hk/~songguo/",
+     "at": "2026-11-10T07:14:41+00:00",
+     "result": "listed",
+     "anchor": "Personal Webpage",
+     "on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/songguo"
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
    "evidence_gaps": [],
+   "website_note": {
+    "replaced_url": "https://www.hkpeilab.com/",
+    "replaced_sha256": "38fd169adcaa0fce6ae375370013360e3fb8c6c5c296c5f2304ca5d492c87b64",
+    "replaced_kind": "lab_site",
+    "found_via": "prior_labpage_pass",
+    "why": "no official link reaches this URL; the department profile links the personal page now selected (owner-delegated, reversible)",
+    "people_page": "https://www.hkpeilab.com/people",
+    "alumni_page": null,
+    "pubs_page": "https://www.hkpeilab.com/publications"
+   },
    "verified": true,
-   "verification_quote": "the pervasive intelligence laboratory directed by prof song guo is dedicated to advancing physical intelligence by developing novel architec"
+   "verification_quote": "song guo hong kong university of science and technology songguo song guo chair profes"
   },
   {
    "pi": "Raymond Chi-Wing WONG 黃智榮",
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T09:35:24+00:00",
+   "audited_at": "2026-11-10T09:36:29+00:00",
    "checks": [
     {
      "source": "prior_labpage_pass_2026-10-22",
@@ -424,7 +440,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T09:35:25+00:00",
+   "audited_at": "2026-11-10T09:36:30+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -591,7 +607,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T09:35:25+00:00",
+   "audited_at": "2026-11-10T09:36:31+00:00",
    "checks": [
     {
      "source": "prior_labpage_pass_2026-10-22",
@@ -720,7 +736,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T09:35:25+00:00",
+   "audited_at": "2026-11-10T09:36:31+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -875,7 +891,7 @@
    "status": "none_found",
    "reason_code": "host_blocked_by_robots",
    "reason": "No eligible website established for this school from the recorded checks (access_blocked): department_listing https://cse.hkust.edu.hk/admin/people/faculty/?c=regular&d=textview: ok; school_profile https://cse.hkust.edu.hk/admin/people/faculty/profile/jia: ok; school_profile_link https://jiaya.me/home: listed; dblp_person_url https://dblp.org/pid/31/5649: no_homepage_url; 2 further dated checks retained.",
-   "audited_at": "2026-11-10T09:35:25+00:00",
+   "audited_at": "2026-11-10T09:36:31+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -948,7 +964,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T09:35:25+00:00",
+   "audited_at": "2026-11-10T09:36:31+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -1039,24 +1055,40 @@
    "checked_at": "2026-11-10T07:14:59+00:00",
    "students_page_status": "no_people_section",
    "papers_page_status": "no_pubs_page",
-   "url": "http://www.cse.ust.hk/~bli/",
+   "url": "https://cse.hkust.edu.hk/faculty/bli/",
    "kind": "pi_homepage",
-   "people_page": null,
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "dblp_person_url",
-   "listed_on": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/bli",
    "sha256": "5f09a57dfb5dae2d03b8e005b723000521a0fce64e8765e591a59b62a0e9fb52",
    "evidence": {
-    "url": "http://www.cse.ust.hk/~bli/",
+    "url": "https://cse.hkust.edu.hk/faculty/bli/",
     "sha256": "5f09a57dfb5dae2d03b8e005b723000521a0fce64e8765e591a59b62a0e9fb52",
     "quote": null
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://cse.hkust.edu.hk/faculty/bli/",
+     "at": "2026-11-10T07:14:59+00:00",
+     "result": "listed",
+     "anchor": "Personal Webpage",
+     "on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/bli"
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
+   "website_note": {
+    "replaced_url": "http://www.cse.ust.hk/~bli/",
+    "replaced_sha256": "5f09a57dfb5dae2d03b8e005b723000521a0fce64e8765e591a59b62a0e9fb52",
+    "replaced_kind": "pi_homepage",
+    "found_via": "dblp_person_url",
+    "why": "no official link reaches this URL; the department profile links the personal page now selected (owner-delegated, reversible)",
+    "people_page": null,
+    "alumni_page": null,
+    "pubs_page": null
+   },
    "verified": true,
    "verification_quote": "bo li s homepage menu biography teaching course ongoing projects students selected "
   },
@@ -1065,7 +1097,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T09:35:25+00:00",
+   "audited_at": "2026-11-10T09:36:31+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -1167,9 +1199,9 @@
   {
    "pi": "Qian ZHANG 張黔",
    "status": "found",
-   "reason_code": "lab_site",
-   "reason": "Captured lab/group website.",
-   "audited_at": "2026-11-10T09:35:26+00:00",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-10T09:36:32+00:00",
    "checks": [
     {
      "source": "prior_labpage_pass_2026-10-22",
@@ -1312,33 +1344,49 @@
    "checked_at": "2026-11-10T07:15:10+00:00",
    "students_page_status": "audited",
    "papers_page_status": "no_pubs_page",
-   "url": "https://qiansgroup.github.io/",
-   "kind": "lab_site",
-   "people_page": "https://cse.hkust.edu.hk/~qianzh/students/",
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "prior_labpage_pass_2026-10-22",
-   "listed_on": null,
-   "sha256": "ff24de551af364b46e12634696f0d075cab065a31264cfc67adc96164649dca6",
+   "url": "https://cse.hkust.edu.hk/~qianzh/",
+   "kind": "pi_homepage",
+   "found_via": "school_profile_link",
+   "listed_on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/qianzh",
+   "sha256": "518f6450e9c9f17b942d47446ca5d768c9264144bfe1d26243bf0a4df5cb53e7",
    "evidence": {
-    "url": "https://qiansgroup.github.io/",
-    "sha256": "ff24de551af364b46e12634696f0d075cab065a31264cfc67adc96164649dca6",
+    "url": "https://cse.hkust.edu.hk/~qianzh/",
+    "sha256": "518f6450e9c9f17b942d47446ca5d768c9264144bfe1d26243bf0a4df5cb53e7",
     "quote": null
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://cse.hkust.edu.hk/~qianzh/",
+     "at": "2026-11-10T07:15:00+00:00",
+     "result": "listed",
+     "anchor": "Personal Webpage",
+     "on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/qianzh"
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
    "evidence_gaps": [],
+   "website_note": {
+    "replaced_url": "https://qiansgroup.github.io/",
+    "replaced_sha256": "ff24de551af364b46e12634696f0d075cab065a31264cfc67adc96164649dca6",
+    "replaced_kind": "lab_site",
+    "found_via": "prior_labpage_pass_2026-10-22",
+    "why": "no official link reaches this URL; the department profile links the personal page now selected (owner-delegated, reversible)",
+    "people_page": "https://cse.hkust.edu.hk/~qianzh/students/",
+    "alumni_page": null,
+    "pubs_page": null
+   },
    "verified": true,
-   "verification_quote": "dark automatic qian group the pi of qian group is prof qian zhang qian group style is interdisciplinary in general particularly we are lever"
+   "verification_quote": "homepage of qian zhang qian zhang you are using an outdated browser please upgrade your browser t"
   },
   {
    "pi": "Gary Shueng-Han CHAN 陳雙幸",
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T09:35:27+00:00",
+   "audited_at": "2026-11-10T09:36:33+00:00",
    "checks": [
     {
      "source": "prior_labpage_pass_2026-10-22",
@@ -1501,7 +1549,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T09:35:28+00:00",
+   "audited_at": "2026-11-10T09:36:34+00:00",
    "checks": [
     {
      "source": "prior_labpage_pass_2026-10-22",
@@ -1671,7 +1719,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T09:35:28+00:00",
+   "audited_at": "2026-11-10T09:36:34+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -1752,24 +1800,40 @@
    "checked_at": "2026-11-10T07:15:18+00:00",
    "students_page_status": "no_people_section",
    "papers_page_status": "no_pubs_page",
-   "url": "http://www.cs.ust.hk/faculty/scheng/bio.html",
+   "url": "https://cse.hkust.edu.hk/faculty/scheng/",
    "kind": "pi_homepage",
-   "people_page": null,
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "dblp_person_url",
-   "listed_on": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/scheng",
    "sha256": "3e6d09f5c61d4cf93bf68bf610d6bb6e3f1bef70e56515fc935c5003bf259aa6",
    "evidence": {
-    "url": "http://www.cs.ust.hk/faculty/scheng/bio.html",
+    "url": "https://cse.hkust.edu.hk/faculty/scheng/",
     "sha256": "3e6d09f5c61d4cf93bf68bf610d6bb6e3f1bef70e56515fc935c5003bf259aa6",
     "quote": null
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://cse.hkust.edu.hk/faculty/scheng/",
+     "at": "2026-11-10T07:15:18+00:00",
+     "result": "listed",
+     "anchor": "Personal Webpage",
+     "on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/scheng"
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
+   "website_note": {
+    "replaced_url": "http://www.cs.ust.hk/faculty/scheng/bio.html",
+    "replaced_sha256": "3e6d09f5c61d4cf93bf68bf610d6bb6e3f1bef70e56515fc935c5003bf259aa6",
+    "replaced_kind": "pi_homepage",
+    "found_via": "dblp_person_url",
+    "why": "no official link reaches this URL; the department profile links the personal page now selected (owner-delegated, reversible)",
+    "people_page": null,
+    "alumni_page": null,
+    "pubs_page": null
+   },
    "verified": true,
    "verification_quote": "siu wing cheng siu wing cheng professor department of computer science and engineering hk"
   },
@@ -1778,7 +1842,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T09:35:32+00:00",
+   "audited_at": "2026-11-10T09:36:37+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -1907,7 +1971,7 @@
    "status": "none_found",
    "reason_code": "profile_only_no_homepage",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cse.hkust.edu.hk/admin/people/faculty/?c=regular&d=textview: ok; department_listing https://www.cse.ust.hk/admin/people/faculty/: ok; school_profile https://cse.hkust.edu.hk/admin/people/faculty/profile/cding: ok; school_profile_link https://cse.hkust.edu.hk/faculty/cding/: listed; 2 further dated checks retained.",
-   "audited_at": "2026-11-10T09:35:32+00:00",
+   "audited_at": "2026-11-10T09:36:37+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -1983,7 +2047,7 @@
    "status": "none_found",
    "reason_code": "profile_only_no_homepage",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cse.hkust.edu.hk/admin/people/faculty/?c=regular&d=textview: ok; department_listing https://www.cse.ust.hk/admin/people/faculty/: ok; school_profile https://cse.hkust.edu.hk/admin/people/faculty/profile/horner: ok; school_profile_link https://cse.hkust.edu.hk/faculty/horner/: listed; 2 further dated checks retained.",
-   "audited_at": "2026-11-10T09:35:32+00:00",
+   "audited_at": "2026-11-10T09:36:37+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -2059,7 +2123,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T09:35:32+00:00",
+   "audited_at": "2026-11-10T09:36:38+00:00",
    "checks": [
     {
      "source": "prior_labpage_pass_2026-10-22",
@@ -2189,7 +2253,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T09:35:32+00:00",
+   "audited_at": "2026-11-10T09:36:38+00:00",
    "checks": [
     {
      "source": "prior_labpage_pass_2026-10-22",
@@ -2310,7 +2374,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T09:35:32+00:00",
+   "audited_at": "2026-11-10T09:36:38+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -2413,7 +2477,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T09:35:32+00:00",
+   "audited_at": "2026-11-10T09:36:38+00:00",
    "checks": [
     {
      "source": "prior_labpage_pass_2026-10-22",
@@ -2552,7 +2616,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T09:35:33+00:00",
+   "audited_at": "2026-11-10T09:36:38+00:00",
    "checks": [
     {
      "source": "prior_labpage_pass_2026-10-22",
@@ -2660,24 +2724,40 @@
    "checked_at": "2026-11-10T07:15:27+00:00",
    "students_page_status": "audited",
    "papers_page_status": "no_pubs_page",
-   "url": "http://www.cs.ust.hk/~dimitris/",
+   "url": "https://cse.hkust.edu.hk/faculty/dimitris/",
    "kind": "pi_homepage",
-   "people_page": "http://www.cs.ust.hk/~dimitris/",
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "dblp_person_url",
-   "listed_on": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/dimitris",
    "sha256": "cabbf0eacd934c133f058c34f7ddd73ab85a5d3d352430ff0200521503c1f4f8",
    "evidence": {
-    "url": "http://www.cs.ust.hk/~dimitris/",
+    "url": "https://cse.hkust.edu.hk/faculty/dimitris/",
     "sha256": "cabbf0eacd934c133f058c34f7ddd73ab85a5d3d352430ff0200521503c1f4f8",
     "quote": null
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://cse.hkust.edu.hk/faculty/dimitris/",
+     "at": "2026-11-10T07:15:26+00:00",
+     "result": "listed",
+     "anchor": "Personal Webpage",
+     "on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/dimitris"
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
+   "website_note": {
+    "replaced_url": "http://www.cs.ust.hk/~dimitris/",
+    "replaced_sha256": "cabbf0eacd934c133f058c34f7ddd73ab85a5d3d352430ff0200521503c1f4f8",
+    "replaced_kind": "pi_homepage",
+    "found_via": "dblp_person_url",
+    "why": "no official link reaches this URL; the department profile links the personal page now selected (owner-delegated, reversible)",
+    "people_page": "http://www.cs.ust.hk/~dimitris/",
+    "alumni_page": null,
+    "pubs_page": null
+   },
    "verified": true,
    "verification_quote": "dimitris papadias dimitris normal dimi papa 4 961 2026 02 02t05 15 00z 2026 02 03t03 19 0"
   },
@@ -2686,7 +2766,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T09:35:33+00:00",
+   "audited_at": "2026-11-10T09:36:38+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -2804,7 +2884,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T09:35:33+00:00",
+   "audited_at": "2026-11-10T09:36:38+00:00",
    "checks": [
     {
      "source": "prior_labpage_pass_2026-10-22",
@@ -2938,7 +3018,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T09:35:33+00:00",
+   "audited_at": "2026-11-10T09:36:38+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -3043,7 +3123,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T09:35:33+00:00",
+   "audited_at": "2026-11-10T09:36:39+00:00",
    "checks": [
     {
      "source": "prior_labpage_pass_2026-10-22",
@@ -3173,7 +3253,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T09:35:34+00:00",
+   "audited_at": "2026-11-10T09:36:39+00:00",
    "checks": [
     {
      "source": "prior_labpage_pass_2026-10-22",
@@ -3328,7 +3408,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T09:35:34+00:00",
+   "audited_at": "2026-11-10T09:36:39+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -3415,24 +3495,40 @@
    "checked_at": "2026-11-10T07:15:42+00:00",
    "students_page_status": "no_people_section",
    "papers_page_status": "no_pubs_page",
-   "url": "http://www.cse.ust.hk/~lzhang/",
+   "url": "https://cse.hkust.edu.hk/faculty/lzhang/",
    "kind": "pi_homepage",
-   "people_page": null,
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "dblp_person_url",
-   "listed_on": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/lzhang",
    "sha256": "2bf295c34219e188519f7d01e062725ad88a46b3e00715f23221778639c9a7a5",
    "evidence": {
-    "url": "http://www.cse.ust.hk/~lzhang/",
+    "url": "https://cse.hkust.edu.hk/faculty/lzhang/",
     "sha256": "2bf295c34219e188519f7d01e062725ad88a46b3e00715f23221778639c9a7a5",
     "quote": null
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://cse.hkust.edu.hk/faculty/lzhang/",
+     "at": "2026-11-10T07:15:42+00:00",
+     "result": "listed",
+     "anchor": "Personal Webpage",
+     "on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/lzhang"
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
+   "website_note": {
+    "replaced_url": "http://www.cse.ust.hk/~lzhang/",
+    "replaced_sha256": "2bf295c34219e188519f7d01e062725ad88a46b3e00715f23221778639c9a7a5",
+    "replaced_kind": "pi_homepage",
+    "found_via": "dblp_person_url",
+    "why": "no official link reaches this URL; the department profile links the personal page now selected (owner-delegated, reversible)",
+    "people_page": null,
+    "alumni_page": null,
+    "pubs_page": null
+   },
    "verified": true,
    "verification_quote": "nevin l zhang this page uses frames but your browser doesn t support them"
   },
@@ -3441,7 +3537,7 @@
    "status": "none_found",
    "reason_code": "profile_only_no_homepage",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cse.hkust.edu.hk/admin/people/faculty/?c=regular&d=textview: ok; department_listing https://www.cse.ust.hk/admin/people/faculty/: ok; school_profile https://cse.hkust.edu.hk/admin/people/faculty/profile/arya: ok; school_profile_link https://cse.hkust.edu.hk/faculty/arya/: listed; 1 further dated checks retained.",
-   "audited_at": "2026-11-10T09:35:34+00:00",
+   "audited_at": "2026-11-10T09:36:39+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -3511,7 +3607,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T09:35:34+00:00",
+   "audited_at": "2026-11-10T09:36:39+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -3626,7 +3722,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T09:35:35+00:00",
+   "audited_at": "2026-11-10T09:36:40+00:00",
    "checks": [
     {
      "source": "prior_labpage_pass_2026-10-22",
@@ -3743,33 +3839,49 @@
    "checked_at": "2026-11-10T07:15:53+00:00",
    "students_page_status": "audited",
    "papers_page_status": "audited",
-   "url": "https://cqf.io/",
+   "url": "https://cse.hkust.edu.hk/~cqf/",
    "kind": "pi_homepage",
-   "people_page": "https://cqf.io/lab.html",
-   "alumni_page": null,
-   "pubs_page": "https://cqf.io/publications.html",
-   "found_via": "prior_labpage_pass",
-   "listed_on": null,
-   "sha256": "b7a4f4635a91c2853aa4b542b85f6f8235f8eba2c7512e253c106afce6ac01d4",
+   "found_via": "school_profile_link",
+   "listed_on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/cqf",
+   "sha256": "424aa801b3009469f62a5e8e98a73306abee6af85558d2f83e366f2695434d5f",
    "evidence": {
-    "url": "https://cqf.io/",
-    "sha256": "b7a4f4635a91c2853aa4b542b85f6f8235f8eba2c7512e253c106afce6ac01d4",
-    "quote": "Qifeng Chen (陳启峰) CQF About Me Publications Lab Teaching Others ☰ About Me P"
+    "url": "https://cse.hkust.edu.hk/~cqf/",
+    "sha256": "424aa801b3009469f62a5e8e98a73306abee6af85558d2f83e366f2695434d5f",
+    "quote": null
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://cse.hkust.edu.hk/~cqf/",
+     "at": "2026-11-10T07:15:44+00:00",
+     "result": "listed",
+     "anchor": "Personal Webpage",
+     "on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/cqf"
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "qifeng chen cqf about me publications lab teaching others about me publications lab tea"
+   "website_note": {
+    "replaced_url": "https://cqf.io/",
+    "replaced_sha256": "b7a4f4635a91c2853aa4b542b85f6f8235f8eba2c7512e253c106afce6ac01d4",
+    "replaced_kind": "pi_homepage",
+    "found_via": "prior_labpage_pass",
+    "why": "no official link reaches this URL; the department profile links the personal page now selected (owner-delegated, reversible)",
+    "people_page": "https://cqf.io/lab.html",
+    "alumni_page": null,
+    "pubs_page": "https://cqf.io/publications.html"
+   },
+   "verified": false,
+   "unverified_reason": "stored page does not carry the PI full name (address names the PI)"
   },
   {
    "pi": "Xiaojuan MA 麻曉娟",
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T09:35:36+00:00",
+   "audited_at": "2026-11-10T09:36:42+00:00",
    "checks": [
     {
      "source": "prior_labpage_pass_2026-10-22",
@@ -3895,7 +4007,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T09:35:36+00:00",
+   "audited_at": "2026-11-10T09:36:42+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -3973,24 +4085,40 @@
    "checked_at": "2026-11-10T07:15:54+00:00",
    "students_page_status": "no_people_section",
    "papers_page_status": "no_pubs_page",
-   "url": "http://www.cs.ust.hk/faculty/wilfred/index.html",
+   "url": "https://cse.hkust.edu.hk/faculty/wilfred/",
    "kind": "pi_homepage",
-   "people_page": null,
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "dblp_person_url",
-   "listed_on": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/wilfred",
    "sha256": "45daf6aa7d139fdb5bb36058c64f6c5356f54805edc089973debeab344674ea6",
    "evidence": {
-    "url": "http://www.cs.ust.hk/faculty/wilfred/index.html",
+    "url": "https://cse.hkust.edu.hk/faculty/wilfred/",
     "sha256": "45daf6aa7d139fdb5bb36058c64f6c5356f54805edc089973debeab344674ea6",
     "quote": null
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://cse.hkust.edu.hk/faculty/wilfred/",
+     "at": "2026-11-10T07:15:54+00:00",
+     "result": "listed",
+     "anchor": "Personal Webpage",
+     "on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/wilfred"
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
+   "website_note": {
+    "replaced_url": "http://www.cs.ust.hk/faculty/wilfred/index.html",
+    "replaced_sha256": "45daf6aa7d139fdb5bb36058c64f6c5356f54805edc089973debeab344674ea6",
+    "replaced_kind": "pi_homepage",
+    "found_via": "dblp_person_url",
+    "why": "no official link reaches this URL; the department profile links the personal page now selected (owner-delegated, reversible)",
+    "people_page": null,
+    "alumni_page": null,
+    "pubs_page": null
+   },
    "verified": true,
    "verification_quote": "dr ng wilfred siu hung wilfred ng normal wilfred ng 13 0 2011 09 07t03 51 00z 2017 "
   },
@@ -3999,7 +4127,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T09:35:36+00:00",
+   "audited_at": "2026-11-10T09:36:42+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -4143,7 +4271,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T09:35:37+00:00",
+   "audited_at": "2026-11-10T09:36:43+00:00",
    "checks": [
     {
      "source": "prior_labpage_pass_2026-10-22",
@@ -4272,7 +4400,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T09:35:43+00:00",
+   "audited_at": "2026-11-10T09:36:48+00:00",
    "checks": [
     {
      "source": "prior_labpage_pass_2026-10-22",
@@ -4427,7 +4555,7 @@
    "status": "found",
    "reason_code": "lab_site",
    "reason": "Captured lab/group website.",
-   "audited_at": "2026-11-10T09:35:43+00:00",
+   "audited_at": "2026-11-10T09:36:49+00:00",
    "checks": [
     {
      "source": "prior_labpage_pass_2026-10-22",
@@ -4605,7 +4733,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T09:35:43+00:00",
+   "audited_at": "2026-11-10T09:36:49+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -4759,7 +4887,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T09:35:43+00:00",
+   "audited_at": "2026-11-10T09:36:49+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -4894,9 +5022,9 @@
   {
    "pi": "Long CHEN 陳隆",
    "status": "found",
-   "reason_code": "lab_site",
-   "reason": "Captured lab/group website.",
-   "audited_at": "2026-11-10T09:35:44+00:00",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-10T09:36:50+00:00",
    "checks": [
     {
      "source": "prior_labpage_pass_2026-10-22",
@@ -5015,33 +5143,49 @@
    "checked_at": "2026-11-10T07:16:08+00:00",
    "students_page_status": "audited",
    "papers_page_status": "audited",
-   "url": "https://zjuchenlong.github.io/",
-   "kind": "lab_site",
-   "people_page": "https://zjuchenlong.github.io/People/",
-   "alumni_page": null,
-   "pubs_page": "https://zjuchenlong.github.io/Publications/",
-   "found_via": "prior_labpage_pass_2026-10-22",
-   "listed_on": null,
-   "sha256": "d1e23608be4bbe5d0c7cc89170e88502ab3cb5456d56c7e64abf56eed23085cf",
+   "url": "https://cse.hkust.edu.hk/~longchen/",
+   "kind": "pi_homepage",
+   "found_via": "school_profile_link",
+   "listed_on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/longchen",
+   "sha256": "ec37f75269cf729cfe192b53545192c8e3a7a5088848348603e1cc5bf922debf",
    "evidence": {
-    "url": "https://zjuchenlong.github.io/",
-    "sha256": "d1e23608be4bbe5d0c7cc89170e88502ab3cb5456d56c7e64abf56eed23085cf",
+    "url": "https://cse.hkust.edu.hk/~longchen/",
+    "sha256": "ec37f75269cf729cfe192b53545192c8e3a7a5088848348603e1cc5bf922debf",
     "quote": null
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://cse.hkust.edu.hk/~longchen/",
+     "at": "2026-11-10T07:16:05+00:00",
+     "result": "listed",
+     "anchor": "Personal Webpage",
+     "on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/longchen"
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
    "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "long chen hkust toggle navigation about current join us publications teaching talks p"
+   "website_note": {
+    "replaced_url": "https://zjuchenlong.github.io/",
+    "replaced_sha256": "d1e23608be4bbe5d0c7cc89170e88502ab3cb5456d56c7e64abf56eed23085cf",
+    "replaced_kind": "lab_site",
+    "found_via": "prior_labpage_pass_2026-10-22",
+    "why": "no official link reaches this URL; the department profile links the personal page now selected (owner-delegated, reversible)",
+    "people_page": "https://zjuchenlong.github.io/People/",
+    "alumni_page": null,
+    "pubs_page": "https://zjuchenlong.github.io/Publications/"
+   },
+   "verified": false,
+   "unverified_reason": "stored page does not carry the PI full name (address names the PI)"
   },
   {
    "pi": "Yi R. FUNG 馮一人",
    "status": "found",
    "reason_code": "lab_site",
    "reason": "Captured lab/group website.",
-   "audited_at": "2026-11-10T09:35:44+00:00",
+   "audited_at": "2026-11-10T09:36:50+00:00",
    "checks": [
     {
      "source": "prior_labpage_pass_2026-10-22",
@@ -5197,9 +5341,9 @@
   {
    "pi": "Junxian HE 何俊賢",
    "status": "found",
-   "reason_code": "lab_site",
-   "reason": "Captured lab/group website.",
-   "audited_at": "2026-11-10T09:35:45+00:00",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-10T09:36:50+00:00",
    "checks": [
     {
      "source": "prior_labpage_pass_2026-10-22",
@@ -5292,33 +5436,49 @@
    "checked_at": "2026-11-10T07:16:10+00:00",
    "students_page_status": "audited",
    "papers_page_status": "audited",
-   "url": "https://jxhe.github.io/",
-   "kind": "lab_site",
-   "people_page": "https://jxhe.github.io/group/",
-   "alumni_page": null,
-   "pubs_page": "https://jxhe.github.io/publications/",
-   "found_via": "prior_labpage_pass_2026-10-22",
-   "listed_on": null,
-   "sha256": "201d34f444b901acc359dfae5ae610e45410c851b587e25da5d9584540edcd70",
+   "url": "https://cse.hkust.edu.hk/~junxianh/",
+   "kind": "pi_homepage",
+   "found_via": "school_profile_link",
+   "listed_on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/junxianh",
+   "sha256": "da357b63b8c580a300cd7d326fb47282c71a5aa2c7acc663c5f13d7e572dbc4b",
    "evidence": {
-    "url": "https://jxhe.github.io/",
-    "sha256": "201d34f444b901acc359dfae5ae610e45410c851b587e25da5d9584540edcd70",
+    "url": "https://cse.hkust.edu.hk/~junxianh/",
+    "sha256": "da357b63b8c580a300cd7d326fb47282c71a5aa2c7acc663c5f13d7e572dbc4b",
     "quote": null
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://cse.hkust.edu.hk/~junxianh/",
+     "at": "2026-11-10T07:16:09+00:00",
+     "result": "listed",
+     "anchor": "Personal Webpage",
+     "on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/junxianh"
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
    "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "junxian he you are using an outdated browser please upgrade your browser to improve your"
+   "website_note": {
+    "replaced_url": "https://jxhe.github.io/",
+    "replaced_sha256": "201d34f444b901acc359dfae5ae610e45410c851b587e25da5d9584540edcd70",
+    "replaced_kind": "lab_site",
+    "found_via": "prior_labpage_pass_2026-10-22",
+    "why": "no official link reaches this URL; the department profile links the personal page now selected (owner-delegated, reversible)",
+    "people_page": "https://jxhe.github.io/group/",
+    "alumni_page": null,
+    "pubs_page": "https://jxhe.github.io/publications/"
+   },
+   "verified": false,
+   "unverified_reason": "stored page does not carry the PI full name (address names the PI)"
   },
   {
    "pi": "Yaonan JIN 金耀楠",
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T09:35:45+00:00",
+   "audited_at": "2026-11-10T09:36:50+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -5481,7 +5641,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T09:35:45+00:00",
+   "audited_at": "2026-11-10T09:36:51+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -5624,7 +5784,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T09:35:45+00:00",
+   "audited_at": "2026-11-10T09:36:51+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -5737,7 +5897,7 @@
    "status": "found",
    "reason_code": "lab_site",
    "reason": "Captured lab/group website.",
-   "audited_at": "2026-11-10T09:35:46+00:00",
+   "audited_at": "2026-11-10T09:36:51+00:00",
    "checks": [
     {
      "source": "prior_labpage_pass_2026-10-22",
@@ -5856,7 +6016,7 @@
    "status": "found",
    "reason_code": "lab_site",
    "reason": "Captured lab/group website.",
-   "audited_at": "2026-11-10T09:35:46+00:00",
+   "audited_at": "2026-11-10T09:36:52+00:00",
    "checks": [
     {
      "source": "prior_labpage_pass_2026-10-22",
@@ -5973,7 +6133,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T09:35:46+00:00",
+   "audited_at": "2026-11-10T09:36:52+00:00",
    "checks": [
     {
      "source": "prior_labpage_pass_2026-10-22",
@@ -6090,9 +6250,9 @@
   {
    "pi": "Jiasi SHEN 沈嘉思",
    "status": "found",
-   "reason_code": "lab_site",
-   "reason": "Captured lab/group website.",
-   "audited_at": "2026-11-10T09:35:47+00:00",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-10T09:36:53+00:00",
    "checks": [
     {
      "source": "prior_labpage_pass_2026-10-22",
@@ -6188,33 +6348,49 @@
    "checked_at": "2026-11-10T07:16:19+00:00",
    "students_page_status": "audited",
    "papers_page_status": "audited",
-   "url": "http://shenjiasi.com/",
-   "kind": "lab_site",
-   "people_page": "http://shenjiasi.com/group.html",
-   "alumni_page": null,
-   "pubs_page": "http://shenjiasi.com/papers.html",
-   "found_via": "prior_labpage_pass_2026-10-22",
-   "listed_on": null,
-   "sha256": "39aa31239143d1f5181628ac24b1c1198739ebc269352189a193558e32b6769c",
+   "url": "https://cse.hkust.edu.hk/~sjs/",
+   "kind": "pi_homepage",
+   "found_via": "school_profile_link",
+   "listed_on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/sjs",
+   "sha256": "5ca7fb00c76907118e42f915f696ae65541a4111089e6ca66ec0b37eda244b8d",
    "evidence": {
-    "url": "http://shenjiasi.com/",
-    "sha256": "39aa31239143d1f5181628ac24b1c1198739ebc269352189a193558e32b6769c",
-    "quote": "T CSE Jiasi Shen Pronunciation Home Group Papers Jiasi Shen 沈嘉思 Assistant Professor Department of Computer Science and Engi"
+    "url": "https://cse.hkust.edu.hk/~sjs/",
+    "sha256": "5ca7fb00c76907118e42f915f696ae65541a4111089e6ca66ec0b37eda244b8d",
+    "quote": null
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://cse.hkust.edu.hk/~sjs/",
+     "at": "2026-11-10T07:16:17+00:00",
+     "result": "listed",
+     "anchor": "Personal Webpage",
+     "on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/sjs"
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
    "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "jiasi shen hkust cse jiasi shen pronunciation home group papers jiasi shen assistant p"
+   "website_note": {
+    "replaced_url": "http://shenjiasi.com/",
+    "replaced_sha256": "39aa31239143d1f5181628ac24b1c1198739ebc269352189a193558e32b6769c",
+    "replaced_kind": "lab_site",
+    "found_via": "prior_labpage_pass_2026-10-22",
+    "why": "no official link reaches this URL; the department profile links the personal page now selected (owner-delegated, reversible)",
+    "people_page": "http://shenjiasi.com/group.html",
+    "alumni_page": null,
+    "pubs_page": "http://shenjiasi.com/papers.html"
+   },
+   "verified": false,
+   "unverified_reason": "stored page does not carry the PI full name (address names the PI)"
   },
   {
    "pi": "Yinghao XU 徐英豪",
    "status": "found",
-   "reason_code": "lab_site",
-   "reason": "Captured lab/group website.",
-   "audited_at": "2026-11-10T09:35:47+00:00",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-10T09:36:53+00:00",
    "checks": [
     {
      "source": "prior_labpage_pass_2026-10-22",
@@ -6365,33 +6541,49 @@
    "checked_at": "2026-11-10T07:16:41+00:00",
    "students_page_status": "audited",
    "papers_page_status": "no_pubs_page",
-   "url": "https://hkust-xulab.com/",
-   "kind": "lab_site",
-   "people_page": "https://hkust-xulab.com/people/",
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "prior_labpage_pass_2026-10-22",
-   "listed_on": null,
-   "sha256": "f3bcedc5f6ae198af7bcf9efc5303a58ddfe5d879a4b5b043be48205adcd9b81",
+   "url": "http://justimyhxu.github.io/",
+   "kind": "pi_homepage",
+   "found_via": "school_profile_link",
+   "listed_on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/justimyhxu",
+   "sha256": "aa261041c8480809d632a87319f4e424690ab852ba46e9cf8427890e549b265e",
    "evidence": {
-    "url": "https://hkust-xulab.com/",
-    "sha256": "f3bcedc5f6ae198af7bcf9efc5303a58ddfe5d879a4b5b043be48205adcd9b81",
+    "url": "http://justimyhxu.github.io/",
+    "sha256": "aa261041c8480809d632a87319f4e424690ab852ba46e9cf8427890e549b265e",
     "quote": null
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://justimyhxu.github.io/",
+     "at": "2026-11-10T07:16:19+00:00",
+     "result": "listed",
+     "anchor": "Personal Webpage",
+     "on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/justimyhxu"
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
    "evidence_gaps": [],
+   "website_note": {
+    "replaced_url": "https://hkust-xulab.com/",
+    "replaced_sha256": "f3bcedc5f6ae198af7bcf9efc5303a58ddfe5d879a4b5b043be48205adcd9b81",
+    "replaced_kind": "lab_site",
+    "found_via": "prior_labpage_pass_2026-10-22",
+    "why": "no official link reaches this URL; the department profile links the personal page now selected (owner-delegated, reversible)",
+    "people_page": "https://hkust-xulab.com/people/",
+    "alumni_page": null,
+    "pubs_page": null
+   },
    "verified": true,
-   "verification_quote": "hkust cse xu lab xu lab publications talks people xu lab we are a research group in the de"
+   "verification_quote": "yinghao xu justin hkust yinghao xu justin assistant professor hkust cse research student"
   },
   {
    "pi": "Binhang YUAN 袁彬航",
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T09:35:48+00:00",
+   "audited_at": "2026-11-10T09:36:54+00:00",
    "checks": [
     {
      "source": "prior_labpage_pass_2026-10-22",
@@ -6492,7 +6684,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T09:35:48+00:00",
+   "audited_at": "2026-11-10T09:36:54+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -6603,7 +6795,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-10T09:35:48+00:00",
+   "audited_at": "2026-11-10T09:36:54+00:00",
    "checks": [
     {
      "source": "prior_labpage_pass_2026-10-22",

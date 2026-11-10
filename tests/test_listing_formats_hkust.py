@@ -95,3 +95,15 @@ def test_page1_quote_matches_a_bilingual_census_name():
     assert papers.page1_quote_names_pi(['Yi R. FUNG 馮一人'], ['Yi R. (May) Fung5 ', '5 The Hong Kong University of Science and Technology'])
     assert papers.page1_quote_names_pi(['Jiasi SHEN 沈嘉思'], ['JIASI SHEN, The Hong Kong University of Science and Technology'])
     assert not papers.page1_quote_names_pi(['Yi R. FUNG 馮一人'], ['Wei Wang, The Hong Kong University'])
+
+
+def test_official_homepage_fallback_selects_the_profile_linked_page_and_keeps_the_old_site(monkeypatch):
+    import lab_websites as L
+    chk = dict(source='school_profile_link', url='https://cse.hkust.edu.hk/~x/', on='https://cse.hkust.edu.hk/admin/people/faculty/profile/x', result='listed', at='2026-11-10T00:00:00+00:00')
+    doc = dict(labs=[dict(pi='A B', coverage='website', url='https://lab.example/', sha256='a' * 64, kind='lab_site', found_via='prior', checks=[chk], official_link_status='not_recorded',
+                          people_page='https://lab.example/people')])
+    monkeypatch.setattr(L, 'stored_captures', lambda school, urls: {'https://cse.hkust.edu.hk/~x/': ('b' * 64, 'now', 'A B home')})
+    r = L.official_homepage_fallback('hkust', doc)['labs'][0]
+    assert r['url'] == 'https://cse.hkust.edu.hk/~x/' and r['official_link_status'] == 'recorded' and r['sha256'] == 'b' * 64
+    assert r['website_note']['replaced_url'] == 'https://lab.example/' and r['website_note']['people_page'] == 'https://lab.example/people'
+    assert any(L.official_check(c, r['url']) for c in r['checks'])

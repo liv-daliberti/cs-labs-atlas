@@ -460,6 +460,31 @@ def stored_captures(school, urls):
     return out
 
 
+def official_homepage_fallback(school, doc):
+    """Owner-delegated choice (coordinator, 2026-11-10, HKUST; reversible): a website whose URL no official link reaches is replaced by the official personal page the
+    department profile itself links ('Personal Webpage', a school_profile_link check) when a stored 200 capture of that exact page exists. The earlier selection (a lab
+    site or a DBLP URL) stays in `website_note` with its hash, so nothing is lost; the student and paper audits already ran on it."""
+    for r in doc.get('labs', []):
+        if r.get('coverage') != 'website' or r.get('official_link_status') == 'recorded' or not r.get('url'):
+            continue
+        links = [c for c in r.get('checks') or [] if c.get('source') == 'school_profile_link' and c.get('on') and c.get('url') and c.get('result') in ('listed', 'ok')]
+        for chk in links:
+            caps = stored_captures(school, {chk['url']})
+            hit = caps.get(chk['url']) if isinstance(caps, dict) else None
+            sha = (hit or {}).get('sha256') if isinstance(hit, dict) else (hit[0] if hit else None)
+            if not sha:
+                continue
+            r['website_note'] = dict(replaced_url=r['url'], replaced_sha256=r.get('sha256'), replaced_kind=r.get('kind'), found_via=r.get('found_via'),
+                                     why='no official link reaches this URL; the department profile links the personal page now selected (owner-delegated, reversible)')
+            r.update(url=chk['url'], kind='pi_homepage', reason_code='pi_homepage_only_no_lab_site', found_via='school_profile_link', listed_on=chk['on'], sha256=sha,
+                     evidence=dict(url=chk['url'], sha256=sha, quote=None), official_link_status='recorded', official_link_evidence=[chk])
+            for k in ('people_page', 'alumni_page', 'pubs_page'):
+                r['website_note'][k] = r.pop(k, None)
+            r['reason'] = 'Captured PI homepage used as the lab-page fallback.'
+            break
+    return doc
+
+
 def attach_stored_captures(school, doc):
     """A prior-pass site with no hash gets one from a stored capture of that exact page, when the page names the PI."""
     def fold(t):
@@ -614,6 +639,8 @@ def main():
                 previous = json.loads(previous_path.read_text())
                 pis = json.loads(P.data('pis.json', s).read_text())
                 doc = preserve_reviewed_entries(previous, doc, aliases={p['pi']: p.get('names', []) for p in pis})
+        if a.cmd == 'build':
+            doc = official_homepage_fallback(s, doc)
         if a.enrich_official_links or a.cmd == 'enrich':
             doc = enrich_official_links(s, attach_stored_captures(s, doc))
         if a.cmd in ('build', 'enrich'):
