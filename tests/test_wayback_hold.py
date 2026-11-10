@@ -47,3 +47,32 @@ def test_status_page_says_wayback_held():
                pending_identity_review=0, wayback_hold=True)
     assert 'lab_5 (wayback held)' in S.render([row])
     assert 'wayback held' not in S.render([dict(row, wayback_hold=False)])
+
+
+def test_a_redirect_to_the_archive_is_held_too(monkeypatch):
+    """The collector follows redirects hop by hop (get_lock(host) per hop): a publisher URL that redirects to web.archive.org must not reach the host."""
+    hops = []
+
+    class Client:
+        def get_lock(self, host):
+            hops.append(host)
+            return object(), host
+
+        def get(self, url, *a, **k):
+            for h in ('publisher.example.org', 'web.archive.org'):   # the first hop, then the redirect target
+                self.get_lock(h)
+            return b'', url, 'application/pdf'
+    wrapper = SimpleNamespace(c=SimpleNamespace(PublicClient=Client, base=SimpleNamespace(validate_pdf=lambda d, p: 1)))
+    D.install(wrapper, SimpleNamespace(xml_quality=lambda d: dict(ok=True), file_quality=lambda p, k: dict(ok=True)))
+    monkeypatch.setenv('WAYBACK_HOLD', '1')
+    try:
+        Client().get('https://publisher.example.org/paper.pdf')
+        raise AssertionError('followed the redirect to the archive')
+    except RuntimeError as e:
+        assert str(e).startswith('source_paused:')
+    assert hops == ['publisher.example.org']
+    assert D.held_host('ia800000.us.archive.org') and not D.held_host('arxiv.org') and not D.held_host('notarchive.org')
+    hops.clear()
+    monkeypatch.setenv('WAYBACK_HOLD', '0')
+    Client().get('https://publisher.example.org/paper.pdf')
+    assert hops == ['publisher.example.org', 'web.archive.org']

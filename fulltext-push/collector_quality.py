@@ -26,7 +26,11 @@ def wayback_held(url, environ=os.environ):
     2026-11-10 04:59Z that stopped the NTU / Tsinghua / ZJU / Harvard capture jobs was drawn by loop collectors (michigan, gatech, epfl) fetching Wayback
     snapshot candidates already in their catalogs; trimming the wayback_acm channel does not stop those. The attempt is recorded as 'source_paused:' so
     the pass-start requeue asks again once WAYBACK_HOLD is 0."""
-    return environ.get('WAYBACK_HOLD') == '1' and (urlsplit(str(url)).hostname or '') in HOLD_HOSTS
+    return environ.get('WAYBACK_HOLD') == '1' and held_host(urlsplit(str(url)).hostname or '')
+
+
+def held_host(host):
+    return host in HOLD_HOSTS or host.endswith('.archive.org')
 
 
 def install(wrapper, quality):
@@ -34,6 +38,18 @@ def install(wrapper, quality):
     client = wrapper.c.PublicClient
     original_get = client.get
     original_validate = wrapper.c.base.validate_pdf
+
+    original_get_lock = getattr(client, 'get_lock', None)
+
+    def get_lock(self, host):
+        # 2026-11-10 06:02Z: the 429s continued after the first hold because a publisher or repository URL REDIRECTS to web.archive.org / archive.org, and the
+        # collector's get() follows each hop with its own get_lock(host) while the check above only saw the first URL. Every hop asks get_lock first.
+        if os.environ.get('WAYBACK_HOLD') == '1' and held_host(host or ''):
+            raise RuntimeError(HOLD_REASON)
+        return original_get_lock(self, host)
+
+    if original_get_lock is not None:
+        client.get_lock = get_lock
 
     def get(self, *args, **kwargs):
         if args and wayback_held(args[0]):
