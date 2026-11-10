@@ -29,6 +29,8 @@ SITES = (
      'Sharath Raghvendra SR Assoc Professor', 'NC State'),
     ('Ali Vakilian', 'https://www.mit.edu/~vakilian/',
      'Previously: Assistant Professor, CS at Virginia Tech', 'Rutgers Business School'),
+    ('Francisco Servant', 'https://fservant.github.io/',
+     'Francisco was Assistant Professor at Virginia Tech', 'Universidad de Málaga'),
 )
 
 
