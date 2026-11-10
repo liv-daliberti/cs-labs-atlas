@@ -40,3 +40,12 @@ def test_hkust_card_era_listing_parses_once_per_person():
 def test_hkust_position_table_era_listing_parses_name_title():
     _, rows = parse(POSITION, 'hkust_faculty_any')
     assert rows[0]['name_listed'] == 'CHAN, Shueng-Han Gary 陳雙幸' and rows[0]['titles'] == ['Professor']
+
+
+def test_listing_pi_years_account_ids_agree_across_url_eras():
+    import listing_pi_years as L
+    assert L.account('https://cse.hkust.edu.hk/admin/people/faculty/profile/gchan') == 'gchan'
+    assert L.account('profile/gchan') == 'gchan'
+    assert L.account('/~gchan/') == 'gchan'
+    assert L.account('https://cse.hkust.edu.hk/faculty/horner/') == 'horner'
+    assert L.account('https://cse.hkust.edu.hk/admin/people/faculty/') is None
