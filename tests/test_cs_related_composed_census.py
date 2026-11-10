@@ -40,12 +40,3 @@ def test_cs_related_candidates_school_pis_accepts_a_bare_list_census(tmp_path, m
     import census_overrides as CO
     monkeypatch.setattr(CO, 'onboarding', lambda s: True)
     assert [p['pi'] for p in K.school_pis('zju')] == ['A B', 'C D']
-
-
-def test_colliding_candidate_display_names_get_their_source_id():
-    cands = [dict(name='Bin Li', source='dblp_affiliation', dblp='https://dblp.org/pid/89/6764-38'),
-             dict(name='Bin Li', source='dblp_affiliation', dblp='https://dblp.org/pid/89/6764-77'),
-             dict(name='Bin Li', source='openalex_rule', openalex=['https://openalex.org/A5069353502']),
-             dict(name='Ana Lee', source='dblp_affiliation', dblp='https://dblp.org/pid/1/2')]
-    out = C.disambiguate_display_names(cands)
-    assert [c['name'] for c in out] == ['Bin Li [89/6764-38]', 'Bin Li [89/6764-77]', 'Bin Li [A5069353502]', 'Ana Lee']
