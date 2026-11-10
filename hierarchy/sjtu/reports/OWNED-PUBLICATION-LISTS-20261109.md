@@ -22,3 +22,23 @@ Sealed, guards pass, 0 verified links. 2347 hold decisions (each with stored-rec
 
 Stage-9 style draw (`accuracy/sample.py` method, 90 of 105 rows: no thesis-adviser relations exist for the student-coverage part), hand judgement on stored evidence, no primary-PDF check: lab precision 35 of 35; student precision 38 of 40 (0.95, 4 doubtful, 35 undated); lab coverage 13 of 15 (0.867). Gates: lab precision pass; student precision (0.97) and coverage (0.90) NOT met. Student links stay candidates (`verified` 0); 388 of 436 links have no start date in their source.
 Copies: nothing measured; stored records point to an open PDF URL for 1969 of 4620 works (upper bound; nothing fetched).
+
+## Final native 32177967 (runtime 4ca6712, input commit b829ca9) and review
+
+Sealed: 5033 rows, 4620 distinct works, 107 PIs with papers, 0 guard violations, 0 verified links, 436 candidate student links, registry untouched (c5df145c; isolated ID rehearsal not rerun on this package).
+
+| Stratum | Rows (distinct) | Basis |
+| --- | ---: | --- |
+| Source-backed: DBLP person record or page-quoted owned list | 2728 | stored records or verbatim quotes with page sha256 |
+| Heuristic: OpenAlex author-id anchor corroborated by 3+ co-publications with the PI's evidenced coauthors | 2051 | my overlap rule, NOT source evidence |
+| Residual flagged rows (now added as 21 holds for the next native) | 21 | 11 uncorroborated, 10 book/chapter |
+
+Only the source-backed stratum counts toward the 2500 target and any admission claim; the heuristic stratum is a candidate set until independently validated.
+
+Hand judgement with evidence cards (seed 20261112; `scratch/sjtu-ownedlists-1109/stage9-final/cards.json`): 45 source-backed rows and 60 heuristic rows, judged on raw byline name, SJTU affiliation text, appointment, type, venue and coauthor consistency with the PI's evidenced works. 45/45 and 60/60 plausible, no primary-source PDF page-1 check, no copy check; the judge's topic knowledge is part of the evidence, so this is a plausibility judgement, not proof.
+
+Student links: 436; 14 fail the automatic name or date test (9 name mismatches, 5 starts after the paper year), 388 are undated and cannot be checked: 422/436 = 96.8%, below the 97% gate. The 14 are listed in `scratch/sjtu-ownedlists-1109/PROPOSED-STUDENT-LINK-EXCLUSIONS.json`; the gate is not claimed.
+
+Copies: stored-record open-copy pointers 1969 PDF URL, 259 landing page, 2392 none of 4620 (an upper bound; no copy fetched or verified).
+
+Listing plan: SJTU has no plan or capture rows (only the 2026 directory); the Chinese-listing fix has nothing to re-plan here, and historical SJTU listings were never fetched.
