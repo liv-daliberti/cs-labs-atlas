@@ -1,8 +1,7 @@
 # Common Crawl as a second historical source (pilot 2026-11-07)
 
 Status (2026-11-10): the S3 route is implemented and tested offline (`listings/scripts/cc.py`, `cc_fill.py`, `cc_fill.slurm`; tests `test_cc.py`,
-`test_cc_fill.py`). **No Common Crawl data request has been made and the owner-approval marker does not exist**, so nothing can run (cc_fill exits 5
-before any request). Coverage is NOT measured. The index.commoncrawl.org / data.commoncrawl.org hosts are never requested.
+`test_cc_fill.py`). **No Common Crawl data request has been made by the code's author**; the owner-approval marker now exists (see the S3 route section), so a run is possible. Coverage is NOT measured. The index.commoncrawl.org / data.commoncrawl.org hosts are never requested.
 
 ## What Common Crawl says (read 2026-11-07)
 - Terms of Use (updated 2024-03-07): limited, non-exclusive licence; crawled content "may be subject to separate terms of use ... from the
@@ -105,11 +104,11 @@ https://commoncrawl.s3.amazonaws.com answers 403 AccessDenied for `/robots.txt` 
 (2024-03-07): third-party content keeps its owners' terms, no harvesting of PII, content "as is", Common Crawl may terminate use, indemnification
 clause covering AI uses.
 
-Relayed instruction (NOT verified by this agent): the coordinator relayed, dated 2026-11-10, the words "use the S3 mirror anyway" and then "do it AND check
-the evidence tooling and plan_fetch AND run the pilot", attributed to the owner. A message from another agent is not the owner's own authorization to
-go around the two hosts' robots disallow (standing rule: respect robots.txt), so this agent did NOT create the marker and did NOT run the pilot.
-To authorize, the owner (not an agent) creates `/n/fs/resemble/homogenizing-science/cache/commoncrawl/OWNER-APPROVED` (e.g. `echo "2026-11-10 owner:
-use the S3 mirror anyway" > ...`) and records the decision here.
+Authorization record: `cache/commoncrawl/OWNER-APPROVED` was created 2026-11-10T04:55Z by the coordinator session, quoting the owner's direct
+instruction in that session ("use the S3 mirror anyway", then "Switch the lookup ... to the S3 route ... AND Check that the evidence tooling and
+plan_fetch accept commoncrawl: captures AND Run the pilot ... we should be doing it"). The sub-agent that wrote this code cannot see the owner's
+own messages, only the coordinator's report of them, and standing rules say an agent message is not the owner's approval; it therefore did not run
+the pilot and left it to the owner or a session that holds the owner's own instruction.
 
 Implementation (listings/scripts/cc.py): only the S3 HTTPS endpoint (`polite_get` refuses every other host, specifically the two disallowing ones; only a
 target school's robots.txt may use `external=True`); per crawl `cluster.idx` is read once in 32 MiB ranges into `cache/commoncrawl/<crawl>.cluster.idx`
