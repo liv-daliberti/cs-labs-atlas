@@ -48,8 +48,8 @@ reason = "no OAI-PMH endpoint: /oai/request and /jspui/oai/request answer 404 (c
 # Hosts the princeton tools contact (stage 0, 2026-11-10). Derived from evidence: the raw capture stores (hierarchy/princeton/raw/*captures*.sqlite) and the full-text download ledger (stores/princeton/fulltext_assets.csv). The long tail of faculty personal sites is read per capture under school_web robots checks and is not enumerated here.
 [[hosts]]
 host = "web.archive.org"
-use = "none"
-purpose = "Wayback id_ captures and CDX (411 captures in the princeton raw stores; listings, lab pages, theses)"
+use = "live"
+purpose = "Wayback id_ captures and CDX (listings 2016-2026, lab pages) [stage 0 2026-11-10: probe skipped: https://web.archive.org/web/2020id_/https://www.princeton.edu/ answers http 302 (redirect to the nearest snapshot); entry otherwise as in the Michigan and Harvard charters]"
 probe = ""
 
 [[hosts]]
@@ -139,7 +139,7 @@ probe = ""
 [[hosts]]
 host = "hal.science"
 use = "none"
-purpose = "Third-party source: 323 full-text assets in the download ledger (derived 2026-11-10 from evidence) [stage 0 2026-11-10: robots.txt disallowed (HTTP 302); must not be live]"
+purpose = "Third-party source: 323 full-text assets in the download ledger (derived 2026-11-10 from evidence) [stage 0 2026-11-10: final robots.txt disallowed (HTTP 302); must not be live]"
 probe = ""
 
 [[hosts]]
@@ -169,7 +169,7 @@ probe = "https://www.math.princeton.edu/"
 [[hosts]]
 host = "web.math.princeton.edu"
 use = "live"
-purpose = "School site: 28 captures in the raw stores (28 live, 0 via Wayback; 28 HTTP 200); 12 full-text assets in the download ledger (derived 2026-11-10 from evidence) [stage 0 2026-11-10: probe skipped: https://web.math.princeton.edu/ only redirects off-host (http 301); robots allowed]"
+purpose = "School site: 28 captures in the raw stores (28 live, 0 via Wayback; 28 HTTP 200); 12 full-text assets in the download ledger (derived 2026-11-10 from evidence) [stage 0 2026-11-10: probe skipped: https://web.math.princeton.edu/ only redirects (http 301); robots allowed]"
 probe = ""
 
 [[hosts]]
