@@ -299,6 +299,7 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('deep-gap-evidence.json', 'derived', 'hierarchy/{school}/deep-gap-evidence.json', 'hierarchy/{school}/derived/deep-gap-evidence.json'),
     ('census-additions.json', 'reviewed', 'census/{school}-additions.json', 'hierarchy/{school}/reviewed/census-additions.json'),
     ('paper-claim-review.json', 'reviewed', 'hierarchy/{school}/paper-claim-review.json', 'hierarchy/{school}/reviewed/paper-claim-review.json'),
+    ('student-link-exclusions.json', 'reviewed', 'hierarchy/{school}/student-link-exclusions.json', 'hierarchy/{school}/reviewed/student-link-exclusions.json'),
     ('paper-title-review.json', 'reviewed', 'hierarchy/{school}/paper-title-review.json', 'hierarchy/{school}/reviewed/paper-title-review.json'),
     ('paper-source-review.json', 'reviewed', 'hierarchy/{school}/paper-source-review.json', 'hierarchy/{school}/reviewed/paper-source-review.json'),
     ('member-paper-review.json', 'reviewed', 'hierarchy/{school}/member-paper-review.json', 'hierarchy/{school}/reviewed/member-paper-review.json'),

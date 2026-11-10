@@ -121,6 +121,7 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `openalex-identity-review.json` | reviewed | `hierarchy/{school}/openalex-identity-review.json` | `hierarchy/{school}/reviewed/openalex-identity-review.json` | 1/1 | <10KB |
 | `census-additions.json` | reviewed | `census/{school}-additions.json` | `hierarchy/{school}/reviewed/census-additions.json` | 7/7 | <100MB |
 | `paper-claim-review.json` | reviewed | `hierarchy/{school}/paper-claim-review.json` | `hierarchy/{school}/reviewed/paper-claim-review.json` | optional | <5MB |
+| `student-link-exclusions.json` | reviewed | `hierarchy/{school}/student-link-exclusions.json` | `hierarchy/{school}/reviewed/student-link-exclusions.json` | optional | <5MB |
 | `paper-title-review.json` | reviewed | `hierarchy/{school}/paper-title-review.json` | `hierarchy/{school}/reviewed/paper-title-review.json` | optional | <5MB |
 | `paper-source-review.json` | reviewed | `hierarchy/{school}/paper-source-review.json` | `hierarchy/{school}/reviewed/paper-source-review.json` | optional | <5MB |
 | `recovery-source-review.json` | reviewed | `hierarchy/{school}/recovery-source-review.json` | `hierarchy/{school}/reviewed/recovery-source-review.json` | optional | source-bound complete publisher recovery projections; original observations retained |

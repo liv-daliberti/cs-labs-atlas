@@ -2,6 +2,8 @@
 guard, names.given_conflict), R-LNK-03 (within-lab byline matching), R-LNK-05 (links carry their evidence)."""
 import collections, re, unicodedata
 
+import atlas_paths as P
+
 from .names import EAST_ASIAN_FAMILY, LETTERS, Name, one_edit, byline_name, clean_person_name, given_conflict, gwords, name_variants, nick_ok, student_on_byline, toks
 from .role_cues import VISITING_NOT_STUDENT, VISITING_STUDENT, student_by_entry
 from .students import relation_names_other_adviser
@@ -112,6 +114,25 @@ def relation_source(student):
     if best[1].get('capture_url'):
         out['capture_url'] = best[1]['capture_url']
     return out
+
+
+def exclude_links(sp, doc):
+    """Reviewed per-link exclusions (student-link-exclusions.json, version 1): each {pi, student (the member's name), oa, why, evidence}
+    removes that one candidate student-paper link and nothing else (the lab paper and the other links stay). Returns (kept, excluded, unmatched).
+    The link stays visible in the review file, never deleted from evidence."""
+    want = {}
+    for e in (doc or {}).get('exclusions') or []:
+        if not all(isinstance(e.get(k), str) and e[k].strip() for k in ('pi', 'student', 'oa', 'why')):
+            raise ValueError('student link exclusion needs pi, student, oa and why')
+        want[(e['pi'], e['student'], e['oa'])] = False
+    kept = []
+    for x in sp:
+        k = (x['pi'], x['name'], x['oa'])
+        if k in want:
+            want[k] = True
+        else:
+            kept.append(x)
+    return kept, sum(want.values()), sum(not v for v in want.values())
 
 
 def link_students(ctx):
@@ -282,4 +303,13 @@ def link_students(ctx):
     # matched, and the student's own roster source (the first relation source with url, sha256 and a verbatim quote)
     for x in sp:
         x['relation_source'] = relation_source(stu[x['pi']].get(x['student']) or {})
+    _ex = P.data('student-link-exclusions.json', ctx.school, root=ctx.here)
+    if _ex.exists():
+        import json as _json
+        doc = _json.loads(_ex.read_text())
+        if doc.get('version') != 1 or doc.get('school') != ctx.school:
+            raise ValueError('student link exclusions must name this school and version 1')
+        sp, n_ex, n_un = exclude_links(sp, doc)
+        n['student_links_excluded'] += n_ex
+        n['student_link_exclusions_unmatched'] += n_un
     ctx.sp, ctx.guard_samples, ctx.guard_kept_samples = sp, guard_samples, guard_kept_samples
