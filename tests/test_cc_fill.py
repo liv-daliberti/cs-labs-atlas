@@ -20,6 +20,8 @@ def nosleep(monkeypatch):
 
 
 def setup(monkeypatch, tmp_path):
+    monkeypatch.setattr(cc_fill, 'approval_marker', lambda: str(tmp_path / 'OWNER-APPROVED'))
+    (tmp_path / 'OWNER-APPROVED').write_text('approved in test')
     monkeypatch.setattr(PF, 'load', lambda school: (types.SimpleNamespace(SLOTS=[SLOT]), []))
     monkeypatch.setattr(PF, 'slot_usable', lambda con, cap, s, b, st, pis, school: (st == 200, None if st == 200 else 'x'))
     db = str(tmp_path / 'c.sqlite')
@@ -53,3 +55,11 @@ def test_fills_with_provenance_and_closes_h2(monkeypatch, tmp_path):
     assert con.execute("select status from plan where year=2019 and half='H2'").fetchone()[0] == 'out_of_scope'
     assert json.loads(con.execute('select note from captures').fetchone()[0])['crawl'] == 'CC-MAIN-2019-13'
     assert con.execute("select count(*) from plan where status='ok'").fetchone()[0] == 1
+
+
+def test_no_marker_means_no_request(monkeypatch, tmp_path):
+    db = setup(monkeypatch, tmp_path)
+    (tmp_path / 'OWNER-APPROVED').unlink()
+    h = fake({})
+    assert cc_fill.run('harvard', db, [], None, False, False, http=h) == 5
+    assert h.calls == []

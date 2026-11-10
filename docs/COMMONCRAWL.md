@@ -72,3 +72,29 @@ Crawl rows are written by `cc_fill.py`, not by plan_fetch, so Wayback logic is u
    site, same as Wayback bodies.
 3. Whether CC rows may carry `wayback_timestamp` (column reuse) or a schema column `source` is added. Recommendation: keep the column, rely on the
    `commoncrawl:` prefix and `note.source`.
+
+## Owner approval marker (fail-closed)
+`cc_fill.py` exits 5 before any request unless `<project root>/cache/commoncrawl/OWNER-APPROVED` exists. The owner creates it only after Common
+Crawl's written permission (decision 1 above). Owner calls 2026-11-09: keep reusing `wayback_timestamp`; Common Crawl captures are private evidence
+(url + sha256 + quote), bodies never hosted; the S3 mirror is not used.
+
+## Draft message to Common Crawl (NOT sent; for the owner to send or edit)
+Subject: Question about low-rate research access to the CDX index and WARC files
+
+Hello Common Crawl team,
+
+We are an academic research project studying historical faculty-directory pages of universities (names and titles on public department "people"
+pages, 2016-2026). We would like to use the Common Crawl URL index (index.commoncrawl.org, per-crawl CDX API) and WARC byte-range reads
+(data.commoncrawl.org) as a second historical source. Both hosts' robots.txt currently disallow automated clients (User-agent: *, Disallow: /), so
+we have made no requests beyond reading robots.txt and collinfo.json, and we will not until you tell us it is acceptable.
+
+If you permit it, our client would: send a generic User-Agent; wait at least 5 seconds between any two requests; run as a single process with one
+connection (no parallel range reads); query exact URLs only (no prefix or bulk queries), one crawl per half-year first, caching every answer so
+each (crawl, URL) is asked once; back off exponentially on 429/503 and stop a crawl after repeated errors; and check each target site's own robots.txt,
+skipping any site that disallows AI agents. Captured pages would be kept as private research evidence (URL, hash, short quotes), and would not be
+republished.
+
+Could you confirm in writing whether this use is acceptable, and whether you would prefer different limits or a different access route?
+
+Thank you,
+[name of the project owner]

@@ -10,7 +10,7 @@ Read docs/COMMONCRAWL.md first.  Rules enforced here:
   out_of_scope when H1 became ok for ONE_CAPTURE_PER_YEAR schools); never touches 'ok' rows; slot_usable() decides usability.
 - Per half-year the crawl nearest the middle of the half is asked first (one crawl per calendar year), the others only with --gap-crawls.
 - The target page host's current robots.txt must not disallow AI agents by name (recorded in cc_robots); else its rows are left alone.
-Exit codes: 0 done, 3 unfinished (errors; re-run resumes from the cached index), 4 Common Crawl refused (robots), 2 usage.
+Exit codes: 0 done, 3 unfinished (errors; re-run resumes from the cached index), 4 Common Crawl refused (robots), 5 no owner-approval marker (fail-closed, checked before any request), 2 usage.
 """
 import argparse
 import json
@@ -23,6 +23,18 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'tools'))
 import cc
 import plan_fetch as PF
+
+
+def project_root():
+    here = os.path.abspath(__file__)
+    if '/worktrees/' in here:
+        return here.split('/worktrees/')[0]
+    return os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(here))))
+
+
+def approval_marker():
+    """Owner approval marker: the file must exist (the owner creates it after Common Crawl's written permission)."""
+    return os.path.join(project_root(), 'cache', 'commoncrawl', 'OWNER-APPROVED')
 
 
 def open_db(path):
@@ -69,6 +81,9 @@ def try_capture(con, s, pri_u_r, school, pis, http):
 
 
 def run(school, db, filters, state_path, gap, dry, http=None):
+    if not os.path.exists(approval_marker()):
+        print(f'REFUSED: no owner approval marker {approval_marker()} (waiting for owner / Common Crawl written permission); nothing requested', flush=True)
+        return 5
     cfg, pis = PF.load(school)
     con = open_db(db)
     try:
