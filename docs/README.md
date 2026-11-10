@@ -8,6 +8,7 @@ reviewed inputs; everything else in `work/` (packages, sweeps, captures, logs, P
 | Path | What |
 |---|---|
 | `tools/` | the builder (`pi_hierarchy.py`), the audits (`student_audit.py`, `chain_audit.py`, `link_diagnosis.py`), `build_regression.py`, `make_release.py`, `organize_tree.py`, `export_release.py`, `lab_paper_copies.py`, census and recovery tools, `atlas_paths.py`, `secret_scan.py` |
+| `tools/status_table.py` | `atlas status`: the generated, read-only status table of every cohort school (docs/STATUS-TABLE.md) |
 | `tools/atlas_paths.py`, `paths.sh` | every path in one place (Python, and generated for shell: `python tools/atlas_paths.py --sh > paths.sh`) |
 | `hierarchy/rebuild.sh`, `hierarchy/rebuild-all.slurm` | the full rebuild (local / Slurm) |
 | `fulltext-push/` | the full-text collectors (run on `COLLECTOR_PY -I`; docs/ENVIRONMENT.md) |

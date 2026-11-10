@@ -1,0 +1,95 @@
+{
+ "version": 1,
+ "reviewed_at": "2026-11-10",
+ "reviewed_by": "claude-statustool-1110 (seeded from scratch/top25-goal-1107/status-audit-20261110)",
+ "paper_target": 2500,
+ "top_n": 25,
+ "note": "Paths are relative to the project root and must stay under it. packages: the latest isolated package per school (basis label, optional candidates newest-first, optional reviewed split, optional copies_counter, optional next_step). inventory: cohort schools without a charter (key -> roster site_id).",
+ "inventory": {
+  "ustc": {
+   "site_id": "university-of-science-and-technology-of-china"
+  },
+  "nus": {
+   "site_id": "national-university-of-singapore"
+  },
+  "cuhk": {
+   "site_id": "the-chinese-university-of-hong-kong"
+  },
+  "pku": {
+   "site_id": "peking-university"
+  },
+  "whu": {
+   "site_id": "wuhan-university"
+  },
+  "uestc": {
+   "site_id": "university-of-electronic-science-and-technology-of-china"
+  },
+  "seu": {
+   "site_id": "southeast-university"
+  },
+  "utaustin": {
+   "site_id": "the-university-of-texas-at-austin"
+  },
+  "purdue": {
+   "site_id": "purdue-university-west-lafayette"
+  },
+  "hit": {
+   "site_id": "harbin-institute-of-technology"
+  },
+  "vt": {
+   "site_id": "virginia-polytechnic-institute-and-state-university"
+  }
+ },
+ "packages": {
+  "oxford": {
+   "basis": "latest isolated native package, not admitted",
+   "path": "scratch/oxford-apply-1109/native4/oxford",
+   "next_step": "Close stage-3 website items (T117), then ID preparation and release admission review."
+  },
+  "hkust": {
+   "basis": "latest isolated native package, not admitted",
+   "path": "scratch/hkust-expanded-admission-1109/native-b2/hkust",
+   "next_step": "Reconcile a6/b2, run stages 1-4,6-9 on one package, build copies ledger and accuracy summary (T110)."
+  },
+  "sjtu": {
+   "basis": "latest isolated native package, not admitted",
+   "path": "scratch/sjtu-ownedlists-1109/native28/package/sjtu",
+   "split": {
+    "source_backed_distinct": 2832,
+    "all_kept_distinct": 4597,
+    "as_of": "2026-11-10",
+    "source": "hierarchy/sjtu/reports/OWNED-PUBLICATION-LISTS-20261109.md (counted after the proposed holds)"
+   },
+   "next_step": "Apply the proposed holds/exclusions, review native 29, validate the heuristic stratum, then gates."
+  },
+  "zju": {
+   "basis": "latest isolated native package, not admitted",
+   "path": "scratch/zju-admit-1109/native-v6/package/zju",
+   "next_step": "Finish listings discovery, bind remaining PIs (T116), rerun native, then gates."
+  },
+  "ntu": {
+   "basis": "latest isolated native package, not admitted",
+   "path": "scratch/ntu-admit-1110/native-v2/package/ntu",
+   "next_step": "Complete native-input freeze review (T007) and land the branch commits."
+  },
+  "toronto": {
+   "basis": "latest isolated native package, not admitted",
+   "path": "scratch/toronto-admit-1109/package-second/toronto",
+   "next_step": "Land census expansion, run Wayback part A, rerun native, scientific review."
+  },
+  "tsinghua": {
+   "basis": "latest isolated native package, not admitted",
+   "candidates": [
+    "scratch/tsinghua-native52-1110/package/tsinghua"
+   ],
+   "path": "scratch/tsinghua-seventeen-bibliographies-1109/package/tsinghua",
+   "next_step": "Review the native 52 output when its job has run; then gates."
+  },
+  "harvard": {
+   "basis": "overlay trial package (not admitted); the frozen release counts are in the frozen_* columns",
+   "path": "worktrees/harvard-deepdive/hierarchy/harvard/tmp/overlay/hierarchy/harvard/derived",
+   "copies_counter": "scratch/downloads-1110/hierarchy/harvard/derived/copies.json",
+   "next_step": "Run the Wayback listing chain, periods stage 4, student hand-check, then land the overlay."
+  }
+ }
+}

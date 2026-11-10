@@ -382,6 +382,10 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('labpage-parts', 'work', 'hierarchy/{school}/labpage-parts', 'hierarchy/{school}/work/labpage-parts'),
     ('COLLECTORS-STATUS.md', 'derived', 'hierarchy/COLLECTORS-STATUS.md', 'hierarchy/derived/COLLECTORS-STATUS.md'),
     ('COLLECTORS-STATUS.json', 'derived', 'hierarchy/COLLECTORS-STATUS.json', 'hierarchy/derived/COLLECTORS-STATUS.json'),
+    ('STATUS-TABLE.csv', 'derived', 'hierarchy/STATUS-TABLE.csv', 'hierarchy/derived/STATUS-TABLE.csv'),   # tools/status_table.py (generated, read-only)
+    ('STATUS-TABLE.json', 'derived', 'hierarchy/STATUS-TABLE.json', 'hierarchy/derived/STATUS-TABLE.json'),
+    ('STATUS-TABLE.md', 'derived', 'hierarchy/STATUS-TABLE.md', 'hierarchy/derived/STATUS-TABLE.md'),
+    ('status-packages.json', 'reviewed', 'hierarchy/status-packages.json', 'hierarchy/reviewed/status-packages.json'),
     ('listings-pages.json', 'derived', 'listings/{school}/pages.json', 'listings/{school}/derived/pages.json'),
     ('listings-gaps.json', 'derived', 'listings/{school}/gaps.json', 'listings/{school}/derived/gaps.json'),
     ('listings-ambiguous.json', 'derived', 'listings/{school}/ambiguous.json', 'listings/{school}/derived/ambiguous.json'),

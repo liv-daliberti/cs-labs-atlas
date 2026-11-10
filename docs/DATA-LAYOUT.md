@@ -168,6 +168,10 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `listings-input.json` | reviewed | `hierarchy/listings-input-{school}.json` | `hierarchy/reviewed/listings-input-{school}.json` | - | <100MB |
 | `COLLECTORS-STATUS.md` | derived | `hierarchy/COLLECTORS-STATUS.md` | `hierarchy/derived/COLLECTORS-STATUS.md` | - | <100MB |
 | `COLLECTORS-STATUS.json` | derived | `hierarchy/COLLECTORS-STATUS.json` | `hierarchy/derived/COLLECTORS-STATUS.json` | - | <100MB |
+| `STATUS-TABLE.csv` | derived | `hierarchy/STATUS-TABLE.csv` | `hierarchy/derived/STATUS-TABLE.csv` | - | <100MB |
+| `STATUS-TABLE.json` | derived | `hierarchy/STATUS-TABLE.json` | `hierarchy/derived/STATUS-TABLE.json` | - | <100MB |
+| `STATUS-TABLE.md` | derived | `hierarchy/STATUS-TABLE.md` | `hierarchy/derived/STATUS-TABLE.md` | - | <100MB |
+| `status-packages.json` | reviewed | `hierarchy/status-packages.json` | `hierarchy/reviewed/status-packages.json` | - | <1MB |
 | `labpage-parts` | work | `hierarchy/{school}/labpage-parts` | `hierarchy/{school}/work/labpage-parts` | - | <100MB |
 | `labpage-input.json` | reviewed | `hierarchy/{school}/labpage-input.json` | `hierarchy/{school}/reviewed/labpage-input.json` | - | <100MB |
 | `labpage-pubs-report.json` | derived | `hierarchy/{school}/labpage-pubs-report.json` | `hierarchy/{school}/derived/labpage-pubs-report.json` | - | <100MB |

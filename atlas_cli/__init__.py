@@ -32,6 +32,7 @@ COMMANDS = {
     'new-school': ('py', 'tools/new_school.py', 'stage 0 of a new school in one command: atlas new-school <key> --name "University of X" [--dry-run]'),
     'stale':      ('py', 'tools/stale_stages.py', 'which rebuild stages are stale: atlas stale [school ...] [--json | --stages]; STAGES=auto hierarchy/rebuild.sh runs only those'),
     'stage-gate': ('py', 'tools/stage_gate.py', 'a protocol school\'s stage gates 0-10: atlas stage-gate <school> [stage ...] [--run [--submit] [--dry-run]] [--traps] [--record] (--run does the stage up to its first review step)'),
+    'status':     ('py', 'tools/status_table.py', 'the generated status table (read-only; hierarchy/derived/STATUS-TABLE.csv/.json/.md): atlas status [--gates live|recorded|off] [--top N] [--out-dir D] [--write-legacy]'),
     'overlay-root': ('py', 'tools/overlay_root.py', 'an overlay code root so a worktree run reads the branch\'s reviewed files (ROADMAP #44): atlas overlay-root <school> --out hierarchy/<school>/tmp/overlay'),
     'charters':   ('py', 'tools/school_config.py --check', 'validate every school charter (schools/*.toml)'),
     'collect':    ('special', 'fulltext-push/lab_first_loop.py', 'the lab-first download loop: atlas collect <school> [...]'),
