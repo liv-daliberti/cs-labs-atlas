@@ -21440,7 +21440,34 @@
      "observed": "2026-10-28"
     }
    ],
-   "reviewed": "2026-10-28"
+   "reviewed": "2026-10-28",
+   "periods": [
+    {
+     "id": "override_period_stanford_fouad_a_tobagi",
+     "start": "2016",
+     "end": null,
+     "asof": "2026-10-28",
+     "datePrecision": "year",
+     "evidence": [
+      {
+       "kind": "stanford_profiles_capture",
+       "url": "https://web.archive.org/web/20160312110517id_/https://profiles.stanford.edu/fouad-tobagi",
+       "sha256": "99805520160e19f3eb5f60a458d8d4d8704ef27b6e7b05b0cddc9bb1d2c4910c",
+       "quote": "Fouad Tobagi Professor of Electrical Engineering and, by courtesy, of Computer Science",
+       "observed": "20160312"
+      },
+      {
+       "kind": "stanford_profiles",
+       "url": "https://profiles.stanford.edu/fouad-tobagi",
+       "sha256": "35ce54d623967815b6326ade60e7c166c8d014c9118e707ca201e4ba9c096be4",
+       "quote": "Fouad Tobagi Professor of Electrical Engineering ... Academic Appointments Professor, Electrical Engineering",
+       "observed": "2026-10-28"
+      }
+     ],
+     "note": "Professor of EE from 2016 to the present (a lower bound: no earlier capture); recorded for the stage-4 appointment check. He is excluded from the PI set (no advisees, see why), so no lab or paper uses this period.",
+     "reviewed": "appointment_period_review_20261110"
+    }
+   ]
   },
   "Chris Gregg": {
    "exclude": true,
@@ -21475,7 +21502,9 @@
      "fetched_at": "2026-10-28T18:39:40+00:00"
     }
    ],
-   "reviewed": "2026-10-28"
+   "reviewed": "2026-10-28",
+   "no_identity": true,
+   "why_no_identity": "2026-11-10 (Stanford stage 5): excluded as not a PI (teaching track, see why); the DBLP dump (2026-09-01) holds no person named Chris or Christopher Gregg, his Stanford profile and personal page web.stanford.edu/~cgregg list no ORCID or DBLP link, and no papers are attributed."
   },
   "Emma Dauterman": {
    "exclude": true,
@@ -21766,6 +21795,18 @@
     }
    ],
    "note_20261029": "period from the 2026-10-29 home-department pass (hierarchy/logs/tmp-ids/homedept/exclusions-proposed.json): Assistant Professor of MS&E (courtesy CS) through at least 2021-06-15; his homepage names Harvard Kennedy School by 2021-07-24, and the Stanford profile has no appointment lines by 2021-08-04 (sha256 498765f42daf60f8). End = 2021-07 (bounded 2021-06-15..2021-07-24). Start 2016 is the window floor (CS directory lists him from the 2016 capture; he joined Stanford before the window). Census rank is '"
+  },
+  "Karen Liu": {
+   "dblp": [
+    "https://dblp.org/pid/93/5669"
+   ],
+   "why_identity": "2026-11-10 (Stanford stage 5, R-PAP-44 amended): DBLP person 93/5669 'C. Karen Liu' (dump 2026-09-01, 280 records to 2026), the byline alias the census gives ('C. Karen Liu'). The CS department's official profile page https://www.cs.stanford.edu/people/karen-liu (sha256 517997808a41d1809868a5d59f42cf4243bc592dc7d721e66f3a7c6b9adf8384) links her page https://cs.stanford.edu/~karenliu, which redirects to The Movement Lab https://tml.stanford.edu/publications (sha256 a875ac490285c3a711176fa2d52ec257a1736f5dbdbb5396659811a0f0a440b6, captured 2026-10-27): 153 exact DBLP titles on that page, every one on this single person; the only namesake 'Karen Liu' (87/5994, optics) shares none (tools/title_only_binding.decide: accepted)."
+  },
+  "Carlos Guestrin": {
+   "dblp": [
+    "https://dblp.org/pid/38/769"
+   ],
+   "why_identity": "2026-11-10 (Stanford stage 5, dblp_ids_school rule unique_name): the DBLP dump (2026-09-01) holds exactly one person named 'Carlos Guestrin' (pid 38/769, 229 records to 2026, notes University of Washington and Carnegie Mellon University, his earlier posts); no namesake and no disambiguation profile. His Stanford CS profile https://www.cs.stanford.edu/people/carlos-guestrin (sha256 83c822512c94218b2aaec0eea7fe9d641ebdd4301a22dd12b799b8db295a016f) names 'Carlos Ernesto Guestrin' and links his page; no listed paper title is on a stored page, so R-PAP-44 does not apply and the binding rests on the unique name alone."
   }
  },
  "michigan": {
