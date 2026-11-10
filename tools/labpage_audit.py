@@ -2758,6 +2758,30 @@ def cmd_recover_audit(school, title_credits=600):
     write_audit(school, recs, stu_adds, pap_adds)
 
 
+def recorded_hand_review(existing):
+    """The hand_review_* lists of an existing additions file: {(pi, name): decision}. A 'rejected' or 'held' row must not be proposed again and a
+    'role_withheld' row keeps its null role (Harvard 2026-11-10: the generator re-proposed nine hand-rejected rows and restored six wrong roles)."""
+    out = {}
+    for k, rows in (existing or {}).items():
+        if k.startswith('hand_review') and isinstance(rows, list):
+            for r in rows:
+                if isinstance(r, dict) and r.get('pi') and r.get('name') and r.get('decision') in ('rejected', 'held', 'role_withheld'):
+                    out[(r['pi'], r['name'])] = r['decision']
+    return out
+
+
+def apply_hand_review(rows, decisions):
+    kept = []
+    for r in rows:
+        d = decisions.get((r.get('pi'), r.get('name')))
+        if d in ('rejected', 'held'):
+            continue
+        if d == 'role_withheld' and r.get('role'):
+            r = dict(r, role=None, role_basis='withheld_hand_check_20261110')
+        kept.append(r)
+    return kept
+
+
 def write_audit(school, recs, stu_adds, pap_adds):
     fix_titles_from_arxiv(pap_adds)
     out = P.data('labpage-audit.jsonl.gz', school)
@@ -2766,10 +2790,16 @@ def write_audit(school, recs, stu_adds, pap_adds):
             f.write(json.dumps(r, ensure_ascii=False) + '\n')
     os.replace(str(out) + '.tmp', out)
     summ = school_summary(recs, stu_adds, pap_adds)
+    prev_f = P.data('labpage-additions.json', school)
+    prev = read(prev_f) if prev_f.exists() else {}
+    decided = recorded_hand_review(prev)
     adds = dict(school=school, generated_at=now(), tool='tools/labpage_audit.py', standard='docs/LAB-PAGES.md',
                 status='proposed, unreviewed: not read by tools/pi_hierarchy.py until wired (docs/LAB-PAGES.md, integration)',
                 rules={'LP-STU-01': RULE_TEXT['LP-STU-01'], 'LP-PAP-01': RULE_TEXT['LP-PAP-01']},
-                students=[withhold_bio_degree_role(r) for r in withheld_if_membership_only(school, stu_adds)], papers=pap_adds)
+                students=apply_hand_review([withhold_bio_degree_role(r) for r in withheld_if_membership_only(school, stu_adds)], decided), papers=pap_adds)
+    for k, v in (prev or {}).items():   # recorded hand reviews survive a regeneration
+        if k.startswith('hand_review'):
+            adds[k] = v
     json.dump(adds, open(P.data_w('labpage-additions.json', school), 'w', encoding='utf-8'), indent=1, ensure_ascii=False)
     if onboarding(school):
         # an onboarding school's summary stays in its own file: hierarchy/labpage-audit-summary.json and LABPAGE-AUDIT.md are TRACKED shared build
