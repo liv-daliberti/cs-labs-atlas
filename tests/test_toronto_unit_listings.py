@@ -47,3 +47,9 @@ def test_cross_appointed_marker_is_not_ladder():
     txt = 'Asare, Philip Assistant Professor (cross-appointed) Profile'
     ev = C.faculty_evidence([('ECE', 'u', 's', 'o', txt)], ['Philip Asare'])[0]
     assert ev['ladder'] is False
+
+
+def test_status_only_row_is_not_ladder():
+    txt = 'Husam Abdel-Qadir CEHCR Accepting Students Associate Professor (Status-Only) Twitter'
+    ev = C.faculty_evidence([('IHPME', 'u', 's', 'o', txt)], ['Husam Abdel-Qadir'])[0]
+    assert ev['ladder'] is False

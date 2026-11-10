@@ -20,7 +20,7 @@ ids_note = "OWNER 2026-11-10: scope is computing-related PIs of every unit incl.
 [web]
 domains = ["utoronto.ca", "toronto.edu"]
 email_domains = ["utoronto.ca", "toronto.edu"]
-wayback_only_suffixes = ["www.utsc.utoronto.ca", "www.mathematics.utoronto.ca", "www.statistics.utoronto.ca", "www.matter.toronto.edu", "www.nivdayan.net", "lmp.utoronto.ca"]
+wayback_only_suffixes = ["medbio.utoronto.ca", "www.utsc.utoronto.ca", "www.mathematics.utoronto.ca", "www.statistics.utoronto.ca", "www.matter.toronto.edu", "www.nivdayan.net", "lmp.utoronto.ca"]
 excluded_hosts = []
 
 [affiliation]
@@ -62,7 +62,7 @@ exceptions = []
 
 [cs_related]
 not_faculty = {}
-share_test_settles = ["Hoi-Kwong Lo", "Xinyu Liu"]  # hand review 2026-11-10: quantum key distribution hardware; bio-MEMS micromanipulation. Computing is not the object or the method; the share test (9-13% DBLP-indexed of 53-88 Toronto works) decides. (James M. Drake and Milos R. Popovic appeared only on the MIE status-only page, now not a listing source.)
+share_test_settles = ["Hoi-Kwong Lo", "Xinyu Liu", "Kimberly Strong"]  # hand review 2026-11-10: quantum key distribution hardware; bio-MEMS micromanipulation. Computing is not the object or the method; the share test (9-13% DBLP-indexed of 53-88 Toronto works) decides. (Kimberly Strong, 2026-11-10: atmospheric physics and spectroscopy, 5 DBLP records only; share not_computing. James M. Drake and Milos R. Popovic appeared only on the MIE status-only page, now not a listing source.)
 
 [site]
 depts = {CS = "Computer Science"}
@@ -204,6 +204,20 @@ listings = ["www.utm.utoronto.ca/math-cs-stats/people/category/faculty---mathema
 note = "category pages read from the 2026-11-10 /math-cs-stats/people menu"
 
 [[affiliated_units]]
+code = "IHPME"
+name = "Institute of Health Policy, Management and Evaluation (DLSPH)"
+url = "https://ihpme.utoronto.ca/faculty-directory/"
+listings = ["ihpme.utoronto.ca/faculty-directory/", "ihpme.utoronto.ca/faculty-directory/page/2/", "ihpme.utoronto.ca/faculty-directory/page/3/", "ihpme.utoronto.ca/faculty-directory/page/4/", "ihpme.utoronto.ca/faculty-directory/page/5/", "ihpme.utoronto.ca/faculty-directory/page/6/", "ihpme.utoronto.ca/faculty-directory/page/7/", "ihpme.utoronto.ca/faculty-directory/page/8/", "ihpme.utoronto.ca/faculty-directory/page/9/", "ihpme.utoronto.ca/faculty-directory/page/10/", "ihpme.utoronto.ca/faculty-directory/page/11/", "ihpme.utoronto.ca/faculty-directory/page/12/", "ihpme.utoronto.ca/faculty-directory/page/13/", "ihpme.utoronto.ca/faculty-directory/page/14/", "ihpme.utoronto.ca/faculty-directory/page/15/", "ihpme.utoronto.ca/faculty-directory/page/16/", "ihpme.utoronto.ca/faculty-directory/page/17/", "ihpme.utoronto.ca/faculty-directory/page/18/", "ihpme.utoronto.ca/faculty-directory/page/19/", "ihpme.utoronto.ca/faculty-directory/page/20/", "ihpme.utoronto.ca/faculty-directory/page/21/", "ihpme.utoronto.ca/faculty-directory/page/22/", "ihpme.utoronto.ca/faculty-directory/page/23/", "ihpme.utoronto.ca/faculty-directory/page/24/", "ihpme.utoronto.ca/faculty-directory/page/25/", "ihpme.utoronto.ca/faculty-directory/page/26/", "ihpme.utoronto.ca/faculty-directory/page/27/", "ihpme.utoronto.ca/faculty-directory/page/28/", "ihpme.utoronto.ca/faculty-directory/page/29/", "ihpme.utoronto.ca/faculty-directory/page/30/", "ihpme.utoronto.ca/faculty-directory/page/31/", "ihpme.utoronto.ca/faculty-directory/page/32/", "ihpme.utoronto.ca/faculty-directory/page/33/", "ihpme.utoronto.ca/faculty-directory/page/34/", "ihpme.utoronto.ca/faculty-directory/page/35/", "ihpme.utoronto.ca/faculty-directory/page/36/", "ihpme.utoronto.ca/faculty-directory/page/37/", "ihpme.utoronto.ca/faculty-directory/page/38/", "ihpme.utoronto.ca/faculty-directory/page/39/", "ihpme.utoronto.ca/faculty-directory/page/40/", "ihpme.utoronto.ca/faculty-directory/page/41/", "ihpme.utoronto.ca/faculty-directory/page/42/", "ihpme.utoronto.ca/faculty-directory/page/43/", "ihpme.utoronto.ca/faculty-directory/page/44/", "ihpme.utoronto.ca/faculty-directory/page/45/", "ihpme.utoronto.ca/faculty-directory/page/46/", "ihpme.utoronto.ca/faculty-directory/page/47/", "ihpme.utoronto.ca/faculty-directory/page/48/", "ihpme.utoronto.ca/faculty-directory/page/49/", "ihpme.utoronto.ca/faculty-directory/page/50/", "ihpme.utoronto.ca/faculty-directory/page/51/", "ihpme.utoronto.ca/faculty-directory/page/52/"]
+note = "home unit of many cross-appointed faculty (owner 2026-11-10); 514 profiles on 52 pages, status-only rows are not faculty of the unit"
+
+[[affiliated_units]]
+code = "PHYS"
+name = "Physics"
+url = "https://www.physics.utoronto.ca/members/"
+listings = ["www.physics.utoronto.ca/members/", "www.physics.utoronto.ca/members/?page=1", "www.physics.utoronto.ca/members/?page=2", "www.physics.utoronto.ca/members/?page=3", "www.physics.utoronto.ca/members/?page=4", "www.physics.utoronto.ca/members/?page=5", "www.physics.utoronto.ca/members/?page=6", "www.physics.utoronto.ca/members/?page=7", "www.physics.utoronto.ca/members/?page=8", "www.physics.utoronto.ca/members/?page=9", "www.physics.utoronto.ca/members/?page=10", "www.physics.utoronto.ca/members/?page=11", "www.physics.utoronto.ca/members/?page=12"]
+note = "department members directory, paged; appointment category filter inside the page"
+
+[[affiliated_units]]
 code = "VECTOR"
 name = "Vector Institute (centre)"
 url = "https://vectorinstitute.ai/team/"
@@ -327,3 +341,21 @@ host = "robotics.utoronto.ca"
 use = "live"
 purpose = "Faculty listings, research groups, thesis evidence"
 probe = "https://robotics.utoronto.ca/people/"
+
+[[hosts]]
+host = "ihpme.utoronto.ca"
+use = "live"
+purpose = "IHPME faculty directory (robots 200 allowed 2026-11-10)"
+probe = "https://ihpme.utoronto.ca/faculty-directory/"
+
+[[hosts]]
+host = "www.physics.utoronto.ca"
+use = "live"
+purpose = "Physics members directory (robots 200 allowed 2026-11-10)"
+probe = "https://www.physics.utoronto.ca/members/"
+
+[[hosts]]
+host = "medbio.utoronto.ca"
+use = "wayback-only"
+purpose = "Medical Biophysics faculty directory (served a bot challenge 999 on 2026-11-10; Wayback only)"
+probe = "https://medbio.utoronto.ca/"
