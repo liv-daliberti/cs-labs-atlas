@@ -53,7 +53,7 @@ legacy_sweep = ""
 [census]
 computing_departments = ["CS"]
 center_units = ["SANGHANI", "HUME"]
-home_units = {"Computer Science" = 'computer\s+science', "Electrical and Computer Engineering" = 'electrical\s+(?:and|&)\s+computer\s+engineering', "Statistics" = 'statistics', "Industrial and Systems Engineering" = 'industrial\s+(?:and|&)\s+systems', "Mathematics" = 'mathematics'}
+home_units = {"Computer Science" = 'computer\s+science', "Electrical and Computer Engineering" = 'electrical\s+(?:and|&)\s+computer\s+engineering', "Statistics" = 'statistics', "Industrial and Systems Engineering" = 'industrial\s+(?:and|&)\s+systems', "Mathematics" = 'mathematics', "Plant and Environmental Sciences" = 'plant\s+(?:and|&)\s+environmental\s+sciences'}
 rank_words = {teaching = '\bprofessor\s+of\s+practice\b|\bcollegiate\s+(?:(?:assistant|associate)\s+)?professor\b|\binstructor\b|\bteaching\b', adjunct = '\badjunct\b|\bvisiting\b'}
 
 [sweep_check]
@@ -167,6 +167,12 @@ url = "https://me.vt.edu/people/faculty.html"
 listings = ["me.vt.edu/people/faculty.html"]
 
 [[affiliated_units]]
+code = "SPES"
+name = "Plant and Environmental Sciences"
+url = "https://spes.vt.edu/faculty-staff/faculty.html"
+listings = ["spes.vt.edu/faculty-staff/faculty.html"]
+
+[[affiliated_units]]
 code = "AOE"
 name = "Aerospace and Ocean Engineering"
 url = "https://www.aoe.vt.edu/people/faculty.html"
@@ -261,6 +267,12 @@ host = "me.vt.edu"
 use = "live"
 purpose = "Faculty listings, research groups, thesis evidence"
 probe = "https://me.vt.edu/people/faculty.html"
+
+[[hosts]]
+host = "spes.vt.edu"
+use = "live"
+purpose = "Computing-related faculty outside engineering and their lab sites"
+probe = "https://spes.vt.edu/faculty-staff/faculty.html"
 
 [[hosts]]
 host = "www.aoe.vt.edu"
