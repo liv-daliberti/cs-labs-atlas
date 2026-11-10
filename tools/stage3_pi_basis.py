@@ -90,11 +90,29 @@ def pick_listed(x):
 
 
 def hand_names(key):
-    for base in (Path(P.HIERARCHY) / key / 'reviewed', Path(__file__).resolve().parents[1] / 'hierarchy' / key / 'reviewed'):
+    for base in (Path(__file__).resolve().parents[1] / 'hierarchy' / key / 'reviewed', Path(P.HIERARCHY) / key / 'reviewed'):
         f = base / 'pi-basis-hand.json'
         if f.exists():
             return json.loads(f.read_text())
     return {}
+
+
+def capture_text_sha(key, url):
+    for f in sorted(glob.glob(str(P.HIERARCHY / key / 'raw' / '*captures*.sqlite'))):
+        try:
+            c = sqlite3.connect(f'file:{f}?mode=ro', uri=True)
+            r = c.execute('select sha256, content from captures where status=200 and url=? limit 1', (url,)).fetchone()
+        except sqlite3.Error:
+            continue
+        if r and r[1] is not None:
+            b = r[1] if isinstance(r[1], bytes) else str(r[1]).encode()
+            for dec in (zlib.decompress, gzip.decompress, lambda z: z):
+                try:
+                    t = dec(b).decode('utf-8', 'replace')
+                except Exception:
+                    continue
+                return r[0], re.sub(r'&nbsp;|&#160;|&#8250;|&#xA0;', ' ', re.sub(r'<[^>]+>', ' ', t))
+    return None, ''
 
 
 def load(path):
@@ -112,7 +130,7 @@ def main(key, apply=False):
         changed = 0
         for x in rows:
             b = x.get('pi_basis') or {}
-            if not x.get('is_pi') or (b.get('url') and b.get('sha256') and b.get('quote')):
+            if not x.get('is_pi') or (b.get('url') and b.get('sha256') and b.get('quote') and x['name'] not in (hand_names(key).get('not_pi') or {})):
                 continue
             if b.get('url') and b.get('quote') and not b.get('sha256'):
                 sha = capture_sha(key, b['url'], b['quote'])
@@ -121,8 +139,24 @@ def main(key, apply=False):
                     decisions.append(dict(name=x['name'], url=b['url'], sha256=sha, quote=b['quote'], via='capture'))
                     changed += 1
                     continue
-            s = pick(x)
             hand = hand_names(key)
+            nip = (hand.get('not_pi') or {}).get(x['name'])
+            if nip:   # reviewed exclusion: the row stays in the census, is_pi false with the reason (never silent; sampled by a fresh reviewer)
+                x['is_pi'] = False
+                x['not_pi_reason'] = nip['reason']
+                x['stage3_exclusion'] = dict(nip, reviewed_by='claude-stage3-released-1110', reviewed_on='2026-11-10')
+                decisions.append(dict(name=x['name'], not_pi=nip))
+                changed += 1
+                continue
+            ex = (hand.get('explicit') or {}).get(x['name'])
+            if ex:
+                sha, txt = capture_text_sha(key, ex['url'])
+                if sha and norm(ex['quote']) in norm(txt):
+                    x['pi_basis'] = dict(b, url=ex['url'], sha256=sha, quote=ex['quote'], basis_note='reviewed explicit basis: quote verified in the stored capture (stage3_pi_basis.py)')
+                    decisions.append(dict(name=x['name'], url=ex['url'], sha256=sha, quote=ex['quote'], via='explicit'))
+                    changed += 1
+                    continue
+            s = pick(x)
             if not s and x['name'] in (hand.get('listed_title_any') or []):
                 s = pick_listed(x)
             if not s:

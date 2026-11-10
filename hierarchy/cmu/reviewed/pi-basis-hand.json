@@ -23,8 +23,17 @@
   "Alex Hauptmann"
  ],
  "why": "CMU PIs whose census sources carry no professor-rank title next to the name (research or systems scientists, affiliated, adjunct and emeritus faculty, and page snippets where the title is not adjacent): the evidence url/sha256/quote is the latest dated listing or profile source that names the person, verbatim from the census. The quote proves the person is listed by the unit; their PI standing (own group or advised PhD students) is the census pi_basis kind, unchanged. Reviewed by claude-stage3-released-1110, 2026-11-10 (hand review; not independently sampled yet).",
- "not_resolved": {
-  "Maggie Henderson": "no listing source in the census",
-  "Alex Waibel": "no listing source in the census"
+ "not_resolved": {},
+ "explicit": {
+  "Maggie Henderson": {
+   "url": "https://www.cmu.edu/dietrich/psychology/directory/core-training-faculty/henderson-maggie.html",
+   "quote": "Maggie Henderson Assistant Professor of Psychology and Neuroscience Institute, Assistant Professor of Machine Learning (Affiliated)"
+  }
+ },
+ "not_pi": {
+  "Alex Waibel": {
+   "reason": "Duplicate census row of Alexander Waibel (same DBLP pid 08/2456; the Alexander Waibel row is the ladder professor in LTI/HCII with listings 2016-2026). The person stays a PI through that row.",
+   "evidence": "census-faculty.json rows 'Alex Waibel' and 'Alexander Waibel': dblp https://dblp.org/pid/08/2456 on both; profile https://lti.cmu.edu/people/faculty/waibel-alexander.html"
+  }
  }
 }

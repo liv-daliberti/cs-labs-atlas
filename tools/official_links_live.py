@@ -41,7 +41,7 @@ def candidates(row, domain, hosts):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('key'); ap.add_argument('--in', dest='inp', required=True); ap.add_argument('--out'); ap.add_argument('--dry', action='store_true'); ap.add_argument('--absence', action='store_true')
+    ap.add_argument('key'); ap.add_argument('--in', dest='inp', required=True); ap.add_argument('--out'); ap.add_argument('--dry', action='store_true'); ap.add_argument('--absence', action='store_true'); ap.add_argument('--hand')
     a = ap.parse_args()
     import labpage_audit as L
     doc = json.loads(Path(a.inp).read_text())
@@ -82,10 +82,21 @@ def main():
                 r['listed_on'] = u
                 stats['linked'] += 1
                 break
+    if a.hand:   # reviewed decisions {pi: {reject_url, reason_code, reason}}: a selected page that is not a lab or home page becomes a recorded reason, the page kept in website_note
+        hand = json.loads(Path(a.hand).read_text())
+        for r in doc['labs']:
+            h = hand.get(r['pi'])
+            if h and r.get('url') == h['reject_url']:
+                r['website_note'] = dict(replaced_url=r.pop('url'), replaced_sha256=r.pop('sha256', None), replaced_kind=r.pop('kind', None), why=h['why'])
+                for k in ('evidence', 'found_via', 'listed_on', 'official_link_status', 'official_link_evidence', 'people_page', 'alumni_page', 'pubs_page', 'verified'):
+                    r.pop(k, None)
+                r.pop('evidence_gaps', None)
+                r.update(coverage='reason', reason_code=h['reason_code'], reason_type='search_no_eligible_site', reason=h['reason'],
+                         reason_scope='Recorded search/access outcome; not proof no website exists or that an archive has no capture.', hand_reviewed=True)
     if a.absence:
         stats['absence'] = collections.Counter()
         for r in doc['labs']:
-            if not r.get('url') or r.get('official_link_status') == 'recorded' or r.get('coverage') not in ('website', 'pending'):
+            if not (r.get('url') or r.get('rejected_url')) or r.get('official_link_status') == 'recorded' or r.get('coverage') not in ('website', 'pending'):
                 continue
             prof = [c for c in r.get('checks') or [] if c.get('source') == 'school_profile' and c.get('url') and c.get('at')]
             read = [c for c in prof if str(c.get('result', '')).startswith('ok')]
@@ -106,7 +117,7 @@ def main():
             else:
                 stats['absence']['left_no_profile_check'] += 1
                 continue
-            r['website_note'] = dict(replaced_url=r['url'], replaced_sha256=r.get('sha256'), replaced_kind=r.get('kind'), found_via=r.get('found_via'),
+            r['website_note'] = dict(replaced_url=r.get('url') or r.get('rejected_url'), replaced_sha256=r.get('sha256'), replaced_kind=r.get('kind'), found_via=r.get('found_via'),
                                      people_page=r.pop('people_page', None), alumni_page=r.pop('alumni_page', None), pubs_page=r.pop('pubs_page', None),
                                      why='no stored or live official page links this site (reviewed policy, reversible)')
             for k in ('url', 'kind', 'sha256', 'evidence', 'found_via', 'listed_on', 'official_link_status', 'official_link_evidence', 'rejected_url', 'rejected_reason', 'verified', 'unverified_reason'):

@@ -1,3 +1,25 @@
-{"listed_title_any": ["Perry Cook", "Ruth Fong", "Victoria Dean", "Robert Schapire", "Larry Peterson"],
+{
+ "listed_title_any": [
+  "Perry Cook",
+  "Ruth Fong",
+  "Victoria Dean",
+  "Robert Schapire",
+  "Larry Peterson"
+ ],
  "why": "Emeritus, lecturer and lecturer-with-rank-of-professor PIs: the evidence url/sha256/quote is the latest dated department listing row that names the person and their title. Their PI standing (own lab or named adviser of PhD students) is the census pi_basis kind (owner_own_lab_census_20261021 or advises_phd), unchanged. Not a professor-rank row, so the row proves the appointment only. Reviewed by claude-stage3-released-1110, 2026-11-10 (hand review; not independently sampled yet).",
- "not_resolved": {"Arash Adel": "only CS 'Associated Faculty' rows; the Architecture appointment is not on a captured listing here", "Ewin Tang": "no listing source in the census"}}
+ "not_resolved": {},
+ "not_pi": {
+  "Ewin Tang": {
+   "reason": "Researched in gap-evidence.json (stage 2/3 build exclusion): a new assistant professor starting September 2026 with no advisee yet; the CS graduate roster of 2026-10-22 names no student advised by her. Not a PI in 2016-2026.",
+   "evidence": "hierarchy/princeton/reviewed/gap-evidence.json"
+  },
+  "Perry Cook": {
+   "reason": "Researched in gap-evidence.json: emeritus since October 2010 and on CalArts faculty since January 2020; no Princeton advisee 2016-2026 (CV, DataSpace, CS rosters). Not a PI in 2016-2026.",
+   "evidence": "hierarchy/princeton/reviewed/gap-evidence.json"
+  },
+  "Arash Adel": {
+   "reason": "Listed by Computer Science only as 'Associated Faculty' (2023-2026 captures); no captured page evidences an Architecture appointment, a PhD advisee or a group page. The census pi_basis is the owner's own-lab census row with no source. Hand review: not shown to be a PI at this school; reversible.",
+   "evidence": "census-faculty.json sources: 'Arash Adel Associated Faculty' (cs.princeton.edu/people/faculty, 2025-12-12, 2026-03-05, 2026-05-13)"
+  }
+ }
+}
