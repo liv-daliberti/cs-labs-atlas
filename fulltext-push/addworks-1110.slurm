@@ -18,9 +18,14 @@ cd "$CS_ATLAS_FULLTEXT_PUSH"
 for s in $S; do
   echo "== add_works $s dry=${DRY:-1} $(date +%T)"
   if [ "${DRY:-1}" = 1 ]; then nice -n 5 "$CS_ATLAS_COLLECTOR_PY" -I -u add_works.py "$s" --dry
-  else nice -n 5 "$CS_ATLAS_COLLECTOR_PY" -I -u add_works.py "$s" || echo "{\"failed\": \"add_works $s\"}"; fi
+  else
+    nice -n 5 "$CS_ATLAS_COLLECTOR_PY" -I -u addworks_guard.py before "$s" || { echo "{\"failed\": \"backup $s\"}"; continue; }
+    nice -n 5 "$CS_ATLAS_COLLECTOR_PY" -I -u add_works.py "$s" || echo "{\"failed\": \"add_works $s\"}"
+    nice -n 5 "$CS_ATLAS_COLLECTOR_PY" -I -u addworks_guard.py after "$s" || echo "{\"guard_failed\": \"$s\"}"
+  fi
 done
 [ "${DRY:-1}" = 1 ] && exit 0
+[ "${NO_RECOUNT:-0}" = 1 ] && exit 0
 LIVE=$CS_ATLAS_HIERARCHY
 ROOT=${SCRATCH_ROOT:-$CS_ATLAS_ROOT/scratch/downloads-1110/hierarchy}
 for s in $S; do
