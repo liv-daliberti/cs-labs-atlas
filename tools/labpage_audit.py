@@ -906,6 +906,9 @@ def discover_lab(kit, school, p, ctx, full=True):
                     elif profile_slug_hit(href, names_) and not social(href):
                         # R-LAB-01 (2026-11-05): a directory card whose link text is 'Learn more about <name>' (ECE) matches no name, but its path ends in the PI's name slug
                         profiles.append(unwayback(href))
+        prof_ = lab_profile_url(p)   # the census profile of a PI the current listing no longer shows (a departed PI's '/people/First.Last')
+        if prof_:
+            profiles.append(prof_)
         for e in [e for q in p.get('periods') or [] for e in q.get('evidence') or []] + [p.get('piBasis') or {}]:
             u = unwayback(e.get('url') or '')
             if re.search(dom, urlsplit(u).hostname or '') and re.search(r'/(people|faculty|profile|directory)/', u) and \
@@ -960,6 +963,9 @@ def discover_lab(kit, school, p, ctx, full=True):
         for u in ctx['homepage_finds'].get(p['pi'], []):
             add('earlier_homepage_find', u, 'listed')
             cand(u, 'earlier_homepage_find')
+        prof_ = lab_profile_url(p)   # the census profile of a PI the current listing no longer shows (a departed PI's '/people/First.Last')
+        if prof_:
+            profiles.append(prof_)
         for e in [e for q in p.get('periods') or [] for e in q.get('evidence') or []] + [p.get('piBasis') or {}]:
             u = unwayback(e.get('url') or '')
             if u and not NOT_HOME.search(u) and not social(u) and (any(t in fold(u) for t in fam_toks) or re.search(r'lab\.', u)):
@@ -1222,6 +1228,22 @@ def read_discovery(school):
                 r = json.loads(line)
                 out[r['pi']] = r  # the latest record per PI wins
     return out
+
+
+def lab_profile_url(p):
+    """The school profile URL the census recorded for a PI (pis.json lab.url, often a root-relative '/people/Samson.Abramsky'), made absolute against the
+    host of the PI's newest department listing. None when the PI has no such URL or no listing to take the host from. Live department listings no longer
+    show a PI who left, so discovery found no school profile for 34 Oxford PIs (2026-11-10)."""
+    u = ((p.get('lab') or {}).get('url') or '').strip()
+    if not u or re.match(r'^https?://web\.archive\.org', u):
+        return None
+    if u.startswith('/'):
+        ls = sorted(p.get('listings') or [], key=lambda l: -(l.get('year') or 0))
+        if not ls:
+            return None
+        base = urlsplit(unwayback(ls[0]['url']))
+        u = f'{base.scheme}://{base.netloc}{u}'
+    return u if re.search(r'/(people|faculty|profile|directory)/', u) else None
 
 
 def profile_slug_hit(href, names):

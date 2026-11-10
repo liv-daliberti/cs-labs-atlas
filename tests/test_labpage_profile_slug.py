@@ -22,3 +22,11 @@ def test_a_dotted_first_dot_last_slug_is_a_profile_card():
     # Oxford Computer Science: '/people/Samson.Abramsky' (2026-11-10: 34 PIs had no school_profile check)
     assert L.profile_slug_hit('https://www.cs.ox.ac.uk/people/Samson.Abramsky', ['Samson Abramsky'])
     assert not L.profile_slug_hit('https://www.cs.ox.ac.uk/people/Abramsky', ['Samson Abramsky'])
+
+
+def test_lab_profile_url_makes_the_census_profile_absolute():
+    p = dict(lab=dict(url='/people/Samson.Abramsky'), listings=[dict(year=2016, url='https://web.archive.org/web/20160330003018id_/http://www.cs.ox.ac.uk/people/faculty.html'),
+                                                             dict(year=2020, url='https://web.archive.org/web/20200330003018id_/https://www.cs.ox.ac.uk/people/faculty.html')])
+    assert L.lab_profile_url(p) == 'https://www.cs.ox.ac.uk/people/Samson.Abramsky'
+    assert L.lab_profile_url(dict(lab=dict(url='https://example.org/home'), listings=[])) is None
+    assert L.lab_profile_url(dict(lab=dict(url='/people/X.Y'), listings=[])) is None
