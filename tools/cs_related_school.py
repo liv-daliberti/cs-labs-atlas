@@ -285,7 +285,8 @@ def unit_pages(key):
             return codes[base]
         return next((c_ for lk, c_ in codes.items() if base.startswith(lk + '/') and re.fullmatch(r'[a-z]', base[len(lk) + 1:])), None)
     out = []
-    for cap, page, dept, ts, st, sha, txt, rawz in c.execute('select capture_url, page_url, department, wayback_timestamp, http_status, sha256, text, raw_zlib from captures'):
+    has_raw = any(r[1] == 'raw_zlib' for r in c.execute('pragma table_info(captures)'))   # a fixture store may hold only the text
+    for cap, page, dept, ts, st, sha, txt, rawz in c.execute('select capture_url, page_url, department, wayback_timestamp, http_status, sha256, text, ' + ('raw_zlib' if has_raw else 'NULL') + ' from captures'):
         k = re.sub(r'^https?://(www\.)?', '', page or '').rstrip('/').lower()
         if st == 200 and txt and (k in codes or dept in codes.values()):
             y = int(str(ts)[:4])
