@@ -63,3 +63,12 @@ def test_same_account_personal_link_on_the_profile_host():
     assert A.same_account_personal_link('https://cse.hkust.edu.hk/~wilfred/', 'Personal Webpage', prof)
     assert not A.same_account_personal_link('https://cse.hkust.edu.hk/~other/', 'Personal Webpage', prof)
     assert not A.same_account_personal_link('https://cse.hkust.edu.hk/faculty/wilfred/', 'Publications list', prof)
+
+
+def test_publication_list_names_are_not_students():
+    import labpage_audit as A
+    q = 'Xiaozhe Yao, Youhe Jiang, Binhang Yuan. “LLMFabric: Unifying Decentralized HPC Clusters for Heterogeneous LLM Serving.” In 20th USENIX Symposium, 2026.'
+    assert A.publication_item('Selected Publications > 2026', q, q)
+    assert A.publication_item(None, q, q)
+    assert not A.publication_item('Current Group Members', 'PhD student (2022-present)', 'Tianyi Bai PhD 2026')
+    assert not A.publication_item('Publications and students', 'PhD student', 'Ann Lee PhD 2024')

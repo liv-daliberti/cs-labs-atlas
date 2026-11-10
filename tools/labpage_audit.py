@@ -305,6 +305,18 @@ def byline_item(quote):
     return bool(q) and q.endswith(',') and len(q.split()) <= 4
 
 
+PUBLICATION_HEAD = re.compile(r'\b(?:selected\s+)?(?:publications?|papers|preprints?|journal articles?|conference papers?|refereed)\b', re.I)
+CITATION_TAIL = re.compile(r'[\u201c"][^\u201d"]{12,}[\u201d"]\s*[.,]?\s*(?:in\b|to appear|proceedings|arxiv|ieee|acm|usenix|\w+ \d{4}|\()', re.I)
+
+
+def publication_item(head, desc, quote):
+    """A name inside a publication list ('Xiaozhe Yao, Youhe Jiang, ... \u201cLLMFabric: ...\u201d In 20th USENIX ...', HKUST hand check 2026-11-10: 5 of 13 sampled
+    students were coauthors) is a paper coauthor, not a roster entry: the section is a publications heading, or the entry carries a quoted title followed by a venue."""
+    if head and PUBLICATION_HEAD.search(head.split(' > ')[-1]) and not re.search(r'\b(?:students?|alumni|members?|team|people)\b', head, re.I):
+        return True
+    return bool(CITATION_TAIL.search((desc or '')[:400]) or CITATION_TAIL.search((quote or '')[:400]))
+
+
 def current_position_list(head):
     """A section called 'Current Position' is the alumni's job column ('Ebrahim Shaji  Current Position'): its names are alumni, undated."""
     return bool(head and re.match(r'\s*current position\b', head, re.I))
@@ -1710,6 +1722,9 @@ def pm_candidates(kit, school, pi, plan, held):
             continue
         if fn not in keep and talk_item(x.get('head'), x.get('quote')):
             x['why'], x['detail'] = 'not_a_student', 'the entry is a CV line (a talk, keynote or award), not a roster entry'
+            continue
+        if fn not in keep and publication_item(x.get('head'), x.get('desc'), x.get('quote')):
+            x['why'], x['detail'] = 'not_a_student', 'the entry is inside a publication list (a paper coauthor), not a roster entry'
             continue
         if fn not in keep and byline_item(x.get('quote')):
             x['why'], x['detail'] = 'not_a_student', 'the entry is an author byline (a name and a comma), not a roster entry'
