@@ -15,12 +15,12 @@ openalex = ["I185261750"]
 openalex_related = ["I4210127509", "I2801317318", "I1325899441"]
 openalex_excluded = ["I530967"]
 ror = "https://ror.org/03dbr7087"
-ids_note = "tools/oa_institutions.py search/lineage on the local OpenAlex institutions snapshot (no API credits), 2026-11-07: I185261750 'University of Toronto' ROR 03dbr7087, lineage [I185261750]. Lineage children: University of Toronto Scarborough I4405278283, Fields Institute I9267121, Canadian Institute for Theoretical Astrophysics I4210110940, Sunnybrook Research Institute I4391768120, Ted Rogers Centre for Heart Research I4210091032, AGE-WELL I4388891821. Related, not lineage: Vector Institute I4210127509, Hospital for Sick Children I2801317318, University Health Network I1325899441 (swept; credited only when the raw string matches); left out: Unity Health, Sunnybrook Hospital, Baycrest, Creative Destruction Lab and the other hospitals. Excluded: Toronto Metropolitan University I530967 (different university). UTM (Mississauga) has no OpenAlex institution of its own and rolls into I185261750."
+ids_note = "OWNER 2026-11-10: scope is computing-related PIs of every unit incl. UTM, UTSC, hospitals/institutes with a Toronto appointment; Vector, SickKids and UHN stay openalex_related (a person counts only with a Toronto appointment stated on an official page). tools/oa_institutions.py search/lineage on the local OpenAlex institutions snapshot (no API credits), 2026-11-07: I185261750 'University of Toronto' ROR 03dbr7087, lineage [I185261750]. Lineage children: University of Toronto Scarborough I4405278283, Fields Institute I9267121, Canadian Institute for Theoretical Astrophysics I4210110940, Sunnybrook Research Institute I4391768120, Ted Rogers Centre for Heart Research I4210091032, AGE-WELL I4388891821. Related, not lineage: Vector Institute I4210127509, Hospital for Sick Children I2801317318, University Health Network I1325899441 (swept; credited only when the raw string matches); left out: Unity Health, Sunnybrook Hospital, Baycrest, Creative Destruction Lab and the other hospitals. Excluded: Toronto Metropolitan University I530967 (different university). UTM (Mississauga) has no OpenAlex institution of its own and rolls into I185261750."
 
 [web]
 domains = ["utoronto.ca", "toronto.edu"]
 email_domains = ["utoronto.ca", "toronto.edu"]
-wayback_only_suffixes = ["www.statistics.utoronto.ca", "www.matter.toronto.edu", "www.nivdayan.net", "lmp.utoronto.ca"]
+wayback_only_suffixes = ["www.utsc.utoronto.ca", "www.statistics.utoronto.ca", "www.matter.toronto.edu", "www.nivdayan.net", "lmp.utoronto.ca"]
 excluded_hosts = []
 
 [affiliation]
@@ -54,7 +54,7 @@ legacy_sweep = ""
 [census]
 computing_departments = ["CS"]
 center_units = ["VECTOR", "ROBOTICS"]
-home_units = {"Computer Science" = 'computer science', "Electrical and Computer Engineering" = 'electrical\s+(?:and|&)\s+computer\s+engineering', "Mechanical and Industrial Engineering" = 'mechanical\s+(?:and|&)\s+industrial', "Statistical Sciences" = 'statistical\s+sciences', "Information" = 'faculty\s+of\s+information|ischool'}
+home_units = {"Computer Science" = 'computer science', "Mathematics" = 'department\s+of\s+mathematics|mathematical\s+sciences', "Mathematical and Computational Sciences (UTM)" = 'mathematical\s+(?:and|&)\s+computational\s+sciences', "Computer and Mathematical Sciences (UTSC)" = 'computer\s+(?:and|&)\s+mathematical\s+sciences', "Aerospace Studies" = 'aerospace\s+studies', "Biomedical Engineering" = 'biomedical\s+engineering|ibbme', "Medical Biophysics" = 'medical\s+biophysics', "Laboratory Medicine and Pathobiology" = 'laboratory\s+medicine', "Dalla Lana School of Public Health" = 'dalla\s+lana|public\s+health', "Electrical and Computer Engineering" = 'electrical\s+(?:and|&)\s+computer\s+engineering', "Mechanical and Industrial Engineering" = 'mechanical\s+(?:and|&)\s+industrial', "Statistical Sciences" = 'statistical\s+sciences', "Information" = 'faculty\s+of\s+information|ischool'}
 rank_words = {teaching = '\bprofessor,?\s+teaching\s+stream\b|\blecturer\b', adjunct = '\bstatus[-\s]only\b|\badjunct\b'}
 
 [sweep_check]
@@ -190,12 +190,14 @@ code = "UTSC"
 name = "Computer and Mathematical Sciences, Scarborough"
 url = "https://www.utsc.utoronto.ca/cms/people"
 listings = ["www.utsc.utoronto.ca/cms/people"]
+note = "live probe 2026-11-10: /cms/people is 404 and /cms/faculty served a bot challenge (999); host recorded wayback-only, stage 1 finds the real directory in Wayback captures"
 
 [[affiliated_units]]
 code = "UTM"
 name = "Mathematical and Computational Sciences, Mississauga"
-url = "https://www.utm.utoronto.ca/mcs/people"
-listings = ["www.utm.utoronto.ca/mcs/people"]
+url = "https://www.utm.utoronto.ca/math-cs-stats/people"
+listings = ["www.utm.utoronto.ca/math-cs-stats/people"]
+note = "live probe 2026-11-10: the old /mcs/people URL is 404; /math-cs-stats/people returns the Mathematics faculty list with Computer Science and Applied Statistics sub-pages (stage 1 to locate those two)"
 
 [[affiliated_units]]
 code = "VECTOR"
@@ -294,7 +296,7 @@ probe = "https://www.math.toronto.edu/swastik/"
 
 [[hosts]]
 host = "www.utsc.utoronto.ca"
-use = "live"
+use = "wayback-only"
 purpose = "Faculty listings, research groups, thesis evidence"
 probe = "https://www.utsc.utoronto.ca/cms/daniel-roy"
 
