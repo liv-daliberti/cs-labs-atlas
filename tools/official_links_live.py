@@ -32,7 +32,7 @@ def candidates(row, domain, hosts):
         if c.get('source') not in ('school_profile', 'department_listing') or not u.startswith('http'):
             continue
         host = urlsplit(u).hostname or ''
-        if 'web.archive.org' in host or not re.search(r'(?:^|\.)' + re.escape(domain) + r'$', host) or host not in hosts or u in seen:
+        if 'web.archive.org' in host or not re.search(r'(?:^|\.)' + domain + r'$', host) or host not in hosts or u in seen:
             continue
         seen.add(u)
         out.append((c['source'], u))
