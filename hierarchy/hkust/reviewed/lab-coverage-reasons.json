@@ -275,24 +275,17 @@
       ]
     }
   },
-  "Can Yang": {
-    "students": {
-      "code": "sources_exhausted",
-      "why": "No personal or lab website is linked from the official unit directory row or profile page that was read, and no student is named there.",
-      "sources_checked": [
-        "https://www.math.hkust.edu.hk/people/faculty/profile/macyang/ (sha256 abb8838686eb4672, read live 2026-11-10): official profile"
-      ],
-      "checked": "2026-11-10",
-      "basis": "live official pages only; robots respected; no Wayback; no search-engine discovery"
-    }
-  },
   "Hongbo Fu": {
     "students": {
       "code": "sources_exhausted",
-      "why": "No personal or lab website is linked from the official unit directory row or profile page that was read, and no student is named there.",
-      "sources_checked": [],
+      "why": "Hongbo Fu (FU Hongbo FU 傅紅波 傅紅波 Professor): the EMIA people page lists the title \"FU Hongbo FU 傅紅波 傅紅波 Professor\" and a research-area tag set and links only the central faculty portal, whose host researchportal.hkust.edu.hk is recorded as bot-challenged for this collector (not read by me). The decided DBLP person record (school_affiliation) names no lab page.",
+      "sources_checked": [
+        "https://emia.hkust.edu.hk/people (sha256 f0a678a512ae94f4, read live 2026-11-10 09:17): official EMIA people page, row \"FU Hongbo FU 傅紅波 傅紅波 Professor\"; no student, member or group listing in that row",
+        "https://dblp.org/pid/19/5752-1 (DBLP dump dblp-2026-09-01.xml.gz record sha256 04fbf88419b49a2d): DBLP person record, basis school_affiliation; lists no lab or group page",
+        "OpenAlex local sweep (snapshot 2026-10-14, file sha256 30ef739ee69e6848): author id https://openalex.org/A5100616579, computing share 0.8; works carry no lab-member information"
+      ],
       "checked": "2026-11-10",
-      "basis": "live official pages only; robots respected; no Wayback; no search-engine discovery"
+      "basis": "live official and own pages (robots respected, no Wayback), DBLP dump, OpenAlex local sweep"
     }
   },
   "Howard C. Luong": {
@@ -310,23 +303,16 @@
   "Ke Wang": {
     "students": {
       "code": "sources_exhausted",
-      "why": "No personal or lab website is linked from the official unit directory row or profile page that was read, and no student is named there.",
+      "why": "Ke Wang (WANG, Ke 王可 Associate Professor): its profile names the research interests \"Probabilistic combinatorics; Random structures; Random matrix theory and its applications\" and the profile has no group, student or member section; its own page https://www.math.hkust.edu.hk/~kewang/ was read and has no current student list. The decided DBLP person record (school_affiliation) names no lab page.",
       "sources_checked": [
-        "https://www.math.hkust.edu.hk/people/faculty/profile/kewang/ (sha256 e1f071c5f8124c07, read live 2026-11-10): official profile"
+        "https://www.math.hkust.edu.hk/people/ (sha256 cdb44b0c23916141, read live 2026-11-10 09:17): official MATH people page, row \"WANG, Ke 王可 Associate Professor\"; no student, member or group listing in that row",
+        "https://www.math.hkust.edu.hk/people/faculty/profile/kewang/ (sha256 e1f071c5f8124c07, read live 2026-11-10 09:17): official profile page; states research interests \"Probabilistic combinatorics; Random structures; Random matrix theory and its applications\"",
+        "https://www.math.hkust.edu.hk/~kewang/ (sha256 214269ee9c69caca, read live 2026-11-10 09:17; https://www.math.hkust.edu.hk/~kewang answered 301 to it): own page linked from the official profile: read; no group or student list found on it",
+        "https://dblp.org/pid/181/2613-3 (DBLP dump dblp-2026-09-01.xml.gz record sha256 747a4fd109d88e03): DBLP person record, basis school_affiliation; lists no lab or group page",
+        "OpenAlex local sweep (snapshot 2026-10-14, file sha256 30ef739ee69e6848): author id https://openalex.org/A5073656495, computing share 0.238; works carry no lab-member information"
       ],
       "checked": "2026-11-10",
-      "basis": "live official pages only; robots respected; no Wayback; no search-engine discovery"
-    }
-  },
-  "Kun Xu": {
-    "students": {
-      "code": "sources_exhausted",
-      "why": "No personal or lab website is linked from the official unit directory row or profile page that was read, and no student is named there.",
-      "sources_checked": [
-        "https://www.math.hkust.edu.hk/~makxu/ (sha256 9da0d6cfc44b3bc5, read live 2026-11-10): official profile"
-      ],
-      "checked": "2026-11-10",
-      "basis": "live official pages only; robots respected; no Wayback; no search-engine discovery"
+      "basis": "live official and own pages (robots respected, no Wayback), DBLP dump, OpenAlex local sweep"
     }
   },
   "Pascale Fung": {
@@ -440,105 +426,150 @@
   "Xiaowei Zhang": {
     "students": {
       "code": "sources_exhausted",
-      "why": "No personal or lab website is linked from the official unit directory row or profile page that was read, and no student is named there.",
+      "why": "Xiaowei Zhang (Xiaowei ZHANG Associate Professor): its profile names the research interests \"AI Simulation, Reinforcement Learning, Stochastic Optimization, Service Operations Managem\" and the profile has no group, student or member section; its own page https://xiaoweiz.github.io/ was read and has no current student list; the department roster of research postgraduates names no supervisor, so no student is attributable. The decided DBLP person record (school_affiliation) names no lab page.",
       "sources_checked": [
-        "https://ieda.hkust.edu.hk/eng/faculty-staff.php?catid=5&sid=15&id=45 (sha256 4994e8a18853f6e0, read live 2026-11-10): official profile"
+        "https://ieda.hkust.edu.hk/eng/faculty.php?catid=5&sid=15 (sha256 7d3e581b74966b98, read live 2026-11-10 09:17): official IEDA people page, row \"Xiaowei ZHANG Associate Professor\"; no student, member or group listing in that row",
+        "https://ieda.hkust.edu.hk/eng/faculty-staff.php?catid=5&sid=15&id=45 (sha256 4994e8a18853f6e0, read live 2026-11-10 09:17): official profile page; states research interests \"AI Simulation, Reinforcement Learning, Stochastic Optimization, Service Operations Management, FinTech Contact\"",
+        "https://xiaoweiz.github.io/ (sha256 fc630ace112a3264, read live 2026-11-10 09:18): own page linked from the official profile: read; no group or student list found on it",
+        "https://dblp.org/pid/93/4664-4 (DBLP dump dblp-2026-09-01.xml.gz record sha256 57053bc8c6e0ea30): DBLP person record, basis school_affiliation; lists no lab or group page",
+        "OpenAlex local sweep (snapshot 2026-10-14, file sha256 30ef739ee69e6848): author id https://openalex.org/A5005200661, computing share 0.308; works carry no lab-member information",
+        "https://ieda.hkust.edu.hk/eng/student.php?catid=5&sid=17 (sha256 039d42a8920a, read live 2026-11-10): IEDA research-postgraduate roster: names and offices only, no supervisor column"
       ],
       "checked": "2026-11-10",
-      "basis": "live official pages only; robots respected; no Wayback; no search-engine discovery"
+      "basis": "live official and own pages (robots respected, no Wayback), DBLP dump, OpenAlex local sweep"
     }
   },
   "Yang Xiang": {
     "students": {
       "code": "sources_exhausted",
-      "why": "No personal or lab website is linked from the official unit directory row or profile page that was read, and no student is named there.",
+      "why": "Yang Xiang (XIANG, Yang 項陽 Professor): its profile names the research interests \"Mathematical Modeling and Simulation in Materials Science; Machine Learning, Data Science,\" and the profile has no group, student or member section; its own page https://www.math.hkust.edu.hk/~maxiang/ was read and has no current student list; his own page lists recent graduated PhD students only by initials and year (e.g. \"CHEN, CQ, 2025\"), too abbreviated to name a person. The decided DBLP person record (school_affiliation) names no lab page.",
       "sources_checked": [
-        "https://www.math.hkust.edu.hk/people/faculty/profile/maxiang/ (sha256 7b19f3403a1462fa, read live 2026-11-10): official profile"
+        "https://www.math.hkust.edu.hk/people/ (sha256 cdb44b0c23916141, read live 2026-11-10 09:17): official MATH people page, row \"XIANG, Yang 項陽 Professor\"; no student, member or group listing in that row",
+        "https://www.math.hkust.edu.hk/people/faculty/profile/maxiang/ (sha256 7b19f3403a1462fa, read live 2026-11-10 09:17): official profile page; states research interests \"Mathematical Modeling and Simulation in Materials Science; Machine Learning, Data Science, Image Science; Mult\"",
+        "https://www.math.hkust.edu.hk/~maxiang/ (sha256 d31abc18cd16b6b0, read live 2026-11-10 09:17; https://www.math.hkust.edu.hk/~maxiang answered 301 to it): own page linked from the official profile: read; no group or student list found on it",
+        "https://dblp.org/pid/50/2192-2 (DBLP dump dblp-2026-09-01.xml.gz record sha256 42df6299da1b94a1): DBLP person record, basis school_affiliation; lists no lab or group page",
+        "OpenAlex local sweep (snapshot 2026-10-14, file sha256 30ef739ee69e6848): author id https://openalex.org/A5022915033, computing share 0.244; works carry no lab-member information"
       ],
       "checked": "2026-11-10",
-      "basis": "live official pages only; robots respected; no Wayback; no search-engine discovery"
+      "basis": "live official and own pages (robots respected, no Wayback), DBLP dump, OpenAlex local sweep"
     }
   },
   "Yiding Feng": {
     "students": {
       "code": "sources_exhausted",
-      "why": "No personal or lab website is linked from the official unit directory row or profile page that was read, and no student is named there.",
+      "why": "Yiding Feng (Yiding FENG Assistant Professor): its profile names the research interests \"Operations Research, Mechanism Design, Information Design, Online Algorithms, Online Learn\" and the profile has no group, student or member section; his own site has an Advising tab with a short list the independent reviewer read (2 current and 2 incoming PhD students, no years) that I could not open myself; the department roster of research postgraduates names no supervisor, so no student is attributable. The decided DBLP person record (school_affiliation) names no lab page.",
       "sources_checked": [
-        "https://ieda.hkust.edu.hk/eng/faculty-staff.php?catid=5&sid=15&id=48 (sha256 e9d7b667f6cd53a3, read live 2026-11-10): official profile"
+        "https://ieda.hkust.edu.hk/eng/faculty.php?catid=5&sid=15 (sha256 7d3e581b74966b98, read live 2026-11-10 09:17): official IEDA people page, row \"Yiding FENG Assistant Professor\"; no student, member or group listing in that row",
+        "https://ieda.hkust.edu.hk/eng/faculty-staff.php?catid=5&sid=15&id=48 (sha256 e9d7b667f6cd53a3, read live 2026-11-10 09:17): official profile page; states research interests \"Operations Research, Mechanism Design, Information Design, Online Algorithms, Online Learning Contact Info Res\"",
+        "https://dblp.org/pid/207/4923 (DBLP dump dblp-2026-09-01.xml.gz record sha256 543bda60b4228f32): DBLP person record, basis school_affiliation; lists no lab or group page",
+        "OpenAlex local sweep (snapshot 2026-10-14, file sha256 30ef739ee69e6848): author id https://openalex.org/A5041757714, computing share 0.359; works carry no lab-member information",
+        "https://www.ydfeng.us/ (sha256 92e352273941b7f3, read live 2026-11-10 09:34): own site home page (link taken from the portal profile via the independent reviewer); it has an Advising tab whose page I could not resolve (guessed /advising answered 404)",
+        "https://ieda.hkust.edu.hk/eng/student.php?catid=5&sid=17 (sha256 039d42a8920a, read live 2026-11-10): IEDA research-postgraduate roster: names and offices only, no supervisor column"
       ],
       "checked": "2026-11-10",
-      "basis": "live official pages only; robots respected; no Wayback; no search-engine discovery"
+      "basis": "live official and own pages (robots respected, no Wayback), DBLP dump, OpenAlex local sweep"
     }
   },
   "Yuan Yao": {
     "students": {
       "code": "sources_exhausted",
-      "why": "No personal or lab website is linked from the official unit directory row or profile page that was read, and no student is named there.",
+      "why": "Yuan Yao (YAO, Yuan 姚遠 Professor): its profile names the research interests \"Topological & geometric methods in data analysis, statistical machine learning, applicatio\" and the profile has no group, student or member section; its own page https://www.math.hkust.edu.hk/~yuany/ returned a frameset with no text of its own; his ~yuany page is a frameset pointing to yao-lab.github.io, a short homepage with no student or member list. The decided DBLP person record (school_affiliation) names no lab page.",
       "sources_checked": [
-        "https://www.math.hkust.edu.hk/people/faculty/profile/yuany/ (sha256 d8172eb17e508a82, read live 2026-11-10): official profile"
+        "https://www.math.hkust.edu.hk/people/ (sha256 cdb44b0c23916141, read live 2026-11-10 09:17): official MATH people page, row \"YAO, Yuan 姚遠 Professor\"; no student, member or group listing in that row",
+        "https://www.math.hkust.edu.hk/people/faculty/profile/yuany/ (sha256 d8172eb17e508a82, read live 2026-11-10 09:17): official profile page; states research interests \"Topological & geometric methods in data analysis, statistical machine learning, applications in computer and l\"",
+        "https://www.math.hkust.edu.hk/~yuany/ (sha256 91e1c04e6e4c4b57, read live 2026-11-10 09:17; https://www.math.hkust.edu.hk/~yuany answered 301 to it): own page linked from the official profile: returned a frameset with no text of its own",
+        "https://dblp.org/pid/25/4120-11 (DBLP dump dblp-2026-09-01.xml.gz record sha256 1de8836c5db61f0a): DBLP person record, basis school_affiliation; lists no lab or group page",
+        "OpenAlex local sweep (snapshot 2026-10-14, file sha256 30ef739ee69e6848): author id https://openalex.org/A5051299066, computing share 0.545; works carry no lab-member information",
+        "https://www.math.hkust.edu.hk/~yuany/ (sha256 91e1c04e6e4c4b57, read live 2026-11-10 09:34): ~yuany is a frameset that points at https://yao-lab.github.io, a short homepage (about, research, courses) with no member list"
       ],
       "checked": "2026-11-10",
-      "basis": "live official pages only; robots respected; no Wayback; no search-engine discovery"
+      "basis": "live official and own pages (robots respected, no Wayback), DBLP dump, OpenAlex local sweep"
     }
   },
   "Fugee Tsung": {
     "students": {
       "code": "sources_exhausted",
-      "why": "No personal or lab website is linked from the official unit directory row or profile page that was read, and no student is named there.",
+      "why": "Fugee Tsung (Fugee TSUNG Chair Professor): its IEDA faculty page gives degrees, appointment, honours and selected publications but no group or student list (the word \"student\" appears only in site navigation and award names); its own page http://www.ieda.ust.hk/dfaculty/tsung/ read; its Students Advised section lists postdocs and PhD graduates with graduation years, no current-student list; the QLab group site qlab.ieda.ust.hk linked from his profile could not be fetched from here (robots or host refusal); the independent reviewer read a QLab Members page with PhD candidates and students under role headings and no start years; the department roster of research postgraduates names no supervisor, so no student is attributable. The decided DBLP person record (unique_name) names no lab page. Correction after review: the QLab pages do load for the independent reviewer (a Members page lists about ten PhD candidates and students under role headings, no start years), so those rows would be held as undated even if read.",
       "sources_checked": [
-        "https://ieda.hkust.edu.hk/eng/faculty-staff.php?catid=5&sid=15&id=1 (sha256 394ea95470f5601e, read live 2026-11-10): official profile"
+        "https://ieda.hkust.edu.hk/eng/faculty.php?catid=5&sid=15 (sha256 7d3e581b74966b98, read live 2026-11-10 09:17): official IEDA people page, row \"Fugee TSUNG Chair Professor\"; no student, member or group listing in that row",
+        "https://ieda.hkust.edu.hk/eng/faculty-staff.php?catid=5&sid=15&id=1 (sha256 394ea95470f5601e, read live 2026-11-10 09:17): official profile page; lists appointment, degrees, research areas, selected publications and contact only",
+        "http://www.ieda.ust.hk/dfaculty/tsung/ (sha256 4eb9c7400d06e539, read live 2026-11-10 09:25; http://www.ieda.ust.hk/dfaculty/tsung answered 301 to it): own page linked from the official profile: read; its Students Advised section lists postdocs and PhD graduates with graduation years, no current-student list",
+        "https://dblp.org/pid/95/2794 (DBLP dump dblp-2026-09-01.xml.gz record sha256 f632a8c5e4ed9bf1): DBLP person record, basis unique_name; lists no lab or group page",
+        "OpenAlex local sweep (snapshot 2026-10-14, file sha256 30ef739ee69e6848): author id https://openalex.org/A5048627515, computing share 0.503; works carry no lab-member information",
+        "https://ieda.hkust.edu.hk/eng/student.php?catid=5&sid=17 (sha256 039d42a8920a, read live 2026-11-10): IEDA research-postgraduate roster: names and offices only, no supervisor column"
       ],
       "checked": "2026-11-10",
-      "basis": "live official pages only; robots respected; no Wayback; no search-engine discovery"
+      "basis": "live official and own pages (robots respected, no Wayback), DBLP dump, OpenAlex local sweep"
     }
   },
   "Sirui Han": {
     "students": {
       "code": "sources_exhausted",
-      "why": "No personal or lab website is linked from the official unit directory row or profile page that was read, and no student is named there.",
-      "sources_checked": [],
+      "why": "Sirui Han (HAN Sirui HAN 韓斯睿 韓斯睿 Assistant Professor): the EMIA people page lists the title \"HAN Sirui HAN 韓斯睿 韓斯睿 Assistant Professor\" and a research-area tag set and links only the central faculty portal, whose host researchportal.hkust.edu.hk is recorded as bot-challenged for this collector (not read by me). The decided DBLP person record (unique_exact_name) names no lab page.",
+      "sources_checked": [
+        "https://emia.hkust.edu.hk/people (sha256 f0a678a512ae94f4, read live 2026-11-10 09:17): official EMIA people page, row \"HAN Sirui HAN 韓斯睿 韓斯睿 Assistant Professor\"; no student, member or group listing in that row",
+        "https://dblp.org/pid/373/4263 (DBLP dump dblp-2026-09-01.xml.gz record sha256 46d8f78ec77ead06): DBLP person record, basis unique_exact_name; lists no lab or group page",
+        "OpenAlex local sweep (snapshot 2026-10-14, file sha256 30ef739ee69e6848): author id https://openalex.org/A5021255269, computing share 0.554; works carry no lab-member information"
+      ],
       "checked": "2026-11-10",
-      "basis": "live official pages only; robots respected; no Wayback; no search-engine discovery"
+      "basis": "live official and own pages (robots respected, no Wayback), DBLP dump, OpenAlex local sweep"
     }
   },
   "Wei Xue": {
     "students": {
       "code": "sources_exhausted",
-      "why": "No personal or lab website is linked from the official unit directory row or profile page that was read, and no student is named there.",
-      "sources_checked": [],
+      "why": "Wei Xue (Wei XUE Wei XUE 雪巍 雪巍 Assistant Professor): his personal site wei-xue.com (linked from the central faculty portal profile per the independent reviewer) refused an automated read from here, so its team page could not be read by me; the reviewer saw PhD students listed with entry terms there, so this PI needs a manual re-read; the EMIA people page lists the title \"Wei XUE Wei XUE 雪巍 雪巍 Assistant Professor\" and a research-area tag set and links only the central faculty portal, whose host researchportal.hkust.edu.hk is recorded as bot-challenged for this collector (not read by me). No DBLP person is decided for this name, so no lab page can come from DBLP.",
+      "sources_checked": [
+        "https://emia.hkust.edu.hk/people (sha256 f0a678a512ae94f4, read live 2026-11-10 09:17): official EMIA people page, row \"Wei XUE Wei XUE 雪巍 雪巍 Assistant Professor\"; no student, member or group listing in that row",
+        "DBLP dump dblp-2026-09-01: no person record decided for this name (several same-name persons, no HKUST affiliation note to choose); no lab page can be taken from it",
+        "OpenAlex local sweep (snapshot 2026-10-14, file sha256 30ef739ee69e6848): author id https://openalex.org/A5100652844, computing share 0.583; works carry no lab-member information"
+      ],
       "checked": "2026-11-10",
-      "basis": "live official pages only; robots respected; no Wayback; no search-engine discovery"
+      "basis": "live official and own pages (robots respected, no Wayback), DBLP dump, OpenAlex local sweep"
     }
   },
   "Ying-Ju Chen": {
     "students": {
       "code": "sources_exhausted",
-      "why": "No personal or lab website is linked from the official unit directory row or profile page that was read, and no student is named there.",
+      "why": "Ying-Ju Chen (Ju CHEN Crown Worldwide Professor of Business Ch): its profile names the research interests \"Network economics, Socially responsible operations; Operations-Marketing interface; Supply\" and the profile has no group, student or member section; its own page https://imchen.people.ust.hk/ read; has a \"Current/Incoming\" list of 15 named PhD students with no start years or role labels, a pre-doctoral advisee list and past dissertation students (held: undated, mixes current and incoming); his profile also lists past dissertation students (2012-2016 at UC Berkeley, not HKUST; two HKUST PhDs 2017 and 2018) and points to the IEDA postgraduate page, which names no supervisors. No DBLP person is decided for this name, so no lab page can come from DBLP.",
       "sources_checked": [
-        "https://ieda.hkust.edu.hk/eng/faculty-staff.php?catid=5&sid=15&id=12 (sha256 1df3c9ca1ecb0577, read live 2026-11-10): official profile"
+        "https://ieda.hkust.edu.hk/eng/faculty.php?catid=5&sid=15 (sha256 7d3e581b74966b98, read live 2026-11-10 09:17): official IEDA people page, row \"Ju CHEN Crown Worldwide Professor of Business Chair Professor 2358 864\"; no student, member or group listing in that row",
+        "https://ieda.hkust.edu.hk/eng/faculty-staff.php?catid=5&sid=15&id=12 (sha256 1df3c9ca1ecb0577, read live 2026-11-10 09:17): official profile page; states research interests \"Network economics, Socially responsible operations; Operations-Marketing interface; Supply chain management Co\"",
+        "https://imchen.people.ust.hk/ (sha256 355f1b2cc745e842, read live 2026-11-10 09:25): own page linked from the official profile: read; has a \"Current/Incoming\" list of 15 named PhD students with no start years or role labels, a pre-doctoral advisee list and past dissertation students (held: undated, mixes current and incoming)",
+        "DBLP dump dblp-2026-09-01: no person record decided for this name (several same-name persons, no HKUST affiliation note to choose); no lab page can be taken from it",
+        "OpenAlex local sweep (snapshot 2026-10-14, file sha256 30ef739ee69e6848): author id https://openalex.org/A5101811263, computing share 0.221; works carry no lab-member information",
+        "https://ieda.hkust.edu.hk/eng/student.php?catid=5&sid=17 (sha256 039d42a8920a, read live 2026-11-10): IEDA research-postgraduate roster linked from the profile as the 'research group'; it lists students by name and office only, with no supervisor, so none can be assigned to this PI"
       ],
       "checked": "2026-11-10",
-      "basis": "live official pages only; robots respected; no Wayback; no search-engine discovery"
+      "basis": "live official and own pages (robots respected, no Wayback), DBLP dump, OpenAlex local sweep"
     }
   },
   "Jiheng Zhang": {
     "students": {
       "code": "sources_exhausted",
-      "why": "No personal or lab website is linked from the official unit directory row or profile page that was read, and no student is named there.",
+      "why": "Jiheng Zhang (ZHANG, Jiheng 張季恆 Professor): its profile names the research interests \"Applied Probability, Stochastic Modeling and Optimization, Data Analysis, Numerical Method\" and the profile has no group, student or member section; its own page https://www.math.hkust.edu.hk/~jiheng/ shows no readable member list. The decided DBLP person record (school_coauthors) names no lab page. His ~jiheng page is a meta-refresh to a department lab host (dmac.ust.hk) that did not respond for the independent reviewer, so no member list is readable.",
       "sources_checked": [
-        "https://www.math.hkust.edu.hk/people/faculty/profile/jiheng/ (sha256 2d62d60971cb6d03, read live 2026-11-10): official profile"
+        "https://www.math.hkust.edu.hk/people/ (sha256 cdb44b0c23916141, read live 2026-11-10 09:17): official MATH people page, row \"ZHANG, Jiheng 張季恆 Professor\"; no student, member or group listing in that row",
+        "https://www.math.hkust.edu.hk/people/faculty/profile/jiheng/ (sha256 2d62d60971cb6d03, read live 2026-11-10 09:17): official profile page; states research interests \"Applied Probability, Stochastic Modeling and Optimization, Data Analysis, Numerical Methods and Algorithms, Wi\"",
+        "https://www.math.hkust.edu.hk/~jiheng/ (sha256 aaf59baf9085f22d, read live 2026-11-10 09:17; https://www.math.hkust.edu.hk/~jiheng answered 301 to it): own page linked from the official profile: returned HTTP 200 but no readable text (script-rendered page), so no member list could be read",
+        "https://dblp.org/pid/13/7602 (DBLP dump dblp-2026-09-01.xml.gz record sha256 ae5799932e288757): DBLP person record, basis school_coauthors; lists no lab or group page",
+        "OpenAlex local sweep (snapshot 2026-10-14, file sha256 30ef739ee69e6848): author id https://openalex.org/A5004297494, computing share 0.532; works carry no lab-member information"
       ],
       "checked": "2026-11-10",
-      "basis": "live official pages only; robots respected; no Wayback; no search-engine discovery"
+      "basis": "live official and own pages (robots respected, no Wayback), DBLP dump, OpenAlex local sweep"
     }
   },
   "Yi-Kuen Lee": {
     "students": {
       "code": "sources_exhausted",
-      "why": "No personal or lab website is linked from the official unit directory row or profile page that was read, and no student is named there.",
-      "sources_checked": [],
+      "why": "Yi-Kuen Lee (Yi-Kuen LEE 李貽昆 Associate Professor): its SENG profile card gives only research interests and a biography (the full profile link goes to the MAE host, not contacted); the MAE department host disallows automated access in robots.txt and was not contacted. No DBLP person is decided for this name, so no lab page can come from DBLP.",
+      "sources_checked": [
+        "https://seng.hkust.edu.hk/about/people/faculty/yi-kuen-lee (sha256 06eba17b3b944417, read live 2026-11-10 09:20): official SENG faculty profile card: research interests \"Biomicrosystem; MEMS sensors for construction robotics; AIoT sensors for Metaverse\" and a short biography; no group or student list on it",
+        "DBLP dump dblp-2026-09-01: no person record decided for this name (several same-name persons, no HKUST affiliation note to choose); no lab page can be taken from it",
+        "OpenAlex local sweep (snapshot 2026-10-14, file sha256 30ef739ee69e6848): author id https://openalex.org/A5063522793, computing share 0.238; works carry no lab-member information"
+      ],
       "checked": "2026-11-10",
-      "basis": "live official pages only; robots respected; no Wayback; no search-engine discovery"
+      "basis": "live official and own pages (robots respected, no Wayback), DBLP dump, OpenAlex local sweep"
     }
   },
   "Jie Yuan": {
@@ -568,63 +599,93 @@
   "Hai Zhang": {
     "students": {
       "code": "sources_exhausted",
-      "why": "No personal or lab website is linked from the official unit directory row or profile page that was read, and no student is named there.",
+      "why": "Hai Zhang (ZHANG, Hai 張海 Professor): its profile names the research interests \"Applied Math, Inverse Problems, Wave Propagation, Imaging, Super-resolution.\" and the profile has no group, student or member section; its own page https://www.math.hkust.edu.hk/~haizhang/ was read and has no current student list; his own Research Group page has a Current Members list (4 PhD students, one marked co-supervisor, and 3 postdocs) under role headings but with no start year for anyone, so the rows are held as undated; the former-member list gives graduation years only. No DBLP person is decided for this name, so no lab page can come from DBLP.",
       "sources_checked": [
-        "https://www.math.hkust.edu.hk/people/faculty/profile/haizhang/ (sha256 42e3a39d579aca90, read live 2026-11-10): official profile"
+        "https://www.math.hkust.edu.hk/people/ (sha256 cdb44b0c23916141, read live 2026-11-10 09:17): official MATH people page, row \"ZHANG, Hai 張海 Professor\"; no student, member or group listing in that row",
+        "https://www.math.hkust.edu.hk/people/faculty/profile/haizhang/ (sha256 42e3a39d579aca90, read live 2026-11-10 09:17): official profile page; states research interests \"Applied Math, Inverse Problems, Wave Propagation, Imaging, Super-resolution.\"",
+        "https://www.math.hkust.edu.hk/~haizhang/ (sha256 ce25b299e09c1dc6, read live 2026-11-10 09:18; https://www.math.hkust.edu.hk/~haizhang answered 301 to it): own page linked from the official profile: read; no group or student list found on it",
+        "DBLP dump dblp-2026-09-01: no person record decided for this name (several same-name persons, no HKUST affiliation note to choose); no lab page can be taken from it",
+        "OpenAlex local sweep (snapshot 2026-10-14, file sha256 30ef739ee69e6848): author id https://openalex.org/A5100457335, computing share 0.211; works carry no lab-member information",
+        "https://www.math.hkust.edu.hk/~haizhang/research-group.html (sha256 c12fb2fd169aaede, read live 2026-11-10 09:34): own Research Group page, linked as 'Research Group' from his home page"
       ],
       "checked": "2026-11-10",
-      "basis": "live official pages only; robots respected; no Wayback; no search-engine discovery"
+      "basis": "live official and own pages (robots respected, no Wayback), DBLP dump, OpenAlex local sweep"
     }
   },
   "Kar Yan Tam": {
     "students": {
       "code": "sources_exhausted",
-      "why": "No personal or lab website is linked from the official unit directory row or profile page that was read, and no student is named there.",
-      "sources_checked": [],
+      "why": "Kar Yan Tam (Kar Yan TAM Information Systems Chair Professor): his Business School page shows a research feed and no members; the ISOM department host fails TLS from here (not retried, no workaround). The decided DBLP person record (unique_exact_name) names no lab page.",
+      "sources_checked": [
+        "https://bm.hkust.edu.hk/faculty/tam-kar-yan (sha256 9fe7a21f669a25d7, read live 2026-11-10 09:20): official Business School faculty page: research feed (papers) only, no group or student list",
+        "https://dblp.org/pid/02/2801 (DBLP dump dblp-2026-09-01.xml.gz record sha256 3e841b10b3591727): DBLP person record, basis unique_exact_name; lists no lab or group page",
+        "OpenAlex local sweep (snapshot 2026-10-14, file sha256 30ef739ee69e6848): author id https://openalex.org/A5090061579, computing share 0.517; works carry no lab-member information"
+      ],
       "checked": "2026-11-10",
-      "basis": "live official pages only; robots respected; no Wayback; no search-engine discovery"
+      "basis": "live official and own pages (robots respected, no Wayback), DBLP dump, OpenAlex local sweep"
     }
   },
   "Kani Chen": {
     "students": {
       "code": "sources_exhausted",
-      "why": "No personal or lab website is linked from the official unit directory row or profile page that was read, and no student is named there.",
+      "why": "Kani Chen (Kani CHEN Professor): its profile names the research interests \"Survival analysis; empirical processes; stochastic modeling; financial statistics Contact \" and the profile has no group, student or member section; the department roster of research postgraduates names no supervisor, so no student is attributable. The decided DBLP person record (unique_exact_name) names no lab page.",
       "sources_checked": [
-        "https://ieda.hkust.edu.hk/eng/faculty-staff.php?catid=5&sid=15&id=40 (sha256 db83472e657ef684, read live 2026-11-10): official profile"
+        "https://ieda.hkust.edu.hk/eng/faculty.php?catid=5&sid=15 (sha256 7d3e581b74966b98, read live 2026-11-10 09:17): official IEDA people page, row \"Kani CHEN Professor\"; no student, member or group listing in that row",
+        "https://ieda.hkust.edu.hk/eng/faculty-staff.php?catid=5&sid=15&id=40 (sha256 db83472e657ef684, read live 2026-11-10 09:17): official profile page; states research interests \"Survival analysis; empirical processes; stochastic modeling; financial statistics Contact Info Research Intere\"",
+        "https://dblp.org/pid/173/5839 (DBLP dump dblp-2026-09-01.xml.gz record sha256 cf19b31f58aa5bbf): DBLP person record, basis unique_exact_name; lists no lab or group page",
+        "OpenAlex local sweep (snapshot 2026-10-14, file sha256 30ef739ee69e6848): author id https://openalex.org/A5040402090, computing share 0.298; works carry no lab-member information",
+        "https://ieda.hkust.edu.hk/eng/student.php?catid=5&sid=17 (sha256 039d42a8920a, read live 2026-11-10): IEDA research-postgraduate roster: names and offices only, no supervisor column"
       ],
       "checked": "2026-11-10",
-      "basis": "live official pages only; robots respected; no Wayback; no search-engine discovery"
+      "basis": "live official and own pages (robots respected, no Wayback), DBLP dump, OpenAlex local sweep"
     }
   },
   "Sen Li": {
     "students": {
       "code": "sources_exhausted",
-      "why": "No personal or lab website is linked from the official unit directory row or profile page that was read, and no student is named there.",
-      "sources_checked": [],
+      "why": "Sen Li (Sen LI 李森 Associate Professor): his own group site has a Meet the Team page naming 9 PhD students, 2 of them marked co-advised, but it gives degree years of earlier study (e.g. B.S. 2016-2020) and no HKUST start year, and the page carries no date (latest news item 2025/01), so the rows are held rather than guessed. No DBLP person is decided for this name, so no lab page can come from DBLP.",
+      "sources_checked": [
+        "https://ce.hkust.edu.hk/people_list (sha256 6a91c2870d1f9248, read live 2026-11-10 09:17): official CIVL people page, row \"Sen LI 李森 Associate Professor\"; no student, member or group listing in that row",
+        "DBLP dump dblp-2026-09-01: no person record decided for this name (several same-name persons, no HKUST affiliation note to choose); no lab page can be taken from it",
+        "OpenAlex local sweep (snapshot 2026-10-14, file sha256 30ef739ee69e6848): author id https://openalex.org/A5100444240, computing share 0.215; works carry no lab-member information",
+        "https://lisen1990.wixsite.com/senli (sha256 4c0076c5d744c08a, read live 2026-11-10 09:20): homepage linked from the CIVL people row; answered 301 to https://www.smartcityhkust.com/ (hop chain: wixsite.com -> www.smartcityhkust.com, the PI's own group site; robots of the target host checked before the read)",
+        "https://www.smartcityhkust.com/ (sha256 1e5e366970544c90, read live 2026-11-10 09:20): own group site home page; menu Home / Research Group / Publications / Join us",
+        "https://www.smartcityhkust.com/team-4 (sha256 dbcdad4a12b2f628, read live 2026-11-10 09:20): 'Meet the Team' page"
+      ],
       "checked": "2026-11-10",
-      "basis": "live official pages only; robots respected; no Wayback; no search-engine discovery"
+      "basis": "live official and own pages (robots respected, no Wayback), DBLP dump, OpenAlex local sweep"
     }
   },
   "Xiangtong Qi": {
     "students": {
       "code": "sources_exhausted",
-      "why": "No personal or lab website is linked from the official unit directory row or profile page that was read, and no student is named there.",
+      "why": "Xiangtong Qi (Xiangtong QI Professor): its profile names the research interests \"Modeling and optimization with applications in production scheduling, inventory control, l\" and the profile has no group, student or member section; its own page http://ieemqi.people.ust.hk read; short bio, courses and contact only; the department roster of research postgraduates names no supervisor, so no student is attributable. The decided DBLP person record (unique_exact_name) names no lab page.",
       "sources_checked": [
-        "https://ieda.hkust.edu.hk/eng/faculty-staff.php?catid=5&sid=15&id=5 (sha256 3652d981de82ea59, read live 2026-11-10): official profile"
+        "https://ieda.hkust.edu.hk/eng/faculty.php?catid=5&sid=15 (sha256 7d3e581b74966b98, read live 2026-11-10 09:17): official IEDA people page, row \"Xiangtong QI Professor\"; no student, member or group listing in that row",
+        "https://ieda.hkust.edu.hk/eng/faculty-staff.php?catid=5&sid=15&id=5 (sha256 3652d981de82ea59, read live 2026-11-10 09:17): official profile page; states research interests \"Modeling and optimization with applications in production scheduling, inventory control, logistics, and supply\"",
+        "http://ieemqi.people.ust.hk (sha256 5436bc44b009aee0, read live 2026-11-10 09:25): own page linked from the official profile: read; short bio, courses and contact only",
+        "https://dblp.org/pid/61/944 (DBLP dump dblp-2026-09-01.xml.gz record sha256 53466d779c19dc2e): DBLP person record, basis unique_exact_name; lists no lab or group page",
+        "OpenAlex local sweep (snapshot 2026-10-14, file sha256 30ef739ee69e6848): author id https://openalex.org/A5004212221, computing share 0.464; works carry no lab-member information",
+        "https://ieda.hkust.edu.hk/eng/student.php?catid=5&sid=17 (sha256 039d42a8920a, read live 2026-11-10): IEDA research-postgraduate roster: names and offices only, no supervisor column"
       ],
       "checked": "2026-11-10",
-      "basis": "live official pages only; robots respected; no Wayback; no search-engine discovery"
+      "basis": "live official and own pages (robots respected, no Wayback), DBLP dump, OpenAlex local sweep"
     }
   },
   "Jiashuo Jiang": {
     "students": {
       "code": "sources_exhausted",
-      "why": "No personal or lab website is linked from the official unit directory row or profile page that was read, and no student is named there.",
+      "why": "Jiashuo Jiang (Jiashuo JIANG Assistant Professor): its IEDA faculty page gives degrees, appointment, honours and selected publications but no group or student list (the word \"student\" appears only in site navigation and award names); its own page https://jiashuo3.github.io/ could not be read from here; the department roster of research postgraduates names no supervisor, so no student is attributable. The decided DBLP person record (unique_exact_name) names no lab page. His own site jiashuo3.github.io answered 503 to its robots.txt on 2026-11-10 (treated as a refusal, so nothing was read by me); the independent reviewer, reading it separately, saw an advised-students list on its teaching page with start years (2023-2026) that this record could not take under the robots rule, so this PI needs a re-read when the host recovers.",
       "sources_checked": [
-        "https://ieda.hkust.edu.hk/eng/faculty-staff.php?catid=5&sid=15&id=43 (sha256 7527af798d094639, read live 2026-11-10): official profile"
+        "https://ieda.hkust.edu.hk/eng/faculty.php?catid=5&sid=15 (sha256 7d3e581b74966b98, read live 2026-11-10 09:17): official IEDA people page, row \"Jiashuo JIANG Assistant Professor\"; no student, member or group listing in that row",
+        "https://ieda.hkust.edu.hk/eng/faculty-staff.php?catid=5&sid=15&id=43 (sha256 7527af798d094639, read live 2026-11-10 09:17): official profile page; lists appointment, degrees, research areas, selected publications and contact only",
+        "https://jiashuo3.github.io/: linked from the official profile; fetch returned None (robots or host refusal from here), nothing read",
+        "https://dblp.org/pid/281/6676 (DBLP dump dblp-2026-09-01.xml.gz record sha256 b2c7d50bf1fee9f3): DBLP person record, basis unique_exact_name; lists no lab or group page",
+        "OpenAlex local sweep (snapshot 2026-10-14, file sha256 30ef739ee69e6848): author id https://openalex.org/A5004523527, computing share 0.355; works carry no lab-member information",
+        "https://ieda.hkust.edu.hk/eng/student.php?catid=5&sid=17 (sha256 039d42a8920a, read live 2026-11-10): IEDA research-postgraduate roster: names and offices only, no supervisor column"
       ],
       "checked": "2026-11-10",
-      "basis": "live official pages only; robots respected; no Wayback; no search-engine discovery"
+      "basis": "live official and own pages (robots respected, no Wayback), DBLP dump, OpenAlex local sweep"
     }
   },
   "Yihan Zhang": {
@@ -642,74 +703,103 @@
   "Eric Marberg": {
     "students": {
       "code": "sources_exhausted",
-      "why": "No personal or lab website is linked from the official unit directory row or profile page that was read, and no student is named there.",
+      "why": "Eric Marberg (MARBERG, Eric Associate Professor): its profile names the research interests \"Representation theory, algebraic combinatorics\" and the profile has no group, student or member section; its own page https://www.math.hkust.edu.hk/~emarberg/ was read and has no current student list. The decided DBLP person record (unique_exact_name) names no lab page.",
       "sources_checked": [
-        "https://www.math.hkust.edu.hk/people/faculty/profile/emarberg/ (sha256 ae89ec95553049de, read live 2026-11-10): official profile"
+        "https://www.math.hkust.edu.hk/people/ (sha256 cdb44b0c23916141, read live 2026-11-10 09:17): official MATH people page, row \"MARBERG, Eric Associate Professor\"; no student, member or group listing in that row",
+        "https://www.math.hkust.edu.hk/people/faculty/profile/emarberg/ (sha256 ae89ec95553049de, read live 2026-11-10 09:17): official profile page; states research interests \"Representation theory, algebraic combinatorics\"",
+        "https://www.math.hkust.edu.hk/~emarberg/ (sha256 ac65a8c53a84c108, read live 2026-11-10 09:18; https://www.math.hkust.edu.hk/~emarberg answered 301 to it): own page linked from the official profile: read; no group or student list found on it",
+        "https://dblp.org/pid/04/10840 (DBLP dump dblp-2026-09-01.xml.gz record sha256 5a811a9ebcc86ebb): DBLP person record, basis unique_exact_name; lists no lab or group page",
+        "OpenAlex local sweep (snapshot 2026-10-14, file sha256 30ef739ee69e6848): author id https://openalex.org/A5066022731, computing share 0.312; works carry no lab-member information"
       ],
       "checked": "2026-11-10",
-      "basis": "live official pages only; robots respected; no Wayback; no search-engine discovery"
+      "basis": "live official and own pages (robots respected, no Wayback), DBLP dump, OpenAlex local sweep"
     }
   },
   "Kam Tim Woo": {
     "students": {
       "code": "sources_exhausted",
-      "why": "No personal or lab website is linked from the official unit directory row or profile page that was read, and no student is named there.",
+      "why": "Kam Tim Woo (Kam Tim WOO Kam Tim WOO 胡錦添 胡錦添 Affiliated Facul): its profile names the research interests \"Engineering education Robotics Signal processing Tracking systems Profile Honors &\" and the profile has no group, student or member section; the EMIA people page lists the title \"Kam Tim WOO Kam Tim WOO 胡錦添 胡錦添 Affiliated Faculty and Assoc\" and a research-area tag set and links only the central faculty portal, whose host researchportal.hkust.edu.hk is recorded as bot-challenged for this collector (not read by me); his ECE profile page navigation mentions student programmes and committees only, and names no group members. No DBLP person is decided for this name, so no lab page can come from DBLP.",
       "sources_checked": [
-        "https://ece.hkust.edu.hk/eetim (sha256 bbe8e805978a4458, read live 2026-11-10): official profile"
+        "https://emia.hkust.edu.hk/people (sha256 f0a678a512ae94f4, read live 2026-11-10 09:17): official EMIA people page, row \"Kam Tim WOO Kam Tim WOO 胡錦添 胡錦添 Affiliated Faculty and Associate Profe\"; no student, member or group listing in that row",
+        "https://ece.hkust.edu.hk/eetim (sha256 bbe8e805978a4458, read live 2026-11-10 09:17): official profile page; states research interests \"Engineering education Robotics Signal processing Tracking systems Profile Honors &\"",
+        "DBLP dump dblp-2026-09-01: no person record decided for this name (several same-name persons, no HKUST affiliation note to choose); no lab page can be taken from it",
+        "OpenAlex local sweep (snapshot 2026-10-14, file sha256 30ef739ee69e6848): author id https://openalex.org/A5055809969, computing share 0.769; works carry no lab-member information"
       ],
       "checked": "2026-11-10",
-      "basis": "live official pages only; robots respected; no Wayback; no search-engine discovery"
+      "basis": "live official and own pages (robots respected, no Wayback), DBLP dump, OpenAlex local sweep"
     }
   },
   "Anyi Rao": {
     "students": {
       "code": "sources_exhausted",
-      "why": "No personal or lab website is linked from the official unit directory row or profile page that was read, and no student is named there.",
-      "sources_checked": [],
+      "why": "Anyi Rao (RAO Anyi RAO 饒安逸 饒安逸 Assistant Professor): his lab site MMLab@HKUST has a Who We Are section with 18 PhD students, artists and research assistants listed by name with awards and previous schools but no start years (some marked with a co-adviser), so the rows are held as undated; the EMIA people page lists the title \"RAO Anyi RAO 饒安逸 饒安逸 Assistant Professor\" and a research-area tag set and links only the central faculty portal, whose host researchportal.hkust.edu.hk is recorded as bot-challenged for this collector (not read by me). The decided DBLP person record (unique_exact_name) names no lab page.",
+      "sources_checked": [
+        "https://emia.hkust.edu.hk/people (sha256 f0a678a512ae94f4, read live 2026-11-10 09:17): official EMIA people page, row \"RAO Anyi RAO 饒安逸 饒安逸 Assistant Professor\"; no student, member or group listing in that row",
+        "https://dblp.org/pid/211/7941 (DBLP dump dblp-2026-09-01.xml.gz record sha256 98864433f581c107): DBLP person record, basis unique_exact_name; lists no lab or group page",
+        "OpenAlex local sweep (snapshot 2026-10-14, file sha256 30ef739ee69e6848): author id https://openalex.org/A5067715162, computing share 0.31; works carry no lab-member information",
+        "https://mmlab-hkust.github.io/ (sha256 81bf48eaf03883c9, read live 2026-11-10 09:34): MMLab@HKUST group site; found through the profile link to anyirao.github.io on the central faculty portal, which the independent reviewer read; the portal host (researchportal.hkust.edu.hk) is recorded as bot-challenged for this collector and was not read by me"
+      ],
       "checked": "2026-11-10",
-      "basis": "live official pages only; robots respected; no Wayback; no search-engine discovery"
+      "basis": "live official and own pages (robots respected, no Wayback), DBLP dump, OpenAlex local sweep"
     }
   },
   "Rob B.N. Scharff": {
     "students": {
       "code": "sources_exhausted",
-      "why": "No personal or lab website is linked from the official unit directory row or profile page that was read, and no student is named there.",
+      "why": "Rob B.N. Scharff (Rob Scharff is an Assistant Professor): no group page is linked from the unit people row. The decided DBLP person record (unique_exact_name) names no lab page.",
       "sources_checked": [
-        "https://ri.hkust.edu.hk/people/rob-scharff (sha256 f063d7d54a6f823b, read live 2026-11-10): official profile"
+        "https://ri.hkust.edu.hk/people_list (sha256 bd1bbfb43026d32a, read live 2026-11-10 09:17): official RI people page, row \"Rob Scharff is an Assistant Professor\"; no student, member or group listing in that row",
+        "https://ri.hkust.edu.hk/people/rob-scharff (sha256 f063d7d54a6f823b, read live 2026-11-10 09:17): official profile page; lists appointment, degrees, research areas, selected publications and contact only",
+        "https://dblp.org/pid/226/6437 (DBLP dump dblp-2026-09-01.xml.gz record sha256 25d9cae506a3780e): DBLP person record, basis unique_exact_name; lists no lab or group page",
+        "OpenAlex local sweep (snapshot 2026-10-14, file sha256 30ef739ee69e6848): author id https://openalex.org/A5025298366, computing share 0.467; works carry no lab-member information"
       ],
       "checked": "2026-11-10",
-      "basis": "live official pages only; robots respected; no Wayback; no search-engine discovery"
+      "basis": "live official and own pages (robots respected, no Wayback), DBLP dump, OpenAlex local sweep"
     }
   },
   "Yunya Song": {
     "students": {
       "code": "sources_exhausted",
-      "why": "No personal or lab website is linked from the official unit directory row or profile page that was read, and no student is named there.",
-      "sources_checked": [],
+      "why": "Yunya Song (Yunya SONG Celine Yunya SONG 宋韻雅 宋韻雅 Associate H): the EMIA people page lists the title \"Yunya SONG Celine Yunya SONG 宋韻雅 宋韻雅 Associate Head and Prof\" and a research-area tag set and links only the central faculty portal, whose host researchportal.hkust.edu.hk is recorded as bot-challenged for this collector (not read by me). The decided DBLP person record (unique_exact_name) names no lab page.",
+      "sources_checked": [
+        "https://emia.hkust.edu.hk/people (sha256 f0a678a512ae94f4, read live 2026-11-10 09:17): official EMIA people page, row \"Yunya SONG Celine Yunya SONG 宋韻雅 宋韻雅 Associate Head and Professor\"; no student, member or group listing in that row",
+        "https://dblp.org/pid/165/3067 (DBLP dump dblp-2026-09-01.xml.gz record sha256 2bb94ded787b34f9): DBLP person record, basis unique_exact_name; lists no lab or group page",
+        "OpenAlex local sweep (snapshot 2026-10-14, file sha256 30ef739ee69e6848): author id https://openalex.org/A5060246267, computing share 0.412; works carry no lab-member information"
+      ],
       "checked": "2026-11-10",
-      "basis": "live official pages only; robots respected; no Wayback; no search-engine discovery"
+      "basis": "live official and own pages (robots respected, no Wayback), DBLP dump, OpenAlex local sweep"
     }
   },
   "Ajay Joneja": {
     "students": {
       "code": "sources_exhausted",
-      "why": "No personal or lab website is linked from the official unit directory row or profile page that was read, and no student is named there.",
+      "why": "Ajay Joneja (Ajay JONEJA Professor): its profile names the research interests \"CAD/CAM integration for Manufacturing Processes; Rapid Prototyping; Architectural geometry\" and the profile has no group, student or member section; its own page http://www.ieda.ust.hk/dfaculty/ajay/ read; his Advising section lists postdocs, PhD, MPhil and MSc advisees with year ranges; its only current row is the PhD student \"Weidan Xiong, 2014-present (co-advised with Pedro Sander)\", a co-advised row from 2014, so it is held as stale and co-advised; all other rows are past advisees; the department roster of research postgraduates names no supervisor, so no student is attributable. The decided DBLP person record (unique_exact_name) names no lab page.",
       "sources_checked": [
-        "https://ieda.hkust.edu.hk/eng/faculty-staff.php?catid=5&sid=15&id=4 (sha256 08d149ba09c5ac57, read live 2026-11-10): official profile"
+        "https://ieda.hkust.edu.hk/eng/faculty.php?catid=5&sid=15 (sha256 7d3e581b74966b98, read live 2026-11-10 09:17): official IEDA people page, row \"Ajay JONEJA Professor\"; no student, member or group listing in that row",
+        "https://ieda.hkust.edu.hk/eng/faculty-staff.php?catid=5&sid=15&id=4 (sha256 08d149ba09c5ac57, read live 2026-11-10 09:17): official profile page; states research interests \"CAD/CAM integration for Manufacturing Processes; Rapid Prototyping; Architectural geometry. Contact Info Resea\"",
+        "http://www.ieda.ust.hk/dfaculty/ajay/ (sha256 6a69eb901fdddb15, read live 2026-11-10 09:25; http://www.ieda.ust.hk/dfaculty/ajay answered 301 to it): own page linked from the official profile: read",
+        "https://dblp.org/pid/77/2737 (DBLP dump dblp-2026-09-01.xml.gz record sha256 74b01b25150fcbb7): DBLP person record, basis unique_exact_name; lists no lab or group page",
+        "OpenAlex local sweep (snapshot 2026-10-14, file sha256 30ef739ee69e6848): author id https://openalex.org/A5038853037, computing share 0.6; works carry no lab-member information",
+        "http://www.ieda.ust.hk/dfaculty/ajay/ (sha256 6a69eb901fdddb15, read live 2026-11-10 09:25; the page is UTF-16 encoded): own page, Advising section",
+        "https://ieda.hkust.edu.hk/eng/student.php?catid=5&sid=17 (sha256 039d42a8920a, read live 2026-11-10): IEDA research-postgraduate roster: names and offices only, no supervisor column"
       ],
       "checked": "2026-11-10",
-      "basis": "live official pages only; robots respected; no Wayback; no search-engine discovery"
+      "basis": "live official and own pages (robots respected, no Wayback), DBLP dump, OpenAlex local sweep"
     }
   },
   "Wei You": {
     "students": {
       "code": "sources_exhausted",
-      "why": "No personal or lab website is linked from the official unit directory row or profile page that was read, and no student is named there.",
+      "why": "Wei You (Wei YOU Assistant Professor): its profile names the research interests \"Queueing Theory, Applied Probability, Performance Analysis, Service Systems Design Contact\" and the profile has no group, student or member section; the department roster of research postgraduates names no supervisor, so no student is attributable. No DBLP person is decided for this name, so no lab page can come from DBLP.",
       "sources_checked": [
-        "https://ieda.hkust.edu.hk/eng/faculty-staff.php?catid=5&sid=15&id=34 (sha256 b1933f9e809fdc16, read live 2026-11-10): official profile"
+        "https://ieda.hkust.edu.hk/eng/faculty.php?catid=5&sid=15 (sha256 7d3e581b74966b98, read live 2026-11-10 09:17): official IEDA people page, row \"Wei YOU Assistant Professor\"; no student, member or group listing in that row",
+        "https://ieda.hkust.edu.hk/eng/faculty-staff.php?catid=5&sid=15&id=34 (sha256 b1933f9e809fdc16, read live 2026-11-10 09:17): official profile page; states research interests \"Queueing Theory, Applied Probability, Performance Analysis, Service Systems Design Contact Info Research Inter\"",
+        "DBLP dump dblp-2026-09-01: no person record decided for this name (several same-name persons, no HKUST affiliation note to choose); no lab page can be taken from it",
+        "OpenAlex local sweep (snapshot 2026-10-14, file sha256 30ef739ee69e6848): author id https://openalex.org/A5077211309, computing share 0.462; works carry no lab-member information",
+        "https://ieda.hkust.edu.hk/eng/student.php?catid=5&sid=17 (sha256 039d42a8920a, read live 2026-11-10): IEDA research-postgraduate roster: names and offices only, no supervisor column"
       ],
       "checked": "2026-11-10",
-      "basis": "live official pages only; robots respected; no Wayback; no search-engine discovery"
+      "basis": "live official and own pages (robots respected, no Wayback), DBLP dump, OpenAlex local sweep"
     }
   },
   "Khaled Ben Letaief": {
@@ -799,12 +889,16 @@
   "Jian-Feng Cai": {
     "students": {
       "code": "sources_exhausted",
-      "why": "No personal or lab website is linked from the official unit directory row or profile page that was read, and no student is named there.",
+      "why": "Jian-Feng Cai (CAI, Jian-Feng 蔡劍鋒 Professor): its profile names the research interests \"Algorithmic and mathematical foundation of information and data, with applications in sign\" and the profile has no group, student or member section; its own page https://www.math.hkust.edu.hk/~jfcai/ was read and has no current student list. No DBLP person is decided for this name, so no lab page can come from DBLP.",
       "sources_checked": [
-        "https://www.math.hkust.edu.hk/people/faculty/profile/jfcai/ (sha256 aebb6fee9dd15cb9, read live 2026-11-10): official profile"
+        "https://www.math.hkust.edu.hk/people/ (sha256 cdb44b0c23916141, read live 2026-11-10 09:17): official MATH people page, row \"CAI, Jian-Feng 蔡劍鋒 Professor\"; no student, member or group listing in that row",
+        "https://www.math.hkust.edu.hk/people/faculty/profile/jfcai/ (sha256 aebb6fee9dd15cb9, read live 2026-11-10 09:17): official profile page; states research interests \"Algorithmic and mathematical foundation of information and data, with applications in signal processing, inver\"",
+        "https://www.math.hkust.edu.hk/~jfcai/ (sha256 575c2e0495eb189b, read live 2026-11-10 09:18; https://www.math.hkust.edu.hk/~jfcai answered 301 to it): own page linked from the official profile: read; no group or student list found on it",
+        "DBLP dump dblp-2026-09-01: no person record decided for this name (several same-name persons, no HKUST affiliation note to choose); no lab page can be taken from it",
+        "OpenAlex local sweep (snapshot 2026-10-14, file sha256 30ef739ee69e6848): author id https://openalex.org/A5057913701, computing share 0.402; works carry no lab-member information"
       ],
       "checked": "2026-11-10",
-      "basis": "live official pages only; robots respected; no Wayback; no search-engine discovery"
+      "basis": "live official and own pages (robots respected, no Wayback), DBLP dump, OpenAlex local sweep"
     }
   }
 }
