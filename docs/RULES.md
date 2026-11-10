@@ -817,9 +817,9 @@ An Oxford Computer Science student profile (www.cs.ox.ac.uk/people/First.Last) r
 ### R-PAP-44 (2026-11-09, Claude on the owner's delegation; Tsinghua bibliography expansion) — title-only DBLP bindings
 A faculty-to-DBLP binding normally needs a source-stated English name (a Latin roster name, or Chinese plus Latin on one source). Without it, a binding
 is accepted only when (a) the PI's own official profile or owned page credits at least 10 exact long DBLP titles (credited by the person's name in the
-citation) and every one belongs to one single DBLP person; (b) that person carries the school's affiliation; and (c) no namesake (another DBLP person of
+citation) and every one belongs to one single DBLP person; (b) that person carries a school affiliation note OR the exact-title list sits on a page the school's own official listing links as that PI's page (url + sha256 recorded; amended 2026-11-09, owner-delegated, first used for Toronto Fan Long and Kirill Serkh, applies to Tsinghua bindings too); and (c) no namesake (another DBLP person of
 the same base name, ORCID conflicts as in R-PAP-42) also owns a matched title. Fewer than 10 titles, or a pinyin-name-only match, stays held. Rationale:
-a profile list of 10+ exact titles that all sit on one affiliated record cannot be another person's work by chance; the 5 earlier Tsinghua holds
+a profile list of 10+ exact titles that all sit on one record and appear on the official-listing-linked page (or the record carries the school's affiliation) cannot be another person's work by chance; the 5 earlier Tsinghua holds
 (贺飞, 潘浩, 鲁继文, 张长水, 宋韶旭) are overridden only where this holds. `tools/title_only_binding.py`, `tests/test_title_only_binding_rule.py`.
 Identity only: papers still pass appointment (R-PAP-01), affiliation and type gates.
 
