@@ -122,3 +122,21 @@ def test_prior_degree_after_a_fellowship_is_not_a_role():
     role_of = lambda t: ('undergraduate' if 'bachelor' in t.lower() else 'masters' if 'master' in t.lower() else 'phd' if 'phd' in t.lower() else 'member', 0)
     r = A.entry_role("Hong Kong PhD Fellowship; Bachelor’s from CUHK Shenzhen", 'Current/Incoming', role_of)[0]
     assert r in ('phd', None) and r != 'undergraduate'
+
+
+def test_unit_listing_alias_records_an_official_listing_link(monkeypatch, tmp_path):
+    import sqlite3
+    import zlib
+    import lab_websites as L
+    db = tmp_path / 'sc.sqlite'
+    con = sqlite3.connect(db)
+    con.execute('create table live (url text primary key, fetched_at text, status int, sha256 text, content_type text, raw_zlib blob, text text)')
+    body = '{"rows":[{"name":"A B","path":[{"alias":"\\/eeab","pid":"1"}]}]}'
+    con.execute('insert into live values (?,?,?,?,?,?,?)', ('https://ece.example.edu/people_list', 'now', 200, 'c' * 64, 'text/html', zlib.compress(body.encode()), None))
+    con.commit()
+    monkeypatch.setattr(L.P, 'data', lambda name, school=None, **k: db)
+    doc = dict(labs=[dict(pi='A B', coverage='website', url='https://ece.example.edu/eeab', checks=[], official_link_status='not_recorded', audited_at='2026-11-10T00:00:00+00:00')])
+    r = L.unit_listing_alias_links('x', doc)['labs'][0]
+    assert r['official_link_status'] == 'recorded' and r['checks'][-1]['source'] == 'department_listing_link' and L.official_check(r['checks'][-1], r['url'])
+    other = dict(labs=[dict(pi='C D', coverage='website', url='https://ece.example.edu/eecd', checks=[], official_link_status='not_recorded')])
+    assert L.unit_listing_alias_links('x', other)['labs'][0]['official_link_status'] == 'not_recorded'

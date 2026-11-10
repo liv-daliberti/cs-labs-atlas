@@ -460,6 +460,37 @@ def stored_captures(school, urls):
     return out
 
 
+def unit_listing_alias_links(school, doc):
+    """A unit directory whose embedded JSON row carries the person's own profile path (`"path":[{"alias":"\\/eejzhang"...}]`, HKUST ECE people_list) is an official
+    listing link to that profile page. When a lab's website is that profile page (same host, same path) and no official link is recorded, add a
+    `department_listing_link` check whose `on` is the listing URL and whose quote is the literal alias, with the stored listing's sha256. Literal match only."""
+    import hashlib
+    path = P.data('school-captures.sqlite', school)
+    if not Path(path).exists():
+        return doc
+    try:
+        con = sqlite3.connect(f'file:{path}?mode=ro', uri=True)
+        listings = {u: (sha, zlib.decompress(raw).decode('utf-8', 'replace')) for u, sha, raw in con.execute("select url, sha256, raw_zlib from live where raw_zlib is not null and (url like '%people_list%' or url like '%/people%')")}
+    except (sqlite3.DatabaseError, zlib.error):
+        return doc
+    for r in doc.get('labs', []):
+        if r.get('coverage') != 'website' or r.get('official_link_status') == 'recorded' or not r.get('url'):
+            continue
+        site = urlsplit(r['url'])
+        alias = '\\/' + site.path.strip('/')
+        for lu, (sha, body) in listings.items():
+            if urlsplit(lu).netloc != site.netloc or not site.path.strip('/') or ('"alias":"' + alias + '"') not in body:
+                continue
+            if hashlib.sha256(body.encode('utf-8', 'replace')).hexdigest() != sha and not sha:
+                continue
+            chk = dict(source='department_listing_link', url=r['url'], on=lu, result='listed', at=r.get('checked_at') or r.get('audited_at'),
+                       anchor='listing JSON row path alias ' + alias.replace('\\', ''), source_sha256=sha)
+            r['checks'] = list(r.get('checks') or []) + [chk]
+            r['official_link_status'], r['official_link_evidence'] = 'recorded', [chk]
+            break
+    return doc
+
+
 def official_homepage_fallback(school, doc):
     """Owner-delegated choice (coordinator, 2026-11-10, HKUST; reversible): a website whose URL no official link reaches is replaced by the official personal page the
     department profile itself links ('Personal Webpage', a school_profile_link check) when a stored 200 capture of that exact page exists. The earlier selection (a lab
@@ -640,6 +671,7 @@ def main():
                 pis = json.loads(P.data('pis.json', s).read_text())
                 doc = preserve_reviewed_entries(previous, doc, aliases={p['pi']: p.get('names', []) for p in pis})
         if a.cmd == 'build':
+            doc = unit_listing_alias_links(s, doc)
             doc = official_homepage_fallback(s, doc)
         if a.enrich_official_links or a.cmd == 'enrich':
             doc = enrich_official_links(s, attach_stored_captures(s, doc))
