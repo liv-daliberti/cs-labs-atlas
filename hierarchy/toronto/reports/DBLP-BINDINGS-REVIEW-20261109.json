@@ -1,0 +1,1118 @@
+{
+ "school": "toronto",
+ "reviewed": "2026-11-09",
+ "by": "claude-toronto-admit-1109",
+ "policy": "name-only (unique_name/unique_exact_name) bindings need >=10 exact titles on the PI owned page (R-PAP-44) or a Toronto-affiliated OpenAlex author carrying the same ORCID as the DBLP record (R-PAP-42); homepage_url/school_affiliation/school_coauthors bindings kept; no-ORCID-conflict check is left to the builder (R-PAP-42a)",
+ "accepted": 60,
+ "held": 16,
+ "per_pi": {
+  "Ashton Anderson": {
+   "pid": "https://dblp.org/pid/21/8524",
+   "rule": "unique_exact_name",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "owned_page_exact_titles",
+     "count": 55,
+     "page": "https://www.cs.toronto.edu/~ashton"
+    }
+   ],
+   "owned_page_titles": 55,
+   "oa_orcid_check": "oa_match_no_orcid_compare"
+  },
+  "Alán Aspuru-Guzik": {
+   "pid": "https://dblp.org/pid/01/5329",
+   "rule": "unique_exact_name",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_toronto_openalex_author",
+     "orcids": [
+      "0000-0002-8277-4434"
+     ],
+     "openalex": [
+      "A5071495561"
+     ]
+    }
+   ],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "ORCID_AGREE"
+  },
+  "Jimmy Ba": {
+   "pid": "https://dblp.org/pid/78/9117",
+   "rule": "unique_name",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "owned_page_exact_titles",
+     "count": 52,
+     "page": "https://jimmylba.github.io"
+    }
+   ],
+   "owned_page_titles": 52,
+   "oa_orcid_check": "oa_match_no_orcid_compare"
+  },
+  "Ravin Balakrishnan": {
+   "pid": "https://dblp.org/pid/73/5426",
+   "rule": "homepage_url",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "owned_page_exact_titles",
+     "count": 133,
+     "page": "https://www.dgp.toronto.edu/~ravin"
+    }
+   ],
+   "owned_page_titles": 133,
+   "oa_orcid_check": "oa_match_no_orcid_compare"
+  },
+  "Varinia Bernales": {
+   "pid": "https://dblp.org/pid/232/6009",
+   "rule": "unique_name",
+   "decision": "held",
+   "corroboration": [],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "oa_match_no_orcid_compare"
+  },
+  "Anthony Bonner": {
+   "pid": "https://dblp.org/pid/b/AJBonner",
+   "rule": "homepage_url",
+   "decision": "accepted",
+   "corroboration": [],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "oa_match_no_orcid_compare"
+  },
+  "Allan Borodin": {
+   "pid": "https://dblp.org/pid/02/5164",
+   "rule": "homepage_url",
+   "decision": "accepted",
+   "corroboration": [],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "oa_match_no_orcid_compare"
+  },
+  "Angela Brown": {
+   "pid": "https://dblp.org/pid/b/AngelaDemkeBrown",
+   "rule": "homepage_url",
+   "decision": "accepted",
+   "corroboration": [],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "ORCID_CONFLICT"
+  },
+  "Michael Brudno": {
+   "pid": "https://dblp.org/pid/10/6530",
+   "rule": "school_affiliation",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_toronto_openalex_author",
+     "orcids": [
+      "0000-0001-7947-2243"
+     ],
+     "openalex": [
+      "A5012113499"
+     ]
+    }
+   ],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "ORCID_AGREE"
+  },
+  "Jessica Burgner-Kahrs": {
+   "pid": "https://dblp.org/pid/21/5917",
+   "rule": "unique_name",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_toronto_openalex_author",
+     "orcids": [
+      "0000-0001-9185-3970"
+     ],
+     "openalex": [
+      "A5087473881"
+     ]
+    }
+   ],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "ORCID_AGREE"
+  },
+  "Marsha Chechik": {
+   "pid": "https://dblp.org/pid/c/MarshaChechik",
+   "rule": "homepage_url",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_toronto_openalex_author",
+     "orcids": [
+      "0000-0002-6301-3517"
+     ],
+     "openalex": [
+      "A5079431306"
+     ]
+    }
+   ],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "ORCID_AGREE"
+  },
+  "Fanny Chevalier": {
+   "pid": "https://dblp.org/pid/60/5884",
+   "rule": "school_affiliation",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_toronto_openalex_author",
+     "orcids": [
+      "0000-0002-5585-7971"
+     ],
+     "openalex": [
+      "A5029815396"
+     ]
+    }
+   ],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "ORCID_AGREE"
+  },
+  "Christina Christara": {
+   "pid": "https://dblp.org/pid/52/3201",
+   "rule": "school_affiliation",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "owned_page_exact_titles",
+     "count": 14,
+     "page": "https://www.cs.toronto.edu/~ccc"
+    }
+   ],
+   "owned_page_titles": 14,
+   "oa_orcid_check": "oa_match_no_orcid_compare"
+  },
+  "Niv Dayan": {
+   "pid": "https://dblp.org/pid/129/6927",
+   "rule": "unique_name",
+   "decision": "held",
+   "corroboration": [],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "oa_match_no_orcid_compare"
+  },
+  "Eyal de Lara": {
+   "pid": "https://dblp.org/pid/59/2063",
+   "rule": "school_affiliation",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_toronto_openalex_author",
+     "orcids": [
+      "0000-0002-6730-555X"
+     ],
+     "openalex": [
+      "A5072600785"
+     ]
+    }
+   ],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "ORCID_AGREE"
+  },
+  "Sven Dickinson": {
+   "pid": "https://dblp.org/pid/d/SvenJDickinson",
+   "rule": "homepage_url",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_toronto_openalex_author",
+     "orcids": [
+      "0000-0001-6566-9635"
+     ],
+     "openalex": [
+      "A5044181099"
+     ]
+    }
+   ],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "ORCID_AGREE"
+  },
+  "David Duvenaud": {
+   "pid": "https://dblp.org/pid/86/9380",
+   "rule": "homepage_url",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "owned_page_exact_titles",
+     "count": 55,
+     "page": "https://www.cs.toronto.edu/~duvenaud"
+    }
+   ],
+   "owned_page_titles": 55,
+   "oa_orcid_check": "oa_match_no_orcid_compare"
+  },
+  "Steve Easterbrook": {
+   "pid": "https://dblp.org/pid/e/SMEasterbrook",
+   "rule": "homepage_url",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_toronto_openalex_author",
+     "orcids": [
+      "0000-0002-3261-6446"
+     ],
+     "openalex": [
+      "A5079349226"
+     ]
+    }
+   ],
+   "owned_page_titles": 5,
+   "oa_orcid_check": "ORCID_AGREE"
+  },
+  "Faith Ellen": {
+   "pid": "https://dblp.org/pid/f/FEFich",
+   "rule": "homepage_url",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_toronto_openalex_author",
+     "orcids": [
+      "0000-0003-4473-931X"
+     ],
+     "openalex": [
+      "A5013813328"
+     ]
+    }
+   ],
+   "owned_page_titles": 2,
+   "oa_orcid_check": "ORCID_AGREE"
+  },
+  "Murat Erdogdu": {
+   "pid": "https://dblp.org/pid/139/1292",
+   "rule": "unique_name",
+   "decision": "held",
+   "corroboration": [],
+   "owned_page_titles": 5,
+   "oa_orcid_check": "oa_match_no_orcid_compare"
+  },
+  "Azadeh Farzan": {
+   "pid": "https://dblp.org/pid/89/148",
+   "rule": "homepage_url",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_toronto_openalex_author",
+     "orcids": [
+      "0000-0001-9005-2653"
+     ],
+     "openalex": [
+      "A5016276143"
+     ]
+    }
+   ],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "ORCID_AGREE"
+  },
+  "Sanja Fidler": {
+   "pid": "https://dblp.org/pid/08/6607",
+   "rule": "school_affiliation",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_toronto_openalex_author",
+     "orcids": [
+      "0000-0003-1040-3260"
+     ],
+     "openalex": [
+      "A5070642269"
+     ]
+    }
+   ],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "ORCID_AGREE"
+  },
+  "David Fleet": {
+   "pid": "https://dblp.org/pid/07/2099",
+   "rule": "school_coauthors",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_toronto_openalex_author",
+     "orcids": [
+      "0000-0003-0734-7114"
+     ],
+     "openalex": [
+      "A5035123135"
+     ]
+    }
+   ],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "ORCID_AGREE"
+  },
+  "Yashar Ganjali": {
+   "pid": "https://dblp.org/pid/36/3795",
+   "rule": "unique_name",
+   "decision": "held",
+   "corroboration": [],
+   "owned_page_titles": 1,
+   "oa_orcid_check": "oa_match_no_orcid_compare"
+  },
+  "Igor Gilitschenski": {
+   "pid": "https://dblp.org/pid/129/1281",
+   "rule": "school_affiliation",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_toronto_openalex_author",
+     "orcids": [
+      "0000-0001-6426-365X"
+     ],
+     "openalex": [
+      "A5078356081"
+     ]
+    }
+   ],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "ORCID_AGREE"
+  },
+  "Uma Girish": {
+   "pid": "https://dblp.org/pid/252/5015",
+   "rule": "unique_exact_name",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "owned_page_exact_titles",
+     "count": 19,
+     "page": "https://www.cs.toronto.edu/~ugirish"
+    }
+   ],
+   "owned_page_titles": 19,
+   "oa_orcid_check": "no_oa_match"
+  },
+  "Anna Goldenberg": {
+   "pid": "https://dblp.org/pid/06/3543",
+   "rule": "school_affiliation",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_toronto_openalex_author",
+     "orcids": [
+      "0000-0002-2416-833X"
+     ],
+     "openalex": [
+      "A5087983309"
+     ]
+    }
+   ],
+   "owned_page_titles": 1,
+   "oa_orcid_check": "ORCID_AGREE"
+  },
+  "Eitan Grinspun": {
+   "pid": "https://dblp.org/pid/25/5353",
+   "rule": "unique_name",
+   "decision": "held",
+   "corroboration": [],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "oa_match_no_orcid_compare"
+  },
+  "Roger Grosse": {
+   "pid": "https://dblp.org/pid/26/7058",
+   "rule": "homepage_url",
+   "decision": "accepted",
+   "corroboration": [],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "oa_match_no_orcid_compare"
+  },
+  "Tovi Grossman": {
+   "pid": "https://dblp.org/pid/19/114",
+   "rule": "homepage_url",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "owned_page_exact_titles",
+     "count": 194,
+     "page": "https://www.tovigrossman.com"
+    },
+    {
+     "kind": "orcid_agrees_with_toronto_openalex_author",
+     "orcids": [
+      "0000-0002-0494-5373"
+     ],
+     "openalex": [
+      "A5058485609"
+     ]
+    }
+   ],
+   "owned_page_titles": 194,
+   "oa_orcid_check": "ORCID_AGREE"
+  },
+  "Anwar Hithnawi": {
+   "pid": "https://dblp.org/pid/122/5664",
+   "rule": "unique_name",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "owned_page_exact_titles",
+     "count": 20,
+     "page": "https://pps-lab.com/people/anwarhithnawi"
+    }
+   ],
+   "owned_page_titles": 20,
+   "oa_orcid_check": "oa_match_no_orcid_compare"
+  },
+  "Alec Jacobson": {
+   "pid": "https://dblp.org/pid/33/8698",
+   "rule": "unique_exact_name",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "owned_page_exact_titles",
+     "count": 110,
+     "page": "https://www.cs.toronto.edu/~jacobson"
+    },
+    {
+     "kind": "orcid_agrees_with_toronto_openalex_author",
+     "orcids": [
+      "0000-0003-4603-7143"
+     ],
+     "openalex": [
+      "A5060647975"
+     ]
+    }
+   ],
+   "owned_page_titles": 110,
+   "oa_orcid_check": "ORCID_AGREE"
+  },
+  "Zhijing Jin": {
+   "pid": "https://dblp.org/pid/229/4267-1",
+   "rule": "school_affiliation",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_toronto_openalex_author",
+     "orcids": [
+      "0000-0003-0238-9024"
+     ],
+     "openalex": [
+      "A5016724158"
+     ]
+    }
+   ],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "ORCID_AGREE"
+  },
+  "Swastik Kopparty": {
+   "pid": "https://dblp.org/pid/80/4866",
+   "rule": "homepage_url",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "owned_page_exact_titles",
+     "count": 48,
+     "page": "https://www.math.toronto.edu/swastik"
+    },
+    {
+     "kind": "orcid_agrees_with_toronto_openalex_author",
+     "orcids": [
+      "0000-0003-2704-8808"
+     ],
+     "openalex": [
+      "A5031695135"
+     ]
+    }
+   ],
+   "owned_page_titles": 48,
+   "oa_orcid_check": "ORCID_AGREE"
+  },
+  "Rahul G. Krishnan": {
+   "pid": "https://dblp.org/pid/172/0880",
+   "rule": "unique_exact_name",
+   "decision": "held",
+   "corroboration": [],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "oa_match_no_orcid_compare"
+  },
+  "Kyros Kutulakos": {
+   "pid": "https://dblp.org/pid/64/4875",
+   "rule": "school_affiliation",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "owned_page_exact_titles",
+     "count": 14,
+     "page": "https://www.cs.toronto.edu/~kyros"
+    }
+   ],
+   "owned_page_titles": 14,
+   "oa_orcid_check": "no_oa_match"
+  },
+  "David Levin": {
+   "pid": "https://dblp.org/pid/97/8315",
+   "rule": "school_coauthors",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_toronto_openalex_author",
+     "orcids": [
+      "0000-0001-7079-1934"
+     ],
+     "openalex": [
+      "A5101994804"
+     ]
+    }
+   ],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "ORCID_AGREE"
+  },
+  "Aviad Levis": {
+   "pid": "https://dblp.org/pid/161/2561",
+   "rule": "unique_name",
+   "decision": "held",
+   "corroboration": [],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "oa_match_no_orcid_compare"
+  },
+  "David Lindell": {
+   "pid": "https://dblp.org/pid/170/2608",
+   "rule": "school_coauthors",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "owned_page_exact_titles",
+     "count": 20,
+     "page": "https://davidlindell.com"
+    },
+    {
+     "kind": "orcid_agrees_with_toronto_openalex_author",
+     "orcids": [
+      "0000-0002-6999-3958"
+     ],
+     "openalex": [
+      "A5004550709"
+     ]
+    }
+   ],
+   "owned_page_titles": 20,
+   "oa_orcid_check": "ORCID_AGREE"
+  },
+  "Fan Long": {
+   "pid": "https://dblp.org/pid/55/3921",
+   "rule": "unique_exact_name",
+   "decision": "held",
+   "corroboration": [],
+   "owned_page_titles": 6,
+   "oa_orcid_check": "oa_match_no_orcid_compare"
+  },
+  "Chris Maddison": {
+   "pid": "https://dblp.org/pid/139/1388",
+   "rule": "homepage_url",
+   "decision": "accepted",
+   "corroboration": [],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "oa_match_no_orcid_compare"
+  },
+  "Peter Marbach": {
+   "pid": "https://dblp.org/pid/61/6206",
+   "rule": "school_affiliation",
+   "decision": "accepted",
+   "corroboration": [],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "oa_match_no_orcid_compare"
+  },
+  "Alex Mariakakis": {
+   "pid": "https://dblp.org/pid/116/0750",
+   "rule": "school_affiliation",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_toronto_openalex_author",
+     "orcids": [
+      "0000-0002-9986-3345"
+     ],
+     "openalex": [
+      "A5058862746"
+     ]
+    }
+   ],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "ORCID_AGREE"
+  },
+  "Sheila McIlraith": {
+   "pid": "https://dblp.org/pid/66/3221",
+   "rule": "homepage_url",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_toronto_openalex_author",
+     "orcids": [
+      "0000-0003-4953-0945"
+     ],
+     "openalex": [
+      "A5041982650"
+     ]
+    }
+   ],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "ORCID_AGREE"
+  },
+  "Maryam Mehri Dehnavi": {
+   "pid": "https://dblp.org/pid/132/8891",
+   "rule": "unique_name",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "owned_page_exact_titles",
+     "count": 18,
+     "page": "https://www.cs.toronto.edu/~mmehride"
+    }
+   ],
+   "owned_page_titles": 18,
+   "oa_orcid_check": "oa_match_no_orcid_compare"
+  },
+  "Michael Molloy": {
+   "pid": "https://dblp.org/pid/m/MichaelMolloy",
+   "rule": "homepage_url",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_toronto_openalex_author",
+     "orcids": [
+      "0000-0001-5435-1015"
+     ],
+     "openalex": [
+      "A5072889645"
+     ]
+    }
+   ],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "ORCID_AGREE"
+  },
+  "Aleksandar Nikolov": {
+   "pid": "https://dblp.org/pid/24/7867",
+   "rule": "unique_name",
+   "decision": "held",
+   "corroboration": [],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "oa_match_no_orcid_compare"
+  },
+  "Carolina Nobre": {
+   "pid": "https://dblp.org/pid/218/5337",
+   "rule": "unique_name",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_toronto_openalex_author",
+     "orcids": [
+      "0000-0002-2892-0509"
+     ],
+     "openalex": [
+      "A5034150082"
+     ]
+    }
+   ],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "ORCID_AGREE"
+  },
+  "Gennady Pekhimenko": {
+   "pid": "https://dblp.org/pid/118/8979",
+   "rule": "school_affiliation",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "owned_page_exact_titles",
+     "count": 35,
+     "page": "https://www.cs.toronto.edu/~pekhimenko"
+    },
+    {
+     "kind": "orcid_agrees_with_toronto_openalex_author",
+     "orcids": [
+      "0000-0002-3839-0919"
+     ],
+     "openalex": [
+      "A5007585346"
+     ]
+    }
+   ],
+   "owned_page_titles": 35,
+   "oa_orcid_check": "ORCID_AGREE"
+  },
+  "Gerald Penn": {
+   "pid": "https://dblp.org/pid/37/1531",
+   "rule": "school_affiliation",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_toronto_openalex_author",
+     "orcids": [
+      "0000-0003-3553-8305"
+     ],
+     "openalex": [
+      "A5052428595"
+     ]
+    }
+   ],
+   "owned_page_titles": 2,
+   "oa_orcid_check": "ORCID_AGREE"
+  },
+  "Toniann Pitassi": {
+   "pid": "https://dblp.org/pid/p/TPitassi",
+   "rule": "homepage_url",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_toronto_openalex_author",
+     "orcids": [
+      "0000-0002-8668-2174",
+      "0000-0003-0832-2760"
+     ],
+     "openalex": [
+      "A5003318200"
+     ]
+    }
+   ],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "ORCID_AGREE"
+  },
+  "Colin Raffel": {
+   "pid": "https://dblp.org/pid/149/0082",
+   "rule": "unique_exact_name",
+   "decision": "held",
+   "corroboration": [],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "oa_match_no_orcid_compare"
+  },
+  "Thomas Ristenpart": {
+   "pid": "https://dblp.org/pid/26/3399",
+   "rule": "unique_exact_name",
+   "decision": "held",
+   "corroboration": [],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "no_oa_match"
+  },
+  "Sushant Sachdeva": {
+   "pid": "https://dblp.org/pid/25/9221",
+   "rule": "school_affiliation",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_toronto_openalex_author",
+     "orcids": [
+      "0000-0002-5393-9324"
+     ],
+     "openalex": [
+      "A5067464936"
+     ]
+    }
+   ],
+   "owned_page_titles": 8,
+   "oa_orcid_check": "ORCID_AGREE"
+  },
+  "Shubhangi Saraf": {
+   "pid": "https://dblp.org/pid/75/7249",
+   "rule": "homepage_url",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_toronto_openalex_author",
+     "orcids": [
+      "0009-0005-0874-2978"
+     ],
+     "openalex": [
+      "A5020540233"
+     ]
+    }
+   ],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "ORCID_AGREE"
+  },
+  "Bianca Schroeder": {
+   "pid": "https://dblp.org/pid/s/BiancaSchroeder",
+   "rule": "homepage_url",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_toronto_openalex_author",
+     "orcids": [
+      "0000-0003-3289-1824"
+     ],
+     "openalex": [
+      "A5040893798"
+     ]
+    }
+   ],
+   "owned_page_titles": 7,
+   "oa_orcid_check": "ORCID_AGREE"
+  },
+  "Kirill Serkh": {
+   "pid": "https://dblp.org/pid/132/5024",
+   "rule": "unique_name",
+   "decision": "held",
+   "corroboration": [],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "oa_match_no_orcid_compare"
+  },
+  "Nisarg Shah": {
+   "pid": "https://dblp.org/pid/95/9508-1",
+   "rule": "homepage_url",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_toronto_openalex_author",
+     "orcids": [
+      "0000-0002-0946-3402"
+     ],
+     "openalex": [
+      "A5103285429"
+     ]
+    }
+   ],
+   "owned_page_titles": 1,
+   "oa_orcid_check": "ORCID_AGREE"
+  },
+  "Florian Shkurti": {
+   "pid": "https://dblp.org/pid/21/10333",
+   "rule": "unique_name",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_toronto_openalex_author",
+     "orcids": [
+      "0000-0002-5672-5831"
+     ],
+     "openalex": [
+      "A5010648258"
+     ]
+    }
+   ],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "ORCID_AGREE"
+  },
+  "Xujie Si": {
+   "pid": "https://dblp.org/pid/142/8449",
+   "rule": "unique_name",
+   "decision": "held",
+   "corroboration": [],
+   "owned_page_titles": 2,
+   "oa_orcid_check": "oa_match_no_orcid_compare"
+  },
+  "Karan Singh": {
+   "pid": "https://dblp.org/pid/00/505-4",
+   "rule": "school_affiliation",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_toronto_openalex_author",
+     "orcids": [
+      "0000-0002-2232-7480"
+     ],
+     "openalex": [
+      "A5102945957"
+     ]
+    }
+   ],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "ORCID_AGREE"
+  },
+  "Robert Soden": {
+   "pid": "https://dblp.org/pid/146/2555",
+   "rule": "unique_exact_name",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_toronto_openalex_author",
+     "orcids": [
+      "0000-0003-2657-0485"
+     ],
+     "openalex": [
+      "A5004949089"
+     ]
+    }
+   ],
+   "owned_page_titles": 4,
+   "oa_orcid_check": "ORCID_AGREE"
+  },
+  "Suzanne Stevenson": {
+   "pid": "https://dblp.org/pid/99/4001",
+   "rule": "school_affiliation",
+   "decision": "accepted",
+   "corroboration": [],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "oa_match_no_orcid_compare"
+  },
+  "Roei Tell": {
+   "pid": "https://dblp.org/pid/143/2243",
+   "rule": "school_affiliation",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_toronto_openalex_author",
+     "orcids": [
+      "0000-0002-9693-9244"
+     ],
+     "openalex": [
+      "A5000692668"
+     ]
+    }
+   ],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "ORCID_AGREE"
+  },
+  "Sam Toueg": {
+   "pid": "https://dblp.org/pid/t/SamToueg",
+   "rule": "unique_exact_name",
+   "decision": "held",
+   "corroboration": [],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "oa_match_no_orcid_compare"
+  },
+  "Khai Truong": {
+   "pid": "https://dblp.org/pid/31/5694",
+   "rule": "homepage_url",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "owned_page_exact_titles",
+     "count": 28,
+     "page": "https://www.cs.toronto.edu/~khai"
+    }
+   ],
+   "owned_page_titles": 28,
+   "oa_orcid_check": "oa_match_no_orcid_compare"
+  },
+  "Raquel Urtasun": {
+   "pid": "https://dblp.org/pid/u/RaquelUrtasun",
+   "rule": "homepage_url",
+   "decision": "accepted",
+   "corroboration": [],
+   "owned_page_titles": 2,
+   "oa_orcid_check": "oa_match_no_orcid_compare"
+  },
+  "Nandita Vijaykumar": {
+   "pid": "https://dblp.org/pid/163/0027",
+   "rule": "unique_exact_name",
+   "decision": "held",
+   "corroboration": [],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "oa_match_no_orcid_compare"
+  },
+  "Bo Wang": {
+   "pid": "https://dblp.org/pid/72/6811-44",
+   "rule": "school_affiliation",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_toronto_openalex_author",
+     "orcids": [
+      "0000-0002-9620-3413"
+     ],
+     "openalex": [
+      "A5100408160"
+     ]
+    }
+   ],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "ORCID_AGREE"
+  },
+  "Nathan Wiebe": {
+   "pid": "https://dblp.org/pid/20/6168",
+   "rule": "unique_name",
+   "decision": "held",
+   "corroboration": [],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "oa_match_no_orcid_compare"
+  },
+  "Daniel Wigdor": {
+   "pid": "https://dblp.org/pid/w/DanielWigdor",
+   "rule": "homepage_url",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_toronto_openalex_author",
+     "orcids": [
+      "0000-0003-2008-7070"
+     ],
+     "openalex": [
+      "A5083735800"
+     ]
+    }
+   ],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "ORCID_AGREE"
+  },
+  "Ningning Xie": {
+   "pid": "https://dblp.org/pid/217/4747",
+   "rule": "school_affiliation",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "orcid_agrees_with_toronto_openalex_author",
+     "orcids": [
+      "0000-0002-5961-1493"
+     ],
+     "openalex": [
+      "A5008249278"
+     ]
+    }
+   ],
+   "owned_page_titles": 0,
+   "oa_orcid_check": "ORCID_AGREE"
+  },
+  "Yang Xu": {
+   "pid": "https://dblp.org/pid/61/3906-23",
+   "rule": "homepage_url",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "owned_page_exact_titles",
+     "count": 10,
+     "page": "https://www.cs.toronto.edu/~yangxu"
+    }
+   ],
+   "owned_page_titles": 10,
+   "oa_orcid_check": "oa_match_no_orcid_compare"
+  },
+  "Richard Zemel": {
+   "pid": "https://dblp.org/pid/16/6366",
+   "rule": "homepage_url",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "owned_page_exact_titles",
+     "count": 55,
+     "page": "https://www.cs.toronto.edu/~zemel/inquiry/home.php"
+    },
+    {
+     "kind": "orcid_agrees_with_toronto_openalex_author",
+     "orcids": [
+      "0000-0001-9353-7509"
+     ],
+     "openalex": [
+      "A5000111344"
+     ]
+    }
+   ],
+   "owned_page_titles": 55,
+   "oa_orcid_check": "ORCID_AGREE"
+  },
+  "Qizhen Zhang": {
+   "pid": "https://dblp.org/pid/118/5486-1",
+   "rule": "homepage_url",
+   "decision": "accepted",
+   "corroboration": [
+    {
+     "kind": "owned_page_exact_titles",
+     "count": 13,
+     "page": "https://qizhenzhang.me"
+    },
+    {
+     "kind": "orcid_agrees_with_toronto_openalex_author",
+     "orcids": [
+      "0009-0009-4523-0735"
+     ],
+     "openalex": [
+      "A5066462279"
+     ]
+    }
+   ],
+   "owned_page_titles": 13,
+   "oa_orcid_check": "ORCID_AGREE"
+  }
+ },
+ "four_open_pis": {
+  "Ishtiaque Ahmed": "accepted: pid/75/7215 (Syed Ishtiaque Ahmed); owned homepage links DBLP + ORCID, dump record lists same URL+ORCID+Toronto note; namesake pid/187/3928 rejected",
+  "Arvind Gupta": "held: 12 candidates; the one exact record (g/ArvindGupta) has an SFU note and no Toronto URL or owned page; listing row is administrative; no owned page captured",
+  "Peter Love": "held: physics department member (physics.utoronto.ca); exact DBLP record pid/04/3103 has 5 unrelated records; 4 candidates; no owned DBLP/ORCID link on captured pages",
+  "Lisa Strug": "held (owner-directed): biomedical statistical geneticist; OpenAlex auto-proposal A5041161022 (101 works, biomedical venues) not bound; DBLP pid/404/2462 has one 2025 record"
+ }
+}
