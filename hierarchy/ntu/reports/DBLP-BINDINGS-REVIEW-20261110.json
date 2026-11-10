@@ -3,7 +3,7 @@
  "reviewed": "2026-11-10",
  "by": "claude-ntu-1110",
  "dump": "dblp-2026-09-01.xml.gz",
- "policy": "school_affiliation / homepage_url / school_coauthors rule bindings kept (Toronto precedent); name-only bindings (unique_name, unique_exact_name) need >=10 exact titles on the PI owned page (R-PAP-44) or an NTU-affiliated OpenAlex author carrying the same ORCID as the DBLP record (R-PAP-42); no-ORCID-conflict check is the builder (R-PAP-42a); dr.ntu.edu.sg is behind an AWS WAF human-verification challenge, so no profile was fetched live",
+ "policy": "school_affiliation / homepage_url / school_coauthors rule bindings kept (Toronto precedent); name-only bindings (unique_name, unique_exact_name) need >=10 exact titles on the PI owned page (R-PAP-44) or an NTU-affiliated OpenAlex author carrying the same ORCID as the DBLP record (R-PAP-42); no-ORCID-conflict check is the builder (R-PAP-42a); dr.ntu.edu.sg is behind an AWS WAF human-verification challenge, so no profile was fetched live; spot check found one conflated record (Du Yuxuan) which is held",
  "accepted": {
   "Gong Tiantian": {
    "pid": "https://dblp.org/pid/270/9951",
@@ -251,12 +251,6 @@
      "count": 12
     }
    ]
-  },
-  "Du Yuxuan": {
-   "pid": "https://dblp.org/pid/222/7868",
-   "basis": "school_coauthors",
-   "why": "school_coauthors rule (>=5 records with decided NTU PIs)",
-   "corroboration": []
   },
   "Dusit Niyato": {
    "pid": "https://dblp.org/pid/76/440",
@@ -809,6 +803,10 @@
   "Zhang Mengmi": {
    "basis": "none",
    "why": "0 name candidates, 0 ORCID-agreeing"
+  },
+  "Du Yuxuan": {
+   "basis": "school_coauthors",
+   "why": "hand check: DBLP pid/222/7868 (Yuxuan Du) is a conflated namesake record (no affiliation, no ORCID; speaker diarization, voltage-droop circuits, label-noise learning and quantum learning under one person); school_coauthors rule bound it wrongly"
   }
  }
 }
