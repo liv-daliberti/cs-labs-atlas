@@ -34,3 +34,13 @@ def test_warm_fills_cache_then_reuses_it(tmp_path, monkeypatch):
     CQ._PERSIST.clear()
     monkeypatch.setattr(CQ, 'xml_quality', lambda d: (_ for _ in ()).throw(AssertionError('re-parsed')))
     assert W.warm('x', 2, store=store, log=lambda m, **k: None)['unconfirmed'] == 0
+
+
+def test_runs_as_a_script_under_python_dash_I():
+    """The Slurm job runs `python -I warm_copy_cache.py <school>`: no PYTHONPATH, so every import must resolve through the script's own sys.path edit."""
+    import subprocess
+    import sys
+    from pathlib import Path
+    script = Path(W.__file__)
+    r = subprocess.run([sys.executable, '-I', str(script)], capture_output=True, text=True, cwd=script.parent)
+    assert r.returncode == 0, r.stderr

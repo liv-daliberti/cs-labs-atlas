@@ -15,8 +15,9 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-import copy_quality as CQ  # noqa: E402
-import ftp_common as F  # noqa: E402
+import ftp_common as F  # noqa: E402  (puts tools/ on sys.path)
+
+CQ = F.CQ
 
 LOCAL_STATUS = ('downloaded', 'fulltext_xml')
 
