@@ -42,3 +42,17 @@ Student links: 436; 14 fail the automatic name or date test (9 name mismatches, 
 Copies: stored-record open-copy pointers 1969 PDF URL, 259 landing page, 2392 none of 4620 (an upper bound; no copy fetched or verified).
 
 Listing plan: SJTU has no plan or capture rows (only the 2026 directory); the Chinese-listing fix has nothing to re-plan here, and historical SJTU listings were never fetched.
+
+## Distinct-work counts and the formal checks (2026-11-10)
+
+Counted in distinct works (normalized title, which equals distinct OpenAlex ids here), after the proposed holds: source-backed 2832 (DBLP person record 1523 + 132 rows, page-quoted owned list 1303 rows); heuristic anchored rows 2054 rows / 1930 works, of which 1767 works are not already source-backed; 4597 distinct works in all. The 2500 target is met by source-backed works alone (2832), but admission is not claimed: other gates below are unmet.
+
+Heuristic stratum, primary-source check of the 60 sampled rows (seed 20261112): 0 contradictions. Crossref (51) and arXiv API (9) show the PI name on the author list and the same title; publisher metadata names Shanghai Jiao Tong for 33; arXiv PDF page 1 shows name and SJTU for 12 more (title text on page 1 matched for 11 of them; MotionBank's name tokens did not match by text extraction while SJTU did, so treat that one as affiliation-only). 15 rows (IEEE, Springer, Elsevier, AAAI Press versions) have neither publisher affiliation nor an arXiv version; publisher pages are paywalled and were not fetched. Point precision 60/60, Wilson 95% lower bound 94.0%, below the 0.95 bar, so the stratum stays candidate (`stage9-final/crossref-check.json`, `arxiv-check.json`, `page1-check.json`).
+
+Student precision, hand sample of 45 of the 422 links remaining after the 14 exclusions (seed 20261113), judged against the roster quote naming the person as advisee or member: 45/45 real relations, Wilson lower bound 92.1%, below the 97% gate; 388 links are undated and stay candidates, not dated by inference (`stage9-final/student-sample.json`).
+
+Lab coverage (exhaustive over the DBLP-bound PIs): 1380 of 1699 DBLP article or inproceedings records dated inside the PI's period are in the package = 81.2%, below the 0.90 gate (sample of 15: 12 found).
+
+Copies, sampled (no store written; PDFs deleted after hashing): of 100 random source-backed works, 37 downloaded a PDF whose first two pages carry the title, 5 a PDF with another title, 7 were disallowed by robots.txt, 3 errored, 48 had no stored PDF URL. About 37% obtainable by the stored links, against the 85% target (not a gate). A full overlay ledger was not built.
+
+Formal stage 9 composition: lab precision 105 hand judgements (45 source-backed + 60 heuristic) with the checks above, student precision 45, coverage 15 sampled plus exhaustive; not a single formal run of `accuracy/sample.py`.
