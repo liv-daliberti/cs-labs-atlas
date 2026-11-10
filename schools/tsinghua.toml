@@ -102,6 +102,7 @@ unit = "Tsinghua University, Beijing (reviewed source scope)"
 title_match = '教授|研究员|Professor|Research|Investigator'
 coverage = "full"
 url = "https://iiis.tsinghua.edu.cn/en/People.htm"
+listing_gaps = {2022 = "exact-URL CDX 2026-11-10: iiis.tsinghua.edu.cn/list-324-1.html has one 2022 capture (2022-08-17) and it is a server error page (templates/iiis-1/content/category_qzjs.html is not exists!, 58 bytes), no faculty list", 2023 = "exact-URL CDX 2026-11-10: no 200 capture of list-324-1.html, rydw.htm or en/People.htm in 2023 (list-324-1.html: 2013-2022 and 2024; rydw.htm and en/People.htm: 2025-2026)", 2024 = "the only 2024 capture of list-324-1.html (2024-06-04) is the same server error page (58 bytes); zh/list-324-1.html 2024-07 not parsed as a list; no faculty list archived in 2024"}
   [[departments.listings]]
   slot = "IIIS current2026reviewed source"
   kind = "main"
@@ -142,6 +143,7 @@ unit = "Tsinghua University, Beijing (reviewed source scope)"
 title_match = '教授|研究员|Professor|Research|Investigator'
 coverage = "full"
 url = "https://www.thss.tsinghua.edu.cn/szdw/jsml.htm"
+listing_gaps = {2021 = "exact-URL CDX 2026-11-10: the old list /publish/soft/3655/index.html ends in 2020 (last capture 2020-08) and the new jsml.htm starts 2022-01; no 2021 capture of either", 2026 = "exact-URL CDX 2026-11-10: jsml.htm has no capture after 2025-09; the 2026 listing is the reviewed live capture of 2026-11-07 held as census source, not an archive capture"}
   [[departments.listings]]
   slot = "SW current2026reviewed source"
   kind = "main"
@@ -182,6 +184,7 @@ unit = "Tsinghua University, Beijing (reviewed source scope)"
 title_match = '教授|研究员|Professor|Research|Investigator'
 coverage = "full"
 url = "https://air.tsinghua.edu.cn/en/our_team/Research_Team.htm"
+listing_gaps = {2016 = "exact-URL CDX 2026-11-10: air.tsinghua.edu.cn/en/our_team/Research_Team.htm first captured 2023-02 (host-wide captures begin 2021-01); no archived team page", 2017 = "same: no archived team page before 2023-02", 2018 = "same: no archived team page before 2023-02", 2019 = "same: no archived team page before 2023-02", 2020 = "same: no archived team page before 2023-02", 2021 = "same: no archived team page before 2023-02", 2022 = "same: no archived team page before 2023-02"}
   [[departments.listings]]
   slot = "AIR current2026reviewed source"
   kind = "main"
@@ -192,6 +195,17 @@ url = "https://air.tsinghua.edu.cn/en/our_team/Research_Team.htm"
   match = ""
   format = "tsinghua_air_cards"
   title_filter = ''
+  [[departments.listings]]
+  slot = "AIR research-team archive 2023-2025"
+  kind = "main"
+  url = "air.tsinghua.edu.cn/en/our_team/Research_Team.htm"
+  from = "20230101"
+  to = "20251231"
+  prefix = false
+  match = ""
+  format = "tsinghua_air_cards"
+  title_filter = ''
+  # exact-URL CDX 2026-11-10: captures 2023-02 .. 2026-08 (5, 6, 6, 3 months in 2023-2026).
 
 [[departments]]
 code = "AU"
