@@ -1,5 +1,6 @@
 from listing_formats import parse
 from listing_rows import rank_of, quote_of
+import cs_related_school as C
 
 
 def card(name, title, url='/people/smith.html'):
@@ -45,3 +46,14 @@ def test_card_quote_keeps_rank_despite_an_earlier_navigation_name():
     assert quote_of(flat, row) == 'Alex Smith , bio Associate Professor'
     assert quote_of(flat, {**row, 'quote': 'Alex Smith Professor of Invented Claims'}) is None
     assert quote_of(flat, {**row, 'quote': 'Alex Smith'}) is None
+
+
+def test_vt_collegiate_ece_role_is_not_ladder_evidence():
+    teaching = C.S.field(C.S.get('vt'), 'census.rank_words.teaching')
+    page = ('Nagender Aneja Collegiate Associate Professor Profile '
+            'Walid Saad Professor Profile '
+            'Luke F. Lester Research Professor Profile')
+    evidence = [('ECE', 'official', 'sha', '20261110', page)]
+    assert C.faculty_evidence(evidence, ['Nagender Aneja'], teaching)[0]['ladder'] is False
+    assert C.faculty_evidence(evidence, ['Walid Saad'], teaching)[0]['ladder'] is True
+    assert C.faculty_evidence(evidence, ['Luke F. Lester'], teaching)[0]['ladder'] is False

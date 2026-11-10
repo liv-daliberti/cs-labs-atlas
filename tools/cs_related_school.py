@@ -301,13 +301,14 @@ def unit_pages(key):
 CUT = re.compile(r'Send Email|\bProfile\b|\S+@\S+|Ph\.?\s?D\.?\s+(?:Student|Candidate)|Graduate Student|\(\d{3}\)|\d{3}[-.]\d{3}[-.]\d{4}', re.I)
 
 
-def faculty_evidence(pages, names):
+def faculty_evidence(pages, names, teaching_title=''):
     """Every (unit, url, sha, observed, quote, ladder) where a page names the person and a professor title follows the
     name directly: the title must start within 60 characters of the name, nothing between them may be a non-ladder
     title, and the segment is cut at the entry's own furniture ('Send Email', 'Profile', an email or phone, 'Ph.D.
     Student'), so the next person's title is never read as this one's (learned 2026-10-29: 'Lauro Ojeda Assistant Research
     Scientist ... Chinedum Okwudire Associate Professor'). A form must end at a name boundary ('Matthew Johnson' is not
     'Matthew Johnson-Roberson')."""
+    teaching = re.compile(teaching_title, re.I) if teaching_title else None
     forms = set()
     for n in names:
         t = n.replace(',', '').split()
@@ -343,7 +344,8 @@ def faculty_evidence(pages, names):
                 core = seg[:pt.start() + re.search(r'Professor', seg[pt.start():], re.I).end()]
                 _m = re.match(r'[\s,]*(?:Emerit\w+|Adjunct|\(?Status[- ]only\)?|\(cross-appointed\))', seg[len(core):], re.I)
                 core += _m.group(0) if _m else ''  # 'Professor Emeritus' is emeritus, not ladder (Toronto 2026-11-10)
-                hit = dict(unit=unit, url=url, sha256=sha, observed=obs, quote=q, ladder=not NOT_LADDER.search(core))
+                hit = dict(unit=unit, url=url, sha256=sha, observed=obs, quote=q,
+                           ladder=not NOT_LADDER.search(core) and not (teaching and teaching.search(core)))
                 break
             if hit:
                 ev.append(hit)
@@ -403,7 +405,8 @@ def profile(key, name, unit, url):
             if st == 200:
                 pages.append((unit, cap, sha, r['timestamp'], W.flat(b)))
                 break
-    ev = [e for e in faculty_evidence(pages, names) if e['ladder']]
+    teaching = S.field(S.get(key), 'census.rank_words.teaching') or ''
+    ev = [e for e in faculty_evidence(pages, names, teaching) if e['ladder']]
     if not ev:
         print(json.dumps(dict(name=name, result='no professor title after the name', pages=len(pages))))
         return 1
@@ -438,6 +441,7 @@ def review(key):
     SETTLE = list(S.field(S.get(key), 'cs_related.share_test_settles') or [])
     CENTERS = set(S.field(S.get(key), 'census.center_units') or [])
     NOT_FACULTY = S.field(S.get(key), 'cs_related.not_faculty') or {}   # {name = reason}: owner-decided non-faculty (research engineer, staff) whose listing quote a rule misread
+    TEACHING = S.field(S.get(key), 'census.rank_words.teaching') or ''
     searched = sorted({p[0] for p in pages})
     hand = hand_evidence(key)
     dec, adds, n = [], [], collections.Counter()
@@ -480,7 +484,7 @@ def review(key):
             src = next(s for s in x['sources'] if s.get('rank') == 'ladder')
             fac = [dict(unit=src['kind'].split(':')[-1], url=src['url'], sha256=src['sha256'], observed=src['observed'], quote=src['quote'], ladder=True)]
         else:
-            fac = faculty_evidence(pages, names) + hand.get(' '.join(toks(c['name'])), [])
+            fac = faculty_evidence(pages, names, TEACHING) + hand.get(' '.join(toks(c['name'])), [])
         lad = [e for e in fac if e['ladder']]
         sh = None
         if SH and lad:
