@@ -107,3 +107,11 @@ def test_official_homepage_fallback_selects_the_profile_linked_page_and_keeps_th
     assert r['url'] == 'https://cse.hkust.edu.hk/~x/' and r['official_link_status'] == 'recorded' and r['sha256'] == 'b' * 64
     assert r['website_note']['replaced_url'] == 'https://lab.example/' and r['website_note']['people_page'] == 'https://lab.example/people'
     assert any(L.official_check(c, r['url']) for c in r['checks'])
+
+
+def test_prior_degree_phrases_are_not_roles():
+    import labpage_audit as A
+    role_of = lambda t: ('masters' if 'master' in t.lower() else 'undergraduate' if 'undergrad' in t.lower() or 'bachelor' in t.lower() else 'phd' if 'phd' in t.lower() else 'member', 0)
+    assert A.entry_role("(Bachelor's from X University, Hong Kong PhD Fellowship)", 'Students > Current/Incoming PhD students', role_of)[0] != 'undergraduate'
+    assert A.entry_role("Master's from Y University", 'Current PhD students', role_of)[0] != 'masters'
+    assert A.entry_role('(Master student, 2023-2025)', 'Members', role_of)[0] == 'masters'

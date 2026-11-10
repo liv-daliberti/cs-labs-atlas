@@ -1481,6 +1481,9 @@ ROLE_NEAR = re.compile(r"^\W{0,3}[(,:–—-]?\s*(?:[A-Z][\w.&'-]*\s){0,2}?(?:vi
                        r"graduate|grad\b|doctoral|student|candidate|research|visiting|lab manager|engineer|scientist|staff|intern)", re.I)
 
 
+PRIOR_DEGREE = re.compile(r"^\W{0,3}\(?\s*(?:bachelor|master|undergraduate|b\.?\s?s\.?c?|m\.?\s?s\.?c?|mphil|b\.?eng|m\.?eng)['\u2019]?s?\s*(?:degree\s+)?(?:from|at)\b", re.I)
+
+
 def entry_role(desc, head, role_of):
     """(role, basis): the role the entry states right after the name ('(PhD student, ...)', ', Postdoc', 'MIT Undergraduate
     Student'), else the role its section heading names ('PhD Students', 'Post-doctoral Scholars'), else (None, 'none').
@@ -1494,7 +1497,9 @@ def entry_role(desc, head, role_of):
         return 'phd', 'entry'   # 'Ph.D. 2025, Post Doc @ Univ. of Illinois': the degree is the role, the post after it is the placement (UChicago round 2)
     if re.match(r'^\W{0,3}(?:(?:MPCS|MCAM|MSCAPP|MSc?|M\.S\.)\b|[^,]{1,25},\s*(?:MS|M\.S\.|MSc)\b)', d):
         return 'masters', 'entry'   # 'Noame Qin — MCAM, MS 2022' under an 'undergraduate & master's' heading: the entry's own degree is the role
-    if ROLE_NEAR.match(d):
+    if PRIOR_DEGREE.match(d):
+        pass   # 'Bachelor's from X, Hong Kong PhD Fellowship': the degree the person holds on arrival, not their role here (HKUST hand check 2026-11-10: 4 of 11 roles wrong); the section heading decides
+    elif ROLE_NEAR.match(d):
         r = role_of(d[:45])[0]
         if r and r != 'member':
             return r, 'entry'
