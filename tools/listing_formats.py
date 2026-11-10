@@ -829,7 +829,116 @@ def sjtu_cs_en_institutes(h):
     return out
 
 
+HONORIFIC = re.compile(r'^(Emeritus Prof|Adj(?:unct)? (?:Assoc |Asst )?Prof|Assoc Prof|Asst Prof|Prof|Dr|Mr|Ms|Mrs)\.?\s+')
+HONOR_RANK = {'assoc prof': 'Associate Professor', 'asst prof': 'Assistant Professor', 'prof': 'Professor', 'emeritus prof': 'Emeritus Professor'}
+
+
+def ntu_person(raw, designations):
+    """One NTU unit-page entry as the listing row the review reads: the honorific is stripped (its rank, literal on the page, leads the titles),
+    'SURNAME, Given' and an upper-case surname become 'Given Surname'."""
+    raw = clean(raw.replace('\u200b', ''))
+    m = HONORIFIC.match(raw)
+    rank = HONOR_RANK.get(m.group(1).lower()) if m else None
+    name = raw[m.end():] if m else raw
+    if ',' in name:
+        fam, giv = [x.strip() for x in name.split(',', 1)]
+        name = f'{giv} {fam}'
+    name = ' '.join(w.capitalize() if len(w) > 1 and w.isupper() else w for w in name.split())
+    titles = ([rank] if rank else []) + [clean(d.replace('\u200b', '')) for d in designations if clean(d.replace('\u200b', ''))]
+    return dict(name_listed=name, titles=titles, profile=None, homepage=None, division=None)
+
+
+def _br_lines(el):
+    return [x for x in re.split(r'<br\s*/?>', el.decode_contents(), flags=re.I) if clean(x)]
+
+
+def ntu_coe_cards(h):
+    """NTU College of Engineering sites (EEE, CEE 2026): article.coe-about-leadership__card, h3 name (surname in capitals) and p.__role (rank)."""
+    from bs4 import BeautifulSoup
+    out = []
+    for card in BeautifulSoup(h, 'html.parser').select('article.coe-about-leadership__card'):
+        nm = card.select_one('.coe-about-leadership__name')
+        if nm is None:
+            continue
+        role = card.select_one('.coe-about-leadership__role')
+        e = ntu_person(nm.get_text(' ', strip=True), [role.get_text(' ', strip=True)] if role else [])
+        a = card.select_one('a[href*="dr.ntu.edu.sg"]')
+        e['profile'] = a.get('href') if a else None
+        out.append(e)
+    return out
+
+
+def ntu_profile_cards(h):
+    """NTU profile lists (WKWSCI, ADM, SBS, MAE when rendered): div.profile-row / div.profile-card with a .name-text name and a designation block (lines split on <br>)."""
+    from bs4 import BeautifulSoup
+    out = []
+    for card in BeautifulSoup(h, 'html.parser').select('div.profile-row, div.profile-card'):
+        nm = card.select_one('.name-text')
+        if nm is None:
+            continue
+        des = card.select_one('.profile-row-designation, .profile-card-designation')
+        a = card.select_one('a[href]')
+        e = ntu_person(nm.get_text(' ', strip=True), [clean(x) for x in _br_lines(des)] if des is not None else [])
+        e['profile'] = a.get('href') if a else None
+        out.append(e)
+    return out
+
+
+def ntu_spms_table(h):
+    """NTU SPMS faculty tables: <td><strong>SURNAME, Given</strong><br><span>Rank</span>..."""
+    from bs4 import BeautifulSoup
+    out = []
+    for td in BeautifulSoup(h, 'html.parser').find_all('td'):
+        st = td.find('strong', recursive=False)
+        sp = td.find('span', recursive=False)
+        if st is None or sp is None or ',' not in st.get_text():
+            continue
+        a = td.find('a', string=re.compile('Profile'))
+        e = ntu_person(st.get_text(' ', strip=True), [sp.get_text(' ', strip=True)])
+        e['profile'] = a.get('href') if a else None
+        out.append(e)
+    return out
+
+
+def ntu_medicine_table(h):
+    """NTU Lee Kong Chian School of Medicine faculty table: first cell a link 'Prof Given SURNAME', second cell the appointments split on <br>."""
+    from bs4 import BeautifulSoup
+    out = []
+    for tr in BeautifulSoup(h, 'html.parser').select('table tbody tr'):
+        tds = tr.find_all('td', recursive=False)
+        if len(tds) < 2:
+            continue
+        a = [x for x in tds[0].find_all('a') if clean(x.get_text())]
+        if not a:
+            continue
+        e = ntu_person(a[-1].get_text(' ', strip=True), [clean(x) for x in _br_lines(tds[1])])
+        e['profile'] = a[-1].get('href')
+        out.append(e)
+    return out
+
+
+NTU_FORMATS = ('ntu_coe_cards', 'ntu_profile_cards', 'ntu_spms_table', 'ntu_medicine_table')
+
+
+def ntu_unit_text(html):
+    """Verification text of an NTU unit page read through its format (name + title rows), or None when no NTU format parses it."""
+    for fmt in NTU_FORMATS:
+        rows = FORMATS[fmt][0](html)
+        if rows:
+            return ntu_entries_text(rows)
+    return None
+
+
+def ntu_entries_text(rows):
+    """Verification text of the parsed rows: 'Name Title Title Profile' per person, the 'Profile' marker ending each entry (cs_related_school.CUT)."""
+    return ' '.join(f"{r['name_listed']} {' '.join(r['titles'])} Profile" for r in rows)
+
+
 FORMATS = {
+    'ntu_coe_cards': (ntu_coe_cards, re.compile(r'coe-about-leadership__card')),
+    'ntu_profile_cards': (ntu_profile_cards, re.compile(r'ntu-profile-list')),
+    'ntu_spms_table': (ntu_spms_table, re.compile(r"<strong[^>]*>[A-Z][A-Z' -]+, [A-Z]")),
+    'ntu_medicine_table': (ntu_medicine_table, re.compile(r'Faculty and Joint Faculty')),
     'ntu_img_cards': (ntu_img_cards, re.compile(r'img-card--academic')),
     'tsinghua_ee_any': (tsinghua_ee_any, re.compile(r'(?!)')),
     'tsinghua_ee_text': (tsinghua_ee_text, re.compile(r'图片列表.{0,3000}?(?:教\s*授|副教授)\s*[：:]', re.S)),

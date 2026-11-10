@@ -266,6 +266,11 @@ def wp_json_people_text(raw):
         return ''
 
 
+def LF_ntu_text(html):
+    import listing_formats as LF
+    return LF.ntu_unit_text(html)
+
+
 def unit_pages(key):
     """(unit code, url, sha256, observed, flat text) of every stored 2016-2026 unit capture and live page."""
     cfg = S.get(key); c = W.con(key)
@@ -280,12 +285,16 @@ def unit_pages(key):
             return codes[base]
         return next((c_ for lk, c_ in codes.items() if base.startswith(lk + '/') and re.fullmatch(r'[a-z]', base[len(lk) + 1:])), None)
     out = []
-    for cap, page, dept, ts, st, sha, txt in c.execute('select capture_url, page_url, department, wayback_timestamp, http_status, sha256, text from captures'):
+    for cap, page, dept, ts, st, sha, txt, rawz in c.execute('select capture_url, page_url, department, wayback_timestamp, http_status, sha256, text, raw_zlib from captures'):
         k = re.sub(r'^https?://(www\.)?', '', page or '').rstrip('/').lower()
         if st == 200 and txt and (k in codes or dept in codes.values()):
             y = int(str(ts)[:4])
             if 2016 <= y <= 2026:
-                out.append((codes.get(k, dept), cap, sha, str(ts), ' '.join(txt.split())))
+                flat_ = ' '.join(txt.split())
+                if rawz and k.startswith('ntu.edu.sg/'):   # NTU unit pages: the page's own name + title rows (listing_formats.ntu_*), not the 300-characters heuristic
+                    nt = LF_ntu_text(W.body(rawz).decode('utf-8', 'replace'))
+                    flat_ = nt or flat_
+                out.append((codes.get(k, dept), cap, sha, str(ts), flat_))
     for url, at, st, sha, raw in c.execute('select url, fetched_at, status, sha256, raw_zlib from live'):
         k = re.sub(r'^https?://(www\.)?', '', url).rstrip('/').lower()
         if st == 200 and code_of(k):
@@ -293,8 +302,9 @@ def unit_pages(key):
             if '/wp-json/' in url:
                 out.append((code_of(k), url, sha, at[:10].replace('-', ''), wp_json_people_text(zlib.decompress(raw))))
                 continue
+            nt = LF_ntu_text(zlib.decompress(raw).decode('utf-8', 'replace')) if k.startswith('ntu.edu.sg/') else None
             b = W.extract.blocks(zlib.decompress(raw), 'text/html', url)
-            out.append((code_of(k), url, sha, at[:10].replace('-', ''), W.flat(b)))
+            out.append((code_of(k), url, sha, at[:10].replace('-', ''), nt or W.flat(b)))
     return out
 
 
