@@ -51,7 +51,8 @@ def read(p, default=None):
 
 
 def pis_of(key):
-    cen = read(P.data('census-faculty.json', key), {}).get('faculty', [])
+    cen = read(P.data('census-faculty.json', key), {})
+    cen = cen.get('faculty', []) if isinstance(cen, dict) else cen   # a composed first-native school keeps a bare list
     add = read(P.data('census-additions.json', key), [])
     return [x for x in cen + add if x.get('is_pi')]
 

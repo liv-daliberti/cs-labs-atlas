@@ -81,14 +81,22 @@ def clean_dblp(n):
     return re.sub(r'\s+\d{4}$', '', n)
 
 
+def census_rows(doc):
+    """The census rows of a census-faculty.json: {'faculty': [...]} (the stage-2 tools' layout) or a bare list (a composed first-native school such as ZJU).
+    A missing file is an empty census, not a crash."""
+    if isinstance(doc, dict):
+        doc = doc.get('faculty')
+    return [x for x in (doc or []) if isinstance(x, dict) and x.get('name')]
+
+
 def candidates(key):
-    census = read(P.data('census-faculty.json', key))['faculty']
+    census = census_rows(read(P.data('census-faculty.json', key)))
     cov = {d['code']: d.get('coverage') for d in S.get(key).get('departments') or []}
     out = []
     for x in census:  # (a) ladder in an affiliated department, never ladder in a full-coverage one
-        dep_rank = {(s_['kind'].split(':')[-1], s_.get('rank')) for s_ in x['sources']}
+        dep_rank = {((s_.get('kind') or '').split(':')[-1], s_.get('rank')) for s_ in x.get('sources') or []}
         if any(cov.get(d) == 'affiliated' and r == 'ladder' for d, r in dep_rank) and not any(cov.get(d) == 'full' and r == 'ladder' for d, r in dep_rank):
-            out.append(dict(name=x['name'], aliases=x.get('aliases') or [], source='affiliated_department', departments=x['departments']))
+            out.append(dict(name=x['name'], aliases=x.get('aliases') or [], source='affiliated_department', departments=x.get('departments') or []))
     names = [Name([x['name']] + list(x.get('aliases') or [])) for x in census]
     for p in read(P.data('dblp-affiliated.json', key), {}).get('persons', []):
         if p.get('n_window', 0) < MIN_DBLP or p.get('disambiguation'):

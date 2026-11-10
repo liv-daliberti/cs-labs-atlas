@@ -352,7 +352,9 @@
         "why_no_identity": "role-only context",
         "school_papers_admitted": 0
       }
-    }
+    },
+    "no_papers": true,
+    "why_no_papers": "Reviewed with the bound DBLP person (84/1781-3, 91 records): the only appointment evidence is the 2026 listing, so the 2016-2025 records fall outside the faculty period (no faculty interval is inferred), and DBLP lists no 2026 record. No paper is attributed; not a claim of no publications."
   },
   "冯结青": {
     "no_identity": true,
@@ -506,7 +508,21 @@
       "why": "No personally owned ORCID has been reviewed for this addition. Dump identifiers are unresolved, not declared false, and cannot be inherited.",
       "evidence": []
     },
-    "collection_person_id": "zju_source_fac_27a2ea8dad795bd19dd6"
+    "collection_person_id": "zju_source_fac_27a2ea8dad795bd19dd6",
+    "home_department": "College of Mathematical Sciences",
+    "home_department_evidence": [
+      {
+        "url": "http://www.cad.zju.edu.cn/home/hwlin/",
+        "sha256": "d4cab7846c7abad07f9f998f84b75a63a1b60170f4857e11689db61a87a788b5",
+        "quote": "浙江大学数学科学学院",
+        "kind": "cached_owned_profile_page"
+      }
+    ],
+    "why_home_department": "The owned professor page names the Mathematical Sciences college and the CAD&CG laboratory and does not say which is the primary appointment; home_department is only the reporting unit (a center is never a home), both units stay visible (R-HOME-01).",
+    "primary_unresolved": [
+      "College of Mathematical Sciences",
+      "State Key Laboratory of CAD&CG"
+    ]
   },
   "刘振宇": {
     "no_identity": true,
@@ -566,7 +582,21 @@
       "why": "No personally owned ORCID reviewed for this new source context; dump identifiers unresolved and not inherited.",
       "evidence": []
     },
-    "collection_person_id": "zju_source_fac_346e0bd90537dbacb7b9"
+    "collection_person_id": "zju_source_fac_346e0bd90537dbacb7b9",
+    "home_department": "Main College of Computer Science",
+    "home_department_evidence": [
+      {
+        "url": "http://www.cad.zju.edu.cn/home/weiweixu/",
+        "sha256": "f8eb7dce98aadbbfd367aa92f13331d92aff97f3ec40459bf527b88d2051dbc6",
+        "quote": "浙江大学计算机学院CAD&amp;CG国家重点实验室",
+        "kind": "cached_owned_profile_page"
+      }
+    ],
+    "why_home_department": "The owned page names the Computer Science college and the CAD&CG laboratory in one line without saying which is primary; home_department is the reporting unit, both stay visible (R-HOME-01).",
+    "primary_unresolved": [
+      "Main College of Computer Science",
+      "State Key Laboratory of CAD&CG"
+    ]
   },
   "孙凌云": {
     "no_identity": true,
@@ -888,7 +918,19 @@
         "why_no_identity": "role-only context",
         "school_papers_admitted": 0
       }
-    }
+    },
+    "aliases": [
+      "Xiaowei Zhou"
+    ],
+    "why_aliases": "The bound DBLP person record (homepages/30/1273-1, author \"Xiaowei Zhou 0001\") carries the PI's exact Chinese name 周晓巍 in its uname note, lists his exact profile URL https://xzhou.me/ and names Zhejiang University; without the Latin form the build dropped the id as a name conflict (R-PAP-05).",
+    "aliases_evidence": [
+      {
+        "url": "https://dblp.org/pid/30/1273-1",
+        "sha256": "3db6162a475a0f9ad080615caa2a83df528f93513f2b310dd30ddf44619ae245",
+        "quote": "<www mdate=\"2025-06-07\" key=\"homepages/30/1273-1\">\n<author>Xiaowei Zhou 0001</author>\n<note type=\"uname\">&#21608;&#26195;&#24013;</note>\n<note type=\"affiliation\">Zhejiang University, Hangzhou, China</note>\n<note type=\"affiliation\">University of Pennsylvania, Department of Computer and Information Science, Philadelphia, PA, USA</note>\n<note type=\"affiliation\" label=\"PhD\">Hong Kong University of Science and Technology, Tai Po Tsai, Hong Kong</note>\n<title>Home Page</title>\n<url>https://xzhou.me/</url>\n<url>https://orcid.org/0000-0003-1926-5597</url>\n<url>https://scholar.google.com/citations?user=E1vVpg4AAAAJ</url>\n<url>https://ieeexplore.ieee.org/author/37087235480</url>\n<url>https://twitter.com/XiaoweiZhou5</url>\n<url>https://github.com/zju3dv</url>\n<url>https://www.wikidata.org/entity/Q130865004</url>\n</www>",
+        "kind": "original_DBLP_www_record_local_dump_2026-09-01"
+      }
+    ]
   },
   "李春光": {
     "no_identity": true,
@@ -1183,7 +1225,18 @@
       "why": "No personally owned ORCID reviewed for this new source context; dump identifiers unresolved and not inherited.",
       "evidence": []
     },
-    "collection_person_id": "zju_source_fac_864136e028e256769e24"
+    "collection_person_id": "zju_source_fac_864136e028e256769e24",
+    "home_department": "Main College of Computer Science",
+    "home_department_evidence": [
+      {
+        "url": "http://www.cad.zju.edu.cn/home/zhpcui/",
+        "sha256": "5b0fb991bb7d0c2873f0b7c79016efdc05580783c4bd8bb5608e9a999879095f",
+        "quote": "Research Professor, College of Computer Science and Technology, Zhejiang University",
+        "kind": "cached_owned_profile_page"
+      }
+    ],
+    "why_home_department": "The owned page title states the appointment: Research Professor of the College of Computer Science and Technology; the CAD&CG laboratory is a secondary affiliation (R-HOME-01).",
+    "primary_stated": true
   },
   "霍宇驰": {
     "no_identity": true,
@@ -1213,7 +1266,18 @@
       "why": "No personally owned ORCID reviewed for this new source context; dump identifiers unresolved and not inherited.",
       "evidence": []
     },
-    "collection_person_id": "zju_source_fac_902be4839593f8df9290"
+    "collection_person_id": "zju_source_fac_902be4839593f8df9290",
+    "home_department": "Main College of Computer Science",
+    "home_department_evidence": [
+      {
+        "url": "https://www.zyouyi.com",
+        "sha256": "03ce2c99ba55edd13302ffec467d3ef10d5decce735a4946375c4061cf6c0347",
+        "quote": "郑友怡是浙江大学计算机学院长聘副教授",
+        "kind": "cached_owned_profile_page"
+      }
+    ],
+    "why_home_department": "The owned biography states the tenured associate professorship in the Computer Science college; the CAD&CG laboratory is a secondary affiliation (R-HOME-01).",
+    "primary_stated": true
   },
   "李峙": {
     "no_identity": true,
