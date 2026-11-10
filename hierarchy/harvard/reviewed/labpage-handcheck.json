@@ -1464,6 +1464,31 @@
     ]
    },
    "disclosure": "Reviewers saw only the page text and the claimed row, not any earlier verdict. The Zitnik page capture exists only in the private overlay store (not in main raw) until the capture merge is approved; the Seigal page is in main."
+  },
+  {
+   "round": 7,
+   "date": "2026-11-10",
+   "label": "independent round on the 31 recover-proposed paper additions (all unread): two fresh blind reviewers, every row by both",
+   "additions_generated_at": "2026-11-10T09:43:35+00:00",
+   "students": null,
+   "papers": {
+    "sampled": 31,
+    "seed": null,
+    "errors": 0,
+    "doubtful_count": 1,
+    "result": "pass: 0 wrong; 1 doubtful held; 30 wired"
+   },
+   "items": {
+    "papers": [
+     {
+      "pi": "David Alvarez-Melis",
+      "title": "IGDA: Interactive Graph Discovery through Large Language Model Agents",
+      "doubtful_count": 1,
+      "reason": "all three authors share one merged affiliation string 'Microsoft Research 1, Georgia Tech 2, Harvard University' with numbering lost, so a Harvard tie of the PI's own authorship is not shown (doubtful for both independent reviewers)"
+     }
+    ]
+   },
+   "disclosure": "Reviewers saw only the proposed row fields (byline, OpenAlex authorships, page-1 quotes, listing), no earlier verdict. Recover ran with about 73 OpenAlex credits (3 DOI + 70 title search; the run keeps its own counter, the shared ledger shows no entry)."
   }
  ]
 }
